@@ -1,0 +1,763 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Funda Wang <fundawang@linux.net.cn>, 2004.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: f-spot HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-12-04 02:48+0100\n"
+"PO-Revision-Date: 2004-12-04 16:00+0800\n"
+"Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
+"Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: libeog/eog-file-selection.c:29 libeog/eog-file-selection.c:46
+msgid "By Extension"
+msgstr "按扩展名"
+
+#: libeog/eog-file-selection.c:30
+msgid "BMP"
+msgstr "BMP"
+
+#: libeog/eog-file-selection.c:31
+msgid "GIF"
+msgstr "GIF"
+
+#: libeog/eog-file-selection.c:32
+msgid "ICO"
+msgstr "ICO"
+
+#: libeog/eog-file-selection.c:33 libeog/eog-file-selection.c:48
+msgid "JPEG"
+msgstr "JPEG"
+
+#: libeog/eog-file-selection.c:34 libeog/eog-file-selection.c:51
+msgid "PNG"
+msgstr "PNG"
+
+#: libeog/eog-file-selection.c:35
+msgid "PNM"
+msgstr "PNM"
+
+#: libeog/eog-file-selection.c:36
+msgid "RAS"
+msgstr "RAS"
+
+#: libeog/eog-file-selection.c:37
+msgid "SVG"
+msgstr "SVG"
+
+#: libeog/eog-file-selection.c:38
+msgid "TGA"
+msgstr "TGA"
+
+#: libeog/eog-file-selection.c:39
+msgid "TIFF"
+msgstr "TIFF"
+
+#: libeog/eog-file-selection.c:40
+msgid "XBM"
+msgstr "XBM"
+
+#: libeog/eog-file-selection.c:41 libeog/eog-file-selection.c:54
+msgid "XPM"
+msgstr "XPM"
+
+#: libeog/eog-file-selection.c:207
+msgid "Unsupported file format."
+msgstr "不支持的文件格式。"
+
+#: libeog/eog-file-selection.c:225
+msgid "Determine File Type:"
+msgstr "确定文件类型："
+
+#: libeog/eog-file-selection.c:268
+msgid "Load Image"
+msgstr "装入图像"
+
+#: libeog/eog-file-selection.c:274
+msgid "Save Image"
+msgstr "保存图像"
+
+#: libeog/eog-image.c:772
+msgid "No image loaded."
+msgstr ""
+
+#: libeog/eog-image.c:779
+msgid "Can't save non local files."
+msgstr ""
+
+#: libeog/eog-image.c:800
+msgid "Unsupported image type for saving."
+msgstr ""
+
+#: libeog/image-view.c:2058
+msgid "interpolation type"
+msgstr ""
+
+#: libeog/image-view.c:2059
+msgid "the type of interpolation to use"
+msgstr ""
+
+#: libeog/image-view.c:2065 libeog/image-view.c:2072
+msgid "check type"
+msgstr ""
+
+#: libeog/image-view.c:2066
+msgid "the type of chequering to use"
+msgstr ""
+
+#: libeog/image-view.c:2073
+msgid "the size of chequers to use"
+msgstr ""
+
+#: libeog/image-view.c:2079
+msgid "dither"
+msgstr ""
+
+#: libeog/image-view.c:2080
+msgid "dither type"
+msgstr ""
+
+#: libfspot/f-jpeg-utils.c:421
+msgid "File not found"
+msgstr "文件未找到"
+
+#: libfspot/f-jpeg-utils.c:444
+#, c-format
+msgid "Unknown transform type %d"
+msgstr ""
+
+#: libfspot/f-jpeg-utils.c:452
+msgid "Operation failed"
+msgstr "操作失败"
+
+#: src/f-spot.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: src/f-spot.glade.h:2
+msgid "<b>Album</b>"
+msgstr "<b>相册</b>"
+
+#: src/f-spot.glade.h:3
+msgid "<b>Color Temperature</b>"
+msgstr ""
+
+#: src/f-spot.glade.h:4
+msgid "<b>End Date</b>"
+msgstr "<b>结束</b>"
+
+#: src/f-spot.glade.h:5
+msgid "<b>Exposure</b>"
+msgstr ""
+
+#: src/f-spot.glade.h:6
+msgid "<b>Gallery</b>"
+msgstr "<b>图库</b>"
+
+#: src/f-spot.glade.h:7
+msgid "<b>Histogram</b>"
+msgstr ""
+
+#: src/f-spot.glade.h:8
+msgid "<b>Photograph Layout</b>"
+msgstr "<b>相片布局</b>"
+
+#: src/f-spot.glade.h:9
+msgid "<b>Photos</b>"
+msgstr "<b>相片</b>"
+
+#: src/f-spot.glade.h:10
+msgid "<b>Preview</b>"
+msgstr "<b>预览</b>"
+
+#: src/f-spot.glade.h:11
+msgid "<b>Printer Details</b>"
+msgstr "<b>打印机细节</b>"
+
+#: src/f-spot.glade.h:12
+msgid "<b>Start Date</b>"
+msgstr "<b>开始日期</b>"
+
+#: src/f-spot.glade.h:13
+msgid "<b>Style</b>"
+msgstr "<b>样式</b>"
+
+#: src/f-spot.glade.h:14
+msgid "<small> </small>"
+msgstr "<small> </small>"
+
+#: src/f-spot.glade.h:15
+msgid "<small></small>"
+msgstr "<small></small>"
+
+#: src/f-spot.glade.h:16
+msgid "Add Gallery"
+msgstr "添加图库"
+
+#: src/f-spot.glade.h:17
+msgid "Adjust Color"
+msgstr "调整颜色"
+
+#: src/f-spot.glade.h:18
+msgid "Album:"
+msgstr "相册："
+
+#: src/f-spot.glade.h:19
+msgid "Arranged By"
+msgstr ""
+
+#: src/f-spot.glade.h:20 src/TagPopup.cs:35
+msgid "Attach Tag To Selection"
+msgstr ""
+
+#: src/f-spot.glade.h:21
+msgid "Border:"
+msgstr ""
+
+#: src/f-spot.glade.h:22
+msgid "Brightness:"
+msgstr "亮度："
+
+#: src/f-spot.glade.h:23
+msgid "Browse"
+msgstr "浏览"
+
+#: src/f-spot.glade.h:24
+msgid "CD"
+msgstr "光盘"
+
+#: src/f-spot.glade.h:25
+msgid "Cancel"
+msgstr "取消"
+
+#: src/f-spot.glade.h:26
+msgid "Caption:"
+msgstr "标题："
+
+#: src/f-spot.glade.h:27
+msgid "Category:"
+msgstr "类别："
+
+#: src/f-spot.glade.h:28
+msgid "Close"
+msgstr "关闭"
+
+#: src/f-spot.glade.h:29
+msgid "Co_nfigure"
+msgstr "配置(_N)"
+
+#: src/f-spot.glade.h:30
+msgid "Contrast:"
+msgstr "对比度："
+
+#: src/f-spot.glade.h:31 src/TagCommands.cs:127 src/TagPopup.cs:22
+msgid "Create New Category"
+msgstr "创建新类别"
+
+#: src/f-spot.glade.h:32 src/TagCommands.cs:123 src/TagPopup.cs:20
+msgid "Create New Tag"
+msgstr ""
+
+#: src/f-spot.glade.h:33
+msgid "Create new version"
+msgstr ""
+
+#: src/f-spot.glade.h:34
+msgid "Crop Photo to Fit"
+msgstr ""
+
+#: src/f-spot.glade.h:35
+msgid "Delete Selected Tag"
+msgstr ""
+
+#: src/f-spot.glade.h:36
+msgid "Delete Version"
+msgstr "删除版本"
+
+#: src/f-spot.glade.h:37
+msgid "Destination Temp"
+msgstr ""
+
+#: src/f-spot.glade.h:38
+msgid "Directory"
+msgstr "目录"
+
+#: src/f-spot.glade.h:39
+msgid "Display Dates"
+msgstr "显示日期"
+
+#: src/f-spot.glade.h:40
+msgid "Display Tags"
+msgstr ""
+
+#: src/f-spot.glade.h:41
+msgid "EXIF Data"
+msgstr "EXIF 数据"
+
+#: src/f-spot.glade.h:42
+msgid "Edit Selected Tag"
+msgstr ""
+
+#: src/f-spot.glade.h:43
+msgid "Edit Tag Icon"
+msgstr ""
+
+#: src/f-spot.glade.h:44
+msgid "Export"
+msgstr "导出"
+
+#: src/f-spot.glade.h:45
+msgid "Export titles and comments"
+msgstr "导出标题和注释"
+
+#: src/f-spot.glade.h:46
+msgid "Export to Album:"
+msgstr "导出到相册："
+
+#: src/f-spot.glade.h:47
+msgid "File"
+msgstr "文件"
+
+#: src/f-spot.glade.h:48
+msgid "Fin_d"
+msgstr "查找(_D)"
+
+#: src/f-spot.glade.h:49
+msgid "Find by _Tag"
+msgstr ""
+
+#: src/f-spot.glade.h:50
+msgid ""
+"Full Page\n"
+"Standard - 4x6"
+msgstr ""
+
+#: src/f-spot.glade.h:52
+msgid "Fullscreen"
+msgstr "全屏"
+
+#: src/f-spot.glade.h:53
+msgid "Gallery"
+msgstr "图库"
+
+#: src/f-spot.glade.h:54
+msgid "Gallery Name:"
+msgstr "图库名称："
+
+#: src/f-spot.glade.h:55
+msgid "Gallery Settings"
+msgstr "图库设置"
+
+#: src/f-spot.glade.h:56
+msgid "Gallery:"
+msgstr "图库："
+
+#: src/f-spot.glade.h:57
+msgid ""
+"Hairline\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
+msgstr ""
+
+#: src/f-spot.glade.h:62
+msgid "Hue:"
+msgstr ""
+
+#: src/f-spot.glade.h:63
+msgid "Icon:"
+msgstr "图标："
+
+#: src/f-spot.glade.h:64
+msgid "Month"
+msgstr "月"
+
+#: src/f-spot.glade.h:65
+msgid "Next"
+msgstr ""
+
+#: src/f-spot.glade.h:66
+msgid ""
+"None\n"
+"Title\n"
+"Filename\n"
+"Date\n"
+"Photo Details"
+msgstr ""
+
+#: src/f-spot.glade.h:71
+msgid "Number of Copies:"
+msgstr "副本数："
+
+#: src/f-spot.glade.h:72
+msgid "OK"
+msgstr "确定"
+
+#: src/f-spot.glade.h:73
+msgid "Open album in browser when done uploading"
+msgstr ""
+
+#: src/f-spot.glade.h:74
+msgid "Page 1 of 3"
+msgstr ""
+
+#: src/f-spot.glade.h:75
+msgid "Password:"
+msgstr "密码："
+
+#: src/f-spot.glade.h:76
+msgid "Pause"
+msgstr "暂停"
+
+#: src/f-spot.glade.h:77
+msgid "Photo 0 of 0"
+msgstr ""
+
+#: src/f-spot.glade.h:78
+msgid "Photo Source:"
+msgstr ""
+
+#: src/f-spot.glade.h:79
+msgid "PhotoSize:"
+msgstr ""
+
+#: src/f-spot.glade.h:80
+msgid "Previous"
+msgstr ""
+
+#: src/f-spot.glade.h:81
+msgid "Print"
+msgstr "打印"
+
+#: src/f-spot.glade.h:82
+msgid "Print Crop Marks"
+msgstr ""
+
+#: src/f-spot.glade.h:83
+msgid "Rem_ove Tag"
+msgstr "删除标记(_O)"
+
+#: src/f-spot.glade.h:84 src/TagPopup.cs:38
+msgid "Remove Tag From Selection"
+msgstr ""
+
+#: src/f-spot.glade.h:85
+msgid "Rename Version"
+msgstr "重命名版本"
+
+#: src/f-spot.glade.h:86 src/PhotoPopup.cs:32
+msgid "Rotate Left"
+msgstr ""
+
+#: src/f-spot.glade.h:87 src/PhotoPopup.cs:34
+msgid "Rotate Right"
+msgstr ""
+
+#: src/f-spot.glade.h:88
+msgid "Saturation:"
+msgstr ""
+
+#: src/f-spot.glade.h:89
+msgid "Scale images to no larger than: "
+msgstr ""
+
+#: src/f-spot.glade.h:90
+msgid "Select All"
+msgstr "全部选中"
+
+#: src/f-spot.glade.h:91
+msgid "Select None"
+msgstr "全部不选"
+
+#: src/f-spot.glade.h:92
+msgid ""
+"Selection\n"
+"Gallery\n"
+"Viewport"
+msgstr ""
+
+#: src/f-spot.glade.h:95
+msgid "Send _Mail"
+msgstr "发送邮件(_M)"
+
+#: src/f-spot.glade.h:96
+msgid "Set _Date Range"
+msgstr ""
+
+#: src/f-spot.glade.h:97
+msgid "Set as Background"
+msgstr "设置为背景"
+
+#: src/f-spot.glade.h:98
+msgid "Size"
+msgstr "大小"
+
+#: src/f-spot.glade.h:99
+msgid "SlideShow"
+msgstr "幻灯片"
+
+#: src/f-spot.glade.h:100
+msgid "Source Temp"
+msgstr ""
+
+#: src/f-spot.glade.h:101 src/TagCommands.cs:310
+msgid "Tag name:"
+msgstr "标记名称："
+
+#: src/f-spot.glade.h:102
+msgid "Tags"
+msgstr "标记"
+
+#: src/f-spot.glade.h:103
+msgid "Update Thumbnail"
+msgstr "更新缩略图"
+
+#: src/f-spot.glade.h:104
+msgid "Url:"
+msgstr "URL："
+
+#: src/f-spot.glade.h:105
+msgid "User_name:"
+msgstr "用户名(_N)："
+
+#: src/f-spot.glade.h:106
+msgid "Username:"
+msgstr "用户名"
+
+#: src/f-spot.glade.h:107
+msgid "View"
+msgstr "查看"
+
+#: src/f-spot.glade.h:108
+msgid "Will print Using: Us Letter size on Generic Postscript"
+msgstr ""
+
+#: src/f-spot.glade.h:109
+msgid "Zoom In"
+msgstr "放大"
+
+#: src/f-spot.glade.h:110
+msgid "Zoom _Out"
+msgstr "缩小(_O)"
+
+#: src/f-spot.glade.h:111
+msgid "_Attach Tag"
+msgstr ""
+
+#: src/f-spot.glade.h:112
+msgid "_Clear Date Range"
+msgstr ""
+
+#: src/f-spot.glade.h:113
+msgid "_Delete from Drive"
+msgstr "从驱动器中删除(_D)"
+
+#: src/f-spot.glade.h:114
+msgid "_Gallery Name:"
+msgstr "图库名称(_G)："
+
+#: src/f-spot.glade.h:115
+msgid "_Import"
+msgstr "导入(_I)"
+
+#: src/f-spot.glade.h:116
+msgid "_Large"
+msgstr "大(_L)"
+
+#: src/f-spot.glade.h:117
+msgid "_Medium"
+msgstr "中(_M)"
+
+#: src/f-spot.glade.h:118
+msgid "_Password:"
+msgstr "密码(_P)："
+
+#: src/f-spot.glade.h:119
+msgid "_Remove From Catalog"
+msgstr "从编目删除(_R)"
+
+#: src/f-spot.glade.h:120
+msgid "_Small"
+msgstr "小(_S)"
+
+#: src/f-spot.glade.h:121
+msgid "_Url:"
+msgstr "_URL："
+
+#: src/f-spot.glade.h:122
+msgid "_Version"
+msgstr "版本(_V)"
+
+#: src/f-spot.glade.h:123
+msgid "dialog1"
+msgstr "dialog1"
+
+#: src/f-spot.glade.h:124
+msgid "x"
+msgstr "x"
+
+#: src/GalleryExport.cs:310
+msgid "Uploading Pictures"
+msgstr "上传图片"
+
+#: src/GalleryExport.cs:335
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr ""
+
+#: src/GalleryExport.cs:339 src/ProgressDialog.cs:75
+#, csharp-format
+msgid "{0} of {1}"
+msgstr ""
+
+#: src/GalleryExport.cs:343
+msgid "Done Sending Photos"
+msgstr ""
+
+#: src/GalleryExport.cs:345
+msgid "Upload Complete"
+msgstr "上传完成"
+
+#: src/GalleryExport.cs:349
+msgid "Error Uploading To Gallery"
+msgstr "上传到图库出错"
+
+#: src/GalleryExport.cs:381
+msgid "(No Gallery)"
+msgstr "(无图库)"
+
+#: src/GalleryExport.cs:423
+msgid "(No Albums)"
+msgstr "(无相册)"
+
+#: src/InfoBox.cs:70
+msgid "Name:"
+msgstr "名称："
+
+#: src/InfoBox.cs:72
+msgid "Version:"
+msgstr "版本："
+
+#: src/InfoBox.cs:74
+msgid "Date:"
+msgstr "日期："
+
+#: src/InfoBox.cs:76
+msgid "Size:"
+msgstr "大小："
+
+#: src/InfoBox.cs:78
+msgid "Exposure:"
+msgstr "曝光时间："
+
+#: src/InfoBox.cs:153
+msgid "(None)"
+msgstr "(无)"
+
+#. Translators should localize the following string
+#. * which will give them credit in the About box.
+#. * E.g. "Martin Willemoes Hansen"
+#: src/MainWindow.cs:852
+msgid "translator-credits"
+msgstr ""
+
+#: src/PhotoPopup.cs:27
+msgid "Copy Image Location"
+msgstr "复制图像位置"
+
+#: src/PhotoPopup.cs:39
+msgid "Remove From Catalog"
+msgstr "从编目中删除"
+
+#: src/PhotoPopup.cs:41
+msgid "Delete From Drive"
+msgstr "从驱动器中删除"
+
+#.
+#. FIXME TagMenu is ugly.
+#.
+#: src/PhotoPopup.cs:49
+msgid "Attach Tag"
+msgstr ""
+
+#.
+#. FIXME finish the IPhotoSelection stuff and move the activate handler into the class
+#. this current method is way too complicated.
+#.
+#: src/PhotoPopup.cs:59
+msgid "Remove Tag"
+msgstr "删除标记"
+
+#. Fixme this should really set parent menu
+#. items insensitve
+#: src/PhotoTagMenu.cs:72
+msgid "(No Tags)"
+msgstr "(无标记)"
+
+#: src/RotateCommand.cs:24
+msgid "Rotating pictures"
+msgstr "旋转图片"
+
+#: src/RotateCommand.cs:33
+#, csharp-format
+msgid "Rotating picture \"{0}\""
+msgstr "旋转图片“{0}”"
+
+#: src/RotateCommand.cs:71
+msgid ""
+"Some images could not be rotated because they are on a read only file system "
+"or media such as a CDROM.  Please check the permissions and try again."
+msgstr ""
+
+#: src/TagCommands.cs:56
+msgid "(No categories)"
+msgstr "(无类别)"
+
+#: src/TagCommands.cs:102 src/TagCommands.cs:231
+msgid "This name is already in use"
+msgstr "此名称已使用"
+
+#: src/TagCommands.cs:124
+msgid "Name of new tag:"
+msgstr "新建标记的名称："
+
+#: src/TagCommands.cs:128
+msgid "Name of new category:"
+msgstr "新建类别的名称："
+
+#: src/TagCommands.cs:306
+msgid "Edit Category"
+msgstr "编辑类别"
+
+#: src/TagCommands.cs:307
+msgid "Category name:"
+msgstr "类别名称："
+
+#: src/TagCommands.cs:309 src/TagPopup.cs:27
+msgid "Edit Tag"
+msgstr "编辑标记"
+
+#: src/TagCommands.cs:379
+#, csharp-format
+msgid "Photo {0} of {1}"
+msgstr "第{0}张照片，共{1}张"
+
+#: src/TagCommands.cs:419
+#, csharp-format
+msgid "Edit icon For category {0}"
+msgstr "编辑类别 {0} 的图标"
+
+#: src/TagCommands.cs:421
+#, csharp-format
+msgid "Edit icon for tag {0}"
+msgstr "编辑标记 {0} 的图标"
+
+#: src/TagPopup.cs:30
+msgid "Delete Tag"
+msgstr "删除标记"
