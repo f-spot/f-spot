@@ -81,6 +81,7 @@ namespace FSpot {
 		private void Close () 
 		{
 			try {
+				delay.Stop ();
 				if (loader != null) {
 					loader.Close ();
 					loader.Dispose ();
