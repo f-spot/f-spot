@@ -103,6 +103,7 @@ public class Db : IDisposable {
 	TagStore tag_store;
 	PhotoStore photo_store;
  	ImportStore import_store;
+	bool empty;
 
 	public TagStore Tags {
 		get {
@@ -152,6 +153,14 @@ public class Db : IDisposable {
 		tag_store = new TagStore (sqlite_connection, new_db);
 		import_store = new ImportStore (sqlite_connection, new_db);
  		photo_store = new PhotoStore (sqlite_connection, new_db, tag_store);
+
+		empty = new_db;
+	}
+
+	public bool Empty {
+		get {
+			return empty;
+		}
 	}
 
 	public void Dispose () {}

@@ -263,6 +263,9 @@ public class MainWindow {
 
 		if (Toplevel == null)
 			Toplevel = this;
+
+		if (db.Empty)
+			HandleImportCommand (null, null);
 	}
 
 	// Switching mode.

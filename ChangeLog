@@ -1,3 +1,10 @@
+2005-02-14  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: Pop up an import dialog if the db is empty.
+
+	* src/Db.cs: add and empty property so we fire up the import
+	dialog if we need to.
+
 2005-02-13  Larry Ewing  <lewing@novell.com>
 
 	* src/FileImportBackend.cs: clean up the constructor.
