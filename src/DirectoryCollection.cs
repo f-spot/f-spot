@@ -79,9 +79,9 @@ namespace FSpot {
 
 		public string Description {
 			get {
-				ExifData data = new ExifData (path);
+				Exif.ExifData data = new Exif.ExifData (path);
 				if (data != null)
-					return data.LookupString (ExifTag.ImageDescription);
+					return data.LookupFirstValue (Exif.ExifTag.ImageDescription);
 				else
 					return null;
 			}

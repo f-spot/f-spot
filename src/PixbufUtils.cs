@@ -511,36 +511,6 @@ class PixbufUtils {
 		return null;
 	}
 
-	public static Gdk.Pixbuf GetThumbnail (ExifData data)
-	{
-		byte [] thumb_data = data.Data;
-
-		if (thumb_data.Length > 0) {
-			PixbufOrientation orientation = GetOrientation (data);
-			MemoryStream mem = new MemoryStream (thumb_data);
-			Gdk.Pixbuf thumb = new Gdk.Pixbuf (mem);
-			Gdk.Pixbuf rotated = PixbufUtils.TransformOrientation (thumb, orientation);
-			
-			if (rotated != thumb)
-				thumb.Dispose ();
-			
-			return rotated;
-		}
-		return null;
-	}
-
-	public static PixbufOrientation GetOrientation (ExifData data)
-        {
-               byte [] value = data.LookupData (ExifTag.Orientation);
-                PixbufOrientation orientation = PixbufOrientation.TopLeft;
-
-		if (value != null) {
-			orientation = (PixbufOrientation)value [0];
-		}
-		
-		return orientation;
-	}
-
 	public static PixbufOrientation GetOrientation (Exif.ExifData data)
 	{
 		PixbufOrientation orientation = PixbufOrientation.TopLeft;
