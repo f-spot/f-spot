@@ -147,8 +147,13 @@ public class PhotoView : EventBox {
 	{
 		if (Query == null || current_photo >= Query.Photos.Length)
 			image_view.Pixbuf = null;
-		else
-			image_view.Pixbuf = new Pixbuf (Query.Photos [current_photo].DefaultVersionPath);
+		else {
+			try {
+				image_view.Pixbuf = new Pixbuf (Query.Photos [current_photo].Path);
+			} catch (GException ex) {
+				image_view.Pixbuf = null;
+			}
+		}	
 
 		image_view.UnsetSelection ();
 		UpdateZoom ();

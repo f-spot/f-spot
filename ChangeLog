@@ -1,3 +1,15 @@
+2003-11-09  Larry Ewing  <lewing@ximian.com>
+
+	* configure.in: drop libgnome requirement to 2.2 since it doens't
+	seem to break anything.
+
+	* src/PixbufLoader.cs (PixbufLoader.processRequest): catch the
+	possible Pixbuf exceptions.
+
+	* src/PhotoView.cs (PhotoView.UpdateImageView): catch the possible Pixbuf exception.
+
+	* src/IconView.cs (IconView.ErrorPixbuf): use the question mark icon we ship.
+
 2003-11-10  Ettore Perazzoli  <ettore@ximian.com>
 
 	* src/InfoBox.cs (InfoBox.Update): Get the size info from the

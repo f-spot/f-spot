@@ -162,7 +162,7 @@ public class IconView : Gtk.Layout {
 	static private Pixbuf ErrorPixbuf ()
 	{
 		if (IconView.error_pixbuf == null)
-			IconView.error_pixbuf = new Pixbuf (Assembly.GetCallingAssembly (), "question-mark-256.png");
+			IconView.error_pixbuf = new Pixbuf (Assembly.GetCallingAssembly (), "f-spot-question-mark.png");
 
 		return IconView.error_pixbuf;
 	}

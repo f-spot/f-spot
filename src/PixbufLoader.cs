@@ -117,10 +117,16 @@ public class PixbufLoader {
 		   code in that case.  FIXME: Should use gnome-vfs to determine the
 		   MIME type rather than just the extension.  */
 		if (request.path.ToLower().EndsWith (".jpg") || request.path.ToLower().EndsWith (".jpeg")) {
-			// FIXME: Because of bug #46101, this leaks:
+			// FIXME: Because of bug #46101, this leaks:	
 			// Pixbuf scaled_image = JpegUtils.LoadScaled (request.path, size, size);
+			Pixbuf scaled_image;
 
-			Pixbuf scaled_image = new Pixbuf (request.path);
+			try {
+				scaled_image = new Pixbuf (request.path);
+			} catch (GLib.GException ex) {
+				scaled_image = null;
+			}
+	
 			if (scaled_image != null) {
 				request.result = scaled_image;
 				return;
@@ -129,7 +135,13 @@ public class PixbufLoader {
 			/* If this fails, just use Pixbuf.  */
 		}
 
-		Pixbuf orig_image = new Pixbuf (request.path);
+		Pixbuf orig_image;
+		try {
+			orig_image = new Pixbuf (request.path);
+		} catch (GLib.GException ex){
+			return;		
+		}
+		
 		if (orig_image == null)
 			return;
 
