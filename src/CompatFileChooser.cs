@@ -21,7 +21,7 @@ public class CompatFileChooserDialog {
     }
 
     public CompatFileChooserDialog (string title, Gtk.Window parent, Action action) {
-	use_file_chooser = true; //(Gtk.Global.CheckVersion (2, 4, 0) == null);
+	use_file_chooser = (Gtk.Global.CheckVersion (2, 4, 0) == "");
 
 	if (use_file_chooser)
 	    create_with_file_chooser (title, parent, action);
