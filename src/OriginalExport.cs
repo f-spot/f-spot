@@ -49,7 +49,7 @@ namespace FSpot {
 		string gallery_name = "web-gallery";
 		// FIME this needs to be a real temp directory
 		string gallery_path = Path.Combine (Path.GetTempPath (), "f-spot-original-" + System.DateTime.Now.Ticks.ToString ());
-		
+
 		FSpot.ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
 		
@@ -118,8 +118,7 @@ namespace FSpot {
 				// we've created the structure, now if the destination was local we are done
 				// otherwise we xfer 
 				if (!dest.IsLocal) {
-					System.Console.WriteLine ("trying {0}", gallery_path);
-					Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (gallery_path);
+					Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (Path.Combine (gallery_path, gallery_name));
 					Gnome.Vfs.Uri target = dest.Clone();
 					target = target.AppendFileName(source.ExtractShortName ());
 					Console.WriteLine(target);

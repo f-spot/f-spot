@@ -1,5 +1,7 @@
 2005-01-21  Larry Ewing  <lewing@novell.com>
 
+	* src/OriginalExport.cs: fix the uri case a little.
+
 	* src/OriginalExport.cs: only create a tempdirectory if we need
 	it.  Use hack to create tempdirectory name.
 
