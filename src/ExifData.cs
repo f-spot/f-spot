@@ -357,7 +357,6 @@ public class ExifData : IDisposable {
 		return (string) string_values [tag];
 	}
 
-#if true
 	public static DateTime DateTimeFromString(string dt)
 	{
 		// Exif DateTime strings are formatted as
@@ -372,22 +371,6 @@ public class ExifData : IDisposable {
 		Console.WriteLine ("parsed {0} as {1}", dt, result);
 		return result;
 	}
-#else
-	public static DateTime DateTimeFromString (string data)
-	{
-		int year = int.Parse (data.Substring (0, 4));
-		int month = int.Parse (data.Substring (5, 2));
-		int day = int.Parse (data.Substring (8, 2));
-		
-		int hour = int.Parse (data.Substring (11, 2));
-		int minute = int.Parse (data.Substring (14, 2));
-		int second = int.Parse (data.Substring (17, 2));
-		
-		DateTime time = new DateTime (year, month, day, hour, minute, second);
-		Console.WriteLine ("parsed {0} as {1}", data, time);
-		return time;
-	}
-#endif
 
 	public byte [] LookupData (ExifTag tag)
 	{
