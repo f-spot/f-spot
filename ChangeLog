@@ -1,5 +1,10 @@
 2003-11-29  Ettore Perazzoli  <ettore@ximian.com>
 
+	* libfspot/f-image-view.c (impl_motion_notify_event): Fix memory
+	leak.  Also, remove big chunk of "#if 0"ed code.
+
+2003-11-29  Ettore Perazzoli  <ettore@ximian.com>
+
 	* src/IconView.cs (IconView.HandlePixbufLoaded): Use
 	InvalidateRect() instead of calling DrawCell() directly.  This
 	fixes a redraw problem that occurred with a large enough number of

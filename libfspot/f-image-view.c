@@ -590,7 +590,6 @@ impl_motion_notify_event (GtkWidget *widget,
 {
 	FImageView *image_view = F_IMAGE_VIEW (widget);
 	FImageViewPrivate *priv = image_view->priv;
-	GdkPixbuf *pixbuf = image_view_get_pixbuf (IMAGE_VIEW (image_view));
 	GdkModifierType mods;
 	int x, y;
 	int image_x, image_y;
@@ -666,40 +665,6 @@ impl_motion_notify_event (GtkWidget *widget,
 	case MODE_DRAG_X2Y2:
 		priv->selection.x2 = image_x;
 		priv->selection.y2 = image_y;
-#if 0
-		double ratio = (double) ABS (image_x - priv->selection.x1) / ABS (image_y - priv->selection.y1);
-
-		if (ratio > priv->selection_xy_ratio) {
-			int offset = ABS (floor ((image_x - priv->selection.x1) / priv->selection_xy_ratio + .5));
-
-			if (image_y > priv->selection.y1) {
-				if (priv->selection.y1 + offset < gdk_pixbuf_get_height (pixbuf)) {
-					priv->selection.y2 = priv->selection.y1 + offset;
-				} else {
-					priv->selection.y2 = gdk_pixbuf_get_height (pixbuf) - 1;
-
-					if (priv->selection.x2 > priv->selection.x1)
-						priv->selection.x2 = priv->selection.x1 + offset;
-					else
-						priv->selection.x2 = priv->selection.x1 - offset;
-				}
-			} else {
-				priv->selection.y2 = priv->selection.y1 - offset;
-			}
-
-			priv->selection.x2 = image_x;
-		} else {
-			int offset = ABS (floor ((image_y - priv->selection.y1) * priv->selection_xy_ratio + .5));
-
-			if (image_x > priv->selection.x1) {
-				priv->selection.x2 = priv->selection.x1 + offset;
-			} else {
-				priv->selection.x2 = priv->selection.x1 - offset;
-			}
-
-			priv->selection.y2 = image_y;
-		}
-#endif
 		break;
 
 	case MODE_DRAG_X2Y1:
@@ -711,6 +676,7 @@ impl_motion_notify_event (GtkWidget *widget,
 		double x_zoom, y_zoom;
 		int x_offset, y_offset;
 		int x1, x2, y1, y2;
+		GdkPixbuf *pixbuf = image_view_get_pixbuf (IMAGE_VIEW (image_view));
 
 		image_view_get_zoom (IMAGE_VIEW (image_view), &x_zoom, &y_zoom);
 
@@ -729,6 +695,8 @@ impl_motion_notify_event (GtkWidget *widget,
 		priv->selection.y1 = priv->initial_selection.y1 + y_offset;
 		priv->selection.x2 = priv->initial_selection.x2 + x_offset;
 		priv->selection.y2 = priv->initial_selection.y2 + y_offset;
+
+		g_object_unref (pixbuf);
 		break;
 	}
 
@@ -741,8 +709,6 @@ impl_motion_notify_event (GtkWidget *widget,
 	draw_selection (image_view, NULL);
 
 	emit_selection_changed (image_view);
-
-	g_object_unref (pixbuf);
 	return TRUE;
 }
 
