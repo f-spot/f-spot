@@ -1,10 +1,13 @@
 f-spot 0.0.6 - Jan 19 2005 - Board
 ----------------------------------
 Quick release to fix several problems in 0.0.5
+- Fixed AsyncPixbufLoader notification error when the requested image
+  does not exist.
+- Fixed SlideShow bug where frames fail to advance.
 - Fixed bug in adding tags to untagged images.
 - Fixed bug in rotation speed-up logic.
 - Fixed exception in Icon editing.
-- Fixed AsyncPixbufLoader notification error when the requested image does not exists.
+- Added emblem
 
 f-spot 0.0.5 - Jan 18 2005 - Dart
 --------------------------------
