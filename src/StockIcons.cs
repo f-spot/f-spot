@@ -2,6 +2,7 @@ using Gtk;
 using Gdk;
 using System;
 using System.Runtime.InteropServices;
+using Mono.Posix;
 
 public class StockIcons {
 	static Gtk.StockItem FromDef (string id, 
@@ -22,18 +23,18 @@ public class StockIcons {
 	public static void Initialize ()
 	{
 		Gtk.StockItem [] stock_items = {	
-			FromDef ("f-spot-browse", "Browse", 0, Gdk.ModifierType.ShiftMask, null),
-			FromDef ("f-spot-camera", "Camera", 0, Gdk.ModifierType.ShiftMask, null),
-			FromDef ("f-spot-crop", "Crop", 0, Gdk.ModifierType.ShiftMask, null),
-			FromDef ("f-spot-edit-image", "Edit Image", 0, Gdk.ModifierType.ShiftMask, null),
-			FromDef ("f-spot-fullscreen", "Fullscreen", 0, Gdk.ModifierType.ShiftMask, null),
-			FromDef ("f-spot-slideshow", "Slideshow", 0, Gdk.ModifierType.ShiftMask, null),
-			FromDef ("f-spot-logo", "Logo", 0, Gdk.ModifierType.ShiftMask, null),
-			FromDef ("f-spot-question-mark", "Question", 0, Gdk.ModifierType.ShiftMask, null),
-			FromDef ("f-spot-red-eye", "Reduce Red-Eye", 0, Gdk.ModifierType.ShiftMask, null),
-			FromDef ("f-spot-rotate-270", "Rotate _Left", 0, Gdk.ModifierType.ShiftMask, null),
-			FromDef ("f-spot-rotate-90", "Rotate _Right", 0, Gdk.ModifierType.ShiftMask, null),
-			FromDef ("f-spot-loading", "Loading", 0, Gdk.ModifierType.ShiftMask, null)
+			FromDef ("f-spot-browse", Catalog.GetString ("Browse"), 0, Gdk.ModifierType.ShiftMask, null),
+			FromDef ("f-spot-camera", Catalog.GetString ("Camera"), 0, Gdk.ModifierType.ShiftMask, null),
+			FromDef ("f-spot-crop", Catalog.GetString ("Crop"), 0, Gdk.ModifierType.ShiftMask, null),
+			FromDef ("f-spot-edit-image", Catalog.GetString ("Edit Image"), 0, Gdk.ModifierType.ShiftMask, null),
+			FromDef ("f-spot-fullscreen", Catalog.GetString ("Fullscreen"), 0, Gdk.ModifierType.ShiftMask, null),
+			FromDef ("f-spot-slideshow", Catalog.GetString ("Slideshow"), 0, Gdk.ModifierType.ShiftMask, null),
+			FromDef ("f-spot-logo", Catalog.GetString ("Logo"), 0, Gdk.ModifierType.ShiftMask, null),
+			FromDef ("f-spot-question-mark", Catalog.GetString ("Question"), 0, Gdk.ModifierType.ShiftMask, null),
+			FromDef ("f-spot-red-eye", Catalog.GetString ("Reduce Red-Eye"), 0, Gdk.ModifierType.ShiftMask, null),
+			FromDef ("f-spot-rotate-270", Catalog.GetString ("Rotate _Left"), 0, Gdk.ModifierType.ShiftMask, null),
+			FromDef ("f-spot-rotate-90", Catalog.GetString ("Rotate _Right"), 0, Gdk.ModifierType.ShiftMask, null),
+			FromDef ("f-spot-loading", Catalog.GetString ("Loading"), 0, Gdk.ModifierType.ShiftMask, null)
 		};
 
 		IconFactory icon_factory = new IconFactory ();
