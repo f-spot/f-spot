@@ -441,6 +441,21 @@ public class MainWindow {
 		}
 	}
 
+
+	void HandleTagSelectionDragDataGet (object sender, DragDataGetArgs args)
+	{		
+		UriList list = new UriList (SelectedPhotos ());
+
+		switch (args.Info) {
+		case (uint) TargetType.TagList:
+			Byte [] data = Encoding.UTF8.GetBytes (list.ToString ());
+			Atom [] targets = args.Context.Targets;
+		
+			args.SelectionData.Set (targets[0], 8, data, data.Length);
+			break;
+		} 
+	}
+
 	public void HandleTagSelectionDragMotion (object o, DragMotionArgs args)
 	{
 		TreePath path;
@@ -483,15 +498,6 @@ public class MainWindow {
 			InvalidateViews ();
 			break;
 		}
-	}
-
-	void HandleTagSelectionDragDataGet (object sender, DragDataGetArgs args)
-	{		
-		UriList list = new UriList (SelectedPhotos ());
-		Byte [] data = Encoding.UTF8.GetBytes (list.ToString ());
-		Atom [] targets = args.Context.Targets;
-		
-		args.SelectionData.Set (targets[0], 8, data, data.Length);
 	}
 
 #if SHOW_CALENDAR
@@ -577,20 +583,18 @@ public class MainWindow {
 
 	void HandleIconViewDragDataGet (object sender, DragDataGetArgs args)
 	{		
-		UriList list = new UriList (SelectedPhotos ());
-
 		switch (args.Info) {
-		case (uint) TargetType.TagList:
+		case (uint)TargetType.UriList:
+			UriList list = new UriList (SelectedPhotos ());
 			Byte [] data = Encoding.UTF8.GetBytes (list.ToString ());
 			Atom [] targets = args.Context.Targets;
-		
 			args.SelectionData.Set (targets[0], 8, data, data.Length);
 			break;
-		case (uint) TargetType.RootWindow:
-			System.Console.WriteLine ("Got background drop");
+		case (uint)TargetType.RootWindow:
 			HandleSetAsBackgroundCommand (null, null);
-			break;
-		} 
+                        break;
+		}
+		       
 	}
 
 	void HandleIconViewDragDrop (object sender, DragDropArgs args)
