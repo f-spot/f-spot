@@ -13,28 +13,28 @@ public class TagSelectionDialog
 	
 	TagSelectionWidget tag_selection_widget;
 	
-	public TagSelectionDialog(TagStore tags)
+	public TagSelectionDialog (TagStore tags)
 	{
 		Glade.XML gui = Glade.XML.FromAssembly ("f-spot.glade", "tag_selection_dialog", null);
 		gui.Autoconnect (this);
 		
-		tag_selection_widget = new TagSelectionWidget(tags);
-		tag_selection_scrolled.Add(tag_selection_widget);
-		tag_selection_widget.Show();
+		tag_selection_widget = new TagSelectionWidget (tags);
+		tag_selection_scrolled.Add (tag_selection_widget);
+		tag_selection_widget.Show ();
 	}
 	
-	public Tag[] Run()
+	public Tag[] Run ()
 	{
-		int response = tag_selection_dialog.Run();
-		if ((ResponseType)response == ResponseType.Ok)
+		int response = tag_selection_dialog.Run ();
+		if ((ResponseType) response == ResponseType.Ok)
 			return tag_selection_widget.TagSelection;
 		
 		return null;
 	}
 	
-	public void Hide()
+	public void Hide ()
 	{
-		tag_selection_dialog.Hide();
+		tag_selection_dialog.Hide ();
 	}
 }
 

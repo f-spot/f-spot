@@ -826,16 +826,19 @@ public class MainWindow {
 			int selected_cam;
 
 			if (num_cameras < 1) {
-				MessageDialog md = new MessageDialog (main_window, DialogFlags.DestroyWithParent, 
-								      MessageType.Warning, ButtonsType.Ok, "No cameras detected.");
-				md.Run();
-				md.Destroy();
+				HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
+									    MessageType.Warning, ButtonsType.Ok, 
+									    Mono.Posix.Catalog.GetString ("No cameras detected."),
+									    Mono.Posix.Catalog.GetString ("F-Spot was unable to find any cameras attached to this system.  Double check that the camera is connected and has power")); 
+
+				md.Run ();
+				md.Destroy ();
 				return;
 			} else if (num_cameras == 1) {
 				selected_cam = 0;
 			} else {
-				CameraSelectionDialog camselect = new CameraSelectionDialog(cam.CameraList);
-				selected_cam = camselect.Run();
+				CameraSelectionDialog camselect = new CameraSelectionDialog (cam.CameraList);
+				selected_cam = camselect.Run ();
 			}
 			
 			if (selected_cam >= 0) {
@@ -851,8 +854,11 @@ public class MainWindow {
 			}
 		}
 		catch (GPhotoException ge) {
-			MessageDialog md = new MessageDialog (main_window, DialogFlags.DestroyWithParent, 
-							      MessageType.Error, ButtonsType.Ok, ge.ToString ());
+			HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
+								    MessageType.Error, ButtonsType.Ok, 
+								    Mono.Posix.Catalog.GetString ("Error connecting to camera"),
+								    String.Format (Mono.Posix.Catalog.GetString ("Recieved error \"{0}\" while connecting to camera"), 
+										   ge.Message));
 			md.Run ();
 			md.Destroy ();
 		} finally {

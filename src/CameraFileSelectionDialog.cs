@@ -37,6 +37,7 @@ public class CameraFileSelectionDialog
 		db = datab;
 		saved_files = null;
 		selected_tags = null;
+		
 	}
 	
 	public Tag[] Tags {
@@ -133,11 +134,12 @@ public class CameraFileSelectionDialog
 							     camera_file_selection_dialog);
 		
 		if (copied_file_destination.Text.Length == 0) {
-			MessageDialog md = new MessageDialog (camera_file_selection_dialog, 
+			HigMessageDialog md = new HigMessageDialog (camera_file_selection_dialog, 
 							      DialogFlags.DestroyWithParent, 
 							      MessageType.Warning, 
 							      ButtonsType.Ok, 
-							      Mono.Posix.Catalog.GetString ("A destination directory must be chosen."));
+							      Mono.Posix.Catalog.GetString ("Unknown destination."),
+							      Mono.Posix.Catalog.GetString ("When copying files from a camera you must select a valid destination on the local filesystem"));
 			md.Run ();
 			md.Destroy ();
 			return true;
@@ -191,7 +193,7 @@ public class CameraFileSelectionDialog
 	
 	void HandleSelectSaveDirectory (object sender, EventArgs args)
 	{		
-		FileSelection fs = new FileSelection (Mono.Posix.Catalog.GetString ("Select save directory..."));
+		FileSelection fs = new FileSelection (Mono.Posix.Catalog.GetString ("Select save directory"));
 		fs.FileList.Sensitive = false;
 		int result = fs.Run ();
 		

@@ -94,6 +94,12 @@ namespace LibGPhoto2
 		public override string ToString()
 		{
 			return ("Error " + error.ToString() + ": " + base.ToString());
-		} 
+		}
+
+		public ErrorCode Error {
+			get {
+				return error;
+			}
+		}
 	}
 }

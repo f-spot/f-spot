@@ -1,10 +1,20 @@
 2005-02-14  Larry Ewing  <lewing@novell.com>
 
+	* src/CameraFileSelectionDialog.cs: use HigMessageDialog clean up
+	messages a little.
+
+	* libgphoto2-sharp/ErrorCodes.cs: expose the error via property.
+
+	* src/TagSelectionDialog.cs: clean up formatting.
+
+	* src/MainWindow.cs: use HigMessageDialog on more of the error
+	dialogs.  Be more verbose in camera error messages.
+
 	* src/f-spot-red-eye.png: ugly overhaul so it doesn't look like
 	the icon, waiting for a better Icon from tigert.
 
 	* src/TagMenu.cs: add an overload for a flat selection case.
-
+h
 	* src/ImportCommand.cs: work on cleaning up the UI.
 
 	* src/f-spot.glade: clean up the layout slightly.
