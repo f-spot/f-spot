@@ -1,3 +1,8 @@
+2004-08-06  Larry Ewing  <lewing@novell.com>
+
+	* src/PhotoQuery.cs: remove the sorting it is being handled in the
+	query for now.
+
 2004-08-05  Larry Ewing  <lewing@novell.com>
 
 	* src/MainWindow.cs: Fix the array copying bounds.

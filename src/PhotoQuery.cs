@@ -20,12 +20,16 @@ public class PhotoQuery {
 	}
 
 	private PhotoStore store;
+	public PhotoStore Store {
+		get {
+			return store;
+		}
+	}
 
 	public PhotoQuery (PhotoStore store)
 	{
 		this.store = store;
 		photos = store.Query (null);
-		Array.Sort (photos);
 	}
 
 	public void RequestReload ()
@@ -43,7 +47,6 @@ public class PhotoQuery {
 		set {
 			tags = value;
 			photos = store.Query (tags);
-			Array.Sort (photos);
 			RequestReload ();
 		}
 	}
