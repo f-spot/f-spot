@@ -1,5 +1,10 @@
 2005-01-20  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufUtils.cs: new GetThumbnail call.
+
+	* src/PhotoStore.cs: use the new util to load a thumbnail from
+	exif data (it handles orientation).
+
 	* src/CDExport.cs: learn how to spell.
 
 	* src/SlideView.cs: return cycling behavior so it matches earlier

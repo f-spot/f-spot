@@ -315,10 +315,27 @@ class PixbufUtils {
 		
 	}
 
-	public static PixbufOrientation GetOrientation (string path)
+	public static Gdk.Pixbuf GetThumbnail (ExifData data)
 	{
-		ExifData exif = new ExifData (path);
-		byte [] value = exif.LookupData (ExifTag.Orientation);
+		byte [] thumb_data = data.Data;
+
+		if (thumb_data.Length > 0) {
+			PixbufOrientation orientation = GetOrientation (data);
+			MemoryStream mem = new MemoryStream (thumb_data);
+			Gdk.Pixbuf thumb = new Gdk.Pixbuf (mem);
+			Gdk.Pixbuf rotated = PixbufUtils.TransformOrientation (thumb, orientation);
+			
+			if (rotated != thumb)
+				thumb.Dispose ();
+			
+			return rotated;
+		}
+		return null;
+	}
+
+	public static PixbufOrientation GetOrientation (ExifData data)
+	{
+		byte [] value = data.LookupData (ExifTag.Orientation);
 		PixbufOrientation orientation = PixbufOrientation.TopLeft;
 
 		if (value != null) {
@@ -326,6 +343,13 @@ class PixbufUtils {
 		}
 
 		return orientation;
+	}
+	
+	public static PixbufOrientation GetOrientation (string path)
+	{
+		ExifData data = new ExifData (path);
+
+		return GetOrientation (data);
 	}
 
 	[DllImport("gnomeui-2")]

@@ -410,19 +410,7 @@ public class PhotoStore : DbStore {
 	{
 		try {
 			using (ExifData ed = new ExifData (path)){
-				byte [] thumbData = ed.Data;
-
-				if (thumbData.Length > 0) {
-					string target = Thumbnail.PathForUri (uri, ThumbnailSize.Large);
-					
-					// exif contains a thumbnail, so spit it out
-                                        FileStream fs = File.Create (target, Math.Min (thumbData.Length, 8192));
-                                        fs.Write (thumbData, 0, thumbData.Length);
-					fs.Close ();
-					
-					Pixbuf p = new Pixbuf (target);
-					return p;
-				}
+				return PixbufUtils.GetThumbnail (ed);
 			}
 		} catch {
 			Console.WriteLine ("Exif died, using regular backend.");
