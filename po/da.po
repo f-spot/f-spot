@@ -3,17 +3,140 @@
 # This file is distributed under the same license as the f-spot package.
 # Martin Willemoes Hansen <mwh@sysrq.dk>, 2004.
 #
+# Husk at tilføje dig i credit-listen (besked id "translator-credits")
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-30 10:31+0100\n"
-"PO-Revision-Date: 2004-11-30 11:15+0100\n"
+"POT-Creation-Date: 2004-12-01 13:36+0100\n"
+"PO-Revision-Date: 2004-12-01 13:37+0100\n"
 "Last-Translator: Martin Willemoes Hansen <mwh@sysrq.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: libeog/eog-file-selection.c:29 libeog/eog-file-selection.c:46
+msgid "By Extension"
+msgstr "Efter fil-endelse"
+
+#: libeog/eog-file-selection.c:30
+msgid "BMP"
+msgstr "BMP"
+
+#: libeog/eog-file-selection.c:31
+msgid "GIF"
+msgstr "GIF"
+
+#: libeog/eog-file-selection.c:32
+msgid "ICO"
+msgstr "ICO"
+
+#: libeog/eog-file-selection.c:33 libeog/eog-file-selection.c:48
+msgid "JPEG"
+msgstr "JPEG"
+
+#: libeog/eog-file-selection.c:34 libeog/eog-file-selection.c:51
+msgid "PNG"
+msgstr "PNG"
+
+#: libeog/eog-file-selection.c:35
+msgid "PNM"
+msgstr "PNM"
+
+#: libeog/eog-file-selection.c:36
+msgid "RAS"
+msgstr "RAS"
+
+#: libeog/eog-file-selection.c:37
+msgid "SVG"
+msgstr "SVG"
+
+#: libeog/eog-file-selection.c:38
+msgid "TGA"
+msgstr "TGA"
+
+#: libeog/eog-file-selection.c:39
+msgid "TIFF"
+msgstr "TIFF"
+
+#: libeog/eog-file-selection.c:40
+msgid "XBM"
+msgstr "XBM"
+
+#: libeog/eog-file-selection.c:41 libeog/eog-file-selection.c:54
+msgid "XPM"
+msgstr "XPM"
+
+#: libeog/eog-file-selection.c:207
+msgid "Unsupported file format."
+msgstr "Ikke understøttet filformat."
+
+#: libeog/eog-file-selection.c:225
+msgid "Determine File Type:"
+msgstr "Bestem filtype:"
+
+#: libeog/eog-file-selection.c:268
+msgid "Load Image"
+msgstr "Indlæs billede"
+
+#: libeog/eog-file-selection.c:274
+msgid "Save Image"
+msgstr "Gem billede"
+
+#: libeog/eog-image.c:772
+msgid "No image loaded."
+msgstr "Intet billede indlæst."
+
+#: libeog/eog-image.c:779
+msgid "Can't save non local files."
+msgstr "Kan ikke gemme filer som ikke er lokale."
+
+#: libeog/eog-image.c:800
+msgid "Unsupported image type for saving."
+msgstr "Gemning er ikke understøttet for billedtypen."
+
+#: libeog/image-view.c:2058
+msgid "interpolation type"
+msgstr "interpoleringstype"
+
+#: libeog/image-view.c:2059
+msgid "the type of interpolation to use"
+msgstr "interpoleringstypen der skal bruges"
+
+#: libeog/image-view.c:2065 libeog/image-view.c:2072
+msgid "check type"
+msgstr "kontrollér type"
+
+#: libeog/image-view.c:2066
+msgid "the type of chequering to use"
+msgstr "ternemønstertypen der skal bruges"
+
+#: libeog/image-view.c:2073
+msgid "the size of chequers to use"
+msgstr "størrelsen af ternene der skal bruges"
+
+#: libeog/image-view.c:2079
+msgid "dither"
+msgstr "farvereducering"
+
+#: libeog/image-view.c:2080
+msgid "dither type"
+msgstr "farvereduceringstype"
+
+#: libfspot/f-jpeg-utils.c:421
+msgid "File not found"
+msgstr "Fil ikke fundet"
+
+#: libfspot/f-jpeg-utils.c:444
+#, c-format
+msgid "Unknown transform type %d"
+msgstr "Ukendt omdannelsestype %d"
+
+#: libfspot/f-jpeg-utils.c:452
+msgid "Operation failed"
+msgstr "Handlingen mislykkedes"
 
 #: src/f-spot.glade.h:1
 msgid "*"
@@ -45,7 +168,7 @@ msgstr "<b>Histogram</b>"
 
 #: src/f-spot.glade.h:8
 msgid "<b>Photograph Layout</b>"
-msgstr "<b>Fotografilayout</b>"
+msgstr "<b>Fotolayout</b>"
 
 #: src/f-spot.glade.h:9
 msgid "<b>Photos</b>"
@@ -97,7 +220,7 @@ msgstr "Vedlæg mærke til markering"
 
 #: src/f-spot.glade.h:21
 msgid "Border:"
-msgstr "Grænse:"
+msgstr "Kant:"
 
 #: src/f-spot.glade.h:22
 msgid "Brightness:"
@@ -149,7 +272,7 @@ msgstr "Opret ny version"
 
 #: src/f-spot.glade.h:34
 msgid "Crop Photo to Fit"
-msgstr "Beskær billede så det passer"
+msgstr "Beskær foto så det passer"
 
 #: src/f-spot.glade.h:35
 msgid "Delete Selected Tag"
@@ -247,8 +370,8 @@ msgid ""
 "1\"\n"
 msgstr ""
 "Hårbredde\n"
-"0.25\"\n"
-"0.5\"\n"
+"0,25\"\n"
+"0,5\"\n"
 "1\"\n"
 
 #: src/f-spot.glade.h:62
@@ -470,7 +593,7 @@ msgstr "_Medium"
 
 #: src/f-spot.glade.h:118
 msgid "_Password:"
-msgstr "_Adgangskode"
+msgstr "_Adgangskode:"
 
 #: src/f-spot.glade.h:119
 msgid "_Remove From Catalog"
@@ -495,3 +618,14 @@ msgstr "dialog1"
 #: src/f-spot.glade.h:124
 msgid "x"
 msgstr "x"
+
+#. Translators should localize the following string
+#. * which will give them credit in the About box.
+#. * E.g. "Martin Willemoes Hansen"
+#: src/MainWindow.cs:823
+msgid "translator-credits"
+msgstr ""
+"Martin Willemoes Hansen\n"
+"\n"
+"Dansk-gruppen <dansk@klid.dk>\n"
+"Mere info: http://www.klid.dk/dansk/"
