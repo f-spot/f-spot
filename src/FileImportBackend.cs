@@ -19,12 +19,11 @@ public class FileImportBackend : ImportBackend {
 	{
 		if (path.ToLower().EndsWith (".jpg") || path.ToLower().EndsWith (".jpeg"))
 			file_paths.Add (path);
-
 	}
 
 	private void GetListing (System.IO.DirectoryInfo info)
 	{
-		GetListing (info, info.GetFiles (), true);
+		GetListing (info, info.GetFiles (), recurse);
 	}
 
 	private void GetListing (System.IO.DirectoryInfo info, System.IO.FileInfo [] files, bool recurse)

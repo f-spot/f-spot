@@ -121,7 +121,7 @@ public class SlideView : Gtk.Image {
 
 		prev.CopyArea (0, 0, width, height, current, 0, 0);
 		next.Composite (current, 0,0, width, height, 0, 0, 1, 1,
-				Gdk.InterpType.Nearest, (int)(255 * percent + 0.5));
+				Gdk.InterpType.Nearest, (int) System.Math.Round (255 * percent));
 		return current;
 	}
 
@@ -134,10 +134,10 @@ public class SlideView : Gtk.Image {
 
 		if (percent < 0.5)
 			prev.Composite (current, 0,0, width, height, 0, 0, 1, 1,
-					Gdk.InterpType.Nearest, (int)(255 * (1 - percent * 2) + 0.5));
+					Gdk.InterpType.Nearest, (int)System.Math.Round (255  * (1 - percent * 2)));
 		else
 			next.Composite (current, 0,0, width, height, 0, 0, 1, 1,
-					Gdk.InterpType.Nearest, (int)(255 * (percent * 2 - 1) + 0.5));
+					Gdk.InterpType.Nearest, (int)System.Math.Round (255 * (percent * 2 - 1)));
 		return current;
 	}
 

@@ -1,5 +1,12 @@
 2005-02-18  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: sensitize the edit_tag_button properly.
+
+	* src/FileImportBackend.cs: use the recurse setting rather than
+	hardcoding to true.
+
+	* src/SlideView.cs: use Math.Round rather that truncation.
+
 	* src/PixbufUtils.cs: add LoadThemeIcon and overload for Fit.
 
 2005-02-17  Larry Ewing  <lewing@novell.com>
