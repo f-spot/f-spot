@@ -1,3 +1,13 @@
+2004-08-25  Larry Ewing  <lewing@novell.com>
+
+	* src/DirectoryAdaptor: return Directory as GlassLabel.
+
+	* src/TimeAdaptor.cs: return Year as TickLable, month as GlassLabel.
+
+	* src/GroupAdaptor.cs: add TickLabel and GlassLable remove Label.
+
+	* src/GroupSelector.cs: add tick label drawing, using adaptor.TickLabel.
+
 2004-08-24  Larry Ewing  <lewing@novell.com>
 
 	* src/main.cs: set the default icon, yes we need a new one I was

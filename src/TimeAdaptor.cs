@@ -40,11 +40,21 @@ namespace FSpot {
 			return years.Count * 12;
 		}
 
-		public override string Label (int item)
+		public override string GlassLabel (int item)
 		{
 			DateTime start = DateFromIndex (item);
 			
-			return start.ToShortTimeString ();
+			return start.ToShortDateString ();
+		}
+
+		public override string TickLabel (int item)
+		{
+			DateTime start = DateFromIndex (item);
+			
+			if (start.Month == 1)
+				return start.Year.ToString ();
+			else 
+				return null;
 		}
 
 		public override int Value (int item)

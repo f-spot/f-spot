@@ -6,7 +6,7 @@ using GLib;
 namespace FSpot {
 	public class GroupSelector : Bin {
 		internal static GType groupSelectorGType;
-		int border = 16;
+		int border = 12;
 		int box_spacing = 2;
 		int box_top_padding = 6;
 		public static int MIN_BOX_WIDTH = 20;
@@ -21,15 +21,30 @@ namespace FSpot {
 
 		int    box_count_max;
 		int [] box_counts = new int [0];
+		Pango.Layout [] tick_layouts;
 
 		protected FSpot.GroupAdaptor adaptor;
 		public FSpot.GroupAdaptor Adaptor {
 			set {
 				adaptor = value;
+				
 				int [] box_values = new int [adaptor.Count ()];
+
+				if (tick_layouts != null) {
+					foreach (Pango.Layout l in tick_layouts) {
+						if (l != null)
+							l.Dispose ();
+					}
+				}
+				tick_layouts = new Pango.Layout [adaptor.Count ()];
+
 				int i = 0;
-				while (i < box_values.Length) {
+				while (i < adaptor.Count ()) {
 					box_values [i] = adaptor.Value (i);
+					string label = adaptor.TickLabel (i);
+					if (label != null) {
+						tick_layouts [i] = CreatePangoLayout (label);
+					}
 					i++;
 				}
 				Counts = box_values;
@@ -41,7 +56,7 @@ namespace FSpot {
 			}
 		}
 
-		public int [] Counts {
+		private int [] Counts {
 			set {
 				box_count_max = 0;
 				foreach (int count in value)
@@ -300,7 +315,25 @@ namespace FSpot {
 		
 		public void DrawTick (Rectangle area, int item)
 		{
-			if (TickBounds (item).Intersect (area, out area)) {
+			Rectangle tick = TickBounds (item);
+			Pango.Layout layout = null; 
+
+			if (item < tick_layouts.Length) {
+				layout = tick_layouts [item];
+
+				if (layout != null) {
+					int width, height;
+					layout.GetPixelSize (out width, out height);
+					
+					Style.PaintLayout (Style, GdkWindow, State, true, area, this,
+						   "GroupSelector:Tick", tick.X, tick.Y + tick.Height, layout); 
+				}
+			}
+
+			if (layout == null)
+				tick.Height /= 2;
+
+			if (tick.Intersect (area, out area)) {
 				GdkWindow.DrawRectangle (Style.ForegroundGC (State), true, area);
 			}
 		}
@@ -579,12 +612,9 @@ namespace FSpot {
 					   background.Width, background.Height);
 
 			if (args.Area.Intersect (legend, out area)) {
-				int i;
-				BoxXHit (area.X, out i);
-				int end;
-				BoxXHit (area.X + area.Width, out end);
+				int i = 0;
 
-				while (i <= end + 1)
+				while (i < box_counts.Length)
 					DrawTick (area, i++);
 			}
 			
@@ -609,15 +639,30 @@ namespace FSpot {
 			requisition.Height = 100;
 		}
 
+		private int LengendHeight ()
+		{
+			int max_height = 0;
+			foreach (Pango.Layout l in tick_layouts) {
+				if (l != null) {
+					int width, height;
+					
+					l.GetPixelSize (out width, out height);
+					max_height = Math.Max (height, max_height);
+				}
+			}
+			
+			return (int) (max_height * 1.5);
+		}
+		
 		protected override void OnSizeAllocated (Gdk.Rectangle alloc)
 		{
 			base.OnSizeAllocated (alloc);
-			int legend_height = 20;
-
+			int legend_height = LengendHeight ();
+			
 			background = new Rectangle (alloc.X + border, alloc.Y + border, 
 						    alloc.Width - 2 * border,
 						    alloc.Height - 2 * border - legend_height);
-
+			
 			legend = new Rectangle (border, background.Y + background.Height,
 						background.Width, legend_height);
 
