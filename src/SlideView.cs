@@ -358,7 +358,6 @@ public class SlideView : Gtk.Image {
 			current_idx = -1;
 			black = true;
 			flip_interval = 1500;
-			transition_interval = 100;
 		}
 
 		SizeAllocated += new SizeAllocatedHandler (HandleSizeAllocate);

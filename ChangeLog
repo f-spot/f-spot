@@ -1,5 +1,10 @@
 2004-08-05  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: Fix the array copying bounds.
+
+	* src/SlideView.cs: Don't change the transition_interval even on
+	the first fade.
+
 	* src/MainWindow.cs: Make the photo range function smarter so that
 	there is no need to select a range of photos.
 

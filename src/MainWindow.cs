@@ -747,7 +747,7 @@ public class MainWindow {
 
 			photos = new Photo [query.Photos.Length];
 			Array.Copy (query.Photos, i, photos, 0, query.Photos.Length - i);
-			Array.Copy (query.Photos, 0, query.Photos, i, i);
+			Array.Copy (query.Photos, 0, photos, query.Photos.Length - i, i);
 		} else {
 			photos = SelectedPhotos ();
 		}
@@ -785,6 +785,7 @@ public class MainWindow {
 	{
 		Gtk.Window win = sender as Gtk.Window;
 		win.Destroy ();
+		args.RetVal = true;
 	}
 
 	void HandleViewFullscreen (object sender, EventArgs args)
