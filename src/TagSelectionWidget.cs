@@ -26,7 +26,7 @@ public class TagSelectionWidget : TreeView {
 		TreeIter iter;
 
 		// Work out which tag we're dropping onto
-		if (!this.GetPathAtPos (x, y, out path, null))
+		if (!this.GetPathAtPos (x, y, out path))
 			return null;
 
 		if (!Model.GetIter (out iter, path))

@@ -237,7 +237,7 @@ public class MainWindow {
 	{
 		TreePath path;
 
-		if (!tag_selection_widget.GetPathAtPos (args.X, args.Y, out path, null))
+		if (!tag_selection_widget.GetPathAtPos (args.X, args.Y, out path))
 			return;
 
 		tag_selection_widget.SetDragDestRow (path, Gtk.TreeViewDropPosition.IntoOrAfter);
@@ -318,7 +318,7 @@ public class MainWindow {
 	{
 		Widget source = Gtk.Drag.GetSourceWidget (args.Context);
 		
-		Console.WriteLine ("Drag Drop {0}", source == null ? "null" : source.TypeName);
+		//Console.WriteLine ("Drag Drop {0}", source == null ? "null" : source.TypeName);
 
 		args.RetVal = true;
 	}
@@ -327,9 +327,7 @@ public class MainWindow {
 	{
 		Widget source = Gtk.Drag.GetSourceWidget (args.Context);
 
-		if (source != null) {
-			Console.WriteLine ("Drag Motion {0}", source == null ? "null" : source.TypeName);
-		}
+		//Console.WriteLine ("Drag Motion {0}", source == null ? "null" : source.TypeName);
 
 		Gdk.Drag.Status (args.Context, args.Context.SuggestedAction, args.Time);
 		args.RetVal = true;
@@ -339,7 +337,8 @@ public class MainWindow {
 	{
 	 	Widget source = Gtk.Drag.GetSourceWidget (args.Context);     
 		
-		Console.WriteLine ("IconView View Drag received {0} type {1}", source == null ? "null" : source.TypeName, (TargetType)args.Info);
+		//Console.WriteLine ("IconView View Drag received {0} type {1}", source == null ? "null" : source.TypeName, (TargetType)args.Info);
+
 		switch (args.Info) {
 		case (uint)TargetType.TagList:
 			HandleAttachTagCommand (sender, null);
@@ -406,7 +405,7 @@ public class MainWindow {
 	{
 		Widget source = Gtk.Drag.GetSourceWidget (args.Context);
 		
-		Console.WriteLine ("Drag Drop {0}", source == null ? "null" : source.TypeName);
+		//Console.WriteLine ("Drag Drop {0}", source == null ? "null" : source.TypeName);
 
 		args.RetVal = true;
 	}
@@ -415,9 +414,7 @@ public class MainWindow {
 	{
 		Widget source = Gtk.Drag.GetSourceWidget (args.Context);
 
-		if (source != null) {
-			Console.WriteLine ("Drag Motion {0}", source == null ? "null" : source.TypeName);
-		}
+		//Console.WriteLine ("Drag Motion {0}", source == null ? "null" : source.TypeName);
 
 		Gdk.Drag.Status (args.Context, args.Context.SuggestedAction, args.Time);
 		args.RetVal = true;
@@ -427,8 +424,8 @@ public class MainWindow {
 	{
 	 	Widget source = Gtk.Drag.GetSourceWidget (args.Context);     
 		
-		Console.WriteLine ("Drag received {0}", source == null ? "null" : source.TypeName);
-;
+		//Console.WriteLine ("Drag received {0}", source == null ? "null" : source.TypeName);
+
 		HandleAttachTagCommand (sender, null);
 		
 		Gtk.Drag.Finish (args.Context, true, false, args.Time);
