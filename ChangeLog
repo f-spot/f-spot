@@ -1,5 +1,9 @@
 2004-07-31  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoStore.cs: Add big changes to the query to speed up the
+	loading, still needs lots of cleanup but I want to keep the
+	revision history.
+
 	* src/PixbufLoader.cs: move existing requests to the front of the
 	queue.
 

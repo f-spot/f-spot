@@ -96,10 +96,25 @@ public class Photo : DbItem, IComparable {
 		}
 	}
 
+	private bool tags_loaded = false;
 	private ArrayList tags = new ArrayList ();
 	public Tag [] Tags {
 		get {
+			if (!tags_loaded) {
+				db.GetTags (this);
+				tags_loaded = true;
+			}
 			return (Tag []) tags.ToArray (typeof (Tag));
+		}
+	}
+
+	public bool Loaded {
+		get {
+			return tags_loaded && versions_loaded;
+		}
+		set {
+			tags_loaded = value;
+			versions_loaded = value;
 		}
 	}
 
@@ -114,12 +129,21 @@ public class Photo : DbItem, IComparable {
 	}
 
 	// Version management
-
 	public const int OriginalVersionId = 1;
-
 	private uint highest_version_id;
 
-	private Hashtable version_names = new Hashtable ();
+	private bool versions_loaded = false;
+	private Hashtable vnames = new Hashtable ();
+	private Hashtable version_names {
+		get {
+			if (!versions_loaded) {
+				db.GetVersions (this);
+				versions_loaded = true;
+			}
+			return vnames;
+		}
+	}
+
 	public uint [] VersionIds {
 		get {
 			uint [] ids = new uint [version_names.Count];
@@ -148,7 +172,7 @@ public class Photo : DbItem, IComparable {
 	// it's supposed to be used only within the Photo and PhotoStore classes.
 	public void AddVersionUnsafely (uint version_id, string name)
 	{
-		version_names [version_id] = name;
+		vnames [version_id] = name;
 
 		highest_version_id = Math.Max (version_id, highest_version_id);
 	}
@@ -321,8 +345,8 @@ public class Photo : DbItem, IComparable {
 	}
 
 
+	public PhotoStore db;
 	// Constructor
-
 	public Photo (uint id, uint unix_time, string directory_path, string name)
 		: base (id)
 	{
@@ -520,6 +544,164 @@ public class PhotoStore : DbStore {
 		return photo;
 	}
 
+	public void GetVersions (Photo photo)
+	{
+
+		SqliteCommand command = new SqliteCommand ();
+		command.Connection = Connection;
+		command.CommandText = String.Format ("SELECT version_id, name FROM photo_versions WHERE photo_id = {0}", photo.Id);
+		SqliteDataReader reader = command.ExecuteReader ();
+
+		while (reader.Read ()) {
+			uint version_id = Convert.ToUInt32 (reader [0]);
+			string name = reader[1].ToString ();
+
+			photo.AddVersionUnsafely (version_id, name);
+		}
+
+		command.Dispose ();
+	}
+
+	public void GetTags (Photo photo)
+	{
+		SqliteCommand command = new SqliteCommand ();
+		command.Connection = Connection;
+		command.CommandText = String.Format ("SELECT tag_id FROM photo_tags WHERE photo_id = {0}", photo.Id);
+		SqliteDataReader reader = command.ExecuteReader ();
+
+		while (reader.Read ()) {
+			uint tag_id = Convert.ToUInt32 (reader [0]);
+			Tag tag = tag_store.Get (tag_id) as Tag;
+			photo.AddTagUnsafely (tag);
+		}
+
+		command.Dispose ();
+	}		
+	
+	public void GetAllVersions  () {
+		SqliteCommand command = new SqliteCommand ();
+		command.Connection = Connection;
+		command.CommandText = String.Format ("SELECT photo_id, version_id, name " +
+						     "FROM photo_versions ");
+		
+		SqliteDataReader reader = command.ExecuteReader ();
+
+		while (reader.Read ()) {
+			uint id = Convert.ToUInt32 (reader [0]);
+			Photo photo = LookupInCache (id) as Photo;
+				
+			if (photo == null) {
+				Console.WriteLine ("Photo {0} not found", photo);
+				continue;
+			}
+				
+			if (photo.Loaded) {
+				//Console.WriteLine ("Photo {0} already Loaded", photo);
+				continue;
+			}
+
+			if (reader [1] != null) {
+				uint version_id = Convert.ToUInt32 (reader [1]);
+				string name = reader[2].ToString ();
+				
+				photo.AddVersionUnsafely (version_id, name);
+			}
+		}
+	}
+
+	public void GetAllTags () {
+			SqliteCommand command = new SqliteCommand ();
+		command.Connection = Connection;
+		command.CommandText = String.Format ("SELECT photo_id, tag_id " +
+						     "FROM photo_tags ");
+		
+		SqliteDataReader reader = command.ExecuteReader ();
+
+		while (reader.Read ()) {
+			uint id = Convert.ToUInt32 (reader [0]);
+			Photo photo = LookupInCache (id) as Photo;
+				
+			if (photo == null) {
+				Console.WriteLine ("Photo {0} not found", photo);
+				continue;
+			}
+				
+			if (photo.Loaded) {
+				//Console.WriteLine ("Photo {0} already Loaded", photo);
+				continue;
+			}
+
+		        if (reader [1] != null) {
+				uint tag_id = Convert.ToUInt32 (reader [1]);
+				Tag tag = tag_store.Get (tag_id) as Tag;
+				photo.AddTagUnsafely (tag);
+			}
+		}
+	}
+
+	public void GetAllData () {
+		SqliteCommand command = new SqliteCommand ();
+		command.Connection = Connection;
+		command.CommandText = String.Format ("SELECT photo_tags.photo_id, tag_id, version_id, name " +
+						     "FROM photo_tags, photo_versions " +
+						     "WHERE photo_tags.photo_id = photo_versions.photo_id");
+		
+		SqliteDataReader reader = command.ExecuteReader ();
+
+		while (reader.Read ()) {
+			uint id = Convert.ToUInt32 (reader [0]);
+			Photo photo = LookupInCache (id) as Photo;
+				
+			if (photo == null) {
+				Console.WriteLine ("Photo {0} not found", photo);
+				continue;
+			}
+				
+			if (photo.Loaded) {
+				//Console.WriteLine ("Photo {0} already Loaded", photo);
+				continue;
+			}
+
+		        if (reader [1] != null) {
+				uint tag_id = Convert.ToUInt32 (reader [1]);
+				Tag tag = tag_store.Get (tag_id) as Tag;
+				photo.AddTagUnsafely (tag);
+			}
+			if (reader [2] != null) {
+				uint version_id = Convert.ToUInt32 (reader [2]);
+				string name = reader[3].ToString ();
+				
+				photo.AddVersionUnsafely (version_id, name);
+			}
+		}
+	}
+
+	public void GetData (Photo photo)
+	{
+		SqliteCommand command = new SqliteCommand ();
+		command.Connection = Connection;
+		command.CommandText = String.Format ("SELECT tag_id, version_id, name " +
+						     "FROM photo_tags, photo_versions " +
+						     "WHERE photo_tags.photo_id = photo_versions.photo_id " +
+						     "AND photo_tags.photo_id = {0}", photo.Id);
+
+		SqliteDataReader reader = command.ExecuteReader ();
+
+		while (reader.Read ()) {
+		        if (reader [0] != null) {
+				uint tag_id = Convert.ToUInt32 (reader [0]);
+				Tag tag = tag_store.Get (tag_id) as Tag;
+				photo.AddTagUnsafely (tag);
+			}
+			if (reader [1] != null) {
+				uint version_id = Convert.ToUInt32 (reader [1]);
+				string name = reader[2].ToString ();
+				
+				photo.AddVersionUnsafely (version_id, name);
+			}
+		}
+	}
+
 	public override DbItem Get (uint id)
 	{
 		Photo photo = LookupInCache (id) as Photo;
@@ -553,33 +735,9 @@ public class PhotoStore : DbStore {
 
 		if (photo == null)
 			return null;
-
-		command = new SqliteCommand ();
-		command.Connection = Connection;
-		command.CommandText = String.Format ("SELECT tag_id FROM photo_tags WHERE photo_id = {0}", id);
-		reader = command.ExecuteReader ();
-
-		while (reader.Read ()) {
-			uint tag_id = Convert.ToUInt32 (reader [0]);
-			Tag tag = tag_store.Get (tag_id) as Tag;
-			photo.AddTagUnsafely (tag);
-		}
-
-		command.Dispose ();
-
-		command = new SqliteCommand ();
-		command.Connection = Connection;
-		command.CommandText = String.Format ("SELECT version_id, name FROM photo_versions WHERE photo_id = {0}", id);
-		reader = command.ExecuteReader ();
-
-		while (reader.Read ()) {
-			uint version_id = Convert.ToUInt32 (reader [0]);
-			string name = reader[1].ToString ();
-
-			photo.AddVersionUnsafely (version_id, name);
-		}
-
-		command.Dispose ();
+		
+		GetTags (photo);
+		GetVersions (photo);
 
 		return photo;
 	}
@@ -625,34 +783,9 @@ public class PhotoStore : DbStore {
 
 		if (photo == null)
 			return null;
-
-		uint id = Convert.ToUInt32 (reader [0]);
-		command = new SqliteCommand ();
-		command.Connection = Connection;
-		command.CommandText = String.Format ("SELECT tag_id FROM photo_tags WHERE photo_id = {0}", id);
-		reader = command.ExecuteReader ();
-
-		while (reader.Read ()) {
-			uint tag_id = Convert.ToUInt32 (reader [0]);
-			Tag tag = tag_store.Get (tag_id) as Tag;
-			photo.AddTagUnsafely (tag);
-		}
-
-		command.Dispose ();
-
-		command = new SqliteCommand ();
-		command.Connection = Connection;
-		command.CommandText = String.Format ("SELECT version_id, name FROM photo_versions WHERE photo_id = {0}", id);
-		reader = command.ExecuteReader ();
-
-		while (reader.Read ()) {
-			uint version_id = Convert.ToUInt32 (reader [0]);
-			string name = reader[1].ToString ();
-
-			photo.AddVersionUnsafely (version_id, name);
-		}
-
-		command.Dispose ();
+		
+		GetTags (photo);
+		GetVersions (photo);
 
 		return photo;
 	}
@@ -866,7 +999,8 @@ public class PhotoStore : DbStore {
 
 		return photo_list;
 	}
-
+	
+#if false
 	public Photo [] Query (Tag [] tags)
 	{
 		string query;
@@ -931,7 +1065,111 @@ public class PhotoStore : DbStore {
 		//Array.Sort (photo_list);
 		return photo_list;
 	}
+#else
+	public Photo [] Query (Tag [] tags)
+	{
+		string query;
 
+		if (tags == null || tags.Length == 0) {
+			query = "SELECT id, time, directory_path, name, description, default_version_id FROM photos";
+		} else {
+			// The SQL query that we want to construct is:
+			//
+			// SELECT photos.id
+			//        photos.time
+			//        photos.directory_path,
+			//        photos.name,
+			//        photos.description,
+			//        photos.default_version_id
+			//                  FROM photos, photo_tags
+			//                  WHERE photos.id = photo_tags.photo_id
+			// 		          AND (photo_tags.tag_id = tag1
+			//			       OR photo_tags.tag_id = tag2
+			//                             OR photo_tags.tag_id = tag3 ...)
+			//                  GROUP BY photos.id
+
+			StringBuilder query_builder = new StringBuilder ();
+			query_builder.Append ("SELECT photos.id,                          " +
+					      "       photos.time,                        " +
+					      "       photos.directory_path,              " +
+					      "       photos.name,                        " +
+					      "       photos.description,                 " +
+					      "       photos.default_version_id           " +
+					      "     FROM photos, photo_tags              " +
+					      "     WHERE photos.id = photo_tags.photo_id ");
+			
+			if (tags != null) {
+				bool first = true;
+				foreach (Tag t in tags) {
+					if (first)
+						query_builder.Append (" AND (");
+					else
+						query_builder.Append (" OR ");
+
+					query_builder.Append (String.Format ("photo_tags.tag_id = {0}", t.Id));
+
+					first = false;
+				}
+
+				if (tags.Length > 0)
+					query_builder.Append (")");
+			}
+
+			query_builder.Append (" GROUP BY photos.id");
+			query = query_builder.ToString ();
+		}
+
+		SqliteCommand command = new SqliteCommand ();
+		command.Connection = Connection;
+		command.CommandText = query;
+		SqliteDataReader reader = command.ExecuteReader ();
+
+		// FIXME: I am doing it in two passes here since the Get() method can potentially
+		// invoke more Sqlite queries, and I don't know if we are supposed to do that while
+		// we are reading the results from a past query.
+		
+		ArrayList version_list = new ArrayList ();
+		ArrayList id_list = new ArrayList ();
+		while (reader.Read ()) {
+			uint id = Convert.ToUInt32 (reader [0]);
+			//Console.WriteLine ("{0} -- desc = {1}", id, reader.FieldCount);
+
+			Photo photo = LookupInCache (id) as Photo;
+			if (photo == null) {
+				photo = new Photo (id,
+						   Convert.ToUInt32 (reader [1]),
+						   reader [2].ToString (),
+						   reader [3].ToString ());
+				
+				photo.Description = reader[4].ToString ();
+				photo.DefaultVersionId = Convert.ToUInt32 (reader[5]);		 
+
+				photo.db = this;
+				version_list.Add (photo);
+			}
+
+			id_list.Add (photo);
+		}
+
+
+		Console.WriteLine ("Start {0}", System.DateTime.Now);
+		foreach (Photo photo in version_list) {
+			//GetData (photo);
+			AddToCache (photo);
+		}
+		GetAllTags ();
+		GetAllVersions ();
+		foreach (Photo photo in version_list) {
+			photo.Loaded = true;
+		}
+
+		Console.WriteLine ("End {0}", System.DateTime.Now);
+
+		command.Dispose ();
+
+		return id_list.ToArray (typeof (Photo)) as Photo [];
+	}
+#endif
 
 #if TEST_PHOTO_STORE
 
