@@ -1,5 +1,8 @@
 2004-06-13  Larry Ewing  <lewing@ximian.com>
 
+	* src/PhotoStore.cs: Add a Query overload with a start and end
+	DateTime.
+
 	* src/PhotoStore.cs: remove the ToUriList bits the UriList class
 	replaces them.
 

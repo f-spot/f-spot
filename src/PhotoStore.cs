@@ -162,8 +162,7 @@ public class Photo : DbItem, IComparable {
 					       + " (" + version_name + ")" + extension);
 	}
 
-	public bool VersionNameExists (string version_name)
-	{
+	public bool VersionNameExists (string version_name)	{
 		foreach (string n in version_names.Values) {
 			if (n == version_name)
 				return true;
@@ -680,14 +679,14 @@ public class PhotoStore : DbStore {
 		for (int i = 0; i < items.Length; i++) {
 			if (i > 0)
 				query_builder.Append (" OR ");
-			query_builder.Append (items[i].Id);
+			query_builder.Append (String.Format ("id = {0}", items[i].Id);
 			RemoveFromCache (items[i]);
 		}
 
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
 
-		command.CommandText = String.Format ("DELETE FROM photos WHERE id = {0}", query_builder.ToString ());
+		command.CommandText = String.Format ("DELETE FROM photos WHERE {0}", query_builder.ToString ());
 		command.ExecuteNonQuery ();
 
 		command.Dispose ();
@@ -797,9 +796,76 @@ public class PhotoStore : DbStore {
 			command.Dispose ();
 		}
 	}
-
-
+	
+	
 	// Queries.
+	public Photo [] Query (Tag [] tags, DateTime start, DateTime end)
+	{
+		string query;
+
+		if (tags == null || tags.Length == 0) {
+			query = "SELECT id FROM photos";
+		} else {
+			// The SQL query that we want to construct is:
+			//
+			// SELECT photos.id FROM photos, photo_tags
+			//                  WHERE photos.id = photo_tags.photo_id
+			// 		          AND (photo_tags.tag_id = tag1
+			//			       OR photo_tags.tag_id = tag2
+			//                             OR photo_tags.tag_id = tag3 ...)
+			//                  GROUP BY photos.id
+
+			StringBuilder query_builder = new StringBuilder ();
+			query_builder.Append ("SELECT photos.id FROM photos, photo_tags               " +
+					      "                 WHERE photos.id = photo_tags.photo_id ");
+
+			query_builder.Append (String.Format ("AND photos.time >= {0} AND photos.time < {1} ",
+					      DbUtils.UnixTimeFromDateTime (start), 
+					      DbUtils.UnixTimeFromDateTime (end)));
+
+			if (tags != null) {
+				bool first = true;
+				foreach (Tag t in tags) {
+					if (first)
+						query_builder.Append (" AND (");
+					else
+						query_builder.Append (" OR ");
+
+					query_builder.Append (String.Format ("photo_tags.tag_id = {0}", t.Id));
+
+					first = false;
+				}
+
+				if (tags.Length > 0)
+					query_builder.Append (")");
+			}
+
+			query_builder.Append (" GROUP BY photos.id ORDER BY photos.time");
+			query = query_builder.ToString ();
+		}
+
+		SqliteCommand command = new SqliteCommand ();
+		command.Connection = Connection;
+		command.CommandText = query;
+		SqliteDataReader reader = command.ExecuteReader ();
+
+		// FIXME: I am doing it in two passes here since the Get() method can potentially
+		// invoke more Sqlite queries, and I don't know if we are supposed to do that while
+		// we are reading the results from a past query.
+		
+		ArrayList id_list = new ArrayList ();
+		while (reader.Read ())
+			id_list.Add (Convert.ToUInt32 (reader [0]));
+
+		command.Dispose ();
+
+		Photo [] photo_list = new Photo [id_list.Count];
+		int i = 0;
+		foreach (uint id in id_list)
+			photo_list [i ++] = Get (id) as Photo;
+
+		return photo_list;
+	}
 
 	public Photo [] Query (Tag [] tags)
 	{
@@ -820,7 +886,7 @@ public class PhotoStore : DbStore {
 			StringBuilder query_builder = new StringBuilder ();
 			query_builder.Append ("SELECT photos.id FROM photos, photo_tags               " +
 					      "                 WHERE photos.id = photo_tags.photo_id ");
-
+			
 			if (tags != null) {
 				bool first = true;
 				foreach (Tag t in tags) {
