@@ -64,6 +64,8 @@ public class PhotoView : EventBox {
 	private Label count_label;
 	private Entry description_entry;
 
+	FSpot.AsyncPixbufLoader loader = new FSpot.AsyncPixbufLoader ();
+
 	private const double MAX_ZOOM = 5.0;
 
 	private double zoom;
@@ -94,7 +96,6 @@ public class PhotoView : EventBox {
 	public event UpdateFinishedHandler UpdateFinished;
 
 	// Selection constraints.
-
 	private const string CONSTRAINT_RATIO_IDX_KEY = "FEditModeManager::constraint_idx";
 
 	private struct SelectionConstraint {
@@ -134,8 +135,12 @@ public class PhotoView : EventBox {
 		return constraints_option_menu;
 	}
 
-
 	// Display.
+	private void HandlePixbufAreaUpdated (object sender, Gdk.AreaUpdatedArgs args)
+	{
+		// FIXME we should really only expose the updated region.
+		image_view.QueueDraw ();
+	}
 
 	private void UpdateImageView ()
 	{
@@ -143,19 +148,14 @@ public class PhotoView : EventBox {
 			try {
 				Pixbuf old = image_view.Pixbuf;
 				
-				image_view.Pixbuf = FSpot.PhotoLoader.Load (Query, current_photo);
-				tag_view.Current = Query.Photos [current_photo];
-				/*
-				** This is a hack seeing if the max size stuff actually helps loading speed 
-				**
-				*/
-				/*
-				 if (image_view.Allocation.Width > 0 && image_view.Allocation.Height > 0)
-					image_view.Pixbuf = PixbufUtils.LoadAtMaxSize (Query.Photos [current_photo].DefaultVersionPath, 
-										       image_view.Allocation.Width, 
-										       image_view.Allocation.Height);
-				
-				*/
+				bool load_async = true;
+				if (load_async) {
+					image_view.Pixbuf = loader.Load (Query.Photos [current_photo].DefaultVersionPath);
+					loader.Loader.AreaUpdated += HandlePixbufAreaUpdated;
+					tag_view.Current = Query.Photos [current_photo];
+				} else {
+					image_view.Pixbuf = FSpot.PhotoLoader.Load (Query, current_photo);
+				}
 
 				if (old != null)
 					old.Dispose ();
@@ -167,7 +167,6 @@ public class PhotoView : EventBox {
 			image_view.Pixbuf = null;
 		}
 
-		//System.GC.Collect ();
 		image_view.UnsetSelection ();
 		UpdateZoom ();
 	}
@@ -184,8 +183,9 @@ public class PhotoView : EventBox {
 	}
 
 	private void UpdateZoom ()
-	{
+	{		
 		Pixbuf pixbuf = image_view.Pixbuf;
+
 		if (pixbuf == null)
 			return;
 
@@ -333,7 +333,7 @@ public class PhotoView : EventBox {
 		int x, y, width, height;
 		if (! image_view.GetSelection (out x, out y, out width, out height))
 			return;
-
+		
 		Pixbuf original_pixbuf = image_view.Pixbuf;
 		if (original_pixbuf == null) {
 			Console.WriteLine ("No image");

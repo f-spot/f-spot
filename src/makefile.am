@@ -1,6 +1,7 @@
 CSC = mcs --unsafe -g
 
 F_SPOT_CSFILES =				\
+	$(srcdir)/AsyncPixbufLoader.cs		\
 	$(srcdir)/PhotoArray.cs 		\
 	$(srcdir)/ColorDialog.cs		\
 	$(srcdir)/CompatFileChooser.cs		\
@@ -79,6 +80,7 @@ RESOURCES =										\
 	/resource:$(top_srcdir)/icons/f-spot-places.png,f-spot-places.png 		\
 	/resource:$(top_srcdir)/icons/f-spot-rotate-90.png,f-spot-rotate-90.png		\
 	/resource:$(top_srcdir)/icons/f-spot-rotate-270.png,f-spot-rotate-270.png	\
+	/resource:$(top_srcdir)/icons/f-spot-loading.png,f-spot-loading.png		\
 	/resource:$(srcdir)/f-spot.glade,f-spot.glade
 
 fspotlibdir = $(prefix)/lib/f-spot

@@ -1,8 +1,21 @@
+2004-10-28  Larry Ewing  <lewing@novell.com>
+
+	* src/PhotoView.cs: use the AsyncLoader for the PhotoView for now.
+
+	* src/makefile.am (F_SPOT_CSFILES): add AsyncPixbufLoader.cs to
+	the build.
+
+	* src/AsyncPixbufLoader.cs: add a new progressive loader for
+	testing async loading.
+
 2004-10-27  Larry Ewing  <lewing@novell.com>
 
 	* src/IconView.cs: process expose events by the region not the area.
 
 2004-10-20  Larry Ewing  <lewing@novell.com>
+
+	* src/IconView.cs: add private flag that controls the use of the
+	PixbufLoader so that we can use blocking loads for small exposes.
 
 	* src/ImageView.cs: take ownership of the ref, the libeog
 	image-view apis is funky this way.
