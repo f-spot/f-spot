@@ -232,10 +232,26 @@ public class Photo : DbItem {
 			AddTagUnsafely (tag);
 	}
 
+	public void AddTag (Tag []taglist)
+	{
+		/*
+		 * FIXME need a better naming convention here, perhaps just
+		 * plain Add.
+		 */
+		foreach (Tag tag in taglist)
+			AddTag (tag);
+	}	
+
 	public void RemoveTag (Tag tag)
 	{
 		tags.Remove (tag);
 	}
+
+	public void RemoveTag (Tag []taglist)
+	{	
+		foreach (Tag tag in taglist)
+			RemoveTag (tag);
+	}	
 
 	public bool HasTag (Tag tag)
 	{

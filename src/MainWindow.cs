@@ -232,9 +232,8 @@ public class MainWindow {
 			foreach (int num in icon_view.Selection) {
 				Photo photo = query.Photos [num];
 				
-				foreach (Tag tag in tags) {
-					photo.AddTag (tag);	
-				}	
+				photo.AddTag (tags);
+
 				db.Photos.Commit (photo);
 				icon_view.InvalidateCell (num);
 			}
@@ -243,9 +242,7 @@ public class MainWindow {
 		case ModeType.PhotoView:
 			Photo photo = query.Photos [photo_view.CurrentPhoto];
 			
-			foreach (Tag tag in tags) {
-				photo.AddTag (tag);	
-			}	
+			photo.AddTag (tags);	
 			db.Photos.Commit (photo);
 			break;
 		}	
@@ -264,8 +261,7 @@ public class MainWindow {
 			foreach (int num in icon_view.Selection) {
 				Photo photo = query.Photos [num];
 
-				foreach (Tag tag in tags)
-					photo.RemoveTag (tag);
+				photo.RemoveTag (tags);
 				db.Photos.Commit (photo);
 				icon_view.InvalidateCell (num);
 			}
@@ -273,8 +269,8 @@ public class MainWindow {
 		break;	
 		case ModeType.PhotoView:
 			Photo photo = query.Photos [photo_view.CurrentPhoto];
-			foreach (Tag tag in tags)
-				photo.RemoveTag (tag);
+			
+			photo.RemoveTag (tags);
 			db.Photos.Commit (photo);
 			break;
 		}	
@@ -295,6 +291,18 @@ public class MainWindow {
 		icon_view.ThumbnailWidth = 256;	
 	}
 
+	void HandleViewSlideShow (object sender, EventArgs args)
+	{
+		Gtk.Window win = new Gtk.Window ("this is a test");
+	
+	        SlideView slideview = new SlideView (query.Photos);
+		
+		win.Add (slideview);
+		slideview.Play ();
+		
+		win.ShowAll ();
+	}
+	
 	// Toolbar commands.
 
 	void HandleRotate90ToolbarButtonClicked (object sender, EventArgs args)

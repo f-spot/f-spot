@@ -23,11 +23,31 @@ public class SlideView : Gtk.Image {
 		StartTimer ();
 	}
 
+#if true
 	private Pixbuf Blend (Pixbuf prev, Pixbuf next, double percent)
 	{ 
+		Pixbuf current = new Pixbuf (Colorspace.Rgb, false, 8, width, height);
 		
-		return null;
+		prev.CopyArea (0, 0, width, height, current, 0, 0);
+		next.Composite (current, 0,0, width, height, 0, 0, 1, 1,
+				Gdk.InterpType.Bilinear, (int)(255 * percent + 0.5));
+		return current;
 	}
+#else
+	private Pixbuf Blend (Pixbuf prev, Pixbuf next, double percent)
+	{ 
+		Pixbuf current = new Pixbuf (Colorspace.Rgb, false, 8, width, height);
+		current.Fill (0);		
+
+		if (percent < 0.5)
+			prev.Composite (current, 0,0, width, height, 0, 0, 1, 1,
+					Gdk.InterpType.Bilinear, (int)(255 * (1 - percent * 2) + 0.5));
+		else
+			next.Composite (current, 0,0, width, height, 0, 0, 1, 1,
+					Gdk.InterpType.Bilinear, (int)(255 * (percent * 2 - 1) + 0.5));
+		return current;
+	}
+#endif
 
 	private Pixbuf GetScaled (string path)
 	{
@@ -81,7 +101,34 @@ public class SlideView : Gtk.Image {
 	
 	public bool HandleTimer ()
 	{	
+		Pixbuf prev = this.Pixbuf;
+
+
+		this.FromPixbuf = Blend (prev, next, .1);
+		GdkWindow.ProcessUpdates (false);
+		this.FromPixbuf = Blend (prev, next, .2);
+		GdkWindow.ProcessUpdates (false);
+		this.FromPixbuf = Blend (prev, next, .3);
+		GdkWindow.ProcessUpdates (false);
+		this.FromPixbuf = Blend (prev, next, .4);
+		GdkWindow.ProcessUpdates (false);
+		this.FromPixbuf = Blend (prev, next, .5);
+		GdkWindow.ProcessUpdates (false);
+		this.FromPixbuf = Blend (prev, next, .6);
+		GdkWindow.ProcessUpdates (false);
+		this.FromPixbuf = Blend (prev, next, .7);
+		GdkWindow.ProcessUpdates (false);
+		this.FromPixbuf = Blend (prev, next, .8);
+		GdkWindow.ProcessUpdates (false);
+		this.FromPixbuf = Blend (prev, next, .9);
+		GdkWindow.ProcessUpdates (false);
+		this.FromPixbuf = Blend (prev, next, .97);
+		GdkWindow.ProcessUpdates (false);
+		this.FromPixbuf = Blend (prev, next, .99);
+		GdkWindow.ProcessUpdates (false);
 		this.FromPixbuf = next;
+		GdkWindow.ProcessUpdates (false);
+
 		if (!LoadNextImage ()) {
 			timer = 0;
 			return false;
@@ -100,7 +147,7 @@ public class SlideView : Gtk.Image {
 	private void StartTimer ()
 	{
 		if (timer == 0)
-			timer = GLib.Timeout.Add (1000, new TimeoutHandler (HandleTimer));
+			timer = GLib.Timeout.Add (2000, new TimeoutHandler (HandleTimer));
 	}
 	
 	public void Pause () 

@@ -1,5 +1,19 @@
 2004-01-28  Larry Ewing  <lewing@ximian.com>
 
+	* src/SlideView.cs: add a quick hack to play with the blending in
+	slide show transitions.
+
+	* src/PhotoStore.cs: make AddTag also accept and array of tags,
+	should fix the naming here soon.
+
+	* src/MainWindow.cs: Add very basic View->Slide Show handler.
+	Pass array directly to AddTag.
+
+	* src/f-spot.glade: Add spelling fix from Kevin Breit
+	<mrproper@ximian.com>.  Add View->Slide Show menu item.
+
+	* src/makefile.am (F_SPOT_CSFILES): add SlideView.cs to the build.
+
 	* src/SlideView.cs: add the start of a slideshow widget.  It
 	currently only supports flip transitions.
 
