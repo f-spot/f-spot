@@ -1,0 +1,694 @@
+# Swedish messages for f-spot.
+# Copyright (C) 2004 Free Software Foundation, Inc.
+# Christian Rose <menthos@menthos.com>, 2004.
+#
+# $Id$
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: f-spot\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-12-01 02:01+0100\n"
+"PO-Revision-Date: 2004-12-01 02:01+0100\n"
+"Last-Translator: Christian Rose <menthos@menthos.com>\n"
+"Language-Team: Swedish <sv@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: libeog/eog-file-selection.c:29 libeog/eog-file-selection.c:46
+msgid "By Extension"
+msgstr "Efter ändelse"
+
+#: libeog/eog-file-selection.c:30
+msgid "BMP"
+msgstr "BMP"
+
+#: libeog/eog-file-selection.c:31
+msgid "GIF"
+msgstr "GIF"
+
+#: libeog/eog-file-selection.c:32
+msgid "ICO"
+msgstr "ICO"
+
+#: libeog/eog-file-selection.c:33 libeog/eog-file-selection.c:48
+msgid "JPEG"
+msgstr "JPEG"
+
+#: libeog/eog-file-selection.c:34 libeog/eog-file-selection.c:51
+msgid "PNG"
+msgstr "PNG"
+
+#: libeog/eog-file-selection.c:35
+msgid "PNM"
+msgstr "PNM"
+
+#: libeog/eog-file-selection.c:36
+msgid "RAS"
+msgstr "RAS"
+
+#: libeog/eog-file-selection.c:37
+msgid "SVG"
+msgstr "SVG"
+
+#: libeog/eog-file-selection.c:38
+msgid "TGA"
+msgstr "TGA"
+
+#: libeog/eog-file-selection.c:39
+msgid "TIFF"
+msgstr "TIFF"
+
+#: libeog/eog-file-selection.c:40
+msgid "XBM"
+msgstr "XBM"
+
+#: libeog/eog-file-selection.c:41 libeog/eog-file-selection.c:54
+msgid "XPM"
+msgstr "XPM"
+
+#: libeog/eog-file-selection.c:207
+msgid "Unsupported file format."
+msgstr "Filformatet stöds inte."
+
+#: libeog/eog-file-selection.c:225
+msgid "Determine File Type:"
+msgstr "Avgör filtyp:"
+
+#: libeog/eog-file-selection.c:268
+msgid "Load Image"
+msgstr "Läs in bild"
+
+#: libeog/eog-file-selection.c:274
+msgid "Save Image"
+msgstr "Spara bild"
+
+#: libeog/eog-image.c:772
+msgid "No image loaded."
+msgstr "Ingen bild inläst."
+
+#: libeog/eog-image.c:779
+#, fuzzy
+msgid "Can't save non local files."
+msgstr ""
+"Kan inte spara till \"%s\":\n"
+" %s"
+
+#: libeog/eog-image.c:800
+msgid "Unsupported image type for saving."
+msgstr "Bildtypen stöds inte för sparande."
+
+#: libeog/image-view.c:2058
+msgid "interpolation type"
+msgstr "typ av interpolation"
+
+#: libeog/image-view.c:2059
+msgid "the type of interpolation to use"
+msgstr "typen av interpolation att använda"
+
+#: libeog/image-view.c:2065 libeog/image-view.c:2072
+msgid "check type"
+msgstr "ruttyp"
+
+#: libeog/image-view.c:2066
+msgid "the type of chequering to use"
+msgstr "typen av rutnät att använda"
+
+#: libeog/image-view.c:2073
+msgid "the size of chequers to use"
+msgstr "storleken på rutorna att använda"
+
+#: libeog/image-view.c:2079
+#, fuzzy
+msgid "dither"
+msgstr "_Färgutjämning"
+
+#: libeog/image-view.c:2080
+msgid "dither type"
+msgstr "typ av färgutjämning"
+
+#: libfspot/f-jpeg-utils.c:421
+#, fuzzy
+msgid "File not found"
+msgstr "Filen hittades inte."
+
+#: libfspot/f-jpeg-utils.c:444
+#, fuzzy, c-format
+msgid "Unknown transform type %d"
+msgstr "Okänd omfattningstyp"
+
+#: libfspot/f-jpeg-utils.c:452
+#, fuzzy
+msgid "Operation failed"
+msgstr "Åtgärden misslyckades: %s"
+
+#: src/f-spot.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: src/f-spot.glade.h:2
+#, fuzzy
+msgid "<b>Album</b>"
+msgstr "<b>Alarm</b>"
+
+#: src/f-spot.glade.h:3
+#, fuzzy
+msgid "<b>Color Temperature</b>"
+msgstr "<b>Färdigt:</b> "
+
+#: src/f-spot.glade.h:4
+#, fuzzy
+msgid "<b>End Date</b>"
+msgstr "<b>Slutar:<b>"
+
+#: src/f-spot.glade.h:5
+#, fuzzy
+msgid "<b>Exposure</b>"
+msgstr "<b>Undantag</b>"
+
+#: src/f-spot.glade.h:6
+#, fuzzy
+msgid "<b>Gallery</b>"
+msgstr "<b>Varningar</b>"
+
+#: src/f-spot.glade.h:7
+#, fuzzy
+msgid "<b>Histogram</b>"
+msgstr "<b>Hem</b>"
+
+#: src/f-spot.glade.h:8
+msgid "<b>Photograph Layout</b>"
+msgstr ""
+
+#: src/f-spot.glade.h:9
+#, fuzzy
+msgid "<b>Photos</b>"
+msgstr "<b>Alternativ</b>"
+
+#: src/f-spot.glade.h:10
+#, fuzzy
+msgid "<b>Preview</b>"
+msgstr "Förhandsgranska"
+
+#: src/f-spot.glade.h:11
+#, fuzzy
+msgid "<b>Printer Details</b>"
+msgstr "Filterregler"
+
+#: src/f-spot.glade.h:12
+#, fuzzy
+msgid "<b>Start Date</b>"
+msgstr "<b>Börjar:</b>"
+
+#: src/f-spot.glade.h:13
+#, fuzzy
+msgid "<b>Style</b>"
+msgstr "<b>Typ:</b>"
+
+#: src/f-spot.glade.h:14
+msgid "<small> </small>"
+msgstr ""
+
+#: src/f-spot.glade.h:15
+msgid "<small></small>"
+msgstr ""
+
+#: src/f-spot.glade.h:16
+#, fuzzy
+msgid "Add Gallery"
+msgstr "Lägg till en mapp"
+
+#: src/f-spot.glade.h:17
+msgid "Adjust Color"
+msgstr "Justera färg"
+
+#: src/f-spot.glade.h:18
+msgid "Album:"
+msgstr "Album:"
+
+#: src/f-spot.glade.h:19
+#, fuzzy
+msgid "Arranged By"
+msgstr "_Ordna objekt"
+
+#: src/f-spot.glade.h:20
+#, fuzzy
+msgid "Attach Tag To Selection"
+msgstr "Bifoga en fil"
+
+#: src/f-spot.glade.h:21
+#, fuzzy
+msgid "Border:"
+msgstr "Borger"
+
+#: src/f-spot.glade.h:22
+#, fuzzy
+msgid "Brightness:"
+msgstr "Företag:"
+
+#: src/f-spot.glade.h:23
+msgid "Browse"
+msgstr "Bläddra"
+
+#: src/f-spot.glade.h:24
+msgid "CD"
+msgstr "CD"
+
+#: src/f-spot.glade.h:25
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: src/f-spot.glade.h:26
+#, fuzzy
+msgid "Caption:"
+msgstr "Plats:"
+
+#: src/f-spot.glade.h:27
+msgid "Category:"
+msgstr "Kategori:"
+
+#: src/f-spot.glade.h:28
+msgid "Close"
+msgstr "Stäng"
+
+#: src/f-spot.glade.h:29
+#, fuzzy
+msgid "Co_nfigure"
+msgstr "Konfigurera %s"
+
+#: src/f-spot.glade.h:30
+#, fuzzy
+msgid "Contrast:"
+msgstr "Kontakt"
+
+#: src/f-spot.glade.h:31
+#, fuzzy
+msgid "Create New Category"
+msgstr "Skapa en ny färg:"
+
+#: src/f-spot.glade.h:32
+#, fuzzy
+msgid "Create New Tag"
+msgstr "Skapa en ny _uppgift"
+
+#: src/f-spot.glade.h:33
+#, fuzzy
+msgid "Create new version"
+msgstr "Skriv ett nytt e-brev"
+
+#: src/f-spot.glade.h:34
+#, fuzzy
+msgid "Crop Photo to Fit"
+msgstr "Zooma så att det passar"
+
+#: src/f-spot.glade.h:35
+#, fuzzy
+msgid "Delete Selected Tag"
+msgstr "_Ta bort markerade uppgifter"
+
+#: src/f-spot.glade.h:36
+#, fuzzy
+msgid "Delete Version"
+msgstr "Vermont"
+
+#: src/f-spot.glade.h:37
+#, fuzzy
+msgid "Destination Temp"
+msgstr "Mål"
+
+#: src/f-spot.glade.h:38
+msgid "Directory"
+msgstr "Katalog"
+
+#: src/f-spot.glade.h:39
+#, fuzzy
+msgid "Display Dates"
+msgstr "Visa kort"
+
+#: src/f-spot.glade.h:40
+#, fuzzy
+msgid "Display Tags"
+msgstr "Visa kort"
+
+#: src/f-spot.glade.h:41
+#, fuzzy
+msgid "EXIF Data"
+msgstr "Bilddata"
+
+#: src/f-spot.glade.h:42
+#, fuzzy
+msgid "Edit Selected Tag"
+msgstr "_Ta bort markerade uppgifter"
+
+#: src/f-spot.glade.h:43
+#, fuzzy
+msgid "Edit Tag Icon"
+msgstr "Visa som ikoner"
+
+#: src/f-spot.glade.h:44
+#, fuzzy
+msgid "Export"
+msgstr "Importera"
+
+#: src/f-spot.glade.h:45
+msgid "Export titles and comments"
+msgstr ""
+
+#: src/f-spot.glade.h:46
+msgid "Export to Album:"
+msgstr ""
+
+#: src/f-spot.glade.h:47
+msgid "File"
+msgstr "Fil"
+
+#: src/f-spot.glade.h:48
+#, fuzzy
+msgid "Fin_d"
+msgstr "Sök"
+
+#: src/f-spot.glade.h:49
+#, fuzzy
+msgid "Find by _Tag"
+msgstr "Sök ige_n..."
+
+#: src/f-spot.glade.h:50
+msgid ""
+"Full Page\n"
+"Standard - 4x6"
+msgstr ""
+
+#: src/f-spot.glade.h:52
+msgid "Fullscreen"
+msgstr "Helskärm"
+
+#: src/f-spot.glade.h:53
+msgid "Gallery"
+msgstr "Galleri"
+
+#: src/f-spot.glade.h:54
+#, fuzzy
+msgid "Gallery Name:"
+msgstr "_Mappnamn:"
+
+#: src/f-spot.glade.h:55
+#, fuzzy
+msgid "Gallery Settings"
+msgstr "Mappinställningar"
+
+#: src/f-spot.glade.h:56
+#, fuzzy
+msgid "Gallery:"
+msgstr "Valley"
+
+#: src/f-spot.glade.h:57
+msgid ""
+"Hairline\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
+msgstr ""
+
+#: src/f-spot.glade.h:62
+#, fuzzy
+msgid "Hue:"
+msgstr "Hem:"
+
+#: src/f-spot.glade.h:63
+msgid "Icon:"
+msgstr "Ikon:"
+
+#: src/f-spot.glade.h:64
+msgid "Month"
+msgstr "Månad"
+
+#: src/f-spot.glade.h:65
+msgid "Next"
+msgstr "Nästa"
+
+#: src/f-spot.glade.h:66
+msgid ""
+"None\n"
+"Title\n"
+"Filename\n"
+"Date\n"
+"Photo Details"
+msgstr ""
+
+#: src/f-spot.glade.h:71
+msgid "Number of Copies:"
+msgstr "Antal kopior:"
+
+#: src/f-spot.glade.h:72
+msgid "OK"
+msgstr "OK"
+
+#: src/f-spot.glade.h:73
+#, fuzzy
+msgid "Open album in browser when done uploading"
+msgstr "Öppna ett bläddrarfönster"
+
+#: src/f-spot.glade.h:74
+#, fuzzy
+msgid "Page 1 of 3"
+msgstr "Sida %d av %d"
+
+#: src/f-spot.glade.h:75
+msgid "Password:"
+msgstr "Lösenord:"
+
+#: src/f-spot.glade.h:76
+msgid "Pause"
+msgstr "Paus"
+
+#: src/f-spot.glade.h:77
+msgid "Photo 0 of 0"
+msgstr ""
+
+#: src/f-spot.glade.h:78
+#, fuzzy
+msgid "Photo Source:"
+msgstr "Källkod"
+
+#: src/f-spot.glade.h:79
+#, fuzzy
+msgid "PhotoSize:"
+msgstr "Storlek:"
+
+#: src/f-spot.glade.h:80
+msgid "Previous"
+msgstr "Föregående"
+
+#: src/f-spot.glade.h:81
+msgid "Print"
+msgstr "Skriv ut"
+
+#: src/f-spot.glade.h:82
+#, fuzzy
+msgid "Print Crop Marks"
+msgstr "Skriv ut kort"
+
+#: src/f-spot.glade.h:83
+#, fuzzy
+msgid "Rem_ove Tag"
+msgstr "Ta bort"
+
+#: src/f-spot.glade.h:84
+#, fuzzy
+msgid "Remove Tag From Selection"
+msgstr "Ta bort åtgärd"
+
+#: src/f-spot.glade.h:85
+#, fuzzy
+msgid "Rename Version"
+msgstr "Byt namn från:"
+
+#: src/f-spot.glade.h:86
+msgid "Rotate Left"
+msgstr "Rotera vänster"
+
+#: src/f-spot.glade.h:87
+msgid "Rotate Right"
+msgstr "Rotera höger"
+
+#: src/f-spot.glade.h:88
+#, fuzzy
+msgid "Saturation:"
+msgstr "Startar:"
+
+#: src/f-spot.glade.h:89
+msgid "Scale images to no larger than: "
+msgstr ""
+
+#: src/f-spot.glade.h:90
+msgid "Select All"
+msgstr "Markera allt"
+
+#: src/f-spot.glade.h:91
+#, fuzzy
+msgid "Select None"
+msgstr "Markering:"
+
+#: src/f-spot.glade.h:92
+msgid ""
+"Selection\n"
+"Gallery\n"
+"Viewport"
+msgstr ""
+
+#: src/f-spot.glade.h:95
+#, fuzzy
+msgid "Send _Mail"
+msgstr "Skickande av post"
+
+#: src/f-spot.glade.h:96
+#, fuzzy
+msgid "Set _Date Range"
+msgstr "Markera namn"
+
+#: src/f-spot.glade.h:97
+#, fuzzy
+msgid "Set as Background"
+msgstr "Bakgrund:"
+
+#: src/f-spot.glade.h:98
+msgid "Size"
+msgstr "Storlek"
+
+#: src/f-spot.glade.h:99
+msgid "SlideShow"
+msgstr "Bildspel"
+
+#: src/f-spot.glade.h:100
+#, fuzzy
+msgid "Source Temp"
+msgstr "Källkod"
+
+#: src/f-spot.glade.h:101
+#, fuzzy
+msgid "Tag name:"
+msgstr "Inloggningsnamn:"
+
+#: src/f-spot.glade.h:102
+msgid "Tags"
+msgstr "Taggar"
+
+#: src/f-spot.glade.h:103
+#, fuzzy
+msgid "Update Thumbnail"
+msgstr "Måttligt hagel"
+
+#: src/f-spot.glade.h:104
+#, fuzzy
+msgid "Url:"
+msgstr "Url"
+
+#: src/f-spot.glade.h:105
+msgid "User_name:"
+msgstr "Användar_namn:"
+
+#: src/f-spot.glade.h:106
+msgid "Username:"
+msgstr "Användarnamn:"
+
+#: src/f-spot.glade.h:107
+msgid "View"
+msgstr "Vy"
+
+#: src/f-spot.glade.h:108
+msgid "Will print Using: Us Letter size on Generic Postscript"
+msgstr ""
+
+#: src/f-spot.glade.h:109
+msgid "Zoom In"
+msgstr "Zooma in"
+
+#: src/f-spot.glade.h:110
+msgid "Zoom _Out"
+msgstr "Zooma _ut"
+
+#: src/f-spot.glade.h:111
+#, fuzzy
+msgid "_Attach Tag"
+msgstr "Bifoga"
+
+#: src/f-spot.glade.h:112
+#, fuzzy
+msgid "_Clear Date Range"
+msgstr "_Töm flagga"
+
+#: src/f-spot.glade.h:113
+#, fuzzy
+msgid "_Delete from Drive"
+msgstr "_Ta bort från papperskorgen"
+
+#: src/f-spot.glade.h:114
+#, fuzzy
+msgid "_Gallery Name:"
+msgstr "_Mappnamn:"
+
+#: src/f-spot.glade.h:115
+#, fuzzy
+msgid "_Import"
+msgstr "Importera"
+
+#: src/f-spot.glade.h:116
+#, fuzzy
+msgid "_Large"
+msgstr "_Större"
+
+#: src/f-spot.glade.h:117
+#, fuzzy
+msgid "_Medium"
+msgstr "Mellan"
+
+#: src/f-spot.glade.h:118
+#, fuzzy
+msgid "_Password:"
+msgstr "Lösenord:"
+
+# SUN CHANGED MESSAGE
+#: src/f-spot.glade.h:119
+#, fuzzy
+msgid "_Remove From Catalog"
+msgstr "_Ta bort en färg..."
+
+#: src/f-spot.glade.h:120
+#, fuzzy
+msgid "_Small"
+msgstr "Liten"
+
+#: src/f-spot.glade.h:121
+#, fuzzy
+msgid "_Url:"
+msgstr "Url"
+
+#: src/f-spot.glade.h:122
+#, fuzzy
+msgid "_Version"
+msgstr "Vermont"
+
+#: src/f-spot.glade.h:123
+msgid "dialog1"
+msgstr "dialog1"
+
+#: src/f-spot.glade.h:124
+msgid "x"
+msgstr "x"
+
+#~ msgid "Album"
+#~ msgstr "Album"
+
+#~ msgid "_Browse"
+#~ msgstr "_Bläddra"
+
+#~ msgid "Icon"
+#~ msgstr "Ikon"
+
+#~ msgid "Slideshow"
+#~ msgstr "Bildspel"
+
+#~ msgid "Tag"
+#~ msgstr "Tagg"
