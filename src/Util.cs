@@ -91,11 +91,21 @@ class UriList : ArrayList {
 		return list.ToString ();
 	}
 
-	public string [] ToPaths () {
+	public string [] ToLocalPaths () {
+		int count = 0;
 		foreach (Uri uri in this) {
-			
+			if (uri.Scheme == Uri.UriSchemeFile)
+				count++;
 		}
-		return null;
+
+		String [] paths = new String [count];
+		count = 0;
+		foreach (Uri uri in this) {
+			if (uri.Scheme == Uri.UriSchemeFile) {
+				paths[count++] = uri.LocalPath;
+			}
+		}
+		return paths;
 	}
 }
 
