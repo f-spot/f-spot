@@ -1,5 +1,11 @@
 2005-01-21  Larry Ewing  <lewing@novell.com>
 
+	* src/OriginalExport.cs: only create a tempdirectory if we need
+	it.  Use hack to create tempdirectory name.
+
+	* src/OriginalExport.cs: store the date in a format original-0.9
+	understands.
+
 	* src/f-spot.glade: add orignal export dialog.
 
 	* src/MainWindow.cs: add original export handler.

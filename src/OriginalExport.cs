@@ -21,6 +21,7 @@
 //located on a VFS location.
 using System;
 using System.IO;
+using System.Runtime.InteropServices;
 
 using ICSharpCode.SharpZipLib.Checksums;
 using ICSharpCode.SharpZipLib.Zip;
@@ -45,8 +46,10 @@ namespace FSpot {
 		
 		int photo_index;
 		bool open;
-		string gallery_path;
-
+		string gallery_name = "web-gallery";
+		// FIME this needs to be a real temp directory
+		string gallery_path = Path.Combine (Path.GetTempPath (), "f-spot-original-" + System.DateTime.Now.Ticks.ToString ());
+		
 		FSpot.ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
 		
@@ -99,31 +102,35 @@ namespace FSpot {
 
 		public void Upload ()
 		{
-			try {
-				OriginalGallery gallery = new OriginalGallery(selection);
-				//Console.WriteLine("Started!!!");
-				// set the tmpdir and the galleryname using the given properties
-				gallery.StartProcessing();
-				this.gallery_path = gallery.GalleryPath;
-				//Console.WriteLine("Finished!!!");
-			} catch {}
+			// FIXME use mkstemp
+
+			Gnome.Vfs.Result result = Gnome.Vfs.Result.Ok;
 
 			try {
 				Dialog.Destroy ();
-				Gnome.Vfs.Result result = Gnome.Vfs.Result.Ok;
-				
-				System.Console.WriteLine ("trying {0}", gallery_path);
-				Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (gallery_path);
-				Gnome.Vfs.Uri target = dest.Clone();
-				target = target.AppendFileName(source.ExtractShortName ());
-				Console.WriteLine(target);
-				Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
-				System.Console.WriteLine ("Xfering {0} to {1}", source.ToString (), target.ToString ());
-				result = Gnome.Vfs.Xfer.XferUri (source, target, 
+
+				if (dest.IsLocal)
+					gallery_path = Gnome.Vfs.Uri.GetLocalPathFromUri (dest.ToString ());
+
+				OriginalGallery gallery = new OriginalGallery(selection, gallery_path, gallery_name);
+				gallery.StartProcessing ();
+
+				// we've created the structure, now if the destination was local we are done
+				// otherwise we xfer 
+				if (!dest.IsLocal) {
+					System.Console.WriteLine ("trying {0}", gallery_path);
+					Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (gallery_path);
+					Gnome.Vfs.Uri target = dest.Clone();
+					target = target.AppendFileName(source.ExtractShortName ());
+					Console.WriteLine(target);
+					Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
+					System.Console.WriteLine ("Xfering {0} to {1}", source.ToString (), target.ToString ());
+					result = Gnome.Vfs.Xfer.XferUri (source, target, 
 									 Gnome.Vfs.XferOptions.Default, 
 									 Gnome.Vfs.XferErrorMode.Abort, 
 									 Gnome.Vfs.XferOverwriteMode.Replace, 
 									 cb);
+				}
 
 				if (result == Gnome.Vfs.Result.Ok) {
 					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Done Sending Photos");
@@ -141,6 +148,11 @@ namespace FSpot {
 			} catch (System.Exception e) {
 				progress_dialog.Message = e.ToString ();
 				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error Transferring");
+			} finally {
+				// if the destination isn't local then we want to remove the temp directory we
+				// created.
+				if (!dest.IsLocal)
+					System.IO.Directory.Delete (gallery_path, true);
 			}
 		}
 		
@@ -207,23 +219,23 @@ namespace FSpot {
 			progress_dialog.Start ();
 		}
 	}
-	
-	// This class will create a local gallery in a temporary location (e.g. /tmp)
+
 	class OriginalGallery
 	{
 		private IPhotoCollection selection;
-		private string gallery_name = "web-gallery";
+		private string gallery_name;
 		private string gallery_path;
-		private string tmpdir = "temp";
 		private bool setmtime = false;
 		private int photo_index = 1; //used to name files
 
 		FSpot.ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
 		
-		public OriginalGallery (IPhotoCollection selection)
+		public OriginalGallery (IPhotoCollection selection, string path, string gallery_name)
 		{
 			this.selection = selection;
+			this.gallery_name = gallery_name;
+			this.gallery_path = Path.Combine (path, gallery_name);
 		}
 		
 		public void StartProcessing()
@@ -259,13 +271,11 @@ namespace FSpot {
 			
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e.ToString ());
-			}
+			} 
 		}
 		
 		private void MakeDirs()
 		{
-			gallery_path = Global.HomeDirectory + Path.DirectorySeparatorChar
-				+ tmpdir + Path.DirectorySeparatorChar + gallery_name;
 			//FIXME: Create this with 0700 mode in the case it is placed in /tmp
 			try {
 				Directory.CreateDirectory(gallery_path);
@@ -395,13 +405,5 @@ namespace FSpot {
 				return gallery_path;
 			}
 		}
-		
-		public string TmpPath {
-			get {
-				return tmpdir;
-			} set {
-				tmpdir = value;
-			}
-		}		
 	}
 }
