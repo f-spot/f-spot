@@ -406,121 +406,151 @@ public class IconView : Gtk.Layout {
 		Vadjustment.Change ();
 	}
 
-	System.Collections.Hashtable date_layouts = new Hashtable ();
-	// FIXME Cache the GCs?
-	private void DrawCell (int thumbnail_num, int x, int y, Gdk.Rectangle area)
+	Gdk.Rectangle Expand (Gdk.Rectangle src, int width)
 	{
-		Gdk.GC gc = new Gdk.GC (BinWindow);
-		gc.Copy (Style.ForegroundGC (StateType.Normal));
-		gc.SetLineAttributes (1, LineStyle.Solid, CapStyle.NotLast, JoinStyle.Round);
-		bool selected = CellIsSelected (thumbnail_num);
+		src.X -= width;
+		src.Y -= width;
+		src.Width += width * 2;
+		src.Height += width * 2;
+		return src;
+	}
 
-		FSpot.IBrowsableItem photo = collection.Items [thumbnail_num];
-
-		string thumbnail_path = Thumbnail.PathForUri (photo.DefaultVersionUri.ToString (), ThumbnailSize.Large);
-		Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForPath (thumbnail_path);
-			
-		StateType cell_state = selected ? (HasFocus ? StateType.Selected :StateType.Active) : StateType.Normal;
-
-
-		Style.PaintFlatBox (Style, BinWindow, cell_state, 
-				    ShadowType.Out, area, this, "IconView", x, y, cell_width - 1, cell_height - 1);
-
-		if (HasFocus && thumbnail_num == FocusCell) {
-			Style.PaintFocus(Style, BinWindow, cell_state, area, 
-					 this, null, x + 3, y + 3, cell_width - 6, cell_height - 6);
-		}
-
-		Gdk.Rectangle image_area = new Gdk.Rectangle (x + CELL_BORDER_WIDTH, 
-							      y + CELL_BORDER_WIDTH, 
-							      cell_width - 2 * CELL_BORDER_WIDTH, 
-							      cell_height - 2 * CELL_BORDER_WIDTH);
-		Gdk.Rectangle result = Rectangle.Zero;
-
-		int layout_width = 0;
-		int layout_height = 0;		
-
-		if (image_area.Intersect (area, out result)) {
-			int expansion = 0;
-			if (thumbnail_num == throb_cell) {
-				double t = throb_state / (double) (throb_state_max - 1);
-				double s;
+	int ThrobExpansion (int cell, bool selected)
+	{
+		int expansion = 0;
+		if (cell == throb_cell) {
+			double t = throb_state / (double) (throb_state_max - 1);
+			double s;
 			if (selected)
 				s = Math.Cos (-2 * Math.PI * t);
 			else
 				s = 1 - Math.Cos (-2 * Math.PI * t);
 			
 			expansion = (int) (SELECTION_THICKNESS * s);
-			} else if (selected) {
-				expansion = SELECTION_THICKNESS;
-			}
+		} else if (selected) {
+			expansion = SELECTION_THICKNESS;
+		}
+
+		return expansion;
+	}
+
+	System.Collections.Hashtable date_layouts = new Hashtable ();
+	// FIXME Cache the GCs?
+	private void DrawCell (int thumbnail_num, Gdk.Rectangle area)
+	{
+		Gdk.Rectangle bounds = CellBounds (thumbnail_num);
+		
+		if (!bounds.Intersect (area, out area))
+			return;
+		
+		FSpot.IBrowsableItem photo = collection.Items [thumbnail_num];
+		string thumbnail_path = Thumbnail.PathForUri (photo.DefaultVersionUri.ToString (), 
+							      ThumbnailSize.Large);
+
+		Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForPath (thumbnail_path);			
+		if (thumbnail == null) {
+			// FIXME instead of making a request to load at a particular size here we
+			// request to load at the the full size because Gdk.Pixbuf loses the Option
+			// data when you load at a different size (I hate that).  See HandlePixbufLoaded
+			// for where we do the scaling to correct for this problem.
+			pixbuf_loader.Request (thumbnail_path, thumbnail_num);
+		}
 			
-			if (thumbnail == null) {
-				// FIXME instead of making a request to load at a particular size here we
-				// request to load at the the full size because Gdk.Pixbuf loses the Option
-				// data when you load at a different size (I hate that).  See HandlePixbufLoaded
-				// for where we do the scaling to correct for this problem.
-				pixbuf_loader.Request (thumbnail_path, thumbnail_num);
-			}
+		Gdk.GC gc = new Gdk.GC (BinWindow);
+		gc.Copy (Style.ForegroundGC (StateType.Normal));
+		gc.SetLineAttributes (1, LineStyle.Solid, CapStyle.NotLast, JoinStyle.Round);
+		bool selected = CellIsSelected (thumbnail_num);
+		
+
+		StateType cell_state = selected ? (HasFocus ? StateType.Selected :StateType.Active) : StateType.Normal;
+		
+		
+		Style.PaintFlatBox (Style, BinWindow, cell_state, 
+				    ShadowType.Out, area, this, "IconView", 
+				    bounds.X, bounds.Y,
+				    bounds.Width - 1, bounds.Height - 1);
+		
+		Gdk.Rectangle focus = Expand (bounds, -3);
+		if (HasFocus && thumbnail_num == FocusCell) {
+			Style.PaintFocus(Style, BinWindow, 
+					 cell_state, area, 
+					 this, null, 
+					 focus.X, focus.Y, 
+					 focus.Width, focus.Height);
+		}
+
+		
+		int layout_width = 0;
+		int layout_height = 0;		
+
+		Gdk.Rectangle image_area = Expand (bounds, - CELL_BORDER_WIDTH);
+		if (image_area.Intersect (area, out image_area) && thumbnail != null) {
+			Gdk.Rectangle region = Gdk.Rectangle.Zero;
 			
-			if (thumbnail != null){
-				int width, height;
+			PixbufUtils.Fit (thumbnail, ThumbnailWidth, ThumbnailHeight, 
+					 true, out region.Width, out region.Height);
+			
+			
+			region.X = (int) (bounds.X + (bounds.Width - region.Width) / 2);
+			region.Y = (int) bounds.Y + ThumbnailHeight - region.Height + CELL_BORDER_WIDTH;
+			
+			int expansion = ThrobExpansion (thumbnail_num, selected);
+			region = Expand (region, expansion);
+			
+			Pixbuf temp_thumbnail;
+			
+			if (region.Width == thumbnail.Width || region.Height == thumbnail.Height) {
+				temp_thumbnail = thumbnail;
+			} else {
+				if (region.Width < thumbnail.Width && region.Height < thumbnail.Height)
+					temp_thumbnail = PixbufUtils.ScaleDown (thumbnail, 
+										region.Width, region.Height);
+				else
+					temp_thumbnail = thumbnail.ScaleSimple (region.Width, region.Height, 
+										InterpType.Bilinear);
 				
-				PixbufUtils.Fit (thumbnail, ThumbnailWidth, ThumbnailHeight, true, out width, out height);
-				
-				int dest_x = (int) (x + (cell_width - width) / 2);
-				int dest_y;
-				
-				
-				dest_y = (int) y + ThumbnailHeight - height + CELL_BORDER_WIDTH;
-				
-				dest_x -= expansion;
-				dest_y -= expansion;		
-				width += 2 * expansion;
-				height += 2 * expansion;
-
-				Pixbuf temp_thumbnail;
-				// Is the thumbnail the right size?
-				if (width == thumbnail.Width || height == thumbnail.Height) {
-					temp_thumbnail = thumbnail;
-				} else {
-
-					if (width < thumbnail.Width && height < thumbnail.Height)
-						temp_thumbnail = PixbufUtils.ScaleDown (thumbnail, width, height);
-					else
-						temp_thumbnail = thumbnail.ScaleSimple (width, height, InterpType.Bilinear);
-					
-					PixbufUtils.CopyThumbnailOptions (thumbnail, temp_thumbnail);
-					
-					// Only request a reload here if we are not inside a throb 
-					// (expansion == 0) because we want to store the images at the normal
-					// size not a throb or selection size to optimize the scroll speed
-					if (expansion == 0) {
-#if false						
-						System.Console.WriteLine ("made request for {0} ({1},{2}) ({3},{4}) ({5},{6})", 
-									  thumbnail_path, width, height, 
-									  ThumbnailWidth, ThumbnailHeight, 
-									  thumbnail.Width, thumbnail.Height);
-#endif
-
-						// FIXME instead of making a request to load at a particular size here we
-						// request to load at the the full size because Gdk.Pixbuf loses the Option
-						// data when you load at a different size (I hate that).  See HandlePixbufLoaded
-						// for where we do the scaling to correct for this problem.
-						pixbuf_loader.Request (thumbnail_path, thumbnail_num);
-					}
+				PixbufUtils.CopyThumbnailOptions (thumbnail, temp_thumbnail);
+				// Only request a reload here if we are not inside a throb 
+				// (expansion == 0) because we want to store the images at the normal
+				// size not a throb or selection size to optimize the scroll speed
+				if (expansion == 0) {
+					// FIXME instead of making a request to load at a particular size here we
+					// request to load at the the full size because Gdk.Pixbuf loses the Option
+					// data when you load at a different size (I hate that).  See 
+					// HandlePixbufLoaded for where we do the scaling to correct for 
+					// this problem.
+					pixbuf_loader.Request (thumbnail_path, thumbnail_num);
 				}
-				
-				Style.PaintShadow (Style, BinWindow, cell_state,
-						   ShadowType.Out, area, this, "IconView", dest_x - 1, dest_y - 1, width + 2, height + 2);			
-				temp_thumbnail.RenderToDrawable (BinWindow, Style.WhiteGC,
-								 0, 0, dest_x, dest_y, width, height, RgbDither.None, 0, 0);
-				
-				if (temp_thumbnail != thumbnail)
-					temp_thumbnail.Dispose ();
-				
-				thumbnail.Dispose ();
 			}
+			
+			// FIXME There seems to be a rounding issue between the
+			// scaled thumbnail sizes, we avoid this for now by using
+			// the actual thumnail sizes here.
+			region.Width = temp_thumbnail.Width;
+			region.Height = temp_thumbnail.Height;
+			
+			Gdk.Rectangle draw = Expand (region, 1);
+			
+			Style.PaintShadow (Style, BinWindow, cell_state,
+					   ShadowType.Out, area, this, 
+					   "IconView", 
+					   draw.X, draw.Y, 
+					   draw.Width, draw.Height);			
+			
+			if (region.Intersect (area, out draw)) {
+				temp_thumbnail.RenderToDrawable (BinWindow, Style.WhiteGC,
+								 draw.X - region.X, 
+								 draw.Y - region.Y, 
+								 draw.X, draw.Y, 
+								 draw.Width, draw.Height, 
+								 RgbDither.None, 
+								 draw.X, draw.Y);
+			}
+			
+			if (temp_thumbnail != thumbnail)
+				temp_thumbnail.Dispose ();
+			
+			thumbnail.Dispose ();
 		}
 			
 		if (DisplayDates) {
@@ -540,8 +570,8 @@ public class IconView : Gtk.Layout {
 			
 			layout.GetPixelSize (out layout_width, out layout_height);
 
-			int layout_y = y + cell_height - CELL_BORDER_WIDTH - (DisplayTags ? TAG_ICON_SIZE : 0) - layout_height;
-			int layout_x = x + (cell_width - layout_width) / 2;
+			int layout_y = bounds.Y + bounds.Height - CELL_BORDER_WIDTH - (DisplayTags ? TAG_ICON_SIZE : 0) - layout_height;
+			int layout_x = bounds.X + (bounds.Width - layout_width) / 2;
 
 			Style.PaintLayout (Style, BinWindow, cell_state,
 					   true, area, this, "IconView", layout_x, layout_y, layout);
@@ -550,11 +580,13 @@ public class IconView : Gtk.Layout {
 
 		if (DisplayTags) {
 			Tag [] tags = photo.Tags;
+			Gdk.Rectangle tag_bounds;
 
-			int tag_x, tag_y;
+			tag_bounds.X = bounds.X + (bounds.Width - tags.Length * TAG_ICON_SIZE) / 2;
+			tag_bounds.Y = bounds.Y + bounds.Height - CELL_BORDER_WIDTH - TAG_ICON_SIZE;
+			tag_bounds.Width = TAG_ICON_SIZE;
+			tag_bounds.Height = TAG_ICON_SIZE;
 
-			tag_x = x + (cell_width - tags.Length * TAG_ICON_SIZE) / 2;
-			tag_y = y + cell_height - CELL_BORDER_WIDTH - TAG_ICON_SIZE;
 			foreach (Tag t in tags) {
 				Pixbuf icon = null;
 
@@ -570,16 +602,21 @@ public class IconView : Gtk.Layout {
 				}
 
 				Pixbuf scaled_icon;
-				if (icon.Width == TAG_ICON_SIZE) {
+				if (icon.Width == tag_bounds.Width) {
 					scaled_icon = icon;
 				} else {
-					scaled_icon = icon.ScaleSimple (TAG_ICON_SIZE, TAG_ICON_SIZE, InterpType.Bilinear);
+					scaled_icon = icon.ScaleSimple (tag_bounds.Width, 
+									tag_bounds.Height, 
+									InterpType.Bilinear);
 				}
 
 				scaled_icon.RenderToDrawable (BinWindow, Style.WhiteGC,
-							      0, 0, tag_x, tag_y, TAG_ICON_SIZE, TAG_ICON_SIZE,
+							      0, 0, 
+							      tag_bounds.X, tag_bounds.Y, 
+							      tag_bounds.Width, tag_bounds.Height,
 							      RgbDither.None, 0, 0);
-				tag_x += TAG_ICON_SIZE + TAG_ICON_VSPACING;
+
+				tag_bounds.X += tag_bounds.Width + TAG_ICON_VSPACING;
 
 				if (scaled_icon != icon)
 					scaled_icon.Dispose ();
@@ -611,10 +648,7 @@ public class IconView : Gtk.Layout {
 
 			//Console.WriteLine ("Drawing row {0}", start_cell_row + i);
 			for (int j = 0; j < num_cols && cell_num + j < collection.Items.Length; j ++) {
-				Gdk.Rectangle cell_bounds = CellBounds (cell_num + j);
-				if (area.Intersect (cell_bounds, out cell_bounds)) {
-					DrawCell (cell_num + j, cell_x, cell_y, cell_bounds);
-				}
+				DrawCell (cell_num + j, area);
 				cell_x += cell_width;
 			}
 
@@ -623,6 +657,7 @@ public class IconView : Gtk.Layout {
 		}
 
 	}
+
 
 	private void GetCellPosition (int cell_num, out int x, out int y)
 	{
@@ -781,7 +816,11 @@ public class IconView : Gtk.Layout {
 
 		// We have to do the scaling here rather than on load because we need to preserve the 
 		// Pixbuf option iformation to verify the thumbnail validity later
-		if (result.Width != ThumbnailWidth && result.Height != ThumbnailHeight) {
+		int width, height;
+		PixbufUtils.Fit (result, ThumbnailWidth, ThumbnailHeight, true, out width, out height);
+
+
+		if (result.Width != width && result.Height != height) {
 			Gdk.Pixbuf temp = PixbufUtils.ScaleToMaxSize (result, ThumbnailWidth, ThumbnailHeight);
 			PixbufUtils.CopyThumbnailOptions (result, temp);
 			result.Dispose ();

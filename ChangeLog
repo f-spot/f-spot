@@ -1,5 +1,8 @@
 2005-01-22  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: Clean up and speed up IconView drawing code,
+	work around Nat's drawing bug.
+
 	* src/PhotoStore.cs: use SaveAtomic.
 
 	* src/PixbufUtils.cs: add SaveAtomic.
