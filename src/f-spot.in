@@ -8,5 +8,4 @@ else
     EXE_TO_RUN="@prefix@/lib/f-spot/f-spot.exe"
 fi
 
-echo hello $MONO_PATH
 mono --debug $EXE_TO_RUN "$@"
