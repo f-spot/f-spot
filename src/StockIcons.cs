@@ -11,6 +11,8 @@ public class StockIcons {
 			new Gtk.StockItem ("f-spot-camera", "Camera", 0, Gdk.ModifierType.ShiftMask, null),
 			new Gtk.StockItem ("f-spot-crop", "Crop", 0, Gdk.ModifierType.ShiftMask, null),
 			new Gtk.StockItem ("f-spot-edit-image", "Edit Image", 0, Gdk.ModifierType.ShiftMask, null),
+			new Gtk.StockItem ("f-spot-fullscreen", "Fullscreen", 0, Gdk.ModifierType.ShiftMask, null),
+			new Gtk.StockItem ("f-spot-slideshow", "Slideshow", 0, Gdk.ModifierType.ShiftMask, null),
 			new Gtk.StockItem ("f-spot-logo", "Logo", 0, Gdk.ModifierType.ShiftMask, null),
 			new Gtk.StockItem ("f-spot-question-mark", "Question", 0, Gdk.ModifierType.ShiftMask, null),
 			new Gtk.StockItem ("f-spot-rotate-270", "Rotate _Left", 0, Gdk.ModifierType.ShiftMask, null),
