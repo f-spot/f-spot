@@ -51,6 +51,7 @@ public class PhotoView : EventBox {
 	}
 
 	private FSpot.ImageView image_view;
+	private TagView tag_view;
 	private Button display_next_button, display_previous_button;
 	private Label count_label;
 	private Entry description_entry;
@@ -171,7 +172,7 @@ public class PhotoView : EventBox {
 				Pixbuf old = image_view.Pixbuf;
 				
 				image_view.Pixbuf = new Pixbuf (Query.Photos [current_photo].DefaultVersionPath);
-
+				tag_view.Current = Query.Photos [current_photo];
 				/*
 				** This is a hack seeing if the max size stuff acutally helps loading speed 
 				**
@@ -414,15 +415,34 @@ public class PhotoView : EventBox {
 		Box vbox = new VBox (false, 6);
 		Add (vbox);
 
+		Frame frame = new Frame ();
+		frame.ShadowType = ShadowType.In;
+		vbox.PackStart (frame, true, true, 0);
+		
+		Box inner_vbox = new VBox (false , 2);
+		frame.Add (inner_vbox);
+
 		image_view = new FSpot.ImageView ();
 		ScrolledWindow image_view_scrolled = new ScrolledWindow (null, null);
 		image_view_scrolled.SetPolicy (PolicyType.Automatic, PolicyType.Automatic);
-		image_view_scrolled.ShadowType = ShadowType.In;
+		image_view_scrolled.ShadowType = ShadowType.None;
 		image_view_scrolled.Add (image_view);
 		image_view.SizeAllocated += new SizeAllocatedHandler (HandleImageViewSizeAllocated);
 		image_view.AddEvents ((int) EventMask.KeyPressMask);
 		image_view.KeyPressEvent += new KeyPressEventHandler (HandleImageViewKeyPressEvent);
-		vbox.PackStart (image_view_scrolled, true, true, 0);
+		inner_vbox.PackStart (image_view_scrolled, true, true, 0);
+		
+		HBox inner_hbox = new HBox (false, 2);
+		inner_hbox.BorderWidth = 6;
+
+		tag_view = new TagView ();
+		inner_hbox.PackStart (tag_view, false, true, 0);
+
+		description_entry = new Entry ();
+		inner_hbox.PackStart (description_entry, true, true, 0);
+		description_entry.Changed += new EventHandler (HandleDescriptionChanged);
+		
+		inner_vbox.PackStart (inner_hbox, false, true, 0);
 
 		Box toolbar_hbox = new HBox (false, 6);
 		vbox.PackStart (toolbar_hbox, false, true, 0);
@@ -443,11 +463,8 @@ public class PhotoView : EventBox {
 	
 		unsharp_button.Clicked += new EventHandler (HandleUnsharpButtonClicked);
 
-		//toolbar_hbox.PackStart (new EventBox (), true, true, 0);
-
-		description_entry = new Entry ();
-		toolbar_hbox.PackStart (description_entry, true, true, 0);
-		description_entry.Changed += new EventHandler (HandleDescriptionChanged);
+		/* Spacer Label */
+		toolbar_hbox.PackStart (new Label (""), true, true, 0);
 
 		count_label = new Label ("");
 		toolbar_hbox.PackStart (count_label, false, true, 0);
