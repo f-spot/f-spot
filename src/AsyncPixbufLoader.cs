@@ -129,6 +129,7 @@ namespace FSpot {
 			if (AreaUpdated != null)
 				AreaUpdated (this, area);
 
+			damage = Gdk.Rectangle.Zero;
 			System.Console.WriteLine (area.ToString ());
 		}
 
@@ -152,8 +153,6 @@ namespace FSpot {
 			} while (!done_reading && span.TotalMilliseconds <= 1000);
 
 			UpdateListeners ();
-
-			damage = Gdk.Rectangle.Zero;
 			return true;
 		}
 		
@@ -183,7 +182,11 @@ namespace FSpot {
 		private void HandleAreaUpdated (object sender, Gdk.AreaUpdatedArgs args)
 		{
 			Gdk.Rectangle area = new Gdk.Rectangle (args.X, args.Y, args.Width, args.Height);
-			damage = damage.Union (area);
+			
+			if (damage.Width == 0 || damage.Height == 0)
+				damage = area;
+			else 
+				damage = area.Union (damage);
 		}
 
 		private void HandleClosed (object sender, System.EventArgs args) 
