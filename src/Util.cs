@@ -163,9 +163,11 @@ class GtkUtil {
 	public static void MakeMenuItem (Gtk.Menu menu, string l, EventHandler e, bool enabled)
 	{
 		Gtk.MenuItem i;
-		Gtk.StockItem item = Gtk.Stock.Lookup (l);
+		Gtk.StockItem item = Gtk.StockItem.Zero;
+		Gtk.StockManager.Lookup (l, ref item);
+
 		if (item.StockId != null) {
-			i = new Gtk.ImageMenuItem (l, null);
+			i = new Gtk.ImageMenuItem (l, new Gtk.AccelGroup ());
 		} else {
 			i = new Gtk.MenuItem (l);
 		}

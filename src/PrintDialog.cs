@@ -77,7 +77,7 @@ namespace FSpot {
 			Gnome.PrintContext ctx = print_job.Context;
 
 			foreach (Photo photo in photos) {
-				ctx.BeginPage ("F-Spot" + photo.DefaultVersionPath);				
+				Gnome.Print.Beginpage (ctx, "F-Spot" + photo.DefaultVersionPath);				
 
 				Gdk.Pixbuf image = FSpot.PhotoLoader.Load (photo);
 
@@ -93,22 +93,22 @@ namespace FSpot {
 				double scale = System.Math.Min (width / image.Width, 
 								height / image.Height);
 
-				ctx.SaveGraphicState ();
+				Gnome.Print.Gsave (ctx);
 
 				if (rotate) {
-					ctx.Rotate (90);
-					ctx.Translate (0, -page_width);
+					Gnome.Print.Rotate (ctx, 90);
+					Gnome.Print.Translate (ctx, 0, -page_width);
 				}
 				
-				ctx.Translate (
-					       (width - image.Width * scale) / 2.0,
-					       (height - image.Height * scale) / 2.0);
+				Gnome.Print.Translate (ctx,
+						       (width - image.Width * scale) / 2.0,
+						       (height - image.Height * scale) / 2.0);
 				
-				ctx.Scale (image.Width * scale, image.Height * scale);
+				Gnome.Print.Scale (ctx, image.Width * scale, image.Height * scale);
 				Gnome.Print.Pixbuf (ctx, image);
-				ctx.RestoreGraphicState ();
+				Gnome.Print.Grestore (ctx);
 
-				ctx.ShowPage ();
+				Gnome.Print.Showpage (ctx);
 				image.Dispose ();
 			}
 			
@@ -119,7 +119,7 @@ namespace FSpot {
 		{
 			RunGnomePrintDialog ();
 		}
-
+		      
 		private void RunGnomePrintDialog ()
 		{
 			Gnome.PrintDialog gnome_dialog = new Gnome.PrintDialog (print_job, "Print Images", 0);
@@ -148,6 +148,7 @@ namespace FSpot {
 			print_job = new Gnome.PrintJob (Gnome.PrintConfig.Default ());
 
 			Render ();
+
 #if ENABLE_CUSTOM_PRINT
 			int response = print_dialog.Run ();
 			

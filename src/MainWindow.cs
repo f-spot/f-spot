@@ -786,7 +786,7 @@ public class MainWindow {
 
 	void HandleExportToVfs (object sender, EventArgs args)
 	{
-		FSpot.VfsExport export = new FSpot.VfsExport (new FSpot.PhotoArray (SelectedPhotos ()));
+		//FSpot.VfsExport export = new FSpot.VfsExport (new FSpot.PhotoArray (SelectedPhotos ()));
 	}
 
 	void HandleExportToFlickr (object sender, EventArgs args)

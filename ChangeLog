@@ -1,5 +1,19 @@
 2005-01-07  Larry Ewing  <lewing@novell.com>
 
+	* configure.in: revert to gtk-sharp 1.0.
+
+	* src/makefile.am: revert to gtk-sharp 1.0 disable VfsExport for now.
+
+	* src/Util.cs: revert to gtk-sharp 1.0 interfaces.
+
+	* src/StockIcons.cs: revert to gtk-sharp 1.0 interfaces.
+
+	* src/PrintDialog.cs: revert to gtk-sharp 1.0 interfaces.
+
+	* src/PreviewPopup.cs: revert to gtk-sharp 1.0 intefaces.
+
+	* src/MainWindow.cs: disable vfs for now.
+
 	* src/StockIcons.cs: add the new icons.
 
 	* src/MainWindow.cs: start hooking up the new toolbar items.

@@ -26,7 +26,7 @@ namespace FSpot {
 		private ThumbnailCache preview_cache = new ThumbnailCache (50);
 
 		private int item;
-		new public int Item {
+		public int Item {
 			get {
 				return item;
 			}
