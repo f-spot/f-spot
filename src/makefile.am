@@ -70,6 +70,7 @@ all: f-spot.exe
 install-data-local: f-spot.exe
 	$(mkinstalldirs) $(DESTDIR)$(fspotlibdir)
 	$(INSTALL_DATA) f-spot.exe $(DESTDIR)$(fspotlibdir)/f-spot.exe
+	$(INSTALL_DATA) f-spot.exe.config $(DESTDIR)$(fspotlibdir)/f-spot.exe.config
 
 
 bin_SCRIPTS = f-spot
