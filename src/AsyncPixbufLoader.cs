@@ -86,14 +86,18 @@ namespace FSpot {
 					loader.Close ();
 					loader.Dispose ();
 				}
+
+				loader = null;
 			} catch (System.Exception e) {
 				if (pixbuf != null)
 					pixbuf.Dispose ();
 
 				pixbuf = null;
 			} finally {
-				if (stream != null)
+				if (stream != null) 
 					stream.Close ();
+				
+				stream = null;
 			}
 		}
 
@@ -163,9 +167,11 @@ namespace FSpot {
 
 		public void Dispose ()
 		{
-			loader.AreaPrepared -= HandleAreaPrepared;
-			loader.AreaUpdated -= HandleAreaUpdated;
-			loader.Closed -= HandleClosed;
+			if (loader != null) {
+				loader.AreaPrepared -= HandleAreaPrepared;
+				loader.AreaUpdated -= HandleAreaUpdated;
+				loader.Closed -= HandleClosed;
+			}
 			Close ();
 
 			if (pixbuf != null)
