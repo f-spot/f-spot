@@ -1,5 +1,10 @@
 2005-03-11  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoView.cs: fix an off by one error in the description
+	sensitivity.
+
+	* src/Util.cs: remove debug spew.
+
 	* src/PhotoImageView.cs: remove debug spew.
 
 2005-03-10  Larry Ewing  <lewing@novell.com>

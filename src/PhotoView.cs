@@ -155,12 +155,11 @@ public class PhotoView : EventBox {
 	private void UpdateDescriptionEntry ()
 	{
 		description_entry.Changed -= HandleDescriptionChanged;
-		if (Query.Photos.Length > 1 && CurrentPhoto < Query.Photos.Length) {
+		if (Query.Photos.Length > 0 && CurrentPhoto < Query.Photos.Length) {
 			if (description_entry.Sensitive == false)
 				description_entry.Sensitive = true;
 
 			if (description_entry.Text != Query.Photos[CurrentPhoto].Description) {
-				System.Console.WriteLine ("changed text {0} != {1}", description_entry.Text, Query.Photos[CurrentPhoto].Description);
 				description_entry.Text = Query.Photos[CurrentPhoto].Description;
 			}
 		} else {
@@ -238,7 +237,6 @@ public class PhotoView : EventBox {
 		
 		Pixbuf original_pixbuf = photo_view.CompletePixbuf ();
 		if (original_pixbuf == null) {
-			Console.WriteLine ("No image");
 			return;
 		}
 
