@@ -55,19 +55,26 @@ public class MainWindow {
 	// Drag and Drop
 	enum TargetType {
 		UriList,
-		TagList
+		TagList,
+		PhotoList
 	};
 
-	private static TargetEntry [] target_table = new TargetEntry [] {
+	private static TargetEntry [] icon_source_target_table = new TargetEntry [] {
+		new TargetEntry ("application/x-fspot-photos", 0, (uint) TargetType.PhotoList),
 		new TargetEntry ("text/uri-list", 0, (uint) TargetType.UriList),
 	};
 
 	private static TargetEntry [] tag_target_table = new TargetEntry [] {
-		new TargetEntry ("application/x-fspot-tag", 0, (uint) TargetType.TagList),
+		new TargetEntry ("application/x-fspot-tags", 0, (uint) TargetType.TagList),
 	};
 
-	private static TargetEntry [] icon_view_target_table = new TargetEntry [] {
-		new TargetEntry ("application/x-fspot-tag", 0, (uint) TargetType.TagList),
+	private static TargetEntry [] tag_dest_target_table = new TargetEntry [] {
+		new TargetEntry ("application/x-fspot-photos", 0, (uint) TargetType.PhotoList),
+		new TargetEntry ("text/uri-list", 0, (uint) TargetType.UriList),
+	};
+
+	private static TargetEntry [] icon_dest_target_table = new TargetEntry [] {
+		new TargetEntry ("application/x-fspot-tags", 0, (uint) TargetType.TagList),
 		new TargetEntry ("text/uri-list", 0, (uint) TargetType.UriList),
 	};
 
@@ -107,7 +114,7 @@ public class MainWindow {
 
 		tag_selection_widget.DragDataReceived += new DragDataReceivedHandler (HandleTagSelectionDragDataReceived);
 		tag_selection_widget.DragMotion += new DragMotionHandler (HandleTagSelectionDragMotion);
-		Gtk.Drag.DestSet (tag_selection_widget, DestDefaults.All, target_table, 
+		Gtk.Drag.DestSet (tag_selection_widget, DestDefaults.All, tag_dest_target_table, 
 				  DragAction.Copy); 
 
 		info_box = new InfoBox ();
@@ -122,15 +129,17 @@ public class MainWindow {
 		icon_view.DoubleClicked += new IconView.DoubleClickedHandler (HandleDoubleClicked);
 		
 		Gtk.Drag.SourceSet (icon_view, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
-				    target_table, DragAction.Copy | DragAction.Move);
+				    icon_source_target_table, DragAction.Copy | DragAction.Move);
 		
 		icon_view.DragBegin += new DragBeginHandler (HandleIconViewDragBegin);
 		icon_view.DragDataGet += new DragDataGetHandler (HandleIconViewDragDataGet);
 
-		attach_tag.Submenu = new TagMenu (db.Tags);
+		TagMenu menu = new TagMenu (db.Tags);
+		menu.TagSelected += HandleTagMenuSelected;
+		attach_tag.Submenu = menu;
 		remove_tag.Submenu = new TagMenu (db.Tags);
 		
-		Gtk.Drag.DestSet (icon_view, DestDefaults.All, icon_view_target_table, 
+		Gtk.Drag.DestSet (icon_view, DestDefaults.All, icon_dest_target_table, 
 				  DragAction.Copy | DragAction.Move); 
 
 		//		icon_view.DragLeave += new DragLeaveHandler (HandleIconViewDragLeave);
@@ -237,23 +246,38 @@ public class MainWindow {
 	public void HandleTagSelectionDragDataReceived (object o, DragDataReceivedArgs args)
 	{
 		Tag [] tags = new Tag [1];
-		UriList list = new UriList (args.SelectionData);
-
+		//FIXME this is a lame api, we need to fix the drop behaviour of these things
 		tags [0] = tag_selection_widget.TagAtPosition(args.X, args.Y);
+
 		if (tags [0] == null)
 			return;
 
-		foreach (string path in list.ToLocalPaths ()) {
-			Photo photo = db.Photos.GetByPath (path);
+		switch (args.Info) {
+		case (uint)TargetType.PhotoList:
+			foreach (int num in SelectedIds ()) {
+				Photo photo = query.Photos [num];
+				
+				photo.AddTag (tags);
+				db.Photos.Commit (photo);
+				InvalidateViews (num);
+			}
+			break;
+		case (uint)TargetType.TagList:
+			UriList list = new UriList (args.SelectionData);
 			
-			// FIXME - at this point we should import the photo, and then continue
-			if (photo == null)
-				return;
-
-			photo.AddTag (tags);
-			db.Photos.Commit (photo);
+			foreach (string path in list.ToLocalPaths ()) {
+				Photo photo = db.Photos.GetByPath (path);
+				
+				// FIXME - at this point we should import the photo, and then continue
+				if (photo == null)
+					return;
+				
+				photo.AddTag (tags);
+				db.Photos.Commit (photo);
+			}
+			InvalidateViews ();
+			break;
 		}
-		InvalidateViews ();
 	}
 
 	// IconView events.
@@ -278,6 +302,7 @@ public class MainWindow {
 		
 		args.SelectionData.Set (targets[0], 8, data, data.Length);
 	}
+
 
 	// IconView events.
 	void HandleTagSelectionDragDataGet (object sender, DragDataGetArgs args)
@@ -320,6 +345,13 @@ public class MainWindow {
 			HandleAttachTagCommand (sender, null);
 			break;
 		case (uint)TargetType.UriList:
+
+			/* 
+			 * If the drop is coming from inside f-spot then we don't want to import 
+			 */
+			if (sender != null)
+				return;
+
 			UriList list = new UriList (args.SelectionData);
 			ImportCommand command = new ImportCommand ();
 			command.ImportFromPaths (db.Photos, list.ToLocalPaths ());
@@ -405,6 +437,16 @@ public class MainWindow {
 	//
 	// Menu commands.
 	//
+	void HandleTagMenuSelected (Tag t) 
+	{
+		foreach (int num in icon_view.Selection) {
+			Photo photo = query.Photos [num];
+			photo.AddTag (t);
+			db.Photos.Commit (photo);
+			
+			InvalidateViews (num);
+		}
+	}
 
 	void HandleImportCommand (object sender, EventArgs e)
 	{
@@ -553,8 +595,6 @@ public class MainWindow {
 
 	void HandleAttachTagCommand (object obj, EventArgs args)
 	{
-		TreeModel model;
-		TreeIter iter;
 		Tag [] tags = this.tag_selection_widget.TagHighlight ();
 		
 		foreach (int num in SelectedIds ()) {
@@ -568,9 +608,6 @@ public class MainWindow {
 
 	void HandleRemoveTagCommand (object obj, EventArgs args)
 	{
-		TreeModel model;
-		TreeIter iter;
-	
 		Tag [] tags = this.tag_selection_widget.TagHighlight ();
 
 		foreach (int num in icon_view.Selection) {
