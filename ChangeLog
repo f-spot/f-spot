@@ -1,5 +1,7 @@
 2005-03-19  Larry Ewing  <lewing@novell.com>
 
+	* libfspot/f-jpeg-utils.c: add workaround for missing macro.
+
 	* src/RotateCommand.cs: fix format string.
 
 	* src/PhotoView.cs: provide error dialog if file can't be saved.

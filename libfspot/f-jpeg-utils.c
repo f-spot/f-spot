@@ -53,8 +53,11 @@
 #include <exif-content.h>
 #include <exif-entry.h>
 
-
 #define BUFFER_SIZE 8192
+
+/* FIME these strings should actually be translated */
+#define _(x) x
+
 
 typedef struct {
 	struct jpeg_source_mgr pub;	/* public fields */
