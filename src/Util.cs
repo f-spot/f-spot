@@ -147,6 +147,17 @@ class GtkUtil {
 		i.Show ();
 	}
 	
+	public static void MakeMenuItem (Gtk.Menu menu, string label, string image_name, EventHandler e, bool enabled)
+	{
+		Gtk.ImageMenuItem i = new Gtk.ImageMenuItem (label);
+		i.Activated += e;
+                i.Sensitive = enabled;
+		i.Image = new Gtk.Image (image_name, Gtk.IconSize.Menu);
+		
+		menu.Append (i);
+		i.Show ();
+	}
+
 	public static void MakeMenuSeparator (Gtk.Menu menu)
 	{
 		Gtk.SeparatorMenuItem i = new Gtk.SeparatorMenuItem ();
