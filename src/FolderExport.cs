@@ -527,8 +527,8 @@ namespace FSpot {
 	class HtmlGallery : FolderGallery 
 	{
 		int current;
-		int perpage = 5;
-		string stylesheet = "style/default.css";
+		int perpage = 16;
+		string stylesheet = "f-spot-simple-white.css";
 		
 		public HtmlGallery (IPhotoCollection selection, string path, string name) : base (selection, path, name) 
 		{ 
@@ -554,7 +554,16 @@ namespace FSpot {
 				SaveHtmlIndex (i);
 			
 			MakeDir (SubdirPath ("style"));
+			System.Reflection.Assembly assembly = System.Reflection.Assembly.GetCallingAssembly ();
+			System.IO.Stream s = assembly.GetManifestResourceStream (stylesheet);
+			System.IO.Stream fs = System.IO.File.Open (SubdirPath ("style", stylesheet), System.IO.FileMode.Create);
+
+			byte [] buffer = new byte [8192];
+			int n;
+			while ((n = s.Read (buffer, 0, buffer.Length)) != 0)
+				fs.Write (buffer, 0,  n);						    
 			
+			fs.Close ();
 		}
 		
 		public int PageCount {
@@ -677,7 +686,7 @@ namespace FSpot {
 			writer.AddAttribute ("type", "text/css");
 			writer.AddAttribute ("media", "screen");
 			writer.RenderBeginTag ("style");
-			writer.Write (String.Format ("@import url( {0} );", stylesheet));
+			writer.Write (String.Format ("@import url( {0} );", SubdirPath ("style", stylesheet)));
 			writer.RenderEndTag ();
 			writer.RenderEndTag ();
 		}

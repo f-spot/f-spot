@@ -1,0 +1,100 @@
+body { 
+  font-family: luxi sans, trebuchet ms, sans-serif;
+  color: #999;
+  margin: 12px;
+}
+
+.navi { 
+//  background: #f9f9f9;
+  border: 1px solid #eee;
+  padding: 6px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: right;
+  font-size: 12px;
+}
+
+.navi div { 
+  display: inline;
+  padding: 3px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.navi #title { 
+  color: Goldenrod;
+  font-weight: bold;
+  float: left;
+  margin: 0;
+  padding: 0;
+  margin-left: 3px;
+}
+
+div.navipage { 
+  border: 1px solid #eee;
+  display: inline;
+  padding: 3px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+div.navipage-current {
+  border: 1px solid #eee;
+  background: #eee;
+  font-weight: bold;
+}
+
+a:link { 
+  text-decoration: none;
+  color: #68c;
+}
+
+a:hover { 
+  text-decoration: underline;
+  color: #349;
+}
+
+div.photo {
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 5%;
+}
+
+div.thumbs  {
+  padding: 6px;
+  text-align: center;
+}
+
+div.thumbs img { 
+  padding: 8px;
+  margin: 3px;
+  margin-top: 24px;
+  border: 1px solid #eee;
+}
+
+div.photo img { 
+  padding: 8px;
+  border: 1px solid #eee;
+}
+
+div.thumbs a:hover img {
+  background: #eee;
+  border: 1px solid #ddd;
+}
+
+div.photo div { 
+  text-align: center;
+  margin-top: 6px;
+  font-size: 18px;
+  font-family: Luxi Serif, Georgia, Helvetica;
+//  font-style: italic;
+}
+
+div.footer { 
+  font-size: 10px;
+  position: absolute;
+  bottom: 12px;
+  text-align: center;
+  left: 0px;
+  right: 0px;
+ }

@@ -16,6 +16,8 @@ noinst_DATA =					\
 	f-spot-rotate-90.png			\
 	f-spot-rotate-270.png			\
 	f-spot-slideshow.png			\
-	f-spot-question-mark.png
+	f-spot-question-mark.png		\
+	f-spot-simple-white.css
+
 
 EXTRA_DIST = $(noinst_DATA)

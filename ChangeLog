@@ -1,5 +1,14 @@
 2005-02-24  Larry Ewing  <lewing@novell.com>
 
+	* src/FolderExport.cs: write out the stylesheet from a resource,
+	bump the page count.
+
+	* icons/Makefile.am: add the stylesheet to the build.
+
+	* icons/f-spot-simple-white.css: add static export stylesheet.
+
+	* src/Makefile.am: add the stylesheet as a resource.
+
 	* src/FolderExport.cs: clean up the html output a little.
 
 	* src/GalleryRemote.cs: search the result string for the
