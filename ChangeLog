@@ -1,5 +1,8 @@
 2005-02-15  Larry Ewing  <lewing@novell.com>
 
+	* src/CameraFileSelectionDialog.cs: scale the image down and
+	reorder the items.
+
 	* src/f-spot.glade: remove extra space.
 
 	* src/MainWindow.cs: fix another typo.

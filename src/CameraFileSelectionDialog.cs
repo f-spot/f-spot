@@ -78,12 +78,12 @@ public class CameraFileSelectionDialog
 		gui.Autoconnect (this);
 		
 		file_tree.Selection.Mode = SelectionMode.Multiple;
+		file_tree.AppendColumn (Mono.Posix.Catalog.GetString ("Preview"), 
+					new CellRendererPixbuf (), "pixbuf", PreviewColumn);
 		file_tree.AppendColumn (Mono.Posix.Catalog.GetString ("Path"), 
 					new CellRendererText (), "text", DirectoryColumn);
 		file_tree.AppendColumn (Mono.Posix.Catalog.GetString ("File"), 
 					new CellRendererText (), "text", FileColumn);
-		file_tree.AppendColumn (Mono.Posix.Catalog.GetString ("Preview"), 
-					new CellRendererPixbuf (), "pixbuf", PreviewColumn);
 		file_tree.AppendColumn (Mono.Posix.Catalog.GetString ("Index"),
 					new CellRendererText (), "text", IndexColumn).Visible = false;
 		
@@ -113,7 +113,9 @@ public class CameraFileSelectionDialog
 				return;
 			
 			Pixbuf thumbscale = camera.GetPreviewPixbuf (file);
-			preview_list_store.AppendValues (file.Directory, file.FileName, thumbscale, index);
+			Pixbuf scale = PixbufUtils.ScaleToMaxSize (thumbscale, 64,64);
+			preview_list_store.AppendValues (file.Directory, file.FileName, scale, index);
+			thumbscale.Dispose ();
 			index++;
 		}
 		
