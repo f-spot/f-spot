@@ -392,6 +392,7 @@ public class MainWindow {
 			Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForPath (thumbnail_path);
 			if (thumbnail != null) {
 				Gtk.Drag.SetIconPixbuf (args.Context, thumbnail, 0, 0);
+				thumbnail.Dispose ();
 			}
 		}
 	}
@@ -610,7 +611,11 @@ public class MainWindow {
 		if (quick_preview == null)
 			CreateQuickPreview ();
 
+		Pixbuf old = quick_preview_image.Pixbuf;
 		quick_preview_image.Pixbuf = QuickPreviewPixbuf (photo);
+		if (old != null)
+			old.Dispose ();
+
 		quick_preview_label.Text = QuickPreviewLabel (photo);
 		quick_preview.Show ();
 
@@ -639,8 +644,8 @@ public class MainWindow {
 
 			// A bizarre pixbuf = hack to try to deal with cinematic displays, etc.
 			int preview_edge = ((display_width + display_height)/2)/3;
-			pixbuf = PixbufUtils.LoadAtMaxEdgeSize (orig_path, preview_edge);
-			//pixbuf = FSpot.PhotoLoader.LoadAtMaxSize (photo, preview_edge, preview_edge);
+			//pixbuf = PixbufUtils.LoadAtMaxEdgeSize (orig_path, preview_edge);
+			pixbuf = FSpot.PhotoLoader.LoadAtMaxSize (photo, preview_edge, preview_edge);
 			quick_preview_cache.AddThumbnail (orig_path, pixbuf);
 		}
 
