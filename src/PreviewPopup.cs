@@ -58,7 +58,7 @@ namespace FSpot {
 			Gtk.Requisition requisition = this.SizeRequest ();
 			this.Resize (requisition.Width, requisition.Height);
 
-			view.GdkWindow.GetRootOrigin (out x, out y);
+			view.GdkWindow.GetOrigin (out x, out y);
 
 			// Acount for scrolling
 			bounds.X -= (int)view.Hadjustment.Value;
@@ -69,24 +69,16 @@ namespace FSpot {
 			y += bounds.Y + (bounds.Height / 2);
 			
 			// find the window's x location limiting it to the screen
-			x = Math.Max (0, x - Allocation.X / 2);
+			x = Math.Max (0, x - requisition.Width / 2);
 			x = Math.Min (x, this.Screen.Width - requisition.Width);
-			
+
 			// find the window's y location offset above or below depending on space
 			int margin = (int) (bounds.Height * .6);
-			/*
 			if (y - requisition.Height - margin < 0)
 				y += margin;
 			else
 				y = y - requisition.Height - margin;
-			*/
-			if (y - requisition.Height < 0)
-				y += requisition.Height;
-			else 
-				y -= requisition.Height;
-			
-			Console.WriteLine ("Gravity = {0} ({1}, {2}) req.h {3} alloc.h {4}", this.Gravity, x, y, requisition.Height,
-					   Allocation.Height);
+
 			this.Move (x, y);
 		}
 		
@@ -146,11 +138,29 @@ namespace FSpot {
 			this.Destroy ();
 		}
 
+		protected override bool OnMotionNotifyEvent (Gdk.EventMotion args)
+		{
+			//
+			// We look for motion events so that if the user manages
+			// to get the pointer on the window we can tell and move
+			// out of the way.
+			//
+			int x, y;
+			view.GetPointer (out x, out y);
+			x += (int) view.Hadjustment.Value;
+			y += (int) view.Vadjustment.Value;
+			UpdateItem (x, y);
+			return false;
+		}
+
 		public PreviewPopup (IconView view) : base (Gtk.WindowType.Popup)
 		{
 			Gtk.VBox vbox = new Gtk.VBox ();
 			this.Add (vbox);
-			
+			this.AddEvents ((int) Gdk.EventMask.PointerMotionMask);
+			this.Decorated = false;
+			this.SetPosition (Gtk.WindowPosition.None);
+
 			this.view = view;
 			view.MotionNotifyEvent += HandleIconViewMotion;
 			view.KeyPressEvent += HandleIconViewKeyPress;

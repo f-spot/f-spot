@@ -1,7 +1,10 @@
 2004-09-01  Larry Ewing  <lewing@novell.com>
 
+	* src/PreviewPopup.cs: look for motion events on the popup window
+	if we see them update the popup position.
+
 	* src/GroupSelector.cs: fix the glass label window position now
-	that I know how ;).
+	that I know how.
 
 	* src/PreviewPopup.cs: fix the window position issue.
 	
