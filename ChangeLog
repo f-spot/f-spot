@@ -1,5 +1,10 @@
 2004-01-20  Larry Ewing  <lewing@ximian.com>
 
+	* src/FileImportBackend.cs: allow multple base paths in an import.
+
+	* src/ImportCommand.cs: allow multiple selections in the file
+	selector.
+
 	* src/TagCommands.cs: fix the category option so that it doesn't
 	loop forever if a category has a sub category.
 

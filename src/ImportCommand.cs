@@ -173,6 +173,7 @@ public class ImportCommand {
 	public int ImportFromFile (PhotoStore store)
 	{
 		FileSelection file_selector = new FileSelection ("Import");
+		file_selector.SelectMultiple = true;
 		int response = file_selector.Run ();
 
 		if ((ResponseType) response == ResponseType.Cancel) {
@@ -180,10 +181,11 @@ public class ImportCommand {
 			return 0;
 		}
 
-		string path = file_selector.Filename;
+		
+		string [] paths = file_selector.Selections;
 		file_selector.Destroy ();
 
-		return DoImport (new FileImportBackend (store, path, true));
+		return DoImport (new FileImportBackend (store, paths, true));
 	}
 
 

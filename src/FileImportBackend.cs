@@ -8,12 +8,19 @@ using System;
 public class FileImportBackend : ImportBackend {
 	PhotoStore store;
 	bool recurse;
-	string base_path;
+	string [] base_paths;
 
 	int count;
 
 	ArrayList file_paths;
 	ArrayList imported_photos;
+
+	private void AddPath (string path)
+	{
+		if (path.EndsWith (".jpg") || path.EndsWith (".JPG"))
+			file_paths.Add (path);
+
+	}
 
 	private void GetListing (DirectoryInfo info)
 	{
@@ -21,9 +28,8 @@ public class FileImportBackend : ImportBackend {
 
 		foreach (FileInfo f in files) {
 			string path = f.FullName;
-
-			if (path.EndsWith (".jpg") || path.EndsWith (".JPG"))
-				file_paths.Add (path);
+			
+			AddPath (path);
 		}
 
 		if (recurse) {
@@ -39,9 +45,15 @@ public class FileImportBackend : ImportBackend {
 
 		file_paths = new ArrayList ();
 
-		try {
-			GetListing (new DirectoryInfo (base_path));
-		} catch {
+		foreach (string path in base_paths) {
+			try {	
+				GetListing (new DirectoryInfo (path));
+			} catch {
+				AddPath (path);
+			}
+		}	
+
+		if (file_paths.Count == 0) {
 			file_paths = null;
 			return 0;
 		}
@@ -90,10 +102,10 @@ public class FileImportBackend : ImportBackend {
 		count = 0;
 	}
 
-	public FileImportBackend (PhotoStore store, string base_path, bool recurse)
+	public FileImportBackend (PhotoStore store, string [] base_paths, bool recurse)
 	{
 		this.store = store;
-		this.base_path = base_path;
+		this.base_paths = base_paths;
 		this.recurse = recurse;
 	}
 
