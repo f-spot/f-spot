@@ -1,5 +1,10 @@
 2004-08-17  Larry Ewing  <lewing@novell.com>
 
+	* src/TimeAdaptor.cs: rebuild the query when the limits change.
+
+	* src/GroupSelector.cs: set the adaptor limits when the limit
+	position changes.
+
 	* src/makefile.am: add TimeAdaptor.cs.
 
 	* src/MainWindow.cs: connect the GroupSeletor using an adaptor.

@@ -21,6 +21,24 @@ namespace FSpot {
 
 		int    box_count_max;
 		int [] box_counts = new int [0];
+
+		private FSpot.TimeAdaptor adaptor;
+		public FSpot.TimeAdaptor Adaptor {
+			set {
+				adaptor = value;
+				int [] box_values = new int [adaptor.Count];
+				int i = 0;
+				while (i < box_values.Length) {
+					box_values [i] = adaptor.Value (i);
+					i++;
+				}
+				Counts = box_values;
+			}
+			get {
+				return adaptor;
+			}
+		}
+
 		public int [] Counts {
 			set {
 				box_count_max = 0;
@@ -131,6 +149,12 @@ namespace FSpot {
 			return base.OnButtonReleaseEvent (args);
 		}
 
+		public void UpdateLimits () 
+		{
+			if (adaptor != null && min_limit != null && max_limit != null)
+				adaptor.SetLimits (min_limit.Position, max_limit.Position);
+		}
+
 		protected override bool OnMotionNotifyEvent (Gdk.EventMotion args) 
 		{
 			double x = args.X + Allocation.X;
@@ -163,10 +187,6 @@ namespace FSpot {
 			
 			WindowAttr attr = WindowAttr.Zero;
 			attr.WindowType = Gdk.WindowType.Child;
-			
-
-
-			Console.WriteLine ("OnRealized {0}", Allocation);
 
 			attr.X = Allocation.X;
 			attr.Y = Allocation.Y;
@@ -359,6 +379,7 @@ namespace FSpot {
 						selector.GdkWindow.InvalidateRect (then, false);
 						//selector.GdkWindow.InvalidateRect (now, false);
 					}
+					PositionChanged ();
 				}
 			}
 
@@ -367,6 +388,11 @@ namespace FSpot {
 				Console.WriteLine ("implement me Draw ({0})", area);
 			}
 			
+			public virtual void PositionChanged ()
+			{
+				throw new Exception ("Unimplemented");
+			}
+
 			public virtual Rectangle Bounds () 
 			{
 				Console.WriteLine ("implement me Bounds ()");
@@ -448,6 +474,11 @@ namespace FSpot {
 				}
 			}
 			
+			public override void PositionChanged ()
+			{
+				Console.WriteLine ("Glass Updated");
+			}
+			
 			public Glass (GroupSelector selector) : base (selector) {}
 		}
 
@@ -495,6 +526,11 @@ namespace FSpot {
 			{
 				limit_type = type;
 			}
+
+			public override void PositionChanged ()
+			{
+				selector.UpdateLimits ();
+			}
 		}
 		
 		protected override void OnMapped ()
@@ -508,7 +544,6 @@ namespace FSpot {
 		{
 			Rectangle area; 
 			//Console.WriteLine ("expose {0}", args.Area);
-			
 
 			if (args.Area.Intersect (background, out area)) {							
 				Rectangle active = background;
@@ -582,16 +617,14 @@ namespace FSpot {
 
 		public GroupSelector () : base () 
 		{
-			Console.WriteLine ("this is a test");
-
 			Flags |= (int)WidgetFlags.NoWindow;
 
 			background = Rectangle.Zero;
 			glass = new Glass (this);
 			min_limit = new Limit (this, Limit.LimitType.Min);
-			min_limit.Position = 3;
 			max_limit = new Limit (this, Limit.LimitType.Max);
-			max_limit.Position = 12;
+			min_limit.Position = 0;
+			max_limit.Position = 11;
 		}
 
 		public GroupSelector (IntPtr raw) : base (raw) {}
@@ -599,8 +632,6 @@ namespace FSpot {
 #if TEST_MAIN
 		private void HandleKeyPressEvent (object sender, KeyPressEventArgs args)
 		{		
-			Console.WriteLine ("press");
-
 			switch (args.Event.Key) {
 			case Gdk.Key.Left:
 				if (glass.Position > 0)

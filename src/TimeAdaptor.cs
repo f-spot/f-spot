@@ -7,6 +7,15 @@ namespace FSpot {
 		private int start_year;
 		private int span;
 
+		public void SetLimits (int min, int max) 
+		{
+			DateTime start = DateFromIndex (min);
+			DateTime end = DateFromIndex (max + 1);
+			
+			Console.WriteLine ("{0} {1}", start, end);
+			query.Range = new PhotoStore.DateRange (start, end);
+		}
+
 		public int Count {
 			get {
 				return span * 12;
@@ -15,15 +24,15 @@ namespace FSpot {
 
 		public String Lable (int item)
 		{
-			DateTime start = Date (item);
+			DateTime start = DateFromIndex (item);
 			
 			return start.ToShortTimeString ();
 		}
 
 		public int Value (int item)
 		{
-			DateTime start = Date (item);
-			DateTime end = Date (item + 1); 
+			DateTime start = DateFromIndex (item);
+			DateTime end = DateFromIndex (item + 1); 
 			
 			PhotoStore store = query.Store;
 			
@@ -31,7 +40,7 @@ namespace FSpot {
 			return  photos.Length;
 		}
 		
-		public DateTime Date (int item) 
+		public DateTime DateFromIndex (int item) 
 		{
 			int year = start_year + (item / 12);
 			int month = (item % 12) + 1;
