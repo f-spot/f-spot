@@ -1,5 +1,8 @@
 2005-01-14  Larry Ewing  <lewing@novell.com>
 
+	* libfspot/f-pixbuf-utils.c (f_pixbuf_copy_with_orientation): fix
+	again.
+
 	* src/TagStore.cs: make sure we don't try to fire null events.
 
 	* src/PixbufUtils.cs: small cleanups, remove some debug output.

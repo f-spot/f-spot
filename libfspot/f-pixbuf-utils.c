@@ -443,25 +443,24 @@ f_pixbuf_copy_with_orientation (GdkPixbuf *src, GdkPixbuf *dest, int orientation
 	case 1: // TopLeft
 		break;
 	case 2: // TopRight
-		mirror = TRUE;
+		flip = TRUE;
 		break;
 	case 3: // BottomRight
 		mirror = TRUE;
 		flip = TRUE;
 		break;
- 	case 4: // BottomLeft
-		flip = TRUE;
+	case 4: // BottomLeft
+		mirror = TRUE;
 		break;
 	case 5: // LeftTop
-		mirror = TRUE;
 		rotate = TRUE;
 		break;
 	case 6: // RightTop
-		flip = TRUE;
 		mirror = TRUE;
 		rotate = TRUE;
 		break;
 	case 7: // RightBottom
+		flip = TRUE;
 		mirror = TRUE;
 		rotate = TRUE;
 		break;
@@ -470,7 +469,6 @@ f_pixbuf_copy_with_orientation (GdkPixbuf *src, GdkPixbuf *dest, int orientation
 		rotate = TRUE;
 		break;
 	}
-
 
 	if (rotate && (dh != sw || dw != sh)) {
 		g_warning ("source and destination sizes do not match orientation");
