@@ -1,3 +1,11 @@
+2004-06-15  Larry Ewing  <lewing@ximian.com>
+
+	* src/MainWindow.cs: add a handler to the attach TagMenu so that
+	it actually works.
+
+	* src/TagMenu.cs: Fix the activation logic and add the category to
+	its own submenu to allow people to select it.
+
 2004-06-14  Larry Ewing  <lewing@ximian.com>
 
         * src/MainWindow.cs: add a new source type
