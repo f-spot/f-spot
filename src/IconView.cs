@@ -517,7 +517,8 @@ public class IconView : Gtk.Layout {
 
 		switch (args.Event.type) {
 		case EventType.TwoButtonPress:
-			if (args.Event.button != 1 || click_count < 2)
+			if (args.Event.button != 1 || click_count < 2
+			    || (args.Event.state & (uint) ModifierType.ControlMask) != 0)
 				return;
 			if (DoubleClicked != null)
 				DoubleClicked (this, cell_num);
