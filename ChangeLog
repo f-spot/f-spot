@@ -1,5 +1,9 @@
 2005-01-13  Larry Ewing  <lewing@novell.com>
 
+	* src/SimpleCalendar.cs: add a simple calendar view hack.  This
+	probably won't end up being used but I didn't want to lose the
+	source.
+
 	* src/Makefile.am: add f-spot.exe.mdb to CLEANFILES.. 
 
 	* configure.in: remove the 0.6 check now that it we can handle it.
