@@ -11,6 +11,8 @@ namespace FSpot {
 		public abstract string TickLabel (int item);
 		public abstract string GlassLabel (int item);
 
+		public abstract void Reload ();
+
 		public abstract void SetGlass (int item);
 
 		public delegate void GlassSetHandler (GroupAdaptor adaptor, int index);
