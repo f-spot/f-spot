@@ -241,14 +241,10 @@ public class MainWindow {
 
 	void HandleExportCommand (object sender, EventArgs e)
 	{
-		GalleryRemote gallery = new GalleryRemote ("http://localhost/gallery/gallery_remote2.php");
-		gallery.Login ("admin", "phil");
-		gallery.FetchAlbumsPrune ();
+		ExportCommand.Gallery cmd = new ExportCommand.Gallery ();
 
-		Photo photo = CurrentPhoto;
-		if (photo != null) {
-			Album album = gallery.Albums[0] as Album;
-			album.Add (photo);
+		if (cmd.Execute (SelectedPhotos ())) {
+			Console.WriteLine ("success");
 		}
 	}	
 
@@ -388,7 +384,7 @@ public class MainWindow {
 #if true
 		Gtk.Window win = new Gtk.Window ("this is a test");
 		win.SetSizeRequest (640, 480);
-		SlideView slideview = new SlideView (query.Photos);
+		SlideView slideview = new SlideView (SelectedPhotos());
 		//win.Fullscreen();
 		//win.Unfullscreen();
 		win.Add (slideview);

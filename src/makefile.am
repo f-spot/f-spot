@@ -9,6 +9,7 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/Db.cs				\
 	$(srcdir)/ExifData.cs			\
 	$(srcdir)/ExifUtils.cs			\
+	$(srcdir)/ExportCommand.cs		\
 	$(srcdir)/FileImportBackend.cs		\
 	$(srcdir)/FormClient.cs			\
 	$(srcdir)/GalleryRemote.cs		\
