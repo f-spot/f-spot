@@ -492,15 +492,12 @@ public class IconView : Gtk.Layout {
 
 		ThumbnailCache.Default.AddThumbnail (path, result);
 
-		Rectangle area;
+ 		Rectangle area;
 		GetCellPosition (order, out area.x, out area.y);
 		area.width = cell_width;
 		area.height = cell_height;
 
-		DrawCell (order, area.x, area.y);
-
-		/* (Instead of DrawCell() we could do the following instead, but it is much slower:)  */
-		/* BinWindow.InvalidateRect (area, true); */
+		BinWindow.InvalidateRect (area, true);
 	}
 
 	private void HandleScrollAdjustmentsSet (object sender, ScrollAdjustmentsSetArgs args)

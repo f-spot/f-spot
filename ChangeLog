@@ -1,5 +1,13 @@
 2003-11-29  Ettore Perazzoli  <ettore@ximian.com>
 
+	* src/IconView.cs (IconView.HandlePixbufLoaded): Use
+	InvalidateRect() instead of calling DrawCell() directly.  This
+	fixes a redraw problem that occurred with a large enough number of
+	pictures.  [I had a comment there saying that it was slower, but
+	it doesn't seem to make a difference on my current machine.]
+
+2003-11-29  Ettore Perazzoli  <ettore@ximian.com>
+
 	* src/PixbufLoader.cs: Rename all methods using the conventions
 	used in the rest of the code.
 
