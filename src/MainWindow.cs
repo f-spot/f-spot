@@ -115,27 +115,14 @@ public class MainWindow {
 		Glade.XML gui = Glade.XML.FromAssembly ("f-spot.glade", "main_window", null);
 		gui.Autoconnect (this);
 
-		group_selector = new FSpot.GroupSelector ();
-		group_selector.Counts = new int [] {20, 100, 123,
-					10, 5, 2,
-					3, 50, 8,
-					10, 22, 0,
-					55, 129, 120,
-					30, 14, 200,
-					122, 21, 55};
-		group_selector.Mode = 2;
-		group_selector.ShowAll ();
-		group_vbox.PackStart (group_selector, false, false, 0);
-		group_vbox.ReorderChild (group_selector, 0);
-
 		tag_selection_widget = new TagSelectionWidget (db.Tags);
 		tag_selection_scrolled.Add (tag_selection_widget);
 		
 		tag_selection_widget.Selection.Changed += new EventHandler (HandleTagSelectionChanged);
 		tag_selection_widget.SelectionChanged += new TagSelectionWidget.SelectionChangedHandler (OnTagSelectionChanged);
 		tag_selection_widget.DragDataGet += new DragDataGetHandler (HandleTagSelectionDragDataGet);
-		Gtk.Drag.SourceSet (tag_selection_widget, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,				    tag_target_table, DragAction.Copy | DragAction.Move);
-
+		Gtk.Drag.SourceSet (tag_selection_widget, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
+				    tag_target_table, DragAction.Copy | DragAction.Move);
 
 		tag_selection_widget.DragDataReceived += new DragDataReceivedHandler (HandleTagSelectionDragDataReceived);
 		tag_selection_widget.DragMotion += new DragMotionHandler (HandleTagSelectionDragMotion);
@@ -147,6 +134,13 @@ public class MainWindow {
 		left_vbox.PackStart (info_box, false, true, 0);
 		
 		query = new PhotoQuery (db.Photos);
+
+		group_selector = new FSpot.GroupSelector ();
+		group_selector.Adaptor = new FSpot.TimeAdaptor (query, 2004, 1);
+		group_selector.ShowAll ();
+
+		group_vbox.PackStart (group_selector, false, false, 0);
+		group_vbox.ReorderChild (group_selector, 0);
 		
 		icon_view = new IconView (query);
 		icon_view_scrolled.Add (icon_view);

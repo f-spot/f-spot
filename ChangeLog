@@ -1,5 +1,12 @@
 2004-08-17  Larry Ewing  <lewing@novell.com>
 
+	* src/makefile.am: add TimeAdaptor.cs.
+
+	* src/MainWindow.cs: connect the GroupSeletor using an adaptor.
+
+	* src/TimeAdaptor.cs: add a simplist adaptor between the
+	GroupSelector and TimeAdaptor.cs.
+
 	* src/MainWindow.cs: move the group selector into the class.
 
 	* src/GroupSelector.cs: add a raw ctor.
