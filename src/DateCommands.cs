@@ -6,7 +6,7 @@ using Gtk;
 using Gnome;
 
 public class DateCommands {
-	public class Set : GladeDialog {
+	public class Set : FSpot.GladeDialog {
 		FSpot.PhotoQuery query;
 		Gtk.Window parent_window;
 
