@@ -174,13 +174,14 @@ public class MainWindow {
 		tag_selection_widget.Selection.Changed += new EventHandler (HandleTagSelectionChanged);
 		tag_selection_widget.SelectionChanged += new TagSelectionWidget.SelectionChangedHandler (OnTagSelectionChanged);
 		tag_selection_widget.DragDataGet += new DragDataGetHandler (HandleTagSelectionDragDataGet);
+		tag_selection_widget.DragDrop += HandleTagSelectionDragDrop;
 		Gtk.Drag.SourceSet (tag_selection_widget, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
 				    tag_target_table, DragAction.Copy | DragAction.Move);
 
-		tag_selection_widget.DragDataReceived += new DragDataReceivedHandler (HandleTagSelectionDragDataReceived);
-		tag_selection_widget.DragMotion += new DragMotionHandler (HandleTagSelectionDragMotion);
+		tag_selection_widget.DragDataReceived += HandleTagSelectionDragDataReceived;
+		tag_selection_widget.DragMotion += HandleTagSelectionDragMotion;
 		Gtk.Drag.DestSet (tag_selection_widget, DestDefaults.All, tag_dest_target_table, 
-				  DragAction.Copy); 
+				  DragAction.Copy | DragAction.Move ); 
 
 		tag_selection_widget.ButtonPressEvent += new ButtonPressEventHandler (HandleTagSelectionButtonPressEvent);
 
@@ -456,6 +457,11 @@ public class MainWindow {
 		} 
 	}
 
+	void HandleTagSelectionDragDrop (object sender, DragDropArgs args)
+	{
+		args.RetVal = true;
+	}
+
 	public void HandleTagSelectionDragMotion (object o, DragMotionArgs args)
 	{
 		TreePath path;
@@ -584,13 +590,14 @@ public class MainWindow {
 	void HandleIconViewDragDataGet (object sender, DragDataGetArgs args)
 	{		
 		switch (args.Info) {
-		case (uint)TargetType.UriList:
+		case (uint) TargetType.UriList:
+		case (uint) TargetType.PhotoList:
 			UriList list = new UriList (SelectedPhotos ());
 			Byte [] data = Encoding.UTF8.GetBytes (list.ToString ());
 			Atom [] targets = args.Context.Targets;
 			args.SelectionData.Set (targets[0], 8, data, data.Length);
 			break;
-		case (uint)TargetType.RootWindow:
+		case (uint) TargetType.RootWindow:
 			HandleSetAsBackgroundCommand (null, null);
                         break;
 		}
@@ -625,7 +632,7 @@ public class MainWindow {
 	void HandleIconViewDragDataReceived (object sender, DragDataReceivedArgs args)
 	{
 	 	Widget source = Gtk.Drag.GetSourceWidget (args.Context);     
-
+		
 		switch (args.Info) {
 		case (uint)TargetType.TagList:
 			//
@@ -794,11 +801,13 @@ public class MainWindow {
 
 	void HandleImportCommand (object sender, EventArgs e)
 	{
+		db.Sync = false;
 		ImportCommand command = new ImportCommand (main_window);
 		if (command.ImportFromFile (db.Photos, this.last_import_path) > 0) {
 			this.last_import_path = command.ImportPath;
 			UpdateQuery ();
 		}
+		db.Sync = true;		
 	}
 
 	unsafe void HandlePrintCommand (object sender, EventArgs e)

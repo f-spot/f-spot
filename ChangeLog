@@ -1,5 +1,9 @@
 2005-02-13  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: fix the IconView application/x-fspot-photos
+	source so that dragging to the tags works again.  Turn off sync
+	writes when importing.
+
 	* src/AsyncPixbufLoader.cs: handle errors on write.
 
 2005-02-06  David Sedeño <david@alderia.com>
