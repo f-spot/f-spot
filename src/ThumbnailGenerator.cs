@@ -16,6 +16,21 @@ namespace FSpot {
 			}
 		}
 		
+		public static bool ThumbnailIsValid (Gdk.Pixbuf thumbnail, System.Uri uri)
+		{
+			bool valid = false;
+
+			try {			
+				System.DateTime mtime = System.IO.File.GetLastWriteTime (uri.LocalPath);
+				valid  = Gnome.Thumbnail.IsValid (thumbnail, uri.ToString (), mtime);
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e);
+				valid = false;
+			}
+			
+			return valid;
+		}
+
 		public static string ThumbnailPath (System.Uri uri)
 		{
 			string large_path = Gnome.Thumbnail.PathForUri (uri.ToString (), Gnome.ThumbnailSize.Large);
@@ -40,7 +55,7 @@ namespace FSpot {
 			//			  image.GetOption ("tEXt::Thumb::URI"), 
 			//			  image.GetOption ("tEXt::Thumb::MTime"));
 			
-			string large_path = Gnome.Thumbnail.PathForUri (uri, Gnome.ThumbnailSize.Large);
+			string large_path = ThumbnailPath (uri);
 			try {
 				ThumbnailCache.Default.RemoveThumbnailForPath (large_path);
 			} finally {
@@ -51,6 +66,18 @@ namespace FSpot {
 			    System.Console.WriteLine ("************************************ Argh");
 		}
 
+		protected override void EmitLoaded (System.Collections.Queue results)
+		{
+			base.EmitLoaded (results);
+			
+			// We Own these, get rid of them now
+			foreach (RequestItem r in results) {
+				if (r.result != null)
+					r.result.Dispose ();
+			}
+				
+		}
+
 		protected override void ProcessRequest (RequestItem request)
 		{
 			base.ProcessRequest (request);
@@ -58,7 +85,6 @@ namespace FSpot {
 			Gdk.Pixbuf image = request.result;
 			if (image != null) {
 				Save (image, request.path);
-				//image.Dispose ();
 			}
 
 			//System.Threading.Thread.Sleep (50);

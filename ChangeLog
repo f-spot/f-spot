@@ -1,5 +1,10 @@
 2005-02-21  Larry Ewing  <lewing@novell.com>
 
+	* src/ThumbnailGenerator.cs: dispose of the thumbnail after
+	notifying listeners.
+
+	* src/PixbufLoader.cs: allow the loaded handler to be overridden.
+
 	* src/MainWindow.cs: fix the icon loading logic for drag items.
 
 	* src/IconView.cs: expose the PixbufCache so that we can use it in

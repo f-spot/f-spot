@@ -201,6 +201,14 @@ public class PixbufLoader {
 		}
 	}
 
+	protected virtual void EmitLoaded (Queue results)
+	{
+		if (OnPixbufLoaded != null) {
+			foreach (RequestItem r in results)
+				OnPixbufLoaded (this, r.path, r.order, r.result);
+		}
+	}
+
 	private void HandleProcessedRequests ()
 	{
 		Queue results;
@@ -213,10 +221,7 @@ public class PixbufLoader {
 
 			pending_notify_notified = false;
 		}
-
-		if (OnPixbufLoaded != null) {
-			foreach (RequestItem r in results)
-				OnPixbufLoaded (this, r.path, r.order, r.result);
-		}
+		
+		EmitLoaded (results);
 	}
 }
