@@ -5,9 +5,7 @@ using System.Threading;
 namespace FSpot {
 	public class ColorDialog {
 		FSpot.PhotoQuery query;
-		int item;
 
-		Gdk.Pixbuf OrigPixbuf;
 		Gdk.Pixbuf ScaledPixbuf;
 		Gdk.Pixbuf AdjustedPixbuf;
 		
@@ -100,26 +98,23 @@ namespace FSpot {
 		public void Save ()
 		{
 			Console.WriteLine ("Saving....");
-			Photo photo = query.Photos[item];
+			Photo photo = query.Photos[view.CurrentPhoto];
 			
 			uint version = photo.DefaultVersionId;
 			if (version == Photo.OriginalVersionId) {
 				version = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);
 			}
 			
+			Gdk.Pixbuf orig = view.CompletePixbuf ();
+			
 			Gdk.Pixbuf final = new Gdk.Pixbuf (Gdk.Colorspace.Rgb,
 							   false, 8,
-							   OrigPixbuf.Width, 
-							   OrigPixbuf.Height);
+							   orig.Width, 
+							   orig.Height);
 			
-			PixbufUtils.ColorAdjust (OrigPixbuf,
+			PixbufUtils.ColorAdjust (orig,
 						 final,
-						 brightness_scale.Value,
-						 contrast_scale.Value,
-						 hue_scale.Value,
-						 sat_scale.Value,
-						 source_spinbutton.ValueAsInt,
-						 dest_spinbutton.ValueAsInt);
+						 view.Transform);
 			
 			try {
 				string version_path = photo.GetVersionPath (version);
@@ -127,7 +122,7 @@ namespace FSpot {
 				final.Savev (version_path, "jpeg", null, null);
 				PhotoStore.GenerateThumbnail (version_path);
 				photo.DefaultVersionId = version;
-				query.Commit (item);
+				query.Commit (view.CurrentPhoto);
 			} catch (GLib.GException ex) {
 				// FIXME error dialog.
 				Console.WriteLine ("error {0}", ex);
@@ -156,9 +151,8 @@ namespace FSpot {
 		public ColorDialog (FSpot.PhotoQuery query, int item, Gdk.Pixbuf pixbuf)       
 		{
 			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "color_dialog", null);
-			OrigPixbuf = pixbuf;
 			this.query = query;
-			this.item = item;
+
 			
 			xml.Autoconnect (this);
 			

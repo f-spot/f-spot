@@ -59,6 +59,12 @@ namespace FSpot {
 			}
 		}
 
+		public Gdk.Pixbuf CompletePixbuf ()
+		{
+			loader.LoadToDone ();
+			return this.Pixbuf;
+		}
+
 		public void Reload ()
 		{
 			if (!CurrentPhotoValid ())
@@ -114,6 +120,8 @@ namespace FSpot {
 			this.Pixbuf = next;
 			if (prev != null)
 				prev.Dispose ();
+
+			this.ZoomFit ();
 		}
 
 		private bool fit = true;
@@ -167,7 +175,6 @@ namespace FSpot {
 			}
 			
 			this.UnsetSelection ();
-			this.ZoomFit ();
 
 			if (PhotoChanged != null)
 				PhotoChanged (this);

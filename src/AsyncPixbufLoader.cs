@@ -27,17 +27,21 @@ namespace FSpot {
 		{
 			delay = new Delay (new GLib.IdleHandler (AsyncRead));
 		}
-				
-		public Gdk.Pixbuf Load (string filename)
+		
+		public bool Loading
+		{
+			get {
+				return done_reading;
+			}
+		}
+		
+		public void Load (string filename)
 		{
 			delay.Stop ();
 			path = filename;
 
 			if (!done_reading && loader != null)
-				loader.Close ();
-
-			if (loader != null)
-				loader.Dispose ();
+				Close ();
 
 			done_reading = false;
 			area_prepared = false;
@@ -54,11 +58,9 @@ namespace FSpot {
 			loader.AreaUpdated += HandleAreaUpdated;
 			loader.Closed += HandleClosed;
 			
-			LoadToAreaPrepared ();
 			delay.Start ();
-			
-			return pixbuf;
-		}
+		}			
+
 
 		public Gdk.PixbufLoader Loader {
 			get {
@@ -66,18 +68,28 @@ namespace FSpot {
 			}
 		}
 
-		private void LoadToAreaPrepared ()
+	        public void LoadToAreaPrepared ()
 		{
-			int len;
-			do {
-				len = stream.Read (buffer, 0, buffer.Length);
-				loader.Write (buffer, (uint)len);
-			} while (len > 0 && !area_prepared);
+			delay.Stop  ();
+			while (AsyncRead () && !area_prepared)
+				; //step
+		}
 
-			if (len <= 0) {
-				done_reading = true;
-				stream.Close ();
+		public void LoadToDone ()
+		{
+			delay.Stop ();
+			while (AsyncRead ())
+				; //step
+		}
+
+		private void Close () 
+		{
+			try {
 				loader.Close ();
+			} catch (System.Exception e) {
+				pixbuf = null;
+			} finally {
+				stream.Close ();
 			}
 		}
 
@@ -94,8 +106,7 @@ namespace FSpot {
 				
 				if (len <= 0) {
 					done_reading = true;
-					stream.Close ();
-					loader.Close ();
+					Close ();
 					return false;
 				}
 			} while (!done_reading && span.TotalMilliseconds <= 300);
@@ -113,6 +124,9 @@ namespace FSpot {
 
 		public Gdk.Pixbuf Pixbuf {
 			get {
+				if (!area_prepared)
+					throw new System.Exception ("Load in progress but Pixbuf not ready");
+
 				return pixbuf;
 			}
 		}
