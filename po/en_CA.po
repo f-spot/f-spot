@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-18 15:59-0600\n"
-"PO-Revision-Date: 2005-01-16 23:54-0400\n"
+"POT-Creation-Date: 2005-01-20 17:47-0500\n"
+"PO-Revision-Date: 2005-01-20 23:54-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
@@ -139,7 +139,7 @@ msgstr "Operation failed"
 
 #: src/CDExport.cs:69
 #, csharp-format
-msgid "Transfering picture \"{0}\" To CD"
+msgid "Transferring picture \"{0}\" To CD"
 msgstr "Transferring picture \"{0}\" To CD"
 
 #: src/CDExport.cs:71 src/FlickrExport.cs:86 src/GalleryExport.cs:341
@@ -158,11 +158,11 @@ msgid "Transfer Complete"
 msgstr "Transfer Complete"
 
 #: src/CDExport.cs:91 src/VfsExport.cs:108
-msgid "Error While Transfering"
+msgid "Error While Transferring"
 msgstr "Error While Transferring"
 
 #: src/CDExport.cs:96 src/VfsExport.cs:115
-msgid "Error Transfering"
+msgid "Error Transferring"
 msgstr "Error Transferring"
 
 #: src/CDExport.cs:111 src/VfsExport.cs:129
@@ -174,7 +174,7 @@ msgid "Error: File Already Exists, Aborting"
 msgstr "Error: File Already Exists, Aborting"
 
 #: src/CDExport.cs:151 src/VfsExport.cs:173
-msgid "Transfering Pictures"
+msgid "Transferring Pictures"
 msgstr "Transferring Pictures"
 
 #: src/FlickrExport.cs:46
@@ -927,17 +927,17 @@ msgstr "Category name:"
 msgid "Edit Tag"
 msgstr "Edit Tag"
 
-#: src/TagCommands.cs:408
+#: src/TagCommands.cs:413
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Photo {0} of {1}"
 
-#: src/TagCommands.cs:422
+#: src/TagCommands.cs:443
 #, csharp-format
 msgid "Edit icon For category {0}"
 msgstr "Edit icon For category {0}"
 
-#: src/TagCommands.cs:424
+#: src/TagCommands.cs:445
 #, csharp-format
 msgid "Edit icon for tag {0}"
 msgstr "Edit icon for tag {0}"
@@ -957,5 +957,5 @@ msgstr "Remove Tag From Selection"
 #. System.Console.WriteLine ("Xfering {0} to {1}", source.ToString (), target.ToString ());
 #: src/VfsExport.cs:87
 #, csharp-format
-msgid "Transfering picture \"{0}\""
+msgid "Transferring picture \"{0}\""
 msgstr "Transferring picture \"{0}\""
