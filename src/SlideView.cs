@@ -10,8 +10,14 @@ public class SlideView : Gtk.Image {
 	Pixbuf last;
 	Pixbuf next;
 
+
+	Pixbuf [] tweens = new Pixbuf [10];	
+	int current_tween;
+	uint tween_idle;
+
 	int current = 0;	
 	uint timer = 0;
+	uint transition_idle = 0;
 
 	public void Play () 
 	{
@@ -20,7 +26,7 @@ public class SlideView : Gtk.Image {
 		StartTimer ();
 	}
 
-#if false
+#if true
 	private Pixbuf Blend (Pixbuf current, Pixbuf prev, Pixbuf next, double percent)
 	{ 
 		int width = Allocation.width;
@@ -53,12 +59,16 @@ public class SlideView : Gtk.Image {
 	{
 		int width = Allocation.width;
 		int height = Allocation.height;
+
 		Pixbuf orig;
 		Pixbuf scaled = new Pixbuf (Colorspace.Rgb, false, 8, width, height);
 		scaled.Fill (0);
-	
+		
+		if (width < 10 || height < 10)
+			return scaled;	
+
 		try {
-			orig = new Pixbuf (path);
+		orig = new Pixbuf (path);
 		} catch {
 			Console.WriteLine ("Error loading file " + path);
 			orig = null;
@@ -102,34 +112,18 @@ public class SlideView : Gtk.Image {
 	
 	public bool HandleTimer ()
 	{	
-		Pixbuf prev = this.Pixbuf;
-		Pixbuf current = new Pixbuf (Colorspace.Rgb, false, 8, Allocation.width, Allocation.height);
+		if (tween_idle != 0)
+			GLib.Source.Remove (tween_idle);
 
+		Pixbuf current = new Pixbuf (Colorspace.Rgb, false, 8, Allocation.width, Allocation.height);
 		try {
-			this.FromPixbuf = Blend (current, prev, next, .1);
-			GdkWindow.ProcessUpdates (false);
-			this.FromPixbuf = Blend (current, prev, next, .2);
-			GdkWindow.ProcessUpdates (false);
-			this.FromPixbuf = Blend (current, prev, next, .3);
-			GdkWindow.ProcessUpdates (false);
-			this.FromPixbuf = Blend (current, prev, next, .4);
-			GdkWindow.ProcessUpdates (false);
-			this.FromPixbuf = Blend (current, prev, next, .5);
-			GdkWindow.ProcessUpdates (false);
-			this.FromPixbuf = Blend (current, prev, next, .6);
-			GdkWindow.ProcessUpdates (false);
-			this.FromPixbuf = Blend (current, prev, next, .7);
-			GdkWindow.ProcessUpdates (false);
-			this.FromPixbuf = Blend (current, prev, next, .8);
-			GdkWindow.ProcessUpdates (false);
-			this.FromPixbuf = Blend (current, prev, next, .9);
-			GdkWindow.ProcessUpdates (false);
-			this.FromPixbuf = Blend (current, prev, next, .97);
-			GdkWindow.ProcessUpdates (false);
-			this.FromPixbuf = Blend (current, prev, next, .99);
-			GdkWindow.ProcessUpdates (false);
+			Console.WriteLine ("current_tween = " + current_tween);
+			
+			for (int i = 0; i < current_tween; i++) {
+				this.FromPixbuf = tweens[i];
+				GdkWindow.ProcessUpdates (false);
+			}
 			this.FromPixbuf = next;
-			GdkWindow.ProcessUpdates (false);
 		} catch {
 			timer = 0;
 			return false;
@@ -140,8 +134,56 @@ public class SlideView : Gtk.Image {
 			timer = 0;
 			return false;
 		}
+		
+		current_tween = 0;
+		tween_idle = GLib.Idle.Add (new GLib.IdleHandler (HandleTweenIdle));
 		return true;			
 	}
+
+	private bool HandleTweenIdle ()
+	{
+		Pixbuf prev = this.Pixbuf;
+
+		switch (current_tween) {
+		case 0:
+			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .2);
+			break;
+		case 1:
+			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .3);
+			break;
+		case 2:
+			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .4);
+			break;
+		case 3:
+			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .5);
+			break;
+		case 4:
+			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .6);
+			break;
+		case 5:
+			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .7);
+			break;
+		case 6:
+			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .8);
+			break;
+		case 7:
+			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .9);
+			break;
+		case 8:
+			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .97);
+			break;
+		case 9:
+			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .99);
+			break;
+		default:
+			tween_idle = 0;
+			return false;
+			break;
+		}
+
+		current_tween++;
+		return true;
+	}	
 
 	private void StopTimer ()
 	{	
@@ -166,6 +208,11 @@ public class SlideView : Gtk.Image {
 	{	
 		if (Pixbuf == null)
 			return;
+	
+		for (int i = 0; i < tweens.Length; i++) {
+			tweens[i] = new Pixbuf (Colorspace.Rgb, false, 8, Allocation.width, Allocation.height);
+		}
+
 		/*
 		 * The size has changed so we need to reload the images.
 		 */

@@ -1,3 +1,10 @@
+2004-01-30  Larry Ewing  <lewing@ximian.com>
+
+	* src/SlideView.cs: Generate the inbetween frames in an idle loop
+	while showing the current image.  This trades off a lot of memory
+	for speed but it make Full screen mode possible and improves
+	interactivity.
+
 2004-01-29  Larry Ewing  <lewing@ximian.com>
 
 	* src/SlideView.cs: wrap the transition in a try block in case we
