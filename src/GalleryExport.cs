@@ -242,7 +242,7 @@ namespace FSpot {
 		private void LoadAccounts ()
 		{
 			accounts = new System.Collections.ArrayList ();
-			AddAccount (new GalleryAccount ("People", "http://discord.no-ip.com/people/gallery/gallery_remote2.php", "admin", "batman"));
+			AddAccount (new GalleryAccount ("People", "http://discord.no-ip.com/people/gallery/gallery_remote2.php", "FSpot", "eddy"));
 			AddAccount (new GalleryAccount ("Joe", "http://discord.no-ip.com/people/gallery/gallery_remote2.php", "billy", "batman"));
 
 		}
