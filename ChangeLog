@@ -1,5 +1,12 @@
 2003-11-12  Ettore Perazzoli  <ettore@ximian.com>
 
+	* src/MainWindow.cs: Hmmm set "shrink" to true again for the
+	hpaned, otherwise we can have some nasty resizing when selecting
+	pictures.  We need to fix this properly by using labels with
+	ellipsis.
+
+2003-11-12  Ettore Perazzoli  <ettore@ximian.com>
+
 	* src/makefile.am: Add f-spot-people.png, f-spot-places.png to the
 	.exe.
 
