@@ -1010,6 +1010,7 @@ public class MainWindow {
 		return false;
 	}
 	
+	[GLib.ConnectBefore]
 	private void HandleSlideViewKeyPressEvent (object sender, KeyPressEventArgs args)
 	{
 		Gtk.Window win = sender as Gtk.Window;
