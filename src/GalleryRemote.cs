@@ -249,7 +249,7 @@ namespace GalleryRemote {
 			bool inresult = false;
 			
 			while ((line = reader.ReadLine ()) != null) {
-				if (line == "#__GR2PROTO__") {
+				if (line.IndexOf ("#__GR2PROTO__", 0) > -1) {
 					inresult = true;
 				} else if (inresult) {
 					string [] data = line.Split (value_split, 2);
