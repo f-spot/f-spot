@@ -71,11 +71,6 @@ public class FileImportBackend : ImportBackend {
 			}
 		}	
 
-		if (file_paths.Count == 0) {
-			file_paths = null;
-			return 0;
-		}
-
 		imported_photos = new ArrayList ();
 
 		return file_paths.Count;
@@ -126,8 +121,9 @@ public class FileImportBackend : ImportBackend {
 		file_paths = null;
 
 		foreach (Photo p in imported_photos) {
-			FSpot.ThumbnailGenerator.Default.Request (p.DefaultVersionPath, 0, 256, 256);
+			//FSpot.ThumbnailGenerator.Default.Request (p.DefaultVersionPath, 0, 256, 256);
 		}
+
 		imported_photos = null;
 		count = 0;
 	}

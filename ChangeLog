@@ -1,5 +1,9 @@
 2005-02-17  Larry Ewing  <lewing@novell.com>
 
+	* src/FileImportBackend.cs: handle zero item imports differently.
+	
+	* src/ImportCommand.cs: fix zero item imports.
+
 	* src/f-spot.in: remove debug spew.
 
 	* src/TagMenu.cs: Add some new helpers to TagItem.

@@ -136,7 +136,7 @@ public class ImportCommand : FSpot.GladeDialog {
 	private void UpdateProgressBar (int count, int total)
 	{
 		progress_bar.Text = String.Format ("Importing {0} of {1}", count, total);
-		progress_bar.Fraction = (double) count / total;
+		progress_bar.Fraction = (double) count / System.Math.Max (total, 1);
 	}
 
 	private int DoImport (FileImportBackend importer)
@@ -148,7 +148,7 @@ public class ImportCommand : FSpot.GladeDialog {
 
 		cancelled = false;
 		bool ongoing = true;
-		while (ongoing) {
+		while (ongoing && total > 0) {
 			Photo photo;
 			Pixbuf thumbnail;
 			int count;
@@ -165,7 +165,7 @@ public class ImportCommand : FSpot.GladeDialog {
 				Console.WriteLine ("Could not import file");
 				continue;
 			}
-			
+
 			grid.AddThumbnail (thumbnail);
 			UpdateProgressBar (count, total);
 		}
@@ -257,7 +257,7 @@ public class ImportCommand : FSpot.GladeDialog {
 
 	public int ImportFromPaths (PhotoStore store, string [] paths)
 	{
-		return ImportFromPaths (store, paths);
+		return ImportFromPaths (store, paths, null);
 	}
 
 	public int ImportFromPaths (PhotoStore store, string [] paths, Tag [] tags)
