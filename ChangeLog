@@ -1,5 +1,9 @@
 2005-02-20  Larry Ewing  <lewing@novell.com>
 
+	* src/ImportCommand.cs: center the dialog on the parent.
+
+	* src/IconView.cs: remove unused variable.
+
 	* libgphoto2-sharp/Object.cs: actually finalize things.
 
 	* src/ImportCommand.cs: verify the import path don't leave the

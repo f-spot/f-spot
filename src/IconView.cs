@@ -744,14 +744,10 @@ public class IconView : Gtk.Layout {
 		int start_cell_x, cell_y;
 		GetCellPosition (start_cell_num, out start_cell_x, out cell_y);
 
-		int end_cell_column = Math.Max ((area.X + area.Width - BORDER_SIZE) / cell_width, 0);
+		//int end_cell_column = Math.Max ((area.X + area.Width - BORDER_SIZE) / cell_width, 0);
 		int end_cell_row = Math.Max ((area.Y + area.Height - BORDER_SIZE) / cell_height, 0);
 
-		int num_rows = end_cell_row - start_cell_row + 1;
-		int num_cols = Math.Min (end_cell_column - start_cell_column + 1,
-					 cells_per_row - start_cell_column);
-
-		int i, cell_num;
+		int i;
 
 		FSpot.IBrowsableItem photo;
 		FSpot.PixbufCache.CacheEntry entry;

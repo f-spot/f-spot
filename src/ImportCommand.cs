@@ -300,6 +300,9 @@ public class ImportCommand : FSpot.GladeDialog {
 	{
 		this.CreateDialog ("import_dialog");
 		
+		this.Dialog.TransientFor = main_window;
+		this.Dialog.WindowPosition = Gtk.WindowPosition.CenterOnParent;
+
 		//Gtk.Menu menu = new Gtk.Menu();
 		MenuItem attach_item = new MenuItem (Mono.Posix.Catalog.GetString ("Select Tag"));
 		TagMenu tagmenu = new TagMenu (null, MainWindow.Toplevel.Database.Tags);
