@@ -1,8 +1,14 @@
 2004-06-11  Larry Ewing  <lewing@ximian.com>
 
+	* src/Util.cs: remove the strange win32 define, change the scheme
+	check.
+
+	* src/MainWindow.cs: make sure we add the Update the query after
+	removing.  Use the new UriList api for the dnd sources. 
+
 	* src/ImportCommand.cs: add a Scroll property to control the
 	scrolling behavior as new photos are added.  Based on a patch from
-	Miguel.
+	Miguel <miguel@ximian.com>.
 
 2004-06-10  Larry Ewing  <lewing@ximian.com>
 	
