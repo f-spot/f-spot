@@ -89,7 +89,7 @@ public class ImageView : Layout {
 			if (raw_pixbuf == IntPtr.Zero)
 				return null;
 
-			Pixbuf result = (Gdk.Pixbuf) GLib.Object.GetObject (raw_pixbuf);
+			Pixbuf result = (Gdk.Pixbuf) GLib.Object.GetObject (raw_pixbuf, true);
 			return result;
 		}
 		set {
