@@ -1,3 +1,12 @@
+2005-03-07  Raja R Harinath  <rharinath@novell.com>
+
+	* configure.in 	(src/f-spot): Make generated script executable.
+	(expanded_libdir): Evaluate value of $libdir.
+	* src/f-spot.exe.config.in: Use it.
+	* src/f-spot.in (prefix, exec_prefix, libdir): New substs.
+	[uninstalled]: Use check that's also valid when srcdir !=
+	builddir.
+
 2005-03-07  Larry Ewing  <lewing@novell.com>
 
 	* src/ImportCommand.cs: be explict when disposing of thumbnails

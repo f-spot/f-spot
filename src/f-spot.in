@@ -1,11 +1,15 @@
 #!/bin/sh
 
-if [ -e ./f-spot.exe ] && [ -e ./Makefile.am ] && [ -e ./PhotoStore.cs ]; then
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+
+if [ -e ./f-spot.exe ] && [ -e ./Makefile ] && [ -e ./Defines.cs ]; then
     echo "*** Running uninstalled f-spot ***"
     EXE_TO_RUN="./f-spot.exe"
     export MONO_PATH=../libgphoto2-sharp:$MONO_PATH
 else
-    EXE_TO_RUN="@prefix@/lib/f-spot/f-spot.exe"
+    EXE_TO_RUN="$libdir/f-spot/f-spot.exe"
 fi
 
 mono --debug $EXE_TO_RUN "$@"

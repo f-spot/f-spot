@@ -130,6 +130,13 @@ AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
+expanded_libdir=`( case $prefix in NONE) prefix=$ac_default_prefix ;; *) ;; esac
+		   case $exec_prefix in NONE) exec_prefix=$prefix ;; *) ;; esac
+		   eval echo $libdir )`
+AC_SUBST(expanded_libdir)
+
+AC_CONFIG_FILES([src/f-spot],[chmod +x src/f-spot])
+
 AC_OUTPUT([
 Makefile
 icons/Makefile
@@ -140,7 +147,6 @@ libfspot/Makefile
 libgphoto2-sharp/Makefile
 po/Makefile.in
 src/Defines.cs
-src/f-spot
 src/f-spot.exe.config
 src/Makefile
 f-spot.spec
