@@ -38,7 +38,7 @@ class Semaphore {
 	}
 }
 
-class UriList : ArrayList {
+public class UriList : ArrayList {
 	public UriList (Photo [] photos) {
 		foreach (Photo p in photos) {
 			Uri uri;
@@ -76,10 +76,25 @@ class UriList : ArrayList {
 		}
 	}
 
+	public UriList (string [] uris)
+	{	
+		// FIXME this is so lame do real chacking at some point
+		foreach (string str in uris) {
+			Uri uri;
+
+			if (str.StartsWith ("/"))
+				uri = new Uri ("file://" + str);
+			else 
+				uri = new Uri (str);
+			
+			Add (uri);
+		}
+	}
+
 	public UriList (string data) {
 		LoadFromString (data);
 	}
-
+	
 	public UriList (Gtk.SelectionData selection) 
 	{
 		// FIXME this should check the atom etc.

@@ -1,3 +1,14 @@
+2004-10-04  Larry Ewing  <lewing@novell.com>
+
+	* src/main.cs: add an --import command line option that lets you
+	specify a file or directory to import from.
+
+	* src/MainWindow.cs: expose a public ImportUriList method, make
+	the dnd code use the new method.
+
+	* src/Util.cs: add another constructory for urilist that takes an
+	array of strings.
+
 2004-09-30  Larry Ewing  <lewing@novell.com>
 
 	* src/TiffHeader.cs: Add GetRawXmp method that extracts the XMP

@@ -112,7 +112,6 @@ public class MainWindow {
 	}
 
 	
-
 	//
 	// Constructor
 	//
@@ -444,6 +443,14 @@ public class MainWindow {
 		args.RetVal = true;
 	}
 
+	public void ImportUriList (UriList list) 
+	{
+		ImportCommand command = new ImportCommand (main_window);
+		if (command.ImportFromPaths (db.Photos, list.ToLocalPaths ()) > 0) {
+			UpdateQuery ();
+		}
+	}
+
 	void HandleIconViewDragDataReceived (object sender, DragDataReceivedArgs args)
 	{
 	 	Widget source = Gtk.Drag.GetSourceWidget (args.Context);     
@@ -476,10 +483,7 @@ public class MainWindow {
 				return;
 
 			UriList list = new UriList (args.SelectionData);
-			ImportCommand command = new ImportCommand (main_window);
-			if (command.ImportFromPaths (db.Photos, list.ToLocalPaths ()) > 0) {
-				UpdateQuery ();
-			}
+			ImportUriList (list);
 			break;
 		}
 

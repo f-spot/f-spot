@@ -26,7 +26,23 @@ public class Driver {
 		Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {PixbufUtils.LoadFromAssembly ("f-spot-camera.png")};
 
 		MainWindow main_window = new MainWindow (db);
+		
+		ParseCommands (args);
 
 		program.Run ();
+	}
+
+	private static void  ParseCommands (string [] args) 
+	{
+		for (int i = 0; i < args.Length; i++) {
+			if (args [i] == "--import") {
+				if (++i < args.Length && (File.Exists (args [i]) || Directory.Exists (args[i]))) {
+					UriList urilist = new UriList (new string [] {args [i]});
+					MainWindow.Toplevel.ImportUriList (urilist);
+				} else {
+					System.Console.WriteLine ("no valid path to import from");
+				}
+			}
+		}
 	}
 }
