@@ -2,7 +2,7 @@ namespace FSpot {
 	public class Global {
 		public static string HomeDirectory {
 			get {
-				return System.Environment.GetEnvironmentVariable ("HOME");	
+				return System.IO.Path.Combine (System.Environment.GetEnvironmentVariable ("HOME"), "");	
 			}
 		}
 
