@@ -4,7 +4,7 @@ using Gnome;
 using System.Threading;
 
 public class ColorDialog {
-	PhotoQuery query;
+	FSpot.PhotoQuery query;
 	int item;
 
 	Gdk.Pixbuf OrigPixbuf;
@@ -154,7 +154,7 @@ public class ColorDialog {
 		Cancel ();
 	}
 	
-	public ColorDialog (PhotoQuery query, int item, Gdk.Pixbuf pixbuf)       
+	public ColorDialog (FSpot.PhotoQuery query, int item, Gdk.Pixbuf pixbuf)       
 	{
 		Glade.XML xml = new Glade.XML (null, "f-spot.glade", "color_dialog", null);
 		OrigPixbuf = pixbuf;

@@ -71,7 +71,7 @@ namespace FSpot {
 			return ((DirectoryAdaptor.Group)dirs [item].Value).Count;
 		}	
 
-		private void HandleReload (PhotoQuery query)
+		private void HandleChanged (FSpot.IPhotoCollection query)
 		{
 			Console.WriteLine ("Reloading directory");
 			Reload ();
@@ -104,7 +104,7 @@ namespace FSpot {
 
 		public DirectoryAdaptor (PhotoQuery query) {
 			this.query = query;
-			this.query.Reload += HandleReload;
+			this.query.Changed += HandleChanged;
 
 			Reload ();
 		}

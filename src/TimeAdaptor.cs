@@ -75,7 +75,7 @@ namespace FSpot {
 			return new DateTime (year, month, 1);
 		}
 
-		private void HandleReload (PhotoQuery query)
+		private void HandleChanged (IPhotoCollection query)
 		{
 			Console.WriteLine ("Reloading");
 			Reload ();
@@ -117,7 +117,7 @@ namespace FSpot {
 
 		public TimeAdaptor (PhotoQuery query) {
 			this.query = query;
-			this.query.Reload += HandleReload;
+			this.query.Changed += HandleChanged;
 			
 			Reload ();
 		}

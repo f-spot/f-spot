@@ -1,27 +1,33 @@
+//
+// QueryView.cs
+//
+// Copyright (C) 2004 Novell, Inc.
+//
+
 public class QueryView : IconView {
-	public QueryView (PhotoQuery query) {
+	FSpot.PhotoQuery query;
+
+	public QueryView (FSpot.PhotoQuery query) {
 		this.collection = query;
 		this.query = query;
 		
-		query.Reload += OnReload;
-		query.ItemChanged += ItemChanged;
+		query.Changed += HandleChanged;
+		query.ItemChanged += HandleItemChanged;
 	}
 
 	protected QueryView (System.IntPtr raw) : base (raw) {}
 	
-	private void OnReload (PhotoQuery query)
+	private void HandleChanged (FSpot.IPhotoCollection query)
 	{
 		// FIXME we should probably try to merge the selection forward
 		// but it needs some thought to be efficient.
-			UnselectAllCells ();
-			QueueResize ();
+		UnselectAllCells ();
+		QueueResize ();
 	}
 	
-	private void ItemChanged (PhotoQuery query, int item)
+	private void HandleItemChanged (FSpot.IPhotoCollection query, int item)
 	{
 		InvalidateCell (item);
 	}
-	
-	PhotoQuery query;
 }
 

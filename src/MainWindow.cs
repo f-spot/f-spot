@@ -65,7 +65,7 @@ public class MainWindow {
 	FSpot.InfoDisplay info_display;
 	QueryView icon_view;
 	PhotoView photo_view;
-	PhotoQuery query;
+	FSpot.PhotoQuery query;
 	FSpot.GroupSelector group_selector;
 	
 	// Drag and Drop
@@ -151,7 +151,7 @@ public class MainWindow {
 		info_box.VersionIdChanged += new InfoBox.VersionIdChangedHandler (HandleInfoBoxVersionIdChange);
 		left_vbox.PackStart (info_box, false, true, 0);
 		
-		query = new PhotoQuery (db.Photos);
+		query = new FSpot.PhotoQuery (db.Photos);
 		query.ItemChanged += HandleQueryItemChanged;
 
 		group_selector = new FSpot.GroupSelector ();
@@ -1294,7 +1294,7 @@ public class MainWindow {
 		UpdateMenus ();
 	}
 
-	void HandleQueryItemChanged (PhotoQuery query, int item)
+	void HandleQueryItemChanged (FSpot.IPhotoCollection query, int item)
 	{
 		Photo photo = query.Photos [item];
 		if (info_box.Photo == photo)

@@ -47,12 +47,12 @@ namespace FSpot {
 			}
 			set {
 				if (query != null) {
-					query.Reload -= HandleQueryReload;
+					query.Changed -= HandleQueryChanged;
 					query.ItemChanged -= HandleQueryItemChanged;
 				}
 
 				query = value;
-				query.Reload += HandleQueryReload;
+				query.Changed += HandleQueryChanged;
 				query.ItemChanged += HandleQueryItemChanged;
 			}
 		}
@@ -67,12 +67,13 @@ namespace FSpot {
 			CurrentPhoto = idx;
 		}
 
-		private void HandleQueryReload (PhotoQuery query)
+		private void HandleQueryChanged (IPhotoCollection query)
 		{
-			Reload ();
+			if (query == this.query)
+				Reload ();
 		}
 
-		public void HandleQueryItemChanged (PhotoQuery query, int item)
+		public void HandleQueryItemChanged (IPhotoCollection query, int item)
 		{
 			if (item == CurrentPhoto)
 				Reload ();

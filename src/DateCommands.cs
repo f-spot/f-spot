@@ -6,9 +6,8 @@ using Gtk;
 using Gnome;
 
 public class DateCommands {
-
 	public class Set {
-		PhotoQuery query;
+		FSpot.PhotoQuery query;
 		Gtk.Window parent_window;
 
 		[Glade.Widget]
@@ -20,8 +19,14 @@ public class DateCommands {
 		[Glade.Widget]
 		private DateEdit start_dateedit;
 
-		[Glade.Widget]
+		[Glade.Widget] 
 		private DateEdit end_dateedit;
+
+		public Set (FSpot.PhotoQuery query, Gtk.Window parent_window)
+		{
+			this.query = query;
+			this.parent_window = parent_window;
+		}
 
 		public bool Execute ()
 		{
@@ -45,13 +50,6 @@ public class DateCommands {
 			
 			date_range_dialog.Destroy ();
 			return success;
-
-		}
-
-		public Set (PhotoQuery query, Gtk.Window parent_window)
-		{
-			this.query = query;
-			this.parent_window = parent_window;
 		}
 	}
 }

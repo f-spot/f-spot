@@ -1,5 +1,20 @@
 2004-12-02  Larry Ewing  <lewing@novell.com>
 
+	* src/IPhotoCollection.cs: add Changed and ItemChanged events.
+
+	* src/PhotoQuery.cs: move into FSpot namespace replace reload
+	event with PhotoCollection events.
+	
+	* src/ColorDialog.cs:
+	* src/DateCommands.cs:
+	* src/DirectoryAdaptor.cs:
+	* MainWindow.cs:
+	* PhotoImageView.cs:
+	* PhotoView.cs:
+	* QueryView.cs:
+	* TagCommands.cs:
+	* TimeAdaptor.cs: Update for above name and namespace changes.
+
 	* src/PhotoTagMenu.cs: mark string for translation.
 
 2004-12-01  Larry Ewing  <lewing@novell.com>

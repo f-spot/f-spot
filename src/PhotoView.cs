@@ -24,8 +24,8 @@ public class PhotoView : EventBox {
 
 	private PhotoStore photo_store;
 
-	private PhotoQuery query;
-	public PhotoQuery Query {
+	private FSpot.PhotoQuery query;
+	public FSpot.PhotoQuery Query {
 		get {
 			return query;
 		}
@@ -313,7 +313,7 @@ public class PhotoView : EventBox {
 			PhotoChanged (this);
 	}
 
-	public PhotoView (PhotoQuery query, PhotoStore photo_store)
+	public PhotoView (FSpot.PhotoQuery query, PhotoStore photo_store)
 		: base ()
 	{
 		this.query = query;

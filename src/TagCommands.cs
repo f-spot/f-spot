@@ -349,8 +349,8 @@ public class TagCommands {
 
 	public class EditIcon {
 		Db db;
-		PhotoQuery query;
 		Gtk.Window parent_window;
+		FSpot.PhotoQuery query;
 		FSpot.PhotoImageView image_view;
 
 		[Glade.Widget]
@@ -423,7 +423,7 @@ public class TagCommands {
 
 			preview_image.Pixbuf = t.Icon;
 
-			query = new PhotoQuery (db.Photos);
+			query = new FSpot.PhotoQuery (db.Photos);
 			query.Tags = new Tag [] { t, db.Tags.Hidden };
 
 			image_view = new FSpot.PhotoImageView (query);
