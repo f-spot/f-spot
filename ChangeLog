@@ -1,3 +1,11 @@
+2004-08-11  Larry Ewing  <lewing@novell.com>
+
+	* src/f-spot.glade: add edit command menu item and dialog.
+
+	* src/MainWindow.cs: add edit command handler.
+
+	* src/TagCommands.cs: Add Edit command.
+
 2004-08-10  Larry Ewing  <lewing@novell.com>
 
 	* src/MainWindow.cs: add handlers for Find->Date commands.

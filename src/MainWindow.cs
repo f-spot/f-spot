@@ -706,7 +706,18 @@ public class MainWindow {
 			InvalidateViews (num);
 		}
 	}
-	
+
+	void HandleEditSelectedTag (object obj, EventArgs args)
+	{
+		Tag [] tags = tag_selection_widget.TagHighlight ();
+		if (tags.Length != 1)
+			return;
+		
+		TagCommands.Edit command= new TagCommands.Edit (db.Tags, main_window);
+		if (command.Execute (tags [0]))
+			db.Tags.Commit (tags [0]);
+	}
+
 	void HandleViewSmall (object sender, EventArgs args)
 	{
 		icon_view.ThumbnailWidth = 64;	
