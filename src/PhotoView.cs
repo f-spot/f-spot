@@ -309,6 +309,12 @@ public class PhotoView : EventBox {
 	private void HandlePhotoChanged (FSpot.PhotoImageView view)
 	{
 		Update ();
+
+		if (CurrentPhotoValid ()) 
+			tag_view.Current = query.Photos [CurrentPhoto];
+		else 
+			tag_view.Current = null;
+
 		if (this.PhotoChanged != null)
 			PhotoChanged (this);
 	}

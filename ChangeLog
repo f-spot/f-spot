@@ -1,5 +1,7 @@
 2004-12-09  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoView.cs: hook the tag_view back up;
+
 	* src/MainWindow.cs: kill UpdateViews use query.MarkChanged for
 	now.  Notification needs to be moved down to the photo store level
 	(or perhaps dbitem).
