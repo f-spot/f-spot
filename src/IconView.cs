@@ -502,8 +502,7 @@ public class IconView : Gtk.Layout {
 				}
 				
 				Style.PaintShadow (Style, BinWindow, cell_state,
-						   ShadowType.Out, area, this, "IconView", dest_x - 1, dest_y - 1, width + 2, height + 2);
-`			
+						   ShadowType.Out, area, this, "IconView", dest_x - 1, dest_y - 1, width + 2, height + 2);			
 				temp_thumbnail.RenderToDrawable (BinWindow, Style.WhiteGC,
 								 0, 0, dest_x, dest_y, width, height, RgbDither.None, 0, 0);
 				
