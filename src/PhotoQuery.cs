@@ -2,12 +2,39 @@ using Gnome;
 using System;
 using System.Collections;
 
-public class PhotoQuery : PhotoListModel {
-	private PhotoStore store;
-	private ArrayList photos;
+public class PhotoQuery {
 
-	private ArrayList tags;
-	public ArrayList Tags {
+	// Public events.
+
+	public delegate void IconUpdatedHandler (PhotoQuery model, int item_num);
+	public event IconUpdatedHandler IconUpdated;
+
+	public delegate void ReloadHandler (PhotoQuery model);
+	public event ReloadHandler Reload;
+
+	private Photo [] photos;
+	public Photo [] Photos {
+		get {
+			return photos;
+		}
+	}
+
+	private PhotoStore store;
+
+	public PhotoQuery (PhotoStore store)
+	{
+		this.store = store;
+		photos = store.Query (null);
+	}
+
+	public void RequestReload ()
+	{
+		if (Reload != null)
+			Reload (this);
+	}
+
+	private Tag [] tags;
+	public Tag [] Tags {
 		get {
 			return tags;
 		}
@@ -17,23 +44,5 @@ public class PhotoQuery : PhotoListModel {
 			photos = store.Query (tags);
 			RequestReload ();
 		}
-	}
-
-	public override Item GetItem (int item_num)
-	{
-		Photo photo = photos [item_num] as Photo;
-		return new Item (photo.Path, photo.Name);
-	}
-
-	public override int Count {
-		get {
-			return photos.Count;
-		}
-	}
-
-	public PhotoQuery (PhotoStore store)
-	{
-		this.store = store;
-		photos = store.Query (null);
 	}
 }

@@ -82,14 +82,14 @@ public class Tag : DbItem, IComparable {
 public class Category : Tag {
 	ArrayList children;
 	bool children_need_sort;
-	public ArrayList Children {
+	public Tag [] Children {
 		get {
 			if (children_need_sort)
 				children.Sort ();
-			return children;
+			return (Tag []) children.ToArray (typeof (Tag));
 		}
 		set {
-			children = value;
+			children = new ArrayList (value);
 			children_need_sort = true;
 		}
 	}

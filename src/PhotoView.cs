@@ -14,26 +14,22 @@ public class PhotoView : EventBox {
 
 		set {
 			current_photo = value;
-			UpdateImageView ();
-			UpdateButtonSensitivity ();
-			UpdateCountLabel ();
+			Update ();
 		}
 	}
 
-	private PhotoQuery model;
-	public PhotoQuery Model {
+	private PhotoQuery query;
+	public PhotoQuery Query {
 		get {
-			return model;
+			return query;
 		}
 
 		set {
-			model = value;
+			query = value;
 
 			// FIXME which picture to display?
 			current_photo = 0;
-			UpdateImageView ();
-			UpdateButtonSensitivity ();
-			UpdateCountLabel ();
+			Update ();
 		}
 	}
 
@@ -66,7 +62,7 @@ public class PhotoView : EventBox {
 	private struct SelectionConstraint {
 		public string Label;
 		public double XyRatio;
-	}
+		}
 
 	private OptionMenu constraints_option_menu;
 	private int selection_constraint_ratio_idx;
@@ -141,10 +137,10 @@ public class PhotoView : EventBox {
 
 	private void UpdateImageView ()
 	{
-		if (Model == null || current_photo >= Model.Count)
+		if (Query == null || current_photo >= Query.Photos.Length)
 			image_view.Pixbuf = null;
 		else
-			image_view.Pixbuf = new Pixbuf (Model.GetItem (current_photo).Path);
+			image_view.Pixbuf = new Pixbuf (Query.Photos [current_photo].Path);
 
 		image_view.UnsetSelection ();
 		UpdateZoom ();
@@ -198,7 +194,7 @@ public class PhotoView : EventBox {
 		else
 			display_previous_button.Sensitive = true;
 
-		if (Model == null || current_photo == Model.Count - 1)
+		if (Query == null || current_photo == Query.Photos.Length - 1)
 			display_next_button.Sensitive = false;
 		else
 			display_next_button.Sensitive = true;
@@ -206,10 +202,17 @@ public class PhotoView : EventBox {
 
 	private void UpdateCountLabel ()
 	{
-		if (model == null)
+		if (query == null)
 			count_label.Text = "";
 		else
-			count_label.Text = String.Format ("{0} of {1}", current_photo + 1, Model.Count);
+			count_label.Text = String.Format ("{0} of {1}", current_photo + 1, Query.Photos.Length);
+	}
+
+	private void Update ()
+	{
+		UpdateImageView ();
+		UpdateButtonSensitivity ();
+		UpdateCountLabel ();
 	}
 
 
@@ -217,11 +220,9 @@ public class PhotoView : EventBox {
 
 	private void DisplayNext ()
 	{
-		if (Model.Count > 1 && current_photo < Model.Count - 1) {
+		if (Query.Photos.Length > 1 && current_photo < Query.Photos.Length - 1) {
 			current_photo ++;
-			UpdateImageView ();
-			UpdateButtonSensitivity ();
-			UpdateCountLabel ();
+			Update ();
 		}
 	}
 
@@ -229,9 +230,7 @@ public class PhotoView : EventBox {
 	{
 		if (current_photo > 0) {
 			current_photo --;
-			UpdateImageView ();
-			UpdateButtonSensitivity ();
-			UpdateCountLabel ();
+			Update ();
 		}
 	}
 
@@ -263,7 +262,7 @@ public class PhotoView : EventBox {
 			CanFocus = false;
 			Relief = ReliefStyle.None;
 		}
-	}
+		}
 
 	public PhotoView ()
 		: base ()
@@ -313,10 +312,10 @@ public class PhotoView : EventBox {
 		vbox.ShowAll ();
 	}
 
-	public PhotoView (PhotoQuery model)
+	public PhotoView (PhotoQuery query)
 		: this ()
 	{
-		Model = model;
+		Query = query;
 	}
-}
+	}
 

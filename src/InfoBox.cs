@@ -2,22 +2,62 @@ using Gtk;
 using System;
 using System.IO;
 
+// FIXME TODO: We want to use something like EClippedLabel here throughout so it handles small sizes
+// gracefully using ellipsis.
+
 public class InfoBox : VBox {
 
-	private string photo_path;
-	public string PhotoPath {
+	private Photo photo;
+	public Photo Photo {
 		set {
-			photo_path = value;
+			photo = value;
 			Update ();
 		}
 
 		get {
-			return photo_path;
+			return photo;
 		}
 	}
 
 
-	// Widgetry.
+	// Version option menu.
+
+	const string VERSION_ID_KEY = "f-spot:version_option_menu_id";
+	private OptionMenu version_option_menu;
+
+	private void HandleVersionOptionMenuActivated (object sender, EventArgs args)
+	{
+		Console.WriteLine ("wooho version {0}", (int) (sender as GLib.Object).Data [VERSION_ID_KEY]);
+	}
+
+	private void PopulateVersionOptionMenu ()
+	{
+		Menu menu = new Menu ();
+		uint [] version_ids = Photo.VersionIds;
+
+		foreach (uint id in version_ids) {
+			MenuItem menu_item = new MenuItem (Photo.GetVersionName (id));
+			menu_item.Show ();
+			menu_item.Data.Add (VERSION_ID_KEY, id);
+			menu_item.Activated += new EventHandler (HandleVersionOptionMenuActivated);
+			menu.Append (menu_item);
+		}
+
+		MenuItem separator = new MenuItem ();
+		separator.Show ();
+		menu.Append (separator);
+
+		MenuItem last_item = new MenuItem ("(No changes)");
+		last_item.Sensitive = false;
+		last_item.Show ();
+		menu.Append (last_item);
+
+		version_option_menu.Menu = menu;
+		version_option_menu.Sensitive = true;
+	}
+
+
+	// Labels.
 
 	private Entry name_entry;
 	private Label date_label;
@@ -42,7 +82,6 @@ public class InfoBox : VBox {
 
 		alignment.Add (label);
 		alignment.ShowAll ();
-		alignment.SetSizeRequest (1, -1);
 
 		table.Attach (alignment, 1, 2, (uint) row_num, (uint) row_num + 1,
 			      AttachOptions.Expand | AttachOptions.Fill, AttachOptions.Expand | AttachOptions.Fill,
@@ -53,7 +92,7 @@ public class InfoBox : VBox {
 
 	private void SetupWidgets ()
 	{
-		Table table = new Table (4, 2, false);
+		Table table = new Table (5, 2, false);
 
 		table.Attach (CreateRightAlignedLabel ("Name:"), 0, 1, 0, 1,
 			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
@@ -63,9 +102,11 @@ public class InfoBox : VBox {
 			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
 		table.Attach (CreateRightAlignedLabel ("Exposure:"), 0, 1, 3, 4,
 			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
+		table.Attach (CreateRightAlignedLabel ("Version:"), 0, 1, 4, 5,
+			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
 
 		name_entry = new Entry ();
-		name_entry.SetSizeRequest (1, -1);
+		name_entry.WidthChars = 1;
 		table.Attach (name_entry, 1, 2, 0, 1,
 			      AttachOptions.Expand | AttachOptions.Fill, AttachOptions.Fill,
 			      3, 0);
@@ -74,7 +115,9 @@ public class InfoBox : VBox {
 		size_label = AttachLabel (table, 2, name_entry);
 		exposure_info_label = AttachLabel (table, 3, name_entry);
 
-		table.SetSizeRequest (1, -1);
+		version_option_menu = new OptionMenu ();
+		table.Attach (version_option_menu, 1, 2, 4, 5, AttachOptions.Fill, AttachOptions.Fill, 3, 3);
+
 		table.ShowAll ();
 
 		Add (table);
@@ -83,6 +126,10 @@ public class InfoBox : VBox {
 	private void Clear ()
 	{
 		name_entry.Sensitive = false;
+
+		version_option_menu.Sensitive = false;
+		version_option_menu.Menu = new Menu ();	// GTK doesn't like NULL here although that's what we want.
+
 		name_entry.Text = "";
 		date_label.Text = "";
 		size_label.Text = "";
@@ -107,16 +154,16 @@ public class InfoBox : VBox {
 
 	private void Update ()
 	{
-		if (photo_path == null) {
+		if (photo == null) {
 			Clear ();
 			return;
 		}
 
-		name_entry.Text = System.IO.Path.GetFileName (photo_path);
+		name_entry.Text = System.IO.Path.GetFileName (photo.Path);
 
 		ExifUtils.ExposureInfo exposure_info;
 		try {
-			exposure_info = ExifUtils.GetExposureInfo (photo_path);
+			exposure_info = ExifUtils.GetExposureInfo (photo.Path);
 		} catch {
 			exposure_info = new ExifUtils.ExposureInfo ();
 		}
@@ -134,7 +181,7 @@ public class InfoBox : VBox {
 
 		int width = 0, height = 0;
 		try {
-			JpegUtils.GetSize (photo_path, out width, out height);
+			JpegUtils.GetSize (photo.Path, out width, out height);
 		} catch {
 		}
 
@@ -147,6 +194,8 @@ public class InfoBox : VBox {
 			date_label.Text = exposure_info.DateTime;
 		else
 			date_label.Text = "(Unknown)";
+
+		PopulateVersionOptionMenu ();
 	}
 
 

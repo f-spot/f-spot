@@ -60,8 +60,8 @@ public class IconView : Gtk.Layout {
 	private int cell_width;
 	private int cell_height;
 
-	/* Model.  */
-	private PhotoListModel model;
+	/* Query.  */
+	private PhotoQuery query;
 
 	/* The first pixel line that is currently on the screen
 	   (i.e. in the current scroll region).  Used to compute the
@@ -116,32 +116,33 @@ public class IconView : Gtk.Layout {
 		MotionNotifyEvent += new MotionNotifyEventHandler (HandleMotionNotifyEvent);
 	}
 
-	private void OnReload (PhotoListModel model)
+	private void OnReload (PhotoQuery query)
 	{
 		QueueResize ();
 	}
 
-	public IconView (PhotoListModel model) : this ()
+	public IconView (PhotoQuery query) : this ()
 	{
-		this.model = model;
-		model.Reload += new PhotoListModel.ReloadHandler (OnReload);
+		this.query = query;
+		query.Reload += new PhotoQuery.ReloadHandler (OnReload);
 	}
 
 
-	public PhotoListModel Model {
+	public PhotoQuery Query {
 		get {
-			return model;
+			return query;
 		}
 	}
 
-	public ArrayList Selection {
+	public int [] Selection {
 		get {
-			ArrayList selection = new ArrayList ();
+			int [] selection = new int [selected_cells.Count];
 
+			int i = 0;
 			foreach (int cell in selected_cells.Keys)
-				selection.Add (cell);
+				selection [i ++] = cell;
 
-			selection.Sort ();
+			Array.Sort (selection);
 			return selection;
 		}
 	}
@@ -159,19 +160,19 @@ public class IconView : Gtk.Layout {
 
 	private int CellAtPosition (int x, int y)
 	{
-		if (model == null)
+		if (query == null)
 			return -1;
 
 		if (x < BORDER_SIZE || x >= BORDER_SIZE + cells_per_row * cell_width)
 			return -1;
-		if (y < BORDER_SIZE || y >= BORDER_SIZE + (model.Count / cells_per_row + 1) * cell_height)
+		if (y < BORDER_SIZE || y >= BORDER_SIZE + (query.Photos.Length / cells_per_row + 1) * cell_height)
 			return -1;
 
 		int column = (int) ((x - BORDER_SIZE) / cell_width);
 		int row = (int) ((y - BORDER_SIZE) / cell_height);
 		int cell_num = column + row * cells_per_row;
 
-		if (cell_num < model.Count)
+		if (cell_num < query.Photos.Length)
 			return (int) cell_num;
 		else
 			return -1;
@@ -243,8 +244,8 @@ public class IconView : Gtk.Layout {
 			cells_per_row = 1;
 
 		int num_thumbnails;
-		if (model != null)
-			num_thumbnails = model.Count;
+		if (query != null)
+			num_thumbnails = query.Photos.Length;
 		else
 			num_thumbnails = 0;
 
@@ -262,9 +263,9 @@ public class IconView : Gtk.Layout {
 		gc.Copy (Style.ForegroundGC (StateType.Normal));
 		gc.SetLineAttributes (1, LineStyle.Solid, CapStyle.NotLast, JoinStyle.Round);
 
-		PhotoListModel.Item item = model.GetItem (thumbnail_num);
+		Photo photo = query.Photos [thumbnail_num];
 
-		string thumbnail_path = Thumbnail.PathForUri ("file://" + item.Path, ThumbnailSize.Large);
+		string thumbnail_path = Thumbnail.PathForUri ("file://" + photo.Path, ThumbnailSize.Large);
 		Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForPath (thumbnail_path);
 
 		Gdk.Rectangle area = new Gdk.Rectangle (x, y, cell_width, cell_height);
@@ -318,11 +319,11 @@ public class IconView : Gtk.Layout {
 
 		int i, cell_num;
 		for (i = 0, cell_num = start_cell_num;
-		     i < num_rows && cell_num < model.Count;
+		     i < num_rows && cell_num < query.Photos.Length;
 		     i ++) {
 			int cell_x = start_cell_x;
 
-			for (int j = 0; j < num_cols && cell_num + j < model.Count; j ++) {
+			for (int j = 0; j < num_cols && cell_num + j < query.Photos.Length; j ++) {
 				DrawCell (cell_num + j, cell_x, cell_y);
 				cell_x += cell_width;
 			}
@@ -348,7 +349,7 @@ public class IconView : Gtk.Layout {
 		if (y_offset == adjustment.Value)
 			return;
 
-		int num_thumbnails = model.Count;
+		int num_thumbnails = query.Photos.Length;
 		int num_rows, start;
 
 		if (y_offset < adjustment.Value) {
@@ -369,8 +370,7 @@ public class IconView : Gtk.Layout {
 			if (start + i >= num_thumbnails)
 				break;
 
-			PhotoListModel.Item item = model.GetItem (start + i);
-			pixbuf_loader.Cancel (item.Path);
+			pixbuf_loader.Cancel (query.Photos [start + i].Path);
 		}
 
 		y_offset = (int) adjustment.Value;

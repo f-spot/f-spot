@@ -60,11 +60,11 @@ public class TagSelectionWidget : TreeView {
 	public delegate void SelectionChangedHandler (object me);
 	public event SelectionChangedHandler SelectionChanged;
 
-	public ArrayList TagSelection {
+	public Tag [] TagSelection {
 		get {
 			ArrayList selection = new ArrayList ();
 			GetSelectionForCategory (selection, tag_store.RootCategory);
-			return selection;
+			return (Tag []) selection.ToArray (typeof (Tag));
 		}
 
 		set {
@@ -82,7 +82,7 @@ public class TagSelectionWidget : TreeView {
 
 	private void LoadCategory (Category category, TreeIter parent_iter)
 	{
-		ArrayList tags = category.Children;
+		Tag [] tags = category.Children;
 
 		foreach (Tag t in tags) {
 			TreeIter iter = (Model as TreeStore).AppendValues (parent_iter, t.Id);
@@ -98,8 +98,6 @@ public class TagSelectionWidget : TreeView {
 		// GRRR We have to special case the root because I can't pass null for a
 		// Gtk.TreeIter (since it's a struct, and not a class).
 		// FIXME: This should be fixed in GTK#...  It's gross.
-
-		ArrayList p = tag_store.RootCategory.Children;
 
 		foreach (Tag t in tag_store.RootCategory.Children) {
 			TreeIter iter = (Model as TreeStore).AppendValues (t.Id);

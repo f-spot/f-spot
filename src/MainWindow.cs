@@ -69,12 +69,12 @@ public class MainWindow : Gtk.Window {
 
 	private void HandleSelectionChanged (IconView view)
 	{
-		ArrayList selection = icon_view.Selection;
+		int [] selection = icon_view.Selection;
 
-		if (selection.Count != 1)
-			info_box.PhotoPath = null;
+		if (selection.Length != 1)
+			info_box.Photo = null;
 		else
-			info_box.PhotoPath = query.GetItem ((int) selection [0]).Path;
+			info_box.Photo = query.Photos [selection [0]];
 	}
 
 	private void HandleDoubleClicked (IconView icon_view, int clicked_item)

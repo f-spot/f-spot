@@ -28,9 +28,10 @@ public abstract class DbStore {
 
 	protected void AddToCache (DbItem item)
 	{
-		if (! item_cache.Contains (item.Id)
-		    || ! ((WeakReference) item_cache[item.Id]).IsAlive)
-			item_cache.Add (item.Id, new WeakReference (item));
+		if (item_cache.Contains (item.Id))
+			item_cache.Remove (item.Id);
+
+		item_cache.Add (item.Id, new WeakReference (item));
 	}
 
 	protected DbItem LookupInCache (uint id)

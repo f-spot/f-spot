@@ -1,5 +1,48 @@
 2003-11-08  Ettore Perazzoli  <ettore@ximian.com>
 
+	* src/TagStore.cs (Tag.Children): Change from an ArrayList to an
+	array.
+
+	* src/TagSelectionWidget.cs (TagSelection): Return an array of
+	tags instead of an ArrayList.
+
+	* src/PhotoView.cs: Renamed private member "model" to "query";
+	updated for the changes in PhotoQuery.
+	(PhotoQuery.Query): Renamed from "Model".
+
+	* src/PhotoStore.cs (Photo.Tags): Change from an ArrayList to an
+	array.
+	(Photo.Query): Return an array of Photos instead of an ArrayList.
+
+	* src/MainWindow.cs (MainWindow.HandleSelectionChanged): Update
+	for the fact that IconView.Selection is now an array.
+
+	* src/InfoBox.cs (InfoBox.PhotoPath): Removed, together with the
+	private "photo_path" member.
+	(InfoBox.Photo): New property, use this instead.
+	(InfoBox.HandleVersionOptionMenuActivated): New.
+	(InfoBox.PopulateVersionOptionMenu): New.
+	(InfoBox.Update): Call it.
+	(InfoBox.SetupWidgets): Add a row with the version option menu.
+	(InfoBox.Clear): Make the option menu insensitive.
+
+	* src/IconView.cs (IconView): Rename local member "model" to
+	"query"; make it use just a PhotoQuery object.
+	(IconView.Selection): Return an array instead of an ArrayList.
+
+	* src/PhotoQuery.cs: Don't derive from PhotoListModel anymore;
+	move all the method inherited from PhotoListModel in.
+	(PhotoQuery.Tags): Changed from an ArrayList to an array.
+	(PhotoQuery.Photos): Return an array.
+	(PhotoQuery.GetItem): Removed.
+
+	* src/PhotoListModel.cs: Removed.
+
+	* src/Db.cs (DbStore.AddToCache): Remove an existing item with the
+	same ID as the one we are adding.
+
+2003-11-08  Ettore Perazzoli  <ettore@ximian.com>
+
 	* src/PhotoView.cs (PhotoView.UpdateImageView): Handle a null
 	model or an out of range photo index value gracefully.
 

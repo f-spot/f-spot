@@ -39,9 +39,9 @@ public class Photo : DbItem {
 	}
 
 	private ArrayList tags = new ArrayList ();
-	public ArrayList Tags {
+	public Tag [] Tags {
 		get {
-			return tags;
+			return (Tag []) tags.ToArray (typeof (Tag));
 		}
 	}
 
@@ -468,11 +468,11 @@ public class PhotoStore : DbStore {
 
 	// Queries.
 
-	public ArrayList Query (ArrayList tags)
+	public Photo [] Query (Tag [] tags)
 	{
 		string query;
 
-		if (tags == null || tags.Count == 0) {
+		if (tags == null || tags.Length == 0) {
 			query = "SELECT id FROM photos";
 		} else {
 			// The SQL query that we want to construct is:
@@ -501,7 +501,7 @@ public class PhotoStore : DbStore {
 					first = false;
 				}
 
-				if (tags.Count > 0)
+				if (tags.Length > 0)
 					query_builder.Append (")");
 			}
 
@@ -524,9 +524,10 @@ public class PhotoStore : DbStore {
 
 		command.Dispose ();
 
-		ArrayList photo_list = new ArrayList ();
+		Photo [] photo_list = new Photo [id_list.Count];
+		int i = 0;
 		foreach (uint id in id_list)
-			photo_list.Add (Get (id));
+			photo_list [i ++] = Get (id) as Photo;
 
 		return photo_list;
 	}
