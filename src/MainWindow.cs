@@ -501,12 +501,17 @@ public class MainWindow {
 			quick_preview.Decorated = false;
 
 			Gtk.Box quick_preview_vbox = new Gtk.VBox ();
+			// FIXME these should just load a specific style.
+			quick_preview.ModifyFg (StateType.Normal, new Gdk.Color (127, 127, 127));
+			quick_preview.ModifyBg (StateType.Normal, new Gdk.Color (0, 0, 0));
 
 			quick_preview_image = new Gtk.Image ();
 			quick_preview_vbox.PackStart (quick_preview_image, true, true, 0);
 
 			quick_preview_label = new Gtk.Label ("");
 			quick_preview_vbox.PackStart (quick_preview_label, true, false, 0);
+			quick_preview_label.ModifyFg (StateType.Normal, new Gdk.Color (127, 127, 127));
+			quick_preview_label.ModifyBg (StateType.Normal, new Gdk.Color (0, 0, 0));
 
 			quick_preview.Add (quick_preview_vbox);
 			quick_preview_vbox.ShowAll ();
@@ -544,7 +549,6 @@ public class MainWindow {
 		else if (image_x < 0)
 			x_fudge = -image_x;
 		image_x += x_fudge;
-
 			
 		quick_preview.Move (image_x, image_y);
 

@@ -1,8 +1,10 @@
 2004-08-21  Larry Ewing  <lewing@novell.com>
 
-	* src/MainWindow.cs: add Nat and Trow's preview hack, load
-	fullsize version if smaller version doesn't exist.
+	* src/MainWindow.cs: set the fg and bg color on the preview.
 	
+	* src/MainWindow.cs: add Nat and Trow's preview hack, load
+	fullsize version if smaller version doesn't 	
+
 	* src/IconView.cs: add Nat and Trow's preview hack, remove dnd cruft.
 
 2004-08-20  Larry Ewing  <lewing@novell.com>
