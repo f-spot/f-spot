@@ -73,11 +73,14 @@ namespace FSpot {
 		{
 			x -= BoxX (0);
 			position = (int) (x / BoxWidth);
-			if (position >= 0 && position < box_counts.Length)
-				return true;
-			
-			position = 0;
-			return false;
+			if (position < 0) { 
+				position = 0;
+				return false;
+			} else if (position >= box_counts.Length) {
+				position = box_counts.Length -1;
+				return false;
+			}
+			return true;
 		}
 
 		private bool BoxHit (double x, double y, out int position) 
@@ -303,8 +306,11 @@ namespace FSpot {
 
 			public void EndDrag (double x, double y)
 			{
+				Rectangle box = Bounds ();
+				double middle = box.X + (box.Width / 2.0);
+
 				int position;
-				if (selector.BoxXHit (x, out position)) {
+				if (selector.BoxXHit (middle, out position)) {
 					Position = position;
 					State = StateType.Prelight;
 				} else {
@@ -501,8 +507,11 @@ namespace FSpot {
 					GdkWindow.DrawRectangle (Style.BaseGC (State), true, active);
 				}
 
-				int i = 0;
-				while (i < box_counts.Length)
+				int i;
+				BoxXHit (area.X, out i);
+				int end;
+				BoxXHit (area.X + area.Width, out end);
+				while (i <= end)
 					DrawBox (area, i++);
 			}
 
@@ -511,8 +520,12 @@ namespace FSpot {
 					   background.Width, background.Height);
 
 			if (args.Area.Intersect (legend, out area)) {
-				int i = 0;
-				while (i <= box_counts.Length)
+				int i;
+				BoxXHit (area.X, out i);
+				int end;
+				BoxXHit (area.X + area.Width, out end);
+
+				while (i <= end + 1)
 					DrawTick (area, i++);
 			}
 			
