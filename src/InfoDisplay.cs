@@ -69,19 +69,28 @@ namespace FSpot {
 				stream.Write ("<table width=100% cellspacing=0 cellpadding=3>");
 				stream.Write ("<tr><td colspan=2 align=\"center\" bgcolor=\"" + ig + "\"><img center src=\"exif:thumbnail\"></td></tr>");
 				foreach (Exif.ExifContent content in exif_info.GetContents ()) {
-					stream.Write ("<tr><th align=center colspan=2>" + Exif.ExifUtil.GetIfdName ((Exif.ExifIfd)i++) + "</th><tr>");
-					foreach (Exif.ExifEntry entry in content.GetEntries ()) {
+					Exif.ExifEntry [] entries = content.GetEntries ();
+					
+					i++;
+					if (entries.Length < 1)
+						continue;
+					
+					stream.Write ("<tr><th align=left bgcolor=\"" + ig + "\" colspan=2>" 
+						      + Exif.ExifUtil.GetIfdNameExtended ((Exif.ExifIfd)i - 1) + "</th><tr>");
+					
+					foreach (Exif.ExifEntry entry in entries) {
 						stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
-						if (entry.Title != null)
-							stream.Write (entry.Title);
-						else
-							stream.Write ("&lt;Unknown Tag ID=" + entry.Tag.ToString () + "&gt;");
-						stream.Write ("</font></td><td>");
-						string s = entry.Value;
-						if (s != null && s != "")
-							stream.Write (s);
-						stream.Write ("</td><tr>");
+							if (entry.Title != null)
+								stream.Write (entry.Title);
+							else
+								stream.Write ("&lt;Unknown Tag ID=" + entry.Tag.ToString () + "&gt;");
+							stream.Write ("</font></td><td>");
+							string s = entry.Value;
+							if (s != null && s != "")
+								stream.Write (s);
+							stream.Write ("</td><tr>");
 					}
+					
 				}
 				stream.Write ("</table>");
 			}
