@@ -199,8 +199,6 @@ public class MainWindow {
 
 		group_selector = new FSpot.GroupSelector ();
 		FSpot.GroupAdaptor adaptor = new FSpot.TimeAdaptor (query);
-		//FSpot.GroupAdaptor adaptor = new FSpot.DirectoryAdaptor (query);		
-		group_selector.Mode = FSpot.GroupSelector.RangeType.All;
 
 		group_selector.Adaptor  = adaptor;
 		group_selector.ShowAll ();
@@ -930,7 +928,7 @@ public class MainWindow {
 		group_selector.Adaptor.GlassSet -= HandleAdaptorGlassSet;
 		FSpot.GroupAdaptor adaptor = new FSpot.TimeAdaptor (query);
 		group_selector.Adaptor = adaptor;
-		group_selector.Mode = FSpot.GroupSelector.RangeType.All;
+		group_selector.Mode = FSpot.GroupSelector.RangeType.Min;
 		adaptor.GlassSet += HandleAdaptorGlassSet;
 	}
 

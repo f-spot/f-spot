@@ -126,11 +126,19 @@ namespace FSpot {
 			}
 			set {
 				scroll_offset = value;
+				
+				UpdateButtons ();
+
 				if (Visible)
 					GdkWindow.InvalidateRect (Allocation, false);
 			}
 		}
 		
+		private void UpdateButtons () {
+			left.Sensitive = (scroll_offset < 0);
+			right.Sensitive = (box_counts.Length * BoxWidth > background.Width - scroll_offset); 
+		}
+
 		static bool IsInside (Rectangle bounds, double x, double y) 
 		{
 			if (x >= bounds.X && 
@@ -816,6 +824,16 @@ namespace FSpot {
 			
 			return (int) (max_height * 1.5);
 		}
+
+		private void HandleScrollRight (object sender, System.EventArgs args) 
+		{
+			Offset -= 10;
+		}
+
+		private void HandleScrollLeft (object sender, System.EventArgs args) 
+		{
+			Offset += 10;
+		}
 		
 		protected override void OnSizeAllocated (Gdk.Rectangle alloc)
 		{
@@ -851,6 +869,8 @@ namespace FSpot {
 			if (event_window != null)
 				event_window.MoveResize (action.X, action.Y, action.Width, action.Height);
 
+
+			UpdateButtons ();
 #if true
 //USE_BUTTONS
 #endif
@@ -865,15 +885,18 @@ namespace FSpot {
 			min_limit = new Limit (this, Limit.LimitType.Min);
 			max_limit = new Limit (this, Limit.LimitType.Max);
 
-#if true
-//USE_BUTTONS
 			left = new Gtk.Button (new Gtk.Image (Gtk.Stock.GoBack, Gtk.IconSize.Button));
+			left.Clicked += HandleScrollLeft;
 			right = new Gtk.Button (new Gtk.Image (Gtk.Stock.GoForward, Gtk.IconSize.Button));
+			right.Clicked += HandleScrollRight;
+
 			this.Put (left, 0, 0);
 			this.Put (right, 100, 0);
 			left.Show ();
 			right.Show ();
-#endif
+			
+			Mode = RangeType.Min;
+			UpdateButtons ();
 		}
 
 		public GroupSelector (IntPtr raw) : base (raw) {}

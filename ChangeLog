@@ -1,5 +1,10 @@
 2005-01-30  Larry Ewing  <lewing@novell.com>
 
+	* src/GroupSelector.cs: make the scroll buttons do something,
+	update their sensitivity properly.
+
+	* src/MainWindow.cs: set the mode to to RangeType.Min.
+
 	* src/GroupSelector.cs: add scroll buttons.
 
 2005-01-29  Larry Ewing  <lewing@novell.com>
