@@ -1,5 +1,11 @@
 2004-06-13  Larry Ewing  <lewing@ximian.com>
 
+	* src/MainWindow.cs: Add drop handlers for the TagSelection
+	widget, based on the dnd patch.
+
+	* src/PhotoStore.cs: Add GetByPath method based on patch from Lee
+	Willis <lee@leewillist.co.uk>.
+
 	* src/TagSelectionWidget.cs: TagAtPosition helper method, based on
 	a dnd patch from Lee Willis <lee@leewillist.co.uk>.
 

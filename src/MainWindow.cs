@@ -95,10 +95,15 @@ public class MainWindow {
 		
 		tag_selection_widget.Selection.Changed += new EventHandler (HandleTagSelectionChanged);
 		tag_selection_widget.SelectionChanged += new TagSelectionWidget.SelectionChangedHandler (OnTagSelectionChanged);
+		tag_selection_widget.DragDataGet += new DragDataGetHandler (HandleTagSelectionDragDataGet);
 		Gtk.Drag.SourceSet (tag_selection_widget, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
 				    tag_target_table, DragAction.Copy | DragAction.Move);
 
-		tag_selection_widget.DragDataGet += new DragDataGetHandler (HandleTagSelectionDragDataGet);
+
+		tag_selection_widget.DragDataReceived += new DragDataReceivedHandler (HandleTagSelectionDragDataReceived);
+		tag_selection_widget.DragMotion += new DragMotionHandler (HandleTagSelectionDragMotion);
+		Gtk.Drag.DestSet (tag_selection_widget, DestDefaults.All, target_table, 
+				  DragAction.Copy); 
 
 		info_box = new InfoBox ();
 		info_box.VersionIdChanged += new InfoBox.VersionIdChangedHandler (HandleInfoBoxVersionIdChange);
@@ -204,6 +209,38 @@ public class MainWindow {
 		if (command.Execute (direction, SelectedPhotos (selected_ids))) {
 			foreach (int num in selected_ids)
 				UpdateViews (num);
+		}
+	}
+
+	// Highlight drag destinations
+	public void HandleTagSelectionDragMotion (object o, DragMotionArgs args)
+	{
+		TreePath path;
+
+		if (!tag_selection_widget.GetPathAtPos (args.X, args.Y, out path, null))
+			return;
+
+		tag_selection_widget.SetDragDestRow (path, Gtk.TreeViewDropPosition.IntoOrAfter);
+	}
+
+	public void HandleTagSelectionDragDataReceived (object o, DragDataReceivedArgs args)
+	{
+		Tag [] tags = new Tag [1];
+		UriList list = new UriList (System.Text.Encoding.UTF8.GetString (args.SelectionData.Data));
+
+		tags [0] = tag_selection_widget.TagAtPosition(args.X, args.Y);
+		if (tags [0] == null)
+			return;
+
+		foreach (string path in list.ToLocalPaths ()) {
+			Photo photo = db.Photos.GetByPath (path);
+			
+			// FIXME - at this point we should import the photo, and then continue
+			if (photo == null)
+				return;
+
+			photo.AddTag (tags);
+			db.Photos.Commit (photo);
 		}
 	}
 
