@@ -1,5 +1,7 @@
 2005-03-19  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoImageView.cs: remove debug output.
+
 	* src/MainWindow.cs: handle sharpen errors properly.
 
 	* libfspot/f-jpeg-utils.c: add workaround for missing macro.

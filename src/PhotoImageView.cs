@@ -93,7 +93,7 @@ namespace FSpot {
 			    query.Photos.Length == 0 ||
 			    CurrentPhoto >= Query.Photos.Length ||
 			    CurrentPhoto < 0) {
-				System.Console.WriteLine ("Invalid CurrentPhoto");
+				//System.Console.WriteLine ("Invalid CurrentPhoto");
 				return false;
 			}
 
