@@ -1,3 +1,8 @@
+2004-07-09  Larry Ewing  <lewing@ximian.com>
+
+	* src/MainWindow.cs: Set the cursor to busy when building a new
+	query.
+
 2004-07-09  Matt Jones  <mattharrison@sbcglobal.net>
 
 	* src/TagStore.cs (CreateDefaultTags): fix some cut-n-paste typos

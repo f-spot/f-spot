@@ -857,7 +857,10 @@ public class MainWindow {
 
 	void UpdateQuery ()
 	{
+		main_window.GdkWindow.Cursor = new Gdk.Cursor (Gdk.CursorType.Watch);
+		main_window.GdkWindow.Display.Sync ();
 		query.Tags = tag_selection_widget.TagSelection;
+		main_window.GdkWindow.Cursor = null;
 	}
 
 	void OnTagSelectionChanged (object obj)
