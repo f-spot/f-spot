@@ -40,17 +40,7 @@ namespace FSpot {
 
 		static public bool ThumbnailIsValid (System.Uri uri, Gdk.Pixbuf thumbnail)
 		{
-			bool valid = false;
-
-			try {			
-				System.DateTime mtime = System.IO.File.GetLastWriteTime (uri.LocalPath);
-				valid  = Gnome.Thumbnail.IsValid (thumbnail, uri.ToString (), mtime);
-			} catch (System.Exception e) {
-				System.Console.WriteLine (e);
-				valid = false;
-			}
-			
-			return valid;
+			return FSpot.ThumbnailGenerator.ThumbnailIsValid (thumbnail, uri);
 		}
 
 		static public Gdk.Pixbuf ValidateThumbnail (string photo_path, Gdk.Pixbuf pixbuf)

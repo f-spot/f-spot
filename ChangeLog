@@ -1,5 +1,7 @@
 2005-02-24  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoLoader.cs: use the thumbnail generated validation now.
+
 	* src/Thumbnail.cs: make the default size tiny.
 
 	* src/PixbufLoader.cs: add the blocking logic to the loader.
