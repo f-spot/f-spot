@@ -138,6 +138,7 @@ namespace FSpot {
 			if (item >= 0) {
 				this.Item = item;
 				UpdatePosition ();
+				Show ();
 			} else {
 				this.Hide ();
 			}
@@ -168,19 +169,17 @@ namespace FSpot {
 		{
 			switch (args.Event.Key) {
 			case Gdk.Key.v:
-				Show ();
 				ShowHistogram = false;
 				UpdateItem ();
 				break;
 			case Gdk.Key.V:
-				Show ();
 				ShowHistogram = true;
 				UpdateItem ();
 				break;
 			}
 		}
 
-		private void HandleIconViewKeyRelease (object sender, Gtk.KeyReleaseEventArgs args)
+		private void HandleKeyRelease (object sender, Gtk.KeyReleaseEventArgs args)
 		{
 			switch (args.Event.Key) {
 			case Gdk.Key.v:
@@ -191,6 +190,11 @@ namespace FSpot {
 			}
 		}
 		
+		private void HandleButtonPress (object sender, Gtk.ButtonPressEventArgs args)
+		{
+			this.Hide ();
+		}
+
 		private void HandleIconViewDestroy (object sender, Gtk.DestroyEventArgs args)
 		{
 			this.Destroy ();
@@ -216,14 +220,20 @@ namespace FSpot {
 		{
 			Gtk.VBox vbox = new Gtk.VBox ();
 			this.Add (vbox);
-			this.AddEvents ((int) Gdk.EventMask.PointerMotionMask);
+			this.AddEvents ((int) (Gdk.EventMask.PointerMotionMask | 
+					       Gdk.EventMask.KeyReleaseMask | 
+					       Gdk.EventMask.ButtonPressMask));
+
 			this.Decorated = false;
 			this.SetPosition (Gtk.WindowPosition.None);
+			
+			this.KeyReleaseEvent += HandleKeyRelease;
+			this.ButtonPressEvent += HandleButtonPress;
 
 			this.view = view;
 			view.MotionNotifyEvent += HandleIconViewMotion;
 			view.KeyPressEvent += HandleIconViewKeyPress;
-			view.KeyReleaseEvent += HandleIconViewKeyRelease;
+			view.KeyReleaseEvent += HandleKeyRelease;
 			view.DestroyEvent += HandleIconViewDestroy;
 
 			this.BorderWidth = 6;
