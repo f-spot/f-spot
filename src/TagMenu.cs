@@ -8,13 +8,28 @@ public class TagMenu : Menu {
 	public delegate void TagSelectedHandler (Tag t);
 	public event TagSelectedHandler TagSelected;
 
-	private class TagItem : Gtk.ImageMenuItem {
+	public class TagItem : Gtk.ImageMenuItem {
 		public Tag Value;
 
-		public TagItem (Tag t) : base (t.Name) {
+		public TagItem (Tag t) : this (t, t.Name) { }
+		
+		public TagItem (Tag t, string name) : base (name)
+		{
 			Value = t;
 			if (t.Icon != null)
 				this.Image = new Gtk.Image (t.Icon);
+		}
+
+		public static TagItem IndentedItem (Tag t) {
+			System.Text.StringBuilder label_builder = new System.Text.StringBuilder ();
+			
+			for (Category parent = t.Category; 
+			     parent != null && parent.Category != null;
+			     parent = parent.Category)
+				label_builder.Append ("  ");
+			
+			label_builder.Append (t.Name);
+			return new TagItem (t, label_builder.ToString ());
 		}
 
 		protected TagItem (IntPtr raw) : base (raw) {}
@@ -47,7 +62,7 @@ public class TagMenu : Menu {
         public void PopulateFlat (Category cat, Gtk.Menu parent)
 	{
 		foreach (Tag t in cat.Children) {
-			TagItem item = new TagItem (t);
+			TagItem item = TagItem.IndentedItem (t);
 			parent.Append (item);
 			item.ShowAll ();
 

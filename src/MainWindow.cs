@@ -1055,13 +1055,14 @@ public class MainWindow {
 	public void HandleCreateNewTagCommand (object sender, EventArgs args)
 	{
 		TagCommands.Create command = new TagCommands.Create (db.Tags, main_window);
-		command.Execute (TagCommands.TagType.Tag);
+		command.Execute (TagCommands.TagType.Tag, tag_selection_widget.TagHighlight ());
+		
 	}
 
 	public void HandleCreateNewCategoryCommand (object sender, EventArgs args)
 	{
 		TagCommands.Create command = new TagCommands.Create (db.Tags, main_window);
-		command.Execute (TagCommands.TagType.Category);
+		command.Execute (TagCommands.TagType.Category, tag_selection_widget.TagHighlight ());
 	}
 
 	public void HandleAttachTagCommand (object obj, EventArgs args)

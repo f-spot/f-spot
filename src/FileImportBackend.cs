@@ -124,6 +124,10 @@ public class FileImportBackend : ImportBackend {
 			throw new Exception ("Not doing anything");
 
 		file_paths = null;
+
+		foreach (Photo p in imported_photos) {
+			FSpot.ThumbnailGenerator.Default.Request (p.DefaultVersionPath, 0, 256, 256);
+		}
 		imported_photos = null;
 		count = 0;
 	}

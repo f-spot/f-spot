@@ -47,20 +47,8 @@ public class TagCommands {
 				category_option_menu.Sensitive = false;
 				menu.Append (item);
 			} else {
-				foreach (Category category in categories) {
-					StringBuilder label_builder = new StringBuilder ();
-
-					for (Category parent = category.Category; 
-					     parent != tag_store.RootCategory;
-					     parent = parent.Category)
-						label_builder.Append ("  ");
-
-					label_builder.Append (category.Name);
-
-					// FIXME escape underscores.
-					MenuItem item = new MenuItem (label_builder.ToString ());
-					menu.Append (item);
-				}
+				foreach (Category category in categories)
+					menu.Append (TagMenu.TagItem.IndentedItem (category));
 
 				category_option_menu.Sensitive = true;
 			}
@@ -101,9 +89,38 @@ public class TagCommands {
 			Update ();
 		}
 
-		public bool Execute (TagType type)
+		private Category Category {
+			get {
+				if (categories.Count == 0)
+					return tag_store.RootCategory;
+				else
+					return categories [category_option_menu.History] as Category;
+			}
+			set {
+				if ((value != null) && (categories.Count > 0)) {
+					//System.Console.WriteLine("TagCreateCommand.set_Category(" + value.Name + ")");
+					for (int i = 0; i < categories.Count; i++) {
+						Category category = (Category)categories[i];
+						// should there be an equals type method?
+						if (value.Id == category.Id) {
+							category_option_menu.SetHistory((uint)i);
+							return;
+						}
+					}	
+				}
+			}
+		}
+		public bool Execute (TagType type, Tag [] selection)
 		{
 			this.CreateDialog ("create_tag_dialog");
+
+			Category default_category = null;
+			if (selection.Length > 0) {
+				if (selection [0] is Category)
+					default_category = (Category) selection [0];
+				else
+					default_category = selection [0].Category;
+			}
 
 			this.Dialog.DefaultResponse = ResponseType.Ok;
 
@@ -119,6 +136,7 @@ public class TagCommands {
 			}
 
 			PopulateCategoryOptionMenu ();
+			this.Category = default_category;
 			Update ();
 
 			ResponseType response = (ResponseType) this.Dialog.Run ();
@@ -127,12 +145,7 @@ public class TagCommands {
 
 			if (response == ResponseType.Ok) {
 				try {
-					Category parent_category;
-
-					if (categories.Count == 0)
-						parent_category = tag_store.RootCategory;
-					else
-						parent_category = categories [category_option_menu.History] as Category;
+					Category parent_category = Category;
 
 					if (type == TagType.Category)
 						tag_store.CreateCategory (parent_category, tag_name_entry.Text);
