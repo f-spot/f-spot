@@ -21,6 +21,11 @@ public class ImportCommand {
 		Gtk.Image [] image_widgets;
 
 		int position;
+		
+		/*
+		 * This controls whether or wraps as new photos are added.
+		 */
+		public bool Scroll = false;
 
 		public PhotoGrid () : base (NUM_ROWS, NUM_COLUMNS, true)
 		{
@@ -76,10 +81,13 @@ public class ImportCommand {
 									  Gdk.InterpType.Bilinear);
 			}
 
-			ScrollIfNeeded ();
+			position = (position + 1) % (NUM_COLUMNS * NUM_ROWS);
+			if (Scroll)
+				ScrollIfNeeded ();
 
 			image_widgets [position].Pixbuf = scaled_thumbnail;
-			position ++;
+			if (Scroll)
+				position ++;
 		}
 	}
 
@@ -188,6 +196,10 @@ public class ImportCommand {
 		return DoImport (new FileImportBackend (store, paths, true));
 	}
 
+	public int ImportFromPaths (PhotoStore store, string [] paths)
+	{
+		return DoImport (new FileImportBackend (store, paths, true));
+	}
 
 #if TEST_IMPORT_COMMAND
 

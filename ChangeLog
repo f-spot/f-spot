@@ -1,3 +1,9 @@
+2004-06-11  Larry Ewing  <lewing@ximian.com>
+
+	* src/ImportCommand.cs: add a Scroll property to control the
+	scrolling behavior as new photos are added.  Based on a patch from
+	Miguel.
+
 2004-06-10  Larry Ewing  <lewing@ximian.com>
 	
 	* src/Util.cs: add ToLocalPaths method.
