@@ -1,5 +1,7 @@
 2005-01-25  Larry Ewing  <lewing@novell.com>
 
+	* src/ImageView.cs: pass the cms transform as a handleref.
+
 	* src/Cms.cs: use handleref not just IntPtr, clean up the
 	finalizer.
 

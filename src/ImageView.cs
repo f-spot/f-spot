@@ -178,7 +178,7 @@ public class ImageView : Layout {
 	}
 
 	[DllImport ("libfspoteog")]
-	static extern void image_view_set_display_transform (IntPtr view, IntPtr transform);
+	static extern void image_view_set_display_transform (IntPtr view, HandleRef transform);
 
 	public Cms.Transform Transform {
 		set {
@@ -186,7 +186,7 @@ public class ImageView : Layout {
 			if (value != null)
 				image_view_set_display_transform (Handle, transform.Handle);
 			else 
-				image_view_set_display_transform (Handle, IntPtr.Zero);
+				image_view_set_display_transform (Handle, new HandleRef (value, IntPtr.Zero));
 		}
 		get {
 			return transform;
