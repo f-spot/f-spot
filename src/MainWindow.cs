@@ -880,15 +880,13 @@ public class MainWindow {
 	public void HandleCreateNewTagCommand (object sender, EventArgs args)
 	{
 		TagCommands.Create command = new TagCommands.Create (db.Tags, main_window);
-		if (command.Execute (TagCommands.TagType.Tag))
-			tag_selection_widget.Update ();
+		command.Execute (TagCommands.TagType.Tag);
 	}
 
 	public void HandleCreateNewCategoryCommand (object sender, EventArgs args)
 	{
 		TagCommands.Create command = new TagCommands.Create (db.Tags, main_window);
-		if (command.Execute (TagCommands.TagType.Category))
-			tag_selection_widget.Update ();
+		command.Execute (TagCommands.TagType.Category);
 	}
 
 	public void HandleAttachTagCommand (object obj, EventArgs args)
@@ -920,8 +918,7 @@ public class MainWindow {
 			return;
 		
 		TagCommands.Edit command = new TagCommands.Edit (db, main_window);
-		if (command.Execute (tags [0]))
-			tag_selection_widget.Update ();
+		command.Execute (tags [0]);
 	}
 
 	void HandleAdjustColor (object sender, EventArgs args)
@@ -1229,7 +1226,6 @@ public class MainWindow {
 		Tag [] tags = this.tag_selection_widget.TagHighlight ();
 		
 		db.Photos.Remove (tags);
-		tag_selection_widget.Update ();
 		icon_view.QueueDraw ();
 	}
 

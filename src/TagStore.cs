@@ -172,9 +172,16 @@ public class Category : Tag {
 	}
 }
 
+public delegate void TagCreatedHandler(Tag t);
+public delegate void TagChangedHandler(Tag t);
+public delegate void TagDeletedHandler(Tag t);
 
 public class TagStore : DbStore {
 
+	public event TagCreatedHandler TagCreated;
+	public event TagChangedHandler TagChanged;
+	public event TagDeletedHandler TagDeleted;
+	
 	Category root_category;
 	public Category RootCategory {
 		get {
@@ -364,7 +371,7 @@ public class TagStore : DbStore {
 
 		Tag tag = new Tag (category, id, name);
 		AddToCache (tag);
-
+		TagCreated(tag);		
 		return tag;
 	}
 
@@ -377,7 +384,7 @@ public class TagStore : DbStore {
 
 		Category new_category = new Category (parent_category, id, name);
 		AddToCache (new_category);
-
+		TagCreated(new_category);
 		return new_category;
 	}
 
@@ -410,6 +417,7 @@ public class TagStore : DbStore {
 		command.ExecuteNonQuery ();
 
 		command.Dispose ();
+		TagDeleted((Tag)item);
 	}
 
 
@@ -447,6 +455,8 @@ public class TagStore : DbStore {
 		command.ExecuteNonQuery ();
 
 		command.Dispose ();
+		
+		TagChanged(tag);
 	}
 
 
