@@ -5878,7 +5878,7 @@ Photo Details</property>
 			  <property name="spacing">6</property>
 
 			  <child>
-			    <widget class="GtkHBox" id="hbox38">
+			    <widget class="GtkHBox" id="hbox45">
 			      <property name="visible">True</property>
 			      <property name="homogeneous">False</property>
 			      <property name="spacing">0</property>
@@ -5887,33 +5887,14 @@ Photo Details</property>
 				<widget class="GtkCheckButton" id="scale_check">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">Scale images to no larger than: </property>
+				  <property name="label" translatable="yes">Resize to: </property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>
 				  <property name="active">False</property>
 				  <property name="inconsistent">False</property>
 				  <property name="draw_indicator">True</property>
-				</widget>
-				<packing>
-				  <property name="padding">0</property>
-				  <property name="expand">False</property>
-				  <property name="fill">True</property>
-				</packing>
-			      </child>
-
-			      <child>
-				<widget class="GtkEntry" id="width_entry">
-				  <property name="visible">True</property>
-				  <property name="can_focus">True</property>
-				  <property name="editable">True</property>
-				  <property name="visibility">True</property>
-				  <property name="max_length">3</property>
-				  <property name="text" translatable="yes"></property>
-				  <property name="has_frame">True</property>
-				  <property name="invisible_char">*</property>
-				  <property name="activates_default">False</property>
-				  <property name="width_chars">5</property>
+				  <signal name="toggled" handler="HandleSizeActive" last_modification_time="Sat, 12 Feb 2005 10:29:48 GMT"/>
 				</widget>
 				<packing>
 				  <property name="padding">0</property>
@@ -5923,9 +5904,28 @@ Photo Details</property>
 			      </child>
 
 			      <child>
-				<widget class="GtkLabel" id="label93">
+				<widget class="GtkSpinButton" id="size_spin">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">x</property>
+				  <property name="can_focus">True</property>
+				  <property name="climb_rate">1</property>
+				  <property name="digits">0</property>
+				  <property name="numeric">False</property>
+				  <property name="update_policy">GTK_UPDATE_ALWAYS</property>
+				  <property name="snap_to_ticks">False</property>
+				  <property name="wrap">False</property>
+				  <property name="adjustment">400 0 10000 1 10 10</property>
+				</widget>
+				<packing>
+				  <property name="padding">0</property>
+				  <property name="expand">False</property>
+				  <property name="fill">False</property>
+				</packing>
+			      </child>
+
+			      <child>
+				<widget class="GtkLabel" id="label136">
+				  <property name="visible">True</property>
+				  <property name="label" translatable="yes">pixels</property>
 				  <property name="use_underline">False</property>
 				  <property name="use_markup">False</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -5944,23 +5944,7 @@ Photo Details</property>
 			      </child>
 
 			      <child>
-				<widget class="GtkEntry" id="height_entry">
-				  <property name="visible">True</property>
-				  <property name="can_focus">True</property>
-				  <property name="editable">True</property>
-				  <property name="visibility">True</property>
-				  <property name="max_length">0</property>
-				  <property name="text" translatable="yes"></property>
-				  <property name="has_frame">True</property>
-				  <property name="invisible_char">*</property>
-				  <property name="activates_default">False</property>
-				  <property name="width_chars">5</property>
-				</widget>
-				<packing>
-				  <property name="padding">0</property>
-				  <property name="expand">False</property>
-				  <property name="fill">False</property>
-				</packing>
+				<placeholder/>
 			      </child>
 			    </widget>
 			    <packing>
@@ -5980,7 +5964,7 @@ Photo Details</property>
 				<widget class="GtkCheckButton" id="meta_check">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">Strip Image Metadata</property>
+				  <property name="label" translatable="yes">Strip metadata</property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>
@@ -5999,7 +5983,7 @@ Photo Details</property>
 				<widget class="GtkCheckButton" id="tag_check">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">Export Tags and Categories</property>
+				  <property name="label" translatable="yes">Export tags and categories</property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>
@@ -8806,33 +8790,14 @@ Photo Details</property>
 				<widget class="GtkCheckButton" id="scale_check">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">Scale images to no larger than: </property>
+				  <property name="label" translatable="yes">Resize to: </property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>
 				  <property name="active">False</property>
-				  <property name="inconsistent">True</property>
+				  <property name="inconsistent">False</property>
 				  <property name="draw_indicator">True</property>
-				</widget>
-				<packing>
-				  <property name="padding">0</property>
-				  <property name="expand">False</property>
-				  <property name="fill">True</property>
-				</packing>
-			      </child>
-
-			      <child>
-				<widget class="GtkEntry" id="width_entry">
-				  <property name="visible">True</property>
-				  <property name="can_focus">True</property>
-				  <property name="editable">True</property>
-				  <property name="visibility">True</property>
-				  <property name="max_length">3</property>
-				  <property name="text" translatable="yes"></property>
-				  <property name="has_frame">True</property>
-				  <property name="invisible_char">*</property>
-				  <property name="activates_default">False</property>
-				  <property name="width_chars">5</property>
+				  <signal name="toggled" handler="HandleSizeActive" last_modification_time="Sat, 12 Feb 2005 10:29:48 GMT"/>
 				</widget>
 				<packing>
 				  <property name="padding">0</property>
@@ -8842,9 +8807,28 @@ Photo Details</property>
 			      </child>
 
 			      <child>
-				<widget class="GtkLabel" id="label132">
+				<widget class="GtkSpinButton" id="size_spin">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">x</property>
+				  <property name="can_focus">True</property>
+				  <property name="climb_rate">1</property>
+				  <property name="digits">0</property>
+				  <property name="numeric">False</property>
+				  <property name="update_policy">GTK_UPDATE_ALWAYS</property>
+				  <property name="snap_to_ticks">False</property>
+				  <property name="wrap">False</property>
+				  <property name="adjustment">400 0 10000 1 10 10</property>
+				</widget>
+				<packing>
+				  <property name="padding">0</property>
+				  <property name="expand">False</property>
+				  <property name="fill">False</property>
+				</packing>
+			      </child>
+
+			      <child>
+				<widget class="GtkLabel" id="label135">
+				  <property name="visible">True</property>
+				  <property name="label" translatable="yes">pixels</property>
 				  <property name="use_underline">False</property>
 				  <property name="use_markup">False</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -8863,23 +8847,7 @@ Photo Details</property>
 			      </child>
 
 			      <child>
-				<widget class="GtkEntry" id="height_entry">
-				  <property name="visible">True</property>
-				  <property name="can_focus">True</property>
-				  <property name="editable">True</property>
-				  <property name="visibility">True</property>
-				  <property name="max_length">0</property>
-				  <property name="text" translatable="yes"></property>
-				  <property name="has_frame">True</property>
-				  <property name="invisible_char">*</property>
-				  <property name="activates_default">False</property>
-				  <property name="width_chars">5</property>
-				</widget>
-				<packing>
-				  <property name="padding">0</property>
-				  <property name="expand">False</property>
-				  <property name="fill">False</property>
-				</packing>
+				<placeholder/>
 			      </child>
 			    </widget>
 			    <packing>

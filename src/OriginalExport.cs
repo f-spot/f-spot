@@ -39,13 +39,16 @@ namespace FSpot {
 		[Glade.Widget] Gtk.CheckButton scale_check;
 		[Glade.Widget] Gtk.CheckButton open_check;
 
-		[Glade.Widget] Gtk.Entry width_entry;
-		[Glade.Widget] Gtk.Entry height_entry;
+		[Glade.Widget] Gtk.SpinButton size_spin;
 
 		Gnome.Vfs.Uri dest;
 		
 		int photo_index;
 		bool open;
+		bool scale;
+
+		int size;
+		
 		string gallery_name = "web-gallery";
 		// FIME this needs to be a real temp directory
 		string gallery_path = Path.Combine (Path.GetTempPath (), "f-spot-original-" + System.DateTime.Now.Ticks.ToString ());
@@ -88,10 +91,16 @@ namespace FSpot {
 			Dialog.TransientFor = null;
 
 			thumb_scrolledwindow.Add (view);
+			HandleSizeActive (null, null);
 			Dialog.ShowAll ();
 
 			//LoadHistory ();
 			Dialog.Response += HandleResponse;
+		}
+
+		public void HandleSizeActive (object sender, System.EventArgs args)
+		{
+			size_spin.Sensitive = scale_check.Active;
 		}
 
 		public Gtk.Dialog Dialog {
@@ -204,6 +213,10 @@ namespace FSpot {
 
 			dest = new Gnome.Vfs.Uri (uri_entry.Text);
 			open = open_check.Active;
+			scale = scale_check.Active;
+
+			if (scale)
+				size = size_spin.ValueAsInt;
 
 			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Upload));
 			command_thread.Name = Mono.Posix.Catalog.GetString ("Transfering Pictures");

@@ -1,6 +1,16 @@
 2005-02-12  Larry Ewing  <lewing@novell.com>
 
-	* src/f-spot.glade: hook up the ui for the scaling logic.
+	* src/f-spot.glade: rework the ui for original and flickr export.
+
+	* src/VfsExport.cs: refactor a little.
+
+	* src/FlickrExport.cs: add scaling logic to upload.
+
+	* src/FlickrRemote.cs: add sclaing logic.
+
+	* src/PixbufUtils.cs: move the scaling code here.
+
+	* src/VfsExport.cs: hook up the ui for the scaling logic.
 
 	* src/f-spot.glade: change the scaling option parameters.
 

@@ -9,8 +9,9 @@ namespace FSpot {
 		[Glade.Widget] Gtk.CheckButton open_check;
 
 		[Glade.Widget] Gtk.Entry email_entry;
-		[Glade.Widget] Gtk.Entry width_entry;
-		[Glade.Widget] Gtk.Entry height_entry;
+
+		[Glade.Widget] Gtk.SpinButton size_spin;
+
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
 		
 		System.Threading.Thread command_thread;
@@ -18,8 +19,11 @@ namespace FSpot {
 		ProgressItem progress_item;
 		
 		bool open;
+		bool scale;
 
 		int photo_index;
+		int size;
+
 		FlickrRemote fr = new FlickrRemote ();
 
 		public FlickrExport (IPhotoCollection selection)
@@ -36,9 +40,15 @@ namespace FSpot {
 			Dialog.TransientFor = null;
 
 			thumb_scrolledwindow.Add (view);
+			HandleSizeActive (null, null);
 
 			Dialog.ShowAll ();
 			Dialog.Response += HandleResponse;
+		}
+
+		public void HandleSizeActive (object sender, System.EventArgs args)
+		{
+			size_spin.Sensitive = scale_check.Active;
 		}
 
 		private string GetPassword (string email) 
@@ -84,7 +94,7 @@ namespace FSpot {
 					progress_dialog.Fraction = photo_index / (double)selection.Photos.Length;
 					photo_index++;
 					progress_dialog.ProgressText = System.String.Format (Mono.Posix.Catalog.GetString ("{0} of {1}"), photo_index, selection.Photos.Length);
-					string id = fr.Upload (photo);
+					string id = fr.Upload (photo, scale, size);
 					ids.Add (id);
 					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Done Sending Photos");
 					progress_dialog.Fraction = 1.0;
@@ -114,7 +124,10 @@ namespace FSpot {
 			
 			fr.ExportTags = tag_check.Active;
 			open = open_check.Active;
-			
+			scale = scale_check.Active;
+			if (scale)
+				size = size_spin.ValueAsInt;
+
 			if (Login ()) {
 				command_thread = new  System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
 				command_thread.Name = Mono.Posix.Catalog.GetString ("Uploading Pictures");

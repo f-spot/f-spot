@@ -34,42 +34,60 @@ public class FlickrRemote {
 
 	public string Upload (Photo photo)
 	{
+		return Upload (photo, false, 0);
+	}
+	
+	public string Upload (Photo photo, bool scale, int size)
+	{
 		if (email == null || passwd == null)
 			throw new Exception ("Must Login First");
-
+		
 		// FIXME flickr needs rotation
 
-		FormClient client = new FormClient ();
-		client.Add ("email", email);
-		client.Add ("password", passwd);
-		client.Add ("photo", new FileInfo (photo.DefaultVersionPath));
-		if (photo.Description != null) {
-			client.Add ("description", photo.Description);
-		}
-		if (ExportTags && photo.Tags != null) {
-			StringBuilder taglist = new StringBuilder ();
-
-			foreach (Tag t in photo.Tags) {
-				taglist.Append (t.Name + " ");
-			}
-			
-			client.Add ("tags", taglist.ToString ());
-		}
-
+		FileInfo file = null;
 		string error_verbose;
 		int error_value;
 		try {
+			FormClient client = new FormClient ();
+			client.Add ("email", email);
+			client.Add ("password", passwd);
+			
+			string path = photo.DefaultVersionPath;
+			file = new FileInfo (path);
+			
+			if (scale) {
+				// we set the title here because we are making a temporary image.
+				client.Add ("title", file.Name);
+				path = PixbufUtils.Resize (path, size, true);
+				file = new FileInfo (path);
+			}
+			
+			client.Add ("photo", file);
+			if (photo.Description != null) {
+				client.Add ("description", photo.Description);
+			}
+			
+			if (ExportTags && photo.Tags != null) {
+				StringBuilder taglist = new StringBuilder ();
+				
+				foreach (Tag t in photo.Tags) {
+					taglist.Append (t.Name + " ");
+				}
+				
+				client.Add ("tags", taglist.ToString ());
+			}
+			
 			Stream response = client.Submit (UploadUrl, this.Progress).GetResponseStream ();
-
+			
 			System.Xml.XmlDocument doc = new System.Xml.XmlDocument ();
 			doc.Load (response);
-		
+			
 			System.Xml.XmlNode node = doc.SelectSingleNode ("//uploader/status");
 			string status = node.ChildNodes [0].Value;
 			if (status == "ok") {
 				node = node.NextSibling;
 				string photoid = node.ChildNodes [0].Value;
-
+				
 				System.Console.WriteLine ("Successful upload: photoid={0}", photoid);
 				return photoid;
 			} else {
@@ -82,8 +100,13 @@ public class FlickrRemote {
 				error_verbose = node.ChildNodes [0].Value;
 			}
 		} catch (Exception e) {
-			throw new System.Exception ("Error parsing flickr response", e);
+			// FIXME we need to distinguish between file IO errors and xml errors here
+			throw new System.Exception ("Error while uploading", e);
+		} finally {
+			if (file != null && scale)
+				file.Delete ();
 		}
+
 		throw new System.Exception (error_verbose);
 	}
 

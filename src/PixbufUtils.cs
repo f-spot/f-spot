@@ -282,6 +282,21 @@ class PixbufUtils {
 		return scaled;
 	}
 
+	public static string Resize (string orig_path, int size, bool copy_meta)
+	{
+		Exif.ExifData exif_data;
+		if (copy_meta)
+			exif_data = new Exif.ExifData (orig_path);
+		else 
+			exif_data = new Exif.ExifData ();
+
+		string version_path = System.IO.Path.GetTempFileName ();
+		Gdk.Pixbuf image = PixbufUtils.LoadAtMaxSize (orig_path, size, size);
+		PixbufUtils.SaveJpeg (image, version_path, 95, exif_data);
+
+		return version_path;
+	}
+
 	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct FPixbufJpegMarker {
 		public int type;

@@ -86,12 +86,8 @@ namespace FSpot {
 				if (scale){
 					progress_dialog.Message = System.String.Format (
 					        Mono.Posix.Catalog.GetString ("Scaling picture \"{0}\""), photo.Name);
-					
-					string orig_path = photo.DefaultVersionPath;
-					Exif.ExifData exif_data = new Exif.ExifData (orig_path);
-					Gdk.Pixbuf image = PixbufUtils.LoadAtMaxSize (orig_path, size, size);
-					string version_path = System.IO.Path.GetTempFileName ();
-					PixbufUtils.SaveJpeg (image, version_path, 95, exif_data);
+
+					string version_path = PixbufUtils.Resize (photo.DefaultVersionPath, size, true);
 					source = new Gnome.Vfs.Uri (Gnome.Vfs.Uri.GetUriFromLocalPath (version_path));
 				}
 				
