@@ -183,7 +183,10 @@ public class ImageView : Layout {
 	public Cms.Transform Transform {
 		set {
 			this.transform = value;
-			image_view_set_display_transform (Handle, transform.Handle);
+			if (value != null)
+				image_view_set_display_transform (Handle, transform.Handle);
+			else 
+				image_view_set_display_transform (Handle, IntPtr.Zero);
 		}
 		get {
 			return transform;
