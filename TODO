@@ -3,6 +3,12 @@ tasks for those who want to pick them up.
 
 Basic functionality:
 
+	- GPhoto (http://www.gphoto.org) integration.  It should be
+          possible to just plug the camera in and have F-Spot import
+          the pictures from it.  Additionally, it would be nice to
+          have support for the new Hardware Abstraction Layer
+          (http://ometer.com/hardware.html).
+
 	- Drag and dropping of tags onto the pictures.  I have started
           work on this, but the GTK# dnd bindings are slightly broken
           right now, so those have to be fixed first.
