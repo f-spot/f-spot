@@ -1,4 +1,14 @@
+2005-02-06  David Sedeño <david@alderia.com>
+
+	* src/f-spot.glade: New import dialog.
+
+	* src/ImportCommand.cs: Handle the new import dialog.
+
+	* src/FileImportBackend.cs: Add tag to the new imported photo.
+
 2005-02-13  Larry Ewing  <lewing@novell.com>
+
+	* src/OriginalExport.cs: add a some more status.
 
 	* src/PixbufUtils.cs: add a scale to max size upscale bool and
 	overload.  Remove buggy double copy.

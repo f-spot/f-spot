@@ -92,6 +92,14 @@ public class ImportCommand {
 	}
 
 
+	[Glade.Widget] Gtk.Dialog import_dialog; 
+	[Glade.Widget] Gtk.Entry import_folder_entry;
+	[Glade.Widget] Gtk.OptionMenu tag_option_menu;
+	[Glade.Widget] Gtk.Image tag_image;
+	[Glade.Widget] Gtk.Label tag_label;
+	
+	Tag tag_selected;
+
 	Gtk.Dialog dialog;
 	PhotoGrid grid;
 	ProgressBar progress_bar;
@@ -150,7 +158,7 @@ public class ImportCommand {
 				break;
 
 			ongoing = importer.Step (out photo, out thumbnail, out count);
-
+	
 			if (thumbnail == null){
 				Console.WriteLine ("Could not import file");
 				continue;
@@ -186,32 +194,70 @@ public class ImportCommand {
 			return import_path;
 		}
 	}
-
-	public int ImportFromFile (PhotoStore store, string path)
-	{
+	
+	public void HandleImportBrowse (object o, EventArgs args) {
+	
 		CompatFileChooserDialog file_selector =
 			new CompatFileChooserDialog ("Import", main_window,
 						     CompatFileChooserDialog.Action.SelectFolder);
 		file_selector.SelectMultiple = true;
+
 		
-		if (path != null)
-			file_selector.Filename = path;
-		
+		file_selector.Filename = import_folder_entry.Text;
 		int response = file_selector.Run ();
 
 		if ((ResponseType) response == ResponseType.Cancel) {
 			file_selector.Destroy ();
-			return 0;
+			return;
 		}
 
-
-		string [] paths = file_selector.Selections;
-		
 		import_path = file_selector.Filename;
+		import_folder_entry.Text = file_selector.Filename;
 
 		file_selector.Destroy ();
-
-		return DoImport (new FileImportBackend (store, paths, true));
+		
+	}
+	
+	public void HandleTagMenuSelected (Tag t) {
+		tag_selected = t;
+		tag_image.Pixbuf = t.Icon;
+		tag_label.Text = t.Name;
+	
+	}
+	
+	public int ImportFromFile (PhotoStore store, string path)
+	{
+	
+		Glade.XML xml = new Glade.XML (null, "f-spot.glade", "import_dialog", null);
+		xml.Autoconnect (this);
+		
+		Gtk.Menu menu = new Gtk.Menu();
+		MenuItem attach_item = new MenuItem (Mono.Posix.Catalog.GetString ("Select Tag"));
+		TagMenu tagmenu = new TagMenu (attach_item, MainWindow.Toplevel.Database.Tags);
+		
+		tagmenu.TagSelected += HandleTagMenuSelected;
+		attach_item.ShowAll();
+		menu.Append (attach_item);
+		
+		tag_option_menu.Menu = menu;
+		
+		tag_selected = null;
+				
+		if (path != null)
+			import_folder_entry.Text = path;
+		else 
+			import_folder_entry.Text = System.Environment.GetEnvironmentVariable ("HOME");
+						
+		ResponseType response = (ResponseType) import_dialog.Run ();
+		
+		if (response == ResponseType.Ok) {
+			string [] pathimport =  {import_folder_entry.Text};
+			import_dialog.Destroy();
+			return DoImport (new FileImportBackend (store, pathimport, true, tag_selected));
+		} else {
+			import_dialog.Destroy();
+			return 0;
+		}
 	}
 
 	public int ImportFromPaths (PhotoStore store, string [] paths)

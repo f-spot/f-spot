@@ -128,6 +128,9 @@ namespace FSpot {
 				if (dest.IsLocal)
 					gallery_path = Gnome.Vfs.Uri.GetLocalPathFromUri (dest.ToString ());
 
+				progress_dialog.Message = Mono.Posix.Catalog.GetString ("Building Gallery");
+				progress_dialog.Fraction = 1.0;
+
 				OriginalGallery gallery = new OriginalGallery(selection, gallery_path, gallery_name);
 
 				if (scale)
@@ -149,6 +152,7 @@ namespace FSpot {
 				}
 
 				if (result == Gnome.Vfs.Result.Ok) {
+
 					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Done Sending Photos");
 					progress_dialog.Fraction = 1.0;
 					progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Transfer Complete");

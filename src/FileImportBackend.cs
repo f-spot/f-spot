@@ -8,6 +8,7 @@ public class FileImportBackend : ImportBackend {
 	PhotoStore store;
 	bool recurse;
 	string [] base_paths;
+	Tag tag;
 
 	int count;
 
@@ -90,6 +91,12 @@ public class FileImportBackend : ImportBackend {
 
 		// FIXME Need to get the EXIF info etc.
 		photo = store.Create (file_paths [this.count] as string, out thumbnail);
+		
+		if (tag != null) {
+			photo.AddTag (tag);
+			store.Commit(photo);
+		}
+		
 		imported_photos.Add (photo);
 
 		this.count ++;
@@ -124,6 +131,16 @@ public class FileImportBackend : ImportBackend {
 		this.store = store;
 		this.base_paths = base_paths;
 		this.recurse = recurse;
+		this.tag = null;
+	
+	}
+
+	public FileImportBackend (PhotoStore store, string [] base_paths, bool recurse, Tag tag)
+	{
+		this.store = store;
+		this.base_paths = base_paths;
+		this.recurse = recurse;
+		this.tag = tag;
 	}
 
 #if TEST_FILE_IMPORT_BACKEND
