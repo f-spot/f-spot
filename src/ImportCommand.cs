@@ -185,7 +185,7 @@ public class ImportCommand {
 		CompatFileChooserDialog file_selector =
 			new CompatFileChooserDialog ("Import", main_window,
 						     CompatFileChooserDialog.Action.SelectFolder);
-		file_selector.SelectMultiple = false;
+		file_selector.SelectMultiple = true;
 		
 		int response = file_selector.Run ();
 
@@ -195,9 +195,9 @@ public class ImportCommand {
 		}
 
 
-		//string [] paths = file_selector.Selections;
-		string [] paths = new string [1];
-		paths[0] = file_selector.Filename;
+		string [] paths = file_selector.Selections;
+		//string [] paths = new string [1];
+		//paths[0] = file_selector.Filename;
 		file_selector.Destroy ();
 
 		return DoImport (new FileImportBackend (store, paths, true));

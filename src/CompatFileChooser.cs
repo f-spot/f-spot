@@ -72,7 +72,7 @@ public class CompatFileChooserDialog {
 		if (ptr == IntPtr.Zero)
 		    return null;
 
-		GLib.SList slist = new GLib.SList (ptr);
+		GLib.SList slist = new GLib.SList (ptr, typeof (string));
 
 		string [] paths = new string [slist.Count];
 		for (int i = 0; i < slist.Count; i ++)
