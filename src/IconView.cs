@@ -492,7 +492,7 @@ public class IconView : Gtk.Layout {
 				if (width == thumbnail.Width) {
 					temp_thumbnail = thumbnail;
 				} else {
-#if true
+#if false
 					if (width < thumbnail.Width && height < thumbnail.Height) {
 						temp_thumbnail = Gnome.Thumbnail.ScaleDownPixbuf (thumbnail, width, height);
 					} else
