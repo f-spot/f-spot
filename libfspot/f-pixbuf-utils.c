@@ -196,7 +196,6 @@ f_pixbuf_copy_rotate_90 (GdkPixbuf *src,
 	return dest;
 }
 
-
 /* Returns a copy of pixbuf mirrored and or flipped.  TO do a 180 degree
    rotations set both mirror and flipped TRUE if mirror and flip are FALSE,
    result is a simple copy.  */
@@ -354,4 +353,141 @@ f_pixbuf_save_jpeg_atomic  (GdkPixbuf   *pixbuf,
 	g_free (quality_string);
 	g_free (tmp_file_name);
 	return TRUE;
+}
+
+static void 
+rotate_line (guchar *sbuf, guchar *dstart, int length, int stride, int channels, gboolean mirror)
+{
+	guchar *dbuf = dstart;
+	int offset = stride - channels;
+
+	if (mirror) {
+		dbuf += (length - 1) * stride;	
+		offset = - stride - channels;
+	}   
+
+	if (channels == 3)
+		while (length--) {
+			*(dbuf++) = *(sbuf++);
+			*(dbuf++) = *(sbuf++);
+			*(dbuf++) = *(sbuf++);
+			dbuf += offset;
+		}
+	else
+		while (length--) {
+			*(dbuf++) = *(sbuf++);
+			*(dbuf++) = *(sbuf++);
+			*(dbuf++) = *(sbuf++);
+			*(dbuf++) = *(sbuf++);
+			dbuf += offset;
+		}
+}
+
+static void
+copy_line (guchar *sbuf, guchar *dbuf, int length, int channels, gboolean mirror)
+{
+	if (!mirror) {
+		memcpy (dbuf, sbuf, length * channels);
+	} else {
+		dbuf += (length - 1) * channels;
+		if (channels == 3)
+			while (length --) {
+				*(dbuf++) = *(sbuf++);
+				*(dbuf++) = *(sbuf++);
+				*(dbuf++) = *(sbuf++);	
+				dbuf -= 6;
+			}
+		else 
+			while (length --) {
+				*(dbuf++) = *(sbuf++);
+				*(dbuf++) = *(sbuf++);
+				*(dbuf++) = *(sbuf++);	
+				*(dbuf++) = *(sbuf++);	
+				dbuf -= 8;
+			}				
+	}	
+}
+
+void
+f_pixbuf_copy_with_orientation (GdkPixbuf *src, GdkPixbuf *dest, int orientation)
+{
+	gboolean rotate = FALSE;
+	gboolean flip = FALSE;
+	gboolean mirror = FALSE;
+	
+	int sw = gdk_pixbuf_get_width (src);
+	int sh = gdk_pixbuf_get_height (src);
+	int dw = gdk_pixbuf_get_width (dest);
+	int dh = gdk_pixbuf_get_height (dest);
+	
+
+	int channels = gdk_pixbuf_get_n_channels (src);
+	
+	int dstride = gdk_pixbuf_get_rowstride (dest);
+	int sstride = gdk_pixbuf_get_rowstride (src);
+	
+	guchar *sp = gdk_pixbuf_get_pixels (src);
+	guchar *dp = gdk_pixbuf_get_pixels (dest);		
+	int offset = sstride;
+
+	if (channels != gdk_pixbuf_get_n_channels (dest)) {
+		g_warning ("source and dest channels do no match");
+		return;
+	}
+	
+	switch (orientation) {
+	case 1: // TopLeft
+		break;
+	case 2: // TopRight
+		mirror = TRUE;
+		break;
+	case 3: // BottomRight
+		flip = TRUE;
+		break;
+	case 4: // BottomLeft
+		flip = TRUE;
+		mirror = TRUE;
+		break;
+		break;
+	case 5: // LeftTop
+		rotate = TRUE;
+		break;
+	case 6: // RightTop
+		mirror = TRUE;
+		rotate = TRUE;
+		break;
+	case 7: // RightBottom
+		flip = TRUE;
+		rotate = TRUE;
+		break;
+	case 8: // LeftBottom
+		flip = TRUE;
+		mirror = TRUE;
+		rotate = TRUE;
+		break;
+	}
+
+
+	if (rotate && (dh != sw || dw != sh)) {
+		g_warning ("source and destination sizes do not match orientation");
+		return;
+	}
+	
+	//g_warning ("rotate = %d, flip = %d, mirror = %d", rotate, flip, mirror);
+	if (mirror) {
+		offset = -sstride;
+		sp = sp + (sh - 1) * sstride;
+	}
+	
+	while (sh --) {
+		if (rotate) {
+			rotate_line (sp, dp, sw, dstride, channels, flip);
+			dp += channels;
+		} else {
+				
+			copy_line (sp, dp, sw, channels, flip);
+			dp += dstride;
+		}
+		sp += offset;
+	}
 }

@@ -1,5 +1,10 @@
 2005-01-13  Larry Ewing  <lewing@novell.com>
 
+	* libfspot/f-pixbuf-utils.c (f_pixbuf_copy_with_orientation): new
+	function to do the orientation transform on a pixbuf.
+
+	* src/PixbufUtils.cs: wrap the new f_pixbuf_copy_with_orientation.
+
 	* src/GalleryExport.cs: Destroy the dialog once the upload starts.
 
 	* src/TagStore.cs:
