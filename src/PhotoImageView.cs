@@ -119,20 +119,24 @@ namespace FSpot {
 				next.Fill (0x00000000);
 #endif
 #if true
-			System.Uri uri = Photo.DefaultVersionUri;
-			Gdk.Pixbuf thumb = new Gdk.Pixbuf (ThumbnailGenerator.ThumbnailPath (uri));
-			if (thumb != null && next != null)
-				thumb.Composite (next, 0, 0,
-						 next.Width, next.Height,
-						 0.0, 0.0,
-						 next.Width/(double)thumb.Width, next.Height/(double)thumb.Height,
-						 Gdk.InterpType.Bilinear, 0xff);
-
-			if (thumb != null) {
-				if (!ThumbnailGenerator.ThumbnailIsValid (thumb, uri))
-					FSpot.ThumbnailGenerator.Default.Request (uri.LocalPath, 0, 256, 256);
-
-				thumb.Dispose ();
+			try {
+				System.Uri uri = Photo.DefaultVersionUri;
+				Gdk.Pixbuf thumb = new Gdk.Pixbuf (ThumbnailGenerator.ThumbnailPath (uri));
+				if (thumb != null && next != null)
+					thumb.Composite (next, 0, 0,
+							 next.Width, next.Height,
+							 0.0, 0.0,
+							 next.Width/(double)thumb.Width, next.Height/(double)thumb.Height,
+							 Gdk.InterpType.Bilinear, 0xff);
+				
+				if (thumb != null) {
+					if (!ThumbnailGenerator.ThumbnailIsValid (thumb, uri))
+						FSpot.ThumbnailGenerator.Default.Request (uri.LocalPath, 0, 256, 256);
+					
+					thumb.Dispose ();
+				}
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e.ToString);
 			}
 #endif
 

@@ -1,5 +1,8 @@
 2005-03-08  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoImageView.cs: catch exceptions loading the thumbnail
+	and continue as usual.
+
 	* src/PixbufCache.cs: don't lookup when a thumbnail is loaded
 	simply update the entry.  Lookup can cause cache starvation.
 
