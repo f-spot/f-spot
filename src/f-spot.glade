@@ -7447,6 +7447,7 @@ Photo Details</property>
 		<widget class="GtkVPaned" id="info_vpaned">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
+		  <property name="position">258</property>
 
 		  <child>
 		    <widget class="GtkVBox" id="tag_vbox">
@@ -7480,7 +7481,7 @@ Photo Details</property>
 		    </widget>
 		    <packing>
 		      <property name="shrink">True</property>
-		      <property name="resize">False</property>
+		      <property name="resize">True</property>
 		    </packing>
 		  </child>
 
@@ -7507,23 +7508,19 @@ Photo Details</property>
 			      <child>
 				<placeholder/>
 			      </child>
-
-			      <child>
-				<placeholder/>
-			      </child>
 			    </widget>
 			  </child>
 			</widget>
 		      </child>
 		    </widget>
 		    <packing>
-		      <property name="shrink">True</property>
-		      <property name="resize">True</property>
+		      <property name="shrink">False</property>
+		      <property name="resize">False</property>
 		    </packing>
 		  </child>
 		</widget>
 		<packing>
-		  <property name="shrink">True</property>
+		  <property name="shrink">False</property>
 		  <property name="resize">False</property>
 		</packing>
 	      </child>
