@@ -337,11 +337,11 @@ public class ExifData : IDisposable {
 		// The signature of get_value changed between versions
 
 		try {
+			return Marshal.PtrToStringAnsi (_ExifEntry.exif_entry_get_value (entry));
+		} catch (System.NullReferenceException e) {
 			byte [] value = new byte [1024];
 			_ExifEntry.exif_entry_get_value (entry, value, value.Length);
 			return System.Text.Encoding.UTF8.GetString (value);
-		} catch (System.NullReferenceException e) {
-			return Marshal.PtrToStringAnsi (_ExifEntry.exif_entry_get_value (entry));
 		}
 	}
 
