@@ -1,5 +1,8 @@
 2005-02-23  Larry Ewing  <lewing@novell.com>
 
+	* src/SlideView.cs: bail out of the animation on the current frame
+	if it is taking too long.
+
 	* src/IconView.cs: clean up the preload code a little.  Do less
 	preloading but do it a little smarter.
 
