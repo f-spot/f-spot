@@ -298,12 +298,12 @@ public class TagStore : DbStore {
 		Commit (places_category);
 
 		Tag events_category = CreateCategory (RootCategory, "Events");
-		places_category.StockIconName = "f-spot-events.png";
+		events_category.StockIconName = "f-spot-events.png";
 		events_category.SortPriority = -7;
 		Commit (events_category);
 
 		Tag other_category = CreateCategory (RootCategory, "Other");
-		places_category.StockIconName = "f-spot-other.png";
+		other_category.StockIconName = "f-spot-other.png";
 		other_category.SortPriority = -6;
 		Commit (other_category);
 	}
