@@ -425,7 +425,9 @@ public class IconView : Gtk.Layout {
 				width += 2 * SELECTION_THICKNESS;
 				height += 2 * SELECTION_THICKNESS;
 			} else if (thumbnail_num == throb_cell) {
-				int scale = (int) (SELECTION_THICKNESS * (1 - Math.Cos (throb_state)/2.0));
+				double t = throb_state / (double) (throb_state_max - 1);
+				double s = 1 - Math.Cos (-2 * Math.PI * t);
+				int scale = (int) (SELECTION_THICKNESS * s);
 				dest_x -= scale;
 				dest_y -= scale;		
 				width += 2 * scale;
@@ -591,12 +593,14 @@ public class IconView : Gtk.Layout {
 	private uint throb_timer_id;
 	private int throb_cell = -1;
 	private int throb_state;
+	private const int throb_state_max = 40;
 	public void Throb (int cell_num)
 	{
 		throb_state = 0;
 		throb_cell = cell_num;
 		if (throb_timer_id == 0)
-			throb_timer_id = GLib.Timeout.Add (65, new GLib.TimeoutHandler (HandleThrobTimer));
+			throb_timer_id = GLib.Timeout.Add ((39000/throb_state_max)/100,
+							   new GLib.TimeoutHandler (HandleThrobTimer));
 
 		InvalidateCell (cell_num);
 	}
@@ -612,7 +616,7 @@ public class IconView : Gtk.Layout {
 		//Console.WriteLine ("throb out {1} {0}", throb_cell, 1 - Math.Cos (throb_state));
 		
 		InvalidateCell (throb_cell);
-		if (throb_state++ < 6) {
+		if (throb_state++ < throb_state_max) {
 			return true;
 		} else {
 			throb_cell = -1;
