@@ -67,13 +67,10 @@ namespace FSpot {
 		public static string DOCUMENT_NAME   = "Settings.Document.Name"; /* The name of the document 'Cash flow 2002', `Grandma cookie recipies' */
 		public static string PREFERED_UNIT   = "Settings.Document.PreferedUnit"; /* Abbreviation for the preferred unit cm, in,... */
 		
-
-
-
 		private Gnome.PrintJob print_job;
 		private Photo [] photos;
 
-		private void Print ()
+		private void Render ()
 		{
 			double page_width, page_height;
 			print_job.GetPageSize (out page_width, out page_height);
@@ -126,7 +123,17 @@ namespace FSpot {
 			xml.Autoconnect (this);
 
 			print_job = new Gnome.PrintJob (Gnome.PrintConfig.Default ());
-			Print ();
+
+			Render ();
+
+			int response = print_dialog.Run ();
+			
+			switch (response) {
+			case (int) Gtk.ResponseType.Ok:
+				print_job.Print ();
+				break;
+			}
+			print_dialog.Destroy ();
 		}
 	}
 }
