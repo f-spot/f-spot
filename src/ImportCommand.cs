@@ -246,7 +246,9 @@ public class ImportCommand : FSpot.GladeDialog {
 		if (response == ResponseType.Ok) {
 			string [] pathimport =  {import_folder_entry.Text};
 			this.Dialog.Destroy();
-			return DoImport (new FileImportBackend (store, pathimport, true, new Tag [] {tag_selected}));
+			
+			return DoImport (new FileImportBackend (store, pathimport, true, tag_selected != null ? new Tag [] {tag_selected} : null));
+				
 		} else {
 			this.Dialog.Destroy();
 			return 0;
