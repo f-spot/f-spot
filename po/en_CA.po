@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-15 12:34-0500\n"
+"POT-Creation-Date: 2005-02-15 13:09-0500\n"
 "PO-Revision-Date: 2005-02-15 23:54-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
@@ -209,7 +209,7 @@ msgstr "Unable to log on."
 
 #: src/FlickrExport.cs:144
 msgid ""
-"F-Spot was unable to log on to Flickr.  Make sure the setting you supplied "
+"F-Spot was unable to log on to Flickr.  Make sure the settings you supplied "
 "are correct."
 msgstr ""
 "F-Spot was unable to log on to Flickr.  Make sure the settings you supplied "
@@ -638,7 +638,7 @@ msgid "Select Files To Copy From Camera..."
 msgstr "Select Files To Copy From Camera..."
 
 #: src/f-spot.glade.h:111
-msgid "Select Tags ..."
+msgid "Select Tags..."
 msgstr "Select Tags..."
 
 #: src/f-spot.glade.h:112
@@ -933,7 +933,7 @@ msgstr "Error connecting to camera"
 
 #: src/MainWindow.cs:860
 #, csharp-format
-msgid "Recieved error \"{0}\" while connecting to camera"
+msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Received error \"{0}\" while connecting to camera"
 
 #. Translators should localize the following string
@@ -981,18 +981,20 @@ msgstr[1] "_Delete photos"
 
 #: src/MainWindow.cs:1427
 #, csharp-format
-msgid "Remove the selected photo from the catalog?"
-msgid_plural "Remove the {0} selected photos from the catalog?"
-msgstr[0] "Remove the selected photo from the catalogue?"
-msgstr[1] "Remove the {0} selected photos from the catalogue?"
+msgid "Remove the selected photo from F-Spot?"
+msgid_plural "Remove the {0} selected photos from F-Spot?"
+msgstr[0] "Remove the selected photo from F-Spot?"
+msgstr[1] "Remove the {0} selected photos from F-Spot??"
 
 #: src/MainWindow.cs:1432
 msgid ""
-"If you remove photos from the catalog all tag information will be lost. The "
-"photos remain on your computer and can be imported into f-spot again."
+"If you remove photos from the F-Spot catalog all tag information will be "
+"lost. The photos remain on your computer and can be imported into F-Spot "
+"again."
 msgstr ""
-"If you remove photos from the catalogue all tag information will be lost. "
-"The photos remain on your computer and can be imported into f-spot again."
+"If you remove photos from the F-Spot catalogue all tag information will be "
+"lost. The photos will remain on your computer and can be imported into F-Spot "
+"again."
 
 #: src/MainWindow.cs:1433
 msgid "_Remove from Catalog"
