@@ -201,11 +201,16 @@ class PixbufUtils {
 	}
 
 	static public Pixbuf LoadFromScreen () {
-		Drawable d = (Display.Default.GetScreen (0)).RootWindow;
-		int width;
-		int height;
+		Screen screen = Display.Default.GetScreen (0);
+		Drawable d = screen.RootWindow;
+		int width = screen.Width;
+		int height = screen.Height;
 		
-		d.GetSize (out width, out height);
+		//
+		// We use the screen width and height because that reflects
+		// the current resolution, the RootWindow can actually be different.
+		//
+
 		Pixbuf buf = new Pixbuf (Colorspace.Rgb, false, 8, width, height);
 		
 		return buf.GetFromDrawable (d,

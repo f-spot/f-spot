@@ -320,16 +320,20 @@ public class SlideView : Gtk.Image {
 		if (Pixbuf == null)
 			return;
 	
-		/*
-		 * The size has changed so we need to reload the images.
-		 */
+		//
+		// The size has changed so we need to reload the images.
+		//
 		Pixbuf current = this.Pixbuf;
 		if (current.Width != Allocation.Width || current.Height != Allocation.Height) {
 				bool playing = (flip_timer != 0 || transition_timer != 0);
 				
-				using (Pixbuf frame =  GetScaled (photos[current_idx])) {
-					this.FromPixbuf =  frame;
-					current.Dispose ();
+				if (current_idx < 0) {
+					this.FromPixbuf = GetScaled (this.Pixbuf);
+				} else {
+					using (Pixbuf frame =  GetScaled (photos[current_idx])) {
+						this.FromPixbuf =  frame;
+						current.Dispose ();
+					}
 				}
 				
 				Stop ();
