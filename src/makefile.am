@@ -13,6 +13,7 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/ExifData.cs			\
 	$(srcdir)/ExifUtils.cs			\
 	$(srcdir)/ExportCommand.cs		\
+	$(srcdir)/FlickrExport.cs		\
 	$(srcdir)/FlickrRemote.cs		\
 	$(srcdir)/FileImportBackend.cs		\
 	$(srcdir)/FotkiRemote.cs		\

@@ -62,7 +62,7 @@ namespace FSpot {
 				//progress_dialog.Fraction = photo_index / (double) selection.Photos.Length;
 				//progress_dialog.ProgressText = System.String.Format (Mono.Posix.Catalog.GetString ("{0} of {1}"), 
 				//						     photo_index, selection.Photos.Length);
-				Gnome.Vfs.Xfer.XferUri (source, dest, 
+				Gnome.Vfs.Xfer.XferUri (source, target, 
 							Gnome.Vfs.XferOptions.Default, 
 							Gnome.Vfs.XferErrorMode.Abort, 
 							Gnome.Vfs.XferOverwriteMode.Replace, 

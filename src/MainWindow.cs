@@ -782,17 +782,15 @@ public class MainWindow {
 		FSpot.VfsExport export = new FSpot.VfsExport (new FSpot.PhotoArray (SelectedPhotos ()));
 	}
 
-#if false 
-	void HandleExportCommand (object sender, EventArgs args)
+	void HandleExportToFlickr (object sender, EventArgs args)
 	{
-		FotkiRemote fr = new FotkiRemote ();
-		//fr.Login ("mikey@gmail.com", "joey");
-		fr.Login ("mikey", "joey");
-		foreach (Photo p in SelectedPhotos ()) {
-			fr.Upload (p);
-		}
+		FSpot.FlickrExport export = new FSpot.FlickrExport (new FSpot.PhotoArray (SelectedPhotos ()));
 	}
-#endif
+	
+	void HandleExportToFotki (object sender, EventArgs args)
+	{
+		
+	}
 
 	void HandleSendMailCommand (object sender, EventArgs args)
 	{

@@ -1,3 +1,18 @@
+2004-12-17  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: hook up the new event handlers.
+	
+	* src/makefile.am: add FlickrExport.cs to the build.
+
+	* src/VfsExport.cs: Xfer the src not the target.
+
+	* src/FlickrRemote.cs: add ExportTags setting.
+	
+	* src/FlickrExport.cs: add the start of a Flickr upload dialog.
+
+	* src/f-spot.glade: add the Flickr export dialog, fix some of the
+	other dialogs add a mockup for a combined export dialog.
+
 2004-12-16  Larry Ewing  <lewing@novell.com>
 
 	* src/GalleryExport.cs: clean up the interface a little.

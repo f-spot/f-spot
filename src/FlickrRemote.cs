@@ -14,6 +14,8 @@ public class FlickrRemote {
 	string email;
 	string passwd;
 
+	public bool ExportTags;
+
 	public void Upload (Photo photo)
 	{
 		if (email == null || passwd == null)
@@ -26,7 +28,7 @@ public class FlickrRemote {
 		if (photo.Description != null) {
 			client.Add ("description", photo.Description);
 		}
-		if (photo.Tags != null) {
+		if (ExportTags && photo.Tags != null) {
 			StringBuilder taglist = new StringBuilder ();
 
 			foreach (Tag t in photo.Tags) {
@@ -39,6 +41,7 @@ public class FlickrRemote {
 		Stream response = client.Submit (UploadUrl).GetResponseStream ();
 		StreamReader reader = new StreamReader (response, Encoding.UTF8);
 
+		// FIXME we need to parse reponse
 		Console.WriteLine (reader.ReadToEnd ());
 	}
 
