@@ -90,9 +90,9 @@ public class ColorDialog {
 		Console.WriteLine ("Saving....");
 		Photo photo = query.Photos[item];
 
-		if (photo.DefaultVersionId == Photo.OriginalVersionId) {
-			photo.DefaultVersionId = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);
-			query.Store.Commit (photo);
+		uint version = photo.DefaultVersionId;
+		if (version == Photo.OriginalVersionId) {
+			version = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);
 		}
 
 		Gdk.Pixbuf final = new Gdk.Pixbuf (Gdk.Colorspace.Rgb,
@@ -110,8 +110,12 @@ public class ColorDialog {
 					 dest_spinbutton.ValueAsInt);
 
 		try {
-			final.Savev (photo.DefaultVersionPath, "jpeg", null, null);
-			PhotoStore.GenerateThumbnail (photo.DefaultVersionPath);
+			string version_path = photo.GetVersionPath (version);
+
+			final.Savev (version_path, "jpeg", null, null);
+			PhotoStore.GenerateThumbnail (version_path);
+			photo.DefaultVersionId = version;
+			query.Commit (item);
 		} catch (GLib.GException ex) {
 			// FIXME error dialog.
 			Console.WriteLine ("error {0}", ex);

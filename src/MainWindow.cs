@@ -141,6 +141,7 @@ public class MainWindow {
 		left_vbox.PackStart (info_box, false, true, 0);
 		
 		query = new PhotoQuery (db.Photos);
+		query.ItemChanged += HandleQueryItemChanged;
 
 		group_selector = new FSpot.GroupSelector ();
 		FSpot.GroupAdaptor adaptor = new FSpot.TimeAdaptor (query);
@@ -263,6 +264,8 @@ public class MainWindow {
 		icon_view.UpdateThumbnail (num);
 		if (num == photo_view.CurrentPhoto)
 			photo_view.Update ();
+		info_box.Update ();
+		UpdateMenus ();
 	}
 		
 	//
@@ -766,10 +769,7 @@ public class MainWindow {
 		PhotoVersionCommands.Create cmd = new PhotoVersionCommands.Create ();
 
 		if (cmd.Execute (db.Photos, CurrentPhoto, main_window)) {
-			info_box.Update ();
-			photo_view.Update ();
-			icon_view.UpdateThumbnail (current_photo_idx);
-			UpdateMenus ();
+			UpdateViews (current_photo_idx);
 		}
 	}
 
@@ -778,10 +778,7 @@ public class MainWindow {
 		PhotoVersionCommands.Delete cmd = new PhotoVersionCommands.Delete ();
 
 		if (cmd.Execute (db.Photos, CurrentPhoto, main_window)) {
-			info_box.Update ();
-			photo_view.Update ();
-			icon_view.UpdateThumbnail (current_photo_idx);
-			UpdateMenus ();
+			UpdateViews (current_photo_idx);
 		}
 	}
 
@@ -805,10 +802,7 @@ public class MainWindow {
 		PhotoVersionCommands.Rename cmd = new PhotoVersionCommands.Rename ();
 
 		if (cmd.Execute (db.Photos, CurrentPhoto, main_window)) {
-			info_box.Update ();
-			photo_view.Update ();
-			icon_view.UpdateThumbnail (current_photo_idx);
-			UpdateMenus ();
+			UpdateViews (current_photo_idx);
 		}
 	}
 
@@ -1122,10 +1116,7 @@ public class MainWindow {
 		CurrentPhoto.DefaultVersionId = version_id;
 		query.Commit (current_photo_idx);
 
-		info_box.Update ();
-		photo_view.Update ();
-		icon_view.UpdateThumbnail (current_photo_idx);
-		UpdateMenus ();
+		UpdateViews (current_photo_idx);
 	}
 
 	void HandleVersionIdChanged (PhotoVersionMenu menu)
@@ -1160,6 +1151,12 @@ public class MainWindow {
 		UpdateMenus ();
 	}
 
+	void HandleQueryItemChanged (PhotoQuery query, int item)
+	{
+		Photo photo = query.Photos [item];
+		if (info_box.Photo == photo)
+			info_box.Update ();
+	}
 	//
 	// Handle Main Menu 
 

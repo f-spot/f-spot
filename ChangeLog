@@ -1,5 +1,11 @@
 2004-09-14  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: start reworking the change notification for
+	image modifications.  Hook the InfoBox update to query.ItemUpdated.
+
+	* src/ColorDialog.cs: make the color dialog use the query.Commit
+	method for now, be smarter about the version committing.
+
 	* src/PhotoQuery.cs: add Commit Method, notify listener of
 	committed changes.
 	
