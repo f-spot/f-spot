@@ -54,7 +54,7 @@ public class RotateCommand {
 						if (thumb != null)
 							thumb.Dispose ();
 					} catch (System.Exception e) {
-						string longmsg = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". while rotating image {1}"),
+						string longmsg = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\" while rotating image {1}"),
 										e.Message, p.Name);
 						
 						HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, 
