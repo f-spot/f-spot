@@ -1,6 +1,7 @@
 
 namespace FSpot {
 	public delegate void AreaUpdatedHandler (object sender, Gdk.Rectangle area);
+	public delegate void AreaPreparedHandler (object sender, System.EventArgs args);
 	
 	public class AsyncPixbufLoader {
 		System.IO.Stream stream;
@@ -17,6 +18,7 @@ namespace FSpot {
 		byte [] buffer = new byte [32768];
 
 		public event AreaUpdatedHandler AreaUpdated;
+		public event AreaPreparedHandler AreaPrepared;
 		public event System.EventHandler Done;
 
 		Delay delay;
@@ -102,20 +104,18 @@ namespace FSpot {
 		
 		private void HandleAreaPrepared (object sender, System.EventArgs args)
 		{
-			Gdk.Pixbuf old = pixbuf;
-				
 			pixbuf = PixbufUtils.TransformOrientation (loader.Pixbuf, orientation);
 
-			// FIXME this should probably live at the PhotoImageView level
-
-			if (pixbuf != null && old != null && pixbuf.Width == old.Width && pixbuf.Height == old.Height)
-				old.CopyArea (0, 0, pixbuf.Width, pixbuf.Height, pixbuf, 0, 0);
-			else
-				pixbuf.Fill (0x00000000);
-
 			area_prepared = true;			
+			if (AreaUpdated != null)
+				AreaPrepared (this, System.EventArgs.Empty);
 		}
 
+		public Gdk.Pixbuf Pixbuf {
+			get {
+				return pixbuf;
+			}
+		}
 	       
 		private void HandleAreaUpdated (object sender, Gdk.AreaUpdatedArgs args)
 		{

@@ -139,6 +139,10 @@ public class ImageView : Layout {
 	{
 		int x, y;
 		int width, height;
+
+		if (this.Pixbuf == null)
+			return Gdk.Rectangle.Zero;
+		
 		this.GetOffsets (out x, out y, out width, out height);
 
 		Gdk.Rectangle win = Gdk.Rectangle.Zero;
@@ -146,7 +150,7 @@ public class ImageView : Layout {
 		win.Y = (int) Math.Floor (image.Y * (double) (height - 1) / (this.Pixbuf.Height - 1) + 0.5) + y;
 		win.Width = (int) Math.Floor ((image.X + image.Width) * (double) (width - 1) / (this.Pixbuf.Width - 1) + 0.5) - win.X + x;
 		win.Height = (int) Math.Floor ((image.Y + image.Height) * (double) (height - 1) / (this.Pixbuf.Height - 1) + 0.5) - win.Y + y;
-		
+
 		return win;
 	}
 

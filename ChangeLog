@@ -1,3 +1,17 @@
+2004-12-10  Larry Ewing  <lewing@novell.com>
+
+	* src/ImageView.cs: return a zero width rectangle if Pixbuf ==
+	null.  This shouldn't ever happen but a null pixbuf is a valid
+	state so we should handle it.
+
+	* src/PhotoImageView.cs: use the new AreaPrepared event to
+	initialize the next image with the previous image here in the
+	PhotoImageView where it should be.
+
+	* src/AsyncPixbufLoader.cs: add an event for AreaPrepared so that
+	we can safely set the Pixbuf and initialize it with the data we
+	want in this event.
+
 2004-12-09  Larry Ewing  <lewing@novell.com>
 
 	* src/AsyncPixbufLoader.cs: initialize the next image with the

@@ -4,6 +4,8 @@ namespace FSpot {
 		public PhotoImageView (PhotoQuery query)
 		{
 			loader = new FSpot.AsyncPixbufLoader ();
+			loader.AreaUpdated += HandlePixbufAreaUpdated;
+			loader.AreaPrepared += HandlePixbufPrepared;
 			this.SizeAllocated += HandleSizeAllocated;
 			this.KeyPressEvent += HandleKeyPressEvent;
 			this.ScrollEvent += HandleScrollEvent;
@@ -98,7 +100,22 @@ namespace FSpot {
 			area = this.ImageCoordsToWindow (area);
 			this.QueueDrawArea (area.X, area.Y, area.Width, area.Height);
 		}
-	
+		
+		private void HandlePixbufPrepared (object sender, System.EventArgs args)
+		{
+			Gdk.Pixbuf prev = this.Pixbuf;
+			Gdk.Pixbuf next = loader.Pixbuf;
+			
+			if (next != null && prev != null && next.Width == prev.Width && prev.Height == next.Height)
+				prev.CopyArea (0, 0, next.Width, next.Height, next, 0, 0);
+			else
+				next.Fill (0x00000000);
+			
+			this.Pixbuf = next;
+			if (prev != null)
+				prev.Dispose ();
+		}
+
 		private bool fit = true;
 		public bool Fit {
 			get {
@@ -140,20 +157,16 @@ namespace FSpot {
 			if (!CurrentPhotoValid ())
 				return;
 
-			Gdk.Pixbuf old = this.Pixbuf;
-			Gdk.Pixbuf current = null;
 			
 			if (load_async) {
-				current = loader.Load (Photo.DefaultVersionPath);
-				loader.AreaUpdated += HandlePixbufAreaUpdated;
-			} else
-				current = FSpot.PhotoLoader.Load (Query, current_photo);
+				loader.Load (Photo.DefaultVersionPath);
+			} else {
+				Gdk.Pixbuf old = this.Pixbuf;
+				this.Pixbuf = FSpot.PhotoLoader.Load (Query, current_photo);
+				if (old != null)
+					old.Dispose ();
+			}
 			
-			this.Pixbuf = current;
-			
-			if (old != null)
-				old.Dispose ();
-
 			this.UnsetSelection ();
 			this.ZoomFit ();
 
@@ -270,6 +283,7 @@ namespace FSpot {
 		private void HandleDestroy (object sender, System.EventArgs args)
 		{
 			loader.AreaUpdated -= HandlePixbufAreaUpdated;
+			loader.AreaPrepared -= HandlePixbufPrepared;
 		}
 
 		protected override bool OnDestroyEvent (Gdk.Event evnt)
