@@ -24,6 +24,7 @@ public class MainWindow {
 	TagSelectionWidget tag_selection_widget;
 	[Widget] Gtk.Window main_window;
 	[Widget] VBox left_vbox;
+	[Widget] VBox group_vbox;
 	[Widget] Toolbar main_toolbar;
 	[Widget] ScrolledWindow icon_view_scrolled;
 	[Widget] Box photo_box;
@@ -111,14 +112,26 @@ public class MainWindow {
 		Glade.XML gui = Glade.XML.FromAssembly ("f-spot.glade", "main_window", null);
 		gui.Autoconnect (this);
 
+		FSpot.GroupSelector gs = new FSpot.GroupSelector ();
+		gs.Counts = new int [] {20, 100, 123,
+					10, 5, 2,
+					3, 50, 8,
+					10, 22, 0,
+					55, 129, 120,
+					30, 14, 200,
+					122, 21, 55};
+		gs.Mode = 2;
+		gs.ShowAll ();
+		group_vbox.PackStart (gs, false, false, 0);
+		group_vbox.ReorderChild (gs, 0);
+
 		tag_selection_widget = new TagSelectionWidget (db.Tags);
 		tag_selection_scrolled.Add (tag_selection_widget);
 		
 		tag_selection_widget.Selection.Changed += new EventHandler (HandleTagSelectionChanged);
 		tag_selection_widget.SelectionChanged += new TagSelectionWidget.SelectionChangedHandler (OnTagSelectionChanged);
 		tag_selection_widget.DragDataGet += new DragDataGetHandler (HandleTagSelectionDragDataGet);
-		Gtk.Drag.SourceSet (tag_selection_widget, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
-				    tag_target_table, DragAction.Copy | DragAction.Move);
+		Gtk.Drag.SourceSet (tag_selection_widget, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,				    tag_target_table, DragAction.Copy | DragAction.Move);
 
 
 		tag_selection_widget.DragDataReceived += new DragDataReceivedHandler (HandleTagSelectionDragDataReceived);
