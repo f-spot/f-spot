@@ -1,5 +1,7 @@
 2005-01-12  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufUtils.cs: only call setoption if the value is not null.
+
 	* src/: silence a bunch of compiler warnings.
 
 	* src/PixbufUtils.cs: wrap all the file loading in the exception handler.

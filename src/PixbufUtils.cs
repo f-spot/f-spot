@@ -215,8 +215,10 @@ class PixbufUtils {
 	
 	public static bool SetOption(Gdk.Pixbuf pixbuf, string key, string value)
 	{
-		bool ret = gdk_pixbuf_set_option(pixbuf.Handle, key, value);
-		return ret;
+		if (value != null)
+			return gdk_pixbuf_set_option(pixbuf.Handle, key, value);
+		else
+			return false;
 	}
 	
 	public static Pixbuf TagIconFromPixbuf (Pixbuf source)
