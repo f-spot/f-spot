@@ -251,7 +251,7 @@ public class MainWindow {
 
 		UpdateMenus ();
 		main_window.ShowAll ();
-		
+
 		if (Toplevel == null)
 			Toplevel = this;
 	}
@@ -1086,6 +1086,14 @@ public class MainWindow {
 	void HandleDisplayDates (object sender, EventArgs args)
 	{
 		icon_view.DisplayDates = !icon_view.DisplayDates;
+	}
+
+	void HandleDisplayGroupSelector (object sender, EventArgs args)
+	{
+		if (group_selector.Visible)
+			group_selector.Hide ();
+		else
+			group_selector.Show ();
 	}
 
 	void HandleViewSlideShow (object sender, EventArgs args)
