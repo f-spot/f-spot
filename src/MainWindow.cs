@@ -772,21 +772,15 @@ public class MainWindow {
 	}
 
 
-#if false
-	void HandleExportCommand (object sender, EventArgs args)
+	void HandleExportToGallery (object sender, EventArgs args)
 	{
-		ExportCommand.Gallery cmd = new ExportCommand.Gallery ();
-
-		if (cmd.Execute (SelectedPhotos ())) {
-			Console.WriteLine ("success");
-		}
-	}	
-#else
-	void HandleExportCommand (object sender, EventArgs args)
-	{
-		FSpot.GalleryExport export = new FSpot.GalleryExport (SelectedPhotos ());
+		FSpot.GalleryExport export = new FSpot.GalleryExport (new FSpot.PhotoArray (SelectedPhotos ()));
 	}
-#endif
+
+	void HandleExportToVfs (object sender, EventArgs args)
+	{
+		FSpot.VfsExport export = new FSpot.VfsExport (new FSpot.PhotoArray (SelectedPhotos ()));
+	}
 
 #if false 
 	void HandleExportCommand (object sender, EventArgs args)

@@ -152,9 +152,9 @@ namespace FSpot {
 	}
 
 	public class GalleryExport {
-		public GalleryExport (Photo [] photos) 
+		public GalleryExport (IPhotoCollection selection) 
 		{
-			this.photos = photos;
+			this.photos = selection.Photos;
 
 			// FIXME this xml file path should be be retrieved from a central location not hard coded there
 			this.xml_path = System.IO.Path.Combine (System.IO.Directory.GetCurrentDirectory (), ".gnome2/f-spot/Accounts.xml");
@@ -162,7 +162,7 @@ namespace FSpot {
 			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "gallery_export_dialog", null);
 			xml.Autoconnect (this);
 			
-			IconView view = new IconView (new PhotoArray (photos));
+			IconView view = new IconView (selection);
 			view.DisplayDates = false;
 			view.DisplayTags = false;
 
@@ -175,12 +175,14 @@ namespace FSpot {
 			LoadAccounts ();
 
 			Dialog.Response += HandleResponse;
-
+			connect = true;
+			Connect ();
 		}
 
 		private bool scale;
 		private bool browser;
 		private bool meta;
+		private bool connect = false;
 
 		Photo [] photos;
 		int photo_index;
@@ -221,7 +223,6 @@ namespace FSpot {
 				return gallery_export_dialog;
 			}
 		}
-		
 		
 		public void WriteAccounts ()
 		{
@@ -291,7 +292,6 @@ namespace FSpot {
 
 		private void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
-			System.Console.WriteLine ("Got Respose");
 			if (args.ResponseId != Gtk.ResponseType.Ok) {
 				gallery_export_dialog.Destroy ();
 				return;
@@ -393,19 +393,21 @@ namespace FSpot {
 			gallery_optionmenu.Menu = menu;
 		}
 
-		
-
-		private void HandleAccountSelected (object sender, System.EventArgs args)
+		private void Connect ()
 		{
-			
-			if (accounts.Count != 0) {
+			if (accounts.Count != 0 && connect) {
 				account = (GalleryAccount) accounts [gallery_optionmenu.History];
 				if (!account.Connected)
-				       account.Connect ();
+					account.Connect ();
 				
 				if (account.Gallery != null)
 					PopulateAlbumOptionMenu (account.Gallery);
 			}
+		}
+
+		private void HandleAccountSelected (object sender, System.EventArgs args)
+		{
+			Connect ();
 		}
 
 		private void PopulateAlbumOptionMenu (GalleryRemote.Gallery gallery)
