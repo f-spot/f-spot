@@ -184,8 +184,8 @@ public class PhotoView : EventBox {
 		if (pixbuf == null)
 			return;
 
-		int available_width = image_view.Allocation.width;
-		int available_height = image_view.Allocation.height;
+		int available_width = image_view.Allocation.Width;
+		int available_height = image_view.Allocation.Height;
 
 		double zoom_to_fit = ZoomUtils.FitToScale ((uint) available_width, (uint) available_height,
 							   (uint) pixbuf.Width, (uint) pixbuf.Height, false);

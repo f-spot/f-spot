@@ -92,8 +92,8 @@ public class SlideView : Gtk.Image {
 
 	private Pixbuf Blend (Pixbuf current, Pixbuf prev, Pixbuf next, double percent)
 	{ 
-		int width = Allocation.width;
-		int height = Allocation.height;
+		int width = Allocation.Width;
+		int height = Allocation.Height;
 
 		prev.CopyArea (0, 0, width, height, current, 0, 0);
 		next.Composite (current, 0,0, width, height, 0, 0, 1, 1,
@@ -103,8 +103,8 @@ public class SlideView : Gtk.Image {
 
 	private Pixbuf FadeBlack (Pixbuf current, Pixbuf prev, Pixbuf next, double percent)
 	{ 
-		int width = Allocation.width;
-		int height = Allocation.height;
+		int width = Allocation.Width;
+		int height = Allocation.Height;
 
 		current.Fill (0);		
 
@@ -119,8 +119,8 @@ public class SlideView : Gtk.Image {
 
 	private Pixbuf GetScaled (string path)
 	{
-		int width = Allocation.width;
-		int height = Allocation.height;
+		int width = Allocation.Width;
+		int height = Allocation.Height;
 
 		Pixbuf orig;
 		Pixbuf scaled = new Pixbuf (Colorspace.Rgb, false, 8, width, height);
@@ -192,7 +192,7 @@ public class SlideView : Gtk.Image {
 		Pixbuf prev = this.Pixbuf;
 	
 		if (current_tween < tweens.Length && tweens[current_tween] == null) {
-			tweens[current_tween] = new Pixbuf (Colorspace.Rgb, false, 8, Allocation.width, Allocation.height);
+			tweens[current_tween] = new Pixbuf (Colorspace.Rgb, false, 8, Allocation.Width, Allocation.Height);
 		}
 
 		switch (current_tween) {
@@ -288,7 +288,7 @@ public class SlideView : Gtk.Image {
 		/*
 		 * The size has changed so we need to reload the images.
 		 */
-		if (Pixbuf.Width != Allocation.width || Pixbuf.Height != Allocation.height) {
+		if (Pixbuf.Width != Allocation.Width || Pixbuf.Height != Allocation.Height) {
 			bool playing = (flip_timer != 0 || transition_timer != 0);
 
 			this.FromPixbuf = GetScaled (photos[current_idx].DefaultVersionPath);

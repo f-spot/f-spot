@@ -99,9 +99,9 @@ public class TagSelectionWidget : TreeView {
 		TreeModel model;
 		TreeIter iter;
 
-		GLib.List rows = Selection.GetSelectedRows(out model);
+		TreePath [] rows = Selection.GetSelectedRows(out model);
 
-		Tag [] tags = new Tag [rows.Count];
+		Tag [] tags = new Tag [rows.Length];
 		int i = 0;
 
 		foreach (TreePath path in rows) {

@@ -131,25 +131,25 @@ public class TimelineSelectorWidget : Gtk.Layout {
 	private void DrawLimitArrow (int x, int y, bool pointing_up) 
 	{
 		Gdk.Point [] points = new Gdk.Point [5];
-		points [0].x = x;
-		points [0].y = y;
-		points [1].x = x + LIMIT_ARROW_SIZE;
-		points [1].y = y;
+		points [0].X = x;
+		points [0].Y = y;
+		points [1].X = x + LIMIT_ARROW_SIZE;
+		points [1].Y = y;
 
 		if (pointing_up) {
-			points[2].x = x + LIMIT_ARROW_SIZE;
-			points[2].y = y - LIMIT_ARROW_SIZE / 2;
-			points[3].x = x + LIMIT_ARROW_SIZE / 2;
-			points[3].y = y - LIMIT_ARROW_SIZE;
-			points[4].x = x;
-			points[4].y = y - LIMIT_ARROW_SIZE / 2;
+			points[2].X = x + LIMIT_ARROW_SIZE;
+			points[2].Y = y - LIMIT_ARROW_SIZE / 2;
+			points[3].X = x + LIMIT_ARROW_SIZE / 2;
+			points[3].Y = y - LIMIT_ARROW_SIZE;
+			points[4].X = x;
+			points[4].Y = y - LIMIT_ARROW_SIZE / 2;
 		} else {
-			points[2].x = x + LIMIT_ARROW_SIZE;
-			points[2].y = y + LIMIT_ARROW_SIZE / 2;
-			points[3].x = x + LIMIT_ARROW_SIZE / 2;
-			points[3].y = y + LIMIT_ARROW_SIZE;
-			points[4].x = x;
-			points[4].y = y + LIMIT_ARROW_SIZE / 2;
+			points[2].X = x + LIMIT_ARROW_SIZE;
+			points[2].Y = y + LIMIT_ARROW_SIZE / 2;
+			points[3].X = x + LIMIT_ARROW_SIZE / 2;
+			points[3].Y = y + LIMIT_ARROW_SIZE;
+			points[4].X = x;
+			points[4].Y = y + LIMIT_ARROW_SIZE / 2;
 		}
 
 		// FIXME: GtkSharp bug, it should take a bool not an int for "filled".
@@ -168,11 +168,11 @@ public class TimelineSelectorWidget : Gtk.Layout {
 			slice_max = Math.Max (slice_max, count);
 		}
 
-		int x = Allocation.x + SCROLL_BUTTON_WIDTH + LIMIT_REST_AREA_WIDTH;
+		int x = Allocation.X + SCROLL_BUTTON_WIDTH + LIMIT_REST_AREA_WIDTH;
 
 		BinWindow.DrawRectangle (Style.ForegroundGC (StateType.Normal),
 					 false,
-					 x, Allocation.y,
+					 x, Allocation.Y,
 					 bar_width, BAR_HEIGHT);
 
 		int histo_width = slice_width - 2 * HISTOGRAM_PADDING;
@@ -188,27 +188,27 @@ public class TimelineSelectorWidget : Gtk.Layout {
 			int histo_height = (int) Math.Round (((double) count / slice_max) * (BAR_HEIGHT - HISTOGRAM_PADDING));
 
 			BinWindow.DrawLine (Style.ForegroundGC (StateType.Normal),
-					    tick_x, Allocation.y + BAR_HEIGHT,
-					    tick_x, Allocation.y + BAR_HEIGHT - BAR_TICK_HEIGHT);
+					    tick_x, Allocation.Y + BAR_HEIGHT,
+					    tick_x, Allocation.Y + BAR_HEIGHT - BAR_TICK_HEIGHT);
 
 			BinWindow.DrawRectangle (Style.ForegroundGC (StateType.Normal), false,
-						 tick_x + HISTOGRAM_PADDING, Allocation.y + BAR_HEIGHT - histo_height,
+						 tick_x + HISTOGRAM_PADDING, Allocation.Y + BAR_HEIGHT - histo_height,
 						 histo_width, histo_height);
 		}
 	}
 
 	private void HandleSizeAllocated (object sender, SizeAllocatedArgs args)
 	{
-		RecalcLayout (Allocation.width);
+		RecalcLayout (Allocation.Width);
 	}
 
 	private void HandleExposeEvent (object sender, ExposeEventArgs args)
 	{
-		DrawLimitArrow (Allocation.x + LeftLimitArrowOffset, Allocation.y, false);
-		DrawLimitArrow (Allocation.x + LeftLimitArrowOffset, Allocation.y + BAR_HEIGHT, true);
+		DrawLimitArrow (Allocation.X + LeftLimitArrowOffset, Allocation.Y, false);
+		DrawLimitArrow (Allocation.X + LeftLimitArrowOffset, Allocation.Y + BAR_HEIGHT, true);
 
-		DrawLimitArrow (Allocation.x + RightLimitArrowOffset, Allocation.y, false);
-		DrawLimitArrow (Allocation.x + RightLimitArrowOffset, Allocation.y + BAR_HEIGHT, true);
+		DrawLimitArrow (Allocation.X + RightLimitArrowOffset, Allocation.Y, false);
+		DrawLimitArrow (Allocation.X + RightLimitArrowOffset, Allocation.Y + BAR_HEIGHT, true);
 
 		DrawBar ();
 	}

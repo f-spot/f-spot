@@ -314,7 +314,7 @@ public class IconView : Gtk.Layout {
 
 	private void UpdateLayout ()
 	{
-		int available_width = Allocation.width - 2 * BORDER_SIZE;
+		int available_width = Allocation.Width - 2 * BORDER_SIZE;
 
 		cell_width = ThumbnailWidth + 2 * CELL_BORDER_WIDTH;
 		cell_height = ThumbnailHeight + 2 * CELL_BORDER_WIDTH;
@@ -336,7 +336,7 @@ public class IconView : Gtk.Layout {
 		if (num_thumbnails % cells_per_row != 0)
 			num_rows ++;
 
-		SetSize ((uint) Allocation.width, (uint) (num_rows * cell_height + 2 * BORDER_SIZE));
+		SetSize ((uint) Allocation.Width, (uint) (num_rows * cell_height + 2 * BORDER_SIZE));
 	}
 
 	// FIXME Cache the GCs?
@@ -497,8 +497,8 @@ public class IconView : Gtk.Layout {
 			num_rows = new_first_row - old_first_row;
 			start = old_first_row * cells_per_row;
 		} else {
-			int old_last_row = (y_offset + Allocation.height) / cell_height;
-			int new_last_row = ((int) adjustment.Value + Allocation.height) / cell_height;
+			int old_last_row = (y_offset + Allocation.Height) / cell_height;
+			int new_last_row = ((int) adjustment.Value + Allocation.Height) / cell_height;
 
 			num_rows = old_last_row - new_last_row;
 			start = (new_last_row + 1) * cells_per_row;
@@ -566,9 +566,9 @@ public class IconView : Gtk.Layout {
 
 	public void InvalidateCell (int order) {
 		Rectangle cell_area;
-		GetCellPosition (order, out cell_area.x, out cell_area.y);
-		cell_area.width = cell_width;
-		cell_area.height = cell_height;
+		GetCellPosition (order, out cell_area.X, out cell_area.Y);
+		cell_area.Width = cell_width;
+		cell_area.Height = cell_height;
 
 		BinWindow.InvalidateRect (cell_area, false);
 	}
@@ -586,13 +586,13 @@ public class IconView : Gtk.Layout {
 
 	private void HandleExposeEvent (object sender, ExposeEventArgs args)
 	{
-		DrawAllCells (args.Event.area.x, args.Event.area.y,
-			      args.Event.area.width, args.Event.area.height);
+		DrawAllCells (args.Event.Area.X, args.Event.Area.Y,
+			      args.Event.Area.Width, args.Event.Area.Height);
 	}
 
  	private void HandleButtonPressEvent (object obj, ButtonPressEventArgs args)
  	{
-		int cell_num = CellAtPosition ((int) args.Event.x, (int) args.Event.y);
+		int cell_num = CellAtPosition ((int) args.Event.X, (int) args.Event.Y);
 
 		args.RetVal = true;
 
@@ -601,24 +601,24 @@ public class IconView : Gtk.Layout {
 			return;
 		}
 
-		switch (args.Event.type) {
+		switch (args.Event.Type) {
 		case EventType.TwoButtonPress:
-			if (args.Event.button != 1
-			    || (args.Event.state & (uint) (ModifierType.ControlMask
-							   | ModifierType.ShiftMask)) != 0)
+			if (args.Event.Button != 1
+			    || (args.Event.State &  (ModifierType.ControlMask
+						     | ModifierType.ShiftMask)) != 0)
 				return;
 			if (DoubleClicked != null)
 				DoubleClicked (this, cell_num);
 			return;
 
 		case EventType.ButtonPress:
-			if (args.Event.button != 1)
+			if (args.Event.Button != 1)
 				return;
 
 			GrabFocus ();
-			if ((args.Event.state & (uint) ModifierType.ControlMask) != 0) {
+			if ((args.Event.State & ModifierType.ControlMask) != 0) {
 				ToggleCell (cell_num);
-			} else if ((args.Event.state & (uint) ModifierType.ShiftMask) != 0) {
+			} else if ((args.Event.State & ModifierType.ShiftMask) != 0) {
 				SelectCellRange (focus_cell, cell_num);
 			} else {
 				UnselectAllCells ();
@@ -627,10 +627,10 @@ public class IconView : Gtk.Layout {
 
 			Gdk.Pointer.Grab (BinWindow, false,
 					  EventMask.ButtonReleaseMask | EventMask.Button1MotionMask,
-					  null, null, args.Event.time);
+					  null, null, args.Event.Time);
 
-			click_x = (int) args.Event.x;
-			click_y = (int) args.Event.y;
+			click_x = (int) args.Event.X;
+			click_y = (int) args.Event.Y;
 
 			focus_cell = cell_num;
 
@@ -644,7 +644,7 @@ public class IconView : Gtk.Layout {
 
 	private void HandleButtonReleaseEvent (object sender, ButtonReleaseEventArgs args)
 	{
-		Gdk.Pointer.Ungrab (args.Event.time);
+		Gdk.Pointer.Ungrab (args.Event.Time);
 		in_drag = false;
 	}
 
@@ -653,7 +653,7 @@ public class IconView : Gtk.Layout {
 		if (in_drag)
 			return;
 
-		if (! Gtk.Drag.CheckThreshold (this, click_x, click_y, (int) args.Event.x, (int) args.Event.y))
+		if (! Gtk.Drag.CheckThreshold (this, click_x, click_y, (int) args.Event.X, (int) args.Event.Y))
 			return;
 
 		TargetList target_list = new TargetList ();
@@ -664,8 +664,8 @@ public class IconView : Gtk.Layout {
 	{
 		int focus_old;
 		args.RetVal = true;
-		bool shift = ((uint) ModifierType.ShiftMask) == (args.Event.state & ((uint) ModifierType.ShiftMask));
-		bool control = ((uint) ModifierType.ControlMask) == (args.Event.state & ((uint)ModifierType.ControlMask));
+		bool shift = ModifierType.ShiftMask == (args.Event.State & ModifierType.ShiftMask);
+		bool control = ModifierType.ControlMask == (args.Event.State & ModifierType.ControlMask);
 		
 
 		focus_old = focus_cell;

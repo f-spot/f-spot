@@ -179,7 +179,7 @@ public class MainWindow {
 
 	void HandlePhotoViewButtonPressEvent (object sender, ButtonPressEventArgs args)
 	{
-		if (args.Event.type == EventType.TwoButtonPress && args.Event.button == 1)
+		if (args.Event.Type == EventType.TwoButtonPress && args.Event.Button == 1)
 			SwitchToIconViewMode ();
 	}
 
