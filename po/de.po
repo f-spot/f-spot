@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-13 15:35+0100\n"
-"PO-Revision-Date: 2005-01-13 15:35+0100\n"
+"POT-Creation-Date: 2005-01-16 22:25+0100\n"
+"PO-Revision-Date: 2005-01-16 22:25+0100\n"
 "Last-Translator: Frank Arnold <frank@scirocco-5v-turbo.de>\n"
 "Language-Team: German GNOME Translators <gnome-de@gnome.org >\n"
 "MIME-Version: 1.0\n"
@@ -136,6 +136,46 @@ msgstr "Unbekannter Transformationstyp %d"
 msgid "Operation failed"
 msgstr "Aktion fehlgeschlagen"
 
+#: src/CDExport.cs:69
+#, csharp-format
+msgid "Transfering picture \"{0}\" To CD"
+msgstr "Übertragung des Bilds »{0}« auf CD"
+
+#: src/CDExport.cs:71 src/FlickrExport.cs:86 src/GalleryExport.cs:341
+#: src/ProgressDialog.cs:75 src/VfsExport.cs:89
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} von {1}"
+
+#: src/CDExport.cs:83 src/FlickrExport.cs:89 src/GalleryExport.cs:345
+#: src/VfsExport.cs:101
+msgid "Done Sending Photos"
+msgstr "Verschicken der Bilder abgeschlossen"
+
+#: src/CDExport.cs:85 src/VfsExport.cs:103
+msgid "Transfer Complete"
+msgstr "Übertragung abgeschlossen"
+
+#: src/CDExport.cs:91 src/VfsExport.cs:108
+msgid "Error While Transfering"
+msgstr "Fehler bei der Übertragung"
+
+#: src/CDExport.cs:96 src/VfsExport.cs:115
+msgid "Error Transfering"
+msgstr "Übertragungsfehler"
+
+#: src/CDExport.cs:111 src/VfsExport.cs:129
+msgid "Error: Error while transfering, Aborting"
+msgstr "Fehler: Fehler bei der Übertragung, abgebrochen"
+
+#: src/CDExport.cs:114 src/VfsExport.cs:132
+msgid "Error: File Already Exists, Aborting"
+msgstr "Fehler: Datei ist bereits vorhanden, abgebrochen"
+
+#: src/CDExport.cs:151 src/VfsExport.cs:173
+msgid "Transfering Pictures"
+msgstr "Bilder übertragen"
+
 #: src/FlickrExport.cs:46
 msgid "Enter Password"
 msgstr "Passwort eingeben"
@@ -144,22 +184,12 @@ msgstr "Passwort eingeben"
 msgid "Enter Password for "
 msgstr "Eingabe des Passworts für "
 
-#: src/FlickrExport.cs:83 src/GalleryExport.cs:335
+#: src/FlickrExport.cs:83 src/GalleryExport.cs:337
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Hochladen des Bilds »{0}«"
 
-#: src/FlickrExport.cs:86 src/GalleryExport.cs:339 src/ProgressDialog.cs:75
-#: src/VfsExport.cs:89
-#, csharp-format
-msgid "{0} of {1}"
-msgstr "{0} von {1}"
-
-#: src/FlickrExport.cs:89 src/GalleryExport.cs:343 src/VfsExport.cs:101
-msgid "Done Sending Photos"
-msgstr "Verschicken der Bilder abgeschlossen"
-
-#: src/FlickrExport.cs:91 src/GalleryExport.cs:345
+#: src/FlickrExport.cs:91 src/GalleryExport.cs:347
 msgid "Upload Complete"
 msgstr "Hochladen abgeschlossen"
 
@@ -167,7 +197,7 @@ msgstr "Hochladen abgeschlossen"
 msgid "Error Uploading To Flickr"
 msgstr "Fehler beim Hochladen zu Flickr"
 
-#: src/FlickrExport.cs:120 src/GalleryExport.cs:310
+#: src/FlickrExport.cs:120 src/GalleryExport.cs:312
 msgid "Uploading Pictures"
 msgstr "Bilder hochladen"
 
@@ -751,15 +781,15 @@ msgstr "Dialog1"
 msgid "x"
 msgstr "x"
 
-#: src/GalleryExport.cs:349
+#: src/GalleryExport.cs:351
 msgid "Error Uploading To Gallery"
 msgstr "Fehler beim Hochladen zur Galerie"
 
-#: src/GalleryExport.cs:381
+#: src/GalleryExport.cs:383
 msgid "(No Gallery)"
 msgstr "(Keine Galerie)"
 
-#: src/GalleryExport.cs:425
+#: src/GalleryExport.cs:427
 msgid "(No Albums)"
 msgstr "(Keine Alben)"
 
@@ -790,23 +820,23 @@ msgstr "(Keine)"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: src/MainWindow.cs:804
+#: src/MainWindow.cs:863
 msgid "translator-credits"
 msgstr "Frank Arnold <frank@scirocco-5v-turbo.de>"
 
-#: src/MainWindow.cs:936
+#: src/MainWindow.cs:993
 msgid "Unsharp Mask"
 msgstr "Weichzeichnen"
 
-#: src/MainWindow.cs:945
+#: src/MainWindow.cs:1002
 msgid "Amount:"
 msgstr "Betrag:"
 
-#: src/MainWindow.cs:946
+#: src/MainWindow.cs:1003
 msgid "Radius:"
 msgstr "Radius:"
 
-#: src/MainWindow.cs:947
+#: src/MainWindow.cs:1004
 msgid "Threshold:"
 msgstr "Schwellwert:"
 
@@ -897,17 +927,17 @@ msgstr "Kategoriename:"
 msgid "Edit Tag"
 msgstr "Markierung bearbeiten:"
 
-#: src/TagCommands.cs:405
+#: src/TagCommands.cs:408
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Bild {0} von {1}"
 
-#: src/TagCommands.cs:419
+#: src/TagCommands.cs:422
 #, csharp-format
 msgid "Edit icon For category {0}"
 msgstr "Symbol für Kategorie {0} ändern"
 
-#: src/TagCommands.cs:421
+#: src/TagCommands.cs:424
 #, csharp-format
 msgid "Edit icon for tag {0}"
 msgstr "Symbol für Markierung {0} ändern"
@@ -929,30 +959,6 @@ msgstr "Markierung der Auswahl entfernen"
 #, csharp-format
 msgid "Transfering picture \"{0}\""
 msgstr "Übertragung des Bilds »{0}«"
-
-#: src/VfsExport.cs:103
-msgid "Transfer Complete"
-msgstr "Übertragung abgeschlossen"
-
-#: src/VfsExport.cs:108
-msgid "Error While Transfering"
-msgstr "Fehler bei der Übertragung"
-
-#: src/VfsExport.cs:115
-msgid "Error Transfering"
-msgstr "Übertragungsfehler"
-
-#: src/VfsExport.cs:129
-msgid "Error: Error while transfering, Aborting"
-msgstr "Fehler: Fehler bei der Übertragung, abgebrochen"
-
-#: src/VfsExport.cs:132
-msgid "Error: File Already Exists, Aborting"
-msgstr "Fehler: Datei ist bereits vorhanden, abgebrochen"
-
-#: src/VfsExport.cs:173
-msgid "Transfering Pictures"
-msgstr "Bilder übertragen"
 
 #~ msgid "*"
 #~ msgstr "*"
