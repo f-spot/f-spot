@@ -659,7 +659,7 @@ public class IconView : Gtk.Layout {
 		// Preload the cache with images aroud the expose area
 		// FIXME the preload need to be tuned to the Cache size but this is a resonable start
 		//Scroll ();
-		Preload (area, 4);
+		//Preload (area, 4);
 
 		for (i = 0, cell_num = start_cell_num;
 		     i < num_rows && cell_num < collection.Items.Length;
