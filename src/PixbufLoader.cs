@@ -119,24 +119,6 @@ public class PixbufLoader {
 
 	protected virtual void ProcessRequest (RequestItem request)
 	{
-		/* Short circuit for JPEG files; use Alex Larsson's fast thumbnail
-		   code in that case.  FIXME: Should use gnome-vfs to determine the
-		   MIME type rather than just the extension.  */
-
-#if USE_FASTPATH_THUMBS
-		if (request.path.ToLower().EndsWith (".jpg") || request.path.ToLower().EndsWith (".jpeg")) {
-			Pixbuf scaled_image = JpegUtils.LoadScaled (request.path, request.width, request.height);
-			
-			if (scaled_image != null) {
-				request.result = scaled_image;
-				return;
-			}
-			
-			/* If this fails, just use Pixbuf.  */
-			scaled_image.Dispose ();
-		}
-#endif
-
 		Pixbuf orig_image;
 		try {
 			if (request.width > 0) {
@@ -160,9 +142,10 @@ public class PixbufLoader {
 	private bool InsertRequest (string path, int order, int width, int height)
 	{
 		/* Check if this is the same as the request currently being processed.  */
-		if (current_request != null && current_request.path == path)
-			return false;
-
+		lock(processed_requests) {
+			if (current_request != null && current_request.path == path)
+				return false;
+		}
 		/* Check if a request for this path has already been queued.  */
 		RequestItem existing_request = requests_by_path [path] as RequestItem;
 		if (existing_request != null) {
@@ -178,23 +161,9 @@ public class PixbufLoader {
 
 		/* New request, just put it on the queue with the right order.  */
 		RequestItem new_request = new RequestItem (path, order, width, height);
-#if ORDERED_QUEUE
-		if (queue.Count == 0 || (queue [queue.Count - 1] as RequestItem).order <= new_request.order) {
-			queue.Add (new_request);
-		} else {
-			int i = 0;
-			foreach (RequestItem r in queue) {
-				if (r.order > new_request.order) {
-					queue.Insert (i, new_request);
-					break;
-				}
 
-				i ++;
-			}
-		}
-#else
 		queue.Add (new_request);
-#endif
+
 		requests_by_path.Add (path, new_request);
 		return true;
 	}
@@ -203,21 +172,24 @@ public class PixbufLoader {
 	private void WorkerThread ()
 	{
 		while (true) {
-			lock (queue) {
+			lock (processed_requests) {
 				if (current_request != null) {
 					processed_requests.Enqueue (current_request);
-
+					
 					if (! pending_notify_notified) {
 						pending_notify.WakeupMain ();
 						pending_notify_notified = true;
 					}
-
+					
 					current_request = null;
 				}
+			}
 
+			lock (queue) {
+				
 				while (queue.Count == 0)
 					Monitor.Wait (queue);
-				
+
 				int pos = queue.Count - 1;
 
 				current_request = queue [pos] as RequestItem;
@@ -233,7 +205,7 @@ public class PixbufLoader {
 	{
 		Queue results;
 
-		lock (queue) {
+		lock (processed_requests) {
 			/* Copy the queued items out of the shared queue so we hold the lock for
 			   as little time as possible.  */
 			results = processed_requests.Clone() as Queue;

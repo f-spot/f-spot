@@ -96,6 +96,7 @@ public class ImportCommand {
 	PhotoGrid grid;
 	ProgressBar progress_bar;
 	Gtk.Window main_window;
+	string import_path;
 
 	bool cancelled;
 
@@ -179,13 +180,22 @@ public class ImportCommand {
 	{
 		main_window = mw;
 	}
+	
+	public string ImportPath {
+		get {
+			return import_path;
+		}
+	}
 
-	public int ImportFromFile (PhotoStore store)
+	public int ImportFromFile (PhotoStore store, string path)
 	{
 		CompatFileChooserDialog file_selector =
 			new CompatFileChooserDialog ("Import", main_window,
 						     CompatFileChooserDialog.Action.SelectFolder);
 		file_selector.SelectMultiple = true;
+		
+		if (path != null)
+			file_selector.Filename = path;
 		
 		int response = file_selector.Run ();
 
@@ -196,8 +206,9 @@ public class ImportCommand {
 
 
 		string [] paths = file_selector.Selections;
-		//string [] paths = new string [1];
-		//paths[0] = file_selector.Filename;
+		
+		import_path = file_selector.Filename;
+
 		file_selector.Destroy ();
 
 		return DoImport (new FileImportBackend (store, paths, true));

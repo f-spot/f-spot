@@ -71,8 +71,10 @@ public class MainWindow {
 	FSpot.FullScreenView fsview;
 	FSpot.PhotoQuery query;
 	FSpot.GroupSelector group_selector;
-
+	
 	FSpot.Delay slide_delay;
+	
+	string last_import_path;
 	
 	// Drag and Drop
 	enum TargetType {
@@ -767,7 +769,8 @@ public class MainWindow {
 	void HandleImportCommand (object sender, EventArgs e)
 	{
 		ImportCommand command = new ImportCommand (main_window);
-		if (command.ImportFromFile (db.Photos) > 0) {
+		if (command.ImportFromFile (db.Photos, this.last_import_path) > 0) {
+			this.last_import_path = command.ImportPath;
 			UpdateQuery (true);
 		}
 	}

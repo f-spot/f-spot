@@ -1,6 +1,20 @@
 2005-01-22  Larry Ewing  <lewing@novell.com>
 
-	* src/IconView.cs: clip the Invalid region to the visible area.
+	* src/MainWindow.cs: tweak the import path naming.
+
+	* src/ImportCommand.cs: make last_import_path a read only property
+	called ImportPath;
+
+	* src/PixbufLoader.cs: use separate locks for the main queue and
+	the processed queue;
+
+	* src/IconView.cs: 
+
+2005-01-22  David Sedeño <david@alderia.com>
+
+	* src/MainWindow.cs: If there are a correct import, remember the path.
+
+	* src/ImportCommand.cs: Set and get the path of the file selector.
 
 2005-01-22  Larry Ewing  <lewing@novell.com>
 
