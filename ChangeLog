@@ -1,6 +1,9 @@
 2004-08-18  Larry Ewing  <lewing@novell.com>
 
-	* src/Mainwindow.cs: call ScrollTo then Throb: on the selected cell.
+	* src/MainWindow.cs: set current photo if they move the interest
+	point while in PhotoView mode.
+
+	* src/MainWindow.cs: call ScrollTo then Throb: on the selected cell.
 
 	* src/IconView.cs: add the throb interface.
 
@@ -38,6 +41,8 @@
 2004-08-17  Dave Camp  <dave@novell.com>
 
 	* src/PhotoStore.cs: Fixed the build.
+
+2004-08-17  Larry Ewing  <lewing@novell.com>
 
 	* autogen.sh (PKG_NAME): remove some cruft.
 

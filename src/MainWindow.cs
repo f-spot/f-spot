@@ -358,8 +358,16 @@ public class MainWindow {
 
 	void HandleAdaptorGlassSet (FSpot.TimeAdaptor sender, int index)
 	{
-		icon_view.ScrollTo (index);
-		icon_view.Throb (index);
+		switch (mode) {
+		case ModeType.PhotoView:
+			photo_view.CurrentPhoto = index;
+			break;
+		case ModeType.IconView:
+			icon_view.ScrollTo (index);
+			icon_view.Throb (index);
+			break;
+		}
+
 	}
 
 	//
