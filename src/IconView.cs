@@ -690,8 +690,15 @@ public class IconView : Gtk.Layout {
 		int ystep = (int)(Vadjustment.Value - y_offset);
 		int xstep = (int)(Hadjustment.Value - x_offset);
 		
-		xstep = xstep;
-		ystep = ystep;
+		if (xstep > 0)
+			xstep = Math.Max (xstep, Allocation.Width);
+		else 
+			xstep = Math.Min (xstep, -Allocation.Width);
+
+		if (ystep > 0)
+			ystep = Math.Max (ystep, Allocation.Height);
+		else 
+			ystep = Math.Min (ystep, -Allocation.Height);
 
 		Gdk.Rectangle area;
 

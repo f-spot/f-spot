@@ -1,3 +1,8 @@
+2005-03-04  Larry Ewing  <lewing@novell.com>
+
+	* src/IconView.cs: alway request at least two pages even if the
+	scroll increment is smaller.
+
 2005-03-02  Larry Ewing  <lewing@novell.com>
 
 	* src/PixbufCache.cs: only count the image size if the image is
