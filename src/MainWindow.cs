@@ -188,9 +188,11 @@ public class MainWindow {
 		query = new FSpot.PhotoQuery (db.Photos);
 		query.ItemChanged += HandleQueryItemChanged;
 
+#if SHOW_CALENDAR
 		FSpot.SimpleCalendar cal = new FSpot.SimpleCalendar (query);
 		cal.DaySelected += HandleCalendarDaySelected;
 		left_vbox.PackStart (cal, false, true, 0);
+#endif
 
 		group_selector = new FSpot.GroupSelector ();
 		FSpot.GroupAdaptor adaptor = new FSpot.TimeAdaptor (query);
@@ -449,11 +451,13 @@ public class MainWindow {
 		args.SelectionData.Set (targets[0], 8, data, data.Length);
 	}
 
+#if SHOW_CALENDAR
 	void HandleCalendarDaySelected (object sender, System.EventArgs args)
 	{
 		FSpot.SimpleCalendar cal = sender as FSpot.SimpleCalendar;
 		JumpTo (cal.Date);
 	}
+#endif
 
 	private void JumpTo (System.DateTime time)
 	{
@@ -499,12 +503,29 @@ public class MainWindow {
 		Photo [] photos = SelectedPhotos ();
 		
 		if (photos.Length > 0) {
-			string thumbnail_path = Thumbnail.PathForUri (photos[0].DefaultVersionUri.ToString (), ThumbnailSize.Large);
-			Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForPath (thumbnail_path);
-			if (thumbnail != null) {
-				Gtk.Drag.SetIconPixbuf (args.Context, thumbnail, 0, 0);
-				thumbnail.Dispose ();
+			int len = Math.Min (photos.Length, 4);
+			int size = 48;
+			int csize = size/2 + len * size/2;
+			
+			Pixbuf container = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, csize, csize);
+			container.Fill (0x00000000);
+
+			bool use_icon = false;;
+			while (len-- > 0) {
+				string thumbnail_path = Thumbnail.PathForUri (photos[len].DefaultVersionUri.ToString (), ThumbnailSize.Large);
+				Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForPath (thumbnail_path);
+				if (thumbnail != null) {
+					Pixbuf small = PixbufUtils.ScaleToMaxSize (thumbnail, size, size);
+					small.CopyArea (0, 0, small.Width, small.Height, container, len * (size/2), len * (size/2));
+					
+					thumbnail.Dispose ();
+					small.Dispose ();
+					use_icon = true;
+				}
 			}
+			if (use_icon)
+				Gtk.Drag.SetIconPixbuf (args.Context, container, 0, 0);
+			container.Dispose ();
 		}
 	}
 
