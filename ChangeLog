@@ -1,5 +1,11 @@
 2004-09-30  Larry Ewing  <lewing@novell.com>
 
+	* src/TiffHeader.cs: Add GetRawXmp method that extracts the XMP
+	data from the tiff.
+
+	* src/ExifData.cs: fix the data copy so that it actually does
+	something.
+
 	* src/TiffHeader.cs: add a new TiffHeader parser that extracts the
 	exif info from tiffs.
 

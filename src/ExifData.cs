@@ -336,7 +336,9 @@ public class ExifData : IDisposable {
 		byte [] raw_data;
 		if (entry->size > 0) {
 			raw_data = new byte [entry->size];
-			Marshal.Copy (raw_data, 0, (IntPtr) entry->data, (int) entry->size);
+			for (int i = 0; i < entry->size; i++)
+				raw_data [i] = *(entry->data + i);
+
 		} else {
 			Console.WriteLine ("Zero Length EXIF tag");
 			raw_data = new byte [0] {};
