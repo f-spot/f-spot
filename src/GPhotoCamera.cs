@@ -23,17 +23,17 @@ public class GPhotoCamera
 	public GPhotoCamera()
 	{
 		context = new Context();
-		
-		port_info_list = new PortInfoList();
-		port_info_list.Load();
+
+		port_info_list = new PortInfoList ();
+		port_info_list.Load ();
 			
-		abilities_list = new CameraAbilitiesList();
-		abilities_list.Load(context);
+		abilities_list = new CameraAbilitiesList ();
+		abilities_list.Load (context);
 			
 		camera_list = new CameraList();
 			
 		selected_camera__camera_list_index = -1;
-			
+
 		camera = null;
 		port_info = null;
 		camera_fs = null;
@@ -41,7 +41,7 @@ public class GPhotoCamera
 		
 	public int DetectCameras ()
 	{
-		abilities_list.Detect(port_info_list, camera_list, context);
+		abilities_list.Detect (port_info_list, camera_list, context);
 		return CameraCount;
 	}
 		
@@ -63,12 +63,14 @@ public class GPhotoCamera
 
 		selected_camera__abilities_list_index = abilities_list.LookupModel (camera_list.GetName (selected_camera__camera_list_index));			
 		camera_abilities = abilities_list.GetAbilities (selected_camera__abilities_list_index);
+
 		camera = new Camera ();
 		camera.SetAbilities (camera_abilities);
 
 		selected_camera__port_info_list_index = port_info_list.LookupPath (camera_list.GetValue (selected_camera__camera_list_index));
 
 		port_info = port_info_list.GetInfo (selected_camera__port_info_list_index);
+
 		camera.SetPortInfo (port_info);
 	}
 		
@@ -76,11 +78,10 @@ public class GPhotoCamera
 	{
 		if (camera == null) 
 			throw new InvalidOperationException();
-		
-		camera.Init
-			(context);
-			
+
+		camera.Init (context);
 		camera_fs = camera.GetFS ();
+
 		files = new ArrayList ();
 		GetFileList ();
 	}

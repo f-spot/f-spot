@@ -142,6 +142,7 @@ public class IconView : Gtk.Layout {
 
 
 	// Public API.
+	public IconView (IntPtr raw) : base (raw) {}
 
 	public IconView () : base (null, null)
 	{

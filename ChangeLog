@@ -1,5 +1,11 @@
 2005-02-20  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: add back intptr constructor.
+
+	* src/QueryView.cs: add back intptr constructor.
+
+	* src/GPhotoCamera.cs: clean up the formatting a little.
+
 	* libgphoto2-sharp/Object.cs: renable the Cleanup bits of the dispose call.
 
 	* libgphoto2-sharp/: rewrite the bindings so that they work with
