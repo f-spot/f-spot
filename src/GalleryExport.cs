@@ -5,7 +5,7 @@ namespace FSpot {
 			this.name = name;
 			this.username = username;
 			this.password = password;
-			this.url = url;
+			this.Url = url;
 		}
 		
 		public GalleryRemote.Gallery Connect ()
@@ -37,6 +37,9 @@ namespace FSpot {
 			get {
 				return name;
 			}
+			set {
+				name = value;
+			}
 		}
 		
 		string url;
@@ -44,12 +47,20 @@ namespace FSpot {
 			get {
 				return url;
 			}
+			set {
+				url = value;
+				if (url != null && !url.EndsWith ("/gallery_remote2.php"))
+					url = url + "/gallery_remote2.php";
+			}
 		}
 
 		string username;
 		public string Username {
 			get {
 				return username;
+			}
+			set {
+				username = value;
 			}
 		}
 
@@ -63,23 +74,40 @@ namespace FSpot {
 			}
 		}
 	}
+
 	
-	public class GalleryAdd : GladeDialog {
-		public GalleryAdd (GalleryExport export) : base ("gallery_add_dialog") 
+
+	public class AccountDialog : GladeDialog {
+		public AccountDialog (GalleryExport export) : this (export, null) { 
+			Dialog.Response += HandleAddResponse;
+			add_button.Sensitive = false;
+			status_area.Visible = false;
+		}
+		
+		public AccountDialog (GalleryExport export, GalleryAccount account) :  base ("gallery_add_dialog")
 		{
 			this.export = export;
 
-			gallery_add_dialog = this.Dialog;
-			gallery_add_dialog.Modal = false;
-			gallery_add_dialog.TransientFor = export.Dialog;
-			gallery_add_dialog.Show ();
+			this.Dialog.Modal = false;
+			this.Dialog.TransientFor = export.Dialog;
+			this.Dialog.Show ();
+			
+			this.account = account;
 
-			Dialog.Response += HandleResponse;
+			if (account != null) {
+				gallery_entry.Text = account.Name;
+				url_entry.Text = account.Url;
+				password_entry.Text = account.Password;
+				username_entry.Text = account.Username;
+				add_button.Label = Gtk.Stock.Ok;
+				Dialog.Response += HandleEditResponse;
+			} 
+
 			gallery_entry.Changed += HandleChanged;
 			url_entry.Changed += HandleChanged;
 			password_entry.Changed += HandleChanged;
 			username_entry.Changed += HandleChanged;
-			add_button.Sensitive = false;
+			HandleChanged (null, null);
 		}
 
 		private void HandleChanged (object sender, System.EventArgs args)
@@ -94,15 +122,13 @@ namespace FSpot {
 			else
 				add_button.Sensitive = true;
 		}
-
-		protected void HandleResponse (object sender, Gtk.ResponseArgs args)
+		
+		[GLib.ConnectBefore]
+		protected void HandleAddResponse (object sender, Gtk.ResponseArgs args)
 		{
-			System.Console.WriteLine ("got response");
+
 
 			if (args.ResponseId == Gtk.ResponseType.Ok) {
-				if (!url.EndsWith ("/gallery_remote2.php"))
-					url = url + "/gallery_remote2.php";
-
 				GalleryAccount account = new GalleryAccount (name, 
 									     url, 
 									     username,
@@ -112,16 +138,25 @@ namespace FSpot {
 			Dialog.Destroy ();
 		}
 
+		protected void HandleEditResponse (object sender, Gtk.ResponseArgs args)
+		{
+			if (args.ResponseId == Gtk.ResponseType.Ok) {
+				account.Name = name;
+				account.Url = url;
+				account.Username = username;
+				account.Password = password;
+			}
+		}
+
 		GalleryExport export;
 
+		private GalleryAccount account;
 		private string name;
 		private string url;
 		private string password;
 		private string username;
 
 		// widgets 
-		Gtk.Dialog gallery_add_dialog;
-		
 		[Glade.Widget] Gtk.Entry url_entry;
 		[Glade.Widget] Gtk.Entry password_entry;
 		[Glade.Widget] Gtk.Entry gallery_entry;
@@ -129,16 +164,61 @@ namespace FSpot {
 
 		[Glade.Widget] Gtk.Button add_button;
 		[Glade.Widget] Gtk.Button cancel_button;
+
+		[Glade.Widget] Gtk.HBox status_area;
 	}
 
-	
 	public class GalleryAddAlbum : GladeDialog {
+		[Glade.Widget] Gtk.OptionMenu album_optionmenu;
+
+		[Glade.Widget] Gtk.Entry name_entry;
+		[Glade.Widget] Gtk.Entry description_entry;
+		[Glade.Widget] Gtk.Entry title_entry;
+		
+		GalleryRemote.Gallery gallery;
+		GalleryRemote.Album parent;
+
 		public GalleryAddAlbum (GalleryRemote.Gallery gallery) : base ("gallery_add_album_dialog")
 		{
-		
+			
 		}
-	}
+#if false
+		public GalleryRemote.Album Parent {
+			get {
+				return Parent;
+			}
+		}
 
+		public bool Run {
+
+		}
+		
+		private PopulateAlbums ()
+		{
+			Gtk.Menu menu = new Gtk.Menu ();
+			foreach (GalleryRemote.Album album in albums) {
+				System.Text.StringBuilder label_builder = new System.Text.StringBuilder ();
+				
+				for (GalleryRemote.Album parent = album.Parent ();
+				     parent != null;
+				     parent = parent.Parent ()) {
+					label_builder.Append ("  ");
+					//Console.WriteLine ("looping");
+				}
+				label_builder.Append (album.Title);
+				
+				Gtk.MenuItem item = new Gtk.MenuItem (label_builder.ToString ());
+				menu.Append (item);
+				
+				GalleryRemote.AlbumPermission add_permission = album.Perms & GalleryRemote.AlbumPermission.Add;
+				
+				if (add_permission == 0)
+					item.Sensitive = false;
+			}
+		}
+#endif
+	}
+	
 	public class GalleryExport : GladeDialog {
 		public GalleryExport (IPhotoCollection selection) : base ("gallery_export_dialog")
 		{
@@ -155,7 +235,8 @@ namespace FSpot {
 			Dialog.TransientFor = null;
 
 			thumb_scrolledwindow.Add (view);
-			Dialog.ShowAll ();
+			view.Show ();
+			Dialog.Show ();
 
 			LoadAccounts ();
 
@@ -185,7 +266,7 @@ namespace FSpot {
 		private string xml_path;
 
 		// Dialogs
-		private GalleryAdd gallery_add;
+		private AccountDialog gallery_add;
 		private GalleryAddAlbum album_add;
 
 		// Widgets
@@ -274,6 +355,8 @@ namespace FSpot {
 				}
 			} catch (System.Exception e) {
 				// FIXME do something
+				PopulateGalleryOptionMenu ();
+				PopulateAlbumOptionMenu (null);
 			}
 		}
 
@@ -387,7 +470,7 @@ namespace FSpot {
 		{
 			Gtk.Menu menu = new Gtk.Menu ();
 			
-			if (accounts.Count == 0) {
+			if (accounts == null || accounts.Count == 0) {
 				Gtk.MenuItem item = new Gtk.MenuItem (Mono.Posix.Catalog.GetString ("(No Gallery)"));
 				menu.Append (item);
 				gallery_optionmenu.Sensitive = false;
@@ -413,43 +496,18 @@ namespace FSpot {
 					
 					PopulateAlbumOptionMenu (account.Gallery);
 				}
-			} catch (GalleryRemote.GalleryCommandException ex) {
-				System.Console.WriteLine (ex.Status);
+			} catch (System.Exception ex) {
 				PopulateAlbumOptionMenu (account.Gallery);
-				if (ex.Status == GalleryRemote.ResultCode.PasswordWrong) {
-					Gtk.ResponseType response;
-					string password = GetPassword (account.Name, out response);
-					if (response == Gtk.ResponseType.Ok) {
-						account.Password = password;
-						WriteAccounts ();
-						Connect ();
-					}
+				
+				AccountDialog dialog = new AccountDialog (this, account);
+				Gtk.ResponseType response = (Gtk.ResponseType) dialog.Dialog.Run ();
+
+				dialog.Dialog.Destroy ();				
+				if (response == Gtk.ResponseType.Ok) {
+					WriteAccounts ();
+					Connect ();
 				}
 			} 
-		}
-
-		private string GetPassword (string email, out Gtk.ResponseType response) 
-		{
-			Gtk.Dialog password_dialog = new Gtk.Dialog (Mono.Posix.Catalog.GetString ("Enter Password"),
-								     Dialog, Gtk.DialogFlags.Modal);
-			
-			Gtk.Entry password_entry = new Gtk.Entry ();
-			password_entry.Visibility = false;
-
-			//password_dialog.BorderWidth = 12;
-			password_dialog.HasSeparator = false;
-			password_dialog.VBox.Spacing = 6;
-			password_dialog.VBox.BorderWidth = 12;
-			password_dialog.VBox.PackStart (
-                                new Gtk.Label (System.String.Format (Mono.Posix.Catalog.GetString ("Enter password for for gallery \"{0}\""), email)));
-			password_dialog.VBox.PackStart (password_entry);
-			password_dialog.AddButton (Gtk.Stock.Cancel, Gtk.ResponseType.Cancel);
-			password_dialog.AddButton (Gtk.Stock.Ok, Gtk.ResponseType.Ok);
-			password_dialog.ShowAll ();
-			response = (Gtk.ResponseType) password_dialog.Run ();
-			string password =  password_entry.Text;
-			password_dialog.Destroy ();
-			return password;
 		}
 
 		private void HandleAccountSelected (object sender, System.EventArgs args)
@@ -511,7 +569,7 @@ namespace FSpot {
 		
 		public void HandleAddGallery (object sender, System.EventArgs args)
 		{
-			gallery_add = new GalleryAdd (this);
+			gallery_add = new AccountDialog (this);
 		}
 
 		public void HandleAddAlbum (object sender, System.EventArgs args)

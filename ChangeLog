@@ -1,5 +1,10 @@
 2005-03-14  Larry Ewing  <lewing@novell.com>
 
+	* src/f-spot.glade: clean up the add dialog make it work as an
+	error dialog as well.
+
+	* src/GalleryExport.cs: clean up the add and error dialogs.
+
 	* src/GalleryExport.cs: reenable the scaling code.
 
 	* src/f-spot.glade: add the scaling bits back to the dialog.
