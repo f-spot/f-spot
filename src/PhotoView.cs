@@ -32,23 +32,13 @@ public class PhotoView : EventBox {
 
 		set {
 			query = value;
-			query.Reload += HandleQueryReload;
-			query.ItemChanged += HandleQueryItemChanged;
-
-			// FIXME which picture to display?
-			CurrentPhoto = 0;
 		}
 	}
 	
-	private void HandleQueryReload (PhotoQuery query) 
+	public void Reload ()
 	{
-		Update ();
-	}
-	
-	private void HandleQueryItemChanged (PhotoQuery query, int item)
-	{
-		if (item == CurrentPhoto)
-			Update ();
+		photo_view.Reload ();
+
 	}
 
 	private FSpot.PhotoImageView photo_view;
@@ -160,7 +150,7 @@ public class PhotoView : EventBox {
 		description_entry.Changed += HandleDescriptionChanged;
 	}    
 
-	public void Update ()
+	private void Update ()
 	{
 		if (UpdateStarted != null)
 			UpdateStarted (this);

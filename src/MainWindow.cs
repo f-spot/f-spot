@@ -261,14 +261,14 @@ public class MainWindow {
 	private void InvalidateViews ()
 	{
 		icon_view.QueueDraw ();
-		photo_view.Update ();
+		photo_view.Reload ();
 	}
 
 	private void UpdateViews (int num)
 	{
 		icon_view.UpdateThumbnail (num);
 		if (num == photo_view.CurrentPhoto)
-			photo_view.Update ();
+			photo_view.Reload ();
 		info_box.Update ();
 		UpdateMenus ();
 	}

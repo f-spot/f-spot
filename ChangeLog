@@ -1,5 +1,11 @@
 2004-11-30  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoView.cs: clean up some of the update code and current
+	photo code, chain off of the PhotoImageView change not the the
+	query changes.
+
+	* src/MainWindow.cs: use PhotoView.Reload not update.
+
 	* src/JpegUtils.cs: make the error message a ref, newer mono
 	versions seem to be unhappy about marshalling an out there.
 
