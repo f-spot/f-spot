@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-02 23:54-0500\n"
-"PO-Revision-Date: 2004-12-02 23:54-0400\n"
+"POT-Creation-Date: 2004-12-17 20:25-0500\n"
+"PO-Revision-Date: 2004-12-17 23:54-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
@@ -96,31 +96,31 @@ msgstr "Cannot save non-local files."
 msgid "Unsupported image type for saving."
 msgstr "Cannot save unsupported image type."
 
-#: libeog/image-view.c:2058
+#: libeog/image-view.c:2081
 msgid "interpolation type"
 msgstr "interpolation type"
 
-#: libeog/image-view.c:2059
+#: libeog/image-view.c:2082
 msgid "the type of interpolation to use"
 msgstr "the type of interpolation to use"
 
-#: libeog/image-view.c:2065 libeog/image-view.c:2072
+#: libeog/image-view.c:2088 libeog/image-view.c:2095
 msgid "check type"
 msgstr "check type"
 
-#: libeog/image-view.c:2066
+#: libeog/image-view.c:2089
 msgid "the type of chequering to use"
 msgstr "the type of chequering to use"
 
-#: libeog/image-view.c:2073
+#: libeog/image-view.c:2096
 msgid "the size of chequers to use"
 msgstr "the size of chequers to use"
 
-#: libeog/image-view.c:2079
+#: libeog/image-view.c:2102
 msgid "dither"
 msgstr "dither"
 
-#: libeog/image-view.c:2080
+#: libeog/image-view.c:2103
 msgid "dither type"
 msgstr "dither type"
 
@@ -142,198 +142,234 @@ msgid "*"
 msgstr "*"
 
 #: src/f-spot.glade.h:2
+msgid "<b></b>"
+msgstr "<b></b>"
+
+#: src/f-spot.glade.h:3
+msgid "<b>Account</b>"
+msgstr "<b>Account</b>"
+
+#: src/f-spot.glade.h:4
 msgid "<b>Album</b>"
 msgstr "<b>Album</b>"
 
-#: src/f-spot.glade.h:3
+#: src/f-spot.glade.h:5
 msgid "<b>Color Temperature</b>"
 msgstr "<b>Colour Temperature</b>"
 
-#: src/f-spot.glade.h:4
+#: src/f-spot.glade.h:6
+msgid "<b>Destination</b>"
+msgstr "<b>Destination</b>"
+
+#: src/f-spot.glade.h:7
 msgid "<b>End Date</b>"
 msgstr "<b>End Date</b>"
 
-#: src/f-spot.glade.h:5
+#: src/f-spot.glade.h:8
 msgid "<b>Exposure</b>"
 msgstr "<b>Exposure</b>"
 
-#: src/f-spot.glade.h:6
+#: src/f-spot.glade.h:9
 msgid "<b>Gallery</b>"
 msgstr "<b>Gallery</b>"
 
-#: src/f-spot.glade.h:7
+#: src/f-spot.glade.h:10
 msgid "<b>Histogram</b>"
 msgstr "<b>Histogram</b>"
 
-#: src/f-spot.glade.h:8
+#: src/f-spot.glade.h:11
 msgid "<b>Photograph Layout</b>"
 msgstr "<b>Photograph Layout</b>"
 
-#: src/f-spot.glade.h:9
+#: src/f-spot.glade.h:12
 msgid "<b>Photos</b>"
 msgstr "<b>Photos</b>"
 
-#: src/f-spot.glade.h:10
+#: src/f-spot.glade.h:13
 msgid "<b>Preview</b>"
 msgstr "<b>Preview</b>"
 
-#: src/f-spot.glade.h:11
+#: src/f-spot.glade.h:14
 msgid "<b>Printer Details</b>"
 msgstr "<b>Printer Details</b>"
 
-#: src/f-spot.glade.h:12
+#: src/f-spot.glade.h:15
 msgid "<b>Start Date</b>"
 msgstr "<b>Start Date</b>"
 
-#: src/f-spot.glade.h:13
+#: src/f-spot.glade.h:16
 msgid "<b>Style</b>"
 msgstr "<b>Style</b>"
 
-#: src/f-spot.glade.h:14
+#: src/f-spot.glade.h:17
 msgid "<small> </small>"
 msgstr "<small> </small>"
 
-#: src/f-spot.glade.h:15
+#: src/f-spot.glade.h:18
 msgid "<small></small>"
 msgstr "<small></small>"
 
-#: src/f-spot.glade.h:16
+#: src/f-spot.glade.h:19
 msgid "Add Gallery"
 msgstr "Add Gallery"
 
-#: src/f-spot.glade.h:17
+#: src/f-spot.glade.h:20
 msgid "Adjust Color"
 msgstr "Adjust Colour"
 
-#: src/f-spot.glade.h:18
+#: src/f-spot.glade.h:21
 msgid "Album:"
 msgstr "Album:"
 
-#: src/f-spot.glade.h:19
+#: src/f-spot.glade.h:22
 msgid "Arranged By"
 msgstr "Arranged By"
 
-#: src/f-spot.glade.h:20 src/TagPopup.cs:35
+#: src/f-spot.glade.h:23 src/TagPopup.cs:35
 msgid "Attach Tag To Selection"
 msgstr "Attach Tag To Selection"
 
-#: src/f-spot.glade.h:21
+#: src/f-spot.glade.h:24
 msgid "Border:"
 msgstr "Border:"
 
-#: src/f-spot.glade.h:22
+#: src/f-spot.glade.h:25
 msgid "Brightness:"
 msgstr "Brightness:"
 
-#: src/f-spot.glade.h:23
+#: src/f-spot.glade.h:26
 msgid "Browse"
 msgstr "Browse"
 
-#: src/f-spot.glade.h:24
+#: src/f-spot.glade.h:27
 msgid "CD"
 msgstr "CD"
 
-#: src/f-spot.glade.h:25
+#: src/f-spot.glade.h:28
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/f-spot.glade.h:26
+#: src/f-spot.glade.h:29
 msgid "Caption:"
 msgstr "Caption:"
 
-#: src/f-spot.glade.h:27
+#: src/f-spot.glade.h:30
 msgid "Category:"
 msgstr "Category:"
 
-#: src/f-spot.glade.h:28
+#: src/f-spot.glade.h:31
 msgid "Close"
 msgstr "Close"
 
-#: src/f-spot.glade.h:29
+#: src/f-spot.glade.h:32
 msgid "Co_nfigure"
 msgstr "Co_nfigure"
 
-#: src/f-spot.glade.h:30
+#: src/f-spot.glade.h:33
 msgid "Contrast:"
 msgstr "Contrast:"
 
-#: src/f-spot.glade.h:31 src/TagCommands.cs:127 src/TagPopup.cs:22
+#: src/f-spot.glade.h:34 src/TagCommands.cs:127 src/TagPopup.cs:22
 msgid "Create New Category"
 msgstr "Create New Category"
 
-#: src/f-spot.glade.h:32 src/TagCommands.cs:123 src/TagPopup.cs:20
+#: src/f-spot.glade.h:35 src/TagCommands.cs:123 src/TagPopup.cs:20
 msgid "Create New Tag"
 msgstr "Create New Tag"
 
-#: src/f-spot.glade.h:33
+#: src/f-spot.glade.h:36
 msgid "Create new version"
 msgstr "Create new version"
 
-#: src/f-spot.glade.h:34
+#: src/f-spot.glade.h:37
 msgid "Crop Photo to Fit"
 msgstr "Crop Photo to Fit"
 
-#: src/f-spot.glade.h:35
+#: src/f-spot.glade.h:38
 msgid "Delete Selected Tag"
 msgstr "Delete Selected Tag"
 
-#: src/f-spot.glade.h:36
+#: src/f-spot.glade.h:39
 msgid "Delete Version"
 msgstr "Delete Version"
 
-#: src/f-spot.glade.h:37
+#: src/f-spot.glade.h:40
 msgid "Destination Temp"
 msgstr "Destination Temp"
 
-#: src/f-spot.glade.h:38
+#: src/f-spot.glade.h:41
 msgid "Directory"
 msgstr "Directory"
 
-#: src/f-spot.glade.h:39
+#: src/f-spot.glade.h:42
 msgid "Display Dates"
 msgstr "Display Dates"
 
-#: src/f-spot.glade.h:40
+#: src/f-spot.glade.h:43
 msgid "Display Tags"
 msgstr "Display Tags"
 
-#: src/f-spot.glade.h:41
+#: src/f-spot.glade.h:44
+msgid "E-Mail:"
+msgstr "E-mail:"
+
+#: src/f-spot.glade.h:45
 msgid "EXIF Data"
 msgstr "EXIF Data"
 
-#: src/f-spot.glade.h:42
+#: src/f-spot.glade.h:46
 msgid "Edit Selected Tag"
 msgstr "Edit Selected Tag"
 
-#: src/f-spot.glade.h:43
+#: src/f-spot.glade.h:47
 msgid "Edit Tag Icon"
 msgstr "Edit Tag Icon"
 
-#: src/f-spot.glade.h:44
+#: src/f-spot.glade.h:48
 msgid "Export"
 msgstr "Export"
 
-#: src/f-spot.glade.h:45
+#: src/f-spot.glade.h:49
+msgid "Export Tags and Categories"
+msgstr "Export Tags and Categories"
+
+#: src/f-spot.glade.h:50
+msgid "Export To Flickr"
+msgstr "Export To Flickr"
+
+#: src/f-spot.glade.h:51
 msgid "Export titles and comments"
 msgstr "Export titles and comments"
 
-#: src/f-spot.glade.h:46
+#: src/f-spot.glade.h:52
 msgid "Export to Album:"
 msgstr "Export to Album:"
 
-#: src/f-spot.glade.h:47
+#: src/f-spot.glade.h:53
+msgid "Export to Gallery"
+msgstr "Export to Gallery"
+
+#: src/f-spot.glade.h:54
+msgid "Export to VFS"
+msgstr "Export to VFS"
+
+#: src/f-spot.glade.h:55
 msgid "File"
 msgstr "File"
 
-#: src/f-spot.glade.h:48
+#: src/f-spot.glade.h:56
 msgid "Fin_d"
 msgstr "Fin_d"
 
-#: src/f-spot.glade.h:49
+#: src/f-spot.glade.h:57
 msgid "Find by _Tag"
 msgstr "Find by _Tag"
 
-#: src/f-spot.glade.h:50
+#: src/f-spot.glade.h:58
+msgid "Flikr"
+msgstr "Flikr"
+
+#: src/f-spot.glade.h:59
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
@@ -341,27 +377,27 @@ msgstr ""
 "Full Page\n"
 "Standard - 4x6"
 
-#: src/f-spot.glade.h:52
+#: src/f-spot.glade.h:61
 msgid "Fullscreen"
 msgstr "Fullscreen"
 
-#: src/f-spot.glade.h:53
+#: src/f-spot.glade.h:62
 msgid "Gallery"
 msgstr "Gallery"
 
-#: src/f-spot.glade.h:54
+#: src/f-spot.glade.h:63
 msgid "Gallery Name:"
 msgstr "Gallery Name:"
 
-#: src/f-spot.glade.h:55
+#: src/f-spot.glade.h:64
 msgid "Gallery Settings"
 msgstr "Gallery Settings"
 
-#: src/f-spot.glade.h:56
+#: src/f-spot.glade.h:65
 msgid "Gallery:"
 msgstr "Gallery:"
 
-#: src/f-spot.glade.h:57
+#: src/f-spot.glade.h:66
 msgid ""
 "Hairline\n"
 "0.25\"\n"
@@ -373,23 +409,23 @@ msgstr ""
 "0.5\"\n"
 "1\"\n"
 
-#: src/f-spot.glade.h:62
+#: src/f-spot.glade.h:71
 msgid "Hue:"
 msgstr "Hue:"
 
-#: src/f-spot.glade.h:63
+#: src/f-spot.glade.h:72
 msgid "Icon:"
 msgstr "Icon:"
 
-#: src/f-spot.glade.h:64
+#: src/f-spot.glade.h:73
 msgid "Month"
 msgstr "Month"
 
-#: src/f-spot.glade.h:65
+#: src/f-spot.glade.h:74
 msgid "Next"
 msgstr "Next"
 
-#: src/f-spot.glade.h:66
+#: src/f-spot.glade.h:75
 msgid ""
 "None\n"
 "Title\n"
@@ -403,91 +439,91 @@ msgstr ""
 "Date\n"
 "Photo Details"
 
-#: src/f-spot.glade.h:71
+#: src/f-spot.glade.h:80
 msgid "Number of Copies:"
 msgstr "Number of Copies:"
 
-#: src/f-spot.glade.h:72
+#: src/f-spot.glade.h:81
 msgid "OK"
 msgstr "OK"
 
-#: src/f-spot.glade.h:73
+#: src/f-spot.glade.h:82
 msgid "Open album in browser when done uploading"
 msgstr "Open album in browser when done uploading"
 
-#: src/f-spot.glade.h:74
+#: src/f-spot.glade.h:83
 msgid "Page 1 of 3"
 msgstr "Page 1 of 3"
 
-#: src/f-spot.glade.h:75
+#: src/f-spot.glade.h:84
 msgid "Password:"
 msgstr "Password:"
 
-#: src/f-spot.glade.h:76
+#: src/f-spot.glade.h:85
 msgid "Pause"
 msgstr "Pause"
 
-#: src/f-spot.glade.h:77
+#: src/f-spot.glade.h:86
 msgid "Photo 0 of 0"
 msgstr "Photo 0 of 0"
 
-#: src/f-spot.glade.h:78
+#: src/f-spot.glade.h:87
 msgid "Photo Source:"
 msgstr "Photo Source:"
 
-#: src/f-spot.glade.h:79
+#: src/f-spot.glade.h:88
 msgid "PhotoSize:"
 msgstr "PhotoSize:"
 
-#: src/f-spot.glade.h:80
+#: src/f-spot.glade.h:89
 msgid "Previous"
 msgstr "Previous"
 
-#: src/f-spot.glade.h:81
+#: src/f-spot.glade.h:90
 msgid "Print"
 msgstr "Print"
 
-#: src/f-spot.glade.h:82
+#: src/f-spot.glade.h:91
 msgid "Print Crop Marks"
 msgstr "Print Crop Marks"
 
-#: src/f-spot.glade.h:83
+#: src/f-spot.glade.h:92
 msgid "Rem_ove Tag"
 msgstr "Rem_ove Tag"
 
-#: src/f-spot.glade.h:84 src/TagPopup.cs:38
+#: src/f-spot.glade.h:93 src/TagPopup.cs:38
 msgid "Remove Tag From Selection"
 msgstr "Remove Tag From Selection"
 
-#: src/f-spot.glade.h:85
+#: src/f-spot.glade.h:94
 msgid "Rename Version"
 msgstr "Rename Version"
 
-#: src/f-spot.glade.h:86 src/PhotoPopup.cs:32
+#: src/f-spot.glade.h:95 src/PhotoPopup.cs:32
 msgid "Rotate Left"
 msgstr "Rotate Left"
 
-#: src/f-spot.glade.h:87 src/PhotoPopup.cs:34
+#: src/f-spot.glade.h:96 src/PhotoPopup.cs:34
 msgid "Rotate Right"
 msgstr "Rotate Right"
 
-#: src/f-spot.glade.h:88
+#: src/f-spot.glade.h:97
 msgid "Saturation:"
 msgstr "Saturation:"
 
-#: src/f-spot.glade.h:89
+#: src/f-spot.glade.h:98
 msgid "Scale images to no larger than: "
 msgstr "Scale images to no larger than: "
 
-#: src/f-spot.glade.h:90
+#: src/f-spot.glade.h:99
 msgid "Select All"
 msgstr "Select All"
 
-#: src/f-spot.glade.h:91
+#: src/f-spot.glade.h:100
 msgid "Select None"
 msgstr "Select None"
 
-#: src/f-spot.glade.h:92
+#: src/f-spot.glade.h:101
 msgid ""
 "Selection\n"
 "Gallery\n"
@@ -497,123 +533,139 @@ msgstr ""
 "Gallery\n"
 "Viewport"
 
-#: src/f-spot.glade.h:95
+#: src/f-spot.glade.h:104
 msgid "Send _Mail"
 msgstr "Send _Mail"
 
-#: src/f-spot.glade.h:96
+#: src/f-spot.glade.h:105
 msgid "Set _Date Range"
 msgstr "Set _Date Range"
 
-#: src/f-spot.glade.h:97
+#: src/f-spot.glade.h:106
 msgid "Set as Background"
 msgstr "Set as Background"
 
-#: src/f-spot.glade.h:98
+#: src/f-spot.glade.h:107
 msgid "Size"
 msgstr "Size"
 
-#: src/f-spot.glade.h:99
+#: src/f-spot.glade.h:108
 msgid "SlideShow"
 msgstr "SlideShow"
 
-#: src/f-spot.glade.h:100
+#: src/f-spot.glade.h:109
 msgid "Source Temp"
 msgstr "Source Temp"
 
-#: src/f-spot.glade.h:101 src/TagCommands.cs:310
+#: src/f-spot.glade.h:110
+msgid "Strip Image Metadata"
+msgstr "Strip Image Metadata"
+
+#: src/f-spot.glade.h:111
+msgid "Strip Metadata"
+msgstr "Strip Metadata"
+
+#: src/f-spot.glade.h:112 src/TagCommands.cs:310
 msgid "Tag name:"
 msgstr "Tag name:"
 
-#: src/f-spot.glade.h:102
+#: src/f-spot.glade.h:113
 msgid "Tags"
 msgstr "Tags"
 
-#: src/f-spot.glade.h:103
+#: src/f-spot.glade.h:114
 msgid "Update Thumbnail"
 msgstr "Update Thumbnail"
 
-#: src/f-spot.glade.h:104
+#: src/f-spot.glade.h:115
+msgid "Uri:"
+msgstr "URI:"
+
+#: src/f-spot.glade.h:116
 msgid "Url:"
 msgstr "URL:"
 
-#: src/f-spot.glade.h:105
+#: src/f-spot.glade.h:117
 msgid "User_name:"
 msgstr "User_name:"
 
-#: src/f-spot.glade.h:106
+#: src/f-spot.glade.h:118
 msgid "Username:"
 msgstr "Username:"
 
-#: src/f-spot.glade.h:107
+#: src/f-spot.glade.h:119
 msgid "View"
 msgstr "View"
 
-#: src/f-spot.glade.h:108
+#: src/f-spot.glade.h:120
+msgid "Virtual Filesystem"
+msgstr "Virtual Filesystem"
+
+#: src/f-spot.glade.h:121
 msgid "Will print Using: Us Letter size on Generic Postscript"
 msgstr "Will print using: US Letter size on Generic Postscript"
 
-#: src/f-spot.glade.h:109
+#: src/f-spot.glade.h:122
 msgid "Zoom In"
 msgstr "Zoom In"
 
-#: src/f-spot.glade.h:110
+#: src/f-spot.glade.h:123
 msgid "Zoom _Out"
 msgstr "Zoom _Out"
 
-#: src/f-spot.glade.h:111
+#: src/f-spot.glade.h:124
 msgid "_Attach Tag"
 msgstr "_Attach Tag"
 
-#: src/f-spot.glade.h:112
+#: src/f-spot.glade.h:125
 msgid "_Clear Date Range"
 msgstr "_Clear Date Range"
 
-#: src/f-spot.glade.h:113
+#: src/f-spot.glade.h:126
 msgid "_Delete from Drive"
 msgstr "_Delete from Drive"
 
-#: src/f-spot.glade.h:114
+#: src/f-spot.glade.h:127
 msgid "_Gallery Name:"
 msgstr "_Gallery Name:"
 
-#: src/f-spot.glade.h:115
+#: src/f-spot.glade.h:128
 msgid "_Import"
 msgstr "_Import"
 
-#: src/f-spot.glade.h:116
+#: src/f-spot.glade.h:129
 msgid "_Large"
 msgstr "_Large"
 
-#: src/f-spot.glade.h:117
+#: src/f-spot.glade.h:130
 msgid "_Medium"
 msgstr "_Medium"
 
-#: src/f-spot.glade.h:118
+#: src/f-spot.glade.h:131
 msgid "_Password:"
 msgstr "_Password:"
 
-#: src/f-spot.glade.h:119
+#: src/f-spot.glade.h:132
 msgid "_Remove From Catalog"
 msgstr "_Remove From Catalogue"
 
-#: src/f-spot.glade.h:120
+#: src/f-spot.glade.h:133
 msgid "_Small"
 msgstr "_Small"
 
-#: src/f-spot.glade.h:121
+#: src/f-spot.glade.h:134
 msgid "_Url:"
 msgstr "_URL:"
 
-#: src/f-spot.glade.h:122
+#: src/f-spot.glade.h:135
 msgid "_Version"
 msgstr "_Version"
 
-#: src/f-spot.glade.h:123
+#: src/f-spot.glade.h:136
 msgid "dialog1"
 msgstr "dialogue1"
 
-#: src/f-spot.glade.h:124
+#: src/f-spot.glade.h:137
 msgid "x"
 msgstr "x"
 
@@ -647,7 +699,7 @@ msgstr "Error Uploading To Gallery"
 msgid "(No Gallery)"
 msgstr "(No Gallery)"
 
-#: src/GalleryExport.cs:423
+#: src/GalleryExport.cs:425
 msgid "(No Albums)"
 msgstr "(No Albums)"
 
@@ -678,7 +730,7 @@ msgstr "(None)"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: src/MainWindow.cs:852
+#: src/MainWindow.cs:834
 msgid "translator-credits"
 msgstr "Adam Weinberger <adamw@gnome.org>"
 
@@ -760,7 +812,7 @@ msgstr "Category name:"
 msgid "Edit Tag"
 msgstr "Edit Tag"
 
-#: src/TagCommands.cs:379
+#: src/TagCommands.cs:405
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Photo {0} of {1}"
