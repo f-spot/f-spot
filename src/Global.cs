@@ -21,10 +21,13 @@ namespace FSpot {
 			color.Green = (ushort) (color.Green / 2);
 			widget.ModifyBg (Gtk.StateType.Normal, color);
 #else 
-			//widget.ModifyFg (Gtk.StateType.Normal, widget.Style.TextColors [(int)Gtk.StateType.Normal]);
-			//widget.ModifyBg (Gtk.StateType.Normal, widget.Style.BaseColors [(int)Gtk.StateType.Normal]);
-			widget.ModifyFg (Gtk.StateType.Normal, widget.Style.Black);
-			widget.ModifyBg (Gtk.StateType.Normal, widget.Style.White);
+			try {
+				widget.ModifyFg (Gtk.StateType.Normal, widget.Style.TextColors [(int)Gtk.StateType.Normal]);
+				widget.ModifyBg (Gtk.StateType.Normal, widget.Style.BaseColors [(int)Gtk.StateType.Normal]);
+			} catch {
+				widget.ModifyFg (Gtk.StateType.Normal, widget.Style.Black);
+				widget.ModifyBg (Gtk.StateType.Normal, widget.Style.White);
+			}
 #endif 
 		}
 
