@@ -1270,13 +1270,11 @@ public class MainWindow {
 
 	public void HandleRotate90Command (object sender, EventArgs args)
 	{
-		Console.WriteLine ("Rotate Left");
 		RotateSelectedPictures (RotateCommand.Direction.Clockwise);
 	}
 
 	public void HandleRotate270Command (object sender, EventArgs args)
 	{
-		Console.WriteLine ("Rotate Left");
 		RotateSelectedPictures (RotateCommand.Direction.Counterclockwise);
 	}
 

@@ -7387,6 +7387,7 @@ Photo Details</property>
 	      <property name="visible_horizontal">True</property>
 	      <property name="visible_vertical">True</property>
 	      <property name="is_important">False</property>
+	      <signal name="clicked" handler="HandleRotate270Command" last_modification_time="Thu, 06 Jan 2005 23:57:28 GMT"/>
 	    </widget>
 	    <packing>
 	      <property name="expand">False</property>
@@ -7401,6 +7402,7 @@ Photo Details</property>
 	      <property name="visible_horizontal">True</property>
 	      <property name="visible_vertical">True</property>
 	      <property name="is_important">False</property>
+	      <signal name="clicked" handler="HandleRotate90Command" last_modification_time="Thu, 06 Jan 2005 23:57:43 GMT"/>
 	    </widget>
 	    <packing>
 	      <property name="expand">False</property>
