@@ -1,5 +1,10 @@
 2005-02-14  Larry Ewing  <lewing@novell.com>
 
+	* libfspot/f-jpeg-utils.c: always initialize the error_string to
+	null.
+
+	* src/JpegUtils.cs: make the string an out parameter.
+
 	* src/IconView.cs: fix the tag centering.
 
 	* src/MainWindow.cs: Pop up an import dialog if the db is empty.

@@ -413,6 +413,7 @@ f_transform_jpeg  (const char      *source_path,
 		   char           **error_message_return)
 {
 	JXFORM_CODE jpegtran_transform;
+	*error_message_return = NULL;
 
 	/* Since the error reporting of jpegtran sucks, check at least that the source
 	   file exists.  */
