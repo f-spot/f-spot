@@ -16,11 +16,6 @@ public class MainWindow {
         public static MainWindow Toplevel = null;
 
 	Db db;
-	public Db Database {
-		get {
-			return db;
-		}
-	}
 
 	TagSelectionWidget tag_selection_widget;
 	[Glade.Widget] Gtk.Window main_window;
@@ -80,7 +75,8 @@ public class MainWindow {
 	FSpot.Delay slide_delay;
 	
 	string last_import_path;
-	
+	ModeType view_mode;
+
 	// Drag and Drop
 	enum TargetType {
 		UriList,
@@ -110,39 +106,6 @@ public class MainWindow {
 	};
 
 	const int PHOTO_IDX_NONE = -1;
-	
-	struct YearCount {
-		int Year;
-		int Count;
-	}
-
-	// Index into the PhotoQuery.  If -1, no photo is selected or multiple photos are selected.
-	private int ActiveIndex () {
-		if (view_mode == ModeType.IconView && icon_view.CurrentIdx != -1)
-			return icon_view.CurrentIdx;
-
-	        int [] selection = SelectedIds ();
-		if (selection.Length == 1) 
-			return selection [0];
-		else 
-			return PHOTO_IDX_NONE;
-	}
-
-	public bool PhotoSelectionActive ()
-	{
-		return SelectedIds().Length > 0;
-	}
-
-	private Photo CurrentPhoto {
-		get {
-			int active = ActiveIndex ();
-			if (active >= 0)
-				return query.Photos [active];
-			else
-				return null;
-		}
-	}
-
 
 	//
 	// Constructor
@@ -173,9 +136,9 @@ public class MainWindow {
 		tag_selection_widget = new TagSelectionWidget (db.Tags);
 		tag_selection_scrolled.Add (tag_selection_widget);
 		
-		tag_selection_widget.Selection.Changed += new EventHandler (HandleTagSelectionChanged);
-		tag_selection_widget.SelectionChanged += new TagSelectionWidget.SelectionChangedHandler (OnTagSelectionChanged);
-		tag_selection_widget.DragDataGet += new DragDataGetHandler (HandleTagSelectionDragDataGet);
+		tag_selection_widget.Selection.Changed += HandleTagSelectionChanged;
+		tag_selection_widget.SelectionChanged += OnTagSelectionChanged;
+		tag_selection_widget.DragDataGet += HandleTagSelectionDragDataGet;
 		tag_selection_widget.DragDrop += HandleTagSelectionDragDrop;
 		Gtk.Drag.SourceSet (tag_selection_widget, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
 				    tag_target_table, DragAction.Copy | DragAction.Move);
@@ -185,10 +148,10 @@ public class MainWindow {
 		Gtk.Drag.DestSet (tag_selection_widget, DestDefaults.All, tag_dest_target_table, 
 				  DragAction.Copy | DragAction.Move ); 
 
-		tag_selection_widget.ButtonPressEvent += new ButtonPressEventHandler (HandleTagSelectionButtonPressEvent);
+		tag_selection_widget.ButtonPressEvent += HandleTagSelectionButtonPressEvent;
 
 		info_box = new InfoBox ();
-		info_box.VersionIdChanged += new InfoBox.VersionIdChangedHandler (HandleInfoBoxVersionIdChange);
+		info_box.VersionIdChanged += HandleInfoBoxVersionIdChange;
 		left_vbox.PackStart (info_box, false, true, 0);
 
 		query = new FSpot.PhotoQuery (db.Photos);
@@ -211,8 +174,8 @@ public class MainWindow {
 
 		icon_view = new QueryView (query);
 		icon_view_scrolled.Add (icon_view);
-		icon_view.SelectionChanged += new IconView.SelectionChangedHandler (HandleSelectionChanged);
-		icon_view.DoubleClicked += new IconView.DoubleClickedHandler (HandleDoubleClicked);
+		icon_view.SelectionChanged += HandleSelectionChanged;
+		icon_view.DoubleClicked += HandleDoubleClicked;
 		icon_view.GrabFocus ();
 
 		new FSpot.PreviewPopup (icon_view);
@@ -220,8 +183,8 @@ public class MainWindow {
 		Gtk.Drag.SourceSet (icon_view, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
 				    icon_source_target_table, DragAction.Copy | DragAction.Move);
 		
-		icon_view.DragBegin += new DragBeginHandler (HandleIconViewDragBegin);
-		icon_view.DragDataGet += new DragDataGetHandler (HandleIconViewDragDataGet);
+		icon_view.DragBegin += HandleIconViewDragBegin;
+		icon_view.DragDataGet += HandleIconViewDragDataGet;
 
 		TagMenu menu = new TagMenu (attach_tag, db.Tags);
 		menu.TagSelected += HandleAttachTagMenuSelected;
@@ -237,9 +200,9 @@ public class MainWindow {
 				  DragAction.Copy | DragAction.Move); 
 
 		//		icon_view.DragLeave += new DragLeaveHandler (HandleIconViewDragLeave);
-		icon_view.DragMotion += new DragMotionHandler (HandleIconViewDragMotion);
-		icon_view.DragDrop += new DragDropHandler (HandleIconViewDragDrop);
-		icon_view.DragDataReceived += new DragDataReceivedHandler (HandleIconViewDragDataReceived);
+		icon_view.DragMotion += HandleIconViewDragMotion;
+		icon_view.DragDrop += HandleIconViewDragDrop;
+		icon_view.DragDataReceived += HandleIconViewDragDataReceived;
 
 		photo_view = new PhotoView (query, db.Photos);
 		photo_box.Add (photo_view);
@@ -252,11 +215,11 @@ public class MainWindow {
 		Gtk.Drag.DestSet (photo_view, DestDefaults.All, tag_target_table, 
 				  DragAction.Copy | DragAction.Move); 
 
-		photo_view.DragMotion += new DragMotionHandler (HandlePhotoViewDragMotion);
-		photo_view.DragDrop += new DragDropHandler (HandlePhotoViewDragDrop);
-		photo_view.DragDataReceived += new DragDataReceivedHandler (HandlePhotoViewDragDataReceived);
+		photo_view.DragMotion += HandlePhotoViewDragMotion;
+		photo_view.DragDrop += HandlePhotoViewDragDrop;
+		photo_view.DragDataReceived += HandlePhotoViewDragDataReceived;
 
-		view_notebook.SwitchPage += new SwitchPageHandler (HandleViewNotebookSwitchPage);
+		view_notebook.SwitchPage += HandleViewNotebookSwitchPage;
 		adaptor.GlassSet += HandleAdaptorGlassSet;
 
 		UpdateMenus ();
@@ -272,19 +235,51 @@ public class MainWindow {
 			HandleImportCommand (null, null);
 	}
 
-	// Switching mode.
-	public enum ModeType {
-		IconView,
-		PhotoView
-	};
+	// Index into the PhotoQuery.  If -1, no photo is selected or multiple photos are selected.
+	private int ActiveIndex () 
+	{
+		if (view_mode == ModeType.IconView && icon_view.CurrentIdx != -1)
+			return icon_view.CurrentIdx;
 
-	ModeType view_mode;
+	        int [] selection = SelectedIds ();
+		if (selection.Length == 1) 
+			return selection [0];
+		else 
+			return PHOTO_IDX_NONE;
+	}
+
+	public bool PhotoSelectionActive ()
+	{
+		return SelectedIds().Length > 0;
+	}
+
+	private Photo CurrentPhoto {
+		get {
+			int active = ActiveIndex ();
+			if (active >= 0)
+				return query.Photos [active];
+			else
+				return null;
+		}
+	}
+
+	public Db Database {
+		get {
+			return db;
+		}
+	}
 
 	public ModeType ViewMode {
 		get {
 			return view_mode;
 		}
 	}
+
+	// Switching mode.
+	public enum ModeType {
+		IconView,
+		PhotoView
+	};
 
 	public void SetViewMode (ModeType value)
 	{
@@ -448,7 +443,6 @@ public class MainWindow {
 			args.RetVal = true;
 		}
 	}
-
 
 	void HandleTagSelectionDragDataGet (object sender, DragDataGetArgs args)
 	{		
@@ -971,7 +965,7 @@ public class MainWindow {
 			"Alessandro Gervaso",
 			"Peter Johanson",
 			"Grahm Orr",
-			"Cheslack-Postava",
+			"Ewen Cheslack-Postava",
 			"Patanjali Somayaji",
 			"Matt Jones",
 			"Martin Willemoes Hansen",

@@ -15,8 +15,6 @@ public class QueryView : IconView {
 		query.ItemChanged += HandleItemChanged;
 	}
 
-	protected QueryView (System.IntPtr raw) : base (raw) {}
-	
 	private void HandleChanged (FSpot.IBrowsableCollection sender)
 	{
 		// FIXME we should probably try to merge the selection forward

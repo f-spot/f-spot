@@ -21,7 +21,7 @@ public class IconView : Gtk.Layout {
 	// Public properties.
 
 	/* Width of the thumbnails. */
-	private int thumbnail_width = 128;
+	protected int thumbnail_width = 128;
 	public int ThumbnailWidth {
 		get {
 			return thumbnail_width;
@@ -35,7 +35,7 @@ public class IconView : Gtk.Layout {
 		}
 	}
 
-	private double thumbnail_ratio = 4.0 / 3.0;
+	protected double thumbnail_ratio = 4.0 / 3.0;
 	public double ThumbnailRatio {
 		get {
 			return thumbnail_ratio;
@@ -77,30 +77,30 @@ public class IconView : Gtk.Layout {
 	}
 
 	// Size of the frame around the thumbnail.
-	private const int CELL_BORDER_WIDTH = 10;
+	protected const int CELL_BORDER_WIDTH = 10;
 
 	// Border around the scrolled area.
-	private const int BORDER_SIZE = 6;
+	protected const int BORDER_SIZE = 6;
 
 	// Thickness of the outline used to indicate selected items. 
 	private const int SELECTION_THICKNESS = 5;
 
 	// Size of the tag icon in the view.
-	private const int TAG_ICON_SIZE = 16;
+	protected const int TAG_ICON_SIZE = 16;
 
 	// Horizontal spacing between the tag icons
-	private const int TAG_ICON_HSPACING = 2;
+	protected const int TAG_ICON_HSPACING = 2;
 
 	// Vertical spacing between the thumbnail and the row of tag icons.
-	private const int TAG_ICON_VSPACING = 3;
+	protected const int TAG_ICON_VSPACING = 3;
 
 	// The loader.
 	private PixbufLoader pixbuf_loader;
 
 	// Various other layout values.
-	private int cells_per_row;
-	private int cell_width;
-	private int cell_height;
+	protected int cells_per_row;
+	protected int cell_width;
+	protected int cell_height;
 
 	// The first pixel line that is currently on the screen (i.e. in the current
 	// scroll region).  Used to compute the area that went offscreen in the "changed"
@@ -174,9 +174,6 @@ public class IconView : Gtk.Layout {
 		this.collection = collection;
 	}
 	
-
-	protected IconView (IntPtr raw) : base (raw) {}
-
 	//
 	// IPhotoSelection
 	//
@@ -376,13 +373,13 @@ public class IconView : Gtk.Layout {
 	
 	// FIXME I can't find a c# wrapper for the C PANGO_PIXELS () macro
 	// So this Function is for that.
-	static int PangoPixels (int val)
+	protected static int PangoPixels (int val)
 	{
 		return val >= 0 ? (val + 1024 / 2) / 1024 :
 			(val - 1024 / 2) / 1024;
 	}
 	
-	private void UpdateLayout ()
+	protected virtual void UpdateLayout ()
 	{
 		int available_width = Allocation.Width - 2 * BORDER_SIZE;
 
