@@ -1,3 +1,15 @@
+2004-08-29  Larry Ewing  <lewing@novell.com>
+
+	* autogen.sh: bump required automake version, this is needed for
+	the glib-gettextize I have.  It is possible other might not need
+	it but I'm playing it safe.
+
+	* src/makefile.am: remove GtkDnd.cs.
+	
+	* src/GtkDnd.cs: remove unused file.
+
+	* src/TimelineSelectorWidget.cs: this is the GroupSelector.cs.
+
 2004-08-26  Larry Ewing  <lewing@novell.com>
 
 	* src/GroupSelector.cs: add the glass label while dragging.
