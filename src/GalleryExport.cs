@@ -183,7 +183,7 @@ namespace FSpot {
 		FSpot.ThreadProgressDialog progress_dialog;
 		
 		System.Collections.ArrayList accounts;
-		private GalleryRemote.Gallery gallery;
+		private GalleryAccount account;
 		private GalleryRemote.Album album;
 
 		private string xml_path;
@@ -295,9 +295,9 @@ namespace FSpot {
 			browser = browser_check.Active;
 			meta = meta_check.Active;
 
-			if (gallery != null) { 
+			if (account != null) { 
 				System.Console.WriteLine ("history = {0}", album_optionmenu.History);
-				album = (GalleryRemote.Album) gallery.Albums [System.Math.Max (0, album_optionmenu.History)]; 
+				album = (GalleryRemote.Album) account.Gallery.Albums [System.Math.Max (0, album_optionmenu.History)]; 
 				photo_index = 0;
 
 				System.Threading.Thread t = new System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
@@ -331,6 +331,20 @@ namespace FSpot {
 			} catch (System.Exception e) {
 				progress_dialog.Message = e.ToString ();
 				progress_dialog.ProgressText = "Error Uploading To Gallery";
+			}
+			
+			if (browser) {
+				string url = account.Url;
+				string end = "gallery_remote2.php";
+				url = url.Remove (url.Length - end.Length, end.Length); 
+				string path = album.Name;
+				while (album.Parent () != null) {
+					album = album.Parent ();
+					path = album.Name + "/" + path;
+				}
+				url = url + path;
+
+				Gnome.Url.Show (url);
 			}
 		}
 		
@@ -376,13 +390,11 @@ namespace FSpot {
 		private void HandleAccountSelected (object sender, System.EventArgs args)
 		{
 			if (accounts.Count != 0) {
-				GalleryAccount account = (GalleryAccount) accounts [gallery_optionmenu.History];
+				account = (GalleryAccount) accounts [gallery_optionmenu.History];
 				if (!account.Connected)
 					account.Connect ();
 				
-				gallery = account.Gallery;
-
-				PopulateAlbumOptionMenu (gallery);
+				PopulateAlbumOptionMenu (account.Gallery);
 			}
 		}
 
@@ -438,7 +450,7 @@ namespace FSpot {
 
 		public void HandleAddAlbum (object sender, System.EventArgs args)
 		{
-			album_add = new GalleryAddAlbum (gallery);
+			album_add = new GalleryAddAlbum (account.Gallery);
 		}
 
 		public void HandleExport (object sender, System.EventArgs args)
