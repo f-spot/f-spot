@@ -157,7 +157,10 @@ public class MainWindow {
 		icon_view_scrolled.Add (icon_view);
 		icon_view.SelectionChanged += new IconView.SelectionChangedHandler (HandleSelectionChanged);
 		icon_view.DoubleClicked += new IconView.DoubleClickedHandler (HandleDoubleClicked);
-		
+		icon_view.GrabFocus ();
+
+		FSpot.PreviewPopup preview = new FSpot.PreviewPopup (icon_view);
+
 		Gtk.Drag.SourceSet (icon_view, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
 				    icon_source_target_table, DragAction.Copy | DragAction.Move);
 		
@@ -181,7 +184,6 @@ public class MainWindow {
 		icon_view.DragMotion += new DragMotionHandler (HandleIconViewDragMotion);
 		icon_view.DragDrop += new DragDropHandler (HandleIconViewDragDrop);
 		icon_view.DragDataReceived += new DragDataReceivedHandler (HandleIconViewDragDataReceived);
-		icon_view.MotionNotifyEvent += new MotionNotifyEventHandler (HandleIconViewMotionNotifyEvent);
 
 		photo_view = new PhotoView (query, db.Photos);
 		photo_box.Add (photo_view);
@@ -486,6 +488,7 @@ public class MainWindow {
 		Gtk.Drag.Finish (args.Context, true, false, args.Time);
 	}
 
+#if false
 	void HandleIconViewMotionNotifyEvent (object sender, MotionNotifyEventArgs args)
 	{
 		if ((args.Event.State & Gdk.ModifierType.Mod1Mask) == 0) {
@@ -508,7 +511,7 @@ public class MainWindow {
 		
 		ShowQuickPreview (cell_num, image_center_x, image_center_y);
 	}
-
+#endif
 
 	//
 	// IconView event handlers
@@ -536,168 +539,6 @@ public class MainWindow {
 	{
 		icon_view.FocusCell = clicked_item;
 		SwitchToPhotoViewMode ();
-	}
-
-
-	int stored_display_width = -1, stored_display_height = -1;
-
-	void GetDisplaySize (out int w, out int h)
-	{
-		if (stored_display_width == -1
-		    || stored_display_height == -1) {
-			Drawable d = (Display.Default.GetScreen (0)).RootWindow;
-			d.GetSize (out stored_display_width, out stored_display_height);
-		}
-
-		w = stored_display_width;
-		h = stored_display_height;
-	}
-
-	Gtk.Window quick_preview = null;
-	Gtk.Image quick_preview_image = null;
-	Gtk.Label quick_preview_label = null;
-	ThumbnailCache quick_preview_cache = new ThumbnailCache (200);
-	int last_motion_item = -1;
-	int last_image_center_x = -1;
-	int last_image_center_y = -1;
-
-	void CreateQuickPreview ()
-	{
-		quick_preview = new Gtk.Window (Gtk.WindowType.Popup);
-		quick_preview.Decorated = false;
-		quick_preview.TransientFor = main_window;
-		quick_preview.TypeHint = Gdk.WindowTypeHint.Dock;
-		quick_preview.CanFocus = false;
-
-		Gtk.Box quick_preview_vbox = new Gtk.VBox ();
-		// FIXME these should just load a specific style.
-		quick_preview.ModifyFg (StateType.Normal, new Gdk.Color (127, 127, 127));
-		quick_preview.ModifyBg (StateType.Normal, new Gdk.Color (0, 0, 0));
-		
-		quick_preview_image = new Gtk.Image ();
-		quick_preview_image.CanFocus = false;
-		quick_preview_vbox.PackStart (quick_preview_image, true, true, 0);
-		
-		quick_preview_label = new Gtk.Label ("");
-		quick_preview_label.CanFocus = false;
-		quick_preview_vbox.PackStart (quick_preview_label, true, false, 0);
-		quick_preview_label.ModifyFg (StateType.Normal, new Gdk.Color (127, 127, 127));
-		quick_preview_label.ModifyBg (StateType.Normal, new Gdk.Color (0, 0, 0));
-
-		quick_preview.SizeAllocated += new SizeAllocatedHandler (QuickPreviewSizeAllocatedHandler);
-		
-		quick_preview.Add (quick_preview_vbox);
-		quick_preview_vbox.ShowAll ();
-	}
-
-	void PositionQuickPreview ()
-	{
-		int display_width, display_height;
-		GetDisplaySize (out display_width, out display_height);
-
-		int preview_width, preview_height;
-		preview_width = quick_preview.Allocation.Width;
-		preview_height = quick_preview.Allocation.Height;
-
-		Gdk.Rectangle bounds = icon_view.CellBounds (last_motion_item);
-
-		// Compute the preview's x-position, ensuring that it doesn't
-		// fall off the edge of the screen
-		int image_x;
-		image_x = last_image_center_x - preview_width/2;
-		if (image_x + preview_width > display_width)
-			image_x += display_width - image_x - preview_width;
-		else if (image_x < 0)
-			image_x = 0;
-
-		// Compute the preview's y-position.  We put the preview above
-		// the image if it will fit there, and below otherwise.
-		int image_y;
-		int margin = bounds.Height / 2 + 5;
-		image_y = last_image_center_y - preview_height - margin;
-		if (image_y < 0)
-			image_y = last_image_center_y + margin;
-
-		quick_preview.Move (image_x, image_y);
-		quick_preview.Show ();
-	}
-
-	void QuickPreviewSizeAllocatedHandler (object o, SizeAllocatedArgs args)
-	{
-		if (last_motion_item < 0
-		    || quick_preview.Allocation.Width <= 1
-		    || quick_preview.Allocation.Height <= 1)
-			return;
-
-		PositionQuickPreview ();
-	}
-
-	void ShowQuickPreview (int motion_item, int image_center_x, int image_center_y)
-	{
-		if (motion_item < 0
-		    || motion_item >= query.Photos.Length
-		    || motion_item == last_motion_item)
-			return;
-
-		Photo photo = query.Photos [motion_item];
-
-		last_motion_item = motion_item;
-		last_image_center_x = image_center_x;
-		last_image_center_y = image_center_y;
-
-		if (quick_preview == null)
-			CreateQuickPreview ();
-
-		//Pixbuf old = quick_preview_image.Pixbuf;
-		quick_preview_image.Pixbuf = QuickPreviewPixbuf (photo);
-		/*
-		if (old != null)
-			old.Dispose ();
-		*/
-
-		quick_preview_label.Text = QuickPreviewLabel (photo);
-		quick_preview.Show ();
-
-		// The quick preview's position is set in the SizeAllocated
-		// handler.  We need to know how big the window is in order
-		// to position it properly.
-	}
-
-	void HideQuickPreview ()
-	{
-		if (quick_preview != null) {
-			quick_preview.Destroy ();
-			quick_preview = null;
-		}
-		last_motion_item = -1;
-	}
-
-	Pixbuf QuickPreviewPixbuf (Photo photo)
-	{
-		string orig_path = photo.DefaultVersionPath;
-
-		Pixbuf pixbuf = quick_preview_cache.GetThumbnailForPath (orig_path);
-		if (pixbuf == null) {
-			int display_width, display_height;
-			GetDisplaySize (out display_width, out display_height);
-
-			// A bizarre pixbuf = hack to try to deal with cinematic displays, etc.
-			int preview_edge = ((display_width + display_height)/2)/3;
-			//pixbuf = PixbufUtils.LoadAtMaxEdgeSize (orig_path, preview_edge);
-			pixbuf = FSpot.PhotoLoader.LoadAtMaxSize (photo, preview_edge, preview_edge);
-			quick_preview_cache.AddThumbnail (orig_path, pixbuf);
-		}
-
-		return pixbuf;
-	}
-
-	string QuickPreviewLabel (Photo photo)
-	{
-		string label = "";
-		if (photo.Description.Length > 0)
-			label = photo.Description + "\n";
-		label += photo.Time.ToString () + "   " + photo.Name;
-		return label;
 	}
 
 	//

@@ -1,5 +1,20 @@
 2004-09-01  Larry Ewing  <lewing@novell.com>
 
+	* src/PreviewPopup.cs: relocated and cleaned up preview code.  The
+	position is still a little off but I haven't tracked it down yet.
+	
+	* src/MainWindow.cs: move the preview into its own File.
+
+	* src/makefile.am: add PreviewPopup.cs.
+	
+	* src/TagPopup.cs: simple menu for tag Popup.
+
+	* src/makefile.am: add TagPopup.cs.
+	
+	* src/MainWindow.cs: make tag commands pulic add
+	ButtonPressHandler to tag_selection_widget to add right click
+	popup menu.
+
 	* src/TagCommands.cs: handle toplevel tags properly.
 
 2004-08-31  Larry Ewing  <lewing@novell.com>
