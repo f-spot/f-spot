@@ -126,25 +126,33 @@ namespace FSpot {
 				Rectangle bounds = Bounds ();
 				
 				if (bounds.Intersect (area, out area)) {
+					
+					
+					int i = thickness - 1;
+					while (i > 0) {
+						Rectangle border = bounds;
+						border.X += i;
+						border.Y += i;
+						border.Width -= (2 * i) + 1;
+						border.Height -= (2 * i) + 1;
+					
+						selector.GdkWindow.DrawRectangle (selector.Style.BackgroundGC (selector.State), 
+										  false, border);
+					i--;
+					}
+				
 					Style.PaintShadow (selector.Style, selector.GdkWindow, selector.State, ShadowType.Out, 
 							   area, selector, null, bounds.X, bounds.Y, bounds.Width, bounds.Height);
 	
-				
-				int i = thickness -1;
-				while (i > 0) {
-					Rectangle border = bounds;
-					border.X += i;
-					border.Y += i;
-					border.Width -= 2 * i;
-					border.Height -= 2 * i;
 
-					selector.GdkWindow.DrawRectangle (selector.Style.BackgroundGC (selector.State), 
-									  false, border);
-					i--;
-				}
-				
-				Style.PaintShadow (selector.Style, selector.GdkWindow, selector.State, ShadowType.In, 
-						   area, selector, null, bounds.X, bounds.Y, bounds.Width, bounds.Height);
+					i = thickness;
+					bounds.X += i;
+					bounds.Y += i;
+					bounds.Width -= 2 * i;
+					bounds.Height -= 2 * i;
+					
+					Style.PaintShadow (selector.Style, selector.GdkWindow, selector.State, ShadowType.In, 
+							   area, selector, null, bounds.X, bounds.Y, bounds.Width, bounds.Height);
 
 				}
 			}
@@ -239,7 +247,7 @@ namespace FSpot {
 			Gtk.Window win = new Gtk.Window ("testing");
 
 			GroupSelector gs = new GroupSelector ();
-			gs.Counts = new int [] {20, 10, 5, 2, 3, 5, 8, 10, 22, 0, 55, 129, 300};
+			gs.Counts = new int [] {20, 10, 5, 2, 3, 5, 8, 10, 22, 0, 55, 129, 300, 30, 14, 200, 21, 55};
 			gs.Mode = 2;
 			gs.scroll_offset = 3;
 
