@@ -37,7 +37,7 @@ public class SlideView : Gtk.Image {
 		StopTweenIdle ();
 		if (current_idx >= 0) {
 			Pixbuf frame = GetScaled (photos[current_idx]);
-			this.FromPixbuf = frame;
+			this.Pixbuf = frame;
 			frame.Dispose ();
 		} 
 
@@ -91,8 +91,12 @@ public class SlideView : Gtk.Image {
 		try {
 			if (idx < photos.Length && idx >= 0) {
 				//Console.WriteLine ("next_idx = " + next_idx + " idx = " + idx);
+				if (next != null)
+					next.Dispose ();
+
 				next = GetScaled (photos [idx]);
 				
+
 				next_idx = idx;
 				StartTweenIdle ();
 				
@@ -100,6 +104,7 @@ public class SlideView : Gtk.Image {
 				return true;
 			} else {
 				//Console.WriteLine ("What happens now?");
+				next.Dispose ();
 				next = GetScaled (photos [0]);
 				next_idx = 0;
 				StartTweenIdle ();
@@ -328,7 +333,10 @@ public class SlideView : Gtk.Image {
 				bool playing = (flip_timer != 0 || transition_timer != 0);
 				
 				if (current_idx < 0) {
-					this.FromPixbuf = GetScaled (this.Pixbuf);
+					Gdk.Pixbuf old = this.Pixbuf;
+					this.Pixbuf = GetScaled (this.Pixbuf);
+					if (old != this.Pixbuf)
+						old.Dispose ();
 				} else {
 					using (Pixbuf frame =  GetScaled (photos[current_idx])) {
 						this.FromPixbuf =  frame;

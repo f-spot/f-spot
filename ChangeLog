@@ -1,5 +1,13 @@
 2004-12-23  Larry Ewing  <lewing@novell.com>
 
+	* src/SlideView.cs: call dispose on the pixbufs more in more
+	places.
+
+	* src/AsyncPixbufLoader.cs: Implement IDisposable clean up close
+	method.
+	
+	* src/PhotoImageView.cs: call dispose on the AsyncPixbufLoader.
+
 	* src/AsyncPixbufLoader.cs: excplicitly call displose on the
 	loader to attempt to keep the memory from growing out of control.
 

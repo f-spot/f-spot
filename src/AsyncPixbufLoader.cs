@@ -3,7 +3,7 @@ namespace FSpot {
 	public delegate void AreaUpdatedHandler (object sender, Gdk.Rectangle area);
 	public delegate void AreaPreparedHandler (object sender, System.EventArgs args);
 	
-	public class AsyncPixbufLoader {
+	public class AsyncPixbufLoader : System.IDisposable {
 		System.IO.Stream stream;
 		Gdk.PixbufLoader loader;		
 		string path;
@@ -11,7 +11,6 @@ namespace FSpot {
 		bool done_reading = false;
 		System.Exception error;
 		Gdk.Pixbuf pixbuf;
-		Gdk.Pixbuf old;
 		PixbufOrientation orientation;
 
 		//byte [] buffer = new byte [8192];
@@ -40,15 +39,12 @@ namespace FSpot {
 			delay.Stop ();
 			path = filename;
 
-			if (!done_reading && loader != null)
+			if (!done_reading)
 				Close ();
 
 			done_reading = false;
 			area_prepared = false;
 
-			if (stream != null)
-				stream.Close ();
-			
 			orientation = PixbufUtils.GetOrientation (filename);
 
 			stream = new System.IO.FileStream (filename, System.IO.FileMode.Open, System.IO.FileAccess.Read);
@@ -85,12 +81,18 @@ namespace FSpot {
 		private void Close () 
 		{
 			try {
-				loader.Close ();
-				loader.Dispose ();
+				if (loader != null) {
+					loader.Close ();
+					loader.Dispose ();
+				}
 			} catch (System.Exception e) {
+				if (pixbuf != null)
+					pixbuf.Dispose ();
+
 				pixbuf = null;
 			} finally {
-				stream.Close ();
+				if (stream != null)
+					stream.Close ();
 			}
 		}
 
@@ -116,11 +118,16 @@ namespace FSpot {
 		
 		private void HandleAreaPrepared (object sender, System.EventArgs args)
 		{
+			Gdk.Pixbuf old = pixbuf;
 			pixbuf = PixbufUtils.TransformOrientation (loader.Pixbuf, orientation);
 
 			area_prepared = true;			
 			if (AreaUpdated != null)
 				AreaPrepared (this, System.EventArgs.Empty);
+
+			if (old != null) {
+				old.Dispose ();
+			}
 		}
 
 		public Gdk.Pixbuf Pixbuf {
@@ -151,6 +158,12 @@ namespace FSpot {
 
 			if (Done != null)
 				Done (this, System.EventArgs.Empty);
+		}
+
+		public void Dispose ()
+		{
+			Close ();
+			pixbuf.Dispose ();
 		}
 	}
 }

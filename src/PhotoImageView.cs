@@ -288,6 +288,7 @@ namespace FSpot {
 		
 		private void HandleDestroy (object sender, System.EventArgs args)
 		{
+			loader.Dispose ();
 			loader.AreaUpdated -= HandlePixbufAreaUpdated;
 			loader.AreaPrepared -= HandlePixbufPrepared;
 		}
