@@ -1,7 +1,8 @@
 2004-09-23  Larry Ewing  <lewing@novell.com>
 
 	* src/MainWindow.cs: remove unused code, hook up the start of the
-	new print dialog.  Add temporary View->EXIF Data window.
+	new print dialog.  Add temporary View->EXIF Data window.  Clean up
+	the code a little.
 
 	* src/InfoDisplay.cs: remove debug spew.
 

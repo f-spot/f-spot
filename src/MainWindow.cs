@@ -527,6 +527,7 @@ public class MainWindow {
 		current_photos = true;
 		current_photo_idx = photo_view.CurrentPhoto;
 		info_box.Photo = CurrentPhoto;
+		info_display.Photo = CurrentPhoto;
 		UpdateMenus ();
 	}
 
@@ -722,20 +723,17 @@ public class MainWindow {
 			return;
 		}
 
-		FSpot.InfoDisplay info = new FSpot.InfoDisplay ();
+		info_display = new FSpot.InfoDisplay ();
 		
 		Gtk.Window win = new Gtk.Window ("EXIF Data");
 		win.SetDefaultSize (400, 400);
 		Gtk.ScrolledWindow scroll = new ScrolledWindow ();
 		win.Add (scroll);
-		scroll.Add (info);
+		scroll.Add (info_display);
 
-		Photo [] photos = SelectedPhotos ();
-		if (photos.Length > 0) 
-			info.Photo = SelectedPhotos () [0];
+		info_display.Photo = CurrentPhoto;
 		
 		win.ShowAll ();
-		info_display = info;
 
 		win.Destroyed += HandleInfoDisplayDestroy;
 	}
