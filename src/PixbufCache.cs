@@ -71,6 +71,7 @@ namespace FSpot {
 		public void Update (CacheEntry entry, Gdk.Pixbuf pixbuf)
 		{
 			lock (items) {
+				
 				total_size -= entry.Size;
 				entry.Pixbuf = pixbuf;
 				total_size += entry.Size;
@@ -107,7 +108,7 @@ namespace FSpot {
 
 					//if the depth of the queue is so large that we've reached double our limit 
 					//break out of here and let the queue shrink.
-					if (size / 4  > max_size) {
+					if (size / 2  > max_size) {
 						//System.Console.WriteLine ("Hit limit");
 						return null;
 					}
@@ -140,13 +141,11 @@ namespace FSpot {
 								CacheEntry entry = (CacheEntry) items_mru [num++];
 								total_size -= entry.Size;
 								items.Remove (entry.Path);
-								items_mru.Remove (entry);
-								entry.Pixbuf = null;
 								entry.Dispose ();
 							}			
 							if (num > 0) {
 								//System.Console.WriteLine ("removing {0}  ({1} > {2})", num, total_size, max_size);
-								//items_mru.RemoveRange (0, num);
+								items_mru.RemoveRange (0, num);
 							} else {
 								ThumbnailGenerator.Default.PopBlock ();
 								Monitor.Wait (items);
@@ -167,9 +166,12 @@ namespace FSpot {
 		protected virtual void ProcessRequest (CacheEntry entry)
 		{
 			try {
-				total_size -= entry.Size;
+				int size = entry.Size;
 				entry.Pixbuf =  new Gdk.Pixbuf (entry.Path);
-				total_size += entry.Size;
+				
+				lock (items) {
+					total_size += entry.Size - size;
+				}
 			} catch (GLib.GException ex){
 				return;		
 			}
@@ -185,14 +187,16 @@ namespace FSpot {
 			}
 			
 			if (OnPixbufLoaded != null) {
-				foreach (CacheEntry entry in entries)
-					OnPixbufLoaded (this, entry);
+				foreach (CacheEntry entry in entries) {
+					if (entry.Path != null)
+						OnPixbufLoaded (this, entry);
+				}
 			}
 		}
 
 		private void MoveForward (CacheEntry entry)
 		{
-#if false
+#if true
 			int i = items_mru.Count;
 			CacheEntry tmp1 = entry;
 			CacheEntry tmp2;
@@ -330,7 +334,6 @@ namespace FSpot {
 
 					if (old != null)
 						old.Dispose ();
-
 				}
 			}
 			
@@ -344,26 +347,29 @@ namespace FSpot {
 				}
 			}
 
+			~CacheEntry ()
+			{
+				this.Dispose ();
+			}
+
 			public void Dispose ()
 			{
 				lock (this) {
-					if (pixbuf != null)
-						pixbuf.Dispose ();
-					pixbuf = null;
+					//System.Console.WriteLine ("dispose");
+
+					if (this.pixbuf != null) {
+						//System.Console.WriteLine ("entry.Dispose ({0}.{1})", this.path, PixbufUtils.RefCount (this.pixbuf));
+						this.pixbuf.Dispose ();
+						
+					}
+					this.pixbuf = null;
+					this.path = null;
 				}
 			}
 
 			public int Size {
 				get {
-
-#if false
-					if (pixbuf != null)
-						return (pixbuf.Width * pixbuf.Height * 3);
-					else 
-						return 1;
-#else
 					return width * height * 3;
-#endif
 				}
 			}
 		}

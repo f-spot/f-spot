@@ -1,5 +1,10 @@
 2005-02-28  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufCache.cs: use the alternate move forward, lock around
+	the size change when processing the pixbufs.
+
+	* src/IconView.cs: clean up the preload logic a little more.
+
 	* src/SlideView.cs: make the message more clear.
 
 	* src/PhotoImageView.cs: fix some indentation.

@@ -515,12 +515,12 @@ public class IconView : Gtk.Layout {
 					
 					if (entry.Reload && expansion == 0)
 						cache.Update (entry, PixbufUtils.ShallowCopy (temp_thumbnail));
-
+					
 				} else {
 					temp_thumbnail = thumbnail.ScaleSimple (region.Width, region.Height, 
 										InterpType.Bilinear);
 				}
-				
+
 				PixbufUtils.CopyThumbnailOptions (thumbnail, temp_thumbnail);
 			} else
 				temp_thumbnail = thumbnail;
@@ -705,51 +705,28 @@ public class IconView : Gtk.Layout {
 		//System.Console.WriteLine ("step ({0}, {1}) allocation ({2}, {3})", xstep, ystep, Allocation.Width, Allocation.Height);
 
 		Gdk.Region region = new Gdk.Region ();
-#if true
 		area = new Gdk.Rectangle (Math.Min ((int) (Hadjustment.Value + 4 * xstep), 0),  
 					  Math.Min ((int) (Vadjustment.Value + 4 * ystep), 0),
 					  Allocation.Width,
 					  Allocation.Height);
-
+		region.UnionWithRect (area);
+		/*
 		area = new Gdk.Rectangle (Math.Min ((int) (Hadjustment.Value + 3 * xstep), 0),  
 					  Math.Min ((int) (Vadjustment.Value + 3 * ystep), 0),
 					  Allocation.Width,
 					  Allocation.Height);
-		//Preload (area, 0);
 		region.UnionWithRect (area);
-
+		*/
 		area = new Gdk.Rectangle (Math.Min ((int) (Hadjustment.Value + 2 * xstep), 0),  
 					  Math.Min ((int) (Vadjustment.Value + 2 * ystep), 0),
 					  Allocation.Width,
 					  Allocation.Height);
-		//Preload (area, 0);
 		region.UnionWithRect (area);
-
 		area = new Gdk.Rectangle (Math.Min ((int) (Hadjustment.Value + xstep), 0),  
 					  Math.Min ((int) (Vadjustment.Value + ystep), 0),
 					  Allocation.Width,
 					  Allocation.Height);		
-		//Preload (area, 0);
 		region.UnionWithRect (area);
-#else
-		area = new Gdk.Rectangle (Math.Min ((int) (Hadjustment.Value - 3 * xstep), 0),  
-					  Math.Min ((int) (Vadjustment.Value - 3 * ystep), 0),
-					  Allocation.Width,
-					  Allocation.Height / 2);
-		Preload (area, 0);
-
-		area = new Gdk.Rectangle (Math.Min ((int) (Hadjustment.Value - 2 * xstep), 0),  
-					  Math.Min ((int) (Vadjustment.Value - 2 * ystep), 0),
-					  Allocation.Width,
-					  Allocation.Height / 2);
-		Preload (area, 0);
-
-		area = new Gdk.Rectangle (Math.Min ((int) (Hadjustment.Value - xstep), 0),  
-					  Math.Min ((int) (Vadjustment.Value - ystep), 0),
-					  Allocation.Width,
-					  Allocation.Height);
-		Preload (area, 0);
-#endif
 		area = new Gdk.Rectangle ((int) Hadjustment.Value, 
 					  (int) Vadjustment.Value,
 					  Allocation.Width,
@@ -759,6 +736,7 @@ public class IconView : Gtk.Layout {
 			Preload (preload, 0);
 		}
 
+		region.Destroy ();
 		y_offset = (int) Vadjustment.Value;
 		x_offset = (int) Hadjustment.Value;
 	}
