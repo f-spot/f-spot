@@ -733,14 +733,14 @@ public class MainWindow {
 		scroll.Add (info_display);
 
 		info_display.Photo = CurrentPhoto;
-		
+	       
 		win.ShowAll ();
 
 		win.Destroyed += HandleInfoDisplayDestroy;
 	}
 
 
-#if true
+#if false
 	void HandleExportCommand (object sender, EventArgs args)
 	{
 		ExportCommand.Gallery cmd = new ExportCommand.Gallery ();
@@ -750,6 +750,13 @@ public class MainWindow {
 		}
 	}	
 #else
+	void HandleExportCommand (object sender, EventArgs args)
+	{
+		FSpot.GalleryExport export = new FSpot.GalleryExport (SelectedPhotos ());
+	}
+#endif
+
+#if false 
 	void HandleExportCommand (object sender, EventArgs args)
 	{
 		FotkiRemote fr = new FotkiRemote ();
