@@ -18,8 +18,15 @@ public class RotateCommand {
 
 	public bool Execute (Direction direction, Photo [] photos)
 	{
+		ProgressDialog progress_dialog = new ProgressDialog ("Rotating pictures",
+								     ProgressDialog.CancelButtonType.Stop,
+								     photos.Length, parent_window);
+
 		int count = 0;
 		foreach (Photo p in photos) {
+			if (progress_dialog.Update (String.Format ("Rotating picture \"{0}\"", p.Name)))
+				break;
+
 			foreach (uint version_id in p.VersionIds) {
 				string original_path = p.GetVersionPath (version_id);
 				string temporary_path = original_path + ".tmp";	// FIXME make it unique
@@ -41,6 +48,8 @@ public class RotateCommand {
 
 			count ++;
 		}
+
+		progress_dialog.Destroy ();
 
 		return true;
 	}

@@ -1,4 +1,11 @@
-2003-11-16  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-17  Ettore Perazzoli  <ettore@perazzoli.org>
+
+	* src/RotateCommand.cs (RotateCommand.Execute): Add a stoppable
+	progress dialog.
+
+	* src/ProgressDialog.cs: New.
+
+2003-11-16  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/makefile.am (RESOURCES): Add f-spot-rotate-90.png and
 	f-spot-rotate-270.png.
