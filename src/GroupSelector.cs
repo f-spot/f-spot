@@ -69,10 +69,20 @@ namespace FSpot {
 			return false;
 		}
 
+		private bool BoxXHit (double x, out int position)
+		{
+			x -= BoxX (0);
+			position = (int) (x / BoxWidth);
+			if (position >= 0 && position < box_counts.Length)
+				return true;
+			
+			position = 0;
+			return false;
+		}
+
 		private bool BoxHit (double x, double y, out int position) 
 		{
-			position = 0;
-			while (position < box_counts.Length) {
+			if (BoxXHit (x, out position)) {
 				if (BoxTest (BoxBounds (position), x, y))
 					return true;
 
@@ -143,6 +153,7 @@ namespace FSpot {
 			
 			WindowAttr attr = WindowAttr.Zero;
 			attr.WindowType = Gdk.WindowType.Child;
+
 			attr.X = Allocation.X;
 			attr.Y = Allocation.Y;
 			attr.Width = Allocation.Width;
@@ -157,6 +168,12 @@ namespace FSpot {
 			event_window.UserData = this.Handle;
 		}
 
+		protected override void OnUnrealized () 
+		{
+			event_window.Dispose ();
+			event_window = null;
+		}
+		
 		private Double BoxWidth {
 			get {
 				switch (mode) {
@@ -287,7 +304,7 @@ namespace FSpot {
 			public void EndDrag (double x, double y)
 			{
 				int position;
-				if (selector.BoxHit (x, y, out position)) {
+				if (selector.BoxXHit (x, out position)) {
 					Position = position;
 					State = StateType.Prelight;
 				} else {

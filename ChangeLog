@@ -1,5 +1,8 @@
 2004-08-16  Larry Ewing  <lewing@novell.com>
 
+	* src/GroupSelector.cs: make the drag hit testing use just the X
+	bounds.
+
 	* src/GroupSelector.cs: add dragging support.
 
 2004-08-15  Larry Ewing  <lewing@novell.com>
