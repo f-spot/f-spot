@@ -146,9 +146,8 @@ public class MainWindow {
 		TagMenu menu = new TagMenu (attach_tag, db.Tags);
 		menu.TagSelected += HandleAttachTagMenuSelected;
 
-		menu = new TagMenu (db.Tags);
+		menu = new TagMenu (find_tag, db.Tags);
 		menu.TagSelected += HandleFindTagMenuSelected;
-		find_tag.Submenu = menu;
 
 		PhotoTagMenu pmenu = new PhotoTagMenu ();
 		pmenu.TagSelected += HandleRemoveTagMenuSelected;

@@ -1,7 +1,10 @@
 2004-07-09  Larry Ewing  <lewing@ximian.com>
 
+	* src/MainWindow.cs: fix the TagMenu constuctor to use the new
+	format since the old one breaks.
+	
 	* src/MainWindow.cs: Set the cursor to busy when building a new
-	query.
+	query.  
 
 2004-07-09  Matt Jones  <mattharrison@sbcglobal.net>
 
