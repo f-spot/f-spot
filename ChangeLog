@@ -1,3 +1,10 @@
+2004-08-21  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: add Nat and Trow's preview hack, load
+	fullsize version if smaller version doesn't exist.
+	
+	* src/IconView.cs: add Nat and Trow's preview hack, remove dnd cruft.
+
 2004-08-20  Larry Ewing  <lewing@novell.com>
 
 	* src/TimeAdaptor.cs: update now that glass set has moved.

@@ -104,7 +104,6 @@ public class IconView : Gtk.Layout {
 	private Hashtable selected_cells;
 
 	// Drag and drop bookkeeping. 
-	private bool in_drag;
 	private int click_x, click_y;
 
 	// Focus Handling
@@ -133,6 +132,9 @@ public class IconView : Gtk.Layout {
 	public delegate void DoubleClickedHandler (IconView view, int clicked_item);
 	public event DoubleClickedHandler DoubleClicked;
 
+	public delegate void MouseMotionHandler (IconView view, int clicked_item, int mouse_x, int mouse_y, Gdk.ModifierType state);
+	public event MouseMotionHandler MouseMotion;
+
 	public delegate void SelectionChangedHandler (IconView view);
 	public event SelectionChangedHandler SelectionChanged;
 
@@ -153,10 +155,13 @@ public class IconView : Gtk.Layout {
 		ButtonPressEvent += new ButtonPressEventHandler (HandleButtonPressEvent);
 		ButtonReleaseEvent += new ButtonReleaseEventHandler (HandleButtonReleaseEvent);
 		KeyPressEvent += new KeyPressEventHandler (HandleKeyPressEvent);
+		KeyReleaseEvent += new KeyReleaseEventHandler (HandleKeyReleaseEvent);
 
 		DestroyEvent += new DestroyEventHandler (HandleDestroyEvent);
 
-		AddEvents ((int) EventMask.KeyPressMask);
+		AddEvents ((int) EventMask.KeyPressMask
+			   | (int) EventMask.KeyReleaseMask 
+			   | (int) EventMask.PointerMotionMask);
 		
 		CanFocus = true;
 	}
@@ -257,6 +262,17 @@ public class IconView : Gtk.Layout {
 			return (int) cell_num;
 		else
 			return -1;
+	}
+
+	private void GetCellCenter (int cell_num, out int x, out int y)
+	{
+		if (cell_num == -1) {
+			x = -1;
+			y = -1;
+		}
+
+		x = BORDER_SIZE + (cell_num % cells_per_row) * cell_width - cell_width / 2;
+		y = BORDER_SIZE + (cell_num / cells_per_row) * cell_height - cell_height / 2;
 	}
 
 	public void UnselectAllCells ()
@@ -733,10 +749,6 @@ public class IconView : Gtk.Layout {
 			if (args.Event.Button != 1)
 				return;
 
-			Gdk.Pointer.Grab (BinWindow, false,
-					  EventMask.ButtonReleaseMask | EventMask.Button1MotionMask,
-					  null, null, args.Event.Time);
-
 			click_x = (int) args.Event.X;
 			click_y = (int) args.Event.Y;
 
@@ -757,9 +769,6 @@ public class IconView : Gtk.Layout {
 	
 	private void HandleButtonReleaseEvent (object sender, ButtonReleaseEventArgs args)
 	{
-		Gdk.Pointer.Ungrab (args.Event.Time);
-		in_drag = false;
-		
 		int cell_num = CellAtPosition ((int) args.Event.X, (int) args.Event.Y);
 
 		args.RetVal = true;
@@ -789,14 +798,19 @@ public class IconView : Gtk.Layout {
 
  	private void HandleMotionNotifyEvent (object sender, MotionNotifyEventArgs args)
  	{
-		if (in_drag)
-			return;
+		//Console.WriteLine ("Motion notify");
+		int cell_num = CellAtPosition ((int) args.Event.X, (int) args.Event.Y);
+		
 
-		if (! Gtk.Drag.CheckThreshold (this, click_x, click_y, (int) args.Event.X, (int) args.Event.Y))
-			return;
-
-		TargetList target_list = new TargetList ();
-		in_drag = true;
+		//Console.WriteLine ("X: " + (int) args.Event.X + " Y: " + (int) args.Event.Y);
+		
+		int win_x, win_y;
+		GetCellCenter (cell_num, out win_x, out win_y);
+		win_x += (int) args.Event.XRoot - (int) args.Event.X;
+		win_y += (int) args.Event.YRoot - (int) args.Event.Y;
+		
+		MouseMotion (this, cell_num, win_x, win_y, args.Event.State);
+		return;
 	}
 	
 	private void HandleKeyPressEvent (object sender, KeyPressEventArgs args)
@@ -847,6 +861,11 @@ public class IconView : Gtk.Layout {
 		} 
 	
 		ScrollTo (focus_cell);
+	}
+
+	private void HandleKeyReleaseEvent (object sender, KeyReleaseEventArgs args)
+	{
+		Console.WriteLine ("Release!");
 	}
 
 	private void HandleDestroyEvent (object sender, DestroyEventArgs args)
