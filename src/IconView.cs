@@ -227,11 +227,10 @@ public class IconView : Gtk.Layout {
 	}
 
 	// Updating.
-
 	public void UpdateThumbnail (int thumbnail_num)
 	{
 		Photo photo = collection.Photos [thumbnail_num];
-		string thumbnail_path = Thumbnail.PathForUri ("file://" + photo.DefaultVersionPath, ThumbnailSize.Large);
+		string thumbnail_path = Thumbnail.PathForUri (photo.DefaultVersionUri.ToString (), ThumbnailSize.Large);
 
 		//Console.WriteLine ("remove {0}", thumbnail_path);
 		ThumbnailCache.Default.RemoveThumbnailForPath (thumbnail_path);
@@ -422,7 +421,7 @@ public class IconView : Gtk.Layout {
 
 		Photo photo = collection.Photos [thumbnail_num];
 
-		string thumbnail_path = Thumbnail.PathForUri ("file://" + photo.DefaultVersionPath, ThumbnailSize.Large);
+		string thumbnail_path = Thumbnail.PathForUri (photo.DefaultVersionUri.ToString (), ThumbnailSize.Large);
 		Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForPath (thumbnail_path);
 
 			
@@ -494,9 +493,14 @@ public class IconView : Gtk.Layout {
 				if (width == thumbnail.Width) {
 					temp_thumbnail = thumbnail;
 				} else {
-					if (ThumbnailWidth > 64)
-						temp_thumbnail = thumbnail.ScaleSimple (width, height, InterpType.Bilinear);
-					else {
+#if true
+					if (width < thumbnail.Width && height < thumbnail.Height) {
+						temp_thumbnail = Gnome.Thumbnail.ScaleDownPixbuf (thumbnail, width, height);
+					} else
+#endif						
+						if (ThumbnailWidth > 64) {
+							temp_thumbnail = thumbnail.ScaleSimple (width, height, InterpType.Bilinear);
+					} else {
 						temp_thumbnail = thumbnail.ScaleSimple (width, height, InterpType.Nearest);
 					}
 				}
@@ -659,7 +663,7 @@ public class IconView : Gtk.Layout {
 				break;
 
 			Photo photo = collection.Photos [start + i];
-			string thumbnail_path = Thumbnail.PathForUri ("file://" + photo.DefaultVersionPath, ThumbnailSize.Large);
+			string thumbnail_path = Thumbnail.PathForUri (photo.DefaultVersionUri.ToString (), ThumbnailSize.Large);
 			pixbuf_loader.Cancel (thumbnail_path);
 		}
 

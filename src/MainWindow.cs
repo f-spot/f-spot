@@ -409,7 +409,7 @@ public class MainWindow {
 		Photo [] photos = SelectedPhotos ();
 		
 		if (photos.Length > 0) {
-			string thumbnail_path = Thumbnail.PathForUri ("file://" + photos[0].DefaultVersionPath, ThumbnailSize.Large);
+			string thumbnail_path = Thumbnail.PathForUri (photos[0].DefaultVersionUri.ToString (), ThumbnailSize.Large);
 			Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForPath (thumbnail_path);
 			if (thumbnail != null) {
 				Gtk.Drag.SetIconPixbuf (args.Context, thumbnail, 0, 0);

@@ -36,7 +36,7 @@ namespace FSpot
 
 		static public Gdk.Pixbuf ValidateThumbnail (string photo_path, Gdk.Pixbuf pixbuf)
 		{			
-			string photo_uri = "file://" + photo_path;
+			string photo_uri = UriList.PathToFileUri (photo_path).ToString ();
 			string thumbnail_path = Gnome.Thumbnail.PathForUri (photo_uri, 
 									    Gnome.ThumbnailSize.Large);
 

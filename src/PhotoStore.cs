@@ -199,6 +199,12 @@ public class Photo : DbItem, IComparable {
 		}
 	}
 
+	public System.Uri DefaultVersionUri {
+		get {
+			return UriList.PathToFileUri (DefaultVersionPath);
+		}
+	}
+
 	public void DeleteVersion (uint version_id)
 	{
 		DeleteVersion (version_id, false);
@@ -404,7 +410,7 @@ public class PhotoStore : DbStore {
 
 	public static Pixbuf GenerateThumbnail (string path, bool use_exif)
 	{
-		string uri = "file://" + path;
+		string uri = UriList.PathToFileUri (path).ToString ();
 		Pixbuf thumbnail = null;
 
 		if (use_exif)
@@ -428,14 +434,14 @@ public class PhotoStore : DbStore {
 
 	public static void DeleteThumbnail (string path)
 	{
-		string uri = "file://" + path;
+		string uri = UriList.PathToFileUri (path).ToString ();
 		File.Delete (Thumbnail.PathForUri (uri, ThumbnailSize.Large));
 	}
 
 	public static void MoveThumbnail (string old_path, string new_path)
 	{
-		string old_uri = "file://" + old_path;
-		string new_uri = "file://" + new_path;
+		string old_uri = UriList.PathToFileUri (old_path).ToString ();
+		string new_uri = UriList.PathToFileUri (new_path).ToString ();
 
 		File.Move (Thumbnail.PathForUri (old_uri, ThumbnailSize.Large),
 			   Thumbnail.PathForUri (new_uri, ThumbnailSize.Large));

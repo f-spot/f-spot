@@ -1,3 +1,18 @@
+2004-12-01  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: use photo.DefaultVersionUri.
+
+	* src/PhotoLoader.cs: use PathToFileUri.
+
+	* src/IconView.cs: add and ifdefed fastpath for scaling (currently
+	true).  Convert the thumbnail calls to using DefaultVersionUri.
+
+	* src/Util.cs: use UriList.PathToFileUri where appropriate.  make
+	PathToFileUri static.
+
+	* src/PhotoStore.cs: add Photo.DefaultVersionUri.  Use
+	UriList.PathToFileUri where appropriate.
+
 2004-12-01  Martin Willemoes Hansen  <mwh@sysrq.dk>
 
 	* src/MainWindow.cs:

@@ -44,7 +44,7 @@ public class UriList : ArrayList {
 		foreach (Photo p in photos) {
 			Uri uri;
 			try {
-				uri = new Uri ("file://" + p.DefaultVersionPath);
+				uri = p.DefaultVersionUri;
 			} catch {
 				continue;
 			}
@@ -79,7 +79,7 @@ public class UriList : ArrayList {
 
 	static char[] CharsToQuote = { ';', '?', ':', '@', '&', '=', '$', ',', '#' };
 
-	public Uri PathToFileUri (string path)
+	public static Uri PathToFileUri (string path)
 	{
 		path = Path.GetFullPath (path);
 
