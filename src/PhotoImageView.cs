@@ -169,8 +169,11 @@ namespace FSpot {
 				try {
 				loader.Load (Photo.DefaultVersionPath);
 				} catch (System.Exception e) {
-					Gdk.Pixbuf old = this.Pixbuf;
+					// FIXME we should check the exception type and do something
+					// like offer the user a chance to locate the moved file and
+					// update the db entry, but for now just set the error pixbuf
 
+					Gdk.Pixbuf old = this.Pixbuf;
 					this.Pixbuf = new Gdk.Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0, 
 								      PixbufUtils.ErrorPixbuf.Width, 
 								      PixbufUtils.ErrorPixbuf.Height);
