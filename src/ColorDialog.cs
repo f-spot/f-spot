@@ -80,8 +80,9 @@ namespace FSpot {
 			return false;
 		}
 		
-		public void HandleDestroyEvent (object sender, DestroyEventArgs arg)
+		public void HandleDestroyed (object sender, EventArgs arg)
 		{
+			view.PhotoChanged -= HandlePhotoChanged;
 #if USE_THREAD
 			expose_timeout.Stop ();
 #endif
@@ -159,6 +160,7 @@ namespace FSpot {
 			Save ();
 			view.Transform = null;
 			view.QueueDraw ();
+
 			view.PhotoChanged -= HandlePhotoChanged;
 		}
 
@@ -201,6 +203,7 @@ namespace FSpot {
 #if USE_THREAD
 			expose_timeout = new FSpot.Delay (new GLib.IdleHandler (this.QueueDraw));
 #endif
+			this.Dialog.Destroyed += HandleDestroyed;
 
 			#if true
 			Gdk.Color c = this.Dialog.Style.Backgrounds [(int)Gtk.StateType.Active];

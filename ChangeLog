@@ -1,3 +1,8 @@
+2005-02-28  Larry Ewing  <lewing@novell.com>
+
+	* src/ColorDialog.cs: disconnect the signal handler when the
+	dialog is destroyed.
+
 2005-02-27  Larry Ewing  <lewing@novell.com>
 
 	* src/IconView.cs: Dispose of more of the intermediate pixbufs.
