@@ -1,5 +1,7 @@
 2004-12-03  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufUtils.cs: start adding orientation support.
+
 	* src/ImageView.cs: fix ImageToWindowCoords so that it actually
 	works.
 

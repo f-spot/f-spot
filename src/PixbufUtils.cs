@@ -4,6 +4,17 @@ using System.Runtime.InteropServices;
 using System;
 using System.IO;
 
+public enum PixbufOrientation {
+	TopLeft = 1,
+	TopRight = 2,
+	BottomRight = 3,
+	BottomLeft = 4,
+	LeftTop = 5,
+	RightTop = 6,
+	RightBottom = 7,
+	LeftBottom = 8
+}
+
 class PixbufUtils {
 
 	public static Pixbuf ErrorPixbuf = PixbufUtils.LoadFromAssembly ("f-spot-question-mark.png");
@@ -285,6 +296,56 @@ class PixbufUtils {
 		trans.Dispose ();
 		srgb.Dispose ();
 		bchsw.Dispose ();
+	}
+
+	public static Gdk.Pixbuf TransformAndCopy (Gdk.Pixbuf src, PixbufOrientation orientation)
+	{
+		Gdk.Rectangle area = new Gdk.Rectangle (0, 0, src.Width, src.Height);
+		return null;
+	}
+
+	public static Gdk.Rectangle TransformAndCopy (Gdk.Pixbuf src, Gdk.Pixbuf dest, PixbufOrientation orientation, Gdk.Rectangle args)
+	{
+		Gdk.Rectangle area = args;
+		Gdk.Pixbuf region;
+		Gdk.Pixbuf altered;
+
+		switch (orientation) {
+		case PixbufOrientation.LeftBottom:
+			area.X = args.Y;
+			area.Y = src.Width - args.X - args.Width;
+			area.Width = args.Height;
+			area.Height = args.Width;
+			
+			region = new Gdk.Pixbuf (src, args.X, args.Y,
+						 args.Width, args.Height);
+			altered = PixbufUtils.Rotate90 (region, true);
+
+			altered.CopyArea (0, 0, altered.Width, altered.Height, dest, area.X, area.Y);
+
+			region.Dispose ();
+			altered.Dispose ();
+			break;
+		case PixbufOrientation.RightTop:
+			area.X = src.Height - args.Y - args.Height;
+			area.Y = args.X;
+			area.Width = args.Height;
+			area.Height = args.Width;
+			
+			region = new Gdk.Pixbuf (src, args.X, args.Y,
+						 args.Width, args.Height);
+			altered = PixbufUtils.Rotate90 (region, false);
+
+			altered.CopyArea (0, 0, altered.Width, altered.Height, dest, area.X, area.Y);
+
+			region.Dispose ();
+			altered.Dispose ();			
+			break;
+		default:
+			src.CopyArea (area.X, area.Y, area.Width, area.Height, dest, area.X, area.Y);
+			return area;
+		}
+		return area;
 	}
 
 	// Bindings from libf.
