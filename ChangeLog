@@ -1,3 +1,9 @@
+2004-08-26  Larry Ewing  <lewing@novell.com>
+
+	* src/GroupSelector.cs: add the glass label while dragging.
+
+	* src/GroupAdaptor.cs: return the Path for the glass lable;
+
 2004-08-25  Larry Ewing  <lewing@novell.com>
 
 	* src/SlideView.cs: since we might for some reason get a size

@@ -14,7 +14,7 @@ namespace FSpot {
 		private Limit min_limit;
 		private Limit max_limit;
 
-		Gdk.Window event_window;
+		private Gdk.Window event_window;
 
 		public Gdk.Rectangle background;
 		public Gdk.Rectangle legend;
@@ -341,6 +341,7 @@ namespace FSpot {
 		public class Manipulator {
 			protected GroupSelector selector;
 			public bool Dragging;
+
 			public Point DragStart;
 
 			protected int drag_offset;
@@ -363,7 +364,7 @@ namespace FSpot {
 				}
 			}					
 
-			public void StartDrag (double x, double y, uint time) 
+			public virtual void StartDrag (double x, double y, uint time) 
 			{
 				State = StateType.Active;
 				Dragging = true;
@@ -371,12 +372,12 @@ namespace FSpot {
 				DragStart.Y = (int)y;	
 			}
 
-			public void UpdateDrag (double x, double y)
+			public virtual void UpdateDrag (double x, double y)
 			{
 				DragOffset = (int)x - DragStart.X;
 			}
 
-			public void EndDrag (double x, double y)
+			public virtual void EndDrag (double x, double y)
 			{
 				Rectangle box = Bounds ();
 				double middle = box.X + (box.Width / 2.0);
@@ -454,6 +455,10 @@ namespace FSpot {
 		}
 		
 		private class Glass : Manipulator {
+			Gtk.Window popup_widow;
+			Gtk.Label popup_label;
+			int drag_position;
+
 			private int handle_height = 15;
 
 			private int border {
@@ -462,6 +467,50 @@ namespace FSpot {
 				}
 			}
 			
+			private void UpdatePopupPosition ()
+			{
+				int x = 0, y = 0;				
+				Rectangle bounds = Bounds ();
+				Requisition requisition = popup_widow.SizeRequest ();
+				popup_widow.Resize  (requisition.Width, requisition.Height);
+				selector.GdkWindow.GetRootOrigin (out x, out y);
+				x += bounds.X + (bounds.Width - requisition.Width) / 2;
+				y += bounds.Y;
+				x = Math.Max (x, 0);
+				x = Math.Min (x, selector.Screen.Width - requisition.Width);
+				popup_widow.Move (x, y);
+			}
+
+			public override void StartDrag (double x, double y, uint time)
+			{
+				base.StartDrag (x, y, time);
+				popup_label.Text = selector.Adaptor.GlassLabel (this.Position);
+				popup_widow.Show ();
+				UpdatePopupPosition ();
+				drag_position = this.Position;
+			}
+			
+			public override void UpdateDrag (double x, double y)
+			{
+				Rectangle box = Bounds ();
+				double middle = box.X + (box.Width / 2.0);
+				int current_position;
+				
+				base.UpdateDrag (x, y);				
+				if (selector.BoxXHit (middle, out current_position)) {
+					if (current_position != drag_position)
+						popup_label.Text = selector.Adaptor.GlassLabel (current_position);
+					drag_position = current_position;
+				}
+				UpdatePopupPosition ();
+			}
+
+			public override void EndDrag (double x, double y)
+			{
+				popup_widow.Hide ();
+				base.EndDrag (x, y);
+			}
+
 			private Rectangle InnerBounds ()
 			{
 				Rectangle box = selector.BoxBounds (Position);
@@ -509,10 +558,10 @@ namespace FSpot {
 							    bounds.Width, handle_height, Orientation.Horizontal);
 
 					Style.PaintShadow (selector.Style, selector.GdkWindow, State, ShadowType.Out, 
-							   area, selector, null, bounds.X, bounds.Y, bounds.Width, bounds.Height);
+							   area, selector, "glass", bounds.X, bounds.Y, bounds.Width, bounds.Height);
 
 					Style.PaintShadow (selector.Style, selector.GdkWindow, State, ShadowType.In, 
-							   area, selector, null, inner.X, inner.Y, inner.Width, inner.Height);
+							   area, selector, "glass", inner.X, inner.Y, inner.Width, inner.Height);
 
 				}
 			}
@@ -522,7 +571,12 @@ namespace FSpot {
 				selector.adaptor.SetGlass (Position);
 			}
 			
-			public Glass (GroupSelector selector) : base (selector) {}
+			public Glass (GroupSelector selector) : base (selector) {
+				popup_widow = new Gtk.Window (Gtk.WindowType.Popup);
+				popup_label = new Gtk.Label ("");
+				popup_label.Show ();
+				popup_widow.Add (popup_label);
+			}
 		}
 
 		public class Limit : Manipulator {
