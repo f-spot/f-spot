@@ -1029,13 +1029,16 @@ public class MainWindow {
 	void HandleViewFullscreen (object sender, EventArgs args)
 	{
 		fsview = new FSpot.FullScreenView (query);
+		fsview.Show ();
+
+		// FIXME this needs to be another mode like PhotoView and IconView mode.
 
 		if (current_photo_idx != PHOTO_IDX_NONE)
 			fsview.View.CurrentPhoto = current_photo_idx;
 		else 
 			fsview.View.CurrentPhoto = 0;
 
-		fsview.Show ();
+
 	}
 
 	void HandleZoomOut (object sender, EventArgs args)

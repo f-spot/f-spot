@@ -1,3 +1,12 @@
+2004-11-14  Larry Ewing  <lewing@novell.com>
+
+	* src/FullScreenView.cs: add Fit logic to the Zooming InterFace in
+	the KeyPresshandler.  The Key press stuff needs to be moved still.
+
+	* src/PhotoImageView.cs: hide ZoomFit make fit a Boolean mode.
+
+	* src/MainWindow.cs: move the show call.
+
 2004-11-12  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoView.cs: remove the left right bindings, they just get

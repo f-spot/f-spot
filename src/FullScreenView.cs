@@ -3,12 +3,12 @@ namespace FSpot {
 		public FullScreenView (PhotoQuery query) : base ("Full Screen Mode")
 		{
 			try {
-				this.Fullscreen ();
 				scroll = new Gtk.ScrolledWindow (null, null);
-				this.Add (scroll);
 				view = new PhotoImageView (query);
+				this.Add (scroll);
 				scroll.Add (view);
 				scroll.ShowAll ();
+				this.Fullscreen ();
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e);
 			}		      
@@ -48,13 +48,15 @@ namespace FSpot {
 				break;
 			case Gdk.Key.F:
 			case Gdk.Key.f:
-				view.ZoomFit();
+				view.Fit = true;
 				break;
 			default:
 				bool retval = base.OnKeyPressEvent (key);
 				if (!retval)
 					this.Destroy ();
-				break;
+				else 
+					view.Fit = false;
+				return retval;
 			}
 			return true;
 		}

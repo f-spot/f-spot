@@ -7,6 +7,7 @@ namespace FSpot {
 			loader = new FSpot.AsyncPixbufLoader ();
 			//scroll_delay = new Delay (new GLib.IdleHandler (IdleUpdateScrollbars));
 			this.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
+			this.SizeAllocated += new Gtk.SizeAllocatedHandler (HandleSizeAllocated);
 		}
 		
 		private int current_photo;
@@ -71,6 +72,24 @@ namespace FSpot {
 			this.QueueDraw ();
 		}
 	
+		private bool fit = true;
+		public bool Fit {
+			get {
+				return fit;
+			}
+			set {
+				fit = value;
+				if (fit)
+					ZoomFit ();
+			}
+		}
+
+		private void HandleSizeAllocated (object sender, Gtk.SizeAllocatedArgs args)
+		{
+			if (fit)
+				ZoomFit ();
+		}	
+
 		bool load_async = true;
 		FSpot.AsyncPixbufLoader loader;
 		private void PhotoChanged () 
@@ -104,21 +123,27 @@ namespace FSpot {
 			return false;
  		}
 
-		public void ZoomFit ()
+		private void ZoomFit ()
 		{
 			Gdk.Pixbuf pixbuf = this.Pixbuf;
 			
-			if (pixbuf == null)
+			System.Console.WriteLine ("ZoomFit");
+
+			if (pixbuf == null) {
+				System.Console.WriteLine ("pixbuf == null");
 				return;
-			
+			}
 			int available_width = this.Allocation.Width;
 			int available_height = this.Allocation.Height;
-			
+
+		
 			double zoom_to_fit = ZoomUtils.FitToScale ((uint) available_width, (uint) available_height,
 								   (uint) pixbuf.Width, (uint) pixbuf.Height, false);
 			
 			double image_zoom = zoom_to_fit;
-			//Console.WriteLine ("Zoom {2} zoom_to_fit {0} image_zoom {1}", zoom_to_fit, image_zoom, Zoom);
+			System.Console.WriteLine ("Zoom = {0}, {1}, {2}", image_zoom, 
+						  available_width, 
+						  available_height);
 			
 			//if (System.Math.Abs (Zoom) < double.Epsilon)
 				((Gtk.ScrolledWindow) this.Parent).SetPolicy (Gtk.PolicyType.Never, Gtk.PolicyType.Never);
