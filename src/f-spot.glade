@@ -1621,6 +1621,7 @@
 	      <child>
 		<widget class="GtkImage" id="icon_image">
 		  <property name="visible">True</property>
+		  <property name="icon_size">4</property>
 		  <property name="xalign">0.5</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
@@ -1772,6 +1773,7 @@
 		  <child>
 		    <widget class="GtkImage" id="preview_image">
 		      <property name="visible">True</property>
+		      <property name="icon_size">4</property>
 		      <property name="xalign">0.5</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
@@ -7344,6 +7346,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkImage" id="histogram_image">
 		      <property name="visible">True</property>
+		      <property name="icon_size">4</property>
 		      <property name="xalign">0.5</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">12</property>
@@ -7965,6 +7968,7 @@ Photo Details</property>
 	      <child>
 		<widget class="GtkImage" id="histogram_image">
 		  <property name="visible">True</property>
+		  <property name="icon_size">4</property>
 		  <property name="xalign">0.5</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">12</property>
@@ -8180,7 +8184,7 @@ Photo Details</property>
 		      <property name="digits">1</property>
 		      <property name="update_policy">GTK_UPDATE_CONTINUOUS</property>
 		      <property name="inverted">False</property>
-		      <property name="adjustment">0 -100 100 0.10000000149 0.5 0</property>
+		      <property name="adjustment">0 -40 40 0.10000000149 0.5 0</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>

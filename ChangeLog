@@ -1,5 +1,11 @@
 2005-02-01  Larry Ewing  <lewing@novell.com>
 
+	* src/f-spot.glade: set the limits on saturation to something a
+	little more sane.
+	
+	* libeog/image-view.c: add missing prototype patch from Garry
+	Ekker.
+
 	* libfspot/f-image-view.c: remove unused variable.
 
 	* libfspot/f-pixbuf-utils.c: add missing include.
