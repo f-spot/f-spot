@@ -1,5 +1,12 @@
 2004-07-09  Larry Ewing  <lewing@ximian.com>
 
+	* src/f-spot.glade: remove the old handlers from the glade file.
+
+	* src/MainWindow.cs: remove the activate code for the TagMenu
+	handlers.
+
+	* src/TagMenu.cs: remove the single argument constuctor.
+
 	* src/MainWindow.cs: fix the TagMenu constuctor to use the new
 	format since the old one breaks.
 	
