@@ -969,6 +969,7 @@ public class MainWindow {
 		string [] authors = new string [] {
 			"Ettore Perazzoli",
 			"Lawrence Ewing",
+			"Laurence Hygate",
 			"Nat Friedman",
 			"Miguel de Icaza",
 			"Vladimir Vukicevic",
@@ -983,9 +984,7 @@ public class MainWindow {
 			"Ewen Cheslack-Postava",
 			"Patanjali Somayaji",
 			"Matt Jones",
-			"Martin Willemoes Hansen",
-			"Laurence Hygate"
-
+			"Martin Willemoes Hansen"
 		};
 
                 // Translators should localize the following string
@@ -993,7 +992,7 @@ public class MainWindow {
                 // * E.g. "Martin Willemoes Hansen"
                 string translators = Mono.Posix.Catalog.GetString ("translator-credits");
 
-                new About (FSpot.Defines.PACKAGE, 
+                new About ("F-Spot", 
 			   FSpot.Defines.VERSION, 
 			   "Copyright 2003-2005 Novell Inc.",
                            null, authors, null, translators, null).Show();
@@ -1135,8 +1134,8 @@ public class MainWindow {
 		table.Attach (new Gtk.Label (Mono.Posix.Catalog.GetString ("Radius:")), 0, 1, 1, 2);
 		table.Attach (new Gtk.Label (Mono.Posix.Catalog.GetString ("Threshold:")), 0, 1, 2, 3);
 
-		Gtk.SpinButton amount_spin = new Gtk.SpinButton (0.0, 100.0, .01);
-		Gtk.SpinButton radius_spin = new Gtk.SpinButton (0.0, 50.0, .01);
+		Gtk.SpinButton amount_spin = new Gtk.SpinButton (0.5, 100.0, .01);
+		Gtk.SpinButton radius_spin = new Gtk.SpinButton (5.0, 50.0, .01);
 		Gtk.SpinButton threshold_spin = new Gtk.SpinButton (0.0, 50.0, .01);
 
 		table.Attach (amount_spin, 1, 2, 0, 1);
