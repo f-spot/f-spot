@@ -17,6 +17,7 @@ libfspot_la_SOURCES =				\
 	f-jpeg-utils.h				\
 	f-pixbuf-utils.c			\
 	f-pixbuf-utils.h			\
+	f-pixbuf-unsharp.c			\
 	f-marshal.c				\
 	f-marshal.h				\
 	f-utils.c				\

@@ -90,6 +90,16 @@ class PixbufUtils {
 	}
 
 
+	[DllImport ("libfspot")]
+	static extern IntPtr f_pixbuf_unsharp_mask (IntPtr src, double radius, double amount, double threshold);
+
+	public static Pixbuf UnsharpMask (Pixbuf src, double radius, double amount, double threshold)
+	{
+		IntPtr raw_ret = f_pixbuf_unsharp_mask (src.Handle, radius, amount, threshold);
+ 		Gdk.Pixbuf ret = (Gdk.Pixbuf) GLib.Object.GetObject(raw_ret, true);
+		return ret;
+	}	
+
 #if STUFF_WE_HAVE_TO_RESTORE
 
 	// Bindings from libf.
