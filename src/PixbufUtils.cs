@@ -82,9 +82,6 @@ class PixbufUtils {
 		int max_height;
 		PixbufOrientation orientation;
 
-		// FIXME: this should be a property
-		public bool ScaleAlongLongestEdge = false;
-
 		public AspectLoader (int max_width, int max_height) 
 		{
 			this.max_height = max_height;
@@ -108,16 +105,8 @@ class PixbufUtils {
 				break;
 			}
 
-			if (ScaleAlongLongestEdge) {
-				if (args.Width > args.Height)
-					scale = max_width / (double)args.Width;
-				else
-					scale = max_height / (double)args.Height;
-			} else {
-				scale = Math.Min (max_width / (double)args.Width,
+			scale = Math.Min (max_width / (double)args.Width,
 						  max_height / (double)args.Height);
-			}
-				
 			
 			int scale_width = (int)(scale * args.Width);
 			int scale_height = (int)(scale * args.Height);
@@ -174,6 +163,7 @@ class PixbufUtils {
 		PixbufUtils.SetOption (scaled, "tEXt::Thumb::URI", uri);
 		PixbufUtils.SetOption (scaled, "tEXt::Thumb::MTime", 
 				       ((uint)GLib.Marshaller.DateTimeTotime_t (mtime)).ToString ());
+
 		PhotoStore.ThumbnailFactory.SaveThumbnail (scaled, uri, mtime);
 		ThumbnailCache.Default.AddThumbnail (path, scaled);
 		return scaled;
@@ -182,13 +172,6 @@ class PixbufUtils {
 	static public Pixbuf LoadAtMaxSize (string path, int max_width, int max_height)
 	{
 		PixbufUtils.AspectLoader loader = new AspectLoader (max_width, max_height);
-		return loader.LoadFromFile (path);
-	}
-
-	static public Pixbuf LoadAtMaxEdgeSize (string path, int longest_edge)
-	{
-		PixbufUtils.AspectLoader loader = new AspectLoader (longest_edge, longest_edge);
-		loader.ScaleAlongLongestEdge = true;
 		return loader.LoadFromFile (path);
 	}
 
@@ -345,8 +328,6 @@ class PixbufUtils {
 		PixbufOrientation orientation = PixbufOrientation.TopLeft;
 
 		if (value != null) {
-			System.Console.WriteLine ("len = {0} val [0] = {1} string = {2}", value.Length, 
-						  value[0], exif.LookupString (ExifTag.Orientation));
 			orientation = (PixbufOrientation)value [0];
 		}
 

@@ -1,5 +1,7 @@
 2005-01-14  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufUtils.cs: small cleanups, remove some debug output.
+
 	* libfspot/f-pixbuf-utils.c (f_pixbuf_copy_with_orientation): fix
 	some of the orientation logic.
 
