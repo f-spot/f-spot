@@ -141,10 +141,10 @@ namespace FSpot {
 			
 			switch (info.Status) {
 			case Gnome.Vfs.XferProgressStatus.Vfserror:
-				progress_dialog.Message = Mono.Posix.Catalog.GetString ("Error: Error while transfering, Aborting");
+				progress_dialog.Message = Mono.Posix.Catalog.GetString ("Error: Error while transferring; Aborting");
 				return (int)Gnome.Vfs.XferErrorAction.Abort;
 			case Gnome.Vfs.XferProgressStatus.Overwrite:
-				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error: File Already Exists, Aborting");
+				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error: File Already Exists; Aborting");
 				return (int)Gnome.Vfs.XferOverwriteAction.Abort;
 			default:
 				return 1;
