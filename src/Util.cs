@@ -10,6 +10,7 @@
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Collections;
+using System.IO;
 using System.Text;
 using System;
 
@@ -76,14 +77,36 @@ public class UriList : ArrayList {
 		}
 	}
 
+	static char[] CharsToQuote = { ';', '?', ':', '@', '&', '=', '$', ',', '#' };
+
+	public Uri PathToFileUri (string path)
+	{
+		path = Path.GetFullPath (path);
+
+		StringBuilder builder = new StringBuilder ();
+		builder.Append (Uri.UriSchemeFile);
+		builder.Append (Uri.SchemeDelimiter);
+
+		int i;
+		while ((i = path.IndexOfAny (CharsToQuote)) != -1) {
+			if (i > 0)
+				builder.Append (path.Substring (0, i));
+			builder.Append (Uri.HexEscape (path [i]));
+			path = path.Substring (i+1);
+		}
+		builder.Append (path);
+
+		return new Uri (builder.ToString (), true);
+	}
+
 	public UriList (string [] uris)
 	{	
 		// FIXME this is so lame do real chacking at some point
 		foreach (string str in uris) {
 			Uri uri;
 
-			if (str.StartsWith ("/"))
-				uri = new Uri ("file://" + str);
+			if (File.Exists (str) || Directory.Exists (str))
+				uri = PathToFileUri (str);
 			else 
 				uri = new Uri (str);
 			

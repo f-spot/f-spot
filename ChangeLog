@@ -1,3 +1,13 @@
+2004-11-22  Jon Trowbridge  <trow@ximian.com>
+
+	* src/Util.cs: Added code to more correctly map paths to file
+	Uris.  This fix allows the --import to work with non-absolute
+	paths.
+
+	* src/main.cs: Wait to change the current directory until
+	immediately before we call Program.Run.  Also replaced some string
+	concatenations with calls to Path.Combine.
+
 2004-11-20  Larry Ewing  <lewing@novell.com>
 
 	* src/PreviewPopup.cs: mark the key presses as handled.
