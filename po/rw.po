@@ -1,0 +1,1608 @@
+# translation of f-spot to Kinyarwanda.
+# Copyright (C) 2005 Free Software Foundation, Inc.
+# This file is distributed under the same license as the f-spot package.
+# Steve Murphy <murf@e-tools.com>, 2005
+# Steve performed initial rough translation from compendium built from translations provided by the following translators:
+# Philibert Ndandali  <ndandali@yahoo.fr>, 2005.
+# Viateur MUGENZI <muvia1@yahoo.fr>, 2005.
+# Noëlla Mupole <s24211045@tuks.co.za>, 2005.
+# Carole Karema <karemacarole@hotmail.com>, 2005.
+# JEAN BAPTISTE NGENDAHAYO <ngenda_denis@yahoo.co.uk>, 2005.
+# Augustin KIBERWA  <akiberwa@yahoo.co.uk>, 2005.
+# Donatien NSENGIYUMVA <ndonatienuk@yahoo.co.uk>, 2005..
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: f-spot HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-04-01 11:40-0700\n"
+"PO-Revision-Date: 2005-03-31 20:55-0700\n"
+"Last-Translator: Steve Murphy <murf@e-tools.com>\n"
+"Language-Team: Kinyarwanda <translation-team-rw@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"ULL NAME <EMAIL@ADDRESS>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: f-spot.desktop.in.in.h:1
+msgid "F-Spot Photo Album"
+msgstr ""
+
+#: f-spot.desktop.in.in.h:2
+msgid "Photo Album"
+msgstr ""
+
+#: libeog/eog-file-selection.c:29 libeog/eog-file-selection.c:46
+msgid "By Extension"
+msgstr ""
+
+#: libeog/eog-file-selection.c:30
+#, fuzzy
+msgid "BMP"
+msgstr "bmp"
+
+#: libeog/eog-file-selection.c:31
+#, fuzzy
+msgid "GIF"
+msgstr "GIF"
+
+#: libeog/eog-file-selection.c:32
+msgid "ICO"
+msgstr ""
+
+# officecfg/registry\schema\org\openoffice\Office\Impress.xcs:....Filter.Export.LastUsed..JPG_-_JPEG.text
+#: libeog/eog-file-selection.c:33 libeog/eog-file-selection.c:48
+msgid "JPEG"
+msgstr "JPEG"
+
+#: libeog/eog-file-selection.c:34 libeog/eog-file-selection.c:51
+#, fuzzy
+msgid "PNG"
+msgstr "png"
+
+#: libeog/eog-file-selection.c:35
+msgid "PNM"
+msgstr ""
+
+#: libeog/eog-file-selection.c:36
+msgid "RAS"
+msgstr ""
+
+#: libeog/eog-file-selection.c:37
+msgid "SVG"
+msgstr ""
+
+#: libeog/eog-file-selection.c:38
+msgid "TGA"
+msgstr ""
+
+# officecfg/registry\schema\org\openoffice\Office\Common.xcs:....Filter.Graphic.Export.EPS.Preview..1.text
+#: libeog/eog-file-selection.c:39
+msgid "TIFF"
+msgstr "TIFF"
+
+#: libeog/eog-file-selection.c:40
+#, fuzzy
+msgid "XBM"
+msgstr "xbm"
+
+# officecfg/registry\schema\org\openoffice\Office\Impress.xcs:....Filter.Export.LastUsed..XPM.text
+#: libeog/eog-file-selection.c:41 libeog/eog-file-selection.c:54
+msgid "XPM"
+msgstr "XPM"
+
+#: libeog/eog-file-selection.c:207
+#, fuzzy
+msgid "Unsupported file format."
+msgstr "IDOSIYE Imiterere"
+
+#: libeog/eog-file-selection.c:225
+#, fuzzy
+msgid "Determine File Type:"
+msgstr "Idosiye"
+
+#: libeog/eog-file-selection.c:268
+msgid "Load Image"
+msgstr ""
+
+#: libeog/eog-file-selection.c:274
+msgid "Save Image"
+msgstr "Bika Ishusho"
+
+#: libeog/eog-image.c:773
+#, fuzzy
+msgid "No image loaded."
+msgstr "Ishusho"
+
+#: libeog/eog-image.c:780
+#, fuzzy
+msgid "Can't save non local files."
+msgstr "Kubika Idosiye"
+
+#: libeog/eog-image.c:803
+#, fuzzy
+msgid "Unsupported image type for saving."
+msgstr "Ishusho Ubwoko kugirango Mu kubika"
+
+#: libeog/image-view.c:2082
+#, fuzzy
+msgid "interpolation type"
+msgstr "Ubwoko"
+
+#: libeog/image-view.c:2083
+#, fuzzy
+msgid "the type of interpolation to use"
+msgstr "i Ubwoko Bya Kuri Gukoresha"
+
+#: libeog/image-view.c:2089 libeog/image-view.c:2096
+#, fuzzy
+msgid "check type"
+msgstr "Kugenzura... Ubwoko"
+
+#: libeog/image-view.c:2090
+#, fuzzy
+msgid "the type of chequering to use"
+msgstr "i Ubwoko Bya Kuri Gukoresha"
+
+#: libeog/image-view.c:2097
+#, fuzzy
+msgid "the size of chequers to use"
+msgstr "i Ingano Bya Kuri Gukoresha"
+
+#: libeog/image-view.c:2103
+msgid "dither"
+msgstr ""
+
+#: libeog/image-view.c:2104
+#, fuzzy
+msgid "dither type"
+msgstr "Ubwoko"
+
+#: libfspot/f-jpeg-utils.c:440
+msgid "File not found"
+msgstr "Dosiye ntibonetse"
+
+#: libfspot/f-jpeg-utils.c:463
+#, fuzzy, c-format
+msgid "Unknown transform type %d"
+msgstr "Guhinduramo Ubwoko"
+
+#: libfspot/f-jpeg-utils.c:471
+#, fuzzy
+msgid "Operation failed"
+msgstr "Byanze"
+
+#: src/CameraFileSelectionDialog.cs:65
+msgid "Preview"
+msgstr "Igaragazambere"
+
+#: src/CameraFileSelectionDialog.cs:67
+msgid "Path"
+msgstr "Inzira"
+
+# sc/source\ui\src\scfuncs.src:RID_SC_FUNCTION_DESCRIPTIONS2.SC_OPCODE_DDE.4.text
+#: src/CameraFileSelectionDialog.cs:69 src/f-spot.glade.h:68
+msgid "File"
+msgstr "Idosiye"
+
+# #-#-#-#-#  officecfg.pot (PACKAGE VERSION)  #-#-#-#-#
+# officecfg/registry\schema\org\openoffice\Office\Writer.xcs:....DefaultFont.Index.text
+# #-#-#-#-#  officecfg.pot (PACKAGE VERSION)  #-#-#-#-#
+# officecfg/registry\schema\org\openoffice\Office\Writer.xcs:....DefaultFontCJK.Index.text
+# #-#-#-#-#  officecfg.pot (PACKAGE VERSION)  #-#-#-#-#
+# officecfg/registry\schema\org\openoffice\Office\Writer.xcs:....DefaultFontCTL.Index.text
+#: src/CameraFileSelectionDialog.cs:71 src/FolderExport.cs:631
+msgid "Index"
+msgstr "Umubarendanga"
+
+#: src/CameraFileSelectionDialog.cs:87
+msgid "Downloading Previews"
+msgstr ""
+
+#: src/CameraFileSelectionDialog.cs:95
+#, fuzzy, csharp-format
+msgid "Downloading Preview of {0}"
+msgstr "Bya 0"
+
+#: src/CameraFileSelectionDialog.cs:145
+#, fuzzy
+msgid "Unknown destination."
+msgstr "Ishyika"
+
+#: src/CameraFileSelectionDialog.cs:146
+#, fuzzy
+msgid ""
+"When copying files from a camera you must select a valid destination on the "
+"local filesystem"
+msgstr "Idosiye Bivuye a Kamera Guhitamo a Byemewe Ishyika ku i"
+
+#: src/CameraFileSelectionDialog.cs:164
+#, fuzzy
+msgid "Unable to create directory."
+msgstr "Kuri Kurema bushyinguro"
+
+#: src/CameraFileSelectionDialog.cs:165
+#, fuzzy, csharp-format
+msgid ""
+"Error \"{0}\" while creating directory \"{0}\".  Check that the path and "
+"permissions are correct and try again"
+msgstr "0 bushyinguro 0 i Inzira Na Uruhushya Na"
+
+#: src/CameraFileSelectionDialog.cs:186 src/CDExport.cs:139
+#: src/VfsExport.cs:196
+msgid "Transferring Pictures"
+msgstr ""
+
+#: src/CameraFileSelectionDialog.cs:209
+#, fuzzy, csharp-format
+msgid "Copying file {0} of {1}"
+msgstr "IDOSIYE 0 Bya 1."
+
+#: src/CameraFileSelectionDialog.cs:219
+msgid "Done Copying Files"
+msgstr ""
+
+#: src/CameraFileSelectionDialog.cs:221
+msgid "Download Complete"
+msgstr ""
+
+#: src/CameraFileSelectionDialog.cs:226
+#, fuzzy
+msgid "Error transferring file"
+msgstr "IDOSIYE"
+
+#: src/CameraFileSelectionDialog.cs:247
+#, fuzzy, csharp-format
+msgid "Transferring \"{0}\" from camera"
+msgstr "0 Bivuye Kamera"
+
+#: src/CameraFileSelectionDialog.cs:268
+msgid "Select Destination"
+msgstr ""
+
+# svx/source\engine3d\float3d.src:RID_SVXFLOAT_3D.FL_CAMERA.text
+#: src/CameraSelectionDialog.cs:27 src/StockIcons.cs:27
+msgid "Camera"
+msgstr "Kamera"
+
+# framework/source\services\logindialog.src:RID_DLG_LOGIN.RID_FT_SECURITYPROXYPORT.text
+#: src/CameraSelectionDialog.cs:28
+msgid "Port"
+msgstr "Umuyoboro"
+
+#: src/CDExport.cs:57
+#, fuzzy, csharp-format
+msgid "Transferring picture \"{0}\" To CD"
+msgstr "y'Ishusho 0"
+
+#: src/CDExport.cs:59 src/FlickrExport.cs:93 src/GalleryExport.cs:421
+#: src/ProgressDialog.cs:75 src/VfsExport.cs:88
+#, fuzzy, csharp-format
+msgid "{0} of {1}"
+msgstr "{0 Bya 1."
+
+#: src/CDExport.cs:71 src/FlickrExport.cs:98 src/FolderExport.cs:162
+#: src/GalleryExport.cs:436 src/VfsExport.cs:115
+msgid "Done Sending Photos"
+msgstr ""
+
+#: src/CDExport.cs:73 src/FolderExport.cs:164 src/VfsExport.cs:117
+msgid "Transfer Complete"
+msgstr ""
+
+#: src/CDExport.cs:79 src/FolderExport.cs:169 src/VfsExport.cs:122
+msgid "Error While Transferring"
+msgstr ""
+
+#: src/CDExport.cs:84 src/FolderExport.cs:177 src/VfsExport.cs:130
+msgid "Error Transferring"
+msgstr ""
+
+#: src/CDExport.cs:99 src/VfsExport.cs:144
+msgid "Error: Error while transferring; Aborting"
+msgstr ""
+
+#: src/CDExport.cs:102 src/VfsExport.cs:147
+#, fuzzy
+msgid "Error: File Already Exists; Aborting"
+msgstr "Idosiye"
+
+#: src/Exif.cs:226
+msgid "Image Directory"
+msgstr ""
+
+#: src/Exif.cs:228
+msgid "Thumbnail Directory"
+msgstr ""
+
+#: src/Exif.cs:230
+msgid "Exif Directory"
+msgstr ""
+
+#: src/Exif.cs:232
+msgid "GPS Directory"
+msgstr ""
+
+#: src/Exif.cs:234
+msgid "InterOperability Directory"
+msgstr ""
+
+#: src/Exif.cs:236
+msgid "Unknown Directory"
+msgstr ""
+
+# sfx2/source\dialog\passwd.src:DLG_PASSWD.text
+#: src/FlickrExport.cs:49
+msgid "Enter Password"
+msgstr "Kwandika Ijambobanga"
+
+#: src/FlickrExport.cs:57
+#, fuzzy
+msgid "Enter Password for "
+msgstr "kugirango"
+
+#: src/FlickrExport.cs:88 src/GalleryExport.cs:417
+#, fuzzy, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr "y'Ishusho 0"
+
+#: src/FlickrExport.cs:100 src/GalleryExport.cs:438
+msgid "Upload Complete"
+msgstr ""
+
+#: src/FlickrExport.cs:105
+msgid "Error Uploading To Flickr"
+msgstr ""
+
+#: src/FlickrExport.cs:135 src/GalleryExport.cs:387
+msgid "Uploading Pictures"
+msgstr ""
+
+#: src/FlickrExport.cs:145
+#, fuzzy
+msgid "Unable to log on."
+msgstr "Kuri LOG ku"
+
+#: src/FlickrExport.cs:146
+#, fuzzy
+msgid ""
+"F-Spot was unable to log on to Flickr.  Make sure the settings you supplied "
+"are correct."
+msgstr "Kuri LOG ku Kuri i Amagenamiterere"
+
+#: src/FolderExport.cs:128
+msgid "Building Gallery"
+msgstr ""
+
+#: src/FolderExport.cs:196
+msgid "Error: Error while transferring, Aborting"
+msgstr ""
+
+#: src/FolderExport.cs:199
+#, fuzzy
+msgid "Error: File Already Exists, Aborting"
+msgstr "Idosiye"
+
+#: src/FolderExport.cs:245
+msgid "Transfering Pictures"
+msgstr ""
+
+#: src/FolderExport.cs:629
+msgid "Prev"
+msgstr ""
+
+#: src/FolderExport.cs:634 src/f-spot.glade.h:91
+msgid "Next"
+msgstr "Ikurikira"
+
+#: src/FolderExport.cs:697
+#, fuzzy
+msgid "Gallery generated by "
+msgstr "ku"
+
+# filter/source\pdf\impdialog.src:RID_PDF_EXPORT_DLG.FL_PAGES.text
+#: src/FolderExport.cs:729
+#, fuzzy
+msgid "Pages:"
+msgstr "Amapaji"
+
+#: src/f-spot.glade.h:1
+msgid "\n"
+msgstr ""
+
+#: src/f-spot.glade.h:3
+msgid " "
+msgstr " "
+
+# #-#-#-#-#  svx.pot (PACKAGE VERSION)  #-#-#-#-#
+# svx/source\dialog\ctredlin.src:SID_REDLIN_FILTER_PAGE.BTN_REF.text
+# #-#-#-#-#  svx.pot (PACKAGE VERSION)  #-#-#-#-#
+# svx/source\form\fmsearch.src:RID_SVXDLG_SEARCHFORM.PB_APPROXSETTINGS.text
+# #-#-#-#-#  svx.pot (PACKAGE VERSION)  #-#-#-#-#
+# svx/source\form\fmsearch.src:RID_SVXDLG_SEARCHFORM.PB_SOUNDSLIKESETTINGS.text
+#: src/f-spot.glade.h:4
+msgid "..."
+msgstr "..."
+
+#: src/f-spot.glade.h:5
+#, fuzzy
+msgid "<b></b>"
+msgstr "<B B"
+
+#: src/f-spot.glade.h:6
+#, fuzzy
+msgid "<b>Account</b>"
+msgstr "<B B"
+
+#: src/f-spot.glade.h:7
+#, fuzzy
+msgid "<b>Album</b>"
+msgstr "<B B"
+
+#: src/f-spot.glade.h:8
+#, fuzzy
+msgid "<b>Color Temperature</b>"
+msgstr "<B B"
+
+#: src/f-spot.glade.h:9
+#, fuzzy
+msgid "<b>Destination</b>"
+msgstr "<B B"
+
+#: src/f-spot.glade.h:10
+#, fuzzy
+msgid "<b>End Date</b>"
+msgstr "<B Impera B"
+
+#: src/f-spot.glade.h:11
+#, fuzzy
+msgid "<b>Export Method</b>"
+msgstr "<B B"
+
+#: src/f-spot.glade.h:12
+#, fuzzy
+msgid "<b>Exposure</b>"
+msgstr "<B B"
+
+#: src/f-spot.glade.h:13
+#, fuzzy
+msgid "<b>From Image</b>"
+msgstr "<B B"
+
+#: src/f-spot.glade.h:14
+#, fuzzy
+msgid "<b>Gallery</b>"
+msgstr "<B B"
+
+#: src/f-spot.glade.h:15
+#, fuzzy
+msgid "<b>Histogram</b>"
+msgstr "<B B"
+
+#: src/f-spot.glade.h:16
+#, fuzzy
+msgid "<b>Items to Burn</b>"
+msgstr "<B Kuri B"
+
+#: src/f-spot.glade.h:17
+#, fuzzy
+msgid "<b>Photograph Layout</b>"
+msgstr "<B B"
+
+#: src/f-spot.glade.h:18
+#, fuzzy
+msgid "<b>Photos</b>"
+msgstr "<B B"
+
+#: src/f-spot.glade.h:19
+#, fuzzy
+msgid "<b>Predefined</b>"
+msgstr "<B B"
+
+#: src/f-spot.glade.h:20
+#, fuzzy
+msgid "<b>Preview</b>"
+msgstr "<B B"
+
+#: src/f-spot.glade.h:21
+#, fuzzy
+msgid "<b>Printer Details</b>"
+msgstr "<B B"
+
+#: src/f-spot.glade.h:22
+#, fuzzy
+msgid "<b>Start Date</b>"
+msgstr "<B Gutangira B"
+
+#: src/f-spot.glade.h:23
+#, fuzzy
+msgid "<b>Style</b>"
+msgstr "<B B"
+
+#: src/f-spot.glade.h:24
+#, fuzzy
+msgid "<small> </small>"
+msgstr "<Gitoya Gitoya"
+
+#: src/f-spot.glade.h:25
+#, fuzzy
+msgid "<small></small>"
+msgstr "<Gitoya Gitoya"
+
+#: src/f-spot.glade.h:26
+#, fuzzy
+msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
+msgstr "<Uburemere Ingano Kuri"
+
+#: src/f-spot.glade.h:28
+msgid "Ad_just Color..."
+msgstr ""
+
+#: src/f-spot.glade.h:29
+msgid "Adjust Color"
+msgstr ""
+
+#: src/f-spot.glade.h:30
+msgid "Arranged _By"
+msgstr ""
+
+#: src/f-spot.glade.h:31
+msgid "Attach Tag:"
+msgstr ""
+
+#: src/f-spot.glade.h:32
+msgid "Border:"
+msgstr "Impera:"
+
+# sw/source\ui\utlui\attrdesc.src:STR_LUMINANCE.text
+#: src/f-spot.glade.h:33
+#, fuzzy
+msgid "Brightness:"
+msgstr "Urumuri:"
+
+# toolkit/source\awt\accessiblestrings.src:RID_STR_ACC_NAME_BROWSEBUTTON.text
+#: src/f-spot.glade.h:34 src/StockIcons.cs:26
+msgid "Browse"
+msgstr "Gushakisha"
+
+#: src/f-spot.glade.h:35
+msgid "Browse Previously Scheduled Files"
+msgstr ""
+
+#: src/f-spot.glade.h:36
+msgid "CD"
+msgstr ""
+
+#: src/f-spot.glade.h:37
+msgid "Camera Selection"
+msgstr ""
+
+#: src/f-spot.glade.h:38
+msgid "Caption:"
+msgstr "Akarango:"
+
+# so3/src\svuidlg.src:MD_DDE_LINKEDIT.FT_DDE_ITEM.text
+#: src/f-spot.glade.h:39
+#, fuzzy
+msgid "Category:"
+msgstr "Icyiciro"
+
+# sfx2/sdi\sfxslots.src:SID_CONFIG.text
+#: src/f-spot.glade.h:40
+#, fuzzy
+msgid "Co_nfigure"
+msgstr "Kugena Imiterere"
+
+# sw/source\ui\utlui\attrdesc.src:STR_CONTRAST.text
+#: src/f-spot.glade.h:41
+#, fuzzy
+msgid "Contrast:"
+msgstr "Inyuranyamigaragarire:"
+
+#: src/f-spot.glade.h:42
+msgid "Copy Files To: "
+msgstr ""
+
+#: src/f-spot.glade.h:43
+msgid "Create CD"
+msgstr ""
+
+#: src/f-spot.glade.h:44
+msgid "Create New _Category..."
+msgstr ""
+
+#: src/f-spot.glade.h:45
+msgid "Create New _Tag..."
+msgstr ""
+
+#: src/f-spot.glade.h:46
+#, fuzzy
+msgid "Create _new version..."
+msgstr "Gishya Verisiyo"
+
+#: src/f-spot.glade.h:47
+#, fuzzy
+msgid "Crop Photo to Fit"
+msgstr "Kuri"
+
+#: src/f-spot.glade.h:48
+msgid "Description:"
+msgstr "Umwirondoro"
+
+#: src/f-spot.glade.h:49
+msgid "Destination Temp"
+msgstr ""
+
+#: src/f-spot.glade.h:50
+msgid "Display Side_bar"
+msgstr ""
+
+#: src/f-spot.glade.h:51
+msgid "Display T_ags"
+msgstr ""
+
+#: src/f-spot.glade.h:52
+msgid "Display _Dates"
+msgstr ""
+
+#: src/f-spot.glade.h:53
+msgid "Display _Timeline"
+msgstr ""
+
+# sw/source\ui\wizard\wizbmp.src:STR_Usr_ElektrMail.text
+#: src/f-spot.glade.h:54
+#, fuzzy
+msgid "E-Mail:"
+msgstr "Aderesi ya interineti:"
+
+#: src/f-spot.glade.h:55
+msgid "E_xport To CD..."
+msgstr ""
+
+#: src/f-spot.glade.h:56
+msgid "Edit Tag Icon"
+msgstr ""
+
+# filter/source\pdf\impdialog.src:RID_PDF_EXPORT_DLG.BT_OK.text
+# filter/source\xsltdialog\xmlfiltertestdialog.src:DLG_XML_FILTER_TEST_DIALOG.FL_EXPORT.text
+#: src/f-spot.glade.h:57
+msgid "Export"
+msgstr "Kohereza"
+
+#: src/f-spot.glade.h:58
+#, fuzzy
+msgid "Export Tags and Categories"
+msgstr "Na"
+
+#: src/f-spot.glade.h:59
+#, fuzzy
+msgid "Export tags and categories"
+msgstr "Na Ibyiciro"
+
+#: src/f-spot.glade.h:60
+#, fuzzy
+msgid "Export titles and comments"
+msgstr "Imitwe Na Ibisobanuro"
+
+#: src/f-spot.glade.h:61
+#, fuzzy
+msgid "Export to Album:"
+msgstr "Kuri"
+
+#: src/f-spot.glade.h:62
+#, fuzzy
+msgid "Export to Original"
+msgstr "Kuri"
+
+#: src/f-spot.glade.h:63
+#, fuzzy
+msgid "Export to _Flickr..."
+msgstr "Kuri"
+
+#: src/f-spot.glade.h:64
+#, fuzzy
+msgid "Export to _Original..."
+msgstr "Kuri"
+
+#: src/f-spot.glade.h:65
+#, fuzzy
+msgid "Export to _VFS..."
+msgstr "Kuri"
+
+#: src/f-spot.glade.h:66
+#, fuzzy
+msgid "Export to _Web Gallery..."
+msgstr "Kuri"
+
+#: src/f-spot.glade.h:67
+msgid "F-Spot"
+msgstr ""
+
+# offmgr/source\offapp\dialog\hyprlink.src:RID_SVXDLG_HYPERLINK.BTN_INET_SEARCH.text
+#: src/f-spot.glade.h:69
+#, fuzzy
+msgid "Fin_d"
+msgstr "Gushaka"
+
+#: src/f-spot.glade.h:70
+#, fuzzy
+msgid "Find by _Tag"
+msgstr "ku"
+
+#: src/f-spot.glade.h:71
+msgid "Flikr"
+msgstr ""
+
+#: src/f-spot.glade.h:72
+msgid "Folder Export"
+msgstr ""
+
+#: src/f-spot.glade.h:73
+msgid "Folder URI:"
+msgstr ""
+
+#: src/f-spot.glade.h:74
+msgid ""
+"Full Page\n"
+"Standard - 4x6"
+msgstr ""
+
+# sfx2/source\appl\app.src:STR_KEY_GALLERY_DIR.text
+#: src/f-spot.glade.h:76
+msgid "Gallery"
+msgstr "Umwanyanzira"
+
+#: src/f-spot.glade.h:77
+msgid "Gallery Name:"
+msgstr ""
+
+#: src/f-spot.glade.h:78
+#, fuzzy
+msgid "Gallery:"
+msgstr "Ikirongozi"
+
+#: src/f-spot.glade.h:79
+#, fuzzy
+msgid ""
+"Hairline\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
+msgstr "25% 0 5 1."
+
+# svtools/source\dialogs\colrdlg.src:DLG_COLOR.FT_HUE.text
+#: src/f-spot.glade.h:84
+#, fuzzy
+msgid "Hue:"
+msgstr "Ibara"
+
+# sfx2/source\toolbox\tbxopdlg.src:TP_CONFIG_OBJECTBAR.STR_SYMBOL.text
+#: src/f-spot.glade.h:85
+#, fuzzy
+msgid "Icon:"
+msgstr "Agashushondanga"
+
+# filter/source\xsltdialog\xmlfiltertestdialog.src:DLG_XML_FILTER_TEST_DIALOG.FL_IMPORT.text
+#: src/f-spot.glade.h:86
+msgid "Import"
+msgstr "Kuzana"
+
+# wizards/source\importwizard\importwi.src:sTextImportLabel.text
+#: src/f-spot.glade.h:87
+#, fuzzy
+msgid "Import From:"
+msgstr "Kuvana muri:"
+
+#: src/f-spot.glade.h:88
+#, fuzzy
+msgid "Import files after copy."
+msgstr "Idosiye Nyuma Gukoporora"
+
+#: src/f-spot.glade.h:89
+#, fuzzy
+msgid "Import from C_amera..."
+msgstr "Bivuye"
+
+#: src/f-spot.glade.h:90
+#, fuzzy
+msgid "Include subdirectories."
+msgstr "Ububiko bwungirije"
+
+#: src/f-spot.glade.h:92
+msgid ""
+"None\n"
+"Title\n"
+"Filename\n"
+"Date\n"
+"Photo Details"
+msgstr ""
+
+#: src/f-spot.glade.h:97
+#, fuzzy
+msgid "Number of Copies:"
+msgstr "Umubare wa ma kopi:"
+
+#: src/f-spot.glade.h:98
+#, fuzzy
+msgid "Open album in browser when done uploading"
+msgstr "in Mucukumbuzi Ryari: Byakozwe"
+
+#: src/f-spot.glade.h:99
+#, fuzzy
+msgid "Open destination when done exporting."
+msgstr "Ishyika Ryari: Byakozwe iyimura"
+
+#: src/f-spot.glade.h:100
+#, fuzzy
+msgid "Page 1 of 3"
+msgstr "1. Bya 3."
+
+# sc/source\ui\src\scstring.src:SCSTR_PASSWORD.text
+#: src/f-spot.glade.h:101
+msgid "Password:"
+msgstr "Ijambobanga:"
+
+# 4630
+#: src/f-spot.glade.h:102
+msgid "Pause"
+msgstr "akaruhuko"
+
+#: src/f-spot.glade.h:103
+#, fuzzy
+msgid "Photo 0 of 0"
+msgstr "0 Bya 0"
+
+#: src/f-spot.glade.h:104
+msgid "Photo Source:"
+msgstr ""
+
+#: src/f-spot.glade.h:105
+msgid "PhotoSize:"
+msgstr ""
+
+#: src/f-spot.glade.h:106
+#, fuzzy
+msgid "Please verify that the settings for this gallery are correct."
+msgstr "i Amagenamiterere kugirango iyi Ikirongozi"
+
+#: src/f-spot.glade.h:107
+#, fuzzy
+msgid "Prefix: "
+msgstr "Imbanziriza:"
+
+#: src/f-spot.glade.h:108
+msgid "Previous"
+msgstr "Ibanjirije"
+
+#: src/f-spot.glade.h:109
+msgid "Print Crop Marks"
+msgstr ""
+
+#: src/f-spot.glade.h:110
+#, fuzzy
+msgid "Rem_ove Tag"
+msgstr "Gusiba itagi"
+
+#: src/f-spot.glade.h:111
+#, fuzzy
+msgid "Resize to: "
+msgstr "Kuri"
+
+#: src/f-spot.glade.h:112 src/StockIcons.cs:35
+msgid "Rotate _Left"
+msgstr ""
+
+#: src/f-spot.glade.h:113 src/StockIcons.cs:36
+msgid "Rotate _Right"
+msgstr ""
+
+# svtools/source\dialogs\colrdlg.src:DLG_COLOR.FT_SATURATION.text
+#: src/f-spot.glade.h:114
+#, fuzzy
+msgid "Saturation:"
+msgstr "Ubwuzurane"
+
+#: src/f-spot.glade.h:115
+#, fuzzy
+msgid "Scale images to no larger than: "
+msgstr "Ishusho Kuri Oya Kinini"
+
+#: src/f-spot.glade.h:116
+msgid "Select Files To Copy From Camera..."
+msgstr ""
+
+#: src/f-spot.glade.h:117
+msgid "Select Tags..."
+msgstr ""
+
+# #-#-#-#-#  padmin.pot (PACKAGE VERSION)  #-#-#-#-#
+# padmin/source\padialog.src:RID_FONTIMPORT_DIALOG.RID_FIMP_BTN_SELECTALL.text
+# #-#-#-#-#  padmin.pot (PACKAGE VERSION)  #-#-#-#-#
+# padmin/source\padialog.src:RID_ADDP_PAGE_OLDPRINTERS.RID_ADDP_OLD_BTN_SELECTALL.text
+#: src/f-spot.glade.h:118
+#, fuzzy
+msgid "Select _All"
+msgstr "Hitamo byose"
+
+#: src/f-spot.glade.h:119
+msgid "Select _None"
+msgstr ""
+
+#: src/f-spot.glade.h:120
+#, fuzzy
+msgid "Select a tag..."
+msgstr "a Itagi:"
+
+#: src/f-spot.glade.h:121
+#, fuzzy
+msgid "Select the camera you want to transfer files from."
+msgstr "i Kamera Kuri Idosiye Bivuye"
+
+#: src/f-spot.glade.h:122
+msgid "Selected Camera: "
+msgstr ""
+
+#: src/f-spot.glade.h:123
+msgid ""
+"Selection\n"
+"Gallery\n"
+"Viewport"
+msgstr ""
+
+# 5466
+#: src/f-spot.glade.h:126
+#, fuzzy
+msgid "Send _Mail..."
+msgstr "Ohereza Ibaruwa"
+
+#: src/f-spot.glade.h:127
+msgid "Set _Date Range..."
+msgstr ""
+
+#: src/f-spot.glade.h:128
+#, fuzzy
+msgid "Set as _Background"
+msgstr "Nka"
+
+#: src/f-spot.glade.h:129
+msgid "Source Temp"
+msgstr ""
+
+#: src/f-spot.glade.h:130
+msgid "Strip Image Metadata"
+msgstr ""
+
+#: src/f-spot.glade.h:131
+msgid "Strip metadata"
+msgstr ""
+
+#: src/f-spot.glade.h:132 src/TagCommands.cs:295
+#, fuzzy
+msgid "Tag name:"
+msgstr "Izina:"
+
+#: src/f-spot.glade.h:133
+msgid "URI:"
+msgstr ""
+
+# offmgr/source\offapp\dialog\hyprlink.src:RID_SVXDLG_HYPERLINK.FT_URL.text
+#: src/f-spot.glade.h:134
+msgid "URL:"
+msgstr "URL:"
+
+#: src/f-spot.glade.h:135
+msgid "Use Original."
+msgstr ""
+
+#: src/f-spot.glade.h:136
+msgid "Use static HTML."
+msgstr ""
+
+#: src/f-spot.glade.h:137
+#, fuzzy
+msgid "Username:"
+msgstr "Izina ry'ukoresha"
+
+# #-#-#-#-#  offmgr.pot (PACKAGE VERSION)  #-#-#-#-#
+# offmgr/source\offapp\dialog\treeopt.src:RID_OFADLG_OPTIONS_TREE_PAGES.SID_GENERAL_OPTIONS.5.text
+# #-#-#-#-#  offmgr.pot (PACKAGE VERSION)  #-#-#-#-#
+# offmgr/source\offapp\dialog\treeopt.src:RID_OFADLG_OPTIONS_TREE_PAGES.SID_SW_EDITOPTIONS.3.text
+# #-#-#-#-#  offmgr.pot (PACKAGE VERSION)  #-#-#-#-#
+# offmgr/source\offapp\dialog\treeopt.src:RID_OFADLG_OPTIONS_TREE_PAGES.SID_SW_ONLINEOPTIONS.2.text
+# #-#-#-#-#  offmgr.pot (PACKAGE VERSION)  #-#-#-#-#
+# offmgr/source\offapp\dialog\treeopt.src:RID_OFADLG_OPTIONS_TREE_PAGES.SID_SC_EDITOPTIONS.3.text
+# #-#-#-#-#  offmgr.pot (PACKAGE VERSION)  #-#-#-#-#
+# offmgr/source\offapp\dialog\treeopt.src:RID_OFADLG_OPTIONS_TREE_PAGES.SID_SD_EDITOPTIONS.3.text
+# #-#-#-#-#  offmgr.pot (PACKAGE VERSION)  #-#-#-#-#
+# offmgr/source\offapp\dialog\treeopt.src:RID_OFADLG_OPTIONS_TREE_PAGES.SID_SD_GRAPHIC_OPTIONS.3.text
+#: src/f-spot.glade.h:138
+msgid "View"
+msgstr "Igaragaza"
+
+#: src/f-spot.glade.h:139
+#, fuzzy
+msgid "View photos in browser when done uploading"
+msgstr "in Mucukumbuzi Ryari: Byakozwe"
+
+#: src/f-spot.glade.h:140
+msgid "Virtual Filesystem"
+msgstr ""
+
+#: src/f-spot.glade.h:141
+#, fuzzy
+msgid "Will print Using: US Letter size on Generic Postscript"
+msgstr "Gucapa Ingano ku"
+
+#: src/f-spot.glade.h:142
+#, fuzzy
+msgid "Write only these Items to CD"
+msgstr "Kuri"
+
+# sc/sdi\scslots.src:SID_PREVIEW_ZOOMIN.text
+#: src/f-spot.glade.h:143
+#, fuzzy
+msgid "Zoom _In"
+msgstr "Ihindurangano wongera"
+
+# sc/sdi\scslots.src:SID_PREVIEW_ZOOMOUT.text
+#: src/f-spot.glade.h:144
+#, fuzzy
+msgid "Zoom _Out"
+msgstr "Ihindurangano ugabanya"
+
+#: src/f-spot.glade.h:145
+msgid "_Attach Tag"
+msgstr ""
+
+#: src/f-spot.glade.h:146
+msgid "_Attach Tag To Selection"
+msgstr ""
+
+#: src/f-spot.glade.h:147
+msgid "_Clear Date Range"
+msgstr ""
+
+# #-#-#-#-#  basctl.pot (PACKAGE VERSION)  #-#-#-#-#
+# basctl/source\basicide\macrodlg.src:RID_MACROCHOOSER.RID_PB_CLOSE.text
+# #-#-#-#-#  basctl.pot (PACKAGE VERSION)  #-#-#-#-#
+# basctl/source\basicide\macrodlg.src:RID_STR_CLOSE.text
+# #-#-#-#-#  basctl.pot (PACKAGE VERSION)  #-#-#-#-#
+# basctl/source\basicide\moduldlg.src:RID_TP_MODULS.RID_PB_CLOSE.text
+# #-#-#-#-#  basctl.pot (PACKAGE VERSION)  #-#-#-#-#
+# basctl/source\basicide\moduldlg.src:RID_TP_LIBS.RID_PB_CLOSE.text
+#: src/f-spot.glade.h:148
+#, fuzzy
+msgid "_Close"
+msgstr "Gufunga"
+
+#: src/f-spot.glade.h:149
+msgid "_Delete Selected Tag"
+msgstr ""
+
+#: src/f-spot.glade.h:150
+msgid "_Delete Version"
+msgstr ""
+
+#: src/f-spot.glade.h:151
+#, fuzzy
+msgid "_Delete from Drive"
+msgstr "Bivuye"
+
+# svtools/source\dialogs\filedlg2.src:STR_FILEDLG_DIR.text
+#: src/f-spot.glade.h:152
+#, fuzzy
+msgid "_Directory"
+msgstr "Ububiko"
+
+#: src/f-spot.glade.h:153
+msgid "_EXIF Data"
+msgstr ""
+
+#: src/f-spot.glade.h:154
+msgid "_Edit Selected Tag..."
+msgstr ""
+
+# filter/source\pdf\impdialog.src:RID_PDF_EXPORT_DLG.BT_OK.text
+# filter/source\xsltdialog\xmlfiltertestdialog.src:DLG_XML_FILTER_TEST_DIALOG.FL_EXPORT.text
+#: src/f-spot.glade.h:155
+#, fuzzy
+msgid "_Export"
+msgstr "Kohereza"
+
+#: src/f-spot.glade.h:156
+msgid "_Fullscreen"
+msgstr ""
+
+# padmin/source\padialog.src:RID_ADDP_PAGE_CHOOSEDRIVER.RID_ADDP_CHDRV_BTN_ADD.text
+#: src/f-spot.glade.h:157
+#, fuzzy
+msgid "_Import..."
+msgstr "Kuzana"
+
+# offmgr/source\offapp\dialog\optgdlg.src:OFA_TP_VIEW.LB_BIG.3.text
+#: src/f-spot.glade.h:158
+#, fuzzy
+msgid "_Large"
+msgstr "Binini"
+
+# officecfg/registry\schema\org\openoffice\Office\Math.xcs:....FontFormat.Weight..6.text
+#: src/f-spot.glade.h:159
+#, fuzzy
+msgid "_Medium"
+msgstr "biringaniye"
+
+#: src/f-spot.glade.h:160
+#, fuzzy
+msgid "_Month"
+msgstr "Ukwezi"
+
+# sfx2/source\appl\newhelp.src:STR_HELP_BUTTON_PRINT.text
+#: src/f-spot.glade.h:161
+#, fuzzy
+msgid "_Print..."
+msgstr "Gucapa..."
+
+#: src/f-spot.glade.h:162
+msgid "_Remove From Catalog"
+msgstr ""
+
+#: src/f-spot.glade.h:163
+msgid "_Remove Tag From Selection"
+msgstr ""
+
+#: src/f-spot.glade.h:164
+msgid "_Rename Version"
+msgstr ""
+
+# svx/sdi\svxslots.src:SID_GRFFILTER_SHARPEN.text
+#: src/f-spot.glade.h:165
+#, fuzzy
+msgid "_Sharpen..."
+msgstr "Kugaragaza cyane"
+
+# #-#-#-#-#  goodies.pot (PACKAGE VERSION)  #-#-#-#-#
+# goodies/source\filter.vcl\eos2met\dlgeos2.src:DLG_EXPORT_EMET.GRP_SIZE.text
+# #-#-#-#-#  goodies.pot (PACKAGE VERSION)  #-#-#-#-#
+# goodies/source\filter.vcl\epict\dlgepct.src:DLG_EXPORT_EPCT.GRP_SIZE.text
+#: src/f-spot.glade.h:166
+#, fuzzy
+msgid "_Size"
+msgstr "Ingano"
+
+#: src/f-spot.glade.h:167
+msgid "_Slideshow"
+msgstr ""
+
+# officecfg/registry\schema\org\openoffice\Office\Common.xcs:....View.Window.Flag..02.text
+#: src/f-spot.glade.h:168
+#, fuzzy
+msgid "_Small"
+msgstr "Gitoya"
+
+#: src/f-spot.glade.h:169
+msgid "_Tags"
+msgstr ""
+
+#: src/f-spot.glade.h:170
+msgid "_Update Thumbnail"
+msgstr ""
+
+# goodies/source\filter.vcl\eps\dlgeps.src:DLG_EXPORT_EPS.GRP_VERSION.text
+#: src/f-spot.glade.h:171
+#, fuzzy
+msgid "_Version"
+msgstr "Verisiyo"
+
+# #-#-#-#-#  basctl.pot (PACKAGE VERSION)  #-#-#-#-#
+# basctl/source\basicide\basidesh.src:RID_BASICMENU.MN_VIEW.text
+# #-#-#-#-#  basctl.pot (PACKAGE VERSION)  #-#-#-#-#
+# basctl/source\basicide\basidesh.src:RID_BASICPLUGINMENU.MN_PLVIEW.text
+#: src/f-spot.glade.h:172
+#, fuzzy
+msgid "_View"
+msgstr "Kureba"
+
+#: src/f-spot.glade.h:173
+msgid "dialog1"
+msgstr ""
+
+#: src/f-spot.glade.h:174
+msgid "pixels"
+msgstr "pigiseli"
+
+#: src/f-spot.glade.h:175
+msgid "x"
+msgstr "x"
+
+#: src/GalleryExport.cs:442
+msgid "Error Uploading To Gallery"
+msgstr ""
+
+#: src/GalleryExport.cs:474
+msgid "(No Gallery)"
+msgstr ""
+
+#: src/GalleryExport.cs:531
+msgid "(Not Connected)"
+msgstr ""
+
+#: src/GalleryExport.cs:532
+msgid "(No Albums)"
+msgstr ""
+
+#. Gtk.Menu menu = new Gtk.Menu();
+#: src/ImportCommand.cs:313
+msgid "Select Tag"
+msgstr ""
+
+#: src/ImportCommand.cs:349
+#, fuzzy
+msgid "Directory does not exist."
+msgstr "Ububiko ntibushoboye ntibubaho"
+
+#: src/ImportCommand.cs:350
+#, fuzzy, csharp-format
+msgid ""
+"The directory you selected \"{0}\" does not exist.  Please choose a "
+"different directory"
+msgstr "bushyinguro Byahiswemo 0 OYA Guhitamo a bushyinguro"
+
+# sc/source\ui\dbgui\pvfundlg.src:RID_SCDLG_PIVOTSUBT.FT_NAMELABEL.text
+#: src/InfoBox.cs:70 src/PhotoVersionCommands.cs:55
+msgid "Name:"
+msgstr "Izina:"
+
+#: src/InfoBox.cs:72
+msgid "Version:"
+msgstr "Verisiyo:"
+
+#: src/InfoBox.cs:74
+msgid "Date:"
+msgstr "Itariki:"
+
+# sfx2/source\dialog\dinfdlg.src:TP_DOCINFODOC.FT_FILE_SIZE.text
+#: src/InfoBox.cs:76
+msgid "Size:"
+msgstr "Ingano"
+
+#: src/InfoBox.cs:78
+msgid "Exposure:"
+msgstr ""
+
+# #-#-#-#-#  svx.pot (PACKAGE VERSION)  #-#-#-#-#
+# svx/source\dialog\chardlg.src:RID_SVXPAGE_CHAR_TWOLINES.ED_STARTBRACKET.1.text
+# #-#-#-#-#  svx.pot (PACKAGE VERSION)  #-#-#-#-#
+# svx/source\dialog\chardlg.src:RID_SVXPAGE_CHAR_TWOLINES.ED_ENDBRACKET.1.text
+#: src/InfoBox.cs:156
+msgid "(None)"
+msgstr "(Ntacyo)"
+
+#: src/MainWindow.cs:846
+msgid "No cameras detected."
+msgstr ""
+
+#: src/MainWindow.cs:847
+#, fuzzy
+msgid ""
+"F-Spot was unable to find any cameras attached to this system.  Double check "
+"that the camera is connected and has power"
+msgstr "Kuri Gushaka Kuri iyi Sisitemu Kugenzura... i Kamera ni Na UMWIKUBE"
+
+#: src/MainWindow.cs:874
+#, fuzzy
+msgid "Error connecting to camera"
+msgstr "Kwihuza... Kuri Kamera"
+
+#: src/MainWindow.cs:875
+#, fuzzy, csharp-format
+msgid "Received error \"{0}\" while connecting to camera"
+msgstr "Ikosa 0 Kwihuza... Kuri Kamera"
+
+#. Translators should localize the following string
+#. * which will give them credit in the About box.
+#. * E.g. "Martin Willemoes Hansen"
+#: src/MainWindow.cs:1000
+#, fuzzy
+msgid "translator-credits"
+msgstr "Umusemuzi"
+
+#: src/MainWindow.cs:1131
+msgid "Unsharp Mask"
+msgstr ""
+
+# sw/source\ui\table\insrc.src:DLG_INS_ROW_COL.FT_COUNT.text
+#: src/MainWindow.cs:1140
+#, fuzzy
+msgid "Amount:"
+msgstr "Igiteranyo"
+
+# #-#-#-#-#  svx.pot (PACKAGE VERSION)  #-#-#-#-#
+# svx/source\dialog\test.src:RID_SVXPAGE_SLANT.FT_RADIUS.text
+# #-#-#-#-#  svx.pot (PACKAGE VERSION)  #-#-#-#-#
+# svx/source\dialog\transfrm.src:RID_SVXPAGE_SLANT.FT_RADIUS.text
+#: src/MainWindow.cs:1141
+#, fuzzy
+msgid "Radius:"
+msgstr "Akarambararo"
+
+#: src/MainWindow.cs:1142
+msgid "Threshold:"
+msgstr ""
+
+#: src/MainWindow.cs:1184
+#, fuzzy
+msgid "Error saving sharpened photo"
+msgstr "Mu kubika Ifoto"
+
+#: src/MainWindow.cs:1185
+#, fuzzy, csharp-format
+msgid "Received exception \"{0}\". Unable to save image {1}"
+msgstr "Irengayobora(-) 0 Kuri Kubika Ishusho 1."
+
+#: src/MainWindow.cs:1403
+#, fuzzy, csharp-format
+msgid "Delete the selected photo permanently?"
+msgid_plural "Delete the {0} selected photos permanently?"
+msgstr[0] "i Byahiswemo Ifoto"
+
+#: src/MainWindow.cs:1407
+#, fuzzy
+msgid "This deletes all versions of the selected photo from your drive."
+msgid_plural ""
+"This deletes all versions of the selected photos from your drive."
+msgstr[0] "Byose Uburyo Bya i Byahiswemo Ifoto Bivuye Porogaramu- shoboza"
+
+#: src/MainWindow.cs:1410
+#, fuzzy
+msgid "_Delete photo"
+msgid_plural "_Delete photos"
+msgstr[0] "Ifoto"
+
+#: src/MainWindow.cs:1428
+#, fuzzy, csharp-format
+msgid "Remove the selected photo from F-Spot?"
+msgid_plural "Remove the {0} selected photos from F-Spot?"
+msgstr[0] "i Byahiswemo Ifoto Bivuye"
+
+#: src/MainWindow.cs:1433
+#, fuzzy
+msgid ""
+"If you remove photos from the F-Spot catalog all tag information will be "
+"lost. The photos remain on your computer and can be imported into F-Spot "
+"again."
+msgstr ""
+"Gukuraho... Bivuye i Agatabo Byose Itagi: Ibisobanuro ku Na cyavuye ahandi/ "
+"cyatumijwe"
+
+#: src/MainWindow.cs:1434
+#, fuzzy
+msgid "_Remove from Catalog"
+msgstr "Bivuye"
+
+#: src/MainWindow.cs:1458
+#, fuzzy, csharp-format
+msgid "Delete the selected tag?"
+msgid_plural "Delete the {0} selected tags?"
+msgstr[0] "i Byahiswemo Itagi:"
+
+#: src/MainWindow.cs:1463
+#, fuzzy
+msgid "If you delete a tag, all associations with photos are lost."
+msgstr "Gusiba a Itagi: Byose Na:"
+
+#: src/MainWindow.cs:1464
+#, fuzzy
+msgid "_Delete tag"
+msgid_plural "_Delete tags"
+msgstr[0] "Itagi:"
+
+#: src/PhotoPopup.cs:26
+#, fuzzy
+msgid "Copy Image Location"
+msgstr "Guporora inturo ry'Ishusho"
+
+#: src/PhotoPopup.cs:38
+msgid "Remove From Catalog"
+msgstr ""
+
+#: src/PhotoPopup.cs:40
+msgid "Delete From Drive"
+msgstr ""
+
+#.
+#. FIXME TagMenu is ugly.
+#.
+#: src/PhotoPopup.cs:48
+msgid "Attach Tag"
+msgstr ""
+
+#.
+#. FIXME finish the IPhotoSelection stuff and move the activate handler into the class
+#. this current method is way too complicated.
+#.
+#: src/PhotoPopup.cs:58
+#, fuzzy
+msgid "Remove Tag"
+msgstr "Gusiba itagi"
+
+#. Fixme this should really set parent menu
+#. items insensitve
+#: src/PhotoTagMenu.cs:72
+msgid "(No Tags)"
+msgstr ""
+
+#: src/PhotoVersionCommands.cs:54
+msgid "Create New Version"
+msgstr ""
+
+#: src/PhotoVersionCommands.cs:59
+msgid "Rename Version"
+msgstr ""
+
+# sw/source\ui\utlui\unotools.src:DLG_RENAME_XNAMED.FT_NEW_NAME.text
+#: src/PhotoVersionCommands.cs:60
+#, fuzzy
+msgid "New name:"
+msgstr "Izina rishya"
+
+#: src/PhotoVersionCommands.cs:126
+msgid "Really Delete?"
+msgstr ""
+
+#: src/PhotoVersionCommands.cs:132
+#, fuzzy, csharp-format
+msgid "Really delete version \"{0}\"?"
+msgstr "Gusiba Verisiyo 0"
+
+#: src/RotateCommand.cs:24
+#, fuzzy
+msgid "Rotating pictures"
+msgstr "Amashusho"
+
+#: src/RotateCommand.cs:33
+#, fuzzy, csharp-format
+msgid "Rotating picture \"{0}\""
+msgstr "y'Ishusho 0"
+
+#: src/RotateCommand.cs:57
+#, fuzzy, csharp-format
+msgid "Received exception \"{0}\" while rotating image {1}"
+msgstr "Irengayobora(-) 0 Ishusho 1."
+
+#: src/RotateCommand.cs:62
+msgid "Unknown Error while Rotating Image."
+msgstr ""
+
+#: src/RotateCommand.cs:80
+#, fuzzy, csharp-format
+msgid "Unable to rotate image"
+msgid_plural "Unable to rotate {0} images"
+msgstr[0] "Kuri Kuzerutsa Ishusho"
+
+#: src/RotateCommand.cs:81
+#, fuzzy, csharp-format
+msgid ""
+"The image could not be rotated because it is on a read only file system or "
+"media such as a CDROM.  Please check the permissions and try again"
+msgid_plural ""
+"{0} images could not be rotated because they are on a read only file system "
+"or media such as a CDROM.  Please check the permissions and try again"
+msgstr[0] ""
+"Ishusho OYA ni ku a Gusoma IDOSIYE Sisitemu Cyangwa Ibitangazamakuru Nka a "
+"Kugenzura... i Uruhushya Na"
+
+#: src/StockIcons.cs:28
+msgid "Crop"
+msgstr "Gukataho"
+
+#: src/StockIcons.cs:29
+msgid "Edit Image"
+msgstr "Hindura ishusho"
+
+#: src/StockIcons.cs:30
+msgid "Fullscreen"
+msgstr ""
+
+#: src/StockIcons.cs:31
+msgid "Slideshow"
+msgstr ""
+
+# #-#-#-#-#  officecfg.pot (PACKAGE VERSION)  #-#-#-#-#
+# officecfg/registry\schema\org\openoffice\Office\Writer.xcs:....Wizard.Agenda.Logo.Visible.text
+# #-#-#-#-#  officecfg.pot (PACKAGE VERSION)  #-#-#-#-#
+# officecfg/registry\schema\org\openoffice\Office\Writer.xcs:....Wizard.Letter.Print.Logo.text
+#: src/StockIcons.cs:32
+msgid "Logo"
+msgstr "ikirango"
+
+#: src/StockIcons.cs:33
+msgid "Question"
+msgstr ""
+
+#: src/StockIcons.cs:34
+msgid "Reduce Red-Eye"
+msgstr ""
+
+#: src/StockIcons.cs:37
+msgid "Loading"
+msgstr "Ifungura"
+
+#: src/TagCommands.cs:46
+#, fuzzy
+msgid "(No categories)"
+msgstr "(Ibyiciro"
+
+# sfx2/source\dialog\dialog.src:MSG_TABPAGE_INVALIDNAME.text
+#: src/TagCommands.cs:80 src/TagCommands.cs:217
+#, fuzzy
+msgid "This name is already in use"
+msgstr "Iri zina ryamaze gukoreshwa"
+
+#: src/TagCommands.cs:129 src/TagPopup.cs:20
+msgid "Create New Tag"
+msgstr ""
+
+#: src/TagCommands.cs:130
+#, fuzzy
+msgid "Name of new tag:"
+msgstr "Bya Gishya Itagi:"
+
+#: src/TagCommands.cs:133 src/TagPopup.cs:22
+msgid "Create New Category"
+msgstr ""
+
+#: src/TagCommands.cs:134
+#, fuzzy
+msgid "Name of new category:"
+msgstr "Bya Gishya Icyiciro"
+
+#: src/TagCommands.cs:291
+msgid "Edit Category"
+msgstr ""
+
+#: src/TagCommands.cs:292
+#, fuzzy
+msgid "Category name:"
+msgstr "Izina:"
+
+#: src/TagCommands.cs:294 src/TagPopup.cs:27
+msgid "Edit Tag"
+msgstr ""
+
+#: src/TagCommands.cs:386
+#, fuzzy, csharp-format
+msgid "Photo {0} of {1}"
+msgstr "0 Bya 1."
+
+#: src/TagCommands.cs:413
+#, fuzzy, csharp-format
+msgid "Edit icon For category {0}"
+msgstr "Agashushondanga Icyiciro 0"
+
+#: src/TagCommands.cs:415
+#, fuzzy, csharp-format
+msgid "Edit icon for tag {0}"
+msgstr "Agashushondanga kugirango Itagi: 0"
+
+#: src/TagPopup.cs:30
+msgid "Delete Tag"
+msgstr ""
+
+#: src/TagPopup.cs:35
+msgid "Attach Tag To Selection"
+msgstr ""
+
+#: src/TagPopup.cs:38
+msgid "Remove Tag From Selection"
+msgstr ""
+
+#: src/VfsExport.cs:77
+#, fuzzy, csharp-format
+msgid "Scaling picture \"{0}\""
+msgstr "y'Ishusho 0"
+
+#: src/VfsExport.cs:84
+#, fuzzy, csharp-format
+msgid "Transferring picture \"{0}\""
+msgstr "y'Ishusho 0"
