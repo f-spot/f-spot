@@ -158,6 +158,7 @@ public class ColorDialog {
 		xml.Autoconnect (this);
 		
 		hist = new FSpot.Histogram ();
+		hist.UseAlpha = false;
 
 		brightness_scale.ValueChanged += RangeChanged;
 		contrast_scale.ValueChanged += RangeChanged;

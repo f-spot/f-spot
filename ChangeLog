@@ -1,5 +1,11 @@
 2004-10-06  Larry Ewing  <lewing@novell.com>
 
+	* src/ColorDialog.cs: turn off alpha for now.
+	
+	* src/f-spot.glade: make the dialog a little prettier.
+	
+	* src/makefile.am: add Histogram.cs
+
 	* src/ColorDialog.cs: hook up the histogram.
 
 	* src/f-spot.glade: add a simple histogram display to the ugly
