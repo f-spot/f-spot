@@ -184,8 +184,6 @@ namespace FSpot {
 		private void HandleIconViewKeyRelease (object sender, Gtk.KeyReleaseEventArgs args)
 		{
 			switch (args.Event.Key) {
-			case Gdk.Key.Alt_L:
-			case Gdk.Key.Alt_R:
 			case Gdk.Key.v:
 			case Gdk.Key.V:
 			case Gdk.Key.h:
