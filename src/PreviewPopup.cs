@@ -160,7 +160,6 @@ namespace FSpot {
 
 		private void HandleIconViewMotion (object sender, Gtk.MotionNotifyEventArgs args)
 		{
-			System.Console.WriteLine ("motion");
 			if (!this.Visible)
 				return;
 
@@ -172,7 +171,6 @@ namespace FSpot {
 
 		private void HandleIconViewKeyPress (object sender, Gtk.KeyPressEventArgs args)
 		{
-			System.Console.WriteLine ("press");
 			switch (args.Event.Key) {
 			case Gdk.Key.v:
 				ShowHistogram = false;

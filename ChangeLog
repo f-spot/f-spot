@@ -1,5 +1,7 @@
 2005-01-09  Larry Ewing  <lewing@novell.com>
 
+	* src/PreviewPopup.cs: remove some debug spew.
+
 	* src/PhotoQuery.cs: add Items property.
 
 	* src/PhotoStore.cs: make Photo implement IBrowsableItem.
