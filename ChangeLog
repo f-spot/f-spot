@@ -1,5 +1,8 @@
 2004-06-10  Larry Ewing  <lewing@ximian.com>
 
+	* src/Util.cs: add new util file.  Mostly code from Miguel for the
+	popup items.
+
 	* src/PhotoView.cs: fix off by one in entry sensitivity.
 
 	* src/SlideView.cs: use the new LoadAtMaxSize function.
