@@ -82,9 +82,9 @@ AC_CHECK_LIB(sqlite, sqlite_last_insert_rowid, [],
 dnl --- lcms
 
 PKG_CHECK_MODULES(LCMS, lcms >= $LCMS_REQUIRED, [], 
-	[AC_CHECK_LIB(lcms, cmsCreate_sRGBProfile, [],
+	[AC_CHECK_LIB(lcms, cmsCreateBCHSWabstractProfile, [],
 		     [AC_MSG_ERROR([liblcms not found])], -lm)
-	AC_CHECK_HEADER(lcms.h, [AC_MSG_WARN([*** found liblcms found but unable to check version >= $LCMS_REQUIRED])], [AC_MSG_ERROR([liblcms not found])])
+	AC_CHECK_HEADER(lcms.h, , [AC_MSG_ERROR([liblcms not found])])
 	LCMS_LIBS='-llcms'
 	LCMS_CFLAGS=''])
 

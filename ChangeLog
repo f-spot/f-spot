@@ -1,5 +1,8 @@
 2005-02-16  Larry Ewing  <lewing@novell.com>
 
+	* configure.in: integrate Loz's patch to improve version check for
+	lcms.
+
 	* src/GPhotoCamera.cs: thow an exception instead of silently failing
 
 	* src/CameraFileSelectionDialog.cs: use a thread for the download task.
