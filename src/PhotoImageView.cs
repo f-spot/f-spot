@@ -6,7 +6,6 @@ namespace FSpot {
 			this.query = query;
 			loader = new FSpot.AsyncPixbufLoader ();
 			//scroll_delay = new Delay (new GLib.IdleHandler (IdleUpdateScrollbars));
-			this.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
 			this.SizeAllocated += new Gtk.SizeAllocatedHandler (HandleSizeAllocated);
 		}
 		
@@ -16,7 +15,7 @@ namespace FSpot {
 				return current_photo;
 			}
 			set {
-				if (current_photo == value){
+				if (current_photo == value && this.Pixbuf != null){
 					return;
 				} else {
 					current_photo = value;

@@ -5,6 +5,7 @@ namespace FSpot {
 			try {
 				scroll = new Gtk.ScrolledWindow (null, null);
 				view = new PhotoImageView (query);
+				view.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
 				this.Add (scroll);
 				scroll.Add (view);
 				scroll.ShowAll ();

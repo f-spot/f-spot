@@ -1,5 +1,14 @@
 2004-11-18  Larry Ewing  <lewing@novell.com>
 
+	* src/AsyncPixbufLoader.cs: fix the close logic.
+
+	* src/MainWindow.cs: use a more sensible value for the zoom hack.
+
+	* src/PhotoImageView.cs: if the current pixbuf is null try to
+	reload even if CurrentPhoto == value.  Don't set the bg here.
+
+	* src/FullScreenView.cs: set the bacground color here.
+
 	* src/PhotoImageView.cs: set the scrollbars to automatic.
 
 	* src/MainWindow.cs: make zoom behave a little better.

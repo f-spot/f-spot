@@ -19,10 +19,19 @@ namespace FSpot {
 
 		Delay delay;
 
+		public event System.EventHandler Done;
+
 		public Gdk.Pixbuf Load (string filename)
 		{
 			delay.Stop ();
 			path = filename;
+
+			if (!done_reading && loader != null)
+				loader.Close ();
+
+			if (loader != null)
+				loader.Dispose ();
+
 			done_reading = false;
 			area_prepared = false;
 			
@@ -31,10 +40,7 @@ namespace FSpot {
 			
 			stream = new System.IO.FileStream (filename, System.IO.FileMode.Open, System.IO.FileAccess.Read);
 			
-			if (loader != null) {
-				loader.Close ();
-				loader.Dispose ();
-			}
+
 			
 			loader = new Gdk.PixbufLoader ();
 			loader.AreaPrepared += HandleAreaPrepared;
@@ -99,17 +105,16 @@ namespace FSpot {
 	       
 		private void HandleAreaUpdated (object sender, Gdk.AreaUpdatedArgs args)
 		{
-			if (done_reading) {
-				
-			}
 		}
 
 		private void HandleClosed (object sender, System.EventArgs args) 
 		{
-			System.Console.WriteLine ("Closed");
 			if (done_reading && loader.Pixbuf != null) {
 				PhotoLoader.ValidateThumbnail (path, loader.Pixbuf);
 			}
+
+			if (Done != null)
+				Done (this, System.EventArgs.Empty);
 		}
 	}
 }
