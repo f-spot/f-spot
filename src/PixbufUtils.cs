@@ -6,6 +6,8 @@ using System.IO;
 
 class PixbufUtils {
 
+	public static Pixbuf ErrorPixbuf = PixbufUtils.LoadFromAssembly ("f-spot-question-mark.png");
+
 	public static int GetSize (Pixbuf pixbuf)
 	{
 		return Math.Max (pixbuf.Width, pixbuf.Height);

@@ -281,15 +281,6 @@ public class IconView : Gtk.Layout {
 
 
 	// Private utility methods.
-
-	static private Pixbuf ErrorPixbuf ()
-	{
-		if (IconView.error_pixbuf == null)
-			IconView.error_pixbuf = PixbufUtils.LoadFromAssembly ("f-spot-question-mark.png");
-
-		return IconView.error_pixbuf;
-	}
-
 	public void UnselectAllCells ()
 	{
 		if (selected_cells.Count == 0)
@@ -688,7 +679,7 @@ public class IconView : Gtk.Layout {
 	private void HandlePixbufLoaded (PixbufLoader loader, string path, int order, Pixbuf result)
 	{
 		if (result == null) {
-			result = ErrorPixbuf ();
+			result = PixbufUtils.ErrorPixbuf;
 			//
 			// ThumbnailCache Takes Ownership and calls Dispose
 			// so we need to copy the ErrorPixbuf

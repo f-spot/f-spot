@@ -31,10 +31,18 @@ namespace FSpot {
 			if (pixbuf == null) {
 				// A bizarre pixbuf = hack to try to deal with cinematic displays, etc.
 				int preview_size = ((this.Screen.Width + this.Screen.Height)/2)/3;
-				pixbuf = FSpot.PhotoLoader.LoadAtMaxSize (photo, preview_size, preview_size);
+				try {
+					pixbuf = FSpot.PhotoLoader.LoadAtMaxSize (photo, preview_size, preview_size);                                      
+				} catch (Exception e) {
+					pixbuf = null;
+				}
 
-				preview_cache.AddThumbnail (orig_path, pixbuf);
-				image.Pixbuf = pixbuf;	
+				if (pixbuf != null) {
+					preview_cache.AddThumbnail (orig_path, pixbuf);
+					image.Pixbuf = pixbuf;
+				} else {
+					image.Pixbuf = PixbufUtils.ErrorPixbuf;
+				}
 			} else {
 				image.Pixbuf = pixbuf;
 				pixbuf.Dispose ();
@@ -72,7 +80,7 @@ namespace FSpot {
 			x = Math.Min (x, this.Screen.Width - requisition.Width);
 
 			// find the window's y location offset above or below depending on space
-#if false
+#if USE_OFFSET_PREVIEW
 			int margin = (int) (bounds.Height * .6);
 			if (y - requisition.Height - margin < 0)
 				y += margin;

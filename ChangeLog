@@ -1,3 +1,11 @@
+2004-09-22  Larry Ewing  <lewing@novell.com>
+
+	* src/PixbufUtils.cs: Add an ErrorPixbuf property;
+
+	* src/IconView.cs: use PixbufUtils.ErrorPixbuf;
+
+	* src/PreviewPopup.cs: handle errors loading the image.
+
 2004-09-17  Larry Ewing  <lewing@novell.com>
 
 	* src/PrintDialog.cs: hook up the configure button.
