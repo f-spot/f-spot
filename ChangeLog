@@ -1,4 +1,20 @@
+2004-08-10  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: add handlers for Find->Date commands.
+
+	* src/f-spot.glade: add new date range dialog (this needs love).
+
+	* src/PhotoQuery.cs: add a new Range property.
+
+	* src/PhotoStore.cs: expose the DateRange as public, make the
+	start and end time readonly properties.
+
+	* src/DateCommands.cs: new dialog command that lets you define the
+	date range for the query.
+
 2004-08-06  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: fix attachment url syntax.
 
 	* src/PhotoQuery.cs: remove the sorting it is being handled in the
 	query for now.

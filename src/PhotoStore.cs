@@ -916,11 +916,22 @@ public class PhotoStore : DbStore {
 		}
 	}
 	
-	private class DateRange 
+	public class DateRange 
 	{
-		public DateTime start;
-		public DateTime end;
-		
+		private DateTime start;		
+		public DateTime Start {
+			get {
+				return start;
+			}
+		}
+
+		private DateTime end;
+		public DateTime End {
+			get {
+				return end;
+			}
+		}
+
 		public DateRange (DateTime start, DateTime end)
 		{
 			this.start = start;
@@ -938,7 +949,7 @@ public class PhotoStore : DbStore {
 		return Query (tags, null);
 	}
 
-	private Photo [] Query (Tag [] tags, DateRange range)
+	public Photo [] Query (Tag [] tags, DateRange range)
 	{
 		string query;
 
@@ -977,8 +988,8 @@ public class PhotoStore : DbStore {
 
 			if (range != null) {
 				query_builder.Append (String.Format ("WHERE photos.time >= {0} AND photos.time < {1} ",
-								     DbUtils.UnixTimeFromDateTime (range.start), 
-								     DbUtils.UnixTimeFromDateTime (range.end)));
+								     DbUtils.UnixTimeFromDateTime (range.Start), 
+								     DbUtils.UnixTimeFromDateTime (range.End)));
 			}
 			
 			if (hide) {

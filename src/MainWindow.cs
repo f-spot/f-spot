@@ -896,6 +896,15 @@ public class MainWindow {
 		client.Set ("/desktop/gnome/background/draw_background", true);
 	}
 
+	void HandleSetDateRange (object sender, EventArgs args) {
+		DateCommands.Set set_command = new DateCommands.Set (query, main_window);
+		set_command.Execute ();
+	}
+
+	void HandleClearDateRange (object sender, EventArgs args) {
+		query.Range = null;
+	}
+
 	// Version Id updates.
 
 	void UpdateForVersionIdChange (uint version_id)
