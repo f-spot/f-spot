@@ -398,7 +398,7 @@ public class IconView : Gtk.Layout {
 
 #else
 		Style.PaintBox (Style, BinWindow, selected ? (HasFocus ? StateType.Selected :StateType.Active) : StateType.Normal, 
-				ShadowType.Out, area, this, null, x, y, cell_width, cell_height);
+				ShadowType.Out, area, this, "IconView", x, y, cell_width, cell_height);
 
 #endif 
 		if (HasFocus && thumbnail_num == focus_cell) {
