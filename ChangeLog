@@ -1,5 +1,9 @@
 2005-01-06  Larry Ewing  <lewing@novell.com>
 
+	* src/VfsExport.cs: fix the uri handling a little.  This still
+	isn't working completely correctly but it does work for some
+	things.
+
 	* src/AsyncPixbufLoader.cs: fix up the dispose logic some more.
 
 	* src/StockIcons.cs: add stock items for all the new icons.

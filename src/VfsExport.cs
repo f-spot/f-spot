@@ -53,7 +53,7 @@ namespace FSpot {
 			foreach (Photo photo in selection.Photos) {
 				Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (photo.DefaultVersionUri.ToString ());
 				Gnome.Vfs.Uri target = dest.Clone ();
-				target.AppendPath (photo.GetVersionName (photo.DefaultVersionId));
+				target = target.AppendFileName (source.ExtractShortName ());
 				Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
 
 				System.Console.WriteLine ("Xfering {0} to {1}", source.ToString (), target.ToString ());
@@ -70,17 +70,20 @@ namespace FSpot {
 			
 				photo_index++;
 			}
+			Dialog.Destroy ();
 		}
 
 		private int Progress (Gnome.Vfs.XferProgressInfo info)
 		{
 			//progress_dialog.Fraction = info.BytesCopied / 100;
-			System.Console.WriteLine ("Progress: {0} {1}", info.BytesCopied / (info.BytesTotal + 1), info.Status.ToString ());
+			System.Console.WriteLine ("Progress: {0} {2} {1}", (info.BytesTotal + 1), info.Status.ToString (), info.BytesCopied);
 
 			switch (info.Status) {
 			case Gnome.Vfs.XferProgressStatus.Vfserror:
+				System.Console.WriteLine ("Error: Vfs error, Aborting");
 				return (int)Gnome.Vfs.XferErrorAction.Abort;
 			case Gnome.Vfs.XferProgressStatus.Overwrite:
+				System.Console.WriteLine ("Error: file already Exists, Aborting");
 				return (int)Gnome.Vfs.XferOverwriteAction.Abort;
 			default:
 				return 1;
