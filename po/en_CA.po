@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-15 13:09-0500\n"
+"POT-Creation-Date: 2005-02-15 22:26-0500\n"
 "PO-Revision-Date: 2005-02-15 23:54-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
@@ -339,7 +339,7 @@ msgstr "Border:"
 msgid "Brightness:"
 msgstr "Brightness:"
 
-#: src/f-spot.glade.h:33
+#: src/f-spot.glade.h:33 src/StockIcons.cs:26
 msgid "Browse"
 msgstr "Browse"
 
@@ -617,11 +617,11 @@ msgstr "Rem_ove Tag"
 msgid "Resize to: "
 msgstr "Resize to: "
 
-#: src/f-spot.glade.h:106
+#: src/f-spot.glade.h:106 src/StockIcons.cs:35
 msgid "Rotate _Left"
 msgstr "Rotate _Left"
 
-#: src/f-spot.glade.h:107
+#: src/f-spot.glade.h:107 src/StockIcons.cs:36
 msgid "Rotate _Right"
 msgstr "Rotate _Right"
 
@@ -993,8 +993,8 @@ msgid ""
 "again."
 msgstr ""
 "If you remove photos from the F-Spot catalogue all tag information will be "
-"lost. The photos will remain on your computer and can be imported into F-Spot "
-"again."
+"lost. The photos will remain on your computer and can be imported into F-"
+"Spot again."
 
 #: src/MainWindow.cs:1433
 msgid "_Remove from Catalog"
@@ -1092,6 +1092,42 @@ msgstr[0] ""
 msgstr[1] ""
 "{0} images could not be rotated because they are on a read-only file system "
 "or media such as a CDROM.  Please check the permissions and try again"
+
+#: src/StockIcons.cs:27
+msgid "Camera"
+msgstr "Camera"
+
+#: src/StockIcons.cs:28
+msgid "Crop"
+msgstr "Crop"
+
+#: src/StockIcons.cs:29
+msgid "Edit Image"
+msgstr "Edit Image"
+
+#: src/StockIcons.cs:30
+msgid "Fullscreen"
+msgstr "Fullscreen"
+
+#: src/StockIcons.cs:31
+msgid "Slideshow"
+msgstr "Slideshow"
+
+#: src/StockIcons.cs:32
+msgid "Logo"
+msgstr "Logo"
+
+#: src/StockIcons.cs:33
+msgid "Question"
+msgstr "Question"
+
+#: src/StockIcons.cs:34
+msgid "Reduce Red-Eye"
+msgstr "Reduce Red-Eye"
+
+#: src/StockIcons.cs:37
+msgid "Loading"
+msgstr "Loading"
 
 #: src/TagCommands.cs:56
 msgid "(No categories)"
