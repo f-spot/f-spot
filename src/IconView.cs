@@ -150,7 +150,6 @@ public class IconView : Gtk.Layout {
 
 		ScrollAdjustmentsSet += new ScrollAdjustmentsSetHandler (HandleScrollAdjustmentsSet);
 		SizeAllocated += new SizeAllocatedHandler (HandleSizeAllocated);
-		MotionNotifyEvent += new MotionNotifyEventHandler (HandleMotionNotifyEvent);
 		
 		ButtonPressEvent += new ButtonPressEventHandler (HandleButtonPressEvent);
 		ButtonReleaseEvent += new ButtonReleaseEventHandler (HandleButtonReleaseEvent);
@@ -234,17 +233,9 @@ public class IconView : Gtk.Layout {
 	}
 
 
-	// Private utility methods.
+	// Cell Geometry
 
-	static private Pixbuf ErrorPixbuf ()
-	{
-		if (IconView.error_pixbuf == null)
-			IconView.error_pixbuf = PixbufUtils.LoadFromAssembly ("f-spot-question-mark.png");
-
-		return IconView.error_pixbuf;
-	}
-
-	private int CellAtPosition (int x, int y)
+	public int CellAtPosition (int x, int y)
 	{
 		if (query == null)
 			return -1;
@@ -264,15 +255,33 @@ public class IconView : Gtk.Layout {
 			return -1;
 	}
 
-	private void GetCellCenter (int cell_num, out int x, out int y)
+	public void GetCellCenter (int cell_num, out int x, out int y)
 	{
 		if (cell_num == -1) {
 			x = -1;
 			y = -1;
 		}
 
-		x = BORDER_SIZE + (cell_num % cells_per_row) * cell_width - cell_width / 2;
-		y = BORDER_SIZE + (cell_num / cells_per_row) * cell_height - cell_height / 2;
+		x = BORDER_SIZE + (cell_num % cells_per_row) * cell_width + cell_width / 2;
+		y = BORDER_SIZE + (cell_num / cells_per_row) * cell_height + cell_height / 2;
+	}
+
+	public void GetCellSize (int cell_num, out int w, out int h)
+	{
+		// Trivial for now.
+		w = cell_width;
+		h = cell_height;
+	}
+
+
+	// Private utility methods.
+
+	static private Pixbuf ErrorPixbuf ()
+	{
+		if (IconView.error_pixbuf == null)
+			IconView.error_pixbuf = PixbufUtils.LoadFromAssembly ("f-spot-question-mark.png");
+
+		return IconView.error_pixbuf;
 	}
 
 	public void UnselectAllCells ()
@@ -801,23 +810,6 @@ public class IconView : Gtk.Layout {
 					
 	}
 
- 	private void HandleMotionNotifyEvent (object sender, MotionNotifyEventArgs args)
- 	{
-		//Console.WriteLine ("Motion notify");
-		int cell_num = CellAtPosition ((int) args.Event.X, (int) args.Event.Y);
-		
-
-		//Console.WriteLine ("X: " + (int) args.Event.X + " Y: " + (int) args.Event.Y);
-		
-		int win_x, win_y;
-		GetCellCenter (cell_num, out win_x, out win_y);
-		win_x += (int) args.Event.XRoot - (int) args.Event.X;
-		win_y += (int) args.Event.YRoot - (int) args.Event.Y;
-		
-		MouseMotion (this, cell_num, win_x, win_y, args.Event.State);
-		return;
-	}
-	
 	private void HandleKeyPressEvent (object sender, KeyPressEventArgs args)
 	{
 		int focus_old;

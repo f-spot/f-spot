@@ -155,7 +155,6 @@ public class MainWindow {
 		icon_view_scrolled.Add (icon_view);
 		icon_view.SelectionChanged += new IconView.SelectionChangedHandler (HandleSelectionChanged);
 		icon_view.DoubleClicked += new IconView.DoubleClickedHandler (HandleDoubleClicked);
-		icon_view.MouseMotion += new IconView.MouseMotionHandler (HandleMouseMotion);
 		
 		Gtk.Drag.SourceSet (icon_view, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
 				    icon_source_target_table, DragAction.Copy | DragAction.Move);
@@ -180,6 +179,7 @@ public class MainWindow {
 		icon_view.DragMotion += new DragMotionHandler (HandleIconViewDragMotion);
 		icon_view.DragDrop += new DragDropHandler (HandleIconViewDragDrop);
 		icon_view.DragDataReceived += new DragDataReceivedHandler (HandleIconViewDragDataReceived);
+		icon_view.MotionNotifyEvent += new MotionNotifyEventHandler (HandleIconViewMotionNotifyEvent);
 
 		photo_view = new PhotoView (query, db.Photos);
 		photo_box.Add (photo_view);
@@ -450,7 +450,26 @@ public class MainWindow {
 		}
 
 		Gtk.Drag.Finish (args.Context, true, false, args.Time);
-	}	
+	}
+
+	void HandleIconViewMotionNotifyEvent (object sender, MotionNotifyEventArgs args)
+	{
+		if ((args.Event.State & Gdk.ModifierType.Mod1Mask) == 0) {
+			HideQuickPreview ();
+			return;
+		}
+
+		int x = (int) args.Event.X;
+		int y = (int) args.Event.Y;
+		int cell_num = icon_view.CellAtPosition (x, y);
+		
+		int image_center_x, image_center_y;
+		icon_view.GetCellCenter (cell_num, out image_center_x, out image_center_y);
+		image_center_x += (int) args.Event.XRoot - x;
+		image_center_y += (int) args.Event.YRoot - y;
+		
+		ShowQuickPreview (cell_num, image_center_x, image_center_y);
+	}
 
 
 	//
@@ -480,10 +499,100 @@ public class MainWindow {
 		SwitchToPhotoViewMode ();
 	}
 
+
+	int stored_display_width = -1, stored_display_height = -1;
+
+	void GetDisplaySize (out int w, out int h)
+	{
+		if (stored_display_width == -1
+		    || stored_display_height == -1) {
+			Drawable d = (Display.Default.GetScreen (0)).RootWindow;
+			d.GetSize (out stored_display_width, out stored_display_height);
+		}
+
+		w = stored_display_width;
+		h = stored_display_height;
+	}
+
 	Gtk.Window quick_preview = null;
 	Gtk.Image quick_preview_image = null;
 	Gtk.Label quick_preview_label = null;
+	ThumbnailCache quick_preview_cache = new ThumbnailCache (200);
 	int last_motion_item = -1;
+	int last_image_center_x = -1;
+	int last_image_center_y = -1;
+
+	void CreateQuickPreview ()
+	{
+		quick_preview = new Gtk.Window ("Foo");
+		quick_preview.Decorated = false;
+		quick_preview.TransientFor = main_window;
+		quick_preview.TypeHint = Gdk.WindowTypeHint.Dock;
+		quick_preview.CanFocus = false;
+
+		Gtk.Box quick_preview_vbox = new Gtk.VBox ();
+		// FIXME these should just load a specific style.
+		quick_preview.ModifyFg (StateType.Normal, new Gdk.Color (127, 127, 127));
+		quick_preview.ModifyBg (StateType.Normal, new Gdk.Color (0, 0, 0));
+		
+		quick_preview_image = new Gtk.Image ();
+		quick_preview_image.CanFocus = false;
+		quick_preview_vbox.PackStart (quick_preview_image, true, true, 0);
+		
+		quick_preview_label = new Gtk.Label ("");
+		quick_preview_label.CanFocus = false;
+		quick_preview_vbox.PackStart (quick_preview_label, true, false, 0);
+		quick_preview_label.ModifyFg (StateType.Normal, new Gdk.Color (127, 127, 127));
+		quick_preview_label.ModifyBg (StateType.Normal, new Gdk.Color (0, 0, 0));
+
+		quick_preview.SizeAllocated += new SizeAllocatedHandler (QuickPreviewSizeAllocatedHandler);
+		
+		quick_preview.Add (quick_preview_vbox);
+		quick_preview_vbox.ShowAll ();
+	}
+
+	void PositionQuickPreview ()
+	{
+		int display_width, display_height;
+		GetDisplaySize (out display_width, out display_height);
+
+		int preview_width, preview_height;
+		preview_width = quick_preview.Allocation.Width;
+		preview_height = quick_preview.Allocation.Height;
+
+		int cell_width, cell_height;
+		icon_view.GetCellSize (last_motion_item, out cell_width, out cell_height);
+
+		// Compute the preview's x-position, ensuring that it doesn't
+		// fall off the edge of the screen
+		int image_x;
+		image_x = last_image_center_x - preview_width/2;
+		if (image_x + preview_width > display_width)
+			image_x += display_width - image_x - preview_width;
+		else if (image_x < 0)
+			image_x = 0;
+
+		// Compute the preview's y-position.  We put the preview above
+		// the image if it will fit there, and below otherwise.
+		int image_y;
+		int margin = cell_height / 2 + 5;
+		image_y = last_image_center_y - preview_height - margin;
+		if (image_y < 0)
+			image_y = last_image_center_y + margin;
+
+		quick_preview.Move (image_x, image_y);
+		quick_preview.Show ();
+	}
+
+	void QuickPreviewSizeAllocatedHandler (object o, SizeAllocatedArgs args)
+	{
+		if (last_motion_item < 0
+		    || quick_preview.Allocation.Width <= 1
+		    || quick_preview.Allocation.Height <= 1)
+			return;
+
+		PositionQuickPreview ();
+	}
 
 	void ShowQuickPreview (int motion_item, int image_center_x, int image_center_y)
 	{
@@ -495,64 +604,19 @@ public class MainWindow {
 		Photo photo = query.Photos [motion_item];
 
 		last_motion_item = motion_item;
+		last_image_center_x = image_center_x;
+		last_image_center_y = image_center_y;
 
-		if (quick_preview == null) { 
-			quick_preview = new Gtk.Window ("Foo");
-			quick_preview.Decorated = false;
-
-			Gtk.Box quick_preview_vbox = new Gtk.VBox ();
-			// FIXME these should just load a specific style.
-			quick_preview.ModifyFg (StateType.Normal, new Gdk.Color (127, 127, 127));
-			quick_preview.ModifyBg (StateType.Normal, new Gdk.Color (0, 0, 0));
-
-			quick_preview_image = new Gtk.Image ();
-			quick_preview_vbox.PackStart (quick_preview_image, true, true, 0);
-
-			quick_preview_label = new Gtk.Label ("");
-			quick_preview_vbox.PackStart (quick_preview_label, true, false, 0);
-			quick_preview_label.ModifyFg (StateType.Normal, new Gdk.Color (127, 127, 127));
-			quick_preview_label.ModifyBg (StateType.Normal, new Gdk.Color (0, 0, 0));
-
-			quick_preview.Add (quick_preview_vbox);
-			quick_preview_vbox.ShowAll ();
-		}
+		if (quick_preview == null)
+			CreateQuickPreview ();
 
 		quick_preview_image.Pixbuf = QuickPreviewPixbuf (photo);
 		quick_preview_label.Text = QuickPreviewLabel (photo);
-
-		int display_width, display_height;
-		Drawable d = (Display.Default.GetScreen (0)).RootWindow;
-		d.GetSize (out display_width, out display_height);
-
-		int x_offset = 230;
-		int y_offset = 240;
-
-		int x_size = 400; // FIXME: shouldn't be hard-wired
-		
-		int vrelative = 1; // -1 above, 0 centered, 1 below
-		
-		if (image_center_y + y_offset * 2 > display_height)
-			vrelative = -1;
-		else if (image_center_y - y_offset * 2 < 0)
-			vrelative = 1;
-
-		int image_x = 0, image_y = 0;
-		
-		image_x = image_center_x;
-		image_y = image_center_y + vrelative * y_offset;
-
-		// Make sure that the preview doesn't fall off of the side
-		// of the screen.
-		int x_fudge = 0;
-		if (image_x + x_size > display_width)
-			x_fudge = display_width - image_x - x_size;
-		else if (image_x < 0)
-			x_fudge = -image_x;
-		image_x += x_fudge;
-			
-		quick_preview.Move (image_x, image_y);
-
 		quick_preview.Show ();
+
+		// The quick preview's position is set in the SizeAllocated
+		// handler.  We need to know how big the window is in order
+		// to position it properly.
 	}
 
 	void HideQuickPreview ()
@@ -567,18 +631,19 @@ public class MainWindow {
 	Pixbuf QuickPreviewPixbuf (Photo photo)
 	{
 		string orig_path = photo.DefaultVersionPath;
-		string p = Path.Combine (Path.GetDirectoryName (orig_path), "smaller_" + Path.GetFileName (orig_path));
-		
-		try {
-			if (!System.IO.File.Exists (p)) 
-				return PixbufUtils.LoadAtMaxSize (orig_path, 400, 300);
-			
-			return PixbufUtils.LoadAtMaxSize (p, 400, 300);
-		} catch {
-			Console.WriteLine ("Exception Loading preview image");
+
+		Pixbuf pixbuf = quick_preview_cache.GetThumbnailForPath (orig_path);
+		if (pixbuf == null) {
+			int display_width, display_height;
+			GetDisplaySize (out display_width, out display_height);
+
+			// A bizarre hack to try to deal with cinematic displays, etc.
+			int preview_edge = ((display_width + display_height)/2)/3;
+			pixbuf = PixbufUtils.LoadAtMaxEdgeSize (orig_path, preview_edge);
+			quick_preview_cache.AddThumbnail (orig_path, pixbuf);
 		}
 
-		return null;
+		return pixbuf;
 	}
 
 	string QuickPreviewLabel (Photo photo)
@@ -588,14 +653,6 @@ public class MainWindow {
 			label = photo.Description + "\n";
 		label += photo.Time.ToString () + "   " + photo.Name;
 		return label;
-	}
-
-	void HandleMouseMotion (IconView icon_view, int motion_item, int image_center_x, int image_center_y, Gdk.ModifierType state)
-	{
-		if ((state & Gdk.ModifierType.Mod1Mask) == 0)
-			HideQuickPreview ();
-		else
-			ShowQuickPreview (motion_item, image_center_x, image_center_y);
 	}
 
 	//

@@ -1,3 +1,13 @@
+2004-08-22  Larry Ewing  <lewing@novell.com>
+
+	* src/IconView.cs: make get cell center public, remove motion
+	event. From Trow.
+
+	* src/MainWindow.cs: cleanup preview code ans use cache. From
+	trow.
+
+	* src/PixbufUtils.cs: add a new aspect loader. From trow
+
 2004-08-21  Larry Ewing  <lewing@novell.com>
 
 	* src/MainWindow.cs: add handlers for zoom items.

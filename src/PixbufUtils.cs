@@ -67,16 +67,30 @@ class PixbufUtils {
 		int max_width;
 		int max_height;
 
+		// FIXME: this should be a property
+		public bool ScaleAlongLongestEdge = false;
+
 		public AspectLoader (int max_width, int max_height) 
 		{
 			this.max_height = max_height;
 			this.max_width = max_width;
 			SizePrepared += HandleSizePrepared;
 		}
-		
+
 		private void HandleSizePrepared (object obj, SizePreparedArgs args)
 		{
-			double scale = Math.Min (max_width / (double)args.Width, max_height / (double)args.Height);
+			double scale;
+
+			if (ScaleAlongLongestEdge) {
+				if (args.Width > args.Height)
+					scale = max_width / (double)args.Width;
+				else
+					scale = max_height / (double)args.Height;
+			} else {
+				scale = Math.Min (max_width / (double)args.Width,
+						  max_height / (double)args.Height);
+			}
+				
 			
 			int scale_width = (int)(scale * args.Width);
 			int scale_height = (int)(scale * args.Height);
@@ -107,6 +121,14 @@ class PixbufUtils {
 	static public Pixbuf LoadAtMaxSize (string path, int max_width, int max_height)
 	{
 		PixbufUtils.AspectLoader loader = new AspectLoader (max_width, max_height);
+		return loader.LoadFromFile (path);
+	}
+
+	// Make sure that the largest dimension of the pixbuf is at least max_foo.
+	static public Pixbuf LoadAtMaxEdgeSize (string path, int longest_edge)
+	{
+		PixbufUtils.AspectLoader loader = new AspectLoader (longest_edge, longest_edge);
+		loader.ScaleAlongLongestEdge = true;
 		return loader.LoadFromFile (path);
 	}
 
