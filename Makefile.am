@@ -17,5 +17,3 @@ EXTRA_DIST =			\
 	intltool-merge.in	\
 	intltool-update.in	\
 	f-spot.spec
-
-ACLOCAL_AMFLAGS = -I m4
