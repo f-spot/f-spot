@@ -819,7 +819,6 @@ public class IconView : Gtk.Layout {
 			System.Uri uri = collection.Items [order].DefaultVersionUri;
 			
 			if (!FSpot.PhotoLoader.ThumbnailIsValid (collection.Items [order].DefaultVersionUri, result)) {
-				System.Console.WriteLine ("regnerating thumbnail");
 				FSpot.ThumbnailGenerator.Default.Request (uri.LocalPath, 0, 256, 256);
 			}
 		}
