@@ -108,9 +108,7 @@ public class IconView : Gtk.Layout {
 	// The pixbuf we use when we can't load a thumbnail.
 	static Pixbuf error_pixbuf;
 
-
 	// Public events.
-
 	public delegate void DoubleClickedHandler (IconView view, int clicked_item);
 	public event DoubleClickedHandler DoubleClicked;
 
@@ -141,11 +139,6 @@ public class IconView : Gtk.Layout {
 		AddEvents ((int) EventMask.KeyPressMask);
 		
 		CanFocus = true;
-	
-		string [] types = new string [1];
-		types [0] = "text/uri-list";
-		GtkDnd.SetAsDestination (this, types);
-		DragDrop += new DragDropHandler (HandleDragDrop);
 	}
 
 	private void OnReload (PhotoQuery query)
@@ -362,13 +355,13 @@ public class IconView : Gtk.Layout {
 			pixbuf_loader.Request (thumbnail_path, thumbnail_num);
 		} else {
 			int width, height;
-			PixbufUtils.Fit (thumbnail, ThumbnailWidth, ThumbnailHeight, false, out width, out height);
+			PixbufUtils.Fit (thumbnail, ThumbnailWidth, ThumbnailHeight, true, out width, out height);
 
 			Pixbuf temp_thumbnail;
 			if (width == thumbnail.Width)
 				temp_thumbnail = thumbnail;
 			else
-				temp_thumbnail = thumbnail.ScaleSimple (width, height, InterpType.Nearest);
+				temp_thumbnail = thumbnail.ScaleSimple (width, height, InterpType.Bilinear);
 
 			int dest_x = (int) (x + (cell_width - width) / 2);
 			int dest_y;
@@ -379,6 +372,8 @@ public class IconView : Gtk.Layout {
 
 			temp_thumbnail.RenderToDrawable (BinWindow, Style.WhiteGC,
 							 0, 0, dest_x, dest_y, width, height, RgbDither.None, 0, 0);
+			if (temp_thumbnail != thumbnail)
+				temp_thumbnail.Dispose ();
 
 			if (CellIsSelected (thumbnail_num)) {
 				Gdk.GC selection_gc = new Gdk.GC (BinWindow);
@@ -721,13 +716,5 @@ public class IconView : Gtk.Layout {
 	private void HandleDestroyEvent (object sender, DestroyEventArgs args)
 	{
 		CancelScroll ();
-	}
-
-
-	// DnD event handlers.
-
-	private void HandleDragDrop (object sender, DragDropArgs args)
-	{
-		Console.WriteLine ("HandleDragDrop");
 	}
 }

@@ -51,15 +51,17 @@ public class MainWindow {
 	
 	// Drag and Drop
 	enum TargetType {
-		Uri,
-		RootWindow
+		UriList,
+		TagList
 	};
 
 	private static TargetEntry [] target_table = new TargetEntry [] {
-		new TargetEntry ("text/uri-list", 0, (uint) TargetType.Uri),
-		new TargetEntry ("application/x-rootwindow-drop", 0, (uint) TargetType.RootWindow)
+		new TargetEntry ("text/uri-list", 0, (uint) TargetType.UriList),
 	};
 
+	private static TargetEntry [] tag_target_table = new TargetEntry [] {
+		new TargetEntry ("application/x-fspot-tag", 0, (uint) TargetType.TagList),
+	};
 
 	// Index into the PhotoQuery.  If -1, no photo is selected or multiple photos are selected.
 	const int PHOTO_IDX_NONE = -1;
@@ -90,6 +92,10 @@ public class MainWindow {
 		
 		tag_selection_widget.Selection.Changed += new EventHandler (HandleTagSelectionChanged);
 		tag_selection_widget.SelectionChanged += new TagSelectionWidget.SelectionChangedHandler (OnTagSelectionChanged);
+		Gtk.Drag.SourceSet (tag_selection_widget, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
+				    tag_target_table, DragAction.Copy | DragAction.Move);
+
+		tag_selection_widget.DragDataGet += new DragDataGetHandler (HandleTagSelectionDragDataGet);
 
 		info_box = new InfoBox ();
 		info_box.VersionIdChanged += new InfoBox.VersionIdChangedHandler (HandleInfoBoxVersionIdChange);
@@ -104,9 +110,18 @@ public class MainWindow {
 		
 		Gtk.Drag.SourceSet (icon_view, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
 				    target_table, DragAction.Copy | DragAction.Move);
-
+		
+		icon_view.DragBegin += new DragBeginHandler (HandleIconViewDragBegin);
 		icon_view.DragDataGet += new DragDataGetHandler (HandleIconViewDragDataGet);
 		
+		Gtk.Drag.DestSet (icon_view, DestDefaults.All, tag_target_table, 
+				  DragAction.Copy | DragAction.Move); 
+
+		//		icon_view.DragLeave += new DragLeaveHandler (HandleIconViewDragLeave);
+		icon_view.DragMotion += new DragMotionHandler (HandleIconViewDragMotion);
+		icon_view.DragDrop += new DragDropHandler (HandleIconViewDragDrop);
+		icon_view.DragDataReceived += new DragDataReceivedHandler (HandleIconViewDragDataReceived);
+
 		photo_view = new PhotoView (query, db.Photos);
 		photo_box.Add (photo_view);
 		photo_view.PhotoChanged += new PhotoView.PhotoChangedHandler (HandlePhotoViewPhotoChanged);
@@ -162,25 +177,86 @@ public class MainWindow {
 		}
 	}
 
-	/* FIXME need to fix the gtk-sharp bindings */
-	[DllImport("libgtk-win32-2.0-0.dll")]
-		static extern void gtk_selection_data_set(IntPtr raw, IntPtr type, int format, byte [] data, int length);
 	// IconView events.
+	void HandleIconViewDragBegin (object sender, DragBeginArgs args)
+	{
+		Photo [] photos = SelectedPhotos ();
+		
+		if (photos.Length > 0) {
+			string thumbnail_path = Thumbnail.PathForUri ("file://" + photos[0].DefaultVersionPath, ThumbnailSize.Large);
+			Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForPath (thumbnail_path);
+			if (thumbnail != null) {
+				Gtk.Drag.SetIconPixbuf (args.Context, thumbnail, 0, 0);
+			}
+		}
+	}
+
+	/* FIXME horrible hack to work around gtk# problem need to fix the gtk-sharp bindings */
+	[DllImport("libgtk-win32-2.0-0.dll")]
+	static extern void gtk_selection_data_set(IntPtr raw, IntPtr type, int format, byte [] data, int length);
+
 	void HandleIconViewDragDataGet (object sender, DragDataGetArgs args)
 	{		
 		String uri_list = Photo.ToUriList (SelectedPhotos ());
 		Byte [] data = Encoding.UTF8.GetBytes (uri_list);
 		
-		
-		Atom []targets = args.Context.Targets;
+		Atom [] targets = args.Context.Targets;
 		
 		/* FIXME I need to fix the gtk-sharp bindings */
 #if true
 		gtk_selection_data_set (args.SelectionData.Handle, targets[0].Handle, 8, data, data.Length);
 #else 
-		args.SelectionData.Set (targets[0], 8, data);
+		args.SelectionData.Set (targets[0], 8, data, data.Length);
 #endif
 	}
+
+	// IconView events.
+	void HandleTagSelectionDragDataGet (object sender, DragDataGetArgs args)
+	{		
+		String uri_list = Photo.ToUriList (SelectedPhotos ());
+		Byte [] data = Encoding.UTF8.GetBytes (uri_list);
+		
+		Atom [] targets = args.Context.Targets;
+		
+		/* FIXME I need to fix the gtk-sharp bindings */
+#if true
+		gtk_selection_data_set (args.SelectionData.Handle, targets[0].Handle, 8, data, data.Length);
+#else 
+		args.SelectionData.Set (targets[0], 8, data, data.Length);
+#endif
+	}
+
+	void HandleIconViewDragDrop (object sender, DragDropArgs args)
+	{
+		Widget source = Gtk.Drag.GetSourceWidget (args.Context);
+		
+		Console.WriteLine ("Drag Drop {0}", source == null ? "null" : source.TypeName);
+
+		args.RetVal = true;
+	}
+
+	void HandleIconViewDragMotion (object sender, DragMotionArgs args)
+	{
+		Widget source = Gtk.Drag.GetSourceWidget (args.Context);
+
+		if (source != null) {
+			Console.WriteLine ("Drag Motion {0}", source == null ? "null" : source.TypeName);
+		}
+
+		Gdk.Drag.Status (args.Context, args.Context.SuggestedAction, args.Time);
+		args.RetVal = true;
+	}
+
+	void HandleIconViewDragDataReceived (object sender, DragDataReceivedArgs args)
+	{
+	 	Widget source = Gtk.Drag.GetSourceWidget (args.Context);     
+		
+		Console.WriteLine ("Drag received {0}", source == null ? "null" : source.TypeName);
+;
+		HandleAttachTagCommand (sender, null);
+		
+		Gtk.Drag.Finish (args.Context, true, false, args.Time);
+	}	
 
 	void HandleSelectionChanged (IconView view)
 	{

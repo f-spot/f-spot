@@ -1,5 +1,11 @@
 2004-04-02  Larry Ewing  <lewing@ximian.com>
 
+	* src/MainWindow.cs: add more set the drag icon, it probably
+	shouldn't stay here but I want to get things working.
+
+	* src/IconView.cs: remove old dnd stuff, call dispose on all
+	resized thumbnails.
+
 	* src/PhotoStore.cs: add a static ToUriList Method.
 
 	* src/MainWindow.cs: add dnd to the icon view.  Work around broken
