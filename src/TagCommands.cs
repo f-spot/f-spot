@@ -60,7 +60,7 @@ public class TagCommands {
 				foreach (Category category in categories) {
 					StringBuilder label_builder = new StringBuilder ();
 
-					while (category.Category != tag_store.RootCategory)
+					if (category.Category != tag_store.RootCategory)
 						label_builder.Append ("  ");
 
 					label_builder.Append (category.Name);

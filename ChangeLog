@@ -1,3 +1,8 @@
+2004-01-20  Larry Ewing  <lewing@ximian.com>
+
+	* src/TagCommands.cs: fix the category option so that it doesn't
+	loop forever if a category has a sub category.
+
 2004-01-18  Larry Ewing  <lewing@ximian.com>
 
 	* src/IconView.cs: Add InvalidateCell() method to cut down on
