@@ -95,6 +95,26 @@ public class TagSelectionWidget : TreeView {
 		}
 	}
 
+	public Tag [] TagHighlight () {
+		TreeModel model;
+		TreeIter iter;
+
+		GLib.List rows = Selection.GetSelectedRows(out model);
+
+		Tag [] tags = new Tag [rows.Count];
+		int i = 0;
+
+		foreach (TreePath path in rows) {
+			GLib.Value value = new GLib.Value ();
+			Model.GetIter (out iter, path);
+			Model.GetValue (iter, 0, value);
+			uint tag_id = (uint) value;
+			tags[i] = tag_store.Get (tag_id) as Tag;
+			i++;
+		}
+		return tags;
+	}
+
 	public void Update ()
 	{
 		(Model as TreeStore).Clear ();
@@ -217,7 +237,7 @@ public class TagSelectionWidget : TreeView {
 		: base (new TreeStore (typeof (uint)))
 	{
 		HeadersVisible = false;
-		Selection.Mode = SelectionMode.None;
+		Selection.Mode = SelectionMode.Multiple;
 
 		CellRendererToggle toggle_renderer = new CellRendererToggle ();
 		toggle_renderer.Toggled += new ToggledHandler (OnCellToggled);

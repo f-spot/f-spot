@@ -1,4 +1,17 @@
+2004-01-21  Larry Ewing  <lewing@ximian.com>
+
+	* src/IconView.cs: make InvalidateCell public for now.
+
+	* src/MainWindow.cs: add handlers for new menu items and toolbars,
+	reconnect the tag selection widgets SelectionChanged handler.
+
 2004-01-20  Larry Ewing  <lewing@ximian.com>
+
+	* src/TagSelectionWidget.cs: add TagHighlght method to get the
+	tree selection.
+
+	* src/f-spot.glade: add toolbar buttons and attach and remove tag
+	menu items.
 
 	* src/FileImportBackend.cs: allow multple base paths in an import.
 

@@ -70,6 +70,8 @@ public class MainWindow {
 		photo_view.PhotoChanged += new PhotoView.PhotoChangedHandler (HandlePhotoViewPhotoChanged);
 		photo_view.ButtonPressEvent += new ButtonPressEventHandler (HandlePhotoViewButtonPressEvent);
 
+		tag_selection_widget.SelectionChanged += new TagSelectionWidget.SelectionChangedHandler (OnTagSelectionChanged);
+
 		window1.ShowAll ();
 	}
 
@@ -216,15 +218,78 @@ public class MainWindow {
 			tag_selection_widget.Update ();
 	}
 
+
+	void HandleAttachTagCommand (object obj, EventArgs args)
+	{
+		TreeModel model;
+		TreeIter iter;
+
+		Tag [] tags = this.tag_selection_widget.TagHighlight ();
+
+		switch (mode) {
+		case ModeType.IconView:
+		if (query.Photos.Length != 0) {
+			foreach (int num in icon_view.Selection) {
+				Photo photo = query.Photos [num];
+				
+				foreach (Tag tag in tags) {
+					photo.AddTag (tag);	
+				}	
+				db.Photos.Commit (photo);
+				icon_view.InvalidateCell (num);
+			}
+		}
+		break;	
+		case ModeType.PhotoView:
+			Photo photo = query.Photos [photo_view.CurrentPhoto];
+			
+			foreach (Tag tag in tags) {
+				photo.AddTag (tag);	
+			}	
+			db.Photos.Commit (photo);
+			break;
+		}	
+	}
+
+	void HandleRemoveTagCommand (object obj, EventArgs args)
+	{
+		TreeModel model;
+		TreeIter iter;
+	
+		Tag [] tags = this.tag_selection_widget.TagHighlight ();
+
+		switch (mode) {
+		case ModeType.IconView:
+		if (query.Photos.Length != 0) {
+			foreach (int num in icon_view.Selection) {
+				Photo photo = query.Photos [num];
+
+				foreach (Tag tag in tags)
+					photo.RemoveTag (tag);
+				db.Photos.Commit (photo);
+				icon_view.InvalidateCell (num);
+			}
+		}
+		break;	
+		case ModeType.PhotoView:
+			Photo photo = query.Photos [photo_view.CurrentPhoto];
+			foreach (Tag tag in tags)
+				photo.RemoveTag (tag);
+			db.Photos.Commit (photo);
+			break;
+		}	
+	}
+	
 	// Toolbar commands.
 
-	void HandleRotate90ToolbarButtonClicked ()
+	void HandleRotate90ToolbarButtonClicked (object sender, EventArgs args)
 	{
 		RotateSelectedPictures (RotateCommand.Direction.Clockwise);
 	}
 
-	void HandleRotate270ToolbarButtonClicked ()
+	void HandleRotate270ToolbarButtonClicked (object sender, EventArgs args)
 	{
+	        Console.Write ("hello");
 		RotateSelectedPictures (RotateCommand.Direction.Counterclockwise);
 	}
 

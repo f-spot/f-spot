@@ -533,6 +533,30 @@
 			  <signal name="activate" handler="HandleCreateNewCategoryCommand" last_modification_time="Tue, 09 Dec 2003 20:42:48 GMT"/>
 			</widget>
 		      </child>
+
+		      <child>
+			<widget class="GtkMenuItem" id="separator8">
+			  <property name="visible">True</property>
+			</widget>
+		      </child>
+
+		      <child>
+			<widget class="GtkMenuItem" id="attach_tag_to_selection1">
+			  <property name="visible">True</property>
+			  <property name="label" translatable="yes">Attach Tag To Selection</property>
+			  <property name="use_underline">True</property>
+			  <signal name="activate" handler="HandleAttachTagCommand" last_modification_time="Wed, 21 Jan 2004 05:44:42 GMT"/>
+			</widget>
+		      </child>
+
+		      <child>
+			<widget class="GtkMenuItem" id="rmove_tag_from_selection1">
+			  <property name="visible">True</property>
+			  <property name="label" translatable="yes">Rmove Tag From Selection</property>
+			  <property name="use_underline">True</property>
+			  <signal name="activate" handler="HandleRemoveTagCommand" last_modification_time="Wed, 21 Jan 2004 05:48:21 GMT"/>
+			</widget>
+		      </child>
 		    </widget>
 		  </child>
 		</widget>
@@ -581,11 +605,30 @@
 	      <property name="tooltips">True</property>
 
 	      <child>
-		<placeholder/>
+		<widget class="button" id="Rotate90Button">
+		  <property name="visible">True</property>
+		  <property name="label" translatable="yes">Rotate 90°</property>
+		  <property name="use_underline">True</property>
+		  <signal name="clicked" handler="HandleRotate90ToolbarButtonClicked" last_modification_time="Wed, 21 Jan 2004 05:26:59 GMT"/>
+		</widget>
 	      </child>
 
 	      <child>
-		<placeholder/>
+		<widget class="GtkToolbar" id="toolbar2">
+		  <property name="visible">True</property>
+		  <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
+		  <property name="toolbar_style">GTK_TOOLBAR_BOTH</property>
+		  <property name="tooltips">True</property>
+		</widget>
+	      </child>
+
+	      <child>
+		<widget class="button" id="Rotate270Button">
+		  <property name="visible">True</property>
+		  <property name="label" translatable="yes">Rotate 270°</property>
+		  <property name="use_underline">True</property>
+		  <signal name="clicked" handler="HandleRotate270ToolbarButtonClicked" last_modification_time="Wed, 21 Jan 2004 05:26:14 GMT"/>
+		</widget>
 	      </child>
 
 	      <child>

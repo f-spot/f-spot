@@ -515,7 +515,7 @@ public class IconView : Gtk.Layout {
 		InvalidateCell (order);
 	}
 
-	private void InvalidateCell (int order) {
+	public void InvalidateCell (int order) {
 		Rectangle area;
 		GetCellPosition (order, out area.x, out area.y);
 		area.width = cell_width;
