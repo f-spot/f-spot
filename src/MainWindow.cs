@@ -716,7 +716,7 @@ public class MainWindow {
 		dialog.Destroy ();
 	}
 
-#if false
+#if true
 	void HandleExportCommand (object sender, EventArgs e)
 	{
 		ExportCommand.Gallery cmd = new ExportCommand.Gallery ();
@@ -729,8 +729,8 @@ public class MainWindow {
 	void HandleExportCommand (object sender, EventArgs e)
 	{
 		FotkiRemote fr = new FotkiRemote ();
-		//fr.Login ("lewing@gmail.com", "batman");
-		fr.Login ("lewing", "batman");
+		//fr.Login ("mikey@gmail.com", "joey");
+		fr.Login ("mikey", "joey");
 		foreach (Photo p in SelectedPhotos ()) {
 			fr.Upload (p);
 		}
