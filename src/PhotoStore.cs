@@ -528,7 +528,7 @@ public class PhotoStore : DbStore {
 		return photo;
 	}
 
-	public void GetVersions (Photo photo)
+	private void GetVersions (Photo photo)
 	{
 
 		SqliteCommand command = new SqliteCommand ();
@@ -546,7 +546,7 @@ public class PhotoStore : DbStore {
 		command.Dispose ();
 	}
 
-	public void GetTags (Photo photo)
+	private void GetTags (Photo photo)
 	{
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
@@ -562,7 +562,7 @@ public class PhotoStore : DbStore {
 		command.Dispose ();
 	}		
 	
-	public void GetAllVersions  () {
+	private void GetAllVersions  () {
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
 		command.CommandText = String.Format ("SELECT photo_id, version_id, name " +
@@ -593,7 +593,7 @@ public class PhotoStore : DbStore {
 		}
 	}
 
-	public void GetAllTags () {
+	private void GetAllTags () {
 			SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
 		command.CommandText = String.Format ("SELECT photo_id, tag_id " +
@@ -623,7 +623,7 @@ public class PhotoStore : DbStore {
 		}
 	}
 
-	public void GetAllData () {
+	private void GetAllData () {
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
 		command.CommandText = String.Format ("SELECT photo_tags.photo_id, tag_id, version_id, name " +
@@ -660,7 +660,7 @@ public class PhotoStore : DbStore {
 		}
 	}
 
-	public void GetData (Photo photo)
+	private void GetData (Photo photo)
 	{
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
@@ -1016,10 +1016,10 @@ public class PhotoStore : DbStore {
 					query_builder.Append (")) ");
 		}
 		
-		query_builder.Append ("ORDER BY photos.id");
+		query_builder.Append ("ORDER BY photos.time");
 		query = query_builder.ToString ();
 		
-		Console.WriteLine ("Query Start {0}", System.DateTime.Now);
+		Console.WriteLine ("Query Start {0}", System.DateTime.Now.ToLongTimeString ());
 
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
@@ -1049,7 +1049,7 @@ public class PhotoStore : DbStore {
 			id_list.Add (photo);
 		}
 
-		Console.WriteLine ("Main End {0}", System.DateTime.Now);
+		Console.WriteLine ("Query End {0}", System.DateTime.Now.ToLongTimeString ());
 
 		bool need_load = false;
 		Console.WriteLine ("Start {0}", System.DateTime.Now);

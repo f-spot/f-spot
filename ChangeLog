@@ -1,5 +1,8 @@
 2004-08-18  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoStore.cs: Make several of the methods private to clean
+	up the public interface.
+
 	* src/IconView.cs: clean up some of the debug output and bounds
 	setting.
 
