@@ -1,5 +1,7 @@
 2004-06-10  Larry Ewing  <lewing@ximian.com>
 
+	* src/PhotoView.cs: fix off by one in entry sensitivity.
+
 	* src/SlideView.cs: use the new LoadAtMaxSize function.
 
 	* src/makefile.am (F_SPOT_CSFILES): add TagMenu.cs.
@@ -122,7 +124,6 @@
 	of quality doesn't have much impact in the time the tween frame is
 	shown.
 
->>>>>>> 1.78
 2004-03-15  Larry Ewing  <lewing@ximian.com>
 
 	* src/makefile.am: Use the sqlite wrapper that is now part of

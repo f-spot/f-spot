@@ -211,7 +211,7 @@ public class Photo : DbItem, IComparable {
 		if (version_id == OriginalVersionId && !remove_original)
 			throw new Exception ("Cannot delete original version");
 
-		string path = GetPathForVersionName (GetVersionName (version_id));
+		string path = GetVersionPath (version_id);
 		File.Delete (path);
 		PhotoStore.DeleteThumbnail (path);
 
