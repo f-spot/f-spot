@@ -57,21 +57,7 @@ namespace FSpot {
 					GdkWindow.InvalidateRect (Allocation, false);
 			}
 		}
-
-		protected override bool OnButtonPressEvent (Gdk.EventButton args)
-		{
-			int i = 0;
-			while (i < box_counts.Length) {
-				if (BoxTest (BoxBounds (i), args.X, args.Y)){
-				    glass.Position = i;
-				    return false;
-				}
-				i++;
-			}
-
-			return base.OnButtonPressEvent (args);
-		}
-
+		
 		static bool BoxTest (Rectangle bounds, double x, double y) 
 		{
 			if (x >= bounds.X && 
@@ -83,15 +69,67 @@ namespace FSpot {
 			return false;
 		}
 
+		private bool BoxHit (double x, double y, out int position) 
+		{
+			position = 0;
+			while (position < box_counts.Length) {
+				if (BoxTest (BoxBounds (position), x, y))
+					return true;
+
+				position++;
+			}
+			return false;
+		}
+
+		protected override bool OnButtonPressEvent (Gdk.EventButton args)
+		{
+			if (glass.IsInside (args.X, args.Y)) {
+				glass.StartDrag (args.X, args.Y, args.Time);
+			} else if (min_limit.IsInside (args.X, args.Y)) {
+				min_limit.StartDrag (args.X, args.Y, args.Time);
+			} else if (max_limit.IsInside (args.X, args.Y)) {
+				max_limit.StartDrag (args.X, args.Y, args.Time);
+			} else {
+				int position;
+				if (BoxHit (args.X, args.Y, out position)) {
+					glass.Position = position;
+					return true;
+				}
+			}
+			
+			return base.OnButtonPressEvent (args);
+		}
+		
+		protected override bool OnButtonReleaseEvent (Gdk.EventButton args) 
+		{
+			if (glass.Dragging) {
+				glass.EndDrag (args.X, args.Y);
+			} else if (min_limit.Dragging) {
+				min_limit.EndDrag (args.X, args.Y);
+			} else if (max_limit.Dragging) {
+				max_limit.EndDrag (args.X, args.Y);
+			}
+			return base.OnButtonReleaseEvent (args);
+		}
+
 		protected override bool OnMotionNotifyEvent (Gdk.EventMotion args) 
 		{
 			Rectangle box = glass.Bounds ();
 			//Console.WriteLine ("please {0} and {1} in box {2}", args.X, args.Y, box);
 
-			if (glass.IsInside (args.X, args.Y))
-				glass.State = StateType.Prelight;
-			else 
-				glass.State = StateType.Normal;
+
+			if (glass.Dragging) {
+				glass.UpdateDrag (args.X, args.Y);
+			} else if (min_limit.Dragging) {
+				min_limit.UpdateDrag (args.X, args.Y);
+			} else if (max_limit.Dragging) {
+				max_limit.UpdateDrag (args.X, args.Y);
+			} else {
+				if (glass.IsInside (args.X, args.Y))
+					glass.State = StateType.Prelight;
+				else 
+					glass.State = StateType.Normal;
+			}
 
 			return base.OnMotionNotifyEvent (args);
 		}
@@ -210,7 +248,55 @@ namespace FSpot {
 
 		public class Manipulator {
 			protected GroupSelector selector;
-			
+			public bool Dragging;
+			public Point DragStart;
+
+			protected int drag_offset;
+			public int DragOffset {
+				set {
+					Rectangle then = Bounds ();
+					drag_offset = value;
+					Rectangle now = Bounds ();
+					
+					if (selector.Visible) {
+						selector.GdkWindow.InvalidateRect (then, false);
+						selector.GdkWindow.InvalidateRect (now, false);
+					}
+				}
+				get {
+					if (Dragging)
+						return drag_offset;
+					else
+						return 0;
+				}
+			}					
+
+			public void StartDrag (double x, double y, uint time) 
+			{
+				State = StateType.Active;
+				Dragging = true;
+				DragStart.X = (int)x;
+				DragStart.Y = (int)y;	
+			}
+
+			public void UpdateDrag (double x, double y)
+			{
+				DragOffset = (int)x - DragStart.X;
+			}
+
+			public void EndDrag (double x, double y)
+			{
+				int position;
+				if (selector.BoxHit (x, y, out position)) {
+					Position = position;
+					State = StateType.Prelight;
+				} else {
+					State = selector.State;
+				}
+				DragOffset = 0;
+				Dragging = false;				
+			}
+
 			private StateType state;
 			public StateType State {
 				get {
@@ -264,7 +350,6 @@ namespace FSpot {
 		}
 		
 		private class Glass : Manipulator {
-			private int offset;
 			private int handle_height = 15;
 
 			private int border {
@@ -272,10 +357,17 @@ namespace FSpot {
 					return selector.box_spacing * 2;
 				}
 			}
-
-			public override Rectangle Bounds () 
+			
+			private Rectangle InnerBounds ()
 			{
 				Rectangle box = selector.BoxBounds (Position);
+				box.X += DragOffset;
+				return box;
+			}
+			
+			public override Rectangle Bounds () 
+			{
+				Rectangle box = InnerBounds ();
 
 				box.X -= border;
 				box.Y -= border;
@@ -287,7 +379,7 @@ namespace FSpot {
 
 			public override void Draw (Rectangle area)
 			{
-				Rectangle inner = selector.BoxBounds (Position);
+				Rectangle inner = InnerBounds ();
 				Rectangle bounds = Bounds ();
 				
 				if (bounds.Intersect (area, out area)) {
@@ -328,10 +420,19 @@ namespace FSpot {
 			int width = 10;
 			int handle_height = 10;
 
+			public enum LimitType {
+				Min,
+				Max
+			}
+
+			private LimitType limit_type;
+			
 			public override Rectangle Bounds () 
 			{
+				int limit_offset = limit_type == LimitType.Max ? 1 : 0;
+
 				Rectangle bounds = new Rectangle (0, 0, width, selector.background.Height + handle_height);
-				bounds.X = selector.BoxX (Position) - bounds.Width /2;
+				bounds.X = DragOffset + selector.BoxX (Position + limit_offset) - bounds.Width /2;
 				bounds.Y = selector.background.Y - handle_height/2;
 				return bounds;
 			}
@@ -353,7 +454,10 @@ namespace FSpot {
 				selector.GdkWindow.DrawRectangle (selector.Style.TextGC (selector.State), true, bottom);
 			}
 
-			public Limit (GroupSelector selector) : base (selector) {}
+			public Limit (GroupSelector selector, LimitType type) : base (selector) 
+			{
+				limit_type = type;
+			}
 		}
 		
 		protected override void OnMapped ()
@@ -366,13 +470,13 @@ namespace FSpot {
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
 			Rectangle area; 
-			Console.WriteLine ("expose {0}", args.Area);
+			//Console.WriteLine ("expose {0}", args.Area);
 			
 
 			if (args.Area.Intersect (background, out area)) {							
 				Rectangle active = background;
 				int min_x = BoxX (min_limit.Position);
-				int max_x = BoxX (max_limit.Position);
+				int max_x = BoxX (max_limit.Position + 1);
 				active.X = min_x;
 				active.Width = max_x - min_x;
 
@@ -434,9 +538,9 @@ namespace FSpot {
 
 			background = Rectangle.Zero;
 			glass = new Glass (this);
-			min_limit = new Limit (this);
+			min_limit = new Limit (this, Limit.LimitType.Min);
 			min_limit.Position = 3;
-			max_limit = new Limit (this);
+			max_limit = new Limit (this, Limit.LimitType.Max);
 			max_limit.Position = 12;
 		}
 
