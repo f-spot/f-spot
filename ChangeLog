@@ -1,3 +1,16 @@
+2004-02-12  Larry Ewing  <lewing@ximian.com>
+
+	* src/MainWindow.cs: remove the old ifdefed code it was confusing.
+
+	* src/IconView.cs: Use UnselectAllCells() to clear the selection,
+	we were missing notification before.
+	
+	* src/MainWindow.cs: make UpdateMenus handle more of the menu
+	items.  Hook UpdateMenus to the tag selection widget.
+
+	* src/f-spot.glade: fix a couple of the menu item widget names now
+	that we are using them.
+
 2004-02-11  Larry Ewing  <lewing@ximian.com>
 
 	* src/f-spot.glade: remove toolbar that crept in somehow.

@@ -152,7 +152,7 @@ public class IconView : Gtk.Layout {
 	{
 		// FIXME we should probably try to merge the selection forward
 		// but it needs some thought to be efficient.
-		selected_cells.Clear ();
+		UnselectAllCells ();
 		QueueResize ();
 	}
 
