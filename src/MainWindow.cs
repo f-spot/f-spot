@@ -275,6 +275,7 @@ public class MainWindow : Gtk.Window {
 
 	private void OnTagSelectionChanged (object obj)
 	{
+		SwitchToIconViewMode ();
 		UpdateQuery ();
 	}
 
