@@ -8,7 +8,54 @@ using System.Text;
 using System;
 
 
-public class Photo : DbItem {
+public class Photo : DbItem, IComparable {
+	// IComparable 
+	public int CompareTo (object obj) {
+		if (this.GetType () == obj.GetType ()) {
+			// FIXME this is way under powered for a real compare in the
+			// equal case but for now it should do.
+
+			return Compare (this, (Photo)obj);
+		} else if (obj is DateTime) {
+			return this.time.CompareTo ((DateTime)obj);
+		} else {
+			throw new Exception ("Object must be of type Photo");
+		}
+	}
+
+	public int CompareTo (Photo photo)
+	{
+		return Compare (this, photo);
+	}
+	
+	public static int Compare (Photo photo1, Photo photo2)
+	{
+		return CompareImportDate (photo1, photo2);
+	}
+
+	private static int CompareImportDate (Photo photo1, Photo photo2)
+	{
+		return DateTime.Compare (photo1.time, photo2.time);
+	}
+
+	private static int CompareCurrentDir (Photo photo1, Photo photo2)
+	{
+		return string.Compare (photo1.directory_path, photo2.directory_path);
+	}
+
+	public class CompareDirectory : IComparer {
+		public int Compare (object obj1, object obj2) {
+			Photo p1 = (Photo)obj1;
+			Photo p2 = (Photo)obj2;
+
+			int result = Photo.CompareCurrentDir (p1, p2);
+			if (result == 0)
+				result = CompareImportDate (p1, p2);
+			
+			return result;
+		}
+	}
+
 	// The time is always in UTC.
 	private DateTime time;
 	public DateTime Time {
@@ -87,8 +134,8 @@ public class Photo : DbItem {
 		}
 	}
 
-	// This doesn't check if a version of that name already exists, it's supposed to be used only within
-	// the Photo and PhotoStore classes.
+	// This doesn't check if a version of that name already exists, 
+	// it's supposed to be used only within the Photo and PhotoStore classes.
 	public void AddVersionUnsafely (uint version_id, string name)
 	{
 		version_names [version_id] = name;
@@ -101,7 +148,8 @@ public class Photo : DbItem {
 		string name_without_extension = System.IO.Path.GetFileNameWithoutExtension (name);
 		string extension = System.IO.Path.GetExtension (name);
 
-		return System.IO.Path.Combine (directory_path,  name_without_extension + " (" + version_name + ")" + extension);
+		return System.IO.Path.Combine (directory_path,  name_without_extension 
+					       + " (" + version_name + ")" + extension);
 	}
 
 	public bool VersionNameExists (string version_name)
@@ -729,6 +777,7 @@ public class PhotoStore : DbStore {
 		foreach (uint id in id_list)
 			photo_list [i ++] = Get (id) as Photo;
 
+		//Array.Sort (photo_list);
 		return photo_list;
 	}
 
