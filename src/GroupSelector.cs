@@ -3,11 +3,12 @@ using Gtk;
 using Gdk;
 using GLib;
 
+
 namespace FSpot {
 	public class GroupSelector : Fixed {
 		internal static GType groupSelectorGType;
 
-		int border = 12;
+		int border = 6;
 		int box_spacing = 2;
 		int box_top_padding = 6;
 		public static int MIN_BOX_WIDTH = 20;
@@ -16,15 +17,14 @@ namespace FSpot {
 		private Limit min_limit;
 		private Limit max_limit;
 
-#if USE_BUTTONS
 		private Gtk.Button left;
 		private Gtk.Button right;
-#endif
 
 		private Gdk.Window event_window;
 
 		public Gdk.Rectangle background;
 		public Gdk.Rectangle legend;
+		public Gdk.Rectangle action;
 
 		int    box_count_max;
 		int [] box_counts = new int [0];
@@ -131,7 +131,7 @@ namespace FSpot {
 			}
 		}
 		
-		static bool BoxTest (Rectangle bounds, double x, double y) 
+		static bool IsInside (Rectangle bounds, double x, double y) 
 		{
 			if (x >= bounds.X && 
 			    x < bounds.X + bounds.Width && 
@@ -191,7 +191,7 @@ namespace FSpot {
 		private bool BoxHit (double x, double y, out int position) 
 		{
 			if (BoxXHit (x, out position)) {
-				if (BoxTest (BoxBounds (position), x, y))
+				if (IsInside (BoxBounds (position), x, y))
 					return true;
 
 				position++;
@@ -201,8 +201,8 @@ namespace FSpot {
 
 		protected override bool OnButtonPressEvent (Gdk.EventButton args)
 		{
-			double x = args.X + Allocation.X;
-			double y = args.Y + Allocation.Y;
+			double x = args.X + action.X;
+			double y = args.Y + action.Y;
 
 			if (glass.IsInside (x, y)) {
 				glass.StartDrag (x, y, args.Time);
@@ -224,8 +224,8 @@ namespace FSpot {
 		
 		protected override bool OnButtonReleaseEvent (Gdk.EventButton args) 
 		{
-			double x = args.X + Allocation.X;
-			double y = args.Y + Allocation.Y;
+			double x = args.X + action.X;
+			double y = args.Y + action.Y;
 
 			if (glass.Dragging) {
 				glass.EndDrag (x, y);
@@ -245,8 +245,8 @@ namespace FSpot {
 
 		protected override bool OnMotionNotifyEvent (Gdk.EventMotion args) 
 		{
-			double x = args.X + Allocation.X;
-			double y = args.Y + Allocation.Y;
+			double x = args.X + action.X;
+			double y = args.Y + action.Y;
 
 			//Rectangle box = glass.Bounds ();
 			//Console.WriteLine ("please {0} and {1} in box {2}", x, y, box);
@@ -275,11 +275,13 @@ namespace FSpot {
 			
 			WindowAttr attr = WindowAttr.Zero;
 			attr.WindowType = Gdk.WindowType.Child;
+			
+			
 
-			attr.X = Allocation.X;
-			attr.Y = Allocation.Y;
-			attr.Width = Allocation.Width;
-			attr.Height = Allocation.Height;
+			attr.X = action.X;
+			attr.Y = action.Y;
+			attr.Width = action.Width;
+			attr.Height = action.Height;
 			attr.Wclass = WindowClass.InputOnly;
 			attr.EventMask = (int) Events;
 			attr.EventMask |= (int) (EventMask.ButtonPressMask | 
@@ -519,7 +521,7 @@ namespace FSpot {
 
 			public virtual bool IsInside (double x, double y)
 			{
-				return BoxTest (Bounds (), x, y);
+				return GroupSelector.IsInside (Bounds (), x, y);
 			}
 
 			public Manipulator (GroupSelector selector) 
@@ -637,7 +639,7 @@ namespace FSpot {
 					}
 				
 					Style.PaintHandle (selector.Style, selector.GdkWindow, State, ShadowType.In, 
-							    area, selector, "glass", bounds.X, inner.Y + inner. Height + border, 
+							    area, selector, "glass", bounds.X, inner.Y + inner.Height + border, 
 							    bounds.Width, handle_height, Orientation.Horizontal);
 
 					Style.PaintShadow (selector.Style, selector.GdkWindow, State, ShadowType.Out, 
@@ -819,20 +821,38 @@ namespace FSpot {
 		{
 			base.OnSizeAllocated (alloc);
 			int legend_height = LengendHeight ();
+	
+			Gdk.Rectangle bar = new Rectangle (alloc.X + border, alloc.Y + border,
+							   alloc.Width - 2 *  border,
+							   alloc.Height - 2 * border - legend_height);
+							   
+		
+			if (left.Allocation.Y != bar.Y || left.Allocation.X != bar.X) {
+				left.SetSizeRequest (-1, bar.Height);
+				this.Move (left, bar.X - Allocation.X, bar.Y - Allocation.Y);
+			}
 			
-			background = new Rectangle (alloc.X + border, alloc.Y + border, 
-						    alloc.Width - 2 * border,
-						    alloc.Height - 2 * border - legend_height);
+			if (right.Allocation.Y != bar.Y || right.Allocation.X != bar.X + bar.Width - right.Allocation.Width) {
+				right.SetSizeRequest (-1, bar.Height);
+				this.Move (right,  bar.X - Allocation.X + bar.Width - right.Allocation.Width, 
+					   bar.Y - Allocation.Y);
+			}
+
+			background = new Rectangle (bar.X + left.Allocation.Width, bar.Y, 
+						    bar.Width - left.Allocation.Width - right.Allocation.Width, 
+						    bar.Height);
 			
 			legend = new Rectangle (background.X, background.Y + background.Height,
 						background.Width, legend_height);
 
-			if (event_window != null)
-				event_window.MoveResize (alloc.X, alloc.Y, alloc.Width, alloc.Height);
+			action = background.Union (legend);
+			//action = Allocation;
 
-#if USE_BUTTONS
-			if (right.Allocation.X != 10 || (right.Allocation.Y - alloc.Y) != 10)
-				this.Move (right, 10, 10);
+			if (event_window != null)
+				event_window.MoveResize (action.X, action.Y, action.Width, action.Height);
+
+#if true
+//USE_BUTTONS
 #endif
 		}
 
@@ -845,9 +865,10 @@ namespace FSpot {
 			min_limit = new Limit (this, Limit.LimitType.Min);
 			max_limit = new Limit (this, Limit.LimitType.Max);
 
-#if USE_BUTTONS
-			left = new Gtk.Button (Gtk.Stock.GoBack);
-			right = new Gtk.Button (Gtk.Stock.GoForward);
+#if true
+//USE_BUTTONS
+			left = new Gtk.Button (new Gtk.Image (Gtk.Stock.GoBack, Gtk.IconSize.Button));
+			right = new Gtk.Button (new Gtk.Image (Gtk.Stock.GoForward, Gtk.IconSize.Button));
 			this.Put (left, 0, 0);
 			this.Put (right, 100, 0);
 			left.Show ();
