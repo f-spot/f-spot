@@ -8,14 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-23 10:52+0100\n"
-"PO-Revision-Date: 2005-01-23 15:14+0100\n"
+"POT-Creation-Date: 2005-01-28 10:52+0100\n"
+"PO-Revision-Date: 2005-01-28 13:45+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: libeog/eog-file-selection.c:29 libeog/eog-file-selection.c:46
 msgid "By Extension"
@@ -832,49 +833,86 @@ msgstr "(Žádné)"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: src/MainWindow.cs:896
+#: src/MainWindow.cs:920
 msgid "translator-credits"
 msgstr "Miloslav Trmač"
 
-#: src/MainWindow.cs:1026
+#: src/MainWindow.cs:1050
 msgid "Unsharp Mask"
 msgstr "Maska rozostření"
 
-#: src/MainWindow.cs:1035
+#: src/MainWindow.cs:1059
 msgid "Amount:"
 msgstr "Úroveň:"
 
-#: src/MainWindow.cs:1036
+#: src/MainWindow.cs:1060
 msgid "Radius:"
 msgstr "Poloměr:"
 
-#: src/MainWindow.cs:1037
+#: src/MainWindow.cs:1061
 msgid "Threshold:"
 msgstr "Práh:"
 
-#: src/MainWindow.cs:1289
+#: src/MainWindow.cs:1334
 #, csharp-format
-msgid "Delete the selected photo permanently"
-msgid_plural "Delete the {0} selected photos permanently"
-msgstr[0] "Natrvalo odstranit vybranou fotografii"
-msgstr[1] "Natrvalo odstranit vybrané {0} fotografie"
-msgstr[2] "Natrvalo odstranit vybraných {0} fotografií"
+msgid "Delete the selected photo permanently?"
+msgid_plural "Delete the {0} selected photos permanently?"
+msgstr[0] "Natrvalo odstranit vybranou fotografii?"
+msgstr[1] "Natrvalo odstranit vybrané {0} fotografie?"
+msgstr[2] "Natrvalo odstranit vybraných {0} fotografií?"
 
-#: src/MainWindow.cs:1310
-#, csharp-format
-msgid "Remove the selected photo from the catalog"
-msgid_plural "Remove the {0} selected photos from the catalog"
-msgstr[0] "Odstranit vybranou fotografii z katalogu"
-msgstr[1] "Odstranit vybrané {0} fotografie z katalogu"
-msgstr[2] "Odstranit vybraných {0} fotografií z katalogu"
+#: src/MainWindow.cs:1338
+msgid "This deletes all versions of the selected photo from your drive."
+msgid_plural ""
+"This deletes all versions of the selected photos from your drive."
+msgstr[0] "To odstraní všechny verze vybrané fotografie z vašeho disku."
+msgstr[1] "To odstraní všechny verze vybraných fotografií z vašeho disku."
+msgstr[2] "To odstraní všechny verze vybraných fotografií z vašeho disku."
 
-#: src/MainWindow.cs:1337
+#: src/MainWindow.cs:1341
+#
+msgid "_Delete photo"
+msgid_plural "_Delete photos"
+msgstr[0] "_Odstranit fotografii"
+msgstr[1] "_Odstranit fotografie"
+msgstr[2] "_Odstranit fotografie"
+
+#: src/MainWindow.cs:1359
 #, csharp-format
-msgid "Delete the selected tag"
-msgid_plural "Delete the {0} selected tags"
-msgstr[0] "Odstranit vybraný tag"
-msgstr[1] "Odstranit vybrané {0} tagy"
-msgstr[2] "Odstranit vybraných {0} tagů"
+msgid "Remove the selected photo from the catalog?"
+msgid_plural "Remove the {0} selected photos from the catalog?"
+msgstr[0] "Odstranit vybranou fotografii z katalogu?"
+msgstr[1] "Odstranit vybrané {0} fotografie z katalogu?"
+msgstr[2] "Odstranit vybraných {0} fotografií z katalogu?"
+
+#: src/MainWindow.cs:1364
+msgid ""
+"If you remove photos from the catalog all tag information will be lost. The "
+"photos remain on your computer and can be imported into f-spot again."
+msgstr "Pokud odstraníte fotografie z katalogu, všechny informace o tazích budou ztraceny. Fotografie zůstávají ve vašem počítači a lze je do f-spot znovu importovat."
+
+#: src/MainWindow.cs:1365
+msgid "_Remove from Catalog"
+msgstr "_Odstranit z katalogu"
+
+#: src/MainWindow.cs:1388
+#, csharp-format
+msgid "Delete the selected tag?"
+msgid_plural "Delete the {0} selected tags?"
+msgstr[0] "Odstranit vybraný tag?"
+msgstr[1] "Odstranit vybrané {0} tagy?"
+msgstr[2] "Odstranit vybraných {0} tagů?"
+
+#: src/MainWindow.cs:1393
+msgid "If you delete a tag, all associations with photos are lost."
+msgstr "Pokud odstraníte tag, všechny asociace s fotografiemi budou ztraceny."
+
+#: src/MainWindow.cs:1394
+msgid "_Delete tag"
+msgid_plural "_Delete tags"
+msgstr[0] "Odstranit tag"
+msgstr[1] "Odstranit tagy"
+msgstr[2] "Odstranit tagy"
 
 #: src/OriginalExport.cs:168
 msgid "Error: Error while transferring, Aborting"
