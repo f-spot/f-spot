@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-17 09:24+0100\n"
-"PO-Revision-Date: 2005-02-17 08:50+0100\n"
+"POT-Creation-Date: 2005-02-17 17:30+0100\n"
+"PO-Revision-Date: 2005-02-17 17:30+0100\n"
 "Last-Translator: Frank Arnold <frank@scirocco-5v-turbo.de>\n"
 "Language-Team: German GNOME Translators <gnome-de@gnome.org >\n"
 "MIME-Version: 1.0\n"
@@ -522,24 +522,24 @@ msgid "Export Tags and Categories"
 msgstr "Markierungen und Kategorien exportieren"
 
 #: ../src/f-spot.glade.h:57
-msgid "Export To _Flickr..."
-msgstr "Export zu _Flickr…"
-
-#: ../src/f-spot.glade.h:58
 msgid "Export tags and categories"
 msgstr "Markierungen und Kategorien exportieren"
 
-#: ../src/f-spot.glade.h:59
+#: ../src/f-spot.glade.h:58
 msgid "Export titles and comments"
 msgstr "Titel und Kommentare exportieren"
 
-#: ../src/f-spot.glade.h:60
+#: ../src/f-spot.glade.h:59
 msgid "Export to Album:"
 msgstr "Export in Album:"
 
-#: ../src/f-spot.glade.h:61
+#: ../src/f-spot.glade.h:60
 msgid "Export to Original"
 msgstr "Export zu Original"
+
+#: ../src/f-spot.glade.h:61
+msgid "Export to _Flickr..."
+msgstr "Export zu _Flickr…"
 
 #: ../src/f-spot.glade.h:62
 msgid "Export to _Original..."
@@ -630,12 +630,12 @@ msgid "Import Files After Copy"
 msgstr "Dateien nach dem Kopieren importieren"
 
 #: ../src/f-spot.glade.h:87
-msgid "Import From Camera"
-msgstr "Import von Kamera"
-
-#: ../src/f-spot.glade.h:88
 msgid "Import From:"
 msgstr "Importieren von:"
+
+#: ../src/f-spot.glade.h:88
+msgid "Import from C_amera..."
+msgstr "Import von K_amera…"
 
 #: ../src/f-spot.glade.h:89
 msgid "Next"
@@ -793,7 +793,7 @@ msgstr "Metadaten des Bilds entfernen"
 msgid "Strip metadata"
 msgstr "Metadaten entfernen"
 
-#: ../src/f-spot.glade.h:130 ../src/TagCommands.cs:282
+#: ../src/f-spot.glade.h:130 ../src/TagCommands.cs:295
 msgid "Tag name:"
 msgstr "Markierungsname"
 
@@ -1026,11 +1026,11 @@ msgstr "Belichtung:"
 msgid "(None)"
 msgstr "(Keine)"
 
-#: ../src/MainWindow.cs:831
+#: ../src/MainWindow.cs:825
 msgid "No cameras detected."
 msgstr "Keine Kameras erkannt."
 
-#: ../src/MainWindow.cs:832
+#: ../src/MainWindow.cs:826
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1038,11 +1038,11 @@ msgstr ""
 "F-Spot konnte keine an diesem System angeschlossene Kameras finden. "
 "Vergewissern Sie sich, dass die Kamera angeschlossen und eingeschaltet ist."
 
-#: ../src/MainWindow.cs:857
+#: ../src/MainWindow.cs:851
 msgid "Error connecting to camera"
 msgstr "Fehler beim Verbinden zur Kamera"
 
-#: ../src/MainWindow.cs:858
+#: ../src/MainWindow.cs:852
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Während dem Verbinden zur Kamera wurde der Fehler »{0}« empfangen"
@@ -1050,54 +1050,54 @@ msgstr "Während dem Verbinden zur Kamera wurde der Fehler »{0}« empfangen"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:985
+#: ../src/MainWindow.cs:979
 msgid "translator-credits"
 msgstr "Frank Arnold <frank@scirocco-5v-turbo.de>"
 
-#: ../src/MainWindow.cs:1115
+#: ../src/MainWindow.cs:1110
 msgid "Unsharp Mask"
 msgstr "Weichzeichnen"
 
-#: ../src/MainWindow.cs:1124
+#: ../src/MainWindow.cs:1119
 msgid "Amount:"
 msgstr "Betrag:"
 
-#: ../src/MainWindow.cs:1125
+#: ../src/MainWindow.cs:1120
 msgid "Radius:"
 msgstr "Radius:"
 
-#: ../src/MainWindow.cs:1126
+#: ../src/MainWindow.cs:1121
 msgid "Threshold:"
 msgstr "Schwellwert:"
 
-#: ../src/MainWindow.cs:1400
+#: ../src/MainWindow.cs:1395
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Das ausgewählte Foto dauerhaft löschen?"
 msgstr[1] "Die {0} ausgewählten Fotos dauerhaft löschen?"
 
-#: ../src/MainWindow.cs:1404
+#: ../src/MainWindow.cs:1399
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Dies löscht alle Versionen des gewählten Fotos vom Laufwerk."
 msgstr[1] "Dies löscht alle Versionen der gewählten Fotos vom Laufwerk."
 
-#: ../src/MainWindow.cs:1407
+#: ../src/MainWindow.cs:1402
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "Foto _löschen"
 msgstr[1] "Fotos _löschen"
 
-#: ../src/MainWindow.cs:1425
+#: ../src/MainWindow.cs:1420
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Das ausgewählte Foto aus F-Spot entfernen?"
 msgstr[1] "Die {0} ausgewählten Fotos aus F-Spot entfernen?"
 
-#: ../src/MainWindow.cs:1430
+#: ../src/MainWindow.cs:1425
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1107,24 +1107,24 @@ msgstr ""
 "Markierungsinformationen verloren. Die Fotos bleiben auf dem Rechner "
 "erhalten und können wieder in F-Spot importiert werden."
 
-#: ../src/MainWindow.cs:1431
+#: ../src/MainWindow.cs:1426
 msgid "_Remove from Catalog"
 msgstr "Aus dem Katalog ent_fernen"
 
-#: ../src/MainWindow.cs:1454
+#: ../src/MainWindow.cs:1449
 #, csharp-format
 msgid "Delete the selected tag?"
 msgid_plural "Delete the {0} selected tags?"
 msgstr[0] "Die ausgewählte Markierung löschen?"
 msgstr[1] "Die {0} ausgewählten Markierungen löschen?"
 
-#: ../src/MainWindow.cs:1459
+#: ../src/MainWindow.cs:1454
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr ""
 "Wenn eine Markierung gelöscht wird, gehen alle Verbindungen zu Fotos "
 "verloren."
 
-#: ../src/MainWindow.cs:1460
+#: ../src/MainWindow.cs:1455
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "Markierung _löschen"
@@ -1265,49 +1265,49 @@ msgstr "Ladend"
 msgid "(No categories)"
 msgstr "(Keine Kategorien)"
 
-#: ../src/TagCommands.cs:92 ../src/TagCommands.cs:204
+#: ../src/TagCommands.cs:80 ../src/TagCommands.cs:217
 msgid "This name is already in use"
 msgstr "Dieser Name existiert bereits"
 
-#: ../src/TagCommands.cs:112 ../src/TagPopup.cs:20
+#: ../src/TagCommands.cs:129 ../src/TagPopup.cs:20
 msgid "Create New Tag"
 msgstr "Neue Markierung erstellen"
 
-#: ../src/TagCommands.cs:113
+#: ../src/TagCommands.cs:130
 msgid "Name of new tag:"
 msgstr "Name der neuen Markierung:"
 
-#: ../src/TagCommands.cs:116 ../src/TagPopup.cs:22
+#: ../src/TagCommands.cs:133 ../src/TagPopup.cs:22
 msgid "Create New Category"
 msgstr "Neue Kategorie anlegen"
 
-#: ../src/TagCommands.cs:117
+#: ../src/TagCommands.cs:134
 msgid "Name of new category:"
 msgstr "Name der neuen Kategorie:"
 
-#: ../src/TagCommands.cs:278
+#: ../src/TagCommands.cs:291
 msgid "Edit Category"
 msgstr "Kategorie bearbeiten"
 
-#: ../src/TagCommands.cs:279
+#: ../src/TagCommands.cs:292
 msgid "Category name:"
 msgstr "Kategoriename:"
 
-#: ../src/TagCommands.cs:281 ../src/TagPopup.cs:27
+#: ../src/TagCommands.cs:294 ../src/TagPopup.cs:27
 msgid "Edit Tag"
 msgstr "Markierung bearbeiten:"
 
-#: ../src/TagCommands.cs:373
+#: ../src/TagCommands.cs:386
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Bild {0} von {1}"
 
-#: ../src/TagCommands.cs:400
+#: ../src/TagCommands.cs:413
 #, csharp-format
 msgid "Edit icon For category {0}"
 msgstr "Symbol für Kategorie {0} ändern"
 
-#: ../src/TagCommands.cs:402
+#: ../src/TagCommands.cs:415
 #, csharp-format
 msgid "Edit icon for tag {0}"
 msgstr "Symbol für Markierung {0} ändern"
