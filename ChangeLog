@@ -1,5 +1,8 @@
 2004-07-31  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoStore.cs: more cleanups, combine query logic a little,
+	remove outdated code.
+
 	* src/PhotoStore.cs: add some cleanups, remove the hack to demand
 	load the photo data since it is no longer used.
 
