@@ -249,6 +249,18 @@ class PixbufUtils {
 		}
 	}
 
+	
+
+	[DllImport ("libc")]
+	static extern int rename (string oldpath, string newpath);
+
+	public static void SaveAtomic (Gdk.Pixbuf src, string filename, string type, string [] keys, string [] values)
+	{
+			string tmpname = filename + ".tmp";
+			src.Savev (tmpname, type, keys, values);
+			if (rename (tmpname, filename) < 0)
+				throw new Exception ("Error renaming file");
+	}
 
 	[DllImport ("libfspot")]
 	static extern IntPtr f_pixbuf_unsharp_mask (IntPtr src, double radius, double amount, double threshold);

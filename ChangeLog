@@ -1,5 +1,14 @@
+2005-01-22  Larry Ewing  <lewing@novell.com>
+
+	* src/PhotoStore.cs: use SaveAtomic.
+
+	* src/PixbufUtils.cs: add SaveAtomic.
+
 2005-01-21  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: add basic confirmation dialogs based on a
+	patch from Laurence.  Closes #156441
+	
 	* src/MainWindow.cs: handle out of range photos more gracefully.
 
 	* src/ColorDialog.cs: handle invalid photos better.

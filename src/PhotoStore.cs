@@ -429,7 +429,8 @@ public class PhotoStore : DbStore {
 
 		// Save EXIF generated thumbnails in a silightly invalid way so that we know to regnerate them.
 		if (thumbnail != null) 
-			thumbnail.Save (Thumbnail.PathForUri (uri, ThumbnailSize.Large), "png");
+			PixbufUtils.SaveAtomic (thumbnail, Thumbnail.PathForUri (uri, ThumbnailSize.Large), 
+						"png", null, null);
 		else 
 			thumbnail = FSpot.ThumbnailGenerator.Create (path);
 			
