@@ -71,35 +71,48 @@ namespace FSpot {
 		public void Upload ()
 		{
 			try {
+				Dialog.Destroy ();
+				Gnome.Vfs.Result result = Gnome.Vfs.Result.Ok;
+
 				foreach (Photo photo in selection.Photos) {
 					Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (photo.DefaultVersionUri.ToString ());
 					Gnome.Vfs.Uri target = dest.Clone ();
 					target = target.AppendFileName (source.ExtractShortName ());
 					Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
 					
-					System.Console.WriteLine ("Xfering {0} to {1}", source.ToString (), target.ToString ());
+					//System.Console.WriteLine ("Xfering {0} to {1}", source.ToString (), target.ToString ());
 					
-					//progress_dialog.Message = System.String.Format (Mono.Posix.Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
-					//progress_dialog.Fraction = photo_index / (double) selection.Photos.Length;
-					//progress_dialog.ProgressText = System.String.Format (Mono.Posix.Catalog.GetString ("{0} of {1}"), 
-					//						     photo_index, selection.Photos.Length);
-					Gnome.Vfs.Xfer.XferUri (source, target, 
-								Gnome.Vfs.XferOptions.Default, 
-								Gnome.Vfs.XferErrorMode.Abort, 
-								Gnome.Vfs.XferOverwriteMode.Replace, 
-								cb);
+					progress_dialog.Message = System.String.Format (Mono.Posix.Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
+					progress_dialog.Fraction = photo_index / (double) selection.Photos.Length;
+					progress_dialog.ProgressText = System.String.Format (Mono.Posix.Catalog.GetString ("{0} of {1}"), 
+											     photo_index, selection.Photos.Length);
+					result = Gnome.Vfs.Xfer.XferUri (source, target, 
+									 Gnome.Vfs.XferOptions.Default, 
+									 Gnome.Vfs.XferErrorMode.Abort, 
+									 Gnome.Vfs.XferOverwriteMode.Replace, 
+									 cb);
 					
 					photo_index++;
 				}
-				Dialog.Destroy ();
+
+				if (result == Gnome.Vfs.Result.Ok) {
+					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Done Sending Photos");
+					progress_dialog.Fraction = 1.0;
+					progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Upload Complete");
+					progress_dialog.ButtonLabel = Gtk.Stock.Ok;
+				} else {
+					progress_dialog.ProgressText = result.ToString ();
+					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Error While Transfering");
+				}
 			} catch (System.Exception e) {
-				System.Console.WriteLine (e.ToString ());
+				progress_dialog.Message = e.ToString ();
+				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error Transfering");
 			}
 		}
 		
 		private int Progress (Gnome.Vfs.XferProgressInfo info)
 		{
-			progress_dialog.Message = info.Phase.ToString ();
+			progress_dialog.ProgressText = info.Phase.ToString ();
 
 			if (info.BytesTotal > 0) {
 				System.Console.WriteLine ("{0}%", info.BytesCopied / (double)info.BytesTotal);
@@ -110,10 +123,10 @@ namespace FSpot {
 
 			switch (info.Status) {
 			case Gnome.Vfs.XferProgressStatus.Vfserror:
-				System.Console.WriteLine ("Error: Vfs error, Aborting");
+				progress_dialog.Message = Mono.Posix.Catalog.GetString ("Error: Error while transfering, Aborting");
 				return (int)Gnome.Vfs.XferErrorAction.Abort;
 			case Gnome.Vfs.XferProgressStatus.Overwrite:
-				System.Console.WriteLine ("Error: file already Exists, Aborting");
+				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error: File Already Exists, Aborting");
 				return (int)Gnome.Vfs.XferOverwriteAction.Abort;
 			default:
 				return 1;
