@@ -21,7 +21,17 @@ dnl --- Check for mono and mcs
 AC_PATH_PROG(MONO, mono)
 AC_PATH_PROG(MCS, mcs)
 
-# check for various mono DLLs that we need.
+dnl -- Check for mono pc file
+
+AC_MSG_CHECKING([for mono.pc])
+if test -z `$PKG_CONFIG --variable=prefix mono`; then
+  AC_MSG_ERROR([missing the mono.pc file, usually found in the mono-devel package])
+else
+  AC_MSG_RESULT([found])
+fi
+
+dnl -- check for various mono DLLs that we need.
+
 needed_dlls="Mono.Data.SqliteClient Mono.Posix System.Runtime.Remoting System.Web System.Web.Services"
 for i in $needed_dlls; do
   AC_MSG_CHECKING([for $i.dll])

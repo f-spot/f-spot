@@ -1,5 +1,7 @@
 2005-01-20  Larry Ewing  <lewing@novell.com>
 
+	* configure.in: check for mono.pc too.
+
 	* src/PixbufUtils.cs: new GetThumbnail call.
 
 	* src/PhotoStore.cs: use the new util to load a thumbnail from
