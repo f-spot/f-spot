@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using System.Runtime.InteropServices;
 
-
+namespace FSpot {
 public class ImageView : Layout {
 	[DllImport ("libfspot")]
 	static extern IntPtr f_image_view_new ();
@@ -168,4 +168,5 @@ public class ImageView : Layout {
 
 	public delegate void SelectionChangedHandler ();
 	public event SelectionChangedHandler SelectionChanged;
+}
 }

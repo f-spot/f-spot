@@ -35,7 +35,7 @@ public class PhotoView : EventBox {
 		}
 	}
 
-	private ImageView image_view;
+	private FSpot.ImageView image_view;
 	private Button display_next_button, display_previous_button;
 	private Label count_label;
 
@@ -251,6 +251,24 @@ public class PhotoView : EventBox {
 
 	// Event handlers.
 
+	private void HandleImageViewKeyPressEvent (object sender, KeyPressEventArgs args)
+	{
+		switch (args.Event.Key) {
+		case Gdk.Key.Left:
+			HandleDisplayPreviousButtonClicked (sender, null);
+			break;
+		case Gdk.Key.Right:
+			HandleDisplayNextButtonClicked (sender, null);
+			break;
+		default:
+			args.RetVal = false;
+			return;
+		}
+
+		args.RetVal = true;
+		return;
+	}
+
 	private void HandleDisplayNextButtonClicked (object sender, EventArgs args)
 	{
 		DisplayNext ();
@@ -334,12 +352,14 @@ public class PhotoView : EventBox {
 		Box vbox = new VBox (false, 6);
 		Add (vbox);
 
-		image_view = new ImageView ();
+		image_view = new FSpot.ImageView ();
 		ScrolledWindow image_view_scrolled = new ScrolledWindow (null, null);
 		image_view_scrolled.SetPolicy (PolicyType.Automatic, PolicyType.Automatic);
 		image_view_scrolled.ShadowType = ShadowType.In;
 		image_view_scrolled.Add (image_view);
 		image_view.SizeAllocated += new SizeAllocatedHandler (HandleImageViewSizeAllocated);
+		image_view.AddEvents ((int) EventMask.KeyPressMask);
+		image_view.KeyPressEvent += new KeyPressEventHandler (HandleImageViewKeyPressEvent);
 		vbox.PackStart (image_view_scrolled, true, true, 0);
 
 		Box toolbar_hbox = new HBox (false, 6);

@@ -1,3 +1,11 @@
+2004-05-14  Larry Ewing  <lewing@ximian.com>
+
+	* src/ImageView.cs: add a namespace so that we don't clash with
+	the libeogfspot ImageView for now.
+
+	* src/PhotoView.cs: add a button press handler and use the
+	namespaced ImageView.
+
 2004-05-14  Peter Johanson  <latexer@gentoo.org>
 
 	* src/f-spot.exe.config: add config file for the assemblies we are
