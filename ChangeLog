@@ -1,5 +1,9 @@
 2005-02-21  Larry Ewing  <lewing@novell.com>
 
+	* src/Exif.cs: remove small thinko in exif parsing.
+
+	* src/FolderExport.cs: set the description string.
+
 	* src/f-spot.glade: fix up folder export dialog.
 	
 	* src/FolderExport.cs: new file does original and static html

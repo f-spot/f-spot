@@ -709,7 +709,7 @@ namespace Exif {
 						if (value [i] == 0) 
 							break;
 					}
-					int len = System.Math.Max (i - 1, 0);
+					int len = System.Math.Max (i, 0);
 					if (len == 0)
 						return null;
 					
