@@ -711,8 +711,7 @@ public class MainWindow {
 	}
 #endif	
 
-	
-	private Gtk.Window info_display_window;
+	private Gtk.Dialog info_display_window;
 	public void HandleInfoDisplayDestroy (object sender, EventArgs args)
 	{
 		info_display_window = null;
@@ -727,18 +726,17 @@ public class MainWindow {
 		}
 
 		info_display = new FSpot.InfoDisplay ();
-		
-		Gtk.Window win = new Gtk.Window ("EXIF Data");
-		win.SetDefaultSize (400, 400);
+		info_display_window = new Gtk.Dialog ("EXIF Data", main_window, 
+						      Gtk.DialogFlags.NoSeparator | Gtk.DialogFlags.DestroyWithParent);
+		info_display_window.SetDefaultSize (400, 400);
 		Gtk.ScrolledWindow scroll = new ScrolledWindow ();
-		win.Add (scroll);
+		info_display_window.VBox.PackStart (scroll);
 		scroll.Add (info_display);
 
 		info_display.Photo = CurrentPhoto;
 	       
-		win.ShowAll ();
-
-		win.Destroyed += HandleInfoDisplayDestroy;
+		info_display_window.ShowAll ();
+		info_display_window.Destroyed += HandleInfoDisplayDestroy;
 	}
 
 

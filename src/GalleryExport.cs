@@ -69,6 +69,10 @@ namespace FSpot {
 		public GalleryAdd (GalleryExport export) {
 			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "gallery_add_dialog", null);
 			xml.Autoconnect (this);
+
+			gallery_add_dialog.Modal = false;
+			gallery_add_dialog.TransientFor = export.Dialog;
+			gallery_add_dialog.Show ();
 		}
 
 		private void HandleChanged (object sender, System.EventArgs args)
@@ -145,15 +149,17 @@ namespace FSpot {
 			xml.Autoconnect (this);
 			
 			IconView view = new IconView (new PhotoArray (photos));
-			view.Show ();
+			Dialog.Modal = false;
+			Dialog.TransientFor = null;
 
 			thumb_scrolledwindow.Add (view);
+			Dialog.ShowAll ();
 
 			LoadAccounts ();
 			
 			Gtk.ResponseType response = (Gtk.ResponseType) gallery_export_dialog.Run ();
 
-			if (response == Gtk.ResponseType.Cancel)
+			if (response != Gtk.ResponseType.Ok)
 				return;
 
 			scale = scale_check.Active;
@@ -313,7 +319,7 @@ namespace FSpot {
 						label_builder.Append ("  ");
 						//Console.WriteLine ("looping");
 					}
-					label_builder.Append (album.Name);
+					label_builder.Append (album.Title);
 
 					Gtk.MenuItem item = new Gtk.MenuItem (label_builder.ToString ());
 					menu.Append (item);
