@@ -25,6 +25,7 @@ public class PhotoQuery {
 	{
 		this.store = store;
 		photos = store.Query (null);
+		Array.Sort (photos);
 	}
 
 	public void RequestReload ()
@@ -42,6 +43,7 @@ public class PhotoQuery {
 		set {
 			tags = value;
 			photos = store.Query (tags);
+			Array.Sort (photos);
 			RequestReload ();
 		}
 	}

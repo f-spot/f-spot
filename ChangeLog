@@ -1,7 +1,10 @@
 2004-03-05  Larry Ewing  <lewing@ximian.com>
 
+	* src/PhotoQuery.cs: use Array.Sort to preserve the order of the
+	photos.
+
 	* src/PhotoStore.cs: implement a basic IComparable on Photo so
-	that we can sort the array when needed.
+	that we can sort the array when needed.sr
 
 2004-03-04  Larry Ewing  <lewing@ximian.com>
 
