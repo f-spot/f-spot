@@ -87,6 +87,9 @@ namespace FSpot {
 		
 		public void RangeChanged (object sender, EventArgs args)
 		{
+			if (!view.CurrentPhotoValid ())
+				return;
+
 			if (thread != null && thread.IsAlive)
 				thread.Abort ();
 			
@@ -96,6 +99,9 @@ namespace FSpot {
 		
 		public void Save ()
 		{
+			if (!view.CurrentPhotoValid ())
+				return;
+
 			Console.WriteLine ("Saving....");
 			Photo photo = view.Query.Photos[view.CurrentPhoto];
 			
@@ -150,9 +156,11 @@ namespace FSpot {
 
 		private void HandlePhotoChanged (PhotoImageView view)
 		{
-			AdjustedPixbuf = PhotoLoader.LoadAtMaxSize (view.Query.Photos [view.CurrentPhoto], 300, 300);
-			ScaledPixbuf = AdjustedPixbuf.Copy ();			
-			RangeChanged (null, null);
+			if (view.CurrentPhotoValid ()) {
+				AdjustedPixbuf = PhotoLoader.LoadAtMaxSize (view.Query.Photos [view.CurrentPhoto], 300, 300);
+				ScaledPixbuf = AdjustedPixbuf.Copy ();			
+				RangeChanged (null, null);
+			}
 		}
 		
 		private void HandleCancelClicked (object sender, EventArgs args)
@@ -189,12 +197,14 @@ namespace FSpot {
 		private void AttachInterface (string ui_path)
 		{
 			Glade.XML xml = new Glade.XML (null, "f-spot.glade", ui_path, null);
-
+			/*
+			if (!view.CurrentPhotoValid ())
+				return;
+			*/
+			HandlePhotoChanged (view);
 			view.PhotoChanged += HandlePhotoChanged;
 			xml.Autoconnect (this);
-			
-			AdjustedPixbuf = PhotoLoader.LoadAtMaxSize (view.Query.Photos [view.CurrentPhoto], 300, 300);
-			ScaledPixbuf = AdjustedPixbuf.Copy ();
+
 
 			hist = new FSpot.Histogram ();
 			expose_timeout = new FSpot.Delay (new GLib.IdleHandler (this.QueueDraw));
@@ -208,7 +218,6 @@ namespace FSpot {
 			hist.Color [3] = 0xff;
 			#endif
 
-			hist.FillValues (AdjustedPixbuf);
 			histogram_image.Pixbuf = hist.GeneratePixbuf ();
 
 			brightness_spinbutton.Adjustment = brightness_scale.Adjustment;

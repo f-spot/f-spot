@@ -1,5 +1,11 @@
 2005-01-21  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: handle out of range photos more gracefully.
+
+	* src/ColorDialog.cs: handle invalid photos better.
+
+	* src/PhotoView.cs: desensitize buttons if the photo isn't valid.
+
 	* src/OriginalExport.cs: fix the uri case a little.
 
 	* src/OriginalExport.cs: only create a tempdirectory if we need

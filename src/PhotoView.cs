@@ -53,6 +53,9 @@ public class PhotoView : EventBox {
 	private Label count_label;
 	private Entry description_entry;
 
+	private Gtk.Button crop_button;
+	private Gtk.Button color_button;
+
 	FSpot.AsyncPixbufLoader loader = new FSpot.AsyncPixbufLoader ();
 
 	private const double MAX_ZOOM = 5.0;
@@ -124,11 +127,15 @@ public class PhotoView : EventBox {
 
 	private void UpdateButtonSensitivity ()
 	{
-		bool prev = CurrentPhotoValid () && CurrentPhoto > 0;
-		bool next = CurrentPhotoValid () && CurrentPhoto < query.Photos.Length -1;
+		bool valid = CurrentPhotoValid ();
+		bool prev = valid && CurrentPhoto > 0;
+		bool next = valid && CurrentPhoto < query.Photos.Length -1;
 
 		display_previous_button.Sensitive = prev;
 		display_next_button.Sensitive = next;
+
+		crop_button.Sensitive = valid;
+		color_button.Sensitive = valid;
 	}
 
 	private void UpdateCountLabel ()
@@ -255,7 +262,7 @@ public class PhotoView : EventBox {
 			PhotoChanged (this);
 	}
 
-	private void HandleUnsharpButtonClicked (object sender, EventArgs args) {
+	private void HandleColorButtonClicked (object sender, EventArgs args) {
 		new FSpot.ColorDialog (photo_view);
 	}	
 
@@ -336,13 +343,11 @@ public class PhotoView : EventBox {
 	private void HandlePhotoChanged (FSpot.PhotoImageView view)
 	{
 		CommitPendingChanges ();
+		bool valid = CurrentPhotoValid ();
 
 		Update ();
 
-		if (CurrentPhotoValid ()) 
-			tag_view.Current = query.Photos [CurrentPhoto];
-		else 
-			tag_view.Current = null;
+		tag_view.Current = valid ? query.Photos [CurrentPhoto] : null;
 
 		if (this.PhotoChanged != null)
 			PhotoChanged (this);
@@ -410,19 +415,17 @@ public class PhotoView : EventBox {
 
 		toolbar_hbox.PackStart (CreateConstraintsOptionMenu (), false, false, 0);
 
-		Button crop_button = new ToolbarButton ();
-		Gtk.Image crop_button_icon = new Gtk.Image ("f-spot-crop", IconSize.Button);
-		crop_button.Add (crop_button_icon);
+		crop_button = new ToolbarButton ();
+		crop_button.Add (new Gtk.Image ("f-spot-crop", IconSize.Button));
 		toolbar_hbox.PackStart (crop_button, false, true, 0);
 	
 		crop_button.Clicked += new EventHandler (HandleCropButtonClicked);
 
-		Button unsharp_button = new ToolbarButton ();
-		Gtk.Image unsharp_button_icon = new Gtk.Image ("f-spot-edit-image", IconSize.Button);
-		unsharp_button.Add (unsharp_button_icon);
-		toolbar_hbox.PackStart (unsharp_button, false, true, 0);
+		color_button = new ToolbarButton ();
+		color_button.Add (new Gtk.Image ("f-spot-edit-image", IconSize.Button));
+		toolbar_hbox.PackStart (color_button, false, true, 0);
 	
-		unsharp_button.Clicked += new EventHandler (HandleUnsharpButtonClicked);
+		color_button.Clicked += new EventHandler (HandleColorButtonClicked);
 
 		/* Spacer Label */
 		toolbar_hbox.PackStart (new Label (""), true, true, 0);

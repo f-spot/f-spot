@@ -306,7 +306,7 @@ public class MainWindow {
 
 
 	public int [] SelectedIds () {
-		int [] ids;
+		int [] ids = new int [0];
 
 		if (fsview != null)
 			ids = new int [] { fsview.View.CurrentPhoto };
@@ -317,7 +317,8 @@ public class MainWindow {
 				break;
 			default:
 			case ModeType.PhotoView:
-				ids = new int [] { photo_view.CurrentPhoto };
+				if (photo_view.View.CurrentPhotoValid ())
+					ids = new int [] { photo_view.CurrentPhoto };
 				break;
 			}
 		}
@@ -1395,7 +1396,7 @@ public class MainWindow {
 	{
 		CurrentPhoto.DefaultVersionId = version_id;
 		int active = ActiveIndex ();
-
+		
 		query.Commit (active);
 	}
 
