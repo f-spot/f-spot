@@ -1,5 +1,23 @@
 2003-11-11  Ettore Perazzoli  <ettore@ximian.com>
 
+	* src/TagSelectionWidget.cs (TagSelectionWidget.IconDataFunc):
+	New.
+	(TagSelectionWidget.ctor): Hook it up so we can display the icon
+	for the tag.
+
+	* src/TagStore.cs (PixbufSerializer): New temporary class to avoid
+	using the broken GTK# bindings for gdk_pixdata_serialize() and
+	gdk_pixdata_deserialize().
+	(GetIconString): Get the base64 encoded version of the pixbuf.
+	(TagStore.LoadAllTags): Get the icons.
+	(TagStore.CreateDefaultTags): Set the f-spot-favorite icon for the
+	favorites tag.
+	(TagStore.Commit): Save the icon.
+
+	* icons/f-spot-favorite.png: New.
+
+2003-11-11  Ettore Perazzoli  <ettore@ximian.com>
+
 	* src/PhotoStore.cs (Photo.CreateDefaultModifiedVersion): Start at
 	"(2)" for "Modified" versions past the first one, instead of
 	"(1)".  [So if you have a "Modified" version now you get "Modified

@@ -1,9 +1,51 @@
-using Gnome;
 using Gdk;
+using Gnome;
+using Gtk;
 using Mono.Data.SqliteClient;
 using System.Collections;
 using System.IO;
 using System;
+
+
+// FIXME: This is to workaround the currently busted GTK# bindings.
+using System.Runtime.InteropServices;
+
+public class PixbufSerializer {
+	[DllImport("libgdk_pixbuf-2.0-0.dll")]
+	static extern unsafe bool gdk_pixdata_deserialize(ref Gdk.Pixdata raw, uint stream_length, byte [] stream, out IntPtr error);
+
+	public static unsafe Pixbuf Deserialize (byte [] data)
+	{
+		Pixdata pixdata = new Pixdata ();
+
+		IntPtr error = IntPtr.Zero;
+		bool raw_ret = gdk_pixdata_deserialize (ref pixdata, (uint) data.Length, data, out error);
+		bool ret = raw_ret;
+
+		if (error != IntPtr.Zero)
+			throw new GLib.GException (error);
+
+		return Pixbuf.FromPixdata (pixdata, true);
+	}
+
+	[DllImport("libgdk_pixbuf-2.0-0.dll")]
+	static extern IntPtr gdk_pixdata_serialize(ref Gdk.Pixdata raw, out uint stream_length_p);
+
+	public static byte [] Serialize (Pixbuf pixbuf)
+	{
+		Pixdata pixdata = new Pixdata ();
+		pixdata.FromPixbuf (pixbuf, true); // FIXME GTK# shouldn't this be a constructor or something?
+
+		uint data_length;
+		IntPtr raw_data = gdk_pixdata_serialize (ref pixdata, out data_length);
+
+		byte [] data = new byte [data_length];
+		Marshal.Copy (raw_data, data, 0, (int) data_length);
+
+		return data;
+	}
+}
+
 
 public class Tag : DbItem, IComparable {
 	private string name;
@@ -41,7 +83,6 @@ public class Tag : DbItem, IComparable {
 		}
 	}
 
-	// FIXME this is not stored in the database (yet!).
 	private Pixbuf icon;
 	public Pixbuf Icon {
 		set {
@@ -134,19 +175,22 @@ public class TagStore : DbStore {
 
 		// Pass 1, get all the tags.
 
-		command.CommandText = "SELECT id, name, is_category, sort_priority FROM tags";
+		command.CommandText = "SELECT id, name, is_category, sort_priority, icon FROM tags";
 		SqliteDataReader reader = command.ExecuteReader ();
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader [0]);
 			string name = reader [1].ToString ();
 			bool is_category = (Convert.ToUInt32 (reader [2]) != 0);
+			string icon_string = reader [4].ToString ();
 
 			Tag tag;
 			if (is_category)
 				tag = new Category (null, id, name);
 			else
 				tag = new Tag (null, id, name);
+
+			tag.Icon = PixbufSerializer.Deserialize (Convert.FromBase64String (icon_string));
 
 			tag.SortPriority = Convert.ToInt32 (reader[3]);
 			AddToCache (tag);
@@ -194,10 +238,22 @@ public class TagStore : DbStore {
 		command.Dispose ();
 	}
 
+
+	// FIXME work around breakage of loading of pixbufs from resources.
+	[DllImport ("libgobject-2.0-0.dll")]
+	static extern void g_object_ref (IntPtr raw);
+
 	private void CreateDefaultTags ()
 	{
 		Tag favorites_tag = CreateTag (RootCategory, "Favorites");
+
+		// FIXME the ref is to work around a GTK# bug.
+		Pixbuf pixbuf = new Pixbuf (null, "f-spot-favorite.png");
+		g_object_ref (pixbuf.Handle);
+
+		favorites_tag.Icon = pixbuf;
 		favorites_tag.SortPriority = -10;
+
 		Commit (favorites_tag);
 	}
 
@@ -284,6 +340,16 @@ public class TagStore : DbStore {
 		command.Dispose ();
 	}
 
+
+	private string GetIconString (Tag tag)
+	{
+		if (tag.Icon == null)
+			return "";
+
+		byte [] data = PixbufSerializer.Serialize (tag.Icon);
+		return Convert.ToBase64String (data);
+	}
+
 	public override void Commit (DbItem item)
 	{
 		Tag tag = item as Tag;
@@ -295,13 +361,15 @@ public class TagStore : DbStore {
 						     "    name = '{0}',        " +
 						     "    category_id = {1},   " +
 						     "    is_category = {2},   " +
-						     "    sort_priority = {3}  " +
-						     "WHERE id = {3}           ",
+						     "    sort_priority = {3}, " +
+						     "    icon = '{4}'	       " +
+						     "WHERE id = {5}           ",
 						     SqlString (tag.Name),
 						     tag.Category.Id,
 						     tag is Category ? 1 : 0,
-						     tag.Id,
-						     tag.SortPriority);
+						     tag.SortPriority,
+						     SqlString (GetIconString (tag)),
+						     tag.Id);
 		command.ExecuteNonQuery ();
 
 		command.Dispose ();

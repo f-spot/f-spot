@@ -156,6 +156,19 @@ public class TagSelectionWidget : TreeView {
 		(renderer as CellRendererToggle).Active = IsSelected (tag);
 	}
 
+	private void IconDataFunc (TreeViewColumn column, 
+				   CellRenderer renderer,
+				   TreeModel model,
+				   TreeIter iter)
+	{
+		GLib.Value value = new GLib.Value ();
+		Model.GetValue (iter, 0, value);
+		uint tag_id = (uint) value;
+		Tag tag = tag_store.Get (tag_id) as Tag;
+
+		(renderer as CellRendererPixbuf).Pixbuf = tag.Icon;
+	}
+
 	private void NameDataFunc (TreeViewColumn column,
 				   CellRenderer renderer,
 				   TreeModel model,
@@ -185,6 +198,7 @@ public class TagSelectionWidget : TreeView {
 		toggle_renderer.Toggled += new ToggledHandler (OnCellToggled);
 
 		AppendColumn ("check", toggle_renderer, new TreeCellDataFunc (CheckBoxDataFunc));
+		AppendColumn ("icon", new CellRendererPixbuf (), new TreeCellDataFunc (IconDataFunc));
 		AppendColumn ("name", new CellRendererText (), new TreeCellDataFunc (NameDataFunc));
 
 		this.tag_store = tag_store;

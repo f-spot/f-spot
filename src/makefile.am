@@ -25,6 +25,7 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/PhotoView.cs			\
 	$(srcdir)/PixbufLoader.cs		\
 	$(srcdir)/PixbufUtils.cs		\
+	$(srcdir)/RotateCommand.cs		\
 	$(srcdir)/SqliteCommand.cs		\
 	$(srcdir)/SqliteConnection.cs		\
 	$(srcdir)/SqliteDataReader.cs		\
@@ -52,6 +53,7 @@ RESOURCES =										\
 	/resource:$(top_srcdir)/icons/f-spot-crop.png,f-spot-crop.png			\
 	/resource:$(top_srcdir)/icons/f-spot-camera.png,f-spot-camera.png		\
 	/resource:$(top_srcdir)/icons/f-spot-question-mark.png,f-spot-question-mark.png \
+	/resource:$(top_srcdir)/icons/f-spot-favorite.png,f-spot-favorite.png 		\
 	/resource:$(srcdir)/f-spot.glade,f-spot.glade
 
 fspotlibdir = $(prefix)/lib/f-spot
