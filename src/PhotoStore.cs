@@ -976,7 +976,7 @@ public class PhotoStore : DbStore {
 					      "       photos.description,                 " +
 					      "       photos.default_version_id,          " +
 					      "       photo_tags.tag_id                   " +
-					      "     FROM photos, photo_tags               " +
+					      "     FROM photo_tags, photos               " +
 					      "     WHERE photos.id = photo_tags.photo_id ");
 			
 			if (range != null) {
@@ -1006,11 +1006,12 @@ public class PhotoStore : DbStore {
 			query = query_builder.ToString ();
 		}
 
+		Console.WriteLine ("Main Start {0}", System.DateTime.Now);
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
 		command.CommandText = query;
 		SqliteDataReader reader = command.ExecuteReader ();
-
+		Console.WriteLine ("Main Mid {0}", System.DateTime.Now);
 		ArrayList version_list = new ArrayList ();
 		ArrayList id_list = new ArrayList ();
 		while (reader.Read ()) {
@@ -1034,6 +1035,7 @@ public class PhotoStore : DbStore {
 
 			id_list.Add (photo);
 		}
+		Console.WriteLine ("Main End {0}", System.DateTime.Now);
 
 		bool need_load = false;
 		Console.WriteLine ("Start {0}", System.DateTime.Now);
