@@ -1,5 +1,8 @@
 2005-01-17  Larry Ewing  <lewing@novell.com>
 
+	* src/ThumbnailGenerator.cs: don't remove the files ahead of time
+	SaveThumbnail does a better job.
+
 	* src/PixbufUtils.cs: catch missing files here for now.
 
 	* src/PhotoLoader.cs: Handle missing files with a lame exception

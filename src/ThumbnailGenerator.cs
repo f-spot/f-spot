@@ -34,8 +34,6 @@ namespace FSpot {
 				
 				string large_path = Gnome.Thumbnail.PathForUri (uri, Gnome.ThumbnailSize.Large);
 				try {
-					
-					System.IO.File.Delete (large_path);
 					ThumbnailCache.Default.RemoveThumbnailForPath (large_path);
 				} finally {
 					large_factory.SaveThumbnail (image, uri, mtime);
@@ -45,7 +43,6 @@ namespace FSpot {
 				PixbufUtils.CopyThumbnailOptions (image, small);
 				string small_path = Gnome.Thumbnail.PathForUri (uri, Gnome.ThumbnailSize.Normal);
 				try {
-					System.IO.File.Delete (small_path);
 					ThumbnailCache.Default.RemoveThumbnailForPath (small_path);
 				} finally {
 					small_factory.SaveThumbnail (small, uri, mtime);
