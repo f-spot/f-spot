@@ -79,7 +79,7 @@ namespace FSpot {
 			
 			this.selection = selection;
 			
-			IconView view = new IconView (selection);
+			IconView view = (IconView) new ScalingIconView (selection);
 			view.DisplayDates = false;
 			view.DisplayTags = false;
 

@@ -35,10 +35,10 @@ namespace FSpot {
 			PixbufUtils.SetOption (image, "tEXt::Thumb::URI", uri);
 			PixbufUtils.SetOption (image, "tEXt::Thumb::MTime", 
 					       ((uint)GLib.Marshaller.DateTimeTotime_t (mtime)).ToString ());
-			
-			System.Console.WriteLine ("saving uri \"{0}\" mtime \"{1}\"", 
-						  image.GetOption ("tEXt::Thumb::URI"), 
-						  image.GetOption ("tEXt::Thumb::MTime"));
+
+			//System.Console.WriteLine ("saving uri \"{0}\" mtime \"{1}\"", 
+			//			  image.GetOption ("tEXt::Thumb::URI"), 
+			//			  image.GetOption ("tEXt::Thumb::MTime"));
 			
 			string large_path = Gnome.Thumbnail.PathForUri (uri, Gnome.ThumbnailSize.Large);
 			try {
@@ -61,7 +61,7 @@ namespace FSpot {
 				//image.Dispose ();
 			}
 
-			System.Threading.Thread.Sleep (100);
+			//System.Threading.Thread.Sleep (50);
 		}
 	}
 }

@@ -8,6 +8,69 @@ using System.IO;
 using System;
 
 public class ImportCommand : FSpot.GladeDialog {
+	private class VolumeItem : Gtk.ImageMenuItem {
+		public Gnome.Vfs.Volume Volume;
+		
+		public VolumeItem (Gnome.Vfs.Volume vol) : base (vol.DisplayName)
+		{
+			this.Volume = vol;
+			this.Image = new Gtk.Image (vol.Icon);
+
+			Gdk.Pixbuf icon = PixbufUtils.LoadThemeIcon (vol.Icon, 32);
+			if (icon != null)
+				this.Image = new Gtk.Image (icon);
+
+			
+		}
+
+	}
+
+	private class DriveItem : Gtk.ImageMenuItem {
+		public Gnome.Vfs.Drive Drive;
+		
+		public DriveItem (Gnome.Vfs.Drive drive) : base (drive.DisplayName)
+		{
+			this.Drive = drive;
+
+			Gdk.Pixbuf icon;
+			if (drive.IsMounted) {
+				icon = PixbufUtils.LoadThemeIcon (drive.MountedVolume.Icon, 32);
+				this.Sensitive = drive.MountedVolume.IsMounted;
+			} else {
+				icon = PixbufUtils.LoadThemeIcon (drive.Icon, 32);
+			}
+
+			if (icon != null)
+				this.Image = new Gtk.Image (icon);
+		}
+	}
+	
+	private class SourceMenu : Gtk.Menu {
+		public SourceMenu () {
+			Gnome.Vfs.VolumeMonitor monitor = Gnome.Vfs.VolumeMonitor.Get ();
+
+			foreach (Gnome.Vfs.Drive drive in monitor.ConnectedDrives) {
+				 this.Append (new DriveItem (drive));
+			 }
+
+			 foreach (Gnome.Vfs.Volume vol in monitor.MountedVolumes) {
+				 System.Console.WriteLine ("{0} - {1} - {2} {3} {4}",
+							   vol.DisplayName, 
+							   vol.Icon, 
+							   vol.VolumeType.ToString (), 
+							   vol.ActivationUri, 
+							   vol.IsMounted);
+
+				 if (vol.Drive != null)
+					 System.Console.WriteLine (vol.Drive.DeviceType.ToString ());
+								   
+				if (vol.IsUserVisible)
+					this.Append (new VolumeItem (vol));
+			}
+
+			this.ShowAll ();
+		}
+	}
 
 	private class PhotoGrid : Table {
 		const int NUM_COLUMNS = 5;
@@ -233,7 +296,8 @@ public class ImportCommand : FSpot.GladeDialog {
 		tagmenu.Prepend (attach_item);
 		
 		tag_option_menu.Menu = tagmenu;
-		
+		//tag_option_menu.Menu = new SourceMenu ();
+
 		tag_selected = null;
 				
 		if (path != null)
