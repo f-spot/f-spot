@@ -372,6 +372,7 @@ public class IconView : Gtk.Layout {
 		Gdk.GC gc = new Gdk.GC (BinWindow);
 		gc.Copy (Style.ForegroundGC (StateType.Normal));
 		gc.SetLineAttributes (1, LineStyle.Solid, CapStyle.NotLast, JoinStyle.Round);
+		bool selected = CellIsSelected (thumbnail_num);
 
 		Photo photo = query.Photos [thumbnail_num];
 
@@ -392,10 +393,17 @@ public class IconView : Gtk.Layout {
 			PixbufUtils.Fit (thumbnail, ThumbnailWidth, ThumbnailHeight, true, out width, out height);
 
 			Pixbuf temp_thumbnail;
-			if (width == thumbnail.Width)
+			if (selected) {
+				temp_thumbnail = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, width, height);
+				temp_thumbnail.Fill (0);
+				thumbnail.Composite (temp_thumbnail, 0, 0, width, height, 
+						     0, 0, width / (double) thumbnail.Width, height/ (double) thumbnail.Height, 
+						     InterpType.Bilinear, 127);
+			} else if (width == thumbnail.Width) {
 				temp_thumbnail = thumbnail;
-			else
+			} else {
 				temp_thumbnail = thumbnail.ScaleSimple (width, height, InterpType.Bilinear);
+			}
 
 			int dest_x = (int) (x + (cell_width - width) / 2);
 			int dest_y;
@@ -403,14 +411,8 @@ public class IconView : Gtk.Layout {
 				dest_y = (int) (y + (cell_height - height - (TAG_ICON_SIZE + TAG_ICON_VSPACING)) / 2);
 			else
 				dest_y = (int) (y + (cell_height - height) / 2);
-
-			temp_thumbnail.RenderToDrawable (BinWindow, Style.WhiteGC,
-							 0, 0, dest_x, dest_y, width, height, RgbDither.None, 0, 0);
 			
-			if (temp_thumbnail != thumbnail)
-				temp_thumbnail.Dispose ();
-			
-			if (CellIsSelected (thumbnail_num)) {
+			if (selected) {
 				Gdk.GC selection_gc = new Gdk.GC (BinWindow);
 
 				if (HasFocus)
@@ -420,10 +422,16 @@ public class IconView : Gtk.Layout {
 
 				selection_gc.SetLineAttributes (SELECTION_THICKNESS, LineStyle.Solid, CapStyle.Butt, JoinStyle.Miter);
 
-				BinWindow.DrawRectangle (selection_gc, false,
+				BinWindow.DrawRectangle (selection_gc, true,
 							 dest_x - SELECTION_THICKNESS, dest_y - SELECTION_THICKNESS,
 							 width + 2 * SELECTION_THICKNESS, height + 2 * SELECTION_THICKNESS);
 			}
+
+			temp_thumbnail.RenderToDrawable (BinWindow, Style.WhiteGC,
+							 0, 0, dest_x, dest_y, width, height, RgbDither.None, 0, 0);
+			
+			if (temp_thumbnail != thumbnail)
+				temp_thumbnail.Dispose ();
 		}
 
 		if (DisplayTags) {
