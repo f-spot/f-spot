@@ -1,10 +1,15 @@
 2004-08-15  Larry Ewing  <lewing@novell.com>
 
-	* src/GroupSelector.cs: Add prelighting to the glass, hook up
-	event_window.
+	* src/GroupSelector.cs: refactor Glass and Limit into Manipulator
+	(lame name) superclass.  Move hit testing into Manipulator.
+
+004-08-15  Larry Ewing  <lewing@novell.com>
 
 	* src/GroupSelector.cs: refactor bounds checking add button press
 	handler for click to move glass.
+
+	* src/GroupSelector.cs: Add prelighting to the glass, hook up
+	event_window.
 
 2004-08-14  Larry Ewing  <lewing@novell.com>
 

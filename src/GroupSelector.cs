@@ -63,7 +63,7 @@ namespace FSpot {
 			int i = 0;
 			while (i < box_counts.Length) {
 				if (BoxTest (BoxBounds (i), args.X, args.Y)){
-				    glass.Item = i;
+				    glass.Position = i;
 				    return false;
 				}
 				i++;
@@ -88,7 +88,7 @@ namespace FSpot {
 			Rectangle box = glass.Bounds ();
 			//Console.WriteLine ("please {0} and {1} in box {2}", args.X, args.Y, box);
 
-			if (BoxTest (glass.Bounds (), args.X, args.Y))
+			if (glass.IsInside (args.X, args.Y))
 				glass.State = StateType.Prelight;
 			else 
 				glass.State = StateType.Normal;
@@ -208,12 +208,9 @@ namespace FSpot {
 			}
 		}
 
-		private class Glass {
-			private int item;
-			private int offset;
-			private GroupSelector selector;
-			private int handle_height = 15;
-
+		public class Manipulator {
+			protected GroupSelector selector;
+			
 			private StateType state;
 			public StateType State {
 				get {
@@ -227,29 +224,58 @@ namespace FSpot {
 				}
 			}
 
+			private int position;
+			public int Position {
+				get {
+					return position;
+				}
+				set {
+					Rectangle then = Bounds ();
+					position = value;
+					Rectangle now = Bounds ();
+					
+					if (selector.Visible) {
+						selector.GdkWindow.InvalidateRect (then, false);
+						selector.GdkWindow.InvalidateRect (now, false);
+					}
+				}
+			}
+
+			public virtual void Draw (Rectangle area)
+			{
+				Console.WriteLine ("implement me Draw ({0})", area);
+			}
+			
+			public virtual Rectangle Bounds () 
+			{
+				Console.WriteLine ("implement me Bounds ()");
+				return Rectangle.Zero;
+			}
+
+			public virtual bool IsInside (double x, double y)
+			{
+				return BoxTest (Bounds (), x, y);
+			}
+
+			public Manipulator (GroupSelector selector) 
+			{
+				this.selector = selector;
+			}
+		}
+		
+		private class Glass : Manipulator {
+			private int offset;
+			private int handle_height = 15;
+
 			private int border {
 				get {
 					return selector.box_spacing * 2;
 				}
 			}
 
-			public int Item {
-				set {
-					Rectangle then = Bounds ();
-					item = value;
-					Rectangle now = Bounds ();
-
-					selector.GdkWindow.InvalidateRect (then, false);
-					selector.GdkWindow.InvalidateRect (now, false);
-				}
-				get {
-					return item;
-				}
-			}
-
-			public Rectangle Bounds () 
+			public override Rectangle Bounds () 
 			{
-				Rectangle box = BoxBounds (item);
+				Rectangle box = selector.BoxBounds (Position);
 
 				box.X -= border;
 				box.Y -= border;
@@ -259,9 +285,9 @@ namespace FSpot {
 				return box;
 			}
 
-			public void Draw (Rectangle area)
+			public override void Draw (Rectangle area)
 			{
-				Rectangle inner = BoxBounds (item);
+				Rectangle inner = selector.BoxBounds (Position);
 				Rectangle bounds = Bounds ();
 				
 				if (bounds.Intersect (area, out area)) {
@@ -295,42 +321,22 @@ namespace FSpot {
 				}
 			}
 			
-			public Glass (GroupSelector selector) {
-				this.selector = selector;
-			}
+			public Glass (GroupSelector selector) : base (selector) {}
 		}
 
-		public class Limit {
-			GroupSelector selector;
-			private int position;
+		public class Limit : Manipulator {
 			int width = 10;
 			int handle_height = 10;
 
-			public int Position {
-				get {
-					return position;
-				}
-				set {
-					Rectangle then = Bounds ();
-					position = value;
-					Rectangle now = Bounds ();
-					
-					if (selector.Visible) {
-						selector.GdkWindow.InvalidateRect (then, false);
-						selector.GdkWindow.InvalidateRect (now, false);
-					}
-				}
-			}
-
-			public Rectangle Bounds () 
+			public override Rectangle Bounds () 
 			{
 				Rectangle bounds = new Rectangle (0, 0, width, selector.background.Height + handle_height);
-				bounds.X = selector.BoxX (position) - bounds.Width /2;
+				bounds.X = selector.BoxX (Position) - bounds.Width /2;
 				bounds.Y = selector.background.Y - handle_height/2;
 				return bounds;
 			}
 
-			public void Draw (Rectangle Area) 
+			public override void Draw (Rectangle Area) 
 			{
 				Rectangle bounds = Bounds ();
 				Rectangle top = new Rectangle (bounds.X,
@@ -341,15 +347,13 @@ namespace FSpot {
 				Rectangle bottom = new Rectangle (bounds.X,
 								  bounds.Y + bounds.Height - handle_height,
 								  bounds.Width,
-								  handle_height);								  
+								  handle_height);
+
 				selector.GdkWindow.DrawRectangle (selector.Style.TextGC (selector.State), true, top);
 				selector.GdkWindow.DrawRectangle (selector.Style.TextGC (selector.State), true, bottom);
 			}
 
-			public Limit (GroupSelector selector) 
-			{
-				this.selector = selector;
-			}
+			public Limit (GroupSelector selector) : base (selector) {}
 		}
 		
 		protected override void OnMapped ()
@@ -442,17 +446,17 @@ namespace FSpot {
 
 			switch (args.Event.Key) {
 			case Gdk.Key.Left:
-				if (glass.Item > 0)
-					this.glass.Item--;
+				if (glass.Position > 0)
+					this.glass.Position--;
 				else 
-					glass.Item = box_counts.Length - 1;
+					glass.Position = box_counts.Length - 1;
 
 				break;
 			case Gdk.Key.Right:
-				if (glass.Item < box_counts.Length - 1)
-					glass.Item++;
+				if (glass.Position < box_counts.Length - 1)
+					glass.Position++;
 				else
-					glass.Item = 0;
+					glass.Position = 0;
 
 				break;
 			case Gdk.Key.Down:
