@@ -173,7 +173,7 @@ public class IconView : Gtk.Layout {
 	public IconView (PhotoQuery query) : this ()
 	{
 		this.query = query;
-		query.Reload += new PhotoQuery.ReloadHandler (OnReload);
+		query.Reload += OnReload;
 	}
 
 	protected IconView (IntPtr raw) : base (raw) {}
