@@ -1,5 +1,3 @@
-using System;
-
 namespace FSpot {
 	public class PhotoLoader {
 		public PhotoQuery query;
@@ -44,12 +42,11 @@ namespace FSpot {
 		{
 			bool valid = false;
 
-			DateTime mtime = System.IO.File.GetLastWriteTime (uri.LocalPath);
-
-			try {
+			try {			
+				System.DateTime mtime = System.IO.File.GetLastWriteTime (uri.LocalPath);
 				valid  = Gnome.Thumbnail.IsValid (thumbnail, uri.ToString (), mtime);
-			} catch (Exception e) {
-				Console.WriteLine (e);
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e);
 				valid = false;
 			}
 			

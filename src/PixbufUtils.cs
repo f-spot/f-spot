@@ -133,17 +133,21 @@ class PixbufUtils {
 	{
 		Console.WriteLine ("Generating thumbnail");
 		string uri = UriList.PathToFileUri (path).ToString ();
-
-		Gdk.Pixbuf scaled = PixbufUtils.LoadAtMaxSize (path, 256, 256);
-		DateTime mtime = System.IO.File.GetLastWriteTime (path);
 		
-		PixbufUtils.SetOption (scaled, "tEXt::Thumb::URI", uri);
-		PixbufUtils.SetOption (scaled, "tEXt::Thumb::MTime", 
-				       ((uint)GLib.Marshaller.DateTimeTotime_t (mtime)).ToString ());
-
-		PhotoStore.ThumbnailFactory.SaveThumbnail (scaled, uri, mtime);
-		ThumbnailCache.Default.AddThumbnail (path, scaled);
-		return scaled;
+		try {
+			Gdk.Pixbuf scaled = PixbufUtils.LoadAtMaxSize (path, 256, 256);
+			DateTime mtime = System.IO.File.GetLastWriteTime (path);
+			
+			PixbufUtils.SetOption (scaled, "tEXt::Thumb::URI", uri);
+			PixbufUtils.SetOption (scaled, "tEXt::Thumb::MTime", 
+					       ((uint)GLib.Marshaller.DateTimeTotime_t (mtime)).ToString ());
+			
+			PhotoStore.ThumbnailFactory.SaveThumbnail (scaled, uri, mtime);
+			ThumbnailCache.Default.AddThumbnail (path, scaled);
+			return scaled;
+		} catch {
+			return null;
+		}
 	}
 		
 	static public Pixbuf LoadAtMaxSize (string path, int max_width, int max_height)
