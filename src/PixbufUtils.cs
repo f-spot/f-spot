@@ -129,26 +129,27 @@ class PixbufUtils {
 		{
 			FileStream fs;
 
-			orientation = GetOrientation (path);
 			try {
+				orientation = GetOrientation (path);
 				fs = File.OpenRead (path);
+				int count;
+				
+				byte [] data = new byte [8192];
+				while (((count = fs.Read (data, 0, 8192)) > 0) && this.Write (data, (uint)count))
+					;
+				
+				this.Close ();
+				Gdk.Pixbuf rotated = TransformOrientation (this.Pixbuf, orientation, true);
+				
+				if (this.Pixbuf != rotated)
+					this.Pixbuf.Dispose ();
+				
+				return rotated;
 			} catch (Exception e) {
+				System.Console.Write ("Error loading image {0}", path);
 				return null;
 			}
 
-			int count;
-			
-			byte [] data = new byte [8192];
-			while (((count = fs.Read (data, 0, 8192)) > 0) && this.Write (data, (uint)count))
-				;
-			
-			this.Close ();
-			Gdk.Pixbuf rotated = TransformOrientation (this.Pixbuf, orientation, true);
-
-			if (this.Pixbuf != rotated)
-				this.Pixbuf.Dispose ();
-
-			return rotated;
 		}
 	}
 

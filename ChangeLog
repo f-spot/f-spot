@@ -1,5 +1,7 @@
 2005-01-12  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufUtils.cs: wrap all the file loading in the exception handler.
+
 	* src/MainWindow.cs: call close on Destroy.
 
 	* src/PhotoImageView.cs: handle missing images when Loading.
