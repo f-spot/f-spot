@@ -687,6 +687,9 @@ public class IconView : Gtk.Layout {
 	public void InvalidateCell (int order) 
 	{
 		Rectangle cell_area = CellBounds (order);
+		// FIXME where are we computing the bounds incorrectly
+		cell_area.Width -= 1;
+		cell_area.Height -= 1;
 		BinWindow.InvalidateRect (cell_area, false);
 	}
 			
