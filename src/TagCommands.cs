@@ -426,7 +426,7 @@ public class TagCommands {
 			if (t is Category) {
 				edit_icon_dialog.Title = String.Format ("Edit icon For category {0}", t.Name);
 			} else {
-				edit_icon_dialog.Title = String.Format ("Edit tcon for tag {0}", t.Name);
+				edit_icon_dialog.Title = String.Format ("Edit icon for tag {0}", t.Name);
 			}
 
 			preview_image.Pixbuf = t.Icon;
