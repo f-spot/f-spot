@@ -743,10 +743,10 @@ namespace FSpot {
 						    selector, "IconView:Selector", bottom_points, true);
 #else
 				Style.PaintBox (selector.Style, selector.GdkWindow, State, ShadowType.Out, area,
-						selector, null, top.X, top.Y, top.Width, top.Height);
+						selector, "limit", top.X, top.Y, top.Width, top.Height);
 
 				Style.PaintBox (selector.Style, selector.GdkWindow, State, ShadowType.Out, area,
-						selector, null, bottom.X, bottom.Y, bottom.Width, bottom.Height);
+						selector, "limit", bottom.X, bottom.Y, bottom.Width, bottom.Height);
 #endif
 			}
 
