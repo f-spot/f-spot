@@ -954,6 +954,75 @@ public class MainWindow {
 			tag_selection_widget.Update ();
 	}
 
+	void HandleAdjustColor (object sender, EventArgs args)
+	{
+		if (ActiveIndex () > 0) {
+			new FSpot.ColorDialog (query, ActiveIndex ());
+		}
+	}
+
+	void HandleSharpen (object sender, EventArgs args)
+	{
+		Gtk.Dialog dialog = new Gtk.Dialog (Mono.Posix.Catalog.GetString ("Unsharp Mask"), main_window, Gtk.DialogFlags.Modal);
+
+		dialog.VBox.Spacing = 6;
+		dialog.VBox.BorderWidth = 12;
+		
+		Gtk.Table table = new Gtk.Table (3, 2, false);
+		table.ColumnSpacing = 6;
+		table.RowSpacing = 6;
+		
+		table.Attach (new Gtk.Label (Mono.Posix.Catalog.GetString ("Amount:")), 0, 1, 0, 1);
+		table.Attach (new Gtk.Label (Mono.Posix.Catalog.GetString ("Radius:")), 0, 1, 1, 2);
+		table.Attach (new Gtk.Label (Mono.Posix.Catalog.GetString ("Threshold:")), 0, 1, 2, 3);
+
+		Gtk.SpinButton amount_spin = new Gtk.SpinButton (0.0, 100.0, .01);
+		Gtk.SpinButton radius_spin = new Gtk.SpinButton (0.0, 50.0, .01);
+		Gtk.SpinButton threshold_spin = new Gtk.SpinButton (0.0, 50.0, .01);
+
+		table.Attach (amount_spin, 1, 2, 0, 1);
+		table.Attach (radius_spin, 1, 2, 1, 2);
+		table.Attach (threshold_spin, 1, 2, 2, 3);
+		
+		dialog.VBox.PackStart (table);
+
+		dialog.AddButton (Gtk.Stock.Cancel, Gtk.ResponseType.Cancel);
+		dialog.AddButton (Gtk.Stock.Ok, Gtk.ResponseType.Ok);
+
+		dialog.ShowAll ();
+
+		Gtk.ResponseType response = (Gtk.ResponseType) dialog.Run ();
+
+		if (response == Gtk.ResponseType.Ok) {
+			foreach (int id in SelectedIds ()) {
+				Gdk.Pixbuf orig = FSpot.PhotoLoader.Load (query, id);
+				Gdk.Pixbuf final = PixbufUtils.UnsharpMask (orig, radius_spin.Value, amount_spin.Value, threshold_spin.Value);
+			
+				Photo photo = query.Photos [id];
+
+				uint version = photo.DefaultVersionId;
+				if (version == Photo.OriginalVersionId) {
+					version = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);
+				}
+				
+				try {
+					string version_path = photo.GetVersionPath (version);
+					
+					final.Savev (version_path, "jpeg", null, null);
+					PhotoStore.GenerateThumbnail (version_path);
+					photo.DefaultVersionId = version;
+					query.Commit (id);
+				} catch (GLib.GException ex) {
+					// FIXME error dialog.
+					Console.WriteLine ("error {0}", ex);
+				}
+			
+			}
+		}
+
+		dialog.Destroy ();
+	}
+
 	void HandleViewSmall (object sender, EventArgs args)
 	{
 		icon_view.ThumbnailWidth = 64;	

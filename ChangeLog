@@ -1,5 +1,14 @@
 2004-12-23  Larry Ewing  <lewing@novell.com>
 
+	* src/f-spot.glade: add the new menu items.
+
+	* src/PhotoView.cs: call ColorDialog with the right arguments.
+
+	* src/ColorDialog.cs: remove unused ctor param.
+
+	* src/MainWindow.cs: Add a basic unsharp mask ui.  Add a
+	ColorDialog menu item.
+
 	* src/GalleryExport.cs: use the global base directory.
 
 	* src/main.cs: use the gobal directory stuff.

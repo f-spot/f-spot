@@ -247,9 +247,7 @@ public class PhotoView : EventBox {
 	}
 
 	private void HandleUnsharpButtonClicked (object sender, EventArgs args) {
-		//image_view.Pixbuf = PixbufUtils.UnsharpMask (image_view.Pixbuf, 6, 2, 0);
-		//image_view.Pixbuf = PixbufUtils.ColorCorrect (image_view.Pixbuf);
-		new FSpot.ColorDialog (Query, CurrentPhoto, photo_view.Pixbuf);
+		new FSpot.ColorDialog (Query, CurrentPhoto);
 	}	
 
 	private void HandleDescriptionChanged (object sender, EventArgs args) {

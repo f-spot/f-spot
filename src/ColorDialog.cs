@@ -148,7 +148,7 @@ namespace FSpot {
 			Cancel ();
 		}
 		
-		public ColorDialog (FSpot.PhotoQuery query, int item, Gdk.Pixbuf pixbuf)       
+		public ColorDialog (FSpot.PhotoQuery query, int item)       
 		{
 			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "color_dialog", null);
 			this.query = query;
