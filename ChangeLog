@@ -1,5 +1,10 @@
 2005-02-27  Larry Ewing  <lewing@novell.com>
 
+	* libgphoto2-sharp/libgphoto2-sharp.dll.config: add a config file
+	for libgphoto2-sharp.
+
+	* libgphoto2-sharp/Makefile.am: add the .config file to the build.
+
 	* src/f-spot.exe.config.in: add the libexif entry to to the config
 	file with the proper major version.
 	
