@@ -1,5 +1,12 @@
 2004-06-11  Larry Ewing  <lewing@ximian.com>
 
+	* src/MainWindow.cs: Add new SelectedIds method make dealing with
+	the different modes more similar.  Make the selection logic behave
+	so that in PhotoView mode operations only apply to the
+	CurrentPhoto but in PhotoView mode it applies to all the selected
+	photos.  Clean up the various operations so that they use this new
+	logic.
+
 	* src/makefile.am (F_SPOT_CSFILES): add Util.cs
 
 	* src/ExportCommand.cs: use thread progress dialog, this needs

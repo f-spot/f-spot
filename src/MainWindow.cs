@@ -149,10 +149,22 @@ public class MainWindow {
 	//
 	// Commands
 	//
-	private Photo [] SelectedPhotos () {
-		return SelectedPhotos (icon_view.Selection);
-	}
+	private int [] SelectedIds () {
+		int [] ids;
+		switch (mode) {
+		case ModeType.IconView:
+			ids = icon_view.Selection;
+			break;
+		default:
+		case ModeType.PhotoView:
+			ids = new int [1]; 
+			ids [0] = photo_view.CurrentPhoto;
+			break;
+		}
 
+		return ids;
+	}
+	
 	private Photo [] SelectedPhotos (int [] selected_ids)
 	{
 		Photo [] photo_list = new Photo [selected_ids.Length];
@@ -164,31 +176,34 @@ public class MainWindow {
 		return photo_list;
 	}
 
+	private Photo [] SelectedPhotos () 
+	{
+		return SelectedPhotos (SelectedIds ());
+	}
+
+	private void InvalidateViews (int num)
+	{
+		icon_view.InvalidateCell (num);
+		if (num == photo_view.CurrentPhoto)
+			photo_view.Update ();
+	}
+
+	private void UpdateViews (int num)
+	{
+		icon_view.UpdateThumbnail (num);
+		if (num == photo_view.CurrentPhoto)
+			photo_view.Update ();
+	}
+		
 	private void RotateSelectedPictures (RotateCommand.Direction direction)
 	{
 		RotateCommand command = new RotateCommand (main_window);
 
-		switch (mode) {
-		case ModeType.IconView:
-			if (query.Photos.Length != 0) {
-				int [] selected_ids = icon_view.Selection;
-
-				if (command.Execute (direction, SelectedPhotos (selected_ids))) {
-					foreach (int num in selected_ids)
-						icon_view.UpdateThumbnail (num);
-				}
-			}
-			break;
-
-		case ModeType.PhotoView:
-			Photo [] photo_list = new Photo [1];
-			photo_list [0] = query.Photos [photo_view.CurrentPhoto];
-
-			if (command.Execute (direction, photo_list)) {
-				photo_view.Update ();
-				icon_view.UpdateThumbnail (photo_view.CurrentPhoto);
-			}
-			break;
+		
+		int [] selected_ids = SelectedIds ();
+		if (command.Execute (direction, SelectedPhotos (selected_ids))) {
+			foreach (int num in selected_ids)
+				UpdateViews (num);
 		}
 	}
 
@@ -454,7 +469,7 @@ public class MainWindow {
 			length += fi.Length;
 		}
 
-		Console.WriteLine ("{0} Seleted Photos : Total length = {1} - {2}kB - {3}MB", photos.Length, length, length / 1024, length / (1024 * 1024));
+		Console.WriteLine ("{0} Selected Photos : Total length = {1} - {2}kB - {3}MB", photos.Length, length, length / 1024, length / (1024 * 1024));
 	}
 		
 	void HandleRenameVersionCommand (object obj, EventArgs args)
@@ -491,26 +506,13 @@ public class MainWindow {
 
 		Tag [] tags = this.tag_selection_widget.TagHighlight ();
 
-		switch (mode) {
-		case ModeType.IconView:
-		if (query.Photos.Length != 0) {
-			foreach (int num in icon_view.Selection) {
-				Photo photo = query.Photos [num];
-				
-				photo.AddTag (tags);
-
-				db.Photos.Commit (photo);
-				icon_view.InvalidateCell (num);
-			}
-		}
-		break;	
-		case ModeType.PhotoView:
-			Photo photo = query.Photos [photo_view.CurrentPhoto];
+		foreach (int num in SelectedIds ()) {
+			Photo photo = query.Photos [num];
 			
-			photo.AddTag (tags);	
+			photo.AddTag (tags);
 			db.Photos.Commit (photo);
-			break;
-		}	
+			InvalidateViews (num);
+		}
 	}
 
 	void HandleRemoveTagCommand (object obj, EventArgs args)
@@ -520,25 +522,13 @@ public class MainWindow {
 	
 		Tag [] tags = this.tag_selection_widget.TagHighlight ();
 
-		switch (mode) {
-		case ModeType.IconView:
-		if (query.Photos.Length != 0) {
-			foreach (int num in icon_view.Selection) {
-				Photo photo = query.Photos [num];
-
-				photo.RemoveTag (tags);
-				db.Photos.Commit (photo);
-				icon_view.InvalidateCell (num);
-			}
-		}
-		break;	
-		case ModeType.PhotoView:
-			Photo photo = query.Photos [photo_view.CurrentPhoto];
-			
+		foreach (int num in icon_view.Selection) {
+			Photo photo = query.Photos [num];
 			photo.RemoveTag (tags);
 			db.Photos.Commit (photo);
-			break;
-		}	
+			
+			InvalidateViews (num);
+		}
 	}
 	
 	void HandleViewSmall (object sender, EventArgs args)
@@ -622,15 +612,12 @@ public class MainWindow {
 
 	void HandleUpdateThumbnailCommand (object sende, EventArgs args)
 	{
-		if (mode != ModeType.IconView)
-			return;
-
 		ThumbnailCommand command = new ThumbnailCommand (main_window);
-		int [] selected_ids = icon_view.Selection;
 
+		int [] selected_ids = SelectedIds ();
 		if (command.Execute (SelectedPhotos (selected_ids))) {
 			foreach (int num in selected_ids)
-				icon_view.UpdateThumbnail (num);
+				UpdateViews (num);
 		}
 	}
 
