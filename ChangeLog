@@ -1,3 +1,8 @@
+2003-11-10  Ettore Perazzoli  <ettore@ximian.com>
+
+	* src/InfoBox.cs (InfoBox.Update): Get the size info from the
+	photo's DefaultVersionPath instead of its Path.
+
 2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
 
 	* src/MainWindow.cs (MainWindow.ctor): Pass false as the "shrink"

@@ -154,7 +154,7 @@ public class InfoBox : VBox {
 
 		int width = 0, height = 0;
 		try {
-			JpegUtils.GetSize (photo.Path, out width, out height);
+			JpegUtils.GetSize (photo.DefaultVersionPath, out width, out height);
 		} catch {
 		}
 
