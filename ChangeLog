@@ -1,3 +1,10 @@
+2005-03-22  Larry Ewing  <lewing@novell.com>
+
+	* libgphoto2-sharp/libgphoto2-sharp.dll.config: remove the
+	explicit path to libgphoto.
+
+	* src/f-spot.exe.config.in: remove extra lib in libfspot path.
+
 2005-03-19  Adam Weinberger  <adamw@gnome.org>
 
 	* src/RotateCommand.cs: fix typo.
