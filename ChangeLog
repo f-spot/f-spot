@@ -1,5 +1,7 @@
 2004-04-02  Larry Ewing  <lewing@ximian.com>
 
+	* src/PhotoStore.cs: add a static ToUriList Method.
+
 	* src/MainWindow.cs: add dnd to the icon view.  Work around broken
 	Gtk# SelectionData wrappers for the time being.
 

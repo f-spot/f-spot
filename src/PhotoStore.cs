@@ -113,6 +113,15 @@ public class Photo : DbItem, IComparable {
 		}
 	}
 
+	public static string ToUriList (Photo [] photos) {
+		StringBuilder uri_list = new StringBuilder ();
+
+		foreach (Photo p in photos) {
+			uri_list.Append ("file://" + p.DefaultVersionPath + "\r\n");
+		}
+		
+		return uri_list.ToString();
+	}
 
 	// Version management
 
