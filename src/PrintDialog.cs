@@ -115,6 +115,22 @@ namespace FSpot {
 			print_job.Close ();
 		}
 
+		private void HandleConfigureClicked (object sender, System.EventArgs args)
+		{
+			Gnome.PrintDialog gnome_dialog = new Gnome.PrintDialog (print_job, "Print Images", 0);
+			int response = gnome_dialog.Run ();
+			
+			switch (response) {
+			case (int) Gnome.PrintButtons.Print:
+				print_job.Print ();
+				break;
+			case (int) Gnome.PrintButtons.Preview:
+				new Gnome.PrintJobPreview (print_job, "Testing").Show ();
+				break;
+			}
+			gnome_dialog.Destroy ();
+		}
+
 		public PrintDialog (Photo [] photos)
 		{
 			this.photos = photos;
