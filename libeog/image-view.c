@@ -650,7 +650,8 @@ paint_rectangle (ImageView *view, ArtIRect *rect, GdkInterpType interp_type)
 	if (unity_zoom (priv)
 	    && gdk_pixbuf_get_colorspace (priv->pixbuf) == GDK_COLORSPACE_RGB
 	    && !gdk_pixbuf_get_has_alpha (priv->pixbuf)
-	    && gdk_pixbuf_get_bits_per_sample (priv->pixbuf) == 8) {
+	    && gdk_pixbuf_get_bits_per_sample (priv->pixbuf) == 8
+	    && priv->transform == NULL) {
 		guchar *pixels;
 		int rowstride;
 
@@ -758,6 +759,9 @@ paint_rectangle (ImageView *view, ArtIRect *rect, GdkInterpType interp_type)
 				    check_1, check_2);
 
 #ifdef LIBEOG_ETTORE_CHANGES
+	if (apply_brightness_and_contrast)
+		apply_brightness_and_contrast_to_pixbuf (view, tmp, d.x1 - d.x0, d.y1 - d.y0);
+
 	if (priv->transform != NULL)
 		apply_transform_to_pixbuf (view, tmp, d.x1 - d.x0, d.y1 - d.y0);
 #endif

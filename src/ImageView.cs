@@ -6,6 +6,8 @@ using System.Runtime.InteropServices;
 
 namespace FSpot {
 public class ImageView : Layout {
+	private Cms.Transform transform;
+
 	[DllImport ("libfspot")]
 	static extern IntPtr f_image_view_new ();
 
@@ -174,6 +176,20 @@ public class ImageView : Layout {
 			image_view_set_display_contrast (Handle, (float) value);
 		}
 	}
+
+	[DllImport ("libfspoteog")]
+	static extern void image_view_set_display_transform (IntPtr view, IntPtr transform);
+
+	public Cms.Transform Transform {
+		set {
+			this.transform = value;
+			image_view_set_display_transform (Handle, transform.Handle);
+		}
+		get {
+			return transform;
+		}
+	}
+
 
 	private delegate void SelectionChangedDelegate (IntPtr obj, IntPtr data);
 	private static void SelectionChangedCallback (IntPtr raw, IntPtr unused_data)
