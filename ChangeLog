@@ -1,5 +1,9 @@
 2005-02-20  Larry Ewing  <lewing@novell.com>
 
+	* src/GalleryExport.cs: guard against a missing scale check.
+
+	* src/f-spot.glade: rename some items.
+	
 	* src/ImportCommand.cs: center the dialog on the parent.
 
 	* src/IconView.cs: remove unused variable.

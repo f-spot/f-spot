@@ -99,6 +99,8 @@ namespace FSpot {
 
 		protected void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
+			System.Console.WriteLine ("got response");
+
 			if (args.ResponseId == Gtk.ResponseType.Ok) {
 				if (!url.EndsWith ("/gallery_remote2.php"))
 					url = url + "/gallery_remote2.php";
@@ -159,11 +161,14 @@ namespace FSpot {
 
 			LoadAccounts ();
 
+			rh = new Gtk.ResponseHandler (HandleResponse);
 			Dialog.Response += HandleResponse;
 			connect = true;
 			Connect ();
 		}
-
+		
+		Gtk.ResponseHandler rh;
+		
 		private bool scale;
 		private bool browser;
 		private bool meta;
@@ -274,7 +279,11 @@ namespace FSpot {
 				return;
 			}
 
-			scale = scale_check.Active;
+			if (scale_check != null)
+				scale = scale_check.Active;
+			else
+				scale = false;
+
 			browser = browser_check.Active;
 			meta = meta_check.Active;
 
