@@ -1,5 +1,9 @@
 2005-02-10  Larry Ewing  <lewing@novell.com>
 
+	* src/ColorDialog.cs: remove the worker thread and disable the
+	expose timeout.  Things appear to be fast enough without extra
+	work.
+
 	* src/MainWindow.cs: fix drag and drop of uri-lists.
 
 2005-02-08  Larry Ewing  <lewing@novell.com>

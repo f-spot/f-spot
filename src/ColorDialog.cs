@@ -6,8 +6,10 @@ namespace FSpot {
 	public class ColorDialog {
 		Gdk.Pixbuf ScaledPixbuf;
 		Gdk.Pixbuf AdjustedPixbuf;
-		
+
+#if USE_THREAD		
 		Delay expose_timeout;
+#endif
 
 		[Glade.Widget] private Gtk.Dialog external_color_dialog;
 		[Glade.Widget] private Gtk.Dialog inline_color_dialog;
@@ -38,6 +40,9 @@ namespace FSpot {
 		
 		private void Adjust ()
 		{
+			if (brightness_scale == null)
+				return;
+
 			Cms.Profile srgb = Cms.Profile.CreateSRgb ();
 			Cms.Profile bchsw = Cms.Profile.CreateAbstract (10, brightness_scale.Value,
 									contrast_scale.Value,
@@ -50,18 +55,17 @@ namespace FSpot {
 			next_transform = new Cms.Transform (list, 
 							    PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
 							    PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
-							    Cms.Intent.Perceptual, 0x0100);
+							    Cms.Intent.Perceptual, 0x0000);
 			
 			lock (AdjustedPixbuf) {
 				PixbufUtils.ColorAdjust (ScaledPixbuf,
 							 AdjustedPixbuf,
-							 brightness_scale.Value,
-							 contrast_scale.Value,
-							 hue_scale.Value,
-							 sat_scale.Value,
-							 source_spinbutton.ValueAsInt,
-							 dest_spinbutton.ValueAsInt);
+							 next_transform);
+#if USE_THREAD
 				expose_timeout.Start ();
+#else
+				this.QueueDraw ();
+#endif
 			}
 		}
 			
@@ -82,7 +86,9 @@ namespace FSpot {
 		
 		public void HandleDestroyEvent (object sender, DestroyEventArgs arg)
 		{
+#if USE_THREAD
 			expose_timeout.Stop ();
+#endif
 		}
 		
 		public void RangeChanged (object sender, EventArgs args)
@@ -90,11 +96,16 @@ namespace FSpot {
 			if (!view.CurrentPhotoValid ())
 				return;
 
+#if USE_THREAD
 			if (thread != null && thread.IsAlive)
 				thread.Abort ();
 			
+			
 			thread = new Thread (new ThreadStart (Adjust));
 			thread.Start ();
+#else
+			Adjust ();
+#endif
 		}
 		
 		public void Save ()
@@ -202,14 +213,15 @@ namespace FSpot {
 			if (!view.CurrentPhotoValid ())
 				return;
 			*/
-			HandlePhotoChanged (view);
+
 			view.PhotoChanged += HandlePhotoChanged;
 			xml.Autoconnect (this);
 
 
 			hist = new FSpot.Histogram ();
+#if USE_THREAD
 			expose_timeout = new FSpot.Delay (new GLib.IdleHandler (this.QueueDraw));
-
+#endif
 
 			#if true
 			Gdk.Color c = color_dialog.Style.Backgrounds [(int)Gtk.StateType.Active];
@@ -241,6 +253,8 @@ namespace FSpot {
 			sat_scale.ValueChanged += RangeChanged;
 			source_spinbutton.ValueChanged += RangeChanged;
 			dest_spinbutton.ValueChanged += RangeChanged;
+
+			HandlePhotoChanged (view);
 		}
 	}
 }
