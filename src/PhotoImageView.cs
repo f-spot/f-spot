@@ -169,7 +169,7 @@ namespace FSpot {
 			if (CurrentPhoto > 0)
 				CurrentPhoto --;
 			else
-				CurrentPhoto = query.Photos.Length;
+				CurrentPhoto = query.Photos.Length - 1;
 		}
 
 		protected override void OnDestroyed ()

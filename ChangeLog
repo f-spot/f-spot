@@ -1,6 +1,7 @@
 2004-11-18  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoImageView.cs: check for negative CurrentPhoto values.
+	Fix off by one error.
 
 	* src/TagCommands.cs: Use PhotoImageView here.
 
