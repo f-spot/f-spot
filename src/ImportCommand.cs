@@ -157,6 +157,8 @@ public class ImportCommand : FSpot.GladeDialog {
 
 	[Glade.Widget] Gtk.Entry import_folder_entry;
 	[Glade.Widget] Gtk.OptionMenu tag_option_menu;
+	[Glade.Widget] Gtk.CheckButton attach_check;
+	[Glade.Widget] Gtk.CheckButton recurse_check;
 	[Glade.Widget] Gtk.Image tag_image;
 	[Glade.Widget] Gtk.Label tag_label;
 	
@@ -255,7 +257,13 @@ public class ImportCommand : FSpot.GladeDialog {
 		}
 	}
 	
-	public void HandleImportBrowse (object o, EventArgs args) {
+	public void HandleTagToggled (object o, EventArgs args) 
+	{
+		tag_option_menu.Sensitive = attach_check.Active;
+	}
+
+	public void HandleImportBrowse (object o, EventArgs args) 
+	{
 	
 		CompatFileChooserDialog file_selector =
 			new CompatFileChooserDialog ("Import", this.Dialog,
@@ -275,13 +283,19 @@ public class ImportCommand : FSpot.GladeDialog {
 		
 	}
 	
-	public void HandleTagMenuSelected (Tag t) {
+	public void HandleTagMenuSelected (Tag t) 
+	{
 		tag_selected = t;
 		//tag_image.Pixbuf = t.Icon;
 		//tag_label.Text = t.Name;
 	
 	}
 	
+	public void HandleEntryActivate (object sender, EventArgs args)
+	{
+		this.Dialog.Respond (Gtk.ResponseType.Ok);
+	}
+
 	public int ImportFromFile (PhotoStore store, string path)
 	{
 		this.CreateDialog ("import_dialog");
@@ -290,6 +304,10 @@ public class ImportCommand : FSpot.GladeDialog {
 		MenuItem attach_item = new MenuItem (Mono.Posix.Catalog.GetString ("Select Tag"));
 		TagMenu tagmenu = new TagMenu (null, MainWindow.Toplevel.Database.Tags);
 		
+		this.Dialog.DefaultResponse = ResponseType.Ok;
+		
+		import_folder_entry.Activated += HandleEntryActivate;
+
 		tagmenu.TagSelected += HandleTagMenuSelected;
 		tagmenu.ShowAll ();
 		tagmenu.Populate (true);
@@ -299,7 +317,11 @@ public class ImportCommand : FSpot.GladeDialog {
 		//tag_option_menu.Menu = new SourceMenu ();
 
 		tag_selected = null;
-				
+		if (attach_check != null) {
+			attach_check.Toggled += HandleTagToggled;
+			HandleTagToggled (null, null);
+		}				
+
 		if (path != null)
 			import_folder_entry.Text = path;
 		else 
@@ -307,11 +329,35 @@ public class ImportCommand : FSpot.GladeDialog {
 						
 		ResponseType response = (ResponseType) this.Dialog.Run ();
 		
+		while (response == ResponseType.Ok) {
+			if (System.IO.Directory.Exists (import_folder_entry.Text))
+			    break;
+
+			HigMessageDialog md = new HigMessageDialog (this.Dialog,
+								    DialogFlags.DestroyWithParent,
+								    MessageType.Error,
+								    ButtonsType.Ok,
+								    Mono.Posix.Catalog.GetString ("Directory does not exist."),
+									    String.Format (Mono.Posix.Catalog.GetString ("The directory you selected \"{0}\" does not exist.  Please choose a different diarectory"), import_folder_entry.Text));
+			md.Run ();
+			md.Destroy ();
+
+			response = (Gtk.ResponseType) this.Dialog.Run ();
+		}
+
 		if (response == ResponseType.Ok) {
 			string [] pathimport =  {import_folder_entry.Text};
 			this.Dialog.Destroy();
+
+			Tag [] tags = null;		       
+			if (attach_check.Active && tag_selected != null)
+				tags = new Tag [] {tag_selected};
 			
-			return DoImport (new FileImportBackend (store, pathimport, true, tag_selected != null ? new Tag [] {tag_selected} : null));
+			bool recurse = true;
+			if (recurse_check != null)
+				recurse = recurse_check.Active;
+
+			return DoImport (new FileImportBackend (store, pathimport, recurse, tags));
 				
 		} else {
 			this.Dialog.Destroy();

@@ -1,5 +1,11 @@
 2005-02-20  Larry Ewing  <lewing@novell.com>
 
+	* src/ImportCommand.cs: verify the import path don't leave the
+	dialog until it comes up ok or is canceled.
+	
+	* src/ImportCommand.cs: deal with the attach tag better, add
+	recurse check option.
+
 	* src/AsyncPixbufLoader.cs: silence debug output.
 
 	* src/ImportCommand.cs: set the window correctly.
