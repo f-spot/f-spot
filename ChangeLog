@@ -1,5 +1,8 @@
 2005-02-19  Larry Ewing  <lewing@novell.com>
 
+	* src/SlideView.cs: disable the slide animation if processing the
+	window update takes more than animate_max milliseconds.
+
 	* src/InfoBox.cs: oops, change the display back a little.
 
 	* src/InfoDisplay.cs: clean up slightly.

@@ -22,6 +22,9 @@ public class SlideView : Gtk.Image {
 	uint flip_timer = 0;
 	uint transition_timer = 0;
 
+	bool animate = true;
+	uint animate_max = 110;
+
 	bool black = false;
 	uint flip_interval = 2000;
 	uint transition_interval = 75;
@@ -29,6 +32,15 @@ public class SlideView : Gtk.Image {
 	public bool Running {
 		get {
 			return flip_timer != 0 || transition_timer != 0;
+		}
+	}
+
+	public bool Animate {
+		get {
+			return animate;
+		}
+		set {
+			animate = value;
 		}
 	}
 
@@ -183,9 +195,15 @@ public class SlideView : Gtk.Image {
 		transition_timer = 0;
 		if (current_tween--  > 0) {
 			StartTransitionTimer ();
-
+			System.DateTime start_time = System.DateTime.Now;
 			this.FromPixbuf = tweens[current_tween];
 			GdkWindow.ProcessUpdates (false);
+			System.TimeSpan span = System.DateTime.Now  - start_time;
+			
+			if (animate && span.TotalMilliseconds > animate_max) {
+				animate = false;
+				System.Console.WriteLine ("Disabling slide animation due to excessive frame interval");
+			}
 		} else {
 			ShowNext ();
 
@@ -199,51 +217,57 @@ public class SlideView : Gtk.Image {
 	private bool HandleTweenIdle ()
 	{
 		using (Pixbuf prev = this.Pixbuf) {	
-		if (current_tween < tweens.Length && tweens[current_tween] == null) {
-			tweens[current_tween] = new Pixbuf (Colorspace.Rgb, false, 8, Allocation.Width, Allocation.Height);
-		}
-
-		switch (current_tween) {
-		case 9:
-			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .15);
-			break;
-		case 8:
-			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .3);
-			break;
-		case 7:
-			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .4);
-			break;
-		case 6:
-			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .5);
-			break;
-		case 5:
-			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .6);
-			break;
-		case 4:
-			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .7);
-			break;
-		case 3:
-			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .8);
-			break;
-		case 2:
-			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .9);
-			break;
-		case 1:
-			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .97);
-			break;
-		case 0:
-			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .99);
-			break;
-		default:
-			tween_idle = 0;
-			return false;
-		}
-
-		current_tween++;
-		return true;
+			if (!animate) {
+				ClearTweens ();
+				return false;
+			}
+			
+			if (current_tween < tweens.Length && tweens[current_tween] == null) {
+				tweens[current_tween] = new Pixbuf (Colorspace.Rgb, false, 8, 
+								    Allocation.Width, Allocation.Height);
+			}
+			
+			switch (current_tween) {
+			case 9:
+				tweens[current_tween] = Blend (tweens[current_tween], prev, next, .15);
+				break;
+			case 8:
+				tweens[current_tween] = Blend (tweens[current_tween], prev, next, .3);
+				break;
+			case 7:
+				tweens[current_tween] = Blend (tweens[current_tween], prev, next, .4);
+				break;
+			case 6:
+				tweens[current_tween] = Blend (tweens[current_tween], prev, next, .5);
+				break;
+			case 5:
+				tweens[current_tween] = Blend (tweens[current_tween], prev, next, .6);
+				break;
+			case 4:
+				tweens[current_tween] = Blend (tweens[current_tween], prev, next, .7);
+				break;
+			case 3:
+				tweens[current_tween] = Blend (tweens[current_tween], prev, next, .8);
+				break;
+			case 2:
+				tweens[current_tween] = Blend (tweens[current_tween], prev, next, .9);
+				break;
+			case 1:
+				tweens[current_tween] = Blend (tweens[current_tween], prev, next, .97);
+				break;
+			case 0:
+				tweens[current_tween] = Blend (tweens[current_tween], prev, next, .99);
+				break;
+			default:
+				tween_idle = 0;
+				return false;
+			}
+			
+			current_tween++;
+			return true;
 		}
 	}	
-
+	
 	private void StartTweenIdle () 
 	{
 		if (tween_idle == 0) {
