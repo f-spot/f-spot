@@ -67,16 +67,27 @@ namespace FSpot {
 	
 	public class GalleryAdd {
 		public GalleryAdd (GalleryExport export) {
+			this.export = export;
+
 			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "gallery_add_dialog", null);
 			xml.Autoconnect (this);
 
 			gallery_add_dialog.Modal = false;
 			gallery_add_dialog.TransientFor = export.Dialog;
 			gallery_add_dialog.Show ();
+
+			Dialog.Response += HandleResponse;
+			gallery_entry.Changed += HandleChanged;
+			url_entry.Changed += HandleChanged;
+			password_entry.Changed += HandleChanged;
+			username_entry.Changed += HandleChanged;
+			add_button.Sensitive = false;
 		}
 
 		private void HandleChanged (object sender, System.EventArgs args)
 		{
+			System.Console.WriteLine ("Changed");
+
 			name = gallery_entry.Text;
 			url = url_entry.Text;
 			password = password_entry.Text;
@@ -88,14 +99,12 @@ namespace FSpot {
 				add_button.Sensitive = true;
 		}
 
-		private void HandleAdd (object sender, System.EventArgs args)
+		protected void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
-			GalleryAccount account = new GalleryAccount (name, url, username, password);
-			export.AddAccount (account);
-		}
-		
-		private void HandleCancel (object sender, System.EventArgs args)
-		{
+			if (args.ResponseId == Gtk.ResponseType.Ok) {
+				GalleryAccount account = new GalleryAccount (name, url, username, password);
+				export.AddAccount (account);
+			}
 			Dialog.Destroy ();
 		}
 
@@ -156,27 +165,8 @@ namespace FSpot {
 			Dialog.ShowAll ();
 
 			LoadAccounts ();
-			
-			Gtk.ResponseType response = (Gtk.ResponseType) gallery_export_dialog.Run ();
 
-			if (response != Gtk.ResponseType.Ok)
-				return;
-
-			scale = scale_check.Active;
-			browser = browser_check.Active;
-			meta = meta_check.Active;
-
-			if (gallery != null) { 
-				System.Console.WriteLine ("history = {0}", album_optionmenu.History);
-				album = (GalleryRemote.Album) gallery.Albums [System.Math.Max (0, album_optionmenu.History)]; 
-				photo_index = 0;
-
-				System.Threading.Thread t = new System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
-				t.Name = "Uploading Pictures";
-				
-				progress_dialog = new FSpot.ThreadProgressDialog (t, photos.Length);
-				progress_dialog.Start ();
-			}
+			Dialog.Response += HandleResponse;
 		}
 
 		private bool scale;
@@ -219,6 +209,31 @@ namespace FSpot {
 			}
 		}
 		
+		private void HandleResponse (object sender, Gtk.ResponseArgs args)
+		{
+			System.Console.WriteLine ("Got Respose");
+			if (args.ResponseId != Gtk.ResponseType.Ok) {
+				gallery_export_dialog.Destroy ();
+				return;
+			}
+
+			scale = scale_check.Active;
+			browser = browser_check.Active;
+			meta = meta_check.Active;
+
+			if (gallery != null) { 
+				System.Console.WriteLine ("history = {0}", album_optionmenu.History);
+				album = (GalleryRemote.Album) gallery.Albums [System.Math.Max (0, album_optionmenu.History)]; 
+				photo_index = 0;
+
+				System.Threading.Thread t = new System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
+				t.Name = "Uploading Pictures";
+				
+				progress_dialog = new FSpot.ThreadProgressDialog (t, photos.Length);
+				progress_dialog.Start ();
+			}
+		}
+
 		private void Upload ()
 		{
 			try {

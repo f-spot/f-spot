@@ -1,5 +1,8 @@
 2004-10-13  Larry Ewing  <lewing@novell.com>
 
+	* src/GalleryExport.cs: Make the add gallery dialog actually work,
+	although it still isn't being saved.
+
 	* src/PreviewPopup.cs: add a histogram display to the PreviewPopup.
 
 	* src/GalleryExport.cs: fix up the responsed etc.
