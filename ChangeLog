@@ -1,5 +1,7 @@
 2005-02-20  Larry Ewing  <lewing@novell.com>
 
+	* src/ImportCommand.cs: get the start position correct.
+
 	* src/f-spot.glade: update the import dialog layout a little better.
 
 	* src/PixbufCache.cs: scale the pixbuf to fit.

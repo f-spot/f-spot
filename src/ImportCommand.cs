@@ -83,7 +83,7 @@ public class ImportCommand : FSpot.GladeDialog {
 
 		Gtk.Image [] image_widgets;
 
-		int position;
+		int position = -1;
 		
 		/*
 		 * This controls whether or wraps as new photos are added.
