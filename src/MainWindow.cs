@@ -51,6 +51,8 @@ public class MainWindow {
 	[Glade.Widget] MenuItem update_thumbnail;
 	[Glade.Widget] MenuItem delete_from_drive;
 
+	[Glade.Widget] MenuItem display_tags_menu_item;
+
 	[Glade.Widget] MenuItem set_as_background;
 
 	[Glade.Widget] MenuItem attach_tag;
@@ -936,6 +938,11 @@ public class MainWindow {
 	void HandleViewLarge (object sender, EventArgs args)
 	{
 		icon_view.ThumbnailWidth = 256;	
+	}
+
+	void HandleDisplayTags (object sender, EventArgs args)
+	{
+		icon_view.DisplayTags = !icon_view.DisplayTags;
 	}
 
 	void HandleViewSlideShow (object sender, EventArgs args)
