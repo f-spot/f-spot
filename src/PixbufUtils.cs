@@ -130,6 +130,13 @@ class PixbufUtils {
 		}
 	}
 
+	public static Pixbuf ShallowCopy (Pixbuf pixbuf)
+	{
+		Pixbuf result = new Pixbuf (pixbuf, 0, 0, pixbuf.Width, pixbuf.Height);
+		CopyThumbnailOptions (pixbuf, result);
+		return result;
+	}
+
 	public static Pixbuf ScaleToMaxSize (Pixbuf pixbuf, int width, int height)
 	{
 		return ScaleToMaxSize (pixbuf, width, height, true);

@@ -1,6 +1,15 @@
 2005-02-18  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: when scaling down scale the pixbuf if we can.
+
+	* src/PixbufUtils.cs: make a shallow copy op.
+
+	* src/PixbufCache.cs: remove debug output, it was slowing things down ;).
+
+	* src/IconView.cs: improve the preload boundry at little, avoid annoying crash.
+
 	* src/IconView.cs: remove extra debug output.
+	
 
 2005-02-18  Miguel de Icaza  <miguel@novell.com>
 

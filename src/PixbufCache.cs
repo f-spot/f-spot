@@ -324,15 +324,10 @@ namespace FSpot {
 			public Gdk.Pixbuf ShallowCopyPixbuf ()
 			{
 				lock (this) {
-					Gdk.Pixbuf thumb = pixbuf;
-					
-					if (thumb == null)
+					if (pixbuf == null)
 						return null;
 
-					thumb = new Gdk.Pixbuf (thumb, 0, 0, thumb.Width, thumb.Height);
-					PixbufUtils.CopyThumbnailOptions (pixbuf, thumb);
-					
-					return thumb;
+					return PixbufUtils.ShallowCopy (pixbuf);
 				}
 			}
 

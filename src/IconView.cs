@@ -505,6 +505,10 @@ public class IconView : Gtk.Layout {
 				if (region.Width < thumbnail.Width && region.Height < thumbnail.Height) {
 					temp_thumbnail = PixbufUtils.ScaleDown (thumbnail, 
 										region.Width, region.Height);
+					
+					if (entry.Reload && expansion == 0)
+						cache.Update (entry, PixbufUtils.ShallowCopy (thumbnail));
+
 				} else {
 					temp_thumbnail = thumbnail.ScaleSimple (region.Width, region.Height, 
 										InterpType.Bilinear);
