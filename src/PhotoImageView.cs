@@ -68,7 +68,6 @@ namespace FSpot {
 		// Display.
 		private void HandlePixbufAreaUpdated (object sender, Gdk.AreaUpdatedArgs args)
 		{
-			// FIXME we should really only expose the updated region.
 			Gdk.Rectangle area = new Gdk.Rectangle (args.X, args.Y, args.Width, args.Height);
 			area = this.ImageCoordsToWindow (area);
 

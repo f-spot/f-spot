@@ -1,5 +1,9 @@
 2004-11-18  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoImageView.cs: remove out of date comment.
+
+	* src/PhotoView.cs: switch to using PhotoImageView.cs.
+
 	* src/PhotoImageView.cs: only expose the updated areas as the
 	pixbuf loads.
 

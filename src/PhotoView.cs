@@ -58,7 +58,7 @@ public class PhotoView : EventBox {
 			Update ();
 	}
 
-	private FSpot.ImageView image_view;
+	private FSpot.PhotoImageView photo_view;
 	private TagView tag_view;
 	private Button display_next_button, display_previous_button;
 	private Label count_label;
@@ -79,7 +79,7 @@ public class PhotoView : EventBox {
 				throw new Exception (String.Format ("Zoom value out of range {0}", value));
 				
 			zoom = value;
-			UpdateZoom ();
+			//UpdateZoom ();
 		}
 	}
 
@@ -111,7 +111,7 @@ public class PhotoView : EventBox {
 	private void HandleSelectionConstraintOptionMenuActivated (object sender, EventArgs args)
 	{
 		selection_constraint_ratio_idx = (int) (sender as GLib.Object).Data [CONSTRAINT_RATIO_IDX_KEY];
-		image_view.SelectionXyRatio = constraints [selection_constraint_ratio_idx].XyRatio;
+		photo_view.SelectionXyRatio = constraints [selection_constraint_ratio_idx].XyRatio;
 	}
 
 	private OptionMenu CreateConstraintsOptionMenu ()
@@ -135,77 +135,8 @@ public class PhotoView : EventBox {
 		return constraints_option_menu;
 	}
 
-	// Display.
-	private void HandlePixbufAreaUpdated (object sender, Gdk.AreaUpdatedArgs args)
-	{
-		// FIXME we should really only expose the updated region.
-		image_view.QueueDraw ();
-	}
-
-	private void UpdateImageView ()
-	{
-		if (CurrentPhotoValid ()) {
-			try {
-				Pixbuf old = image_view.Pixbuf;
-				
-				bool load_async = true;
-				if (load_async) {
-					image_view.Pixbuf = loader.Load (Query.Photos [current_photo].DefaultVersionPath);
-					loader.Loader.AreaUpdated += HandlePixbufAreaUpdated;
-					tag_view.Current = Query.Photos [current_photo];
-				} else {
-					image_view.Pixbuf = FSpot.PhotoLoader.Load (Query, current_photo);
-				}
-
-				if (old != null)
-					old.Dispose ();
-			} catch (GException ex) {
-				// FIXME
-				image_view.Pixbuf = null;
-			}
-		} else {
-			image_view.Pixbuf = null;
-		}
-
-		image_view.UnsetSelection ();
-		UpdateZoom ();
-	}
-
 	private uint restore_scrollbars_idle_id;
 
-	// FIXME need to remove this on dispose.
-	private bool IdleUpdateScrollbars ()
-	{
-		(image_view.Parent as ScrolledWindow).SetPolicy (PolicyType.Automatic, PolicyType.Automatic);
-
-		restore_scrollbars_idle_id = 0;
-		return false;
-	}
-
-	private void UpdateZoom ()
-	{		
-		Pixbuf pixbuf = image_view.Pixbuf;
-
-		if (pixbuf == null)
-			return;
-
-		int available_width = image_view.Allocation.Width;
-		int available_height = image_view.Allocation.Height;
-
-		double zoom_to_fit = ZoomUtils.FitToScale ((uint) available_width, (uint) available_height,
-							   (uint) pixbuf.Width, (uint) pixbuf.Height, false);
-
-		double image_zoom = (MAX_ZOOM - zoom_to_fit) * Zoom + zoom_to_fit;
-		Console.WriteLine ("Zoom {2} zoom_to_fit {0} image_zoom {1}", zoom_to_fit, image_zoom, Zoom);
-
-		if (Math.Abs (Zoom) < double.Epsilon)
-			((ScrolledWindow) image_view.Parent).SetPolicy (PolicyType.Never, PolicyType.Never);
-
-		image_view.SetZoom (image_zoom, image_zoom);
-
-		if (Math.Abs (Zoom) < double.Epsilon && restore_scrollbars_idle_id == 0)
-			restore_scrollbars_idle_id = Idle.Add (new IdleHandler (IdleUpdateScrollbars));
-	}
 
 	private void UpdateButtonSensitivity ()
 	{
@@ -246,7 +177,8 @@ public class PhotoView : EventBox {
 		if (UpdateStarted != null)
 			UpdateStarted (this);
 
-		UpdateImageView ();
+		photo_view.CurrentPhoto = current_photo;
+		System.Console.WriteLine ("current_photo = {0} photo_view.CurrentPhoto {1}", current_photo, photo_view.CurrentPhoto);
 		UpdateButtonSensitivity ();
 		UpdateCountLabel ();
 		UpdateDescriptionEntry ();
@@ -260,18 +192,14 @@ public class PhotoView : EventBox {
 
 	private void DisplayNext ()
 	{
-		if (Query.Photos.Length > 1 && current_photo < Query.Photos.Length - 1) {
-			current_photo ++;
-			Update ();
-		}
+		photo_view.Next ();
+		current_photo = photo_view.CurrentPhoto;
 	}
 
 	private void DisplayPrevious ()
 	{
-		if (current_photo > 0) {
-			current_photo --;
-			Update ();
-		}
+		photo_view.Prev ();
+		current_photo = photo_view.CurrentPhoto;
 	}
 
 
@@ -285,6 +213,7 @@ public class PhotoView : EventBox {
 		}
 	}
 
+	[GLib.ConnectBefore]
 	private void HandleImageViewKeyPressEvent (object sender, KeyPressEventArgs args)
 	{
 		switch (args.Event.Key) {
@@ -296,7 +225,11 @@ public class PhotoView : EventBox {
 		case Gdk.Key.KP_Page_Down:
 			HandleDisplayNextButtonClicked (sender, null);
 			break;
+		case Gdk.Key.Key_0:
+			photo_view.Fit = true;
+			break;
 		default:
+			photo_view.Fit = false;
 			args.RetVal = false;
 			return;
 		}
@@ -321,18 +254,13 @@ public class PhotoView : EventBox {
 			PhotoChanged (this);
 	}
 
-	private void HandleImageViewSizeAllocated (object sender, SizeAllocatedArgs args)
-	{
-		UpdateZoom ();
-	}
-
 	private void HandleCropButtonClicked (object sender, EventArgs args)
 	{
 		int x, y, width, height;
-		if (! image_view.GetSelection (out x, out y, out width, out height))
+		if (! photo_view.GetSelection (out x, out y, out width, out height))
 			return;
 		
-		Pixbuf original_pixbuf = image_view.Pixbuf;
+		Pixbuf original_pixbuf = photo_view.Pixbuf;
 		if (original_pixbuf == null) {
 			Console.WriteLine ("No image");
 			return;
@@ -347,8 +275,8 @@ public class PhotoView : EventBox {
 
 		// FIXME the fact that the selection doesn't go away is a bug in ImageView, it should
 		// be fixed there.
-		image_view.Pixbuf = cropped_pixbuf;
-		image_view.UnsetSelection ();
+		photo_view.Pixbuf = cropped_pixbuf;
+		photo_view.UnsetSelection ();
 
 		System.Console.WriteLine ("Got here");
 
@@ -368,9 +296,9 @@ public class PhotoView : EventBox {
 			// FIXME error dialog.
 			Console.WriteLine ("error {0}", ex);
 		}
-
-		UpdateZoom ();
-
+		
+		photo_view.Fit = true;
+		
 		if (PhotoChanged != null)
 			PhotoChanged (this);
 	}
@@ -378,7 +306,7 @@ public class PhotoView : EventBox {
 	private void HandleUnsharpButtonClicked (object sender, EventArgs args) {
 		//image_view.Pixbuf = PixbufUtils.UnsharpMask (image_view.Pixbuf, 6, 2, 0);
 		//image_view.Pixbuf = PixbufUtils.ColorCorrect (image_view.Pixbuf);
-		new ColorDialog (Query, current_photo, image_view.Pixbuf);
+		new ColorDialog (Query, current_photo, photo_view.Pixbuf);
 	}	
 
 	private void HandleDescriptionChanged (object sender, EventArgs args) {
@@ -435,9 +363,10 @@ public class PhotoView : EventBox {
 		constraints[9].XyRatio = 1.0;
 	}
 
-	public PhotoView (PhotoStore photo_store)
+	public PhotoView (PhotoQuery query, PhotoStore photo_store)
 		: base ()
 	{
+		this.query = query;
 		this.photo_store = photo_store;
 
 		BorderWidth = 3;
@@ -455,27 +384,26 @@ public class PhotoView : EventBox {
 
 		frame.Add (inner_vbox);
 		
-		image_view = new FSpot.ImageView ();
+		photo_view = new FSpot.PhotoImageView (query);
 
-		ScrolledWindow image_view_scrolled = new ScrolledWindow (null, null);
+		ScrolledWindow photo_view_scrolled = new ScrolledWindow (null, null);
 
 		Gdk.Color color = eventbox.Style.Background (Gtk.StateType.Normal);
 		color.Red = (ushort) (color.Red / 2);
 		color.Blue = (ushort) (color.Blue / 2);
 		color.Green = (ushort) (color.Green / 2);
 
-		image_view.ModifyBg (Gtk.StateType.Normal, color);
+		photo_view.ModifyBg (Gtk.StateType.Normal, color);
 		eventbox.ModifyBg (Gtk.StateType.Normal, color);
-		image_view_scrolled.ModifyBg (Gtk.StateType.Normal, color);
+		photo_view_scrolled.ModifyBg (Gtk.StateType.Normal, color);
 
-		image_view_scrolled.SetPolicy (PolicyType.Automatic, PolicyType.Automatic);
-		image_view_scrolled.ShadowType = ShadowType.None;
-		image_view_scrolled.Add (image_view);
-		image_view_scrolled.ButtonPressEvent += HandleButtonPressEvent;
-		image_view.SizeAllocated += new SizeAllocatedHandler (HandleImageViewSizeAllocated);
-		image_view.AddEvents ((int) EventMask.KeyPressMask);
-		image_view.KeyPressEvent += new KeyPressEventHandler (HandleImageViewKeyPressEvent);
-		inner_vbox.PackStart (image_view_scrolled, true, true, 0);
+		photo_view_scrolled.SetPolicy (PolicyType.Automatic, PolicyType.Automatic);
+		photo_view_scrolled.ShadowType = ShadowType.None;
+		photo_view_scrolled.Add (photo_view);
+		photo_view_scrolled.ButtonPressEvent += HandleButtonPressEvent;
+		photo_view.AddEvents ((int) EventMask.KeyPressMask);
+		photo_view.KeyPressEvent += new KeyPressEventHandler (HandleImageViewKeyPressEvent);
+		inner_vbox.PackStart (photo_view_scrolled, true, true, 0);
 		
 		HBox inner_hbox = new HBox (false, 2);
 		inner_hbox.BorderWidth = 6;
@@ -531,10 +459,5 @@ public class PhotoView : EventBox {
 		vbox.ShowAll ();
 	}
 
-	public PhotoView (PhotoQuery query, PhotoStore photo_store)
-		: this (photo_store)
-	{
-		Query = query;
-	}
 }
 
