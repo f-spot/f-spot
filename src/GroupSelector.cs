@@ -594,6 +594,8 @@ namespace FSpot {
 			max_limit.Position = 12;
 		}
 
+		public GroupSelector (IntPtr raw) : base (raw) {}
+
 #if TEST_MAIN
 		private void HandleKeyPressEvent (object sender, KeyPressEventArgs args)
 		{		

@@ -61,6 +61,7 @@ public class MainWindow {
 	IconView icon_view;
 	PhotoView photo_view;
 	PhotoQuery query;
+	FSpot.GroupSelector group_selector;
 	
 	// Drag and Drop
 	enum TargetType {
@@ -102,6 +103,8 @@ public class MainWindow {
 		}
 	}
 
+	
+
 	//
 	// Constructor
 	//
@@ -112,18 +115,18 @@ public class MainWindow {
 		Glade.XML gui = Glade.XML.FromAssembly ("f-spot.glade", "main_window", null);
 		gui.Autoconnect (this);
 
-		FSpot.GroupSelector gs = new FSpot.GroupSelector ();
-		gs.Counts = new int [] {20, 100, 123,
+		group_selector = new FSpot.GroupSelector ();
+		group_selector.Counts = new int [] {20, 100, 123,
 					10, 5, 2,
 					3, 50, 8,
 					10, 22, 0,
 					55, 129, 120,
 					30, 14, 200,
 					122, 21, 55};
-		gs.Mode = 2;
-		gs.ShowAll ();
-		group_vbox.PackStart (gs, false, false, 0);
-		group_vbox.ReorderChild (gs, 0);
+		group_selector.Mode = 2;
+		group_selector.ShowAll ();
+		group_vbox.PackStart (group_selector, false, false, 0);
+		group_vbox.ReorderChild (group_selector, 0);
 
 		tag_selection_widget = new TagSelectionWidget (db.Tags);
 		tag_selection_scrolled.Add (tag_selection_widget);

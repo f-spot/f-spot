@@ -1,3 +1,9 @@
+2004-08-17  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: move the group selector into the class.
+
+	* src/GroupSelector.cs: add a raw ctor.
+
 2004-08-16  Larry Ewing  <lewing@novell.com>
 
 	* makefile.am: add GroupSelector.cs remove TimelineSelector.cs.
