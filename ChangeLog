@@ -1,9 +1,25 @@
 2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
 
 	* src/PhotoVersionCommands.cs
+	(PhotoVersionCommands.VersionNameRequest): Change so that it gets
+	a request type and sets prompt and title depending on it.  Also,
+	don't give a "this name already exists" warning if it's a rename
+	request and the user typed the same name as the current version
+	and return ResponseType.Cancel in that case even if the user
+	clicked "Ok".
+	(PhotoVersionCommands.Create): Update accordingly.
+	(PhotoVersionCommands.Rename): Update accordingly.
+	(PhotoVersionCommands.Update): New.
+	(PhotoVersionCommands.VersionNameRequest.HandleVersionNameEntryChanged):
+	Use it.
+	(PhotoVersionCommands.VersionNameRequest.Run): Likewise.
+
+2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+
+	* src/PhotoVersionCommands.cs
 	(PhotoVersionCommands.Delete.Execute): Implement.
-	(PhotoVersionCommands.NameRequest): New private class for generic
-	version name requests.
+	(PhotoVersionCommands.VersionNameRequest): New private class for
+	generic version name requests.
 	(PhotoVersionCommands.Create): Use this class.
 	(PhotoVersionCommands.Rename): Implement.
 

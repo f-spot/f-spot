@@ -22,9 +22,20 @@ public class PhotoVersionCommands {
 		[Glade.Widget]
 		private Label already_in_use_label;
 
-		private void HandleVersionNameEntryChanged (object obj, EventArgs args)
+		public enum RequestType {
+			Create,
+			Rename
+		}
+
+		private RequestType request_type;
+
+		private void Update ()
 		{
-			if (photo.VersionNameExists (version_name_entry.Text)) {
+			string new_name = version_name_entry.Text;
+
+			if (photo.VersionNameExists (new_name)
+			    && ! (request_type == RequestType.Rename
+				  && new_name == photo.GetVersionName (photo.DefaultVersionId))) {
 				already_in_use_label.Markup = "<small>This name is already in use</small>";
 				ok_button.Sensitive = false;
 				return;
@@ -32,28 +43,46 @@ public class PhotoVersionCommands {
 
 			already_in_use_label.Text = "";
 			
-			if (version_name_entry.Text.Length == 0)
+			if (new_name.Length == 0)
 				ok_button.Sensitive = false;
 			else
 				ok_button.Sensitive = true;
 		}
 
-		public VersionNameRequest (Photo photo, string title, string prompt, Gtk.Window parent_window)
+		private void HandleVersionNameEntryChanged (object obj, EventArgs args)
 		{
+			Update ();
+		}
+
+		public VersionNameRequest (RequestType request_type, Photo photo, Gtk.Window parent_window)
+		{
+			this.request_type = request_type;
 			this.photo = photo;
 
 			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "version_name_dialog", null);
 			xml.Autoconnect (this);
 
-			version_name_dialog.Title = title;
+			switch (request_type) {
+			case RequestType.Create:
+				version_name_dialog.Title = "Create New Version";
+				prompt_label.Text = "Name:";
+				break;
+
+			case RequestType.Rename:
+				version_name_dialog.Title = "Rename Version";
+				prompt_label.Text = "New name:";
+				version_name_entry.Text = photo.GetVersionName (photo.DefaultVersionId);
+				version_name_entry.SelectRegion (0, -1);
+				break;
+			}
+
 			version_name_entry.ActivatesDefault = true;
-			prompt_label.Text = prompt;
 			version_name_dialog.TransientFor = parent_window;
 
 			// FIXME GTK# bug?  shouldn't need casts from/to int.
 			version_name_dialog.DefaultResponse = (int) ResponseType.Ok;
 
-			ok_button.Sensitive = false;
+			Update ();
 		}
 
 		public ResponseType Run (out string name)
@@ -61,6 +90,9 @@ public class PhotoVersionCommands {
 			ResponseType response = (ResponseType) version_name_dialog.Run ();
 
 			name = version_name_entry.Text;
+			if (request_type == RequestType.Rename && name == photo.GetVersionName (photo.DefaultVersionId))
+				response = ResponseType.Cancel;
+
 			version_name_dialog.Destroy ();
 
 			return response;
@@ -72,7 +104,8 @@ public class PhotoVersionCommands {
 	public class Create {
 		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
 		{
-			VersionNameRequest request = new VersionNameRequest (photo, "Create New Version", "Name:", parent_window);
+			VersionNameRequest request = new VersionNameRequest (VersionNameRequest.RequestType.Create,
+									     photo, parent_window);
 
 			string name;
 			ResponseType response = request.Run (out name);
@@ -140,9 +173,8 @@ public class PhotoVersionCommands {
 	public class Rename {
 		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
 		{
-			VersionNameRequest request = new VersionNameRequest (photo,
-									     "Rename Version", "New name:",
-									     parent_window);
+			VersionNameRequest request = new VersionNameRequest (VersionNameRequest.RequestType.Rename,
+									     photo, parent_window);
 
 			string new_name;
 			ResponseType response = request.Run (out new_name);
