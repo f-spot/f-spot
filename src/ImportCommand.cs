@@ -141,6 +141,11 @@ public class ImportCommand {
 
 			ongoing = importer.Step (out photo, out thumbnail, out count);
 
+			if (thumbnail == null){
+				Console.WriteLine ("Could not import file");
+				continue;
+			}
+			
 			grid.AddThumbnail (thumbnail);
 			UpdateProgressBar (count, total);
 		}

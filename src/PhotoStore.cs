@@ -293,7 +293,7 @@ public class PhotoStore : DbStore {
 	static Pixbuf GenerateFromExif (string path, string uri)
 	{
 		Pixbuf pixbuf;
-		
+
 		try {
 			using (ExifData ed = new ExifData (path)){
 				byte [] thumbData = ed.Data;
@@ -305,8 +305,9 @@ public class PhotoStore : DbStore {
                                         FileStream fs = File.Create (target, Math.Min (thumbData.Length, 8192));
                                         fs.Write (thumbData, 0, thumbData.Length);
 					fs.Close ();
-
-					return new Pixbuf (target);
+					
+					Pixbuf p = new Pixbuf (target);
+					return p;
 				}
 			}
 		} catch {
@@ -315,24 +316,31 @@ public class PhotoStore : DbStore {
 		return null;
 	}
 
-	public static Pixbuf GenerateThumbnail (string path)
+	public static Pixbuf GenerateThumbnail (string path, bool use_exif)
 	{
 		string uri = "file://" + path;
-		Pixbuf thumbnail;
-		
-		if ((thumbnail = GenerateFromExif (path, uri)) == null){
+		Pixbuf thumbnail = null;
+
+		if (use_exif)
+			thumbnail = GenerateFromExif (path, uri);
+
+		if (thumbnail == null)
 			thumbnail = thumbnail_factory.GenerateThumbnail (uri, "image/jpeg");
 		
-			// FIXME if this is null then the file doesn't exist.
-			if (thumbnail != null) {
-				// FIXME there is no SaveThumbnail() in the C# bindings for ThumbnailFactory.
-				// This should really be done through SaveThumbnail, which would make sure we dont' do
-				// it unnecessarily.
-				thumbnail.Savev (Thumbnail.PathForUri (uri, ThumbnailSize.Large), "png", null, null);
-			}
+		// FIXME if this is null then the file doesn't exist.
+		if (thumbnail != null) {
+			// FIXME there is no SaveThumbnail() in the C# bindings for ThumbnailFactory.
+			// This should really be done through SaveThumbnail, which would make sure we dont' do
+			// it unnecessarily.
+			thumbnail.Savev (Thumbnail.PathForUri (uri, ThumbnailSize.Large), "png", null, null);
 		}
 		
 		return thumbnail;
+	}
+
+	public static Pixbuf GenerateThumbnail (string path)
+	{
+		return GenerateThumbnail (path, false);
 	}
 
 	public static void DeleteThumbnail (string path)
@@ -433,7 +441,7 @@ public class PhotoStore : DbStore {
 		Photo photo = new Photo (id, unix_time, path);
 		AddToCache (photo);
 
-		thumbnail = GenerateThumbnail (path);
+		thumbnail = GenerateThumbnail (path, true);
 		return photo;
 	}
 

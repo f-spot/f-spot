@@ -1,3 +1,19 @@
+2003-11-22  Miguel de Icaza  <miguel@ximian.com>
+
+	* src/PhotoSource.cs: Add another overload for GenerateThumbnail
+	so we can specify whether to use Exif or not.
+
+	* src/ImportCommand.cs: Thumbnails might not be generated, skip
+	over those files.
+
+	* src/f-spot.in (LD_LIBRARY_PATH): Added elite --debug flag to get
+	line numbers on stack traces.
+
+	* src/Makefile.am: Add elite -g to the mcs command line, so it
+	generates debug info.
+
+	* src/PhotoSource.cs: Add dog-food enabling feature by using Exif.
+
 2003-11-22  Ettore Perazzoli  <ettore@ximian.com>
 
 	* src/TagStore.cs: Pass true for the cache_is_immortal flag to the
