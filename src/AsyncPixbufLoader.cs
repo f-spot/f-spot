@@ -10,6 +10,7 @@ namespace FSpot {
 		bool done_reading = false;
 		System.Exception error;
 		Gdk.Pixbuf pixbuf;
+		Gdk.Pixbuf old;
 		PixbufOrientation orientation;
 
 		//byte [] buffer = new byte [8192];
@@ -101,8 +102,17 @@ namespace FSpot {
 		
 		private void HandleAreaPrepared (object sender, System.EventArgs args)
 		{
-			loader.Pixbuf.Fill (0x00000000);
+			Gdk.Pixbuf old = pixbuf;
+				
 			pixbuf = PixbufUtils.TransformOrientation (loader.Pixbuf, orientation);
+
+			// FIXME this should probably live at the PhotoImageView level
+
+			if (pixbuf != null && old != null && pixbuf.Width == old.Width && pixbuf.Height == old.Height)
+				old.CopyArea (0, 0, pixbuf.Width, pixbuf.Height, pixbuf, 0, 0);
+			else
+				pixbuf.Fill (0x00000000);
+
 			area_prepared = true;			
 		}
 
