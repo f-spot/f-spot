@@ -1,5 +1,7 @@
 2005-02-24  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: use regions to compute the preload area.
+
 	* src/SlideView.cs: increase the max interval for the slide
 	timeout.
 
