@@ -575,7 +575,7 @@ public class PhotoStore : DbStore {
 			Photo photo = LookupInCache (id) as Photo;
 				
 			if (photo == null) {
-				Console.WriteLine ("Photo {0} not found", photo);
+				Console.WriteLine ("Photo {0} not found", id);
 				continue;
 			}
 				
@@ -606,12 +606,12 @@ public class PhotoStore : DbStore {
 			Photo photo = LookupInCache (id) as Photo;
 				
 			if (photo == null) {
-				Console.WriteLine ("Photo {0} not found", photo);
+				Console.WriteLine ("Photo {0} not found", id);
 				continue;
 			}
 				
 			if (photo.Loaded) {
-				//Console.WriteLine ("Photo {0} already Loaded", photo);
+				//Console.WriteLine ("Photo {0} already Loaded", photo.Id);
 				continue;
 			}
 
@@ -637,7 +637,7 @@ public class PhotoStore : DbStore {
 			Photo photo = LookupInCache (id) as Photo;
 				
 			if (photo == null) {
-				Console.WriteLine ("Photo {0} not found", photo);
+				Console.WriteLine ("Photo {0} not found", id);
 				continue;
 			}
 				
@@ -788,15 +788,18 @@ public class PhotoStore : DbStore {
 		
 	}
 
-#if false
 	public void Remove (Photo []items)
 	{
 		StringBuilder query_builder = new StringBuilder ();
-
+		StringBuilder tv_query_builder = new StringBuilder ();
 		for (int i = 0; i < items.Length; i++) {
-			if (i > 0)
+			if (i > 0) {
 				query_builder.Append (" OR ");
-			query_builder.Append (String.Format ("id = {0}", items[i].Id);
+				tv_query_builder.Append (" OR ");
+			}
+
+			query_builder.Append (String.Format ("id = {0}", items[i].Id));
+			tv_query_builder.Append (String.Format ("photo_id = {0}", items[i].Id));
 			RemoveFromCache (items[i]);
 		}
 
@@ -811,7 +814,7 @@ public class PhotoStore : DbStore {
 		command = new SqliteCommand ();
 		command.Connection = Connection;
 
-		command.CommandText = String.Format ("DELETE FROM photo_tags WHERE photo_id = {0}", query_builder.ToString ());
+		command.CommandText = String.Format ("DELETE FROM photo_tags WHERE {0}", tv_query_builder.ToString ());
 		command.ExecuteNonQuery ();
 
 		command.Dispose ();
@@ -819,12 +822,11 @@ public class PhotoStore : DbStore {
 		command = new SqliteCommand ();
 		command.Connection = Connection;
 
-		command.CommandText = String.Format ("DELETE FROM photo_versions WHERE photo_id = {0}", query_builder.ToString ());
+		command.CommandText = String.Format ("DELETE FROM photo_versions WHERE {0}", tv_query_builder.ToString ());
 		command.ExecuteNonQuery ();
 
 		command.Dispose ();
 	}
-#endif
 
 	public override void Remove (DbItem item)
 	{
@@ -940,6 +942,29 @@ public class PhotoStore : DbStore {
 	{
 		string query;
 
+		bool hide = true;
+		if (tags != null) {
+			foreach (Tag t in tags) {
+				if (t.Name == "Hidden") 
+					hide = false;
+			}
+			
+			if (hide == false) {
+				if (tags.Length > 1) {
+					Tag [] mod_tags = new Tag [tags.Length - 1];
+					int i = 0;
+					foreach (Tag t in tags) {
+						if (t.Name != "Hidden")
+							mod_tags[i] = t;
+					}
+					tags = mod_tags;
+				} else {
+					tags = null;
+				}
+			}
+			
+		}
+
 		if (tags == null || tags.Length == 0) {
 			StringBuilder query_builder = new StringBuilder ();
 			query_builder.Append  ("SELECT id, time, directory_path, name, description, default_version_id ");
@@ -1016,11 +1041,12 @@ public class PhotoStore : DbStore {
 		ArrayList id_list = new ArrayList ();
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader [0]);
+			Photo photo = LookupInCache (id) as Photo;
+
 			//Console.WriteLine ("{0} -- desc = {1}", id, reader.FieldCount);
 			//if(reader.FieldCount > 6)
 			//		Console.WriteLine ("The result is {0}", reader [6].ToString ());
 
-			Photo photo = LookupInCache (id) as Photo;
 			if (photo == null) {
 				photo = new Photo (id,
 						   Convert.ToUInt32 (reader [1]),
@@ -1057,6 +1083,20 @@ public class PhotoStore : DbStore {
 		Console.WriteLine ("End {0}", System.DateTime.Now);
 
 		command.Dispose ();
+		
+		if (hide) {
+			ArrayList hidden_list = new ArrayList ();
+			foreach (Photo p in id_list) {
+				foreach (Tag t in p.Tags) {
+					if (t.Name == "Hidden")
+						hidden_list.Add (p);
+				}
+			}
+			
+			foreach (Photo p in hidden_list) {
+				id_list.Remove (p);
+			}
+		}
 
 		return id_list.ToArray (typeof (Photo)) as Photo [];
 	}
