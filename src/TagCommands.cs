@@ -11,24 +11,14 @@ public class TagCommands {
 		Category
 	}
 
-	public class Create {
+	public class Create : FSpot.GladeDialog {
 		TagStore tag_store;
 		Gtk.Window parent_window;
 
-		[Glade.Widget]
-		private Dialog create_tag_dialog;
-
-		[Glade.Widget]
-		private Button ok_button;
-
-		[Glade.Widget]
-		private Entry tag_name_entry;
-
-		[Glade.Widget]
-		private Label prompt_label;
-
-		[Glade.Widget]
-		private Label already_in_use_label;
+		[Glade.Widget] private Button ok_button;
+		[Glade.Widget] private Entry tag_name_entry;
+		[Glade.Widget] private Label prompt_label;
+		[Glade.Widget] private Label already_in_use_label;
 
 		[Glade.Widget]
 		private OptionMenu category_option_menu;
@@ -113,18 +103,17 @@ public class TagCommands {
 
 		public bool Execute (TagType type)
 		{
-			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "create_tag_dialog", null);
-			xml.Autoconnect (this);
+			this.CreateDialog ("create_tag_dialog");
 
-			create_tag_dialog.DefaultResponse = ResponseType.Ok;
+			this.Dialog.DefaultResponse = ResponseType.Ok;
 
 			switch (type) {
 			case TagType.Tag:
-				create_tag_dialog.Title = Mono.Posix.Catalog.GetString ("Create New Tag");
+				this.Dialog.Title = Mono.Posix.Catalog.GetString ("Create New Tag");
 				prompt_label.Text = Mono.Posix.Catalog.GetString ("Name of new tag:");
 				break;
 			case TagType.Category:
-				create_tag_dialog.Title = Mono.Posix.Catalog.GetString ("Create New Category");
+				this.Dialog.Title = Mono.Posix.Catalog.GetString ("Create New Category");
 				prompt_label.Text = Mono.Posix.Catalog.GetString ("Name of new category:");
 				break;
 			}
@@ -132,7 +121,7 @@ public class TagCommands {
 			PopulateCategoryOptionMenu ();
 			Update ();
 
-			ResponseType response = (ResponseType) create_tag_dialog.Run ();
+			ResponseType response = (ResponseType) this.Dialog.Run ();
 
 			bool success = false;
 
@@ -156,7 +145,7 @@ public class TagCommands {
 				}
 			}
 
-			create_tag_dialog.Destroy ();
+			this.Dialog.Destroy ();
 			return success;
 		}
 
@@ -167,34 +156,18 @@ public class TagCommands {
 		}
 	}
 
-	public class Edit {
+	public class Edit : FSpot.GladeDialog {
 		Db db;
 		Gtk.Window parent_window;
 		Tag tag;
 
-		[Glade.Widget]
-		Dialog edit_tag_dialog;
-
-		[Glade.Widget]
-		private Button ok_button;
-
-		[Glade.Widget]
-		private Entry tag_name_entry;
-
-		[Glade.Widget]
-		private Label prompt_label;
-
-		[Glade.Widget]
-		private Label already_in_use_label;
-
-		[Glade.Widget]
-		private Gtk.Image icon_image;
-
-		[Glade.Widget]
-		private Button icon_button;
-		
-		[Glade.Widget]
-		private OptionMenu category_option_menu;
+		[Glade.Widget] private Button ok_button;
+		[Glade.Widget] private Entry tag_name_entry;
+		[Glade.Widget] private Label prompt_label;
+		[Glade.Widget] private Label already_in_use_label;
+		[Glade.Widget] private Gtk.Image icon_image;
+		[Glade.Widget] private Button icon_button;
+		[Glade.Widget] private OptionMenu category_option_menu;
 
 		private ArrayList categories;
 
@@ -296,17 +269,16 @@ public class TagCommands {
 
 		public bool Execute (Tag t) 
 		{
-			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "edit_tag_dialog", null);
-			xml.Autoconnect (this);
+			CreateDialog ("edit_tag_dialog");
 
 			tag = t;
-			edit_tag_dialog.DefaultResponse = ResponseType.Ok;
+			this.Dialog.DefaultResponse = ResponseType.Ok;
 
 			if (t is Category) {
-				edit_tag_dialog.Title = Mono.Posix.Catalog.GetString ("Edit Category");
+				this.Dialog.Title = Mono.Posix.Catalog.GetString ("Edit Category");
 				prompt_label.Text = Mono.Posix.Catalog.GetString ("Category name:");
 			} else {
-				edit_tag_dialog.Title = Mono.Posix.Catalog.GetString ("Edit Tag");
+				this.Dialog.Title = Mono.Posix.Catalog.GetString ("Edit Tag");
 				prompt_label.Text = Mono.Posix.Catalog.GetString ("Tag name:");
 			}
 
@@ -320,7 +292,7 @@ public class TagCommands {
 			icon_button.SetSizeRequest (48, 48);
 
 			category_option_menu.Changed += HandleTagNameEntryChanged;
-			ResponseType response = (ResponseType) edit_tag_dialog.Run ();
+			ResponseType response = (ResponseType) this.Dialog.Run ();
 			bool success = false;
 
 			if (response == ResponseType.Ok) {
@@ -337,7 +309,7 @@ public class TagCommands {
 				}
 			}
 			
-			edit_tag_dialog.Destroy ();
+			this.Dialog.Destroy ();
 			return success;
 		}
 
@@ -348,30 +320,18 @@ public class TagCommands {
 		}
 	}
 
-	public class EditIcon {
+	public class EditIcon : FSpot.GladeDialog {
 		Db db;
 		Gtk.Window parent_window;
 		FSpot.PhotoQuery query;
 		FSpot.PhotoImageView image_view;
 		IconView icon_view;
 
-		[Glade.Widget]
-		Dialog edit_icon_dialog;
-		
-		[Glade.Widget]
-		Gtk.Image preview_image;
-
-		[Glade.Widget]
-		ScrolledWindow photo_scrolled_window;
-		
-		[Glade.Widget]
-		ScrolledWindow icon_scrolled_window;
-
-		[Glade.Widget]
-		Label photo_label;
-
-		[Glade.Widget]
-		SpinButton photo_spin_button;
+		[Glade.Widget] Gtk.Image preview_image;
+		[Glade.Widget] ScrolledWindow photo_scrolled_window;
+		[Glade.Widget] ScrolledWindow icon_scrolled_window;
+		[Glade.Widget] Label photo_label;
+		[Glade.Widget] SpinButton photo_spin_button;
 
 		public int CurrentItem {
 			get {
@@ -434,15 +394,12 @@ public class TagCommands {
 
 		public bool Execute (Tag t)
 		{
-			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "edit_icon_dialog", null);
-			xml.Autoconnect (this);
-
-			edit_icon_dialog.DefaultResponse = ResponseType.Ok;
+			this.CreateDialog ("edit_icon_dialog");
 
 			if (t is Category) {
-				edit_icon_dialog.Title = String.Format (Mono.Posix.Catalog.GetString ("Edit icon For category {0}"), t.Name);
+				this.Dialog.Title = String.Format (Mono.Posix.Catalog.GetString ("Edit icon For category {0}"), t.Name);
 			} else {
-				edit_icon_dialog.Title = String.Format (Mono.Posix.Catalog.GetString ("Edit icon for tag {0}"), t.Name);
+				this.Dialog.Title = String.Format (Mono.Posix.Catalog.GetString ("Edit icon for tag {0}"), t.Name);
 			}
 
 			preview_image.Pixbuf = t.Icon;
@@ -489,7 +446,7 @@ public class TagCommands {
 
 			image_view.Show ();
 
-			ResponseType response = (ResponseType) edit_icon_dialog.Run ();
+			ResponseType response = (ResponseType) this.Dialog.Run ();
 			bool success = false;
 
 			if (response == ResponseType.Ok) {
@@ -503,7 +460,7 @@ public class TagCommands {
 				}
 			}
 			
-			edit_icon_dialog.Destroy ();
+			this.Dialog.Destroy ();
 			return success;
 		}
 

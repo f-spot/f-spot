@@ -66,13 +66,12 @@ namespace FSpot {
 		}
 	}
 	
-	public class GalleryAdd {
-		public GalleryAdd (GalleryExport export) {
+	public class GalleryAdd : GladeDialog {
+		public GalleryAdd (GalleryExport export) : base ("gallery_add_dialog") 
+		{
 			this.export = export;
 
-			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "gallery_add_dialog", null);
-			xml.Autoconnect (this);
-
+			gallery_add_dialog = this.Dialog;
 			gallery_add_dialog.Modal = false;
 			gallery_add_dialog.TransientFor = export.Dialog;
 			gallery_add_dialog.Show ();
@@ -104,16 +103,13 @@ namespace FSpot {
 				if (!url.EndsWith ("/gallery_remote2.php"))
 					url = url + "/gallery_remote2.php";
 
-				GalleryAccount account = new GalleryAccount (name, url, username, password);
+				GalleryAccount account = new GalleryAccount (name, 
+									     url, 
+									     username,
+									     password);
 				export.AddAccount (account);
 			}
 			Dialog.Destroy ();
-		}
-
-		public Gtk.Dialog Dialog {
-			get {
-				return gallery_add_dialog;
-			}
 		}
 
 		GalleryExport export;
@@ -124,7 +120,7 @@ namespace FSpot {
 		private string username;
 
 		// widgets 
-		[Glade.Widget] Gtk.Dialog gallery_add_dialog;
+		Gtk.Dialog gallery_add_dialog;
 		
 		[Glade.Widget] Gtk.Entry url_entry;
 		[Glade.Widget] Gtk.Entry password_entry;
@@ -136,31 +132,20 @@ namespace FSpot {
 	}
 
 	
-	public class GalleryAddAlbum {
-		public GalleryAddAlbum (GalleryRemote.Gallery gallery)
+	public class GalleryAddAlbum : GladeDialog {
+		public GalleryAddAlbum (GalleryRemote.Gallery gallery) : base ("gallery_add_album_dialog")
 		{
-		}
-
-		public Gtk.Dialog Dialog {
-			get {
-				return dialog;
-			}
-		}
 		
-		// widgets
-		Gtk.Dialog dialog;
+		}
 	}
 
-	public class GalleryExport {
-		public GalleryExport (IPhotoCollection selection) 
+	public class GalleryExport : GladeDialog {
+		public GalleryExport (IPhotoCollection selection) : base ("gallery_export_dialog")
 		{
 			this.photos = selection.Photos;
 
 			// FIXME this xml file path should be be retrieved from a central location not hard coded there
 			this.xml_path = System.IO.Path.Combine (FSpot.Global.BaseDirectory, "Accounts.xml");
-
-			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "gallery_export_dialog", null);
-			xml.Autoconnect (this);
 			
 			IconView view = new IconView (selection);
 			view.DisplayDates = false;
@@ -199,8 +184,6 @@ namespace FSpot {
 		private GalleryAddAlbum album_add;
 
 		// Widgets
-		[Glade.Widget] Gtk.Dialog gallery_export_dialog;
-		
 		[Glade.Widget] Gtk.OptionMenu gallery_optionmenu;
 		[Glade.Widget] Gtk.OptionMenu album_optionmenu;
 		
@@ -217,12 +200,6 @@ namespace FSpot {
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
 
 		System.Threading.Thread command_thread;
-		
-		public Gtk.Dialog Dialog {
-			get {
-				return gallery_export_dialog;
-			}
-		}
 		
 		public void WriteAccounts ()
 		{
@@ -293,7 +270,7 @@ namespace FSpot {
 		private void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
 			if (args.ResponseId != Gtk.ResponseType.Ok) {
-				gallery_export_dialog.Destroy ();
+				Dialog.Destroy ();
 				return;
 			}
 

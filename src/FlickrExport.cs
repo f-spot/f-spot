@@ -1,17 +1,13 @@
 namespace FSpot {
-	public class FlickrExport {
+	public class FlickrExport : GladeDialog {
 		IPhotoCollection selection;
 
-		[Glade.Widget] Gtk.Dialog flickr_export_dialog;		
 		[Glade.Widget] Gtk.CheckButton scale_check;
 		[Glade.Widget] Gtk.CheckButton meta_check;
 		[Glade.Widget] Gtk.CheckButton tag_check;
 		[Glade.Widget] Gtk.CheckButton open_check;
-
 		[Glade.Widget] Gtk.Entry email_entry;
-
 		[Glade.Widget] Gtk.SpinButton size_spin;
-
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
 		
 		System.Threading.Thread command_thread;
@@ -26,12 +22,9 @@ namespace FSpot {
 
 		FlickrRemote fr = new FlickrRemote ();
 
-		public FlickrExport (IPhotoCollection selection)
+		public FlickrExport (IPhotoCollection selection) : base ("flickr_export_dialog")
 		{
 			this.selection = selection;
-			
-			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "flickr_export_dialog", null);
-			xml.Autoconnect (this);
 
 			IconView view = new IconView (selection);
 			view.DisplayDates = false;
@@ -53,7 +46,8 @@ namespace FSpot {
 
 		private string GetPassword (string email) 
 		{
-			Gtk.Dialog password_dialog = new Gtk.Dialog (Mono.Posix.Catalog.GetString ("Enter Password"), Dialog, Gtk.DialogFlags.Modal);
+			Gtk.Dialog password_dialog = new Gtk.Dialog (Mono.Posix.Catalog.GetString ("Enter Password"),
+								     Dialog, Gtk.DialogFlags.Modal);
 			
 			Gtk.Entry password_entry = new Gtk.Entry ();
 			password_entry.Visibility = false;
@@ -90,10 +84,15 @@ namespace FSpot {
 			try {
 
 				foreach (Photo photo in selection.Photos) {
-					progress_dialog.Message = System.String.Format (Mono.Posix.Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
+					progress_dialog.Message = System.String.Format (
+                                                Mono.Posix.Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
+
 					progress_dialog.Fraction = photo_index / (double)selection.Photos.Length;
 					photo_index++;
-					progress_dialog.ProgressText = System.String.Format (Mono.Posix.Catalog.GetString ("{0} of {1}"), photo_index, selection.Photos.Length);
+					progress_dialog.ProgressText = System.String.Format (
+						Mono.Posix.Catalog.GetString ("{0} of {1}"), photo_index, 
+						selection.Photos.Length);
+
 					string id = fr.Upload (photo, scale, size);
 					ids.Add (id);
 					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Done Sending Photos");
@@ -145,12 +144,6 @@ namespace FSpot {
 				md.Run ();
 				md.Destroy ();
 				return;
-			}
-		}
-
-		public Gtk.Dialog Dialog {
-			get {
-				return flickr_export_dialog;
 			}
 		}
 	}

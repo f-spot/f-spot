@@ -1,5 +1,23 @@
 2005-02-16  Larry Ewing  <lewing@novell.com>
 
+	* src/Makefile.am: add GladeDialog to the build.
+
+	* src/GladeDialog.cs: Helper class to handle the repetitive bits
+	of the using glade to create dialogs.  Expose Dialog as a public
+	property.
+
+	* src/OriginalExport.cs: derive from GladeDialog.
+
+	* src/TagCommands.cs: derive commands from GladeDialog.
+	
+	* src/FlickrExport.cs: derive from FSpot.GladeDialog.
+
+	* src/VfsExport.cs: derive from FSpot.GladeDialog.
+
+	* src/TagCommands.cs: derive from GladeDialog.
+	
+	* src/f-spot.glade: Tweak some values.
+
 	* src/CameraFileSelectionDialog.cs: make the thumbnail progress
 	cancel button stop the thumbnail download but still fill in the
 	file entries.

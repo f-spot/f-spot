@@ -28,10 +28,8 @@ using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.GZip;
 
 namespace FSpot {
-	public class OriginalExport {
+	public class OriginalExport : GladeDialog {
 		IPhotoCollection selection;
-		[Glade.Widget] Gtk.Dialog original_export_dialog;
-
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
 		[Glade.Widget] Gtk.Entry uri_entry;
 		[Glade.Widget] Gtk.Entry name_entry;
@@ -57,7 +55,7 @@ namespace FSpot {
 		FSpot.ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
 		
-		public OriginalExport (IPhotoCollection selection)
+		public OriginalExport (IPhotoCollection selection) : base ("original_export_dialog")
 		{
 			Gnome.Vfs.ModuleCallbackFullAuthentication auth = new Gnome.Vfs.ModuleCallbackFullAuthentication ();
 			auth.Callback += new Gnome.Vfs.ModuleCallbackHandler (HandleAuth);
@@ -81,9 +79,6 @@ namespace FSpot {
 			
 			this.selection = selection;
 			
-			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "original_export_dialog", null);
-			xml.Autoconnect (this);
-			
 			IconView view = new IconView (selection);
 			view.DisplayDates = false;
 			view.DisplayTags = false;
@@ -104,12 +99,6 @@ namespace FSpot {
 		public void HandleSizeActive (object sender, System.EventArgs args)
 		{
 			size_spin.Sensitive = scale_check.Active;
-		}
-
-		public Gtk.Dialog Dialog {
-			get {
-				return this.original_export_dialog;
-			}
 		}
 
 		public void Upload ()

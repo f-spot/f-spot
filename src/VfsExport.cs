@@ -1,7 +1,6 @@
 namespace FSpot {
-	public class VfsExport {
+	public class VfsExport : GladeDialog {
 		IPhotoCollection selection;
-		[Glade.Widget] Gtk.Dialog vfs_export_dialog;
 
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
 		[Glade.Widget] Gtk.Entry uri_entry;
@@ -22,7 +21,7 @@ namespace FSpot {
 		FSpot.ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
 		
-		public VfsExport (IPhotoCollection selection)
+		public VfsExport (IPhotoCollection selection) : base ("vfs_export_dialog")
 		{
 			Gnome.Vfs.ModuleCallbackFullAuthentication auth = new Gnome.Vfs.ModuleCallbackFullAuthentication ();
 			auth.Callback += new Gnome.Vfs.ModuleCallbackHandler (HandleAuth);
@@ -46,10 +45,6 @@ namespace FSpot {
 			
 			this.selection = selection;
 			
-			// FIXME this xml file path should be be retrieved from a central location not hard coded there
-			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "vfs_export_dialog", null);
-			xml.Autoconnect (this);
-			
 			IconView view = new IconView (selection);
 			view.DisplayDates = false;
 			view.DisplayTags = false;
@@ -64,12 +59,6 @@ namespace FSpot {
 
 			Dialog.Response += HandleResponse;
 			HandleSizeActive (null, null);
-		}
-
-		public Gtk.Dialog Dialog {
-			get {
-				return this.vfs_export_dialog;
-			}
 		}
 
 		public Gnome.Vfs.Result PrepareAndXfer (Photo photo)
