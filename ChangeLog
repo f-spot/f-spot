@@ -1,5 +1,12 @@
 2005-02-18  Larry Ewing  <lewing@novell.com>
 
+	* src/Makefile.am: add the gnome-vfs volume stuff to the build.
+
+	* src/gnomevfs/ObjectManager.cs: register the object with the
+	proper assembly.
+
+	* src/main.cs: call Gnome.Vfs.Vfs.Initialize.
+
 	* src/MainWindow.cs: sensitize the edit_tag_button properly.
 
 	* src/FileImportBackend.cs: use the recurse setting rather than

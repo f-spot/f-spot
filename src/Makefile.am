@@ -80,6 +80,9 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/VfsExport.cs			\
 	$(srcdir)/main.cs			\
 						\
+	$(srcdir)/gnomevfs/Gnome.VfsSharp.voidObjectObjectSignal.cs	\
+	$(srcdir)/gnomevfs/Gnome.VfsSharp.voidObjectSignal.cs	\
+	$(srcdir)/gnomevfs/ObjectManager.cs			\
 	$(srcdir)/gnomevfs/Async.cs				\
 	$(srcdir)/gnomevfs/AsyncCallback.cs			\
 	$(srcdir)/gnomevfs/AsyncCallbackNative.cs		\
@@ -117,6 +120,16 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/gnomevfs/SetFileInfoMask.cs			\
 	$(srcdir)/gnomevfs/Sync.cs				\
 	$(srcdir)/gnomevfs/Vfs.cs				\
+	$(srcdir)/gnomevfs/Volume.cs				\
+	$(srcdir)/gnomevfs/VolumeMonitor.cs			\
+	$(srcdir)/gnomevfs/Drive.cs				\
+	$(srcdir)/gnomevfs/DriveConnectedHandler.cs		\
+	$(srcdir)/gnomevfs/DriveDisconnectedHandler.cs		\
+	$(srcdir)/gnomevfs/DeviceType.cs			\
+	$(srcdir)/gnomevfs/VolumeType.cs			\
+	$(srcdir)/gnomevfs/VolumePreUnmountHandler.cs		\
+	$(srcdir)/gnomevfs/VolumeUnmountedHandler.cs		\
+	$(srcdir)/gnomevfs/VolumeMountedHandler.cs		\
 	$(srcdir)/gnomevfs/Uri.cs				\
 	$(srcdir)/gnomevfs/UriHideOptions.cs			\
 	$(srcdir)/gnomevfs/VfsException.cs			\

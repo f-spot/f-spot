@@ -10,6 +10,7 @@ public class Driver {
 		Application.Init ();
 		Program program = new Program ("F-Spot", "0.0", Modules.UI, args);
 
+		Gnome.Vfs.Vfs.Initialize ();
 		StockIcons.Initialize ();
 
 		// FIXME: Error checking is non-existant here...

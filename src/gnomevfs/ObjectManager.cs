@@ -13,10 +13,10 @@ namespace GtkSharp.GnomeVfsSharp {
 				return;
 
 			initialized = true;
-			GLib.ObjectManager.RegisterType("GnomeVFSVolumeMonitor", "Gnome.Vfs.VolumeMonitor,gnome-vfs-sharp");
-			GLib.ObjectManager.RegisterType("GnomeVFSDrive", "Gnome.Vfs.Drive,gnome-vfs-sharp");
-			GLib.ObjectManager.RegisterType("GnomeVFSMIMEMonitor", "Gnome.Vfs.MimeMonitor,gnome-vfs-sharp");
-			GLib.ObjectManager.RegisterType("GnomeVFSVolume", "Gnome.Vfs.Volume,gnome-vfs-sharp");
+			GLib.ObjectManager.RegisterType("GnomeVFSVolumeMonitor", "Gnome.Vfs.VolumeMonitor,f-spot");
+			GLib.ObjectManager.RegisterType("GnomeVFSDrive", "Gnome.Vfs.Drive,f-spot");
+			GLib.ObjectManager.RegisterType("GnomeVFSMIMEMonitor", "Gnome.Vfs.MimeMonitor,f-spot");
+			GLib.ObjectManager.RegisterType("GnomeVFSVolume", "Gnome.Vfs.Volume,f-spot");
 		}
 	}
 }

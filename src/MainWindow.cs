@@ -1619,6 +1619,8 @@ public class MainWindow {
 		copy.Sensitive = active_selection;
 
 		delete_selected_tag.Sensitive = tag_sensitive;
+		edit_selected_tag.Sensitive = tag_sensitive;
+
 		attach_tag_to_selection.Sensitive = tag_sensitive && active_selection;
 		remove_tag_from_selection.Sensitive = tag_sensitive && active_selection;
 	}
