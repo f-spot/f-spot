@@ -83,7 +83,7 @@ class PixbufUtils {
 
 			SetSize (scale_width, scale_height);
 		}
-		
+
 		public Pixbuf LoadFromFile (string path)
 		{
 			FileStream fs;
@@ -123,6 +123,29 @@ class PixbufUtils {
 		return loader.Pixbuf;
 	}
 		
+	public static Pixbuf TagIconFromPixbuf (Pixbuf source)
+	{
+		int size = 50;
+		Pixbuf tmp = null;
+		Pixbuf icon = null;
+
+		if (source.Width > source.Height)
+			source = tmp = new Pixbuf (source, (source.Width - source.Height) /2, 0, source.Height, source.Height);
+		else if (source.Width < source.Height) 
+			source = tmp = new Pixbuf (source, 0, (source.Height - source.Width) /2, source.Width, source.Width);
+
+		if (source.Width == source.Height)
+			icon = source.ScaleSimple (size, size, InterpType.Bilinear);
+		else
+			throw new Exception ("Bad logic leads to bad accidents");
+
+		if (tmp != null)
+			tmp.Dispose ();
+		
+		return icon;
+	}
+		
+
 	static public Pixbuf LoadFromAssembly (System.Reflection.Assembly assembly, string resource)
 	{
 		System.IO.Stream s = assembly.GetManifestResourceStream (resource);

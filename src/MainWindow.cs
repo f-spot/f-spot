@@ -713,9 +713,9 @@ public class MainWindow {
 		if (tags.Length != 1)
 			return;
 		
-		TagCommands.Edit command= new TagCommands.Edit (db.Tags, main_window);
+		TagCommands.Edit command = new TagCommands.Edit (db, main_window);
 		if (command.Execute (tags [0]))
-			db.Tags.Commit (tags [0]);
+			tag_selection_widget.Update ();
 	}
 
 	void HandleViewSmall (object sender, EventArgs args)

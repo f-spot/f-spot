@@ -1,5 +1,16 @@
 2004-08-11  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufUtils.cs: add TagIconFromPixbuf helper function that
+	simply does some croping and scaling.  This might belong somewhere
+	else.
+
+	* src/MainWindow.cs: Rework the call the Edit.
+	
+	* src/f-spot.glade: add edit icon dialog.
+
+	* src/TagCommands.cs: Add EditIcon command.  Make clicking on the
+	tag Icon spawn the editor.  Refactor ::Edit slightly.
+	
 	* src/f-spot.glade: add edit command menu item and dialog.
 
 	* src/MainWindow.cs: add edit command handler.

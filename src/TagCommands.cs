@@ -168,7 +168,7 @@ public class TagCommands {
 	}
 
 	public class Edit {
-		TagStore tag_store;
+		Db db;
 		Gtk.Window parent_window;
 		Tag tag;
 
@@ -225,7 +225,7 @@ public class TagCommands {
 			if (name == "") {
 				ok_button.Sensitive = false;
 				already_in_use_label.Markup = "";
-			} else if (TagNameExistsInCategory (name, tag_store.RootCategory)
+			} else if (TagNameExistsInCategory (name, db.Tags.RootCategory)
 				   && name != orig_name) {
 				ok_button.Sensitive = false;
 				already_in_use_label.Markup = "<small>This name is already in use</small>";
@@ -246,12 +246,19 @@ public class TagCommands {
 			}
 		}
 
+		private void HandleIconButtonClicked (object sender, EventArgs args)
+		{
+			TagCommands.EditIcon command = new TagCommands.EditIcon (db, parent_window);
+			if (command.Execute (tag))
+				icon_image.Pixbuf = tag.Icon;
+		}
+
 		private void PopulateCategoryOptionMenu (Tag t)
 		{
 			int history = 0;
 			int i = 0;
 			categories = new ArrayList ();
-			PopulateCategories (categories, tag_store.RootCategory);
+			PopulateCategories (categories, db.Tags.RootCategory);
 
 			Menu menu = new Menu ();
 
@@ -269,7 +276,7 @@ public class TagCommands {
 					i++;
 
 					for (Category parent = category.Category; 
-					     parent != tag_store.RootCategory; 
+					     parent != db.Tags.RootCategory; 
 					     parent = parent.Category)
 						label_builder.Append ("  ");
 
@@ -293,6 +300,7 @@ public class TagCommands {
 			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "edit_tag_dialog", null);
 			xml.Autoconnect (this);
 
+			tag = t;
 			edit_tag_dialog.DefaultResponse = ResponseType.Ok;
 
 			if (t is Category) {
@@ -308,6 +316,8 @@ public class TagCommands {
 
 			icon_image.Pixbuf = t.Icon;
 			PopulateCategoryOptionMenu  (t);
+			
+			icon_button.Clicked += HandleIconButtonClicked;
 
 			category_option_menu.Changed += HandleTagNameEntryChanged;
 			ResponseType response = (ResponseType) edit_tag_dialog.Run ();
@@ -319,6 +329,7 @@ public class TagCommands {
 					t.Category = categories [category_option_menu.History] as Category;
 					t.Icon = icon_image.Pixbuf;
 
+					db.Tags.Commit (t);
 					success = true;
 				} catch (Exception ex) {
 					// FIXME error dialog.
@@ -330,10 +341,143 @@ public class TagCommands {
 			return success;
 		}
 
-		public Edit (TagStore tag_store, Gtk.Window parent_window)
+		public Edit (Db db, Gtk.Window parent_window)
 		{
-			this.tag_store = tag_store;
+			this.db = db;
 			this.parent_window = parent_window;
 		}
 	}
+
+	public class EditIcon {
+		Db db;
+		Photo [] photos;
+		Gtk.Window parent_window;
+		FSpot.ImageView image_view;
+
+		[Glade.Widget]
+		Dialog edit_icon_dialog;
+		
+		[Glade.Widget]
+		Gtk.Image preview_image;
+
+		[Glade.Widget]
+		ScrolledWindow photo_scrolled_window;
+		
+		[Glade.Widget]
+		Label photo_label;
+
+		[Glade.Widget]
+		SpinButton photo_spin_button;
+
+		int current_item = -1;
+		public int CurrentItem {
+			get {
+				return current_item;
+			}
+			set {
+				if (value != current_item) {
+					current_item = value;
+					photo_label.Text = String.Format ("Photo {0} of {1}", 
+									  current_item + 1, photos.Length);
+
+					Gdk.Pixbuf old = image_view.Pixbuf;
+					image_view.Pixbuf = PixbufUtils.LoadAtMaxSize (photos [value].DefaultVersionPath,
+										       image_view.Parent.Allocation.Width,
+										       image_view.Parent.Allocation.Height);
+
+					photo_spin_button.Value = (double)current_item + 1;
+
+					if (old != null)
+						old.Dispose ();
+				}
+			}
+		}
+		
+		private void HandleSpinButtonChanged (object sender, EventArgs args)
+		{
+			int value = photo_spin_button.ValueAsInt - 1;
+			
+			if (value != current_item)
+				CurrentItem = value;
+		}
+
+		private void HandleSelectionChanged ()
+		{
+			int x, y, width, height;
+			Gdk.Pixbuf tmp = null;
+		       
+			image_view.GetSelection (out x, out y, out width, out height);
+
+			if (width > 0 && height > 0) {
+				tmp = new Gdk.Pixbuf (image_view.Pixbuf, x, y, width, height);
+				
+				preview_image.Pixbuf = PixbufUtils.TagIconFromPixbuf (tmp);
+				
+				tmp.Dispose ();
+			}
+		}
+
+		public bool Execute (Tag t)
+		{
+			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "edit_icon_dialog", null);
+			xml.Autoconnect (this);
+
+			edit_icon_dialog.DefaultResponse = ResponseType.Ok;
+
+			if (t is Category) {
+				edit_icon_dialog.Title = String.Format ("Edit icon For category {0}", t.Name);
+			} else {
+				edit_icon_dialog.Title = String.Format ("Edit tcon for tag {0}", t.Name);
+			}
+
+			preview_image.Pixbuf = t.Icon;
+			image_view = new FSpot.ImageView ();
+			image_view.SelectionXyRatio = 1.0;
+			image_view.Show ();
+			image_view.SelectionChanged += HandleSelectionChanged;
+
+			photo_scrolled_window.Add (image_view);
+
+			Tag [] tags = new Tag [] { t, db.Tags.Hidden };
+			photos = db.Photos.Query (tags);
+			
+			if (photos.Length > 0) {
+				photo_spin_button.Wrap = true;
+				photo_spin_button.Adjustment.Lower = 1.0;
+				photo_spin_button.Adjustment.Upper = (double)photos.Length;
+				photo_spin_button.Adjustment.StepIncrement = 1.0;
+				photo_spin_button.ValueChanged += HandleSpinButtonChanged;
+				
+				CurrentItem = 0;
+			} else {
+				photo_spin_button.Sensitive = false;
+				photo_spin_button.Value = 0.0;
+			}			
+			
+
+			ResponseType response = (ResponseType) edit_icon_dialog.Run ();
+			bool success = false;
+
+			if (response == ResponseType.Ok) {
+				try {
+					t.Icon = preview_image.Pixbuf;
+					//db.Tags.Commit (t);
+					success = true;
+				} catch (Exception ex) {
+					// FIXME error dialog.
+					Console.WriteLine ("error {0}", ex);
+				}
+			}
+			
+			edit_icon_dialog.Destroy ();
+			return success;
+		}
+
+		public EditIcon (Db db, Gtk.Window parent_window)
+		{
+			this.db = db;
+			this.parent_window = parent_window;
+		}
+	}
+
 }
