@@ -27,8 +27,7 @@ namespace LibGPhoto2 {
 		
 		~Object ()
 		{
-			System.Console.WriteLine ("Finalized {0}", this.ToString ());
-			//Cleanup ();
+			Cleanup ();
 		}
 	}
 }

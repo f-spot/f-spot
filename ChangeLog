@@ -1,5 +1,7 @@
 2005-02-20  Larry Ewing  <lewing@novell.com>
 
+	* libgphoto2-sharp/Object.cs: actually finalize things.
+
 	* src/ImportCommand.cs: verify the import path don't leave the
 	dialog until it comes up ok or is canceled.
 	
