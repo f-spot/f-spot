@@ -1,11 +1,12 @@
 using System;
+using System.Collections;
 
 namespace FSpot {
 	public class TimeAdaptor {
 		public PhotoQuery query;
 
-		private int start_year;
 		private int span;
+		ArrayList years = new ArrayList ();
 
 		public delegate void GlassSetHandler (TimeAdaptor adaptor, int index);
 		public event GlassSetHandler GlassSet;
@@ -33,7 +34,7 @@ namespace FSpot {
 
 		public int Count {
 			get {
-				return span * 12;
+				return years.Count * 12;
 			}
 		}
 
@@ -57,7 +58,7 @@ namespace FSpot {
 		
 		public DateTime DateFromIndex (int item) 
 		{
-			int year = start_year + (item / 12);
+			int year =  (int)years [item / 12];
 			int month = (item % 12) + 1;
 
 			return new DateTime (year, month, 1);
@@ -65,13 +66,21 @@ namespace FSpot {
 		
 		public void Load () {
 			Photo [] photos = query.Store.Query (null, null);
-			
+
 			if (photos.Length > 0) {
-				start_year = photos[0].Time.Year;
-				span = photos[photos.Length -1].Time.Year - start_year;
+				int last = 0;
+				foreach (Photo photo in photos) {
+					int current = photo.Time.Year;
+					if (current != last) {
+						years.Add (current);
+						Console.WriteLine ("Found Year {0}", current);
+					}
+
+					last = current;
+				}
+
 			} else {
-				start_year = DateTime.Now.Year;
-				span = 1;
+				years.Add (DateTime.Now.Year);
 			}
 		}
 
