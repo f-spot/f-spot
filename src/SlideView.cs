@@ -20,7 +20,7 @@ public class SlideView : Gtk.Image {
 		StartTimer ();
 	}
 
-#if true
+#if false
 	private Pixbuf Blend (Pixbuf current, Pixbuf prev, Pixbuf next, double percent)
 	{ 
 		int width = Allocation.width;
@@ -32,7 +32,7 @@ public class SlideView : Gtk.Image {
 		return current;
 	}
 #else
-	private Pixbuf Blend (Pixbuf dest, Pixbuf prev, Pixbuf next, double percent)
+	private Pixbuf Blend (Pixbuf current, Pixbuf prev, Pixbuf next, double percent)
 	{ 
 		int width = Allocation.width;
 		int height = Allocation.height;
@@ -105,30 +105,36 @@ public class SlideView : Gtk.Image {
 		Pixbuf prev = this.Pixbuf;
 		Pixbuf current = new Pixbuf (Colorspace.Rgb, false, 8, Allocation.width, Allocation.height);
 
-		this.FromPixbuf = Blend (current, prev, next, .1);
-		GdkWindow.ProcessUpdates (false);
-		this.FromPixbuf = Blend (current, prev, next, .2);
-		GdkWindow.ProcessUpdates (false);
-		this.FromPixbuf = Blend (current, prev, next, .3);
-		GdkWindow.ProcessUpdates (false);
-		this.FromPixbuf = Blend (current, prev, next, .4);
-		GdkWindow.ProcessUpdates (false);
-		this.FromPixbuf = Blend (current, prev, next, .5);
-		GdkWindow.ProcessUpdates (false);
-		this.FromPixbuf = Blend (current, prev, next, .6);
-		GdkWindow.ProcessUpdates (false);
-		this.FromPixbuf = Blend (current, prev, next, .7);
-		GdkWindow.ProcessUpdates (false);
-		this.FromPixbuf = Blend (current, prev, next, .8);
-		GdkWindow.ProcessUpdates (false);
-		this.FromPixbuf = Blend (current, prev, next, .9);
-		GdkWindow.ProcessUpdates (false);
-		this.FromPixbuf = Blend (current, prev, next, .97);
-		GdkWindow.ProcessUpdates (false);
-		this.FromPixbuf = Blend (current, prev, next, .99);
-		GdkWindow.ProcessUpdates (false);
-		this.FromPixbuf = next;
-		GdkWindow.ProcessUpdates (false);
+		try {
+			this.FromPixbuf = Blend (current, prev, next, .1);
+			GdkWindow.ProcessUpdates (false);
+			this.FromPixbuf = Blend (current, prev, next, .2);
+			GdkWindow.ProcessUpdates (false);
+			this.FromPixbuf = Blend (current, prev, next, .3);
+			GdkWindow.ProcessUpdates (false);
+			this.FromPixbuf = Blend (current, prev, next, .4);
+			GdkWindow.ProcessUpdates (false);
+			this.FromPixbuf = Blend (current, prev, next, .5);
+			GdkWindow.ProcessUpdates (false);
+			this.FromPixbuf = Blend (current, prev, next, .6);
+			GdkWindow.ProcessUpdates (false);
+			this.FromPixbuf = Blend (current, prev, next, .7);
+			GdkWindow.ProcessUpdates (false);
+			this.FromPixbuf = Blend (current, prev, next, .8);
+			GdkWindow.ProcessUpdates (false);
+			this.FromPixbuf = Blend (current, prev, next, .9);
+			GdkWindow.ProcessUpdates (false);
+			this.FromPixbuf = Blend (current, prev, next, .97);
+			GdkWindow.ProcessUpdates (false);
+			this.FromPixbuf = Blend (current, prev, next, .99);
+			GdkWindow.ProcessUpdates (false);
+			this.FromPixbuf = next;
+			GdkWindow.ProcessUpdates (false);
+		} catch {
+			timer = 0;
+			return false;
+		}
+			
 
 		if (!LoadNextImage ()) {
 			timer = 0;
