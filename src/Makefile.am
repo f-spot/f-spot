@@ -55,6 +55,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/RotateCommand.cs		\
 	$(srcdir)/SlideView.cs			\
 	$(srcdir)/StockIcons.cs			\
+	$(srcdir)/SimpleCalendar.cs		\
 	$(srcdir)/TagCommands.cs		\
 	$(srcdir)/TagMenu.cs			\
 	$(srcdir)/TagPopup.cs			\

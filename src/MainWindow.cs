@@ -184,9 +184,13 @@ public class MainWindow {
 		info_box = new InfoBox ();
 		info_box.VersionIdChanged += new InfoBox.VersionIdChangedHandler (HandleInfoBoxVersionIdChange);
 		left_vbox.PackStart (info_box, false, true, 0);
-		
+
 		query = new FSpot.PhotoQuery (db.Photos);
 		query.ItemChanged += HandleQueryItemChanged;
+
+		FSpot.SimpleCalendar cal = new FSpot.SimpleCalendar (query);
+		cal.DaySelected += HandleCalendarDaySelected;
+		left_vbox.PackStart (cal, false, true, 0);
 
 		group_selector = new FSpot.GroupSelector ();
 		FSpot.GroupAdaptor adaptor = new FSpot.TimeAdaptor (query);
@@ -445,7 +449,30 @@ public class MainWindow {
 		args.SelectionData.Set (targets[0], 8, data, data.Length);
 	}
 
-	void HandleAdaptorGlassSet (FSpot.GroupAdaptor sender, int index)
+	void HandleCalendarDaySelected (object sender, System.EventArgs args)
+	{
+		FSpot.SimpleCalendar cal = sender as FSpot.SimpleCalendar;
+		JumpTo (cal.Date);
+	}
+
+	private void JumpTo (System.DateTime time)
+	{
+		//FIXME this should make sure the photos are sorted by
+		//time.  This should be handled via a property that
+		//does all the needed switching.
+		if (!(group_selector.Adaptor is FSpot.TimeAdaptor))
+			HandleArrangeByTime (null, null);
+
+		int index = 0;
+		foreach (Photo p in query.Photos) {
+			if (time < p.Time)
+				break;
+			index ++;
+		}
+		JumpTo (index);
+	}
+
+	private void JumpTo (int index)
 	{
 		switch (mode) {
 		case ModeType.PhotoView:
@@ -456,7 +483,11 @@ public class MainWindow {
 			icon_view.Throb (index);
 			break;
 		}
+	}
 
+	void HandleAdaptorGlassSet (FSpot.GroupAdaptor sender, int index)
+	{
+		JumpTo (index);
 	}
 
 	//

@@ -2,6 +2,7 @@ namespace FSpot {
 	public class SimpleCalendar : Gtk.Calendar {
 		private PhotoQuery parent_query;
 		private PhotoQuery query;
+		System.DateTime last;
 		
 		public SimpleCalendar (PhotoQuery query)
 		{
@@ -42,11 +43,15 @@ namespace FSpot {
 				SelectMonth ((uint)value.Month -1, (uint)value.Year);
 			}
 		}
-
+	       
 		protected override void OnMonthChanged ()
 		{
-			System.DateTime month = this.Month;
-			query.Range =  new PhotoStore.DateRange (month, month.AddMonths (1));
+		        System.DateTime current = this.Month;
+			if (current.Month != last.Month || current.Year != last.Year) {
+				System.Console.WriteLine ("Month thinks is changed {0} {1}", last.ToString (), current.ToString ());
+				last = current;
+				query.Range =  new PhotoStore.DateRange (current, current.AddMonths (1));
+			}
 			base.OnMonthChanged ();
 		}
 	}

@@ -1,5 +1,12 @@
 2005-01-14  Larry Ewing  <lewing@novell.com>
 
+	* src/Makefile.am: add SimpleCalendar.cs to the build.
+
+	* src/SimpleCalendar.cs: make sure we don't get spurious month
+	changed events.
+
+	* src/MainWindow.cs: hook up a SimpleCalendar for now.
+
 	* libfspot/f-pixbuf-utils.c (f_pixbuf_copy_with_orientation): fix
 	again.
 
