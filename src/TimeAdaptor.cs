@@ -63,10 +63,23 @@ namespace FSpot {
 			return new DateTime (year, month, 1);
 		}
 		
-		public TimeAdaptor (PhotoQuery query, int year, int span) {
+		public void Load () {
+			Photo [] photos = query.Store.Query (null, null);
+			
+			if (photos.Length > 0) {
+				start_year = photos[0].Time.Year;
+				span = photos[photos.Length -1].Time.Year - start_year;
+			} else {
+				start_year = DateTime.Now.Year;
+				span = 1;
+			}
+		}
+
+
+		public TimeAdaptor (PhotoQuery query) {
 			this.query = query;
-			this.start_year = year;
-			this.span = span;
+			
+			Load ();
 		}
 	}
 }

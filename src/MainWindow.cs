@@ -136,7 +136,7 @@ public class MainWindow {
 		query = new PhotoQuery (db.Photos);
 
 		group_selector = new FSpot.GroupSelector ();
-		group_selector.Adaptor = new FSpot.TimeAdaptor (query, 2004, 1);
+		group_selector.Adaptor = new FSpot.TimeAdaptor (query);
 		group_selector.ShowAll ();
 
 		group_vbox.PackStart (group_selector, false, false, 0);
