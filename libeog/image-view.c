@@ -1699,9 +1699,10 @@ image_view_set_pixbuf (ImageView *view, GdkPixbuf *pixbuf)
 
 	if (pixbuf) {
 		g_object_ref (pixbuf);
-		if (view->priv->pixbuf)
-			g_object_unref (view->priv->pixbuf);
 	}
+
+	if (view->priv->pixbuf)
+		g_object_unref (view->priv->pixbuf);
 
 	view->priv->pixbuf = pixbuf;
 

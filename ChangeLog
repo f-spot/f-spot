@@ -1,3 +1,8 @@
+2004-08-04  Larry Ewing  <lewing@novell.com>
+
+	* libeog/image-view.c (image_view_set_pixbuf): always unref the
+	old pixbuf since we always replace it.
+
 2004-08-03  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoStore.cs: rework the query again, use two nested
