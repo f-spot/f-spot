@@ -6,5 +6,8 @@ namespace FSpot {
 		
 		public abstract void SetLimits (int min, int max);
 		public abstract void SetGlass (int item);
+
+		public delegate void GlassSetHandler (GroupAdaptor adaptor, int index);
+		public virtual event GlassSetHandler GlassSet;
 	}
 }

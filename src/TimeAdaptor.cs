@@ -12,9 +12,7 @@ namespace FSpot {
 			public int [] Months;
 		}
 
-		public delegate void GlassSetHandler (TimeAdaptor adaptor, int index);
-		public event GlassSetHandler GlassSet;
-
+		public override event GlassSetHandler GlassSet;
 		public override void SetGlass (int min)
 		{
 			DateTime date = DateFromIndex (min);

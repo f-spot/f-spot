@@ -1,5 +1,17 @@
 2004-08-20  Larry Ewing  <lewing@novell.com>
 
+	* src/TimeAdaptor.cs: update now that glass set has moved.
+
+	* src/MainWindow.cs: fix the glass calling methods.
+
+	* src/DirectoryAdaptor.cs: implement SetGlass.
+	
+	* src/GroupAdaptor.cs: add the GlassSet event to the abstract
+	class.
+
+	* src/DirectoryAdaptor.cs: add a directory adaptor that builds the
+	histogram based on path to the directory.
+
 	* src/TimeAdaptor.cs: iterate over all the photos instead of doing
 	a lot of queries.
 

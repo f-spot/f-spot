@@ -93,6 +93,11 @@ public class MainWindow {
 	const int PHOTO_IDX_NONE = -1;
 	private int current_photo_idx = PHOTO_IDX_NONE;
 	private bool current_photos = false;
+	
+	struct YearCount {
+		int Year;
+		int Count;
+	}
 
 	private Photo CurrentPhoto {
 		get {
@@ -136,8 +141,12 @@ public class MainWindow {
 		query = new PhotoQuery (db.Photos);
 
 		group_selector = new FSpot.GroupSelector ();
-		FSpot.TimeAdaptor time_adaptor = new FSpot.TimeAdaptor (query);
-		group_selector.Adaptor  = time_adaptor;
+		FSpot.GroupAdaptor adaptor = new FSpot.TimeAdaptor (query);
+
+		//FSpot.GroupAdaptor adaptor = new FSpot.DirectoryAdaptor (query);
+		//group_selector.Mode = FSpot.GroupSelector.RangeType.Min;
+
+		group_selector.Adaptor  = adaptor;
 		group_selector.ShowAll ();
 
 		group_vbox.PackStart (group_selector, false, false, 0);
@@ -187,9 +196,8 @@ public class MainWindow {
 		photo_view.DragDataReceived += new DragDataReceivedHandler (HandlePhotoViewDragDataReceived);
 
 		view_notebook.SwitchPage += new SwitchPageHandler (HandleViewNotebookSwitchPage);
+		adaptor.GlassSet += HandleAdaptorGlassSet;
 
-		time_adaptor.GlassSet += HandleAdaptorGlassSet;
-		
 		UpdateMenus ();
 		main_window.ShowAll ();
 		
@@ -357,7 +365,7 @@ public class MainWindow {
 		args.SelectionData.Set (targets[0], 8, data, data.Length);
 	}
 
-	void HandleAdaptorGlassSet (FSpot.TimeAdaptor sender, int index)
+	void HandleAdaptorGlassSet (FSpot.GroupAdaptor sender, int index)
 	{
 		switch (mode) {
 		case ModeType.PhotoView:
