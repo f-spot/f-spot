@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-01 13:36+0100\n"
-"PO-Revision-Date: 2004-12-01 13:37+0100\n"
+"POT-Creation-Date: 2004-12-08 11:45+0100\n"
+"PO-Revision-Date: 2004-12-08 11:43+0100\n"
 "Last-Translator: Martin Willemoes Hansen <mwh@sysrq.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -71,7 +71,7 @@ msgstr "XPM"
 
 #: libeog/eog-file-selection.c:207
 msgid "Unsupported file format."
-msgstr "Ikke understøttet filformat."
+msgstr "Ikke-understøttet filformat."
 
 #: libeog/eog-file-selection.c:225
 msgid "Determine File Type:"
@@ -107,7 +107,7 @@ msgstr "interpoleringstypen der skal bruges"
 
 #: libeog/image-view.c:2065 libeog/image-view.c:2072
 msgid "check type"
-msgstr "kontrollér type"
+msgstr "type af tern"
 
 #: libeog/image-view.c:2066
 msgid "the type of chequering to use"
@@ -214,7 +214,7 @@ msgstr "Album:"
 msgid "Arranged By"
 msgstr "Arrangeret efter"
 
-#: src/f-spot.glade.h:20
+#: src/f-spot.glade.h:20 src/TagPopup.cs:35
 msgid "Attach Tag To Selection"
 msgstr "Vedlæg mærke til markering"
 
@@ -258,11 +258,11 @@ msgstr "Ko_nfigurér"
 msgid "Contrast:"
 msgstr "Kontrast:"
 
-#: src/f-spot.glade.h:31
+#: src/f-spot.glade.h:31 src/TagCommands.cs:127 src/TagPopup.cs:22
 msgid "Create New Category"
 msgstr "Opret ny kategori"
 
-#: src/f-spot.glade.h:32
+#: src/f-spot.glade.h:32 src/TagCommands.cs:123 src/TagPopup.cs:20
 msgid "Create New Tag"
 msgstr "Opret nyt mærke"
 
@@ -456,7 +456,7 @@ msgstr "Udskriv beskæringsmærker"
 msgid "Rem_ove Tag"
 msgstr "F_jern mærke"
 
-#: src/f-spot.glade.h:84
+#: src/f-spot.glade.h:84 src/TagPopup.cs:38
 msgid "Remove Tag From Selection"
 msgstr "Fjern mærke fra markering"
 
@@ -464,11 +464,11 @@ msgstr "Fjern mærke fra markering"
 msgid "Rename Version"
 msgstr "Omdøb version"
 
-#: src/f-spot.glade.h:86
+#: src/f-spot.glade.h:86 src/PhotoPopup.cs:32
 msgid "Rotate Left"
 msgstr "Rotér til venstre"
 
-#: src/f-spot.glade.h:87
+#: src/f-spot.glade.h:87 src/PhotoPopup.cs:34
 msgid "Rotate Right"
 msgstr "Rotér til højre"
 
@@ -522,7 +522,7 @@ msgstr "Diasshow"
 msgid "Source Temp"
 msgstr "Kildetemp"
 
-#: src/f-spot.glade.h:101
+#: src/f-spot.glade.h:101 src/TagCommands.cs:310
 msgid "Tag name:"
 msgstr "Mærkenavn:"
 
@@ -619,13 +619,180 @@ msgstr "dialog1"
 msgid "x"
 msgstr "x"
 
+#: src/GalleryExport.cs:310
+msgid "Uploading Pictures"
+msgstr ""
+
+#: src/GalleryExport.cs:335
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr ""
+
+#: src/GalleryExport.cs:339 src/ProgressDialog.cs:75
+#, csharp-format
+msgid "{0} of {1}"
+msgstr ""
+
+#: src/GalleryExport.cs:343
+msgid "Done Sending Photos"
+msgstr ""
+
+#: src/GalleryExport.cs:345
+msgid "Upload Complete"
+msgstr ""
+
+#: src/GalleryExport.cs:349
+msgid "Error Uploading To Gallery"
+msgstr ""
+
+#: src/GalleryExport.cs:381
+#, fuzzy
+msgid "(No Gallery)"
+msgstr "Galleri"
+
+#: src/GalleryExport.cs:423
+msgid "(No Albums)"
+msgstr ""
+
+#: src/InfoBox.cs:70
+msgid "Name:"
+msgstr ""
+
+#: src/InfoBox.cs:72
+#, fuzzy
+msgid "Version:"
+msgstr "_Version"
+
+#: src/InfoBox.cs:74
+msgid "Date:"
+msgstr ""
+
+#: src/InfoBox.cs:76
+#, fuzzy
+msgid "Size:"
+msgstr "Størrelse"
+
+#: src/InfoBox.cs:78
+#, fuzzy
+msgid "Exposure:"
+msgstr "Eksportér"
+
+#: src/InfoBox.cs:153
+msgid "(None)"
+msgstr ""
+
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: src/MainWindow.cs:823
+#: src/MainWindow.cs:854
 msgid "translator-credits"
 msgstr ""
 "Martin Willemoes Hansen\n"
 "\n"
 "Dansk-gruppen <dansk@klid.dk>\n"
 "Mere info: http://www.klid.dk/dansk/"
+
+#: src/PhotoPopup.cs:27
+msgid "Copy Image Location"
+msgstr ""
+
+#: src/PhotoPopup.cs:39
+#, fuzzy
+msgid "Remove From Catalog"
+msgstr "_Fjern fra katalog"
+
+#: src/PhotoPopup.cs:41
+#, fuzzy
+msgid "Delete From Drive"
+msgstr "_Slet fra disk"
+
+#.
+#. FIXME TagMenu is ugly.
+#.
+#: src/PhotoPopup.cs:49
+#, fuzzy
+msgid "Attach Tag"
+msgstr "_Vedlæg mærke"
+
+#.
+#. FIXME finish the IPhotoSelection stuff and move the activate handler into the class
+#. this current method is way too complicated.
+#.
+#: src/PhotoPopup.cs:59
+#, fuzzy
+msgid "Remove Tag"
+msgstr "F_jern mærke"
+
+#. Fixme this should really set parent menu
+#. items insensitve
+#: src/PhotoTagMenu.cs:72
+#, fuzzy
+msgid "(No Tags)"
+msgstr "Mærker"
+
+#: src/RotateCommand.cs:24
+msgid "Rotating pictures"
+msgstr ""
+
+#: src/RotateCommand.cs:33
+#, csharp-format
+msgid "Rotating picture \"{0}\""
+msgstr ""
+
+#: src/RotateCommand.cs:71
+msgid ""
+"Some images could not be rotated because they are on a read only file system "
+"or media such as a CDROM.  Please check the permissions and try again."
+msgstr ""
+
+#: src/TagCommands.cs:56
+msgid "(No categories)"
+msgstr ""
+
+#: src/TagCommands.cs:102 src/TagCommands.cs:231
+msgid "This name is already in use"
+msgstr ""
+
+#: src/TagCommands.cs:124
+msgid "Name of new tag:"
+msgstr ""
+
+#: src/TagCommands.cs:128
+#, fuzzy
+msgid "Name of new category:"
+msgstr "Opret ny kategori"
+
+#: src/TagCommands.cs:306
+#, fuzzy
+msgid "Edit Category"
+msgstr "Kategori:"
+
+#: src/TagCommands.cs:307
+#, fuzzy
+msgid "Category name:"
+msgstr "Kategori:"
+
+#: src/TagCommands.cs:309 src/TagPopup.cs:27
+#, fuzzy
+msgid "Edit Tag"
+msgstr "Redigér mærke-ikon"
+
+#: src/TagCommands.cs:379
+#, fuzzy, csharp-format
+msgid "Photo {0} of {1}"
+msgstr "Foto 0 af 0"
+
+#: src/TagCommands.cs:419
+#, csharp-format
+msgid "Edit icon For category {0}"
+msgstr ""
+
+#: src/TagCommands.cs:421
+#, csharp-format
+msgid "Edit icon for tag {0}"
+msgstr ""
+
+#: src/TagPopup.cs:30
+#, fuzzy
+msgid "Delete Tag"
+msgstr "Slet markeret mærke"
