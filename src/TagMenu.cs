@@ -8,11 +8,13 @@ public class TagMenu : Menu {
 	public delegate void TagSelectedHandler (Tag t);
 	public event TagSelectedHandler TagSelected;
 
-	private class TagItem : Gtk.MenuItem {
+	private class TagItem : Gtk.ImageMenuItem {
 		public Tag Value;
 
 		public TagItem (Tag t) : base (t.Name) {
 			Value = t;
+			if (t.Icon != null)
+				this.Image = new Gtk.Image (t.Icon);
 		}
 
 		protected TagItem (IntPtr raw) : base (raw) {}
