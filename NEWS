@@ -1,3 +1,13 @@
+f-spot 0.0.12 - March 19 2005 - Indigo
+--------------------------------------
+- Caught the proper exceptions for the editing operations.
+- Update the menus for available operations.
+- Added descriptive text when exif data doesn't exist.
+- Hide the cursor during slideshows (on >= gtk+-2.4).
+- Fixed installation when $libdir != $prefix/lib.
+- Fixed FileChooserDialog interaction problem with the gnome-vfs
+  backend.
+
 f-spot 0.0.11 - March 14 2005 - To the Pain
 -------------------------------------------
 - Cleaned up error handling in Gallery export dialog.
