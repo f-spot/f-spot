@@ -74,7 +74,6 @@ AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
 AC_OUTPUT([
-m4/Makefile 
 Makefile
 icons/Makefile
 libeog/Makefile

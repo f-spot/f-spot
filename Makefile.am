@@ -1,4 +1,4 @@
-SUBDIRS = m4		\
+SUBDIRS = 		\
 	icons		\
 	libeog		\
 	libjpegtran	\
