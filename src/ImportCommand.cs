@@ -138,9 +138,7 @@ public class ImportCommand {
 	private int DoImport (FileImportBackend importer)
 	{
 		int total = importer.Prepare ();
-		if (total == 0)
-			return 0;
-
+		
 		CreateDialog ();
 		UpdateProgressBar (0, total);
 
@@ -253,7 +251,7 @@ public class ImportCommand {
 		if (response == ResponseType.Ok) {
 			string [] pathimport =  {import_folder_entry.Text};
 			import_dialog.Destroy();
-			return DoImport (new FileImportBackend (store, pathimport, true, tag_selected));
+			return DoImport (new FileImportBackend (store, pathimport, true, new Tag [] {tag_selected}));
 		} else {
 			import_dialog.Destroy();
 			return 0;
@@ -262,9 +260,14 @@ public class ImportCommand {
 
 	public int ImportFromPaths (PhotoStore store, string [] paths)
 	{
-		return DoImport (new FileImportBackend (store, paths, true));
+		return ImportFromPaths (store, paths);
 	}
 
+	public int ImportFromPaths (PhotoStore store, string [] paths, Tag [] tags)
+	{
+		return DoImport (new FileImportBackend (store, paths, true, tags));
+	}
+	
 #if TEST_IMPORT_COMMAND
 
 	private const string db_path = "/tmp/ImportCommandTest.db";

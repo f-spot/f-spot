@@ -10,6 +10,8 @@ using System.Collections;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 
+using LibGPhoto2;
+
 public class MainWindow {
         public static MainWindow Toplevel = null;
 
@@ -815,6 +817,49 @@ public class MainWindow {
 		db.Sync = true;		
 	}
 
+	void HandleImportFromCameraCommand (object sender, EventArgs e)
+	{
+		GPhotoCamera cam = new GPhotoCamera();
+		
+		try {
+			int num_cameras = cam.DetectCameras();
+			int selected_cam;
+
+			if (num_cameras < 1) {
+				MessageDialog md = new MessageDialog (main_window, DialogFlags.DestroyWithParent, 
+								      MessageType.Warning, ButtonsType.Ok, "No cameras detected.");
+				md.Run();
+				md.Destroy();
+				return;
+			} else if (num_cameras == 1) {
+				selected_cam = 0;
+			} else {
+				CameraSelectionDialog camselect = new CameraSelectionDialog(cam.CameraList);
+				selected_cam = camselect.Run();
+			}
+			
+			if (selected_cam >= 0) {
+				cam.SelectCamera (selected_cam);	
+				cam.InitializeCamera ();
+			
+				CameraFileSelectionDialog file_selector = new CameraFileSelectionDialog (cam, db);
+				
+				file_selector.Run ();
+				InvalidateViews ();
+				
+				UpdateQuery ();
+			}
+		}
+		catch (GPhotoException ge) {
+			MessageDialog md = new MessageDialog (main_window, DialogFlags.DestroyWithParent, 
+							      MessageType.Error, ButtonsType.Ok, ge.ToString ());
+			md.Run ();
+			md.Destroy ();
+		} finally {
+			cam.ReleaseGPhotoResources ();
+		}
+	}
+	
 	unsafe void HandlePrintCommand (object sender, EventArgs e)
 	{
 		new FSpot.PrintDialog (SelectedPhotos ());

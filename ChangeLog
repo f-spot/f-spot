@@ -1,5 +1,28 @@
 2005-02-14  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: add import from camera.  This is the first
+	pass at integrating Ewen Cheslack-Postava's excellent libgphoto2
+	patch.
+	
+	* src/ImportCommand.cs: add tag setting overload to the import
+	command.
+
+	* src/f-spot.glade: add new dialog glade bits
+
+	* src/GPhotoCamera.cs: add new binding for the gphoto cameras.
+
+	* src/CameraSelectionDialog.cs: add new dialog to select the camera.
+
+	* src/CameraFileSelectionDialog.cs: add new camera selection dialog.
+
+	* src/TagSelectionDialog.cs: add selection dialog.
+
+	* src/Makefile.am: add libgphoto2-sharp subdir to the build.
+
+	* README: add libgphoto dep to the README.
+
+	* src/PhotoStore.cs: clean up the debug output.
+
 	* src/MainWindow.cs: update the toolbar state at startup.
 
 	* src/IconView.cs: protect GetCellPosition from strange

@@ -3,6 +3,7 @@ SUBDIRS = 		\
 	libeog		\
 	libjpegtran	\
 	libfspot	\
+	libgphoto2-sharp \
 	po		\
 	src	
 

@@ -1,0 +1,273 @@
+using System;
+using System.IO;
+using System.Collections;
+using LibGPhoto2;
+using Gdk;
+
+public class GPhotoCamera
+{
+	Context context;
+	PortInfoList port_info_list;
+	CameraAbilitiesList abilities_list;
+	CameraList camera_list;
+	CameraAbilities camera_abilities;
+	Camera camera;
+	PortInfo port_info;
+	CameraFilesystem camera_fs;
+	ArrayList files;
+	
+	int selected_camera__camera_list_index;
+	int selected_camera__abilities_list_index;
+	int selected_camera__port_info_list_index;
+		
+	public GPhotoCamera()
+	{
+		context = new Context();
+		
+		port_info_list = new PortInfoList();
+		port_info_list.Load();
+			
+		abilities_list = new CameraAbilitiesList();
+		abilities_list.Load(context);
+			
+		camera_list = new CameraList();
+			
+		selected_camera__camera_list_index = -1;
+			
+		camera = null;
+		port_info = null;
+		camera_fs = null;
+	}
+		
+	public int DetectCameras ()
+	{
+		abilities_list.Detect(port_info_list, camera_list, context);
+		return CameraCount;
+	}
+		
+	public int CameraCount
+	{
+		get
+		{
+			return camera_list.Count();
+		}
+	}
+	
+	public CameraList CameraList
+	{
+		get
+		{
+			return camera_list;
+		}
+	}
+		
+	public void SelectCamera (int index)
+	{
+		selected_camera__camera_list_index = index;
+
+		selected_camera__abilities_list_index = abilities_list.LookupModel(camera_list.GetName(selected_camera__camera_list_index));			
+		camera_abilities = abilities_list.GetAbilities(selected_camera__abilities_list_index);
+		camera = new Camera();
+		camera.SetAbilities(camera_abilities);
+
+		selected_camera__port_info_list_index = port_info_list.LookupPath(camera_list.GetValue(selected_camera__camera_list_index));
+		port_info = port_info_list.GetInfo(selected_camera__port_info_list_index);
+		camera.SetPortInfo(port_info);
+	}
+		
+	public void InitializeCamera ()
+	{
+		if (camera == null) throw new InvalidOperationException();
+		
+		camera.Init(context);
+			
+		camera_fs = camera.GetFS();
+		files = new ArrayList();
+		GetFileList();
+	}
+		
+	private void GetFileList ()
+	{
+		GetFileList("/");
+	}
+		
+	private void GetFileList (string dir)
+	{
+		if (camera_fs == null) throw new InvalidOperationException();
+		
+		//files
+		CameraList filelist = camera_fs.ListFiles(dir, context);
+		for (int i = 0; i < filelist.Count(); i++)
+		{
+			files.Add(new GPhotoCameraFile(dir, filelist.GetName(i)));
+		}
+	
+		//subdirectories
+		CameraList folderlist = camera_fs.ListFolders(dir, context);
+		for (int i = 0; i < folderlist.Count(); i++)
+		{
+			GetFileList(dir + folderlist.GetName(i) + "/");
+		}
+	}
+	
+	public ArrayList FileList
+	{
+		get
+		{
+			return files;
+		}
+	}
+	
+	public CameraFile GetFile(GPhotoCameraFile camfile)
+	{
+		int index = files.IndexOf(camfile);
+		return GetFile(index);
+	}
+	
+	public CameraFile GetFile(int index)
+	{
+		if (camera_fs == null || files == null || index < 0 || index >= files.Count) return null;
+
+		GPhotoCameraFile selected_file = (GPhotoCameraFile)files[index];		
+		if (selected_file.NormalFile == null)
+		{
+			selected_file.NormalFile = camera_fs.GetFile (selected_file.Directory, selected_file.FileName, CameraFileType.Normal, context);
+		}
+		
+		return selected_file.NormalFile;
+	}
+	
+	public CameraFile GetPreview(GPhotoCameraFile camfile)
+	{
+		int index = files.IndexOf(camfile);
+		return GetPreview(index);
+	}
+	
+	public CameraFile GetPreview(int index)
+	{	
+		if (camera_fs == null || files == null || index < 0 || index >= files.Count) return null;
+
+		GPhotoCameraFile selected_file = (GPhotoCameraFile)files[index];		
+		if (selected_file.PreviewFile == null)
+		{
+			selected_file.PreviewFile = camera_fs.GetFile (selected_file.Directory, selected_file.FileName, CameraFileType.Preview, context);
+		}
+		
+		return selected_file.PreviewFile;
+	}
+	
+	public Pixbuf GetPreviewPixbuf (GPhotoCameraFile camfile)
+	{
+		CameraFile cfile = GetPreview(camfile);
+		byte[] bytedata = cfile.GetDataAndSize();
+		MemoryStream dataStream = new MemoryStream(bytedata);
+		return new Pixbuf(dataStream);
+	}
+	
+	public void SaveFile (int index, string filename)
+	{
+		if (filename == null) return;
+		
+		//check if the directory exists
+		if (!Directory.Exists(Path.GetDirectoryName(filename))) throw new Exception(); //FIXME
+		
+		CameraFile camfile = GetFile(index);
+		
+		if (camfile == null) return;
+		
+		camfile.Save(filename);
+	}
+		
+	public void SaveAllFiles (string prefix, int start_number)
+	{		
+		for(int index = 0; index < files.Count; index++)
+		{
+			GPhotoCameraFile curFile = (GPhotoCameraFile)files[index];
+			string extension = Path.GetExtension(curFile.FileName).ToLower();
+			SaveFile(index, prefix + Convert.ToString(start_number + index) + extension);
+		}
+	}
+	
+	public void Finalize()
+	{
+		ReleaseGPhotoResources();
+	}
+	
+	public void ReleaseGPhotoResources()
+	{
+		//Dispose of GPhoto stuff to free up resources, in reverse order of course
+		if (files != null)
+			foreach(GPhotoCameraFile curcamfile in files)
+				curcamfile.ReleaseGPhotoResources();
+
+		if (camera_fs != null) camera_fs.Dispose();
+		if (camera != null) camera.Dispose();
+		camera_list.Dispose();
+		abilities_list.Dispose();
+		port_info_list.Dispose();
+		context.Dispose();
+	}
+}
+
+	
+public class GPhotoCameraFile
+{
+	string directory;
+	string filename;
+	CameraFile normal;
+	CameraFile preview;
+	
+	public GPhotoCameraFile (string dir, string name)
+	{
+		directory = dir;
+		filename = name;
+		normal = null;
+		preview = null;
+	}
+		
+	public string Directory
+	{
+		get
+		{
+			return directory;
+		}
+	}
+		
+	public string FileName
+	{
+		get
+		{
+			return filename;
+		}
+	}
+	
+	public CameraFile NormalFile
+	{
+		get
+		{
+			return normal;
+		}
+		set
+		{
+			normal = value;
+		}
+	}
+	
+	public CameraFile PreviewFile
+	{
+		get
+		{
+			return preview;
+		}
+		set
+		{
+			preview = value;
+		}
+	}
+	
+	public void ReleaseGPhotoResources()
+	{
+		if (normal != null) normal.Dispose();
+		if (preview != null) preview.Dispose();
+	}
+}

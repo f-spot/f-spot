@@ -73,6 +73,10 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ThumbnailCommand.cs		\
 	$(srcdir)/QueryView.cs			\
 	$(srcdir)/ZoomUtils.cs			\
+	$(srcdir)/GPhotoCamera.cs		\
+	$(srcdir)/CameraSelectionDialog.cs	\
+	$(srcdir)/CameraFileSelectionDialog.cs	\
+	$(srcdir)/TagSelectionDialog.cs		\
 	$(srcdir)/VfsExport.cs			\
 	$(srcdir)/main.cs			\
 						\
@@ -133,6 +137,7 @@ F_SPOT_CSDISTFILES =				\
 
 
 ASSEMBLIES =					\
+	/r:$(top_builddir)/libgphoto2-sharp/libgphoto2-sharp.dll   \
 	/r:System.Data				\
 	/r:System.Web				\
 	/r:Mono.Data.SqliteClient		\
