@@ -10,6 +10,12 @@ namespace FSpot {
 			}
 		}
 
+		public IBrowsableItem [] Items {
+			get {
+				return photos;
+			}
+		}
+
 		Photo [] photos;
 	}
 }

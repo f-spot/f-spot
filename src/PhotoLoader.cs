@@ -31,7 +31,7 @@ namespace FSpot {
 		static public Gdk.Pixbuf LoadAtMaxSize (Photo photo, int width, int height) 
 		{
 			Gdk.Pixbuf pixbuf = PixbufUtils.LoadAtMaxSize (photo.DefaultVersionPath, width, height);
-			ValidateThumbnail (photo, pixbuf);
+			ValidateThumbnail (photo.DefaultVersionPath, pixbuf);
 			return pixbuf;
 		}
 

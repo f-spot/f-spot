@@ -1,7 +1,28 @@
 2005-01-09  Larry Ewing  <lewing@novell.com>
 
-	* src/Defines.cs.in: define PACKAGE.
+	* src/PhotoQuery.cs: add Items property.
 
+	* src/PhotoStore.cs: make Photo implement IBrowsableItem.
+
+	* src/IPhotoCollection.cs: make IPhotoCollection inherit from
+	IBrowsableCollection.
+
+	* src/PhotoArray.cs: Make add Items Property.
+
+	* src/Makefile.am: add new files.
+	
+	* src/IBrowsableItem.cs: new collection and item interfaces to
+	allow viewing non-Photo items in an IconView.
+
+	* src/IconView.cs: make Collection an IBrowsableCollection not a
+	PhotoCollection.
+
+	* src/DirectoryCollection.cs: IBrowsableCollection and
+	IBrowsableItem implmentations for handling files outside of the
+	database.
+
+	* src/Defines.cs.in: define PACKAGE.
+	
 	* src/MainWindow.cs: use package define in about box.
 
 	* src/ExifData.cs: convert libexif.so DllImport references to

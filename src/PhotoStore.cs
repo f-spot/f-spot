@@ -8,7 +8,7 @@ using System.Text;
 using System;
 
 
-public class Photo : DbItem, IComparable {
+public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 	// IComparable 
 	public int CompareTo (object obj) {
 		if (this.GetType () == obj.GetType ()) {

@@ -25,6 +25,12 @@ namespace FSpot {
 				return photos;
 			}
 		}
+
+		public IBrowsableItem [] Items {
+			get {
+				return (IBrowsableItem [])photos;
+			}
+		}
 		
 		public PhotoStore Store {
 			get {

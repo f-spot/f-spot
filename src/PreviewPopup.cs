@@ -61,15 +61,19 @@ namespace FSpot {
 
 		private void UpdateImage ()
 		{
-			Photo photo = view.Collection.Photos [Item];
+			FSpot.IBrowsableItem item = view.Collection.Items [Item];
 			
-			string orig_path = photo.DefaultVersionPath;
+			string orig_path = item.DefaultVersionUri.LocalPath;
+
 			Gdk.Pixbuf pixbuf = preview_cache.GetThumbnailForPath (orig_path);
 			if (pixbuf == null) {
 				// A bizarre pixbuf = hack to try to deal with cinematic displays, etc.
 				int preview_size = ((this.Screen.Width + this.Screen.Height)/2)/3;
 				try {
-					pixbuf = FSpot.PhotoLoader.LoadAtMaxSize (photo, preview_size, preview_size);
+					if (item is Photo)
+						pixbuf = FSpot.PhotoLoader.LoadAtMaxSize ((Photo)item, preview_size, preview_size);
+					else
+						pixbuf = PixbufUtils.LoadAtMaxSize (orig_path, preview_size, preview_size);
 				} catch (Exception e) {
 					pixbuf = null;
 				}
@@ -87,10 +91,10 @@ namespace FSpot {
 			}
 
 			string desc = "";
-			if (photo.Description.Length > 0)
-				desc = photo.Description + "\n";
+			if (item.Description != null && item.Description.Length > 0)
+				desc = item.Description + "\n";
 
-			desc += photo.Time.ToString () + "   " + photo.Name;			
+			desc += item.Time.ToString () + "   " + item.Name;			
 			label.Text = desc;
 		}
 
@@ -156,6 +160,7 @@ namespace FSpot {
 
 		private void HandleIconViewMotion (object sender, Gtk.MotionNotifyEventArgs args)
 		{
+			System.Console.WriteLine ("motion");
 			if (!this.Visible)
 				return;
 
@@ -167,6 +172,7 @@ namespace FSpot {
 
 		private void HandleIconViewKeyPress (object sender, Gtk.KeyPressEventArgs args)
 		{
+			System.Console.WriteLine ("press");
 			switch (args.Event.Key) {
 			case Gdk.Key.v:
 				ShowHistogram = false;

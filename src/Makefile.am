@@ -10,6 +10,7 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/Defines.cs			\
 	$(srcdir)/Delay.cs			\
 	$(srcdir)/DirectoryAdaptor.cs		\
+	$(srcdir)/DirectoryCollection.cs	\
 	$(srcdir)/ExifData.cs			\
 	$(srcdir)/ExifUtils.cs			\
 	$(srcdir)/ExportCommand.cs		\
@@ -25,6 +26,7 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/GroupAdaptor.cs		\
 	$(srcdir)/GroupSelector.cs		\
 	$(srcdir)/Histogram.cs			\
+	$(srcdir)/IBrowsableItem.cs		\
 	$(srcdir)/IconView.cs			\
 	$(srcdir)/ImageView.cs			\
 	$(srcdir)/ImportBackend.cs		\

@@ -173,7 +173,7 @@ public class IconView : Gtk.Layout {
 		ModifyBg (Gtk.StateType.Normal, color);
 	}
 	
-	public IconView (FSpot.IPhotoCollection collection) : this () 
+	public IconView (FSpot.IBrowsableCollection collection) : this () 
 	{
 		this.collection = collection;
 	}
@@ -185,8 +185,8 @@ public class IconView : Gtk.Layout {
 	// IPhotoSelection
 	//
 
-	protected FSpot.IPhotoCollection collection;
-	public FSpot.IPhotoCollection Collection {
+	protected FSpot.IBrowsableCollection collection;
+	public FSpot.IBrowsableCollection Collection {
 		get {
 			return collection;
 		}
@@ -229,7 +229,7 @@ public class IconView : Gtk.Layout {
 	// Updating.
 	public void UpdateThumbnail (int thumbnail_num)
 	{
-		Photo photo = collection.Photos [thumbnail_num];
+		FSpot.IBrowsableItem photo = collection.Items [thumbnail_num];
 		string thumbnail_path = Thumbnail.PathForUri (photo.DefaultVersionUri.ToString (), ThumbnailSize.Large);
 
 		//Console.WriteLine ("remove {0}", thumbnail_path);
@@ -247,14 +247,14 @@ public class IconView : Gtk.Layout {
 
 		if (x < BORDER_SIZE || x >= BORDER_SIZE + cells_per_row * cell_width)
 			return -1;
-		if (y < BORDER_SIZE || y >= BORDER_SIZE + (collection.Photos.Length / cells_per_row + 1) * cell_height)
+		if (y < BORDER_SIZE || y >= BORDER_SIZE + (collection.Items.Length / cells_per_row + 1) * cell_height)
 			return -1;
 
 		int column = (int) ((x - BORDER_SIZE) / cell_width);
 		int row = (int) ((y - BORDER_SIZE) / cell_height);
 		int cell_num = column + row * cells_per_row;
 
-		if (cell_num < collection.Photos.Length)
+		if (cell_num < collection.Items.Length)
 			return (int) cell_num;
 		else
 			return -1;
@@ -324,7 +324,7 @@ public class IconView : Gtk.Layout {
 
 	public void SelectAllCells ()
 	{
-		SelectCellRange (0, collection.Photos.Length - 1);
+		SelectCellRange (0, collection.Items.Length - 1);
 	}
 
 	private void SelectCellRange (int start, int end)
@@ -396,7 +396,7 @@ public class IconView : Gtk.Layout {
 
 		int num_thumbnails;
 		if (collection != null)
-			num_thumbnails = collection.Photos.Length;
+			num_thumbnails = collection.Items.Length;
 		else
 			num_thumbnails = 0;
 
@@ -419,7 +419,7 @@ public class IconView : Gtk.Layout {
 		gc.SetLineAttributes (1, LineStyle.Solid, CapStyle.NotLast, JoinStyle.Round);
 		bool selected = CellIsSelected (thumbnail_num);
 
-		Photo photo = collection.Photos [thumbnail_num];
+		FSpot.IBrowsableItem photo = collection.Items [thumbnail_num];
 
 		string thumbnail_path = Thumbnail.PathForUri (photo.DefaultVersionUri.ToString (), ThumbnailSize.Large);
 		Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForPath (thumbnail_path);
@@ -599,12 +599,12 @@ public class IconView : Gtk.Layout {
 
 		int i, cell_num;
 		for (i = 0, cell_num = start_cell_num;
-		     i < num_rows && cell_num < collection.Photos.Length;
+		     i < num_rows && cell_num < collection.Items.Length;
 		     i ++) {
 			int cell_x = start_cell_x;
 
 			//Console.WriteLine ("Drawing row {0}", start_cell_row + i);
-			for (int j = 0; j < num_cols && cell_num + j < collection.Photos.Length; j ++) {
+			for (int j = 0; j < num_cols && cell_num + j < collection.Items.Length; j ++) {
 				Gdk.Rectangle cell_bounds = CellBounds (cell_num + j);
 				if (area.Intersect (cell_bounds, out cell_bounds)) {
 					DrawCell (cell_num + j, cell_x, cell_y, cell_bounds);
@@ -641,7 +641,7 @@ public class IconView : Gtk.Layout {
 		if (y_offset == adjustment.Value)
 			return false;
 
-		int num_thumbnails = collection.Photos.Length;
+		int num_thumbnails = collection.Items.Length;
 		int num_rows, start;
 
 		if (y_offset < adjustment.Value) {
@@ -662,7 +662,7 @@ public class IconView : Gtk.Layout {
 			if (start + i >= num_thumbnails)
 				break;
 
-			Photo photo = collection.Photos [start + i];
+			FSpot.IBrowsableItem photo = collection.Items [start + i];
 			string thumbnail_path = Thumbnail.PathForUri (photo.DefaultVersionUri.ToString (), ThumbnailSize.Large);
 			pixbuf_loader.Cancel (thumbnail_path);
 		}
@@ -919,7 +919,7 @@ public class IconView : Gtk.Layout {
 				FocusCell = 0;
 				break;
 			case Gdk.Key.End:
-				FocusCell = collection.Photos.Length - 1; 
+				FocusCell = collection.Items.Length - 1; 
 				break;
 			case Gdk.Key.space:
 				ToggleCell (FocusCell);
@@ -929,7 +929,7 @@ public class IconView : Gtk.Layout {
 				return;		
 		}
 		
-		if (FocusCell < 0 || FocusCell > collection.Photos.Length - 1) {
+		if (FocusCell < 0 || FocusCell > collection.Items.Length - 1) {
 			FocusCell = focus_old;
 			args.RetVal = false;
 		}	
