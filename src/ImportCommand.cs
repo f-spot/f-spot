@@ -341,7 +341,7 @@ public class ImportCommand : FSpot.GladeDialog {
 								    MessageType.Error,
 								    ButtonsType.Ok,
 								    Mono.Posix.Catalog.GetString ("Directory does not exist."),
-									    String.Format (Mono.Posix.Catalog.GetString ("The directory you selected \"{0}\" does not exist.  Please choose a different diarectory"), import_folder_entry.Text));
+									    String.Format (Mono.Posix.Catalog.GetString ("The directory you selected \"{0}\" does not exist.  Please choose a different directory"), import_folder_entry.Text));
 			md.Run ();
 			md.Destroy ();
 
