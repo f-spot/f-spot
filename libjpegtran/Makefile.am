@@ -2,7 +2,7 @@ INCLUDES =			\
 	-DHAVE_LIBEXIF		\
 	$(F_CFLAGS)
 
-fspotlibdir = $(prefix)/lib/f-spot
+fspotlibdir = $(libdir)/f-spot
 fspotlib_LTLIBRARIES = libfspotjpegtran.la
 
 libfspotjpegtran_files =			\

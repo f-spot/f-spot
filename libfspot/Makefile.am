@@ -7,7 +7,7 @@ INCLUDES =							\
 	$(F_CFLAGS)						\
 	$(WERROR)
 
-fspotlibdir = $(prefix)/lib/f-spot
+fspotlibdir = $(libdir)/f-spot
 fspotlib_LTLIBRARIES = libfspot.la
 
 libfspot_la_SOURCES =				\

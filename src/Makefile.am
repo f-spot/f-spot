@@ -183,7 +183,7 @@ RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-simple-white.css,f-spot-simple-white.css	\
 	-resource:$(srcdir)/f-spot.glade,f-spot.glade
 
-fspotlibdir = $(prefix)/lib/f-spot
+fspotlibdir = $(libdir)/f-spot
 fspotlib_DATA = f-spot.exe.config	\
 		f-spot.exe
 

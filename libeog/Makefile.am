@@ -11,7 +11,7 @@ INCLUDES =							\
 	$(LCMS_CFLAGS)
 
 
-fspotlibdir = $(prefix)/lib/f-spot
+fspotlibdir = $(libdir)/f-spot
 fspotlib_LTLIBRARIES = libfspoteog.la
 
 libfspoteog_files =				\

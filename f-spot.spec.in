@@ -39,7 +39,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root)
 %doc COPYING README
-%{_prefix}/lib/f-spot/*
+%{_lib}/f-spot/*
 %{_prefix}/bin/f-spot
 
 %changelog
