@@ -162,7 +162,13 @@ class GtkUtil {
 	
 	public static void MakeMenuItem (Gtk.Menu menu, string l, EventHandler e, bool enabled)
 	{
-		Gtk.MenuItem i = new Gtk.MenuItem (l);
+		Gtk.MenuItem i;
+		Gtk.StockItem item = Gtk.Stock.Lookup (l);
+		if (item.StockId != null) {
+			i = new Gtk.ImageMenuItem (l, null);
+		} else {
+			i = new Gtk.MenuItem (l);
+		}
 		i.Activated += e;
                 i.Sensitive = enabled;
 		

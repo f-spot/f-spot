@@ -223,15 +223,6 @@ class PixbufUtils {
 	}
 		
 
-	static public Pixbuf LoadFromAssembly (System.Reflection.Assembly assembly, string resource)
-	{
-		System.IO.Stream s = assembly.GetManifestResourceStream (resource);
-		if (s == null)
-			return null;
-		else
-			return LoadFromStream (s);
-	}
-
 	static public Pixbuf LoadFromScreen () {
 		Screen screen = Display.Default.GetScreen (0);
 		Drawable d = screen.RootWindow;
@@ -252,7 +243,7 @@ class PixbufUtils {
 
 	static public Pixbuf LoadFromAssembly (string resource)
 	{
-		return LoadFromAssembly (System.Reflection.Assembly.GetCallingAssembly (), resource);
+		return new Pixbuf (System.Reflection.Assembly.GetCallingAssembly (), resource);
 	}
 
 

@@ -1,5 +1,13 @@
 2005-01-06  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufUtils.cs: remove helper that is covered by a ctor now.
+
+	* src/PhotoPopup.cs: use the simpler menu item util function.
+
+	* src/StockIcons.cs: register stock items not just images.
+
+	* src/Util.cs: Make the menu helpers work with stock items.
+
 	* src/ThreadProgressDialog.cs: remove some using statements to
 	disambiguate the namespace so the old mono versions don't
 	complain.
