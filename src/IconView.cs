@@ -163,14 +163,16 @@ public class IconView : Gtk.Layout {
 		query.Reload += new PhotoQuery.ReloadHandler (OnReload);
 	}
 
-
+	//
+	// IPhotoSelection
+	//
 	public PhotoQuery Query {
 		get {
 			return query;
 		}
 	}
 
-	public int [] Selection {
+	public int [] SelectedIdxs {
 		get {
 			int [] selection = new int [selected_cells.Count];
 
@@ -183,12 +185,26 @@ public class IconView : Gtk.Layout {
 		}
 	}
 
-	public int CountSelected {
+	public int SelectedIdxCount 
+	{
 		get {
 			return selected_cells.Count;
 		}
 	}
+	
+	public bool IdxIsSelected (int num)
+	{
+		return CellIsSelected (num);
+	}
 
+	public int CurrentIdx {
+		get {
+			if (selected_cells.Count == 1 && IdxIsSelected (focus_cell))
+				return focus_cell;
+			else 
+				return -1;
+		}
+	}
 
 	// Updating.
 
@@ -545,7 +561,7 @@ public class IconView : Gtk.Layout {
 			GLib.Source.Remove (scroll_on_idle_id);
 	}
 
-	private void ScrollTo (int cell_num)
+	public void ScrollTo (int cell_num)
 	{
 		Adjustment adjustment = Vadjustment;
 		int x;
@@ -663,10 +679,8 @@ public class IconView : Gtk.Layout {
 
 	void ContextMenu (ButtonPressEventArgs args, int cell_num)
 	{
-		/*
 		IconViewPopup iv = new IconViewPopup (this, cell_num);
 		iv.Activate (args.Event);
-		*/
 	}
 	
 	private void HandleButtonReleaseEvent (object sender, ButtonReleaseEventArgs args)
@@ -740,11 +754,9 @@ public class IconView : Gtk.Layout {
 			case Gdk.Key.End:
 				focus_cell = query.Photos.Length - 1; 
 				break;
-			/*
 			case Gdk.Key.space:
 				ToggleCell (focus_cell);
 				break;
-			*/
 			default:	
 				args.RetVal = false;
 				return;		

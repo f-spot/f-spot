@@ -12,6 +12,8 @@ using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 
 public class MainWindow {
+        public static MainWindow Toplevel = null;
+
 	Db db;
 	TagSelectionWidget tag_selection_widget;
 	[Widget] Gtk.Window main_window;
@@ -65,17 +67,17 @@ public class MainWindow {
 		new TargetEntry ("text/uri-list", 0, (uint) TargetType.UriList),
 	};
 
+	private static TargetEntry [] icon_dest_target_table = new TargetEntry [] {
+		new TargetEntry ("application/x-fspot-tags", 0, (uint) TargetType.TagList),
+		new TargetEntry ("text/uri-list", 0, (uint) TargetType.UriList),
+	};
+
 	private static TargetEntry [] tag_target_table = new TargetEntry [] {
 		new TargetEntry ("application/x-fspot-tags", 0, (uint) TargetType.TagList),
 	};
 
 	private static TargetEntry [] tag_dest_target_table = new TargetEntry [] {
 		new TargetEntry ("application/x-fspot-photos", 0, (uint) TargetType.PhotoList),
-		new TargetEntry ("text/uri-list", 0, (uint) TargetType.UriList),
-	};
-
-	private static TargetEntry [] icon_dest_target_table = new TargetEntry [] {
-		new TargetEntry ("application/x-fspot-tags", 0, (uint) TargetType.TagList),
 		new TargetEntry ("text/uri-list", 0, (uint) TargetType.UriList),
 	};
 
@@ -171,16 +173,17 @@ public class MainWindow {
 
 		UpdateMenus ();
 		main_window.ShowAll ();
+		
+		if (Toplevel == null)
+			Toplevel = this;
 	}
 
-	//
-	// Commands
-	//
+	
 	private int [] SelectedIds () {
 		int [] ids;
 		switch (mode) {
 		case ModeType.IconView:
-			ids = icon_view.Selection;
+			ids = icon_view.SelectedIdxs;
 			break;
 		default:
 		case ModeType.PhotoView:
@@ -192,6 +195,11 @@ public class MainWindow {
 		return ids;
 	}
 	
+
+	//
+	// Selection Interface
+	//
+
 	private Photo [] SelectedPhotos (int [] selected_ids)
 	{
 		Photo [] photo_list = new Photo [selected_ids.Length];
@@ -207,6 +215,11 @@ public class MainWindow {
 	{
 		return SelectedPhotos (SelectedIds ());
 	}
+
+
+	//
+	// Change Notification functions
+	//
 
 	private void InvalidateViews ()
 	{
@@ -228,6 +241,10 @@ public class MainWindow {
 			photo_view.Update ();
 	}
 		
+	//
+	// Commands
+	//
+
 	private void RotateSelectedPictures (RotateCommand.Direction direction)
 	{
 		RotateCommand command = new RotateCommand (main_window);
@@ -240,7 +257,10 @@ public class MainWindow {
 		}
 	}
 
-	// Highlight drag destinations
+	//
+	// Tag Selection Drag Handlers
+	//
+
 	public void HandleTagSelectionDragMotion (object o, DragMotionArgs args)
 	{
 		TreePath path;
@@ -254,6 +274,7 @@ public class MainWindow {
 	public void HandleTagSelectionDragDataReceived (object o, DragDataReceivedArgs args)
 	{
 		Tag [] tags = new Tag [1];
+
 		//FIXME this is a lame api, we need to fix the drop behaviour of these things
 		tags [0] = tag_selection_widget.TagAtPosition(args.X, args.Y);
 
@@ -288,7 +309,19 @@ public class MainWindow {
 		}
 	}
 
-	// IconView events.
+	void HandleTagSelectionDragDataGet (object sender, DragDataGetArgs args)
+	{		
+		UriList list = new UriList (SelectedPhotos ());
+		Byte [] data = Encoding.UTF8.GetBytes (list.ToString ());
+		Atom [] targets = args.Context.Targets;
+		
+		args.SelectionData.Set (targets[0], 8, data, data.Length);
+	}
+
+	//
+	// IconView Drag Handlers
+	//
+
 	void HandleIconViewDragBegin (object sender, DragBeginArgs args)
 	{
 		Photo [] photos = SelectedPhotos ();
@@ -303,17 +336,6 @@ public class MainWindow {
 	}
 
 	void HandleIconViewDragDataGet (object sender, DragDataGetArgs args)
-	{		
-		UriList list = new UriList (SelectedPhotos ());
-		Byte [] data = Encoding.UTF8.GetBytes (list.ToString ());
-		Atom [] targets = args.Context.Targets;
-		
-		args.SelectionData.Set (targets[0], 8, data, data.Length);
-	}
-
-
-	// IconView events.
-	void HandleTagSelectionDragDataGet (object sender, DragDataGetArgs args)
 	{		
 		UriList list = new UriList (SelectedPhotos ());
 		Byte [] data = Encoding.UTF8.GetBytes (list.ToString ());
@@ -369,9 +391,14 @@ public class MainWindow {
 		Gtk.Drag.Finish (args.Context, true, false, args.Time);
 	}	
 
+
+	//
+	// IconView event handlers
+	// 
+
 	void HandleSelectionChanged (IconView view)
 	{
-		int [] selection = icon_view.Selection;
+		int [] selection = icon_view.SelectedIdxs;
 
 		if (selection.Length == 1) {
 			current_photo_idx = selection [0];
@@ -393,7 +420,9 @@ public class MainWindow {
 		SwitchToPhotoViewMode ();
 	}
 
-	// PhotoView events.
+	//
+	// PhotoView event handlers.
+	//
 
 	void HandlePhotoViewPhotoChanged (PhotoView sender)
 	{
@@ -408,6 +437,10 @@ public class MainWindow {
 		if (args.Event.Type == EventType.TwoButtonPress && args.Event.Button == 1)
 			SwitchToIconViewMode ();
 	}
+
+	//
+	// PhotoView drag handlers.
+	//
 
 	void HandlePhotoViewDragDrop (object sender, DragDropArgs args)
 	{
@@ -440,8 +473,9 @@ public class MainWindow {
 	}	
 
 	//
-	// Menu commands.
+	// TagMenu commands.
 	//
+
 	void HandleTagMenuActivate (object sender, EventArgs args)
 	{
 
@@ -460,7 +494,7 @@ public class MainWindow {
 
 	void HandleAttachTagMenuSelected (Tag t) 
 	{
-		foreach (int num in icon_view.Selection) {
+		foreach (int num in SelectedIds ()) {
 			Photo photo = query.Photos [num];
 			photo.AddTag (t);
 			db.Photos.Commit (photo);
@@ -476,7 +510,7 @@ public class MainWindow {
 
 	void HandleRemoveTagMenuSelected (Tag t)
 	{
-		foreach (int num in icon_view.Selection) {
+		foreach (int num in SelectedIds ()) {
 			Photo photo = query.Photos [num];
 			photo.RemoveTag (t);
 			db.Photos.Commit (photo);
@@ -484,6 +518,10 @@ public class MainWindow {
 			InvalidateViews (num);
 		}
 	}
+
+	//
+	// Main menu commands
+	//
 
 	void HandleImportCommand (object sender, EventArgs e)
 	{
@@ -629,7 +667,6 @@ public class MainWindow {
 			tag_selection_widget.Update ();
 	}
 
-
 	void HandleAttachTagCommand (object obj, EventArgs args)
 	{
 		Tag [] tags = this.tag_selection_widget.TagHighlight ();
@@ -647,7 +684,7 @@ public class MainWindow {
 	{
 		Tag [] tags = this.tag_selection_widget.TagHighlight ();
 
-		foreach (int num in icon_view.Selection) {
+		foreach (int num in SelectedIds ()) {
 			Photo photo = query.Photos [num];
 			photo.RemoveTag (tags);
 			db.Photos.Commit (photo);
@@ -693,7 +730,7 @@ public class MainWindow {
 
 	}
 
-        void HandleDeleteCommand (object sender, EventArgs args)
+        public void HandleDeleteCommand (object sender, EventArgs args)
         {
 		foreach (Photo photo in SelectedPhotos ()) {
 			foreach (uint id in photo.VersionIds) {
@@ -707,7 +744,7 @@ public class MainWindow {
 		UpdateQuery ();
 	}
 
-	void HandleRemoveCommand (object sender, EventArgs args)
+	public void HandleRemoveCommand (object sender, EventArgs args)
 	{
 		foreach (Photo photo in SelectedPhotos ()) {
 			db.Photos.Remove (photo);
@@ -746,12 +783,12 @@ public class MainWindow {
 		}
 	}
 
-	void HandleRotate90Command (object sender, EventArgs args)
+	public void HandleRotate90Command (object sender, EventArgs args)
 	{
 		RotateSelectedPictures (RotateCommand.Direction.Clockwise);
 	}
 
-	void HandleRotate270Command (object sender, EventArgs args)
+	public void HandleRotate270Command (object sender, EventArgs args)
 	{
 		RotateSelectedPictures (RotateCommand.Direction.Counterclockwise);
 
@@ -813,6 +850,9 @@ public class MainWindow {
 		UpdateMenus ();
 	}
 
+	//
+	// Handle Main Menu 
+
 	void UpdateMenus ()
 	{
 		if (CurrentPhoto == null) {
@@ -868,6 +908,7 @@ public class MainWindow {
 	{
 		switch (view_notebook.CurrentPage) {
 		case 0:
+			icon_view.ScrollTo (photo_view.CurrentPhoto);
 			mode = ModeType.IconView;
 			break;
 		case 1:
@@ -875,7 +916,7 @@ public class MainWindow {
 			if (current_photo_idx != PHOTO_IDX_NONE)
 				photo_view.CurrentPhoto = current_photo_idx;
 			else if (current_photos) {
-				int [] selection = icon_view.Selection;
+				int [] selection = icon_view.SelectedIdxs;
 				
 				photo_view.CurrentPhoto = selection[0];
 			}
