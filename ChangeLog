@@ -1,5 +1,8 @@
 2005-03-08  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: handle the case where we can't load the
+	original image gracefully.
+
 	* src/PhotoImageView.cs: catch exceptions loading the thumbnail
 	and continue as usual.
 

@@ -419,9 +419,13 @@ public class MainWindow {
 			if (t.Icon == null) {
 				if (icon == null) {
 					// FIXME this needs a lot more work.
-					Pixbuf tmp = PixbufUtils.LoadAtMaxSize (query.Photos[num].DefaultVersionPath, 128, 128);
-					icon = PixbufUtils.TagIconFromPixbuf (tmp);
-					tmp.Dispose ();
+					try {
+						Pixbuf tmp = PixbufUtils.LoadAtMaxSize (query.Photos[num].DefaultVersionPath, 128, 128);
+						icon = PixbufUtils.TagIconFromPixbuf (tmp);
+						tmp.Dispose ();
+					} catch {
+						icon = null;
+					}
 				}
 				
 				t.Icon = icon;
