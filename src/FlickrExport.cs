@@ -12,8 +12,10 @@ namespace FSpot {
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
 		
 		System.Threading.Thread command_thread;
+		ThreadProgressDialog progress_dialog;
+		ProgressItem progress_item;
 
-		FSpot.ProgressItem progress_item;
+		int photo_index;
 		FlickrRemote fr = new FlickrRemote ();
 
 		public FlickrExport (IPhotoCollection selection)
@@ -34,7 +36,7 @@ namespace FSpot {
 			Dialog.ShowAll ();
 			Dialog.Response += HandleResponse;
 		}
-		
+
 		private string GetPassword (string email) 
 		{
 			Gtk.Dialog password_dialog = new Gtk.Dialog (Mono.Posix.Catalog.GetString ("Enter Password"), Dialog, Gtk.DialogFlags.Modal);
@@ -52,14 +54,37 @@ namespace FSpot {
 		}
 
 		private void Login () {
+			fr.Progress = null;
 			string email = email_entry.Text;
 			string password = GetPassword (email);
 			fr.Login (email, password);
 		}
+
+		private void HandleProgressChanged (ProgressItem item)
+		{
+			//System.Console.WriteLine ("Changed value = {0}", item.Value);
+			progress_dialog.Fraction = (photo_index - 1.0 + item.Value) / (double) selection.Photos.Length;	
+		}
 		
 		private void Upload () {
-			foreach (Photo photo in selection.Photos) {
-				fr.Upload (photo);
+			fr.Progress = new ProgressItem ();
+			fr.Progress.Changed += HandleProgressChanged;
+
+			try {
+				foreach (Photo photo in selection.Photos) {
+					progress_dialog.Message = System.String.Format (Mono.Posix.Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
+					progress_dialog.Fraction = photo_index / (double)selection.Photos.Length;
+					photo_index++;
+					progress_dialog.ProgressText = System.String.Format (Mono.Posix.Catalog.GetString ("{0} of {1}"), photo_index, selection.Photos.Length);
+					fr.Upload (photo);
+					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Done Sending Photos");
+					progress_dialog.Fraction = 1.0;
+					progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Upload Complete");
+					progress_dialog.ButtonLabel = Gtk.Stock.Ok;
+				}
+			} catch (System.Exception e) {
+				progress_dialog.Message = e.ToString ();
+				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error Uploading To Flickr");
 			}
 		}
 		
@@ -75,7 +100,10 @@ namespace FSpot {
 			
 			command_thread = new  System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
 			command_thread.Name = Mono.Posix.Catalog.GetString ("Uploading Pictures");
-			command_thread.Start ();
+
+			Dialog.Destroy ();
+			progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Photos.Length);
+			progress_dialog.Start ();
 		}
 
 		public Gtk.Dialog Dialog {

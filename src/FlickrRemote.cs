@@ -15,11 +15,19 @@ public class FlickrRemote {
 	string passwd;
 
 	public bool ExportTags;
+	public FSpot.ProgressItem Progress;
+
+	public FlickrRemote ()
+	{
+		//FIXME this api is lame
+	}
 
 	public void Upload (Photo photo)
 	{
 		if (email == null || passwd == null)
 			throw new Exception ("Must Login First");
+
+		// FIXME flickr needs rotation
 
 		FormClient client = new FormClient ();
 		client.Add ("email", email);
@@ -38,7 +46,7 @@ public class FlickrRemote {
 			client.Add ("tags", taglist.ToString ());
 		}
 
-		Stream response = client.Submit (UploadUrl).GetResponseStream ();
+		Stream response = client.Submit (UploadUrl, this.Progress).GetResponseStream ();
 		StreamReader reader = new StreamReader (response, Encoding.UTF8);
 
 		// FIXME we need to parse reponse
@@ -51,17 +59,12 @@ public class FlickrRemote {
 		client.Add ("email", email);
 		client.Add ("password", passwd);
 
-		Stream response = client.Submit (AuthUrl).GetResponseStream ();
+		Stream response = client.Submit (AuthUrl, this.Progress).GetResponseStream ();
 		StreamReader reader = new StreamReader (response, Encoding.UTF8);
 
 		Console.WriteLine (reader.ReadToEnd ());
 
 		this.email = email;
 		this.passwd = passwd;
-	}
-
-	public FlickrRemote ()
-	{
-		//FIXME this api is lame
 	}
 }
