@@ -3,7 +3,7 @@ using Gtk;
 using GtkSharp;
 using System;
 
-public class ProgressDialog : Dialog {
+public class ProgressDialog : Gtk.Dialog {
 
 	private bool cancelled;
 
@@ -18,6 +18,8 @@ public class ProgressDialog : Dialog {
 		Stop
 	};
 
+	
+
 	private CancelButtonType cancel_button_type;
 	private int total_count;
 
@@ -25,6 +27,13 @@ public class ProgressDialog : Dialog {
 	private Label message_label;
 
 	private DateTime start_time;
+
+	private Gtk.Button button;
+	public Gtk.Button Button {
+		get {
+			return button;
+		}
+	}
 
 	public ProgressDialog (string title, CancelButtonType cancel_button_type, int total_count, Gtk.Window parent_window)
 	{
@@ -45,10 +54,10 @@ public class ProgressDialog : Dialog {
 
 		switch (cancel_button_type) {
 		case CancelButtonType.Cancel:
-			AddButton ("Cancel", (int) ResponseType.Cancel);
+			button = (Gtk.Button)AddButton (Gtk.Stock.Cancel, (int) ResponseType.Cancel);
 			break;
 		case CancelButtonType.Stop:
-			AddButton ("Stop", (int) ResponseType.Cancel);
+			button = (Gtk.Button)AddButton (Gtk.Stock.Stop, (int) ResponseType.Cancel);
 			break;
 		}
 
@@ -63,7 +72,7 @@ public class ProgressDialog : Dialog {
 		current_count ++;
 
 		message_label.Text = message;
-		progress_bar.Text = String.Format ("{0} of {1}", current_count, total_count);
+		progress_bar.Text = String.Format (Mono.Posix.Catalog.GetString ("{0} of {1}"), current_count, total_count);
 		progress_bar.Fraction = (double) current_count / total_count;
 
 		ShowAll ();

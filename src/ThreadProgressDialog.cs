@@ -37,7 +37,7 @@ namespace FSpot {
 
 		private Gtk.ProgressBar progress_bar;
 		private Gtk.Label message_label;
-		
+		private Gtk.Button button;
 		private System.Threading.Thread thread;
 
 		public ThreadProgressDialog (System.Threading.Thread thread, int total) {
@@ -60,8 +60,9 @@ namespace FSpot {
 			
 			progress_bar = new ProgressBar ();
 			VBox.PackStart (progress_bar, true, true, 6);
-			
-			AddButton ("Cancel", ResponseType.Cancel);
+
+			button_label = Gtk.Stock.Cancel;
+			button = (Gtk.Button) AddButton (button_label, (int)ResponseType.Cancel);
 			
 			delay = new Delay (new GLib.IdleHandler (HandleUpdate));
 
@@ -77,6 +78,19 @@ namespace FSpot {
 			set {
 				lock (this) {
 					progress_text = value;
+					delay.Start ();
+				}
+			}
+		}
+
+		private string button_label;
+		public string ButtonLabel {
+			get {
+				return button_label;
+			}			
+			set {
+				lock (this) {
+					button_label = value;
 					delay.Start ();
 				}
 			}
@@ -117,6 +131,7 @@ namespace FSpot {
 			message_label.Text = message;
 			progress_bar.Text = progress_text;
 			progress_bar.Fraction = (double) fraction;
+			button.Label = button_label;
 
 			return false;
 		}

@@ -21,7 +21,7 @@ public class RotateCommand {
 		ProgressDialog progress_dialog = null;
 		
 		if (photos.Length > 1) {
-			progress_dialog = new ProgressDialog ("Rotating pictures",
+			progress_dialog = new ProgressDialog (Mono.Posix.Catalog.GetString ("Rotating pictures"),
 							      ProgressDialog.CancelButtonType.Stop,
 							      photos.Length, parent_window);
 		}
@@ -30,7 +30,7 @@ public class RotateCommand {
 		bool has_read_only_selections = false;
 		foreach (Photo p in photos) {
 			if (progress_dialog != null
-			    && progress_dialog.Update (String.Format ("Rotating picture \"{0}\"", p.Name)))
+			    && progress_dialog.Update (String.Format (Mono.Posix.Catalog.GetString ("Rotating picture \"{0}\""), p.Name)))
 				break;
 
 			foreach (uint version_id in p.VersionIds) {

@@ -1,5 +1,15 @@
 2004-12-01  Larry Ewing  <lewing@novell.com>
 
+	* src/RotateCommand.cs: mark more strings for translation.
+
+	* src/GalleryExport.cs: set the button text to Ok.  Translated the
+	dialog strings.
+
+	* src/ThreadProgressDialog.cs: expose a string for the button
+	label.
+
+	* src/ProgressDialog.cs: translate the  strings.  Use stock strings.
+
 	* src/MainWindow.cs: remove the using Mono.Posix call and use
 	explicit paths.
 

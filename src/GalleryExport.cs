@@ -307,7 +307,7 @@ namespace FSpot {
 				photo_index = 0;
 
 				command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
-				command_thread.Name = "Uploading Pictures";
+				command_thread.Name = Mono.Posix.Catalog.GetString ("Uploading Pictures");
 				
 				progress_dialog = new FSpot.ThreadProgressDialog (command_thread, photos.Length);
 				progress_dialog.Start ();
@@ -332,20 +332,21 @@ namespace FSpot {
 
 					System.Console.WriteLine ("uploading {0}", photo_index);
 
-					progress_dialog.Message = System.String.Format ("Uploading picture \"{0}\"", photo.Name);
+					progress_dialog.Message = System.String.Format (Mono.Posix.Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
 					progress_dialog.Fraction = photo_index / (double) photos.Length;
 					photo_index++;
 
-					progress_dialog.ProgressText = System.String.Format ("{0} of {1}", photo_index, photos.Length);
+					progress_dialog.ProgressText = System.String.Format (Mono.Posix.Catalog.GetString ("{0} of {1}"), photo_index, photos.Length);
 					album.Add (photo);
 				}
 
-				progress_dialog.Message = ("Done Sending Photos");
+				progress_dialog.Message = Mono.Posix.Catalog.GetString ("Done Sending Photos");
 				progress_dialog.Fraction = 1.0;
-				progress_dialog.ProgressText = "Upload Complete";
+				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Upload Complete");
+				progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 			} catch (System.Exception e) {
 				progress_dialog.Message = e.ToString ();
-				progress_dialog.ProgressText = "Error Uploading To Gallery";
+				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error Uploading To Gallery");
 			}
 			
 			if (browser) {
@@ -377,7 +378,7 @@ namespace FSpot {
 			Gtk.Menu menu = new Gtk.Menu ();
 			
 			if (accounts.Count == 0) {
-				Gtk.MenuItem item = new Gtk.MenuItem ("(No Gallery)");
+				Gtk.MenuItem item = new Gtk.MenuItem (Mono.Posix.Catalog.GetString ("(No Gallery)"));
 				menu.Append (item);
 				gallery_optionmenu.Sensitive = false;
 			} else {
@@ -391,6 +392,8 @@ namespace FSpot {
 			menu.ShowAll ();
 			gallery_optionmenu.Menu = menu;
 		}
+
+		
 
 		private void HandleAccountSelected (object sender, System.EventArgs args)
 		{
@@ -417,7 +420,7 @@ namespace FSpot {
 			Gtk.Menu menu = new Gtk.Menu ();
 			
 			if (albums == null || albums.Count == 0) {
-				Gtk.MenuItem item = new Gtk.MenuItem ("(No Albums)");
+				Gtk.MenuItem item = new Gtk.MenuItem (Mono.Posix.Catalog.GetString ("(No Albums)"));
 				menu.Append (item);
 
 				album_optionmenu.Sensitive = false;
