@@ -120,7 +120,7 @@ public class InfoBox : VBox {
 			info += aperture + " ";
 		}
 		if (exposure != null && exposure != "")
-			info += " " + exposure;
+			info += exposure + " ";
 		if (iso_speed != null && iso_speed != "")
 			info += "\nISO " + iso_speed;
 		
