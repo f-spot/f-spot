@@ -195,10 +195,10 @@ public class TagStore : DbStore {
 			tag.Icon = PixbufSerializer.Deserialize (Convert.FromBase64String (icon_string));
 	}
 
-	private uint hidden_id;
-	public uint HiddenId {
+	private Tag hidden;
+	public Tag Hidden {
 		get {
-			return hidden_id;
+			return hidden;
 		}
 	}
 
@@ -221,9 +221,6 @@ public class TagStore : DbStore {
 			string name = reader [1].ToString ();
 			bool is_category = (Convert.ToUInt32 (reader [2]) != 0);
 
-			if (name == "Hidden")
-				hidden_id = id;
-
 			Tag tag;
 			if (is_category)
 				tag = new Category (null, id, name);
@@ -235,7 +232,11 @@ public class TagStore : DbStore {
 
 			tag.SortPriority = Convert.ToInt32 (reader[3]);
 			AddToCache (tag);
+			
+			if (tag.Name == "Hidden")
+				hidden = tag;
 		}
+
 		reader.Close ();
 		command.Dispose ();
 

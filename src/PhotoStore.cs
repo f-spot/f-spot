@@ -945,12 +945,12 @@ public class PhotoStore : DbStore {
 		bool hide = true;
 		if (tags != null) {
 			foreach (Tag t in tags) {
-				if (t.Id == tag_store.HiddenId) 
+				if (t.Id == tag_store.Hidden.Id) 
 					hide = false;
 			}
 		}
 
-		if (tags != null && tags.Length == 1 && tags [0].Id == tag_store.HiddenId) {
+		if (tags != null && tags.Length == 1 && tags [0].Id == tag_store.Hidden.Id) {
 			StringBuilder query_builder = new StringBuilder ();
 			query_builder.Append  ("SELECT id, time, directory_path, name, description, default_version_id ");
 			
@@ -994,14 +994,11 @@ public class PhotoStore : DbStore {
 								     DbUtils.UnixTimeFromDateTime (range.end)));
 			}
 
-			if (hide)
-				query_builder.Append (String.Format ("AND photo_tags.tag_id != {0} ", tag_store.HiddenId));
-			
 			if (tags != null && tags.Length > 0) {
 				query_builder.Append ("AND photo_tags.tag_id IN (");
 				bool first = true;
 				foreach (Tag t in tags) {
-					if (t.Id == tag_store.HiddenId)
+					if (t.Id == tag_store.Hidden.Id)
 						continue;
 					
 					query_builder.Append (String.Format ("{0}{1} ", first ? "" : ", ", t.Id));
@@ -1011,10 +1008,12 @@ public class PhotoStore : DbStore {
 				query_builder.Append (")");
 			}
 
-			query_builder.Append (" GROUP BY photos.id");
+			query_builder.Append (" GROUP BY photos.id ORDER BY photos.time");
 			query = query_builder.ToString ();
 		}
 
+		//Console.WriteLine ("query: {0}", query);
+		
 		Console.WriteLine ("Main Start {0}", System.DateTime.Now);
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
@@ -1027,10 +1026,6 @@ public class PhotoStore : DbStore {
 			uint id = Convert.ToUInt32 (reader [0]);
 			Photo photo = LookupInCache (id) as Photo;
 
-			//Console.WriteLine ("{0} -- desc = {1}", id, reader.FieldCount);
-			//if(reader.FieldCount > 6)
-			//		Console.WriteLine ("The result is {0}", reader [6].ToString ());
-
 			if (photo == null) {
 				photo = new Photo (id,
 						   Convert.ToUInt32 (reader [1]),
@@ -1041,9 +1036,10 @@ public class PhotoStore : DbStore {
 				photo.DefaultVersionId = Convert.ToUInt32 (reader[5]);		 
 				
 				version_list.Add (photo);
+			} else {
+				if (!hide || !photo.HasTag (tag_store.Hidden))
+					id_list.Add (photo);
 			}
-
-			id_list.Add (photo);
 		}
 		Console.WriteLine ("Main End {0}", System.DateTime.Now);
 
@@ -1057,18 +1053,22 @@ public class PhotoStore : DbStore {
 		if (need_load) {
 			GetAllTags ();
 			GetAllVersions ();
-			foreach (Photo photo in version_list) {
-				photo.Loaded = true;
-			}
 		} else {
 			Console.WriteLine ("Skipped Loading Data");
+		}
+
+		foreach (Photo photo in version_list) {
+			photo.Loaded = true;
+			if (!hide || !photo.HasTag (tag_store.Hidden))
+				id_list.Add (photo);
 		}
 
 		Console.WriteLine ("End {0}", System.DateTime.Now);
 
 		command.Dispose ();
 
-		return id_list.ToArray (typeof (Photo)) as Photo [];
+		Photo [] photos = id_list.ToArray (typeof (Photo)) as Photo [];
+		return photos;
 	}
 
 #if TEST_PHOTO_STORE

@@ -1,8 +1,14 @@
 2004-08-03  Larry Ewing  <lewing@novell.com>
 
-	* src/PhotoStore.cs: fix accidentally reversed logic in the
-	reworked query.
+	* src/PhotoStore.cs: Go back to manual inspection for the hidden
+	tag, the query based one is not correct yet.
+
+	* src/TagsStore.cs: Expose the whole hidden tag not just the Id so
+	that we can test for the tag more simply.
 	
+	* src/PhotoStore.cs: fix accidentally reversed logic in the
+	reworked query.	
+
 	* src/PhotoStore.cs: remove the horrible hidden hack from earlier
 	and move the hidden logic into the query.  Rework the query logic
 	to stop using OR and instead use IN.
