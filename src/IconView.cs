@@ -220,7 +220,7 @@ public class IconView : Gtk.Layout {
 	public void UpdateThumbnail (int thumbnail_num)
 	{
 		FSpot.IBrowsableItem photo = collection.Items [thumbnail_num];
-		string thumbnail_path = Thumbnail.PathForUri (photo.DefaultVersionUri.ToString (), ThumbnailSize.Large);
+		string thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
 		cache.Remove (thumbnail_path);
 		InvalidateCell (thumbnail_num);
 	}
@@ -651,8 +651,9 @@ public class IconView : Gtk.Layout {
 		
 		// Preload the cache with images aroud the expose area
 		// FIXME the preload need to be tuned to the Cache size but this is a resonable start
-		int len = (end_cell_row - start_cell_row + 8) * cells_per_row;
-		int scell = System.Math.Max ((start_cell_row - 2) * cells_per_row, 0);
+		
+		int len = (end_cell_row - start_cell_row + 10) * cells_per_row;
+		int scell = System.Math.Max ((start_cell_row - 5) * cells_per_row, 0);
 		int ecell = scell + len;
 		if (scell > collection.Items.Length - len) {
 		        ecell = collection.Items.Length;
@@ -826,15 +827,22 @@ public class IconView : Gtk.Layout {
 	{
 		Gdk.Pixbuf result = entry.ShallowCopyPixbuf ();
 		int order = (int) entry.Data;
-		if (result == null)
-			return;
 
 		if (order > 0 && order < collection.Items.Length) {
 			System.Uri uri = collection.Items [order].DefaultVersionUri;
+
+			if (result == null && !System.IO.File.Exists (FSpot.ThumbnailGenerator.ThumbnailPath (uri)))
+				FSpot.ThumbnailGenerator.Default.Request (uri.LocalPath, 0, 256, 256);
+			
+			if (result == null)
+				return;
 			
 			if (!FSpot.PhotoLoader.ThumbnailIsValid (uri, result))
 				FSpot.ThumbnailGenerator.Default.Request (uri.LocalPath, 0, 256, 256);
 		}
+			
+		if (result == null)
+			return;
 
 		// We have to do the scaling here rather than on load because we need to preserve the 
 		// Pixbuf option iformation to verify the thumbnail validity later

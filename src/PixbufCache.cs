@@ -6,7 +6,7 @@ namespace FSpot {
 		Hashtable items;
 		ArrayList items_mru;
 		int total_size;
-		int max_size = 256 * 256 * 4 * 70;
+		int max_size = 256 * 256 * 4 * 20;
 
 		Gtk.ThreadNotify notify;
 		bool  notify_pending;
@@ -57,7 +57,6 @@ namespace FSpot {
 					items [path] = entry;
 					items_mru.Add (entry);
 					total_size += entry.Size;
-					//System.Console.WriteLine ("total ({0} of {1} += {2})", total_size, max_size, entry.Size);
 					Monitor.Pulse (items);
 				} else {
 					MoveForward (entry);
@@ -112,28 +111,27 @@ namespace FSpot {
 			while (true) {
 				try {
 					lock (items) {
-						int i = 0;
 						if (current != null) {
-							if (current.Pixbuf == null)
-								URemove (current.Path);
-							else {
-								pending.Enqueue (current);
-								if (!notify_pending) {
-									notify.WakeupMain ();
-									notify_pending = true;
-								}
+							pending.Enqueue (current);
+							if (!notify_pending) {
+								notify.WakeupMain ();
+								notify_pending = true;
 							}
 						}
 						
-						/* shrink the cache */
-						while (items_mru.Count > 10 && total_size > max_size) {
-							//System.Console.WriteLine ("remove ({0} > {1})", total_size, max_size);
-							URemove (((CacheEntry)items_mru [0]).Path);
-						}					
-						
 						/* find the next item */
 						while ((current = FindNext ()) == null) {
-							//System.Console.WriteLine ("Waiting");
+							int num = 0;
+							while (items_mru.Count - num > 10 && total_size > max_size) {
+								CacheEntry entry = (CacheEntry) items_mru [num++];
+								total_size -= entry.Size;
+								items.Remove (entry.Path);
+								entry.Dispose ();
+							}			
+							if (num > 0) {
+								System.Console.WriteLine ("removing {0}  ({0} > {1})", num, total_size, max_size);
+								items_mru.RemoveRange (0, num);
+							}
 							Monitor.Wait (items);
 						}
 					}

@@ -1,3 +1,14 @@
+2005-02-19  Larry Ewing  <lewing@novell.com>
+
+	* src/PixbufCache.cs: don't shrink the cache until we are done
+	with loading the queue, this gives us better responsiveness while
+	scrolling.
+
+	* src/IconView.cs: tweek the caching some more.  Try to rebuild
+	thumbnails that don't exist.
+
+	* src/PixbufCache.cs: make the potentially large remove more efficient.
+
 2005-02-18  Larry Ewing  <lewing@novell.com>
 
 	* src/IconView.cs: when scaling down scale the pixbuf if we can.
