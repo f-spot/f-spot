@@ -147,7 +147,7 @@ public class IconView : Gtk.Layout {
 
 	public IconView () : base (null, null)
 	{
-		pixbuf_loader = new PixbufLoader (256);
+		pixbuf_loader = new PixbufLoader ();
 		pixbuf_loader.OnPixbufLoaded += new PixbufLoader.PixbufLoadedHandler (HandlePixbufLoaded);
 
 		selected_cells = new Hashtable ();
@@ -436,7 +436,10 @@ public class IconView : Gtk.Layout {
 					 this, null, x + 3, y + 3, cell_width - 6, cell_height - 6);
 		}
 
-		Gdk.Rectangle image_area = new Gdk.Rectangle (x + CELL_BORDER_WIDTH, y + CELL_BORDER_WIDTH, cell_width - 2 * CELL_BORDER_WIDTH, cell_height - 2 * CELL_BORDER_WIDTH);
+		Gdk.Rectangle image_area = new Gdk.Rectangle (x + CELL_BORDER_WIDTH, 
+							      y + CELL_BORDER_WIDTH, 
+							      cell_width - 2 * CELL_BORDER_WIDTH, 
+							      cell_height - 2 * CELL_BORDER_WIDTH);
 		Gdk.Rectangle result = Rectangle.Zero;
 
 		int layout_width = 0;

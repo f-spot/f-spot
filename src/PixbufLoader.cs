@@ -27,9 +27,6 @@ public class PixbufLoader {
 
 	// Private members.
 
-	/* Pixbuf size.  */
-	private int size;
-
 	/* The thread used to handle the requests.  */
 	private Thread worker_thread;
 	private static ArrayList all_worker_threads = new ArrayList ();
@@ -65,10 +62,8 @@ public class PixbufLoader {
 	public delegate void PixbufLoadedHandler (PixbufLoader loader, string path, int order, Pixbuf result);
 	public event PixbufLoadedHandler OnPixbufLoaded;
 
-	public PixbufLoader (int size)
+	public PixbufLoader ()
 	{
-		this.size = size;
-
 		queue = new ArrayList ();
 		requests_by_path = new Hashtable ();
 		processed_requests = new Queue ();
@@ -139,18 +134,7 @@ public class PixbufLoader {
 		if (orig_image == null)
 			return;
 
-		if (PixbufUtils.GetSize (orig_image) == size) {
-			request.result = orig_image;
-		} else {
-			int orig_width = (int) orig_image.Width;
-			int orig_height = (int) orig_image.Height;
-
-			int width = PixbufUtils.ComputeScaledWidth (orig_image, size);
-			int height = PixbufUtils.ComputeScaledHeight (orig_image, size);
-
-			request.result = orig_image.ScaleSimple ((int) width, (int) height, InterpType.Nearest);
-			orig_image.Dispose ();
-		}
+		request.result = orig_image;
 	}
 
 	/* Insert the request in the queue, return TRUE if the queue actually grew.
