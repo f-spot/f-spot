@@ -1,5 +1,43 @@
 2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
 
+	* src/PhotoVersionCommands.cs (PhotoVersionCommands.Create): Pass
+	true for create_file to Photo.CreateVersion.
+
+	* src/IconView.cs (IconView.Scroll): Use Photo.DefaultVersionPath
+	instead of Photo.Path.
+	(IconView.DrawCell): Likewise.
+	(UpdateThumbnail): New method to have a thumbnail reloaded.
+
+	* src/MainWindow.cs (MainWindow.ctor): Pass photo store to
+	PhotoView.
+	(MainWindow.HandleCreateVersionCommand): Update the thumbnail in
+	the icon view.
+	(MainWindow.HandleDeleteVersionCommand): Likewise.
+	(MainWindow.HandleRenameVersionCommand): Likewise.
+	(MainWindow.UpdateForVersionIdChange): Likewise.
+	(MainWindow.HandlePhotoViewPhotoChanged): New handler for the
+	PhotoChanged event on the PhotoView.
+	(MainWindow.ctor): Connect.
+
+	* src/PhotoView.cs (PhotoView.HandleCropButtonClicked): New.
+	(PhotoView.ctor): Connect to the "Clicked" event on the crop
+	button.
+	(PhotoView.photo_store): New member to keep a pointer to the photo
+	store.
+	(PhotoView.ctor): Get a PhotoStore arg, initialize photo_store.
+	(PhotoView.PhotoChanged): New public event.
+	(PhotoView.UpdateImageView): Use Photo.DefaultVersionPath instead
+	of .Path, so that we display the default version.
+	(PhotoView.HandleDisplayNextButtonClicked): Emit PhotoChanged.
+	(PhotoView.HandleDisplayPreviousButtonClicked): Emit PhotoChanged.
+
+	* src/PhotoStore.cs (Photo.CreateDefaultModifiedVersion): New.
+	(Photo.CreateVersion): Get a bool arg specifying whether to create
+	a file for the new version or not.
+	(Photo.DefaultVersionPath): New public property.
+
+2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+
 	* src/InfoBox.cs (InfoBox.SetupWidgets): Move the version option
 	menu up, after the name entry; I think it makes more sense this
 	way.

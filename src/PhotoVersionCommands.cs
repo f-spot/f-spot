@@ -114,7 +114,7 @@ public class PhotoVersionCommands {
 				return false;
 
 			try {
-				photo.DefaultVersionId = photo.CreateVersion (name, photo.DefaultVersionId);
+				photo.DefaultVersionId = photo.CreateVersion (name, photo.DefaultVersionId, true);
 				store.Commit (photo);
 			} catch {
 				// FIXME show error dialog.

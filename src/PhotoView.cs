@@ -18,6 +18,8 @@ public class PhotoView : EventBox {
 		}
 	}
 
+	private PhotoStore photo_store;
+
 	private PhotoQuery query;
 	public PhotoQuery Query {
 		get {
@@ -55,6 +57,12 @@ public class PhotoView : EventBox {
 	}
 
 
+	// Public events.
+
+	public delegate void PhotoChangedHandler (PhotoView me);
+	public event PhotoChangedHandler PhotoChanged;
+
+
 	// Selection constraints.
 
 	private const string CONSTRAINT_RATIO_IDX_KEY = "FEditModeManager::constraint_idx";
@@ -62,7 +70,7 @@ public class PhotoView : EventBox {
 	private struct SelectionConstraint {
 		public string Label;
 		public double XyRatio;
-		}
+	}
 
 	private OptionMenu constraints_option_menu;
 	private int selection_constraint_ratio_idx;
@@ -140,7 +148,7 @@ public class PhotoView : EventBox {
 		if (Query == null || current_photo >= Query.Photos.Length)
 			image_view.Pixbuf = null;
 		else
-			image_view.Pixbuf = new Pixbuf (Query.Photos [current_photo].Path);
+			image_view.Pixbuf = new Pixbuf (Query.Photos [current_photo].DefaultVersionPath);
 
 		image_view.UnsetSelection ();
 		UpdateZoom ();
@@ -240,16 +248,60 @@ public class PhotoView : EventBox {
 	private void HandleDisplayNextButtonClicked (object sender, EventArgs args)
 	{
 		DisplayNext ();
+
+		if (PhotoChanged != null)
+			PhotoChanged (this);
 	}
 
 	private void HandleDisplayPreviousButtonClicked (object sender, EventArgs args)
 	{
 		DisplayPrevious ();
+
+		if (PhotoChanged != null)
+			PhotoChanged (this);
 	}
 
 	private void HandleImageViewSizeAllocated (object sender, SizeAllocatedArgs args)
 	{
 		UpdateZoom ();
+	}
+
+	private void HandleCropButtonClicked (object sender, EventArgs args)
+	{
+		int x, y, width, height;
+		if (! image_view.GetSelection (out x, out y, out width, out height))
+			return;
+
+		Photo photo = query.Photos [CurrentPhoto];
+		if (photo.DefaultVersionId == Photo.OriginalVersionId) {
+			photo.DefaultVersionId = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);
+			photo_store.Commit (photo);
+		}
+
+		Pixbuf original_pixbuf = image_view.Pixbuf;
+		Pixbuf cropped_pixbuf = new Pixbuf (original_pixbuf.Colorspace, false, original_pixbuf.BitsPerSample,
+						    width, height);
+
+		original_pixbuf.CopyArea (x, y, width, height, cropped_pixbuf, 0, 0);
+
+		image_view.Pixbuf = cropped_pixbuf;
+
+		// FIXME the fact that the selection doesn't go away is a bug in ImageView, it should
+		// be fixed there.
+		image_view.UnsetSelection ();
+
+		try {
+			cropped_pixbuf.Savev (photo.DefaultVersionPath, "jpeg", null, null);
+			PhotoStore.GenerateThumbnail (photo.DefaultVersionPath);
+		} catch (GLib.GException ex) {
+			// FIXME error dialog.
+			Console.WriteLine ("error {0}", ex);
+		}
+
+		UpdateZoom ();
+
+		if (PhotoChanged != null)
+			PhotoChanged (this);
 	}
 
 
@@ -262,11 +314,13 @@ public class PhotoView : EventBox {
 			CanFocus = false;
 			Relief = ReliefStyle.None;
 		}
-		}
+	}
 
-	public PhotoView ()
+	public PhotoView (PhotoStore photo_store)
 		: base ()
 	{
+		this.photo_store = photo_store;
+
 		BorderWidth = 3;
 
 		Box vbox = new VBox (false, 6);
@@ -290,6 +344,8 @@ public class PhotoView : EventBox {
 		crop_button.Add (crop_button_icon);
 		toolbar_hbox.PackStart (crop_button, false, true, 0);
 
+		crop_button.Clicked += new EventHandler (HandleCropButtonClicked);
+
 		toolbar_hbox.PackStart (new EventBox (), true, true, 0);
 
 		count_label = new Label ("");
@@ -312,10 +368,10 @@ public class PhotoView : EventBox {
 		vbox.ShowAll ();
 	}
 
-	public PhotoView (PhotoQuery query)
-		: this ()
+	public PhotoView (PhotoQuery query, PhotoStore photo_store)
+		: this (photo_store)
 	{
 		Query = query;
 	}
-	}
+}
 

@@ -127,6 +127,12 @@ public class Photo : DbItem {
 			return GetPathForVersionName (GetVersionName (version_id));
 	}
 
+	public string DefaultVersionPath {
+		get {
+			return GetVersionPath (DefaultVersionId);
+		}
+	}
+
 	public void DeleteVersion (uint version_id)
 	{
 		if (version_id == OriginalVersionId)
@@ -145,7 +151,7 @@ public class Photo : DbItem {
 		} while (version_id > OriginalVersionId);
 	}
 
-	public uint CreateVersion (string name, uint base_version_id)
+	public uint CreateVersion (string name, uint base_version_id, bool create_file)
 	{
 		string new_path = GetPathForVersionName (name);
 		string original_path = GetVersionPath (base_version_id);
@@ -157,13 +163,33 @@ public class Photo : DbItem {
 			throw new Exception (String.Format ("A file named {0} already exists",
 							    System.IO.Path.GetFileName (new_path)));
 
-		File.Copy (original_path, new_path);
-		PhotoStore.GenerateThumbnail (new_path);
+		if (create_file) {
+			File.Copy (original_path, new_path);
+			PhotoStore.GenerateThumbnail (new_path);
+		}
 
 		highest_version_id ++;
 		version_names [highest_version_id] = name;
 
 		return highest_version_id;
+	}
+
+	public uint CreateDefaultModifiedVersion (uint base_version_id, bool create_file)
+	{
+		int num = 0;
+
+		while (true) {
+			string name;
+			if (num == 0)
+				name = "Modified";
+			else
+				name = String.Format ("Modified ({0})", num);
+
+			if (! VersionNameExists (name))
+				return CreateVersion (name, base_version_id, create_file);
+
+			num ++;
+		}
 	}
 
 	public void RenameVersion (uint version_id, string new_name)

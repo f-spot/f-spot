@@ -148,6 +148,15 @@ public class IconView : Gtk.Layout {
 	}
 
 
+	// Updating.
+
+	public void UpdateThumbnail (int thumbnail_num)
+	{
+		ThumbnailCache.Default.RemoveThumbnailForPath (query.Photos [thumbnail_num].DefaultVersionPath);
+		QueueDraw ();
+	}
+
+
 	// Private utility methods.
 
 	static private Pixbuf ErrorPixbuf ()
@@ -265,7 +274,7 @@ public class IconView : Gtk.Layout {
 
 		Photo photo = query.Photos [thumbnail_num];
 
-		string thumbnail_path = Thumbnail.PathForUri ("file://" + photo.Path, ThumbnailSize.Large);
+		string thumbnail_path = Thumbnail.PathForUri ("file://" + photo.DefaultVersionPath, ThumbnailSize.Large);
 		Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForPath (thumbnail_path);
 
 		Gdk.Rectangle area = new Gdk.Rectangle (x, y, cell_width, cell_height);
@@ -370,7 +379,7 @@ public class IconView : Gtk.Layout {
 			if (start + i >= num_thumbnails)
 				break;
 
-			pixbuf_loader.Cancel (query.Photos [start + i].Path);
+			pixbuf_loader.Cancel (query.Photos [start + i].DefaultVersionPath);
 		}
 
 		y_offset = (int) adjustment.Value;

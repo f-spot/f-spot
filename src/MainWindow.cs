@@ -50,6 +50,7 @@ public class MainWindow : Gtk.Window {
 		if (cmd.Execute (db.Photos, CurrentPhoto, this)) {
 			info_box.Update ();
 			photo_view.Update ();
+			icon_view.UpdateThumbnail (current_photo_idx);
 			UpdateMenus ();
 		}
 	}
@@ -61,6 +62,7 @@ public class MainWindow : Gtk.Window {
 		if (cmd.Execute (db.Photos, CurrentPhoto, this)) {
 			info_box.Update ();
 			photo_view.Update ();
+			icon_view.UpdateThumbnail (current_photo_idx);
 			UpdateMenus ();
 		}
 	}
@@ -72,6 +74,7 @@ public class MainWindow : Gtk.Window {
 		if (cmd.Execute (db.Photos, CurrentPhoto, this)) {
 			info_box.Update ();
 			photo_view.Update ();
+			icon_view.UpdateThumbnail (current_photo_idx);
 			UpdateMenus ();
 		}
 	}
@@ -83,6 +86,7 @@ public class MainWindow : Gtk.Window {
 
 		info_box.Update ();
 		photo_view.Update ();
+		icon_view.UpdateThumbnail (current_photo_idx);
 		UpdateMenus ();
 	}
 
@@ -217,6 +221,16 @@ public class MainWindow : Gtk.Window {
 	}
 
 
+	// PhotoView events.
+
+	private void HandlePhotoViewPhotoChanged (PhotoView sender)
+	{
+		current_photo_idx = photo_view.CurrentPhoto;
+		info_box.Photo = CurrentPhoto;
+		UpdateMenus ();
+	}
+
+
 	// Queries.
 
 	private void UpdateQuery ()
@@ -280,7 +294,8 @@ public class MainWindow : Gtk.Window {
 		// FIXME GTK# should let me pass a null for the second argument here.
 		view_notebook.AppendPage (icon_view_scrolled, new Label ("foo"));
 
-		photo_view = new PhotoView (query);
+		photo_view = new PhotoView (query, db.Photos);
+		photo_view.PhotoChanged += new PhotoView.PhotoChangedHandler (HandlePhotoViewPhotoChanged);
 		// FIXME GTK# should let me pass a null for the second argument here.
 		view_notebook.AppendPage (photo_view, new Label ("foo"));
 
