@@ -180,7 +180,6 @@ update_scrollbar_values (EogScrollView *view)
 {
 	EogScrollViewPrivate *priv;
 	int scaled_width, scaled_height;
-	int img_x, img_y;
 	int xofs, yofs;
 	GtkAllocation *allocation;
 
@@ -449,7 +448,7 @@ paint_rectangle (EogScrollView *view, ArtIRect *rect, GdkInterpType interp_type)
 	ArtIRect r, d;
 	GdkPixbuf *tmp;
 	int check_size;
-	guint32 check_1, check_2;
+	guint32 check_1 = 0, check_2 = 0;
 
 	priv = view->priv;
 
@@ -915,7 +914,6 @@ set_zoom (EogScrollView *view, double zoom,
 	  gboolean have_anchor, int anchorx, int anchory)
 {
 	EogScrollViewPrivate *priv;
-	GdkRectangle rect;
 
 	g_return_if_fail (view != NULL);
 	g_return_if_fail (EOG_IS_SCROLL_VIEW (view));
@@ -1073,7 +1071,6 @@ set_zoom_fit (EogScrollView *view)
 {
 	EogScrollViewPrivate *priv;
 	double new_zoom;
-	int scaled_width, scaled_height;
 	int width, height;
 	
 	priv = view->priv;
@@ -1578,7 +1575,6 @@ void
 eog_scroll_view_set_transparency (EogScrollView *view, TransparencyStyle style, GdkColor *color)
 {
 	EogScrollViewPrivate *priv;
-	GdkInterpType new_interp_type;
 	guint32 col = 0;
 	guint32 red, green, blue;
 	gboolean changed = FALSE;
@@ -1878,8 +1874,6 @@ GtkWidget*
 eog_scroll_view_new (void)
 {
 	GtkWidget *widget;
-	GtkWidget *vbar;
-	GtkWidget *hbar;
 	GtkTable *table;
 	EogScrollView *view;
 	EogScrollViewPrivate *priv;

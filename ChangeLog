@@ -1,5 +1,11 @@
 2005-02-01  Larry Ewing  <lewing@novell.com>
 
+	* libeog/eog-scroll-view.c: remove unused variables.
+
+	* libeog/eog-image.c: fix return values remove unused vars.
+
+	* libeog/eog-pixbuf-util.c: remove unused vars fix return values. 
+
 	* src/MainWindow.cs: save updated exif info when unsharping.
 
 	* src/PhotoView.cs: save updated exif info when cropping.

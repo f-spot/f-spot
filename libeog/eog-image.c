@@ -4,6 +4,7 @@
 #include <libgnome/gnome-i18n.h>
 #include <libgnomeui/gnome-thumbnail.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
+#include <gtk/gtk.h>
 #include <libgnomevfs/gnome-vfs.h>
 
 #include "libeog-marshal.h"
@@ -584,7 +585,7 @@ eog_image_load (EogImage *img)
 				}
 
 				priv->mode = EOG_IMAGE_LOAD_PROGRESSIVE;
-				if ((info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_SIZE != 0) && 
+				if (((info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_SIZE) != 0) && 
 				    (info->size < 1000000))
 				{
 					priv->mode = EOG_IMAGE_LOAD_COMPLETE;
@@ -760,9 +761,9 @@ eog_image_save (EogImage *img, const GnomeVFSURI *uri, GError **error)
 	char *file;
 	char *file_type = NULL;
 
-	g_return_if_fail (EOG_IS_IMAGE (img));
-	g_return_if_fail (uri != NULL);
-	g_return_if_fail (error == NULL || *error == NULL);
+	g_return_val_if_fail (EOG_IS_IMAGE (img), FALSE);
+	g_return_val_if_fail (uri != NULL, FALSE);
+	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
 	priv = img->priv;
 
@@ -790,9 +791,11 @@ eog_image_save (EogImage *img, const GnomeVFSURI *uri, GError **error)
 	{
 		file_type = "jpeg";
 	}
+#if 0
 	else if (g_str_has_suffix (file, ".xpm")) {
 		return eog_image_helper_save_xpm (priv->image, file, error);
 	}
+#endif
 
 	if (file_type == NULL) {
 		g_set_error (error, GDK_PIXBUF_ERROR,
@@ -816,7 +819,8 @@ eog_image_get_caption (EogImage *img)
 
 	priv = img->priv;
 
-	if (priv->uri == NULL) return;
+	if (priv->uri == NULL)
+		return NULL;
 
 	return gnome_vfs_uri_extract_short_name (priv->uri);
 }
