@@ -473,9 +473,9 @@ namespace FSpot {
 				Rectangle bounds = Bounds ();
 				Requisition requisition = popup_widow.SizeRequest ();
 				popup_widow.Resize  (requisition.Width, requisition.Height);
-				selector.GdkWindow.GetRootOrigin (out x, out y);
+				selector.GdkWindow.GetOrigin (out x, out y);
 				x += bounds.X + (bounds.Width - requisition.Width) / 2;
-				y += bounds.Y;
+				y += bounds.Y - requisition.Height;
 				x = Math.Max (x, 0);
 				x = Math.Min (x, selector.Screen.Width - requisition.Width);
 				popup_widow.Move (x, y);
