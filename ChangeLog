@@ -1,5 +1,10 @@
 2005-02-21  Larry Ewing  <lewing@novell.com>
 
+	* src/f-spot.glade: fix up folder export dialog.
+	
+	* src/FolderExport.cs: new file does original and static html
+	export.  
+
 	* NEWS: update for 0.0.9 release.
 
 	* configure.in: bump for release.

@@ -9291,7 +9291,7 @@ Photo Details</property>
 		  <property name="right_padding">0</property>
 
 		  <child>
-		    <widget class="GtkScrolledWindow" id="scrolledwindow5">
+		    <widget class="GtkScrolledWindow" id="thumb_scrolledwindow">
 		      <property name="width_request">180</property>
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
@@ -9695,7 +9695,7 @@ Photo Details</property>
 			  </child>
 
 			  <child>
-			    <widget class="GtkRadioButton" id="radiobutton3">
+			    <widget class="GtkRadioButton" id="none_radio">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
 			      <property name="label" translatable="yes">No Formatting</property>
@@ -9776,7 +9776,7 @@ Photo Details</property>
 			      <property name="spacing">0</property>
 
 			      <child>
-				<widget class="GtkCheckButton" id="size_check">
+				<widget class="GtkCheckButton" id="scale_check">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
 				  <property name="label" translatable="yes">Resize to: </property>
