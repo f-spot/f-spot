@@ -482,7 +482,7 @@ public class MainWindow {
 		Rectangle bounds = icon_view.CellBounds (cell_num);
 		image_center_x = bounds.X + (bounds.Width / 2);
 		image_center_y = bounds.Y + (bounds.Height / 2);
-		Console.WriteLine ("x {0} y {1}", image_center_x, image_center_y);
+
 		image_center_x += (int) args.Event.XRoot - x;
 		image_center_y += (int) args.Event.YRoot - y;
 		
