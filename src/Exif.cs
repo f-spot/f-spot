@@ -400,6 +400,13 @@ exif_entry_new ();
 		
 		public void Reset (ExifTag tag)
 		{
+			unsafe {
+				// Free any exsting data so that _initialize will actually set the data
+				if (_handle->data != IntPtr.Zero)
+					ExifData.free (_handle->data);
+				_handle->data = IntPtr.Zero;
+			}
+
 			exif_entry_initialize (handle, tag);
 
 			//FIXME the month string in time fields in libexif ix currently broken so we do our own. 

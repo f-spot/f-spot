@@ -1,5 +1,8 @@
 2005-01-26  Larry Ewing  <lewing@novell.com>
 
+	* src/Exif.cs: clear existing data before calling initialize
+	otherwise initialize will short circuit.
+
 	* src/PixbufUtils.cs: use simple command forms.
 
 	* src/Exif.cs: add more SetData overloads, override broken libexif
