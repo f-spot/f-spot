@@ -166,13 +166,24 @@ namespace FSpot {
 				return;
 
 			if (load_async) {
+				try {
 				loader.Load (Photo.DefaultVersionPath);
-			} else {
+				} catch (System.Exception e) {
+					Gdk.Pixbuf old = this.Pixbuf;
+
+					this.Pixbuf = new Gdk.Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0, 
+								      PixbufUtils.ErrorPixbuf.Width, 
+								      PixbufUtils.ErrorPixbuf.Height);
+					if (old != null)
+						old.Dispose ();
+				}
+
+			} else {	
 				Gdk.Pixbuf old = this.Pixbuf;
 				this.Pixbuf = FSpot.PhotoLoader.Load (Query, current_photo);
 				if (old != null)
 					old.Dispose ();
-			}
+		}
 			
 			this.UnsetSelection ();
 

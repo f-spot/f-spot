@@ -1,5 +1,7 @@
 2005-01-12  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoImageView.cs: handle missing images when Loading.
+
 	* src/PhotoStore.cs: intentionally make exif generated thumbnails invalid 
 	so that when we load them we know to regenerate them.
 
