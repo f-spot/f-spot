@@ -5,10 +5,6 @@ using System.Collections;
 public class PhotoQuery {
 
 	// Public events.
-
-	public delegate void IconUpdatedHandler (PhotoQuery model, int item_num);
-	public event IconUpdatedHandler IconUpdated;
-
 	public delegate void ReloadHandler (PhotoQuery model);
 	public event ReloadHandler Reload;
 
@@ -29,7 +25,7 @@ public class PhotoQuery {
 	public PhotoQuery (PhotoStore store)
 	{
 		this.store = store;
-		photos = store.Query (null);
+		photos = store.Query (null, range);
 	}
 
 	public void RequestReload ()
@@ -46,7 +42,19 @@ public class PhotoQuery {
 
 		set {
 			tags = value;
-			photos = store.Query (tags);
+			photos = store.Query (tags, range);
+			RequestReload ();
+		}
+	}
+
+	private PhotoStore.DateRange range = null;
+	public PhotoStore.DateRange Range {
+		get {
+			return range;
+		}
+		set {
+			range = value;
+			photos = store.Query (tags, range);
 			RequestReload ();
 		}
 	}
