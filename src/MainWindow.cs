@@ -46,7 +46,7 @@ public class MainWindow {
 	[Widget] MenuItem rotate_left;
 	[Widget] MenuItem rotate_right;
 	[Widget] MenuItem update_thumbnail;
-	[Widget] MenuItem delete_from_catalog;
+	[Widget] MenuItem delete_from_drive;
 
 	[Widget] MenuItem set_as_background;
 
@@ -403,7 +403,7 @@ public class MainWindow {
 
 	void HandleSelectionChanged (IconView view)
 	{
-		int [] selection = icon_view.SelectedIdxs;
+		int [] selection = SelectedIds ();
 
 		if (selection.Length == 1) {
 			current_photo_idx = selection [0];
@@ -893,7 +893,7 @@ public class MainWindow {
 		rotate_left.Sensitive = current_photos;
 		rotate_right.Sensitive = current_photos;
 		update_thumbnail.Sensitive = current_photos;
-		delete_from_catalog.Sensitive = current_photos;
+		delete_from_drive.Sensitive = current_photos;
 		copy.Sensitive = current_photos;
 
 		delete_selected_tag.Sensitive = tag_sensitive;

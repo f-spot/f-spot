@@ -160,6 +160,8 @@ public class PhotoView : EventBox {
 	{
 		if (CurrentPhotoValid ()) {
 			try {
+				Pixbuf old = image_view.Pixbuf;
+				
 				image_view.Pixbuf = new Pixbuf (Query.Photos [current_photo].DefaultVersionPath);
 
 				/*
@@ -173,6 +175,9 @@ public class PhotoView : EventBox {
 										       image_view.Allocation.Height);
 				
 				*/
+
+				if (old != null)
+					old.Dispose ();
 			} catch (GException ex) {
 				// FIXME
 				image_view.Pixbuf = null;
@@ -183,11 +188,6 @@ public class PhotoView : EventBox {
 
 		image_view.UnsetSelection ();
 		UpdateZoom ();
-
-		// This is necessary otherwise it will take many pictures before the GC will kick in and in the
-		// meantime memory occupation will grow out of control (since all the old pictures will stay in
-		// memory).
-		System.GC.Collect ();
 	}
 
 	private uint restore_scrollbars_idle_id;

@@ -1,3 +1,10 @@
+2004-06-28  Larry Ewing  <lewing@ximian.com>
+
+	* src/f-spot.glade: rename delete menu item.
+
+	* src/MainWindow.cs: use SelectedIds in a couple of places it was
+	needed.  Rename the delete menu item.
+
 2004-06-23  Larry Ewing  <lewing@ximian.com>
 
 	* src/TagMenu.cs: store the parent_item and handle populating the
