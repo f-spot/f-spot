@@ -90,7 +90,6 @@ namespace FSpot {
 			double percent = box_counts [item] / (double) box_count_max;
 
 			Rectangle box = Rectangle.Zero;
-			
 			box.Height = (int) Math.Round ((total_height - box_top_padding) * percent + 0.5);
 			box.Y = background.Y + total_height - box.Height - 1;
 			
@@ -143,7 +142,13 @@ namespace FSpot {
 			private int item;
 			private int offset;
 			private GroupSelector selector;
-			int thickness = 4;
+			private int handle_height = 15;
+
+			private int border {
+				get {
+					return selector.box_spacing * 2;
+				}
+			}
 
 			public int Item {
 				set {
@@ -159,50 +164,61 @@ namespace FSpot {
 				}
 			}
 
-			public Rectangle Bounds () 
+			public Rectangle InnerBounds () 
 			{
 				Rectangle box = selector.BoxBounds (item);
+
+				//box.X += border;
+				box.Y = selector.background.Y;
+				box.Height = selector.background.Height;
 				
-				box.X -= thickness;
-				box.Y = selector.background.Y - thickness;
-				box.Width += 2 * thickness;
-				box.Height = selector.background.Height + 2 * thickness;
+				return box;
+			}
+			
+			public Rectangle Bounds () 
+			{
+				Rectangle box = InnerBounds ();
+
+				box.X -= border;
+				box.Y -= border;
+				box.Width += 2 * border;
+				box.Height += 2 * border + handle_height;
 				
 				return box;
 			}
 
 			public void Draw (Rectangle area)
 			{
+				Rectangle inner = InnerBounds ();
 				Rectangle bounds = Bounds ();
 				
 				if (bounds.Intersect (area, out area)) {
 					
 					
-					int i = thickness - 1;
-					while (i > 0) {
-						Rectangle border = bounds;
-						border.X += i;
-						border.Y += i;
-						border.Width -= (2 * i) + 1;
-						border.Height -= (2 * i) + 1;
+					int i = 0;
+					Rectangle box = inner;
+					box.Width -= 1;
+					box.Height -= 1;
+					while (i < border) {
+						box.X -= 1;
+						box.Y -= 1;
+						box.Width += 2;
+						box.Height += 2;
 					
 						selector.GdkWindow.DrawRectangle (selector.Style.BackgroundGC (selector.State), 
-										  false, border);
-						i--;
+										  false, box);
+						i++;
 					}
 				
+					Style.PaintHandle (selector.Style, selector.GdkWindow, selector.State, ShadowType.In, 
+							    area, selector, null, bounds.X, inner.Y + inner. Height + border, 
+							    bounds.Width, handle_height, Orientation.Horizontal);
+
 					Style.PaintShadow (selector.Style, selector.GdkWindow, selector.State, ShadowType.Out, 
 							   area, selector, null, bounds.X, bounds.Y, bounds.Width, bounds.Height);
-	
 
-					i = thickness;
-					bounds.X += i;
-					bounds.Y += i;
-					bounds.Width -= 2 * i;
-					bounds.Height -= 2 * i;
-					
 					Style.PaintShadow (selector.Style, selector.GdkWindow, selector.State, ShadowType.In, 
-							   area, selector, null, bounds.X, bounds.Y, bounds.Width, bounds.Height);
+							   area, selector, null, inner.X, inner.Y, inner.Width, inner.Height);
 
 				}
 			}
@@ -387,7 +403,6 @@ namespace FSpot {
 			GroupSelector gs = new GroupSelector ();
 			gs.Counts = new int [] {20, 10, 5, 2, 3, 50, 8, 10, 22, 0, 55, 129, 120, 30, 14, 200, 21, 55};
 			gs.Mode = 2;
-			gs.Offset = 3;
 
 			win.Add (gs);
 			win.ShowAll ();
