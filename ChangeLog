@@ -1,8 +1,17 @@
+2004-08-17  Larry Ewing  <lewing@novell.com>
+
+	* src/PhotoStore.cs: remove useless block.
+
 2004-08-17  Dave Camp  <dave@novell.com>
 
 	* src/PhotoStore.cs: Fixed the build.
 
-2004-08-17  Larry Ewing  <lewing@novell.com>
+	* autogen.sh (PKG_NAME): remove some cruft.
+
+	* src/PhotoStore.cs: reformat some of the code.
+
+	* src/TagCommands.cs: use FromPixbuf not Pixbuf to set for now
+	since it should be null_ok.
 
 	* src/PhotoStore.cs: remove some old debug output.
 

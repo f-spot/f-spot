@@ -960,75 +960,72 @@ public class PhotoStore : DbStore {
 					hide = false;
 			}
 		}
-
-		{
-			// The SQL query that we want to construct is:
-			//
-			// SELECT photos.id
-			//        photos.time
-			//        photos.directory_path,
-			//        photos.name,
-			//        photos.description,
-			//        photos.default_version_id
-			//                  FROM photos, photo_tags
-			//                  WHERE photos.id = photo_tags.photo_id
-			// 		          AND (photo_tags.tag_id = tag1
-			//			       OR photo_tags.tag_id = tag2
-			//                             OR photo_tags.tag_id = tag3 ...)
-			//                  GROUP BY photos.id
-
-			StringBuilder query_builder = new StringBuilder ();
-			query_builder.Append ("SELECT photos.id,                          " +
-					      "       photos.time,                        " +
-					      "       photos.directory_path,              " +
-					      "       photos.name,                        " +
-					      "       photos.description,                 " +
-					      "       photos.default_version_id           " +
-					      "     FROM photos                      ");
-
-			if (range != null) {
-				query_builder.Append (String.Format ("WHERE photos.time >= {0} AND photos.time < {1} ",
-								     DbUtils.UnixTimeFromDateTime (range.Start), 
-								     DbUtils.UnixTimeFromDateTime (range.End)));
-			}
-			
-			if (hide) {
-				query_builder.Append (String.Format ("{0} photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {1})", 
-								     range != null ? " AND " : " WHERE ", tag_store.Hidden.Id));
-			}
-
-			if (tags != null && tags.Length > 0) {
+		
+		// The SQL query that we want to construct is:
+		//
+		// SELECT photos.id
+		//        photos.time
+		//        photos.directory_path,
+		//        photos.name,
+		//        photos.description,
+		//        photos.default_version_id
+		//                  FROM photos, photo_tags
+		//                  WHERE photos.id = photo_tags.photo_id
+		// 		          AND (photo_tags.tag_id = tag1
+		//			       OR photo_tags.tag_id = tag2
+		//                             OR photo_tags.tag_id = tag3 ...)
+		//                  GROUP BY photos.id
+		
+		StringBuilder query_builder = new StringBuilder ();
+		query_builder.Append ("SELECT photos.id,                          " +
+				      "       photos.time,                        " +
+				      "       photos.directory_path,              " +
+				      "       photos.name,                        " +
+				      "       photos.description,                 " +
+				      "       photos.default_version_id           " +
+				      "     FROM photos                      ");
+		
+		if (range != null) {
+			query_builder.Append (String.Format ("WHERE photos.time >= {0} AND photos.time < {1} ",
+							     DbUtils.UnixTimeFromDateTime (range.Start), 
+							     DbUtils.UnixTimeFromDateTime (range.End)));
+		}
+		
+		if (hide) {
+			query_builder.Append (String.Format ("{0} photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {1})", 
+							     range != null ? " AND " : " WHERE ", tag_store.Hidden.Id));
+		}
+		
+		if (tags != null && tags.Length > 0) {
 				bool first = true;
 				foreach (Tag t in tags) {
 					if (t.Id == tag_store.Hidden.Id)
 						continue;
-
+					
 					if (first) {
 						query_builder.Append (String.Format ("{0} photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN (",
-								      hide || range != null ? " AND " : " WHERE "));
+										     hide || range != null ? " AND " : " WHERE "));
 					}
 					
 					query_builder.Append (String.Format ("{0}{1} ", first ? "" : ", ", t.Id));
 					
 					first = false;
 				}
-
+				
 				if (!first)
 					query_builder.Append (")) ");
-			}
-
-			query_builder.Append ("ORDER BY photos.id");
-			query = query_builder.ToString ();
-			
 		}
-
+		
+		query_builder.Append ("ORDER BY photos.id");
+		query = query_builder.ToString ();
+		
 		Console.WriteLine ("Query Start {0}", System.DateTime.Now);
 
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
 		command.CommandText = query;
 		SqliteDataReader reader = command.ExecuteReader ();
-
+		
 		Console.WriteLine ("Query Mid {0}", System.DateTime.Now);
 
 		ArrayList version_list = new ArrayList ();
