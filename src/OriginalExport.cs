@@ -268,8 +268,8 @@ namespace FSpot {
 			// is thrown after completion.
 			try {
 				foreach (Photo photo in selection.Photos) {
-					CreateImage (photo.Path);
-					CreateComments(photo.Path);
+					CreateImage (photo.DefaultVersionPath);
+					CreateComments(photo.DefaultVersionPath);
 
 					//Set the directory's mtime sa the oldest photo's one.
 					if (!setmtime)
