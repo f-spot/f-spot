@@ -1,5 +1,8 @@
 2004-12-10  Larry Ewing  <lewing@novell.com>
 
+	* src/TagCommands.cs: update the spinbutton and label when the
+	photo changes.
+
 	* src/ImageView.cs: return a zero width rectangle if Pixbuf ==
 	null.  This shouldn't ever happen but a null pixbuf is a valid
 	state so we should handle it.

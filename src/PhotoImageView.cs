@@ -157,7 +157,6 @@ namespace FSpot {
 			if (!CurrentPhotoValid ())
 				return;
 
-			
 			if (load_async) {
 				loader.Load (Photo.DefaultVersionPath);
 			} else {

@@ -368,19 +368,12 @@ public class TagCommands {
 		[Glade.Widget]
 		SpinButton photo_spin_button;
 
-		int current_item = -1;
 		public int CurrentItem {
 			get {
-				return current_item;
+				return image_view.CurrentPhoto;
 			}
 			set {
-				if (value != current_item) {
-					current_item = value;
-					photo_label.Text = String.Format (Mono.Posix.Catalog.GetString ("Photo {0} of {1}"), 
-									  current_item + 1, query.Photos.Length);
-
-					image_view.CurrentPhoto = current_item;
-				}
+				image_view.CurrentPhoto = value;
 			}
 		}
 		
@@ -388,8 +381,7 @@ public class TagCommands {
 		{
 			int value = photo_spin_button.ValueAsInt - 1;
 			
-			if (value != current_item)
-				CurrentItem = value;
+			CurrentItem = value;
 		}
 
 		private void HandleSelectionChanged ()
@@ -406,6 +398,14 @@ public class TagCommands {
 				
 				tmp.Dispose ();
 			}
+		}
+
+		public void HandlePhotoChanged (FSpot.PhotoImageView sender)
+		{
+			photo_label.Text = String.Format (Mono.Posix.Catalog.GetString ("Photo {0} of {1}"), 
+							  image_view.CurrentPhoto + 1, query.Photos.Length);
+
+			photo_spin_button.Value = image_view.CurrentPhoto + 1;
 		}
 
 		public bool Execute (Tag t)
@@ -429,6 +429,7 @@ public class TagCommands {
 			image_view = new FSpot.PhotoImageView (query);
 			image_view.SelectionXyRatio = 1.0;
 			image_view.SelectionChanged += HandleSelectionChanged;
+			image_view.PhotoChanged += HandlePhotoChanged;
 
 			photo_scrolled_window.Add (image_view);
 
