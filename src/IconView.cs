@@ -796,8 +796,9 @@ public class IconView : Gtk.Layout {
 
 	protected override bool OnExposeEvent (Gdk.EventExpose args)
 	{
-		DrawAllCells (args.Area);
-
+		foreach (Rectangle area in args.Region.GetRectangles ()) {
+			DrawAllCells (area);
+		}
 		return base.OnExposeEvent (args);
 	}
 

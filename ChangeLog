@@ -1,3 +1,7 @@
+2004-10-27  Larry Ewing  <lewing@novell.com>
+
+	* src/IconView.cs: process expose events by the region not the area.
+
 2004-10-20  Larry Ewing  <lewing@novell.com>
 
 	* src/ImageView.cs: take ownership of the ref, the libeog
