@@ -151,6 +151,11 @@ public class ImportCommand : FSpot.GladeDialog {
 			image_widgets [position].Pixbuf = scaled_thumbnail;
 			if (Scroll)
 				position ++;
+
+
+			if (scaled_thumbnail != thumbnail)
+				scaled_thumbnail.Dispose ();
+			
 		}
 	}
 
@@ -233,6 +238,7 @@ public class ImportCommand : FSpot.GladeDialog {
 
 			grid.AddThumbnail (thumbnail);
 			UpdateProgressBar (count, total);
+			thumbnail.Dispose ();
 		}
 
 		if (cancelled)

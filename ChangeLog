@@ -1,3 +1,8 @@
+2005-03-07  Larry Ewing  <lewing@novell.com>
+
+	* src/ImportCommand.cs: be explict when disposing of thumbnails
+	while importing.
+
 2005-03-04  Larry Ewing  <lewing@novell.com>
 
 	* NEWS: update news for release.
