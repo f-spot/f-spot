@@ -17,6 +17,7 @@ GNOME_COMPILE_WARNINGS
 AM_PATH_GLIB_2_0
 
 
+
 dnl --- Required libraries
 
 LIBGNOME_REQUIRED=2.2
@@ -48,6 +49,14 @@ dnl --- Sqlite
 
 AC_CHECK_LIB(sqlite, sqlite_last_insert_rowid, [],
 	     [AC_MSG_ERROR([sqlite not found])])
+
+
+dnl --- lcms
+
+AC_CHECK_LIB(lcms, cmsCreate_sRGBProfile, [],
+	     [AC_MSG_ERROR([liblcms not found])], -lm)
+AC_CHECK_HEADER(lcms.h, , [AC_MSG_ERROR([liblcms not found])])
+LIBJPEG='-llcms'
 
 
 dnl --- Set up paths

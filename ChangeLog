@@ -1,5 +1,8 @@
 2004-12-22  Larry Ewing  <lewing@novell.com>
 
+	* configure.in: add a check for liblcms since we can't count on 
+	a .pc file yet.
+	
 	* configure.in: [ALL_LINGUAS] removed Japanese (ja) because the po
 	file wasn't actually added.
 
