@@ -193,8 +193,31 @@ class PixbufUtils {
 			PixbufUtils.SetOption (dest, "tEXt::Thumb::MTime", src.GetOption ("tEXt::Thumb::MTime"));
 		}
 	}
-					
 
+	[DllImport("libgdk_pixbuf-2.0-0.dll")]
+	static extern bool gdk_pixbuf_save_to_bufferv (IntPtr raw, out IntPtr data, out uint length, string type, 
+						       string [] keys, string [] values, out IntPtr error);
+					
+	public byte [] Save (Gdk.Pixbuf pixbuf, string type)
+	{
+		IntPtr error = IntPtr.Zero;
+		IntPtr data;
+		uint length;
+		bool ret = gdk_pixbuf_save_to_bufferv (pixbuf.Handle, 
+						       out data, 
+						       out length, 
+						       type,
+						       null, null,
+						       out error);
+		if (error != IntPtr.Zero) 
+			throw new GLib.GException (error);
+
+		byte [] content = new byte [length];
+		Marshal.Copy (data, content, 0, (int)length);
+
+		return content;
+	}
+	
 	public static Pixbuf TagIconFromPixbuf (Pixbuf source)
 	{
 		// FIXME 50x50 crashes Pixdata.Serialize... what a mess.
@@ -440,8 +463,8 @@ class PixbufUtils {
 						 rect.Height, rect.Width);
 
 		Gdk.Rectangle subarea;
-		while (rect.Y < args.Height) {
-			while (rect.X < args.Width) {
+		while (rect.Y < args.Y + args.Height) {
+			while (rect.X < args.X + args.Width) {
 				rect.Intersect (args, out subarea);
 				Gdk.Rectangle trans = TransformOrientation (src, subarea, orientation);
 
@@ -449,12 +472,14 @@ class PixbufUtils {
 								  subarea.Width, subarea.Height);
 
 				
-				Gdk.Pixbuf tsub = new Gdk.Pixbuf (tmp, 0, 0, subarea.Height, subarea.Width);
+				Gdk.Pixbuf tsub = new Gdk.Pixbuf (tmp, 0, 0, trans.Width, trans.Height);
 
 				CopyWithOrientation (ssub, tsub, orientation);
 				
 				tsub.CopyArea (0, 0, trans.Width, trans.Height, dest, trans.X, trans.Y);
+				
 
+				
 				ssub.Dispose ();
 				tsub.Dispose ();
 				rect.X += rect.Width;

@@ -1,5 +1,9 @@
 2005-01-19  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufUtils.cs: correct the calculation of the area to walk.
+
+	* src/AsyncPixbufLoader.cs: use the chunk_timeout value.
+
 	* src/PhotoStore.cs:  fix a bug that prevents you from adding a
 	tag to a photo without a tag.
 

@@ -28,7 +28,7 @@ namespace FSpot {
 
 		// Limit pass control back to the main loop after
 		// chunk_timeout miliseconds.
-		int  chunk_timeout = 500;
+		int  chunk_timeout = 1000;
 
 		Delay delay;
 
@@ -150,7 +150,7 @@ namespace FSpot {
 					Close ();
 					return false;
 				}
-			} while (!done_reading && span.TotalMilliseconds <= 1000);
+			} while (!done_reading && span.TotalMilliseconds <= chunk_timeout);
 
 			UpdateListeners ();
 			return true;
