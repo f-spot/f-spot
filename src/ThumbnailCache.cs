@@ -23,7 +23,7 @@ public class ThumbnailCache : IDisposable {
 	private ArrayList pixbuf_mru;
 	private Hashtable pixbuf_hash = new Hashtable ();
 
-	static private ThumbnailCache default_thumbnail_cache = null;
+	static private ThumbnailCache defaultcache = new ThumbnailCache (DEFAULT_CACHE_SIZE);
 
 
 	// Public API
@@ -36,10 +36,7 @@ public class ThumbnailCache : IDisposable {
 
 	static public ThumbnailCache Default {
 		get {
-			if (default_thumbnail_cache == null)
-				default_thumbnail_cache = new ThumbnailCache (DEFAULT_CACHE_SIZE);
-
-			return default_thumbnail_cache;
+			return defaultcache;
 		}
 	}
 
@@ -68,9 +65,13 @@ public class ThumbnailCache : IDisposable {
 		pixbuf_mru.Remove (item);
 		pixbuf_mru.Insert (0, item);
 
-		Pixbuf copy = new Pixbuf (item.pixbuf, 0, 0, item.pixbuf.Width, item.pixbuf.Height);
-		PixbufUtils.SetOption (copy, "tEXt::Thumb::URI", item.pixbuf.GetOption ("tEXt::Thumb::URI"));
-		PixbufUtils.SetOption (copy, "tEXt::Thumb::MTime", item.pixbuf.GetOption ("tEXt::Thumb::MTime"));
+		// Shallow Copy
+		Pixbuf copy = new Pixbuf (item.pixbuf, 0, 0, 
+					  item.pixbuf.Width,
+					  item.pixbuf.Height);
+
+		PixbufUtils.CopyThumbnailOptions (item.pixbuf, copy);
+
 		return copy;
 	}
 
