@@ -144,6 +144,38 @@ namespace FSpot {
 			return false;
 		}
 
+		private void BoxXHitFilled (double x, out int out_position)
+		{
+			x -= BoxX (0);
+			double position = (x / BoxWidth) - 0.5;
+			position = System.Math.Max (0, position);
+			position = System.Math.Min (position, box_counts.Length - 1);
+			
+			if (box_counts [(int)position] > 0) {
+				out_position = (int)position;
+			} else {
+				int upper = (int)position;
+				while (upper < box_counts.Length && box_counts [upper] == 0)
+					upper++;					
+				
+				int lower = (int)position;
+				while (lower >= 0 && box_counts [lower] == 0)
+					lower--;
+				
+				if (lower == -1 && upper == box_counts.Length) {
+					out_position = (int)position;
+				} else if (lower == -1 && upper < box_counts.Length) {
+					out_position = upper;
+				} else if (upper == box_counts.Length && lower > -1){
+					out_position = lower;
+				} else if (upper - position > position - lower) {
+					out_position = lower;
+				} else {
+					out_position = upper;
+				}
+			}
+		}
+
 		private bool BoxXHit (double x, out int position)
 		{
 			x -= BoxX (0);
@@ -183,6 +215,7 @@ namespace FSpot {
 			} else {
 				int position;
 				if (BoxHit (x, y, out position)) {
+					BoxXHitFilled (x, out position);
 					glass.SetPosition (position);
 					return true;
 				}
@@ -543,8 +576,17 @@ namespace FSpot {
 
 			public override void EndDrag (double x, double y)
 			{
+				Rectangle box = Bounds ();
+				double middle = box.X + (box.Width / 2.0);
+
+				int position;
+				DragOffset = 0;
+				
+				selector.BoxXHitFilled (middle, out position);
+				this.SetPosition (position);
+				State = StateType.Prelight;
+				Dragging = false;
 				popup_widow.Hide ();
-				base.EndDrag (x, y);
 			}
 
 			private Rectangle InnerBounds ()
@@ -648,11 +690,32 @@ namespace FSpot {
 								  bounds.Y + bounds.Height - handle_height,
 								  bounds.Width,
 								  handle_height);
+#if false
 
+				Gdk.Point [] top_points = { new Gdk.Point (top.X, top.Y),
+							    new Gdk.Point (top.X, top.Y + top.Height),
+							    new Gdk.Point ((int)(top.X + top.Width/2), (int)(top.Y + top.Height * 1.5)),
+							    new Gdk.Point (top.X + top.Width, top.Y + top.Height),
+							    new Gdk.Point (top.X + top.Width, top.Y),
+							    new Gdk.Point (top.X, top.Y) };
+				Style.PaintPolygon (selector.Style, selector.GdkWindow, State, ShadowType.In, area,
+						    selector, "IconView:Selector", top_points, true);
+
+				Gdk.Point [] bottom_points = { new Gdk.Point (bottom.X, bottom.Y + bottom.Height),
+							       new Gdk.Point (bottom.X, bottom.Y),
+							       new Gdk.Point ((int)(bottom.X + bottom.Width/2), (int)(bottom.Y - bottom.Height/2)),
+							       new Gdk.Point (bottom.X + bottom.Width, bottom.Y),
+							       new Gdk.Point (bottom.X + bottom.Width, bottom.Y + bottom.Height),
+							       new Gdk.Point (bottom.X, bottom.Y + bottom.Height) };
+				Style.PaintPolygon (selector.Style, selector.GdkWindow, State, ShadowType.In, area,
+						    selector, "IconView:Selector", bottom_points, true);
+#else
 				Style.PaintBox (selector.Style, selector.GdkWindow, State, ShadowType.Out, area,
 						selector, null, top.X, top.Y, top.Width, top.Height);
+
 				Style.PaintBox (selector.Style, selector.GdkWindow, State, ShadowType.Out, area,
 						selector, null, bottom.X, bottom.Y, bottom.Width, bottom.Height);
+#endif
 			}
 
 			public Limit (GroupSelector selector, LimitType type) : base (selector) 
