@@ -1,5 +1,8 @@
 2004-10-12  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: make the date throb with the thumbnail so that
+	we can save more space.
+
 	* src/QueryView.cs: add missing constructor.
 
 	* src/IconView.cs: add the start of date drawing.

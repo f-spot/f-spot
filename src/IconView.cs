@@ -386,7 +386,6 @@ public class IconView : Gtk.Layout {
 			Pango.FontMetrics metrics = this.PangoContext.GetMetrics (this.Style.FontDescription, Pango.Language.FromString ("en_US"));
 
 			cell_height += PangoPixels (metrics.Ascent + metrics.Descent);
-			cell_height += TAG_ICON_VSPACING;
 		}
 
 		cells_per_row = Math.Max ((int) (available_width / cell_width), 1);
@@ -423,18 +422,33 @@ public class IconView : Gtk.Layout {
 
 		Gdk.Rectangle area = new Gdk.Rectangle (x, y, cell_width, cell_height);
 		
+		StateType cell_state = selected ? (HasFocus ? StateType.Selected :StateType.Active) : StateType.Normal;
 #if false
-		Style.PaintFlatBox (Style, BinWindow, selected ? (HasFocus ? StateType.Selected :StateType.Active) : StateType.Normal, 
+		Style.PaintFlatBox (Style, BinWindow, cell_state, 
 				    ShadowType.Out, area, this, null, x, y, cell_width, cell_height);
 
 #else
-		Style.PaintBox (Style, BinWindow, selected ? (HasFocus ? StateType.Selected :StateType.Active) : StateType.Normal, 
+		Style.PaintBox (Style, BinWindow, cell_state,
 				ShadowType.Out, area, this, "IconView", x, y, cell_width, cell_height);
 
 #endif 
 		if (HasFocus && thumbnail_num == FocusCell) {
-			Style.PaintFocus(Style, BinWindow, StateType.Normal, area, 
+			Style.PaintFocus(Style, BinWindow, cell_state, area, 
 					 this, null, x + 3, y + 3, cell_width - 6, cell_height - 6);
+		}
+
+		int expansion = 0;
+		if (thumbnail_num == throb_cell) {
+			double t = throb_state / (double) (throb_state_max - 1);
+			double s;
+			if (selected)
+				s = Math.Cos (-2 * Math.PI * t);
+			else
+				s = 1 - Math.Cos (-2 * Math.PI * t);
+			
+			expansion = (int) (SELECTION_THICKNESS * s);
+		} else if (selected) {
+			expansion = SELECTION_THICKNESS;
 		}
 
 		int layout_width = 0;
@@ -449,14 +463,13 @@ public class IconView : Gtk.Layout {
 				date_layouts [date] = layout;
 			}
 			
-			int layout_x = x + CELL_BORDER_WIDTH;				
-			int layout_y = y + CELL_BORDER_WIDTH;
+			int layout_x = x + CELL_BORDER_WIDTH - expansion;				
+			int layout_y = y + CELL_BORDER_WIDTH - expansion;
 
 			layout.GetPixelSize (out layout_width, out layout_height);
-			Style.PaintLayout (Style, BinWindow, State,
+			Style.PaintLayout (Style, BinWindow, cell_state,
 					   true, area, this, null, layout_x, layout_y, layout);
 
-			layout_height += TAG_ICON_VSPACING;
 		}
 
 		
@@ -475,25 +488,10 @@ public class IconView : Gtk.Layout {
 			else
 				dest_y = (int) (y + layout_height + (cell_height - layout_height - height) / 2);
 			
-			if (thumbnail_num == throb_cell) {
-				double t = throb_state / (double) (throb_state_max - 1);
-				double s;
-				if (selected)
-					s = Math.Cos (-2 * Math.PI * t);
-				else
-					s = 1 - Math.Cos (-2 * Math.PI * t);
-
-				int scale = (int) (SELECTION_THICKNESS * s);
-				dest_x -= scale;
-				dest_y -= scale;		
-				width += 2 * scale;
-				height += 2 * scale;
-			} else 	if (selected) { 
-				dest_x -= SELECTION_THICKNESS;
-				dest_y -= SELECTION_THICKNESS;
-				width += 2 * SELECTION_THICKNESS;
-				height += 2 * SELECTION_THICKNESS;
-			}
+			dest_x -= expansion;
+			dest_y -= expansion;		
+			width += 2 * expansion;
+			height += 2 * expansion;
 
 			Pixbuf temp_thumbnail;
 			if (width == thumbnail.Width) {
