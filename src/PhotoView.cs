@@ -228,6 +228,7 @@ public class PhotoView : EventBox {
 		}
 
 		Photo photo = query.Photos [CurrentPhoto];
+		Exif.ExifData exif_data = new Exif.ExifData (photo.DefaultVersionPath);
 
 		Pixbuf cropped_pixbuf = new Pixbuf (original_pixbuf.Colorspace, false, original_pixbuf.BitsPerSample,
 						    width, height);
@@ -242,12 +243,12 @@ public class PhotoView : EventBox {
 		try {
 			if (photo.DefaultVersionId == Photo.OriginalVersionId) {
 				photo.DefaultVersionId = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);
-				cropped_pixbuf.Savev (photo.DefaultVersionPath, "jpeg", null, null);
+				PixbufUtils.SaveJpeg (cropped_pixbuf, photo.DefaultVersionPath, 95, exif_data);
 				FSpot.ThumbnailGenerator.Create (photo.DefaultVersionPath).Dispose ();
 				query.Commit (CurrentPhoto);
 			} else {
 				// FIXME we need to invalidate the thumbnail in the cache as well
-				cropped_pixbuf.Savev (photo.DefaultVersionPath, "jpeg", null, null);
+				PixbufUtils.SaveJpeg (cropped_pixbuf, photo.DefaultVersionPath, 95, exif_data);
 				FSpot.ThumbnailGenerator.Create (photo.DefaultVersionPath).Dispose ();
 				query.MarkChanged (CurrentPhoto);
 			}

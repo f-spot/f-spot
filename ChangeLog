@@ -1,5 +1,9 @@
 2005-02-01  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: save updated exif info when unsharping.
+
+	* src/PhotoView.cs: save updated exif info when cropping.
+
 	* src/f-spot.glade: set the limits on saturation to something a
 	little more sane.
 	

@@ -1081,6 +1081,7 @@ public class MainWindow {
 				Gdk.Pixbuf final = PixbufUtils.UnsharpMask (orig, radius_spin.Value, amount_spin.Value, threshold_spin.Value);
 			
 				Photo photo = query.Photos [id];
+				Exif.ExifData exif_data = new Exif.ExifData (photo.DefaultVersionPath);
 
 				uint version = photo.DefaultVersionId;
 				if (version == Photo.OriginalVersionId) {
@@ -1090,7 +1091,7 @@ public class MainWindow {
 				try {
 					string version_path = photo.GetVersionPath (version);
 					
-					final.Savev (version_path, "jpeg", null, null);
+					PixbufUtils.SaveJpeg (final, version_path, 95, exif_data);
 					FSpot.ThumbnailGenerator.Create (version_path).Dispose ();
 					photo.DefaultVersionId = version;
 					query.Commit (id);
