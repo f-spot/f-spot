@@ -7,19 +7,6 @@ namespace FSpot {
 				view = new PhotoImageView (query);
 				view.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
 
-
-		Cms.Profile srgb = Cms.Profile.CreateSRgb ();
-		Cms.Profile bchsw = Cms.Profile.CreateAbstract (10, 1.0, 1.0,
-								0, 0, 9000, 
-								4000);
-
-		Cms.Profile [] list = new Cms.Profile [] { srgb, bchsw, srgb };
-		Cms.Transform trans = new Cms.Transform (list, 
-							 Cms.Format.Rgb8,
-							 Cms.Format.Rgb8,
-							 Cms.Intent.Perceptual, 0x0000);
-
-		view.Transform = trans;
 				this.Add (scroll);
 				scroll.Add (view);
 				scroll.ShowAll ();
