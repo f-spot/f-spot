@@ -272,7 +272,7 @@ public class MainWindow : Gtk.Window {
 		vbox.PackStart (paned, true, true, 0);
 
 		VBox left_vbox = new VBox (false, 3);
-		paned.Pack1 (left_vbox, false, true);
+		paned.Pack1 (left_vbox, false, false);
 
 		tag_selection_widget = new TagSelectionWidget (db.Tags);
 		ScrolledWindow tag_selection_scrolled = new ScrolledWindow (null, null);

@@ -1,5 +1,11 @@
 2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
 
+	* src/MainWindow.cs (MainWindow.ctor): Pass false as the "shrink"
+	arg in Paned.Pack1() for the left pane so we don't get sized below
+	the InfoBox' size requisition.
+
+2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+
 	* src/MainWindow.cs (MainWindow.HandlePhotoViewButtonPressEvent):
 	Button press event handler for the PhotoView, so we can switch to
 	icon view mode on double click.
