@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 public class ZoomUtils {
 
-	[DllImport ("libeog")]
+	[DllImport ("libfspoteog")]
 	static extern void zoom_fit_size (uint dest_width, uint dest_height,
 					  uint src_width, uint src_height,
 					  bool upscale_smaller,
@@ -16,7 +16,7 @@ public class ZoomUtils {
 	}
 
 
-	[DllImport ("libeog")]
+	[DllImport ("libfspoteog")]
 	static extern double zoom_fit_scale (uint dest_width, uint dest_height,
 					     uint src_width, uint src_height,
 					     bool upscale_smaller);

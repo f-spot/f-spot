@@ -1,5 +1,9 @@
 2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
 
+	* src/ZoomUtils.cs: Import from libfspoteog, not libeog.
+
+2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+
 	* configure.in: Remove gnome-thumbnail.h check, add a Sqlite
 	check.
 
