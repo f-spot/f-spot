@@ -925,7 +925,8 @@ namespace FSpot {
 			max_limit = new Limit (this, Limit.LimitType.Max);
 
 			left = new Gtk.Button ();
-			left.Add (new Gtk.Image (Gtk.Stock.GoBack, Gtk.IconSize.Button));
+			//left.Add (new Gtk.Image (Gtk.Stock.GoBack, Gtk.IconSize.Button));
+			left.Add (new Gtk.Arrow (Gtk.ArrowType.Left, Gtk.ShadowType.None));
 			left.Relief = Gtk.ReliefStyle.None;
 			//left.Clicked += HandleScrollLeft;
 			left.Pressed += HandleLeftPressed;
@@ -933,7 +934,8 @@ namespace FSpot {
 			left_delay = new Delay (50, new GLib.IdleHandler (HandleScrollLeft));
 
 			right = new Gtk.Button ();
-			right.Add (new Gtk.Image (Gtk.Stock.GoForward, Gtk.IconSize.Button));
+			//right.Add (new Gtk.Image (Gtk.Stock.GoForward, Gtk.IconSize.Button));
+			right.Add (new Gtk.Arrow (Gtk.ArrowType.Right, Gtk.ShadowType.None));
 			right.Relief = Gtk.ReliefStyle.None;
 			right.Pressed += HandleRightPressed;
 			right.ButtonReleaseEvent += HandleScrollReleaseEvent;

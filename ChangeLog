@@ -1,3 +1,7 @@
+2005-02-20  Larry Ewing  <lewing@novell.com>
+
+	* src/GroupSelector.cs: use Gtk.Arrow instead of adding and image.
+
 2005-02-19  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoStore.cs: use the right Ifd when looking up the time.
