@@ -94,14 +94,13 @@ Basic functionality:
           values for the R, G, B channels (e.g. say "I want 70% green,
           20% red, 10% blue).
 
-	- Automatic color enhancement and level adjustment.  Again,
-          something that we can easily steal from the GIMP.
+	- Automatic color enhancement and level adjustment.  the code
+          can probably be stolen from the GIMP (http://www.gimp.org)
 
-	- Unsharp mask.  Another much needed basic editing feature,
-          the code can probably be stolen from the GIMP
-          (http://www.gimp.org).  It might be nice to be able to
-          automatically apply unsharp mask to a bunch of pictures when
-          publishing them to the web.
+	- Unsharp mask.  Again, something that we can probably copy
+          from the GIMP.  It might be nice to be able to automatically
+          apply unsharp mask to a bunch of pictures when publishing
+          them to the web.
 
 	- Red eye reduction.  You should be able to select a rectangle
           and F-Spot would remove red eye effect from that area.
