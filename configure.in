@@ -43,11 +43,10 @@ AC_CHECK_HEADER(jpeglib.h, , [AC_MSG_ERROR([libjpeg not found])])
 LIBJPEG='-ljpeg'
 
 
-dnl --- GNOME thumbnailing code (libgnomeui 2.1.x)
-dnl FIXME remove check
+dnl --- Sqlite
 
-AC_CHECK_HEADERS(libgnomeui/gnome-thumbnail.h)
-AM_CONDITIONAL(LIBGNOMEUI_HAVE_GNOME_THUMBNAIL_H, test x$ac_cv_header_libgnomeui_gnome_thumbnail_h = xtrue)
+AC_CHECK_LIB(sqlite, sqlite_last_insert_rowid, [],
+	     [AC_MSG_ERROR([sqlite not found])])
 
 
 dnl --- Set up paths

@@ -1,5 +1,10 @@
 2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
 
+	* configure.in: Remove gnome-thumbnail.h check, add a Sqlite
+	check.
+
+2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+
 	* src/PhotoVersionCommands.cs (PhotoVersionCommands.Create): Pass
 	true for create_file to Photo.CreateVersion.
 
