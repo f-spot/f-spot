@@ -1,5 +1,13 @@
 2003-11-10  Ettore Perazzoli  <ettore@ximian.com>
 
+	* src/PhotoStore.cs (PhotoStore.MoveThumbnail): New.
+	(PhotoStore.DeleteThumbnail): New.
+	(Photo.DeleteVersion): Remove the thumbnail.
+	(Photo.RenameVersion): Rename the thumbnail.
+	(PhotoStore.Create): Get the id after doing the query, not before!
+
+2003-11-10  Ettore Perazzoli  <ettore@ximian.com>
+
 	* src/PhotoView.cs (Photoview.UpdateImageView): Use
 	Photo.DefaultVersionPath, not Photo.Path, to get the path for the
 	image to display.

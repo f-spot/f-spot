@@ -138,7 +138,9 @@ public class Photo : DbItem {
 		if (version_id == OriginalVersionId)
 			throw new Exception ("Cannot delete original version");
 
-		File.Delete (GetPathForVersionName (GetVersionName (version_id)));
+		string path = GetPathForVersionName (GetVersionName (version_id));
+		File.Delete (path);
+		PhotoStore.DeleteThumbnail (path);
 
 		version_names.Remove (version_id);
 
@@ -209,6 +211,7 @@ public class Photo : DbItem {
 			throw new Exception ("File with this name already exists");
 
 		File.Move (old_path, new_path);
+		PhotoStore.MoveThumbnail (old_path, new_path);
 
 		version_names [version_id] = new_name;
 	}
@@ -300,6 +303,21 @@ public class PhotoStore : DbStore {
 		return thumbnail;
 	}
 
+	public static void DeleteThumbnail (string path)
+	{
+		string uri = "file://" + path;
+		File.Delete (Thumbnail.PathForUri (uri, ThumbnailSize.Large));
+	}
+
+	public static void MoveThumbnail (string old_path, string new_path)
+	{
+		string old_uri = "file://" + old_path;
+		string new_uri = "file://" + new_path;
+
+		File.Move (Thumbnail.PathForUri (old_uri, ThumbnailSize.Large),
+			   Thumbnail.PathForUri (new_uri, ThumbnailSize.Large));
+	}
+
 
 	// Constructor
 
@@ -369,16 +387,19 @@ public class PhotoStore : DbStore {
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
 
+		command.CommandText = String.Format ("INSERT INTO photos (time, directory_path, name, description, default_version_id) " +
+						     "       VALUES ({0}, '{1}', '{2}', '', {3})                                       ",
+						     unix_time,
+						     SqlString (System.IO.Path.GetDirectoryName (path)),
+						     SqlString (System.IO.Path.GetFileName (path)),
+						     Photo.OriginalVersionId);
+
+		command.ExecuteScalar ();
+		command.Dispose ();
+
 		uint id = (uint) Connection.LastInsertRowId;
 		Photo photo = new Photo (id, unix_time, path);
 		AddToCache (photo);
-
-		command.CommandText = String.Format ("INSERT INTO photos (time, directory_path, name, description, default_version_id) " +
-						     "       VALUES ({0}, '{1}', '{2}', '', {3})                                       ",
-						     unix_time, SqlString (photo.DirectoryPath), SqlString (photo.Name),
-						     Photo.OriginalVersionId);
-		command.ExecuteScalar ();
-		command.Dispose ();
 
 		thumbnail = GenerateThumbnail (path);
 		return photo;
