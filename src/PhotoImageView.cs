@@ -8,8 +8,9 @@ namespace FSpot {
 			this.SizeAllocated += HandleSizeAllocated;
 			this.KeyPressEvent += HandleKeyPressEvent;
 			this.ScrollEvent += HandleScrollEvent;
+			this.Destroyed += HandleDestroy;
 		}
-
+		
 		public static double ZoomMultipler = 1.1;
 
 		public delegate void PhotoChangedHandler (PhotoImageView view);
@@ -75,6 +76,7 @@ namespace FSpot {
 		private void HandlePixbufAreaUpdated (object sender, Gdk.AreaUpdatedArgs args)
 		{
 			Gdk.Rectangle area = new Gdk.Rectangle (args.X, args.Y, args.Width, args.Height);
+			//System.Console.WriteLine ("AreaUpdate = {0}", area);
 			area = this.ImageCoordsToWindow (area);
 
 			this.QueueDrawArea (area.X, area.Y, area.Width, area.Height);
@@ -246,6 +248,11 @@ namespace FSpot {
 			//For right now we just disable fit mode and let the parent event handlers deal
 			//with the real actions.
 			this.Fit = false;
+		}
+		
+		private void HandleDestroy (object sender, System.EventArgs args)
+		{
+			loader.Loader.AreaUpdated -= HandlePixbufAreaUpdated;
 		}
 
 		protected override bool OnDestroyEvent (Gdk.Event evnt)

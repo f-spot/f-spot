@@ -1,5 +1,11 @@
 2004-11-20  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoImageView.cs: remove the update notifcation if we get
+	destroyed before the image is done loading.
+
+	* src/MainWindow.cs: don't show the full view until we've set the
+	image.
+	
 	* src/PhotoImageView.cs: fix typo.
 
 	* src/MainWindow.cs: quick hack to let f turn on fullscreen mode.
