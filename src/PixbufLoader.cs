@@ -168,6 +168,9 @@ public class PixbufLoader {
 			if (existing_request.order != order)
 				Console.WriteLine ("BUG: Filing another request of order {0} (previously {1}) for `{2}'",
 						   order, existing_request.order, path);
+
+			queue.Remove (existing_request);
+			queue.Add (existing_request);
 			return false;
 		}
 

@@ -1,3 +1,13 @@
+2004-07-31  Larry Ewing  <lewing@novell.com>
+
+	* src/PixbufLoader.cs: move existing requests to the front of the
+	queue.
+
+2004-07-21  Larry Ewing  <lewing@ximian.com>
+
+	* src/Db.cs: commit a patch from trow to make sure the DateTimes
+	we return are converted to/trom localtime.
+
 2004-07-30  Larry Ewing  <lewing@ximian.com>
 
 	* src/makefile.am: add PhotoPopup.cs, remove IconViewPopup.cs.
@@ -147,7 +157,7 @@
 
 2004-06-14  Larry Ewing  <lewing@ximian.com>
 
-        * src/MainWindow.cs: add a new source type
+	* src/MainWindow.cs: add a new source type
 	application/x-fspot-photos make the tag selection widget drop
 	handler default to using that.
 	
