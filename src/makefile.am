@@ -41,13 +41,8 @@ ASSEMBLIES =					\
 	/r:System.Data				\
 	/r:System.Web				\
 	/r:Mono.Data.SqliteClient		\
-	/r:atk-sharp				\
-	/r:gconf-sharp				\
-	/r:gdk-sharp				\
-	/r:glade-sharp				\
-	/r:glib-sharp				\
-	/r:gnome-sharp				\
-	/r:gtk-sharp
+	/pkg:glade-sharp			\
+	/pkg:gconf-sharp
 
 RESOURCES =										\
 	/resource:$(top_srcdir)/icons/f-spot-crop.png,f-spot-crop.png			\
@@ -84,6 +79,8 @@ EXTRA_DIST =					\
 	f-spot.glade
 
 CLEANFILES =					\
-	makefile				\
 	f-spot					\
 	f-spot.exe
+
+DISTCLEANFILES = 				\
+	makefile
