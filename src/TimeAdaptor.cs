@@ -16,13 +16,18 @@ namespace FSpot {
 		public override void SetGlass (int min)
 		{
 			DateTime date = DateFromIndex (min);
+			
+			if (GlassSet != null)
+				GlassSet (this, LookupItem (date));
+		}
 
+		public int LookupItem (System.DateTime date)
+		{
 			int i = 0;
 			while (i < query.Photos.Length && query.Photos [i].Time < date)
 				i++;
-			
-			if (GlassSet != null)
-				GlassSet (this, i);
+
+			return i;
 		}
 
 		public void SetLimits (int min, int max) 

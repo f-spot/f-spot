@@ -61,8 +61,8 @@ public class ExifUtils {
 				break;
 
 			// FIXME: Add support for other MakerNotes, see:
-			// http://www.ba.wakwak.com/~tsuruzoh/Computer/Digicams/exif-e.html
-			}
+			// http://www.fifi.org/doc/jhead/exif-e.html#APP1
+			} 
 		}
 #endif
 

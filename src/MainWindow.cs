@@ -78,12 +78,14 @@ public class MainWindow {
 	enum TargetType {
 		UriList,
 		TagList,
-		PhotoList
+		PhotoList,
+		RootWindow
 	};
 
 	private static TargetEntry [] icon_source_target_table = new TargetEntry [] {
 		new TargetEntry ("application/x-fspot-photos", 0, (uint) TargetType.PhotoList),
 		new TargetEntry ("text/uri-list", 0, (uint) TargetType.UriList),
+		new TargetEntry ("application/x-root-window-drop", 0, (uint) TargetType.RootWindow)
 	};
 
 	private static TargetEntry [] icon_dest_target_table = new TargetEntry [] {
@@ -482,14 +484,10 @@ public class MainWindow {
 		//does all the needed switching.
 		if (!(group_selector.Adaptor is FSpot.TimeAdaptor))
 			HandleArrangeByTime (null, null);
-
-		int index = 0;
-		foreach (Photo p in query.Photos) {
-			if (time < p.Time)
-				break;
-			index ++;
-		}
-		JumpTo (index);
+		
+		FSpot.TimeAdaptor time_adaptor = group_selector.Adaptor as FSpot.TimeAdaptor;
+		if (time_adaptor != null)
+			JumpTo (time_adaptor.LookupItem (time));
 	}
 
 	private void JumpTo (int index)
@@ -555,10 +553,19 @@ public class MainWindow {
 	void HandleIconViewDragDataGet (object sender, DragDataGetArgs args)
 	{		
 		UriList list = new UriList (SelectedPhotos ());
-		Byte [] data = Encoding.UTF8.GetBytes (list.ToString ());
-		Atom [] targets = args.Context.Targets;
+
+		switch (args.Info) {
+		case (uint) TargetType.TagList:
+			Byte [] data = Encoding.UTF8.GetBytes (list.ToString ());
+			Atom [] targets = args.Context.Targets;
 		
-		args.SelectionData.Set (targets[0], 8, data, data.Length);
+			args.SelectionData.Set (targets[0], 8, data, data.Length);
+			break;
+		case (uint) TargetType.RootWindow:
+			System.Console.WriteLine ("Got background drop");
+			HandleSetAsBackgroundCommand (null, null);
+			break;
+		} 
 	}
 
 	void HandleIconViewDragDrop (object sender, DragDropArgs args)

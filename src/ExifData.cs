@@ -276,6 +276,11 @@ internal unsafe struct _ExifData {
 	[DllImport ("libexif.dll")]
 	static extern void exif_data_dump (_ExifData *data);
 
+	[DllImport ("libexif.dll")]
+	internal static extern void exif_data_save_data (_ExifData *data, out IntPtr content, out uint size);
+	[DllImport ("libc")] 
+	internal static extern void free (IntPtr address);
+
 	internal delegate void ExifDataForeachContentFunc (_ExifContent *content, void *user_data);
 
 	[DllImport ("libexif.dll")]
@@ -311,6 +316,23 @@ public class ExifData : IDisposable {
 		unsafe {
 			obj = _ExifData.exif_data_new_from_data (data, size);
 		}
+	}
+
+	public byte [] Save ()
+	{
+		Byte [] content = null;
+		uint size;
+		IntPtr data;
+		unsafe {
+			_ExifData.exif_data_save_data (obj, out data, out size);
+
+			content = new byte [size];
+			Marshal.Copy (data, content, 0, (int)size);
+			_ExifData.free (data);
+		}
+
+		System.Console.WriteLine ("Saved {0} bytes", content.Length);
+		return content;
 	}
 
 	public void Dispose ()
