@@ -374,18 +374,6 @@ class PixbufUtils {
 		Gdk.Rectangle area = args;
 		
 		switch (orientation) {
-		case PixbufOrientation.LeftBottom:
-			area.X = args.Y;
-			area.Y = src.Width - args.X - args.Width;
-			area.Width = args.Height;
-			area.Height = args.Width;
-			break;
-		case PixbufOrientation.RightTop:
-			area.X = src.Height - args.Y - args.Height;
-			area.Y = args.X;
-			area.Width = args.Height;
-			area.Height = args.Width;
-			break;
 		case PixbufOrientation.BottomRight:
 			area.X = src.Width - args.X - args.Width;
 			area.Y = src.Height - args.Y - args.Height;
@@ -395,6 +383,29 @@ class PixbufUtils {
 			break;
 		case PixbufOrientation.BottomLeft:
 			area.Y = src.Height - args.Y - args.Height;
+			break;
+		case PixbufOrientation.LeftTop:
+			area.X = area.Y;
+			area.Y = area.X;
+			area.Width = args.Height;
+			area.Height = args.Width;
+			break;
+		case PixbufOrientation.RightBottom:
+			area.X = src.Height - args.Y - args.Height;
+			area.Width = args.Height;
+			area.Height = args.Width;
+			break;
+		case PixbufOrientation.RightTop:
+			area.X = src.Height - args.Y - args.Height;
+			area.Y = args.X;
+			area.Width = args.Height;
+			area.Height = args.Width;
+			break;
+		case PixbufOrientation.LeftBottom:
+			area.X = args.Y;
+			area.Y = src.Width - args.X - args.Width;
+			area.Width = args.Height;
+			area.Height = args.Width;
 			break;
 		default:
 			break;

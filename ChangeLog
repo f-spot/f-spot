@@ -1,5 +1,8 @@
 2005-01-14  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufUtils.cs: handle a few more cases in Transform and
+	copy.
+
 	* src/AsyncPixbufLoader.cs: increase the latency, on both
 	notifications and reading, gives a percieved speed increase.
 
