@@ -1,3 +1,9 @@
+2003-11-10  Ettore Perazzoli  <ettore@ximian.com>
+
+	* src/PhotoView.cs (Photoview.UpdateImageView): Use
+	Photo.DefaultVersionPath, not Photo.Path, to get the path for the
+	image to display.
+
 2003-11-09  Larry Ewing  <lewing@ximian.com>
 
 	* configure.in: drop libgnome requirement to 2.2 since it doens't

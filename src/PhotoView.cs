@@ -149,7 +149,7 @@ public class PhotoView : EventBox {
 			image_view.Pixbuf = null;
 		else {
 			try {
-				image_view.Pixbuf = new Pixbuf (Query.Photos [current_photo].Path);
+				image_view.Pixbuf = new Pixbuf (Query.Photos [current_photo].DefaultVersionPath);
 			} catch (GException ex) {
 				image_view.Pixbuf = null;
 			}
