@@ -11,7 +11,7 @@ public class DateCommands {
 		Gtk.Window parent_window;
 
 		[Glade.Widget]
-		private Dialog date_range_dialog;
+		private Gtk.Dialog date_range_dialog;
 
 		[Glade.Widget]
 		private Button ok_button;
