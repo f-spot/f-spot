@@ -251,6 +251,7 @@ public class MainWindow {
 
 		UpdateMenus ();
 		main_window.ShowAll ();
+		main_window.Destroyed += HandleCloseCommand;
 
 		if (Toplevel == null)
 			Toplevel = this;

@@ -1,5 +1,7 @@
 2005-01-12  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: call close on Destroy.
+
 	* src/PhotoImageView.cs: handle missing images when Loading.
 
 	* src/PhotoStore.cs: intentionally make exif generated thumbnails invalid 
