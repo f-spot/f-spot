@@ -409,7 +409,7 @@ public class PhotoStore : DbStore {
 	static Pixbuf GenerateFromExif (string path, string uri)
 	{
 		try {
-			using (ExifData ed = new ExifData (path)){
+			using (Exif.ExifData ed = new Exif.ExifData (path)){
 				return PixbufUtils.GetThumbnail (ed);
 			}
 		} catch {

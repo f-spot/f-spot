@@ -1,5 +1,9 @@
 2005-02-19  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoStore.cs: use Exif.ExifData to get thumbnail.
+
+	* src/PixbufUtils.cs: add GetThumbnail for Exif.ExifData.
+
 	* src/IconView.cs: preload the scroll destination.
 
 	* src/IconView.cs: fix typo in the request case.
