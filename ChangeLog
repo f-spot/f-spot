@@ -1,5 +1,9 @@
 2004-10-28  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufUtils.cs: reenable the pixbuf rotation ops.
+
+	* src/JpegHeader.cs: add a few more fields to the loader.
+
 	* src/PhotoView.cs: use the AsyncLoader for the PhotoView for now.
 
 	* src/makefile.am (F_SPOT_CSFILES): add AsyncPixbufLoader.cs to

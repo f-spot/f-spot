@@ -7,6 +7,7 @@ using System.IO;
 class PixbufUtils {
 
 	public static Pixbuf ErrorPixbuf = PixbufUtils.LoadFromAssembly ("f-spot-question-mark.png");
+	public static Pixbuf LoadingPixbuf = PixbufUtils.LoadFromAssembly ("f-spot-loading.png");
 
 	public static int GetSize (Pixbuf pixbuf)
 	{
@@ -124,6 +125,7 @@ class PixbufUtils {
 	{
 		double scale = Math.Min  (width / (double)pixbuf.Width, height / (double)pixbuf.Height);
 	
+		
 		int scale_width = (int)(scale * pixbuf.Width);
 		int scale_height = (int)(scale * pixbuf.Height);
 		return pixbuf.ScaleSimple (scale_width, scale_height, Gdk.InterpType.Bilinear);
@@ -285,8 +287,6 @@ class PixbufUtils {
 		bchsw.Dispose ();
 	}
 
-#if STUFF_WE_HAVE_TO_RESTORE
-
 	// Bindings from libf.
 
 	[DllImport ("libfspot")]
@@ -325,6 +325,4 @@ class PixbufUtils {
 			throw new GLib.GException (error);
 		}
 	}
-
-#endif
 }
