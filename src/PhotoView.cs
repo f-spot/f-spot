@@ -323,7 +323,7 @@ public class PhotoView : EventBox {
 		this.query = query;
 		this.photo_store = photo_store;
 
-		BorderWidth = 3;
+		//BorderWidth = 3;
 
 		Box vbox = new VBox (false, 6);
 		Add (vbox);
@@ -360,7 +360,7 @@ public class PhotoView : EventBox {
 		inner_vbox.PackStart (photo_view_scrolled, true, true, 0);
 		
 		HBox inner_hbox = new HBox (false, 2);
-		inner_hbox.BorderWidth = 6;
+		//inner_hbox.BorderWidth = 6;
 
 		tag_view = new TagView ();
 		inner_hbox.PackStart (tag_view, false, true, 0);

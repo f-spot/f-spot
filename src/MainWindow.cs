@@ -22,8 +22,10 @@ public class MainWindow {
 
 	TagSelectionWidget tag_selection_widget;
 	[Glade.Widget] Gtk.Window main_window;
-	[Glade.Widget] VBox left_vbox;
-	[Glade.Widget] VBox group_vbox;
+	[Glade.Widget] Gtk.VBox left_vbox;
+	[Glade.Widget] Gtk.VBox group_vbox;
+	[Glade.Widget] Gtk.VBox view_vbox;
+
 
 	[Glade.Widget] ScrolledWindow icon_view_scrolled;
 	[Glade.Widget] Box photo_box;
@@ -103,8 +105,10 @@ public class MainWindow {
 
 	// Index into the PhotoQuery.  If -1, no photo is selected or multiple photos are selected.
 	private int ActiveIndex () {
+		if (mode == ModeType.IconView && icon_view.CurrentIdx != -1)
+			return icon_view.CurrentIdx;
+
 	        int [] selection = SelectedIds ();
-		
 		if (selection.Length == 1) 
 			return selection [0];
 		else 
@@ -175,9 +179,9 @@ public class MainWindow {
 		group_selector.Adaptor  = adaptor;
 		group_selector.ShowAll ();
 
-		group_vbox.PackStart (group_selector, false, false, 0);
-		group_vbox.ReorderChild (group_selector, 0);
-		
+		view_vbox.PackStart (group_selector, false, false, 0);
+		view_vbox.ReorderChild (group_selector, 0);
+
 		icon_view = new QueryView (query);
 		icon_view_scrolled.Add (icon_view);
 		icon_view.SelectionChanged += new IconView.SelectionChangedHandler (HandleSelectionChanged);
@@ -534,6 +538,9 @@ public class MainWindow {
 
 	void HandleSelectionChanged (IconView view)
 	{
+		info_box.Photo = CurrentPhoto;
+		if (info_display != null)
+			info_display.Photo = CurrentPhoto;
 		UpdateMenus ();
 	}
 

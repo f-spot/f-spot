@@ -1,5 +1,13 @@
 2005-01-05  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoView.cs: play with some of the Padding.
+
+	* src/f-spot.glade: start moving the items around.  More to come soon.
+	
+	* src/MainWindow.cs: start moving to the new layout.  Fix the
+	Active item to use the on the icon view when it is set (this all
+	needs more cleanup but this is a start).
+
 	* src/AsyncPixbufLoader.cs: stop the delay when closing.
 	
 	* src/AsyncPixbufLoader.cs: make sure that we have a pixbuf before
