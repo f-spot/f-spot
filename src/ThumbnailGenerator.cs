@@ -7,7 +7,8 @@ namespace FSpot {
 		{
 			try {
 				Gdk.Pixbuf image = PixbufUtils.LoadAtMaxSize (path, 256, 265);
-				Save (image, path);
+				if (image != null)
+					Save (image, path);
 				return image;
 			} catch {
 				return null;
