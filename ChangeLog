@@ -1,5 +1,10 @@
 2005-02-12  Larry Ewing  <lewing@novell.com>
 
+	* src/Db.cs: add a way to turn off synchronous writes.
+
+	* src/ThumbnailGenerator.cs: throttle the thumbnail generation
+	thread a little.
+
 	* src/f-spot.glade: rework the ui for original and flickr export.
 
 	* src/VfsExport.cs: refactor a little.

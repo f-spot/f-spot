@@ -122,6 +122,16 @@ public class Db : IDisposable {
 		}
 	}
 
+	public bool Sync {
+		set {
+			SqliteCommand command = new SqliteCommand ();
+			command.Connection = sqlite_connection;
+			command.CommandText = "PRAGMA synchronous = " + (value ? "ON" : "OFF");
+			command.ExecuteScalar ();
+			command.Dispose ();
+		}
+	}
+
 	SqliteConnection sqlite_connection;
 
 
