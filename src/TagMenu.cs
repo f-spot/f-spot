@@ -13,28 +13,45 @@ public class TagMenu : Menu {
 		public TagItem (Tag t) : base (t.Name) {
 			Value = t;
 		}
+
+		protected TagItem (IntPtr raw) : base (raw) {}
 	}
 
 	public TagMenu (TagStore store)
 	{
 		tag_store = store;
-		Populate (store.RootCategory, this as Gtk.Menu);
 	}
 	
+	protected TagMenu (IntPtr raw) : base (raw) {}
+
+	public void Populate () {
+		Populate (tag_store.RootCategory, this);
+	}
+
 	public void Populate (Category cat, Gtk.Menu parent) {
+		foreach (Widget w in parent.Children) {
+			w.Destroy ();
+		}
+
 		foreach (Tag t in cat.Children) {
 			TagItem item = new TagItem (t);
 			parent.Append (item);
+			item.ShowAll ();
 
 			Category subcat = t as Category;
 			if (subcat != null && subcat.Children.Length != 0) {
 				Gtk.Menu submenu = new Menu ();
+				Populate (t as Category, submenu);
+
+				Gtk.SeparatorMenuItem sep = new Gtk.SeparatorMenuItem ();
+				submenu.Prepend (sep);
+				sep.ShowAll ();
+
 				TagItem subitem = new TagItem (t);
 				subitem.Activated += HandleActivate;
-				submenu.Append (subitem);
-				submenu.Append (new Gtk.SeparatorMenuItem ());
+				submenu.Prepend (subitem);
+				subitem.ShowAll ();
 
-				Populate (t as Category, submenu);
 				item.Submenu = submenu;
 			} else {
 				item.Activated += HandleActivate;

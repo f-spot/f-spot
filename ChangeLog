@@ -1,5 +1,17 @@
 2004-06-16  Larry Ewing  <lewing@ximian.com>
 
+	* src/TagMenu.cs: Rebuild the menu each time populate is called.
+
+	* src/MainWindow.cs: Add Find by tag handler and generic Activate
+	handler for tag Menu that populates that menu.
+
+	* src/f-spot.glade: add a Find menu update the Attach Tag items
+	activate handler, 
+
+	* src/TagSelectionWidget.cs: call update if the Tags are set.  We
+	really need to just update the display instead instead of
+	rebuilding the entire tree.
+
 	* src/ExifData.cs: marshall all the strings types, I doubt this
 	code is really correct but it stops the free spewage which is good
 	enough for me right now.

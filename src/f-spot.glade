@@ -597,15 +597,16 @@
 		      <child>
 			<widget class="GtkMenuItem" id="attach_tag">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Attach</property>
+			  <property name="label" translatable="yes">_Attach Tag</property>
 			  <property name="use_underline">True</property>
+			  <signal name="activate" handler="HandleTagMenuActivate" last_modification_time="Wed, 16 Jun 2004 19:54:58 GMT"/>
 			</widget>
 		      </child>
 
 		      <child>
 			<widget class="GtkMenuItem" id="remove_tag">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Remove</property>
+			  <property name="label" translatable="yes">Rem_ove</property>
 			  <property name="use_underline">True</property>
 			</widget>
 		      </child>
@@ -711,6 +712,28 @@
 			      </child>
 			    </widget>
 			  </child>
+			</widget>
+		      </child>
+		    </widget>
+		  </child>
+		</widget>
+	      </child>
+
+	      <child>
+		<widget class="GtkMenuItem" id="find">
+		  <property name="visible">True</property>
+		  <property name="label" translatable="yes">_Find</property>
+		  <property name="use_underline">True</property>
+
+		  <child>
+		    <widget class="GtkMenu" id="find_menu">
+
+		      <child>
+			<widget class="GtkMenuItem" id="find_tag">
+			  <property name="visible">True</property>
+			  <property name="label" translatable="yes">Find by Tag</property>
+			  <property name="use_underline">True</property>
+			  <signal name="activate" handler="HandleTagMenuActivate" last_modification_time="Wed, 16 Jun 2004 19:54:43 GMT"/>
 			</widget>
 		      </child>
 		    </widget>

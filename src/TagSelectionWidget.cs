@@ -99,6 +99,8 @@ public class TagSelectionWidget : TreeView {
 			foreach (Tag t in value)
 				Select (t);
 
+			//FIXME this should really just toggle the items not rebuild the list
+			Update ();
 			SelectionChanged (this);
 		}
 	}

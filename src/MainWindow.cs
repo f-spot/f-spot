@@ -44,6 +44,7 @@ public class MainWindow {
 
 	[Widget] MenuItem attach_tag;
 	[Widget] MenuItem remove_tag;
+	[Widget] MenuItem find_tag;
 
 	PhotoVersionMenu versions_submenu;
 	
@@ -135,8 +136,13 @@ public class MainWindow {
 		icon_view.DragDataGet += new DragDataGetHandler (HandleIconViewDragDataGet);
 
 		TagMenu menu = new TagMenu (db.Tags);
-		menu.TagSelected += HandleTagMenuSelected;
+		menu.TagSelected += HandleAttachTagMenuSelected;
 		attach_tag.Submenu = menu;
+
+		menu = new TagMenu (db.Tags);
+		menu.TagSelected += HandleFindTagMenuSelected;
+		find_tag.Submenu = menu;
+
 		remove_tag.Submenu = new TagMenu (db.Tags);
 		
 		Gtk.Drag.DestSet (icon_view, DestDefaults.All, icon_dest_target_table, 
@@ -434,7 +440,22 @@ public class MainWindow {
 	//
 	// Menu commands.
 	//
-	void HandleTagMenuSelected (Tag t) 
+	void HandleTagMenuActivate (object sender, EventArgs args)
+	{
+		Console.WriteLine ("TagMenuActivate");
+
+		MenuItem parent = sender as MenuItem;
+		if (parent != null) {
+			TagMenu menu = parent.Submenu as TagMenu;
+			if (menu != null) {
+				Console.WriteLine ("Populate");
+				menu.Populate ();
+			}
+
+		}
+	}
+
+	void HandleAttachTagMenuSelected (Tag t) 
 	{
 		foreach (int num in icon_view.Selection) {
 			Photo photo = query.Photos [num];
@@ -443,6 +464,11 @@ public class MainWindow {
 			
 			InvalidateViews (num);
 		}
+	}
+	
+	void HandleFindTagMenuSelected (Tag t)
+	{
+		tag_selection_widget.TagSelection = new Tag [] {t};
 	}
 
 	void HandleImportCommand (object sender, EventArgs e)
