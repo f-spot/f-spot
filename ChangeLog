@@ -1,3 +1,9 @@
+2004-08-02  Federico Mena Quintero  <federico@ximian.com>
+
+	* src/IconView.cs (UpdateLayout): Set the step increment of the
+	Vadjustment once we compute the cell_height so that the
+	scrollbar's arrows will work.
+
 2004-08-02  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoStore.cs: Add a horrible hack to make the hidden tag

@@ -360,6 +360,9 @@ public class IconView : Gtk.Layout {
 			num_rows ++;
 
 		SetSize ((uint) Allocation.Width, (uint) (num_rows * cell_height + 2 * BORDER_SIZE));
+
+		Vadjustment.StepIncrement = cell_height;
+		Vadjustment.Change ();
 	}
 
 	// FIXME Cache the GCs?
