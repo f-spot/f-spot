@@ -5,9 +5,9 @@ namespace FSpot {
 		{
 			this.query = query;
 			loader = new FSpot.AsyncPixbufLoader ();
-			//scroll_delay = new Delay (new GLib.IdleHandler (IdleUpdateScrollbars));
 			this.SizeAllocated += HandleSizeAllocated;
 			this.KeyPressEvent += HandeKeyPressEvent;
+			this.ScrollEvent += HandleScrollEvent;
 		}
 		
 		public static double ZoomMultipler = 1.1;
@@ -147,8 +147,9 @@ namespace FSpot {
 		private void ZoomFit ()
 		{
 			Gdk.Pixbuf pixbuf = this.Pixbuf;
+			Gtk.ScrolledWindow scrolled = this.Parent as Gtk.ScrolledWindow;
 			
-			System.Console.WriteLine ("ZoomFit");
+			//System.Console.WriteLine ("ZoomFit");
 
 			if (pixbuf == null) {
 				System.Console.WriteLine ("pixbuf == null");
@@ -158,20 +159,26 @@ namespace FSpot {
 			int available_height = this.Allocation.Height;
 
 		
-			double zoom_to_fit = ZoomUtils.FitToScale ((uint) available_width, (uint) available_height,
-								   (uint) pixbuf.Width, (uint) pixbuf.Height, false);
+			double zoom_to_fit = ZoomUtils.FitToScale ((uint) available_width, 
+								   (uint) available_height,
+								   (uint) pixbuf.Width, 
+								   (uint) pixbuf.Height, 
+								   false);
 			
 			double image_zoom = zoom_to_fit;
+			/*
 			System.Console.WriteLine ("Zoom = {0}, {1}, {2}", image_zoom, 
 						  available_width, 
 						  available_height);
-			
-			//if (System.Math.Abs (Zoom) < double.Epsilon)
-				((Gtk.ScrolledWindow) this.Parent).SetPolicy (Gtk.PolicyType.Never, Gtk.PolicyType.Never);
+			*/
+
+			if (scrolled != null)
+				scrolled.SetPolicy (Gtk.PolicyType.Never, Gtk.PolicyType.Never);
 
 			this.SetZoom (image_zoom, image_zoom);
 			
-			((Gtk.ScrolledWindow) this.Parent).SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic);
+			if (scrolled != null)
+				scrolled.SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic);
 		}
 
 		public void Next () {
@@ -233,6 +240,12 @@ namespace FSpot {
 			}
 			args.RetVal = true;
 			return;
+		}
+		
+		[GLib.ConnectBefore]
+		private void HandleScrollEvent (object sender, Gtk.ScrollEventArgs args)
+		{
+			this.Fit = false;
 		}
 
 		protected override bool OnDestroyEvent (Gdk.Event evnt)

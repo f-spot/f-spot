@@ -1,5 +1,7 @@
 2004-11-19  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoImageView.cs: unset Fit inside ScrollEvents.
+
 	* src/MainWindow.cs: use the same zoom logic as the PhotoImageView.
 
 	* src/PhotoImageView.cs: make +/- work for zooming.
