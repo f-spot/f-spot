@@ -258,7 +258,8 @@ namespace FSpot {
 			}
 		}
 
-		private int BoxX (int item) {
+		private int BoxX (int item) 
+		{
 			 return scroll_offset + background.X + (int) Math.Round (BoxWidth * item);
 		}
 		
@@ -278,10 +279,11 @@ namespace FSpot {
 		{
 			int total_height = background.Height;
 			int count = item;
-			double percent = box_counts [item] / (double) box_count_max;
+			double percent = box_counts [item] / (double) Math.Max (box_count_max, 1);
 
 			Rectangle box = Rectangle.Zero;
 			box.Height = (int) Math.Round ((total_height - box_top_padding) * percent + 0.5);
+
 			box.Y = background.Y + total_height - box.Height - 1;
 			
 			box.X = BoxX (item);

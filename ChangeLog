@@ -1,5 +1,8 @@
 2004-09-09  Larry Ewing  <lewing@novell.com>
 
+	* src/GroupSelector.cs: when computing the box height make sure
+	100% of 0 is zero.
+
 	* src/MainWindow.cs: rebuild the GroupSelector view if we've
 	imported items.
 
