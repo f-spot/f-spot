@@ -13,16 +13,6 @@ using System.Collections;
 using System.Text;
 using System;
 
-class Util {
-
-#if WIN32
-	public const char DirSep = '\\';
-#else
-	public const char DirSep = '/';
-#endif
-
-}
-
 class Semaphore {
 	int count = 0;
 	
@@ -94,16 +84,15 @@ class UriList : ArrayList {
 	public string [] ToLocalPaths () {
 		int count = 0;
 		foreach (Uri uri in this) {
-			if (uri.Scheme == Uri.UriSchemeFile)
+			if (uri.IsFile)
 				count++;
 		}
-
+		
 		String [] paths = new String [count];
 		count = 0;
 		foreach (Uri uri in this) {
-			if (uri.Scheme == Uri.UriSchemeFile) {
+			if (uri.IsFile)
 				paths[count++] = uri.LocalPath;
-			}
 		}
 		return paths;
 	}

@@ -206,39 +206,23 @@ public class MainWindow {
 		}
 	}
 
-	/* FIXME horrible hack to work around gtk# problem need to fix the gtk-sharp bindings */
-	[DllImport("libgtk-win32-2.0-0.dll")]
-	static extern void gtk_selection_data_set(IntPtr raw, IntPtr type, int format, byte [] data, int length);
-
 	void HandleIconViewDragDataGet (object sender, DragDataGetArgs args)
 	{		
-		String uri_list = Photo.ToUriList (SelectedPhotos ());
-		Byte [] data = Encoding.UTF8.GetBytes (uri_list);
-		
+		UriList list = new UriList (SelectedPhotos ());
+		Byte [] data = Encoding.UTF8.GetBytes (list.ToString ());
 		Atom [] targets = args.Context.Targets;
 		
-		/* FIXME I need to fix the gtk-sharp bindings */
-#if true
-		gtk_selection_data_set (args.SelectionData.Handle, targets[0].Handle, 8, data, data.Length);
-#else 
 		args.SelectionData.Set (targets[0], 8, data, data.Length);
-#endif
 	}
 
 	// IconView events.
 	void HandleTagSelectionDragDataGet (object sender, DragDataGetArgs args)
 	{		
-		String uri_list = Photo.ToUriList (SelectedPhotos ());
-		Byte [] data = Encoding.UTF8.GetBytes (uri_list);
-		
+		UriList list = new UriList (SelectedPhotos ());
+		Byte [] data = Encoding.UTF8.GetBytes (list.ToString ());
 		Atom [] targets = args.Context.Targets;
 		
-		/* FIXME I need to fix the gtk-sharp bindings */
-#if true
-		gtk_selection_data_set (args.SelectionData.Handle, targets[0].Handle, 8, data, data.Length);
-#else 
 		args.SelectionData.Set (targets[0], 8, data, data.Length);
-#endif
 	}
 
 	void HandleIconViewDragDrop (object sender, DragDropArgs args)
@@ -267,9 +251,15 @@ public class MainWindow {
 	 	Widget source = Gtk.Drag.GetSourceWidget (args.Context);     
 		
 		Console.WriteLine ("Drag received {0}", source == null ? "null" : source.TypeName);
-;
-		HandleAttachTagCommand (sender, null);
-		
+
+		switch (args.Info) {
+		case 0:
+			HandleAttachTagCommand (sender, null);
+			break;
+		case 1:
+			Console.WriteLine ("I rock");
+			break;
+		}
 		Gtk.Drag.Finish (args.Context, true, false, args.Time);
 	}	
 
@@ -590,9 +580,7 @@ public class MainWindow {
 
         void HandleDeleteCommand (object sender, EventArgs args)
         {
-		foreach (int num in icon_view.Selection) {
-			Photo photo = query.Photos [num];
-			
+		foreach (Photo photo in SelectedPhotos ()) {
 			foreach (uint id in photo.VersionIds) {
 				Console.WriteLine (" path == {0}", photo.GetVersionPath (id)); 
 				photo.DeleteVersion (id, true);
@@ -600,17 +588,17 @@ public class MainWindow {
 
 			db.Photos.Remove (photo);
 		}
+
 		UpdateQuery ();
 	}
 
 	void HandleRemoveCommand (object sender, EventArgs args)
 	{
-		foreach (int num in icon_view.Selection) {
-			Photo photo = query.Photos [num];
-
+		foreach (Photo photo in SelectedPhotos ()) {
 			db.Photos.Remove (photo);
 		}
-		
+
+		UpdateQuery ();
 	}
 
 	void HandleSelectAllCommand (object sender, EventArgs args)

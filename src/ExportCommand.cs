@@ -28,6 +28,8 @@ public class ExportCommand {
 		private GalleryRemote gallery = null;
 		private Album current_album = null;
 		private Photo [] current_photos;
+		
+		private FSpot.ThreadProgressDialog dialog;
 
 		string password;
 		string url; 
@@ -115,7 +117,9 @@ public class ExportCommand {
 						
 
 						Thread t = new Thread (new ThreadStart (this.SendPhotos));
-						t.Start ();
+						t.Name = "Uploading Pictures";
+						dialog = new FSpot.ThreadProgressDialog (t, photos.Length);
+						dialog.Start ();
 			
 						success = true;
 					}
@@ -135,10 +139,12 @@ public class ExportCommand {
 			Console.WriteLine ("Sending {0} photos", current_photos.Length);
 
 			foreach (Photo photo in current_photos) {
+				dialog.Update (String.Format ("Uploading picture \"{0}\"", photo.Name));
 				current_album.Add (photo);
 			}
 
 			Console.WriteLine ("Done Sending Photos");
+			dialog.Destroy ();
 		}
 
 		private void LoadGallery () {			
