@@ -1279,28 +1279,43 @@ public class MainWindow {
 			break;
 		}
 	}
+	
+	public void HandleDeleteCommand (object sender, EventArgs args)
+	{
+   		Photo[] photos = SelectedPhotos();
+   		string msg = Mono.Posix.Catalog.GetPluralString ("Delete the selected photo permanently", 
+								 "Delete the {0} selected photos permanently", 
+								 photos.Length);
+		msg = String.Format (msg, photos.Length);
+		if (ResponseType.Yes == MsgBox(MessageType.Question, ButtonsType.YesNo, msg)) {                              
+			foreach (Photo photo in photos) {
+				foreach (uint id in photo.VersionIds) {
+					Console.WriteLine (" path == {0}", photo.GetVersionPath (id)); 
+					photo.DeleteVersion (id, true);
+				}
 
-        public void HandleDeleteCommand (object sender, EventArgs args)
-        {
-		foreach (Photo photo in SelectedPhotos ()) {
-			foreach (uint id in photo.VersionIds) {
-				Console.WriteLine (" path == {0}", photo.GetVersionPath (id)); 
-				photo.DeleteVersion (id, true);
+				db.Photos.Remove (photo);
 			}
 
-			db.Photos.Remove (photo);
+			UpdateQuery ();
 		}
-
-		UpdateQuery ();
 	}
 
 	public void HandleRemoveCommand (object sender, EventArgs args)
 	{
-		foreach (Photo photo in SelectedPhotos ()) {
-			db.Photos.Remove (photo);
-		}
+   		Photo[] photos = SelectedPhotos();
+   		string msg = Mono.Posix.Catalog.GetPluralString ("Remove the selected photo from the catalog",
+								 "Remove the {0} selected photos from the catalog", 
+								 photos.Length);
 
-		UpdateQuery ();
+		msg = String.Format (msg, photos.Length);
+		if (ResponseType.Yes == MsgBox(MessageType.Question, ButtonsType.YesNo, msg)) {                              
+			foreach (Photo photo in photos) {
+				db.Photos.Remove (photo);
+			}
+
+			UpdateQuery ();
+		}
 	}
 
 	void HandleSelectAllCommand (object sender, EventArgs args)
@@ -1316,10 +1331,41 @@ public class MainWindow {
 	public void HandleDeleteSelectedTagCommand (object sender, EventArgs args)
 	{
 		Tag [] tags = this.tag_selection_widget.TagHighlight ();
-		
-		db.Photos.Remove (tags);
-		icon_view.QueueDraw ();
+ 		String msg = Mono.Posix.Catalog.GetPluralString ("Delete the selected tag",
+								 "Delete the {0} selected tags", 
+								 tags.Length);
+
+		msg = String.Format (msg, tags.Length);
+ 		if (ResponseType.Yes == MsgBox(MessageType.Question, ButtonsType.YesNo, msg)) {                              
+ 			db.Photos.Remove (tags);
+			icon_view.QueueDraw ();
+ 		}
 	}
+
+	//This is generic and should be public on MessageDialog
+	//for a generic MsgBox, could we figure out a sensible default for parent somehow?
+ 	//defaults for the other values?
+ 	private static ResponseType GenericMsgBox(Gtk.Window parent, 
+						  DialogFlags dialog_flags, 
+						  MessageType message_type, 
+						  ButtonsType buttons_type, 
+						  string message)
+	{
+ 		//thoughts of a disturbing hash of the input values so we can hide rather than destroy
+ 		MessageDialog md = new MessageDialog (parent, dialog_flags, message_type, buttons_type, message);
+
+ 		try {
+ 			//Assume becasuse ReponseType is an int that we aren't destroying a reference too early here
+ 			return (ResponseType)md.Run();
+ 		} finally {
+ 			md.Destroy();
+ 		}	
+ 	}
+ 	
+ 	// Class specific (VB naming, oh the humanity)
+ 	private ResponseType MsgBox(MessageType message_type, ButtonsType buttons_type, string message) {
+ 		return GenericMsgBox(main_window, DialogFlags.DestroyWithParent, message_type, buttons_type, message);
+ 	}
 
 	void HandleUpdateThumbnailCommand (object sende, EventArgs args)
 	{
