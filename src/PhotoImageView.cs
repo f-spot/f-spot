@@ -111,12 +111,14 @@ namespace FSpot {
 		{
 			Gdk.Pixbuf prev = this.Pixbuf;
 			Gdk.Pixbuf next = loader.Pixbuf;
-			
+
+#if SPEED_COPY_DATA
 			if (next != null && prev != null && next.Width == prev.Width && prev.Height == next.Height)
 				prev.CopyArea (0, 0, next.Width, next.Height, next, 0, 0);
 			else
 				next.Fill (0x00000000);
-			
+#endif
+
 			this.Pixbuf = next;
 			if (prev != null)
 				prev.Dispose ();
@@ -186,7 +188,7 @@ namespace FSpot {
 				this.Pixbuf = FSpot.PhotoLoader.Load (Query, current_photo);
 				if (old != null)
 					old.Dispose ();
-		}
+			}
 			
 			this.UnsetSelection ();
 
@@ -302,9 +304,9 @@ namespace FSpot {
 		
 		private void HandleDestroy (object sender, System.EventArgs args)
 		{
-			loader.Dispose ();
 			loader.AreaUpdated -= HandlePixbufAreaUpdated;
 			loader.AreaPrepared -= HandlePixbufPrepared;
+			loader.Dispose ();
 		}
 
 		protected override bool OnDestroyEvent (Gdk.Event evnt)
