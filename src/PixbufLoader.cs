@@ -213,9 +213,11 @@ public class PixbufLoader {
 
 				while (queue.Count == 0)
 					Monitor.Wait (queue);
+				
+				int pos = queue.Count - 1;
 
-				current_request = queue [0] as RequestItem;
-				queue.RemoveAt (0);
+				current_request = queue [pos] as RequestItem;
+				queue.RemoveAt (pos);
 				requests_by_path.Remove (current_request.path);
 			}
 

@@ -1,3 +1,13 @@
+2004-03-27  Larry Ewing  <lewing@ximian.com>
+
+	* src/PixbufLoader.cs: process most recently added requests first.
+
+2004-03-17  Larry Ewing  <lewing@ximian.com>
+
+	* src/SlideView.cs: use the nearest blend mode for now.  The loss
+	of quality doesn't have much impact in the time the tween frame is
+	shown.
+
 2004-03-15  Larry Ewing  <lewing@ximian.com>
 
 	* src/makefile.am: Use the sqlite wrapper that is now part of
