@@ -3,4 +3,4 @@
 LD_LIBRARY_PATH="@prefix@/lib/f-spot:$LD_LIBRARY_PATH"
 export LD_LIBRARY_PATH
 
-mono @prefix@/lib/f-spot/f-spot.exe "$@"
+mono --debug @prefix@/lib/f-spot/f-spot.exe "$@"

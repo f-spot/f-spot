@@ -287,19 +287,51 @@ public class PhotoStore : DbStore {
 			Directory.CreateDirectory (large_thumbnail_directory_path);
 	}
 
+	//
+	// Generates the thumbnail, returns the Pixbuf, and also stores it as a side effect
+	//
+	static Pixbuf GenerateFromExif (string path, string uri)
+	{
+		Pixbuf pixbuf;
+		
+		try {
+			using (ExifData ed = new ExifData (path)){
+				byte [] thumbData = ed.Data;
+
+				if (thumbData.Length > 0) {
+					string target = Thumbnail.PathForUri (uri, ThumbnailSize.Large);
+					
+					// exif contains a thumbnail, so spit it out
+                                        FileStream fs = File.Create (target, Math.Min (thumbData.Length, 8192));
+                                        fs.Write (thumbData, 0, thumbData.Length);
+					fs.Close ();
+
+					return new Pixbuf (target);
+				}
+			}
+		} catch {
+			Console.WriteLine ("Exif died, using regular backend.");
+		}
+		return null;
+	}
+
 	public static Pixbuf GenerateThumbnail (string path)
 	{
 		string uri = "file://" + path;
-		Pixbuf thumbnail = thumbnail_factory.GenerateThumbnail ("file://" + path, "image/jpeg");
-
-		// FIXME if this is null then the file doesn't exist.
-		if (thumbnail != null) {
-			// FIXME there is no SaveThumbnail() in the C# bindings for ThumbnailFactory.
-			// This should really be done through SaveThumbnail, which would make sure we dont' do
-			// it unnecessarily.
-			thumbnail.Savev (Thumbnail.PathForUri (uri, ThumbnailSize.Large), "png", null, null);
+		Pixbuf thumbnail;
+		
+		if ((thumbnail = GenerateFromExif (path, uri)) == null){
+			thumbnail = thumbnail_factory.GenerateThumbnail (uri, "image/jpeg");
+		
+			// FIXME if this is null then the file doesn't exist.
+			if (thumbnail != null) {
+				// FIXME there is no SaveThumbnail() in the C# bindings for ThumbnailFactory.
+				// This should really be done through SaveThumbnail, which would make sure we dont' do
+				// it unnecessarily.
+				thumbnail.Savev (Thumbnail.PathForUri (uri, ThumbnailSize.Large), "png", null, null);
+			}
 		}
-
+		
 		return thumbnail;
 	}
 

@@ -1,4 +1,4 @@
-CSC = mcs --unsafe
+CSC = mcs --unsafe -g
 
 # Note: I am cut & pasting all the Sqlite stuff in because I need
 # SqliteConnection.LastInsertRowId but it is not in an official Mono release
