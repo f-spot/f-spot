@@ -107,7 +107,7 @@ public class TagSelectionWidget : TreeView {
 		foreach (TreePath path in rows) {
 			GLib.Value value = new GLib.Value ();
 			Model.GetIter (out iter, path);
-			Model.GetValue (iter, 0, value);
+			Model.GetValue (iter, 0, ref value);
 			uint tag_id = (uint) value;
 			tags[i] = tag_store.Get (tag_id) as Tag;
 			i++;
@@ -141,7 +141,7 @@ public class TagSelectionWidget : TreeView {
 		Model.GetIter (out iter, path);
 
 		GLib.Value value = new GLib.Value ();
-		Model.GetValue (iter, 0, value);
+		Model.GetValue (iter, 0, ref value);
 		uint tag_id = (uint) value;
 		Tag tag = tag_store.Get (tag_id) as Tag;
 
@@ -183,7 +183,7 @@ public class TagSelectionWidget : TreeView {
 				       TreeIter iter)
 	{
 		GLib.Value value = new GLib.Value ();
-		Model.GetValue (iter, 0, value);
+		Model.GetValue (iter, 0, ref value);
 		uint tag_id = (uint) value;
 		Tag tag = tag_store.Get (tag_id) as Tag;
 
@@ -197,7 +197,7 @@ public class TagSelectionWidget : TreeView {
 				   TreeIter iter)
 	{
 		GLib.Value value = new GLib.Value ();
-		Model.GetValue (iter, 0, value);
+		Model.GetValue (iter, 0, ref value);
 		uint tag_id = (uint) value;
 		Tag tag = tag_store.Get (tag_id) as Tag;
 
@@ -220,7 +220,7 @@ public class TagSelectionWidget : TreeView {
 			return;
 
 		GLib.Value value = new GLib.Value ();
-		Model.GetValue (iter, 0, value);
+		Model.GetValue (iter, 0, ref value);
 		uint tag_id = (uint) value;
 
 		Tag tag = tag_store.Get (tag_id) as Tag;
