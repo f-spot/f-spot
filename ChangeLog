@@ -1,3 +1,9 @@
+2004-01-18  Larry Ewing  <lewing@ximian.com>
+
+	* src/IconView.cs: Add InvalidateCell() method to cut down on
+	redraws, use where appropriate.  Add SelectCellRange() to
+	implement shift selection.
+
 2003-12-15  Miguel de Icaza  <miguel@ximian.com>
 
 	* src/MainWindow.cs: Moved the main UI to Glade, and bring all the

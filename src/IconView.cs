@@ -179,7 +179,7 @@ public class IconView : Gtk.Layout {
 		Photo photo = query.Photos [thumbnail_num];
 		string thumbnail_path = Thumbnail.PathForUri ("file://" + photo.DefaultVersionPath, ThumbnailSize.Large);
 		ThumbnailCache.Default.RemoveThumbnailForPath (thumbnail_path);
-		QueueDraw ();
+		InvalidateCell (thumbnail_num);
 	}
 
 
@@ -218,8 +218,15 @@ public class IconView : Gtk.Layout {
 		if (selected_cells.Count == 0)
 			return;
 
-		selected_cells.Clear ();
-		QueueDraw ();
+		if (selected_cells.Count < 100) {
+			foreach (int cell in selected_cells.Keys) {
+				InvalidateCell (cell);
+			}
+		} else {
+			QueueDraw ();
+		}
+		selected_cells.Clear ();		
+
 
 		if (SelectionChanged != null)
 			SelectionChanged (this);
@@ -237,10 +244,24 @@ public class IconView : Gtk.Layout {
 
 		selected_cells.Add (cell_num, cell_num);
 
-		QueueDraw ();
+		InvalidateCell (cell_num);
 
 		if (SelectionChanged != null)
 			SelectionChanged (this);
+	}
+
+	private void SelectCellRange (int start, int end)
+	{
+		if (start == -1 || end == -1)
+			return;
+
+		int current = Math.Min (start, end);
+		int final = Math.Max (start, end);				
+	
+		while (current <= final) {
+			SelectCell (current);
+			current++;
+		}
 	}
 
 	private void UnselectCell (int cell_num)
@@ -250,7 +271,7 @@ public class IconView : Gtk.Layout {
 
 		selected_cells.Remove (cell_num);
 
-		QueueDraw ();
+		InvalidateCell (cell_num);
 
 		if (SelectionChanged != null)
 			SelectionChanged (this);
@@ -491,15 +512,18 @@ public class IconView : Gtk.Layout {
 			result = ErrorPixbuf ();
 
 		ThumbnailCache.Default.AddThumbnail (path, result);
+		InvalidateCell (order);
+	}
 
- 		Rectangle area;
+	private void InvalidateCell (int order) {
+		Rectangle area;
 		GetCellPosition (order, out area.x, out area.y);
 		area.width = cell_width;
 		area.height = cell_height;
 
 		BinWindow.InvalidateRect (area, true);
 	}
-
+			
 	private void HandleScrollAdjustmentsSet (object sender, ScrollAdjustmentsSetArgs args)
 	{
 		if (args.Vadjustment != null)
@@ -540,6 +564,8 @@ public class IconView : Gtk.Layout {
 
 			if ((args.Event.state & (uint) ModifierType.ControlMask) != 0) {
 				ToggleCell (cell_num);
+			} else if ((args.Event.state & (uint) ModifierType.ShiftMask) != 0) {
+				SelectCellRange (click_cell, cell_num);
 			} else {
 				UnselectAllCells ();
 				SelectCell (cell_num);
