@@ -322,7 +322,7 @@ public class PhotoStore : DbStore {
 	// Constructor
 
 	public PhotoStore (SqliteConnection connection, bool is_new, TagStore tag_store)
-		: base (connection)
+		: base (connection, false)
 	{
 		this.tag_store = tag_store;
 		EnsureThumbnailDirectory ();

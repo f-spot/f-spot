@@ -1,5 +1,21 @@
 2003-11-22  Ettore Perazzoli  <ettore@ximian.com>
 
+	* src/TagStore.cs: Pass true for the cache_is_immortal flag to the
+	base constructor.
+
+	* src/ImportStore.cs (ImportStore.ctor): Pass false for the
+	cache_is_immortal flag to the base constructor.
+	* src/PhotoStore.cs (PhotoStore.ctor): Likewise.
+
+	* src/Db.cs (DbStore.cache_is_immortal): New private member.
+	(DbStore.ctor): Get a cache_is_immortal arg.
+	(DbStore.AddToCache): Add the item if the cache is immortal,
+	instead of adding a WeakReference to it.
+	(DbStore.LookupInCache): Expect a WeakReference if the cache is
+	not immortal, the actual item otherwise.
+
+2003-11-22  Ettore Perazzoli  <ettore@ximian.com>
+
 	* libfspot/Makefile.am (libfspot_la_LIBADD): Add a dep on libeog.
 
 2003-11-17  Ettore Perazzoli  <ettore@ximian.com>

@@ -197,8 +197,8 @@ public class TagStore : DbStore {
 
 	// In this store we keep all the items (i.e. the tags) in memory at all times.  This is
 	// mostly to simplify handling of the parent relationship between tags, but it also makes it
-	// a little bit faster.  Note that the objects never get garbage collected during the life
-	// of the TagStore  because of the parent/child references.
+	// a little bit faster.  We achieve this by passing "true" as the cache_is_immortal to our
+	// base class.
 	private void LoadAllTags ()
 	{
 		SqliteCommand command = new SqliteCommand ();
@@ -224,11 +224,7 @@ public class TagStore : DbStore {
 				SetIconFromString (tag, reader [4].ToString ());
 
 			tag.SortPriority = Convert.ToInt32 (reader[3]);
-
-			// FIXME this is freaky.  This only works with the Console.WriteLine() after it.  Maybe I
-			// something is screwy in the JITer...  Or I am just too dumb to figure out what's wrong.
 			AddToCache (tag);
-			Console.WriteLine ("Load Tag {0}", tag.Id);
 		}
 		reader.Close ();
 		command.Dispose ();
@@ -312,7 +308,7 @@ public class TagStore : DbStore {
 	// Constructor
 
 	public TagStore (SqliteConnection connection, bool is_new)
-		: base (connection)
+		: base (connection, true)
 	{
 		root_category = new Category (null, 0, "root");
 

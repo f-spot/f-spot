@@ -25,17 +25,24 @@ public abstract class DbStore {
 	// DbItem cache.
 
 	Hashtable item_cache;
+	bool cache_is_immortal;
 
 	protected void AddToCache (DbItem item)
 	{
 		if (item_cache.Contains (item.Id))
 			item_cache.Remove (item.Id);
 
-		item_cache.Add (item.Id, new WeakReference (item));
+		if (cache_is_immortal)
+			item_cache.Add (item.Id, item);
+		else
+			item_cache.Add (item.Id, new WeakReference (item));
 	}
 
 	protected DbItem LookupInCache (uint id)
 	{
+		if (cache_is_immortal)
+			return item_cache [id] as DbItem;
+
 		WeakReference weakref = item_cache [id] as WeakReference;
 		if (weakref == null)
 			return null;
@@ -61,9 +68,12 @@ public abstract class DbStore {
 
 	// Constructor.
 
-	public DbStore (SqliteConnection connection)
+	public DbStore (SqliteConnection connection,
+			bool cache_is_immortal)
 	{
 		this.connection = connection;
+		this.cache_is_immortal = cache_is_immortal;
+
 		item_cache = new Hashtable ();
 	}
 

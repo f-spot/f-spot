@@ -31,7 +31,7 @@ public class ImportStore : DbStore {
 	// Constructor
 
 	public ImportStore (SqliteConnection connection, bool is_new)
-		: base (connection)
+		: base (connection, false)
 	{
 		if (! is_new)
 			return;
