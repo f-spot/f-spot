@@ -1,0 +1,7 @@
+#!/bin/sh
+
+MONO_PATH="@prefix@/lib/f-spot:$MONO_PATH"
+export MONO_PATH
+
+cd "@prefix@/lib/f-spot"
+mono f-spot.exe "$@"

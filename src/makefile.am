@@ -1,0 +1,73 @@
+CSC = mcs --unsafe
+
+# Note: I am cut & pasting all the Sqlite stuff in because I need
+# SqliteConnection.LastInsertRowId but it is not in an official Mono release
+# yet.  Once there is a Mono release with that property in, we should go back
+# to using the standard DLL.  -- Ettore, 2003-10-17.
+
+F_SPOT_CSFILES =				\
+	$(srcdir)/Db.cs				\
+	$(srcdir)/ExifData.cs			\
+	$(srcdir)/ExifUtils.cs			\
+	$(srcdir)/FileImportBackend.cs		\
+	$(srcdir)/IconView.cs			\
+	$(srcdir)/ImageView.cs			\
+	$(srcdir)/ImportBackend.cs		\
+	$(srcdir)/ImportCommand.cs		\
+	$(srcdir)/ImportStore.cs		\
+	$(srcdir)/InfoBox.cs			\
+	$(srcdir)/JpegUtils.cs			\
+	$(srcdir)/MainWindow.cs			\
+	$(srcdir)/PhotoListModel.cs		\
+	$(srcdir)/PhotoQuery.cs			\
+	$(srcdir)/PhotoStore.cs			\
+	$(srcdir)/PhotoView.cs			\
+	$(srcdir)/PixbufLoader.cs		\
+	$(srcdir)/PixbufUtils.cs		\
+	$(srcdir)/SqliteCommand.cs		\
+	$(srcdir)/SqliteConnection.cs		\
+	$(srcdir)/SqliteDataReader.cs		\
+	$(srcdir)/SqliteParameter.cs		\
+	$(srcdir)/SqliteParameterCollection.cs	\
+	$(srcdir)/StockIcons.cs			\
+	$(srcdir)/TagSelectionWidget.cs		\
+	$(srcdir)/TagStore.cs			\
+	$(srcdir)/TimelineSelectorWidget.cs	\
+	$(srcdir)/ThumbnailCache.cs		\
+	$(srcdir)/ZoomUtils.cs			\
+	$(srcdir)/main.cs
+
+ASSEMBLIES =					\
+	/r:System.Data.dll			\
+	/r:atk-sharp				\
+	/r:gconf-sharp				\
+	/r:gdk-sharp				\
+	/r:glade-sharp				\
+	/r:glib-sharp				\
+	/r:gnome-sharp				\
+	/r:gtk-sharp
+
+RESOURCES =										\
+	/resource:$(top_srcdir)/icons/f-spot-crop.png,f-spot-crop.png			\
+	/resource:$(top_srcdir)/icons/f-spot-camera.png,f-spot-camera.png		\
+	/resource:$(top_srcdir)/icons/f-spot-question-mark.png,f-spot-question-mark.png
+
+fspotlibdir = $(prefix)/lib/f-spot
+
+f-spot.exe: $(F_SPOT_CSFILES)
+	$(CSC) -o $@ $(CSFLAGS) $(F_SPOT_CSFILES) $(ASSEMBLIES) $(RESOURCES)
+
+all: f-spot.exe
+
+install-data-local: f-spot.exe
+	$(mkinstalldirs) $(DESTDIR)$(fspotlibdir)
+	$(INSTALL_DATA) f-spot.exe $(DESTDIR)$(fspotlibdir)/f-spot.exe
+
+
+bin_SCRIPTS = f-spot
+
+f-spot: f-spot.in
+	sed -e "s|\@prefix\@|$(prefix)|" < f-spot.in > f-spot
+
+EXTRA_DIST = $(F_SPOT_CSFILES) f-spot.in
+CLEANFILES = f-spot.exe
