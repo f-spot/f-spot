@@ -1,5 +1,8 @@
 2005-02-19  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufCache.cs: put a limit of twice the max size before we
+	start culling entries.
+
 	* src/IconView.cs: bump the preload limit slightly.  Fix the
 	request case, update the data on lookup.
 

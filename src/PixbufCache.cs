@@ -90,15 +90,22 @@ namespace FSpot {
 		{
 			CacheEntry entry;
 			int i = items_mru.Count;
-			//int size = 0;
+			int size = 0;
 			while (i-- > 0) {
 				entry = (CacheEntry) items_mru [i];
 				lock (entry) {
-					//size += entry.Size;
+					size += entry.Size;
 
 					if (entry.Reload) {
 						entry.Reload = false;
 						return entry;
+					}
+
+					//if the depth of the queue is so large that we've reached double our limit 
+					//break out of here and let the queue shrink.
+					if (size * .5  > (double) max_size) {
+						//System.Console.WriteLine ("Hit limit");
+						return null;
 					}
 				}
 			}
