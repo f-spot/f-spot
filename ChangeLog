@@ -1,6 +1,10 @@
 2004-08-24  Larry Ewing  <lewing@novell.com>
 
+	* src/main.cs: set the default icon, yes we need a new one I was
+	just tired of looking at the blank doc.
+
 	* src/IconView.cs: Remove unused delegate that I missed before.
+	Remove GetCell size stuff, use CellBounds instead.
 	
 	* src/MainWindow.cs: translate drag event x,y to window space
 	before looking up the cell.  Always use FocusCell when switching
