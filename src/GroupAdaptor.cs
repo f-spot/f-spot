@@ -17,5 +17,8 @@ namespace FSpot {
 
 		public delegate void GlassSetHandler (GroupAdaptor adaptor, int index);
 		public virtual event GlassSetHandler GlassSet;
+
+		public delegate void ChangedHandler (GroupAdaptor adaptor);
+		public virtual event ChangedHandler Changed;
 	}
 }

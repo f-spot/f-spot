@@ -77,6 +77,7 @@ namespace FSpot {
 			Reload ();
 		}
 		
+		public override event ChangedHandler Changed;
 		public override void Reload () 
 		{
 			System.Collections.Hashtable ht = new System.Collections.Hashtable ();
@@ -96,6 +97,9 @@ namespace FSpot {
 			
 			Array.Sort (dirs, new DirectoryAdaptor.Group ());
 			Array.Sort (query.Photos, new Photo.CompareDirectory ());
+			
+			if (Changed != null)
+				Changed (this);
 		}
 
 		public DirectoryAdaptor (PhotoQuery query) {

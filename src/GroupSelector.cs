@@ -34,8 +34,26 @@ namespace FSpot {
 		protected FSpot.GroupAdaptor adaptor;
 		public FSpot.GroupAdaptor Adaptor {
 			set {
+				if (adaptor != null)
+					adaptor.Changed -= HandleAdaptorChanged;
+
 				adaptor = value;
-				
+				has_limits = adaptor is FSpot.ILimitable;				
+				if (has_limits) {
+				    min_limit.SetPosition (0);
+				    max_limit.SetPosition (adaptor.Count () - 1);
+				}
+
+				adaptor.Changed += HandleAdaptorChanged;
+				HandleAdaptorChanged (adaptor);
+			}
+			get {
+				return adaptor;
+			}
+		}
+
+		private void HandleAdaptorChanged (GroupAdaptor adaptor)
+		{
 				int [] box_values = new int [adaptor.Count ()];
 
 				if (tick_layouts != null) {
@@ -61,17 +79,17 @@ namespace FSpot {
 
 				Counts = box_values;
 
-				has_limits = adaptor is FSpot.ILimitable;				
-				min_limit.SetPosition (0);
-				max_limit.SetPosition (adaptor.Count () - 1);
-				
+				if (has_limits) {
+					if (min_limit.Position > adaptor.Count ())
+						min_limit.SetPosition (0);
+				        
+				     
+					if (max_limit.Position > adaptor.Count ())
+						max_limit.SetPosition (adaptor.Count () - 1);
+				}
 				this.QueueDraw ();
-			}
-			get {
-				return adaptor;
-			}
 		}
-
+		
 		private int [] Counts {
 			set {
 				box_count_max = 0;

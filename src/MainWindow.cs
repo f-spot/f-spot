@@ -39,23 +39,23 @@ public class MainWindow {
 	[Glade.Widget] MenuItem delete_version_menu_item;
 	[Glade.Widget] MenuItem rename_version_menu_item;
 
-	[Widget] MenuItem delete_selected_tag;
-	[Widget] MenuItem edit_selected_tag;
+	[Glade.Widget] MenuItem delete_selected_tag;
+	[Glade.Widget] MenuItem edit_selected_tag;
 
-	[Widget] MenuItem attach_tag_to_selection;
-	[Widget] MenuItem remove_tag_from_selection;
+	[Glade.Widget] MenuItem attach_tag_to_selection;
+	[Glade.Widget] MenuItem remove_tag_from_selection;
 
-	[Widget] MenuItem copy;
-	[Widget] MenuItem rotate_left;
-	[Widget] MenuItem rotate_right;
-	[Widget] MenuItem update_thumbnail;
-	[Widget] MenuItem delete_from_drive;
+	[Glade.Widget] MenuItem copy;
+	[Glade.Widget] MenuItem rotate_left;
+	[Glade.Widget] MenuItem rotate_right;
+	[Glade.Widget] MenuItem update_thumbnail;
+	[Glade.Widget] MenuItem delete_from_drive;
 
-	[Widget] MenuItem set_as_background;
+	[Glade.Widget] MenuItem set_as_background;
 
-	[Widget] MenuItem attach_tag;
-	[Widget] MenuItem remove_tag;
-	[Widget] MenuItem find_tag;
+	[Glade.Widget] MenuItem attach_tag;
+	[Glade.Widget] MenuItem remove_tag;
+	[Glade.Widget] MenuItem find_tag;
 
 	PhotoVersionMenu versions_submenu;
 	
@@ -479,9 +479,6 @@ public class MainWindow {
 			ImportCommand command = new ImportCommand (main_window);
 			if (command.ImportFromPaths (db.Photos, list.ToLocalPaths ()) > 0) {
 				UpdateQuery ();
-				FSpot.GroupAdaptor adaptor = group_selector.Adaptor;
-				adaptor.Reload ();
-				group_selector.Adaptor = adaptor;
 			}
 			break;
 		}
@@ -631,9 +628,6 @@ public class MainWindow {
 		ImportCommand command = new ImportCommand (main_window);
 		if (command.ImportFromFile (db.Photos) > 0) {
 			UpdateQuery ();
-			FSpot.GroupAdaptor adaptor = group_selector.Adaptor;
-			adaptor.Reload ();
-			group_selector.Adaptor = adaptor;
 		}
 	}
 

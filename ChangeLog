@@ -1,3 +1,17 @@
+2004-09-28  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: Get rid of the hack to force the
+	GroupSelector to reload on imports.
+
+	* src/GroupSelector.cs: make the group selector listen to the
+	adaptor.Changed event.
+
+	* src/GroupAdaptor.cs: add a Changed event.
+
+	* src/TimeAdaptor.cs: fire the changed signal on reload.
+
+	* src/DirectoryAdaptor.cs: fire the changed signal on reload.
+
 2004-09-25  Larry Ewing  <lewing@novell.com>
 
 	* src/DirectoryAdaptor.cs: rewrite this so that we don't have to

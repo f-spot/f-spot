@@ -81,6 +81,7 @@ namespace FSpot {
 			Reload ();
 		}
 		
+		public override event ChangedHandler Changed;
 		public override void Reload () 
 		{
 			years.Clear ();
@@ -108,6 +109,9 @@ namespace FSpot {
 				data.Months = new int [12];
 				years.Add (data);
 			}
+
+ 			if (Changed != null)
+				Changed (this);
 		}
 
 
