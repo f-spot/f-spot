@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 
 namespace FSpot {
-	public class TimeAdaptor : GroupAdaptor {
+	public class TimeAdaptor : GroupAdaptor, FSpot.ILimitable {
 		public PhotoQuery query;
 
 		private int span;
@@ -25,7 +25,7 @@ namespace FSpot {
 				GlassSet (this, i);
 		}
 
-		public override void SetLimits (int min, int max) 
+		public void SetLimits (int min, int max) 
 		{
 			Console.WriteLine ("min {0} max {1}", min, max);
 			DateTime start = DateFromIndex (min);
@@ -74,6 +74,12 @@ namespace FSpot {
 			
 			return new DateTime (year, month, 1);
 		}
+
+		private void HandleReload (PhotoQuery query)
+		{
+			Console.WriteLine ("Reloading");
+			Load ();
+		}
 		
 		public void Load () {
 			years.Clear ();
@@ -106,6 +112,7 @@ namespace FSpot {
 
 		public TimeAdaptor (PhotoQuery query) {
 			this.query = query;
+			this.query.Reload += HandleReload;
 			
 			Load ();
 		}

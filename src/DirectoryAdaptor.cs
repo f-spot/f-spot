@@ -11,11 +11,6 @@ namespace FSpot {
 			public string Path;
 			public int Count;
 		}
-
-		public override void SetLimits (int min, int max)
-		{
-			Console.WriteLine ("There are no limits");
-		}
 		
 		public override event GlassSetHandler GlassSet;
 

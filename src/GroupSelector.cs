@@ -4,15 +4,22 @@ using Gdk;
 using GLib;
 
 namespace FSpot {
-	public class GroupSelector : Bin {
+	public class GroupSelector : Fixed {
 		internal static GType groupSelectorGType;
+
 		int border = 12;
 		int box_spacing = 2;
 		int box_top_padding = 6;
 		public static int MIN_BOX_WIDTH = 20;
+
 		private Glass glass;
 		private Limit min_limit;
 		private Limit max_limit;
+
+#if USE_BUTTONS
+		private Gtk.Button left;
+		private Gtk.Button right;
+#endif
 
 		private Gdk.Window event_window;
 
@@ -22,7 +29,8 @@ namespace FSpot {
 		int    box_count_max;
 		int [] box_counts = new int [0];
 		Pango.Layout [] tick_layouts;
-
+		bool   has_limits;
+		
 		protected FSpot.GroupAdaptor adaptor;
 		public FSpot.GroupAdaptor Adaptor {
 			set {
@@ -48,6 +56,8 @@ namespace FSpot {
 					i++;
 				}
 				Counts = box_values;
+
+				has_limits = adaptor is FSpot.ILimitable;				
 				min_limit.SetPosition (0);
 				max_limit.SetPosition (adaptor.Count () - 1);
 			}
@@ -142,9 +152,9 @@ namespace FSpot {
 
 			if (glass.IsInside (x, y)) {
 				glass.StartDrag (x, y, args.Time);
-			} else if (min_limit.IsInside (x, y)) {
+			} else if (has_limits && min_limit.IsInside (x, y)) {
 				min_limit.StartDrag (x, y, args.Time);
-			} else if (max_limit.IsInside (x, y)) {
+			} else if (has_limits && max_limit.IsInside (x, y)) {
 				max_limit.StartDrag (x, y, args.Time);
 			} else {
 				int position;
@@ -174,8 +184,8 @@ namespace FSpot {
 
 		public void UpdateLimits () 
 		{
-			if (adaptor != null && min_limit != null && max_limit != null)
-				adaptor.SetLimits (min_limit.Position, max_limit.Position);
+			if (adaptor != null && has_limits && min_limit != null && max_limit != null)
+				((ILimitable)adaptor).SetLimits (min_limit.Position, max_limit.Position);
 		}
 
 		protected override bool OnMotionNotifyEvent (Gdk.EventMotion args) 
@@ -229,6 +239,7 @@ namespace FSpot {
 		{
 			event_window.Dispose ();
 			event_window = null;
+			base.OnUnrealized ();
 		}
 		
 		private Double BoxWidth {
@@ -672,14 +683,16 @@ namespace FSpot {
 					DrawTick (area, i++);
 			}
 			
-			if (min_limit != null) {
-				min_limit.Draw (args.Area);
+			if (has_limits) {
+				if (min_limit != null) {
+					min_limit.Draw (args.Area);
+				}
+				
+				if (max_limit != null) {
+					max_limit.Draw (args.Area);
+				}
 			}
-			
-			if (max_limit != null) {
-				max_limit.Draw (args.Area);
-			}
-			       
+
 			if (glass != null) {
 				glass.Draw (args.Area);
 			}
@@ -691,6 +704,7 @@ namespace FSpot {
 		{
 			requisition.Width = 500;
 			requisition.Height = 100;
+			base.OnSizeRequested (ref requisition);
 		}
 
 		private int LengendHeight ()
@@ -722,6 +736,11 @@ namespace FSpot {
 
 			if (event_window != null)
 				event_window.MoveResize (alloc.X, alloc.Y, alloc.Width, alloc.Height);
+
+#if USE_BUTTONS
+			if (right.Allocation.X != 10 || (right.Allocation.Y - alloc.Y) != 10)
+				this.Move (right, 10, 10);
+#endif
 		}
 
 		public GroupSelector () : base () 
@@ -734,6 +753,15 @@ namespace FSpot {
 			max_limit = new Limit (this, Limit.LimitType.Max);
 			min_limit.SetPosition (0);
 			max_limit.SetPosition (11);
+
+#if USE_BUTTONS
+			left = new Gtk.Button (Gtk.Stock.GoBack);
+			right = new Gtk.Button (Gtk.Stock.GoForward);
+			this.Put (left, 0, 0);
+			this.Put (right, 100, 0);
+			left.Show ();
+			right.Show ();
+#endif
 		}
 
 		public GroupSelector (IntPtr raw) : base (raw) {}

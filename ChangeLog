@@ -1,3 +1,14 @@
+2004-09-08  Larry Ewing  <lewing@novell.com>
+
+	* src/GroupSelector.cs: use the ILimitable interface, don't draw
+	the limit handles if the model isn't limitable.
+
+	* src/GroupAdaptor.cs: add an ILimitable interface for the limits.
+
+	* src/TimeAdaptor.cs: implement ILimitable.
+
+	* src/DirectoryAdaptor.cs: remove the SetLimits stub.
+
 2004-09-03  Larry Ewing  <lewing@novell.com>
 
 	* src/PreviewPopup.cs: refactor slightly, always update the
