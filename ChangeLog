@@ -1,5 +1,8 @@
 2004-09-30  Larry Ewing  <lewing@novell.com>
 
+	* src/TiffHeader.cs: add a new TiffHeader parser that extracts the
+	exif info from tiffs.
+
 	* src/JpegHeader.cs: update tags add profile.  Improve test case.
 
 2004-09-29  Larry Ewing  <lewing@novell.com>
