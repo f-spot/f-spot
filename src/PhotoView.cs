@@ -146,7 +146,7 @@ public class PhotoView : EventBox {
 				image_view.Pixbuf = FSpot.PhotoLoader.Load (Query, current_photo);
 				tag_view.Current = Query.Photos [current_photo];
 				/*
-				** This is a hack seeing if the max size stuff acutally helps loading speed 
+				** This is a hack seeing if the max size stuff actually helps loading speed 
 				**
 				*/
 				/*
@@ -334,27 +334,31 @@ public class PhotoView : EventBox {
 		if (! image_view.GetSelection (out x, out y, out width, out height))
 			return;
 
-		Photo photo = query.Photos [CurrentPhoto];
-		if (photo.DefaultVersionId == Photo.OriginalVersionId) {
-			photo.DefaultVersionId = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);
-			query.Commit (CurrentPhoto);
+		Pixbuf original_pixbuf = image_view.Pixbuf;
+		if (original_pixbuf == null) {
+			Console.WriteLine ("No image");
+			return;
 		}
 
-		Pixbuf original_pixbuf = image_view.Pixbuf;
+		Photo photo = query.Photos [CurrentPhoto];
+
 		Pixbuf cropped_pixbuf = new Pixbuf (original_pixbuf.Colorspace, false, original_pixbuf.BitsPerSample,
 						    width, height);
 
-		original_pixbuf.CopyArea (x, y, width, height, cropped_pixbuf, 0, 0);
-		
-		image_view.Pixbuf = cropped_pixbuf;
+		original_pixbuf.CopyArea (x, y, width, height, cropped_pixbuf, 0, 0);		
 
 		// FIXME the fact that the selection doesn't go away is a bug in ImageView, it should
 		// be fixed there.
 		image_view.UnsetSelection ();
 
 		try {
-			cropped_pixbuf.Savev (photo.DefaultVersionPath, "jpeg", null, null);
-			PhotoStore.GenerateThumbnail (photo.DefaultVersionPath);
+			if (photo.DefaultVersionId == Photo.OriginalVersionId) {
+				photo.DefaultVersionId = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);
+				cropped_pixbuf.Savev (photo.DefaultVersionPath, "jpeg", null, null);
+				query.Commit (CurrentPhoto);
+			} else {
+				cropped_pixbuf.Savev (photo.DefaultVersionPath, "jpeg", null, null);
+			}
 		} catch (GLib.GException ex) {
 			// FIXME error dialog.
 			Console.WriteLine ("error {0}", ex);
