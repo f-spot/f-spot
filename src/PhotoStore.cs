@@ -415,11 +415,13 @@ public class PhotoStore : DbStore {
 
 		if (use_exif) {
 			thumbnail = GenerateFromExif (path, uri);
-			PhotoStore.ThumbnailFactory.SaveThumbnail (thumbnail, uri, File.GetLastWriteTime (path));
 		}
 
-		if (thumbnail == null)
+		if (thumbnail != null)
+			PhotoStore.ThumbnailFactory.SaveThumbnail (thumbnail, uri, File.GetLastWriteTime (path));
+		else 
 			thumbnail = PixbufUtils.GenerateThumbnail (path);
+			
 		
 		return thumbnail;
 	}

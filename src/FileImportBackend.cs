@@ -23,23 +23,27 @@ public class FileImportBackend : ImportBackend {
 	
 	private void GetListing (System.IO.DirectoryInfo info)
 	{
-		System.Console.WriteLine (info.FullName);
+		System.Console.WriteLine ("Sanning {0}", info.FullName);
 
 		System.IO.FileInfo [] files = info.GetFiles ();
 		Hashtable exiting_entries = new Hashtable ();
 
 		foreach (Photo p in store.Query (info)) {
 			foreach (uint id in p.VersionIds) {
+				string name;
 				if (id == Photo.OriginalVersionId)
-					exiting_entries [p.Name] = p;
+				        name = p.Name;
 				else 
-					exiting_entries [p.GetVersionName (id)] = p;
+					name = (new System.IO.FileInfo (p.GetVersionPath (id))).Name;
+
+				System.Console.WriteLine ("Found {0}", name);
+				exiting_entries [name] = p;
 			}
 		}
 	
 		foreach (System.IO.FileInfo f in files) {
 			if (exiting_entries [f.Name] == null) {
-				System.Console.WriteLine ("Importing {0}", f.FullName);
+				System.Console.WriteLine ("Importing {0} as {1}", f.Name, f.FullName);
 				AddPath (f.FullName);
 			}
 		}

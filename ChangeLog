@@ -1,3 +1,13 @@
+2005-01-10  Larry Ewing  <lewing@novell.com>
+
+	* src/FileImportBackend.cs: get the version name check correct.
+	
+	* src/PhotoStore.cs: remove thumbnailing bug introduced yesterday.
+
+	* src/FileImportBackend.cs: add duplicate detection by directory.
+
+	* src/PhotoStore.cs: add a directory path query.
+
 2005-01-09  Larry Ewing  <lewing@novell.com>
 
 	* src/PreviewPopup.cs: remove some debug spew.
