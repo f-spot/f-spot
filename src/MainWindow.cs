@@ -500,15 +500,9 @@ public class MainWindow {
 	{
 
 		MenuItem parent = sender as MenuItem;
-		if (parent != null) {
-			if (parent.Submenu is TagMenu) {
-				TagMenu menu = parent.Submenu as TagMenu;
-				menu.Populate ();
-			} else if (parent.Submenu is PhotoTagMenu) {
-				PhotoTagMenu menu = (PhotoTagMenu) parent.Submenu;
-				menu.Populate (SelectedPhotos ());
-			}
-		       
+		if (parent != null && parent.Submenu is PhotoTagMenu) {
+			PhotoTagMenu menu = (PhotoTagMenu) parent.Submenu;
+			menu.Populate (SelectedPhotos ()); 
 		}
 	}
 

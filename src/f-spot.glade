@@ -599,7 +599,6 @@
 			  <property name="visible">True</property>
 			  <property name="label" translatable="yes">_Attach Tag</property>
 			  <property name="use_underline">True</property>
-			  <signal name="activate" handler="HandleTagMenuActivate" last_modification_time="Wed, 16 Jun 2004 19:54:58 GMT"/>
 			</widget>
 		      </child>
 
@@ -734,7 +733,6 @@
 			  <property name="visible">True</property>
 			  <property name="label" translatable="yes">Find by Tag</property>
 			  <property name="use_underline">True</property>
-			  <signal name="activate" handler="HandleTagMenuActivate" last_modification_time="Wed, 16 Jun 2004 19:54:43 GMT"/>
 			</widget>
 		      </child>
 		    </widget>

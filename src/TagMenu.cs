@@ -29,8 +29,6 @@ public class TagMenu : Menu {
 		tag_store = store;
 	}
 
-	public TagMenu (TagStore store) : this (null, store) {}
-
 	protected TagMenu (IntPtr raw) : base (raw) {}
 
 	public void Populate () {
