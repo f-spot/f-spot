@@ -96,7 +96,9 @@ public class IconView : Gtk.Layout {
 	// Drag and drop bookkeeping. 
 	private bool in_drag;
 	private int click_x, click_y;
-	private int click_cell = -1;
+
+	// Focus Handling
+	private int focus_cell = 0;
 
 	// Number of consecutive GDK_BUTTON_PRESS on the same cell, to
 	// distinguish the GDK_2BUTTON_PRESS events that we actually care
@@ -128,12 +130,18 @@ public class IconView : Gtk.Layout {
 		ScrollAdjustmentsSet += new ScrollAdjustmentsSetHandler (HandleScrollAdjustmentsSet);
 		SizeAllocated += new SizeAllocatedHandler (HandleSizeAllocated);
 		ExposeEvent += new ExposeEventHandler (HandleExposeEvent);
+		MotionNotifyEvent += new MotionNotifyEventHandler (HandleMotionNotifyEvent);
+		
 		ButtonPressEvent += new ButtonPressEventHandler (HandleButtonPressEvent);
 		ButtonReleaseEvent += new ButtonReleaseEventHandler (HandleButtonReleaseEvent);
-		MotionNotifyEvent += new MotionNotifyEventHandler (HandleMotionNotifyEvent);
+		KeyPressEvent += new KeyPressEventHandler (HandleKeyPressEvent);
 
 		DestroyEvent += new DestroyEventHandler (HandleDestroyEvent);
 
+		AddEvents ((int) EventMask.KeyPressMask);
+		
+		CanFocus = true;
+	
 		string [] types = new string [1];
 		types [0] = "text/uri-list";
 		GtkDnd.SetAsDestination (this, types);
@@ -330,6 +338,10 @@ public class IconView : Gtk.Layout {
 		Gdk.Rectangle area = new Gdk.Rectangle (x, y, cell_width, cell_height);
 		Style.PaintBox (Style, BinWindow, StateType.Normal, ShadowType.Out, area, this, null, x, y, cell_width, cell_height);
 
+		if (HasFocus && thumbnail_num == focus_cell) {
+			Style.PaintFocus(Style, BinWindow, StateType.Normal, area, this, null, x + 3, y + 3, cell_width - 6, cell_height - 6);
+		}
+
 		if (thumbnail == null) {
 			pixbuf_loader.Request (thumbnail_path, thumbnail_num);
 		} else {
@@ -354,7 +366,12 @@ public class IconView : Gtk.Layout {
 
 			if (CellIsSelected (thumbnail_num)) {
 				Gdk.GC selection_gc = new Gdk.GC (BinWindow);
-				selection_gc.Copy (Style.BackgroundGC (StateType.Selected));
+
+				if (HasFocus)
+					selection_gc.Copy (Style.BackgroundGC (StateType.Selected));
+				else
+					selection_gc.Copy (Style.BackgroundGC (StateType.Active));
+
 				selection_gc.SetLineAttributes (SELECTION_THICKNESS, LineStyle.Solid, CapStyle.Butt, JoinStyle.Miter);
 
 				BinWindow.DrawRectangle (selection_gc, false,
@@ -498,6 +515,22 @@ public class IconView : Gtk.Layout {
 			GLib.Source.Remove (scroll_on_idle_id);
 	}
 
+	private void ScrollTo (int cell_num)
+	{
+		Adjustment adjustment = Vadjustment;
+		int x;
+		int y;
+
+		GetCellPosition (cell_num, out x, out y);
+
+		if (y < adjustment.Value)
+			adjustment.Value = y; 
+		else if (y + cell_height > adjustment.Value + adjustment.PageSize)
+			adjustment.Value = y + cell_height - adjustment.PageSize;
+		
+		adjustment.ChangeValue();
+	}
+
 
 	// Event handlers.
 
@@ -545,12 +578,16 @@ public class IconView : Gtk.Layout {
  	{
 		int cell_num = CellAtPosition ((int) args.Event.x, (int) args.Event.y);
 
-		if (cell_num < 0)
+		args.RetVal = true;
+
+		if (cell_num < 0) {
+			args.RetVal = false;
 			return;
+		}
 
 		switch (args.Event.type) {
 		case EventType.TwoButtonPress:
-			if (args.Event.button != 1 || click_count < 2
+			if (args.Event.button != 1
 			    || (args.Event.state & (uint) (ModifierType.ControlMask
 							   | ModifierType.ShiftMask)) != 0)
 				return;
@@ -562,10 +599,11 @@ public class IconView : Gtk.Layout {
 			if (args.Event.button != 1)
 				return;
 
+			GrabFocus ();
 			if ((args.Event.state & (uint) ModifierType.ControlMask) != 0) {
 				ToggleCell (cell_num);
 			} else if ((args.Event.state & (uint) ModifierType.ShiftMask) != 0) {
-				SelectCellRange (click_cell, cell_num);
+				SelectCellRange (focus_cell, cell_num);
 			} else {
 				UnselectAllCells ();
 				SelectCell (cell_num);
@@ -578,16 +616,12 @@ public class IconView : Gtk.Layout {
 			click_x = (int) args.Event.x;
 			click_y = (int) args.Event.y;
 
-			if (click_cell == cell_num) {
-				click_count ++;
-			} else {
-				click_cell = cell_num;
-				click_count = 1;
-			}
+			focus_cell = cell_num;
 
 			return;
 
 		default:
+			args.RetVal = false;
 			return;
 		}
 	}
@@ -608,6 +642,60 @@ public class IconView : Gtk.Layout {
 
 		TargetList target_list = new TargetList ();
 		in_drag = true;
+	}
+	
+	private void HandleKeyPressEvent (object sender, KeyPressEventArgs args)
+	{
+		int focus_old;
+		args.RetVal = true;
+		bool shift = ((uint) ModifierType.ShiftMask) == (args.Event.state & ((uint) ModifierType.ShiftMask));
+		bool control = ((uint) ModifierType.ControlMask) == (args.Event.state & ((uint)ModifierType.ControlMask));
+		
+
+		focus_old = focus_cell;
+		switch (args.Event.Key) {
+			case Gdk.Key.Down:
+				focus_cell += cells_per_row;
+				break;
+			case Gdk.Key.Left:
+				focus_cell--;
+				break;
+			case Gdk.Key.Right:
+				focus_cell++;
+				break;
+			case Gdk.Key.Up:
+				focus_cell -= cells_per_row;
+				break;
+			case Gdk.Key.Home:
+				focus_cell = 0;
+				break;
+			case Gdk.Key.End:
+				focus_cell = query.Photos.Length - 1; 
+				break;
+			default:	
+				args.RetVal = false;
+				return;		
+				break;
+		}
+		
+		if (focus_cell < 0 || focus_cell > query.Photos.Length - 1) {
+			focus_cell = focus_old;
+			args.RetVal = false;
+		}	
+
+		if (shift) {
+			SelectCellRange (focus_old, focus_cell);
+		} else if (!control) {
+			UnselectAllCells ();
+			SelectCell (focus_cell);
+		} 
+	
+		if  (focus_cell != focus_old) { 
+			InvalidateCell (focus_old);	
+			InvalidateCell (focus_cell);
+		}
+		
+		ScrollTo (focus_cell);
 	}
 
 	private void HandleDestroyEvent (object sender, DestroyEventArgs args)

@@ -1,3 +1,29 @@
+2004-01-24  Larry Ewing  <lewing@ximian.com>
+
+	* src/IconView.cs: add basic keynav and focus handling.  Shift
+	selection still isn't right but things are getting better.
+
+2004-01-23  Larry Ewing  <lewing@ximian.com>
+
+	* src/f-spot.glade: Make hide the tabs and sink the scrolled
+	window to remove some of the visual noise, the view changing
+	buttons will come soon.
+
+	* src/MainWindow.cs: add some temporary handlers for icon view
+	resizing work.
+
+	* TagCommands.cs: walk down the parent categories to indent for
+	each level.
+
+	* src/PixbufUtils.cs: bind UnsharpMask.
+
+	* libfspot/f-pixbuf-unsharp.c: add a unsharp mask filter to
+	libfspot.
+
+	* libfspot/Makefile.am (libfspot_la_SOURCES): add
+	f-pixbuf-unsharp.c
+
+
 2004-01-21  Larry Ewing  <lewing@ximian.com>
 
 	* src/IconView.cs: make InvalidateCell public for now.
