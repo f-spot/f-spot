@@ -40,39 +40,34 @@ namespace FSpot {
 			return ValidateThumbnail (photo.DefaultVersionPath, pixbuf);
 		}
 
+		static public bool ThumbnailIsValid (System.Uri uri, Gdk.Pixbuf thumbnail)
+		{
+			bool valid = false;
+
+			DateTime mtime = System.IO.File.GetLastWriteTime (uri.LocalPath);
+
+			try {
+				valid  = Gnome.Thumbnail.IsValid (thumbnail, uri.ToString (), mtime);
+			} catch (Exception e) {
+				Console.WriteLine (e);
+				valid = false;
+			}
+			
+			return valid;
+		}
+
 		static public Gdk.Pixbuf ValidateThumbnail (string photo_path, Gdk.Pixbuf pixbuf)
 		{			
-			string photo_uri = UriList.PathToFileUri (photo_path).ToString ();
-			string thumbnail_path = Gnome.Thumbnail.PathForUri (photo_uri, 
+			System.Uri uri = UriList.PathToFileUri (photo_path);
+			string thumbnail_path = Gnome.Thumbnail.PathForUri (uri.ToString (), 
 									    Gnome.ThumbnailSize.Large);
 
 			Gdk.Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForPath (thumbnail_path);
 
-			if (pixbuf != null && thumbnail != null &&
-			    pixbuf.Width >= THUMBNAIL_SIZE && pixbuf.Height >= THUMBNAIL_SIZE) {
-				DateTime mtime = System.IO.File.GetLastWriteTime (photo_path);
-				bool valid = false;
-
-				try {
-					Console.WriteLine ("uri \"{0}\" mtime \"{1}\"", 
-							   thumbnail.GetOption ("tEXt::Thumb::URI"), 
-							   thumbnail.GetOption ("tEXt::Thumb::MTime"));
-					// Fixme This shouldn't be throwing an exception but it is
-					valid  = Gnome.Thumbnail.IsValid (thumbnail, photo_uri, mtime);
-				} catch (Exception e) {
-					Console.WriteLine (e);
-					valid = false;
-				}
-					
-				if (!valid) {
-					Console.WriteLine ("regenerating thumbnail");
-			
-					Gdk.Pixbuf scaled = PixbufUtils.ScaleToMaxSize (pixbuf, THUMBNAIL_SIZE, THUMBNAIL_SIZE);
-					PixbufUtils.SetOption (scaled, "tEXt::Thumb::URI", photo_uri);
-					PixbufUtils.SetOption (scaled, "tEXt::Thumb::MTime", 
-							       ((uint)GLib.Marshaller.DateTimeTotime_t (mtime)).ToString ());
-					PhotoStore.ThumbnailFactory.SaveThumbnail (scaled, photo_uri, mtime);
-					ThumbnailCache.Default.AddThumbnail (thumbnail_path, scaled);
+			if (pixbuf != null && thumbnail != null) {
+				if (!ThumbnailIsValid (uri, thumbnail)) {
+					System.Console.WriteLine ("regnerating thumbnail");
+					FSpot.ThumbnailGenerator.Default.Request (photo_path, 0, 256, 256);
 				}
 
 			}

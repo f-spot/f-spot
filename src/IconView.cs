@@ -148,7 +148,7 @@ public class IconView : Gtk.Layout {
 	public IconView () : base (null, null)
 	{
 		pixbuf_loader = new PixbufLoader ();
-		pixbuf_loader.OnPixbufLoaded += new PixbufLoader.PixbufLoadedHandler (HandlePixbufLoaded);
+		pixbuf_loader.OnPixbufLoaded += HandlePixbufLoaded;
 
 		selected_cells = new Hashtable ();
 
@@ -419,7 +419,6 @@ public class IconView : Gtk.Layout {
 
 		string thumbnail_path = Thumbnail.PathForUri (photo.DefaultVersionUri.ToString (), ThumbnailSize.Large);
 		Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForPath (thumbnail_path);
-
 			
 		StateType cell_state = selected ? (HasFocus ? StateType.Selected :StateType.Active) : StateType.Normal;
 
@@ -456,25 +455,17 @@ public class IconView : Gtk.Layout {
 				expansion = SELECTION_THICKNESS;
 			}
 			
-			bool avoid_loader = false;
-			if (avoid_loader) {
-				if (thumbnail == null) {
-					//System.Console.WriteLine ("path = {0}", thumbnail_path);
-					thumbnail = new Pixbuf (thumbnail_path);
-					ThumbnailCache.Default.AddThumbnail (thumbnail_path, thumbnail);
-					thumbnail = new Pixbuf (thumbnail, 0, 0, thumbnail.Width, thumbnail.Height);
-				}
-
-				if (thumbnail == null)
-					thumbnail = PixbufUtils.ErrorPixbuf;
-			} else {
-				if (thumbnail == null) {
-					pixbuf_loader.Request (thumbnail_path, thumbnail_num);
-				}
+			if (thumbnail == null) {
+				// FIXME instead of making a request to load at a particular size here we
+				// request to load at the the full size because Gdk.Pixbuf loses the Option
+				// data when you load at a different size (I hate that).  See HandlePixbufLoaded
+				// for where we do the scaling to correct for this problem.
+				pixbuf_loader.Request (thumbnail_path, thumbnail_num);
 			}
 			
 			if (thumbnail != null){
 				int width, height;
+				
 				PixbufUtils.Fit (thumbnail, ThumbnailWidth, ThumbnailHeight, true, out width, out height);
 				
 				int dest_x = (int) (x + (cell_width - width) / 2);
@@ -489,18 +480,32 @@ public class IconView : Gtk.Layout {
 				height += 2 * expansion;
 
 				Pixbuf temp_thumbnail;
-				if (width == thumbnail.Width) {
+				// Is the thumbnail the right size?
+				if (width == thumbnail.Width || height == thumbnail.Height) {
 					temp_thumbnail = thumbnail;
 				} else {
-#if false
-					if (width < thumbnail.Width && height < thumbnail.Height) {
-						temp_thumbnail = Gnome.Thumbnail.ScaleDownPixbuf (thumbnail, width, height);
-					} else
-#endif						
-						if (ThumbnailWidth > 64) {
-							temp_thumbnail = thumbnail.ScaleSimple (width, height, InterpType.Bilinear);
-					} else {
-						temp_thumbnail = thumbnail.ScaleSimple (width, height, InterpType.Nearest);
+
+					if (width < thumbnail.Width && height < thumbnail.Height)
+						temp_thumbnail = PixbufUtils.ScaleDown (thumbnail, width, height);
+					else
+						temp_thumbnail = thumbnail.ScaleSimple (width, height, InterpType.Bilinear);
+					
+					PixbufUtils.CopyThumbnailOptions (thumbnail, temp_thumbnail);
+					
+					// Only request a reload here if we are not inside a throb 
+					// (expansion == 0) because we want to store the images at the normal
+					// size not a throb or selection size to optimize the scroll speed
+					if (expansion == 0) {
+						System.Console.WriteLine ("made request for {0} ({1},{2}) ({3},{4}) ({5},{6})", 
+									  thumbnail_path, width, height, 
+									  ThumbnailWidth, ThumbnailHeight, 
+									  thumbnail.Width, thumbnail.Height);
+
+						// FIXME instead of making a request to load at a particular size here we
+						// request to load at the the full size because Gdk.Pixbuf loses the Option
+						// data when you load at a different size (I hate that).  See HandlePixbufLoaded
+						// for where we do the scaling to correct for this problem.
+						pixbuf_loader.Request (thumbnail_path, thumbnail_num);
 					}
 				}
 				
@@ -761,8 +766,26 @@ public class IconView : Gtk.Layout {
 			//
 			result = new Pixbuf (result, 0, 0, result.Width, result.Height);
 		}
+ 
+		if (order > 0 && order < collection.Items.Length) {
+			System.Uri uri = collection.Items [order].DefaultVersionUri;
+			
+			if (!FSpot.PhotoLoader.ThumbnailIsValid (collection.Items [order].DefaultVersionUri, result)) {
+				System.Console.WriteLine ("regnerating thumbnail");
+				FSpot.ThumbnailGenerator.Default.Request (uri.LocalPath, 0, 256, 256);
+			}
+		}
+		       
 
-		//Console.WriteLine ("adding {0}", path);
+		// We have to do the scaling here rather than on load because we need to preserve the 
+		// Pixbuf option iformation to verify the thumbnail validity later
+		if (result.Width != ThumbnailWidth && result.Height != ThumbnailHeight) {
+			Gdk.Pixbuf temp = PixbufUtils.ScaleToMaxSize (result, ThumbnailWidth, ThumbnailHeight);
+			PixbufUtils.CopyThumbnailOptions (result, temp);
+			result.Dispose ();
+			result = temp;
+		}
+
 		ThumbnailCache.Default.AddThumbnail (path, result);
 		InvalidateCell (order);
 	}
