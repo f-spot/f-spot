@@ -39,9 +39,10 @@ namespace FSpot {
 
 				adaptor = value;
 				has_limits = adaptor is FSpot.ILimitable;				
+
 				if (has_limits) {
-				    min_limit.SetPosition (0);
-				    max_limit.SetPosition (adaptor.Count () - 1);
+				    min_limit.SetPosition (0, false);
+				    max_limit.SetPosition (adaptor.Count () - 1, false);
 				}
 
 				adaptor.Changed += HandleAdaptorChanged;
@@ -80,12 +81,9 @@ namespace FSpot {
 			
 			Counts = box_values;
 			
-			if (has_limits) {
-				if (size_changed || min_limit.Position > adaptor.Count ())
-					min_limit.SetPosition (0);
-				
-				if (size_changed ||max_limit.Position > adaptor.Count ())
-					max_limit.SetPosition (adaptor.Count () - 1);
+			if (has_limits && size_changed) {
+				min_limit.SetPosition (0, false);
+				max_limit.SetPosition (adaptor.Count () - 1, false);
 			}
 			this.QueueDraw ();
 		}
@@ -477,6 +475,11 @@ namespace FSpot {
 
 			public void SetPosition (int position)
 			{
+				SetPosition (position, true);
+			}
+
+			public void SetPosition (int position, bool update)
+			{
 				Rectangle then = Bounds ();
 				this.position = position;
 				Rectangle now = Bounds ();
@@ -486,7 +489,9 @@ namespace FSpot {
 					selector.GdkWindow.InvalidateRect (then, false);
 					//selector.GdkWindow.InvalidateRect (now, false);
 				}
-				PositionChanged ();
+
+				if (update)
+					PositionChanged ();
 			}
 
 			private int position;
@@ -839,8 +844,6 @@ namespace FSpot {
 			glass = new Glass (this);
 			min_limit = new Limit (this, Limit.LimitType.Min);
 			max_limit = new Limit (this, Limit.LimitType.Max);
-			min_limit.SetPosition (0);
-			max_limit.SetPosition (11);
 
 #if USE_BUTTONS
 			left = new Gtk.Button (Gtk.Stock.GoBack);

@@ -592,7 +592,7 @@ public class MainWindow {
 	{
 		ImportCommand command = new ImportCommand (main_window);
 		if (command.ImportFromPaths (db.Photos, list.ToLocalPaths ()) > 0) {
-			UpdateQuery (true);
+			UpdateQuery ();
 		}
 	}
 
@@ -771,7 +771,7 @@ public class MainWindow {
 		ImportCommand command = new ImportCommand (main_window);
 		if (command.ImportFromFile (db.Photos, this.last_import_path) > 0) {
 			this.last_import_path = command.ImportPath;
-			UpdateQuery (true);
+			UpdateQuery ();
 		}
 	}
 
@@ -1464,18 +1464,10 @@ public class MainWindow {
 
 	void UpdateQuery ()
 	{
-		UpdateQuery (false);
-	}
-			
-	void UpdateQuery (bool reset_limits)
-	{
 		main_window.GdkWindow.Cursor = new Gdk.Cursor (Gdk.CursorType.Watch);
 		main_window.GdkWindow.Display.Sync ();
 		query.Tags = tag_selection_widget.TagSelection;
 		main_window.GdkWindow.Cursor = null;
-
-		if (reset_limits && group_selector.Adaptor is FSpot.ILimitable)
-			((FSpot.ILimitable)group_selector.Adaptor).SetLimits (0, group_selector.Adaptor.Count() -1);
 	}
 
 	void OnTagSelectionChanged (object obj)

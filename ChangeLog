@@ -1,5 +1,11 @@
 2005-01-23  Larry Ewing  <lewing@novell.com>
 
+	* src/GroupSelector.cs: add a SetLimits overload that allows the
+	limit to be set without senting out update notification for the
+	case when it is clear the bounds have changed.
+
+	* src/MainWindow.cs: remove the update hack.
+
 	* src/GroupSelector.cs: make sure we reset the bounds if the size
 	of the timeline changes.
 	
