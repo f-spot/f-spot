@@ -185,7 +185,7 @@ public class MainWindow {
 	}
 
 	
-	private int [] SelectedIds () {
+	public int [] SelectedIds () {
 		int [] ids;
 		switch (mode) {
 		case ModeType.IconView:
@@ -808,6 +808,29 @@ public class MainWindow {
 
 	}
 
+	public void HandleCopyLocation (object sender, EventArgs args)
+	{
+		/*
+		 * FIXME this should really set uri atoms as well as string atoms
+		 */
+		Clipboard primary = Clipboard.Get (Atom.Intern ("PRIMARY", false));
+		Clipboard clipboard = Clipboard.Get (Atom.Intern ("CLIPBOARD", false));
+
+		StringBuilder paths = new StringBuilder ();
+		
+		int i = 0;
+		foreach (Photo p in SelectedPhotos ()) {
+			if (i++ > 0)
+				paths.Append (" ");
+
+			paths.Append (System.IO.Path.GetFullPath (p.DefaultVersionPath));
+		}
+		
+		String data = paths.ToString ();
+		primary.SetText (data);
+		clipboard.SetText (data);
+	}
+
 	void HandleSetAsBackgroundCommand (object sender, EventArgs args)
 	{
 		Photo current = CurrentPhoto;
@@ -846,6 +869,8 @@ public class MainWindow {
 	{
 		UpdateForVersionIdChange (version_id);
 	}
+
+
 	// Queries.
 
 	void UpdateQuery ()

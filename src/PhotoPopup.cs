@@ -1,7 +1,8 @@
 /*
- * IconViewPopup.cs
+ * PhotoPopup.cs
  *
  * Author(s):
+ *   Larry Ewing <lewing@novell.com>
  *   Vladimir Vukicevic <vladimir@pobox.com>
  *   Miguel de Icaza <miguel@ximian.com>
  *
@@ -11,57 +12,21 @@
  */
 
 using System;
-using System.Text;
-using System.Collections;
 using Gtk;
 using Gdk;
 
-public class IconViewPopup {
-	IconView icon_view;
-	int item_clicked;
-	
-	public IconViewPopup () {
-	}
-
-	public IconViewPopup (IconView il, int item_clicked)
+public class PhotoPopup {
+	public void Activate (Gdk.EventButton eb) 
 	{
-		this.item_clicked = item_clicked;
-		IconView = il;
-	}
-
-	public IconView IconView {
-		get {
-			return icon_view;
-		}
-		set {
-			icon_view = value;
-		}
-	}
-
-	public void Activate (Gdk.EventButton eb)
-	{
+		int count = MainWindow.Toplevel.SelectedIds ().Length;
+		
 		Gtk.Menu popup_menu = new Gtk.Menu ();
-		bool have_selection = true;
-		bool have_multi = false;
-
-		int count = icon_view.SelectedIdxCount;
-		if (count == 0) {
-			have_selection = false;
-		} else if (count > 1) {
-			have_multi = true;
-		}
+		bool have_selection = count != 0;
+		bool have_multi = count > 1;
 
 		GtkUtil.MakeMenuItem (popup_menu, "Copy Image Location", 
-				      new EventHandler (Action_CopyImageLocation), have_selection);
-
-		/*
-		GtkUtil.MakeMenuItem (popup_menu, (have_multi ? "Cut Images" : "Cut Image"),
-				      new EventHandler (Action_CutImage), false);
-		GtkUtil.MakeMenuItem (popup_menu, (have_multi ? "Copy Images" : "Copy Image"),
-				      new EventHandler (Action_CopyImage), have_selection);
-		GtkUtil.MakeMenuItem (popup_menu, "Paste Images",
-				      new EventHandler (Action_PasteImage), true);
-		*/
+				      new EventHandler (MainWindow.Toplevel.HandleCopyLocation), have_selection);
+		
 		GtkUtil.MakeMenuSeparator (popup_menu);
 
 		GtkUtil.MakeMenuItem (popup_menu, "Rotate Left",
@@ -100,26 +65,5 @@ public class IconViewPopup {
 		popup_menu.Append (remove_item);
 
 		popup_menu.Popup (null, null, null, IntPtr.Zero, eb.Button, eb.Time);
-	}
-
-	void Action_CutImage (object o, EventArgs ea)
-	{
-	}
-
-	void Action_CopyImage (object o, EventArgs ea)
-	{
-	}
-
-	void Action_PasteImage (object o, EventArgs ea)
-	{
-	}
-
-	void Action_CopyImageLocation (object o, EventArgs a)
-	{
-		Clipboard clipboard = Clipboard.Get (Atom.Intern ("PRIMARY", false));
-		
-		string name = System.IO.Path.GetFullPath (icon_view.GetFullFilename (item_clicked));
-		clipboard.SetText (name);
-		
-	}
+	}   
 }

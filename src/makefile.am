@@ -10,7 +10,6 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/GalleryRemote.cs		\
 	$(srcdir)/GtkDnd.cs			\
 	$(srcdir)/IconView.cs			\
-	$(srcdir)/IconViewPopup.cs		\
 	$(srcdir)/ImageView.cs			\
 	$(srcdir)/ImportBackend.cs		\
 	$(srcdir)/ImportCommand.cs		\
@@ -18,6 +17,7 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/InfoBox.cs			\
 	$(srcdir)/JpegUtils.cs			\
 	$(srcdir)/MainWindow.cs			\
+	$(srcdir)/PhotoPopup.cs			\
 	$(srcdir)/PhotoQuery.cs			\
 	$(srcdir)/PhotoStore.cs			\
 	$(srcdir)/PhotoTagMenu.cs		\

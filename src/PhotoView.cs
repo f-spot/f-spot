@@ -302,6 +302,14 @@ public class PhotoView : EventBox {
 
 
 	// Event handlers.
+	private void HandleButtonPressEvent (object sender, ButtonPressEventArgs args)
+	{
+		if (args.Event.Type == EventType.ButtonPress
+		    && args.Event.Button == 3) {
+			PhotoPopup popup = new PhotoPopup ();
+			popup.Activate (args.Event);
+		}
+	}
 
 	private void HandleImageViewKeyPressEvent (object sender, KeyPressEventArgs args)
 	{
@@ -427,6 +435,7 @@ public class PhotoView : EventBox {
 		image_view_scrolled.SetPolicy (PolicyType.Automatic, PolicyType.Automatic);
 		image_view_scrolled.ShadowType = ShadowType.None;
 		image_view_scrolled.Add (image_view);
+		image_view_scrolled.ButtonPressEvent += HandleButtonPressEvent;
 		image_view.SizeAllocated += new SizeAllocatedHandler (HandleImageViewSizeAllocated);
 		image_view.AddEvents ((int) EventMask.KeyPressMask);
 		image_view.KeyPressEvent += new KeyPressEventHandler (HandleImageViewKeyPressEvent);

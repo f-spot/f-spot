@@ -1,3 +1,27 @@
+2004-07-30  Larry Ewing  <lewing@ximian.com>
+
+	* src/makefile.am: add PhotoPopup.cs, remove IconViewPopup.cs.
+	
+	* src/IconView.cs: use PhotoPopup instead of IconViewPopup remove
+	GetFullFilename.
+
+	* src/MainWindow.cs: Add HandleCopyLocation and make SelectedIds
+	public for PhotoPopup.
+
+	* src/PhotoView.cs: use PhotoPopup on right click.
+
+	* src/PhotoPopup.cs: add new file, reworked version of
+	IconViewPopup that doesn't reference anything but the mainwindow.
+
+	* src/IconViewPopup.cs: remove unused file.
+
+	* src/PhotoView.cs: Add TagView and try out a new layout for the
+	PhotoView.
+
+	* src/makefile.am: Add TagView.cs
+
+	* src/TagView.cs: add a very basic tag display.
+
 2004-07-09  Larry Ewing  <lewing@ximian.com>
 
 	* src/f-spot.glade: remove the old handlers from the glade file.

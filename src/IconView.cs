@@ -362,11 +362,6 @@ public class IconView : Gtk.Layout {
 		SetSize ((uint) Allocation.Width, (uint) (num_rows * cell_height + 2 * BORDER_SIZE));
 	}
 
-	public string GetFullFilename (int idx)
-	{
-		return query.Photos [idx].DefaultVersionPath;
-	}
-	
 	// FIXME Cache the GCs?
 	private void DrawCell (int thumbnail_num, int x, int y)
 	{
@@ -679,8 +674,12 @@ public class IconView : Gtk.Layout {
 
 	void ContextMenu (ButtonPressEventArgs args, int cell_num)
 	{
+		/*
 		IconViewPopup iv = new IconViewPopup (this, cell_num);
 		iv.Activate (args.Event);
+		*/
+		PhotoPopup popup = new PhotoPopup ();
+		popup.Activate (args.Event);
 	}
 	
 	private void HandleButtonReleaseEvent (object sender, ButtonReleaseEventArgs args)
