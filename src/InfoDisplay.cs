@@ -42,7 +42,6 @@ namespace FSpot {
 			Byte b = (byte)(color.Blue / 256);
 			Byte g = (byte)(color.Green / 256);
 			string value =  r.ToString ("x2") + g.ToString ("x2") + b.ToString ("x2");
-			System.Console.WriteLine (value);
 			return value;
 		}
 

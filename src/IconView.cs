@@ -150,7 +150,6 @@ public class IconView : Gtk.Layout {
 		ButtonPressEvent += new ButtonPressEventHandler (HandleButtonPressEvent);
 		ButtonReleaseEvent += new ButtonReleaseEventHandler (HandleButtonReleaseEvent);
 		KeyPressEvent += new KeyPressEventHandler (HandleKeyPressEvent);
-		KeyReleaseEvent += new KeyReleaseEventHandler (HandleKeyReleaseEvent);
 
 		DestroyEvent += new DestroyEventHandler (HandleDestroyEvent);
 
@@ -863,11 +862,6 @@ public class IconView : Gtk.Layout {
 		} 
 	
 		ScrollTo (FocusCell);
-	}
-
-	private void HandleKeyReleaseEvent (object sender, KeyReleaseEventArgs args)
-	{
-		Console.WriteLine ("Release!");
 	}
 
 	private void HandleDestroyEvent (object sender, DestroyEventArgs args)

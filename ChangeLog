@@ -1,6 +1,13 @@
 2004-09-23  Larry Ewing  <lewing@novell.com>
 
-	* src/InfoDisplay.cs: render the exif thumbnail, fix colortype.
+	* src/MainWindow.cs: remove unused code, hook up the start of the
+	new print dialog.  Add temporary View->EXIF Data window.
+
+	* src/InfoDisplay.cs: remove debug spew.
+
+	* src/IconView.cs: remove annoying key release handler.
+
+	* src/InfoDisplay.cs: render the exif thumbnail, fix color type.
 	
 	* src/InfoDisplay.cs: use better colors, remove padding add
 	spacing.

@@ -58,6 +58,7 @@ public class MainWindow {
 	PhotoVersionMenu versions_submenu;
 	
 	InfoBox info_box;
+	FSpot.InfoDisplay info_display;
 	IconView icon_view;
 	PhotoView photo_view;
 	PhotoQuery query;
@@ -486,31 +487,6 @@ public class MainWindow {
 		Gtk.Drag.Finish (args.Context, true, false, args.Time);
 	}
 
-#if false
-	void HandleIconViewMotionNotifyEvent (object sender, MotionNotifyEventArgs args)
-	{
-		if ((args.Event.State & Gdk.ModifierType.Mod1Mask) == 0) {
-			HideQuickPreview ();
-			return;
-		}
-
-		int x = (int) args.Event.X;
-		int y = (int) args.Event.Y;
-		int cell_num = icon_view.CellAtPosition (x, y);
-		
-		int image_center_x, image_center_y;
-
-		Rectangle bounds = icon_view.CellBounds (cell_num);
-		image_center_x = bounds.X + (bounds.Width / 2);
-		image_center_y = bounds.Y + (bounds.Height / 2);
-
-		image_center_x += (int) args.Event.XRoot - x;
-		image_center_y += (int) args.Event.YRoot - y;
-		
-		ShowQuickPreview (cell_num, image_center_x, image_center_y);
-	}
-#endif
-
 	//
 	// IconView event handlers
 	// 
@@ -522,10 +498,13 @@ public class MainWindow {
 		if (selection.Length == 1) {
 			current_photo_idx = selection [0];
 			info_box.Photo = CurrentPhoto;
-
+			if (info_display != null) 
+				info_display.Photo = CurrentPhoto;
 		} else { 
 			current_photo_idx = PHOTO_IDX_NONE;
 			info_box.Photo = null;
+			if (info_display != null)
+				info_display.Photo = null;
 		}
 
 		current_photos = selection.Length > 0;
@@ -654,17 +633,11 @@ public class MainWindow {
 		}
 	}
 
+#if false
 	unsafe void HandlePrintCommand (object sender, EventArgs e)
 	{
 		PrintJob pj = new PrintJob (PrintConfig.Default ());
 		PrintDialog dialog = new PrintDialog (pj, "Print Images", 0);
-		int response = dialog.Run ();
-
-		Console.WriteLine ("response: " + response);
-
-		if (response == (int) PrintButtons.Cancel) {
-			dialog.Destroy ();
-		}
 
 		PrintContext ctx = pj.Context;
 		double page_width, page_height;
@@ -673,23 +646,47 @@ public class MainWindow {
 		foreach (Photo photo in SelectedPhotos ()) {
 			Print.Beginpage (ctx, "F-Spot "+ photo.DefaultVersionPath);
 			
-			Pixbuf image  = FSpot.PhotoLoader.Load (photo);
-			double scale = Math.Min (page_width / image.Width, page_height / image.Height);
+			Pixbuf image = FSpot.PhotoLoader.Load (photo);
+
+			bool rotate = false;
+			double width = page_width;
+			double height = page_height;
+			if (image.Width > image.Height) {
+				rotate = true;
+				width = page_height;
+				height = page_width;
+			}
 			
-			//Print.Moveto (ctx, 100, 100);
-			Print.Gsave (ctx);
+			double scale = Math.Min (width / image.Width, 
+						  height / image.Height);
+			
+			Gnome.Print.Gsave (ctx);
+
+			if (rotate) {
+				Gnome.Print.Rotate (ctx, 90);
+				Gnome.Print.Translate (ctx, 0, -page_width);
+			}
 			Print.Translate (ctx, 
-					 (page_width - image.Width * scale) / 2.0, 
-					 (page_height - image.Height * scale) / 2.0);
+					 (width - image.Width * scale) / 2.0, 
+					 (height - image.Height * scale) / 2.0);
+
 			Print.Scale (ctx, image.Width * scale, image.Height * scale);
+
 			Print.Pixbuf (ctx, image);
 			Print.Grestore (ctx);
-			
+
 			//Print.Show (ctx, photo.Description);
 			Print.Showpage (ctx);
 			image.Dispose ();
 		}
 
+		int response = dialog.Run ();
+
+		Console.WriteLine ("response: " + response);
+
+		if (response == (int) PrintButtons.Cancel) {
+			dialog.Destroy ();
+		}
 		pj.Close ();
 
 		switch (response) {
@@ -703,9 +700,49 @@ public class MainWindow {
 
 		dialog.Destroy ();
 	}
+#else
+	unsafe void HandlePrintCommand (object sender, EventArgs e)
+	{
+		FSpot.PrintDialog dialog = new FSpot.PrintDialog (SelectedPhotos ());
+	}
+#endif	
+
+	
+	private Gtk.Window info_display_window;
+	public void HandleInfoDisplayDestroy (object sender, EventArgs args)
+	{
+		info_display_window = null;
+		info_display = null;
+	}
+	
+	void HandleViewFullExif (object sender, EventArgs args)
+	{
+		if (info_display_window != null) {
+			info_display_window.Present ();
+			return;
+		}
+
+		FSpot.InfoDisplay info = new FSpot.InfoDisplay ();
+		
+		Gtk.Window win = new Gtk.Window ("EXIF Data");
+		win.SetDefaultSize (400, 400);
+		Gtk.ScrolledWindow scroll = new ScrolledWindow ();
+		win.Add (scroll);
+		scroll.Add (info);
+
+		Photo [] photos = SelectedPhotos ();
+		if (photos.Length > 0) 
+			info.Photo = SelectedPhotos () [0];
+		
+		win.ShowAll ();
+		info_display = info;
+
+		win.Destroyed += HandleInfoDisplayDestroy;
+	}
+
 
 #if true
-	void HandleExportCommand (object sender, EventArgs e)
+	void HandleExportCommand (object sender, EventArgs args)
 	{
 		ExportCommand.Gallery cmd = new ExportCommand.Gallery ();
 
@@ -714,7 +751,7 @@ public class MainWindow {
 		}
 	}	
 #else
-	void HandleExportCommand (object sender, EventArgs e)
+	void HandleExportCommand (object sender, EventArgs args)
 	{
 		FotkiRemote fr = new FotkiRemote ();
 		//fr.Login ("mikey@gmail.com", "joey");
@@ -725,7 +762,7 @@ public class MainWindow {
 	}
 #endif
 
-	void HandleSendMailCommand (object sender, EventArgs e)
+	void HandleSendMailCommand (object sender, EventArgs args)
 	{
 		StringBuilder url = new StringBuilder ("mailto:?subject=my%20photos");
 
@@ -738,7 +775,7 @@ public class MainWindow {
 		Gnome.Url.Show (url.ToString ());
 	}
 
-	void HandleArrangeByTime (object sender, EventArgs e)
+	void HandleArrangeByTime (object sender, EventArgs args)
 	{
 		group_selector.Adaptor.GlassSet -= HandleAdaptorGlassSet;
 		FSpot.GroupAdaptor adaptor = new FSpot.TimeAdaptor (query);
@@ -747,7 +784,7 @@ public class MainWindow {
 		adaptor.GlassSet += HandleAdaptorGlassSet;
 	}
 
-	void HandleArrangeByDirectory (object sender, EventArgs e)
+	void HandleArrangeByDirectory (object sender, EventArgs args)
 	{
 		group_selector.Adaptor.GlassSet -= HandleAdaptorGlassSet;
 		FSpot.GroupAdaptor adaptor = new FSpot.DirectoryAdaptor (query);		
