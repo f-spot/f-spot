@@ -6,7 +6,7 @@ namespace FSpot {
 		Hashtable items;
 		ArrayList items_mru;
 		int total_size;
-		int max_size = 256 * 256 * 4 * 20;
+		int max_size = 256 * 256 * 4 * 50;
 
 		Gtk.ThreadNotify notify;
 		bool  notify_pending;
@@ -90,10 +90,12 @@ namespace FSpot {
 		{
 			CacheEntry entry;
 			int i = items_mru.Count;
+			//int size = 0;
 			while (i-- > 0) {
 				entry = (CacheEntry) items_mru [i];
-				
 				lock (entry) {
+					//size += entry.Size;
+
 					if (entry.Reload) {
 						entry.Reload = false;
 						return entry;
@@ -129,7 +131,7 @@ namespace FSpot {
 								entry.Dispose ();
 							}			
 							if (num > 0) {
-								System.Console.WriteLine ("removing {0}  ({0} > {1})", num, total_size, max_size);
+								System.Console.WriteLine ("removing {0}  ({1} > {2})", num, total_size, max_size);
 								items_mru.RemoveRange (0, num);
 							}
 							Monitor.Wait (items);

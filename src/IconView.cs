@@ -452,8 +452,10 @@ public class IconView : Gtk.Layout {
 		
 		
 		FSpot.PixbufCache.CacheEntry entry = cache.Lookup (thumbnail_path);
-		if (entry == null);
+		if (entry == null)
 			cache.Request (thumbnail_path, thumbnail_num, ThumbnailWidth, ThumbnailHeight);
+		else
+			entry.Data = thumbnail_num;
 
 			
 		Gdk.GC gc = new Gdk.GC (BinWindow);
@@ -652,8 +654,8 @@ public class IconView : Gtk.Layout {
 		// Preload the cache with images aroud the expose area
 		// FIXME the preload need to be tuned to the Cache size but this is a resonable start
 		
-		int len = (end_cell_row - start_cell_row + 10) * cells_per_row;
-		int scell = System.Math.Max ((start_cell_row - 5) * cells_per_row, 0);
+		int len = (end_cell_row - start_cell_row + 20) * cells_per_row;
+		int scell = System.Math.Max ((start_cell_row - 10) * cells_per_row, 0);
 		int ecell = scell + len;
 		if (scell > collection.Items.Length - len) {
 		        ecell = collection.Items.Length;

@@ -1,5 +1,11 @@
 2005-02-19  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: bump the preload limit slightly.  Fix the
+	request case, update the data on lookup.
+
+	* src/PixbufCache.cs: bump the cache limit slightly. Fix the debug
+	output.
+	
 	* src/PixbufCache.cs: don't shrink the cache until we are done
 	with loading the queue, this gives us better responsiveness while
 	scrolling.
