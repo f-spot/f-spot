@@ -8,6 +8,9 @@
 // (C) 2004 Martin Willemoes Hansen
 // 
 
-public struct Defines {
-	public static string LOCALE_DIR = "@prefix@/share/locale";
+namespace FSpot {
+	public struct Defines {
+		public static string LOCALE_DIR = "@prefix@/share/locale";
+		public static string VERSION = "@VERSION@";
+	}			
 }

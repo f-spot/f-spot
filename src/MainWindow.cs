@@ -148,7 +148,7 @@ public class MainWindow {
 	{
 		this.db = db;
 
-		Mono.Posix.Catalog.Init ("f-spot", Defines.LOCALE_DIR);
+		Mono.Posix.Catalog.Init ("f-spot", FSpot.Defines.LOCALE_DIR);
 		Glade.XML gui = Glade.XML.FromAssembly ("f-spot.glade", "main_window", null);
 		gui.Autoconnect (this);
 
@@ -857,7 +857,7 @@ public class MainWindow {
                 // * E.g. "Martin Willemoes Hansen"
                 string translators = Mono.Posix.Catalog.GetString ("translator-credits");
 
-                new About ("F-Spot", "0.0.4", "Copyright 2003-2005 Novell Inc.",
+                new About ("F-Spot", FSpot.Defines.VERSION, "Copyright 2003-2005 Novell Inc.",
                            null, authors, null, translators, null).Show();
 	}
 
