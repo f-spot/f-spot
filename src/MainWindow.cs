@@ -143,7 +143,9 @@ public class MainWindow {
 		menu.TagSelected += HandleFindTagMenuSelected;
 		find_tag.Submenu = menu;
 
-		remove_tag.Submenu = new TagMenu (db.Tags);
+		PhotoTagMenu pmenu = new PhotoTagMenu ();
+		pmenu.TagSelected += HandleRemoveTagMenuSelected;
+		remove_tag.Submenu = pmenu;
 		
 		Gtk.Drag.DestSet (icon_view, DestDefaults.All, icon_dest_target_table, 
 				  DragAction.Copy | DragAction.Move); 
@@ -442,16 +444,17 @@ public class MainWindow {
 	//
 	void HandleTagMenuActivate (object sender, EventArgs args)
 	{
-		Console.WriteLine ("TagMenuActivate");
 
 		MenuItem parent = sender as MenuItem;
 		if (parent != null) {
-			TagMenu menu = parent.Submenu as TagMenu;
-			if (menu != null) {
-				Console.WriteLine ("Populate");
+			if (parent.Submenu is TagMenu) {
+				TagMenu menu = parent.Submenu as TagMenu;
 				menu.Populate ();
+			} else if (parent.Submenu is PhotoTagMenu) {
+				PhotoTagMenu menu = (PhotoTagMenu) parent.Submenu;
+				menu.Populate (SelectedPhotos ());
 			}
-
+		       
 		}
 	}
 
@@ -469,6 +472,17 @@ public class MainWindow {
 	void HandleFindTagMenuSelected (Tag t)
 	{
 		tag_selection_widget.TagSelection = new Tag [] {t};
+	}
+
+	void HandleRemoveTagMenuSelected (Tag t)
+	{
+		foreach (int num in icon_view.Selection) {
+			Photo photo = query.Photos [num];
+			photo.RemoveTag (t);
+			db.Photos.Commit (photo);
+			
+			InvalidateViews (num);
+		}
 	}
 
 	void HandleImportCommand (object sender, EventArgs e)
