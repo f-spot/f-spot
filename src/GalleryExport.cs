@@ -157,7 +157,7 @@ namespace FSpot {
 			this.photos = selection.Photos;
 
 			// FIXME this xml file path should be be retrieved from a central location not hard coded there
-			this.xml_path = System.IO.Path.Combine (FSpot.Global.BaseDirectory, ".gnome2/f-spot/Accounts.xml");
+			this.xml_path = System.IO.Path.Combine (FSpot.Global.BaseDirectory, "Accounts.xml");
 
 			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "gallery_export_dialog", null);
 			xml.Autoconnect (this);

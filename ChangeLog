@@ -1,5 +1,10 @@
 2005-01-13  Larry Ewing  <lewing@novell.com>
 
+	* src/TagStore.cs:
+	* src/MainWindow.cs:
+	* src/TagSelectionWidget.cs:  Integate Loz's patch
+	frohttp://bugzilla.gnome.org/show_bug.cgi?id=158490
+
 	* src/TagCommands.cs: add thumbnails for emblems.
 
 	* src/f-spot.glade: fix up the Icon editing display.
