@@ -1,5 +1,9 @@
 2004-08-18  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: check the source not the sender for dnd. Arg.
+
+	* src/CompatFileChooser.cs: destroy the chooser too.
+
 	* src/IconView.cs: change the selection drawing. This may not
 	actually be better but it is a start.  More selection drawing
 	changes.

@@ -421,7 +421,7 @@ public class MainWindow {
 			/* 
 			 * If the drop is coming from inside f-spot then we don't want to import 
 			 */
-			if (sender != null)
+			if (source != null)
 				return;
 
 			UriList list = new UriList (args.SelectionData);
