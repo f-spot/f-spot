@@ -136,7 +136,7 @@ namespace FSpot {
 				AreaUpdated (this, area);
 
 			damage = Gdk.Rectangle.Zero;
-			System.Console.WriteLine (area.ToString ());
+			//System.Console.WriteLine (area.ToString ());
 		}
 
 		private bool AsyncRead () 
