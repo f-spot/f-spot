@@ -1,7 +1,6 @@
 using System;
 
-namespace FSpot 
-{
+namespace FSpot {
 	public class PhotoLoader {
 		public PhotoQuery query;
 		static int THUMBNAIL_SIZE = 256;

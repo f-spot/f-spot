@@ -279,7 +279,6 @@ class PixbufUtils {
 		return buf.HasAlpha ? Cms.Format.Rgba8 : Cms.Format.Rgb8;
 	}
 
-
 	public static unsafe void ColorAdjust (Pixbuf src, Pixbuf dest, 
 					       double brightness, double contrast,
 					       double hue, double saturation, 
@@ -300,6 +299,15 @@ class PixbufUtils {
 							 PixbufCmsFormat (dest),
 							 Cms.Intent.Perceptual, 0x0100);
 
+		ColorAdjust (src, dest, trans);
+
+		trans.Dispose ();
+		srgb.Dispose ();
+		bchsw.Dispose ();
+	}
+
+	public static unsafe void ColorAdjust (Gdk.Pixbuf src, Gdk.Pixbuf dest, Cms.Transform trans)
+	{
 		int width = src.Width;
 		byte * srcpix  = (byte *) src.Pixels;
 		byte * destpix = (byte *) dest.Pixels;
@@ -310,9 +318,6 @@ class PixbufUtils {
 				     (uint)width);
 		}
 		
-		trans.Dispose ();
-		srgb.Dispose ();
-		bchsw.Dispose ();
 	}
 
 	public static PixbufOrientation GetOrientation (string path)

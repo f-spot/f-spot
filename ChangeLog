@@ -1,5 +1,13 @@
 2004-12-22  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufUtils.cs: add an overload where you can pass just the
+	transform.
+
+	* src/PhotoView.cs: namespace ColorDialog now that it has changed.
+
+	* src/ColorDialog.cs: use the image view here so that zooming and
+	scrolling work.
+
 	* configure.in: add a check for liblcms since we can't count on 
 	a .pc file yet.
 	
