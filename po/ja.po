@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: F-Spot HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-23 15:29+0900\n"
-"PO-Revision-Date: 2005-01-23 15:28+0900\n"
+"POT-Creation-Date: 2005-02-07 11:20+0900\n"
+"PO-Revision-Date: 2005-02-07 11:19+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -17,433 +17,433 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: libeog/eog-file-selection.c:29 libeog/eog-file-selection.c:46
+#: ../libeog/eog-file-selection.c:29 ../libeog/eog-file-selection.c:46
 msgid "By Extension"
 msgstr "拡張子順"
 
-#: libeog/eog-file-selection.c:30
+#: ../libeog/eog-file-selection.c:30
 msgid "BMP"
 msgstr "BMP"
 
-#: libeog/eog-file-selection.c:31
+#: ../libeog/eog-file-selection.c:31
 msgid "GIF"
 msgstr "GIF"
 
-#: libeog/eog-file-selection.c:32
+#: ../libeog/eog-file-selection.c:32
 msgid "ICO"
 msgstr "ICO"
 
-#: libeog/eog-file-selection.c:33 libeog/eog-file-selection.c:48
+#: ../libeog/eog-file-selection.c:33 ../libeog/eog-file-selection.c:48
 msgid "JPEG"
 msgstr "JPEG"
 
-#: libeog/eog-file-selection.c:34 libeog/eog-file-selection.c:51
+#: ../libeog/eog-file-selection.c:34 ../libeog/eog-file-selection.c:51
 msgid "PNG"
 msgstr "PNG"
 
-#: libeog/eog-file-selection.c:35
+#: ../libeog/eog-file-selection.c:35
 msgid "PNM"
 msgstr "PNM"
 
-#: libeog/eog-file-selection.c:36
+#: ../libeog/eog-file-selection.c:36
 msgid "RAS"
 msgstr "RAS"
 
-#: libeog/eog-file-selection.c:37
+#: ../libeog/eog-file-selection.c:37
 msgid "SVG"
 msgstr "SVG"
 
-#: libeog/eog-file-selection.c:38
+#: ../libeog/eog-file-selection.c:38
 msgid "TGA"
 msgstr "TGA"
 
-#: libeog/eog-file-selection.c:39
+#: ../libeog/eog-file-selection.c:39
 msgid "TIFF"
 msgstr "TIFF"
 
-#: libeog/eog-file-selection.c:40
+#: ../libeog/eog-file-selection.c:40
 msgid "XBM"
 msgstr "XBM"
 
-#: libeog/eog-file-selection.c:41 libeog/eog-file-selection.c:54
+#: ../libeog/eog-file-selection.c:41 ../libeog/eog-file-selection.c:54
 msgid "XPM"
 msgstr "XPM"
 
-#: libeog/eog-file-selection.c:207
+#: ../libeog/eog-file-selection.c:207
 msgid "Unsupported file format."
 msgstr "サポートしていないファイル形式です。"
 
-#: libeog/eog-file-selection.c:225
+#: ../libeog/eog-file-selection.c:225
 msgid "Determine File Type:"
 msgstr "ファイルの種類の決定:"
 
-#: libeog/eog-file-selection.c:268
+#: ../libeog/eog-file-selection.c:268
 msgid "Load Image"
 msgstr "画像の読み込み"
 
-#: libeog/eog-file-selection.c:274
+#: ../libeog/eog-file-selection.c:274
 msgid "Save Image"
 msgstr "画像の保存"
 
-#: libeog/eog-image.c:772
+#: ../libeog/eog-image.c:773
 msgid "No image loaded."
 msgstr "画像が読み込まれていません。"
 
-#: libeog/eog-image.c:779
+#: ../libeog/eog-image.c:780
 msgid "Can't save non local files."
 msgstr "ローカルにないファイルは保存できません。"
 
-#: libeog/eog-image.c:800
+#: ../libeog/eog-image.c:803
 msgid "Unsupported image type for saving."
 msgstr "保存をサポートしていない画像の種類です。"
 
-#: libeog/image-view.c:2081
+#: ../libeog/image-view.c:2082
 msgid "interpolation type"
 msgstr "補間の種類"
 
-#: libeog/image-view.c:2082
+#: ../libeog/image-view.c:2083
 msgid "the type of interpolation to use"
 msgstr "利用する補間の種類です"
 
-#: libeog/image-view.c:2088 libeog/image-view.c:2095
+#: ../libeog/image-view.c:2089 ../libeog/image-view.c:2096
 msgid "check type"
 msgstr "格子の種類"
 
-#: libeog/image-view.c:2089
+#: ../libeog/image-view.c:2090
 msgid "the type of chequering to use"
 msgstr "利用する格子の種類です"
 
-#: libeog/image-view.c:2096
+#: ../libeog/image-view.c:2097
 msgid "the size of chequers to use"
 msgstr "利用するチェッカーのサイズ"
 
-#: libeog/image-view.c:2102
+#: ../libeog/image-view.c:2103
 msgid "dither"
 msgstr "ディザ"
 
-#: libeog/image-view.c:2103
+#: ../libeog/image-view.c:2104
 msgid "dither type"
 msgstr "ディザの種類"
 
-#: libfspot/f-jpeg-utils.c:421
+#: ../libfspot/f-jpeg-utils.c:421
 msgid "File not found"
 msgstr "ファイルがみつかりません"
 
-#: libfspot/f-jpeg-utils.c:444
+#: ../libfspot/f-jpeg-utils.c:444
 #, c-format
 msgid "Unknown transform type %d"
 msgstr "不明な変換タイプ %d"
 
-#: libfspot/f-jpeg-utils.c:452
+#: ../libfspot/f-jpeg-utils.c:452
 msgid "Operation failed"
 msgstr "操作に失敗しました"
 
-#: src/CDExport.cs:69
+#: ../src/CDExport.cs:69
 #, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "写真 \"{0}\" を CD へ転送中"
 
-#: src/CDExport.cs:71 src/FlickrExport.cs:86 src/GalleryExport.cs:341
-#: src/ProgressDialog.cs:75 src/VfsExport.cs:89
+#: ../src/CDExport.cs:71 ../src/FlickrExport.cs:86 ../src/GalleryExport.cs:341
+#: ../src/ProgressDialog.cs:75 ../src/VfsExport.cs:89
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
-#: src/CDExport.cs:83 src/FlickrExport.cs:89 src/GalleryExport.cs:345
-#: src/OriginalExport.cs:135 src/VfsExport.cs:101
+#: ../src/CDExport.cs:83 ../src/FlickrExport.cs:89 ../src/GalleryExport.cs:345
+#: ../src/OriginalExport.cs:135 ../src/VfsExport.cs:101
 msgid "Done Sending Photos"
 msgstr "写真の送信が完了しました"
 
-#: src/CDExport.cs:85 src/OriginalExport.cs:137 src/VfsExport.cs:103
+#: ../src/CDExport.cs:85 ../src/OriginalExport.cs:137 ../src/VfsExport.cs:103
 msgid "Transfer Complete"
 msgstr "転送の完了"
 
-#: src/CDExport.cs:91 src/OriginalExport.cs:142 src/VfsExport.cs:108
+#: ../src/CDExport.cs:91 ../src/OriginalExport.cs:142 ../src/VfsExport.cs:108
 msgid "Error While Transferring"
 msgstr "転送する際にエラー"
 
-#: src/CDExport.cs:96 src/OriginalExport.cs:149 src/VfsExport.cs:115
+#: ../src/CDExport.cs:96 ../src/OriginalExport.cs:149 ../src/VfsExport.cs:115
 msgid "Error Transferring"
 msgstr "転送中にエラー"
 
-#: src/CDExport.cs:111 src/VfsExport.cs:129
+#: ../src/CDExport.cs:111 ../src/VfsExport.cs:129
 msgid "Error: Error while transfering, Aborting"
 msgstr "エラー: 転送する際にエラーが発生しました。中止します。"
 
-#: src/CDExport.cs:114 src/OriginalExport.cs:171 src/VfsExport.cs:132
+#: ../src/CDExport.cs:114 ../src/OriginalExport.cs:171 ../src/VfsExport.cs:132
 msgid "Error: File Already Exists, Aborting"
 msgstr "エラー: ファイルが既に存在します。中止します。"
 
-#: src/CDExport.cs:151 src/VfsExport.cs:173
+#: ../src/CDExport.cs:151 ../src/VfsExport.cs:173
 msgid "Transferring Pictures"
 msgstr "写真の転送中"
 
-#: src/FlickrExport.cs:46
+#: ../src/FlickrExport.cs:46
 msgid "Enter Password"
 msgstr "パスワードの入力"
 
-#: src/FlickrExport.cs:53
+#: ../src/FlickrExport.cs:53
 msgid "Enter Password for "
 msgstr "パスワードを入力して下さい:"
 
-#: src/FlickrExport.cs:83 src/GalleryExport.cs:337
+#: ../src/FlickrExport.cs:83 ../src/GalleryExport.cs:337
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "画像 \"{0}\" のアップロード中"
 
-#: src/FlickrExport.cs:91 src/GalleryExport.cs:347
+#: ../src/FlickrExport.cs:91 ../src/GalleryExport.cs:347
 msgid "Upload Complete"
 msgstr "アップロードが完了しました"
 
-#: src/FlickrExport.cs:96
+#: ../src/FlickrExport.cs:96
 msgid "Error Uploading To Flickr"
 msgstr "Flickr へアップロード中にエラー"
 
-#: src/FlickrExport.cs:120 src/GalleryExport.cs:312
+#: ../src/FlickrExport.cs:120 ../src/GalleryExport.cs:312
 msgid "Uploading Pictures"
 msgstr "画像のアップロード中"
 
-#: src/FlickrExport.cs:130
+#: ../src/FlickrExport.cs:130
 msgid "Unable to log on"
 msgstr "ログオンできません"
 
-#: src/f-spot.glade.h:1
+#: ../src/f-spot.glade.h:1
 msgid "<b></b>"
 msgstr "<b></b>"
 
-#: src/f-spot.glade.h:2
+#: ../src/f-spot.glade.h:2
 msgid "<b>Account</b>"
 msgstr "<b>アカウント</b>"
 
-#: src/f-spot.glade.h:3
+#: ../src/f-spot.glade.h:3
 msgid "<b>Album</b>"
 msgstr "<b>アルバム</b>"
 
-#: src/f-spot.glade.h:4
+#: ../src/f-spot.glade.h:4
 msgid "<b>Color Temperature</b>"
 msgstr "<b>色温度</b>"
 
-#: src/f-spot.glade.h:5
+#: ../src/f-spot.glade.h:5
 msgid "<b>Destination</b>"
 msgstr "<b>方向</b>"
 
-#: src/f-spot.glade.h:6
+#: ../src/f-spot.glade.h:6
 msgid "<b>End Date</b>"
 msgstr "<b>終了日時</b>"
 
-#: src/f-spot.glade.h:7
+#: ../src/f-spot.glade.h:7
 msgid "<b>Exposure</b>"
 msgstr "<b>露出量</b>"
 
-#: src/f-spot.glade.h:8
+#: ../src/f-spot.glade.h:8
 msgid "<b>From Image</b>"
 msgstr "<b>画像から</b>"
 
-#: src/f-spot.glade.h:9
+#: ../src/f-spot.glade.h:9
 msgid "<b>Gallery</b>"
 msgstr "<b>ギャラリー</b>"
 
-#: src/f-spot.glade.h:10
+#: ../src/f-spot.glade.h:10
 msgid "<b>Histogram</b>"
 msgstr "<b>ヒストグラム</b>"
 
-#: src/f-spot.glade.h:11
+#: ../src/f-spot.glade.h:11
 msgid "<b>Items to Burn</b>"
 msgstr "<b>書き込むアイテム</b>"
 
-#: src/f-spot.glade.h:12
+#: ../src/f-spot.glade.h:12
 msgid "<b>Photograph Layout</b>"
 msgstr "<b>写真のレイアウト</b>"
 
-#: src/f-spot.glade.h:13
+#: ../src/f-spot.glade.h:13
 msgid "<b>Photos</b>"
 msgstr "<b>写真</b>"
 
-#: src/f-spot.glade.h:14
+#: ../src/f-spot.glade.h:14
 msgid "<b>Predefined</b>"
 msgstr "<b>ストック・アイコン</b>"
 
-#: src/f-spot.glade.h:15
+#: ../src/f-spot.glade.h:15
 msgid "<b>Preview</b>"
 msgstr "<b>プレビュー</b>"
 
-#: src/f-spot.glade.h:16
+#: ../src/f-spot.glade.h:16
 msgid "<b>Printer Details</b>"
 msgstr "<b>プリンタの詳細</b>"
 
-#: src/f-spot.glade.h:17
+#: ../src/f-spot.glade.h:17
 msgid "<b>Start Date</b>"
 msgstr "<b>開始日時</b>"
 
-#: src/f-spot.glade.h:18
+#: ../src/f-spot.glade.h:18
 msgid "<b>Style</b>"
 msgstr "<b>スタイル</b>"
 
-#: src/f-spot.glade.h:19
+#: ../src/f-spot.glade.h:19
 msgid "<small> </small>"
 msgstr "<small> </small>"
 
-#: src/f-spot.glade.h:20
+#: ../src/f-spot.glade.h:20
 msgid "<small></small>"
 msgstr "<small></small>"
 
-#: src/f-spot.glade.h:21
+#: ../src/f-spot.glade.h:21
 msgid "Ad_just Color..."
 msgstr "色の調整(_J)..."
 
-#: src/f-spot.glade.h:22
+#: ../src/f-spot.glade.h:22
 msgid "Add Gallery"
 msgstr "ギャラリーの追加"
 
-#: src/f-spot.glade.h:23
+#: ../src/f-spot.glade.h:23
 msgid "Adjust Color"
 msgstr "色の調整"
 
-#: src/f-spot.glade.h:24
+#: ../src/f-spot.glade.h:24
 msgid "Album:"
 msgstr "アルバム:"
 
-#: src/f-spot.glade.h:25
+#: ../src/f-spot.glade.h:25
 msgid "Arranged _By"
 msgstr "次で整理する(_B)"
 
-#: src/f-spot.glade.h:26
+#: ../src/f-spot.glade.h:26
 msgid "Border:"
 msgstr "境界:"
 
-#: src/f-spot.glade.h:27
+#: ../src/f-spot.glade.h:27
 msgid "Brightness:"
 msgstr "輝度"
 
-#: src/f-spot.glade.h:28
+#: ../src/f-spot.glade.h:28
 msgid "Browse"
 msgstr "ブラウズ"
 
-#: src/f-spot.glade.h:29
+#: ../src/f-spot.glade.h:29
 msgid "Browse Previously Scheduled Files"
 msgstr "以前のスケジュール・ファイルを参照する"
 
-#: src/f-spot.glade.h:30
+#: ../src/f-spot.glade.h:30
 msgid "CD"
 msgstr "CD"
 
-#: src/f-spot.glade.h:31
+#: ../src/f-spot.glade.h:31
 msgid "Caption:"
 msgstr "キャプション:"
 
-#: src/f-spot.glade.h:32
+#: ../src/f-spot.glade.h:32
 msgid "Category:"
 msgstr "カテゴリ:"
 
-#: src/f-spot.glade.h:33
+#: ../src/f-spot.glade.h:33
 msgid "Co_nfigure"
 msgstr "設定(_N)"
 
-#: src/f-spot.glade.h:34
+#: ../src/f-spot.glade.h:34
 msgid "Contrast:"
 msgstr "コントラスト:"
 
-#: src/f-spot.glade.h:35
+#: ../src/f-spot.glade.h:35
 msgid "Create New _Category..."
 msgstr "新しいカテゴリの作成(_C)..."
 
-#: src/f-spot.glade.h:36
+#: ../src/f-spot.glade.h:36
 msgid "Create New _Tag..."
 msgstr "新しいタグの作成(_T)..."
 
-#: src/f-spot.glade.h:37
+#: ../src/f-spot.glade.h:37
 msgid "Create _new version..."
 msgstr "新しいバージョンの作成(_N)..."
 
-#: src/f-spot.glade.h:38
+#: ../src/f-spot.glade.h:38
 msgid "Crop Photo to Fit"
 msgstr "写真を切り取ってフィットさせる"
 
-#: src/f-spot.glade.h:39
+#: ../src/f-spot.glade.h:39
 msgid "Destination Temp"
 msgstr "一時的な出力先"
 
-#: src/f-spot.glade.h:40
+#: ../src/f-spot.glade.h:40
 msgid "Display T_ags"
 msgstr "タグを表示する(_A)"
 
-#: src/f-spot.glade.h:41
+#: ../src/f-spot.glade.h:41
 msgid "Display _Dates"
 msgstr "日時を表示する(_D)"
 
-#: src/f-spot.glade.h:42
+#: ../src/f-spot.glade.h:42
 msgid "Display _Timeline"
 msgstr "タイムラインを表示する(_T)"
 
-#: src/f-spot.glade.h:43
+#: ../src/f-spot.glade.h:43
 msgid "E-Mail:"
 msgstr "E-メール:"
 
-#: src/f-spot.glade.h:44
+#: ../src/f-spot.glade.h:44
 msgid "E_xport To CD..."
 msgstr "CD へエキスポート(_X)..."
 
-#: src/f-spot.glade.h:45
+#: ../src/f-spot.glade.h:45
 msgid "Edit Tag Icon"
 msgstr "タグ・アイコンの編集"
 
-#: src/f-spot.glade.h:46
+#: ../src/f-spot.glade.h:46
 msgid "Export"
 msgstr "エキスポート"
 
-#: src/f-spot.glade.h:47
+#: ../src/f-spot.glade.h:47
 msgid "Export Tags and Categories"
 msgstr "タグとカテゴリのエキスポート"
 
-#: src/f-spot.glade.h:48
+#: ../src/f-spot.glade.h:48
 msgid "Export To _Flickr..."
 msgstr "Flickr へエキスポート(_F)..."
 
-#: src/f-spot.glade.h:49
+#: ../src/f-spot.glade.h:49
 msgid "Export titles and comments"
 msgstr "タイトルとコメントのエキスポート"
 
-#: src/f-spot.glade.h:50
+#: ../src/f-spot.glade.h:50
 msgid "Export to Album:"
 msgstr "アルバムへエキスポート:"
 
-#: src/f-spot.glade.h:51
+#: ../src/f-spot.glade.h:51
 msgid "Export to Original"
 msgstr "オリジナルへエキスポート"
 
-#: src/f-spot.glade.h:52
+#: ../src/f-spot.glade.h:52
 msgid "Export to _Original..."
 msgstr "オリジナルへエキスポート(_O)..."
 
-#: src/f-spot.glade.h:53
+#: ../src/f-spot.glade.h:53
 msgid "Export to _VFS..."
 msgstr "VFS へエキスポート(_V)..."
 
-#: src/f-spot.glade.h:54
+#: ../src/f-spot.glade.h:54
 msgid "Export to _Web Gallery..."
 msgstr "ウェブ・ギャラリーへエキスポート(_W)..."
 
-#: src/f-spot.glade.h:55
+#: ../src/f-spot.glade.h:55
 msgid "F-Spot"
 msgstr "F-Spot"
 
-#: src/f-spot.glade.h:56
+#: ../src/f-spot.glade.h:56
 msgid "File"
 msgstr "ファイル"
 
-#: src/f-spot.glade.h:57
+#: ../src/f-spot.glade.h:57
 msgid "Fin_d"
 msgstr "検索(_D)"
 
-#: src/f-spot.glade.h:58
+#: ../src/f-spot.glade.h:58
 msgid "Find by _Tag"
 msgstr "タグで検索(_T)"
 
-#: src/f-spot.glade.h:59
+#: ../src/f-spot.glade.h:59
 msgid "Flikr"
 msgstr "Flikr"
 
-#: src/f-spot.glade.h:60
+#: ../src/f-spot.glade.h:60
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
@@ -451,23 +451,23 @@ msgstr ""
 "フルページ\n"
 "標準 - 4x6"
 
-#: src/f-spot.glade.h:62
+#: ../src/f-spot.glade.h:62
 msgid "Gallery"
 msgstr "ギャラリー"
 
-#: src/f-spot.glade.h:63
+#: ../src/f-spot.glade.h:63
 msgid "Gallery Name:"
 msgstr "ギャラリー名:"
 
-#: src/f-spot.glade.h:64
+#: ../src/f-spot.glade.h:64
 msgid "Gallery Settings"
 msgstr "ギャラリーの設定"
 
-#: src/f-spot.glade.h:65
+#: ../src/f-spot.glade.h:65
 msgid "Gallery:"
 msgstr "ギャラリー:"
 
-#: src/f-spot.glade.h:66
+#: ../src/f-spot.glade.h:66
 msgid ""
 "Hairline\n"
 "0.25\"\n"
@@ -479,19 +479,19 @@ msgstr ""
 "0.5\"\n"
 "1\"\n"
 
-#: src/f-spot.glade.h:71
+#: ../src/f-spot.glade.h:71
 msgid "Hue:"
 msgstr "色調:"
 
-#: src/f-spot.glade.h:72
+#: ../src/f-spot.glade.h:72
 msgid "Icon:"
 msgstr "アイコン:"
 
-#: src/f-spot.glade.h:73
+#: ../src/f-spot.glade.h:73
 msgid "Next"
 msgstr "次へ"
 
-#: src/f-spot.glade.h:74
+#: ../src/f-spot.glade.h:74
 msgid ""
 "None\n"
 "Title\n"
@@ -505,79 +505,79 @@ msgstr ""
 "日時\n"
 "詳細"
 
-#: src/f-spot.glade.h:79
+#: ../src/f-spot.glade.h:79
 msgid "Number of Copies:"
 msgstr "コピーの数:"
 
-#: src/f-spot.glade.h:80
+#: ../src/f-spot.glade.h:80
 msgid "Open album in browser when done uploading"
 msgstr "アップロードが完了したらブラウザでアルバムを開く"
 
-#: src/f-spot.glade.h:81
+#: ../src/f-spot.glade.h:81
 msgid "Open destination when done exporting."
 msgstr "エキスポートが完了したら転送先を開く"
 
-#: src/f-spot.glade.h:82
+#: ../src/f-spot.glade.h:82
 msgid "Page 1 of 3"
 msgstr "1 / 3 ページ"
 
-#: src/f-spot.glade.h:83
+#: ../src/f-spot.glade.h:83
 msgid "Password:"
 msgstr "パスワード:"
 
-#: src/f-spot.glade.h:84
+#: ../src/f-spot.glade.h:84
 msgid "Pause"
 msgstr "一時停止"
 
-#: src/f-spot.glade.h:85
+#: ../src/f-spot.glade.h:85
 msgid "Photo 0 of 0"
 msgstr "写真 0 / 0"
 
-#: src/f-spot.glade.h:86
+#: ../src/f-spot.glade.h:86
 msgid "Photo Source:"
 msgstr "写真のソース:"
 
-#: src/f-spot.glade.h:87
+#: ../src/f-spot.glade.h:87
 msgid "PhotoSize:"
 msgstr "写真のサイズ:"
 
-#: src/f-spot.glade.h:88
+#: ../src/f-spot.glade.h:88
 msgid "Previous"
 msgstr "前へ"
 
-#: src/f-spot.glade.h:89
+#: ../src/f-spot.glade.h:89
 msgid "Print Crop Marks"
 msgstr "切り込みマークを表示する"
 
-#: src/f-spot.glade.h:90
+#: ../src/f-spot.glade.h:90
 msgid "Rem_ove Tag"
 msgstr "タグの削除(_O)"
 
-#: src/f-spot.glade.h:91
+#: ../src/f-spot.glade.h:91
 msgid "Rotate _Left"
 msgstr "左へ回転(_L)"
 
-#: src/f-spot.glade.h:92
+#: ../src/f-spot.glade.h:92
 msgid "Rotate _Right"
 msgstr "右へ回転(_R)"
 
-#: src/f-spot.glade.h:93
+#: ../src/f-spot.glade.h:93
 msgid "Saturation:"
 msgstr "サチュレーション:"
 
-#: src/f-spot.glade.h:94
+#: ../src/f-spot.glade.h:94
 msgid "Scale images to no larger than: "
 msgstr "画像拡大の最大比率: "
 
-#: src/f-spot.glade.h:95
+#: ../src/f-spot.glade.h:95
 msgid "Select _All"
 msgstr "全て選択"
 
-#: src/f-spot.glade.h:96
+#: ../src/f-spot.glade.h:96
 msgid "Select _None"
 msgstr "選択の解除(_N)"
 
-#: src/f-spot.glade.h:97
+#: ../src/f-spot.glade.h:97
 msgid ""
 "Selection\n"
 "Gallery\n"
@@ -587,317 +587,352 @@ msgstr ""
 "ギャラリー\n"
 "ビューポート"
 
-#: src/f-spot.glade.h:100
+#: ../src/f-spot.glade.h:100
 msgid "Send _Mail..."
 msgstr "メールの送信(_M)..."
 
-#: src/f-spot.glade.h:101
+#: ../src/f-spot.glade.h:101
 msgid "Set _Date Range..."
 msgstr "表示期間の設定(_D)..."
 
-#: src/f-spot.glade.h:102
+#: ../src/f-spot.glade.h:102
 msgid "Set as _Background"
 msgstr "壁紙にセット(_B)"
 
-#: src/f-spot.glade.h:103
+#: ../src/f-spot.glade.h:103
 msgid "Source Temp"
 msgstr "一時ソース"
 
-#: src/f-spot.glade.h:104
+#: ../src/f-spot.glade.h:104
 msgid "Strip Image Metadata"
 msgstr "画像のメタデータを取り除く"
 
-#: src/f-spot.glade.h:105
+#: ../src/f-spot.glade.h:105
 msgid "Strip Metadata"
 msgstr "メタデータを取り除く"
 
-#: src/f-spot.glade.h:106 src/TagCommands.cs:310
+#: ../src/f-spot.glade.h:106 ../src/TagCommands.cs:310
 msgid "Tag name:"
 msgstr "タグ名:"
 
-#: src/f-spot.glade.h:107
+#: ../src/f-spot.glade.h:107
 msgid "Uri:"
 msgstr "URI:"
 
-#: src/f-spot.glade.h:108
+#: ../src/f-spot.glade.h:108
 msgid "Url:"
 msgstr "URL:"
 
-#: src/f-spot.glade.h:109
+#: ../src/f-spot.glade.h:109
 msgid "User_name:"
 msgstr "ユーザ名(_N):"
 
-#: src/f-spot.glade.h:110
+#: ../src/f-spot.glade.h:110
 msgid "Username:"
 msgstr "ユーザ名:"
 
-#: src/f-spot.glade.h:111
+#: ../src/f-spot.glade.h:111
 msgid "View"
 msgstr "ビュー"
 
-#: src/f-spot.glade.h:112
+#: ../src/f-spot.glade.h:112
 msgid "View photos in browser when done uploading"
 msgstr "アップロードが完了したらブラウザで写真を表示する"
 
-#: src/f-spot.glade.h:113
+#: ../src/f-spot.glade.h:113
 msgid "Virtual Filesystem"
 msgstr "仮想ファイルシステム"
 
-#: src/f-spot.glade.h:114
+#: ../src/f-spot.glade.h:114
 msgid "Will print Using: Us Letter size on Generic Postscript"
 msgstr "印刷設定: 汎用的な Postscript に US レターサイズを使用"
 
-#: src/f-spot.glade.h:115
+#: ../src/f-spot.glade.h:115
 msgid "Write only these Items to CD"
 msgstr "このアイテムのみ CD へ書き込む"
 
-#: src/f-spot.glade.h:116
+#: ../src/f-spot.glade.h:116
 msgid "Zoom _In"
 msgstr "拡大(_I)"
 
-#: src/f-spot.glade.h:117
+#: ../src/f-spot.glade.h:117
 msgid "Zoom _Out"
 msgstr "縮小(_O)"
 
-#: src/f-spot.glade.h:118
+#: ../src/f-spot.glade.h:118
 msgid "_Attach Tag"
 msgstr "タグの付与(_A)"
 
-#: src/f-spot.glade.h:119
+#: ../src/f-spot.glade.h:119
 msgid "_Attach Tag To Selection"
 msgstr "タグの付与 (選択したもの)(_A)"
 
-#: src/f-spot.glade.h:120
+#: ../src/f-spot.glade.h:120
 msgid "_Clear Date Range"
 msgstr "日時の期間のクリア(_C)"
 
-#: src/f-spot.glade.h:121
+#: ../src/f-spot.glade.h:121
 msgid "_Close"
 msgstr "閉じる(_C)"
 
-#: src/f-spot.glade.h:122
+#: ../src/f-spot.glade.h:122
 msgid "_Delete Selected Tag"
 msgstr "選択したタグの削除(_D)"
 
-#: src/f-spot.glade.h:123
+#: ../src/f-spot.glade.h:123
 msgid "_Delete Version"
 msgstr "バージョンの削除(_D)"
 
-#: src/f-spot.glade.h:124
+#: ../src/f-spot.glade.h:124
 msgid "_Delete from Drive"
 msgstr "ドライブから削除(_D)"
 
-#: src/f-spot.glade.h:125
+#: ../src/f-spot.glade.h:125
 msgid "_Directory"
 msgstr "フォルダ(_D)"
 
-#: src/f-spot.glade.h:126
+#: ../src/f-spot.glade.h:126
 msgid "_EXIF Data"
 msgstr "EXIF データ(_E)"
 
-#: src/f-spot.glade.h:127
+#: ../src/f-spot.glade.h:127
 msgid "_Edit Selected Tag..."
 msgstr "選択したタグの編集(_E)..."
 
-#: src/f-spot.glade.h:128
+#: ../src/f-spot.glade.h:128
 msgid "_Export"
 msgstr "エキスポート(_E)"
 
-#: src/f-spot.glade.h:129
+#: ../src/f-spot.glade.h:129
 msgid "_Fullscreen"
 msgstr "フルスクリーン表示(_F)"
 
-#: src/f-spot.glade.h:130
+#: ../src/f-spot.glade.h:130
 msgid "_Gallery Name:"
 msgstr "ギャラリー名(_G):"
 
-#: src/f-spot.glade.h:131
+#: ../src/f-spot.glade.h:131
 msgid "_Import..."
 msgstr "インポート(_I)..."
 
-#: src/f-spot.glade.h:132
+#: ../src/f-spot.glade.h:132
 msgid "_Large"
 msgstr "大(_L)"
 
-#: src/f-spot.glade.h:133
+#: ../src/f-spot.glade.h:133
 msgid "_Medium"
 msgstr "中(_M)"
 
-#: src/f-spot.glade.h:134
+#: ../src/f-spot.glade.h:134
 msgid "_Month"
 msgstr "月順(_M)"
 
-#: src/f-spot.glade.h:135
+#: ../src/f-spot.glade.h:135
 msgid "_Password:"
 msgstr "パスワード(_P):"
 
-#: src/f-spot.glade.h:136
+#: ../src/f-spot.glade.h:136
 msgid "_Print..."
 msgstr "印刷(_P)..."
 
-#: src/f-spot.glade.h:137
+#: ../src/f-spot.glade.h:137
 msgid "_Remove From Catalog"
 msgstr "カタログから削除(_R)"
 
-#: src/f-spot.glade.h:138
+#: ../src/f-spot.glade.h:138
 msgid "_Remove Tag From Selection"
 msgstr "選択したものからタグの削除(_R)"
 
-#: src/f-spot.glade.h:139
+#: ../src/f-spot.glade.h:139
 msgid "_Rename Version"
 msgstr "バージョン名の変更(_R)"
 
-#: src/f-spot.glade.h:140
+#: ../src/f-spot.glade.h:140
 msgid "_Sharpen..."
 msgstr "シャープ化(_S)..."
 
-#: src/f-spot.glade.h:141
+#: ../src/f-spot.glade.h:141
 msgid "_Size"
 msgstr "サイズ(_S)"
 
-#: src/f-spot.glade.h:142
+#: ../src/f-spot.glade.h:142
 msgid "_Slideshow"
 msgstr "スライドショー(_S)"
 
-#: src/f-spot.glade.h:143
+#: ../src/f-spot.glade.h:143
 msgid "_Small"
 msgstr "小(_S)"
 
-#: src/f-spot.glade.h:144
+#: ../src/f-spot.glade.h:144
 msgid "_Tags"
 msgstr "タグ(_T)"
 
-#: src/f-spot.glade.h:145
+#: ../src/f-spot.glade.h:145
 msgid "_Update Thumbnail"
 msgstr "サムネイルの更新(_U)"
 
-#: src/f-spot.glade.h:146
+#: ../src/f-spot.glade.h:146
 msgid "_Url:"
 msgstr "URL(_U):"
 
-#: src/f-spot.glade.h:147
+#: ../src/f-spot.glade.h:147
 msgid "_Version"
 msgstr "バージョン(_V)"
 
-#: src/f-spot.glade.h:148
+#: ../src/f-spot.glade.h:148
 msgid "_View"
 msgstr "表示(_V)"
 
-#: src/f-spot.glade.h:149
+#: ../src/f-spot.glade.h:149
 msgid "dialog1"
 msgstr "dialog1"
 
-#: src/f-spot.glade.h:150
+#: ../src/f-spot.glade.h:150
 msgid "x"
 msgstr "x"
 
-#: src/GalleryExport.cs:351
+#: ../src/GalleryExport.cs:351
 msgid "Error Uploading To Gallery"
 msgstr "ギャラリーへアップロード中にエラー"
 
-#: src/GalleryExport.cs:383
+#: ../src/GalleryExport.cs:383
 msgid "(No Gallery)"
 msgstr "(ギャラリーなし)"
 
-#: src/GalleryExport.cs:427
+#: ../src/GalleryExport.cs:427
 msgid "(No Albums)"
 msgstr "(アルバムなし)"
 
-#: src/InfoBox.cs:70
+#: ../src/InfoBox.cs:70
 msgid "Name:"
 msgstr "名前:"
 
-#: src/InfoBox.cs:72
+#: ../src/InfoBox.cs:72
 msgid "Version:"
 msgstr "バージョン:"
 
-#: src/InfoBox.cs:74
+#: ../src/InfoBox.cs:74
 msgid "Date:"
 msgstr "日時:"
 
-#: src/InfoBox.cs:76
+#: ../src/InfoBox.cs:76
 msgid "Size:"
 msgstr "サイズ:"
 
-#: src/InfoBox.cs:78
+#: ../src/InfoBox.cs:78
 msgid "Exposure:"
 msgstr "露出量:"
 
-#: src/InfoBox.cs:153
+#: ../src/InfoBox.cs:153
 msgid "(None)"
 msgstr "(なし)"
 
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: src/MainWindow.cs:896
+#: ../src/MainWindow.cs:918
 msgid "translator-credits"
 msgstr ""
 "相花 毅 <aihana@gnome.gr.jp>\n"
 "Satoru SATOH <ss@gnome.gr.jp>\n"
 "日本GNOMEユーザー会 <http://www.gnome.gr.jp>"
 
-#: src/MainWindow.cs:1026
+#: ../src/MainWindow.cs:1048
 msgid "Unsharp Mask"
 msgstr "アンシャープ・マスク"
 
-#: src/MainWindow.cs:1035
+#: ../src/MainWindow.cs:1057
 msgid "Amount:"
 msgstr "量:"
 
-#: src/MainWindow.cs:1036
+#: ../src/MainWindow.cs:1058
 msgid "Radius:"
 msgstr "半径:"
 
-#: src/MainWindow.cs:1037
+#: ../src/MainWindow.cs:1059
 msgid "Threshold:"
 msgstr "しきい値:"
 
-#: src/MainWindow.cs:1289
+#: ../src/MainWindow.cs:1333
 #, csharp-format
-msgid "Delete the selected photo permanently"
-msgid_plural "Delete the {0} selected photos permanently"
-msgstr[0] "選択した写真を完全に削除します"
-msgstr[1] "選択した {0} 個の写真を完全に削除します"
+msgid "Delete the selected photo permanently?"
+msgid_plural "Delete the {0} selected photos permanently?"
+msgstr[0] "選択した写真を完全に削除しますか？"
+msgstr[1] "選択した {0} 個の写真を完全に削除しますか？"
 
-#: src/MainWindow.cs:1310
+#: ../src/MainWindow.cs:1337
+msgid "This deletes all versions of the selected photo from your drive."
+msgid_plural ""
+"This deletes all versions of the selected photos from your drive."
+msgstr[0] ""
+"これによりお使いのドライブから選択した写真の全てのバージョンを削除します。"
+msgstr[1] ""
+"これによりお使いのドライブから選択した写真の全てのバージョンを削除します。"
+
+#: ../src/MainWindow.cs:1340
+msgid "_Delete photo"
+msgid_plural "_Delete photos"
+msgstr[0] "写真を削除する(_D)"
+
+#: ../src/MainWindow.cs:1358
 #, csharp-format
-msgid "Remove the selected photo from the catalog"
-msgid_plural "Remove the {0} selected photos from the catalog"
-msgstr[0] "選択した写真をカタログから削除します"
-msgstr[1] "選択した {0} 個の写真をカタログから削除します"
+msgid "Remove the selected photo from the catalog?"
+msgid_plural "Remove the {0} selected photos from the catalog?"
+msgstr[0] "選択した写真をカタログから削除しますか？"
+msgstr[1] "選択した {0} 個の写真をカタログから削除しますか？"
 
-#: src/MainWindow.cs:1337
+#: ../src/MainWindow.cs:1363
+msgid ""
+"If you remove photos from the catalog all tag information will be lost. The "
+"photos remain on your computer and can be imported into f-spot again."
+msgstr ""
+"カタログから写真を削除すると、全てのタグ情報が失われます。お使いのコンピュー"
+"タ上に残っている写真を再度 f-spot にインポートすることは可能です。"
+
+#: ../src/MainWindow.cs:1364
+msgid "_Remove from Catalog"
+msgstr "カタログから削除する(_R)"
+
+#: ../src/MainWindow.cs:1387
 #, csharp-format
-msgid "Delete the selected tag"
-msgid_plural "Delete the {0} selected tags"
-msgstr[0] "選択したタグの削除"
-msgstr[1] "選択した {0} 個のタグの削除"
+msgid "Delete the selected tag?"
+msgid_plural "Delete the {0} selected tags?"
+msgstr[0] "選択したタグを削除しますか？"
+msgstr[1] "選択した {0} 個のタグを削除しますか？"
 
-#: src/OriginalExport.cs:168
+#: ../src/MainWindow.cs:1392
+msgid "If you delete a tag, all associations with photos are lost."
+msgstr "タグを削除すると、写真に関連する全ての情報が失われます。"
+
+#: ../src/MainWindow.cs:1393
+msgid "_Delete tag"
+msgid_plural "_Delete tags"
+msgstr[0] "タグを削除する(_D)"
+
+#: ../src/OriginalExport.cs:168
 msgid "Error: Error while transferring, Aborting"
 msgstr "エラー: 転送する際にエラーが発生しました。中止します。"
 
-#: src/OriginalExport.cs:209
+#: ../src/OriginalExport.cs:209
 msgid "Transfering Pictures"
 msgstr "写真の転送中"
 
-#: src/PhotoPopup.cs:26
+#: ../src/PhotoPopup.cs:26
 msgid "Copy Image Location"
-msgstr "画像の格納場所のコピー"
+msgstr "この画像のパス名をコピーする"
 
-#: src/PhotoPopup.cs:38
+#: ../src/PhotoPopup.cs:38
 msgid "Remove From Catalog"
 msgstr "カタログから削除"
 
-#: src/PhotoPopup.cs:40
+#: ../src/PhotoPopup.cs:40
 msgid "Delete From Drive"
 msgstr "ドライブから削除"
 
 #.
 #. FIXME TagMenu is ugly.
 #.
-#: src/PhotoPopup.cs:48
+#: ../src/PhotoPopup.cs:48
 msgid "Attach Tag"
 msgstr "タグの付与"
 
@@ -905,26 +940,26 @@ msgstr "タグの付与"
 #. FIXME finish the IPhotoSelection stuff and move the activate handler into the class
 #. this current method is way too complicated.
 #.
-#: src/PhotoPopup.cs:58
+#: ../src/PhotoPopup.cs:58
 msgid "Remove Tag"
 msgstr "タグの削除"
 
 #. Fixme this should really set parent menu
 #. items insensitve
-#: src/PhotoTagMenu.cs:72
+#: ../src/PhotoTagMenu.cs:72
 msgid "(No Tags)"
 msgstr "(タグなし)"
 
-#: src/RotateCommand.cs:24
+#: ../src/RotateCommand.cs:24
 msgid "Rotating pictures"
 msgstr "画像を回転中"
 
-#: src/RotateCommand.cs:33
+#: ../src/RotateCommand.cs:33
 #, csharp-format
 msgid "Rotating picture \"{0}\""
 msgstr "画像 \"{0}\" の回転中"
 
-#: src/RotateCommand.cs:71
+#: ../src/RotateCommand.cs:71
 msgid ""
 "Some images could not be rotated because they are on a read only file system "
 "or media such as a CDROM.  Please check the permissions and try again."
@@ -933,71 +968,71 @@ msgstr ""
 "ア上にあるため、回転させることができませんでした。権限を確認してやり直してみ"
 "て下さい。"
 
-#: src/TagCommands.cs:56
+#: ../src/TagCommands.cs:56
 msgid "(No categories)"
 msgstr "(カテゴリなし)"
 
-#: src/TagCommands.cs:102 src/TagCommands.cs:231
+#: ../src/TagCommands.cs:102 ../src/TagCommands.cs:231
 msgid "This name is already in use"
 msgstr "この名前は既に使われています"
 
-#: src/TagCommands.cs:123 src/TagPopup.cs:20
+#: ../src/TagCommands.cs:123 ../src/TagPopup.cs:20
 msgid "Create New Tag"
 msgstr "新しいタグの作成"
 
-#: src/TagCommands.cs:124
+#: ../src/TagCommands.cs:124
 msgid "Name of new tag:"
 msgstr "新しいタグの名前:"
 
-#: src/TagCommands.cs:127 src/TagPopup.cs:22
+#: ../src/TagCommands.cs:127 ../src/TagPopup.cs:22
 msgid "Create New Category"
 msgstr "新しいカテゴリの作成"
 
-#: src/TagCommands.cs:128
+#: ../src/TagCommands.cs:128
 msgid "Name of new category:"
 msgstr "新しいカテゴリ名:"
 
-#: src/TagCommands.cs:306
+#: ../src/TagCommands.cs:306
 msgid "Edit Category"
 msgstr "カテゴリの編集"
 
-#: src/TagCommands.cs:307
+#: ../src/TagCommands.cs:307
 msgid "Category name:"
 msgstr "カテゴリ名:"
 
-#: src/TagCommands.cs:309 src/TagPopup.cs:27
+#: ../src/TagCommands.cs:309 ../src/TagPopup.cs:27
 msgid "Edit Tag"
 msgstr "タグの編集"
 
-#: src/TagCommands.cs:413
+#: ../src/TagCommands.cs:413
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "写真 {0} / {1}"
 
-#: src/TagCommands.cs:443
+#: ../src/TagCommands.cs:443
 #, csharp-format
 msgid "Edit icon For category {0}"
 msgstr "カテゴリ {0} のアイコンの編集"
 
-#: src/TagCommands.cs:445
+#: ../src/TagCommands.cs:445
 #, csharp-format
 msgid "Edit icon for tag {0}"
 msgstr "タグ {0} のアイコンの編集"
 
-#: src/TagPopup.cs:30
+#: ../src/TagPopup.cs:30
 msgid "Delete Tag"
 msgstr "タグの削除"
 
-#: src/TagPopup.cs:35
+#: ../src/TagPopup.cs:35
 msgid "Attach Tag To Selection"
 msgstr "選択したものへタグの付与"
 
-#: src/TagPopup.cs:38
+#: ../src/TagPopup.cs:38
 msgid "Remove Tag From Selection"
 msgstr "選択したもののタグの削除"
 
 #. System.Console.WriteLine ("Xfering {0} to {1}", source.ToString (), target.ToString ());
-#: src/VfsExport.cs:87
+#: ../src/VfsExport.cs:87
 #, csharp-format
 msgid "Transferring picture \"{0}\""
 msgstr "写真 \"{0}\" の転送中"
