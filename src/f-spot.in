@@ -3,4 +3,11 @@
 LD_LIBRARY_PATH="@prefix@/lib/f-spot:$LD_LIBRARY_PATH"
 export LD_LIBRARY_PATH
 
-mono --debug @prefix@/lib/f-spot/f-spot.exe "$@"
+if [ -e ./f-spot.exe ] && [ -e ./makefile.am ] && [ -e ./PhotoStore.cs ]; then
+    echo "*** Running uninstalled f-spot ***"
+    EXE_TO_RUN="./f-spot.exe"
+else
+    EXE_TO_RUN="@prefix@/lib/f-spot/f-spot.exe"
+fi
+
+mono --debug $EXE_TO_RUN "$@"
