@@ -994,6 +994,11 @@ public class PhotoStore : DbStore {
 								     DbUtils.UnixTimeFromDateTime (range.end)));
 			}
 
+			if (hide) {
+				query_builder.Append (String.Format ("AND photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})", 
+								     tag_store.Hidden.Id));
+			}
+
 			if (tags != null && tags.Length > 0) {
 				query_builder.Append ("AND photo_tags.tag_id IN (");
 				bool first = true;
@@ -1007,7 +1012,7 @@ public class PhotoStore : DbStore {
 				}
 				query_builder.Append (")");
 			}
-
+			
 			query_builder.Append (" GROUP BY photos.id ORDER BY photos.time");
 			query = query_builder.ToString ();
 		}
@@ -1036,10 +1041,9 @@ public class PhotoStore : DbStore {
 				photo.DefaultVersionId = Convert.ToUInt32 (reader[5]);		 
 				
 				version_list.Add (photo);
-			} else {
-				if (!hide || !photo.HasTag (tag_store.Hidden))
-					id_list.Add (photo);
 			}
+
+			id_list.Add (photo);
 		}
 		Console.WriteLine ("Main End {0}", System.DateTime.Now);
 
@@ -1053,22 +1057,19 @@ public class PhotoStore : DbStore {
 		if (need_load) {
 			GetAllTags ();
 			GetAllVersions ();
+			foreach (Photo photo in version_list) {
+				photo.Loaded = true;
+			}
 		} else {
 			Console.WriteLine ("Skipped Loading Data");
 		}
 
-		foreach (Photo photo in version_list) {
-			photo.Loaded = true;
-			if (!hide || !photo.HasTag (tag_store.Hidden))
-				id_list.Add (photo);
-		}
 
 		Console.WriteLine ("End {0}", System.DateTime.Now);
 
 		command.Dispose ();
 
-		Photo [] photos = id_list.ToArray (typeof (Photo)) as Photo [];
-		return photos;
+		return id_list.ToArray (typeof (Photo)) as Photo [];
 	}
 
 #if TEST_PHOTO_STORE
