@@ -1,7 +1,12 @@
 2004-10-06  Larry Ewing  <lewing@novell.com>
 
-	* src/ColorDialog.cs: turn off alpha for now.
+	* src/ColorDialog.cs: hook up spinbutton adjustments and set the
+	values.
+
+	* src/f-spot.glade: add spinbuttons.
 	
+	* src/ColorDialog.cs: turn off alpha for now.
+
 	* src/f-spot.glade: make the dialog a little prettier.
 	
 	* src/makefile.am: add Histogram.cs

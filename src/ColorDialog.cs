@@ -23,6 +23,12 @@ public class ColorDialog {
 	[Glade.Widget] private HScale hue_scale;
 	[Glade.Widget] private HScale sat_scale;
 
+	[Glade.Widget] private SpinButton brightness_spinbutton;
+	[Glade.Widget] private SpinButton contrast_spinbutton;
+	[Glade.Widget] private SpinButton hue_spinbutton;
+	[Glade.Widget] private SpinButton sat_spinbutton;
+
+
 	[Glade.Widget] private Gtk.Image color_image;
 	[Glade.Widget] private Gtk.Image histogram_image;
 
@@ -166,6 +172,20 @@ public class ColorDialog {
 		sat_scale.ValueChanged += RangeChanged;
 		source_spinbutton.ValueChanged += RangeChanged;
 		dest_spinbutton.ValueChanged += RangeChanged;
+
+		brightness_spinbutton.Adjustment = brightness_scale.Adjustment;
+		contrast_spinbutton.Adjustment = contrast_scale.Adjustment;
+		hue_spinbutton.Adjustment = hue_scale.Adjustment;
+		sat_spinbutton.Adjustment = sat_scale.Adjustment;
+
+		brightness_spinbutton.Adjustment.Change ();
+		contrast_spinbutton.Adjustment.Change ();
+		hue_spinbutton.Adjustment.Change ();
+		sat_spinbutton.Adjustment.Change ();
+		brightness_spinbutton.Adjustment.ChangeValue ();
+		contrast_spinbutton.Adjustment.ChangeValue ();
+		hue_spinbutton.Adjustment.ChangeValue ();
+		sat_spinbutton.Adjustment.ChangeValue ();
 		
 		color_image.SizeAllocated += HandleSizeAllocate;
 		color_image.DestroyEvent += HandleDestroyEvent;
