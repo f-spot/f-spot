@@ -7,13 +7,13 @@ Requirements:
 
 	- gtk-sharp from Mono CVS, http://www.go-mono.com/anoncvs.html
 
-	- libexif 0.5.7 or later, http://libexif.sourceforge.net
+	- libexif 0.5.1 or later, http://libexif.sourceforge.net
 
 	- Sqlite 2.8.6 or later
 
-	- liblcms http://www.littlecms.com/
+	- liblcms 0.12 or later, http://www.littlecms.com/
 
-	- gphoto2 2.1.4 or later, http://www.gphoto.org
+	- libgphoto2 2.1.4 or later, http://www.gphoto.org
 
 To compile, just go through the normal autogen/configure stuff and
 then make install.
