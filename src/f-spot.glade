@@ -538,6 +538,15 @@
 		      </child>
 
 		      <child>
+			<widget class="GtkMenuItem" id="set_as_background">
+			  <property name="visible">True</property>
+			  <property name="label" translatable="yes">Set as Background</property>
+			  <property name="use_underline">True</property>
+			  <signal name="activate" handler="HandleSetAsBackgroundCommand" last_modification_time="Fri, 27 Feb 2004 14:31:41 GMT"/>
+			</widget>
+		      </child>
+
+		      <child>
 			<widget class="GtkMenuItem" id="separator11">
 			  <property name="visible">True</property>
 			</widget>

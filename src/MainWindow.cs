@@ -26,6 +26,8 @@ public class MainWindow {
 	[Widget] MenuItem create_version_menu_item, delete_version_menu_item, rename_version_menu_item;
 
 	[Widget] MenuItem delete_selected_tag;
+	[Widget] MenuItem edit_selected_tag;
+
 	[Widget] MenuItem attach_tag_to_selection;
 	[Widget] MenuItem remove_tag_from_selection;
 
@@ -34,6 +36,8 @@ public class MainWindow {
 	[Widget] MenuItem rotate_right;
 	[Widget] MenuItem update_thumbnail;
 	[Widget] MenuItem delete_from_catalog;
+
+	[Widget] MenuItem set_as_background;
 
 	PhotoVersionMenu versions_submenu;
 	
@@ -95,11 +99,16 @@ public class MainWindow {
 	//
 	// Commands
 	//
-	private Photo [] SelectedPhotos (int [] selected_ids) {
-		Photo [] photo_list = new Photo [icon_view.Selection.Length];
+	private Photo [] SelectedPhotos () {
+		return SelectedPhotos (icon_view.Selection);
+	}
+
+	private Photo [] SelectedPhotos (int [] selected_ids)
+	{
+		Photo [] photo_list = new Photo [selected_ids.Length];
 	
 		int i = 0;
-		foreach (int num in icon_view.Selection)
+		foreach (int num in selected_ids)
 			photo_list [i ++] = query.Photos [num];
 		
 		return photo_list;
@@ -365,7 +374,8 @@ public class MainWindow {
 		Gtk.Window win = new Gtk.Window ("this is a test");
 		win.SetSizeRequest (640, 480);
 		SlideView slideview = new SlideView (query.Photos);
-
+		//win.Fullscreen();
+		//win.Unfullscreen();
 		win.Add (slideview);
 		win.ShowAll ();
 		slideview.Play ();
@@ -426,8 +436,24 @@ public class MainWindow {
 	void HandleRotate270Command (object sender, EventArgs args)
 	{
 		RotateSelectedPictures (RotateCommand.Direction.Counterclockwise);
+
 	}
 
+	void HandleSetAsBackgroundCommand (object sender, EventArgs args)
+	{
+		Photo current = CurrentPhoto;
+		GConf.Client client = new GConf.Client ();
+		
+		if (current == null)
+			return;
+
+		client.Set ("/desktop/gnome/background/color_shading_type", "solid");
+		client.Set ("/desktop/gnome/background/primary_color", "#000000");
+		client.Set ("/desktop/gnome/background/picture_options", "scaled");
+		client.Set ("/desktop/gnome/background/picture_opacity", 100);
+		client.Set ("/desktop/gnome/background/picture_filename", current.DefaultVersionPath);
+		client.Set ("/desktop/gnome/background/draw_background", true);
+	}
 
 	// Version Id updates.
 
@@ -478,10 +504,12 @@ public class MainWindow {
 			create_version_menu_item.Sensitive = false;
 			delete_version_menu_item.Sensitive = false;
 			rename_version_menu_item.Sensitive = false;
+
+			set_as_background.Sensitive = true;
 		} else {
 			version_menu_item.Sensitive = true;
 			create_version_menu_item.Sensitive = true;
-
+			
 			if (CurrentPhoto.DefaultVersionId == Photo.OriginalVersionId) {
 				delete_version_menu_item.Sensitive = false;
 				rename_version_menu_item.Sensitive = false;
@@ -493,6 +521,8 @@ public class MainWindow {
 			versions_submenu = new PhotoVersionMenu (CurrentPhoto);
 			versions_submenu.VersionIdChanged += new PhotoVersionMenu.VersionIdChangedHandler (HandleVersionIdChanged);
 			version_menu_item.Submenu = versions_submenu;
+
+			set_as_background.Sensitive = true;
 		}
 
 		bool tag_sensitive = tag_selection_widget.Selection.CountSelectedRows () > 0;

@@ -1,3 +1,10 @@
+2004-02-27  Larry Ewing  <lewing@ximian.com>
+
+	* src/f-spot.glade: add menu item for set as background.
+	
+	* src/MainWindow.cs: add set as background handler and hook up the
+	menu item.
+
 2004-02-25  Larry Ewing  <lewing@ximian.com>
 
 	* src/SlideView.cs: Refactor the Forward back logic more, add
