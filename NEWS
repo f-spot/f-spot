@@ -1,15 +1,15 @@
 f-spot 0.0.7 - Feb 1 2005 - Happy 29th
 --------------------------------------
 - Exif Tags are now copied from the source image and updated when
-edits are made.
+  edits are made.
 - Group Selector now allows scrolling when there are too many items to
-fix on screen.
+  fix on screen.
 - Previews now show only for onscreen items.
 - Rewrote the libexif bindings to support exif saving.
 - Cleanup the lcms bindings.
 - Added confirmation dialogs on destructive operations (Loz).
-- Added HigMessageDialog to brin some of our dialogs into better
-compliance (thanks to Alex ans Loz).
+- Added HigMessageDialog to bring some of our dialogs into better
+  compliance (thanks to Alex and Loz).
 - Remember the last import directory (David Sedeño).
 - Added start of export to Jakub's original (Alessandro Gervaso).
 - Lots of other improvements and bug fixes.
