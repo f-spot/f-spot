@@ -1059,7 +1059,7 @@ public class MainWindow {
 					string version_path = photo.GetVersionPath (version);
 					
 					final.Savev (version_path, "jpeg", null, null);
-					PhotoStore.GenerateThumbnail (version_path);
+					FSpot.ThumbnailGenerator.Create (version_path).Dispose ();
 					photo.DefaultVersionId = version;
 					query.Commit (id);
 				} catch (GLib.GException ex) {

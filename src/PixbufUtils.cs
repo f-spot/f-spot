@@ -128,27 +128,6 @@ class PixbufUtils {
 
 		return pixbuf.ScaleSimple (scale_width, scale_height, Gdk.InterpType.Bilinear);
 	}
-
-	static public Gdk.Pixbuf GenerateThumbnail (string path)
-	{
-		Console.WriteLine ("Generating thumbnail");
-		string uri = UriList.PathToFileUri (path).ToString ();
-		
-		try {
-			Gdk.Pixbuf scaled = PixbufUtils.LoadAtMaxSize (path, 256, 256);
-			DateTime mtime = System.IO.File.GetLastWriteTime (path);
-			
-			PixbufUtils.SetOption (scaled, "tEXt::Thumb::URI", uri);
-			PixbufUtils.SetOption (scaled, "tEXt::Thumb::MTime", 
-					       ((uint)GLib.Marshaller.DateTimeTotime_t (mtime)).ToString ());
-			
-			PhotoStore.ThumbnailFactory.SaveThumbnail (scaled, uri, mtime);
-			ThumbnailCache.Default.AddThumbnail (path, scaled);
-			return scaled;
-		} catch {
-			return null;
-		}
-	}
 		
 	static public Pixbuf LoadAtMaxSize (string path, int max_width, int max_height)
 	{
@@ -203,12 +182,13 @@ class PixbufUtils {
 		IntPtr error = IntPtr.Zero;
 		IntPtr data;
 		uint length;
-		bool ret = gdk_pixbuf_save_to_bufferv (pixbuf.Handle, 
-						       out data, 
-						       out length, 
-						       type,
-						       null, null,
-						       out error);
+		gdk_pixbuf_save_to_bufferv (pixbuf.Handle, 
+					    out data, 
+					    out length, 
+					    type,
+					    null, null,
+					    out error);
+
 		if (error != IntPtr.Zero) 
 			throw new GLib.GException (error);
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-04 02:48+0100\n"
+"POT-Creation-Date: 2005-01-18 15:59-0600\n"
 "PO-Revision-Date: 2004-12-04 16:00+0800\n"
 "Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
@@ -95,31 +95,31 @@ msgstr ""
 msgid "Unsupported image type for saving."
 msgstr ""
 
-#: libeog/image-view.c:2058
+#: libeog/image-view.c:2081
 msgid "interpolation type"
 msgstr ""
 
-#: libeog/image-view.c:2059
+#: libeog/image-view.c:2082
 msgid "the type of interpolation to use"
 msgstr ""
 
-#: libeog/image-view.c:2065 libeog/image-view.c:2072
+#: libeog/image-view.c:2088 libeog/image-view.c:2095
 msgid "check type"
 msgstr ""
 
-#: libeog/image-view.c:2066
+#: libeog/image-view.c:2089
 msgid "the type of chequering to use"
 msgstr ""
 
-#: libeog/image-view.c:2073
+#: libeog/image-view.c:2096
 msgid "the size of chequers to use"
 msgstr ""
 
-#: libeog/image-view.c:2079
+#: libeog/image-view.c:2102
 msgid "dither"
 msgstr ""
 
-#: libeog/image-view.c:2080
+#: libeog/image-view.c:2103
 msgid "dither type"
 msgstr ""
 
@@ -136,229 +136,343 @@ msgstr ""
 msgid "Operation failed"
 msgstr "操作失败"
 
+#: src/CDExport.cs:69
+#, fuzzy, csharp-format
+msgid "Transfering picture \"{0}\" To CD"
+msgstr "旋转图片“{0}”"
+
+#: src/CDExport.cs:71 src/FlickrExport.cs:86 src/GalleryExport.cs:341
+#: src/ProgressDialog.cs:75 src/VfsExport.cs:89
+#, csharp-format
+msgid "{0} of {1}"
+msgstr ""
+
+#: src/CDExport.cs:83 src/FlickrExport.cs:89 src/GalleryExport.cs:345
+#: src/VfsExport.cs:101
+msgid "Done Sending Photos"
+msgstr ""
+
+#: src/CDExport.cs:85 src/VfsExport.cs:103
+#, fuzzy
+msgid "Transfer Complete"
+msgstr "上传完成"
+
+#: src/CDExport.cs:91 src/VfsExport.cs:108
+msgid "Error While Transfering"
+msgstr ""
+
+#: src/CDExport.cs:96 src/VfsExport.cs:115
+msgid "Error Transfering"
+msgstr ""
+
+#: src/CDExport.cs:111 src/VfsExport.cs:129
+msgid "Error: Error while transfering, Aborting"
+msgstr ""
+
+#: src/CDExport.cs:114 src/VfsExport.cs:132
+msgid "Error: File Already Exists, Aborting"
+msgstr ""
+
+#: src/CDExport.cs:151 src/VfsExport.cs:173
+#, fuzzy
+msgid "Transfering Pictures"
+msgstr "上传图片"
+
+#: src/FlickrExport.cs:46
+#, fuzzy
+msgid "Enter Password"
+msgstr "密码："
+
+#: src/FlickrExport.cs:53
+msgid "Enter Password for "
+msgstr ""
+
+#: src/FlickrExport.cs:83 src/GalleryExport.cs:337
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr ""
+
+#: src/FlickrExport.cs:91 src/GalleryExport.cs:347
+msgid "Upload Complete"
+msgstr "上传完成"
+
+#: src/FlickrExport.cs:96
+#, fuzzy
+msgid "Error Uploading To Flickr"
+msgstr "上传到图库出错"
+
+#: src/FlickrExport.cs:120 src/GalleryExport.cs:312
+msgid "Uploading Pictures"
+msgstr "上传图片"
+
+#: src/FlickrExport.cs:130
+msgid "Unable to log on"
+msgstr ""
+
 #: src/f-spot.glade.h:1
-msgid "*"
-msgstr "*"
+#, fuzzy
+msgid "<b></b>"
+msgstr "<b>样式</b>"
 
 #: src/f-spot.glade.h:2
-msgid "<b>Album</b>"
+#, fuzzy
+msgid "<b>Account</b>"
 msgstr "<b>相册</b>"
 
 #: src/f-spot.glade.h:3
+msgid "<b>Album</b>"
+msgstr "<b>相册</b>"
+
+#: src/f-spot.glade.h:4
 msgid "<b>Color Temperature</b>"
 msgstr ""
 
-#: src/f-spot.glade.h:4
+#: src/f-spot.glade.h:5
+#, fuzzy
+msgid "<b>Destination</b>"
+msgstr "<b>结束</b>"
+
+#: src/f-spot.glade.h:6
 msgid "<b>End Date</b>"
 msgstr "<b>结束</b>"
 
-#: src/f-spot.glade.h:5
+#: src/f-spot.glade.h:7
 msgid "<b>Exposure</b>"
 msgstr ""
 
-#: src/f-spot.glade.h:6
+#: src/f-spot.glade.h:8
+#, fuzzy
+msgid "<b>From Image</b>"
+msgstr "<b>开始日期</b>"
+
+#: src/f-spot.glade.h:9
 msgid "<b>Gallery</b>"
 msgstr "<b>图库</b>"
 
-#: src/f-spot.glade.h:7
+#: src/f-spot.glade.h:10
 msgid "<b>Histogram</b>"
 msgstr ""
 
-#: src/f-spot.glade.h:8
+#: src/f-spot.glade.h:11
+msgid "<b>Items to Burn</b>"
+msgstr ""
+
+#: src/f-spot.glade.h:12
 msgid "<b>Photograph Layout</b>"
 msgstr "<b>相片布局</b>"
 
-#: src/f-spot.glade.h:9
+#: src/f-spot.glade.h:13
 msgid "<b>Photos</b>"
 msgstr "<b>相片</b>"
 
-#: src/f-spot.glade.h:10
+#: src/f-spot.glade.h:14
+#, fuzzy
+msgid "<b>Predefined</b>"
+msgstr "<b>预览</b>"
+
+#: src/f-spot.glade.h:15
 msgid "<b>Preview</b>"
 msgstr "<b>预览</b>"
 
-#: src/f-spot.glade.h:11
+#: src/f-spot.glade.h:16
 msgid "<b>Printer Details</b>"
 msgstr "<b>打印机细节</b>"
 
-#: src/f-spot.glade.h:12
+#: src/f-spot.glade.h:17
 msgid "<b>Start Date</b>"
 msgstr "<b>开始日期</b>"
 
-#: src/f-spot.glade.h:13
+#: src/f-spot.glade.h:18
 msgid "<b>Style</b>"
 msgstr "<b>样式</b>"
 
-#: src/f-spot.glade.h:14
+#: src/f-spot.glade.h:19
 msgid "<small> </small>"
 msgstr "<small> </small>"
 
-#: src/f-spot.glade.h:15
+#: src/f-spot.glade.h:20
 msgid "<small></small>"
 msgstr "<small></small>"
 
-#: src/f-spot.glade.h:16
+#: src/f-spot.glade.h:21
+#, fuzzy
+msgid "Ad_just Color..."
+msgstr "调整颜色"
+
+#: src/f-spot.glade.h:22
 msgid "Add Gallery"
 msgstr "添加图库"
 
-#: src/f-spot.glade.h:17
+#: src/f-spot.glade.h:23
 msgid "Adjust Color"
 msgstr "调整颜色"
 
-#: src/f-spot.glade.h:18
+#: src/f-spot.glade.h:24
 msgid "Album:"
 msgstr "相册："
 
-#: src/f-spot.glade.h:19
-msgid "Arranged By"
+#: src/f-spot.glade.h:25
+msgid "Arranged _By"
 msgstr ""
 
-#: src/f-spot.glade.h:20 src/TagPopup.cs:35
-msgid "Attach Tag To Selection"
-msgstr ""
-
-#: src/f-spot.glade.h:21
+#: src/f-spot.glade.h:26
 msgid "Border:"
 msgstr ""
 
-#: src/f-spot.glade.h:22
+#: src/f-spot.glade.h:27
 msgid "Brightness:"
 msgstr "亮度："
 
-#: src/f-spot.glade.h:23
+#: src/f-spot.glade.h:28
 msgid "Browse"
 msgstr "浏览"
 
-#: src/f-spot.glade.h:24
+#: src/f-spot.glade.h:29
+msgid "Browse Previously Scheduled Files"
+msgstr ""
+
+#: src/f-spot.glade.h:30
 msgid "CD"
 msgstr "光盘"
 
-#: src/f-spot.glade.h:25
-msgid "Cancel"
-msgstr "取消"
-
-#: src/f-spot.glade.h:26
+#: src/f-spot.glade.h:31
 msgid "Caption:"
 msgstr "标题："
 
-#: src/f-spot.glade.h:27
+#: src/f-spot.glade.h:32
 msgid "Category:"
 msgstr "类别："
 
-#: src/f-spot.glade.h:28
-msgid "Close"
-msgstr "关闭"
-
-#: src/f-spot.glade.h:29
+#: src/f-spot.glade.h:33
 msgid "Co_nfigure"
 msgstr "配置(_N)"
 
-#: src/f-spot.glade.h:30
+#: src/f-spot.glade.h:34
 msgid "Contrast:"
 msgstr "对比度："
 
-#: src/f-spot.glade.h:31 src/TagCommands.cs:127 src/TagPopup.cs:22
-msgid "Create New Category"
+#: src/f-spot.glade.h:35
+#, fuzzy
+msgid "Create New _Category..."
 msgstr "创建新类别"
 
-#: src/f-spot.glade.h:32 src/TagCommands.cs:123 src/TagPopup.cs:20
-msgid "Create New Tag"
-msgstr ""
-
-#: src/f-spot.glade.h:33
-msgid "Create new version"
-msgstr ""
-
-#: src/f-spot.glade.h:34
-msgid "Crop Photo to Fit"
-msgstr ""
-
-#: src/f-spot.glade.h:35
-msgid "Delete Selected Tag"
-msgstr ""
-
 #: src/f-spot.glade.h:36
-msgid "Delete Version"
-msgstr "删除版本"
+#, fuzzy
+msgid "Create New _Tag..."
+msgstr "创建新类别"
 
 #: src/f-spot.glade.h:37
-msgid "Destination Temp"
+msgid "Create _new version..."
 msgstr ""
 
 #: src/f-spot.glade.h:38
-msgid "Directory"
-msgstr "目录"
+msgid "Crop Photo to Fit"
+msgstr ""
 
 #: src/f-spot.glade.h:39
-msgid "Display Dates"
-msgstr "显示日期"
+msgid "Destination Temp"
+msgstr ""
 
 #: src/f-spot.glade.h:40
-msgid "Display Tags"
-msgstr ""
+#, fuzzy
+msgid "Display T_ags"
+msgstr "显示日期"
 
 #: src/f-spot.glade.h:41
-msgid "EXIF Data"
-msgstr "EXIF 数据"
+#, fuzzy
+msgid "Display _Dates"
+msgstr "显示日期"
 
 #: src/f-spot.glade.h:42
-msgid "Edit Selected Tag"
-msgstr ""
+#, fuzzy
+msgid "Display _Timeline"
+msgstr "显示日期"
 
 #: src/f-spot.glade.h:43
-msgid "Edit Tag Icon"
+msgid "E-Mail:"
 msgstr ""
 
 #: src/f-spot.glade.h:44
+msgid "E_xport To CD..."
+msgstr ""
+
+#: src/f-spot.glade.h:45
+msgid "Edit Tag Icon"
+msgstr ""
+
+#: src/f-spot.glade.h:46
 msgid "Export"
 msgstr "导出"
 
-#: src/f-spot.glade.h:45
+#: src/f-spot.glade.h:47
+#, fuzzy
+msgid "Export Tags and Categories"
+msgstr "导出标题和注释"
+
+#: src/f-spot.glade.h:48
+msgid "Export To _Flickr..."
+msgstr ""
+
+#: src/f-spot.glade.h:49
 msgid "Export titles and comments"
 msgstr "导出标题和注释"
 
-#: src/f-spot.glade.h:46
+#: src/f-spot.glade.h:50
 msgid "Export to Album:"
 msgstr "导出到相册："
 
-#: src/f-spot.glade.h:47
+#: src/f-spot.glade.h:51
+#, fuzzy
+msgid "Export to _VFS..."
+msgstr "导出到相册："
+
+#: src/f-spot.glade.h:52
+msgid "Export to _Web Gallery..."
+msgstr ""
+
+#: src/f-spot.glade.h:53
+msgid "F-Spot"
+msgstr ""
+
+#: src/f-spot.glade.h:54
 msgid "File"
 msgstr "文件"
 
-#: src/f-spot.glade.h:48
+#: src/f-spot.glade.h:55
 msgid "Fin_d"
 msgstr "查找(_D)"
 
-#: src/f-spot.glade.h:49
+#: src/f-spot.glade.h:56
 msgid "Find by _Tag"
 msgstr ""
 
-#: src/f-spot.glade.h:50
+#: src/f-spot.glade.h:57
+msgid "Flikr"
+msgstr ""
+
+#: src/f-spot.glade.h:58
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
 msgstr ""
 
-#: src/f-spot.glade.h:52
-msgid "Fullscreen"
-msgstr "全屏"
-
-#: src/f-spot.glade.h:53
+#: src/f-spot.glade.h:60
 msgid "Gallery"
 msgstr "图库"
 
-#: src/f-spot.glade.h:54
+#: src/f-spot.glade.h:61
 msgid "Gallery Name:"
 msgstr "图库名称："
 
-#: src/f-spot.glade.h:55
+#: src/f-spot.glade.h:62
 msgid "Gallery Settings"
 msgstr "图库设置"
 
-#: src/f-spot.glade.h:56
+#: src/f-spot.glade.h:63
 msgid "Gallery:"
 msgstr "图库："
 
-#: src/f-spot.glade.h:57
+#: src/f-spot.glade.h:64
 msgid ""
 "Hairline\n"
 "0.25\"\n"
@@ -366,23 +480,19 @@ msgid ""
 "1\"\n"
 msgstr ""
 
-#: src/f-spot.glade.h:62
+#: src/f-spot.glade.h:69
 msgid "Hue:"
 msgstr ""
 
-#: src/f-spot.glade.h:63
+#: src/f-spot.glade.h:70
 msgid "Icon:"
 msgstr "图标："
 
-#: src/f-spot.glade.h:64
-msgid "Month"
-msgstr "月"
-
-#: src/f-spot.glade.h:65
+#: src/f-spot.glade.h:71
 msgid "Next"
 msgstr ""
 
-#: src/f-spot.glade.h:66
+#: src/f-spot.glade.h:72
 msgid ""
 "None\n"
 "Title\n"
@@ -391,248 +501,321 @@ msgid ""
 "Photo Details"
 msgstr ""
 
-#: src/f-spot.glade.h:71
+#: src/f-spot.glade.h:77
 msgid "Number of Copies:"
 msgstr "副本数："
 
-#: src/f-spot.glade.h:72
-msgid "OK"
-msgstr "确定"
-
-#: src/f-spot.glade.h:73
+#: src/f-spot.glade.h:78
 msgid "Open album in browser when done uploading"
 msgstr ""
 
-#: src/f-spot.glade.h:74
-msgid "Page 1 of 3"
-msgstr ""
-
-#: src/f-spot.glade.h:75
-msgid "Password:"
-msgstr "密码："
-
-#: src/f-spot.glade.h:76
-msgid "Pause"
-msgstr "暂停"
-
-#: src/f-spot.glade.h:77
-msgid "Photo 0 of 0"
-msgstr ""
-
-#: src/f-spot.glade.h:78
-msgid "Photo Source:"
-msgstr ""
-
 #: src/f-spot.glade.h:79
-msgid "PhotoSize:"
+msgid "Open destination when done exporting."
 msgstr ""
 
 #: src/f-spot.glade.h:80
-msgid "Previous"
+msgid "Page 1 of 3"
 msgstr ""
 
 #: src/f-spot.glade.h:81
-msgid "Print"
-msgstr "打印"
+msgid "Password:"
+msgstr "密码："
 
 #: src/f-spot.glade.h:82
-msgid "Print Crop Marks"
-msgstr ""
+msgid "Pause"
+msgstr "暂停"
 
 #: src/f-spot.glade.h:83
-msgid "Rem_ove Tag"
-msgstr "删除标记(_O)"
+msgid "Photo 0 of 0"
+msgstr ""
 
-#: src/f-spot.glade.h:84 src/TagPopup.cs:38
-msgid "Remove Tag From Selection"
+#: src/f-spot.glade.h:84
+msgid "Photo Source:"
 msgstr ""
 
 #: src/f-spot.glade.h:85
-msgid "Rename Version"
-msgstr "重命名版本"
-
-#: src/f-spot.glade.h:86 src/PhotoPopup.cs:32
-msgid "Rotate Left"
+msgid "PhotoSize:"
 msgstr ""
 
-#: src/f-spot.glade.h:87 src/PhotoPopup.cs:34
-msgid "Rotate Right"
+#: src/f-spot.glade.h:86
+msgid "Previous"
+msgstr ""
+
+#: src/f-spot.glade.h:87
+msgid "Print Crop Marks"
 msgstr ""
 
 #: src/f-spot.glade.h:88
-msgid "Saturation:"
-msgstr ""
+msgid "Rem_ove Tag"
+msgstr "删除标记(_O)"
 
 #: src/f-spot.glade.h:89
-msgid "Scale images to no larger than: "
+msgid "Rotate _Left"
 msgstr ""
 
 #: src/f-spot.glade.h:90
-msgid "Select All"
-msgstr "全部选中"
+msgid "Rotate _Right"
+msgstr ""
 
 #: src/f-spot.glade.h:91
-msgid "Select None"
-msgstr "全部不选"
+msgid "Saturation:"
+msgstr ""
 
 #: src/f-spot.glade.h:92
+msgid "Scale images to no larger than: "
+msgstr ""
+
+#: src/f-spot.glade.h:93
+#, fuzzy
+msgid "Select _All"
+msgstr "全部选中"
+
+#: src/f-spot.glade.h:94
+#, fuzzy
+msgid "Select _None"
+msgstr "全部不选"
+
+#: src/f-spot.glade.h:95
 msgid ""
 "Selection\n"
 "Gallery\n"
 "Viewport"
 msgstr ""
 
-#: src/f-spot.glade.h:95
-msgid "Send _Mail"
+#: src/f-spot.glade.h:98
+#, fuzzy
+msgid "Send _Mail..."
 msgstr "发送邮件(_M)"
 
-#: src/f-spot.glade.h:96
-msgid "Set _Date Range"
+#: src/f-spot.glade.h:99
+msgid "Set _Date Range..."
 msgstr ""
 
-#: src/f-spot.glade.h:97
-msgid "Set as Background"
+#: src/f-spot.glade.h:100
+#, fuzzy
+msgid "Set as _Background"
 msgstr "设置为背景"
 
-#: src/f-spot.glade.h:98
-msgid "Size"
-msgstr "大小"
-
-#: src/f-spot.glade.h:99
-msgid "SlideShow"
-msgstr "幻灯片"
-
-#: src/f-spot.glade.h:100
+#: src/f-spot.glade.h:101
 msgid "Source Temp"
 msgstr ""
 
-#: src/f-spot.glade.h:101 src/TagCommands.cs:310
+#: src/f-spot.glade.h:102
+msgid "Strip Image Metadata"
+msgstr ""
+
+#: src/f-spot.glade.h:103
+msgid "Strip Metadata"
+msgstr ""
+
+#: src/f-spot.glade.h:104 src/TagCommands.cs:310
 msgid "Tag name:"
 msgstr "标记名称："
 
-#: src/f-spot.glade.h:102
-msgid "Tags"
-msgstr "标记"
+#: src/f-spot.glade.h:105
+#, fuzzy
+msgid "Uri:"
+msgstr "URL："
 
-#: src/f-spot.glade.h:103
-msgid "Update Thumbnail"
-msgstr "更新缩略图"
-
-#: src/f-spot.glade.h:104
+#: src/f-spot.glade.h:106
 msgid "Url:"
 msgstr "URL："
 
-#: src/f-spot.glade.h:105
+#: src/f-spot.glade.h:107
 msgid "User_name:"
 msgstr "用户名(_N)："
 
-#: src/f-spot.glade.h:106
+#: src/f-spot.glade.h:108
 msgid "Username:"
 msgstr "用户名"
 
-#: src/f-spot.glade.h:107
+#: src/f-spot.glade.h:109
 msgid "View"
 msgstr "查看"
 
-#: src/f-spot.glade.h:108
-msgid "Will print Using: Us Letter size on Generic Postscript"
+#: src/f-spot.glade.h:110
+msgid "View photos in browser when done uploading"
 msgstr ""
 
-#: src/f-spot.glade.h:109
-msgid "Zoom In"
-msgstr "放大"
-
-#: src/f-spot.glade.h:110
-msgid "Zoom _Out"
-msgstr "缩小(_O)"
-
 #: src/f-spot.glade.h:111
-msgid "_Attach Tag"
+msgid "Virtual Filesystem"
 msgstr ""
 
 #: src/f-spot.glade.h:112
-msgid "_Clear Date Range"
+msgid "Will print Using: Us Letter size on Generic Postscript"
 msgstr ""
 
 #: src/f-spot.glade.h:113
+msgid "Write only these Items to CD"
+msgstr ""
+
+#: src/f-spot.glade.h:114
+#, fuzzy
+msgid "Zoom _In"
+msgstr "放大"
+
+#: src/f-spot.glade.h:115
+msgid "Zoom _Out"
+msgstr "缩小(_O)"
+
+#: src/f-spot.glade.h:116
+msgid "_Attach Tag"
+msgstr ""
+
+#: src/f-spot.glade.h:117
+msgid "_Attach Tag To Selection"
+msgstr ""
+
+#: src/f-spot.glade.h:118
+msgid "_Clear Date Range"
+msgstr ""
+
+#: src/f-spot.glade.h:119
+#, fuzzy
+msgid "_Close"
+msgstr "关闭"
+
+#: src/f-spot.glade.h:120
+#, fuzzy
+msgid "_Delete Selected Tag"
+msgstr "删除标记"
+
+#: src/f-spot.glade.h:121
+#, fuzzy
+msgid "_Delete Version"
+msgstr "删除版本"
+
+#: src/f-spot.glade.h:122
 msgid "_Delete from Drive"
 msgstr "从驱动器中删除(_D)"
 
-#: src/f-spot.glade.h:114
+#: src/f-spot.glade.h:123
+#, fuzzy
+msgid "_Directory"
+msgstr "目录"
+
+#: src/f-spot.glade.h:124
+#, fuzzy
+msgid "_EXIF Data"
+msgstr "EXIF 数据"
+
+#: src/f-spot.glade.h:125
+msgid "_Edit Selected Tag..."
+msgstr ""
+
+#: src/f-spot.glade.h:126
+#, fuzzy
+msgid "_Export"
+msgstr "导出"
+
+#: src/f-spot.glade.h:127
+#, fuzzy
+msgid "_Fullscreen"
+msgstr "全屏"
+
+#: src/f-spot.glade.h:128
 msgid "_Gallery Name:"
 msgstr "图库名称(_G)："
 
-#: src/f-spot.glade.h:115
-msgid "_Import"
+#: src/f-spot.glade.h:129
+#, fuzzy
+msgid "_Import..."
 msgstr "导入(_I)"
 
-#: src/f-spot.glade.h:116
+#: src/f-spot.glade.h:130
 msgid "_Large"
 msgstr "大(_L)"
 
-#: src/f-spot.glade.h:117
+#: src/f-spot.glade.h:131
 msgid "_Medium"
 msgstr "中(_M)"
 
-#: src/f-spot.glade.h:118
+#: src/f-spot.glade.h:132
+#, fuzzy
+msgid "_Month"
+msgstr "月"
+
+#: src/f-spot.glade.h:133
 msgid "_Password:"
 msgstr "密码(_P)："
 
-#: src/f-spot.glade.h:119
+#: src/f-spot.glade.h:134
+#, fuzzy
+msgid "_Print..."
+msgstr "打印"
+
+#: src/f-spot.glade.h:135
 msgid "_Remove From Catalog"
 msgstr "从编目删除(_R)"
 
-#: src/f-spot.glade.h:120
+#: src/f-spot.glade.h:136
+#, fuzzy
+msgid "_Remove Tag From Selection"
+msgstr "从编目删除(_R)"
+
+#: src/f-spot.glade.h:137
+#, fuzzy
+msgid "_Rename Version"
+msgstr "重命名版本"
+
+#: src/f-spot.glade.h:138
+msgid "_Sharpen..."
+msgstr ""
+
+#: src/f-spot.glade.h:139
+#, fuzzy
+msgid "_Size"
+msgstr "大小"
+
+#: src/f-spot.glade.h:140
+#, fuzzy
+msgid "_Slideshow"
+msgstr "幻灯片"
+
+#: src/f-spot.glade.h:141
 msgid "_Small"
 msgstr "小(_S)"
 
-#: src/f-spot.glade.h:121
+#: src/f-spot.glade.h:142
+#, fuzzy
+msgid "_Tags"
+msgstr "标记"
+
+#: src/f-spot.glade.h:143
+#, fuzzy
+msgid "_Update Thumbnail"
+msgstr "更新缩略图"
+
+#: src/f-spot.glade.h:144
 msgid "_Url:"
 msgstr "_URL："
 
-#: src/f-spot.glade.h:122
+#: src/f-spot.glade.h:145
 msgid "_Version"
 msgstr "版本(_V)"
 
-#: src/f-spot.glade.h:123
+#: src/f-spot.glade.h:146
+#, fuzzy
+msgid "_View"
+msgstr "查看"
+
+#: src/f-spot.glade.h:147
 msgid "dialog1"
 msgstr "dialog1"
 
-#: src/f-spot.glade.h:124
+#: src/f-spot.glade.h:148
 msgid "x"
 msgstr "x"
 
-#: src/GalleryExport.cs:310
-msgid "Uploading Pictures"
-msgstr "上传图片"
-
-#: src/GalleryExport.cs:335
-#, csharp-format
-msgid "Uploading picture \"{0}\""
-msgstr ""
-
-#: src/GalleryExport.cs:339 src/ProgressDialog.cs:75
-#, csharp-format
-msgid "{0} of {1}"
-msgstr ""
-
-#: src/GalleryExport.cs:343
-msgid "Done Sending Photos"
-msgstr ""
-
-#: src/GalleryExport.cs:345
-msgid "Upload Complete"
-msgstr "上传完成"
-
-#: src/GalleryExport.cs:349
+#: src/GalleryExport.cs:351
 msgid "Error Uploading To Gallery"
 msgstr "上传到图库出错"
 
-#: src/GalleryExport.cs:381
+#: src/GalleryExport.cs:383
 msgid "(No Gallery)"
 msgstr "(无图库)"
 
-#: src/GalleryExport.cs:423
+#: src/GalleryExport.cs:427
 msgid "(No Albums)"
 msgstr "(无相册)"
 
@@ -663,26 +846,42 @@ msgstr "(无)"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: src/MainWindow.cs:852
+#: src/MainWindow.cs:886
 msgid "translator-credits"
 msgstr ""
 
-#: src/PhotoPopup.cs:27
+#: src/MainWindow.cs:1016
+msgid "Unsharp Mask"
+msgstr ""
+
+#: src/MainWindow.cs:1025
+msgid "Amount:"
+msgstr ""
+
+#: src/MainWindow.cs:1026
+msgid "Radius:"
+msgstr ""
+
+#: src/MainWindow.cs:1027
+msgid "Threshold:"
+msgstr ""
+
+#: src/PhotoPopup.cs:26
 msgid "Copy Image Location"
 msgstr "复制图像位置"
 
-#: src/PhotoPopup.cs:39
+#: src/PhotoPopup.cs:38
 msgid "Remove From Catalog"
 msgstr "从编目中删除"
 
-#: src/PhotoPopup.cs:41
+#: src/PhotoPopup.cs:40
 msgid "Delete From Drive"
 msgstr "从驱动器中删除"
 
 #.
 #. FIXME TagMenu is ugly.
 #.
-#: src/PhotoPopup.cs:49
+#: src/PhotoPopup.cs:48
 msgid "Attach Tag"
 msgstr ""
 
@@ -690,7 +889,7 @@ msgstr ""
 #. FIXME finish the IPhotoSelection stuff and move the activate handler into the class
 #. this current method is way too complicated.
 #.
-#: src/PhotoPopup.cs:59
+#: src/PhotoPopup.cs:58
 msgid "Remove Tag"
 msgstr "删除标记"
 
@@ -723,9 +922,17 @@ msgstr "(无类别)"
 msgid "This name is already in use"
 msgstr "此名称已使用"
 
+#: src/TagCommands.cs:123 src/TagPopup.cs:20
+msgid "Create New Tag"
+msgstr ""
+
 #: src/TagCommands.cs:124
 msgid "Name of new tag:"
 msgstr "新建标记的名称："
+
+#: src/TagCommands.cs:127 src/TagPopup.cs:22
+msgid "Create New Category"
+msgstr "创建新类别"
 
 #: src/TagCommands.cs:128
 msgid "Name of new category:"
@@ -743,17 +950,17 @@ msgstr "类别名称："
 msgid "Edit Tag"
 msgstr "编辑标记"
 
-#: src/TagCommands.cs:379
+#: src/TagCommands.cs:408
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "第{0}张照片，共{1}张"
 
-#: src/TagCommands.cs:419
+#: src/TagCommands.cs:422
 #, csharp-format
 msgid "Edit icon For category {0}"
 msgstr "编辑类别 {0} 的图标"
 
-#: src/TagCommands.cs:421
+#: src/TagCommands.cs:424
 #, csharp-format
 msgid "Edit icon for tag {0}"
 msgstr "编辑标记 {0} 的图标"
@@ -761,3 +968,26 @@ msgstr "编辑标记 {0} 的图标"
 #: src/TagPopup.cs:30
 msgid "Delete Tag"
 msgstr "删除标记"
+
+#: src/TagPopup.cs:35
+msgid "Attach Tag To Selection"
+msgstr ""
+
+#: src/TagPopup.cs:38
+msgid "Remove Tag From Selection"
+msgstr ""
+
+#. System.Console.WriteLine ("Xfering {0} to {1}", source.ToString (), target.ToString ());
+#: src/VfsExport.cs:87
+#, fuzzy, csharp-format
+msgid "Transfering picture \"{0}\""
+msgstr "旋转图片“{0}”"
+
+#~ msgid "*"
+#~ msgstr "*"
+
+#~ msgid "Cancel"
+#~ msgstr "取消"
+
+#~ msgid "OK"
+#~ msgstr "确定"

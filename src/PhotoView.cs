@@ -238,12 +238,12 @@ public class PhotoView : EventBox {
 			if (photo.DefaultVersionId == Photo.OriginalVersionId) {
 				photo.DefaultVersionId = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);
 				cropped_pixbuf.Savev (photo.DefaultVersionPath, "jpeg", null, null);
-				PhotoStore.GenerateThumbnail (photo.DefaultVersionPath);
+				FSpot.ThumbnailGenerator.Create (photo.DefaultVersionPath).Dispose ();
 				query.Commit (CurrentPhoto);
 			} else {
 				// FIXME we need to invalidate the thumbnail in the cache as well
 				cropped_pixbuf.Savev (photo.DefaultVersionPath, "jpeg", null, null);
-				PhotoStore.GenerateThumbnail (photo.DefaultVersionPath);
+				FSpot.ThumbnailGenerator.Create (photo.DefaultVersionPath).Dispose ();
 				query.MarkChanged (CurrentPhoto);
 			}
 		} catch (GLib.GException ex) {

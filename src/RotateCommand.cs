@@ -49,8 +49,8 @@ public class RotateCommand {
 					// if the destination path points to an existing file.
 					File.Delete (original_path);
 					File.Move (temporary_path, original_path);
-
-					PhotoStore.GenerateThumbnail (original_path);
+					
+					FSpot.ThumbnailGenerator.Create (original_path).Dispose ();
 				} else {
 					has_read_only_selections = true;
 				}

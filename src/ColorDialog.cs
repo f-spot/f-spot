@@ -119,7 +119,7 @@ namespace FSpot {
 				string version_path = photo.GetVersionPath (version);
 				
 				final.Savev (version_path, "jpeg", null, null);
-				PhotoStore.GenerateThumbnail (version_path);
+				ThumbnailGenerator.Create (version_path).Dispose ();
 				photo.DefaultVersionId = version;
 				view.Query.Commit (view.CurrentPhoto);
 			} catch (GLib.GException ex) {

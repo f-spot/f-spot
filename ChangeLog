@@ -1,5 +1,13 @@
 2005-01-19  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoStore.cs: use ThumbnailGeneratore where appropriate.
+
+	* src/PixbufUtils.cs: remove GenerateThumbnail.
+
+	* src/ThumbnailGenerator.cs: add Create and Save methods.
+
+	* src/ThumbnailCommand.cs: use thumbnail generator.
+
 	* src/PixbufUtils.cs: correct the calculation of the area to walk.
 
 	* src/AsyncPixbufLoader.cs: use the chunk_timeout value.

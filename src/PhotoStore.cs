@@ -258,7 +258,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 		if (create_file) {
 			File.Copy (original_path, new_path);
-			PhotoStore.GenerateThumbnail (new_path);
+			FSpot.ThumbnailGenerator.Create (new_path).Dispose ();
 		}
 
 		if (version_names == null)
@@ -443,15 +443,10 @@ public class PhotoStore : DbStore {
 		if (thumbnail != null) 
 			thumbnail.Save (Thumbnail.PathForUri (uri, ThumbnailSize.Large), "png");
 		else 
-			thumbnail = PixbufUtils.GenerateThumbnail (path);
+			thumbnail = FSpot.ThumbnailGenerator.Create (path);
 			
 		
 		return thumbnail;
-	}
-
-	public static Pixbuf GenerateThumbnail (string path)
-	{
-		return GenerateThumbnail (path, false);
 	}
 
 	public static void DeleteThumbnail (string path)
