@@ -1,5 +1,9 @@
 2004-10-28  Larry Ewing  <lewing@novell.com>
 
+	* icons/f-spot-loading.png: added file.
+
+	* icons/Makefile.am (noinst_DATA): add f-spot-loading.png
+
 	* src/PixbufUtils.cs: reenable the pixbuf rotation ops.
 
 	* src/JpegHeader.cs: add a few more fields to the loader.
