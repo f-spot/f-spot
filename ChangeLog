@@ -1,8 +1,10 @@
 2005-02-17  Larry Ewing  <lewing@novell.com>
 
+	* src/FileImportBackend.cs: reenable the thumbnail thread.
+
 	* src/FileImportBackend.cs: handle file vs. directory imports with
 	more grace.  Check for duplicates even on file imports.
-	
+
 	* src/FileImportBackend.cs: handle zero item imports differently.
 
 	* src/ImportCommand.cs: fix zero item imports.

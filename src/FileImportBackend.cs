@@ -127,7 +127,7 @@ public class FileImportBackend : ImportBackend {
 		file_paths = null;
 
 		foreach (Photo p in imported_photos) {
-			//FSpot.ThumbnailGenerator.Default.Request (p.DefaultVersionPath, 0, 256, 256);
+			FSpot.ThumbnailGenerator.Default.Request (p.DefaultVersionPath, 0, 256, 256);
 		}
 
 		imported_photos = null;
