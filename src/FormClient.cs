@@ -257,7 +257,7 @@ class FormClient {
 		
 		HttpWebResponse response = (HttpWebResponse) Request.GetResponse ();
 
-		Console.WriteLine ("found {0} cookies", response.Cookies.Count);
+		//Console.WriteLine ("found {0} cookies", response.Cookies.Count);
 
 		foreach (Cookie c in response.Cookies) {
 			Cookies.Add (c);

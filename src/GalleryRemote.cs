@@ -249,7 +249,6 @@ namespace GalleryRemote {
 			bool inresult = false;
 			
 			while ((line = reader.ReadLine ()) != null) {
-				System.Console.WriteLine ("read line");
 				if (line == "#__GR2PROTO__") {
 					inresult = true;
 				} else if (inresult) {

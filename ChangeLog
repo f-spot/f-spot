@@ -1,5 +1,14 @@
 2005-02-20  Larry Ewing  <lewing@novell.com>
 
+	* src/f-spot.glade: remove several unsesd dialogs, update
+	folder_export_dialog.
+
+	* src/GalleryRemote.cs: remove debug output.
+
+	* src/FormClient.cs: remoce some debug output.
+
+	* src/f-spot.glade: remove some unused 
+
 	* src/GalleryExport.cs: guard against a missing scale check.
 
 	* src/f-spot.glade: rename some items.
