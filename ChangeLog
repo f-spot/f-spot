@@ -1,5 +1,8 @@
 2004-08-04  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: move slide show start too an idle loop to
+	allow the menu item to redraw.
+
 	* src/SlideView.cs: move the intervals to variables, add a fade
 	mode flag.  Add background pixbuf param to ctor for fading from a
 	background and initialize variables differently if background is

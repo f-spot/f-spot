@@ -725,6 +725,15 @@ public class MainWindow {
 	void HandleViewSlideShow (object sender, EventArgs args)
 	{
 #if true
+                GLib.Idle.Add (new GLib.IdleHandler (SlideShow));
+#else
+		SlideCommands.Create command = new SlideCommands.Create (query.Photos);
+		command.Execute ();
+#endif
+	}
+
+	private bool SlideShow ()
+	{
 		Gtk.Window win = new Gtk.Window ("test");
 		Pixbuf bg = PixbufUtils.LoadFromScreen ();
 
@@ -747,12 +756,9 @@ public class MainWindow {
 				     0, 0, 0, 0, -1, -1, RgbDither.Normal, 0, 0);
 
 		slideview.Play ();
-#else
-		SlideCommands.Create command = new SlideCommands.Create (query.Photos);
-		command.Execute ();
-#endif
+		return false;
 	}
-
+	
 	private void HandleSlideViewButtonPressEvent (object sender, ButtonPressEventArgs args)
 	{
 		Gtk.Window win = sender as Gtk.Window;
