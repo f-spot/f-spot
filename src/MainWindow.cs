@@ -15,6 +15,12 @@ public class MainWindow {
         public static MainWindow Toplevel = null;
 
 	Db db;
+	public Db Database {
+		get {
+			return db;
+		}
+	}
+
 	TagSelectionWidget tag_selection_widget;
 	[Widget] Gtk.Window main_window;
 	[Widget] VBox left_vbox;
@@ -137,9 +143,8 @@ public class MainWindow {
 		icon_view.DragBegin += new DragBeginHandler (HandleIconViewDragBegin);
 		icon_view.DragDataGet += new DragDataGetHandler (HandleIconViewDragDataGet);
 
-		TagMenu menu = new TagMenu (db.Tags);
+		TagMenu menu = new TagMenu (attach_tag, db.Tags);
 		menu.TagSelected += HandleAttachTagMenuSelected;
-		attach_tag.Submenu = menu;
 
 		menu = new TagMenu (db.Tags);
 		menu.TagSelected += HandleFindTagMenuSelected;
@@ -476,7 +481,7 @@ public class MainWindow {
 	// TagMenu commands.
 	//
 
-	void HandleTagMenuActivate (object sender, EventArgs args)
+	public void HandleTagMenuActivate (object sender, EventArgs args)
 	{
 
 		MenuItem parent = sender as MenuItem;
@@ -492,7 +497,7 @@ public class MainWindow {
 		}
 	}
 
-	void HandleAttachTagMenuSelected (Tag t) 
+	public void HandleAttachTagMenuSelected (Tag t) 
 	{
 		foreach (int num in SelectedIds ()) {
 			Photo photo = query.Photos [num];
@@ -508,7 +513,7 @@ public class MainWindow {
 		tag_selection_widget.TagSelection = new Tag [] {t};
 	}
 
-	void HandleRemoveTagMenuSelected (Tag t)
+	public void HandleRemoveTagMenuSelected (Tag t)
 	{
 		foreach (int num in SelectedIds ()) {
 			Photo photo = query.Photos [num];

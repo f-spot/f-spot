@@ -1,5 +1,16 @@
 2004-06-23  Larry Ewing  <lewing@ximian.com>
 
+	* src/TagMenu.cs: store the parent_item and handle populating the
+	menu internally.
+
+	* src/makefile.am (F_SPOT_CSFILES): fix the last broken commit.
+
+	* src/IconViewPopup.cs: hook up the TagMenus in the popup.
+
+	* src/MainWindow.cs: Make the TagMenu handlers public.
+
+2004-06-23  Larry Ewing  <lewing@ximian.com>
+
 	* src/MainWindow.cs: Track the IconView changes.  Make some of the
 	event handlers public for the IconView popup, add a static member
 	to hold the singleton instance.  Scroll IconView when switching

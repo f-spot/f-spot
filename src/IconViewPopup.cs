@@ -54,8 +54,6 @@ public class IconViewPopup {
 		GtkUtil.MakeMenuItem (popup_menu, "Copy Image Location", 
 				      new EventHandler (Action_CopyImageLocation), have_selection);
 
-		GtkUtil.MakeMenuSeparator (popup_menu);
-
 		/*
 		GtkUtil.MakeMenuItem (popup_menu, (have_multi ? "Cut Images" : "Cut Image"),
 				      new EventHandler (Action_CutImage), false);
@@ -64,17 +62,43 @@ public class IconViewPopup {
 		GtkUtil.MakeMenuItem (popup_menu, "Paste Images",
 				      new EventHandler (Action_PasteImage), true);
 		*/
+		GtkUtil.MakeMenuSeparator (popup_menu);
+
+		GtkUtil.MakeMenuItem (popup_menu, "Rotate Left",
+				      new EventHandler (MainWindow.Toplevel.HandleRotate270Command), have_selection);
+		GtkUtil.MakeMenuItem (popup_menu, "Rotate Right",
+				      new EventHandler (MainWindow.Toplevel.HandleRotate90Command), have_selection);
+
+		GtkUtil.MakeMenuSeparator (popup_menu);
+
 		GtkUtil.MakeMenuItem (popup_menu, "Remove From Catalog", 
 				      new EventHandler (MainWindow.Toplevel.HandleRemoveCommand), have_selection);
 		GtkUtil.MakeMenuItem (popup_menu, "Delete From Drive",
 				      new EventHandler (MainWindow.Toplevel.HandleDeleteCommand), have_selection);
 
 		GtkUtil.MakeMenuSeparator (popup_menu);
-		GtkUtil.MakeMenuItem (popup_menu, "Rotate Left",
-				      new EventHandler (MainWindow.Toplevel.HandleRotate270Command), have_selection);
-		GtkUtil.MakeMenuItem (popup_menu, "Rotate Right",
-				      new EventHandler (MainWindow.Toplevel.HandleRotate90Command), have_selection);
 		
+		//
+		// FIXME TagMenu is ugly.
+		//
+		MenuItem attach_item = new MenuItem ("Attach Tag");
+		TagMenu attach_menu = new TagMenu (attach_item, MainWindow.Toplevel.Database.Tags);
+		attach_menu.TagSelected += MainWindow.Toplevel.HandleAttachTagMenuSelected;
+		attach_item.ShowAll ();
+		popup_menu.Append (attach_item);
+
+		//
+		// FIXME finish the IPhotoSelection stuff and move the activate handler into the class
+		// this current method is way too complicated.
+		//
+		MenuItem remove_item = new MenuItem ("Remove Tag");
+		PhotoTagMenu remove_menu = new PhotoTagMenu ();
+		remove_menu.TagSelected += MainWindow.Toplevel.HandleRemoveTagMenuSelected;
+		remove_item.Submenu = remove_menu;
+		remove_item.Activated += MainWindow.Toplevel.HandleTagMenuActivate;
+		remove_item.ShowAll ();
+		popup_menu.Append (remove_item);
+
 		popup_menu.Popup (null, null, null, IntPtr.Zero, eb.Button, eb.Time);
 	}
 

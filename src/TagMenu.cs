@@ -3,6 +3,7 @@ using System;
 
 public class TagMenu : Menu {
 	private TagStore tag_store;
+	private MenuItem parent_item;
 
 	public delegate void TagSelectedHandler (Tag t);
 	public event TagSelectedHandler TagSelected;
@@ -17,11 +18,19 @@ public class TagMenu : Menu {
 		protected TagItem (IntPtr raw) : base (raw) {}
 	}
 
-	public TagMenu (TagStore store)
+	public TagMenu (MenuItem item, TagStore store) 
 	{
+		if (item != null) {
+			item.Submenu = this;
+			item.Activated += HandlePopulate;
+			parent_item = item;
+		}
+
 		tag_store = store;
 	}
-	
+
+	public TagMenu (TagStore store) : this (null, store) {}
+
 	protected TagMenu (IntPtr raw) : base (raw) {}
 
 	public void Populate () {
@@ -57,6 +66,10 @@ public class TagMenu : Menu {
 				item.Activated += HandleActivate;
 			}
 		} 
+	}
+	
+	private void HandlePopulate (object obj, EventArgs args) {
+		this.Populate ();
 	}
 	
 	void HandleActivate (object obj, EventArgs args)
