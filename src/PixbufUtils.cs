@@ -103,9 +103,10 @@ class PixbufUtils {
 				this.Close ();
 				Gdk.Pixbuf rotated = TransformOrientation (this.Pixbuf, orientation, true);
 				
-				if (this.Pixbuf != rotated)
+				if (this.Pixbuf != rotated) {
+					CopyThumbnailOptions (this.Pixbuf, rotated);
 					this.Pixbuf.Dispose ();
-				
+				}
 				return rotated;
 			} catch (Exception e) {
 				System.Console.Write ("Error loading image {0}", path);
@@ -118,10 +119,13 @@ class PixbufUtils {
 	public static Pixbuf ScaleToMaxSize (Pixbuf pixbuf, int width, int height)
 	{
 		double scale = Math.Min  (width / (double)pixbuf.Width, height / (double)pixbuf.Height);
-	
-		
 		int scale_width = (int)(scale * pixbuf.Width);
 		int scale_height = (int)(scale * pixbuf.Height);
+
+		Gdk.Pixbuf result = pixbuf.ScaleSimple (scale_width, scale_height, Gdk.InterpType.Bilinear);
+
+		CopyThumbnailOptions (pixbuf, result);
+
 		return pixbuf.ScaleSimple (scale_width, scale_height, Gdk.InterpType.Bilinear);
 	}
 
