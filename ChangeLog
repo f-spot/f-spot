@@ -1,5 +1,8 @@
 2005-02-19  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: use ScaleDown when scaling the loaded pixbuf,
+	the 64x64 icons start hitting the degenerate scaling cases.
+
 	* src/PixbufCache.cs: put a limit of twice the max size before we
 	start culling entries.
 

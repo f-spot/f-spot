@@ -852,7 +852,7 @@ public class IconView : Gtk.Layout {
 		PixbufUtils.Fit (result, ThumbnailWidth, ThumbnailHeight, false, out width, out height);
 		if (result.Width != width && result.Height != height) {
 			//  System.Console.WriteLine ("scaling");
-			Gdk.Pixbuf temp = PixbufUtils.ScaleToMaxSize (result, ThumbnailWidth, ThumbnailHeight);
+			Gdk.Pixbuf temp = PixbufUtils.ScaleDown (result, width, height);
 			result.Dispose ();
 			result = temp;
 		}
