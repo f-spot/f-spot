@@ -1,3 +1,10 @@
+2005-01-27  Larry Ewing  <lewing@novell.com>
+
+	* src/Tiff.cs: new managed Exif/Tiff header parser.
+
+	* src/JpegHeader.cs: test out parsing of jpeg headers using the
+	tiff parser.
+
 2005-01-26  Larry Ewing  <lewing@novell.com>
 
 	* src/PixbufUtils.cs: move the get orientation logic over to the

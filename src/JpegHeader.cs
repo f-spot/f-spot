@@ -238,7 +238,7 @@ public class JpegHeader {
 				at_image = true;
 		}
 	}
-
+#if true
 	public static int Main (string [] args)
 	{
 		JpegHeader data = new JpegHeader (args [0]);
@@ -258,11 +258,12 @@ public class JpegHeader {
 
 		value = data.GetRawExif ();
 		if (value != null) {
-			ExifData exif = new ExifData (value, (uint)value.Length);
-			System.Console.WriteLine (exif.LookupString (ExifTag.Model));
+			System.IO.MemoryStream stream = new System.IO.MemoryStream (value, 6, value.Length - 6);
+			Tiff.Header tiff = new Tiff.Header (stream);
+			tiff.Dump ();
 		}
 
 		return 0;
 	}
-
+#endif
 }
