@@ -53,7 +53,7 @@ public class TagCommands {
 			Menu menu = new Menu ();
 
 			if (categories.Count == 0) {
-				MenuItem item = new MenuItem ("(No categories)");
+				MenuItem item = new MenuItem (Mono.Posix.Catalog.GetString ("(No categories)"));
 				category_option_menu.Sensitive = false;
 				menu.Append (item);
 			} else {
@@ -99,7 +99,7 @@ public class TagCommands {
 				already_in_use_label.Markup = "";
 			} else if (TagNameExistsInCategory (tag_name_entry.Text, tag_store.RootCategory)) {
 				ok_button.Sensitive = false;
-				already_in_use_label.Markup = "<small>This name is already in use</small>";
+				already_in_use_label.Markup = "<small>" + Mono.Posix.Catalog.GetString ("This name is already in use") + "</small>";
 			} else {
 				ok_button.Sensitive = true;
 				already_in_use_label.Markup = "";
@@ -120,12 +120,12 @@ public class TagCommands {
 
 			switch (type) {
 			case TagType.Tag:
-				create_tag_dialog.Title = "Create New Tag";
-				prompt_label.Text = "Name of new tag:";
+				create_tag_dialog.Title = Mono.Posix.Catalog.GetString ("Create New Tag");
+				prompt_label.Text = Mono.Posix.Catalog.GetString ("Name of new tag:");
 				break;
 			case TagType.Category:
-				create_tag_dialog.Title = "Create New Category";
-				prompt_label.Text = "Name of new category:";
+				create_tag_dialog.Title = Mono.Posix.Catalog.GetString ("Create New Category");
+				prompt_label.Text = Mono.Posix.Catalog.GetString ("Name of new category:");
 				break;
 			}
 
@@ -228,7 +228,7 @@ public class TagCommands {
 			} else if (TagNameExistsInCategory (name, db.Tags.RootCategory)
 				   && name != orig_name) {
 				ok_button.Sensitive = false;
-				already_in_use_label.Markup = "<small>This name is already in use</small>";
+				already_in_use_label.Markup = "<small>" + Mono.Posix.Catalog.GetString ("This name is already in use") + "</small>";
 			} else {
 				ok_button.Sensitive = true;
 				already_in_use_label.Markup = "";
@@ -303,11 +303,11 @@ public class TagCommands {
 			edit_tag_dialog.DefaultResponse = ResponseType.Ok;
 
 			if (t is Category) {
-				edit_tag_dialog.Title = "Edit Category";
-				prompt_label.Text = "Category name:";
+				edit_tag_dialog.Title = Mono.Posix.Catalog.GetString ("Edit Category");
+				prompt_label.Text = Mono.Posix.Catalog.GetString ("Category name:");
 			} else {
-				edit_tag_dialog.Title = "Edit Tag";
-				prompt_label.Text = "Tag name:";
+				edit_tag_dialog.Title = Mono.Posix.Catalog.GetString ("Edit Tag");
+				prompt_label.Text = Mono.Posix.Catalog.GetString ("Tag name:");
 			}
 
 			orig_name = last_valid_name = t.Name;
@@ -376,7 +376,7 @@ public class TagCommands {
 			set {
 				if (value != current_item) {
 					current_item = value;
-					photo_label.Text = String.Format ("Photo {0} of {1}", 
+					photo_label.Text = String.Format (Mono.Posix.Catalog.GetString ("Photo {0} of {1}"), 
 									  current_item + 1, query.Photos.Length);
 
 					image_view.CurrentPhoto = current_item;
@@ -416,9 +416,9 @@ public class TagCommands {
 			edit_icon_dialog.DefaultResponse = ResponseType.Ok;
 
 			if (t is Category) {
-				edit_icon_dialog.Title = String.Format ("Edit icon For category {0}", t.Name);
+				edit_icon_dialog.Title = String.Format (Mono.Posix.Catalog.GetString ("Edit icon For category {0}"), t.Name);
 			} else {
-				edit_icon_dialog.Title = String.Format ("Edit icon for tag {0}", t.Name);
+				edit_icon_dialog.Title = String.Format (Mono.Posix.Catalog.GetString ("Edit icon for tag {0}"), t.Name);
 			}
 
 			preview_image.Pixbuf = t.Icon;

@@ -67,15 +67,15 @@ public class InfoBox : VBox {
 	{
 		Table table = new Table (5, 2, false);
 
-		table.Attach (CreateRightAlignedLabel ("Name:"), 0, 1, 0, 1,
+		table.Attach (CreateRightAlignedLabel (Mono.Posix.Catalog.GetString ("Name:")), 0, 1, 0, 1,
 			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
-		table.Attach (CreateRightAlignedLabel ("Version:"), 0, 1, 1, 2,
+		table.Attach (CreateRightAlignedLabel (Mono.Posix.Catalog.GetString ("Version:")), 0, 1, 1, 2,
 			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
-		table.Attach (CreateRightAlignedLabel ("Date:"), 0, 1, 2, 3,
+		table.Attach (CreateRightAlignedLabel (Mono.Posix.Catalog.GetString ("Date:")), 0, 1, 2, 3,
 			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
-		table.Attach (CreateRightAlignedLabel ("Size:"), 0, 1, 3, 4,
+		table.Attach (CreateRightAlignedLabel (Mono.Posix.Catalog.GetString ("Size:")), 0, 1, 3, 4,
 			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
-		table.Attach (CreateRightAlignedLabel ("Exposure:"), 0, 1, 4, 5,
+		table.Attach (CreateRightAlignedLabel (Mono.Posix.Catalog.GetString ("Exposure:")), 0, 1, 4, 5,
 			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
 
 		name_entry = new Entry ();
@@ -150,7 +150,7 @@ public class InfoBox : VBox {
 		if (text != "")
 			exposure_info_label.Text = text;
 		else
-			exposure_info_label.Text = "(None)";
+			exposure_info_label.Text = Mono.Posix.Catalog.GetString ("(None)");
 
 		int width = 0, height = 0;
 		try {
