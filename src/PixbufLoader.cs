@@ -8,7 +8,7 @@ public class PixbufLoader {
 
 	// Types.
 
-	private class RequestItem {
+	protected class RequestItem {
 		/* The path to the image.  */
 		public string path;
 
@@ -18,9 +18,17 @@ public class PixbufLoader {
 		/* The pixbuf obtained from the operation.  */
 		public Pixbuf result;
 
-		public RequestItem (string path, int order) {
+		/* the maximium size both must be greater than zero if either is */
+		public int width;
+		public int height;
+
+		public RequestItem (string path, int order, int width, int height) {
 			this.path = path;
 			this.order = order;
+			this.width = width;
+			this.height = height;
+			if ((width <= 0 && height > 0) || (height <= 0 && width > 0))
+				throw new System.Exception ("Invalid arguments");
 		}
 	}
 
@@ -85,8 +93,13 @@ public class PixbufLoader {
 
 	public void Request (string path, int order)
 	{
+		Request (path, order, 0, 0);
+	}
+
+	public void Request (string path, int order, int width, int height)
+	{
 		lock (queue) {
-			if (InsertRequest (path, order))
+			if (InsertRequest (path, order, width, height))
 				Monitor.Pulse (queue);
 		}
 	}
@@ -104,7 +117,7 @@ public class PixbufLoader {
 
 	// Private utility methods.
 
-	private void ProcessRequest (RequestItem request)
+	protected virtual void ProcessRequest (RequestItem request)
 	{
 		/* Short circuit for JPEG files; use Alex Larsson's fast thumbnail
 		   code in that case.  FIXME: Should use gnome-vfs to determine the
@@ -112,7 +125,7 @@ public class PixbufLoader {
 
 #if USE_FASTPATH_THUMBS
 		if (request.path.ToLower().EndsWith (".jpg") || request.path.ToLower().EndsWith (".jpeg")) {
-			Pixbuf scaled_image = JpegUtils.LoadScaled (request.path, size, size);
+			Pixbuf scaled_image = JpegUtils.LoadScaled (request.path, request.width, request.height);
 			
 			if (scaled_image != null) {
 				request.result = scaled_image;
@@ -126,20 +139,25 @@ public class PixbufLoader {
 
 		Pixbuf orig_image;
 		try {
-			orig_image = new Pixbuf (request.path);
+			if (request.width > 0) {
+				orig_image = PixbufUtils.LoadAtMaxSize (request.path, request.width, request.height);
+			} else
+				orig_image = new Pixbuf (request.path);
+
 		} catch (GLib.GException ex){
 			return;		
 		}
 		
 		if (orig_image == null)
 			return;
-
+		
 		request.result = orig_image;
 	}
 
 	/* Insert the request in the queue, return TRUE if the queue actually grew.
 	   NOTE: Lock the queue before calling.  */
-	private bool InsertRequest (string path, int order)
+
+	private bool InsertRequest (string path, int order, int width, int height)
 	{
 		/* Check if this is the same as the request currently being processed.  */
 		if (current_request != null && current_request.path == path)
@@ -159,7 +177,7 @@ public class PixbufLoader {
 		}
 
 		/* New request, just put it on the queue with the right order.  */
-		RequestItem new_request = new RequestItem (path, order);
+		RequestItem new_request = new RequestItem (path, order, width, height);
 #if ORDERED_QUEUE
 		if (queue.Count == 0 || (queue [queue.Count - 1] as RequestItem).order <= new_request.order) {
 			queue.Add (new_request);

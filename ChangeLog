@@ -1,5 +1,15 @@
 2005-01-16  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufLoader.cs: make handle request virtual so that we can
+	override it in ThumbnailGenerator.
+
+	* src/ThumbnailGenerator.cs: new class to asynchronously update
+	thumbnails.
+
+	* src/ThumbnailCache.cs: clean up initialization, use CopyOptions.
+
+	* src/PixbufUtils.cs: copy options in more of the ops.
+
 	* src/PhotoImageView.cs: diable the copying and filling in
 	progress.
 
