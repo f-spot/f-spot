@@ -108,8 +108,19 @@ public class IconView : Gtk.Layout {
 	private int click_x, click_y;
 
 	// Focus Handling
-	private int focus_cell = 0;
-
+	private int real_focus_cell;
+	private int focus_cell {
+		set {
+			if (value != real_focus_cell) {
+				InvalidateCell (value);
+				InvalidateCell (real_focus_cell);
+				real_focus_cell = value;
+			}
+		}
+		get {
+			return real_focus_cell;
+		}
+	}
 	// Number of consecutive GDK_BUTTON_PRESS on the same cell, to
 	// distinguish the GDK_2BUTTON_PRESS events that we actually care
 	// about.
@@ -137,7 +148,6 @@ public class IconView : Gtk.Layout {
 
 		ScrollAdjustmentsSet += new ScrollAdjustmentsSetHandler (HandleScrollAdjustmentsSet);
 		SizeAllocated += new SizeAllocatedHandler (HandleSizeAllocated);
-		ExposeEvent += new ExposeEventHandler (HandleExposeEvent);
 		MotionNotifyEvent += new MotionNotifyEventHandler (HandleMotionNotifyEvent);
 		
 		ButtonPressEvent += new ButtonPressEventHandler (HandleButtonPressEvent);
@@ -381,10 +391,19 @@ public class IconView : Gtk.Layout {
 		Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForPath (thumbnail_path);
 
 		Gdk.Rectangle area = new Gdk.Rectangle (x, y, cell_width, cell_height);
-		Style.PaintBox (Style, BinWindow, selected ? (HasFocus ? StateType.Selected :StateType.Active) : StateType.Normal, ShadowType.Out, area, this, null, x, y, cell_width, cell_height);
+		
+#if false
+		Style.PaintFlatBox (Style, BinWindow, selected ? (HasFocus ? StateType.Selected :StateType.Active) : StateType.Normal, 
+				    ShadowType.Out, area, this, null, x, y, cell_width, cell_height);
 
+#else
+		Style.PaintBox (Style, BinWindow, selected ? (HasFocus ? StateType.Selected :StateType.Active) : StateType.Normal, 
+				ShadowType.Out, area, this, null, x, y, cell_width, cell_height);
+
+#endif 
 		if (HasFocus && thumbnail_num == focus_cell) {
-			Style.PaintFocus(Style, BinWindow, StateType.Normal, area, this, null, x + 3, y + 3, cell_width - 6, cell_height - 6);
+			Style.PaintFocus(Style, BinWindow, StateType.Normal, area, 
+					 this, null, x + 3, y + 3, cell_width - 6, cell_height - 6);
 		}
 
 		if (thumbnail == null) {
@@ -400,11 +419,17 @@ public class IconView : Gtk.Layout {
 			else
 				dest_y = (int) (y + (cell_height - height) / 2);
 			
-			if (selected) {
+			if (selected) { 
 				dest_x -= SELECTION_THICKNESS;
 				dest_y -= SELECTION_THICKNESS;
 				width += 2 * SELECTION_THICKNESS;
 				height += 2 * SELECTION_THICKNESS;
+			} else if (thumbnail_num == throb_cell) {
+				int scale = (int) (SELECTION_THICKNESS * (1 - Math.Cos (throb_state)/2.0));
+				dest_x -= scale;
+				dest_y -= scale;		
+				width += 2 * scale;
+				height += 2 * scale;
 			}
 
 			Pixbuf temp_thumbnail;
@@ -559,6 +584,43 @@ public class IconView : Gtk.Layout {
 			GLib.Source.Remove (scroll_on_idle_id);
 	}
 
+
+	//
+	// The throb interface
+	//
+	private uint throb_timer_id;
+	private int throb_cell = -1;
+	private int throb_state;
+	public void Throb (int cell_num)
+	{
+		throb_state = 0;
+		throb_cell = cell_num;
+		if (throb_timer_id == 0)
+			throb_timer_id = GLib.Timeout.Add (65, new GLib.TimeoutHandler (HandleThrobTimer));
+
+		InvalidateCell (cell_num);
+	}
+	
+	private void CancelThrob ()
+	{
+		if (throb_timer_id != 0)
+			GLib.Source.Remove (throb_timer_id);
+	}
+
+	private bool HandleThrobTimer () 
+	{
+		//Console.WriteLine ("throb out {1} {0}", throb_cell, 1 - Math.Cos (throb_state));
+		
+		InvalidateCell (throb_cell);
+		if (throb_state++ < 6) {
+			return true;
+		} else {
+			throb_cell = -1;
+			throb_timer_id = 0;
+			return false;
+		}
+	}
+
 	public void ScrollTo (int cell_num)
 	{
 		Adjustment adjustment = Vadjustment;
@@ -591,15 +653,20 @@ public class IconView : Gtk.Layout {
 		ThumbnailCache.Default.AddThumbnail (path, result);
 		InvalidateCell (order);
 	}
+	
+	public Gdk.Rectangle CellBounds (int cell) 
+	{
+		Rectangle bounds;
+		GetCellPosition (cell, out bounds.X, out bounds.Y);
+		bounds.Width = cell_width;
+		bounds.Height = cell_height;
+		return bounds;
+	}
 
-	public void InvalidateCell (int order) {
-		Rectangle cell_area;
-		GetCellPosition (order, out cell_area.X, out cell_area.Y);
-		cell_area.Width = cell_width - 1;
-		cell_area.Height = cell_height - 1;
-
+	public void InvalidateCell (int order) 
+	{
+		Rectangle cell_area = CellBounds (order);
 		BinWindow.InvalidateRect (cell_area, false);
-		//Console.WriteLine ("Invalidating cell {0} ({1})", order, cell_area);
 	}
 			
 	private void HandleScrollAdjustmentsSet (object sender, ScrollAdjustmentsSetArgs args)
@@ -613,12 +680,12 @@ public class IconView : Gtk.Layout {
 		UpdateLayout ();
 	}
 
-	private void HandleExposeEvent (object sender, ExposeEventArgs args)
+	protected override bool OnExposeEvent (Gdk.EventExpose args)
 	{
-		//Console.WriteLine ("Expose area {0}", args.Event.Area);
+		DrawAllCells (args.Area.X, args.Area.Y,
+			      args.Area.Width, args.Area.Height);
 
-		DrawAllCells (args.Event.Area.X, args.Event.Area.Y,
-			      args.Event.Area.Width, args.Event.Area.Height);
+		return base.OnExposeEvent (args);
 	}
 
  	private void HandleButtonPressEvent (object obj, ButtonPressEventArgs args)
@@ -775,16 +842,12 @@ public class IconView : Gtk.Layout {
 			SelectCell (focus_cell);
 		} 
 	
-		if  (focus_cell != focus_old) { 
-			InvalidateCell (focus_old);	
-			InvalidateCell (focus_cell);
-		}
-		
 		ScrollTo (focus_cell);
 	}
 
 	private void HandleDestroyEvent (object sender, DestroyEventArgs args)
 	{
 		CancelScroll ();
+		CancelThrob ();
 	}
 }

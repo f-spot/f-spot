@@ -1,5 +1,9 @@
 2004-08-18  Larry Ewing  <lewing@novell.com>
 
+	* src/Mainwindow.cs: call ScrollTo then Throb: on the selected cell.
+
+	* src/IconView.cs: add the throb interface.
+
 	* src/MainWindow.cs: check the source not the sender for dnd. Arg.
 
 	* src/CompatFileChooser.cs: destroy the chooser too.
