@@ -31,6 +31,7 @@
 #include "cursors.h"
 #include "image-view.h"
 #include "uta.h"
+#include "lcms.h"
 
 /* Checks */
 
@@ -114,6 +115,7 @@ struct _ImageViewPrivate {
 #ifdef LIBEOG_ETTORE_CHANGES
 	float display_brightness;
 	float display_contrast;
+	cmsHTRANSFORM transform;
 #endif
 };
 
@@ -260,6 +262,7 @@ image_view_instance_init (ImageView *view)
 #ifdef LIBEOG_ETTORE_CHANGES
 	priv->display_brightness = 0.0;
 	priv->display_contrast = 0.0;
+	priv->transform = NULL;
 #endif
 
 	/* We don't want to be double-buffered as we are SuperSmart(tm) */
@@ -528,6 +531,22 @@ apply_brightness_and_contrast_to_pixbuf (ImageView *view,
 	}
 }
 
+apply_transform_to_pixbuf (ImageView *view, GdkPixbuf *pixbuf, int width, int height)
+{
+	char *p;
+	int line;
+	int rowstride;
+	int bytes_per_pixel;
+
+	p = gdk_pixbuf_get_pixels (pixbuf);
+	rowstride = gdk_pixbuf_get_rowstride (pixbuf);
+	bytes_per_pixel = gdk_pixbuf_get_has_alpha (pixbuf) ? 4 : 3;
+
+	for (line = 0; line < height; line ++) {
+		cmsDoTransform (view->priv->transform, p, p, width);
+		p += rowstride;
+	}
+}
 #endif
 
 /* Paints a rectangle of the dirty region */
@@ -739,8 +758,8 @@ paint_rectangle (ImageView *view, ArtIRect *rect, GdkInterpType interp_type)
 				    check_1, check_2);
 
 #ifdef LIBEOG_ETTORE_CHANGES
-	if (apply_brightness_and_contrast)
-	apply_brightness_and_contrast_to_pixbuf (view, tmp, d.x1 - d.x0, d.y1 - d.y0);
+	if (priv->transform != NULL)
+		apply_transform_to_pixbuf (view, tmp, d.x1 - d.x0, d.y1 - d.y0);
 #endif
 
 #ifdef PACK_RGBA
@@ -2193,6 +2212,12 @@ image_view_set_display_contrast (ImageView *view,
 	view->priv->display_contrast = display_contrast;
 
 	gtk_widget_queue_draw (GTK_WIDGET (view));
+}
+
+void
+image_view_set_display_transform (ImageView *view, cmsHTRANSFORM transform)
+{
+	view->priv->transform = transform;
 }
 
 #endif
