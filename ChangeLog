@@ -1,7 +1,9 @@
 2005-01-10  Larry Ewing  <lewing@novell.com>
 
-	* src/VfsExport.cs: try out the auth bindings.
-	
+	* src/VfsExport.cs: Add the start of progress info.
+
+	* src/VfsExport.cs: Add some hooks try out the auth bindings.
+
 	* src/gnomevfs: import all of the gnome-vfs bindings from gtk-sharp
 	1.9 since we can't depend on gtk-sharp 1.9 until it is released.
 	

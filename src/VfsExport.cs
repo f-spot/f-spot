@@ -91,7 +91,7 @@ namespace FSpot {
 					
 					photo_index++;
 				}
-				//Dialog.Destroy ();
+				Dialog.Destroy ();
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e.ToString ());
 			}
@@ -99,7 +99,13 @@ namespace FSpot {
 		
 		private int Progress (Gnome.Vfs.XferProgressInfo info)
 		{
-			//progress_dialog.Fraction = info.BytesCopied / 100;
+			progress_dialog.Message = info.Phase.ToString ();
+
+			if (info.BytesTotal > 0) {
+				System.Console.WriteLine ("{0}%", info.BytesCopied / (double)info.BytesTotal);
+				progress_dialog.Fraction = info.BytesCopied / (double)info.BytesTotal;
+			}
+			
 			System.Console.WriteLine ("Progress: {0} {2} {1}", (info.BytesTotal + 1), info.Status.ToString (), info.BytesCopied);
 
 			switch (info.Status) {
@@ -148,10 +154,10 @@ namespace FSpot {
 #else 	
 			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Upload));
 			command_thread.Name = Mono.Posix.Catalog.GetString ("Uploading Pictures");
-			command_thread.Start ();
+			//command_thread.Start ();
+			progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Photos.Length);
+			progress_dialog.Start ();
 #endif
-			//progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Photos.Length);
-			//progress_dialog.Start ();
 		}
 	}
 }
