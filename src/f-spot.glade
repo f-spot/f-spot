@@ -1633,7 +1633,7 @@
 		<widget class="GtkButton" id="select_tag_button">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
-		  <property name="label" translatable="yes">Select Tags ...</property>
+		  <property name="label" translatable="yes">Select Tags...</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
@@ -7355,7 +7355,6 @@ Photo Details</property>
 
 		      <child>
 			<widget class="GtkHBox" id="photo_box">
-			  <property name="border_width">6</property>
 			  <property name="visible">True</property>
 			  <property name="homogeneous">False</property>
 			  <property name="spacing">0</property>
