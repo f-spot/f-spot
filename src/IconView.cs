@@ -170,10 +170,16 @@ public class IconView : Gtk.Layout {
 		QueueResize ();
 	}
 
+	private void ItemChanged (PhotoQuery query, int item)
+	{
+		InvalidateCell (item);
+	}
+
 	public IconView (PhotoQuery query) : this ()
 	{
 		this.query = query;
 		query.Reload += OnReload;
+		query.ItemChanged += ItemChanged;
 	}
 
 	protected IconView (IntPtr raw) : base (raw) {}

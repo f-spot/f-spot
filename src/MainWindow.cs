@@ -258,13 +258,6 @@ public class MainWindow {
 		photo_view.Update ();
 	}
 
-	private void InvalidateViews (int num)
-	{
-		icon_view.InvalidateCell (num);
-		if (num == photo_view.CurrentPhoto)
-			photo_view.Update ();
-	}
-
 	private void UpdateViews (int num)
 	{
 		icon_view.UpdateThumbnail (num);
@@ -292,10 +285,10 @@ public class MainWindow {
 	// Tag Selection Drag Handlers
 	//
 
-	public void AddTagExtended (Photo photo, Tag [] tags)
+	public void AddTagExtended (int num, Tag [] tags)
 	{
-		photo.AddTag (tags);
-		db.Photos.Commit (photo);
+		query.Photos [num].AddTag (tags);
+		query.Commit (num);
 
 		foreach (Tag t in tags) {
 			Pixbuf icon = null;
@@ -303,7 +296,7 @@ public class MainWindow {
 			if (t.Icon == null) {
 				if (icon == null) {
 					// FIXME this needs a lot more work.
-					Pixbuf tmp = PixbufUtils.LoadAtMaxSize (photo.DefaultVersionPath, 128, 128);
+					Pixbuf tmp = PixbufUtils.LoadAtMaxSize (query.Photos[num].DefaultVersionPath, 128, 128);
 					icon = PixbufUtils.TagIconFromPixbuf (tmp);
 					tmp.Dispose ();
 				}
@@ -355,10 +348,7 @@ public class MainWindow {
 		switch (args.Info) {
 		case (uint)TargetType.PhotoList:
 			foreach (int num in SelectedIds ()) {
-				Photo photo = query.Photos [num];
-				
-				AddTagExtended (photo, tags);
-				InvalidateViews (num);
+				AddTagExtended (num, tags);
 			}
 			break;
 		case (uint)TargetType.TagList:
@@ -371,7 +361,8 @@ public class MainWindow {
 				if (photo == null)
 					return;
 				
-				AddTagExtended (photo, tags);
+				// FIXME this should really follow the AddTagsExtended path too
+				photo.AddTag (tags);
 			}
 			InvalidateViews ();
 			break;
@@ -628,10 +619,7 @@ public class MainWindow {
 	public void HandleAttachTagMenuSelected (Tag t) 
 	{
 		foreach (int num in SelectedIds ()) {
-			Photo photo = query.Photos [num];
-			AddTagExtended (photo, new Tag [] {t});
-			
-			InvalidateViews (num);
+			AddTagExtended (num, new Tag [] {t});
 		}
 	}
 	
@@ -643,11 +631,8 @@ public class MainWindow {
 	public void HandleRemoveTagMenuSelected (Tag t)
 	{
 		foreach (int num in SelectedIds ()) {
-			Photo photo = query.Photos [num];
-			photo.RemoveTag (t);
-			db.Photos.Commit (photo);
-			
-			InvalidateViews (num);
+			query.Photos [num].RemoveTag (t);
+			query.Commit (num);
 		}
 	}
 
@@ -851,10 +836,7 @@ public class MainWindow {
 	void AttachTags (Tag [] tags, int [] ids) 
 	{
 		foreach (int num in ids) {
-			Photo photo = query.Photos [num];
-			
-			AddTagExtended (photo, tags);
-			InvalidateViews (num);			
+			AddTagExtended (num, tags);
 		}
 	}
 
@@ -863,11 +845,8 @@ public class MainWindow {
 		Tag [] tags = this.tag_selection_widget.TagHighlight ();
 
 		foreach (int num in SelectedIds ()) {
-			Photo photo = query.Photos [num];
-			photo.RemoveTag (tags);
-			db.Photos.Commit (photo);
-			
-			InvalidateViews (num);
+			query.Photos [num].RemoveTag (tags);
+			query.Commit (num);
 		}
 	}
 
@@ -1141,7 +1120,7 @@ public class MainWindow {
 	void UpdateForVersionIdChange (uint version_id)
 	{
 		CurrentPhoto.DefaultVersionId = version_id;
-		db.Photos.Commit (CurrentPhoto);
+		query.Commit (current_photo_idx);
 
 		info_box.Update ();
 		photo_view.Update ();

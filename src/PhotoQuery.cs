@@ -7,6 +7,9 @@ public class PhotoQuery {
 	// Public events.
 	public delegate void ReloadHandler (PhotoQuery model);
 	public event ReloadHandler Reload;
+	
+	public delegate void ItemChangedHandler (PhotoQuery model, int item);
+	public event ItemChangedHandler ItemChanged;
 
 	private Photo [] photos;
 	public Photo [] Photos {
@@ -32,6 +35,12 @@ public class PhotoQuery {
 	{
 		if (Reload != null)
 			Reload (this);
+	}
+	
+	public void Commit (int index) 
+	{
+		store.Commit (photos[index]);
+		ItemChanged (this, index);
 	}
 
 	private Tag [] tags;

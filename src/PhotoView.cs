@@ -39,6 +39,7 @@ public class PhotoView : EventBox {
 		set {
 			query = value;
 			query.Reload += HandleQueryReload;
+			query.ItemChanged += HandleQueryItemChanged;
 
 			// FIXME which picture to display?
 			current_photo = 0;
@@ -46,8 +47,15 @@ public class PhotoView : EventBox {
 		}
 	}
 	
-	private void HandleQueryReload (PhotoQuery query) {
+	private void HandleQueryReload (PhotoQuery query) 
+	{
 		Update ();
+	}
+	
+	private void HandleQueryItemChanged (PhotoQuery query, int item)
+	{
+		if (item == current_photo)
+			Update ();
 	}
 
 	private FSpot.ImageView image_view;
@@ -361,7 +369,7 @@ public class PhotoView : EventBox {
 		Photo photo = query.Photos [CurrentPhoto];
 		if (photo.DefaultVersionId == Photo.OriginalVersionId) {
 			photo.DefaultVersionId = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);
-			photo_store.Commit (photo);
+			query.Commit (CurrentPhoto);
 		}
 
 		Pixbuf original_pixbuf = image_view.Pixbuf;
@@ -400,10 +408,8 @@ public class PhotoView : EventBox {
 		if (!CurrentPhotoValid ())
 			return;
 
-		Photo photo = Query.Photos[current_photo];
-
-		photo.Description = description_entry.Text;
-		photo_store.Commit (photo);
+		Query.Photos[current_photo].Description = description_entry.Text;
+		Query.Commit (current_photo);
 	}
 
 	// Constructor.

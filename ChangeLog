@@ -1,5 +1,15 @@
 2004-09-14  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoQuery.cs: add Commit Method, notify listener of
+	committed changes.
+	
+	* src/PhotoView.cs: add Query.ItemChanged handler.
+
+	* src/IconView.cs: add Query.ItemChanged hander.
+	
+	* src/MainWindow.cs: Use PhotoQuery.Commit, remove extra
+	notification stuff.
+
 	* src/DirectoryAdaptor.cs: hook up reload here too for a little
 	while, although this all about to change.
 
