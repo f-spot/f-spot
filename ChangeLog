@@ -1,3 +1,12 @@
+2004-10-08  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: add gnome about dialog to the about menu
+	item, I did a quick rundown in my head and tried to find everyone
+	who had contributed so far, but I'm sure I missed several people.
+	If you feel you've been left out please let me know.  
+
+	* src/f-spot.glade: add about dialog.
+
 2004-10-07  Larry Ewing  <lewing@novell.com>
 
 	* src/GalleryExport.cs: fill in more of the dialog logic.

@@ -774,6 +774,31 @@ public class MainWindow {
 		Gnome.Url.Show (url.ToString ());
 	}
 
+	void HandleAbout (object sender, EventArgs args)
+	{
+		string [] authors = new string [] {
+			"Ettore Perazzoli",
+			"Lawrence Ewing",
+			"Nat Friedman",
+			"Miguel de Icaza",
+			"Vladimir Vukicevic",
+			"Jon Trowbridge",
+			"Joe Shaw",
+			"Tambet Ingo",
+			"MOREAU Vincent",
+			"Lee Willis",
+			"Peter Johanson",
+			"Grahm Orr",
+			"Cheslack-Postava",
+			"Patanjali Somayaji",
+			"Matt Jones"
+		};
+			
+		Gnome.About about = new About ("F-Spot", "0.0.3", "Copyright 2003-2004 Novell Inc.", null, authors, null, null, null);
+
+		about.Show ();
+	}
+
 	void HandleArrangeByTime (object sender, EventArgs args)
 	{
 		group_selector.Adaptor.GlassSet -= HandleAdaptorGlassSet;
