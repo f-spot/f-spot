@@ -1,5 +1,10 @@
 2005-01-26  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufUtils.cs: use simple command forms.
+
+	* src/Exif.cs: add more SetData overloads, override broken libexif
+	datasetting.
+
 	* src/ColorDialog.cs: use the new Exif.cs to correctly copy exif
 	data when creating a version.
 

@@ -191,7 +191,7 @@ namespace Exif {
 		{
 			IntPtr raw_ret = exif_byte_order_get_name (order);
 			return Marshal.PtrToStringAnsi (raw_ret);
-	}
+		}
 		
 		public static string GetFormatName (ExifFormat format)
 		{
@@ -401,7 +401,15 @@ exif_entry_new ();
 		public void Reset (ExifTag tag)
 		{
 			exif_entry_initialize (handle, tag);
+
+			//FIXME the month string in time fields in libexif ix currently broken so we do our own. 
+			if (tag == ExifTag.DateTime
+			    || tag == ExifTag.DateTimeOriginal
+			    || tag == ExifTag.DateTimeDigitized)
+				this.SetData (System.DateTime.Now);
+
 		}
+
 
 		public void Reset ()
 		{
@@ -443,11 +451,6 @@ exif_entry_new ();
 					return data;
 				}
 			}
-		}
-		
-		public void SetData (DateTime time) 
-		{
-			
 		}
 		
 		public void SetData (byte [] data, bool check_type)
@@ -492,6 +495,11 @@ exif_entry_new ();
 			tmp[len] = 0;
 			System.Console.WriteLine ("value = {0} len = {1}", value, len);
 			SetData (tmp, false);
+		}
+
+		public void SetData (System.DateTime time)
+		{
+			SetData (time.ToString ("yyyy:MM:dd HH:mm:ss"));
 		}
 		
 		public string Description 

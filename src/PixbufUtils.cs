@@ -303,13 +303,11 @@ class PixbufUtils {
 		// Most of the things we will set will be in the 0th ifd
 		Exif.ExifContent content = exif_data.GetContents (Exif.ExifIfd.Zero);
 
-		// reset the orientation tag
-		content.Remove (content.Lookup (Exif.ExifTag.Orientation));
-		new Exif.ExifEntry (content, Exif.ExifTag.Orientation);
+		// reset the orientation tag the default is top/left
+		content.GetEntry (Exif.ExifTag.Orientation).Reset ();
 
 		// set the write time in the datetime tag
-		content.Remove (content.Lookup (Exif.ExifTag.DateTime));
-		new Exif.ExifEntry (content, Exif.ExifTag.DateTime);
+		content.GetEntry (Exif.ExifTag.DateTime).Reset ();
 
 		// set the software tag
 		content.GetEntry (Exif.ExifTag.Software).SetData (FSpot.Defines.PACKAGE + " version " + FSpot.Defines.VERSION);
