@@ -1,3 +1,8 @@
+2004-05-14  Larry Ewing  <lewing@ximian.com>
+
+	* src/ExportCommand.cs: commit a quick hack to upload photos in a
+	thread.  This is by no means ready for prime time.
+
 2004-05-14  Todd Berman  <tberman@sevenl.net>
 
 	* src/makefile.am: fix makefile for mono from cvs.

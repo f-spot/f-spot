@@ -3,6 +3,7 @@ using GtkSharp;
 using System;
 using System.Text;
 using System.Collections;
+using System.Threading;
 
 public class ExportCommand {
 	public class Gallery {
@@ -25,6 +26,12 @@ public class ExportCommand {
 		private OptionMenu gallery_album_option;
 
 		private GalleryRemote gallery = null;
+		private Album current_album = null;
+		private Photo [] current_photos;
+
+		string password;
+		string url; 
+		string name;
 
 		private void PopulateAlbumOptionMenu ()
 		{
@@ -65,31 +72,15 @@ public class ExportCommand {
 		}
 
 		private void Update () {
-			string password = gallery_password_entry.Text;
-			string url = gallery_url_entry.Text;
-			string name = gallery_name_entry.Text;
+			password = gallery_password_entry.Text;
+			url = gallery_url_entry.Text;
+			name = gallery_name_entry.Text;
 
 			gallery_url_entry.Sensitive = false;
 			gallery_password_entry.Sensitive = false;
 			gallery_name_entry.Sensitive = false;
 
-			if (url != null && url != "" 
-			    && name != null && name != ""
-			    && password != null && password != "") {
-				try {
-					gallery = new GalleryRemote (gallery_url_entry.Text);
-					gallery.Login (gallery_name_entry.Text, gallery_password_entry.Text);
-					gallery.FetchAlbums ();
-				} catch (Exception ex) {
-					// FIXME real error dialog
-					Console.WriteLine ("Error: {0}", ex);
-				}
-			}
-			PopulateAlbumOptionMenu ();
-
-			gallery_url_entry.Sensitive = true;
-			gallery_password_entry.Sensitive = true;
-			gallery_name_entry.Sensitive = true;
+			LoadGallery ();
 		}
 		
 		private void HandleActivateCommand (object sender, EventArgs args)
@@ -117,13 +108,15 @@ public class ExportCommand {
 				Album album = null;
 				try {
 					if (gallery.Albums.Count != 0) {
-						album = gallery.Albums[gallery_album_option.History] as Album;
+						current_album = gallery.Albums[gallery_album_option.History] as Album;
+						current_photos = photos;
+
+						Console.WriteLine ("album = {0}", current_album.Name);
 						
-						Console.WriteLine ("album = {0}", album.Name);
-						
-						foreach (Photo photo in photos) {
-							album.Add (photo);
-						}
+
+						Thread t = new Thread (new ThreadStart (this.SendPhotos));
+						t.Start ();
+			
 						success = true;
 					}
 
@@ -137,6 +130,39 @@ public class ExportCommand {
 			export_gallery_dialog.Destroy ();
 			return success;
 		}
+
+		private void SendPhotos () {
+			Console.WriteLine ("Sending {0} photos", current_photos.Length);
+
+			foreach (Photo photo in current_photos) {
+				current_album.Add (photo);
+			}
+
+			Console.WriteLine ("Done Sending Photos");
+		}
+
+		private void LoadGallery () {			
+			if (url != null && url != "" 
+			    && name != null && name != ""
+			    && password != null && password != "") {
+				try {
+					if (!url.EndsWith ("/gallery_remote2.php"))
+					    url = url + "/gallery_remote2.php";
+					
+					gallery = new GalleryRemote (url);
+					gallery.Login (name, password);
+					gallery.FetchAlbums ();
+				} catch (Exception ex) {
+					// FIXME real error dialog
+					Console.WriteLine ("Error: {0}", ex);
+				}
+			}
+			PopulateAlbumOptionMenu ();
+
+			gallery_url_entry.Sensitive = true;
+			gallery_password_entry.Sensitive = true;
+			gallery_name_entry.Sensitive = true;
+		}
 	}
-}	
+}      
 	
