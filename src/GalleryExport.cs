@@ -307,10 +307,19 @@ namespace FSpot {
 				progress_dialog.Start ();
 			}
 		}
+		
+		private void HandleProgressChanged (ProgressItem item)
+		{
+			//System.Console.WriteLine ("Changed value = {0}", item.Value);
+			progress_dialog.Fraction = (photo_index - 1.0 + item.Value) / (double) photos.Length;
+		}
 
 		private void Upload ()
 		{
 			try {
+				account.Gallery.Progress = new ProgressItem ();
+				account.Gallery.Progress.Changed += HandleProgressChanged;
+
 				System.Console.WriteLine ("Starting upload");
 				while (photo_index < photos.Length) {
 					Photo photo = photos [photo_index];
@@ -334,17 +343,7 @@ namespace FSpot {
 			}
 			
 			if (browser) {
-				string url = account.Url;
-				string end = "gallery_remote2.php";
-				url = url.Remove (url.Length - end.Length, end.Length); 
-				string path = album.Name;
-				while (album.Parent () != null) {
-					album = album.Parent ();
-					path = album.Name + "/" + path;
-				}
-				url = url + path;
-
-				Gnome.Url.Show (url);
+				Gnome.Url.Show (album.GetUrl());
 			}
 		}
 		

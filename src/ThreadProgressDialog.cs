@@ -2,6 +2,31 @@ namespace FSpot {
 	using Gtk;
 	using GtkSharp;
 	using System;
+	
+	public class ProgressItem {
+		public ProgressItem () {
+			
+		}
+		
+		public delegate void ChangedHandler (ProgressItem item);
+		public event ChangedHandler Changed;
+
+		double value;
+		public double Value {
+			get {
+				lock (this) {
+					return value;
+				}
+			}
+			set {
+				lock (this) {
+					this.value = value;
+					if (Changed != null)
+						Changed (this);
+				}
+			}
+		}
+	}
 
 	public class ThreadProgressDialog : Dialog {
 

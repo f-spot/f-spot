@@ -1,5 +1,16 @@
 2004-10-15  Larry Ewing  <lewing@novell.com>
 
+	* src/GalleryExport.cs: start using the ProgressItem into the
+	upload operation.
+
+	* src/ThreadProgressDialog.cs: add ProgressItem class to help
+	track progress of long running operations.
+
+	* src/GalleryRemote.cs: start progress item integration, move
+	album url to GetUrl.
+
+	* src/FormClient.cs: start integrating the progress items.
+
 	* src/GalleryExport.cs: make open gallery in browser work.
 
 2004-10-14  Larry Ewing  <lewing@novell.com>

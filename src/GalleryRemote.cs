@@ -68,6 +68,24 @@ namespace GalleryRemote {
 					 false);
 		}
 		
+		public string GetUrl ()
+		{
+			// FIXME this is a hack
+			string url = gallery.Uri.ToString ();
+			string end = "gallery_remote2.php";
+
+			if (url.EndsWith (end))
+				url = url.Remove (url.Length - end.Length, end.Length); 
+
+			Album album = this;
+			string path = album.Name;
+			while (album.Parent () != null) {
+				album = album.Parent ();
+				path = album.Name + "/" + path;
+			}
+			url = url + path;
+			return url;
+		}
 	}
 	
 	public class Image {
@@ -127,6 +145,7 @@ namespace GalleryRemote {
 		
 		public ArrayList Albums = null;
 		
+		public FSpot.ProgressItem Progress;
 		
 		Uri uri;
 		public Uri Uri{
@@ -177,7 +196,7 @@ namespace GalleryRemote {
 				
 				ParseResult (reader);
 				
-				Console.WriteLine ("Tengo: {0} cookies", response.Cookies.Count);
+				Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
 			}
 			finally {
 				if (reader != null)
@@ -288,7 +307,7 @@ namespace GalleryRemote {
 			return status;
 		}
 		
-		public void Login (string username, string passwd) 
+		public void Login (string username, string passwd)
 		{
 			FormClient client = new FormClient (cookies);
 			
@@ -339,7 +358,7 @@ namespace GalleryRemote {
 			client.Add ("caption", caption);
 			client.Add ("userfile", new FileInfo (path));
 			
-			ParseResponse (client.Submit (uri));
+			ParseResponse (client.Submit (uri, Progress));
 		}
 		
 		public void AlbumProperties (string album)

@@ -33,6 +33,8 @@ class FormClient {
 	public HttpWebRequest Request;
 	public CookieContainer Cookies;
 
+	public FSpot.ProgressItem Progress;
+
 	public FormClient (CookieContainer cookies) 
 	{
 		this.Cookies = cookies;
@@ -158,7 +160,9 @@ class FormClient {
 			while ((count = fs.Read (data, 0, 4096)) > 0) {
 				stream.Write (data, 0, count);
 				total_read += count;
-				Console.WriteLine ("{0}%", total_read * 100 / total);
+				if (Progress != null)
+					Progress.Value = total_read / (double)total;
+
 			}
 			fs.Close ();
 
@@ -168,6 +172,7 @@ class FormClient {
 		}
 	}
 
+
 	public void Clear () 
 	{
 		Items.Clear ();
@@ -176,11 +181,22 @@ class FormClient {
 
 	public HttpWebResponse Submit (string url)
 	{
-		return Submit (new Uri (url));
+		return Submit (url, null);
 	}
 
-	public HttpWebResponse Submit (Uri uri) 
+	public HttpWebResponse Submit (string url, FSpot.ProgressItem item)
 	{
+		return Submit (new Uri (url), item);
+	}
+	
+	public HttpWebResponse Submit (Uri uri)
+	{
+		return Submit (uri, null);
+	}
+
+	public HttpWebResponse Submit (Uri uri, FSpot.ProgressItem progress_item) 
+	{
+		this.Progress = progress_item;
 		Request = (HttpWebRequest) WebRequest.Create (uri);
 		CookieCollection cookie_collection = Cookies.GetCookies (uri);
 
