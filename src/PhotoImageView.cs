@@ -9,7 +9,7 @@ namespace FSpot {
 			this.SizeAllocated += new Gtk.SizeAllocatedHandler (HandleSizeAllocated);
 		}
 		
-		private int current_photo;
+		private int current_photo = -1;
 		public int CurrentPhoto {
 			get {
 				return current_photo;
@@ -56,7 +56,8 @@ namespace FSpot {
 		{
 			if (query == null ||
 			    query.Photos.Length == 0 ||
-			    CurrentPhoto >= Query.Photos.Length) {
+			    CurrentPhoto >= Query.Photos.Length ||
+			    CurrentPhoto < 0) {
 				System.Console.WriteLine ("Invalid CurrentPhoto");
 				return false;
 			}

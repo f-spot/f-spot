@@ -349,9 +349,9 @@ public class TagCommands {
 
 	public class EditIcon {
 		Db db;
-		Photo [] photos;
+		PhotoQuery query;
 		Gtk.Window parent_window;
-		FSpot.ImageView image_view;
+		FSpot.PhotoImageView image_view;
 
 		[Glade.Widget]
 		Dialog edit_icon_dialog;
@@ -377,17 +377,9 @@ public class TagCommands {
 				if (value != current_item) {
 					current_item = value;
 					photo_label.Text = String.Format ("Photo {0} of {1}", 
-									  current_item + 1, photos.Length);
+									  current_item + 1, query.Photos.Length);
 
-					Gdk.Pixbuf old = image_view.Pixbuf;
-					image_view.Pixbuf = PixbufUtils.LoadAtMaxSize (photos [value].DefaultVersionPath,
-										       image_view.Parent.Allocation.Width,
-										       image_view.Parent.Allocation.Height);
-
-					photo_spin_button.Value = (double)current_item + 1;
-
-					if (old != null)
-						old.Dispose ();
+					image_view.CurrentPhoto = current_item;
 				}
 			}
 		}
@@ -430,20 +422,20 @@ public class TagCommands {
 			}
 
 			preview_image.Pixbuf = t.Icon;
-			image_view = new FSpot.ImageView ();
+
+			query = new PhotoQuery (db.Photos);
+			query.Tags = new Tag [] { t, db.Tags.Hidden };
+
+			image_view = new FSpot.PhotoImageView (query);
 			image_view.SelectionXyRatio = 1.0;
-			image_view.Show ();
 			image_view.SelectionChanged += HandleSelectionChanged;
 
 			photo_scrolled_window.Add (image_view);
 
-			Tag [] tags = new Tag [] { t, db.Tags.Hidden };
-			photos = db.Photos.Query (tags);
-			
-			if (photos.Length > 0) {
+			if (query.Photos.Length > 0) {
 				photo_spin_button.Wrap = true;
 				photo_spin_button.Adjustment.Lower = 1.0;
-				photo_spin_button.Adjustment.Upper = (double)photos.Length;
+				photo_spin_button.Adjustment.Upper = (double)query.Photos.Length;
 				photo_spin_button.Adjustment.StepIncrement = 1.0;
 				photo_spin_button.ValueChanged += HandleSpinButtonChanged;
 				
@@ -453,6 +445,7 @@ public class TagCommands {
 				photo_spin_button.Value = 0.0;
 			}			
 			
+			image_view.Show ();
 
 			ResponseType response = (ResponseType) edit_icon_dialog.Run ();
 			bool success = false;

@@ -1,5 +1,9 @@
 2004-11-18  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoImageView.cs: check for negative CurrentPhoto values.
+
+	* src/TagCommands.cs: Use PhotoImageView here.
+
 	* src/PhotoView.cs: always change CurrentPhoto if the pixbuf is null;
 
 	* src/AsyncPixbufLoader.cs: fix the close logic.
