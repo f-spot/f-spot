@@ -1,5 +1,9 @@
 2004-10-17  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoView.cs: Change the background color to match the
+	IconView (still a temp hack).   Make the croping code work better
+	if you are operating on a version.
+
 	* src/TagView.cs: make TagView a nowindow widget.
 
 	* src/GalleryExport.cs: handle exceptions while loging in

@@ -349,15 +349,22 @@ public class PhotoView : EventBox {
 
 		// FIXME the fact that the selection doesn't go away is a bug in ImageView, it should
 		// be fixed there.
+		image_view.Pixbuf = cropped_pixbuf;
 		image_view.UnsetSelection ();
+
+		System.Console.WriteLine ("Got here");
 
 		try {
 			if (photo.DefaultVersionId == Photo.OriginalVersionId) {
 				photo.DefaultVersionId = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);
 				cropped_pixbuf.Savev (photo.DefaultVersionPath, "jpeg", null, null);
+				PhotoStore.GenerateThumbnail (photo.DefaultVersionPath);
 				query.Commit (CurrentPhoto);
 			} else {
+				// FIXME we need to invalidate the thumbnail in the cache as well
 				cropped_pixbuf.Savev (photo.DefaultVersionPath, "jpeg", null, null);
+				PhotoStore.GenerateThumbnail (photo.DefaultVersionPath);
+				query.MarkChanged (CurrentPhoto);
 			}
 		} catch (GLib.GException ex) {
 			// FIXME error dialog.
@@ -440,15 +447,29 @@ public class PhotoView : EventBox {
 		Box vbox = new VBox (false, 6);
 		Add (vbox);
 
+		EventBox eventbox = new EventBox ();
 		Frame frame = new Frame ();
+		eventbox.Add (frame);
 		frame.ShadowType = ShadowType.In;
-		vbox.PackStart (frame, true, true, 0);
+		vbox.PackStart (eventbox, true, true, 0);
 		
 		Box inner_vbox = new VBox (false , 2);
-		frame.Add (inner_vbox);
 
+		frame.Add (inner_vbox);
+		
 		image_view = new FSpot.ImageView ();
+
 		ScrolledWindow image_view_scrolled = new ScrolledWindow (null, null);
+
+		Gdk.Color color = eventbox.Style.Background (Gtk.StateType.Normal);
+		color.Red = (ushort) (color.Red / 2);
+		color.Blue = (ushort) (color.Blue / 2);
+		color.Green = (ushort) (color.Green / 2);
+
+		image_view.ModifyBg (Gtk.StateType.Normal, color);
+		eventbox.ModifyBg (Gtk.StateType.Normal, color);
+		image_view_scrolled.ModifyBg (Gtk.StateType.Normal, color);
+
 		image_view_scrolled.SetPolicy (PolicyType.Automatic, PolicyType.Automatic);
 		image_view_scrolled.ShadowType = ShadowType.None;
 		image_view_scrolled.Add (image_view);
