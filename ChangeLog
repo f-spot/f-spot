@@ -1,5 +1,20 @@
 2005-01-14  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoView.cs: expose the PhotoImageView via the view
+	property.
+
+	* src/f-spot.glade: add the new color dialog version, adjust the
+	mainwindow size.
+
+	* src/IconView.cs: use the Global background color.
+
+	* src/ColorDialog.cs: make a new version of the color dialog that
+	can work on it's own.
+
+	* src/Global.cs: Move the color setting function here for now.
+
+	* src/ImageView.cs: null protect the tranform setting routine.
+
 	* src/Makefile.am: add SimpleCalendar.cs to the build.
 
 	* src/SimpleCalendar.cs: make sure we don't get spurious month

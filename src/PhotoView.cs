@@ -16,6 +16,12 @@ public class PhotoView : EventBox {
 		}
 	}
 
+	public FSpot.PhotoImageView View {
+		get {
+			return photo_view;
+		}
+	}
+
 	private bool CurrentPhotoValid () {
 		if (query == null || query.Photos.Length == 0 || CurrentPhoto >= Query.Photos.Length)
 			return false;
@@ -252,7 +258,7 @@ public class PhotoView : EventBox {
 	}
 
 	private void HandleUnsharpButtonClicked (object sender, EventArgs args) {
-		new FSpot.ColorDialog (Query, CurrentPhoto);
+		new FSpot.ColorDialog (photo_view);
 	}	
 
 	int description_photo;
@@ -377,14 +383,10 @@ public class PhotoView : EventBox {
 
 		ScrolledWindow photo_view_scrolled = new ScrolledWindow (null, null);
 
-		Gdk.Color color = eventbox.Style.Background (Gtk.StateType.Normal);
-		color.Red = (ushort) (color.Red / 2);
-		color.Blue = (ushort) (color.Blue / 2);
-		color.Green = (ushort) (color.Green / 2);
 
-		photo_view.ModifyBg (Gtk.StateType.Normal, color);
-		eventbox.ModifyBg (Gtk.StateType.Normal, color);
-		photo_view_scrolled.ModifyBg (Gtk.StateType.Normal, color);
+		FSpot.Global.ModifyColors (photo_view);
+		FSpot.Global.ModifyColors (eventbox);
+		FSpot.Global.ModifyColors (photo_view_scrolled);
 
 		photo_view_scrolled.SetPolicy (PolicyType.Automatic, PolicyType.Automatic);
 		photo_view_scrolled.ShadowType = ShadowType.None;

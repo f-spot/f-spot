@@ -4,14 +4,13 @@ using System.Threading;
 
 namespace FSpot {
 	public class ColorDialog {
-		FSpot.PhotoQuery query;
-
 		Gdk.Pixbuf ScaledPixbuf;
 		Gdk.Pixbuf AdjustedPixbuf;
 		
 		Delay expose_timeout;
 
-		[Glade.Widget] private Gtk.Dialog color_dialog;
+		[Glade.Widget] private Gtk.Dialog external_color_dialog;
+		[Glade.Widget] private Gtk.Dialog inline_color_dialog;
 		
 		[Glade.Widget] private Gtk.SpinButton source_spinbutton;
 		[Glade.Widget] private Gtk.SpinButton dest_spinbutton;
@@ -98,7 +97,7 @@ namespace FSpot {
 		public void Save ()
 		{
 			Console.WriteLine ("Saving....");
-			Photo photo = query.Photos[view.CurrentPhoto];
+			Photo photo = view.Query.Photos[view.CurrentPhoto];
 			
 			uint version = photo.DefaultVersionId;
 			if (version == Photo.OriginalVersionId) {
@@ -122,7 +121,7 @@ namespace FSpot {
 				final.Savev (version_path, "jpeg", null, null);
 				PhotoStore.GenerateThumbnail (version_path);
 				photo.DefaultVersionId = version;
-				query.Commit (view.CurrentPhoto);
+				view.Query.Commit (view.CurrentPhoto);
 			} catch (GLib.GException ex) {
 				// FIXME error dialog.
 				Console.WriteLine ("error {0}", ex);
@@ -135,12 +134,25 @@ namespace FSpot {
 		
 		public void Cancel ()
 		{
+			view.Transform = null;
+			view.QueueDraw ();
+			view.PhotoChanged -= HandlePhotoChanged;
 			color_dialog.Destroy ();
 		}
 		
 		private void HandleOkClicked (object sender, EventArgs args)
 		{
 			Save ();
+			view.Transform = null;
+			view.QueueDraw ();
+			view.PhotoChanged -= HandlePhotoChanged;
+		}
+
+		private void HandlePhotoChanged (PhotoImageView view)
+		{
+			AdjustedPixbuf = PhotoLoader.LoadAtMaxSize (view.Query.Photos [view.CurrentPhoto], 300, 300);
+			ScaledPixbuf = AdjustedPixbuf.Copy ();			
+			RangeChanged (null, null);
 		}
 		
 		private void HandleCancelClicked (object sender, EventArgs args)
@@ -148,23 +160,42 @@ namespace FSpot {
 			Cancel ();
 		}
 		
-		public ColorDialog (FSpot.PhotoQuery query, int item)       
+		private Gtk.Dialog color_dialog
 		{
-			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "color_dialog", null);
-			this.query = query;
-
-			
-			xml.Autoconnect (this);
-			
-			AdjustedPixbuf = PhotoLoader.LoadAtMaxSize (query.Photos [item], 300, 300);
-			ScaledPixbuf = AdjustedPixbuf.Copy ();
-
-
+			get {
+				if (external_color_dialog != null)
+					return external_color_dialog;
+				else
+					return inline_color_dialog;
+			}
+		}
+		
+		public ColorDialog (FSpot.PhotoQuery query, int item)
+		{
 			view = new FSpot.PhotoImageView (query);
 			view_scrolled.Add (view);
 			view.Show ();
 			view.CurrentPhoto = item;
+
+			AttachInterface ("external_color_dialog");
+		}
+
+		public ColorDialog (FSpot.PhotoImageView view)       
+		{
+			this.view = view;
+			AttachInterface ("inline_color_dialog");
+		}
+
+		private void AttachInterface (string ui_path)
+		{
+			Glade.XML xml = new Glade.XML (null, "f-spot.glade", ui_path, null);
+
+			view.PhotoChanged += HandlePhotoChanged;
+			xml.Autoconnect (this);
 			
+			AdjustedPixbuf = PhotoLoader.LoadAtMaxSize (view.Query.Photos [view.CurrentPhoto], 300, 300);
+			ScaledPixbuf = AdjustedPixbuf.Copy ();
+
 			hist = new FSpot.Histogram ();
 			expose_timeout = new FSpot.Delay (new GLib.IdleHandler (this.QueueDraw));
 

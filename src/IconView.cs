@@ -166,11 +166,7 @@ public class IconView : Gtk.Layout {
 		
 		CanFocus = true;
 
-		Gdk.Color color = this.Style.Background (Gtk.StateType.Normal);
-		color.Red = (ushort) (color.Red / 2);
-		color.Blue = (ushort) (color.Blue / 2);
-		color.Green = (ushort) (color.Green / 2);
-		ModifyBg (Gtk.StateType.Normal, color);
+		FSpot.Global.ModifyColors (this);
 	}
 	
 	public IconView (FSpot.IBrowsableCollection collection) : this () 
