@@ -93,7 +93,20 @@ dnl --- libgphoto2-sharp
 
 PKG_CHECK_MODULES(LIBGPHOTO2, libgphoto2 >= 2.1.4)
 
+dnl --- libexif version check
+
+LIBEXIF_API_CHANGE=0.6.0
+PKG_CHECK_MODULES(LIBEXIF_API_CHECK, libexif >= $LIBEXIF_API_CHANGE, have_old_libexif=no, have_old_libexif=yes)
+
+if test "x$have_old_libexif" = "xyes"; then
+	EXIF_SOVERSION=9
+else
+	EXIF_SOVERSION=10
+fi
+AC_SUBST(EXIF_SOVERSION)
+
 dnl --- Set up paths
+
 
 ICONS_DIRECTORY=${datadir}/${PACKAGE}-${VERSION}
 
