@@ -12,6 +12,19 @@ public class MainWindow : Gtk.Window {
 	private Notebook view_notebook;
 	private PhotoQuery query;
 
+	// Index into the PhotoQuery.  If -1, no photo is selected or multiple photos are selected.
+	const int PHOTO_IDX_NONE = -1;
+	private int current_photo_idx = PHOTO_IDX_NONE;
+
+	private Photo CurrentPhoto {
+		get {
+			if (current_photo_idx != PHOTO_IDX_NONE)
+				return query.Photos [current_photo_idx];
+			else
+				return null;
+		}
+	}
+
 
 	// Commands.
 
@@ -30,36 +43,132 @@ public class MainWindow : Gtk.Window {
 		Environment.Exit (0);
 	}
 
+	private void HandleCreateVersionCommand (object obj, EventArgs args)
+	{
+		PhotoVersionCommands.Create cmd = new PhotoVersionCommands.Create ();
+
+		if (cmd.Execute (db.Photos, CurrentPhoto, this)) {
+			info_box.Update ();
+			photo_view.Update ();
+			UpdateMenus ();
+		}
+	}
+
+	private void HandleDeleteVersionCommand (object obj, EventArgs args)
+	{
+		PhotoVersionCommands.Delete cmd = new PhotoVersionCommands.Delete ();
+
+		if (cmd.Execute (db.Photos, CurrentPhoto, this)) {
+			info_box.Update ();
+			photo_view.Update ();
+			UpdateMenus ();
+		}
+	}
+
+	private void HandleRenameVersionCommand (object obj, EventArgs args)
+	{
+	}
+
+	private void HandleVersionIdChanged (PhotoVersionMenu menu)
+	{
+		CurrentPhoto.DefaultVersionId = menu.VersionId;
+		db.Photos.Commit (CurrentPhoto);
+
+		info_box.Update ();
+		photo_view.Update ();
+	}
+
+
+	// Menus.
+
+	private MenuItem version_menu_item;
+	private PhotoVersionMenu versions_submenu;
+	private MenuItem create_version_menu_item;
+	private MenuItem delete_version_menu_item;
+	private MenuItem rename_version_menu_item;
+
 	private MenuBar CreateMenuBar ()
 	{
 		MenuBar menu_bar = new MenuBar ();
 
-		Menu file_menu = new Menu ();
-		MenuItem file_item = new MenuItem ("_Photo");
-		file_item.Submenu = file_menu;
-		menu_bar.Append (file_item);
+		Menu photo_menu = new Menu ();
+		MenuItem photo_item = new MenuItem ("_Photo");
+		photo_item.Submenu = photo_menu;
+		menu_bar.Append (photo_item);
 
 		MenuItem import_item = new MenuItem ("_Import...");
 		import_item.Activated += new EventHandler (HandleImportCommand);
-		file_menu.Append (import_item);
+		photo_menu.Append (import_item);
 
-		MenuItem close_item = new MenuItem ("_Close...");
+		photo_menu.Append (new MenuItem ());
+
+		version_menu_item = new MenuItem ("Version");
+		photo_menu.Append (version_menu_item);
+
+		create_version_menu_item = PhotoVersionMenu.NewCreateVersionMenuItem ();
+		create_version_menu_item.Activated += new EventHandler (HandleCreateVersionCommand);
+		photo_menu.Append (create_version_menu_item);
+
+		delete_version_menu_item = PhotoVersionMenu.NewDeleteVersionMenuItem ();
+		photo_menu.Append (delete_version_menu_item);
+		delete_version_menu_item.Activated += new EventHandler (HandleDeleteVersionCommand);
+
+		rename_version_menu_item = PhotoVersionMenu.NewRenameVersionMenuItem ();
+		rename_version_menu_item.Activated += new EventHandler (HandleRenameVersionCommand);
+		photo_menu.Append (rename_version_menu_item);
+
+		photo_menu.Append (new MenuItem ());
+
+		MenuItem close_item = new MenuItem ("_Close");
 		close_item.Activated += new EventHandler (HandleCloseCommand);
-		file_menu.Append (close_item);
+		photo_menu.Append (close_item);
 
 		return menu_bar;
+	}
+
+	private void UpdateMenus ()
+	{
+		if (CurrentPhoto == null) {
+			version_menu_item.Sensitive = false;
+			version_menu_item.Submenu = new Menu ();
+
+			create_version_menu_item.Sensitive = false;
+			delete_version_menu_item.Sensitive = false;
+			rename_version_menu_item.Sensitive = false;
+		} else {
+			version_menu_item.Sensitive = true;
+			create_version_menu_item.Sensitive = true;
+			rename_version_menu_item.Sensitive = true;
+
+			if (CurrentPhoto.DefaultVersionId == Photo.OriginalVersionId)
+				delete_version_menu_item.Sensitive = false;
+			else
+				delete_version_menu_item.Sensitive = true;
+
+			versions_submenu = new PhotoVersionMenu (CurrentPhoto);
+			versions_submenu.VersionIdChanged += new PhotoVersionMenu.VersionIdChangedHandler (HandleVersionIdChanged);
+			version_menu_item.Submenu = versions_submenu;
+		}
 	}
 
 
 	// Switching mode.
 
+	enum ModeType {
+		IconView,
+		PhotoView
+	};
+	private ModeType mode;
+
 	private void SwitchToIconViewMode ()
 	{
+		mode = ModeType.IconView;
 		view_notebook.CurrentPage = 0;
 	}
 
 	private void SwitchToPhotoViewMode (int photo_num)
 	{
+		mode = ModeType.PhotoView;
 		view_notebook.CurrentPage = 1;
 		photo_view.CurrentPhoto = photo_num;
 	}
@@ -71,10 +180,15 @@ public class MainWindow : Gtk.Window {
 	{
 		int [] selection = icon_view.Selection;
 
-		if (selection.Length != 1)
+		if (selection.Length != 1) {
+			current_photo_idx = -1;
 			info_box.Photo = null;
-		else
-			info_box.Photo = query.Photos [selection [0]];
+		} else {
+			current_photo_idx = selection [0];
+			info_box.Photo = CurrentPhoto;
+		}
+
+		UpdateMenus ();
 	}
 
 	private void HandleDoubleClicked (IconView icon_view, int clicked_item)
@@ -152,6 +266,8 @@ public class MainWindow : Gtk.Window {
 		vbox.ShowAll ();
 
 		tag_selection_widget.SelectionChanged += new TagSelectionWidget.SelectionChangedHandler (OnTagSelectionChanged);
+
 		UpdateQuery ();
+		UpdateMenus ();
 	}
 }

@@ -20,6 +20,8 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/MainWindow.cs			\
 	$(srcdir)/PhotoQuery.cs			\
 	$(srcdir)/PhotoStore.cs			\
+	$(srcdir)/PhotoVersionCommands.cs	\
+	$(srcdir)/PhotoVersionMenu.cs		\
 	$(srcdir)/PhotoView.cs			\
 	$(srcdir)/PixbufLoader.cs		\
 	$(srcdir)/PixbufUtils.cs		\
@@ -49,7 +51,8 @@ ASSEMBLIES =					\
 RESOURCES =										\
 	/resource:$(top_srcdir)/icons/f-spot-crop.png,f-spot-crop.png			\
 	/resource:$(top_srcdir)/icons/f-spot-camera.png,f-spot-camera.png		\
-	/resource:$(top_srcdir)/icons/f-spot-question-mark.png,f-spot-question-mark.png
+	/resource:$(top_srcdir)/icons/f-spot-question-mark.png,f-spot-question-mark.png \
+	/resource:$(srcdir)/f-spot.glade,f-spot.glade
 
 fspotlibdir = $(prefix)/lib/f-spot
 
@@ -68,5 +71,11 @@ bin_SCRIPTS = f-spot
 f-spot: f-spot.in
 	sed -e "s|\@prefix\@|$(prefix)|" < f-spot.in > f-spot
 
-EXTRA_DIST = $(F_SPOT_CSFILES) f-spot.in
-CLEANFILES = f-spot.exe
+EXTRA_DIST =					\
+	$(F_SPOT_CSFILES)			\
+	f-spot.in				\
+	f-spot.glade
+
+CLEANFILES =					\
+	f-spot					\
+	f-spot.exe

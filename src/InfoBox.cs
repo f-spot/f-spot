@@ -152,7 +152,7 @@ public class InfoBox : VBox {
 		return info;
 	}
 
-	private void Update ()
+	public void Update ()
 	{
 		if (photo == null) {
 			Clear ();

@@ -55,7 +55,7 @@ public class ThumbnailCache {
 		pixbuf_mru.Insert (0, thumbnail);
 		pixbuf_hash.Add (path, thumbnail);
 
-		maybeExpunge ();
+		MaybeExpunge ();
 	}
 
 	public Pixbuf GetThumbnailForPath (string path)
@@ -86,7 +86,7 @@ public class ThumbnailCache {
 
 	// Private utility methods.
 
-	private void maybeExpunge ()
+	private void MaybeExpunge ()
 	{
 		while (pixbuf_mru.Count > max_count) {
 			Thumbnail thumbnail = pixbuf_mru [pixbuf_mru.Count - 1] as Thumbnail;

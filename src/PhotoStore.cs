@@ -76,6 +76,17 @@ public class Photo : DbItem {
 		}
 	}
 
+	private uint default_version_id = OriginalVersionId;
+	public uint DefaultVersionId {
+		get {
+			return default_version_id;
+		}
+
+		set {
+			default_version_id = value;
+		}
+	}
+
 	// This doesn't check if a version of that name already exists, it's supposed to be used only within
 	// the Photo and PhotoStore classes.
 	public void AddVersionUnsafely (uint version_id, string name)
@@ -93,7 +104,7 @@ public class Photo : DbItem {
 		return System.IO.Path.Combine (directory_path,  name_without_extension + " (" + version_name + ")" + extension);
 	}
 
-	private bool VersionNameExists (string version_name)
+	public bool VersionNameExists (string version_name)
 	{
 		foreach (string n in version_names.Values) {
 			if (n == version_name)
@@ -110,7 +121,10 @@ public class Photo : DbItem {
 
 	public string GetVersionPath (uint version_id)
 	{
-		return GetPathForVersionName (version_names [version_id] as string);
+		if (version_id == OriginalVersionId)
+			return Path;
+		else
+			return GetPathForVersionName (version_names [version_id] as string);
 	}
 
 	public void DeleteVersion (uint version_id)
@@ -129,9 +143,14 @@ public class Photo : DbItem {
 		string original_path = GetVersionPath (base_version_id);
 
 		if (VersionNameExists (name))
-			throw new Exception ("This name already exists");
+			throw new Exception ("This version name already exists");
 
-		// Copy file.
+		if (File.Exists (new_path))
+			throw new Exception (String.Format ("A file named {0} already exists",
+							    System.IO.Path.GetFileName (new_path)));
+
+		File.Copy (original_path, new_path);
+		PhotoStore.GenerateThumbnail (new_path);
 
 		highest_version_id ++;
 		version_names [highest_version_id] = name;
@@ -216,15 +235,13 @@ public class Photo : DbItem {
 public class PhotoStore : DbStore {
 
 	TagStore tag_store;
-	ThumbnailFactory thumbnail_factory;
+	static ThumbnailFactory thumbnail_factory = new ThumbnailFactory (ThumbnailSize.Large);
 
-
-	// Constructor
 
 	// FIXME this is a hack.  Since we don't have Gnome.ThumbnailFactory.SaveThumbnail() in
 	// GTK#, and generate them by ourselves directly with Gdk.Pixbuf, we have to make sure here
 	// that the "large" thumbnail directory exists.
-	private void EnsureThumbnailDirectory ()
+	private static void EnsureThumbnailDirectory ()
 	{
 		string large_thumbnail_file_name_template = Thumbnail.PathForUri ("file:///boo", ThumbnailSize.Large);
 		string large_thumbnail_directory_path = System.IO.Path.GetDirectoryName (large_thumbnail_file_name_template);
@@ -233,11 +250,29 @@ public class PhotoStore : DbStore {
 			Directory.CreateDirectory (large_thumbnail_directory_path);
 	}
 
+	public static Pixbuf GenerateThumbnail (string path)
+	{
+		string uri = "file://" + path;
+		Pixbuf thumbnail = thumbnail_factory.GenerateThumbnail ("file://" + path, "image/jpeg");
+
+		// FIXME if this is null then the file doesn't exist.
+		if (thumbnail != null) {
+			// FIXME there is no SaveThumbnail() in the C# bindings for ThumbnailFactory.
+			// This should really be done through SaveThumbnail, which would make sure we dont' do
+			// it unnecessarily.
+			thumbnail.Savev (Thumbnail.PathForUri (uri, ThumbnailSize.Large), "png", null, null);
+		}
+
+		return thumbnail;
+	}
+
+
+	// Constructor
+
 	public PhotoStore (SqliteConnection connection, bool is_new, TagStore tag_store)
 		: base (connection)
 	{
 		this.tag_store = tag_store;
-		thumbnail_factory = new ThumbnailFactory (ThumbnailSize.Large);
 		EnsureThumbnailDirectory ();
 
 		if (! is_new)
@@ -248,11 +283,12 @@ public class PhotoStore : DbStore {
 
 		command.CommandText =
 			"CREATE TABLE photos (                                     " +
-			"	id              INTEGER PRIMARY KEY NOT NULL,      " +
-			"       time            INTEGER NOT NULL,	   	   " +
-			"       directory_path  STRING NOT NULL,		   " +
-			"       name            STRING NOT NULL,		   " +
-			"       description     TEXT NOT NULL		           " +
+			"	id                 INTEGER PRIMARY KEY NOT NULL,   " +
+			"       time               INTEGER NOT NULL,	   	   " +
+			"       directory_path     STRING NOT NULL,		   " +
+			"       name               STRING NOT NULL,		   " +
+			"       description        TEXT NOT NULL,	           " +
+			"       default_version_id INTEGER NOT NULL		   " +
 			")";
 
 		command.ExecuteNonQuery ();
@@ -303,23 +339,14 @@ public class PhotoStore : DbStore {
 		Photo photo = new Photo (id, unix_time, path);
 		AddToCache (photo);
 
-		command.CommandText = String.Format ("INSERT INTO photos (time, directory_path, name, description) " +
-						     "       VALUES ({0}, '{1}', '{2}', '')                         ",
-						     unix_time, SqlString (photo.DirectoryPath), SqlString (photo.Name));
+		command.CommandText = String.Format ("INSERT INTO photos (time, directory_path, name, description, default_version_id) " +
+						     "       VALUES ({0}, '{1}', '{2}', '', {3})                                       ",
+						     unix_time, SqlString (photo.DirectoryPath), SqlString (photo.Name),
+						     Photo.OriginalVersionId);
 		command.ExecuteScalar ();
 		command.Dispose ();
 
-		string uri = "file://" + path;
-		thumbnail = thumbnail_factory.GenerateThumbnail ("file://" + path, "image/jpeg");
-
-		// FIXME if this is null then the file doesn't exist.
-		if (thumbnail != null) {
-			// FIXME there is no SaveThumbnail() in the C# bindings for ThumbnailFactory.
-			// This should really be done through SaveThumbnail, which would make sure we dont' do
-			// it unnecessarily.
-			thumbnail.Savev (Thumbnail.PathForUri (uri, ThumbnailSize.Large), "png", null, null);
-		}
-
+		thumbnail = GenerateThumbnail (path);
 		return photo;
 	}
 
@@ -331,9 +358,13 @@ public class PhotoStore : DbStore {
 
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
-		command.CommandText = String.Format ("SELECT time, directory_path, name, description " +
-						     "       FROM photos                             " +
-						     "       WHERE id = {0}                          ",
+		command.CommandText = String.Format ("SELECT time,                                 " +
+						     "       directory_path,                       " +
+						     "       name,                                 " +
+						     "       description,                          " +
+						     "       default_version_id                    " +
+						     "     FROM photos                             " +
+						     "     WHERE id = {0}                          ",
 						     id);
 		SqliteDataReader reader = command.ExecuteReader ();
 
@@ -344,6 +375,7 @@ public class PhotoStore : DbStore {
 					   reader [2].ToString ());
 
 			photo.Description = reader[3].ToString ();
+			photo.DefaultVersionId = Convert.ToUInt32 (reader[4]);
 			AddToCache (photo);
 		}
 
@@ -419,9 +451,11 @@ public class PhotoStore : DbStore {
 
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
-		command.CommandText = String.Format ("UPDATE photos SET description = '{0}'" +
-						     "              WHERE id = {1}",
+		command.CommandText = String.Format ("UPDATE photos SET description = '{0}',     " +
+						     "                  default_version_id = {1} " +
+						     "              WHERE id = {2}",
 						     SqlString (photo.Description),
+						     photo.DefaultVersionId,
 						     photo.Id);
 		command.ExecuteNonQuery ();
 		command.Dispose ();
@@ -453,6 +487,9 @@ public class PhotoStore : DbStore {
 		command.Dispose ();
 
 		foreach (uint version_id in photo.VersionIds) {
+			if (version_id == Photo.OriginalVersionId)
+				continue;
+
 			string version_name = photo.GetVersionName (version_id);
 
 			command = new SqliteCommand ();

@@ -1,5 +1,51 @@
 2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
 
+	* src/makefile.am: Include f-spot.glade as a resource into
+	f-spot.exe.
+
+	* src/f-spot.glade: New file, right now containing only the
+	"Create New Version" dialog box.
+
+	* src/ThumbnailCache.cs (ThumbnailCache.MaybeExpunge): Renamed
+	from "maybeExpunge" for consistency.
+
+	* src/PhotoView.cs (PhotoView.Update): Made public.
+
+	* src/PhotoVersionMenu.cs: New file implementing a menu to select
+	photo versions.
+
+	* src/PhotoVersionCommands.cs: New file implementing version
+	management commands.
+
+	* src/PhotoStore.cs (Photo.default_version_id): New private member
+	variable.
+	(Photo.DefaultVersionId): New property.
+	(Photo.VersionNameExists): Made public.
+	(Photo.GetVersionPath): Return the appropriate path for the
+	OriginalVersionId.
+	(Photo.CreateVersion): Make a copy of the base version and
+	generate a thumbnail for it.  Make sure that a file with the new
+	path doesn't already exist.
+	(PhotoStore.thumbnail_factory): Made static.
+	(PhotoStore.EnsureThumbnailDirectory): Made static.
+	(PhotoStore.GenerateThumbnail): New static method.
+	(PhotoStore.Create): Use it.
+	(PhotoStore.ctor): Add a default_version_id column to the table.
+	(PhotoStore.Create): Set the default_version_id column.
+	(PhotoStore.Get): Get the default_version_id column and set
+	DefaultVersionId.
+	(PhotoStore.Commit): Set the default_version_id column.  Also,
+	don't store the OriginalVersionId in the photo_versions table.
+
+	* src/MainWindow.cs: Added a Photo -> Version submenu and
+	Create/Delete/Rename Version menu items.
+	(MainWindow.CurrentPhoto): New private property to track the
+	selected photo.
+
+	* src/InfoBox.cs (InfoBox.Update): Made public.
+
+2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+
 	* configure.in: Don't require libxml.
 
 2003-11-08  Ettore Perazzoli  <ettore@ximian.com>

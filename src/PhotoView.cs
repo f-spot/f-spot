@@ -208,7 +208,7 @@ public class PhotoView : EventBox {
 			count_label.Text = String.Format ("{0} of {1}", current_photo + 1, Query.Photos.Length);
 	}
 
-	private void Update ()
+	public void Update ()
 	{
 		UpdateImageView ();
 		UpdateButtonSensitivity ();
