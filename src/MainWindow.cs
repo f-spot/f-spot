@@ -639,7 +639,8 @@ public class MainWindow {
 
 			// A bizarre hack to try to deal with cinematic displays, etc.
 			int preview_edge = ((display_width + display_height)/2)/3;
-			pixbuf = PixbufUtils.LoadAtMaxEdgeSize (orig_path, preview_edge);
+			//pixbuf = FSpot.PhotoLoader.LoadAtMaxSize (photo, preview_edge, preview_edge);
+			pixbuf = FSpot.PhotoLoader.LoadAtMaxSize (photo, preview_edge, preview_edge);
 			quick_preview_cache.AddThumbnail (orig_path, pixbuf);
 		}
 
@@ -1046,26 +1047,59 @@ public class MainWindow {
 
 	void HandleViewFullscreen (object sender, EventArgs args)
 	{
-		photo_view.Zoom += .1;
 	}
 
 	void HandleZoomOut (object sender, EventArgs args)
 	{
-		double old_zoom = photo_view.Zoom;
-		try {
-			photo_view.Zoom -= .1;
-		} catch {
-			photo_view.Zoom = old_zoom;
+		switch (mode) {
+		case ModeType.PhotoView:
+			double old_zoom = photo_view.Zoom;
+			try {
+				photo_view.Zoom -= .1;
+			} catch {
+				if (old_zoom - .1 < -0.09) {
+					photo_view.Zoom = 0.0;
+					SwitchToIconViewMode ();
+				}
+				photo_view.Zoom = old_zoom;
+			}
+			
+			break;
+		case ModeType.IconView:
+			int width = icon_view.ThumbnailWidth;
+			
+			width /= 2;
+			width = Math.Max (width, 64);
+			width = Math.Min (width, 256);
+			icon_view.ThumbnailWidth = width;
+			break;
 		}
 	}
 
 	void HandleZoomIn (object sender, EventArgs args)
 	{
-		double old_zoom = photo_view.Zoom;
-		try {
-			photo_view.Zoom += .1;
-		} catch {
-			photo_view.Zoom = old_zoom;
+		switch (mode) {
+		case ModeType.PhotoView:
+			double old_zoom = photo_view.Zoom;
+			try {
+				photo_view.Zoom += .1;
+			} catch {
+				photo_view.Zoom = old_zoom;
+			}
+			
+			break;
+		case ModeType.IconView:
+			int width = icon_view.ThumbnailWidth;
+			 
+			width *= 2;
+			width = Math.Max (width, 64);
+			if (width >= 512) {
+				photo_view.Zoom = 0.0
+				SwitchToPhotoViewMode ();
+			} else 
+				icon_view.ThumbnailWidth = width;
+			
+			break;
 		}
 	}
 
