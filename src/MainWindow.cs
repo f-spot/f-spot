@@ -3,7 +3,6 @@ using Gtk;
 using GtkSharp;
 using Glade;
 using Gnome;
-using Mono.Posix;
 using System;
 using System.IO;
 using System.Text;
@@ -114,6 +113,12 @@ public class MainWindow {
 		}
 	}
 
+	// Switching mode.
+	enum ModeType {
+		IconView,
+		PhotoView
+	};
+	ModeType mode;
 	
 	//
 	// Constructor
@@ -122,7 +127,7 @@ public class MainWindow {
 	{
 		this.db = db;
 
-		Catalog.Init ("f-spot", Defines.LOCALE_DIR);
+		Mono.Posix.Catalog.Init ("f-spot", Defines.LOCALE_DIR);
 		Glade.XML gui = Glade.XML.FromAssembly ("f-spot.glade", "main_window", null);
 		gui.Autoconnect (this);
 
@@ -217,7 +222,33 @@ public class MainWindow {
 			Toplevel = this;
 	}
 
-	
+	void HandleViewNotebookSwitchPage (object sender, SwitchPageArgs args)
+	{
+		switch (view_notebook.CurrentPage) {
+		case 0:
+			icon_view.ScrollTo (photo_view.CurrentPhoto);
+			icon_view.Throb (photo_view.CurrentPhoto);
+
+			mode = ModeType.IconView;
+			break;
+		case 1:
+			photo_view.CurrentPhoto = icon_view.FocusCell;
+
+			mode = ModeType.PhotoView;
+			break;
+		}
+	}
+
+	void SwitchToIconViewMode ()
+	{
+		view_notebook.CurrentPage = 0;
+	}
+
+	void SwitchToPhotoViewMode ()
+	{
+		view_notebook.CurrentPage = 1;
+	}
+
 	public int [] SelectedIds () {
 		int [] ids;
 		switch (mode) {
@@ -254,7 +285,6 @@ public class MainWindow {
 	{
 		return SelectedPhotos (SelectedIds ());
 	}
-
 
 	//
 	// Change Notification functions
@@ -457,8 +487,6 @@ public class MainWindow {
 	void HandleIconViewDragDataReceived (object sender, DragDataReceivedArgs args)
 	{
 	 	Widget source = Gtk.Drag.GetSourceWidget (args.Context);     
-		
-		//Console.WriteLine ("IconView View Drag received {0} type {1}", source == null ? "null" : source.TypeName, (TargetType)args.Info);
 
 		switch (args.Info) {
 		case (uint)TargetType.TagList:
@@ -821,7 +849,7 @@ public class MainWindow {
                 // Translators should localize the following string
                 // * which will give them credit in the About box.
                 // * E.g. "Martin Willemoes Hansen"
-                string translators = Catalog.GetString ("translator-credits");
+                string translators = Mono.Posix.Catalog.GetString ("translator-credits");
 
                 new About ("F-Spot", "0.0.3", "Copyright 2003-2004 Novell Inc.",
                            null, authors, null, translators, null).Show();
@@ -1318,39 +1346,5 @@ public class MainWindow {
 		remove_tag_from_selection.Sensitive = tag_sensitive && current_photos;
 	}
 
-	// Switching mode.
-
-	enum ModeType {
-		IconView,
-		PhotoView
-	};
-	ModeType mode;
-
-	void HandleViewNotebookSwitchPage (object sender, SwitchPageArgs args)
-	{
-		switch (view_notebook.CurrentPage) {
-		case 0:
-			icon_view.ScrollTo (photo_view.CurrentPhoto);
-			icon_view.Throb (photo_view.CurrentPhoto);
-
-			mode = ModeType.IconView;
-			break;
-		case 1:
-			photo_view.CurrentPhoto = icon_view.FocusCell;
-
-			mode = ModeType.PhotoView;
-			break;
-		}
-	}
-
-	void SwitchToIconViewMode ()
-	{
-		view_notebook.CurrentPage = 0;
-	}
-
-	void SwitchToPhotoViewMode ()
-	{
-		view_notebook.CurrentPage = 1;
-	}
 }
 

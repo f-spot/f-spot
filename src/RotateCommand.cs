@@ -68,7 +68,7 @@ public class RotateCommand {
 								DialogFlags.DestroyWithParent,
 								MessageType.Error,
 								ButtonsType.Close,
-								"Some images could not be rotated because they are on a read only file system or media such as a CDROM.  Please check the permissions and try again.");
+								Mono.Posix.Catalog.GetString ("Some images could not be rotated because they are on a read only file system or media such as a CDROM.  Please check the permissions and try again."));
 			int Result = md.Run();
 			md.Destroy();
 		}

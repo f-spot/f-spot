@@ -1,5 +1,12 @@
 2004-12-01  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: remove the using Mono.Posix call and use
+	explicit paths.
+
+	* src/RotateCommand.cs: add Catalog.GetString call.
+
+	* po/POTFILES.in: add src/RotateCommand.cs
+
 	* src/MainWindow.cs: use photo.DefaultVersionUri.
 
 	* src/PhotoLoader.cs: use PathToFileUri.
