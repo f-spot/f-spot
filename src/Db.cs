@@ -151,12 +151,12 @@ public class Db : IDisposable {
 public class DbUtils {
 	public static DateTime DateTimeFromUnixTime (uint unix_time)
 	{
-		DateTime date_time = new DateTime (1970, 1, 1);
+		DateTime date_time = new DateTime (1970, 1, 1).ToLocalTime ();
 		return date_time.AddSeconds (unix_time);
 	}
 
 	public static uint UnixTimeFromDateTime (DateTime date_time)
 	{
-		return (uint) (date_time - new DateTime (1970, 1, 1)).TotalSeconds;
+		return (uint) (date_time - new DateTime (1970, 1, 1).ToLocalTime ()).TotalSeconds;
 	}
 }
