@@ -27,6 +27,9 @@ class FormClient {
 	private bool multipart = false;
 	private bool first_item;
 
+	public bool Buffer = false;
+	public bool SuppressCookiePath = false;
+
 	public HttpWebRequest Request;
 	public CookieContainer Cookies;
 
@@ -76,16 +79,41 @@ class FormClient {
 		}
 	}
 
+	private long MultipartLength (FormItem item) {
+		// The types we check here need to match the
+		// types we allow in .Add
+
+		if (item.Value is FileInfo) {
+			return MultipartLength (item.Name, (FileInfo)item.Value);
+		} else if (item.Value is string) {
+			return MultipartLength (item.Name, (string)item.Value);
+		} else {
+			throw new Exception ("Unknown value type");
+		}
+	}
+
+	private string MultipartHeader (string name, string value)
+	{
+		return string.Format ("{0}\r\n" + 
+				      "Content-Disposition: form-data; name=\"{1}\"\r\n" +
+				      "\r\n", start_boundary, name);
+	}
+
+	private long MultipartLength (string name, string value)
+	{
+		long length = MultipartHeader (name, value).Length;
+		length += value.Length + 2;
+		return length;
+	}
+
 	private void Write (string name, string value) 
 	{
 		string cmd;
 		
 		if (multipart) {
-			cmd = string.Format ("{0}\r\n"
-					     + "Content-Disposition: form-data; name=\"{1}\"\r\n"
-					     + "\r\n"
-					     + "{2}\r\n",
-					     start_boundary, name, value);
+			cmd = String.Format ("{0}"
+					     + "{1}\r\n",
+					     MultipartHeader (name, value), value);
 		} else {
 			if (first_item) {
 				cmd = string.Format ("{0}={1}", name, HttpUtility.UrlEncode (value));
@@ -98,24 +126,39 @@ class FormClient {
 		stream_writer.Write  (cmd);
 	}
 
+	private string MultipartHeader (string name, FileInfo file)
+	{
+		string cmd = string.Format ("{0}\r\n"
+					    + "Content-Disposition: form-data; name=\"{1}\"; filename=\"{2}\"\r\n"
+					    + "Content-Type: image/jpeg\r\n"
+					    + "\r\n", 
+					    start_boundary, name, file.Name);
+		return cmd;
+	}
+
+	private long MultipartLength (string name, FileInfo file)
+	{
+		long length = MultipartHeader (name, file).Length;
+		length += file.Length + 2;
+		return length;
+	}
+
        	private void Write (string name, FileInfo file)
 	{
 		if (multipart) {
-			string cmd = string.Format ("{0}\r\n"
-						    + "Content-Disposition: form-data; name=\"{1}\"; filename=\"{2}\"\r\n"
-						    + "Content-Type: image/jpeg\r\n"
-						    + "\r\n", 
-						    start_boundary, name, file.Name);
-
-			stream_writer.Write (cmd);
+			stream_writer.Write (MultipartHeader (name, file));
 			stream_writer.Flush ();
-
 			Stream stream = stream_writer.BaseStream;
 			Byte [] data = new Byte [4096];
 			FileStream fs = file.OpenRead ();
-			int count;
+			long total = file.Length;
+			long total_read = 0;
+
+			int count;			
 			while ((count = fs.Read (data, 0, 4096)) > 0) {
 				stream.Write (data, 0, count);
+				total_read += count;
+				Console.WriteLine ("{0}%", total_read * 100 / total);
 			}
 			fs.Close ();
 
@@ -139,14 +182,43 @@ class FormClient {
 	public HttpWebResponse Submit (Uri uri) 
 	{
 		Request = (HttpWebRequest) WebRequest.Create (uri);
-		Request.CookieContainer = Cookies;		
+		CookieCollection cookie_collection = Cookies.GetCookies (uri);
+
+		Request.CookieContainer = new CookieContainer ();
+		foreach (Cookie c in cookie_collection) {
+			if (SuppressCookiePath) 
+				Request.CookieContainer.Add (new Cookie (c.Name, c.Value));
+			else
+				Request.CookieContainer.Add (c);
+		}
+
+
 		Request.Method = "POST";
-		Request.Headers["Accept-Charset"] = "utf-8";
-		Request.UserAgent = "F-Spot Gallery Remote Client";
+		Request.Headers["Accept-Charset"] = "utf-8;";
 		
+		//Request.UserAgent = "F-Spot Gallery Remote Client";
+		Request.UserAgent = "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7) Gecko/20040626 Firefox/0.9.1";
+
 		if (multipart) {
 			GenerateBoundary ();
 			Request.ContentType = "multipart/form-data; boundary=" + boundary;
+
+			long length = 0;
+			for (int i = 0; i < Items.Count; i++) {
+				FormItem item = (FormItem)Items[i];
+				
+				length += MultipartLength (item);
+			}
+			length += end_boundary.Length + 2;
+
+			Request.Headers["My-Content-Length"] = length.ToString ();
+			Request.Headers["My-Unbuffer"] = Buffer.ToString ();
+
+			if (Buffer == false) {
+				Request.ContentLength = length;	
+				Request.AllowWriteStreamBuffering = false;
+			}
+
 		} else {
 			Request.ContentType = "application/x-www-form-urlencoded";
 		}
@@ -168,6 +240,8 @@ class FormClient {
 		
 		
 		HttpWebResponse response = (HttpWebResponse) Request.GetResponse ();
+
+		Console.WriteLine ("found {0} cookies", response.Cookies.Count);
 
 		foreach (Cookie c in response.Cookies) {
 			Cookies.Add (c);
