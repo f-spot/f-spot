@@ -8,7 +8,6 @@ noinst_DATA =					\
 	f-spot-fullscreen.png			\
 	f-spot-hidden.png			\
 	f-spot-loading.png			\
-	f-spot-logo.png				\
 	f-spot-other.png			\
 	f-spot-people.png			\
 	f-spot-places.png			\
@@ -19,5 +18,7 @@ noinst_DATA =					\
 	f-spot-question-mark.png		\
 	f-spot-simple-white.css
 
+pixmapdir = $(datadir)/pixmaps
+pixmap_DATA = f-spot-logo.png
 
-EXTRA_DIST = $(noinst_DATA)
+EXTRA_DIST = $(noinst_DATA) $(pixmap_DATA)

@@ -1,3 +1,10 @@
+2005-02-24  Gary Ekker  <gekker@novell.com>
+
+	* f-spot.desktop.in.in: add file for .desktop menu-spec support
+	* Makefile.am: make f-spot.desktop installable
+	* configure.in: add f-spot.desktop.in to AC_OUTPUT
+	* icons/Makefile.am: make f-spot-logo.png installable
+
 2005-02-24  Larry Ewing  <lewing@novell.com>
 
 	* src/IconView.cs: use regions to compute the preload area.
