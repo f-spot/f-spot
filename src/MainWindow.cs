@@ -264,6 +264,8 @@ public class MainWindow {
 		if (Toplevel == null)
 			Toplevel = this;
 
+		UpdateToolbar ();
+
 		if (db.Empty)
 			HandleImportCommand (null, null);
 	}

@@ -666,6 +666,12 @@ public class IconView : Gtk.Layout {
 
 	private void GetCellPosition (int cell_num, out int x, out int y)
 	{
+		if (cells_per_row == 0) {
+			x = 0;
+			y = 0;
+			return;
+		}
+			
 		int row = cell_num / cells_per_row;
 		int col = cell_num % cells_per_row;
 
@@ -772,6 +778,9 @@ public class IconView : Gtk.Layout {
 
 	public void ScrollTo (int cell_num)
 	{
+		if (!IsRealized)
+			return;
+
 		Adjustment adjustment = Vadjustment;
 		int x;
 		int y;
