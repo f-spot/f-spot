@@ -80,6 +80,7 @@ class PixbufUtils {
 	public class AspectLoader : Gdk.PixbufLoader {
 		int max_width;
 		int max_height;
+		PixbufOrientation orientation;
 
 		// FIXME: this should be a property
 		public bool ScaleAlongLongestEdge = false;
@@ -94,6 +95,18 @@ class PixbufUtils {
 		private void HandleSizePrepared (object obj, SizePreparedArgs args)
 		{
 			double scale;
+			switch (orientation) {
+			case PixbufOrientation.LeftTop:
+			case PixbufOrientation.LeftBottom:
+			case PixbufOrientation.RightTop:
+			case PixbufOrientation.RightBottom:	
+				int tmp = max_width;
+				max_width = max_height;
+				max_height = tmp;
+				break;
+			default:
+				break;
+			}
 
 			if (ScaleAlongLongestEdge) {
 				if (args.Width > args.Height)
@@ -115,6 +128,8 @@ class PixbufUtils {
 		public Pixbuf LoadFromFile (string path)
 		{
 			FileStream fs;
+
+			orientation = GetOrientation (path);
 			try {
 				fs = File.OpenRead (path);
 			} catch (Exception e) {
@@ -128,7 +143,9 @@ class PixbufUtils {
 				;
 			
 			this.Close ();
-			return this.Pixbuf;
+			Gdk.Pixbuf rotated = TransformOrientation (this.Pixbuf, orientation, true);
+			
+			return rotated;
 		}
 	}
 
@@ -253,7 +270,7 @@ class PixbufUtils {
 					  double hue, double saturation, int src_color, int dest_color)
 	{
 		Pixbuf adjusted = new Pixbuf (Colorspace.Rgb, src.HasAlpha, 8, src.Width, src.Height);
-		ColorAdjust (src, adjusted, brightness, contrast, hue, saturation, src_color, dest_color);
+		PixbufUtils.ColorAdjust (src, adjusted, brightness, contrast, hue, saturation, src_color, dest_color);
 		return adjusted;
 	}
 
@@ -296,6 +313,21 @@ class PixbufUtils {
 		trans.Dispose ();
 		srgb.Dispose ();
 		bchsw.Dispose ();
+	}
+
+	public static PixbufOrientation GetOrientation (string path)
+	{
+		ExifData exif = new ExifData (path);
+		byte [] value = exif.LookupData (ExifTag.Orientation);
+		PixbufOrientation orientation = PixbufOrientation.TopLeft;
+
+		if (value != null) {
+			System.Console.WriteLine ("len = {0} val [0] = {1} string = {2}", value.Length, 
+						  value[0], exif.LookupString (ExifTag.Orientation));
+			orientation = (PixbufOrientation)value [0];
+		}
+
+		return orientation;
 	}
 
 	public static Gdk.Pixbuf TransformOrientation (Gdk.Pixbuf src, PixbufOrientation orientation, bool copy_data)

@@ -1,3 +1,14 @@
+2004-12-06  Larry Ewing  <lewing@novell.com>
+
+	* src/PixbufUtils.cs: add GetOrientation call for now.  Make
+	AspectLoader use the orientation info.
+	
+	* src/MainWindow.cs: add Loz to Authors.
+
+	* src/AsyncPixbufLoader.cs: Use PixbufUtils.GetOrientation here.
+
+	* src/PhotoLoader.cs: Use the orientation tag when loading images.
+
 2004-12-04  Sigurd Gartmann  <sigurd-translate@brogar.org>
 
 	* configure.in: [ALL_LINGUAS] Added Norwegian Bokmål (nb and no)

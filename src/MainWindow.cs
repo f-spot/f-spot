@@ -843,7 +843,9 @@ public class MainWindow {
 			"Cheslack-Postava",
 			"Patanjali Somayaji",
 			"Matt Jones",
-			"Martin Willemoes Hansen"
+			"Martin Willemoes Hansen",
+			"Laurence Hygate"
+
 		};
 
                 // Translators should localize the following string

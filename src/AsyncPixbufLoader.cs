@@ -42,14 +42,8 @@ namespace FSpot {
 			if (stream != null)
 				stream.Close ();
 			
-			ExifData exif = new ExifData (filename);
-			byte [] value = exif.LookupData (ExifTag.Orientation);
-			
-			if (value != null) {
-				System.Console.WriteLine ("len = {0} val [0] = {1} string = {2}", value.Length, value[0], exif.LookupString (ExifTag.Orientation));
-				orientation = (PixbufOrientation)value [0];
-			} else
-				orientation = PixbufOrientation.TopLeft;
+			orientation = PixbufUtils.GetOrientation (filename);
+
 			stream = new System.IO.FileStream (filename, System.IO.FileMode.Open, System.IO.FileAccess.Read);
 			
 			loader = new Gdk.PixbufLoader ();

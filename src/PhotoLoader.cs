@@ -18,9 +18,15 @@ namespace FSpot
 
 		static public Gdk.Pixbuf Load (Photo photo) 
 		{
-			Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (photo.DefaultVersionPath);
-			ValidateThumbnail (photo, pixbuf);
-			return pixbuf;
+			PixbufOrientation orientation = PixbufUtils.GetOrientation (photo.DefaultVersionPath);
+			Gdk.Pixbuf orig = new Gdk.Pixbuf (photo.DefaultVersionPath);
+			
+			Gdk.Pixbuf rotated = PixbufUtils.TransformOrientation (orig, orientation, true);
+			ValidateThumbnail (photo, rotated);
+			if (rotated != orig)
+				orig.Dispose ();
+
+			return rotated;
 		}
 
 		static public Gdk.Pixbuf LoadAtMaxSize (Photo photo, int width, int height) 
@@ -29,6 +35,7 @@ namespace FSpot
 			ValidateThumbnail (photo, pixbuf);
 			return pixbuf;
 		}
+
 		static public Gdk.Pixbuf ValidateThumbnail (Photo photo, Gdk.Pixbuf pixbuf)
 		{
 			return ValidateThumbnail (photo.DefaultVersionPath, pixbuf);
