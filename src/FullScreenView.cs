@@ -11,6 +11,7 @@ namespace FSpot {
 				scroll.ShowAll ();
 				this.Decorated = false;
 				this.Fullscreen ();
+				this.ButtonPressEvent += HandleButtonPressEvent;
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e);
 			}		      
@@ -27,6 +28,15 @@ namespace FSpot {
 		private Gtk.Button forward_button;
 		private Gtk.Button back_button;
 		
+		private void HandleButtonPressEvent (object sender, Gtk.ButtonPressEventArgs args)
+		{
+			if (args.Event.Type == Gdk.EventType.ButtonPress
+			    && args.Event.Button == 3) {
+				PhotoPopup popup = new PhotoPopup ();
+				popup.Activate (args.Event);
+			}
+		}
+
 		protected override bool OnKeyPressEvent (Gdk.EventKey key)
 		{
 			if (key == null) {

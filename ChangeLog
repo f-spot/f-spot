@@ -1,5 +1,15 @@
 2004-12-09  Larry Ewing  <lewing@novell.com>
 
+	* src/FullScreenView.cs: add a PhotoPopup as a right click item.
+	
+	* src/MainWindow.cs: hack in fsview notification in a few more
+	places this needs to be cleaned up.
+	
+	* src/PhotoPopup.cs: not worth mentioning.
+	
+	* src/MainWindow.cs: a little more refactoring.  Make fsview
+	change the selection and the CurrentPhoto.
+
 	* src/MainWindow.cs: refactor the current_photo_idx crap out of
 	the way.
 

@@ -65,6 +65,7 @@ public class MainWindow {
 	FSpot.InfoDisplay info_display;
 	QueryView icon_view;
 	PhotoView photo_view;
+	FSpot.FullScreenView fsview;
 	FSpot.PhotoQuery query;
 	FSpot.GroupSelector group_selector;
 	
@@ -239,15 +240,12 @@ public class MainWindow {
 	{
 		switch (view_notebook.CurrentPage) {
 		case 0:
-			icon_view.ScrollTo (photo_view.CurrentPhoto);
-			icon_view.Throb (photo_view.CurrentPhoto);
-
 			mode = ModeType.IconView;
+			Present (photo_view.CurrentPhoto);
 			break;
 		case 1:
-			photo_view.CurrentPhoto = icon_view.FocusCell;
-
 			mode = ModeType.PhotoView;
+			Present (icon_view.FocusCell);
 			break;
 		}
 	}
@@ -264,15 +262,19 @@ public class MainWindow {
 
 	public int [] SelectedIds () {
 		int [] ids;
-		switch (mode) {
-		case ModeType.IconView:
-			ids = icon_view.SelectedIdxs;
-			break;
-		default:
-		case ModeType.PhotoView:
-			ids = new int [1];
-			ids [0] = photo_view.CurrentPhoto;
-			break;
+
+		if (fsview != null)
+			ids = new int [] { fsview.View.CurrentPhoto };
+		else {
+			switch (mode) {
+			case ModeType.IconView:
+				ids = icon_view.SelectedIdxs;
+				break;
+			default:
+			case ModeType.PhotoView:
+				ids = new int [] { photo_view.CurrentPhoto };
+				break;
+			}
 		}
 
 		return ids;
@@ -307,13 +309,18 @@ public class MainWindow {
 	{
 		icon_view.QueueDraw ();
 		photo_view.Reload ();
+		if (fsview != null)
+			fsview.View.Reload ();
 	}
 
 	private void UpdateViews (int num)
 	{
+		
 		icon_view.UpdateThumbnail (num);
 		if (num == photo_view.CurrentPhoto)
 			photo_view.Reload ();
+		if (fsview != null && num == fsview.View.CurrentPhoto)
+			fsview.View.Reload ();
 		info_box.Update ();
 		UpdateMenus ();
 	}
@@ -1069,17 +1076,38 @@ public class MainWindow {
 		args.RetVal = true;
 	}
 
-	FSpot.FullScreenView fsview;
 	void HandleViewFullscreen (object sender, EventArgs args)
 	{
-		fsview = new FSpot.FullScreenView (query);
+		int active = Math.Max (ActiveIndex (), 0);
+		if (fsview == null) {
+			fsview = new FSpot.FullScreenView (query);
+			fsview.Destroyed += HandleFullScreenViewDestroy;
+		}
 		// FIXME this needs to be another mode like PhotoView and IconView mode.
-
-		fsview.View.CurrentPhoto = Math.Max (ActiveIndex (), 0);
+		fsview.View.CurrentPhoto = active;
 
 		fsview.Show ();
 	}
+	
+	void Present (int item)
+	{
+		switch (mode) {
+		case ModeType.IconView:
+			icon_view.ScrollTo (item);
+			icon_view.Throb (item);
+			break;
+		case ModeType.PhotoView:
+			photo_view.CurrentPhoto = item;
+			break;
+		}
+	}
 
+	void HandleFullScreenViewDestroy (object sender, EventArgs args)
+	{
+		Present (fsview.View.CurrentPhoto);
+		fsview = null;
+	}
+	
 	void HandleZoomOut (object sender, EventArgs args)
 	{
 		switch (mode) {
