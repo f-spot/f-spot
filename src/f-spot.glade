@@ -508,6 +508,46 @@
 	      </child>
 
 	      <child>
+		<widget class="GtkMenuItem" id="view1">
+		  <property name="visible">True</property>
+		  <property name="label" translatable="yes">View</property>
+		  <property name="use_underline">True</property>
+
+		  <child>
+		    <widget class="GtkMenu" id="view1_menu">
+
+		      <child>
+			<widget class="GtkMenuItem" id="small1">
+			  <property name="visible">True</property>
+			  <property name="label" translatable="yes">Small</property>
+			  <property name="use_underline">True</property>
+			  <signal name="activate" handler="HandleViewSmall" last_modification_time="Thu, 22 Jan 2004 00:35:34 GMT"/>
+			</widget>
+		      </child>
+
+		      <child>
+			<widget class="GtkMenuItem" id="medium1">
+			  <property name="visible">True</property>
+			  <property name="label" translatable="yes">Medium</property>
+			  <property name="use_underline">True</property>
+			  <signal name="activate" handler="HandleViewMedium" last_modification_time="Thu, 22 Jan 2004 00:37:26 GMT"/>
+			</widget>
+		      </child>
+
+		      <child>
+			<widget class="GtkMenuItem" id="large1">
+			  <property name="visible">True</property>
+			  <property name="label" translatable="yes">Large</property>
+			  <property name="use_underline">True</property>
+			  <signal name="activate" handler="HandleViewLarge" last_modification_time="Thu, 22 Jan 2004 00:37:26 GMT"/>
+			</widget>
+		      </child>
+		    </widget>
+		  </child>
+		</widget>
+	      </child>
+
+	      <child>
 		<widget class="GtkMenuItem" id="tags1">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">Tags</property>
@@ -598,14 +638,14 @@
 	  <property name="shadow_type">GTK_SHADOW_OUT</property>
 
 	  <child>
-	    <widget class="GtkToolbar" id="toolbar1">
+	    <widget class="GtkToolbar" id="main_toolbar">
 	      <property name="visible">True</property>
 	      <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
 	      <property name="toolbar_style">GTK_TOOLBAR_BOTH</property>
 	      <property name="tooltips">True</property>
 
 	      <child>
-		<widget class="button" id="Rotate90Button">
+		<widget class="button" id="rotate_90_button">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">Rotate 90°</property>
 		  <property name="use_underline">True</property>
@@ -623,7 +663,7 @@
 	      </child>
 
 	      <child>
-		<widget class="button" id="Rotate270Button">
+		<widget class="button" id="rotate_270_button">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">Rotate 270°</property>
 		  <property name="use_underline">True</property>
@@ -691,9 +731,8 @@
 	  <child>
 	    <widget class="GtkNotebook" id="view_notebook">
 	      <property name="visible">True</property>
-	      <property name="can_focus">True</property>
-	      <property name="show_tabs">True</property>
-	      <property name="show_border">True</property>
+	      <property name="show_tabs">False</property>
+	      <property name="show_border">False</property>
 	      <property name="tab_pos">GTK_POS_TOP</property>
 	      <property name="scrollable">False</property>
 	      <property name="enable_popup">False</property>
@@ -704,7 +743,7 @@
 		  <property name="can_focus">True</property>
 		  <property name="hscrollbar_policy">GTK_POLICY_NEVER</property>
 		  <property name="vscrollbar_policy">GTK_POLICY_ALWAYS</property>
-		  <property name="shadow_type">GTK_SHADOW_NONE</property>
+		  <property name="shadow_type">GTK_SHADOW_IN</property>
 		  <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
 
 		  <child>

@@ -10,12 +10,12 @@ public class MainWindow {
 	TagSelectionWidget tag_selection_widget;
 	[Widget] Gtk.Window window1;
 	[Widget] VBox left_vbox;
-	[Widget] Toolbar toolbar;
+	[Widget] Toolbar main_toolbar;
 	[Widget] ScrolledWindow icon_view_scrolled;
 	[Widget] Box photo_box;
 	[Widget] Notebook view_notebook;
 	[Widget] ScrolledWindow tag_selection_scrolled;
-	
+
 	//
 	// Menu items
 	//
@@ -280,6 +280,21 @@ public class MainWindow {
 		}	
 	}
 	
+	void HandleViewSmall (object sender, EventArgs args)
+	{
+		icon_view.ThumbnailWidth = 64;	
+	}
+
+	void HandleViewMedium (object sender, EventArgs args)
+	{
+		icon_view.ThumbnailWidth = 128;	
+	}
+
+	void HandleViewLarge (object sender, EventArgs args)
+	{
+		icon_view.ThumbnailWidth = 256;	
+	}
+
 	// Toolbar commands.
 
 	void HandleRotate90ToolbarButtonClicked (object sender, EventArgs args)
