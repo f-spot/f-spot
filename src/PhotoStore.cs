@@ -1004,7 +1004,7 @@ public class PhotoStore : DbStore {
 					if (t.Id == tag_store.HiddenId)
 						continue;
 					
-					query_builder.Append (String.Format ("{0}{1} ", first ? ", " : "", t.Id));
+					query_builder.Append (String.Format ("{0}{1} ", first ? "" : ", ", t.Id));
 					
 					first = false;
 				}
