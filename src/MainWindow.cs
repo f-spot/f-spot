@@ -14,7 +14,7 @@ using System.Text.RegularExpressions;
 public class MainWindow {
 	Db db;
 	TagSelectionWidget tag_selection_widget;
-	[Widget] Gtk.Window window1;
+	[Widget] Gtk.Window main_window;
 	[Widget] VBox left_vbox;
 	[Widget] Toolbar main_toolbar;
 	[Widget] ScrolledWindow icon_view_scrolled;
@@ -41,6 +41,9 @@ public class MainWindow {
 	[Widget] MenuItem delete_from_catalog;
 
 	[Widget] MenuItem set_as_background;
+
+	[Widget] MenuItem attach_tag;
+	[Widget] MenuItem remove_tag;
 
 	PhotoVersionMenu versions_submenu;
 	
@@ -84,7 +87,7 @@ public class MainWindow {
 	{
 		this.db = db;
 		
-		Glade.XML gui = Glade.XML.FromAssembly ("f-spot.glade", "window1", null);
+		Glade.XML gui = Glade.XML.FromAssembly ("f-spot.glade", "main_window", null);
 		gui.Autoconnect (this);
 
 		tag_selection_widget = new TagSelectionWidget (db.Tags);
@@ -113,6 +116,9 @@ public class MainWindow {
 		
 		icon_view.DragBegin += new DragBeginHandler (HandleIconViewDragBegin);
 		icon_view.DragDataGet += new DragDataGetHandler (HandleIconViewDragDataGet);
+
+		attach_tag.Submenu = new TagMenu (db.Tags);
+		remove_tag.Submenu = new TagMenu (db.Tags);
 		
 		Gtk.Drag.DestSet (icon_view, DestDefaults.All, tag_target_table, 
 				  DragAction.Copy | DragAction.Move); 
@@ -137,7 +143,7 @@ public class MainWindow {
 		view_notebook.SwitchPage += new SwitchPageHandler (HandleViewNotebookSwitchPage);
 
 		UpdateMenus ();
-		window1.ShowAll ();
+		main_window.ShowAll ();
 	}
 
 	//
@@ -160,7 +166,7 @@ public class MainWindow {
 
 	private void RotateSelectedPictures (RotateCommand.Direction direction)
 	{
-		RotateCommand command = new RotateCommand (window1);
+		RotateCommand command = new RotateCommand (main_window);
 
 		switch (mode) {
 		case ModeType.IconView:
@@ -401,6 +407,19 @@ public class MainWindow {
 		}
 	}	
 
+	void HandleSendMailCommand (object sender, EventArgs e)
+	{
+		StringBuilder url = new StringBuilder ("mailto:?subject=my%20photos");
+
+		foreach (Photo p in SelectedPhotos ()) {
+			url.Append ("&attachment=" + p.DefaultVersionPath);
+		}
+
+		Console.WriteLine (url.ToString ());
+
+		Gnome.Url.Show (url.ToString ());
+	}
+
 	void HandleCloseCommand (object sender, EventArgs args)
 	{
 		// FIXME
@@ -413,7 +432,7 @@ public class MainWindow {
 	{
 		PhotoVersionCommands.Create cmd = new PhotoVersionCommands.Create ();
 
-		if (cmd.Execute (db.Photos, CurrentPhoto, window1)) {
+		if (cmd.Execute (db.Photos, CurrentPhoto, main_window)) {
 			info_box.Update ();
 			photo_view.Update ();
 			icon_view.UpdateThumbnail (current_photo_idx);
@@ -425,7 +444,7 @@ public class MainWindow {
 	{
 		PhotoVersionCommands.Delete cmd = new PhotoVersionCommands.Delete ();
 
-		if (cmd.Execute (db.Photos, CurrentPhoto, window1)) {
+		if (cmd.Execute (db.Photos, CurrentPhoto, main_window)) {
 			info_box.Update ();
 			photo_view.Update ();
 			icon_view.UpdateThumbnail (current_photo_idx);
@@ -452,7 +471,7 @@ public class MainWindow {
 	{
 		PhotoVersionCommands.Rename cmd = new PhotoVersionCommands.Rename ();
 
-		if (cmd.Execute (db.Photos, CurrentPhoto, window1)) {
+		if (cmd.Execute (db.Photos, CurrentPhoto, main_window)) {
 			info_box.Update ();
 			photo_view.Update ();
 			icon_view.UpdateThumbnail (current_photo_idx);
@@ -462,14 +481,14 @@ public class MainWindow {
 
 	void HandleCreateNewTagCommand (object sender, EventArgs args)
 	{
-		TagCommands.Create command = new TagCommands.Create (db.Tags, window1);
+		TagCommands.Create command = new TagCommands.Create (db.Tags, main_window);
 		if (command.Execute (TagCommands.TagType.Tag))
 			tag_selection_widget.Update ();
 	}
 
 	void HandleCreateNewCategoryCommand (object sender, EventArgs args)
 	{
-		TagCommands.Create command = new TagCommands.Create (db.Tags, window1);
+		TagCommands.Create command = new TagCommands.Create (db.Tags, main_window);
 		if (command.Execute (TagCommands.TagType.Category))
 			tag_selection_widget.Update ();
 	}
@@ -563,15 +582,35 @@ public class MainWindow {
 		command.Execute ();
 #endif
 	}
-	
+
+	void HandleViewFullscreen (object sender, EventArgs args)
+	{
+
+	}
+
         void HandleDeleteCommand (object sender, EventArgs args)
         {
 		foreach (int num in icon_view.Selection) {
 			Photo photo = query.Photos [num];
 			
+			foreach (uint id in photo.VersionIds) {
+				Console.WriteLine (" path == {0}", photo.GetVersionPath (id)); 
+				photo.DeleteVersion (id, true);
+			}
+
 			db.Photos.Remove (photo);
 		}
 		UpdateQuery ();
+	}
+
+	void HandleRemoveCommand (object sender, EventArgs args)
+	{
+		foreach (int num in icon_view.Selection) {
+			Photo photo = query.Photos [num];
+
+			db.Photos.Remove (photo);
+		}
+		
 	}
 
 	void HandleSelectAllCommand (object sender, EventArgs args)
@@ -598,7 +637,7 @@ public class MainWindow {
 		if (mode != ModeType.IconView)
 			return;
 
-		ThumbnailCommand command = new ThumbnailCommand (window1);
+		ThumbnailCommand command = new ThumbnailCommand (main_window);
 		int [] selected_ids = icon_view.Selection;
 
 		if (command.Execute (SelectedPhotos (selected_ids))) {

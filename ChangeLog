@@ -1,3 +1,14 @@
+2004-06-10  Larry Ewing  <lewing@ximian.com>
+
+	* src/MainWindow.cs: Add delete command.  Stub in fullscreen,
+	rename window1 everywhere.  Attach tag menu.  Add send mail
+	command.
+
+	* src/f-spot.glade: add menu items, reorder view menu, add some
+	spacing.  Rename window1 to main_window.
+
+	* src/TagMenu.cs: generate a menu based on the tag tree.
+
 2004-06-09  Larry Ewing  <lewing@ximian.com>
 
 	* src/PixbufUtils.cs: add AspectLoader and LoadAtMaxSize.
