@@ -15,7 +15,7 @@ LIBGPHOTO2_SHARP_CSFILES =				\
 	$(srcdir)/PortInfo.cs				\
 	$(srcdir)/PortInfoList.cs
 
-libgphoto2sharplibdir = $(prefix)/lib/f-spot
+libgphoto2sharplibdir = $(libdir)/f-spot
 libgphoto2sharplib_DATA =		\
 	libgphoto2-sharp.dll		\
 	libgphoto2-sharp.dll.config
