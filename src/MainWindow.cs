@@ -814,12 +814,17 @@ public class MainWindow {
 			"Grahm Orr",
 			"Cheslack-Postava",
 			"Patanjali Somayaji",
-			"Matt Jones"
+			"Matt Jones",
+			"Martin Willemoes Hansen"
 		};
-			
-		Gnome.About about = new About ("F-Spot", "0.0.3", "Copyright 2003-2004 Novell Inc.", null, authors, null, null, null);
 
-		about.Show ();
+                // Translators should localize the following string
+                // * which will give them credit in the About box.
+                // * E.g. "Martin Willemoes Hansen"
+                string translators = Catalog.GetString ("translator-credits");
+
+                new About ("F-Spot", "0.0.3", "Copyright 2003-2004 Novell Inc.",
+                           null, authors, null, translators, null).Show();
 	}
 
 	void HandleArrangeByTime (object sender, EventArgs args)
