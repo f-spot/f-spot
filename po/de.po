@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-15 08:43+0100\n"
-"PO-Revision-Date: 2005-02-15 08:41+0100\n"
+"POT-Creation-Date: 2005-02-16 08:56+0100\n"
+"PO-Revision-Date: 2005-02-16 08:54+0100\n"
 "Last-Translator: Frank Arnold <frank@scirocco-5v-turbo.de>\n"
 "Language-Team: German GNOME Translators <gnome-de@gnome.org >\n"
 "MIME-Version: 1.0\n"
@@ -138,6 +138,64 @@ msgstr "Unbekannter Transformationstyp %d"
 msgid "Operation failed"
 msgstr "Aktion fehlgeschlagen"
 
+#: ../src/CameraFileSelectionDialog.cs:81
+msgid "Preview"
+msgstr "Vorschau"
+
+#: ../src/CameraFileSelectionDialog.cs:83
+msgid "Path"
+msgstr "Pfad"
+
+#: ../src/CameraFileSelectionDialog.cs:85 ../src/f-spot.glade.h:64
+msgid "File"
+msgstr "Datei"
+
+#: ../src/CameraFileSelectionDialog.cs:87
+msgid "Index"
+msgstr "Index"
+
+#: ../src/CameraFileSelectionDialog.cs:102
+msgid "Downloading Previews"
+msgstr "Vorschaubilder werden heruntergeladen"
+
+#: ../src/CameraFileSelectionDialog.cs:109
+#, csharp-format
+msgid "Downloading Preview of {0}"
+msgstr "Vorschau von {0} wird heruntergeladen"
+
+#: ../src/CameraFileSelectionDialog.cs:133
+msgid "Saving Files..."
+msgstr "Dateien werden gespeichert…"
+
+#: ../src/CameraFileSelectionDialog.cs:143
+msgid "Unknown destination."
+msgstr "Unbekanntes Ziel."
+
+#: ../src/CameraFileSelectionDialog.cs:144
+msgid ""
+"When copying files from a camera you must select a valid destination on the "
+"local filesystem"
+msgstr ""
+"Wenn Dateien von einer Kamera kopiert werden sollen, muss ein gültiges Ziel "
+"im lokalen Dateisystem gewählt werden"
+
+#: ../src/CameraFileSelectionDialog.cs:181
+#, csharp-format
+msgid "Saved File {0}"
+msgstr "Datei {0} wurde gespeichert"
+
+#: ../src/CameraFileSelectionDialog.cs:198
+msgid "Select save directory"
+msgstr "Zielverzeichnis auswählen"
+
+#: ../src/CameraSelectionDialog.cs:28 ../src/StockIcons.cs:27
+msgid "Camera"
+msgstr "Kamera"
+
+#: ../src/CameraSelectionDialog.cs:29
+msgid "Port"
+msgstr "Anschluss"
+
 #: ../src/CDExport.cs:69
 #, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
@@ -209,7 +267,7 @@ msgstr "Anmeldung fehlgeschlagen."
 
 #: ../src/FlickrExport.cs:144
 msgid ""
-"F-Spot was unable to log on to Flickr.  Make sure the setting you supplied "
+"F-Spot was unable to log on to Flickr.  Make sure the settings you supplied "
 "are correct."
 msgstr ""
 "Die Anmeldung bei Flickr ist fehlgeschlagen. Stellen Sie sicher, dass die "
@@ -339,7 +397,7 @@ msgstr "Rahmen:"
 msgid "Brightness:"
 msgstr "Helligkeit:"
 
-#: ../src/f-spot.glade.h:33
+#: ../src/f-spot.glade.h:33 ../src/StockIcons.cs:26
 msgid "Browse"
 msgstr "Durchsuchen"
 
@@ -462,10 +520,6 @@ msgstr "Export in _Web Gallery…"
 #: ../src/f-spot.glade.h:63
 msgid "F-Spot"
 msgstr "F-Spot"
-
-#: ../src/f-spot.glade.h:64
-msgid "File"
-msgstr "Datei"
 
 #: ../src/f-spot.glade.h:65
 msgid "Fin_d"
@@ -617,11 +671,11 @@ msgstr "Markierung ent_fernen"
 msgid "Resize to: "
 msgstr "Größe ändern auf: "
 
-#: ../src/f-spot.glade.h:106
+#: ../src/f-spot.glade.h:106 ../src/StockIcons.cs:35
 msgid "Rotate _Left"
 msgstr "_Links drehen"
 
-#: ../src/f-spot.glade.h:107
+#: ../src/f-spot.glade.h:107 ../src/StockIcons.cs:36
 msgid "Rotate _Right"
 msgstr "_Rechts drehen"
 
@@ -638,7 +692,7 @@ msgid "Select Files To Copy From Camera..."
 msgstr "Von der Kamera zu kopierende Dateien auswählen…"
 
 #: ../src/f-spot.glade.h:111
-msgid "Select Tags ..."
+msgid "Select Tags..."
 msgstr "Markierungen auswählen…"
 
 #: ../src/f-spot.glade.h:112
@@ -701,11 +755,11 @@ msgstr "Markierungsname"
 
 #: ../src/f-spot.glade.h:127
 msgid "Uri:"
-msgstr "Uri:"
+msgstr "URI:"
 
 #: ../src/f-spot.glade.h:128
 msgid "Url:"
-msgstr "Url:"
+msgstr "URL:"
 
 #: ../src/f-spot.glade.h:129
 msgid "User_name:"
@@ -891,7 +945,12 @@ msgstr "(Keine Galerie)"
 msgid "(No Albums)"
 msgstr "(Keine Alben)"
 
-#: ../src/InfoBox.cs:70
+#. Gtk.Menu menu = new Gtk.Menu();
+#: ../src/ImportCommand.cs:233
+msgid "Select Tag"
+msgstr "Markierung auswählen"
+
+#: ../src/InfoBox.cs:70 ../src/PhotoVersionCommands.cs:68
 msgid "Name:"
 msgstr "Name:"
 
@@ -933,8 +992,8 @@ msgstr "Fehler beim Verbinden zur Kamera"
 
 #: ../src/MainWindow.cs:860
 #, csharp-format
-msgid "Recieved error \"{0}\" while connecting to camera"
-msgstr "Während dem Verbinden zur Kamera ist der Fehler »{0}« aufgetreten"
+msgid "Received error \"{0}\" while connecting to camera"
+msgstr "Während dem Verbinden zur Kamera wurde der Fehler »{0}« empfangen"
 
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
@@ -981,17 +1040,18 @@ msgstr[1] "Fotos _löschen"
 
 #: ../src/MainWindow.cs:1427
 #, csharp-format
-msgid "Remove the selected photo from the catalog?"
-msgid_plural "Remove the {0} selected photos from the catalog?"
-msgstr[0] "Das ausgewählte Foto aus dem Katalog entfernen?"
-msgstr[1] "Die {0} ausgewählten Fotos aus dem Katalog entfernen?"
+msgid "Remove the selected photo from F-Spot?"
+msgid_plural "Remove the {0} selected photos from F-Spot?"
+msgstr[0] "Das ausgewählte Foto aus F-Spot entfernen?"
+msgstr[1] "Die {0} ausgewählten Fotos aus F-Spot entfernen?"
 
 #: ../src/MainWindow.cs:1432
 msgid ""
-"If you remove photos from the catalog all tag information will be lost. The "
-"photos remain on your computer and can be imported into f-spot again."
+"If you remove photos from the F-Spot catalog all tag information will be "
+"lost. The photos remain on your computer and can be imported into F-Spot "
+"again."
 msgstr ""
-"Wenn Fotos aus dem Katalog entfernt werden, gehen alle "
+"Wenn Fotos aus dem F-Spot-Katalog entfernt werden, gehen alle "
 "Markierungsinformationen verloren. Die Fotos bleiben auf dem Rechner "
 "erhalten und können wieder in F-Spot importiert werden."
 
@@ -1063,6 +1123,27 @@ msgstr "Markierung entfernen"
 msgid "(No Tags)"
 msgstr "(Keine Markierungen)"
 
+#: ../src/PhotoVersionCommands.cs:67
+msgid "Create New Version"
+msgstr "Neue Version erstellen"
+
+#: ../src/PhotoVersionCommands.cs:72
+msgid "Rename Version"
+msgstr "Version umbenennen"
+
+#: ../src/PhotoVersionCommands.cs:73
+msgid "New name:"
+msgstr "Neuer Name:"
+
+#: ../src/PhotoVersionCommands.cs:139
+msgid "Really Delete?"
+msgstr "Wirklich löschen?"
+
+#: ../src/PhotoVersionCommands.cs:145
+#, csharp-format
+msgid "Really delete version \"{0}\"?"
+msgstr "Soll die Version »{0}« wirklich gelöscht werden?"
+
 #: ../src/RotateCommand.cs:24
 msgid "Rotating pictures"
 msgstr "Bilder drehen"
@@ -1095,6 +1176,38 @@ msgstr[1] ""
 "{0} Bilder konnten nicht gedreht werden, da sie sich auf einem "
 "schreibgeschützten Dateisystem oder Medium (z.B. CD-ROM) befinden. Bitte "
 "versuchen Sie es nach Überprüfung der Zugriffsrechte noch einmal."
+
+#: ../src/StockIcons.cs:28
+msgid "Crop"
+msgstr "Zuschneiden"
+
+#: ../src/StockIcons.cs:29
+msgid "Edit Image"
+msgstr "Bild bearbeiten"
+
+#: ../src/StockIcons.cs:30
+msgid "Fullscreen"
+msgstr "Vollbild"
+
+#: ../src/StockIcons.cs:31
+msgid "Slideshow"
+msgstr "Diashow"
+
+#: ../src/StockIcons.cs:32
+msgid "Logo"
+msgstr "Logo"
+
+#: ../src/StockIcons.cs:33
+msgid "Question"
+msgstr "Frage"
+
+#: ../src/StockIcons.cs:34
+msgid "Reduce Red-Eye"
+msgstr "Rote Augen reduzieren"
+
+#: ../src/StockIcons.cs:37
+msgid "Loading"
+msgstr "Ladend"
 
 #: ../src/TagCommands.cs:56
 msgid "(No categories)"
