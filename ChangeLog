@@ -1,5 +1,7 @@
 2004-02-06  Larry Ewing  <lewing@ximian.com>
 
+	* src/makefile.am (CLEANFILES): add makefile to CLEANFILES.
+
 	* src/IconView.cs: Clear selection when the query changes.
 	
 	* src/RotateCommand.cs: reformat slightly.
@@ -17,7 +19,6 @@
 	for thumbnailing.  Add the start of a print command.
 
 	* src/ThumbnailCommand.cs: add a thumbnailing command.
-	
 
 2004-01-30  Larry Ewing  <lewing@ximian.com>
 
