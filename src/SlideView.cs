@@ -19,14 +19,20 @@ public class SlideView : Gtk.Image {
 	uint flip_timer = 0;
 	uint transition_timer = 0;
 
-	public void Play () 
-	{
-		this.FromPixbuf = GetScaled (photos[current].DefaultVersionPath);
-		LoadNextImage ();
-		StartFlipTimer ();
+	public bool Running {
+		get {
+			return flip_timer != 0 || transition_timer != 0;
+		}
 	}
 
-#if true
+	public void Play () 
+	{
+		StopTweenIdle ();
+		this.FromPixbuf = GetScaled (photos[current].DefaultVersionPath);
+		if (PreloadNextImage ())
+			StartFlipTimer ();
+	}
+
 	private Pixbuf Blend (Pixbuf current, Pixbuf prev, Pixbuf next, double percent)
 	{ 
 		int width = Allocation.width;
@@ -37,8 +43,8 @@ public class SlideView : Gtk.Image {
 				Gdk.InterpType.Bilinear, (int)(255 * percent + 0.5));
 		return current;
 	}
-#else
-	private Pixbuf Blend (Pixbuf current, Pixbuf prev, Pixbuf next, double percent)
+
+	private Pixbuf FadeBlack (Pixbuf current, Pixbuf prev, Pixbuf next, double percent)
 	{ 
 		int width = Allocation.width;
 		int height = Allocation.height;
@@ -53,7 +59,6 @@ public class SlideView : Gtk.Image {
 					Gdk.InterpType.Bilinear, (int)(255 * (percent * 2 - 1) + 0.5));
 		return current;
 	}
-#endif
 
 	private Pixbuf GetScaled (string path)
 	{
@@ -96,7 +101,7 @@ public class SlideView : Gtk.Image {
 		return scaled;
 	}
 
-	private bool LoadNextImage ()
+	private bool PreloadNextImage ()
 	{
 		Pixbuf orig;
 	
@@ -112,8 +117,19 @@ public class SlideView : Gtk.Image {
 		}
 	}
 	
+	private bool LoadPrevImage () 
+	{
+		if (current-- > 0)
+			this.FromPixbuf = GetScaled (photos [current].DefaultVersionPath);
+		else 
+			current = 0;
 
-	public bool HandleFlipTimer ()
+
+		Console.WriteLine (current);
+		return current > 0;		
+	}
+
+	private bool HandleFlipTimer ()
 	{	
 		StopTweenIdle ();
 	
@@ -134,7 +150,7 @@ public class SlideView : Gtk.Image {
 		} else {
 			this.FromPixbuf = next;
 
-			if (LoadNextImage ())
+			if (PreloadNextImage ());
 				StartFlipTimer ();
 		
 		}
@@ -247,6 +263,17 @@ public class SlideView : Gtk.Image {
 		StopTweenIdle ();
 		StopTranstionTimer ();
 		StopFlipTimer ();
+	}
+
+	public bool Forward ()
+	{
+		this.FromPixbuf = next;
+		return PreloadNextImage ();
+	}
+	
+	public void Back ()
+	{
+		LoadPrevImage ();
 	}
 
 	private void HandleSizeAllocate (object sender, SizeAllocatedArgs args)
