@@ -34,7 +34,30 @@ public class TagMenu : Menu {
 	protected TagMenu (IntPtr raw) : base (raw) {}
 
 	public void Populate () {
-		Populate (tag_store.RootCategory, this);
+		Populate (false);
+	}
+
+	public void Populate (bool flat) { 
+		if (flat)
+			PopulateFlat (tag_store.RootCategory, this);
+		else
+			Populate (tag_store.RootCategory, this);
+	}
+
+        public void PopulateFlat (Category cat, Gtk.Menu parent)
+	{
+		foreach (Tag t in cat.Children) {
+			TagItem item = new TagItem (t);
+			parent.Append (item);
+			item.ShowAll ();
+
+			Category subcat = t as Category;
+			if (subcat != null && subcat.Children.Length != 0) {
+				PopulateFlat (t as Category, parent);
+			} else {
+				item.Activated += HandleActivate;
+			}
+		} 
 	}
 
 	public void Populate (Category cat, Gtk.Menu parent) {

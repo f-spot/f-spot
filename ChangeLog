@@ -1,5 +1,16 @@
 2005-02-14  Larry Ewing  <lewing@novell.com>
 
+	* src/f-spot-red-eye.png: ugly overhaul so it doesn't look like
+	the icon, waiting for a better Icon from tigert.
+
+	* src/TagMenu.cs: add an overload for a flat selection case.
+
+	* src/ImportCommand.cs: work on cleaning up the UI.
+
+	* src/f-spot.glade: clean up the layout slightly.
+
+	* src/GPhotoCamera.cs: fixup formatting.
+
 	* src/CameraSelectionDialog.cs: fix up style and translate column names.
 
 	* src/CameraFileSelectionDialog.cs: fix up style and translate strings.

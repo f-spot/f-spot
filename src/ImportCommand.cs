@@ -218,8 +218,8 @@ public class ImportCommand {
 	
 	public void HandleTagMenuSelected (Tag t) {
 		tag_selected = t;
-		tag_image.Pixbuf = t.Icon;
-		tag_label.Text = t.Name;
+		//tag_image.Pixbuf = t.Icon;
+		//tag_label.Text = t.Name;
 	
 	}
 	
@@ -229,15 +229,16 @@ public class ImportCommand {
 		Glade.XML xml = new Glade.XML (null, "f-spot.glade", "import_dialog", null);
 		xml.Autoconnect (this);
 		
-		Gtk.Menu menu = new Gtk.Menu();
+		//Gtk.Menu menu = new Gtk.Menu();
 		MenuItem attach_item = new MenuItem (Mono.Posix.Catalog.GetString ("Select Tag"));
-		TagMenu tagmenu = new TagMenu (attach_item, MainWindow.Toplevel.Database.Tags);
+		TagMenu tagmenu = new TagMenu (null, MainWindow.Toplevel.Database.Tags);
 		
 		tagmenu.TagSelected += HandleTagMenuSelected;
-		attach_item.ShowAll();
-		menu.Append (attach_item);
+		tagmenu.ShowAll ();
+		tagmenu.Populate (true);
+		tagmenu.Prepend (attach_item);
 		
-		tag_option_menu.Menu = menu;
+		tag_option_menu.Menu = tagmenu;
 		
 		tag_selected = null;
 				
