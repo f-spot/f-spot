@@ -203,13 +203,11 @@ namespace FSpot {
 			
 			//System.Console.WriteLine ("ZoomFit");
 
-			if (pixbuf == null) {
-				System.Console.WriteLine ("pixbuf == null");
+			if (pixbuf == null)
 				return;
-			}
+
 			int available_width = this.Allocation.Width;
 			int available_height = this.Allocation.Height;
-
 		
 			double zoom_to_fit = ZoomUtils.FitToScale ((uint) available_width, 
 								   (uint) available_height,

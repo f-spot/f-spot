@@ -56,14 +56,16 @@ public class CompatFileChooserDialog {
 	}
 
 	set {
-	    if (use_file_chooser)
-		// FIXME: This returns a boolean success code.
-		// We can't do much if it fails (e.g. when the
-		// file does not exist), so do we need to
-		// actually check the return value?
-		gtk_file_chooser_set_filename (chooser.Handle, value);
-	    else
-		filesel.Filename = value;
+		if (use_file_chooser) {
+			// FIXME: This returns a boolean success code.
+			// We can't do much if it fails (e.g. when the
+			// file does not exist), so do we need to
+			// actually check the return value?
+			gtk_file_chooser_set_filename (chooser.Handle, value);
+			if (System.IO.Directory.Exists (value))
+				gtk_file_chooser_set_current_folder (chooser.Handle, value);
+		} else
+			filesel.Filename = value;
 	}
     }
 
@@ -200,6 +202,9 @@ public class CompatFileChooserDialog {
 
     [DllImport ("libgtk-win32-2.0-0.dll")]
 	extern static int gtk_file_chooser_set_filename (IntPtr handle, string filename);
+
+    [DllImport ("libgtk-win32-2.0-0.dll")]
+	extern static int gtk_file_chooser_set_current_folder (IntPtr handle, string filename);
 
     [DllImport ("libgtk-win32-2.0-0.dll")]
 	extern static IntPtr gtk_file_chooser_get_filenames (IntPtr handle);

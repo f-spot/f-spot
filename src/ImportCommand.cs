@@ -258,12 +258,12 @@ public class ImportCommand : FSpot.GladeDialog {
 	public void HandleImportBrowse (object o, EventArgs args) {
 	
 		CompatFileChooserDialog file_selector =
-			new CompatFileChooserDialog ("Import", main_window,
+			new CompatFileChooserDialog ("Import", this.Dialog,
 						     CompatFileChooserDialog.Action.SelectFolder);
-		file_selector.SelectMultiple = true;
 
-		
+		file_selector.SelectMultiple = false;
 		file_selector.Filename = import_folder_entry.Text;
+
 		int response = file_selector.Run ();
 
 		if ((ResponseType) response == ResponseType.Ok) {
