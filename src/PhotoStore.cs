@@ -30,7 +30,15 @@ public class Photo : DbItem, IComparable {
 	
 	public static int Compare (Photo photo1, Photo photo2)
 	{
-		return CompareImportDate (photo1, photo2);
+		int result = CompareImportDate (photo1, photo2);
+		if (result == 0)
+			result = CompareCurrentDir (photo1, photo2);
+		
+		if (result == 0)
+			result = CompareName (photo1, photo2);
+
+		
+		return result;
 	}
 
 	private static int CompareImportDate (Photo photo1, Photo photo2)
@@ -43,14 +51,17 @@ public class Photo : DbItem, IComparable {
 		return string.Compare (photo1.directory_path, photo2.directory_path);
 	}
 
+	private static int CompareName (Photo photo1, Photo photo2)
+	{
+		return string.Compare (photo1.name, photo2.name);
+	}
+
 	public class CompareDirectory : IComparer {
 		public int Compare (object obj1, object obj2) {
 			Photo p1 = (Photo)obj1;
 			Photo p2 = (Photo)obj2;
 
 			int result = Photo.CompareCurrentDir (p1, p2);
-			if (result == 0)
-				result = CompareImportDate (p1, p2);
 			
 			return result;
 		}
