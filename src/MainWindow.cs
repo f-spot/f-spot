@@ -565,16 +565,18 @@ public class MainWindow {
 
 			bool use_icon = false;;
 			while (len-- > 0) {
-				string thumbnail_path = Thumbnail.PathForUri (photos[len].DefaultVersionUri.ToString (), ThumbnailSize.Large);
+				string thumbnail_path = Thumbnail.PathForUri (photos[len].DefaultVersionUri.ToString (), 
+									      ThumbnailSize.Large);
 				Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForPath (thumbnail_path);
 				if (thumbnail != null) {
 					Pixbuf small = PixbufUtils.ScaleToMaxSize (thumbnail, size, size);				
 
 					int x = border + len * (size/2) + (size - small.Width)/2;
 					int y = border + len * (size/2) + (size - small.Height)/2;
-					Pixbuf box = new Pixbuf (container, x - border, y - border, small.Width + 2 * border, small.Height + 2 * border);
-					box.Fill (0x000000ff);
+					Pixbuf box = new Pixbuf (container, x - border, y - border, 
+								 small.Width + 2 * border, small.Height + 2 * border);
 
+					box.Fill (0x000000ff);
 					small.CopyArea (0, 0, small.Width, small.Height, container, x, y); 
 					
 					thumbnail.Dispose ();
@@ -814,16 +816,17 @@ public class MainWindow {
 	void HandleImportFromCameraCommand (object sender, EventArgs e)
 	{
 		GPhotoCamera cam = new GPhotoCamera();
-		
+
 		try {
 			int num_cameras = cam.DetectCameras();
 			int selected_cam;
 
 			if (num_cameras < 1) {
 				HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
-									    MessageType.Warning, ButtonsType.Ok, 
-									    Mono.Posix.Catalog.GetString ("No cameras detected."),
-									    Mono.Posix.Catalog.GetString ("F-Spot was unable to find any cameras attached to this system.  Double check that the camera is connected and has power")); 
+					MessageType.Warning, ButtonsType.Ok, 
+					Mono.Posix.Catalog.GetString ("No cameras detected."),
+					Mono.Posix.Catalog.GetString ("F-Spot was unable to find any cameras attached to this system." + 
+								      "  Double check that the camera is connected and has power")); 
 
 				md.Run ();
 				md.Destroy ();
@@ -834,11 +837,11 @@ public class MainWindow {
 				FSpot.CameraSelectionDialog camselect = new FSpot.CameraSelectionDialog (cam.CameraList);
 				selected_cam = camselect.Run ();
 			}
-			
+
 			if (selected_cam >= 0) {
 				cam.SelectCamera (selected_cam);	
 				cam.InitializeCamera ();
-			
+
 				FSpot.CameraFileSelectionDialog selector = new FSpot.CameraFileSelectionDialog (cam, db);
 				selector.Run ();
 
@@ -846,11 +849,13 @@ public class MainWindow {
 			}
 		}
 		catch (GPhotoException ge) {
+			System.Console.WriteLine (ge.ToString ());
 			HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
-								    MessageType.Error, ButtonsType.Ok, 
-								    Mono.Posix.Catalog.GetString ("Error connecting to camera"),
-								    String.Format (Mono.Posix.Catalog.GetString ("Received error \"{0}\" while connecting to camera"), 
-										   ge.Message));
+				MessageType.Error, ButtonsType.Ok, 
+				Mono.Posix.Catalog.GetString ("Error connecting to camera"),
+				String.Format (Mono.Posix.Catalog.GetString ("Received error \"{0}\" while connecting to camera"), 
+				ge.Message));
+
 			md.Run ();
 			md.Destroy ();
 		} finally {
@@ -1424,7 +1429,8 @@ public class MainWindow {
 		header = String.Format (header, photos.Length);
 		string msg = Mono.Posix.Catalog.GetString("If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again.");
 		string ok_caption = Mono.Posix.Catalog.GetString("_Remove from Catalog");
-		if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(main_window, DialogFlags.DestroyWithParent, MessageType.Warning, header, msg, ok_caption)) {                              
+		if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(main_window, DialogFlags.DestroyWithParent, 
+									   MessageType.Warning, header, msg, ok_caption)) {                              
 			foreach (Photo photo in photos) {
 				db.Photos.Remove (photo);
 			}
