@@ -14,6 +14,7 @@ public class SlideView : Gtk.Image {
 	Pixbuf [] tweens = new Pixbuf [10];	
 	int current_tween;
 	uint tween_idle;
+	uint resize_idle;
 
 	int current_idx = 0;	
 	int next_idx = 0;
@@ -97,7 +98,7 @@ public class SlideView : Gtk.Image {
 
 		prev.CopyArea (0, 0, width, height, current, 0, 0);
 		next.Composite (current, 0,0, width, height, 0, 0, 1, 1,
-				Gdk.InterpType.Bilinear, (int)(255 * percent + 0.5));
+				Gdk.InterpType.Nearest, (int)(255 * percent + 0.5));
 		return current;
 	}
 
@@ -278,7 +279,8 @@ public class SlideView : Gtk.Image {
 		}
 		flip_timer = 0;
 	}
-	
+
+
 	private void HandleSizeAllocate (object sender, SizeAllocatedArgs args)
 	{	
 		if (Pixbuf == null)
@@ -289,21 +291,30 @@ public class SlideView : Gtk.Image {
 		 */
 		if (Pixbuf.Width != Allocation.Width || Pixbuf.Height != Allocation.Height) {
 			bool playing = (flip_timer != 0 || transition_timer != 0);
-
+			
 			this.FromPixbuf = GetScaled (photos[current_idx].DefaultVersionPath);
 			Stop ();
-
-			/* clear the tween images */
-			for (int i = 0; i < tweens.Length; i++)
-				tweens[i] = null;
-
+		
+			ClearTweens ();
+			
 			if (playing && current_idx != next_idx)
 				Play ();
+
+
+		}
+	}
+
+	private void ClearTweens () {
+		for (int i = 0; i < tweens.Length; i++) {
+			if (tweens[i] != null) 
+				tweens[i].Dispose ();
+			tweens[i] = null;
 		}
 	}
 
 	private void HandleDestroyed (object sender, EventArgs args)
 	{
+		ClearTweens ();
 		Stop ();
 	}
 

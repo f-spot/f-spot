@@ -127,6 +127,8 @@ public class MainWindow {
 		photo_view.PhotoChanged += new PhotoView.PhotoChangedHandler (HandlePhotoViewPhotoChanged);
 		photo_view.ButtonPressEvent += new ButtonPressEventHandler (HandlePhotoViewButtonPressEvent);
 
+		view_notebook.SwitchPage += new SwitchPageHandler (HandleViewNotebookSwitchPage);
+
 		UpdateMenus ();
 		window1.ShowAll ();
 	}
@@ -278,7 +280,8 @@ public class MainWindow {
 
 	void HandleDoubleClicked (IconView icon_view, int clicked_item)
 	{
-		SwitchToPhotoViewMode (clicked_item);
+		
+		SwitchToPhotoViewMode ();
 	}
 
 	// PhotoView events.
@@ -669,17 +672,34 @@ public class MainWindow {
 	};
 	ModeType mode;
 
+	void HandleViewNotebookSwitchPage (object sender, SwitchPageArgs args)
+	{
+		switch (view_notebook.CurrentPage) {
+		case 0:
+			mode = ModeType.IconView;
+			break;
+		case 1:
+			mode = ModeType.PhotoView;
+			if (current_photo_idx != PHOTO_IDX_NONE)
+				photo_view.CurrentPhoto = current_photo_idx;
+			else if (current_photos) {
+				int [] selection = icon_view.Selection;
+				
+				photo_view.CurrentPhoto = selection[0];
+			}
+
+			break;
+		}
+	}
+
 	void SwitchToIconViewMode ()
 	{
-		mode = ModeType.IconView;
 		view_notebook.CurrentPage = 0;
 	}
 
-	void SwitchToPhotoViewMode (int photo_num)
+	void SwitchToPhotoViewMode ()
 	{
-		mode = ModeType.PhotoView;
 		view_notebook.CurrentPage = 1;
-		photo_view.CurrentPhoto = photo_num;
 	}
 }
 

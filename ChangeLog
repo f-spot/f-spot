@@ -1,3 +1,12 @@
+2004-04-03  Larry Ewing  <lewing@ximian.com>
+
+	* src/SlideView.cs: Switch to Nearest mode on the tween images
+	they don't matter and be a little more carefull about calling
+	dispose.
+
+	* src/MainWindow.cs: always listen to page switches and try to do
+	something smart.
+
 2004-04-02  Larry Ewing  <lewing@ximian.com>
 
 	* src/MainWindow.cs: add more set the drag icon, it probably
