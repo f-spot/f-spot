@@ -84,7 +84,7 @@ namespace FSpot {
 					
 					//System.Console.WriteLine ("Xfering {0} to {1}", source.ToString (), target.ToString ());
 					
-					progress_dialog.Message = System.String.Format (Mono.Posix.Catalog.GetString ("Transfering picture \"{0}\""), photo.Name);
+					progress_dialog.Message = System.String.Format (Mono.Posix.Catalog.GetString ("Transferring picture \"{0}\""), photo.Name);
 					progress_dialog.Fraction = photo_index / (double) selection.Photos.Length;
 					progress_dialog.ProgressText = System.String.Format (Mono.Posix.Catalog.GetString ("{0} of {1}"), 
 											     photo_index, selection.Photos.Length);
@@ -105,14 +105,14 @@ namespace FSpot {
 
 								} else {
 					progress_dialog.ProgressText = result.ToString ();
-					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Error While Transfering");
+					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Error While Transferring");
 				}
 
 				if (open && photo_index > 0)
 					Gnome.Url.Show (dest.ToString ());
 			} catch (System.Exception e) {
 				progress_dialog.Message = e.ToString ();
-				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error Transfering");
+				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error Transferring");
 			}
 		}
 		
@@ -170,7 +170,7 @@ namespace FSpot {
 			Upload ();
 #else 	
 			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Upload));
-			command_thread.Name = Mono.Posix.Catalog.GetString ("Transfering Pictures");
+			command_thread.Name = Mono.Posix.Catalog.GetString ("Transferring Pictures");
 			//command_thread.Start ();
 			progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Photos.Length);
 			progress_dialog.Start ();

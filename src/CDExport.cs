@@ -66,7 +66,7 @@ namespace FSpot {
 					target = target.AppendFileName (source.ExtractShortName ());
 					Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
 					
-					progress_dialog.Message = System.String.Format (Mono.Posix.Catalog.GetString ("Transfering picture \"{0}\" To CD"), photo.Name);
+					progress_dialog.Message = System.String.Format (Mono.Posix.Catalog.GetString ("Transferring picture \"{0}\" To CD"), photo.Name);
 					progress_dialog.Fraction = photo_index / (double) selection.Photos.Length;
 					progress_dialog.ProgressText = System.String.Format (Mono.Posix.Catalog.GetString ("{0} of {1}"), 
 											     photo_index, selection.Photos.Length);
@@ -88,12 +88,12 @@ namespace FSpot {
 					system ("nautilus-cd-burner");
 				} else {
 					progress_dialog.ProgressText = result.ToString ();
-					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Error While Transfering");
+					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Error While Transferring");
 				}
 
 			} catch (System.Exception e) {
 				progress_dialog.Message = e.ToString ();
-				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error Transfering");
+				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error Transferring");
 			}
 			progress_dialog.Destroy ();
 		}
@@ -148,7 +148,7 @@ namespace FSpot {
 			clean = remove_check.Active;
 
 			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Transfer));
-			command_thread.Name = Mono.Posix.Catalog.GetString ("Transfering Pictures");
+			command_thread.Name = Mono.Posix.Catalog.GetString ("Transferring Pictures");
 
 			progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Photos.Length);
 			progress_dialog.Start ();
