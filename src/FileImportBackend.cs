@@ -21,12 +21,15 @@ public class FileImportBackend : ImportBackend {
 			file_paths.Add (path);
 
 	}
-	
+
 	private void GetListing (System.IO.DirectoryInfo info)
 	{
-		System.Console.WriteLine ("Scanning {0}", info.FullName);
+		GetListing (info, info.GetFiles (), true);
+	}
 
-		System.IO.FileInfo [] files = info.GetFiles ();
+	private void GetListing (System.IO.DirectoryInfo info, System.IO.FileInfo [] files, bool recurse)
+	{
+		System.Console.WriteLine ("Scanning {0}", info.FullName);
 		Hashtable exiting_entries = new Hashtable ();
 
 		foreach (Photo p in store.Query (info)) {
@@ -64,10 +67,13 @@ public class FileImportBackend : ImportBackend {
 
 		foreach (string path in base_paths) {
 			try {	
-				GetListing (new System.IO.DirectoryInfo (path));
+				if (System.IO.Directory.Exists (path))
+					GetListing (new System.IO.DirectoryInfo (path));
+				else if (System.IO.File.Exists (path))
+					GetListing (new System.IO.DirectoryInfo (System.IO.Path.GetDirectoryName (path)), 
+						    new System.IO.FileInfo [] { new System.IO.FileInfo (path)}, false);
 			} catch (Exception e) {
 				System.Console.WriteLine (e.ToString ());
-				AddPath (path);
 			}
 		}	
 

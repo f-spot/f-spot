@@ -1,7 +1,10 @@
 2005-02-17  Larry Ewing  <lewing@novell.com>
 
-	* src/FileImportBackend.cs: handle zero item imports differently.
+	* src/FileImportBackend.cs: handle file vs. directory imports with
+	more grace.  Check for duplicates even on file imports.
 	
+	* src/FileImportBackend.cs: handle zero item imports differently.
+
 	* src/ImportCommand.cs: fix zero item imports.
 
 	* src/f-spot.in: remove debug spew.
@@ -12,15 +15,18 @@
 	the parent category (Based on a patch from Loz).  Use the new
 	TagItem ctors to get images on the menus.
 	
-	* src/MainWindow.cs: pass the tag selection on the the Create command.
+	* src/MainWindow.cs: pass the tag selection on the the Create
+	command.
 	
-	* src/FileImportBackend.cs: rebuild the thumbnails on all the imported photos.
+	* src/FileImportBackend.cs: rebuild the thumbnails on all the
+	imported photos.
 
 	* src/MainWindow.cs: clean up definitions.
 
 	* src/QueryView.cs: remove IntPtr constructor.
 
-	* src/IconView.cs: make some of the members protected for the alternate layout work.
+	* src/IconView.cs: make some of the members protected for the
+	alternate layout work.
 
 	* src/ImportCommand.cs: don't pass a null item in the array.
 
@@ -80,9 +86,11 @@
 	* configure.in: integrate Loz's patch to improve version check for
 	lcms.
 
-	* src/GPhotoCamera.cs: thow an exception instead of silently failing
+	* src/GPhotoCamera.cs: thow an exception instead of silently
+	failing
 
-	* src/CameraFileSelectionDialog.cs: use a thread for the download task.
+	* src/CameraFileSelectionDialog.cs: use a thread for the download
+	task.
 
 	* src/f-spot.glade start new dialog work.
 
@@ -147,9 +155,11 @@ h
 
 	* src/GPhotoCamera.cs: fixup formatting.
 
-	* src/CameraSelectionDialog.cs: fix up style and translate column names.
+	* src/CameraSelectionDialog.cs: fix up style and translate column
+	names.
 
-	* src/CameraFileSelectionDialog.cs: fix up style and translate strings.
+	* src/CameraFileSelectionDialog.cs: fix up style and translate
+	strings.
 
 	* configure.in: bump the version number to 0.0.8.
 
