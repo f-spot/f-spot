@@ -66,20 +66,31 @@ namespace FSpot {
 
 			int i = 0;
 			if (exif_info != null) {
-				stream.Write ("<table width=100% cellspacing=0 cellpadding=3>");
-				stream.Write ("<tr><td colspan=2 align=\"center\" bgcolor=\"" + ig + "\"><img center src=\"exif:thumbnail\"></td></tr>");
+				bool empty = true;
 				foreach (Exif.ExifContent content in exif_info.GetContents ()) {
 					Exif.ExifEntry [] entries = content.GetEntries ();
-					
-					i++;
-					if (entries.Length < 1)
-						continue;
-					
-					stream.Write ("<tr><th align=left bgcolor=\"" + ig + "\" colspan=2>" 
-						      + Exif.ExifUtil.GetIfdNameExtended ((Exif.ExifIfd)i - 1) + "</th><tr>");
-					
-					foreach (Exif.ExifEntry entry in entries) {
-						stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
+					if (entries.Length > 0) {
+						empty = false;
+						break;
+					}
+				}
+				
+				stream.Write ("<table width=100% cellpadding=5 cellspacing=0>");
+				if (exif_info.Data.Length > 0)
+					stream.Write ("<tr><td colspan=2 align=\"center\" bgcolor=\"" + ig + "\"><img center src=\"exif:thumbnail\"></td></tr>");
+				if (!empty) {
+					foreach (Exif.ExifContent content in exif_info.GetContents ()) {
+						Exif.ExifEntry [] entries = content.GetEntries ();
+						
+						i++;
+						if (entries.Length < 1)
+							continue;
+						
+						stream.Write ("<tr><th align=left bgcolor=\"" + ig + "\" colspan=2>" 
+							      + Exif.ExifUtil.GetIfdNameExtended ((Exif.ExifIfd)i - 1) + "</th><tr>");
+						
+						foreach (Exif.ExifEntry entry in entries) {
+							stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
 							if (entry.Title != null)
 								stream.Write (entry.Title);
 							else
@@ -87,15 +98,22 @@ namespace FSpot {
 							stream.Write ("</font></td><td>");
 							string s = entry.Value;
 							if (s != null && s != "")
-								stream.Write (s);
+							stream.Write (s);
 							stream.Write ("</td><tr>");
+						}
+						
 					}
-					
+				} else {
+					stream.Write ("<table width=100% cellspacing=10 cellpadding=5 >");
+					string msg = String.Format ("<tr><td valign=top align=center bgcolor=\"{0}\">" 
+								    + "<b>{1}</b></td></tr>", ig,
+								    Mono.Posix.Catalog.GetString ("No EXIF info available"));
+					stream.Write (msg);
+					stream.Write ("</table>");
 				}
-				stream.Write ("</table>");
+				End (stream, Gtk.HTMLStreamStatus.Ok);
 			}
-
-			End (stream, Gtk.HTMLStreamStatus.Ok);
 		}
 	}
 }
+

@@ -61,9 +61,10 @@ public class CompatFileChooserDialog {
 			// We can't do much if it fails (e.g. when the
 			// file does not exist), so do we need to
 			// actually check the return value?
-			gtk_file_chooser_set_filename (chooser.Handle, value);
 			if (System.IO.Directory.Exists (value))
 				gtk_file_chooser_set_current_folder (chooser.Handle, value);
+			else 
+				gtk_file_chooser_set_filename (chooser.Handle, value);
 		} else
 			filesel.Filename = value;
 	}
@@ -147,10 +148,15 @@ public class CompatFileChooserDialog {
 	    break;
 	}
 
+#if false
+	IntPtr ptr = gtk_file_chooser_dialog_new_with_backend (title,
+	       parent != null ? parent.Handle : IntPtr.Zero,
+	       a, "gtk+", IntPtr.Zero);
+#else
 	IntPtr ptr = gtk_file_chooser_dialog_new (title,
-						  parent != null ? parent.Handle : IntPtr.Zero,
-						  a,
-						  IntPtr.Zero);
+	       parent != null ? parent.Handle : IntPtr.Zero,
+	       a, IntPtr.Zero);
+#endif
 
 	chooser = GLib.Object.GetObject (ptr, false) as Gtk.Dialog;
 
@@ -196,6 +202,9 @@ public class CompatFileChooserDialog {
 
     [DllImport ("libgtk-win32-2.0-0.dll")]
 	extern static IntPtr gtk_file_chooser_dialog_new (string title, IntPtr parent, int action, IntPtr varargs);
+
+    [DllImport ("libgtk-win32-2.0-0.dll")]
+	extern static IntPtr gtk_file_chooser_dialog_new_with_backend (string title, IntPtr parent, int action, string backend, IntPtr varargs);
 
     [DllImport ("libgtk-win32-2.0-0.dll")]
 	extern static string gtk_file_chooser_get_filename (IntPtr handle);

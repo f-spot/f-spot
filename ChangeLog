@@ -1,3 +1,14 @@
+2005-03-19  Larry Ewing  <lewing@novell.com>
+
+	* src/InfoDisplay.cs: handle the no exif info case a little more
+	gracefully.
+
+	* src/CompatFileChooser.cs: be a little more careful setting the
+	current folder to avoid upsetting the gnome-vfs backend.
+
+	* src/FullScreenView.cs: put the pointer into scoll mode not
+	select mode.
+
 2005-03-18  Larry Ewing  <lewing@novell.com>
 
 	* src/MainWindow.cs: use the capitalized name in the about dialog.
