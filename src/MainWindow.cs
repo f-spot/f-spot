@@ -716,6 +716,7 @@ public class MainWindow {
 		dialog.Destroy ();
 	}
 
+#if false
 	void HandleExportCommand (object sender, EventArgs e)
 	{
 		ExportCommand.Gallery cmd = new ExportCommand.Gallery ();
@@ -724,6 +725,17 @@ public class MainWindow {
 			Console.WriteLine ("success");
 		}
 	}	
+#else
+	void HandleExportCommand (object sender, EventArgs e)
+	{
+		FotkiRemote fr = new FotkiRemote ();
+		//fr.Login ("lewing@gmail.com", "batman");
+		fr.Login ("lewing", "batman");
+		foreach (Photo p in SelectedPhotos ()) {
+			fr.Upload (p);
+		}
+	}
+#endif
 
 	void HandleSendMailCommand (object sender, EventArgs e)
 	{
@@ -917,6 +929,7 @@ public class MainWindow {
 		
 		if (photos.Length == 0) {
 			Console.WriteLine ("No photos available -- no slideshow");
+			main_window.GdkWindow.Cursor = null;
 			return false;
 		}
 

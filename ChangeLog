@@ -1,3 +1,8 @@
+2004-09-12  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: set the cursor to null if we bail from the
+	slideshow.
+
 2004-09-10  Larry Ewing  <lewing@novell.com>
 
 	* src/FlickrRemote.cs: add a functional method to upoad to flickr.
