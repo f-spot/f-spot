@@ -1,3 +1,12 @@
+f-spot 0.0.8 - Feb 17 2005 - Hoopla
+-----------------------------------
+- Most of the Export methods now support scaling out export.
+- Added some new Keybindings to the IconView.
+- Added libgphoto2 camera import support based on a patch from Ewen.
+- Added Scaling logic to Flickr, Vfs and Original export.
+- Interface improvements and cleanups.
+- Many bug fixes.
+
 f-spot 0.0.7 - Feb 1 2005 - Happy 29th
 --------------------------------------
 - Exif Tags are now copied from the source image and updated when
