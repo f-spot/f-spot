@@ -270,7 +270,7 @@ namespace FSpot {
 			get {
 				switch (mode) {
 				case RangeType.All:
-					return background.Width / (double) box_counts.Length;
+					return Math.Max (1.0, background.Width / (double) box_counts.Length);
 				case RangeType.Fixed:
 					return background.Width / (double) 12;
 				case RangeType.Min:
@@ -758,7 +758,7 @@ namespace FSpot {
 						    alloc.Width - 2 * border,
 						    alloc.Height - 2 * border - legend_height);
 			
-			legend = new Rectangle (border, background.Y + background.Height,
+			legend = new Rectangle (background.X, background.Y + background.Height,
 						background.Width, legend_height);
 
 			if (event_window != null)
