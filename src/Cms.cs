@@ -21,15 +21,15 @@ namespace Cms {
 	}
 		
 	public class Transform : IDisposable {
-		private IntPtr handle;
-		public IntPtr Handle {
+		private HandleRef handle;
+		public HandleRef Handle {
 			get {
 				return handle;
 			}
 		}
 
 		[DllImport("liblcms-1.0.0.dll")]
-		static extern IntPtr cmsCreateMultiprofileTransform (IntPtr [] hProfiles,
+		static extern IntPtr cmsCreateMultiprofileTransform (HandleRef [] hProfiles,
 								     int nProfiles,
 								     short InputFormat,
 								     short OutputFormat,
@@ -41,21 +41,21 @@ namespace Cms {
 				  Format output_format,
 				  Intent intent, short flags)
 		{
-			IntPtr [] handles = new IntPtr [profiles.Length];
+			HandleRef [] handles = new HandleRef [profiles.Length];
 			for (int i = 0; i < profiles.Length; i++) {
 				handles [i] = profiles [i].Handle;
 			}
 
-			this.handle = cmsCreateMultiprofileTransform (handles, handles.Length, 
-								      (short)input_format,
-								      (short) output_format, 
-								      (int)intent, flags);
+			this.handle = new HandleRef (this, cmsCreateMultiprofileTransform (handles, handles.Length, 
+											   (short)input_format,
+											   (short) output_format, 
+											   (int)intent, flags));
 		}
 
 		[DllImport("liblcms-1.0.0.dll")]
-		static extern IntPtr cmsCreateTransform(IntPtr Input,
+		static extern IntPtr cmsCreateTransform(HandleRef Input,
 							short InputFormat,
-							IntPtr Output,
+							HandleRef Output,
 							short OutputFormat,
 							int Intent,
 							short dwFlags);
@@ -64,31 +64,43 @@ namespace Cms {
 				  Profile output, Format output_format,
 				  Intent intent, short flags)
 		{
-			this.handle = cmsCreateTransform (input.Handle, (short)input_format,
-							  output.Handle, (short)output_format,
-							  (int)intent, (short)flags);
+			this.handle = new HandleRef (this, cmsCreateTransform (input.Handle, (short)input_format,
+									       output.Handle, (short)output_format,
+									       (int)intent, (short)flags));
 		}
-
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern void cmsDoTransform (IntPtr hTransform, IntPtr InputBuffer, IntPtr OutputBuffer, uint size);
 		
+		[DllImport("liblcms-1.0.0.dll")]
+		static extern void cmsDoTransform (HandleRef hTransform, IntPtr InputBuffer, IntPtr OutputBuffer, uint size);
+		
+		// Fixme this should probably be more type stafe 
 		public void Apply (IntPtr input, IntPtr output, uint size)
 		{
-			cmsDoTransform (this.handle, input, output, size);
+			cmsDoTransform (Handle, input, output, size);
 		}
-
+		
 		[DllImport("liblcms-1.0.0.dll")]
-		static extern void cmsDeleteTransform(IntPtr hTransform);
+		static extern void cmsDeleteTransform(HandleRef hTransform);
 		
 		public void Dispose () 
 		{
+			Cleanup ();
+			System.GC.SuppressFinalize (this);
+		}
+		
+		private void Cleanup () {
 			cmsDeleteTransform (this.handle);
 		}
+		
+		~Transform () 
+		{
+			Cleanup ();
+		}
+	       
 	}
 
 	public class Profile : IDisposable {
-		private IntPtr handle;
-		public IntPtr Handle {
+		private HandleRef handle;
+		public HandleRef Handle {
 			get {
 				return handle;
 			}
@@ -129,36 +141,49 @@ namespace Cms {
 		}
 		
 		[DllImport("liblcms-1.0.0.dll")]
-		static extern int cmsCloseProfile (IntPtr hprofile);
-		
-		public void Dispose () 
-		{
-			if (cmsCloseProfile (this.Handle) == 0)
-				throw new Exception ("Error closing Handle");
-		}
+		static extern int cmsCloseProfile (HandleRef hprofile);
 
 		[DllImport("liblcms-1.0.0.dll")]
 		static extern IntPtr cmsOpenProfileFromFile (string ICCProfile, string sAccess);
 
 		public Profile (string path) 
 		{
-			handle = cmsOpenProfileFromFile (path, "r");
-			if (handle == IntPtr.Zero)
+			handle = new HandleRef (this, cmsOpenProfileFromFile (path, "r"));
+
+			if (handle.Handle == IntPtr.Zero)
 				throw new Exception ("Error opening ICC profile in file " + path);
 		}
 		
-#if false
 		[DllImport("liblcms-1.0.0.dll")]
-		static unsafe extern IntPtr cmsOpenProfileFromMem (byte *data, uint length);
+		static extern IntPtr cmsOpenProfileFromMem (byte [] data, uint length);
 
 		public unsafe Profile (byte [] data)
 		{
-			handle = cmsOpenProfileFromMem ((byte *) data, data.Length);
+			this.handle = new HandleRef (this, cmsOpenProfileFromMem (data, (uint)data.Length));
 		}
-#endif	
+
 		protected Profile (IntPtr handle)
 		{
-			this.handle = handle;
+			this.handle = new HandleRef (this, handle);
+		}
+
+		public void Dispose () 
+		{
+			Cleanup ();
+
+			System.GC.SuppressFinalize (this);
+		}
+
+		private void Cleanup ()
+		{
+			if (cmsCloseProfile (this.Handle) == 0)
+				throw new Exception ("Error closing Handle");
+
+		}
+
+		~Profile ()
+		{
+			Cleanup ();
 		}
 	}
 }

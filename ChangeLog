@@ -1,5 +1,8 @@
 2005-01-25  Larry Ewing  <lewing@novell.com>
 
+	* src/Cms.cs: use handleref not just IntPtr, clean up the
+	finalizer.
+
 	* src/MainWindow.cs: update the toolbars on state change.
 
 	* src/AsyncPixbufLoader.cs: handle null pixbufs a little better.
