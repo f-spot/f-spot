@@ -25,28 +25,6 @@ class PixbufUtils {
 		return Math.Max (pixbuf.Width, pixbuf.Height);
 	}
 
-	public static int ComputeScaledWidth (Pixbuf pixbuf, int size)
-	{
-		int orig_width = (int) pixbuf.Width;
-		int orig_height = (int) pixbuf.Height;
-
-		if (orig_width > orig_height)
-			return size;
-		else
-			return (int) Math.Round ((int) size * ((double) orig_width / (double) orig_height));
-	}
-
-	public static int ComputeScaledHeight (Pixbuf pixbuf, int size)
-	{
-		int orig_width = (int) pixbuf.Width;
-		int orig_height = (int) pixbuf.Height;
-
-		if (orig_width > orig_height)
-			return (int) Math.Round ((int) size * ((double) orig_height / (double) orig_width));
-		else
-			return size;
-	}
-
 	public static void Fit (Pixbuf pixbuf,
 				int dest_width, int dest_height,
 				bool upscale_smaller,
@@ -58,19 +36,15 @@ class PixbufUtils {
 			return;
 		}
 
-		if (pixbuf.Width <= dest_width && pixbuf.Height <= dest_height && ! upscale_smaller) {
-			fit_width = pixbuf.Width;
-			fit_height = pixbuf.Height;
-			return;
-		}
+		double scale = Math.Min (dest_width / (double)pixbuf.Width,
+					 dest_height / (double)pixbuf.Height);
+		
+		if (scale > 1.0 && !upscale_smaller)
+			scale = 1.0;
 
-		fit_width = dest_width;
-		fit_height = (int) Math.Round ((double) (pixbuf.Height * fit_width) / pixbuf.Width);
+		fit_width = (int)(scale * pixbuf.Width);
+		fit_height = (int)(scale * pixbuf.Height);
 
-		if (fit_height > dest_height) {
-			fit_height = dest_height;
-			fit_width = (int) Math.Round ((double) (pixbuf.Width * fit_height) / pixbuf.Height);
-		}
 	}
 
 
@@ -91,7 +65,6 @@ class PixbufUtils {
 
 		private void HandleSizePrepared (object obj, SizePreparedArgs args)
 		{
-			double scale;
 			switch (orientation) {
 			case PixbufOrientation.LeftTop:
 			case PixbufOrientation.LeftBottom:
@@ -105,8 +78,8 @@ class PixbufUtils {
 				break;
 			}
 
-			scale = Math.Min (max_width / (double)args.Width,
-						  max_height / (double)args.Height);
+			double scale = Math.Min (max_width / (double)args.Width,
+						 max_height / (double)args.Height);
 			
 			int scale_width = (int)(scale * args.Width);
 			int scale_height = (int)(scale * args.Height);
@@ -198,12 +171,22 @@ class PixbufUtils {
 	
 	public static bool SetOption(Gdk.Pixbuf pixbuf, string key, string value)
 	{
+		
 		if (value != null)
 			return gdk_pixbuf_set_option(pixbuf.Handle, key, value);
 		else
 			return false;
 	}
 	
+	public static void CopyThumbnailOptions (Gdk.Pixbuf src, Gdk.Pixbuf dest)
+	{
+		if (src != null && dest != null) {
+			PixbufUtils.SetOption (dest, "tEXt::Thumb::URI", src.GetOption ("tEXt::Thumb::URI"));
+			PixbufUtils.SetOption (dest, "tEXt::Thumb::MTime", src.GetOption ("tEXt::Thumb::MTime"));
+		}
+	}
+					
+
 	public static Pixbuf TagIconFromPixbuf (Pixbuf source)
 	{
 		// FIXME 50x50 crashes Pixdata.Serialize... what a mess.
@@ -334,9 +317,24 @@ class PixbufUtils {
 		return orientation;
 	}
 
+	[DllImport("gnomeui-2")]
+	static extern IntPtr gnome_thumbnail_scale_down_pixbuf(IntPtr pixbuf, int dest_width, int dest_height);
+
+	public static Gdk.Pixbuf ScaleDown (Gdk.Pixbuf src, int width, int height)
+	{
+		IntPtr raw_ret = gnome_thumbnail_scale_down_pixbuf(src.Handle, width, height);
+		Gdk.Pixbuf ret;
+		if (raw_ret == IntPtr.Zero)
+			ret = null;
+		else
+			ret = (Gdk.Pixbuf) GLib.Object.GetObject(raw_ret, true);
+		return ret;
+	}
+
 	public static Gdk.Pixbuf TransformOrientation (Gdk.Pixbuf src, PixbufOrientation orientation, bool copy_data)
 	{
 		Gdk.Pixbuf pixbuf;
+
 		switch (orientation) {
 		case PixbufOrientation.LeftTop:
 		case PixbufOrientation.LeftBottom:
@@ -371,18 +369,23 @@ class PixbufUtils {
 
 	public static Gdk.Rectangle TransformOrientation (Gdk.Pixbuf src, Gdk.Rectangle args, PixbufOrientation orientation)
 	{
+		return TransformOrientation (src.Width, src.Height, args, orientation);
+	}
+	
+	public static Gdk.Rectangle TransformOrientation (int total_width, int total_height, Gdk.Rectangle args, PixbufOrientation orientation)
+	{
 		Gdk.Rectangle area = args;
 		
 		switch (orientation) {
 		case PixbufOrientation.BottomRight:
-			area.X = src.Width - args.X - args.Width;
-			area.Y = src.Height - args.Y - args.Height;
+			area.X = total_width - args.X - args.Width;
+			area.Y = total_height - args.Y - args.Height;
 			break;
 		case PixbufOrientation.TopRight:
-			area.X = src.Width - args.X - args.Width;
+			area.X = total_width - args.X - args.Width;
 			break;
 		case PixbufOrientation.BottomLeft:
-			area.Y = src.Height - args.Y - args.Height;
+			area.Y = total_height - args.Y - args.Height;
 			break;
 		case PixbufOrientation.LeftTop:
 			area.X = area.Y;
@@ -391,19 +394,19 @@ class PixbufUtils {
 			area.Height = args.Width;
 			break;
 		case PixbufOrientation.RightBottom:
-			area.X = src.Height - args.Y - args.Height;
+			area.X = total_height - args.Y - args.Height;
 			area.Width = args.Height;
 			area.Height = args.Width;
 			break;
 		case PixbufOrientation.RightTop:
-			area.X = src.Height - args.Y - args.Height;
+			area.X = total_height - args.Y - args.Height;
 			area.Y = args.X;
 			area.Width = args.Height;
 			area.Height = args.Width;
 			break;
 		case PixbufOrientation.LeftBottom:
 			area.X = args.Y;
-			area.Y = src.Width - args.X - args.Width;
+			area.Y = total_width - args.X - args.Width;
 			area.Width = args.Height;
 			area.Height = args.Width;
 			break;
@@ -418,12 +421,16 @@ class PixbufUtils {
 	{
 		Gdk.Rectangle area = TransformOrientation (src, args, orientation);
 
-		int step = 256;
+		int step = 512;
+
+		Gdk.Rectangle rect = new Gdk.Rectangle (args.X, args.Y, 
+							Math.Min (step, args.Width),
+							Math.Min (step, args.Height));
+
 		Gdk.Pixbuf tmp = new Gdk.Pixbuf (src.Colorspace, src.HasAlpha, 
 						 src.BitsPerSample,
-						 step, step);
+						 rect.Height, rect.Width);
 
-		Gdk.Rectangle rect = new Gdk.Rectangle (args.X, args.Y, step, step);
 		Gdk.Rectangle subarea;
 		while (rect.Y < args.Height) {
 			while (rect.X < args.Width) {
@@ -499,4 +506,12 @@ class PixbufUtils {
 		f_pixbuf_copy_with_orientation (src.Handle, dest.Handle, (int)orientation);
 	}
 
+#if false
+	[DllImport("glibsharpglue")]
+	static extern int gtksharp_object_get_ref_count (IntPtr obj);
+	
+	public static int RefCount (GLib.Object obj) {
+		return gtksharp_object_get_ref_count (obj.Handle);
+	}
+#endif
 }
