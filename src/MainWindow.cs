@@ -76,14 +76,24 @@ public class MainWindow : Gtk.Window {
 		}
 	}
 
-	private void HandleVersionIdChanged (PhotoVersionMenu menu)
+	private void UpdateForVersionIdChange (uint version_id)
 	{
-		CurrentPhoto.DefaultVersionId = menu.VersionId;
+		CurrentPhoto.DefaultVersionId = version_id;
 		db.Photos.Commit (CurrentPhoto);
 
 		info_box.Update ();
 		photo_view.Update ();
 		UpdateMenus ();
+	}
+
+	private void HandleVersionIdChanged (PhotoVersionMenu menu)
+	{
+		UpdateForVersionIdChange (menu.VersionId);
+	}
+
+	private void HandleInfoBoxVersionIdChange (InfoBox box, uint version_id)
+	{
+		UpdateForVersionIdChange (version_id);
 	}
 
 
@@ -250,6 +260,7 @@ public class MainWindow : Gtk.Window {
 		left_vbox.PackStart (tag_selection_scrolled, true, true, 0);
 
 		info_box = new InfoBox ();
+		info_box.VersionIdChanged += new InfoBox.VersionIdChangedHandler (HandleInfoBoxVersionIdChange);
 		left_vbox.PackStart (info_box, false, true, 0);
 
 		view_notebook = new Notebook ();

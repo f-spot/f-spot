@@ -19,50 +19,23 @@ public class InfoBox : VBox {
 		}
 	}
 
-
-	// Version option menu.
-
-	const string VERSION_ID_KEY = "f-spot:version_option_menu_id";
-	private OptionMenu version_option_menu;
-
-	private void HandleVersionOptionMenuActivated (object sender, EventArgs args)
-	{
-		Console.WriteLine ("wooho version {0}", (int) (sender as GLib.Object).Data [VERSION_ID_KEY]);
-	}
-
-	private void PopulateVersionOptionMenu ()
-	{
-		Menu menu = new Menu ();
-		uint [] version_ids = Photo.VersionIds;
-
-		foreach (uint id in version_ids) {
-			MenuItem menu_item = new MenuItem (Photo.GetVersionName (id));
-			menu_item.Show ();
-			menu_item.Data.Add (VERSION_ID_KEY, id);
-			menu_item.Activated += new EventHandler (HandleVersionOptionMenuActivated);
-			menu.Append (menu_item);
-		}
-
-		MenuItem separator = new MenuItem ();
-		separator.Show ();
-		menu.Append (separator);
-
-		MenuItem last_item = new MenuItem ("(No changes)");
-		last_item.Sensitive = false;
-		last_item.Show ();
-		menu.Append (last_item);
-
-		version_option_menu.Menu = menu;
-		version_option_menu.Sensitive = true;
-	}
+	public delegate void VersionIdChangedHandler (InfoBox info_box, uint version_id);
+	public event VersionIdChangedHandler VersionIdChanged;
 
 
-	// Labels.
+	// Widgetry.
 
 	private Entry name_entry;
 	private Label date_label;
 	private Label size_label;
 	private Label exposure_info_label;
+	private OptionMenu version_option_menu;
+
+	private void HandleVersionIdChanged (PhotoVersionMenu menu)
+	{
+		if (VersionIdChanged != null)
+			VersionIdChanged (this, menu.VersionId);
+	}
 
 	private Widget CreateRightAlignedLabel (string text)
 	{
@@ -195,7 +168,21 @@ public class InfoBox : VBox {
 		else
 			date_label.Text = "(Unknown)";
 
-		PopulateVersionOptionMenu ();
+		PhotoVersionMenu menu = new PhotoVersionMenu (photo);
+		menu.VersionIdChanged += new PhotoVersionMenu.VersionIdChangedHandler (HandleVersionIdChanged);
+		version_option_menu.Menu = menu;
+
+		uint i = 0;
+		foreach (uint version_id in photo.VersionIds) {
+			if (version_id == photo.DefaultVersionId) {
+				// FIXME GTK# why not just .History = i ?
+				version_option_menu.SetHistory (i);
+				break;
+			}
+			i ++;
+		}
+
+		version_option_menu.Sensitive = true;
 	}
 
 

@@ -1,5 +1,20 @@
 2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
 
+	* src/MainWindow.cs (MainWindow.UpdateForVersionIdChange): New.
+	(MainWindow.HandleVersionIdChanged): Use it.
+	(MainWindow.HandleInfoBoxVersionIdChanged): New.
+	(MainWindow.ctor): Hook to the VersionIdChanged event on the
+	InfoBox.
+
+	* src/InfoBox.cs (InfoBox.VersionIdChanged): New public event.
+	(InfoBox.HandleVersionIdChanged): Handler for the PhotoVersionMenu
+	version id changes, emits VersionIdChanged.
+	(InfoBox.Update): Make it use PhotoVersionMenu.
+	(InfoBox.PopulateVersionOptionMenu): Remove.
+	(InfoBox.HandleVersionOptionMenuActivated): Remove.
+
+2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+
 	* configure.in: Require Gnome 2.4 libs.
 
 2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
