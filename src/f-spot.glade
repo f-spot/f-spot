@@ -6574,7 +6574,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="import_from_camera1">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Import From Camera</property>
+		      <property name="label" translatable="yes">Import from C_amera...</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleImportFromCameraCommand" last_modification_time="Tue, 03 Aug 2004 16:20:28 GMT"/>
 		    </widget>
@@ -6639,7 +6639,7 @@ Photo Details</property>
 			  <child>
 			    <widget class="GtkMenuItem" id="export_to_flickr">
 			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Export To _Flickr...</property>
+			      <property name="label" translatable="yes">Export to _Flickr...</property>
 			      <property name="use_underline">True</property>
 			      <signal name="activate" handler="HandleExportToFlickr" last_modification_time="Fri, 17 Dec 2004 19:43:27 GMT"/>
 			    </widget>
@@ -6702,7 +6702,7 @@ Photo Details</property>
 		      <signal name="activate" handler="HandleSendMailCommand" last_modification_time="Mon, 07 Jun 2004 22:31:01 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image6">
+			<widget class="GtkImage" id="image11">
 			  <property name="visible">True</property>
 			  <property name="stock">gnome-stock-mail-fwd</property>
 			  <property name="icon_size">1</property>
@@ -7019,7 +7019,7 @@ Photo Details</property>
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">_Month</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">True</property>
+			      <property name="active">False</property>
 			      <signal name="activate" handler="HandleArrangeByTime" last_modification_time="Fri, 20 Aug 2004 22:26:32 GMT"/>
 			    </widget>
 			  </child>
