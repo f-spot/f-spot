@@ -1,5 +1,8 @@
 2005-02-28  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufCache.cs: lock while loading the pixbuf, the previous
+	lock was not sufficient.
+
 	* src/PixbufCache.cs: use the alternate move forward, lock around
 	the size change when processing the pixbufs.
 

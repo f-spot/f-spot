@@ -137,7 +137,7 @@ namespace FSpot {
 						/* find the next item */
 						while ((current = FindNext ()) == null) {
 							int num = 0;
-							while (items_mru.Count - num > 10 && total_size > max_size) {
+							while ((items_mru.Count - num) > 10 && total_size > max_size) {
 								CacheEntry entry = (CacheEntry) items_mru [num++];
 								total_size -= entry.Size;
 								items.Remove (entry.Path);
@@ -165,14 +165,17 @@ namespace FSpot {
 		
 		protected virtual void ProcessRequest (CacheEntry entry)
 		{
+			Gdk.Pixbuf loaded = null;
 			try {
-				int size = entry.Size;
-				entry.Pixbuf =  new Gdk.Pixbuf (entry.Path);
-				
 				lock (items) {
-					total_size += entry.Size - size;
+					loaded = new Gdk.Pixbuf (entry.Path);
+					total_size -= entry.Size;
+					entry.Pixbuf = loaded;
+					total_size += entry.Size;
 				}
 			} catch (GLib.GException ex){
+				if (loaded != null)
+					loaded.Dispose ();
 				return;		
 			}
 		}
