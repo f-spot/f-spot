@@ -221,7 +221,7 @@ public class PhotoView : EventBox {
 		if (! photo_view.GetSelection (out x, out y, out width, out height))
 			return;
 		
-		Pixbuf original_pixbuf = photo_view.Pixbuf;
+		Pixbuf original_pixbuf = photo_view.CompletePixbuf ();
 		if (original_pixbuf == null) {
 			Console.WriteLine ("No image");
 			return;

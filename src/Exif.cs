@@ -60,7 +60,7 @@ namespace Exif {
 		ExposureTime			= 0x829a,
 		FNumber 			= 0x829d,
 		IPTCNAA	        		= 0x83bb,
-		IfdPointer      		= 0x8769,
+		ExifIfdPointer      		= 0x8769,
 		InterColorProfile		= 0x8773,
 		ExposureProgram 		= 0x8822,
 		SpectralSensitivity		= 0x8824,
@@ -117,7 +117,16 @@ namespace Exif {
 		Sharpness			= 0xa40a,
 		DeviceSettingDescription	= 0xa40b,
 		SubjectDistanceRange		= 0xa40c,
-		ImageUniqueId   		= 0xa420
+		ImageUniqueId   		= 0xa420,
+
+		// The Following IDs are not described the EXIF spec
+
+		// The XMP spec declares that XMP data should live 0x2bc when
+		// embedded in tiff images.
+		XMP                             = 0x02bc,
+		
+		// Print Image Matching data
+		PimIfdPointer              = 0xc4a5
 	}
 	
 	public enum ExifByteOrder {

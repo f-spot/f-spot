@@ -449,7 +449,10 @@ class PixbufUtils {
 	{
 		Exif.ExifData data = new Exif.ExifData (path);
 
-		return GetOrientation (data);
+		PixbufOrientation orientation = GetOrientation (data);
+		data.Dispose ();
+
+		return orientation;
 	}
 
 	[DllImport("gnomeui-2")]

@@ -72,7 +72,10 @@ namespace FSpot {
 					stream.Write ("<tr><th align=center colspan=2>" + Exif.ExifUtil.GetIfdName ((Exif.ExifIfd)i++) + "</th><tr>");
 					foreach (Exif.ExifEntry entry in content.GetEntries ()) {
 						stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
-						stream.Write (entry.Title);
+						if (entry.Title != null)
+							stream.Write (entry.Title);
+						else
+							stream.Write ("&lt;Unknown Tag ID=" + entry.Tag.ToString () + "&gt;");
 						stream.Write ("</font></td><td>");
 						string s = entry.Value;
 						if (s != null && s != "")
