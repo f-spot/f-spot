@@ -263,7 +263,11 @@ class PixbufUtils {
 
 	static public Pixbuf LoadFromAssembly (string resource)
 	{
-		return new Pixbuf (System.Reflection.Assembly.GetCallingAssembly (), resource);
+		try {
+			return new Pixbuf (System.Reflection.Assembly.GetCallingAssembly (), resource);
+		} catch {
+			return null;
+		}
 	}
 
 
