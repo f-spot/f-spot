@@ -86,8 +86,6 @@ namespace FSpot {
 
 		private void HandleChanged (object sender, System.EventArgs args)
 		{
-			System.Console.WriteLine ("Changed");
-
 			name = gallery_entry.Text;
 			url = url_entry.Text;
 			password = password_entry.Text;
@@ -153,7 +151,10 @@ namespace FSpot {
 		public GalleryExport (Photo [] photos) 
 		{
 			this.photos = photos;
-			
+
+			// FIXME this xml file path should be be retrieved from a central location not hard coded there
+			this.xml_path = System.IO.Path.Combine (System.IO.Directory.GetCurrentDirectory (), ".gnome2/f-spot/Accounts.xml");
+
 			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "gallery_export_dialog", null);
 			xml.Autoconnect (this);
 			
@@ -167,6 +168,7 @@ namespace FSpot {
 			LoadAccounts ();
 
 			Dialog.Response += HandleResponse;
+
 		}
 
 		private bool scale;
@@ -180,6 +182,8 @@ namespace FSpot {
 		System.Collections.ArrayList accounts;
 		private GalleryRemote.Gallery gallery;
 		private GalleryRemote.Album album;
+
+		private string xml_path;
 
 		// Dialogs
 		private GalleryAdd gallery_add;
@@ -209,6 +213,73 @@ namespace FSpot {
 			}
 		}
 		
+		
+		public void WriteAccounts ()
+		{
+			System.Xml.XmlTextWriter writer = new System.Xml.XmlTextWriter (xml_path, System.Text.Encoding.Default);
+			writer.Formatting = System.Xml.Formatting.Indented;
+			writer.Indentation = 2;
+			writer.IndentChar = ' ';
+
+			writer.WriteStartDocument (true);
+			
+			writer.WriteStartElement ("GalleryRemote");
+			foreach (GalleryAccount account in accounts) {
+				writer.WriteStartElement ("Account");
+				writer.WriteElementString ("Name", account.Name);
+				writer.WriteElementString ("Url", account.Url);
+				writer.WriteElementString ("Username", account.Username);
+				writer.WriteElementString ("Password", account.Password);
+				writer.WriteEndElement (); //Account
+			}
+			writer.WriteEndElement ();
+			writer.WriteEndDocument ();
+			writer.Close ();
+		}
+
+		private GalleryAccount ParseAccount (System.Xml.XmlNode node) 
+		{
+			if (node.Name != "Account")
+				return null;
+
+			string name = null;
+			string url = null;
+			string username = null;
+			string password = null;
+
+			foreach (System.Xml.XmlNode child in node.ChildNodes) {
+				if (child.Name == "Name") {
+					name = child.ChildNodes [0].Value;
+				} else if (child.Name == "Url") {
+					url = child.ChildNodes [0].Value;
+				} else if (child.Name == "Password") {
+					password = child.ChildNodes [0].Value;
+				} else if (child.Name == "Username") {
+					username = child.ChildNodes [0].Value;
+				}
+			}
+			return new GalleryAccount (name, url, username, password);
+		}
+
+		private void ReadAccounts ()
+		{
+			try {
+				string query = "//GalleryRemote/Account";
+				System.Xml.XmlDocument doc = new System.Xml.XmlDocument ();
+				doc.Load (xml_path);
+				System.Xml.XmlNodeList nodes = doc.SelectNodes (query);
+				
+				System.Console.WriteLine ("selected {0} nodes match {1}", nodes.Count, query);
+				foreach (System.Xml.XmlNode node in nodes) {
+					GalleryAccount account = ParseAccount (node);
+					if (account != null)
+						AddAccount (account, false);
+				}
+			} catch (System.Exception e) {
+				// FIXME do something
+			}
+		}
+
 		private void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
 			System.Console.WriteLine ("Got Respose");
@@ -261,17 +332,22 @@ namespace FSpot {
 		}
 		
 		private void LoadAccounts ()
-		{
+		{ 
 			accounts = new System.Collections.ArrayList ();
-			AddAccount (new GalleryAccount ("People", "http://discord.no-ip.com/people/gallery/gallery_remote2.php", "FSpot", "eddy"));
-			AddAccount (new GalleryAccount ("Joe", "http://discord.no-ip.com/people/gallery/gallery_remote2.php", "billy", "batman"));
-
+			ReadAccounts ();
 		}
 
 		public void AddAccount (GalleryAccount account)
 		{
+			AddAccount (account, true);
+		}
+
+		public void AddAccount (GalleryAccount account, bool write)
+		{
 			accounts.Add (account);
 			PopulateGalleryOptionMenu ();
+			if (write)
+				WriteAccounts ();
 		}
 
 		private void PopulateGalleryOptionMenu ()
