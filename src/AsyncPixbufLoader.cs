@@ -98,7 +98,6 @@ namespace FSpot {
 		private void HandleAreaPrepared (object sender, System.EventArgs args)
 		{
 			loader.Pixbuf.Fill (0x00000000);
-			System.Console.WriteLine ("AreaPrepared");
 			area_prepared = true;			
 		}
 

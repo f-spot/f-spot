@@ -6,23 +6,17 @@ using System;
 
 public class PhotoView : EventBox {
 
-	private int current_photo;
 	public int CurrentPhoto {
 		get {
-			return current_photo;
+			return photo_view.CurrentPhoto;
 		}
-
 		set {
-			if (current_photo == value && photo_view.Pixbuf != null)
-				return;
-
-			current_photo = value;
-			Update ();
+			photo_view.CurrentPhoto = value;
 		}
 	}
 
 	private bool CurrentPhotoValid () {
-		if (query == null || query.Photos.Length == 0 || current_photo >= Query.Photos.Length)
+		if (query == null || query.Photos.Length == 0 || CurrentPhoto >= Query.Photos.Length)
 			return false;
 
 		return true;
@@ -42,8 +36,7 @@ public class PhotoView : EventBox {
 			query.ItemChanged += HandleQueryItemChanged;
 
 			// FIXME which picture to display?
-			current_photo = 0;
-			Update ();
+			CurrentPhoto = 0;
 		}
 	}
 	
@@ -54,7 +47,7 @@ public class PhotoView : EventBox {
 	
 	private void HandleQueryItemChanged (PhotoQuery query, int item)
 	{
-		if (item == current_photo)
+		if (item == CurrentPhoto)
 			Update ();
 	}
 
@@ -135,8 +128,8 @@ public class PhotoView : EventBox {
 
 	private void UpdateButtonSensitivity ()
 	{
-		bool prev = CurrentPhotoValid () && current_photo > 0;
-		bool next = CurrentPhotoValid () && current_photo < query.Photos.Length -1;
+		bool prev = CurrentPhotoValid () && CurrentPhoto > 0;
+		bool next = CurrentPhotoValid () && CurrentPhoto < query.Photos.Length -1;
 
 		display_previous_button.Sensitive = prev;
 		display_next_button.Sensitive = next;
@@ -150,16 +143,16 @@ public class PhotoView : EventBox {
 			if (Query.Photos.Length == 0)
 				count_label.Text = String.Format ("{0} of {1}", 0, 0);
 			else 
-				count_label.Text = String.Format ("{0} of {1}", current_photo + 1, Query.Photos.Length);
+				count_label.Text = String.Format ("{0} of {1}", CurrentPhoto + 1, Query.Photos.Length);
 		}
 	}
 
 	private void UpdateDescriptionEntry ()
 	{
 		description_entry.Changed -= HandleDescriptionChanged;
-		if (Query.Photos.Length > 1 && current_photo < Query.Photos.Length) {
+		if (Query.Photos.Length > 1 && CurrentPhoto < Query.Photos.Length) {
 			description_entry.Sensitive = true;
-			description_entry.Text = Query.Photos[current_photo].Description;
+			description_entry.Text = Query.Photos[CurrentPhoto].Description;
 		} else {
 			description_entry.Sensitive = false;
 			description_entry.Text = "";
@@ -172,8 +165,6 @@ public class PhotoView : EventBox {
 		if (UpdateStarted != null)
 			UpdateStarted (this);
 
-		photo_view.CurrentPhoto = current_photo;
-		System.Console.WriteLine ("current_photo = {0} photo_view.CurrentPhoto {1}", current_photo, photo_view.CurrentPhoto);
 		UpdateButtonSensitivity ();
 		UpdateCountLabel ();
 		UpdateDescriptionEntry ();
@@ -188,13 +179,11 @@ public class PhotoView : EventBox {
 	private void DisplayNext ()
 	{
 		photo_view.Next ();
-		current_photo = photo_view.CurrentPhoto;
 	}
 
 	private void DisplayPrevious ()
 	{
 		photo_view.Prev ();
-		current_photo = photo_view.CurrentPhoto;
 	}
 
 
@@ -211,17 +200,11 @@ public class PhotoView : EventBox {
 	private void HandleDisplayNextButtonClicked (object sender, EventArgs args)
 	{
 		DisplayNext ();
-
-		if (PhotoChanged != null)
-			PhotoChanged (this);
 	}
 
 	private void HandleDisplayPreviousButtonClicked (object sender, EventArgs args)
 	{
 		DisplayPrevious ();
-
-		if (PhotoChanged != null)
-			PhotoChanged (this);
 	}
 
 	private void HandleCropButtonClicked (object sender, EventArgs args)
@@ -268,7 +251,7 @@ public class PhotoView : EventBox {
 		}
 		
 		photo_view.Fit = true;
-		
+
 		if (PhotoChanged != null)
 			PhotoChanged (this);
 	}
@@ -276,15 +259,15 @@ public class PhotoView : EventBox {
 	private void HandleUnsharpButtonClicked (object sender, EventArgs args) {
 		//image_view.Pixbuf = PixbufUtils.UnsharpMask (image_view.Pixbuf, 6, 2, 0);
 		//image_view.Pixbuf = PixbufUtils.ColorCorrect (image_view.Pixbuf);
-		new ColorDialog (Query, current_photo, photo_view.Pixbuf);
+		new ColorDialog (Query, CurrentPhoto, photo_view.Pixbuf);
 	}	
 
 	private void HandleDescriptionChanged (object sender, EventArgs args) {
 		if (!CurrentPhotoValid ())
 			return;
 
-		Query.Photos[current_photo].Description = description_entry.Text;
-		Query.Commit (current_photo);
+		Query.Photos[CurrentPhoto].Description = description_entry.Text;
+		Query.Commit (CurrentPhoto);
 	}
 
 	// Constructor.
@@ -333,6 +316,13 @@ public class PhotoView : EventBox {
 		constraints[9].XyRatio = 1.0;
 	}
 
+	private void HandlePhotoChanged (FSpot.PhotoImageView view)
+	{
+		Update ();
+		if (this.PhotoChanged != null)
+			PhotoChanged (this);
+	}
+
 	public PhotoView (PhotoQuery query, PhotoStore photo_store)
 		: base ()
 	{
@@ -355,6 +345,7 @@ public class PhotoView : EventBox {
 		frame.Add (inner_vbox);
 		
 		photo_view = new FSpot.PhotoImageView (query);
+		photo_view.PhotoChanged += HandlePhotoChanged;
 
 		ScrolledWindow photo_view_scrolled = new ScrolledWindow (null, null);
 

@@ -1,3 +1,13 @@
+2004-11-20  Larry Ewing  <lewing@novell.com>
+
+	* src/AsyncPixbufLoader.cs: remove debug output.
+
+	* src/PhotoImageView.cs: add a PhotoChanged handler, fix some of
+	the indexing logic.
+
+	* src/PhotoView.cs: Change CurrentPhoto off of PhotoImageView's
+	CurrentPhoto.
+
 2004-11-19  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoImageView.cs: unset Fit inside ScrollEvents.

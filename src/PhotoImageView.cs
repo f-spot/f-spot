@@ -9,8 +9,11 @@ namespace FSpot {
 			this.KeyPressEvent += HandeKeyPressEvent;
 			this.ScrollEvent += HandleScrollEvent;
 		}
-		
+
 		public static double ZoomMultipler = 1.1;
+
+		public delegate void PhotoChangedHandler (PhotoImageView view);
+		public event PhotoChangedHandler PhotoChanged;
 		
 		private int current_photo = -1;
 		public int CurrentPhoto {
@@ -22,7 +25,7 @@ namespace FSpot {
 					return;
 				} else {
 					current_photo = value;
-					this.PhotoChanged ();
+					this.PhotoIndexChanged ();
 				}
 			}
 		}
@@ -113,7 +116,7 @@ namespace FSpot {
 		FSpot.AsyncPixbufLoader loader;
 		FSpot.AsyncPixbufLoader next_loader;
 
-		private void PhotoChanged () 
+		private void PhotoIndexChanged () 
 		{
 			if (!CurrentPhotoValid ())
 				return;
@@ -134,15 +137,10 @@ namespace FSpot {
 
 			this.UnsetSelection ();
 			this.ZoomFit ();
-		}
 
-		private Delay scroll_delay;
-		private bool IdleUpdateScrollbars ()
-		{
-			(this.Parent as Gtk.ScrolledWindow).SetPolicy (Gtk.PolicyType.Automatic, 
-								       Gtk.PolicyType.Automatic);
-			return false;
- 		}
+			if (PhotoChanged != null)
+				PhotoChanged (this);
+		}
 
 		private void ZoomFit ()
 		{
@@ -245,6 +243,8 @@ namespace FSpot {
 		[GLib.ConnectBefore]
 		private void HandleScrollEvent (object sender, Gtk.ScrollEventArgs args)
 		{
+			//For right now we just disable fit mode and let the parent event handlers deal
+			//with the real actions.
 			this.Fit = false;
 		}
 
