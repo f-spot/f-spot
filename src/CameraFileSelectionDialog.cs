@@ -45,7 +45,7 @@ public class CameraFileSelectionDialog
 		}
 	}
 	
-	public bool Run()
+	public bool Run ()
 	{	
 		CreateInterface ();
 		
@@ -77,10 +77,14 @@ public class CameraFileSelectionDialog
 		gui.Autoconnect (this);
 		
 		file_tree.Selection.Mode = SelectionMode.Multiple;
-		file_tree.AppendColumn ("Path", new CellRendererText (), "text", DirectoryColumn);
-		file_tree.AppendColumn ("File", new CellRendererText (), "text", FileColumn);
-		file_tree.AppendColumn ("Preview", new CellRendererPixbuf (), "pixbuf", PreviewColumn);
-		file_tree.AppendColumn ("Index", new CellRendererText (), "text", IndexColumn).Visible = false;
+		file_tree.AppendColumn (Mono.Posix.Catalog.GetString ("Path"), 
+					new CellRendererText (), "text", DirectoryColumn);
+		file_tree.AppendColumn (Mono.Posix.Catalog.GetString ("File"), 
+					new CellRendererText (), "text", FileColumn);
+		file_tree.AppendColumn (Mono.Posix.Catalog.GetString ("Preview"), 
+					new CellRendererPixbuf (), "pixbuf", PreviewColumn);
+		file_tree.AppendColumn (Mono.Posix.Catalog.GetString ("Index"),
+					new CellRendererText (), "text", IndexColumn).Visible = false;
 		
 		preview_list_store = new ListStore (typeof (string), typeof (string), 
 						    typeof (Pixbuf), typeof (int));
