@@ -54,6 +54,7 @@ namespace FSpot {
 
 		private void HandleAdaptorChanged (GroupAdaptor adaptor)
 		{
+			
 				int [] box_values = new int [adaptor.Count ()];
 
 				if (tick_layouts != null) {
@@ -79,7 +80,10 @@ namespace FSpot {
 
 				Counts = box_values;
 
+				System.Console.WriteLine ("Limits Changed");
 				if (has_limits) {
+					System.Console.WriteLine ("Limits Changed");
+					
 					if (min_limit.Position > adaptor.Count ())
 						min_limit.SetPosition (0);
 				        
@@ -741,8 +745,7 @@ namespace FSpot {
 			Rectangle area; 
 			//Console.WriteLine ("expose {0}", args.Area);
 			foreach (Rectangle sub in args.Region.GetRectangles ()) {
-				area = sub;
-				if (args.Area.Intersect (background, out area)) {
+				if (sub.Intersect (background, out area)) {
 					Rectangle active = background;
 					int min_x = BoxX (min_limit.Position);
 					int max_x = BoxX (max_limit.Position + 1);
@@ -765,7 +768,7 @@ namespace FSpot {
 						   this, null, background.X, background.Y, 
 						   background.Width, background.Height);
 				
-				if (args.Area.Intersect (legend, out area)) {
+				if (sub.Intersect (legend, out area)) {
 					int i = 0;
 					
 					while (i < box_counts.Length)
@@ -774,16 +777,16 @@ namespace FSpot {
 				
 				if (has_limits) {
 					if (min_limit != null) {
-						min_limit.Draw (args.Area);
+						min_limit.Draw (sub);
 					}
 					
 					if (max_limit != null) {
-						max_limit.Draw (args.Area);
+						max_limit.Draw (sub);
 					}
 				}
 				
 				if (glass != null) {
-					glass.Draw (args.Area);
+					glass.Draw (sub);
 				}
 			}
 			return base.OnExposeEvent (args);
