@@ -288,9 +288,13 @@ public class PhotoView : EventBox {
 	private void HandleImageViewKeyPressEvent (object sender, KeyPressEventArgs args)
 	{
 		switch (args.Event.Key) {
+		case Gdk.Key.Page_Up:
+		case Gdk.Key.KP_Page_Up:
 		case Gdk.Key.Left:
 			HandleDisplayPreviousButtonClicked (sender, null);
 			break;
+		case Gdk.Key.Page_Down:
+		case Gdk.Key.KP_Page_Down:
 		case Gdk.Key.Right:
 			HandleDisplayNextButtonClicked (sender, null);
 			break;
