@@ -1,3 +1,10 @@
+2005-03-09  Larry Ewing  <lewing@novell.com>
+
+	* src/TagStore.cs: clean up what we can and fix a leak in
+	serialize.
+
+	* src/FlickrExport.cs: fix the final upload url creation.
+
 2005-03-08  Larry Ewing  <lewing@novell.com>
 
 	* src/ThumbnailGenerator.cs: only try to save the image if we

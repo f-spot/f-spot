@@ -18,17 +18,16 @@ public class PixbufSerializer {
 	{
 		Pixdata pixdata = new Pixdata ();
 
-		IntPtr error = IntPtr.Zero;
-		gdk_pixdata_deserialize (ref pixdata, (uint) data.Length, data, out error);
-
-		if (error != IntPtr.Zero)
-			throw new GLib.GException (error);
+		pixdata.Deserialize ((uint) data.Length, data);
 
 		return Pixbuf.FromPixdata (pixdata, true);
 	}
 
 	[DllImport("libgdk_pixbuf-2.0-0.dll")]
 	static extern IntPtr gdk_pixdata_serialize(ref Gdk.Pixdata raw, out uint stream_length_p);
+
+	[DllImport("libglib-2.0-0.dll")]
+	static extern void g_free(IntPtr ptr);
 
 	public static byte [] Serialize (Pixbuf pixbuf)
 	{
@@ -40,6 +39,8 @@ public class PixbufSerializer {
 
 		byte [] data = new byte [data_length];
 		Marshal.Copy (raw_data, data, 0, (int) data_length);
+		
+		g_free (raw_data);
 
 		return data;
 	}

@@ -107,9 +107,12 @@ namespace FSpot {
 
 			if (open && ids.Count != 0) {
 				string view_url = "http://www.flickr.com/tools/uploader_edit.gne?ids";
-				foreach (string id in ids)
-					view_url = view_url + "," + id;
+				bool first = true;
 
+				foreach (string id in ids) {
+					view_url = view_url + (first ? "=" : ",") + id;
+					first = false;
+				}
 				Gnome.Url.Show (view_url);
 			}
 		}
