@@ -4,6 +4,112 @@ using Gnome;
 using GtkSharp;
 using System;
 using GLib;
+using System.Runtime.InteropServices;
+
+namespace FSpot {
+	public class FullSlide : Gtk.Window {
+		private SlideView slideview;
+		private Gdk.Pixbuf screenshot;
+		private Delay hide;
+		private Gdk.Cursor busy;
+		private Gdk.Cursor none;
+		
+		public FullSlide (Gdk.Pixbuf bg, Photo [] photos) : base ("Slideshow")
+		{
+			screenshot = bg;
+
+			this.ButtonPressEvent += HandleSlideViewButtonPressEvent;
+			this.KeyPressEvent += HandleSlideViewKeyPressEvent;
+			this.AddEvents ((int) (EventMask.ButtonPressMask | EventMask.KeyPressMask | EventMask.PointerMotionMask));
+			slideview = new SlideView (bg, photos);
+			this.Add (slideview);
+			this.Decorated = false;
+			this.Fullscreen();
+			this.Realize ();
+
+			busy = new Gdk.Cursor (Gdk.CursorType.Watch);
+			this.GdkWindow.Cursor = busy;
+			none = Empty ();
+
+			hide = new Delay (2000, new GLib.IdleHandler (HideCursor));
+		}
+
+		[DllImport("libgdk-2.0-0.dll")]
+		static extern IntPtr gdk_cursor_new_from_pixbuf (IntPtr display, IntPtr pixbuf, int x, int y);
+
+		public Gdk.Cursor Empty () 
+		{
+			Gdk.Cursor cempty = null;
+			
+			try {
+				Gdk.Pixbuf empty = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, 1, 1);
+			        empty.Fill (0x00000000);
+				IntPtr raw = gdk_cursor_new_from_pixbuf (this.GdkWindow.Display.Handle, empty.Handle, 0, 0);
+				cempty = new Gdk.Cursor (raw);
+			} catch (System.Exception e){
+				System.Console.WriteLine (e.ToString ());
+				return null;
+			}
+
+			return cempty;
+		}
+
+
+
+		public void Play ()
+		{
+			Gdk.GCValues values = new Gdk.GCValues ();
+			values.SubwindowMode = SubwindowMode.IncludeInferiors;
+			Gdk.GC fillgc = new Gdk.GC (this.GdkWindow, values, Gdk.GCValuesMask.Subwindow);
+			
+			slideview.Show ();
+			this.GdkWindow.SetBackPixmap (null, false);
+			this.Show ();
+			screenshot.RenderToDrawable (this.GdkWindow, fillgc, 
+						     0, 0, 0, 0, -1, -1, RgbDither.Normal, 0, 0);
+			
+			slideview.Play ();
+			hide.Start ();
+		}
+		
+		[GLib.ConnectBefore]
+		private void HandleSlideViewKeyPressEvent (object sender, KeyPressEventArgs args)
+		{
+			this.Destroy ();
+			args.RetVal = true;
+		}
+
+		protected override bool OnMotionNotifyEvent (Gdk.EventMotion args)
+		{
+			base.OnMotionNotifyEvent (args);
+			this.GdkWindow.Cursor = busy;
+			hide.Start ();
+			return true;
+		}
+		
+		private bool HideCursor ()
+		{
+			this.GdkWindow.Cursor = none;
+			return false;
+		}
+		
+		protected override void OnDestroyed ()
+		{
+			base.OnDestroyed ();
+			hide.Stop ();
+
+			this.busy.Unref ();
+			if (this.none != null)
+				this.none.Unref ();
+		}
+		
+		private void HandleSlideViewButtonPressEvent (object sender, ButtonPressEventArgs args)
+		{
+			this.Destroy ();
+			args.RetVal = true;
+		}
+	}
+}
 
 public class SlideView : Gtk.Image {
 	Photo [] photos;

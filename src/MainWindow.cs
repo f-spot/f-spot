@@ -1240,7 +1240,6 @@ public class MainWindow {
 
 	private bool SlideShow ()
 	{
-		Gtk.Window win = new Gtk.Window ("test");
 		Pixbuf bg = PixbufUtils.LoadFromScreen ();
 
 		int [] ids = SelectedIds ();
@@ -1258,52 +1257,19 @@ public class MainWindow {
 		} else {
 			photos = SelectedPhotos ();
 		}
-		
+
 		if (photos.Length == 0) {
 			Console.WriteLine ("No photos available -- no slideshow");
 			main_window.GdkWindow.Cursor = null;
 			return false;
 		}
 
-		SlideView slideview = new SlideView (bg, photos);
-		win.ButtonPressEvent += HandleSlideViewButtonPressEvent;
-		win.KeyPressEvent += HandleSlideViewKeyPressEvent;
-		win.AddEvents ((int) (EventMask.ButtonPressMask | EventMask.KeyPressMask));
-		win.Add (slideview);
-		win.Decorated = false;
-		win.Fullscreen();
-		win.Realize ();
-		win.GdkWindow.Cursor = new Gdk.Cursor (Gdk.CursorType.Watch);
-	
-		Gdk.GCValues values = new Gdk.GCValues ();
-		values.SubwindowMode = SubwindowMode.IncludeInferiors;
-		Gdk.GC fillgc = new Gdk.GC (win.GdkWindow, values, Gdk.GCValuesMask.Subwindow);
-
-		slideview.Show ();
-		win.GdkWindow.SetBackPixmap (null, false);
-		win.Show ();
-		main_window.GdkWindow.Cursor = null;	
-		bg.RenderToDrawable (win.GdkWindow, fillgc, 
-				     0, 0, 0, 0, -1, -1, RgbDither.Normal, 0, 0);
-
-		slideview.Play ();
+		FSpot.FullSlide full = new FSpot.FullSlide (bg, photos);
+		full.Play ();
+		main_window.GdkWindow.Cursor = null;
 		return false;
 	}
-	
-	[GLib.ConnectBefore]
-	private void HandleSlideViewKeyPressEvent (object sender, KeyPressEventArgs args)
-	{
-		Gtk.Window win = sender as Gtk.Window;
-		win.Destroy ();
-		args.RetVal = true;
-	}
 
-	private void HandleSlideViewButtonPressEvent (object sender, ButtonPressEventArgs args)
-	{
-		Gtk.Window win = sender as Gtk.Window;
-		win.Destroy ();
-		args.RetVal = true;
-	}
 
 	void HandleToggleViewBrowse (object sender, EventArgs args)
 	{
