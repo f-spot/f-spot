@@ -126,14 +126,7 @@ public class FileImportBackend : ImportBackend {
 		count = 0;
 	}
 
-	public FileImportBackend (PhotoStore store, string [] base_paths, bool recurse)
-	{
-		this.store = store;
-		this.base_paths = base_paths;
-		this.recurse = recurse;
-		this.tag = null;
-	
-	}
+	public FileImportBackend (PhotoStore store, string [] base_paths, bool recurse) : this (store, base_paths, recurse, null) {}
 
 	public FileImportBackend (PhotoStore store, string [] base_paths, bool recurse, Tag tag)
 	{
