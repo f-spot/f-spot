@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-25 11:09-0500\n"
-"PO-Revision-Date: 2005-01-25 23:54-0400\n"
+"POT-Creation-Date: 2005-02-12 17:56-0500\n"
+"PO-Revision-Date: 2005-02-12 23:54-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
@@ -85,43 +85,43 @@ msgstr "Load Image"
 msgid "Save Image"
 msgstr "Save Image"
 
-#: libeog/eog-image.c:772
+#: libeog/eog-image.c:773
 msgid "No image loaded."
 msgstr "No image loaded."
 
-#: libeog/eog-image.c:779
+#: libeog/eog-image.c:780
 msgid "Can't save non local files."
 msgstr "Cannot save non-local files."
 
-#: libeog/eog-image.c:800
+#: libeog/eog-image.c:803
 msgid "Unsupported image type for saving."
 msgstr "Cannot save unsupported image type."
 
-#: libeog/image-view.c:2081
+#: libeog/image-view.c:2082
 msgid "interpolation type"
 msgstr "interpolation type"
 
-#: libeog/image-view.c:2082
+#: libeog/image-view.c:2083
 msgid "the type of interpolation to use"
 msgstr "the type of interpolation to use"
 
-#: libeog/image-view.c:2088 libeog/image-view.c:2095
+#: libeog/image-view.c:2089 libeog/image-view.c:2096
 msgid "check type"
 msgstr "check type"
 
-#: libeog/image-view.c:2089
+#: libeog/image-view.c:2090
 msgid "the type of chequering to use"
 msgstr "the type of chequering to use"
 
-#: libeog/image-view.c:2096
+#: libeog/image-view.c:2097
 msgid "the size of chequers to use"
 msgstr "the size of chequers to use"
 
-#: libeog/image-view.c:2102
+#: libeog/image-view.c:2103
 msgid "dither"
 msgstr "dither"
 
-#: libeog/image-view.c:2103
+#: libeog/image-view.c:2104
 msgid "dither type"
 msgstr "dither type"
 
@@ -143,67 +143,67 @@ msgstr "Operation failed"
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "Transferring picture \"{0}\" To CD"
 
-#: src/CDExport.cs:71 src/FlickrExport.cs:86 src/GalleryExport.cs:341
-#: src/ProgressDialog.cs:75 src/VfsExport.cs:89
+#: src/CDExport.cs:71 src/FlickrExport.cs:96 src/GalleryExport.cs:341
+#: src/ProgressDialog.cs:75 src/VfsExport.cs:99
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} of {1}"
 
-#: src/CDExport.cs:83 src/FlickrExport.cs:89 src/GalleryExport.cs:345
-#: src/OriginalExport.cs:135 src/VfsExport.cs:101
+#: src/CDExport.cs:83 src/FlickrExport.cs:99 src/GalleryExport.cs:345
+#: src/OriginalExport.cs:144 src/VfsExport.cs:126
 msgid "Done Sending Photos"
 msgstr "Done Sending Photos"
 
-#: src/CDExport.cs:85 src/OriginalExport.cs:137 src/VfsExport.cs:103
+#: src/CDExport.cs:85 src/OriginalExport.cs:146 src/VfsExport.cs:128
 msgid "Transfer Complete"
 msgstr "Transfer Complete"
 
-#: src/CDExport.cs:91 src/OriginalExport.cs:142 src/VfsExport.cs:108
+#: src/CDExport.cs:91 src/OriginalExport.cs:151 src/VfsExport.cs:133
 msgid "Error While Transferring"
 msgstr "Error While Transferring"
 
-#: src/CDExport.cs:96 src/OriginalExport.cs:149 src/VfsExport.cs:115
+#: src/CDExport.cs:96 src/OriginalExport.cs:158 src/VfsExport.cs:141
 msgid "Error Transferring"
 msgstr "Error Transferring"
 
-#: src/CDExport.cs:111 src/VfsExport.cs:129
+#: src/CDExport.cs:111 src/VfsExport.cs:155
 msgid "Error: Error while transfering, Aborting"
 msgstr "Error: Error while transferring, Aborting"
 
-#: src/CDExport.cs:114 src/OriginalExport.cs:171 src/VfsExport.cs:132
+#: src/CDExport.cs:114 src/OriginalExport.cs:180 src/VfsExport.cs:158
 msgid "Error: File Already Exists, Aborting"
 msgstr "Error: File Already Exists, Aborting"
 
-#: src/CDExport.cs:151 src/VfsExport.cs:173
+#: src/CDExport.cs:151 src/VfsExport.cs:207
 msgid "Transferring Pictures"
 msgstr "Transferring Pictures"
 
-#: src/FlickrExport.cs:46
+#: src/FlickrExport.cs:56
 msgid "Enter Password"
 msgstr "Enter Password"
 
-#: src/FlickrExport.cs:53
+#: src/FlickrExport.cs:63
 msgid "Enter Password for "
 msgstr "Enter Password for "
 
-#: src/FlickrExport.cs:83 src/GalleryExport.cs:337
+#: src/FlickrExport.cs:93 src/GalleryExport.cs:337
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Uploading picture \"{0}\""
 
-#: src/FlickrExport.cs:91 src/GalleryExport.cs:347
+#: src/FlickrExport.cs:101 src/GalleryExport.cs:347
 msgid "Upload Complete"
 msgstr "Upload Complete"
 
-#: src/FlickrExport.cs:96
+#: src/FlickrExport.cs:106
 msgid "Error Uploading To Flickr"
 msgstr "Error Uploading To Flickr"
 
-#: src/FlickrExport.cs:120 src/GalleryExport.cs:312
+#: src/FlickrExport.cs:133 src/GalleryExport.cs:312
 msgid "Uploading Pictures"
 msgstr "Uploading Pictures"
 
-#: src/FlickrExport.cs:130
+#: src/FlickrExport.cs:143
 msgid "Unable to log on"
 msgstr "Unable to log on"
 
@@ -400,50 +400,54 @@ msgid "Export To _Flickr..."
 msgstr "Export To _Flickr..."
 
 #: src/f-spot.glade.h:49
+msgid "Export tags and categories"
+msgstr "Export tags and categories"
+
+#: src/f-spot.glade.h:50
 msgid "Export titles and comments"
 msgstr "Export titles and comments"
 
-#: src/f-spot.glade.h:50
+#: src/f-spot.glade.h:51
 msgid "Export to Album:"
 msgstr "Export to Album:"
 
-#: src/f-spot.glade.h:51
+#: src/f-spot.glade.h:52
 msgid "Export to Original"
 msgstr "Export to Original"
 
-#: src/f-spot.glade.h:52
+#: src/f-spot.glade.h:53
 msgid "Export to _Original..."
 msgstr "Export to _Original..."
 
-#: src/f-spot.glade.h:53
+#: src/f-spot.glade.h:54
 msgid "Export to _VFS..."
 msgstr "Export to _VFS..."
 
-#: src/f-spot.glade.h:54
+#: src/f-spot.glade.h:55
 msgid "Export to _Web Gallery..."
 msgstr "Export to _Web Gallery..."
 
-#: src/f-spot.glade.h:55
+#: src/f-spot.glade.h:56
 msgid "F-Spot"
 msgstr "F-Spot"
 
-#: src/f-spot.glade.h:56
+#: src/f-spot.glade.h:57
 msgid "File"
 msgstr "File"
 
-#: src/f-spot.glade.h:57
+#: src/f-spot.glade.h:58
 msgid "Fin_d"
 msgstr "Fin_d"
 
-#: src/f-spot.glade.h:58
+#: src/f-spot.glade.h:59
 msgid "Find by _Tag"
 msgstr "Find by _Tag"
 
-#: src/f-spot.glade.h:59
+#: src/f-spot.glade.h:60
 msgid "Flikr"
 msgstr "Flikr"
 
-#: src/f-spot.glade.h:60
+#: src/f-spot.glade.h:61
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
@@ -451,23 +455,23 @@ msgstr ""
 "Full Page\n"
 "Standard - 4x6"
 
-#: src/f-spot.glade.h:62
+#: src/f-spot.glade.h:63
 msgid "Gallery"
 msgstr "Gallery"
 
-#: src/f-spot.glade.h:63
+#: src/f-spot.glade.h:64
 msgid "Gallery Name:"
 msgstr "Gallery Name:"
 
-#: src/f-spot.glade.h:64
+#: src/f-spot.glade.h:65
 msgid "Gallery Settings"
 msgstr "Gallery Settings"
 
-#: src/f-spot.glade.h:65
+#: src/f-spot.glade.h:66
 msgid "Gallery:"
 msgstr "Gallery:"
 
-#: src/f-spot.glade.h:66
+#: src/f-spot.glade.h:67
 msgid ""
 "Hairline\n"
 "0.25\"\n"
@@ -479,19 +483,19 @@ msgstr ""
 "0.5\"\n"
 "1\"\n"
 
-#: src/f-spot.glade.h:71
+#: src/f-spot.glade.h:72
 msgid "Hue:"
 msgstr "Hue:"
 
-#: src/f-spot.glade.h:72
+#: src/f-spot.glade.h:73
 msgid "Icon:"
 msgstr "Icon:"
 
-#: src/f-spot.glade.h:73
+#: src/f-spot.glade.h:74
 msgid "Next"
 msgstr "Next"
 
-#: src/f-spot.glade.h:74
+#: src/f-spot.glade.h:75
 msgid ""
 "None\n"
 "Title\n"
@@ -505,79 +509,83 @@ msgstr ""
 "Date\n"
 "Photo Details"
 
-#: src/f-spot.glade.h:79
+#: src/f-spot.glade.h:80
 msgid "Number of Copies:"
 msgstr "Number of Copies:"
 
-#: src/f-spot.glade.h:80
+#: src/f-spot.glade.h:81
 msgid "Open album in browser when done uploading"
 msgstr "Open album in browser when done uploading"
 
-#: src/f-spot.glade.h:81
+#: src/f-spot.glade.h:82
 msgid "Open destination when done exporting."
 msgstr "Open destination when done exporting."
 
-#: src/f-spot.glade.h:82
+#: src/f-spot.glade.h:83
 msgid "Page 1 of 3"
 msgstr "Page 1 of 3"
 
-#: src/f-spot.glade.h:83
+#: src/f-spot.glade.h:84
 msgid "Password:"
 msgstr "Password:"
 
-#: src/f-spot.glade.h:84
+#: src/f-spot.glade.h:85
 msgid "Pause"
 msgstr "Pause"
 
-#: src/f-spot.glade.h:85
+#: src/f-spot.glade.h:86
 msgid "Photo 0 of 0"
 msgstr "Photo 0 of 0"
 
-#: src/f-spot.glade.h:86
+#: src/f-spot.glade.h:87
 msgid "Photo Source:"
 msgstr "Photo Source:"
 
-#: src/f-spot.glade.h:87
+#: src/f-spot.glade.h:88
 msgid "PhotoSize:"
 msgstr "PhotoSize:"
 
-#: src/f-spot.glade.h:88
+#: src/f-spot.glade.h:89
 msgid "Previous"
 msgstr "Previous"
 
-#: src/f-spot.glade.h:89
+#: src/f-spot.glade.h:90
 msgid "Print Crop Marks"
 msgstr "Print Crop Marks"
 
-#: src/f-spot.glade.h:90
+#: src/f-spot.glade.h:91
 msgid "Rem_ove Tag"
 msgstr "Rem_ove Tag"
 
-#: src/f-spot.glade.h:91
+#: src/f-spot.glade.h:92
+msgid "Resize to: "
+msgstr "Resize to: "
+
+#: src/f-spot.glade.h:93
 msgid "Rotate _Left"
 msgstr "Rotate _Left"
 
-#: src/f-spot.glade.h:92
+#: src/f-spot.glade.h:94
 msgid "Rotate _Right"
 msgstr "Rotate _Right"
 
-#: src/f-spot.glade.h:93
+#: src/f-spot.glade.h:95
 msgid "Saturation:"
 msgstr "Saturation:"
 
-#: src/f-spot.glade.h:94
+#: src/f-spot.glade.h:96
 msgid "Scale images to no larger than: "
 msgstr "Scale images to no larger than: "
 
-#: src/f-spot.glade.h:95
+#: src/f-spot.glade.h:97
 msgid "Select _All"
 msgstr "Select _All"
 
-#: src/f-spot.glade.h:96
+#: src/f-spot.glade.h:98
 msgid "Select _None"
 msgstr "Select _None"
 
-#: src/f-spot.glade.h:97
+#: src/f-spot.glade.h:99
 msgid ""
 "Selection\n"
 "Gallery\n"
@@ -587,207 +595,211 @@ msgstr ""
 "Gallery\n"
 "Viewport"
 
-#: src/f-spot.glade.h:100
+#: src/f-spot.glade.h:102
 msgid "Send _Mail..."
 msgstr "Send _Mail..."
 
-#: src/f-spot.glade.h:101
+#: src/f-spot.glade.h:103
 msgid "Set _Date Range..."
 msgstr "Set _Date Range..."
 
-#: src/f-spot.glade.h:102
+#: src/f-spot.glade.h:104
 msgid "Set as _Background"
 msgstr "Set as _Background"
 
-#: src/f-spot.glade.h:103
+#: src/f-spot.glade.h:105
 msgid "Source Temp"
 msgstr "Source Temp"
 
-#: src/f-spot.glade.h:104
+#: src/f-spot.glade.h:106
 msgid "Strip Image Metadata"
 msgstr "Strip Image Metadata"
 
-#: src/f-spot.glade.h:105
-msgid "Strip Metadata"
-msgstr "Strip Metadata"
+#: src/f-spot.glade.h:107
+msgid "Strip metadata"
+msgstr "Strip metadata"
 
-#: src/f-spot.glade.h:106 src/TagCommands.cs:310
+#: src/f-spot.glade.h:108 src/TagCommands.cs:310
 msgid "Tag name:"
 msgstr "Tag name:"
 
-#: src/f-spot.glade.h:107
+#: src/f-spot.glade.h:109
 msgid "Uri:"
 msgstr "URI:"
 
-#: src/f-spot.glade.h:108
+#: src/f-spot.glade.h:110
 msgid "Url:"
 msgstr "URL:"
 
-#: src/f-spot.glade.h:109
+#: src/f-spot.glade.h:111
 msgid "User_name:"
 msgstr "User_name:"
 
-#: src/f-spot.glade.h:110
+#: src/f-spot.glade.h:112
 msgid "Username:"
 msgstr "Username:"
 
-#: src/f-spot.glade.h:111
+#: src/f-spot.glade.h:113
 msgid "View"
 msgstr "View"
 
-#: src/f-spot.glade.h:112
+#: src/f-spot.glade.h:114
 msgid "View photos in browser when done uploading"
 msgstr "View photos in browser when done uploading"
 
-#: src/f-spot.glade.h:113
+#: src/f-spot.glade.h:115
 msgid "Virtual Filesystem"
 msgstr "Virtual Filesystem"
 
-#: src/f-spot.glade.h:114
+#: src/f-spot.glade.h:116
 msgid "Will print Using: Us Letter size on Generic Postscript"
 msgstr "Will print using: US Letter size on Generic Postscript"
 
-#: src/f-spot.glade.h:115
+#: src/f-spot.glade.h:117
 msgid "Write only these Items to CD"
 msgstr "Write only these items to CD"
 
-#: src/f-spot.glade.h:116
+#: src/f-spot.glade.h:118
 msgid "Zoom _In"
 msgstr "Zoom _In"
 
-#: src/f-spot.glade.h:117
+#: src/f-spot.glade.h:119
 msgid "Zoom _Out"
 msgstr "Zoom _Out"
 
-#: src/f-spot.glade.h:118
+#: src/f-spot.glade.h:120
 msgid "_Attach Tag"
 msgstr "_Attach Tag"
 
-#: src/f-spot.glade.h:119
+#: src/f-spot.glade.h:121
 msgid "_Attach Tag To Selection"
 msgstr "_Attach Tag To Selection"
 
-#: src/f-spot.glade.h:120
+#: src/f-spot.glade.h:122
 msgid "_Clear Date Range"
 msgstr "_Clear Date Range"
 
-#: src/f-spot.glade.h:121
+#: src/f-spot.glade.h:123
 msgid "_Close"
 msgstr "_Close"
 
-#: src/f-spot.glade.h:122
+#: src/f-spot.glade.h:124
 msgid "_Delete Selected Tag"
 msgstr "_Delete Selected Tag"
 
-#: src/f-spot.glade.h:123
+#: src/f-spot.glade.h:125
 msgid "_Delete Version"
 msgstr "_Delete Version"
 
-#: src/f-spot.glade.h:124
+#: src/f-spot.glade.h:126
 msgid "_Delete from Drive"
 msgstr "_Delete from Drive"
 
-#: src/f-spot.glade.h:125
+#: src/f-spot.glade.h:127
 msgid "_Directory"
 msgstr "_Directory"
 
-#: src/f-spot.glade.h:126
+#: src/f-spot.glade.h:128
 msgid "_EXIF Data"
 msgstr "_EXIF Data"
 
-#: src/f-spot.glade.h:127
+#: src/f-spot.glade.h:129
 msgid "_Edit Selected Tag..."
 msgstr "_Edit Selected Tag..."
 
-#: src/f-spot.glade.h:128
+#: src/f-spot.glade.h:130
 msgid "_Export"
 msgstr "_Export"
 
-#: src/f-spot.glade.h:129
+#: src/f-spot.glade.h:131
 msgid "_Fullscreen"
 msgstr "_Fullscreen"
 
-#: src/f-spot.glade.h:130
+#: src/f-spot.glade.h:132
 msgid "_Gallery Name:"
 msgstr "_Gallery Name:"
 
-#: src/f-spot.glade.h:131
+#: src/f-spot.glade.h:133
 msgid "_Import..."
 msgstr "_Import..."
 
-#: src/f-spot.glade.h:132
+#: src/f-spot.glade.h:134
 msgid "_Large"
 msgstr "_Large"
 
-#: src/f-spot.glade.h:133
+#: src/f-spot.glade.h:135
 msgid "_Medium"
 msgstr "_Medium"
 
-#: src/f-spot.glade.h:134
+#: src/f-spot.glade.h:136
 msgid "_Month"
 msgstr "_Month"
 
-#: src/f-spot.glade.h:135
+#: src/f-spot.glade.h:137
 msgid "_Password:"
 msgstr "_Password:"
 
-#: src/f-spot.glade.h:136
+#: src/f-spot.glade.h:138
 msgid "_Print..."
 msgstr "_Print..."
 
-#: src/f-spot.glade.h:137
+#: src/f-spot.glade.h:139
 msgid "_Remove From Catalog"
 msgstr "_Remove From Catalogue"
 
-#: src/f-spot.glade.h:138
+#: src/f-spot.glade.h:140
 msgid "_Remove Tag From Selection"
 msgstr "_Remove Tag From Selection"
 
-#: src/f-spot.glade.h:139
+#: src/f-spot.glade.h:141
 msgid "_Rename Version"
 msgstr "_Rename Version"
 
-#: src/f-spot.glade.h:140
+#: src/f-spot.glade.h:142
 msgid "_Sharpen..."
 msgstr "_Sharpen..."
 
-#: src/f-spot.glade.h:141
+#: src/f-spot.glade.h:143
 msgid "_Size"
 msgstr "_Size"
 
-#: src/f-spot.glade.h:142
+#: src/f-spot.glade.h:144
 msgid "_Slideshow"
 msgstr "_Slideshow"
 
-#: src/f-spot.glade.h:143
+#: src/f-spot.glade.h:145
 msgid "_Small"
 msgstr "_Small"
 
-#: src/f-spot.glade.h:144
+#: src/f-spot.glade.h:146
 msgid "_Tags"
 msgstr "_Tags"
 
-#: src/f-spot.glade.h:145
+#: src/f-spot.glade.h:147
 msgid "_Update Thumbnail"
 msgstr "_Update Thumbnail"
 
-#: src/f-spot.glade.h:146
+#: src/f-spot.glade.h:148
 msgid "_Url:"
 msgstr "_URL:"
 
-#: src/f-spot.glade.h:147
+#: src/f-spot.glade.h:149
 msgid "_Version"
 msgstr "_Version"
 
-#: src/f-spot.glade.h:148
+#: src/f-spot.glade.h:150
 msgid "_View"
 msgstr "_View"
 
-#: src/f-spot.glade.h:149
+#: src/f-spot.glade.h:151
 msgid "dialog1"
 msgstr "dialogue1"
 
-#: src/f-spot.glade.h:150
+#: src/f-spot.glade.h:152
+msgid "pixels"
+msgstr "pixels"
+
+#: src/f-spot.glade.h:153
 msgid "x"
 msgstr "x"
 
@@ -830,87 +842,87 @@ msgstr "(None)"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: src/MainWindow.cs:896
+#: src/MainWindow.cs:922
 msgid "translator-credits"
 msgstr "Adam Weinberger <adamw@gnome.org>"
 
-#: src/MainWindow.cs:1026
+#: src/MainWindow.cs:1052
 msgid "Unsharp Mask"
 msgstr "Unsharp Mask"
 
-#: src/MainWindow.cs:1035
+#: src/MainWindow.cs:1061
 msgid "Amount:"
 msgstr "Amount:"
 
-#: src/MainWindow.cs:1036
+#: src/MainWindow.cs:1062
 msgid "Radius:"
 msgstr "Radius:"
 
-#: src/MainWindow.cs:1037
+#: src/MainWindow.cs:1063
 msgid "Threshold:"
 msgstr "Threshold:"
 
-#: src/MainWindow.cs:1289
+#: src/MainWindow.cs:1337
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Delete the selected photo permanently?"
 msgstr[1] "Delete the {0} selected photos permanently?"
 
-#: src/MainWindow.cs:1293
+#: src/MainWindow.cs:1341
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
 msgstr[0] "This deletes all versions of the selected photo from your drive."
 msgstr[1] "This deletes all versions of the selected photos from your drive."
 
-#: src/MainWindow.cs:1296
+#: src/MainWindow.cs:1344
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Delete photo"
 msgstr[1] "_Delete photos"
 
-#: src/MainWindow.cs:1314
+#: src/MainWindow.cs:1362
 #, csharp-format
 msgid "Remove the selected photo from the catalog?"
 msgid_plural "Remove the {0} selected photos from the catalog?"
 msgstr[0] "Remove the selected photo from the catalogue?"
 msgstr[1] "Remove the {0} selected photos from the catalogue?"
 
-#: src/MainWindow.cs:1319
+#: src/MainWindow.cs:1367
 msgid ""
 "If you remove photos from the catalog all tag information will be lost. The "
 "photos remain on your computer and can be imported into f-spot again."
 msgstr ""
-"If you remove photos from the catalogue all tag information will be lost. The "
-"photos remain on your computer and can be imported into f-spot again."
+"If you remove photos from the catalogue all tag information will be lost. "
+"The photos remain on your computer and can be imported into f-spot again."
 
-#: src/MainWindow.cs:1320
+#: src/MainWindow.cs:1368
 msgid "_Remove from Catalog"
 msgstr "_Remove from Catalogue"
 
-#: src/MainWindow.cs:1343
+#: src/MainWindow.cs:1391
 #, csharp-format
 msgid "Delete the selected tag?"
 msgid_plural "Delete the {0} selected tags?"
 msgstr[0] "Delete the selected tag?"
 msgstr[1] "Delete {0} selected tags?"
 
-#: src/MainWindow.cs:1348
+#: src/MainWindow.cs:1396
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr "If you delete a tag, all associations with photos are lost."
 
-#: src/MainWindow.cs:1349
+#: src/MainWindow.cs:1397
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Delete tag"
 msgstr[1] "_Delete tags"
 
-#: src/OriginalExport.cs:168
+#: src/OriginalExport.cs:177
 msgid "Error: Error while transferring, Aborting"
 msgstr "Error: Error while transferring; Aborting"
 
-#: src/OriginalExport.cs:209
+#: src/OriginalExport.cs:222
 msgid "Transfering Pictures"
 msgstr "Transferring Pictures"
 
@@ -1027,8 +1039,12 @@ msgstr "Attach Tag To Selection"
 msgid "Remove Tag From Selection"
 msgstr "Remove Tag From Selection"
 
-#. System.Console.WriteLine ("Xfering {0} to {1}", source.ToString (), target.ToString ());
-#: src/VfsExport.cs:87
+#: src/VfsExport.cs:88
+#, csharp-format
+msgid "Scaling picture \"{0}\""
+msgstr "Scaling picture \"{0}\""
+
+#: src/VfsExport.cs:95
 #, csharp-format
 msgid "Transferring picture \"{0}\""
 msgstr "Transferring picture \"{0}\""
