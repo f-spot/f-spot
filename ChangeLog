@@ -1,5 +1,10 @@
 2004-03-15  Larry Ewing  <lewing@ximian.com>
 
+	* src/makefile.am: Use the sqlite wrapper that is now part of
+	Mono.  Closes bug #134770 based on a patch from Graham Orr.
+
+	* src/PhotoStore.cs: extend the comparison stuff a little.
+	
 	* MAINTAINERS: update.
 
 	* AUTHORS: update a little.
@@ -7,7 +12,7 @@
 	* src/MainWindow.cs: handle the delete_event signal properly.
 	Fixes bug #134783 and is based on a patch by Graham Orr.
 
-	* src/f-spot.glade: add a delet_event handler.
+	* src/f-spot.glade: add a delete_event handler.
 	
 2004-03-10  Larry Ewing  <lewing@ximian.com>
 

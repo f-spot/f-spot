@@ -1,10 +1,5 @@
 CSC = mcs --unsafe -g
 
-# Note: I am cut & pasting all the Sqlite stuff in because I need
-# SqliteConnection.LastInsertRowId but it is not in an official Mono release
-# yet.  Once there is a Mono release with that property in, we should go back
-# to using the standard DLL.  -- Ettore, 2003-10-17.
-
 F_SPOT_CSFILES =				\
 	$(srcdir)/Db.cs				\
 	$(srcdir)/ExifData.cs			\
@@ -32,11 +27,6 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/ProgressDialog.cs		\
 	$(srcdir)/RotateCommand.cs		\
 	$(srcdir)/SlideView.cs			\
-	$(srcdir)/SqliteCommand.cs		\
-	$(srcdir)/SqliteConnection.cs		\
-	$(srcdir)/SqliteDataReader.cs		\
-	$(srcdir)/SqliteParameter.cs		\
-	$(srcdir)/SqliteParameterCollection.cs	\
 	$(srcdir)/StockIcons.cs			\
 	$(srcdir)/TagCommands.cs		\
 	$(srcdir)/TagSelectionWidget.cs		\
@@ -48,8 +38,9 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/main.cs
 
 ASSEMBLIES =					\
-	/r:System.Data.dll			\
-	/r:System.Web.dll			\
+	/r:System.Data				\
+	/r:System.Web				\
+	/r:Mono.Data.SqliteClient		\
 	/r:atk-sharp				\
 	/r:gconf-sharp				\
 	/r:gdk-sharp				\
