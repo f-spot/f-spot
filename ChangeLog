@@ -1,5 +1,8 @@
 2004-12-23  Larry Ewing  <lewing@novell.com>
 
+	* src/AsyncPixbufLoader.cs: excplicitly call displose on the
+	loader to attempt to keep the memory from growing out of control.
+
 	* src/PrintDialog.cs: disable the extended print dialog for now
 	until it can be implmented properly.
 

@@ -86,6 +86,7 @@ namespace FSpot {
 		{
 			try {
 				loader.Close ();
+				loader.Dispose ();
 			} catch (System.Exception e) {
 				pixbuf = null;
 			} finally {
