@@ -1022,7 +1022,7 @@ public class PhotoStore : DbStore {
 			
 		}
 
-		DateTime Console.WriteLine ("Query Start {0}", System.DateTime.Now);
+		Console.WriteLine ("Query Start {0}", System.DateTime.Now);
 
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
