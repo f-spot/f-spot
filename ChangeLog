@@ -1,5 +1,7 @@
 2004-09-25  Larry Ewing  <lewing@novell.com>
 
+	* src/InfoDisplay.cs: Keep the scroll position of the exif window.
+
 	* src/MainWindow.cs: only set the current photo if the
 	info_display exists
 
