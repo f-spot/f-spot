@@ -136,7 +136,7 @@ namespace FSpot {
 					thumb.Dispose ();
 				}
 			} catch (System.Exception e) {
-				System.Console.WriteLine (e.ToString);
+				System.Console.WriteLine (e.ToString ());
 			}
 #endif
 
