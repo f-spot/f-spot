@@ -134,6 +134,8 @@ public class MainWindow {
 		Gtk.Drag.DestSet (tag_selection_widget, DestDefaults.All, tag_dest_target_table, 
 				  DragAction.Copy); 
 
+		tag_selection_widget.ButtonPressEvent += new ButtonPressEventHandler (HandleTagSelectionButtonPressEvent);
+
 		info_box = new InfoBox ();
 		info_box.VersionIdChanged += new InfoBox.VersionIdChangedHandler (HandleInfoBoxVersionIdChange);
 		left_vbox.PackStart (info_box, false, true, 0);
@@ -307,6 +309,24 @@ public class MainWindow {
 				t.Icon = icon;
 				db.Tags.Commit (t);
 			}
+		}
+	}
+
+
+
+	[GLib.ConnectBefore]
+	void HandleTagSelectionButtonPressEvent (object sender, ButtonPressEventArgs args)
+	{
+		if (args.Event.Button == 3)
+		{
+			TreePath path;
+			tag_selection_widget.Selection.UnselectAll ();
+			if (tag_selection_widget.GetPathAtPos ((int)args.Event.X, (int)args.Event.Y, out path)) {
+				tag_selection_widget.Selection.SelectPath (path);
+			}
+			TagPopup popup = new TagPopup ();
+			popup.Activate (args.Event, tag_selection_widget.TagAtPosition ((int)args.Event.X, (int)args.Event.Y));
+			args.RetVal = true;
 		}
 	}
 
@@ -946,21 +966,21 @@ public class MainWindow {
 		}
 	}
 
-	void HandleCreateNewTagCommand (object sender, EventArgs args)
+	public void HandleCreateNewTagCommand (object sender, EventArgs args)
 	{
 		TagCommands.Create command = new TagCommands.Create (db.Tags, main_window);
 		if (command.Execute (TagCommands.TagType.Tag))
 			tag_selection_widget.Update ();
 	}
 
-	void HandleCreateNewCategoryCommand (object sender, EventArgs args)
+	public void HandleCreateNewCategoryCommand (object sender, EventArgs args)
 	{
 		TagCommands.Create command = new TagCommands.Create (db.Tags, main_window);
 		if (command.Execute (TagCommands.TagType.Category))
 			tag_selection_widget.Update ();
 	}
 
-	void HandleAttachTagCommand (object obj, EventArgs args)
+	public void HandleAttachTagCommand (object obj, EventArgs args)
 	{
 		Tag [] tags = this.tag_selection_widget.TagHighlight ();
 		
@@ -977,7 +997,7 @@ public class MainWindow {
 		}
 	}
 
-	void HandleRemoveTagCommand (object obj, EventArgs args)
+	public void HandleRemoveTagCommand (object obj, EventArgs args)
 	{
 		Tag [] tags = this.tag_selection_widget.TagHighlight ();
 
@@ -990,7 +1010,7 @@ public class MainWindow {
 		}
 	}
 
-	void HandleEditSelectedTag (object obj, EventArgs args)
+	public void HandleEditSelectedTag (object obj, EventArgs args)
 	{
 		Tag [] tags = tag_selection_widget.TagHighlight ();
 		if (tags.Length != 1)
@@ -1174,7 +1194,7 @@ public class MainWindow {
 		icon_view.UnselectAllCells ();
 	}
 	
-	void HandleDeleteSelectedTagCommand (object sender, EventArgs args)
+	public void HandleDeleteSelectedTagCommand (object sender, EventArgs args)
 	{
 		Tag [] tags = this.tag_selection_widget.TagHighlight ();
 		

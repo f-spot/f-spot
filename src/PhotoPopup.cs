@@ -1,7 +1,7 @@
 /*
  * PhotoPopup.cs
  *
- * Author(s):
+ * Authors:
  *   Larry Ewing <lewing@novell.com>
  *   Vladimir Vukicevic <vladimir@pobox.com>
  *   Miguel de Icaza <miguel@ximian.com>
