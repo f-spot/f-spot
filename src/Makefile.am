@@ -16,6 +16,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/FlickrExport.cs		\
 	$(srcdir)/FlickrRemote.cs		\
 	$(srcdir)/FileImportBackend.cs		\
+	$(srcdir)/FolderExport.cs		\
 	$(srcdir)/FotkiRemote.cs		\
 	$(srcdir)/FormClient.cs			\
 	$(srcdir)/FullScreenView.cs		\
@@ -39,7 +40,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/JpegUtils.cs			\
 	$(srcdir)/Cms.cs			\
 	$(srcdir)/MainWindow.cs			\
-	$(srcdir)/OriginalExport.cs		\
 	$(srcdir)/PhotoImageView.cs		\
 	$(srcdir)/PhotoLoader.cs		\
 	$(srcdir)/PhotoPopup.cs			\

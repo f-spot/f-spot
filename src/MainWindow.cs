@@ -909,7 +909,7 @@ public class MainWindow {
 
 	void HandleExportToOriginal (object sender, EventArgs args)
 	{
-		new FSpot.OriginalExport (new FSpot.PhotoArray (SelectedPhotos ()));
+		new FSpot.FolderExport (new FSpot.PhotoArray (SelectedPhotos ()));
 	}
 
 	void HandleViewDirectory (object sender, EventArgs args)
