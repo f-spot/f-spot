@@ -65,12 +65,13 @@ namespace FSpot {
 			
 			string bg = Color (this.Style.Background (Gtk.StateType.Active));
 			string fg = Color (this.Style.Foreground (Gtk.StateType.Active));
+			string ig = Color (this.Style.Base (Gtk.StateType.Active));
 
 			if (exif_info != null) {
 				stream.Write ("<table width=100% cellspacing=0 cellpadding=3>");
-				stream.Write ("<tr><td colspan=2 align=\"center\" bgcolor=\"" + bg + "\"><img center src=\"exif:thumbnail\"></td></tr>");
+				stream.Write ("<tr><td colspan=2 align=\"center\" bgcolor=\"" + ig + "\"><img center src=\"exif:thumbnail\"></td></tr>");
 				foreach (ExifTag tag in exif_info.Tags) {
-					stream.Write ("<tr><td bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
+					stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
 					stream.Write (ExifUtil.GetTagTitle (tag));
 					stream.Write ("</font></td><td>");
 					if (exif_info.LookupString (tag) != "")
