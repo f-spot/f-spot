@@ -668,7 +668,7 @@ public class IconView : Gtk.Layout {
 			thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
 
 			entry = cache.Lookup (thumbnail_path);
-			if (entry == null);
+			if (entry == null)
 				cache.Request (thumbnail_path, i, ThumbnailWidth, ThumbnailHeight);
 				
 		}

@@ -1,5 +1,7 @@
 2005-02-19  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: fix typo in the request case.
+
 	* src/IconView.cs: use ScaleDown when scaling the loaded pixbuf,
 	the 64x64 icons start hitting the degenerate scaling cases.
 
