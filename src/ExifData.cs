@@ -262,6 +262,9 @@ internal unsafe struct _ExifData {
 	internal static extern _ExifData *exif_data_new_from_file (string path);
 
 	[DllImport ("libexif.dll")]
+	internal static extern _ExifData *exif_data_new ();
+
+	[DllImport ("libexif.dll")]
 	internal static extern _ExifData *exif_data_new_from_data (byte [] data, uint size);
 
 	[DllImport ("libexif.dll")]
@@ -278,8 +281,6 @@ internal unsafe struct _ExifData {
 
 	[DllImport ("libexif.dll")]
 	internal static extern void exif_data_save_data (_ExifData *data, out IntPtr content, out uint size);
-	[DllImport ("libc")] 
-	internal static extern void free (IntPtr address);
 
 	internal delegate void ExifDataForeachContentFunc (_ExifContent *content, void *user_data);
 
@@ -304,6 +305,13 @@ public class ExifData : IDisposable {
 		}
 	}
 
+	public ExifData ()
+	{
+		unsafe {
+			obj = _ExifData.exif_data_new ();
+		}
+	}
+	
 	public ExifData (string filename)
 	{
 		unsafe {
@@ -318,6 +326,13 @@ public class ExifData : IDisposable {
 		}
 	}
 
+	[DllImport ("libc")] 
+	internal static extern void free (IntPtr address);
+
+	[DllImport ("libc")] 
+	internal static extern IntPtr malloc (uint size);
+
+
 	public byte [] Save ()
 	{
 		Byte [] content = null;
@@ -328,7 +343,7 @@ public class ExifData : IDisposable {
 
 			content = new byte [size];
 			Marshal.Copy (data, content, 0, (int)size);
-			_ExifData.free (data);
+			free (data);
 		}
 
 		System.Console.WriteLine ("Saved {0} bytes", content.Length);
@@ -459,6 +474,18 @@ public class ExifData : IDisposable {
 
 				}
 				return result;
+			}
+		}
+		set {
+			unsafe {
+				if (value.Length > 65533)
+					throw new System.Exception ("Thumbnail too large");
+
+				if (obj->data != IntPtr.Zero)
+					free (obj->data);
+
+				obj->data = malloc ((uint)value.Length);
+				Marshal.Copy (value, 0, obj->data, value.Length);
 			}
 		}
 	}
