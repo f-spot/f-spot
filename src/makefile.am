@@ -10,6 +10,8 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/ExifData.cs			\
 	$(srcdir)/ExifUtils.cs			\
 	$(srcdir)/FileImportBackend.cs		\
+	$(srcdir)/FormClient.cs			\
+	$(srcdir)/GalleryRemote.cs		\
 	$(srcdir)/GtkDnd.cs			\
 	$(srcdir)/IconView.cs			\
 	$(srcdir)/ImageView.cs			\
@@ -46,6 +48,7 @@ F_SPOT_CSFILES =				\
 
 ASSEMBLIES =					\
 	/r:System.Data.dll			\
+	/r:System.Web.dll			\
 	/r:atk-sharp				\
 	/r:gconf-sharp				\
 	/r:gdk-sharp				\

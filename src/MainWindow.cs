@@ -4,9 +4,11 @@ using GtkSharp;
 using Glade;
 using Gnome;
 using System;
+using System.IO;
 
 using System.Collections;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 
 public class MainWindow {
 	Db db;
@@ -235,6 +237,19 @@ public class MainWindow {
 		}
 
 		dialog.Destroy ();
+	}
+
+	void HandleExportCommand (object sender, EventArgs e)
+	{
+		GalleryRemote gallery = new GalleryRemote ("http://localhost/gallery/gallery_remote2.php");
+		gallery.Login ("admin", "phil");
+		gallery.FetchAlbumsPrune ();
+
+		Photo photo = CurrentPhoto;
+		if (photo != null) {
+			Album album = gallery.Albums[0] as Album;
+			album.Add (photo);
+		}
 	}	
 
 	void HandleCloseCommand (object sender, EventArgs e)

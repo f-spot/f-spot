@@ -1,3 +1,18 @@
+2004-03-04  Larry Ewing  <lewing@ximian.com>
+
+	* src/f-spot.glade: add export menu item.
+	
+	* src/MainWindow.cs: add hardcoded export handler.
+
+	* src/FormClient.cs: added, basic HTTP Post implementation for
+	form sumbmission and file Upload.
+	
+	* src/GalleryRemote.cs: new file with beginnings of GalleryRemote
+	protocol implementation.
+	
+	* src/makefile.am (F_SPOT_CSFILES): add FormClient.cs and
+	GalleryRemote.cs
+
 2004-03-01  Larry Ewing  <lewing@ximian.com>
 
 	* configure.in: require gtk-sharp >= 0.17.
