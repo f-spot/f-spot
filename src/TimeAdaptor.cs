@@ -26,7 +26,7 @@ namespace FSpot {
 		public void SetLimits (int min, int max) 
 		{
 			DateTime start = DateFromIndex (min);
-			DateTime end = DateFromIndex (max + 1);
+			DateTime end = start.AddMonths (1);
 			
 			Console.WriteLine ("{0} {1}", start, end);
 			query.Range = new PhotoStore.DateRange (start, end);
@@ -48,7 +48,7 @@ namespace FSpot {
 		public int Value (int item)
 		{
 			DateTime start = DateFromIndex (item);
-			DateTime end = start.AddMonth (1);
+			DateTime end = start.AddMonths (1);
 			
 			PhotoStore store = query.Store;
 			
