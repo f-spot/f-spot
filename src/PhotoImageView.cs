@@ -247,6 +247,22 @@ namespace FSpot {
 			else
 				CurrentPhoto = query.Photos.Length - 1;
 		}
+		
+		public void First ()
+		{
+			if (query.Photos.Length > 0)
+				CurrentPhoto = 0;
+			else
+				CurrentPhoto = -1;
+		}
+
+		public void Last ()
+		{
+			if (query.Photos.Length > 0)
+				CurrentPhoto = query.Photos.Length -1;
+			else
+				CurrentPhoto = -1;
+		}
 
 		protected override void OnDestroyed ()
 		{
@@ -265,6 +281,13 @@ namespace FSpot {
 			case Gdk.Key.KP_Page_Up:
 				this.Prev ();
 				break;
+			case Gdk.Key.Home:
+				this.First ();
+				break;
+			case Gdk.Key.End:
+				this.Last ();
+				break;
+			case Gdk.Key.space:
 			case Gdk.Key.Page_Down:
 			case Gdk.Key.KP_Page_Down:
 				this.Next ();
