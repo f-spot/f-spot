@@ -1,3 +1,15 @@
+2004-08-30  Larry Ewing  <lewing@novell.com>
+
+	* makefile.am: add Cms.cs.
+
+	* src/f-spot.exe.config: add a mapping for lcms.
+
+	* src/Cms.cs: new file that adds an extremely incomplete lcms.
+	binding.
+	
+	* src/PixbufUtils.cs: Add a ColorAdjust method that uses the Cms
+	bindings.
+
 2004-08-29  Larry Ewing  <lewing@novell.com>
 
 	* Release f-spot-0.0.2 -- Ice Machine

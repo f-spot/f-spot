@@ -234,6 +234,35 @@ class PixbufUtils {
 		return ret;
 	}	
 
+	public static unsafe Pixbuf ColorAdjust (Pixbuf src, double brightness, double contrast,
+					  double hue, double saturation, int src_color, int dest_color)
+	{
+		Cms.Profile srgb = Cms.Profile.CreateSRgb ();
+		Cms.Profile bchsw = Cms.Profile.CreateAbstract (10, brightness, contrast,
+								hue, saturation, src_color, 
+								dest_color);
+		Pixbuf adjusted = src.Copy ();
+		Cms.Profile [] list = new Cms.Profile [] { srgb, bchsw, srgb };
+		Cms.Transform trans = new Cms.Transform (list, Cms.Format.Rgb8, Cms.Format.Rgb8,
+							 Cms.Intent.Perceptual, 0);
+		
+		int width = src.Width;
+		byte * srcpix  = (byte *) src.Pixels;
+		byte * adjustedpix = (byte *) adjusted.Pixels;
+
+		for (int row = 0; row < src.Height; row++) {
+			trans.Apply ((IntPtr) (srcpix + row * src.Rowstride),
+				     (IntPtr) (adjustedpix + row * adjusted.Rowstride), 
+				     (uint)width);
+		}
+		
+		trans.Dispose ();
+		srgb.Dispose ();
+		bchsw.Dispose ();
+
+		return adjusted;
+	}
+
 #if STUFF_WE_HAVE_TO_RESTORE
 
 	// Bindings from libf.

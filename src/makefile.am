@@ -1,6 +1,7 @@
 CSC = mcs --unsafe -g
 
 F_SPOT_CSFILES =				\
+	$(srcdir)/ColorDialog.cs		\
 	$(srcdir)/CompatFileChooser.cs		\
 	$(srcdir)/DateCommands.cs		\
 	$(srcdir)/Db.cs				\
@@ -20,6 +21,7 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/ImportStore.cs		\
 	$(srcdir)/InfoBox.cs			\
 	$(srcdir)/JpegUtils.cs			\
+	$(srcdir)/Cms.cs			\
 	$(srcdir)/MainWindow.cs			\
 	$(srcdir)/PhotoLoader.cs		\
 	$(srcdir)/PhotoPopup.cs			\
