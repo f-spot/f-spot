@@ -1,5 +1,9 @@
 2005-03-19  Larry Ewing  <lewing@novell.com>
 
+	* src/f-spot.glade: expose fix up the Cd dialog.
+
+	* src/MainWindow.cs: update the menus based on the selection.
+
 	* src/InfoDisplay.cs: handle the no exif info case a little more
 	gracefully.
 
