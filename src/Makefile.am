@@ -1,4 +1,4 @@
-CSC = mcs --unsafe -g
+CSC = mcs -unsafe -debug
 
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/AsyncPixbufLoader.cs		\
@@ -150,36 +150,36 @@ F_SPOT_CSDISTFILES =				\
 
 
 ASSEMBLIES =					\
-	/r:$(top_builddir)/libgphoto2-sharp/libgphoto2-sharp.dll   \
-	/r:System.Data				\
-	/r:System.Web				\
-	/r:Mono.Data.SqliteClient		\
-	/r:Mono.Posix				\
-	/r:ICSharpCode.SharpZipLib		\
-	/pkg:gtkhtml-sharp			\
-	/pkg:glade-sharp			\
-	/pkg:gconf-sharp
+	-r:$(top_builddir)/libgphoto2-sharp/libgphoto2-sharp.dll   \
+	-r:System.Data				\
+	-r:System.Web				\
+	-r:Mono.Data.SqliteClient		\
+	-r:Mono.Posix				\
+	-r:ICSharpCode.SharpZipLib		\
+	-pkg:gtkhtml-sharp			\
+	-pkg:glade-sharp			\
+	-pkg:gconf-sharp
 
 RESOURCES =										\
-	/resource:$(top_srcdir)/icons/f-spot-browse.png,f-spot-browse.png		\
-	/resource:$(top_srcdir)/icons/f-spot-crop.png,f-spot-crop.png			\
-	/resource:$(top_srcdir)/icons/f-spot-camera.png,f-spot-camera.png		\
-	/resource:$(top_srcdir)/icons/f-spot-edit-image.png,f-spot-edit-image.png	\
-	/resource:$(top_srcdir)/icons/f-spot-events.png,f-spot-events.png		\
-	/resource:$(top_srcdir)/icons/f-spot-favorite.png,f-spot-favorite.png 		\
-	/resource:$(top_srcdir)/icons/f-spot-hidden.png,f-spot-hidden.png 		\
-	/resource:$(top_srcdir)/icons/f-spot-loading.png,f-spot-loading.png		\
-	/resource:$(top_srcdir)/icons/f-spot-logo.png,f-spot-logo.png			\
-	/resource:$(top_srcdir)/icons/f-spot-other.png,f-spot-other.png			\
-	/resource:$(top_srcdir)/icons/f-spot-people.png,f-spot-people.png 		\
-	/resource:$(top_srcdir)/icons/f-spot-places.png,f-spot-places.png 		\
-	/resource:$(top_srcdir)/icons/f-spot-question-mark.png,f-spot-question-mark.png \
-	/resource:$(top_srcdir)/icons/f-spot-red-eye.png,f-spot-red-eye.png		\
-	/resource:$(top_srcdir)/icons/f-spot-rotate-90.png,f-spot-rotate-90.png		\
-	/resource:$(top_srcdir)/icons/f-spot-rotate-270.png,f-spot-rotate-270.png	\
-	/resource:$(top_srcdir)/icons/f-spot-slideshow.png,f-spot-slideshow.png		\
-	/resource:$(top_srcdir)/icons/f-spot-fullscreen.png,f-spot-fullscreen.png	\
-	/resource:$(srcdir)/f-spot.glade,f-spot.glade
+	-resource:$(top_srcdir)/icons/f-spot-browse.png,f-spot-browse.png		\
+	-resource:$(top_srcdir)/icons/f-spot-crop.png,f-spot-crop.png			\
+	-resource:$(top_srcdir)/icons/f-spot-camera.png,f-spot-camera.png		\
+	-resource:$(top_srcdir)/icons/f-spot-edit-image.png,f-spot-edit-image.png	\
+	-resource:$(top_srcdir)/icons/f-spot-events.png,f-spot-events.png		\
+	-resource:$(top_srcdir)/icons/f-spot-favorite.png,f-spot-favorite.png 		\
+	-resource:$(top_srcdir)/icons/f-spot-hidden.png,f-spot-hidden.png 		\
+	-resource:$(top_srcdir)/icons/f-spot-loading.png,f-spot-loading.png		\
+	-resource:$(top_srcdir)/icons/f-spot-logo.png,f-spot-logo.png			\
+	-resource:$(top_srcdir)/icons/f-spot-other.png,f-spot-other.png			\
+	-resource:$(top_srcdir)/icons/f-spot-people.png,f-spot-people.png 		\
+	-resource:$(top_srcdir)/icons/f-spot-places.png,f-spot-places.png 		\
+	-resource:$(top_srcdir)/icons/f-spot-question-mark.png,f-spot-question-mark.png \
+	-resource:$(top_srcdir)/icons/f-spot-red-eye.png,f-spot-red-eye.png		\
+	-resource:$(top_srcdir)/icons/f-spot-rotate-90.png,f-spot-rotate-90.png		\
+	-resource:$(top_srcdir)/icons/f-spot-rotate-270.png,f-spot-rotate-270.png	\
+	-resource:$(top_srcdir)/icons/f-spot-slideshow.png,f-spot-slideshow.png		\
+	-resource:$(top_srcdir)/icons/f-spot-fullscreen.png,f-spot-fullscreen.png	\
+	-resource:$(srcdir)/f-spot.glade,f-spot.glade
 
 fspotlibdir = $(prefix)/lib/f-spot
 fspotlib_DATA = f-spot.exe.config	\
