@@ -129,6 +129,14 @@ namespace FSpot {
 			set {
 				scroll_offset = value;
 				
+				int total_width = (int)(box_counts.Length * BoxWidth);
+
+				if (total_width + scroll_offset < background.Width)
+					scroll_offset = background.Width - total_width;
+				
+				if (total_width <= background.Width)
+					scroll_offset = 0;
+
 				UpdateButtons ();
 
 				if (Visible)
@@ -138,9 +146,9 @@ namespace FSpot {
 		
 		private void UpdateButtons () {
 			left.Sensitive = (scroll_offset < 0);
-			right.Sensitive = (box_counts.Length * BoxWidth > background.Width - scroll_offset); 
+			right.Sensitive = (box_counts.Length * BoxWidth > background.Width - scroll_offset);
 
-			if (!left.Sensitive && left_delay.IsPending)
+			if (!left.Sensitive && left_delay.IsPending) 
 				left_delay.Stop ();
 
 			if (!right.Sensitive && right_delay.IsPending)
@@ -894,11 +902,11 @@ namespace FSpot {
 						background.Width, legend_height);
 
 			action = background.Union (legend);
-			//action = Allocation;
 
 			if (event_window != null)
 				event_window.MoveResize (action.X, action.Y, action.Width, action.Height);
-
+			
+			this.Offset = this.Offset;
 
 			UpdateButtons ();
 		}
