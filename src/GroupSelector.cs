@@ -96,15 +96,18 @@ namespace FSpot {
 
 		protected override bool OnButtonPressEvent (Gdk.EventButton args)
 		{
-			if (glass.IsInside (args.X, args.Y)) {
-				glass.StartDrag (args.X, args.Y, args.Time);
-			} else if (min_limit.IsInside (args.X, args.Y)) {
-				min_limit.StartDrag (args.X, args.Y, args.Time);
-			} else if (max_limit.IsInside (args.X, args.Y)) {
-				max_limit.StartDrag (args.X, args.Y, args.Time);
+			double x = args.X + Allocation.X;
+			double y = args.Y + Allocation.Y;
+
+			if (glass.IsInside (x, y)) {
+				glass.StartDrag (x, y, args.Time);
+			} else if (min_limit.IsInside (x, y)) {
+				min_limit.StartDrag (x, y, args.Time);
+			} else if (max_limit.IsInside (x, y)) {
+				max_limit.StartDrag (x, y, args.Time);
 			} else {
 				int position;
-				if (BoxHit (args.X, args.Y, out position)) {
+				if (BoxHit (x, y, out position)) {
 					glass.Position = position;
 					return true;
 				}
@@ -115,32 +118,37 @@ namespace FSpot {
 		
 		protected override bool OnButtonReleaseEvent (Gdk.EventButton args) 
 		{
+			double x = args.X + Allocation.X;
+			double y = args.Y + Allocation.Y;
+
 			if (glass.Dragging) {
-				glass.EndDrag (args.X, args.Y);
+				glass.EndDrag (x, y);
 			} else if (min_limit.Dragging) {
-				min_limit.EndDrag (args.X, args.Y);
+				min_limit.EndDrag (x, y);
 			} else if (max_limit.Dragging) {
-				max_limit.EndDrag (args.X, args.Y);
+				max_limit.EndDrag (x, y);
 			}
 			return base.OnButtonReleaseEvent (args);
 		}
 
 		protected override bool OnMotionNotifyEvent (Gdk.EventMotion args) 
 		{
-			Rectangle box = glass.Bounds ();
-			//Console.WriteLine ("please {0} and {1} in box {2}", args.X, args.Y, box);
+			double x = args.X + Allocation.X;
+			double y = args.Y + Allocation.Y;
 
+			Rectangle box = glass.Bounds ();
+			//Console.WriteLine ("please {0} and {1} in box {2}", x, y, box);
 
 			if (glass.Dragging) {
-				glass.UpdateDrag (args.X, args.Y);
+				glass.UpdateDrag (x, y);
 			} else if (min_limit.Dragging) {
-				min_limit.UpdateDrag (args.X, args.Y);
+				min_limit.UpdateDrag (x, y);
 			} else if (max_limit.Dragging) {
-				max_limit.UpdateDrag (args.X, args.Y);
+				max_limit.UpdateDrag (x, y);
 			} else {
-				glass.State = glass.IsInside (args.X, args.Y) ? StateType.Prelight : StateType.Normal;
-				min_limit.State = min_limit.IsInside (args.X, args.Y) ? StateType.Prelight : StateType.Normal;
-				max_limit.State = max_limit.IsInside (args.X, args.Y) ? StateType.Prelight : StateType.Normal;
+				glass.State = glass.IsInside (x, y) ? StateType.Prelight : StateType.Normal;
+				min_limit.State = min_limit.IsInside (x, y) ? StateType.Prelight : StateType.Normal;
+				max_limit.State = max_limit.IsInside (x, y) ? StateType.Prelight : StateType.Normal;
 			}
 
 			return base.OnMotionNotifyEvent (args);
@@ -155,6 +163,10 @@ namespace FSpot {
 			
 			WindowAttr attr = WindowAttr.Zero;
 			attr.WindowType = Gdk.WindowType.Child;
+			
+
+
+			Console.WriteLine ("OnRealized {0}", Allocation);
 
 			attr.X = Allocation.X;
 			attr.Y = Allocation.Y;
@@ -239,7 +251,7 @@ namespace FSpot {
 							   this, null, box.X, box.Y, 
 							   box.Width, box.Height);
 #else
-					GdkWindow.DrawRectangle (Style.BackgroundGC (StateType.Prelight), true, area);
+					GdkWindow.DrawRectangle (Style.BackgroundGC (StateType.Active), true, area);
 #endif
 				} else {
 					GdkWindow.DrawRectangle (Style.BaseGC (StateType.Selected), true, area);
@@ -545,21 +557,32 @@ namespace FSpot {
 
 			return base.OnExposeEvent (args);
 		}
-		
+
+		protected override void OnSizeRequested (ref Requisition requisition)
+		{
+			requisition.Width = 500;
+			requisition.Height = 100;
+		}
+
 		protected override void OnSizeAllocated (Gdk.Rectangle alloc)
 		{
+			Console.WriteLine ("OnSizeAllocated {0}", alloc);
+
 			base.OnSizeAllocated (alloc);
 			int legend_height = 20;
 
-			background = new Rectangle (border, border, 
+			background = new Rectangle (alloc.X + border, alloc.Y + border, 
 						    alloc.Width - 2* border,
 						    alloc.Height - 2 * border - legend_height);
 
 			legend = new Rectangle (border, background.Y + background.Height,
 						background.Width, legend_height);
 
-			if (event_window != null)
-				event_window.MoveResize (Allocation);
+			if (event_window != null) {
+				event_window.MoveResize (alloc.X, alloc.Y, alloc.Width, alloc.Height);
+				event_window.Move (alloc.X, alloc.Y);
+				Console.WriteLine ("move resize alloc {0},{1}", alloc, event_window);
+			}
 		}
 
 		public GroupSelector () : base () 
@@ -576,6 +599,7 @@ namespace FSpot {
 			max_limit.Position = 12;
 		}
 
+#if TEST_MAIN
 		private void HandleKeyPressEvent (object sender, KeyPressEventArgs args)
 		{		
 			Console.WriteLine ("press");
@@ -622,11 +646,18 @@ namespace FSpot {
 			Application.Init ();
 			Gtk.Window win = new Gtk.Window ("testing");
 
+			VBox vbox = new VBox (false, 10);
 			GroupSelector gs = new GroupSelector ();
 			gs.Counts = new int [] {20, 100, 123, 10, 5, 2, 3, 50, 8, 10, 22, 0, 55, 129, 120, 30, 14, 200, 21, 55};
 			gs.Mode = 2;
+			vbox.PackStart (gs);
 
-			win.Add (gs);
+			gs = new GroupSelector ();
+			gs.Counts = new int [] {20, 100, 123, 10, 5, 2, 3, 50, 8, 10, 22, 0, 55, 129, 120, 30, 14, 200, 21, 55};
+			gs.Mode = 2;
+			vbox.PackStart (gs);
+
+			win.Add (vbox);
 			win.ShowAll ();
 			win.AddEvents ((int) EventMask.KeyPressMask);
 			win.KeyPressEvent += gs.HandleKeyPressEvent;
@@ -634,6 +665,7 @@ namespace FSpot {
 			Application.Run ();
 			return 0;
 		}
+#endif
 	}
 
 }
