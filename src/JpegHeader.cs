@@ -41,6 +41,11 @@ public class JpegHeader {
 		Eoi  = 0xd9,  // End of Image
 		Sos  = 0xda,  // Start of Scan
 		
+		Dnl = 0xdc,
+		Dri = 0xdd,  // Define restart interval
+		Dhp = 0xde,
+		Exp = 0xdf, 
+		
 		Dqt = 0xdb, // Define Quantization Table
 		
 		// These are the app marker tags that contain the application metadata
@@ -84,12 +89,11 @@ public class JpegHeader {
 	public byte [] GetRawXmp ()
 	{
 		return this.GetRaw ("http://ns.adobe.com/xap/1.0/");
-
 	}
 	
 	public byte [] GetRawExif ()
 	{
-		return this.GetRaw ("EXIF");
+		return this.GetRaw ("Exif");
 	}
 
 	public byte [] GetRawJfif ()
@@ -97,7 +101,12 @@ public class JpegHeader {
 		return this.GetRaw ("JFIF");
 	}
 
-	private byte [] GetRaw (string name)
+	public byte [] GetRawIcc ()
+	{
+		return this.GetRaw ("ICC_PROFILE");
+	}
+
+	public byte [] GetRaw (string name)
 	{
 		Marker m = (Marker)app_marker_hash [name];
 		if (m != null)
@@ -185,7 +194,7 @@ public class JpegHeader {
 			case JpegMarker.App15:
 				byte [] data = new byte [length];
 				if (stream.Read (data, 0, length) != length)
-					throw new System.Exception ("I'm a little piggy");
+					throw new System.Exception ("Incomplete Marker");
 
 				Marker m = new Marker (marker, data, position);
 				marker_list.Add (m);
@@ -207,7 +216,7 @@ public class JpegHeader {
 			default:
 				byte [] d = new byte [length];
 				if (stream.Read (d, 0, length) != length)
-					throw new System.Exception ("I'm a little piggy");
+					throw new System.Exception ("Incomplete Marker");
 				
 				marker_list.Add (new Marker (marker, d, position));
 				break;
@@ -226,6 +235,19 @@ public class JpegHeader {
 		if (value != null) {
 			string xml = System.Text.Encoding.UTF8.GetString (value, 29, value.Length - 29);
 			System.Console.WriteLine (xml);
+		}
+
+		value = data.GetRaw ("ICC_PROFILE");
+		if (value != null) {
+			System.IO.FileStream stream = new System.IO.FileStream ("profile.icc", System.IO.FileMode.Create);
+			stream.Write (value, 12, value.Length - 12);
+			stream.Close ();
+		}
+
+		value = data.GetRawExif ();
+		if (value != null) {
+			ExifData exif = new ExifData (value, (uint)value.Length);
+			System.Console.WriteLine (exif.LookupString (ExifTag.Model));
 		}
 
 		return 0;
