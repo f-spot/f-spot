@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-22 12:13+0100\n"
-"PO-Revision-Date: 2005-01-22 12:09+0100\n"
+"POT-Creation-Date: 2005-01-23 20:54+0100\n"
+"PO-Revision-Date: 2005-01-23 20:54+0100\n"
 "Last-Translator: Frank Arnold <frank@scirocco-5v-turbo.de>\n"
 "Language-Team: German GNOME Translators <gnome-de@gnome.org >\n"
 "MIME-Version: 1.0\n"
@@ -149,27 +149,27 @@ msgid "{0} of {1}"
 msgstr "{0} von {1}"
 
 #: src/CDExport.cs:83 src/FlickrExport.cs:89 src/GalleryExport.cs:345
-#: src/VfsExport.cs:101
+#: src/OriginalExport.cs:135 src/VfsExport.cs:101
 msgid "Done Sending Photos"
 msgstr "Verschicken der Bilder abgeschlossen"
 
-#: src/CDExport.cs:85 src/VfsExport.cs:103
+#: src/CDExport.cs:85 src/OriginalExport.cs:137 src/VfsExport.cs:103
 msgid "Transfer Complete"
 msgstr "Übertragung abgeschlossen"
 
-#: src/CDExport.cs:91 src/VfsExport.cs:108
+#: src/CDExport.cs:91 src/OriginalExport.cs:142 src/VfsExport.cs:108
 msgid "Error While Transferring"
 msgstr "Fehler bei der Übertragung"
 
-#: src/CDExport.cs:96 src/VfsExport.cs:115
+#: src/CDExport.cs:96 src/OriginalExport.cs:149 src/VfsExport.cs:115
 msgid "Error Transferring"
 msgstr "Übertragungsfehler"
 
 #: src/CDExport.cs:111 src/VfsExport.cs:129
 msgid "Error: Error while transfering, Aborting"
-msgstr "Fehler: Fehler bei der Übertragung, abgebrochen"
+msgstr "Fehler: Fehler bei der Übertragung, wird abgebrochen"
 
-#: src/CDExport.cs:114 src/VfsExport.cs:132
+#: src/CDExport.cs:114 src/OriginalExport.cs:171 src/VfsExport.cs:132
 msgid "Error: File Already Exists, Aborting"
 msgstr "Fehler: Datei ist bereits vorhanden, abgebrochen"
 
@@ -829,46 +829,54 @@ msgstr "(Keine)"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: src/MainWindow.cs:893
+#: src/MainWindow.cs:896
 msgid "translator-credits"
 msgstr "Frank Arnold <frank@scirocco-5v-turbo.de>"
 
-#: src/MainWindow.cs:1023
+#: src/MainWindow.cs:1026
 msgid "Unsharp Mask"
 msgstr "Weichzeichnen"
 
-#: src/MainWindow.cs:1032
+#: src/MainWindow.cs:1035
 msgid "Amount:"
 msgstr "Betrag:"
 
-#: src/MainWindow.cs:1033
+#: src/MainWindow.cs:1036
 msgid "Radius:"
 msgstr "Radius:"
 
-#: src/MainWindow.cs:1034
+#: src/MainWindow.cs:1037
 msgid "Threshold:"
 msgstr "Schwellwert:"
 
-#: src/MainWindow.cs:1286
+#: src/MainWindow.cs:1289
 #, csharp-format
 msgid "Delete the selected photo permanently"
 msgid_plural "Delete the {0} selected photos permanently"
 msgstr[0] "Das ausgewählte Foto dauerhaft löschen"
 msgstr[1] "Die {0} ausgewählten Fotos dauerhaft löschen"
 
-#: src/MainWindow.cs:1307
+#: src/MainWindow.cs:1310
 #, csharp-format
 msgid "Remove the selected photo from the catalog"
 msgid_plural "Remove the {0} selected photos from the catalog"
 msgstr[0] "Das ausgewählte Foto aus dem Katalog entfernen"
 msgstr[1] "Die {0} ausgewählten Fotos aus dem Katalog entfernen"
 
-#: src/MainWindow.cs:1334
+#: src/MainWindow.cs:1337
 #, csharp-format
 msgid "Delete the selected tag"
 msgid_plural "Delete the {0} selected tags"
 msgstr[0] "Die ausgewählte Markierung löschen"
 msgstr[1] "Die {0} ausgewählten Markierungen löschen"
+
+#: src/OriginalExport.cs:168
+msgid "Error: Error while transferring, Aborting"
+msgstr "Fehler: Fehler bei der Übertragung, wird abgebrochen"
+
+#: src/OriginalExport.cs:209
+msgid "Transfering Pictures"
+msgstr "Bilder werden übertragen"
 
 #: src/PhotoPopup.cs:26
 msgid "Copy Image Location"
