@@ -1,5 +1,16 @@
 2005-03-04  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoImageView.cs: regenerate the thumbnail if it is invalid.
+
+	* src/f-spot.glade: remove the no html option in the export
+	dialog.
+	
+	* src/AsyncPixbufLoader.cs: block and unblock the thumbnail thread
+	when loading.
+
+	* src/PixbufLoader.cs: wake up the worker if the count drops to
+	zero.
+
 	* src/IconView.cs: alway request at least two pages even if the
 	scroll increment is smaller.
 

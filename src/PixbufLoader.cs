@@ -92,7 +92,11 @@ public class PixbufLoader {
 
 	public void PopBlock ()
 	{
-		System.Threading.Interlocked.Decrement (ref block_count);
+		if (System.Threading.Interlocked.Decrement (ref block_count) == 0) {
+			lock (queue) { 
+				Monitor.Pulse (queue); 
+			}
+		}
 	}
 
 	// FIXME?

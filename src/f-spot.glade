@@ -6432,12 +6432,12 @@ Photo Details</property>
 		  </child>
 
 		  <child>
-		    <widget class="GtkCheckMenuItem" id="display_info_sidebar1">
+		    <widget class="GtkCheckMenuItem" id="display_sidebar1">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Display _Sidebar</property>
+		      <property name="label" translatable="yes">Display Side_bar</property>
 		      <property name="use_underline">True</property>
 		      <property name="active">True</property>
-		      <signal name="activate" handler="HandleDisplayInfoSidebar" last_modification_time="Thu Feb 24 20:19:59 EST 2005"/>
+		      <signal name="activate" handler="HandleDisplayInfoSidebar" last_modification_time="Fri, 04 Mar 2005 17:19:12 GMT"/>
 		    </widget>
 		  </child>
 
@@ -6507,7 +6507,7 @@ Photo Details</property>
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">_Month</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">False</property>
+			      <property name="active">True</property>
 			      <signal name="activate" handler="HandleArrangeByTime" last_modification_time="Fri, 20 Aug 2004 22:26:32 GMT"/>
 			    </widget>
 			  </child>
@@ -9666,25 +9666,6 @@ Photo Details</property>
 			  <property name="spacing">6</property>
 
 			  <child>
-			    <widget class="GtkRadioButton" id="static_radio">
-			      <property name="visible">True</property>
-			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Use static HTML</property>
-			      <property name="use_underline">True</property>
-			      <property name="relief">GTK_RELIEF_NORMAL</property>
-			      <property name="focus_on_click">True</property>
-			      <property name="active">False</property>
-			      <property name="inconsistent">False</property>
-			      <property name="draw_indicator">True</property>
-			    </widget>
-			    <packing>
-			      <property name="padding">0</property>
-			      <property name="expand">False</property>
-			      <property name="fill">False</property>
-			    </packing>
-			  </child>
-
-			  <child>
 			    <widget class="GtkRadioButton" id="orignal_radio">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
@@ -9695,7 +9676,6 @@ Photo Details</property>
 			      <property name="active">False</property>
 			      <property name="inconsistent">False</property>
 			      <property name="draw_indicator">True</property>
-			      <property name="group">static_radio</property>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -9705,23 +9685,26 @@ Photo Details</property>
 			  </child>
 
 			  <child>
-			    <widget class="GtkRadioButton" id="none_radio">
+			    <widget class="GtkRadioButton" id="static_radio">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">No Formatting</property>
+			      <property name="label" translatable="yes">Use static HTML.</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
 			      <property name="active">False</property>
 			      <property name="inconsistent">False</property>
 			      <property name="draw_indicator">True</property>
-			      <property name="group">static_radio</property>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
 			      <property name="expand">False</property>
 			      <property name="fill">False</property>
 			    </packing>
+			  </child>
+
+			  <child>
+			    <placeholder/>
 			  </child>
 			</widget>
 		      </child>

@@ -77,7 +77,8 @@ namespace FSpot {
 			loader.AreaPrepared += HandleAreaPrepared;
 			loader.AreaUpdated += HandleAreaUpdated;
 			loader.Closed += HandleClosed;
-			
+
+			ThumbnailGenerator.Default.PushBlock ();
 			delay.Start ();
 		}			
 
@@ -210,6 +211,8 @@ namespace FSpot {
 
 			if (Done != null)
 				Done (this, System.EventArgs.Empty);
+			
+			ThumbnailGenerator.Default.PopBlock ();
 		}
 
 		public void Dispose ()
