@@ -117,7 +117,7 @@ public class MainWindow {
 		this.db = db;
 
 		Mono.Posix.Catalog.Init ("f-spot", FSpot.Defines.LOCALE_DIR);
-		Glade.XML gui = Glade.XML.FromAssembly ("f-spot.glade", "main_window", null);
+		Glade.XML gui = Glade.XML.FromAssembly ("f-spot.glade", "main_window", "");
 		gui.Autoconnect (this);
 
 		slide_delay = new FSpot.Delay (new GLib.IdleHandler (SlideShow));

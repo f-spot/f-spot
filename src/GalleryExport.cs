@@ -10,17 +10,12 @@ namespace FSpot {
 		
 		public GalleryRemote.Gallery Connect ()
 		{
-			try {
-				gallery = new GalleryRemote.Gallery (url);
-				gallery.Login (username, password);
-				connected = true;
-				return gallery;
-			} catch (System.Exception e) {
-				// FIXME handle this login exception better
-				System.Console.WriteLine (e);
-				gallery = null;
-				return null;
-			}
+			GalleryRemote.Gallery gal = null;
+			gal = new GalleryRemote.Gallery (url);
+			gal.Login (username, password);
+			gallery = gal;
+			connected = true;
+			return gallery;
 		}
 
 		private bool connected;
@@ -62,6 +57,9 @@ namespace FSpot {
 		public string Password {
 			get {
 				return password;
+			}
+			set {
+				password = value;
 			}
 		}
 	}
@@ -202,6 +200,9 @@ namespace FSpot {
 		[Glade.Widget] Gtk.Button album_button;
 		[Glade.Widget] Gtk.Button add_button;
 		
+		[Glade.Widget] Gtk.Button ok_button;
+		[Glade.Widget] Gtk.Button cancel_button;
+
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
 
 		System.Threading.Thread command_thread;
@@ -383,14 +384,50 @@ namespace FSpot {
 
 		private void Connect ()
 		{
-			if (accounts.Count != 0 && connect) {
-				account = (GalleryAccount) accounts [gallery_optionmenu.History];
-				if (!account.Connected)
-					account.Connect ();
-				
-				if (account.Gallery != null)
+			try {
+				if (accounts.Count != 0 && connect) {
+					account = (GalleryAccount) accounts [gallery_optionmenu.History];
+					if (!account.Connected)
+						account.Connect ();
+					
 					PopulateAlbumOptionMenu (account.Gallery);
-			}
+				}
+			} catch (GalleryRemote.GalleryCommandException ex) {
+				System.Console.WriteLine (ex.Status);
+				PopulateAlbumOptionMenu (account.Gallery);
+				if (ex.Status == GalleryRemote.ResultCode.PasswordWrong) {
+					Gtk.ResponseType response;
+					string password = GetPassword (account.Name, out response);
+					if (response == Gtk.ResponseType.Ok) {
+						account.Password = password;
+						Connect ();
+					}
+				}
+			} 
+		}
+
+		private string GetPassword (string email, out Gtk.ResponseType response) 
+		{
+			Gtk.Dialog password_dialog = new Gtk.Dialog (Mono.Posix.Catalog.GetString ("Enter Password"),
+								     Dialog, Gtk.DialogFlags.Modal);
+			
+			Gtk.Entry password_entry = new Gtk.Entry ();
+			password_entry.Visibility = false;
+
+			//password_dialog.BorderWidth = 12;
+			password_dialog.HasSeparator = false;
+			password_dialog.VBox.Spacing = 6;
+			password_dialog.VBox.BorderWidth = 12;
+			password_dialog.VBox.PackStart (
+                                new Gtk.Label (Mono.Posix.Catalog.GetString ("Enter Password for ") + email));
+			password_dialog.VBox.PackStart (password_entry);
+			password_dialog.AddButton (Gtk.Stock.Cancel, Gtk.ResponseType.Cancel);
+			password_dialog.AddButton (Gtk.Stock.Ok, Gtk.ResponseType.Ok);
+			password_dialog.ShowAll ();
+			response = (Gtk.ResponseType) password_dialog.Run ();
+			string password =  password_entry.Text;
+			password_dialog.Destroy ();
+			return password;
 		}
 
 		private void HandleAccountSelected (object sender, System.EventArgs args)
@@ -401,18 +438,23 @@ namespace FSpot {
 		private void PopulateAlbumOptionMenu (GalleryRemote.Gallery gallery)
 		{
 			System.Collections.ArrayList albums = null;
-			
 			if (gallery != null) {
 				gallery.FetchAlbums ();
 				albums = gallery.Albums;
 			}
 
 			Gtk.Menu menu = new Gtk.Menu ();
-			
-			if (albums == null || albums.Count == 0) {
-				Gtk.MenuItem item = new Gtk.MenuItem (Mono.Posix.Catalog.GetString ("(No Albums)"));
+
+			bool disconnected = gallery == null || !account.Connected || albums == null;
+
+			if (disconnected || albums.Count == 0) {
+				string msg = disconnected ? Mono.Posix.Catalog.GetString ("(Not Connected)") 
+					: Mono.Posix.Catalog.GetString ("(No Albums)");
+
+				Gtk.MenuItem item = new Gtk.MenuItem (msg);
 				menu.Append (item);
 
+				ok_button.Sensitive = false;
 				album_optionmenu.Sensitive = false;
 				album_button.Sensitive = false;
 			} else {
@@ -435,6 +477,8 @@ namespace FSpot {
 					if (add_permission == 0)
 						item.Sensitive = false;
 				}
+
+				ok_button.Sensitive = photos.Length > 0;
 				album_optionmenu.Sensitive = true;
 				album_button.Sensitive = true;
 			}
