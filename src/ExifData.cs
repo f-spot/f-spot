@@ -147,50 +147,56 @@ public enum ExifIfd {
 internal class ExifUtil {
 		
 	[DllImport ("libexif.so")]
-	static extern string exif_tag_get_name (ExifTag tag);
+	static extern IntPtr exif_tag_get_name (ExifTag tag);
 
 	[DllImport ("libexif.so")]
-	static extern string exif_tag_get_title (ExifTag tag);
+	static extern IntPtr exif_tag_get_title (ExifTag tag);
 
 	[DllImport ("libexif.so")]
-	static extern string exif_tag_get_description (ExifTag tag);
+	static extern IntPtr exif_tag_get_description (ExifTag tag);
 
 	[DllImport ("libexif.so")]
-	static extern string exif_byte_order_get_name (ExifByteOrder order);
+	static extern IntPtr exif_byte_order_get_name (ExifByteOrder order);
 
 	[DllImport ("libexif.so")]
-	static extern string exif_format_get_name (ExifFormat format);
+	static extern IntPtr exif_format_get_name (ExifFormat format);
 
 	[DllImport ("libexif.so")]
 	static extern char exif_format_get_size (ExifFormat format);
 
 	[DllImport ("libexif.so")]
-	static extern string exif_ifd_get_name (ExifIfd ifd);
+	static extern IntPtr exif_ifd_get_name (ExifIfd ifd);
 
 
 	public static string GetTagName (ExifTag tag)
 	{
-		return exif_tag_get_name (tag);
+		
+		IntPtr raw_ret = exif_tag_get_name (tag);
+		return Marshal.PtrToStringAnsi (raw_ret);
 	}
 
 	public static string GetTagTitle (ExifTag tag)
 	{
-		return exif_tag_get_title (tag);
+		IntPtr raw_ret = exif_tag_get_title (tag);
+		return Marshal.PtrToStringAnsi (raw_ret);
 	}
 
 	public static string GetTagDescription (ExifTag tag)
 	{
-		return exif_tag_get_description (tag);
+		IntPtr raw_ret = exif_tag_get_description (tag);
+		return Marshal.PtrToStringAnsi (raw_ret);
 	}
 
 	public static string GetByteOrderName (ExifByteOrder order)
 	{
-		return exif_byte_order_get_name (order);
+		IntPtr raw_ret = exif_byte_order_get_name (order);
+		return Marshal.PtrToStringAnsi (raw_ret);
 	}
 
 	public static string GetFormatName (ExifFormat format)
 	{
-		return exif_format_get_name (format);
+		IntPtr raw_ret = exif_format_get_name (format);
+		return Marshal.PtrToStringAnsi (raw_ret);
 	}
 
 	public static char GetFormatSize (ExifFormat format)
@@ -200,7 +206,8 @@ internal class ExifUtil {
 
 	public static string GetIfdName (ExifIfd ifd)
 	{
-		return exif_ifd_get_name (ifd);
+		IntPtr raw_ret = exif_ifd_get_name (ifd);
+		return Marshal.PtrToStringAnsi (raw_ret);
 	}
 	
 }
@@ -232,10 +239,10 @@ internal unsafe struct _ExifEntry {
 	readonly public _ExifContent *parent;
 
 	[DllImport ("libexif.so")]
-	internal static extern string exif_entry_get_value (_ExifEntry *entry);
+	internal static extern IntPtr exif_entry_get_value (_ExifEntry *entry);
 
 	[DllImport ("libexif.so")]
-	internal static extern string exif_entry_get_value_brief (_ExifEntry *entry);
+	internal static extern IntPtr exif_entry_get_value_brief (_ExifEntry *entry);
 }
 
 [StructLayout(LayoutKind.Sequential)]
@@ -312,7 +319,7 @@ public class ExifData : IDisposable {
 
 	unsafe void AssembleContent (_ExifEntry *entry, void *callback_data)
 	{
-		string_values [entry->tag] = _ExifEntry.exif_entry_get_value (entry);
+		string_values [entry->tag] = Marshal.PtrToStringAnsi (_ExifEntry.exif_entry_get_value (entry));
 
 		byte [] raw_data = new byte [entry->size];
 		Marshal.Copy (raw_data, 0, (IntPtr) entry->data, (int) entry->size);
