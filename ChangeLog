@@ -1,3 +1,8 @@
+2004-08-17  Joe Shaw  <joeshaw@novell.com>
+
+	* src/TagStore.cs (TagStore.CreateDefaultTags): Set this.hidden to
+	the hidden_tag.
+
 2004-08-17  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoStore.cs: remove useless block.

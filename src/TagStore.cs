@@ -296,6 +296,7 @@ public class TagStore : DbStore {
 		Tag hidden_tag = CreateTag (RootCategory, "Hidden");
 		hidden_tag.StockIconName = "f-spot-hidden.png";
 		hidden_tag.SortPriority = -9;
+		this.hidden = hidden_tag;
 		Commit (hidden_tag);
 
 		Tag people_category = CreateCategory (RootCategory, "People");
