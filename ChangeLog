@@ -1,5 +1,9 @@
 2005-01-06  Larry Ewing  <lewing@novell.com>
 
+	* src/ThreadProgressDialog.cs: remove some using statements to
+	disambiguate the namespace so the old mono versions don't
+	complain.
+
 	* src/GalleryRemote.cs: set autorotate to true for gallery.
 
 	* src/f-spot.glade: set the pane packing correctly.

@@ -1,7 +1,7 @@
+using System;
+
 namespace FSpot {
-	using Gtk;
-	using GtkSharp;
-	using System;
+
 	
 	public class ProgressItem {
 		public ProgressItem () {
@@ -28,7 +28,7 @@ namespace FSpot {
 		}
 	}
 
-	public class ThreadProgressDialog : Dialog {
+	public class ThreadProgressDialog : Gtk.Dialog {
 
 		private int total;
 		private int completed;
@@ -55,19 +55,19 @@ namespace FSpot {
 			BorderWidth = 6;
 			SetDefaultSize (300, -1);
 			
-			message_label = new Label ("");
+			message_label = new Gtk.Label ("");
 			VBox.PackStart (message_label, true, true, 12);
 			
-			progress_bar = new ProgressBar ();
+			progress_bar = new Gtk.ProgressBar ();
 			VBox.PackStart (progress_bar, true, true, 6);
 
 			button_label = Gtk.Stock.Cancel;
-			button = (Gtk.Button) AddButton (button_label, (int)ResponseType.Cancel);
+			button = (Gtk.Button) AddButton (button_label, (int)Gtk.ResponseType.Cancel);
 			
 			delay = new Delay (new GLib.IdleHandler (HandleUpdate));
 
-			Response += new ResponseHandler (HandleResponse);
-			Destroyed += new EventHandler (HandleDestroy);
+			Response += HandleResponse;
+			Destroyed += HandleDestroy;
 		}
 
 		private string progress_text;
@@ -122,7 +122,7 @@ namespace FSpot {
 			}
 		}
 
-		private void HandleResponse (object obj, ResponseArgs args) {
+		private void HandleResponse (object obj, Gtk.ResponseArgs args) {
 			this.Destroy ();
 		}
 
