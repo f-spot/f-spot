@@ -1,12 +1,14 @@
 CSC = mcs --unsafe -g
 
 F_SPOT_CSFILES =				\
+	$(srcdir)/DateCommands.cs		\
 	$(srcdir)/Db.cs				\
 	$(srcdir)/ExifData.cs			\
 	$(srcdir)/ExifUtils.cs			\
 	$(srcdir)/ExportCommand.cs		\
 	$(srcdir)/FileImportBackend.cs		\
 	$(srcdir)/FormClient.cs			\
+	$(srcdir)/FullScreenView.cs		\
 	$(srcdir)/GalleryRemote.cs		\
 	$(srcdir)/GtkDnd.cs			\
 	$(srcdir)/IconView.cs			\
