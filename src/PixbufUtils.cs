@@ -369,7 +369,7 @@ class PixbufUtils {
 		return TransformOrientation (src, orientation, true);
 	}
 
-	public static Gdk.Rectangle TransformAndCopy (Gdk.Pixbuf src, Gdk.Pixbuf dest, PixbufOrientation orientation, Gdk.Rectangle args)
+	public static Gdk.Rectangle TransformOrientation (Gdk.Pixbuf src, Gdk.Rectangle args, PixbufOrientation orientation)
 	{
 		Gdk.Rectangle area = args;
 		
@@ -410,18 +410,45 @@ class PixbufUtils {
 		default:
 			break;
 		}
+		
+		return area;
+	}
+	
+	public static Gdk.Rectangle TransformAndCopy (Gdk.Pixbuf src, Gdk.Pixbuf dest, PixbufOrientation orientation, Gdk.Rectangle args)
+	{
+		Gdk.Rectangle area = TransformOrientation (src, args, orientation);
 
+		int step = 256;
+		Gdk.Pixbuf tmp = new Gdk.Pixbuf (src.Colorspace, src.HasAlpha, 
+						 src.BitsPerSample,
+						 step, step);
 
-		Gdk.Pixbuf ssub = new Gdk.Pixbuf (src, args.X, args.Y,
-						  args.Width, args.Height);
-		Gdk.Pixbuf dsub = new Gdk.Pixbuf (dest, area.X, area.Y,
-						  area.Width, area.Height);
+		Gdk.Rectangle rect = new Gdk.Rectangle (args.X, args.Y, step, step);
+		Gdk.Rectangle subarea;
+		while (rect.Y < args.Height) {
+			while (rect.X < args.Width) {
+				rect.Intersect (args, out subarea);
+				Gdk.Rectangle trans = TransformOrientation (src, subarea, orientation);
 
-		CopyWithOrientation (ssub, dsub, orientation);
+			        Gdk.Pixbuf ssub = new Gdk.Pixbuf (src, subarea.X, subarea.Y,
+								  subarea.Width, subarea.Height);
 
-		ssub.Dispose ();
-		dsub.Dispose ();
+				
+				Gdk.Pixbuf tsub = new Gdk.Pixbuf (tmp, 0, 0, subarea.Height, subarea.Width);
 
+				CopyWithOrientation (ssub, tsub, orientation);
+				
+				tsub.CopyArea (0, 0, trans.Width, trans.Height, dest, trans.X, trans.Y);
+
+				ssub.Dispose ();
+				tsub.Dispose ();
+				rect.X += rect.Width;
+			}
+			rect.X = args.X;
+			rect.Y += rect.Height;
+		}
+
+		tmp.Dispose ();
 		return area;
 	}
 

@@ -1,5 +1,12 @@
 2005-01-15  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufUtils.cs: break the working region up into a 256x256
+	subregion and use a temporary buffer to improve the locality of
+	the rotation.  Speeds things up a _lot_.
+
+	* src/IconView.cs: disable the call to
+	Gnome.Thumnail.ScaleDownPixbuf it leaks really badly
+
 	* src/f-spot.glade: give the infobox a little more space.
 
 	* src/CompatFileChooser.cs: change the version check now that
