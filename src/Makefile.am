@@ -11,6 +11,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Delay.cs			\
 	$(srcdir)/DirectoryAdaptor.cs		\
 	$(srcdir)/DirectoryCollection.cs	\
+	$(srcdir)/Exif.cs			\
 	$(srcdir)/ExifData.cs			\
 	$(srcdir)/ExifUtils.cs			\
 	$(srcdir)/ExportCommand.cs		\

@@ -1,6 +1,15 @@
+2005-01-26  Larry Ewing  <lewing@novell.com>
+
+	* Makefile.am: add the new exif wrapper to the build.
+	
+	* src/InfoDisplay.cs: use the new exif wrapper.
+	
+	* src/Exif.cs: add a new libexif wrapper that covers more of the
+	library.
+
 2005-01-25  Larry Ewing  <lewing@novell.com>
 
-	* src/ImageView.cs: pass the cms transform as a handleref.
+	* src/ImageView.cs: pass the cms transform as a HandleRef.
 
 	* src/Cms.cs: use handleref not just IntPtr, clean up the
 	finalizer.

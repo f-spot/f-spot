@@ -7,7 +7,7 @@ namespace FSpot {
 
 		}
 
-		private ExifData exif_info;
+		private Exif.ExifData exif_info;
 
 		private Photo photo;
 		public Photo Photo {
@@ -21,8 +21,7 @@ namespace FSpot {
 					exif_info.Dispose ();
 
 				if (photo != null) {
-					exif_info = new ExifData (photo.DefaultVersionPath);
-					exif_info.Assemble ();
+					exif_info = new Exif.ExifData (photo.DefaultVersionPath);
 				} else {
 					exif_info = null;
 				}
@@ -65,17 +64,21 @@ namespace FSpot {
 			string fg = Color (this.Style.Foreground (Gtk.StateType.Active));
 			string ig = Color (this.Style.Base (Gtk.StateType.Active));
 
+			int i = 0;
 			if (exif_info != null) {
 				stream.Write ("<table width=100% cellspacing=0 cellpadding=3>");
 				stream.Write ("<tr><td colspan=2 align=\"center\" bgcolor=\"" + ig + "\"><img center src=\"exif:thumbnail\"></td></tr>");
-				foreach (ExifTag tag in exif_info.Tags) {
-					stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
-					stream.Write (ExifUtil.GetTagTitle (tag));
-					stream.Write ("</font></td><td>");
-					string s = exif_info.LookupString (tag);
-					if (s != null && s != "")
-						stream.Write (s);
-					stream.Write ("</td><tr>");
+				foreach (Exif.ExifContent content in exif_info.GetContents ()) {
+					stream.Write ("<tr><th align=center colspan=2>" + Exif.ExifUtil.GetIfdName ((Exif.ExifIfd)i++) + "</th><tr>");
+					foreach (Exif.ExifEntry entry in content.GetEntries ()) {
+						stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
+						stream.Write (entry.Title);
+						stream.Write ("</font></td><td>");
+						string s = entry.Value;
+						if (s != null && s != "")
+							stream.Write (s);
+						stream.Write ("</td><tr>");
+					}
 				}
 				stream.Write ("</table>");
 			}
