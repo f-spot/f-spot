@@ -170,7 +170,7 @@ namespace FSpot {
 				}
 
 				if (open)
-					Gnome.Url.Show (target.ToString ());
+					GnomeUtil.UrlShow (null, target.ToString ());
 
 			} catch (System.Exception e) {
 				progress_dialog.Message = e.ToString ();

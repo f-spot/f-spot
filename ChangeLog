@@ -1,3 +1,11 @@
+2005-03-20  Miguel de Icaza  <miguel@novell.com>
+
+	* src/Util.cs (GnomeUtil.UrlShow): New helper routine to show urls
+	and detect errors.  Gnome.Url.Show might fail if some url handlers
+	are not registered. 
+
+	* src/MainWindow.cs: Use new helper routine.
+ 
 2005-03-24  Larry Ewing  <lewing@novell.com>
 
 	* src/JpegUtils.cs: offer a method to save exif info directly.

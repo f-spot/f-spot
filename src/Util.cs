@@ -253,5 +253,27 @@ class GtkUtil {
 		}
 		return null;
 	}
+
+	
 			
+}
+
+class GnomeUtil {
+	public static void UrlShow (Gtk.Window owner_window, string url)
+	{
+		try {
+			Gnome.Url.Show (url);
+		} catch (Exception ge) {
+			System.Console.WriteLine (ge.ToString ());
+			HigMessageDialog md = new HigMessageDialog (owner_window, Gtk.DialogFlags.DestroyWithParent, 
+				Gtk.MessageType.Error, Gtk.ButtonsType.Ok, 
+				Mono.Posix.Catalog.GetString ("There was an error invoking the external handler"),
+				String.Format (Mono.Posix.Catalog.GetString ("Received error:\n\"{0}\"\n"), 
+				ge.Message));
+
+			md.Run ();
+			md.Destroy ();
+		}
+		
+	}
 }

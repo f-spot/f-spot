@@ -968,9 +968,7 @@ public class MainWindow {
 			url.Append ("&attach=" + p.DefaultVersionPath);
 		}
 
-		Console.WriteLine (url.ToString ());
-
-		Gnome.Url.Show (url.ToString ());
+		GnomeUtil.UrlShow (main_window, url.ToString ());
 	}
 
 	void HandleAbout (object sender, EventArgs args)

@@ -412,8 +412,8 @@ public class PhotoStore : DbStore {
 			using (Exif.ExifData ed = new Exif.ExifData (path)){
 				return PixbufUtils.GetThumbnail (ed);
 			}
-		} catch {
-			Console.WriteLine ("Exif died, using regular backend.");
+		} catch (Exception e) {
+			Console.WriteLine ("Exif died, using regular backend: " + e);
 		}
 		return null;
 	}

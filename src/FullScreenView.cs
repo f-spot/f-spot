@@ -1,3 +1,4 @@
+using Gtk;
 namespace FSpot {
 	public class ScrolledView : Gtk.Fixed {
 		private Gtk.EventBox ebox;

@@ -443,7 +443,7 @@ namespace FSpot {
 			}
 			
 			if (browser) {
-				Gnome.Url.Show (album.GetUrl());
+				GnomeUtil.UrlShow (null, album.GetUrl());
 			}
 		}
 		

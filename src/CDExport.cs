@@ -37,7 +37,7 @@ namespace FSpot {
 
 		void HandleBrowseExisting (object sender, System.EventArgs args)
 		{
-			Gnome.Url.Show (dest.ToString ());
+			GnomeUtil.UrlShow (null, dest.ToString ());
 		}
 
 		[DllImport ("libc")] 

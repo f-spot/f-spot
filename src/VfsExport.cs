@@ -123,7 +123,7 @@ namespace FSpot {
 				}
 
 				if (open && photo_index > 0)
-					Gnome.Url.Show (dest.ToString ());
+					GnomeUtil.UrlShow (null, dest.ToString ());
 
 			} catch (System.Exception e) {
 				progress_dialog.Message = e.ToString ();
