@@ -495,12 +495,8 @@ public class IconView : Gtk.Layout {
 			region.X = (int) (bounds.X + (bounds.Width - region.Width) / 2);
 			region.Y = (int) bounds.Y + ThumbnailHeight - region.Height + CELL_BORDER_WIDTH;
 			
-			if (region.Width != thumbnail.Width && region.Height != thumbnail.Height) {
-				System.Console.WriteLine ("reload ({0},{1}) != ({2},{3})",
-							  region.Width, region.Height,
-							  thumbnail.Width, thumbnail.Height);
+			if (region.Width != thumbnail.Width && region.Height != thumbnail.Height)
 				cache.Reload (entry, thumbnail_num, thumbnail.Width, thumbnail.Height);
-			}
 
 			region = Expand (region, expansion);
 			Pixbuf temp_thumbnail;			
@@ -834,10 +830,8 @@ public class IconView : Gtk.Layout {
 		if (order > 0 && order < collection.Items.Length) {
 			System.Uri uri = collection.Items [order].DefaultVersionUri;
 			
-			if (!FSpot.PhotoLoader.ThumbnailIsValid (uri, result)) {
+			if (!FSpot.PhotoLoader.ThumbnailIsValid (uri, result))
 				FSpot.ThumbnailGenerator.Default.Request (uri.LocalPath, 0, 256, 256);
-				System.Console.WriteLine ("reload {0}", uri.LocalPath);
-			}
 		}
 
 		// We have to do the scaling here rather than on load because we need to preserve the 
