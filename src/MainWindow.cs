@@ -837,7 +837,7 @@ public class MainWindow {
 			} else if (num_cameras == 1) {
 				selected_cam = 0;
 			} else {
-				CameraSelectionDialog camselect = new CameraSelectionDialog (cam.CameraList);
+				FSpot.CameraSelectionDialog camselect = new FSpot.CameraSelectionDialog (cam.CameraList);
 				selected_cam = camselect.Run ();
 			}
 			
@@ -845,11 +845,9 @@ public class MainWindow {
 				cam.SelectCamera (selected_cam);	
 				cam.InitializeCamera ();
 			
-				CameraFileSelectionDialog file_selector = new CameraFileSelectionDialog (cam, db);
-				
-				file_selector.Run ();
-				InvalidateViews ();
-				
+				FSpot.CameraFileSelectionDialog selector = new FSpot.CameraFileSelectionDialog (cam, db);
+				selector.Run ();
+
 				UpdateQuery ();
 			}
 		}

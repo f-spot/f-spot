@@ -4,23 +4,13 @@ using System;
 
 public class PhotoVersionCommands {
 
-	private class VersionNameRequest {
+	private class VersionNameRequest : FSpot.GladeDialog {
 		private Photo photo;
 
-		[Glade.Widget]
-		private Dialog version_name_dialog;
-
-		[Glade.Widget]
-		private Button ok_button;
-
-		[Glade.Widget]
-		private Entry version_name_entry;
-
-		[Glade.Widget]
-		private Label prompt_label;
-
-		[Glade.Widget]
-		private Label already_in_use_label;
+		[Glade.Widget] private Button ok_button;
+		[Glade.Widget] private Entry version_name_entry;
+		[Glade.Widget] private Label prompt_label;
+		[Glade.Widget] private Label already_in_use_label;
 
 		public enum RequestType {
 			Create,
@@ -54,22 +44,19 @@ public class PhotoVersionCommands {
 			Update ();
 		}
 
-		public VersionNameRequest (RequestType request_type, Photo photo, Gtk.Window parent_window)
+		public VersionNameRequest (RequestType request_type, Photo photo, Gtk.Window parent_window) : base ("version_name_dialog")
 		{
 			this.request_type = request_type;
 			this.photo = photo;
 
-			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "version_name_dialog", null);
-			xml.Autoconnect (this);
-
 			switch (request_type) {
 			case RequestType.Create:
-				version_name_dialog.Title = Mono.Posix.Catalog.GetString ("Create New Version");
+				this.Dialog.Title = Mono.Posix.Catalog.GetString ("Create New Version");
 				prompt_label.Text = Mono.Posix.Catalog.GetString ("Name:");
 				break;
 
 			case RequestType.Rename:
-				version_name_dialog.Title = Mono.Posix.Catalog.GetString ("Rename Version");
+				this.Dialog.Title = Mono.Posix.Catalog.GetString ("Rename Version");
 				prompt_label.Text = Mono.Posix.Catalog.GetString ("New name:");
 				version_name_entry.Text = photo.GetVersionName (photo.DefaultVersionId);
 				version_name_entry.SelectRegion (0, -1);
@@ -77,22 +64,22 @@ public class PhotoVersionCommands {
 			}
 
 			version_name_entry.ActivatesDefault = true;
-			version_name_dialog.TransientFor = parent_window;
 
-			version_name_dialog.DefaultResponse = ResponseType.Ok;
+			this.Dialog.TransientFor = parent_window;
+			this.Dialog.DefaultResponse = ResponseType.Ok;
 
 			Update ();
 		}
 
 		public ResponseType Run (out string name)
 		{
-			ResponseType response = (ResponseType) version_name_dialog.Run ();
+			ResponseType response = (ResponseType) this.Dialog.Run ();
 
 			name = version_name_entry.Text;
 			if (request_type == RequestType.Rename && name == photo.GetVersionName (photo.DefaultVersionId))
 				response = ResponseType.Cancel;
 
-			version_name_dialog.Destroy ();
+			this.Dialog.Destroy ();
 
 			return response;
 		}

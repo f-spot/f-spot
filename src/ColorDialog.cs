@@ -3,17 +3,13 @@ using Gtk;
 using System.Threading;
 
 namespace FSpot {
-	public class ColorDialog {
+	public class ColorDialog : GladeDialog {
 		Gdk.Pixbuf ScaledPixbuf;
 		Gdk.Pixbuf AdjustedPixbuf;
 
 #if USE_THREAD		
 		Delay expose_timeout;
 #endif
-
-		[Glade.Widget] private Gtk.Dialog external_color_dialog;
-		[Glade.Widget] private Gtk.Dialog inline_color_dialog;
-		
 		[Glade.Widget] private Gtk.SpinButton source_spinbutton;
 		[Glade.Widget] private Gtk.SpinButton dest_spinbutton;
 
@@ -146,8 +142,8 @@ namespace FSpot {
 			}
 			
 			Console.WriteLine ("Saving....");
-			color_dialog.Sensitive = false;
-			color_dialog.Destroy ();
+			this.Dialog.Sensitive = false;
+			this.Dialog.Destroy ();
 		}
 		
 		public void Cancel ()
@@ -155,7 +151,7 @@ namespace FSpot {
 			view.Transform = null;
 			view.QueueDraw ();
 			view.PhotoChanged -= HandlePhotoChanged;
-			color_dialog.Destroy ();
+			this.Dialog.Destroy ();
 		}
 		
 		private void HandleOkClicked (object sender, EventArgs args)
@@ -180,16 +176,6 @@ namespace FSpot {
 			Cancel ();
 		}
 		
-		private Gtk.Dialog color_dialog
-		{
-			get {
-				if (external_color_dialog != null)
-					return external_color_dialog;
-				else
-					return inline_color_dialog;
-			}
-		}
-		
 		public ColorDialog (FSpot.PhotoQuery query, int item)
 		{
 			view = new FSpot.PhotoImageView (query);
@@ -197,34 +183,27 @@ namespace FSpot {
 			view.Show ();
 			view.CurrentPhoto = item;
 
-			AttachInterface ("external_color_dialog");
+			this.CreateDialog ("external_color_dialog");
+			AttachInterface ();
 		}
 
 		public ColorDialog (FSpot.PhotoImageView view)       
 		{
 			this.view = view;
-			AttachInterface ("inline_color_dialog");
+			this.CreateDialog ("inline_color_dialog");
+			AttachInterface ();
 		}
 
-		private void AttachInterface (string ui_path)
+		private void AttachInterface ()
 		{
-			Glade.XML xml = new Glade.XML (null, "f-spot.glade", ui_path, null);
-			/*
-			if (!view.CurrentPhotoValid ())
-				return;
-			*/
-
 			view.PhotoChanged += HandlePhotoChanged;
-			xml.Autoconnect (this);
-
-
 			hist = new FSpot.Histogram ();
 #if USE_THREAD
 			expose_timeout = new FSpot.Delay (new GLib.IdleHandler (this.QueueDraw));
 #endif
 
 			#if true
-			Gdk.Color c = color_dialog.Style.Backgrounds [(int)Gtk.StateType.Active];
+			Gdk.Color c = this.Dialog.Style.Backgrounds [(int)Gtk.StateType.Active];
 			hist.Color [0] = (byte) (c.Red / 0xff);
 			hist.Color [1] = (byte) (c.Green / 0xff);
 			hist.Color [2] = (byte) (c.Blue / 0xff);

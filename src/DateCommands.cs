@@ -6,21 +6,13 @@ using Gtk;
 using Gnome;
 
 public class DateCommands {
-	public class Set {
+	public class Set : GladeDialog {
 		FSpot.PhotoQuery query;
 		Gtk.Window parent_window;
 
-		[Glade.Widget]
-		private Gtk.Dialog date_range_dialog;
-
-		[Glade.Widget]
-		private Button ok_button;
-
-		[Glade.Widget]
-		private DateEdit start_dateedit;
-
-		[Glade.Widget] 
-		private DateEdit end_dateedit;
+		[Glade.Widget] private Button ok_button;
+		[Glade.Widget] private DateEdit start_dateedit;
+		[Glade.Widget] private DateEdit end_dateedit;
 
 		public Set (FSpot.PhotoQuery query, Gtk.Window parent_window)
 		{
@@ -30,16 +22,15 @@ public class DateCommands {
 
 		public bool Execute ()
 		{
-			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "date_range_dialog", null);
-			xml.Autoconnect (this);
+			this.CreateDialog ("date_range_dialog");
 			
 			if (query.Range != null) {
 				start_dateedit.Time = query.Range.Start;
 				end_dateedit.Time = query.Range.End;
 			}
 
-			date_range_dialog.DefaultResponse = ResponseType.Ok;
-			ResponseType response = (ResponseType) date_range_dialog.Run ();
+			this.Dialog.DefaultResponse = ResponseType.Ok;
+			ResponseType response = (ResponseType) this.Dialog.Run ();
 
 			bool success = false;
 
@@ -48,7 +39,7 @@ public class DateCommands {
 				success = true;
 			}
 			
-			date_range_dialog.Destroy ();
+			this.Dialog.Destroy ();
 			return success;
 		}
 	}

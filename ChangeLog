@@ -1,5 +1,27 @@
 2005-02-16  Larry Ewing  <lewing@novell.com>
 
+	* src/Makefile.am: remove ExportCommand.cs from the build.
+
+	* src/CDExport.cs: use GladeDialog.
+
+	* src/CameraFileSelectionDialog.cs: use GladeDialog.
+
+	* src/CameraSelectionDialog.cs: use GladeDialog.
+
+	* src/ColorDialog.cs: use GladeDialog.
+
+	* src/ExportCommand.cs: remove unused file.
+
+	* src/DateCommands.cs: use GladeDialog.
+
+	* src/PhotoVersionCommands.cs: use GaldeDialog.
+
+	* src/TagSelectionDialog.cs: use GladeDialog.
+
+	* src/MainWindow.cs: namespace the filesel stuff.
+
+	* src/ImportCommand.cs: use GladeDialog.
+
 	* src/Makefile.am: add GladeDialog to the build.
 
 	* src/GladeDialog.cs: Helper class to handle the repetitive bits

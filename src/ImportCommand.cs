@@ -7,7 +7,7 @@ using System.Collections;
 using System.IO;
 using System;
 
-public class ImportCommand {
+public class ImportCommand : FSpot.GladeDialog {
 
 	private class PhotoGrid : Table {
 		const int NUM_COLUMNS = 5;
@@ -92,7 +92,6 @@ public class ImportCommand {
 	}
 
 
-	[Glade.Widget] Gtk.Dialog import_dialog; 
 	[Glade.Widget] Gtk.Entry import_folder_entry;
 	[Glade.Widget] Gtk.OptionMenu tag_option_menu;
 	[Glade.Widget] Gtk.Image tag_image;
@@ -108,12 +107,17 @@ public class ImportCommand {
 
 	bool cancelled;
 
+	public ImportCommand (Gtk.Window mw)
+	{
+		main_window = mw;
+	}
+
 	private void HandleDialogResponse (object obj, ResponseArgs args)
 	{
 		cancelled = true;
 	}
 
-	private void CreateDialog ()
+	private void CreateDisplayDialog ()
 	{
 		dialog = new Gtk.Dialog ();
 		dialog.AddButton (Gtk.Stock.Cancel, 0);
@@ -139,7 +143,7 @@ public class ImportCommand {
 	{
 		int total = importer.Prepare ();
 		
-		CreateDialog ();
+		CreateDisplayDialog ();
 		UpdateProgressBar (0, total);
 
 		cancelled = false;
@@ -181,11 +185,6 @@ public class ImportCommand {
 		else
 			return total;
 	}
-
-	public ImportCommand (Gtk.Window mw)
-	{
-		main_window = mw;
-	}
 	
 	public string ImportPath {
 		get {
@@ -222,9 +221,7 @@ public class ImportCommand {
 	
 	public int ImportFromFile (PhotoStore store, string path)
 	{
-	
-		Glade.XML xml = new Glade.XML (null, "f-spot.glade", "import_dialog", null);
-		xml.Autoconnect (this);
+		this.CreateDialog ("import_dialog");
 		
 		//Gtk.Menu menu = new Gtk.Menu();
 		MenuItem attach_item = new MenuItem (Mono.Posix.Catalog.GetString ("Select Tag"));
@@ -244,14 +241,14 @@ public class ImportCommand {
 		else 
 			import_folder_entry.Text = System.Environment.GetEnvironmentVariable ("HOME");
 						
-		ResponseType response = (ResponseType) import_dialog.Run ();
+		ResponseType response = (ResponseType) this.Dialog.Run ();
 		
 		if (response == ResponseType.Ok) {
 			string [] pathimport =  {import_folder_entry.Text};
-			import_dialog.Destroy();
+			this.Dialog.Destroy();
 			return DoImport (new FileImportBackend (store, pathimport, true, new Tag [] {tag_selected}));
 		} else {
-			import_dialog.Destroy();
+			this.Dialog.Destroy();
 			return 0;
 		}
 	}

@@ -1,12 +1,10 @@
 using System.Runtime.InteropServices;
 
 namespace FSpot {
-	public class CDExport {
+	public class CDExport : GladeDialog {
 		IPhotoCollection selection;
-		[Glade.Widget] Gtk.Dialog cd_export_dialog;
 
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
-		
 		[Glade.Widget] Gtk.CheckButton remove_check;
 		
 
@@ -18,16 +16,9 @@ namespace FSpot {
 		FSpot.ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
 
-		[DllImport ("libc")] 
-		extern static int system (string program);
-
-		public CDExport (IPhotoCollection selection)
+		public CDExport (IPhotoCollection selection) : base ("cd_export_dialog")
 		{
 			this.selection = selection;
-			
-			// FIXME this xml file path should be be retrieved from a central location not hard coded there
-			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "cd_export_dialog", null);
-			xml.Autoconnect (this);
 			
 			IconView view = new IconView (selection);
 			view.DisplayDates = false;
@@ -44,16 +35,13 @@ namespace FSpot {
 			Dialog.Response += HandleResponse;
 		}
 
-		public Gtk.Dialog Dialog {
-			get {
-				return this.cd_export_dialog;
-			}
-		}
-
 		void HandleBrowseExisting (object sender, System.EventArgs args)
 		{
 			Gnome.Url.Show (dest.ToString ());
 		}
+
+		[DllImport ("libc")] 
+		extern static int system (string program);
 
 		public void Transfer () {
 			try {
