@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-23 20:54+0100\n"
-"PO-Revision-Date: 2005-01-23 20:54+0100\n"
+"POT-Creation-Date: 2005-01-26 09:33+0100\n"
+"PO-Revision-Date: 2005-01-26 09:12+0100\n"
 "Last-Translator: Frank Arnold <frank@scirocco-5v-turbo.de>\n"
 "Language-Team: German GNOME Translators <gnome-de@gnome.org >\n"
 "MIME-Version: 1.0\n"
@@ -151,7 +151,7 @@ msgstr "{0} von {1}"
 #: src/CDExport.cs:83 src/FlickrExport.cs:89 src/GalleryExport.cs:345
 #: src/OriginalExport.cs:135 src/VfsExport.cs:101
 msgid "Done Sending Photos"
-msgstr "Verschicken der Bilder abgeschlossen"
+msgstr "Verschicken der Fotos abgeschlossen"
 
 #: src/CDExport.cs:85 src/OriginalExport.cs:137 src/VfsExport.cs:103
 msgid "Transfer Complete"
@@ -256,7 +256,7 @@ msgstr "<b>Fotografie-Layout</b>"
 
 #: src/f-spot.glade.h:13
 msgid "<b>Photos</b>"
-msgstr "<b>Bilder</b>"
+msgstr "<b>Fotos</b>"
 
 #: src/f-spot.glade.h:14
 msgid "<b>Predefined</b>"
@@ -636,7 +636,7 @@ msgstr "Ansicht"
 
 #: src/f-spot.glade.h:112
 msgid "View photos in browser when done uploading"
-msgstr "Nach dem Hochladen die Bilder in einem Browser anzeigen"
+msgstr "Nach dem Hochladen die Fotos in einem Browser anzeigen"
 
 #: src/f-spot.glade.h:113
 msgid "Virtual Filesystem"
@@ -829,46 +829,84 @@ msgstr "(Keine)"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: src/MainWindow.cs:896
+#: src/MainWindow.cs:920
 msgid "translator-credits"
 msgstr "Frank Arnold <frank@scirocco-5v-turbo.de>"
 
-#: src/MainWindow.cs:1026
+#: src/MainWindow.cs:1050
 msgid "Unsharp Mask"
 msgstr "Weichzeichnen"
 
-#: src/MainWindow.cs:1035
+#: src/MainWindow.cs:1059
 msgid "Amount:"
 msgstr "Betrag:"
 
-#: src/MainWindow.cs:1036
+#: src/MainWindow.cs:1060
 msgid "Radius:"
 msgstr "Radius:"
 
-#: src/MainWindow.cs:1037
+#: src/MainWindow.cs:1061
 msgid "Threshold:"
 msgstr "Schwellwert:"
 
-#: src/MainWindow.cs:1289
+#: src/MainWindow.cs:1334
 #, csharp-format
-msgid "Delete the selected photo permanently"
-msgid_plural "Delete the {0} selected photos permanently"
-msgstr[0] "Das ausgewählte Foto dauerhaft löschen"
-msgstr[1] "Die {0} ausgewählten Fotos dauerhaft löschen"
+msgid "Delete the selected photo permanently?"
+msgid_plural "Delete the {0} selected photos permanently?"
+msgstr[0] "Das ausgewählte Foto dauerhaft löschen?"
+msgstr[1] "Die {0} ausgewählten Fotos dauerhaft löschen?"
 
-#: src/MainWindow.cs:1310
-#, csharp-format
-msgid "Remove the selected photo from the catalog"
-msgid_plural "Remove the {0} selected photos from the catalog"
-msgstr[0] "Das ausgewählte Foto aus dem Katalog entfernen"
-msgstr[1] "Die {0} ausgewählten Fotos aus dem Katalog entfernen"
+#: src/MainWindow.cs:1338
+msgid "This deletes all versions of the selected photo from your drive."
+msgid_plural ""
+"This deletes all versions of the selected photos from your drive."
+msgstr[0] "Dies löscht alle Versionen des gewählten Fotos vom Laufwerk."
+msgstr[1] "Dies löscht alle Versionen der gewählten Fotos vom Laufwerk."
 
-#: src/MainWindow.cs:1337
+#: src/MainWindow.cs:1341
+msgid "_Delete photo"
+msgid_plural "_Delete photos"
+msgstr[0] "Foto _löschen"
+msgstr[1] "Fotos _löschen"
+
+#: src/MainWindow.cs:1359
 #, csharp-format
-msgid "Delete the selected tag"
-msgid_plural "Delete the {0} selected tags"
-msgstr[0] "Die ausgewählte Markierung löschen"
-msgstr[1] "Die {0} ausgewählten Markierungen löschen"
+msgid "Remove the selected photo from the catalog?"
+msgid_plural "Remove the {0} selected photos from the catalog?"
+msgstr[0] "Das ausgewählte Foto aus dem Katalog entfernen?"
+msgstr[1] "Die {0} ausgewählten Fotos aus dem Katalog entfernen?"
+
+#: src/MainWindow.cs:1364
+msgid ""
+"If you remove photos from the catalog all tag information will be lost. The "
+"photos remain on your computer and can be imported into f-spot again."
+msgstr ""
+"Wenn Fotos aus dem Katalog entfernt werden, gehen alle "
+"Markierungsinformationen verloren. Die Fotos bleiben auf dem Rechner "
+"erhalten und können wieder in F-Spot importiert werden."
+
+#: src/MainWindow.cs:1365
+msgid "_Remove from Catalog"
+msgstr "Aus dem Katalog ent_fernen"
+
+#: src/MainWindow.cs:1388
+#, csharp-format
+msgid "Delete the selected tag?"
+msgid_plural "Delete the {0} selected tags?"
+msgstr[0] "Die ausgewählte Markierung löschen?"
+msgstr[1] "Die {0} ausgewählten Markierungen löschen?"
+
+#: src/MainWindow.cs:1393
+msgid "If you delete a tag, all associations with photos are lost."
+msgstr ""
+"Wenn eine Markierung gelöscht wird, gehen alle Verbindungen zu Fotos "
+"verloren."
+
+#: src/MainWindow.cs:1394
+msgid "_Delete tag"
+msgid_plural "_Delete tags"
+msgstr[0] "Markierung _löschen"
+msgstr[1] "Markierungen _löschen"
 
 #: src/OriginalExport.cs:168
 msgid "Error: Error while transferring, Aborting"
