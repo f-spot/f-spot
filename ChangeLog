@@ -1,5 +1,11 @@
 2005-01-20  Larry Ewing  <lewing@novell.com>
 
+	* src/ThumbnailGenerator.cs: remove debug output.
+
+	* src/PhotoView.cs: remove debug output.
+
+	* src/FileImportBackend.cs: remove debug output.
+
 	* configure.in: add configure check for the various mono dlls we
 	require.
 

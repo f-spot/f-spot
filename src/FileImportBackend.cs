@@ -36,14 +36,12 @@ public class FileImportBackend : ImportBackend {
 				else 
 					name = (new System.IO.FileInfo (p.GetVersionPath (id))).Name;
 
-				System.Console.WriteLine ("Found {0}", name);
 				exiting_entries [name] = p;
 			}
 		}
 	
 		foreach (System.IO.FileInfo f in files) {
 			if (exiting_entries [f.Name] == null) {
-				System.Console.WriteLine ("Importing {0} as {1}", f.Name, f.FullName);
 				AddPath (f.FullName);
 			}
 		}

@@ -232,8 +232,6 @@ public class PhotoView : EventBox {
 		photo_view.Pixbuf = cropped_pixbuf;
 		photo_view.UnsetSelection ();
 
-		System.Console.WriteLine ("Got here");
-
 		try {
 			if (photo.DefaultVersionId == Photo.OriginalVersionId) {
 				photo.DefaultVersionId = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);

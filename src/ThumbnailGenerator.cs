@@ -42,7 +42,6 @@ namespace FSpot {
 			// Load the image.
 			base.ProcessRequest (request);
 
-			System.Console.WriteLine ("Got here");
 			Gdk.Pixbuf image = request.result;
 			if (image != null) {
 				Save (image, request.path);
