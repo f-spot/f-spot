@@ -3,60 +3,23 @@ using System.Runtime.InteropServices;
 
 namespace LibGPhoto2
 {
-	[StructLayout(LayoutKind.Sequential)]
-	internal unsafe struct _Context
+	public class Context : Object
 	{
 		[DllImport ("libgphoto2.so")]
-		internal static extern _Context *gp_context_new ();
+		internal static extern IntPtr gp_context_new ();
+
+		public Context ()
+		{
+			this.handle = new HandleRef (this, gp_context_new ());
+		}
 		
 		[DllImport ("libgphoto2.so")]
-		internal static extern void gp_context_ref   (_Context *context);
-		
-		[DllImport ("libgphoto2.so")]
-		internal static extern void gp_context_unref (_Context *context);
-	}
-	
-	public class Context : IDisposable
-	{
-		unsafe _Context *obj;
-		
-		public Context()
+		internal static extern void gp_context_unref   (HandleRef context);
+
+		protected override void Cleanup ()
 		{
-			unsafe 
-			{
-				obj = _Context.gp_context_new();
-			}
-		}
-		
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
-		
-		~Context()
-		{
-			Dispose(false);
-		}
-		
-		protected virtual void Dispose (bool disposing)
-		{
-			unsafe
-			{
-				if (obj != null)
-				{
-					_Context.gp_context_unref(obj);
-					obj = null;
-				}
-			}
-		}
-		
-		unsafe internal _Context* UnsafeContext
-		{
-			get
-			{
-				return obj;
-			}
+			System.Console.WriteLine ("cleanup context");
+			gp_context_unref(handle);
 		}
 	}
 }

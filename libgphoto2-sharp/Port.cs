@@ -89,7 +89,7 @@ namespace LibGPhoto2
 		internal static extern ErrorCode gp_port_free (_Port *port);
 
 		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_port_set_info (_Port *port, _PortInfo info);
+		internal static extern ErrorCode gp_port_set_info (_Port *port, ref _PortInfo info);
 
 		[DllImport ("libgphoto2.so")]
 		internal static extern ErrorCode gp_port_get_info (_Port *port, out _PortInfo info);
@@ -175,20 +175,21 @@ namespace LibGPhoto2
 			ErrorCode result;
 			unsafe
 			{
-				result = _Port.gp_port_set_info(obj, info.SafePortInfo);
+				result = _Port.gp_port_set_info (obj, ref info.Handle);
 			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+
+			if (Error.IsError (result))
+				throw Error.ErrorException(result);
 		}
 		
 		public PortInfo GetInfo ()
 		{
-			ErrorCode result;
-			PortInfo info = new PortInfo();
+			PortInfo info = new PortInfo (); 
+
 			unsafe
 			{
-				result = _Port.gp_port_get_info(obj, out info.obj);
+				Error.CheckError (_Port.gp_port_get_info(obj, out info.Handle));
 			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
 			return info;
 		}
 		

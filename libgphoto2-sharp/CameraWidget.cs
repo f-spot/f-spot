@@ -19,7 +19,6 @@ namespace LibGPhoto2
 	public class CameraWidget : IDisposable
 	{
 		protected HandleRef handle;
-
 		
 		[DllImport ("libgphoto2.so")]
 		internal static extern ErrorCode gp_widget_ref (HandleRef widget);

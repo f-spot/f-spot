@@ -1,5 +1,8 @@
 2005-02-20  Larry Ewing  <lewing@novell.com>
 
+	* libgphoto2-sharp/: rewrite the bindings so that they work with
+	newer mono versions.
+
 	* src/GroupSelector.cs: use Gtk.Arrow instead of adding and image.
 
 2005-02-19  Larry Ewing  <lewing@novell.com>

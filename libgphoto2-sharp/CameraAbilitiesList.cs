@@ -72,132 +72,94 @@ namespace LibGPhoto2
 		int reserved8;
 	}
 	
-	[StructLayout(LayoutKind.Sequential)]
-	internal unsafe struct _CameraAbilitiesList
+	public class CameraAbilitiesList : Object
 	{
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_abilities_list_new (out IntPtr native);
 
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_abilities_list_new (out _CameraAbilitiesList *list);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_abilities_list_free (_CameraAbilitiesList *list);
-		
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_abilities_list_load (_CameraAbilitiesList *list, _Context *context);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_abilities_list_detect (_CameraAbilitiesList *list, _PortInfoList *info_list, _CameraList *l, _Context *context);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_abilities_list_count (_CameraAbilitiesList *list);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_abilities_list_lookup_model (_CameraAbilitiesList *list, [MarshalAs(UnmanagedType.LPTStr)] string model);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_abilities_list_get_abilities (_CameraAbilitiesList *list, int index, out CameraAbilities abilities);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_abilities_list_append (_CameraAbilitiesList *list, CameraAbilities abilities);
-	}
-	
-	public class CameraAbilitiesList : IDisposable
-	{
-		unsafe _CameraAbilitiesList *obj;
-		
 		public CameraAbilitiesList()
 		{
-			unsafe 
-			{
-				_CameraAbilitiesList.gp_abilities_list_new(out obj);
-			}
+			IntPtr native;
+
+			Error.CheckError (gp_abilities_list_new (out native));
+
+			this.handle = new HandleRef (this, native);
 		}
 		
-		public void Dispose()
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_abilities_list_free (HandleRef list);
+		
+		protected override void Cleanup ()
 		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
+			gp_abilities_list_free(this.handle);
 		}
 		
-		~CameraAbilitiesList()
-		{
-			Dispose(false);
-		}
-		
-		protected virtual void Dispose (bool disposing)
-		{
-			unsafe
-			{
-				if (obj != null)
-				{
-					_CameraAbilitiesList.gp_abilities_list_free(obj);
-					obj = null;
-				}
-			}
-		}
-		
+		[DllImport ("libgphoto2.so")]
+		internal unsafe static extern ErrorCode gp_abilities_list_load (HandleRef list, HandleRef context);
+
 		public void Load (Context context)
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _CameraAbilitiesList.gp_abilities_list_load(obj, context.UnsafeContext);
+			unsafe {
+				ErrorCode result = gp_abilities_list_load (this.Handle, context.Handle);
+				
+				if (Error.IsError (result))
+					throw Error.ErrorException(result);
 			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
 		}
 		
+		[DllImport ("libgphoto2.so")]
+		internal unsafe static extern ErrorCode gp_abilities_list_detect (HandleRef list, HandleRef info_list, HandleRef l, HandleRef context);
+
 		public void Detect (PortInfoList info_list, CameraList l, Context context)
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _CameraAbilitiesList.gp_abilities_list_detect(obj, info_list.UnsafePortInfoList, l.UnsafeCameraList, context.UnsafeContext);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			Error.CheckError (gp_abilities_list_detect (this.handle, info_list.Handle, 
+								    l.Handle, context.Handle));
 		}
 		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_abilities_list_count (HandleRef list);
+
 		public int Count ()
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _CameraAbilitiesList.gp_abilities_list_count(obj);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			ErrorCode result = gp_abilities_list_count (this.handle);
+
+			if (Error.IsError (result)) 
+				throw Error.ErrorException (result);
+
 			return (int)result;
 		}
 		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_abilities_list_lookup_model (HandleRef list, string model);
+
 		public int LookupModel (string model)
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _CameraAbilitiesList.gp_abilities_list_lookup_model(obj, model);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			ErrorCode result = gp_abilities_list_lookup_model(this.handle, model);
+
+			if (Error.IsError (result))
+				throw Error.ErrorException (result);
+	
 			return (int)result;
 		}
 		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_abilities_list_get_abilities (HandleRef list, int index, out CameraAbilities abilities);
+
 		public CameraAbilities GetAbilities (int index)
 		{
-			ErrorCode result;
-			CameraAbilities abilities = new CameraAbilities();
-			unsafe
-			{
-				result = _CameraAbilitiesList.gp_abilities_list_get_abilities(obj, index, out abilities);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			CameraAbilities abilities = new CameraAbilities ();
+
+			Error.CheckError (gp_abilities_list_get_abilities(this.Handle, index, out abilities));
+
 			return abilities;
 		}
 		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_abilities_list_append (HandleRef list, ref CameraAbilities abilities);
+
 		public void Append (CameraAbilities abilities)
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _CameraAbilitiesList.gp_abilities_list_append(obj, abilities);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			Error.CheckError (gp_abilities_list_append (this.Handle, ref abilities));
 		}
 	}
 }

@@ -14,50 +14,25 @@ namespace LibGPhoto2
 		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=1024)] internal string library_filename;
 	}
 	
-	public class PortInfo
+	public class PortInfo 
 	{
-		unsafe internal _PortInfo obj;
-		
-		public PortInfo()
-		{
-			obj = new _PortInfo();
+		internal _PortInfo Handle;
+
+		internal PortInfo () {
 		}
 		
-		internal PortInfo(_PortInfo info_obj)
-		{
-			obj = info_obj;
-		}
-		
-		internal _PortInfo SafePortInfo
-		{
-			get
-			{
-				return obj;
-			}
-			set
-			{
-				obj = value;
-			}
-		}
-		
-		public string Name
-		{
-			get
-			{
-				unsafe
-				{
-					return obj.name;
+		public string Name {
+			get {
+				unsafe {
+					return Handle.name;
 				}
 			}
 		}
 		
-		public string Path
-		{
-			get
-			{
-				unsafe
-				{
-					return obj.path;
+		public string Path {
+			get {
+				unsafe {
+					return Handle.path;
 				}
 			}
 		}

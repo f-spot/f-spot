@@ -29,317 +29,203 @@ namespace LibGPhoto2
 	}
 	
 	[StructLayout(LayoutKind.Sequential)]
-	internal unsafe struct _CameraFile
-	{
+	internal unsafe struct _CameraFile  {
 
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_new (out _CameraFile *file);
 
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_ref (_CameraFile *file);
-		
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_unref (_CameraFile *file);
 
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_free (_CameraFile *file);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_append (_CameraFile* file, [MarshalAs(UnmanagedType.LPTStr)] byte[] data, ulong size);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_open (_CameraFile *file, [MarshalAs(UnmanagedType.LPTStr)] string filename);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_save (_CameraFile *file, [MarshalAs(UnmanagedType.LPTStr)] string filename);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_clean (_CameraFile *file);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_get_name (_CameraFile *file, IntPtr name);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_set_name (_CameraFile *file, [MarshalAs(UnmanagedType.LPTStr)] string name);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_get_type (_CameraFile *file, CameraFileType *type);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_set_type (_CameraFile *file, CameraFileType type);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_get_mime_type (_CameraFile *file, IntPtr mime_type);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_set_mime_type (_CameraFile *file, [MarshalAs(UnmanagedType.LPTStr)] string mime_type);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_detect_mime_type (_CameraFile *file);
-		
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_adjust_name_for_mime_type (_CameraFile *file);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_convert (_CameraFile *file, [MarshalAs(UnmanagedType.LPTStr)] string mime_type);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_copy (_CameraFile *destination, _CameraFile *source);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_set_color_table (_CameraFile *file, byte *red_table, int red_size, byte *green_table, int green_size, byte *blue_table, int blue_size);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_set_header (_CameraFile *file, [MarshalAs(UnmanagedType.LPTStr)] byte[] header);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_set_width_and_height (_CameraFile *file, int width, int height);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_get_data_and_size (_CameraFile* file, out IntPtr data, out ulong size);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_set_data_and_size (_CameraFile* file, [MarshalAs(UnmanagedType.LPTStr)] byte[] data, ulong size);
 	}
 	
-	public class CameraFile : IDisposable
+	public class CameraFile : Object 
 	{
-		unsafe _CameraFile *obj;
-		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_file_new (out IntPtr file);
+
 		public CameraFile()
 		{
-			unsafe 
-			{
-				_CameraFile.gp_file_new(out obj);
-			}
+			IntPtr native;
+
+			Error.CheckError (gp_file_new (out native));
+
+			this.handle = new HandleRef (this, native);
+		}
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_file_unref (HandleRef file);
+
+		protected override void Cleanup () {
+			gp_file_unref (this.Handle);
 		}
 		
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
-		
-		~CameraFile()
-		{
-			Dispose(false);
-		}
-		
-		protected virtual void Dispose (bool disposing)
-		{
-			unsafe
-			{
-				if (obj != null)
-				{
-					_CameraFile.gp_file_unref(obj);
-					obj = null;
-				}
-			}
-		}
-		
-		unsafe internal _CameraFile* UnsafeCameraFile
-		{
-			get
-			{
-				return obj;
-			}
-		}
-		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_file_append (HandleRef file, byte[] data, ulong size);
+
 		public void Append (byte[] data)
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _CameraFile.gp_file_append(obj, data, (ulong)data.Length);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			Error.CheckError (gp_file_append (this.Handle, data, (ulong)data.Length));
 		}
 		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_file_open (HandleRef file, string filename);
+
 		public void Open (string filename)
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _CameraFile.gp_file_open(obj, filename);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			Error.CheckError (gp_file_open (this.Handle, filename));
 		}
-		
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_file_save (HandleRef file, string filename);
+
 		public void Save (string filename)
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _CameraFile.gp_file_save(obj, filename);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			Error.CheckError (gp_file_save (this.Handle, filename));
 		}
 		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_file_clean (HandleRef file);
+
 		public void Clean (string filename)
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _CameraFile.gp_file_clean(obj);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			Error.CheckError (gp_file_clean (this.Handle));
 		}
-		
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_file_get_name (HandleRef file, out string name);
+
 		public string GetName ()
 		{
-			ErrorCode result;
 			string name;
-			unsafe
-			{
-				IntPtr name_addr = IntPtr.Zero;
-				IntPtr name_addr_addr = new IntPtr((void*)&name_addr);
-				result = _CameraFile.gp_file_get_name(obj, name_addr_addr);
-				name = Marshal.PtrToStringAnsi(name_addr);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			
+			Error.CheckError (gp_file_get_name (this.Handle, out name));
+
 			return name;
 		}
 		
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_file_set_name (HandleRef file, string name);
+
 		public void SetName (string name)
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _CameraFile.gp_file_set_name(obj, name);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			Error.CheckError (gp_file_set_name (this.Handle, name));
 		}
-		
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_file_get_type (HandleRef file, out CameraFileType type);
+
 		public CameraFileType GetFileType ()
 		{
-			ErrorCode result;
 			CameraFileType type;
-			unsafe
-			{
-				result = _CameraFile.gp_file_get_type(obj, &type);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+
+			Error.CheckError (gp_file_get_type (this.Handle, out type));
+
 			return type;
 		}
 		
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_file_set_type (HandleRef file, CameraFileType type);
+
 		public void SetFileType (CameraFileType type)
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _CameraFile.gp_file_set_type(obj, type);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			Error.CheckError (gp_file_set_type (this.Handle, type));
 		}
 		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_file_get_mime_type (HandleRef file, out string mime_type);
+
 		public string GetMimeType ()
 		{
-			ErrorCode result;
 			string mime;
-			unsafe
-			{
-				IntPtr mime_addr = IntPtr.Zero;
-				IntPtr mime_addr_addr = new IntPtr((void*)&mime_addr);
-				result = _CameraFile.gp_file_get_mime_type(obj, mime_addr_addr);
-				mime = Marshal.PtrToStringAnsi(mime_addr);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			
+			Error.CheckError (gp_file_get_mime_type (this.Handle, out mime));
+
 			return mime;
 		}
 		
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_file_set_mime_type (HandleRef file, string mime_type);
+
 		public void SetMimeType (string mime_type)
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _CameraFile.gp_file_set_mime_type(obj, mime_type);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			Error.CheckError (gp_file_set_mime_type (this.Handle, mime_type));
 		}
 		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_file_detect_mime_type (HandleRef file);
+
 		public void DetectMimeType ()
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _CameraFile.gp_file_detect_mime_type(obj);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			Error.CheckError (gp_file_detect_mime_type  (this.Handle));
 		}
 		
+		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_file_adjust_name_for_mime_type (HandleRef file);
+
 		public void AdjustNameForMimeType ()
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _CameraFile.gp_file_adjust_name_for_mime_type(obj);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			Error.CheckError (gp_file_adjust_name_for_mime_type (this.Handle));
 		}
 		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_file_convert (HandleRef file, [MarshalAs(UnmanagedType.LPTStr)] string mime_type);
+
 		public void Convert (string mime_type)
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _CameraFile.gp_file_convert(obj, mime_type);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			Error.CheckError (CameraFile.gp_file_convert (this.Handle, mime_type));
 		}
 		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_file_copy (HandleRef destination, HandleRef source);
+
 		public void Copy (CameraFile source)
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _CameraFile.gp_file_copy(obj, source.obj);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			Error.CheckError (gp_file_copy (this.Handle, source.Handle));
 		}
 		
+		//[DllImport ("libgphoto2.so")]
+		//internal static extern ErrorCode gp_file_set_color_table (HandleRef file, byte *red_table, int red_size, byte *green_table, int green_size, byte *blue_table, int blue_size);
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_file_set_header (HandleRef file, [MarshalAs(UnmanagedType.LPTStr)] byte[] header);
+
 		public void SetHeader (byte[] header)
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _CameraFile.gp_file_set_header(obj, header);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			Error.CheckError (gp_file_set_header(this.Handle, header));
 		}
 		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_file_set_width_and_height (HandleRef file, int width, int height);
+
 		public void SetWidthHeight (int width, int height)
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _CameraFile.gp_file_set_width_and_height(obj, width, height);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			Error.CheckError (gp_file_set_width_and_height(this.Handle, width, height));
 		}
 		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_file_set_data_and_size (HandleRef file, byte[] data, ulong size);
+
 		public void SetDataAndSize (byte[] data)
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _CameraFile.gp_file_set_data_and_size(obj, data, (ulong)data.Length);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			Error.CheckError (gp_file_set_data_and_size (this.Handle, data, (ulong)data.Length));
 		}
 		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_file_get_data_and_size (HandleRef file, out IntPtr data, out ulong size);
+
 		public byte[] GetDataAndSize ()
 		{
-			ErrorCode result;
 			ulong size;
 			byte[] data;
 			unsafe
 			{
 				IntPtr data_addr = IntPtr.Zero;
-				result = _CameraFile.gp_file_get_data_and_size(obj, out data_addr, out size);
+				Error.CheckError (gp_file_get_data_and_size (this.Handle, out data_addr, out size));
 				data = new byte[size];
 				Marshal.Copy(data_addr, data, 0, (int)size);
 			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+
 			return data;
 		}
 	}

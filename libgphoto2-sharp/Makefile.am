@@ -10,6 +10,7 @@ LIBGPHOTO2_SHARP_CSFILES =				\
 	$(srcdir)/CameraWidget.cs			\
 	$(srcdir)/Context.cs				\
 	$(srcdir)/ErrorCodes.cs				\
+	$(srcdir)/Object.cs				\
 	$(srcdir)/Port.cs				\
 	$(srcdir)/PortInfo.cs				\
 	$(srcdir)/PortInfoList.cs

@@ -68,6 +68,14 @@ namespace LibGPhoto2
 			return new GPhotoException(error_code, message);
 		}
 		
+		public static ErrorCode CheckError (ErrorCode error)
+		{
+			if (IsError (error))
+				throw ErrorException (error);
+			
+			return error;
+		}
+		
 		[DllImport ("libgphoto2.so")]
 		internal static extern IntPtr gp_result_as_string (ErrorCode result);
 		
