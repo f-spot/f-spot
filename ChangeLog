@@ -1,5 +1,10 @@
 2005-02-27  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: Dispose of more of the intermediate pixbufs.
+
+	* src/PixbufCache.cs: copy the thubnail options when the
+	ThumbnailGenerator has loaded an image.
+
 	* src/MainWindow.cs: Allow hiding of the tag side bar.  Patch from
 	Nat.
 

@@ -42,8 +42,9 @@ namespace FSpot {
 			if (entry != null && result != null) {
 				int width, height;
 				PixbufUtils.Fit (result, entry.Width, entry.Height, false, out width, out height);
-
-				Update (entry, PixbufUtils.ScaleDown (result, width, height));
+				Gdk.Pixbuf down = PixbufUtils.ScaleDown (result, width, height);
+				PixbufUtils.CopyThumbnailOptions (result, down);
+				Update (entry, down);
 			}
 
 			//System.Console.WriteLine ("removing {0}", thumb_path);
@@ -139,11 +140,13 @@ namespace FSpot {
 								CacheEntry entry = (CacheEntry) items_mru [num++];
 								total_size -= entry.Size;
 								items.Remove (entry.Path);
+								items_mru.Remove (entry);
+								entry.Pixbuf = null;
 								entry.Dispose ();
 							}			
 							if (num > 0) {
 								//System.Console.WriteLine ("removing {0}  ({1} > {2})", num, total_size, max_size);
-								items_mru.RemoveRange (0, num);
+								//items_mru.RemoveRange (0, num);
 							} else {
 								ThumbnailGenerator.Default.PopBlock ();
 								Monitor.Wait (items);
@@ -221,17 +224,6 @@ namespace FSpot {
 		{
 			lock (items) {
 				return ULookup (path);
-			}
-		}
-
-		public Gdk.Pixbuf LookupPixbuf (string path)
-		{
-			lock (items) {
-				CacheEntry entry = ULookup (path);
-				if (entry != null)
-					return entry.ShallowCopyPixbuf ();
-				else
-					return null;
 			}
 		}
 

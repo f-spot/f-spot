@@ -444,6 +444,8 @@ public class IconView : Gtk.Layout {
 		return expansion;
 	}
 
+	System.Collections.Hashtable date_layouts = new Hashtable ();
+	// FIXME Cache the GCs?
 	private void DrawCell (int thumbnail_num, Gdk.Rectangle area)
 	{
 		Gdk.Rectangle bounds = CellBounds (thumbnail_num);
@@ -512,7 +514,7 @@ public class IconView : Gtk.Layout {
 										region.Width, region.Height);
 					
 					if (entry.Reload && expansion == 0)
-						cache.Update (entry, PixbufUtils.ShallowCopy (thumbnail));
+						cache.Update (entry, PixbufUtils.ShallowCopy (temp_thumbnail));
 
 				} else {
 					temp_thumbnail = thumbnail.ScaleSimple (region.Width, region.Height, 
@@ -550,9 +552,11 @@ public class IconView : Gtk.Layout {
 			if (temp_thumbnail != thumbnail)
 				temp_thumbnail.Dispose ();
 			
-			thumbnail.Dispose ();
 		}
-			
+		
+		if (thumbnail != null) 
+			thumbnail.Dispose ();
+		
 		Gdk.Rectangle layout_bounds = Gdk.Rectangle.Zero;
 		if (DisplayDates) {
 			string date;
@@ -562,9 +566,12 @@ public class IconView : Gtk.Layout {
 				date = photo.Time.ToShortDateString ();
 			}
 
-			
-			Pango.Layout layout = new Pango.Layout (this.PangoContext);
-			layout.SetText (date);
+			Pango.Layout layout = (Pango.Layout)date_layouts [date];
+			if (layout == null) {
+				layout = new Pango.Layout (this.PangoContext);
+				layout.SetText (date);
+				date_layouts [date] = layout;
+			}
 			
 			layout.GetPixelSize (out layout_bounds.Width, out layout_bounds.Height);
 
@@ -580,8 +587,6 @@ public class IconView : Gtk.Layout {
 						   layout_bounds.X, layout_bounds.Y, 
 						   layout);
 			}
-
-			layout.Dispose ();
 		}
 
 		if (DisplayTags) {
@@ -897,6 +902,7 @@ public class IconView : Gtk.Layout {
 		if (result.Width != width && result.Height != height) {
 			//  System.Console.WriteLine ("scaling");
 			Gdk.Pixbuf temp = PixbufUtils.ScaleDown (result, width, height);
+			result.Dispose ();
 			result = temp;
 		}
 
