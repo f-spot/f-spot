@@ -25,15 +25,15 @@ class PixbufUtils {
 		return Math.Max (pixbuf.Width, pixbuf.Height);
 	}
 
-	public static void Fit (Pixbuf pixbuf,
-				int dest_width, int dest_height,
-				bool upscale_smaller,
-				out int fit_width, out int fit_height)
+	public static double Fit (Pixbuf pixbuf,
+				  int dest_width, int dest_height,
+				  bool upscale_smaller,
+				  out int fit_width, out int fit_height)
 	{
 		if (pixbuf.Width == 0 || pixbuf.Height == 0) {
 			fit_width = 0;
 			fit_height = 0;
-			return;
+			return 0.0;
 		}
 
 		double scale = Math.Min (dest_width / (double)pixbuf.Width,
@@ -44,7 +44,8 @@ class PixbufUtils {
 
 		fit_width = (int)(scale * pixbuf.Width);
 		fit_height = (int)(scale * pixbuf.Height);
-
+		
+		return scale;
 	}
 
 
@@ -177,7 +178,7 @@ class PixbufUtils {
 	static extern bool gdk_pixbuf_save_to_bufferv (IntPtr raw, out IntPtr data, out uint length, string type, 
 						       string [] keys, string [] values, out IntPtr error);
 					
-	public byte [] Save (Gdk.Pixbuf pixbuf, string type)
+	public static byte [] Save (Gdk.Pixbuf pixbuf, string type, string [] options, string [] values)
 	{
 		IntPtr error = IntPtr.Zero;
 		IntPtr data;
@@ -186,7 +187,7 @@ class PixbufUtils {
 					    out data, 
 					    out length, 
 					    type,
-					    null, null,
+					    options, values,
 					    out error);
 
 		if (error != IntPtr.Zero) 
@@ -249,8 +250,6 @@ class PixbufUtils {
 		}
 	}
 
-	
-
 	[DllImport ("libc")]
 	static extern int rename (string oldpath, string newpath);
 
@@ -260,6 +259,69 @@ class PixbufUtils {
 			src.Savev (tmpname, type, keys, values);
 			if (rename (tmpname, filename) < 0)
 				throw new Exception ("Error renaming file");
+	}
+
+	public static Gdk.Pixbuf ScaleToAspect (Gdk.Pixbuf orig, int width, int height)
+	{
+		Gdk.Rectangle pos;
+		double scale = Fit (orig, width, height, false, out pos.Width, out pos.Height);
+		pos.X = (width - pos.Width) / 2;
+		pos.Y = (height - pos.Height) / 2;
+
+		Pixbuf scaled = new Pixbuf (Colorspace.Rgb, false, 8, width, height);
+		scaled.Fill (0x000000); 
+
+		System.Console.WriteLine ("pos= {0}", pos.ToString ());
+
+		orig.Composite (scaled, pos.X, pos.Y, 
+				pos.Width, pos.Height,
+				pos.X, pos.Y, scale, scale,
+				Gdk.InterpType.Bilinear,
+				255);
+
+		return scaled;
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public unsafe struct FPixbufJpegMarker {
+		public int type;
+		public byte *data;
+		public int length;
+	}
+
+	[DllImport ("libfspot")]
+	static extern bool f_pixbuf_save_jpeg (IntPtr src, string path, int quality, FPixbufJpegMarker [] markers, int num_markers);
+
+	public static void SaveJpeg (Pixbuf pixbuf, string path, int quality, ExifData exif_data)
+	{
+		// The DCF spec says thumbnails should be 160x120 always
+		Pixbuf thumbnail = ScaleToAspect (pixbuf, 160, 120);
+		byte [] thumb_data = Save (thumbnail, "jpeg", null, null);
+		exif_data.Data = thumb_data;
+		thumbnail.Dispose ();
+
+		byte [] data = exif_data.Save ();
+		FPixbufJpegMarker [] marker = new FPixbufJpegMarker [0];
+		bool result = false;
+
+		unsafe {
+			if (data.Length > 0) {
+				
+				fixed (byte *p = data) {
+					marker = new FPixbufJpegMarker [1];
+					marker [0].type = 0xe1; // APP1 marker
+					marker [0].data = p;
+					marker [0].length = data.Length;
+					
+					result = f_pixbuf_save_jpeg (pixbuf.Handle, path, quality, marker, marker.Length);
+				}					
+			} else
+				result = f_pixbuf_save_jpeg (pixbuf.Handle, path, quality, marker, marker.Length);
+			
+		}
+
+		if (result == false)
+			throw new System.Exception ("Error Saving File");
 	}
 
 	[DllImport ("libfspot")]

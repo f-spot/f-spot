@@ -152,33 +152,9 @@ public class SlideView : Gtk.Image {
 
 	private Pixbuf GetScaled (Pixbuf orig)
 	{
-		int width = Allocation.Width;
-		int height = Allocation.Height;
-		Pixbuf scaled = new Pixbuf (Colorspace.Rgb, false, 8, width, height);
-		scaled.Fill (0);
-		
-		if (width < 10 || height < 10)
-			return scaled;	
-
-		if (orig == null) {
-			return scaled;
-		}
-
-		double scale = Math.Min (width / (double)orig.Width, height / (double)orig.Height);
-
-		int scale_width = (int)(scale * orig.Width);
-		int scale_height = (int)(scale * orig.Height);
-		int scale_x = (width - scale_width) / 2;
-		int scale_y = (height - scale_height) / 2;
-
-		orig.Composite (scaled, scale_x, scale_y, 
-				scale_width, scale_height,
-				scale_x, scale_y, scale, scale,
-				Gdk.InterpType.Bilinear,
-				255);
+		Pixbuf scaled = PixbufUtils.ScaleToAspect (orig, Allocation.Width, Allocation.Height);
 
 		orig.Dispose ();
-		System.GC.Collect ();
 		return scaled;
 	}
 
