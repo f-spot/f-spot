@@ -7,11 +7,13 @@ public class PhotoTagMenu : Menu {
 	public event TagSelectedHandler TagSelected;
 	// This should be reworked to use a Selection interface to
 	// extract the current selection
-	private class TagItem : Gtk.MenuItem {
+	private class TagItem : Gtk.ImageMenuItem {
 		public Tag Value;
 
 		public TagItem (Tag t) : base (t.Name) {
 			Value = t;
+			if (t.Icon != null)
+				this.Image = new Gtk.Image (t.Icon);
 		}
 
 		protected TagItem (IntPtr raw) : base (raw) {}
