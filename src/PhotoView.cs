@@ -38,6 +38,7 @@ public class PhotoView : EventBox {
 	private FSpot.ImageView image_view;
 	private Button display_next_button, display_previous_button;
 	private Label count_label;
+	private Entry description_entry;
 
 	private const double MAX_ZOOM = 5.0;
 
@@ -222,11 +223,23 @@ public class PhotoView : EventBox {
 			count_label.Text = String.Format ("{0} of {1}", current_photo + 1, Query.Photos.Length);
 	}
 
+	private void UpdateDescriptionEntry ()
+	{
+		if (Query.Photos.Length > 1 && current_photo < Query.Photos.Length - 1) {
+			description_entry.Sensitive = true;
+			description_entry.Text = Query.Photos[current_photo].Description;
+		} else {
+			description_entry.Sensitive = false;
+			description_entry.Text = "";
+		}
+	}    
+
 	public void Update ()
 	{
 		UpdateImageView ();
 		UpdateButtonSensitivity ();
 		UpdateCountLabel ();
+		UpdateDescriptionEntry ();
 	}
 
 
@@ -331,6 +344,14 @@ public class PhotoView : EventBox {
 	private void HandleUnsharpButtonClicked (object sender, EventArgs args) {
 		image_view.Pixbuf = PixbufUtils.UnsharpMask (image_view.Pixbuf, 6, 2, 0);
 	}	
+
+	private void HandleDescriptionChanged (object sender, EventArgs args) {
+		Photo photo = Query.Photos[current_photo];
+
+		photo.Description = description_entry.Text;
+		photo_store.Commit (photo);
+	}
+
 	// Constructor.
 
 	private class ToolbarButton : Button {
@@ -381,7 +402,11 @@ public class PhotoView : EventBox {
 	
 		unsharp_button.Clicked += new EventHandler (HandleUnsharpButtonClicked);
 
-		toolbar_hbox.PackStart (new EventBox (), true, true, 0);
+		//toolbar_hbox.PackStart (new EventBox (), true, true, 0);
+
+		description_entry = new Entry ();
+		toolbar_hbox.PackStart (description_entry, true, true, 0);
+		description_entry.Changed += new EventHandler (HandleDescriptionChanged);
 
 		count_label = new Label ("");
 		toolbar_hbox.PackStart (count_label, false, true, 0);

@@ -6,6 +6,11 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.Web;
 
+/* These classes are based off the documentation at 
+ *
+ * http://gallery.menalto.com/modules.php?op=modload&name=GalleryDocs&file=index&page=gallery-remote.protocol.php
+ */
+
 public class Album {
 	public enum Permission : byte {
 		None = 0,
@@ -292,6 +297,7 @@ public class GalleryRemote {
 		client.Add ("protocol_version", "2.9");
 		client.Add ("set_albumName", album.Name);
 		client.Add ("userfile_name", filename);
+		client.Add ("caption", caption);
 		client.Add ("userfile", new FileInfo (path));
 
 		ParseResponse (client.Submit (uri));
