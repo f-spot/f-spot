@@ -64,6 +64,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/TagView.cs			\
 	$(srcdir)/ThreadProgressDialog.cs	\
 	$(srcdir)/ThumbnailCache.cs		\
+	$(srcdir)/ThumbnailGenerator.cs		\
 	$(srcdir)/TimeAdaptor.cs		\
 	$(srcdir)/Util.cs			\
 	$(srcdir)/ThumbnailCommand.cs		\
