@@ -369,12 +369,12 @@ public class MainWindow {
 
 	void HandleSelectAllCommand (object sender, EventArgs args)
 	{
-
+		icon_view.SelectAllCells ();
 	}
 
 	void HandleSelectNoneCommand (object sender, EventArgs args)
 	{
-
+		icon_view.UnselectAllCells ();
 	}
 	
 	void HandleDeleteSelectedTagCommand (object sender, EventArgs args)

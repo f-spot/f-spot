@@ -224,7 +224,7 @@ public class IconView : Gtk.Layout {
 			return -1;
 	}
 
-	private void UnselectAllCells ()
+	public void UnselectAllCells ()
 	{
 		if (selected_cells.Count == 0)
 			return;
@@ -264,6 +264,11 @@ public class IconView : Gtk.Layout {
 
 		if (SelectionChanged != null)
 			SelectionChanged (this);
+	}
+
+	public void SelectAllCells ()
+	{
+		SelectCellRange (0, query.Photos.Length - 1);
 	}
 
 	private void SelectCellRange (int start, int end)
@@ -565,7 +570,7 @@ public class IconView : Gtk.Layout {
 		cell_area.width = cell_width;
 		cell_area.height = cell_height;
 
-		BinWindow.InvalidateRect (cell_area, true);
+		BinWindow.InvalidateRect (cell_area, false);
 	}
 			
 	private void HandleScrollAdjustmentsSet (object sender, ScrollAdjustmentsSetArgs args)

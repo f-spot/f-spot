@@ -1,3 +1,9 @@
+2004-02-11  Larry Ewing  <lewing@ximian.com>
+
+	* src/MainWindow.cs: hook up select/unselect.
+	
+	* src/IconView.cs: make unselectall public add selectall.
+
 2004-02-10  Larry Ewing  <lewing@ximian.com>
 
 	* src/PhotoStore.cs: add a remove method for tags that removes the
