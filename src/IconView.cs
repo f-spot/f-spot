@@ -973,30 +973,37 @@ public class IconView : Gtk.Layout {
 
 		focus_old = FocusCell;
 		switch (args.Event.Key) {
-			case Gdk.Key.Down:
-				FocusCell += cells_per_row;
+		case Gdk.Key.Down:
+			FocusCell += cells_per_row;
+			break;
+		case Gdk.Key.Left:
+			FocusCell--;
+			break;
+		case Gdk.Key.Right:
+			FocusCell++;
+			break;
+		case Gdk.Key.Up:
+			FocusCell -= cells_per_row;
+			break;
+		case Gdk.Key.Home:
+			FocusCell = 0;
+			break;
+		case Gdk.Key.End:
+			FocusCell = collection.Items.Length - 1; 
+			break;
+		case Gdk.Key.space:
+			ToggleCell (FocusCell);
+			break;
+		case Gdk.Key.Return:
+			if (DoubleClicked == null)
 				break;
-			case Gdk.Key.Left:
-				FocusCell--;
+			if (FocusCell < 0 || FocusCell > collection.Items.Length - 1)
 				break;
-			case Gdk.Key.Right:
-				FocusCell++;
-				break;
-			case Gdk.Key.Up:
-				FocusCell -= cells_per_row;
-				break;
-			case Gdk.Key.Home:
-				FocusCell = 0;
-				break;
-			case Gdk.Key.End:
-				FocusCell = collection.Items.Length - 1; 
-				break;
-			case Gdk.Key.space:
-				ToggleCell (FocusCell);
-				break;
-			default:	
-				args.RetVal = false;
-				return;		
+			DoubleClicked (this, FocusCell);
+			break;
+		default:	
+			args.RetVal = false;
+			return;		
 		}
 		
 		if (FocusCell < 0 || FocusCell > collection.Items.Length - 1) {
