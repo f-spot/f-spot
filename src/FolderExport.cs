@@ -533,7 +533,7 @@ namespace FSpot {
 		public HtmlGallery (IPhotoCollection selection, string path, string name) : base (selection, path, name) 
 		{ 
 			requests = new ScaleRequest [] { new ScaleRequest ("hq", 0, 0, false),
-							 new ScaleRequest ("mq", 800, 600, false),
+							 new ScaleRequest ("mq", 480, 320, false),
 							 new ScaleRequest ("thumbs", 120, 90, false) };
 		}
 		
@@ -601,7 +601,7 @@ namespace FSpot {
 			System.IO.StreamWriter stream = System.IO.File.CreateText (SubdirPath (PhotoIndexPath (i)));
 			System.Web.UI.HtmlTextWriter writer = new System.Web.UI.HtmlTextWriter (stream);
 
-			writer.Indent = 4;
+			//writer.Indent = 4;
 			
 			//writer.Write ("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 			writer.RenderBeginTag ("html");
@@ -621,10 +621,10 @@ namespace FSpot {
 			if (i > 0)
 				WritePageNav (writer, "prev", PhotoIndexPath (i - 1), Mono.Posix.Catalog.GetString("Prev"));
 
-			WritePageNav (writer, "prev", IndexPath (i / perpage), Mono.Posix.Catalog.GetString("Prev"));
+			WritePageNav (writer, "index", IndexPath (i / perpage), Mono.Posix.Catalog.GetString("Index"));
 			
 			if (i < collection.Photos.Length -1)
-				WritePageNav (writer, "prev", PhotoIndexPath (i + 1), Mono.Posix.Catalog.GetString("Prev"));
+				WritePageNav (writer, "next", PhotoIndexPath (i + 1), Mono.Posix.Catalog.GetString("Next"));
 
 			writer.RenderEndTag ();
 			
@@ -637,6 +637,7 @@ namespace FSpot {
 			writer.AddAttribute ("src", PhotoWebPath (i));
 			writer.RenderBeginTag ("img");
 			writer.RenderEndTag ();
+			writer.RenderEndTag (); // a
 			
 			writer.RenderBeginTag ("div");
 			writer.Write (collection.Photos [i].Description);
@@ -701,7 +702,7 @@ namespace FSpot {
 			System.IO.StreamWriter stream = System.IO.File.CreateText (SubdirPath (IndexPath (page_num)));
 			System.Web.UI.HtmlTextWriter writer = new System.Web.UI.HtmlTextWriter (stream);
 
-			writer.Indent = 4;
+			//writer.Indent = 4;
 
 			//writer.Write ("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 			writer.RenderBeginTag ("html");

@@ -1,5 +1,10 @@
 2005-02-24  Larry Ewing  <lewing@novell.com>
 
+	* src/FolderExport.cs: clean up the html output a little.
+
+	* src/GalleryRemote.cs: search the result string for the
+	#__GR2PROTO__ not just the beginning of the string.
+	
 	* src/PhotoLoader.cs: use the thumbnail generated validation now.
 
 	* src/Thumbnail.cs: make the default size tiny.
