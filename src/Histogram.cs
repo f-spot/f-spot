@@ -12,12 +12,16 @@ namespace FSpot {
 
 		public Histogram (Gdk.Pixbuf src)
 		{
-			values = new int [256,3];
 		        FillValues (src);
 		}
-			
+		
+		public Histogram () {}
+		
 		public void FillValues (Gdk.Pixbuf src)
+
 		{
+			values = new int [256, 3];
+
 			if (src.BitsPerSample != 8)
 				throw new System.Exception ("Invalid bits per sample");
 						
@@ -33,6 +37,9 @@ namespace FSpot {
 					}
 					srcb =  ((byte *) src.Pixels) + j * src.Rowstride;
 				}
+			}
+			if (pixbuf != null) {
+				FillPixbuf (pixbuf);
 			}
 		}
 		
@@ -70,12 +77,12 @@ namespace FSpot {
 		public Gdk.Pixbuf GeneratePixbuf ()
 		{
 			int height = 128;
-			Gdk.Pixbuf image = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, values.GetLength (0), height);
-			this.FillPixbuf (image);
-			return image;
+			pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, values.GetLength (0), height);
+			this.FillPixbuf (pixbuf);
+			return pixbuf;
 		}
 						     
-		private int [,] values;
+		private int [,] values = new int [256,3];
 		public int [,] Values {
 			get {
 				return values;
@@ -85,10 +92,11 @@ namespace FSpot {
 		private Gdk.Pixbuf pixbuf;
 		public Gdk.Pixbuf Pixbuf {
 			get {
-				return null;
+				return pixbuf;
 			}
 		}
 		
+#if FSPOT_HISTOGRAM_MAIN
 		public static void Main (string [] args) 
 		{
 			Gtk.Application.Init ();
@@ -106,5 +114,6 @@ namespace FSpot {
 			Gtk.Application.Run ();
 
 		}
+#endif
 	}
 }

@@ -24,8 +24,11 @@ public class ColorDialog {
 	[Glade.Widget] private HScale sat_scale;
 
 	[Glade.Widget] private Gtk.Image color_image;
+	[Glade.Widget] private Gtk.Image histogram_image;
 
 	Thread thread;
+
+	FSpot.Histogram hist;
 
 	private void Adjust ()
 	{
@@ -48,6 +51,8 @@ public class ColorDialog {
 	{
 		lock (AdjustedPixbuf) {
 			color_image.QueueDraw ();
+			hist.FillValues (AdjustedPixbuf);
+			histogram_image.QueueDraw ();
 			timeout = 0;
 		}
 		return false;
@@ -81,6 +86,8 @@ public class ColorDialog {
 								   color_image.Allocation.Height);
 			
 			color_image.Pixbuf = AdjustedPixbuf = ScaledPixbuf.Copy ();
+			hist.FillValues (AdjustedPixbuf);
+			histogram_image.Pixbuf = hist.GeneratePixbuf ();
 			Adjust ();
 		}
 	}
@@ -147,9 +154,11 @@ public class ColorDialog {
 		OrigPixbuf = pixbuf;
 		this.query = query;
 		this.item = item;
-
+		
 		xml.Autoconnect (this);
 		
+		hist = new FSpot.Histogram ();
+
 		brightness_scale.ValueChanged += RangeChanged;
 		contrast_scale.ValueChanged += RangeChanged;
 		hue_scale.ValueChanged += RangeChanged;

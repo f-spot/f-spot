@@ -1,3 +1,13 @@
+2004-10-06  Larry Ewing  <lewing@novell.com>
+
+	* src/ColorDialog.cs: hook up the histogram.
+
+	* src/f-spot.glade: add a simple histogram display to the ugly
+	editing dialog.
+
+	* src/Histogram.cs: modify the FillValues behavior, store the
+	GeneratePixbuf results.
+
 2004-10-05  Larry Ewing  <lewing@novell.com>
 
 	* src/Histogram.cs: new Histogram display.
