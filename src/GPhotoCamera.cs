@@ -177,7 +177,7 @@ public class GPhotoCamera
 		
 		//check if the directory exists
 		if (!Directory.Exists (Path.GetDirectoryName (filename))) 
-			throw new Exception ("Directory does not exist"); //FIXME
+			throw new Exception (String.Format ("Directory \"{0}\"does not exist", filename)); //FIXME
 		
 		CameraFile camfile = GetFile (index);
 		

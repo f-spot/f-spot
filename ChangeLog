@@ -1,5 +1,10 @@
 2005-02-16  Larry Ewing  <lewing@novell.com>
 
+	* src/CameraFileSelectionDialog.cs: add more progress info.  Fix
+	the file renaming function.
+
+	* src/GPhotoCamera.cs: make the exception more informative.
+
 	* configure.in: integrate Loz's patch to improve version check for
 	lcms.
 

@@ -171,7 +171,7 @@ public class CameraFileSelectionDialog
 	private bool SaveFiles ()
 	{
 		if (PrepareDestination ())
-			return true;
+			return false;
 		
 		index_list = GetSelectedItems ();
 		camera_file_selection_dialog.Hide ();
@@ -188,8 +188,7 @@ public class CameraFileSelectionDialog
 
 		}
 
-		System.Console.WriteLine ("GOT Past save files");
-		return false;
+		return true;
 	}
 
 	private void Download ()
@@ -210,8 +209,15 @@ public class CameraFileSelectionDialog
 				}
 				
 				saved_files = (string []) saved.ToArray (typeof (string));
+
+				progress_dialog.Message = Mono.Posix.Catalog.GetString ("Done Copying Files");
+				progress_dialog.Fraction = 1.0;
+				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Download Complete");
+				progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e.ToString ());
+				progress_dialog.Message = String.Format ("{0}\n{1}", e.Message, e.ToString ());
+				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error ransferrring file");
 			}
 		}
 	}
@@ -224,9 +230,11 @@ public class CameraFileSelectionDialog
 		
 		int i = 0;
 		while (File.Exists (path)) {
-			path = String.Format ("{0}-{1}{2}", 
-					      System.IO.Path.GetFileNameWithoutExtension (orig), 
-					      i, System.IO.Path.GetExtension (orig));
+			string name = String.Format ("{0}-{1}{2}", 
+						     System.IO.Path.GetFileNameWithoutExtension (orig), 
+						     i, System.IO.Path.GetExtension (orig));
+
+			path = System.IO.Path.Combine (System.IO.Path.GetDirectoryName (orig), name);
 			i++;
 		}
 
