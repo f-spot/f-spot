@@ -268,6 +268,7 @@ public class PhotoView : EventBox {
 
 	private void UpdateDescriptionEntry ()
 	{
+		description_entry.Changed -= HandleDescriptionChanged;
 		if (Query.Photos.Length > 1 && current_photo < Query.Photos.Length) {
 			description_entry.Sensitive = true;
 			description_entry.Text = Query.Photos[current_photo].Description;
@@ -275,6 +276,7 @@ public class PhotoView : EventBox {
 			description_entry.Sensitive = false;
 			description_entry.Text = "";
 		}
+		description_entry.Changed += HandleDescriptionChanged;
 	}    
 
 	public void Update ()
@@ -459,7 +461,7 @@ public class PhotoView : EventBox {
 
 		description_entry = new Entry ();
 		inner_hbox.PackStart (description_entry, true, true, 0);
-		description_entry.Changed += new EventHandler (HandleDescriptionChanged);
+		description_entry.Changed += HandleDescriptionChanged;
 		
 		inner_vbox.PackStart (inner_hbox, false, true, 0);
 

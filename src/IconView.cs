@@ -146,7 +146,6 @@ public class IconView : Gtk.Layout {
 		selected_cells = new Hashtable ();
 
 		ScrollAdjustmentsSet += new ScrollAdjustmentsSetHandler (HandleScrollAdjustmentsSet);
-		SizeAllocated += new SizeAllocatedHandler (HandleSizeAllocated);
 		
 		ButtonPressEvent += new ButtonPressEventHandler (HandleButtonPressEvent);
 		ButtonReleaseEvent += new ButtonReleaseEventHandler (HandleButtonReleaseEvent);
@@ -389,9 +388,7 @@ public class IconView : Gtk.Layout {
 		if (DisplayTags)
 			cell_height += TAG_ICON_SIZE + TAG_ICON_VSPACING;
 
-		cells_per_row = (int) (available_width / cell_width);
-		if (cells_per_row == 0)
-			cells_per_row = 1;
+		cells_per_row = Math.Max ((int) (available_width / cell_width), 1);
 
 		int num_thumbnails;
 		if (query != null)
@@ -653,7 +650,7 @@ public class IconView : Gtk.Layout {
 	private bool HandleThrobTimer () 
 	{
 		//Console.WriteLine ("throb out {1} {0}", throb_cell, 1 - Math.Cos (throb_state));
-		
+
 		InvalidateCell (throb_cell);
 		if (throb_state++ < throb_state_max) {
 			return true;
@@ -725,8 +722,9 @@ public class IconView : Gtk.Layout {
 			args.Vadjustment.ValueChanged += new EventHandler (HandleAdjustmentValueChanged);
 	}
 
-	private void HandleSizeAllocated (object sender, SizeAllocatedArgs args)
+	protected override void OnSizeAllocated (Gdk.Rectangle allocation)
 	{
+		base.OnSizeAllocated (allocation);
 		UpdateLayout ();
 	}
 
