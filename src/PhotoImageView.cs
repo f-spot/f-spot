@@ -69,7 +69,10 @@ namespace FSpot {
 		private void HandlePixbufAreaUpdated (object sender, Gdk.AreaUpdatedArgs args)
 		{
 			// FIXME we should really only expose the updated region.
-			this.QueueDraw ();
+			Gdk.Rectangle area = new Gdk.Rectangle (args.X, args.Y, args.Width, args.Height);
+			area = this.ImageCoordsToWindow (area);
+
+			this.QueueDrawArea (area.X, area.Y, area.Width, area.Height);
 		}
 	
 		private bool fit = true;
@@ -92,6 +95,8 @@ namespace FSpot {
 
 		bool load_async = true;
 		FSpot.AsyncPixbufLoader loader;
+		FSpot.AsyncPixbufLoader next_loader;
+
 		private void PhotoChanged () 
 		{
 			if (!CurrentPhotoValid ())

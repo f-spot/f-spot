@@ -1,5 +1,10 @@
 2004-11-18  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoImageView.cs: only expose the updated areas as the
+	pixbuf loads.
+
+	* src/ImageView.cs: add ImageCoordsToWindow method.
+
 	* src/PhotoLoader.cs: expose the thumbnail gernation routine.
 
 	* src/AsyncPixbufLoader.cs: regenerate the thumbnail after the

@@ -135,6 +135,20 @@ public class ImageView : Layout {
 						 out x_offset, out y_offset, out scaled_width, out scaled_height);
 	}
 
+	public Gdk.Rectangle ImageCoordsToWindow (Gdk.Rectangle image)
+	{
+		int x, y;
+		int width, height;
+		this.GetOffsets (out x, out y, out width, out height);
+
+		Gdk.Rectangle win = Gdk.Rectangle.Zero;
+		win.X = (int) Math.Floor (image.X * (double) (width - 1) / (this.Pixbuf.Height - 1) + 0.5);
+		win.Y = (int) Math.Floor (image.Y * (double) (height - 1) / (this.Pixbuf.Height - 1) + 0.5);
+		win.Width = (int) Math.Floor ((image.X + image.Width) * (double) (width - 1) / (this.Pixbuf.Height - 1) + 0.5) - win.X;
+		win.Height = (int) Math.Floor ((image.Y + image.Width) * (double) (height - 1) / (this.Pixbuf.Height - 1) + 0.5) - win.Y;
+		
+		return win;
+	}
 
 	[DllImport ("libfspoteog")]
 	static extern void image_view_set_display_brightness (IntPtr view, float display_brightness);
