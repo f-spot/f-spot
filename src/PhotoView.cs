@@ -18,6 +18,13 @@ public class PhotoView : EventBox {
 		}
 	}
 
+	private bool CurrentPhotoValid () {
+		if (query == null || query.Photos.Length == 0 || current_photo >= Query.Photos.Length)
+			return false;
+
+		return true;
+	}
+
 	private PhotoStore photo_store;
 
 	private PhotoQuery query;
@@ -28,11 +35,16 @@ public class PhotoView : EventBox {
 
 		set {
 			query = value;
+			query.Reload += HandleQueryReload;
 
 			// FIXME which picture to display?
 			current_photo = 0;
 			Update ();
 		}
+	}
+	
+	private void HandleQueryReload (PhotoQuery query) {
+		Update ();
 	}
 
 	private FSpot.ImageView image_view;
@@ -146,9 +158,7 @@ public class PhotoView : EventBox {
 
 	private void UpdateImageView ()
 	{
-		if (Query == null || current_photo >= Query.Photos.Length)
-			image_view.Pixbuf = null;
-		else {
+		if (CurrentPhotoValid ()) {
 			try {
 				image_view.Pixbuf = new Pixbuf (Query.Photos [current_photo].DefaultVersionPath);
 
@@ -167,7 +177,9 @@ public class PhotoView : EventBox {
 				// FIXME
 				image_view.Pixbuf = null;
 			}
-		}	
+		} else {
+			image_view.Pixbuf = null;
+		}
 
 		image_view.UnsetSelection ();
 		UpdateZoom ();
@@ -216,15 +228,11 @@ public class PhotoView : EventBox {
 
 	private void UpdateButtonSensitivity ()
 	{
-		if (current_photo == 0)
-			display_previous_button.Sensitive = false;
-		else
-			display_previous_button.Sensitive = true;
+		bool prev = CurrentPhotoValid () && current_photo > 0;
+		bool next = CurrentPhotoValid () && current_photo < query.Photos.Length -1;
 
-		if (Query == null || current_photo == Query.Photos.Length - 1 || Query.Photos.Length == 0)
-			display_next_button.Sensitive = false;
-		else
-			display_next_button.Sensitive = true;
+		display_previous_button.Sensitive = prev;
+		display_next_button.Sensitive = next;
 	}
 
 	private void UpdateCountLabel ()
@@ -362,6 +370,9 @@ public class PhotoView : EventBox {
 	}	
 
 	private void HandleDescriptionChanged (object sender, EventArgs args) {
+		if (!CurrentPhotoValid ())
+			return;
+
 		Photo photo = Query.Photos[current_photo];
 
 		photo.Description = description_entry.Text;
