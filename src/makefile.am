@@ -1,6 +1,7 @@
 CSC = mcs --unsafe -g
 
 F_SPOT_CSFILES =				\
+	$(srcdir)/ColorDialog.cs		\
 	$(srcdir)/CompatFileChooser.cs		\
 	$(srcdir)/DateCommands.cs		\
 	$(srcdir)/Db.cs				\

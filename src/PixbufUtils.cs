@@ -233,34 +233,54 @@ class PixbufUtils {
  		Gdk.Pixbuf ret = (Gdk.Pixbuf) GLib.Object.GetObject(raw_ret, true);
 		return ret;
 	}	
-
+	
 	public static unsafe Pixbuf ColorAdjust (Pixbuf src, double brightness, double contrast,
 					  double hue, double saturation, int src_color, int dest_color)
 	{
+		Pixbuf adjusted = new Pixbuf (Colorspace.Rgb, src.HasAlpha, 8, src.Width, src.Height);
+		ColorAdjust (src, adjusted, brightness, contrast, hue, saturation, src_color, dest_color);
+		return adjusted;
+	}
+
+	public static Cms.Format PixbufCmsFormat (Pixbuf buf)
+	{
+		return buf.HasAlpha ? Cms.Format.Rgba8 : Cms.Format.Rgb8;
+	}
+
+
+	public static unsafe void ColorAdjust (Pixbuf src, Pixbuf dest, 
+					       double brightness, double contrast,
+					       double hue, double saturation, 
+					       int src_color, int dest_color)
+	{
+		if (src.Width != dest.Width || src.Height != dest.Height)
+			throw new Exception ("Invalid Dimensions");
+
+		//Cms.Profile eos10d = new Cms.Profile ("/home/lewing/ICCProfiles/EOS-10D-True-Color-Non-Linear.icm");
 		Cms.Profile srgb = Cms.Profile.CreateSRgb ();
 		Cms.Profile bchsw = Cms.Profile.CreateAbstract (10, brightness, contrast,
 								hue, saturation, src_color, 
 								dest_color);
-		Pixbuf adjusted = src.Copy ();
+
 		Cms.Profile [] list = new Cms.Profile [] { srgb, bchsw, srgb };
-		Cms.Transform trans = new Cms.Transform (list, Cms.Format.Rgb8, Cms.Format.Rgb8,
-							 Cms.Intent.Perceptual, 0);
-		
+		Cms.Transform trans = new Cms.Transform (list, 
+							 PixbufCmsFormat (src),
+							 PixbufCmsFormat (dest),
+							 Cms.Intent.Perceptual, 0x0100);
+
 		int width = src.Width;
 		byte * srcpix  = (byte *) src.Pixels;
-		byte * adjustedpix = (byte *) adjusted.Pixels;
+		byte * destpix = (byte *) dest.Pixels;
 
 		for (int row = 0; row < src.Height; row++) {
 			trans.Apply ((IntPtr) (srcpix + row * src.Rowstride),
-				     (IntPtr) (adjustedpix + row * adjusted.Rowstride), 
+				     (IntPtr) (destpix + row * dest.Rowstride), 
 				     (uint)width);
 		}
 		
 		trans.Dispose ();
 		srgb.Dispose ();
 		bchsw.Dispose ();
-
-		return adjusted;
 	}
 
 #if STUFF_WE_HAVE_TO_RESTORE

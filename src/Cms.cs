@@ -7,8 +7,9 @@ using System.Runtime.InteropServices;
 
 namespace Cms {
 	public enum Format {
-		Rgb8 = 262169,
-		Gbr8 = 263193
+		Rgb8  = 262169,
+		Rgba8 = 262297,
+		Gbr8  = 263193
 	}
 	
 
@@ -135,7 +136,26 @@ namespace Cms {
 			if (cmsCloseProfile (this.Handle) == 0)
 				throw new Exception ("Error closing Handle");
 		}
+
+		[DllImport("liblcms-1.0.0.dll")]
+		static extern IntPtr cmsOpenProfileFromFile (string ICCProfile, string sAccess);
+
+		public Profile (string path) 
+		{
+			handle = cmsOpenProfileFromFile (path, "r");
+			if (handle == IntPtr.Zero)
+				throw new Exception ("Error opening ICC profile in file " + path);
+		}
 		
+#if false
+		[DllImport("liblcms-1.0.0.dll")]
+		static unsafe extern IntPtr cmsOpenProfileFromMem (byte *data, uint length);
+
+		public unsafe Profile (byte [] data)
+		{
+			handle = cmsOpenProfileFromMem ((byte *) data, data.Length);
+		}
+#endif	
 		protected Profile (IntPtr handle)
 		{
 			this.handle = handle;

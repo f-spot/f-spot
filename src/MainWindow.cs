@@ -810,21 +810,29 @@ public class MainWindow {
 		}
 
 		PrintContext ctx = pj.Context;
-		
-		Print.Beginpage (ctx, "Test");
-		
-		Pixbuf image  = new Pixbuf (query.Photos[0].DefaultVersionPath);
+		double page_width, page_height;
+		pj.GetPageSize (out page_width, out page_height);
 
-		Print.Moveto (ctx, 100, 100);
-		Print.Gsave (ctx);
-		Print.Translate (ctx, 100, 100);
-		Print.Scale (ctx, 100, 100);
-		Print.Pixbuf (ctx, image);
-		Print.Grestore (ctx);
+		foreach (Photo photo in SelectedPhotos ()) {
+			Print.Beginpage (ctx, "F-Spot "+ photo.DefaultVersionPath);
+			
+			Pixbuf image  = FSpot.PhotoLoader.Load (photo);
+			double scale = Math.Min (page_width / image.Width, page_height / image.Height);
+			
+			//Print.Moveto (ctx, 100, 100);
+			Print.Gsave (ctx);
+			Print.Translate (ctx, 
+					 (page_width - image.Width * scale) / 2.0, 
+					 (page_height - image.Height * scale) / 2.0);
+			Print.Scale (ctx, image.Width * scale, image.Height * scale);
+			Print.Pixbuf (ctx, image);
+			Print.Grestore (ctx);
+			
+			//Print.Show (ctx, photo.Description);
+			Print.Showpage (ctx);
+			image.Dispose ();
+		}
 
-		Print.Show (ctx, "testing");
-		Print.Showpage (ctx);
-		
 		pj.Close ();
 
 		switch (response) {
