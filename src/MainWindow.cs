@@ -4,7 +4,6 @@ using GtkSharp;
 using Glade;
 using Gnome;
 using System;
-using System.IO;
 using System.Text;
 
 using System.Collections;
@@ -897,7 +896,7 @@ public class MainWindow {
 	        long length = 0;
 
 		foreach (Photo p in photos) {
-			FileInfo fi = new FileInfo (p.DefaultVersionPath);
+			System.IO.FileInfo fi = new System.IO.FileInfo (p.DefaultVersionPath);
 
 			length += fi.Length;
 		}

@@ -71,9 +71,10 @@ ASSEMBLIES =					\
 	/r:System.Web				\
 	/r:Mono.Data.SqliteClient		\
 	/r:Mono.Posix				\
-	/pkg:gtkhtml-sharp			\
-	/pkg:glade-sharp			\
-	/pkg:gconf-sharp
+	/pkg:gtkhtml-sharp-2.0			\
+	/pkg:glade-sharp-2.0			\
+	/pkg:gnome-vfs-sharp-2.0		\
+	/pkg:gconf-sharp-2.0
 
 RESOURCES =										\
 	/resource:$(top_srcdir)/icons/f-spot-crop.png,f-spot-crop.png			\

@@ -92,7 +92,7 @@ public class ImportCommand {
 	}
 
 
-	Dialog dialog;
+	Gtk.Dialog dialog;
 	PhotoGrid grid;
 	ProgressBar progress_bar;
 	Gtk.Window main_window;
@@ -106,7 +106,7 @@ public class ImportCommand {
 
 	private void CreateDialog ()
 	{
-		dialog = new Dialog ();
+		dialog = new Gtk.Dialog ();
 		dialog.AddButton (Gtk.Stock.Cancel, 0);
 
 		grid = new PhotoGrid ();

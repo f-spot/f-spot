@@ -381,7 +381,7 @@ public class TagCommands {
 		{
 			int value = photo_spin_button.ValueAsInt - 1;
 			
-			CurrentItem = value;
+			image_view.CurrentPhoto = value;
 		}
 
 		private void HandleSelectionChanged ()
@@ -440,7 +440,7 @@ public class TagCommands {
 				photo_spin_button.Adjustment.StepIncrement = 1.0;
 				photo_spin_button.ValueChanged += HandleSpinButtonChanged;
 				
-				CurrentItem = 0;
+				image_view.CurrentPhoto = 0;
 			} else {
 				photo_spin_button.Sensitive = false;
 				photo_spin_button.Value = 0.0;

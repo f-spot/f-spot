@@ -1,6 +1,5 @@
 using System;
 using Gtk;
-using Gnome;
 using System.Threading;
 
 public class ColorDialog {
@@ -13,21 +12,20 @@ public class ColorDialog {
 
 	uint timeout;
 
-	[Glade.Widget] private Dialog color_dialog;
+	[Glade.Widget] private Gtk.Dialog color_dialog;
 
-	[Glade.Widget] private SpinButton source_spinbutton;
-	[Glade.Widget] private SpinButton dest_spinbutton;
+	[Glade.Widget] private Gtk.SpinButton source_spinbutton;
+	[Glade.Widget] private Gtk.SpinButton dest_spinbutton;
 
-	[Glade.Widget] private HScale brightness_scale;
-	[Glade.Widget] private HScale contrast_scale;
-	[Glade.Widget] private HScale hue_scale;
-	[Glade.Widget] private HScale sat_scale;
+	[Glade.Widget] private Gtk.HScale brightness_scale;
+	[Glade.Widget] private Gtk.HScale contrast_scale;
+	[Glade.Widget] private Gtk.HScale hue_scale;
+	[Glade.Widget] private Gtk.HScale sat_scale;
 
-	[Glade.Widget] private SpinButton brightness_spinbutton;
-	[Glade.Widget] private SpinButton contrast_spinbutton;
-	[Glade.Widget] private SpinButton hue_spinbutton;
-	[Glade.Widget] private SpinButton sat_spinbutton;
-
+	[Glade.Widget] private Gtk.SpinButton brightness_spinbutton;
+	[Glade.Widget] private Gtk.SpinButton contrast_spinbutton;
+	[Glade.Widget] private Gtk.SpinButton hue_spinbutton;
+	[Glade.Widget] private Gtk.SpinButton sat_spinbutton;
 
 	[Glade.Widget] private Gtk.Image color_image;
 	[Glade.Widget] private Gtk.Image histogram_image;

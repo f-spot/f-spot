@@ -2,7 +2,6 @@ using Gdk;
 using Gtk;
 using Gnome;
 using System.Collections;
-using System.IO;
 using System;
 
 public class FileImportBackend : ImportBackend {
@@ -22,18 +21,18 @@ public class FileImportBackend : ImportBackend {
 
 	}
 
-	private void GetListing (DirectoryInfo info)
+	private void GetListing (System.IO.DirectoryInfo info)
 	{
-		FileInfo [] files = info.GetFiles ();
+		System.IO.FileInfo [] files = info.GetFiles ();
 
-		foreach (FileInfo f in files) {
+		foreach (System.IO.FileInfo f in files) {
 			string path = f.FullName;
 			
 			AddPath (path);
 		}
 
 		if (recurse) {
-			foreach (DirectoryInfo d in info.GetDirectories ()){
+			foreach (System.IO.DirectoryInfo d in info.GetDirectories ()){
 				if (!d.Name.StartsWith ("."))
 					GetListing (d);
 			}
@@ -49,7 +48,7 @@ public class FileImportBackend : ImportBackend {
 
 		foreach (string path in base_paths) {
 			try {	
-				GetListing (new DirectoryInfo (path));
+				GetListing (new System.IO.DirectoryInfo (path));
 			} catch {
 				AddPath (path);
 			}

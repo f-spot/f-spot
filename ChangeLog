@@ -1,4 +1,20 @@
 2004-12-15  Larry Ewing  <lewing@novell.com>
+	
+	* src/makefile.am: link against gtk-sharp-2.0.
+
+	* src/ColorDialog.cs: fix for gtk-sharp-2.0.
+	
+	* src/PrintDialog.cs: fix for 2.0.
+	
+	* src/TagCommands.cs: fix for 2.0.
+
+	* src/PreviewPopup.cs: add the new keyword for now.
+
+	* src/ImportCommand.cs: fix for gtk-sharp-2.0.
+
+	* src/FileImportBackend.cs: make it build with gtk-sharp-2.0.
+
+	* src/DateCommands.cs: disambiguate the Dialog call.
 
 	* src/ImageView.cs: add a property for the Cms.Transform.
 
