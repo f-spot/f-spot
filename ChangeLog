@@ -1,5 +1,16 @@
 2005-01-06  Larry Ewing  <lewing@novell.com>
 
+	* src/StockIcons.cs: add stock items for all the new icons.
+
+	* src/PhotoView.cs: use f-spot-edit-image for the adjustment
+	dialog icon.
+
+	* src/main.cs: change the window icon to f-spot-logo.png.
+
+	* src/makefile.am: add new icons to the resource.
+
+	* icons/Makefile.am: add new icons.
+
 	* src/f-spot.glade: hook up the toolbar items.
 
 	* src/StockIcons.cs: add accels.

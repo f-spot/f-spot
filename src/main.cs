@@ -21,7 +21,7 @@ public class Driver {
 
 		Db db = new Db (Path.Combine (base_directory, "photos.db"), true);
 		
-		Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {PixbufUtils.LoadFromAssembly ("f-spot-camera.png")};
+		Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {PixbufUtils.LoadFromAssembly ("f-spot-logo.png")};
 
 		MainWindow main_window = new MainWindow (db);
 		

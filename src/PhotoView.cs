@@ -384,7 +384,7 @@ public class PhotoView : EventBox {
 		crop_button.Clicked += new EventHandler (HandleCropButtonClicked);
 
 		Button unsharp_button = new ToolbarButton ();
-		Gtk.Image unsharp_button_icon = new Gtk.Image ("f-spot-crop", IconSize.Button);
+		Gtk.Image unsharp_button_icon = new Gtk.Image ("f-spot-edit-image", IconSize.Button);
 		unsharp_button.Add (unsharp_button_icon);
 		toolbar_hbox.PackStart (unsharp_button, false, true, 0);
 	

@@ -80,12 +80,15 @@ ASSEMBLIES =					\
 	/pkg:gconf-sharp-2.0
 
 RESOURCES =										\
+	/resource:$(top_srcdir)/icons/f-spot-browse.png,f-spot-browse.png		\
 	/resource:$(top_srcdir)/icons/f-spot-crop.png,f-spot-crop.png			\
 	/resource:$(top_srcdir)/icons/f-spot-camera.png,f-spot-camera.png		\
-	/resource:$(top_srcdir)/icons/f-spot-question-mark.png,f-spot-question-mark.png \
+	/resource:$(top_srcdir)/icons/f-spot-edit-image.png,f-spot-edit-image.png	\
 	/resource:$(top_srcdir)/icons/f-spot-favorite.png,f-spot-favorite.png 		\
+	/resource:$(top_srcdir)/icons/f-spot-logo.png,f-spot-logo.png			\
 	/resource:$(top_srcdir)/icons/f-spot-people.png,f-spot-people.png 		\
 	/resource:$(top_srcdir)/icons/f-spot-places.png,f-spot-places.png 		\
+	/resource:$(top_srcdir)/icons/f-spot-question-mark.png,f-spot-question-mark.png \
 	/resource:$(top_srcdir)/icons/f-spot-rotate-90.png,f-spot-rotate-90.png		\
 	/resource:$(top_srcdir)/icons/f-spot-rotate-270.png,f-spot-rotate-270.png	\
 	/resource:$(top_srcdir)/icons/f-spot-loading.png,f-spot-loading.png		\
