@@ -47,10 +47,10 @@ namespace FSpot {
 			ExifTag [] tags = exif_info.Tags;
 			Gtk.HTMLStream stream = this.Begin ("text/html; charset=utf-8");
 			
-			string bg = Color (this.Style.Base (Gtk.StateType.Insensitive));
-			string fg = Color (this.Style.Text (Gtk.StateType.Insensitive));
+			string bg = Color (this.Style.Background (Gtk.StateType.Active));
+			string fg = Color (this.Style.Foreground (Gtk.StateType.Active));
 
-			stream.Write ("<table width=100%>");
+			stream.Write ("<table width=100% cellspacing=0 cellpadding=3>");
 			System.Console.WriteLine (tags.Length);
 			foreach (ExifTag tag in tags) {
 				stream.Write ("<tr><td bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
