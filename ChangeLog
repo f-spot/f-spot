@@ -1,7 +1,11 @@
 2005-02-16  Larry Ewing  <lewing@novell.com>
 
+	* src/CameraFileSelectionDialog.cs: make the thumbnail progress
+	cancel button stop the thumbnail download but still fill in the
+	file entries.
+
 	* src/CameraFileSelectionDialog.cs: fix typo.
-	
+
 	* src/CameraFileSelectionDialog.cs: add more progress info.  Fix
 	the file renaming function.
 

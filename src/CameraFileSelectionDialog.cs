@@ -91,19 +91,26 @@ public class CameraFileSelectionDialog
 								     camera_file_selection_dialog);
 			
 			int index = 0;
+			bool load_thumb = true;
 			foreach (GPhotoCameraFile file in camera.FileList) {
 				string msg = String.Format (Mono.Posix.Catalog.GetString ("Downloading Preview of {0}"), 
 							    file.FileName);
 				
-				if (pdialog.Update (msg)) {
-					pdialog.Destroy ();
-					return;
+
+
+				if (load_thumb && pdialog.Update (msg)) {
+					load_thumb = false;
+					pdialog.Hide ();
 				}
 				
-				Pixbuf thumbscale = camera.GetPreviewPixbuf (file);
-				Pixbuf scale = PixbufUtils.ScaleToMaxSize (thumbscale, 64,64);
+				Pixbuf scale = null;
+				if (load_thumb) {
+					Pixbuf thumbscale = camera.GetPreviewPixbuf (file);
+					scale = PixbufUtils.ScaleToMaxSize (thumbscale, 64,64);
+					thumbscale.Dispose ();
+				}
+
 				preview_list_store.AppendValues (file.Directory, file.FileName, scale, index);
-				thumbscale.Dispose ();
 				index++;
 			}
 			
