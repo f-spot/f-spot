@@ -65,8 +65,8 @@ public class PhotoView : EventBox {
 		}
 
 		set {
-			if (zoom <= 0.0 || zoom > MAX_ZOOM)
-				throw new Exception ("Zoom value out of range");
+			if ((value < 0.0) || (value > MAX_ZOOM))
+				throw new Exception (String.Format ("Zoom value out of range {0}", value));
 				
 			zoom = value;
 			UpdateZoom ();
@@ -171,6 +171,7 @@ public class PhotoView : EventBox {
 			try {
 				Pixbuf old = image_view.Pixbuf;
 				
+				Console.WriteLine ("testing");
 				image_view.Pixbuf = new Pixbuf (Query.Photos [current_photo].DefaultVersionPath);
 				tag_view.Current = Query.Photos [current_photo];
 				/*
@@ -195,6 +196,7 @@ public class PhotoView : EventBox {
 			image_view.Pixbuf = null;
 		}
 
+		//System.GC.Collect ();
 		image_view.UnsetSelection ();
 		UpdateZoom ();
 	}
@@ -224,12 +226,13 @@ public class PhotoView : EventBox {
 		double zoom_to_fit = ZoomUtils.FitToScale ((uint) available_width, (uint) available_height,
 							   (uint) pixbuf.Width, (uint) pixbuf.Height, false);
 
-		double zoom = (MAX_ZOOM - zoom_to_fit) * Zoom + zoom_to_fit;
+		double image_zoom = (MAX_ZOOM - zoom_to_fit) * Zoom + zoom_to_fit;
+		Console.WriteLine ("Zoom {2} zoom_to_fit {0} image_zoom {1}", zoom_to_fit, image_zoom, Zoom);
 
 		if (Math.Abs (Zoom) < EPSILON)
 			((ScrolledWindow) image_view.Parent).SetPolicy (PolicyType.Never, PolicyType.Never);
 
-		image_view.SetZoom (zoom, zoom);
+		image_view.SetZoom (image_zoom, image_zoom);
 
 		if (Math.Abs (Zoom) < EPSILON && restore_scrollbars_idle_id == 0)
 			restore_scrollbars_idle_id = Idle.Add (new IdleHandler (IdleUpdateScrollbars));

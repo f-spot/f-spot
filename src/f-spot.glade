@@ -697,6 +697,32 @@
 		      </child>
 
 		      <child>
+			<widget class="GtkSeparatorMenuItem" id="separator17">
+			  <property name="visible">True</property>
+			</widget>
+		      </child>
+
+		      <child>
+			<widget class="GtkMenuItem" id="zoom_in">
+			  <property name="visible">True</property>
+			  <property name="label" translatable="yes">Zoom In</property>
+			  <property name="use_underline">True</property>
+			  <signal name="activate" handler="HandleZoomIn" last_modification_time="Sat, 21 Aug 2004 16:37:10 GMT"/>
+			  <accelerator key="m" modifiers="GDK_CONTROL_MASK" signal="activate"/>
+			</widget>
+		      </child>
+
+		      <child>
+			<widget class="GtkMenuItem" id="zoom_out">
+			  <property name="visible">True</property>
+			  <property name="label" translatable="yes">Zoom _Out</property>
+			  <property name="use_underline">True</property>
+			  <signal name="activate" handler="HandleZoomOut" last_modification_time="Sat, 21 Aug 2004 16:37:10 GMT"/>
+			  <accelerator key="m" modifiers="GDK_CONTROL_MASK | GDK_SHIFT_MASK" signal="activate"/>
+			</widget>
+		      </child>
+
+		      <child>
 			<widget class="GtkSeparatorMenuItem" id="separator16">
 			  <property name="visible">True</property>
 			</widget>
@@ -716,7 +742,7 @@
 				  <property name="visible">True</property>
 				  <property name="label" translatable="yes">Month</property>
 				  <property name="use_underline">True</property>
-				  <property name="active">True</property>
+				  <property name="active">False</property>
 				  <signal name="activate" handler="HandleArrangeByTime" last_modification_time="Fri, 20 Aug 2004 22:26:32 GMT"/>
 				</widget>
 			      </child>
@@ -726,7 +752,7 @@
 				  <property name="visible">True</property>
 				  <property name="label" translatable="yes">Directory</property>
 				  <property name="use_underline">True</property>
-				  <property name="active">False</property>
+				  <property name="active">True</property>
 				  <property name="group">month</property>
 				  <signal name="activate" handler="HandleArrangeByDirectory" last_modification_time="Fri, 20 Aug 2004 22:26:32 GMT"/>
 				</widget>

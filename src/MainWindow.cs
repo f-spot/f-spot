@@ -408,9 +408,9 @@ public class MainWindow {
 	void HandleIconViewDragDrop (object sender, DragDropArgs args)
 	{
 		Widget source = Gtk.Drag.GetSourceWidget (args.Context);
-		
-		//Console.WriteLine ("Drag Drop {0}", source == null ? "null" : source.TypeName);
 
+		//Console.WriteLine ("Drag Drop {0}", source == null ? "null" : source.TypeName);
+		
 		args.RetVal = true;
 	}
 
@@ -989,7 +989,27 @@ public class MainWindow {
 
 	void HandleViewFullscreen (object sender, EventArgs args)
 	{
+		photo_view.Zoom += .1;
+	}
 
+	void HandleZoomOut (object sender, EventArgs args)
+	{
+		double old_zoom = photo_view.Zoom;
+		try {
+			photo_view.Zoom -= .1;
+		} catch {
+			photo_view.Zoom = old_zoom;
+		}
+	}
+
+	void HandleZoomIn (object sender, EventArgs args)
+	{
+		double old_zoom = photo_view.Zoom;
+		try {
+			photo_view.Zoom += .1;
+		} catch {
+			photo_view.Zoom = old_zoom;
+		}
 	}
 
         public void HandleDeleteCommand (object sender, EventArgs args)

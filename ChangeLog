@@ -1,5 +1,12 @@
 2004-08-21  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: add handlers for zoom items.
+
+	* src/PhotoView.cs: clean up the exception bounds and the variable
+	names.
+
+	* src/IconView.cs: throb selected cells too.
+
 	* src/MainWindow.cs: set the fg and bg color on the preview.
 	
 	* src/MainWindow.cs: add Nat and Trow's preview hack, load

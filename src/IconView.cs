@@ -435,19 +435,24 @@ public class IconView : Gtk.Layout {
 			else
 				dest_y = (int) (y + (cell_height - height) / 2);
 			
-			if (selected) { 
-				dest_x -= SELECTION_THICKNESS;
-				dest_y -= SELECTION_THICKNESS;
-				width += 2 * SELECTION_THICKNESS;
-				height += 2 * SELECTION_THICKNESS;
-			} else if (thumbnail_num == throb_cell) {
+			if (thumbnail_num == throb_cell) {
 				double t = throb_state / (double) (throb_state_max - 1);
-				double s = 1 - Math.Cos (-2 * Math.PI * t);
+				double s;
+				if (selected)
+					s = Math.Cos (-2 * Math.PI * t);
+				else
+					s = 1 - Math.Cos (-2 * Math.PI * t);
+
 				int scale = (int) (SELECTION_THICKNESS * s);
 				dest_x -= scale;
 				dest_y -= scale;		
 				width += 2 * scale;
 				height += 2 * scale;
+			} else 	if (selected) { 
+				dest_x -= SELECTION_THICKNESS;
+				dest_y -= SELECTION_THICKNESS;
+				width += 2 * SELECTION_THICKNESS;
+				height += 2 * SELECTION_THICKNESS;
 			}
 
 			Pixbuf temp_thumbnail;
