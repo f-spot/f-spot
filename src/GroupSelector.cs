@@ -55,6 +55,10 @@ namespace FSpot {
 					}
 					i++;
 				}
+
+				if (glass.Position >= adaptor.Count())
+					glass.SetPosition (adaptor.Count() - 1);
+
 				Counts = box_values;
 
 				has_limits = adaptor is FSpot.ILimitable;				

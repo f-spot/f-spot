@@ -24,7 +24,8 @@ namespace FSpot {
 				item += ((DirInfo)dirs [i++]).Count;
 			}
 
-			GlassSet (this, item);
+			if (GlassSet != null)
+				GlassSet (this, item);
 		}
 
 		public override int Count ()
