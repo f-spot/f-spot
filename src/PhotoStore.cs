@@ -525,6 +525,56 @@ public class PhotoStore : DbStore {
 		return photo;
 	}
 
+	public void Remove (Tag []tags)
+	{
+		Photo [] photos = this.Query (tags);
+
+		foreach (Photo photo in photos) {
+			photo.RemoveTag (tags);
+		}
+		
+		foreach (Tag tag in tags)
+			tag_store.Remove (tag);
+	}
+
+#if false
+	public void Remove (Photo []items)
+	{
+		StringBuilder query_builder = new StringBuilder ();
+
+		for (int i = 0; i < items.Length; i++) {
+			if (i > 0)
+				query_builder.Append (" OR ");
+			query_builder.Append (items[i].Id);
+			RemoveFromCache (items[i]);
+		}
+
+		SqliteCommand command = new SqliteCommand ();
+		command.Connection = Connection;
+
+		command.CommandText = String.Format ("DELETE FROM photos WHERE id = {0}", query_builder.ToString ());
+		command.ExecuteNonQuery ();
+
+		command.Dispose ();
+
+		command = new SqliteCommand ();
+		command.Connection = Connection;
+
+		command.CommandText = String.Format ("DELETE FROM photo_tags WHERE photo_id = {0}", query_builder.ToString ());
+		command.ExecuteNonQuery ();
+
+		command.Dispose ();
+
+		command = new SqliteCommand ();
+		command.Connection = Connection;
+
+		command.CommandText = String.Format ("DELETE FROM photo_versions WHERE photo_id = {0}", query_builder.ToString ());
+		command.ExecuteNonQuery ();
+
+		command.Dispose ();
+	}
+#endif
+
 	public override void Remove (DbItem item)
 	{
 		RemoveFromCache (item);

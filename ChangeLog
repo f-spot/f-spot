@@ -1,3 +1,14 @@
+2004-02-10  Larry Ewing  <lewing@ximian.com>
+
+	* src/PhotoStore.cs: add a remove method for tags that removes the
+	tag from all the photos that refer to it and the removes it from
+	the tag store.
+
+	* src/TagStore.cs: make sure we clear the category so that our
+	parent category doesn't try to keep us around.
+
+	* src/MainWindow.cs: add remove tag handler logic.
+
 2004-02-06  Larry Ewing  <lewing@ximian.com>
 
 	* src/IconView.cs: Fix speed issue with selecting large ranges

@@ -243,8 +243,12 @@ public class TagStore : DbStore {
 				throw new Exception (String.Format ("Cannot find tag {0}", id));
 			if (category_id == 0)
 				tag.Category = RootCategory;
-			else
+			else {
 				tag.Category = Get (category_id) as Category;
+				if (tag.Category == null)
+					Console.WriteLine ("Tag Without category found");
+			}
+
 		}
 		reader.Close ();
 		command.Dispose ();
@@ -377,6 +381,16 @@ public class TagStore : DbStore {
 	public override void Remove (DbItem item)
 	{
 		RemoveFromCache (item);
+		
+		((Tag)item).Category = null;
+		
+		// FIXME this should either throw an exception or make one
+		// command, not recurse.
+		if (item is Category) {
+			Category category = (Category)item;
+			foreach (Tag tag in category.Children)
+				Remove (tag);
+		}
 
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;

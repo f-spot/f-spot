@@ -379,7 +379,13 @@ public class MainWindow {
 	
 	void HandleDeleteSelectedTagCommand (object sender, EventArgs args)
 	{
+		Tag [] tags = this.tag_selection_widget.TagHighlight ();
 		
+		// FIXME this should probably query if there are any photos
+		// with this tag set rather than just removing them.
+
+		db.Photos.Remove (tags);
+		tag_selection_widget.Update ();
 	}
 
 	void HandleUpdateThumbnailCommand (object sende, EventArgs args)
