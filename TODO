@@ -49,6 +49,17 @@ Basic functionality:
           upload a webpage after the user has selected one of them.
           Webpages can be uploaded using ssh: or ftp: with GNOME VFS.
 
+	- Web Exports: manage collections of hosts in tuples:
+
+		(kind url credentials)
+
+	- Web Exports: Option to upload scaled-down versions of the images.
+
+	- Web Exports: Select from the collection to upload, and then upload.
+
+	- Cope with images not being on the disk, and flag those as
+	  available offline (for central backup vs laptop display).
+
 	- Printing.  I know nothing about photo printing on Linux...
           But we obviously need the ability to print.  Also, aside
           from using a local printer, it should support ordering a
