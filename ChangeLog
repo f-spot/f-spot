@@ -1,3 +1,10 @@
+2005-02-23  Larry Ewing  <lewing@novell.com>
+
+	* src/IconView.cs: clean up the preload code a little.  Do less
+	preloading but do it a little smarter.
+
+	* src/FolderExport.cs: set the description string properly.
+
 2005-02-23  Adam Weinberger  <adamw@gnome.org>
 
 	* src/CDExport.cs: fix typos.

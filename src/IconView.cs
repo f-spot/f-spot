@@ -453,10 +453,7 @@ public class IconView : Gtk.Layout {
 			return;
 		
 		FSpot.IBrowsableItem photo = collection.Items [thumbnail_num];
-		string thumbnail_path = Thumbnail.PathForUri (photo.DefaultVersionUri.ToString (), 
-							      ThumbnailSize.Large);
-
-		
+		string thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
 		
 		FSpot.PixbufCache.CacheEntry entry = cache.Lookup (thumbnail_path);
 		if (entry == null)
@@ -653,33 +650,9 @@ public class IconView : Gtk.Layout {
 
 		int i, cell_num;
 
-		FSpot.IBrowsableItem photo;
-		FSpot.PixbufCache.CacheEntry entry;
-		string thumbnail_path;
-
-		
 		// Preload the cache with images aroud the expose area
 		// FIXME the preload need to be tuned to the Cache size but this is a resonable start
-		
-		int len = (end_cell_row - start_cell_row + 20) * cells_per_row;
-		int scell = System.Math.Max ((start_cell_row - 10) * cells_per_row, 0);
-		int ecell = scell + len;
-		if (scell > collection.Items.Length - len) {
-		        ecell = collection.Items.Length;
-			scell = System.Math.Max (0, scell - len);
-		} else
-			ecell = scell + len;
-			
-		for (i = scell; i < ecell; i++) {
-			photo = collection.Items [i];
-			thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
-
-			entry = cache.Lookup (thumbnail_path);
-			if (entry == null)
-				cache.Request (thumbnail_path, i, ThumbnailWidth, ThumbnailHeight);
-				
-		}
-			
+		Preload (area, 12);			
 
 		for (i = 0, cell_num = start_cell_num;
 		     i < num_rows && cell_num < collection.Items.Length;
@@ -719,8 +692,6 @@ public class IconView : Gtk.Layout {
 
 	private uint scroll_on_idle_id;
 
-	private int idle_count;	// FIXME
-
 	private bool HandleScrollOnIdle ()
 	{
 		Adjustment adjustment = Vadjustment;
@@ -735,13 +706,22 @@ public class IconView : Gtk.Layout {
 
 	private void Scroll ()
 	{
-		if (cells_per_row ==0)
-			return;
-
 		Gdk.Rectangle area = new Gdk.Rectangle ((int) Hadjustment.Value, 
 							(int) Vadjustment.Value,
 							Allocation.Width,
 							Allocation.Height);
+		
+		//Preload (area, 10);
+		Preload (area, 0);
+
+		if (scroll_on_idle_id == 0)
+			scroll_on_idle_id = GLib.Idle.Add (new GLib.IdleHandler (HandleScrollOnIdle));
+	}
+
+	private void Preload (Gdk.Rectangle area, int padding)
+	{
+		if (cells_per_row ==0)
+			return;
 
 		int start_cell_column = Math.Max ((area.X - BORDER_SIZE) / cell_width, 0);
 		int start_cell_row = Math.Max ((area.Y - BORDER_SIZE) / cell_height, 0);
@@ -750,7 +730,7 @@ public class IconView : Gtk.Layout {
 		int start_cell_x, cell_y;
 		GetCellPosition (start_cell_num, out start_cell_x, out cell_y);
 
-		//int end_cell_column = Math.Max ((area.X + area.Width - BORDER_SIZE) / cell_width, 0);
+		int end_cell_column = Math.Max ((area.X + area.Width - BORDER_SIZE) / cell_width, 0);
 		int end_cell_row = Math.Max ((area.Y + area.Height - BORDER_SIZE) / cell_height, 0);
 
 		int i;
@@ -762,8 +742,10 @@ public class IconView : Gtk.Layout {
 		// Preload the cache with images aroud the expose area
 		// FIXME the preload need to be tuned to the Cache size but this is a resonable start
 		
-		int len = (end_cell_row - start_cell_row + 10) * cells_per_row;
-		int scell = System.Math.Max ((start_cell_row - 5) * cells_per_row, 0);
+		int cols = end_cell_column - start_cell_column;
+		int rows = end_cell_row - start_cell_row;
+		int len = (rows + padding) * cols;
+		int scell = System.Math.Max ((start_cell_row - padding / 2) * cols, 0);
 		int ecell = scell + len;
 		if (scell > collection.Items.Length - len) {
 		        ecell = collection.Items.Length;
@@ -780,9 +762,6 @@ public class IconView : Gtk.Layout {
 				cache.Request (thumbnail_path, i, ThumbnailWidth, ThumbnailHeight);
 				
 		}
-			
-		if (scroll_on_idle_id == 0)
-			scroll_on_idle_id = GLib.Idle.Add (new GLib.IdleHandler (HandleScrollOnIdle));
 	}
 
 	private void CancelScroll ()

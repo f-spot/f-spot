@@ -33,6 +33,7 @@ namespace FSpot {
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
 		[Glade.Widget] Gtk.Entry uri_entry;
 		[Glade.Widget] Gtk.Entry name_entry;
+		[Glade.Widget] Gtk.Entry description_entry;
 
 		//[Glade.Widget] Gtk.CheckButton meta_check;
 		[Glade.Widget] Gtk.CheckButton scale_check;
@@ -49,9 +50,9 @@ namespace FSpot {
 		int photo_index;
 		bool open;
 		bool scale;
-
 		int size;
 		
+		string description;
 		string gallery_name = "Gallery";
 		// FIME this needs to be a real temp directory
 		string gallery_path = Path.Combine (Path.GetTempPath (), "f-spot-original-" + System.DateTime.Now.Ticks.ToString ());
@@ -138,6 +139,8 @@ namespace FSpot {
 
 				if (scale)
 					gallery.SetScale (size);
+				
+				gallery.Description = description;
 
 				gallery.Generate ();
 
@@ -231,6 +234,9 @@ namespace FSpot {
 			open = open_check.Active;
 			scale = scale_check.Active;
 			gallery_name = name_entry.Text;
+
+			if (description_entry != null)
+				description = description_entry.Text;
 
 			if (scale)
 				size = size_spin.ValueAsInt;
@@ -378,6 +384,15 @@ namespace FSpot {
 			}
 		}
 
+		public string Description {
+			get {
+				return description;
+			}
+			set {
+				description = value;
+			}
+		}
+		
 		public Uri Destination {
 			get {
 				return destination;
