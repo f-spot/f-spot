@@ -144,7 +144,10 @@ class PixbufUtils {
 			
 			this.Close ();
 			Gdk.Pixbuf rotated = TransformOrientation (this.Pixbuf, orientation, true);
-			
+
+			if (this.Pixbuf != rotated)
+				this.Pixbuf.Dispose ();
+
 			return rotated;
 		}
 	}
