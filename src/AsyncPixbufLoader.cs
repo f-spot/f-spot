@@ -13,7 +13,9 @@ namespace FSpot {
 		Gdk.Pixbuf pixbuf;
 		PixbufOrientation orientation;
 
-
+		private Gdk.AreaUpdatedHandler au;
+		private System.EventHandler ap;
+		private System.EventHandler ev;
 
 		//byte [] buffer = new byte [8192];
 		byte [] buffer = new byte [32768];
@@ -37,6 +39,9 @@ namespace FSpot {
 		public AsyncPixbufLoader ()
 		{
 			delay = new Delay (new GLib.IdleHandler (AsyncRead));
+			ap = new System.EventHandler (HandleAreaPrepared);
+			au = new Gdk.AreaUpdatedHandler (HandleAreaUpdated);
+			ev = new System.EventHandler (HandleClosed);
 		}
 		
 		public bool Loading
@@ -74,9 +79,9 @@ namespace FSpot {
 			stream = new System.IO.FileStream (filename, System.IO.FileMode.Open, System.IO.FileAccess.Read);
 			
 			loader = new Gdk.PixbufLoader ();
-			loader.AreaPrepared += HandleAreaPrepared;
-			loader.AreaUpdated += HandleAreaUpdated;
-			loader.Closed += HandleClosed;
+			loader.AreaPrepared += ap;
+			loader.AreaUpdated += au;
+			loader.Closed += ev;
 
 			ThumbnailGenerator.Default.PushBlock ();
 			delay.Start ();
@@ -108,6 +113,9 @@ namespace FSpot {
 			try {
 				delay.Stop ();
 				if (loader != null) {
+					loader.AreaPrepared -= ap;
+					loader.AreaUpdated -= au;
+					loader.Closed -= ev;
 					loader.Close ();
 					loader.Dispose ();
 				}
@@ -217,13 +225,8 @@ namespace FSpot {
 
 		public void Dispose ()
 		{
-			if (loader != null) {
-				loader.AreaPrepared -= HandleAreaPrepared;
-				loader.AreaUpdated -= HandleAreaUpdated;
-				loader.Closed -= HandleClosed;
-			}
 			Close ();
-			
+
 			if (pixbuf != null)
 				pixbuf.Dispose ();
 		}

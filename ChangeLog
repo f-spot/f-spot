@@ -1,5 +1,8 @@
 2005-03-11  Larry Ewing  <lewing@novell.com>
 
+	* src/AsyncPixbufLoader.cs: clean up close handling to avoid the
+	ugly messages at exit.
+
 	* src/f-spot.glade: remove unused prefernces menu item.
 
 	* src/PhotoImageView.cs: clean up the close handling.
