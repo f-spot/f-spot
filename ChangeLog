@@ -1,3 +1,8 @@
+2003-11-29  Ettore Perazzoli  <ettore@ximian.com>
+
+	* src/PixbufLoader.cs: Rename all methods using the conventions
+	used in the rest of the code.
+
 2003-11-28  Ettore Perazzoli  <ettore@ximian.com>
 
 	* src/PixbufLoader.cs (PixbufLoader.Cancel): Just check if the

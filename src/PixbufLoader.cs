@@ -8,7 +8,7 @@ public class PixbufLoader {
 
 	// Types.
 
-	private class request {
+	private class RequestItem {
 		/* The path to the image.  */
 		public string path;
 
@@ -18,7 +18,7 @@ public class PixbufLoader {
 		/* The pixbuf obtained from the operation.  */
 		public Pixbuf result;
 
-		public request (string path, int order) {
+		public RequestItem (string path, int order) {
 			this.path = path;
 			this.order = order;
 		}
@@ -45,7 +45,7 @@ public class PixbufLoader {
 	/* Current requeust.  Request currently being handled by the
 	   auxiliary thread.  Should be modified only by the auxiliary
 	   thread (the GTK thread can only read it).  */
-	private request current_request;
+	private RequestItem current_request;
 
 	/* The queue of processed requests.  */
 	private Queue processed_requests;
@@ -73,9 +73,9 @@ public class PixbufLoader {
 		requests_by_path = new Hashtable ();
 		processed_requests = new Queue ();
 
-		pending_notify = new ThreadNotify (new Gtk.ReadyEvent (handleProcessedRequests));
+		pending_notify = new ThreadNotify (new Gtk.ReadyEvent (HandleProcessedRequests));
 
-		worker_thread = new Thread (new ThreadStart (workerThread));
+		worker_thread = new Thread (new ThreadStart (WorkerThread));
 		worker_thread.Start ();
 
 		all_worker_threads.Add (worker_thread);
@@ -91,7 +91,7 @@ public class PixbufLoader {
 	public void Request (string path, int order)
 	{
 		lock (queue) {
-			if (insertRequest (path, order))
+			if (InsertRequest (path, order))
 				Monitor.Pulse (queue);
 		}
 	}
@@ -99,7 +99,7 @@ public class PixbufLoader {
 	public void Cancel (string path)
 	{
 		lock (queue) {
-			request r = requests_by_path [path] as request;
+			RequestItem r = requests_by_path [path] as RequestItem;
 			if (r != null) {
 				requests_by_path.Remove (path);
 				queue.Remove (r);
@@ -109,7 +109,7 @@ public class PixbufLoader {
 
 	// Private utility methods.
 
-	private void processRequest (request request)
+	private void ProcessRequest (RequestItem request)
 	{
 		/* Short circuit for JPEG files; use Alex Larsson's fast thumbnail
 		   code in that case.  FIXME: Should use gnome-vfs to determine the
@@ -158,14 +158,14 @@ public class PixbufLoader {
 
 	/* Insert the request in the queue, return TRUE if the queue actually grew.
 	   NOTE: Lock the queue before calling.  */
-	private bool insertRequest (string path, int order)
+	private bool InsertRequest (string path, int order)
 	{
 		/* Check if this is the same as the request currently being processed.  */
 		if (current_request != null && current_request.path == path)
 			return false;
 
 		/* Check if a request for this path has already been queued.  */
-		request existing_request = requests_by_path [path] as request;
+		RequestItem existing_request = requests_by_path [path] as RequestItem;
 		if (existing_request != null) {
 			/* FIXME: At least for now, this shouldn't happen.  */
 			if (existing_request.order != order)
@@ -175,13 +175,13 @@ public class PixbufLoader {
 		}
 
 		/* New request, just put it on the queue with the right order.  */
-		request new_request = new request (path, order);
+		RequestItem new_request = new RequestItem (path, order);
 
-		if (queue.Count == 0 || (queue [queue.Count - 1] as request).order <= new_request.order) {
+		if (queue.Count == 0 || (queue [queue.Count - 1] as RequestItem).order <= new_request.order) {
 			queue.Add (new_request);
 		} else {
 			int i = 0;
-			foreach (request r in queue) {
+			foreach (RequestItem r in queue) {
 				if (r.order > new_request.order) {
 					queue.Insert (i, new_request);
 					break;
@@ -196,7 +196,7 @@ public class PixbufLoader {
 	}
 
 	/* The worker thread's main function.  */
-	private void workerThread ()
+	private void WorkerThread ()
 	{
 		while (true) {
 			lock (queue) {
@@ -214,16 +214,16 @@ public class PixbufLoader {
 				while (queue.Count == 0)
 					Monitor.Wait (queue);
 
-				current_request = queue [0] as request;
+				current_request = queue [0] as RequestItem;
 				queue.RemoveAt (0);
 				requests_by_path.Remove (current_request.path);
 			}
 
-			processRequest (current_request);
+			ProcessRequest (current_request);
 		}
 	}
 
-	private void handleProcessedRequests ()
+	private void HandleProcessedRequests ()
 	{
 		Queue results;
 
@@ -237,7 +237,7 @@ public class PixbufLoader {
 		}
 
 		if (OnPixbufLoaded != null) {
-			foreach (request r in results)
+			foreach (RequestItem r in results)
 				OnPixbufLoaded (this, r.path, r.order, r.result);
 		}
 	}
