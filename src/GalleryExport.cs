@@ -18,6 +18,7 @@ namespace FSpot {
 			} catch (System.Exception e) {
 				// FIXME handle this login exception better
 				System.Console.WriteLine (e);
+				gallery = null;
 				return null;
 			}
 		}
@@ -399,7 +400,8 @@ namespace FSpot {
 				if (!account.Connected)
 				       account.Connect ();
 				
-				PopulateAlbumOptionMenu (account.Gallery);
+				if (account.Gallery != null)
+					PopulateAlbumOptionMenu (account.Gallery);
 			}
 		}
 
