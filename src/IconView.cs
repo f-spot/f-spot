@@ -413,7 +413,7 @@ public class IconView : Gtk.Layout {
 
 	System.Collections.Hashtable date_layouts = new Hashtable ();
 	// FIXME Cache the GCs?
-	private void DrawCell (int thumbnail_num, int x, int y)
+	private void DrawCell (int thumbnail_num, int x, int y, Gdk.Rectangle area)
 	{
 		Gdk.GC gc = new Gdk.GC (BinWindow);
 		gc.Copy (Style.ForegroundGC (StateType.Normal));
@@ -425,8 +425,7 @@ public class IconView : Gtk.Layout {
 		string thumbnail_path = Thumbnail.PathForUri ("file://" + photo.DefaultVersionPath, ThumbnailSize.Large);
 		Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForPath (thumbnail_path);
 
-		Gdk.Rectangle area = new Gdk.Rectangle (x, y, cell_width, cell_height);
-		
+			
 		StateType cell_state = selected ? (HasFocus ? StateType.Selected :StateType.Active) : StateType.Normal;
 
 
@@ -438,60 +437,83 @@ public class IconView : Gtk.Layout {
 					 this, null, x + 3, y + 3, cell_width - 6, cell_height - 6);
 		}
 
-		int expansion = 0;
-		if (thumbnail_num == throb_cell) {
-			double t = throb_state / (double) (throb_state_max - 1);
-			double s;
+		Gdk.Rectangle image_area = new Gdk.Rectangle (x + CELL_BORDER_WIDTH, y + CELL_BORDER_WIDTH, cell_width - 2 * CELL_BORDER_WIDTH, cell_height - 2 * CELL_BORDER_WIDTH);
+		Gdk.Rectangle result = Rectangle.Zero;
+
+		int layout_width = 0;
+		int layout_height = 0;		
+
+		if (image_area.Intersect (area, out result)) {
+			int expansion = 0;
+			if (thumbnail_num == throb_cell) {
+				double t = throb_state / (double) (throb_state_max - 1);
+				double s;
 			if (selected)
 				s = Math.Cos (-2 * Math.PI * t);
 			else
 				s = 1 - Math.Cos (-2 * Math.PI * t);
 			
 			expansion = (int) (SELECTION_THICKNESS * s);
-		} else if (selected) {
-			expansion = SELECTION_THICKNESS;
-		}
-
-		int layout_width = 0;
-		int layout_height = 0;
-
-		
-		if (thumbnail == null) {
-			pixbuf_loader.Request (thumbnail_path, thumbnail_num);
-		} else {
-			int width, height;
-			PixbufUtils.Fit (thumbnail, ThumbnailWidth, ThumbnailHeight, true, out width, out height);
-
-			int dest_x = (int) (x + (cell_width - width) / 2);
-			int dest_y;
-
-			
-			dest_y = (int) y + ThumbnailHeight - height + CELL_BORDER_WIDTH;
-			
-			dest_x -= expansion;
-			dest_y -= expansion;		
-			width += 2 * expansion;
-			height += 2 * expansion;
-
-			Pixbuf temp_thumbnail;
-			if (width == thumbnail.Width) {
-				temp_thumbnail = thumbnail;
-			} else {
-				temp_thumbnail = thumbnail.ScaleSimple (width, height, InterpType.Bilinear);
+			} else if (selected) {
+				expansion = SELECTION_THICKNESS;
 			}
-
-			Style.PaintShadow (Style, BinWindow, cell_state,
-					   ShadowType.Out, area, this, "IconView", dest_x - 1, dest_y - 1, width + 2, height + 2);
-
-			temp_thumbnail.RenderToDrawable (BinWindow, Style.WhiteGC,
-							 0, 0, dest_x, dest_y, width, height, RgbDither.None, 0, 0);
 			
-			if (temp_thumbnail != thumbnail)
-				temp_thumbnail.Dispose ();
+			bool avoid_loader = false;
+			if (avoid_loader) {
+				if (thumbnail == null) {
+					//System.Console.WriteLine ("path = {0}", thumbnail_path);
+					thumbnail = new Pixbuf (thumbnail_path);
+					ThumbnailCache.Default.AddThumbnail (thumbnail_path, thumbnail);
+					thumbnail = new Pixbuf (thumbnail, 0, 0, thumbnail.Width, thumbnail.Height);
+				}
+
+				if (thumbnail == null)
+					thumbnail = PixbufUtils.ErrorPixbuf;
+			} else {
+				if (thumbnail == null) {
+					pixbuf_loader.Request (thumbnail_path, thumbnail_num);
+				}
+			}
 			
-			thumbnail.Dispose ();
+			if (thumbnail != null){
+				int width, height;
+				PixbufUtils.Fit (thumbnail, ThumbnailWidth, ThumbnailHeight, true, out width, out height);
+				
+				int dest_x = (int) (x + (cell_width - width) / 2);
+				int dest_y;
+				
+				
+				dest_y = (int) y + ThumbnailHeight - height + CELL_BORDER_WIDTH;
+				
+				dest_x -= expansion;
+				dest_y -= expansion;		
+				width += 2 * expansion;
+				height += 2 * expansion;
+
+				Pixbuf temp_thumbnail;
+				if (width == thumbnail.Width) {
+					temp_thumbnail = thumbnail;
+				} else {
+					if (ThumbnailWidth > 64)
+						temp_thumbnail = thumbnail.ScaleSimple (width, height, InterpType.Bilinear);
+					else {
+						temp_thumbnail = thumbnail.ScaleSimple (width, height, InterpType.Nearest);
+					}
+				}
+				
+				Style.PaintShadow (Style, BinWindow, cell_state,
+						   ShadowType.Out, area, this, "IconView", dest_x - 1, dest_y - 1, width + 2, height + 2);
+`			
+				temp_thumbnail.RenderToDrawable (BinWindow, Style.WhiteGC,
+								 0, 0, dest_x, dest_y, width, height, RgbDither.None, 0, 0);
+				
+				if (temp_thumbnail != thumbnail)
+					temp_thumbnail.Dispose ();
+				
+				thumbnail.Dispose ();
+			}
 		}
-
+			
 		if (DisplayDates) {
 			string date;
 			if (cell_width > 200) {
@@ -556,17 +578,17 @@ public class IconView : Gtk.Layout {
 		}
 	}
 
-	private void DrawAllCells (int x, int y, int width, int height)
+	private void DrawAllCells (Gdk.Rectangle area)
 	{
-		int start_cell_column = Math.Max ((x - BORDER_SIZE) / cell_width, 0);
-		int start_cell_row = Math.Max ((y - BORDER_SIZE) / cell_height, 0);
+		int start_cell_column = Math.Max ((area.X - BORDER_SIZE) / cell_width, 0);
+		int start_cell_row = Math.Max ((area.Y - BORDER_SIZE) / cell_height, 0);
 		int start_cell_num = start_cell_column + start_cell_row * cells_per_row;
 
 		int start_cell_x, cell_y;
 		GetCellPosition (start_cell_num, out start_cell_x, out cell_y);
 
-		int end_cell_column = Math.Max ((x + width - BORDER_SIZE) / cell_width, 0);
-		int end_cell_row = Math.Max ((y + height - BORDER_SIZE) / cell_height, 0);
+		int end_cell_column = Math.Max ((area.X + area.Width - BORDER_SIZE) / cell_width, 0);
+		int end_cell_row = Math.Max ((area.Y + area.Height - BORDER_SIZE) / cell_height, 0);
 
 		int num_rows = end_cell_row - start_cell_row + 1;
 		int num_cols = Math.Min (end_cell_column - start_cell_column + 1,
@@ -580,8 +602,10 @@ public class IconView : Gtk.Layout {
 
 			//Console.WriteLine ("Drawing row {0}", start_cell_row + i);
 			for (int j = 0; j < num_cols && cell_num + j < collection.Photos.Length; j ++) {
-				//Console.WriteLine ("Drawing Cell {0}", cell_num + j);
-				DrawCell (cell_num + j, cell_x, cell_y);
+				Gdk.Rectangle cell_bounds = CellBounds (cell_num + j);
+				if (area.Intersect (cell_bounds, out cell_bounds)) {
+					DrawCell (cell_num + j, cell_x, cell_y, cell_bounds);
+				}
 				cell_x += cell_width;
 			}
 
@@ -710,7 +734,11 @@ public class IconView : Gtk.Layout {
 		else if (y + cell_height > adjustment.Value + adjustment.PageSize)
 			adjustment.Value = y + cell_height - adjustment.PageSize;
 		
-		adjustment.ChangeValue();
+#if USEIDLE
+		Scroll ();
+#else
+		adjustment.Change ();
+#endif		
 	}
 
 
@@ -769,8 +797,7 @@ public class IconView : Gtk.Layout {
 
 	protected override bool OnExposeEvent (Gdk.EventExpose args)
 	{
-		DrawAllCells (args.Area.X, args.Area.Y,
-			      args.Area.Width, args.Area.Height);
+		DrawAllCells (args.Area);
 
 		return base.OnExposeEvent (args);
 	}
