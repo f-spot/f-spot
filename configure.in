@@ -49,6 +49,7 @@ LIBGNOMEUI_REQUIRED=2.2
 LIBEXIF_REQUIRED_MIN=0.5.7
 LIBEXIF_REQUIRED_MAX=0.7.0
 GTKSHARP_REQUIRED=1.0
+LCMS_REQUIRED=1.11
 dnl LIBGPHOTO2_REQUIRED=2.1.1
 
 PKG_CHECK_MODULES(F, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED libexif >= $LIBEXIF_REQUIRED_MIN libexif < $LIBEXIF_REQUIRED_MAX gtkhtml-sharp >= $GTKSHARP_REQUIRED gconf-sharp >= $GTKSHARP_REQUIRED glade-sharp >= $GTKSHARP_REQUIRED gtk+-2.0 >= 2.4)
@@ -78,10 +79,14 @@ AC_CHECK_LIB(sqlite, sqlite_last_insert_rowid, [],
 
 dnl --- lcms
 
-AC_CHECK_LIB(lcms, cmsCreate_sRGBProfile, [],
-	     [AC_MSG_ERROR([liblcms not found])], -lm)
-AC_CHECK_HEADER(lcms.h, , [AC_MSG_ERROR([liblcms not found])])
-LIBLCMS='-llcms'
+
+PKG_CHECK_MODULES(LCMS, lcms >= $LCMS_REQUIRED, [], 
+	[AC_CHECK_LIB(lcms, cmsCreate_sRGBProfile, [],
+		     [AC_MSG_ERROR([liblcms not found])], -lm)
+	AC_CHECK_HEADER(lcms.h, , [AC_MSG_ERROR([liblcms not found])])
+	LCMS_LIBS='-llcms'
+	LCMS_CFLAGS=''])
+
 
 
 dnl --- Set up paths
@@ -102,7 +107,8 @@ AM_GLIB_GNU_GETTEXT
 dnl --- Prologue
 
 AC_SUBST(LIBJPEG)
-AC_SUBST(LIBLCMS)
+AC_SUBST(LCMS_LIBS)
+AC_SUBST(LCMS_CFLAGS)
 AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)

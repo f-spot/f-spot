@@ -7,7 +7,8 @@ INCLUDES =							\
 	-I$(srcdir) -I$(top_srcdir)				\
 	-I$(top_srcdir)/src					\
 	-I$(top_builddir)					\
-	$(F_CFLAGS)
+	$(F_CFLAGS)						\
+	$(LCMS_CFLAGS)
 
 
 fspotlibdir = $(prefix)/lib/f-spot

@@ -1,3 +1,9 @@
+2005-01-25  Larry Ewing  <lewing@novell.com>
+
+	* libeog/Makefile.am: add LCMS_CFLAGS from Loz.
+
+	* configure.in: add pkg-config check for lcms from Loz.
+
 2005-01-24  Larry Ewing  <lewing@novell.com>
 
 	* src/ExifData.cs: add thumbnail saving and an empty ctor.
