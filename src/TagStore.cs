@@ -11,22 +11,36 @@ using System;
 using System.Runtime.InteropServices;
 
 public class PixbufSerializer {
+	[DllImport("libgdk_pixbuf-2.0-0.dll")]
+	static extern unsafe bool gdk_pixdata_deserialize(ref Gdk.Pixdata raw, uint stream_length, byte [] stream, out IntPtr error);
+
 	public static unsafe Pixbuf Deserialize (byte [] data)
 	{
 		Pixdata pixdata = new Pixdata ();
 
-		pixdata.Deserialize ((uint) data.Length, data);
+		IntPtr error = IntPtr.Zero;
+		bool raw_ret = gdk_pixdata_deserialize (ref pixdata, (uint) data.Length, data, out error);
+		bool ret = raw_ret;
+
+		if (error != IntPtr.Zero)
+			throw new GLib.GException (error);
 
 		return Pixbuf.FromPixdata (pixdata, true);
 	}
+
+	[DllImport("libgdk_pixbuf-2.0-0.dll")]
+	static extern IntPtr gdk_pixdata_serialize(ref Gdk.Pixdata raw, out uint stream_length_p);
 
 	public static byte [] Serialize (Pixbuf pixbuf)
 	{
 		Pixdata pixdata = new Pixdata ();
 		pixdata.FromPixbuf (pixbuf, true); // FIXME GTK# shouldn't this be a constructor or something?
 
+		uint data_length;
+		IntPtr raw_data = gdk_pixdata_serialize (ref pixdata, out data_length);
 
-		byte [] data = pixdata.Serialize ();
+		byte [] data = new byte [data_length];
+		Marshal.Copy (raw_data, data, 0, (int) data_length);
 
 		return data;
 	}
