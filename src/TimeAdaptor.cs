@@ -99,7 +99,7 @@ namespace FSpot {
 						data.Year = current;
 						data.Months = new int [12];
 						years.Add (data);
-						Console.WriteLine ("Found Year {0}", current);
+						//Console.WriteLine ("Found Year {0}", current);
 					}
 					data.Months [photo.Time.Month - 1] += 1;
 				}
