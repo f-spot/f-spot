@@ -6,6 +6,7 @@ SUBDIRS = 		\
 	src
 
 EXTRA_DIST =			\
+	MAINTAINERS		\
 	config.rpath 		\
 	intltool-extract.in	\
 	intltool-merge.in	\
