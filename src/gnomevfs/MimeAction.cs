@@ -32,7 +32,7 @@ namespace Gnome.Vfs {
 			return self;
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern int gnome_vfs_mime_action_launch_with_env(ref Gnome.Vfs.MimeAction raw, IntPtr uris, string envp);
 
 		public Gnome.Vfs.Result LaunchWithEnv(GLib.List uris, string envp) {
@@ -41,7 +41,7 @@ namespace Gnome.Vfs {
 			return ret;
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern int gnome_vfs_mime_action_launch(ref Gnome.Vfs.MimeAction raw, IntPtr uris);
 
 		public Gnome.Vfs.Result Launch(GLib.List uris) {
@@ -50,7 +50,7 @@ namespace Gnome.Vfs {
 			return ret;
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern void gnome_vfs_mime_action_free(ref Gnome.Vfs.MimeAction raw);
 
 		public void Free() {

@@ -24,7 +24,7 @@ namespace Gnome.Vfs {
 			CreateNativeObject (new string [0], new GLib.Value [0]);
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern IntPtr gnome_vfs_volume_get_drive(IntPtr raw);
 
 		public Gnome.Vfs.Drive Drive { 
@@ -39,7 +39,7 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern IntPtr gnome_vfs_volume_get_filesystem_type(IntPtr raw);
 
 		public string FilesystemType { 
@@ -50,7 +50,7 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern IntPtr gnome_vfs_volume_get_display_name(IntPtr raw);
 
 		public string DisplayName { 
@@ -61,7 +61,7 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern IntPtr gnome_vfs_volume_get_icon(IntPtr raw);
 
 		public string Icon { 
@@ -72,7 +72,7 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern UIntPtr gnome_vfs_volume_get_id(IntPtr raw);
 
 		public ulong Id { 
@@ -83,7 +83,7 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern bool gnome_vfs_volume_is_mounted(IntPtr raw);
 
 		public bool IsMounted { 
@@ -94,7 +94,7 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern IntPtr gnome_vfs_volume_get_activation_uri(IntPtr raw);
 
 		public string ActivationUri { 
@@ -105,7 +105,7 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern IntPtr gnome_vfs_volume_get_device_path(IntPtr raw);
 
 		public string DevicePath { 
@@ -116,7 +116,7 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern int gnome_vfs_volume_get_volume_type(IntPtr raw);
 
 		public Gnome.Vfs.VolumeType VolumeType { 
@@ -127,7 +127,7 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern int gnome_vfs_volume_compare(IntPtr raw, IntPtr b);
 
 		public int Compare(Gnome.Vfs.Volume b) {
@@ -136,7 +136,7 @@ namespace Gnome.Vfs {
 			return ret;
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern bool gnome_vfs_volume_is_user_visible(IntPtr raw);
 
 		public bool IsUserVisible { 
@@ -147,7 +147,7 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern bool gnome_vfs_volume_handles_trash(IntPtr raw);
 
 		public bool HandlesTrash { 
@@ -158,7 +158,7 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern bool gnome_vfs_volume_is_read_only(IntPtr raw);
 
 		public bool IsReadOnly { 
@@ -169,7 +169,7 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern int gnome_vfs_volume_get_device_type(IntPtr raw);
 
 		public Gnome.Vfs.DeviceType DeviceType { 
@@ -180,7 +180,7 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern IntPtr gnome_vfs_volume_get_type();
 
 		public static new GLib.GType GType { 

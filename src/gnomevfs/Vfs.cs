@@ -26,10 +26,10 @@ namespace Gnome.Vfs {
 	public class Vfs {
 		private Vfs () {}
 	
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		static extern bool gnome_vfs_init ();
 		
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		static extern bool gnome_vfs_initialized ();		
 	
 		public static bool Initialized {
@@ -49,7 +49,7 @@ namespace Gnome.Vfs {
 			return gnome_vfs_init ();
 		}
 		
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		static extern void gnome_vfs_shutdown ();
 		
 		public static void Shutdown ()
@@ -57,7 +57,7 @@ namespace Gnome.Vfs {
 			gnome_vfs_shutdown ();
 		}
 		
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern Result gnome_vfs_move (string old_uri, string new_uri, bool force_replace);
 		
 		public static Result Move (string source, string dest, bool force_replace)
@@ -65,7 +65,7 @@ namespace Gnome.Vfs {
 			return gnome_vfs_move (source, dest, force_replace);
 		}
 		
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern IntPtr gnome_vfs_result_to_string (int result);
 		
 		public static string ResultToString (Result result)
@@ -101,7 +101,7 @@ namespace Gnome.Vfs {
 			}
 		}
 		
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern string gnome_vfs_format_file_size_for_display (long size);
 		
 		public static string FormatFileSizeForDisplay (long size)

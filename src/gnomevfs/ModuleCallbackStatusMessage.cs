@@ -72,7 +72,7 @@ namespace Gnome.Vfs {
 
 		public override event ModuleCallbackHandler Callback;
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern void gnome_vfs_module_callback_push (string callback_name, ModuleCallbackStatusMessageNative callback, IntPtr data, IntPtr destroy);
 
 		public override void Push ()
@@ -82,7 +82,7 @@ namespace Gnome.Vfs {
 							IntPtr.Zero, IntPtr.Zero);
 		}
 		
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern void gnome_vfs_module_callback_pop (string callback_name);
 
 		public override void Pop ()
@@ -90,7 +90,7 @@ namespace Gnome.Vfs {
 			gnome_vfs_module_callback_pop ("status-message");
 		}
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern void gnome_vfs_module_callback_set_default (string callback_name, ModuleCallbackStatusMessageNative callback, IntPtr data, IntPtr destroy);
 
 		public override void SetDefault ()
@@ -100,7 +100,7 @@ namespace Gnome.Vfs {
 							       IntPtr.Zero, IntPtr.Zero);
 		}
 		
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern void gnome_vfs_async_module_callback_push (string callback_name, ModuleCallbackAsyncStatusMessageNative callback, IntPtr data, IntPtr destroy);
 
 		public override void PushAsync ()
@@ -110,7 +110,7 @@ namespace Gnome.Vfs {
 							      IntPtr.Zero, IntPtr.Zero);
 		}
 		
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern void gnome_vfs_async_module_callback_pop (string callback_name);
 
 		public override void PopAsync ()
@@ -118,7 +118,7 @@ namespace Gnome.Vfs {
 			gnome_vfs_async_module_callback_pop ("status-message");
 		}
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern void gnome_vfs_async_module_callback_set_default (string callback_name, ModuleCallbackAsyncStatusMessageNative callback, IntPtr data, IntPtr destroy);
 
 		public override void SetDefaultAsync ()

@@ -54,13 +54,13 @@ namespace Gnome.Vfs {
 		// This needs to be internal so other Gnome.Vfs code can use it for native calls.
 		internal FileInfoNative info;
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern FileInfoNative gnome_vfs_file_info_new ();
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern void gnome_vfs_file_info_copy (ref FileInfoNative dest, ref FileInfoNative src);
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern Result gnome_vfs_get_file_info_uri (IntPtr uri, ref FileInfoNative info, FileInfoOptions options);
 
 		internal FileInfo (FileInfoNative info)
@@ -82,7 +82,7 @@ namespace Gnome.Vfs {
 			Vfs.ThrowException (uri, result);
 		}
 		
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern void gnome_vfs_file_info_clear (ref FileInfoNative info);
 		
 		~FileInfo ()

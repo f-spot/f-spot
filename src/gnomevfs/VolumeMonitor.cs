@@ -354,7 +354,7 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern IntPtr gnome_vfs_volume_monitor_get_type();
 
 		public static new GLib.GType GType { 
@@ -365,7 +365,7 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern IntPtr gnome_vfs_volume_monitor_get_volume_for_path(IntPtr raw, string path);
 
 		public Gnome.Vfs.Volume GetVolumeForPath(string path) {
@@ -378,7 +378,7 @@ namespace Gnome.Vfs {
 			return ret;
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern IntPtr gnome_vfs_volume_monitor_get_drive_by_id(IntPtr raw, UIntPtr id);
 
 		public Gnome.Vfs.Drive GetDriveById(ulong id) {
@@ -391,7 +391,7 @@ namespace Gnome.Vfs {
 			return ret;
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern IntPtr gnome_vfs_volume_monitor_get_volume_by_id(IntPtr raw, UIntPtr id);
 
 		public Gnome.Vfs.Volume GetVolumeById(ulong id) {
@@ -432,7 +432,7 @@ namespace Gnome.Vfs {
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 // Boston, MA 02111-1307, USA.
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern IntPtr gnome_vfs_volume_monitor_get_connected_drives(IntPtr raw);
 
 		public Drive[] ConnectedDrives { 
@@ -447,7 +447,7 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern IntPtr gnome_vfs_volume_monitor_get_mounted_volumes(IntPtr raw);
 
 		public Volume[] MountedVolumes { 
@@ -462,7 +462,7 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern IntPtr gnome_vfs_get_volume_monitor ();
 
 		public static VolumeMonitor Get ()

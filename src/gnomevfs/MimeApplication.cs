@@ -32,7 +32,7 @@ namespace Gnome.Vfs {
 			return self;
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern IntPtr gnome_vfs_mime_application_new_from_id(string id);
 
 		public static MimeApplication NewFromId(string id)
@@ -40,7 +40,7 @@ namespace Gnome.Vfs {
 			return MimeApplication.New (gnome_vfs_mime_application_new_from_id(id));
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern int gnome_vfs_mime_application_launch_with_env(ref Gnome.Vfs.MimeApplication raw, IntPtr uris, string envp);
 
 		public Gnome.Vfs.Result LaunchWithEnv(GLib.List uris, string envp) {
@@ -49,7 +49,7 @@ namespace Gnome.Vfs {
 			return ret;
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern int gnome_vfs_mime_application_launch(ref Gnome.Vfs.MimeApplication raw, IntPtr uris);
 
 		public Gnome.Vfs.Result Launch(GLib.List uris) {
@@ -58,7 +58,7 @@ namespace Gnome.Vfs {
 			return ret;
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern IntPtr gnome_vfs_mime_application_copy(ref Gnome.Vfs.MimeApplication raw);
 
 		public Gnome.Vfs.MimeApplication Copy() {
@@ -67,14 +67,14 @@ namespace Gnome.Vfs {
 			return ret;
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern void gnome_vfs_mime_application_free(ref Gnome.Vfs.MimeApplication raw);
 
 		public void Free() {
 			gnome_vfs_mime_application_free(ref this);
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern void gnome_vfs_mime_application_list_free(IntPtr list);
 
 		public static void ListFree(GLib.List list) {

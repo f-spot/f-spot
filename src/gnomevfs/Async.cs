@@ -32,7 +32,7 @@ namespace Gnome.Vfs {
 		
 		private Async () {}
 	
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern void gnome_vfs_async_cancel (IntPtr handle);
 		
 		public static void Cancel (Handle handle)
@@ -40,7 +40,7 @@ namespace Gnome.Vfs {
 			gnome_vfs_async_cancel (handle.Raw);
 		}
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern void gnome_vfs_async_close (IntPtr handle, AsyncCallbackNative callback, IntPtr data);
 		
 		public static void Close (Handle handle, AsyncCallback callback)
@@ -49,7 +49,7 @@ namespace Gnome.Vfs {
 			gnome_vfs_async_close (handle.Raw, wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern void gnome_vfs_async_create (out IntPtr handle, string uri, OpenMode mode, bool exclusive, uint perm, int priority, AsyncCallbackNative callback, IntPtr data);
 		
 		public static Handle Create (string uri, OpenMode mode, bool exclusive, FilePermissions perm, int priority, AsyncCallback callback)
@@ -65,7 +65,7 @@ namespace Gnome.Vfs {
 			return Create (uri.ToString (), mode, exclusive, perm, priority, callback);
 		}
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern void gnome_vfs_async_open (out IntPtr handle, string uri, OpenMode mode, int priority, AsyncCallbackNative callback, IntPtr data);
 		
 		public static Handle Open (string uri, OpenMode mode, int priority, AsyncCallback callback)
@@ -81,7 +81,7 @@ namespace Gnome.Vfs {
 			return Open (uri.ToString (), mode, priority, callback);
 		}
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern void gnome_vfs_async_read (IntPtr handle, out byte buffer, uint bytes, AsyncReadCallbackNative callback, IntPtr data);
 		
 		public static void Read (Handle handle, out byte buffer, uint bytes, AsyncReadCallback callback)
@@ -90,7 +90,7 @@ namespace Gnome.Vfs {
 			gnome_vfs_async_read (handle.Raw, out buffer, bytes, wrapper.NativeDelegate, IntPtr.Zero);
 		}
 		
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern void gnome_vfs_async_seek (IntPtr handle, SeekPosition whence, long offset, AsyncCallbackNative callback, IntPtr data);
 		
 		public static void Seek (Handle handle, SeekPosition whence, long offset, AsyncCallback callback)
@@ -99,7 +99,7 @@ namespace Gnome.Vfs {
 			gnome_vfs_async_seek (handle.Raw, whence, offset, wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern void gnome_vfs_async_write (IntPtr handle, out byte buffer, uint bytes, AsyncWriteCallbackNative callback, IntPtr data);
 		
 		public static void Write (Handle handle, out byte buffer, uint bytes, AsyncWriteCallback callback)

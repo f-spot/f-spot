@@ -1,5 +1,9 @@
 2005-02-27  Larry Ewing  <lewing@novell.com>
 
+	* src/gnomevfs: update the dll name to something more reasonable.
+
+	* src/f-spot.exe.config.in: add a map entry for libgnomevfs.
+
 	* src/main.cs: initialize gnome-program with the right arguments.
 
 2005-02-24  Gary Ekker  <gekker@novell.com>

@@ -69,7 +69,7 @@ namespace Gnome.Vfs {
 		{
 		}
 		
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern Result gnome_vfs_monitor_add (out IntPtr handle, string uri, MonitorType type, MonitorCallbackNative callback, IntPtr user_data);
 		
 		public Result Add (string uri, MonitorType type)
@@ -81,7 +81,7 @@ namespace Gnome.Vfs {
 			return result;
 		}
 		
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern Result gnome_vfs_monitor_cancel (IntPtr handle);
 		
 		public Result Cancel ()

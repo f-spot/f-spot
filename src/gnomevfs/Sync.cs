@@ -26,7 +26,7 @@ namespace Gnome.Vfs {
 	public class Sync {
 		private Sync () {}
 	
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern Result gnome_vfs_close (IntPtr handle);
 
 		public static Result Close (Handle handle)
@@ -34,7 +34,7 @@ namespace Gnome.Vfs {
 			return gnome_vfs_close (handle.Raw);
 		}
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern Result gnome_vfs_create (out IntPtr handle, string uri, OpenMode mode, bool exclusive, uint perm);
 		
 		public static Handle Create (string uri, OpenMode mode, bool exclusive, FilePermissions perm)
@@ -49,7 +49,7 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern Result gnome_vfs_create_uri (out IntPtr handle, IntPtr uri, OpenMode mode, bool exclusive, uint perm);
 		
 		public static Handle Create (Uri uri, OpenMode mode, bool exclusive, FilePermissions perm)
@@ -64,7 +64,7 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern Result gnome_vfs_open (out IntPtr handle, string uri, OpenMode mode);
 		
 		public static Handle Open (string uri, OpenMode mode)
@@ -79,7 +79,7 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern Result gnome_vfs_open_uri (out IntPtr handle, IntPtr uri, OpenMode mode);
 		
 		public static Handle Open (Uri uri, OpenMode mode)
@@ -94,7 +94,7 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern Result gnome_vfs_read (IntPtr handle, out byte buffer, ulong bytes, out ulong bytes_read);
 		
 		public static Result Read (Handle handle, out byte buffer, ulong bytes, out ulong bytes_read)
@@ -102,7 +102,7 @@ namespace Gnome.Vfs {
 			return gnome_vfs_read (handle.Raw, out buffer, bytes, out bytes_read);
 		}
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern Result gnome_vfs_seek (IntPtr handle, SeekPosition whence, long offset);
 		
 		public static Result Seek (Handle handle, SeekPosition whence, long offset)
@@ -110,7 +110,7 @@ namespace Gnome.Vfs {
 			return gnome_vfs_seek (handle.Raw, whence, offset);
 		}
 		
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern Result gnome_vfs_write (IntPtr handle, out byte buffer, ulong bytes, out ulong bytes_written);
 		
 		public static Result Write (Handle handle, out byte buffer, ulong bytes, out ulong bytes_written)
@@ -118,7 +118,7 @@ namespace Gnome.Vfs {
 			return gnome_vfs_write (handle.Raw, out buffer, bytes, out bytes_written);
 		}
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern Result gnome_vfs_tell (IntPtr handle, out ulong offset);
 		
 		public static Result Tell (Handle handle, out ulong offset)
@@ -126,7 +126,7 @@ namespace Gnome.Vfs {
 			return gnome_vfs_tell (handle.Raw, out offset);
 		}
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern Result gnome_vfs_truncate (string uri, ulong length);
 		
 		public static Result Truncate (string uri, ulong length)
@@ -134,7 +134,7 @@ namespace Gnome.Vfs {
 			return gnome_vfs_truncate (uri, length);
 		}
 		
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern Result gnome_vfs_truncate_handle (IntPtr handle, ulong length);
 		
 		public static Result Truncate (Handle handle, ulong length)
@@ -142,7 +142,7 @@ namespace Gnome.Vfs {
 			return gnome_vfs_truncate_handle (handle.Raw, length);
 		}
 		
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern Result gnome_vfs_file_control (IntPtr handle, string operation, out string data);
 		
 		// TODO: data parameter only works when you want a string back,

@@ -26,7 +26,7 @@ namespace Gnome.Vfs {
 		public static readonly string UnknownMimeType = "application/octet-stream";
 		private string mimetype;
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		static extern string gnome_vfs_get_mime_type (string uri);
 		
 		public MimeType (Uri uri)
@@ -34,7 +34,7 @@ namespace Gnome.Vfs {
 			mimetype = gnome_vfs_get_mime_type (uri.ToString ());
 		}
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		static extern bool gnome_vfs_mime_type_is_known (string mime_type);
 
 		public MimeType (string mimetype)
@@ -44,7 +44,7 @@ namespace Gnome.Vfs {
 			this.mimetype = mimetype;
 		}
 		
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		static extern string gnome_vfs_get_mime_type_for_data (ref byte data, int size);
 		
 		public MimeType (byte[] buffer, int size)
@@ -52,10 +52,10 @@ namespace Gnome.Vfs {
 			mimetype = gnome_vfs_get_mime_type_for_data (ref buffer[0], size);
 		}
 		
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		static extern MimeActionType gnome_vfs_mime_get_default_action_type (string mime_type);
 		
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		static extern Result gnome_vfs_mime_set_default_action_type (string mime_type, MimeActionType action_type);
 
 		public MimeActionType DefaultActionType {
@@ -68,7 +68,7 @@ namespace Gnome.Vfs {
 			}
 		}
 		
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		static extern MimeAction gnome_vfs_mime_get_default_action (string mime_type);
 
 		public MimeAction DefaultAction {
@@ -77,10 +77,10 @@ namespace Gnome.Vfs {
 			}
 		}
 		
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		static extern string gnome_vfs_mime_get_description (string mime_type);
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		static extern Result gnome_vfs_mime_set_description (string mime_type, string description);
 
 		public string Description {
@@ -93,10 +93,10 @@ namespace Gnome.Vfs {
 			}
 		}
 		
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		static extern string gnome_vfs_mime_get_icon (string mime_type);
 		
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		static extern Result gnome_vfs_mime_set_icon (string mime_type, string filename);
 		
 		public string Icon {
@@ -109,10 +109,10 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		static extern bool gnome_vfs_mime_can_be_executable (string mime_type);
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		static extern Result gnome_vfs_mime_set_can_be_executable (string mime_type, bool value);
 		
 		public bool CanBeExecutable {

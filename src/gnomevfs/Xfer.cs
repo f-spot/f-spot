@@ -24,7 +24,7 @@ using System.Runtime.InteropServices;
 
 namespace Gnome.Vfs {
 	public class Xfer {
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern Result gnome_vfs_xfer_uri_list (IntPtr source_uri_list,
 								      IntPtr target_uri_list,
 								      XferOptions xfer_options,
@@ -57,7 +57,7 @@ namespace Gnome.Vfs {
 							IntPtr.Zero);
 		}
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern Result gnome_vfs_xfer_uri (IntPtr source_uri,
 								 IntPtr target_uri,
 								 XferOptions xfer_options,
@@ -78,7 +78,7 @@ namespace Gnome.Vfs {
 						   wrapper.NativeDelegate, IntPtr.Zero);
 		}
 
-		[DllImport ("gnomevfs-2")]
+		[DllImport ("libgnomevfs-2-0.dll")]
 		private static extern Result gnome_vfs_xfer_delete_list (IntPtr source_uri_list,
 									 XferErrorMode error_mode,
 									 XferOptions xfer_options,

@@ -88,7 +88,7 @@ namespace Gnome.Vfs {
 			}
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern IntPtr gnome_vfs_mime_monitor_get();
 
 		public static Gnome.Vfs.MimeMonitor Get() {
@@ -101,7 +101,7 @@ namespace Gnome.Vfs {
 			return ret;
 		}
 
-		[DllImport("gnomevfs-2")]
+		[DllImport("libgnomevfs-2-0.dll")]
 		static extern IntPtr gnome_vfs_mime_monitor_get_type();
 
 		public static new GLib.GType GType { 
