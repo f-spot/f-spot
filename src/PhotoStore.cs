@@ -353,7 +353,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 	public bool HasTag (Tag tag)
 	{
-		if (tags = null)
+		if (tags == null)
 			return false;
 
 		return tags.Contains (tag);
