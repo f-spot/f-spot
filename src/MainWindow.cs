@@ -502,6 +502,7 @@ public class MainWindow {
 
 		if (selection.Length == 1) {
 			current_photo_idx = selection [0];
+			//photo_view.CurrentPhoto = current_photo_idx;
 			info_box.Photo = CurrentPhoto;
 			if (info_display != null) 
 				info_display.Photo = CurrentPhoto;
@@ -986,7 +987,8 @@ public class MainWindow {
 
 		SlideView slideview = new SlideView (bg, photos);
 		win.ButtonPressEvent += HandleSlideViewButtonPressEvent;
-		win.AddEvents ((int) EventMask.ButtonPressMask);
+		win.KeyPressEvent += HandleSlideViewKeyPressEvent;
+		win.AddEvents ((int) (EventMask.ButtonPressMask | EventMask.KeyPressMask));
 		win.Add (slideview);
 		win.Decorated = false;
 		win.Fullscreen();
@@ -1008,6 +1010,13 @@ public class MainWindow {
 		return false;
 	}
 	
+	private void HandleSlideViewKeyPressEvent (object sender, KeyPressEventArgs args)
+	{
+		Gtk.Window win = sender as Gtk.Window;
+		win.Destroy ();
+		args.RetVal = true;
+	}
+
 	private void HandleSlideViewButtonPressEvent (object sender, ButtonPressEventArgs args)
 	{
 		Gtk.Window win = sender as Gtk.Window;
