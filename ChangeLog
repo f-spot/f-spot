@@ -1,3 +1,8 @@
+2004-08-02  Larry Ewing  <lewing@novell.com>
+
+	* libeog/accessible-image-view.c: remove bonobo.h include, it
+	isn't needed.
+
 2004-08-01  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoStore.cs: reorder the tables in the join, this speeds
