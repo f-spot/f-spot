@@ -1,3 +1,17 @@
+f-spot 0.0.10 - March 4 2004 - Half
+-----------------------------------
+- Fixed exif information trucation.
+- Added .exe.config entries for all the external calls we make.
+- Dispose of thumbnails after generating them.
+- Many typo fixes (Adam Weinberger).
+- Improved the icon cache to speed up thumbnail display.
+- Fallback to simple flipping in the slideshow logic to avoid
+  horrible lag on machines with slow video cards.
+- Fixed a crash in the color adjustment dialog.
+- Allow hiding of the tag sidebar (Nat).
+- Speed up initial display of image when switching to view mode.
+- Fix gallery export bug when used with newer Gallery installations.
+
 f-spot 0.0.9 - Feb 21 2005 - Shell
 ----------------------------------
 - Refactored thumbnail cache.
