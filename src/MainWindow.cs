@@ -524,7 +524,7 @@ public class MainWindow {
 
 	void CreateQuickPreview ()
 	{
-		quick_preview = new Gtk.Window ("Foo");
+		quick_preview = new Gtk.Window (Gtk.WindowType.Popup);
 		quick_preview.Decorated = false;
 		quick_preview.TransientFor = main_window;
 		quick_preview.TypeHint = Gdk.WindowTypeHint.Dock;
