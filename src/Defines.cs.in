@@ -1,0 +1,13 @@
+//
+// Defines.cs
+// Get the locale directory
+//
+// Authors: 
+//	Martin Willemoes Hansen
+//
+// (C) 2004 Martin Willemoes Hansen
+// 
+
+public struct Defines {
+	public static string LOCALE_DIR = "@prefix@/share/locale";
+}

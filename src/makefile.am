@@ -7,6 +7,7 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/CompatFileChooser.cs		\
 	$(srcdir)/DateCommands.cs		\
 	$(srcdir)/Db.cs				\
+	$(srcdir)/Defines.cs			\
 	$(srcdir)/Delay.cs			\
 	$(srcdir)/DirectoryAdaptor.cs		\
 	$(srcdir)/ExifData.cs			\
@@ -69,6 +70,7 @@ ASSEMBLIES =					\
 	/r:System.Data				\
 	/r:System.Web				\
 	/r:Mono.Data.SqliteClient		\
+	/r:Mono.Posix				\
 	/pkg:gtkhtml-sharp			\
 	/pkg:glade-sharp			\
 	/pkg:gconf-sharp

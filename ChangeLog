@@ -1,8 +1,18 @@
 2004-11-30  Martin Willemoes Hansen  <mwh@sysrq.dk>
 
+	* AUTHORS: Converted to UTF-8,
+	  added myself
+	* configure.in: Added Defines.cs.in
+	* src/Defines.cs.in: Added
+	* src/MainWindow.cs: Call Mono.Posix.Catalog.Init to setup
+	  correct dir for locales
+	* src/.cvsignore: Add3ed Defines.cs
+	* src/makefile.am: Added reference to Mono.Posix
+	* src/makefile.am: Added Defines.cs to the list of sources
 	* configure.in: Added Danish translation.
 	* po/ChangeLog: Ditto.
 	* po/da.po: Ditto.
+	* po/.cvsignore: Added
 
 2004-11-30  Larry Ewing  <lewing@novell.com>
 

@@ -3,6 +3,7 @@ using Gtk;
 using GtkSharp;
 using Glade;
 using Gnome;
+using Mono.Posix;
 using System;
 using System.IO;
 using System.Text;
@@ -120,7 +121,8 @@ public class MainWindow {
 	public MainWindow (Db db)
 	{
 		this.db = db;
-		
+
+		Catalog.Init ("f-spot", Defines.LOCALE_DIR);
 		Glade.XML gui = Glade.XML.FromAssembly ("f-spot.glade", "main_window", null);
 		gui.Autoconnect (this);
 
