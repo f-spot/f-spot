@@ -1,5 +1,7 @@
 2005-02-13  Larry Ewing  <lewing@novell.com>
 
+	* src/GroupSelector.cs: fix a redraw bug in the group selector.
+
 	* src/MainWindow.cs: fix the IconView application/x-fspot-photos
 	source so that dragging to the tags works again.  Turn off sync
 	writes when importing.

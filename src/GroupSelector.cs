@@ -144,6 +144,15 @@ namespace FSpot {
 			}
 		}
 		
+		private static Gdk.Rectangle Expand (Gdk.Rectangle src, int width)
+		{
+			src.X -= width;
+			src.Y -= width;
+			src.Width += width * 2;
+			src.Height += width * 2;
+			return src;
+		}
+
 		private void UpdateButtons () {
 			left.Sensitive = (scroll_offset < 0);
 			right.Sensitive = (box_counts.Length * BoxWidth > background.Width - scroll_offset);
@@ -632,10 +641,8 @@ namespace FSpot {
 			{
 				Rectangle box = InnerBounds ();
 
-				box.X -= border;
-				box.Y -= border;
-				box.Width += 2 * border;
-				box.Height += 2 * border + handle_height;
+				box = Expand (box, border);
+				box.Height += handle_height;
 				
 				return box;
 			}
@@ -646,27 +653,24 @@ namespace FSpot {
 				Rectangle bounds = Bounds ();
 				
 				if (bounds.Intersect (area, out area)) {
-					
-					
 					int i = 0;
+
 					Rectangle box = inner;
 					box.Width -= 1;
 					box.Height -= 1;
 					while (i < border) {
-						box.X -= 1;
-						box.Y -= 1;
-						box.Width += 2;
-						box.Height += 2;
-					
+						box = Expand (box, 1);
+						
+						selector.Style.BackgroundGC (State).ClipRectangle = area;
 						selector.GdkWindow.DrawRectangle (selector.Style.BackgroundGC (State), 
 										  false, box);
 						i++;
 					}
-				
+
 					Style.PaintHandle (selector.Style, selector.GdkWindow, State, ShadowType.In, 
 							    area, selector, "glass", bounds.X, inner.Y + inner.Height + border, 
 							    bounds.Width, handle_height, Orientation.Horizontal);
-
+					
 					Style.PaintShadow (selector.Style, selector.GdkWindow, State, ShadowType.Out, 
 							   area, selector, "glass", bounds.X, bounds.Y, bounds.Width, bounds.Height);
 
