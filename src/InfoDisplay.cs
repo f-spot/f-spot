@@ -50,8 +50,12 @@ namespace FSpot {
 			if (url == "exif:thumbnail") {
 				byte [] data = exif_info.Data;
 				
-				stream.Write (data, data.Length);
-				stream.Close (Gtk.HTMLStreamStatus.Ok);
+				if (data.Length > 0) {
+					stream.Write (data, data.Length);
+					stream.Close (Gtk.HTMLStreamStatus.Ok);
+				} else 
+					stream.Close (Gtk.HTMLStreamStatus.Error);
+					  
 			}
 		}
 
