@@ -1,3 +1,10 @@
+2004-11-18  Larry Ewing  <lewing@novell.com>
+
+	* src/PhotoLoader.cs: expose the thumbnail gernation routine.
+
+	* src/AsyncPixbufLoader.cs: regenerate the thumbnail after the
+	async load is done.
+
 2004-11-17  Larry Ewing  <lewing@novell.com>
 
 	* src/AsyncPixbufLoader.cs: Integrate

@@ -7,9 +7,13 @@ namespace FSpot {
 		}
 				
 		System.IO.Stream stream;
+		Gdk.PixbufLoader loader;
 		
+		string path;
 		bool area_prepared = false;
 		bool done_reading = false;
+		System.Exception error;
+
 		//byte [] buffer = new byte [8192];
 		byte [] buffer = new byte [32768];
 
@@ -18,30 +22,31 @@ namespace FSpot {
 		public Gdk.Pixbuf Load (string filename)
 		{
 			delay.Stop ();
+			path = filename;
 			done_reading = false;
 			area_prepared = false;
-
+			
 			if (stream != null)
 				stream.Close ();
-
+			
 			stream = new System.IO.FileStream (filename, System.IO.FileMode.Open, System.IO.FileAccess.Read);
 			
 			if (loader != null) {
 				loader.Close ();
 				loader.Dispose ();
 			}
-
+			
 			loader = new Gdk.PixbufLoader ();
 			loader.AreaPrepared += HandleAreaPrepared;
 			loader.AreaUpdated += HandleAreaUpdated;
-
+			loader.Closed += HandleClosed;
+			
 			LoadToAreaPrepared ();
 			delay.Start ();
-
+			
 			return loader.Pixbuf;
 		}
 
-		Gdk.PixbufLoader loader;
 		public Gdk.PixbufLoader Loader {
 			get {
 				return loader;
@@ -57,8 +62,9 @@ namespace FSpot {
 			} while (len > 0 && !area_prepared);
 
 			if (len <= 0) {
-				stream.Close() ;
 				done_reading = true;
+				stream.Close ();
+				loader.Close ();
 			}
 		}
 
@@ -76,6 +82,7 @@ namespace FSpot {
 				if (len <= 0) {
 					done_reading = true;
 					stream.Close ();
+					loader.Close ();
 					return false;
 				}
 			} while (!done_reading && span.TotalMilliseconds <= 300);
@@ -92,6 +99,17 @@ namespace FSpot {
 	       
 		private void HandleAreaUpdated (object sender, Gdk.AreaUpdatedArgs args)
 		{
+			if (done_reading) {
+				
+			}
+		}
+
+		private void HandleClosed (object sender, System.EventArgs args) 
+		{
+			System.Console.WriteLine ("Closed");
+			if (done_reading && loader.Pixbuf != null) {
+				PhotoLoader.ValidateThumbnail (path, loader.Pixbuf);
+			}
 		}
 	}
 }

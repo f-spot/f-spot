@@ -29,11 +29,13 @@ namespace FSpot
 			ValidateThumbnail (photo, pixbuf);
 			return pixbuf;
 		}
-
-
-		static private Gdk.Pixbuf ValidateThumbnail (Photo photo, Gdk.Pixbuf pixbuf)
+		static public Gdk.Pixbuf ValidateThumbnail (Photo photo, Gdk.Pixbuf pixbuf)
 		{
-			string photo_path = photo.DefaultVersionPath;
+			return ValidateThumbnail (photo.DefaultVersionPath, pixbuf);
+		}
+
+		static public Gdk.Pixbuf ValidateThumbnail (string photo_path, Gdk.Pixbuf pixbuf)
+		{			
 			string photo_uri = "file://" + photo_path;
 			string thumbnail_path = Gnome.Thumbnail.PathForUri (photo_uri, 
 									    Gnome.ThumbnailSize.Large);
@@ -42,7 +44,7 @@ namespace FSpot
 
 			if (pixbuf != null && thumbnail != null &&
 			    pixbuf.Width >= THUMBNAIL_SIZE && pixbuf.Height >= THUMBNAIL_SIZE) {
-				DateTime mtime = System.IO.File.GetLastWriteTime (photo.DefaultVersionPath);
+				DateTime mtime = System.IO.File.GetLastWriteTime (photo_path);
 				bool valid = false;
 
 				try {
