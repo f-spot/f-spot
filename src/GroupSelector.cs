@@ -147,7 +147,7 @@ namespace FSpot {
 		private void BoxXHitFilled (double x, out int out_position)
 		{
 			x -= BoxX (0);
-			double position = (x / BoxWidth) - 0.5;
+			double position = (x / BoxWidth);
 			position = System.Math.Max (0, position);
 			position = System.Math.Min (position, box_counts.Length - 1);
 			
@@ -168,7 +168,7 @@ namespace FSpot {
 					out_position = upper;
 				} else if (upper == box_counts.Length && lower > -1){
 					out_position = lower;
-				} else if (upper - position > position - lower) {
+				} else if (upper + 1 - position > position - lower) {
 					out_position = lower;
 				} else {
 					out_position = upper;
