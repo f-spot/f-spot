@@ -13,12 +13,22 @@ namespace FSpot {
 		Gdk.Pixbuf pixbuf;
 		PixbufOrientation orientation;
 
+
+
 		//byte [] buffer = new byte [8192];
 		byte [] buffer = new byte [32768];
 
 		public event AreaUpdatedHandler AreaUpdated;
 		public event AreaPreparedHandler AreaPrepared;
 		public event System.EventHandler Done;
+
+		// If the photo we just loaded has an out of date
+		// thumbnail save a new one
+		bool validate_thumbnail = true;
+
+		// Limit pass control back to the main loop after
+		// chunk_timeout miliseconds.
+		int  chunk_timeout = 500;
 
 		Delay delay;
 
@@ -178,7 +188,9 @@ namespace FSpot {
 
 		private void HandleClosed (object sender, System.EventArgs args) 
 		{
-			if (done_reading && pixbuf != null) {
+			// FIXME This should probably queue the
+			// thumbnail regeneration to a worker thread
+			if (validate_thumbnail && done_reading && pixbuf != null) {
 				PhotoLoader.ValidateThumbnail (path, pixbuf);
 			}
 
