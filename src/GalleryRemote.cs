@@ -65,7 +65,7 @@ namespace GalleryRemote {
 					 photo.DefaultVersionPath, 
 					 Path.GetFileName (photo.DefaultVersionPath), 
 					 photo.Description, 
-					 false);
+					 true);
 		}
 		
 		public string GetUrl ()
