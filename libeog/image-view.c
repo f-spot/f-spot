@@ -531,6 +531,7 @@ apply_brightness_and_contrast_to_pixbuf (ImageView *view,
 	}
 }
 
+static void
 apply_transform_to_pixbuf (ImageView *view, GdkPixbuf *pixbuf, int width, int height)
 {
 	char *p;
