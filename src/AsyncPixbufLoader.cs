@@ -150,7 +150,7 @@ namespace FSpot {
 		private void HandleAreaPrepared (object sender, System.EventArgs args)
 		{
 			Gdk.Pixbuf old = pixbuf;
-			pixbuf = PixbufUtils.TransformOrientation (loader.Pixbuf, orientation);
+			pixbuf = PixbufUtils.TransformOrientation (loader.Pixbuf, orientation, false);
 
 			area_prepared = true;			
 			if (AreaUpdated != null)
@@ -194,7 +194,7 @@ namespace FSpot {
 				loader.Closed -= HandleClosed;
 			}
 			Close ();
-
+			
 			if (pixbuf != null)
 				pixbuf.Dispose ();
 		}

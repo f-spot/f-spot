@@ -1,5 +1,8 @@
 2005-01-15  Larry Ewing  <lewing@novell.com>
 
+	* src/AsyncPixbufLoader.cs: turn off copy_data. in AreaPrepared it
+	isn't useful.
+
 	* src/PixbufUtils.cs: break the working region up into a 256x256
 	subregion and use a temporary buffer to improve the locality of
 	the rotation.  Speeds things up a _lot_.
