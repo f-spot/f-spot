@@ -1,5 +1,15 @@
 2005-02-21  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: fix the icon loading logic for drag items.
+
+	* src/IconView.cs: expose the PixbufCache so that we can use it in
+	the drag operation.
+
+	* src/Makefile.am: remove original export from the Build add html
+	export.
+
+	* src/MainWindow.cs: make original export use FolderExport.
+
 	* src/Exif.cs: remove small thinko in exif parsing.
 
 	* src/FolderExport.cs: set the description string.

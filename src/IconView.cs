@@ -53,6 +53,12 @@ public class IconView : Gtk.Layout {
 		}
 	}
 
+	public FSpot.PixbufCache Cache {
+		get {
+			return cache;
+		}
+	}
+
 	private bool display_tags = true;
 	public bool DisplayTags {
 		get {

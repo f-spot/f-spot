@@ -565,9 +565,13 @@ public class MainWindow {
 
 			bool use_icon = false;;
 			while (len-- > 0) {
-				string thumbnail_path = Thumbnail.PathForUri (photos[len].DefaultVersionUri.ToString (), 
-									      ThumbnailSize.Large);
-				Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForPath (thumbnail_path);
+				string thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photos [len].DefaultVersionUri);
+				FSpot.PixbufCache.CacheEntry entry = icon_view.Cache.Lookup (thumbnail_path);
+
+				Pixbuf thumbnail = null;
+				if (entry != null)
+					thumbnail = entry.ShallowCopyPixbuf ();
+				
 				if (thumbnail != null) {
 					Pixbuf small = PixbufUtils.ScaleToMaxSize (thumbnail, size, size);				
 
