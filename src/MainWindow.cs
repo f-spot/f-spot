@@ -505,7 +505,8 @@ public class MainWindow {
 		if (photos.Length > 0) {
 			int len = Math.Min (photos.Length, 4);
 			int size = 48;
-			int csize = size/2 + len * size/2;
+			int border  = 2;
+			int csize = size/2 + len * size / 2 + 2 * border ;
 			
 			Pixbuf container = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, csize, csize);
 			container.Fill (0x00000000);
@@ -515,8 +516,14 @@ public class MainWindow {
 				string thumbnail_path = Thumbnail.PathForUri (photos[len].DefaultVersionUri.ToString (), ThumbnailSize.Large);
 				Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForPath (thumbnail_path);
 				if (thumbnail != null) {
-					Pixbuf small = PixbufUtils.ScaleToMaxSize (thumbnail, size, size);
-					small.CopyArea (0, 0, small.Width, small.Height, container, len * (size/2), len * (size/2));
+					Pixbuf small = PixbufUtils.ScaleToMaxSize (thumbnail, size, size);				
+
+					int x = border + len * (size/2) + (size - small.Width)/2;
+					int y = border + len * (size/2) + (size - small.Height)/2;
+					Pixbuf box = new Pixbuf (container, x - border, y - border, small.Width + 2 * border, small.Height + 2 * border);
+					box.Fill (0x000000ff);
+
+					small.CopyArea (0, 0, small.Width, small.Height, container, x, y); 
 					
 					thumbnail.Dispose ();
 					small.Dispose ();
