@@ -315,6 +315,7 @@ namespace FSpot {
 				case RangeType.Fixed:
 					return background.Width / (double) 12;
 				case RangeType.Min:
+					return Math.Max (MIN_BOX_WIDTH, background.Width / (double) box_counts.Length);
 				default:
 					return (double) MIN_BOX_WIDTH;
 				}
@@ -806,7 +807,7 @@ namespace FSpot {
 		protected override void OnSizeRequested (ref Requisition requisition)
 		{
 			requisition.Width = 500;
-			requisition.Height = 100;
+			requisition.Height = 70;
 			base.OnSizeRequested (ref requisition);
 		}
 
