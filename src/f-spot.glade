@@ -3291,7 +3291,7 @@ Standard - 4x6</property>
 		      <property name="xalign">0.5</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
-		      <property name="ypad">0</property>
+		      <property name="ypad">5</property>
 		    </widget>
 		    <packing>
 		      <property name="type">label_item</property>
@@ -3459,7 +3459,7 @@ Photo Details</property>
 				<widget class="GtkCheckButton" id="checkbutton1">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">checkbutton1</property>
+				  <property name="label" translatable="yes">Crop Photo to Fit</property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>
@@ -3478,7 +3478,7 @@ Photo Details</property>
 				<widget class="GtkCheckButton" id="checkbutton2">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">checkbutton2</property>
+				  <property name="label" translatable="yes">Print Crop Marks</property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>
@@ -3516,7 +3516,7 @@ Photo Details</property>
 		      <property name="xalign">0.5</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
-		      <property name="ypad">0</property>
+		      <property name="ypad">5</property>
 		    </widget>
 		    <packing>
 		      <property name="type">label_item</property>
@@ -3643,17 +3643,35 @@ Photo Details</property>
 				  <property name="spacing">0</property>
 
 				  <child>
-				    <placeholder/>
+				    <widget class="GtkLabel" id="label38">
+				      <property name="visible">True</property>
+				      <property name="label" translatable="yes"></property>
+				      <property name="use_underline">False</property>
+				      <property name="use_markup">False</property>
+				      <property name="justify">GTK_JUSTIFY_LEFT</property>
+				      <property name="wrap">False</property>
+				      <property name="selectable">False</property>
+				      <property name="xalign">0.5</property>
+				      <property name="yalign">0.5</property>
+				      <property name="xpad">0</property>
+				      <property name="ypad">0</property>
+				    </widget>
+				    <packing>
+				      <property name="padding">0</property>
+				      <property name="expand">True</property>
+				      <property name="fill">True</property>
+				    </packing>
 				  </child>
 
 				  <child>
-				    <widget class="GtkButton" id="button4">
+				    <widget class="GtkButton" id="configure_button">
 				      <property name="visible">True</property>
 				      <property name="can_focus">True</property>
 				      <property name="label" translatable="yes">Co_nfigure</property>
 				      <property name="use_underline">True</property>
 				      <property name="relief">GTK_RELIEF_NORMAL</property>
 				      <property name="focus_on_click">True</property>
+				      <signal name="clicked" handler="HandleConfigureClicked" last_modification_time="Fri, 17 Sep 2004 16:43:52 GMT"/>
 				    </widget>
 				    <packing>
 				      <property name="padding">0</property>
@@ -3912,7 +3930,7 @@ Photo Details</property>
 		  <property name="xalign">0.5</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
-		  <property name="ypad">0</property>
+		  <property name="ypad">5</property>
 		</widget>
 		<packing>
 		  <property name="type">label_item</property>
