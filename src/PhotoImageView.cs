@@ -6,7 +6,8 @@ namespace FSpot {
 			this.query = query;
 			loader = new FSpot.AsyncPixbufLoader ();
 			//scroll_delay = new Delay (new GLib.IdleHandler (IdleUpdateScrollbars));
-			this.SizeAllocated += new Gtk.SizeAllocatedHandler (HandleSizeAllocated);
+			this.SizeAllocated += HandleSizeAllocated;
+			this.KeyPressEvent += HandeKeyPressEvent;
 		}
 		
 		private int current_photo = -1;
@@ -86,6 +87,20 @@ namespace FSpot {
 			}
 		}
 
+
+		public double Zoom {
+			get {
+				double x, y;
+				this.GetZoom (out x, out y);
+				return x;
+			}
+			
+			set {
+				this.Fit = false;
+				this.SetZoom (value, value);
+			}
+		}
+		
 		private void HandleSizeAllocated (object sender, Gtk.SizeAllocatedArgs args)
 		{
 			if (fit)
@@ -176,6 +191,38 @@ namespace FSpot {
 		{
 			System.Console.WriteLine ("I'm feeling better");
 			base.OnDestroyed ();
+		}
+
+		[GLib.ConnectBefore]
+		private void HandeKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
+		{
+			// FIXME I really need to figure out why overriding is not working
+			// for any of the default handlers.
+
+			switch (args.Event.Key) {
+			case Gdk.Key.Page_Up:
+			case Gdk.Key.KP_Page_Up:
+				this.Prev ();
+				break;
+			case Gdk.Key.Page_Down:
+			case Gdk.Key.KP_Page_Down:
+				this.Next ();
+				break;
+			case Gdk.Key.Key_0:
+				this.Fit = true;
+				break;
+			case Gdk.Key.Key_1:
+				this.Zoom =  1.0;
+				break;
+			case Gdk.Key.Key_2:
+				this.Zoom = 2.0;
+				break;
+			default:
+				args.RetVal = false;
+				return;
+			}
+			args.RetVal = true;
+			return;
 		}
 
 		protected override bool OnDestroyEvent (Gdk.Event evnt)

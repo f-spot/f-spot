@@ -70,14 +70,11 @@ public class PhotoView : EventBox {
 
 	public double Zoom {
 		get {
-			double x, y;
-			photo_view.GetZoom (out x, out y);
-			return x;
+			return photo_view.Zoom;
 		}
 
 		set {
-			photo_view.Fit = false;
-			photo_view.SetZoom (value, value);
+			photo_view.Zoom = value;
 		}
 	}
 
@@ -209,31 +206,6 @@ public class PhotoView : EventBox {
 			PhotoPopup popup = new PhotoPopup ();
 			popup.Activate (args.Event);
 		}
-	}
-
-	[GLib.ConnectBefore]
-	private void HandleImageViewKeyPressEvent (object sender, KeyPressEventArgs args)
-	{
-		switch (args.Event.Key) {
-		case Gdk.Key.Page_Up:
-		case Gdk.Key.KP_Page_Up:
-			HandleDisplayPreviousButtonClicked (sender, null);
-			break;
-		case Gdk.Key.Page_Down:
-		case Gdk.Key.KP_Page_Down:
-			HandleDisplayNextButtonClicked (sender, null);
-			break;
-		case Gdk.Key.Key_0:
-			photo_view.Fit = true;
-			break;
-		default:
-			photo_view.Fit = false;
-			args.RetVal = false;
-			return;
-		}
-
-		args.RetVal = true;
-		return;
 	}
 
 	private void HandleDisplayNextButtonClicked (object sender, EventArgs args)
@@ -400,7 +372,6 @@ public class PhotoView : EventBox {
 		photo_view_scrolled.Add (photo_view);
 		photo_view_scrolled.ButtonPressEvent += HandleButtonPressEvent;
 		photo_view.AddEvents ((int) EventMask.KeyPressMask);
-		photo_view.KeyPressEvent += new KeyPressEventHandler (HandleImageViewKeyPressEvent);
 		inner_vbox.PackStart (photo_view_scrolled, true, true, 0);
 		
 		HBox inner_hbox = new HBox (false, 2);

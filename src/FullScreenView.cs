@@ -38,28 +38,12 @@ namespace FSpot {
 				return false;
 			}
 
-			switch (key.Key) {
-			case Gdk.Key.Page_Up:
-			case Gdk.Key.KP_Page_Up:
-				view.Prev ();
-				break;
-			case Gdk.Key.Page_Down:
-			case Gdk.Key.KP_Page_Down:
-				view.Next ();
-				break;
-			case Gdk.Key.F:
-			case Gdk.Key.f:
-				view.Fit = true;
-				break;
-			default:
-				bool retval = base.OnKeyPressEvent (key);
-				if (!retval)
-					this.Destroy ();
-				else 
-					view.Fit = false;
-				return retval;
-			}
-			return true;
+			bool retval = base.OnKeyPressEvent (key);
+			if (!retval)
+				this.Destroy ();
+			else 
+				view.Fit = false;
+			return retval;
 		}
 	}
 }
