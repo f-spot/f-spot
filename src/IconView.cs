@@ -125,16 +125,16 @@ public class IconView : Gtk.Layout {
 
 		selected_cells = new Hashtable ();
 
-		// FIXME
-		// gtk_drag_dest_set (GTK_WIDGET (icon_view),
-		// 		     GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_HIGHLIGHT | GTK_DEST_DEFAULT_DROP,
-		//                   NULL, 0, GDK_ACTION_MOVE | GDK_ACTION_COPY);
-
 		SizeAllocated += new SizeAllocatedHandler (HandleSizeAllocated);
 		ExposeEvent += new ExposeEventHandler (HandleExposeEvent);
 		ButtonPressEvent += new ButtonPressEventHandler (HandleButtonPressEvent);
 		ButtonReleaseEvent += new ButtonReleaseEventHandler (HandleButtonReleaseEvent);
 		MotionNotifyEvent += new MotionNotifyEventHandler (HandleMotionNotifyEvent);
+
+		string [] types = new string [1];
+		types [0] = "text/uri-list";
+		GtkDnd.SetAsDestination (this, types);
+		DragDrop += new DragDropHandler (HandleDragDrop);
 	}
 
 	private void OnReload (PhotoQuery query)
@@ -448,16 +448,6 @@ public class IconView : Gtk.Layout {
 		y_offset = (int) adjustment.Value;
 	}
 
-	private void DrawBackground (int x, int y, int width, int height)
-	{
-		//	/* FIXME: Is "entry_bg" the right detail value we want to pass in?  */
-		//	gtk_paint_flat_box (GTK_WIDGET (view)->style, GTK_LAYOUT (view)->bin_window,
-		//			    GTK_STATE_NORMAL, GTK_SHADOW_NONE, NULL,
-		//			    GTK_WIDGET (view), "entry_bg",
-		//			    x, y, width, height);
-		// FIXME there doesn't seem to be a binding for this in C#.
-	}
-
 
 	// Event handlers.
 
@@ -501,9 +491,6 @@ public class IconView : Gtk.Layout {
 
 	private void HandleExposeEvent (object sender, ExposeEventArgs args)
 	{
-		DrawBackground (args.Event.area.x, args.Event.area.y,
-				args.Event.area.width, args.Event.area.height);
-
 		DrawAllCells (args.Event.area.x, args.Event.area.y,
 			      args.Event.area.width, args.Event.area.height);
 	}
@@ -536,10 +523,9 @@ public class IconView : Gtk.Layout {
 				SelectCell (cell_num);
 			}
 
-			// FIXME not bound in GTK#...  Sigh.
-			// gdk_pointer_grab (GTK_LAYOUT (widget)->bin_window, FALSE,
-			// GDK_BUTTON_RELEASE_MASK | GDK_BUTTON1_MOTION_MASK,
-			//	  NULL, NULL, ev->time);
+			Gdk.Pointer.Grab (BinWindow, false,
+					  EventMask.ButtonReleaseMask | EventMask.Button1MotionMask,
+					  null, null, args.Event.time);
 
 			click_x = (int) args.Event.x;
 			click_y = (int) args.Event.y;
@@ -560,7 +546,7 @@ public class IconView : Gtk.Layout {
 
 	private void HandleButtonReleaseEvent (object sender, ButtonReleaseEventArgs args)
 	{
-		// gdk_pointer_ungrab (event->time); FIXME
+		Gdk.Pointer.Ungrab (args.Event.time);
 		in_drag = false;
 	}
 
@@ -569,17 +555,19 @@ public class IconView : Gtk.Layout {
 		if (in_drag)
 			return;
 
-		// FIXME missing bindings.
-		// if (! gtk_drag_check_threshold (widget,
-		//	   			   priv->click_x, priv->click_y,
-		//                                 event->x, event->y))
-		//	return FALSE;
+		if (! Gtk.Drag.CheckThreshold (this, click_x, click_y, (int) args.Event.x, (int) args.Event.y))
+			return;
 
 		TargetList target_list = new TargetList ();
-
-		// FIXME missing bindings.
-		// gtk_drag_begin (widget, target_list, GDK_ACTION_COPY | GDK_ACTION_MOVE, 1, (GdkEvent *) event);
-
 		in_drag = true;
+	}
+
+
+	// DnD event handlers.
+
+	// FIXME GTK# this is supposed to return a bool.
+	private void HandleDragDrop (object sender, DragDropArgs args)
+	{
+		Console.WriteLine ("HandleDragDrop");
 	}
 }

@@ -1,5 +1,16 @@
 2003-11-16  Ettore Perazzoli  <ettore@perazzoli.org>
 
+	Get some basic Dnd stuff in, although, it doesn't really work and
+	I am giving up for now.
+
+	* src/IconView.cs: Set up as a drag destination.  This doesn't
+	work but I'll commit anyways since it's a start.
+
+	* src/GtkDnd.cs: New file trying to make up for the broken
+	bindings.
+
+2003-11-16  Ettore Perazzoli  <ettore@perazzoli.org>
+
 	* src/MainWindow.cs (MainWindow.OnTagSelectionChanged): Switch to
 	icon view mode.
 

@@ -10,6 +10,7 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/ExifData.cs			\
 	$(srcdir)/ExifUtils.cs			\
 	$(srcdir)/FileImportBackend.cs		\
+	$(srcdir)/GtkDnd.cs			\
 	$(srcdir)/IconView.cs			\
 	$(srcdir)/ImageView.cs			\
 	$(srcdir)/ImportBackend.cs		\
