@@ -57,6 +57,11 @@ public class PhotoQuery : FSpot.IPhotoCollection {
 	public void Commit (int index) 
 	{
 		store.Commit (photos[index]);
+		MarkChanged (index);
+	}
+
+	public void MarkChanged (int index)
+	{
 		ItemChanged (this, index);
 	}
 
