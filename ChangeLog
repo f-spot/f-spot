@@ -1,5 +1,14 @@
 2004-08-16  Larry Ewing  <lewing@novell.com>
 
+	* makefile.am: add GroupSelector.cs remove TimelineSelector.cs.
+
+	* src/f-spot.glade: add an hbox for packing the Selector into.
+
+	* src/GroupSelector.cs: clean up offset fixes.
+
+	* src/MainWindow.cs: add a GroupSelector with bogus values to
+	start tying in the Selector for testing.
+
 	* src/GroupSelector.cs: event and drawing boinds if the widget
 	isn't located at 0x0.
 

@@ -228,7 +228,7 @@ public class TimelineSelectorWidget : Gtk.Layout {
 	}
 
 
-#if TEST_TIMELINE_SELECTOR_WIDGET
+#if true
 
 	private class TimeModel : TimelineSelectorWidget.IModel {
 		public void Get (int item_num, out string label, out int count)

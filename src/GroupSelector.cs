@@ -566,23 +566,18 @@ namespace FSpot {
 
 		protected override void OnSizeAllocated (Gdk.Rectangle alloc)
 		{
-			Console.WriteLine ("OnSizeAllocated {0}", alloc);
-
 			base.OnSizeAllocated (alloc);
 			int legend_height = 20;
 
 			background = new Rectangle (alloc.X + border, alloc.Y + border, 
-						    alloc.Width - 2* border,
+						    alloc.Width - 2 * border,
 						    alloc.Height - 2 * border - legend_height);
 
 			legend = new Rectangle (border, background.Y + background.Height,
 						background.Width, legend_height);
 
-			if (event_window != null) {
+			if (event_window != null)
 				event_window.MoveResize (alloc.X, alloc.Y, alloc.Width, alloc.Height);
-				event_window.Move (alloc.X, alloc.Y);
-				Console.WriteLine ("move resize alloc {0},{1}", alloc, event_window);
-			}
 		}
 
 		public GroupSelector () : base () 
