@@ -67,14 +67,14 @@ namespace FSpot {
 	        public void LoadToAreaPrepared ()
 		{
 			delay.Stop  ();
-			while (AsyncRead () && !area_prepared)
+			while (!area_prepared && AsyncRead ())
 				; //step
 		}
 
 		public void LoadToDone ()
 		{
 			delay.Stop ();
-			while (AsyncRead ())
+			while (!done_reading && AsyncRead ())
 				; //step
 		}
 

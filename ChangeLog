@@ -1,3 +1,8 @@
+2004-12-24  Larry Ewing  <lewing@novell.com>
+
+	* src/AsyncPixbufLoader.cs: make LoadToDone and LoadToAreaPrepared
+	check the state before reading.
+
 2004-12-23  Larry Ewing  <lewing@novell.com>
 
 	* src/SlideView.cs: call dispose on the pixbufs more in more
