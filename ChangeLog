@@ -1,5 +1,8 @@
 2004-08-12  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: set tag icon to first image if no icon is
+	set.
+
 	* src/TagStore.cs: use the pixdata Serialize/Deserialize now that
 	they actually work.
 

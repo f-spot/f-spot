@@ -267,6 +267,28 @@ public class MainWindow {
 	// Tag Selection Drag Handlers
 	//
 
+	public void AddTagExtended (Photo photo, Tag [] tags)
+	{
+		photo.AddTag (tags);
+		db.Photos.Commit (photo);
+
+		foreach (Tag t in tags) {
+			Pixbuf icon = null;
+
+			if (t.Icon == null) {
+				if (icon == null) {
+					// FIXME this needs a lot more work.
+					Pixbuf tmp = PixbufUtils.LoadAtMaxSize (photo.DefaultVersionPath, 128, 128);
+					icon = PixbufUtils.TagIconFromPixbuf (tmp);
+					tmp.Dispose ();
+				}
+				
+				t.Icon = icon;
+				db.Tags.Commit (t);
+			}
+		}
+	}
+
 	public void HandleTagSelectionDragMotion (object o, DragMotionArgs args)
 	{
 		TreePath path;
@@ -292,8 +314,7 @@ public class MainWindow {
 			foreach (int num in SelectedIds ()) {
 				Photo photo = query.Photos [num];
 				
-				photo.AddTag (tags);
-				db.Photos.Commit (photo);
+				AddTagExtended (photo, tags);
 				InvalidateViews (num);
 			}
 			break;
@@ -307,8 +328,7 @@ public class MainWindow {
 				if (photo == null)
 					return;
 				
-				photo.AddTag (tags);
-				db.Photos.Commit (photo);
+				AddTagExtended (photo, tags);
 			}
 			InvalidateViews ();
 			break;
@@ -510,8 +530,7 @@ public class MainWindow {
 	{
 		foreach (int num in SelectedIds ()) {
 			Photo photo = query.Photos [num];
-			photo.AddTag (t);
-			db.Photos.Commit (photo);
+			AddTagExtended (photo, new Tag [] {t});
 			
 			InvalidateViews (num);
 		}
@@ -688,8 +707,7 @@ public class MainWindow {
 		foreach (int num in SelectedIds ()) {
 			Photo photo = query.Photos [num];
 			
-			photo.AddTag (tags);
-			db.Photos.Commit (photo);
+			AddTagExtended (photo, tags);
 			InvalidateViews (num);
 		}
 	}
