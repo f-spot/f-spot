@@ -1,3 +1,8 @@
+2005-01-19  Larry Ewing  <lewing@novell.com>
+
+	* src/PhotoStore.cs:  fix a bug that prevents you from adding a
+	tag to a photo without a tag.
+
 2005-01-18  Larry Ewing  <lewing@novell.com>
 
 	* NEWS: add new items.

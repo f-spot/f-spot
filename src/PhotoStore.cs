@@ -325,7 +325,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 	// This on the other hand does, but is O(n) with n being the number of existing tags.
 	public void AddTag (Tag tag)
 	{
-		if (! tags.Contains (tag))
+		if (!HasTag (tag))
 			AddTagUnsafely (tag);
 	}
 
@@ -341,7 +341,8 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 	public void RemoveTag (Tag tag)
 	{
-		tags.Remove (tag);
+		if (HasTag (tag))
+			tags.Remove (tag);
 	}
 
 	public void RemoveTag (Tag []taglist)
@@ -352,6 +353,9 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 	public bool HasTag (Tag tag)
 	{
+		if (tags = null)
+			return false;
+
 		return tags.Contains (tag);
 	}
 
