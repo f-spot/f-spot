@@ -317,6 +317,7 @@ public class TagCommands {
 			PopulateCategoryOptionMenu  (t);
 			
 			icon_button.Clicked += HandleIconButtonClicked;
+			icon_button.SetSizeRequest (48, 48);
 
 			category_option_menu.Changed += HandleTagNameEntryChanged;
 			ResponseType response = (ResponseType) edit_tag_dialog.Run ();
@@ -352,6 +353,7 @@ public class TagCommands {
 		Gtk.Window parent_window;
 		FSpot.PhotoQuery query;
 		FSpot.PhotoImageView image_view;
+		IconView icon_view;
 
 		[Glade.Widget]
 		Dialog edit_icon_dialog;
@@ -393,13 +395,16 @@ public class TagCommands {
 			Gdk.Pixbuf tmp = null;
 		       
 			image_view.GetSelection (out x, out y, out width, out height);
+			if (image_view.Pixbuf != null) {
+				if (width > 0 && height > 0) {
+					tmp = new Gdk.Pixbuf (image_view.Pixbuf, x, y, width, height);
+					
+					preview_image.Pixbuf = PixbufUtils.TagIconFromPixbuf (tmp);
+					
+					tmp.Dispose ();
+				}
 
-			if (width > 0 && height > 0) {
-				tmp = new Gdk.Pixbuf (image_view.Pixbuf, x, y, width, height);
-				
-				preview_image.Pixbuf = PixbufUtils.TagIconFromPixbuf (tmp);
-				
-				tmp.Dispose ();
+				icon_view.UnselectAllCells ();
 			}
 		}
 
@@ -409,6 +414,22 @@ public class TagCommands {
 							  image_view.CurrentPhoto + 1, query.Photos.Length);
 
 			photo_spin_button.Value = image_view.CurrentPhoto + 1;
+		}
+
+		public void HandleIconViewSelectionChanged (IconView view) 
+		{
+			if (icon_view.SelectedIdxCount > 0)
+			{
+				FSpot.IBrowsableItem item = icon_view.Collection.Items [icon_view.SelectedIdxs [0]];
+				string path = item.DefaultVersionUri.LocalPath;
+				try {
+					preview_image.Pixbuf = new Gdk.Pixbuf (path);
+					image_view.UnsetSelection ();
+				} catch {
+					// FIXME add a real exception handler here.
+					System.Console.WriteLine ("Unable To Load image");
+				}
+			}
 		}
 
 		public bool Execute (Tag t)
@@ -450,12 +471,21 @@ public class TagCommands {
 			}			
 			
 			
-			IconView view = new IconView (new FSpot.DirectoryCollection ("/opt/gnome/share/icons/gnome/48x48/emblems/"));
-			icon_scrolled_window.Add (view);
-			view.ThumbnailWidth = 32;
-			view.DisplayTags = false;
-			view.DisplayDates = false;
-			view.Show();
+			// FIXME this path choosing method is completely wrong/broken/evil it needs to be
+			// based on real data but I want to get this release out.
+			if (System.IO.Directory.Exists ("/opt/gnome/share/icons/gnome/48x48/emblems"))
+				icon_view = new IconView (new FSpot.DirectoryCollection ("/opt/gnome/share/icons/gnome/48x48/emblems"));
+			else if (System.IO.Directory.Exists ("/usr/share/icons/gnome/48x48/emblems"))
+				icon_view = new IconView (new FSpot.DirectoryCollection ("/usr/local/share/icons/gnome/48x48/emblems"));
+			else // This will just load an empty collection if the directory doesn't exist.
+				icon_view = new IconView (new FSpot.DirectoryCollection ("/usr/shar/icons/gnome/48x48/emblems"));
+
+			icon_scrolled_window.Add (icon_view);
+			icon_view.ThumbnailWidth = 32;
+			icon_view.DisplayTags = false;
+			icon_view.DisplayDates = false;
+			icon_view.SelectionChanged += HandleIconViewSelectionChanged;
+			icon_view.Show();
 
 			image_view.Show ();
 

@@ -31,17 +31,23 @@ namespace FSpot {
 		}
 
 		void LoadItems () {
-			System.Collections.ArrayList images = new System.Collections.ArrayList ();
+			// FIXME this should probably actually throw and exception
+			// if the directory doesn't exist.
+			if (System.IO.Directory.Exists (path)) {
+				System.Collections.ArrayList images = new System.Collections.ArrayList ();
 
-			System.IO.DirectoryInfo info = new System.IO.DirectoryInfo (path);
-			System.IO.FileInfo [] files = info.GetFiles ();
-			foreach (System.IO.FileInfo f in files) {
-				System.Console.WriteLine (f.FullName);
-
-				images.Add (new FileBrowsableItem (f.FullName));
+				System.IO.DirectoryInfo info = new System.IO.DirectoryInfo (path);
+				System.IO.FileInfo [] files = info.GetFiles ();
+				foreach (System.IO.FileInfo f in files) {
+					System.Console.WriteLine (f.FullName);
+					
+					images.Add (new FileBrowsableItem (f.FullName));
+				}
+				
+				items = images.ToArray (typeof (FileBrowsableItem)) as FileBrowsableItem [];
+			} else {
+				items = new FileBrowsableItem [0];
 			}
-			
-			items = images.ToArray (typeof (FileBrowsableItem)) as FileBrowsableItem [];
 		}
 
 	}

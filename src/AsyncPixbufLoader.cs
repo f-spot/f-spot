@@ -126,7 +126,7 @@ namespace FSpot {
 			if (pixbuf != null && loader.Pixbuf != pixbuf)
 				area = PixbufUtils.TransformAndCopy (loader.Pixbuf, pixbuf, orientation, damage);
 			
-			if (AreaUpdated != null)
+			if (area.Width != 0 && area.Height != 0 && AreaUpdated != null)
 				AreaUpdated (this, area);
 
 			damage = Gdk.Rectangle.Zero;

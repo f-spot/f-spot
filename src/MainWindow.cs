@@ -1124,9 +1124,11 @@ public class MainWindow {
 			if (ids.Length > 0)
 				i = ids [0];
 
+			// FIXME this should be an  IBrowsableCollection.
 			photos = new Photo [query.Photos.Length];
 			Array.Copy (query.Photos, i, photos, 0, query.Photos.Length - i);
 			Array.Copy (query.Photos, 0, photos, query.Photos.Length - i, i);
+			System.Console.WriteLine (photos.Length);
 		} else {
 			photos = SelectedPhotos ();
 		}

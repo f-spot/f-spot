@@ -1,3 +1,20 @@
+2005-01-20  Larry Ewing  <lewing@novell.com>
+
+	* configure.in: update version in preparation for release.
+
+	* NEWS: update for release.
+
+	* src/AsyncPixbufLoader.cs: don't fire the updated signal if there
+	is no updated region.
+
+	* src/DirectoryCollection.cs: Make directory collection not throw
+	an exception if the directory doesn't exist.  In reality it
+	probably should throw one but it is difficult to deal with
+	properly right now.
+	
+	* src/TagCommands.cs: add icon selection.  Clean up some
+	image_view handling code.  Add evil emblem directory hack.
+
 2005-01-19  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoStore.cs: use ThumbnailGeneratore where appropriate.
