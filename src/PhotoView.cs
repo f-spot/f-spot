@@ -141,7 +141,11 @@ public class PhotoView : EventBox {
 
 	private void UpdateImageView ()
 	{
-		image_view.Pixbuf = new Pixbuf (Model.GetItem (current_photo).Path);
+		if (Model == null || current_photo >= Model.Count)
+			image_view.Pixbuf = null;
+		else
+			image_view.Pixbuf = new Pixbuf (Model.GetItem (current_photo).Path);
+
 		image_view.UnsetSelection ();
 		UpdateZoom ();
 

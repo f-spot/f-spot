@@ -1,5 +1,31 @@
 2003-11-08  Ettore Perazzoli  <ettore@ximian.com>
 
+	* src/PhotoView.cs (PhotoView.UpdateImageView): Handle a null
+	model or an out of range photo index value gracefully.
+
+	* src/PhotoStore.cs (Photo.ctr): Moved initialization for "tags"
+	out of the constructor.  Added version management.
+	(Photo.VersionIds): New.
+	(Photo.AddVersionUnsafely): New.
+	(Photo.GetPathForVersionName): New.
+	(Photo.VersionNameExists): New.
+	(Photo.GetVersionName): New.
+	(Photo.GetVersionPath): New.
+	(Photo.DeleteVersion): New.
+	(Photo.CreateVersion): New.
+	(Photo.RenameVersion): New.
+	(Photo.Photo): Made the two constructors use each other to
+	avoid duplicated code.  Also, create the default "Original" version.
+	(PhotoStore.ctor): Create the "photo_versions" table.
+	(PhotoStore.Get): Get the versions from the database.
+	(PhotoStore.Remove): Update the "photo_versions" table.
+	(PhotoStore.Commit): Likewise.
+	(Main): Added testing code for the versioning stuff.
+
+	* src/ImageView.cs (ImageView.Pixbuf): Handle a null value.
+
+2003-11-08  Ettore Perazzoli  <ettore@ximian.com>
+
 	* MAINTAINERS: New.
 	* Makefile.am (EXTRA_DIST): Add.
 

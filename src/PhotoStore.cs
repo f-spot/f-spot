@@ -38,7 +38,7 @@ public class Photo : DbItem {
 		}
 	}
 
-	private ArrayList tags;
+	private ArrayList tags = new ArrayList ();
 	public ArrayList Tags {
 		get {
 			return tags;
@@ -54,6 +54,114 @@ public class Photo : DbItem {
 			description = value;
 		}
 	}
+
+
+	// Version management
+
+	public const int OriginalVersionId = 1;
+
+	private uint highest_version_id;
+
+	private Hashtable version_names = new Hashtable ();
+	public uint [] VersionIds {
+		get {
+			uint [] ids = new uint [version_names.Count];
+
+			uint i = 0;
+			foreach (uint id in version_names.Keys)
+				ids [i ++] = id;
+
+			Array.Sort (ids);
+			return ids;
+		}
+	}
+
+	// This doesn't check if a version of that name already exists, it's supposed to be used only within
+	// the Photo and PhotoStore classes.
+	public void AddVersionUnsafely (uint version_id, string name)
+	{
+		version_names [version_id] = name;
+
+		highest_version_id = Math.Max (version_id, highest_version_id);
+	}
+
+	private string GetPathForVersionName (string version_name)
+	{
+		string name_without_extension = System.IO.Path.GetFileNameWithoutExtension (name);
+		string extension = System.IO.Path.GetExtension (name);
+
+		return System.IO.Path.Combine (directory_path,  name_without_extension + " (" + version_name + ")" + extension);
+	}
+
+	private bool VersionNameExists (string version_name)
+	{
+		foreach (string n in version_names.Values) {
+			if (n == version_name)
+				return true;
+		}
+
+		return false;
+	}
+
+	public string GetVersionName (uint version_id)
+	{
+		return version_names [version_id] as string;
+	}
+
+	public string GetVersionPath (uint version_id)
+	{
+		return GetPathForVersionName (version_names [version_id] as string);
+	}
+
+	public void DeleteVersion (uint version_id)
+	{
+		if (version_id == OriginalVersionId)
+			throw new Exception ("Cannot delete original version");
+
+		// Delete file.
+
+		version_names.Remove (version_id);
+	}
+
+	public uint CreateVersion (string name, uint base_version_id)
+	{
+		string new_path = GetPathForVersionName (name);
+		string original_path = GetVersionPath (base_version_id);
+
+		if (VersionNameExists (name))
+			throw new Exception ("This name already exists");
+
+		// Copy file.
+
+		highest_version_id ++;
+		version_names [highest_version_id] = name;
+
+		return highest_version_id;
+	}
+
+	public void RenameVersion (int version_id, string new_name)
+	{
+		if (version_id == OriginalVersionId)
+			throw new Exception ("Cannot rename original version");
+
+		if (VersionNameExists (name))
+			throw new Exception ("This name already exists");
+
+		string original_name = version_names [version_id] as string;
+
+		string old_path = GetPathForVersionName (original_name);
+		string new_path = GetPathForVersionName (new_name);
+
+		if (File.Exists (new_path))
+			throw new Exception ("File with this name already exists");
+
+		// Rename file
+
+		version_names [version_id] = name;
+	}
+
+
+	// Tag management.
 
 	// This doesn't check if the tag is already there, use with caution.
 	public void AddTagUnsafely (Tag tag)
@@ -73,7 +181,6 @@ public class Photo : DbItem {
 		tags.Remove (tag);
 	}
 
-	// O(n)
 	public bool HasTag (Tag tag)
 	{
 		return tags.Contains (tag);
@@ -82,30 +189,28 @@ public class Photo : DbItem {
 
 	// Constructor
 
-	public Photo (uint id, uint unix_time, string path)
-		: base (id)
-	{
-		tags = new ArrayList ();
-
-		time = DbUtils.DateTimeFromUnixTime (unix_time);
-
-		directory_path = System.IO.Path.GetDirectoryName (path);
-		name = System.IO.Path.GetFileName (path);
-
-		description = "";
-	}
-
 	public Photo (uint id, uint unix_time, string directory_path, string name)
 		: base (id)
 	{
-		tags = new ArrayList ();
-
 		time = DbUtils.DateTimeFromUnixTime (unix_time);
+
 		this.directory_path = directory_path;
 		this.name = name;
 
 		description = "";
+
+		// Note that the original version is never stored in the photo_versions table in the
+		// database.
+		AddVersionUnsafely (OriginalVersionId, "Original");
 	}
+
+	public Photo (uint id, uint unix_time, string path)
+		: this (id, unix_time,
+			System.IO.Path.GetDirectoryName (path),
+			System.IO.Path.GetFileName (path))
+	{
+	}
+
 }
 
 public class PhotoStore : DbStore {
@@ -166,6 +271,21 @@ public class PhotoStore : DbStore {
 
 		command.ExecuteNonQuery ();
 		command.Dispose ();
+
+		// FIXME: No need to do Dispose here?
+
+		command = new SqliteCommand ();
+		command.Connection = Connection;
+
+		command.CommandText =
+			"CREATE TABLE photo_versions (      " +
+			"	photo_id      INTEGER,      " +
+			"       version_id    INTEGER,      " +
+			"       name          STRING        " +
+			")";
+
+		command.ExecuteNonQuery ();
+		command.Dispose ();
 	}
 
 
@@ -192,10 +312,13 @@ public class PhotoStore : DbStore {
 		string uri = "file://" + path;
 		thumbnail = thumbnail_factory.GenerateThumbnail ("file://" + path, "image/jpeg");
 
-		// FIXME there is no SaveThumbnail() in the C# bindings for ThumbnailFactory.
-		// This should really be done through SaveThumbnail, which would make sure we dont' do
-		// it unnecessarily.
-		thumbnail.Savev (Thumbnail.PathForUri (uri, ThumbnailSize.Large), "png", null, null);
+		// FIXME if this is null then the file doesn't exist.
+		if (thumbnail != null) {
+			// FIXME there is no SaveThumbnail() in the C# bindings for ThumbnailFactory.
+			// This should really be done through SaveThumbnail, which would make sure we dont' do
+			// it unnecessarily.
+			thumbnail.Savev (Thumbnail.PathForUri (uri, ThumbnailSize.Large), "png", null, null);
+		}
 
 		return photo;
 	}
@@ -242,6 +365,20 @@ public class PhotoStore : DbStore {
 
 		command.Dispose ();
 
+		command = new SqliteCommand ();
+		command.Connection = Connection;
+		command.CommandText = String.Format ("SELECT version_id, name FROM photo_versions WHERE photo_id = {0}", id);
+		reader = command.ExecuteReader ();
+
+		while (reader.Read ()) {
+			uint version_id = Convert.ToUInt32 (reader [0]);
+			string name = reader[1].ToString ();
+
+			photo.AddVersionUnsafely (version_id, name);
+		}
+
+		command.Dispose ();
+
 		return photo;
 	}
 
@@ -261,6 +398,14 @@ public class PhotoStore : DbStore {
 		command.Connection = Connection;
 
 		command.CommandText = String.Format ("DELETE FROM photo_tags WHERE photo_id = {0}", item.Id);
+		command.ExecuteNonQuery ();
+
+		command.Dispose ();
+
+		command = new SqliteCommand ();
+		command.Connection = Connection;
+
+		command.CommandText = String.Format ("DELETE FROM photo_versions WHERE photo_id = {0}", item.Id);
 		command.ExecuteNonQuery ();
 
 		command.Dispose ();
@@ -295,6 +440,26 @@ public class PhotoStore : DbStore {
 			command.CommandText = String.Format ("INSERT INTO photo_tags (photo_id, tag_id) " +
 							     "       VALUES ({0}, {1})",
 							     photo.Id, tag.Id);
+			command.ExecuteNonQuery ();
+			command.Dispose ();
+		}
+
+		// Update versions.
+
+		command = new SqliteCommand ();
+		command.Connection = Connection;
+		command.CommandText = String.Format ("DELETE FROM photo_versions WHERE photo_id = {0}", photo.Id);
+		command.ExecuteNonQuery ();
+		command.Dispose ();
+
+		foreach (uint version_id in photo.VersionIds) {
+			string version_name = photo.GetVersionName (version_id);
+
+			command = new SqliteCommand ();
+			command.Connection = Connection;
+			command.CommandText = String.Format ("INSERT INTO photo_versions (photo_id, version_id, name) " +
+							     "       VALUES ({0}, {1}, '{2}')",
+							     photo.Id, version_id, SqlString (version_name));
 			command.ExecuteNonQuery ();
 			command.Dispose ();
 		}
@@ -379,12 +544,19 @@ public class PhotoStore : DbStore {
 		else
 			Console.WriteLine ("\t(no description)");
 
+		Console.WriteLine ("\tTags:");
+
 		if (photo.Tags.Count == 0) {
 			Console.WriteLine ("\t\t(no tags)");
 		} else {
 			foreach (Tag t in photo.Tags)
 				Console.WriteLine ("\t\t{0}", t.Name);
 		}
+
+		Console.WriteLine ("\tVersions:");
+
+		foreach (uint id in photo.VersionIds)
+			Console.WriteLine ("\t\t[{0}] {1}", id, photo.GetVersionName (id));
 	}
 
 	static void Dump (ArrayList photos)
@@ -411,7 +583,7 @@ public class PhotoStore : DbStore {
 
 	static void Main (string [] args)
 	{
-		Application.Init ();
+		Program program = new Program ("PhotoStoreTest", "0.0", Modules.UI, args);
 
 		const string path = "/tmp/PhotoStoreTest.db";
 
@@ -423,19 +595,23 @@ public class PhotoStore : DbStore {
 
 		Tag portraits_tag = db.Tags.CreateTag (null, "Portraits");
 		Tag landscapes_tag = db.Tags.CreateTag (null, "Landscapes");
-		Tag favorites_tag = db.Tags.CreateTag (null, "Favorites");
+		Tag favorites_tag = db.Tags.CreateTag (null, "Street");
 
 		uint portraits_tag_id = portraits_tag.Id;
 		uint landscapes_tag_id = landscapes_tag.Id;
 		uint favorites_tag_id = favorites_tag.Id;
 
-		Photo ny_landscape = db.Photos.Create (DateTime.Now.ToUniversalTime (), "/home/ettore/Photos/ny_landscape.jpg");
+		Pixbuf unused_thumbnail;
+
+		Photo ny_landscape = db.Photos.Create (DateTime.Now.ToUniversalTime (), "/home/ettore/Photos/ny_landscape.jpg",
+						       out unused_thumbnail);
 		ny_landscape.Description = "Pretty NY skyline";
 		ny_landscape.AddTag (landscapes_tag);
 		ny_landscape.AddTag (favorites_tag);
 		db.Photos.Commit (ny_landscape);
 
-		Photo me_in_sf = db.Photos.Create (DateTime.Now.ToUniversalTime (), "/home/ettore/Photos/me_in_sf.jpg");
+		Photo me_in_sf = db.Photos.Create (DateTime.Now.ToUniversalTime (), "/home/ettore/Photos/me_in_sf.jpg",
+						   out unused_thumbnail);
 		me_in_sf.AddTag (landscapes_tag);
 		me_in_sf.AddTag (portraits_tag);
 		me_in_sf.AddTag (favorites_tag);
@@ -443,9 +619,12 @@ public class PhotoStore : DbStore {
 
 		me_in_sf.RemoveTag (favorites_tag);
 		me_in_sf.Description = "Myself and the SF skyline";
+		me_in_sf.CreateVersion ("cropped", Photo.OriginalVersionId);
+		me_in_sf.CreateVersion ("UM-ed", Photo.OriginalVersionId);
 		db.Photos.Commit (me_in_sf);
 
-		Photo macro_shot = db.Photos.Create (DateTime.Now.ToUniversalTime (), "/home/ettore/Photos/macro_shot.jpg");
+		Photo macro_shot = db.Photos.Create (DateTime.Now.ToUniversalTime (), "/home/ettore/Photos/macro_shot.jpg",
+						     out unused_thumbnail);
 		db.Dispose ();
 
 		db = new Db (path, false);

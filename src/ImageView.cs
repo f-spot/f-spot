@@ -93,7 +93,10 @@ public class ImageView : Layout {
 			return result;
 		}
 		set {
-			image_view_set_pixbuf (Handle, value.Handle);
+			if (value == null)
+				image_view_set_pixbuf (Handle, IntPtr.Zero);
+			else
+				image_view_set_pixbuf (Handle, value.Handle);
 		}
 	}
 
