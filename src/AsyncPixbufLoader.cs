@@ -24,7 +24,7 @@ namespace FSpot {
 			if (stream != null)
 				stream.Close ();
 
-			stream = new System.IO.FileStream (filename, System.IO.FileMode.Open);
+			stream = new System.IO.FileStream (filename, System.IO.FileMode.Open, System.IO.FileAccess.Read);
 			
 			if (loader != null) {
 				loader.Close ();
