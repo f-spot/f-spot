@@ -94,20 +94,33 @@ public class MainWindow {
 		new TargetEntry ("text/uri-list", 0, (uint) TargetType.UriList),
 	};
 
-	// Index into the PhotoQuery.  If -1, no photo is selected or multiple photos are selected.
 	const int PHOTO_IDX_NONE = -1;
-	private int current_photo_idx = PHOTO_IDX_NONE;
-	private bool current_photos = false;
 	
 	struct YearCount {
 		int Year;
 		int Count;
 	}
 
+	// Index into the PhotoQuery.  If -1, no photo is selected or multiple photos are selected.
+	private int ActiveIndex () {
+	        int [] selection = SelectedIds ();
+		
+		if (selection.Length == 1) 
+			return selection [0];
+		else 
+			return PHOTO_IDX_NONE;
+	}
+
+	public bool PhotoSelectionActive ()
+	{
+		return SelectedIds().Length > 0;
+	}
+
 	private Photo CurrentPhoto {
 		get {
-			if (current_photo_idx != PHOTO_IDX_NONE)
-				return query.Photos [current_photo_idx];
+			int active = ActiveIndex ();
+			if (active >= 0)
+				return query.Photos [active];
 			else
 				return null;
 		}
@@ -527,23 +540,6 @@ public class MainWindow {
 
 	void HandleSelectionChanged (IconView view)
 	{
-		int [] selection = SelectedIds ();
-
-		if (selection.Length == 1) {
-			current_photo_idx = selection [0];
-			//photo_view.CurrentPhoto = current_photo_idx;
-			info_box.Photo = CurrentPhoto;
-			if (info_display != null) 
-				info_display.Photo = CurrentPhoto;
-		} else { 
-			current_photo_idx = PHOTO_IDX_NONE;
-			info_box.Photo = null;
-			if (info_display != null)
-				info_display.Photo = null;
-		}
-
-		current_photos = selection.Length > 0;
-			
 		UpdateMenus ();
 	}
 
@@ -559,8 +555,6 @@ public class MainWindow {
 
 	void HandlePhotoViewPhotoChanged (PhotoView sender)
 	{
-		current_photos = true;
-		current_photo_idx = photo_view.CurrentPhoto;
 		info_box.Photo = CurrentPhoto;
 		if (info_display != null)
 			info_display.Photo = CurrentPhoto;
@@ -888,7 +882,7 @@ public class MainWindow {
 		PhotoVersionCommands.Create cmd = new PhotoVersionCommands.Create ();
 
 		if (cmd.Execute (db.Photos, CurrentPhoto, main_window)) {
-			UpdateViews (current_photo_idx);
+			UpdateViews (ActiveIndex ());
 		}
 	}
 
@@ -897,7 +891,7 @@ public class MainWindow {
 		PhotoVersionCommands.Delete cmd = new PhotoVersionCommands.Delete ();
 
 		if (cmd.Execute (db.Photos, CurrentPhoto, main_window)) {
-			UpdateViews (current_photo_idx);
+			UpdateViews (ActiveIndex ());
 		}
 	}
 
@@ -921,7 +915,7 @@ public class MainWindow {
 		PhotoVersionCommands.Rename cmd = new PhotoVersionCommands.Rename ();
 
 		if (cmd.Execute (db.Photos, CurrentPhoto, main_window)) {
-			UpdateViews (current_photo_idx);
+			UpdateViews (ActiveIndex ());
 		}
 	}
 
@@ -1081,10 +1075,7 @@ public class MainWindow {
 		fsview = new FSpot.FullScreenView (query);
 		// FIXME this needs to be another mode like PhotoView and IconView mode.
 
-		if (current_photo_idx != PHOTO_IDX_NONE)
-			fsview.View.CurrentPhoto = current_photo_idx;
-		else 
-			fsview.View.CurrentPhoto = 0;
+		fsview.View.CurrentPhoto = Math.Max (ActiveIndex (), 0);
 
 		fsview.Show ();
 	}
@@ -1259,9 +1250,10 @@ public class MainWindow {
 	void UpdateForVersionIdChange (uint version_id)
 	{
 		CurrentPhoto.DefaultVersionId = version_id;
-		query.Commit (current_photo_idx);
+		int active = ActiveIndex ();
 
-		UpdateViews (current_photo_idx);
+		query.Commit (active);
+		UpdateViews (active);
 	}
 
 	void HandleVersionIdChanged (PhotoVersionMenu menu)
@@ -1336,16 +1328,17 @@ public class MainWindow {
 		}
 
 		bool tag_sensitive = tag_selection_widget.Selection.CountSelectedRows () > 0;
-		
-		rotate_left.Sensitive = current_photos;
-		rotate_right.Sensitive = current_photos;
-		update_thumbnail.Sensitive = current_photos;
-		delete_from_drive.Sensitive = current_photos;
-		copy.Sensitive = current_photos;
+		bool active_selection = PhotoSelectionActive ();
+
+		rotate_left.Sensitive = active_selection;
+		rotate_right.Sensitive = active_selection;
+		update_thumbnail.Sensitive = active_selection;
+		delete_from_drive.Sensitive = active_selection;
+		copy.Sensitive = active_selection;
 
 		delete_selected_tag.Sensitive = tag_sensitive;
-		attach_tag_to_selection.Sensitive = tag_sensitive && current_photos;
-		remove_tag_from_selection.Sensitive = tag_sensitive && current_photos;
+		attach_tag_to_selection.Sensitive = tag_sensitive && active_selection;
+		remove_tag_from_selection.Sensitive = tag_sensitive && active_selection;
 	}
 
 }

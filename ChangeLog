@@ -1,3 +1,8 @@
+2004-12-09  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: refactor the current_photo_idx crap out of
+	the way.
+
 2004-12-06  Larry Ewing  <lewing@novell.com>
 
 	* src/PixbufUtils.cs: add GetOrientation call for now.  Make
