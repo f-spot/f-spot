@@ -1,3 +1,8 @@
+2005-03-12  Larry Ewing  <lewing@novell.com>
+
+	* src/ThumbnailCommand.cs: only dispose the thumbnail if it was
+	reallt loaded.
+
 2005-03-11  Larry Ewing  <lewing@novell.com>
 
 	* src/AsyncPixbufLoader.cs: clean up close handling to avoid the
