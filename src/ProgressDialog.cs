@@ -5,30 +5,6 @@ using System;
 
 public class ProgressDialog : Dialog {
 
-	// We show the dialog after a certain number of milliseconds after the first update.
-	// This way if an operation is quick enough we don't bother the user with a useless dialog.
-
-	const int SHOW_TIMEOUT_MSEC = 1000;
-
-	private uint show_dialog_timeout_id;
-
-	private bool HandleShowDialogTimeout ()
-	{
-		ShowAll ();
-		show_dialog_timeout_id = 0;
-
-		return false;
-	}
-
-	private void HandleDestroyEvent (object me, DestroyEventArgs args)
-	{
-		if (show_dialog_timeout_id != 0) {
-			Source.Remove (show_dialog_timeout_id);
-			show_dialog_timeout_id = 0;
-		}
-	}
-
-
 	private bool cancelled;
 
 	private void HandleResponse (object me, ResponseArgs args)
@@ -67,8 +43,6 @@ public class ProgressDialog : Dialog {
 		progress_bar = new ProgressBar ();
 		VBox.PackStart (progress_bar, true, true, 6);
 
-		DestroyEvent += new DestroyEventHandler (HandleDestroyEvent);
-
 		switch (cancel_button_type) {
 		case CancelButtonType.Cancel:
 			AddButton ("Cancel", (int) ResponseType.Cancel);
@@ -86,12 +60,6 @@ public class ProgressDialog : Dialog {
 	// Return true if the operation was cancelled by the user.
 	public bool Update (string message)
 	{
-#if USE_TIMEOUT			// FIXME something is borked, maybe GTK# bug?
-		if (current_count == 0)
-			show_dialog_timeout_id = GLib.Timeout.Add ((uint) SHOW_TIMEOUT_MSEC,
-								   new GLib.TimeoutHandler (HandleShowDialogTimeout));
-#endif
-
 		current_count ++;
 
 		message_label.Text = message;

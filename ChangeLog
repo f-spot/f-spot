@@ -1,3 +1,11 @@
+2003-11-17  Ettore Perazzoli  <ettore@ximian.com>
+
+	* src/RotateCommand.cs (RotateCommand.Execute): Only show the
+	dialog if we are rotating more than one picture.
+
+	* src/ProgressDialog.cs: Removed timeout stuff, we don't really
+	need it.
+
 2003-11-17  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/RotateCommand.cs (RotateCommand.Execute): Add a stoppable
