@@ -151,6 +151,18 @@ public class PhotoView : EventBox {
 		else {
 			try {
 				image_view.Pixbuf = new Pixbuf (Query.Photos [current_photo].DefaultVersionPath);
+
+				/*
+				** This is a hack seeing if the max size stuff acutally helps loading speed 
+				**
+				*/
+				/*
+				 if (image_view.Allocation.Width > 0 && image_view.Allocation.Height > 0)
+					image_view.Pixbuf = PixbufUtils.LoadAtMaxSize (Query.Photos [current_photo].DefaultVersionPath, 
+										       image_view.Allocation.Width, 
+										       image_view.Allocation.Height);
+				
+				*/
 			} catch (GException ex) {
 				// FIXME
 				image_view.Pixbuf = null;
@@ -225,7 +237,7 @@ public class PhotoView : EventBox {
 
 	private void UpdateDescriptionEntry ()
 	{
-		if (Query.Photos.Length > 1 && current_photo < Query.Photos.Length - 1) {
+		if (Query.Photos.Length > 1 && current_photo < Query.Photos.Length) {
 			description_entry.Sensitive = true;
 			description_entry.Text = Query.Photos[current_photo].Description;
 		} else {
