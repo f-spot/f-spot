@@ -1,6 +1,7 @@
 # List of source files containing translatable strings.
 # Please keep this file in alphabetical order.
 [encoding: UTF-8]
+f-spot.desktop.in.in
 libeog/eog-file-selection.c
 libeog/eog-image.c
 libeog/image-view.c
@@ -8,7 +9,9 @@ libfspot/f-jpeg-utils.c
 src/CameraFileSelectionDialog.cs
 src/CameraSelectionDialog.cs
 src/CDExport.cs
+src/Exif.cs
 src/FlickrExport.cs
+src/FolderExport.cs
 src/f-spot.glade
 src/GalleryExport.cs
 src/ImportCommand.cs
