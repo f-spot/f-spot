@@ -1,3 +1,12 @@
+2004-06-14  Larry Ewing  <lewing@ximian.com>
+
+	* src/MainWindow.cs: Make the IconView accept text/uri-list drops
+	and import them.  This should really popup an import dialog bug
+	that isn't done yet.
+
+	* src/Util.cs: fix a few bugs in the UriList class, add a
+	SelectionData constructor.
+
 2004-06-13  Larry Ewing  <lewing@ximian.com>
 
 	* src/MainWindow.cs: fix the IconView drag handler for now.

@@ -51,21 +51,39 @@ class UriList : ArrayList {
 		}
 	}
 
-	public UriList (string data) {
-		string [] items = data.Split ('\n');
 
+	private void LoadFromString (string data) {
+		//string [] items = System.Text.RegularExpressions.Regex.Split ("\n", data);
+		string [] items = data.Split ('\n');
+		
 		foreach (String i in items) {
 			if (!i.StartsWith ("#")) {
 				Uri uri;
+				String s = i;
+
+				if (i.EndsWith ("\r")) {
+					s = i.Substring (0, i.Length - 1);
+					Console.WriteLine ("uri = {0}", s);
+				}
 				
 				try {
-					uri = new Uri (i);
+					uri = new Uri (s);
 				} catch {
 					continue;
 				}
 				Add (uri);
 			}
 		}
+	}
+
+	public UriList (string data) {
+		LoadFromString (data);
+	}
+
+	public UriList (Gtk.SelectionData selection) 
+	{
+		// FIXME this should check the atom etc.
+		LoadFromString (System.Text.Encoding.UTF8.GetString (selection.Data));
 	}
 
 	public override string ToString () {

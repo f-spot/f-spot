@@ -66,6 +66,11 @@ public class MainWindow {
 		new TargetEntry ("application/x-fspot-tag", 0, (uint) TargetType.TagList),
 	};
 
+	private static TargetEntry [] icon_view_target_table = new TargetEntry [] {
+		new TargetEntry ("application/x-fspot-tag", 0, (uint) TargetType.TagList),
+		new TargetEntry ("text/uri-list", 0, (uint) TargetType.UriList),
+	};
+
 	// Index into the PhotoQuery.  If -1, no photo is selected or multiple photos are selected.
 	const int PHOTO_IDX_NONE = -1;
 	private int current_photo_idx = PHOTO_IDX_NONE;
@@ -125,7 +130,7 @@ public class MainWindow {
 		attach_tag.Submenu = new TagMenu (db.Tags);
 		remove_tag.Submenu = new TagMenu (db.Tags);
 		
-		Gtk.Drag.DestSet (icon_view, DestDefaults.All, tag_target_table, 
+		Gtk.Drag.DestSet (icon_view, DestDefaults.All, icon_view_target_table, 
 				  DragAction.Copy | DragAction.Move); 
 
 		//		icon_view.DragLeave += new DragLeaveHandler (HandleIconViewDragLeave);
@@ -186,6 +191,12 @@ public class MainWindow {
 		return SelectedPhotos (SelectedIds ());
 	}
 
+	private void InvalidateViews ()
+	{
+		icon_view.QueueDraw ();
+		photo_view.Update ();
+	}
+
 	private void InvalidateViews (int num)
 	{
 		icon_view.InvalidateCell (num);
@@ -226,7 +237,7 @@ public class MainWindow {
 	public void HandleTagSelectionDragDataReceived (object o, DragDataReceivedArgs args)
 	{
 		Tag [] tags = new Tag [1];
-		UriList list = new UriList (System.Text.Encoding.UTF8.GetString (args.SelectionData.Data));
+		UriList list = new UriList (args.SelectionData);
 
 		tags [0] = tag_selection_widget.TagAtPosition(args.X, args.Y);
 		if (tags [0] == null)
@@ -242,6 +253,7 @@ public class MainWindow {
 			photo.AddTag (tags);
 			db.Photos.Commit (photo);
 		}
+		InvalidateViews ();
 	}
 
 	// IconView events.
@@ -302,16 +314,19 @@ public class MainWindow {
 	{
 	 	Widget source = Gtk.Drag.GetSourceWidget (args.Context);     
 		
-		Console.WriteLine ("Drag received {0}", source == null ? "null" : source.TypeName);
-
+		Console.WriteLine ("IconView View Drag received {0} type {1}", source == null ? "null" : source.TypeName, (TargetType)args.Info);
 		switch (args.Info) {
-		case 0:
+		case (uint)TargetType.TagList:
 			HandleAttachTagCommand (sender, null);
 			break;
-		case 1:
-			Console.WriteLine ("I rock");
+		case (uint)TargetType.UriList:
+			UriList list = new UriList (args.SelectionData);
+			ImportCommand command = new ImportCommand ();
+			command.ImportFromPaths (db.Photos, list.ToLocalPaths ());
+			UpdateQuery ();
 			break;
 		}
+
 		Gtk.Drag.Finish (args.Context, true, false, args.Time);
 	}	
 
@@ -540,9 +555,8 @@ public class MainWindow {
 	{
 		TreeModel model;
 		TreeIter iter;
-
 		Tag [] tags = this.tag_selection_widget.TagHighlight ();
-
+		
 		foreach (int num in SelectedIds ()) {
 			Photo photo = query.Photos [num];
 			
