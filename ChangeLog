@@ -1,5 +1,12 @@
 2005-01-25  Larry Ewing  <lewing@novell.com>
 
+	* src/Makefile.am: add HigMessageDialog.cs.
+	
+	* src/HigMessagesDialog.cs: new file imported from Tomboy.
+
+	* src/MainWindow.cs: use the new HigMessageDialog for the
+	confirmation dialogs from Loz.
+
 	* src/PixbufUtils.cs: add SaveJpeg and ScaleToAspect.
 
 	* src/MainWindow.cs: use the togglebutton overload now that mike

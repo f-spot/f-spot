@@ -25,6 +25,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Global.cs			\
 	$(srcdir)/GroupAdaptor.cs		\
 	$(srcdir)/GroupSelector.cs		\
+	$(srcdir)/HigMessageDialog.cs		\
 	$(srcdir)/Histogram.cs			\
 	$(srcdir)/IBrowsableItem.cs		\
 	$(srcdir)/IconView.cs			\
