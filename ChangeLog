@@ -1,3 +1,22 @@
+2004-12-23  Larry Ewing  <lewing@novell.com>
+
+	* src/GalleryExport.cs: use the global base directory.
+
+	* src/main.cs: use the gobal directory stuff.
+
+	* configure.in: fix the LIBLCMS define.
+
+	* src/makefile.am: add Global.cs
+
+	* src/PhotoImageView.cs: add a CompletePixbuf interface that
+	ensures the Pixbuf is completely loaded.
+
+	* src/AsyncPixbufLoader.cs: Make Load no Longer return a Pixbuf
+	add LoadToAreaPrepared and LoadToDone sync methods.
+
+	* src/ColorDialog.cs: remove orig image use the
+	view.CompletePixbuf.
+
 2004-12-22  Larry Ewing  <lewing@novell.com>
 
 	* src/f-spot.glade: change the colordialog now that it uses the

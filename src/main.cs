@@ -14,8 +14,8 @@ public class Driver {
 
 		// FIXME: Error checking is non-existant here...
 
-		string home_directory = Environment.GetEnvironmentVariable ("HOME");
-		string base_directory = Path.Combine (home_directory, Path.Combine (".gnome2", "f-spot"));
+		string home_directory = FSpot.Global.HomeDirectory;
+		string base_directory = FSpot.Global.BaseDirectory;
 		if (! File.Exists (base_directory))
 			Directory.CreateDirectory (base_directory);
 
@@ -26,9 +26,6 @@ public class Driver {
 		MainWindow main_window = new MainWindow (db);
 		
 		ParseCommands (args);
-
-		// FIXME: Do we actually need to do this?
-		Directory.SetCurrentDirectory (home_directory);
 
 		program.Run ();
 	}
