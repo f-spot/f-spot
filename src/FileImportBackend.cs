@@ -24,7 +24,7 @@ public class FileImportBackend : ImportBackend {
 	
 	private void GetListing (System.IO.DirectoryInfo info)
 	{
-		System.Console.WriteLine ("Sanning {0}", info.FullName);
+		System.Console.WriteLine ("Scanning {0}", info.FullName);
 
 		System.IO.FileInfo [] files = info.GetFiles ();
 		Hashtable exiting_entries = new Hashtable ();

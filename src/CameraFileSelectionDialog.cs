@@ -31,6 +31,9 @@ public class CameraFileSelectionDialog
 	Tag[] selected_tags;
 	bool cancelled;
 	
+	string destination;
+
+	
 	public CameraFileSelectionDialog (GPhotoCamera cam, Db datab)
 	{
 		camera = cam;
@@ -50,20 +53,14 @@ public class CameraFileSelectionDialog
 	{	
 		CreateInterface ();
 		
-		bool allowed_to_exit = false;
-		while (!allowed_to_exit) {
-
-			if (!cancelled) {
-				ResponseType response = (ResponseType) camera_file_selection_dialog.Run ();
+		while (true) {
+			ResponseType response = (ResponseType) camera_file_selection_dialog.Run ();
 			
-				if (response == ResponseType.Ok) {
-					allowed_to_exit = !SaveFiles ();
-					
-					if (!cancelled && allowed_to_exit)
-						ImportFiles ();
-				} else
-					allowed_to_exit = true;
-
+			if (response == ResponseType.Ok) {
+				if (!cancelled && SaveFiles ()) {
+					ImportFiles ();
+					break;
+				}
 			}
 		}
 		
@@ -119,72 +116,98 @@ public class CameraFileSelectionDialog
 			index++;
 		}
 		
+		file_tree.Selection.SelectAll ();
 		pdialog.Destroy ();
 	}
 	
-	private bool SaveFiles ()
+
+	private System.Collections.ArrayList GetSelectedItems ()
 	{
 		TreeSelection selection = file_tree.Selection;
 		TreeModel model;
 		TreePath[] selected_rows = selection.GetSelectedRows (out model);
 	
-		saved_files = new string [selected_rows.Length];
+		System.Collections.ArrayList index_list = new System.Collections.ArrayList ();
+		foreach (TreePath cur_row in selected_rows) {
+			TreeIter cur_iter;
+
+			if (model.GetIter (out cur_iter, cur_row))
+				index_list.Add ((int) model.GetValue (cur_iter, IndexColumn));
+		}
 		
-		ProgressDialog pdialog = new ProgressDialog (Mono.Posix.Catalog.GetString ("Saving Files..."), 
-							     ProgressDialog.CancelButtonType.Cancel, 
-							     selected_rows.Length, 
-							     camera_file_selection_dialog);
-		
+		return index_list;
+	}
+
+	private bool PrepareDestination ()
+	{
 		if (copied_file_destination.Text.Length == 0) {
 			HigMessageDialog md = new HigMessageDialog (camera_file_selection_dialog, 
-							      DialogFlags.DestroyWithParent, 
-							      MessageType.Warning, 
-							      ButtonsType.Ok, 
-							      Mono.Posix.Catalog.GetString ("Unknown destination."),
-							      Mono.Posix.Catalog.GetString ("When copying files from a camera you must select a valid destination on the local filesystem"));
+								    DialogFlags.DestroyWithParent, 
+								    MessageType.Warning, 
+								    ButtonsType.Ok, 
+								    Mono.Posix.Catalog.GetString ("Unknown destination."),
+								    Mono.Posix.Catalog.GetString ("When copying files from a camera you must select a valid destination on the local filesystem"));
 			md.Run ();
 			md.Destroy ();
+
 			return true;
 		}
 		
-		int copied_file_count = 0;
-		int file_number_offset = 0;
-		string directory = NormalizeDirectory (copied_file_destination.Text);
-		string prefix = NormalizePrefix (prefix_entry.Text);
-		string number;
-		string extension;
-		string filename = "";
+		destination = copied_file_destination.Text;
 
-		foreach (TreePath cur_row in selected_rows) {
-			if (cancelled) 
-				return false;
-			
-			TreeIter cur_iter;
-			if (model.GetIter (out cur_iter, cur_row)) {
-				int index = (int) model.GetValue (cur_iter, IndexColumn);
-				GPhotoCameraFile cur_cam_file = (GPhotoCameraFile) camera.FileList [index];
-				
-				extension = System.IO.Path.GetExtension (cur_cam_file.FileName).ToLower();
-				
-				file_number_offset--;
-				do {
-					file_number_offset++;
-					number = PadNumber (copied_file_count + file_number_offset);	
-					filename = directory + prefix + number + extension;
-				} while (File.Exists (filename));
-				
-				camera.SaveFile (index, filename);
-				saved_files [copied_file_count] = filename;
-				copied_file_count++;
+		if (!System.IO.Directory.Exists (destination)) {
+			// FIXME ask for confimation
+			try {
+				System.IO.Directory.CreateDirectory (destination);
+			} catch (System.Exception e) {
+				HigMessageDialog md = new HigMessageDialog (camera_file_selection_dialog,
+									    DialogFlags.DestroyWithParent,
+									    MessageType.Error,
+									    ButtonsType.Ok,
+									    Mono.Posix.Catalog.GetString ("Unable to create directory."),
+									    String.Format (Mono.Posix.Catalog.GetString ("Error \"{0}\" while creating directory \"{0}\".  Check that the path and permissions are correct and try again"), e.Message, destination));
+				md.Run ();
+				md.Destroy ();
+
+				return true;
 			}
-			
-			string msg = String.Format (Mono.Posix.Catalog.GetString ("Saved File {0}"), filename);
 		}
-		
-		pdialog.Destroy ();
+
 		return false;
 	}
 	
+
+	private bool SaveFiles ()
+	{
+		if (PrepareDestination ())
+			return true;
+		
+		System.Collections.ArrayList index_list = GetSelectedItems ();
+		System.Collections.ArrayList saved = new System.Collections.ArrayList ();
+
+		foreach (int index in index_list)
+			saved.Add (SaveFile (index));
+
+		saved_files = (string []) saved.ToArray (typeof (string));
+		return cancelled;
+	}
+
+	private string SaveFile (int index) 
+	{
+		GPhotoCameraFile camfile = (GPhotoCameraFile) camera.FileList [index];
+		string filename = camfile.FileName.ToLower ();
+		string path = System.IO.Path.Combine (destination, filename);
+		
+		int i = 0;
+		while (File.Exists (path)) {
+			path = String.Format ("{0}-{1}{2}", System.IO.Path.GetFileNameWithoutExtension (path), i, System.IO.Path.GetExtension (path));
+			i++;
+		}
+			
+		camera.SaveFile (index, path);
+		return path;
+	}
+
 	private void ImportFiles ()
 	{
 		if (saved_files != null && import_files_checkbox.Active) {
@@ -195,24 +218,17 @@ public class CameraFileSelectionDialog
 	
 	void HandleSelectSaveDirectory (object sender, EventArgs args)
 	{		
-		FileSelection fs = new FileSelection (Mono.Posix.Catalog.GetString ("Select save directory"));
-		fs.FileList.Sensitive = false;
-		int result = fs.Run ();
-		
-		if ((ResponseType)result == ResponseType.Ok) {
-			TreeSelection dirselection = fs.DirList.Selection;
-			TreeModel model;
-			TreeIter iter;
+		CompatFileChooserDialog file_selector =
+			new CompatFileChooserDialog (Mono.Posix.Catalog.GetString ("Select Destination"), camera_file_selection_dialog,
+						     CompatFileChooserDialog.Action.SelectFolder);
 
-			copied_file_destination.Text = NormalizeDirectory(fs.Filename);
+		file_selector.Filename = copied_file_destination.Text;
+		int result = file_selector.Run ();
 
-			if (dirselection.GetSelected(out model, out iter)) {
-				string subdirname = (string)model.GetValue(iter, 0);
-				copied_file_destination.Text += subdirname;
-			}
-		}
+		if ((ResponseType)result == ResponseType.Ok)
+			copied_file_destination.Text = file_selector.Filename;
 			
-		fs.Hide ();
+		file_selector.Destroy ();
 	}
 	
 	void HandleSelectTags (object sender, EventArgs args)
@@ -233,31 +249,5 @@ public class CameraFileSelectionDialog
 		string string_num = number.ToString ();
 		
 		return string_num.PadLeft(4, '0');
-	}
-	
-	private bool IsSeparator (char sep)
-	{
-		return (sep == System.IO.Path.DirectorySeparatorChar 
-			|| sep == System.IO.Path.AltDirectorySeparatorChar 
-			|| sep == System.IO.Path.VolumeSeparatorChar);
-	}
-	
-	private string NormalizeDirectory (string dir)
-	{
-		char lastchar = dir [dir.Length - 1];
-		if (!IsSeparator (lastchar))
-			return dir + System.IO.Path.DirectorySeparatorChar;
-		return dir;
-	}
-	
-	private string NormalizePrefix (string pre)
-	{
-		if (pre.Length == 0) 
-			return pre;
-
-		if (pre [pre.Length - 1] != ' ') 
-			return pre + ' ';
-
-		return pre;
 	}
 }

@@ -204,13 +204,10 @@ public class ImportCommand {
 		file_selector.Filename = import_folder_entry.Text;
 		int response = file_selector.Run ();
 
-		if ((ResponseType) response == ResponseType.Cancel) {
-			file_selector.Destroy ();
-			return;
+		if ((ResponseType) response == ResponseType.Ok) {
+			import_path = file_selector.Filename;
+			import_folder_entry.Text = file_selector.Filename;
 		}
-
-		import_path = file_selector.Filename;
-		import_folder_entry.Text = file_selector.Filename;
 
 		file_selector.Destroy ();
 		
