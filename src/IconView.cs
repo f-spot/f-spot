@@ -43,46 +43,67 @@ public class IconView : Gtk.Layout {
 		}
 	}
 
+	private bool display_tags = true;
+	public bool DisplayTags {
+		get {
+			return display_tags;
+		}
+
+		set {
+			display_tags = value;
+			QueueResize ();
+		}
+	}
+
+
 	// Size of the frame around the thumbnail.
-	private const int CELL_BORDER_WIDTH = 15;
+	private const int CELL_BORDER_WIDTH = 10;
 
 	// Border around the scrolled area.
 	private const int BORDER_SIZE = 6;
 
-	/* Thickness of the outline used to indicate selected items.  */
-	private const int SELECTION_THICKNESS = 4;
+	// Thickness of the outline used to indicate selected items. 
+	private const int SELECTION_THICKNESS = 3;
 
-	/* The loader.  */
+	// Size of the tag icon in the view.
+	private const int TAG_ICON_SIZE = 12;
+
+	// Horizontal spacing between the tag icons
+	private const int TAG_ICON_HSPACING = 2;
+
+	// Vertical spacing between the thumbnail and the row of tag icons.
+	private const int TAG_ICON_VSPACING = 6;
+
+	// The loader.
 	private PixbufLoader pixbuf_loader;
 
-	/* Various other layout values.  */
+	// Various other layout values.
 	private int cells_per_row;
 	private int cell_width;
 	private int cell_height;
 
-	/* Query.  */
+	// Query we are displaying.
 	private PhotoQuery query;
 
-	/* The first pixel line that is currently on the screen
-	   (i.e. in the current scroll region).  Used to compute the
-	   area that went offscreen in the "changed" signal handler
-	   for the vertical GtkAdjustment.  */
+	// The first pixel line that is currently on the screen (i.e. in the current
+	// scroll region).  Used to compute the area that went offscreen in the "changed"
+	// signal handler for the vertical GtkAdjustment.
 	private int y_offset;
 
-	/* Hash of all the order number of the items that are selected.  */
+	// Hash of all the order number of the items that are selected.
 	private Hashtable selected_cells;
 
-	/* Drag and drop bookkeeping.  */
+	// Drag and drop bookkeeping. 
 	private bool in_drag;
 	private int click_x, click_y;
 	private int click_cell = -1;
 
-	/* Number of consecutive GDK_BUTTON_PRESS on the same cell, to
-	   distinguish the GDK_2BUTTON_PRESS events that we actually care
-	   about.  */
+	// Number of consecutive GDK_BUTTON_PRESS on the same cell, to
+	// distinguish the GDK_2BUTTON_PRESS events that we actually care
+	// about.
 	private int click_count;
 
-	/* The pixbuf we use when we can't load a thumbnail.  */
+	// The pixbuf we use when we can't load a thumbnail.
 	static Pixbuf error_pixbuf;
 
 
@@ -162,7 +183,7 @@ public class IconView : Gtk.Layout {
 	static private Pixbuf ErrorPixbuf ()
 	{
 		if (IconView.error_pixbuf == null)
-			IconView.error_pixbuf = new Pixbuf (Assembly.GetCallingAssembly (), "f-spot-question-mark.png");
+			IconView.error_pixbuf = PixbufUtils.LoadFromAssembly ("f-spot-question-mark.png");
 
 		return IconView.error_pixbuf;
 	}
@@ -248,6 +269,9 @@ public class IconView : Gtk.Layout {
 		cell_width = ThumbnailWidth + 2 * CELL_BORDER_WIDTH;
 		cell_height = ThumbnailHeight + 2 * CELL_BORDER_WIDTH;
 
+		if (DisplayTags)
+			cell_height += TAG_ICON_SIZE + TAG_ICON_VSPACING;
+
 		cells_per_row = (int) (available_width / cell_width);
 		if (cells_per_row == 0)
 			cells_per_row = 1;
@@ -293,7 +317,11 @@ public class IconView : Gtk.Layout {
 				temp_thumbnail = thumbnail.ScaleSimple (width, height, InterpType.Nearest);
 
 			int dest_x = (int) (x + (cell_width - width) / 2);
-			int dest_y = (int) (y + (cell_height - height) / 2);
+			int dest_y;
+			if (DisplayTags)
+				dest_y = (int) (y + (cell_height - height - (TAG_ICON_SIZE + TAG_ICON_VSPACING)) / 2);
+			else
+				dest_y = (int) (y + (cell_height - height) / 2);
 
 			temp_thumbnail.RenderToDrawable (BinWindow, Style.WhiteGC,
 							 0, 0, dest_x, dest_y, width, height, RgbDither.None, 0, 0);
@@ -306,6 +334,41 @@ public class IconView : Gtk.Layout {
 				BinWindow.DrawRectangle (selection_gc, false,
 							 dest_x - SELECTION_THICKNESS, dest_y - SELECTION_THICKNESS,
 							 width + 2 * SELECTION_THICKNESS, height + 2 * SELECTION_THICKNESS);
+			}
+		}
+
+		if (DisplayTags) {
+			Tag [] tags = photo.Tags;
+
+			int tag_x, tag_y;
+
+			tag_x = x + CELL_BORDER_WIDTH;
+			tag_y = y + cell_height - CELL_BORDER_WIDTH - TAG_ICON_SIZE;
+			foreach (Tag t in tags) {
+				Pixbuf icon = null;
+
+				if (t.Category.Icon == null) {
+					if (t.Icon == null)
+						continue;
+					icon = t.Icon;
+				} else {
+					Category category = t.Category;
+					while (category.Category.Icon != null)
+						category = category.Category;
+					icon = category.Icon;
+				}
+
+				Pixbuf scaled_icon;
+				if (icon.Width == TAG_ICON_SIZE) {
+					scaled_icon = icon;
+				} else {
+					scaled_icon = icon.ScaleSimple (TAG_ICON_SIZE, TAG_ICON_SIZE, InterpType.Bilinear);
+				}
+
+				scaled_icon.RenderToDrawable (BinWindow, Style.WhiteGC,
+							      0, 0, tag_x, tag_y, TAG_ICON_SIZE, TAG_ICON_SIZE,
+							      RgbDither.None, 0, 0);
+				tag_x += TAG_ICON_SIZE + TAG_ICON_VSPACING;
 			}
 		}
 	}

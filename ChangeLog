@@ -1,15 +1,53 @@
+2003-11-15  Ettore Perazzoli  <ettore@perazzoli.org>
+
+	* src/IconView (IconView.display_tags): New private member
+	variable.
+	(IconView.DisplayTags): New property.
+	(IconView.CELL_BORDER_WIDTH): Reduced to 10 pixels.
+	(IconView.SELECTION_THICKNESS): Reduced to 3 pixels.
+	(Iconview.TAG_ICON_SIZE): New constant.
+	(Iconview.TAG_ICON_HSPACING): New constant.
+	(Iconview.TAG_ICON_VSPACING): New constant.
+	(iconView.ErrorPixbuf): Use PixbufUtils.LoadFromAssembly().
+	(IconView.UpdateLayout): Increase the cell_height to make space
+	for the tags if DisplayTags is true.
+	(IconView.DrawCell): Draw the category icons for the tags of the
+	photo.
+
+	* src/TagStore (TagStore.stock_icon_name): New private member.
+	(TagStore.StockIconName): New public property.
+	(TagStore.Icon): When this is set, set stock_icon_name to null.
+	(TagStore.STOCK_ICON_DB_PREFIX): New constant.
+	(TagStore.SetIconFromString): New private helper method.
+	(TagStore.LoadAllTags): Add a debugging Console.WriteLine() since
+	otherwise things do not seem to work [no idea why!].  Also, use
+	SetIconFromString() to get the icon so we properly handle stock
+	icons.
+	(TagStore.GetIconString): If it's a stock icon, return
+	STOCK_ICON_DB_PREFIX plus the icon name instead of the raw base64
+	encoding.
+	(TagStore.CreateDefaultTags): Set stock icons for the default tags
+	instead of raw pixbufs.
+
+	* src/StockIcons.cs (StockIcons.Initialize): Use
+	PixbufUtils.LoadFromAssembly().
+
+	* src/PixbufUtils.cs (PixbufUtils.LoadFromStream): New.
+	(PixbufUtils.LoadFromAssembly (Assembly, string)): New.
+	(PixbufUtils.LoadFromAssembly (string)): New.
+
 2003-11-13  Jakub Steiner <jimmac@ximian.com>
 
 	* icons/f-spot-people.png: use a nicer icon for people
 
-2003-11-12  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-12  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/MainWindow.cs: Hmmm set "shrink" to true again for the
 	hpaned, otherwise we can have some nasty resizing when selecting
 	pictures.  We need to fix this properly by using labels with
 	ellipsis.
 
-2003-11-12  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-12  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/makefile.am: Add f-spot-people.png, f-spot-places.png to the
 	.exe.
@@ -43,12 +81,12 @@
 	* icons/f-spot-people.png: New icon.
 	* icons/f-spot-places.png: New icon.
 
-2003-11-11  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-11  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/main.cs (Driver.Main): Change to the home directory at
 	start-up.
 
-2003-11-11  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-11  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/TagSelectionWidget.cs (TagSelectionWidget.IconDataFunc):
 	New.
@@ -66,14 +104,14 @@
 
 	* icons/f-spot-favorite.png: New.
 
-2003-11-11  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-11  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/PhotoStore.cs (Photo.CreateDefaultModifiedVersion): Start at
 	"(2)" for "Modified" versions past the first one, instead of
 	"(1)".  [So if you have a "Modified" version now you get "Modified
 	(2)" instead of "Modified (1)".]
 
-2003-11-10  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-10  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/PhotoStore.cs (PhotoStore.MoveThumbnail): New.
 	(PhotoStore.DeleteThumbnail): New.
@@ -81,7 +119,7 @@
 	(Photo.RenameVersion): Rename the thumbnail.
 	(PhotoStore.Create): Get the id after doing the query, not before!
 
-2003-11-10  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-10  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/PhotoView.cs (Photoview.UpdateImageView): Use
 	Photo.DefaultVersionPath, not Photo.Path, to get the path for the
@@ -99,18 +137,18 @@
 
 	* src/IconView.cs (IconView.ErrorPixbuf): use the question mark icon we ship.
 
-2003-11-10  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-10  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/InfoBox.cs (InfoBox.Update): Get the size info from the
 	photo's DefaultVersionPath instead of its Path.
 
-2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-09  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/MainWindow.cs (MainWindow.ctor): Pass false as the "shrink"
 	arg in Paned.Pack1() for the left pane so we don't get sized below
 	the InfoBox' size requisition.
 
-2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-09  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/MainWindow.cs (MainWindow.HandlePhotoViewButtonPressEvent):
 	Button press event handler for the PhotoView, so we can switch to
@@ -120,16 +158,16 @@
 	* libfspot/f-image-view.c (impl_button_press_event): Clean up on
 	GDK_2BUTTON_PRESS.
 
-2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-09  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/ZoomUtils.cs: Import from libfspoteog, not libeog.
 
-2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-09  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* configure.in: Remove gnome-thumbnail.h check, add a Sqlite
 	check.
 
-2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-09  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/PhotoVersionCommands.cs (PhotoVersionCommands.Create): Pass
 	true for create_file to Photo.CreateVersion.
@@ -167,13 +205,13 @@
 	a file for the new version or not.
 	(Photo.DefaultVersionPath): New public property.
 
-2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-09  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/InfoBox.cs (InfoBox.SetupWidgets): Move the version option
 	menu up, after the name entry; I think it makes more sense this
 	way.
 
-2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-09  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/MainWindow.cs (MainWindow.UpdateForVersionIdChange): New.
 	(MainWindow.HandleVersionIdChanged): Use it.
@@ -188,11 +226,11 @@
 	(InfoBox.PopulateVersionOptionMenu): Remove.
 	(InfoBox.HandleVersionOptionMenuActivated): Remove.
 
-2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-09  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* configure.in: Require Gnome 2.4 libs.
 
-2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-09  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/PhotoVersionCommands.cs
 	(PhotoVersionCommands.VersionNameRequest): Change so that it gets
@@ -208,7 +246,7 @@
 	Use it.
 	(PhotoVersionCommands.VersionNameRequest.Run): Likewise.
 
-2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-09  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/PhotoVersionCommands.cs
 	(PhotoVersionCommands.Delete.Execute): Implement.
@@ -234,7 +272,7 @@
 	(Photo.RenameVersion): Get a uint version_id, not an int, also use
 	the proper name.
 
-2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-09  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/makefile.am: Include f-spot.glade as a resource into
 	f-spot.exe.
@@ -280,16 +318,16 @@
 
 	* src/InfoBox.cs (InfoBox.Update): Made public.
 
-2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-09  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* configure.in: Don't require libxml.
 
-2003-11-08  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-08  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/ImportCommand.cs (ImportCommand.HandleDialogResponse):
 	Renamed from "OnResponse" for consistency.
 
-2003-11-08  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-08  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/TagStore.cs (Tag.Children): Change from an ArrayList to an
 	array.
@@ -332,7 +370,7 @@
 	* src/Db.cs (DbStore.AddToCache): Remove an existing item with the
 	same ID as the one we are adding.
 
-2003-11-08  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-08  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/PhotoView.cs (PhotoView.UpdateImageView): Handle a null
 	model or an out of range photo index value gracefully.
@@ -358,12 +396,12 @@
 
 	* src/ImageView.cs (ImageView.Pixbuf): Handle a null value.
 
-2003-11-08  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-08  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* MAINTAINERS: New.
 	* Makefile.am (EXTRA_DIST): Add.
 
-2003-11-08  Ettore Perazzoli  <ettore@ximian.com>
+2003-11-08  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* configure.in: Don't use gettext for now, we have no support for
 	it anyhow.

@@ -58,6 +58,38 @@ class PixbufUtils {
 		}
 	}
 
+
+	// FIXME: These should be in GTK#.  When my patch is committed, these LoadFrom* methods will
+	// go away.
+
+	static private Pixbuf LoadFromStream (System.IO.Stream input)
+	{
+		Gdk.PixbufLoader loader = new Gdk.PixbufLoader ();
+		byte [] buffer = new byte [8192];
+		int n;
+
+		while ((n = input.Read (buffer, 0, 8192)) != 0)
+			loader.Write (buffer, (uint) n);
+		
+		loader.Close ();
+		return loader.Pixbuf;
+	}
+		
+	static public Pixbuf LoadFromAssembly (System.Reflection.Assembly assembly, string resource)
+	{
+		System.IO.Stream s = assembly.GetManifestResourceStream (resource);
+		if (s == null)
+			return null;
+		else
+			return LoadFromStream (s);
+	}
+
+	static public Pixbuf LoadFromAssembly (string resource)
+	{
+		return LoadFromAssembly (System.Reflection.Assembly.GetCallingAssembly (), resource);
+	}
+
+
 #if STUFF_WE_HAVE_TO_RESTORE
 
 	// Bindings from libf.

@@ -83,9 +83,28 @@ public class Tag : DbItem, IComparable {
 		}
 	}
 
+
+	// Icon.  If stock_icon_name is not null, then we save the name of the icon instead
+	// of the actual icon data.
+
+	private string stock_icon_name;
+	public string StockIconName {
+		set {
+			stock_icon_name = value;
+			Icon = PixbufUtils.LoadFromAssembly (value);
+		}
+
+		get {
+			return stock_icon_name;
+		}
+	}
+
 	private Pixbuf icon;
 	public Pixbuf Icon {
 		set {
+			// If a custom icon is set, of course it means we are not using a stock
+			// icon.
+			stock_icon_name = null;
 			icon = value;
 		}
 		get {
@@ -164,6 +183,18 @@ public class TagStore : DbStore {
 		}
 	}
 
+	private const string STOCK_ICON_DB_PREFIX = "stock_icon:";
+
+	private void SetIconFromString (Tag tag, string icon_string)
+	{
+		if (icon_string == null || icon_string == "")
+			tag.Icon = null;
+		else if (icon_string.StartsWith (STOCK_ICON_DB_PREFIX))
+			tag.StockIconName = icon_string.Substring (STOCK_ICON_DB_PREFIX.Length);
+		else
+			tag.Icon = PixbufSerializer.Deserialize (Convert.FromBase64String (icon_string));
+	}
+
 	// In this store we keep all the items (i.e. the tags) in memory at all times.  This is
 	// mostly to simplify handling of the parent relationship between tags, but it also makes it
 	// a little bit faster.  Note that the objects never get garbage collected during the life
@@ -189,19 +220,15 @@ public class TagStore : DbStore {
 			else
 				tag = new Tag (null, id, name);
 
-			if (reader [4] != null) {
-				string icon_string = reader [4].ToString ();
-				if (icon_string != "")
-					tag.Icon = PixbufSerializer.Deserialize (Convert.FromBase64String (icon_string));
-			}
+			if (reader [4] != null)
+				SetIconFromString (tag, reader [4].ToString ());
 
 			tag.SortPriority = Convert.ToInt32 (reader[3]);
 
-			// FIXME this is freaky.  If I do it once, it doesn't work.  However, if I do it once
-			// and put a Console.WriteLine() after it, it works.  So I think something is screwy
-			// in the JITer or something.
+			// FIXME this is freaky.  This only works with the Console.WriteLine() after it.  Maybe I
+			// something is screwy in the JITer...  Or I am just too dumb to figure out what's wrong.
 			AddToCache (tag);
-			AddToCache (tag);
+			Console.WriteLine ("Load Tag {0}", tag.Id);
 		}
 		reader.Close ();
 		command.Dispose ();
@@ -227,6 +254,7 @@ public class TagStore : DbStore {
 		command.Dispose ();
 	}
 
+
 	private void CreateTable ()
 	{
 		SqliteCommand command = new SqliteCommand ();
@@ -247,41 +275,35 @@ public class TagStore : DbStore {
 	}
 
 
-	// FIXME work around breakage of loading of pixbufs from resources.
-	[DllImport ("libgobject-2.0-0.dll")]
-	static extern void g_object_ref (IntPtr raw);
-
 	private void CreateDefaultTags ()
 	{
 		Tag favorites_tag = CreateTag (RootCategory, "Favorites");
-
-		// FIXME the ref is to work around a GTK# bug.
-		Pixbuf favorite_icon = new Pixbuf (null, "f-spot-favorite.png");
-		g_object_ref (favorite_icon.Handle);
-		favorites_tag.Icon = favorite_icon;
+		favorites_tag.StockIconName = "f-spot-favorite.png";
 		favorites_tag.SortPriority = -10;
 		Commit (favorites_tag);
 
+		Tag hidden_tag = CreateTag (RootCategory, "Hidden");
+		hidden_tag.StockIconName = "f-spot-hidden.png";
+		hidden_tag.SortPriority = -9;
+		Commit (hidden_tag);
+
 		Tag people_category = CreateCategory (RootCategory, "People");
-		Pixbuf people_icon = new Pixbuf (null, "f-spot-people.png");
-		g_object_ref (people_icon.Handle);
-		people_category.Icon = people_icon;
-		people_category.SortPriority = -9;
+		people_category.StockIconName = "f-spot-people.png";
+		people_category.SortPriority = -8;
 		Commit (people_category);
 
 		Tag places_category = CreateCategory (RootCategory, "Places");
-		// FIXME the ref is to work around a GTK# bug.
-		Pixbuf places_icon = new Pixbuf (null, "f-spot-places.png");
-		g_object_ref (places_icon.Handle);
-		places_category.Icon = places_icon;
+		places_category.StockIconName = "f-spot-places.png";
 		places_category.SortPriority = -8;
 		Commit (places_category);
 
 		Tag events_category = CreateCategory (RootCategory, "Events");
+		places_category.StockIconName = "f-spot-events.png";
 		events_category.SortPriority = -7;
 		Commit (events_category);
 
 		Tag other_category = CreateCategory (RootCategory, "Other");
+		places_category.StockIconName = "f-spot-other.png";
 		other_category.SortPriority = -6;
 		Commit (other_category);
 	}
@@ -372,6 +394,8 @@ public class TagStore : DbStore {
 
 	private string GetIconString (Tag tag)
 	{
+		if (tag.StockIconName != null)
+			return STOCK_ICON_DB_PREFIX + tag.StockIconName;
 		if (tag.Icon == null)
 			return "";
 
