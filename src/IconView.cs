@@ -783,47 +783,25 @@ public class IconView : Gtk.Layout {
 		} else
 			ecell = scell + len;
 		
-#if false
-		if (back) {
-			for (i = ecell - 1; i >= scell; i--) {
-				photo = collection.Items [i];
-				thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
-				
-				entry = cache.Lookup (thumbnail_path);
-				if (entry == null)
-					cache.Request (thumbnail_path, i, ThumbnailWidth, ThumbnailHeight);
-				
-			}
-		} else {
-			for (i = scell; i < ecell; i++) {
-				photo = collection.Items [i];
-				thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
-				
-				entry = cache.Lookup (thumbnail_path);
-				if (entry == null)
-					cache.Request (thumbnail_path, i, ThumbnailWidth, ThumbnailHeight);
-				
-			}
-		}
-#else
 		int mid = (ecell - scell) / 2;
 		for (i = 0; i < mid; i++)
 		{
-			photo = collection.Items [scell + mid - i];
+			int cell = scell + mid - i;
+			photo = collection.Items [cell];
 			thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
 			
 			entry = cache.Lookup (thumbnail_path);
 			if (entry == null)
-				cache.Request (thumbnail_path, i, ThumbnailWidth, ThumbnailHeight);
+				cache.Request (thumbnail_path, cell, ThumbnailWidth, ThumbnailHeight);
 
-			photo = collection.Items [scell + mid + i];
+			cell = scell + mid + i;
+			photo = collection.Items [cell];
 			thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
 			
 			entry = cache.Lookup (thumbnail_path);
 			if (entry == null)
-				cache.Request (thumbnail_path, i, ThumbnailWidth, ThumbnailHeight);
+				cache.Request (thumbnail_path, cell, ThumbnailWidth, ThumbnailHeight);
 		} 
-#endif
 	}
 
 	//
