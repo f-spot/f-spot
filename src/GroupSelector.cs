@@ -22,7 +22,7 @@ namespace FSpot {
 		int    box_count_max;
 		int [] box_counts = new int [0];
 
-		private FSpot.TimeAdaptor adaptor;
+		protected FSpot.TimeAdaptor adaptor;
 		public FSpot.TimeAdaptor Adaptor {
 			set {
 				adaptor = value;
@@ -52,8 +52,14 @@ namespace FSpot {
 			}
 		}
 
-		private int mode;
-		public int Mode {
+		public enum RangeType {
+			All,
+			Fixed,
+			Min
+		}
+			
+		private RangeType mode;
+		public RangeType Mode {
 			get {
 				return mode;
 			}
@@ -126,7 +132,7 @@ namespace FSpot {
 			} else {
 				int position;
 				if (BoxHit (x, y, out position)) {
-					glass.Position = position;
+					glass.SetPosition (position);
 					return true;
 				}
 			}
@@ -211,11 +217,11 @@ namespace FSpot {
 		private Double BoxWidth {
 			get {
 				switch (mode) {
-				case 0:
+				case RangeType.All:
 					return background.Width / (double) box_counts.Length;
-				case 1:
+				case RangeType.Fixed:
 					return background.Width / (double) 12;
-				case 2:
+				case RangeType.Min:
 				default:
 					return (double) MIN_BOX_WIDTH;
 				}
@@ -343,7 +349,7 @@ namespace FSpot {
 				int position;
 				DragOffset = 0;
 				if (selector.BoxXHit (middle, out position)) {
-					Position = position;
+					this.SetPosition (position);
 					State = StateType.Prelight;
 				} else {
 					State = selector.State;
@@ -364,22 +370,24 @@ namespace FSpot {
 				}
 			}
 
+			public void SetPosition (int position)
+			{
+				Rectangle then = Bounds ();
+				this.position = position;
+				Rectangle now = Bounds ();
+				
+				if (selector.Visible) {
+					then = now.Union (then);
+					selector.GdkWindow.InvalidateRect (then, false);
+					//selector.GdkWindow.InvalidateRect (now, false);
+				}
+				PositionChanged ();
+			}
+
 			private int position;
 			public int Position {
 				get {
 					return position;
-				}
-				set {
-					Rectangle then = Bounds ();
-					position = value;
-					Rectangle now = Bounds ();
-					
-					if (selector.Visible) {
-						then = now.Union (then);
-						selector.GdkWindow.InvalidateRect (then, false);
-						//selector.GdkWindow.InvalidateRect (now, false);
-					}
-					PositionChanged ();
 				}
 			}
 
@@ -476,7 +484,7 @@ namespace FSpot {
 			
 			public override void PositionChanged ()
 			{
-				Console.WriteLine ("Glass Updated");
+				selector.adaptor.SetGlass (Position);
 			}
 			
 			public Glass (GroupSelector selector) : base (selector) {}
@@ -623,8 +631,8 @@ namespace FSpot {
 			glass = new Glass (this);
 			min_limit = new Limit (this, Limit.LimitType.Min);
 			max_limit = new Limit (this, Limit.LimitType.Max);
-			min_limit.Position = 0;
-			max_limit.Position = 11;
+			min_limit.SetPosition (0);
+			max_limit.SetPosition (11);
 		}
 
 		public GroupSelector (IntPtr raw) : base (raw) {}
@@ -677,12 +685,12 @@ namespace FSpot {
 			VBox vbox = new VBox (false, 10);
 			GroupSelector gs = new GroupSelector ();
 			gs.Counts = new int [] {20, 100, 123, 10, 5, 2, 3, 50, 8, 10, 22, 0, 55, 129, 120, 30, 14, 200, 21, 55};
-			gs.Mode = 2;
+			gs.Mode = RangeType.Fixed;
 			vbox.PackStart (gs);
 
 			gs = new GroupSelector ();
 			gs.Counts = new int [] {20, 100, 123, 10, 5, 2, 3, 50, 8, 10, 22, 0, 55, 129, 120, 30, 14, 200, 21, 55};
-			gs.Mode = 2;
+			gs.Mode = RangeType.Fixed;
 			vbox.PackStart (gs);
 
 			win.Add (vbox);

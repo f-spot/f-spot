@@ -1,8 +1,9 @@
 //
 // IconView.cs:
 //
-// Author:
+// Authors:
 //    Ettore Perazzoli
+//    Larry Ewing <lewing@novell.com>
 //
 // (C) 2003 Novell, Inc.
 //
@@ -405,9 +406,10 @@ public class IconView : Gtk.Layout {
 
 			temp_thumbnail.RenderToDrawable (BinWindow, Style.WhiteGC,
 							 0, 0, dest_x, dest_y, width, height, RgbDither.None, 0, 0);
+			
 			if (temp_thumbnail != thumbnail)
 				temp_thumbnail.Dispose ();
-
+			
 			if (CellIsSelected (thumbnail_num)) {
 				Gdk.GC selection_gc = new Gdk.GC (BinWindow);
 
@@ -482,7 +484,9 @@ public class IconView : Gtk.Layout {
 		     i ++) {
 			int cell_x = start_cell_x;
 
+			//Console.WriteLine ("Drawing row {0}", start_cell_row + i);
 			for (int j = 0; j < num_cols && cell_num + j < query.Photos.Length; j ++) {
+				//Console.WriteLine ("Drawing Cell {0}", cell_num + j);
 				DrawCell (cell_num + j, cell_x, cell_y);
 				cell_x += cell_width;
 			}
@@ -490,6 +494,7 @@ public class IconView : Gtk.Layout {
 			cell_y += cell_height;
 			cell_num += cells_per_row;
 		}
+
 	}
 
 	private void GetCellPosition (int cell_num, out int x, out int y)
@@ -595,10 +600,11 @@ public class IconView : Gtk.Layout {
 	public void InvalidateCell (int order) {
 		Rectangle cell_area;
 		GetCellPosition (order, out cell_area.X, out cell_area.Y);
-		cell_area.Width = cell_width;
-		cell_area.Height = cell_height;
+		cell_area.Width = cell_width - 1;
+		cell_area.Height = cell_height - 1;
 
 		BinWindow.InvalidateRect (cell_area, false);
+		//Console.WriteLine ("Invalidating cell {0} ({1})", order, cell_area);
 	}
 			
 	private void HandleScrollAdjustmentsSet (object sender, ScrollAdjustmentsSetArgs args)
@@ -614,6 +620,8 @@ public class IconView : Gtk.Layout {
 
 	private void HandleExposeEvent (object sender, ExposeEventArgs args)
 	{
+		//Console.WriteLine ("Expose area {0}", args.Event.Area);
+
 		DrawAllCells (args.Event.Area.X, args.Event.Area.Y,
 			      args.Event.Area.Width, args.Event.Area.Height);
 	}
@@ -677,10 +685,6 @@ public class IconView : Gtk.Layout {
 
 	void ContextMenu (ButtonPressEventArgs args, int cell_num)
 	{
-		/*
-		IconViewPopup iv = new IconViewPopup (this, cell_num);
-		iv.Activate (args.Event);
-		*/
 		PhotoPopup popup = new PhotoPopup ();
 		popup.Activate (args.Event);
 	}

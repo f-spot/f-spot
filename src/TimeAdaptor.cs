@@ -2,10 +2,25 @@ using System;
 
 namespace FSpot {
 	public class TimeAdaptor {
-		PhotoQuery query;
+		public PhotoQuery query;
 
 		private int start_year;
 		private int span;
+
+		public delegate void GlassSetHandler (TimeAdaptor adaptor, int index);
+		public event GlassSetHandler GlassSet;
+
+		public void SetGlass (int min)
+		{
+			DateTime date = DateFromIndex (min);
+
+			int i = 0;
+			while (i < query.Photos.Length && query.Photos [i].Time < date)
+				i++;
+			
+			if (GlassSet != null)
+				GlassSet (this, i);
+		}
 
 		public void SetLimits (int min, int max) 
 		{
@@ -22,7 +37,7 @@ namespace FSpot {
 			}
 		}
 
-		public String Lable (int item)
+		public String Label (int item)
 		{
 			DateTime start = DateFromIndex (item);
 			

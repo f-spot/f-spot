@@ -146,7 +146,7 @@ public class MainWindow {
 		icon_view_scrolled.Add (icon_view);
 		icon_view.SelectionChanged += new IconView.SelectionChangedHandler (HandleSelectionChanged);
 		icon_view.DoubleClicked += new IconView.DoubleClickedHandler (HandleDoubleClicked);
-		
+
 		Gtk.Drag.SourceSet (icon_view, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
 				    icon_source_target_table, DragAction.Copy | DragAction.Move);
 		
@@ -187,6 +187,8 @@ public class MainWindow {
 
 		view_notebook.SwitchPage += new SwitchPageHandler (HandleViewNotebookSwitchPage);
 
+		group_selector.Adaptor.GlassSet += HandleAdaptorGlassSet;
+		
 		UpdateMenus ();
 		main_window.ShowAll ();
 		
@@ -352,6 +354,11 @@ public class MainWindow {
 		Atom [] targets = args.Context.Targets;
 		
 		args.SelectionData.Set (targets[0], 8, data, data.Length);
+	}
+
+	void HandleAdaptorGlassSet (FSpot.TimeAdaptor sender, int index)
+	{
+		icon_view.ScrollTo (index);
 	}
 
 	//

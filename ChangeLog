@@ -1,3 +1,16 @@
+2004-08-18  Larry Ewing  <lewing@novell.com>
+
+	* src/IconView.cs: clean up some of the debug output and bounds
+	setting.
+
+	* src/MainWindow.cs: attach to the adaptor glass set delegate and
+	hndle it by calling icon_view.ScrollTo.
+
+	* src/GroupSelector.cs: fire the adaptor glass set method when the
+	glass changes.
+
+	* src/TimeAdaptor.cs: add a delegate for the glass set event.
+
 2004-08-17  Joe Shaw  <joeshaw@novell.com>
 
 	* src/TagStore.cs (TagStore.CreateDefaultTags): Set this.hidden to
