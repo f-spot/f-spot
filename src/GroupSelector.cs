@@ -33,6 +33,8 @@ namespace FSpot {
 					i++;
 				}
 				Counts = box_values;
+				min_limit.SetPosition (0);
+				max_limit.SetPosition (adaptor.Count () - 1);
 			}
 			get {
 				return adaptor;
