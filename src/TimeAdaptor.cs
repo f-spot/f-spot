@@ -7,6 +7,10 @@ namespace FSpot {
 
 		private int span;
 		ArrayList years = new ArrayList ();
+		struct YearData {
+			public int Year;
+			public int [] Months;
+		}
 
 		public delegate void GlassSetHandler (TimeAdaptor adaptor, int index);
 		public event GlassSetHandler GlassSet;
@@ -46,18 +50,14 @@ namespace FSpot {
 
 		public override int Value (int item)
 		{
-			DateTime start = DateFromIndex (item);
-			DateTime end = start.AddMonths (1);
-			
-			PhotoStore store = query.Store;
-			
-			Photo [] photos = store.Query (null, new PhotoStore.DateRange (start, end));
-			return  photos.Length;
+			YearData data = (YearData)years [item/12];
+
+			return data.Months[item % 12];
 		}
 		
 		public DateTime DateFromIndex (int item) 
 		{
-			int year =  (int)years [item / 12];
+			int year =  (int)((YearData)years [item / 12]).Year;
 			int month = (item % 12) + 1;
 
 			return new DateTime (year, month, 1);
@@ -67,15 +67,18 @@ namespace FSpot {
 			Photo [] photos = query.Store.Query (null, null);
 
 			if (photos.Length > 0) {
-				int last = 0;
+				YearData data = new YearData ();
+				data.Year = 0;
+
 				foreach (Photo photo in photos) {
 					int current = photo.Time.Year;
-					if (current != last) {
-						years.Add (current);
+					if (current != data.Year) {
+						data.Year = current;
+						data.Months = new int [12];
+						years.Add (data);
 						Console.WriteLine ("Found Year {0}", current);
 					}
-
-					last = current;
+					data.Months [photo.Time.Month - 1] += 1;
 				}
 
 			} else {

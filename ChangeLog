@@ -1,6 +1,10 @@
 2004-08-20  Larry Ewing  <lewing@novell.com>
 
-	* src/GroupSelector.cs: use GroupAdaptor not TimeAdaptor.
+	* src/TimeAdaptor.cs: iterate over all the photos instead of doing
+	a lot of queries.
+
+	* src/GroupSelector.cs: use GroupAdaptor not TimeAdaptor.  Set the
+	Limits when we set the adaptor.
 
 	* src/MainWindow.cs: slight reworking.
 
