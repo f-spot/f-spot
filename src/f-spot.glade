@@ -6683,7 +6683,7 @@ Photo Details</property>
 
 <widget class="GtkWindow" id="main_window">
   <property name="visible">True</property>
-  <property name="title" translatable="yes">window1</property>
+  <property name="title" translatable="yes">F-Spot</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
@@ -7017,20 +7017,6 @@ Photo Details</property>
 		  </child>
 
 		  <child>
-		    <widget class="GtkImageMenuItem" id="properties">
-		      <property name="visible">True</property>
-		      <property name="stock_item">GNOMEUIINFO_MENU_PROPERTIES_ITEM</property>
-		      <signal name="activate" handler="HandlePropertiesCommand" last_modification_time="Mon, 19 Apr 2004 17:20:27 GMT"/>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkSeparatorMenuItem" id="separator3">
-		      <property name="visible">True</property>
-		    </widget>
-		  </child>
-
-		  <child>
 		    <widget class="GtkImageMenuItem" id="preferences1">
 		      <property name="visible">True</property>
 		      <property name="stock_item">GNOMEUIINFO_MENU_PREFERENCES_ITEM</property>
@@ -7150,7 +7136,7 @@ Photo Details</property>
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Month</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">False</property>
+			      <property name="active">True</property>
 			      <signal name="activate" handler="HandleArrangeByTime" last_modification_time="Fri, 20 Aug 2004 22:26:32 GMT"/>
 			    </widget>
 			  </child>
@@ -7411,19 +7397,65 @@ Photo Details</property>
 	  </child>
 
 	  <child>
-	    <placeholder/>
+	    <widget class="GtkSeparatorToolItem" id="separatortoolitem1">
+	      <property name="visible">True</property>
+	      <property name="draw">True</property>
+	      <property name="visible_horizontal">True</property>
+	      <property name="visible_vertical">True</property>
+	    </widget>
+	    <packing>
+	      <property name="expand">False</property>
+	      <property name="homogeneous">False</property>
+	    </packing>
 	  </child>
 
 	  <child>
-	    <placeholder/>
+	    <widget class="GtkRadioToolButton" id="radiotoolbutton1">
+	      <property name="visible">True</property>
+	      <property name="stock_id">f-spot-browse</property>
+	      <property name="visible_horizontal">True</property>
+	      <property name="visible_vertical">True</property>
+	      <property name="is_important">False</property>
+	      <property name="active">False</property>
+	    </widget>
+	    <packing>
+	      <property name="expand">False</property>
+	      <property name="homogeneous">True</property>
+	    </packing>
 	  </child>
 
 	  <child>
-	    <placeholder/>
+	    <widget class="GtkRadioToolButton" id="radiotoolbutton2">
+	      <property name="visible">True</property>
+	      <property name="label" translatable="yes"></property>
+	      <property name="use_underline">True</property>
+	      <property name="visible_horizontal">True</property>
+	      <property name="visible_vertical">True</property>
+	      <property name="is_important">False</property>
+	      <property name="active">False</property>
+	      <property name="group">radiotoolbutton1</property>
+	    </widget>
+	    <packing>
+	      <property name="expand">False</property>
+	      <property name="homogeneous">True</property>
+	    </packing>
 	  </child>
 
 	  <child>
-	    <placeholder/>
+	    <widget class="GtkRadioToolButton" id="radiotoolbutton3">
+	      <property name="visible">True</property>
+	      <property name="label" translatable="yes"></property>
+	      <property name="use_underline">True</property>
+	      <property name="visible_horizontal">True</property>
+	      <property name="visible_vertical">True</property>
+	      <property name="is_important">False</property>
+	      <property name="active">False</property>
+	      <property name="group">radiotoolbutton1</property>
+	    </widget>
+	    <packing>
+	      <property name="expand">False</property>
+	      <property name="homogeneous">True</property>
+	    </packing>
 	  </child>
 
 	  <child>
