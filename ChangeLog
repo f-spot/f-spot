@@ -1,5 +1,11 @@
 2005-02-24  Larry Ewing  <lewing@novell.com>
 
+	* src/AsyncPixbufLoader.cs: lower the async loader threshold now
+	that we have a scaled version loaded.
+
+	* src/PhotoImageView.cs: when switching photos switch to a scaled
+	version of the thumbnail first.
+
 	* src/IconView.cs: preload only in the direction of motion.
 	Decrease the amount the farther out we go.
 

@@ -28,7 +28,7 @@ namespace FSpot {
 
 		// Limit pass control back to the main loop after
 		// chunk_timeout miliseconds.
-		int  chunk_timeout = 1000;
+		int  chunk_timeout = 100;
 
 		Delay delay;
 
