@@ -309,7 +309,7 @@ class PixbufUtils {
 		Pixbuf scaled = new Pixbuf (Colorspace.Rgb, false, 8, width, height);
 		scaled.Fill (0x000000); 
 
-		System.Console.WriteLine ("pos= {0}", pos.ToString ());
+		//System.Console.WriteLine ("pos= {0}", pos.ToString ());
 
 		orig.Composite (scaled, pos.X, pos.Y, 
 				pos.Width, pos.Height,

@@ -37,7 +37,6 @@ namespace FSpot {
 			CacheEntry entry;
 			lock (items) {
 				entry = ULookup (thumb_path);
-				//pending.Enqueue (entry);
 			}
 
 			if (entry != null && result != null) {
@@ -107,7 +106,7 @@ namespace FSpot {
 
 					//if the depth of the queue is so large that we've reached double our limit 
 					//break out of here and let the queue shrink.
-					if (size * .5  > (double) max_size) {
+					if (size / 4  > max_size) {
 						//System.Console.WriteLine ("Hit limit");
 						return null;
 					}
@@ -121,6 +120,7 @@ namespace FSpot {
 		private void WorkerTask ()
 		{
 			CacheEntry current = null;
+			ThumbnailGenerator.Default.PushBlock ();
 			while (true) {
 				try {
 					lock (items) {
@@ -142,10 +142,13 @@ namespace FSpot {
 								entry.Dispose ();
 							}			
 							if (num > 0) {
-								System.Console.WriteLine ("removing {0}  ({1} > {2})", num, total_size, max_size);
+								//System.Console.WriteLine ("removing {0}  ({1} > {2})", num, total_size, max_size);
 								items_mru.RemoveRange (0, num);
+							} else {
+								ThumbnailGenerator.Default.PopBlock ();
+								Monitor.Wait (items);
+								ThumbnailGenerator.Default.PushBlock ();
 							}
-							Monitor.Wait (items);
 						}
 					}
 					
@@ -321,7 +324,10 @@ namespace FSpot {
 					}
 				}
 				set {
+					Gdk.Pixbuf old;
 					lock (this) {
+						old = this.Pixbuf;
+
 						this.pixbuf = value;
 						if (pixbuf != null) {
 							this.width = pixbuf.Width;
@@ -329,6 +335,10 @@ namespace FSpot {
 						}
 						this.Reload = false;
 					}
+
+					if (old != null)
+						old.Dispose ();
+
 				}
 			}
 			
@@ -353,7 +363,15 @@ namespace FSpot {
 
 			public int Size {
 				get {
-					return (width * height * 3);
+
+#if false
+					if (pixbuf != null)
+						return (pixbuf.Width * pixbuf.Height * 3);
+					else 
+						return 1;
+#else
+					return width * height * 3;
+#endif
 				}
 			}
 		}

@@ -110,6 +110,7 @@ public class IconView : Gtk.Layout {
 	// scroll region).  Used to compute the area that went offscreen in the "changed"
 	// signal handler for the vertical GtkAdjustment.
 	private int y_offset;
+	private int x_offset;
 
 	// Hash of all the order number of the items that are selected.
 	private Hashtable selected_cells;
@@ -634,6 +635,9 @@ public class IconView : Gtk.Layout {
 
 	private void DrawAllCells (Gdk.Rectangle area)
 	{
+		if (cell_width == 0 || cell_height == 0)
+			return;
+			
 		int start_cell_column = Math.Max ((area.X - BORDER_SIZE) / cell_width, 0);
 		int start_cell_row = Math.Max ((area.Y - BORDER_SIZE) / cell_height, 0);
 		int start_cell_num = start_cell_column + start_cell_row * cells_per_row;
@@ -652,7 +656,8 @@ public class IconView : Gtk.Layout {
 
 		// Preload the cache with images aroud the expose area
 		// FIXME the preload need to be tuned to the Cache size but this is a resonable start
-		Preload (area, 12);			
+		//Scroll ();
+		Preload (area, 4);
 
 		for (i = 0, cell_num = start_cell_num;
 		     i < num_rows && cell_num < collection.Items.Length;
@@ -670,7 +675,6 @@ public class IconView : Gtk.Layout {
 		}
 
 	}
-
 
 	private void GetCellPosition (int cell_num, out int x, out int y)
 	{
@@ -690,32 +694,57 @@ public class IconView : Gtk.Layout {
 
 	// Scrolling.  We do this in an idle loop so we can catch up if the user scrolls quickly.
 
-	private uint scroll_on_idle_id;
-
-	private bool HandleScrollOnIdle ()
-	{
-		Adjustment adjustment = Vadjustment;
-
-		if (y_offset == adjustment.Value)
-			return false;
-
-		y_offset = (int) adjustment.Value;
-		scroll_on_idle_id = 0;
-		return false;
-	}
-
 	private void Scroll ()
 	{
-		Gdk.Rectangle area = new Gdk.Rectangle ((int) Hadjustment.Value, 
-							(int) Vadjustment.Value,
-							Allocation.Width,
-							Allocation.Height);
-		
-		//Preload (area, 10);
+		int ystep = Math.Max ((int)(Vadjustment.Value - y_offset), Allocation.Height / 2);
+		int xstep = Math.Max  ((int)(Hadjustment.Value - x_offset), 0);
+		Gdk.Rectangle area;
+
+		/*
+		area = new Gdk.Rectangle (Math.Min ((int) (Hadjustment.Value + 3 * xstep), 0),  
+					  Math.Min ((int) (Vadjustment.Value + 3 * ystep), 0),
+					  Allocation.Width,
+					  Allocation.Height);
 		Preload (area, 0);
 
-		if (scroll_on_idle_id == 0)
-			scroll_on_idle_id = GLib.Idle.Add (new GLib.IdleHandler (HandleScrollOnIdle));
+		area = new Gdk.Rectangle (Math.Min ((int) (Hadjustment.Value + 2 * xstep), 0),  
+					  Math.Min ((int) (Vadjustment.Value + 2 * ystep), 0),
+					  Allocation.Width,
+					  Allocation.Height);
+		Preload (area, 0);
+
+		area = new Gdk.Rectangle (Math.Min ((int) (Hadjustment.Value + xstep), 0),  
+					  Math.Min ((int) (Vadjustment.Value + ystep), 0),
+					  Allocation.Width,
+					  Allocation.Height);		
+		Preload (area, 0);
+		*/
+		area = new Gdk.Rectangle (Math.Min ((int) (Hadjustment.Value - 3 * xstep), 0),  
+					  Math.Min ((int) (Vadjustment.Value - 3 * ystep), 0),
+					  Allocation.Width,
+					  Allocation.Height / 2);
+		Preload (area, 0);
+
+		area = new Gdk.Rectangle (Math.Min ((int) (Hadjustment.Value - 2 * xstep), 0),  
+					  Math.Min ((int) (Vadjustment.Value - 2 * ystep), 0),
+					  Allocation.Width,
+					  Allocation.Height / 2);
+		Preload (area, 0);
+
+		area = new Gdk.Rectangle (Math.Min ((int) (Hadjustment.Value - xstep), 0),  
+					  Math.Min ((int) (Vadjustment.Value - ystep), 0),
+					  Allocation.Width,
+					  Allocation.Height);
+		Preload (area, 0);
+
+		area = new Gdk.Rectangle ((int) Hadjustment.Value, 
+					  (int) Vadjustment.Value,
+					  Allocation.Width,
+					  Allocation.Height);
+		Preload (area, 0);
+
+		y_offset = (int) Vadjustment.Value;
+		x_offset = (int) Hadjustment.Value;
 	}
 
 	private void Preload (Gdk.Rectangle area, int padding)
@@ -742,8 +771,8 @@ public class IconView : Gtk.Layout {
 		// Preload the cache with images aroud the expose area
 		// FIXME the preload need to be tuned to the Cache size but this is a resonable start
 		
-		int cols = end_cell_column - start_cell_column;
-		int rows = end_cell_row - start_cell_row;
+		int cols = Math.Max (end_cell_column - start_cell_column, 1);
+		int rows = Math.Max (end_cell_row - start_cell_row, 1);
 		int len = (rows + padding) * cols;
 		int scell = System.Math.Max ((start_cell_row - padding / 2) * cols, 0);
 		int ecell = scell + len;
@@ -763,13 +792,6 @@ public class IconView : Gtk.Layout {
 				
 		}
 	}
-
-	private void CancelScroll ()
-	{
-		if (scroll_on_idle_id != 0)
-			GLib.Source.Remove (scroll_on_idle_id);
-	}
-
 
 	//
 	// The throb interface
@@ -825,11 +847,7 @@ public class IconView : Gtk.Layout {
 		else if (y + cell_height > adjustment.Value + adjustment.PageSize)
 			adjustment.Value = y + cell_height - adjustment.PageSize;
 		
-#if true
-		Scroll ();
-#else
 		adjustment.Change ();
-#endif		
 	}
 
 
@@ -868,7 +886,6 @@ public class IconView : Gtk.Layout {
 		if (result.Width != width && result.Height != height) {
 			//  System.Console.WriteLine ("scaling");
 			Gdk.Pixbuf temp = PixbufUtils.ScaleDown (result, width, height);
-			result.Dispose ();
 			result = temp;
 		}
 
@@ -1064,7 +1081,6 @@ public class IconView : Gtk.Layout {
 
 	private void HandleDestroyEvent (object sender, DestroyEventArgs args)
 	{
-		CancelScroll ();
 		CancelThrob ();
 	}
 }

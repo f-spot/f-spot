@@ -1,8 +1,6 @@
 namespace FSpot {
 	public class ThumbnailGenerator : PixbufLoader {
-
 		private static Gnome.ThumbnailFactory factory = new Gnome.ThumbnailFactory (Gnome.ThumbnailSize.Large);
-
 		static public ThumbnailGenerator Default = new ThumbnailGenerator ();
 
 		public static Gdk.Pixbuf Create (string path)
@@ -16,6 +14,13 @@ namespace FSpot {
 			}
 		}
 		
+
+		int block_count;
+		public void Block ()
+		{
+
+		}
+
 		public static bool ThumbnailIsValid (Gdk.Pixbuf thumbnail, System.Uri uri)
 		{
 			bool valid = false;
@@ -61,16 +66,12 @@ namespace FSpot {
 			} finally {
 				factory.SaveThumbnail (image, uri, mtime);
 			}
-
-			if (!PhotoLoader.ThumbnailIsValid (new System.Uri (uri), image))
-			    System.Console.WriteLine ("************************************ Argh");
 		}
 
 		protected override void EmitLoaded (System.Collections.Queue results)
 		{
 			base.EmitLoaded (results);
 			
-			// We Own these, get rid of them now
 			foreach (RequestItem r in results) {
 				if (r.result != null)
 					r.result.Dispose ();
@@ -86,8 +87,6 @@ namespace FSpot {
 			if (image != null) {
 				Save (image, request.path);
 			}
-
-			//System.Threading.Thread.Sleep (50);
 		}
 	}
 }

@@ -1,8 +1,24 @@
+2005-02-24  Larry Ewing  <lewing@novell.com>
+
+	* src/IconView.cs: preload only in the direction of motion.
+	Decrease the amount the farther out we go.
+
+	* src/PixbufCache.cs: Block the thumbnail generator from
+	thumbnailing while there are pending icon requests.
+
+	* src/ThumbnailGenerator.cs: add the ability to block.
+
+	* src/PixbufUtils.cs: remove debug output.
+
 2005-02-23  Adam Weinberger  <adamw@gnome.org>
 
 	* src/f-spot.glade: fix one more typo.
 
 2005-02-23  Larry Ewing  <lewing@novell.com>
+
+	* src/ThumbnailGenerator.cs: remove debugging logic.
+
+	* src/PixbufCache.cs: remove debug output.
 
 	* src/SlideView.cs: bail out of the animation on the current frame
 	if it is taking too long.
