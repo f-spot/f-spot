@@ -221,7 +221,7 @@ public class PhotoView : EventBox {
 		else
 			display_previous_button.Sensitive = true;
 
-		if (Query == null || current_photo == Query.Photos.Length - 1 || Query.Photo.Length == 0)
+		if (Query == null || current_photo == Query.Photos.Length - 1 || Query.Photos.Length == 0)
 			display_next_button.Sensitive = false;
 		else
 			display_next_button.Sensitive = true;
