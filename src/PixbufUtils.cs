@@ -535,7 +535,7 @@ class PixbufUtils {
 		return orientation;
 	}
 
-	[DllImport("gnomeui-2")]
+	[DllImport("libgnomeui-2-0.dll")]
 	static extern IntPtr gnome_thumbnail_scale_down_pixbuf(IntPtr pixbuf, int dest_width, int dest_height);
 
 	public static Gdk.Pixbuf ScaleDown (Gdk.Pixbuf src, int width, int height)
