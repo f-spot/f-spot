@@ -1167,10 +1167,12 @@ public class MainWindow {
 			
 				Photo photo = query.Photos [id];
 				Exif.ExifData exif_data = new Exif.ExifData (photo.DefaultVersionPath);
-
+				
+				bool created_version = false;
 				uint version = photo.DefaultVersionId;
 				if (version == Photo.OriginalVersionId) {
 					version = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);
+					created_version = true;
 				}
 				
 				try {
@@ -1180,9 +1182,20 @@ public class MainWindow {
 					FSpot.ThumbnailGenerator.Create (version_path).Dispose ();
 					photo.DefaultVersionId = version;
 					query.Commit (id);
-				} catch (GLib.GException ex) {
-					// FIXME error dialog.
-					Console.WriteLine ("error {0}", ex);
+				} catch (System.Exception e) {
+					string msg = Mono.Posix.Catalog.GetString ("Error saving sharpened photo");
+					string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save image {1}"),
+								     e.Message, photo.Name);
+					
+					HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
+										    Gtk.MessageType.Error, ButtonsType.Ok, 
+										    msg,
+										    desc);
+					md.Run ();
+					md.Destroy ();
+					
+					if (created_version)
+						photo.DeleteVersion (version);
 				}
 			
 			}
