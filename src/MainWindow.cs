@@ -637,10 +637,10 @@ public class MainWindow {
 			int display_width, display_height;
 			GetDisplaySize (out display_width, out display_height);
 
-			// A bizarre hack to try to deal with cinematic displays, etc.
+			// A bizarre pixbuf = hack to try to deal with cinematic displays, etc.
 			int preview_edge = ((display_width + display_height)/2)/3;
+			pixbuf = PixbufUtils.LoadAtMaxEdgeSize (orig_path, preview_edge);
 			//pixbuf = FSpot.PhotoLoader.LoadAtMaxSize (photo, preview_edge, preview_edge);
-			pixbuf = FSpot.PhotoLoader.LoadAtMaxSize (photo, preview_edge, preview_edge);
 			quick_preview_cache.AddThumbnail (orig_path, pixbuf);
 		}
 
@@ -1094,7 +1094,7 @@ public class MainWindow {
 			width *= 2;
 			width = Math.Max (width, 64);
 			if (width >= 512) {
-				photo_view.Zoom = 0.0
+				photo_view.Zoom = 0.0;
 				SwitchToPhotoViewMode ();
 			} else 
 				icon_view.ThumbnailWidth = width;
