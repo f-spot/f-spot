@@ -230,7 +230,7 @@ namespace FSpot {
 			box.Width -= box_spacing * 2;
 			
 			if (box.Intersect (area, out area)) {
-				if (item < min_limit.Position || item >= max_limit.Position) {
+				if (item < min_limit.Position || item > max_limit.Position) {
 #if false
 					box.Height += 1;
 
@@ -344,7 +344,7 @@ namespace FSpot {
 					
 					if (selector.Visible) {
 						then = now.Union (then);
-						selector.GdkWindow.InvalidateRect (area, false);
+						selector.GdkWindow.InvalidateRect (then, false);
 						//selector.GdkWindow.InvalidateRect (now, false);
 					}
 				}

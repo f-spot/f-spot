@@ -1,9 +1,11 @@
 2004-08-16  Larry Ewing  <lewing@novell.com>
 
+	* src/GroupSelector.cs: fix box drawing limit color.
+	
 	* src/GroupSelector.cs: draw limits as boxes, invalidate Union
 	instead of just the two areas because we may have changed the
 	background state.
-	
+
 	* src/GroupSelector.cs: don't iterate over all the groups just the
 	visible ones.  When releasing Hit test the middle of the
 	manipulator not the point we grabbed.
