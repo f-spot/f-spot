@@ -84,6 +84,17 @@ public class PixbufLoader {
 		all_worker_threads.Add (worker_thread);
 	}
 
+	int block_count;
+	public void PushBlock ()
+	{
+		System.Threading.Interlocked.Increment (ref block_count);
+	}
+
+	public void PopBlock ()
+	{
+		System.Threading.Interlocked.Decrement (ref block_count);
+	}
+
 	// FIXME?
 	static public void Cleanup ()
 	{
@@ -180,27 +191,27 @@ public class PixbufLoader {
 						pending_notify.WakeupMain ();
 						pending_notify_notified = true;
 					}
-					
+						
 					current_request = null;
-				}
+					}
 			}
 
 			lock (queue) {
 				
-				while (queue.Count == 0)
+				while (queue.Count == 0 || block_count > 0)
 					Monitor.Wait (queue);
-
+				
 				int pos = queue.Count - 1;
 
 				current_request = queue [pos] as RequestItem;
 				queue.RemoveAt (pos);
 				requests_by_path.Remove (current_request.path);
 			}
-
+			
 			ProcessRequest (current_request);
 		}
 	}
-
+	
 	protected virtual void EmitLoaded (Queue results)
 	{
 		if (OnPixbufLoaded != null) {

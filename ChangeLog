@@ -1,5 +1,7 @@
 2005-02-24  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufLoader.cs: add the blocking logic to the loader.
+
 	* src/PhotoImageView.cs: use bilinear interp it looks nicer.
 
 	* src/AsyncPixbufLoader.cs: lower the async loader threshold now
