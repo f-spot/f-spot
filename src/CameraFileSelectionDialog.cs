@@ -217,7 +217,7 @@ public class CameraFileSelectionDialog
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e.ToString ());
 				progress_dialog.Message = String.Format ("{0}\n{1}", e.Message, e.ToString ());
-				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error ransferrring file");
+				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error transferring file");
 			}
 		}
 	}
