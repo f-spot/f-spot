@@ -171,10 +171,12 @@ namespace FSpot {
 			case Gdk.Key.v:
 				ShowHistogram = false;
 				UpdateItem ();
+				args.RetVal = true;
 				break;
 			case Gdk.Key.V:
 				ShowHistogram = true;
 				UpdateItem ();
+				args.RetVal = true;
 				break;
 			}
 		}

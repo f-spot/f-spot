@@ -1,5 +1,7 @@
 2004-11-20  Larry Ewing  <lewing@novell.com>
 
+	* src/PreviewPopup.cs: mark the key presses as handled.
+
 	* src/PhotoImageView.cs: remove the update notifcation if we get
 	destroyed before the image is done loading.
 
