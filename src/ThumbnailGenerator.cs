@@ -16,6 +16,17 @@ namespace FSpot {
 			}
 		}
 		
+		public static string ThumbnailPath (System.Uri uri)
+		{
+			string large_path = Gnome.Thumbnail.PathForUri (uri.ToString (), Gnome.ThumbnailSize.Large);
+			return large_path;
+		}
+
+		public static string ThumbnailPath (string path) 
+		{
+			return ThumbnailPath (UriList.PathToFileUri (path));
+		}
+
 		public static void Save (Gdk.Pixbuf image, string path)
 		{			
 			string uri = UriList.PathToFileUri (path).ToString ();
@@ -35,18 +46,21 @@ namespace FSpot {
 			} finally {
 				factory.SaveThumbnail (image, uri, mtime);
 			}
+
+			if (!PhotoLoader.ThumbnailIsValid (new System.Uri (uri), image))
+			    System.Console.WriteLine ("************************************ Argh");
 		}
 
 		protected override void ProcessRequest (RequestItem request)
 		{
-			// Load the image.
 			base.ProcessRequest (request);
 
 			Gdk.Pixbuf image = request.result;
 			if (image != null) {
 				Save (image, request.path);
-				image.Dispose ();
+				//image.Dispose ();
 			}
+
 			System.Threading.Thread.Sleep (100);
 		}
 	}

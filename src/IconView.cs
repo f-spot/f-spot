@@ -19,6 +19,7 @@ using System.IO;
 public class IconView : Gtk.Layout {
 
 	// Public properties.
+	FSpot.PixbufCache cache;
 
 	/* Width of the thumbnails. */
 	protected int thumbnail_width = 128;
@@ -94,9 +95,6 @@ public class IconView : Gtk.Layout {
 	// Vertical spacing between the thumbnail and the row of tag icons.
 	protected const int TAG_ICON_VSPACING = 3;
 
-	// The loader.
-	private PixbufLoader pixbuf_loader;
-
 	// Various other layout values.
 	protected int cells_per_row;
 	protected int cell_width;
@@ -147,9 +145,8 @@ public class IconView : Gtk.Layout {
 
 	public IconView () : base (null, null)
 	{
-		pixbuf_loader = new PixbufLoader ();
-		pixbuf_loader.OnPixbufLoaded += HandlePixbufLoaded;
-
+		cache = new FSpot.PixbufCache ();
+		cache.OnPixbufLoaded += HandlePixbufLoaded;
 		selected_cells = new Hashtable ();
 
 		ScrollAdjustmentsSet += new ScrollAdjustmentsSetHandler (HandleScrollAdjustmentsSet);
@@ -224,9 +221,7 @@ public class IconView : Gtk.Layout {
 	{
 		FSpot.IBrowsableItem photo = collection.Items [thumbnail_num];
 		string thumbnail_path = Thumbnail.PathForUri (photo.DefaultVersionUri.ToString (), ThumbnailSize.Large);
-
-		//Console.WriteLine ("remove {0}", thumbnail_path);
-		ThumbnailCache.Default.RemoveThumbnailForPath (thumbnail_path);
+		cache.Remove (thumbnail_path);
 		InvalidateCell (thumbnail_num);
 	}
 
@@ -454,14 +449,12 @@ public class IconView : Gtk.Layout {
 		string thumbnail_path = Thumbnail.PathForUri (photo.DefaultVersionUri.ToString (), 
 							      ThumbnailSize.Large);
 
-		Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForPath (thumbnail_path);			
-		if (thumbnail == null) {
-			// FIXME instead of making a request to load at a particular size here we
-			// request to load at the the full size because Gdk.Pixbuf loses the Option
-			// data when you load at a different size (I hate that).  See HandlePixbufLoaded
-			// for where we do the scaling to correct for this problem.
-			pixbuf_loader.Request (thumbnail_path, thumbnail_num);
-		}
+		
+		
+		FSpot.PixbufCache.CacheEntry entry = cache.Lookup (thumbnail_path);
+		if (entry == null);
+			cache.Request (thumbnail_path, thumbnail_num, ThumbnailWidth, ThumbnailHeight);
+
 			
 		Gdk.GC gc = new Gdk.GC (BinWindow);
 		gc.Copy (Style.ForegroundGC (StateType.Normal));
@@ -490,6 +483,10 @@ public class IconView : Gtk.Layout {
 		Gdk.Rectangle image_bounds = Expand (bounds, - CELL_BORDER_WIDTH);
 		int expansion = ThrobExpansion (thumbnail_num, selected);
 
+		Gdk.Pixbuf thumbnail = null;
+		if (entry != null)
+			thumbnail = entry.ShallowCopyPixbuf ();
+
 		if (Expand (image_bounds, expansion + 1).Intersect (area, out image_bounds) && thumbnail != null) {
 			
 			PixbufUtils.Fit (thumbnail, ThumbnailWidth, ThumbnailHeight, 
@@ -498,26 +495,29 @@ public class IconView : Gtk.Layout {
 			region.X = (int) (bounds.X + (bounds.Width - region.Width) / 2);
 			region.Y = (int) bounds.Y + ThumbnailHeight - region.Height + CELL_BORDER_WIDTH;
 			
-
-			if (region.Width != thumbnail.Width || region.Height != thumbnail.Height)
-				pixbuf_loader.Request (thumbnail_path, thumbnail_num);
+			if (region.Width != thumbnail.Width && region.Height != thumbnail.Height) {
+				System.Console.WriteLine ("reload ({0},{1}) != ({2},{3})",
+							  region.Width, region.Height,
+							  thumbnail.Width, thumbnail.Height);
+				cache.Reload (entry, thumbnail_num, thumbnail.Width, thumbnail.Height);
+			}
 
 			region = Expand (region, expansion);
 			Pixbuf temp_thumbnail;			
 
 			if (region.Width != thumbnail.Width && region.Height != thumbnail.Height) {
-				if (region.Width < thumbnail.Width && region.Height < thumbnail.Height)
+				if (region.Width < thumbnail.Width && region.Height < thumbnail.Height) {
 					temp_thumbnail = PixbufUtils.ScaleDown (thumbnail, 
 										region.Width, region.Height);
-				else
+				} else {
 					temp_thumbnail = thumbnail.ScaleSimple (region.Width, region.Height, 
 										InterpType.Bilinear);
+				}
 				
 				PixbufUtils.CopyThumbnailOptions (thumbnail, temp_thumbnail);
 			} else
 				temp_thumbnail = thumbnail;
 
-			
 			// FIXME There seems to be a rounding issue between the
 			// scaled thumbnail sizes, we avoid this for now by using
 			// the actual thumnail sizes here.
@@ -643,6 +643,36 @@ public class IconView : Gtk.Layout {
 					 cells_per_row - start_cell_column);
 
 		int i, cell_num;
+
+		FSpot.IBrowsableItem photo;
+		FSpot.PixbufCache.CacheEntry entry;
+		string thumbnail_path;
+
+		
+		int pad = 10;
+		int len = System.Math.Min (cells_per_row * pad, collection.Items.Length);
+		for (i = System.Math.Min (end_cell_row * cells_per_row, len); i < len; i++) {
+			photo = collection.Items [i];
+			thumbnail_path = Thumbnail.PathForUri (photo.DefaultVersionUri.ToString (), 
+							       ThumbnailSize.Large);
+			entry = cache.Lookup (thumbnail_path);
+			if (entry == null)
+				cache.Request (thumbnail_path, i, ThumbnailWidth, ThumbnailHeight);
+			
+		}
+
+		len = cells_per_row * pad;
+		for (i = start_cell_row * cells_per_row; i > 0 && --len > 0 ; i--) {
+			photo = collection.Items [i];
+			thumbnail_path = Thumbnail.PathForUri (photo.DefaultVersionUri.ToString (), 
+							       ThumbnailSize.Large);
+			entry = cache.Lookup (thumbnail_path);
+			if (entry == null);
+				cache.Request (thumbnail_path, i, ThumbnailWidth, ThumbnailHeight);
+				
+		}
+			
+
 		for (i = 0, cell_num = start_cell_num;
 		     i < num_rows && cell_num < collection.Items.Length;
 		     i ++) {
@@ -707,17 +737,7 @@ public class IconView : Gtk.Layout {
 			start = (new_last_row + 1) * cells_per_row;
 		}
 
-		for (int i = 0; i < cells_per_row * num_rows; i ++) {
-			if (start + i >= num_thumbnails)
-				break;
-
-			FSpot.IBrowsableItem photo = collection.Items [start + i];
-			string thumbnail_path = Thumbnail.PathForUri (photo.DefaultVersionUri.ToString (), ThumbnailSize.Large);
-			pixbuf_loader.Cancel (thumbnail_path);
-		}
-
 		y_offset = (int) adjustment.Value;
-
 		scroll_on_idle_id = 0;
 		return false;
 	}
@@ -789,7 +809,7 @@ public class IconView : Gtk.Layout {
 		else if (y + cell_height > adjustment.Value + adjustment.PageSize)
 			adjustment.Value = y + cell_height - adjustment.PageSize;
 		
-#if USEIDLE
+#if true
 		Scroll ();
 #else
 		adjustment.Change ();
@@ -804,40 +824,34 @@ public class IconView : Gtk.Layout {
 		Scroll ();
 	}
 
-	private void HandlePixbufLoaded (PixbufLoader loader, string path, int order, Pixbuf result)
+	private void HandlePixbufLoaded (FSpot.PixbufCache cache, FSpot.PixbufCache.CacheEntry entry)
 	{
-		if (result == null) {
-			result = PixbufUtils.ErrorPixbuf;
-			//
-			// ThumbnailCache Takes Ownership and calls Dispose
-			// so we need to copy the ErrorPixbuf
-			//
-			result = new Pixbuf (result, 0, 0, result.Width, result.Height);
-		} 
+		Gdk.Pixbuf result = entry.ShallowCopyPixbuf ();
+		int order = (int) entry.Data;
+		if (result == null)
+			return;
 
 		if (order > 0 && order < collection.Items.Length) {
 			System.Uri uri = collection.Items [order].DefaultVersionUri;
 			
-			if (!FSpot.PhotoLoader.ThumbnailIsValid (collection.Items [order].DefaultVersionUri, result)) {
+			if (!FSpot.PhotoLoader.ThumbnailIsValid (uri, result)) {
 				FSpot.ThumbnailGenerator.Default.Request (uri.LocalPath, 0, 256, 256);
+				System.Console.WriteLine ("reload {0}", uri.LocalPath);
 			}
 		}
-		       
 
 		// We have to do the scaling here rather than on load because we need to preserve the 
 		// Pixbuf option iformation to verify the thumbnail validity later
 		int width, height;
-		PixbufUtils.Fit (result, ThumbnailWidth, ThumbnailHeight, true, out width, out height);
-
-
+		PixbufUtils.Fit (result, ThumbnailWidth, ThumbnailHeight, false, out width, out height);
 		if (result.Width != width && result.Height != height) {
+			//  System.Console.WriteLine ("scaling");
 			Gdk.Pixbuf temp = PixbufUtils.ScaleToMaxSize (result, ThumbnailWidth, ThumbnailHeight);
-			PixbufUtils.CopyThumbnailOptions (result, temp);
 			result.Dispose ();
 			result = temp;
 		}
 
-		ThumbnailCache.Default.AddThumbnail (path, result);
+		cache.Update (entry, result);
 		InvalidateCell (order);
 	}
 	

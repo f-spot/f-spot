@@ -4,6 +4,14 @@
 
 2005-02-18  Larry Ewing  <lewing@novell.com>
 
+	* src/ThumbnailGenerator.cs: add some utility functions.
+
+	* src/IconView.cs: refactor to use the new PixbufCache class.
+	Preload on every expose.
+
+	* src/PixbufCache.cs: integrate the cache and the loader into a
+	single mru.  Include max size smarts.
+	
 	* src/IconView.cs: remove debug output.
 
 2005-02-18  Tuomas Kuosmanen  <tigert@novell.com>

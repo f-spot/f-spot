@@ -52,10 +52,12 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PhotoView.cs			\
 	$(srcdir)/PixbufLoader.cs		\
 	$(srcdir)/PixbufUtils.cs		\
+	$(srcdir)/PixbufCache.cs		\
 	$(srcdir)/PreviewPopup.cs 		\
 	$(srcdir)/PrintDialog.cs		\
 	$(srcdir)/ProgressDialog.cs		\
 	$(srcdir)/RotateCommand.cs		\
+	$(srcdir)/ScalingIconView.cs		\
 	$(srcdir)/SlideView.cs			\
 	$(srcdir)/StockIcons.cs			\
 	$(srcdir)/SimpleCalendar.cs		\
