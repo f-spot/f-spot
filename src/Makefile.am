@@ -3,6 +3,7 @@ CSC = mcs --unsafe -g
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/AsyncPixbufLoader.cs		\
 	$(srcdir)/PhotoArray.cs 		\
+	$(srcdir)/CDExport.cs			\
 	$(srcdir)/ColorDialog.cs		\
 	$(srcdir)/CompatFileChooser.cs		\
 	$(srcdir)/DateCommands.cs		\

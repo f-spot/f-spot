@@ -1,52 +1,32 @@
+using System.Runtime.InteropServices;
+
 namespace FSpot {
-	public class VfsExport {
+	public class CDExport {
 		IPhotoCollection selection;
-		[Glade.Widget] Gtk.Dialog vfs_export_dialog;
+		[Glade.Widget] Gtk.Dialog cd_export_dialog;
 
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
-		[Glade.Widget] Gtk.Entry uri_entry;
+		
+		[Glade.Widget] Gtk.CheckButton remove_check;
+		
 
-		[Glade.Widget] Gtk.CheckButton meta_check;
-		[Glade.Widget] Gtk.CheckButton scale_check;
-		[Glade.Widget] Gtk.CheckButton open_check;
-
-		[Glade.Widget] Gtk.Entry width_entry;
-		[Glade.Widget] Gtk.Entry height_entry;
-
-		Gnome.Vfs.Uri dest;
+		Gnome.Vfs.Uri dest = new Gnome.Vfs.Uri ("burn:///");
 		
 		int photo_index;
-		bool open;
+		bool clean;
 
 		FSpot.ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
-		
-		public VfsExport (IPhotoCollection selection)
+
+		[DllImport ("libc")] 
+		extern static int system (string program);
+
+		public CDExport (IPhotoCollection selection)
 		{
-			Gnome.Vfs.ModuleCallbackFullAuthentication auth = new Gnome.Vfs.ModuleCallbackFullAuthentication ();
-			auth.Callback += new Gnome.Vfs.ModuleCallbackHandler (HandleAuth);
-			auth.SetDefault ();
-			auth.Push ();
-			
-			Gnome.Vfs.ModuleCallbackAuthentication mauth = new Gnome.Vfs.ModuleCallbackAuthentication ();
-			mauth.Callback += new Gnome.Vfs.ModuleCallbackHandler (HandleAuth);
-			mauth.SetDefault ();
-			mauth.Push ();
-			
-			Gnome.Vfs.ModuleCallbackSaveAuthentication sauth = new Gnome.Vfs.ModuleCallbackSaveAuthentication ();
-			sauth.Callback += new Gnome.Vfs.ModuleCallbackHandler (HandleAuth);
-			sauth.SetDefault ();
-			sauth.Push ();
-			
-			Gnome.Vfs.ModuleCallbackStatusMessage msg = new Gnome.Vfs.ModuleCallbackStatusMessage ();
-			msg.Callback += new Gnome.Vfs.ModuleCallbackHandler (HandleMsg);
-			msg.SetDefault ();
-			msg.Push ();
-			
 			this.selection = selection;
 			
 			// FIXME this xml file path should be be retrieved from a central location not hard coded there
-			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "vfs_export_dialog", null);
+			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "cd_export_dialog", null);
 			xml.Autoconnect (this);
 			
 			IconView view = new IconView (selection);
@@ -66,12 +46,16 @@ namespace FSpot {
 
 		public Gtk.Dialog Dialog {
 			get {
-				return this.vfs_export_dialog;
+				return this.cd_export_dialog;
 			}
 		}
 
-		public void Upload ()
+		void HandleBrowseExisting (object sender, System.EventArgs args)
 		{
+			Gnome.Url.Show (dest.ToString ());
+		}
+
+		public void Transfer () {
 			try {
 				Dialog.Destroy ();
 				Gnome.Vfs.Result result = Gnome.Vfs.Result.Ok;
@@ -82,9 +66,7 @@ namespace FSpot {
 					target = target.AppendFileName (source.ExtractShortName ());
 					Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
 					
-					//System.Console.WriteLine ("Xfering {0} to {1}", source.ToString (), target.ToString ());
-					
-					progress_dialog.Message = System.String.Format (Mono.Posix.Catalog.GetString ("Transfering picture \"{0}\""), photo.Name);
+					progress_dialog.Message = System.String.Format (Mono.Posix.Catalog.GetString ("Transfering picture \"{0}\" To CD"), photo.Name);
 					progress_dialog.Fraction = photo_index / (double) selection.Photos.Length;
 					progress_dialog.ProgressText = System.String.Format (Mono.Posix.Catalog.GetString ("{0} of {1}"), 
 											     photo_index, selection.Photos.Length);
@@ -102,20 +84,20 @@ namespace FSpot {
 					progress_dialog.Fraction = 1.0;
 					progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Transfer Complete");
 					progress_dialog.ButtonLabel = Gtk.Stock.Ok;
-
-								} else {
+					progress_dialog.Hide ();
+					system ("nautilus-cd-burner");
+				} else {
 					progress_dialog.ProgressText = result.ToString ();
 					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Error While Transfering");
 				}
 
-				if (open && photo_index > 0)
-					Gnome.Url.Show (dest.ToString ());
 			} catch (System.Exception e) {
 				progress_dialog.Message = e.ToString ();
 				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error Transfering");
 			}
+			progress_dialog.Destroy ();
 		}
-		
+	     
 		private int Progress (Gnome.Vfs.XferProgressInfo info)
 		{
 			progress_dialog.ProgressText = info.Phase.ToString ();
@@ -142,7 +124,7 @@ namespace FSpot {
 			Gnome.Vfs.ModuleCallbackStatusMessage msg = cb as Gnome.Vfs.ModuleCallbackStatusMessage;
 			System.Console.WriteLine ("{0}", msg.Message);
 		}
-
+		
 		private void HandleAuth (Gnome.Vfs.ModuleCallback cb)
 		{
 			Gnome.Vfs.ModuleCallbackFullAuthentication fcb = cb as Gnome.Vfs.ModuleCallbackFullAuthentication;
@@ -163,18 +145,13 @@ namespace FSpot {
 				return;
 			}
 
-			dest = new Gnome.Vfs.Uri (uri_entry.Text);
-			open = open_check.Active;
+			clean = remove_check.Active;
 
-#if false
-			Upload ();
-#else 	
-			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Upload));
+			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Transfer));
 			command_thread.Name = Mono.Posix.Catalog.GetString ("Transfering Pictures");
-			//command_thread.Start ();
+
 			progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Photos.Length);
 			progress_dialog.Start ();
-#endif
 		}
 	}
 }

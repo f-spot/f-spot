@@ -6757,7 +6757,7 @@ Photo Details</property>
 		    <widget class="GtkImageMenuItem" id="new1">
 		      <property name="visible">True</property>
 		      <property name="stock_item">GNOMEUIINFO_MENU_NEW_ITEM</property>
-		      <property name="label" translatable="yes">_Import</property>
+		      <property name="label" translatable="yes">_Import...</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleImportCommand" last_modification_time="Tue, 09 Dec 2003 21:01:04 GMT"/>
 		    </widget>
@@ -6780,7 +6780,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="create_version_menu_item">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Create _new version</property>
+		      <property name="label" translatable="yes">Create _new version...</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleCreateVersionCommand" last_modification_time="Tue, 09 Dec 2003 20:42:48 GMT"/>
 		    </widget>
@@ -6822,7 +6822,7 @@ Photo Details</property>
 			  <child>
 			    <widget class="GtkMenuItem" id="export_to_flickr">
 			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Export To _Flickr</property>
+			      <property name="label" translatable="yes">Export To _Flickr...</property>
 			      <property name="use_underline">True</property>
 			      <signal name="activate" handler="HandleExportToFlickr" last_modification_time="Fri, 17 Dec 2004 19:43:27 GMT"/>
 			    </widget>
@@ -6831,7 +6831,7 @@ Photo Details</property>
 			  <child>
 			    <widget class="GtkMenuItem" id="export_to_vfs1">
 			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Export to _VFS</property>
+			      <property name="label" translatable="yes">Export to _VFS...</property>
 			      <property name="use_underline">True</property>
 			      <signal name="activate" handler="HandleExportToVfs" last_modification_time="Thu, 16 Dec 2004 07:45:57 GMT"/>
 			    </widget>
@@ -6840,9 +6840,18 @@ Photo Details</property>
 			  <child>
 			    <widget class="GtkMenuItem" id="export_to_gallery">
 			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Export to _Web Gallery</property>
+			      <property name="label" translatable="yes">Export to _Web Gallery...</property>
 			      <property name="use_underline">True</property>
 			      <signal name="activate" handler="HandleExportToGallery" last_modification_time="Thu, 16 Dec 2004 07:44:48 GMT"/>
+			    </widget>
+			  </child>
+
+			  <child>
+			    <widget class="GtkMenuItem" id="export_to_cd1">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">E_xport To CD...</property>
+			      <property name="use_underline">True</property>
+			      <signal name="activate" handler="HandleExportToCD" last_modification_time="Wed, 12 Jan 2005 22:49:52 GMT"/>
 			    </widget>
 			  </child>
 			</widget>
@@ -6853,7 +6862,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="print">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">_Print</property>
+		      <property name="label" translatable="yes">_Print...</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandlePrintCommand" last_modification_time="Thu, 05 Feb 2004 00:40:09 GMT"/>
 		    </widget>
@@ -6862,7 +6871,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkImageMenuItem" id="send_mail">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Send _Mail</property>
+		      <property name="label" translatable="yes">Send _Mail...</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleSendMailCommand" last_modification_time="Mon, 07 Jun 2004 22:31:01 GMT"/>
 
@@ -6968,7 +6977,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="adjust_color">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Ad_just Color</property>
+		      <property name="label" translatable="yes">Ad_just Color...</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleAdjustColor" last_modification_time="Thu, 23 Dec 2004 12:00:46 GMT"/>
 		    </widget>
@@ -6977,7 +6986,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="sharpen">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">_Sharpen</property>
+		      <property name="label" translatable="yes">_Sharpen...</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleSharpen" last_modification_time="Thu, 23 Dec 2004 12:01:23 GMT"/>
 		    </widget>
@@ -7266,7 +7275,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="set_date_range1">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Set _Date Range</property>
+		      <property name="label" translatable="yes">Set _Date Range...</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleSetDateRange" last_modification_time="Tue, 10 Aug 2004 07:08:24 GMT"/>
 		    </widget>
@@ -7311,7 +7320,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="create_new_tag1">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Create New _Tag</property>
+		      <property name="label" translatable="yes">Create New _Tag...</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleCreateNewTagCommand" last_modification_time="Tue, 09 Dec 2003 20:42:48 GMT"/>
 		    </widget>
@@ -7320,7 +7329,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="create_new_category1">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Create New _Category</property>
+		      <property name="label" translatable="yes">Create New _Category...</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleCreateNewCategoryCommand" last_modification_time="Tue, 09 Dec 2003 20:42:48 GMT"/>
 		    </widget>
@@ -7335,7 +7344,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="edit_selected_tag">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">_Edit Selected Tag</property>
+		      <property name="label" translatable="yes">_Edit Selected Tag...</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleEditSelectedTag" last_modification_time="Wed, 11 Aug 2004 06:33:14 GMT"/>
 		    </widget>
@@ -7647,6 +7656,211 @@ Photo Details</property>
 	  <property name="padding">0</property>
 	  <property name="expand">False</property>
 	  <property name="fill">False</property>
+	</packing>
+      </child>
+    </widget>
+  </child>
+</widget>
+
+<widget class="GtkDialog" id="cd_export_dialog">
+  <property name="visible">True</property>
+  <property name="title" translatable="yes">dialog1</property>
+  <property name="type">GTK_WINDOW_TOPLEVEL</property>
+  <property name="window_position">GTK_WIN_POS_NONE</property>
+  <property name="modal">False</property>
+  <property name="resizable">True</property>
+  <property name="destroy_with_parent">False</property>
+  <property name="decorated">True</property>
+  <property name="skip_taskbar_hint">False</property>
+  <property name="skip_pager_hint">False</property>
+  <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
+  <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
+  <property name="has_separator">False</property>
+
+  <child internal-child="vbox">
+    <widget class="GtkVBox" id="dialog-vbox13">
+      <property name="visible">True</property>
+      <property name="homogeneous">False</property>
+      <property name="spacing">0</property>
+
+      <child internal-child="action_area">
+	<widget class="GtkHButtonBox" id="dialog-action_area13">
+	  <property name="visible">True</property>
+	  <property name="layout_style">GTK_BUTTONBOX_END</property>
+
+	  <child>
+	    <widget class="GtkButton" id="cancelbutton6">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-cancel</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
+	      <property name="response_id">-6</property>
+	    </widget>
+	  </child>
+
+	  <child>
+	    <widget class="GtkButton" id="okbutton6">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-ok</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
+	      <property name="response_id">-5</property>
+	    </widget>
+	  </child>
+	</widget>
+	<packing>
+	  <property name="padding">0</property>
+	  <property name="expand">False</property>
+	  <property name="fill">True</property>
+	  <property name="pack_type">GTK_PACK_END</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkVBox" id="vbox42">
+	  <property name="visible">True</property>
+	  <property name="homogeneous">False</property>
+	  <property name="spacing">0</property>
+
+	  <child>
+	    <widget class="GtkFrame" id="frame33">
+	      <property name="visible">True</property>
+	      <property name="label_xalign">0</property>
+	      <property name="label_yalign">0.5</property>
+	      <property name="shadow_type">GTK_SHADOW_NONE</property>
+
+	      <child>
+		<widget class="GtkAlignment" id="alignment37">
+		  <property name="visible">True</property>
+		  <property name="xalign">0.5</property>
+		  <property name="yalign">0.5</property>
+		  <property name="xscale">1</property>
+		  <property name="yscale">1</property>
+		  <property name="top_padding">0</property>
+		  <property name="bottom_padding">0</property>
+		  <property name="left_padding">12</property>
+		  <property name="right_padding">0</property>
+
+		  <child>
+		    <widget class="GtkVBox" id="vbox43">
+		      <property name="visible">True</property>
+		      <property name="homogeneous">False</property>
+		      <property name="spacing">6</property>
+
+		      <child>
+			<widget class="GtkScrolledWindow" id="thumb_scrolledwindow">
+			  <property name="width_request">512</property>
+			  <property name="height_request">512</property>
+			  <property name="visible">True</property>
+			  <property name="can_focus">True</property>
+			  <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+			  <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+			  <property name="shadow_type">GTK_SHADOW_NONE</property>
+			  <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
+
+			  <child>
+			    <placeholder/>
+			  </child>
+			</widget>
+			<packing>
+			  <property name="padding">0</property>
+			  <property name="expand">True</property>
+			  <property name="fill">True</property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkHBox" id="hbox39">
+			  <property name="visible">True</property>
+			  <property name="homogeneous">False</property>
+			  <property name="spacing">12</property>
+
+			  <child>
+			    <widget class="GtkCheckButton" id="remove_check">
+			      <property name="can_focus">True</property>
+			      <property name="label" translatable="yes">Write only these Items to CD</property>
+			      <property name="use_underline">True</property>
+			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <property name="focus_on_click">True</property>
+			      <property name="active">False</property>
+			      <property name="inconsistent">False</property>
+			      <property name="draw_indicator">True</property>
+			    </widget>
+			    <packing>
+			      <property name="padding">0</property>
+			      <property name="expand">False</property>
+			      <property name="fill">False</property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkButton" id="browes_button">
+			      <property name="visible">True</property>
+			      <property name="can_focus">True</property>
+			      <property name="label" translatable="yes">Browse Previously Scheduled Files</property>
+			      <property name="use_underline">True</property>
+			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <property name="focus_on_click">True</property>
+			      <signal name="clicked" handler="HandleBrowseExisting" last_modification_time="Wed, 12 Jan 2005 23:04:41 GMT"/>
+			    </widget>
+			    <packing>
+			      <property name="padding">0</property>
+			      <property name="expand">False</property>
+			      <property name="fill">False</property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <placeholder/>
+			  </child>
+			</widget>
+			<packing>
+			  <property name="padding">0</property>
+			  <property name="expand">False</property>
+			  <property name="fill">False</property>
+			</packing>
+		      </child>
+		    </widget>
+		  </child>
+		</widget>
+	      </child>
+
+	      <child>
+		<widget class="GtkLabel" id="label98">
+		  <property name="visible">True</property>
+		  <property name="label" translatable="yes">&lt;b&gt;Items to Burn&lt;/b&gt;</property>
+		  <property name="use_underline">False</property>
+		  <property name="use_markup">True</property>
+		  <property name="justify">GTK_JUSTIFY_LEFT</property>
+		  <property name="wrap">False</property>
+		  <property name="selectable">False</property>
+		  <property name="xalign">0.5</property>
+		  <property name="yalign">0.5</property>
+		  <property name="xpad">0</property>
+		  <property name="ypad">0</property>
+		</widget>
+		<packing>
+		  <property name="type">label_item</property>
+		</packing>
+	      </child>
+	    </widget>
+	    <packing>
+	      <property name="padding">0</property>
+	      <property name="expand">True</property>
+	      <property name="fill">True</property>
+	    </packing>
+	  </child>
+	</widget>
+	<packing>
+	  <property name="padding">0</property>
+	  <property name="expand">True</property>
+	  <property name="fill">True</property>
 	</packing>
       </child>
     </widget>

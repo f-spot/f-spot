@@ -756,6 +756,11 @@ public class MainWindow {
 	{
 		
 	}
+	
+	void HandleExportToCD (object sender, EventArgs args)
+	{
+		new FSpot.CDExport (new FSpot.PhotoArray (SelectedPhotos ()));
+	}
 
 	void HandleSendMailCommand (object sender, EventArgs args)
 	{

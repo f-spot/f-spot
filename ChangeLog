@@ -1,5 +1,18 @@
 2005-01-12  Larry Ewing  <lewing@novell.com>
 
+	* src/Makefile.am: add CDExport.c to build.
+	
+	* src/VfsExport.cs: only open the location if a photo has been
+	transfered.
+
+	* src/MainWindow.cs: add cd export handler.
+
+	* src/f-spot.glade: add cd export dialog.
+
+	* src/CDExport.cs: add Cd export dialog.
+
+	* src/f-spot.glade: add ellipsis for menu items that open dialog.
+
 	* src/PixbufUtils.cs: only call setoption if the value is not null.
 
 	* src/: silence a bunch of compiler warnings.
