@@ -399,11 +399,9 @@ public class MainWindow {
 	{
 		Tag [] tags = this.tag_selection_widget.TagHighlight ();
 		
-		// FIXME this should probably query if there are any photos
-		// with this tag set rather than just removing them.
-
 		db.Photos.Remove (tags);
 		tag_selection_widget.Update ();
+		icon_view.QueueDraw ();
 	}
 
 	void HandleUpdateThumbnailCommand (object sende, EventArgs args)

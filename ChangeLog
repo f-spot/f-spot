@@ -1,5 +1,10 @@
 2004-02-12  Larry Ewing  <lewing@ximian.com>
 
+	* src/MainWindow.cs: Queue a redraw of the icon view now that
+	we've changed the tags.  This needs a better solution.
+
+	* src/PhotoStore.cs: be sure to commit the tag changes.
+
 	* src/MainWindow.cs: remove the old ifdefed code it was confusing.
 
 	* src/IconView.cs: Use UnselectAllCells() to clear the selection,

@@ -527,14 +527,16 @@ public class PhotoStore : DbStore {
 
 	public void Remove (Tag []tags)
 	{
-		Photo [] photos = this.Query (tags);
+		Photo [] photos = Query (tags);	
 
 		foreach (Photo photo in photos) {
 			photo.RemoveTag (tags);
+			Commit (photo);
 		}
 		
 		foreach (Tag tag in tags)
 			tag_store.Remove (tag);
+		
 	}
 
 #if false
