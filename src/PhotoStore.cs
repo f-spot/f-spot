@@ -358,7 +358,7 @@ public class Photo : DbItem, IComparable {
 public class PhotoStore : DbStore {
 
 	TagStore tag_store;
-	static ThumbnailFactory thumbnail_factory = new ThumbnailFactory (ThumbnailSize.Large);
+	public static ThumbnailFactory ThumbnailFactory = new ThumbnailFactory (ThumbnailSize.Large);
 
 
 	// FIXME this is a hack.  Since we don't have Gnome.ThumbnailFactory.SaveThumbnail() in
@@ -411,11 +411,11 @@ public class PhotoStore : DbStore {
 			thumbnail = GenerateFromExif (path, uri);
 
 		if (thumbnail == null)
-			thumbnail = thumbnail_factory.GenerateThumbnail (uri, "image/jpeg");
+			thumbnail = PhotoStore.ThumbnailFactory.GenerateThumbnail (uri, "image/jpeg");
 		
 		// FIXME if this is null then the file doesn't exist.
 		if (thumbnail != null) {
-			thumbnail_factory.SaveThumbnail (thumbnail, uri, File.GetLastWriteTime (path));
+			PhotoStore.ThumbnailFactory.SaveThumbnail (thumbnail, uri, File.GetLastWriteTime (path));
 		}
 		
 		return thumbnail;

@@ -465,7 +465,11 @@ public class MainWindow {
 		int cell_num = icon_view.CellAtPosition (x, y);
 		
 		int image_center_x, image_center_y;
-		icon_view.GetCellCenter (cell_num, out image_center_x, out image_center_y);
+
+		Rectangle bounds = icon_view.CellBounds (cell_num);
+		image_center_x = bounds.X + (bounds.Width / 2);
+		image_center_y = bounds.Y + (bounds.Height / 2);
+		Console.WriteLine ("x {0} y {1}", image_center_x, image_center_y);
 		image_center_x += (int) args.Event.XRoot - x;
 		image_center_y += (int) args.Event.YRoot - y;
 		
@@ -611,10 +615,12 @@ public class MainWindow {
 		if (quick_preview == null)
 			CreateQuickPreview ();
 
-		Pixbuf old = quick_preview_image.Pixbuf;
+		//Pixbuf old = quick_preview_image.Pixbuf;
 		quick_preview_image.Pixbuf = QuickPreviewPixbuf (photo);
+		/*
 		if (old != null)
 			old.Dispose ();
+		*/
 
 		quick_preview_label.Text = QuickPreviewLabel (photo);
 		quick_preview.Show ();

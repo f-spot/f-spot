@@ -63,7 +63,7 @@ namespace FSpot
 					PixbufUtils.SetOption (scaled, "tEXt::Thumb::URI", photo_uri);
 					PixbufUtils.SetOption (scaled, "tEXt::Thumb::MTime", 
 							       ((uint)GLib.Marshaller.DateTimeTotime_t (mtime)).ToString ());
-					PhotoStore.thumbnail_factory.SaveThumbnail (scaled, photo_uri, mtime);
+					PhotoStore.ThumbnailFactory.SaveThumbnail (scaled, photo_uri, mtime);
 					ThumbnailCache.Default.AddThumbnail (thumbnail_path, scaled);
 				}
 

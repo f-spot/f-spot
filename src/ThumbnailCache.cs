@@ -95,9 +95,10 @@ public class ThumbnailCache {
 		while (pixbuf_mru.Count > max_count) {
 			Thumbnail thumbnail = pixbuf_mru [pixbuf_mru.Count - 1] as Thumbnail;
 
-			thumbnail.pixbuf.Dispose ();
 			pixbuf_hash.Remove (thumbnail.path);
 			pixbuf_mru.RemoveAt (pixbuf_mru.Count - 1);
+
+			thumbnail.pixbuf.Dispose ();
 		}
 	}
 }

@@ -1,5 +1,15 @@
 2004-08-24  Larry Ewing  <lewing@novell.com>
 
+	* src/ThumbnailCache.cs: only dispose once we've actually removed
+	the thumnail from the cache.
+	
+	* src/MainWindow.cs: revert the quickpreview thumbnail dispose
+	change, something isn't working.
+
+	* src/PhotoLoader.cs: use the public ThumbnailFactory.
+
+	* src/PhotoStore.cs: make the thumbnail factory public.
+
 	* src/MainWindow.cs: Dispose the return values of
 	GetThumbnailForPath whenever we can.
 
