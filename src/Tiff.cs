@@ -190,11 +190,61 @@ namespace Tiff {
 		Ifd // TIFF-EP - TIFF PageMaker TechnicalNote 2
 	}
 	
-	public struct Tag {
-		TagId id;
-		EntryType type;
-		int Count;
-		string location;
+	public class Tag {
+		public int Id;
+		public EntryType Type;
+		public int Count;
+		public string Name;
+		public string Description;
+	}
+
+	public class CanonTag : Tag {
+		public enum CanonId {
+			Unknown1           = 0x0000,
+			CameraSettings1    = 0x0001,
+			Unknown2           = 0x0003,
+			CameraSettings2    = 0x0004,
+			ImageType          = 0x0006,
+			FirmwareVersion    = 0x0007,
+			ImageNumber        = 0x0008,
+			OwnerName          = 0x0009,
+			Unknown3           = 0x000a,
+			CameraSerialNumber = 0x000c,
+			Unknown4           = 0x000d,
+			CustomFunctions    = 0x000f
+		}
+		
+		public CanonTag (CanonId id, EntryType type, int count, string name, string description)
+		{
+			this.Id = (int)id;
+			this.Type = type;
+			this.Count = count;
+			this.Name = name;
+			this.Description = description;
+		}
+
+		public static System.Collections.Hashtable Tags;
+
+		static CanonTag () {
+			CanonTag [] tags = { 
+				new CanonTag (CanonId.Unknown1, EntryType.Short, 6, null, null),
+				new CanonTag (CanonId.CameraSettings1, EntryType.Short, -1, "Camera Settings 1", "First Canon MakerNote settings section"),
+				new CanonTag (CanonId.Unknown2, EntryType.Short, 4, null, null),				
+				new CanonTag (CanonId.CameraSettings2, EntryType.Short, -1, "Camera Settings 2", "Second Canon MakerNote settings section"),
+				new CanonTag (CanonId.ImageType, EntryType.Ascii, 32, "Image Type", null), // FIXME description
+				new CanonTag (CanonId.FirmwareVersion, EntryType.Ascii, 24, "Firmware Version", "Version of the firmwaer installed on the camera"),
+				new CanonTag (CanonId.ImageNumber, EntryType.Long, 1, "Image Number", null), // FIXME description
+				new CanonTag (CanonId.OwnerName, EntryType.Long, 32, "Owner Name", "Name of the Camera Owner"), // FIXME description
+				new CanonTag (CanonId.Unknown4, EntryType.Short, -1, null, null),				
+				new CanonTag (CanonId.CameraSerialNumber, EntryType.Short, 1, "Serial Number", null), //FIXME description
+				new CanonTag (CanonId.Unknown4, EntryType.Short, -1, null, null),				
+				new CanonTag (CanonId.CustomFunctions, EntryType.Short, -1, "Custom Functions", "Camera Custom Functions")
+			};
+					 
+			foreach (CanonTag tag in tags)
+				Tags [tag.Id] = tag;
+		}
+
 	}
 	
 	public enum Endian {
@@ -331,7 +381,6 @@ namespace Tiff {
 			return builder.ToString ();
 		}
 	}
-	
 
 	public class ImageDirectory {
 		protected Endian endian;
@@ -342,25 +391,33 @@ namespace Tiff {
 		protected uint next_directory_offset;
 		ImageDirectory next_directory;
 		
+		protected bool has_header;
+		protected bool has_footer;
 
-		public ImageDirectory (System.IO.Stream stream, uint directory_offset, Endian endian)
+		public ImageDirectory (System.IO.Stream stream, uint start_position, Endian endian)
 		{
-			stream.Seek ((long)directory_offset, System.IO.SeekOrigin.Begin);
-
 			this.endian = endian;
-			orig_position = directory_offset;
-			
+			orig_position = start_position;
+			Load (stream);
+		}
+		
+		protected void Load (System.IO.Stream stream)
+		{
+			ReadHeader (stream);			
+			ReadEntries (stream);
+			ReadFooter (stream);
+
 			LoadEntries (stream);
 			LoadNextDirectory (stream);
 		}
-		
-		public ImageDirectory NextDirectory {
-			get {
-				return next_directory;
-			}
+
+		public virtual bool ReadHeader (System.IO.Stream stream)
+		{
+			stream.Seek ((long)orig_position, System.IO.SeekOrigin.Begin);
+			return true;
 		}
 
-		protected void LoadEntries (System.IO.Stream stream) 
+		protected virtual void ReadEntries (System.IO.Stream stream) 
 		{
 			num_entries = Converter.ReadUShort (stream, endian);
 			System.Console.WriteLine ("reading {0} entries", num_entries);
@@ -377,9 +434,15 @@ namespace Tiff {
 				entries.Add (entry);		
 				System.Console.WriteLine ("Added Entry {0}", entry.Id.ToString ());
 			}
+		}
 
+		protected virtual void ReadFooter (System.IO.Stream stream)
+		{
 			next_directory_offset = Converter.ReadUInt (stream, this.endian);
+		}
 
+		protected void LoadEntries (System.IO.Stream stream)
+		{
 			foreach (DirectoryEntry entry in entries) {
 				entry.LoadExternal (stream);
 			}
@@ -391,11 +454,18 @@ namespace Tiff {
 			try {
 				if (next_directory_offset != 0)
 					next_directory = new ImageDirectory (stream, next_directory_offset, this.endian);
+
 			} catch (System.Exception e) {
 				System.Console.WriteLine ("Error loading directory {0}", e.ToString ());
 				next_directory = null;
 				next_directory_offset = 0;
 			}		
+		}
+
+		public ImageDirectory NextDirectory {
+			get {
+				return next_directory;
+			}
 		}
 
 		public DirectoryEntry Lookup (TagId id) 
@@ -458,6 +528,8 @@ namespace Tiff {
 				//return new MakerNoteEntry (input, start, header_endian);
 				//case TagId.PimIfdPointer:
 				//return new 
+			case TagId.MakerNote:
+				return new MakerNoteEntry (input, start, header_endian);
 			}
 			
 			switch (type) {
@@ -472,7 +544,16 @@ namespace Tiff {
 			return new DirectoryEntry (input, start, header_endian);
 		}
 	}
-		
+	       
+	public class MakerNoteEntry : SubdirectoryEntry {
+		public MakerNoteEntry (byte [] data, int offset, Endian endian) : base (data, offset, endian)
+		{
+		}
+			
+		public override void LoadExternal (System.IO.Stream stream)
+		{
+		}
+	}
 	public class SubdirectoryEntry : LongEntry {
 		public uint directory_offset;
 		ImageDirectory Directory;
