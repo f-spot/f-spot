@@ -118,6 +118,17 @@ namespace FSpot {
 			else
 				next.Fill (0x00000000);
 #endif
+#if true
+			Gdk.Pixbuf thumb = new Gdk.Pixbuf (ThumbnailGenerator.ThumbnailPath (Photo.DefaultVersionPath));
+			if (thumb != null && next != null)
+				thumb.Composite (next, 0, 0,
+						 next.Width, next.Height,
+						 0.0, 0.0,
+						 next.Width/(double)thumb.Width, next.Height/(double)thumb.Height,
+						 Gdk.InterpType.Bilinear, 0xff);
+			if (thumb != null)
+				thumb.Dispose ();
+#endif
 
 			this.Pixbuf = next;
 			if (prev != null)
