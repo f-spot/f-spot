@@ -174,6 +174,7 @@ EXTRA_DIST =					\
 
 CLEANFILES =					\
 	f-spot.exe.config			\
+	f-spot.exe.mdb				\
 	f-spot.exe				\
 	f-spot
 

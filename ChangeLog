@@ -1,5 +1,7 @@
 2005-01-13  Larry Ewing  <lewing@novell.com>
 
+	* src/Makefile.am: add f-spot.exe.mdb to CLEANFILES.. 
+
 	* configure.in: remove the 0.6 check now that it we can handle it.
 
 	* src/ExifData.cs: wrap the get_data function from both 0.5 and
