@@ -1,3 +1,8 @@
+2004-12-26  Larry Ewing  <lewing@novell.com>
+
+	* src/AsyncPixbufLoader.cs: integrate the spirit of a patch from
+	Loz to quiet some warnings on shutdown. Fixes 158944.
+
 2004-12-24  Larry Ewing  <lewing@novell.com>
 
 	* src/AsyncPixbufLoader.cs: make LoadToDone and LoadToAreaPrepared

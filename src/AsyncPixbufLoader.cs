@@ -162,6 +162,9 @@ namespace FSpot {
 
 		public void Dispose ()
 		{
+			loader.AreaPrepared -= HandleAreaPrepared;
+			loader.AreaUpdated -= HandleAreaUpdated;
+			loader.Closed -= HandleClosed;
 			Close ();
 			pixbuf.Dispose ();
 		}
