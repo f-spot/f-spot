@@ -34,6 +34,7 @@ namespace FSpot {
 
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
 		[Glade.Widget] Gtk.Entry uri_entry;
+		[Glade.Widget] Gtk.Entry name_entry;
 
 		//[Glade.Widget] Gtk.CheckButton meta_check;
 		[Glade.Widget] Gtk.CheckButton scale_check;
@@ -49,7 +50,7 @@ namespace FSpot {
 
 		int size;
 		
-		string gallery_name = "web-gallery";
+		string gallery_name = "Web-Gallery";
 		// FIME this needs to be a real temp directory
 		string gallery_path = Path.Combine (Path.GetTempPath (), "f-spot-original-" + System.DateTime.Now.Ticks.ToString ());
 
@@ -92,6 +93,8 @@ namespace FSpot {
 
 			thumb_scrolledwindow.Add (view);
 			HandleSizeActive (null, null);
+			name_entry.Text = gallery_name;
+
 			Dialog.ShowAll ();
 
 			//LoadHistory ();
@@ -117,19 +120,24 @@ namespace FSpot {
 
 			try {
 				Dialog.Destroy ();
+				
+				Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (Path.Combine (gallery_path, gallery_name));
+				Gnome.Vfs.Uri target = dest.Clone();
+				target = target.AppendFileName(source.ExtractShortName ());
 
 				if (dest.IsLocal)
 					gallery_path = Gnome.Vfs.Uri.GetLocalPathFromUri (dest.ToString ());
 
 				OriginalGallery gallery = new OriginalGallery(selection, gallery_path, gallery_name);
+
+				if (scale)
+					gallery.Size = size;
+
 				gallery.StartProcessing ();
 
 				// we've created the structure, now if the destination was local we are done
 				// otherwise we xfer 
 				if (!dest.IsLocal) {
-					Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (Path.Combine (gallery_path, gallery_name));
-					Gnome.Vfs.Uri target = dest.Clone();
-					target = target.AppendFileName(source.ExtractShortName ());
 					Console.WriteLine(target);
 					Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
 					System.Console.WriteLine ("Xfering {0} to {1}", source.ToString (), target.ToString ());
@@ -151,8 +159,9 @@ namespace FSpot {
 					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Error While Transferring");
 				}
 
-				if (open && photo_index > 0)
-					Gnome.Url.Show (dest.ToString ());
+				if (open)
+					Gnome.Url.Show (target.ToString ());
+
 			} catch (System.Exception e) {
 				progress_dialog.Message = e.ToString ();
 				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error Transferring");
@@ -214,6 +223,7 @@ namespace FSpot {
 			dest = new Gnome.Vfs.Uri (uri_entry.Text);
 			open = open_check.Active;
 			scale = scale_check.Active;
+			gallery_name = name_entry.Text;
 
 			if (scale)
 				size = size_spin.ValueAsInt;
@@ -226,8 +236,7 @@ namespace FSpot {
 			// 2: zipfiles
 			// 9: directories + info.txt + .htaccess
 			// this should actually be 1 anyway, because we transfer just one dir 
-			progress_dialog = new FSpot.ThreadProgressDialog (command_thread, 
-									  1);
+			progress_dialog = new FSpot.ThreadProgressDialog (command_thread, 1);
 			progress_dialog.Start ();
 		}
 	}
@@ -238,6 +247,8 @@ namespace FSpot {
 		private string gallery_name;
 		private string gallery_path;
 		private bool setmtime = false;
+		private bool scale = false;
+		private int size;
 		private int photo_index = 1; //used to name files
 
 		FSpot.ThreadProgressDialog progress_dialog;
@@ -249,7 +260,7 @@ namespace FSpot {
 			this.gallery_name = gallery_name;
 			this.gallery_path = Path.Combine (path, gallery_name);
 		}
-		
+
 		public void StartProcessing()
 		{
 			MakeDirs();
@@ -264,7 +275,7 @@ namespace FSpot {
 			// is thrown after completion.
 			try {
 				foreach (Photo photo in selection.Photos) {
-					CreateImages(photo.Path);
+					CreateImage (photo.Path);
 					CreateComments(photo.Path);
 
 					//Set the directory's mtime sa the oldest photo's one.
@@ -273,61 +284,82 @@ namespace FSpot {
 						try {
 							Directory.SetLastWriteTimeUtc(gallery_path, photo.Time);
 							setmtime = true;
-						} catch { setmtime = false; }
+						} catch { 
+							setmtime = false; 
+						}
 					}
 				
 					photo_index++;
+
+
 				}
-				CreateZipFile("mq");
-				CreateZipFile("hq");
+
+				if (System.IO.Directory.Exists (SubdirPath ("mq")))
+				    CreateZipFile("mq");
+
+				if (System.IO.Directory.Exists (SubdirPath ("hq")))
+				    CreateZipFile("hq");
 			
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e.ToString ());
 			} 
 		}
-		
-		private void MakeDirs()
+
+		private void MakeDir (string path)
 		{
-			//FIXME: Create this with 0700 mode in the case it is placed in /tmp
 			try {
-				Directory.CreateDirectory(gallery_path);
-				Directory.CreateDirectory(SubdirPath ("thumbs"));
-				Directory.CreateDirectory(SubdirPath ("lq"));
-				Directory.CreateDirectory(SubdirPath ("mq"));
-				Directory.CreateDirectory(SubdirPath ("hq"));
-				Directory.CreateDirectory(SubdirPath ("comments"));
-				Directory.CreateDirectory(SubdirPath ("zip"));
+				Directory.CreateDirectory (path);
 			} catch {
-				Console.WriteLine("Error in creating directory" + gallery_path);
+				Console.WriteLine ("Error in creating directory " + path);
 			}
 		}
 
-		private void CreateImages (string photo_path)
+		private void MakeDirs()
 		{
-			Gdk.Pixbuf source_image = PixbufUtils.LoadAtMaxSize (photo_path, 800, 600);
+			//FIXME: Create this with 0700 mode in the case it is placed in /tmp
+			MakeDir (gallery_path);
+			MakeDir (SubdirPath ("thumbs"));
+			MakeDir (SubdirPath ("comments"));
+			MakeDir (SubdirPath ("zip"));
+		}
+
+		private void CreateImage (string photo_path)
+		{
 			string img_name = "img-" + photo_index + ".jpg";
 			
 			string [] keys = {"quality"};
 			string [] values = {"75"};
 
 			// scale the images to different sizes
-		       
-			// High quality is the orignal image
-			File.Copy(photo_path, SubdirPath ("hq", img_name), true);
 			
+			// High quality is the original image
+			string path = SubdirPath ("hq", img_name);
+			MakeDir (SubdirPath ("hq"));
+			if (!scale) 
+				File.Copy(photo_path, path, true);
+			else 
+				PixbufUtils.Resize (photo_path, path, size, true); 
+
+			Gdk.Pixbuf source_image = PixbufUtils.LoadAtMaxSize (path, 800, 600);
+			//Gdk.Pixbuf source_image = PhotoLoader.Load (path);
+			Gdk.Pixbuf scaled;
 			// Medium Quality
-			string path = SubdirPath ("mq", img_name);
-			source_image.Savev(path, "jpeg", keys, values);
-			
+			if (!scale || size > 800) {
+				MakeDir (SubdirPath ("mq"));
+				path = SubdirPath ("mq", img_name);
+				source_image.Savev(path, "jpeg", keys, values);
+			}
+
 			//low quality
-			Gdk.Pixbuf scaled = PixbufUtils.ScaleToMaxSize (source_image, 640, 480);
+			scaled = PixbufUtils.ScaleToMaxSize (source_image, 640, 480, false);
+			MakeDir (SubdirPath ("lq"));
 			path = SubdirPath ("lq", img_name);
 			scaled.Savev(path, "jpeg", keys, values);
 			source_image.Dispose ();
 			source_image = scaled;
 
 			// Thumbnail
-			scaled = PixbufUtils.ScaleToMaxSize (source_image, 120, 90);
+			scaled = PixbufUtils.ScaleToMaxSize (source_image, 120, 90, false);
 			path = SubdirPath ("thumbs", img_name);
 			scaled.Savev(path, "jpeg", keys, values);
 			source_image.Dispose ();
@@ -409,6 +441,16 @@ namespace FSpot {
 			info.Close();
 		}
 		
+		public int Size {
+			get {
+				return size;
+			}
+			set {
+				scale = true;
+				size = value;
+			}
+		}
+
 		// This is provided in order to pass the name as an argument through the
 		// dialog window.
 		

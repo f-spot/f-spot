@@ -81,11 +81,13 @@ class PixbufUtils {
 
 			double scale = Math.Min (max_width / (double)args.Width,
 						 max_height / (double)args.Height);
+
 			
 			int scale_width = (int)(scale * args.Width);
 			int scale_height = (int)(scale * args.Height);
 
-			SetSize (scale_width, scale_height);
+			if (scale < 1.0)
+				SetSize (scale_width, scale_height);
 		}
 
 		public Pixbuf LoadFromFile (string path)
@@ -119,15 +121,24 @@ class PixbufUtils {
 
 	public static Pixbuf ScaleToMaxSize (Pixbuf pixbuf, int width, int height)
 	{
+		return ScaleToMaxSize (pixbuf, width, height, true);
+	}	
+
+	public static Pixbuf ScaleToMaxSize (Pixbuf pixbuf, int width, int height, bool upscale)
+	{
 		double scale = Math.Min  (width / (double)pixbuf.Width, height / (double)pixbuf.Height);
 		int scale_width = (int)(scale * pixbuf.Width);
 		int scale_height = (int)(scale * pixbuf.Height);
 
-		Gdk.Pixbuf result = pixbuf.ScaleSimple (scale_width, scale_height, Gdk.InterpType.Bilinear);
+		Gdk.Pixbuf result;
+		if (upscale || (scale < 1.0))
+			result = pixbuf.ScaleSimple (scale_width, scale_height, Gdk.InterpType.Bilinear);
+		else
+			result = pixbuf.Copy ();
 
 		CopyThumbnailOptions (pixbuf, result);
 
-		return pixbuf.ScaleSimple (scale_width, scale_height, Gdk.InterpType.Bilinear);
+		return result;
 	}
 		
 	static public Pixbuf LoadAtMaxSize (string path, int max_width, int max_height)
@@ -284,18 +295,23 @@ class PixbufUtils {
 
 	public static string Resize (string orig_path, int size, bool copy_meta)
 	{
+		string version_path = System.IO.Path.GetTempFileName ();
+		Resize (orig_path, version_path, size, copy_meta);
+		return version_path;
+	}
+
+	public static void Resize (string orig_path, string dest_path, int size, bool copy_meta)
+	{
 		Exif.ExifData exif_data;
 		if (copy_meta)
 			exif_data = new Exif.ExifData (orig_path);
 		else 
 			exif_data = new Exif.ExifData ();
 
-		string version_path = System.IO.Path.GetTempFileName ();
 		Gdk.Pixbuf image = PixbufUtils.LoadAtMaxSize (orig_path, size, size);
-		PixbufUtils.SaveJpeg (image, version_path, 95, exif_data);
-
-		return version_path;
+		PixbufUtils.SaveJpeg (image, dest_path, 95, exif_data);
 	}
+	
 
 	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct FPixbufJpegMarker {

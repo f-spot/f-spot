@@ -1,3 +1,14 @@
+2005-02-13  Larry Ewing  <lewing@novell.com>
+
+	* src/PixbufUtils.cs: add a scale to max size upscale bool and
+	overload.  Remove buggy double copy.
+
+	* src/OriginalExport.cs: Add gallery name entry and clean up
+	scaling logic.  Make the scale option work and make the open
+	option work.
+
+	* src/f-spot.glade: rework the orignal dialog.
+
 2005-02-12  Larry Ewing  <lewing@novell.com>
 
 	* src/Db.cs: add a way to turn off synchronous writes.
@@ -11,7 +22,7 @@
 
 	* src/FlickrExport.cs: add scaling logic to upload.
 
-	* src/FlickrRemote.cs: add sclaing logic.
+	* src/FlickrRemote.cs: add scaling logic.
 
 	* src/PixbufUtils.cs: move the scaling code here.
 
