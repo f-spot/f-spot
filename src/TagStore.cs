@@ -371,7 +371,8 @@ public class TagStore : DbStore {
 
 		Tag tag = new Tag (category, id, name);
 		AddToCache (tag);
-		TagCreated(tag);		
+		if (TagCreated != null)
+			TagCreated(tag);	
 		return tag;
 	}
 
@@ -384,7 +385,8 @@ public class TagStore : DbStore {
 
 		Category new_category = new Category (parent_category, id, name);
 		AddToCache (new_category);
-		TagCreated(new_category);
+		if (TagCreated != null)
+			TagCreated(new_category);
 		return new_category;
 	}
 
@@ -456,7 +458,8 @@ public class TagStore : DbStore {
 
 		command.Dispose ();
 		
-		TagChanged(tag);
+		if (TagChanged != null)
+			TagChanged(tag);
 	}
 
 
