@@ -22,6 +22,8 @@ namespace FSpot {
 
 		Delay delay;
 
+		Gdk.Rectangle damage;
+
 		public AsyncPixbufLoader ()
 		{
 			delay = new Delay (new GLib.IdleHandler (AsyncRead));
@@ -44,8 +46,14 @@ namespace FSpot {
 
 			done_reading = false;
 			area_prepared = false;
+			damage = Gdk.Rectangle.Zero;
 
-			orientation = PixbufUtils.GetOrientation (filename);
+			try {
+				orientation = PixbufUtils.GetOrientation (filename);
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e.ToString ());
+				orientation = PixbufOrientation.TopLeft;
+			}
 
 			stream = new System.IO.FileStream (filename, System.IO.FileMode.Open, System.IO.FileAccess.Read);
 			
@@ -101,6 +109,19 @@ namespace FSpot {
 			}
 		}
 
+		private void UpdateListeners ()
+		{
+			Gdk.Rectangle area = damage;
+			
+			if (pixbuf != null && loader.Pixbuf != pixbuf)
+				area = PixbufUtils.TransformAndCopy (loader.Pixbuf, pixbuf, orientation, damage);
+			
+			if (AreaUpdated != null)
+				AreaUpdated (this, area);
+
+			System.Console.WriteLine (area.ToString ());
+		}
+
 		private bool AsyncRead () 
 		{
 			System.DateTime start_time = System.DateTime.Now;
@@ -113,11 +134,16 @@ namespace FSpot {
 				loader.Write (buffer, (uint)len);
 				
 				if (len <= 0) {
+					UpdateListeners ();
 					done_reading = true;
 					Close ();
 					return false;
 				}
-			} while (!done_reading && span.TotalMilliseconds <= 300);
+			} while (!done_reading && span.TotalMilliseconds <= 1000);
+
+			UpdateListeners ();
+
+			damage = Gdk.Rectangle.Zero;
 			return true;
 		}
 		
@@ -147,12 +173,7 @@ namespace FSpot {
 		private void HandleAreaUpdated (object sender, Gdk.AreaUpdatedArgs args)
 		{
 			Gdk.Rectangle area = new Gdk.Rectangle (args.X, args.Y, args.Width, args.Height);
-
-			if (pixbuf != null && loader.Pixbuf != pixbuf)
-				area = PixbufUtils.TransformAndCopy (loader.Pixbuf, pixbuf, orientation, area);
-
-			if (AreaUpdated != null)
-				AreaUpdated (this, area);
+			damage = damage.Union (area);
 		}
 
 		private void HandleClosed (object sender, System.EventArgs args) 

@@ -1,5 +1,8 @@
 2005-01-14  Larry Ewing  <lewing@novell.com>
 
+	* src/AsyncPixbufLoader.cs: increase the latency, on both
+	notifications and reading, gives a percieved speed increase.
+
 	* src/ExifData.cs: try the 0.5 version first.
 
 	* src/PhotoView.cs: expose the PhotoImageView via the view
