@@ -1,5 +1,9 @@
 2005-01-22  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: protect the tag drop from out of range items.
+
+	* src/IconView.cs: more cleanups, optimizations.
+
 	* src/IconView.cs: Clean up and speed up IconView drawing code,
 	work around Nat's drawing bug.
 

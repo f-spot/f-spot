@@ -590,7 +590,7 @@ public class MainWindow {
 	{
 		ImportCommand command = new ImportCommand (main_window);
 		if (command.ImportFromPaths (db.Photos, list.ToLocalPaths ()) > 0) {
-			UpdateQuery ();
+			UpdateQuery (true);
 		}
 	}
 
@@ -608,12 +608,12 @@ public class MainWindow {
 							     args.Y + (int) icon_view.Vadjustment.Value);
 
 			//Console.WriteLine ("Drop cell = {0} ({1},{2})", item, args.X, args.Y);
-
-			if (icon_view.CellIsSelected (item))
-				AttachTags (tag_selection_widget.TagHighlight (), SelectedIds());
-			else 
-				AttachTags (tag_selection_widget.TagHighlight (), new int [] {item});
-
+			if (item >= 0) {
+				if (icon_view.CellIsSelected (item))
+					AttachTags (tag_selection_widget.TagHighlight (), SelectedIds());
+				else 
+					AttachTags (tag_selection_widget.TagHighlight (), new int [] {item});
+			}
 			break;
 		case (uint)TargetType.UriList:
 
@@ -768,7 +768,7 @@ public class MainWindow {
 	{
 		ImportCommand command = new ImportCommand (main_window);
 		if (command.ImportFromFile (db.Photos) > 0) {
-			UpdateQuery ();
+			UpdateQuery (true);
 		}
 	}
 
@@ -1461,10 +1461,18 @@ public class MainWindow {
 
 	void UpdateQuery ()
 	{
+		UpdateQuery (false);
+	}
+			
+	void UpdateQuery (bool reset_limits)
+	{
 		main_window.GdkWindow.Cursor = new Gdk.Cursor (Gdk.CursorType.Watch);
 		main_window.GdkWindow.Display.Sync ();
 		query.Tags = tag_selection_widget.TagSelection;
 		main_window.GdkWindow.Cursor = null;
+
+		if (reset_limits && group_selector.Adaptor is FSpot.ILimitable)
+			((FSpot.ILimitable)group_selector.Adaptor).SetLimits (0, group_selector.Adaptor.Count() -1);
 	}
 
 	void OnTagSelectionChanged (object obj)

@@ -479,13 +479,9 @@ public class IconView : Gtk.Layout {
 					 focus.Width, focus.Height);
 		}
 
-		
-		int layout_width = 0;
-		int layout_height = 0;		
-
-		Gdk.Rectangle image_area = Expand (bounds, - CELL_BORDER_WIDTH);
-		if (image_area.Intersect (area, out image_area) && thumbnail != null) {
-			Gdk.Rectangle region = Gdk.Rectangle.Zero;
+		Gdk.Rectangle region = Gdk.Rectangle.Zero;
+		Gdk.Rectangle image_bounds = Expand (bounds, - CELL_BORDER_WIDTH);
+		if (image_bounds.Intersect (area, out image_bounds) && thumbnail != null) {
 			
 			PixbufUtils.Fit (thumbnail, ThumbnailWidth, ThumbnailHeight, 
 					 true, out region.Width, out region.Height);
@@ -553,6 +549,7 @@ public class IconView : Gtk.Layout {
 			thumbnail.Dispose ();
 		}
 			
+		Gdk.Rectangle layout_bounds = Gdk.Rectangle.Zero;
 		if (DisplayDates) {
 			string date;
 			if (cell_width > 200) {
@@ -568,14 +565,20 @@ public class IconView : Gtk.Layout {
 				date_layouts [date] = layout;
 			}
 			
-			layout.GetPixelSize (out layout_width, out layout_height);
+			layout.GetPixelSize (out layout_bounds.Width, out layout_bounds.Height);
 
-			int layout_y = bounds.Y + bounds.Height - CELL_BORDER_WIDTH - (DisplayTags ? TAG_ICON_SIZE : 0) - layout_height;
-			int layout_x = bounds.X + (bounds.Width - layout_width) / 2;
+			layout_bounds.Y = bounds.Y + bounds.Height - CELL_BORDER_WIDTH - layout_bounds.Height;
+			layout_bounds.X = bounds.X + (bounds.Width - layout_bounds.Width) / 2;
+			
+			if (DisplayTags)
+				layout_bounds.Y -= TAG_ICON_SIZE;
 
-			Style.PaintLayout (Style, BinWindow, cell_state,
-					   true, area, this, "IconView", layout_x, layout_y, layout);
-
+			if (layout_bounds.Intersect (area, out region)) {
+				Style.PaintLayout (Style, BinWindow, cell_state,
+						   true, area, this, "IconView", 
+						   layout_bounds.X, layout_bounds.Y, 
+						   layout);
+			}
 		}
 
 		if (DisplayTags) {
@@ -589,7 +592,6 @@ public class IconView : Gtk.Layout {
 
 			foreach (Tag t in tags) {
 				Pixbuf icon = null;
-
 				if (t.Category.Icon == null) {
 					if (t.Icon == null)
 						continue;
@@ -601,25 +603,26 @@ public class IconView : Gtk.Layout {
 					icon = category.Icon;
 				}
 
-				Pixbuf scaled_icon;
-				if (icon.Width == tag_bounds.Width) {
-					scaled_icon = icon;
-				} else {
-					scaled_icon = icon.ScaleSimple (tag_bounds.Width, 
-									tag_bounds.Height, 
-									InterpType.Bilinear);
+				if (tag_bounds.Intersect (area, out region)) {
+					Pixbuf scaled_icon;
+					if (icon.Width == tag_bounds.Width) {
+						scaled_icon = icon;
+					} else {
+						scaled_icon = icon.ScaleSimple (tag_bounds.Width, 
+										tag_bounds.Height, 
+										InterpType.Bilinear);
+					}
+					
+					scaled_icon.RenderToDrawable (BinWindow, Style.WhiteGC,
+								      region.X - tag_bounds.X, 
+								      region.Y - tag_bounds.Y, 
+								      region.X, region.Y, 
+								      region.Width, region.Height,
+								      RgbDither.None, region.X, region.Y);
+					if (scaled_icon != icon)
+						scaled_icon.Dispose ();
 				}
-
-				scaled_icon.RenderToDrawable (BinWindow, Style.WhiteGC,
-							      0, 0, 
-							      tag_bounds.X, tag_bounds.Y, 
-							      tag_bounds.Width, tag_bounds.Height,
-							      RgbDither.None, 0, 0);
-
 				tag_bounds.X += tag_bounds.Width + TAG_ICON_VSPACING;
-
-				if (scaled_icon != icon)
-					scaled_icon.Dispose ();
 			}
 		}
 	}
