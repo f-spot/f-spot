@@ -1,3 +1,11 @@
+//
+// IconView.cs:
+//
+// Author:
+//    Ettore Perazzoli
+//
+// (C) 2003 Novell, Inc.
+//
 using Gtk;
 using Gdk;
 using Gnome;
@@ -175,6 +183,12 @@ public class IconView : Gtk.Layout {
 		}
 	}
 
+	public int CountSelected {
+		get {
+			return selected_cells.Count;
+		}
+	}
+
 
 	// Updating.
 
@@ -332,6 +346,11 @@ public class IconView : Gtk.Layout {
 		SetSize ((uint) Allocation.Width, (uint) (num_rows * cell_height + 2 * BORDER_SIZE));
 	}
 
+	public string GetFullFilename (int idx)
+	{
+		return query.Photos [idx].DefaultVersionPath;
+	}
+	
 	// FIXME Cache the GCs?
 	private void DrawCell (int thumbnail_num, int x, int y)
 	{
@@ -593,6 +612,7 @@ public class IconView : Gtk.Layout {
 
 		if (cell_num < 0) {
 			args.RetVal = false;
+			UnselectAllCells ();
 			return;
 		}
 
@@ -607,18 +627,23 @@ public class IconView : Gtk.Layout {
 			return;
 
 		case EventType.ButtonPress:
-			if (args.Event.Button != 1)
-				return;
-
 			GrabFocus ();
 			if ((args.Event.State & ModifierType.ControlMask) != 0) {
 				ToggleCell (cell_num);
 			} else if ((args.Event.State & ModifierType.ShiftMask) != 0) {
 				SelectCellRange (focus_cell, cell_num);
-			} else {
+			} else if (!CellIsSelected (cell_num)) {
 				UnselectAllCells ();
 				SelectCell (cell_num);
 			}
+
+			if (args.Event.Button == 3){
+				ContextMenu (args, cell_num);
+				return;
+			}
+			
+			if (args.Event.Button != 1)
+				return;
 
 			Gdk.Pointer.Grab (BinWindow, false,
 					  EventMask.ButtonReleaseMask | EventMask.Button1MotionMask,
@@ -628,7 +653,6 @@ public class IconView : Gtk.Layout {
 			click_y = (int) args.Event.Y;
 
 			focus_cell = cell_num;
-
 			return;
 
 		default:
@@ -637,10 +661,44 @@ public class IconView : Gtk.Layout {
 		}
 	}
 
+	void ContextMenu (ButtonPressEventArgs args, int cell_num)
+	{
+		/*
+		IconViewPopup iv = new IconViewPopup (this, cell_num);
+		iv.Activate (args.Event);
+		*/
+	}
+	
 	private void HandleButtonReleaseEvent (object sender, ButtonReleaseEventArgs args)
 	{
 		Gdk.Pointer.Ungrab (args.Event.Time);
 		in_drag = false;
+		
+		int cell_num = CellAtPosition ((int) args.Event.X, (int) args.Event.Y);
+
+		args.RetVal = true;
+
+		if (cell_num < 0) {
+			args.RetVal = false;
+			return;
+		}
+		
+		switch (args.Event.Type) {
+			case EventType.ButtonRelease:
+				if ((args.Event.State & ModifierType.ControlMask) == 0 &&
+				    (args.Event.State & ModifierType.ShiftMask  ) == 0 &&
+					(selected_cells.Count>1)) {
+					UnselectAllCells ();
+					SelectCell (cell_num);
+				}
+	
+				break;
+
+			default:
+				args.RetVal = false;
+				break;
+		}
+					
 	}
 
  	private void HandleMotionNotifyEvent (object sender, MotionNotifyEventArgs args)
@@ -661,7 +719,6 @@ public class IconView : Gtk.Layout {
 		args.RetVal = true;
 		bool shift = ModifierType.ShiftMask == (args.Event.State & ModifierType.ShiftMask);
 		bool control = ModifierType.ControlMask == (args.Event.State & ModifierType.ControlMask);
-		
 
 		focus_old = focus_cell;
 		switch (args.Event.Key) {
