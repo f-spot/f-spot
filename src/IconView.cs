@@ -721,23 +721,6 @@ public class IconView : Gtk.Layout {
 		if (y_offset == adjustment.Value)
 			return false;
 
-		int num_thumbnails = collection.Items.Length;
-		int num_rows, start;
-
-		if (y_offset < adjustment.Value) {
-			int old_first_row = y_offset / cell_height;
-			int new_first_row = (int) (adjustment.Value / cell_height);
-
-			num_rows = new_first_row - old_first_row;
-			start = old_first_row * cells_per_row;
-		} else {
-			int old_last_row = (y_offset + Allocation.Height) / cell_height;
-			int new_last_row = ((int) adjustment.Value + Allocation.Height) / cell_height;
-
-			num_rows = old_last_row - new_last_row;
-			start = (new_last_row + 1) * cells_per_row;
-		}
-
 		y_offset = (int) adjustment.Value;
 		scroll_on_idle_id = 0;
 		return false;
@@ -745,6 +728,56 @@ public class IconView : Gtk.Layout {
 
 	private void Scroll ()
 	{
+		if (cells_per_row ==0)
+			return;
+
+		Gdk.Rectangle area = new Gdk.Rectangle ((int) Hadjustment.Value, 
+							(int) Vadjustment.Value,
+							Allocation.Width,
+							Allocation.Height);
+
+		int start_cell_column = Math.Max ((area.X - BORDER_SIZE) / cell_width, 0);
+		int start_cell_row = Math.Max ((area.Y - BORDER_SIZE) / cell_height, 0);
+		int start_cell_num = start_cell_column + start_cell_row * cells_per_row;
+
+		int start_cell_x, cell_y;
+		GetCellPosition (start_cell_num, out start_cell_x, out cell_y);
+
+		int end_cell_column = Math.Max ((area.X + area.Width - BORDER_SIZE) / cell_width, 0);
+		int end_cell_row = Math.Max ((area.Y + area.Height - BORDER_SIZE) / cell_height, 0);
+
+		int num_rows = end_cell_row - start_cell_row + 1;
+		int num_cols = Math.Min (end_cell_column - start_cell_column + 1,
+					 cells_per_row - start_cell_column);
+
+		int i, cell_num;
+
+		FSpot.IBrowsableItem photo;
+		FSpot.PixbufCache.CacheEntry entry;
+		string thumbnail_path;
+
+		// Preload the cache with images aroud the expose area
+		// FIXME the preload need to be tuned to the Cache size but this is a resonable start
+		
+		int len = (end_cell_row - start_cell_row + 10) * cells_per_row;
+		int scell = System.Math.Max ((start_cell_row - 5) * cells_per_row, 0);
+		int ecell = scell + len;
+		if (scell > collection.Items.Length - len) {
+		        ecell = collection.Items.Length;
+			scell = System.Math.Max (0, scell - len);
+		} else
+			ecell = scell + len;
+			
+		for (i = scell; i < ecell; i++) {
+			photo = collection.Items [i];
+			thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
+
+			entry = cache.Lookup (thumbnail_path);
+			if (entry == null)
+				cache.Request (thumbnail_path, i, ThumbnailWidth, ThumbnailHeight);
+				
+		}
+			
 		if (scroll_on_idle_id == 0)
 			scroll_on_idle_id = GLib.Idle.Add (new GLib.IdleHandler (HandleScrollOnIdle));
 	}
