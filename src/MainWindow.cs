@@ -418,7 +418,7 @@ public class MainWindow {
 				return;
 
 			UriList list = new UriList (args.SelectionData);
-			ImportCommand command = new ImportCommand ();
+			ImportCommand command = new ImportCommand (main_window);
 			command.ImportFromPaths (db.Photos, list.ToLocalPaths ());
 			UpdateQuery ();
 			break;
@@ -568,7 +568,7 @@ public class MainWindow {
 
 	void HandleImportCommand (object sender, EventArgs e)
 	{
-		ImportCommand command = new ImportCommand ();
+		ImportCommand command = new ImportCommand (main_window);
 		command.ImportFromFile (db.Photos);
 		UpdateQuery ();
 	}
