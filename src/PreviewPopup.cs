@@ -17,8 +17,8 @@ namespace FSpot {
 				if (value != item) {
 					item = value;
 					UpdateImage ();
-					UpdatePosition ();
 				}
+				UpdatePosition ();
 			}
 		}
 
@@ -91,12 +91,23 @@ namespace FSpot {
 			int item = view.CellAtPosition (x, y);
 			if (item >= 0) {
 				this.Item = item;
+				UpdatePosition ();
 				this.Show ();
 			} else {
 				this.Hide ();
 			}
 		}
 		
+	        private void UpdateItem ()
+		{
+			int x, y;
+			view.GetPointer (out x, out y);
+			x += (int) view.Hadjustment.Value;
+			y += (int) view.Vadjustment.Value;
+			UpdateItem (x, y);
+			
+		}
+
 		private void HandleIconViewMotion (object sender, Gtk.MotionNotifyEventArgs args)
 		{
 			if ((args.Event.State & Gdk.ModifierType.Mod1Mask) == 0) {
@@ -115,11 +126,7 @@ namespace FSpot {
 			switch (args.Event.Key) {
 			case Gdk.Key.Alt_L:
 			case Gdk.Key.Alt_R:
-				int x, y;
-				view.GetPointer (out x, out y);
-				x += (int) view.Hadjustment.Value;
-				y += (int) view.Vadjustment.Value;
-				UpdateItem (x, y);
+				UpdateItem ();
 				break;
 			}
 		}
@@ -147,15 +154,11 @@ namespace FSpot {
 		protected override bool OnMotionNotifyEvent (Gdk.EventMotion args)
 		{
 			//
-			// We look for motion events so that if the user manages
-			// to get the pointer on the window we can tell and move
-			// out of the way.
+			// We look for motion events on the popup window so that
+			// if the pointer manages to get over the window we can
+			// Update the image properly and/or get out of the way.
 			//
-			int x, y;
-			view.GetPointer (out x, out y);
-			x += (int) view.Hadjustment.Value;
-			y += (int) view.Vadjustment.Value;
-			UpdateItem (x, y);
+			UpdateItem ();
 			return false;
 		}
 
