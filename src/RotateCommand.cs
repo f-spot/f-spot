@@ -27,6 +27,7 @@ public class RotateCommand {
 		}
 
 		int count = 0;
+		bool has_read_only_selections = false;
 		foreach (Photo p in photos) {
 			if (progress_dialog != null
 			    && progress_dialog.Update (String.Format ("Rotating picture \"{0}\"", p.Name)))
@@ -37,18 +38,22 @@ public class RotateCommand {
 				string temporary_path = original_path + ".tmp";	// FIXME make it unique
 
 				// FIXME exception
+				if ((File.GetAttributes(original_path) & FileAttributes.ReadOnly) != FileAttributes.ReadOnly) {
 
-				if (direction == Direction.Clockwise)
-					JpegUtils.Transform (original_path, temporary_path, JpegUtils.TransformType.Rotate90);
-				else
-					JpegUtils.Transform (original_path, temporary_path, JpegUtils.TransformType.Rotate270);
+					if (direction == Direction.Clockwise)
+						JpegUtils.Transform (original_path, temporary_path, JpegUtils.TransformType.Rotate90);
+					else
+						JpegUtils.Transform (original_path, temporary_path, JpegUtils.TransformType.Rotate270);
 
-				// FIXME way to do this atomically in .NET?  I think Move() raises an exception
-				// if the destination path points to an existing file.
-				File.Delete (original_path);
-				File.Move (temporary_path, original_path);
+					// FIXME way to do this atomically in .NET?  I think Move() raises an exception
+					// if the destination path points to an existing file.
+					File.Delete (original_path);
+					File.Move (temporary_path, original_path);
 
-				PhotoStore.GenerateThumbnail (original_path);
+					PhotoStore.GenerateThumbnail (original_path);
+				} else {
+					has_read_only_selections = true;
+				}
 			}
 
 			count ++;
@@ -56,7 +61,18 @@ public class RotateCommand {
 
 		if (progress_dialog != null)
 			progress_dialog.Destroy ();
-
+		
+		if (has_read_only_selections){ 
+				
+			MessageDialog md = new MessageDialog (parent_window, 
+								DialogFlags.DestroyWithParent,
+								MessageType.Error,
+								ButtonsType.Close,
+								"Some images could not be rotated because they are on a read only file system or media such as a CDROM.  Please check the permissions and try again.");
+			int Result = md.Run();
+			md.Destroy();
+		}
+		
 		return true;
 	}
 }
