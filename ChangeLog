@@ -1,3 +1,12 @@
+2005-03-08  Larry Ewing  <lewing@novell.com>
+
+	* src/PixbufCache.cs: don't lookup when a thumbnail is loaded
+	simply update the entry.  Lookup can cause cache starvation.
+
+	* src/ThumbnailGenerator.cs: sleep for a quarter of a second after
+	every thumbnail.  We are trying to make pretty pictures not save
+	the world.
+
 2005-03-07  Larry Ewing  <lewing@novell.com>
 
 	* src/FormClient.cs: bump the timeout for mulitpart requests since

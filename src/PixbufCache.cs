@@ -36,7 +36,7 @@ namespace FSpot {
 			string thumb_path = ThumbnailGenerator.ThumbnailPath (path);
 			CacheEntry entry;
 			lock (items) {
-				entry = ULookup (thumb_path);
+				entry = (CacheEntry) items [thumb_path];
 			}
 
 			if (entry != null && result != null) {

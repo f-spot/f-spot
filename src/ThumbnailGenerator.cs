@@ -80,6 +80,7 @@ namespace FSpot {
 			if (image != null) {
 				Save (image, request.path);
 			}
+			System.Threading.Thread.Sleep (250);
 		}
 	}
 }
