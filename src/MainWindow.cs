@@ -109,7 +109,7 @@ public class MainWindow {
 
 	// Index into the PhotoQuery.  If -1, no photo is selected or multiple photos are selected.
 	private int ActiveIndex () {
-		if (mode == ModeType.IconView && icon_view.CurrentIdx != -1)
+		if (view_mode == ModeType.IconView && icon_view.CurrentIdx != -1)
 			return icon_view.CurrentIdx;
 
 	        int [] selection = SelectedIds ();
@@ -134,12 +134,6 @@ public class MainWindow {
 		}
 	}
 
-	// Switching mode.
-	enum ModeType {
-		IconView,
-		PhotoView
-	};
-	ModeType mode;
 
 	//
 	// Constructor
@@ -263,29 +257,51 @@ public class MainWindow {
 			Toplevel = this;
 	}
 
-	void HandleViewNotebookSwitchPage (object sender, SwitchPageArgs args)
+	// Switching mode.
+	public enum ModeType {
+		IconView,
+		PhotoView
+	};
+
+	ModeType view_mode;
+
+	public ModeType ViewMode {
+		get {
+			return view_mode;
+		}
+	}
+
+	public void SetViewMode (ModeType value)
 	{
-		switch (view_notebook.CurrentPage) {
-		case 0:
-			mode = ModeType.IconView;
+		view_mode = value;
+		switch (view_mode) {
+		case ModeType.IconView:
+			if (view_notebook.CurrentPage != 0)
+				view_notebook.CurrentPage = 0;
+				
 			Present (photo_view.CurrentPhoto);
 			break;
-		case 1:
-			mode = ModeType.PhotoView;
+		case ModeType.PhotoView:
+			if (view_notebook.CurrentPage != 1)
+				view_notebook.CurrentPage = 1;
+			
 			Present (icon_view.FocusCell);
 			break;
 		}
 	}
-
-	void SwitchToIconViewMode ()
+	
+	void HandleViewNotebookSwitchPage (object sender, SwitchPageArgs args)
 	{
-		view_notebook.CurrentPage = 0;
+		switch (view_notebook.CurrentPage) {
+		case 0:
+			SetViewMode (ModeType.IconView);
+			break;
+		case 1:
+			SetViewMode (ModeType.PhotoView);
+			break;
+		}
 	}
 
-	void SwitchToPhotoViewMode ()
-	{
-		view_notebook.CurrentPage = 1;
-	}
 
 	public int [] SelectedIds () {
 		int [] ids;
@@ -293,7 +309,7 @@ public class MainWindow {
 		if (fsview != null)
 			ids = new int [] { fsview.View.CurrentPhoto };
 		else {
-			switch (mode) {
+			switch (view_mode) {
 			case ModeType.IconView:
 				ids = icon_view.SelectedIdxs;
 				break;
@@ -478,7 +494,7 @@ public class MainWindow {
 
 	private void JumpTo (int index)
 	{
-		switch (mode) {
+		switch (view_mode) {
 		case ModeType.PhotoView:
 			photo_view.CurrentPhoto = index;
 			break;
@@ -622,7 +638,7 @@ public class MainWindow {
 	void HandleDoubleClicked (IconView icon_view, int clicked_item)
 	{
 		icon_view.FocusCell = clicked_item;
-		SwitchToPhotoViewMode ();
+		SetViewMode (ModeType.PhotoView);
 	}
 
 	//
@@ -654,7 +670,7 @@ public class MainWindow {
 	void HandlePhotoViewButtonPressEvent (object sender, Gtk.ButtonPressEventArgs args)
 	{
 		if (args.Event.Type == EventType.TwoButtonPress && args.Event.Button == 1)
-			SwitchToIconViewMode ();
+			SetViewMode (ModeType.IconView);
 	}
 
 	void HandlePhotoViewUpdateStarted (PhotoView sender)
@@ -983,7 +999,7 @@ public class MainWindow {
 	void HandleAdjustColor (object sender, EventArgs args)
 	{
 		if (ActiveIndex () > 0) {
-			SwitchToPhotoViewMode ();
+			SetViewMode (ModeType.PhotoView);
 			new FSpot.ColorDialog (photo_view.View);
 		}
 	}
@@ -1156,12 +1172,12 @@ public class MainWindow {
 
 	void HandleViewBrowse (object sender, EventArgs args)
 	{
-		SwitchToIconViewMode ();
+		SetViewMode (ModeType.IconView);
 	}
 
 	void HandleViewPhoto (object sender, EventArgs args)
 	{
-		SwitchToPhotoViewMode ();
+		SetViewMode (ModeType.PhotoView);
 	}
 
 	void HandleViewFullscreen (object sender, EventArgs args)
@@ -1179,7 +1195,7 @@ public class MainWindow {
 	
 	void Present (int item)
 	{
-		switch (mode) {
+		switch (view_mode) {
 		case ModeType.IconView:
 			icon_view.ScrollTo (item);
 			icon_view.Throb (item);
@@ -1198,13 +1214,13 @@ public class MainWindow {
 	
 	void HandleZoomOut (object sender, EventArgs args)
 	{
-		switch (mode) {
+		switch (view_mode) {
 		case ModeType.PhotoView:
 			double old_zoom = photo_view.Zoom;
 
 			old_zoom /= FSpot.PhotoImageView.ZoomMultipler;
 			if (old_zoom < .001) {
-				SwitchToIconViewMode ();
+				SetViewMode (ModeType.IconView);
 			} else {
 				photo_view.Zoom = old_zoom;
 			}
@@ -1223,7 +1239,7 @@ public class MainWindow {
 
 	void HandleZoomIn (object sender, EventArgs args)
 	{
-		switch (mode) {
+		switch (view_mode) {
 		case ModeType.PhotoView:
 			double old_zoom = photo_view.Zoom;
 			try {
@@ -1240,7 +1256,7 @@ public class MainWindow {
 			width = Math.Max (width, 64);
 			if (width >= 512) {
 				photo_view.Zoom = 0.0;
-				SwitchToPhotoViewMode ();
+				SetViewMode (ModeType.PhotoView);
 			} else {
 				icon_view.ThumbnailWidth = width;
 			}			
@@ -1391,7 +1407,7 @@ public class MainWindow {
 
 	void OnTagSelectionChanged (object obj)
 	{
-		SwitchToIconViewMode ();
+		SetViewMode (ModeType.IconView);
 		UpdateQuery ();
 	}
 	
