@@ -138,10 +138,9 @@ namespace FSpot {
 			} else if (max_limit.Dragging) {
 				max_limit.UpdateDrag (args.X, args.Y);
 			} else {
-				if (glass.IsInside (args.X, args.Y))
-					glass.State = StateType.Prelight;
-				else 
-					glass.State = StateType.Normal;
+				glass.State = glass.IsInside (args.X, args.Y) ? StateType.Prelight : StateType.Normal;
+				min_limit.State = min_limit.IsInside (args.X, args.Y) ? StateType.Prelight : StateType.Normal;
+				max_limit.State = max_limit.IsInside (args.X, args.Y) ? StateType.Prelight : StateType.Normal;
 			}
 
 			return base.OnMotionNotifyEvent (args);
@@ -310,13 +309,13 @@ namespace FSpot {
 				double middle = box.X + (box.Width / 2.0);
 
 				int position;
+				DragOffset = 0;
 				if (selector.BoxXHit (middle, out position)) {
 					Position = position;
 					State = StateType.Prelight;
 				} else {
 					State = selector.State;
 				}
-				DragOffset = 0;
 				Dragging = false;				
 			}
 
@@ -344,8 +343,9 @@ namespace FSpot {
 					Rectangle now = Bounds ();
 					
 					if (selector.Visible) {
-						selector.GdkWindow.InvalidateRect (then, false);
-						selector.GdkWindow.InvalidateRect (now, false);
+						then = now.Union (then);
+						selector.GdkWindow.InvalidateRect (area, false);
+						//selector.GdkWindow.InvalidateRect (now, false);
 					}
 				}
 			}
@@ -460,7 +460,7 @@ namespace FSpot {
 				return bounds;
 			}
 
-			public override void Draw (Rectangle Area) 
+			public override void Draw (Rectangle area) 
 			{
 				Rectangle bounds = Bounds ();
 				Rectangle top = new Rectangle (bounds.X,
@@ -473,8 +473,10 @@ namespace FSpot {
 								  bounds.Width,
 								  handle_height);
 
-				selector.GdkWindow.DrawRectangle (selector.Style.TextGC (selector.State), true, top);
-				selector.GdkWindow.DrawRectangle (selector.Style.TextGC (selector.State), true, bottom);
+				Style.PaintBox (selector.Style, selector.GdkWindow, State, ShadowType.Out, area,
+						selector, null, top.X, top.Y, top.Width, top.Height);
+				Style.PaintBox (selector.Style, selector.GdkWindow, State, ShadowType.Out, area,
+						selector, null, bottom.X, bottom.Y, bottom.Width, bottom.Height);
 			}
 
 			public Limit (GroupSelector selector, LimitType type) : base (selector) 
