@@ -17,8 +17,8 @@ namespace FSpot {
 		}
 		
 		// IPhotoCollection Interface
-		public event FSpot.IPhotoCollectionChangedHandler Changed;
-		public event FSpot.IPhotoCollectionItemChangedHandler ItemChanged;
+		public event FSpot.IBrowsableCollectionChangedHandler Changed;
+		public event FSpot.IBrowsableCollectionItemChangedHandler ItemChanged;
 		
 		public Photo [] Photos {
 			get {

@@ -71,7 +71,7 @@ namespace FSpot {
 			return ((DirectoryAdaptor.Group)dirs [item].Value).Count;
 		}	
 
-		private void HandleChanged (FSpot.IPhotoCollection query)
+		private void HandleChanged (FSpot.IBrowsableCollection query)
 		{
 			Console.WriteLine ("Reloading directory");
 			Reload ();

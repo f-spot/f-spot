@@ -4,13 +4,18 @@ namespace FSpot {
 			this.photos = photos;
 		}
 		
-		public Photo [] Photos {
+		// IBrowsableCollection
+		public IBrowsableItem [] Items {
 			get {
 				return photos;
 			}
 		}
 
-		public IBrowsableItem [] Items {
+		public event IBrowsableCollectionChangedHandler Changed;
+		public event IBrowsableCollectionItemChangedHandler ItemChanged;
+
+		// IPhotoCollection
+		public Photo [] Photos {
 			get {
 				return photos;
 			}

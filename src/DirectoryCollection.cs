@@ -1,5 +1,5 @@
 namespace FSpot {
-	public class DirectoryCollection : IPhotoCollection {
+	public class DirectoryCollection : IBrowsableCollection {
 		string path;
 		FileBrowsableItem [] items;
 
@@ -8,7 +8,18 @@ namespace FSpot {
 			this.path = path;
 			LoadItems ();
 		}
-		
+
+		// IBrowsableCollection
+		public IBrowsableItem [] Items {
+			get {
+				return items;
+			}
+		}
+
+		public event FSpot.IBrowsableCollectionChangedHandler Changed;
+		public event FSpot.IBrowsableCollectionItemChangedHandler ItemChanged;
+
+		// Methods
 		public string Path {
 			get {
 				return path;
@@ -33,17 +44,6 @@ namespace FSpot {
 			items = images.ToArray (typeof (FileBrowsableItem)) as FileBrowsableItem [];
 		}
 
-		public Photo [] Photos {
-			get {
-				return null;
-			}
-		}
-
-		public IBrowsableItem [] Items {
-			get {
-				return items;
-			}
-		}
 	}
 
 	public class FileBrowsableItem : IBrowsableItem {

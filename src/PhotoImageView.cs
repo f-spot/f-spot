@@ -75,13 +75,13 @@ namespace FSpot {
 			CurrentPhoto = idx;
 		}
 
-		private void HandleQueryChanged (IPhotoCollection query)
+		private void HandleQueryChanged (IBrowsableCollection browsable)
 		{
-			if (query == this.query)
+			if (query == browsable)
 				Reload ();
 		}
 
-		public void HandleQueryItemChanged (IPhotoCollection query, int item)
+		public void HandleQueryItemChanged (IBrowsableCollection browsable, int item)
 		{
 			if (item == CurrentPhoto)
 				Reload ();

@@ -1,8 +1,14 @@
 namespace FSpot {
+	public delegate void IBrowsableCollectionChangedHandler (IBrowsableCollection collection);
+	public delegate void IBrowsableCollectionItemChangedHandler (IBrowsableCollection collection, int item);
+
 	public interface IBrowsableCollection {
 		IBrowsableItem [] Items {
 			get;
 		}
+		
+		event IBrowsableCollectionChangedHandler Changed;
+		event IBrowsableCollectionItemChangedHandler ItemChanged;
 	}
 
 	public interface IBrowsableItem {

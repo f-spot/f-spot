@@ -17,7 +17,7 @@ public class QueryView : IconView {
 
 	protected QueryView (System.IntPtr raw) : base (raw) {}
 	
-	private void HandleChanged (FSpot.IPhotoCollection query)
+	private void HandleChanged (FSpot.IBrowsableCollection sender)
 	{
 		// FIXME we should probably try to merge the selection forward
 		// but it needs some thought to be efficient.
@@ -25,7 +25,7 @@ public class QueryView : IconView {
 		QueueResize ();
 	}
 	
-	private void HandleItemChanged (FSpot.IPhotoCollection query, int item)
+	private void HandleItemChanged (FSpot.IBrowsableCollection sender, int item)
 	{
 		UpdateThumbnail (item);
 		InvalidateCell (item);

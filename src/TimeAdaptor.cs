@@ -75,7 +75,7 @@ namespace FSpot {
 			return new DateTime (year, month, 1);
 		}
 
-		private void HandleChanged (IPhotoCollection query)
+		private void HandleChanged (IBrowsableCollection sender)
 		{
 			Console.WriteLine ("Reloading");
 			Reload ();

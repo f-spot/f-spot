@@ -1414,10 +1414,9 @@ public class MainWindow {
 		UpdateMenus ();
 	}
 
-	void HandleQueryItemChanged (FSpot.IPhotoCollection query, int item)
+	void HandleQueryItemChanged (FSpot.IBrowsableCollection browsable, int item)
 	{
-		Photo photo = query.Photos [item];
-		if (info_box.Photo == photo)
+		if (info_box.Photo == (browsable.Items[item] as Photo))
 			info_box.Update ();
 	}
 	//
