@@ -1,5 +1,9 @@
 2004-09-25  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoView.cs: Integrate patch from Tambet
+	<tambet@ximian.com> to clean up initialization and use double's
+	epsilon.
+
 	* src/InfoDisplay.cs: Keep the scroll position of the exif window.
 
 	* src/MainWindow.cs: only set the current photo if the

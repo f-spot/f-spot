@@ -105,8 +105,6 @@ public class PhotoView : EventBox {
 	private OptionMenu constraints_option_menu;
 	private int selection_constraint_ratio_idx;
 
-	// FIXME: Should initialize statically, not sure how you do it.
-	// Maybe I should get myself a C# book at some point.
 	private static SelectionConstraint [] constraints;
 
 	private void HandleSelectionConstraintOptionMenuActivated (object sender, EventArgs args)
@@ -117,40 +115,6 @@ public class PhotoView : EventBox {
 
 	private OptionMenu CreateConstraintsOptionMenu ()
 	{
-		if (constraints == null) {
-			constraints = new SelectionConstraint [10];
-
-			constraints[0].Label = "No Constraint";
-			constraints[0].XyRatio = 0.0;
-
-			constraints[1].Label = "4 x 3 (Book)";
-			constraints[1].XyRatio = 4.0 / 3.0;
-
-			constraints[2].Label = "4 x 6 (Postcard)";
-			constraints[2].XyRatio = 6.0 / 4.0;
-
-			constraints[3].Label = "5 x 7 (L, 2L)";
-			constraints[3].XyRatio = 7.0 / 5.0;
-
-			constraints[4].Label = "8 x 10";
-			constraints[4].XyRatio = 10.0 / 8.0;
-
-			constraints[5].Label = "4 x 3 Portrait (Book)";
-			constraints[5].XyRatio = 3.0 / 4.0;
-
-			constraints[6].Label = "4 x 6 Portrait (Postcard)";
-			constraints[6].XyRatio = 4.0 / 6.0;
-
-			constraints[7].Label = "5 x 7 Portrait (L, 2L)";
-			constraints[7].XyRatio = 5.0 / 7.0;
-
-			constraints[8].Label = "8 x 10 Portrait";
-			constraints[8].XyRatio = 8.0 / 10.0;
-
-			constraints[9].Label = "Square";
-			constraints[9].XyRatio = 1.0;
-		}
-
 		Menu menu = new Menu ();
 
 		int i = 0;
@@ -221,8 +185,6 @@ public class PhotoView : EventBox {
 
 	private void UpdateZoom ()
 	{
-		const double EPSILON = 1e-6; // FIXME: Can we use something in corlib instead of this?
-		
 		Pixbuf pixbuf = image_view.Pixbuf;
 		if (pixbuf == null)
 			return;
@@ -236,12 +198,12 @@ public class PhotoView : EventBox {
 		double image_zoom = (MAX_ZOOM - zoom_to_fit) * Zoom + zoom_to_fit;
 		Console.WriteLine ("Zoom {2} zoom_to_fit {0} image_zoom {1}", zoom_to_fit, image_zoom, Zoom);
 
-		if (Math.Abs (Zoom) < EPSILON)
+		if (Math.Abs (Zoom) < double.Epsilon)
 			((ScrolledWindow) image_view.Parent).SetPolicy (PolicyType.Never, PolicyType.Never);
 
 		image_view.SetZoom (image_zoom, image_zoom);
 
-		if (Math.Abs (Zoom) < EPSILON && restore_scrollbars_idle_id == 0)
+		if (Math.Abs (Zoom) < double.Epsilon && restore_scrollbars_idle_id == 0)
 			restore_scrollbars_idle_id = Idle.Add (new IdleHandler (IdleUpdateScrollbars));
 	}
 
@@ -423,6 +385,41 @@ public class PhotoView : EventBox {
 			CanFocus = false;
 			Relief = ReliefStyle.None;
 		}
+	}
+
+	static PhotoView ()
+	{
+		constraints = new SelectionConstraint [10];
+
+		constraints[0].Label = "No Constraint";
+		constraints[0].XyRatio = 0.0;
+
+		constraints[1].Label = "4 x 3 (Book)";
+		constraints[1].XyRatio = 4.0 / 3.0;
+
+		constraints[2].Label = "4 x 6 (Postcard)";
+		constraints[2].XyRatio = 6.0 / 4.0;
+
+		constraints[3].Label = "5 x 7 (L, 2L)";
+		constraints[3].XyRatio = 7.0 / 5.0;
+
+		constraints[4].Label = "8 x 10";
+		constraints[4].XyRatio = 10.0 / 8.0;
+
+		constraints[5].Label = "4 x 3 Portrait (Book)";
+		constraints[5].XyRatio = 3.0 / 4.0;
+
+		constraints[6].Label = "4 x 6 Portrait (Postcard)";
+		constraints[6].XyRatio = 4.0 / 6.0;
+
+		constraints[7].Label = "5 x 7 Portrait (L, 2L)";
+		constraints[7].XyRatio = 5.0 / 7.0;
+
+		constraints[8].Label = "8 x 10 Portrait";
+		constraints[8].XyRatio = 8.0 / 10.0;
+
+		constraints[9].Label = "Square";
+		constraints[9].XyRatio = 1.0;
 	}
 
 	public PhotoView (PhotoStore photo_store)
