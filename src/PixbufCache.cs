@@ -41,7 +41,7 @@ namespace FSpot {
 			}
 
 			if (entry != null && result != null) {
-				Update (entry, PixbufUtils.ScaleToMaxSize (result, entry.Width, entry.Height));
+				Update (entry, PixbufUtils.ScaleDown (result, entry.Width, entry.Height));
 			}
 
 			//System.Console.WriteLine ("removing {0}", thumb_path);
@@ -60,6 +60,7 @@ namespace FSpot {
 					Monitor.Pulse (items);
 				} else {
 					MoveForward (entry);
+					entry.Data = closure;
 				}
 			}
 		}
@@ -144,16 +145,16 @@ namespace FSpot {
 							Monitor.Wait (items);
 						}
 					}
-
+					
 					ProcessRequest (current);
-
+					
 				} catch (System.Exception e) {
 					System.Console.WriteLine (e);
 					current = null;
 				}
 			}
 		}
-
+		
 		protected virtual void ProcessRequest (CacheEntry entry)
 		{
 			try {
@@ -182,18 +183,18 @@ namespace FSpot {
 
 		private void MoveForward (CacheEntry entry)
 		{
-#if false		       
-			int i = items.Count;
+#if false
+			int i = items_mru.Count;
+			CacheEntry tmp1 = entry;
+			CacheEntry tmp2;
 			while (i-- > 0) {
-				if (items_mru [i] == entry)
-					break;
+				tmp2 = (CacheEntry) items_mru [i];
+				items_mru [i] = tmp1;
+				tmp1 = tmp2;
+				if (tmp2 == entry)
+					return;
 			}
-			
-			while (i < items.Count - 1) {
-				items_mru [i] = items_mru [i++];
-			}
-
-			items_mru [items.Count - 1] = entry;
+			items_mru.Add (entry);
 #else
 			items_mru.Remove (entry);
 			items_mru.Add (entry);	

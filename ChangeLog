@@ -1,5 +1,7 @@
 2005-02-19  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufData.cs: set closure data.
+	
 	* src/AsyncPixbufLoader.cs: add a Path property.
 
 	* src/Exif.cs: make sure that we don't include nulls in string we
