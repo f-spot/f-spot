@@ -195,4 +195,34 @@ class GtkUtil {
 		menu.Append (i);
 		i.Show ();
 	}
+	
+	private class SignalFuncHelper {
+		public SignalFuncHelper (System.EventHandler e)
+		{
+			this.e = e;
+		}
+		
+		public void Func ()
+		{
+			this.e (Sender, System.EventArgs.Empty);
+		}
+
+		System.EventHandler e;
+		public object Sender;
+	}
+
+	public static Gtk.Widget MakeToolbarButton (Gtk.Toolbar toolbar, string stock_id, System.EventHandler e)
+	{
+		Gtk.StockItem item = Gtk.StockItem.Zero;
+		Gtk.StockManager.Lookup (stock_id, ref item);
+		if (item.StockId != null) {
+			SignalFuncHelper helper = new SignalFuncHelper (e);
+			Gtk.Widget w =  toolbar.AppendItem (item.Label.Replace ("_", null),
+							    null, null, new Gtk.Image (item.StockId, Gtk.IconSize.LargeToolbar), 
+							    new Gtk.SignalFunc (helper.Func));
+			helper.Sender = w;
+			return w;
+		}
+		return null;
+	}
 }

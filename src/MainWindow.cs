@@ -26,6 +26,8 @@ public class MainWindow {
 	[Glade.Widget] Gtk.VBox group_vbox;
 	[Glade.Widget] Gtk.VBox view_vbox;
 
+	[Glade.Widget] Gtk.VBox toolbar_vbox;
+	
 
 	[Glade.Widget] ScrolledWindow icon_view_scrolled;
 	[Glade.Widget] Box photo_box;
@@ -136,7 +138,7 @@ public class MainWindow {
 		PhotoView
 	};
 	ModeType mode;
-	
+
 	//
 	// Constructor
 	//
@@ -147,6 +149,17 @@ public class MainWindow {
 		Mono.Posix.Catalog.Init ("f-spot", Defines.LOCALE_DIR);
 		Glade.XML gui = Glade.XML.FromAssembly ("f-spot.glade", "main_window", null);
 		gui.Autoconnect (this);
+
+		Gtk.Toolbar toolbar = new Gtk.Toolbar ();
+		toolbar_vbox.PackStart (toolbar);
+		GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-270", new System.EventHandler (HandleRotate270Command));
+		GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-90", new System.EventHandler (HandleRotate90Command));
+		toolbar.AppendSpace ();
+		GtkUtil.MakeToolbarButton (toolbar, "f-spot-browse", new System.EventHandler (HandleViewBrowse));
+		GtkUtil.MakeToolbarButton (toolbar, "f-spot-edit-image", new System.EventHandler (HandleViewPhoto));
+		toolbar.AppendSpace ();
+		GtkUtil.MakeToolbarButton (toolbar, "f-spot-fullscreen", new System.EventHandler (HandleViewFullscreen));
+		GtkUtil.MakeToolbarButton (toolbar, "f-spot-slideshow", new System.EventHandler (HandleViewSlideShow));
 
 		tag_selection_widget = new TagSelectionWidget (db.Tags);
 		tag_selection_scrolled.Add (tag_selection_widget);
