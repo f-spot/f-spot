@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: F-Spot 0.0.7\n"
+"Project-Id-Version: F-Spot 0.0.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-02-07 11:20+0900\n"
-"PO-Revision-Date: 2005-02-08 10:08+0000\n"
+"PO-Revision-Date: 2005-02-22 13:13+0000\n"
 "Last-Translator: Marco Colombo <m.colombo@ed.ac.uk>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -228,7 +228,7 @@ msgstr "<b>Destinazione</b>"
 
 #: ../src/f-spot.glade.h:6
 msgid "<b>End Date</b>"
-msgstr ""
+msgstr "<b>Data fine</b>"
 
 #: ../src/f-spot.glade.h:7
 msgid "<b>Exposure</b>"
@@ -272,7 +272,7 @@ msgstr "<b>Dettagli stampante</b>"
 
 #: ../src/f-spot.glade.h:17
 msgid "<b>Start Date</b>"
-msgstr ""
+msgstr "<b>Data inizio</b>"
 
 #: ../src/f-spot.glade.h:18
 msgid "<b>Style</b>"
@@ -288,7 +288,7 @@ msgstr "<small></small>"
 
 #: ../src/f-spot.glade.h:21
 msgid "Ad_just Color..."
-msgstr ""
+msgstr "A_ggiusta colore..."
 
 #: ../src/f-spot.glade.h:22
 msgid "Add Gallery"
@@ -401,7 +401,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:49
 msgid "Export titles and comments"
-msgstr ""
+msgstr "Esporta titoli e commenti"
 
 #: ../src/f-spot.glade.h:50
 msgid "Export to Album:"
@@ -433,7 +433,7 @@ msgstr "File"
 
 #: ../src/f-spot.glade.h:57
 msgid "Fin_d"
-msgstr ""
+msgstr "Tr_ova"
 
 #: ../src/f-spot.glade.h:58
 msgid "Find by _Tag"
@@ -448,6 +448,8 @@ msgid ""
 "Full Page\n"
 "Standard - 4x6"
 msgstr ""
+"Pagina piena\n"
+"Standard - 4x6"
 
 #: ../src/f-spot.glade.h:62
 msgid "Gallery"
@@ -473,9 +475,11 @@ msgid ""
 "1\"\n"
 msgstr ""
 
+# FIXME o Tinta?
+# NdT: Tinta: trovato su http://bilbo.di.unipi.it/~ato-it/Fotoritocco.html
 #: ../src/f-spot.glade.h:71
 msgid "Hue:"
-msgstr ""
+msgstr "Tonalità:"
 
 #: ../src/f-spot.glade.h:72
 msgid "Icon:"
@@ -494,6 +498,11 @@ msgid ""
 "Date\n"
 "Photo Details"
 msgstr ""
+"Nessuno\n"
+"Titolo\n"
+"Nome file\n"
+"Data\n"
+"Dettagli foto"
 
 #: ../src/f-spot.glade.h:79
 msgid "Number of Copies:"
@@ -501,11 +510,12 @@ msgstr "Numero di copie:"
 
 #: ../src/f-spot.glade.h:80
 msgid "Open album in browser when done uploading"
-msgstr ""
+msgstr "Apri l'album nel browser quando il caricamento è completato"
 
+# FIXME UPSTREAM: there shouldn't be a final '.'
 #: ../src/f-spot.glade.h:81
 msgid "Open destination when done exporting."
-msgstr ""
+msgstr "Apri la destinazione quando l'esportazione è completata"
 
 #: ../src/f-spot.glade.h:82
 msgid "Page 1 of 3"
@@ -584,7 +594,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:102
 msgid "Set as _Background"
-msgstr ""
+msgstr "Imposta come s_fondo"
 
 #: ../src/f-spot.glade.h:103
 msgid "Source Temp"
@@ -592,7 +602,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:104
 msgid "Strip Image Metadata"
-msgstr ""
+msgstr "Togli i metadati dell'immagine"
 
 #: ../src/f-spot.glade.h:105
 msgid "Strip Metadata"
@@ -612,7 +622,7 @@ msgstr "URL:"
 
 #: ../src/f-spot.glade.h:109
 msgid "User_name:"
-msgstr ""
+msgstr "Nome _utente"
 
 #: ../src/f-spot.glade.h:110
 msgid "Username:"
@@ -620,11 +630,11 @@ msgstr "Nome utente:"
 
 #: ../src/f-spot.glade.h:111
 msgid "View"
-msgstr ""
+msgstr "Visualizza"
 
 #: ../src/f-spot.glade.h:112
 msgid "View photos in browser when done uploading"
-msgstr ""
+msgstr "Visualizza le foto nel browser quando il caricamento è completato"
 
 #: ../src/f-spot.glade.h:113
 msgid "Virtual Filesystem"
@@ -640,11 +650,11 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:116
 msgid "Zoom _In"
-msgstr ""
+msgstr "Aum_enta ingrandimento"
 
 #: ../src/f-spot.glade.h:117
 msgid "Zoom _Out"
-msgstr ""
+msgstr "Rid_uci ingrandimento"
 
 #: ../src/f-spot.glade.h:118
 msgid "_Attach Tag"
@@ -668,11 +678,11 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:123
 msgid "_Delete Version"
-msgstr ""
+msgstr "Eli_mina versione"
 
 #: ../src/f-spot.glade.h:124
 msgid "_Delete from Drive"
-msgstr ""
+msgstr "Eli_mina dall'unità"
 
 #: ../src/f-spot.glade.h:125
 msgid "_Directory"
@@ -692,7 +702,7 @@ msgstr "_Esporta"
 
 #: ../src/f-spot.glade.h:129
 msgid "_Fullscreen"
-msgstr ""
+msgstr "_Schermo intero"
 
 #: ../src/f-spot.glade.h:130
 msgid "_Gallery Name:"
@@ -704,11 +714,11 @@ msgstr "_Importa..."
 
 #: ../src/f-spot.glade.h:132
 msgid "_Large"
-msgstr ""
+msgstr "_Grande"
 
 #: ../src/f-spot.glade.h:133
 msgid "_Medium"
-msgstr ""
+msgstr "_Medio"
 
 #: ../src/f-spot.glade.h:134
 msgid "_Month"
@@ -720,11 +730,11 @@ msgstr "_Password:"
 
 #: ../src/f-spot.glade.h:136
 msgid "_Print..."
-msgstr ""
+msgstr "_Stampa..."
 
 #: ../src/f-spot.glade.h:137
 msgid "_Remove From Catalog"
-msgstr ""
+msgstr "_Rimuovi dal catalogo"
 
 #: ../src/f-spot.glade.h:138
 msgid "_Remove Tag From Selection"
@@ -732,7 +742,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:139
 msgid "_Rename Version"
-msgstr ""
+msgstr "_Rinomina versione"
 
 #: ../src/f-spot.glade.h:140
 msgid "_Sharpen..."
@@ -740,15 +750,15 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:141
 msgid "_Size"
-msgstr ""
+msgstr "_Dimensione"
 
 #: ../src/f-spot.glade.h:142
 msgid "_Slideshow"
-msgstr ""
+msgstr "_Presentazione"
 
 #: ../src/f-spot.glade.h:143
 msgid "_Small"
-msgstr ""
+msgstr "_Piccolo"
 
 #: ../src/f-spot.glade.h:144
 msgid "_Tags"
@@ -756,7 +766,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:145
 msgid "_Update Thumbnail"
-msgstr ""
+msgstr "_Aggiorna miniatura"
 
 #: ../src/f-spot.glade.h:146
 msgid "_Url:"
@@ -768,8 +778,9 @@ msgstr "_Versione"
 
 #: ../src/f-spot.glade.h:148
 msgid "_View"
-msgstr ""
+msgstr "_Visualizza"
 
+# FIXME UPSTREAM: needed?
 #: ../src/f-spot.glade.h:149
 msgid "dialog1"
 msgstr ""
@@ -778,9 +789,10 @@ msgstr ""
 msgid "x"
 msgstr "x"
 
+# FIXME
 #: ../src/GalleryExport.cs:351
 msgid "Error Uploading To Gallery"
-msgstr ""
+msgstr "Errore durante il caricamento sulla galleria"
 
 #: ../src/GalleryExport.cs:383
 msgid "(No Gallery)"
@@ -827,42 +839,42 @@ msgstr ""
 
 #: ../src/MainWindow.cs:1057
 msgid "Amount:"
-msgstr ""
+msgstr "Quantità:"
 
 #: ../src/MainWindow.cs:1058
 msgid "Radius:"
-msgstr ""
+msgstr "Raggio:"
 
 #: ../src/MainWindow.cs:1059
 msgid "Threshold:"
-msgstr ""
+msgstr "Soglia:"
 
 #: ../src/MainWindow.cs:1333
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
-msgstr[0] ""
-msgstr[1] "選択した {0} 個の写真を完全に削除しますか？"
+msgstr[0] "Eliminare definitivamente la foto selezionata?"
+msgstr[1] "Eliminare definitivamente le {0} foto selezionate?"
 
 #: ../src/MainWindow.cs:1337
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Questo eliminerà dall'unità tutte le versioni della foto selezionata."
+msgstr[1] "Questo eliminerà dall'unità tutte le versioni delle foto selezionate."
 
 #: ../src/MainWindow.cs:1340
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Eli_mina foto"
+msgstr[1] "Eli_mina foto"
 
 #: ../src/MainWindow.cs:1358
 #, csharp-format
 msgid "Remove the selected photo from the catalog?"
 msgid_plural "Remove the {0} selected photos from the catalog?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Rimuovere la foto selezionata dal catalogo?"
+msgstr[1] "Rimuovere le {0} foto selezionate dal catalogo?"
 
 #: ../src/MainWindow.cs:1363
 msgid ""
@@ -872,7 +884,7 @@ msgstr ""
 
 #: ../src/MainWindow.cs:1364
 msgid "_Remove from Catalog"
-msgstr ""
+msgstr "_Rimuovi dal catalogo"
 
 #: ../src/MainWindow.cs:1387
 #, csharp-format
@@ -892,7 +904,7 @@ msgstr[0] ""
 
 #: ../src/OriginalExport.cs:168
 msgid "Error: Error while transferring, Aborting"
-msgstr ""
+msgstr "Errore: errore durante il trasferimento. Interrotto"
 
 #: ../src/OriginalExport.cs:209
 msgid "Transfering Pictures"
@@ -904,11 +916,11 @@ msgstr ""
 
 #: ../src/PhotoPopup.cs:38
 msgid "Remove From Catalog"
-msgstr ""
+msgstr "Rimuovi dal catalogo"
 
 #: ../src/PhotoPopup.cs:40
 msgid "Delete From Drive"
-msgstr ""
+msgstr "Elimina dall'unità"
 
 #.
 #. FIXME TagMenu is ugly.
