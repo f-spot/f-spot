@@ -1,5 +1,8 @@
 2005-01-20  Larry Ewing  <lewing@novell.com>
 
+	* src/SlideView.cs: return cycling behavior so it matches earlier
+	versions.
+	
 	* src/SlideView.cs: fix a bug that was caused the slideshow to
 	stop working.  This bug was exposed by a branch optimization bug
 	in mono

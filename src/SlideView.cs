@@ -32,16 +32,8 @@ public class SlideView : Gtk.Image {
 		}
 	}
 
-	bool WriteStuff ()
-	{
-		System.Console.WriteLine ("play");
-		return true;
-	}
-
 	public void Play () 
 	{
-		if (WriteStuff ());
-
 		StopTweenIdle ();
 		if (current_idx >= 0) {
 			Pixbuf frame = GetScaled (photos[current_idx]);
@@ -49,7 +41,7 @@ public class SlideView : Gtk.Image {
 			frame.Dispose ();
 		} 
 
-		if (this.PreloadNextImage (current_idx + 1))
+		if (PreloadNextImage (current_idx + 1))
 			StartFlipTimer ();
 	}
 
@@ -68,13 +60,13 @@ public class SlideView : Gtk.Image {
 
 	public void Forward ()
 	{
-		if (this.PreloadNextImage (current_idx + 1))
+		if (PreloadNextImage (current_idx + 1))
 			ShowNext ();
 	}
 	
 	public void Back ()
 	{
-		if (this.PreloadNextImage (current_idx - 1))
+		if (PreloadNextImage (current_idx - 1))
 			ShowNext ();
 	}	
 
@@ -221,8 +213,8 @@ public class SlideView : Gtk.Image {
 		} else {
 			ShowNext ();
 
-			if (this.PreloadNextImage (current_idx + 1))
-				StartFlipTimer ();
+			PreloadNextImage (current_idx + 1);
+			StartFlipTimer ();
 		}
 		
 		return false;			
