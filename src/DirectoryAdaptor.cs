@@ -37,10 +37,15 @@ namespace FSpot {
 			return dirs.Count;
 		}
 
-		public override string Label (int item)
+		public override string GlassLabel (int item)
 		{
 			DirInfo info = (DirInfo)dirs[item];
 			return dirs [item] as string;
+		}
+		
+		public override string TickLabel (int item)
+		{
+			return null;
 		}
 
 		public override int Value (int item) 
