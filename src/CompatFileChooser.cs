@@ -87,7 +87,7 @@ public class CompatFileChooserDialog {
     public void Destroy ()
     {
 	if (use_file_chooser) {
-	    // FIXME
+		chooser.Destroy ();
 	} else
 	    filesel.Destroy ();
     }
