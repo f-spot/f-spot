@@ -6,7 +6,7 @@ public class ThumbnailCache {
 
 	// Types.
 
-	class Thumbnail {
+	private class Thumbnail {
 		// Path of the image on the disk.
 		public string path;
 
@@ -77,8 +77,9 @@ public class ThumbnailCache {
 			return null;
 
 		Thumbnail item = pixbuf_hash [path] as Thumbnail;
-		pixbuf_mru.Remove (item);
+
 		pixbuf_hash.Remove (path);
+		pixbuf_mru.Remove (item);
 
 		return item.pixbuf;
 	}

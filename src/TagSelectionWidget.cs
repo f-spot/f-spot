@@ -294,7 +294,7 @@ public class TagSelectionWidget : TreeView {
 
 			program.Run ();
 		}
-		}
+	}
 
 #endif
 }
