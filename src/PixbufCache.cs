@@ -6,7 +6,7 @@ namespace FSpot {
 		Hashtable items;
 		ArrayList items_mru;
 		int total_size;
-		int max_size = 256 * 256 * 4 * 50;
+		int max_size = 256 * 256 * 4 * 20;
 
 		Gtk.ThreadNotify notify;
 		bool  notify_pending;
@@ -56,10 +56,9 @@ namespace FSpot {
 				CacheEntry entry = items[path] as CacheEntry;
 				
 				if (entry == null) {
-					entry = new CacheEntry (path, closure, width, height);
+					entry = new CacheEntry (this, path, closure, width, height);
 					items [path] = entry;
 					items_mru.Add (entry);
-					total_size += entry.Size;
 					Monitor.Pulse (items);
 				} else {
 					MoveForward (entry);
@@ -71,22 +70,23 @@ namespace FSpot {
 		public void Update (CacheEntry entry, Gdk.Pixbuf pixbuf)
 		{
 			lock (items) {
-				
-				total_size -= entry.Size;
-				entry.Pixbuf = pixbuf;
-				total_size += entry.Size;
+				lock (entry) {
+					if (entry.Path == null) {
+						pixbuf.Dispose ();
+						return;
+					}
+					entry.Pixbuf = pixbuf;
+				}
 			}
 		}
 		
 		public void Reload (CacheEntry entry, object data, int width, int height)
 		{
 			lock (items) {
-				int size = entry.Size;
 				entry.Reload = true;
 				entry.Width = width;
 				entry.Height = height;
 				entry.Data = data;
-				total_size += entry.Size - size;
 				Monitor.Pulse (items);
 			}
 		}
@@ -96,6 +96,11 @@ namespace FSpot {
 			CacheEntry entry;
 			int i = items_mru.Count;
 			int size = 0;
+			if (total_size / 3 > max_size) {
+				//System.Console.WriteLine ("Hit major limit");
+				return null;
+			} 
+			
 			while (i-- > 0) {
 				entry = (CacheEntry) items_mru [i];
 				lock (entry) {
@@ -109,6 +114,7 @@ namespace FSpot {
 					//if the depth of the queue is so large that we've reached double our limit 
 					//break out of here and let the queue shrink.
 					if (size / 2  > max_size) {
+
 						//System.Console.WriteLine ("Hit limit");
 						return null;
 					}
@@ -137,9 +143,9 @@ namespace FSpot {
 						/* find the next item */
 						while ((current = FindNext ()) == null) {
 							int num = 0;
+
 							while ((items_mru.Count - num) > 10 && total_size > max_size) {
 								CacheEntry entry = (CacheEntry) items_mru [num++];
-								total_size -= entry.Size;
 								items.Remove (entry.Path);
 								entry.Dispose ();
 							}			
@@ -167,12 +173,8 @@ namespace FSpot {
 		{
 			Gdk.Pixbuf loaded = null;
 			try {
-				lock (items) {
-					loaded = new Gdk.Pixbuf (entry.Path);
-					total_size -= entry.Size;
-					entry.Pixbuf = loaded;
-					total_size += entry.Size;
-				}
+				loaded = new Gdk.Pixbuf (entry.Path);
+				this.Update (entry, loaded);
 			} catch (GLib.GException ex){
 				if (loaded != null)
 					loaded.Dispose ();
@@ -210,7 +212,7 @@ namespace FSpot {
 				if (tmp2 == entry)
 					return;
 			}
-			items_mru.Add (entry);
+			throw new System.Exception ("move forward failed");
 #else
 			items_mru.Remove (entry);
 			items_mru.Add (entry);	
@@ -247,7 +249,6 @@ namespace FSpot {
 			if (entry != null) {
 				items.Remove (path);
 				items_mru.Remove (entry);
-				total_size -= entry.Size;
 				entry.Dispose ();
 			}
 		}
@@ -261,13 +262,15 @@ namespace FSpot {
 			private bool reload;
 			private PixbufCache cache;
 			
-			public CacheEntry (string path, object closure, int width, int height)
+			public CacheEntry (PixbufCache cache, string path, object closure, int width, int height)
 			{
 				this.path = path;
 				this.width = width;
 				this.height = height;
 				this.data = closure;
 				this.Reload = true;
+				this.cache = cache;
+				cache.total_size += this.Size;
 			}
 
 			public bool Reload {
@@ -325,18 +328,23 @@ namespace FSpot {
 				set {
 					Gdk.Pixbuf old;
 					lock (this) {
-						old = this.Pixbuf;
+						if (path == null)
+							throw new System.Exception ("I don't want to be undead");
 
+						old = this.Pixbuf;
+						cache.total_size -= this.Size;
 						this.pixbuf = value;
 						if (pixbuf != null) {
 							this.width = pixbuf.Width;
 							this.height = pixbuf.Height;
 						}
+						cache.total_size += this.Size;
 						this.Reload = false;
-					}
 
-					if (old != null)
-						old.Dispose ();
+						if (old != null)
+							old.Dispose ();
+					}
+					
 				}
 			}
 			
@@ -345,31 +353,30 @@ namespace FSpot {
 				lock (this) {
 					if (pixbuf == null)
 						return null;
-
+					
 					return PixbufUtils.ShallowCopy (pixbuf);
 				}
 			}
-
+			
 			~CacheEntry ()
 			{
 				this.Dispose ();
 			}
-
+			
 			public void Dispose ()
 			{
 				lock (this) {
-					//System.Console.WriteLine ("dispose");
-
+					cache.total_size -= this.Size;
 					if (this.pixbuf != null) {
-						//System.Console.WriteLine ("entry.Dispose ({0}.{1})", this.path, PixbufUtils.RefCount (this.pixbuf));
 						this.pixbuf.Dispose ();
 						
 					}
 					this.pixbuf = null;
+					this.cache = null;
 					this.path = null;
 				}
 			}
-
+			
 			public int Size {
 				get {
 					return width * height * 3;

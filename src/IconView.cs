@@ -698,32 +698,36 @@ public class IconView : Gtk.Layout {
 
 	private void Scroll ()
 	{
-		int ystep = Math.Max ((int)(Vadjustment.Value - y_offset), Allocation.Height / 2);
-		int xstep = Math.Max  ((int)(Hadjustment.Value - x_offset), 0);
+		int ystep = (int)(Vadjustment.Value - y_offset);
+		int xstep = (int)(Hadjustment.Value - x_offset);
+		
+		xstep = xstep;
+		ystep = ystep;
+
 		Gdk.Rectangle area;
 
 		//System.Console.WriteLine ("step ({0}, {1}) allocation ({2}, {3})", xstep, ystep, Allocation.Width, Allocation.Height);
-
 		Gdk.Region region = new Gdk.Region ();
-		area = new Gdk.Rectangle (Math.Min ((int) (Hadjustment.Value + 4 * xstep), 0),  
-					  Math.Min ((int) (Vadjustment.Value + 4 * ystep), 0),
+		Gdk.Region sub = new Gdk.Region ();
+		/*		
+		area = new Gdk.Rectangle (Math.Max ((int) (Hadjustment.Value + 4 * xstep), 0),  
+					  Math.Max ((int) (Vadjustment.Value + 4 * ystep), 0),
 					  Allocation.Width,
 					  Allocation.Height);
 		region.UnionWithRect (area);
-		/*
-		area = new Gdk.Rectangle (Math.Min ((int) (Hadjustment.Value + 3 * xstep), 0),  
-					  Math.Min ((int) (Vadjustment.Value + 3 * ystep), 0),
+		area = new Gdk.Rectangle (Math.Max ((int) (Hadjustment.Value + 3 * xstep), 0),  
+					  Math.Max ((int) (Vadjustment.Value + 3 * ystep), 0),
 					  Allocation.Width,
 					  Allocation.Height);
 		region.UnionWithRect (area);
 		*/
-		area = new Gdk.Rectangle (Math.Min ((int) (Hadjustment.Value + 2 * xstep), 0),  
-					  Math.Min ((int) (Vadjustment.Value + 2 * ystep), 0),
+		area = new Gdk.Rectangle (Math.Max ((int) (Hadjustment.Value + 2 * xstep), 0),  
+					  Math.Max ((int) (Vadjustment.Value + 2 * ystep), 0),
 					  Allocation.Width,
 					  Allocation.Height);
 		region.UnionWithRect (area);
-		area = new Gdk.Rectangle (Math.Min ((int) (Hadjustment.Value + xstep), 0),  
-					  Math.Min ((int) (Vadjustment.Value + ystep), 0),
+		area = new Gdk.Rectangle (Math.Max ((int) (Hadjustment.Value + xstep), 0),  
+					  Math.Max ((int) (Vadjustment.Value + ystep), 0),
 					  Allocation.Width,
 					  Allocation.Height);		
 		region.UnionWithRect (area);
@@ -732,16 +736,26 @@ public class IconView : Gtk.Layout {
 					  Allocation.Width,
 					  Allocation.Height);
 		region.UnionWithRect (area);
-		foreach (Gdk.Rectangle preload in region.GetRectangles ()) {
-			Preload (preload, 0);
-		}
-
+		PreloadRegion (region, ystep);
 		region.Destroy ();
 		y_offset = (int) Vadjustment.Value;
 		x_offset = (int) Hadjustment.Value;
 	}
+	
+        void PreloadRegion (Gdk.Region region, int step)
+	{
+		Gdk.Rectangle [] rects = region.GetRectangles ();
+		
+		if (step < 0)
+			System.Array.Reverse (rects);
 
-	private void Preload (Gdk.Rectangle area, int padding)
+		foreach (Gdk.Rectangle preload in rects) {
+			//System.Console.WriteLine ("area {0}", preload.ToString ());
+			Preload (preload, step < 0);
+		}
+	}
+
+	private void Preload (Gdk.Rectangle area, bool back)
 	{
 		if (cells_per_row ==0)
 			return;
@@ -765,26 +779,58 @@ public class IconView : Gtk.Layout {
 		// Preload the cache with images aroud the expose area
 		// FIXME the preload need to be tuned to the Cache size but this is a resonable start
 		
-		int cols = Math.Max (end_cell_column - start_cell_column, 1);
-		int rows = Math.Max (end_cell_row - start_cell_row, 1);
-		int len = (rows + padding) * cols;
-		int scell = System.Math.Max ((start_cell_row - padding / 2) * cols, 0);
+		int cols = end_cell_column - start_cell_column;
+		int rows = end_cell_row - start_cell_row;
+		int len = rows * cols;
+		int scell = System.Math.Max (start_cell_row * cols, 0);
 		int ecell = scell + len;
 		if (scell > collection.Items.Length - len) {
 		        ecell = collection.Items.Length;
 			scell = System.Math.Max (0, scell - len);
 		} else
 			ecell = scell + len;
-			
-		for (i = scell; i < ecell; i++) {
-			photo = collection.Items [i];
+		
+#if false
+		if (back) {
+			for (i = ecell - 1; i >= scell; i--) {
+				photo = collection.Items [i];
+				thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
+				
+				entry = cache.Lookup (thumbnail_path);
+				if (entry == null)
+					cache.Request (thumbnail_path, i, ThumbnailWidth, ThumbnailHeight);
+				
+			}
+		} else {
+			for (i = scell; i < ecell; i++) {
+				photo = collection.Items [i];
+				thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
+				
+				entry = cache.Lookup (thumbnail_path);
+				if (entry == null)
+					cache.Request (thumbnail_path, i, ThumbnailWidth, ThumbnailHeight);
+				
+			}
+		}
+#else
+		int mid = (ecell - scell) / 2;
+		for (i = 0; i < mid; i++)
+		{
+			photo = collection.Items [scell + mid - i];
 			thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
-
+			
 			entry = cache.Lookup (thumbnail_path);
 			if (entry == null)
 				cache.Request (thumbnail_path, i, ThumbnailWidth, ThumbnailHeight);
-				
-		}
+
+			photo = collection.Items [scell + mid + i];
+			thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
+			
+			entry = cache.Lookup (thumbnail_path);
+			if (entry == null)
+				cache.Request (thumbnail_path, i, ThumbnailWidth, ThumbnailHeight);
+		} 
+#endif
 	}
 
 	//

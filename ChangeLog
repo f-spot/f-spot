@@ -1,3 +1,14 @@
+2005-03-01  Larry Ewing  <lewing@novell.com>
+
+	* src/IconView.cs: add logic to preload from the center of the
+	area.  Reverse the traversal of the region rectangles depending on
+	direction.  Fix the preload bounds.
+
+	* src/PixbufCache.cs: make sure that we don't store pixbufs in
+	entries that have already been disposed.  Fixes the giant leak
+	that was bringing everything down.  Refactor the size handling
+	bits, deal with them in dispose.
+
 2005-02-28  Larry Ewing  <lewing@novell.com>
 
 	* src/IconView.cs: Don't preload on expose, it just makes things
