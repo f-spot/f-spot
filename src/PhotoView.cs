@@ -151,6 +151,7 @@ public class PhotoView : EventBox {
 			try {
 				image_view.Pixbuf = new Pixbuf (Query.Photos [current_photo].DefaultVersionPath);
 			} catch (GException ex) {
+				// FIXME
 				image_view.Pixbuf = null;
 			}
 		}	
