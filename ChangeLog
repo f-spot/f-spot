@@ -1,5 +1,9 @@
 2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
 
+	* configure.in: Require Gnome 2.4 libs.
+
+2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+
 	* src/PhotoVersionCommands.cs
 	(PhotoVersionCommands.VersionNameRequest): Change so that it gets
 	a request type and sets prompt and title depending on it.  Also,
