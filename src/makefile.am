@@ -9,6 +9,7 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/FileImportBackend.cs		\
 	$(srcdir)/FormClient.cs			\
 	$(srcdir)/GalleryRemote.cs		\
+	$(srcdir)/GroupSelector.cs		\
 	$(srcdir)/GtkDnd.cs			\
 	$(srcdir)/IconView.cs			\
 	$(srcdir)/ImageView.cs			\
@@ -36,7 +37,6 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/TagSelectionWidget.cs		\
 	$(srcdir)/TagStore.cs			\
 	$(srcdir)/TagView.cs			\
-	$(srcdir)/TimelineSelectorWidget.cs	\
 	$(srcdir)/ThreadProgressDialog.cs	\
 	$(srcdir)/ThumbnailCache.cs		\
 	$(srcdir)/Util.cs			\
