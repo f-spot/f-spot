@@ -166,6 +166,8 @@ public class MainWindow {
 		photo_box.Add (photo_view);
 		photo_view.PhotoChanged += new PhotoView.PhotoChangedHandler (HandlePhotoViewPhotoChanged);
 		photo_view.ButtonPressEvent += new ButtonPressEventHandler (HandlePhotoViewButtonPressEvent);
+		photo_view.UpdateStarted += new PhotoView.UpdateStartedHandler (HandlePhotoViewUpdateStarted);
+		photo_view.UpdateFinished += new PhotoView.UpdateFinishedHandler (HandlePhotoViewUpdateFinished);
 
 		Gtk.Drag.DestSet (photo_view, DestDefaults.All, tag_target_table, 
 				  DragAction.Copy | DragAction.Move); 
@@ -441,6 +443,20 @@ public class MainWindow {
 	{
 		if (args.Event.Type == EventType.TwoButtonPress && args.Event.Button == 1)
 			SwitchToIconViewMode ();
+	}
+
+	void HandlePhotoViewUpdateStarted (PhotoView sender)
+	{
+		main_window.GdkWindow.Cursor = new Gdk.Cursor (Gdk.CursorType.Watch);
+		// FIXME: use gdk_display_flush() when available
+		main_window.GdkWindow.Display.Sync ();
+	}
+
+	void HandlePhotoViewUpdateFinished (PhotoView sender)
+	{
+		main_window.GdkWindow.Cursor = null;
+		// FIXME: use gdk_display_flush() when available
+		main_window.GdkWindow.Display.Sync ();
 	}
 
 	//

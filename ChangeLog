@@ -1,3 +1,17 @@
+2004-06-29  Federico Mena Quintero  <federico@ximian.com>
+
+	* src/PhotoView.cs (CurrentPhoto.set): Don't do anything if we are
+	trying to set the same photo as the one we have.
+	(UpdateStarted): New event.
+	(UpdateFinished): New event.
+	(Update): Emit the UpdateStarted and UpdateFinished notifications.
+	
+	* src/MainWindow.cs (MainWindow): Add event handlers to the
+	photo_view UpdateStarted and UpdateFinished.
+	(HandlePhotoViewUpdateStarted): New event handler; set the cursor
+	to a watch.
+	(HandlePhotoViewUpdateFinished): New event handler; unset the cursor.
+
 2004-06-29  Larry Ewing  <lewing@ximian.com>
 
 	* src/PixbufLoader.cs: make the queue act in as last in first out

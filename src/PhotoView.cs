@@ -13,6 +13,9 @@ public class PhotoView : EventBox {
 		}
 
 		set {
+			if (current_photo == value)
+				return;
+
 			current_photo = value;
 			Update ();
 		}
@@ -75,6 +78,11 @@ public class PhotoView : EventBox {
 	public delegate void PhotoChangedHandler (PhotoView me);
 	public event PhotoChangedHandler PhotoChanged;
 
+	public delegate void UpdateStartedHandler (PhotoView view);
+	public event UpdateStartedHandler UpdateStarted;
+
+	public delegate void UpdateFinishedHandler (PhotoView view);
+	public event UpdateFinishedHandler UpdateFinished;
 
 	// Selection constraints.
 
@@ -260,10 +268,16 @@ public class PhotoView : EventBox {
 
 	public void Update ()
 	{
+		if (UpdateStarted != null)
+			UpdateStarted (this);
+
 		UpdateImageView ();
 		UpdateButtonSensitivity ();
 		UpdateCountLabel ();
 		UpdateDescriptionEntry ();
+
+		if (UpdateFinished != null)
+			UpdateFinished (this);
 	}
 
 
