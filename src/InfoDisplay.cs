@@ -1,8 +1,7 @@
-using GtkSharp;
-using Gtk;
+using System;
 
 namespace FSpot {
-	public class InfoDisplay : HTML {
+	public class InfoDisplay : Gtk.HTML {
 		public InfoDisplay () 
 		{
 
@@ -27,21 +26,42 @@ namespace FSpot {
 			}
 		}
 		
+		protected override void OnStyleSet (Gtk.Style previous)
+		{
+			base.OnStyleSet (previous);
+			this.Update ();
+		}
+		
+		private string Color (Gdk.Color color)
+		{
+			Byte r = (byte)(color.Red / 256);
+			Byte b = (byte)(color.Blue / 256);
+			Byte g = (byte)(color.Green / 256);
+			string value =  r.ToString ("x") + g.ToString ("x") + b.ToString ("x");
+			System.Console.WriteLine (value);
+			return value;
+		}
+
 		private void Update ()
 		{
 			ExifTag [] tags = exif_info.Tags;
-			HTMLStream stream = this.Begin ("text/html; charset=utf-8");
+			Gtk.HTMLStream stream = this.Begin ("text/html; charset=utf-8");
+			
+			string bg = Color (this.Style.Base (Gtk.StateType.Insensitive));
+			string fg = Color (this.Style.Text (Gtk.StateType.Insensitive));
+
 			stream.Write ("<table width=100%>");
 			System.Console.WriteLine (tags.Length);
 			foreach (ExifTag tag in tags) {
-				stream.Write ("<tr><td bgcolor=\"cccccc\">");
-				stream.Write (ExifUtil.GetTagName (tag));
-				stream.Write ("</td><td>");
-				stream.Write (exif_info.LookupString (tag));
+				stream.Write ("<tr><td bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
+				stream.Write (ExifUtil.GetTagTitle (tag));
+				stream.Write ("</font></td><td>");
+				if (exif_info.LookupString (tag) != "")
+					stream.Write (exif_info.LookupString (tag));
 				stream.Write ("</td><tr>");
 			}
 			stream.Write ("</table>");
-			End (stream, HTMLStreamStatus.Ok);
+			End (stream, Gtk.HTMLStreamStatus.Ok);
 		}
 	}
 }
