@@ -1,3 +1,15 @@
+2004-11-19  Larry Ewing  <lewing@novell.com>
+
+	* src/PhotoImageView.cs: make +/- work for zooming.
+
+	* src/PhotoView.cs: remove keypress handling and proxy zoom
+	handling to the PhotoImageView.
+	
+	* src/PhotoImageView.cs: move the generic kery press handling
+	here.  Move the Zoom interface here for now.
+
+	* src/FullScreenView.cs: clean up key handling a bit.
+
 2004-11-18  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoImageView.cs: check for negative CurrentPhoto values.

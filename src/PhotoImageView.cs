@@ -10,6 +10,8 @@ namespace FSpot {
 			this.KeyPressEvent += HandeKeyPressEvent;
 		}
 		
+		public static double ZoomMultipler = 1.1;
+		
 		private int current_photo = -1;
 		public int CurrentPhoto {
 			get {
@@ -216,6 +218,14 @@ namespace FSpot {
 				break;
 			case Gdk.Key.Key_2:
 				this.Zoom = 2.0;
+				break;
+			case Gdk.Key.KP_Subtract:
+			case Gdk.Key.minus:
+				this.Zoom /= ZoomMultipler;
+				break;
+			case Gdk.Key.plus:
+			case Gdk.Key.KP_Add:
+				this.Zoom *= ZoomMultipler;
 				break;
 			default:
 				args.RetVal = false;
