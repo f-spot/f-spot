@@ -56,11 +56,11 @@ namespace FSpot {
 			return password;
 		}
 
-		private void Login () {
+		private bool Login () {
 			fr.Progress = null;
 			string email = email_entry.Text;
 			string password = GetPassword (email);
-			fr.Login (email, password);
+			return fr.Login (email, password);
 		}
 
 		private void HandleProgressChanged (ProgressItem item)
@@ -99,14 +99,24 @@ namespace FSpot {
 			}
 			
 			fr.ExportTags = tag_check.Active;
-			Login ();
 			
-			command_thread = new  System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
-			command_thread.Name = Mono.Posix.Catalog.GetString ("Uploading Pictures");
-
-			Dialog.Destroy ();
-			progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Photos.Length);
-			progress_dialog.Start ();
+			if (Login ()) {
+				command_thread = new  System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
+				command_thread.Name = Mono.Posix.Catalog.GetString ("Uploading Pictures");
+				
+				Dialog.Destroy ();
+				progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Photos.Length);
+				progress_dialog.Start ();
+			} else {
+				Gtk.MessageDialog md = new Gtk.MessageDialog (Dialog, 
+									      Gtk.DialogFlags.Modal |
+									      Gtk.DialogFlags.DestroyWithParent,
+									      Gtk.MessageType.Error, Gtk.ButtonsType.Ok, 
+									      Mono.Posix.Catalog.GetString ("Unable to log on"));
+				md.Run ();
+				md.Destroy ();
+				return;
+			}
 		}
 
 		public Gtk.Dialog Dialog {

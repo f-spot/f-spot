@@ -13,6 +13,10 @@ public class FlickrRemote {
 	
 	string email;
 	string passwd;
+	string username;
+	int limit;
+	int used;
+	bool pro;
 
 	public bool ExportTags;
 	public FSpot.ProgressItem Progress;
@@ -21,8 +25,14 @@ public class FlickrRemote {
 	{
 		//FIXME this api is lame
 	}
+	
+	public bool Pro {
+		get {
+			return pro;
+		}
+	}
 
-	public void Upload (Photo photo)
+	public string Upload (Photo photo)
 	{
 		if (email == null || passwd == null)
 			throw new Exception ("Must Login First");
@@ -46,25 +56,73 @@ public class FlickrRemote {
 			client.Add ("tags", taglist.ToString ());
 		}
 
-		Stream response = client.Submit (UploadUrl, this.Progress).GetResponseStream ();
-		StreamReader reader = new StreamReader (response, Encoding.UTF8);
+		string error_verbose;
+		int error_value;
+		try {
+			Stream response = client.Submit (UploadUrl, this.Progress).GetResponseStream ();
 
-		// FIXME we need to parse reponse
-		Console.WriteLine (reader.ReadToEnd ());
+			System.Xml.XmlDocument doc = new System.Xml.XmlDocument ();
+			doc.Load (response);
+		
+			System.Xml.XmlNode node = doc.SelectSingleNode ("//uploader/status");
+			string status = node.ChildNodes [0].Value;
+			if (status == "ok") {
+				node = node.NextSibling;
+				string photoid = node.ChildNodes [0].Value;
+
+				System.Console.WriteLine ("Successful upload: photoid={0}", photoid);
+				return photoid;
+			} else {
+				node = node.NextSibling;
+				error_value = int.Parse (node.ChildNodes [0].Value);
+
+				node = node.NextSibling;
+				error_verbose = node.ChildNodes [0].Value;
+			}
+		} catch (Exception e) {
+			throw new System.Exception ("Error parsing flickr response", e);
+		}
+		throw new System.Exception (error_verbose);
 	}
 
-	public void Login (string email, string passwd)
+	public bool Login (string email, string passwd)
 	{
+		this.email = email;
+		this.passwd = passwd;
+
 		FormClient client = new FormClient ();
 		client.Add ("email", email);
 		client.Add ("password", passwd);
 
-		Stream response = client.Submit (AuthUrl, this.Progress).GetResponseStream ();
-		StreamReader reader = new StreamReader (response, Encoding.UTF8);
+		try {
+			Stream response = client.Submit (AuthUrl, this.Progress).GetResponseStream ();
+		
+			System.Xml.XmlDocument doc = new System.Xml.XmlDocument ();
+			doc.Load (response);
 
-		Console.WriteLine (reader.ReadToEnd ());
+			System.Xml.XmlNode node = doc.SelectSingleNode ("//user/username");
+			this.username = node.ChildNodes [0].Value;
 
-		this.email = email;
-		this.passwd = passwd;
+			node = doc.SelectSingleNode ("//user/status/pro");
+			this.pro = (int.Parse (node.ChildNodes [0].Value) == 1);
+
+			node = doc.SelectSingleNode ("//user/transfer");
+			foreach (System.Xml.XmlNode child in node.ChildNodes) {
+				switch (child.Name) {
+				case "limit":
+					this.limit = int.Parse (child.ChildNodes [0].Value);
+					break;
+				case "used":
+					this.limit = int.Parse (child.ChildNodes [0].Value);
+					break;
+				}
+			}
+			System.Console.WriteLine ("User {0} successfully logged in", this.username);
+			return true;
+		} catch (Exception e) {
+			System.Console.WriteLine (e);
+			return false;
+		}
+
 	}
 }
