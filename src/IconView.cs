@@ -687,8 +687,14 @@ public class IconView : Gtk.Layout {
 
 	private void HandlePixbufLoaded (PixbufLoader loader, string path, int order, Pixbuf result)
 	{
-		if (result == null)
+		if (result == null) {
 			result = ErrorPixbuf ();
+			//
+			// ThumbnailCache Takes Ownership and calls Dispose
+			// so we need to copy the ErrorPixbuf
+			//
+			result = new Pixbuf (result, 0, 0, result.Width, result.Height);
+		}
 
 		//Console.WriteLine ("adding {0}", path);
 		ThumbnailCache.Default.AddThumbnail (path, result);
