@@ -1,3 +1,9 @@
+2005-01-12  Raja R Harinath  <rharinath@novell.com>
+
+	* src/Makefile.am (F_SPOT_CSDISTFILES): Rename from
+	F_SPOT_CSFILES.  Remove Defines.cs.
+	(EXTRA_DIST, F_SPOT_CSFILES): Use it.
+
 2005-01-12  Larry Ewing  <lewing@novell.com>
 
 	* src: move the changed events from IPhotoCollection to IBrowsable

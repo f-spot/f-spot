@@ -1,13 +1,12 @@
 CSC = mcs --unsafe -g
 
-F_SPOT_CSFILES =				\
+F_SPOT_CSDISTFILES =				\
 	$(srcdir)/AsyncPixbufLoader.cs		\
 	$(srcdir)/PhotoArray.cs 		\
 	$(srcdir)/ColorDialog.cs		\
 	$(srcdir)/CompatFileChooser.cs		\
 	$(srcdir)/DateCommands.cs		\
 	$(srcdir)/Db.cs				\
-	$(srcdir)/Defines.cs			\
 	$(srcdir)/Delay.cs			\
 	$(srcdir)/DirectoryAdaptor.cs		\
 	$(srcdir)/DirectoryCollection.cs	\
@@ -159,13 +158,15 @@ fspotlib_DATA = f-spot.exe.config	\
 
 bin_SCRIPTS = f-spot
 
+F_SPOT_CSFILES = $(F_SPOT_CSDISTFILES) Defines.cs
+
 f-spot.exe: $(F_SPOT_CSFILES) f-spot.glade
 	$(CSC) -o $@ $(CSFLAGS) $(F_SPOT_CSFILES) $(ASSEMBLIES) $(RESOURCES)
 
 all: f-spot.exe
 
 EXTRA_DIST =					\
-	$(F_SPOT_CSFILES)			\
+	$(F_SPOT_CSDISTFILES)			\
 	f-spot.exe.config.in			\
 	f-spot.glade				\
 	f-spot.in
