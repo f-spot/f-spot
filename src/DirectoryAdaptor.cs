@@ -40,7 +40,7 @@ namespace FSpot {
 		public override string GlassLabel (int item)
 		{
 			DirInfo info = (DirInfo)dirs[item];
-			return dirs [item] as string;
+			return info.Path;
 		}
 		
 		public override string TickLabel (int item)
