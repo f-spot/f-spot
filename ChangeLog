@@ -1,5 +1,8 @@
 2004-02-06  Larry Ewing  <lewing@ximian.com>
 
+	* src/IconView.cs: Fix speed issue with selecting large ranges
+	of cells.
+
 	* src/makefile.am (CLEANFILES): add makefile to CLEANFILES.
 
 	* src/IconView.cs: Clear selection when the query changes.

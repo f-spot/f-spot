@@ -248,7 +248,7 @@ public class IconView : Gtk.Layout {
 		return selected_cells.ContainsKey (cell_num);
 	}
 
-	private void SelectCell (int cell_num)
+	private void SelectCellNoNotify (int cell_num)
 	{
 		if (CellIsSelected (cell_num))
 			return;
@@ -256,6 +256,11 @@ public class IconView : Gtk.Layout {
 		selected_cells.Add (cell_num, cell_num);
 
 		InvalidateCell (cell_num);
+	}
+
+	private void SelectCell (int cell_num)
+	{
+		SelectCellNoNotify (cell_num);
 
 		if (SelectionChanged != null)
 			SelectionChanged (this);
@@ -270,9 +275,12 @@ public class IconView : Gtk.Layout {
 		int final = Math.Max (start, end);				
 	
 		while (current <= final) {
-			SelectCell (current);
+			SelectCellNoNotify (current);
 			current++;
 		}
+
+		if (SelectionChanged != null)
+			SelectionChanged (this);
 	}
 
 	private void UnselectCell (int cell_num)
@@ -552,12 +560,12 @@ public class IconView : Gtk.Layout {
 	}
 
 	public void InvalidateCell (int order) {
-		Rectangle area;
-		GetCellPosition (order, out area.x, out area.y);
-		area.width = cell_width;
-		area.height = cell_height;
+		Rectangle cell_area;
+		GetCellPosition (order, out cell_area.x, out cell_area.y);
+		cell_area.width = cell_width;
+		cell_area.height = cell_height;
 
-		BinWindow.InvalidateRect (area, true);
+		BinWindow.InvalidateRect (cell_area, true);
 	}
 			
 	private void HandleScrollAdjustmentsSet (object sender, ScrollAdjustmentsSetArgs args)
