@@ -17,6 +17,8 @@ namespace FSpot {
 		
 		int photo_index;
 		bool open;
+		bool scale;
+		int width, height;
 
 		FSpot.ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
@@ -70,6 +72,49 @@ namespace FSpot {
 			}
 		}
 
+		public Gnome.Vfs.Result PrepareAndXfer (Photo photo)
+		{
+			Gnome.Vfs.Result result = Gnome.Vfs.Result.Ok;
+			Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (photo.DefaultVersionUri.ToString ());
+			Gnome.Vfs.Uri target = dest.Clone ();
+			target = target.AppendFileName (source.ExtractShortName ());
+			Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
+			
+			//System.Console.WriteLine ("Xfering {0} to {1}", source.ToString (), target.ToString ());
+			
+			try {
+				if (scale){
+					progress_dialog.Message = System.String.Format (
+					        Mono.Posix.Catalog.GetString ("Scaling picture \"{0}\""), photo.Name);
+					
+					string orig_path = photo.DefaultVersionPath;
+					Exif.ExifData exif_data = new Exif.ExifData (orig_path);
+					Gdk.Pixbuf image = PixbufUtils.LoadAtMaxSize (orig_path, width, height);
+					string version_path = System.IO.Path.GetTempFileName ();
+					PixbufUtils.SaveJpeg (image, version_path, 95, exif_data);
+					source = new Gnome.Vfs.Uri (Gnome.Vfs.Uri.GetUriFromLocalPath (version_path));
+				}
+				
+				progress_dialog.Message = System.String.Format (
+					Mono.Posix.Catalog.GetString ("Transferring picture \"{0}\""), photo.Name);
+				
+				progress_dialog.Fraction = photo_index / (double) selection.Photos.Length;
+				progress_dialog.ProgressText = System.String.Format (
+					Mono.Posix.Catalog.GetString ("{0} of {1}"), photo_index, selection.Photos.Length);
+
+				result = Gnome.Vfs.Xfer.XferUri (source, target, 
+								 Gnome.Vfs.XferOptions.Default, 
+								 Gnome.Vfs.XferErrorMode.Abort, 
+								 Gnome.Vfs.XferOverwriteMode.Replace, 
+								 cb);
+			} finally {
+				if (scale)
+					source.Unlink ();
+			}
+
+			return result;
+		}
+
 		public void Upload ()
 		{
 			try {
@@ -77,23 +122,7 @@ namespace FSpot {
 				Gnome.Vfs.Result result = Gnome.Vfs.Result.Ok;
 
 				foreach (Photo photo in selection.Photos) {
-					Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (photo.DefaultVersionUri.ToString ());
-					Gnome.Vfs.Uri target = dest.Clone ();
-					target = target.AppendFileName (source.ExtractShortName ());
-					Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
-					
-					//System.Console.WriteLine ("Xfering {0} to {1}", source.ToString (), target.ToString ());
-					
-					progress_dialog.Message = System.String.Format (Mono.Posix.Catalog.GetString ("Transferring picture \"{0}\""), photo.Name);
-					progress_dialog.Fraction = photo_index / (double) selection.Photos.Length;
-					progress_dialog.ProgressText = System.String.Format (Mono.Posix.Catalog.GetString ("{0} of {1}"), 
-											     photo_index, selection.Photos.Length);
-					result = Gnome.Vfs.Xfer.XferUri (source, target, 
-									 Gnome.Vfs.XferOptions.Default, 
-									 Gnome.Vfs.XferErrorMode.Abort, 
-									 Gnome.Vfs.XferOverwriteMode.Replace, 
-									 cb);
-					
+					result = PrepareAndXfer (photo);
 					photo_index++;
 				}
 
@@ -103,13 +132,14 @@ namespace FSpot {
 					progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Transfer Complete");
 					progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 
-								} else {
+				} else {
 					progress_dialog.ProgressText = result.ToString ();
 					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Error While Transferring");
 				}
 
 				if (open && photo_index > 0)
 					Gnome.Url.Show (dest.ToString ());
+
 			} catch (System.Exception e) {
 				progress_dialog.Message = e.ToString ();
 				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error Transferring");
@@ -165,7 +195,11 @@ namespace FSpot {
 
 			dest = new Gnome.Vfs.Uri (uri_entry.Text);
 			open = open_check.Active;
-
+			scale = scale_check.Active;
+			if (scale) {
+				width = 800;
+				height = 800;
+			}
 #if false
 			Upload ();
 #else 	
