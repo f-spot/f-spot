@@ -51,6 +51,15 @@ public class MainWindow {
 	[Glade.Widget] MenuItem update_thumbnail;
 	[Glade.Widget] MenuItem delete_from_drive;
 
+	[Glade.Widget] MenuItem send_mail;
+	[Glade.Widget] MenuItem export;
+	[Glade.Widget] MenuItem print;
+	[Glade.Widget] MenuItem select_none;
+	[Glade.Widget] MenuItem adjust_color;
+	[Glade.Widget] MenuItem exif_data;
+	[Glade.Widget] MenuItem sharpen;
+	[Glade.Widget] MenuItem remove_from_catalog;
+
 	[Glade.Widget] MenuItem display_tags_menu_item;
 
 	[Glade.Widget] MenuItem set_as_background;
@@ -1604,7 +1613,11 @@ public class MainWindow {
 
 	void UpdateMenus ()
 	{
-		if (CurrentPhoto == null) {
+		bool tag_sensitive = tag_selection_widget.Selection.CountSelectedRows () > 0;
+		bool active_selection = PhotoSelectionActive ();
+		bool single_active = CurrentPhoto != null;
+		
+		if (!single_active) {
 			version_menu_item.Sensitive = false;
 			version_menu_item.Submenu = new Menu ();
 
@@ -1612,7 +1625,6 @@ public class MainWindow {
 			delete_version_menu_item.Sensitive = false;
 			rename_version_menu_item.Sensitive = false;
 
-			set_as_background.Sensitive = true;
 		} else {
 			version_menu_item.Sensitive = true;
 			create_version_menu_item.Sensitive = true;
@@ -1628,18 +1640,27 @@ public class MainWindow {
 			versions_submenu = new PhotoVersionMenu (CurrentPhoto);
 			versions_submenu.VersionIdChanged += new PhotoVersionMenu.VersionIdChangedHandler (HandleVersionIdChanged);
 			version_menu_item.Submenu = versions_submenu;
-
-			set_as_background.Sensitive = true;
 		}
 
-		bool tag_sensitive = tag_selection_widget.Selection.CountSelectedRows () > 0;
-		bool active_selection = PhotoSelectionActive ();
+		set_as_background.Sensitive = single_active;
+		adjust_color.Sensitive = single_active;
+
+		attach_tag.Sensitive = active_selection;
+		remove_tag.Sensitive = active_selection;
 
 		rotate_left.Sensitive = active_selection;
 		rotate_right.Sensitive = active_selection;
 		update_thumbnail.Sensitive = active_selection;
 		delete_from_drive.Sensitive = active_selection;
 		copy.Sensitive = active_selection;
+		
+		send_mail.Sensitive = active_selection;
+		print.Sensitive = active_selection;
+		export.Sensitive = active_selection;
+		select_none.Sensitive = active_selection;
+		exif_data.Sensitive = active_selection;
+		sharpen.Sensitive = active_selection;
+		remove_from_catalog.Sensitive = active_selection;
 
 		delete_selected_tag.Sensitive = tag_sensitive;
 		edit_selected_tag.Sensitive = tag_sensitive;
