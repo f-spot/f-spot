@@ -1,5 +1,8 @@
 2004-06-13  Larry Ewing  <lewing@ximian.com>
 
+	* src/TagSelectionWidget.cs: TagAtPosition helper method, based on
+	a dnd patch from Lee Willis <lee@leewillist.co.uk>.
+
 	* src/IconView.cs: Integrate Icon view selection patch from Lee
 	Willis <lee@leewillis.co.uk> and MOREAU Vincent
 	<vmoreau@orange.fr>.

@@ -19,6 +19,28 @@ public class TagSelectionWidget : TreeView {
 	// Hash of the IDs of the selected tags.
 	private Hashtable selection;
 
+	public Tag TagAtPosition (int x, int y) 
+	{
+		TreeModel model;
+		TreePath path;
+		TreeIter iter;
+
+		// Work out which tag we're dropping onto
+		if (!this.GetPathAtPos (x, y, out path, null))
+			return null;
+
+		if (!Model.GetIter (out iter, path))
+			return null;
+
+		GLib.Value value = new GLib.Value ();
+
+		Model.GetValue (iter, 0, ref value);
+		uint tag_id = (uint) value;
+		Tag tag = tag_store.Get (tag_id) as Tag;
+
+		return tag;
+	}
+
 	public void Select (Tag tag)
 	{
 		if (! selection.Contains (tag.Id))
