@@ -24,15 +24,17 @@ public class CameraFileSelectionDialog
 	[Widget] Gtk.Button select_tag_button;
 	
 	GPhotoCamera camera;
-	Db db;
 	ListStore preview_list_store;
-	
+	Db db;
+
+	FSpot.ThreadProgressDialog progress_dialog;
+	System.Collections.ArrayList index_list;
+
 	string[] saved_files;
 	Tag[] selected_tags;
-	bool cancelled;
 	
 	string destination;
-
+	System.Threading.Thread command_thread;
 	
 	public CameraFileSelectionDialog (GPhotoCamera cam, Db datab)
 	{
@@ -40,33 +42,19 @@ public class CameraFileSelectionDialog
 		db = datab;
 		saved_files = null;
 		selected_tags = null;
-		
 	}
 	
-	public Tag[] Tags {
-		get {
-			return selected_tags;
-		}
-	}
-	
-	public bool Run ()
+	public void Run ()
 	{	
 		CreateInterface ();
 		
-		while (true) {
-			ResponseType response = (ResponseType) camera_file_selection_dialog.Run ();
-			
-			if (response == ResponseType.Ok) {
-				if (!cancelled && SaveFiles ()) {
-					ImportFiles ();
-					break;
-				}
-			}
-		}
-		
+		ResponseType response = (ResponseType) camera_file_selection_dialog.Run ();
+		if (response == ResponseType.Ok)
+			if (SaveFiles ())
+				ImportFiles ();
+
 		camera_file_selection_dialog.Destroy ();
-		
-		return !cancelled;
+		return;
 	}
 	
 	private void CreateInterface ()
@@ -96,30 +84,33 @@ public class CameraFileSelectionDialog
 	
 	private void GetPreviews()
 	{
-		ProgressDialog pdialog = new ProgressDialog (Mono.Posix.Catalog.GetString ("Downloading Previews"), 
-							     ProgressDialog.CancelButtonType.Cancel, 
-							     camera.FileList.Count, 
-							     camera_file_selection_dialog);
-		
-		int index = 0;
-		foreach (GPhotoCameraFile file in camera.FileList) {
-			string msg = String.Format (Mono.Posix.Catalog.GetString ("Downloading Preview of {0}"), file.FileName);
-			cancelled = pdialog.Update (msg);
-
-			if (cancelled) 
-				return;
+		lock (camera) {
+			ProgressDialog pdialog = new ProgressDialog (Mono.Posix.Catalog.GetString ("Downloading Previews"), 
+								     ProgressDialog.CancelButtonType.Cancel, 
+								     camera.FileList.Count, 
+								     camera_file_selection_dialog);
 			
-			Pixbuf thumbscale = camera.GetPreviewPixbuf (file);
-			Pixbuf scale = PixbufUtils.ScaleToMaxSize (thumbscale, 64,64);
-			preview_list_store.AppendValues (file.Directory, file.FileName, scale, index);
-			thumbscale.Dispose ();
-			index++;
+			int index = 0;
+			foreach (GPhotoCameraFile file in camera.FileList) {
+				string msg = String.Format (Mono.Posix.Catalog.GetString ("Downloading Preview of {0}"), 
+							    file.FileName);
+				
+				if (pdialog.Update (msg)) {
+					pdialog.Destroy ();
+					return;
+				}
+				
+				Pixbuf thumbscale = camera.GetPreviewPixbuf (file);
+				Pixbuf scale = PixbufUtils.ScaleToMaxSize (thumbscale, 64,64);
+				preview_list_store.AppendValues (file.Directory, file.FileName, scale, index);
+				thumbscale.Dispose ();
+				index++;
+			}
+			
+			file_tree.Selection.SelectAll ();
+			pdialog.Destroy ();
 		}
-		
-		file_tree.Selection.SelectAll ();
-		pdialog.Destroy ();
 	}
-	
 
 	private System.Collections.ArrayList GetSelectedItems ()
 	{
@@ -127,15 +118,15 @@ public class CameraFileSelectionDialog
 		TreeModel model;
 		TreePath[] selected_rows = selection.GetSelectedRows (out model);
 	
-		System.Collections.ArrayList index_list = new System.Collections.ArrayList ();
+		System.Collections.ArrayList list = new System.Collections.ArrayList ();
 		foreach (TreePath cur_row in selected_rows) {
 			TreeIter cur_iter;
 
 			if (model.GetIter (out cur_iter, cur_row))
-				index_list.Add ((int) model.GetValue (cur_iter, IndexColumn));
+				list.Add ((int) model.GetValue (cur_iter, IndexColumn));
 		}
 		
-		return index_list;
+		return list;
 	}
 
 	private bool PrepareDestination ()
@@ -182,34 +173,75 @@ public class CameraFileSelectionDialog
 		if (PrepareDestination ())
 			return true;
 		
-		System.Collections.ArrayList index_list = GetSelectedItems ();
-		System.Collections.ArrayList saved = new System.Collections.ArrayList ();
+		index_list = GetSelectedItems ();
+		camera_file_selection_dialog.Hide ();
 
-		foreach (int index in index_list)
-			saved.Add (SaveFile (index));
+		command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (this.Download));
+		command_thread.Name = Mono.Posix.Catalog.GetString ("Transferring Pictures");
 
-		saved_files = (string []) saved.ToArray (typeof (string));
-		return cancelled;
+		progress_dialog = new FSpot.ThreadProgressDialog (command_thread, 1);
+		progress_dialog.Start ();
+
+		while (command_thread.IsAlive) {
+			if (Application.EventsPending ())
+				Application.RunIteration ();
+
+		}
+
+		System.Console.WriteLine ("GOT Past save files");
+		return false;
 	}
 
+	private void Download ()
+	{
+		lock (camera) {
+			try {
+				System.Collections.ArrayList saved = new System.Collections.ArrayList ();
+				
+				int count = 0;
+				foreach (int index in index_list) {
+					count++;
+					string msg = String.Format (Mono.Posix.Catalog.GetString ("Copying file {0} of {1}"),
+								    count, index_list.Count);
+
+					progress_dialog.ProgressText = msg;
+					saved.Add (SaveFile (index));
+					progress_dialog.Fraction = count/(double)index_list.Count;
+				}
+				
+				saved_files = (string []) saved.ToArray (typeof (string));
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e.ToString ());
+			}
+		}
+	}
+	
 	private string SaveFile (int index) 
 	{
 		GPhotoCameraFile camfile = (GPhotoCameraFile) camera.FileList [index];
-		string filename = camfile.FileName.ToLower ();
-		string path = System.IO.Path.Combine (destination, filename);
+		string orig = System.IO.Path.Combine (destination, camfile.FileName.ToLower ());
+		string path = orig;
 		
 		int i = 0;
 		while (File.Exists (path)) {
-			path = String.Format ("{0}-{1}{2}", System.IO.Path.GetFileNameWithoutExtension (path), i, System.IO.Path.GetExtension (path));
+			path = String.Format ("{0}-{1}{2}", 
+					      System.IO.Path.GetFileNameWithoutExtension (orig), 
+					      i, System.IO.Path.GetExtension (orig));
 			i++;
 		}
-			
+
+		string msg = String.Format (Mono.Posix.Catalog.GetString ("Transferring \"{0}\" from camera"), 
+					    System.IO.Path.GetFileName (path));
+		progress_dialog.Message = msg;
+
 		camera.SaveFile (index, path);
 		return path;
 	}
 
 	private void ImportFiles ()
 	{
+		System.Console.WriteLine ("Calling Import");
+
 		if (saved_files != null && import_files_checkbox.Active) {
 			ImportCommand command = new ImportCommand (null);
 			command.ImportFromPaths (db.Photos, saved_files, selected_tags);
@@ -219,7 +251,8 @@ public class CameraFileSelectionDialog
 	void HandleSelectSaveDirectory (object sender, EventArgs args)
 	{		
 		CompatFileChooserDialog file_selector =
-			new CompatFileChooserDialog (Mono.Posix.Catalog.GetString ("Select Destination"), camera_file_selection_dialog,
+			new CompatFileChooserDialog (Mono.Posix.Catalog.GetString ("Select Destination"), 
+						     camera_file_selection_dialog,
 						     CompatFileChooserDialog.Action.SelectFolder);
 
 		file_selector.Filename = copied_file_destination.Text;
@@ -243,11 +276,10 @@ public class CameraFileSelectionDialog
 		if (sender is Gtk.CheckButton)
 			select_tag_button.Sensitive = (sender as Gtk.CheckButton).Active;
 	}
-	
-	private string PadNumber (int number)
-	{
-		string string_num = number.ToString ();
-		
-		return string_num.PadLeft(4, '0');
+
+	public Tag[] Tags {
+		get {
+			return selected_tags;
+		}
 	}
 }

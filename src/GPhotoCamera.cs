@@ -129,7 +129,10 @@ public class GPhotoCamera
 		GPhotoCameraFile selected_file = (GPhotoCameraFile)files [index];		
 		if (selected_file.NormalFile == null)
 		{
-			selected_file.NormalFile = camera_fs.GetFile (selected_file.Directory, selected_file.FileName, CameraFileType.Normal, context);
+			selected_file.NormalFile = camera_fs.GetFile (selected_file.Directory, 
+								      selected_file.FileName, 
+								      CameraFileType.Normal,
+								      context);
 		}
 		
 		return selected_file.NormalFile;
@@ -174,12 +177,12 @@ public class GPhotoCamera
 		
 		//check if the directory exists
 		if (!Directory.Exists (Path.GetDirectoryName (filename))) 
-			throw new Exception (); //FIXME
+			throw new Exception ("Directory does not exist"); //FIXME
 		
 		CameraFile camfile = GetFile (index);
 		
 		if (camfile == null) 
-			return;
+			throw new Exception ("Unable to claim file"); //FIXME
 		
 		camfile.Save (filename);
 	}
