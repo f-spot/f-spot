@@ -61,7 +61,7 @@ public class TagCommands {
 					StringBuilder label_builder = new StringBuilder ();
 
 					for (Category parent = category.Category; 
-					     parent != tag_store.RootCategory; 
+					     parent != tag_store.RootCategory;
 					     parent = parent.Category)
 						label_builder.Append ("  ");
 
@@ -258,37 +258,36 @@ public class TagCommands {
 			int history = 0;
 			int i = 0;
 			categories = new ArrayList ();
-			PopulateCategories (categories, db.Tags.RootCategory);
+			Category root = db.Tags.RootCategory;
+			categories.Add (root);
+			PopulateCategories (categories, root);
 
 			Menu menu = new Menu ();
 
-			if (categories.Count == 0) {
-				MenuItem item = new MenuItem ("(No categories)");
-				category_option_menu.Sensitive = false;
-				menu.Append (item);
-			} else {
-				foreach (Category category in categories) {
-					StringBuilder label_builder = new StringBuilder ();
-					
-					if (t.Category == category)
-						history = i;
-					
-					i++;
-
-					for (Category parent = category.Category; 
-					     parent != db.Tags.RootCategory; 
-					     parent = parent.Category)
-						label_builder.Append ("  ");
-
+			foreach (Category category in categories) {
+				StringBuilder label_builder = new StringBuilder ();
+				
+				if (t.Category == category)
+					history = i;
+				
+				i++;
+				
+				for (Category parent = category.Category; 
+				     parent != null; 
+				     parent = parent.Category)
+					label_builder.Append ("  ");
+				
+				if (category == root)
+					label_builder.Append ("(Toplevel)");
+				else 
 					label_builder.Append (category.Name);
-
-					// FIXME escape underscores.
-					MenuItem item = new MenuItem (label_builder.ToString ());
-					menu.Append (item);
-				}
-
-				category_option_menu.Sensitive = true;
+				
+				// FIXME escape underscores.
+				MenuItem item = new MenuItem (label_builder.ToString ());
+				menu.Append (item);
 			}
+			
+			category_option_menu.Sensitive = true;
 
 			menu.ShowAll ();
 			category_option_menu.Menu = menu;

@@ -1,3 +1,26 @@
+2004-09-01  Larry Ewing  <lewing@novell.com>
+
+	* src/TagCommands.cs: handle toplevel tags properly.
+
+2004-08-31  Larry Ewing  <lewing@novell.com>
+
+	* src/ColorDialog.cs: new horribly ugly dialog that uses the 
+	cms stuff to do color correction.  It currently offers no way to
+	save the corrected version so don't expect it to.
+
+	* src/PhotoView.cs: popup the ColorDialog instead of sharpen ;).
+
+	* src/makefile.am: add ColorDialog.cs.
+
+	* src/f-spot.glade: add color dialog.
+	
+	* src/MainWindow.cs: make printing do something approaching the
+	right thing.
+
+	* src/PixbufUtils.cs: add more cms utility functions.
+	
+	* src/Cms.cs: add a from file contstructor and RGBA8 format.
+
 2004-08-30  Larry Ewing  <lewing@novell.com>
 
 	* makefile.am: add Cms.cs.
