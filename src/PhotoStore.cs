@@ -968,6 +968,77 @@ public class PhotoStore : DbStore {
 		return Query (tags, null);
 	}
 
+	public Photo [] Query (string query)
+	{
+		Console.WriteLine ("Query Start {0}", System.DateTime.Now.ToLongTimeString ());
+
+		SqliteCommand command = new SqliteCommand ();
+		command.Connection = Connection;
+		command.CommandText = query;
+		SqliteDataReader reader = command.ExecuteReader ();
+		
+		Console.WriteLine ("Query Mid {0}", System.DateTime.Now);
+
+		ArrayList version_list = new ArrayList ();
+		ArrayList id_list = new ArrayList ();
+		while (reader.Read ()) {
+			uint id = Convert.ToUInt32 (reader [0]);
+			Photo photo = LookupInCache (id) as Photo;
+
+			if (photo == null) {
+				photo = new Photo (id,
+						   Convert.ToUInt32 (reader [1]),
+						   reader [2].ToString (),
+						   reader [3].ToString ());
+				
+				photo.Description = reader[4].ToString ();
+				photo.DefaultVersionId = Convert.ToUInt32 (reader[5]);		 
+				
+				version_list.Add (photo);
+			}
+
+			id_list.Add (photo);
+		}
+
+		Console.WriteLine ("Query End {0}", System.DateTime.Now.ToLongTimeString ());
+
+		bool need_load = false;
+		Console.WriteLine ("Start {0}", System.DateTime.Now);
+		foreach (Photo photo in version_list) {
+			AddToCache (photo);
+			need_load |= !photo.Loaded;
+		}
+		
+		if (need_load) {
+			GetAllTags ();
+			GetAllVersions ();
+			foreach (Photo photo in version_list) {
+				photo.Loaded = true;
+			}
+		} else {
+			//Console.WriteLine ("Skipped Loading Data");
+		}
+
+		Console.WriteLine ("End {0}", System.DateTime.Now);
+		command.Dispose ();
+
+		return id_list.ToArray (typeof (Photo)) as Photo [];
+	}
+
+	public Photo [] Query (System.IO.DirectoryInfo dir)
+	{
+		string query_string = String.Format ("SELECT photos.id,                          " +
+						     "       photos.time,                        " +
+						     "       photos.directory_path,              " +
+						     "       photos.name,                        " +
+						     "       photos.description,                 " +
+						     "       photos.default_version_id           " +
+						     "     FROM photos                           " +
+						     "     WHERE directory_path = \"{0}\"", dir.FullName);
+
+		return Query (query_string);
+	}	   
+
 	public Photo [] Query (Tag [] tags, DateRange range)
 	{
 		string query;
@@ -1038,61 +1109,7 @@ public class PhotoStore : DbStore {
 		query_builder.Append ("ORDER BY photos.time");
 		query = query_builder.ToString ();
 		
-		Console.WriteLine ("Query Start {0}", System.DateTime.Now.ToLongTimeString ());
-
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-		command.CommandText = query;
-		SqliteDataReader reader = command.ExecuteReader ();
-		
-		Console.WriteLine ("Query Mid {0}", System.DateTime.Now);
-
-		ArrayList version_list = new ArrayList ();
-		ArrayList id_list = new ArrayList ();
-		while (reader.Read ()) {
-			uint id = Convert.ToUInt32 (reader [0]);
-			Photo photo = LookupInCache (id) as Photo;
-
-			if (photo == null) {
-				photo = new Photo (id,
-						   Convert.ToUInt32 (reader [1]),
-						   reader [2].ToString (),
-						   reader [3].ToString ());
-				
-				photo.Description = reader[4].ToString ();
-				photo.DefaultVersionId = Convert.ToUInt32 (reader[5]);		 
-				
-				version_list.Add (photo);
-			}
-
-			id_list.Add (photo);
-		}
-
-		Console.WriteLine ("Query End {0}", System.DateTime.Now.ToLongTimeString ());
-
-		bool need_load = false;
-		Console.WriteLine ("Start {0}", System.DateTime.Now);
-		foreach (Photo photo in version_list) {
-			AddToCache (photo);
-			need_load |= !photo.Loaded;
-		}
-		
-		if (need_load) {
-			GetAllTags ();
-			GetAllVersions ();
-			foreach (Photo photo in version_list) {
-				photo.Loaded = true;
-			}
-		} else {
-			//Console.WriteLine ("Skipped Loading Data");
-		}
-
-
-		Console.WriteLine ("End {0}", System.DateTime.Now);
-
-		command.Dispose ();
-
-		return id_list.ToArray (typeof (Photo)) as Photo [];
+		return Query (query);
 	}
 
 #if TEST_PHOTO_STORE
