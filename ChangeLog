@@ -1,5 +1,7 @@
 2005-03-01  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: stop allocating a gc we never use.
+	
 	* src/IconView.cs: add logic to preload from the center of the
 	area.  Reverse the traversal of the region rectangles depending on
 	direction.  Fix the preload bounds.

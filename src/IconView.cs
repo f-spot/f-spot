@@ -462,15 +462,8 @@ public class IconView : Gtk.Layout {
 		else
 			entry.Data = thumbnail_num;
 
-			
-		Gdk.GC gc = new Gdk.GC (BinWindow);
-		gc.Copy (Style.ForegroundGC (StateType.Normal));
-		gc.SetLineAttributes (1, LineStyle.Solid, CapStyle.NotLast, JoinStyle.Round);
 		bool selected = CellIsSelected (thumbnail_num);
-		
-
 		StateType cell_state = selected ? (HasFocus ? StateType.Selected :StateType.Active) : StateType.Normal;
-		
 		
 		Style.PaintFlatBox (Style, BinWindow, cell_state, 
 				    ShadowType.Out, area, this, "IconView", 
