@@ -1,5 +1,8 @@
 2004-10-06  Larry Ewing  <lewing@novell.com>
 
+	* src/InfoDisplay.cs: don't call base.StyleSet it seems to not
+	like it.
+
 	* src/ColorDialog.cs: set the histogram background color.
 
 	* src/Histogram.cs: get rid of UseAlpha and allow the user to set

@@ -32,7 +32,6 @@ namespace FSpot {
 		
 		protected override void OnStyleSet (Gtk.Style previous)
 		{
-			base.OnStyleSet (previous);
 			this.Update ();
 		}
 		
@@ -55,8 +54,7 @@ namespace FSpot {
 					stream.Close (Gtk.HTMLStreamStatus.Ok);
 				} else 
 					stream.Close (Gtk.HTMLStreamStatus.Error);
-					  
-			}
+			} 
 		}
 
 		private void Update ()
