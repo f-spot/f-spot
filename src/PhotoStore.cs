@@ -950,19 +950,7 @@ public class PhotoStore : DbStore {
 			}
 		}
 
-		if (tags != null && tags.Length == 1 && tags [0].Id == tag_store.Hidden.Id) {
-			StringBuilder query_builder = new StringBuilder ();
-			query_builder.Append  ("SELECT id, time, directory_path, name, description, default_version_id ");
-			
-			if (range != null) {
-				query_builder.Append (String.Format ("WHERE photos.time >= {0} AND photos.time < {1} ",
-								     DbUtils.UnixTimeFromDateTime (range.start), 
-								     DbUtils.UnixTimeFromDateTime (range.end)));
-			}
-					       
-			query_builder.Append (" FROM photos");
-			query = query_builder.ToString ();
-		} else {
+		{
 			// The SQL query that we want to construct is:
 			//
 			// SELECT photos.id
@@ -984,47 +972,55 @@ public class PhotoStore : DbStore {
 					      "       photos.directory_path,              " +
 					      "       photos.name,                        " +
 					      "       photos.description,                 " +
-					      "       photos.default_version_id,          " +
-					      "       photo_tags.tag_id                   " +
-					      "     FROM photo_tags, photos               " +
-					      "     WHERE photos.id = photo_tags.photo_id ");
+					      "       photos.default_version_id           " +
+					      "     FROM photos                      ");
+
 			if (range != null) {
-				query_builder.Append (String.Format ("AND photos.time >= {0} AND photos.time < {1} ",
+				query_builder.Append (String.Format ("WHERE photos.time >= {0} AND photos.time < {1} ",
 								     DbUtils.UnixTimeFromDateTime (range.start), 
 								     DbUtils.UnixTimeFromDateTime (range.end)));
 			}
-
+			
 			if (hide) {
-				query_builder.Append (String.Format ("AND photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})", 
-								     tag_store.Hidden.Id));
+				query_builder.Append (String.Format ("{0} photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {1})", 
+								     range != null ? " AND " : " WHERE ", tag_store.Hidden.Id));
 			}
 
 			if (tags != null && tags.Length > 0) {
-				query_builder.Append ("AND photo_tags.tag_id IN (");
 				bool first = true;
 				foreach (Tag t in tags) {
 					if (t.Id == tag_store.Hidden.Id)
 						continue;
+
+					if (first) {
+						query_builder.Append (String.Format ("{0} photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN (",
+								      hide || range != null ? " AND " : " WHERE "));
+					}
 					
 					query_builder.Append (String.Format ("{0}{1} ", first ? "" : ", ", t.Id));
 					
 					first = false;
 				}
-				query_builder.Append (")");
+
+				if (!first)
+					query_builder.Append (")) ");
 			}
-			
-			query_builder.Append (" GROUP BY photos.id ORDER BY photos.time");
+
+			query_builder.Append ("ORDER BY photos.id");
 			query = query_builder.ToString ();
+			
 		}
 
-		//Console.WriteLine ("query: {0}", query);
-		
+		Console.WriteLine ("query: {0}", query);		
 		Console.WriteLine ("Main Start {0}", System.DateTime.Now);
+
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
 		command.CommandText = query;
 		SqliteDataReader reader = command.ExecuteReader ();
+
 		Console.WriteLine ("Main Mid {0}", System.DateTime.Now);
+
 		ArrayList version_list = new ArrayList ();
 		ArrayList id_list = new ArrayList ();
 		while (reader.Read ()) {
@@ -1045,6 +1041,7 @@ public class PhotoStore : DbStore {
 
 			id_list.Add (photo);
 		}
+
 		Console.WriteLine ("Main End {0}", System.DateTime.Now);
 
 		bool need_load = false;

@@ -1,8 +1,11 @@
 2004-08-03  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoStore.cs: rework the query again, use two nested
+	queries instead of one, and remove the join completely.
+
 	* src/PhotoStore.cs: Try a query based hidden tag again, remove
 	the external cruft.  I think it is finally correct.
-	
+
 	* src/PhotoStore.cs: Go back to manual inspection for the hidden
 	tag, the query based one is not correct yet.
 
