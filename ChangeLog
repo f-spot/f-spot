@@ -1,5 +1,9 @@
 2005-01-09  Larry Ewing  <lewing@novell.com>
 
+	* src/f-spot.exe.config.in: fix the broken commit.
+
+	* src/TimeAdaptor.cs: remove some debug output.
+
 	* configure.in: add f-spot.in and fspot.exe.config.in to the
 	targets.  Rename makefile.am to Makefile.am
 
