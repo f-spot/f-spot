@@ -1,5 +1,10 @@
 2003-11-15  Ettore Perazzoli  <ettore@perazzoli.org>
 
+	* src/IconView.cs: Don't emit a DoubleClicked event if any
+	keyboard modifiers are held.
+
+2003-11-15  Ettore Perazzoli  <ettore@perazzoli.org>
+
 	* src/IconView (IconView.display_tags): New private member
 	variable.
 	(IconView.DisplayTags): New property.
