@@ -54,44 +54,40 @@ namespace FSpot {
 
 		private void HandleAdaptorChanged (GroupAdaptor adaptor)
 		{
+			bool size_changed = box_counts.Length != adaptor.Count ();
+			int [] box_values = new int [adaptor.Count ()];
 			
-				int [] box_values = new int [adaptor.Count ()];
-
-				if (tick_layouts != null) {
-					foreach (Pango.Layout l in tick_layouts) {
-						if (l != null)
-							l.Dispose ();
-					}
+			if (tick_layouts != null) {
+				foreach (Pango.Layout l in tick_layouts) {
+					if (l != null)
+						l.Dispose ();
 				}
-				tick_layouts = new Pango.Layout [adaptor.Count ()];
-
-				int i = 0;
-				while (i < adaptor.Count ()) {
-					box_values [i] = adaptor.Value (i);
-					string label = adaptor.TickLabel (i);
-					if (label != null) {
-						tick_layouts [i] = CreatePangoLayout (label);
-					}
-					i++;
+			}
+			tick_layouts = new Pango.Layout [adaptor.Count ()];
+			
+			int i = 0;
+			while (i < adaptor.Count ()) {
+				box_values [i] = adaptor.Value (i);
+				string label = adaptor.TickLabel (i);
+				if (label != null) {
+					tick_layouts [i] = CreatePangoLayout (label);
 				}
-
-				if (glass.Position >= adaptor.Count())
-					glass.SetPosition (adaptor.Count() - 1);
-
-				Counts = box_values;
-
-				System.Console.WriteLine ("Limits Changed");
-				if (has_limits) {
-					System.Console.WriteLine ("Limits Changed");
-					
-					if (min_limit.Position > adaptor.Count ())
-						min_limit.SetPosition (0);
-				        
-				     
-					if (max_limit.Position > adaptor.Count ())
-						max_limit.SetPosition (adaptor.Count () - 1);
-				}
-				this.QueueDraw ();
+				i++;
+			}
+			
+			if (glass.Position >= adaptor.Count())
+				glass.SetPosition (adaptor.Count() - 1);
+			
+			Counts = box_values;
+			
+			if (has_limits) {
+				if (size_changed || min_limit.Position > adaptor.Count ())
+					min_limit.SetPosition (0);
+				
+				if (size_changed ||max_limit.Position > adaptor.Count ())
+					max_limit.SetPosition (adaptor.Count () - 1);
+			}
+			this.QueueDraw ();
 		}
 		
 		private int [] Counts {

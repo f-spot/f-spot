@@ -1,5 +1,8 @@
 2005-01-23  Larry Ewing  <lewing@novell.com>
 
+	* src/GroupSelector.cs: make sure we reset the bounds if the size
+	of the timeline changes.
+	
 	* src/GroupSelector.cs: fix the expose area computation.
 
 2005-01-22  Larry Ewing  <lewing@novell.com>
