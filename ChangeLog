@@ -1,6 +1,10 @@
 2004-10-07  Larry Ewing  <lewing@novell.com>
 
-	* src/GalleryRemote.cs: fix typo.
+	* src/GalleryRemote.cs: add namespace.
+	
+	* src/ExportCommand.cs: use namespace.
+
+	* src/GalleryRemote.cs: fix command name typo.
 
 	* src/GalleryExport.cs: start hooking up the new gallery dialog.
 

@@ -4,6 +4,7 @@ using System;
 using System.Text;
 using System.Collections;
 using System.Threading;
+using FSpot;
 
 public class ExportCommand {
 	public class Gallery {
@@ -25,16 +26,16 @@ public class ExportCommand {
 		[Glade.Widget]
 		private OptionMenu gallery_album_option;
 
-		private GalleryRemote gallery = null;
-		private Album current_album = null;
+		private GalleryRemote.Gallery gallery = null;
+		private GalleryRemote.Album current_album = null;
 		private Photo [] current_photos;
 		
 		private FSpot.ThreadProgressDialog dialog;
-
+		
 		string password;
 		string url; 
 		string name;
-
+		
 		private void PopulateAlbumOptionMenu ()
 		{
 			ArrayList albums = null;
@@ -50,10 +51,10 @@ public class ExportCommand {
 
 				gallery_album_option.Sensitive = false;
 			} else {
-				foreach (Album album in albums) {
+				foreach (GalleryRemote.Album album in albums) {
 					StringBuilder label_builder = new StringBuilder ();
 					
-					for (Album parent = album.Parent ();
+					for (GalleryRemote.Album parent = album.Parent ();
 					     parent != null;
 					     parent = parent.Parent ()) {
 						label_builder.Append ("  ");
@@ -107,10 +108,10 @@ public class ExportCommand {
 			ResponseType response = (ResponseType)export_gallery_dialog.Run ();
 			
 			if (response == ResponseType.Ok) {
-				Album album = null;
+				GalleryRemote.Album album = null;
 				try {
 					if (gallery.Albums.Count != 0) {
-						current_album = gallery.Albums[gallery_album_option.History] as Album;
+						current_album = gallery.Albums[gallery_album_option.History] as GalleryRemote.Album;
 						current_photos = photos;
 
 						Console.WriteLine ("album = {0}", current_album.Name);
@@ -167,7 +168,7 @@ public class ExportCommand {
 					if (!url.EndsWith ("/gallery_remote2.php"))
 					    url = url + "/gallery_remote2.php";
 					
-					gallery = new GalleryRemote (url);
+					gallery = new GalleryRemote.Gallery (url);
 					gallery.Login (name, password);
 					gallery.FetchAlbums ();
 				} catch (Exception ex) {
