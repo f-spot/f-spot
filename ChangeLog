@@ -1,5 +1,7 @@
 2004-06-11  Larry Ewing  <lewing@ximian.com>
 
+	* src/makefile.am (F_SPOT_CSFILES): add Util.cs
+
 	* src/ExportCommand.cs: use thread progress dialog, this needs
 	lots of work but it might as well go in.
 
