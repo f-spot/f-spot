@@ -1131,6 +1131,16 @@ public class MainWindow {
 		args.RetVal = true;
 	}
 
+	void HandleViewBrowse (object sender, EventArgs args)
+	{
+		SwitchToIconViewMode ();
+	}
+
+	void HandleViewPhoto (object sender, EventArgs args)
+	{
+		SwitchToPhotoViewMode ();
+	}
+
 	void HandleViewFullscreen (object sender, EventArgs args)
 	{
 		int active = Math.Max (ActiveIndex (), 0);

@@ -7417,6 +7417,7 @@ Photo Details</property>
 	      <property name="visible_vertical">True</property>
 	      <property name="is_important">False</property>
 	      <property name="active">False</property>
+	      <signal name="toggled" handler="HandleViewBrowse" last_modification_time="Fri, 07 Jan 2005 21:03:29 GMT"/>
 	    </widget>
 	    <packing>
 	      <property name="expand">False</property>
@@ -7427,13 +7428,13 @@ Photo Details</property>
 	  <child>
 	    <widget class="GtkRadioToolButton" id="radiotoolbutton2">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes"></property>
-	      <property name="use_underline">True</property>
+	      <property name="stock_id">f-spot-edit-image</property>
 	      <property name="visible_horizontal">True</property>
 	      <property name="visible_vertical">True</property>
 	      <property name="is_important">False</property>
 	      <property name="active">False</property>
 	      <property name="group">radiotoolbutton1</property>
+	      <signal name="toggled" handler="HandleViewPhoto" last_modification_time="Fri, 07 Jan 2005 21:00:28 GMT"/>
 	    </widget>
 	    <packing>
 	      <property name="expand">False</property>
@@ -7442,20 +7443,50 @@ Photo Details</property>
 	  </child>
 
 	  <child>
-	    <widget class="GtkRadioToolButton" id="radiotoolbutton3">
+	    <widget class="GtkToolButton" id="toolbutton4">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes"></property>
-	      <property name="use_underline">True</property>
+	      <property name="stock_id">f-spot-fullscreen</property>
 	      <property name="visible_horizontal">True</property>
 	      <property name="visible_vertical">True</property>
 	      <property name="is_important">False</property>
-	      <property name="active">False</property>
-	      <property name="group">radiotoolbutton1</property>
+	      <signal name="clicked" handler="HandleViewFullscreen" last_modification_time="Fri, 07 Jan 2005 20:53:15 GMT"/>
 	    </widget>
 	    <packing>
 	      <property name="expand">False</property>
 	      <property name="homogeneous">True</property>
 	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkSeparatorToolItem" id="separatortoolitem2">
+	      <property name="visible">True</property>
+	      <property name="draw">True</property>
+	      <property name="visible_horizontal">True</property>
+	      <property name="visible_vertical">True</property>
+	    </widget>
+	    <packing>
+	      <property name="expand">False</property>
+	      <property name="homogeneous">False</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkToolButton" id="toolbutton3">
+	      <property name="visible">True</property>
+	      <property name="stock_id">f-spot-slideshow</property>
+	      <property name="visible_horizontal">True</property>
+	      <property name="visible_vertical">True</property>
+	      <property name="is_important">False</property>
+	      <signal name="clicked" handler="HandleViewSlideShow" last_modification_time="Fri, 07 Jan 2005 20:51:22 GMT"/>
+	    </widget>
+	    <packing>
+	      <property name="expand">False</property>
+	      <property name="homogeneous">True</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <placeholder/>
 	  </child>
 
 	  <child>
