@@ -1,9 +1,16 @@
 2004-01-30  Larry Ewing  <lewing@ximian.com>
 
+	* src/SlideView.cs: Add another timer loop for the display
+	transitions so that the transtion takes roughly the same amount of
+	time for all sizes.  Clean up debug statments and timer names.  
+
+2004-01-30  Larry Ewing  <lewing@ximian.com>
+
 	* src/SlideView.cs: Generate the inbetween frames starting at the
 	last frame and working forward because it gives a smoother
 	impression if the end is smooth and the beginning is rough.  Use
 	Destroyed instead of Destroy event.
+	
 
 2004-01-30  Larry Ewing  <lewing@ximian.com>
 

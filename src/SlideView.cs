@@ -16,14 +16,14 @@ public class SlideView : Gtk.Image {
 	uint tween_idle;
 
 	int current = 0;	
-	uint timer = 0;
-	uint transition_idle = 0;
+	uint flip_timer = 0;
+	uint transition_timer = 0;
 
 	public void Play () 
 	{
 		this.FromPixbuf = GetScaled (photos[current].DefaultVersionPath);
 		LoadNextImage ();
-		StartTimer ();
+		StartFlipTimer ();
 	}
 
 #if true
@@ -31,7 +31,7 @@ public class SlideView : Gtk.Image {
 	{ 
 		int width = Allocation.width;
 		int height = Allocation.height;
-		
+
 		prev.CopyArea (0, 0, width, height, current, 0, 0);
 		next.Composite (current, 0,0, width, height, 0, 0, 1, 1,
 				Gdk.InterpType.Bilinear, (int)(255 * percent + 0.5));
@@ -112,40 +112,48 @@ public class SlideView : Gtk.Image {
 		}
 	}
 	
-	public bool HandleTimer ()
+
+	public bool HandleFlipTimer ()
 	{	
 		StopTweenIdle ();
-		Console.WriteLine ("current_tween = " + current_tween);
+	
+		StartTransitionTimer ();
 			
-		while (current_tween--  > 0) {
+		flip_timer = 0;
+		return false;
+	}
+
+	public bool HandleTransitionTimer ()
+	{			
+		if (current_tween--  > 0) {
+
 			this.FromPixbuf = tweens[current_tween];
 			GdkWindow.ProcessUpdates (false);
+			
+			return true;
+		} else {
+			this.FromPixbuf = next;
 
-			/*
-			 * if some event occured that cleared the timer
-			 * while we were drawing get out fast
-			 */
-			if (timer == 0)
-				return false;
-		}
-
-		this.FromPixbuf = next;
-
-		if (!LoadNextImage ()) {
-			timer = 0;
-			return false;
+			if (LoadNextImage ())
+				StartFlipTimer ();
+		
 		}
 		
-		return true;			
+		transition_timer = 0;
+		return false;			
 	}
 
 	private bool HandleTweenIdle ()
 	{
 		Pixbuf prev = this.Pixbuf;
+	
+		if (current_tween < tweens.Length && tweens[current_tween] == null) {
+			tweens[current_tween] = new Pixbuf (Colorspace.Rgb, false, 8, Allocation.width, Allocation.height);
+		}
 
 		switch (current_tween) {
 		case 9:
-			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .2);
+			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .15);
 			break;
 		case 8:
 			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .3);
@@ -196,56 +204,78 @@ public class SlideView : Gtk.Image {
 	{
 		if (tween_idle != 0) {
 			GLib.Source.Remove (tween_idle);
-			Console.WriteLine ("stopped tween_idle");
 		}
 		tween_idle = 0;
 	
 	}
 	
-	private void StopTimer ()
-	{	
-		if (timer != 0) {
-			GLib.Source.Remove (timer);
-			Console.WriteLine ("stopped timer");
+	private void StartTransitionTimer ()
+	{
+		if (transition_timer == 0)
+			transition_timer = GLib.Timeout.Add (50, new TimeoutHandler (HandleTransitionTimer));
+	}
+
+	private void StopTranstionTimer ()
+	{
+		if (transition_timer != 0) {
+			GLib.Source.Remove (transition_timer);
 		}
-		timer = 0;
+		transition_timer = 0;
 	}
 	
-	private void StartTimer ()
+	private void StopFlipTimer ()
+	{	
+		if (flip_timer != 0) {
+			GLib.Source.Remove (flip_timer);
+		}
+		flip_timer = 0;
+	}
+	
+	private void StartFlipTimer ()
 	{
-		if (timer == 0)
-			timer = GLib.Timeout.Add (2000, new TimeoutHandler (HandleTimer));
+		if (flip_timer == 0)
+			flip_timer = GLib.Timeout.Add (2000, new TimeoutHandler (HandleFlipTimer));
 	}
 	
 	public void Pause () 
 	{
-		StopTimer ();
-	}	
+		StopTranstionTimer ();
+		StopFlipTimer ();
+	}
+
+	public void Stop ()
+	{
+		StopTweenIdle ();
+		StopTranstionTimer ();
+		StopFlipTimer ();
+	}
 
 	private void HandleSizeAllocate (object sender, SizeAllocatedArgs args)
 	{	
 		if (Pixbuf == null)
 			return;
 	
-		for (int i = 0; i < tweens.Length; i++) {
-			tweens[i] = new Pixbuf (Colorspace.Rgb, false, 8, Allocation.width, Allocation.height);
-		}
-
 		/*
 		 * The size has changed so we need to reload the images.
 		 */
 		if (Pixbuf.Width != Allocation.width || Pixbuf.Height != Allocation.height) {
 			this.FromPixbuf = GetScaled (photos[current].DefaultVersionPath);
-			if (current < photos.Length - 1)
-				next = GetScaled (photos[current + 1].DefaultVersionPath);
+			
+			bool playing = (flip_timer != 0 || transition_timer != 0);
+			Stop ();
+
+			/* clear the tween images */
+			for (int i = 0; i < tweens.Length; i++)
+				tweens[i] = null;
+
+			if (playing && current < photos.Length - 1)
+				Play ();
 		}
 	}
 
 	private void HandleDestroyed (object sender, EventArgs args)
 	{
-		StopTweenIdle ();
-		StopTimer ();			
-		
+		Stop ();
 	}
 
 	public SlideView (Photo [] photos) : base ()
