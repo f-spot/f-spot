@@ -1,5 +1,7 @@
 2004-08-11  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: really fix attachment syntax. *sigh*
+
 	* src/PixbufUtils.cs: add TagIconFromPixbuf helper function that
 	simply does some croping and scaling.  This might belong somewhere
 	else.

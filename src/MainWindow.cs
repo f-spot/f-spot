@@ -600,7 +600,7 @@ public class MainWindow {
 		StringBuilder url = new StringBuilder ("mailto:?subject=my%20photos");
 
 		foreach (Photo p in SelectedPhotos ()) {
-			url.Append ("&attachment=" + p.DefaultVersionPath);
+			url.Append ("&attach=" + p.DefaultVersionPath);
 		}
 
 		Console.WriteLine (url.ToString ());
