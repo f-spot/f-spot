@@ -1,5 +1,7 @@
 2004-06-10  Larry Ewing  <lewing@ximian.com>
 
+	* src/makefile.am (F_SPOT_CSFILES): add TagMenu.cs
+
 	* src/MainWindow.cs: Add delete command.  Stub in fullscreen,
 	rename window1 everywhere.  Attach tag menu.  Add send mail
 	command.
