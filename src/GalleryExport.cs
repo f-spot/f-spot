@@ -119,6 +119,7 @@ namespace FSpot {
 		[Glade.Widget] Gtk.Button add_button;
 		[Glade.Widget] Gtk.Button cancel_button;
 	}
+
 	
 	public class GalleryAddAlbum {
 		public GalleryAddAlbum (GalleryRemote.Gallery gallery)
@@ -142,9 +143,14 @@ namespace FSpot {
 			
 			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "gallery_export_dialog", null);
 			xml.Autoconnect (this);
+			
+			IconView view = new IconView (new PhotoArray (photos));
+			view.Show ();
+
+			thumb_scrolledwindow.Add (view);
 
 			LoadAccounts ();
-
+			
 			Gtk.ResponseType response = (Gtk.ResponseType) gallery_export_dialog.Run ();
 
 			if (response == Gtk.ResponseType.Cancel)
@@ -198,13 +204,15 @@ namespace FSpot {
 
 		[Glade.Widget] Gtk.Button album_button;
 		[Glade.Widget] Gtk.Button add_button;
-
+		
+		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
+		
 		public Gtk.Dialog Dialog {
 			get {
 				return gallery_export_dialog;
 			}
 		}
-
+		
 		private void Upload ()
 		{
 			try {

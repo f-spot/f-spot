@@ -24,7 +24,7 @@ namespace FSpot {
 
 		private void UpdateImage ()
 		{
-			Photo photo = view.Query.Photos [Item];
+			Photo photo = view.Collection.Photos [Item];
 			
 			string orig_path = photo.DefaultVersionPath;
 			Gdk.Pixbuf pixbuf = preview_cache.GetThumbnailForPath (orig_path);

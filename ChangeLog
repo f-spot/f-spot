@@ -1,5 +1,32 @@
 2004-10-09  Larry Ewing  <lewing@novell.com>
 
+	* src/IPhotoCollection.cs: the Interface that we use in IconViews.
+
+	* src/PreviewPopup.cs: use view.Collection not view.Query.
+
+	* src/PhotoQuery.cs: implement IPhotoCollection.
+
+	* src/GalleryExport.cs: Use the IconView to display the photos
+	that we are going to upload. 
+
+	* src/MainWindow.cs: use QueryView rather than IconView for the
+	main icon list.
+	
+	* src/PhotoArray.cs: a simple IPhotoCollection that just stores
+	an array of Photos.
+
+	* src/makefile.am: add all the new files.
+
+	* src/QueryView.cs: add an IconView subclass that stores uses and
+	stores the PhotoQuery.
+	
+	* src/IconView.cs: Use IPhotoCollection rather than PhotoQuery to
+	hold the photos.
+
+	* src/MainWindow.cs: hook to the new export dialog.
+
+	* src/makefile.am: add GalleryExport.cs.
+
 	* src/GalleryExport.cs: Make the dialog do something nice.
 
 	* src/GalleryRemote.cs: rework the result codes.
@@ -9,7 +36,7 @@
 2004-10-08  Larry Ewing  <lewing@novell.com>
 
 	* src/MainWindow.cs: add gnome about dialog to the about menu
-	item, I did a quick rundown in my head and tried to find everyone
+	item, I did a quick rundown iQn my head and tried to find everyone
 	who had contributed so far, but I'm sure I missed several people.
 	If you feel you've been left out please let me know.  
 

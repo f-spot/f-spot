@@ -89,11 +89,7 @@ public class IconView : Gtk.Layout {
 	// Various other layout values.
 	private int cells_per_row;
 	private int cell_width;
-
 	private int cell_height;
-
-	// Query we are displaying.
-	private PhotoQuery query;
 
 	// The first pixel line that is currently on the screen (i.e. in the current
 	// scroll region).  Used to compute the area that went offscreen in the "changed"
@@ -159,35 +155,23 @@ public class IconView : Gtk.Layout {
 		
 		CanFocus = true;
 	}
-
-	private void OnReload (PhotoQuery query)
+	
+	public IconView (FSpot.IPhotoCollection collection) : this () 
 	{
-		// FIXME we should probably try to merge the selection forward
-		// but it needs some thought to be efficient.
-		UnselectAllCells ();
-		QueueResize ();
+		this.collection = collection;
 	}
-
-	private void ItemChanged (PhotoQuery query, int item)
-	{
-		InvalidateCell (item);
-	}
-
-	public IconView (PhotoQuery query) : this ()
-	{
-		this.query = query;
-		query.Reload += OnReload;
-		query.ItemChanged += ItemChanged;
-	}
+	
 
 	protected IconView (IntPtr raw) : base (raw) {}
 
 	//
 	// IPhotoSelection
 	//
-	public PhotoQuery Query {
+
+	protected FSpot.IPhotoCollection collection;
+	public FSpot.IPhotoCollection Collection {
 		get {
-			return query;
+			return collection;
 		}
 	}
 
@@ -229,7 +213,7 @@ public class IconView : Gtk.Layout {
 
 	public void UpdateThumbnail (int thumbnail_num)
 	{
-		Photo photo = query.Photos [thumbnail_num];
+		Photo photo = collection.Photos [thumbnail_num];
 		string thumbnail_path = Thumbnail.PathForUri ("file://" + photo.DefaultVersionPath, ThumbnailSize.Large);
 
 		//Console.WriteLine ("remove {0}", thumbnail_path);
@@ -242,19 +226,19 @@ public class IconView : Gtk.Layout {
 
 	public int CellAtPosition (int x, int y)
 	{
-		if (query == null)
+		if (collection == null)
 			return -1;
 
 		if (x < BORDER_SIZE || x >= BORDER_SIZE + cells_per_row * cell_width)
 			return -1;
-		if (y < BORDER_SIZE || y >= BORDER_SIZE + (query.Photos.Length / cells_per_row + 1) * cell_height)
+		if (y < BORDER_SIZE || y >= BORDER_SIZE + (collection.Photos.Length / cells_per_row + 1) * cell_height)
 			return -1;
 
 		int column = (int) ((x - BORDER_SIZE) / cell_width);
 		int row = (int) ((y - BORDER_SIZE) / cell_height);
 		int cell_num = column + row * cells_per_row;
 
-		if (cell_num < query.Photos.Length)
+		if (cell_num < collection.Photos.Length)
 			return (int) cell_num;
 		else
 			return -1;
@@ -324,7 +308,7 @@ public class IconView : Gtk.Layout {
 
 	public void SelectAllCells ()
 	{
-		SelectCellRange (0, query.Photos.Length - 1);
+		SelectCellRange (0, collection.Photos.Length - 1);
 	}
 
 	private void SelectCellRange (int start, int end)
@@ -381,8 +365,8 @@ public class IconView : Gtk.Layout {
 		cells_per_row = Math.Max ((int) (available_width / cell_width), 1);
 
 		int num_thumbnails;
-		if (query != null)
-			num_thumbnails = query.Photos.Length;
+		if (collection != null)
+			num_thumbnails = collection.Photos.Length;
 		else
 			num_thumbnails = 0;
 
@@ -404,7 +388,7 @@ public class IconView : Gtk.Layout {
 		gc.SetLineAttributes (1, LineStyle.Solid, CapStyle.NotLast, JoinStyle.Round);
 		bool selected = CellIsSelected (thumbnail_num);
 
-		Photo photo = query.Photos [thumbnail_num];
+		Photo photo = collection.Photos [thumbnail_num];
 
 		string thumbnail_path = Thumbnail.PathForUri ("file://" + photo.DefaultVersionPath, ThumbnailSize.Large);
 		Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForPath (thumbnail_path);
@@ -528,12 +512,12 @@ public class IconView : Gtk.Layout {
 
 		int i, cell_num;
 		for (i = 0, cell_num = start_cell_num;
-		     i < num_rows && cell_num < query.Photos.Length;
+		     i < num_rows && cell_num < collection.Photos.Length;
 		     i ++) {
 			int cell_x = start_cell_x;
 
 			//Console.WriteLine ("Drawing row {0}", start_cell_row + i);
-			for (int j = 0; j < num_cols && cell_num + j < query.Photos.Length; j ++) {
+			for (int j = 0; j < num_cols && cell_num + j < collection.Photos.Length; j ++) {
 				//Console.WriteLine ("Drawing Cell {0}", cell_num + j);
 				DrawCell (cell_num + j, cell_x, cell_y);
 				cell_x += cell_width;
@@ -568,7 +552,7 @@ public class IconView : Gtk.Layout {
 		if (y_offset == adjustment.Value)
 			return false;
 
-		int num_thumbnails = query.Photos.Length;
+		int num_thumbnails = collection.Photos.Length;
 		int num_rows, start;
 
 		if (y_offset < adjustment.Value) {
@@ -589,7 +573,7 @@ public class IconView : Gtk.Layout {
 			if (start + i >= num_thumbnails)
 				break;
 
-			Photo photo = query.Photos [start + i];
+			Photo photo = collection.Photos [start + i];
 			string thumbnail_path = Thumbnail.PathForUri ("file://" + photo.DefaultVersionPath, ThumbnailSize.Large);
 			pixbuf_loader.Cancel (thumbnail_path);
 		}
@@ -839,7 +823,7 @@ public class IconView : Gtk.Layout {
 				FocusCell = 0;
 				break;
 			case Gdk.Key.End:
-				FocusCell = query.Photos.Length - 1; 
+				FocusCell = collection.Photos.Length - 1; 
 				break;
 			case Gdk.Key.space:
 				ToggleCell (FocusCell);
@@ -849,7 +833,7 @@ public class IconView : Gtk.Layout {
 				return;		
 		}
 		
-		if (FocusCell < 0 || FocusCell > query.Photos.Length - 1) {
+		if (FocusCell < 0 || FocusCell > collection.Photos.Length - 1) {
 			FocusCell = focus_old;
 			args.RetVal = false;
 		}	

@@ -4303,12 +4303,13 @@ Photo Details</property>
 		  <property name="right_padding">0</property>
 
 		  <child>
-		    <widget class="GtkScrolledWindow" id="scrolledwindow3">
+		    <widget class="GtkScrolledWindow" id="thumb_scrolledwindow">
+		      <property name="width_request">180</property>
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
-		      <property name="hscrollbar_policy">GTK_POLICY_NEVER</property>
-		      <property name="vscrollbar_policy">GTK_POLICY_ALWAYS</property>
-		      <property name="shadow_type">GTK_SHADOW_NONE</property>
+		      <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+		      <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+		      <property name="shadow_type">GTK_SHADOW_IN</property>
 		      <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
 
 		      <child>

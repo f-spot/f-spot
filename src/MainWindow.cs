@@ -61,7 +61,7 @@ public class MainWindow {
 	
 	InfoBox info_box;
 	FSpot.InfoDisplay info_display;
-	IconView icon_view;
+	QueryView icon_view;
 	PhotoView photo_view;
 	PhotoQuery query;
 	FSpot.GroupSelector group_selector;
@@ -156,7 +156,7 @@ public class MainWindow {
 		group_vbox.PackStart (group_selector, false, false, 0);
 		group_vbox.ReorderChild (group_selector, 0);
 		
-		icon_view = new IconView (query);
+		icon_view = new QueryView (query);
 		icon_view_scrolled.Add (icon_view);
 		icon_view.SelectionChanged += new IconView.SelectionChangedHandler (HandleSelectionChanged);
 		icon_view.DoubleClicked += new IconView.DoubleClickedHandler (HandleDoubleClicked);
