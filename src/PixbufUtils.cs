@@ -125,7 +125,8 @@ class PixbufUtils {
 		
 	public static Pixbuf TagIconFromPixbuf (Pixbuf source)
 	{
-		int size = 50;
+		// FIXME 50x50 crashes Pixdata.Serialize... what a mess.
+		int size = 52;
 		Pixbuf tmp = null;
 		Pixbuf icon = null;
 
