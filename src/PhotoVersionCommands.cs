@@ -64,13 +64,13 @@ public class PhotoVersionCommands {
 
 			switch (request_type) {
 			case RequestType.Create:
-				version_name_dialog.Title = "Create New Version";
-				prompt_label.Text = "Name:";
+				version_name_dialog.Title = Mono.Posix.Catalog.GetString ("Create New Version");
+				prompt_label.Text = Mono.Posix.Catalog.GetString ("Name:");
 				break;
 
 			case RequestType.Rename:
-				version_name_dialog.Title = "Rename Version";
-				prompt_label.Text = "New name:";
+				version_name_dialog.Title = Mono.Posix.Catalog.GetString ("Rename Version");
+				prompt_label.Text = Mono.Posix.Catalog.GetString ("New name:");
 				version_name_entry.Text = photo.GetVersionName (photo.DefaultVersionId);
 				version_name_entry.SelectRegion (0, -1);
 				break;
@@ -136,13 +136,13 @@ public class PhotoVersionCommands {
 			dialog.BorderWidth = 6;
 			dialog.TransientFor = parent_window;
 			dialog.HasSeparator = false;
-			dialog.Title = "Really Delete?";
+			dialog.Title = Mono.Posix.Catalog.GetString ("Really Delete?");
 			dialog.AddButton ("Cancel", (int) ResponseType.Cancel);
 			dialog.AddButton ("Delete", (int) ResponseType.Ok);
 			dialog.DefaultResponse = ResponseType.Ok;
 
 			string version_name = photo.GetVersionName (photo.DefaultVersionId);
-			Label label = new Label (String.Format ("Really delete version \"{0}\"?", version_name));
+			Label label = new Label (String.Format (Mono.Posix.Catalog.GetString ("Really delete version \"{0}\"?"), version_name));
 			label.Show ();
 			dialog.VBox.PackStart (label, false, true, 6);;
 

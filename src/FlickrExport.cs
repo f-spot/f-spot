@@ -136,11 +136,12 @@ namespace FSpot {
 				progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Photos.Length);
 				progress_dialog.Start ();
 			} else {
-				Gtk.MessageDialog md = new Gtk.MessageDialog (Dialog, 
-									      Gtk.DialogFlags.Modal |
-									      Gtk.DialogFlags.DestroyWithParent,
-									      Gtk.MessageType.Error, Gtk.ButtonsType.Ok, 
-									      Mono.Posix.Catalog.GetString ("Unable to log on"));
+				HigMessageDialog md = new HigMessageDialog (Dialog, 
+									    Gtk.DialogFlags.Modal |
+									    Gtk.DialogFlags.DestroyWithParent,
+									    Gtk.MessageType.Error, Gtk.ButtonsType.Ok, 
+									    Mono.Posix.Catalog.GetString ("Unable to log on."),
+									    Mono.Posix.Catalog.GetString ("F-Spot was unable to log on to Flickr.  Make sure the setting you supplied are correct."));
 				md.Run ();
 				md.Destroy ();
 				return;

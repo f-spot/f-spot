@@ -1,5 +1,14 @@
 2005-02-14  Larry Ewing  <lewing@novell.com>
 
+	* src/f-spot.in: add a hack to load the libgphoto2-sharp assembly
+	when running the uninstalled executable.
+
+	* src/FlickrExport.cs: use HigMessageDialog.
+
+	* src/PhotoVersionCommands.cs: translate strings.
+
+	* src/RotateCommand.cs: clean up the message dialog strings.
+
 	* src/CameraFileSelectionDialog.cs: use HigMessageDialog clean up
 	messages a little.
 
