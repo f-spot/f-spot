@@ -22,7 +22,9 @@ libfspot_la_SOURCES =				\
 	f-utils.c				\
 	f-utils.h
 
-libfspot_la_LIBADD = $(top_builddir)/libjpegtran/libfspotjpegtran.la
+libfspot_la_LIBADD = 					\
+	$(top_builddir)/libjpegtran/libfspotjpegtran.la	\
+	$(top_builddir)/libeog/libfspoteog.la
 
 
 # GLib marshalling cruft

@@ -1,3 +1,7 @@
+2003-11-22  Ettore Perazzoli  <ettore@ximian.com>
+
+	* libfspot/Makefile.am (libfspot_la_LIBADD): Add a dep on libeog.
+
 2003-11-17  Ettore Perazzoli  <ettore@ximian.com>
 
 	* src/RotateCommand.cs (RotateCommand.Execute): Only show the
