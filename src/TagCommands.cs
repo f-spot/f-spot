@@ -116,7 +116,7 @@ public class TagCommands {
 			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "create_tag_dialog", null);
 			xml.Autoconnect (this);
 
-			create_tag_dialog.DefaultResponse = (int) ResponseType.Ok;
+			create_tag_dialog.DefaultResponse = ResponseType.Ok;
 
 			switch (type) {
 			case TagType.Tag:

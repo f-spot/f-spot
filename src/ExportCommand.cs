@@ -107,7 +107,7 @@ public class ExportCommand {
 			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "export_gallery_dialog", null);
 			xml.Autoconnect (this);
 
-			export_gallery_dialog.DefaultResponse = (int) ResponseType.Ok;
+			export_gallery_dialog.DefaultResponse = ResponseType.Ok;
 
 			Update ();
 

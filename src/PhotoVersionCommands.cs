@@ -79,8 +79,7 @@ public class PhotoVersionCommands {
 			version_name_entry.ActivatesDefault = true;
 			version_name_dialog.TransientFor = parent_window;
 
-			// FIXME GTK# bug?  shouldn't need casts from/to int.
-			version_name_dialog.DefaultResponse = (int) ResponseType.Ok;
+			version_name_dialog.DefaultResponse = ResponseType.Ok;
 
 			Update ();
 		}
@@ -140,7 +139,7 @@ public class PhotoVersionCommands {
 			dialog.Title = "Really Delete?";
 			dialog.AddButton ("Cancel", (int) ResponseType.Cancel);
 			dialog.AddButton ("Delete", (int) ResponseType.Ok);
-			dialog.DefaultResponse = (int) ResponseType.Ok;
+			dialog.DefaultResponse = ResponseType.Ok;
 
 			string version_name = photo.GetVersionName (photo.DefaultVersionId);
 			Label label = new Label (String.Format ("Really delete version \"{0}\"?", version_name));
