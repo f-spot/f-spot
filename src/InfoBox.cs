@@ -69,13 +69,13 @@ public class InfoBox : VBox {
 
 		table.Attach (CreateRightAlignedLabel ("Name:"), 0, 1, 0, 1,
 			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
-		table.Attach (CreateRightAlignedLabel ("Date:"), 0, 1, 1, 2,
+		table.Attach (CreateRightAlignedLabel ("Version:"), 0, 1, 1, 2,
 			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
-		table.Attach (CreateRightAlignedLabel ("Size:"), 0, 1, 2, 3,
+		table.Attach (CreateRightAlignedLabel ("Date:"), 0, 1, 2, 3,
 			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
-		table.Attach (CreateRightAlignedLabel ("Exposure:"), 0, 1, 3, 4,
+		table.Attach (CreateRightAlignedLabel ("Size:"), 0, 1, 3, 4,
 			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
-		table.Attach (CreateRightAlignedLabel ("Version:"), 0, 1, 4, 5,
+		table.Attach (CreateRightAlignedLabel ("Exposure:"), 0, 1, 4, 5,
 			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
 
 		name_entry = new Entry ();
@@ -84,12 +84,12 @@ public class InfoBox : VBox {
 			      AttachOptions.Expand | AttachOptions.Fill, AttachOptions.Fill,
 			      3, 0);
 
-		date_label = AttachLabel (table, 1, name_entry);
-		size_label = AttachLabel (table, 2, name_entry);
-		exposure_info_label = AttachLabel (table, 3, name_entry);
+		date_label = AttachLabel (table, 2, name_entry);
+		size_label = AttachLabel (table, 3, name_entry);
+		exposure_info_label = AttachLabel (table, 4, name_entry);
 
 		version_option_menu = new OptionMenu ();
-		table.Attach (version_option_menu, 1, 2, 4, 5, AttachOptions.Fill, AttachOptions.Fill, 3, 3);
+		table.Attach (version_option_menu, 1, 2, 1, 2, AttachOptions.Fill, AttachOptions.Fill, 3, 3);
 
 		table.ShowAll ();
 

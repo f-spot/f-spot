@@ -1,5 +1,11 @@
 2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
 
+	* src/InfoBox.cs (InfoBox.SetupWidgets): Move the version option
+	menu up, after the name entry; I think it makes more sense this
+	way.
+
+2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+
 	* src/MainWindow.cs (MainWindow.UpdateForVersionIdChange): New.
 	(MainWindow.HandleVersionIdChanged): Use it.
 	(MainWindow.HandleInfoBoxVersionIdChanged): New.
