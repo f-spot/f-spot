@@ -103,6 +103,8 @@ public class SlideView : Gtk.Image {
 		current ++;
 		if (current < photos.Length) {
 			next = GetScaled (photos [current].DefaultVersionPath);
+	
+			StartTweenIdle ();
 			return true;
 		} else {
 			current = 0;
@@ -112,31 +114,28 @@ public class SlideView : Gtk.Image {
 	
 	public bool HandleTimer ()
 	{	
-		if (tween_idle != 0)
-			GLib.Source.Remove (tween_idle);
+		StopTweenIdle ();
+		Console.WriteLine ("current_tween = " + current_tween);
+			
+		while (current_tween--  > 0) {
+			this.FromPixbuf = tweens[current_tween];
+			GdkWindow.ProcessUpdates (false);
 
-		Pixbuf current = new Pixbuf (Colorspace.Rgb, false, 8, Allocation.width, Allocation.height);
-		try {
-			Console.WriteLine ("current_tween = " + current_tween);
-			
-			for (int i = 0; i < current_tween; i++) {
-				this.FromPixbuf = tweens[i];
-				GdkWindow.ProcessUpdates (false);
-			}
-			this.FromPixbuf = next;
-		} catch {
-			timer = 0;
-			return false;
+			/*
+			 * if some event occured that cleared the timer
+			 * while we were drawing get out fast
+			 */
+			if (timer == 0)
+				return false;
 		}
-			
+
+		this.FromPixbuf = next;
 
 		if (!LoadNextImage ()) {
 			timer = 0;
 			return false;
 		}
 		
-		current_tween = 0;
-		tween_idle = GLib.Idle.Add (new GLib.IdleHandler (HandleTweenIdle));
 		return true;			
 	}
 
@@ -145,34 +144,34 @@ public class SlideView : Gtk.Image {
 		Pixbuf prev = this.Pixbuf;
 
 		switch (current_tween) {
-		case 0:
+		case 9:
 			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .2);
 			break;
-		case 1:
+		case 8:
 			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .3);
 			break;
-		case 2:
+		case 7:
 			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .4);
 			break;
-		case 3:
+		case 6:
 			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .5);
 			break;
-		case 4:
+		case 5:
 			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .6);
 			break;
-		case 5:
+		case 4:
 			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .7);
 			break;
-		case 6:
+		case 3:
 			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .8);
 			break;
-		case 7:
+		case 2:
 			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .9);
 			break;
-		case 8:
+		case 1:
 			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .97);
 			break;
-		case 9:
+		case 0:
 			tweens[current_tween] = Blend (tweens[current_tween], prev, next, .99);
 			break;
 		default:
@@ -185,11 +184,30 @@ public class SlideView : Gtk.Image {
 		return true;
 	}	
 
+	private void StartTweenIdle () 
+	{
+		if (tween_idle == 0) {
+			current_tween = 0;	
+			tween_idle = GLib.Idle.Add (new GLib.IdleHandler (HandleTweenIdle));
+		}
+	}
+	
+	private void StopTweenIdle ()
+	{
+		if (tween_idle != 0) {
+			GLib.Source.Remove (tween_idle);
+			Console.WriteLine ("stopped tween_idle");
+		}
+		tween_idle = 0;
+	
+	}
+	
 	private void StopTimer ()
 	{	
-		if (timer != 0)
+		if (timer != 0) {
 			GLib.Source.Remove (timer);
-	
+			Console.WriteLine ("stopped timer");
+		}
 		timer = 0;
 	}
 	
@@ -223,14 +241,11 @@ public class SlideView : Gtk.Image {
 		}
 	}
 
-	private void HandleDestroyEvent (object sender, DestroyEventArgs args)
+	private void HandleDestroyed (object sender, EventArgs args)
 	{
+		StopTweenIdle ();
 		StopTimer ();			
-
-		next.Dispose ();
-		next = null;
 		
-		photos = null;		
 	}
 
 	public SlideView (Photo [] photos) : base ()
@@ -238,7 +253,7 @@ public class SlideView : Gtk.Image {
 		this.photos = photos;
 
 		SizeAllocated += new SizeAllocatedHandler (HandleSizeAllocate);
-		DestroyEvent += new DestroyEventHandler (HandleDestroyEvent);
+		Destroyed += new EventHandler (HandleDestroyed);
 	}
 }
 		

@@ -1,5 +1,12 @@
 2004-01-30  Larry Ewing  <lewing@ximian.com>
 
+	* src/SlideView.cs: Generate the inbetween frames starting at the
+	last frame and working forward because it gives a smoother
+	impression if the end is smooth and the beginning is rough.  Use
+	Destroyed instead of Destroy event.
+
+2004-01-30  Larry Ewing  <lewing@ximian.com>
+
 	* src/SlideView.cs: Generate the inbetween frames in an idle loop
 	while showing the current image.  This trades off a lot of memory
 	for speed but it make Full screen mode possible and improves
