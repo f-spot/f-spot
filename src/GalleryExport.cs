@@ -305,6 +305,8 @@ namespace FSpot {
 				System.Console.WriteLine ("history = {0}", album_optionmenu.History);
 				album = (GalleryRemote.Album) account.Gallery.Albums [System.Math.Max (0, album_optionmenu.History)]; 
 				photo_index = 0;
+				
+				Dialog.Destroy ();
 
 				command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
 				command_thread.Name = Mono.Posix.Catalog.GetString ("Uploading Pictures");

@@ -1,5 +1,7 @@
 2005-01-13  Larry Ewing  <lewing@novell.com>
 
+	* src/GalleryExport.cs: Destroy the dialog once the upload starts.
+
 	* src/TagStore.cs:
 	* src/MainWindow.cs:
 	* src/TagSelectionWidget.cs:  Integate Loz's patch
