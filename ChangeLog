@@ -1,5 +1,8 @@
 2004-12-10  Larry Ewing  <lewing@novell.com>
 
+	* src/GalleryRemote.cs: add exceptions to the Gallery code so that
+	we can handle them gracefully in the export dialog.
+
 	* src/TagCommands.cs: update the spinbutton and label when the
 	photo changes.
 

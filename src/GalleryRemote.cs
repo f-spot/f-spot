@@ -123,30 +123,35 @@ namespace GalleryRemote {
 		NoAddPermission = 401,
 		NoFilename = 402,
 		UploadPhotoFailed = 403,
-		NoWritePermission = 501,
-		CreatAlbumFailed = 502
+		NoWritePermission = 404,
+		NoCreateAlbumPermission = 501,
+		CreateAlbumFailed = 502,
+		// This result is specific to this implementation
+		UnknownResponse = 1000
 	}
-		
+
+	public class GalleryException : Exception {
+		public GalleryException (string text) : base (text) {
+		}
+	}
+	
+	public class GalleryCommandException : GalleryException {
+		ResultCode status;
+
+		public GalleryCommandException (string status_text, ResultCode result) : base (status_text) {
+			status = result;
+		}
+
+		ResultCode Status {
+			get {
+				return status;
+			}
+		}
+	}
+
 	public class Gallery {
-		static int GR_STAT_SUCCESS = 0;
-		static int GR_STAT_PROTO_MAJ_VER_INVAL = 101;
-		static int GR_STAT_PROTO_MIN_VER_INVAL = 102;
-		static int GR_STAT_PROTO_VER_FMT_INVAL = 103;
-		static int GR_STAT_PROTO_VER_MISSING = 104;
-		static int GR_STAT_PASSWD_WRONG = 201;
-		static int GR_STAT_LOGIN_MISSING = 202;
-		static int GR_STAT_UNKNOWN_CMD = 301;
-		static int GR_STAT_NO_ADD_PREMISSION = 401;
-		static int GR_STAT_NO_FILENAME = 402;
-		static int GR_STAT_UPLOAD_PHOTO_FAIL = 403;
-		static int GR_STAT_NO_WRITE_PERMISSION = 404;
-		static int GR_STAT_NO_CREATE_ALBUM_PREMISSION = 501;
-		static int GR_STAT_CREAT_ALBUM_FAILED = 502;
-		
 		public ArrayList Albums = null;
-		
 		public FSpot.ProgressItem Progress;
-		
 		Uri uri;
 		public Uri Uri{
 			get {
@@ -187,18 +192,41 @@ namespace GalleryRemote {
 			stream.Write (data, 0, data.Length);
 		}
 		
+		private void AltParseResponse (HttpWebResponse response, FSpot.ProgressItem progress)
+		{
+			try {
+				Stream response_stream = response.GetResponseStream ();
+				long length = response.ContentLength;
+				
+				System.Console.WriteLine ("ContentLength = {0}", length);
+				
+				int i = 0;
+				while (response_stream.ReadByte () >= 0) {
+					if (length != -1) 
+						progress.Value = i++ / length;
+					else {
+						if (progress.Value < .9)
+							progress.Value += .1;
+						else 
+							progress.Value = 0;
+					}
+				}
+			} finally {
+				response.Close ();
+			}
+		}
+
 		private void ParseResponse (HttpWebResponse response)
 		{
 			StreamReader reader = null;
 			try {
 				Stream response_stream = response.GetResponseStream ();
+
 				reader = new StreamReader (response_stream, Encoding.UTF8);
 				
 				ParseResult (reader);
-				
-				Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
-			}
-			finally {
+				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
+			} finally {
 				if (reader != null)
 					reader.Close ();
 				
@@ -206,12 +234,12 @@ namespace GalleryRemote {
 			}
 		}
 		
-		private int ParseResult (StreamReader reader)
+		private void ParseResult (StreamReader reader)
 		{		
 			Albums.Clear ();
 			
-			int status = -1;
-			string status_text = "Error: No Status value in response";
+			ResultCode status = ResultCode.UnknownResponse;
+			string status_text = "Error: Unable to parse server response";
 			
 			Album current_album = null;
 			Image current_image = null;
@@ -221,13 +249,14 @@ namespace GalleryRemote {
 			bool inresult = false;
 			
 			while ((line = reader.ReadLine ()) != null) {
+				System.Console.WriteLine ("read line");
 				if (line == "#__GR2PROTO__") {
 					inresult = true;
 				} else if (inresult) {
 					string [] data = line.Split (value_split, 2);
 					
-					if (data[0] == "status") {
-						status = int.Parse (data [1]);
+				if (data[0] == "status") {
+						status = (ResultCode) int.Parse (data [1]);
 					} else if (data[0].StartsWith ("status_text")) {
 						status_text = data[1];
 						Console.WriteLine ("StatusText : {0}", data[1]);
@@ -294,17 +323,20 @@ namespace GalleryRemote {
 						Console.WriteLine ("Unparsed result: name=\"{0}\", value=\"{1}\"", data[0], data[1]);
 					}
 				} else {
-					Console.WriteLine ("GARBAGE" + line);
+					// FIXME we should really do
+					// something more intelligent
+					// with bogus response data.
+				        Console.WriteLine ("GARBAGE" + line);
 				}
 			}
 			
 			if (current_album != null)
 				Console.WriteLine ("found {0} albums", Albums.Count);
-			
-			if (status != 0)
+			 
+			if (status != ResultCode.Success) {
 				Console.WriteLine (status_text);
-			
-			return status;
+				throw new GalleryCommandException (status_text, status);
+			}
 		}
 		
 		public void Login (string username, string passwd)
