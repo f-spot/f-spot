@@ -1,5 +1,13 @@
 2005-01-13  Larry Ewing  <lewing@novell.com>
 
+	* configure.in: remove the 0.6 check now that it we can handle it.
+
+	* src/ExifData.cs: wrap the get_data function from both 0.5 and
+	0.6 and fall back to 0.5 if 0.6 fails.
+
+	* src/f-spot.exe.config.in: remove the libexif dll map since we
+	actually want to pick up whatever is installed now..
+
 	* libfspot/f-pixbuf-utils.c (f_pixbuf_copy_with_orientation): new
 	function to do the orientation transform on a pixbuf.
 

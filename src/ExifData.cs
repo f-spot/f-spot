@@ -146,25 +146,25 @@ public enum ExifIfd {
 
 internal class ExifUtil {
 		
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	static extern IntPtr exif_tag_get_name (ExifTag tag);
 
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	static extern IntPtr exif_tag_get_title (ExifTag tag);
 
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	static extern IntPtr exif_tag_get_description (ExifTag tag);
 
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	static extern IntPtr exif_byte_order_get_name (ExifByteOrder order);
 
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	static extern IntPtr exif_format_get_name (ExifFormat format);
 
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	static extern char exif_format_get_size (ExifFormat format);
 
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	static extern IntPtr exif_ifd_get_name (ExifIfd ifd);
 
 
@@ -218,10 +218,10 @@ internal unsafe struct _ExifContent {
 	uint count;
 	_ExifData *parent;
 
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	internal static extern IntPtr exif_content_get_entry (_ExifContent *ptr, ExifTag tag);
 
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	internal static unsafe extern IntPtr exif_content_foreach_entry (_ExifContent *ptr,
 									 ExifContentForeachEntryFunc func,
 									 void *data);
@@ -238,11 +238,14 @@ internal unsafe struct _ExifEntry {
 	readonly public uint  size;
 	readonly public _ExifContent *parent;
 
-	[DllImport ("libexif-0.5.dll")]
+	// FIXME this version is only valid in libexif 0.5
+	[DllImport ("libexif.dll")]
 	internal static extern IntPtr exif_entry_get_value (_ExifEntry *entry);
 
-	[DllImport ("libexif-0.5.dll")]
-	internal static extern IntPtr exif_entry_get_value_brief (_ExifEntry *entry);
+	// FIXME this version is only valid in libexif 0.6
+	[DllImport ("libexif.dll")]
+	internal static extern IntPtr exif_entry_get_value (_ExifEntry *entry, byte  [] value, int maxlen);	
+
 }
 
 [StructLayout(LayoutKind.Sequential)]
@@ -255,27 +258,27 @@ internal unsafe struct _ExifData {
 	internal IntPtr  data;
 	internal int      size;
 
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	internal static extern _ExifData *exif_data_new_from_file (string path);
 
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	internal static extern _ExifData *exif_data_new_from_data (byte [] data, uint size);
 
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	internal static extern void exif_data_ref (_ExifData *data);
 
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	internal static extern void exif_data_unref (_ExifData *data);
 
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	internal static extern void exif_data_free (_ExifData _data);
 
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	static extern void exif_data_dump (_ExifData *data);
 
 	internal delegate void ExifDataForeachContentFunc (_ExifContent *content, void *user_data);
 
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	internal unsafe static extern void exif_data_foreach_content(_ExifData *data, ExifDataForeachContentFunc func, void *ptr);
 }
 
@@ -328,10 +331,24 @@ public class ExifData : IDisposable {
 		_ExifContent.exif_content_foreach_entry (content, content_func, null);
 	}
 
+	unsafe string GetStringValue (_ExifEntry *entry)
+	{
+		// FIXME this is a hack to handle libexif 0.5 and 0.6 at the same time
+		// The signature of get_value changed between versions
+
+		try {
+			byte [] value = new byte [1024];
+			_ExifEntry.exif_entry_get_value (entry, value, value.Length);
+			return System.Text.Encoding.UTF8.GetString (value);
+		} catch (System.NullReferenceException e) {
+			return Marshal.PtrToStringAnsi (_ExifEntry.exif_entry_get_value (entry));
+		}
+	}
+
 	unsafe void AssembleContent (_ExifEntry *entry, void *callback_data)
 	{
 		tag_list.Add (entry->tag);
-		string_values [entry->tag] = Marshal.PtrToStringAnsi (_ExifEntry.exif_entry_get_value (entry));
+		string_values [entry->tag] = GetStringValue (entry);
 
 		byte [] raw_data;
 		if (entry->size > 0) {
@@ -428,24 +445,24 @@ public class ExifData : IDisposable {
 
 [StructLayout(LayoutKind.Sequential)]
 internal unsafe struct _ExifNote {
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	internal static extern void exif_note_ref (_ExifNote *note);
 
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	internal static extern void exif_note_unref (_ExifNote *note);
 
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	internal static extern void exif_note_free (_ExifNote *note);
 
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	internal static extern IntPtr exif_note_new_from_data (string data, uint size);
 	
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	internal static extern string [] exif_note_get_value (_ExifNote *note);
 
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	internal static extern void exif_note_set_byte_order (_ExifNote *note, ExifByteOrder order);
 
-	[DllImport ("libexif-0.5.dll")]
+	[DllImport ("libexif.dll")]
 	internal static extern ExifByteOrder exif_note_get_byte_order (_ExifNote *note);
 }
