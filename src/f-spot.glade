@@ -347,6 +347,7 @@
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
   <property name="enable_layout_config">True</property>
+  <signal name="delete_event" handler="HandleCloseCommand" last_modification_time="Mon, 15 Mar 2004 19:34:26 GMT"/>
 
   <child internal-child="dock">
     <widget class="BonoboDock" id="bonobodock1">

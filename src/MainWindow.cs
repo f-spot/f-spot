@@ -248,7 +248,7 @@ public class MainWindow {
 		}
 	}	
 
-	void HandleCloseCommand (object sender, EventArgs e)
+	void HandleCloseCommand (object sender, EventArgs args)
 	{
 		// FIXME
 		// Should use Application.Quit(), but for that to work we need to terminate the threads
