@@ -656,7 +656,7 @@ namespace Exif {
 		public string Description 
 		{
 			get {
-					return ExifUtil.GetTagDescription (Tag);
+				return ExifUtil.GetTagDescription (Tag);
 			}
 		}
 		
@@ -773,8 +773,7 @@ namespace Exif {
 		internal static extern IntPtr malloc (uint size);
 		
 		[DllImport ("libexif.dll")]
-		private static extern void exif_data_save_data (HandleRef handle, out IntPtr content, out uint size);
-		
+		private static extern void exif_data_save_data (HandleRef handle, out IntPtr content, out uint size);		
 		public byte [] Save ()
 		{
 			Byte [] content = null;
