@@ -359,6 +359,7 @@ public class MainWindow {
 	void HandleAdaptorGlassSet (FSpot.TimeAdaptor sender, int index)
 	{
 		icon_view.ScrollTo (index);
+		icon_view.Throb (index);
 	}
 
 	//
