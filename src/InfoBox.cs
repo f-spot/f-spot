@@ -120,7 +120,7 @@ public class InfoBox : VBox {
 		if (exposure != null && exposure != "")
 			info += exposure + " ";
 		if (iso_speed != null && iso_speed != "")
-			info += "ISO " + iso_speed;
+			info += "\nISO " + iso_speed;
 
 		return info;
 	}
@@ -163,9 +163,9 @@ public class InfoBox : VBox {
 		else
 			size_label.Text = String.Format ("{0}x{1}", width, height);
 
-		if (exposure_info.DateTime != null && exposure_info.DateTime != "")
-			date_label.Text = exposure_info.DateTime;
-		else
+		if (exposure_info.DateTime != null && exposure_info.DateTime != "") {
+			date_label.Text = photo.Time.ToShortDateString () + "\n" + photo.Time.ToShortTimeString ();
+		} else
 			date_label.Text = "(Unknown)";
 
 		PhotoVersionMenu menu = new PhotoVersionMenu (photo);
