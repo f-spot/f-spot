@@ -1,5 +1,31 @@
 2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
 
+	* src/PhotoVersionCommands.cs
+	(PhotoVersionCommands.Delete.Execute): Implement.
+	(PhotoVersionCommands.NameRequest): New private class for generic
+	version name requests.
+	(PhotoVersionCommands.Create): Use this class.
+	(PhotoVersionCommands.Rename): Implement.
+
+	* src/f-spot.glade: Rename "create_new_version_dialog" to
+	"version_name_dialog", give a name to the prompt label, remove all
+	text.
+
+	* src/MainWindow.cs (MainWindow.HandleVersionIdChanged): Call
+	UpdateMenus().
+	(MainWindow.HandleRenameVersionCommand): Implement.
+	(MainWindow.UpdateMenus): Make the "rename version" menu item
+	insensitive when the original version is selected.
+
+	* src/PhotoStore.cs (Photo.GetVersionPath): Use GetVersionName().
+	(Photo.DeleteVersion): Delete the version file.  Also, if we are
+	deleting the DefaultVersion, re-set it to be the most recent of
+	the versions before this one.
+	(Photo.RenameVersion): Get a uint version_id, not an int, also use
+	the proper name.
+
+2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+
 	* src/makefile.am: Include f-spot.glade as a resource into
 	f-spot.exe.
 

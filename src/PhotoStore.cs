@@ -124,7 +124,7 @@ public class Photo : DbItem {
 		if (version_id == OriginalVersionId)
 			return Path;
 		else
-			return GetPathForVersionName (version_names [version_id] as string);
+			return GetPathForVersionName (GetVersionName (version_id));
 	}
 
 	public void DeleteVersion (uint version_id)
@@ -132,9 +132,17 @@ public class Photo : DbItem {
 		if (version_id == OriginalVersionId)
 			throw new Exception ("Cannot delete original version");
 
-		// Delete file.
+		File.Delete (GetPathForVersionName (GetVersionName (version_id)));
 
 		version_names.Remove (version_id);
+
+		do {
+			version_id --;
+			if (version_names.Contains (version_id)) {
+				DefaultVersionId = version_id;
+				break;
+			}
+		} while (version_id > OriginalVersionId);
 	}
 
 	public uint CreateVersion (string name, uint base_version_id)
@@ -158,12 +166,12 @@ public class Photo : DbItem {
 		return highest_version_id;
 	}
 
-	public void RenameVersion (int version_id, string new_name)
+	public void RenameVersion (uint version_id, string new_name)
 	{
 		if (version_id == OriginalVersionId)
 			throw new Exception ("Cannot rename original version");
 
-		if (VersionNameExists (name))
+		if (VersionNameExists (new_name))
 			throw new Exception ("This name already exists");
 
 		string original_name = version_names [version_id] as string;
@@ -174,9 +182,9 @@ public class Photo : DbItem {
 		if (File.Exists (new_path))
 			throw new Exception ("File with this name already exists");
 
-		// Rename file
+		File.Move (old_path, new_path);
 
-		version_names [version_id] = name;
+		version_names [version_id] = new_name;
 	}
 
 

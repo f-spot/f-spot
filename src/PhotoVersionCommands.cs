@@ -4,22 +4,23 @@ using System;
 
 public class PhotoVersionCommands {
 
-	// Creating a new version.
-
-	public class Create {
-		Photo photo;
+	private class VersionNameRequest {
+		private Photo photo;
 
 		[Glade.Widget]
-		private Gtk.Dialog create_new_version_dialog;
+		private Dialog version_name_dialog;
 
 		[Glade.Widget]
-		private Gtk.Button ok_button;
+		private Button ok_button;
 
 		[Glade.Widget]
-		private Gtk.Entry version_name_entry;
+		private Entry version_name_entry;
 
 		[Glade.Widget]
-		private Gtk.Label already_in_use_label;
+		private Label prompt_label;
+
+		[Glade.Widget]
+		private Label already_in_use_label;
 
 		private void HandleVersionNameEntryChanged (object obj, EventArgs args)
 		{
@@ -37,36 +38,58 @@ public class PhotoVersionCommands {
 				ok_button.Sensitive = true;
 		}
 
-		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
+		public VersionNameRequest (Photo photo, string title, string prompt, Gtk.Window parent_window)
 		{
 			this.photo = photo;
 
-			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "create_new_version_dialog", null);
+			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "version_name_dialog", null);
 			xml.Autoconnect (this);
 
-			ok_button.Sensitive = false;
+			version_name_dialog.Title = title;
+			version_name_entry.ActivatesDefault = true;
+			prompt_label.Text = prompt;
+			version_name_dialog.TransientFor = parent_window;
 
 			// FIXME GTK# bug?  shouldn't need casts from/to int.
-			create_new_version_dialog.DefaultResponse = (int) ResponseType.Ok;
-			create_new_version_dialog.TransientFor = parent_window;
-			ResponseType response = (ResponseType) create_new_version_dialog.Run ();
+			version_name_dialog.DefaultResponse = (int) ResponseType.Ok;
 
-			if (response == ResponseType.Ok) {
-				try {
-					photo.CreateVersion (version_name_entry.Text, photo.DefaultVersionId);
-					store.Commit (photo);
-				} catch {
-					// FIXME show error dialog.
-					create_new_version_dialog.Destroy ();
-					return false;
-				}
+			ok_button.Sensitive = false;
+		}
 
-				create_new_version_dialog.Destroy ();
-				return true;
+		public ResponseType Run (out string name)
+		{
+			ResponseType response = (ResponseType) version_name_dialog.Run ();
+
+			name = version_name_entry.Text;
+			version_name_dialog.Destroy ();
+
+			return response;
+		}
+	}
+
+	// Creating a new version.
+
+	public class Create {
+		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
+		{
+			VersionNameRequest request = new VersionNameRequest (photo, "Create New Version", "Name:", parent_window);
+
+			string name;
+			ResponseType response = request.Run (out name);
+
+			if (response != ResponseType.Ok)
+				return false;
+
+			try {
+				photo.DefaultVersionId = photo.CreateVersion (name, photo.DefaultVersionId);
+				store.Commit (photo);
+			} catch {
+				// FIXME show error dialog.
+				Console.WriteLine ("error");
+				return false;
 			}
 
-			create_new_version_dialog.Destroy ();
-			return false;
+			return true;
 		}
 	}
 
@@ -76,7 +99,38 @@ public class PhotoVersionCommands {
 	public class Delete {
 		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
 		{
-			return true;
+			// FIXME HIG-ify.
+			Dialog dialog = new Dialog ();
+			dialog.BorderWidth = 6;
+			dialog.TransientFor = parent_window;
+			dialog.HasSeparator = false;
+			dialog.Title = "Really Delete?";
+			dialog.AddButton ("Cancel", (int) ResponseType.Cancel);
+			dialog.AddButton ("Delete", (int) ResponseType.Ok);
+			dialog.DefaultResponse = (int) ResponseType.Ok;
+
+			string version_name = photo.GetVersionName (photo.DefaultVersionId);
+			Label label = new Label (String.Format ("Really delete version \"{0}\"?", version_name));
+			label.Show ();
+			dialog.VBox.PackStart (label, false, true, 6);;
+
+			if (dialog.Run () == (int) ResponseType.Ok) {
+				try {
+					photo.DeleteVersion (photo.DefaultVersionId);
+					store.Commit (photo);
+				} catch {
+					// FIXME show error dialog.
+					dialog.Destroy ();
+					Console.WriteLine ("error");
+					return false;
+				}
+
+				dialog.Destroy ();
+				return true;
+			}
+
+			dialog.Destroy ();
+			return false;
 		}
 	}
 
@@ -84,8 +138,27 @@ public class PhotoVersionCommands {
 	// Renaming a version.
 
 	public class Rename {
-		public bool RenameVersion (Photo photo, Gtk.Window parent_window)
+		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
 		{
+			VersionNameRequest request = new VersionNameRequest (photo,
+									     "Rename Version", "New name:",
+									     parent_window);
+
+			string new_name;
+			ResponseType response = request.Run (out new_name);
+
+			if (response != ResponseType.Ok)
+				return false;
+
+			try {
+				photo.RenameVersion (photo.DefaultVersionId, new_name);
+				store.Commit (photo);
+			} catch {
+				// FIXME error dialog.
+				Console.WriteLine ("error");
+				return false;
+			}
+
 			return true;
 		}
 	}

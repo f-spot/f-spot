@@ -67,6 +67,13 @@ public class MainWindow : Gtk.Window {
 
 	private void HandleRenameVersionCommand (object obj, EventArgs args)
 	{
+		PhotoVersionCommands.Rename cmd = new PhotoVersionCommands.Rename ();
+
+		if (cmd.Execute (db.Photos, CurrentPhoto, this)) {
+			info_box.Update ();
+			photo_view.Update ();
+			UpdateMenus ();
+		}
 	}
 
 	private void HandleVersionIdChanged (PhotoVersionMenu menu)
@@ -76,6 +83,7 @@ public class MainWindow : Gtk.Window {
 
 		info_box.Update ();
 		photo_view.Update ();
+		UpdateMenus ();
 	}
 
 
@@ -138,12 +146,14 @@ public class MainWindow : Gtk.Window {
 		} else {
 			version_menu_item.Sensitive = true;
 			create_version_menu_item.Sensitive = true;
-			rename_version_menu_item.Sensitive = true;
 
-			if (CurrentPhoto.DefaultVersionId == Photo.OriginalVersionId)
+			if (CurrentPhoto.DefaultVersionId == Photo.OriginalVersionId) {
 				delete_version_menu_item.Sensitive = false;
-			else
+				rename_version_menu_item.Sensitive = false;
+			} else {
 				delete_version_menu_item.Sensitive = true;
+				rename_version_menu_item.Sensitive = true;
+			}
 
 			versions_submenu = new PhotoVersionMenu (CurrentPhoto);
 			versions_submenu.VersionIdChanged += new PhotoVersionMenu.VersionIdChangedHandler (HandleVersionIdChanged);
