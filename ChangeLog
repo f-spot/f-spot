@@ -1,4 +1,29 @@
+2004-03-10  Larry Ewing  <lewing@ximian.com>
+
+	* src/GalleryRemote.cs: Fix Album::Parent so that it actually
+	works and add a quick hack to parse the reference number when
+	building the Album.  It might be safe to just assume the position
+	is the reference number, but the docs aren't clear on that so
+	better safe than sorry.
+	
+	* src/ExportCommand.cs: always setup the option menu even if we
+	don't have values in the fields.
+
+	* src/f-spot.glade: make the pasword text invisible.
+	
+	* src/makefile.am (F_SPOT_CSFILES): add ExportCommand.cs
+
+	* src/f-spot.glade: add export dialog.
+	
+	* src/MainWindow.cs: remove old gallery export hack, hook to the
+	new dialog hack.
+
+	* src/ExportCommand.cs: add a really broken dialog for the gallery
+	export command.
+
 2004-03-07  Larry Ewing  <lewing@ximian.com>
+
+	* src/FormClient.cs: misc formatting cleanups.
 
 	* src/SlideView.cs: reset the timer before we show the image to
 	even out the display time and bump the transition timer to 75

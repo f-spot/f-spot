@@ -24,27 +24,32 @@ public class ExportCommand {
 		[Glade.Widget]
 		private OptionMenu gallery_album_option;
 
-		private GalleryRemote gallery;
+		private GalleryRemote gallery = null;
 
 		private void PopulateAlbumOptionMenu ()
 		{
-			ArrayList albums = gallery.Albums;
+			ArrayList albums = null;
+			
+			if (gallery != null)
+				albums = gallery.Albums;
 
 			Menu menu = new Menu ();
 			
-			if (albums.Count == 0) {
+			if (albums == null || albums.Count == 0) {
 				MenuItem item = new MenuItem ("(No Albums)");
-				gallery_album_option.Sensitive = false;
 				menu.Append (item);
+
+				gallery_album_option.Sensitive = false;
 			} else {
 				foreach (Album album in albums) {
 					StringBuilder label_builder = new StringBuilder ();
 					
 					for (Album parent = album.Parent ();
 					     parent != null;
-					     parent = parent.Parent ())
+					     parent = parent.Parent ()) {
 						label_builder.Append ("  ");
-					
+						Console.WriteLine ("looping");
+					}
 					label_builder.Append (album.Name);
 
 					MenuItem item = new MenuItem (label_builder.ToString ());
@@ -79,8 +84,8 @@ public class ExportCommand {
 					// FIXME real error dialog
 					Console.WriteLine ("Error: {0}", ex);
 				}
-				PopulateAlbumOptionMenu ();
 			}
+			PopulateAlbumOptionMenu ();
 
 			gallery_url_entry.Sensitive = true;
 			gallery_password_entry.Sensitive = true;
@@ -94,9 +99,13 @@ public class ExportCommand {
 
 		public bool Execute (Photo []photos) 
 		{
+			bool success = false;
+			
+			if (photos == null)
+				return success;
+
 			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "export_gallery_dialog", null);
 			xml.Autoconnect (this);
-			bool success = false;
 
 			export_gallery_dialog.DefaultResponse = (int) ResponseType.Ok;
 

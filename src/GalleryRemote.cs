@@ -20,7 +20,7 @@ public class Album {
 	public string Name = null;
 	public string Title = null;
 	public string Summary = null;
-	public string ParentName = null;
+	public int ParentRefNum;
 	public int ResizeSize;
 	public int ThumbSize;
 
@@ -29,14 +29,19 @@ public class Album {
 	public Permission Perms = Permission.None;
 	Hashtable extras = null;
 
-	public Album (GalleryRemote gallery, string name) 
+	public Album (GalleryRemote gallery, string name, int ref_num) 
 	{
 		Name = name;
 		this.gallery = gallery;
+		this.RefNum = ref_num;
 	}
 
-	public Album Parent () {
-		return gallery.LookupAlbum (ParentName);
+	public Album Parent () 
+	{
+		if (ParentRefNum != 0)
+			return gallery.LookupAlbum (ParentRefNum);
+		else
+			return null;
 	}
 
 	public void Rename (string name) 
@@ -111,6 +116,7 @@ public class GalleryRemote {
 		uri = new Uri (url);
 		request = (HttpWebRequest)WebRequest.Create(uri);
 		cookies = new CookieContainer ();	       
+		Albums = new ArrayList ();
 	}
 
 	private void StreamWrite (Stream stream, string str)
@@ -140,10 +146,7 @@ public class GalleryRemote {
 
 	private int ParseResult (StreamReader reader)
 	{		
-		if (Albums == null)
-			Albums = new ArrayList ();
-		else 
-			Albums.Clear ();
+		Albums.Clear ();
 		
 		int status = -1;
 		string status_text = "Error: No Status value in response";
@@ -167,14 +170,16 @@ public class GalleryRemote {
 				       status_text = data[1];
 				       Console.WriteLine ("StatusText : {0}", data[1]);
 			       } else if (data[0].StartsWith ("album.name")) {
-				       current_album = new Album (this, data[1]);
+				       string [] segments = data[0].Split (new char[1]{'.'});
+				       int ref_num = int.Parse (segments[segments.Length -1]);
+				       current_album = new Album (this, data[1], ref_num);
 				       Albums.Add (current_album);
 			       } else if (data[0].StartsWith ("album.title")) {
 				       current_album.Title = data[1];
 			       } else if (data[0].StartsWith ("album.summary")) {
 				       current_album.Summary = data[1];
 			       } else if (data[0].StartsWith ("album.parent")) {
-				       current_album.ParentName = data[1];
+				       current_album.ParentRefNum = int.Parse (data[1]);
 			       } else if (data[0].StartsWith ("album.resize_size")) {
 				       current_album.ResizeSize = int.Parse (data[1]);
 			       } else if (data[0].StartsWith ("album.thumb_size")) {
@@ -221,8 +226,10 @@ public class GalleryRemote {
 				       current_image.Caption = data[1];
 			       } else if (data[0].StartsWith ("image.clicks")) {
 				       current_image.Clicks = int.Parse (data[1]);
+			       } else if (data[0].StartsWith ("image_count")) {
+
 			       } else {
-				       Console.WriteLine ("Unparsed result: name = {0}, value = {1}", data[0], data[1]);
+				       Console.WriteLine ("Unparsed result: name=\"{0}\", value=\"{1}\"", data[0], data[1]);
 			       }
 		       } else {
 			       Console.WriteLine ("GARBAGE" + line);
@@ -344,7 +351,8 @@ public class GalleryRemote {
 		ParseResponse (client.Submit (uri));
 	}
 
-	public Album LookupAlbum (string name) {
+	public Album LookupAlbum (string name) 
+	{
 		Album match = null;
 		
 		foreach (Album album in Albums) {
@@ -355,7 +363,20 @@ public class GalleryRemote {
 		}
 		return match;
 	}
+	
+	public Album LookupAlbum (int ref_num) 
+	{
+		// FIXME this is really not the best way to do this
+		Album match = null;
 
+		foreach (Album album in Albums) { 
+			if (album.RefNum == ref_num) {
+				match = album;
+				break;
+			}
+		}
+		return match;
+	}
 }
 
 
