@@ -417,8 +417,9 @@ public class PhotoStore : DbStore {
 			thumbnail = GenerateFromExif (path, uri);
 		}
 
-		if (thumbnail != null)
-			PhotoStore.ThumbnailFactory.SaveThumbnail (thumbnail, uri, File.GetLastWriteTime (path));
+		// Save EXIF generated thumbnails in a silightly invalid way so that we know to regnerate them.
+		if (thumbnail != null) 
+			thumbnail.Save (Thumbnail.PathForUri (uri, ThumbnailSize.Large), "png");
 		else 
 			thumbnail = PixbufUtils.GenerateThumbnail (path);
 			
