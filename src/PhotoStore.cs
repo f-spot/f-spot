@@ -945,27 +945,12 @@ public class PhotoStore : DbStore {
 		bool hide = true;
 		if (tags != null) {
 			foreach (Tag t in tags) {
-				if (t.Name == "Hidden") 
+				if (t.Id == tag_store.HiddenId) 
 					hide = false;
 			}
-			
-			if (hide == false) {
-				if (tags.Length > 1) {
-					Tag [] mod_tags = new Tag [tags.Length - 1];
-					int i = 0;
-					foreach (Tag t in tags) {
-						if (t.Name != "Hidden")
-							mod_tags[i] = t;
-					}
-					tags = mod_tags;
-				} else {
-					tags = null;
-				}
-			}
-			
 		}
 
-		if (tags == null || tags.Length == 0) {
+		if (tags != null && tags.Length == 1 && tags [0].Id == tag_store.HiddenId) {
 			StringBuilder query_builder = new StringBuilder ();
 			query_builder.Append  ("SELECT id, time, directory_path, name, description, default_version_id ");
 			
@@ -1003,28 +988,27 @@ public class PhotoStore : DbStore {
 					      "       photo_tags.tag_id                   " +
 					      "     FROM photo_tags, photos               " +
 					      "     WHERE photos.id = photo_tags.photo_id ");
-			
 			if (range != null) {
 				query_builder.Append (String.Format ("AND photos.time >= {0} AND photos.time < {1} ",
 								     DbUtils.UnixTimeFromDateTime (range.start), 
 								     DbUtils.UnixTimeFromDateTime (range.end)));
 			}
 
-			if (tags != null) {
+			if (hide)
+				query_builder.Append (String.Format ("AND photo_tags.tag_id != {0} ", tag_store.HiddenId));
+			
+			if (tags != null && tags.Length > 0) {
+				query_builder.Append ("AND photo_tags.tag_id IN (");
 				bool first = true;
 				foreach (Tag t in tags) {
-					if (first)
-						query_builder.Append (" AND (");
-					else
-						query_builder.Append (" OR ");
-
-					query_builder.Append (String.Format ("photo_tags.tag_id = {0}", t.Id));
-
+					if (t.Id == tag_store.HiddenId)
+						continue;
+					
+					query_builder.Append (String.Format ("{0}{1} ", first ? ", " : "", t.Id));
+					
 					first = false;
 				}
-
-				if (tags.Length > 0)
-					query_builder.Append (")");
+				query_builder.Append (")");
 			}
 
 			query_builder.Append (" GROUP BY photos.id");
@@ -1083,20 +1067,6 @@ public class PhotoStore : DbStore {
 		Console.WriteLine ("End {0}", System.DateTime.Now);
 
 		command.Dispose ();
-		
-		if (hide) {
-			ArrayList hidden_list = new ArrayList ();
-			foreach (Photo p in id_list) {
-				foreach (Tag t in p.Tags) {
-					if (t.Name == "Hidden")
-						hidden_list.Add (p);
-				}
-			}
-			
-			foreach (Photo p in hidden_list) {
-				id_list.Remove (p);
-			}
-		}
 
 		return id_list.ToArray (typeof (Photo)) as Photo [];
 	}

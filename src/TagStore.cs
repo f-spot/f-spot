@@ -195,6 +195,13 @@ public class TagStore : DbStore {
 			tag.Icon = PixbufSerializer.Deserialize (Convert.FromBase64String (icon_string));
 	}
 
+	private uint hidden_id;
+	public uint HiddenId {
+		get {
+			return hidden_id;
+		}
+	}
+
 	// In this store we keep all the items (i.e. the tags) in memory at all times.  This is
 	// mostly to simplify handling of the parent relationship between tags, but it also makes it
 	// a little bit faster.  We achieve this by passing "true" as the cache_is_immortal to our
@@ -213,6 +220,9 @@ public class TagStore : DbStore {
 			uint id = Convert.ToUInt32 (reader [0]);
 			string name = reader [1].ToString ();
 			bool is_category = (Convert.ToUInt32 (reader [2]) != 0);
+
+			if (name == "Hidden")
+				hidden_id = id;
 
 			Tag tag;
 			if (is_category)
@@ -377,7 +387,7 @@ public class TagStore : DbStore {
 		else
 			return LookupInCache (id) as Tag;
 	}
-
+	
 	public override void Remove (DbItem item)
 	{
 		RemoveFromCache (item);

@@ -1,3 +1,12 @@
+2004-08-03  Larry Ewing  <lewing@novell.com>
+
+	* src/PhotoStore.cs: remove the horrible hidden hack from earlier
+	and move the hidden logic into the query.  Rework the query logic
+	to stop using OR and instead use IN.
+
+	* src/TagStore.cs: add a new HiddenId property so that the logic
+	for which tag is the hidden tag is kept in the store.
+
 2004-08-02  Federico Mena Quintero  <federico@ximian.com>
 
 	* src/IconView.cs (UpdateLayout): Set the step increment of the
