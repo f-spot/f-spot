@@ -106,8 +106,6 @@ namespace FSpot {
 			while (i-- > 0) {
 				entry = (CacheEntry) items_mru [i];
 				lock (entry) {
-					size += entry.Size;
-
 					if (entry.Reload) {
 						entry.Reload = false;
 						return entry;
@@ -115,6 +113,9 @@ namespace FSpot {
 
 					//if the depth of the queue is so large that we've reached double our limit 
 					//break out of here and let the queue shrink.
+					if (entry.Pixbuf != null)
+						size += entry.Size;
+
 					if (size > max_size * 2) {
 						//System.Console.WriteLine ("Hit limit ({0},{1}) out of {2}", 
 						//			  size, total_size,max_size);
