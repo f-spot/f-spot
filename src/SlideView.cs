@@ -170,12 +170,12 @@ public class SlideView : Gtk.Image {
 
 	private bool HandleTransitionTimer ()
 	{			
+		transition_timer = 0;
 		if (current_tween--  > 0) {
+			StartTransitionTimer ();
 
 			this.FromPixbuf = tweens[current_tween];
 			GdkWindow.ProcessUpdates (false);
-			
-			return true;
 		} else {
 			ShowNext ();
 
@@ -183,7 +183,6 @@ public class SlideView : Gtk.Image {
 				StartFlipTimer ();
 		}
 		
-		transition_timer = 0;
 		return false;			
 	}
 
@@ -255,7 +254,7 @@ public class SlideView : Gtk.Image {
 	private void StartTransitionTimer ()
 	{
 		if (transition_timer == 0)
-			transition_timer = GLib.Timeout.Add (50, new TimeoutHandler (HandleTransitionTimer));
+			transition_timer = GLib.Timeout.Add (75, new TimeoutHandler (HandleTransitionTimer));
 	}
 
 	private void StopTranstionTimer ()

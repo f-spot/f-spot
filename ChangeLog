@@ -1,3 +1,9 @@
+2004-03-07  Larry Ewing  <lewing@ximian.com>
+
+	* src/SlideView.cs: reset the timer before we show the image to
+	even out the display time and bump the transition timer to 75
+	milisecond.
+
 2004-03-05  Larry Ewing  <lewing@ximian.com>
 
 	* src/PhotoQuery.cs: use Array.Sort to preserve the order of the
