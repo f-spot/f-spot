@@ -1,5 +1,7 @@
 2004-11-18  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoView.cs: always change CurrentPhoto if the pixbuf is null;
+
 	* src/AsyncPixbufLoader.cs: fix the close logic.
 
 	* src/MainWindow.cs: use a more sensible value for the zoom hack.

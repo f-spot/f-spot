@@ -13,7 +13,7 @@ public class PhotoView : EventBox {
 		}
 
 		set {
-			if (current_photo == value)
+			if (current_photo == value && photo_view.Pixbuf != null)
 				return;
 
 			current_photo = value;
