@@ -143,9 +143,12 @@ RESOURCES =										\
 	/resource:$(top_srcdir)/icons/f-spot-crop.png,f-spot-crop.png			\
 	/resource:$(top_srcdir)/icons/f-spot-camera.png,f-spot-camera.png		\
 	/resource:$(top_srcdir)/icons/f-spot-edit-image.png,f-spot-edit-image.png	\
+	/resource:$(top_srcdir)/icons/f-spot-events.png,f-spot-events.png		\
 	/resource:$(top_srcdir)/icons/f-spot-favorite.png,f-spot-favorite.png 		\
+	/resource:$(top_srcdir)/icons/f-spot-hidden.png,f-spot-hidden.png 		\
 	/resource:$(top_srcdir)/icons/f-spot-loading.png,f-spot-loading.png		\
 	/resource:$(top_srcdir)/icons/f-spot-logo.png,f-spot-logo.png			\
+	/resource:$(top_srcdir)/icons/f-spot-other.png,f-spot-other.png			\
 	/resource:$(top_srcdir)/icons/f-spot-people.png,f-spot-people.png 		\
 	/resource:$(top_srcdir)/icons/f-spot-places.png,f-spot-places.png 		\
 	/resource:$(top_srcdir)/icons/f-spot-question-mark.png,f-spot-question-mark.png \

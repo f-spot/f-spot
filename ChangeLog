@@ -1,5 +1,9 @@
 2005-01-20  Larry Ewing  <lewing@novell.com>
 
+	* src/Makefile.am: add new resources.
+
+	* icons/: add icons for stock items still missing them.
+	
 	* configure.in: check for mono.pc too.
 
 	* src/PixbufUtils.cs: new GetThumbnail call.
