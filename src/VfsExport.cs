@@ -10,15 +10,14 @@ namespace FSpot {
 		[Glade.Widget] Gtk.CheckButton scale_check;
 		[Glade.Widget] Gtk.CheckButton open_check;
 
-		[Glade.Widget] Gtk.Entry width_entry;
-		[Glade.Widget] Gtk.Entry height_entry;
+		[Glade.Widget] Gtk.SpinButton size_spin;
 
 		Gnome.Vfs.Uri dest;
 		
 		int photo_index;
 		bool open;
 		bool scale;
-		int width, height;
+		int size;
 
 		FSpot.ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
@@ -64,6 +63,7 @@ namespace FSpot {
 			//LoadHistory ();
 
 			Dialog.Response += HandleResponse;
+			HandleSizeActive (null, null);
 		}
 
 		public Gtk.Dialog Dialog {
@@ -89,7 +89,7 @@ namespace FSpot {
 					
 					string orig_path = photo.DefaultVersionPath;
 					Exif.ExifData exif_data = new Exif.ExifData (orig_path);
-					Gdk.Pixbuf image = PixbufUtils.LoadAtMaxSize (orig_path, width, height);
+					Gdk.Pixbuf image = PixbufUtils.LoadAtMaxSize (orig_path, size, size);
 					string version_path = System.IO.Path.GetTempFileName ();
 					PixbufUtils.SaveJpeg (image, version_path, 95, exif_data);
 					source = new Gnome.Vfs.Uri (Gnome.Vfs.Uri.GetUriFromLocalPath (version_path));
@@ -186,6 +186,11 @@ namespace FSpot {
 			fcb.Password = passwd;
 		}
 
+		private void HandleSizeActive (object sender, System.EventArgs args)
+		{
+			size_spin.Sensitive = scale_check.Active;
+		}
+
 		private void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
 			if (args.ResponseId != Gtk.ResponseType.Ok) {
@@ -197,8 +202,7 @@ namespace FSpot {
 			open = open_check.Active;
 			scale = scale_check.Active;
 			if (scale) {
-				width = 800;
-				height = 800;
+				size = size_spin.ValueAsInt;
 			}
 #if false
 			Upload ();

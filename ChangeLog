@@ -1,3 +1,11 @@
+2005-02-12  Larry Ewing  <lewing@novell.com>
+
+	* src/f-spot.glade: hook up the ui for the scaling logic.
+
+	* src/f-spot.glade: change the scaling option parameters.
+
+	* src/VfsExport.cs: add basic scaling to vfs export.
+
 2005-02-10  Larry Ewing  <lewing@novell.com>
 
 	* src/ColorDialog.cs: remove the worker thread and disable the
