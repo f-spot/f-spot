@@ -1,5 +1,10 @@
 2004-10-06  Larry Ewing  <lewing@novell.com>
 
+	* src/ColorDialog.cs: set the histogram background color.
+
+	* src/Histogram.cs: get rid of UseAlpha and allow the user to set
+	a color.
+
 	* src/ColorDialog.cs: hook up spinbutton adjustments and set the
 	values.
 

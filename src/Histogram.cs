@@ -1,15 +1,5 @@
 namespace FSpot {
 	public class Histogram {
-		private enum Channel 
-		{
-			Red = 0,
-			Green = 1,
-			Blue = 2,
-			Alpha = 3
-		}
-		
-		public bool UseAlpha = true;
-
 		public Histogram (Gdk.Pixbuf src)
 		{
 		        FillValues (src);
@@ -17,6 +7,9 @@ namespace FSpot {
 		
 		public Histogram () {}
 		
+		// FIXME these should be properties
+		public byte [] Color = new byte [] {0x00, 0x00, 0x00, 0xff};
+
 		public void FillValues (Gdk.Pixbuf src)
 
 		{
@@ -29,9 +22,9 @@ namespace FSpot {
 				byte * srcb = (byte *)src.Pixels;
 				for (int j = 0; j < src.Height; j++) {
 					for (int i = 0; i < src.Width; i++) {
-						values [*(srcb++), (int)Channel.Red]++;
-						values [*(srcb++), (int)Channel.Green]++;
-						values [*(srcb++), (int)Channel.Blue]++;
+						values [*(srcb++), 0]++;
+						values [*(srcb++), 1]++;
+						values [*(srcb++), 2]++;
 						if (src.HasAlpha)
 							srcb++;
 					}
@@ -58,16 +51,20 @@ namespace FSpot {
 				for (int j = 0; j < image.Height; j++) {
 					for (int i = 0; i < image.Width; i++) {
 						byte found = 0x00;
-						byte  *offset = pixels + i * image.NChannels;
+						byte * offset = pixels + i * image.NChannels;
 
-						*(offset++)   = (j < image.Height * (values [i, (int)Channel.Red]/(double)max)) ? found = (byte)0xff : (byte)0x00;
-						*(offset++) = (j < image.Height * (values [i, (int)Channel.Green]/(double)max)) ? found = (byte)0xff : (byte)0x00;
-						*(offset++)  = (j < image.Height * (values [i, (int)Channel.Blue]/(double)max)) ? found = (byte)0xff : (byte)0x00;
+						offset [0] = (j < image.Height * (values [i, 0]/(double)max)) ? found = (byte)0xff : (byte)0x00;
+						offset [1] = (j < image.Height * (values [i, 1]/(double)max)) ? found = (byte)0xff : (byte)0x00;
+						offset [2] = (j < image.Height * (values [i, 2]/(double)max)) ? found = (byte)0xff : (byte)0x00;
 
-						if (UseAlpha)
-							*(offset++) = found;
-						else 
-							*(offset++) = 0xff;
+						if (found == 0x00) {
+							offset [0] = Color [0];
+							offset [1] = Color [1];
+							offset [2] = Color [2];
+							offset [3] = Color [3];
+						} else {
+							offset [3] = 0xff;
+						}
 					}
 					pixels -= image.Rowstride;
 				}

@@ -162,17 +162,19 @@ public class ColorDialog {
 		this.item = item;
 		
 		xml.Autoconnect (this);
+
+		color_image.SizeAllocated += HandleSizeAllocate;
+		color_image.DestroyEvent += HandleDestroyEvent;
+		color_image.SetSizeRequest (320, 200);
 		
 		hist = new FSpot.Histogram ();
-		hist.UseAlpha = false;
-
-		brightness_scale.ValueChanged += RangeChanged;
-		contrast_scale.ValueChanged += RangeChanged;
-		hue_scale.ValueChanged += RangeChanged;
-		sat_scale.ValueChanged += RangeChanged;
-		source_spinbutton.ValueChanged += RangeChanged;
-		dest_spinbutton.ValueChanged += RangeChanged;
-
+#if true
+		Gdk.Color c = color_dialog.Style.Backgrounds [(int)Gtk.StateType.Active];
+		hist.Color [0] = (byte) (c.Red / 0xff);
+		hist.Color [1] = (byte) (c.Green / 0xff);
+		hist.Color [2] = (byte) (c.Blue / 0xff);
+		hist.Color [3] = 0xff;
+#endif
 		brightness_spinbutton.Adjustment = brightness_scale.Adjustment;
 		contrast_spinbutton.Adjustment = contrast_scale.Adjustment;
 		hue_spinbutton.Adjustment = hue_scale.Adjustment;
@@ -187,8 +189,11 @@ public class ColorDialog {
 		hue_spinbutton.Adjustment.ChangeValue ();
 		sat_spinbutton.Adjustment.ChangeValue ();
 		
-		color_image.SizeAllocated += HandleSizeAllocate;
-		color_image.DestroyEvent += HandleDestroyEvent;
-		color_image.SetSizeRequest (320, 200);
+		brightness_scale.ValueChanged += RangeChanged;
+		contrast_scale.ValueChanged += RangeChanged;
+		hue_scale.ValueChanged += RangeChanged;
+		sat_scale.ValueChanged += RangeChanged;
+		source_spinbutton.ValueChanged += RangeChanged;
+		dest_spinbutton.ValueChanged += RangeChanged;
 	}
 }
