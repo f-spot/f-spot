@@ -295,12 +295,13 @@ public class MainWindow {
 	{
 		Gtk.Window win = new Gtk.Window ("this is a test");
 	
+		win.SetSizeRequest (640, 480);
 	        SlideView slideview = new SlideView (query.Photos);
 		
 		win.Add (slideview);
+		win.ShowAll ();
 		slideview.Play ();
 		
-		win.ShowAll ();
 	}
 	
 	// Toolbar commands.

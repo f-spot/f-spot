@@ -1,5 +1,11 @@
 2004-01-28  Larry Ewing  <lewing@ximian.com>
 
+	* src/SlideView.cs: use the allocation size rather than an
+	arbitrary size.  Stop allocating a new buffer for each blend
+	call.
+
+	* src/MainWindow.cs: set the size request here.
+
 	* src/SlideView.cs: add a quick hack to play with the blending in
 	slide show transitions.
 

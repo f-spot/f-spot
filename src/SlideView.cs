@@ -13,20 +13,18 @@ public class SlideView : Gtk.Image {
 	int current = 0;	
 	uint timer = 0;
 
-	int width = 640;
-	int height = 480;
-
 	public void Play () 
 	{
-		this.Pixbuf = GetScaled (photos[current].DefaultVersionPath);
+		this.FromPixbuf = GetScaled (photos[current].DefaultVersionPath);
 		LoadNextImage ();
 		StartTimer ();
 	}
 
 #if true
-	private Pixbuf Blend (Pixbuf prev, Pixbuf next, double percent)
+	private Pixbuf Blend (Pixbuf current, Pixbuf prev, Pixbuf next, double percent)
 	{ 
-		Pixbuf current = new Pixbuf (Colorspace.Rgb, false, 8, width, height);
+		int width = Allocation.width;
+		int height = Allocation.height;
 		
 		prev.CopyArea (0, 0, width, height, current, 0, 0);
 		next.Composite (current, 0,0, width, height, 0, 0, 1, 1,
@@ -34,9 +32,11 @@ public class SlideView : Gtk.Image {
 		return current;
 	}
 #else
-	private Pixbuf Blend (Pixbuf prev, Pixbuf next, double percent)
+	private Pixbuf Blend (Pixbuf dest, Pixbuf prev, Pixbuf next, double percent)
 	{ 
-		Pixbuf current = new Pixbuf (Colorspace.Rgb, false, 8, width, height);
+		int width = Allocation.width;
+		int height = Allocation.height;
+
 		current.Fill (0);		
 
 		if (percent < 0.5)
@@ -51,6 +51,8 @@ public class SlideView : Gtk.Image {
 
 	private Pixbuf GetScaled (string path)
 	{
+		int width = Allocation.width;
+		int height = Allocation.height;
 		Pixbuf orig;
 		Pixbuf scaled = new Pixbuf (Colorspace.Rgb, false, 8, width, height);
 		scaled.Fill (0);
@@ -73,13 +75,12 @@ public class SlideView : Gtk.Image {
 		int scale_x = (width - scale_width) / 2;
 		int scale_y = (height - scale_height) / 2;
 
-#if true
 		orig.Composite (scaled, scale_x, scale_y, 
 				scale_width, scale_height,
 				scale_x, scale_y, scale, scale,
 				Gdk.InterpType.Bilinear,
 				255);
-#endif
+
 		orig.Dispose ();
 		System.GC.Collect ();
 		return scaled;
@@ -102,29 +103,29 @@ public class SlideView : Gtk.Image {
 	public bool HandleTimer ()
 	{	
 		Pixbuf prev = this.Pixbuf;
+		Pixbuf current = new Pixbuf (Colorspace.Rgb, false, 8, Allocation.width, Allocation.height);
 
-
-		this.FromPixbuf = Blend (prev, next, .1);
+		this.FromPixbuf = Blend (current, prev, next, .1);
 		GdkWindow.ProcessUpdates (false);
-		this.FromPixbuf = Blend (prev, next, .2);
+		this.FromPixbuf = Blend (current, prev, next, .2);
 		GdkWindow.ProcessUpdates (false);
-		this.FromPixbuf = Blend (prev, next, .3);
+		this.FromPixbuf = Blend (current, prev, next, .3);
 		GdkWindow.ProcessUpdates (false);
-		this.FromPixbuf = Blend (prev, next, .4);
+		this.FromPixbuf = Blend (current, prev, next, .4);
 		GdkWindow.ProcessUpdates (false);
-		this.FromPixbuf = Blend (prev, next, .5);
+		this.FromPixbuf = Blend (current, prev, next, .5);
 		GdkWindow.ProcessUpdates (false);
-		this.FromPixbuf = Blend (prev, next, .6);
+		this.FromPixbuf = Blend (current, prev, next, .6);
 		GdkWindow.ProcessUpdates (false);
-		this.FromPixbuf = Blend (prev, next, .7);
+		this.FromPixbuf = Blend (current, prev, next, .7);
 		GdkWindow.ProcessUpdates (false);
-		this.FromPixbuf = Blend (prev, next, .8);
+		this.FromPixbuf = Blend (current, prev, next, .8);
 		GdkWindow.ProcessUpdates (false);
-		this.FromPixbuf = Blend (prev, next, .9);
+		this.FromPixbuf = Blend (current, prev, next, .9);
 		GdkWindow.ProcessUpdates (false);
-		this.FromPixbuf = Blend (prev, next, .97);
+		this.FromPixbuf = Blend (current, prev, next, .97);
 		GdkWindow.ProcessUpdates (false);
-		this.FromPixbuf = Blend (prev, next, .99);
+		this.FromPixbuf = Blend (current, prev, next, .99);
 		GdkWindow.ProcessUpdates (false);
 		this.FromPixbuf = next;
 		GdkWindow.ProcessUpdates (false);
@@ -155,6 +156,20 @@ public class SlideView : Gtk.Image {
 		StopTimer ();
 	}	
 
+	private void HandleSizeAllocate (object sender, SizeAllocatedArgs args)
+	{	
+		if (Pixbuf == null)
+			return;
+		/*
+		 * The size has changed so we need to reload the images.
+		 */
+		if (Pixbuf.Width != Allocation.width || Pixbuf.Height != Allocation.height) {
+			this.FromPixbuf = GetScaled (photos[current].DefaultVersionPath);
+			if (current < photos.Length - 1)
+				next = GetScaled (photos[current + 1].DefaultVersionPath);
+		}
+	}
+
 	private void HandleDestroyEvent (object sender, DestroyEventArgs args)
 	{
 		StopTimer ();			
@@ -169,6 +184,7 @@ public class SlideView : Gtk.Image {
 	{
 		this.photos = photos;
 
+		SizeAllocated += new SizeAllocatedHandler (HandleSizeAllocate);
 		DestroyEvent += new DestroyEventHandler (HandleDestroyEvent);
 	}
 }
