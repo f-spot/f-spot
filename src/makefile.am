@@ -12,10 +12,11 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/ExifData.cs			\
 	$(srcdir)/ExifUtils.cs			\
 	$(srcdir)/ExportCommand.cs		\
+	$(srcdir)/FlickrRemote.cs		\
 	$(srcdir)/FileImportBackend.cs		\
 	$(srcdir)/FotkiRemote.cs		\
-	$(srcdir)/FlickrRemote.cs		\
 	$(srcdir)/FormClient.cs			\
+	$(srcdir)/FullScreenView.cs		\
 	$(srcdir)/GalleryRemote.cs		\
 	$(srcdir)/GalleryExport.cs		\
 	$(srcdir)/GroupAdaptor.cs		\
@@ -32,6 +33,7 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/JpegUtils.cs			\
 	$(srcdir)/Cms.cs			\
 	$(srcdir)/MainWindow.cs			\
+	$(srcdir)/PhotoImageView.cs		\
 	$(srcdir)/PhotoLoader.cs		\
 	$(srcdir)/PhotoPopup.cs			\
 	$(srcdir)/PhotoQuery.cs			\
