@@ -1,5 +1,5 @@
 # German translation of F-Spot.
-# Copyright (C) 2005 Larry Ewing
+# Copyright (C) 2005 Larry Ewing.
 # This file is distributed under the same license as the F-Spot package.
 # Frank Arnold <frank@scirocco-5v-turbo.de>, 2005.
 #
@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-22 10:27+0100\n"
-"PO-Revision-Date: 2005-02-22 10:30+0100\n"
+"POT-Creation-Date: 2005-02-24 08:27+0100\n"
+"PO-Revision-Date: 2005-02-24 08:28+0100\n"
 "Last-Translator: Frank Arnold <frank@scirocco-5v-turbo.de>\n"
 "Language-Team: German GNOME Translators <gnome-de@gnome.org >\n"
 "MIME-Version: 1.0\n"
@@ -256,12 +256,12 @@ msgstr "Fehler bei der Übertragung"
 msgid "Error Transferring"
 msgstr "Übertragungsfehler"
 
-#: ../src/CDExport.cs:99 ../src/VfsExport.cs:144
-msgid "Error: Error while transfering, Aborting"
-msgstr "Fehler: Fehler bei der Übertragung, wird abgebrochen"
+#: ../src/CDExport.cs:99 ../src/OriginalExport.cs:179 ../src/VfsExport.cs:144
+msgid "Error: Error while transferring; Aborting"
+msgstr "Fehler: Fehler bei der Übertragung, abgebrochen"
 
 #: ../src/CDExport.cs:102 ../src/OriginalExport.cs:182 ../src/VfsExport.cs:147
-msgid "Error: File Already Exists, Aborting"
+msgid "Error: File Already Exists; Aborting"
 msgstr "Fehler: Datei ist bereits vorhanden, abgebrochen"
 
 #: ../src/FlickrExport.cs:49
@@ -794,11 +794,11 @@ msgid "Tag name:"
 msgstr "Markierungsname"
 
 #: ../src/f-spot.glade.h:130
-msgid "Uri:"
+msgid "URI:"
 msgstr "URI:"
 
 #: ../src/f-spot.glade.h:131
-msgid "Url:"
+msgid "URL:"
 msgstr "URL:"
 
 #: ../src/f-spot.glade.h:132
@@ -806,7 +806,7 @@ msgid "Use Original."
 msgstr "Original verwenden"
 
 #: ../src/f-spot.glade.h:133
-msgid "Use static html"
+msgid "Use static HTML"
 msgstr "Statisches HTML verwenden"
 
 #: ../src/f-spot.glade.h:134
@@ -826,7 +826,7 @@ msgid "Virtual Filesystem"
 msgstr "Virtuelles Dateisystem"
 
 #: ../src/f-spot.glade.h:138
-msgid "Will print Using: Us Letter size on Generic Postscript"
+msgid "Will print Using: US Letter size on Generic Postscript"
 msgstr "Druckeinstellungen: Papiergröße US-Letter auf Generic Postscript"
 
 #: ../src/f-spot.glade.h:139
@@ -1127,10 +1127,6 @@ msgstr[1] "Markierungen _löschen"
 msgid "Building Gallery"
 msgstr "Galerie wird erstellt"
 
-#: ../src/OriginalExport.cs:179
-msgid "Error: Error while transferring, Aborting"
-msgstr "Fehler: Fehler bei der Übertragung, wird abgebrochen"
-
 #: ../src/OriginalExport.cs:225
 msgid "Transfering Pictures"
 msgstr "Bilder werden übertragen"
@@ -1326,6 +1322,15 @@ msgstr "Skalieren des Bilds »{0}«"
 #, csharp-format
 msgid "Transferring picture \"{0}\""
 msgstr "Übertragung des Bilds »{0}«"
+
+#~ msgid "Error: Error while transfering, Aborting"
+#~ msgstr "Fehler: Fehler bei der Übertragung, wird abgebrochen"
+
+#~ msgid "Uri:"
+#~ msgstr "URI:"
+
+#~ msgid "Url:"
+#~ msgstr "URL:"
 
 #~ msgid "Album:"
 #~ msgstr "Album:"
