@@ -1,3 +1,11 @@
+2005-03-24  Larry Ewing  <lewing@novell.com>
+
+	* src/JpegUtils.cs: offer a method to save exif info directly.
+
+	* configure.in: check for new .so versions.
+
+	* libfspot/f-jpeg-utils.c: add save_jpeg call.
+
 2005-03-22  Larry Ewing  <lewing@novell.com>
 
 	* libgphoto2-sharp/libgphoto2-sharp.dll.config: remove the

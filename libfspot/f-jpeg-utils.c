@@ -329,6 +329,21 @@ f_get_jpeg_size  (const char *path,
 }
 
 
+void
+f_save_jpeg_exif (const char *filename, ExifData *exif_data)
+{
+	JPEGData     *jdata;
+
+	jdata = jpeg_data_new_from_file (filename);
+	if (jdata == NULL)
+		return;
+
+	jpeg_data_set_exif_data (jdata, exif_data);
+	jpeg_data_save_file (jdata, filename);
+
+	jpeg_data_unref (jdata);
+}
+
 /* Implementation of non-lossy JPEG file transformations, based on GThumb code
    by Paolo Bacchilega.  */
 

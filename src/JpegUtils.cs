@@ -30,6 +30,14 @@ public class JpegUtils {
 	}
 
 	[DllImport ("libfspot")]
+	static extern void f_save_jpeg_exif (string path, HandleRef data);
+
+	public static void SaveExif (string path, Exif.ExifData data)
+	{
+		f_save_jpeg_exif (path, data.Handle);
+	}		
+
+	[DllImport ("libfspot")]
 	static extern void f_get_jpeg_size (string path, out int width_return, out int height_return);
 
 	public static void GetSize (string path, out int width_return, out int height_return)
