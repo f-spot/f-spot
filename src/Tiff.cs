@@ -2,6 +2,9 @@ namespace Tiff {
 	public enum TagId {
 		InteroperabilityIndex		= 0x0001,
 		InteroperabilityVersion	        = 0x0002,
+		
+		NewSubFileType                  = 0x00fe, // TIFF-EP
+		
 		ImageWidth 			= 0x0100,
 		ImageLength 			= 0x0101,
 		BitsPersample 	         	= 0x0102,
@@ -27,7 +30,15 @@ namespace Tiff {
 		Artist				= 0x013b,
 		WhitePoint			= 0x013e,
 		PrimaryChromaticities		= 0x013f,
+
+		SubIFDs                         = 0x014a, // TIFF-EP
+		
 		TransferRange			= 0x0156,
+		
+		ClipPath                        = 0x0157, // TIFF PageMaker Technote #2.
+		
+		JPEGTables                      = 0x015b, // TIFF-EP
+		
 		JPEGProc			= 0x0200,
 		JPEGInterchangeFormat	        = 0x0201,
 		JPEGInterchangeFormatLength	= 0x0202,
@@ -67,6 +78,9 @@ namespace Tiff {
 		LightSource			= 0x9208,
 		Flash				= 0x9209,
 		FocalLength			= 0x920a,
+		
+		ImageHistory                    = 0x9212, // TIFF-EP null separated list
+
 		SubjectArea			= 0x9214,
 		MakerNote			= 0x927c,
 		UserComment			= 0x9286,
@@ -110,6 +124,52 @@ namespace Tiff {
 		// embedded in tiff images.
 		XMP                             = 0x02bc,
 		
+		// from the dng spec
+		DNGVersion                      = 0xc612, // Ifd0
+		DNGBackwardVersion              = 0xc613, // Ifd0
+		UniqueCameraModel               = 0xc614, // Ifd0
+		LocalizedCameraModel            = 0xc615, // Ifd0
+		CFAPlaneColor                   = 0xc616, // RawIfd
+		CFALayout                       = 0xc617, // RawIfd
+		LinearizationTable              = 0xc618, // RawIfd
+		BlackLevelRepeatDim             = 0xc619, // RawIfd
+		BlackLevel                      = 0xc61a, // RawIfd
+		BlackLevelDeltaH                = 0xc61b, // RawIfd
+		BlackLevelDeltaV                = 0xc61c, // RawIfd
+		WhiteLevel                      = 0xc61d, // RawIfd
+		DefaultScale                    = 0xc61e, // RawIfd		
+		DefaultCropOrigin               = 0xc61f, // RawIfd
+		DefaultCropSize                 = 0xc620, // RawIfd
+		ColorMatrix1                    = 0xc621, // Ifd0
+		ColorMatrix2                    = 0xc622, // Ifd0
+		CameraCalibration1              = 0xc623, // Ifd0
+		CameraCalibration2              = 0xc624, // Ifd0
+		ReductionMatrix1                = 0xc625, // Ifd0
+		ReductionMatrix2                = 0xc626, // Ifd0
+		AnalogBalance                   = 0xc627, // Ifd0
+		AsShotNetural                   = 0xc628, // Ifd0
+		AsShotWhiteXY                   = 0xc629, // Ifd0
+		BaselineExposure                = 0xc62a, // Ifd0
+		BaselineNoise                   = 0xc62b, // Ifd0
+		BaselineSharpness               = 0xc62c, // Ifd0
+		BayerGreeSpit                   = 0xc62d, // Ifd0
+		LinearResponseLimit             = 0xc62e, // Ifd0
+		CameraSerialNumber              = 0xc62f, // Ifd0
+		LensInfo                        = 0xc630, // Ifd0
+		ChromaBlurRadius                = 0xc631, // RawIfd
+		AntiAliasStrength               = 0xc632, // RawIfd
+		DNGPrivateData                  = 0xc634, // Ifd0
+		
+		MakerNoteSafety                 = 0xc635, // Ifd0
+
+		// The Spec says BestQualityScale is 0xc635 but it appears to be wrong
+		//BestQualityScale                = 0xc635, // RawIfd 
+		BestQualityScale                = 0xc63c, // RawIfd  this looks like the correct value
+
+		CalibrationIlluminant1          = 0xc65a, // Ifd0
+		CalibrationIlluminant2          = 0xc65b, // Ifd0
+		
+
 		// Print Image Matching data
 		PimIfdPointer                   = 0xc4a5
 	}
@@ -126,7 +186,15 @@ namespace Tiff {
 		SLong,
 		SRational,
 		Float,
-		Double
+		Double,
+		Ifd // TIFF-EP - TIFF PageMaker TechnicalNote 2
+	}
+	
+	public struct Tag {
+		TagId id;
+		EntryType type;
+		int Count;
+		string location;
 	}
 	
 	public enum Endian {
@@ -282,9 +350,6 @@ namespace Tiff {
 			this.endian = endian;
 			orig_position = directory_offset;
 			
-			num_entries = Converter.ReadUShort (stream, endian);
-			System.Console.WriteLine ("reading {0} entries", num_entries);
-
 			LoadEntries (stream);
 			LoadNextDirectory (stream);
 		}
@@ -297,6 +362,9 @@ namespace Tiff {
 
 		protected void LoadEntries (System.IO.Stream stream) 
 		{
+			num_entries = Converter.ReadUShort (stream, endian);
+			System.Console.WriteLine ("reading {0} entries", num_entries);
+
 			entries = new System.Collections.ArrayList (num_entries);
 			int entry_length = num_entries * 12;
 			byte [] content = new byte [entry_length];
@@ -305,7 +373,7 @@ namespace Tiff {
 				throw new System.Exception ("Short Read");
 			
 			for (int pos = 0; pos < entry_length; pos += 12) {
-				DirectoryEntry entry = EntryFactory.CreateEntry (content, pos, this.endian);
+				DirectoryEntry entry = EntryFactory.CreateEntry (this, content, pos, this.endian);
 				entries.Add (entry);		
 				System.Console.WriteLine ("Added Entry {0}", entry.Id.ToString ());
 			}
@@ -313,7 +381,6 @@ namespace Tiff {
 			next_directory_offset = Converter.ReadUInt (stream, this.endian);
 
 			foreach (DirectoryEntry entry in entries) {
-				System.Console.WriteLine ("Loading Entry {0}", entry.Id.ToString ());
 				entry.LoadExternal (stream);
 			}
 		}
@@ -331,6 +398,16 @@ namespace Tiff {
 			}		
 		}
 
+		public DirectoryEntry Lookup (TagId id) 
+		{
+			foreach (DirectoryEntry entry in entries)
+				if (entry.Id == id)
+					return entry;
+
+			
+			return null;
+		}
+		
 		public string Dump ()
 		{
 			System.Text.StringBuilder builder = new System.Text.StringBuilder ();
@@ -351,11 +428,16 @@ namespace Tiff {
 		}
 	}
 	
+	public class DNFPrivateDirectory {
+		
+
+	}
+	
 	public class EntryFactory {
 		//public delegate DirectoryEntry ConstructorFunc (byte [], Endian endian);
 		//public static System.Collections.Hashtable ctors = new System.Collections.Hashtable ();
 		
-		public static DirectoryEntry CreateEntry (byte [] input, int start, Endian header_endian)
+		public static DirectoryEntry CreateEntry (ImageDirectory parent, byte [] input, int start, Endian header_endian)
 		{
 			TagId tagid;
 			EntryType type;
@@ -370,9 +452,23 @@ namespace Tiff {
 			case TagId.ExifIfdPointer:
 			case TagId.GPSInfoIfdPointer:
 			case TagId.InteroperabilityIfdPointer:
+			case TagId.SubIFDs:
 				return new SubdirectoryEntry (input, start, header_endian);
+				//case TagId.MakerNote:
+				//return new MakerNoteEntry (input, start, header_endian);
+				//case TagId.PimIfdPointer:
+				//return new 
 			}
 			
+			switch (type) {
+			case EntryType.Ifd:
+				return new SubdirectoryEntry (input, start, header_endian);
+			case EntryType.Byte:
+				return new ByteEntry (input, start, header_endian);
+			case EntryType.Long:
+				return new LongEntry (input, start, header_endian);
+			}
+
 			return new DirectoryEntry (input, start, header_endian);
 		}
 	}
@@ -416,6 +512,7 @@ namespace Tiff {
 		protected TagId  tagid;
 		protected EntryType type;
 		protected uint count;
+		protected uint offset_origin;
 		protected uint data_offset;
 
 		protected byte [] raw_data;
@@ -424,6 +521,18 @@ namespace Tiff {
 		public TagId Id {
 			get {
 				return tagid;
+			}
+		}
+
+		public void SetOrigin (uint pos)
+		{
+			offset_origin = pos;
+		}
+
+		public uint Position
+		{
+			get {
+				return offset_origin + data_offset;
 			}
 		}
 
@@ -474,7 +583,7 @@ namespace Tiff {
 		public virtual void LoadExternal (System.IO.Stream stream)
 		{
 			if (data_offset != 0) {
-				stream.Seek ((long)data_offset, System.IO.SeekOrigin.Begin);
+				stream.Seek ((long)Position, System.IO.SeekOrigin.Begin);
 				byte [] data = new byte [count * GetTypeSize ()];
 				if (stream.Read (data, 0, data.Length) < data.Length)
 					throw new System.Exception ("Short Read");

@@ -1,6 +1,8 @@
 2005-01-27  Larry Ewing  <lewing@novell.com>
 
-	* src/Tiff.cs: new managed Exif/Tiff header parser.
+	* src/Tiff.cs: add more features.
+
+	* src/Tiff.cs: new managed Exif/Tiff header parser.	
 
 	* src/JpegHeader.cs: test out parsing of jpeg headers using the
 	tiff parser.
