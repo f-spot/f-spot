@@ -24,14 +24,16 @@ public class PhotoTagMenu : Menu {
 
 	public void Populate (Photo [] photos) {
 		Hashtable hash = new Hashtable ();
-		foreach (Photo p in photos) {
-			foreach (Tag t in p.Tags) {
-				if (!hash.Contains (t.Id)) {
-					hash.Add (t.Id, t);
+		if (photos != null) {
+			foreach (Photo p in photos) {
+				foreach (Tag t in p.Tags) {
+					if (!hash.Contains (t.Id)) {
+						hash.Add (t.Id, t);
+					}
 				}
 			}
 		}
-		
+
 		foreach (Widget w in this.Children) {
 			w.Destroy ();
 		}
@@ -43,6 +45,7 @@ public class PhotoTagMenu : Menu {
 			this.Append (item);
 			item.Sensitive = false;
 			item.ShowAll ();
+			return;
 		}
 
 		foreach (Tag t in hash.Values) {
