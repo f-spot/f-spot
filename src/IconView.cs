@@ -92,7 +92,7 @@ public class IconView : Gtk.Layout {
 	private const int TAG_ICON_HSPACING = 2;
 
 	// Vertical spacing between the thumbnail and the row of tag icons.
-	private const int TAG_ICON_VSPACING = 6;
+	private const int TAG_ICON_VSPACING = 3;
 
 	// The loader.
 	private PixbufLoader pixbuf_loader;
@@ -416,7 +416,7 @@ public class IconView : Gtk.Layout {
 		Vadjustment.Change ();
 	}
 
-	Gdk.Rectangle Expand (Gdk.Rectangle src, int width)
+	static Gdk.Rectangle Expand (Gdk.Rectangle src, int width)
 	{
 		src.X -= width;
 		src.Y -= width;
@@ -491,7 +491,9 @@ public class IconView : Gtk.Layout {
 
 		Gdk.Rectangle region = Gdk.Rectangle.Zero;
 		Gdk.Rectangle image_bounds = Expand (bounds, - CELL_BORDER_WIDTH);
-		if (image_bounds.Intersect (area, out image_bounds) && thumbnail != null) {
+		int expansion = ThrobExpansion (thumbnail_num, selected);
+
+		if (Expand (image_bounds, expansion + 1).Intersect (area, out image_bounds) && thumbnail != null) {
 			
 			PixbufUtils.Fit (thumbnail, ThumbnailWidth, ThumbnailHeight, 
 					 true, out region.Width, out region.Height);
@@ -499,7 +501,6 @@ public class IconView : Gtk.Layout {
 			region.X = (int) (bounds.X + (bounds.Width - region.Width) / 2);
 			region.Y = (int) bounds.Y + ThumbnailHeight - region.Height + CELL_BORDER_WIDTH;
 			
-			int expansion = ThrobExpansion (thumbnail_num, selected);
 
 			if (region.Width != thumbnail.Width || region.Height != thumbnail.Height)
 				pixbuf_loader.Request (thumbnail_path, thumbnail_num);
@@ -586,7 +587,7 @@ public class IconView : Gtk.Layout {
 			Tag [] tags = photo.Tags;
 			Gdk.Rectangle tag_bounds;
 
-			tag_bounds.X = bounds.X + (bounds.Width - tags.Length * TAG_ICON_SIZE) / 2;
+			tag_bounds.X = bounds.X + (bounds.Width  + TAG_ICON_VSPACING - tags.Length * (TAG_ICON_SIZE + TAG_ICON_VSPACING)) / 2;
 			tag_bounds.Y = bounds.Y + bounds.Height - CELL_BORDER_WIDTH - TAG_ICON_SIZE;
 			tag_bounds.Width = TAG_ICON_SIZE;
 			tag_bounds.Height = TAG_ICON_SIZE;
