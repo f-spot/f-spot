@@ -49,7 +49,9 @@ LIBGNOMEUI_REQUIRED=2.2
 LIBEXIF_REQUIRED_MIN=0.5.7
 LIBEXIF_REQUIRED_MAX=0.7.0
 GTKSHARP_REQUIRED=1.0
-LCMS_REQUIRED=1.11
+
+dnl -- this check is 	
+LCMS_REQUIRED=1.12
 dnl -- LIBGPHOTO2_REQUIRED=2.1.4
 
 PKG_CHECK_MODULES(F, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED libexif >= $LIBEXIF_REQUIRED_MIN libexif < $LIBEXIF_REQUIRED_MAX gtkhtml-sharp >= $GTKSHARP_REQUIRED gconf-sharp >= $GTKSHARP_REQUIRED glade-sharp >= $GTKSHARP_REQUIRED gtk+-2.0 >= 2.4)
@@ -82,7 +84,7 @@ dnl --- lcms
 PKG_CHECK_MODULES(LCMS, lcms >= $LCMS_REQUIRED, [], 
 	[AC_CHECK_LIB(lcms, cmsCreate_sRGBProfile, [],
 		     [AC_MSG_ERROR([liblcms not found])], -lm)
-	AC_CHECK_HEADER(lcms.h, , [AC_MSG_ERROR([liblcms not found])])
+	AC_CHECK_HEADER(lcms.h, [AC_MSG_WARN([*** found liblcms found but unable to check version >= $LCMS_REQUIRED])], [AC_MSG_ERROR([liblcms not found])])
 	LCMS_LIBS='-llcms'
 	LCMS_CFLAGS=''])
 

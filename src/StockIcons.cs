@@ -9,7 +9,7 @@ public class StockIcons {
 				      string label, 
 				      uint keyval, 
 				      Gdk.ModifierType modifier, 
-					      string domain)
+				      string domain)
 	{
 		Gtk.StockItem item;
 		item.StockId = id;

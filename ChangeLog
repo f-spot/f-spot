@@ -1,3 +1,8 @@
+2005-02-15  Larry Ewing  <lewing@novell.com>
+
+	* configure.in: add a lame warning to configure when the lcms.pc
+	file is missing.  This needs a proper version check.
+
 2005-02-15  Martin Willemoes Hansen  <mwh@sysrq.dk>
 
 	* src/StockIcons.cs: Marked strings for translation.
