@@ -3,12 +3,12 @@ namespace FSpot {
 	public class PhotoImageView : ImageView {
 		public PhotoImageView (PhotoQuery query)
 		{
-			this.query = query;
 			loader = new FSpot.AsyncPixbufLoader ();
 			this.SizeAllocated += HandleSizeAllocated;
 			this.KeyPressEvent += HandleKeyPressEvent;
 			this.ScrollEvent += HandleScrollEvent;
 			this.Destroyed += HandleDestroy;
+			this.Query = query;
 		}
 		
 		public static double ZoomMultipler = 1.1;
@@ -47,16 +47,35 @@ namespace FSpot {
 			}
 			set {
 				if (query != null) {
-					//query.Reload -= HandleQueryReload;
-					//query.ItemChanged -= HandleQueryItemChanged;
+					query.Reload -= HandleQueryReload;
+					query.ItemChanged -= HandleQueryItemChanged;
 				}
 
 				query = value;
-				//query.Reload += HandleQueryItemReload;
-				//query.ItemChanged += HandleQueryItemChanged;
-				
-				CurrentPhoto = 0;
+				query.Reload += HandleQueryReload;
+				query.ItemChanged += HandleQueryItemChanged;
 			}
+		}
+
+		public void Reload ()
+		{
+			if (!CurrentPhotoValid ())
+				return;
+			
+			int idx = CurrentPhoto;
+			CurrentPhoto = 0;
+			CurrentPhoto = idx;
+		}
+
+		private void HandleQueryReload (PhotoQuery query)
+		{
+			Reload ();
+		}
+
+		public void HandleQueryItemChanged (PhotoQuery query, int item)
+		{
+			if (item == CurrentPhoto)
+				Reload ();
 		}
 
 		public bool CurrentPhotoValid ()
