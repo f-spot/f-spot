@@ -1,5 +1,16 @@
 2005-01-10  Larry Ewing  <lewing@novell.com>
 
+	* src/VfsExport.cs: try out the auth bindings.
+	
+	* src/gnomevfs: import all of the gnome-vfs bindings from gtk-sharp
+	1.9 since we can't depend on gtk-sharp 1.9 until it is released.
+	
+	* src/Makefile.am: add VfsExport.cs back into the build and copy
+	the current version of the gtk-sharp 1.9 gnome-vfs bindings into
+	the build
+
+	* src/MainWindow.cs: add a ViewDirectory handler using DirectoryCollection.
+
 	* src/PixbufUtils.cs: handle return null on error.
 
 	* src/FileImportBackend.cs: get the version name check correct.

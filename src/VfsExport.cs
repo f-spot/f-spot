@@ -21,8 +21,28 @@ namespace FSpot {
 		
 		public VfsExport (IPhotoCollection selection)
 		{
+			Gnome.Vfs.ModuleCallbackFullAuthentication auth = new Gnome.Vfs.ModuleCallbackFullAuthentication ();
+			auth.Callback += new Gnome.Vfs.ModuleCallbackHandler (HandleAuth);
+			auth.SetDefault ();
+			auth.Push ();
+			
+			Gnome.Vfs.ModuleCallbackAuthentication mauth = new Gnome.Vfs.ModuleCallbackAuthentication ();
+			mauth.Callback += new Gnome.Vfs.ModuleCallbackHandler (HandleAuth);
+			mauth.SetDefault ();
+			mauth.Push ();
+			
+			Gnome.Vfs.ModuleCallbackSaveAuthentication sauth = new Gnome.Vfs.ModuleCallbackSaveAuthentication ();
+			sauth.Callback += new Gnome.Vfs.ModuleCallbackHandler (HandleAuth);
+			sauth.SetDefault ();
+			sauth.Push ();
+			
+			Gnome.Vfs.ModuleCallbackStatusMessage msg = new Gnome.Vfs.ModuleCallbackStatusMessage ();
+			msg.Callback += new Gnome.Vfs.ModuleCallbackHandler (HandleMsg);
+			msg.SetDefault ();
+			msg.Push ();
+			
 			this.selection = selection;
-		
+			
 			// FIXME this xml file path should be be retrieved from a central location not hard coded there
 			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "vfs_export_dialog", null);
 			xml.Autoconnect (this);
@@ -50,29 +70,33 @@ namespace FSpot {
 
 		public void Upload ()
 		{
-			foreach (Photo photo in selection.Photos) {
-				Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (photo.DefaultVersionUri.ToString ());
-				Gnome.Vfs.Uri target = dest.Clone ();
-				target = target.AppendFileName (source.ExtractShortName ());
-				Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
-
-				System.Console.WriteLine ("Xfering {0} to {1}", source.ToString (), target.ToString ());
-				
-				//progress_dialog.Message = System.String.Format (Mono.Posix.Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
-				//progress_dialog.Fraction = photo_index / (double) selection.Photos.Length;
-				//progress_dialog.ProgressText = System.String.Format (Mono.Posix.Catalog.GetString ("{0} of {1}"), 
-				//						     photo_index, selection.Photos.Length);
-				Gnome.Vfs.Xfer.XferUri (source, target, 
-							Gnome.Vfs.XferOptions.Default, 
-							Gnome.Vfs.XferErrorMode.Abort, 
-							Gnome.Vfs.XferOverwriteMode.Replace, 
-							cb);
-			
-				photo_index++;
+			try {
+				foreach (Photo photo in selection.Photos) {
+					Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (photo.DefaultVersionUri.ToString ());
+					Gnome.Vfs.Uri target = dest.Clone ();
+					target = target.AppendFileName (source.ExtractShortName ());
+					Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
+					
+					System.Console.WriteLine ("Xfering {0} to {1}", source.ToString (), target.ToString ());
+					
+					//progress_dialog.Message = System.String.Format (Mono.Posix.Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
+					//progress_dialog.Fraction = photo_index / (double) selection.Photos.Length;
+					//progress_dialog.ProgressText = System.String.Format (Mono.Posix.Catalog.GetString ("{0} of {1}"), 
+					//						     photo_index, selection.Photos.Length);
+					Gnome.Vfs.Xfer.XferUri (source, target, 
+								Gnome.Vfs.XferOptions.Default, 
+								Gnome.Vfs.XferErrorMode.Abort, 
+								Gnome.Vfs.XferOverwriteMode.Replace, 
+								cb);
+					
+					photo_index++;
+				}
+				//Dialog.Destroy ();
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e.ToString ());
 			}
-			Dialog.Destroy ();
 		}
-
+		
 		private int Progress (Gnome.Vfs.XferProgressInfo info)
 		{
 			//progress_dialog.Fraction = info.BytesCopied / 100;
@@ -91,6 +115,25 @@ namespace FSpot {
 
 		}
 
+		private void HandleMsg (Gnome.Vfs.ModuleCallback cb)
+		{
+			Gnome.Vfs.ModuleCallbackStatusMessage msg = cb as Gnome.Vfs.ModuleCallbackStatusMessage;
+			System.Console.WriteLine ("{0}", msg.Message);
+		}
+
+		private void HandleAuth (Gnome.Vfs.ModuleCallback cb)
+		{
+			Gnome.Vfs.ModuleCallbackFullAuthentication fcb = cb as Gnome.Vfs.ModuleCallbackFullAuthentication;
+			System.Console.Write ("Enter your username ({0}): ", fcb.Username);
+			string username = System.Console.ReadLine ();
+			System.Console.Write ("Enter your password : ");
+			string passwd = System.Console.ReadLine ();
+			
+			if (username.Length > 0)
+				fcb.Username = username;
+			fcb.Password = passwd;
+		}
+
 		private void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
 			if (args.ResponseId != Gtk.ResponseType.Ok) {
@@ -100,11 +143,13 @@ namespace FSpot {
 
 			dest = new Gnome.Vfs.Uri (uri_entry.Text);
 
-			//Upload ();
+#if false
+			Upload ();
+#else 	
 			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Upload));
 			command_thread.Name = Mono.Posix.Catalog.GetString ("Uploading Pictures");
 			command_thread.Start ();
-
+#endif
 			//progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Photos.Length);
 			//progress_dialog.Start ();
 		}

@@ -803,7 +803,21 @@ public class MainWindow {
 
 	void HandleExportToVfs (object sender, EventArgs args)
 	{
-		//FSpot.VfsExport export = new FSpot.VfsExport (new FSpot.PhotoArray (SelectedPhotos ()));
+		FSpot.VfsExport export = new FSpot.VfsExport (new FSpot.PhotoArray (SelectedPhotos ()));
+	}
+
+	void HandleViewDirectory (object sender, EventArgs args)
+	{
+		Gtk.Window win = new Gtk.Window ("Directory View");
+		IconView view = new IconView (new FSpot.DirectoryCollection (System.IO.Directory.GetCurrentDirectory ()));
+		FSpot.PreviewPopup preview = new FSpot.PreviewPopup (view);
+
+		view.DisplayTags = false;
+
+		Gtk.ScrolledWindow scrolled = new ScrolledWindow ();
+		win.Add (scrolled);
+		scrolled.Add (view);
+		win.ShowAll ();
 	}
 
 	void HandleExportToFlickr (object sender, EventArgs args)
