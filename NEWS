@@ -1,3 +1,24 @@
+f-spot 0.0.5 - Jan 18 200 - Dart
+--------------------------------
+The highlights of 0.0.5 include:
+- Much faster image loading and switching.
+- Much faster orientation loading.  The rotation and flipping code has
+  been optimized and tested .
+- Faster Scrolling in Icon move.  Less computation per image means
+  smoother scrolling.
+- Basic CD export capability with nautilus-cd-burner.
+- Basic gnome-vfs export.  There are still some problems with
+  destinations that require auth, but the building blocks are there.
+- New UI. Menus, toolbar and color scheme have been updated.
+- Improved color adjustment ui.  The adjusted colors are now previewed
+  in the main ui.
+- Improved thumnbnail generation.
+- We now check for duplicate images on import.
+- Move back to gtk-sharp 1.0.  Using 1.9 was too big of a step forward
+  for many people so we once again use gtk-sharp 1.0.x
+- Many bugs fixed.
+- Many features added.
+
 F-Spot 0.0.4 - December 23 2004 - Gingerbread
 ---------------------------------------------
 Tons of new features and improvements

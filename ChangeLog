@@ -1,5 +1,11 @@
 2005-01-18  Larry Ewing  <lewing@novell.com>
 
+	* NEWS: add new items.
+
+	* configure.in: update version number in preparation for release.
+	
+	* src/Util.cs: add a ToogleButton helper that doesn't currently work.
+
 	* TODO: remove some of the items that work now.
 
 	* src/MainWindow.cs: use the new timeadaptor function for the time
