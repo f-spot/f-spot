@@ -1,5 +1,7 @@
 2004-12-15  Larry Ewing  <lewing@novell.com>
-	
+
+	* src/GroupSelector.cs: use the expose event region not the area.
+
 	* src/makefile.am: link against gtk-sharp-2.0.
 
 	* src/ColorDialog.cs: fix for gtk-sharp-2.0.

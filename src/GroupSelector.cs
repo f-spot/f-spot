@@ -109,7 +109,7 @@ namespace FSpot {
 			Min
 		}
 			
-		private RangeType mode;
+		private RangeType mode = RangeType.Min;
 		public RangeType Mode {
 			get {
 				return mode;
@@ -678,54 +678,55 @@ namespace FSpot {
 		{
 			Rectangle area; 
 			//Console.WriteLine ("expose {0}", args.Area);
-
-			if (args.Area.Intersect (background, out area)) {							
-				Rectangle active = background;
-				int min_x = BoxX (min_limit.Position);
-				int max_x = BoxX (max_limit.Position + 1);
-				active.X = min_x;
-				active.Width = max_x - min_x;
-
-				if (active.Intersect (area, out active)) {
-					GdkWindow.DrawRectangle (Style.BaseGC (State), true, active);
-				}
-
-				int i;
-				BoxXHit (area.X, out i);
-				int end;
-				BoxXHit (area.X + area.Width, out end);
-				while (i <= end)
-					DrawBox (area, i++);
-			}
-
-			Style.PaintShadow (this.Style, GdkWindow, State, ShadowType.In, area, 
-					   this, null, background.X, background.Y, 
-					   background.Width, background.Height);
-
-			if (args.Area.Intersect (legend, out area)) {
-				int i = 0;
-
-				while (i < box_counts.Length)
-					DrawTick (area, i++);
-			}
-			
-			if (has_limits) {
-				if (min_limit != null) {
-					min_limit.Draw (args.Area);
+			foreach (Rectangle sub in args.Region.GetRectangles ()) {
+				area = sub;
+				if (args.Area.Intersect (background, out area)) {
+					Rectangle active = background;
+					int min_x = BoxX (min_limit.Position);
+					int max_x = BoxX (max_limit.Position + 1);
+					active.X = min_x;
+					active.Width = max_x - min_x;
+					
+					if (active.Intersect (area, out active)) {
+						GdkWindow.DrawRectangle (Style.BaseGC (State), true, active);
+					}
+					
+					int i;
+					BoxXHit (area.X, out i);
+					int end;
+					BoxXHit (area.X + area.Width, out end);
+					while (i <= end)
+						DrawBox (area, i++);
 				}
 				
-				if (max_limit != null) {
-					max_limit.Draw (args.Area);
+				Style.PaintShadow (this.Style, GdkWindow, State, ShadowType.In, area, 
+						   this, null, background.X, background.Y, 
+						   background.Width, background.Height);
+				
+				if (args.Area.Intersect (legend, out area)) {
+					int i = 0;
+					
+					while (i < box_counts.Length)
+						DrawTick (area, i++);
+				}
+				
+				if (has_limits) {
+					if (min_limit != null) {
+						min_limit.Draw (args.Area);
+					}
+					
+					if (max_limit != null) {
+						max_limit.Draw (args.Area);
+					}
+				}
+				
+				if (glass != null) {
+					glass.Draw (args.Area);
 				}
 			}
-
-			if (glass != null) {
-				glass.Draw (args.Area);
-			}
-
 			return base.OnExposeEvent (args);
 		}
-
+			
 		protected override void OnSizeRequested (ref Requisition requisition)
 		{
 			requisition.Width = 500;
