@@ -12,5 +12,6 @@ namespace FSpot {
 	public struct Defines {
 		public static string LOCALE_DIR = "@prefix@/share/locale";
 		public static string VERSION = "@VERSION@";
+		public static string PACKAGE = "@PACKAGE@";
 	}			
 }

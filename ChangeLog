@@ -1,5 +1,9 @@
 2005-01-09  Larry Ewing  <lewing@novell.com>
 
+	* src/Defines.cs.in: define PACKAGE.
+
+	* src/MainWindow.cs: use package define in about box.
+
 	* src/ExifData.cs: convert libexif.so DllImport references to
 	libexif-0.5.dll
 
