@@ -486,7 +486,6 @@ public class IconView : Gtk.Layout {
 			PixbufUtils.Fit (thumbnail, ThumbnailWidth, ThumbnailHeight, 
 					 true, out region.Width, out region.Height);
 			
-			
 			region.X = (int) (bounds.X + (bounds.Width - region.Width) / 2);
 			region.Y = (int) bounds.Y + ThumbnailHeight - region.Height + CELL_BORDER_WIDTH;
 			
@@ -496,9 +495,7 @@ public class IconView : Gtk.Layout {
 				pixbuf_loader.Request (thumbnail_path, thumbnail_num);
 
 			region = Expand (region, expansion);
-			
-			Pixbuf temp_thumbnail;
-			
+			Pixbuf temp_thumbnail;			
 
 			if (region.Width != thumbnail.Width && region.Height != thumbnail.Height) {
 				if (region.Width < thumbnail.Width && region.Height < thumbnail.Height)
@@ -843,7 +840,10 @@ public class IconView : Gtk.Layout {
 		// FIXME where are we computing the bounds incorrectly
 		cell_area.Width -= 1;
 		cell_area.Height -= 1;
-		BinWindow.InvalidateRect (cell_area, false);
+		Gdk.Rectangle visible = new Gdk.Rectangle ((int)Hadjustment.Value, (int)Vadjustment.Value, Allocation.Width, Allocation.Height);
+		if (cell_area.Intersect (visible, out cell_area)) {
+			BinWindow.InvalidateRect (cell_area, false);
+		}
 	}
 			
 	private void HandleScrollAdjustmentsSet (object sender, ScrollAdjustmentsSetArgs args)

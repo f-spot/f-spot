@@ -1,5 +1,9 @@
 2005-01-22  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: clip the Invalid region to the visible area.
+
+2005-01-22  Larry Ewing  <lewing@novell.com>
+
 	* src/IconView.cs: refactor a little more.
 
 	* src/MainWindow.cs: protect the tag drop from out of range items.
