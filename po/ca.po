@@ -1,0 +1,790 @@
+#
+# Copyright (C) 2004 Jordi Mas i Hernàndez, jmas@softcatala.org
+# This file is distributed under the same license as the PACKAGE package.
+# 
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: F-Spot\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-12-11 17:26+0100\n"
+"PO-Revision-Date: 2004-10-22 10:09-0400\n"
+"Last-Translator: jmas@softcatala.org\n"
+"Language-Team: Catalan\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: libeog/eog-file-selection.c:29 libeog/eog-file-selection.c:46
+msgid "By Extension"
+msgstr "Per extensió"
+
+#: libeog/eog-file-selection.c:30
+msgid "BMP"
+msgstr "BMP"
+
+#: libeog/eog-file-selection.c:31
+msgid "GIF"
+msgstr "GIF"
+
+#: libeog/eog-file-selection.c:32
+msgid "ICO"
+msgstr "ICO"
+
+#: libeog/eog-file-selection.c:33 libeog/eog-file-selection.c:48
+msgid "JPEG"
+msgstr "JPEG"
+
+#: libeog/eog-file-selection.c:34 libeog/eog-file-selection.c:51
+msgid "PNG"
+msgstr "PNG"
+
+#: libeog/eog-file-selection.c:35
+msgid "PNM"
+msgstr "PNM"
+
+#: libeog/eog-file-selection.c:36
+msgid "RAS"
+msgstr "RAS"
+
+#: libeog/eog-file-selection.c:37
+msgid "SVG"
+msgstr "SVG"
+
+#: libeog/eog-file-selection.c:38
+msgid "TGA"
+msgstr "TGA"
+
+#: libeog/eog-file-selection.c:39
+msgid "TIFF"
+msgstr "TIFF"
+
+#: libeog/eog-file-selection.c:40
+msgid "XBM"
+msgstr "XBM"
+
+#: libeog/eog-file-selection.c:41 libeog/eog-file-selection.c:54
+msgid "XPM"
+msgstr "XPM"
+
+#: libeog/eog-file-selection.c:207
+msgid "Unsupported file format."
+msgstr "El format del fitxer no està implementat."
+
+#: libeog/eog-file-selection.c:225
+msgid "Determine File Type:"
+msgstr "Determina el tipus de fitxer:"
+
+#: libeog/eog-file-selection.c:268
+msgid "Load Image"
+msgstr "Carrega la imatge"
+
+#: libeog/eog-file-selection.c:274
+msgid "Save Image"
+msgstr "Desa la imatge"
+
+#: libeog/eog-image.c:772
+msgid "No image loaded."
+msgstr "Cap imatge carregada."
+
+#: libeog/eog-image.c:779
+msgid "Can't save non local files."
+msgstr "No es poden desar fitxers que no siguin locals."
+
+#: libeog/eog-image.c:800
+msgid "Unsupported image type for saving."
+msgstr "Format d'imatge no implementat per desar."
+
+#: libeog/image-view.c:2058
+msgid "interpolation type"
+msgstr "tipus d'interpolació"
+
+#: libeog/image-view.c:2059
+msgid "the type of interpolation to use"
+msgstr "el tipus d'interpolació que s'utilitzarà"
+
+#: libeog/image-view.c:2065 libeog/image-view.c:2072
+msgid "check type"
+msgstr "Verifiqueu el tipus"
+
+#: libeog/image-view.c:2066
+msgid "the type of chequering to use"
+msgstr "El tipus de damer a utilitzar"
+
+#: libeog/image-view.c:2073
+msgid "the size of chequers to use"
+msgstr "La mida de les caselles del damer a utilizar"
+
+#: libeog/image-view.c:2079
+msgid "dither"
+msgstr "trama"
+
+#: libeog/image-view.c:2080
+msgid "dither type"
+msgstr "tipus de trama"
+
+#: libfspot/f-jpeg-utils.c:421
+msgid "File not found"
+msgstr "No s'ha trobat el fitxer"
+
+#: libfspot/f-jpeg-utils.c:444
+#, c-format
+msgid "Unknown transform type %d"
+msgstr "Tipus de transformació %d desconegut"
+
+#: libfspot/f-jpeg-utils.c:452
+msgid "Operation failed"
+msgstr "L'operació ha fallat"
+
+#: src/f-spot.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: src/f-spot.glade.h:2
+msgid "<b>Album</b>"
+msgstr "<b>Àlbum</b>"
+
+#: src/f-spot.glade.h:3
+msgid "<b>Color Temperature</b>"
+msgstr "<b>Temperatura del color</b>"
+
+#: src/f-spot.glade.h:4
+msgid "<b>End Date</b>"
+msgstr "<b>Data final</b>"
+
+#: src/f-spot.glade.h:5
+msgid "<b>Exposure</b>"
+msgstr "<b>Exposició</b>"
+
+#: src/f-spot.glade.h:6
+msgid "<b>Gallery</b>"
+msgstr "<b>Galeria</b>"
+
+#: src/f-spot.glade.h:7
+msgid "<b>Histogram</b>"
+msgstr "<b>Histograma</b>"
+
+#: src/f-spot.glade.h:8
+msgid "<b>Photograph Layout</b>"
+msgstr "<b>Disposició de les fotografies</b>"
+
+#: src/f-spot.glade.h:9
+msgid "<b>Photos</b>"
+msgstr "<b>Fotografies</b>"
+
+#: src/f-spot.glade.h:10
+msgid "<b>Preview</b>"
+msgstr "<b>Previsualització</b>"
+
+#: src/f-spot.glade.h:11
+msgid "<b>Printer Details</b>"
+msgstr "<b>Detalls de la impressora</b>"
+
+#: src/f-spot.glade.h:12
+msgid "<b>Start Date</b>"
+msgstr "<b>Data d'inici</b>"
+
+#: src/f-spot.glade.h:13
+msgid "<b>Style</b>"
+msgstr "<b>Estil</b>"
+
+#: src/f-spot.glade.h:14
+msgid "<small> </small>"
+msgstr "<small> </small>"
+
+#: src/f-spot.glade.h:15
+msgid "<small></small>"
+msgstr "<small></small>"
+
+#: src/f-spot.glade.h:16
+msgid "Add Gallery"
+msgstr "Afegeix una galeria"
+
+#: src/f-spot.glade.h:17
+msgid "Adjust Color"
+msgstr "Ajusta el color"
+
+#: src/f-spot.glade.h:18
+msgid "Album:"
+msgstr "Àlbum:"
+
+#: src/f-spot.glade.h:19
+msgid "Arranged By"
+msgstr "Col·locat per"
+
+#: src/f-spot.glade.h:20 src/TagPopup.cs:35
+msgid "Attach Tag To Selection"
+msgstr "Adjunta l'etiqueta a la selecció"
+
+#: src/f-spot.glade.h:21
+msgid "Border:"
+msgstr "Contorn:"
+
+#: src/f-spot.glade.h:22
+msgid "Brightness:"
+msgstr "Lluminositat:"
+
+#: src/f-spot.glade.h:23
+msgid "Browse"
+msgstr "Navega"
+
+#: src/f-spot.glade.h:24
+msgid "CD"
+msgstr "CD"
+
+#: src/f-spot.glade.h:25
+msgid "Cancel"
+msgstr "Cancel·la"
+
+#: src/f-spot.glade.h:26
+msgid "Caption:"
+msgstr "Llegenda:"
+
+#: src/f-spot.glade.h:27
+msgid "Category:"
+msgstr "Categoria:"
+
+#: src/f-spot.glade.h:28
+msgid "Close"
+msgstr "Tanca"
+
+#: src/f-spot.glade.h:29
+msgid "Co_nfigure"
+msgstr "Co_nfigura"
+
+#: src/f-spot.glade.h:30
+msgid "Contrast:"
+msgstr "Contrast:"
+
+#: src/f-spot.glade.h:31 src/TagCommands.cs:127 src/TagPopup.cs:22
+msgid "Create New Category"
+msgstr "Crea una categoria nova"
+
+#: src/f-spot.glade.h:32 src/TagCommands.cs:123 src/TagPopup.cs:20
+msgid "Create New Tag"
+msgstr "Crea una etiqueta nova"
+
+#: src/f-spot.glade.h:33
+msgid "Create new version"
+msgstr "Crea una versió nova"
+
+#: src/f-spot.glade.h:34
+msgid "Crop Photo to Fit"
+msgstr "Escapça la fotografia fins que encaixi"
+
+#: src/f-spot.glade.h:35
+msgid "Delete Selected Tag"
+msgstr "Esborra l'etiqueta seleccionada"
+
+#: src/f-spot.glade.h:36
+msgid "Delete Version"
+msgstr "Suprimeix la versió"
+
+#: src/f-spot.glade.h:37
+msgid "Destination Temp"
+msgstr "Destinació temporal"
+
+#: src/f-spot.glade.h:38
+msgid "Directory"
+msgstr "Directori"
+
+#: src/f-spot.glade.h:39
+msgid "Display Dates"
+msgstr "Mostra dates"
+
+#: src/f-spot.glade.h:40
+msgid "Display Tags"
+msgstr "Mostra etiquetes"
+
+#: src/f-spot.glade.h:41
+msgid "EXIF Data"
+msgstr "Informació EXIF"
+
+#: src/f-spot.glade.h:42
+msgid "Edit Selected Tag"
+msgstr "Edita l'etiqueta seleccionada"
+
+#: src/f-spot.glade.h:43
+msgid "Edit Tag Icon"
+msgstr "Edita l'etiqueta de la icona"
+
+#: src/f-spot.glade.h:44
+msgid "Export"
+msgstr "Exporta"
+
+#: src/f-spot.glade.h:45
+msgid "Export titles and comments"
+msgstr "Exporta els títols i els comentaris"
+
+#: src/f-spot.glade.h:46
+msgid "Export to Album:"
+msgstr "Exporta a l'àlbum"
+
+#: src/f-spot.glade.h:47
+msgid "File"
+msgstr "Fitxer"
+
+#: src/f-spot.glade.h:48
+msgid "Fin_d"
+msgstr "Ce_rca"
+
+#: src/f-spot.glade.h:49
+msgid "Find by _Tag"
+msgstr "Cerca pe_r etiqueta"
+
+#: src/f-spot.glade.h:50
+msgid ""
+"Full Page\n"
+"Standard - 4x6"
+msgstr ""
+"Pàgina completa\n"
+"Estàndard - 4x6"
+
+#: src/f-spot.glade.h:52
+msgid "Fullscreen"
+msgstr "Pantalla completa"
+
+#: src/f-spot.glade.h:53
+msgid "Gallery"
+msgstr "Galeria"
+
+#: src/f-spot.glade.h:54
+msgid "Gallery Name:"
+msgstr "Nom de la galeria:"
+
+#: src/f-spot.glade.h:55
+msgid "Gallery Settings"
+msgstr "Preferències de la galeria"
+
+#: src/f-spot.glade.h:56
+msgid "Gallery:"
+msgstr "Galeria:"
+
+#: src/f-spot.glade.h:57
+msgid ""
+"Hairline\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
+msgstr ""
+
+#: src/f-spot.glade.h:62
+msgid "Hue:"
+msgstr "Matís:"
+
+#: src/f-spot.glade.h:63
+msgid "Icon:"
+msgstr "Icona:"
+
+#: src/f-spot.glade.h:64
+msgid "Month"
+msgstr "Mes"
+
+#: src/f-spot.glade.h:65
+msgid "Next"
+msgstr "Següent"
+
+#: src/f-spot.glade.h:66
+msgid ""
+"None\n"
+"Title\n"
+"Filename\n"
+"Date\n"
+"Photo Details"
+msgstr ""
+"Cap\n"
+"Títol\n"
+"Nom del fitxer\n"
+"Data\n"
+"Detalls de la fotografia"
+
+#: src/f-spot.glade.h:71
+msgid "Number of Copies:"
+msgstr "Nombre de còpies:"
+
+#: src/f-spot.glade.h:72
+msgid "OK"
+msgstr "D'acord"
+
+#: src/f-spot.glade.h:73
+msgid "Open album in browser when done uploading"
+msgstr "Obre l'àlbum en el navegador quan finalitzis la pujada"
+
+#: src/f-spot.glade.h:74
+msgid "Page 1 of 3"
+msgstr "Pàgina 1 de 3"
+
+#: src/f-spot.glade.h:75
+msgid "Password:"
+msgstr "Contrasenya:"
+
+#: src/f-spot.glade.h:76
+msgid "Pause"
+msgstr "Pausa"
+
+#: src/f-spot.glade.h:77
+msgid "Photo 0 of 0"
+msgstr "Fotografia 0 de 0"
+
+#: src/f-spot.glade.h:78
+msgid "Photo Source:"
+msgstr "Font de la fotografia"
+
+#: src/f-spot.glade.h:79
+msgid "PhotoSize:"
+msgstr "Mida de la fotografia"
+
+#: src/f-spot.glade.h:80
+msgid "Previous"
+msgstr "Anterior"
+
+#: src/f-spot.glade.h:81
+msgid "Print"
+msgstr "Imprimeix"
+
+#: src/f-spot.glade.h:82
+msgid "Print Crop Marks"
+msgstr "Imprimeix les marques de escapça"
+
+#: src/f-spot.glade.h:83
+msgid "Rem_ove Tag"
+msgstr "Elimi_na l'etiqueta"
+
+#: src/f-spot.glade.h:84 src/TagPopup.cs:38
+msgid "Remove Tag From Selection"
+msgstr "Elimina l'etiqueta de la selecció"
+
+#: src/f-spot.glade.h:85
+msgid "Rename Version"
+msgstr "Canvia el nom de la versió"
+
+#: src/f-spot.glade.h:86 src/PhotoPopup.cs:32
+msgid "Rotate Left"
+msgstr "Gira a l'esquerra"
+
+#: src/f-spot.glade.h:87 src/PhotoPopup.cs:34
+msgid "Rotate Right"
+msgstr "Gira a la dreta"
+
+#: src/f-spot.glade.h:88
+msgid "Saturation:"
+msgstr "Saturació:"
+
+#: src/f-spot.glade.h:89
+msgid "Scale images to no larger than: "
+msgstr "Escala les imatges a no més de:"
+
+#: src/f-spot.glade.h:90
+msgid "Select All"
+msgstr "Selecciona-ho tot"
+
+#: src/f-spot.glade.h:91
+msgid "Select None"
+msgstr "No seleccionis res"
+
+#: src/f-spot.glade.h:92
+msgid ""
+"Selection\n"
+"Gallery\n"
+"Viewport"
+msgstr ""
+"Selecció\n"
+"Galeria\n"
+"Viewport"
+
+#: src/f-spot.glade.h:95
+msgid "Send _Mail"
+msgstr "Envia _correu"
+
+#: src/f-spot.glade.h:96
+msgid "Set _Date Range"
+msgstr "Estableix el ran_g de les dates"
+
+#: src/f-spot.glade.h:97
+msgid "Set as Background"
+msgstr "Estableix com a fons"
+
+#: src/f-spot.glade.h:98
+msgid "Size"
+msgstr "Mida"
+
+#: src/f-spot.glade.h:99
+msgid "SlideShow"
+msgstr "Projecció de diapositives"
+
+#: src/f-spot.glade.h:100
+msgid "Source Temp"
+msgstr "Font temporal"
+
+#: src/f-spot.glade.h:101 src/TagCommands.cs:310
+msgid "Tag name:"
+msgstr "Nom de l'etiqueta"
+
+#: src/f-spot.glade.h:102
+msgid "Tags"
+msgstr "Etiquetes"
+
+#: src/f-spot.glade.h:103
+msgid "Update Thumbnail"
+msgstr "Actualitza la miniatura"
+
+#: src/f-spot.glade.h:104
+msgid "Url:"
+msgstr "Url:"
+
+#: src/f-spot.glade.h:105
+msgid "User_name:"
+msgstr "Nom d'_usuari:"
+
+#: src/f-spot.glade.h:106
+msgid "Username:"
+msgstr "Nom d'usuari:"
+
+#: src/f-spot.glade.h:107
+msgid "View"
+msgstr "Vista"
+
+#: src/f-spot.glade.h:108
+msgid "Will print Using: Us Letter size on Generic Postscript"
+msgstr "S'imprimirà usant: mida Us Letter en Postscript genèric"
+
+#: src/f-spot.glade.h:109
+msgid "Zoom In"
+msgstr "Amplia"
+
+#: src/f-spot.glade.h:110
+msgid "Zoom _Out"
+msgstr "Reduei_x"
+
+#: src/f-spot.glade.h:111
+msgid "_Attach Tag"
+msgstr "_Adjunta l'etiqueta"
+
+#: src/f-spot.glade.h:112
+msgid "_Clear Date Range"
+msgstr "_Neteja el rang de dates"
+
+#: src/f-spot.glade.h:113
+msgid "_Delete from Drive"
+msgstr "_Esborra del disc"
+
+#: src/f-spot.glade.h:114
+msgid "_Gallery Name:"
+msgstr "_Nom de la galeria"
+
+#: src/f-spot.glade.h:115
+msgid "_Import"
+msgstr "_Importa"
+
+#: src/f-spot.glade.h:116
+msgid "_Large"
+msgstr "_Gran"
+
+#: src/f-spot.glade.h:117
+msgid "_Medium"
+msgstr "_Mitjana"
+
+#: src/f-spot.glade.h:118
+msgid "_Password:"
+msgstr "_Contrasenya"
+
+#: src/f-spot.glade.h:119
+msgid "_Remove From Catalog"
+msgstr "_Esborra del catàleg"
+
+#: src/f-spot.glade.h:120
+msgid "_Small"
+msgstr "_Petit"
+
+#: src/f-spot.glade.h:121
+msgid "_Url:"
+msgstr "_Url:"
+
+#: src/f-spot.glade.h:122
+msgid "_Version"
+msgstr "_Versió"
+
+#: src/f-spot.glade.h:123
+msgid "dialog1"
+msgstr "dialog1"
+
+#: src/f-spot.glade.h:124
+msgid "x"
+msgstr "x"
+
+#: src/GalleryExport.cs:310
+msgid "Uploading Pictures"
+msgstr "S'estan pujant les fotografies"
+
+#: src/GalleryExport.cs:335
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr "S'està pujant la fotografia  \"{0}\""
+
+#: src/GalleryExport.cs:339 src/ProgressDialog.cs:75
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} de {1}"
+
+#: src/GalleryExport.cs:343
+msgid "Done Sending Photos"
+msgstr "Fet l'enviament de fotografies"
+
+#: src/GalleryExport.cs:345
+msgid "Upload Complete"
+msgstr "Pujada completada"
+
+#: src/GalleryExport.cs:349
+msgid "Error Uploading To Gallery"
+msgstr "Error pujant a la galeria"
+
+#: src/GalleryExport.cs:381
+#
+msgid "(No Gallery)"
+msgstr "(Cap galeria)"
+
+#: src/GalleryExport.cs:423
+msgid "(No Albums)"
+msgstr "(Sense àlbums)"
+
+#: src/InfoBox.cs:70
+msgid "Name:"
+msgstr "Nom:"
+
+#: src/InfoBox.cs:72
+#
+msgid "Version:"
+msgstr "Versió:"
+
+#: src/InfoBox.cs:74
+msgid "Date:"
+msgstr "Data:"
+
+#: src/InfoBox.cs:76
+#
+msgid "Size:"
+msgstr "Mida:"
+
+#: src/InfoBox.cs:78
+#
+msgid "Exposure:"
+msgstr "Exposició"
+
+#: src/InfoBox.cs:153
+msgid "(None)"
+msgstr "(Cap)"
+
+#. Translators should localize the following string
+#. * which will give them credit in the About box.
+#. * E.g. "Martin Willemoes Hansen"
+#: src/MainWindow.cs:843
+msgid "translator-credits"
+msgstr "Jordi Mas i Hernàndez <jmas@softcatala.org>"
+
+#: src/PhotoPopup.cs:27
+msgid "Copy Image Location"
+msgstr "Copia la ubicació de la imatge"
+
+#: src/PhotoPopup.cs:39
+#
+msgid "Remove From Catalog"
+msgstr "Esborra del catàleg"
+
+#: src/PhotoPopup.cs:41
+#
+msgid "Delete From Drive"
+msgstr "Esborra del disc"
+
+#.
+#. FIXME TagMenu is ugly.
+#.
+#: src/PhotoPopup.cs:49
+#
+msgid "Attach Tag"
+msgstr "Adjunta l'etiqueta"
+
+#.
+#. FIXME finish the IPhotoSelection stuff and move the activate handler into the class
+#. this current method is way too complicated.
+#.
+#: src/PhotoPopup.cs:59
+#
+msgid "Remove Tag"
+msgstr "Elimina l'etiqueta"
+
+#. Fixme this should really set parent menu
+#. items insensitve
+#: src/PhotoTagMenu.cs:72
+#
+msgid "(No Tags)"
+msgstr "(Cap etiqueta)"
+
+#: src/RotateCommand.cs:24
+msgid "Rotating pictures"
+msgstr "S'estan girant les fotografies"
+
+#: src/RotateCommand.cs:33
+#, csharp-format
+msgid "Rotating picture \"{0}\""
+msgstr "S'està girant la fotografia \"{0}\""
+
+#: src/RotateCommand.cs:71
+msgid ""
+"Some images could not be rotated because they are on a read only file system "
+"or media such as a CDROM.  Please check the permissions and try again."
+msgstr "Algunes imatges no s'han pogut girar perquè són en un sistema de només "
+"lectura o medis com un CD-ROM. Si us plau, verifiqueu els permisos i torneu-ho a provar."
+
+#: src/TagCommands.cs:56
+msgid "(No categories)"
+msgstr "(Cap categoria)"
+
+#: src/TagCommands.cs:102 src/TagCommands.cs:231
+msgid "This name is already in use"
+msgstr "Aquest nom ja s'està usant"
+
+#: src/TagCommands.cs:124
+msgid "Name of new tag:"
+msgstr "Nom de l'etiqueta nova:"
+
+#: src/TagCommands.cs:128
+#
+msgid "Name of new category:"
+msgstr "Nom de la nova categoria:"
+
+#: src/TagCommands.cs:306
+#
+msgid "Edit Category"
+msgstr "Edita la categoria"
+
+#: src/TagCommands.cs:307
+#
+msgid "Category name:"
+msgstr "Nom de la categoria"
+
+#: src/TagCommands.cs:309 src/TagPopup.cs:27
+#
+msgid "Edit Tag"
+msgstr "Edita l'etiqueta"
+
+#: src/TagCommands.cs:405
+#, csharp-format
+msgid "Photo {0} of {1}"
+msgstr "Fotografia {0} de {1}"
+
+#: src/TagCommands.cs:419
+#, csharp-format
+msgid "Edit icon For category {0}"
+msgstr "Edita la icona per la categoria {0}"
+
+#: src/TagCommands.cs:421
+#, csharp-format
+msgid "Edit icon for tag {0}"
+msgstr "Edita la icona per l'etiqueta {0}"
+
+#: src/TagPopup.cs:30
+#
+msgid "Delete Tag"
+msgstr "Esborra l'etiqueta"
+
+
