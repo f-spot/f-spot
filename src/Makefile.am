@@ -38,6 +38,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/JpegUtils.cs			\
 	$(srcdir)/Cms.cs			\
 	$(srcdir)/MainWindow.cs			\
+	$(srcdir)/OriginalExport.cs		\
 	$(srcdir)/PhotoImageView.cs		\
 	$(srcdir)/PhotoLoader.cs		\
 	$(srcdir)/PhotoPopup.cs			\
@@ -134,6 +135,7 @@ ASSEMBLIES =					\
 	/r:System.Web				\
 	/r:Mono.Data.SqliteClient		\
 	/r:Mono.Posix				\
+	/r:ICSharpCode.SharpZipLib		\
 	/pkg:gtkhtml-sharp			\
 	/pkg:glade-sharp			\
 	/pkg:gconf-sharp

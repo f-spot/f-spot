@@ -815,6 +815,11 @@ public class MainWindow {
 		new FSpot.VfsExport (new FSpot.PhotoArray (SelectedPhotos ()));
 	}
 
+	void HandleExportToOriginal (object sender, EventArgs args)
+	{
+		new FSpot.OriginalExport (new FSpot.PhotoArray (SelectedPhotos ()));
+	}
+
 	void HandleViewDirectory (object sender, EventArgs args)
 	{
 		Gtk.Window win = new Gtk.Window ("Directory View");
@@ -870,6 +875,7 @@ public class MainWindow {
 			"Tambet Ingo",
 			"MOREAU Vincent",
 			"Lee Willis",
+			"Alessandro Gervaso",
 			"Peter Johanson",
 			"Grahm Orr",
 			"Cheslack-Postava",

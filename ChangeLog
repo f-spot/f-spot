@@ -1,3 +1,14 @@
+2005-01-21  Larry Ewing  <lewing@novell.com>
+
+	* src/f-spot.glade: add orignal export dialog.
+
+	* src/MainWindow.cs: add original export handler.
+
+	* src/Makefile.am: add OriginalExport to the build.
+	
+	* src/OriginalExport.cs: add new file from Alessandro Gervaso to
+	export to Jakub's original gallery.
+
 2005-01-20  Larry Ewing  <lewing@novell.com>
 
 	* src/Makefile.am: add new resources.
