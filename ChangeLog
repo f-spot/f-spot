@@ -1,6 +1,7 @@
 2004-08-20  Larry Ewing  <lewing@novell.com>
 
 	* src/TimeAdaptor.cs: load the whole range, this still needs work.
+	Improve the end date calculation.
 
 	* src/MainWindow.cs: call the new time adaptor constructor.
 

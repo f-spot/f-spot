@@ -48,7 +48,7 @@ namespace FSpot {
 		public int Value (int item)
 		{
 			DateTime start = DateFromIndex (item);
-			DateTime end = DateFromIndex (item + 1); 
+			DateTime end = start.AddMonth (1);
 			
 			PhotoStore store = query.Store;
 			
