@@ -1,3 +1,11 @@
+2005-01-13  Larry Ewing  <lewing@novell.com>
+
+	* src/TagCommands.cs: add thumbnails for emblems.
+
+	* src/f-spot.glade: fix up the Icon editing display.
+
+	* src/Util.cs: use the return value for the check rather than a null value.
+
 2005-01-12  Larry Ewing  <lewing@novell.com>
 
 	* src/Makefile.am: add CDExport.c to build.

@@ -363,6 +363,9 @@ public class TagCommands {
 		ScrolledWindow photo_scrolled_window;
 		
 		[Glade.Widget]
+		ScrolledWindow icon_scrolled_window;
+
+		[Glade.Widget]
 		Label photo_label;
 
 		[Glade.Widget]
@@ -446,6 +449,14 @@ public class TagCommands {
 				photo_spin_button.Value = 0.0;
 			}			
 			
+			
+			IconView view = new IconView (new FSpot.DirectoryCollection ("/opt/gnome/share/icons/gnome/48x48/emblems/"));
+			icon_scrolled_window.Add (view);
+			view.ThumbnailWidth = 32;
+			view.DisplayTags = false;
+			view.DisplayDates = false;
+			view.Show();
+
 			image_view.Show ();
 
 			ResponseType response = (ResponseType) edit_icon_dialog.Run ();
