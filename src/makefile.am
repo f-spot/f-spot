@@ -32,6 +32,7 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/TagSelectionWidget.cs		\
 	$(srcdir)/TagStore.cs			\
 	$(srcdir)/TimelineSelectorWidget.cs	\
+	$(srcdir)/ThreadProgressDialog.cs	\
 	$(srcdir)/ThumbnailCache.cs		\
 	$(srcdir)/ThumbnailCommand.cs		\
 	$(srcdir)/ZoomUtils.cs			\
@@ -56,17 +57,13 @@ RESOURCES =										\
 	/resource:$(srcdir)/f-spot.glade,f-spot.glade
 
 fspotlibdir = $(prefix)/lib/f-spot
+fspotlib_DATA = f-spot.exe.config	\
+		f-spot.exe
 
 f-spot.exe: $(F_SPOT_CSFILES) f-spot.glade
 	$(CSC) -o $@ $(CSFLAGS) $(F_SPOT_CSFILES) $(ASSEMBLIES) $(RESOURCES)
 
 all: f-spot.exe
-
-install-data-local: f-spot.exe
-	$(mkinstalldirs) $(DESTDIR)$(fspotlibdir)
-	$(INSTALL_DATA) f-spot.exe $(DESTDIR)$(fspotlibdir)/f-spot.exe
-	$(INSTALL_DATA) f-spot.exe.config $(DESTDIR)$(fspotlibdir)/f-spot.exe.config
-
 
 bin_SCRIPTS = f-spot
 
@@ -76,6 +73,7 @@ f-spot: f-spot.in
 EXTRA_DIST =					\
 	$(F_SPOT_CSFILES)			\
 	f-spot.in				\
+	f-spot.exe.config			\
 	f-spot.glade
 
 CLEANFILES =					\
