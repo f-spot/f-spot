@@ -1,5 +1,7 @@
 2004-02-11  Larry Ewing  <lewing@ximian.com>
 
+	* src/f-spot.glade: remove toolbar that crept in somehow.
+	
 	* src/MainWindow.cs: hook up select/unselect.
 	
 	* src/IconView.cs: make unselectall public add selectall.
