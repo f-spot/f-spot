@@ -333,9 +333,15 @@ public class ExifData : IDisposable {
 		tag_list.Add (entry->tag);
 		string_values [entry->tag] = Marshal.PtrToStringAnsi (_ExifEntry.exif_entry_get_value (entry));
 
-		byte [] raw_data = new byte [entry->size];
-		Marshal.Copy (raw_data, 0, (IntPtr) entry->data, (int) entry->size);
-
+		byte [] raw_data;
+		if (entry->size > 0) {
+			raw_data = new byte [entry->size];
+			Marshal.Copy (raw_data, 0, (IntPtr) entry->data, (int) entry->size);
+		} else {
+			Console.WriteLine ("Zero Length EXIF tag");
+			raw_data = new byte [0] {};
+		}
+			
 		data [entry->tag] = raw_data;
 	}
 	

@@ -22,20 +22,22 @@ public class MainWindow {
 	}
 
 	TagSelectionWidget tag_selection_widget;
-	[Widget] Gtk.Window main_window;
-	[Widget] VBox left_vbox;
-	[Widget] VBox group_vbox;
-	[Widget] Toolbar main_toolbar;
-	[Widget] ScrolledWindow icon_view_scrolled;
-	[Widget] Box photo_box;
-	[Widget] Notebook view_notebook;
-	[Widget] ScrolledWindow tag_selection_scrolled;
+	[Glade.Widget] Gtk.Window main_window;
+	[Glade.Widget] VBox left_vbox;
+	[Glade.Widget] VBox group_vbox;
+
+	[Glade.Widget] ScrolledWindow icon_view_scrolled;
+	[Glade.Widget] Box photo_box;
+	[Glade.Widget] Notebook view_notebook;
+	[Glade.Widget] ScrolledWindow tag_selection_scrolled;
 
 	//
 	// Menu items
 	//
-	[Widget] MenuItem version_menu_item;
-	[Widget] MenuItem create_version_menu_item, delete_version_menu_item, rename_version_menu_item;
+	[Glade.Widget] MenuItem version_menu_item;
+	[Glade.Widget] MenuItem create_version_menu_item;
+	[Glade.Widget] MenuItem delete_version_menu_item;
+	[Glade.Widget] MenuItem rename_version_menu_item;
 
 	[Widget] MenuItem delete_selected_tag;
 	[Widget] MenuItem edit_selected_tag;
@@ -527,7 +529,8 @@ public class MainWindow {
 		current_photos = true;
 		current_photo_idx = photo_view.CurrentPhoto;
 		info_box.Photo = CurrentPhoto;
-		info_display.Photo = CurrentPhoto;
+		if (info_display != null)
+			info_display.Photo = CurrentPhoto;
 		UpdateMenus ();
 	}
 

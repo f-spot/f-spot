@@ -1,6 +1,12 @@
+2004-09-25  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: only set the current photo if the
+	info_display exists
+
 2004-09-23  Larry Ewing  <lewing@novell.com>
 
 	* src/InfoDisplay.cs: only write to the stream if we have data.
+	Change the layout a little.
 
 	* src/MainWindow.cs: remove unused code, hook up the start of the
 	new print dialog.  Add temporary View->EXIF Data window.  Clean up
