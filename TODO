@@ -1,0 +1,140 @@
+A lot needs to be done before F-Spot is useful!  Here is a list of
+tasks for those who want to pick them up.
+
+Basic functionality:
+
+	- Drag and dropping of tags onto the pictures.  I have started
+          work on this, but the GTK# dnd bindings are slightly broken
+          right now, so those have to be fixed first.
+
+	- Timeline widget.  We need a nice month-by-month navigation
+          widget with a graph like the one in Photoshop Album.  See
+          screenshot at:
+
+		http://www.dpreview.com/reviews/adobephotoshopalbum/images/mainwindow.jpg
+
+	  To understand how it works, it's highly advisable to
+	  download the trial version of Photoshop Album, it's easier
+	  to see it in action that to describe how it works.
+	  http://www.adobe.com/products/photoshopalbum/starter.html
+
+	  There is a beginning of work for this widget in the
+	  TimelineSelector.cs file but it's really just a sketch for
+	  now.  Also, before we get this to work we need to add date
+	  fields to the Sqlite database (it should probably be done
+	  with separate year/month/day/time fields, since Sqlite kinda
+	  sucks at dates and we need to be able to do queries on these
+	  pretty fast).
+
+	- Description field.  We need to be able to associate a
+          description to each picture.  There should be a big entry
+          widget in the info box on the bottom left where you can type
+          the description, and it should be possible to show/hide it
+          using a button in the GUI.
+
+	- Search entry.  We need an entry where you can type something
+          and then the UI will update showing you all the pictures
+          that match.  (Probably the search should match the
+          description, the name, and the tags of each picture.)  The
+          search entry should probably be on the right side of the
+          main toolbar.
+
+	- Web export.  We need a set of web templates and a command to
+          upload a webpage after the user has selected one of them.
+          Webpages can be uploaded using ssh: or ftp: with GNOME VFS.
+
+	- Printing.  I know nothing about photo printing on Linux...
+          But we obviously need the ability to print.  Also, aside
+          from using a local printer, it should support ordering a
+          print from one of the various online printing services.  A
+          good starting point should be this:  http://gimp-print.sourceforge.net/
+
+	- Tag icon editing.  User should be able to specify a custom
+          icon for each tag/category (except for the stock ones).  See
+          how Photoshop Album does it here:
+
+		http://www.dpreview.com/reviews/adobephotoshopalbum/page2.asp
+
+	  I am told iChat has a very snazzy way to edit the buddy
+	  icons; we might want to imitate that instead of the UI in
+	  Album which is kind of annoying to use.
+
+	  Note that in Photoshop Album, when you first assign an
+	  iconless tag to a picture, the tag gets the icon from that
+	  picture automatically.  That's very handy; we should do the
+	  same thing.
+
+	- Display tags in the image view.  When you double click on an
+          image, it should show you all the tags/categories associated
+          with that image on the side.
+
+	- Color coding for tags.  Each category should get a different
+          color and that color should be reflected in the tag icon.
+          See how Photoshop Album does it here:
+
+	  	http://www.dpreview.com/reviews/adobephotoshopalbum/images/tagviews.jpg
+
+	  (See how "People" tags are yellow and "Places" tags are
+	  green.)
+
+	  Also we need those three different viewing modes for tags...
+	  Right now it just uses GtkTreeView but a custom widget might
+	  be better so we can lay large tags out as in that
+	  screenshot.
+
+	- Basic image adjustment controls: brightness, contrast,
+          saturation.  ImageView already has the ability to change
+          what the displayed image looks like by changing these
+          properties, so we can have live controls that get saved into
+          the JPG only when the user leaves the image.  (I had this
+          working in the earlier C prototype...)
+
+	- Desaturation.  It should be possible to turn images into
+          B&W; a plus would be to let the user to select custom mixing
+          values for the R, G, B channels (e.g. say "I want 70% green,
+          20% red, 10% blue).
+
+	- Automatic color enhancement and level adjustment.  Again,
+          something that we can easily steal from the GIMP.
+
+	- Unsharp mask.  Another much needed basic editing feature,
+          the code can probably be stolen from the GIMP
+          (http://www.gimp.org).  It might be nice to be able to
+          automatically apply unsharp mask to a bunch of pictures when
+          publishing them to the web.
+
+	- Red eye reduction.  You should be able to select a rectangle
+          and F-Spot would remove red eye effect from that area.
+
+	- CD burning support.  I haven't thought this through very
+          much yet, but one should be able to back up a bunch of
+          pictures onto CD and F-Spot should know about them even
+          after they have been removed from the local drive.  Then one
+          should be able to put a CD in and browse the pictures.
+
+	- Slideshow.  It would be nice to have a nice fade-in/fade-out
+          effect, possibly with music, and also the ability to export
+          a slideshow as a movie file.
+
+More fancy features:
+
+	- Image-based searches.  In Photoshop Album you can look for
+          pictures similar to another one.  Also ImgSeek allows the
+          user to draw something on the screen and find pictures that
+          look similar to what the user drew; it would be really cool
+          to have something like this in F-Spot.  See
+          http://imgseek.sourceforge.net/
+
+  	- Photo stitching.  F-Spot should recognize a set of panorama
+          pictures from a camera and allow to launch Panorama Tools on
+          them.  While the Panorama Tools are very advanced and can
+          give very good results, the current Linux GUI for them is
+          horrible, it would be nice if someone wrote a GTK+ front-end
+          to them...  http://www.path.unimelb.edu.au/~dersch/
+
+	  Of course the front-end should try to figure out as much as
+	  possible from the image's EXIF tags so that the user doesn't
+	  have to type in the lens type etc. manually.
+
+
+-- Ettore
