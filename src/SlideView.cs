@@ -23,7 +23,7 @@ public class SlideView : Gtk.Image {
 	uint transition_timer = 0;
 
 	bool animate = true;
-	uint animate_max = 110;
+	uint animate_max = 160;
 
 	bool black = false;
 	uint flip_interval = 2000;

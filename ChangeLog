@@ -1,5 +1,8 @@
 2005-02-24  Larry Ewing  <lewing@novell.com>
 
+	* src/SlideView.cs: increase the max interval for the slide
+	timeout.
+
 	* src/FolderExport.cs: write out the stylesheet from a resource,
 	bump the page count.
 
