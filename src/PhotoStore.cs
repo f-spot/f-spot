@@ -575,7 +575,7 @@ public class PhotoStore : DbStore {
 			Photo photo = LookupInCache (id) as Photo;
 				
 			if (photo == null) {
-				Console.WriteLine ("Photo {0} not found", id);
+				//Console.WriteLine ("Photo {0} not found", id);
 				continue;
 			}
 				
@@ -606,7 +606,7 @@ public class PhotoStore : DbStore {
 			Photo photo = LookupInCache (id) as Photo;
 				
 			if (photo == null) {
-				Console.WriteLine ("Photo {0} not found", id);
+				//Console.WriteLine ("Photo {0} not found", id);
 				continue;
 			}
 				
@@ -637,7 +637,7 @@ public class PhotoStore : DbStore {
 			Photo photo = LookupInCache (id) as Photo;
 				
 			if (photo == null) {
-				Console.WriteLine ("Photo {0} not found", id);
+				//Console.WriteLine ("Photo {0} not found", id);
 				continue;
 			}
 				
@@ -1022,15 +1022,14 @@ public class PhotoStore : DbStore {
 			
 		}
 
-		Console.WriteLine ("query: {0}", query);		
-		Console.WriteLine ("Main Start {0}", System.DateTime.Now);
+		DateTime Console.WriteLine ("Query Start {0}", System.DateTime.Now);
 
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
 		command.CommandText = query;
 		SqliteDataReader reader = command.ExecuteReader ();
 
-		Console.WriteLine ("Main Mid {0}", System.DateTime.Now);
+		Console.WriteLine ("Query Mid {0}", System.DateTime.Now);
 
 		ArrayList version_list = new ArrayList ();
 		ArrayList id_list = new ArrayList ();
@@ -1069,7 +1068,7 @@ public class PhotoStore : DbStore {
 				photo.Loaded = true;
 			}
 		} else {
-			Console.WriteLine ("Skipped Loading Data");
+			//Console.WriteLine ("Skipped Loading Data");
 		}
 
 
@@ -1081,7 +1080,6 @@ public class PhotoStore : DbStore {
 	}
 
 #if TEST_PHOTO_STORE
-
 	static void Dump (Photo photo)
 	{
 		Console.WriteLine ("\t[{0}] {1}", photo.Id, photo.Path);

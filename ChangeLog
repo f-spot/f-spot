@@ -1,5 +1,7 @@
 2004-08-17  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoStore.cs: remove some old debug output.
+
 	* src/TimeAdaptor.cs: rebuild the query when the limits change.
 
 	* src/GroupSelector.cs: set the adaptor limits when the limit
