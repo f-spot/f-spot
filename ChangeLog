@@ -1,3 +1,13 @@
+2004-10-12  Larry Ewing  <lewing@novell.com>
+
+	* src/QueryView.cs: add missing constructor.
+
+	* src/IconView.cs: add the start of date drawing.
+
+	* src/MainWindow.cs: allow toggling of display dates.
+
+	* src/f-spot.glade: add the date menu items.
+
 2004-10-11  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoView.cs: make Page up/down do next prev.

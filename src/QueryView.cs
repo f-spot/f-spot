@@ -6,6 +6,8 @@ public class QueryView : IconView {
 		query.Reload += OnReload;
 		query.ItemChanged += ItemChanged;
 	}
+
+	protected QueryView (System.IntPtr raw) : base (raw) {}
 	
 	private void OnReload (PhotoQuery query)
 	{

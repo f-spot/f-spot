@@ -725,6 +725,16 @@
 		      </child>
 
 		      <child>
+			<widget class="GtkCheckMenuItem" id="display_dates_menu_item">
+			  <property name="visible">True</property>
+			  <property name="label" translatable="yes">Display Dates</property>
+			  <property name="use_underline">True</property>
+			  <property name="active">True</property>
+			  <signal name="activate" handler="HandleDisplayDates" last_modification_time="Tue, 12 Oct 2004 19:13:14 GMT"/>
+			</widget>
+		      </child>
+
+		      <child>
 			<widget class="GtkSeparatorMenuItem" id="separator17">
 			  <property name="visible">True</property>
 			</widget>
@@ -770,7 +780,7 @@
 				  <property name="visible">True</property>
 				  <property name="label" translatable="yes">Month</property>
 				  <property name="use_underline">True</property>
-				  <property name="active">True</property>
+				  <property name="active">False</property>
 				  <signal name="activate" handler="HandleArrangeByTime" last_modification_time="Fri, 20 Aug 2004 22:26:32 GMT"/>
 				</widget>
 			      </child>
@@ -780,7 +790,7 @@
 				  <property name="visible">True</property>
 				  <property name="label" translatable="yes">Directory</property>
 				  <property name="use_underline">True</property>
-				  <property name="active">False</property>
+				  <property name="active">True</property>
 				  <property name="group">month</property>
 				  <signal name="activate" handler="HandleArrangeByDirectory" last_modification_time="Fri, 20 Aug 2004 22:26:32 GMT"/>
 				</widget>
@@ -4232,7 +4242,6 @@ Photo Details</property>
 </widget>
 
 <widget class="GtkDialog" id="gallery_export_dialog">
-  <property name="visible">True</property>
   <property name="title" translatable="yes">Export</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
@@ -4980,7 +4989,7 @@ Photo Details</property>
 	      <property name="visible">True</property>
 	      <property name="can_focus">True</property>
 	      <property name="editable">True</property>
-	      <property name="visibility">True</property>
+	      <property name="visibility">False</property>
 	      <property name="max_length">0</property>
 	      <property name="text" translatable="yes"></property>
 	      <property name="has_frame">True</property>

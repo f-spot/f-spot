@@ -944,6 +944,11 @@ public class MainWindow {
 	{
 		icon_view.DisplayTags = !icon_view.DisplayTags;
 	}
+	
+	void HandleDisplayDates (object sender, EventArgs args)
+	{
+		icon_view.DisplayDates = !icon_view.DisplayDates;
+	}
 
 	void HandleViewSlideShow (object sender, EventArgs args)
 	{

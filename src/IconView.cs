@@ -64,6 +64,17 @@ public class IconView : Gtk.Layout {
 		}
 	}
 
+	private bool display_dates = true;
+	public bool DisplayDates {
+		get {
+			return display_dates;
+		}
+
+		set {
+			display_dates = value;
+			QueueResize ();
+		}
+	}
 
 	// Size of the frame around the thumbnail.
 	private const int CELL_BORDER_WIDTH = 10;
@@ -351,7 +362,15 @@ public class IconView : Gtk.Layout {
 
 
 	// Layout and drawing.
-
+	
+	// FIXME I can't find a c# wrapper for the C PANGO_PIXELS () macro
+	// So this Function is for that.
+	static int PangoPixels (int val)
+	{
+		return val >= 0 ? (val + 1024 / 2) / 1024 :
+			(val - 1024 / 2) / 1024;
+	}
+	
 	private void UpdateLayout ()
 	{
 		int available_width = Allocation.Width - 2 * BORDER_SIZE;
@@ -361,6 +380,14 @@ public class IconView : Gtk.Layout {
 
 		if (DisplayTags)
 			cell_height += TAG_ICON_SIZE + TAG_ICON_VSPACING;
+		
+		if (DisplayDates && this.Style != null) {
+		       
+			Pango.FontMetrics metrics = this.PangoContext.GetMetrics (this.Style.FontDescription, Pango.Language.FromString ("en_US"));
+
+			cell_height += PangoPixels (metrics.Ascent + metrics.Descent);
+			cell_height += TAG_ICON_VSPACING;
+		}
 
 		cells_per_row = Math.Max ((int) (available_width / cell_width), 1);
 
@@ -380,6 +407,7 @@ public class IconView : Gtk.Layout {
 		Vadjustment.Change ();
 	}
 
+	System.Collections.Hashtable date_layouts = new Hashtable ();
 	// FIXME Cache the GCs?
 	private void DrawCell (int thumbnail_num, int x, int y)
 	{
@@ -409,6 +437,29 @@ public class IconView : Gtk.Layout {
 					 this, null, x + 3, y + 3, cell_width - 6, cell_height - 6);
 		}
 
+		int layout_width = 0;
+		int layout_height = 0;
+		if (DisplayDates) {
+			string date = photo.Time.ToShortDateString ();
+			
+			Pango.Layout layout = (Pango.Layout)date_layouts [date];
+			if (layout == null) {
+				layout = new Pango.Layout (this.PangoContext);
+				layout.SetText (date);
+				date_layouts [date] = layout;
+			}
+			
+			int layout_x = x + CELL_BORDER_WIDTH;				
+			int layout_y = y + CELL_BORDER_WIDTH;
+
+			layout.GetPixelSize (out layout_width, out layout_height);
+			Style.PaintLayout (Style, BinWindow, State,
+					   true, area, this, null, layout_x, layout_y, layout);
+
+			layout_height += TAG_ICON_VSPACING;
+		}
+
+		
 		if (thumbnail == null) {
 			pixbuf_loader.Request (thumbnail_path, thumbnail_num);
 		} else {
@@ -417,10 +468,12 @@ public class IconView : Gtk.Layout {
 
 			int dest_x = (int) (x + (cell_width - width) / 2);
 			int dest_y;
+
+			
 			if (DisplayTags)
-				dest_y = (int) (y + (cell_height - height - (TAG_ICON_SIZE + TAG_ICON_VSPACING)) / 2);
+				dest_y = (int) (y + layout_height + (cell_height - layout_height - height - (TAG_ICON_SIZE + TAG_ICON_VSPACING)) / 2);
 			else
-				dest_y = (int) (y + (cell_height - height) / 2);
+				dest_y = (int) (y + layout_height + (cell_height - layout_height - height) / 2);
 			
 			if (thumbnail_num == throb_cell) {
 				double t = throb_state / (double) (throb_state_max - 1);
