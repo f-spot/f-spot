@@ -5,6 +5,7 @@ using Glade;
 using Gnome;
 using System;
 using System.IO;
+using System.Text;
 
 using System.Collections;
 using System.Runtime.InteropServices;
@@ -48,6 +49,18 @@ public class MainWindow {
 	PhotoView photo_view;
 	PhotoQuery query;
 	
+	// Drag and Drop
+	enum TargetType {
+		Uri,
+		RootWindow
+	};
+
+	private static TargetEntry [] target_table = new TargetEntry [] {
+		new TargetEntry ("text/uri-list", 0, (uint) TargetType.Uri),
+		new TargetEntry ("application/x-rootwindow-drop", 0, (uint) TargetType.RootWindow)
+	};
+
+
 	// Index into the PhotoQuery.  If -1, no photo is selected or multiple photos are selected.
 	const int PHOTO_IDX_NONE = -1;
 	private int current_photo_idx = PHOTO_IDX_NONE;
@@ -88,6 +101,11 @@ public class MainWindow {
 		icon_view_scrolled.Add (icon_view);
 		icon_view.SelectionChanged += new IconView.SelectionChangedHandler (HandleSelectionChanged);
 		icon_view.DoubleClicked += new IconView.DoubleClickedHandler (HandleDoubleClicked);
+		
+		Gtk.Drag.SourceSet (icon_view, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
+				    target_table, DragAction.Copy | DragAction.Move);
+
+		icon_view.DragDataGet += new DragDataGetHandler (HandleIconViewDragDataGet);
 		
 		photo_view = new PhotoView (query, db.Photos);
 		photo_box.Add (photo_view);
@@ -144,7 +162,25 @@ public class MainWindow {
 		}
 	}
 
+	/* FIXME need to fix the gtk-sharp bindings */
+	[DllImport("libgtk-win32-2.0-0.dll")]
+		static extern void gtk_selection_data_set(IntPtr raw, IntPtr type, int format, byte [] data, int length);
 	// IconView events.
+	void HandleIconViewDragDataGet (object sender, DragDataGetArgs args)
+	{		
+		String uri_list = Photo.ToUriList (SelectedPhotos ());
+		Byte [] data = Encoding.UTF8.GetBytes (uri_list);
+		
+		
+		Atom []targets = args.Context.Targets;
+		
+		/* FIXME I need to fix the gtk-sharp bindings */
+#if true
+		gtk_selection_data_set (args.SelectionData.Handle, targets[0].Handle, 8, data, data.Length);
+#else 
+		args.SelectionData.Set (targets[0], 8, data);
+#endif
+	}
 
 	void HandleSelectionChanged (IconView view)
 	{
