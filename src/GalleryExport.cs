@@ -100,6 +100,9 @@ namespace FSpot {
 		protected void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
 			if (args.ResponseId == Gtk.ResponseType.Ok) {
+				if (!url.EndsWidth ("/gallery_remote2.php"))
+					url = url + "/gallery_remote2.php";
+
 				GalleryAccount account = new GalleryAccount (name, url, username, password);
 				export.AddAccount (account);
 			}

@@ -1,7 +1,8 @@
 2004-10-14  Larry Ewing  <lewing@novell.com>
 
 	* src/GalleryExport.cs: save and load the accounts from an xml
-	file.
+	file.  Fixup the url if it doesn't have the gallery_remote2.php
+	string.
 
 2004-10-14  Mikael Hallendal  <micke@imendio.com>
 
