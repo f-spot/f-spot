@@ -150,6 +150,9 @@ public class IconView : Gtk.Layout {
 
 	private void OnReload (PhotoQuery query)
 	{
+		// FIXME we should probably try to merge the selection forward
+		// but it needs some thought to be efficient.
+		selected_cells.Clear ();
 		QueueResize ();
 	}
 
@@ -672,10 +675,14 @@ public class IconView : Gtk.Layout {
 			case Gdk.Key.End:
 				focus_cell = query.Photos.Length - 1; 
 				break;
+			/*
+			case Gdk.Key.space:
+				ToggleCell (focus_cell);
+				break;
+			*/
 			default:	
 				args.RetVal = false;
 				return;		
-				break;
 		}
 		
 		if (focus_cell < 0 || focus_cell > query.Photos.Length - 1) {
