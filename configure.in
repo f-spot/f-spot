@@ -51,14 +51,6 @@ AC_CHECK_HEADERS(libgnomeui/gnome-thumbnail.h)
 AM_CONDITIONAL(LIBGNOMEUI_HAVE_GNOME_THUMBNAIL_H, test x$ac_cv_header_libgnomeui_gnome_thumbnail_h = xtrue)
 
 
-dnl --- Set up gettext
-
-GETTEXT_PACKAGE=f-$VERSION
-AC_SUBST(GETTEXT_PACKAGE)
-AM_GLIB_GNU_GETTEXT
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Package name for use by gettext])
-
-
 dnl --- Set up paths
 
 ICONS_DIRECTORY=${datadir}/${PACKAGE}-${VERSION}
