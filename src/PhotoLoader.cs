@@ -51,8 +51,6 @@ namespace FSpot
 							   thumbnail.GetOption ("tEXt::Thumb::MTime"));
 					// Fixme This shouldn't be throwing an exception but it is
 					valid  = Gnome.Thumbnail.IsValid (thumbnail, photo_uri, mtime);
-
-					
 				} catch (Exception e) {
 					Console.WriteLine (e);
 					valid = false;
@@ -68,7 +66,11 @@ namespace FSpot
 					PhotoStore.thumbnail_factory.SaveThumbnail (scaled, photo_uri, mtime);
 					ThumbnailCache.Default.AddThumbnail (thumbnail_path, scaled);
 				}
+
 			}
+
+			if (thumbnail != null)
+				thumbnail.Dispose ();
 			
 			return pixbuf;
 		}

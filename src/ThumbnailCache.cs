@@ -68,20 +68,23 @@ public class ThumbnailCache {
 		pixbuf_mru.Remove (item);
 		pixbuf_mru.Insert (0, item);
 
-		return item.pixbuf;
+		Pixbuf copy = new Pixbuf (item.pixbuf, 0, 0, item.pixbuf.Width, item.pixbuf.Height);
+		PixbufUtils.SetOption (copy, "tEXt::Thumb::URI", item.pixbuf.GetOption ("tEXt::Thumb::URI"));
+		PixbufUtils.SetOption (copy, "tEXt::Thumb::MTime", item.pixbuf.GetOption ("tEXt::Thumb::MTime"));
+		return copy;
 	}
 
-	public Pixbuf RemoveThumbnailForPath (string path)
+	public void RemoveThumbnailForPath (string path)
 	{
 		if (! pixbuf_hash.ContainsKey (path))
-			return null;
+			return;
 
 		Thumbnail item = pixbuf_hash [path] as Thumbnail;
 
 		pixbuf_hash.Remove (path);
 		pixbuf_mru.Remove (item);
 
-		return item.pixbuf;
+		item.pixbuf.Dispose ();
 	}
 
 
@@ -92,6 +95,7 @@ public class ThumbnailCache {
 		while (pixbuf_mru.Count > max_count) {
 			Thumbnail thumbnail = pixbuf_mru [pixbuf_mru.Count - 1] as Thumbnail;
 
+			thumbnail.pixbuf.Dispose ();
 			pixbuf_hash.Remove (thumbnail.path);
 			pixbuf_mru.RemoveAt (pixbuf_mru.Count - 1);
 		}

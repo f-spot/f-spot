@@ -480,6 +480,8 @@ public class IconView : Gtk.Layout {
 			
 			if (temp_thumbnail != thumbnail)
 				temp_thumbnail.Dispose ();
+			
+			thumbnail.Dispose ();
 		}
 
 		if (DisplayTags) {

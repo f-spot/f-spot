@@ -1,3 +1,17 @@
+2004-08-24  Larry Ewing  <lewing@novell.com>
+
+	* src/ThumbnailCache.cs: use a subpixbuf hack to make the return
+	value of the pixbuf disposable.  Dispose the thumbnail whenever we
+	remove it from the cache.  Since the callers have subpixbufs they
+	hold their own refs and don't have to worry about our explicit
+	dispose.
+
+	* src/IconView.cs: always dispose the result of
+	GetThumbnailForPath.
+	
+	* src/PhotoLoader.cs: always dispose the result of
+	GetThumbnailForPath.
+
 2004-08-23  Larry Ewing  <lewing@novell.com>
 
 	* src/IconView.cs: add a IntPtr ctor, bump the ThumbnailCache icon
