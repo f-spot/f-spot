@@ -1,3 +1,8 @@
+2004-07-03  Larry Ewing  <lewing@ximian.com>
+
+	* src/GalleryRemote.cs: actually use the auto rotate flag and set
+	it to false.
+
 2004-06-29  Federico Mena Quintero  <federico@ximian.com>
 
 	* src/PhotoView.cs (CurrentPhoto.set): Don't do anything if we are

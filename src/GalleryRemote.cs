@@ -297,6 +297,7 @@ public class GalleryRemote {
 		client.Add ("protocol_version", "2.9");
 		client.Add ("set_albumName", album.Name);
 		client.Add ("userfile_name", filename);
+		client.Add ("auto_rotate", autorotate ? "yes" : "no");
 		client.Add ("caption", caption);
 		client.Add ("userfile", new FileInfo (path));
 
