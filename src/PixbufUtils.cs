@@ -30,20 +30,31 @@ class PixbufUtils {
 				  bool upscale_smaller,
 				  out int fit_width, out int fit_height)
 	{
-		if (pixbuf.Width == 0 || pixbuf.Height == 0) {
+		return Fit (pixbuf.Width, pixbuf.Height, 
+			    dest_width, dest_height, 
+			    upscale_smaller, 
+			    out fit_width, out fit_height);
+	}
+
+	public static double Fit (int orig_width, int orig_height,
+				  int dest_width, int dest_height,
+				  bool upscale_smaller,
+				  out int fit_width, out int fit_height)
+	{
+		if (orig_width == 0 || orig_height == 0) {
 			fit_width = 0;
 			fit_height = 0;
 			return 0.0;
 		}
 
-		double scale = Math.Min (dest_width / (double)pixbuf.Width,
-					 dest_height / (double)pixbuf.Height);
+		double scale = Math.Min (dest_width / (double)orig_width,
+					 dest_height / (double)orig_height);
 		
 		if (scale > 1.0 && !upscale_smaller)
 			scale = 1.0;
 
-		fit_width = (int)(scale * pixbuf.Width);
-		fit_height = (int)(scale * pixbuf.Height);
+		fit_width = (int)(scale * orig_width);
+		fit_height = (int)(scale * orig_height);
 		
 		return scale;
 	}
@@ -143,8 +154,17 @@ class PixbufUtils {
 		
 	static public Pixbuf LoadAtMaxSize (string path, int max_width, int max_height)
 	{
+#if true
 		PixbufUtils.AspectLoader loader = new AspectLoader (max_width, max_height);
 		return loader.LoadFromFile (path);
+#else
+		int width, height;
+		JpegUtils.GetSize (path, out width, out height);
+		PixbufUtils.Fit (width, height, max_width, max_height, false, out width, out height);
+		Gdk.Pixbuf image = JpegUtils.LoadScaled (path, width, height);
+		
+		return image;
+#endif
 	}
 
 	static private Pixbuf LoadFromStream (System.IO.Stream input)
@@ -366,6 +386,27 @@ class PixbufUtils {
 		if (result == false)
 			throw new System.Exception ("Error Saving File");
 	}
+
+	[DllImport ("libgtk-win32-2.0-0.dll")]
+	extern static IntPtr gtk_icon_theme_get_default ();
+
+	[DllImport ("libgtk-win32-2.0-0.dll")]
+	extern static IntPtr gtk_icon_theme_load_icon (IntPtr theme, string name, int size, int flags, IntPtr error);
+	
+	public static Gdk.Pixbuf LoadThemeIcon (string name, int size)
+	{
+		try {
+			IntPtr native = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (), name, size, 0, IntPtr.Zero);
+			if (native != IntPtr.Zero) {
+				Gdk.Pixbuf ret = (Gdk.Pixbuf) GLib.Object.GetObject(native, true);
+				return ret;
+			}
+		} catch (System.Exception e) {
+			System.Console.Write (e.ToString ());
+		}
+		return null;
+	}
+
 
 	[DllImport ("libfspot")]
 	static extern IntPtr f_pixbuf_unsharp_mask (IntPtr src, double radius, double amount, double threshold);
