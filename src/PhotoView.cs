@@ -263,10 +263,12 @@ public class PhotoView : EventBox {
 		// be fixed there.
 		photo_view.Pixbuf = edited;
 		photo_view.UnsetSelection ();
+		bool version = false;
 
 		try {
 			if (photo.DefaultVersionId == Photo.OriginalVersionId) {
 				photo.DefaultVersionId = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);
+				version = true;
 				PixbufUtils.SaveJpeg (edited, photo.DefaultVersionPath, 
 						      95, exif_data);
 				FSpot.ThumbnailGenerator.Create (photo.DefaultVersionPath).Dispose ();
@@ -278,9 +280,20 @@ public class PhotoView : EventBox {
 				FSpot.ThumbnailGenerator.Create (photo.DefaultVersionPath).Dispose ();
 				query.MarkChanged (CurrentPhoto);
 			}
-		} catch (GLib.GException ex) {
-			// FIXME error dialog.
-			Console.WriteLine ("error {0}", ex);
+		} catch (System.Exception e) {
+			string msg = Mono.Posix.Catalog.GetString ("Error editing photo");
+			string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save image {1}"),
+						     e.Message, photo.Name);
+
+			HigMessageDialog md = new HigMessageDialog ((Gtk.Window)this.Toplevel, DialogFlags.DestroyWithParent, 
+								    Gtk.MessageType.Error, ButtonsType.Ok, 
+								    msg,
+								    desc);
+			md.Run ();
+			md.Destroy ();
+
+			if (version)
+				photo.DeleteVersion (photo.DefaultVersionId);
 		}
 		
 		photo_view.Fit = true;

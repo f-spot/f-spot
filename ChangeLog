@@ -1,5 +1,11 @@
 2005-03-19  Larry Ewing  <lewing@novell.com>
 
+	* src/RotateCommand.cs: fix format string.
+
+	* src/PhotoView.cs: provide error dialog if file can't be saved.
+
+	* src/ColorDialog.cs: provide error dialog if file can't be saved.
+
 	* src/f-spot.exe.config.in: add a dllmap for gdk-x11.
 
 	* src/MainWindow.cs: use the new FullSlide class.

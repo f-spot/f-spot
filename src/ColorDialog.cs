@@ -114,9 +114,11 @@ namespace FSpot {
 			Photo photo = view.Query.Photos[view.CurrentPhoto];
 			Exif.ExifData data = new Exif.ExifData (photo.DefaultVersionPath);
 			
+			bool created_version = false;
 			uint version = photo.DefaultVersionId;
 			if (version == Photo.OriginalVersionId) {
 				version = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);
+				created_version = true;
 			}
 			
 			Gdk.Pixbuf orig = view.CompletePixbuf ();
@@ -137,9 +139,20 @@ namespace FSpot {
 				ThumbnailGenerator.Create (version_path).Dispose ();
 				photo.DefaultVersionId = version;
 				view.Query.Commit (view.CurrentPhoto);
-			} catch (GLib.GException ex) {
-				// FIXME error dialog.
-				Console.WriteLine (ex.ToString ());
+			} catch (System.Exception e) {
+				string msg = Mono.Posix.Catalog.GetString ("Error saving adjusted  photo");
+				string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save image {1}"),
+							     e.Message, photo.Name);
+				
+				HigMessageDialog md = new HigMessageDialog ((Gtk.Window)Dialog.Toplevel, DialogFlags.DestroyWithParent, 
+									    Gtk.MessageType.Error, ButtonsType.Ok, 
+									    msg,
+									    desc);
+				md.Run ();
+				md.Destroy ();
+
+				if (created_version)
+					photo.DeleteVersion (version);
 			}
 			
 			Console.WriteLine ("Saving....");
