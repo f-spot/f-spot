@@ -58,12 +58,42 @@ namespace FSpot {
 			}
 		}
 
+
+		protected override bool OnMotionNotifyEvent (Gdk.EventMotion args) 
+		{
+			Rectangle box = glass.Bounds ();
+			Console.WriteLine ("please {0} and {1} in box {2}", args.X, args.Y, box);
+
+			if (args.X >= box.X && args.X <= box.X + box.Width) {
+				Console.WriteLine ("prelight");
+				glass.State = StateType.Prelight;
+			} else 
+				glass.State = StateType.Normal;
+
+			return base.OnMotionNotifyEvent (args);
+		}
+
 		protected override void OnRealized ()
 		{
 			Flags |= (int)WidgetFlags.Realized;
 			GdkWindow = ParentWindow;
 
 			base.OnRealized ();
+			
+			WindowAttr attr = WindowAttr.Zero;
+			attr.WindowType = Gdk.WindowType.Child;
+			attr.X = Allocation.X;
+			attr.Y = Allocation.Y;
+			attr.Width = Allocation.Width;
+			attr.Height = Allocation.Height;
+			attr.Wclass = WindowClass.InputOnly;
+			attr.EventMask = (int) Events;
+			attr.EventMask |= (int) (EventMask.ButtonPressMask | 
+				EventMask.ButtonReleaseMask | 
+				EventMask.PointerMotionMask);
+				
+			event_window = new Gdk.Window (GdkWindow, attr, (int) (WindowAttributesType.X | WindowAttributesType.Y));
+			event_window.UserData = this.Handle;
 		}
 
 		private Double BoxWidth {
@@ -149,6 +179,19 @@ namespace FSpot {
 			private GroupSelector selector;
 			private int handle_height = 15;
 
+			private StateType state;
+			public StateType State {
+				get {
+					return state;
+				}
+				set {
+					if (state != value) {
+						selector.GdkWindow.InvalidateRect (Bounds (), false);
+					}
+					state = value;
+				}
+			}
+
 			private int border {
 				get {
 					return selector.box_spacing * 2;
@@ -210,19 +253,19 @@ namespace FSpot {
 						box.Width += 2;
 						box.Height += 2;
 					
-						selector.GdkWindow.DrawRectangle (selector.Style.BackgroundGC (selector.State), 
+						selector.GdkWindow.DrawRectangle (selector.Style.BackgroundGC (State), 
 										  false, box);
 						i++;
 					}
 				
-					Style.PaintHandle (selector.Style, selector.GdkWindow, selector.State, ShadowType.In, 
+					Style.PaintHandle (selector.Style, selector.GdkWindow, State, ShadowType.In, 
 							    area, selector, "glass", bounds.X, inner.Y + inner. Height + border, 
 							    bounds.Width, handle_height, Orientation.Horizontal);
 
-					Style.PaintShadow (selector.Style, selector.GdkWindow, selector.State, ShadowType.Out, 
+					Style.PaintShadow (selector.Style, selector.GdkWindow, State, ShadowType.Out, 
 							   area, selector, null, bounds.X, bounds.Y, bounds.Width, bounds.Height);
 
-					Style.PaintShadow (selector.Style, selector.GdkWindow, selector.State, ShadowType.In, 
+					Style.PaintShadow (selector.Style, selector.GdkWindow, State, ShadowType.In, 
 							   area, selector, null, inner.X, inner.Y, inner.Width, inner.Height);
 
 				}
@@ -285,6 +328,13 @@ namespace FSpot {
 			}
 		}
 		
+		protected override void OnMapped ()
+		{
+			base.OnMapped ();
+			if (event_window != null)
+				event_window.Show ();
+		}
+		
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
 			Rectangle area; 
@@ -343,6 +393,9 @@ namespace FSpot {
 
 			legend = new Rectangle (border, background.Y + background.Height,
 						background.Width, legend_height);
+
+			if (event_window != null)
+				event_window.MoveResize (Allocation);
 		}
 
 		public GroupSelector () : base () 
@@ -406,7 +459,7 @@ namespace FSpot {
 			Gtk.Window win = new Gtk.Window ("testing");
 
 			GroupSelector gs = new GroupSelector ();
-			gs.Counts = new int [] {20, 10, 5, 2, 3, 50, 8, 10, 22, 0, 55, 129, 120, 30, 14, 200, 21, 55};
+			gs.Counts = new int [] {20, 100, 123, 10, 5, 2, 3, 50, 8, 10, 22, 0, 55, 129, 120, 30, 14, 200, 21, 55};
 			gs.Mode = 2;
 
 			win.Add (gs);

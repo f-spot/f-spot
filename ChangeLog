@@ -1,6 +1,11 @@
+2004-08-15  Larry Ewing  <lewing@novell.com>
+
+	* src/GroupSelector.cs: Add prelighting to the glass, hook up
+	event_window.
+
 2004-08-14  Larry Ewing  <lewing@novell.com>
 
-	* src/GroupSelector.cs: don't attach the style in the realize
+	* src/GroupSelector.csi: don't attach the style in the realize
 	handler.  Draw innactive boxes using the prelight color (it isn't
 	perfect but it is prettier than the inset frame.  Add a detail
 	string to the PaintHandle call because pixbuf themes seem to crash
