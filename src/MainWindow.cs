@@ -1025,8 +1025,17 @@ public class MainWindow {
 		args.RetVal = true;
 	}
 
+	FSpot.FullScreenView fsview;
 	void HandleViewFullscreen (object sender, EventArgs args)
 	{
+		fsview = new FSpot.FullScreenView (query);
+
+		if (current_photo_idx != PHOTO_IDX_NONE)
+			fsview.View.CurrentPhoto = current_photo_idx;
+		else 
+			fsview.View.CurrentPhoto = 0;
+
+		fsview.Show ();
 	}
 
 	void HandleZoomOut (object sender, EventArgs args)

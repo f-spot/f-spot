@@ -1,0 +1,160 @@
+
+namespace FSpot {
+	public class PhotoImageView : ImageView {
+		public PhotoImageView (PhotoQuery query)
+		{
+			this.query = query;
+			loader = new FSpot.AsyncPixbufLoader ();
+			//scroll_delay = new Delay (new GLib.IdleHandler (IdleUpdateScrollbars));
+			this.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
+		}
+		
+		private int current_photo;
+		public int CurrentPhoto {
+			get {
+				return current_photo;
+			}
+			set {
+				if (current_photo == value){
+					return;
+				} else {
+					current_photo = value;
+					this.PhotoChanged ();
+				}
+			}
+		}
+
+		public Photo Photo {
+			get {
+				if (CurrentPhotoValid ()) 
+					return this.Query.Photos [CurrentPhoto];
+				else 
+					return null;
+			}
+		}
+
+		private PhotoQuery query;
+		public PhotoQuery Query {
+			get {
+				return query;
+			}
+			set {
+				if (query != null) {
+					//query.Reload -= HandleQueryReload;
+					//query.ItemChanged -= HandleQueryItemChanged;
+				}
+
+				query = value;
+				//query.Reload += HandleQueryItemReload;
+				//query.ItemChanged += HandleQueryItemChanged;
+				
+				CurrentPhoto = 0;
+			}
+		}
+
+		public bool CurrentPhotoValid ()
+		{
+			if (query == null ||
+			    query.Photos.Length == 0 ||
+			    CurrentPhoto >= Query.Photos.Length) {
+				System.Console.WriteLine ("Invalid CurrentPhoto");
+				return false;
+			}
+
+			return true;
+		}
+
+		// Display.
+		private void HandlePixbufAreaUpdated (object sender, Gdk.AreaUpdatedArgs args)
+		{
+			// FIXME we should really only expose the updated region.
+			this.QueueDraw ();
+		}
+	
+		bool load_async = true;
+		FSpot.AsyncPixbufLoader loader;
+		private void PhotoChanged () 
+		{
+			if (!CurrentPhotoValid ())
+				return;
+
+			Gdk.Pixbuf old = this.Pixbuf;
+			Gdk.Pixbuf current = null;
+			
+			if (load_async) {
+				current = loader.Load (Photo.DefaultVersionPath);
+				loader.Loader.AreaUpdated += HandlePixbufAreaUpdated;
+			} else
+				current = FSpot.PhotoLoader.Load (Query, current_photo);
+			
+			this.Pixbuf = current;
+			
+			if (old != null)
+				old.Dispose ();
+
+			this.UnsetSelection ();
+			this.ZoomFit ();
+		}
+
+		private Delay scroll_delay;
+		private bool IdleUpdateScrollbars ()
+		{
+			(this.Parent as Gtk.ScrolledWindow).SetPolicy (Gtk.PolicyType.Automatic, 
+								       Gtk.PolicyType.Automatic);
+			return false;
+ 		}
+
+		public void ZoomFit ()
+		{
+			Gdk.Pixbuf pixbuf = this.Pixbuf;
+			
+			if (pixbuf == null)
+				return;
+			
+			int available_width = this.Allocation.Width;
+			int available_height = this.Allocation.Height;
+			
+			double zoom_to_fit = ZoomUtils.FitToScale ((uint) available_width, (uint) available_height,
+								   (uint) pixbuf.Width, (uint) pixbuf.Height, false);
+			
+			double image_zoom = zoom_to_fit;
+			//Console.WriteLine ("Zoom {2} zoom_to_fit {0} image_zoom {1}", zoom_to_fit, image_zoom, Zoom);
+			
+			//if (System.Math.Abs (Zoom) < double.Epsilon)
+				((Gtk.ScrolledWindow) this.Parent).SetPolicy (Gtk.PolicyType.Never, Gtk.PolicyType.Never);
+
+			this.SetZoom (image_zoom, image_zoom);
+			
+			//if (System.Math.Abs (Zoom) < double.Epsilon)
+			//	scroll_delay.Start ();
+
+		}
+
+		public void Next () {
+			if (CurrentPhoto + 1 < query.Photos.Length)
+				CurrentPhoto++;
+			else
+				CurrentPhoto = 0;
+		}
+		
+		public void Prev () 
+		{
+			if (CurrentPhoto > 0)
+				CurrentPhoto --;
+			else
+				CurrentPhoto = query.Photos.Length;
+		}
+
+		protected override void OnDestroyed ()
+		{
+			System.Console.WriteLine ("I'm feeling better");
+			base.OnDestroyed ();
+		}
+
+		protected override bool OnDestroyEvent (Gdk.Event evnt)
+		{
+			System.Console.WriteLine ("I'm feeling better");
+			return base.OnDestroyEvent (evnt);
+		}
+	}
+}

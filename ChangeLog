@@ -1,5 +1,15 @@
 2004-11-12  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: make view->fullscreen start to do something.
+
+	* src/PhotoImageview.cs: ew, who comes up with these names?  (OK
+	this is meant to only be temporary while I fixup the naming
+	mess).  New Widget that handles more of the query specific logic
+	than the old.  I'll transition PhotoView soonish.
+
+	* src/FullScreenView.cs: stubbed out widget for the new full
+	screen mode.
+	
 	* src/InfoDisplay.cs: add null check patch from Loz.
 
 2004-11-09  Larry Ewing  <lewing@novell.com>
