@@ -265,10 +265,18 @@ namespace Exif {
 	}
 	
 	public class ExifContent : ExifObject {
+		ExifData parent;
+		public ExifData Parent {
+			get {
+				return parent;
+			}
+		}
+
 		System.Collections.ArrayList entries;
 		
-		internal ExifContent (IntPtr handle) : base (handle)
+		internal ExifContent (ExifData parent, IntPtr handle) : base (handle)
 		{
+			this.parent = parent;
 			exif_content_ref (this.handle);
 		}
 		
@@ -302,6 +310,13 @@ namespace Exif {
 			return null;
 		}
 
+		public bool Contains (ExifEntry entry)
+		{
+			Assemble ();
+
+			return entries.Contains (entry);
+		}
+
 		public ExifEntry GetEntry (ExifTag tag)
 		{
 			Assemble ();
@@ -318,15 +333,20 @@ namespace Exif {
 			Assemble ();
 
 			entries.Add (entry);
+			// This call can recurse into this function but it protects
+			// itself by checking if it the content already contains the entry
+			entry.SetParent (this);
 			exif_content_add_entry (this.handle, entry.Handle);	
 		}
-
 
 		public void Remove (ExifEntry entry)
 		{
 			Assemble ();
 			
 			entries.Remove (entry);
+			// This call can recurse into this function but it protects
+			// itself by checking if it the content already contains the entry
+			entry.SetParent (null);
 			exif_content_remove_entry (this.handle, entry.Handle);
 		}
 		
@@ -346,7 +366,7 @@ namespace Exif {
 		
 	        void AssembleEntry (IntPtr entry, IntPtr data)
 		{
-			entries.Add (new ExifEntry (entry));
+			entries.Add (new ExifEntry (this, entry));
 		}
 		
 		ExifContentForeachEntryFunc func;
@@ -378,23 +398,48 @@ namespace Exif {
 	
 	
 	public class ExifEntry : ExifObject {
-		internal ExifEntry (IntPtr native) : base (native)
+		ExifContent parent;
+		public ExifContent Parent {
+			get {
+				unsafe {
+					if (_handle->parent != parent.Handle.Handle)
+						throw new Exception ("Invalid Object State");
+					
+					return parent;
+				}
+			}
+		}
+		// Don't use this unless you know exactly what you are doing
+		internal void SetParent (ExifContent adoptor) {
+			// NOTE this api is ugly but the check prevent the parent state 
+			// from getting confused.  See ExifContent Add and Remove for the 
+			// other half.
+			if (parent != null && parent.Contains (this))
+				parent.Remove (this);
+
+			if (adoptor != null && !adoptor.Contains (this))
+				adoptor.Add (this);
+			
+			parent = adoptor;
+		}
+
+		internal ExifEntry (ExifContent parent, IntPtr native) : base (native)
 		{
 			this.handle = new HandleRef (this, native);
+			this.parent = parent;
 			exif_entry_ref (this.handle);
 		}
 
 		[DllImport ("libexif.dll")]
-		internal static extern IntPtr 
-exif_entry_new ();
+		internal static extern IntPtr exif_entry_new ();
 
 		[DllImport ("libexif.dll")]
 		internal static extern void exif_entry_initialize (HandleRef handle, ExifTag tag);
 
-		public ExifEntry (ExifContent content, ExifTag tag)
+		public ExifEntry (ExifContent parent, ExifTag tag)
 		{
 			handle = new HandleRef (this, exif_entry_new ());
-			content.Add (this);
+			parent.Add (this);
 			this.Reset (tag);
 		}
 		
@@ -491,7 +536,7 @@ exif_entry_new ();
 		
 		public void SetData (short [] data)
 		{
-
+			
 		}
 
 		public void SetData (string value)
@@ -509,6 +554,78 @@ exif_entry_new ();
 			SetData (time.ToString ("yyyy:MM:dd HH:mm:ss"));
 		}
 		
+		private unsafe void PutBytes (byte *dest, byte *src, int count)
+		{
+			int i = 0;
+			if (System.BitConverter.IsLittleEndian == (this.ByteOrder == ExifByteOrder.Intel)) {
+				for (i = 0; i < count; i++) {
+					//System.Console.WriteLine ("Copying normal byte [{0}]= {1}", i, src[i]);
+					dest [i] = src [i];
+				}
+			} else {
+				for (i = 0; i < count; i++) {
+					//System.Console.WriteLine ("Copying swapped byte [{0}]= {1}", i, src[i]);
+					dest [i] = src [count - i -1];  
+				}
+			}
+		}
+		
+		private unsafe uint ToUInt (byte *src)
+		{
+			uint value;
+			PutBytes ((byte *)&value, (byte *)src, 4);
+			return value;
+		}
+		
+		private unsafe ushort ToUShort (byte *src)
+		{
+			ushort value;
+			PutBytes ((byte *)&value, (byte *)src, 2);
+			return value;
+		}
+		
+		public uint [] GetDataUInt () {
+			unsafe {
+				uint [] result = new uint [_handle->components];
+				uint *src = (uint *)_handle->data;
+				//System.Console.WriteLine ("copying {0} components", result.Length); 
+				for (int i = 0; i < result.Length; i++) {
+					result [i] = ToUInt ((byte *)src);
+					//System.Console.WriteLine ("value[{0}] = {1}", i, result [i]);
+					src += i;
+				}
+				
+				return result;
+			}
+		}			
+
+		public ushort [] GetDataUShort () {
+			unsafe {
+				ushort [] result = new ushort [_handle->components];
+				ushort *src = (ushort *)_handle->data;
+				//System.Console.WriteLine ("copying {0} components", result.Length); 
+				for (int i = 0; i < result.Length; i++) {
+					result [i] = ToUShort ((byte *)src);
+					//System.Console.WriteLine ("value[{0}] = {1}", i, result [i]);
+					src += i;
+				}
+				
+				return result;
+			}
+		}
+
+
+		public int [] GetDataInt () {
+			return null;
+		}
+
+		public ExifByteOrder ByteOrder
+		{
+			get {
+				return parent.Parent.GetByteOrder ();
+			}
+		}
+
 		public string Description 
 		{
 			get {
@@ -653,6 +770,14 @@ exif_entry_new ();
 
 			return (ExifContent []) ifds.ToArray (typeof (ExifContent));
 		}
+
+		[DllImport("libexif.dll")]
+		internal static extern ExifByteOrder exif_data_get_byte_order (HandleRef handle);
+		
+		public ExifByteOrder GetByteOrder ()
+		{
+			return exif_data_get_byte_order (handle);
+		}
 		
 		internal delegate void ExifDataForeachContentFunc (IntPtr content, IntPtr data);
 		
@@ -661,7 +786,7 @@ exif_entry_new ();
 		
 		unsafe void AssembleIfds (IntPtr content, IntPtr data)
 		{
-			ifds.Add (new ExifContent (content));
+			ifds.Add (new ExifContent (this, content));
 		}
 		
 		public ExifEntry LookupFirst (ExifTag tag)

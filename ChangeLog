@@ -1,5 +1,11 @@
 2005-01-26  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufUtils.cs: move the get orientation logic over to the
+	new Exif structure.
+
+	* src/Exif.cs: add some accessors for the entry data, restructure
+	clases to work around crappy libexif object design.
+
 	* src/Exif.cs: clear existing data before calling initialize
 	otherwise initialize will short circuit.
 

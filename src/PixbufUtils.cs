@@ -420,12 +420,26 @@ class PixbufUtils {
 	}
 
 	public static PixbufOrientation GetOrientation (ExifData data)
-	{
-		byte [] value = data.LookupData (ExifTag.Orientation);
-		PixbufOrientation orientation = PixbufOrientation.TopLeft;
+        {
+               byte [] value = data.LookupData (ExifTag.Orientation);
+                PixbufOrientation orientation = PixbufOrientation.TopLeft;
 
 		if (value != null) {
 			orientation = (PixbufOrientation)value [0];
+		}
+		
+		return orientation;
+	}
+
+	public static PixbufOrientation GetOrientation (Exif.ExifData data)
+	{
+		PixbufOrientation orientation = PixbufOrientation.TopLeft;
+		
+		Exif.ExifEntry e = data.GetContents (Exif.ExifIfd.Zero).Lookup (Exif.ExifTag.Orientation);
+
+		if (e != null) {
+			ushort [] value = e.GetDataUShort ();
+			orientation = (PixbufOrientation) value [0];
 		}
 
 		return orientation;
@@ -433,7 +447,7 @@ class PixbufUtils {
 	
 	public static PixbufOrientation GetOrientation (string path)
 	{
-		ExifData data = new ExifData (path);
+		Exif.ExifData data = new Exif.ExifData (path);
 
 		return GetOrientation (data);
 	}
