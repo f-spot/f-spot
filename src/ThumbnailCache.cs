@@ -17,7 +17,7 @@ public class ThumbnailCache : IDisposable {
 
 	// Private members and constants
 
-	private const int DEFAULT_CACHE_SIZE = 200;
+	private const int DEFAULT_CACHE_SIZE = 2;
 
 	private int max_count;
 	private ArrayList pixbuf_mru;

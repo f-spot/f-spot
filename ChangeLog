@@ -1,5 +1,7 @@
 2005-02-24  Larry Ewing  <lewing@novell.com>
 
+	* src/Thumbnail.cs: make the default size tiny.
+
 	* src/PixbufLoader.cs: add the blocking logic to the loader.
 
 	* src/PhotoImageView.cs: use bilinear interp it looks nicer.
