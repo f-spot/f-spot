@@ -30,8 +30,8 @@ class FormClient {
 	public HttpWebRequest Request;
 	public CookieContainer Cookies;
 
-
-	public FormClient (CookieContainer cookies) {
+	public FormClient (CookieContainer cookies) 
+	{
 		this.Cookies = cookies;
 		this.Items = new ArrayList ();
 	}
@@ -42,7 +42,11 @@ class FormClient {
 		this.Cookies = new CookieContainer ();
 	}
 	
-	private void GenerateBoundary () {
+	private void GenerateBoundary () 
+	{
+		// FIXME this shouldn't really be hardcoded, look in camel/camel-mime-utils.c
+		// for a boundary algo.  camel_header_msgid_generate ()
+
 		boundary = "--------ieoau._._+2_8_GoodLuck8.3-ds0d0J0S0Kl234324jfLdsjfdAuaoei-----";
 		start_boundary = "--" + boundary; 
 		end_boundary = start_boundary + "--";
@@ -121,7 +125,8 @@ class FormClient {
 		}
 	}
 
-	public void Clear () {
+	public void Clear () 
+	{
 		Items.Clear ();
 		multipart = false;
 	}
@@ -131,7 +136,8 @@ class FormClient {
 		return Submit (new Uri (url));
 	}
 
-	public HttpWebResponse Submit (Uri uri) {
+	public HttpWebResponse Submit (Uri uri) 
+	{
 		Request = (HttpWebRequest) WebRequest.Create (uri);
 		Request.CookieContainer = Cookies;		
 		Request.Method = "POST";
@@ -164,7 +170,6 @@ class FormClient {
 		HttpWebResponse response = (HttpWebResponse) Request.GetResponse ();
 
 		foreach (Cookie c in response.Cookies) {
-			//Console.WriteLine (c);
 			Cookies.Add (c);
 		}
 		return response;
