@@ -563,9 +563,10 @@
 		      </child>
 
 		      <child>
-			<widget class="GtkImageMenuItem" id="properties1">
+			<widget class="GtkImageMenuItem" id="properties">
 			  <property name="visible">True</property>
 			  <property name="stock_item">GNOMEUIINFO_MENU_PROPERTIES_ITEM</property>
+			  <signal name="activate" handler="HandlePropertiesCommand" last_modification_time="Mon, 19 Apr 2004 17:20:27 GMT"/>
 			</widget>
 		      </child>
 
