@@ -6432,6 +6432,16 @@ Photo Details</property>
 		  </child>
 
 		  <child>
+		    <widget class="GtkCheckMenuItem" id="display_info_sidebar1">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">Display _Sidebar</property>
+		      <property name="use_underline">True</property>
+		      <property name="active">True</property>
+		      <signal name="activate" handler="HandleDisplayInfoSidebar" last_modification_time="Thu Feb 24 20:19:59 EST 2005"/>
+		    </widget>
+		  </child>
+
+		  <child>
 		    <widget class="GtkCheckMenuItem" id="display_tags_menu_item">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Display T_ags</property>

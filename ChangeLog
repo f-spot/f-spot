@@ -1,3 +1,10 @@
+2005-02-27  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: Allow hiding of the tag side bar.  Patch from
+	Nat.
+
+	* src/f-spot.glade: expose the sidbar vpaned from Nat.
+
 2005-02-27  Hendrik Richter  <hendrik@gnome-de.org>
 
 	* configure.in: Added "de" to ALL_LINGUAS.

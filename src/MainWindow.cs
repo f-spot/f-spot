@@ -59,6 +59,8 @@ public class MainWindow {
 	[Glade.Widget] MenuItem remove_tag;
 	[Glade.Widget] MenuItem find_tag;
 
+	[Glade.Widget] VPaned info_vpaned;
+
 	PhotoVersionMenu versions_submenu;
 
 	Gtk.ToggleButton browse_button;
@@ -1208,6 +1210,14 @@ public class MainWindow {
 			group_selector.Hide ();
 		else
 			group_selector.Show ();
+	}
+
+	void HandleDisplayInfoSidebar (object sender, EventArgs args)
+	{
+		if (info_vpaned.Visible)
+			info_vpaned.Hide ();
+		else
+			info_vpaned.Show ();
 	}
 
 	void HandleViewSlideShow (object sender, EventArgs args)
