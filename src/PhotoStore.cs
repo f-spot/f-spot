@@ -499,11 +499,27 @@ public class PhotoStore : DbStore {
 		command.Dispose ();
 	}
 
+	public Photo Create (string path, out Pixbuf thumbnail)
+	{
+		DateTime time;
+		try {
+			using (ExifData ed = new ExifData (path)) {
+				string strtime = ed.LookupString (ExifTag.DateTimeOriginal);
+				time = ExifData.DateTimeFromString (strtime); 
+				time = time.ToUniversalTime ();
+			}			
+		} catch {
+			time = File.GetCreationTimeUtc  (path);
+		} 
+
+		return Create (time, path, out thumbnail);
+	}
 
 	public Photo Create (DateTime time_in_utc, string path, out Pixbuf thumbnail)
 	{
-		if (! path.EndsWith (".jpg") && ! path.EndsWith (".JPG"))
+		if (! path.ToLower().EndsWith (".jpg") && ! path.ToLower().EndsWith (".jpg"))
 			throw new Exception ("Only jpeg files supported");
+
 
 		uint unix_time = DbUtils.UnixTimeFromDateTime (time_in_utc);
 

@@ -1,3 +1,20 @@
+2004-08-20  Larry Ewing  <lewing@novell.com>
+
+	* src/f-spot.glade: remove the icons from the rotate buttons.
+
+	* src/ExifData.cs: add exif date parsing code from Ewen
+	Cheslack-Postava <echeslack@gmail.com>.
+
+	* src/PhotoStore.cs: read the time from the exif info if it
+	exists, otherwise use the file creation time.
+
+	* src/FileImportBackend.cs: don't pass the time to create, let it
+	generate it from the file.
+
+2004-08-19  Larry Ewing  <lewing@novell.com>
+
+	* src/ExifUtils.cs: parse the date to a DateTime.
+
 2004-08-18  Larry Ewing  <lewing@novell.com>
 
 	* src/IconView.cs: Patch from trow to smooth out the throb.

@@ -17,7 +17,7 @@ public class FileImportBackend : ImportBackend {
 
 	private void AddPath (string path)
 	{
-		if (path.EndsWith (".jpg") || path.EndsWith (".JPG"))
+		if (path.ToLower().EndsWith (".jpg") || path.ToLower().EndsWith (".jpeg"))
 			file_paths.Add (path);
 
 	}
@@ -34,9 +34,8 @@ public class FileImportBackend : ImportBackend {
 
 		if (recurse) {
 			foreach (DirectoryInfo d in info.GetDirectories ()){
-				if (d.Name == ".thumbnails")
-					continue;
-				GetListing (d);
+				if (!d.Name.StartsWith ("."))
+					GetListing (d);
 			}
 		}
 	}
@@ -75,7 +74,7 @@ public class FileImportBackend : ImportBackend {
 			throw new Exception ("Already finished");
 
 		// FIXME Need to get the EXIF info etc.
-		photo = store.Create (DateTime.Now, file_paths [this.count] as string, out thumbnail);
+		photo = store.Create (file_paths [this.count] as string, out thumbnail);
 		imported_photos.Add (photo);
 
 		this.count ++;
