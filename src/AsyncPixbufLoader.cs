@@ -166,7 +166,9 @@ namespace FSpot {
 			loader.AreaUpdated -= HandleAreaUpdated;
 			loader.Closed -= HandleClosed;
 			Close ();
-			pixbuf.Dispose ();
+
+			if (pixbuf != null)
+				pixbuf.Dispose ();
 		}
 	}
 }

@@ -1,5 +1,8 @@
 2005-01-05  Larry Ewing  <lewing@novell.com>
 
+	* src/AsyncPixbufLoader.cs: make sure that we have a pixbuf before
+	we try to dispose it.
+
 	* src/VfsExport.cs: s/Dup/Clone now that the binding has been fixed.
 
 	* src/GroupSelector.cs: fix box drawing bounds, make min box width 1.
