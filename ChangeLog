@@ -1,3 +1,8 @@
+2003-12-15  Miguel de Icaza  <miguel@ximian.com>
+
+	* src/MainWindow.cs: Moved the main UI to Glade, and bring all the
+	functionality from the old version there.
+
 2003-11-29  Ettore Perazzoli  <ettore@ximian.com>
 
 	* libfspot/f-image-view.c (impl_motion_notify_event): Fix memory

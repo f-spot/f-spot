@@ -1,19 +1,33 @@
 using Gdk;
 using Gtk;
 using GtkSharp;
+using Glade;
 using System;
 using System.Collections;
 
-public class MainWindow : Gtk.Window {
+public class MainWindow {
 	Db db;
-
-	private TagSelectionWidget tag_selection_widget;
-	private InfoBox info_box;
-	private IconView icon_view;
-	private PhotoView photo_view;
-	private Notebook view_notebook;
-	private PhotoQuery query;
-
+	TagSelectionWidget tag_selection_widget;
+	[Widget] Gtk.Window window1;
+	[Widget] VBox left_vbox;
+	[Widget] Toolbar toolbar;
+	[Widget] ScrolledWindow icon_view_scrolled;
+	[Widget] Box photo_box;
+	[Widget] Notebook view_notebook;
+	[Widget] ScrolledWindow tag_selection_scrolled;
+	
+	//
+	// Menu items
+	//
+	[Widget] MenuItem version_menu_item;
+	[Widget] MenuItem create_version_menu_item, delete_version_menu_item, rename_version_menu_item;
+	PhotoVersionMenu versions_submenu;
+	
+	InfoBox info_box;
+	IconView icon_view;
+	PhotoView photo_view;
+	PhotoQuery query;
+	
 	// Index into the PhotoQuery.  If -1, no photo is selected or multiple photos are selected.
 	const int PHOTO_IDX_NONE = -1;
 	private int current_photo_idx = PHOTO_IDX_NONE;
@@ -27,12 +41,294 @@ public class MainWindow : Gtk.Window {
 		}
 	}
 
+	//
+	// Constructor
+	//
+	public MainWindow (Db db)
+	{
+		this.db = db;
+		
+		Glade.XML gui = Glade.XML.FromAssembly ("f-spot.glade", "window1", null);
+		gui.Autoconnect (this);
+
+		tag_selection_widget = new TagSelectionWidget (db.Tags);
+		tag_selection_scrolled.Add (tag_selection_widget);
+		
+		info_box = new InfoBox ();
+		info_box.VersionIdChanged += new InfoBox.VersionIdChangedHandler (HandleInfoBoxVersionIdChange);
+		left_vbox.PackStart (info_box, false, true, 0);
+		
+		query = new PhotoQuery (db.Photos);
+		
+		icon_view = new IconView (query);
+		icon_view_scrolled.Add (icon_view);
+		icon_view.SelectionChanged += new IconView.SelectionChangedHandler (HandleSelectionChanged);
+		icon_view.DoubleClicked += new IconView.DoubleClickedHandler (HandleDoubleClicked);
+		
+		photo_view = new PhotoView (query, db.Photos);
+		photo_box.Add (photo_view);
+		photo_view.PhotoChanged += new PhotoView.PhotoChangedHandler (HandlePhotoViewPhotoChanged);
+		photo_view.ButtonPressEvent += new ButtonPressEventHandler (HandlePhotoViewButtonPressEvent);
+
+		window1.ShowAll ();
+	}
+
+	//
+	// Commands
+	//
+	private void RotateSelectedPictures (RotateCommand.Direction direction)
+	{
+		RotateCommand command = new RotateCommand (window1);
+
+		switch (mode) {
+		case ModeType.IconView:
+			if (query.Photos.Length != 0) {
+				Photo [] photo_list = new Photo [icon_view.Selection.Length];
+
+				int i = 0;
+				foreach (int num in icon_view.Selection)
+					photo_list [i ++] = query.Photos [num];
+
+				if (command.Execute (direction, photo_list)) {
+					foreach (int num in icon_view.Selection)
+						icon_view.UpdateThumbnail (num);
+				}
+			}
+			break;
+
+		case ModeType.PhotoView:
+			Photo [] photo_list = new Photo [1];
+			photo_list [0] = query.Photos [photo_view.CurrentPhoto];
+
+			if (command.Execute (direction, photo_list)) {
+				photo_view.Update ();
+				icon_view.UpdateThumbnail (photo_view.CurrentPhoto);
+			}
+			break;
+		}
+	}
+
+	// IconView events.
+
+	void HandleSelectionChanged (IconView view)
+	{
+		int [] selection = icon_view.Selection;
+
+		if (selection.Length != 1) {
+			current_photo_idx = -1;
+			info_box.Photo = null;
+		} else {
+			current_photo_idx = selection [0];
+			info_box.Photo = CurrentPhoto;
+		}
+
+		UpdateMenus ();
+	}
+
+	void HandleDoubleClicked (IconView icon_view, int clicked_item)
+	{
+		SwitchToPhotoViewMode (clicked_item);
+	}
+
+
+	// PhotoView events.
+
+	void HandlePhotoViewPhotoChanged (PhotoView sender)
+	{
+		current_photo_idx = photo_view.CurrentPhoto;
+		info_box.Photo = CurrentPhoto;
+		UpdateMenus ();
+	}
+
+	void HandlePhotoViewButtonPressEvent (object sender, ButtonPressEventArgs args)
+	{
+		if (args.Event.type == EventType.TwoButtonPress && args.Event.button == 1)
+			SwitchToIconViewMode ();
+	}
+
+
+	//
+	// Menu commands.
+	//
+
+	void HandleImportCommand (object sender, EventArgs e)
+	{
+		ImportCommand command = new ImportCommand ();
+		command.ImportFromFile (db.Photos);
+		UpdateQuery ();
+	}
+
+	void HandleCloseCommand (object sender, EventArgs e)
+	{
+		// FIXME
+		// Should use Application.Quit(), but for that to work we need to terminate the threads
+		// first too.
+		Environment.Exit (0);
+	}
+	
+	void HandleCreateVersionCommand (object obj, EventArgs args)
+	{
+		PhotoVersionCommands.Create cmd = new PhotoVersionCommands.Create ();
+
+		if (cmd.Execute (db.Photos, CurrentPhoto, window1)) {
+			info_box.Update ();
+			photo_view.Update ();
+			icon_view.UpdateThumbnail (current_photo_idx);
+			UpdateMenus ();
+		}
+	}
+
+	void HandleDeleteVersionCommand (object obj, EventArgs args)
+	{
+		PhotoVersionCommands.Delete cmd = new PhotoVersionCommands.Delete ();
+
+		if (cmd.Execute (db.Photos, CurrentPhoto, window1)) {
+			info_box.Update ();
+			photo_view.Update ();
+			icon_view.UpdateThumbnail (current_photo_idx);
+			UpdateMenus ();
+		}
+	}
+
+	void HandleRenameVersionCommand (object obj, EventArgs args)
+	{
+		PhotoVersionCommands.Rename cmd = new PhotoVersionCommands.Rename ();
+
+		if (cmd.Execute (db.Photos, CurrentPhoto, window1)) {
+			info_box.Update ();
+			photo_view.Update ();
+			icon_view.UpdateThumbnail (current_photo_idx);
+			UpdateMenus ();
+		}
+	}
+
+	void HandleCreateNewTagCommand (object sender, EventArgs args)
+	{
+		TagCommands.Create command = new TagCommands.Create (db.Tags, window1);
+		if (command.Execute (TagCommands.TagType.Tag))
+			tag_selection_widget.Update ();
+	}
+
+	void HandleCreateNewCategoryCommand (object sender, EventArgs args)
+	{
+		TagCommands.Create command = new TagCommands.Create (db.Tags, window1);
+		if (command.Execute (TagCommands.TagType.Category))
+			tag_selection_widget.Update ();
+	}
+
+	// Toolbar commands.
+
+	void HandleRotate90ToolbarButtonClicked ()
+	{
+		RotateSelectedPictures (RotateCommand.Direction.Clockwise);
+	}
+
+	void HandleRotate270ToolbarButtonClicked ()
+	{
+		RotateSelectedPictures (RotateCommand.Direction.Counterclockwise);
+	}
+
+
+	// Version Id updates.
+
+	void UpdateForVersionIdChange (uint version_id)
+	{
+		CurrentPhoto.DefaultVersionId = version_id;
+		db.Photos.Commit (CurrentPhoto);
+
+		info_box.Update ();
+		photo_view.Update ();
+		icon_view.UpdateThumbnail (current_photo_idx);
+		UpdateMenus ();
+	}
+
+	void HandleVersionIdChanged (PhotoVersionMenu menu)
+	{
+		UpdateForVersionIdChange (menu.VersionId);
+	}
+
+	void HandleInfoBoxVersionIdChange (InfoBox box, uint version_id)
+	{
+		UpdateForVersionIdChange (version_id);
+	}
+	// Queries.
+
+	void UpdateQuery ()
+	{
+		query.Tags = tag_selection_widget.TagSelection;
+	}
+
+	void OnTagSelectionChanged (object obj)
+	{
+		SwitchToIconViewMode ();
+		UpdateQuery ();
+	}
+
+	void UpdateMenus ()
+	{
+		if (CurrentPhoto == null) {
+			version_menu_item.Sensitive = false;
+			version_menu_item.Submenu = new Menu ();
+
+			create_version_menu_item.Sensitive = false;
+			delete_version_menu_item.Sensitive = false;
+			rename_version_menu_item.Sensitive = false;
+		} else {
+			version_menu_item.Sensitive = true;
+			create_version_menu_item.Sensitive = true;
+
+			if (CurrentPhoto.DefaultVersionId == Photo.OriginalVersionId) {
+				delete_version_menu_item.Sensitive = false;
+				rename_version_menu_item.Sensitive = false;
+			} else {
+				delete_version_menu_item.Sensitive = true;
+				rename_version_menu_item.Sensitive = true;
+			}
+
+			versions_submenu = new PhotoVersionMenu (CurrentPhoto);
+			versions_submenu.VersionIdChanged += new PhotoVersionMenu.VersionIdChangedHandler (HandleVersionIdChanged);
+			version_menu_item.Submenu = versions_submenu;
+		}
+	}
+
+	// Switching mode.
+
+	enum ModeType {
+		IconView,
+		PhotoView
+	};
+	ModeType mode;
+
+	void SwitchToIconViewMode ()
+	{
+		mode = ModeType.IconView;
+		view_notebook.CurrentPage = 0;
+	}
+
+	void SwitchToPhotoViewMode (int photo_num)
+	{
+		mode = ModeType.PhotoView;
+		view_notebook.CurrentPage = 1;
+		photo_view.CurrentPhoto = photo_num;
+	}
+}
+
+#if false
+public class MainWindow2 : Gtk.Window {
+	Db db;
+
+	TagSelectionWidget tag_selection_widget;
+	InfoBox info_box;
+	IconView icon_view;
+	PhotoView photo_view;
+	Notebook view_notebook;
+	PhotoQuery query;
 
 	// Commands.
 
-	private void RotateSelectedPictures (RotateCommand.Direction direction)
+	void RotateSelectedPictures (RotateCommand.Direction direction)
 	{
-		RotateCommand command = new RotateCommand (this);
+		RotateCommand command = new RotateCommand ();
 
 		switch (mode) {
 		case ModeType.IconView:
@@ -65,14 +361,14 @@ public class MainWindow : Gtk.Window {
 
 	// Menu commands.
 
-	private void HandleImportCommand (object obj, EventArgs args)
+	void HandleImportCommand (object obj, EventArgs args)
 	{
 		ImportCommand command = new ImportCommand ();
 		command.ImportFromFile (db.Photos);
 		UpdateQuery ();
 	}
 
-	private void HandleCloseCommand (object obj, EventArgs args)
+	void HandleCloseCommand (object obj, EventArgs args)
 	{
 		// FIXME
 		// Should use Application.Quit(), but for that to work we need to terminate the threads
@@ -80,11 +376,11 @@ public class MainWindow : Gtk.Window {
 		Environment.Exit (0);
 	}
 
-	private void HandleCreateVersionCommand (object obj, EventArgs args)
+	void HandleCreateVersionCommand (object obj, EventArgs args)
 	{
 		PhotoVersionCommands.Create cmd = new PhotoVersionCommands.Create ();
 
-		if (cmd.Execute (db.Photos, CurrentPhoto, this)) {
+		if (cmd.Execute (db.Photos, CurrentPhoto, window1)) {
 			info_box.Update ();
 			photo_view.Update ();
 			icon_view.UpdateThumbnail (current_photo_idx);
@@ -92,11 +388,11 @@ public class MainWindow : Gtk.Window {
 		}
 	}
 
-	private void HandleDeleteVersionCommand (object obj, EventArgs args)
+	void HandleDeleteVersionCommand (object obj, EventArgs args)
 	{
 		PhotoVersionCommands.Delete cmd = new PhotoVersionCommands.Delete ();
 
-		if (cmd.Execute (db.Photos, CurrentPhoto, this)) {
+		if (cmd.Execute (db.Photos, CurrentPhoto, window1)) {
 			info_box.Update ();
 			photo_view.Update ();
 			icon_view.UpdateThumbnail (current_photo_idx);
@@ -104,11 +400,11 @@ public class MainWindow : Gtk.Window {
 		}
 	}
 
-	private void HandleRenameVersionCommand (object obj, EventArgs args)
+	void HandleRenameVersionCommand (object obj, EventArgs args)
 	{
 		PhotoVersionCommands.Rename cmd = new PhotoVersionCommands.Rename ();
 
-		if (cmd.Execute (db.Photos, CurrentPhoto, this)) {
+		if (cmd.Execute (db.Photos, CurrentPhoto, window1)) {
 			info_box.Update ();
 			photo_view.Update ();
 			icon_view.UpdateThumbnail (current_photo_idx);
@@ -116,14 +412,14 @@ public class MainWindow : Gtk.Window {
 		}
 	}
 
-	private void HandleCreateNewTagCommand (object sender, EventArgs args)
+	void HandleCreateNewTagCommand (object sender, EventArgs args)
 	{
-		TagCommands.Create command = new TagCommands.Create (db.Tags, this);
+		TagCommands.Create command = new TagCommands.Create (db.Tags, window1);
 		if (command.Execute (TagCommands.TagType.Tag))
 			tag_selection_widget.Update ();
 	}
 
-	private void HandleCreateNewCategoryCommand (object sender, EventArgs args)
+	void HandleCreateNewCategoryCommand (object sender, EventArgs args)
 	{
 		TagCommands.Create command = new TagCommands.Create (db.Tags, this);
 		if (command.Execute (TagCommands.TagType.Category))
@@ -132,12 +428,12 @@ public class MainWindow : Gtk.Window {
 
 	// Toolbar commands.
 
-	private void HandleRotate90ToolbarButtonClicked ()
+	void HandleRotate90ToolbarButtonClicked ()
 	{
 		RotateSelectedPictures (RotateCommand.Direction.Clockwise);
 	}
 
-	private void HandleRotate270ToolbarButtonClicked ()
+	void HandleRotate270ToolbarButtonClicked ()
 	{
 		RotateSelectedPictures (RotateCommand.Direction.Counterclockwise);
 	}
@@ -145,7 +441,7 @@ public class MainWindow : Gtk.Window {
 
 	// Version Id updates.
 
-	private void UpdateForVersionIdChange (uint version_id)
+	void UpdateForVersionIdChange (uint version_id)
 	{
 		CurrentPhoto.DefaultVersionId = version_id;
 		db.Photos.Commit (CurrentPhoto);
@@ -156,12 +452,12 @@ public class MainWindow : Gtk.Window {
 		UpdateMenus ();
 	}
 
-	private void HandleVersionIdChanged (PhotoVersionMenu menu)
+	void HandleVersionIdChanged (PhotoVersionMenu menu)
 	{
 		UpdateForVersionIdChange (menu.VersionId);
 	}
 
-	private void HandleInfoBoxVersionIdChange (InfoBox box, uint version_id)
+	void HandleInfoBoxVersionIdChange (InfoBox box, uint version_id)
 	{
 		UpdateForVersionIdChange (version_id);
 	}
@@ -169,13 +465,13 @@ public class MainWindow : Gtk.Window {
 
 	// Menus.
 
-	private MenuItem version_menu_item;
-	private PhotoVersionMenu versions_submenu;
-	private MenuItem create_version_menu_item;
-	private MenuItem delete_version_menu_item;
-	private MenuItem rename_version_menu_item;
+	MenuItem version_menu_item;
+	PhotoVersionMenu versions_submenu;
+	MenuItem create_version_menu_item;
+	MenuItem delete_version_menu_item;
+	MenuItem rename_version_menu_item;
 
-	private MenuBar CreateMenuBar ()
+	MenuBar CreateMenuBar ()
 	{
 		MenuBar menu_bar = new MenuBar ();
 
@@ -227,7 +523,7 @@ public class MainWindow : Gtk.Window {
 		return menu_bar;
 	}
 
-	private void UpdateMenus ()
+	void UpdateMenus ()
 	{
 		if (CurrentPhoto == null) {
 			version_menu_item.Sensitive = false;
@@ -259,7 +555,7 @@ public class MainWindow : Gtk.Window {
 
 	// FIXME this should all respect the GNOME toolbar settings and stuff...
 
-	private Toolbar CreateToolbar ()
+	Toolbar CreateToolbar ()
 	{
 		Toolbar toolbar = new Toolbar ();
 
@@ -276,31 +572,9 @@ public class MainWindow : Gtk.Window {
 	}
 
 
-	// Switching mode.
-
-	enum ModeType {
-		IconView,
-		PhotoView
-	};
-	private ModeType mode;
-
-	private void SwitchToIconViewMode ()
-	{
-		mode = ModeType.IconView;
-		view_notebook.CurrentPage = 0;
-	}
-
-	private void SwitchToPhotoViewMode (int photo_num)
-	{
-		mode = ModeType.PhotoView;
-		view_notebook.CurrentPage = 1;
-		photo_view.CurrentPhoto = photo_num;
-	}
-
-
 	// IconView events.
 
-	private void HandleSelectionChanged (IconView view)
+	void HandleSelectionChanged (IconView view)
 	{
 		int [] selection = icon_view.Selection;
 
@@ -315,7 +589,7 @@ public class MainWindow : Gtk.Window {
 		UpdateMenus ();
 	}
 
-	private void HandleDoubleClicked (IconView icon_view, int clicked_item)
+	void HandleDoubleClicked (IconView icon_view, int clicked_item)
 	{
 		SwitchToPhotoViewMode (clicked_item);
 	}
@@ -323,14 +597,14 @@ public class MainWindow : Gtk.Window {
 
 	// PhotoView events.
 
-	private void HandlePhotoViewPhotoChanged (PhotoView sender)
+	void HandlePhotoViewPhotoChanged (PhotoView sender)
 	{
 		current_photo_idx = photo_view.CurrentPhoto;
 		info_box.Photo = CurrentPhoto;
 		UpdateMenus ();
 	}
 
-	private void HandlePhotoViewButtonPressEvent (object sender, ButtonPressEventArgs args)
+	void HandlePhotoViewButtonPressEvent (object sender, ButtonPressEventArgs args)
 	{
 		if (args.Event.type == EventType.TwoButtonPress && args.Event.button == 1)
 			SwitchToIconViewMode ();
@@ -339,12 +613,12 @@ public class MainWindow : Gtk.Window {
 
 	// Queries.
 
-	private void UpdateQuery ()
+	void UpdateQuery ()
 	{
 		query.Tags = tag_selection_widget.TagSelection;
 	}
 
-	private void OnTagSelectionChanged (object obj)
+	void OnTagSelectionChanged (object obj)
 	{
 		SwitchToIconViewMode ();
 		UpdateQuery ();
@@ -353,7 +627,7 @@ public class MainWindow : Gtk.Window {
 
 	// Constructor.
 
-	public MainWindow (Db db)
+	public MainWindow2 (Db db)
 		: base (Gtk.WindowType.Toplevel)
 	{
 		this.db = db;
@@ -416,3 +690,4 @@ public class MainWindow : Gtk.Window {
 		UpdateMenus ();
 	}
 }
+#endif

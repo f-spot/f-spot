@@ -65,7 +65,7 @@ RESOURCES =										\
 
 fspotlibdir = $(prefix)/lib/f-spot
 
-f-spot.exe: $(F_SPOT_CSFILES)
+f-spot.exe: $(F_SPOT_CSFILES) f-spot.glade
 	$(CSC) -o $@ $(CSFLAGS) $(F_SPOT_CSFILES) $(ASSEMBLIES) $(RESOURCES)
 
 all: f-spot.exe
