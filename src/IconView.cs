@@ -645,23 +645,21 @@ public class IconView : Gtk.Layout {
 		string thumbnail_path;
 
 		
-		int pad = 10;
-		int len = System.Math.Min (cells_per_row * pad, collection.Items.Length);
-		for (i = System.Math.Min (end_cell_row * cells_per_row, len); i < len; i++) {
-			photo = collection.Items [i];
-			thumbnail_path = Thumbnail.PathForUri (photo.DefaultVersionUri.ToString (), 
-							       ThumbnailSize.Large);
-			entry = cache.Lookup (thumbnail_path);
-			if (entry == null)
-				cache.Request (thumbnail_path, i, ThumbnailWidth, ThumbnailHeight);
+		// Preload the cache with images aroud the expose area
+		// FIXME the preload need to be tuned to the Cache size but this is a resonable start
+		int len = (end_cell_row - start_cell_row + 8) * cells_per_row;
+		int scell = System.Math.Max ((start_cell_row - 2) * cells_per_row, 0);
+		int ecell = scell + len;
+		if (scell > collection.Items.Length - len) {
+		        ecell = collection.Items.Length;
+			scell = System.Math.Max (0, scell - len);
+		} else
+			ecell = scell + len;
 			
-		}
-
-		len = cells_per_row * pad;
-		for (i = start_cell_row * cells_per_row; i > 0 && --len > 0 ; i--) {
+		for (i = scell; i < ecell; i++) {
 			photo = collection.Items [i];
-			thumbnail_path = Thumbnail.PathForUri (photo.DefaultVersionUri.ToString (), 
-							       ThumbnailSize.Large);
+			thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
+
 			entry = cache.Lookup (thumbnail_path);
 			if (entry == null);
 				cache.Request (thumbnail_path, i, ThumbnailWidth, ThumbnailHeight);

@@ -6,7 +6,7 @@ namespace FSpot {
 		Hashtable items;
 		ArrayList items_mru;
 		int total_size;
-		int max_size = 256 * 256 * 4 * 256;
+		int max_size = 256 * 256 * 4 * 70;
 
 		Gtk.ThreadNotify notify;
 		bool  notify_pending;
@@ -57,7 +57,7 @@ namespace FSpot {
 					items [path] = entry;
 					items_mru.Add (entry);
 					total_size += entry.Size;
-					System.Console.WriteLine ("total ({0} > {1} += {2})", total_size, max_size, entry.Size);
+					//System.Console.WriteLine ("total ({0} of {1} += {2})", total_size, max_size, entry.Size);
 					Monitor.Pulse (items);
 				} else {
 					MoveForward (entry);
@@ -127,13 +127,13 @@ namespace FSpot {
 						
 						/* shrink the cache */
 						while (items_mru.Count > 10 && total_size > max_size) {
-							System.Console.WriteLine ("remove ({0} > {1})", total_size, max_size);
+							//System.Console.WriteLine ("remove ({0} > {1})", total_size, max_size);
 							URemove (((CacheEntry)items_mru [0]).Path);
 						}					
 						
 						/* find the next item */
 						while ((current = FindNext ()) == null) {
-							System.Console.WriteLine ("Waiting");
+							//System.Console.WriteLine ("Waiting");
 							Monitor.Wait (items);
 						}
 					}
