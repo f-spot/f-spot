@@ -63,6 +63,9 @@ public class MainWindow {
 	[Glade.Widget] MenuItem find_tag;
 
 	PhotoVersionMenu versions_submenu;
+
+	Gtk.ToggleButton browse_button;
+	Gtk.ToggleButton view_button;
 	
 	InfoBox info_box;
 	FSpot.InfoDisplay info_display;
@@ -157,8 +160,10 @@ public class MainWindow {
 		GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-270", new System.EventHandler (HandleRotate270Command));
 		GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-90", new System.EventHandler (HandleRotate90Command));
 		toolbar.AppendSpace ();
-		GtkUtil.MakeToolbarToggleButton (toolbar, "f-spot-browse", new System.EventHandler (HandleViewBrowse));
-		GtkUtil.MakeToolbarToggleButton (toolbar, "f-spot-edit-image", new System.EventHandler (HandleViewPhoto));
+		browse_button = GtkUtil.MakeToolbarToggleButton (toolbar, "f-spot-browse", 
+								 new System.EventHandler (HandleToggleViewBrowse)) as ToggleButton;
+		view_button = GtkUtil.MakeToolbarToggleButton (toolbar, "f-spot-edit-image", 
+							       new System.EventHandler (HandleToggleViewPhoto)) as ToggleButton;
 		toolbar.AppendSpace ();
 		GtkUtil.MakeToolbarButton (toolbar, "f-spot-fullscreen", new System.EventHandler (HandleViewFullscreen));
 		GtkUtil.MakeToolbarButton (toolbar, "f-spot-slideshow", new System.EventHandler (HandleViewSlideShow));
@@ -292,8 +297,27 @@ public class MainWindow {
 			Present (icon_view.FocusCell);
 			break;
 		}
+		UpdateToolbar ();
 	}
 	
+	void UpdateToolbar ()
+	{
+		if (browse_button != null) {
+			bool state = view_mode == ModeType.IconView;
+			
+			if (browse_button.Active != state)
+				browse_button.Active = state;
+		}
+
+		if (view_button != null) {
+			bool state = view_mode == ModeType.PhotoView;
+			
+			if (view_button.Active != state)
+				view_button.Active = state;
+		}
+	}
+		
+
 	void HandleViewNotebookSwitchPage (object sender, SwitchPageArgs args)
 	{
 		switch (view_notebook.CurrentPage) {
@@ -1187,6 +1211,27 @@ public class MainWindow {
 		Gtk.Window win = sender as Gtk.Window;
 		win.Destroy ();
 		args.RetVal = true;
+	}
+
+	void HandleToggleViewBrowse (object sender, EventArgs args)
+	{
+	        ToggleButton toggle = sender as ToggleButton;
+		if (toggle != null) {
+			if (toggle.Active)
+				SetViewMode (ModeType.IconView);
+		} else
+			SetViewMode (ModeType.IconView);
+	}
+
+	void HandleToggleViewPhoto (object sender, EventArgs args)
+	{
+	        ToggleButton toggle = sender as ToggleButton;
+		
+		if (toggle != null) {
+			if (toggle.Active)
+				SetViewMode (ModeType.PhotoView);
+		} else
+			SetViewMode (ModeType.IconView);
 	}
 
 	void HandleViewBrowse (object sender, EventArgs args)

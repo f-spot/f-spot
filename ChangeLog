@@ -1,5 +1,9 @@
 2005-01-25  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: update the toolbars on state change.
+
+	* src/AsyncPixbufLoader.cs: handle null pixbufs a little better.
+
 	* src/Makefile.am: add HigMessageDialog.cs.
 	
 	* src/HigMessagesDialog.cs: new file imported from Tomboy.
