@@ -86,7 +86,10 @@ namespace FSpot {
 					data.Months [photo.Time.Month - 1] += 1;
 				}
 			} else {
-				years.Add (DateTime.Now.Year);
+				YearData data = new YearData ();
+				data.Year = DateTime.Now.Year;
+				data.Months = new int [12];
+				years.Add (data);
 			}
 		}
 
