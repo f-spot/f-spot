@@ -3,6 +3,9 @@
 	* src/GroupSelector.cs: Add prelighting to the glass, hook up
 	event_window.
 
+	* src/GroupSelector.cs: refactor bounds checking add button press
+	handler for click to move glass.
+
 2004-08-14  Larry Ewing  <lewing@novell.com>
 
 	* src/GroupSelector.csi: don't attach the style in the realize

@@ -58,16 +58,39 @@ namespace FSpot {
 			}
 		}
 
+		protected override bool OnButtonPressEvent (Gdk.EventButton args)
+		{
+			int i = 0;
+			while (i < box_counts.Length) {
+				if (BoxTest (BoxBounds (i), args.X, args.Y)){
+				    glass.Item = i;
+				    return false;
+				}
+				i++;
+			}
+
+			return base.OnButtonPressEvent (args);
+		}
+
+		static bool BoxTest (Rectangle bounds, double x, double y) 
+		{
+			if (x >= bounds.X && 
+			    x < bounds.X + bounds.Width && 
+			    y >= bounds.Y &&
+			    y < bounds.Y + bounds.Height)
+				return true;
+
+			return false;
+		}
 
 		protected override bool OnMotionNotifyEvent (Gdk.EventMotion args) 
 		{
 			Rectangle box = glass.Bounds ();
-			Console.WriteLine ("please {0} and {1} in box {2}", args.X, args.Y, box);
+			//Console.WriteLine ("please {0} and {1} in box {2}", args.X, args.Y, box);
 
-			if (args.X >= box.X && args.X <= box.X + box.Width) {
-				Console.WriteLine ("prelight");
+			if (BoxTest (glass.Bounds (), args.X, args.Y))
 				glass.State = StateType.Prelight;
-			} else 
+			else 
 				glass.State = StateType.Normal;
 
 			return base.OnMotionNotifyEvent (args);
@@ -113,8 +136,20 @@ namespace FSpot {
 		private int BoxX (int item) {
 			 return scroll_offset + background.X + (int) Math.Round (BoxWidth * item);
 		}
+		
+		public Rectangle BoxBounds (int item) 
+		{
+			Rectangle box = Rectangle.Zero;
+			box.Height = background.Height;
+			box.Y = background.Y;
+			
+			box.X = BoxX (item);
+			box.Width = Math.Max (BoxX (item + 1) - box.X, 1);
 
-	        public Rectangle BoxBounds (int item)
+			return box;
+		}
+
+	        public Rectangle BoxBarBounds (int item)
 		{
 			int total_height = background.Height;
 			int count = item;
@@ -132,7 +167,7 @@ namespace FSpot {
 
 		private void DrawBox (Rectangle area, int item) 
 		{
-			Rectangle box = BoxBounds (item);
+			Rectangle box = BoxBarBounds (item);
 			
 			box.X += box_spacing;
 			box.Width -= box_spacing * 2;
@@ -212,20 +247,9 @@ namespace FSpot {
 				}
 			}
 
-			public Rectangle InnerBounds () 
-			{
-				Rectangle box = selector.BoxBounds (item);
-
-				//box.X += border;
-				box.Y = selector.background.Y;
-				box.Height = selector.background.Height;
-				
-				return box;
-			}
-			
 			public Rectangle Bounds () 
 			{
-				Rectangle box = InnerBounds ();
+				Rectangle box = BoxBounds (item);
 
 				box.X -= border;
 				box.Y -= border;
@@ -237,7 +261,7 @@ namespace FSpot {
 
 			public void Draw (Rectangle area)
 			{
-				Rectangle inner = InnerBounds ();
+				Rectangle inner = BoxBounds (item);
 				Rectangle bounds = Bounds ();
 				
 				if (bounds.Intersect (area, out area)) {
@@ -338,7 +362,7 @@ namespace FSpot {
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
 			Rectangle area; 
-			//Console.WriteLine ("expose {0}", args.Area);
+			Console.WriteLine ("expose {0}", args.Area);
 			
 
 			if (args.Area.Intersect (background, out area)) {							
