@@ -359,11 +359,13 @@ static void
 rotate_line (guchar *sbuf, guchar *dstart, int length, int stride, int channels, gboolean mirror)
 {
 	guchar *dbuf = dstart;
-	int offset = stride - channels;
+	int doffset = stride - channels;
+	int soffset = 0;
 
 	if (mirror) {
-		dbuf += (length - 1) * stride;	
-		offset = - stride - channels;
+		sbuf += (length - 1) * channels;
+		doffset = stride - channels;
+		soffset = - (2 * channels);
 	}   
 
 	if (channels == 3)
@@ -371,7 +373,8 @@ rotate_line (guchar *sbuf, guchar *dstart, int length, int stride, int channels,
 			*(dbuf++) = *(sbuf++);
 			*(dbuf++) = *(sbuf++);
 			*(dbuf++) = *(sbuf++);
-			dbuf += offset;
+			dbuf += doffset;
+			sbuf += soffset;
 		}
 	else
 		while (length--) {
@@ -379,7 +382,8 @@ rotate_line (guchar *sbuf, guchar *dstart, int length, int stride, int channels,
 			*(dbuf++) = *(sbuf++);
 			*(dbuf++) = *(sbuf++);
 			*(dbuf++) = *(sbuf++);
-			dbuf += offset;
+			dbuf += doffset;
+			sbuf += soffset;
 		}
 }
 
@@ -442,27 +446,27 @@ f_pixbuf_copy_with_orientation (GdkPixbuf *src, GdkPixbuf *dest, int orientation
 		mirror = TRUE;
 		break;
 	case 3: // BottomRight
-		flip = TRUE;
-		break;
-	case 4: // BottomLeft
-		flip = TRUE;
 		mirror = TRUE;
+		flip = TRUE;
 		break;
+ 	case 4: // BottomLeft
+		flip = TRUE;
 		break;
 	case 5: // LeftTop
+		mirror = TRUE;
 		rotate = TRUE;
 		break;
 	case 6: // RightTop
+		flip = TRUE;
 		mirror = TRUE;
 		rotate = TRUE;
 		break;
 	case 7: // RightBottom
-		flip = TRUE;
+		mirror = TRUE;
 		rotate = TRUE;
 		break;
 	case 8: // LeftBottom
 		flip = TRUE;
-		mirror = TRUE;
 		rotate = TRUE;
 		break;
 	}
