@@ -180,7 +180,7 @@ namespace FSpot {
 
 			if (load_async) {
 				try {
-				loader.Load (Photo.DefaultVersionPath);
+					loader.Load (Photo.DefaultVersionPath);
 				} catch (System.Exception e) {
 					// FIXME we should check the exception type and do something
 					// like offer the user a chance to locate the moved file and
@@ -193,7 +193,6 @@ namespace FSpot {
 					if (old != null)
 						old.Dispose ();
 				}
-
 			} else {	
 				Gdk.Pixbuf old = this.Pixbuf;
 				this.Pixbuf = FSpot.PhotoLoader.Load (Query, current_photo);

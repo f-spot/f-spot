@@ -416,8 +416,6 @@ namespace FSpot {
 							 new ScaleRequest ("mq", 800, 600, true),
 							 new ScaleRequest ("lq", 640, 480, false),
 							 new ScaleRequest ("thumbs", 120, 90, false) };
-			
-			System.Console.WriteLine ("USing gallery path == {0}", gallery_path);
 		}
 
 		public override void Generate ()

@@ -14,13 +14,6 @@ namespace FSpot {
 			}
 		}
 		
-
-		int block_count;
-		public void Block ()
-		{
-
-		}
-
 		public static bool ThumbnailIsValid (Gdk.Pixbuf thumbnail, System.Uri uri)
 		{
 			bool valid = false;

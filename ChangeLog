@@ -1,5 +1,13 @@
 2005-02-28  Larry Ewing  <lewing@novell.com>
 
+	* src/SlideView.cs: make the message more clear.
+
+	* src/PhotoImageView.cs: fix some indentation.
+
+	* src/FolderExport.cs: remove debug output.
+
+	* src/ThumbnailGenerator.cs: remove unused block.
+
 	* src/ColorDialog.cs: disconnect the signal handler when the
 	dialog is destroyed.
 

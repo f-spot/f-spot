@@ -202,7 +202,8 @@ public class SlideView : Gtk.Image {
 			
 			if (animate && span.TotalMilliseconds > animate_max) {
 				animate = false;
-				System.Console.WriteLine ("Disabling slide animation due to excessive frame interval");
+				System.Console.WriteLine ("Disabling slide animation due to excessive frame interval {0}ms", 
+							  span.TotalMilliseconds);
 				current_tween = 0;
 			}
 		} else {
