@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-22 13:49-0500\n"
-"PO-Revision-Date: 2005-02-22 23:54-0400\n"
+"POT-Creation-Date: 2005-02-23 19:42-0500\n"
+"PO-Revision-Date: 2005-02-23 23:54-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
-"Language-Team: Canadian English <adamw@FreeBSD.org>\n"
+"Language-Team: Canadian English <adamw@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -255,13 +255,13 @@ msgstr "Error While Transferring"
 msgid "Error Transferring"
 msgstr "Error Transferring"
 
-#: src/CDExport.cs:99 src/VfsExport.cs:144
-msgid "Error: Error while transfering, Aborting"
-msgstr "Error: Error while transferring, Aborting"
+#: src/CDExport.cs:99 src/OriginalExport.cs:179 src/VfsExport.cs:144
+msgid "Error: Error while transferring; Aborting"
+msgstr "Error: Error while transferring; Aborting"
 
 #: src/CDExport.cs:102 src/OriginalExport.cs:182 src/VfsExport.cs:147
-msgid "Error: File Already Exists, Aborting"
-msgstr "Error: File Already Exists, Aborting"
+msgid "Error: File Already Exists; Aborting"
+msgstr "Error: File Already Exists; Aborting"
 
 #: src/FlickrExport.cs:49
 msgid "Enter Password"
@@ -793,174 +793,178 @@ msgid "Tag name:"
 msgstr "Tag name:"
 
 #: src/f-spot.glade.h:130
-msgid "Uri:"
+msgid "URI:"
 msgstr "URI:"
 
 #: src/f-spot.glade.h:131
-msgid "Url:"
+msgid "URL:"
 msgstr "URL:"
 
 #: src/f-spot.glade.h:132
+msgid "Uri:"
+msgstr "URI:"
+
+#: src/f-spot.glade.h:133
 msgid "Use Original."
 msgstr "Use Original."
 
-#: src/f-spot.glade.h:133
-msgid "Use static html"
+#: src/f-spot.glade.h:134
+msgid "Use static HTML"
 msgstr "Use static HTML"
 
-#: src/f-spot.glade.h:134
+#: src/f-spot.glade.h:135
 msgid "Username:"
 msgstr "Username:"
 
-#: src/f-spot.glade.h:135
+#: src/f-spot.glade.h:136
 msgid "View"
 msgstr "View"
 
-#: src/f-spot.glade.h:136
+#: src/f-spot.glade.h:137
 msgid "View photos in browser when done uploading"
 msgstr "View photos in browser when done uploading"
 
-#: src/f-spot.glade.h:137
+#: src/f-spot.glade.h:138
 msgid "Virtual Filesystem"
 msgstr "Virtual Filesystem"
 
-#: src/f-spot.glade.h:138
-msgid "Will print Using: Us Letter size on Generic Postscript"
-msgstr "Will print using: US Letter size on Generic Postscript"
-
 #: src/f-spot.glade.h:139
+msgid "Will print Using: US Letter size on Generic Postscript"
+msgstr "Will print Using: US Letter size on Generic Postscript"
+
+#: src/f-spot.glade.h:140
 msgid "Write only these Items to CD"
 msgstr "Write only these items to CD"
 
-#: src/f-spot.glade.h:140
+#: src/f-spot.glade.h:141
 msgid "Zoom _In"
 msgstr "Zoom _In"
 
-#: src/f-spot.glade.h:141
+#: src/f-spot.glade.h:142
 msgid "Zoom _Out"
 msgstr "Zoom _Out"
 
-#: src/f-spot.glade.h:142
+#: src/f-spot.glade.h:143
 msgid "_Attach Tag"
 msgstr "_Attach Tag"
 
-#: src/f-spot.glade.h:143
+#: src/f-spot.glade.h:144
 msgid "_Attach Tag To Selection"
 msgstr "_Attach Tag To Selection"
 
-#: src/f-spot.glade.h:144
+#: src/f-spot.glade.h:145
 msgid "_Clear Date Range"
 msgstr "_Clear Date Range"
 
-#: src/f-spot.glade.h:145
+#: src/f-spot.glade.h:146
 msgid "_Close"
 msgstr "_Close"
 
-#: src/f-spot.glade.h:146
+#: src/f-spot.glade.h:147
 msgid "_Delete Selected Tag"
 msgstr "_Delete Selected Tag"
 
-#: src/f-spot.glade.h:147
+#: src/f-spot.glade.h:148
 msgid "_Delete Version"
 msgstr "_Delete Version"
 
-#: src/f-spot.glade.h:148
+#: src/f-spot.glade.h:149
 msgid "_Delete from Drive"
 msgstr "_Delete from Drive"
 
-#: src/f-spot.glade.h:149
+#: src/f-spot.glade.h:150
 msgid "_Directory"
 msgstr "_Directory"
 
-#: src/f-spot.glade.h:150
+#: src/f-spot.glade.h:151
 msgid "_EXIF Data"
 msgstr "_EXIF Data"
 
-#: src/f-spot.glade.h:151
+#: src/f-spot.glade.h:152
 msgid "_Edit Selected Tag..."
 msgstr "_Edit Selected Tag..."
 
-#: src/f-spot.glade.h:152
+#: src/f-spot.glade.h:153
 msgid "_Export"
 msgstr "_Export"
 
-#: src/f-spot.glade.h:153
+#: src/f-spot.glade.h:154
 msgid "_Fullscreen"
 msgstr "_Fullscreen"
 
-#: src/f-spot.glade.h:154
+#: src/f-spot.glade.h:155
 msgid "_Import..."
 msgstr "_Import..."
 
-#: src/f-spot.glade.h:155
+#: src/f-spot.glade.h:156
 msgid "_Large"
 msgstr "_Large"
 
-#: src/f-spot.glade.h:156
+#: src/f-spot.glade.h:157
 msgid "_Medium"
 msgstr "_Medium"
 
-#: src/f-spot.glade.h:157
+#: src/f-spot.glade.h:158
 msgid "_Month"
 msgstr "_Month"
 
-#: src/f-spot.glade.h:158
+#: src/f-spot.glade.h:159
 msgid "_Print..."
 msgstr "_Print..."
 
-#: src/f-spot.glade.h:159
+#: src/f-spot.glade.h:160
 msgid "_Remove From Catalog"
 msgstr "_Remove From Catalogue"
 
-#: src/f-spot.glade.h:160
+#: src/f-spot.glade.h:161
 msgid "_Remove Tag From Selection"
 msgstr "_Remove Tag From Selection"
 
-#: src/f-spot.glade.h:161
+#: src/f-spot.glade.h:162
 msgid "_Rename Version"
 msgstr "_Rename Version"
 
-#: src/f-spot.glade.h:162
+#: src/f-spot.glade.h:163
 msgid "_Sharpen..."
 msgstr "_Sharpen..."
 
-#: src/f-spot.glade.h:163
+#: src/f-spot.glade.h:164
 msgid "_Size"
 msgstr "_Size"
 
-#: src/f-spot.glade.h:164
+#: src/f-spot.glade.h:165
 msgid "_Slideshow"
 msgstr "_Slideshow"
 
-#: src/f-spot.glade.h:165
+#: src/f-spot.glade.h:166
 msgid "_Small"
 msgstr "_Small"
 
-#: src/f-spot.glade.h:166
+#: src/f-spot.glade.h:167
 msgid "_Tags"
 msgstr "_Tags"
 
-#: src/f-spot.glade.h:167
+#: src/f-spot.glade.h:168
 msgid "_Update Thumbnail"
 msgstr "_Update Thumbnail"
 
-#: src/f-spot.glade.h:168
+#: src/f-spot.glade.h:169
 msgid "_Version"
 msgstr "_Version"
 
-#: src/f-spot.glade.h:169
+#: src/f-spot.glade.h:170
 msgid "_View"
 msgstr "_View"
 
-#: src/f-spot.glade.h:170
+#: src/f-spot.glade.h:171
 msgid "dialog1"
 msgstr "dialogue1"
 
-#: src/f-spot.glade.h:171
+#: src/f-spot.glade.h:172
 msgid "pixels"
 msgstr "pixels"
 
-#: src/f-spot.glade.h:172
+#: src/f-spot.glade.h:173
 msgid "x"
 msgstr "x"
 
@@ -1123,10 +1127,6 @@ msgstr[1] "_Delete tags"
 #: src/OriginalExport.cs:120
 msgid "Building Gallery"
 msgstr "Building Gallery"
-
-#: src/OriginalExport.cs:179
-msgid "Error: Error while transferring, Aborting"
-msgstr "Error: Error while transferring; Aborting"
 
 #: src/OriginalExport.cs:225
 msgid "Transfering Pictures"
