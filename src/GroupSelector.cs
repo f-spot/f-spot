@@ -22,11 +22,11 @@ namespace FSpot {
 		int    box_count_max;
 		int [] box_counts = new int [0];
 
-		protected FSpot.TimeAdaptor adaptor;
-		public FSpot.TimeAdaptor Adaptor {
+		protected FSpot.GroupAdaptor adaptor;
+		public FSpot.GroupAdaptor Adaptor {
 			set {
 				adaptor = value;
-				int [] box_values = new int [adaptor.Count];
+				int [] box_values = new int [adaptor.Count ()];
 				int i = 0;
 				while (i < box_values.Length) {
 					box_values [i] = adaptor.Value (i);

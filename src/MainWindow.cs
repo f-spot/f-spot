@@ -136,7 +136,8 @@ public class MainWindow {
 		query = new PhotoQuery (db.Photos);
 
 		group_selector = new FSpot.GroupSelector ();
-		group_selector.Adaptor = new FSpot.TimeAdaptor (query);
+		FSpot.TimeAdaptor time_adaptor = new FSpot.TimeAdaptor (query);
+		group_selector.Adaptor  = time_adaptor;
 		group_selector.ShowAll ();
 
 		group_vbox.PackStart (group_selector, false, false, 0);
@@ -187,7 +188,7 @@ public class MainWindow {
 
 		view_notebook.SwitchPage += new SwitchPageHandler (HandleViewNotebookSwitchPage);
 
-		group_selector.Adaptor.GlassSet += HandleAdaptorGlassSet;
+		time_adaptor.GlassSet += HandleAdaptorGlassSet;
 		
 		UpdateMenus ();
 		main_window.ShowAll ();

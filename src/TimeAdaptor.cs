@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 
 namespace FSpot {
-	public class TimeAdaptor {
+	public class TimeAdaptor : GroupAdaptor {
 		public PhotoQuery query;
 
 		private int span;
@@ -11,7 +11,7 @@ namespace FSpot {
 		public delegate void GlassSetHandler (TimeAdaptor adaptor, int index);
 		public event GlassSetHandler GlassSet;
 
-		public void SetGlass (int min)
+		public override void SetGlass (int min)
 		{
 			DateTime date = DateFromIndex (min);
 
@@ -23,29 +23,28 @@ namespace FSpot {
 				GlassSet (this, i);
 		}
 
-		public void SetLimits (int min, int max) 
+		public override void SetLimits (int min, int max) 
 		{
 			DateTime start = DateFromIndex (min);
-			DateTime end = start.AddMonths (1);
+			DateTime end = DateFromIndex (max).AddMonths (1);
 			
 			Console.WriteLine ("{0} {1}", start, end);
 			query.Range = new PhotoStore.DateRange (start, end);
 		}
 
-		public int Count {
-			get {
-				return years.Count * 12;
-			}
+		public override int Count ()
+		{
+			return years.Count * 12;
 		}
 
-		public String Label (int item)
+		public override string Label (int item)
 		{
 			DateTime start = DateFromIndex (item);
 			
 			return start.ToShortTimeString ();
 		}
 
-		public int Value (int item)
+		public override int Value (int item)
 		{
 			DateTime start = DateFromIndex (item);
 			DateTime end = start.AddMonths (1);
