@@ -96,25 +96,20 @@ public class Photo : DbItem, IComparable {
 		}
 	}
 
-	private bool tags_loaded = false;
 	private ArrayList tags = new ArrayList ();
 	public Tag [] Tags {
 		get {
-			if (!tags_loaded) {
-				db.GetTags (this);
-				tags_loaded = true;
-			}
 			return (Tag []) tags.ToArray (typeof (Tag));
 		}
 	}
 
+	private bool loaded = false;
 	public bool Loaded {
 		get {
-			return tags_loaded && versions_loaded;
+			return loaded;
 		}
 		set {
-			tags_loaded = value;
-			versions_loaded = value;
+			loaded = value;
 		}
 	}
 
@@ -132,17 +127,7 @@ public class Photo : DbItem, IComparable {
 	public const int OriginalVersionId = 1;
 	private uint highest_version_id;
 
-	private bool versions_loaded = false;
-	private Hashtable vnames = new Hashtable ();
-	private Hashtable version_names {
-		get {
-			if (!versions_loaded) {
-				db.GetVersions (this);
-				versions_loaded = true;
-			}
-			return vnames;
-		}
-	}
+	private Hashtable version_names = new Hashtable ();
 
 	public uint [] VersionIds {
 		get {
@@ -172,7 +157,7 @@ public class Photo : DbItem, IComparable {
 	// it's supposed to be used only within the Photo and PhotoStore classes.
 	public void AddVersionUnsafely (uint version_id, string name)
 	{
-		vnames [version_id] = name;
+		version_names [version_id] = name;
 
 		highest_version_id = Math.Max (version_id, highest_version_id);
 	}
@@ -1124,10 +1109,6 @@ public class PhotoStore : DbStore {
 		command.CommandText = query;
 		SqliteDataReader reader = command.ExecuteReader ();
 
-		// FIXME: I am doing it in two passes here since the Get() method can potentially
-		// invoke more Sqlite queries, and I don't know if we are supposed to do that while
-		// we are reading the results from a past query.
-		
 		ArrayList version_list = new ArrayList ();
 		ArrayList id_list = new ArrayList ();
 		while (reader.Read ()) {
@@ -1151,16 +1132,21 @@ public class PhotoStore : DbStore {
 			id_list.Add (photo);
 		}
 
-
+		bool need_load = false;
 		Console.WriteLine ("Start {0}", System.DateTime.Now);
 		foreach (Photo photo in version_list) {
-			//GetData (photo);
 			AddToCache (photo);
+			need_load |= !photo.Loaded;
 		}
-		GetAllTags ();
-		GetAllVersions ();
-		foreach (Photo photo in version_list) {
-			photo.Loaded = true;
+		
+		if (need_load) {
+			GetAllTags ();
+			GetAllVersions ();
+			foreach (Photo photo in version_list) {
+				photo.Loaded = true;
+			}
+		} else {
+			Console.WriteLine ("Skipped Loading Data");
 		}
 
 		Console.WriteLine ("End {0}", System.DateTime.Now);
