@@ -47,6 +47,7 @@ namespace FSpot {
 				Save (image, request.path);
 				image.Dispose ();
 			}
+			System.Threading.Thread.Sleep (100);
 		}
 	}
 }
