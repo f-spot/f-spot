@@ -192,10 +192,11 @@ public class MainWindow {
 
 		photo_view = new PhotoView (query, db.Photos);
 		photo_box.Add (photo_view);
-		photo_view.PhotoChanged += new PhotoView.PhotoChangedHandler (HandlePhotoViewPhotoChanged);
-		photo_view.ButtonPressEvent += new ButtonPressEventHandler (HandlePhotoViewButtonPressEvent);
-		photo_view.UpdateStarted += new PhotoView.UpdateStartedHandler (HandlePhotoViewUpdateStarted);
-		photo_view.UpdateFinished += new PhotoView.UpdateFinishedHandler (HandlePhotoViewUpdateFinished);
+		photo_view.PhotoChanged += HandlePhotoViewPhotoChanged;
+		photo_view.ButtonPressEvent += HandlePhotoViewButtonPressEvent;
+		photo_view.KeyPressEvent += HandlePhotoViewKeyPressEvent;
+		photo_view.UpdateStarted += HandlePhotoViewUpdateStarted;
+		photo_view.UpdateFinished += HandlePhotoViewUpdateFinished;
 
 		Gtk.Drag.DestSet (photo_view, DestDefaults.All, tag_target_table, 
 				  DragAction.Copy | DragAction.Move); 
@@ -313,8 +314,6 @@ public class MainWindow {
 			}
 		}
 	}
-
-
 
 	[GLib.ConnectBefore]
 	void HandleTagSelectionButtonPressEvent (object sender, ButtonPressEventArgs args)
@@ -537,8 +536,22 @@ public class MainWindow {
 			info_display.Photo = CurrentPhoto;
 		UpdateMenus ();
 	}
+	
+	void HandlePhotoViewKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
+	{
+		switch (args.Event.Key) {
+		case Gdk.Key.F:
+		case Gdk.Key.f:
+			HandleViewFullscreen (sender, args);
+			args.RetVal = true;
+			break;
+		default:
+			break;
+		}
+		return;
+	}
 
-	void HandlePhotoViewButtonPressEvent (object sender, ButtonPressEventArgs args)
+	void HandlePhotoViewButtonPressEvent (object sender, Gtk.ButtonPressEventArgs args)
 	{
 		if (args.Event.Type == EventType.TwoButtonPress && args.Event.Button == 1)
 			SwitchToIconViewMode ();

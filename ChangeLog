@@ -1,5 +1,12 @@
 2004-11-20  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoImageView.cs: fix typo.
+
+	* src/MainWindow.cs: quick hack to let f turn on fullscreen mode.
+
+	* libeog/image-view.c (image_view_key_press_event): disable the f
+	key handler.
+
 	* src/AsyncPixbufLoader.cs: remove debug output.
 
 	* src/PhotoImageView.cs: add a PhotoChanged handler, fix some of

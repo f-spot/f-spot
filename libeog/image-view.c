@@ -1527,12 +1527,12 @@ image_view_key_press_event (GtkWidget *widget, GdkEventKey *event)
 		do_zoom = TRUE;
 		zoomx = zoomy = 1.0;
 		break;
-
+		/* NOTE Larry disabled this binding 
 	case GDK_F:
 	case GDK_f:
 		g_signal_emit (view, image_view_signals [ZOOM_FIT], 0);
 		break;
-
+		*/
 	default:
 		goto out;
 	}

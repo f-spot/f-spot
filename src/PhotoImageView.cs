@@ -6,7 +6,7 @@ namespace FSpot {
 			this.query = query;
 			loader = new FSpot.AsyncPixbufLoader ();
 			this.SizeAllocated += HandleSizeAllocated;
-			this.KeyPressEvent += HandeKeyPressEvent;
+			this.KeyPressEvent += HandleKeyPressEvent;
 			this.ScrollEvent += HandleScrollEvent;
 		}
 
@@ -201,7 +201,7 @@ namespace FSpot {
 		}
 
 		[GLib.ConnectBefore]
-		private void HandeKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
+		private void HandleKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
 		{
 			// FIXME I really need to figure out why overriding is not working
 			// for any of the default handlers.
