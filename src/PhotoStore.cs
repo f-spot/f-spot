@@ -178,11 +178,11 @@ public class Photo : DbItem {
 
 	public uint CreateDefaultModifiedVersion (uint base_version_id, bool create_file)
 	{
-		int num = 0;
+		int num = 1;
 
 		while (true) {
 			string name;
-			if (num == 0)
+			if (num == 1)
 				name = "Modified";
 			else
 				name = String.Format ("Modified ({0})", num);
