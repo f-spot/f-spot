@@ -125,11 +125,14 @@ public class IconView : Gtk.Layout {
 
 		selected_cells = new Hashtable ();
 
+		ScrollAdjustmentsSet += new ScrollAdjustmentsSetHandler (HandleScrollAdjustmentsSet);
 		SizeAllocated += new SizeAllocatedHandler (HandleSizeAllocated);
 		ExposeEvent += new ExposeEventHandler (HandleExposeEvent);
 		ButtonPressEvent += new ButtonPressEventHandler (HandleButtonPressEvent);
 		ButtonReleaseEvent += new ButtonReleaseEventHandler (HandleButtonReleaseEvent);
 		MotionNotifyEvent += new MotionNotifyEventHandler (HandleMotionNotifyEvent);
+
+		DestroyEvent += new DestroyEventHandler (HandleDestroyEvent);
 
 		string [] types = new string [1];
 		types [0] = "text/uri-list";
@@ -416,12 +419,19 @@ public class IconView : Gtk.Layout {
 		y = row * cell_height + BORDER_SIZE;
 	}
 
-	private void Scroll ()
+
+	// Scrolling.  We do this in an idle loop so we can catch up if the user scrolls quickly.
+
+	private uint scroll_on_idle_id;
+
+	private int idle_count;	// FIXME
+
+	private bool HandleScrollOnIdle ()
 	{
 		Adjustment adjustment = Vadjustment;
 
 		if (y_offset == adjustment.Value)
-			return;
+			return false;
 
 		int num_thumbnails = query.Photos.Length;
 		int num_rows, start;
@@ -444,10 +454,27 @@ public class IconView : Gtk.Layout {
 			if (start + i >= num_thumbnails)
 				break;
 
-			pixbuf_loader.Cancel (query.Photos [start + i].DefaultVersionPath);
+			Photo photo = query.Photos [start + i];
+			string thumbnail_path = Thumbnail.PathForUri ("file://" + photo.DefaultVersionPath, ThumbnailSize.Large);
+			pixbuf_loader.Cancel (thumbnail_path);
 		}
 
 		y_offset = (int) adjustment.Value;
+
+		scroll_on_idle_id = 0;
+		return false;
+	}
+
+	private void Scroll ()
+	{
+		if (scroll_on_idle_id == 0)
+			scroll_on_idle_id = GLib.Idle.Add (new GLib.IdleHandler (HandleScrollOnIdle));
+	}
+
+	private void CancelScroll ()
+	{
+		if (scroll_on_idle_id != 0)
+			GLib.Source.Remove (scroll_on_idle_id);
 	}
 
 
@@ -455,10 +482,6 @@ public class IconView : Gtk.Layout {
 
 	private void HandleAdjustmentValueChanged (object sender, EventArgs args)
 	{
-		// FIXME There doesn't seem to be a binding for this in C#.
-		// if (! GTK_WIDGET_REALIZED (view))
-		// return;
-
 		Scroll ();
 	}
 
@@ -564,10 +587,14 @@ public class IconView : Gtk.Layout {
 		in_drag = true;
 	}
 
+	private void HandleDestroyEvent (object sender, DestroyEventArgs args)
+	{
+		CancelScroll ();
+	}
+
 
 	// DnD event handlers.
 
-	// FIXME GTK# this is supposed to return a bool.
 	private void HandleDragDrop (object sender, DragDropArgs args)
 	{
 		Console.WriteLine ("HandleDragDrop");

@@ -40,7 +40,7 @@ public class PixbufLoader {
 
 	/* A hash of all the requests; note that the current request
 	   isn't in the hash.  */
-	private Hashtable requests_by_path; // FIXME path_to_queue_item in the original code
+	private Hashtable requests_by_path;
 
 	/* Current requeust.  Request currently being handled by the
 	   auxiliary thread.  Should be modified only by the auxiliary
@@ -99,10 +99,8 @@ public class PixbufLoader {
 	public void Cancel (string path)
 	{
 		lock (queue) {
-			if (requests_by_path.ContainsKey (path)) {
-				/* (Silently ignore cancellation for a path that is not on the queue.)  */
-			} else {
-				request r = requests_by_path [path] as request;
+			request r = requests_by_path [path] as request;
+			if (r != null) {
 				requests_by_path.Remove (path);
 				queue.Remove (r);
 			}
@@ -213,7 +211,7 @@ public class PixbufLoader {
 					current_request = null;
 				}
 
-				if (queue.Count == 0)
+				while (queue.Count == 0)
 					Monitor.Wait (queue);
 
 				current_request = queue [0] as request;
@@ -234,9 +232,6 @@ public class PixbufLoader {
 			   as little time as possible.  */
 			results = processed_requests.Clone() as Queue;
 			processed_requests.Clear ();
-
-			foreach (request r in results)
-				requests_by_path.Remove (r.path);
 
 			pending_notify_notified = false;
 		}

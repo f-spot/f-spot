@@ -1,3 +1,22 @@
+2003-11-28  Ettore Perazzoli  <ettore@ximian.com>
+
+	* src/PixbufLoader.cs (PixbufLoader.Cancel): Just check if the
+	hash returns null.
+	(PixbufLoader.workerThread): If the queue count is zero after
+	waiting on the monitor, wait again.
+	(PixbufLoader.handleProcessedRequests): Don't remove the requests
+	from the hash here, since we are already doing it when processing
+	them.
+
+	* src/IconView.cs (IconView.HandleScrollOnIdle): Move the code
+	from Scroll() in here.
+	(IconView.Scroll): Set an idle handler to scroll instead of just
+	scrolling right away.
+	(IconView.CancelScroll): New method to cancel a queued scroll.
+	(IconView.HandleDestroyEvent): Handler for the widget's destroy
+	event; call CancelScroll.
+	(IconView.ctor): Connect the destroy event handler.
+
 2003-11-22  Miguel de Icaza  <miguel@ximian.com>
 
 	* src/PhotoSource.cs: Add another overload for GenerateThumbnail
