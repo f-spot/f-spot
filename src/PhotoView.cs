@@ -54,6 +54,7 @@ public class PhotoView : EventBox {
 	private Entry description_entry;
 
 	private Gtk.Button crop_button;
+	private Gtk.Button redeye_button;
 	private Gtk.Button color_button;
 
 	FSpot.AsyncPixbufLoader loader = new FSpot.AsyncPixbufLoader ();
@@ -135,6 +136,7 @@ public class PhotoView : EventBox {
 		display_next_button.Sensitive = next;
 
 		crop_button.Sensitive = valid;
+		redeye_button.Sensitive = valid;
 		color_button.Sensitive = valid;
 	}
 
@@ -215,7 +217,20 @@ public class PhotoView : EventBox {
 		DisplayPrevious ();
 	}
 
+
+	private void HandleRedEyeButtonClicked (object sender, EventArgs args)
+	{
+		ProcessImage (true);
+	}
+	
 	private void HandleCropButtonClicked (object sender, EventArgs args)
+	{
+		ProcessImage (false);
+	}
+
+	// FIXME this design sucks, I'm just doing it this way while
+	// I redesign the editing system.
+	private void ProcessImage (bool redeye)
 	{
 		int x, y, width, height;
 		if (! photo_view.GetSelection (out x, out y, out width, out height))
@@ -230,25 +245,38 @@ public class PhotoView : EventBox {
 		Photo photo = query.Photos [CurrentPhoto];
 		Exif.ExifData exif_data = new Exif.ExifData (photo.DefaultVersionPath);
 
-		Pixbuf cropped_pixbuf = new Pixbuf (original_pixbuf.Colorspace, false, original_pixbuf.BitsPerSample,
-						    width, height);
+		Pixbuf edited;
+		if (redeye) {
+			Gdk.Rectangle area = new Gdk.Rectangle (x, y, width, height);
+			edited = PixbufUtils.RemoveRedeye (original_pixbuf, 
+							   area);
 
-		original_pixbuf.CopyArea (x, y, width, height, cropped_pixbuf, 0, 0);		
+
+		} else { // Crop (I told you it was ugly)
+			edited = new Pixbuf (original_pixbuf.Colorspace, 
+					     false, original_pixbuf.BitsPerSample,
+					     width, height);
+			
+			original_pixbuf.CopyArea (x, y, width, height, edited, 0, 0);
+		}
+
 
 		// FIXME the fact that the selection doesn't go away is a bug in ImageView, it should
 		// be fixed there.
-		photo_view.Pixbuf = cropped_pixbuf;
+		photo_view.Pixbuf = edited;
 		photo_view.UnsetSelection ();
 
 		try {
 			if (photo.DefaultVersionId == Photo.OriginalVersionId) {
 				photo.DefaultVersionId = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);
-				PixbufUtils.SaveJpeg (cropped_pixbuf, photo.DefaultVersionPath, 95, exif_data);
+				PixbufUtils.SaveJpeg (edited, photo.DefaultVersionPath, 
+						      95, exif_data);
 				FSpot.ThumbnailGenerator.Create (photo.DefaultVersionPath).Dispose ();
 				query.Commit (CurrentPhoto);
 			} else {
 				// FIXME we need to invalidate the thumbnail in the cache as well
-				PixbufUtils.SaveJpeg (cropped_pixbuf, photo.DefaultVersionPath, 95, exif_data);
+				PixbufUtils.SaveJpeg (edited, photo.DefaultVersionPath, 
+						      95, exif_data);
 				FSpot.ThumbnailGenerator.Create (photo.DefaultVersionPath).Dispose ();
 				query.MarkChanged (CurrentPhoto);
 			}
@@ -421,6 +449,12 @@ public class PhotoView : EventBox {
 		toolbar_hbox.PackStart (crop_button, false, true, 0);
 	
 		crop_button.Clicked += new EventHandler (HandleCropButtonClicked);
+
+		redeye_button = new ToolbarButton ();
+		redeye_button.Add (new Gtk.Image ("f-spot-red-eye", IconSize.Button));
+		toolbar_hbox.PackStart (redeye_button, false, true, 0);
+	
+		redeye_button.Clicked += new EventHandler (HandleRedEyeButtonClicked);
 
 		color_button = new ToolbarButton ();
 		color_button.Add (new Gtk.Image ("f-spot-edit-image", IconSize.Button));

@@ -30,6 +30,7 @@ public class StockIcons {
 			FromDef ("f-spot-slideshow", "Slideshow", 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-logo", "Logo", 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-question-mark", "Question", 0, Gdk.ModifierType.ShiftMask, null),
+			FromDef ("f-spot-red-eye", "Reduce Red-Eye", 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-rotate-270", "Rotate _Left", 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-rotate-90", "Rotate _Right", 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-loading", "Loading", 0, Gdk.ModifierType.ShiftMask, null)

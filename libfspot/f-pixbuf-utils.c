@@ -344,7 +344,6 @@ f_pixbuf_remove_redeye (GdkPixbuf *src)
 
 	for (i = 0; i < height; i++) {
 		guchar *col = row;
-		g_warning ("(%d, %d) row = %d", width, height, i);
 
 		for (j = 0; j < width; j++) {
 			r = *col;
@@ -359,7 +358,6 @@ f_pixbuf_remove_redeye (GdkPixbuf *src)
 		}
 		row += gdk_pixbuf_get_rowstride (src);
 	}
-	g_warning ("done");
 }
 
 gboolean

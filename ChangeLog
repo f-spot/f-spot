@@ -1,5 +1,17 @@
 2005-02-07  Larry Ewing  <lewing@novell.com>
 
+	* icons/Makefile.am: add the new image to the build.
+
+	* src/StockIcons.cs: add the icon to the stock items.
+
+	* icons/f-spot-red-eye.png: add placeholder image.
+
+	* src/Makefile.am: add the red-eye icon to the resources.
+
+	* src/PhotoView.cs: add in red eye button.
+
+	* libfspot/f-pixbuf-utils.c: remove some debug spew.
+
 	* src/PixbufUtils.cs: Implement RemoveRedeye by calling
 	f_pixbuf_remove_redeye.
 

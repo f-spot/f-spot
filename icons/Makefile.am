@@ -12,6 +12,7 @@ noinst_DATA =					\
 	f-spot-other.png			\
 	f-spot-people.png			\
 	f-spot-places.png			\
+	f-spot-red-eye.png			\
 	f-spot-rotate-90.png			\
 	f-spot-rotate-270.png			\
 	f-spot-slideshow.png			\

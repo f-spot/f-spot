@@ -156,6 +156,7 @@ RESOURCES =										\
 	/resource:$(top_srcdir)/icons/f-spot-people.png,f-spot-people.png 		\
 	/resource:$(top_srcdir)/icons/f-spot-places.png,f-spot-places.png 		\
 	/resource:$(top_srcdir)/icons/f-spot-question-mark.png,f-spot-question-mark.png \
+	/resource:$(top_srcdir)/icons/f-spot-red-eye.png,f-spot-red-eye.png		\
 	/resource:$(top_srcdir)/icons/f-spot-rotate-90.png,f-spot-rotate-90.png		\
 	/resource:$(top_srcdir)/icons/f-spot-rotate-270.png,f-spot-rotate-270.png	\
 	/resource:$(top_srcdir)/icons/f-spot-slideshow.png,f-spot-slideshow.png		\
