@@ -6,6 +6,23 @@ namespace FSpot {
 		private Gtk.Image image;
 		private Gtk.Label label;
 
+		private bool show_histogram;
+		public bool ShowHistogram {
+			get {
+				return show_histogram;
+			}
+			set {
+				if (value != show_histogram) {
+					
+					preview_cache.Dispose ();
+					preview_cache = new ThumbnailCache (50);
+					item = -1;
+				}
+				show_histogram = value;
+			}
+		}
+					
+		private FSpot.Histogram hist;
 		private ThumbnailCache preview_cache = new ThumbnailCache (50);
 
 		private int item;
@@ -22,6 +39,26 @@ namespace FSpot {
 			}
 		}
 
+		private void AddHistogram (Gdk.Pixbuf pixbuf)
+		{
+			if (show_histogram) {
+				hist.FillValues (pixbuf);
+				Gdk.Pixbuf image = hist.GeneratePixbuf ();
+				double scalex = 0.5;
+				double scaley = 0.5;
+				
+				int width = (int)(image.Width * scalex);
+				int height = (int)(image.Height * scaley);
+				
+				image.Composite (pixbuf, 
+						 pixbuf.Width - width - 10, pixbuf.Height - height - 10,
+						 width, height, 
+						 pixbuf.Width - width - 10, pixbuf.Height - height - 10,
+						 scalex, scaley, 
+						 Gdk.InterpType.Bilinear, 200);
+			}
+		}
+
 		private void UpdateImage ()
 		{
 			Photo photo = view.Collection.Photos [Item];
@@ -32,13 +69,14 @@ namespace FSpot {
 				// A bizarre pixbuf = hack to try to deal with cinematic displays, etc.
 				int preview_size = ((this.Screen.Width + this.Screen.Height)/2)/3;
 				try {
-					pixbuf = FSpot.PhotoLoader.LoadAtMaxSize (photo, preview_size, preview_size);                                      
+					pixbuf = FSpot.PhotoLoader.LoadAtMaxSize (photo, preview_size, preview_size);
 				} catch (Exception e) {
 					pixbuf = null;
 				}
 
 				if (pixbuf != null) {
 					preview_cache.AddThumbnail (orig_path, pixbuf);
+					AddHistogram (pixbuf);
 					image.Pixbuf = pixbuf;
 				} else {
 					image.Pixbuf = PixbufUtils.ErrorPixbuf;
@@ -134,6 +172,13 @@ namespace FSpot {
 			switch (args.Event.Key) {
 			case Gdk.Key.Alt_L:
 			case Gdk.Key.Alt_R:
+			case Gdk.Key.v:
+				ShowHistogram = false;
+				UpdateItem ();
+				break;
+			case Gdk.Key.V:
+			case Gdk.Key.h:
+				ShowHistogram = true;
 				UpdateItem ();
 				break;
 			}
@@ -144,6 +189,9 @@ namespace FSpot {
 			switch (args.Event.Key) {
 			case Gdk.Key.Alt_L:
 			case Gdk.Key.Alt_R:
+			case Gdk.Key.v:
+			case Gdk.Key.V:
+			case Gdk.Key.h:
 				this.Hide ();
 				break;
 			}
@@ -183,6 +231,12 @@ namespace FSpot {
 			view.KeyPressEvent += HandleIconViewKeyPress;
 			view.KeyReleaseEvent += HandleIconViewKeyRelease;
 			view.DestroyEvent += HandleIconViewDestroy;
+
+			hist = new FSpot.Histogram ();
+			hist.Color [0] = 127;			
+			hist.Color [1] = 127;			
+			hist.Color [2] = 127;
+			hist.Color [3] = 0xff;
 
 			image = new Gtk.Image ();
 			image.CanFocus = false;
