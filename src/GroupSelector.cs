@@ -920,14 +920,16 @@ namespace FSpot {
 			min_limit = new Limit (this, Limit.LimitType.Min);
 			max_limit = new Limit (this, Limit.LimitType.Max);
 
-			left = new Gtk.Button (new Gtk.Image (Gtk.Stock.GoBack, Gtk.IconSize.Button));
+			left = new Gtk.Button ();
+			left.Add (new Gtk.Image (Gtk.Stock.GoBack, Gtk.IconSize.Button));
 			left.Relief = Gtk.ReliefStyle.None;
 			//left.Clicked += HandleScrollLeft;
 			left.Pressed += HandleLeftPressed;
 			left.ButtonReleaseEvent += HandleScrollReleaseEvent;
 			left_delay = new Delay (50, new GLib.IdleHandler (HandleScrollLeft));
 
-			right = new Gtk.Button (new Gtk.Image (Gtk.Stock.GoForward, Gtk.IconSize.Button));
+			right = new Gtk.Button ();
+			right.Add (new Gtk.Image (Gtk.Stock.GoForward, Gtk.IconSize.Button));
 			right.Relief = Gtk.ReliefStyle.None;
 			right.Pressed += HandleRightPressed;
 			right.ButtonReleaseEvent += HandleScrollReleaseEvent;
