@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-15 22:12+0100\n"
-"PO-Revision-Date: 2005-02-15 22:08+0100\n"
+"POT-Creation-Date: 2005-02-15 23:01+0100\n"
+"PO-Revision-Date: 2005-02-15 22:39+0100\n"
 "Last-Translator: Martin Willemoes Hansen <mwh@sysrq.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -339,7 +339,7 @@ msgstr "Kant:"
 msgid "Brightness:"
 msgstr "Klarhed:"
 
-#: src/f-spot.glade.h:33
+#: src/f-spot.glade.h:33 src/StockIcons.cs:26
 msgid "Browse"
 msgstr "Browse"
 
@@ -617,11 +617,11 @@ msgstr "F_jern mærke"
 msgid "Resize to: "
 msgstr "Skalér til: "
 
-#: src/f-spot.glade.h:106
+#: src/f-spot.glade.h:106 src/StockIcons.cs:35
 msgid "Rotate _Left"
 msgstr "Rotér til _venstre"
 
-#: src/f-spot.glade.h:107
+#: src/f-spot.glade.h:107 src/StockIcons.cs:36
 msgid "Rotate _Right"
 msgstr "Rotér til _højre"
 
@@ -1100,6 +1100,42 @@ msgstr[1] ""
 "eller et medie såsom en cd-rom. Kontrollér venligst dine skriverettigheder "
 "og prøv igen"
 
+#: src/StockIcons.cs:27
+msgid "Camera"
+msgstr "Kamera"
+
+#: src/StockIcons.cs:28
+msgid "Crop"
+msgstr "Beskær"
+
+#: src/StockIcons.cs:29
+msgid "Edit Image"
+msgstr "Redigér mærke"
+
+#: src/StockIcons.cs:30
+msgid "Fullscreen"
+msgstr "Fuldskærm"
+
+#: src/StockIcons.cs:31
+msgid "Slideshow"
+msgstr "Diasshow"
+
+#: src/StockIcons.cs:32
+msgid "Logo"
+msgstr "Logo"
+
+#: src/StockIcons.cs:33
+msgid "Question"
+msgstr "Spørgsmål"
+
+#: src/StockIcons.cs:34
+msgid "Reduce Red-Eye"
+msgstr "Reducér rødøje"
+
+#: src/StockIcons.cs:37
+msgid "Loading"
+msgstr "Indlæser"
+
 #: src/TagCommands.cs:56
 msgid "(No categories)"
 msgstr "(Ingen kategorier)"
@@ -1172,6 +1208,24 @@ msgstr "Skalerer billede \"{0}\""
 #, csharp-format
 msgid "Transferring picture \"{0}\""
 msgstr "Overfører billede \"{0}\""
+
+#~ msgid "Favorites"
+#~ msgstr "Favoritter"
+
+#~ msgid "Hidden"
+#~ msgstr "Skjulte"
+
+#~ msgid "People"
+#~ msgstr "Mennesker"
+
+#~ msgid "Places"
+#~ msgstr "Steder"
+
+#~ msgid "Events"
+#~ msgstr "Begivenheder"
+
+#~ msgid "Other"
+#~ msgstr "Andre"
 
 #~ msgid "*"
 #~ msgstr "*"
