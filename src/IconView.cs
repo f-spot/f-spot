@@ -86,7 +86,7 @@ public class IconView : Gtk.Layout {
 	private const int SELECTION_THICKNESS = 5;
 
 	// Size of the tag icon in the view.
-	private const int TAG_ICON_SIZE = 12;
+	private const int TAG_ICON_SIZE = 16;
 
 	// Horizontal spacing between the tag icons
 	private const int TAG_ICON_HSPACING = 2;
@@ -165,6 +165,12 @@ public class IconView : Gtk.Layout {
 			   | (int) EventMask.PointerMotionMask);
 		
 		CanFocus = true;
+
+		Gdk.Color color = this.Style.Background (Gtk.StateType.Normal);
+		color.Red = (ushort) (color.Red / 2);
+		color.Blue = (ushort) (color.Blue / 2);
+		color.Green = (ushort) (color.Green / 2);
+		ModifyBg (Gtk.StateType.Normal, color);
 	}
 	
 	public IconView (FSpot.IPhotoCollection collection) : this () 
@@ -382,9 +388,8 @@ public class IconView : Gtk.Layout {
 			cell_height += TAG_ICON_SIZE + TAG_ICON_VSPACING;
 		
 		if (DisplayDates && this.Style != null) {
-		       
-			Pango.FontMetrics metrics = this.PangoContext.GetMetrics (this.Style.FontDescription, Pango.Language.FromString ("en_US"));
-
+			Pango.FontMetrics metrics = this.PangoContext.GetMetrics (this.Style.FontDescription, 
+										  Pango.Language.FromString ("en_US"));
 			cell_height += PangoPixels (metrics.Ascent + metrics.Descent);
 		}
 
@@ -423,15 +428,11 @@ public class IconView : Gtk.Layout {
 		Gdk.Rectangle area = new Gdk.Rectangle (x, y, cell_width, cell_height);
 		
 		StateType cell_state = selected ? (HasFocus ? StateType.Selected :StateType.Active) : StateType.Normal;
-#if false
+
+
 		Style.PaintFlatBox (Style, BinWindow, cell_state, 
-				    ShadowType.Out, area, this, null, x, y, cell_width, cell_height);
+				    ShadowType.Out, area, this, "IconView", x, y, cell_width - 1, cell_height - 1);
 
-#else
-		Style.PaintBox (Style, BinWindow, cell_state,
-				ShadowType.Out, area, this, "IconView", x, y, cell_width, cell_height);
-
-#endif 
 		if (HasFocus && thumbnail_num == FocusCell) {
 			Style.PaintFocus(Style, BinWindow, cell_state, area, 
 					 this, null, x + 3, y + 3, cell_width - 6, cell_height - 6);
@@ -453,24 +454,6 @@ public class IconView : Gtk.Layout {
 
 		int layout_width = 0;
 		int layout_height = 0;
-		if (DisplayDates) {
-			string date = photo.Time.ToShortDateString ();
-			
-			Pango.Layout layout = (Pango.Layout)date_layouts [date];
-			if (layout == null) {
-				layout = new Pango.Layout (this.PangoContext);
-				layout.SetText (date);
-				date_layouts [date] = layout;
-			}
-			
-			int layout_x = x + CELL_BORDER_WIDTH - expansion;				
-			int layout_y = y + CELL_BORDER_WIDTH - expansion;
-
-			layout.GetPixelSize (out layout_width, out layout_height);
-			Style.PaintLayout (Style, BinWindow, cell_state,
-					   true, area, this, null, layout_x, layout_y, layout);
-
-		}
 
 		
 		if (thumbnail == null) {
@@ -483,10 +466,7 @@ public class IconView : Gtk.Layout {
 			int dest_y;
 
 			
-			if (DisplayTags)
-				dest_y = (int) (y + layout_height + (cell_height - layout_height - height - (TAG_ICON_SIZE + TAG_ICON_VSPACING)) / 2);
-			else
-				dest_y = (int) (y + layout_height + (cell_height - layout_height - height) / 2);
+			dest_y = (int) y + ThumbnailHeight - height + CELL_BORDER_WIDTH;
 			
 			dest_x -= expansion;
 			dest_y -= expansion;		
@@ -500,6 +480,9 @@ public class IconView : Gtk.Layout {
 				temp_thumbnail = thumbnail.ScaleSimple (width, height, InterpType.Bilinear);
 			}
 
+			Style.PaintShadow (Style, BinWindow, cell_state,
+					   ShadowType.Out, area, this, "IconView", dest_x - 1, dest_y - 1, width + 2, height + 2);
+
 			temp_thumbnail.RenderToDrawable (BinWindow, Style.WhiteGC,
 							 0, 0, dest_x, dest_y, width, height, RgbDither.None, 0, 0);
 			
@@ -509,12 +492,37 @@ public class IconView : Gtk.Layout {
 			thumbnail.Dispose ();
 		}
 
+		if (DisplayDates) {
+			string date;
+			if (cell_width > 200) {
+				date = photo.Time.ToString ();
+			} else {
+				date = photo.Time.ToShortDateString ();
+			}
+
+			Pango.Layout layout = (Pango.Layout)date_layouts [date];
+			if (layout == null) {
+				layout = new Pango.Layout (this.PangoContext);
+				layout.SetText (date);
+				date_layouts [date] = layout;
+			}
+			
+			layout.GetPixelSize (out layout_width, out layout_height);
+
+			int layout_y = y + cell_height - CELL_BORDER_WIDTH - (DisplayTags ? TAG_ICON_SIZE : 0) - layout_height;
+			int layout_x = x + (cell_width - layout_width) / 2;
+
+			Style.PaintLayout (Style, BinWindow, cell_state,
+					   true, area, this, "IconView", layout_x, layout_y, layout);
+
+		}
+
 		if (DisplayTags) {
 			Tag [] tags = photo.Tags;
 
 			int tag_x, tag_y;
 
-			tag_x = x + CELL_BORDER_WIDTH;
+			tag_x = x + (cell_width - tags.Length * TAG_ICON_SIZE) / 2;
 			tag_y = y + cell_height - CELL_BORDER_WIDTH - TAG_ICON_SIZE;
 			foreach (Tag t in tags) {
 				Pixbuf icon = null;
@@ -541,6 +549,9 @@ public class IconView : Gtk.Layout {
 							      0, 0, tag_x, tag_y, TAG_ICON_SIZE, TAG_ICON_SIZE,
 							      RgbDither.None, 0, 0);
 				tag_x += TAG_ICON_SIZE + TAG_ICON_VSPACING;
+
+				if (scaled_icon != icon)
+					scaled_icon.Dispose ();
 			}
 		}
 	}

@@ -720,7 +720,6 @@
 			  <property name="use_underline">True</property>
 			  <property name="active">True</property>
 			  <signal name="activate" handler="HandleDisplayTags" last_modification_time="Sun, 10 Oct 2004 21:30:58 GMT"/>
-			  <accelerator key="t" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 			</widget>
 		      </child>
 
@@ -780,7 +779,7 @@
 				  <property name="visible">True</property>
 				  <property name="label" translatable="yes">Month</property>
 				  <property name="use_underline">True</property>
-				  <property name="active">False</property>
+				  <property name="active">True</property>
 				  <signal name="activate" handler="HandleArrangeByTime" last_modification_time="Fri, 20 Aug 2004 22:26:32 GMT"/>
 				</widget>
 			      </child>
@@ -958,6 +957,7 @@
 			  <property name="label" translatable="yes">Attach Tag To Selection</property>
 			  <property name="use_underline">True</property>
 			  <signal name="activate" handler="HandleAttachTagCommand" last_modification_time="Wed, 21 Jan 2004 05:44:42 GMT"/>
+			  <accelerator key="t" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 			</widget>
 		      </child>
 
@@ -4276,7 +4276,6 @@ Photo Details</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <property name="response_id">-6</property>
-	      <signal name="clicked" handler="HandleCancel" last_modification_time="Thu, 07 Oct 2004 09:28:53 GMT"/>
 	    </widget>
 	  </child>
 
@@ -4290,7 +4289,6 @@ Photo Details</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <property name="response_id">-5</property>
-	      <signal name="clicked" handler="HandleExport" last_modification_time="Thu, 07 Oct 2004 09:29:03 GMT"/>
 	    </widget>
 	  </child>
 	</widget>

@@ -1,3 +1,15 @@
+2004-10-16  Larry Ewing  <lewing@novell.com>
+
+	* src/f-spot.glade: use C-t to apply tag.  Remove unused export
+	dialog handlers.
+	
+	* src/GalleryExport.cs: Turn off tags and dates.  Remove unused
+	handlers.
+
+	* src/IconView.cs: new drawing style.  This isn't intendend.
+
+	* src/PreviewPopup.cs: remove alt keybinding for preview popup.
+
 2004-10-15  Larry Ewing  <lewing@novell.com>
 
 	* src/GalleryExport.cs: start using the ProgressItem into the
@@ -32,7 +44,7 @@
 
 	* src/PreviewPopup.cs: add a histogram display to the PreviewPopup.
 
-	* src/GalleryExport.cs: fix up the responsed etc.
+	* src/GalleryExport.cs: fix up the responses etc.
 
 	* src/MainWindow.cs: make the InfoDisplay window a Gtk.Dialog.
 

@@ -170,14 +170,11 @@ namespace FSpot {
 		private void HandleIconViewKeyPress (object sender, Gtk.KeyPressEventArgs args)
 		{
 			switch (args.Event.Key) {
-			case Gdk.Key.Alt_L:
-			case Gdk.Key.Alt_R:
 			case Gdk.Key.v:
 				ShowHistogram = false;
 				UpdateItem ();
 				break;
 			case Gdk.Key.V:
-			case Gdk.Key.h:
 				ShowHistogram = true;
 				UpdateItem ();
 				break;

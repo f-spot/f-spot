@@ -162,6 +162,9 @@ namespace FSpot {
 			xml.Autoconnect (this);
 			
 			IconView view = new IconView (new PhotoArray (photos));
+			view.DisplayDates = false;
+			view.DisplayTags = false;
+
 			Dialog.Modal = false;
 			Dialog.TransientFor = null;
 
@@ -209,6 +212,8 @@ namespace FSpot {
 		[Glade.Widget] Gtk.Button add_button;
 		
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
+
+		System.Threading.Thread command_thread;
 		
 		public Gtk.Dialog Dialog {
 			get {
@@ -300,10 +305,10 @@ namespace FSpot {
 				album = (GalleryRemote.Album) account.Gallery.Albums [System.Math.Max (0, album_optionmenu.History)]; 
 				photo_index = 0;
 
-				System.Threading.Thread t = new System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
-				t.Name = "Uploading Pictures";
+				command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
+				command_thread.Name = "Uploading Pictures";
 				
-				progress_dialog = new FSpot.ThreadProgressDialog (t, photos.Length);
+				progress_dialog = new FSpot.ThreadProgressDialog (command_thread, photos.Length);
 				progress_dialog.Start ();
 			}
 		}
@@ -388,10 +393,11 @@ namespace FSpot {
 
 		private void HandleAccountSelected (object sender, System.EventArgs args)
 		{
+			
 			if (accounts.Count != 0) {
 				account = (GalleryAccount) accounts [gallery_optionmenu.History];
 				if (!account.Connected)
-					account.Connect ();
+				       account.Connect ();
 				
 				PopulateAlbumOptionMenu (account.Gallery);
 			}
@@ -451,20 +457,5 @@ namespace FSpot {
 		{
 			album_add = new GalleryAddAlbum (account.Gallery);
 		}
-
-		public void HandleExport (object sender, System.EventArgs args)
-		{
-		}
-		
-		public void HandleCancel (object sender, System.EventArgs args)
-		{
-			gallery_export_dialog.Destroy ();
-
-			if (gallery_add != null) 
-				gallery_add.Dialog.Destroy ();
-			if (album_add != null)
-				album_add.Dialog.Destroy ();
-		}
-
 	}
 }
