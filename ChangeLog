@@ -1,3 +1,8 @@
+2005-03-07  Larry Ewing  <lewing@novell.com>
+
+	* src/FormClient.cs: bump the timeout for mulitpart requests since
+	they will typically take a long time to process.
+
 2005-03-07  Raja R Harinath  <rharinath@novell.com>
 
 	* configure.in 	(src/f-spot): Make generated script executable.

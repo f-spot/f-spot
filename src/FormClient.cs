@@ -218,6 +218,7 @@ class FormClient {
 		if (multipart) {
 			GenerateBoundary ();
 			Request.ContentType = "multipart/form-data; boundary=" + boundary;
+			Request.Timeout = Request.Timeout * 3;
 
 			long length = 0;
 			for (int i = 0; i < Items.Count; i++) {
