@@ -1,5 +1,7 @@
 2005-03-11  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoImageView.cs: clean up the close handling.
+
 	* src/PhotoView.cs: fix an off by one error in the description
 	sensitivity.
 
