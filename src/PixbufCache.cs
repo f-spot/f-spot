@@ -41,7 +41,10 @@ namespace FSpot {
 			}
 
 			if (entry != null && result != null) {
-				Update (entry, PixbufUtils.ScaleDown (result, entry.Width, entry.Height));
+				int width, height;
+				PixbufUtils.Fit (result, entry.Width, entry.Height, false, out width, out height);
+
+				Update (entry, PixbufUtils.ScaleDown (result, width, height));
 			}
 
 			//System.Console.WriteLine ("removing {0}", thumb_path);
