@@ -277,7 +277,7 @@ public class GalleryRemote {
 	{
 		FormClient client = new FormClient (cookies);
 		
-		client.Add ("cmd", "add-item");
+		client.Add ("cmd", "move-album");
 		client.Add ("protocol_version", "2.7");
 		client.Add ("set_albumName", album.Name);
 		client.Add ("set_destalbumName", end_name);
