@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-17 20:25-0500\n"
-"PO-Revision-Date: 2004-12-17 23:54-0400\n"
+"POT-Creation-Date: 2004-12-22 21:32-0500\n"
+"PO-Revision-Date: 2004-12-22 23:54-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
@@ -136,6 +136,44 @@ msgstr "Unknown transform type %d"
 #: libfspot/f-jpeg-utils.c:452
 msgid "Operation failed"
 msgstr "Operation failed"
+
+#: src/FlickrExport.cs:42
+msgid "Enter Password"
+msgstr "Enter Password"
+
+#: src/FlickrExport.cs:49
+msgid "Enter Password for "
+msgstr "Enter Password for "
+
+#: src/FlickrExport.cs:78 src/GalleryExport.cs:335
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr "Uploading picture \"{0}\""
+
+#: src/FlickrExport.cs:81 src/GalleryExport.cs:339 src/ProgressDialog.cs:75
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} of {1}"
+
+#: src/FlickrExport.cs:83 src/GalleryExport.cs:343
+msgid "Done Sending Photos"
+msgstr "Done Sending Photos"
+
+#: src/FlickrExport.cs:85 src/GalleryExport.cs:345
+msgid "Upload Complete"
+msgstr "Upload Complete"
+
+#: src/FlickrExport.cs:90
+msgid "Error Uploading To Flickr"
+msgstr "Error Uploading To Flickr"
+
+#: src/FlickrExport.cs:105 src/GalleryExport.cs:310 src/VfsExport.cs:102
+msgid "Uploading Pictures"
+msgstr "Uploading Pictures"
+
+#: src/FlickrExport.cs:115
+msgid "Unable to log on"
+msgstr "Unable to log on"
 
 #: src/f-spot.glade.h:1
 msgid "*"
@@ -668,28 +706,6 @@ msgstr "dialogue1"
 #: src/f-spot.glade.h:137
 msgid "x"
 msgstr "x"
-
-#: src/GalleryExport.cs:310
-msgid "Uploading Pictures"
-msgstr "Uploading Pictures"
-
-#: src/GalleryExport.cs:335
-#, csharp-format
-msgid "Uploading picture \"{0}\""
-msgstr "Uploading picture \"{0}\""
-
-#: src/GalleryExport.cs:339 src/ProgressDialog.cs:75
-#, csharp-format
-msgid "{0} of {1}"
-msgstr "{0} of {1}"
-
-#: src/GalleryExport.cs:343
-msgid "Done Sending Photos"
-msgstr "Done Sending Photos"
-
-#: src/GalleryExport.cs:345
-msgid "Upload Complete"
-msgstr "Upload Complete"
 
 #: src/GalleryExport.cs:349
 msgid "Error Uploading To Gallery"
