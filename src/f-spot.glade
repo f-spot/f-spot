@@ -4408,6 +4408,7 @@ Photo Details</property>
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
 				  <property name="history">-1</property>
+				  <signal name="changed" handler="HandleAccountSelected" last_modification_time="Fri, 08 Oct 2004 22:18:26 GMT"/>
 
 				  <child>
 				    <widget class="GtkMenu" id="menu1">
@@ -4429,6 +4430,7 @@ Photo Details</property>
 				  <property name="use_stock">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>
+				  <signal name="clicked" handler="HandleAddGallery" last_modification_time="Fri, 08 Oct 2004 22:16:40 GMT"/>
 				</widget>
 				<packing>
 				  <property name="padding">0</property>

@@ -93,6 +93,22 @@ namespace GalleryRemote {
 		}
 	}
 	
+	public enum ResultCode {
+		Success = 0,
+		MajorVersionInvalid = 101,
+		MajorMinorVersionInvalid = 102,
+		VersionFormatInvalid = 103,
+		VersionMissing = 104,
+		PasswordWrong = 201,
+		LoginMisssing = 202,
+		UnknownComand = 301,
+		NoAddPermission = 401,
+		NoFilename = 402,
+		UploadPhotoFailed = 403,
+		NoWritePermission = 501,
+		CreatAlbumFailed = 502
+	}
+		
 	public class Gallery {
 		static int GR_STAT_SUCCESS = 0;
 		static int GR_STAT_PROTO_MAJ_VER_INVAL = 101;
@@ -111,16 +127,36 @@ namespace GalleryRemote {
 		
 		public ArrayList Albums = null;
 		
-		Uri uri = null;
+		
+		Uri uri;
+		public Uri Uri{
+			get {
+				return uri;
+			}
+		}
+		
+		string name;
+		public string Name {
+			get {
+				return name;
+			}
+			set {
+				name = value;
+			}
+		}
+
 		HttpWebRequest request = null;
 		CookieContainer cookies = null;
 		
 		private Album CurrentAlbum;
 		private Image CurrentImage;
 		
-		public Gallery (string url)
+		public Gallery (string url) : this (url, url) {}
+
+		public Gallery (string name, string url)
 		{
-			uri = new Uri (url);
+			this.name = name;
+			this.uri = new Uri (url);
 			request = (HttpWebRequest)WebRequest.Create(uri);
 			cookies = new CookieContainer ();	       
 			Albums = new ArrayList ();
