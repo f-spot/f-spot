@@ -214,9 +214,27 @@ namespace Exif {
 		}
 		
 		public static string GetIfdName (ExifIfd ifd)
-		{
+		{			
 			IntPtr raw_ret = exif_ifd_get_name (ifd);
 			return Marshal.PtrToStringAnsi (raw_ret);
+		}
+		
+		public static string GetIfdNameExtended (ExifIfd ifd)
+		{
+			switch (ifd) {
+			case ExifIfd.Zero:
+				return Mono.Posix.Catalog.GetString ("Image Directory");
+			case ExifIfd.One:
+				return Mono.Posix.Catalog.GetString ("Thumbnail Directory");
+			case ExifIfd.Exif:
+				return Mono.Posix.Catalog.GetString ("Exif Directory");
+			case ExifIfd.Gps:
+				return Mono.Posix.Catalog.GetString ("GPS Directory");
+			case ExifIfd.InterOperability:
+				return Mono.Posix.Catalog.GetString ("InterOperability Directory");
+			default:
+				return Mono.Posix.Catalog.GetString ("Unknown Directory");
+			}
 		}
 		
 		public static DateTime DateTimeFromString(string dt)
@@ -656,10 +674,13 @@ namespace Exif {
 			}
 		}
 		
+		static int fallback = 0;
 		
 		// FIXME this version is only valid in libexif 0.5
 		[DllImport ("libexif.dll")]
 		internal static extern IntPtr exif_entry_get_value (HandleRef handle);
+		[DllImport ("libexif.dll")]
+		internal static extern IntPtr exif_entry_get_value_brief (HandleRef handle);
 		
 		// FIXME this version is only valid in libexif 0.6
 		[DllImport ("libexif.dll")]
@@ -668,15 +689,31 @@ namespace Exif {
 		public string Value
 		{
 			get {
-				// FIXME this is a hack to handle libexif 0.5 and 0.6 at the same time
-				// The signature of get_value changed between versions
+				if (fallback == 0) {
+					try {
+						exif_entry_get_value_brief (this.Handle);
+						fallback = 1;
+					} catch (System.Exception e) {
+						fallback = -1;
+					}
+				}
 				
-				try {
+				if (fallback > 0) 
 					return Marshal.PtrToStringAnsi (exif_entry_get_value (this.Handle));
-				} catch (System.NullReferenceException e) {
+				else {
 					byte [] value = new byte [1024];
 					exif_entry_get_value (this.Handle, value, value.Length);
-					return System.Text.Encoding.UTF8.GetString (value);
+
+					int i;
+					for (i = 0; i <  value.Length; i++) {
+						if (value [i] == 0) 
+							break;
+					}
+					int len = System.Math.Max (i - 1, 0);
+					if (len == 0)
+						return null;
+					
+					return System.Text.Encoding.UTF8.GetString (value, 0, len);
 				}
 			}
 		}
@@ -800,7 +837,11 @@ namespace Exif {
 		
 		public ExifEntry LookupFirst (ExifTag tag)
 		{
+			Assemble ();
 			foreach (ExifContent content in ifds) {
+				if (content == null)
+					continue;
+				
 				ExifEntry entry = content.Lookup (tag);
 				if (entry != null)
 					return entry;

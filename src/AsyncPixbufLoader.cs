@@ -45,6 +45,12 @@ namespace FSpot {
 				return done_reading;
 			}
 		}
+
+		public string Path {
+			get {
+				return path;
+			}
+		}
 		
 		public void Load (string filename)
 		{

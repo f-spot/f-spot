@@ -17,7 +17,7 @@ public class ExifUtils {
 
 	public static ExposureInfo GetExposureInfo (string path)
 	{
-		ExifData exif_data = new ExifData (path);
+		Exif.ExifData exif_data = new Exif.ExifData (path);
 
 #if UNSED_CODE
 		MakerType maker = MakerType.Unknown;
@@ -31,10 +31,10 @@ public class ExifUtils {
 #endif
 
 		ExposureInfo info = new ExposureInfo ();
-		info.ApertureValue = exif_data.LookupString (ExifTag.ApertureValue);
-		info.ExposureTime = exif_data.LookupString (ExifTag.ExposureTime);
-		info.DateTime = exif_data.LookupString (ExifTag.DateTimeOriginal);
-		info.IsoSpeed = exif_data.LookupString (ExifTag.ISOSpeedRatings);
+		info.ApertureValue = exif_data.LookupFirstValue (Exif.ExifTag.ApertureValue);
+		info.ExposureTime = exif_data.LookupFirstValue (Exif.ExifTag.ExposureTime);
+		info.DateTime = exif_data.LookupFirstValue (Exif.ExifTag.DateTimeOriginal);
+		info.IsoSpeed = exif_data.LookupFirstValue (Exif.ExifTag.ISOSpeedRatings);
 
 // FIXME not sure why, this doesn't work.
 #if BROKEN_CODE

@@ -114,14 +114,16 @@ public class InfoBox : VBox {
 						string iso_speed)
 	{
 		string info = "";
-
-		if (aperture != null && aperture != "")
+		
+		if (aperture != null && aperture != "") {
+			aperture.Trim();
 			info += aperture + " ";
+		}
 		if (exposure != null && exposure != "")
-			info += exposure + " ";
+			info += " " + exposure;
 		if (iso_speed != null && iso_speed != "")
 			info += "\nISO " + iso_speed;
-
+		
 		return info;
 	}
 
@@ -137,7 +139,8 @@ public class InfoBox : VBox {
 		ExifUtils.ExposureInfo exposure_info;
 		try {
 			exposure_info = ExifUtils.GetExposureInfo (photo.Path);
-		} catch {
+		} catch (System.Exception e) {
+			System.Console.WriteLine (e.ToString ());
 			exposure_info = new ExifUtils.ExposureInfo ();
 		}
 

@@ -515,12 +515,13 @@ public class PhotoStore : DbStore {
 	{
 		DateTime time;
 		try {
-			using (ExifData ed = new ExifData (path)) {
-				string strtime = ed.LookupString (ExifTag.DateTimeOriginal);
-				time = ExifData.DateTimeFromString (strtime); 
+			using (Exif.ExifData ed = new Exif.ExifData (path)) {
+				Exif.ExifContent content = ed.GetContents (Exif.ExifIfd.Zero);
+				Exif.ExifEntry entry = content.GetEntry (Exif.ExifTag.DateTimeOriginal);
+				time = ExifData.DateTimeFromString (entry.Value); 
 				time = time.ToUniversalTime ();
 			}			
-		} catch {
+		} catch (System.Exception e) {
 			time = File.GetCreationTimeUtc  (path);
 		} 
 
