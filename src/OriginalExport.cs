@@ -383,7 +383,7 @@ namespace FSpot {
 		private void CreateInfo()
 		{
 			StreamWriter info = File.CreateText(Path.Combine (gallery_path, "info.txt"));
-			info.WriteLine("date|" + selection.Photos[0].Time.Date.ToString ("yyyy-MM-dd"));
+			info.WriteLine("date|" + selection.Photos[0].Time.Date.ToString ("dd.MM.yyyy"));
 			info.Close();
 		}
 		
