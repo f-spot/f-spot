@@ -1,7 +1,15 @@
 2004-08-14  Larry Ewing  <lewing@novell.com>
 
-	* src/GroupSelector.cs: Add handle drawing to the glass.
+	* src/GroupSelector.cs: don't attach the style in the realize
+	handler.  Draw innactive boxes using the prelight color (it isn't
+	perfect but it is prettier than the inset frame.  Add a detail
+	string to the PaintHandle call because pixbuf themes seem to crash
+	without it.
 	
+2004-08-14  Larry Ewing  <lewing@novell.com>
+
+	* src/GroupSelector.cs: Add handle drawing to the glass.
+
 	* src/GroupSelector.cs: add the start of the limit boxes.  Add
 	scrolling support.  Change drawing colors.  Add tick support.
 	Add selection drawing. polish other drawing..

@@ -14,8 +14,8 @@ namespace FSpot {
 		private Limit min_limit;
 		private Limit max_limit;
 
-		Gdk.Window back_window;
-		
+		Gdk.Window event_window;
+
 		public Gdk.Rectangle background;
 		public Gdk.Rectangle legend;
 
@@ -62,7 +62,8 @@ namespace FSpot {
 		{
 			Flags |= (int)WidgetFlags.Realized;
 			GdkWindow = ParentWindow;
-			Style = Style.Attach (GdkWindow);
+
+			base.OnRealized ();
 		}
 
 		private Double BoxWidth {
@@ -108,12 +109,16 @@ namespace FSpot {
 			
 			if (box.Intersect (area, out area)) {
 				if (item < min_limit.Position || item >= max_limit.Position) {
+#if false
 					box.Height += 1;
 
 					//GdkWindow.DrawRectangle (Style.ForegroundGC (StateType.Normal), false, box);
 					Style.PaintShadow (this.Style, GdkWindow, State, ShadowType.In, area, 
 							   this, null, box.X, box.Y, 
 							   box.Width, box.Height);
+#else
+					GdkWindow.DrawRectangle (Style.BackgroundGC (StateType.Prelight), true, area);
+#endif
 				} else {
 					GdkWindow.DrawRectangle (Style.BaseGC (StateType.Selected), true, area);
 				}
@@ -211,7 +216,7 @@ namespace FSpot {
 					}
 				
 					Style.PaintHandle (selector.Style, selector.GdkWindow, selector.State, ShadowType.In, 
-							    area, selector, null, bounds.X, inner.Y + inner. Height + border, 
+							    area, selector, "glass", bounds.X, inner.Y + inner. Height + border, 
 							    bounds.Width, handle_height, Orientation.Horizontal);
 
 					Style.PaintShadow (selector.Style, selector.GdkWindow, selector.State, ShadowType.Out, 
