@@ -1,5 +1,11 @@
 2004-11-18  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoImageView.cs: set the scrollbars to automatic.
+
+	* src/MainWindow.cs: make zoom behave a little better.
+
+	* src/PhotoView.cs: make zoom do something a little more sane.
+
 	* src/PhotoImageView.cs: remove out of date comment.
 
 	* src/PhotoView.cs: switch to using PhotoImageView.cs.

@@ -1046,16 +1046,13 @@ public class MainWindow {
 		switch (mode) {
 		case ModeType.PhotoView:
 			double old_zoom = photo_view.Zoom;
-			try {
-				photo_view.Zoom -= .1;
-			} catch {
-				if (old_zoom - .1 < -0.09) {
-					photo_view.Zoom = 0.0;
-					SwitchToIconViewMode ();
-				}
-				photo_view.Zoom = old_zoom;
+
+			old_zoom -= .1;
+			if (old_zoom < double.Epsilon) {
+				old_zoom = double.Epsilon;
+				SwitchToIconViewMode ();
 			}
-			
+			photo_view.Zoom = old_zoom;
 			break;
 		case ModeType.IconView:
 			int width = icon_view.ThumbnailWidth;

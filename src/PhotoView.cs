@@ -68,18 +68,16 @@ public class PhotoView : EventBox {
 
 	private const double MAX_ZOOM = 5.0;
 
-	private double zoom;
 	public double Zoom {
 		get {
-			return zoom;
+			double x, y;
+			photo_view.GetZoom (out x, out y);
+			return x;
 		}
 
 		set {
-			if ((value < 0.0) || (value > MAX_ZOOM))
-				throw new Exception (String.Format ("Zoom value out of range {0}", value));
-				
-			zoom = value;
-			//UpdateZoom ();
+			photo_view.Fit = false;
+			photo_view.SetZoom (value, value);
 		}
 	}
 

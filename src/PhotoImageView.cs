@@ -154,9 +154,7 @@ namespace FSpot {
 
 			this.SetZoom (image_zoom, image_zoom);
 			
-			//if (System.Math.Abs (Zoom) < double.Epsilon)
-			//	scroll_delay.Start ();
-
+			((Gtk.ScrolledWindow) this.Parent).SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic);
 		}
 
 		public void Next () {
