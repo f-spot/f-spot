@@ -79,6 +79,7 @@ bin_SCRIPTS = f-spot
 
 f-spot: f-spot.in
 	sed -e "s|\@prefix\@|$(prefix)|" < $(srcdir)/f-spot.in > f-spot
+	chmod +x f-spot
 
 EXTRA_DIST =					\
 	$(F_SPOT_CSFILES)			\
