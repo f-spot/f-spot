@@ -1,5 +1,8 @@
 2004-10-16  Larry Ewing  <lewing@novell.com>
 
+	* src/PreviewPopup.cs: update the logic now that we don't just
+	trigger off of the alt key.
+
 	* src/f-spot.glade: kill the toolbar that didn't do anything anyway.
 
 	* src/f-spot.glade: use C-t to apply tag.  Remove unused export

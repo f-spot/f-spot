@@ -138,7 +138,6 @@ namespace FSpot {
 			if (item >= 0) {
 				this.Item = item;
 				UpdatePosition ();
-				this.Show ();
 			} else {
 				this.Hide ();
 			}
@@ -156,11 +155,9 @@ namespace FSpot {
 
 		private void HandleIconViewMotion (object sender, Gtk.MotionNotifyEventArgs args)
 		{
-			if ((args.Event.State & Gdk.ModifierType.Mod1Mask) == 0) {
-				this.Hide ();
+			if (!this.Visible)
 				return;
-			}
-			
+
 			int x = (int) args.Event.X;
 			int y = (int) args.Event.Y;
 			view.GrabFocus ();
@@ -171,10 +168,12 @@ namespace FSpot {
 		{
 			switch (args.Event.Key) {
 			case Gdk.Key.v:
+				Show ();
 				ShowHistogram = false;
 				UpdateItem ();
 				break;
 			case Gdk.Key.V:
+				Show ();
 				ShowHistogram = true;
 				UpdateItem ();
 				break;
