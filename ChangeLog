@@ -1,5 +1,10 @@
 2003-11-08  Ettore Perazzoli  <ettore@ximian.com>
 
+	* src/ImportCommand.cs (ImportCommand.HandleDialogResponse):
+	Renamed from "OnResponse" for consistency.
+
+2003-11-08  Ettore Perazzoli  <ettore@ximian.com>
+
 	* src/TagStore.cs (Tag.Children): Change from an ArrayList to an
 	array.
 

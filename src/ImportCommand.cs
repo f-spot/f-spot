@@ -90,7 +90,7 @@ public class ImportCommand {
 
 	bool cancelled;
 
-	private void OnResponse (object obj, ResponseArgs args)
+	private void HandleDialogResponse (object obj, ResponseArgs args)
 	{
 		cancelled = true;
 	}
@@ -108,7 +108,7 @@ public class ImportCommand {
 
 		dialog.ShowAll ();
 
-		dialog.Response += new ResponseHandler (OnResponse);
+		dialog.Response += new ResponseHandler (HandleDialogResponse);
 	}
 
 	private void UpdateProgressBar (int count, int total)
