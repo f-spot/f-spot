@@ -234,18 +234,19 @@ class GtkUtil {
 
 			// FIXME current gtk-sharp bindings don't have a null_ok flag on the 
 			// widget parameter so it is impossible to make a toggle button in toolbar.
+			Gtk.Widget w;
 			try {
-				Gtk.Widget w =  toolbar.AppendElement (Gtk.ToolbarChildType.Togglebutton, 
-								       null,
-								       item.Label.Replace ("_", null),
-								       null, null, 
-								       new Gtk.Image (item.StockId, Gtk.IconSize.LargeToolbar), 
-								       new Gtk.SignalFunc (helper.Func));
+				w =  toolbar.AppendElement (Gtk.ToolbarChildType.Togglebutton, 
+							    null,
+							    item.Label.Replace ("_", null),
+							    null, null, 
+							    new Gtk.Image (item.StockId, Gtk.IconSize.LargeToolbar), 
+							    new Gtk.SignalFunc (helper.Func));
 			} catch {
-				Gtk.Widget w =  toolbar.AppendItem (item.Label.Replace ("_", null),
-								    null, null, 
-								    new Gtk.Image (item.StockId, Gtk.IconSize.LargeToolbar), 
-								    new Gtk.SignalFunc (helper.Func));
+				w =  toolbar.AppendItem (item.Label.Replace ("_", null),
+							 null, null, 
+							 new Gtk.Image (item.StockId, Gtk.IconSize.LargeToolbar), 
+							 new Gtk.SignalFunc (helper.Func));
 			}
 
 			helper.Sender = w;
