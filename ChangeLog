@@ -1,5 +1,7 @@
 2005-02-19  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoStore.cs: use the right Ifd when looking up the time.
+	
 	* src/SlideView.cs: disable the slide animation if processing the
 	window update takes more than animate_max milliseconds.
 

@@ -516,7 +516,7 @@ public class PhotoStore : DbStore {
 		DateTime time;
 		try {
 			using (Exif.ExifData ed = new Exif.ExifData (path)) {
-				Exif.ExifContent content = ed.GetContents (Exif.ExifIfd.Zero);
+				Exif.ExifContent content = ed.GetContents (Exif.ExifIfd.Exif);
 				Exif.ExifEntry entry = content.GetEntry (Exif.ExifTag.DateTimeOriginal);
 				time = Exif.ExifUtil.DateTimeFromString (entry.Value); 
 				time = time.ToUniversalTime ();
