@@ -132,9 +132,6 @@ public class IconView : Gtk.Layout {
 	public delegate void DoubleClickedHandler (IconView view, int clicked_item);
 	public event DoubleClickedHandler DoubleClicked;
 
-	public delegate void MouseMotionHandler (IconView view, int clicked_item, int mouse_x, int mouse_y, Gdk.ModifierType state);
-	public event MouseMotionHandler MouseMotion;
-
 	public delegate void SelectionChangedHandler (IconView view);
 	public event SelectionChangedHandler SelectionChanged;
 

@@ -1,5 +1,11 @@
 2004-08-24  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: Remove unused delegate that I missed before.
+	
+	* src/MainWindow.cs: translate drag event x,y to window space
+	before looking up the cell.  Always use FocusCell when switching
+	pages.
+
 	* src/IconView.cs: expose CellIsSelected and FocusCell for the
 	changes in mainwindow.cs
 

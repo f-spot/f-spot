@@ -433,7 +433,14 @@ public class MainWindow {
 
 		switch (args.Info) {
 		case (uint)TargetType.TagList:
-			int item = icon_view.CellAtPosition (args.X, args.Y);
+			//
+			// Translate the event args from viewport space to window space,
+			// drag events use the viewport.  Owen sends his regrets.
+			//
+			int item = icon_view.CellAtPosition (args.X + (int) icon_view.Hadjustment.Value, 
+							     args.Y + (int) icon_view.Vadjustment.Value);
+
+			//Console.WriteLine ("Drop cell = {0} ({1},{2})", item, args.X, args.Y);
 
 			if (icon_view.CellIsSelected (item))
 				AttachTags (tag_selection_widget.TagHighlight (), SelectedIds());
@@ -1094,6 +1101,7 @@ public class MainWindow {
 			width = Math.Max (width, 64);
 			width = Math.Min (width, 256);
 			icon_view.ThumbnailWidth = width;
+
 			break;
 		}
 	}
@@ -1118,9 +1126,9 @@ public class MainWindow {
 			if (width >= 512) {
 				photo_view.Zoom = 0.0;
 				SwitchToPhotoViewMode ();
-			} else 
+			} else {
 				icon_view.ThumbnailWidth = width;
-			
+			}			
 			break;
 		}
 	}
@@ -1347,11 +1355,7 @@ public class MainWindow {
 			mode = ModeType.IconView;
 			break;
 		case 1:
-			if (current_photo_idx != PHOTO_IDX_NONE)
-				photo_view.CurrentPhoto = current_photo_idx;
-			else if (current_photos) {
-				photo_view.CurrentPhoto = icon_view.FocusCell;
-			}
+			photo_view.CurrentPhoto = icon_view.FocusCell;
 
 			mode = ModeType.PhotoView;
 			break;
