@@ -1,5 +1,10 @@
 2004-12-23  Larry Ewing  <lewing@novell.com>
 
+	* src/PrintDialog.cs: disable the extended print dialog for now
+	until it can be implmented properly.
+
+	* configure.in: bump the version number, fix the pkg-config check.
+
 	* src/f-spot.glade: add the new menu items.
 
 	* src/PhotoView.cs: call ColorDialog with the right arguments.

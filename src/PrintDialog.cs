@@ -117,6 +117,11 @@ namespace FSpot {
 
 		private void HandleConfigureClicked (object sender, System.EventArgs args)
 		{
+			RunGnomePrintDialog ();
+		}
+
+		private void RunGnomePrintDialog ()
+		{
 			Gnome.PrintDialog gnome_dialog = new Gnome.PrintDialog (print_job, "Print Images", 0);
 			int response = gnome_dialog.Run ();
 			
@@ -135,13 +140,15 @@ namespace FSpot {
 		{
 			this.photos = photos;
 
+#if ENABLE_CUSTOM_PRINT
 			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "print_dialog", null);
 			xml.Autoconnect (this);
+#endif
 
 			print_job = new Gnome.PrintJob (Gnome.PrintConfig.Default ());
 
 			Render ();
-
+#if ENABLE_CUSTOM_PRINT
 			int response = print_dialog.Run ();
 			
 			switch (response) {
@@ -150,6 +157,9 @@ namespace FSpot {
 				break;
 			}
 			print_dialog.Destroy ();
+#else
+			RunGnomePrintDialog ();
+#endif
 		}
 	}
 }
