@@ -72,8 +72,9 @@ namespace FSpot {
 					stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
 					stream.Write (ExifUtil.GetTagTitle (tag));
 					stream.Write ("</font></td><td>");
-					if (exif_info.LookupString (tag) != "")
-						stream.Write (exif_info.LookupString (tag));
+					string s = exif_info.LookupString (tag);
+					if (s != null && s != "")
+						stream.Write (s);
 					stream.Write ("</td><tr>");
 				}
 				stream.Write ("</table>");
