@@ -4,11 +4,16 @@ using Gnome;
 using System.Threading;
 
 public class ColorDialog {
+	PhotoQuery query;
+	int item;
+
 	Gdk.Pixbuf OrigPixbuf;
 	Gdk.Pixbuf ScaledPixbuf;
 	Gdk.Pixbuf AdjustedPixbuf;
 
 	uint timeout;
+
+	[Glade.Widget] private Dialog color_dialog;
 
 	[Glade.Widget] private SpinButton source_spinbutton;
 	[Glade.Widget] private SpinButton dest_spinbutton;
@@ -55,7 +60,7 @@ public class ColorDialog {
 				GLib.Source.Remove (timeout);
 		}
 	}
-
+	
 	public void RangeChanged (object sender, EventArgs args)
 	{
 		if (thread != null && thread.IsAlive)
@@ -64,7 +69,7 @@ public class ColorDialog {
 		thread = new Thread (new ThreadStart (Adjust));
 		thread.Start ();
 	}
-
+	
 	public void HandleSizeAllocate (object sender, SizeAllocatedArgs args)
 	{
 		if (ScaledPixbuf == null || 
@@ -74,19 +79,73 @@ public class ColorDialog {
 			ScaledPixbuf = PixbufUtils.ScaleToMaxSize (OrigPixbuf, 
 								   color_image.Allocation.Width,
 								   color_image.Allocation.Height);
-
+			
 			color_image.Pixbuf = AdjustedPixbuf = ScaledPixbuf.Copy ();
 			Adjust ();
 		}
 	}
+	
+	public void Save ()
+	{
+		Console.WriteLine ("Saving....");
+		Photo photo = query.Photos[item];
 
-	public ColorDialog (Gdk.Pixbuf pixbuf)       
+		if (photo.DefaultVersionId == Photo.OriginalVersionId) {
+			photo.DefaultVersionId = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);
+			query.Store.Commit (photo);
+		}
+
+		Gdk.Pixbuf final = new Gdk.Pixbuf (Gdk.Colorspace.Rgb,
+						   false, 8,
+						   OrigPixbuf.Width, 
+						   OrigPixbuf.Height);
+
+	        PixbufUtils.ColorAdjust (OrigPixbuf,
+					 final,
+					 brightness_scale.Value,
+					 contrast_scale.Value,
+					 hue_scale.Value,
+					 sat_scale.Value,
+					 source_spinbutton.ValueAsInt,
+					 dest_spinbutton.ValueAsInt);
+
+		try {
+			final.Savev (photo.DefaultVersionPath, "jpeg", null, null);
+			PhotoStore.GenerateThumbnail (photo.DefaultVersionPath);
+		} catch (GLib.GException ex) {
+			// FIXME error dialog.
+			Console.WriteLine ("error {0}", ex);
+		}
+
+		Console.WriteLine ("Saving....");
+		color_dialog.Sensitive = false;
+		color_dialog.Destroy ();
+	}
+
+	public void Cancel ()
+	{
+		color_dialog.Destroy ();
+	}
+
+        private void HandleOkClicked (object sender, EventArgs args)
+	{
+		Save ();
+	}
+	
+	private void HandleCancelClicked (object sender, EventArgs args)
+	{
+		Cancel ();
+	}
+	
+	public ColorDialog (PhotoQuery query, int item, Gdk.Pixbuf pixbuf)       
 	{
 		Glade.XML xml = new Glade.XML (null, "f-spot.glade", "color_dialog", null);
 		OrigPixbuf = pixbuf;
+		this.query = query;
+		this.item = item;
 
 		xml.Autoconnect (this);
-
+		
 		brightness_scale.ValueChanged += RangeChanged;
 		contrast_scale.ValueChanged += RangeChanged;
 		hue_scale.ValueChanged += RangeChanged;

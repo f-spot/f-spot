@@ -1,3 +1,11 @@
+2004-09-03  Larry Ewing  <lewing@novell.com>
+
+	* src/PhotoView.cs: create ColorDialog with the proper arguments.
+
+	* src/ColorDialog.cs: make saving work.
+
+	* src/f-spot.glade: hook up ok and cancel signals.
+
 2004-09-01  Larry Ewing  <lewing@novell.com>
 
 	* src/PreviewPopup.cs: cleanup the output, make the popup come up
