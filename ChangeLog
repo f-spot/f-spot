@@ -1,13 +1,29 @@
 2005-01-09  Larry Ewing  <lewing@novell.com>
 
+	* configure.in: add f-spot.in and fspot.exe.config.in to the
+	targets.  Rename makefile.am to Makefile.am
+
+	* src/f-spot.in: remove LD_LIBRARY_PATH crap.
+
+	* src/f-spot.exe.config.in: added.
+
+	* src/f-spot.exe.config: removed.
+
+	* src/makefile.am: removed.
+
+	* src/Defines.cs.in: add verison here.
+
+	* src/Makefile.am: rename make f-spot.exe.config.in, move library
+	path lookup into the .config instead of in the script.
+
 	* src/MainWindow.cs: use Delay for the idle handler, bump the
 	version number pending a proper fix.
 
+	* src/ThumbnailCommand.cs: be explicit about disposing the new thumbnail.
+	
 	* src/PixbufUtils.cs: be explicit about disposing the non rotated
 	image.
 
-	* src/ThumbnailCommand.cs: be explicit about disposing the new thumbnail.
-	
 2005-01-08  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoStore.cs: use the PixbufUtils thumbnail generator.

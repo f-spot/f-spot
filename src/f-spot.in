@@ -1,9 +1,6 @@
 #!/bin/sh
 
-LD_LIBRARY_PATH="@prefix@/lib/f-spot:$LD_LIBRARY_PATH"
-export LD_LIBRARY_PATH
-
-if [ -e ./f-spot.exe ] && [ -e ./makefile.am ] && [ -e ./PhotoStore.cs ]; then
+if [ -e ./f-spot.exe ] && [ -e ./Makefile.am ] && [ -e ./PhotoStore.cs ]; then
     echo "*** Running uninstalled f-spot ***"
     EXE_TO_RUN="./f-spot.exe"
 else
