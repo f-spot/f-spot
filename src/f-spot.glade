@@ -465,7 +465,7 @@
 		    <widget class="GtkMenu" id="edit2_menu">
 
 		      <child>
-			<widget class="GtkImageMenuItem" id="copy1">
+			<widget class="GtkImageMenuItem" id="copy">
 			  <property name="visible">True</property>
 			  <property name="stock_item">GNOMEUIINFO_MENU_COPY_ITEM</property>
 			</widget>
@@ -671,7 +671,7 @@
 		      </child>
 
 		      <child>
-			<widget class="GtkMenuItem" id="attach_tag_to_selection1">
+			<widget class="GtkMenuItem" id="attach_tag_to_selection">
 			  <property name="visible">True</property>
 			  <property name="label" translatable="yes">Attach Tag To Selection</property>
 			  <property name="use_underline">True</property>
@@ -680,7 +680,7 @@
 		      </child>
 
 		      <child>
-			<widget class="GtkMenuItem" id="remove_tag_from_selection1">
+			<widget class="GtkMenuItem" id="remove_tag_from_selection">
 			  <property name="visible">True</property>
 			  <property name="label" translatable="yes">Remove Tag From Selection</property>
 			  <property name="use_underline">True</property>

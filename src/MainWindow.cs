@@ -24,6 +24,17 @@ public class MainWindow {
 	//
 	[Widget] MenuItem version_menu_item;
 	[Widget] MenuItem create_version_menu_item, delete_version_menu_item, rename_version_menu_item;
+
+	[Widget] MenuItem delete_selected_tag;
+	[Widget] MenuItem attach_tag_to_selection;
+	[Widget] MenuItem remove_tag_from_selection;
+
+	[Widget] MenuItem copy;
+	[Widget] MenuItem rotate_left;
+	[Widget] MenuItem rotate_right;
+	[Widget] MenuItem update_thumbnail;
+	[Widget] MenuItem delete_from_catalog;
+
 	PhotoVersionMenu versions_submenu;
 	
 	InfoBox info_box;
@@ -34,6 +45,7 @@ public class MainWindow {
 	// Index into the PhotoQuery.  If -1, no photo is selected or multiple photos are selected.
 	const int PHOTO_IDX_NONE = -1;
 	private int current_photo_idx = PHOTO_IDX_NONE;
+	private bool current_photos = false;
 
 	private Photo CurrentPhoto {
 		get {
@@ -57,6 +69,7 @@ public class MainWindow {
 		tag_selection_widget = new TagSelectionWidget (db.Tags);
 		tag_selection_scrolled.Add (tag_selection_widget);
 		
+		tag_selection_widget.Selection.Changed += new EventHandler (HandleTagSelectionChanged);
 		info_box = new InfoBox ();
 		info_box.VersionIdChanged += new InfoBox.VersionIdChangedHandler (HandleInfoBoxVersionIdChange);
 		left_vbox.PackStart (info_box, false, true, 0);
@@ -74,7 +87,7 @@ public class MainWindow {
 		photo_view.ButtonPressEvent += new ButtonPressEventHandler (HandlePhotoViewButtonPressEvent);
 
 		tag_selection_widget.SelectionChanged += new TagSelectionWidget.SelectionChangedHandler (OnTagSelectionChanged);
-
+		UpdateMenus ();
 		window1.ShowAll ();
 	}
 
@@ -125,14 +138,17 @@ public class MainWindow {
 	{
 		int [] selection = icon_view.Selection;
 
-		if (selection.Length != 1) {
-			current_photo_idx = -1;
-			info_box.Photo = null;
-		} else {
+		if (selection.Length == 1) {
 			current_photo_idx = selection [0];
 			info_box.Photo = CurrentPhoto;
+
+		} else { 
+			current_photo_idx = PHOTO_IDX_NONE;
+			info_box.Photo = null;
 		}
 
+		current_photos = selection.Length > 0;
+			
 		UpdateMenus ();
 	}
 
@@ -145,6 +161,7 @@ public class MainWindow {
 
 	void HandlePhotoViewPhotoChanged (PhotoView sender)
 	{
+		current_photos = true;
 		current_photo_idx = photo_view.CurrentPhoto;
 		info_box.Photo = CurrentPhoto;
 		UpdateMenus ();
@@ -447,6 +464,11 @@ public class MainWindow {
 		SwitchToIconViewMode ();
 		UpdateQuery ();
 	}
+	
+	void HandleTagSelectionChanged (object obj, EventArgs args)
+	{
+		UpdateMenus ();
+	}
 
 	void UpdateMenus ()
 	{
@@ -473,6 +495,18 @@ public class MainWindow {
 			versions_submenu.VersionIdChanged += new PhotoVersionMenu.VersionIdChangedHandler (HandleVersionIdChanged);
 			version_menu_item.Submenu = versions_submenu;
 		}
+
+		bool tag_sensitive = tag_selection_widget.Selection.CountSelectedRows () > 0;
+		
+		rotate_left.Sensitive = current_photos;
+		rotate_right.Sensitive = current_photos;
+		update_thumbnail.Sensitive = current_photos;
+		delete_from_catalog.Sensitive = current_photos;
+		copy.Sensitive = current_photos;
+
+		delete_selected_tag.Sensitive = tag_sensitive;
+		attach_tag_to_selection.Sensitive = tag_sensitive && current_photos;
+		remove_tag_from_selection.Sensitive = tag_sensitive && current_photos;
 	}
 
 	// Switching mode.
