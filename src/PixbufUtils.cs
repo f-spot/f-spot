@@ -292,13 +292,27 @@ class PixbufUtils {
 	[DllImport ("libfspot")]
 	static extern bool f_pixbuf_save_jpeg (IntPtr src, string path, int quality, FPixbufJpegMarker [] markers, int num_markers);
 
-	public static void SaveJpeg (Pixbuf pixbuf, string path, int quality, ExifData exif_data)
+	public static void SaveJpeg (Pixbuf pixbuf, string path, int quality, Exif.ExifData exif_data)
 	{
 		// The DCF spec says thumbnails should be 160x120 always
 		Pixbuf thumbnail = ScaleToAspect (pixbuf, 160, 120);
 		byte [] thumb_data = Save (thumbnail, "jpeg", null, null);
 		exif_data.Data = thumb_data;
 		thumbnail.Dispose ();
+
+		// Most of the things we will set will be in the 0th ifd
+		Exif.ExifContent content = exif_data.GetContents (Exif.ExifIfd.Zero);
+
+		// reset the orientation tag
+		content.Remove (content.Lookup (Exif.ExifTag.Orientation));
+		new Exif.ExifEntry (content, Exif.ExifTag.Orientation);
+
+		// set the write time in the datetime tag
+		content.Remove (content.Lookup (Exif.ExifTag.DateTime));
+		new Exif.ExifEntry (content, Exif.ExifTag.DateTime);
+
+		// set the software tag
+		content.GetEntry (Exif.ExifTag.Software).SetData (FSpot.Defines.PACKAGE + " version " + FSpot.Defines.VERSION);
 
 		byte [] data = exif_data.Save ();
 		FPixbufJpegMarker [] marker = new FPixbufJpegMarker [0];
@@ -443,7 +457,9 @@ class PixbufUtils {
 	public static Gdk.Pixbuf TransformOrientation (Gdk.Pixbuf src, PixbufOrientation orientation, bool copy_data)
 	{
 		Gdk.Pixbuf pixbuf;
-
+		if (src == null)
+			return null;
+		
 		switch (orientation) {
 		case PixbufOrientation.LeftTop:
 		case PixbufOrientation.LeftBottom:

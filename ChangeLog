@@ -1,5 +1,12 @@
 2005-01-26  Larry Ewing  <lewing@novell.com>
 
+	* src/ColorDialog.cs: use the new Exif.cs to correctly copy exif
+	data when creating a version.
+
+	* src/PixbufUtils.cs: set more exif tags now that we can.
+
+	* src/Exif.cs: Add more features, fix bugs.
+
 	* Makefile.am: add the new exif wrapper to the build.
 	
 	* src/InfoDisplay.cs: use the new exif wrapper.

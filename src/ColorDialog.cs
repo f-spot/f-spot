@@ -104,6 +104,7 @@ namespace FSpot {
 
 			Console.WriteLine ("Saving....");
 			Photo photo = view.Query.Photos[view.CurrentPhoto];
+			Exif.ExifData data = new Exif.ExifData (photo.DefaultVersionPath);
 			
 			uint version = photo.DefaultVersionId;
 			if (version == Photo.OriginalVersionId) {
@@ -123,14 +124,14 @@ namespace FSpot {
 			
 			try {
 				string version_path = photo.GetVersionPath (version);
-				
-				final.Savev (version_path, "jpeg", null, null);
+
+				PixbufUtils.SaveJpeg (final, version_path, 95, data);
 				ThumbnailGenerator.Create (version_path).Dispose ();
 				photo.DefaultVersionId = version;
 				view.Query.Commit (view.CurrentPhoto);
 			} catch (GLib.GException ex) {
 				// FIXME error dialog.
-				Console.WriteLine ("error {0}", ex);
+				Console.WriteLine (ex.ToString ());
 			}
 			
 			Console.WriteLine ("Saving....");

@@ -241,7 +241,7 @@ namespace Exif {
 		{
 			handle = new HandleRef (this, ptr);
 		}
-
+		
 		protected abstract void Cleanup ();
 		
 		public void Dispose () {
@@ -302,17 +302,25 @@ namespace Exif {
 			return null;
 		}
 
-#if false			
-		ExifEntry Add (ExifTag tag)
+		public ExifEntry GetEntry (ExifTag tag)
 		{
 			Assemble ();
 			
-			ExifEntry entry = new ExifEntry (tag);		
-			entries.Add (entry);
-			exif_content_add_entry (this.handle, entry.Handle);
+			ExifEntry entry = Lookup (tag);
+			if (entry == null)
+				entry = new ExifEntry (this, tag);
+
 			return entry;
 		}
-#endif		
+
+		public void Add (ExifEntry entry)
+		{
+			Assemble ();
+
+			entries.Add (entry);
+			exif_content_add_entry (this.handle, entry.Handle);	
+		}
+
 
 		public void Remove (ExifEntry entry)
 		{
@@ -375,7 +383,31 @@ namespace Exif {
 			this.handle = new HandleRef (this, native);
 			exif_entry_ref (this.handle);
 		}
+
+		[DllImport ("libexif.dll")]
+		internal static extern IntPtr 
+exif_entry_new ();
+
+		[DllImport ("libexif.dll")]
+		internal static extern void exif_entry_initialize (HandleRef handle, ExifTag tag);
+
+		public ExifEntry (ExifContent content, ExifTag tag)
+		{
+			handle = new HandleRef (this, exif_entry_new ());
+			content.Add (this);
+			this.Reset (tag);
+		}
 		
+		public void Reset (ExifTag tag)
+		{
+			exif_entry_initialize (handle, tag);
+		}
+
+		public void Reset ()
+		{
+			Reset (Tag);
+		}
+
 		protected override void Cleanup ()
 		{
 			exif_entry_unref (this.handle);
@@ -407,19 +439,20 @@ namespace Exif {
 			get {
 				unsafe {
 					byte [] data = new byte [_handle->size]; 
-					Marshal.Copy (data, 0, _handle->data, (int)_handle->size);
+					Marshal.Copy (_handle->data, data, 0, (int)_handle->size);
 					return data;
 				}
 			}
 		}
 		
+		public void SetData (DateTime time) 
+		{
+			
+		}
+		
 		public void SetData (byte [] data, bool check_type)
 		{
 			unsafe {
-				if (check_type && (_handle->format != (int) ExifFormat.Byte)
-				    || (_handle->format != (int) ExifFormat.Undefined))
-					throw new System.Exception ("Invalid Format");
-				
 				if (data == null || data.Length == 0)
 					throw new System.Exception ("Invalid Length");
 				
@@ -427,6 +460,8 @@ namespace Exif {
 					ExifData.free (_handle->data);
 				
 				_handle->data = ExifData.malloc ((uint)data.Length);
+				Marshal.Copy (data, 0, _handle->data, data.Length);
+
 				_handle->size = (uint) data.Length;
 				// This needs to be set per type as well but
 				// we do it here as well
@@ -441,7 +476,6 @@ namespace Exif {
 
 		public void SetData (ushort [] data)
 		{
-			
 
 		} 
 		
@@ -452,7 +486,12 @@ namespace Exif {
 
 		public void SetData (string value)
 		{
-
+			int len = System.Text.Encoding.UTF8.GetByteCount (value);
+			byte [] tmp = new byte [len + 1];
+			System.Text.Encoding.UTF8.GetBytes (value, 0, value.Length, tmp, 0);
+			tmp[len] = 0;
+			System.Console.WriteLine ("value = {0} len = {1}", value, len);
+			SetData (tmp, false);
 		}
 		
 		public string Description 
@@ -588,12 +627,15 @@ namespace Exif {
 		
 		public ExifContent GetContents (ExifIfd ifd)
 		{
+			Assemble ();
+
 			return (ExifContent) ifds [(int)ifd];
 		}
 
 		public ExifContent [] GetContents ()
 		{
 			Assemble ();
+
 			return (ExifContent []) ifds.ToArray (typeof (ExifContent));
 		}
 		
