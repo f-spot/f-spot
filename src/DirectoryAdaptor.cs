@@ -50,6 +50,7 @@ namespace FSpot {
 		}	
 
 		public void Load () {
+			dirs.Clear ();
 			Photo [] photos = query.Store.Query (null, null);
 			
 			Array.Sort (photos, new Photo.CompareDirectory ());

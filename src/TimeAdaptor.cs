@@ -27,6 +27,7 @@ namespace FSpot {
 
 		public override void SetLimits (int min, int max) 
 		{
+			Console.WriteLine ("min {0} max {1}", min, max);
 			DateTime start = DateFromIndex (min);
 			DateTime end = DateFromIndex (max).AddMonths (1);
 			
@@ -55,14 +56,20 @@ namespace FSpot {
 		
 		public DateTime DateFromIndex (int item) 
 		{
+			item = Math.Max (item, 0);
+			item = Math.Min (years.Count * 12 - 1, item);
+
 			int year =  (int)((YearData)years [item / 12]).Year;
 			int month = (item % 12) + 1;
-
+			
 			return new DateTime (year, month, 1);
 		}
 		
 		public void Load () {
+			years.Clear ();
+
 			Photo [] photos = query.Store.Query (null, null);
+			Array.Sort (query.Photos);
 
 			if (photos.Length > 0) {
 				YearData data = new YearData ();
@@ -78,7 +85,6 @@ namespace FSpot {
 					}
 					data.Months [photo.Time.Month - 1] += 1;
 				}
-
 			} else {
 				years.Add (DateTime.Now.Year);
 			}

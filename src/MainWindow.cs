@@ -142,8 +142,7 @@ public class MainWindow {
 
 		group_selector = new FSpot.GroupSelector ();
 		FSpot.GroupAdaptor adaptor = new FSpot.TimeAdaptor (query);
-
-		//FSpot.GroupAdaptor adaptor = new FSpot.DirectoryAdaptor (query);
+		//FSpot.GroupAdaptor adaptor = new FSpot.DirectoryAdaptor (query);		
 		//group_selector.Mode = FSpot.GroupSelector.RangeType.Min;
 
 		group_selector.Adaptor  = adaptor;
@@ -662,6 +661,24 @@ public class MainWindow {
 		Gnome.Url.Show (url.ToString ());
 	}
 
+	void HandleArrangeByTime (object sender, EventArgs e)
+	{
+		group_selector.Adaptor.GlassSet -= HandleAdaptorGlassSet;
+		FSpot.GroupAdaptor adaptor = new FSpot.TimeAdaptor (query);
+		group_selector.Adaptor = adaptor;
+		group_selector.Mode = FSpot.GroupSelector.RangeType.All;
+		adaptor.GlassSet += HandleAdaptorGlassSet;
+	}
+
+	void HandleArrangeByDirectory (object sender, EventArgs e)
+	{
+		group_selector.Adaptor.GlassSet -= HandleAdaptorGlassSet;
+		FSpot.GroupAdaptor adaptor = new FSpot.DirectoryAdaptor (query);		
+		group_selector.Adaptor = adaptor;
+		group_selector.Mode = FSpot.GroupSelector.RangeType.Min;
+		adaptor.GlassSet += HandleAdaptorGlassSet;
+	}
+
 	void HandleCloseCommand (object sender, EventArgs args)
 	{
 		// FIXME
@@ -1073,10 +1090,11 @@ public class MainWindow {
 		switch (view_notebook.CurrentPage) {
 		case 0:
 			icon_view.ScrollTo (photo_view.CurrentPhoto);
+			icon_view.Throb (photo_view.CurrentPhoto);
+			Console.WriteLine ("I throb {0}", photo_view.CurrentPhoto);
 			mode = ModeType.IconView;
 			break;
 		case 1:
-			mode = ModeType.PhotoView;
 			if (current_photo_idx != PHOTO_IDX_NONE)
 				photo_view.CurrentPhoto = current_photo_idx;
 			else if (current_photos) {
@@ -1085,6 +1103,7 @@ public class MainWindow {
 				photo_view.CurrentPhoto = selection[0];
 			}
 
+			mode = ModeType.PhotoView;
 			break;
 		}
 	}
