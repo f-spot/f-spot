@@ -22,6 +22,10 @@ public class SlideView : Gtk.Image {
 	uint flip_timer = 0;
 	uint transition_timer = 0;
 
+	bool black = false;
+	uint flip_interval = 2000;
+	uint transition_interval = 75;
+
 	public bool Running {
 		get {
 			return flip_timer != 0 || transition_timer != 0;
@@ -31,7 +35,9 @@ public class SlideView : Gtk.Image {
 	public void Play () 
 	{
 		StopTweenIdle ();
-		this.FromPixbuf = GetScaled (photos[current_idx].DefaultVersionPath);
+		if (current_idx >= 0) {
+			this.FromPixbuf = GetScaled (photos[current_idx].DefaultVersionPath);
+		} 
 
 		if (PreloadNextImage (current_idx + 1))
 			StartFlipTimer ();
@@ -70,6 +76,10 @@ public class SlideView : Gtk.Image {
 			this.FromPixbuf = next;
 
 		current_idx = next_idx;
+
+		black = false;
+		transition_interval = 75;
+		flip_interval = 2000;
 	}
 
 	private bool PreloadNextImage (int idx)
@@ -91,7 +101,7 @@ public class SlideView : Gtk.Image {
 		}
 	}
 
-	private Pixbuf Blend (Pixbuf current, Pixbuf prev, Pixbuf next, double percent)
+	private Pixbuf CrossFade (Pixbuf current, Pixbuf prev, Pixbuf next, double percent)
 	{ 
 		int width = Allocation.Width;
 		int height = Allocation.Height;
@@ -102,7 +112,7 @@ public class SlideView : Gtk.Image {
 		return current;
 	}
 
-	private Pixbuf FadeBlack (Pixbuf current, Pixbuf prev, Pixbuf next, double percent)
+	private Pixbuf BlackFade (Pixbuf current, Pixbuf prev, Pixbuf next, double percent)
 	{ 
 		int width = Allocation.Width;
 		int height = Allocation.Height;
@@ -111,32 +121,31 @@ public class SlideView : Gtk.Image {
 
 		if (percent < 0.5)
 			prev.Composite (current, 0,0, width, height, 0, 0, 1, 1,
-					Gdk.InterpType.Bilinear, (int)(255 * (1 - percent * 2) + 0.5));
+					Gdk.InterpType.Nearest, (int)(255 * (1 - percent * 2) + 0.5));
 		else
 			next.Composite (current, 0,0, width, height, 0, 0, 1, 1,
-					Gdk.InterpType.Bilinear, (int)(255 * (percent * 2 - 1) + 0.5));
+					Gdk.InterpType.Nearest, (int)(255 * (percent * 2 - 1) + 0.5));
 		return current;
 	}
 
-	private Pixbuf GetScaled (string path)
+	private Pixbuf Blend (Pixbuf current, Pixbuf prev, Pixbuf next, double percent)
+	{
+		if (black) {
+			return BlackFade (current, prev, next, percent);
+		} else {
+			return CrossFade (current, prev, next, percent);
+		}
+	}
+
+	private Pixbuf GetScaled (Pixbuf orig)
 	{
 		int width = Allocation.Width;
 		int height = Allocation.Height;
-
-		Pixbuf orig;
 		Pixbuf scaled = new Pixbuf (Colorspace.Rgb, false, 8, width, height);
 		scaled.Fill (0);
 		
 		if (width < 10 || height < 10)
 			return scaled;	
-
-
-		try {
-			orig = PixbufUtils.LoadAtMaxSize (path, width, height);
-		} catch {
-			Console.WriteLine ("Error loading file " + path);
-			orig = null;
-		}
 
 		if (orig == null) {
 			return scaled;
@@ -158,6 +167,20 @@ public class SlideView : Gtk.Image {
 		orig.Dispose ();
 		System.GC.Collect ();
 		return scaled;
+	}
+
+	private Pixbuf GetScaled (string path)
+	{
+		Pixbuf orig = null;
+
+		try {
+			orig = PixbufUtils.LoadAtMaxSize (path, Allocation.Width, Allocation.Height);
+		} catch {
+			Console.WriteLine ("Error loading file " + path);
+			orig = null;
+		}
+
+		return GetScaled (orig);
 	}
 
 	private bool HandleFlipTimer ()
@@ -256,7 +279,8 @@ public class SlideView : Gtk.Image {
 	private void StartTransitionTimer ()
 	{
 		if (transition_timer == 0)
-			transition_timer = GLib.Timeout.Add (75, new TimeoutHandler (HandleTransitionTimer));
+			transition_timer = GLib.Timeout.Add (transition_interval, 
+							     new TimeoutHandler (HandleTransitionTimer));
 	}
 
 	private void StopTranstionTimer ()
@@ -270,7 +294,8 @@ public class SlideView : Gtk.Image {
 	private void StartFlipTimer ()
 	{
 		if (flip_timer == 0)
-			flip_timer = GLib.Timeout.Add (2000, new TimeoutHandler (HandleFlipTimer));
+			flip_timer = GLib.Timeout.Add (flip_interval, 
+						       new TimeoutHandler (HandleFlipTimer));
 	}
 	
 	private void StopFlipTimer ()
@@ -319,9 +344,18 @@ public class SlideView : Gtk.Image {
 		Stop ();
 	}
 
-	public SlideView (Photo [] photos) : base ()
+	public SlideView (Pixbuf background, Photo [] photos) : base ()
 	{
 		this.photos = photos;
+
+		if (background != null) {
+			this.FromPixbuf = background;
+
+			current_idx = -1;
+			black = true;
+			flip_interval = 1500;
+			transition_interval = 100;
+		}
 
 		SizeAllocated += new SizeAllocatedHandler (HandleSizeAllocate);
 		Destroyed += new EventHandler (HandleDestroyed);

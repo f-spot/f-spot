@@ -132,6 +132,19 @@ class PixbufUtils {
 			return LoadFromStream (s);
 	}
 
+	static public Pixbuf LoadFromScreen () {
+		Drawable d = (Display.Default.GetScreen (0)).RootWindow;
+		int width;
+		int height;
+		
+		d.GetSize (out width, out height);
+		Pixbuf buf = new Pixbuf (Colorspace.Rgb, false, 8, width, height);
+		
+		return buf.GetFromDrawable (d,
+					    d.Colormap, 0, 0, 0, 0, 
+					    width, height);
+	}
+
 	static public Pixbuf LoadFromAssembly (string resource)
 	{
 		return LoadFromAssembly (System.Reflection.Assembly.GetCallingAssembly (), resource);

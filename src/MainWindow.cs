@@ -725,18 +725,38 @@ public class MainWindow {
 	void HandleViewSlideShow (object sender, EventArgs args)
 	{
 #if true
-		Gtk.Window win = new Gtk.Window ("this is a test");
-		win.SetSizeRequest (640, 480);
-		SlideView slideview = new SlideView (SelectedPhotos());
-		//win.Fullscreen();
-		//win.Unfullscreen();
+		Gtk.Window win = new Gtk.Window ("test");
+		Pixbuf bg = PixbufUtils.LoadFromScreen ();
+
+		SlideView slideview = new SlideView (bg, SelectedPhotos());
+		win.ButtonPressEvent += HandleSlideViewButtonPressEvent;
+		win.AddEvents ((int) EventMask.ButtonPressMask);
 		win.Add (slideview);
-		win.ShowAll ();
+		win.Decorated = false;
+		win.Fullscreen();
+		win.Realize ();
+
+		Gdk.GCValues values = new Gdk.GCValues ();
+		values.SubwindowMode = SubwindowMode.IncludeInferiors;
+		Gdk.GC fillgc = new Gdk.GC (win.GdkWindow, values, Gdk.GCValuesMask.Subwindow);
+
+		slideview.Show ();
+		win.GdkWindow.SetBackPixmap (null, false);
+		win.Show ();
+		bg.RenderToDrawable (win.GdkWindow, fillgc, 
+				     0, 0, 0, 0, -1, -1, RgbDither.Normal, 0, 0);
+
 		slideview.Play ();
 #else
 		SlideCommands.Create command = new SlideCommands.Create (query.Photos);
 		command.Execute ();
 #endif
+	}
+
+	private void HandleSlideViewButtonPressEvent (object sender, ButtonPressEventArgs args)
+	{
+		Gtk.Window win = sender as Gtk.Window;
+		win.Destroy ();
 	}
 
 	void HandleViewFullscreen (object sender, EventArgs args)

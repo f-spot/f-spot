@@ -1,5 +1,17 @@
 2004-08-04  Larry Ewing  <lewing@novell.com>
 
+	* src/SlideView.cs: move the intervals to variables, add a fade
+	mode flag.  Add background pixbuf param to ctor for fading from a
+	background and initialize variables differently if background is
+	valid.
+
+	* src/MainWindow.cs: make slideshow full screen, do a screen
+	capture to fake a fadeout.  Add a button press handler for the
+	fullscreen mode.
+
+	* src/PixbufUtils.cs: add LoadFromScreen util function to get a
+	screen capture.
+
 	* libeog/image-view.c (image_view_set_pixbuf): always unref the
 	old pixbuf since we always replace it.
 
