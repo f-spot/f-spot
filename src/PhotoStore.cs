@@ -979,14 +979,14 @@ public class PhotoStore : DbStore {
 
 	public Photo [] Query (string query)
 	{
-		Console.WriteLine ("Query Start {0}", System.DateTime.Now.ToLongTimeString ());
+		//Console.WriteLine ("Query Start {0}", System.DateTime.Now.ToLongTimeString ());
 
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
 		command.CommandText = query;
 		SqliteDataReader reader = command.ExecuteReader ();
 		
-		Console.WriteLine ("Query Mid {0}", System.DateTime.Now);
+		//Console.WriteLine ("Query Mid {0}", System.DateTime.Now);
 
 		ArrayList version_list = new ArrayList ();
 		ArrayList id_list = new ArrayList ();
@@ -1009,10 +1009,10 @@ public class PhotoStore : DbStore {
 			id_list.Add (photo);
 		}
 
-		Console.WriteLine ("Query End {0}", System.DateTime.Now.ToLongTimeString ());
+		//Console.WriteLine ("Query End {0}", System.DateTime.Now.ToLongTimeString ());
 
 		bool need_load = false;
-		Console.WriteLine ("Start {0}", System.DateTime.Now);
+		//Console.WriteLine ("Start {0}", System.DateTime.Now);
 		foreach (Photo photo in version_list) {
 			AddToCache (photo);
 			need_load |= !photo.Loaded;
@@ -1028,7 +1028,7 @@ public class PhotoStore : DbStore {
 			//Console.WriteLine ("Skipped Loading Data");
 		}
 
-		Console.WriteLine ("End {0}", System.DateTime.Now);
+		//Console.WriteLine ("End {0}", System.DateTime.Now);
 		command.Dispose ();
 
 		return id_list.ToArray (typeof (Photo)) as Photo [];
