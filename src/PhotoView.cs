@@ -171,8 +171,7 @@ public class PhotoView : EventBox {
 			try {
 				Pixbuf old = image_view.Pixbuf;
 				
-				Console.WriteLine ("testing");
-				image_view.Pixbuf = new Pixbuf (Query.Photos [current_photo].DefaultVersionPath);
+				image_view.Pixbuf = FSpot.PhotoLoader.Load (Query, current_photo);
 				tag_view.Current = Query.Photos [current_photo];
 				/*
 				** This is a hack seeing if the max size stuff acutally helps loading speed 

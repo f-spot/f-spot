@@ -1,3 +1,15 @@
+2004-08-23  Larry Ewing  <lewing@novell.com>
+
+	* src/PhotoView.cs: use the PhotoLoader.
+	
+	* src/SlideView.cs: use the new Loader stuff.
+
+	* src/makefile.am: add PhotoLoader.cs.
+
+	* src/PixbufUtils.cs: add SetOption method.
+
+	* src/PhotoLoader.cs: add new Loader class.
+
 2004-08-22  Federico Mena Quintero  <federico@ximian.com>
 
 	* src/CompatFileChooser.cs (CompatFileChooserDialog): Compare the

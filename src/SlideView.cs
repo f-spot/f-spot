@@ -36,7 +36,9 @@ public class SlideView : Gtk.Image {
 	{
 		StopTweenIdle ();
 		if (current_idx >= 0) {
-			this.FromPixbuf = GetScaled (photos[current_idx].DefaultVersionPath);
+			Pixbuf frame = GetScaled (photos[current_idx]);
+			this.FromPixbuf = frame;
+			frame.Dispose ();
 		} 
 
 		if (PreloadNextImage (current_idx + 1))
@@ -86,25 +88,31 @@ public class SlideView : Gtk.Image {
 	{
 		Pixbuf orig;
 	
-		if (idx < photos.Length && idx >= 0) {
-			//Console.WriteLine ("next_idx = " + next_idx + " idx = " + idx);
-			next = GetScaled (photos [idx].DefaultVersionPath);
-	
-			next_idx = idx;
-			StartTweenIdle ();
+		try {
+			if (idx < photos.Length && idx >= 0) {
+				//Console.WriteLine ("next_idx = " + next_idx + " idx = " + idx);
+				next = GetScaled (photos [idx]);
+				
+				next_idx = idx;
+				StartTweenIdle ();
+				
 
-
-			return true;
-		} else {
-			//Console.WriteLine ("What happens now?");
-			next = GetScaled (photos [0].DefaultVersionPath);
-			next_idx = 0;
-			StartTweenIdle ();
-			
-			return false;
+				return true;
+			} else {
+				//Console.WriteLine ("What happens now?");
+				next = GetScaled (photos [0]);
+				next_idx = 0;
+				StartTweenIdle ();
+				
+				return false;
+			}
+		} catch (GLib.GException e) {
+			Console.WriteLine (e);
+			idx = (idx + 1) % photos.Length;
+			return PreloadNextImage (idx);
 		}
 	}
-
+	
 	private Pixbuf CrossFade (Pixbuf current, Pixbuf prev, Pixbuf next, double percent)
 	{ 
 		int width = Allocation.Width;
@@ -173,18 +181,14 @@ public class SlideView : Gtk.Image {
 		return scaled;
 	}
 
-	private Pixbuf GetScaled (string path)
+	private Pixbuf GetScaled (Photo photo)
 	{
-		Pixbuf orig = null;
+		Pixbuf orig = FSpot.PhotoLoader.LoadAtMaxSize (photo, Allocation.Width, Allocation.Height);
+		Pixbuf result = GetScaled (orig);
+		if (orig != result)
+			orig.Dispose ();
 
-		try {
-			orig = PixbufUtils.LoadAtMaxSize (path, Allocation.Width, Allocation.Height);
-		} catch {
-			Console.WriteLine ("Error loading file " + path);
-			orig = null;
-		}
-
-		return GetScaled (orig);
+		return result;
 	}
 
 	private bool HandleFlipTimer ()
@@ -217,8 +221,7 @@ public class SlideView : Gtk.Image {
 
 	private bool HandleTweenIdle ()
 	{
-		Pixbuf prev = this.Pixbuf;
-	
+		using (Pixbuf prev = this.Pixbuf) {	
 		if (current_tween < tweens.Length && tweens[current_tween] == null) {
 			tweens[current_tween] = new Pixbuf (Colorspace.Rgb, false, 8, Allocation.Width, Allocation.Height);
 		}
@@ -261,6 +264,7 @@ public class SlideView : Gtk.Image {
 
 		current_tween++;
 		return true;
+		}
 	}	
 
 	private void StartTweenIdle () 
@@ -319,11 +323,16 @@ public class SlideView : Gtk.Image {
 		/*
 		 * The size has changed so we need to reload the images.
 		 */
-		if (Pixbuf.Width != Allocation.Width || Pixbuf.Height != Allocation.Height) {
-			bool playing = (flip_timer != 0 || transition_timer != 0);
-			
-			this.FromPixbuf = GetScaled (photos[current_idx].DefaultVersionPath);
-			Stop ();
+		Pixbuf current = this.Pixbuf;
+		if (current.Width != Allocation.Width || current.Height != Allocation.Height) {
+				bool playing = (flip_timer != 0 || transition_timer != 0);
+				
+				using (Pixbuf frame =  GetScaled (photos[current_idx])) {
+					this.FromPixbuf =  frame;
+					current.Dispose ();
+				}
+				
+				Stop ();
 		
 			ClearTweens ();
 			
@@ -354,6 +363,7 @@ public class SlideView : Gtk.Image {
 
 		if (background != null) {
 			this.FromPixbuf = background;
+			background.Dispose ();
 
 			current_idx = -1;
 			black = true;

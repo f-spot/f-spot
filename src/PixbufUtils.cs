@@ -118,13 +118,21 @@ class PixbufUtils {
 		}
 	}
 
+	public static Pixbuf ScaleToMaxSize (Pixbuf pixbuf, int width, int height)
+	{
+		double scale = Math.Min  (width / (double)pixbuf.Width, height / (double)pixbuf.Height);
+	
+		int scale_width = (int)(scale * pixbuf.Width);
+		int scale_height = (int)(scale * pixbuf.Height);
+		return pixbuf.ScaleSimple (scale_width, scale_height, Gdk.InterpType.Bilinear);
+	}
+
 	static public Pixbuf LoadAtMaxSize (string path, int max_width, int max_height)
 	{
 		PixbufUtils.AspectLoader loader = new AspectLoader (max_width, max_height);
 		return loader.LoadFromFile (path);
 	}
 
-	// Make sure that the largest dimension of the pixbuf is at least max_foo.
 	static public Pixbuf LoadAtMaxEdgeSize (string path, int longest_edge)
 	{
 		PixbufUtils.AspectLoader loader = new AspectLoader (longest_edge, longest_edge);
@@ -144,7 +152,21 @@ class PixbufUtils {
 		loader.Close ();
 		return loader.Pixbuf;
 	}
-		
+	
+
+	// 
+	// FIXME this is actually not public api and we should do a verison check,
+	// but frankly I'm irritated that it isn't public so I don't much care.
+	//
+	[DllImport("libgdk_pixbuf-2.0-0.dll")]
+	static extern bool gdk_pixbuf_set_option(IntPtr raw, string key, string value);
+	
+	public static bool SetOption(Gdk.Pixbuf pixbuf, string key, string value)
+	{
+		bool ret = gdk_pixbuf_set_option(pixbuf.Handle, key, value);
+		return ret;
+	}
+	
 	public static Pixbuf TagIconFromPixbuf (Pixbuf source)
 	{
 		// FIXME 50x50 crashes Pixdata.Serialize... what a mess.
