@@ -217,7 +217,7 @@ namespace FSpot {
 		{
 			try {
 				System.Console.WriteLine ("Starting upload");
-				for (; photo_index < photos.Length; photo_index++) {
+				while (photo_index < photos.Length) {
 					Photo photo = photos [photo_index];
 
 					System.Console.WriteLine ("uploading {0}", photo_index);
