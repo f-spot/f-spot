@@ -9,6 +9,7 @@ namespace FSpot {
 				this.Add (scroll);
 				scroll.Add (view);
 				scroll.ShowAll ();
+				this.Decorated = false;
 				this.Fullscreen ();
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e);
