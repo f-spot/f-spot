@@ -1,5 +1,7 @@
 2004-11-19  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: use the same zoom logic as the PhotoImageView.
+
 	* src/PhotoImageView.cs: make +/- work for zooming.
 
 	* src/PhotoView.cs: remove keypress handling and proxy zoom

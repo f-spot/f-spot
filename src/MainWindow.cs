@@ -1047,7 +1047,7 @@ public class MainWindow {
 		case ModeType.PhotoView:
 			double old_zoom = photo_view.Zoom;
 
-			old_zoom -= .1;
+			old_zoom /= FSpot.PhotoImageView.ZoomMultipler;
 			if (old_zoom < .001) {
 				SwitchToIconViewMode ();
 			} else {
@@ -1072,7 +1072,7 @@ public class MainWindow {
 		case ModeType.PhotoView:
 			double old_zoom = photo_view.Zoom;
 			try {
-				photo_view.Zoom += .1;
+				photo_view.Zoom *= FSpot.PhotoImageView.ZoomMultipler;
 			} catch {
 				photo_view.Zoom = old_zoom;
 			}
