@@ -68,6 +68,18 @@ public class JpegHeader {
 		App15 = 0xef,
 		
 		Jpg0 = 0xf0,
+		Jpg1 = 0xf1,
+		Jpg2 = 0xf2,
+		Jpg3 = 0xf3,
+		Jpg4 = 0xf4,
+		Jpg5 = 0xf5,
+		Jpg6 = 0xf6,
+		Jpg7 = 0xf7,
+		Jpg8 = 0xf8,
+		Jpg9 = 0xf9,
+		Jpg10 = 0xfa,
+		Jpg11 = 0xfb,
+		Jpg12 = 0xfc,
 		Jpg13 = 0xfd,
 		
 		Com = 0xfe // Comment
@@ -209,7 +221,7 @@ public class JpegHeader {
 			case JpegMarker.Rst6:
 			case JpegMarker.Rst7:
 			case JpegMarker.Tem:
-				// These markers have no the data is in length_data
+				// These markers have no data it is in length_data
 				
 				marker_list.Add (new Marker (marker, length_data, position));
 				break;
