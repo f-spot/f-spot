@@ -32,8 +32,16 @@ public class SlideView : Gtk.Image {
 		}
 	}
 
+	bool WriteStuff ()
+	{
+		System.Console.WriteLine ("play");
+		return true;
+	}
+
 	public void Play () 
 	{
+		if (WriteStuff ());
+
 		StopTweenIdle ();
 		if (current_idx >= 0) {
 			Pixbuf frame = GetScaled (photos[current_idx]);
@@ -41,7 +49,7 @@ public class SlideView : Gtk.Image {
 			frame.Dispose ();
 		} 
 
-		if (PreloadNextImage (current_idx + 1))
+		if (this.PreloadNextImage (current_idx + 1))
 			StartFlipTimer ();
 	}
 
@@ -60,13 +68,13 @@ public class SlideView : Gtk.Image {
 
 	public void Forward ()
 	{
-		if (PreloadNextImage (current_idx + 1))
+		if (this.PreloadNextImage (current_idx + 1))
 			ShowNext ();
 	}
 	
 	public void Back ()
 	{
-		if (PreloadNextImage (current_idx - 1))
+		if (this.PreloadNextImage (current_idx - 1))
 			ShowNext ();
 	}	
 
@@ -78,7 +86,7 @@ public class SlideView : Gtk.Image {
 			this.FromPixbuf = next;
 
 		current_idx = next_idx;
-
+		
 		black = false;
 		transition_interval = 75;
 		flip_interval = 2000;
@@ -88,7 +96,6 @@ public class SlideView : Gtk.Image {
 	{
 		try {
 			if (idx < photos.Length && idx >= 0) {
-				//Console.WriteLine ("next_idx = " + next_idx + " idx = " + idx);
 				if (next != null)
 					next.Dispose ();
 
@@ -101,7 +108,6 @@ public class SlideView : Gtk.Image {
 
 				return true;
 			} else {
-				//Console.WriteLine ("What happens now?");
 				next.Dispose ();
 				next = GetScaled (photos [0]);
 				next_idx = 0;
@@ -110,7 +116,7 @@ public class SlideView : Gtk.Image {
 				return false;
 			}
 		} catch (GLib.GException e) {
-			Console.WriteLine (e);
+			System.Console.WriteLine (e);
 			idx = (idx + 1) % photos.Length;
 			return PreloadNextImage (idx);
 		}
@@ -215,7 +221,7 @@ public class SlideView : Gtk.Image {
 		} else {
 			ShowNext ();
 
-			if (PreloadNextImage (current_idx + 1));
+			if (this.PreloadNextImage (current_idx + 1))
 				StartFlipTimer ();
 		}
 		
