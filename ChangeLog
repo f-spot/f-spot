@@ -1,4 +1,11 @@
+2004-08-05  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: Make the photo range function smarter so that
+	there is no need to select a range of photos.
+
 2004-08-04  Larry Ewing  <lewing@novell.com>
+
+	* src/SlideView.cs: wrap to the begining cleanly.
 
 	* src/MainWindow.cs: move slide show start too an idle loop to
 	allow the menu item to redraw.

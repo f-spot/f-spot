@@ -193,7 +193,7 @@ public class MainWindow {
 			break;
 		default:
 		case ModeType.PhotoView:
-			ids = new int [1]; 
+			ids = new int [1];
 			ids [0] = photo_view.CurrentPhoto;
 			break;
 		}
@@ -738,7 +738,26 @@ public class MainWindow {
 		Gtk.Window win = new Gtk.Window ("test");
 		Pixbuf bg = PixbufUtils.LoadFromScreen ();
 
-		SlideView slideview = new SlideView (bg, SelectedPhotos());
+		int [] ids = SelectedIds ();
+		Photo [] photos = null;
+		if (ids.Length < 2) {
+			int i = 0;
+			if (ids.Length > 0)
+				i = ids [0];
+
+			photos = new Photo [query.Photos.Length];
+			Array.Copy (query.Photos, i, photos, 0, query.Photos.Length - i);
+			Array.Copy (query.Photos, 0, query.Photos, i, i);
+		} else {
+			photos = SelectedPhotos ();
+		}
+		
+		if (photos.Length == 0) {
+			Console.WriteLine ("No photos available -- no slideshow");
+			return false;
+		}
+
+		SlideView slideview = new SlideView (bg, photos);
 		win.ButtonPressEvent += HandleSlideViewButtonPressEvent;
 		win.AddEvents ((int) EventMask.ButtonPressMask);
 		win.Add (slideview);
