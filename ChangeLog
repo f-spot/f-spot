@@ -1,3 +1,39 @@
+2003-11-16  Ettore Perazzoli  <ettore@ximian.com>
+
+	* src/makefile.am (RESOURCES): Add f-spot-rotate-90.png and
+	f-spot-rotate-270.png.
+
+	* src/StockIcons.cs (StockIcons.Initialize): Add
+	"f-spot-rotate-270", "f-spot-rotate-90".
+
+	* src/RotateCommand.cs (RotateCommand.Direction): Renamed from
+	RotationType.
+
+	* src/PixbufLoader.cs (PixbufLoader.workerThread): Set the
+	current_request to null after processing.
+
+	* src/MainWindow.cs (MainWindow.RotateSelectedPictures):
+	Implementation of the command to rotate the current picture if in
+	photo view mode, or all the selected pictures in icon view mode.
+	(MainWindow.HandleRotate90ToolbarButtonClicked): New event handler
+	for the "Rotate 90 degrees" toolbar button.
+	(MainWindow.HandleRotate270ToolbarButtonClicked): New event
+	handler for the "Rotate 270 degrees" toolbar button.
+	(MainWindow.CreateToolbar): New private method to create the
+	toolbar.
+	(MainWindow.ctor): Add the toolbar.
+
+	* src/IconView.cs (IconView.UpdateThumbnail): Remove the thumbnail
+	path, not the photo path.
+
+	* libfspot/Makefile.am (libfspot_la_LIBADD): Add a dependency on
+	libfspotjpegtran.
+
+	* src/StockIcons.cs: Add new icons.
+
+	* icons/f-spot-rotate-90.png: New.
+	* icons/f-spot-rotate-270.png: New.
+
 2003-11-16  Ettore Perazzoli  <ettore@perazzoli.org>
 
 	* src/RotateCommand.cs: New.

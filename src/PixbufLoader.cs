@@ -209,6 +209,8 @@ public class PixbufLoader {
 						pending_notify.WakeupMain ();
 						pending_notify_notified = true;
 					}
+
+					current_request = null;
 				}
 
 				if (queue.Count == 0)

@@ -4,6 +4,8 @@ noinst_DATA =					\
 	f-spot-favorite.png			\
 	f-spot-people.png			\
 	f-spot-places.png			\
+	f-spot-rotate-90.png			\
+	f-spot-rotate-270.png			\
 	f-spot-question-mark.png
 
 EXTRA_DIST = $(noinst_DATA)

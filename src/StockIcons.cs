@@ -7,7 +7,9 @@ public class StockIcons {
 	static string [] stock_icons = {
 		"f-spot-camera",
 		"f-spot-crop",
-		"f-spot-question-mark"
+		"f-spot-question-mark",
+		"f-spot-rotate-270",
+		"f-spot-rotate-90"
 	};
 
 	public static void Initialize ()

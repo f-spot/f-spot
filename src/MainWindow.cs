@@ -30,6 +30,41 @@ public class MainWindow : Gtk.Window {
 
 	// Commands.
 
+	private void RotateSelectedPictures (RotateCommand.Direction direction)
+	{
+		RotateCommand command = new RotateCommand (this);
+
+		switch (mode) {
+		case ModeType.IconView:
+			if (query.Photos.Length != 0) {
+				Photo [] photo_list = new Photo [icon_view.Selection.Length];
+
+				int i = 0;
+				foreach (int num in icon_view.Selection)
+					photo_list [i ++] = query.Photos [num];
+
+				if (command.Execute (direction, photo_list)) {
+					foreach (int num in icon_view.Selection)
+						icon_view.UpdateThumbnail (num);
+				}
+			}
+			break;
+
+		case ModeType.PhotoView:
+			Photo [] photo_list = new Photo [1];
+			photo_list [0] = query.Photos [photo_view.CurrentPhoto];
+
+			if (command.Execute (direction, photo_list)) {
+				photo_view.Update ();
+				icon_view.UpdateThumbnail (photo_view.CurrentPhoto);
+			}
+			break;
+		}
+	}
+
+
+	// Menu commands.
+
 	private void HandleImportCommand (object obj, EventArgs args)
 	{
 		ImportCommand command = new ImportCommand ();
@@ -94,6 +129,21 @@ public class MainWindow : Gtk.Window {
 		if (command.Execute (TagCommands.TagType.Category))
 			tag_selection_widget.Update ();
 	}
+
+	// Toolbar commands.
+
+	private void HandleRotate90ToolbarButtonClicked ()
+	{
+		RotateSelectedPictures (RotateCommand.Direction.Clockwise);
+	}
+
+	private void HandleRotate270ToolbarButtonClicked ()
+	{
+		RotateSelectedPictures (RotateCommand.Direction.Counterclockwise);
+	}
+
+
+	// Version Id updates.
 
 	private void UpdateForVersionIdChange (uint version_id)
 	{
@@ -205,6 +255,27 @@ public class MainWindow : Gtk.Window {
 	}
 
 
+	// Toolbar.
+
+	// FIXME this should all respect the GNOME toolbar settings and stuff...
+
+	private Toolbar CreateToolbar ()
+	{
+		Toolbar toolbar = new Toolbar ();
+
+		toolbar.AppendItem ("Rotate 90°", "Rotate by 90 degrees clockwise.", "",
+				    new Gtk.Image ("f-spot-rotate-90", IconSize.LargeToolbar),
+				    new SignalFunc (HandleRotate90ToolbarButtonClicked));
+		toolbar.AppendItem ("Rotate 270°", "Rotate by 90 degrees counterclockwise.", "",
+				    new Gtk.Image ("f-spot-rotate-270", IconSize.LargeToolbar),
+				    new SignalFunc (HandleRotate270ToolbarButtonClicked));
+
+		toolbar.Show ();
+
+		return toolbar;
+	}
+
+
 	// Switching mode.
 
 	enum ModeType {
@@ -294,6 +365,7 @@ public class MainWindow : Gtk.Window {
 		Add (vbox);
 
 		vbox.PackStart (CreateMenuBar (), false, true, 0);
+		vbox.PackStart (CreateToolbar (), false, true, 0);
 
 		HPaned paned = new HPaned ();
 		paned.Position = 200;

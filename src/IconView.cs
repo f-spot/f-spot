@@ -173,7 +173,9 @@ public class IconView : Gtk.Layout {
 
 	public void UpdateThumbnail (int thumbnail_num)
 	{
-		ThumbnailCache.Default.RemoveThumbnailForPath (query.Photos [thumbnail_num].DefaultVersionPath);
+		Photo photo = query.Photos [thumbnail_num];
+		string thumbnail_path = Thumbnail.PathForUri ("file://" + photo.DefaultVersionPath, ThumbnailSize.Large);
+		ThumbnailCache.Default.RemoveThumbnailForPath (thumbnail_path);
 		QueueDraw ();
 	}
 

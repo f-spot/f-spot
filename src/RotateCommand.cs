@@ -11,12 +11,12 @@ public class RotateCommand {
 		this.parent_window = parent_window;
 	}
 
-	public enum RotationType {
+	public enum Direction {
 		Clockwise,
 		Counterclockwise,
 	}
 
-	public bool Execute (RotationType rotation, Photo [] photos)
+	public bool Execute (Direction direction, Photo [] photos)
 	{
 		int count = 0;
 		foreach (Photo p in photos) {
@@ -26,7 +26,7 @@ public class RotateCommand {
 
 				// FIXME exception
 
-				if (rotation == RotationType.Clockwise)
+				if (direction == Direction.Clockwise)
 					JpegUtils.Transform (original_path, temporary_path, JpegUtils.TransformType.Rotate90);
 				else
 					JpegUtils.Transform (original_path, temporary_path, JpegUtils.TransformType.Rotate270);
