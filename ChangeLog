@@ -1,5 +1,8 @@
 2005-01-17  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoStore.cs: delay the creation some of the internal
+	structures until they are needed.
+
 	* src/MainWindow.cs: clean up the mode setting and page switching
 	code.
 

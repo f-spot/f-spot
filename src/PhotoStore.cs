@@ -96,10 +96,13 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		}
 	}
 
-	private ArrayList tags = new ArrayList ();
+	private ArrayList tags;
 	public Tag [] Tags {
 		get {
-			return (Tag []) tags.ToArray (typeof (Tag));
+			if (tags == null)
+				return new Tag [0];
+			else 
+				return (Tag []) tags.ToArray (typeof (Tag));
 		}
 	}
 
@@ -127,12 +130,14 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 	public const int OriginalVersionId = 1;
 	private uint highest_version_id;
 
-	private Hashtable version_names = new Hashtable ();
+	private Hashtable version_names;
 
 	public uint [] VersionIds {
 		get {
-			uint [] ids = new uint [version_names.Count];
+			if (version_names == null)
+				return new uint [0];
 
+			uint [] ids = new uint [version_names.Count];
 			uint i = 0;
 			foreach (uint id in version_names.Keys)
 				ids [i ++] = id;
@@ -157,6 +162,9 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 	// it's supposed to be used only within the Photo and PhotoStore classes.
 	public void AddVersionUnsafely (uint version_id, string name)
 	{
+		if (version_names == null)
+			version_names = new Hashtable ();
+
 		version_names [version_id] = name;
 
 		highest_version_id = Math.Max (version_id, highest_version_id);
@@ -171,10 +179,13 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 					       + " (" + version_name + ")" + extension);
 	}
 
-	public bool VersionNameExists (string version_name)	{
-		foreach (string n in version_names.Values) {
-			if (n == version_name)
-				return true;
+	public bool VersionNameExists (string version_name)
+	{
+		if (version_names != null) {
+			foreach (string n in version_names.Values) {
+				if (n == version_name)
+					return true;
+			}
 		}
 
 		return false;
@@ -182,7 +193,10 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 	public string GetVersionName (uint version_id)
 	{
-		return version_names [version_id] as string;
+		if (version_names != null)
+			return version_names [version_id] as string;
+		else 
+			return null;
 	}
 
 	public string GetVersionPath (uint version_id)
@@ -247,6 +261,9 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 			PhotoStore.GenerateThumbnail (new_path);
 		}
 
+		if (version_names == null)
+			version_names = new Hashtable ();
+
 		highest_version_id ++;
 		version_names [highest_version_id] = name;
 
@@ -299,6 +316,9 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 	// This doesn't check if the tag is already there, use with caution.
 	public void AddTagUnsafely (Tag tag)
 	{
+		if (tags == null)
+			tags = new ArrayList ();
+
 		tags.Add (tag);
 	}
 
