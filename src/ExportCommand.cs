@@ -138,13 +138,25 @@ public class ExportCommand {
 		private void SendPhotos () {
 			Console.WriteLine ("Sending {0} photos", current_photos.Length);
 
-			foreach (Photo photo in current_photos) {
-				dialog.Update (String.Format ("Uploading picture \"{0}\"", photo.Name));
-				current_album.Add (photo);
+			try {
+				int i = 0;
+				foreach (Photo photo in current_photos) {
+					dialog.Message = String.Format ("Uploading picture \"{0}\"", photo.Name);
+					dialog.Fraction = i / (double) current_photos.Length;
+					dialog.ProgressText = String.Format ("{0} of {1}", 
+									     i + 1, current_photos.Length);
+					current_album.Add (photo);
+					i++;
+				}
+				
+				dialog.Message = ("Done Sending Photos");
+				dialog.Fraction = 1.0;
+				dialog.ProgressText = "Upload Complete";
+			} catch (Exception e) {
+				dialog.Message = e.ToString ();
+				dialog.ProgressText = "Error Uploading To Gallery";
 			}
 
-			Console.WriteLine ("Done Sending Photos");
-			dialog.Destroy ();
 		}
 
 		private void LoadGallery () {			
