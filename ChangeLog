@@ -1,3 +1,42 @@
+2003-11-12  Ettore Perazzoli  <ettore@ximian.com>
+
+	* src/makefile.am: Add f-spot-people.png, f-spot-places.png to the
+	.exe.
+
+	* src/main.cs (Driver.Main): Change the working directory to be
+	the user's home directory.
+
+	* src/f-spot.in: DllImport uses LD_LIBRARY_PATH, not MONO_PATH,
+	you doofus.
+
+	* src/TagStore.cs (Tag.CompareTo): Reverse the order when using
+	SortPriority.
+	(TagStore.LoadAllTags): Get the icon from the database.
+	(TagStore.CreateDefaultTags): Add "Favorites", "People", "Events"
+	and "Other" categories.
+
+	* src/TagSelectionWidget.cs (TagSelectionWidget.Update): Rename
+	from Reload().
+	(TagSelectionWidget.SetBackground): Private method to set the
+	color of the cells depending on whether they are a category or a
+	tag.
+	(TagSelectionWidget.CheckBoxDataFunc): Use it.
+	(TagSelectionWidget.IconDataFunc): Use it.
+	(TagSelectionWidget.NameDataFunc): Use it.
+
+	* src/TagCommands.cs: New.
+
+	* src/f-spot.glade: Make "version_name_dialog" not visible (so we
+	don't flicker).  New dialog "create_tag_dialog".
+
+	* icons/f-spot-people.png: New icon.
+	* icons/f-spot-places.png: New icon.
+
+2003-11-11  Ettore Perazzoli  <ettore@ximian.com>
+
+	* src/main.cs (Driver.Main): Change to the home directory at
+	start-up.
+
 2003-11-11  Ettore Perazzoli  <ettore@ximian.com>
 
 	* src/TagSelectionWidget.cs (TagSelectionWidget.IconDataFunc):

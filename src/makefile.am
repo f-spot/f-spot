@@ -32,6 +32,7 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/SqliteParameter.cs		\
 	$(srcdir)/SqliteParameterCollection.cs	\
 	$(srcdir)/StockIcons.cs			\
+	$(srcdir)/TagCommands.cs		\
 	$(srcdir)/TagSelectionWidget.cs		\
 	$(srcdir)/TagStore.cs			\
 	$(srcdir)/TimelineSelectorWidget.cs	\
@@ -54,6 +55,8 @@ RESOURCES =										\
 	/resource:$(top_srcdir)/icons/f-spot-camera.png,f-spot-camera.png		\
 	/resource:$(top_srcdir)/icons/f-spot-question-mark.png,f-spot-question-mark.png \
 	/resource:$(top_srcdir)/icons/f-spot-favorite.png,f-spot-favorite.png 		\
+	/resource:$(top_srcdir)/icons/f-spot-people.png,f-spot-people.png 		\
+	/resource:$(top_srcdir)/icons/f-spot-places.png,f-spot-places.png 		\
 	/resource:$(srcdir)/f-spot.glade,f-spot.glade
 
 fspotlibdir = $(prefix)/lib/f-spot

@@ -111,7 +111,7 @@ public class Tag : DbItem, IComparable {
 			if (SortPriority == tag.SortPriority)
 				return Name.CompareTo (tag.Name);
 			else
-				return tag.SortPriority - SortPriority;
+				return SortPriority - tag.SortPriority;
 		} else {
 			return Category.CompareTo (tag.Category);
 		}
@@ -182,7 +182,6 @@ public class TagStore : DbStore {
 			uint id = Convert.ToUInt32 (reader [0]);
 			string name = reader [1].ToString ();
 			bool is_category = (Convert.ToUInt32 (reader [2]) != 0);
-			string icon_string = reader [4].ToString ();
 
 			Tag tag;
 			if (is_category)
@@ -190,9 +189,18 @@ public class TagStore : DbStore {
 			else
 				tag = new Tag (null, id, name);
 
-			tag.Icon = PixbufSerializer.Deserialize (Convert.FromBase64String (icon_string));
+			if (reader [4] != null) {
+				string icon_string = reader [4].ToString ();
+				if (icon_string != "")
+					tag.Icon = PixbufSerializer.Deserialize (Convert.FromBase64String (icon_string));
+			}
 
 			tag.SortPriority = Convert.ToInt32 (reader[3]);
+
+			// FIXME this is freaky.  If I do it once, it doesn't work.  However, if I do it once
+			// and put a Console.WriteLine() after it, it works.  So I think something is screwy
+			// in the JITer or something.
+			AddToCache (tag);
 			AddToCache (tag);
 		}
 		reader.Close ();
@@ -209,7 +217,7 @@ public class TagStore : DbStore {
 
 			Tag tag = Get (id) as Tag;
 			if (tag == null)
-				throw new Exception ("foo");
+				throw new Exception (String.Format ("Cannot find tag {0}", id));
 			if (category_id == 0)
 				tag.Category = RootCategory;
 			else
@@ -248,13 +256,34 @@ public class TagStore : DbStore {
 		Tag favorites_tag = CreateTag (RootCategory, "Favorites");
 
 		// FIXME the ref is to work around a GTK# bug.
-		Pixbuf pixbuf = new Pixbuf (null, "f-spot-favorite.png");
-		g_object_ref (pixbuf.Handle);
-
-		favorites_tag.Icon = pixbuf;
+		Pixbuf favorite_icon = new Pixbuf (null, "f-spot-favorite.png");
+		g_object_ref (favorite_icon.Handle);
+		favorites_tag.Icon = favorite_icon;
 		favorites_tag.SortPriority = -10;
-
 		Commit (favorites_tag);
+
+		Tag people_category = CreateCategory (RootCategory, "People");
+		Pixbuf people_icon = new Pixbuf (null, "f-spot-people.png");
+		g_object_ref (people_icon.Handle);
+		people_category.Icon = people_icon;
+		people_category.SortPriority = -9;
+		Commit (people_category);
+
+		Tag places_category = CreateCategory (RootCategory, "Places");
+		// FIXME the ref is to work around a GTK# bug.
+		Pixbuf places_icon = new Pixbuf (null, "f-spot-places.png");
+		g_object_ref (places_icon.Handle);
+		places_category.Icon = places_icon;
+		places_category.SortPriority = -8;
+		Commit (places_category);
+
+		Tag events_category = CreateCategory (RootCategory, "Events");
+		events_category.SortPriority = -7;
+		Commit (events_category);
+
+		Tag other_category = CreateCategory (RootCategory, "Other");
+		other_category.SortPriority = -6;
+		Commit (other_category);
 	}
 
 

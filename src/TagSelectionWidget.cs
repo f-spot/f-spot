@@ -1,13 +1,17 @@
-using System;
-using System.IO;
-using System.Collections;
+using GLib;
+using Gdk;
 using Gtk;
 using GtkSharp;
-using GLib;
+using System.Collections;
+using System.IO;
+using System;
 
 public class TagSelectionWidget : TreeView {
 	TagSelectionWidget widget;
 	private TagStore tag_store;
+
+	// FIXME this is a hack.
+	private static Pixbuf empty_pixbuf = new Pixbuf (Colorspace.Rgb, true, 8, 1, 1);
 
 
 	// Selection management.
@@ -91,7 +95,7 @@ public class TagSelectionWidget : TreeView {
 		}
 	}
 
-	public void Reload ()
+	public void Update ()
 	{
 		(Model as TreeStore).Clear ();
 
@@ -143,6 +147,16 @@ public class TagSelectionWidget : TreeView {
 
 	// Data functions.
 
+	private void SetBackground (CellRenderer renderer, Tag tag)
+	{
+		// FIXME this should be themable but Gtk# doesn't give me access to the proper
+		// members in GtkStyle for that.
+		if (tag is Category)
+			renderer.CellBackground = "#cccccc";
+		else
+			renderer.CellBackground = "#ffffff";
+	}
+
 	private void CheckBoxDataFunc (TreeViewColumn column,
 				       CellRenderer renderer,
 				       TreeModel model,
@@ -153,6 +167,7 @@ public class TagSelectionWidget : TreeView {
 		uint tag_id = (uint) value;
 		Tag tag = tag_store.Get (tag_id) as Tag;
 
+		SetBackground (renderer, tag);
 		(renderer as CellRendererToggle).Active = IsSelected (tag);
 	}
 
@@ -166,7 +181,13 @@ public class TagSelectionWidget : TreeView {
 		uint tag_id = (uint) value;
 		Tag tag = tag_store.Get (tag_id) as Tag;
 
-		(renderer as CellRendererPixbuf).Pixbuf = tag.Icon;
+		SetBackground (renderer, tag);
+
+		// FIXME I can't set the Pixbuf to null, not sure if it's a GTK# bug...
+		if (tag.Icon != null)
+			(renderer as CellRendererPixbuf).Pixbuf = tag.Icon;
+		else
+			(renderer as CellRendererPixbuf).Pixbuf = empty_pixbuf;
 	}
 
 	private void NameDataFunc (TreeViewColumn column,
@@ -181,7 +202,10 @@ public class TagSelectionWidget : TreeView {
 		GLib.Value value = new GLib.Value ();
 		Model.GetValue (iter, 0, value);
 		uint tag_id = (uint) value;
+
 		Tag tag = tag_store.Get (tag_id) as Tag;
+
+		SetBackground (renderer, tag);
 
 		(renderer as CellRendererText).Text = tag.Name;
 	}
@@ -193,6 +217,7 @@ public class TagSelectionWidget : TreeView {
 		: base (new TreeStore (typeof (uint)))
 	{
 		HeadersVisible = false;
+		Selection.Mode = SelectionMode.None;
 
 		CellRendererToggle toggle_renderer = new CellRendererToggle ();
 		toggle_renderer.Toggled += new ToggledHandler (OnCellToggled);
@@ -204,7 +229,7 @@ public class TagSelectionWidget : TreeView {
 		this.tag_store = tag_store;
 		selection = new Hashtable ();
 
-		Reload ();
+		Update ();
 		ExpandAll ();
 	}
 
@@ -269,7 +294,7 @@ public class TagSelectionWidget : TreeView {
 
 			program.Run ();
 		}
-	}
+		}
 
 #endif
 }

@@ -81,6 +81,20 @@ public class MainWindow : Gtk.Window {
 		}
 	}
 
+	private void HandleCreateNewTagCommand (object sender, EventArgs args)
+	{
+		TagCommands.Create command = new TagCommands.Create (db.Tags, this);
+		if (command.Execute (TagCommands.TagType.Tag))
+			tag_selection_widget.Update ();
+	}
+
+	private void HandleCreateNewCategoryCommand (object sender, EventArgs args)
+	{
+		TagCommands.Create command = new TagCommands.Create (db.Tags, this);
+		if (command.Execute (TagCommands.TagType.Category))
+			tag_selection_widget.Update ();
+	}
+
 	private void UpdateForVersionIdChange (uint version_id)
 	{
 		CurrentPhoto.DefaultVersionId = version_id;
@@ -146,6 +160,19 @@ public class MainWindow : Gtk.Window {
 		MenuItem close_item = new MenuItem ("_Close");
 		close_item.Activated += new EventHandler (HandleCloseCommand);
 		photo_menu.Append (close_item);
+
+		Menu tags_menu = new Menu ();
+		MenuItem tags_item = new MenuItem ("_Tags");
+		tags_item.Submenu = tags_menu;
+		menu_bar.Append (tags_item);
+
+		MenuItem create_tag_item = new MenuItem ("Create New _Tag...");
+		create_tag_item.Activated += new EventHandler (HandleCreateNewTagCommand);
+		tags_menu.Append (create_tag_item);
+
+		MenuItem create_category_item = new MenuItem ("Create New _Category...");
+		create_category_item.Activated += new EventHandler (HandleCreateNewCategoryCommand);
+		tags_menu.Append (create_category_item);
 
 		return menu_bar;
 	}

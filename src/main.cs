@@ -12,7 +12,10 @@ public class Driver {
 
 		// FIXME: Error checking is non-existant here...
 
-		string base_directory = Environment.GetEnvironmentVariable ("HOME") + "/.gnome2/f-spot";
+		string home_directory = Environment.GetEnvironmentVariable ("HOME");
+		Directory.SetCurrentDirectory (home_directory);
+
+		string base_directory = home_directory + "/.gnome2/f-spot";
 		if (! File.Exists (base_directory))
 			Directory.CreateDirectory (base_directory);
 
