@@ -48,6 +48,12 @@ namespace FSpot {
 			DirInfo info = (DirInfo)dirs[item];	
 			return info.Count;
 		}	
+
+		private void HandleReload (PhotoQuery query)
+		{
+			Console.WriteLine ("Reloading directory");
+			Reload ();
+		}
 		
 		public override void Reload () 
 		{
@@ -73,6 +79,8 @@ namespace FSpot {
 
 		public DirectoryAdaptor (PhotoQuery query) {
 			this.query = query;
+			this.query.Reload += HandleReload;
+
 			Reload ();
 		}
 	}

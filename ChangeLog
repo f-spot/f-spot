@@ -1,3 +1,8 @@
+2004-09-14  Larry Ewing  <lewing@novell.com>
+
+	* src/DirectoryAdaptor.cs: hook up reload here too for a little
+	while, although this all about to change.
+
 2004-09-13  Larry Ewing  <lewing@novell.com>
 
 	* src/FormClient.cs: Allow for a noncaching mode and add a
