@@ -9,4 +9,5 @@
   <dllmap dll="libfspoteog" target="@prefix@/lib/f-spot/libfspoteog.so.0"/>
   <dllmap dll="libfspotjpeg" target="@prefix@/lib/f-spot/libfspotjpg.so.0"/>
   <dllmap dll="liblcms-1.0.0.dll" target="liblcms.so.1"/>
+  <dllmap dll="libexif.dll" target="libexif.so.@EXIF_SOVERSION@"/>
 </configuration>

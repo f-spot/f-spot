@@ -1,5 +1,11 @@
 2005-02-27  Larry Ewing  <lewing@novell.com>
 
+	* src/f-spot.exe.config.in: add the libexif entry to to the config
+	file with the proper major version.
+	
+	* configure.in: set the major version of the libexif lib we are
+	using at configure time.
+
 	* src/PixbufUtils.cs: update libgnomeui import line, add config
 	entry.
 
