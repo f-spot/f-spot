@@ -130,8 +130,9 @@ public class SlideView : Gtk.Image {
 		if (width < 10 || height < 10)
 			return scaled;	
 
+
 		try {
-		orig = new Pixbuf (path);
+			orig = PixbufUtils.LoadAtMaxSize (path, width, height);
 		} catch {
 			Console.WriteLine ("Error loading file " + path);
 			orig = null;
