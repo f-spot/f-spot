@@ -2,15 +2,17 @@ using System;
 using Gtk;
 using Gdk;
 
-public class TagView : Gtk.Layout {
+public class TagView : Gtk.Widget {
 	private int thumbnail_size = 20;
 	private Photo photo;
 	private static int TAG_ICON_VSPACING = 5;
 
-	public TagView (): base (null, null)
+	public TagView ()
 	{
-		ExposeEvent += HandleExposeEvent;
+			Flags |= (int)WidgetFlags.NoWindow;
 	}
+
+	protected TagView (IntPtr raw) : base (raw) {}
 
 	public Photo Current {
 		set {
@@ -23,13 +25,13 @@ public class TagView : Gtk.Layout {
 		}
 	}
 
-	private void HandleExposeEvent (object sender, ExposeEventArgs args)
+	protected override bool OnExposeEvent (Gdk.EventExpose args)
 	{
 		if (photo == null)
-			return; 
+			return base.OnExposeEvent (args); 
 
-		int tag_x = 0;
-		int tag_y = (Allocation.Height - thumbnail_size)/2;
+		int tag_x = Allocation.X;
+		int tag_y = Allocation.Y + (Allocation.Height - thumbnail_size)/2;
 		
 		foreach (Tag t in photo.Tags) {
 			Pixbuf icon = null;
@@ -52,11 +54,11 @@ public class TagView : Gtk.Layout {
 				scaled_icon = icon.ScaleSimple (thumbnail_size, thumbnail_size, InterpType.Bilinear);
 			}
 			
-			scaled_icon.RenderToDrawable (BinWindow, Style.WhiteGC,
+			scaled_icon.RenderToDrawable (GdkWindow, Style.WhiteGC,
 						      0, 0, tag_x, tag_y, thumbnail_size, thumbnail_size,
-						      RgbDither.None, 0, 0);
+						      RgbDither.None, tag_x, tag_y);
 			tag_x += thumbnail_size + TAG_ICON_VSPACING;
 		}
-		
+		return base.OnExposeEvent (args);
 	}
 }
