@@ -1,8 +1,10 @@
 2004-09-01  Larry Ewing  <lewing@novell.com>
 
+	* src/PreviewPopup.cs: fix the window position issue.
+	
 	* src/PreviewPopup.cs: relocated and cleaned up preview code.  The
 	position is still a little off but I haven't tracked it down yet.
-	
+
 	* src/MainWindow.cs: move the preview into its own File.
 
 	* src/makefile.am: add PreviewPopup.cs.
