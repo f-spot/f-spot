@@ -7,11 +7,12 @@ namespace FSpot {
 	public class GroupSelector : Bin {
 		internal static GType groupSelectorGType;
 		int border = 16;
+		int box_spacing = 2;
 		int box_top_padding = 6;
 		public static int MIN_BOX_WIDTH = 20;
 		private Glass glass;
-		private Limit top_limit;
-		private Limit bottom_limit;
+		private Limit min_limit;
+		private Limit max_limit;
 
 		Gdk.Window back_window;
 		
@@ -101,8 +102,23 @@ namespace FSpot {
 
 		private void DrawBox (Rectangle area, int item) 
 		{
-			if (BoxBounds (item).Intersect (area, out area))
-				GdkWindow.DrawRectangle (Style.BaseGC (StateType.Selected), true, area);
+			Rectangle box = BoxBounds (item);
+			
+			box.X += box_spacing;
+			box.Width -= box_spacing * 2;
+			
+			if (box.Intersect (area, out area)) {
+				if (item < min_limit.Position || item >= max_limit.Position) {
+					box.Height += 1;
+
+					//GdkWindow.DrawRectangle (Style.ForegroundGC (StateType.Normal), false, box);
+					Style.PaintShadow (this.Style, GdkWindow, State, ShadowType.In, area, 
+							   this, null, box.X, box.Y, 
+							   box.Width, box.Height);
+				} else {
+					GdkWindow.DrawRectangle (Style.BaseGC (StateType.Selected), true, area);
+				}
+			}
 		}
 		
 		public Rectangle TickBounds (int item)
@@ -253,8 +269,17 @@ namespace FSpot {
 			Rectangle area; 
 			//Console.WriteLine ("expose {0}", args.Area);
 			
-			if (args.Area.Intersect (background, out area)) {			
-				GdkWindow.DrawRectangle (Style.BaseGC (State), true, area);
+
+			if (args.Area.Intersect (background, out area)) {							
+				Rectangle active = background;
+				int min_x = BoxX (min_limit.Position);
+				int max_x = BoxX (max_limit.Position);
+				active.X = min_x;
+				active.Width = max_x - min_x;
+
+				if (active.Intersect (area, out active)) {
+					GdkWindow.DrawRectangle (Style.BaseGC (State), true, active);
+				}
 
 				int i = 0;
 				while (i < box_counts.Length)
@@ -271,12 +296,12 @@ namespace FSpot {
 					DrawTick (area, i++);
 			}
 			
-			if (top_limit != null) {
-				top_limit.Draw (args.Area);
+			if (min_limit != null) {
+				min_limit.Draw (args.Area);
 			}
 			
-			if (bottom_limit != null) {
-				bottom_limit.Draw (args.Area);
+			if (max_limit != null) {
+				max_limit.Draw (args.Area);
 			}
 			       
 			if (glass != null) {
@@ -307,10 +332,10 @@ namespace FSpot {
 
 			background = Rectangle.Zero;
 			glass = new Glass (this);
-			top_limit = new Limit (this);
-			top_limit.Position = 3;
-			bottom_limit = new Limit (this);
-			bottom_limit.Position = 8;
+			min_limit = new Limit (this);
+			min_limit.Position = 3;
+			max_limit = new Limit (this);
+			max_limit.Position = 12;
 		}
 
 		private void HandleKeyPressEvent (object sender, KeyPressEventArgs args)
@@ -360,7 +385,7 @@ namespace FSpot {
 			Gtk.Window win = new Gtk.Window ("testing");
 
 			GroupSelector gs = new GroupSelector ();
-			gs.Counts = new int [] {20, 10, 5, 2, 3, 5, 8, 10, 22, 0, 55, 129, 300, 30, 14, 200, 21, 55};
+			gs.Counts = new int [] {20, 10, 5, 2, 3, 50, 8, 10, 22, 0, 55, 129, 120, 30, 14, 200, 21, 55};
 			gs.Mode = 2;
 			gs.Offset = 3;
 
