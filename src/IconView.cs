@@ -143,7 +143,7 @@ public class IconView : Gtk.Layout {
 
 	public IconView () : base (null, null)
 	{
-		pixbuf_loader = new PixbufLoader (ThumbnailWidth);
+		pixbuf_loader = new PixbufLoader (256);
 		pixbuf_loader.OnPixbufLoaded += new PixbufLoader.PixbufLoadedHandler (HandlePixbufLoaded);
 
 		selected_cells = new Hashtable ();
@@ -178,6 +178,8 @@ public class IconView : Gtk.Layout {
 		this.query = query;
 		query.Reload += new PhotoQuery.ReloadHandler (OnReload);
 	}
+
+	protected IconView (IntPtr raw) : base (raw) {}
 
 	//
 	// IPhotoSelection
@@ -228,6 +230,8 @@ public class IconView : Gtk.Layout {
 	{
 		Photo photo = query.Photos [thumbnail_num];
 		string thumbnail_path = Thumbnail.PathForUri ("file://" + photo.DefaultVersionPath, ThumbnailSize.Large);
+
+		//Console.WriteLine ("remove {0}", thumbnail_path);
 		ThumbnailCache.Default.RemoveThumbnailForPath (thumbnail_path);
 		InvalidateCell (thumbnail_num);
 	}
@@ -684,6 +688,7 @@ public class IconView : Gtk.Layout {
 		if (result == null)
 			result = ErrorPixbuf ();
 
+		//Console.WriteLine ("adding {0}", path);
 		ThumbnailCache.Default.AddThumbnail (path, result);
 		InvalidateCell (order);
 	}

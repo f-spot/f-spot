@@ -1,5 +1,8 @@
 2004-08-23  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: add a IntPtr ctor, bump the ThumbnailCache icon
+	size to 256.
+
 	* src/PhotoView.cs: use the PhotoLoader.
 	
 	* src/SlideView.cs: use the new Loader stuff.
