@@ -413,16 +413,13 @@ public class PhotoStore : DbStore {
 		string uri = UriList.PathToFileUri (path).ToString ();
 		Pixbuf thumbnail = null;
 
-		if (use_exif)
+		if (use_exif) {
 			thumbnail = GenerateFromExif (path, uri);
-
-		if (thumbnail == null)
-			thumbnail = PhotoStore.ThumbnailFactory.GenerateThumbnail (uri, "image/jpeg");
-		
-		// FIXME if this is null then the file doesn't exist.
-		if (thumbnail != null) {
 			PhotoStore.ThumbnailFactory.SaveThumbnail (thumbnail, uri, File.GetLastWriteTime (path));
 		}
+
+		if (thumbnail == null)
+			thumbnail = PixbufUtils.GenerateThumbnail (path);
 		
 		return thumbnail;
 	}

@@ -1,5 +1,9 @@
 2005-01-08  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoStore.cs: use the PixbufUtils thumbnail generator.
+
+	* src/PixbufUtils.cs: add thumbnail generator.
+
 	* src/f-spot.glade: replace the toolbar with a named vbox so we
 	can pack a toolbar in later.
 
