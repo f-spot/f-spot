@@ -6,6 +6,8 @@ namespace FSpot {
 		[Glade.Widget] Gtk.CheckButton scale_check;
 		[Glade.Widget] Gtk.CheckButton meta_check;
 		[Glade.Widget] Gtk.CheckButton tag_check;
+		[Glade.Widget] Gtk.CheckButton open_check;
+
 		[Glade.Widget] Gtk.Entry email_entry;
 		[Glade.Widget] Gtk.Entry width_entry;
 		[Glade.Widget] Gtk.Entry height_entry;
@@ -14,6 +16,8 @@ namespace FSpot {
 		System.Threading.Thread command_thread;
 		ThreadProgressDialog progress_dialog;
 		ProgressItem progress_item;
+		
+		bool open;
 
 		int photo_index;
 		FlickrRemote fr = new FlickrRemote ();
@@ -72,14 +76,16 @@ namespace FSpot {
 		private void Upload () {
 			fr.Progress = new ProgressItem ();
 			fr.Progress.Changed += HandleProgressChanged;
-
+			System.Collections.ArrayList ids = new System.Collections.ArrayList ();
 			try {
+
 				foreach (Photo photo in selection.Photos) {
 					progress_dialog.Message = System.String.Format (Mono.Posix.Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
 					progress_dialog.Fraction = photo_index / (double)selection.Photos.Length;
 					photo_index++;
 					progress_dialog.ProgressText = System.String.Format (Mono.Posix.Catalog.GetString ("{0} of {1}"), photo_index, selection.Photos.Length);
-					fr.Upload (photo);
+					string id = fr.Upload (photo);
+					ids.Add (id);
 					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Done Sending Photos");
 					progress_dialog.Fraction = 1.0;
 					progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Upload Complete");
@@ -88,6 +94,14 @@ namespace FSpot {
 			} catch (System.Exception e) {
 				progress_dialog.Message = e.ToString ();
 				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error Uploading To Flickr");
+			}
+
+			if (open && ids.Count != 0) {
+				string view_url = "http://www.flickr.com/tools/uploader_edit.gne?ids";
+				foreach (string id in ids)
+					view_url = view_url + "," + id;
+
+				Gnome.Url.Show (view_url);
 			}
 		}
 		
@@ -99,6 +113,7 @@ namespace FSpot {
 			}
 			
 			fr.ExportTags = tag_check.Active;
+			open = open_check.Active;
 			
 			if (Login ()) {
 				command_thread = new  System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));

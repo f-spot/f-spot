@@ -4598,6 +4598,25 @@ Photo Details</property>
 			  </child>
 
 			  <child>
+			    <widget class="GtkCheckButton" id="open_check">
+			      <property name="visible">True</property>
+			      <property name="can_focus">True</property>
+			      <property name="label" translatable="yes">Open destination when done exporting.</property>
+			      <property name="use_underline">True</property>
+			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <property name="focus_on_click">True</property>
+			      <property name="active">True</property>
+			      <property name="inconsistent">False</property>
+			      <property name="draw_indicator">True</property>
+			    </widget>
+			    <packing>
+			      <property name="padding">0</property>
+			      <property name="expand">False</property>
+			      <property name="fill">False</property>
+			    </packing>
+			  </child>
+
+			  <child>
 			    <widget class="GtkLabel" id="label54">
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes"></property>
@@ -6415,6 +6434,25 @@ Photo Details</property>
 			  </child>
 
 			  <child>
+			    <widget class="GtkCheckButton" id="open_check">
+			      <property name="visible">True</property>
+			      <property name="can_focus">True</property>
+			      <property name="label" translatable="yes">View photos in browser when done uploading</property>
+			      <property name="use_underline">True</property>
+			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <property name="focus_on_click">True</property>
+			      <property name="active">True</property>
+			      <property name="inconsistent">False</property>
+			      <property name="draw_indicator">True</property>
+			    </widget>
+			    <packing>
+			      <property name="padding">0</property>
+			      <property name="expand">False</property>
+			      <property name="fill">False</property>
+			    </packing>
+			  </child>
+
+			  <child>
 			    <widget class="GtkLabel" id="label91">
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes"></property>
@@ -6742,7 +6780,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="create_version_menu_item">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Create new version</property>
+		      <property name="label" translatable="yes">Create _new version</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleCreateVersionCommand" last_modification_time="Tue, 09 Dec 2003 20:42:48 GMT"/>
 		    </widget>
@@ -6751,7 +6789,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="delete_version_menu_item">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Delete Version</property>
+		      <property name="label" translatable="yes">_Delete Version</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleDeleteVersionCommand" last_modification_time="Tue, 09 Dec 2003 20:42:48 GMT"/>
 		    </widget>
@@ -6760,7 +6798,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="rename_version_menu_item">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Rename Version</property>
+		      <property name="label" translatable="yes">_Rename Version</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleRenameVersionCommand" last_modification_time="Tue, 09 Dec 2003 21:00:39 GMT"/>
 		    </widget>
@@ -6775,7 +6813,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="export">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Export</property>
+		      <property name="label" translatable="yes">_Export</property>
 		      <property name="use_underline">True</property>
 
 		      <child>
@@ -6784,7 +6822,7 @@ Photo Details</property>
 			  <child>
 			    <widget class="GtkMenuItem" id="export_to_flickr">
 			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Export To Flickr</property>
+			      <property name="label" translatable="yes">Export To _Flickr</property>
 			      <property name="use_underline">True</property>
 			      <signal name="activate" handler="HandleExportToFlickr" last_modification_time="Fri, 17 Dec 2004 19:43:27 GMT"/>
 			    </widget>
@@ -6793,7 +6831,7 @@ Photo Details</property>
 			  <child>
 			    <widget class="GtkMenuItem" id="export_to_vfs1">
 			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Export to VFS</property>
+			      <property name="label" translatable="yes">Export to _VFS</property>
 			      <property name="use_underline">True</property>
 			      <signal name="activate" handler="HandleExportToVfs" last_modification_time="Thu, 16 Dec 2004 07:45:57 GMT"/>
 			    </widget>
@@ -6802,7 +6840,7 @@ Photo Details</property>
 			  <child>
 			    <widget class="GtkMenuItem" id="export_to_gallery">
 			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Export to Gallery</property>
+			      <property name="label" translatable="yes">Export to _Web Gallery</property>
 			      <property name="use_underline">True</property>
 			      <signal name="activate" handler="HandleExportToGallery" last_modification_time="Thu, 16 Dec 2004 07:44:48 GMT"/>
 			    </widget>
@@ -6815,7 +6853,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="print">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Print</property>
+		      <property name="label" translatable="yes">_Print</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandlePrintCommand" last_modification_time="Thu, 05 Feb 2004 00:40:09 GMT"/>
 		    </widget>
@@ -6851,7 +6889,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="close1">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Close</property>
+		      <property name="label" translatable="yes">_Close</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleCloseCommand" last_modification_time="Tue, 09 Dec 2003 20:59:54 GMT"/>
 		      <accelerator key="w" modifiers="GDK_CONTROL_MASK" signal="activate"/>
@@ -6880,7 +6918,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="select_all">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Select All</property>
+		      <property name="label" translatable="yes">Select _All</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleSelectAllCommand" last_modification_time="Sat, 07 Feb 2004 01:20:44 GMT"/>
 		      <accelerator key="A" modifiers="GDK_CONTROL_MASK" signal="activate"/>
@@ -6890,7 +6928,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="select_none">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Select None</property>
+		      <property name="label" translatable="yes">Select _None</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleSelectNoneCommand" last_modification_time="Sat, 07 Feb 2004 01:21:48 GMT"/>
 		      <accelerator key="A" modifiers="GDK_CONTROL_MASK | GDK_SHIFT_MASK" signal="activate"/>
@@ -6906,7 +6944,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="rotate_left">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Rotate Left</property>
+		      <property name="label" translatable="yes">Rotate _Left</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleRotate90Command" last_modification_time="Sat, 07 Feb 2004 02:25:23 GMT"/>
 		    </widget>
@@ -6915,7 +6953,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="rotate_right">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Rotate Right</property>
+		      <property name="label" translatable="yes">Rotate _Right</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleRotate270Command" last_modification_time="Sat, 07 Feb 2004 02:26:31 GMT"/>
 		    </widget>
@@ -6930,7 +6968,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="adjust_color">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Adjust Color</property>
+		      <property name="label" translatable="yes">Ad_just Color</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleAdjustColor" last_modification_time="Thu, 23 Dec 2004 12:00:46 GMT"/>
 		    </widget>
@@ -6939,7 +6977,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="sharpen">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Sharpen</property>
+		      <property name="label" translatable="yes">_Sharpen</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleSharpen" last_modification_time="Thu, 23 Dec 2004 12:01:23 GMT"/>
 		    </widget>
@@ -6954,7 +6992,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="update_thumbnail">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Update Thumbnail</property>
+		      <property name="label" translatable="yes">_Update Thumbnail</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleUpdateThumbnailCommand" last_modification_time="Sat, 07 Feb 2004 02:25:23 GMT"/>
 		    </widget>
@@ -6981,7 +7019,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="set_as_background">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Set as Background</property>
+		      <property name="label" translatable="yes">Set as _Background</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleSetAsBackgroundCommand" last_modification_time="Fri, 27 Feb 2004 14:31:41 GMT"/>
 		    </widget>
@@ -7030,7 +7068,7 @@ Photo Details</property>
 	  <child>
 	    <widget class="GtkMenuItem" id="view1">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">View</property>
+	      <property name="label" translatable="yes">_View</property>
 	      <property name="use_underline">True</property>
 
 	      <child>
@@ -7039,7 +7077,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="slide_show">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">SlideShow</property>
+		      <property name="label" translatable="yes">_Slideshow</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleViewSlideShow" last_modification_time="Thu, 29 Jan 2004 04:47:18 GMT"/>
 		    </widget>
@@ -7048,7 +7086,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="fullscreen1">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Fullscreen</property>
+		      <property name="label" translatable="yes">_Fullscreen</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleViewFullscreen" last_modification_time="Thu, 10 Jun 2004 02:58:42 GMT"/>
 		    </widget>
@@ -7057,7 +7095,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="exif_data1">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">EXIF Data</property>
+		      <property name="label" translatable="yes">_EXIF Data</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleViewFullExif" last_modification_time="Thu, 23 Sep 2004 21:15:21 GMT"/>
 		      <accelerator key="i" modifiers="GDK_CONTROL_MASK" signal="activate"/>
@@ -7071,9 +7109,19 @@ Photo Details</property>
 		  </child>
 
 		  <child>
+		    <widget class="GtkCheckMenuItem" id="display_timeline1">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">Display _Timeline</property>
+		      <property name="use_underline">True</property>
+		      <property name="active">True</property>
+		      <signal name="activate" handler="HandleDisplayGroupSelector" last_modification_time="Tue, 11 Jan 2005 07:04:13 GMT"/>
+		    </widget>
+		  </child>
+
+		  <child>
 		    <widget class="GtkCheckMenuItem" id="display_tags_menu_item">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Display Tags</property>
+		      <property name="label" translatable="yes">Display T_ags</property>
 		      <property name="use_underline">True</property>
 		      <property name="active">True</property>
 		      <signal name="activate" handler="HandleDisplayTags" last_modification_time="Sun, 10 Oct 2004 21:30:58 GMT"/>
@@ -7083,7 +7131,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkCheckMenuItem" id="display_dates_menu_item">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Display Dates</property>
+		      <property name="label" translatable="yes">Display _Dates</property>
 		      <property name="use_underline">True</property>
 		      <property name="active">True</property>
 		      <signal name="activate" handler="HandleDisplayDates" last_modification_time="Tue, 12 Oct 2004 19:13:14 GMT"/>
@@ -7099,7 +7147,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="zoom_in">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Zoom In</property>
+		      <property name="label" translatable="yes">Zoom _In</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleZoomIn" last_modification_time="Sat, 21 Aug 2004 16:37:10 GMT"/>
 		      <accelerator key="m" modifiers="GDK_CONTROL_MASK" signal="activate"/>
@@ -7125,7 +7173,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="arranged_by">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Arranged By</property>
+		      <property name="label" translatable="yes">Arranged _By</property>
 		      <property name="use_underline">True</property>
 
 		      <child>
@@ -7134,7 +7182,7 @@ Photo Details</property>
 			  <child>
 			    <widget class="GtkRadioMenuItem" id="month">
 			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Month</property>
+			      <property name="label" translatable="yes">_Month</property>
 			      <property name="use_underline">True</property>
 			      <property name="active">True</property>
 			      <signal name="activate" handler="HandleArrangeByTime" last_modification_time="Fri, 20 Aug 2004 22:26:32 GMT"/>
@@ -7144,7 +7192,7 @@ Photo Details</property>
 			  <child>
 			    <widget class="GtkRadioMenuItem" id="directory">
 			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Directory</property>
+			      <property name="label" translatable="yes">_Directory</property>
 			      <property name="use_underline">True</property>
 			      <property name="active">True</property>
 			      <property name="group">month</property>
@@ -7165,7 +7213,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="size">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Size</property>
+		      <property name="label" translatable="yes">_Size</property>
 		      <property name="use_underline">True</property>
 
 		      <child>
@@ -7254,7 +7302,7 @@ Photo Details</property>
 	  <child>
 	    <widget class="GtkMenuItem" id="tags1">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Tags</property>
+	      <property name="label" translatable="yes">_Tags</property>
 	      <property name="use_underline">True</property>
 
 	      <child>
@@ -7263,7 +7311,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="create_new_tag1">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Create New Tag</property>
+		      <property name="label" translatable="yes">Create New _Tag</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleCreateNewTagCommand" last_modification_time="Tue, 09 Dec 2003 20:42:48 GMT"/>
 		    </widget>
@@ -7272,7 +7320,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="create_new_category1">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Create New Category</property>
+		      <property name="label" translatable="yes">Create New _Category</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleCreateNewCategoryCommand" last_modification_time="Tue, 09 Dec 2003 20:42:48 GMT"/>
 		    </widget>
@@ -7287,7 +7335,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="edit_selected_tag">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Edit Selected Tag</property>
+		      <property name="label" translatable="yes">_Edit Selected Tag</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleEditSelectedTag" last_modification_time="Wed, 11 Aug 2004 06:33:14 GMT"/>
 		    </widget>
@@ -7296,7 +7344,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="delete_selected_tag">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Delete Selected Tag</property>
+		      <property name="label" translatable="yes">_Delete Selected Tag</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleDeleteSelectedTagCommand" last_modification_time="Sat, 07 Feb 2004 01:26:54 GMT"/>
 		    </widget>
@@ -7311,7 +7359,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="attach_tag_to_selection">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Attach Tag To Selection</property>
+		      <property name="label" translatable="yes">_Attach Tag To Selection</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleAttachTagCommand" last_modification_time="Wed, 21 Jan 2004 05:44:42 GMT"/>
 		      <accelerator key="t" modifiers="GDK_CONTROL_MASK" signal="activate"/>
@@ -7321,7 +7369,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="remove_tag_from_selection">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Remove Tag From Selection</property>
+		      <property name="label" translatable="yes">_Remove Tag From Selection</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleRemoveTagCommand" last_modification_time="Wed, 21 Jan 2004 05:48:21 GMT"/>
 		    </widget>

@@ -8,6 +8,7 @@ namespace FSpot {
 
 		[Glade.Widget] Gtk.CheckButton meta_check;
 		[Glade.Widget] Gtk.CheckButton scale_check;
+		[Glade.Widget] Gtk.CheckButton open_check;
 
 		[Glade.Widget] Gtk.Entry width_entry;
 		[Glade.Widget] Gtk.Entry height_entry;
@@ -15,6 +16,7 @@ namespace FSpot {
 		Gnome.Vfs.Uri dest;
 		
 		int photo_index;
+		bool open;
 
 		FSpot.ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
@@ -82,7 +84,7 @@ namespace FSpot {
 					
 					//System.Console.WriteLine ("Xfering {0} to {1}", source.ToString (), target.ToString ());
 					
-					progress_dialog.Message = System.String.Format (Mono.Posix.Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
+					progress_dialog.Message = System.String.Format (Mono.Posix.Catalog.GetString ("Transfering picture \"{0}\""), photo.Name);
 					progress_dialog.Fraction = photo_index / (double) selection.Photos.Length;
 					progress_dialog.ProgressText = System.String.Format (Mono.Posix.Catalog.GetString ("{0} of {1}"), 
 											     photo_index, selection.Photos.Length);
@@ -98,8 +100,10 @@ namespace FSpot {
 				if (result == Gnome.Vfs.Result.Ok) {
 					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Done Sending Photos");
 					progress_dialog.Fraction = 1.0;
-					progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Upload Complete");
+					progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Transfer Complete");
 					progress_dialog.ButtonLabel = Gtk.Stock.Ok;
+
+					Gnome.Url.Show (dest.ToString ());
 				} else {
 					progress_dialog.ProgressText = result.ToString ();
 					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Error While Transfering");
@@ -115,12 +119,9 @@ namespace FSpot {
 			progress_dialog.ProgressText = info.Phase.ToString ();
 
 			if (info.BytesTotal > 0) {
-				System.Console.WriteLine ("{0}%", info.BytesCopied / (double)info.BytesTotal);
 				progress_dialog.Fraction = info.BytesCopied / (double)info.BytesTotal;
 			}
 			
-			System.Console.WriteLine ("Progress: {0} {2} {1}", (info.BytesTotal + 1), info.Status.ToString (), info.BytesCopied);
-
 			switch (info.Status) {
 			case Gnome.Vfs.XferProgressStatus.Vfserror:
 				progress_dialog.Message = Mono.Posix.Catalog.GetString ("Error: Error while transfering, Aborting");
@@ -161,12 +162,13 @@ namespace FSpot {
 			}
 
 			dest = new Gnome.Vfs.Uri (uri_entry.Text);
+			open = open_check.Active;
 
 #if false
 			Upload ();
 #else 	
 			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Upload));
-			command_thread.Name = Mono.Posix.Catalog.GetString ("Uploading Pictures");
+			command_thread.Name = Mono.Posix.Catalog.GetString ("Transfering Pictures");
 			//command_thread.Start ();
 			progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Photos.Length);
 			progress_dialog.Start ();

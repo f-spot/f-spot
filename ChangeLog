@@ -1,5 +1,12 @@
 2005-01-11  Larry Ewing  <lewing@novell.com>
 
+	* src/f-spot.glade: add new check Items for VfsExport and
+	FlickrExport.
+
+	* src/VfsExport.cs: handle the open_check.
+
+	* src/FlickrExport.cs: handle the open_check.
+
 	* src/MainWindow.cs: add handler for timeline selector.
 
 	* src/f-spot.glade: add memonics to menu items add timeline view
