@@ -1,90 +1,339 @@
 A lot needs to be done before F-Spot is useful!  Here is a list of
 tasks for those who want to pick them up.
 
-Basic functionality:
+General:
+      * Switch the time sort order so that newest Items are first in the
+        display.  Always start scrolled to the most recent item.
+      * Store view settings for tags/dates/timeline.  The current order
+        and position just starts you looking out at the same old photos
+        every time.
+      * The current EXIF display is too EXIF specific and extremely
+        dull,  The layout needs to be redone and the the Items should be
+        ordered by relative importance.  A reduced view should replace
+        the current info box on the side panel.
+      * The info display should show all the metadata we know about at
+        any given time Currently this means it should also display XMP
+        chunks in jpegs.
+      * Add basic simple file management.  Integrate this with dragging
+        in the IconView to allow for moving between directories.
+      * Add a folder view pane that lets you see the layout of the
+        folders with images in them.
+      * Add click to tag mode in the tag assignment.  This should be act
+        like an editing mode where the cursor changes to an icon of the
+        tag and ever image you click gets that tag applied.
+      * Support for import/playing/tracking DCF sound files should be
+        added.  These files are recorded at the same time as the image
+        and named according to the digital camera file system
+        specification.
+      * Add a dbus service so that things like importing can be run
+        separately from the command line or another app and communicate
+        with a running f-spot.
 
-	- GPhoto (http://www.gphoto.org) integration.  It should be
-          possible to just plug the camera in and have F-Spot import
-          the pictures from it.  Additionally, it would be nice to
-          have support for the new Hardware Abstraction Layer
-          (http://ometer.com/hardware.html).  There is a patch in
-	  http://bugzilla.ximian.com/ that provides this but it has
-	  bitrotted a little and needs to be cleaned up.
+Searching:
+      * Add a simple text based search that looks at the tags and
+        comments.  This should simply be a new query in PhotoStore once
+        there is a UI to go with it. 
+      * Add a time range slider next to the text search to allow simple
+        limiting of the how far back to search remove the old time based
+        search.
+      * It might still be nice to do the Image 
 
-	- Search entry.  We need an entry where you can type something
-          and then the UI will update showing you all the pictures
-          that match.  (Probably the search should match the
-          description, the name, and the tags of each picture.)  The
-          search entry should probably be on the right side of the
-          main toolbar.
+Timeline:
+      * Apply the update patch in bugzilla that make the glass position
+        update when the Icon View scrolls.
+      * Fix the limits so that they don't scroll off screen but scroll
+        onto a resting zone instead.
+      * Use different image for the scroll buttons.  More UI tweaks to
+        improve appearance might also be in order.
 
-	- Web export.  We need a set of web templates and a command to
-          upload a webpage after the user has selected one of them.
-          Webpages can be uploaded using ssh: or ftp: with GNOME VFS.
+Image View:
+      * Add a histogram overlay. The current histogram can basically
+        work the way it is a slight widget wrapper.
+      * Change the selection display type to use the darkening effect
+        the gimp uses not the current XOR drawing.
+      * Garrett has done mock-ups of the full-screen mode that should be
+        analyzed and implemented.  They will probably end up using some
+        of the overlay support created for the the histogram and comment
+        work. 
 
-	- Web Exports: Option to upload scaled-down versions of the images.
+Editing:
+      * Move the current editing effects into the side pane and spit it
+        several into functional groups.  The Picassa interface appears
+        to be a good model to follow for the inline dialogs and it is
+        similar to how album works.  This will also allow us to leave
+        selection off in the PhotoView normally which will make Some
+        people happy.  Miguel has a proof of concept patch that starts
+        this process.
+      * Define an effects interface that plug-ins can implement and be
+        loaded into the new pane.
+      * Enhance the current color editor to allow for more control over
+        the adjustment curve.  LCMS supports creation of a lot more
+        complex abstract profiles than we are currently using.  Adding
+        something like shadow and highlight sliders should take a
+        relatively small amount of work.
+      * Add preset adjustment profiles for different lighting scenarios.
+        Daylight/Incandescent/Fluorescent etc.  I think it should be
+        possible to build the profile with some sliders then save it
+        with lcms to be loaded later as a preset.
+      * Add red eye removal effect.  There are a couple of fairly simple
+        algorithms floating around, for now it doesn't have to be
+        perfect it should just be implemented and can be improved later
+        as a plug-in.
+      * Add brightness/contrast auto-correction.  The gimp plug-ins are
+        a good source for this.  Pick some good ones and implment them
+        as pluggable effect.
+      * Photo stitching.  The application should recognize a set of
+        panorama pictures from a camera and allow to launch Panorama
+        Tools on them.  While the Panorama Tools are very advanced and
+        can  give very good results, the current Linux GUI for them
+        horrible, it would be nice if someone wrote a GTK+ front-end to
+        them...  http://www.path.unimelb.edu.au/~dersch/ the front-end
+        should try to figure out as much as possible from the image's
+        EXIF tags so that the user doesn't have to type in the lens type
+        etc. manually.
 
-	- Cope with images not being on the disk, and flag those as
-	  available offline (for central backup vs laptop display).
+General:
+      * Switch the time sort order so that newest Items are first in the
+        display.  Always start scrolled to the most recent item.
+      * Store view settings for tags/dates/timeline.  The current order
+        and position just starts you looking out at the same old photos
+        every time.
+      * The current EXIF display is too EXIF specific and extremely
+        dull,  The layout needs to be redone and the the Items should be
+        ordered by relative importance.  A reduced view should replace
+        the current info box on the side panel.
+      * The info display should show all the metadata we know about at
+        any given time Currently this means it should also display XMP
+        chunks in jpegs.
+      * Add basic simple file management.  Integrate this with dragging
+        in the IconView to allow for moving between directories.
+      * Add a folder view pane that lets you see the layout of the
+        folders with images in them.
+      * Add click to tag mode in the tag assignment.  This should be act
+        like an editing mode where the cursor changes to an icon of the
+        tag and ever image you click gets that tag applied.
+      * Support for import/playing/tracking DCF sound files should be
+        added.  These files are recorded at the same time as the image
+        and named according to the digital camera file system
+        specification.
+      * Add a dbus service so that things like importing can be run
+        separately from the command line or another app and communicate
+        with a running f-spot.
 
-	- Printing.  I know nothing about photo printing on Linux...
-          But we obviously need the ability to print.  Also, aside
-          from using a local printer, it should support ordering a
-          print from one of the various online printing services.  A
-          good starting point should be this:  http://gimp-print.sourceforge.net/
+Searching:
+      * Add a simple text based search that looks at the tags and
+        comments.  This should simply be a new query in PhotoStore once
+        there is a UI to go with it. 
+      * Add a time range slider next to the text search to allow simple
+        limiting of the how far back to search remove the old time based
+        search.
+      * It might still be nice to do the Image 
 
-	- Color coding for tags.  Each category should get a different
-          color and that color should be reflected in the tag icon.
-          See how Photoshop Album does it here:
+Timeline:
+      * Apply the update patch in bugzilla that make the glass position
+        update when the Icon View scrolls.
+      * Fix the limits so that they don't scroll off screen but scroll
+        onto a resting zone instead.
+      * Use different image for the scroll buttons.
 
-	  	http://www.dpreview.com/reviews/adobephotoshopalbum/images/tagviews.jpg
+Image View:
+      * Add a histogram overlay. The current histogram can basically
+        work the way it is a slight widget wrapper.
+      * The comment entry currently takes up too much space when it
+        isn't being used.  It should be made simple to show/hide it and
+        perhaps implemented as an overlay box.
+      * Change the selection display type to use the darkening effect
+        the gimp uses not the current XOR drawing.
+      * Garrett has done mock-ups of the full-screen mode that should be
+        analyzed and implemented.  They will probably end up using some
+        of the overlay support created for the the histogram and comment
+        work. 
 
-	  (See how "People" tags are yellow and "Places" tags are
-	  green.)
+Editing:
+      * Move the current editing effects into the side pane and spit it
+        several into functional groups.  The Picassa interface appears
+        to be a good model to follow for the inline dialogs and it is
+        similar to how album works.  This will also allow us to leave
+        selection off in the PhotoView normally which will make Some
+        people happy.  Miguel has a proof of concept patch that starts
+        this process.
+      * Define an effects interface that plug-ins can implement and be
+        loaded into the new pane.
+      * Enhance the current color editor to allow for more control over
+        the adjustment curve.  LCMS supports creation of a lot more
+        complex abstract profiles than we are currently using.  Adding
+        something like shadow and highlight sliders should take a
+        relatively small amount of work.
+      * Add preset adjustment profiles for different lighting scenarios.
+        Daylight/Incandescent/Fluorescent etc.  I think it should be
+        possible to build the profile with some sliders then save it
+        with lcms to be loaded later as a preset.
+      * Add red eye removal effect.  There are a couple of fairly simple
+        algorithms floating around, for now it doesn't have to be
+        perfect it should just be implemented and can be improved later
+        as a plug-in.
+      * Add brightness/contrast auto-correction.  The gimp plug-ins are
+        a good source for this.  Pick some good ones and implment them
+        as pluggable effects.
 
-	  Also we need those three different viewing modes for tags...
-	  Right now it just uses GtkTreeView but a custom widget might
-	  be better so we can lay large tags out as in that
-	  screenshot.
+Raw Photos: (this is broken down into a bit of a progression)
+      * Add basic support importing/tracking raw files along with normal
+        to the import code.  We need to make sure that even if we don't
+        yet let you do much with the raw file we at least copy it off of
+        the import source.
+      * Use one of the available raw parsers to to load the data and
+        convert it via lcms into something the current View code can
+        render.  This might have to start out in a separate dialog at
+        first then save the corrected version as a JPEG that we load
+        from that point on.
+      * Implement 16bit scaling code. Move the current Editing logic
+        from operating directly on pixbufs to operating on our own
+        internal object that supports deep images and pixbufs (and
+        metadata).  It should also be possible to clean up use of the
+        Pixbuf utility class here.
+      * Eventually it we should use the new image objects in a managed
+        replacement of the current image view and do color correction on
+        the fly in the image view code.  Hopefully we can count on it
+        being fast enough to do real time.
+      * Support loading and saving of 16bit png and tiff/DNF files. 
 
-	- Desaturation.  It should be possible to turn images into
-          B&W; a plus would be to let the user to select custom mixing
-          values for the R, G, B channels (e.g. say "I want 70% green,
-          20% red, 10% blue).
+Icon View:
+      * Add grouping display.  This can be based on the same information
+        the GroupSelector uses but it should be displayed as bar inline
+        in the IconView.
+      * Fix the icon cache to limit cache items based on size not count
+        since we are storing the thumbnails at the size we display them
+        now.  This should allow a much deeper cache smaller icon sizes
+        which will help them out significantly.
+      * Implement better Icon preloading.  The current code still spends
+        too much time loading images as the are exposed, not loading
+        them before.
 
-	- Automatic color enhancement and level adjustment.  the code
-          can probably be stolen from the GIMP (http://www.gimp.org)
+Import:
+      * Add the updated Imported from camera patch to the CVS tree,
+        either integrate libgphoto2# directly into f-spot or build a
+        separate patch that installs the assembly into the GAC.
+      * Fix the UI for both directory and camera import.  Allow the user
+        to specify A batch description, camera type, photographer and
+        copyright setting.  It would be nice to have An All rights
+        reserved and the various creative commons options there already.
+      * On initial startup do a search for all the images on the
+        machine, either using beagle or locate or simple directory
+        watching.
+      * Watch directories we've already imported from for new files
+        (using inotify?) and offer the ability to add them as they show
+        up.
 
-	- Red eye reduction.  You should be able to select a rectangle
-          and F-Spot would remove red eye effect from that area.
+Export:
+      * The current export dialogs have placeholders for scaling and tag
+        export.  These need to be hooked up now that the exif saving
+        works.
+      * Add a static html export template.  Tuomas has done a basic css
+        based version that should simple to implement and template. The
+        format gthumb uses should also be examined and possibly copied.
+      * Test the SUSE 9.3 gnome-vfs libs against f-spot's vfs bindings
+        make sure that the auth callbacks work, implement a gui handler
+        once they are.
+      * The export code should be broken down into modules and made
+        pluggable.
+      * All the export dialogs need save history about what directories
+        and accounts were used in the past and offer completion in then
+        entries.
 
-	- Context-sensitive menu:
+Metadata:
+      * Store all the operations we apply to an image in the image
+        metadata.  This includes export/import/editing.  This should
+        include a specification about what types we know about and
+        preferably be able to be serialized as RDF in an XMP file.
+      * Allow metadata export as XMP.  We should be able to save all the
+        metadata we are carrying as an XMP file externally and in the
+        JPEG.  The current save jpeg code can support saveing multiple
+        JPEG markers.
+      * Sync up the metadata description with whatever beagle decides to
+        standardize on.  Ideally we can attack the format along with the
+        beagle crew and standardize on how we describe the f-spot tuples
+        for import, export and editing.
+      * Cope with images no longer on disc using stored metadata and
+        beagle searches to replace missing images.  Prompt for CD
+        insertion, display web image, find files that were moved outside
+        of f-spot.
+      * Finish the managed tiff/EXIF parser.
 
-		Copy file location.
-		Delete file from library.
-		Move file.
+Raw Photos: (this is broken down into a bit of a progression)
+      * Add basic support importing/tracking raw files along with normal
+        import code.
+      * Use one of the available raw parsers to to load the data and
+        convert it via lcms into something the current View code can
+        render.  Save the new version as a jpeg that we load from that
+        point on.
+      * Implement 16bit scaling code. Move the current Editing logic
+        from operating directly on pixbufs to operating on our own
+        internal object that supports deep images and pixbufs.  We can
+        also clean up use of the Pixbuf utility class.
+      * Use the new image objects in a managed replacement of the
+        current image view and do color correction on the fly in the
+        image view code.  Hopefully we can count on it being fast enough
+        to do real time.
+      * Support 16bit png and tiff/DNF files. 
 
-	- Shortcuts:
-		Next page/prev page (PgDn and Space, PgUp and backspace)
-		Home: first image
-		End: last image
-			
-More fancy features:
+Icon View:
+      * Add grouping display.  This can be based on the same information
+        the GroupSelector uses but it should be displayed as bar inline
+        in the IconView.
+      * Fix the icon cache to limit cache items based on size not count
+        since we are storing the thumbnails at the size we display them
+        now.  This should allow a much deeper cache smaller icon sizes
+        which will help them out significantly.
+      * Implement better Icon preloading.  The current code still spends
+        too much time loading images as the are exposed, not loading
+        them before.
 
-	- Image-based searches.  In Photoshop Album you can look for
-          pictures similar to another one.  Also ImgSeek allows the
-          user to draw something on the screen and find pictures that
-          look similar to what the user drew; it would be really cool
-          to have something like this in F-Spot.  See
-          http://imgseek.sourceforge.net/
+Import:
+      * Add the updated Imported from camera patch to the CVS tree,
+        either integrate libgphoto2# directly into f-spot or build a
+        separate patch that installs the assembly into the GAC.
+      * Fix the UI for both directory and camera import.  Allow the user
+        to specify A batch description, camera type, photographer and
+        copyright setting.  It would be nice to have An All rights
+        reserved and the various creative commons options there already.
+      * On initial startup do a search for all the images on the
+        machine, either using beagle or locate or simple directory
+        watching.
+      * Watch directories we've already imported from for new files
+        (using inotify?) and offer the ability to add them as they show
+        up.
 
-  	- Photo stitching.  F-Spot should recognize a set of panorama
-          pictures from a camera and allow to launch Panorama Tools on
-          them.  While the Panorama Tools are very advanced and can
-          give very good results, the current Linux GUI for them is
-          horrible, it would be nice if someone wrote a GTK+ front-end
-          to them...  http://www.path.unimelb.edu.au/~dersch/
+Export:
+      * The current export dialogs have placeholders for scaling and tag
+        export.  These need to be hooked up now that the exif saving
+        works.
+      * Add a static html export template.  Tuomas has done a basic css
+        based version that should simple to implement and template. The
+        format gthumb uses should also be examined.
+      * Test the SUSE 9.3 gnome-vfs libs against f-spot's vfs bindings
+        make sure that the auth callbacks work, implement a gui handler
+        once they are.
+      * The export code should be broken down into modules and made
+        pluggable.
+      * All the export dialogs need save history about what directories
+        and accounts were used in the past and offer completion in then
+        entries.
 
-	  Of course the front-end should try to figure out as much as
-	  possible from the image's EXIF tags so that the user doesn't
-	  have to type in the lens type etc. manually.
+Metadata:
+      * Store all the operations we apply to an image in the image
+        metadata.  This includes export/import/editing.  This should
+        include a specification about what types we know about and
+        preferably be able to be serialized as RDF in an XMP file.
+      * Allow metadata export as XMP.  We should be able to save all the
+        metadata we are carrying as an XMP file externally and in the
+        JPEG.  The current save jpeg code can support saveing multiple
+        JPEG markers.
+      * Sync up the metadata description with whatever beagle decides to
+        standardize on.  Ideally we can attack the format along with the
+        beagle crew and standardize on how we describe the f-spot tuples
+        for import, export and editing.
+      * Cope with images no longer on disc using stored metadata and
+        beagle searches to replace missing images.  Prompt for CD
+        insertion, display web image, find files that were moved outside
+        of f-spot.
+      * Finish the managed tiff/EXIF parser.
