@@ -1,3 +1,8 @@
+2004-06-29  Larry Ewing  <lewing@ximian.com>
+
+	* src/PixbufLoader.cs: make the queue act in as last in first out
+	to speed up the icon view scrolling.
+
 2004-06-28  Larry Ewing  <lewing@ximian.com>
 
 	* src/f-spot.glade: rename delete menu item.

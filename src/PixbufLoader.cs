@@ -114,24 +114,20 @@ public class PixbufLoader {
 		/* Short circuit for JPEG files; use Alex Larsson's fast thumbnail
 		   code in that case.  FIXME: Should use gnome-vfs to determine the
 		   MIME type rather than just the extension.  */
-		if (request.path.ToLower().EndsWith (".jpg") || request.path.ToLower().EndsWith (".jpeg")) {
-			// FIXME: Because of bug #46101, this leaks:	
-			// Pixbuf scaled_image = JpegUtils.LoadScaled (request.path, size, size);
-			Pixbuf scaled_image;
 
-			try {
-				scaled_image = new Pixbuf (request.path);
-			} catch (GLib.GException ex) {
-				scaled_image = null;
-			}
-	
+#if USE_FASTPATH_THUMBS
+		if (request.path.ToLower().EndsWith (".jpg") || request.path.ToLower().EndsWith (".jpeg")) {
+			Pixbuf scaled_image = JpegUtils.LoadScaled (request.path, size, size);
+			
 			if (scaled_image != null) {
 				request.result = scaled_image;
 				return;
 			}
-
+			
 			/* If this fails, just use Pixbuf.  */
+			scaled_image.Dispose ();
 		}
+#endif
 
 		Pixbuf orig_image;
 		try {
@@ -153,6 +149,7 @@ public class PixbufLoader {
 			int height = PixbufUtils.ComputeScaledHeight (orig_image, size);
 
 			request.result = orig_image.ScaleSimple ((int) width, (int) height, InterpType.Nearest);
+			orig_image.Dispose ();
 		}
 	}
 
@@ -176,7 +173,7 @@ public class PixbufLoader {
 
 		/* New request, just put it on the queue with the right order.  */
 		RequestItem new_request = new RequestItem (path, order);
-
+#if ORDERED_QUEUE
 		if (queue.Count == 0 || (queue [queue.Count - 1] as RequestItem).order <= new_request.order) {
 			queue.Add (new_request);
 		} else {
@@ -190,7 +187,9 @@ public class PixbufLoader {
 				i ++;
 			}
 		}
-
+#else
+		queue.Add (new_request);
+#endif
 		requests_by_path.Add (path, new_request);
 		return true;
 	}
