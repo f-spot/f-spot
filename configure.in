@@ -65,7 +65,7 @@ AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
 dnl Intl
-ALL_LINGUAS="az bg ca cs da de en_CA en_GB es eu fi fr hr hu is ja ko nl no pl pt pt_BR sr sr@Latn sv"
+ALL_LINGUAS="es"
 GETTEXT_PACKAGE=f-spot
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package])
@@ -79,6 +79,7 @@ libeog/Makefile
 libeog/cursors/Makefile
 libjpegtran/Makefile
 libfspot/Makefile
+po/Makefile.in
 src/makefile
 f-spot.spec
 ])

@@ -3,7 +3,8 @@ SUBDIRS = 		\
 	libeog		\
 	libjpegtran	\
 	libfspot	\
-	src
+	po		\
+	src	
 
 CLEANFILES =			\
 	intltool-extract	\

@@ -1,0 +1,318 @@
+# traducción de es.po al Spanish
+# translation of es.po to Spanish
+# Spanish translation of muine
+# Copyright (C) 2004 muine's COPYRIGHT HOLDER
+# Copyright (C) 2004 Sergio Rubio <sergio.rubio@hispalinux.es>
+# This file is distributed under the same license as the PACKAGE package.
+# Sergio Rubio <sergio.rubio@hispalinux.es>, 2004.
+# Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2004.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: es\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-08-29 10:36-0500\n"
+"PO-Revision-Date: 2004-08-29 11:51-0500\n"
+"Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
+"Language-Team: Spanish <traductores@es.gnome.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.3.1\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+
+#: src/f-spot.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: src/f-spot.glade.h:2
+msgid "<b>End Date</b>"
+msgstr ""
+
+#: src/f-spot.glade.h:3
+msgid "<b>Start Date</b>"
+msgstr ""
+
+#: src/f-spot.glade.h:4
+msgid "<small> </small>"
+msgstr ""
+
+#: src/f-spot.glade.h:5
+msgid "<small></small>"
+msgstr ""
+
+#: src/f-spot.glade.h:6
+#, fuzzy
+msgid "Album:"
+msgstr "Reproducir álbum"
+
+#: src/f-spot.glade.h:7
+msgid "Arranged By"
+msgstr ""
+
+#: src/f-spot.glade.h:8
+msgid "Attach Tag To Selection"
+msgstr ""
+
+#: src/f-spot.glade.h:9
+msgid "Browse"
+msgstr ""
+
+#: src/f-spot.glade.h:10
+msgid "CD"
+msgstr ""
+
+#: src/f-spot.glade.h:11
+msgid "Cancel"
+msgstr ""
+
+#: src/f-spot.glade.h:12
+msgid "Category:"
+msgstr ""
+
+#: src/f-spot.glade.h:13
+msgid "Close"
+msgstr ""
+
+#: src/f-spot.glade.h:14
+msgid "Create New Category"
+msgstr ""
+
+#: src/f-spot.glade.h:15
+msgid "Create New Tag"
+msgstr ""
+
+#: src/f-spot.glade.h:16
+msgid "Create new version"
+msgstr ""
+
+#: src/f-spot.glade.h:17
+msgid "Delete Selected Tag"
+msgstr ""
+
+#: src/f-spot.glade.h:18
+msgid "Delete Version"
+msgstr ""
+
+#: src/f-spot.glade.h:19
+msgid "Directory"
+msgstr ""
+
+#: src/f-spot.glade.h:20
+msgid "Edit Selected Tag"
+msgstr ""
+
+#: src/f-spot.glade.h:21
+msgid "Edit Tag Icon"
+msgstr ""
+
+#: src/f-spot.glade.h:22
+msgid "Export"
+msgstr ""
+
+#: src/f-spot.glade.h:23
+msgid "File"
+msgstr ""
+
+#: src/f-spot.glade.h:24
+msgid "Fin_d"
+msgstr ""
+
+#: src/f-spot.glade.h:25
+msgid "Find by _Tag"
+msgstr ""
+
+#: src/f-spot.glade.h:26
+msgid "Fullscreen"
+msgstr ""
+
+#: src/f-spot.glade.h:27
+msgid "Gallery"
+msgstr ""
+
+#: src/f-spot.glade.h:28
+msgid "Gallery Settings"
+msgstr ""
+
+#: src/f-spot.glade.h:29
+msgid "Icon:"
+msgstr ""
+
+#: src/f-spot.glade.h:30
+msgid "Image"
+msgstr ""
+
+#: src/f-spot.glade.h:31
+msgid "Month"
+msgstr ""
+
+#: src/f-spot.glade.h:32
+#, fuzzy
+msgid "Next"
+msgstr "_Siguiente"
+
+#: src/f-spot.glade.h:33
+msgid "OK"
+msgstr ""
+
+#: src/f-spot.glade.h:34
+msgid "Password:"
+msgstr ""
+
+#: src/f-spot.glade.h:35
+#, fuzzy
+msgid "Pause"
+msgstr "_Pausar"
+
+#: src/f-spot.glade.h:36
+msgid "Photo 0 of 0"
+msgstr ""
+
+#: src/f-spot.glade.h:37
+#, fuzzy
+msgid "Previous"
+msgstr "_Anterior"
+
+#: src/f-spot.glade.h:38
+msgid "Print"
+msgstr ""
+
+#: src/f-spot.glade.h:39
+#, fuzzy
+msgid "Rem_ove Tag"
+msgstr "_Eliminar canción"
+
+#: src/f-spot.glade.h:40
+msgid "Remove Tag From Selection"
+msgstr ""
+
+#: src/f-spot.glade.h:41
+msgid "Rename Version"
+msgstr ""
+
+#: src/f-spot.glade.h:42
+msgid "Rotate Left"
+msgstr ""
+
+#: src/f-spot.glade.h:43
+msgid "Rotate Right"
+msgstr ""
+
+#: src/f-spot.glade.h:44
+msgid "Select All"
+msgstr ""
+
+#: src/f-spot.glade.h:45
+msgid "Select None"
+msgstr ""
+
+#: src/f-spot.glade.h:46
+msgid "Send _Mail"
+msgstr ""
+
+#: src/f-spot.glade.h:47
+msgid "Set _Date Range"
+msgstr ""
+
+#: src/f-spot.glade.h:48
+msgid "Set as Background"
+msgstr ""
+
+#: src/f-spot.glade.h:49
+msgid "Size"
+msgstr ""
+
+#: src/f-spot.glade.h:50
+msgid "SlideShow"
+msgstr ""
+
+#: src/f-spot.glade.h:51
+msgid "Tag name:"
+msgstr ""
+
+#: src/f-spot.glade.h:52
+msgid "Tags"
+msgstr ""
+
+#: src/f-spot.glade.h:53
+msgid "Update Thumbnail"
+msgstr ""
+
+#: src/f-spot.glade.h:54
+msgid "Url:"
+msgstr ""
+
+#: src/f-spot.glade.h:55
+msgid "User_name:"
+msgstr ""
+
+#: src/f-spot.glade.h:56
+msgid "Username:"
+msgstr ""
+
+#: src/f-spot.glade.h:57
+msgid "View"
+msgstr ""
+
+#: src/f-spot.glade.h:58
+msgid "Zoom In"
+msgstr ""
+
+#: src/f-spot.glade.h:59
+msgid "Zoom _Out"
+msgstr ""
+
+#: src/f-spot.glade.h:60
+msgid "_Attach Tag"
+msgstr ""
+
+#: src/f-spot.glade.h:61
+msgid "_Clear Date Range"
+msgstr ""
+
+#: src/f-spot.glade.h:62
+msgid "_Delete from Drive"
+msgstr ""
+
+#: src/f-spot.glade.h:63
+msgid "_Gallery Name:"
+msgstr ""
+
+#: src/f-spot.glade.h:64
+#, fuzzy
+msgid "_Import"
+msgstr "Importar carpeta"
+
+#: src/f-spot.glade.h:65
+msgid "_Large"
+msgstr ""
+
+#: src/f-spot.glade.h:66
+msgid "_Medium"
+msgstr ""
+
+#: src/f-spot.glade.h:67
+msgid "_Password:"
+msgstr ""
+
+#: src/f-spot.glade.h:68
+#, fuzzy
+msgid "_Remove From Catalog"
+msgstr "_Eliminar canción"
+
+#: src/f-spot.glade.h:69
+msgid "_Small"
+msgstr ""
+
+#: src/f-spot.glade.h:70
+msgid "_Url:"
+msgstr ""
+
+#: src/f-spot.glade.h:71
+#, fuzzy
+msgid "_Version"
+msgstr "Pregunta"
+
+#: src/f-spot.glade.h:72
+msgid "dialog1"
+msgstr ""
