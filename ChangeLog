@@ -1,3 +1,24 @@
+2004-02-06  Larry Ewing  <lewing@ximian.com>
+
+	* src/IconView.cs: Clear selection when the query changes.
+	
+	* src/RotateCommand.cs: reformat slightly.
+
+	* src/SlideView.cs: remove uneeded break that mcs complains about
+	now.
+
+	* src/makefile.am (F_SPOT_CSFILES): add ThumbnailCommand.cs.  Fix
+	f-spot rule.
+
+	* src/f-spot.glade: add new menu items.
+
+	* src/MainWindow.cs: Add handler for deleting selected pictures
+	from the catalog and for thumbnailing.  Use new thumbnail command
+	for thumbnailing.  Add the start of a print command.
+
+	* src/ThumbnailCommand.cs: add a thumbnailing command.
+	
+
 2004-01-30  Larry Ewing  <lewing@ximian.com>
 
 	* src/SlideView.cs: Add another timer loop for the display

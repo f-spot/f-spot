@@ -185,7 +185,6 @@ public class SlideView : Gtk.Image {
 		default:
 			tween_idle = 0;
 			return false;
-			break;
 		}
 
 		current_tween++;

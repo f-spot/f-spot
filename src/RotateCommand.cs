@@ -18,14 +18,12 @@ public class RotateCommand {
 
 	public bool Execute (Direction direction, Photo [] photos)
 	{
-		ProgressDialog progress_dialog;
-
-		if (photos.Length <= 1) {
-			progress_dialog = null;
-		} else {
+		ProgressDialog progress_dialog = null;
+		
+		if (photos.Length > 1) {
 			progress_dialog = new ProgressDialog ("Rotating pictures",
-									     ProgressDialog.CancelButtonType.Stop,
-									     photos.Length, parent_window);
+							      ProgressDialog.CancelButtonType.Stop,
+							      photos.Length, parent_window);
 		}
 
 		int count = 0;

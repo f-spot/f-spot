@@ -289,7 +289,7 @@ public class PhotoView : EventBox {
 						    width, height);
 
 		original_pixbuf.CopyArea (x, y, width, height, cropped_pixbuf, 0, 0);
-
+		
 		image_view.Pixbuf = cropped_pixbuf;
 
 		// FIXME the fact that the selection doesn't go away is a bug in ImageView, it should
@@ -310,7 +310,9 @@ public class PhotoView : EventBox {
 			PhotoChanged (this);
 	}
 
-
+	private void HandleUnsharpButtonClicked (object sender, EventArgs args) {
+		image_view.Pixbuf = PixbufUtils.UnsharpMask (image_view.Pixbuf, 6, 2, 0);
+	}	
 	// Constructor.
 
 	private class ToolbarButton : Button {
@@ -349,8 +351,15 @@ public class PhotoView : EventBox {
 		Gtk.Image crop_button_icon = new Gtk.Image ("f-spot-crop", IconSize.Button);
 		crop_button.Add (crop_button_icon);
 		toolbar_hbox.PackStart (crop_button, false, true, 0);
-
+	
 		crop_button.Clicked += new EventHandler (HandleCropButtonClicked);
+
+		Button unsharp_button = new ToolbarButton ();
+		Gtk.Image unsharp_button_icon = new Gtk.Image ("f-spot-crop", IconSize.Button);
+		unsharp_button.Add (unsharp_button_icon);
+		toolbar_hbox.PackStart (unsharp_button, false, true, 0);
+	
+		unsharp_button.Clicked += new EventHandler (HandleUnsharpButtonClicked);
 
 		toolbar_hbox.PackStart (new EventBox (), true, true, 0);
 

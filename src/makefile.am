@@ -40,6 +40,7 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/TagStore.cs			\
 	$(srcdir)/TimelineSelectorWidget.cs	\
 	$(srcdir)/ThumbnailCache.cs		\
+	$(srcdir)/ThumbnailCommand.cs		\
 	$(srcdir)/ZoomUtils.cs			\
 	$(srcdir)/main.cs
 
@@ -79,7 +80,7 @@ install-data-local: f-spot.exe
 bin_SCRIPTS = f-spot
 
 f-spot: f-spot.in
-	sed -e "s|\@prefix\@|$(prefix)|" < f-spot.in > f-spot
+	sed -e "s|\@prefix\@|$(prefix)|" < $(srcdir)/f-spot.in > f-spot
 
 EXTRA_DIST =					\
 	$(F_SPOT_CSFILES)			\

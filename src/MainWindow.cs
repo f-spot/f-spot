@@ -2,8 +2,11 @@ using Gdk;
 using Gtk;
 using GtkSharp;
 using Glade;
+using Gnome;
 using System;
+
 using System.Collections;
+using System.Runtime.InteropServices;
 
 public class MainWindow {
 	Db db;
@@ -78,6 +81,16 @@ public class MainWindow {
 	//
 	// Commands
 	//
+	private Photo [] SelectedPhotos (int [] selected_ids) {
+		Photo [] photo_list = new Photo [icon_view.Selection.Length];
+	
+		int i = 0;
+		foreach (int num in icon_view.Selection)
+			photo_list [i ++] = query.Photos [num];
+		
+		return photo_list;
+	}
+
 	private void RotateSelectedPictures (RotateCommand.Direction direction)
 	{
 		RotateCommand command = new RotateCommand (window1);
@@ -85,14 +98,10 @@ public class MainWindow {
 		switch (mode) {
 		case ModeType.IconView:
 			if (query.Photos.Length != 0) {
-				Photo [] photo_list = new Photo [icon_view.Selection.Length];
+				int [] selected_ids = icon_view.Selection;
 
-				int i = 0;
-				foreach (int num in icon_view.Selection)
-					photo_list [i ++] = query.Photos [num];
-
-				if (command.Execute (direction, photo_list)) {
-					foreach (int num in icon_view.Selection)
+				if (command.Execute (direction, SelectedPhotos (selected_ids))) {
+					foreach (int num in selected_ids)
 						icon_view.UpdateThumbnail (num);
 				}
 			}
@@ -132,7 +141,6 @@ public class MainWindow {
 		SwitchToPhotoViewMode (clicked_item);
 	}
 
-
 	// PhotoView events.
 
 	void HandlePhotoViewPhotoChanged (PhotoView sender)
@@ -159,6 +167,48 @@ public class MainWindow {
 		command.ImportFromFile (db.Photos);
 		UpdateQuery ();
 	}
+
+	unsafe void HandlePrintCommand (object sender, EventArgs e)
+	{
+		PrintJob pj = new PrintJob (PrintConfig.Default ());
+		PrintDialog dialog = new PrintDialog (pj, "Print Images", 0);
+		int response = dialog.Run ();
+
+		Console.WriteLine ("response: " + response);
+
+		if (response == (int) PrintButtons.Cancel) {
+			dialog.Destroy ();
+		}
+
+		PrintContext ctx = pj.Context;
+		
+		Print.Beginpage (ctx, "Test");
+		
+		Pixbuf image  = new Pixbuf (query.Photos[0].DefaultVersionPath);
+
+		Print.Moveto (ctx, 100, 100);
+		Print.Gsave (ctx);
+		Print.Translate (ctx, 100, 100);
+		Print.Scale (ctx, 100, 100);
+		//Print.Pixbuf (ctx, image);
+		Print.Grestore (ctx);
+
+		Print.Show (ctx, "testing");
+		Print.Showpage (ctx);
+		
+		pj.Close ();
+
+		switch (response) {
+		case (int) PrintButtons.Print:
+			pj.Print ();
+			break;
+		case (int) PrintButtons.Preview:
+			new PrintJobPreview (pj, "Testing").Show ();
+			break;
+		}
+
+		dialog.Destroy ();
+	}	
 
 	void HandleCloseCommand (object sender, EventArgs e)
 	{
@@ -293,27 +343,66 @@ public class MainWindow {
 
 	void HandleViewSlideShow (object sender, EventArgs args)
 	{
+#if true
 		Gtk.Window win = new Gtk.Window ("this is a test");
-	
 		win.SetSizeRequest (640, 480);
-	        SlideView slideview = new SlideView (query.Photos);
-		
+		SlideView slideview = new SlideView (query.Photos);
+
 		win.Add (slideview);
 		win.ShowAll ();
 		slideview.Play ();
-		
+#else
+		SlideCommands.Create command = new SlideCommands.Create (query.Photos);
+		command.Execute ();
+#endif
 	}
 	
-	// Toolbar commands.
+        void HandleDeleteCommand (object sender, EventArgs args)
+        {
+		foreach (int num in icon_view.Selection) {
+			Photo photo = query.Photos [num];
+			
+			db.Photos.Remove (photo);
+		}
+		UpdateQuery ();
+	}
 
-	void HandleRotate90ToolbarButtonClicked (object sender, EventArgs args)
+	void HandleSelectAllCommand (object sender, EventArgs args)
+	{
+
+	}
+
+	void HandleSelectNoneCommand (object sender, EventArgs args)
+	{
+
+	}
+	
+	void HandleDeleteSelectedTagCommand (object sender, EventArgs args)
+	{
+		
+	}
+
+	void HandleUpdateThumbnailCommand (object sende, EventArgs args)
+	{
+		if (mode != ModeType.IconView)
+			return;
+
+		ThumbnailCommand command = new ThumbnailCommand (window1);
+		int [] selected_ids = icon_view.Selection;
+
+		if (command.Execute (SelectedPhotos (selected_ids))) {
+			foreach (int num in selected_ids)
+				icon_view.UpdateThumbnail (num);
+		}
+	}
+
+	void HandleRotate90Command (object sender, EventArgs args)
 	{
 		RotateSelectedPictures (RotateCommand.Direction.Clockwise);
 	}
 
-	void HandleRotate270ToolbarButtonClicked (object sender, EventArgs args)
+	void HandleRotate270Command (object sender, EventArgs args)
 	{
-	        Console.Write ("hello");
 		RotateSelectedPictures (RotateCommand.Direction.Counterclockwise);
 	}
 

@@ -5,9 +5,13 @@ SUBDIRS = 		\
 	libfspot	\
 	src
 
+CLEANFILES =			\
+	intltool-extract	\
+	intltool-update		\
+	intltool-merge
+
 EXTRA_DIST =			\
 	MAINTAINERS		\
-	config.rpath 		\
 	intltool-extract.in	\
 	intltool-merge.in	\
 	intltool-update.in
