@@ -1,5 +1,8 @@
 2005-02-14  Larry Ewing  <lewing@novell.com>
 
+	* libgphoto2-sharp/: Import my changes to Ewen's gphoto bindings
+	directly into the source for now.  Don't hook it into the build yet.
+	
 	* libfspot/f-jpeg-utils.c: always initialize the error_string to
 	null.
 
