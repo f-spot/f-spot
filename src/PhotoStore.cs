@@ -595,6 +595,79 @@ public class PhotoStore : DbStore {
 		return photo;
 	}
 
+	public Photo GetByPath (string path)
+	{
+		//FIXME - No cacheing here - probably not a problem since
+		//        this is only used for DND
+
+		Photo photo = null;
+		SqliteCommand command = new SqliteCommand ();
+		command.Connection = Connection;
+
+		string directory_path = System.IO.Path.GetDirectoryName (path);
+		string filename = System.IO.Path.GetFileName (path);
+
+		directory_path = directory_path.Trim();
+		filename = filename.Trim();
+		command.CommandText = String.Format ("SELECT id,                                   " +
+				                     "       time,                                 " +
+						     "       description,                          " +
+						     "       default_version_id                    " +
+						     "  FROM photos                                " +
+						     " WHERE directory_path = \"{0}\"              " +
+						     "   AND name = \"{1}\"                        ",
+						     directory_path,
+						     filename);
+
+		SqliteDataReader reader = command.ExecuteReader ();
+
+		if (reader.Read ()) {
+			photo = new Photo (Convert.ToUInt32 (reader [0]),
+					   Convert.ToUInt32 (reader [1]),
+					   directory_path,
+					   filename);
+
+			photo.Description = reader[2].ToString ();
+			photo.DefaultVersionId = Convert.ToUInt32 (reader[3]);
+			AddToCache (photo);
+		}
+
+		command.Dispose ();
+
+		if (photo == null)
+			return null;
+
+		uint id = Convert.ToUInt32 (reader [0]);
+		command = new SqliteCommand ();
+		command.Connection = Connection;
+		command.CommandText = String.Format ("SELECT tag_id FROM photo_tags WHERE photo_id = {0}", id);
+		reader = command.ExecuteReader ();
+
+		while (reader.Read ()) {
+			uint tag_id = Convert.ToUInt32 (reader [0]);
+			Tag tag = tag_store.Get (tag_id) as Tag;
+			photo.AddTagUnsafely (tag);
+		}
+
+		command.Dispose ();
+
+		command = new SqliteCommand ();
+		command.Connection = Connection;
+		command.CommandText = String.Format ("SELECT version_id, name FROM photo_versions WHERE photo_id = {0}", id);
+		reader = command.ExecuteReader ();
+
+		while (reader.Read ()) {
+			uint version_id = Convert.ToUInt32 (reader [0]);
+			string name = reader[1].ToString ();
+
+			photo.AddVersionUnsafely (version_id, name);
+		}
+
+		command.Dispose ();
+
+		return photo;
+	}
+
 	public void Remove (Tag []tags)
 	{
 		Photo [] photos = Query (tags);	
