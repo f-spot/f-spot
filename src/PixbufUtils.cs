@@ -2,6 +2,7 @@ using Gdk;
 using System.Collections;
 using System.Runtime.InteropServices;
 using System;
+using System.IO;
 
 class PixbufUtils {
 
@@ -61,6 +62,53 @@ class PixbufUtils {
 
 	// FIXME: These should be in GTK#.  When my patch is committed, these LoadFrom* methods will
 	// go away.
+
+	public class AspectLoader : Gdk.PixbufLoader {
+		int max_width;
+		int max_height;
+
+		public AspectLoader (int max_width, int max_height) 
+		{
+			this.max_height = max_height;
+			this.max_width = max_width;
+			SizePrepared += HandleSizePrepared;
+		}
+		
+		private void HandleSizePrepared (object obj, SizePreparedArgs args)
+		{
+			double scale = Math.Min (max_width / (double)args.Width, max_height / (double)args.Height);
+			
+			int scale_width = (int)(scale * args.Width);
+			int scale_height = (int)(scale * args.Height);
+
+			SetSize (scale_width, scale_height);
+		}
+		
+		public Pixbuf LoadFromFile (string path)
+		{
+			FileStream fs;
+			try {
+				fs = File.OpenRead (path);
+			} catch (Exception e) {
+				return null;
+			}
+
+			int count;
+			
+			byte [] data = new byte [8192];
+			while (((count = fs.Read (data, 0, 8192)) > 0) && this.Write (data, (uint)count))
+				;
+			
+			this.Close ();
+			return this.Pixbuf;
+		}
+	}
+
+	static public Pixbuf LoadAtMaxSize (string path, int max_width, int max_height)
+	{
+		PixbufUtils.AspectLoader loader = new AspectLoader (max_width, max_height);
+		return loader.LoadFromFile (path);
+	}
 
 	static private Pixbuf LoadFromStream (System.IO.Stream input)
 	{

@@ -1,5 +1,7 @@
 2004-06-09  Larry Ewing  <lewing@ximian.com>
 
+	* src/PixbufUtils.cs: add AspectLoader and LoadAtMaxSize.
+
 	* src/PhotoStore.cs: add a method to remove all versions, Make
 	generate thumbnail use the ThumnailFactory.Save now that it
 	exists.
