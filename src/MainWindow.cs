@@ -857,7 +857,7 @@ public class MainWindow {
 			HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
 								    MessageType.Error, ButtonsType.Ok, 
 								    Mono.Posix.Catalog.GetString ("Error connecting to camera"),
-								    String.Format (Mono.Posix.Catalog.GetString ("Recieved error \"{0}\" while connecting to camera"), 
+								    String.Format (Mono.Posix.Catalog.GetString ("Received error \"{0}\" while connecting to camera"), 
 										   ge.Message));
 			md.Run ();
 			md.Destroy ();
@@ -1424,12 +1424,12 @@ public class MainWindow {
 	public void HandleRemoveCommand (object sender, EventArgs args)
 	{
    		Photo[] photos = SelectedPhotos();
-   		string header = Mono.Posix.Catalog.GetPluralString ("Remove the selected photo from the catalog?",
-								 "Remove the {0} selected photos from the catalog?", 
+   		string header = Mono.Posix.Catalog.GetPluralString ("Remove the selected photo from F-Spot?",
+								 "Remove the {0} selected photos from F-Spot?", 
 								 photos.Length);
 
 		header = String.Format (header, photos.Length);
-		string msg = Mono.Posix.Catalog.GetString("If you remove photos from the catalog all tag information will be lost. The photos remain on your computer and can be imported into f-spot again.");
+		string msg = Mono.Posix.Catalog.GetString("If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again.");
 		string ok_caption = Mono.Posix.Catalog.GetString("_Remove from Catalog");
 		if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(main_window, DialogFlags.DestroyWithParent, MessageType.Warning, header, msg, ok_caption)) {                              
 			foreach (Photo photo in photos) {
