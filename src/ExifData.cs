@@ -407,7 +407,6 @@ public class ExifData : IDisposable {
 		result = new DateTime (Int32.Parse(dt_data[0]), Int32.Parse(dt_data[1]), Int32.Parse(dt_data[2]),
 				       Int32.Parse(dt_data[3]), Int32.Parse(dt_data[4]), Int32.Parse(dt_data[5]));
 
-		Console.WriteLine ("parsed {0} as {1}", dt, result);
 		return result;
 	}
 
