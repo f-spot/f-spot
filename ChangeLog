@@ -1,5 +1,9 @@
 2004-12-09  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: kill UpdateViews use query.MarkChanged for
+	now.  Notification needs to be moved down to the photo store level
+	(or perhaps dbitem).
+
 	* src/FullScreenView.cs: add a PhotoPopup as a right click item.
 	
 	* src/MainWindow.cs: hack in fsview notification in a few more

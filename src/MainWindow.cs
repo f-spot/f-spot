@@ -312,18 +312,6 @@ public class MainWindow {
 		if (fsview != null)
 			fsview.View.Reload ();
 	}
-
-	private void UpdateViews (int num)
-	{
-		
-		icon_view.UpdateThumbnail (num);
-		if (num == photo_view.CurrentPhoto)
-			photo_view.Reload ();
-		if (fsview != null && num == fsview.View.CurrentPhoto)
-			fsview.View.Reload ();
-		info_box.Update ();
-		UpdateMenus ();
-	}
 		
 	//
 	// Commands
@@ -337,7 +325,7 @@ public class MainWindow {
 		int [] selected_ids = SelectedIds ();
 		if (command.Execute (direction, SelectedPhotos (selected_ids))) {
 			foreach (int num in selected_ids)
-				UpdateViews (num);
+				query.MarkChanged (num);
 		}
 	}
 
@@ -889,7 +877,7 @@ public class MainWindow {
 		PhotoVersionCommands.Create cmd = new PhotoVersionCommands.Create ();
 
 		if (cmd.Execute (db.Photos, CurrentPhoto, main_window)) {
-			UpdateViews (ActiveIndex ());
+			query.MarkChanged (ActiveIndex ());
 		}
 	}
 
@@ -898,7 +886,7 @@ public class MainWindow {
 		PhotoVersionCommands.Delete cmd = new PhotoVersionCommands.Delete ();
 
 		if (cmd.Execute (db.Photos, CurrentPhoto, main_window)) {
-			UpdateViews (ActiveIndex ());
+			query.MarkChanged (ActiveIndex ());
 		}
 	}
 
@@ -922,7 +910,7 @@ public class MainWindow {
 		PhotoVersionCommands.Rename cmd = new PhotoVersionCommands.Rename ();
 
 		if (cmd.Execute (db.Photos, CurrentPhoto, main_window)) {
-			UpdateViews (ActiveIndex ());
+			query.MarkChanged (ActiveIndex ());
 		}
 	}
 
@@ -1209,7 +1197,7 @@ public class MainWindow {
 		int [] selected_ids = SelectedIds ();
 		if (command.Execute (SelectedPhotos (selected_ids))) {
 			foreach (int num in selected_ids)
-				UpdateViews (num);
+				query.MarkChanged (num);
 		}
 	}
 
@@ -1281,7 +1269,6 @@ public class MainWindow {
 		int active = ActiveIndex ();
 
 		query.Commit (active);
-		UpdateViews (active);
 	}
 
 	void HandleVersionIdChanged (PhotoVersionMenu menu)
