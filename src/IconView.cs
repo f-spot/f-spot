@@ -648,11 +648,7 @@ public class IconView : Gtk.Layout {
 					 cells_per_row - start_cell_column);
 
 		int i, cell_num;
-
-		// Preload the cache with images aroud the expose area
-		// FIXME the preload need to be tuned to the Cache size but this is a resonable start
-		//Scroll ();
-		//Preload (area, 4);
+		//Preload (area, false);
 
 		for (i = 0, cell_num = start_cell_num;
 		     i < num_rows && cell_num < collection.Items.Length;
@@ -699,43 +695,55 @@ public class IconView : Gtk.Layout {
 
 		Gdk.Rectangle area;
 
-		//System.Console.WriteLine ("step ({0}, {1}) allocation ({2}, {3})", xstep, ystep, Allocation.Width, Allocation.Height);
-		Gdk.Region region = new Gdk.Region ();
-		Gdk.Region sub = new Gdk.Region ();
+		Gdk.Region offscreen = new Gdk.Region ();
+		/*
+		System.Console.WriteLine ("step ({0}, {1}) allocation ({2},{3},{4},{5})", 
+					  xstep, ystep, Hadjustment.Value, Vadjustment.Value, 
+					  Allocation.Width, Allocation.Height);
+		*/
 		/*		
 		area = new Gdk.Rectangle (Math.Max ((int) (Hadjustment.Value + 4 * xstep), 0),  
 					  Math.Max ((int) (Vadjustment.Value + 4 * ystep), 0),
 					  Allocation.Width,
 					  Allocation.Height);
-		region.UnionWithRect (area);
+		offscreen.UnionWithRect (area);
 		area = new Gdk.Rectangle (Math.Max ((int) (Hadjustment.Value + 3 * xstep), 0),  
 					  Math.Max ((int) (Vadjustment.Value + 3 * ystep), 0),
 					  Allocation.Width,
 					  Allocation.Height);
-		region.UnionWithRect (area);
+		offscreen.UnionWithRect (area);
 		*/
 		area = new Gdk.Rectangle (Math.Max ((int) (Hadjustment.Value + 2 * xstep), 0),  
 					  Math.Max ((int) (Vadjustment.Value + 2 * ystep), 0),
 					  Allocation.Width,
 					  Allocation.Height);
-		region.UnionWithRect (area);
+		offscreen.UnionWithRect (area);
 		area = new Gdk.Rectangle (Math.Max ((int) (Hadjustment.Value + xstep), 0),  
 					  Math.Max ((int) (Vadjustment.Value + ystep), 0),
 					  Allocation.Width,
 					  Allocation.Height);		
-		region.UnionWithRect (area);
+		offscreen.UnionWithRect (area);
 		area = new Gdk.Rectangle ((int) Hadjustment.Value, 
 					  (int) Vadjustment.Value,
 					  Allocation.Width,
 					  Allocation.Height);
-		region.UnionWithRect (area);
-		PreloadRegion (region, ystep);
-		region.Destroy ();
+
+		// always load the onscreen area last to make sure it
+		// is first in the loading
+		Gdk.Region onscreen = Gdk.Region.Rectangle (area);
+		offscreen.Subtract (onscreen);
+
+		PreloadRegion (offscreen, ystep);
+		offscreen.Destroy ();
+		//PreloadRegion (onscreen, ystep);
+		Preload (area, false);
+		onscreen.Destroy ();
+
 		y_offset = (int) Vadjustment.Value;
 		x_offset = (int) Hadjustment.Value;
 	}
 	
-        void PreloadRegion (Gdk.Region region, int step)
+        private void PreloadRegion (Gdk.Region region, int step)
 	{
 		Gdk.Rectangle [] rects = region.GetRectangles ();
 		
@@ -743,8 +751,7 @@ public class IconView : Gtk.Layout {
 			System.Array.Reverse (rects);
 
 		foreach (Gdk.Rectangle preload in rects) {
-			//System.Console.WriteLine ("area {0}", preload.ToString ());
-			Preload (preload, step < 0);
+			Preload (preload, false);
 		}
 	}
 
@@ -756,9 +763,6 @@ public class IconView : Gtk.Layout {
 		int start_cell_column = Math.Max ((area.X - BORDER_SIZE) / cell_width, 0);
 		int start_cell_row = Math.Max ((area.Y - BORDER_SIZE) / cell_height, 0);
 		int start_cell_num = start_cell_column + start_cell_row * cells_per_row;
-
-		int start_cell_x, cell_y;
-		GetCellPosition (start_cell_num, out start_cell_x, out cell_y);
 
 		int end_cell_column = Math.Max ((area.X + area.Width - BORDER_SIZE) / cell_width, 0);
 		int end_cell_row = Math.Max ((area.Y + area.Height - BORDER_SIZE) / cell_height, 0);
@@ -772,10 +776,10 @@ public class IconView : Gtk.Layout {
 		// Preload the cache with images aroud the expose area
 		// FIXME the preload need to be tuned to the Cache size but this is a resonable start
 		
-		int cols = end_cell_column - start_cell_column;
-		int rows = end_cell_row - start_cell_row;
+		int cols = end_cell_column - start_cell_column + 1;
+		int rows = end_cell_row - start_cell_row + 1;
 		int len = rows * cols;
-		int scell = System.Math.Max (start_cell_row * cols, 0);
+		int scell = start_cell_num;
 		int ecell = scell + len;
 		if (scell > collection.Items.Length - len) {
 		        ecell = collection.Items.Length;
@@ -786,7 +790,8 @@ public class IconView : Gtk.Layout {
 		int mid = (ecell - scell) / 2;
 		for (i = 0; i < mid; i++)
 		{
-			int cell = scell + mid - i;
+			int cell = back ? ecell - i - 1 : scell + mid + i;
+
 			photo = collection.Items [cell];
 			thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
 			
@@ -794,7 +799,7 @@ public class IconView : Gtk.Layout {
 			if (entry == null)
 				cache.Request (thumbnail_path, cell, ThumbnailWidth, ThumbnailHeight);
 
-			cell = scell + mid + i;
+			cell = back ? scell + i : scell + mid - i - 1;
 			photo = collection.Items [cell];
 			thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
 			
