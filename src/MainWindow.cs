@@ -127,6 +127,13 @@ public class MainWindow {
 		photo_view.PhotoChanged += new PhotoView.PhotoChangedHandler (HandlePhotoViewPhotoChanged);
 		photo_view.ButtonPressEvent += new ButtonPressEventHandler (HandlePhotoViewButtonPressEvent);
 
+		Gtk.Drag.DestSet (photo_view, DestDefaults.All, tag_target_table, 
+				  DragAction.Copy | DragAction.Move); 
+
+		photo_view.DragMotion += new DragMotionHandler (HandlePhotoViewDragMotion);
+		photo_view.DragDrop += new DragDropHandler (HandlePhotoViewDragDrop);
+		photo_view.DragDataReceived += new DragDataReceivedHandler (HandlePhotoViewDragDataReceived);
+
 		view_notebook.SwitchPage += new SwitchPageHandler (HandleViewNotebookSwitchPage);
 
 		UpdateMenus ();
@@ -300,6 +307,37 @@ public class MainWindow {
 			SwitchToIconViewMode ();
 	}
 
+	void HandlePhotoViewDragDrop (object sender, DragDropArgs args)
+	{
+		Widget source = Gtk.Drag.GetSourceWidget (args.Context);
+		
+		Console.WriteLine ("Drag Drop {0}", source == null ? "null" : source.TypeName);
+
+		args.RetVal = true;
+	}
+
+	void HandlePhotoViewDragMotion (object sender, DragMotionArgs args)
+	{
+		Widget source = Gtk.Drag.GetSourceWidget (args.Context);
+
+		if (source != null) {
+			Console.WriteLine ("Drag Motion {0}", source == null ? "null" : source.TypeName);
+		}
+
+		Gdk.Drag.Status (args.Context, args.Context.SuggestedAction, args.Time);
+		args.RetVal = true;
+	}
+
+	void HandlePhotoViewDragDataReceived (object sender, DragDataReceivedArgs args)
+	{
+	 	Widget source = Gtk.Drag.GetSourceWidget (args.Context);     
+		
+		Console.WriteLine ("Drag received {0}", source == null ? "null" : source.TypeName);
+;
+		HandleAttachTagCommand (sender, null);
+		
+		Gtk.Drag.Finish (args.Context, true, false, args.Time);
+	}	
 
 	//
 	// Menu commands.
@@ -334,7 +372,7 @@ public class MainWindow {
 		Print.Gsave (ctx);
 		Print.Translate (ctx, 100, 100);
 		Print.Scale (ctx, 100, 100);
-		//Print.Pixbuf (ctx, image);
+		Print.Pixbuf (ctx, image);
 		Print.Grestore (ctx);
 
 		Print.Show (ctx, "testing");
@@ -395,6 +433,21 @@ public class MainWindow {
 		}
 	}
 
+	void HandlePropertiesCommand (object obje, EventArgs args)
+	{
+		Photo [] photos = SelectedPhotos ();
+		
+	        long length = 0;
+
+		foreach (Photo p in photos) {
+			FileInfo fi = new FileInfo (p.DefaultVersionPath);
+
+			length += fi.Length;
+		}
+
+		Console.WriteLine ("{0} Seleted Photos : Total length = {1} - {2}kB - {3}MB", photos.Length, length, length / 1024, length / (1024 * 1024));
+	}
+		
 	void HandleRenameVersionCommand (object obj, EventArgs args)
 	{
 		PhotoVersionCommands.Rename cmd = new PhotoVersionCommands.Rename ();
