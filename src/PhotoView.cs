@@ -5,6 +5,7 @@ using GtkSharp;
 using System;
 
 public class PhotoView : EventBox {
+	FSpot.Delay description_delay; 
 
 	public int CurrentPhoto {
 		get {
@@ -38,7 +39,6 @@ public class PhotoView : EventBox {
 	public void Reload ()
 	{
 		photo_view.Reload ();
-
 	}
 
 	private FSpot.PhotoImageView photo_view;
@@ -141,8 +141,13 @@ public class PhotoView : EventBox {
 	{
 		description_entry.Changed -= HandleDescriptionChanged;
 		if (Query.Photos.Length > 1 && CurrentPhoto < Query.Photos.Length) {
-			description_entry.Sensitive = true;
-			description_entry.Text = Query.Photos[CurrentPhoto].Description;
+			if (description_entry.Sensitive == false)
+				description_entry.Sensitive = true;
+
+			if (description_entry.Text != Query.Photos[CurrentPhoto].Description) {
+				System.Console.WriteLine ("changed text {0} != {1}", description_entry.Text, Query.Photos[CurrentPhoto].Description);
+				description_entry.Text = Query.Photos[CurrentPhoto].Description;
+			}
 		} else {
 			description_entry.Sensitive = false;
 			description_entry.Text = "";
@@ -250,13 +255,33 @@ public class PhotoView : EventBox {
 		new FSpot.ColorDialog (Query, CurrentPhoto);
 	}	
 
+	int description_photo;
+	private bool CommitPendingChanges ()
+	{
+		if (description_delay.IsPending) {
+			description_delay.Stop ();
+			Query.Commit (description_photo);
+		}
+		return true;
+	}
+
 	private void HandleDescriptionChanged (object sender, EventArgs args) {
 		if (!CurrentPhotoValid ())
 			return;
 
 		Query.Photos[CurrentPhoto].Description = description_entry.Text;
-		Query.Commit (CurrentPhoto);
+
+		if (description_delay.IsPending)
+			if (description_photo == CurrentPhoto)
+				description_delay.Stop ();
+			else
+				CommitPendingChanges ();
+
+		description_photo = CurrentPhoto;
+		description_delay.Start ();
 	}
+
+	
 
 	// Constructor.
 
@@ -306,6 +331,8 @@ public class PhotoView : EventBox {
 
 	private void HandlePhotoChanged (FSpot.PhotoImageView view)
 	{
+		CommitPendingChanges ();
+
 		Update ();
 
 		if (CurrentPhotoValid ()) 
@@ -317,13 +344,20 @@ public class PhotoView : EventBox {
 			PhotoChanged (this);
 	}
 
+	private void HandleDestroy (object sender, System.EventArgs args)
+	{
+		CommitPendingChanges ();
+	}
+
 	public PhotoView (FSpot.PhotoQuery query, PhotoStore photo_store)
 		: base ()
 	{
 		this.query = query;
 		this.photo_store = photo_store;
 
-		//BorderWidth = 3;
+		description_delay = new FSpot.Delay (500, new GLib.IdleHandler (CommitPendingChanges));
+		this.Destroyed += HandleDestroy;
+
 
 		Box vbox = new VBox (false, 6);
 		Add (vbox);

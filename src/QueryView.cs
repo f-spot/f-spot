@@ -27,6 +27,7 @@ public class QueryView : IconView {
 	
 	private void HandleItemChanged (FSpot.IPhotoCollection query, int item)
 	{
+		UpdateThumbnail (item);
 		InvalidateCell (item);
 	}
 }

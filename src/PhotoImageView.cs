@@ -71,7 +71,7 @@ namespace FSpot {
 				return;
 			
 			int idx = CurrentPhoto;
-			CurrentPhoto = 0;
+			CurrentPhoto = -1;
 			CurrentPhoto = idx;
 		}
 
