@@ -725,6 +725,7 @@ public class MainWindow {
 	void HandleViewSlideShow (object sender, EventArgs args)
 	{
 #if true
+		main_window.GdkWindow.Cursor = new Gdk.Cursor (Gdk.CursorType.Watch);
                 GLib.Idle.Add (new GLib.IdleHandler (SlideShow));
 #else
 		SlideCommands.Create command = new SlideCommands.Create (query.Photos);
@@ -744,7 +745,8 @@ public class MainWindow {
 		win.Decorated = false;
 		win.Fullscreen();
 		win.Realize ();
-
+		win.GdkWindow.Cursor = new Gdk.Cursor (Gdk.CursorType.Watch);
+	
 		Gdk.GCValues values = new Gdk.GCValues ();
 		values.SubwindowMode = SubwindowMode.IncludeInferiors;
 		Gdk.GC fillgc = new Gdk.GC (win.GdkWindow, values, Gdk.GCValuesMask.Subwindow);
@@ -752,6 +754,7 @@ public class MainWindow {
 		slideview.Show ();
 		win.GdkWindow.SetBackPixmap (null, false);
 		win.Show ();
+		main_window.GdkWindow.Cursor = null;	
 		bg.RenderToDrawable (win.GdkWindow, fillgc, 
 				     0, 0, 0, 0, -1, -1, RgbDither.Normal, 0, 0);
 

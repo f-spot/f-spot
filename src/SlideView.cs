@@ -92,11 +92,15 @@ public class SlideView : Gtk.Image {
 	
 			next_idx = idx;
 			StartTweenIdle ();
+
+
 			return true;
 		} else {
 			//Console.WriteLine ("What happens now?");
-			next = null;
+			next = GetScaled (photos [0].DefaultVersionPath);
 			next_idx = 0;
+			StartTweenIdle ();
+			
 			return false;
 		}
 	}
