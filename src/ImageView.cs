@@ -12,7 +12,7 @@ public class ImageView : Layout {
 	[DllImport ("libgobject-2.0-0.dll")]
 	static extern uint g_signal_connect_data (IntPtr obj, String name, SelectionChangedDelegate cb, int key, IntPtr p, int flags);
 
-	public ImageView () : base ()
+	public ImageView () : base (null, null)
 	{
 		Raw = f_image_view_new ();
 
