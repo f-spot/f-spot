@@ -444,8 +444,6 @@ public class IconView : Gtk.Layout {
 		return expansion;
 	}
 
-	System.Collections.Hashtable date_layouts = new Hashtable ();
-	// FIXME Cache the GCs?
 	private void DrawCell (int thumbnail_num, Gdk.Rectangle area)
 	{
 		Gdk.Rectangle bounds = CellBounds (thumbnail_num);
@@ -564,12 +562,9 @@ public class IconView : Gtk.Layout {
 				date = photo.Time.ToShortDateString ();
 			}
 
-			Pango.Layout layout = (Pango.Layout)date_layouts [date];
-			if (layout == null) {
-				layout = new Pango.Layout (this.PangoContext);
-				layout.SetText (date);
-				date_layouts [date] = layout;
-			}
+			
+			Pango.Layout layout = new Pango.Layout (this.PangoContext);
+			layout.SetText (date);
 			
 			layout.GetPixelSize (out layout_bounds.Width, out layout_bounds.Height);
 
@@ -585,6 +580,8 @@ public class IconView : Gtk.Layout {
 						   layout_bounds.X, layout_bounds.Y, 
 						   layout);
 			}
+
+			layout.Dispose ();
 		}
 
 		if (DisplayTags) {
@@ -704,6 +701,11 @@ public class IconView : Gtk.Layout {
 
 		Gdk.Region region = new Gdk.Region ();
 #if true
+		area = new Gdk.Rectangle (Math.Min ((int) (Hadjustment.Value + 4 * xstep), 0),  
+					  Math.Min ((int) (Vadjustment.Value + 4 * ystep), 0),
+					  Allocation.Width,
+					  Allocation.Height);
+
 		area = new Gdk.Rectangle (Math.Min ((int) (Hadjustment.Value + 3 * xstep), 0),  
 					  Math.Min ((int) (Vadjustment.Value + 3 * ystep), 0),
 					  Allocation.Width,
