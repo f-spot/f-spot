@@ -1,8 +1,23 @@
 2005-03-14  Larry Ewing  <lewing@novell.com>
 
+	* src/GalleryExport.cs: reenable the scaling code.
+
+	* src/f-spot.glade: add the scaling bits back to the dialog.
+
+	* src/GalleryRemote.cs: use force_filename in add item.  Add an
+	overload for passing a different file to to AddItem.
+
+	* src/RotateCommand.cs: show error dialog if rotation fails.
+
+	* src/MainWindow.cs: pass "" instead of null to the galde function
+	so that monogrind.pl works.
+
 	* src/GalleryExport.cs: popup a password dialog when the the
 	password is bad.
 
+	* src/f-spot.glade: expose the ok and cancel buttons make ok
+	sensitive only
+	
 2005-03-13  Artur Flinta  <aflinta@cvs.gnome.org>
 
         * configure.in (ALL_LINGUAS): Added "pl" (Polish)

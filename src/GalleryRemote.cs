@@ -56,14 +56,20 @@ namespace GalleryRemote {
 			gallery.MoveAlbum (this, name);
 		}
 		
+
 		public void Add (Photo photo) 
+		{
+			Add (photo, photo.DefaultVersionPath);
+		}
+
+		public void Add (Photo photo, string path)		
 		{
 			if (photo == null)
 				Console.WriteLine ("NO PHOTO");
 			
 			gallery.AddItem (this, 
-					 photo.DefaultVersionPath, 
-					 Path.GetFileName (photo.DefaultVersionPath), 
+					 path,
+					 Path.GetFileName (photo.DefaultVersionPath),
 					 photo.Description, 
 					 true);
 		}
@@ -130,7 +136,7 @@ namespace GalleryRemote {
 		UnknownResponse = 1000
 	}
 
-	public class GalleryException : Exception {
+	public class GalleryException : System.Exception {
 		public GalleryException (string text) : base (text) {
 		}
 	}
@@ -142,7 +148,7 @@ namespace GalleryRemote {
 			status = result;
 		}
 
-		ResultCode Status {
+		public ResultCode Status {
 			get {
 				return status;
 			}
@@ -385,6 +391,7 @@ namespace GalleryRemote {
 			client.Add ("protocol_version", "2.9");
 			client.Add ("set_albumName", album.Name);
 			client.Add ("userfile_name", filename);
+			client.Add ("force_filename", filename);
 			client.Add ("auto_rotate", autorotate ? "yes" : "no");
 			client.Add ("caption", caption);
 			client.Add ("userfile", new FileInfo (path));

@@ -162,12 +162,14 @@ namespace FSpot {
 			rh = new Gtk.ResponseHandler (HandleResponse);
 			Dialog.Response += HandleResponse;
 			connect = true;
+			HandleSizeActive (null, null);
 			Connect ();
 		}
 		
 		Gtk.ResponseHandler rh;
 		
 		private bool scale;
+		private int size;
 		private bool browser;
 		private bool meta;
 		private bool connect = false;
@@ -196,6 +198,8 @@ namespace FSpot {
 		[Glade.Widget] Gtk.CheckButton browser_check;
 		[Glade.Widget] Gtk.CheckButton scale_check;
 		[Glade.Widget] Gtk.CheckButton meta_check;
+		
+		[Glade.Widget] Gtk.SpinButton size_spin;
 
 		[Glade.Widget] Gtk.Button album_button;
 		[Glade.Widget] Gtk.Button add_button;
@@ -280,9 +284,10 @@ namespace FSpot {
 				return;
 			}
 
-			if (scale_check != null)
+			if (scale_check != null) {
 				scale = scale_check.Active;
-			else
+				size = size_spin.ValueAsInt;
+			} else
 				scale = false;
 
 			browser = browser_check.Active;
@@ -309,6 +314,11 @@ namespace FSpot {
 			progress_dialog.Fraction = (photo_index - 1.0 + item.Value) / (double) photos.Length;
 		}
 
+		public void HandleSizeActive (object sender, System.EventArgs args)
+		{
+			size_spin.Sensitive = scale_check.Active;
+		}
+
 		private void Upload ()
 		{
 			try {
@@ -326,7 +336,18 @@ namespace FSpot {
 					photo_index++;
 
 					progress_dialog.ProgressText = System.String.Format (Mono.Posix.Catalog.GetString ("{0} of {1}"), photo_index, photos.Length);
-					album.Add (photo);
+					
+					if (scale) {
+						/* FIXME this is sick */
+						string orig = photo.DefaultVersionPath;
+						string path = PixbufUtils.Resize (orig, size, true);
+						string final = path + System.IO.Path.GetExtension (orig);
+						System.IO.File.Move (path, final);
+						album.Add (photo, final);
+						System.IO.File.Delete (final);
+					} else {
+						album.Add (photo);
+					}
 				}
 
 				progress_dialog.Message = Mono.Posix.Catalog.GetString ("Done Sending Photos");
@@ -400,6 +421,7 @@ namespace FSpot {
 					string password = GetPassword (account.Name, out response);
 					if (response == Gtk.ResponseType.Ok) {
 						account.Password = password;
+						WriteAccounts ();
 						Connect ();
 					}
 				}
@@ -419,7 +441,7 @@ namespace FSpot {
 			password_dialog.VBox.Spacing = 6;
 			password_dialog.VBox.BorderWidth = 12;
 			password_dialog.VBox.PackStart (
-                                new Gtk.Label (Mono.Posix.Catalog.GetString ("Enter Password for ") + email));
+                                new Gtk.Label (System.String.Format (Mono.Posix.Catalog.GetString ("Enter password for for gallery \"{0}\""), email)));
 			password_dialog.VBox.PackStart (password_entry);
 			password_dialog.AddButton (Gtk.Stock.Cancel, Gtk.ResponseType.Cancel);
 			password_dialog.AddButton (Gtk.Stock.Ok, Gtk.ResponseType.Ok);
