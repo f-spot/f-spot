@@ -166,7 +166,6 @@ class GtkUtil {
 		Gtk.StockItem item = Gtk.StockItem.Zero;
 
 		if (Gtk.StockManager.Lookup (l, ref item)) {
-			System.Console.WriteLine ("found item");
 			i = new Gtk.ImageMenuItem (l, new Gtk.AccelGroup ());
 		} else {
 			i = new Gtk.MenuItem (l);
