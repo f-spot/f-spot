@@ -491,13 +491,16 @@ public class IconView : Gtk.Layout {
 			region.Y = (int) bounds.Y + ThumbnailHeight - region.Height + CELL_BORDER_WIDTH;
 			
 			int expansion = ThrobExpansion (thumbnail_num, selected);
+
+			if (region.Width != thumbnail.Width || region.Height != thumbnail.Height)
+				pixbuf_loader.Request (thumbnail_path, thumbnail_num);
+
 			region = Expand (region, expansion);
 			
 			Pixbuf temp_thumbnail;
 			
-			if (region.Width == thumbnail.Width || region.Height == thumbnail.Height) {
-				temp_thumbnail = thumbnail;
-			} else {
+
+			if (region.Width != thumbnail.Width && region.Height != thumbnail.Height) {
 				if (region.Width < thumbnail.Width && region.Height < thumbnail.Height)
 					temp_thumbnail = PixbufUtils.ScaleDown (thumbnail, 
 										region.Width, region.Height);
@@ -506,18 +509,9 @@ public class IconView : Gtk.Layout {
 										InterpType.Bilinear);
 				
 				PixbufUtils.CopyThumbnailOptions (thumbnail, temp_thumbnail);
-				// Only request a reload here if we are not inside a throb 
-				// (expansion == 0) because we want to store the images at the normal
-				// size not a throb or selection size to optimize the scroll speed
-				if (expansion == 0) {
-					// FIXME instead of making a request to load at a particular size here we
-					// request to load at the the full size because Gdk.Pixbuf loses the Option
-					// data when you load at a different size (I hate that).  See 
-					// HandlePixbufLoaded for where we do the scaling to correct for 
-					// this problem.
-					pixbuf_loader.Request (thumbnail_path, thumbnail_num);
-				}
-			}
+			} else
+				temp_thumbnail = thumbnail;
+
 			
 			// FIXME There seems to be a rounding issue between the
 			// scaled thumbnail sizes, we avoid this for now by using
