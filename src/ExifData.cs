@@ -284,6 +284,17 @@ public class ExifData : IDisposable {
 	
 	Hashtable string_values;
 	Hashtable data;
+	ExifTag []    tags;
+	ArrayList tag_list;
+	
+	public ExifTag [] Tags {
+		get {
+			if (tags != null)
+				return tags;
+			else
+				return new ExifTag [0] {};
+		}
+	}
 
 	public ExifData (string filename)
 	{
@@ -309,7 +320,7 @@ public class ExifData : IDisposable {
 	{
 		Dispose (false);
 	}
-
+ 
 	_ExifContent.ExifContentForeachEntryFunc content_func;
 	
 	unsafe void Assemble (_ExifContent *content, void *user_data)
@@ -319,6 +330,7 @@ public class ExifData : IDisposable {
 
 	unsafe void AssembleContent (_ExifEntry *entry, void *callback_data)
 	{
+		tag_list.Add (entry->tag);
 		string_values [entry->tag] = Marshal.PtrToStringAnsi (_ExifEntry.exif_entry_get_value (entry));
 
 		byte [] raw_data = new byte [entry->size];
@@ -334,8 +346,10 @@ public class ExifData : IDisposable {
 
 			string_values = new Hashtable ();
 			data = new Hashtable ();
+			tag_list = new ArrayList ();
 
 			_ExifData.exif_data_foreach_content (obj, new _ExifData.ExifDataForeachContentFunc (Assemble), null);
+			tags = (ExifTag []) tag_list.ToArray (typeof (ExifTag));
 		}
 	}
 	
