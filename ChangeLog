@@ -1,5 +1,10 @@
 2004-09-01  Larry Ewing  <lewing@novell.com>
 
+	* src/PreviewPopup.cs: cleanup the output, make the popup come up
+	centered over the icon.
+
+	* src/ThumbnailCache.cs: Implement IDispose.
+
 	* src/PreviewPopup.cs: look for motion events on the popup window
 	if we see them update the popup position.
 

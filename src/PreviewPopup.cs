@@ -3,7 +3,6 @@ using System;
 namespace FSpot {
 	public class PreviewPopup : Gtk.Window {
 		private IconView view;
-		private int last_item;
 		private Gtk.Image image;
 		private Gtk.Label label;
 
@@ -73,11 +72,16 @@ namespace FSpot {
 			x = Math.Min (x, this.Screen.Width - requisition.Width);
 
 			// find the window's y location offset above or below depending on space
+#if false
 			int margin = (int) (bounds.Height * .6);
 			if (y - requisition.Height - margin < 0)
 				y += margin;
 			else
 				y = y - requisition.Height - margin;
+#else 
+			y = Math.Max (0, y - requisition.Height / 2);
+			y = Math.Min (y, this.Screen.Height - requisition.Height);
+#endif			
 
 			this.Move (x, y);
 		}
@@ -108,8 +112,6 @@ namespace FSpot {
 
 		private void HandleIconViewKeyPress (object sender, Gtk.KeyPressEventArgs args)
 		{
-			Console.WriteLine ("Press Event");
-
 			switch (args.Event.Key) {
 			case Gdk.Key.Alt_L:
 			case Gdk.Key.Alt_R:
@@ -124,7 +126,6 @@ namespace FSpot {
 
 		private void HandleIconViewKeyRelease (object sender, Gtk.KeyReleaseEventArgs args)
 		{
-			Console.WriteLine ("Release Event");
 			switch (args.Event.Key) {
 			case Gdk.Key.Alt_L:
 			case Gdk.Key.Alt_R:
@@ -136,6 +137,11 @@ namespace FSpot {
 		private void HandleIconViewDestroy (object sender, Gtk.DestroyEventArgs args)
 		{
 			this.Destroy ();
+		}
+
+		protected override void OnDestroyed ()
+		{
+			this.preview_cache.Dispose ();
 		}
 
 		protected override bool OnMotionNotifyEvent (Gdk.EventMotion args)

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using Gdk;
 
-public class ThumbnailCache {
+public class ThumbnailCache : IDisposable {
 
 	// Types.
 
@@ -87,6 +87,15 @@ public class ThumbnailCache {
 		item.pixbuf.Dispose ();
 	}
 
+	public void Dispose ()
+	{
+		foreach (object item in pixbuf_mru) {
+			Thumbnail thumb = item as Thumbnail;
+			pixbuf_hash.Remove (thumb.path);
+			thumb.pixbuf.Dispose ();
+		}
+		pixbuf_mru.Clear ();
+	}
 
 	// Private utility methods.
 
