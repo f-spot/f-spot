@@ -1,3 +1,7 @@
+2003-12-28  Miguel de Icaza  <miguel@ximian.com>
+
+       * src/FileImportBackend.cs: Skip over thumbnail directories.
+
 2004-05-14  Larry Ewing  <lewing@ximian.com>
 
 	* src/ExportCommand.cs: commit a quick hack to upload photos in a
@@ -78,6 +82,7 @@
 	of quality doesn't have much impact in the time the tween frame is
 	shown.
 
+>>>>>>> 1.78
 2004-03-15  Larry Ewing  <lewing@ximian.com>
 
 	* src/makefile.am: Use the sqlite wrapper that is now part of

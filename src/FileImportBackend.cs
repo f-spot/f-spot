@@ -33,8 +33,11 @@ public class FileImportBackend : ImportBackend {
 		}
 
 		if (recurse) {
-			foreach (DirectoryInfo d in info.GetDirectories ())
+			foreach (DirectoryInfo d in info.GetDirectories ()){
+				if (d.Name == ".thumbnails")
+					continue;
 				GetListing (d);
+			}
 		}
 	}
 
