@@ -141,7 +141,7 @@ namespace FSpot {
 									    Gtk.DialogFlags.DestroyWithParent,
 									    Gtk.MessageType.Error, Gtk.ButtonsType.Ok, 
 									    Mono.Posix.Catalog.GetString ("Unable to log on."),
-									    Mono.Posix.Catalog.GetString ("F-Spot was unable to log on to Flickr.  Make sure the setting you supplied are correct."));
+									    Mono.Posix.Catalog.GetString ("F-Spot was unable to log on to Flickr.  Make sure the settings you supplied are correct."));
 				md.Run ();
 				md.Destroy ();
 				return;
