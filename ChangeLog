@@ -1,12 +1,19 @@
 2004-12-03  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoImageView.cs: use the area updated event from the
+	AsyncLoaders, stop poking the Gdk.PixbufLoader directly.
+
+	* src/PixbufUtils.cs: update the orientation code.
+
+	* src/AsyncPixbufLoader.cs: use the new orientation stuff.
+
 	* src/PixbufUtils.cs: start adding orientation support.
 
 	* src/ImageView.cs: fix ImageToWindowCoords so that it actually
 	works.
 
 2004-12-03  Adam Weinberger  <adamw@gnome.org>
-
+M
 	* configure.in: Added en_CA to ALL_LINGUAS.
 
 2004-12-02  Larry Ewing  <lewing@novell.com>

@@ -298,10 +298,39 @@ class PixbufUtils {
 		bchsw.Dispose ();
 	}
 
-	public static Gdk.Pixbuf TransformAndCopy (Gdk.Pixbuf src, PixbufOrientation orientation)
+	public static Gdk.Pixbuf TransformOrientation (Gdk.Pixbuf src, PixbufOrientation orientation, bool copy_data)
 	{
-		Gdk.Rectangle area = new Gdk.Rectangle (0, 0, src.Width, src.Height);
-		return null;
+		Gdk.Pixbuf pixbuf;
+		switch (orientation) {
+		case PixbufOrientation.LeftTop:
+		case PixbufOrientation.LeftBottom:
+		case PixbufOrientation.RightTop:
+		case PixbufOrientation.RightBottom:	
+			pixbuf = new Gdk.Pixbuf (src.Colorspace, src.HasAlpha, 
+						 src.BitsPerSample,
+						 src.Height, src.Width);
+			break;
+		case PixbufOrientation.TopRight:
+		case PixbufOrientation.BottomRight:
+		case PixbufOrientation.BottomLeft:
+			pixbuf = new Gdk.Pixbuf (src.Colorspace, src.HasAlpha, 
+						 src.BitsPerSample,
+						 src.Width, src.Height);
+			break;
+		default:
+			pixbuf = src;
+			break;
+		}
+
+		if (copy_data && src != pixbuf) 
+			TransformAndCopy (src, pixbuf, orientation, new Gdk.Rectangle (0, 0, src.Width, src.Height));
+
+		return pixbuf;
+	}
+
+	public static Gdk.Pixbuf TransformOrientation (Gdk.Pixbuf src, PixbufOrientation orientation)
+	{
+		return TransformOrientation (src, orientation, true);
 	}
 
 	public static Gdk.Rectangle TransformAndCopy (Gdk.Pixbuf src, Gdk.Pixbuf dest, PixbufOrientation orientation, Gdk.Rectangle args)
@@ -309,7 +338,7 @@ class PixbufUtils {
 		Gdk.Rectangle area = args;
 		Gdk.Pixbuf region;
 		Gdk.Pixbuf altered;
-
+		
 		switch (orientation) {
 		case PixbufOrientation.LeftBottom:
 			area.X = args.Y;
@@ -340,6 +369,40 @@ class PixbufUtils {
 
 			region.Dispose ();
 			altered.Dispose ();			
+			break;
+		case PixbufOrientation.BottomRight:
+			area.X = src.Width - args.X - args.Width;
+			area.Y = src.Height - args.Y - args.Height;
+
+			region = new Gdk.Pixbuf (src, args.X, args.Y,
+						 args.Width, args.Height);
+			altered = PixbufUtils.Mirror (region, true, true);
+			altered.CopyArea (0, 0, altered.Width, altered.Height, dest, area.X, area.Y);
+
+			region.Dispose ();
+			altered.Dispose ();
+			break;
+		case PixbufOrientation.TopRight:
+			area.X = src.Width - args.X - args.Width;
+
+			region = new Gdk.Pixbuf (src, args.X, args.Y,
+						 args.Width, args.Height);
+			altered = PixbufUtils.Mirror (region, true, false);
+			altered.CopyArea (0, 0, altered.Width, altered.Height, dest, area.X, area.Y);
+
+			region.Dispose ();
+			altered.Dispose ();
+			break;
+		case PixbufOrientation.BottomLeft:
+			area.Y = src.Height - args.Y - args.Height;
+
+			region = new Gdk.Pixbuf (src, args.X, args.Y,
+						 args.Width, args.Height);
+			altered = PixbufUtils.Mirror (region, false, true);
+			altered.CopyArea (0, 0, altered.Width, altered.Height, dest, area.X, area.Y);
+
+			region.Dispose ();
+			altered.Dispose ();
 			break;
 		default:
 			src.CopyArea (area.X, area.Y, area.Width, area.Height, dest, area.X, area.Y);

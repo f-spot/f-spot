@@ -93,12 +93,9 @@ namespace FSpot {
 		}
 
 		// Display.
-		private void HandlePixbufAreaUpdated (object sender, Gdk.AreaUpdatedArgs args)
+		private void HandlePixbufAreaUpdated (object sender, Gdk.Rectangle area)
 		{
-			Gdk.Rectangle area = new Gdk.Rectangle (args.X, args.Y, args.Width, args.Height);
-			//System.Console.WriteLine ("AreaUpdate = {0}", area);
 			area = this.ImageCoordsToWindow (area);
-
 			this.QueueDrawArea (area.X, area.Y, area.Width, area.Height);
 		}
 	
@@ -148,7 +145,7 @@ namespace FSpot {
 			
 			if (load_async) {
 				current = loader.Load (Photo.DefaultVersionPath);
-				loader.Loader.AreaUpdated += HandlePixbufAreaUpdated;
+				loader.AreaUpdated += HandlePixbufAreaUpdated;
 			} else
 				current = FSpot.PhotoLoader.Load (Query, current_photo);
 			
@@ -272,7 +269,7 @@ namespace FSpot {
 		
 		private void HandleDestroy (object sender, System.EventArgs args)
 		{
-			loader.Loader.AreaUpdated -= HandlePixbufAreaUpdated;
+			loader.AreaUpdated -= HandlePixbufAreaUpdated;
 		}
 
 		protected override bool OnDestroyEvent (Gdk.Event evnt)

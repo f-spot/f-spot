@@ -1,26 +1,30 @@
 
 namespace FSpot {
+	public delegate void AreaUpdatedHandler (object sender, Gdk.Rectangle area);
+	
 	public class AsyncPixbufLoader {
+		System.IO.Stream stream;
+		Gdk.PixbufLoader loader;		
+		string path;
+		bool area_prepared = false;
+		bool done_reading = false;
+		System.Exception error;
+		Gdk.Pixbuf pixbuf;
+		PixbufOrientation orientation;
+
+		//byte [] buffer = new byte [8192];
+		byte [] buffer = new byte [32768];
+
+		public event AreaUpdatedHandler AreaUpdated;
+		public event System.EventHandler Done;
+
+		Delay delay;
+
 		public AsyncPixbufLoader ()
 		{
 			delay = new Delay (new GLib.IdleHandler (AsyncRead));
 		}
 				
-		System.IO.Stream stream;
-		Gdk.PixbufLoader loader;
-		
-		string path;
-		bool area_prepared = false;
-		bool done_reading = false;
-		System.Exception error;
-
-		//byte [] buffer = new byte [8192];
-		byte [] buffer = new byte [32768];
-
-		Delay delay;
-
-		public event System.EventHandler Done;
-
 		public Gdk.Pixbuf Load (string filename)
 		{
 			delay.Stop ();
@@ -34,13 +38,19 @@ namespace FSpot {
 
 			done_reading = false;
 			area_prepared = false;
-			
+
 			if (stream != null)
 				stream.Close ();
 			
-			stream = new System.IO.FileStream (filename, System.IO.FileMode.Open, System.IO.FileAccess.Read);
+			ExifData exif = new ExifData (filename);
+			byte [] value = exif.LookupData (ExifTag.Orientation);
 			
-
+			if (value != null) {
+				System.Console.WriteLine ("len = {0} val [0] = {1} string = {2}", value.Length, value[0], exif.LookupString (ExifTag.Orientation));
+				orientation = (PixbufOrientation)value [0];
+			} else
+				orientation = PixbufOrientation.TopLeft;
+			stream = new System.IO.FileStream (filename, System.IO.FileMode.Open, System.IO.FileAccess.Read);
 			
 			loader = new Gdk.PixbufLoader ();
 			loader.AreaPrepared += HandleAreaPrepared;
@@ -50,7 +60,7 @@ namespace FSpot {
 			LoadToAreaPrepared ();
 			delay.Start ();
 			
-			return loader.Pixbuf;
+			return pixbuf;
 		}
 
 		public Gdk.PixbufLoader Loader {
@@ -98,18 +108,26 @@ namespace FSpot {
 		private void HandleAreaPrepared (object sender, System.EventArgs args)
 		{
 			loader.Pixbuf.Fill (0x00000000);
+			pixbuf = PixbufUtils.TransformOrientation (loader.Pixbuf, orientation);
 			area_prepared = true;			
 		}
 
 	       
 		private void HandleAreaUpdated (object sender, Gdk.AreaUpdatedArgs args)
 		{
+			Gdk.Rectangle area = new Gdk.Rectangle (args.X, args.Y, args.Width, args.Height);
+
+			if (pixbuf != null && loader.Pixbuf != pixbuf)
+				area = PixbufUtils.TransformAndCopy (loader.Pixbuf, pixbuf, orientation, area);
+
+			if (AreaUpdated != null)
+				AreaUpdated (this, area);
 		}
 
 		private void HandleClosed (object sender, System.EventArgs args) 
 		{
-			if (done_reading && loader.Pixbuf != null) {
-				PhotoLoader.ValidateThumbnail (path, loader.Pixbuf);
+			if (done_reading && pixbuf != null) {
+				PhotoLoader.ValidateThumbnail (path, pixbuf);
 			}
 
 			if (Done != null)
