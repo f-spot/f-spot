@@ -1,6 +1,9 @@
 2004-02-25  Larry Ewing  <lewing@ximian.com>
 
-	* src/SlideView.cs: Add the begginings of the flipping code.
+	* src/SlideView.cs: Refactor the Forward back logic more, add
+	next_idx logic.
+	
+	* src/SlideView.cs: Add the begginings of the flipping code.	
 
 2004-02-12  Larry Ewing  <lewing@ximian.com>
 

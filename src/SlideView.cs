@@ -15,7 +15,9 @@ public class SlideView : Gtk.Image {
 	int current_tween;
 	uint tween_idle;
 
-	int current = 0;	
+	int current_idx = 0;	
+	int next_idx = 0;
+
 	uint flip_timer = 0;
 	uint transition_timer = 0;
 
@@ -28,9 +30,64 @@ public class SlideView : Gtk.Image {
 	public void Play () 
 	{
 		StopTweenIdle ();
-		this.FromPixbuf = GetScaled (photos[current].DefaultVersionPath);
-		if (PreloadNextImage ())
+		this.FromPixbuf = GetScaled (photos[current_idx].DefaultVersionPath);
+
+		if (PreloadNextImage (current_idx + 1))
 			StartFlipTimer ();
+	}
+
+	public void Pause () 
+	{
+		StopTranstionTimer ();
+		StopFlipTimer ();
+	}
+
+	public void Stop ()
+	{
+		StopTweenIdle ();
+		StopTranstionTimer ();
+		StopFlipTimer ();
+	}
+
+	public void Forward ()
+	{
+		if (PreloadNextImage (current_idx + 1))
+			ShowNext ();
+	}
+	
+	public void Back ()
+	{
+		if (PreloadNextImage (current_idx - 1))
+			ShowNext ();
+	}	
+
+	private void ShowNext ()
+	{
+		StopTweenIdle ();
+
+		if (current_idx != next_idx && next != null)
+			this.FromPixbuf = next;
+
+		current_idx = next_idx;
+	}
+
+	private bool PreloadNextImage (int idx)
+	{
+		Pixbuf orig;
+	
+		if (idx < photos.Length && idx >= 0) {
+			//Console.WriteLine ("next_idx = " + next_idx + " idx = " + idx);
+			next = GetScaled (photos [idx].DefaultVersionPath);
+	
+			next_idx = idx;
+			StartTweenIdle ();
+			return true;
+		} else {
+			//Console.WriteLine ("What happens now?");
+			next = null;
+			next_idx = 0;
+			return false;
+		}
 	}
 
 	private Pixbuf Blend (Pixbuf current, Pixbuf prev, Pixbuf next, double percent)
@@ -101,34 +158,6 @@ public class SlideView : Gtk.Image {
 		return scaled;
 	}
 
-	private bool PreloadNextImage ()
-	{
-		Pixbuf orig;
-	
-		current ++;
-		if (current < photos.Length) {
-			next = GetScaled (photos [current].DefaultVersionPath);
-	
-			StartTweenIdle ();
-			return true;
-		} else {
-			current = 0;
-			return false;
-		}
-	}
-	
-	private bool LoadPrevImage () 
-	{
-		if (current-- > 0)
-			this.FromPixbuf = GetScaled (photos [current].DefaultVersionPath);
-		else 
-			current = 0;
-
-
-		Console.WriteLine (current);
-		return current > 0;		
-	}
-
 	private bool HandleFlipTimer ()
 	{	
 		StopTweenIdle ();
@@ -139,7 +168,7 @@ public class SlideView : Gtk.Image {
 		return false;
 	}
 
-	public bool HandleTransitionTimer ()
+	private bool HandleTransitionTimer ()
 	{			
 		if (current_tween--  > 0) {
 
@@ -148,11 +177,10 @@ public class SlideView : Gtk.Image {
 			
 			return true;
 		} else {
-			this.FromPixbuf = next;
+			ShowNext ();
 
-			if (PreloadNextImage ());
+			if (PreloadNextImage (current_idx + 1));
 				StartFlipTimer ();
-		
 		}
 		
 		transition_timer = 0;
@@ -238,6 +266,12 @@ public class SlideView : Gtk.Image {
 		transition_timer = 0;
 	}
 	
+	private void StartFlipTimer ()
+	{
+		if (flip_timer == 0)
+			flip_timer = GLib.Timeout.Add (2000, new TimeoutHandler (HandleFlipTimer));
+	}
+	
 	private void StopFlipTimer ()
 	{	
 		if (flip_timer != 0) {
@@ -246,36 +280,6 @@ public class SlideView : Gtk.Image {
 		flip_timer = 0;
 	}
 	
-	private void StartFlipTimer ()
-	{
-		if (flip_timer == 0)
-			flip_timer = GLib.Timeout.Add (2000, new TimeoutHandler (HandleFlipTimer));
-	}
-	
-	public void Pause () 
-	{
-		StopTranstionTimer ();
-		StopFlipTimer ();
-	}
-
-	public void Stop ()
-	{
-		StopTweenIdle ();
-		StopTranstionTimer ();
-		StopFlipTimer ();
-	}
-
-	public bool Forward ()
-	{
-		this.FromPixbuf = next;
-		return PreloadNextImage ();
-	}
-	
-	public void Back ()
-	{
-		LoadPrevImage ();
-	}
-
 	private void HandleSizeAllocate (object sender, SizeAllocatedArgs args)
 	{	
 		if (Pixbuf == null)
@@ -285,16 +289,16 @@ public class SlideView : Gtk.Image {
 		 * The size has changed so we need to reload the images.
 		 */
 		if (Pixbuf.Width != Allocation.width || Pixbuf.Height != Allocation.height) {
-			this.FromPixbuf = GetScaled (photos[current].DefaultVersionPath);
-			
 			bool playing = (flip_timer != 0 || transition_timer != 0);
+
+			this.FromPixbuf = GetScaled (photos[current_idx].DefaultVersionPath);
 			Stop ();
 
 			/* clear the tween images */
 			for (int i = 0; i < tweens.Length; i++)
 				tweens[i] = null;
 
-			if (playing && current < photos.Length - 1)
+			if (playing && current_idx != next_idx)
 				Play ();
 		}
 	}
