@@ -346,6 +346,20 @@ class PixbufUtils {
 		return ret;
 	}	
 	
+	[DllImport ("libfspot")]
+	static extern void f_pixbuf_remove_redeye (IntPtr src);
+	
+	public static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area)
+	{
+		Gdk.Pixbuf copy = src.Copy ();
+		Gdk.Pixbuf selection = new Gdk.Pixbuf (copy, area.X, area.Y, area.Width, area.Height);
+
+		f_pixbuf_remove_redeye (selection.Handle);
+		selection.Dispose ();
+
+		return copy;
+	}
+
 	public static unsafe Pixbuf ColorAdjust (Pixbuf src, double brightness, double contrast,
 					  double hue, double saturation, int src_color, int dest_color)
 	{

@@ -323,6 +323,45 @@ f_pixbuf_copy_apply_brightness_and_contrast (GdkPixbuf *src,
 }
 
 
+/**
+ *  This alorithm is based on the redeye algorithm in flphoto 
+ *  Copyright 2002-2003 by Michael 
+ *
+ *  FIXME this is a very simplist algorithm, something more intelligent needs to be used.
+ */
+
+void
+f_pixbuf_remove_redeye (GdkPixbuf *src)
+{
+	int width = gdk_pixbuf_get_width (src);
+	int height = gdk_pixbuf_get_height (src);
+	int i, j;
+
+	int r, g, b;
+	int channels = gdk_pixbuf_get_n_channels (src);
+
+	guchar *row = gdk_pixbuf_get_pixels (src);
+
+	for (i = 0; i < height; i++) {
+		guchar *col = row;
+		g_warning ("(%d, %d) row = %d", width, height, i);
+
+		for (j = 0; j < width; j++) {
+			r = *col;
+			g = *(col + 1);
+			b = *(col + 2);
+			
+			if ((r > (3 * g / 2) && r > (3 * b / 2)) || (g > r && b > r)) {
+				memset(col, (r * 31 + g * 61 + b * 8) / 100, 3);
+			}
+			
+			col += channels;
+		}
+		row += gdk_pixbuf_get_rowstride (src);
+	}
+	g_warning ("done");
+}
+
 gboolean
 f_pixbuf_save_jpeg_atomic  (GdkPixbuf   *pixbuf,
 			    const char  *file_name,

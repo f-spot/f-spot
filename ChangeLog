@@ -1,3 +1,10 @@
+2005-02-07  Larry Ewing  <lewing@novell.com>
+
+	* src/PixbufUtils.cs: Implement RemoveRedeye by calling
+	f_pixbuf_remove_redeye.
+
+	* libfspot/f-pixbuf-utils.c:  add f_pixbuf_remove_redeye.
+
 2005-02-06  Larry Ewing  <lewing@novell.com>
 
 	* src/GroupSelector.cs: pass non null strings in the drawing code
