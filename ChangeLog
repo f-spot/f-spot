@@ -1,5 +1,11 @@
 2005-01-17  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: use the ThumbnailGenerator if the icon is
+	invalid.
+
+	* src/PhotoLoader.cs: use ThumbnailGenerator, split out hte
+	validation logic.
+
 	* src/AsyncPixbufLoader.cs: reset damage in the right place.
 
 	* src/Makefile.am: add ThumbnailGenerator to the makefile.

@@ -496,10 +496,12 @@ public class IconView : Gtk.Layout {
 					// (expansion == 0) because we want to store the images at the normal
 					// size not a throb or selection size to optimize the scroll speed
 					if (expansion == 0) {
+#if false						
 						System.Console.WriteLine ("made request for {0} ({1},{2}) ({3},{4}) ({5},{6})", 
 									  thumbnail_path, width, height, 
 									  ThumbnailWidth, ThumbnailHeight, 
 									  thumbnail.Width, thumbnail.Height);
+#endif
 
 						// FIXME instead of making a request to load at a particular size here we
 						// request to load at the the full size because Gdk.Pixbuf loses the Option
@@ -765,8 +767,8 @@ public class IconView : Gtk.Layout {
 			// so we need to copy the ErrorPixbuf
 			//
 			result = new Pixbuf (result, 0, 0, result.Width, result.Height);
-		}
- 
+		} 
+
 		if (order > 0 && order < collection.Items.Length) {
 			System.Uri uri = collection.Items [order].DefaultVersionUri;
 			
