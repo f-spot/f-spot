@@ -1,8 +1,13 @@
 2005-01-09  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: use Delay for the idle handler, bump the
+	version number pending a proper fix.
+
 	* src/PixbufUtils.cs: be explicit about disposing the non rotated
 	image.
 
+	* src/ThumbnailCommand.cs: be explicit about disposing the new thumbnail.
+	
 2005-01-08  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoStore.cs: use the PixbufUtils thumbnail generator.

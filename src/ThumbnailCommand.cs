@@ -27,7 +27,7 @@ public class ThumbnailCommand {
 				break;
 
 			foreach (uint version_id in p.VersionIds) {
-				PhotoStore.GenerateThumbnail (p.GetVersionPath (version_id));
+				PhotoStore.GenerateThumbnail (p.GetVersionPath (version_id)).Dispose ();
 			}
 			
 			count++;

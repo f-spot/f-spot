@@ -71,6 +71,8 @@ public class MainWindow {
 	FSpot.FullScreenView fsview;
 	FSpot.PhotoQuery query;
 	FSpot.GroupSelector group_selector;
+
+	FSpot.Delay slide_delay;
 	
 	// Drag and Drop
 	enum TargetType {
@@ -150,6 +152,8 @@ public class MainWindow {
 		Glade.XML gui = Glade.XML.FromAssembly ("f-spot.glade", "main_window", null);
 		gui.Autoconnect (this);
 
+		slide_delay = new FSpot.Delay (new GLib.IdleHandler (SlideShow));
+
 		Gtk.Toolbar toolbar = new Gtk.Toolbar ();
 		toolbar_vbox.PackStart (toolbar);
 		GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-270", new System.EventHandler (HandleRotate270Command));
@@ -187,7 +191,7 @@ public class MainWindow {
 		group_selector = new FSpot.GroupSelector ();
 		FSpot.GroupAdaptor adaptor = new FSpot.TimeAdaptor (query);
 		//FSpot.GroupAdaptor adaptor = new FSpot.DirectoryAdaptor (query);		
-		//group_selector.Mode = FSpot.GroupSelector.RangeType.Min;
+		group_selector.Mode = FSpot.GroupSelector.RangeType.All;
 
 		group_selector.Adaptor  = adaptor;
 		group_selector.ShowAll ();
@@ -853,7 +857,7 @@ public class MainWindow {
                 // * E.g. "Martin Willemoes Hansen"
                 string translators = Mono.Posix.Catalog.GetString ("translator-credits");
 
-                new About ("F-Spot", "0.0.3", "Copyright 2003-2004 Novell Inc.",
+                new About ("F-Spot", "0.0.4", "Copyright 2003-2005 Novell Inc.",
                            null, authors, null, translators, null).Show();
 	}
 
@@ -1070,13 +1074,8 @@ public class MainWindow {
 
 	void HandleViewSlideShow (object sender, EventArgs args)
 	{
-#if true
 		main_window.GdkWindow.Cursor = new Gdk.Cursor (Gdk.CursorType.Watch);
-                GLib.Idle.Add (new GLib.IdleHandler (SlideShow));
-#else
-		SlideCommands.Create command = new SlideCommands.Create (query.Photos);
-		command.Execute ();
-#endif
+		slide_delay.Start ();
 	}
 
 	private bool SlideShow ()
