@@ -8,7 +8,7 @@ public class Driver {
 	public static void Main (string [] args)
 	{
 		Application.Init ();
-		Program program = new Program ("F-Spot", "0.0", Modules.UI, args);
+		Program program = new Program (FSpot.Defines.PACKAGE, FSpot.Defines.VERSION, Modules.UI, args);
 
 		Gnome.Vfs.Vfs.Initialize ();
 		StockIcons.Initialize ();
