@@ -63,7 +63,7 @@ namespace FSpot {
 
 			return data.Months[item % 12];
 		}
-		
+
 		public DateTime DateFromIndex (int item) 
 		{
 			item = Math.Max (item, 0);
@@ -78,10 +78,11 @@ namespace FSpot {
 		private void HandleReload (PhotoQuery query)
 		{
 			Console.WriteLine ("Reloading");
-			Load ();
+			Reload ();
 		}
 		
-		public void Load () {
+		public override void Reload () 
+		{
 			years.Clear ();
 
 			Photo [] photos = query.Store.Query (null, null);
@@ -114,7 +115,7 @@ namespace FSpot {
 			this.query = query;
 			this.query.Reload += HandleReload;
 			
-			Load ();
+			Reload ();
 		}
 	}
 }

@@ -60,6 +60,8 @@ namespace FSpot {
 				has_limits = adaptor is FSpot.ILimitable;				
 				min_limit.SetPosition (0);
 				max_limit.SetPosition (adaptor.Count () - 1);
+				
+				this.QueueDraw ();
 			}
 			get {
 				return adaptor;

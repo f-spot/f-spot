@@ -48,8 +48,9 @@ namespace FSpot {
 			DirInfo info = (DirInfo)dirs[item];	
 			return info.Count;
 		}	
-
-		public void Load () {
+		
+		public override void Reload () 
+		{
 			dirs.Clear ();
 			Photo [] photos = query.Store.Query (null, null);
 			
@@ -72,8 +73,7 @@ namespace FSpot {
 
 		public DirectoryAdaptor (PhotoQuery query) {
 			this.query = query;
-
-			Load ();
+			Reload ();
 		}
 	}
 }

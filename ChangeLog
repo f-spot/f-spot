@@ -1,3 +1,16 @@
+2004-09-09  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: rebuild the GroupSelector view if we've
+	imported items.
+
+	* src/GroupSelector.cs: redraw the widget if the adaptor changes.
+
+	* src/GroupAdaptor.cs: add new abstract method reload.
+
+	* src/TimeAdaptor.cs: implement reload.
+	
+	* src/DirectoryAdaptor.cs: implement reload.
+
 2004-09-08  Larry Ewing  <lewing@novell.com>
 
 	* src/GroupSelector.cs: use the ILimitable interface, don't draw

@@ -480,8 +480,12 @@ public class MainWindow {
 
 			UriList list = new UriList (args.SelectionData);
 			ImportCommand command = new ImportCommand (main_window);
-			command.ImportFromPaths (db.Photos, list.ToLocalPaths ());
-			UpdateQuery ();
+			if (command.ImportFromPaths (db.Photos, list.ToLocalPaths ()) > 0) {
+				UpdateQuery ();
+				FSpot.GroupAdaptor adaptor = group_selector.Adaptor;
+				adaptor.Reload ();
+				group_selector.Adaptor = adaptor;
+			}
 			break;
 		}
 
@@ -654,8 +658,12 @@ public class MainWindow {
 	void HandleImportCommand (object sender, EventArgs e)
 	{
 		ImportCommand command = new ImportCommand (main_window);
-		command.ImportFromFile (db.Photos);
-		UpdateQuery ();
+		if (command.ImportFromFile (db.Photos) > 0) {
+			UpdateQuery ();
+			FSpot.GroupAdaptor adaptor = group_selector.Adaptor;
+			adaptor.Reload ();
+			group_selector.Adaptor = adaptor;
+		}
 	}
 
 	unsafe void HandlePrintCommand (object sender, EventArgs e)
