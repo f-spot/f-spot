@@ -14,7 +14,6 @@ public class Driver {
 
 		// FIXME: Error checking is non-existant here...
 
-		string home_directory = FSpot.Global.HomeDirectory;
 		string base_directory = FSpot.Global.BaseDirectory;
 		if (! File.Exists (base_directory))
 			Directory.CreateDirectory (base_directory);
@@ -23,7 +22,7 @@ public class Driver {
 		
 		Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {PixbufUtils.LoadFromAssembly ("f-spot-logo.png")};
 
-		MainWindow main_window = new MainWindow (db);
+		new MainWindow (db);
 		
 		ParseCommands (args);
 

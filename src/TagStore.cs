@@ -19,8 +19,7 @@ public class PixbufSerializer {
 		Pixdata pixdata = new Pixdata ();
 
 		IntPtr error = IntPtr.Zero;
-		bool raw_ret = gdk_pixdata_deserialize (ref pixdata, (uint) data.Length, data, out error);
-		bool ret = raw_ret;
+		gdk_pixdata_deserialize (ref pixdata, (uint) data.Length, data, out error);
 
 		if (error != IntPtr.Zero)
 			throw new GLib.GException (error);

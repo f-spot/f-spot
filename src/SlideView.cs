@@ -86,8 +86,6 @@ public class SlideView : Gtk.Image {
 
 	private bool PreloadNextImage (int idx)
 	{
-		Pixbuf orig;
-	
 		try {
 			if (idx < photos.Length && idx >= 0) {
 				//Console.WriteLine ("next_idx = " + next_idx + " idx = " + idx);

@@ -217,7 +217,7 @@ namespace FSpot {
 			double x = args.X + Allocation.X;
 			double y = args.Y + Allocation.Y;
 
-			Rectangle box = glass.Bounds ();
+			//Rectangle box = glass.Bounds ();
 			//Console.WriteLine ("please {0} and {1} in box {2}", x, y, box);
 
 			if (glass.Dragging) {
@@ -300,7 +300,6 @@ namespace FSpot {
 	        public Rectangle BoxBarBounds (int item)
 		{
 			int total_height = background.Height;
-			int count = item;
 			double percent = box_counts [item] / (double) Math.Max (box_count_max, 1);
 
 			Rectangle box = Rectangle.Zero;

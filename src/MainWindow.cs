@@ -205,7 +205,7 @@ public class MainWindow {
 		icon_view.DoubleClicked += new IconView.DoubleClickedHandler (HandleDoubleClicked);
 		icon_view.GrabFocus ();
 
-		FSpot.PreviewPopup preview = new FSpot.PreviewPopup (icon_view);
+		new FSpot.PreviewPopup (icon_view);
 
 		Gtk.Drag.SourceSet (icon_view, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
 				    icon_source_target_table, DragAction.Copy | DragAction.Move);
@@ -488,8 +488,7 @@ public class MainWindow {
 
 	void HandleIconViewDragDrop (object sender, DragDropArgs args)
 	{
-		Widget source = Gtk.Drag.GetSourceWidget (args.Context);
-
+		//Widget source = Gtk.Drag.GetSourceWidget (args.Context);
 		//Console.WriteLine ("Drag Drop {0}", source == null ? "null" : source.TypeName);
 		
 		args.RetVal = true;
@@ -497,8 +496,7 @@ public class MainWindow {
 
 	void HandleIconViewDragMotion (object sender, DragMotionArgs args)
 	{
-		Widget source = Gtk.Drag.GetSourceWidget (args.Context);
-
+		//Widget source = Gtk.Drag.GetSourceWidget (args.Context);
 		//Console.WriteLine ("Drag Motion {0}", source == null ? "null" : source.TypeName);
 
 		Gdk.Drag.Status (args.Context, args.Context.SuggestedAction, args.Time);
@@ -620,8 +618,7 @@ public class MainWindow {
 
 	void HandlePhotoViewDragDrop (object sender, DragDropArgs args)
 	{
-		Widget source = Gtk.Drag.GetSourceWidget (args.Context);
-		
+		//Widget source = Gtk.Drag.GetSourceWidget (args.Context);
 		//Console.WriteLine ("Drag Drop {0}", source == null ? "null" : source.TypeName);
 
 		args.RetVal = true;
@@ -629,8 +626,7 @@ public class MainWindow {
 
 	void HandlePhotoViewDragMotion (object sender, DragMotionArgs args)
 	{
-		Widget source = Gtk.Drag.GetSourceWidget (args.Context);
-
+		//Widget source = Gtk.Drag.GetSourceWidget (args.Context);
 		//Console.WriteLine ("Drag Motion {0}", source == null ? "null" : source.TypeName);
 
 		Gdk.Drag.Status (args.Context, args.Context.SuggestedAction, args.Time);
@@ -639,8 +635,7 @@ public class MainWindow {
 
 	void HandlePhotoViewDragDataReceived (object sender, DragDataReceivedArgs args)
 	{
-	 	Widget source = Gtk.Drag.GetSourceWidget (args.Context);     
-		
+	 	//Widget source = Gtk.Drag.GetSourceWidget (args.Context);     
 		//Console.WriteLine ("Drag received {0}", source == null ? "null" : source.TypeName);
 
 		HandleAttachTagCommand (sender, null);
@@ -694,79 +689,10 @@ public class MainWindow {
 		}
 	}
 
-#if false
 	unsafe void HandlePrintCommand (object sender, EventArgs e)
 	{
-		PrintJob pj = new PrintJob (PrintConfig.Default ());
-		PrintDialog dialog = new PrintDialog (pj, "Print Images", 0);
-
-		PrintContext ctx = pj.Context;
-		double page_width, page_height;
-		pj.GetPageSize (out page_width, out page_height);
-
-		foreach (Photo photo in SelectedPhotos ()) {
-			Print.Beginpage (ctx, "F-Spot "+ photo.DefaultVersionPath);
-			
-			Pixbuf image = FSpot.PhotoLoader.Load (photo);
-
-			bool rotate = false;
-			double width = page_width;
-			double height = page_height;
-			if (image.Width > image.Height) {
-				rotate = true;
-				width = page_height;
-				height = page_width;
-			}
-			
-			double scale = Math.Min (width / image.Width, 
-						  height / image.Height);
-			
-			Gnome.Print.Gsave (ctx);
-
-			if (rotate) {
-				Gnome.Print.Rotate (ctx, 90);
-				Gnome.Print.Translate (ctx, 0, -page_width);
-			}
-			Print.Translate (ctx, 
-					 (width - image.Width * scale) / 2.0, 
-					 (height - image.Height * scale) / 2.0);
-
-			Print.Scale (ctx, image.Width * scale, image.Height * scale);
-
-			Print.Pixbuf (ctx, image);
-			Print.Grestore (ctx);
-
-			//Print.Show (ctx, photo.Description);
-			Print.Showpage (ctx);
-			image.Dispose ();
-		}
-
-		int response = dialog.Run ();
-
-		Console.WriteLine ("response: " + response);
-
-		if (response == (int) PrintButtons.Cancel) {
-			dialog.Destroy ();
-		}
-		pj.Close ();
-
-		switch (response) {
-		case (int) PrintButtons.Print:
-			pj.Print ();
-			break;
-		case (int) PrintButtons.Preview:
-			new PrintJobPreview (pj, "Testing").Show ();
-			break;
-		}
-
-		dialog.Destroy ();
+		new FSpot.PrintDialog (SelectedPhotos ());
 	}
-#else
-	unsafe void HandlePrintCommand (object sender, EventArgs e)
-	{
-		FSpot.PrintDialog dialog = new FSpot.PrintDialog (SelectedPhotos ());
-	}
-#endif	
 
 	private Gtk.Dialog info_display_window;
 	public void HandleInfoDisplayDestroy (object sender, EventArgs args)
@@ -799,19 +725,19 @@ public class MainWindow {
 
 	void HandleExportToGallery (object sender, EventArgs args)
 	{
-		FSpot.GalleryExport export = new FSpot.GalleryExport (new FSpot.PhotoArray (SelectedPhotos ()));
+		new FSpot.GalleryExport (new FSpot.PhotoArray (SelectedPhotos ()));
 	}
 
 	void HandleExportToVfs (object sender, EventArgs args)
 	{
-		FSpot.VfsExport export = new FSpot.VfsExport (new FSpot.PhotoArray (SelectedPhotos ()));
+		new FSpot.VfsExport (new FSpot.PhotoArray (SelectedPhotos ()));
 	}
 
 	void HandleViewDirectory (object sender, EventArgs args)
 	{
 		Gtk.Window win = new Gtk.Window ("Directory View");
 		IconView view = new IconView (new FSpot.DirectoryCollection (System.IO.Directory.GetCurrentDirectory ()));
-		FSpot.PreviewPopup preview = new FSpot.PreviewPopup (view);
+		new FSpot.PreviewPopup (view);
 
 		view.DisplayTags = false;
 
@@ -823,7 +749,7 @@ public class MainWindow {
 
 	void HandleExportToFlickr (object sender, EventArgs args)
 	{
-		FSpot.FlickrExport export = new FSpot.FlickrExport (new FSpot.PhotoArray (SelectedPhotos ()));
+		new FSpot.FlickrExport (new FSpot.PhotoArray (SelectedPhotos ()));
 	}
 	
 	void HandleExportToFotki (object sender, EventArgs args)
@@ -962,8 +888,6 @@ public class MainWindow {
 
 	public void HandleAttachTagCommand (object obj, EventArgs args)
 	{
-		Tag [] tags = this.tag_selection_widget.TagHighlight ();
-		
 		AttachTags (tag_selection_widget.TagHighlight (), SelectedIds ());
 	}
 

@@ -75,6 +75,8 @@ public class FlickrRemote {
 			} else {
 				node = node.NextSibling;
 				error_value = int.Parse (node.ChildNodes [0].Value);
+				
+				System.Console.WriteLine ("Got Error {0} while uploading", error_value);
 
 				node = node.NextSibling;
 				error_verbose = node.ChildNodes [0].Value;

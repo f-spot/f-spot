@@ -107,7 +107,6 @@ public class ExportCommand {
 			ResponseType response = (ResponseType)export_gallery_dialog.Run ();
 			
 			if (response == ResponseType.Ok) {
-				GalleryRemote.Album album = null;
 				try {
 					if (gallery.Albums.Count != 0) {
 						current_album = gallery.Albums[gallery_album_option.History] as GalleryRemote.Album;

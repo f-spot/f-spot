@@ -47,7 +47,6 @@ public class TagSelectionWidget : TreeView {
 
 	public Tag TagAtPosition (int x, int y) 
 	{
-		TreeModel model;
 		TreePath path;
 		TreeIter iter;
 

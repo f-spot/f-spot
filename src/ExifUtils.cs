@@ -19,6 +19,7 @@ public class ExifUtils {
 	{
 		ExifData exif_data = new ExifData (path);
 
+#if UNSED_CODE
 		MakerType maker = MakerType.Unknown;
 		string maker_tag_value = exif_data.LookupString (ExifTag.Make);
 		if (maker_tag_value != null) {
@@ -27,6 +28,7 @@ public class ExifUtils {
 			else if (maker_tag_value.ToLower () == "canon")
 				maker = MakerType.Canon;
 		}
+#endif
 
 		ExposureInfo info = new ExposureInfo ();
 		info.ApertureValue = exif_data.LookupString (ExifTag.ApertureValue);

@@ -167,7 +167,6 @@ class PixbufUtils {
 	{
 		Console.WriteLine ("Generating thumbnail");
 		string uri = UriList.PathToFileUri (path).ToString ();
-		string thumbnail_path = Gnome.Thumbnail.PathForUri (uri, Gnome.ThumbnailSize.Large);
 
 		Gdk.Pixbuf scaled = PixbufUtils.LoadAtMaxSize (path, 256, 256);
 		DateTime mtime = System.IO.File.GetLastWriteTime (path);

@@ -384,8 +384,6 @@ public class PhotoStore : DbStore {
 	//
 	static Pixbuf GenerateFromExif (string path, string uri)
 	{
-		Pixbuf pixbuf;
-
 		try {
 			using (ExifData ed = new ExifData (path)){
 				byte [] thumbData = ed.Data;
