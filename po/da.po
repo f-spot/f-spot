@@ -1,0 +1,497 @@
+# Danish translation of f-spot
+# Copyright (C) 2004 Larry Ewing
+# This file is distributed under the same license as the f-spot package.
+# Martin Willemoes Hansen <mwh@sysrq.dk>, 2004.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: f-spot\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-11-30 10:31+0100\n"
+"PO-Revision-Date: 2004-11-30 11:15+0100\n"
+"Last-Translator: Martin Willemoes Hansen <mwh@sysrq.dk>\n"
+"Language-Team: Danish <dansk@klid.dk>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/f-spot.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: src/f-spot.glade.h:2
+msgid "<b>Album</b>"
+msgstr "<b>Album</b>"
+
+#: src/f-spot.glade.h:3
+msgid "<b>Color Temperature</b>"
+msgstr "<b>Farvetemperatur</b>"
+
+#: src/f-spot.glade.h:4
+msgid "<b>End Date</b>"
+msgstr "<b>Slutdato</b>"
+
+#: src/f-spot.glade.h:5
+msgid "<b>Exposure</b>"
+msgstr "<b>Afdækning</b>"
+
+#: src/f-spot.glade.h:6
+msgid "<b>Gallery</b>"
+msgstr "<b>Galleri</b>"
+
+#: src/f-spot.glade.h:7
+msgid "<b>Histogram</b>"
+msgstr "<b>Histogram</b>"
+
+#: src/f-spot.glade.h:8
+msgid "<b>Photograph Layout</b>"
+msgstr "<b>Fotografilayout</b>"
+
+#: src/f-spot.glade.h:9
+msgid "<b>Photos</b>"
+msgstr "<b>Fotoer</b>"
+
+#: src/f-spot.glade.h:10
+msgid "<b>Preview</b>"
+msgstr "<b>Forhåndsvisning</b>"
+
+#: src/f-spot.glade.h:11
+msgid "<b>Printer Details</b>"
+msgstr "<b>Printerdetaljer</b>"
+
+#: src/f-spot.glade.h:12
+msgid "<b>Start Date</b>"
+msgstr "<b>Startdato</b>"
+
+#: src/f-spot.glade.h:13
+msgid "<b>Style</b>"
+msgstr "<b>Stil</b>"
+
+#: src/f-spot.glade.h:14
+msgid "<small> </small>"
+msgstr "<small> </small>"
+
+#: src/f-spot.glade.h:15
+msgid "<small></small>"
+msgstr "<small></small>"
+
+#: src/f-spot.glade.h:16
+msgid "Add Gallery"
+msgstr "Tilføj galleri"
+
+#: src/f-spot.glade.h:17
+msgid "Adjust Color"
+msgstr "Justér farve"
+
+#: src/f-spot.glade.h:18
+msgid "Album:"
+msgstr "Album:"
+
+#: src/f-spot.glade.h:19
+msgid "Arranged By"
+msgstr "Arrangeret efter"
+
+#: src/f-spot.glade.h:20
+msgid "Attach Tag To Selection"
+msgstr "Vedlæg mærke til markering"
+
+#: src/f-spot.glade.h:21
+msgid "Border:"
+msgstr "Grænse:"
+
+#: src/f-spot.glade.h:22
+msgid "Brightness:"
+msgstr "Klarhed:"
+
+#: src/f-spot.glade.h:23
+msgid "Browse"
+msgstr "Browse"
+
+#: src/f-spot.glade.h:24
+msgid "CD"
+msgstr "cd"
+
+#: src/f-spot.glade.h:25
+msgid "Cancel"
+msgstr "Annullér"
+
+#: src/f-spot.glade.h:26
+msgid "Caption:"
+msgstr "Billedtekst:"
+
+#: src/f-spot.glade.h:27
+msgid "Category:"
+msgstr "Kategori:"
+
+#: src/f-spot.glade.h:28
+msgid "Close"
+msgstr "Luk"
+
+#: src/f-spot.glade.h:29
+msgid "Co_nfigure"
+msgstr "Ko_nfigurér"
+
+#: src/f-spot.glade.h:30
+msgid "Contrast:"
+msgstr "Kontrast:"
+
+#: src/f-spot.glade.h:31
+msgid "Create New Category"
+msgstr "Opret ny kategori"
+
+#: src/f-spot.glade.h:32
+msgid "Create New Tag"
+msgstr "Opret nyt mærke"
+
+#: src/f-spot.glade.h:33
+msgid "Create new version"
+msgstr "Opret ny version"
+
+#: src/f-spot.glade.h:34
+msgid "Crop Photo to Fit"
+msgstr "Beskær billede så det passer"
+
+#: src/f-spot.glade.h:35
+msgid "Delete Selected Tag"
+msgstr "Slet markeret mærke"
+
+#: src/f-spot.glade.h:36
+msgid "Delete Version"
+msgstr "Slet version"
+
+#: src/f-spot.glade.h:37
+msgid "Destination Temp"
+msgstr "Destinationstemp"
+
+#: src/f-spot.glade.h:38
+msgid "Directory"
+msgstr "Katalog"
+
+#: src/f-spot.glade.h:39
+msgid "Display Dates"
+msgstr "Vis datoer"
+
+#: src/f-spot.glade.h:40
+msgid "Display Tags"
+msgstr "Vis mærker"
+
+#: src/f-spot.glade.h:41
+msgid "EXIF Data"
+msgstr "EXIF-data"
+
+#: src/f-spot.glade.h:42
+msgid "Edit Selected Tag"
+msgstr "Redigér markerede mærker"
+
+#: src/f-spot.glade.h:43
+msgid "Edit Tag Icon"
+msgstr "Redigér mærke-ikon"
+
+#: src/f-spot.glade.h:44
+msgid "Export"
+msgstr "Eksportér"
+
+#: src/f-spot.glade.h:45
+msgid "Export titles and comments"
+msgstr "Eksportér titler og kommentarer"
+
+#: src/f-spot.glade.h:46
+msgid "Export to Album:"
+msgstr "Eksportér til album:"
+
+#: src/f-spot.glade.h:47
+msgid "File"
+msgstr "Fil"
+
+#: src/f-spot.glade.h:48
+msgid "Fin_d"
+msgstr "Fin_d"
+
+#: src/f-spot.glade.h:49
+msgid "Find by _Tag"
+msgstr "Find efter _mærke"
+
+#: src/f-spot.glade.h:50
+msgid ""
+"Full Page\n"
+"Standard - 4x6"
+msgstr ""
+"Hele siden\n"
+"Standard - 4x6"
+
+#: src/f-spot.glade.h:52
+msgid "Fullscreen"
+msgstr "Fuldskærm"
+
+#: src/f-spot.glade.h:53
+msgid "Gallery"
+msgstr "Galleri"
+
+#: src/f-spot.glade.h:54
+msgid "Gallery Name:"
+msgstr "Gallerinavn:"
+
+#: src/f-spot.glade.h:55
+msgid "Gallery Settings"
+msgstr "Galleriopsætning"
+
+#: src/f-spot.glade.h:56
+msgid "Gallery:"
+msgstr "Galleri:"
+
+#: src/f-spot.glade.h:57
+msgid ""
+"Hairline\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
+msgstr ""
+"Hårbredde\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
+
+#: src/f-spot.glade.h:62
+msgid "Hue:"
+msgstr "Farvetone:"
+
+#: src/f-spot.glade.h:63
+msgid "Icon:"
+msgstr "Ikon:"
+
+#: src/f-spot.glade.h:64
+msgid "Month"
+msgstr "Måned"
+
+#: src/f-spot.glade.h:65
+msgid "Next"
+msgstr "Næste"
+
+#: src/f-spot.glade.h:66
+msgid ""
+"None\n"
+"Title\n"
+"Filename\n"
+"Date\n"
+"Photo Details"
+msgstr ""
+"Ingen\n"
+"Titel\n"
+"Filnavn\n"
+"Dato\n"
+"Fotodetaljer"
+
+#: src/f-spot.glade.h:71
+msgid "Number of Copies:"
+msgstr "Antal kopier:"
+
+#: src/f-spot.glade.h:72
+msgid "OK"
+msgstr "O.k."
+
+#: src/f-spot.glade.h:73
+msgid "Open album in browser when done uploading"
+msgstr "Åbn albummet i browseren når overførslen er færdig"
+
+#: src/f-spot.glade.h:74
+msgid "Page 1 of 3"
+msgstr "Side 1 af 3"
+
+#: src/f-spot.glade.h:75
+msgid "Password:"
+msgstr "Adgangskode:"
+
+#: src/f-spot.glade.h:76
+msgid "Pause"
+msgstr "Pause"
+
+#: src/f-spot.glade.h:77
+msgid "Photo 0 of 0"
+msgstr "Foto 0 af 0"
+
+#: src/f-spot.glade.h:78
+msgid "Photo Source:"
+msgstr "Fotokilde:"
+
+#: src/f-spot.glade.h:79
+msgid "PhotoSize:"
+msgstr "Fotostørrelse:"
+
+#: src/f-spot.glade.h:80
+msgid "Previous"
+msgstr "Forrige"
+
+#: src/f-spot.glade.h:81
+msgid "Print"
+msgstr "Udskriv"
+
+#: src/f-spot.glade.h:82
+msgid "Print Crop Marks"
+msgstr "Udskriv beskæringsmærker"
+
+#: src/f-spot.glade.h:83
+msgid "Rem_ove Tag"
+msgstr "F_jern mærke"
+
+#: src/f-spot.glade.h:84
+msgid "Remove Tag From Selection"
+msgstr "Fjern mærke fra markering"
+
+#: src/f-spot.glade.h:85
+msgid "Rename Version"
+msgstr "Omdøb version"
+
+#: src/f-spot.glade.h:86
+msgid "Rotate Left"
+msgstr "Rotér til venstre"
+
+#: src/f-spot.glade.h:87
+msgid "Rotate Right"
+msgstr "Rotér til højre"
+
+#: src/f-spot.glade.h:88
+msgid "Saturation:"
+msgstr "Mætning:"
+
+#: src/f-spot.glade.h:89
+msgid "Scale images to no larger than: "
+msgstr "Skalér ikke billeder til mere end: "
+
+#: src/f-spot.glade.h:90
+msgid "Select All"
+msgstr "Markér alt"
+
+#: src/f-spot.glade.h:91
+msgid "Select None"
+msgstr "Markér intet"
+
+#: src/f-spot.glade.h:92
+msgid ""
+"Selection\n"
+"Gallery\n"
+"Viewport"
+msgstr ""
+"Markering\n"
+"Galleri\n"
+"Visningsområde"
+
+#: src/f-spot.glade.h:95
+msgid "Send _Mail"
+msgstr "Send _e-post"
+
+#: src/f-spot.glade.h:96
+msgid "Set _Date Range"
+msgstr "Sæt _datointerval"
+
+#: src/f-spot.glade.h:97
+msgid "Set as Background"
+msgstr "Benyt som baggrund"
+
+#: src/f-spot.glade.h:98
+msgid "Size"
+msgstr "Størrelse"
+
+#: src/f-spot.glade.h:99
+msgid "SlideShow"
+msgstr "Diasshow"
+
+#: src/f-spot.glade.h:100
+msgid "Source Temp"
+msgstr "Kildetemp"
+
+#: src/f-spot.glade.h:101
+msgid "Tag name:"
+msgstr "Mærkenavn:"
+
+#: src/f-spot.glade.h:102
+msgid "Tags"
+msgstr "Mærker"
+
+#: src/f-spot.glade.h:103
+msgid "Update Thumbnail"
+msgstr "Opdatér miniature"
+
+#: src/f-spot.glade.h:104
+msgid "Url:"
+msgstr "URL:"
+
+#: src/f-spot.glade.h:105
+msgid "User_name:"
+msgstr "Bruger_navn:"
+
+#: src/f-spot.glade.h:106
+msgid "Username:"
+msgstr "Brugernavn:"
+
+#: src/f-spot.glade.h:107
+msgid "View"
+msgstr "Vis"
+
+#: src/f-spot.glade.h:108
+msgid "Will print Using: Us Letter size on Generic Postscript"
+msgstr ""
+"Udskriver med benyttelse af: US-Letter-størrelse og almindelig postscript"
+
+#: src/f-spot.glade.h:109
+msgid "Zoom In"
+msgstr "Zoom ind"
+
+#: src/f-spot.glade.h:110
+msgid "Zoom _Out"
+msgstr "Zoom _ud"
+
+#: src/f-spot.glade.h:111
+msgid "_Attach Tag"
+msgstr "_Vedlæg mærke"
+
+#: src/f-spot.glade.h:112
+msgid "_Clear Date Range"
+msgstr "_Ryd datointerval"
+
+#: src/f-spot.glade.h:113
+msgid "_Delete from Drive"
+msgstr "_Slet fra disk"
+
+#: src/f-spot.glade.h:114
+msgid "_Gallery Name:"
+msgstr "_Gallerinavn:"
+
+#: src/f-spot.glade.h:115
+msgid "_Import"
+msgstr "_Importér"
+
+#: src/f-spot.glade.h:116
+msgid "_Large"
+msgstr "_Stor"
+
+#: src/f-spot.glade.h:117
+msgid "_Medium"
+msgstr "_Medium"
+
+#: src/f-spot.glade.h:118
+msgid "_Password:"
+msgstr "_Adgangskode"
+
+#: src/f-spot.glade.h:119
+msgid "_Remove From Catalog"
+msgstr "_Fjern fra katalog"
+
+#: src/f-spot.glade.h:120
+msgid "_Small"
+msgstr "_Lille"
+
+#: src/f-spot.glade.h:121
+msgid "_Url:"
+msgstr "_URL:"
+
+#: src/f-spot.glade.h:122
+msgid "_Version"
+msgstr "_Version"
+
+#: src/f-spot.glade.h:123
+msgid "dialog1"
+msgstr "dialog1"
+
+#: src/f-spot.glade.h:124
+msgid "x"
+msgstr "x"
