@@ -1,7 +1,8 @@
 2004-08-18  Larry Ewing  <lewing@novell.com>
 
 	* src/IconView.cs: change the selection drawing. This may not
-	actually be better but it is a start.
+	actually be better but it is a start.  More selection drawing
+	changes.
 
 	* src/PhotoStore.cs: Make several of the methods private to clean
 	up the public interface.

@@ -72,7 +72,7 @@ public class IconView : Gtk.Layout {
 	private const int BORDER_SIZE = 6;
 
 	// Thickness of the outline used to indicate selected items. 
-	private const int SELECTION_THICKNESS = 3;
+	private const int SELECTION_THICKNESS = 5;
 
 	// Size of the tag icon in the view.
 	private const int TAG_ICON_SIZE = 12;
@@ -89,6 +89,7 @@ public class IconView : Gtk.Layout {
 	// Various other layout values.
 	private int cells_per_row;
 	private int cell_width;
+
 	private int cell_height;
 
 	// Query we are displaying.
@@ -380,7 +381,7 @@ public class IconView : Gtk.Layout {
 		Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForPath (thumbnail_path);
 
 		Gdk.Rectangle area = new Gdk.Rectangle (x, y, cell_width, cell_height);
-		Style.PaintBox (Style, BinWindow, StateType.Normal, ShadowType.Out, area, this, null, x, y, cell_width, cell_height);
+		Style.PaintBox (Style, BinWindow, selected ? (HasFocus ? StateType.Selected :StateType.Active) : StateType.Normal, ShadowType.Out, area, this, null, x, y, cell_width, cell_height);
 
 		if (HasFocus && thumbnail_num == focus_cell) {
 			Style.PaintFocus(Style, BinWindow, StateType.Normal, area, this, null, x + 3, y + 3, cell_width - 6, cell_height - 6);
@@ -392,19 +393,6 @@ public class IconView : Gtk.Layout {
 			int width, height;
 			PixbufUtils.Fit (thumbnail, ThumbnailWidth, ThumbnailHeight, true, out width, out height);
 
-			Pixbuf temp_thumbnail;
-			if (selected) {
-				temp_thumbnail = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, width, height);
-				temp_thumbnail.Fill (0);
-				thumbnail.Composite (temp_thumbnail, 0, 0, width, height, 
-						     0, 0, width / (double) thumbnail.Width, height/ (double) thumbnail.Height, 
-						     InterpType.Bilinear, 127);
-			} else if (width == thumbnail.Width) {
-				temp_thumbnail = thumbnail;
-			} else {
-				temp_thumbnail = thumbnail.ScaleSimple (width, height, InterpType.Bilinear);
-			}
-
 			int dest_x = (int) (x + (cell_width - width) / 2);
 			int dest_y;
 			if (DisplayTags)
@@ -413,18 +401,17 @@ public class IconView : Gtk.Layout {
 				dest_y = (int) (y + (cell_height - height) / 2);
 			
 			if (selected) {
-				Gdk.GC selection_gc = new Gdk.GC (BinWindow);
+				dest_x -= SELECTION_THICKNESS;
+				dest_y -= SELECTION_THICKNESS;
+				width += 2 * SELECTION_THICKNESS;
+				height += 2 * SELECTION_THICKNESS;
+			}
 
-				if (HasFocus)
-					selection_gc.Copy (Style.BackgroundGC (StateType.Selected));
-				else
-					selection_gc.Copy (Style.BackgroundGC (StateType.Active));
-
-				selection_gc.SetLineAttributes (SELECTION_THICKNESS, LineStyle.Solid, CapStyle.Butt, JoinStyle.Miter);
-
-				BinWindow.DrawRectangle (selection_gc, true,
-							 dest_x - SELECTION_THICKNESS, dest_y - SELECTION_THICKNESS,
-							 width + 2 * SELECTION_THICKNESS, height + 2 * SELECTION_THICKNESS);
+			Pixbuf temp_thumbnail;
+			if (width == thumbnail.Width) {
+				temp_thumbnail = thumbnail;
+			} else {
+				temp_thumbnail = thumbnail.ScaleSimple (width, height, InterpType.Bilinear);
 			}
 
 			temp_thumbnail.RenderToDrawable (BinWindow, Style.WhiteGC,
