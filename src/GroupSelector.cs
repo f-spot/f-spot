@@ -19,6 +19,8 @@ namespace FSpot {
 
 		private Gtk.Button left;
 		private Gtk.Button right;
+		private Delay left_delay;
+		private Delay right_delay;
 
 		private Gdk.Window event_window;
 
@@ -137,6 +139,12 @@ namespace FSpot {
 		private void UpdateButtons () {
 			left.Sensitive = (scroll_offset < 0);
 			right.Sensitive = (box_counts.Length * BoxWidth > background.Width - scroll_offset); 
+
+			if (!left.Sensitive && left_delay.IsPending)
+				left_delay.Stop ();
+
+			if (!right.Sensitive && right_delay.IsPending)
+				right_delay.Stop ();
 		}
 
 		static bool IsInside (Rectangle bounds, double x, double y) 
@@ -826,16 +834,37 @@ namespace FSpot {
 			return (int) (max_height * 1.5);
 		}
 
-		private void HandleScrollRight (object sender, System.EventArgs args) 
+		private bool HandleScrollRight ()
 		{
 			Offset -= 10;
+			return true;
 		}
 
-		private void HandleScrollLeft (object sender, System.EventArgs args) 
+		private bool HandleScrollLeft ()
 		{
 			Offset += 10;
+			return true;
 		}
 		
+		private void HandleLeftPressed (object sender, System.EventArgs ars)
+		{
+			HandleScrollLeft ();
+			left_delay.Start ();
+		}
+
+		private void HandleRightPressed (object sender, System.EventArgs ars)
+		{
+			HandleScrollRight ();
+			right_delay.Start ();
+		}
+
+		[GLib.ConnectBefore]
+		private void HandleScrollReleaseEvent (object sender, ButtonReleaseEventArgs args)
+		{
+			right_delay.Stop ();
+			left_delay.Stop ();
+		}
+
 		protected override void OnSizeAllocated (Gdk.Rectangle alloc)
 		{
 			base.OnSizeAllocated (alloc);
@@ -872,9 +901,6 @@ namespace FSpot {
 
 
 			UpdateButtons ();
-#if true
-//USE_BUTTONS
-#endif
 		}
 
 		public GroupSelector () : base () 
@@ -887,9 +913,18 @@ namespace FSpot {
 			max_limit = new Limit (this, Limit.LimitType.Max);
 
 			left = new Gtk.Button (new Gtk.Image (Gtk.Stock.GoBack, Gtk.IconSize.Button));
-			left.Clicked += HandleScrollLeft;
+			left.Relief = Gtk.ReliefStyle.None;
+			//left.Clicked += HandleScrollLeft;
+			left.Pressed += HandleLeftPressed;
+			left.ButtonReleaseEvent += HandleScrollReleaseEvent;
+			left_delay = new Delay (50, new GLib.IdleHandler (HandleScrollLeft));
+
 			right = new Gtk.Button (new Gtk.Image (Gtk.Stock.GoForward, Gtk.IconSize.Button));
-			right.Clicked += HandleScrollRight;
+			right.Relief = Gtk.ReliefStyle.None;
+			right.Pressed += HandleRightPressed;
+			right.ButtonReleaseEvent += HandleScrollReleaseEvent;
+			right_delay = new Delay (50, new GLib.IdleHandler (HandleScrollRight));
+			//right.Clicked += HandleScrollRight;
 
 			this.Put (left, 0, 0);
 			this.Put (right, 100, 0);

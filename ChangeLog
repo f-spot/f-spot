@@ -1,5 +1,8 @@
 2005-01-30  Larry Ewing  <lewing@novell.com>
 
+	* src/GroupSelector.cs: add scrolling delays so that you can hold
+	down the button and get scrolling.
+
 	* src/Tiff.cs: add a little more code to the parser.
 
 	* src/GroupSelector.cs: update the RangeType.Min to be a little
