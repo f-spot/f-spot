@@ -1,5 +1,9 @@
 2004-06-14  Larry Ewing  <lewing@ximian.com>
 
+        * src/MainWindow.cs: add a new source type
+	application/x-fspot-photos make the tag selection widget drop
+	handler default to using that.
+	
 	* src/MainWindow.cs: Make the IconView accept text/uri-list drops
 	and import them.  This should really popup an import dialog bug
 	that isn't done yet.
