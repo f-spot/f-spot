@@ -1,5 +1,7 @@
 2005-03-09  Larry Ewing  <lewing@novell.com>
 
+	* src/FormClient.cs: bump the chunk size.
+
 	* src/TagStore.cs: clean up what we can and fix a leak in
 	serialize.
 

@@ -151,13 +151,13 @@ class FormClient {
 			stream_writer.Write (MultipartHeader (name, file));
 			stream_writer.Flush ();
 			Stream stream = stream_writer.BaseStream;
-			Byte [] data = new Byte [4096];
+			byte [] data = new byte [32768];
 			FileStream fs = file.OpenRead ();
 			long total = file.Length;
 			long total_read = 0;
 
 			int count;			
-			while ((count = fs.Read (data, 0, 4096)) > 0) {
+			while ((count = fs.Read (data, 0, data.Length)) > 0) {
 				stream.Write (data, 0, count);
 				total_read += count;
 				if (Progress != null)
