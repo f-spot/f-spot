@@ -1,5 +1,12 @@
 2004-08-24  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: expose CellIsSelected and FocusCell for the
+	changes in mainwindow.cs
+
+	* src/MainWindow.cs: make page switching use the focused cell not
+	the start of the selection and rework dnd to attach to the dropped
+	on cell unless the dropped on cell is selected then use the selection.
+
 	* src/ThumbnailCache.cs: only dispose once we've actually removed
 	the thumnail from the cache.
 	

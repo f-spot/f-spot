@@ -433,7 +433,13 @@ public class MainWindow {
 
 		switch (args.Info) {
 		case (uint)TargetType.TagList:
-			HandleAttachTagCommand (sender, null);
+			int item = icon_view.CellAtPosition (args.X, args.Y);
+
+			if (icon_view.CellIsSelected (item))
+				AttachTags (tag_selection_widget.TagHighlight (), SelectedIds());
+			else 
+				AttachTags (tag_selection_widget.TagHighlight (), new int [] {item});
+
 			break;
 		case (uint)TargetType.UriList:
 
@@ -501,6 +507,7 @@ public class MainWindow {
 
 	void HandleDoubleClicked (IconView icon_view, int clicked_item)
 	{
+		icon_view.FocusCell = clicked_item;
 		SwitchToPhotoViewMode ();
 	}
 
@@ -565,8 +572,7 @@ public class MainWindow {
 		preview_width = quick_preview.Allocation.Width;
 		preview_height = quick_preview.Allocation.Height;
 
-		int cell_width, cell_height;
-		icon_view.GetCellSize (last_motion_item, out cell_width, out cell_height);
+		Gdk.Rectangle bounds = icon_view.CellBounds (last_motion_item);
 
 		// Compute the preview's x-position, ensuring that it doesn't
 		// fall off the edge of the screen
@@ -580,7 +586,7 @@ public class MainWindow {
 		// Compute the preview's y-position.  We put the preview above
 		// the image if it will fit there, and below otherwise.
 		int image_y;
-		int margin = cell_height / 2 + 5;
+		int margin = bounds.Height / 2 + 5;
 		image_y = last_image_center_y - preview_height - margin;
 		if (image_y < 0)
 			image_y = last_image_center_y + margin;
@@ -943,11 +949,16 @@ public class MainWindow {
 	{
 		Tag [] tags = this.tag_selection_widget.TagHighlight ();
 		
-		foreach (int num in SelectedIds ()) {
+		AttachTags (tag_selection_widget.TagHighlight (), SelectedIds ());
+	}
+
+	void AttachTags (Tag [] tags, int [] ids) 
+	{
+		foreach (int num in ids) {
 			Photo photo = query.Photos [num];
 			
 			AddTagExtended (photo, tags);
-			InvalidateViews (num);
+			InvalidateViews (num);			
 		}
 	}
 
@@ -1169,13 +1180,14 @@ public class MainWindow {
 
 	public void HandleRotate90Command (object sender, EventArgs args)
 	{
+		Console.WriteLine ("Rotate Left");
 		RotateSelectedPictures (RotateCommand.Direction.Clockwise);
 	}
 
 	public void HandleRotate270Command (object sender, EventArgs args)
 	{
+		Console.WriteLine ("Rotate Left");
 		RotateSelectedPictures (RotateCommand.Direction.Counterclockwise);
-
 	}
 
 	public void HandleCopyLocation (object sender, EventArgs args)
@@ -1331,16 +1343,14 @@ public class MainWindow {
 		case 0:
 			icon_view.ScrollTo (photo_view.CurrentPhoto);
 			icon_view.Throb (photo_view.CurrentPhoto);
-			Console.WriteLine ("I throb {0}", photo_view.CurrentPhoto);
+
 			mode = ModeType.IconView;
 			break;
 		case 1:
 			if (current_photo_idx != PHOTO_IDX_NONE)
 				photo_view.CurrentPhoto = current_photo_idx;
 			else if (current_photos) {
-				int [] selection = icon_view.SelectedIdxs;
-				
-				photo_view.CurrentPhoto = selection[0];
+				photo_view.CurrentPhoto = icon_view.FocusCell;
 			}
 
 			mode = ModeType.PhotoView;

@@ -108,7 +108,7 @@ public class IconView : Gtk.Layout {
 
 	// Focus Handling
 	private int real_focus_cell;
-	private int focus_cell {
+	public int FocusCell {
 		set {
 			if (value != real_focus_cell) {
 				InvalidateCell (value);
@@ -217,8 +217,8 @@ public class IconView : Gtk.Layout {
 
 	public int CurrentIdx {
 		get {
-			if (selected_cells.Count == 1 && IdxIsSelected (focus_cell))
-				return focus_cell;
+			if (selected_cells.Count == 1 && IdxIsSelected (FocusCell))
+				return FocusCell;
 			else 
 				return -1;
 		}
@@ -307,7 +307,7 @@ public class IconView : Gtk.Layout {
 			SelectionChanged (this);
 	}
 
-	private bool CellIsSelected (int cell_num)
+	public bool CellIsSelected (int cell_num)
 	{
 		return selected_cells.ContainsKey (cell_num);
 	}
@@ -430,7 +430,7 @@ public class IconView : Gtk.Layout {
 				ShadowType.Out, area, this, "IconView", x, y, cell_width, cell_height);
 
 #endif 
-		if (HasFocus && thumbnail_num == focus_cell) {
+		if (HasFocus && thumbnail_num == FocusCell) {
 			Style.PaintFocus(Style, BinWindow, StateType.Normal, area, 
 					 this, null, x + 3, y + 3, cell_width - 6, cell_height - 6);
 		}
@@ -762,7 +762,7 @@ public class IconView : Gtk.Layout {
 			if ((args.Event.State & ModifierType.ControlMask) != 0) {
 				ToggleCell (cell_num);
 			} else if ((args.Event.State & ModifierType.ShiftMask) != 0) {
-				SelectCellRange (focus_cell, cell_num);
+				SelectCellRange (FocusCell, cell_num);
 			} else if (!CellIsSelected (cell_num)) {
 				UnselectAllCells ();
 				SelectCell (cell_num);
@@ -779,7 +779,7 @@ public class IconView : Gtk.Layout {
 			click_x = (int) args.Event.X;
 			click_y = (int) args.Event.Y;
 
-			focus_cell = cell_num;
+			FocusCell = cell_num;
 			return;
 
 		default:
@@ -830,47 +830,47 @@ public class IconView : Gtk.Layout {
 		bool shift = ModifierType.ShiftMask == (args.Event.State & ModifierType.ShiftMask);
 		bool control = ModifierType.ControlMask == (args.Event.State & ModifierType.ControlMask);
 
-		focus_old = focus_cell;
+		focus_old = FocusCell;
 		switch (args.Event.Key) {
 			case Gdk.Key.Down:
-				focus_cell += cells_per_row;
+				FocusCell += cells_per_row;
 				break;
 			case Gdk.Key.Left:
-				focus_cell--;
+				FocusCell--;
 				break;
 			case Gdk.Key.Right:
-				focus_cell++;
+				FocusCell++;
 				break;
 			case Gdk.Key.Up:
-				focus_cell -= cells_per_row;
+				FocusCell -= cells_per_row;
 				break;
 			case Gdk.Key.Home:
-				focus_cell = 0;
+				FocusCell = 0;
 				break;
 			case Gdk.Key.End:
-				focus_cell = query.Photos.Length - 1; 
+				FocusCell = query.Photos.Length - 1; 
 				break;
 			case Gdk.Key.space:
-				ToggleCell (focus_cell);
+				ToggleCell (FocusCell);
 				break;
 			default:	
 				args.RetVal = false;
 				return;		
 		}
 		
-		if (focus_cell < 0 || focus_cell > query.Photos.Length - 1) {
-			focus_cell = focus_old;
+		if (FocusCell < 0 || FocusCell > query.Photos.Length - 1) {
+			FocusCell = focus_old;
 			args.RetVal = false;
 		}	
 
 		if (shift) {
-			SelectCellRange (focus_old, focus_cell);
+			SelectCellRange (focus_old, FocusCell);
 		} else if (!control) {
 			UnselectAllCells ();
-			SelectCell (focus_cell);
+			SelectCell (FocusCell);
 		} 
 	
-		ScrollTo (focus_cell);
+		ScrollTo (FocusCell);
 	}
 
 	private void HandleKeyReleaseEvent (object sender, KeyReleaseEventArgs args)
