@@ -238,7 +238,17 @@ public class IconView : Gtk.Layout {
 
 	public int CellAtPosition (int x, int y)
 	{
+		return CellAtPosition (x, y, true);
+	}
+
+	public int CellAtPosition (int x, int y, bool crop_visible)
+	{
 		if (collection == null)
+			return -1;
+		
+		if (crop_visible 
+		    && ((y < (int)Vadjustment.Value || y > (int)Vadjustment.Value + Allocation.Height)
+			|| (x < (int)Hadjustment.Value || x > (int)Hadjustment.Value + Allocation.Width)))
 			return -1;
 
 		if (x < BORDER_SIZE || x >= BORDER_SIZE + cells_per_row * cell_width)
