@@ -6360,19 +6360,6 @@ Photo Details</property>
 		      <signal name="activate" handler="HandleTagMenuActivate" last_modification_time="Thu, 17 Jun 2004 16:52:18 GMT"/>
 		    </widget>
 		  </child>
-
-		  <child>
-		    <widget class="GtkSeparatorMenuItem" id="separator14">
-		      <property name="visible">True</property>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkImageMenuItem" id="preferences1">
-		      <property name="visible">True</property>
-		      <property name="stock_item">GNOMEUIINFO_MENU_PREFERENCES_ITEM</property>
-		    </widget>
-		  </child>
 		</widget>
 	      </child>
 	    </widget>
