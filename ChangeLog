@@ -1,5 +1,14 @@
 2005-01-09  Larry Ewing  <lewing@novell.com>
 
+	* src/ExifData.cs: convert libexif.so DllImport references to
+	libexif-0.5.dll
+
+	* src/f-spot.exe.config.in: map libexif-0.5.dll to libexif.so.9
+	which should be 0.5.x so that people can run with libexif-0.6
+	installed as long as 0.5 is also installed.
+
+	* configure.in: limit libexif to < 0.6.0 
+
 	* src/f-spot.exe.config.in: fix the broken commit.
 
 	* src/TimeAdaptor.cs: remove some debug output.

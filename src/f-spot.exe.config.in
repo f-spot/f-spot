@@ -5,6 +5,7 @@
   <dllmap dll="libgdk_pixbuf-2.0-0.dll" target="libgdk_pixbuf-2.0.so.0"/>
   <dllmap dll="libfspot" target="@prefix@/lib/f-spot/libfspot.so"/>
   <dllmap dll="libfspoteog" target="@prefix@/lib/f-spot/libfspoteog.so"/>
-  <dllmap dll="libfspotjpeg" target="@prefix@/lib/f-spot/libfspotjpg.so"/> 
+  <dllmap dll="libfspotjpeg" target="@prefix@/lib/f-spot/libfspotjpg.so"/>
+  <dllmap dll="libexif-0.5.dll" target="libexif.so.9"/> 
   <dllmap dll="liblcms-1.0.0.dll" target="liblcms.so.1"/>
 </configuration>
