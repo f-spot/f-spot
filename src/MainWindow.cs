@@ -1,4 +1,6 @@
+using Gdk;
 using Gtk;
+using GtkSharp;
 using System;
 using System.Collections;
 
@@ -230,6 +232,12 @@ public class MainWindow : Gtk.Window {
 		UpdateMenus ();
 	}
 
+	private void HandlePhotoViewButtonPressEvent (object sender, ButtonPressEventArgs args)
+	{
+		if (args.Event.type == EventType.TwoButtonPress && args.Event.button == 1)
+			SwitchToIconViewMode ();
+	}
+
 
 	// Queries.
 
@@ -247,7 +255,7 @@ public class MainWindow : Gtk.Window {
 	// Constructor.
 
 	public MainWindow (Db db)
-		: base (WindowType.Toplevel)
+		: base (Gtk.WindowType.Toplevel)
 	{
 		this.db = db;
 
@@ -296,6 +304,7 @@ public class MainWindow : Gtk.Window {
 
 		photo_view = new PhotoView (query, db.Photos);
 		photo_view.PhotoChanged += new PhotoView.PhotoChangedHandler (HandlePhotoViewPhotoChanged);
+		photo_view.ButtonPressEvent += new ButtonPressEventHandler (HandlePhotoViewButtonPressEvent);
 		// FIXME GTK# should let me pass a null for the second argument here.
 		view_notebook.AppendPage (photo_view, new Label ("foo"));
 

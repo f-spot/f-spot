@@ -1,5 +1,15 @@
 2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
 
+	* src/MainWindow.cs (MainWindow.HandlePhotoViewButtonPressEvent):
+	Button press event handler for the PhotoView, so we can switch to
+	icon view mode on double click.
+	(MainWindow.ctor): Connect.
+
+	* libfspot/f-image-view.c (impl_button_press_event): Clean up on
+	GDK_2BUTTON_PRESS.
+
+2003-11-09  Ettore Perazzoli  <ettore@ximian.com>
+
 	* src/ZoomUtils.cs: Import from libfspoteog, not libeog.
 
 2003-11-09  Ettore Perazzoli  <ettore@ximian.com>

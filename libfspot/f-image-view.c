@@ -538,6 +538,12 @@ impl_button_press_event (GtkWidget *widget,
 	else if (priv->pointer_mode == F_IMAGE_VIEW_POINTER_MODE_NONE)
 		return FALSE;
 
+	if (button_event->type == GDK_2BUTTON_PRESS && button_event->button == 1) {
+		priv->is_new_selection = FALSE;
+		priv->mode = MODE_IDLE;
+		return FALSE;
+	}
+
 	if (button_event->type != GDK_BUTTON_PRESS || button_event->button != 1 || priv->mode != MODE_IDLE)
 		return FALSE;
 
