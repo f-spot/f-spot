@@ -1,7 +1,15 @@
+2004-06-13 MOREAU Vincent <vmoreau@orange.fr>
+	
+	* src/PhotoView.cs: Make the PhotoView handle empty queries more
+	gracefully.  Patch from bug #144210.
+	
 2004-06-13  Larry Ewing  <lewing@ximian.com>
 
+	* src/PhotoView.cs: Make the PhotoView handle empty queries more
+	gracefully.  Fixes bug #144210.
+
 	* src/MainWindow.cs: Add drop handlers for the TagSelection
-	widget, based on the dnd patch.
+	widget, modified from the dnd patch by Lee.
 
 	* src/PhotoStore.cs: Add GetByPath method based on patch from Lee
 	Willis <lee@leewillist.co.uk>.

@@ -221,7 +221,7 @@ public class PhotoView : EventBox {
 		else
 			display_previous_button.Sensitive = true;
 
-		if (Query == null || current_photo == Query.Photos.Length - 1)
+		if (Query == null || current_photo == Query.Photos.Length - 1 || Query.Photo.Length == 0)
 			display_next_button.Sensitive = false;
 		else
 			display_next_button.Sensitive = true;
@@ -231,8 +231,12 @@ public class PhotoView : EventBox {
 	{
 		if (query == null)
 			count_label.Text = "";
-		else
-			count_label.Text = String.Format ("{0} of {1}", current_photo + 1, Query.Photos.Length);
+		else {
+			if (Query.Photos.Length == 0)
+				count_label.Text = String.Format ("{0} of {1}", 0, 0);
+			else 
+				count_label.Text = String.Format ("{0} of {1}", current_photo + 1, Query.Photos.Length);
+		}
 	}
 
 	private void UpdateDescriptionEntry ()
