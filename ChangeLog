@@ -1,5 +1,9 @@
 2004-11-12  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoView.cs: remove the left right bindings, they just get
+	in the way of the scroll bindings and now pg up/down is the
+	correct way to handle this.
+
 	* src/MainWindow.cs: make view->fullscreen start to do something.
 
 	* src/PhotoImageview.cs: ew, who comes up with these names?  (OK
