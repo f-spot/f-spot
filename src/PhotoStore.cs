@@ -203,7 +203,12 @@ public class Photo : DbItem, IComparable {
 
 	public void DeleteVersion (uint version_id)
 	{
-		if (version_id == OriginalVersionId)
+		DeleteVersion (version_id, false);
+	}
+
+	public void DeleteVersion (uint version_id, bool remove_original)
+	{
+		if (version_id == OriginalVersionId && !remove_original)
 			throw new Exception ("Cannot delete original version");
 
 		string path = GetPathForVersionName (GetVersionName (version_id));
@@ -413,10 +418,7 @@ public class PhotoStore : DbStore {
 		
 		// FIXME if this is null then the file doesn't exist.
 		if (thumbnail != null) {
-			// FIXME there is no SaveThumbnail() in the C# bindings for ThumbnailFactory.
-			// This should really be done through SaveThumbnail, which would make sure we dont' do
-			// it unnecessarily.
-			thumbnail.Savev (Thumbnail.PathForUri (uri, ThumbnailSize.Large), "png", null, null);
+			thumbnail_factory.SaveThumbnail (thumbnail, uri, File.GetLastWriteTime (path));
 		}
 		
 		return thumbnail;
