@@ -232,6 +232,8 @@ namespace FSpot {
 			view.KeyReleaseEvent += HandleIconViewKeyRelease;
 			view.DestroyEvent += HandleIconViewDestroy;
 
+			this.BorderWidth = 6;
+
 			hist = new FSpot.Histogram ();
 			hist.Color [0] = 127;			
 			hist.Color [1] = 127;			
@@ -240,7 +242,8 @@ namespace FSpot {
 
 			image = new Gtk.Image ();
 			image.CanFocus = false;
-			
+
+
 			label = new Gtk.Label ("");
 			label.CanFocus = false;
 			label.ModifyFg (Gtk.StateType.Normal, new Gdk.Color (127, 127, 127));
