@@ -5,13 +5,15 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/CompatFileChooser.cs		\
 	$(srcdir)/DateCommands.cs		\
 	$(srcdir)/Db.cs				\
+	$(srcdir)/DirectoryAdaptor.cs		\
 	$(srcdir)/ExifData.cs			\
 	$(srcdir)/ExifUtils.cs			\
 	$(srcdir)/ExportCommand.cs		\
 	$(srcdir)/FileImportBackend.cs		\
+	$(srcdir)/FotkiRemote.cs		\
+	$(srcdir)/FlickrRemote.cs		\
 	$(srcdir)/FormClient.cs			\
 	$(srcdir)/GalleryRemote.cs		\
-	$(srcdir)/DirectoryAdaptor.cs		\
 	$(srcdir)/GroupAdaptor.cs		\
 	$(srcdir)/GroupSelector.cs		\
 	$(srcdir)/IconView.cs			\
@@ -20,6 +22,7 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/ImportCommand.cs		\
 	$(srcdir)/ImportStore.cs		\
 	$(srcdir)/InfoBox.cs			\
+	$(srcdir)/InfoDisplay.cs			\
 	$(srcdir)/JpegUtils.cs			\
 	$(srcdir)/Cms.cs			\
 	$(srcdir)/MainWindow.cs			\
@@ -34,6 +37,7 @@ F_SPOT_CSFILES =				\
 	$(srcdir)/PixbufLoader.cs		\
 	$(srcdir)/PixbufUtils.cs		\
 	$(srcdir)/PreviewPopup.cs 		\
+	$(srcdir)/PrintDialog.cs		\
 	$(srcdir)/ProgressDialog.cs		\
 	$(srcdir)/RotateCommand.cs		\
 	$(srcdir)/SlideView.cs			\
@@ -56,6 +60,7 @@ ASSEMBLIES =					\
 	/r:System.Data				\
 	/r:System.Web				\
 	/r:Mono.Data.SqliteClient		\
+	/pkg:gtkhtml-sharp			\
 	/pkg:glade-sharp			\
 	/pkg:gconf-sharp
 
