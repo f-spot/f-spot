@@ -361,7 +361,6 @@ constrain_selection (FImageView *image_view)
 {
 	FImageViewPrivate *priv = image_view->priv;
 	double ratio;
-	int height;
 
 	if (F_DOUBLE_EQUAL (priv->selection_xy_ratio, 0.0))
 		return;
