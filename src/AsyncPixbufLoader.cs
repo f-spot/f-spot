@@ -142,8 +142,13 @@ namespace FSpot {
 				span = System.DateTime.Now - start_time;
 
 				int len = stream.Read (buffer, 0, buffer.Length);
-				loader.Write (buffer, (uint)len);
-				
+				try {
+					loader.Write (buffer, (uint)len);
+				} catch (GLib.GException e) {
+					pixbuf = null;
+					len = -1;
+				}
+
 				if (len <= 0) {
 					UpdateListeners ();
 					done_reading = true;
