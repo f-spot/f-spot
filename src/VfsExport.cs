@@ -52,7 +52,7 @@ namespace FSpot {
 		{
 			foreach (Photo photo in selection.Photos) {
 				Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (photo.DefaultVersionUri.ToString ());
-				Gnome.Vfs.Uri target = dest.Dup ();
+				Gnome.Vfs.Uri target = dest.Clone ();
 				target.AppendPath (photo.GetVersionName (photo.DefaultVersionId));
 				Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
 
