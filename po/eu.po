@@ -1,0 +1,1391 @@
+# translation of eu.po to Basque
+# translation of f-spot to Euskara
+# Copyright (C) 2004 Mikel Olasagasti
+# This file is distributed under the same license as the f-spot package.
+# Mikel Olasagasti <hey_neken@mundurat.net>, 2004.
+# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2005.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: eu\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-04-07 19:28+0200\n"
+"PO-Revision-Date: 2005-04-07 21:00+0200\n"
+"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
+"Language-Team: Basque <itzulpena@euskalgnu.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9.1\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=(n != 1);\n\n"
+
+#: ../f-spot.desktop.in.in.h:1
+msgid "F-Spot Photo Album"
+msgstr "F-Spot argazki-albuma"
+
+#: ../f-spot.desktop.in.in.h:2
+msgid "Photo Album"
+msgstr "Argazki-albuma"
+
+#: ../libeog/eog-file-selection.c:29 ../libeog/eog-file-selection.c:46
+msgid "By Extension"
+msgstr "Luzapenaren arabera"
+
+#: ../libeog/eog-file-selection.c:30
+msgid "BMP"
+msgstr "BMP"
+
+#: ../libeog/eog-file-selection.c:31
+msgid "GIF"
+msgstr "GIF"
+
+#: ../libeog/eog-file-selection.c:32
+msgid "ICO"
+msgstr "ICO"
+
+#: ../libeog/eog-file-selection.c:33 ../libeog/eog-file-selection.c:48
+msgid "JPEG"
+msgstr "JPEG"
+
+#: ../libeog/eog-file-selection.c:34 ../libeog/eog-file-selection.c:51
+msgid "PNG"
+msgstr "PNG"
+
+#: ../libeog/eog-file-selection.c:35
+msgid "PNM"
+msgstr "PNM"
+
+#: ../libeog/eog-file-selection.c:36
+msgid "RAS"
+msgstr "RAS"
+
+#: ../libeog/eog-file-selection.c:37
+msgid "SVG"
+msgstr "SVG"
+
+#: ../libeog/eog-file-selection.c:38
+msgid "TGA"
+msgstr "TGA"
+
+#: ../libeog/eog-file-selection.c:39
+msgid "TIFF"
+msgstr "TIFF"
+
+#: ../libeog/eog-file-selection.c:40
+msgid "XBM"
+msgstr "XBM"
+
+#: ../libeog/eog-file-selection.c:41 ../libeog/eog-file-selection.c:54
+msgid "XPM"
+msgstr "XPM"
+
+#: ../libeog/eog-file-selection.c:207
+msgid "Unsupported file format."
+msgstr "Fitxategi-formatua ez da onartzen."
+
+#: ../libeog/eog-file-selection.c:225
+msgid "Determine File Type:"
+msgstr "Zehaztu fitxategi-mota:"
+
+#: ../libeog/eog-file-selection.c:268
+msgid "Load Image"
+msgstr "Kargatu irudia"
+
+#: ../libeog/eog-file-selection.c:274
+msgid "Save Image"
+msgstr "Gorde irudia"
+
+#: ../libeog/eog-image.c:773
+msgid "No image loaded."
+msgstr "Ez da irudirik kargatu."
+
+#: ../libeog/eog-image.c:780
+msgid "Can't save non local files."
+msgstr "Ezin dira gorde lokalekoak ez diren fitxategiak."
+
+#: ../libeog/eog-image.c:803
+msgid "Unsupported image type for saving."
+msgstr "Onartu gabeko irudi-mota gordetzeko."
+
+#: ../libeog/image-view.c:2082
+msgid "interpolation type"
+msgstr "interpolazio mota"
+
+#: ../libeog/image-view.c:2083
+msgid "the type of interpolation to use"
+msgstr "erabiliko den interpolazio mota"
+
+#: ../libeog/image-view.c:2089 ../libeog/image-view.c:2096
+msgid "check type"
+msgstr "egiaztatze mota"
+
+#: ../libeog/image-view.c:2090
+msgid "the type of chequering to use"
+msgstr "erabiliko den egiaztatze mota"
+
+#: ../libeog/image-view.c:2097
+msgid "the size of chequers to use"
+msgstr "erabiliko den egiaztatzailearen tamaina"
+
+#: ../libeog/image-view.c:2103
+msgid "dither"
+msgstr "bilbatu"
+
+#: ../libeog/image-view.c:2104
+msgid "dither type"
+msgstr "bilbe-mota"
+
+#: ../libfspot/f-jpeg-utils.c:440
+msgid "File not found"
+msgstr "Ez da fitxategia aurkitu"
+
+#: ../libfspot/f-jpeg-utils.c:463
+#, c-format
+msgid "Unknown transform type %d"
+msgstr "%d transformazio mota ezezaguna"
+
+#: ../libfspot/f-jpeg-utils.c:471
+msgid "Operation failed"
+msgstr "Eragiketak huts egin du"
+
+#: ../src/CameraFileSelectionDialog.cs:65
+msgid "Preview"
+msgstr "Aurrebista"
+
+#: ../src/CameraFileSelectionDialog.cs:67
+msgid "Path"
+msgstr "Bide-izena"
+
+#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:68
+msgid "File"
+msgstr "Fitxategia"
+
+#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:631
+msgid "Index"
+msgstr "Indizea"
+
+#: ../src/CameraFileSelectionDialog.cs:87
+msgid "Downloading Previews"
+msgstr "Aurrebistak deskargatzen"
+
+#: ../src/CameraFileSelectionDialog.cs:95
+#, csharp-format
+msgid "Downloading Preview of {0}"
+msgstr "Aurrebistak deskargatzen: {0}"
+
+#: ../src/CameraFileSelectionDialog.cs:145
+msgid "Unknown destination."
+msgstr "Helburu ezezaguna."
+
+#: ../src/CameraFileSelectionDialog.cs:146
+msgid ""
+"When copying files from a camera you must select a valid destination on the "
+"local filesystem"
+msgstr "Fitxategiak kamera batetik kopiatzean lokaleko fitxategi-sistemako helburu baliagarria hautatu behar da."
+
+#: ../src/CameraFileSelectionDialog.cs:164
+msgid "Unable to create directory."
+msgstr "Ezinezkoa da direktorioa sortzea."
+
+#: ../src/CameraFileSelectionDialog.cs:165
+#, csharp-format
+msgid ""
+"Error \"{0}\" while creating directory \"{0}\".  Check that the path and "
+"permissions are correct and try again"
+msgstr "Errorea \"{0}\", \"{0}\" direktorioa sortzean.  Egiaztatu bide-izena eta baimenak egokiak direla eta saiatu berriro"
+
+#: ../src/CameraFileSelectionDialog.cs:186 ../src/CDExport.cs:139
+#: ../src/VfsExport.cs:196
+msgid "Transferring Pictures"
+msgstr "Argazkiak transferitzen"
+
+#: ../src/CameraFileSelectionDialog.cs:209
+#, csharp-format
+msgid "Copying file {0} of {1}"
+msgstr "Argazkia kopiatzen: {0} / {1}"
+
+#: ../src/CameraFileSelectionDialog.cs:219
+msgid "Done Copying Files"
+msgstr "Fitxategiak kopiatzea amaituta"
+
+#: ../src/CameraFileSelectionDialog.cs:221
+msgid "Download Complete"
+msgstr "Deskarga osatu da"
+
+#: ../src/CameraFileSelectionDialog.cs:226
+msgid "Error transferring file"
+msgstr "Errorea fitxategia transferitzean"
+
+#: ../src/CameraFileSelectionDialog.cs:247
+#, csharp-format
+msgid "Transferring \"{0}\" from camera"
+msgstr "Kameratik \"{0}\" transferitzen"
+
+#: ../src/CameraFileSelectionDialog.cs:268
+msgid "Select Destination"
+msgstr "Hautatu helburua"
+
+#: ../src/CameraSelectionDialog.cs:27 ../src/StockIcons.cs:27
+msgid "Camera"
+msgstr "Kamera"
+
+#: ../src/CameraSelectionDialog.cs:28
+msgid "Port"
+msgstr "Ataka"
+
+#: ../src/CDExport.cs:57
+#, csharp-format
+msgid "Transferring picture \"{0}\" To CD"
+msgstr "\"{0}\" argazkia CDra transferitzen"
+
+#: ../src/CDExport.cs:59 ../src/FlickrExport.cs:93 ../src/GalleryExport.cs:421
+#: ../src/ProgressDialog.cs:75 ../src/VfsExport.cs:88
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} / {1}"
+
+#: ../src/CDExport.cs:71 ../src/FlickrExport.cs:98 ../src/FolderExport.cs:162
+#: ../src/GalleryExport.cs:436 ../src/VfsExport.cs:115
+msgid "Done Sending Photos"
+msgstr "Argazkiak bidaltzea amaitu da"
+
+#: ../src/CDExport.cs:73 ../src/FolderExport.cs:164 ../src/VfsExport.cs:117
+msgid "Transfer Complete"
+msgstr "Transferentzia osatu da"
+
+#: ../src/CDExport.cs:79 ../src/FolderExport.cs:169 ../src/VfsExport.cs:122
+msgid "Error While Transferring"
+msgstr "Errorea transferitzean"
+
+#: ../src/CDExport.cs:84 ../src/FolderExport.cs:177 ../src/VfsExport.cs:130
+msgid "Error Transferring"
+msgstr "Errorea transferitzean"
+
+#: ../src/CDExport.cs:99 ../src/VfsExport.cs:144
+msgid "Error: Error while transferring; Aborting"
+msgstr "Errorea: errorea transferitzean. Bertan behera uzten"
+
+#: ../src/CDExport.cs:102 ../src/VfsExport.cs:147
+msgid "Error: File Already Exists; Aborting"
+msgstr "Errorea: fitxategia jadanik existitzen da. Bertan behera uzten"
+
+#: ../src/Exif.cs:226
+msgid "Image Directory"
+msgstr "Irudien direktorioa"
+
+#: ../src/Exif.cs:228
+msgid "Thumbnail Directory"
+msgstr "Koadro txikien direktorioa"
+
+#: ../src/Exif.cs:230
+msgid "Exif Directory"
+msgstr "Exif datuen direktorioa"
+
+#: ../src/Exif.cs:232
+msgid "GPS Directory"
+msgstr "GPS direktorioa"
+
+#: ../src/Exif.cs:234
+msgid "InterOperability Directory"
+msgstr "InterOperability direktorioa"
+
+#: ../src/Exif.cs:236
+msgid "Unknown Directory"
+msgstr "Direktorio ezezaguna"
+
+#: ../src/FlickrExport.cs:49
+msgid "Enter Password"
+msgstr "Sartu pasahitza:"
+
+#: ../src/FlickrExport.cs:57
+msgid "Enter Password for "
+msgstr "Sartu pasahitza honentzako:"
+
+#: ../src/FlickrExport.cs:88 ../src/GalleryExport.cs:417
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr "\"{0}\" argazkia kargatzen"
+
+#: ../src/FlickrExport.cs:100 ../src/GalleryExport.cs:438
+msgid "Upload Complete"
+msgstr "Kargatzea osatu da"
+
+#: ../src/FlickrExport.cs:105
+msgid "Error Uploading To Flickr"
+msgstr "Errorea Flickr-era kargatzean"
+
+#: ../src/FlickrExport.cs:135 ../src/GalleryExport.cs:387
+msgid "Uploading Pictures"
+msgstr "Irudiak kargatzen"
+
+#: ../src/FlickrExport.cs:145
+msgid "Unable to log on."
+msgstr "Ezin da saioa hasi."
+
+#: ../src/FlickrExport.cs:146
+msgid ""
+"F-Spot was unable to log on to Flickr.  Make sure the settings you supplied "
+"are correct."
+msgstr "F-Spot ezin izan da Flickr-en saioa hasi. Ziurtatu zehaztutako ezarpenak egokiak direla."
+
+#: ../src/FolderExport.cs:128
+msgid "Building Gallery"
+msgstr "Galeria eraikitzen"
+
+#: ../src/FolderExport.cs:196
+msgid "Error: Error while transferring, Aborting"
+msgstr "Errorea: errorea transferitzean. Bertan behera uzten "
+
+#: ../src/FolderExport.cs:199
+msgid "Error: File Already Exists, Aborting"
+msgstr "Errorea: fitxategia jadanik existitzen da. Bertan behera uzten"
+
+#: ../src/FolderExport.cs:245
+msgid "Transfering Pictures"
+msgstr "Irudiak transferitzen"
+
+#: ../src/FolderExport.cs:629
+msgid "Prev"
+msgstr "Aurrekoa"
+
+#: ../src/FolderExport.cs:634 ../src/f-spot.glade.h:91
+msgid "Next"
+msgstr "Hurrengoa"
+
+#: ../src/FolderExport.cs:697
+msgid "Gallery generated by "
+msgstr "Galeria honek sortuta "
+
+#: ../src/FolderExport.cs:729
+msgid "Pages:"
+msgstr "Orrialdeak:"
+
+#: ../src/f-spot.glade.h:1
+msgid "\n"
+msgstr "\n"
+
+#: ../src/f-spot.glade.h:3
+msgid " "
+msgstr " "
+
+#: ../src/f-spot.glade.h:4
+msgid "..."
+msgstr "..."
+
+#: ../src/f-spot.glade.h:5
+msgid "<b></b>"
+msgstr "<b></b>"
+
+#: ../src/f-spot.glade.h:6
+msgid "<b>Account</b>"
+msgstr "<b>Kontua</b>"
+
+#: ../src/f-spot.glade.h:7
+msgid "<b>Album</b>"
+msgstr "<b>Albuma</b>"
+
+#: ../src/f-spot.glade.h:8
+msgid "<b>Color Temperature</b>"
+msgstr "<b>Kolorearen tenperatura</b>"
+
+#: ../src/f-spot.glade.h:9
+msgid "<b>Destination</b>"
+msgstr "<b>Helburua</b>"
+
+#: ../src/f-spot.glade.h:10
+msgid "<b>End Date</b>"
+msgstr "<b>Amaiera-eguna</b>"
+
+#: ../src/f-spot.glade.h:11
+msgid "<b>Export Method</b>"
+msgstr "<b>Esportatze metodoa</b>"
+
+#: ../src/f-spot.glade.h:12
+msgid "<b>Exposure</b>"
+msgstr "<b>Esposizioa</b>"
+
+#: ../src/f-spot.glade.h:13
+msgid "<b>From Image</b>"
+msgstr "<b>Iruditik</b>"
+
+#: ../src/f-spot.glade.h:14
+msgid "<b>Gallery</b>"
+msgstr "<b>Galeria</b>"
+
+#: ../src/f-spot.glade.h:15
+msgid "<b>Histogram</b>"
+msgstr "<b>Histograma</b>"
+
+#: ../src/f-spot.glade.h:16
+msgid "<b>Items to Burn</b>"
+msgstr "<b>Elementuak grabatzeko</b>"
+
+#: ../src/f-spot.glade.h:17
+msgid "<b>Photograph Layout</b>"
+msgstr "<b>Argazki diseinua</b>"
+
+#: ../src/f-spot.glade.h:18
+msgid "<b>Photos</b>"
+msgstr "<b>Argazkiak</b>"
+
+#: ../src/f-spot.glade.h:19
+msgid "<b>Predefined</b>"
+msgstr "<b>Aurredefinitua</b>"
+
+#: ../src/f-spot.glade.h:20
+msgid "<b>Preview</b>"
+msgstr "<b>Aurrebista</b>"
+
+#: ../src/f-spot.glade.h:21
+msgid "<b>Printer Details</b>"
+msgstr "<b>Inprimagailuaren xehetasunak</b>"
+
+#: ../src/f-spot.glade.h:22
+msgid "<b>Start Date</b>"
+msgstr "<b>Hasiera-data</b>"
+
+#: ../src/f-spot.glade.h:23
+msgid "<b>Style</b>"
+msgstr "<b>Estiloa</b>"
+
+#: ../src/f-spot.glade.h:24
+msgid "<small> </small>"
+msgstr "<small> </small>"
+
+#: ../src/f-spot.glade.h:25
+msgid "<small></small>"
+msgstr "<small></small>"
+
+#: ../src/f-spot.glade.h:26
+msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
+msgstr "<span weight='bold' size='larger'>Errorea galeriarekin konektatzean</span>\n"
+
+#: ../src/f-spot.glade.h:28
+msgid "Ad_just Color..."
+msgstr "_Doitu kolorea..."
+
+#: ../src/f-spot.glade.h:29
+msgid "Adjust Color"
+msgstr "Doitu kolorea"
+
+#: ../src/f-spot.glade.h:30
+msgid "Arranged _By"
+msgstr "_Honela antolatua"
+
+#: ../src/f-spot.glade.h:31
+msgid "Attach Tag:"
+msgstr "Gehitu etiketa:"
+
+#: ../src/f-spot.glade.h:32
+msgid "Border:"
+msgstr "Ertza:"
+
+#: ../src/f-spot.glade.h:33
+msgid "Brightness:"
+msgstr "Distira:"
+
+#: ../src/f-spot.glade.h:34 ../src/StockIcons.cs:26
+msgid "Browse"
+msgstr "Arakatu"
+
+#: ../src/f-spot.glade.h:35
+msgid "Browse Previously Scheduled Files"
+msgstr "Arakatu aurrez programatutako fitxategiak"
+
+#: ../src/f-spot.glade.h:36
+msgid "CD"
+msgstr "CD"
+
+#: ../src/f-spot.glade.h:37
+msgid "Camera Selection"
+msgstr "Kamera hautapena"
+
+#: ../src/f-spot.glade.h:38
+msgid "Caption:"
+msgstr "Epigrafea:"
+
+#: ../src/f-spot.glade.h:39
+msgid "Category:"
+msgstr "Kategoria:"
+
+#: ../src/f-spot.glade.h:40
+msgid "Co_nfigure"
+msgstr "Kon_figuratu"
+
+#: ../src/f-spot.glade.h:41
+msgid "Contrast:"
+msgstr "Kontrastea:"
+
+#: ../src/f-spot.glade.h:42
+msgid "Copy Files To: "
+msgstr "Kopiatu fitxategiak hemen: "
+
+#: ../src/f-spot.glade.h:43
+msgid "Create CD"
+msgstr "Sortu CDa"
+
+#: ../src/f-spot.glade.h:44
+msgid "Create New _Category..."
+msgstr "Sortu _kategoria berria..."
+
+#: ../src/f-spot.glade.h:45
+msgid "Create New _Tag..."
+msgstr "Sortu _etiketa berria..."
+
+#: ../src/f-spot.glade.h:46
+msgid "Create _new version..."
+msgstr "Sortu _bertsio berria..."
+
+#: ../src/f-spot.glade.h:47
+msgid "Crop Photo to Fit"
+msgstr "Moztu irudia doitzeko"
+
+#: ../src/f-spot.glade.h:48
+msgid "Description:"
+msgstr "Azalpena:"
+
+#: ../src/f-spot.glade.h:49
+msgid "Destination Temp"
+msgstr "Aldi baterako helburua"
+
+#: ../src/f-spot.glade.h:50
+msgid "Display Side_bar"
+msgstr "Erakutsi alboko _barra"
+
+#: ../src/f-spot.glade.h:51
+msgid "Display T_ags"
+msgstr "Erakutsi e_tiketak"
+
+#: ../src/f-spot.glade.h:52
+msgid "Display _Dates"
+msgstr "Erakutsi _datak"
+
+#: ../src/f-spot.glade.h:53
+msgid "Display _Timeline"
+msgstr "Erakutsi denbora-_lerroa"
+
+#: ../src/f-spot.glade.h:54
+msgid "E-Mail:"
+msgstr "Helb.Elek:"
+
+#: ../src/f-spot.glade.h:55
+msgid "E_xport To CD..."
+msgstr "E_sportatu CDra..."
+
+#: ../src/f-spot.glade.h:56
+msgid "Edit Tag Icon"
+msgstr "Editatu etiketa-ikonoa"
+
+#: ../src/f-spot.glade.h:57
+msgid "Export"
+msgstr "Esportatu"
+
+#: ../src/f-spot.glade.h:58
+msgid "Export Tags and Categories"
+msgstr "Esportatu etiketak eta kategoriak"
+
+#: ../src/f-spot.glade.h:59
+msgid "Export tags and categories"
+msgstr "Esportatu etiketak eta kategoriak"
+
+#: ../src/f-spot.glade.h:60
+msgid "Export titles and comments"
+msgstr "Esportatu tituluak eta azalpenak"
+
+#: ../src/f-spot.glade.h:61
+msgid "Export to Album:"
+msgstr "Esportatu albumera:"
+
+#: ../src/f-spot.glade.h:62
+msgid "Export to Original"
+msgstr "Esportatu jatorrizkora"
+
+#: ../src/f-spot.glade.h:63
+msgid "Export to _Flickr..."
+msgstr "Esportatu _Flickr-era..."
+
+#: ../src/f-spot.glade.h:64
+msgid "Export to _Original..."
+msgstr "Esportatu j_atorrizkora..."
+
+#: ../src/f-spot.glade.h:65
+msgid "Export to _VFS..."
+msgstr "Esportatu _VFSra..."
+
+#: ../src/f-spot.glade.h:66
+msgid "Export to _Web Gallery..."
+msgstr "Esportatu _web galeriara..."
+
+#: ../src/f-spot.glade.h:67
+msgid "F-Spot"
+msgstr "F-Spot"
+
+#: ../src/f-spot.glade.h:69
+msgid "Fin_d"
+msgstr "Bila_tu"
+
+#: ../src/f-spot.glade.h:70
+msgid "Find by _Tag"
+msgstr "Bilatu e_tiketen arabera"
+
+#: ../src/f-spot.glade.h:71
+msgid "Flikr"
+msgstr "Flikr"
+
+#: ../src/f-spot.glade.h:72
+msgid "Folder Export"
+msgstr "Esportatu karpeta"
+
+#: ../src/f-spot.glade.h:73
+msgid "Folder URI:"
+msgstr "Esportatu URIa:"
+
+#: ../src/f-spot.glade.h:74
+msgid ""
+"Full Page\n"
+"Standard - 4x6"
+msgstr ""
+"Orrialde osoa\n"
+"Estandarra - 4x6"
+
+#: ../src/f-spot.glade.h:76
+msgid "Gallery"
+msgstr "Galeria"
+
+#: ../src/f-spot.glade.h:77
+msgid "Gallery Name:"
+msgstr "Galeri-izena:"
+
+#: ../src/f-spot.glade.h:78
+msgid "Gallery:"
+msgstr "Galeria:"
+
+#: ../src/f-spot.glade.h:79
+msgid ""
+"Hairline\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
+msgstr ""
+"Oso mehea\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
+
+#: ../src/f-spot.glade.h:84
+msgid "Hue:"
+msgstr "Ñabardura:"
+
+#: ../src/f-spot.glade.h:85
+msgid "Icon:"
+msgstr "Ikonoa:"
+
+#: ../src/f-spot.glade.h:86
+msgid "Import"
+msgstr "Inportatu"
+
+#: ../src/f-spot.glade.h:87
+msgid "Import From:"
+msgstr "Inportatu hemendik:"
+
+#: ../src/f-spot.glade.h:88
+msgid "Import files after copy."
+msgstr "Inportatu fitxategiak kopiatu ondoren."
+
+#: ../src/f-spot.glade.h:89
+msgid "Import from C_amera..."
+msgstr "Inportatu kameratik..."
+
+#: ../src/f-spot.glade.h:90
+msgid "Include subdirectories."
+msgstr "Txertatu azpidirektorioak."
+
+#: ../src/f-spot.glade.h:92
+msgid ""
+"None\n"
+"Title\n"
+"Filename\n"
+"Date\n"
+"Photo Details"
+msgstr ""
+"Bat ere ez\n"
+"Titulua\n"
+"Fitxategi-izena\n"
+"Data\n"
+"Argazkiaren xehetasunak"
+
+#: ../src/f-spot.glade.h:97
+msgid "Number of Copies:"
+msgstr "Kopia-kopurua:"
+
+#: ../src/f-spot.glade.h:98
+msgid "Open album in browser when done uploading"
+msgstr "Ireki albuma nabigatzailean, igo ondoren"
+
+#: ../src/f-spot.glade.h:99
+msgid "Open destination when done exporting."
+msgstr "Ireki helburua nabigatzailean, esportatu ondoren."
+
+#: ../src/f-spot.glade.h:100
+msgid "Page 1 of 3"
+msgstr "1 / 3 orrialdea"
+
+#: ../src/f-spot.glade.h:101
+msgid "Password:"
+msgstr "Pasahitza:"
+
+#: ../src/f-spot.glade.h:102
+msgid "Pause"
+msgstr "Pausarazi"
+
+#: ../src/f-spot.glade.h:103
+msgid "Photo 0 of 0"
+msgstr "0 / 0 argazkia"
+
+#: ../src/f-spot.glade.h:104
+msgid "Photo Source:"
+msgstr "Argazkiaren iturburua:"
+
+#: ../src/f-spot.glade.h:105
+msgid "PhotoSize:"
+msgstr "Irudiaren tamaina"
+
+#: ../src/f-spot.glade.h:106
+msgid "Please verify that the settings for this gallery are correct."
+msgstr "Egiaztatu galeri honetako ezarpenak egokiak direla."
+
+#: ../src/f-spot.glade.h:107
+msgid "Prefix: "
+msgstr "Aurrizkia: "
+
+#: ../src/f-spot.glade.h:108
+msgid "Previous"
+msgstr "Aurrekoa"
+
+#: ../src/f-spot.glade.h:109
+msgid "Print Crop Marks"
+msgstr "Inprimatu mozketa markak"
+
+#: ../src/f-spot.glade.h:110
+msgid "Rem_ove Tag"
+msgstr "Ken_du etiketa"
+
+#: ../src/f-spot.glade.h:111
+msgid "Resize to: "
+msgstr "Aldatu tamaina hona: "
+
+#: ../src/f-spot.glade.h:112 ../src/StockIcons.cs:35
+msgid "Rotate _Left"
+msgstr "Biratu e_zkerrera"
+
+#: ../src/f-spot.glade.h:113 ../src/StockIcons.cs:36
+msgid "Rotate _Right"
+msgstr "Biratu e_skuinera"
+
+#: ../src/f-spot.glade.h:114
+msgid "Saturation:"
+msgstr "Saturazioa:"
+
+#: ../src/f-spot.glade.h:115
+msgid "Scale images to no larger than: "
+msgstr "Eskalatu irudiak, hau baino handiagoak ez direnak: "
+
+#: ../src/f-spot.glade.h:116
+msgid "Select Files To Copy From Camera..."
+msgstr "Hautatu fitxategiak kameratik kopiatzeko..."
+
+#: ../src/f-spot.glade.h:117
+msgid "Select Tags..."
+msgstr "Hautatu etiketak..."
+
+#: ../src/f-spot.glade.h:118
+msgid "Select _All"
+msgstr "Hautatu _dena"
+
+#: ../src/f-spot.glade.h:119
+msgid "Select _None"
+msgstr "Hautatu _bat ere ez"
+
+#: ../src/f-spot.glade.h:120
+msgid "Select a tag..."
+msgstr "Hautatu etiketa..."
+
+#: ../src/f-spot.glade.h:121
+msgid "Select the camera you want to transfer files from."
+msgstr "Hautatu kamera, bertatik fitxategiak transferitzeko."
+
+#: ../src/f-spot.glade.h:122
+msgid "Selected Camera: "
+msgstr "Hautatutako kamera: "
+
+#: ../src/f-spot.glade.h:123
+msgid ""
+"Selection\n"
+"Gallery\n"
+"Viewport"
+msgstr ""
+"Hautapena\n"
+"Galeria\n"
+"Leihatila"
+
+#: ../src/f-spot.glade.h:126
+msgid "Send _Mail..."
+msgstr "Bidali p_osta elektronikoa..."
+
+#: ../src/f-spot.glade.h:127
+msgid "Set _Date Range..."
+msgstr "Ezarri _data bitartea..."
+
+#: ../src/f-spot.glade.h:128
+msgid "Set as _Background"
+msgstr "Ezarri _atzeko plano gisa"
+
+#: ../src/f-spot.glade.h:129
+msgid "Source Temp"
+msgstr "Aldi baterako iturburua"
+
+#: ../src/f-spot.glade.h:130
+msgid "Strip Image Metadata"
+msgstr "Kendu irudiaren metadatuak"
+
+#: ../src/f-spot.glade.h:131
+msgid "Strip metadata"
+msgstr "Kendu metadatuak"
+
+#: ../src/f-spot.glade.h:132 ../src/TagCommands.cs:295
+msgid "Tag name:"
+msgstr "Etiketa-izena:"
+
+#: ../src/f-spot.glade.h:133
+msgid "URI:"
+msgstr "URIa:"
+
+#: ../src/f-spot.glade.h:134
+msgid "URL:"
+msgstr "URLa:"
+
+#: ../src/f-spot.glade.h:135
+msgid "Use Original."
+msgstr "Erabili jatorrikoa."
+
+#: ../src/f-spot.glade.h:136
+msgid "Use static HTML."
+msgstr "Erabili HTML estatikoa."
+
+#: ../src/f-spot.glade.h:137
+msgid "Username:"
+msgstr "Erabiltzaile-izena:"
+
+#: ../src/f-spot.glade.h:138
+msgid "View"
+msgstr "Ikusi"
+
+#: ../src/f-spot.glade.h:139
+msgid "View photos in browser when done uploading"
+msgstr "Ikusi argazkiak arakatzailean, kargatu ondoren"
+
+#: ../src/f-spot.glade.h:140
+msgid "Virtual Filesystem"
+msgstr "Fitxategi-sistema birtuala"
+
+#: ../src/f-spot.glade.h:141
+msgid "Will print Using: US Letter size on Generic Postscript"
+msgstr "Honakoa erabiliz inprimatuko du: US Gutuna tamainakoa Postscript orokorrean"
+
+#: ../src/f-spot.glade.h:142
+msgid "Write only these Items to CD"
+msgstr "Grabatu honako elementuak soilik CDan"
+
+#: ../src/f-spot.glade.h:143
+msgid "Zoom _In"
+msgstr "Zooma handiagotu"
+
+#: ../src/f-spot.glade.h:144
+msgid "Zoom _Out"
+msgstr "Zooma _Txikiagotu"
+
+#: ../src/f-spot.glade.h:145
+msgid "_Attach Tag"
+msgstr "_Gehitu etiketa"
+
+#: ../src/f-spot.glade.h:146
+msgid "_Attach Tag To Selection"
+msgstr "Gehitu _etiketa hautapenari"
+
+#: ../src/f-spot.glade.h:147
+msgid "_Clear Date Range"
+msgstr "_Garbitu data bitartea"
+
+#: ../src/f-spot.glade.h:148
+msgid "_Close"
+msgstr "_Itxi"
+
+#: ../src/f-spot.glade.h:149
+msgid "_Delete Selected Tag"
+msgstr "_Ezabatu hautatutako etiketa"
+
+#: ../src/f-spot.glade.h:150
+msgid "_Delete Version"
+msgstr "_Ezabatu bertsioa"
+
+#: ../src/f-spot.glade.h:151
+msgid "_Delete from Drive"
+msgstr "_Ezabatu unitatetik"
+
+#: ../src/f-spot.glade.h:152
+msgid "_Directory"
+msgstr "_Direktorioa"
+
+#: ../src/f-spot.glade.h:153
+msgid "_EXIF Data"
+msgstr "_EXIF datuak"
+
+#: ../src/f-spot.glade.h:154
+msgid "_Edit Selected Tag..."
+msgstr "_Editatu hautatutako etiketa..."
+
+#: ../src/f-spot.glade.h:155
+msgid "_Export"
+msgstr "_Esportatu"
+
+#: ../src/f-spot.glade.h:156
+msgid "_Fullscreen"
+msgstr "_Pantaila osoa"
+
+#: ../src/f-spot.glade.h:157
+msgid "_Import..."
+msgstr "_Inportatu..."
+
+#: ../src/f-spot.glade.h:158
+msgid "_Large"
+msgstr "_Handia"
+
+#: ../src/f-spot.glade.h:159
+msgid "_Medium"
+msgstr "_Tartekoa"
+
+#: ../src/f-spot.glade.h:160
+msgid "_Month"
+msgstr "_Hilabetea"
+
+#: ../src/f-spot.glade.h:161
+msgid "_Print..."
+msgstr "_Inprimatu..."
+
+#: ../src/f-spot.glade.h:162
+msgid "_Remove From Catalog"
+msgstr "_Kendu katalogotik"
+
+#: ../src/f-spot.glade.h:163
+msgid "_Remove Tag From Selection"
+msgstr "_Kendu etiketa hautapenetik"
+
+#: ../src/f-spot.glade.h:164
+msgid "_Rename Version"
+msgstr "_Berrizendatu bertsioa"
+
+#: ../src/f-spot.glade.h:165
+msgid "_Sharpen..."
+msgstr "_Zorroztasuna..."
+
+#: ../src/f-spot.glade.h:166
+msgid "_Size"
+msgstr "_Tamaina"
+
+#: ../src/f-spot.glade.h:167
+msgid "_Slideshow"
+msgstr "_Diapositiba erakusketa"
+
+#: ../src/f-spot.glade.h:168
+msgid "_Small"
+msgstr "_Txikia"
+
+#: ../src/f-spot.glade.h:169
+msgid "_Tags"
+msgstr "_Etiketak"
+
+#: ../src/f-spot.glade.h:170
+msgid "_Update Thumbnail"
+msgstr "_Eguneratu koadro txikiak"
+
+#: ../src/f-spot.glade.h:171
+msgid "_Version"
+msgstr "_Bertsioa"
+
+#: ../src/f-spot.glade.h:172
+msgid "_View"
+msgstr "_Ikusi"
+
+#: ../src/f-spot.glade.h:173
+msgid "dialog1"
+msgstr "1 elkarrizketa-koadroa"
+
+#: ../src/f-spot.glade.h:174
+msgid "pixels"
+msgstr "pixel"
+
+#: ../src/f-spot.glade.h:175
+msgid "x"
+msgstr "x"
+
+#: ../src/GalleryExport.cs:442
+msgid "Error Uploading To Gallery"
+msgstr "Errorea galerian kargatzean"
+
+#: ../src/GalleryExport.cs:474
+msgid "(No Gallery)"
+msgstr "(Galeriarik ez)"
+
+#: ../src/GalleryExport.cs:531
+msgid "(Not Connected)"
+msgstr "(Konektatu gabe)"
+
+#: ../src/GalleryExport.cs:532
+msgid "(No Albums)"
+msgstr "(Albumik ez)"
+
+#. Gtk.Menu menu = new Gtk.Menu();
+#: ../src/ImportCommand.cs:313
+msgid "Select Tag"
+msgstr "Hautatu etiketa"
+
+#: ../src/ImportCommand.cs:349
+msgid "Directory does not exist."
+msgstr "Direktorioa ez da existitzen."
+
+#: ../src/ImportCommand.cs:350
+#, csharp-format
+msgid ""
+"The directory you selected \"{0}\" does not exist.  Please choose a "
+"different directory"
+msgstr "Hautatutako \"{0} direktorioa ez da existitzen. Aukeratu beste direktorio bat"
+
+#: ../src/InfoBox.cs:70 ../src/PhotoVersionCommands.cs:55
+msgid "Name:"
+msgstr "Izena:"
+
+#: ../src/InfoBox.cs:72
+msgid "Version:"
+msgstr "Bertsioa:"
+
+#: ../src/InfoBox.cs:74
+msgid "Date:"
+msgstr "Data:"
+
+#: ../src/InfoBox.cs:76
+msgid "Size:"
+msgstr "Tamaina:"
+
+#: ../src/InfoBox.cs:78
+msgid "Exposure:"
+msgstr "Esposizioa:"
+
+#: ../src/InfoBox.cs:156
+msgid "(None)"
+msgstr "(bat ere ez)"
+
+#: ../src/MainWindow.cs:846
+msgid "No cameras detected."
+msgstr "Ez dakamerarik detektatu."
+
+#: ../src/MainWindow.cs:847
+msgid ""
+"F-Spot was unable to find any cameras attached to this system.  Double check "
+"that the camera is connected and has power"
+msgstr "F-Spot ez da gai izan sistemara konektatutako kamera aurkitzeko. Egiaztatu kamera konektatuta eta piztuta dagoela"
+
+#: ../src/MainWindow.cs:874
+msgid "Error connecting to camera"
+msgstr "Errorea kamerarekin konektatzean"
+
+#: ../src/MainWindow.cs:875
+#, csharp-format
+msgid "Received error \"{0}\" while connecting to camera"
+msgstr "\"{0}\" errorea jaso da kamerarekin konektatzean"
+
+#. Translators should localize the following string
+#. * which will give them credit in the About box.
+#. * E.g. "Martin Willemoes Hansen"
+#: ../src/MainWindow.cs:1000
+msgid "translator-credits"
+msgstr "Mikel Olasagasti <hey_neken@mundurat.net>"
+
+#: ../src/MainWindow.cs:1131
+msgid "Unsharp Mask"
+msgstr "Definizio maskara"
+
+#: ../src/MainWindow.cs:1140
+msgid "Amount:"
+msgstr "Kopurua:"
+
+#: ../src/MainWindow.cs:1141
+msgid "Radius:"
+msgstr "Erradioa:"
+
+#: ../src/MainWindow.cs:1142
+msgid "Threshold:"
+msgstr "Atalasea:"
+
+#: ../src/MainWindow.cs:1184
+msgid "Error saving sharpened photo"
+msgstr "Errorea zorroztutako argazkia gordetzean"
+
+#: ../src/MainWindow.cs:1185
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to save image {1}"
+msgstr "\"{0}\" salbuespena jaso da. Ezin izan da {1} irudia gorde"
+
+#: ../src/MainWindow.cs:1403
+#, csharp-format
+msgid "Delete the selected photo permanently?"
+msgid_plural "Delete the {0} selected photos permanently?"
+msgstr[0] "Ezabatu hautatutako argazkiak betirako?"
+msgstr[1] "Ezabatu hautatutako argazkiak betirako?"
+
+#: ../src/MainWindow.cs:1407
+msgid "This deletes all versions of the selected photo from your drive."
+msgid_plural "This deletes all versions of the selected photos from your drive."
+msgstr[0] "Honek hautatutako argazkiaren bertsio guztiak zure euskarritik ezabatuko ditu."
+msgstr[1] "Honek hautatutako argazkiaren bertsio guztiak zure euskarritik ezabatuko ditu."
+
+#: ../src/MainWindow.cs:1410
+msgid "_Delete photo"
+msgid_plural "_Delete photos"
+msgstr[0] "_Ezabatu argazkia"
+msgstr[1] "_Ezabatu argazkia"
+
+#: ../src/MainWindow.cs:1428
+#, csharp-format
+msgid "Remove the selected photo from F-Spot?"
+msgid_plural "Remove the {0} selected photos from F-Spot?"
+msgstr[0] "Ezabatu hautatutako argazkia F-Spot-etik?"
+msgstr[1] "Ezabatu hautatutako argazkiak F-Spot-etik?"
+
+#: ../src/MainWindow.cs:1433
+msgid ""
+"If you remove photos from the F-Spot catalog all tag information will be "
+"lost. The photos remain on your computer and can be imported into F-Spot "
+"again."
+msgstr "Argazkiak F-Spot katalogotik ezabatzen badituzu, etiketen informazio guztia galduko da. Argazkiak ordenagailuan egonten jarraituko dute, eta F-Spot-era berriro inportatzeko aukera egongo da."
+
+#: ../src/MainWindow.cs:1434
+msgid "_Remove from Catalog"
+msgstr "_Kendu katalogotik"
+
+#: ../src/MainWindow.cs:1458
+#, csharp-format
+msgid "Delete the selected tag?"
+msgid_plural "Delete the {0} selected tags?"
+msgstr[0] "Ezabatu hautatutako etiketa?"
+msgstr[1] "Ezabatu hautatutako etiketa?"
+
+#: ../src/MainWindow.cs:1463
+msgid "If you delete a tag, all associations with photos are lost."
+msgstr "Etiketa ezabatuz gero, dagokien argazkiak ere galduko dira."
+
+#: ../src/MainWindow.cs:1464
+msgid "_Delete tag"
+msgid_plural "_Delete tags"
+msgstr[0] "_Ezabatu etiketa"
+msgstr[1] "_Ezabatu etiketa"
+
+#: ../src/PhotoPopup.cs:26
+msgid "Copy Image Location"
+msgstr "Kopiatu irudiaren kokapena"
+
+#: ../src/PhotoPopup.cs:38
+msgid "Remove From Catalog"
+msgstr "Kendu katalogotik"
+
+#: ../src/PhotoPopup.cs:40
+msgid "Delete From Drive"
+msgstr "Ezabatu unitatetik"
+
+#.
+#. FIXME TagMenu is ugly.
+#.
+#: ../src/PhotoPopup.cs:48
+msgid "Attach Tag"
+msgstr "Gehitu etiketa"
+
+#.
+#. FIXME finish the IPhotoSelection stuff and move the activate handler into the class
+#. this current method is way too complicated.
+#.
+#: ../src/PhotoPopup.cs:58
+msgid "Remove Tag"
+msgstr "Kendu etiketa"
+
+#. Fixme this should really set parent menu
+#. items insensitve
+#: ../src/PhotoTagMenu.cs:72
+msgid "(No Tags)"
+msgstr "(Etiketarik ez)"
+
+#: ../src/PhotoVersionCommands.cs:54
+msgid "Create New Version"
+msgstr "Sortu bertsio berria"
+
+#: ../src/PhotoVersionCommands.cs:59
+msgid "Rename Version"
+msgstr "Berrizendatu bertsioa"
+
+#: ../src/PhotoVersionCommands.cs:60
+msgid "New name:"
+msgstr "Izen berria:"
+
+#: ../src/PhotoVersionCommands.cs:126
+msgid "Really Delete?"
+msgstr "Ezabatzea nahi duzu?"
+
+#: ../src/PhotoVersionCommands.cs:132
+#, csharp-format
+msgid "Really delete version \"{0}\"?"
+msgstr "\"{0}\" bertsioa ezabatzea nahi duzu?"
+
+#: ../src/RotateCommand.cs:24
+msgid "Rotating pictures"
+msgstr "Irudiak biratzen"
+
+#: ../src/RotateCommand.cs:33
+#, csharp-format
+msgid "Rotating picture \"{0}\""
+msgstr "\"{0}\" irudia biratzen"
+
+#: ../src/RotateCommand.cs:57
+#, csharp-format
+msgid "Received exception \"{0}\" while rotating image {1}"
+msgstr "\"{0}\" salbuespena jaso da {1} irudia biratzean"
+
+#: ../src/RotateCommand.cs:62
+msgid "Unknown Error while Rotating Image."
+msgstr "Errore ezezaguna irudia biratzean."
+
+#: ../src/RotateCommand.cs:80
+#, csharp-format
+msgid "Unable to rotate image"
+msgid_plural "Unable to rotate {0} images"
+msgstr[0] "Ezin izan da irudia biratu"
+msgstr[1] "Ezin izan da irudia biratu"
+
+#: ../src/RotateCommand.cs:81
+#, csharp-format
+msgid ""
+"The image could not be rotated because it is on a read only file system or "
+"media such as a CDROM.  Please check the permissions and try again"
+msgid_plural ""
+"{0} images could not be rotated because they are on a read only file system "
+"or media such as a CDROM.  Please check the permissions and try again"
+msgstr[0] ""
+"Irudia ezin izan da biratu 'irakurtzeko soilik' moduan dauden "
+"fitxategi sistema edo euskarrian daudelako, CDROM bat adibidez. Egiaztatu baimenak eta saiatu berriro"
+msgstr[1] ""
+"Irudia ezin izan da biratu 'irakurtzeko soilik' moduan dauden "
+"fitxategi sistema edo euskarrian daudelako, CDROM bat adibidez. Egiaztatu baimenak eta saiatu berriro"
+
+#: ../src/StockIcons.cs:28
+msgid "Crop"
+msgstr "Moztu"
+
+#: ../src/StockIcons.cs:29
+msgid "Edit Image"
+msgstr "Editatu irudia"
+
+#: ../src/StockIcons.cs:30
+msgid "Fullscreen"
+msgstr "Pantaila osoa"
+
+#: ../src/StockIcons.cs:31
+msgid "Slideshow"
+msgstr "Diapositiba erakusketa"
+
+#: ../src/StockIcons.cs:32
+msgid "Logo"
+msgstr "Logoa"
+
+#: ../src/StockIcons.cs:33
+msgid "Question"
+msgstr "Galdera"
+
+#: ../src/StockIcons.cs:34
+msgid "Reduce Red-Eye"
+msgstr "Gutxitu 'begi gorriak'"
+
+#: ../src/StockIcons.cs:37
+msgid "Loading"
+msgstr "Kargatzen"
+
+#: ../src/TagCommands.cs:46
+msgid "(No categories)"
+msgstr "(Kategoriarik ez)"
+
+#: ../src/TagCommands.cs:80 ../src/TagCommands.cs:217
+msgid "This name is already in use"
+msgstr "Izen hau jadanik beste batek darabil"
+
+#: ../src/TagCommands.cs:129 ../src/TagPopup.cs:20
+msgid "Create New Tag"
+msgstr "Sortu etiketa berria"
+
+#: ../src/TagCommands.cs:130
+msgid "Name of new tag:"
+msgstr "Etiketa berriaren izena:"
+
+#: ../src/TagCommands.cs:133 ../src/TagPopup.cs:22
+msgid "Create New Category"
+msgstr "Sortu kategoria berria"
+
+#: ../src/TagCommands.cs:134
+msgid "Name of new category:"
+msgstr "Kategoria berriaren izena:"
+
+#: ../src/TagCommands.cs:291
+msgid "Edit Category"
+msgstr "Editatu kategoria"
+
+#: ../src/TagCommands.cs:292
+msgid "Category name:"
+msgstr "Kategoriaren izena:"
+
+#: ../src/TagCommands.cs:294 ../src/TagPopup.cs:27
+msgid "Edit Tag"
+msgstr "Editatu etiketa"
+
+#: ../src/TagCommands.cs:386
+#, csharp-format
+msgid "Photo {0} of {1}"
+msgstr "{0} / {1} argazkia"
+
+#: ../src/TagCommands.cs:413
+#, csharp-format
+msgid "Edit icon For category {0}"
+msgstr "Editatu ikonoa, {0} kategoriarena"
+
+#: ../src/TagCommands.cs:415
+#, csharp-format
+msgid "Edit icon for tag {0}"
+msgstr "Editatu ikonoa, {0} etiketarena"
+
+#: ../src/TagPopup.cs:30
+msgid "Delete Tag"
+msgstr "Ezabatu etiketa"
+
+#: ../src/TagPopup.cs:35
+msgid "Attach Tag To Selection"
+msgstr "Gehitu etiketa hautapenari"
+
+#: ../src/TagPopup.cs:38
+msgid "Remove Tag From Selection"
+msgstr "Ezabatu etiketa hautapenetik"
+
+#: ../src/VfsExport.cs:77
+#, csharp-format
+msgid "Scaling picture \"{0}\""
+msgstr "\"{0}\" irudia eskalatzen"
+
+#: ../src/VfsExport.cs:84
+#, csharp-format
+msgid "Transferring picture \"{0}\""
+msgstr "\"{0}\" irudia transferitzen"
+
