@@ -37,15 +37,15 @@ namespace LibGPhoto2
 
 		internal delegate ErrorCode _CameraSetConfigFunc (_Camera *camera, HandleRef widget, HandleRef context);
 
-		internal delegate ErrorCode _CameraCaptureFunc (_Camera *camera, CameraCaptureType type, CameraFilePath *path, HandleRef context);
+		internal delegate ErrorCode _CameraCaptureFunc (_Camera *camera, CameraCaptureType type, IntPtr path, HandleRef context);
 
 		internal delegate ErrorCode _CameraCapturePreviewFunc (_Camera *camera, _CameraFile *file, HandleRef context);
 		
-		internal delegate ErrorCode _CameraSummaryFunc (_Camera *camera, CameraText *text, HandleRef context);
+		internal delegate ErrorCode _CameraSummaryFunc (_Camera *camera, IntPtr text, HandleRef context);
 		
-		internal delegate ErrorCode _CameraManualFunc (_Camera *camera, CameraText *text, HandleRef context);
+		internal delegate ErrorCode _CameraManualFunc (_Camera *camera, IntPtr text, HandleRef context);
 		
-		internal delegate ErrorCode _CameraAboutFunc (_Camera *camera, CameraText *text, HandleRef context);
+		internal delegate ErrorCode _CameraAboutFunc (_Camera *camera, IntPtr text, HandleRef context);
 		
 		internal delegate ErrorCode _CameraPrePostFunc (_Camera *camera, HandleRef context);
                                              
@@ -69,14 +69,14 @@ namespace LibGPhoto2
 		_CameraAboutFunc   about;
 		
 		/* Reserved space to use in the future without changing the struct size */
-		void *reserved1;
-		void *reserved2;
-		void *reserved3;
-		void *reserved4;
-		void *reserved5;
-		void *reserved6;
-		void *reserved7;
-		void *reserved8;
+		IntPtr reserved1;
+		IntPtr reserved2;
+		IntPtr reserved3;
+		IntPtr reserved4;
+		IntPtr reserved5;
+		IntPtr reserved6;
+		IntPtr reserved7;
+		IntPtr reserved8;
 	}
 	
 	[StructLayout(LayoutKind.Sequential)]
@@ -98,7 +98,8 @@ namespace LibGPhoto2
 	{
 		_Port           *port;
 		_CameraFilesystem *fs;
-		CameraFunctions  *functions;
+		//CameraFunctions  *functions;
+		IntPtr functions;
 
 		CameraPrivateLibrary  *pl; /* Private data of camera libraries    */
 		CameraPrivateCore     *pc; /* Private data of the core of gphoto2 */
