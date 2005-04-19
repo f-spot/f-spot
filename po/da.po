@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-04-13 14:56+0200\n"
-"PO-Revision-Date: 2005-04-13 14:55+0200\n"
+"POT-Creation-Date: 2005-04-19 23:01+0200\n"
+"PO-Revision-Date: 2005-04-19 23:06+0200\n"
 "Last-Translator: Martin Willemoes Hansen <mwh@sysrq.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../f-spot.desktop.in.in.h:1
 msgid "F-Spot Photo Album"
-msgstr "F-Spot - Fotoalbum"
+msgstr "F-Spot - fotoalbum"
 
 #: ../f-spot.desktop.in.in.h:2
 msgid "Photo Album"
@@ -181,12 +181,12 @@ msgid ""
 "When copying files from a camera you must select a valid destination on the "
 "local filesystem"
 msgstr ""
-"Ved kopiering af filer fra et kamera, skal du angive et gyldigt mål på det "
+"Ved kopiering af filer fra et kamera skal du angive et gyldigt mål på det "
 "lokale filsystem"
 
 #: ../src/CameraFileSelectionDialog.cs:164
 msgid "Unable to create directory."
-msgstr "Kan ikke oprette katalog."
+msgstr "Kan ikke oprette mappe."
 
 #: ../src/CameraFileSelectionDialog.cs:165
 #, csharp-format
@@ -194,7 +194,7 @@ msgid ""
 "Error \"{0}\" while creating directory \"{0}\".  Check that the path and "
 "permissions are correct and try again"
 msgstr ""
-"Fejl \"{0}\" ved oprettelse af kataloget \"{0}\". Kontrollér at stien og "
+"Fejl \"{0}\" ved oprettelse af mappen \"{0}\". Kontrollér at stien og "
 "rettighederne er korrekte og prøv igen"
 
 #: ../src/CameraFileSelectionDialog.cs:186 ../src/CDExport.cs:139
@@ -266,35 +266,45 @@ msgstr "Fejl ved overførsel"
 
 #: ../src/CDExport.cs:99 ../src/VfsExport.cs:144
 msgid "Error: Error while transferring; Aborting"
-msgstr "Fejl: Fejl ved overførsel; Afbryder"
+msgstr "Fejl: Fejl ved overførsel; afbryder"
 
 #: ../src/CDExport.cs:102 ../src/VfsExport.cs:147
 msgid "Error: File Already Exists; Aborting"
-msgstr "Fejl: Filen findes allerede; Afbryder"
+msgstr "Fejl: Filen findes allerede; afbryder"
+
+#: ../src/ColorDialog.cs:143
+#, fuzzy
+msgid "Error saving adjusted photo"
+msgstr "Fejl ved gemning af skærpet foto"
+
+#: ../src/ColorDialog.cs:144 ../src/MainWindow.cs:1185 ../src/PhotoView.cs:285
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to save image {1}"
+msgstr "Modtog undtagelsen \"{0}\". Kunne ikke gemme billedet {1}"
 
 #: ../src/Exif.cs:226
 msgid "Image Directory"
-msgstr "Billedkatalog"
+msgstr "Billedmappe"
 
 #: ../src/Exif.cs:228
 msgid "Thumbnail Directory"
-msgstr "Miniaturebilledkatalog"
+msgstr "Miniaturebilledmappe"
 
 #: ../src/Exif.cs:230
 msgid "Exif Directory"
-msgstr "Exif-katalog"
+msgstr "Exif-mappe"
 
 #: ../src/Exif.cs:232
 msgid "GPS Directory"
-msgstr "GPS-katalog"
+msgstr "GPS-mappe"
 
 #: ../src/Exif.cs:234
 msgid "InterOperability Directory"
-msgstr "Interoperabilitetskatalog"
+msgstr "Interoperabilitetsmappe"
 
 #: ../src/Exif.cs:236
 msgid "Unknown Directory"
-msgstr "Ukendt-katalog"
+msgstr "Ukendt mappe"
 
 #: ../src/FlickrExport.cs:49
 msgid "Enter Password"
@@ -363,6 +373,11 @@ msgstr "Galleri oprettet af "
 #: ../src/FolderExport.cs:729
 msgid "Pages:"
 msgstr "Sider:"
+
+#: ../src/FullScreenView.cs:100
+#, fuzzy
+msgid "Exit fullscreen"
+msgstr "Fuldskærm"
 
 #: ../src/f-spot.glade.h:1
 msgid "\n"
@@ -527,7 +542,7 @@ msgstr "Kopiér filer til: "
 
 #: ../src/f-spot.glade.h:43
 msgid "Create CD"
-msgstr "Opret cd"
+msgstr "Brænd cd"
 
 #: ../src/f-spot.glade.h:44
 msgid "Create New _Category..."
@@ -703,7 +718,7 @@ msgstr "Importér fra k_amera..."
 
 #: ../src/f-spot.glade.h:90
 msgid "Include subdirectories."
-msgstr "Inkludér underkataloger."
+msgstr "Medtag undermapper."
 
 #: ../src/f-spot.glade.h:92
 msgid ""
@@ -757,7 +772,7 @@ msgstr "Fotostørrelse:"
 
 #: ../src/f-spot.glade.h:106
 msgid "Please verify that the settings for this gallery are correct."
-msgstr "Kontrollér venligst at indstillingerne for dette galleri er korrekt."
+msgstr "Kontrollér venligst at indstillingerne for dette galleri er korrekte."
 
 #: ../src/f-spot.glade.h:107
 msgid "Prefix: "
@@ -895,8 +910,7 @@ msgstr "Virtuelt filsystem"
 
 #: ../src/f-spot.glade.h:141
 msgid "Will print Using: US Letter size on Generic Postscript"
-msgstr ""
-"Udskriver med benyttelse af: US-Letter-størrelse på almindelig postscript"
+msgstr "Udskriver med: US-Letter-størrelse på almindelig Postscript"
 
 #: ../src/f-spot.glade.h:142
 msgid "Write only these Items to CD"
@@ -940,7 +954,7 @@ msgstr "_Slet fra disk"
 
 #: ../src/f-spot.glade.h:152
 msgid "_Directory"
-msgstr "_Katalog"
+msgstr "_Mappe"
 
 #: ../src/f-spot.glade.h:153
 msgid "_EXIF Data"
@@ -980,7 +994,7 @@ msgstr "_Udskriv..."
 
 #: ../src/f-spot.glade.h:162
 msgid "_Remove From Catalog"
-msgstr "_Fjern fra katalog"
+msgstr "_Fjern fra mappe"
 
 #: ../src/f-spot.glade.h:163
 msgid "_Remove Tag From Selection"
@@ -1057,7 +1071,7 @@ msgstr "Vælg mærke"
 
 #: ../src/ImportCommand.cs:349
 msgid "Directory does not exist."
-msgstr "Kataloget findes ikke."
+msgstr "Mappen findes ikke."
 
 #: ../src/ImportCommand.cs:350
 #, csharp-format
@@ -1065,7 +1079,7 @@ msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
 "different directory"
 msgstr ""
-"Kataloget du valgte \"{0}\" findes ikke. Vær venlig at vælge et andet katalog"
+"Mappen du valgte, \"{0}\", findes ikke. Vær venlig at vælge en anden mappe"
 
 #: ../src/InfoBox.cs:70 ../src/PhotoVersionCommands.cs:55
 msgid "Name:"
@@ -1090,6 +1104,10 @@ msgstr "Afdækning:"
 #: ../src/InfoBox.cs:156
 msgid "(None)"
 msgstr "(Ingen)"
+
+#: ../src/InfoDisplay.cs:110
+msgid "No EXIF info available"
+msgstr ""
 
 #: ../src/MainWindow.cs:846
 msgid "No cameras detected."
@@ -1143,11 +1161,6 @@ msgstr "Grænseværdi:"
 msgid "Error saving sharpened photo"
 msgstr "Fejl ved gemning af skærpet foto"
 
-#: ../src/MainWindow.cs:1185
-#, csharp-format
-msgid "Received exception \"{0}\". Unable to save image {1}"
-msgstr "Modtog undtagelsen \"{0}\". Kunne ikke gemme billedet {1}"
-
 #: ../src/MainWindow.cs:1403
 #, csharp-format
 msgid "Delete the selected photo permanently?"
@@ -1181,12 +1194,12 @@ msgid ""
 "lost. The photos remain on your computer and can be imported into F-Spot "
 "again."
 msgstr ""
-"Hvis du fjerner fotos fra F-Spot-kataloget vil alle mærkeinformationerne gå "
+"Hvis du fjerner fotos fra F-Spot-mappen vil alle mærkeinformationerne gå "
 "tabt. Fotoerne vil blive på din maskine og kan importeres i F-Spot igen."
 
 #: ../src/MainWindow.cs:1434
 msgid "_Remove from Catalog"
-msgstr "_Fjern fra katalog"
+msgstr "_Fjern fra mappe"
 
 #: ../src/MainWindow.cs:1458
 #, csharp-format
@@ -1212,7 +1225,7 @@ msgstr "Kopiér billedsted"
 
 #: ../src/PhotoPopup.cs:38
 msgid "Remove From Catalog"
-msgstr "Fjern fra katalog"
+msgstr "Fjern fra mappen"
 
 #: ../src/PhotoPopup.cs:40
 msgid "Delete From Drive"
@@ -1259,6 +1272,11 @@ msgstr "Er du sikker på at du vil slette?"
 #, csharp-format
 msgid "Really delete version \"{0}\"?"
 msgstr "Er du sikker på at du vil slette \"{0}\"?"
+
+#: ../src/PhotoView.cs:284
+#, fuzzy
+msgid "Error editing photo"
+msgstr "Fejl ved gemning af skærpet foto"
 
 #: ../src/RotateCommand.cs:24
 msgid "Rotating pictures"
@@ -1396,6 +1414,17 @@ msgstr "Vedhæft mærke til markering"
 #: ../src/TagPopup.cs:38
 msgid "Remove Tag From Selection"
 msgstr "Fjern mærke fra markering"
+
+#: ../src/Util.cs:270
+msgid "There was an error invoking the external handler"
+msgstr ""
+
+#: ../src/Util.cs:271
+#, csharp-format
+msgid ""
+"Received error:\n"
+"\"{0}\"\n"
+msgstr ""
 
 #: ../src/VfsExport.cs:77
 #, csharp-format
