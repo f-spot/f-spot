@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-21 10:46+0100\n"
-"PO-Revision-Date: 2005-03-20 08:04+0100\n"
+"POT-Creation-Date: 2005-04-19 09:25+0200\n"
+"PO-Revision-Date: 2005-04-19 09:24+0200\n"
 "Last-Translator: Frank Arnold <frank@scirocco-5v-turbo.de>\n"
 "Language-Team: German GNOME Translators <gnome-de@gnome.org >\n"
 "MIME-Version: 1.0\n"
@@ -133,16 +133,16 @@ msgstr "Rastern"
 msgid "dither type"
 msgstr "Rasterungsart"
 
-#: ../libfspot/f-jpeg-utils.c:425
+#: ../libfspot/f-jpeg-utils.c:440
 msgid "File not found"
 msgstr "Datei nicht gefunden"
 
-#: ../libfspot/f-jpeg-utils.c:448
+#: ../libfspot/f-jpeg-utils.c:463
 #, c-format
 msgid "Unknown transform type %d"
 msgstr "Unbekannter Transformationstyp %d"
 
-#: ../libfspot/f-jpeg-utils.c:456
+#: ../libfspot/f-jpeg-utils.c:471
 msgid "Operation failed"
 msgstr "Aktion fehlgeschlagen"
 
@@ -272,6 +272,17 @@ msgstr "Fehler: Fehler bei der Übertragung, abgebrochen"
 msgid "Error: File Already Exists; Aborting"
 msgstr "Fehler: Datei ist bereits vorhanden, abgebrochen"
 
+#: ../src/ColorDialog.cs:143
+msgid "Error saving adjusted photo"
+msgstr "Fehler beim Speichern des abgeglichenen Fotos"
+
+#: ../src/ColorDialog.cs:144 ../src/MainWindow.cs:1185 ../src/PhotoView.cs:285
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to save image {1}"
+msgstr ""
+"Die Ausnahme »{0}« wurde empfangen. Das Bild {1} kann nicht gespeichert "
+"werden."
+
 #: ../src/Exif.cs:226
 msgid "Image Directory"
 msgstr "Bildverzeichnis"
@@ -364,6 +375,10 @@ msgstr "Galerie erstellt mit "
 #: ../src/FolderExport.cs:729
 msgid "Pages:"
 msgstr "Seiten:"
+
+#: ../src/FullScreenView.cs:100
+msgid "Exit fullscreen"
+msgstr "Vollbild verlassen"
 
 #: ../src/f-spot.glade.h:1
 msgid "\n"
@@ -1093,6 +1108,10 @@ msgstr "Belichtung:"
 msgid "(None)"
 msgstr "(Keine)"
 
+#: ../src/InfoDisplay.cs:110
+msgid "No EXIF info available"
+msgstr "Keine EXIF-Info verfügbar"
+
 #: ../src/MainWindow.cs:846
 msgid "No cameras detected."
 msgstr "Keine Kamera erkannt."
@@ -1117,65 +1136,58 @@ msgstr "Während dem Verbinden zur Kamera wurde der Fehler »{0}« empfangen"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1002
+#: ../src/MainWindow.cs:1000
 msgid "translator-credits"
 msgstr "Frank Arnold <frank@scirocco-5v-turbo.de>"
 
-#: ../src/MainWindow.cs:1133
+#: ../src/MainWindow.cs:1131
 msgid "Unsharp Mask"
 msgstr "Weichzeichnen"
 
-#: ../src/MainWindow.cs:1142
+#: ../src/MainWindow.cs:1140
 msgid "Amount:"
 msgstr "Betrag:"
 
-#: ../src/MainWindow.cs:1143
+#: ../src/MainWindow.cs:1141
 msgid "Radius:"
 msgstr "Radius:"
 
-#: ../src/MainWindow.cs:1144
+#: ../src/MainWindow.cs:1142
 msgid "Threshold:"
 msgstr "Schwellwert:"
 
-#: ../src/MainWindow.cs:1186
+#: ../src/MainWindow.cs:1184
 msgid "Error saving sharpened photo"
 msgstr "Fehler beim Speichern des geschärften Bilds"
 
-#: ../src/MainWindow.cs:1187
-#, csharp-format
-msgid "Received exception \"{0}\". Unable to save image {1}"
-msgstr ""
-"Die Ausnahme »{0}« wurde empfangen. Das Bild {1} kann nicht gespeichert "
-"werden."
-
-#: ../src/MainWindow.cs:1405
+#: ../src/MainWindow.cs:1403
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Das ausgewählte Foto dauerhaft löschen?"
 msgstr[1] "Die {0} ausgewählten Fotos dauerhaft löschen?"
 
-#: ../src/MainWindow.cs:1409
+#: ../src/MainWindow.cs:1407
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Dies löscht alle Versionen des gewählten Fotos vom Laufwerk."
 msgstr[1] "Dies löscht alle Versionen der gewählten Fotos vom Laufwerk."
 
-#: ../src/MainWindow.cs:1412
+#: ../src/MainWindow.cs:1410
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "Foto _löschen"
 msgstr[1] "Fotos _löschen"
 
-#: ../src/MainWindow.cs:1430
+#: ../src/MainWindow.cs:1428
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Das ausgewählte Foto aus F-Spot entfernen?"
 msgstr[1] "Die {0} ausgewählten Fotos aus F-Spot entfernen?"
 
-#: ../src/MainWindow.cs:1435
+#: ../src/MainWindow.cs:1433
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1185,24 +1197,24 @@ msgstr ""
 "Markierungsinformationen verloren. Die Fotos bleiben auf dem Rechner "
 "erhalten und können wieder in F-Spot importiert werden."
 
-#: ../src/MainWindow.cs:1436
+#: ../src/MainWindow.cs:1434
 msgid "_Remove from Catalog"
 msgstr "Aus dem Katalog ent_fernen"
 
-#: ../src/MainWindow.cs:1460
+#: ../src/MainWindow.cs:1458
 #, csharp-format
 msgid "Delete the selected tag?"
 msgid_plural "Delete the {0} selected tags?"
 msgstr[0] "Die ausgewählte Markierung löschen?"
 msgstr[1] "Die {0} ausgewählten Markierungen löschen?"
 
-#: ../src/MainWindow.cs:1465
+#: ../src/MainWindow.cs:1463
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr ""
 "Wenn eine Markierung gelöscht wird, gehen alle Verbindungen zu Fotos "
 "verloren."
 
-#: ../src/MainWindow.cs:1466
+#: ../src/MainWindow.cs:1464
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "Markierung _löschen"
@@ -1261,6 +1273,10 @@ msgstr "Wirklich löschen?"
 #, csharp-format
 msgid "Really delete version \"{0}\"?"
 msgstr "Soll die Version »{0}« wirklich gelöscht werden?"
+
+#: ../src/PhotoView.cs:284
+msgid "Error editing photo"
+msgstr "Fehler beim Bearbeiten des Fotos"
 
 #: ../src/RotateCommand.cs:24
 msgid "Rotating pictures"
@@ -1398,6 +1414,19 @@ msgstr "Markierung zur Auswahl hinzufügen"
 #: ../src/TagPopup.cs:38
 msgid "Remove Tag From Selection"
 msgstr "Markierung der Auswahl entfernen"
+
+#: ../src/Util.cs:270
+msgid "There was an error invoking the external handler"
+msgstr "Beim Aufrufen der externen Routine ist ein Fehler aufgetreten"
+
+#: ../src/Util.cs:271
+#, csharp-format
+msgid ""
+"Received error:\n"
+"\"{0}\"\n"
+msgstr ""
+"Fehler empfangen:\n"
+"»{0}«\n"
 
 #: ../src/VfsExport.cs:77
 #, csharp-format
