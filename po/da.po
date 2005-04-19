@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-04-19 23:01+0200\n"
-"PO-Revision-Date: 2005-04-19 23:06+0200\n"
+"PO-Revision-Date: 2005-04-19 23:12+0200\n"
 "Last-Translator: Martin Willemoes Hansen <mwh@sysrq.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -273,9 +273,8 @@ msgid "Error: File Already Exists; Aborting"
 msgstr "Fejl: Filen findes allerede; afbryder"
 
 #: ../src/ColorDialog.cs:143
-#, fuzzy
 msgid "Error saving adjusted photo"
-msgstr "Fejl ved gemning af skærpet foto"
+msgstr "Fejl ved gemning af tilpasset foto"
 
 #: ../src/ColorDialog.cs:144 ../src/MainWindow.cs:1185 ../src/PhotoView.cs:285
 #, csharp-format
@@ -375,9 +374,8 @@ msgid "Pages:"
 msgstr "Sider:"
 
 #: ../src/FullScreenView.cs:100
-#, fuzzy
 msgid "Exit fullscreen"
-msgstr "Fuldskærm"
+msgstr "Afslut fuldskærm"
 
 #: ../src/f-spot.glade.h:1
 msgid "\n"
@@ -1107,7 +1105,7 @@ msgstr "(Ingen)"
 
 #: ../src/InfoDisplay.cs:110
 msgid "No EXIF info available"
-msgstr ""
+msgstr "Ingen EXIF-information tilgængelig"
 
 #: ../src/MainWindow.cs:846
 msgid "No cameras detected."
@@ -1274,9 +1272,8 @@ msgid "Really delete version \"{0}\"?"
 msgstr "Er du sikker på at du vil slette \"{0}\"?"
 
 #: ../src/PhotoView.cs:284
-#, fuzzy
 msgid "Error editing photo"
-msgstr "Fejl ved gemning af skærpet foto"
+msgstr "Fejl ved foto-redigering"
 
 #: ../src/RotateCommand.cs:24
 msgid "Rotating pictures"
@@ -1417,7 +1414,7 @@ msgstr "Fjern mærke fra markering"
 
 #: ../src/Util.cs:270
 msgid "There was an error invoking the external handler"
-msgstr ""
+msgstr "Der opstod en fejl ved opstart af den eksterne behandler"
 
 #: ../src/Util.cs:271
 #, csharp-format
@@ -1425,6 +1422,8 @@ msgid ""
 "Received error:\n"
 "\"{0}\"\n"
 msgstr ""
+"Modtog fejlen::\n"
+"\"{0}\"\n"
 
 #: ../src/VfsExport.cs:77
 #, csharp-format
