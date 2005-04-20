@@ -227,15 +227,12 @@ class FormClient {
 				length += MultipartLength (item);
 			}
 			length += end_boundary.Length + 2;
-
-			Request.Headers["My-Content-Length"] = length.ToString ();
-			Request.Headers["My-Unbuffer"] = Buffer.ToString ();
-
+			
+			//Request.Headers["My-Content-Length"] = length.ToString ();
 			if (Buffer == false) {
 				Request.ContentLength = length;	
 				Request.AllowWriteStreamBuffering = false;
 			}
-
 		} else {
 			Request.ContentType = "application/x-www-form-urlencoded";
 		}
