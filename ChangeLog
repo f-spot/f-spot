@@ -1,3 +1,8 @@
+2005-04-20  Priit Laes  <amd@store20.com>
+
+	* src/MainWindow.cs: do not display translator-credits in
+	about box, when they are not specified.
+
 2005-04-20  Larry Ewing  <lewing@novell.com>
 
 	* src/IthmbDb.cs: clamp the yuv values properly.

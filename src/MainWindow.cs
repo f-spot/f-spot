@@ -998,6 +998,9 @@ public class MainWindow {
                 // * which will give them credit in the About box.
                 // * E.g. "Martin Willemoes Hansen"
                 string translators = Mono.Posix.Catalog.GetString ("translator-credits");
+                if(System.String.Compare(translators,"translator-credits") == 0) {
+                    translators = null;
+                }
 
                 new About ("F-Spot", 
 			   FSpot.Defines.VERSION, 
