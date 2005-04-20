@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 
 public class IthmbDb {
@@ -30,9 +31,15 @@ public class IthmbDb {
 				pixels = ((byte *)dest.Pixels) + row * dest.Rowstride;
 				for (col = 0; col < dest.Width; col++) {
 					s = reader.ReadUInt16 ();
+#if true
 					*(pixels++) = (byte)(((s >> 8) & 0xf8) | ((s >> 13) & 0x7)); // r
 					*(pixels++) = (byte)(((s >> 3) & 0xfc) | ((s >> 9) & 0x3));  // g
 					*(pixels++) = (byte)(((s >> 3) & 0xf8) | ((s >> 2) & 0x7));  // b
+#else
+					*(pixels++) = (byte)(((s & 0x7c00) >> 7) | ((s & 0x7000) >> 12)); // r
+					*(pixels++) = (byte)(((s & 0x03e0) >> 2) | ((s & 0x0380) >> 7));  // g
+					*(pixels++) = (byte)(((s & 0x001f) << 3) | ((s & 0x001c) >> 2));  // b
+#endif
 				}
 			}
 		}
@@ -70,13 +77,13 @@ public class IthmbDb {
 					 v = reader.ReadByte ();
 					 y1 = reader.ReadByte ();
 
-					 *(pixels++) = (byte) (y0 + (1.370705 * (v - 128))); // r
-					 *(pixels++) = (byte) (y0 - (0.698001 * (v - 128)) - (0.3337633 * (u - 128))); // g
-					 *(pixels++) = (byte) (y0 + (1.732446 * (u -128))); // b
+					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y0 + (1.370705 * (v - 128)))); // r
+					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y0 - (0.698001 * (v - 128)) - (0.3337633 * (u - 128)))); // g
+					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y0 + (1.732446 * (u -128)))); // b
 
-					 *(pixels++) = (byte) (y1 + (1.370705 * (v - 128))); // r
-					 *(pixels++) = (byte) (y1 - (0.698001 * (v - 128)) - (0.3337633 * (u - 128))); // g
-					 *(pixels++) = (byte) (y1 + (1.732446 * (u -128))); // b
+					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y1 + (1.370705 * (v - 128)))); // r
+					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y1 - (0.698001 * (v - 128)) - (0.3337633 * (u - 128)))); // g
+					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y1 + (1.732446 * (u -128)))); // b
 				 }
 			 }
 			 for (row = 1; row < dest.Height; row += 2) {
@@ -87,13 +94,13 @@ public class IthmbDb {
 					 v = reader.ReadByte ();
 					 y1 = reader.ReadByte ();
 
-					 *(pixels++) = (byte) (y0 + (1.370705 * (v - 128))); // r
-					 *(pixels++) = (byte) (y0 - (0.698001 * (v - 128)) - (0.3337633 * (u - 128))); // g
-					 *(pixels++) = (byte) (y0 + (1.732446 * (u -128))); // b
+					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y0 + (1.370705 * (v - 128)))); // r
+					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y0 - (0.698001 * (v - 128)) - (0.3337633 * (u - 128)))); // g
+					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y0 + (1.732446 * (u -128)))); // b
 
-					 *(pixels++) = (byte) (y1 + (1.370705 * (v - 128))); // r
-					 *(pixels++) = (byte) (y1 - (0.698001 * (v - 128)) - (0.3337633 * (u - 128))); // g
-					 *(pixels++) = (byte) (y1 + (1.732446 * (u -128))); // b
+					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y1 + (1.370705 * (v - 128)))); // r
+					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y1 - (0.698001 * (v - 128)) - (0.3337633 * (u - 128)))); // g
+					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y1 + (1.732446 * (u -128)))); // b
 				 }
 			 }
 		 }
