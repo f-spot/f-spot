@@ -1,5 +1,11 @@
 2005-04-20  Larry Ewing  <lewing@novell.com>
 
+	* src/IthmbDb.cs: it appears external is interlaced YUV decode
+	appropriately.
+
+	* src/IthmbDb.cs: Add support for other image sizes.  External
+	still doesn't work and fullscreen needs to be rotated.	
+
 	* src/IthmbDb.cs: add start of thumbnaildb loader.
 
 2005-04-19  Larry Ewing  <lewing@novell.com>
