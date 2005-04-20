@@ -50,6 +50,7 @@ namespace FSpot {
 								     Dialog, Gtk.DialogFlags.Modal);
 			
 			Gtk.Entry password_entry = new Gtk.Entry ();
+			password_entry.ActivatesDefault = true;
 			password_entry.Visibility = false;
 
 			password_dialog.VBox.BorderWidth = 12;
@@ -57,6 +58,8 @@ namespace FSpot {
 			password_dialog.VBox.PackStart (new Gtk.Label (Mono.Posix.Catalog.GetString ("Enter Password for ") + email));
 			password_dialog.VBox.PackStart (password_entry);
 			password_dialog.AddButton (Gtk.Stock.Ok, Gtk.ResponseType.Ok);
+			password_dialog.HasSeparator = false;
+			password_dialog.DefaultResponse = Gtk.ResponseType.Ok;
 			password_dialog.ShowAll ();
 			password_dialog.Run ();
 			string password =  password_entry.Text;

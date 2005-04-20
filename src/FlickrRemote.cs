@@ -14,8 +14,8 @@ public class FlickrRemote {
 	string email;
 	string passwd;
 	string username;
-	int limit;
-	int used;
+	long limit;
+	long used;
 	bool pro;
 
 	public bool ExportTags;
@@ -135,10 +135,10 @@ public class FlickrRemote {
 			foreach (System.Xml.XmlNode child in node.ChildNodes) {
 				switch (child.Name) {
 				case "limit":
-					this.limit = int.Parse (child.ChildNodes [0].Value);
+					this.limit = long.Parse (child.ChildNodes [0].Value);
 					break;
 				case "used":
-					this.limit = int.Parse (child.ChildNodes [0].Value);
+					this.limit = long.Parse (child.ChildNodes [0].Value);
 					break;
 				}
 			}

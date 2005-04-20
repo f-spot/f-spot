@@ -1,3 +1,11 @@
+2005-04-20  Larry Ewing  <lewing@novell.com>
+
+	* src/FlickrExport.cs: clean up the password dialog slightly.
+
+	* src/FlickrRemote.cs: parse the space as a long since it might
+	overflow int now that flickr is all growed up. (patch from Adam
+	Israel).
+
 2005-04-20  Priit Laes  <amd@store20.com>
 
 	* src/MainWindow.cs: do not display translator-credits in
