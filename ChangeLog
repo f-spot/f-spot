@@ -1,5 +1,9 @@
 2005-04-20  Larry Ewing  <lewing@novell.com>
 
+	* src/IthmbDb.cs: fix the blue channel calculation in 565 mode.
+	Display all the thumbs in the same window. Play around with the
+	yuv decoder a little.
+
 	* src/FlickrExport.cs: clean up the password dialog slightly.
 
 	* src/FlickrRemote.cs: parse the space as a long since it might

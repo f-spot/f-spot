@@ -34,7 +34,7 @@ public class IthmbDb {
 #if true
 					*(pixels++) = (byte)(((s >> 8) & 0xf8) | ((s >> 13) & 0x7)); // r
 					*(pixels++) = (byte)(((s >> 3) & 0xfc) | ((s >> 9) & 0x3));  // g
-					*(pixels++) = (byte)(((s >> 3) & 0xf8) | ((s >> 2) & 0x7));  // b
+					*(pixels++) = (byte)(((s << 3) & 0xf8) | ((s >> 2) & 0x7));  // b
 #else
 					*(pixels++) = (byte)(((s & 0x7c00) >> 7) | ((s & 0x7000) >> 12)); // r
 					*(pixels++) = (byte)(((s & 0x03e0) >> 2) | ((s & 0x0380) >> 7));  // g
@@ -68,6 +68,7 @@ public class IthmbDb {
 			 byte * pixels;
 			 ushort y0, y1, u, v;
 			 int row, col;
+			 int c;
 
 			 for (row = 0; row < dest.Height; row += 2) {
 				 pixels = ((byte *)dest.Pixels) + row * dest.Rowstride;
@@ -77,13 +78,25 @@ public class IthmbDb {
 					 v = reader.ReadByte ();
 					 y1 = reader.ReadByte ();
 
-					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y0 + (1.370705 * (v - 128)))); // r
-					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y0 - (0.698001 * (v - 128)) - (0.3337633 * (u - 128)))); // g
-					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y0 + (1.732446 * (u -128)))); // b
+					 c = (int) Math.Max (0, Math.Min (255, y0 + (1.370705 * (v - 128)))); // r
+					 //c = c * 220 / 256;
+					 *(pixels ++) = (byte) c;
+					 c = (int) Math.Max (0, Math.Min (255, y0 - (0.698001 * (v - 128)) - (0.3337633 * (u - 128)))); // g
+					 //c = c * 220 / 256;
+					 *(pixels ++) = (byte) c;
+					 c = (int) Math.Max (0, Math.Min (255, y0 + (1.732446 * (u -128)))); // b
+					 //c = c * 220 / 256;
+					 *(pixels ++) = (byte) c;
 
-					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y1 + (1.370705 * (v - 128)))); // r
-					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y1 - (0.698001 * (v - 128)) - (0.3337633 * (u - 128)))); // g
-					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y1 + (1.732446 * (u -128)))); // b
+					 c = (int) Math.Max (0, Math.Min (255, y1 + (1.370705 * (v - 128)))); // r
+					 //c = c * 220 / 256;
+					 *(pixels ++) = (byte) c;
+					 c = (int) Math.Max (0, Math.Min (255, y1 - (0.698001 * (v - 128)) - (0.3337633 * (u - 128)))); // g
+					 //c = c * 220 / 256;
+					 *(pixels ++) = (byte) c;
+					 c = (int) Math.Max (0, Math.Min (255, y1 + (1.732446 * (u -128)))); // b
+					 //c = c * 220 / 256;
+					 *(pixels ++) = (byte) c;
 				 }
 			 }
 			 for (row = 1; row < dest.Height; row += 2) {
@@ -94,13 +107,25 @@ public class IthmbDb {
 					 v = reader.ReadByte ();
 					 y1 = reader.ReadByte ();
 
-					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y0 + (1.370705 * (v - 128)))); // r
-					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y0 - (0.698001 * (v - 128)) - (0.3337633 * (u - 128)))); // g
-					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y0 + (1.732446 * (u -128)))); // b
+					 c = (int) Math.Max (0, Math.Min (255, y0 + (1.370705 * (v - 128)))); // r
+					 //c = c * 220 / 256;
+					 *(pixels ++) = (byte) c;
+					 c = (int) Math.Max (0, Math.Min (255, y0 - (0.698001 * (v - 128)) - (0.3337633 * (u - 128)))); // g
+					 //c = c * 220 / 256;
+					 *(pixels ++) = (byte) c;
+					 c = (int) Math.Max (0, Math.Min (255, y0 + (1.732446 * (u -128)))); // b
+					 //c = c * 220 / 256;
+					 *(pixels ++) = (byte) c;
 
-					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y1 + (1.370705 * (v - 128)))); // r
-					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y1 - (0.698001 * (v - 128)) - (0.3337633 * (u - 128)))); // g
-					 *(pixels++) = (byte) Math.Max (0, Math.Min (255, y1 + (1.732446 * (u -128)))); // b
+					 c = (int) Math.Max (0, Math.Min (255, y1 + (1.370705 * (v - 128)))); // r
+					 //c = c * 220 / 256;
+					 *(pixels ++) = (byte) c;
+					 c = (int) Math.Max (0, Math.Min (255, y1 - (0.698001 * (v - 128)) - (0.3337633 * (u - 128)))); // g
+					 //c = c * 220 / 256;
+					 *(pixels ++) = (byte) c;
+					 c = (int) Math.Max (0, Math.Min (255, y1 + (1.732446 * (u -128)))); // b
+					 //c = c * 220 / 256;
+					 *(pixels ++) = (byte) c;
 				 }
 			 }
 		 }
@@ -113,44 +138,47 @@ public class IthmbDb {
 		 path = Path.Combine (path, this.Name + "_1.ithmb");
 		 Gdk.Pixbuf image = new Gdk.Pixbuf (Gdk.Colorspace.Rgb,
 						    false, 8, width, height);
-
+		 
 		 FileStream stream = new FileStream (path, FileMode.Open);
-
-
+		 
+		 
 		 stream.Position = width * height * 4 * offset;
 		 BinaryReader reader = new BinaryReader (stream);
-
+		 
 		 if (!this.YUV) {
 			 LoadRgb565 (reader, image);
 		 } else {
 			 LoadIYUV (reader, image);
-		}
-		
-		return image;
+		 }
+		 
+		 return image;
 	}
 
 	static void Main (string [] args) 
 	{
 		Gtk.Application.Init ();
 		Gtk.Window win = new Gtk.Window ("iThumbnail Test");
+		Gtk.HBox hbox = new Gtk.HBox ();
+		Gtk.VBox vbox = new Gtk.VBox ();
+		win.Add (hbox);
+		hbox.PackStart (vbox);
+		
 		Gdk.Pixbuf thumb = IthmbDb.Thumbnail.Load (args [0], System.Int32.Parse (args [1]));
 		Gtk.Image image = new Gtk.Image (thumb);
-		win.Add (image);
-		win.ShowAll ();
-		win = new Gtk.Window ("iThumbnail Test");
-		thumb = IthmbDb.FullScreen.Load (args [0], System.Int32.Parse (args [1]));
-		image = new Gtk.Image (thumb);
-		win.Add (image);
-		win.ShowAll ();
-		win = new Gtk.Window ("iThumbnail Test");
+		vbox.PackStart (image);
+		
 		thumb = IthmbDb.Slide.Load (args [0], System.Int32.Parse (args [1]));
 		image = new Gtk.Image (thumb);
-		win.Add (image);
-		win.ShowAll ();
-		win = new Gtk.Window ("iThumbnail Test");
+		vbox.PackStart (image);
+		
+		thumb = IthmbDb.FullScreen.Load (args [0], System.Int32.Parse (args [1]));
+		image = new Gtk.Image (thumb);
+		vbox.PackStart (image);
+
 		thumb = IthmbDb.External.Load (args [0], System.Int32.Parse (args [1]));
 		image = new Gtk.Image (thumb);
-		win.Add (image);
+		hbox.PackStart (image);
+
 		win.ShowAll ();
 		Gtk.Application.Run ();
 	}
