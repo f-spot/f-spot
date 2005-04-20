@@ -1,5 +1,8 @@
 2005-04-19  Larry Ewing  <lewing@novell.com>
 
+	* src/GroupSelector.cs: set the legend height based on the font
+	metrics.
+
 	* src/OriginalExport.cs: remove unused file.
 
 2005-04-18  Adam Weinberger  <adamw@gnome.org>

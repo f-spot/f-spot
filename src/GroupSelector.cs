@@ -831,9 +831,22 @@ namespace FSpot {
 			base.OnSizeRequested (ref requisition);
 		}
 
-		private int LengendHeight ()
+		// FIXME I can't find a c# wrapper for the C PANGO_PIXELS () macro
+		// So this Function is for that.
+		public static int PangoPixels (int val)
+		{
+			return val >= 0 ? (val + 1024 / 2) / 1024 :
+				(val - 1024 / 2) / 1024;
+		}
+
+		private int LegendHeight ()
 		{
 			int max_height = 0;
+
+			Pango.FontMetrics metrics = this.PangoContext.GetMetrics (this.Style.FontDescription, 
+										  Pango.Language.FromString ("en_US"));
+			max_height += PangoPixels (metrics.Ascent + metrics.Descent);
+
 			foreach (Pango.Layout l in tick_layouts) {
 				if (l != null) {
 					int width, height;
@@ -880,7 +893,7 @@ namespace FSpot {
 		protected override void OnSizeAllocated (Gdk.Rectangle alloc)
 		{
 			base.OnSizeAllocated (alloc);
-			int legend_height = LengendHeight ();
+			int legend_height = LegendHeight ();
 	
 			Gdk.Rectangle bar = new Rectangle (alloc.X + border, alloc.Y + border,
 							   alloc.Width - 2 *  border,
