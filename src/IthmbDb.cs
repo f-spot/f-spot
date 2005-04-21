@@ -78,6 +78,16 @@ public class IthmbDb {
 		}
 	}
 
+	public static int Clamp (int val, int bottom, int top)
+	{
+		if (val < bottom)
+			return bottom;
+		else if (val > top)
+			return top;
+
+		return val;
+	}
+
 	public void LoadIYUV (BinaryReader reader, Gdk.Pixbuf dest)
 	{
 		unsafe {
@@ -170,47 +180,104 @@ public class IthmbDb {
 		 stream.Close ();
 		 return image;
 	}
+	
+	public ushort [] PackIYUV (Gdk.Pixbuf src)
+	{
+		int row, col;
+		int r, g, b;
+		int y, u, v;
+		ushort [] packed;
+		int i;
+		int width = src.Width;
+		int height = src.Height;
+
+		unsafe {
+			byte * pixels;
+
+			packed = new ushort [width * height];
+			for (row = 0; row < height; row ++) {
+				pixels = ((byte *)src.Pixels) + row * src.Rowstride;
+				i = row * width / 2;
+				if (row % 2 > 0)
+					i += (height - 1)  * width / 2;
+				
+				for (col = 0; col < width; col ++) {
+					r = *(pixels ++);
+					g = *(pixels ++);
+					b = *(pixels ++);
+					
+					y = ((16829 * r + 33039 * g +  6416 * b + 32768) >> 16) + 16;
+					u = ((-9714 * r - 19071 * g + 28784 * b + 32768) >> 16) + 128;
+					v = ((28784 * r - 24103 * g -  4681 * b + 32768) >> 16) + 128;
+					
+					y = Clamp (y, 0, 255);
+					u = Clamp (u, 0, 255);
+					v = Clamp (v, 0, 255);
+					//y = Clamp (y, 16, 235);
+					//u = Clamp (u, 16, 240);
+					//v = Clamp (v, 16, 240);
+					
+					if (col % 2 > 0)
+						packed [i ++] = (ushort) ((y << 8) | v);
+					else
+						packed [i ++] = (ushort) ((y << 8) | u);
+				}
+			}
+		}
+
+		return packed;
+	}
+
+	public ushort [] PackRgb565 (Gdk.Pixbuf src)
+	{
+		int row, col;
+		byte r, g, b;
+		ushort [] packed;
+		int i;
+		int width = src.Width;
+		int height = src.Height;
+		
+		unsafe {
+			byte * pixels;			 
+			
+			packed = new ushort [width * height];
+			for (row = 0; row < height; row ++) {
+				pixels = ((byte *)src.Pixels) + row * src.Rowstride;
+				i = row * width;
+				
+				for (col = 0; col < width; col ++) {
+					r = *(pixels ++);
+					g = *(pixels ++);
+					b = *(pixels ++);
+					
+					packed [i ++] = (ushort) (((r & 0xf8) << 8) | ((g & 0xfc) << 3) | (b >> 3));
+				}
+			}
+		}
+
+		return packed;
+	}
 
 	public void Save (Gdk.Pixbuf src, string path, int offset) 
 	{
-		 int width = this.Width;
-		 int height = this.Height;
-		 int size;
-		 int row, col;
-		 byte r, g, b;
-		 ushort [] packed;
-		 int i;
-
-		 path = Path.Combine (path, this.Name + "_1.ithmb");
-		 packed = new ushort [width * height];
-		 i = 0;
-		 unsafe {
-			 byte * pixels;
-
-			 for (row = 0; row < height; row ++) {
-				 pixels = ((byte *)src.Pixels) + row * src.Rowstride;
-				 
-				 for (col = 0; col < width; col ++) {
-					 r = *(pixels ++);
-					 g = *(pixels ++);
-					 b = *(pixels ++);
-
-					 if (!this.YUV) 					 
-						 packed [i ++] = (ushort) (((r & 0xf8) << 8) | ((g & 0xfc) << 3) | (b >> 3));
-					 else {
-						 throw new System.Exception ("this isn't supported yet");
-					 }
-				 }
-			 }
-		 }
-		 
-		 FileStream stream = new FileStream (path, FileMode.Open);
-		 stream.Position = width * height * 2 * offset;
-		 BinaryWriter writer = new BinaryWriter (stream);
-		 foreach (short val in packed) {
-			 writer.Write (val);
-		 }
-		 stream.Close ();
+		int width = this.Width;
+		int height = this.Height;
+		ushort [] packed;
+		
+		path = Path.Combine (path, this.Name + "_1.ithmb");
+		if (this.YUV) {
+			packed = PackIYUV (src);
+		} else {
+			packed = PackRgb565 (src);
+		}
+		
+		FileStream stream = new FileStream (path, FileMode.Open);
+		stream.Position = width * height * 2 * offset;
+		BinaryWriter writer = new BinaryWriter (stream);
+		foreach (short val in packed) {
+			writer.Write (val);
+		}
+		stream.Close ();
 	}
 
 	static void Main (string [] args) 
@@ -229,9 +296,6 @@ public class IthmbDb {
 		Gtk.Image image = new Gtk.Image (thumb);
 		vbox.PackStart (image);
 		
-		if (args.Length > 2)
-			IthmbDb.Thumbnail.Save (thumb, basepath, System.Int32.Parse (args [2]));
-		
 		thumb = IthmbDb.Slide.Load (basepath, index);
 		image = new Gtk.Image (thumb);
 		vbox.PackStart (image);
@@ -243,6 +307,9 @@ public class IthmbDb {
 		thumb = IthmbDb.External.Load (basepath, index);
 		image = new Gtk.Image (thumb);
 		hbox.PackStart (image);
+
+		if (args.Length > 2)
+			IthmbDb.External.Save (thumb, basepath, System.Int32.Parse (args [2]));
 
 		win.ShowAll ();
 		Gtk.Application.Run ();
