@@ -88,13 +88,20 @@ public class IthmbDb {
 		return val;
 	}
 
+	private void UnpackYUV (ushort y, ushort u, ushort v, out int r, out int g, out int b)
+	{
+		r = Clamp ((int) (y + (1.370705 * (v - 128))), 0, 255); // r
+		g = Clamp ((int) (y - (0.698001 * (v - 128)) - (0.3337633 * (u - 128))), 0, 255); // g
+		b = Clamp ((int) (y + (1.732446 * (u -128))), 0, 255); // b
+	}
+
 	public void LoadIYUV (BinaryReader reader, Gdk.Pixbuf dest)
 	{
 		unsafe {
 			 byte * pixels;
 			 ushort y0, y1, u, v;
+			 int r, g, b;
 			 int row, col;
-			 int c;
 
 			 for (row = 0; row < dest.Height; row += 2) {
 				 pixels = ((byte *)dest.Pixels) + row * dest.Rowstride;
@@ -103,26 +110,16 @@ public class IthmbDb {
 					 y0 = reader.ReadByte ();
 					 v = reader.ReadByte ();
 					 y1 = reader.ReadByte ();
-
-					 c = (int) Math.Max (0, Math.Min (255, y0 + (1.370705 * (v - 128)))); // r
-					 //c = c * 220 / 256;
-					 *(pixels ++) = (byte) c;
-					 c = (int) Math.Max (0, Math.Min (255, y0 - (0.698001 * (v - 128)) - (0.3337633 * (u - 128)))); // g
-					 //c = c * 220 / 256;
-					 *(pixels ++) = (byte) c;
-					 c = (int) Math.Max (0, Math.Min (255, y0 + (1.732446 * (u -128)))); // b
-					 //c = c * 220 / 256;
-					 *(pixels ++) = (byte) c;
-
-					 c = (int) Math.Max (0, Math.Min (255, y1 + (1.370705 * (v - 128)))); // r
-					 //c = c * 220 / 256;
-					 *(pixels ++) = (byte) c;
-					 c = (int) Math.Max (0, Math.Min (255, y1 - (0.698001 * (v - 128)) - (0.3337633 * (u - 128)))); // g
-					 //c = c * 220 / 256;
-					 *(pixels ++) = (byte) c;
-					 c = (int) Math.Max (0, Math.Min (255, y1 + (1.732446 * (u -128)))); // b
-					 //c = c * 220 / 256;
-					 *(pixels ++) = (byte) c;
+					 
+					 UnpackYUV (y0, u, v, out r, out g, out b);
+					 *(pixels ++) = (byte) r;
+					 *(pixels ++) = (byte) g;
+					 *(pixels ++) = (byte) b;
+					 
+					 UnpackYUV (y1, u, v, out r, out g, out b);
+					 *(pixels ++) = (byte) r;
+					 *(pixels ++) = (byte) g;
+					 *(pixels ++) = (byte) b;
 				 }
 			 }
 			 for (row = 1; row < dest.Height; row += 2) {
@@ -133,25 +130,15 @@ public class IthmbDb {
 					 v = reader.ReadByte ();
 					 y1 = reader.ReadByte ();
 
-					 c = (int) Math.Max (0, Math.Min (255, y0 + (1.370705 * (v - 128)))); // r
-					 //c = c * 220 / 256;
-					 *(pixels ++) = (byte) c;
-					 c = (int) Math.Max (0, Math.Min (255, y0 - (0.698001 * (v - 128)) - (0.3337633 * (u - 128)))); // g
-					 //c = c * 220 / 256;
-					 *(pixels ++) = (byte) c;
-					 c = (int) Math.Max (0, Math.Min (255, y0 + (1.732446 * (u -128)))); // b
-					 //c = c * 220 / 256;
-					 *(pixels ++) = (byte) c;
-
-					 c = (int) Math.Max (0, Math.Min (255, y1 + (1.370705 * (v - 128)))); // r
-					 //c = c * 220 / 256;
-					 *(pixels ++) = (byte) c;
-					 c = (int) Math.Max (0, Math.Min (255, y1 - (0.698001 * (v - 128)) - (0.3337633 * (u - 128)))); // g
-					 //c = c * 220 / 256;
-					 *(pixels ++) = (byte) c;
-					 c = (int) Math.Max (0, Math.Min (255, y1 + (1.732446 * (u -128)))); // b
-					 //c = c * 220 / 256;
-					 *(pixels ++) = (byte) c;
+					 UnpackYUV (y0, u, v, out r, out g, out b);
+					 *(pixels ++) = (byte) r;
+					 *(pixels ++) = (byte) g;
+					 *(pixels ++) = (byte) b;
+					 
+					 UnpackYUV (y1, u, v, out r, out g, out b);
+					 *(pixels ++) = (byte) r;
+					 *(pixels ++) = (byte) g;
+					 *(pixels ++) = (byte) b;
 				 }
 			 }
 		 }
@@ -181,7 +168,7 @@ public class IthmbDb {
 		 return image;
 	}
 	
-	public ushort [] PackIYUV (Gdk.Pixbuf src)
+	private ushort [] PackIYUV (Gdk.Pixbuf src)
 	{
 		int row, col;
 		int r, g, b;
@@ -228,7 +215,7 @@ public class IthmbDb {
 		return packed;
 	}
 
-	public ushort [] PackRgb565 (Gdk.Pixbuf src)
+	private ushort [] PackRgb565 (Gdk.Pixbuf src)
 	{
 		int row, col;
 		byte r, g, b;
