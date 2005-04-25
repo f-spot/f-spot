@@ -1,5 +1,8 @@
 2005-04-25  Larry Ewing  <lewing@novell.com>
 
+	* src/TagSelectionWidget.cs: initialize the treeiter to zero to
+	make csc happy.
+
 	* libgphoto2-sharp/CameraFilesystem.cs: fix up for new marshalling rules.
 
 	* libgphoto2-sharp/Port.cs: fix up for new marshalling rules.
