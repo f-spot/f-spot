@@ -1,3 +1,12 @@
+2005-04-25  Larry Ewing  <lewing@novell.com>
+
+	* libgphoto2-sharp/CameraFilesystem.cs: fix up for new marshalling rules.
+
+	* libgphoto2-sharp/Port.cs: fix up for new marshalling rules.
+
+	* libgphoto2-sharp/Camera.cs: more changes to comply with the new
+	marshalling rules.
+
 2005-04-24  Christopher Orr  <chris@orr.me.uk>
 
         * configure.in: Added "en_GB" to ALL_LINGUAS.

@@ -69,6 +69,7 @@ namespace LibGPhoto2
 		[FieldOffset(0)] PortSettingsUSB usb;
 	}
 
+#if false
 	[StructLayout(LayoutKind.Sequential)]
 	internal unsafe struct _Port
 	{
@@ -130,153 +131,134 @@ namespace LibGPhoto2
 		//[DllImport ("libgphoto2.so")]
 		//internal static extern int gp_port_set_error (_Port *port, const char *format, ...);
 	}
+#endif
 
-	public class Port : IDisposable
+	public class Port : Object
 	{
-		unsafe _Port *obj;
-		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_port_new (out IntPtr port);
+
 		public Port()
 		{
-			ErrorCode result;
-			unsafe 
-			{
-				result = _Port.gp_port_new(out obj);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			IntPtr native;
+
+			Error.CheckError (gp_port_new (out native));
+
+			this.handle = new HandleRef (this, native);
 		}
 		
-		public void Dispose()
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_port_free (HandleRef port);
+		
+		protected override void Cleanup ()
 		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
+			Error.CheckError (gp_port_free (this.handle));
 		}
-		
-		~Port()
-		{
-			Dispose(false);
-		}
-		
-		protected virtual void Dispose (bool disposing)
-		{
-			ErrorCode result;
-			unsafe
-			{
-				if (obj != null)
-				{
-					result = _Port.gp_port_free(obj);
-					if (Error.IsError(result)) throw Error.ErrorException(result);
-					obj = null;
-				}
-			}
-		}
-		
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_port_set_info (HandleRef port, ref _PortInfo info);
+
 		public void SetInfo (PortInfo info)
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _Port.gp_port_set_info (obj, ref info.Handle);
-			}
-
-			if (Error.IsError (result))
-				throw Error.ErrorException(result);
+		Error.CheckError (gp_port_set_info (this.Handle, ref info.Handle));
 		}
 		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_port_get_info (HandleRef port, out _PortInfo info);
+
 		public PortInfo GetInfo ()
 		{
 			PortInfo info = new PortInfo (); 
 
-			unsafe
-			{
-				Error.CheckError (_Port.gp_port_get_info(obj, out info.Handle));
-			}
+			Error.CheckError (gp_port_get_info (this.Handle, out info.Handle));
+
 			return info;
 		}
 		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_port_open (HandleRef port);
+
 		public void Open ()
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _Port.gp_port_open(obj);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			Error.CheckError (gp_port_open (this.Handle));
 		}
 		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_port_close (HandleRef port);
+
 		public void Close ()
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _Port.gp_port_close(obj);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			Error.CheckError (gp_port_close (this.Handle));
 		}
 		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_port_read (HandleRef port, [MarshalAs(UnmanagedType.LPTStr)] byte[] data, int size);
+
 		public byte[] Read (int size)
 		{
-			ErrorCode result;
 			byte[] data = new byte[size];
-			unsafe
-			{
-				result = _Port.gp_port_read(obj, data, size);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+
+			Error.CheckError (gp_port_read (this.Handle, data, size));
+
 			return data;
 		}
 		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_port_write (HandleRef port, [MarshalAs(UnmanagedType.LPTStr)] byte[] data, int size);
+
 		public void Write (byte[] data)
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _Port.gp_port_write(obj, data, data.Length);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			Error.CheckError (gp_port_write (this.Handle, data, data.Length));
 		}
 		
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_port_set_settings (HandleRef port, PortSettings settings);
+
 		public void SetSettings (PortSettings settings)
 		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _Port.gp_port_set_settings(obj, settings);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+			Error.CheckError (gp_port_set_settings (this.Handle, settings));
 		}
 		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_port_get_settings (HandleRef port, out PortSettings settings);
+
 		public PortSettings GetSettings ()
 		{
-			ErrorCode result;
 			PortSettings settings;
-			unsafe
-			{
-				result = _Port.gp_port_get_settings(obj, out settings);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
+
+			Error.CheckError (gp_port_get_settings (this.Handle, out settings));
+
 			return settings;
 		}
 		
-		public int GetTimeout ()
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_port_get_timeout (HandleRef port, out int timeout);
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_port_set_timeout (HandleRef port, int timeout);
+
+		public int Timeout
 		{
-			ErrorCode result;
-			int timeout;
-			unsafe
-			{
-				result = _Port.gp_port_get_timeout(obj, &timeout);
+			get {
+				int timeout;
+
+				Error.CheckError (gp_port_get_timeout (this.Handle, out timeout));
+
+				return timeout;
 			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
-			return timeout;
+			set {
+				Error.CheckError (gp_port_set_timeout (this.Handle, value));
+			}
 		}
 		
-		public void SetTimeout (int timeout)
-		{
-			ErrorCode result;
-			unsafe
-			{
-				result = _Port.gp_port_set_timeout(obj, timeout);
-			}
-			if (Error.IsError(result)) throw Error.ErrorException(result);
-		}
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_port_get_pin (HandleRef port, Pin pin, out Level level);
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_port_set_pin (HandleRef port, Pin pin, Level level);
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern string gp_port_get_error (HandleRef port);
 	}
 }

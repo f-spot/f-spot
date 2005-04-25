@@ -28,6 +28,7 @@ namespace LibGPhoto2
 		}
 	}
 	
+#if false
 	[StructLayout(LayoutKind.Sequential)]
 	internal unsafe struct CameraFunctions
 	{
@@ -78,7 +79,8 @@ namespace LibGPhoto2
 		IntPtr reserved7;
 		IntPtr reserved8;
 	}
-	
+#endif
+
 	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct CameraFilePath
 	{
@@ -96,16 +98,16 @@ namespace LibGPhoto2
 	[StructLayout(LayoutKind.Sequential)]
 	internal unsafe struct _Camera
 	{
-		_Port           *port;
-		_CameraFilesystem *fs;
-		//CameraFunctions  *functions;
+		IntPtr port;
+		IntPtr fs;
 		IntPtr functions;
 
-		CameraPrivateLibrary  *pl; /* Private data of camera libraries    */
-		CameraPrivateCore     *pc; /* Private data of the core of gphoto2 */
-
-
-		unsafe internal _CameraFilesystem* GetFS ()
+		//CameraPrivateLibrary  *pl; /* Private data of camera libraries    */
+		//CameraPrivateCore     *pc; /* Private data of the core of gphoto2 */
+		IntPtr p1;
+		IntPtr pc;
+		
+		public IntPtr GetFS ()
 		{
 			return fs;
 		}
@@ -386,10 +388,9 @@ namespace LibGPhoto2
 		public CameraFilesystem GetFS()
 		{
 			CameraFilesystem fs;
-			unsafe
-			{
+			unsafe {
 				_Camera *obj = (_Camera *)this.Handle.Handle;
-				fs = new CameraFilesystem((IntPtr)obj->GetFS());
+				fs = new CameraFilesystem((IntPtr)obj->GetFS ());
 			}
 			return fs;
 		}

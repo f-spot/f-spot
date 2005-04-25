@@ -72,7 +72,8 @@ namespace LibGPhoto2
 		CameraFileInfoFile file;
 		CameraFileInfoAudio audio;
 	}
-	
+      
+#if false
 	[StructLayout(LayoutKind.Sequential)]
 	internal unsafe struct _CameraFilesystem
 	{
@@ -114,7 +115,8 @@ namespace LibGPhoto2
 		[DllImport ("libgphoto2.so")]
 		internal static extern ErrorCode gp_filesystem_dump (HandleRef fs);
 	}
-	
+#endif
+
 	public class CameraFilesystem : Object
 	{
 		bool need_dispose;
