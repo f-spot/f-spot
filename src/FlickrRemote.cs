@@ -138,7 +138,7 @@ public class FlickrRemote {
 					this.limit = long.Parse (child.ChildNodes [0].Value);
 					break;
 				case "used":
-					this.limit = long.Parse (child.ChildNodes [0].Value);
+					this.used = long.Parse (child.ChildNodes [0].Value);
 					break;
 				}
 			}
