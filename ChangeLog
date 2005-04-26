@@ -1,5 +1,7 @@
 2005-04-25  Larry Ewing  <lewing@novell.com>
 
+	* src/FolderExport.cs: set destination to value not destinaton.
+
 	* src/FlickrRemote.cs: set used rather than limit when parsing the
 	result (Spotted by Gary Cody).
 

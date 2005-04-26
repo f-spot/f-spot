@@ -398,7 +398,7 @@ namespace FSpot {
 				return destination;
 			}
 			set {
-				this.destination = destination;
+				this.destination = value;
 			}
 		}
 
