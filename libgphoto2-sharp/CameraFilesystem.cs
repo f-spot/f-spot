@@ -32,45 +32,45 @@ namespace LibGPhoto2
 	}
 	
 	[StructLayout(LayoutKind.Sequential)]
-	internal unsafe struct CameraFileInfoAudio
+	public unsafe struct CameraFileInfoAudio
 	{
-		CameraFileInfoFields fields;
-		CameraFileStatus status;
-		ulong size;
-		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=64)] char[] type;
+		public CameraFileInfoFields fields;
+		public CameraFileStatus status;
+		public ulong size;
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=64)] public char[] type;
 	}
 	
 	[StructLayout(LayoutKind.Sequential)]
-	internal unsafe struct CameraFileInfoPreview
+	public unsafe struct CameraFileInfoPreview
 	{
-		CameraFileInfoFields fields;
-		CameraFileStatus status;
-		ulong size;
-		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=64)] char[] type;
+		public CameraFileInfoFields fields;
+		public CameraFileStatus status;
+		public ulong size;
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=64)] public char[] type;
 		
-		uint width, height;
+		public uint width, height;
 	}
 	
 	[StructLayout(LayoutKind.Sequential)]
-	internal unsafe struct CameraFileInfoFile
+	public unsafe struct CameraFileInfoFile
 	{
-		CameraFileInfoFields fields;
-		CameraFileStatus status;
-		ulong size;
-		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=64)] char[] type;
+		public CameraFileInfoFields fields;
+		public CameraFileStatus status;
+		public ulong size;
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=64)] public char[] type;
 		
-		uint width, height;
-		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=64)] char[] name;
-		CameraFilePermissions permissions;
-		long time;
+		public uint width, height;
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=64)] public char[] name;
+		public CameraFilePermissions permissions;
+		public long time;
 	}
 	
 	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct CameraFileInfo
 	{
-		CameraFileInfoPreview preview;
-		CameraFileInfoFile file;
-		CameraFileInfoAudio audio;
+		public CameraFileInfoPreview preview;
+		public CameraFileInfoFile file;
+		public CameraFileInfoAudio audio;
 	}
       
 #if false
@@ -79,7 +79,7 @@ namespace LibGPhoto2
 	{
 		
 		internal delegate ErrorCode _CameraFilesystemGetFileFunc (HandleRef fs, char *folder, char *filename, CameraFileType type, HandleRef file, void *data, HandleRef context);
-		
+
 		internal delegate ErrorCode _CameraFilesystemDeleteFileFunc (HandleRef fs, char *folder, char *filename, void *data, HandleRef context);
 
 		[DllImport ("libgphoto2.so")]

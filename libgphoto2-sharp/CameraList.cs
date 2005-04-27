@@ -6,8 +6,8 @@ namespace LibGPhoto2
 	[StructLayout(LayoutKind.Sequential)]
 	internal unsafe struct CameraListEntry
 	{
-		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] string name;
-		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] string value;
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public string name;
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public string value;
 	}
 	
 	public class CameraList : Object 

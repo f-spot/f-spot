@@ -98,14 +98,14 @@ namespace LibGPhoto2
 	[StructLayout(LayoutKind.Sequential)]
 	internal unsafe struct _Camera
 	{
-		IntPtr port;
-		IntPtr fs;
-		IntPtr functions;
+		public IntPtr port;
+		public IntPtr fs;
+		public IntPtr functions;
 
 		//CameraPrivateLibrary  *pl; /* Private data of camera libraries    */
 		//CameraPrivateCore     *pc; /* Private data of the core of gphoto2 */
-		IntPtr p1;
-		IntPtr pc;
+		public IntPtr p1;
+		public IntPtr pc;
 		
 		public IntPtr GetFS ()
 		{

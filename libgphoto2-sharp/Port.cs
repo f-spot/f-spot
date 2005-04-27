@@ -44,29 +44,29 @@ namespace LibGPhoto2
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	internal unsafe struct PortSettingsSerial
+	public unsafe struct PortSettingsSerial
 	{
-		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] char[] port;
-		int speed;
-		int bits;
-		PortSerialParity parity;
-		int stopbits;
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public char[] port;
+		public int speed;
+		public int bits;
+		public PortSerialParity parity;
+		public int stopbits;
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	internal unsafe struct PortSettingsUSB
+	public unsafe struct PortSettingsUSB
 	{
-		int inep, outep, intep;
-		int config;
-		int pinterface;
-		int altsetting;
+		public int inep, outep, intep;
+		public int config;
+		public int pinterface;
+		public int altsetting;
 	}
 
 	[StructLayout(LayoutKind.Explicit)]
 	public unsafe struct PortSettings
 	{
-		[FieldOffset(0)] PortSettingsSerial serial;
-		[FieldOffset(0)] PortSettingsUSB usb;
+		[FieldOffset(0)] public PortSettingsSerial serial;
+		[FieldOffset(0)] public PortSettingsUSB usb;
 	}
 
 #if false

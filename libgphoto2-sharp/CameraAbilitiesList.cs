@@ -43,33 +43,33 @@ namespace LibGPhoto2
 	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct CameraAbilities
 	{
-		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] string model;
-		CameraDriverStatus status;
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public string model;
+		public CameraDriverStatus status;
 		
-		PortType port;
-		[MarshalAs(UnmanagedType.ByValArray, SizeConst=64)] int[] speed;
+		public PortType port;
+		[MarshalAs(UnmanagedType.ByValArray, SizeConst=64)] public int[] speed;
 		
-		CameraOperation operations;
-		CameraFileOperation file_operations;
-		CameraFolderOperation folder_operations;
+		public CameraOperation operations;
+		public CameraFileOperation file_operations;
+		public CameraFolderOperation folder_operations;
 		
-		int usb_vendor;
-		int usb_product;
-		int usb_class;
-		int usb_subclass;
-		int usb_protocol;
+		public int usb_vendor;
+		public int usb_product;
+		public int usb_class;
+		public int usb_subclass;
+		public int usb_protocol;
 		
-		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=1024)] string library;
-		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=1024)] string id;
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=1024)] public string library;
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=1024)] public string id;
 		
-		int reserved1;
-		int reserved2;
-		int reserved3;
-		int reserved4;
-		int reserved5;
-		int reserved6;
-		int reserved7;
-		int reserved8;
+		public int reserved1;
+		public int reserved2;
+		public int reserved3;
+		public int reserved4;
+		public int reserved5;
+		public int reserved6;
+		public int reserved7;
+		public int reserved8;
 	}
 	
 	public class CameraAbilitiesList : Object
