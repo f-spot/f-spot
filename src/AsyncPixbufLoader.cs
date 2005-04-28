@@ -9,7 +9,6 @@ namespace FSpot {
 		string path;
 		bool area_prepared = false;
 		bool done_reading = false;
-		System.Exception error;
 		Gdk.Pixbuf pixbuf;
 		PixbufOrientation orientation;
 

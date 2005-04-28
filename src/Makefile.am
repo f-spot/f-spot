@@ -1,4 +1,4 @@
-CSC = mcs -unsafe -debug
+CSC = mcs -unsafe -debug -nowarn:0169
 
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/AsyncPixbufLoader.cs		\
@@ -192,7 +192,7 @@ bin_SCRIPTS = f-spot
 F_SPOT_CSFILES = $(F_SPOT_CSDISTFILES) Defines.cs
 
 f-spot.exe: $(F_SPOT_CSFILES) f-spot.glade
-	$(CSC) -o $@ $(CSFLAGS) $(F_SPOT_CSFILES) $(ASSEMBLIES) $(RESOURCES)
+	$(CSC) -out:$@ $(CSFLAGS) $(F_SPOT_CSFILES) $(ASSEMBLIES) $(RESOURCES)
 
 all: f-spot.exe
 

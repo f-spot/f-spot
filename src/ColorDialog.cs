@@ -30,7 +30,9 @@ namespace FSpot {
 
 		Cms.Transform next_transform;
 
+#if USE_THREAD
 		Thread thread;
+#endif
 		
 		FSpot.Histogram hist;
 		

@@ -306,7 +306,7 @@ namespace Gnome.Vfs {
 			}
 			
 			this.mode = mode;
-			this.access = access;
+			//this.access = access;
 			this.canseek = true;
 			this.async = async;
 		}
