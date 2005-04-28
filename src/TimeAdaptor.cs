@@ -5,7 +5,6 @@ namespace FSpot {
 	public class TimeAdaptor : GroupAdaptor, FSpot.ILimitable {
 		public PhotoQuery query;
 
-		private int span;
 		ArrayList years = new ArrayList ();
 		struct YearData {
 			public int Year;

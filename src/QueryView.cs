@@ -5,13 +5,10 @@
 //
 
 public class QueryView : IconView {
-	FSpot.PhotoQuery query;
-
 	public QueryView (System.IntPtr raw) : base (raw) {}
 
 	public QueryView (FSpot.PhotoQuery query) {
 		this.collection = query;
-		this.query = query;
 		
 		query.Changed += HandleChanged;
 		query.ItemChanged += HandleItemChanged;

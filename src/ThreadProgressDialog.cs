@@ -29,10 +29,6 @@ namespace FSpot {
 	}
 
 	public class ThreadProgressDialog : Gtk.Dialog {
-
-		private int total;
-		private int completed;
-		
 		FSpot.Delay delay;
 
 		private Gtk.ProgressBar progress_bar;
@@ -49,8 +45,6 @@ namespace FSpot {
 			this.Title = thread.Name;
 			this.thread = thread;
 			
-			this.total = total;
-
 			HasSeparator = false;
 			BorderWidth = 6;
 			SetDefaultSize (300, -1);
