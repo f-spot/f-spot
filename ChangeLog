@@ -1,3 +1,20 @@
+2005-05-05  Larry Ewing  <lewing@novell.com>
+
+	* src/JpegFile.cs: new file to put all the jpeg specfic stuff in one place.
+
+	* src/ImageFile.cs: start of a helper class for all the.
+
+	* src/IthmbDb.cs: add support for the BigEndian fullscreen
+	thumbnails that camera connector stores.
+	
+2005-05-04  Larry Ewing  <lewing@novell.com>
+
+	* src/PhotoView.cs: add conditional code to store the description
+	in the exif info.  Translate SelectionConstraint entries.
+
+	* src/PixbufUtils.cs: use writeline instead of write.  Patch from
+	Joshua Nichols.
+
 2005-05-03  Kostas Papadimas <pkst@gnome.org>
 
 	* configure.in: Added "el" to ALL_LINGUAS.
