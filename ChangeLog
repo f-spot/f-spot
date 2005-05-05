@@ -1,5 +1,8 @@
 2005-05-05  Larry Ewing  <lewing@novell.com>
 
+	* src/StockIcons.cs: use the new entry point, people need to have
+	upgraded by now.
+
 	* src/JpegFile.cs: new file to put all the jpeg specfic stuff in one place.
 
 	* src/ImageFile.cs: start of a helper class for all the.
