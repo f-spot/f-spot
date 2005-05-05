@@ -89,12 +89,29 @@ public class PhotoView : EventBox {
 	private struct SelectionConstraint {
 		public string Label;
 		public double XyRatio;
+		
+		public SelectionConstraint (string label, double ratio)
+		{
+			Label = label;
+			XyRatio = ratio;
+		}
 	}
 
 	private OptionMenu constraints_option_menu;
 	private int selection_constraint_ratio_idx;
 
-	private static SelectionConstraint [] constraints;
+	private static SelectionConstraint [] constraints = {
+		new SelectionConstraint (Mono.Posix.Catalog.GetString ("No Constraint"), 0.0),
+		new SelectionConstraint (Mono.Posix.Catalog.GetString ("4 x 3 (Book)"), 4.0 / 3.0),
+		new SelectionConstraint (Mono.Posix.Catalog.GetString ("4 x 6 (Postcard)"), 6.0 / 4.0),
+		new SelectionConstraint (Mono.Posix.Catalog.GetString ("5 x 7 (L, 2L)"), 7.0 / 5.0),
+		new SelectionConstraint (Mono.Posix.Catalog.GetString ("8 x 10"), 10.0 / 8.0),
+		new SelectionConstraint (Mono.Posix.Catalog.GetString ("4 x 3 Portrait (Book)"), 3.0 / 4.0),
+		new SelectionConstraint (Mono.Posix.Catalog.GetString ("4 x 6 Portrait (Postcard)"), 4.0 / 6.0),
+		new SelectionConstraint (Mono.Posix.Catalog.GetString ("5 x 7 Portrait (L, 2L)"), 5.0 / 7.0),
+		new SelectionConstraint (Mono.Posix.Catalog.GetString ("8 x 10 Portrait"), 8.0 / 10.0),
+		new SelectionConstraint (Mono.Posix.Catalog.GetString ("Square"), 1.0)
+	};
 
 	private void HandleSelectionConstraintOptionMenuActivated (object sender, EventArgs args)
 	{
@@ -311,7 +328,33 @@ public class PhotoView : EventBox {
 	{
 		if (description_delay.IsPending) {
 			description_delay.Stop ();
+
+#if UPDATE_EXIF_DESCRIPTION
+			Photo photo = query.Photos [description_photo];
+			Exif.ExifData exif_data = new Exif.ExifData (photo.DefaultVersionPath);
+			if (exif_data.Handle.Handle == IntPtr.Zero)
+				exif_data = new Exif.ExifData ();
+
+			Exif.ExifContent exif_content = exif_data.GetContents (Exif.ExifIfd.Exif);
+			
+			int len = System.Text.Encoding.BigEndianUnicode.GetByteCount (photo.Description);
+			string heading = "ASCII\0\0\0";
+			byte [] data = new byte [len + heading.Length];
+			System.Text.Encoding.ASCII.GetBytes (heading, 0, heading.Length, data, 0);
+			System.Text.Encoding.ASCII.GetBytes (photo.Description, 0, photo.Description.Length, data, heading.Length);
+			exif_content.GetEntry (Exif.ExifTag.UserComment).SetData (data);
+
+			Exif.ExifContent image_content = exif_data.GetContents (Exif.ExifIfd.Zero);
+			image_content.GetEntry (Exif.ExifTag.Software).SetData (FSpot.Defines.PACKAGE + " version " + FSpot.Defines.VERSION);
+
+			// set the write time in the datetime tag
+			image_content.GetEntry (Exif.ExifTag.DateTime).Reset ();
+
+			JpegUtils.SaveExif (photo.DefaultVersionPath, exif_data);
+			Query.Store.Commit (photo);
+#else
 			Query.Commit (description_photo);
+#endif
 		}
 		return true;
 	}
@@ -345,41 +388,6 @@ public class PhotoView : EventBox {
 		}
 	}
 
-	static PhotoView ()
-	{
-		constraints = new SelectionConstraint [10];
-
-		constraints[0].Label = "No Constraint";
-		constraints[0].XyRatio = 0.0;
-
-		constraints[1].Label = "4 x 3 (Book)";
-		constraints[1].XyRatio = 4.0 / 3.0;
-
-		constraints[2].Label = "4 x 6 (Postcard)";
-		constraints[2].XyRatio = 6.0 / 4.0;
-
-		constraints[3].Label = "5 x 7 (L, 2L)";
-		constraints[3].XyRatio = 7.0 / 5.0;
-
-		constraints[4].Label = "8 x 10";
-		constraints[4].XyRatio = 10.0 / 8.0;
-
-		constraints[5].Label = "4 x 3 Portrait (Book)";
-		constraints[5].XyRatio = 3.0 / 4.0;
-
-		constraints[6].Label = "4 x 6 Portrait (Postcard)";
-		constraints[6].XyRatio = 4.0 / 6.0;
-
-		constraints[7].Label = "5 x 7 Portrait (L, 2L)";
-		constraints[7].XyRatio = 5.0 / 7.0;
-
-		constraints[8].Label = "8 x 10 Portrait";
-		constraints[8].XyRatio = 8.0 / 10.0;
-
-		constraints[9].Label = "Square";
-		constraints[9].XyRatio = 1.0;
-	}
-
 	private void HandlePhotoChanged (FSpot.PhotoImageView view)
 	{
 		CommitPendingChanges ();
@@ -404,7 +412,7 @@ public class PhotoView : EventBox {
 		this.query = query;
 		this.photo_store = photo_store;
 
-		description_delay = new FSpot.Delay (500, new GLib.IdleHandler (CommitPendingChanges));
+		description_delay = new FSpot.Delay (1000, new GLib.IdleHandler (CommitPendingChanges));
 		this.Destroyed += HandleDestroy;
 
 

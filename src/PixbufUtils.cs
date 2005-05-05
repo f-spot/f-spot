@@ -123,7 +123,7 @@ class PixbufUtils {
 				}
 				return rotated;
 			} catch (Exception e) {
-				System.Console.Write ("Error loading image {0}", path);
+				System.Console.WriteLine ("Error loading image {0}", path);
 				return null;
 			}
 

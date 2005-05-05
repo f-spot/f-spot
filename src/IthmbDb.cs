@@ -5,33 +5,45 @@ public class IthmbDb {
 	string Name;
 	int Width;
 	int Height;
-	bool YUV;
+	Format Type;
 
-	protected IthmbDb (string name, int width, int height, bool yuv)
+	protected IthmbDb (string name, int width, int height, Format format)
 	{
 		this.Name = name;
 		this.Width = width;
 		this.Height = height;
-		this.YUV = yuv;
+		this.Type = format;
+	}
+
+	public enum Format {
+		Rgb565,
+		Rgb565BE,
+		IYUV
 	}
 	
-        public static IthmbDb Thumbnail = new IthmbDb ("F1009", 42, 30, false);
-	public static IthmbDb Slide = new IthmbDb ("F1015", 130, 88, false);
-	public static IthmbDb FullScreen = new IthmbDb ("F1013", 176, 220, false);
-	public static IthmbDb External = new IthmbDb ("F1019", 720, 480, true);
+        public static IthmbDb Thumbnail = new IthmbDb ("F1009", 42, 30, Format.Rgb565);
+	public static IthmbDb Slide = new IthmbDb ("F1015", 130, 88, Format.Rgb565); // 11440
+	public static IthmbDb FullScreen = new IthmbDb ("F1013", 176, 220, Format.Rgb565); //36500
+	public static IthmbDb External = new IthmbDb ("F1019", 720, 480, Format.IYUV);
+	public static IthmbDb FullScreenBE = new IthmbDb ("F1020", 176, 220, Format.Rgb565BE);
 	
-	public void LoadRgb565 (BinaryReader reader, Gdk.Pixbuf dest)
+	public void LoadRgb565 (BinaryReader reader, Gdk.Pixbuf dest, bool IsBigEndian)
 	{
 		unsafe {
 			byte * pixels;
 			int row, col;
 			ushort s;
-
+			
+			bool flip = IsBigEndian == System.BitConverter.IsLittleEndian;
+			
 			for (row = 0; row < dest.Height; row++) {
 				pixels = ((byte *)dest.Pixels) + row * dest.Rowstride;
 				for (col = 0; col < dest.Width; col++) {
 					s = reader.ReadUInt16 ();
 
+					if (flip)
+						s = (ushort) ((s >> 8) | (s << 8));
+					
 					*(pixels++) = (byte)(((s >> 8) & 0xf8) | ((s >> 13) & 0x7)); // r
 					*(pixels++) = (byte)(((s >> 3) & 0xfc) | ((s >> 9) & 0x3));  // g
 					*(pixels++) = (byte)(((s << 3) & 0xf8) | ((s >> 2) & 0x7));  // b
@@ -158,11 +170,18 @@ public class IthmbDb {
 		 stream.Position = width * height * 2 * offset;
 		 BinaryReader reader = new BinaryReader (stream);
 		 
-		 if (!this.YUV) {
-			 LoadRgb565 (reader, image);
-		 } else {
+		 switch (this.Type) {
+		 case Format.IYUV:
 			 LoadIYUV (reader, image);
+			 break;
+		 case Format.Rgb565BE:
+			 LoadRgb565 (reader, image, true);
+			 break;
+		 case Format.Rgb565:
+			 LoadRgb565 (reader, image, false);
+			 break;
 		 }
+
 		 
 		 stream.Close ();
 		 return image;
@@ -215,7 +234,7 @@ public class IthmbDb {
 		return packed;
 	}
 
-	private ushort [] PackRgb565 (Gdk.Pixbuf src)
+	private ushort [] PackRgb565 (Gdk.Pixbuf src, bool IsBigEndian)
 	{
 		int row, col;
 		byte r, g, b;
@@ -223,7 +242,10 @@ public class IthmbDb {
 		int i;
 		int width = src.Width;
 		int height = src.Height;
-		
+		ushort s;
+
+		bool flip = IsBigEndian == System.BitConverter.IsLittleEndian;
+
 		unsafe {
 			byte * pixels;			 
 			
@@ -237,7 +259,12 @@ public class IthmbDb {
 					g = *(pixels ++);
 					b = *(pixels ++);
 					
-					packed [i ++] = (ushort) (((r & 0xf8) << 8) | ((g & 0xfc) << 3) | (b >> 3));
+					s = (ushort) (((r & 0xf8) << 8) | ((g & 0xfc) << 3) | (b >> 3));
+					
+					if (flip)
+						s = (ushort)((s >> 8) | (s << 8));
+
+					packed [i ++] = s;
 				}
 			}
 		}
@@ -249,13 +276,20 @@ public class IthmbDb {
 	{
 		int width = this.Width;
 		int height = this.Height;
-		ushort [] packed;
+		ushort [] packed = null;
 		
 		path = Path.Combine (path, this.Name + "_1.ithmb");
-		if (this.YUV) {
+
+		switch (this.Type) {
+		case Format.Rgb565:
+			packed = PackRgb565 (src, false);
+			break;
+		case Format.Rgb565BE:
+			packed = PackRgb565 (src, true);
+			break;
+		case Format.IYUV:
 			packed = PackIYUV (src);
-		} else {
-			packed = PackRgb565 (src);
+			break;
 		}
 		
 		FileStream stream = new FileStream (path, FileMode.Open);
@@ -279,10 +313,14 @@ public class IthmbDb {
 		string basepath = args [0];
 		int index = System.Int32.Parse (args [1]);
 
-		Gdk.Pixbuf thumb = IthmbDb.Thumbnail.Load (basepath, index);
+		Gdk.Pixbuf thumb = IthmbDb.FullScreenBE.Load (basepath, index);
 		Gtk.Image image = new Gtk.Image (thumb);
 		vbox.PackStart (image);
-		
+
+		thumb = IthmbDb.Thumbnail.Load (basepath, index);
+		image = new Gtk.Image (thumb);
+		vbox.PackStart (image);
+		/*		
 		thumb = IthmbDb.Slide.Load (basepath, index);
 		image = new Gtk.Image (thumb);
 		vbox.PackStart (image);
@@ -294,7 +332,7 @@ public class IthmbDb {
 		thumb = IthmbDb.External.Load (basepath, index);
 		image = new Gtk.Image (thumb);
 		hbox.PackStart (image);
-
+		*/
 		if (args.Length > 2)
 			IthmbDb.External.Save (thumb, basepath, System.Int32.Parse (args [2]));
 
