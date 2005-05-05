@@ -50,28 +50,28 @@ public class ImportCommand : FSpot.GladeDialog {
 			Gnome.Vfs.VolumeMonitor monitor = Gnome.Vfs.VolumeMonitor.Get ();
 
 			foreach (Gnome.Vfs.Drive drive in monitor.ConnectedDrives) {
-				 this.Append (new DriveItem (drive));
-			 }
-
-			 foreach (Gnome.Vfs.Volume vol in monitor.MountedVolumes) {
-				 System.Console.WriteLine ("{0} - {1} - {2} {3} {4}",
-							   vol.DisplayName, 
-							   vol.Icon, 
-							   vol.VolumeType.ToString (), 
-							   vol.ActivationUri, 
-							   vol.IsMounted);
-
-				 if (vol.Drive != null)
-					 System.Console.WriteLine (vol.Drive.DeviceType.ToString ());
-								   
-				if (vol.IsUserVisible)
-					this.Append (new VolumeItem (vol));
+				this.Append (new DriveItem (drive));
 			}
 
+			foreach (Gnome.Vfs.Volume vol in monitor.MountedVolumes) {
+				System.Console.WriteLine ("{0} - {1} - {2} {3} {4}",
+							  vol.DisplayName, 
+							   vol.Icon, 
+							  vol.VolumeType.ToString (), 
+							  vol.ActivationUri, 
+							  vol.IsMounted);
+				
+				 if (vol.Drive != null)
+					 System.Console.WriteLine (vol.Drive.DeviceType.ToString ());
+				 
+				 if (vol.IsUserVisible)
+					 this.Append (new VolumeItem (vol));
+			}
+			
 			this.ShowAll ();
 		}
 	}
-
+	
 	private class PhotoGrid : Table {
 		const int NUM_COLUMNS = 5;
 		const int NUM_ROWS = 4;
@@ -265,7 +265,7 @@ public class ImportCommand : FSpot.GladeDialog {
 	
 	public void HandleTagToggled (object o, EventArgs args) 
 	{
-		tag_option_menu.Sensitive = attach_check.Active;
+		//tag_option_menu.Sensitive = attach_check.Active;
 	}
 
 	public void HandleImportBrowse (object o, EventArgs args) 
@@ -322,8 +322,8 @@ public class ImportCommand : FSpot.GladeDialog {
 		tagmenu.Populate (true);
 		tagmenu.Prepend (attach_item);
 		
-		tag_option_menu.Menu = tagmenu;
-		//tag_option_menu.Menu = new SourceMenu ();
+		//tag_option_menu.Menu = tagmenu;
+		tag_option_menu.Menu = new SourceMenu ();
 
 		tag_selected = null;
 		if (attach_check != null) {
