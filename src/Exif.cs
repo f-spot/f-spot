@@ -14,7 +14,7 @@ using System.Collections;
 using System.Runtime.InteropServices;
 
 namespace Exif {
-	public enum ExifTag {
+	public enum Tag {
 		InteroperabilityIndex		= 0x0001,
 		InteroperabilityVersion	        = 0x0002,
 		ImageWidth 			= 0x0100,
@@ -145,7 +145,7 @@ namespace Exif {
 		SRational = 10
 	}
 	
-	public enum ExifIfd {
+	public enum Ifd {
 		Zero = 0,
 		One,
 		Exif,
@@ -157,13 +157,13 @@ namespace Exif {
 	internal class ExifUtil {
 		
 		[DllImport ("libexif.dll")]
-		static extern IntPtr exif_tag_get_name (ExifTag tag);
+		static extern IntPtr exif_tag_get_name (Tag tag);
 		
 		[DllImport ("libexif.dll")]
-		static extern IntPtr exif_tag_get_title (ExifTag tag);
+		static extern IntPtr exif_tag_get_title (Tag tag);
 		
 		[DllImport ("libexif.dll")]
-		static extern IntPtr exif_tag_get_description (ExifTag tag);
+		static extern IntPtr exif_tag_get_description (Tag tag);
 		
 		[DllImport ("libexif.dll")]
 		static extern IntPtr exif_byte_order_get_name (ExifByteOrder order);
@@ -175,22 +175,22 @@ namespace Exif {
 		static extern char exif_format_get_size (ExifFormat format);
 		
 		[DllImport ("libexif.dll")]
-		static extern IntPtr exif_ifd_get_name (ExifIfd ifd);
+		static extern IntPtr exif_ifd_get_name (Ifd ifd);
 		
-		public static string GetTagName (ExifTag tag)
+		public static string GetTagName (Tag tag)
 		{
 			
 			IntPtr raw_ret = exif_tag_get_name (tag);
 			return Marshal.PtrToStringAnsi (raw_ret);
 		}
 		
-		public static string GetTagTitle (ExifTag tag)
+		public static string GetTagTitle (Tag tag)
 		{
 			IntPtr raw_ret = exif_tag_get_title (tag);
 			return Marshal.PtrToStringAnsi (raw_ret);
 		}
 		
-		public static string GetTagDescription (ExifTag tag)
+		public static string GetTagDescription (Tag tag)
 		{
 			IntPtr raw_ret = exif_tag_get_description (tag);
 			return Marshal.PtrToStringAnsi (raw_ret);
@@ -213,24 +213,24 @@ namespace Exif {
 			return exif_format_get_size (format);
 		}
 		
-		public static string GetIfdName (ExifIfd ifd)
+		public static string GetIfdName (Ifd ifd)
 		{			
 			IntPtr raw_ret = exif_ifd_get_name (ifd);
 			return Marshal.PtrToStringAnsi (raw_ret);
 		}
 		
-		public static string GetIfdNameExtended (ExifIfd ifd)
+		public static string GetIfdNameExtended (Ifd ifd)
 		{
 			switch (ifd) {
-			case ExifIfd.Zero:
+			case Ifd.Zero:
 				return Mono.Posix.Catalog.GetString ("Image Directory");
-			case ExifIfd.One:
+			case Ifd.One:
 				return Mono.Posix.Catalog.GetString ("Thumbnail Directory");
-			case ExifIfd.Exif:
+			case Ifd.Exif:
 				return Mono.Posix.Catalog.GetString ("Exif Directory");
-			case ExifIfd.Gps:
+			case Ifd.Gps:
 				return Mono.Posix.Catalog.GetString ("GPS Directory");
-			case ExifIfd.InterOperability:
+			case Ifd.InterOperability:
 				return Mono.Posix.Catalog.GetString ("InterOperability Directory");
 			default:
 				return Mono.Posix.Catalog.GetString ("Unknown Directory");
@@ -284,11 +284,11 @@ namespace Exif {
 	
 	[StructLayout(LayoutKind.Sequential)]
 	internal unsafe struct _ExifContent {
-		IntPtr entries;
-		uint count; 
-		IntPtr parent;
+		public IntPtr entries;
+		public uint count; 
+		public IntPtr parent;
 		
-		IntPtr priv;
+		public IntPtr priv;
 	}
 	
 	public class ExifContent : ExifObject {
@@ -324,7 +324,7 @@ namespace Exif {
 		[DllImport ("libexif.dll")]
 		internal static extern void exif_content_add_entry (HandleRef content, HandleRef entry);
 		
-		public ExifEntry Lookup (ExifTag tag)
+		public ExifEntry Lookup (Tag tag)
 		{
 			Assemble ();
 			
@@ -344,7 +344,7 @@ namespace Exif {
 			return entries.Contains (entry);
 		}
 
-		public ExifEntry GetEntry (ExifTag tag)
+		public ExifEntry GetEntry (Tag tag)
 		{
 			Assemble ();
 			
@@ -412,7 +412,7 @@ namespace Exif {
 	
 	[StructLayout(LayoutKind.Sequential)]
 	internal struct _ExifEntry {
-		public ExifTag tag;
+		public Tag tag;
 		public int format;
 		public uint components;
 		public IntPtr data;
@@ -420,7 +420,7 @@ namespace Exif {
 		
 		public IntPtr parent;
 		
-		IntPtr priv;
+		public IntPtr priv;
 	}
 	
 	
@@ -461,16 +461,16 @@ namespace Exif {
 		internal static extern IntPtr exif_entry_new ();
 
 		[DllImport ("libexif.dll")]
-		internal static extern void exif_entry_initialize (HandleRef handle, ExifTag tag);
+		internal static extern void exif_entry_initialize (HandleRef handle, Tag tag);
 
-		public ExifEntry (ExifContent parent, ExifTag tag)
+		public ExifEntry (ExifContent parent, Tag tag)
 		{
 			handle = new HandleRef (this, exif_entry_new ());
 			parent.Add (this);
 			this.Reset (tag);
 		}
 		
-		public void Reset (ExifTag tag)
+		public void Reset (Tag tag)
 		{
 			unsafe {
 				// Free any exsting data so that _initialize will actually set the data
@@ -482,9 +482,9 @@ namespace Exif {
 			exif_entry_initialize (handle, tag);
 
 			//FIXME the month string in time fields in libexif ix currently broken so we do our own. 
-			if (tag == ExifTag.DateTime
-			    || tag == ExifTag.DateTimeOriginal
-			    || tag == ExifTag.DateTimeDigitized)
+			if (tag == Tag.DateTime
+			    || tag == Tag.DateTimeOriginal
+			    || tag == Tag.DateTimeDigitized)
 				this.SetData (System.DateTime.Now);
 
 		}
@@ -506,7 +506,7 @@ namespace Exif {
 			}
 		}
 		
-		public ExifTag Tag {
+		public Tag Tag {
 			get {
 				unsafe {
 					return _handle->tag;
@@ -727,16 +727,16 @@ namespace Exif {
 	
 	[StructLayout(LayoutKind.Sequential)]
 	internal struct _ExifData {
-		IntPtr ifd0;
-		IntPtr ifd1;
-		IntPtr ifd_exif;
-		IntPtr ifd_gps;
-		IntPtr ifd_interop;
+		internal IntPtr ifd0;
+		internal IntPtr ifd1;
+		internal IntPtr ifd_exif;
+		internal IntPtr ifd_gps;
+		internal IntPtr ifd_interop;
 
 		internal IntPtr  data;
 		internal int     size;
 		
-		IntPtr priv;
+		internal IntPtr priv;
 	}
 	
 	public class ExifData : ExifObject {
@@ -802,7 +802,7 @@ namespace Exif {
 			exif_data_unref (handle);
 		}
 		
-		public ExifContent GetContents (ExifIfd ifd)
+		public ExifContent GetContents (Ifd ifd)
 		{
 			Assemble ();
 
@@ -834,7 +834,7 @@ namespace Exif {
 			ifds.Add (new ExifContent (this, content));
 		}
 		
-		public ExifEntry LookupFirst (ExifTag tag)
+		public ExifEntry LookupFirst (Tag tag)
 		{
 			Assemble ();
 			foreach (ExifContent content in ifds) {
@@ -848,7 +848,7 @@ namespace Exif {
 			return null;
 		}
 
-		public string LookupFirstValue (ExifTag tag)
+		public string LookupFirstValue (Tag tag)
 		{
 			ExifEntry entry = LookupFirst (tag);
 			if (entry != null) {

@@ -359,16 +359,16 @@ class PixbufUtils {
 		thumbnail.Dispose ();
 
 		// Most of the things we will set will be in the 0th ifd
-		Exif.ExifContent content = exif_data.GetContents (Exif.ExifIfd.Zero);
+		Exif.ExifContent content = exif_data.GetContents (Exif.Ifd.Zero);
 
 		// reset the orientation tag the default is top/left
-		content.GetEntry (Exif.ExifTag.Orientation).Reset ();
+		content.GetEntry (Exif.Tag.Orientation).Reset ();
 
 		// set the write time in the datetime tag
-		content.GetEntry (Exif.ExifTag.DateTime).Reset ();
+		content.GetEntry (Exif.Tag.DateTime).Reset ();
 
 		// set the software tag
-		content.GetEntry (Exif.ExifTag.Software).SetData (FSpot.Defines.PACKAGE + " version " + FSpot.Defines.VERSION);
+		content.GetEntry (Exif.Tag.Software).SetData (FSpot.Defines.PACKAGE + " version " + FSpot.Defines.VERSION);
 
 		byte [] data = exif_data.Save ();
 		FPixbufJpegMarker [] marker = new FPixbufJpegMarker [0];
@@ -515,7 +515,7 @@ class PixbufUtils {
 	{
 		PixbufOrientation orientation = PixbufOrientation.TopLeft;
 		
-		Exif.ExifEntry e = data.GetContents (Exif.ExifIfd.Zero).Lookup (Exif.ExifTag.Orientation);
+		Exif.ExifEntry e = data.GetContents (Exif.Ifd.Zero).Lookup (Exif.Tag.Orientation);
 
 		if (e != null) {
 			ushort [] value = e.GetDataUShort ();

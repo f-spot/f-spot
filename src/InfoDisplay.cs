@@ -87,7 +87,7 @@ namespace FSpot {
 							continue;
 						
 						stream.Write ("<tr><th align=left bgcolor=\"" + ig + "\" colspan=2>" 
-							      + Exif.ExifUtil.GetIfdNameExtended ((Exif.ExifIfd)i - 1) + "</th><tr>");
+							      + Exif.ExifUtil.GetIfdNameExtended ((Exif.Ifd)i - 1) + "</th><tr>");
 						
 						foreach (Exif.ExifEntry entry in entries) {
 							stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");

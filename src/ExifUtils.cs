@@ -31,10 +31,10 @@ public class ExifUtils {
 #endif
 
 		ExposureInfo info = new ExposureInfo ();
-		info.ApertureValue = exif_data.LookupFirstValue (Exif.ExifTag.ApertureValue);
-		info.ExposureTime = exif_data.LookupFirstValue (Exif.ExifTag.ExposureTime);
-		info.DateTime = exif_data.LookupFirstValue (Exif.ExifTag.DateTimeOriginal);
-		info.IsoSpeed = exif_data.LookupFirstValue (Exif.ExifTag.ISOSpeedRatings);
+		info.ApertureValue = exif_data.LookupFirstValue (Exif.Tag.ApertureValue);
+		info.ExposureTime = exif_data.LookupFirstValue (Exif.Tag.ExposureTime);
+		info.DateTime = exif_data.LookupFirstValue (Exif.Tag.DateTimeOriginal);
+		info.IsoSpeed = exif_data.LookupFirstValue (Exif.Tag.ISOSpeedRatings);
 
 // FIXME not sure why, this doesn't work.
 #if BROKEN_CODE

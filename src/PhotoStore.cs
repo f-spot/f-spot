@@ -406,34 +406,27 @@ public class PhotoStore : DbStore {
 	//
 	// Generates the thumbnail, returns the Pixbuf, and also stores it as a side effect
 	//
-	static Pixbuf GenerateFromExif (string path, string uri)
-	{
-		try {
-			using (Exif.ExifData ed = new Exif.ExifData (path)){
-				return PixbufUtils.GetThumbnail (ed);
-			}
-		} catch (Exception e) {
-			Console.WriteLine ("Exif died, using regular backend: " + e);
-		}
-		return null;
-	}
 
-	public static Pixbuf GenerateThumbnail (string path, bool use_exif)
+	public static Pixbuf GenerateThumbnail (string path)
 	{
 		string uri = UriList.PathToFileUri (path).ToString ();
 		Pixbuf thumbnail = null;
+		FSpot.ImageFile img = FSpot.ImageFile.Create (path);
 
-		if (use_exif) {
-			thumbnail = GenerateFromExif (path, uri);
+		if (img is FSpot.IThumbnailContainer) {
+			try {
+				((FSpot.IThumbnailContainer)img).GetEmbeddedThumbnail ();
+			} catch (Exception e) {
+				System.Console.WriteLine (e.ToString ());
+			}
 		}
 
-		// Save EXIF generated thumbnails in a silightly invalid way so that we know to regnerate them.
+		// Save embedded thumbnails in a silightly invalid way so that we know to regnerate them later.
 		if (thumbnail != null) 
 			PixbufUtils.SaveAtomic (thumbnail, Thumbnail.PathForUri (uri, ThumbnailSize.Large), 
 						"png", null, null);
 		else 
 			thumbnail = FSpot.ThumbnailGenerator.Create (path);
-			
 		
 		return thumbnail;
 	}
@@ -513,18 +506,8 @@ public class PhotoStore : DbStore {
 
 	public Photo Create (string path, out Pixbuf thumbnail)
 	{
-		DateTime time;
-		try {
-			using (Exif.ExifData ed = new Exif.ExifData (path)) {
-				Exif.ExifContent content = ed.GetContents (Exif.ExifIfd.Exif);
-				Exif.ExifEntry entry = content.GetEntry (Exif.ExifTag.DateTimeOriginal);
-				time = Exif.ExifUtil.DateTimeFromString (entry.Value); 
-				time = time.ToUniversalTime ();
-			}			
-		} catch (System.Exception e) {
-			time = File.GetCreationTimeUtc  (path);
-		} 
-
+		FSpot.ImageFile img = FSpot.ImageFile.Create (path);
+		DateTime time = img.Date ();
 		return Create (time, path, out thumbnail);
 	}
 
@@ -553,7 +536,7 @@ public class PhotoStore : DbStore {
 		Photo photo = new Photo (id, unix_time, path);
 		AddToCache (photo);
 
-		thumbnail = GenerateThumbnail (path, true);
+		thumbnail = GenerateThumbnail (path);
 		return photo;
 	}
 

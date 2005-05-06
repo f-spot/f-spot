@@ -30,6 +30,7 @@ namespace FSpot {
 				System.Text.Encoding.ASCII.GetBytes (heading, 0, heading.Length, data, 0);
 				System.Text.Encoding.ASCII.GetBytes (description, 0, description.Length, data, heading.Length);
 				exif_content.GetEntry (Exif.Tag.UserComment).SetData (data);
+				System.Console.WriteLine ("testing {0} {1} {2}", this.Description, data.Length, description);
 			}
 		}
 

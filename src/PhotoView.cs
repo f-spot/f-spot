@@ -331,26 +331,12 @@ public class PhotoView : EventBox {
 
 #if UPDATE_EXIF_DESCRIPTION
 			Photo photo = query.Photos [description_photo];
-			Exif.ExifData exif_data = new Exif.ExifData (photo.DefaultVersionPath);
-			if (exif_data.Handle.Handle == IntPtr.Zero)
-				exif_data = new Exif.ExifData ();
-
-			Exif.ExifContent exif_content = exif_data.GetContents (Exif.ExifIfd.Exif);
-			
-			int len = System.Text.Encoding.BigEndianUnicode.GetByteCount (photo.Description);
-			string heading = "ASCII\0\0\0";
-			byte [] data = new byte [len + heading.Length];
-			System.Text.Encoding.ASCII.GetBytes (heading, 0, heading.Length, data, 0);
-			System.Text.Encoding.ASCII.GetBytes (photo.Description, 0, photo.Description.Length, data, heading.Length);
-			exif_content.GetEntry (Exif.ExifTag.UserComment).SetData (data);
-
-			Exif.ExifContent image_content = exif_data.GetContents (Exif.ExifIfd.Zero);
-			image_content.GetEntry (Exif.ExifTag.Software).SetData (FSpot.Defines.PACKAGE + " version " + FSpot.Defines.VERSION);
-
-			// set the write time in the datetime tag
-			image_content.GetEntry (Exif.ExifTag.DateTime).Reset ();
-
-			JpegUtils.SaveExif (photo.DefaultVersionPath, exif_data);
+			FSpot.ImageFile img = FSpot.ImageFile.Create (photo.DefaultVersionPath);
+			if (img is FSpot.JpegFile) {
+				FSpot.JpegFile jimg = img as FSpot.JpegFile;
+				jimg.Description = photo.Description;
+				jimg.SaveMetaData (photo.DefaultVersionPath);
+			}
 			Query.Store.Commit (photo);
 #else
 			Query.Commit (description_photo);

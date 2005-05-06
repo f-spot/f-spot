@@ -1,5 +1,22 @@
 2005-05-05  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoView.cs: use the new image file work.
+
+	* src/Exif.cs: update some of the names.
+
+	* src/ExifUtils.cs: mirror the Exif.cs changes.
+
+	* src/PhotoStore.cs: use the new ImageFile work.
+
+	* src/DirectoryCollection.cs: use image file (need to be rewritten
+	still but you get the idea).
+
+	* src/PhotoView.cs: use new api to set the description.
+
+	* src/PixbufUtils.cs: mirror the new exif api.
+
+	* src/Makefile.am: add JpegFile.cs and ImageFile.cs to the build.
+
 	* src/ImportCommand.cs: fix up formatting a bit.
 
 	* src/StockIcons.cs: use the new entry point, people need to have

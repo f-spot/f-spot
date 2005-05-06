@@ -30,6 +30,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Histogram.cs			\
 	$(srcdir)/IBrowsableItem.cs		\
 	$(srcdir)/IconView.cs			\
+	$(srcdir)/ImageFile.cs			\
 	$(srcdir)/ImageView.cs			\
 	$(srcdir)/ImportBackend.cs		\
 	$(srcdir)/ImportCommand.cs		\
@@ -37,6 +38,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/InfoBox.cs			\
 	$(srcdir)/InfoDisplay.cs		\
 	$(srcdir)/IPhotoCollection.cs		\
+	$(srcdir)/JpegFile.cs			\
 	$(srcdir)/JpegUtils.cs			\
 	$(srcdir)/Cms.cs			\
 	$(srcdir)/MainWindow.cs			\
