@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-04-30 10:53+0000\n"
-"PO-Revision-Date: 2005-04-30 16:08+0200\n"
+"POT-Creation-Date: 2005-05-06 02:53+0000\n"
+"PO-Revision-Date: 2005-05-06 10:09+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -277,7 +277,7 @@ msgstr "Chyba: Soubor již existuje; končím"
 msgid "Error saving adjusted photo"
 msgstr "Chyba při ukládání upravené fotografie"
 
-#: ../src/ColorDialog.cs:146 ../src/MainWindow.cs:1188 ../src/PhotoView.cs:285
+#: ../src/ColorDialog.cs:146 ../src/MainWindow.cs:1188 ../src/PhotoView.cs:302
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save image {1}"
 msgstr "Přijata výjimka \"{0}\". Nemohu uložit obrázek {1}"
@@ -1277,7 +1277,47 @@ msgstr "Opravdu odstranit?"
 msgid "Really delete version \"{0}\"?"
 msgstr "Opravdu odstranit verzi \"{0}\"?"
 
-#: ../src/PhotoView.cs:284
+#: ../src/PhotoView.cs:104
+msgid "No Constraint"
+msgstr "Žádné omezení"
+
+#: ../src/PhotoView.cs:105
+msgid "4 x 3 (Book)"
+msgstr "4 × 3 (Kniha)"
+
+#: ../src/PhotoView.cs:106
+msgid "4 x 6 (Postcard)"
+msgstr "4 × 6 (Pohlednice)"
+
+#: ../src/PhotoView.cs:107
+msgid "5 x 7 (L, 2L)"
+msgstr "5 × 7 (L, 2L)"
+
+#: ../src/PhotoView.cs:108
+msgid "8 x 10"
+msgstr "8 × 10"
+
+#: ../src/PhotoView.cs:109
+msgid "4 x 3 Portrait (Book)"
+msgstr "4 × 3 Portrét (Kniha)"
+
+#: ../src/PhotoView.cs:110
+msgid "4 x 6 Portrait (Postcard)"
+msgstr "4 × 6 Portrét (Pohlednice)"
+
+#: ../src/PhotoView.cs:111
+msgid "5 x 7 Portrait (L, 2L)"
+msgstr "5 × 7 Portrét (L, 2L)"
+
+#: ../src/PhotoView.cs:112
+msgid "8 x 10 Portrait"
+msgstr "8 × 10 Portrét"
+
+#: ../src/PhotoView.cs:113
+msgid "Square"
+msgstr "Čtverec"
+
+#: ../src/PhotoView.cs:301
 msgid "Error editing photo"
 msgstr "Chyba při upravování fotografie"
 
