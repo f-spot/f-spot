@@ -15,6 +15,8 @@ namespace FSpot {
 				// FIXME this should probably read the raw data because libexif sucks.
 				Exif.ExifContent exif_content = this.ExifData.GetContents (Exif.Ifd.Exif);
 				Exif.ExifEntry entry = exif_content.Lookup (Exif.Tag.UserComment);
+				//System.Console.WriteLine ("entry {0}", entry.ToString ());
+
 				if (entry == null)
 					return null;
 				
@@ -30,13 +32,14 @@ namespace FSpot {
 				System.Text.Encoding.ASCII.GetBytes (heading, 0, heading.Length, data, 0);
 				System.Text.Encoding.ASCII.GetBytes (description, 0, description.Length, data, heading.Length);
 				exif_content.GetEntry (Exif.Tag.UserComment).SetData (data);
-				System.Console.WriteLine ("testing {0} {1} {2}", this.Description, data.Length, description);
+
+				//System.Console.WriteLine ("testing {0} {1} {2}", this.Description, data.Length, description);
 			}
 		}
 
 		public void SaveMetaData (string path)
 		{
-			Exif.ExifContent image_content = exif_data.GetContents (Exif.Ifd.Zero);
+			Exif.ExifContent image_content = this.ExifData.GetContents (Exif.Ifd.Zero);
 			image_content.GetEntry (Exif.Tag.Software).SetData (FSpot.Defines.PACKAGE + " version " + FSpot.Defines.VERSION);
 			
 			// set the write time in the datetime tag
@@ -52,15 +55,16 @@ namespace FSpot {
 		
 		public Exif.ExifData ExifData {
 			get {
-				this.exif_data = new Exif.ExifData (path);
+				if (this.exif_data == null) {
+					this.exif_data = new Exif.ExifData (path);
 
-				if (this.exif_data.Handle.Handle == System.IntPtr.Zero)
-					this.exif_data = new Exif.ExifData ();
-				
-				return exif_data;
+					if (this.exif_data.Handle.Handle == System.IntPtr.Zero)
+						this.exif_data = new Exif.ExifData ();
+				}
+				return this.exif_data;
 			}
 			set {
-				this.ExifData = value;
+				this.exif_data = value;
 			}
 		}
 		
