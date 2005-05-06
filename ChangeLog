@@ -1,5 +1,7 @@
 2005-05-06  Larry Ewing  <lewing@novell.com>
 
+	* src/TagSelectionWidget.cs: initialize iter to Zero.
+
 	* src/JpegFile.cs: fix up the exif_data logic.
 
 	* src/PhotoDatabase.cs: new file to parse the Photo Database file

@@ -281,6 +281,7 @@ public class TagSelectionWidget : TreeView {
 
 	private bool TreeIterForTag(Tag tag, out TreeIter iter) {
 		TreeIter root = TreeIter.Zero;
+		iter = TreeIter.Zero;
 		bool valid = Model.GetIterFirst(out root);
 		while (valid) {
 			if (TreeIterForTagRecurse(tag, root, out iter))
