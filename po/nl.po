@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-04-27 10:52+0000\n"
+"POT-Creation-Date: 2005-05-05 10:54+0000\n"
 "PO-Revision-Date: 2005-04-27 18:48+0100\n"
 "Last-Translator: Bart de Koning <bratdaking@gmail.com>\n"
-"Language-Team: Dutch <nl@li.org>\n"
+"Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../f-spot.desktop.in.in.h:1
 msgid "F-Spot Photo Album"
@@ -181,7 +181,7 @@ msgid ""
 "local filesystem"
 msgstr ""
 "Voor het kopiëren van bestanden van uw camera, moet u een geldige "
-"bestemmingop het lokale bestandssyteem aanwijzen"
+"bestemming op het lokale bestandssyteem aanwijzen"
 
 #: ../src/CameraFileSelectionDialog.cs:164
 msgid "Unable to create directory."
@@ -193,7 +193,7 @@ msgid ""
 "Error \"{0}\" while creating directory \"{0}\".  Check that the path and "
 "permissions are correct and try again"
 msgstr ""
-"Fout \"{0}\" is opgetreden tijdens het maken van de map \"{0}\".Controleer "
+"Fout \"{0}\" is opgetreden tijdens het maken van de map \"{0}\". Controleer "
 "of het pad en de rechten goed zijn en probeer het opnieuw."
 
 #: ../src/CameraFileSelectionDialog.cs:186 ../src/CDExport.cs:139
@@ -271,38 +271,38 @@ msgstr "Fout: er is een fout opgetreden tijdens het overbrengen; afgebroken"
 msgid "Error: File Already Exists; Aborting"
 msgstr "Fout: het bestand bestaat al; afgebroken"
 
-#: ../src/ColorDialog.cs:143
+#: ../src/ColorDialog.cs:145
 msgid "Error saving adjusted photo"
 msgstr "Fout tijdens het bewaren van de gewijzigde foto"
 
-#: ../src/ColorDialog.cs:144 ../src/MainWindow.cs:1188 ../src/PhotoView.cs:285
+#: ../src/ColorDialog.cs:146 ../src/MainWindow.cs:1188 ../src/PhotoView.cs:285
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save image {1}"
 msgstr "Uitzondering \"{0}\" ontvangen. Kan het bestand {1} niet opslaan"
 
 #: ../src/Exif.cs:226
 msgid "Image Directory"
-msgstr "Plaatjes map"
+msgstr "Afbeeldingsinformatie"
 
 #: ../src/Exif.cs:228
 msgid "Thumbnail Directory"
-msgstr "Miniatuurvoorbeeldmap"
+msgstr "Pictogramsinformatie"
 
 #: ../src/Exif.cs:230
 msgid "Exif Directory"
-msgstr "Exif-map"
+msgstr "Exif-informatie"
 
 #: ../src/Exif.cs:232
 msgid "GPS Directory"
-msgstr "GPS-map"
+msgstr "GPS-informatie"
 
 #: ../src/Exif.cs:234
-msgid "InterOperability Directory"
-msgstr "Interoperability-map"
+msgid "InterOperability Directimportedory"
+msgstr "Interoperability-informatie"
 
 #: ../src/Exif.cs:236
 msgid "Unknown Directory"
-msgstr "Onbekende map"
+msgstr "Onbekende informatie"
 
 #: ../src/FlickrExport.cs:49
 msgid "Enter Password"
@@ -310,7 +310,7 @@ msgstr "Voer wachtwoord in"
 
 #: ../src/FlickrExport.cs:58
 msgid "Enter Password for "
-msgstr "Voer wachtwoord in voor"
+msgstr "Voer wachtwoord in voor "
 
 #: ../src/FlickrExport.cs:91 ../src/GalleryExport.cs:417
 #, csharp-format
@@ -331,7 +331,7 @@ msgstr "De afbeeldingen worden geupload"
 
 #: ../src/FlickrExport.cs:148
 msgid "Unable to log on."
-msgstr "Kan niet inloggen."
+msgstr "Kan niet aanmelden."
 
 #: ../src/FlickrExport.cs:149
 msgid ""
@@ -478,7 +478,7 @@ msgstr "<small></small>"
 #: ../src/f-spot.glade.h:26
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
 msgstr ""
-"<span·weight='bold'·size='larger'>Er is een fout opgetreden tijdens het "
+"<span weight='bold' size='larger'>Er is een fout opgetreden tijdens het "
 "verbinden met de galerie</span>\n"
 
 #: ../src/f-spot.glade.h:28
@@ -487,7 +487,7 @@ msgstr "Kleur aan_passen..."
 
 #: ../src/f-spot.glade.h:29
 msgid "Adjust Color"
-msgstr "Pas kleur aan"
+msgstr "Kleur aanpassen"
 
 #: ../src/f-spot.glade.h:30
 msgid "Arranged _By"
@@ -568,7 +568,7 @@ msgstr "Beschrijving:"
 
 #: ../src/f-spot.glade.h:49
 msgid "Destination Temp"
-msgstr "Eind temperatuur"
+msgstr "Doel temperatuur"
 
 #: ../src/f-spot.glade.h:50
 msgid "Display Side_bar"
@@ -620,7 +620,7 @@ msgstr "Exporteer naar album:"
 
 #: ../src/f-spot.glade.h:62
 msgid "Export to Original"
-msgstr "Exporteer naar origineel:"
+msgstr "Exporteer naar origineel"
 
 #: ../src/f-spot.glade.h:63
 msgid "Export to _Flickr..."
@@ -738,7 +738,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:97
 msgid "Number of Copies:"
-msgstr "Aantal kopies:"
+msgstr "Aantal kopieën:"
 
 #: ../src/f-spot.glade.h:98
 msgid "Open album in browser when done uploading"
@@ -776,7 +776,8 @@ msgstr "Fotogrootte:"
 
 #: ../src/f-spot.glade.h:106
 msgid "Please verify that the settings for this gallery are correct."
-msgstr "Verifieer of de instellingen voor deze gallerie correct zijn alstublieft."
+msgstr ""
+"Verifieer of de instellingen voor deze gallerie correct zijn."
 
 #: ../src/f-spot.glade.h:107
 msgid "Prefix: "
@@ -788,7 +789,7 @@ msgstr "Vorige"
 
 #: ../src/f-spot.glade.h:109
 msgid "Print Crop Marks"
-msgstr "Bijsnij markeringen printen"
+msgstr "Snijmarkeringen printen"
 
 #: ../src/f-spot.glade.h:110
 msgid "Rem_ove Tag"
@@ -796,7 +797,7 @@ msgstr "Label _verwijderen"
 
 #: ../src/f-spot.glade.h:111
 msgid "Resize to: "
-msgstr "Grootte veranderen naar:"
+msgstr "Grootte veranderen naar: "
 
 #: ../src/f-spot.glade.h:112 ../src/StockIcons.cs:35
 msgid "Rotate _Left"
@@ -813,7 +814,7 @@ msgstr "Verzadiging:"
 
 #: ../src/f-spot.glade.h:115
 msgid "Scale images to no larger than: "
-msgstr "Afbeeldingen niet groter schalen dan:"
+msgstr "Afbeeldingen niet groter schalen dan: "
 
 #: ../src/f-spot.glade.h:116
 msgid "Select Files To Copy From Camera..."
@@ -871,11 +872,11 @@ msgstr "Bron temperatuur"
 
 #: ../src/f-spot.glade.h:130
 msgid "Strip Image Metadata"
-msgstr "Metadata van de afbeelding ontmantelen"
+msgstr "Metadata van de afbeelding strippen"
 
 #: ../src/f-spot.glade.h:131
 msgid "Strip metadata"
-msgstr "Metadata ontmantelen"
+msgstr "Metadata strippen"
 
 #: ../src/f-spot.glade.h:132 ../src/TagCommands.cs:295
 msgid "Tag name:"
@@ -1086,8 +1087,8 @@ msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
 "different directory"
 msgstr ""
-"De map die u heeft geselecteerd \"{0}\" bestaat niet. Kies alstublieft "
-"een andere map"
+"De map die u heeft geselecteerd \"{0}\" bestaat niet. Kies alstublieft een "
+"andere map"
 
 #: ../src/InfoBox.cs:70 ../src/PhotoVersionCommands.cs:55
 msgid "Name:"
@@ -1126,7 +1127,7 @@ msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
 msgstr ""
-"F-spot kon geen camera's vinden die verbonden waren met dit systeem."
+"F-spot kan geen camera's vinden die verbonden zijn met dit systeem. "
 "Controleer of de camera verbonden is en over voldoende voeding beschikt"
 
 #: ../src/MainWindow.cs:874
@@ -1151,7 +1152,7 @@ msgstr ""
 
 #: ../src/MainWindow.cs:1134
 msgid "Unsharp Mask"
-msgstr "Onscherp masker"
+msgstr "Onscherpheden maskeren"
 
 #: ../src/MainWindow.cs:1143
 msgid "Amount:"
@@ -1178,8 +1179,11 @@ msgstr[1] "De {0} geselecteerde foto's permanent verwijderen?"
 
 #: ../src/MainWindow.cs:1410
 msgid "This deletes all versions of the selected photo from your drive."
+msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
-msgstr "Dit zal alle versies van de geselecteerde foto van uw schijf verwijderen."
+msgstr[0] ""
+"Dit zal alle versies van de geselecteerde foto van uw schijf verwijderen."
+msgstr[1] ""
 "Dit zal alle versies van de geselecteerde foto's van uw schijf verwijderen."
 
 #: ../src/MainWindow.cs:1413
@@ -1201,9 +1205,9 @@ msgid ""
 "lost. The photos remain on your computer and can be imported into F-Spot "
 "again."
 msgstr ""
-"Als u foto's uit de F-spot catalogus verwijdert zal alle label informatie verloren "
-"gaan. De foto's zullen wel achterblijven op uw computer en kunnen weer terug"
-"in F-spot geimporteerd worden."
+"Als u foto's uit de F-spot catalogus verwijdert zal alle label informatie "
+"verloren gaan. De foto's zullen wel achterblijven op uw computer en kunnen "
+"opnieuw in F-spot geïmporteerd worden."
 
 #: ../src/MainWindow.cs:1437
 msgid "_Remove from Catalog"
@@ -1214,11 +1218,13 @@ msgstr "_Uit de catalogus _verwijderen"
 msgid "Delete the selected tag?"
 msgid_plural "Delete the {0} selected tags?"
 msgstr[0] "De geselecteerde label verwijderen?"
-msgstr[1] "De geselecteerde labels verwijderen?"
+msgstr[1] "De {0} geselecteerde labels verwijderen?"
 
 #: ../src/MainWindow.cs:1466
 msgid "If you delete a tag, all associations with photos are lost."
-msgstr "Als u een label verwijdert, zullen alle associaties met de foto's verloren gaan."
+msgstr ""
+"Als u een label verwijdert, zullen alle associaties met de foto's verloren "
+"gaan."
 
 #: ../src/MainWindow.cs:1467
 msgid "_Delete tag"
@@ -1292,12 +1298,13 @@ msgstr "Afbeeldingen draaien"
 #: ../src/RotateCommand.cs:33
 #, csharp-format
 msgid "Rotating picture \"{0}\""
-msgstr "Afbeelding \"{0}\" draaien"
+msgstr "Afbeelding \"{0}\" wordt gedraaid"
 
 #: ../src/RotateCommand.cs:57
 #, csharp-format
 msgid "Received exception \"{0}\" while rotating image {1}"
-msgstr "Tijdens het draaien van afbeelding {1} werd de fout \"{0}\" geconstateerd"
+msgstr ""
+"Tijdens het draaien van afbeelding {1} werd de fout \"{0}\" geconstateerd"
 
 #: ../src/RotateCommand.cs:62
 msgid "Unknown Error while Rotating Image."
@@ -1307,23 +1314,25 @@ msgstr "Onbekende fout geconstateerd tijdens het draaien van de afbeelding."
 #, csharp-format
 msgid "Unable to rotate image"
 msgid_plural "Unable to rotate {0} images"
-msgstr[0] "De afbeelding kon niet worden gedraaid"
-msgstr[1] "De {0} afbeeldingen konden niet worden gedraaid"
+msgstr[0] "De afbeelding kan niet worden gedraaid"
+msgstr[1] "De {0} afbeeldingen kunnen niet worden gedraaid"
 
 #: ../src/RotateCommand.cs:81
 #, csharp-format
 msgid ""
 "The image could not be rotated because it is on a read only file system or "
 "media such as a CDROM.  Please check the permissions and try again"
+msgid_plural ""
 "{0} images could not be rotated because they are on a read only file system "
 "or media such as a CDROM.  Please check the permissions and try again"
-msgstr ""
-"De afbeelding kon niet worden gedraaid, omdat het op een \"alleen lezen\" "
-"bestandssysteem of een medium als een CD-ROM staat.  Controleer de rechten "
+msgstr[0] ""
+"De afbeelding kan niet worden gedraaid, omdat het op een \"alleen lezen\" "
+"bestandssysteem of een medium als een CD-ROM staat. Controleer de rechten "
 "en probeer het opnieuw"
-"{0} afbeeldingen konden niet worden gedraaid, omdat ze op een \"alleen lezen\" "
-"bestandssysteem of een medium als een CD-ROM staan.  Controleer de rechten "
-"en probeer het opnieuw"
+msgstr[1] ""
+"{0} afbeeldingen kunnen niet worden gedraaid, omdat ze "
+"op een \"alleen lezen\" bestandssysteem of een medium als een CD-ROM staan.  "
+"Controleer de rechten en probeer het opnieuw"
 
 #: ../src/StockIcons.cs:28
 msgid "Crop"
@@ -1430,7 +1439,8 @@ msgstr "Er is een fout opgetreden bij het laden van het thema %s"
 msgid ""
 "Received error:\n"
 "\"{0}\"\n"
-msgstr "Fout ontvangen:\n"
+msgstr ""
+"Fout ontvangen:\n"
 "\"{0}\"\n"
 
 #: ../src/VfsExport.cs:77
@@ -1442,4 +1452,3 @@ msgstr "Afbeelding \"{0}\" bijschalen"
 #, csharp-format
 msgid "Transferring picture \"{0}\""
 msgstr "Afbeelding \"{0}\" verplaatsen"
-
