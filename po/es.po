@@ -1,4 +1,4 @@
-# traducción de f-spot.HEAD.po al español
+# traducción de f-spot al español
 # Spanish translation for f-spot
 # Copyright (C) 2004 muine's COPYRIGHT HOLDER
 # Copyright (C) 2004 Sergio Rubio <sergio.rubio@hispalinux.es>
@@ -11,10 +11,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: f-spot.HEAD.es\n"
+"Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-04-18 18:43+0000\n"
-"PO-Revision-Date: 2005-04-19 00:19+0200\n"
+"POT-Creation-Date: 2005-05-07 02:53+0000\n"
+"PO-Revision-Date: 2005-05-07 11:14+0200\n"
 "Last-Translator: Jorge Gonzalez <jorge.gonzalez.gonzalez@hispalinux.es>\n"
 "Language-Team:  <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -246,13 +246,13 @@ msgstr "Puerto"
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "Transfiriendo imagen «{0}» al CD"
 
-#: ../src/CDExport.cs:59 ../src/FlickrExport.cs:93 ../src/GalleryExport.cs:421
+#: ../src/CDExport.cs:59 ../src/FlickrExport.cs:96 ../src/GalleryExport.cs:421
 #: ../src/ProgressDialog.cs:75 ../src/VfsExport.cs:88
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} de {1}"
 
-#: ../src/CDExport.cs:71 ../src/FlickrExport.cs:98 ../src/FolderExport.cs:162
+#: ../src/CDExport.cs:71 ../src/FlickrExport.cs:101 ../src/FolderExport.cs:162
 #: ../src/GalleryExport.cs:436 ../src/VfsExport.cs:115
 msgid "Done Sending Photos"
 msgstr "Envío de fotografías terminado"
@@ -277,11 +277,11 @@ msgstr "Error: error al transferir; abortando"
 msgid "Error: File Already Exists; Aborting"
 msgstr "Error: el fichero ya existe; abortando"
 
-#: ../src/ColorDialog.cs:143
-msgid "Error saving adjusted  photo"
-msgstr "Error al guardar la foto reajustada"
+#: ../src/ColorDialog.cs:145
+msgid "Error saving adjusted photo"
+msgstr "Error al guardar la foto ajustada"
 
-#: ../src/ColorDialog.cs:144 ../src/MainWindow.cs:1185 ../src/PhotoView.cs:285
+#: ../src/ColorDialog.cs:146 ../src/MainWindow.cs:1188 ../src/PhotoView.cs:302
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save image {1}"
 msgstr "Se recibió la excepción «{0}». No es posible guardar la imagen {1}"
@@ -314,32 +314,32 @@ msgstr "Directorio desconocido"
 msgid "Enter Password"
 msgstr "Introducir contraseña"
 
-#: ../src/FlickrExport.cs:57
+#: ../src/FlickrExport.cs:58
 msgid "Enter Password for "
 msgstr "Introducir contraseña para "
 
-#: ../src/FlickrExport.cs:88 ../src/GalleryExport.cs:417
+#: ../src/FlickrExport.cs:91 ../src/GalleryExport.cs:417
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Subiendo imagen «{0}»"
 
-#: ../src/FlickrExport.cs:100 ../src/GalleryExport.cs:438
+#: ../src/FlickrExport.cs:103 ../src/GalleryExport.cs:438
 msgid "Upload Complete"
 msgstr "Carga completada"
 
-#: ../src/FlickrExport.cs:105
+#: ../src/FlickrExport.cs:108
 msgid "Error Uploading To Flickr"
 msgstr "Error al subir las fotografías a Flickr"
 
-#: ../src/FlickrExport.cs:135 ../src/GalleryExport.cs:387
+#: ../src/FlickrExport.cs:138 ../src/GalleryExport.cs:387
 msgid "Uploading Pictures"
 msgstr "Subiendo las fotografías"
 
-#: ../src/FlickrExport.cs:145
+#: ../src/FlickrExport.cs:148
 msgid "Unable to log on."
 msgstr "No se pudo iniciar la sesión."
 
-#: ../src/FlickrExport.cs:146
+#: ../src/FlickrExport.cs:149
 msgid ""
 "F-Spot was unable to log on to Flickr.  Make sure the settings you supplied "
 "are correct."
@@ -1141,34 +1141,34 @@ msgstr "Se recibió el error «{0}» al conectar con la cámara"
 msgid "translator-credits"
 msgstr "Jorge González <jorge.gonzalez.gonzalez@hispalinux.es>"
 
-#: ../src/MainWindow.cs:1131
+#: ../src/MainWindow.cs:1134
 msgid "Unsharp Mask"
 msgstr "Máscara de definición"
 
-#: ../src/MainWindow.cs:1140
+#: ../src/MainWindow.cs:1143
 msgid "Amount:"
 msgstr "Cantidad:"
 
-#: ../src/MainWindow.cs:1141
+#: ../src/MainWindow.cs:1144
 msgid "Radius:"
 msgstr "Radio:"
 
-#: ../src/MainWindow.cs:1142
+#: ../src/MainWindow.cs:1145
 msgid "Threshold:"
 msgstr "Umbral:"
 
-#: ../src/MainWindow.cs:1184
+#: ../src/MainWindow.cs:1187
 msgid "Error saving sharpened photo"
 msgstr "Error al guardar la foto enfocada"
 
-#: ../src/MainWindow.cs:1403
+#: ../src/MainWindow.cs:1406
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "¿Borrar permanentemente la fotografía seleccionada?"
 msgstr[1] "¿Borrar permanentemente las {0} fotografías seleccionadas?"
 
-#: ../src/MainWindow.cs:1407
+#: ../src/MainWindow.cs:1410
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] ""
@@ -1178,20 +1178,20 @@ msgstr[1] ""
 "Esto borrará de su ordenador todas las versiones de las fotografías "
 "seleccionadas."
 
-#: ../src/MainWindow.cs:1410
+#: ../src/MainWindow.cs:1413
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Borrar la fotografía"
 msgstr[1] "_Borrar las fotografías"
 
-#: ../src/MainWindow.cs:1428
+#: ../src/MainWindow.cs:1431
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "¿Eliminar la fotografía seleccionada de F-Spot?"
 msgstr[1] "¿Eliminar las {0} fotografías seleccionadas de F-Spot?"
 
-#: ../src/MainWindow.cs:1433
+#: ../src/MainWindow.cs:1436
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1201,22 +1201,22 @@ msgstr ""
 "perderá. Las fotos seguirán en su ordenador y podrá volverlas a cargar de "
 "nuevo en F-Spot."
 
-#: ../src/MainWindow.cs:1434
+#: ../src/MainWindow.cs:1437
 msgid "_Remove from Catalog"
 msgstr "_Borrar del catálogo"
 
-#: ../src/MainWindow.cs:1458
+#: ../src/MainWindow.cs:1461
 #, csharp-format
 msgid "Delete the selected tag?"
 msgid_plural "Delete the {0} selected tags?"
 msgstr[0] "¿Borrar la etiqueta seleccionada?"
 msgstr[1] "¿Borrar las {0} etiquetas seleccionadas?"
 
-#: ../src/MainWindow.cs:1463
+#: ../src/MainWindow.cs:1466
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr "Si borra una etiqueta, todas las asociaciones con las fotos se perderán."
 
-#: ../src/MainWindow.cs:1464
+#: ../src/MainWindow.cs:1467
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Borrar etiqueta"
@@ -1276,7 +1276,47 @@ msgstr "¿Realmente desea borrarlo?"
 msgid "Really delete version \"{0}\"?"
 msgstr "¿Borrar la versión «{0}»?"
 
-#: ../src/PhotoView.cs:284
+#: ../src/PhotoView.cs:104
+msgid "No Constraint"
+msgstr "Sin contraste"
+
+#: ../src/PhotoView.cs:105
+msgid "4 x 3 (Book)"
+msgstr "4 x 3 (álbum)"
+
+#: ../src/PhotoView.cs:106
+msgid "4 x 6 (Postcard)"
+msgstr "4 x 6 (postal)"
+
+#: ../src/PhotoView.cs:107
+msgid "5 x 7 (L, 2L)"
+msgstr "5 x 7 (L, 2L)"
+
+#: ../src/PhotoView.cs:108
+msgid "8 x 10"
+msgstr "8 x 10"
+
+#: ../src/PhotoView.cs:109
+msgid "4 x 3 Portrait (Book)"
+msgstr "4 x 3 vertical (álbum)"
+
+#: ../src/PhotoView.cs:110
+msgid "4 x 6 Portrait (Postcard)"
+msgstr "4 x 6 vertical (postal)"
+
+#: ../src/PhotoView.cs:111
+msgid "5 x 7 Portrait (L, 2L)"
+msgstr "5 x 7 vertical (L, 2L)"
+
+#: ../src/PhotoView.cs:112
+msgid "8 x 10 Portrait"
+msgstr "8 x 10 vertical"
+
+#: ../src/PhotoView.cs:113
+msgid "Square"
+msgstr "Cuadadrado"
+
+#: ../src/PhotoView.cs:301
 msgid "Error editing photo"
 msgstr "Error al editar la foto"
 
