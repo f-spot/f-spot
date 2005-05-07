@@ -256,8 +256,8 @@ namespace iPodSharp {
 	internal class ImageNameRecord : Record {
 		public int ChildCount;
 		public int CorrelationID;
-		public int IthmbOffset;
-		public int ImageSize;
+		public int ThumbPosition;
+		public int ThumbSize;
 		public int unknownThree;
 		public ushort Width;
 		public ushort Height;
@@ -282,8 +282,8 @@ namespace iPodSharp {
 			byte [] body = reader.ReadBytes (this.HeaderOne - 12);
 			ChildCount = BitConverter.ToInt32 (body, 0);
 			CorrelationID = BitConverter.ToInt32 (body, 4);
-			IthmbOffset = BitConverter.ToInt32 (body, 8);
-			ImageSize = BitConverter.ToInt32 (body, 12);
+			ThumbPosition = BitConverter.ToInt32 (body, 8);
+			ThumbSize = BitConverter.ToInt32 (body, 12);
 			unknownThree = BitConverter.ToInt32 (body, 16);
 			Width = BitConverter.ToUInt16 (body, 20);
 			Height = BitConverter.ToUInt16 (body, 22);
@@ -396,16 +396,22 @@ namespace iPodSharp {
 
 	
 	internal class PhotoDatabase {
+		public string Path; 
 		private PhotoDatabaseRecord dbrec;
-		
+
+		public PhotoDatabase (string path)
+		{
+			this.Path = path;
+			Load (this.Path);
+		}
+
 		public void Load (string path) {
 			using (BinaryReader reader = new BinaryReader (new FileStream (path, FileMode.Open))) {
 				dbrec = new PhotoDatabaseRecord ();
 				dbrec.Read (reader);
-
 			}
 		}
-		
+
 		public void Dump () {
 			System.Console.WriteLine (dbrec.Datasets.Count);
 
@@ -415,10 +421,18 @@ namespace iPodSharp {
 				System.Console.WriteLine ("{0}.Count = {1}", list.Name, list.Items.Count);
 				
 				if (list is ImageListRecord) {
+					ImageItemRecord image = ((ImageListRecord)list).Images [0] as ImageItemRecord;
+					IthmbDb.DisplayItem (image, System.IO.Path.GetDirectoryName (this.Path)); 
+
 					foreach (ImageItemRecord iirec in ((ImageListRecord)list).Images) {
 						System.Console.WriteLine ("Id = {0}", iirec.Id);
 						foreach (ImageDataObjectRecord file in iirec.Versions) {
-							System.Console.WriteLine ("   version path = {0}", file.Child.Path);
+							System.Console.WriteLine ("   path={0} size {1} position {2} ID {3}", 
+										  file.Child.Path, 
+										  file.Child.ThumbPosition,
+										  file.Child.ThumbSize,
+										  file.Child.CorrelationID);
+							
 						}
 					}
 				} else if (list is AlbumListRecord) {
@@ -434,9 +448,12 @@ namespace iPodSharp {
 
 		static void Main (string [] args) 
 		{
-			PhotoDatabase db = new PhotoDatabase ();
-			db.Load (args [0]); 
+			Gtk.Application.Init ();
+
+			PhotoDatabase db = new PhotoDatabase (args [0]);
 			db.Dump ();
+
+			Gtk.Application.Run ();
 		}
 	}
 }

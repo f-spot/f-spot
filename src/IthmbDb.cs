@@ -2,14 +2,12 @@ using System;
 using System.IO;
 
 public class IthmbDb {
-	string Name;
 	int Width;
 	int Height;
 	Format Type;
 
-	protected IthmbDb (string name, int width, int height, Format format)
+	protected IthmbDb (int width, int height, Format format)
 	{
-		this.Name = name;
 		this.Width = width;
 		this.Height = height;
 		this.Type = format;
@@ -21,12 +19,35 @@ public class IthmbDb {
 		IYUV
 	}
 	
-        public static IthmbDb Thumbnail = new IthmbDb ("F1009", 42, 30, Format.Rgb565);
-	public static IthmbDb Slide = new IthmbDb ("F1015", 130, 88, Format.Rgb565); // 11440
-	public static IthmbDb FullScreen = new IthmbDb ("F1013", 176, 220, Format.Rgb565); //36500
-	public static IthmbDb External = new IthmbDb ("F1019", 720, 480, Format.IYUV);
-	public static IthmbDb FullScreenBE = new IthmbDb ("F1020", 176, 220, Format.Rgb565BE);
-	
+	public static Gdk.Pixbuf Load (int type, long position, long size, string path)
+	{
+		IthmbDb db;
+		switch (type) {
+		case 1009:
+			db = new IthmbDb (42, 30, Format.Rgb565);
+			break;
+		case 1015:
+			db = new IthmbDb (130, 88, Format.Rgb565);
+			break;
+		case 1013:
+			db = new IthmbDb (176, 220, Format.Rgb565);
+			break;
+		case 1019:
+			db = new IthmbDb (720, 480, Format.IYUV);
+			break;
+		case 1020:
+			db = new IthmbDb (176, 220, Format.Rgb565BE);
+			break;
+		default:
+			throw new ApplicationException ("unknown database type");
+		}
+
+		if (size != db.Width * db.Height)
+			System.Console.WriteLine ("Unexpected thumbnail size");
+
+		return db.Load (path, position);
+	}
+
 	public void LoadRgb565 (BinaryReader reader, Gdk.Pixbuf dest, bool IsBigEndian)
 	{
 		unsafe {
@@ -156,18 +177,15 @@ public class IthmbDb {
 		 }
 	 }
 
-	 public Gdk.Pixbuf Load (string path, int offset)
+	 public Gdk.Pixbuf Load (string path, long offset)
 	 {
 		 int width = this.Width;
 		 int height = this.Height;
-		 path = Path.Combine (path, this.Name + "_1.ithmb");
 		 Gdk.Pixbuf image = new Gdk.Pixbuf (Gdk.Colorspace.Rgb,
 						    false, 8, width, height);
-		 
 		 FileStream stream = new FileStream (path, FileMode.Open);
 		 
-		 
-		 stream.Position = width * height * 2 * offset;
+		 stream.Position = offset;
 		 BinaryReader reader = new BinaryReader (stream);
 		 
 		 switch (this.Type) {
@@ -278,8 +296,6 @@ public class IthmbDb {
 		int height = this.Height;
 		ushort [] packed = null;
 		
-		path = Path.Combine (path, this.Name + "_1.ithmb");
-
 		switch (this.Type) {
 		case Format.Rgb565:
 			packed = PackRgb565 (src, false);
@@ -300,43 +316,29 @@ public class IthmbDb {
 		}
 		stream.Close ();
 	}
-
-	static void Main (string [] args) 
-	{
-		Gtk.Application.Init ();
+	
+	internal static void DisplayItem (iPodSharp.ImageItemRecord item, string basepath)
+	{		
 		Gtk.Window win = new Gtk.Window ("iThumbnail Test");
 		Gtk.HBox hbox = new Gtk.HBox ();
 		Gtk.VBox vbox = new Gtk.VBox ();
 		win.Add (hbox);
 		hbox.PackStart (vbox);
 
-		string basepath = args [0];
-		int index = System.Int32.Parse (args [1]);
+		foreach (iPodSharp.ImageDataObjectRecord file in item.Versions) {
+			if (file.Child.CorrelationID > 1) {
+				string path = file.Child.Path.Replace (':','/');
+				path = basepath + path;
 
-		Gdk.Pixbuf thumb = IthmbDb.FullScreenBE.Load (basepath, index);
-		Gtk.Image image = new Gtk.Image (thumb);
-		vbox.PackStart (image);
-
-		thumb = IthmbDb.Thumbnail.Load (basepath, index);
-		image = new Gtk.Image (thumb);
-		vbox.PackStart (image);
-		/*		
-		thumb = IthmbDb.Slide.Load (basepath, index);
-		image = new Gtk.Image (thumb);
-		vbox.PackStart (image);
-		
-		thumb = IthmbDb.FullScreen.Load (basepath, index);
-		image = new Gtk.Image (thumb);
-		vbox.PackStart (image);
-
-		thumb = IthmbDb.External.Load (basepath, index);
-		image = new Gtk.Image (thumb);
-		hbox.PackStart (image);
-		*/
-		if (args.Length > 2)
-			IthmbDb.External.Save (thumb, basepath, System.Int32.Parse (args [2]));
+				Gdk.Pixbuf thumb = IthmbDb.Load (file.Child.CorrelationID, 
+								 file.Child.ThumbPosition, 
+								 file.Child.ThumbSize,
+								 path);
+				Gtk.Image image = new Gtk.Image (thumb);
+				vbox.PackStart (image);
+			}
+		}
 
 		win.ShowAll ();
-		Gtk.Application.Run ();
 	}
 }

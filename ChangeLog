@@ -1,3 +1,10 @@
+2005-05-07  Larry Ewing  <lewing@novell.com>
+
+	* src/IthmbDb.cs: update the api to follow the data available from
+	the db.
+
+	* src/PhotoDatabase.cs: use the db to load the thumbnails.
+
 2005-05-06  Larry Ewing  <lewing@novell.com>
 
 	* src/TagSelectionWidget.cs: initialize iter to Zero.
