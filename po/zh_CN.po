@@ -189,7 +189,7 @@ msgstr "无法创建目录。"
 msgid ""
 "Error \"{0}\" while creating directory \"{0}\".  Check that the path and "
 "permissions are correct and try again"
-msgstr "创建目录“{1}”时发生错误“{0}”。请检查路径和权限是否正确，然后再试一次。"
+msgstr "创建目录“{0}”时发生错误“{0}”。请检查路径和权限是否正确，然后再试一次。"
 
 #: ../src/CameraFileSelectionDialog.cs:186 ../src/CDExport.cs:139
 #: ../src/VfsExport.cs:196
@@ -827,7 +827,7 @@ msgid ""
 "Selection\n"
 "Gallery\n"
 "Viewport"
-msgstr "选择\n图库\视点"
+msgstr "选择\n图库\n视点"
 
 #: ../src/f-spot.glade.h:126
 msgid "Send _Mail..."
@@ -1425,7 +1425,7 @@ msgstr ""
 msgid ""
 "Received error:\n"
 "\"{0}\"\n"
-msgstr "收到错误：\n“{0}”"
+msgstr "收到错误：\n“{0}”\n"
 
 #: ../src/VfsExport.cs:77
 #, csharp-format
