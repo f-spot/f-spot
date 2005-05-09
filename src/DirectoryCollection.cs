@@ -53,10 +53,10 @@ namespace FSpot {
 	}
 
 	public class FileBrowsableItem : IBrowsableItem {
-		string path;
+		ImageFile img;
 		public FileBrowsableItem (string path)
 		{
-			this.path = path;
+			this.img = ImageFile.Create (path);
 		}
 		
 		public Tag [] Tags {
@@ -67,19 +67,18 @@ namespace FSpot {
 
 		public System.DateTime Time {
 			get {
-				return System.IO.File.GetLastWriteTime (path);
+				return img.Date ();
 			}
 		}
 		
 		public System.Uri DefaultVersionUri {
 			get {
-				return UriList.PathToFileUri (path);
+				return UriList.PathToFileUri (img.Path);
 			}
 		}
 
 		public string Description {
 			get {
-				ImageFile img = ImageFile.Create (path);
 				if (img is JpegFile) 
 					return ((JpegFile)img).Description;
 				else
@@ -89,7 +88,7 @@ namespace FSpot {
 
 		public string Name {
 			get {
-				return System.IO.Path.GetFileName (path);
+				return System.IO.Path.GetFileName (img.Path);
 			}
 		}
 	}

@@ -1,5 +1,8 @@
 2005-05-09  Larry Ewing  <lewing@novell.com>
 
+	* src/DirectoryCollection.cs: Proxy an ImageFile as an
+	IBrowsableItem, these need to be cleaned up and combined.
+
 	* src/PhotoStore.cs: set the thumbnail based on
 	IThumbnailContainer if it exists.
 
