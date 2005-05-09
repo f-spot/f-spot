@@ -1,3 +1,8 @@
+2005-05-09  Larry Ewing  <lewing@novell.com>
+
+	* src/CameraFileSelectionDialog.cs: Apply Funda Wang's fix to the
+	format string for the error dialog.  Fixes #303395. 
+
 2005-05-07  Larry Ewing  <lewing@novell.com>
 
 	* src/IthmbDb.cs: update the api to follow the data available from

@@ -162,7 +162,7 @@ namespace FSpot {
 										    MessageType.Error,
 										    ButtonsType.Ok,
 										    Mono.Posix.Catalog.GetString ("Unable to create directory."),
-										    String.Format (Mono.Posix.Catalog.GetString ("Error \"{0}\" while creating directory \"{0}\".  Check that the path and permissions are correct and try again"), e.Message, destination));
+										    String.Format (Mono.Posix.Catalog.GetString ("Error \"{0}\" while creating directory \"{1}\".  Check that the path and permissions are correct and try again"), e.Message, destination));
 					md.Run ();
 					md.Destroy ();
 					
