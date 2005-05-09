@@ -9,6 +9,12 @@ namespace FSpot {
 			this.path = path;
 		}
 
+		public string Path {
+			get {
+				return this.path;
+			}
+		}
+
 		public virtual PixbufOrientation GetOrientation () {
 			return PixbufOrientation.TopLeft;
 		}

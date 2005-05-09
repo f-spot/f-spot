@@ -1,5 +1,7 @@
 2005-05-09  Larry Ewing  <lewing@novell.com>
 
+	* src/ImageFile.cs: add path property.
+
 	* src/DirectoryCollection.cs: Proxy an ImageFile as an
 	IBrowsableItem, these need to be cleaned up and combined.
 
