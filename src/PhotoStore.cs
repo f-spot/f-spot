@@ -415,7 +415,7 @@ public class PhotoStore : DbStore {
 
 		if (img is FSpot.IThumbnailContainer) {
 			try {
-				((FSpot.IThumbnailContainer)img).GetEmbeddedThumbnail ();
+				thumbnail = ((FSpot.IThumbnailContainer)img).GetEmbeddedThumbnail ();
 			} catch (Exception e) {
 				System.Console.WriteLine (e.ToString ());
 			}
