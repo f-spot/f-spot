@@ -684,7 +684,7 @@ namespace FSpot {
 			writer.AddAttribute ("type", "text/css");
 			writer.AddAttribute ("media", "screen");
 			writer.RenderBeginTag ("style");
-			writer.Write (String.Format ("@import url( {0} );", SubdirPath ("style", stylesheet)));
+			writer.Write (String.Format ("@import url( {0} );",  "style/" + stylesheet));
 			writer.RenderEndTag ();
 			writer.RenderEndTag ();
 		}
