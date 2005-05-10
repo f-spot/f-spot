@@ -334,10 +334,15 @@ f_save_jpeg_exif (const char *filename, ExifData *exif_data)
 {
 	JPEGData     *jdata;
 
+	g_warning ("exif = %p", exif_data);
 	jdata = jpeg_data_new_from_file (filename);
-	if (jdata == NULL)
+	if (jdata == NULL) {
+		g_warning ("unable to parse jpeg file");
 		return;
-
+	}
+	if (exif_data == NULL) {
+		g_warning ("missing exif data");
+	}
 	jpeg_data_set_exif_data (jdata, exif_data);
 	jpeg_data_save_file (jdata, filename);
 

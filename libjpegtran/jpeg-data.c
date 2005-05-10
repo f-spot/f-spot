@@ -82,14 +82,18 @@ jpeg_data_save_file (JPEGData *data, const char *path)
 	FILE *f;
 	unsigned char *d = NULL;
 	unsigned int size = 0;
-
+	
+	printf ("Saving jpeg data\n");
 	jpeg_data_save_data (data, &d, &size);
-	if (!d)
+	if (!d) {
+		printf ("error serializing jpeg data\n");
 		return;
+	}
 
 	unlink (path);
 	f = fopen (path, "wb");
 	if (!f) {
+		printf ("error opening file\n");
 		free (d);
 		return;
 	}
