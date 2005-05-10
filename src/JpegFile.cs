@@ -15,7 +15,6 @@ namespace FSpot {
 				// FIXME this should probably read the raw data because libexif sucks.
 				Exif.ExifContent exif_content = this.ExifData.GetContents (Exif.Ifd.Exif);
 				Exif.ExifEntry entry = exif_content.Lookup (Exif.Tag.UserComment);
-				//System.Console.WriteLine ("entry {0}", entry.ToString ());
 
 				if (entry == null)
 					return null;
@@ -32,8 +31,6 @@ namespace FSpot {
 				System.Text.Encoding.ASCII.GetBytes (heading, 0, heading.Length, data, 0);
 				System.Text.Encoding.ASCII.GetBytes (description, 0, description.Length, data, heading.Length);
 				exif_content.GetEntry (Exif.Tag.UserComment).SetData (data);
-
-				//System.Console.WriteLine ("testing {0} {1} {2}", this.Description, data.Length, description);
 			}
 		}
 
@@ -66,11 +63,6 @@ namespace FSpot {
 			set {
 				this.exif_data = value;
 			}
-		}
-		
-		public void Crop (Gdk.Rectangle bounds)
-		{
-			
 		}
 
 		public override PixbufOrientation GetOrientation () {
