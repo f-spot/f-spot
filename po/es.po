@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-05-07 02:53+0000\n"
-"PO-Revision-Date: 2005-05-07 11:14+0200\n"
+"POT-Creation-Date: 2005-05-10 20:55+0200\n"
+"PO-Revision-Date: 2005-05-10 20:56+0200\n"
 "Last-Translator: Jorge Gonzalez <jorge.gonzalez.gonzalez@hispalinux.es>\n"
 "Language-Team:  <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -139,16 +139,16 @@ msgstr "difuminar"
 msgid "dither type"
 msgstr "tipo de difuminado"
 
-#: ../libfspot/f-jpeg-utils.c:440
+#: ../libfspot/f-jpeg-utils.c:445
 msgid "File not found"
 msgstr "Archivo no encontrado"
 
-#: ../libfspot/f-jpeg-utils.c:463
+#: ../libfspot/f-jpeg-utils.c:468
 #, c-format
 msgid "Unknown transform type %d"
 msgstr "Tipo de transformación desconocida %d"
 
-#: ../libfspot/f-jpeg-utils.c:471
+#: ../libfspot/f-jpeg-utils.c:476
 msgid "Operation failed"
 msgstr "Falló la operación"
 
@@ -196,11 +196,9 @@ msgstr "Imposible crear el directorio."
 #: ../src/CameraFileSelectionDialog.cs:165
 #, csharp-format
 msgid ""
-"Error \"{0}\" while creating directory \"{0}\".  Check that the path and "
+"Error \"{0}\" while creating directory \"{1}\".  Check that the path and "
 "permissions are correct and try again"
-msgstr ""
-"Error «{0}» al crear el directorio «{0}».  Compruebe que la ruta y los "
-"permisos sean correctos e inténtelo de nuevo"
+msgstr "Error «{0}» al crear el directorio «{1}».  Compruebe que la ruta y los permisos sean correctos e inténtelo de nuevo"
 
 #: ../src/CameraFileSelectionDialog.cs:186 ../src/CDExport.cs:139
 #: ../src/VfsExport.cs:196
@@ -481,7 +479,8 @@ msgstr "<small></small>"
 
 #: ../src/f-spot.glade.h:26
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
-msgstr "<span weight='bold' size='larger'>Error al conectar con Gallery</span>\n"
+msgstr ""
+"<span weight='bold' size='larger'>Error al conectar con Gallery</span>\n"
 
 #: ../src/f-spot.glade.h:28
 msgid "Ad_just Color..."
@@ -775,7 +774,8 @@ msgstr "Tamaño:"
 
 #: ../src/f-spot.glade.h:106
 msgid "Please verify that the settings for this gallery are correct."
-msgstr "Por favor, compruebe que las preferencias para esta galería son correctas."
+msgstr ""
+"Por favor, compruebe que las preferencias para esta galería son correctas."
 
 #: ../src/f-spot.glade.h:107
 msgid "Prefix: "
@@ -1170,7 +1170,8 @@ msgstr[1] "¿Borrar permanentemente las {0} fotografías seleccionadas?"
 
 #: ../src/MainWindow.cs:1410
 msgid "This deletes all versions of the selected photo from your drive."
-msgid_plural "This deletes all versions of the selected photos from your drive."
+msgid_plural ""
+"This deletes all versions of the selected photos from your drive."
 msgstr[0] ""
 "Esto borrará de su ordenador todas las versiones de la fotografía "
 "seleccionada."
@@ -1214,7 +1215,8 @@ msgstr[1] "¿Borrar las {0} etiquetas seleccionadas?"
 
 #: ../src/MainWindow.cs:1466
 msgid "If you delete a tag, all associations with photos are lost."
-msgstr "Si borra una etiqueta, todas las asociaciones con las fotos se perderán."
+msgstr ""
+"Si borra una etiqueta, todas las asociaciones con las fotos se perderán."
 
 #: ../src/MainWindow.cs:1467
 msgid "_Delete tag"
@@ -1478,4 +1480,3 @@ msgstr "Escalando la imagen «{0}»"
 #, csharp-format
 msgid "Transferring picture \"{0}\""
 msgstr "Transfiriendo la imagen «{0}»"
-
