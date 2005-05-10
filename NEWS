@@ -1,3 +1,11 @@
+f-spot 0.0.13 - May 10 2005 - Depth
+-----------------------------------
+- Rework library bindings to work with mono-1.1.7
+- Updated translations
+- GroupSelector no longer forgets the legend height.
+- Update the FlickrExport code to avoid an overflow in the available
+  space.
+
 f-spot 0.0.12 - March 19 2005 - Indigo
 --------------------------------------
 - Caught the proper exceptions for the editing operations.
