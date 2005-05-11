@@ -8,41 +8,70 @@ using System.IO;
 using System;
 
 public class ImportCommand : FSpot.GladeDialog {
-	private class VolumeItem : Gtk.ImageMenuItem {
+	internal class SourceItem : ImageMenuItem {
+		public ImportSource Source;
+
+		public SourceItem (ImportSource source) : base (source.Name)
+		{
+			this.Source = source;
+			
+			Gdk.Pixbuf icon = source.Icon;
+			if (icon != null)
+				this.Image = new Gtk.Image (icon);
+		}
+	} 
+
+	internal class VolumeSource : ImportSource {
 		public Gnome.Vfs.Volume Volume;
-		
-		public VolumeItem (Gnome.Vfs.Volume vol) : base (vol.DisplayName)
+
+		public VolumeSource (Gnome.Vfs.Volume vol)
 		{
 			this.Volume = vol;
-			this.Image = new Gtk.Image (vol.Icon);
-
-			Gdk.Pixbuf icon = PixbufUtils.LoadThemeIcon (vol.Icon, 32);
-			if (icon != null)
-				this.Image = new Gtk.Image (icon);
-
+			this.Name = vol.DisplayName;
 			
+                        this.Icon = PixbufUtils.LoadThemeIcon (vol.Icon, 32);
+                        if (this.Icon == null)
+				this.Icon = new Gdk.Pixbuf (vol.Icon);
 		}
-
 	}
 
-	private class DriveItem : Gtk.ImageMenuItem {
+	internal class DriveSource : ImportSource {
 		public Gnome.Vfs.Drive Drive;
 		
-		public DriveItem (Gnome.Vfs.Drive drive) : base (drive.DisplayName)
+		public DriveSource (Gnome.Vfs.Drive drive) 
 		{
+			this.Name = drive.DisplayName;
 			this.Drive = drive;
 
-			Gdk.Pixbuf icon;
 			if (drive.IsMounted) {
-				icon = PixbufUtils.LoadThemeIcon (drive.MountedVolume.Icon, 32);
-				this.Sensitive = drive.MountedVolume.IsMounted;
+				this.Icon = PixbufUtils.LoadThemeIcon (drive.MountedVolume.Icon, 32);
+				//this.Sensitive = drive.MountedVolume.IsMounted;
 			} else {
-				icon = PixbufUtils.LoadThemeIcon (drive.Icon, 32);
+				this.Icon = PixbufUtils.LoadThemeIcon (drive.Icon, 32);
 			}
-
-			if (icon != null)
-				this.Image = new Gtk.Image (icon);
 		}
+	}
+
+	internal class CameraSource : ImportSource {
+		GPhotoCamera cam;
+		int CameraIndex;
+		
+		public CameraSource (GPhotoCamera cam, int index)
+		{
+			this.cam = cam;
+			this.CameraIndex = index;
+			//this.Name = String.Format ("{0} ({1})", cam.CameraList.GetName (index), cam.CameraList.GetValue (index));
+			this.Name = String.Format ("{0}", cam.CameraList.GetName (index));
+			this.Icon = PixbufUtils.LoadThemeIcon ("gnome-dev-camera", 32);
+			if (this.Icon == null)
+				this.Icon = PixbufUtils.LoadThemeIcon ("gnome-dev-media-cf", 32);
+		}
+	}
+
+	internal class ImportSource {
+		public object Backend;
+		public Gdk.Pixbuf Icon;
+		public string Name;
 	}
 	
 	private class SourceMenu : Gtk.Menu {
@@ -50,8 +79,14 @@ public class ImportCommand : FSpot.GladeDialog {
 			Gnome.Vfs.VolumeMonitor monitor = Gnome.Vfs.VolumeMonitor.Get ();
 
 			foreach (Gnome.Vfs.Drive drive in monitor.ConnectedDrives) {
-				this.Append (new DriveItem (drive));
+				ImportSource source = new DriveSource (drive);
+				
+				Gtk.ImageMenuItem item = new SourceItem (source);
+				item.Sensitive = drive.IsMounted;
+				this.Append (item);
 			}
+
+			this.Append (new Gtk.SeparatorMenuItem ());
 
 			foreach (Gnome.Vfs.Volume vol in monitor.MountedVolumes) {
 				System.Console.WriteLine ("{0} - {1} - {2} {3} {4}",
@@ -64,10 +99,27 @@ public class ImportCommand : FSpot.GladeDialog {
 				 if (vol.Drive != null)
 					 System.Console.WriteLine (vol.Drive.DeviceType.ToString ());
 				 
-				 if (vol.IsUserVisible)
-					 this.Append (new VolumeItem (vol));
+				 ImportSource source = new VolumeSource (vol);
+#if false
+				 SourceItem item = new SourceItem (source);
+				 this.Append (item);
+				 if (!vol.IsUserVisible) {
+					 item.Sensitive = false;
+				 }
+#else
+				 this.Append (new SourceItem (source));
+#endif
 			}
+
+			this.Append (new Gtk.SeparatorMenuItem ());
 			
+			GPhotoCamera cam = new GPhotoCamera ();
+			cam.DetectCameras ();
+			for (int i = 0; i < cam.CameraList.Count (); i++) {
+				ImportSource source = new CameraSource (cam, i);
+				this.Append (new SourceItem (source));
+			}
+
 			this.ShowAll ();
 		}
 	}
@@ -322,8 +374,8 @@ public class ImportCommand : FSpot.GladeDialog {
 		tagmenu.Populate (true);
 		tagmenu.Prepend (attach_item);
 		
-		//tag_option_menu.Menu = tagmenu;
-		tag_option_menu.Menu = new SourceMenu ();
+		tag_option_menu.Menu = tagmenu;
+		//tag_option_menu.Menu = new SourceMenu ();
 
 		tag_selected = null;
 		if (attach_check != null) {
