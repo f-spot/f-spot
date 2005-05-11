@@ -45,7 +45,7 @@ public class StockIcons {
 			IconSet icon_set = new IconSet (pixbuf);
 			icon_factory.Add (item.StockId, icon_set);
 			
-			Gtk.StockManager.Add (item);
+			Gtk.StockManager.Add (item, 1);
 		}
 	}
 }
