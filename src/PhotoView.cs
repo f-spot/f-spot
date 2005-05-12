@@ -329,7 +329,7 @@ public class PhotoView : EventBox {
 		if (description_delay.IsPending) {
 			description_delay.Stop ();
 
-#if UPDATE_EXIF_DESCRIPTION
+#if true // UPDATE_EXIF_DESCRIPTION
 			Photo photo = query.Photos [description_photo];
 			FSpot.ImageFile img = FSpot.ImageFile.Create (photo.DefaultVersionPath);
 			if (img is FSpot.JpegFile) {
@@ -337,7 +337,8 @@ public class PhotoView : EventBox {
 				jimg.Description = photo.Description;
 				jimg.SaveMetaData (photo.DefaultVersionPath);
 			}
-			Query.Store.Commit (photo);
+			//Query.Store.Commit (photo);
+			Query.Commit (description_photo);
 #else
 			Query.Commit (description_photo);
 #endif
