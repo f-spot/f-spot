@@ -1,4 +1,17 @@
+2005-05-12  Larry Ewing  <lewing@novell.com>
+
+	* src/Exif.cs: bind dump function so we can see what is going on.
+
+	* src/PixbufUtils.cs: add orientation rotations.  Fix the fix the
+	orientation transform functions.  Fix TransformAndCopy tmp buff bounds.
+
+	* src/JpegFile.cs: make SetOrientation work.
+
+	* src/Exif.cs: make ushort data work.
+
 2005-05-11  Larry Ewing  <lewing@novell.com>
+
+	* src/StockIcons.cs: use the old obsolete add again.
 
 	* src/ImportCommand.cs: refactor source menu work.
 

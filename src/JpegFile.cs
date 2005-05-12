@@ -42,6 +42,7 @@ namespace FSpot {
 			// set the write time in the datetime tag
 			image_content.GetEntry (Exif.Tag.DateTime).Reset ();
 			
+			//this.ExifData.Dump ();
 			JpegUtils.SaveExif (path, this.ExifData);
 		}
 
@@ -50,7 +51,8 @@ namespace FSpot {
 			return PixbufUtils.GetThumbnail (this.ExifData);
 		}
 		
-		public Exif.ExifData ExifData {
+		public Exif.ExifData ExifData 
+		{
 			get {
 				if (this.exif_data == null) {
 					this.exif_data = new Exif.ExifData (path);
@@ -65,7 +67,8 @@ namespace FSpot {
 			}
 		}
 
-		public override PixbufOrientation GetOrientation () {
+		public override PixbufOrientation GetOrientation () 
+		{
 			PixbufOrientation orientation = PixbufOrientation.TopLeft;
 			Exif.ExifEntry e = this.ExifData.GetContents (Exif.Ifd.Zero).Lookup (Exif.Tag.Orientation);
 			
@@ -74,7 +77,17 @@ namespace FSpot {
 				orientation = (PixbufOrientation) value [0];
 			}
 			
+			if (orientation < PixbufOrientation.TopLeft || orientation > PixbufOrientation.LeftBottom)
+				orientation = PixbufOrientation.TopLeft;
+
 			return orientation;
+		}
+		
+		public void SetOrientation (PixbufOrientation orientation)
+		{
+			Exif.ExifEntry e = this.ExifData.GetContents (Exif.Ifd.Zero).GetEntry (Exif.Tag.Orientation);
+			System.Console.WriteLine ("Saving orientation as {0}", orientation);
+			e.SetData ((ushort)orientation);
 		}
 		
 		public override System.DateTime Date () {

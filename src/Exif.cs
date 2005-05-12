@@ -129,7 +129,7 @@ namespace Exif {
 		PimIfdPointer              = 0xc4a5
 	}
 	
-	public enum ExifByteOrder {
+	public enum ByteOrder {
 		Motorola,
 		Intel
 	}
@@ -166,7 +166,7 @@ namespace Exif {
 		static extern IntPtr exif_tag_get_description (Tag tag);
 		
 		[DllImport ("libexif.dll")]
-		static extern IntPtr exif_byte_order_get_name (ExifByteOrder order);
+		static extern IntPtr exif_byte_order_get_name (ByteOrder order);
 		
 		[DllImport ("libexif.dll")]
 		static extern IntPtr exif_format_get_name (ExifFormat format);
@@ -196,7 +196,7 @@ namespace Exif {
 			return Marshal.PtrToStringAnsi (raw_ret);
 		}
 		
-		public static string GetByteOrderName (ExifByteOrder order)
+		public static string GetByteOrderName (ByteOrder order)
 		{
 			IntPtr raw_ret = exif_byte_order_get_name (order);
 			return Marshal.PtrToStringAnsi (raw_ret);
@@ -532,7 +532,7 @@ namespace Exif {
 			}
 		}
 		
-		public void SetData (byte [] data, bool check_type)
+		public void SetData (byte [] data, int size)
 		{
 			unsafe {
 				if (data == null || data.Length == 0)
@@ -547,18 +547,25 @@ namespace Exif {
 				_handle->size = (uint) data.Length;
 				// This needs to be set per type as well but
 				// we do it here as well
-				_handle->components = (uint) data.Length;
+				_handle->components = (uint) (data.Length / size);
 			}
 		}
 		
 		public void SetData (byte []data)
 		{
-			SetData (data, true);
+			SetData (data, 1);
 		}
+
+		public void SetData (ushort s)
+		{
+			if (System.BitConverter.IsLittleEndian != (this.ByteOrder == ByteOrder.Intel))
+				s = (ushort) ((s >> 8) | (s << 8));
+
+			this.SetData (System.BitConverter.GetBytes (s), 2);
+		}	    
 
 		public void SetData (ushort [] data)
 		{
-
 		} 
 		
 		public void SetData (short [] data)
@@ -573,7 +580,7 @@ namespace Exif {
 			System.Text.Encoding.UTF8.GetBytes (value, 0, value.Length, tmp, 0);
 			tmp[len] = 0;
 			System.Console.WriteLine ("value = {0} len = {1}", value, len);
-			SetData (tmp, false);
+			SetData (tmp, 1);
 		}
 
 		public void SetData (System.DateTime time)
@@ -584,7 +591,7 @@ namespace Exif {
 		private unsafe void PutBytes (byte *dest, byte *src, int count)
 		{
 			int i = 0;
-			if (System.BitConverter.IsLittleEndian == (this.ByteOrder == ExifByteOrder.Intel)) {
+			if (System.BitConverter.IsLittleEndian == (this.ByteOrder == ByteOrder.Intel)) {
 				for (i = 0; i < count; i++) {
 					//System.Console.WriteLine ("Copying normal byte [{0}]= {1}", i, src[i]);
 					dest [i] = src [i];
@@ -646,7 +653,7 @@ namespace Exif {
 			return null;
 		}
 
-		public ExifByteOrder ByteOrder
+		public ByteOrder ByteOrder
 		{
 			get {
 				return parent.Parent.GetByteOrder ();
@@ -802,6 +809,14 @@ namespace Exif {
 			exif_data_unref (handle);
 		}
 		
+		[DllImport ("libexif.dll")]
+		internal static extern void exif_data_dump (HandleRef data);
+
+		public void Dump ()
+		{
+			exif_data_dump (handle);
+		}
+		
 		public ExifContent GetContents (Ifd ifd)
 		{
 			Assemble ();
@@ -817,9 +832,9 @@ namespace Exif {
 		}
 
 		[DllImport("libexif.dll")]
-		internal static extern ExifByteOrder exif_data_get_byte_order (HandleRef handle);
+		internal static extern ByteOrder exif_data_get_byte_order (HandleRef handle);
 		
-		public ExifByteOrder GetByteOrder ()
+		public ByteOrder GetByteOrder ()
 		{
 			return exif_data_get_byte_order (handle);
 		}

@@ -4,6 +4,16 @@ using System.Runtime.InteropServices;
 using System;
 using System.IO;
 
+/**
+  1        2       3      4         5            6           7          8
+
+888888  888888      88  88      8888888888  88                  88  8888888888
+88          88      88  88      88  88      88  88          88  88      88  88
+8888      8888    8888  8888    88          8888888888  8888888888          88
+88          88      88  88
+88          88  888888  888888
+**/
+
 public enum PixbufOrientation {
 	TopLeft = 1,
 	TopRight = 2,
@@ -16,6 +26,31 @@ public enum PixbufOrientation {
 }
 
 class PixbufUtils {
+		
+	static public PixbufOrientation Rotate270 (PixbufOrientation orientation)
+	{
+		PixbufOrientation [] rot = new PixbufOrientation [] {
+			PixbufOrientation.LeftBottom, 
+			PixbufOrientation.LeftTop,
+			PixbufOrientation.RightTop,
+			PixbufOrientation.RightBottom, 
+			PixbufOrientation.BottomLeft,
+			PixbufOrientation.TopLeft,
+			PixbufOrientation.TopRight,
+			PixbufOrientation.BottomRight
+		};
+
+		orientation = rot [((int)orientation) -1];
+		return orientation;
+	}
+
+	static public PixbufOrientation Rotate90 (PixbufOrientation orientation)
+	{
+		orientation = Rotate270 (orientation);
+		orientation = Rotate270 (orientation);
+		orientation = Rotate270 (orientation);
+		return orientation;
+	}
 
 	public static Pixbuf ErrorPixbuf = PixbufUtils.LoadFromAssembly ("f-spot-question-mark.png");
 	public static Pixbuf LoadingPixbuf = PixbufUtils.LoadFromAssembly ("f-spot-loading.png");
@@ -608,13 +643,14 @@ class PixbufUtils {
 			area.Y = total_height - args.Y - args.Height;
 			break;
 		case PixbufOrientation.LeftTop:
-			area.X = area.Y;
-			area.Y = area.X;
+			area.X = args.Y;
+			area.Y = args.X;
 			area.Width = args.Height;
 			area.Height = args.Width;
 			break;
 		case PixbufOrientation.RightBottom:
 			area.X = total_height - args.Y - args.Height;
+			area.Y = total_width - args.X - args.Width;
 			area.Width = args.Height;
 			area.Height = args.Width;
 			break;
@@ -641,15 +677,16 @@ class PixbufUtils {
 	{
 		Gdk.Rectangle area = TransformOrientation (src, args, orientation);
 
-		int step = 512;
+		int step = 256;
 
 		Gdk.Rectangle rect = new Gdk.Rectangle (args.X, args.Y, 
 							Math.Min (step, args.Width),
 							Math.Min (step, args.Height));
 
+		Gdk.Rectangle trect = TransformOrientation (src, rect, orientation);
 		Gdk.Pixbuf tmp = new Gdk.Pixbuf (src.Colorspace, src.HasAlpha, 
 						 src.BitsPerSample,
-						 rect.Height, rect.Width);
+						 trect.Width, trect.Height);
 
 		Gdk.Rectangle subarea;
 		while (rect.Y < args.Y + args.Height) {
@@ -660,14 +697,11 @@ class PixbufUtils {
 			        Gdk.Pixbuf ssub = new Gdk.Pixbuf (src, subarea.X, subarea.Y,
 								  subarea.Width, subarea.Height);
 
-				
 				Gdk.Pixbuf tsub = new Gdk.Pixbuf (tmp, 0, 0, trans.Width, trans.Height);
 
 				CopyWithOrientation (ssub, tsub, orientation);
-				
-				tsub.CopyArea (0, 0, trans.Width, trans.Height, dest, trans.X, trans.Y);
-				
 
+				tsub.CopyArea (0, 0, trans.Width, trans.Height, dest, trans.X, trans.Y);
 				
 				ssub.Dispose ();
 				tsub.Dispose ();
@@ -680,7 +714,6 @@ class PixbufUtils {
 		tmp.Dispose ();
 		return area;
 	}
-
 	// Bindings from libf.
 
 	[DllImport ("libfspot")]
