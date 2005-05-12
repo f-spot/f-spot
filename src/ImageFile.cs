@@ -15,6 +15,25 @@ namespace FSpot {
 			}
 		}
 
+
+		public PixbufOrientation Orientation {
+			get {
+				return GetOrientation ();
+			}
+		}
+		
+		public Gdk.Pixbuf Load ()
+		{
+			Gdk.Pixbuf orig = new Gdk.Pixbuf (this.Path);
+			
+			Gdk.Pixbuf rotated = PixbufUtils.TransformOrientation (orig, this.Orientation, true);
+			//ValidateThumbnail (photo, rotated);
+			if (rotated != orig)
+				orig.Dispose ();
+
+			return rotated;
+		}
+
 		public virtual PixbufOrientation GetOrientation () {
 			return PixbufOrientation.TopLeft;
 		}

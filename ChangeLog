@@ -1,5 +1,7 @@
 2005-05-12  Larry Ewing  <lewing@novell.com>
 
+	* src/ImageFile.cs: add load and Orientation.
+
 	* src/Exif.cs: bind dump function so we can see what is going on.
 
 	* src/PixbufUtils.cs: add orientation rotations.  Fix the fix the
