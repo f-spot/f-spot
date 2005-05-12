@@ -1,5 +1,8 @@
 2005-05-12  Larry Ewing  <lewing@novell.com>
 
+	* src/RotateCommand.cs: make the rotate command use the exif
+	orientation rather than coefficient rotation.
+
 	* src/ImageFile.cs: add load and Orientation.
 
 	* src/Exif.cs: bind dump function so we can see what is going on.

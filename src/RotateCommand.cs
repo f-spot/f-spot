@@ -40,6 +40,7 @@ public class RotateCommand {
 				// FIXME exception
 				if ((File.GetAttributes(original_path) & FileAttributes.ReadOnly) != FileAttributes.ReadOnly) {
 					try {
+#if false
 						JpegUtils.Transform (original_path, temporary_path, 
 								     direction == Direction.Clockwise ? JpegUtils.TransformType.Rotate90 
 								     : JpegUtils.TransformType.Rotate270);
@@ -49,11 +50,27 @@ public class RotateCommand {
 						// if the destination path points to an existing file.
 						File.Delete (original_path);
 						File.Move (temporary_path, original_path);
+#else
+						FSpot.ImageFile img = FSpot.ImageFile.Create (original_path);
+						FSpot.JpegFile jimg = img as FSpot.JpegFile;
 						
+						if (jimg != null) {
+							PixbufOrientation orientation = direction == Direction.Clockwise
+									     ? PixbufUtils.Rotate90 (img.Orientation)
+									     : PixbufUtils.Rotate270 (img.Orientation);
+							
+							jimg.SetOrientation (orientation);
+							jimg.SaveMetaData (original_path);
+						} else {
+							throw new ApplicationException ("Unable to rotate image type");
+						}
+#endif					
 						Gdk.Pixbuf thumb = FSpot.ThumbnailGenerator.Create (original_path);
 						if (thumb != null)
 							thumb.Dispose ();
+
 					} catch (System.Exception e) {
+						System.Console.WriteLine (e.ToString ());
 						string longmsg = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\" while rotating image {1}"),
 										e.Message, p.Name);
 						
