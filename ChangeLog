@@ -1,3 +1,7 @@
+2005-05-13  Danilo Šegan  <dsegan@gmx.net>
+
+	* configure.in (ALL_LINGUAS): Added "sr" and "sr@Latn".
+
 2005-05-12  Larry Ewing  <lewing@novell.com>
 
 	* src/JpegHeader.cs: add saving to the jpeg header code.
@@ -207,7 +211,7 @@
 	* libgphoto2-sharp/Camera.cs: hack around the struct marshalling
 	changes in mono head.
 
-2005-04-07  I�aki Larra�aga  <dooteo@euskalgnu.org>
+2005-04-07  Iñaki Larrañaga  <dooteo@euskalgnu.org>
 
 	* configure.in: Added "eu" (Basque) to ALL_LINGUAS.
 
@@ -1006,7 +1010,7 @@ h
 
 	* src/AsyncPixbufLoader.cs: handle errors on write.
 
-2005-02-06  David Sedeño <david@alderia.com>
+2005-02-06  David SedeÃ±o <david@alderia.com>
 
 	* src/f-spot.glade: New import dialog.
 
@@ -1273,7 +1277,7 @@ h
 
 	* src/IconView.cs: 
 
-2005-01-22  David Sedeño <david@alderia.com>
+2005-01-22  David SedeÃ±o <david@alderia.com>
 
 	* src/MainWindow.cs: If there are a correct import, remember the path.
 
@@ -2053,7 +2057,7 @@ h
 
 2004-12-04  Sigurd Gartmann  <sigurd-translate@brogar.org>
 
-	* configure.in: [ALL_LINGUAS] Added Norwegian Bokmål (nb and no)
+	* configure.in: [ALL_LINGUAS] Added Norwegian BokmÃ¥l (nb and no)
 
 2004-12-03  Larry Ewing  <lewing@novell.com>
 
