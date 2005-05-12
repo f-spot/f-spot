@@ -143,8 +143,8 @@ namespace FSpot {
 			if (area.Width != 0 && area.Height != 0 && AreaUpdated != null)
 				AreaUpdated (this, area);
 
+			//System.Console.WriteLine ("orig {0} tform {1}", damage.ToString (), area.ToString ());
 			damage = Gdk.Rectangle.Zero;
-			//System.Console.WriteLine (area.ToString ());
 		}
 
 		private bool AsyncRead () 
