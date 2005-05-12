@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-05-06 02:53+0000\n"
-"PO-Revision-Date: 2005-05-06 10:09+0200\n"
+"POT-Creation-Date: 2005-05-12 02:54+0000\n"
+"PO-Revision-Date: 2005-05-12 11:30+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -135,16 +135,16 @@ msgstr "dithering"
 msgid "dither type"
 msgstr "typ ditheringu"
 
-#: ../libfspot/f-jpeg-utils.c:440
+#: ../libfspot/f-jpeg-utils.c:445
 msgid "File not found"
 msgstr "Soubor nenalezen"
 
-#: ../libfspot/f-jpeg-utils.c:463
+#: ../libfspot/f-jpeg-utils.c:468
 #, c-format
 msgid "Unknown transform type %d"
 msgstr "Neznámý typ transformace %d"
 
-#: ../libfspot/f-jpeg-utils.c:471
+#: ../libfspot/f-jpeg-utils.c:476
 msgid "Operation failed"
 msgstr "Operace selhala"
 
@@ -192,11 +192,9 @@ msgstr "Nemohu vytvořit adresář."
 #: ../src/CameraFileSelectionDialog.cs:165
 #, csharp-format
 msgid ""
-"Error \"{0}\" while creating directory \"{0}\".  Check that the path and "
+"Error \"{0}\" while creating directory \"{1}\".  Check that the path and "
 "permissions are correct and try again"
-msgstr ""
-"Chyba \"{0}\" při vytváření adresáře \"{0}\". Zkontrolujte, že cesta a "
-"oprávnění jsou správně, a zkuste to znovu"
+msgstr "Chyba \"{0}\" při vytváření adresáře \"{1}\". Zkontrolujte, že cesta a oprávnění jsou správně, a zkuste to znovu"
 
 #: ../src/CameraFileSelectionDialog.cs:186 ../src/CDExport.cs:139
 #: ../src/VfsExport.cs:196
@@ -1066,15 +1064,15 @@ msgid "(No Albums)"
 msgstr "(Žádná alba)"
 
 #. Gtk.Menu menu = new Gtk.Menu();
-#: ../src/ImportCommand.cs:313
+#: ../src/ImportCommand.cs:365
 msgid "Select Tag"
 msgstr "Vybrat tag"
 
-#: ../src/ImportCommand.cs:349
+#: ../src/ImportCommand.cs:401
 msgid "Directory does not exist."
 msgstr "Adresář neexistuje."
 
-#: ../src/ImportCommand.cs:350
+#: ../src/ImportCommand.cs:402
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
