@@ -82,25 +82,41 @@ public class JpegHeader {
 		Com = 0xfe // Comment
 	}	
 
-	private System.Collections.Hashtable app_marker_hash = new System.Collections.Hashtable ();
 	private System.Collections.ArrayList marker_list = new System.Collections.ArrayList ();	
 	private byte [] image_data;
 
 	public class Marker {
 		public JpegMarker Type;
 		public byte [] Data;
-		public long Position;
 		
-		public Marker (JpegMarker type, byte [] data, long position)
+		public Marker (JpegMarker type, byte [] data)
 		{
 			this.Type = type;
 			this.Data = data;
-			this.Position = position;
 		}
 		
 		public bool IsApp {
 			get {
 				return (this.Type >= JpegMarker.App0 && this.Type <= JpegMarker.App15);
+			}
+		}
+
+		public string Name {
+			get {
+				if (!this.IsApp)
+					return null;
+				
+				int j;
+				for (j = 0; j < this.Data.Length; j++) {
+					if (this.Data [j] == 0x00)
+						break;
+					
+				}
+				
+				if (j > 0)
+					return System.Text.Encoding.ASCII.GetString (this.Data, 0, j);
+				else 
+					return null;
 			}
 		}
 
@@ -116,7 +132,7 @@ public class JpegHeader {
 			switch (id) {
 			case JpegMarker.Soi:
 			case JpegMarker.Eoi:
-				return new Marker (id, null, stream.Position);
+				return new Marker (id, null);
 
 			/*  These rst* and tem can be skipped but I'm not sure of the circumstances right now */
 			case JpegMarker.Rst0:
@@ -139,7 +155,7 @@ public class JpegHeader {
 				
 				byte [] data = new byte [length - 2];
 				stream.Read (data, 0, data.Length);
-				return new Marker (id, data, stream.Position);
+				return new Marker (id, data);
 			}
 			
 		}
@@ -172,54 +188,55 @@ public class JpegHeader {
 		}
 	}
 
-	public byte [] GetRawXmp ()
+	public Marker FindMarker (JpegMarker id, string name)
 	{
-		return this.GetRaw ("http://ns.adobe.com/xap/1.0/");
-	}
-	
-	public byte [] GetRawExif ()
-	{
-		return this.GetRaw ("Exif");
-	}
-
-	public byte [] GetRawJfif ()
-	{
-		return this.GetRaw ("JFIF");
-		// If JFIF exists there might also be JFIF extensions following it
-		// the extension name is "JFXX"
-	}
-
-	public byte [] GetRawIcc ()
-	{
-		return this.GetRaw ("ICC_PROFILE");
-	}
-	
-	public byte [] GetRaw (string name)
-	{
-		Marker m = (Marker)app_marker_hash [name];
-		if (m != null)
-			return m.Data;
-		else 
-			return null;
-	}
-
-	private void AddNamed (Marker m)
-	{
-		int j;
-		for (j = 0; j < m.Data.Length; j++) {
-			if (m.Data [j] == 0x00)
-				break;
+		foreach (Marker m in Markers) {
+			if (m.Type == id && m.Name == name)
+				return m;
 		}
-		
-		string header = System.Text.Encoding.ASCII.GetString (m.Data, 0, j);
-		app_marker_hash [header] = m;
-		System.Console.WriteLine ("Found {0} marker with header {1}", m.Type, header);
+		return null;
+	}
+	
+	public Exif.ExifData Exif {
+		get {
+			Marker m = FindMarker (JpegMarker.App1, "Exif");
+
+			if (m  == null)
+				return null;
+
+			return new Exif.ExifData (m.Data);
+		}
+		set {
+			Marker m;
+			while ((m = FindMarker (JpegMarker.App1, "Exif")) != null)
+				this.Markers.Remove (m);
+
+			byte [] raw_data = value.Save ();
+			for (int i = 1; i < Markers.Count; i++) {
+				m = (Marker) this.Markers [i];
+
+				if (m.IsApp && m.Type == JpegMarker.App0)
+					continue;
+				
+				this.Markers.Insert (i, new Marker (JpegMarker.App1, raw_data));
+				return;
+			}
+		}
+	}
+
+	/* JFIF JFXX ICC_PROFILE http://ns.adobe.com/xap/1.0/ */
+	
+	public System.Collections.ArrayList Markers {
+		get {
+			return marker_list;
+		}
 	}
 
 	public void Save (System.IO.Stream stream)
 	{
 		foreach (Marker marker in marker_list) {
-			System.Console.WriteLine ("saving marker {0}", marker.Type);
+			System.Console.WriteLine ("saving marker {0} {1}", marker.Type, 
+						   (marker.Data != null) ? marker.Data.Length .ToString (): "(null)");
 			marker.Save (stream);
 			if (marker.Type == JpegMarker.Sos)
 				stream.Write (ImageData, 0, ImageData.Length);
@@ -241,13 +258,14 @@ public class JpegHeader {
 	private void Load (System.IO.Stream stream) 
 	{
 		marker_list.Clear ();
-		app_marker_hash.Clear ();
+		image_data = null;
 		bool at_image = false;
+
 		Marker marker = Marker.Load (stream);
 		if (marker.Type != JpegMarker.Soi)
 			throw new System.Exception ("This doesn't appear to be a jpeg stream");
 		
-		this.marker_list.Add (marker);
+		this.Markers.Add (marker);
 		while (!at_image) {
 			marker = Marker.Load (stream);
 
@@ -256,9 +274,7 @@ public class JpegHeader {
 
 			System.Console.WriteLine ("loaded marker {0} length {1}", marker.Type, marker.Data.Length);
 
-			this.marker_list.Add (marker);
-			if (marker.IsApp)
-				this.AddNamed (marker);
+			this.Markers.Add (marker);
 			
 			if (marker.Type == JpegMarker.Sos)
 				at_image = true;
@@ -272,10 +288,11 @@ public class JpegHeader {
 			throw new System.Exception ("truncated image data or something");
 		
 		marker = Marker.Load (stream);
+		this.Markers.Add (marker);
 
 		if (marker.Type != JpegMarker.Eoi)
 			throw new System.Exception ("couldn't find eoi marker");
-		this.marker_list.Add (marker);
+
 	}
 
 	
@@ -285,7 +302,7 @@ public class JpegHeader {
 			return image_data;
 		}
 	}
-#if true
+#if false
 	public static int Main (string [] args)
 	{
 		JpegHeader data = new JpegHeader (args [0]);
@@ -295,7 +312,7 @@ public class JpegHeader {
 			string xml = System.Text.Encoding.UTF8.GetString (value, 29, value.Length - 29);
 			System.Console.WriteLine (xml);
 		}
-
+		
 		value = data.GetRaw ("ICC_PROFILE");
 		if (value != null) {
 			System.IO.FileStream stream = new System.IO.FileStream ("profile.icc", System.IO.FileMode.Create);
@@ -306,11 +323,10 @@ public class JpegHeader {
 		value = data.GetRawExif ();
 		
 		
-		System.IO.Stream ostream = System.IO.File.Open ("/home/lewing/test.jpg", System.IO.FileMode.OpenOrCreate);
-		data.Save (ostream);
-		ostream.Position = 0;
-		
-		data = new JpegHeader (ostream);
+		//System.IO.Stream ostream = System.IO.File.Open ("/home/lewing/test.jpg", System.IO.FileMode.OpenOrCreate);
+		//data.Save (ostream);
+		//ostream.Position = 0;
+		//data = new JpegHeader (ostream);
 
 		return 0;
 	}
