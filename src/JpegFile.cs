@@ -34,17 +34,31 @@ namespace FSpot {
 			}
 		}
 
-		public void SaveMetaData (string path)
+		private void UpdateMeta ()
 		{
 			Exif.ExifContent image_content = this.ExifData.GetContents (Exif.Ifd.Zero);
 			image_content.GetEntry (Exif.Tag.Software).SetData (FSpot.Defines.PACKAGE + " version " + FSpot.Defines.VERSION);
-			
+
 			// set the write time in the datetime tag
 			image_content.GetEntry (Exif.Tag.DateTime).Reset ();
-			
+		}
+
+		private void SaveMetaData (System.IO.Stream input, System.IO.Stream output)
+		{
+			JpegHeader header = new JpegHeader (input);
+			UpdateMeta ();
+
+			header.Exif = this.ExifData;
+			header.Save (output);
+		}
+		
+		public void SaveMetaData (string path)
+		{
+			UpdateMeta ();
+
 			//this.ExifData.Dump ();
 
-#if USE_UNSTABLE_JPEG_HEADER_CODE
+#if true //USE_UNSTABLE_JPEG_HEADER_CODE
 			System.IO.FileStream stream = System.IO.File.Open (path, System.IO.FileMode.OpenOrCreate);
 			//System.IO.FileStream ostream = System.IO.File.Open ("tmp.jpg", System.IO.FileMode.OpenOrCreate);
 			JpegHeader header = new JpegHeader (stream);
@@ -58,10 +72,60 @@ namespace FSpot {
 #endif
 
 		}
+		
+		public override void Save (Gdk.Pixbuf pixbuf, System.IO.Stream stream)
+		{
+			// First save the imagedata
+			byte [] image_data = PixbufUtils.Save (pixbuf, "jpeg", null, null);
+			System.IO.MemoryStream buffer = new System.IO.MemoryStream ();
+			buffer.Write (image_data, 0, image_data.Length);
+			buffer.Position = 0;
+			
+			// Then create the thumbnail
+			// The DCF spec says thumbnails should be 160x120 always
+			Gdk.Pixbuf thumbnail = PixbufUtils.ScaleToAspect (pixbuf, 160, 120);
+			byte [] thumb_data = PixbufUtils.Save (thumbnail, "jpeg", null, null);
 
+			// now update the exif data
+			exif_data.Data = thumb_data;
+			thumbnail.Dispose ();
+
+			Exif.ExifEntry e;
+			Exif.ExifContent thumb_content;
+			Exif.ExifContent image_content;
+			
+			// update the thumbnail related image fields if they exist.
+			thumb_content = this.ExifData.GetContents (Exif.Ifd.One);
+			e = thumb_content.Lookup (Exif.Tag.RelatedImageWidth);
+			if (e != null)
+				e.SetData ((uint)pixbuf.Width);
+
+			e = thumb_content.Lookup (Exif.Tag.RelatedImageHeight);
+			if (e != null)
+				e.SetData ((uint)pixbuf.Height);
+			
+			image_content = this.ExifData.GetContents (Exif.Ifd.Zero);
+			image_content.GetEntry (Exif.Tag.ImageWidth).SetData ((uint)pixbuf.Width);
+			image_content.GetEntry (Exif.Tag.ImageHeight).SetData ((uint)pixbuf.Height);
+
+			SaveMetaData (buffer, stream);
+			buffer.Close ();
+		}
+		
 		public Gdk.Pixbuf GetEmbeddedThumbnail ()
 		{
-			return PixbufUtils.GetThumbnail (this.ExifData);
+			if (this.ExifData.Data.Length > 0) {
+				MemoryStream mem = new MemoryStream (this.ExifData.Data);
+				Gdk.Pixbuf thumb = new Gdk.Pixbuf (mem);
+				Gdk.Pixbuf rotated = PixbufUtils.TransformOrientation (thumb, this.Orientation);
+				
+				if (rotated != thumb)
+					thumb.Dispose ();
+				
+				mem.Close ();
+				return rotated;
+			}
+			return null;
 		}
 		
 		public Exif.ExifData ExifData 
