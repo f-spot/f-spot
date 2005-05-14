@@ -2,6 +2,7 @@ CSC = mcs -unsafe -debug -nowarn:0169
 
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/AsyncPixbufLoader.cs		\
+	$(srcdir)/BitConverter.cs		\
 	$(srcdir)/PhotoArray.cs 		\
 	$(srcdir)/CDExport.cs			\
 	$(srcdir)/ColorDialog.cs		\

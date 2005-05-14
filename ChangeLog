@@ -1,5 +1,12 @@
 2005-05-14  Larry Ewing  <lewing@novell.com>
 
+	* src/PngFile.cs: and tXMP decoding (well not the encoding yet)
+	and make the thing actually compile.
+	
+	* src/BitConverter.cs: new file.
+
+	* src/JpegFile.cs: remove BitConverter.
+
 	* src/PixbufUtils.cs: add Save overload that takes a stream.  Fix
 	the options to the pixbuf save code.
 
