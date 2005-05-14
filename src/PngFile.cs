@@ -68,17 +68,7 @@ namespace FSpot {
 
 			protected string keyword;
 			protected string text;
-			protected static System.Text.Encoding Latin1 = System.Text.Encoding.GetEncoding (28591);
-			protected string GetString  (ref int i) 
-			{
-				for (; i < data.Length; i++) {
-					if (data [i] == 0)
-						break;
-				}	
-				
-				return System.Text.Encoding.ASCII.GetString (data, 0, i);
-			}
-
+			public static System.Text.Encoding Latin1 = System.Text.Encoding.GetEncoding (28591);
 			public TextChunk (string name, byte [] data) : base (name, data) {}
 
 			public override void Load (byte [] data)
@@ -92,7 +82,7 @@ namespace FSpot {
 
 			public static Chunk Create (string name, byte [] data)
 			{
-				return new ItxtChunk (name, data);
+				return new TextChunk (name, data);
 			}
 
 			public string Keyword {
@@ -107,7 +97,43 @@ namespace FSpot {
 				}
 			}
 		}
- 
+		
+		public class IccpChunk : Chunk {
+			string keyword;
+			byte [] profile;
+
+			public IccpChunk (string name, byte [] data) : base (name, data) {}
+			
+			public override void Load (byte [] data)
+			{
+				int i = 0;
+				keyword = GetString (ref i);
+				i++;
+				int compression = data [i++];
+				if (compression != 0)
+					throw new System.Exception ("Unknown Compression type");
+
+				profile = Chunk.Inflate (data, i, data.Length - i);
+			}
+
+			new public static Chunk Create (string name, byte [] data)
+			{
+				return new IccpChunk (name, data);
+			}
+
+			public string Keyword {
+				get {
+					return keyword;
+				}
+			}
+			
+			public byte [] Profile {
+				get {
+					return profile;
+				}
+			}
+		}
+
 		public class ItxtChunk : ZtxtChunk{
 			//public static string Name = "zTXt";
 
@@ -127,7 +153,7 @@ namespace FSpot {
 					byte [] inflated = Chunk.Inflate (data, i, data.Length - i);
 					text = TextChunk.Latin1.GetString (inflated, 0, inflated.Length);
 				} else {
-					text = System.Text.Encoding.ASCII.GetString (data, i, data.Length - i);
+					text = TextChunk.Latin1.GetString (data, i, data.Length - i);
 				}
 			}
 
@@ -188,6 +214,7 @@ namespace FSpot {
 				name_table ["tEXt"] = new ChunkGenerator (TextChunk.Create);
 				name_table ["zTXt"] = new ChunkGenerator (ZtxtChunk.Create);
 				name_table ["tIME"] = new ChunkGenerator (TimeChunk.Create);
+				name_table ["iCCP"] = new ChunkGenerator (IccpChunk.Create);
 			}
 			
 			public Chunk (string name, byte [] data) 
@@ -195,6 +222,16 @@ namespace FSpot {
 				this.Name = name;
 				this.data = data;
 				Load (data);
+			}
+
+			protected string GetString  (ref int i) 
+			{
+				for (; i < data.Length; i++) {
+					if (data [i] == 0)
+						break;
+				}	
+				
+				return TextChunk.Latin1.GetString (data, 0, i);
 			}
 
 			public virtual void Load (byte [] data)
@@ -230,7 +267,6 @@ namespace FSpot {
 			{
 				ChunkGenerator gen = (ChunkGenerator) name_table [name];
 				
-				System.Console.WriteLine ("Looking for {0}", name);
 				if (gen != null) {
 					System.Console.WriteLine ("found gererator");
 					return gen (name, data);
@@ -278,7 +314,6 @@ namespace FSpot {
 			    heading [7] != 10)
 			    throw new System.Exception ("This ain't no png file");
 
-			System.Console.WriteLine ("bleh");
 			chunk_list = new System.Collections.ArrayList ();
 
 			while (stream.Read (heading, 0, heading.Length) == heading.Length)
@@ -296,20 +331,33 @@ namespace FSpot {
 				//if (crc != chunk.Crc ())
 				//	throw new System.Exception ("chunk crc check failed");
 				
-				System.Console.WriteLine ("read one {0}", chunk);
+				System.Console.Write ("read one {0} {1}", chunk, chunk.Name);
 				chunk_list.Add (chunk);
 				if (chunk is TextChunk) {
 					TextChunk text = (TextChunk) chunk;
-					System.Console.WriteLine ("Parsed Text Chunk {0} {1} {2}", 
-								  text.Name, text.Keyword, text.Text);
+					System.Console.Write (" Text Chunk {0} {1}", 
+								  text.Keyword, text.Text);
 				}
-				System.Console.WriteLine ("reading two");
+				TimeChunk time = chunk as TimeChunk;
+				if (time != null)
+					System.Console.Write(" Time {0}", time.Time);
+				
+				System.Console.WriteLine ("");
 			}
 		}
 		
 		public static void Main (string [] args) 
 		{
-			PngFile png = new PngFile (args [0]);
+			
+			PngFile png;
+			foreach (string path in args) {
+				try {
+					new PngFile (path);
+				} catch (System.Exception e) {
+					System.Console.WriteLine ("Error loading {0}", path);
+					System.Console.WriteLine (e.ToString ());
+				}
+			}
 		}
 	}
 }
