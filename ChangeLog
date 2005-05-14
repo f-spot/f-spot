@@ -1,5 +1,8 @@
 2005-05-14  Larry Ewing  <lewing@novell.com>
 
+	* src/JpegHeader.cs: add BitConverter class that understands
+	endianess, use it.
+
 	* src/IthmbDb.cs: add different yuv coversion code.
 
 	* src/ImageFile.cs: add virtual save command.
