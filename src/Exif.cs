@@ -767,7 +767,12 @@ namespace Exif {
 		
 		[DllImport ("libexif.dll")]
 		internal static extern IntPtr exif_data_new_from_data (byte [] data, uint size);
-		
+
+		public ExifData (byte [] data)
+		{
+			handle = new HandleRef (this, exif_data_new_from_data (data, (uint) data.Length));
+		}
+
 		public ExifData (byte [] data, uint size)
 		{
 			handle = new HandleRef (this, exif_data_new_from_data (data, size));
