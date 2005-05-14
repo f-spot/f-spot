@@ -1,5 +1,8 @@
 2005-05-14  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufUtils.cs: add Save overload that takes a stream.  Fix
+	the options to the pixbuf save code.
+
 	* src/JpegHeader.cs: add BitConverter class that understands
 	endianess, use it.
 

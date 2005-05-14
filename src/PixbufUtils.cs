@@ -250,20 +250,43 @@ class PixbufUtils {
 		}
 	}
 
+	public static void Save (Gdk.Pixbuf pixbuf, System.IO.Stream stream, string type, string [] options, string [] values)
+	{
+		byte [] data;
+
+		data = PixbufUtils.Save (pixbuf, type, options, values);
+		stream.Write (data, 0, data.Length);
+	}
+
 	[DllImport("libgdk_pixbuf-2.0-0.dll")]
 	static extern bool gdk_pixbuf_save_to_bufferv (IntPtr raw, out IntPtr data, out uint length, string type, 
 						       string [] keys, string [] values, out IntPtr error);
+
 					
 	public static byte [] Save (Gdk.Pixbuf pixbuf, string type, string [] options, string [] values)
 	{
 		IntPtr error = IntPtr.Zero;
 		IntPtr data;
 		uint length;
+		string [] terminated_options = null;
+		string [] terminated_values = null;
+
+		if (options != null) {
+			terminated_options = new string [options.Length + 1];
+			Array.Copy (options, terminated_options, options.Length);
+		}
+
+		if (options != null) {
+			terminated_values = new string [values.Length + 1];
+			Array.Copy (values, terminated_values, values.Length);
+		}
+
 		gdk_pixbuf_save_to_bufferv (pixbuf.Handle, 
 					    out data, 
 					    out length, 
 					    type,
-					    options, values,
+					    terminated_options,
+					    terminated_values,
 					    out error);
 
 		if (error != IntPtr.Zero) 
