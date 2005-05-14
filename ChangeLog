@@ -1,5 +1,10 @@
 2005-05-13  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufUtils.cs: use ImageFile to get the orientation.
+	always close the stream.
+
+	* src/Exif.cs: add an overload to the data ctor.
+
 	* src/JpegHeader.cs: fix the saving code, make exif saving work.
 
 2005-05-13  Danilo Šegan  <dsegan@gmx.net>

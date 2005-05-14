@@ -138,7 +138,7 @@ class PixbufUtils {
 
 		public Pixbuf LoadFromFile (string path)
 		{
-			FileStream fs;
+			FileStream fs = null;
 
 			try {
 				orientation = GetOrientation (path);
@@ -160,6 +160,9 @@ class PixbufUtils {
 			} catch (Exception e) {
 				System.Console.WriteLine ("Error loading image {0}", path);
 				return null;
+			} finally {
+				if (fs != null)
+					fs.Close ();
 			}
 
 		}
@@ -562,12 +565,8 @@ class PixbufUtils {
 	
 	public static PixbufOrientation GetOrientation (string path)
 	{
-		Exif.ExifData data = new Exif.ExifData (path);
-
-		PixbufOrientation orientation = GetOrientation (data);
-		data.Dispose ();
-
-		return orientation;
+		FSpot.ImageFile img = FSpot.ImageFile.Create (path);
+		return img.Orientation;
 	}
 
 	[DllImport("libgnomeui-2-0.dll")]
