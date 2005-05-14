@@ -229,11 +229,17 @@ public class IthmbDb {
 					r = *(pixels ++);
 					g = *(pixels ++);
 					b = *(pixels ++);
-					
+
+#if false
 					y = ((16829 * r + 33039 * g +  6416 * b + 32768) >> 16) + 16;
 					u = ((-9714 * r - 19071 * g + 28784 * b + 32768) >> 16) + 128;
 					v = ((28784 * r - 24103 * g -  4681 * b + 32768) >> 16) + 128;
-					
+#else
+					// These were taken directly from the jfif spec
+					y  =    0.299  * r + 0.587  * g + 0.114  * b;
+					u  =   -0.1687 * r - 0.3313 * g + 0.5    * b + 128;
+					v  =    0.5    * r - 0.4187 * g - 0.0813 * b + 128;
+#endif
 					y = Clamp (y, 0, 255);
 					u = Clamp (u, 0, 255);
 					v = Clamp (v, 0, 255);

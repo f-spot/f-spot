@@ -1,5 +1,13 @@
 2005-05-14  Larry Ewing  <lewing@novell.com>
 
+	* src/IthmbDb.cs: add different yuv coversion code.
+
+	* src/ImageFile.cs: add virtual save command.
+
+	* src/Exif.cs: add integer conversions.
+
+	* src/JpegFile.cs: add the start of more complete saving code.
+
 	* src/PngFile.cs: start a PNG chunk parser to extract XMP.
 
 2005-05-13  Larry Ewing  <lewing@novell.com>

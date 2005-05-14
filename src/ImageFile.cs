@@ -22,6 +22,11 @@ namespace FSpot {
 			}
 		}
 		
+		public virtual void Save (Gdk.Pixbuf pixbuf, System.IO.Stream stream)
+		{
+			PixbufUtils.Save (pixbuf, stream, "jpeg", null, null);
+		}
+
 		public Gdk.Pixbuf Load ()
 		{
 			Gdk.Pixbuf orig = new Gdk.Pixbuf (this.Path);

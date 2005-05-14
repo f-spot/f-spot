@@ -18,7 +18,7 @@ namespace Exif {
 		InteroperabilityIndex		= 0x0001,
 		InteroperabilityVersion	        = 0x0002,
 		ImageWidth 			= 0x0100,
-		ImageLength 			= 0x0101,
+		ImageHeight 			= 0x0101,
 		BitsPersample 	         	= 0x0102,
 		Compression 			= 0x0103,
 		PhotometricInterpretation 	= 0x0106,
@@ -52,7 +52,7 @@ namespace Exif {
 		ReferenceBlackWhite		= 0x0214,
 		RelatedImageFileFormat   	= 0x1000,
 		RelatedImageWidth		= 0x1001,
-		RelatedImageLength		= 0x1002,
+		RelatedImageHeight		= 0x1002,
 		CFARepeatPatternDim		= 0x828d,
 		CFAPattern			= 0x828e,
 		BatteryLevel			= 0x828f,
@@ -556,12 +556,14 @@ namespace Exif {
 			SetData (data, 1);
 		}
 
+		public void SetData (uint s)
+		{
+			this.SetData (FSpot.BitConverter.GetBytes (s, this.ByteOrder == ByteOrder.Intel));
+		}
+
 		public void SetData (ushort s)
 		{
-			if (System.BitConverter.IsLittleEndian != (this.ByteOrder == ByteOrder.Intel))
-				s = (ushort) ((s >> 8) | (s << 8));
-
-			this.SetData (System.BitConverter.GetBytes (s), 2);
+			this.SetData (FSpot.BitConverter.GetBytes (s, this.ByteOrder == ByteOrder.Intel));
 		}	    
 
 		public void SetData (ushort [] data)
