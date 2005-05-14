@@ -1,5 +1,8 @@
 2005-05-13  Larry Ewing  <lewing@novell.com>
 
+	* src/JpegFile.cs: add some testing code to use the JpegHeader
+	code for exif saving.
+
 	* src/f-spot.glade: remove vfs export menu item.  Rename original
 	export to folder export.  Add plain export option.
 

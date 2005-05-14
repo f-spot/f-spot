@@ -43,7 +43,20 @@ namespace FSpot {
 			image_content.GetEntry (Exif.Tag.DateTime).Reset ();
 			
 			//this.ExifData.Dump ();
+
+#if USE_UNSTABLE_JPEG_HEADER_CODE
+			System.IO.FileStream stream = System.IO.File.Open (path, System.IO.FileMode.OpenOrCreate);
+			//System.IO.FileStream ostream = System.IO.File.Open ("tmp.jpg", System.IO.FileMode.OpenOrCreate);
+			JpegHeader header = new JpegHeader (stream);
+			header.Exif = this.ExifData;
+			stream.Position = 0;
+			header.Save (stream);
+			//ostream.Close ();
+			stream.Close ();
+#else 
 			JpegUtils.SaveExif (path, this.ExifData);
+#endif
+
 		}
 
 		public Gdk.Pixbuf GetEmbeddedThumbnail ()
