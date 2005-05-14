@@ -6669,15 +6669,6 @@ Photo Details</property>
 			  </child>
 
 			  <child>
-			    <widget class="GtkMenuItem" id="export_to_vfs1">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Export to _VFS...</property>
-			      <property name="use_underline">True</property>
-			      <signal name="activate" handler="HandleExportToVfs" last_modification_time="Thu, 16 Dec 2004 07:45:57 GMT"/>
-			    </widget>
-			  </child>
-
-			  <child>
 			    <widget class="GtkMenuItem" id="export_to_gallery">
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">Export to _Web Gallery...</property>
@@ -6689,7 +6680,7 @@ Photo Details</property>
 			  <child>
 			    <widget class="GtkMenuItem" id="export_to_original">
 			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Export to _Original...</property>
+			      <property name="label" translatable="yes">Export to _Folder...</property>
 			      <property name="use_underline">True</property>
 			      <signal name="activate" handler="HandleExportToOriginal" last_modification_time="Tue, 18 Jan 2005 14:38:36 GMT"/>
 			    </widget>
@@ -7039,7 +7030,7 @@ Photo Details</property>
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">_Month</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">True</property>
+			      <property name="active">False</property>
 			      <signal name="activate" handler="HandleArrangeByTime" last_modification_time="Fri, 20 Aug 2004 22:26:32 GMT"/>
 			    </widget>
 			  </child>
@@ -7049,7 +7040,7 @@ Photo Details</property>
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">_Directory</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">False</property>
+			      <property name="active">True</property>
 			      <property name="group">month</property>
 			      <signal name="activate" handler="HandleArrangeByDirectory" last_modification_time="Fri, 20 Aug 2004 22:26:32 GMT"/>
 			    </widget>
@@ -10354,7 +10345,7 @@ Photo Details</property>
 			  <property name="spacing">6</property>
 
 			  <child>
-			    <widget class="GtkRadioButton" id="orignal_radio">
+			    <widget class="GtkRadioButton" id="original_radio">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
 			      <property name="label" translatable="yes">Use Original.</property>
@@ -10383,7 +10374,7 @@ Photo Details</property>
 			      <property name="active">False</property>
 			      <property name="inconsistent">False</property>
 			      <property name="draw_indicator">True</property>
-			      <property name="group">orignal_radio</property>
+			      <property name="group">original_radio</property>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -10393,7 +10384,23 @@ Photo Details</property>
 			  </child>
 
 			  <child>
-			    <placeholder/>
+			    <widget class="GtkRadioButton" id="plain_radio">
+			      <property name="visible">True</property>
+			      <property name="can_focus">True</property>
+			      <property name="label" translatable="yes">Plain Files.</property>
+			      <property name="use_underline">True</property>
+			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <property name="focus_on_click">True</property>
+			      <property name="active">False</property>
+			      <property name="inconsistent">False</property>
+			      <property name="draw_indicator">True</property>
+			      <property name="group">original_radio</property>
+			    </widget>
+			    <packing>
+			      <property name="padding">0</property>
+			      <property name="expand">False</property>
+			      <property name="fill">False</property>
+			    </packing>
 			  </child>
 			</widget>
 		      </child>

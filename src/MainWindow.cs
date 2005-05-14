@@ -921,11 +921,6 @@ public class MainWindow {
 		new FSpot.GalleryExport (new FSpot.PhotoArray (SelectedPhotos ()));
 	}
 
-	void HandleExportToVfs (object sender, EventArgs args)
-	{
-		new FSpot.VfsExport (new FSpot.PhotoArray (SelectedPhotos ()));
-	}
-
 	void HandleExportToOriginal (object sender, EventArgs args)
 	{
 		new FSpot.FolderExport (new FSpot.PhotoArray (SelectedPhotos ()));

@@ -39,6 +39,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/InfoDisplay.cs		\
 	$(srcdir)/IPhotoCollection.cs		\
 	$(srcdir)/JpegFile.cs			\
+	$(srcdir)/JpegHeader.cs			\
 	$(srcdir)/JpegUtils.cs			\
 	$(srcdir)/Cms.cs			\
 	$(srcdir)/MainWindow.cs			\
@@ -80,7 +81,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/CameraSelectionDialog.cs	\
 	$(srcdir)/CameraFileSelectionDialog.cs	\
 	$(srcdir)/TagSelectionDialog.cs		\
-	$(srcdir)/VfsExport.cs			\
 	$(srcdir)/main.cs			\
 						\
 	$(srcdir)/gnomevfs/Gnome.VfsSharp.voidObjectObjectSignal.cs	\

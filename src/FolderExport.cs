@@ -62,6 +62,7 @@ namespace FSpot {
 		
 		public FolderExport (IPhotoCollection selection) : base ("folder_export_dialog")
 		{
+			/*
 			Gnome.Vfs.ModuleCallbackFullAuthentication auth = new Gnome.Vfs.ModuleCallbackFullAuthentication ();
 			auth.Callback += new Gnome.Vfs.ModuleCallbackHandler (HandleAuth);
 			auth.SetDefault ();
@@ -81,7 +82,7 @@ namespace FSpot {
 			msg.Callback += new Gnome.Vfs.ModuleCallbackHandler (HandleMsg);
 			msg.SetDefault ();
 			msg.Push ();
-			
+			*/
 			this.selection = selection;
 			
 			IconView view = (IconView) new IconView (selection);
@@ -137,9 +138,13 @@ namespace FSpot {
 					gallery = new FolderGallery (selection, gallery_path, gallery_name);
 				}
 
-				if (scale)
+				if (scale) {
+					System.Console.WriteLine ("setting scale to {0}", size);
 					gallery.SetScale (size);
-				
+				} else {
+					System.Console.WriteLine ("Exporting full size image");
+				}
+
 				gallery.Description = description;
 
 				gallery.Generate ();
@@ -403,6 +408,8 @@ namespace FSpot {
 		}
 
 		public void SetScale (int size) {
+			this.scale = true;
+			this.size = size;
 			requests [0].Width = size;
 			requests [0].Height = size;
 		}
