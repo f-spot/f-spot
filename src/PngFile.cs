@@ -38,19 +38,38 @@ namespace FSpot {
 			
 		}
 		
-		public class TextChunk : Chunk {
-			string keyword;
-			string text;
-			
-			public ItxtChunk (byte [] data)
+		public class ZtxtChunk : TextChunk {
+			byte Compression;
+
+			public ZtxtChunk (byte [] data)
 			{
 				int i;
+				keyword = GetKeyword (out i);
+				i++;
+				compression = data [i];
+			}
+
+
+		}
+		public class TextChunk : Chunk {
+			protected string keyword;
+			protected string text;
+			
+			protected string GetKeyword (out int i) 
+			{
 				for (int i = 0; i < data.Length; i++) {
 					if (data [i] == 0)
 						break;
-				}
+				}	
+				
+				return System.Text.ASCIIEncoding.GetString (data, 0, i);
+			}
 
-				keyword = System.Text.ASCIIEncoding.GetString (data, 0, i);
+			public ItxtChunk (byte [] data)
+			{
+				int i;
+
+				keyword = GetKeyword (out i);
 				i++;
 				text = System.Text.ASCIIEncoding.GetString (data, i, data.Length - i);
 			}
@@ -73,20 +92,49 @@ namespace FSpot {
 			}
 		}
  
-		public class ItxtChunk : Chunk{
-			string keyword;
-			string text;
+		public class TimeChunk : Chunk {
+			System.DateTime time;
 
+			public System.DateTime Time {
+				get {
+					int year = FSpot.BitConverter.ToUInt16 (data, 0, false);
+					return new System.DateTime (FSpot.BitConverter.ToUInt16 (data, 0, false),
+								    data [2], data [3], data [4], data [5], data [6]);
+
+				}
+				set {
+					byte [] year = BitConverter.GetBytes ((ushort)value.Year);
+					data [0] = year [0];
+					data [1] = year [1];
+					data [2] = (byte) value.Month;
+					data [3] = (byte) value.Day;
+					data [4] = (byte) value.Hour;
+					data [6] = (byte) value.Minute;
+					data [7] = (byte) value.Sec;
+				}
+			}
+			
+			protected static Create (string name, byte [] data)
+			{
+				TimeChunk chunk = new TimeChunk ();
+				chunk.Name = name;
+				chunk.data = data;
+				return chunk;
+			}
+		}
+
+		public class ItxtChunk : ZtxtChunk{
+			string Language;
+			byte Compressed;
 			public ItxtChunk (byte [] data)
 			{
 				int i;
-				for (int i = 0; i < data.Length; i++) {
-					if (data [i] == 0)
-						break;
-				}
-
-				keyword = System.Text.ASCIIEncoding.GetString (data, 0, i);
+				keyword = GetKeyword (out i);
 				i++;
+				Compressed = data [i++];
+				Compression = data [i++];
+				
+
 				text = System.Text.ASCIIEncoding.GetString (data, i, data.Length - i);
 			}
 
@@ -110,10 +158,18 @@ namespace FSpot {
 
 		public class Chunk {
 			public string Name;
-			public byte [] Data;
+			public byte [] data;
+
+			public byte [] Data {
+				get {
+					return Data [];
+				}
+			}
 			
 			static Chunk () {
 				name_table ["iTXt"] = new ChunkGenerator (ItxtChunk.Create);
+				name_table ["tEXt"] = new ChunkGenerator (TextChunk.Create);
+				name_table ["tIME"] = new ChunkGenerator (TimeChunk.Create);
 			}
 			
 			public bool Critical {
