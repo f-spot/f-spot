@@ -1,5 +1,8 @@
 2005-05-15  Larry Ewing  <lewing@novell.com>
 
+	* src/Tiff.cs: clean up the converter class to use BitConverter
+	add a main method for the time being.
+
 	* src/Cms.cs: remove uneeded unsafe keyword.
 
 	* src/PngFile.cs: start the decoder.

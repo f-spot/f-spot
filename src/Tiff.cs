@@ -1,4 +1,6 @@
-namespace Tiff {
+using FSpot;
+
+namespace FSpot.Tiff {
 	public enum TagId {
 		InteroperabilityIndex		= 0x0001,
 		InteroperabilityVersion	        = 0x0002,
@@ -248,43 +250,11 @@ namespace Tiff {
 	}
 	
 	public enum Endian {
-		Little,
-		Big
+		Big,
+		Little
 	}
 
 	public class Converter {
-		private static unsafe void PutBytes (byte *dest, byte *src, int count, Endian endian)
-		{
-			int i = 0;
-			if (System.BitConverter.IsLittleEndian == (endian == Endian.Little)) {
-				for (i = 0; i < count; i++) {
-					//System.Console.WriteLine ("Copying normal byte [{0}]= {1}", i, src[i]);
-					dest [i] = src [i];
-				}
-			} else {
-				for (i = 0; i < count; i++) {
-					//System.Console.WriteLine ("Copying swapped byte [{0}]= {1}", i, src[i]);
-					dest [i] = src [count - i -1];  
-				}
-			}
-		}
-
-		private static unsafe void PutBytes (byte *dest, byte [] src, int start, int count, Endian endian)
-		{
-			int i = 0;
-			if (System.BitConverter.IsLittleEndian == (endian == Endian.Little)) {
-				for (i = 0; i < count; i++) {
-					//System.Console.WriteLine ("Copying normal byte [{0}]= {1}", i, src[i]);
-					dest [i] = src [start + i];
-				}
-			} else {
-				for (i = 0; i < count; i++) {
-					//System.Console.WriteLine ("Copying swapped byte [{0}]= {1}", i, src[i]);
-					dest [i] = src [start + count - i -1];  
-				}
-			}
-		}
-
 		public static uint ReadUInt (System.IO.Stream stream, Endian endian)
 		{
 			byte [] tmp = new byte [4];
@@ -292,26 +262,7 @@ namespace Tiff {
 		        if (stream.Read (tmp, 0, tmp.Length) < 4)
 				throw new System.Exception ("Short Read");
 
-			return ToUInt (tmp, 0, endian);
-		}
-
-		public static uint ToUInt (byte [] src, int start, Endian endian)
-		{
-			if (start + src.Length < 4)
-				throw new System.Exception ("Invalid Length");
-
-			unsafe {
-				uint value;
-				PutBytes ((byte *)&value, src, start, 4, endian);
-				return value;
-			}
-		}
-
-		public static unsafe uint ToUInt (byte *src, Endian endian)
-		{ 
-			uint value;
-			PutBytes ((byte *)&value, src, 4, endian);
-			return value;
+			return BitConverter.ToUInt32 (tmp, 0, endian == Endian.Little);
 		}
 
 		public static ushort ReadUShort (System.IO.Stream stream, Endian endian)
@@ -320,27 +271,8 @@ namespace Tiff {
 
 		        if (stream.Read (tmp, 0, tmp.Length) < 2)
 				throw new System.Exception ("Short Read");
-			
-			return ToUShort (tmp, 0, endian);
-		}
 
-		public static ushort ToUShort (byte [] src, int start, Endian endian)
-		{
-			if (start + src.Length < 2)
-				throw new System.Exception ("Invalid Length");
-
-			unsafe {
-				ushort value;
-				PutBytes ((byte *)&value, src, start, 2, endian);
-				return value;
-			}
-		}
-
-		public static unsafe ushort ToUShort (byte *src, Endian endian)
-		{
-			ushort value;
-			PutBytes ((byte *)&value, src, 2, endian);
-			return value;
+			return BitConverter.ToUInt16 (tmp, 0, endian == Endian.Little);
 		}
 	}
 
@@ -364,7 +296,7 @@ namespace Tiff {
 				throw new System.Exception ("Invalid Tiff Header Block");
 
 			System.Console.WriteLine ("Converting Something");
-			directory_offset = Converter.ToUInt (data, 4, endian);
+			directory_offset = BitConverter.ToUInt32 (data, 4, endian == Endian.Little);
 			
 			if (directory_offset < 8)
 				throw new System.Exception ("Invalid IFD0 Offset [" + directory_offset.ToString () + "]"); 
@@ -554,6 +486,7 @@ namespace Tiff {
 		{
 		}
 	}
+
 	public class SubdirectoryEntry : LongEntry {
 		public uint directory_offset;
 		ImageDirectory Directory;
@@ -566,7 +499,7 @@ namespace Tiff {
 
 		public override void LoadExternal (System.IO.Stream stream)
 		{
-			directory_offset = Converter.ToUInt (raw_data, 0, endian);
+			directory_offset = BitConverter.ToUInt32 (raw_data, 0, endian == Endian.Little);
 			System.Console.WriteLine ("Entering Subdirectory {0} at {1}", tagid.ToString (), directory_offset);
 			Directory = new ImageDirectory (stream, directory_offset, endian);
 			System.Console.WriteLine ("Leaving Subdirectory {0} at {1}", tagid.ToString (), directory_offset);
@@ -648,8 +581,8 @@ namespace Tiff {
 
 		public static int ParseHeader (byte [] data, int start, out TagId tagid, out EntryType type, Endian endian)
 		{
-			tagid = (TagId) Converter.ToUShort (data, start, endian);
-			type = (EntryType) Converter.ToUShort (data, start + 2, endian);
+			tagid = (TagId) BitConverter.ToUInt16 (data, start, endian == Endian.Little);
+			type = (EntryType) BitConverter.ToUInt16 (data, start + 2, endian == Endian.Little);
 			return 4;
 		}
 		
@@ -675,10 +608,10 @@ namespace Tiff {
 		{
 			int i = start;
 
-			count = Converter.ToUInt (data, i, endian); i += 4;
+			count = BitConverter.ToUInt32 (data, i, endian == Endian.Little); i += 4;
 			int size = (int)count * GetTypeSize ();
 			if (size > 4)
-				data_offset = Converter.ToUInt (data, i, endian);
+				data_offset = BitConverter.ToUInt32 (data, i, endian == Endian.Little);
 			else {
 				data_offset = 0;
 				raw_data = new byte [size];
@@ -706,6 +639,22 @@ namespace Tiff {
 		{
 			get { 
 				return raw_data;
+			}
+		}
+
+		public static void Main (string [] args)
+		{
+
+			foreach (string path in args) {
+				try {
+					System.IO.Stream input = System.IO.File.Open (path,  System.IO.FileMode.Open);
+					Header h = new Header (input);
+					input.Close ();
+					h.Dump ();
+				} catch (System.Exception e) {
+					System.Console.WriteLine ("error loading {0}", path);
+					System.Console.WriteLine (e.ToString ());
+				}
 			}
 		}
 	}
