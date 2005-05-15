@@ -5,6 +5,7 @@ namespace FSpot {
 		string Path;
 		System.Collections.ArrayList chunk_list;
 		
+
 		public PngFile (string path)
 		{
 			this.Path = path;
@@ -197,13 +198,123 @@ namespace FSpot {
 			}
 		}
 
+		public enum ColorType : byte {
+			Gray = 0,
+			Rgb = 2,
+			Indexed = 3,
+			GrayAlpha = 4,	
+			RgbA = 6
+		};
+		
+		public enum CompressionMethod : byte {
+			Zlib = 0
+		};
+		
+		public enum InterlaceMethod : byte {
+			None = 0,
+			Adam7 = 1
+		};
+
+		public enum FilterMethod : byte {
+			Adaptive = 0
+		}
+
+		// Filter Types Show up as the first byte of each scanline
+		public enum FilterType  {
+			None = 0,
+			Sub = 1,
+			Up = 2,
+			Average = 3,
+			Paeth = 4
+		};
+
+		public class IhdrChunk : Chunk {
+			public uint Width;
+			public uint Height;
+			public byte Depth;
+			public ColorType Color;
+			public PngFile.CompressionMethod Compression;
+			public FilterMethod Filter;
+			public InterlaceMethod Interlace;
+
+			public IhdrChunk (string name, byte [] data) : base (name, data) {}
+			
+			public override void Load (byte [] data)
+			{
+				Width = BitConverter.ToUInt32 (data, 0, false);
+				Height = BitConverter.ToUInt32 (data, 4, false);
+				Depth = data [8];
+				Color = (ColorType) data [9];
+				if (Color != ColorType.Rgb)
+					throw new System.Exception (System.String.Format ("unsupported {0}", Color));
+
+				this.Compression = (CompressionMethod) data [10];
+				if (this.Compression != CompressionMethod.Zlib)
+					throw new System.Exception (System.String.Format ("unsupported {0}", Compression));
+
+				Filter = (FilterMethod) data [11];
+				if (Filter != FilterMethod.Adaptive)
+					throw new System.Exception (System.String.Format ("unsupported {0}", Filter));
+					
+				Interlace = (InterlaceMethod) data [12];
+				if (Interlace != InterlaceMethod.None)
+					throw new System.Exception (System.String.Format ("unsupported {0}", Interlace));
+
+			}
+
+			public int ScanlineComponents {
+				get {
+					switch (Color) {
+					case ColorType.Gray:
+					case ColorType.Indexed:
+						return 1;
+					case ColorType.GrayAlpha:
+						return 2;
+					case ColorType.Rgb:
+						return 3;
+					case ColorType.RgbA:
+						return 4;
+					default:
+						throw new System.Exception (System.String.Format ("Unknown format {0}", Color));
+					}
+				}
+			}
+
+			public int GetScanlineLength (int pass)
+			{
+				int length = 0;
+				if (Interlace == InterlaceMethod.None) {
+					int bits = ScanlineComponents * Depth;
+					length = bits / 8;
+
+					// add a byte if the bits don't fit
+					if (bits % 8 > 0)
+						length ++;
+					// and a byte for the FilterType
+					length ++;
+				} else {
+					throw new System.Exception (System.String.Format ("unsupported {0}", Interlace));
+				}
+
+				return length;
+			}
+
+			new public static Chunk Create (string name, byte [] data)
+			{
+				return new IhdrChunk (name, data);
+			}
+		}
+
 		public class Chunk {
 			public string Name;
-			public byte [] data;
+			protected byte [] data;
 
 			public byte [] Data {
 				get {
 					return data;
+				}
+				set {
+					Load (value);
 				}
 			}
 			
@@ -215,6 +326,7 @@ namespace FSpot {
 				name_table ["zTXt"] = new ChunkGenerator (ZtxtChunk.Create);
 				name_table ["tIME"] = new ChunkGenerator (TimeChunk.Create);
 				name_table ["iCCP"] = new ChunkGenerator (IccpChunk.Create);
+				name_table ["IHDR"] = new ChunkGenerator (IhdrChunk.Create);
 			}
 			
 			public Chunk (string name, byte [] data) 
@@ -299,6 +411,77 @@ namespace FSpot {
 			protected static System.Collections.Hashtable name_table = new System.Collections.Hashtable ();
 		}
 
+		public class ChunkInflater {
+			private Inflater inflater;
+			private System.Collections.ArrayList chunks;
+
+			public bool Fill () 
+			{
+				if (inflater.IsNeedingInput && chunks.Count > 0) {
+					if (chunks.Count > 0) {
+						inflater.SetInput (((Chunk)chunks[0]).Data);
+						chunks.RemoveAt (0);
+						return true;
+					} 
+					return false;
+				}
+				return true;
+			}
+			
+			public int Inflate (byte [] data, int start, int length)
+			{
+				int result = inflater.Inflate (data, start, length);
+				if (result < length) {
+					Fill ();
+					result += inflater.Inflate (data, result, length - result);
+				}
+
+				return result;
+			}
+		       
+			public void Add (Chunk chunk)
+			{
+				chunks.Add (chunk);
+				Fill ();
+			}
+		}
+		
+		public class ScanlineDecoder {
+			int width;
+			int height;
+			int row;
+			int col;
+			ChunkInflater inflater;
+			byte [] buffer;
+
+			public ScanlineDecoder (ChunkInflater inflater, int width, int height)
+			{
+				this.inflater = inflater;
+				this.row = 0;
+				this.height = height;
+				this.width = width;
+				
+				buffer = new byte [width * height];
+
+				Fill ();
+			}
+
+			public void Fill () 
+			{
+				for (; row < height; row ++) { 
+					col = inflater.Inflate (buffer, row * height, width);
+
+					if (col < width)
+						throw new System.Exception ("Short Read");
+				}
+			}
+
+			public void Filter ()
+			{
+				
+			}
+		}
+
 	        void Load (System.IO.Stream stream)
 		{
 			byte [] heading = new byte [8];
@@ -316,8 +499,7 @@ namespace FSpot {
 
 			chunk_list = new System.Collections.ArrayList ();
 
-			while (stream.Read (heading, 0, heading.Length) == heading.Length)
-			{
+			for (int i = 0; stream.Read (heading, 0, heading.Length) == heading.Length; i++) {
 				uint length = BitConverter.ToUInt32 (heading, 0, false);
 				string name = System.Text.Encoding.ASCII.GetString (heading, 4, 4);
 				byte [] data = new byte [length];
@@ -333,23 +515,29 @@ namespace FSpot {
 				
 				System.Console.Write ("read one {0} {1}", chunk, chunk.Name);
 				chunk_list.Add (chunk);
+
 				if (chunk is TextChunk) {
 					TextChunk text = (TextChunk) chunk;
 					System.Console.Write (" Text Chunk {0} {1}", 
 								  text.Keyword, text.Text);
 				}
+
 				TimeChunk time = chunk as TimeChunk;
 				if (time != null)
 					System.Console.Write(" Time {0}", time.Time);
-				
+
 				System.Console.WriteLine ("");
+				
+				if (chunk.Name == "IEND")
+					break;
 			}
+
+			
+			
 		}
-		
+
 		public static void Main (string [] args) 
 		{
-			
-			PngFile png;
 			foreach (string path in args) {
 				try {
 					new PngFile (path);
