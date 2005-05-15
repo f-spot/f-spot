@@ -157,7 +157,7 @@ namespace Cms {
 		[DllImport("liblcms-1.0.0.dll")]
 		static extern IntPtr cmsOpenProfileFromMem (byte [] data, uint length);
 
-		public unsafe Profile (byte [] data)
+		public Profile (byte [] data)
 		{
 			this.handle = new HandleRef (this, cmsOpenProfileFromMem (data, (uint)data.Length));
 		}
