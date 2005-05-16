@@ -280,12 +280,12 @@ namespace FSpot {
 				}
 			}
 
-			public int GetScanlineLength (int pass)
+			public uint GetScanlineLength (int pass)
 			{
-				int length = 0;
+				uint length = 0;
 				if (Interlace == InterlaceMethod.None) {
 					int bits = ScanlineComponents * Depth;
-					length = bits / 8;
+					length = (uint) (this.Width * bits / 8);
 
 					// add a byte if the bits don't fit
 					if (bits % 8 > 0)
@@ -415,6 +415,12 @@ namespace FSpot {
 			private Inflater inflater;
 			private System.Collections.ArrayList chunks;
 
+			public ChunkInflater ()
+			{
+				inflater = new Inflater ();
+				chunks = new System.Collections.ArrayList ();
+			}
+
 			public bool Fill () 
 			{
 				if (inflater.IsNeedingInput && chunks.Count > 0) {
@@ -430,9 +436,11 @@ namespace FSpot {
 			
 			public int Inflate (byte [] data, int start, int length)
 			{
+				System.Console.WriteLine ("Attempting Inflate {0} {1} {2}", data.Length, start, length);
 				int result = inflater.Inflate (data, start, length);
 				if (result < length) {
 					Fill ();
+					System.Console.WriteLine ("Attempting Second after fill Inflate {0} {1} {2}", data.Length, result, length - result);
 					result += inflater.Inflate (data, result, length - result);
 				}
 
@@ -454,12 +462,12 @@ namespace FSpot {
 			ChunkInflater inflater;
 			byte [] buffer;
 
-			public ScanlineDecoder (ChunkInflater inflater, int width, int height)
+			public ScanlineDecoder (ChunkInflater inflater, uint width, uint height)
 			{
 				this.inflater = inflater;
 				this.row = 0;
-				this.height = height;
-				this.width = width;
+				this.height = (int)height;
+				this.width = (int)width;
 				
 				buffer = new byte [width * height];
 
@@ -469,7 +477,7 @@ namespace FSpot {
 			public void Fill () 
 			{
 				for (; row < height; row ++) { 
-					col = inflater.Inflate (buffer, row * height, width);
+					col = inflater.Inflate (buffer, row * width, width);
 
 					if (col < width)
 						throw new System.Exception ("Short Read");
@@ -531,9 +539,19 @@ namespace FSpot {
 				if (chunk.Name == "IEND")
 					break;
 			}
+			
+			ChunkInflater ci = new ChunkInflater ();
+			foreach (Chunk chunk in chunk_list) {
+				if (chunk.Name == "IDAT")
+					ci.Add (chunk);
+			}
+			
+			IhdrChunk ihdr = (IhdrChunk) chunk_list [0];
+			System.Console.WriteLine ("Attempting to to inflate image {0}.{1}({2}, {3})", ihdr.Color, ihdr.Depth, ihdr.Width, ihdr.Height);
+			ScanlineDecoder decoder = new ScanlineDecoder (ci, ihdr.GetScanlineLength (0), ihdr.Height);
+			decoder.Fill ();
 
-			
-			
+			System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXXXXXXXX Infate ############################");
 		}
 
 		public static void Main (string [] args) 

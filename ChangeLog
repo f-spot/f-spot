@@ -1,5 +1,8 @@
 2005-05-15  Larry Ewing  <lewing@novell.com>
 
+	* src/PngFile.cs: implment the scanline inflater.  It still
+	doesn't work for interlaced images.
+
 	* src/Tiff.cs: clean up the converter class to use BitConverter
 	add a main method for the time being.
 
