@@ -245,8 +245,8 @@ namespace FSpot {
 				Height = BitConverter.ToUInt32 (data, 4, false);
 				Depth = data [8];
 				Color = (ColorType) data [9];
-				if (Color != ColorType.Rgb)
-					throw new System.Exception (System.String.Format ("unsupported {0}", Color));
+				//if (Color != ColorType.Rgb)
+				//	throw new System.Exception (System.String.Format ("unsupported {0}", Color));
 
 				this.Compression = (CompressionMethod) data [10];
 				if (this.Compression != CompressionMethod.Zlib)
@@ -436,7 +436,7 @@ namespace FSpot {
 			
 			public int Inflate (byte [] data, int start, int length)
 			{
-				System.Console.WriteLine ("Attempting Inflate {0} {1} {2}", data.Length, start, length);
+				//System.Console.WriteLine ("Attempting Inflate {0} {1} {2}", data.Length, start, length);
 				int result = inflater.Inflate (data, start, length);
 				if (result < length) {
 					Fill ();
@@ -453,7 +453,15 @@ namespace FSpot {
 				Fill ();
 			}
 		}
-		
+
+		private class ScanlineImage {
+			int Width;
+			int Height;
+			byte [] Data;
+			int Level;
+
+		}
+
 		public class ScanlineDecoder {
 			int width;
 			int height;
@@ -483,13 +491,138 @@ namespace FSpot {
 						throw new System.Exception ("Short Read");
 				}
 			}
-
-			public void Filter ()
+			
+			private byte PaethPredict (byte a, byte b, byte c)
 			{
+				int p = a + b - c;
+				int pa = System.Math.Abs (p - a);
+				int pb = System.Math.Abs (p - b);
+				int pc = System.Math.Abs (p - c);
+				if (pa <= pb && pa <= pc)
+					return a;
+				else if (pb <= pc)
+					return b;
+				else 
+					return c;
+			}
+			
+			public void ReconstructRow (int row, int channels)
+			{
+				int offset = row * width;
+				FilterType type = (FilterType) buffer [offset];
+				byte a = 0;
+				byte x;
+				byte b;
+				byte c = 0;
+
+				buffer [offset++] = 0;
 				
+				//System.Console.WriteLine ("type = {0}", type);
+				for (int col = 1; col < this.width;  col++) {
+					x = buffer [offset];
+					a = col < channels ? (byte) 0 : (byte) buffer [offset - channels];
+					b = (offset - width) < 0 ? (byte) 0 : (byte) buffer [offset - width];
+					c = (offset - width < channels) || (col < channels) ? (byte) 0 : (byte) buffer [offset - width - channels];
+
+					switch (type) {
+					case FilterType.None:
+						break;
+					case FilterType.Sub:
+						x = (byte) (x + a);
+						break;
+					case FilterType.Up:
+						x = (byte) (x + b);
+						break;
+					case FilterType.Average:
+						x = (byte) (x + ((a + b) >> 1));
+						break;
+					case FilterType.Paeth:
+						x = (byte) (x + PaethPredict (a, b, c));
+						break;
+					default:					
+						throw new System.Exception (System.String.Format ("Invalid FilterType {0}", type));
+					}
+					
+					//System.Console.Write ("{0}.", x);
+					buffer [offset ++] = x;
+				}
+
+			}
+				
+
+			public unsafe void UnpackRGB8Line (Gdk.Pixbuf dest, int line)
+			{
+				int pos = line * width + 1;
+				int length = width - 1;
+				byte * pixels = (byte *) dest.Pixels;
+				pixels += line * dest.Rowstride;
+				if (dest.NChannels != 3)
+					throw new System.Exception ("bad pixbuf format");
+
+				System.Runtime.InteropServices.Marshal.Copy (buffer, pos, 
+									     (System.IntPtr)pixels, dest.Width * 3);
+
+			}
+
+			public unsafe void UnpackGray8Line (Gdk.Pixbuf dest, int line)
+			{
+				int pos = line * width + 1;
+				byte * pixels = (byte *) dest.Pixels;
+
+				pixels += line * dest.Rowstride;
+
+				if (dest.NChannels != 3)
+					throw new System.Exception ("bad pixbuf format");
+
+				int i = 0;
+				while (i < dest.Width * 3) {
+					pixels [i++] = buffer [pos];
+					pixels [i++] = buffer [pos];
+					pixels [i++] = buffer [pos];
+					pos ++;
+				}
 			}
 		}
+		
+		public Gdk.Pixbuf GetPixbuf ()
+		{
+			ChunkInflater ci = new ChunkInflater ();
+			foreach (Chunk chunk in chunk_list) {
+				if (chunk.Name == "IDAT")
+					ci.Add (chunk);
+			}
 
+			IhdrChunk ihdr = (IhdrChunk) chunk_list [0];
+			System.Console.WriteLine ("Attempting to to inflate image {0}.{1}({2}, {3})", ihdr.Color, ihdr.Depth, ihdr.Width, ihdr.Height);
+			ScanlineDecoder decoder = new ScanlineDecoder (ci, ihdr.GetScanlineLength (0), ihdr.Height);
+			decoder.Fill ();
+			//Gdk.Pixbuf pixbuf = decoder.GetPixbuf ();
+
+			System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXXXXXXXX Inflate ############################");
+
+			bool alpha = (ihdr.Color == ColorType.GrayAlpha || ihdr.Color == ColorType.RgbA);
+
+			Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, 
+							    alpha, 8, (int)ihdr.Width, (int)ihdr.Height);
+			
+			for (int line = 0; line < ihdr.Height; line++) {
+				switch (ihdr.Color) {
+				case ColorType.Rgb:
+					decoder.ReconstructRow (line, 3);
+					decoder.UnpackRGB8Line (pixbuf, line);
+					break;
+				case ColorType.Gray:
+					decoder.ReconstructRow (line, 1);
+					decoder.UnpackGray8Line (pixbuf, line);
+					break;
+				default:
+					throw new System.Exception (System.String.Format ("unhandled color type {0}", ihdr.Color));
+				}
+			}
+			
+			return pixbuf;
+		}
+		
 	        void Load (System.IO.Stream stream)
 		{
 			byte [] heading = new byte [8];
@@ -539,31 +672,25 @@ namespace FSpot {
 				if (chunk.Name == "IEND")
 					break;
 			}
-			
-			ChunkInflater ci = new ChunkInflater ();
-			foreach (Chunk chunk in chunk_list) {
-				if (chunk.Name == "IDAT")
-					ci.Add (chunk);
-			}
-			
-			IhdrChunk ihdr = (IhdrChunk) chunk_list [0];
-			System.Console.WriteLine ("Attempting to to inflate image {0}.{1}({2}, {3})", ihdr.Color, ihdr.Depth, ihdr.Width, ihdr.Height);
-			ScanlineDecoder decoder = new ScanlineDecoder (ci, ihdr.GetScanlineLength (0), ihdr.Height);
-			decoder.Fill ();
-
-			System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXXXXXXXX Infate ############################");
 		}
 
 		public static void Main (string [] args) 
 		{
+			Gtk.Application.Init ();
 			foreach (string path in args) {
 				try {
-					new PngFile (path);
+					Gtk.Window win = new Gtk.Window (path);
+					Gtk.Image image = new Gtk.Image ();
+					win.Add (image);
+					PngFile png = new PngFile (path);
+					image.Pixbuf = png.GetPixbuf ();
+					win.ShowAll ();
 				} catch (System.Exception e) {
 					System.Console.WriteLine ("Error loading {0}", path);
 					System.Console.WriteLine (e.ToString ());
 				}
 			}
+			Gtk.Application.Run ();
 		}
 	}
 }
