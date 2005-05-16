@@ -492,7 +492,7 @@ namespace FSpot {
 				}
 			}
 			
-			private byte PaethPredict (byte a, byte b, byte c)
+			private static byte PaethPredict (byte a, byte b, byte c)
 			{
 				int p = a + b - c;
 				int pa = System.Math.Abs (p - a);
@@ -505,7 +505,21 @@ namespace FSpot {
 				else 
 					return c;
 			}
-			
+
+			private static ushort PaethPredict (ushort a, ushort b, ushort c)
+			{
+				int p = a + b - c;
+				int pa = System.Math.Abs (p - a);
+				int pb = System.Math.Abs (p - b);
+				int pc = System.Math.Abs (p - c);
+				if (pa <= pb && pa <= pc)
+					return a;
+				else if (pb <= pc)
+					return b;
+				else 
+					return c;
+			}
+
 			public void ReconstructRow (int row, int channels)
 			{
 				int offset = row * width;
@@ -514,15 +528,16 @@ namespace FSpot {
 				byte x;
 				byte b;
 				byte c = 0;
-
-				buffer [offset++] = 0;
+				
+				offset++;
+				//buffer [offset++] = 0;
 				
 				//System.Console.WriteLine ("type = {0}", type);
 				for (int col = 1; col < this.width;  col++) {
 					x = buffer [offset];
-					a = col < channels ? (byte) 0 : (byte) buffer [offset - channels];
+					a = col < channels + 1? (byte) 0 : (byte) buffer [offset - channels];
 					b = (offset - width) < 0 ? (byte) 0 : (byte) buffer [offset - width];
-					c = (offset - width < channels) || (col < channels) ? (byte) 0 : (byte) buffer [offset - width - channels];
+					c = (offset - width) < 0 || (col < channels + 1) ? (byte) 0 : (byte) buffer [offset - width - channels];
 
 					switch (type) {
 					case FilterType.None:
@@ -534,7 +549,7 @@ namespace FSpot {
 						x = (byte) (x + b);
 						break;
 					case FilterType.Average:
-						x = (byte) (x + ((a + b) >> 1));
+						x = (byte) (x + (System.Math.Floor ((a + b) / 2)));
 						break;
 					case FilterType.Paeth:
 						x = (byte) (x + PaethPredict (a, b, c));
@@ -548,19 +563,82 @@ namespace FSpot {
 				}
 
 			}
-				
 
-			public unsafe void UnpackRGB8Line (Gdk.Pixbuf dest, int line)
+			public void ReconstructRow16 (int row, int channels)
+			{
+				int offset = row * width;
+				FilterType type = (FilterType) buffer [offset];
+				ushort a = 0;
+				ushort x;
+				ushort b;
+				ushort c = 0;
+
+				buffer [offset++] = 0;
+				
+				//channels *= 2;
+
+				//System.Console.WriteLine ("type = {0}", type);
+				for (int col = 1; col < this.width;  col+= 2) {
+					x = buffer [offset];
+					a = col < channels ? (ushort) 0 : (ushort) BitConverter.ToUInt16 (buffer, offset - channels, false);
+					b = (offset - width) < 0 ? (ushort) 0 : (ushort) BitConverter.ToUInt16 (buffer, offset - width, false);
+					c = (offset - width < 0) || (col < channels) ? (ushort) 0 : (ushort) BitConverter.ToUInt16 (buffer, offset - width - channels, false);
+
+					switch (type) {
+					case FilterType.None:
+						break;
+					case FilterType.Sub:
+						x = (ushort) (x + a);
+						break;
+					case FilterType.Up:
+						x = (ushort) (x + b);
+						break;
+					case FilterType.Average:
+						x = (ushort) (x + ((a + b) / 2));
+						break;
+					case FilterType.Paeth:
+						x = (ushort) (x + PaethPredict (a, b, c));
+						break;
+					default:					
+						throw new System.Exception (System.String.Format ("Invalid FilterType {0}", type));
+					}
+					
+					//System.Console.Write ("{0}.", x);
+					foreach (byte v in BitConverter.GetBytes (x, false)) {
+						buffer [offset ++] = v;
+					}
+				}
+			}
+		
+			public unsafe void UnpackRGB16Line (Gdk.Pixbuf dest, int line, int channels)
+			{
+				int pos = line * width + 1;
+				byte * pixels = (byte *) dest.Pixels;
+				
+				pixels += line * dest.Rowstride;
+				
+				if (dest.NChannels != channels)
+					throw new System.Exception ("bad pixbuf format");
+
+				int i = 0;
+				while (i < dest.Width * channels) {
+					pixels [i++] = (byte) (BitConverter.ToUInt16 (buffer, pos, false) / 256);
+					pos += 2;
+				}
+
+			}
+
+			public unsafe void UnpackRGB8Line (Gdk.Pixbuf dest, int line, int channels)
 			{
 				int pos = line * width + 1;
 				int length = width - 1;
 				byte * pixels = (byte *) dest.Pixels;
 				pixels += line * dest.Rowstride;
-				if (dest.NChannels != 3)
+				if (dest.NChannels != channels)
 					throw new System.Exception ("bad pixbuf format");
 
 				System.Runtime.InteropServices.Marshal.Copy (buffer, pos, 
-									     (System.IntPtr)pixels, dest.Width * 3);
+									     (System.IntPtr)pixels, dest.Width * channels);
 
 			}
 
@@ -580,6 +658,26 @@ namespace FSpot {
 					pixels [i++] = buffer [pos];
 					pixels [i++] = buffer [pos];
 					pos ++;
+				}
+			}
+			
+			public unsafe void UnpackGray16Line (Gdk.Pixbuf dest, int line)
+			{
+				int pos = line * width + 1;
+				byte * pixels = (byte *) dest.Pixels;
+
+				pixels += line * dest.Rowstride;
+
+				if (dest.NChannels != 3)
+					throw new System.Exception ("bad pixbuf format");
+
+				int i = 0;
+				while (i < dest.Width * 3) {
+					byte val = (byte) (BitConverter.ToUInt16 (buffer, pos, false) / 256);
+					pixels [i++] = val;
+					pixels [i++] = val;
+					pixels [i++] = val;
+					pos += 2;
 				}
 			}
 		}
@@ -608,12 +706,31 @@ namespace FSpot {
 			for (int line = 0; line < ihdr.Height; line++) {
 				switch (ihdr.Color) {
 				case ColorType.Rgb:
-					decoder.ReconstructRow (line, 3);
-					decoder.UnpackRGB8Line (pixbuf, line);
+					if (ihdr.Depth == 16) {
+						decoder.ReconstructRow (line, 6);
+						decoder.UnpackRGB16Line (pixbuf, line, 3);
+					} else {
+						decoder.ReconstructRow (line, 3);
+						decoder.UnpackRGB8Line (pixbuf, line, 3);
+					}
+					break;
+				case ColorType.RgbA:
+					if (ihdr.Depth == 16) {
+						decoder.ReconstructRow (line, 8);
+						decoder.UnpackRGB16Line (pixbuf, line, 4);						
+					} else {
+						decoder.ReconstructRow (line, 4);
+						decoder.UnpackRGB8Line (pixbuf, line, 4);
+					}
 					break;
 				case ColorType.Gray:
-					decoder.ReconstructRow (line, 1);
-					decoder.UnpackGray8Line (pixbuf, line);
+					if (ihdr.Depth == 16) {
+						decoder.ReconstructRow (line, 2);
+						decoder.UnpackGray16Line (pixbuf, line);
+					} else {
+						decoder.ReconstructRow (line, 1);
+						decoder.UnpackGray8Line (pixbuf, line);
+					}
 					break;
 				default:
 					throw new System.Exception (System.String.Format ("unhandled color type {0}", ihdr.Color));
