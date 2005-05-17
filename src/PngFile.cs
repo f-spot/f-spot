@@ -5,7 +5,6 @@ namespace FSpot {
 		string Path;
 		System.Collections.ArrayList chunk_list;
 		
-
 		public PngFile (string path)
 		{
 			this.Path = path;
@@ -447,14 +446,6 @@ namespace FSpot {
 			}
 		}
 
-		private class ScanlineImage {
-			int Width;
-			int Height;
-			byte [] Data;
-			int Level;
-
-		}
-
 		public class ScanlineDecoder {
 			int width;
 			int height;
@@ -570,6 +561,57 @@ namespace FSpot {
 
 			}
 
+			public unsafe void UnpackRGBIndexedLine (Gdk.Pixbuf dest, int line, int depth, byte [] palette, byte [] alpha)
+			{
+				int pos = line * width + 1;
+				byte * pixels = (byte *) dest.Pixels;
+				
+				pixels += line * dest.Rowstride;
+				int channels = dest.NChannels;
+				int div = (8 / depth);
+				byte mask = (byte)(0xff >> (8 - depth));
+
+				for (int i = 0; i < dest.Width; i++) {
+					int val = buffer [pos + i / div];
+					int shift = (8 - depth) - (i % div) * depth;
+
+					if (depth != 8) {
+						val = (byte) ((val & (byte)(mask << shift)) >> shift);
+					}
+							
+					pixels [i * channels] = palette [val * 3];
+					pixels [i * channels + 1] = palette [val * 3 + 1];
+					pixels [i * channels + 2] = palette [val * 3 + 2];
+					if (channels > 3 && alpha != null)
+						pixels [i * channels + 3] = alpha [val]; 
+				}
+			}
+
+			public unsafe void UnpackGrayLine (Gdk.Pixbuf dest, int line, int depth)
+			{
+				int pos = line * width + 1;
+				byte * pixels = (byte *) dest.Pixels;
+				
+				pixels += line * dest.Rowstride;
+				int channels = dest.NChannels;
+				int div = (8 / depth);
+				byte mask = (byte)(0xff >> (8 - depth));
+
+				for (int i = 0; i < dest.Width; i++) {
+					byte val = buffer [pos + i / div];
+					int shift = (8 - depth) - (i % div) * depth;
+
+					if (depth != 8) {
+						val = (byte) ((val & (byte)(mask << shift)) >> shift);
+						val = (byte)  (((val * 0xff) + (mask >> 1)) / mask); 
+					}
+					
+					pixels [i * channels] = val;
+					pixels [i * channels + 1] = val;
+					pixels [i * channels + 2] = val;
+				}
+			}
+
 			public unsafe void UnpackRGB16Line (Gdk.Pixbuf dest, int line, int channels)
 			{
 				int pos = line * width + 1;
@@ -602,25 +644,6 @@ namespace FSpot {
 
 			}
 
-			public unsafe void UnpackGray8Line (Gdk.Pixbuf dest, int line)
-			{
-				int pos = line * width + 1;
-				byte * pixels = (byte *) dest.Pixels;
-
-				pixels += line * dest.Rowstride;
-
-				if (dest.NChannels != 3)
-					throw new System.Exception ("bad pixbuf format");
-
-				int i = 0;
-				while (i < dest.Width * 3) {
-					pixels [i++] = buffer [pos];
-					pixels [i++] = buffer [pos];
-					pixels [i++] = buffer [pos];
-					pos ++;
-				}
-			}
-			
 			public unsafe void UnpackGray16Line (Gdk.Pixbuf dest, int line)
 			{
 				int pos = line * width + 1;
@@ -640,103 +663,32 @@ namespace FSpot {
 					pos += 2;
 				}
 			}
-			
-			public unsafe void UnpackGray4Line (Gdk.Pixbuf dest, int line)
-			{
-				int pos = line * width + 1;
-				byte * pixels = (byte *) dest.Pixels;
-				
-				pixels += line * dest.Rowstride;
-				
-				int i = 0;
-				while (i < dest.Width) {
-					byte val;
-					val = buffer [pos + i / 2];
-					val = (byte) ((i % 2 > 0) ? (val & 0x0f) : ((val & 0xf0) >> 4));
-					val = (byte)  (((val * 0xff) + 8) / 0x0f); 
-
-					pixels [i * 3 + 0] = val;
-					pixels [i * 3 + 1] = val;
-					pixels [i * 3 + 2] = val;
-					i++;
-				}
-			}			
-			
-			public unsafe void UnpackGray1Line (Gdk.Pixbuf dest, int line)
-			{
-				int pos = line * width + 1;
-				byte * pixels = (byte *) dest.Pixels;
-				
-				pixels += line * dest.Rowstride;
-				
-				int i = 0;
-				while (i < dest.Width) {
-					byte val = buffer [pos + i / 8];
-				        int shift = 7 - (i % 8);
-
-					val = (byte)((val & (1 << shift)) > 0 ? 0xff : 0x00);
-					
-				        
-					pixels [i * 3 + 0] = val;
-					pixels [i * 3 + 1] = val;
-					pixels [i * 3 + 2] = val;
-					i++;
-				}
-			}
-
-			public unsafe void UnpackGray2Line (Gdk.Pixbuf dest, int line)
-			{
-				int pos = line * width + 1;
-				byte * pixels = (byte *) dest.Pixels;
-				
-				pixels += line * dest.Rowstride;
-				
-				int i = 0;
-				while (i < dest.Width) {
-					byte val;
-					val = buffer [pos + i / 4];
-					switch (i % 4) {
-					case 0:
-						val = (byte) (val & 0x03);
-						break;
-					case 1:
-						val = (byte) ((val & 0x0C) >> 2);
-						break;
-					case 2:
-						val = (byte) ((val & 0x30) >> 4);
-						break;
-					case 3:
-						val = (byte) ((val & 0xC0) >> 6);
-						break;
-					}						
-						
-					val = (byte) ((((double)val * 0xff)/ 0x03) + 0.5); 
-					
-					pixels [i * 3 + 0] = val;
-					pixels [i * 3 + 1] = val;
-					pixels [i * 3 + 2] = val;
-					i++;
-				}
-			}
 		}
 		
 		public Gdk.Pixbuf GetPixbuf ()
 		{
 			ChunkInflater ci = new ChunkInflater ();
+			Chunk palette = null;
+			Chunk transparent = null;
+
 			foreach (Chunk chunk in chunk_list) {
 				if (chunk.Name == "IDAT")
 					ci.Add (chunk);
+				else if (chunk.Name == "PLTE") 
+					palette = chunk;
+				else if (chunk.Name == "tRNS")
+					transparent = chunk;
 			}
 
 			IhdrChunk ihdr = (IhdrChunk) chunk_list [0];
-			//System.Console.WriteLine ("Attempting to to inflate image {0}.{1}({2}, {3})", ihdr.Color, ihdr.Depth, ihdr.Width, ihdr.Height);
+			System.Console.WriteLine ("Attempting to to inflate image {0}.{1}({2}, {3})", ihdr.Color, ihdr.Depth, ihdr.Width, ihdr.Height);
 			ScanlineDecoder decoder = new ScanlineDecoder (ci, ihdr.GetScanlineLength (0), ihdr.Height);
 			decoder.Fill ();
 			//Gdk.Pixbuf pixbuf = decoder.GetPixbuf ();
 
 			//System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXXXXXXXX Inflate ############################");
 
-			bool alpha = (ihdr.Color == ColorType.GrayAlpha || ihdr.Color == ColorType.RgbA);
+			bool alpha = (ihdr.Color == ColorType.GrayAlpha || ihdr.Color == ColorType.RgbA || transparent != null);
 
 			Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, 
 							    alpha, 8, (int)ihdr.Width, (int)ihdr.Height);
@@ -767,25 +719,21 @@ namespace FSpot {
 						decoder.ReconstructRow (line, 2);
 						decoder.UnpackGray16Line (pixbuf, line);
 						break;
-					case 8:
-						decoder.ReconstructRow (line, 1);
-						decoder.UnpackGray8Line (pixbuf, line);
-						break;
-					case 4:
-						decoder.ReconstructRow (line, 1);
-						decoder.UnpackGray4Line (pixbuf, line);
-						break;
-					case 2:
-						decoder.ReconstructRow (line, 1);
-						decoder.UnpackGray2Line (pixbuf, line);
-						break;
-					case 1:
-						decoder.ReconstructRow (line, 1);
-						decoder.UnpackGray1Line (pixbuf, line);
-						break;
 					default:
-						throw new System.Exception (System.String.Format ("Unhandled Depth {0}.{1}", ihdr.Color, ihdr.Depth));
+						decoder.ReconstructRow (line, 1);
+						decoder.UnpackGrayLine (pixbuf, line, ihdr.Depth);
+						//throw new System.Exception (System.String.Format ("Unhandled Depth {0}.{1}", ihdr.Color, ihdr.Depth));
+
+						break;
 					}
+					break;
+				case ColorType.Indexed:
+					decoder.ReconstructRow (line, 1);
+					decoder.UnpackRGBIndexedLine (pixbuf, 
+								      line, 
+								      ihdr.Depth, 
+								      palette.Data, 
+								      transparent != null ? transparent.Data : null);
 					break;
 				default:
 					throw new System.Exception (System.String.Format ("unhandled color type {0}", ihdr.Color));
