@@ -287,9 +287,6 @@ namespace FSpot {
 					int bits = ScanlineComponents * Depth;
 					length = (uint) (this.Width * bits / 8);
 
-					// add a byte if the bits don't fit
-					if (bits % 8 > 0)
-						length ++;
 					// and a byte for the FilterType
 					length ++;
 				} else {
@@ -380,7 +377,7 @@ namespace FSpot {
 				ChunkGenerator gen = (ChunkGenerator) name_table [name];
 				
 				if (gen != null) {
-					System.Console.WriteLine ("found gererator");
+					//System.Console.WriteLine ("found generator");
 					return gen (name, data);
 				} else {
 					return new Chunk (name, data);
@@ -423,34 +420,30 @@ namespace FSpot {
 
 			public bool Fill () 
 			{
-				if (inflater.IsNeedingInput && chunks.Count > 0) {
-					if (chunks.Count > 0) {
-						inflater.SetInput (((Chunk)chunks[0]).Data);
-						chunks.RemoveAt (0);
-						return true;
-					} 
-					return false;
+				while (inflater.IsNeedingInput && chunks.Count > 0) {
+					inflater.SetInput (((Chunk)chunks[0]).Data);
+					//System.Console.WriteLine ("adding chunk {0}", ((Chunk)chunks[0]).Data.Length);
+					chunks.RemoveAt (0);
 				}
 				return true;
 			}
 			
 			public int Inflate (byte [] data, int start, int length)
 			{
-				//System.Console.WriteLine ("Attempting Inflate {0} {1} {2}", data.Length, start, length);
-				int result = inflater.Inflate (data, start, length);
-				if (result < length) {
+				int result = 0;
+				do {
 					Fill ();
-					System.Console.WriteLine ("Attempting Second after fill Inflate {0} {1} {2}", data.Length, result, length - result);
-					result += inflater.Inflate (data, result, length - result);
-				}
-
+					int attempt = length - result;
+					result += inflater.Inflate (data, start + result, length - result);
+					//System.Console.WriteLine ("Attempting Second after fill Inflate {0} {1} {2}", attempt, result, length - result);
+				} while (result < length && chunks.Count > 0);
+				
 				return result;
 			}
 		       
 			public void Add (Chunk chunk)
 			{
 				chunks.Add (chunk);
-				Fill ();
 			}
 		}
 
@@ -486,27 +479,15 @@ namespace FSpot {
 			{
 				for (; row < height; row ++) { 
 					col = inflater.Inflate (buffer, row * width, width);
-
-					if (col < width)
-						throw new System.Exception ("Short Read");
+					
+					if (col < width) {
+						inflater.Fill ();
+						System.Console.WriteLine ("short read missing {0} {1} {2}", width - col, row, height);
+					}
 				}
 			}
 			
 			private static byte PaethPredict (byte a, byte b, byte c)
-			{
-				int p = a + b - c;
-				int pa = System.Math.Abs (p - a);
-				int pb = System.Math.Abs (p - b);
-				int pc = System.Math.Abs (p - c);
-				if (pa <= pb && pa <= pc)
-					return a;
-				else if (pb <= pc)
-					return b;
-				else 
-					return c;
-			}
-
-			private static ushort PaethPredict (ushort a, ushort b, ushort c)
 			{
 				int p = a + b - c;
 				int pa = System.Math.Abs (p - a);
@@ -535,10 +516,14 @@ namespace FSpot {
 				//System.Console.WriteLine ("type = {0}", type);
 				for (int col = 1; col < this.width;  col++) {
 					x = buffer [offset];
-					a = col < channels + 1? (byte) 0 : (byte) buffer [offset - channels];
-					b = (offset - width) < 0 ? (byte) 0 : (byte) buffer [offset - width];
-					c = (offset - width) < 0 || (col < channels + 1) ? (byte) 0 : (byte) buffer [offset - width - channels];
 
+					int prev_line = offset - width;
+
+					a = col <= channels ? (byte) 0 : (byte) buffer [offset - channels];
+					b = (prev_line) < 0 ? (byte) 0 : (byte) buffer [prev_line];
+					c = (prev_line) < 0 || (col <= channels) ? (byte) 0 : (byte) buffer [prev_line - channels];
+
+#if false
 					switch (type) {
 					case FilterType.None:
 						break;
@@ -549,7 +534,7 @@ namespace FSpot {
 						x = (byte) (x + b);
 						break;
 					case FilterType.Average:
-						x = (byte) (x + (System.Math.Floor ((a + b) / 2)));
+						x = (byte) (x + ((a + b) >> 1));
 						break;
 					case FilterType.Paeth:
 						x = (byte) (x + PaethPredict (a, b, c));
@@ -557,59 +542,34 @@ namespace FSpot {
 					default:					
 						throw new System.Exception (System.String.Format ("Invalid FilterType {0}", type));
 					}
-					
+#else
+					if (type == FilterType.Sub) {
+						x = (byte) (x + a);
+					} else if (type == FilterType.Up) {
+						x = (byte) (x + b);
+					} else if (type == FilterType.Average) {
+						x = (byte) (x + ((a + b) >> 1));
+					} else if (type == FilterType.Paeth) {
+						int p = a + b - c;
+						int pa = System.Math.Abs (p - a);
+						int pb = System.Math.Abs (p - b);
+						int pc = System.Math.Abs (p - c);
+						if (pa <= pb && pa <= pc)
+							x = (byte)(x + a);
+						else if (pb <= pc)
+							x = (byte)(x + b);
+						else 
+							x = (byte)(x + c);
+
+						//x = (byte) (x + PaethPredict (a, b, c));
+					}
+#endif
 					//System.Console.Write ("{0}.", x);
 					buffer [offset ++] = x;
 				}
 
 			}
 
-			public void ReconstructRow16 (int row, int channels)
-			{
-				int offset = row * width;
-				FilterType type = (FilterType) buffer [offset];
-				ushort a = 0;
-				ushort x;
-				ushort b;
-				ushort c = 0;
-
-				buffer [offset++] = 0;
-				
-				//channels *= 2;
-
-				//System.Console.WriteLine ("type = {0}", type);
-				for (int col = 1; col < this.width;  col+= 2) {
-					x = buffer [offset];
-					a = col < channels ? (ushort) 0 : (ushort) BitConverter.ToUInt16 (buffer, offset - channels, false);
-					b = (offset - width) < 0 ? (ushort) 0 : (ushort) BitConverter.ToUInt16 (buffer, offset - width, false);
-					c = (offset - width < 0) || (col < channels) ? (ushort) 0 : (ushort) BitConverter.ToUInt16 (buffer, offset - width - channels, false);
-
-					switch (type) {
-					case FilterType.None:
-						break;
-					case FilterType.Sub:
-						x = (ushort) (x + a);
-						break;
-					case FilterType.Up:
-						x = (ushort) (x + b);
-						break;
-					case FilterType.Average:
-						x = (ushort) (x + ((a + b) / 2));
-						break;
-					case FilterType.Paeth:
-						x = (ushort) (x + PaethPredict (a, b, c));
-						break;
-					default:					
-						throw new System.Exception (System.String.Format ("Invalid FilterType {0}", type));
-					}
-					
-					//System.Console.Write ("{0}.", x);
-					foreach (byte v in BitConverter.GetBytes (x, false)) {
-						buffer [offset ++] = v;
-					}
-				}
-			}
-		
 			public unsafe void UnpackRGB16Line (Gdk.Pixbuf dest, int line, int channels)
 			{
 				int pos = line * width + 1;
@@ -622,7 +582,7 @@ namespace FSpot {
 
 				int i = 0;
 				while (i < dest.Width * channels) {
-					pixels [i++] = (byte) (BitConverter.ToUInt16 (buffer, pos, false) / 256);
+					pixels [i++] = (byte) (BitConverter.ToUInt16 (buffer, pos, false) >> 8);
 					pos += 2;
 				}
 
@@ -673,11 +633,89 @@ namespace FSpot {
 
 				int i = 0;
 				while (i < dest.Width * 3) {
-					byte val = (byte) (BitConverter.ToUInt16 (buffer, pos, false) / 256);
+					byte val = (byte) (BitConverter.ToUInt16 (buffer, pos, false) >> 8);
 					pixels [i++] = val;
 					pixels [i++] = val;
 					pixels [i++] = val;
 					pos += 2;
+				}
+			}
+			
+			public unsafe void UnpackGray4Line (Gdk.Pixbuf dest, int line)
+			{
+				int pos = line * width + 1;
+				byte * pixels = (byte *) dest.Pixels;
+				
+				pixels += line * dest.Rowstride;
+				
+				int i = 0;
+				while (i < dest.Width) {
+					byte val;
+					val = buffer [pos + i / 2];
+					val = (byte) ((i % 2 > 0) ? (val & 0x0f) : ((val & 0xf0) >> 4));
+					val = (byte)  (((val * 0xff) + 8) / 0x0f); 
+
+					pixels [i * 3 + 0] = val;
+					pixels [i * 3 + 1] = val;
+					pixels [i * 3 + 2] = val;
+					i++;
+				}
+			}			
+			
+			public unsafe void UnpackGray1Line (Gdk.Pixbuf dest, int line)
+			{
+				int pos = line * width + 1;
+				byte * pixels = (byte *) dest.Pixels;
+				
+				pixels += line * dest.Rowstride;
+				
+				int i = 0;
+				while (i < dest.Width) {
+					byte val = buffer [pos + i / 8];
+				        int shift = 7 - (i % 8);
+
+					val = (byte)((val & (1 << shift)) > 0 ? 0xff : 0x00);
+					
+				        
+					pixels [i * 3 + 0] = val;
+					pixels [i * 3 + 1] = val;
+					pixels [i * 3 + 2] = val;
+					i++;
+				}
+			}
+
+			public unsafe void UnpackGray2Line (Gdk.Pixbuf dest, int line)
+			{
+				int pos = line * width + 1;
+				byte * pixels = (byte *) dest.Pixels;
+				
+				pixels += line * dest.Rowstride;
+				
+				int i = 0;
+				while (i < dest.Width) {
+					byte val;
+					val = buffer [pos + i / 4];
+					switch (i % 4) {
+					case 0:
+						val = (byte) (val & 0x03);
+						break;
+					case 1:
+						val = (byte) ((val & 0x0C) >> 2);
+						break;
+					case 2:
+						val = (byte) ((val & 0x30) >> 4);
+						break;
+					case 3:
+						val = (byte) ((val & 0xC0) >> 6);
+						break;
+					}						
+						
+					val = (byte) ((((double)val * 0xff)/ 0x03) + 0.5); 
+					
+					pixels [i * 3 + 0] = val;
+					pixels [i * 3 + 1] = val;
+					pixels [i * 3 + 2] = val;
+					i++;
 				}
 			}
 		}
@@ -691,12 +729,12 @@ namespace FSpot {
 			}
 
 			IhdrChunk ihdr = (IhdrChunk) chunk_list [0];
-			System.Console.WriteLine ("Attempting to to inflate image {0}.{1}({2}, {3})", ihdr.Color, ihdr.Depth, ihdr.Width, ihdr.Height);
+			//System.Console.WriteLine ("Attempting to to inflate image {0}.{1}({2}, {3})", ihdr.Color, ihdr.Depth, ihdr.Width, ihdr.Height);
 			ScanlineDecoder decoder = new ScanlineDecoder (ci, ihdr.GetScanlineLength (0), ihdr.Height);
 			decoder.Fill ();
 			//Gdk.Pixbuf pixbuf = decoder.GetPixbuf ();
 
-			System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXXXXXXXX Inflate ############################");
+			//System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXXXXXXXX Inflate ############################");
 
 			bool alpha = (ihdr.Color == ColorType.GrayAlpha || ihdr.Color == ColorType.RgbA);
 
@@ -724,22 +762,38 @@ namespace FSpot {
 					}
 					break;
 				case ColorType.Gray:
-					if (ihdr.Depth == 16) {
+					switch (ihdr.Depth) {
+					case 16:
 						decoder.ReconstructRow (line, 2);
 						decoder.UnpackGray16Line (pixbuf, line);
-					} else {
+						break;
+					case 8:
 						decoder.ReconstructRow (line, 1);
 						decoder.UnpackGray8Line (pixbuf, line);
+						break;
+					case 4:
+						decoder.ReconstructRow (line, 1);
+						decoder.UnpackGray4Line (pixbuf, line);
+						break;
+					case 2:
+						decoder.ReconstructRow (line, 1);
+						decoder.UnpackGray2Line (pixbuf, line);
+						break;
+					case 1:
+						decoder.ReconstructRow (line, 1);
+						decoder.UnpackGray1Line (pixbuf, line);
+						break;
+					default:
+						throw new System.Exception (System.String.Format ("Unhandled Depth {0}.{1}", ihdr.Color, ihdr.Depth));
 					}
 					break;
 				default:
 					throw new System.Exception (System.String.Format ("unhandled color type {0}", ihdr.Color));
 				}
 			}
-			
 			return pixbuf;
 		}
-		
+	
 	        void Load (System.IO.Stream stream)
 		{
 			byte [] heading = new byte [8];
@@ -771,20 +825,20 @@ namespace FSpot {
 				//if (crc != chunk.Crc ())
 				//	throw new System.Exception ("chunk crc check failed");
 				
-				System.Console.Write ("read one {0} {1}", chunk, chunk.Name);
+				//System.Console.Write ("read one {0} {1}", chunk, chunk.Name);
 				chunk_list.Add (chunk);
 
 				if (chunk is TextChunk) {
 					TextChunk text = (TextChunk) chunk;
-					System.Console.Write (" Text Chunk {0} {1}", 
-								  text.Keyword, text.Text);
+					//System.Console.Write (" Text Chunk {0} {1}", 
+					//		      text.Keyword, text.Text);
 				}
 
 				TimeChunk time = chunk as TimeChunk;
-				if (time != null)
-					System.Console.Write(" Time {0}", time.Time);
+				//if (time != null)
+				//	System.Console.Write(" Time {0}", time.Time);
 
-				System.Console.WriteLine ("");
+				//System.Console.WriteLine ("");
 				
 				if (chunk.Name == "IEND")
 					break;
@@ -793,20 +847,49 @@ namespace FSpot {
 
 		public static void Main (string [] args) 
 		{
+			System.Collections.ArrayList failed = new System.Collections.ArrayList ();
 			Gtk.Application.Init ();
 			foreach (string path in args) {
+				Gtk.Window win = new Gtk.Window (path);
+				Gtk.HBox box = new Gtk.HBox ();
+				box.Spacing = 12;
+				win.Add (box);
+				Gtk.Image image;
+				image = new Gtk.Image ();
+
+				System.DateTime start = System.DateTime.Now;
+				System.TimeSpan one = start - start;
+				System.TimeSpan two = start - start;
 				try {
-					Gtk.Window win = new Gtk.Window (path);
-					Gtk.Image image = new Gtk.Image ();
-					win.Add (image);
+					start = System.DateTime.Now;
+					image.Pixbuf = new Gdk.Pixbuf (path);
+					one = System.DateTime.Now - start;
+				}  catch (System.Exception e) {
+				}
+				box.PackStart (image);
+
+				image = new Gtk.Image ();
+				try {
+					start = System.DateTime.Now;
 					PngFile png = new PngFile (path);
 					image.Pixbuf = png.GetPixbuf ();
-					win.ShowAll ();
+					two = System.DateTime.Now - start;
 				} catch (System.Exception e) {
-					System.Console.WriteLine ("Error loading {0}", path);
+					failed.Add (path);
+					//System.Console.WriteLine ("Error loading {0}", path);
 					System.Console.WriteLine (e.ToString ());
 				}
+
+				System.Console.WriteLine ("{2} Load Time {0} vs {1}", one.TotalMilliseconds, two.TotalMilliseconds, path); 
+				box.PackStart (image);
+				win.ShowAll ();
 			}
+			
+			System.Console.WriteLine ("{0} Failed to Load", failed.Count);
+			foreach (string fail_path in failed) {
+				System.Console.WriteLine (fail_path);
+			}
+
 			Gtk.Application.Run ();
 		}
 	}

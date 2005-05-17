@@ -1,7 +1,14 @@
+2005-05-17  Larry Ewing  <lewing@novell.com>
+
+	* src/Tiff.cs: fix typo.
+
 2005-05-16  Larry Ewing  <lewing@novell.com>
 
-	* src/PngFile.cs: implement reconstruction for more formats.
-	
+	* src/PngFile.cs: add 1,2,4 bit unpackers fix the line length do
+	other stuff good too.
+
+	* src/PngFile.cs: implement reconstruction for more formats.	
+
 	* src/PngFile.cs: implement scanline filter reconstruction, and
 	grey8 and rgb8 unpacking.
 

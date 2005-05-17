@@ -234,7 +234,7 @@ namespace FSpot.Tiff {
 				new CanonTag (CanonId.Unknown2, EntryType.Short, 4, null, null),				
 				new CanonTag (CanonId.CameraSettings2, EntryType.Short, -1, "Camera Settings 2", "Second Canon MakerNote settings section"),
 				new CanonTag (CanonId.ImageType, EntryType.Ascii, 32, "Image Type", null), // FIXME description
-				new CanonTag (CanonId.FirmwareVersion, EntryType.Ascii, 24, "Firmware Version", "Version of the firmwaer installed on the camera"),
+				new CanonTag (CanonId.FirmwareVersion, EntryType.Ascii, 24, "Firmware Version", "Version of the firmware installed on the camera"),
 				new CanonTag (CanonId.ImageNumber, EntryType.Long, 1, "Image Number", null), // FIXME description
 				new CanonTag (CanonId.OwnerName, EntryType.Long, 32, "Owner Name", "Name of the Camera Owner"), // FIXME description
 				new CanonTag (CanonId.Unknown4, EntryType.Short, -1, null, null),				
