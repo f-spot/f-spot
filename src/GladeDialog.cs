@@ -17,7 +17,7 @@ namespace FSpot {
 		protected void CreateDialog (string name)
 		{
 			this.dialog_name = name;		
-			xml = new Glade.XML (null, "f-spot.glade", name, null);
+			xml = new Glade.XML (null, "f-spot.glade", name, "f-spot");
 			xml.Autoconnect (this);
 		}
 

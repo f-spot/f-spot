@@ -141,7 +141,7 @@ namespace FSpot {
 			this.photos = photos;
 
 #if ENABLE_CUSTOM_PRINT
-			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "print_dialog", null);
+			Glade.XML xml = new Glade.XML (null, "f-spot.glade", "print_dialog", "f-spot");
 			xml.Autoconnect (this);
 #endif
 
