@@ -1,14 +1,14 @@
 namespace FSpot.Ciff {
 	public enum Tag {
-		// Byte values
+		// Byte valuesad
 		NullRecord = 0x0000,
 		FreeBytes = 0x0001,
 		CanonColorInfo1 = 0x0032,
 
 		// ASCII strings
 		CanonFileDescription = 0x0805,
-		UserComment = 0x0805,
-		CanonRawMakeModel = 0x080a, // FIXME this is the same as above, is it correct?
+		UserComment = 0x0805, // FIXME this is the same as above, is it correct?
+		CanonRawMakeModel = 0x080a, 
 		CanonFirmwareVersion = 0x080b,
 		ComponentVersion = 0x08c,
 		ROMOperationMode = 0x08d,
@@ -123,6 +123,7 @@ namespace FSpot.Ciff {
 			uint directory_pos  = BitConverter.ToUInt32 (buf, 0, little);
 			DirPosition = start + directory_pos;
 
+			stream.Position = DirPosition;
 			stream.Read (buf, 0, 2);
 
 			Count = BitConverter.ToUInt16 (buf, 0, little);
@@ -147,7 +148,7 @@ namespace FSpot.Ciff {
 
 		public byte [] ReadEntry (int pos)
 		{
-			Entry e = entry_list [pos];
+			Entry e = (Entry) entry_list [pos];
 
 			stream.Position = this.start + e.Offset;			
 
@@ -161,7 +162,7 @@ namespace FSpot.Ciff {
 		{
 			int pos = 0;
 			foreach (Entry e in entry_list) {
-				if (e.Tag = tag)
+				if (e.Tag == tag)
 					return ReadEntry (pos);
 				pos++;
 			}
@@ -169,11 +170,18 @@ namespace FSpot.Ciff {
 		}
 	}
 	
-	public class Header {
+	public class CiffFile : FSpot.ImageFile {
 		public ImageDirectory Root;
 		System.IO.Stream stream;
 
-		public Header (System.IO.Stream stream)
+		public CiffFile (string path) : base (path)
+		{
+			System.IO.Stream input = System.IO.File.OpenRead (path);
+			this.Load (input);
+			this.Dump ();
+		}
+
+		public void Load (System.IO.Stream stream) 
 		{
 			byte [] header = new byte [26];  // the spec reserves the first 26 bytes as the header block
 			stream.Read (header, 0, header.Length);
@@ -197,27 +205,78 @@ namespace FSpot.Ciff {
 			Root = new ImageDirectory (stream, start, end, little);
 		}
 
+		/*
+		public override System.DateTime Date () 
+		{
+
+		}
+		*/
+
+		public override Gdk.Pixbuf Load ()
+		{
+			// FIXME this is a hack. No, really, I mean it.
+			
+			byte [] data = GetEmbeddedJpeg ();
+			if (data != null) {
+				Gdk.PixbufLoader loader = new Gdk.PixbufLoader ();
+				loader.Write (data, (ulong)data.Length);
+				Gdk.Pixbuf pixbuf = loader.Pixbuf;
+				loader.Close ();
+				return pixbuf;
+			}
+			return null;
+		}
+
+		public System.IO.Stream PixbufLoaderStream ()
+		{
+			System.IO.MemoryStream stream = null; 
+			byte [] data = GetEmbeddedJpeg ();
+			
+			if (data != null)
+				stream = new System.IO.MemoryStream (data);
+				
+			return stream;
+		}
+
+		public override Gdk.Pixbuf Load (int width, int height)
+		{
+			Gdk.Pixbuf full = this.Load ();
+			Gdk.Pixbuf scaled  = PixbufUtils.ScaleToMaxSize (full, width, height);
+			full.Dispose ();
+			return scaled;
+		}
+
 		public void Dump ()
 		{
 			Root.Dump ();
+
+			string path = "out2.jpg";
+			//System.IO.File.Delete (path);
+
+			/*
+			System.IO.Stream output = System.IO.File.Open (path, System.IO.FileMode.OpenOrCreate);
+			byte [] data = GetEmbeddedThumbnail ();
+			System.Console.WriteLine ("data length {0}", data != null ? data.Length : -1);
+			output.Write (data, 0, data.Length);
+			output.Close ();
+			*/
 		}
 
-		public void GetEmbeddedThumbnail ()
+		public byte [] GetEmbeddedJpeg ()
 		{
-			byte [] thumbnail_data = Root.ReadEntry (Tag.JpgFromRaw);
+			return Root.ReadEntry (Tag.JpgFromRaw);
 		}
 
-		public void GetEmbeddedJpeg ()
+		public byte [] GetEmbeddedThumbnail ()
 		{
-			byte [] jpeg_data = Root.ReadEntry (Tag.ThumbnailImage); 
+			return Root.ReadEntry (Tag.ThumbnailImage); 
 		}
-
+		/*
 		public static void Main (string [] args)
 		{
-			System.IO.Stream input = System.IO.File.Open (args [0], System.IO.FileMode.Open);
-			Header h = new Header (input);
-			h.Dump ();
-			if (
+			CiffFile ciff = new CiffFile (args [0]);
+			ciff.Dump ();
 		}
+		*/
 	}
 }

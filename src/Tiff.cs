@@ -171,7 +171,6 @@ namespace FSpot.Tiff {
 		CalibrationIlluminant1          = 0xc65a, // Ifd0
 		CalibrationIlluminant2          = 0xc65b, // Ifd0
 		
-
 		// Print Image Matching data
 		PimIfdPointer                   = 0xc4a5
 	}
@@ -201,6 +200,8 @@ namespace FSpot.Tiff {
 	}
 
 	public class CanonTag : Tag {
+		// http://www.gvsoft.homedns.org/exif/makernote-canon.html
+		
 		public enum CanonId {
 			Unknown1           = 0x0000,
 			CameraSettings1    = 0x0001,

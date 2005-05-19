@@ -1,3 +1,9 @@
+2005-05-19  Larry Ewing  <lewing@novell.com>
+
+	* src/Tiff.cs: fix value.
+
+	* src/Ciff.cs: start hacking Ciff as ImageFile
+
 2005-05-18  Larry Ewing  <lewing@novell.com>
 
 	* src/Ciff.cs: start ciff parser.  Can extract embedded jpegs and
