@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-04-19 23:01+0200\n"
-"PO-Revision-Date: 2005-04-19 23:12+0200\n"
+"POT-Creation-Date: 2005-05-19 16:40+0200\n"
+"PO-Revision-Date: 2005-05-19 16:38+0200\n"
 "Last-Translator: Martin Willemoes Hansen <mwh@sysrq.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -134,16 +134,16 @@ msgstr "farvereducering"
 msgid "dither type"
 msgstr "farvereduceringstype"
 
-#: ../libfspot/f-jpeg-utils.c:440
+#: ../libfspot/f-jpeg-utils.c:445
 msgid "File not found"
 msgstr "Fil ikke fundet"
 
-#: ../libfspot/f-jpeg-utils.c:463
+#: ../libfspot/f-jpeg-utils.c:468
 #, c-format
 msgid "Unknown transform type %d"
 msgstr "Ukendt omdannelsestype %d"
 
-#: ../libfspot/f-jpeg-utils.c:471
+#: ../libfspot/f-jpeg-utils.c:476
 msgid "Operation failed"
 msgstr "Handlingen mislykkedes"
 
@@ -155,11 +155,11 @@ msgstr "Forhåndsvisning"
 msgid "Path"
 msgstr "Sti"
 
-#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:68
+#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:67
 msgid "File"
 msgstr "Fil"
 
-#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:631
+#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:638
 msgid "Index"
 msgstr "Indeks"
 
@@ -191,10 +191,10 @@ msgstr "Kan ikke oprette mappe."
 #: ../src/CameraFileSelectionDialog.cs:165
 #, csharp-format
 msgid ""
-"Error \"{0}\" while creating directory \"{0}\".  Check that the path and "
+"Error \"{0}\" while creating directory \"{1}\".  Check that the path and "
 "permissions are correct and try again"
 msgstr ""
-"Fejl \"{0}\" ved oprettelse af mappen \"{0}\". Kontrollér at stien og "
+"Fejl \"{0}\" ved oprettelse af mappen \"{1}\". Kontrollér at stien og "
 "rettighederne er korrekte og prøv igen"
 
 #: ../src/CameraFileSelectionDialog.cs:186 ../src/CDExport.cs:139
@@ -241,26 +241,26 @@ msgstr "Port"
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "Overfører billede \"{0}\" til cd"
 
-#: ../src/CDExport.cs:59 ../src/FlickrExport.cs:93 ../src/GalleryExport.cs:421
+#: ../src/CDExport.cs:59 ../src/FlickrExport.cs:96 ../src/GalleryExport.cs:421
 #: ../src/ProgressDialog.cs:75 ../src/VfsExport.cs:88
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} af {1}"
 
-#: ../src/CDExport.cs:71 ../src/FlickrExport.cs:98 ../src/FolderExport.cs:162
+#: ../src/CDExport.cs:71 ../src/FlickrExport.cs:101 ../src/FolderExport.cs:167
 #: ../src/GalleryExport.cs:436 ../src/VfsExport.cs:115
 msgid "Done Sending Photos"
 msgstr "Færdig med sending af billeder"
 
-#: ../src/CDExport.cs:73 ../src/FolderExport.cs:164 ../src/VfsExport.cs:117
+#: ../src/CDExport.cs:73 ../src/FolderExport.cs:169 ../src/VfsExport.cs:117
 msgid "Transfer Complete"
 msgstr "Overførsel fuldført"
 
-#: ../src/CDExport.cs:79 ../src/FolderExport.cs:169 ../src/VfsExport.cs:122
+#: ../src/CDExport.cs:79 ../src/FolderExport.cs:174 ../src/VfsExport.cs:122
 msgid "Error While Transferring"
 msgstr "Fejl under overførsel"
 
-#: ../src/CDExport.cs:84 ../src/FolderExport.cs:177 ../src/VfsExport.cs:130
+#: ../src/CDExport.cs:84 ../src/FolderExport.cs:182 ../src/VfsExport.cs:130
 msgid "Error Transferring"
 msgstr "Fejl ved overførsel"
 
@@ -272,11 +272,11 @@ msgstr "Fejl: Fejl ved overførsel; afbryder"
 msgid "Error: File Already Exists; Aborting"
 msgstr "Fejl: Filen findes allerede; afbryder"
 
-#: ../src/ColorDialog.cs:143
+#: ../src/ColorDialog.cs:145
 msgid "Error saving adjusted photo"
 msgstr "Fejl ved gemning af tilpasset foto"
 
-#: ../src/ColorDialog.cs:144 ../src/MainWindow.cs:1185 ../src/PhotoView.cs:285
+#: ../src/ColorDialog.cs:146 ../src/MainWindow.cs:1183 ../src/PhotoView.cs:302
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save image {1}"
 msgstr "Modtog undtagelsen \"{0}\". Kunne ikke gemme billedet {1}"
@@ -309,67 +309,67 @@ msgstr "Ukendt mappe"
 msgid "Enter Password"
 msgstr "Angiv adgangskode"
 
-#: ../src/FlickrExport.cs:57
+#: ../src/FlickrExport.cs:58
 msgid "Enter Password for "
 msgstr "Angiv adgangskode for "
 
-#: ../src/FlickrExport.cs:88 ../src/GalleryExport.cs:417
+#: ../src/FlickrExport.cs:91 ../src/GalleryExport.cs:417
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Overfører billede \"{0}\""
 
-#: ../src/FlickrExport.cs:100 ../src/GalleryExport.cs:438
+#: ../src/FlickrExport.cs:103 ../src/GalleryExport.cs:438
 msgid "Upload Complete"
 msgstr "Overførsel fuldført"
 
-#: ../src/FlickrExport.cs:105
+#: ../src/FlickrExport.cs:108
 msgid "Error Uploading To Flickr"
 msgstr "Fejl ved overførsel til Flickr"
 
-#: ../src/FlickrExport.cs:135 ../src/GalleryExport.cs:387
+#: ../src/FlickrExport.cs:138 ../src/GalleryExport.cs:387
 msgid "Uploading Pictures"
 msgstr "Overfører billeder"
 
-#: ../src/FlickrExport.cs:145
+#: ../src/FlickrExport.cs:148
 msgid "Unable to log on."
 msgstr "Kunne ikke logge på."
 
-#: ../src/FlickrExport.cs:146
+#: ../src/FlickrExport.cs:149
 msgid ""
 "F-Spot was unable to log on to Flickr.  Make sure the settings you supplied "
 "are correct."
 msgstr ""
 "F-Spot kunne ikke logge på Flickr. Kontrollér at din opsætning er korrekt."
 
-#: ../src/FolderExport.cs:128
+#: ../src/FolderExport.cs:129
 msgid "Building Gallery"
 msgstr "Opretter galleri"
 
-#: ../src/FolderExport.cs:196
+#: ../src/FolderExport.cs:201
 msgid "Error: Error while transferring, Aborting"
 msgstr "Fejl: Fejl ved overførsel, afbryder"
 
-#: ../src/FolderExport.cs:199
+#: ../src/FolderExport.cs:204
 msgid "Error: File Already Exists, Aborting"
 msgstr "Fejl: Filen findes allerede, afbryder"
 
-#: ../src/FolderExport.cs:245
+#: ../src/FolderExport.cs:250
 msgid "Transfering Pictures"
 msgstr "Overfører billeder"
 
-#: ../src/FolderExport.cs:629
+#: ../src/FolderExport.cs:636
 msgid "Prev"
 msgstr "Forrige"
 
-#: ../src/FolderExport.cs:634 ../src/f-spot.glade.h:91
+#: ../src/FolderExport.cs:641 ../src/f-spot.glade.h:90
 msgid "Next"
 msgstr "Næste"
 
-#: ../src/FolderExport.cs:697
+#: ../src/FolderExport.cs:704
 msgid "Gallery generated by "
 msgstr "Galleri oprettet af "
 
-#: ../src/FolderExport.cs:729
+#: ../src/FolderExport.cs:736
 msgid "Pages:"
 msgstr "Sider:"
 
@@ -623,42 +623,38 @@ msgid "Export to _Flickr..."
 msgstr "Eksportér til _Flickr..."
 
 #: ../src/f-spot.glade.h:64
-msgid "Export to _Original..."
-msgstr "Eksportér til _original..."
+msgid "Export to _Folder..."
+msgstr "Eksportér til _Mappe..."
 
 #: ../src/f-spot.glade.h:65
-msgid "Export to _VFS..."
-msgstr "Eksportér til _VFS..."
-
-#: ../src/f-spot.glade.h:66
 msgid "Export to _Web Gallery..."
 msgstr "Eksportér til _webgalleri..."
 
-#: ../src/f-spot.glade.h:67
+#: ../src/f-spot.glade.h:66
 msgid "F-Spot"
 msgstr "F-Spot"
 
-#: ../src/f-spot.glade.h:69
+#: ../src/f-spot.glade.h:68
 msgid "Fin_d"
 msgstr "Fin_d"
 
-#: ../src/f-spot.glade.h:70
+#: ../src/f-spot.glade.h:69
 msgid "Find by _Tag"
 msgstr "Søg efter _mærke"
 
-#: ../src/f-spot.glade.h:71
+#: ../src/f-spot.glade.h:70
 msgid "Flikr"
 msgstr "Flikr"
 
-#: ../src/f-spot.glade.h:72
+#: ../src/f-spot.glade.h:71
 msgid "Folder Export"
 msgstr "Mappeeksport"
 
-#: ../src/f-spot.glade.h:73
+#: ../src/f-spot.glade.h:72
 msgid "Folder URI:"
 msgstr "Mappe-URI:"
 
-#: ../src/f-spot.glade.h:74
+#: ../src/f-spot.glade.h:73
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
@@ -666,19 +662,19 @@ msgstr ""
 "Hele siden\n"
 "Standard - 4x6"
 
-#: ../src/f-spot.glade.h:76
+#: ../src/f-spot.glade.h:75
 msgid "Gallery"
 msgstr "Galleri"
 
-#: ../src/f-spot.glade.h:77
+#: ../src/f-spot.glade.h:76
 msgid "Gallery Name:"
 msgstr "Gallerinavn:"
 
-#: ../src/f-spot.glade.h:78
+#: ../src/f-spot.glade.h:77
 msgid "Gallery:"
 msgstr "Galleri:"
 
-#: ../src/f-spot.glade.h:79
+#: ../src/f-spot.glade.h:78
 msgid ""
 "Hairline\n"
 "0.25\"\n"
@@ -690,35 +686,35 @@ msgstr ""
 "0,5\"\n"
 "1\"\n"
 
-#: ../src/f-spot.glade.h:84
+#: ../src/f-spot.glade.h:83
 msgid "Hue:"
 msgstr "Farvetone:"
 
-#: ../src/f-spot.glade.h:85
+#: ../src/f-spot.glade.h:84
 msgid "Icon:"
 msgstr "Ikon:"
 
-#: ../src/f-spot.glade.h:86
+#: ../src/f-spot.glade.h:85
 msgid "Import"
 msgstr "Importér"
 
-#: ../src/f-spot.glade.h:87
+#: ../src/f-spot.glade.h:86
 msgid "Import From:"
 msgstr "Importér fra:"
 
-#: ../src/f-spot.glade.h:88
+#: ../src/f-spot.glade.h:87
 msgid "Import files after copy."
 msgstr "Importér filer efter kopiering."
 
-#: ../src/f-spot.glade.h:89
+#: ../src/f-spot.glade.h:88
 msgid "Import from C_amera..."
 msgstr "Importér fra k_amera..."
 
-#: ../src/f-spot.glade.h:90
+#: ../src/f-spot.glade.h:89
 msgid "Include subdirectories."
 msgstr "Medtag undermapper."
 
-#: ../src/f-spot.glade.h:92
+#: ../src/f-spot.glade.h:91
 msgid ""
 "None\n"
 "Title\n"
@@ -732,41 +728,45 @@ msgstr ""
 "Dato\n"
 "Fotodetaljer"
 
-#: ../src/f-spot.glade.h:97
+#: ../src/f-spot.glade.h:96
 msgid "Number of Copies:"
 msgstr "Antal kopier:"
 
-#: ../src/f-spot.glade.h:98
+#: ../src/f-spot.glade.h:97
 msgid "Open album in browser when done uploading"
 msgstr "Åbn albummet i browseren når overførslen er færdig"
 
-#: ../src/f-spot.glade.h:99
+#: ../src/f-spot.glade.h:98
 msgid "Open destination when done exporting."
 msgstr "Åbn målet når overførslen er færdig"
 
-#: ../src/f-spot.glade.h:100
+#: ../src/f-spot.glade.h:99
 msgid "Page 1 of 3"
 msgstr "Side 1 af 3"
 
-#: ../src/f-spot.glade.h:101
+#: ../src/f-spot.glade.h:100
 msgid "Password:"
 msgstr "Adgangskode:"
 
-#: ../src/f-spot.glade.h:102
+#: ../src/f-spot.glade.h:101
 msgid "Pause"
 msgstr "Pause"
 
-#: ../src/f-spot.glade.h:103
+#: ../src/f-spot.glade.h:102
 msgid "Photo 0 of 0"
 msgstr "Foto 0 af 0"
 
-#: ../src/f-spot.glade.h:104
+#: ../src/f-spot.glade.h:103
 msgid "Photo Source:"
 msgstr "Fotokilde:"
 
-#: ../src/f-spot.glade.h:105
+#: ../src/f-spot.glade.h:104
 msgid "PhotoSize:"
 msgstr "Fotostørrelse:"
+
+#: ../src/f-spot.glade.h:105
+msgid "Plain Files."
+msgstr "Almindelige filer."
 
 #: ../src/f-spot.glade.h:106
 msgid "Please verify that the settings for this gallery are correct."
@@ -1063,15 +1063,15 @@ msgid "(No Albums)"
 msgstr "(Ingen album)"
 
 #. Gtk.Menu menu = new Gtk.Menu();
-#: ../src/ImportCommand.cs:313
+#: ../src/ImportCommand.cs:365
 msgid "Select Tag"
 msgstr "Vælg mærke"
 
-#: ../src/ImportCommand.cs:349
+#: ../src/ImportCommand.cs:401
 msgid "Directory does not exist."
 msgstr "Mappen findes ikke."
 
-#: ../src/ImportCommand.cs:350
+#: ../src/ImportCommand.cs:402
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
@@ -1131,7 +1131,7 @@ msgstr "Modtog fejl \"{0} ved tilslutning til kamera"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1000
+#: ../src/MainWindow.cs:995
 msgid "translator-credits"
 msgstr ""
 "Martin Willemoes Hansen\n"
@@ -1139,54 +1139,54 @@ msgstr ""
 "Dansk-gruppen <dansk@klid.dk>\n"
 "Mere info: http://www.klid.dk/dansk/"
 
-#: ../src/MainWindow.cs:1131
+#: ../src/MainWindow.cs:1129
 msgid "Unsharp Mask"
 msgstr "Uskarp maske"
 
-#: ../src/MainWindow.cs:1140
+#: ../src/MainWindow.cs:1138
 msgid "Amount:"
 msgstr "Mængde:"
 
-#: ../src/MainWindow.cs:1141
+#: ../src/MainWindow.cs:1139
 msgid "Radius:"
 msgstr "Radius:"
 
-#: ../src/MainWindow.cs:1142
+#: ../src/MainWindow.cs:1140
 msgid "Threshold:"
 msgstr "Grænseværdi:"
 
-#: ../src/MainWindow.cs:1184
+#: ../src/MainWindow.cs:1182
 msgid "Error saving sharpened photo"
 msgstr "Fejl ved gemning af skærpet foto"
 
-#: ../src/MainWindow.cs:1403
+#: ../src/MainWindow.cs:1401
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Slet det markerede foto permanent?"
 msgstr[1] "Slet de {0} markerede fotos permanent?"
 
-#: ../src/MainWindow.cs:1407
+#: ../src/MainWindow.cs:1405
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Dette sletter alle versioner af det markerede foto fra din disk."
 msgstr[1] "Dette sletter alle versioner af de markerede fotos fra din disk."
 
-#: ../src/MainWindow.cs:1410
+#: ../src/MainWindow.cs:1408
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Slet foto"
 msgstr[1] "_Slet fotos"
 
-#: ../src/MainWindow.cs:1428
+#: ../src/MainWindow.cs:1426
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Fjern det markerede foto fra F-Spot?"
 msgstr[1] "Fjern de {0} markerede fotos fra F-Spot?"
 
-#: ../src/MainWindow.cs:1433
+#: ../src/MainWindow.cs:1431
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1195,23 +1195,23 @@ msgstr ""
 "Hvis du fjerner fotos fra F-Spot-mappen vil alle mærkeinformationerne gå "
 "tabt. Fotoerne vil blive på din maskine og kan importeres i F-Spot igen."
 
-#: ../src/MainWindow.cs:1434
+#: ../src/MainWindow.cs:1432
 msgid "_Remove from Catalog"
 msgstr "_Fjern fra mappe"
 
-#: ../src/MainWindow.cs:1458
+#: ../src/MainWindow.cs:1456
 #, csharp-format
 msgid "Delete the selected tag?"
 msgid_plural "Delete the {0} selected tags?"
 msgstr[0] "Slet det markerede mærke?"
 msgstr[1] "Slet de {0} markerede mærker?"
 
-#: ../src/MainWindow.cs:1463
+#: ../src/MainWindow.cs:1461
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr ""
 "Hvis du sletter et mærke vil alle dens associationer med fotos gå tabt."
 
-#: ../src/MainWindow.cs:1464
+#: ../src/MainWindow.cs:1462
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Slet mærke"
@@ -1271,7 +1271,47 @@ msgstr "Er du sikker på at du vil slette?"
 msgid "Really delete version \"{0}\"?"
 msgstr "Er du sikker på at du vil slette \"{0}\"?"
 
-#: ../src/PhotoView.cs:284
+#: ../src/PhotoView.cs:104
+msgid "No Constraint"
+msgstr "Ingen begrænsning"
+
+#: ../src/PhotoView.cs:105
+msgid "4 x 3 (Book)"
+msgstr "4 x 3 (Bog)"
+
+#: ../src/PhotoView.cs:106
+msgid "4 x 6 (Postcard)"
+msgstr "4 x 6 (Postkort)"
+
+#: ../src/PhotoView.cs:107
+msgid "5 x 7 (L, 2L)"
+msgstr "5 x 7 (L, 2L)"
+
+#: ../src/PhotoView.cs:108
+msgid "8 x 10"
+msgstr "8 x 10"
+
+#: ../src/PhotoView.cs:109
+msgid "4 x 3 Portrait (Book)"
+msgstr "4 x 3 Portræt (Bog)"
+
+#: ../src/PhotoView.cs:110
+msgid "4 x 6 Portrait (Postcard)"
+msgstr "4 x 6 Portræt (Postkort)"
+
+#: ../src/PhotoView.cs:111
+msgid "5 x 7 Portrait (L, 2L)"
+msgstr "5 x 7 Portræt (L, 2L)"
+
+#: ../src/PhotoView.cs:112
+msgid "8 x 10 Portrait"
+msgstr "8 x 10 Portræt"
+
+#: ../src/PhotoView.cs:113
+msgid "Square"
+msgstr "Kvadrat"
+
+#: ../src/PhotoView.cs:301
 msgid "Error editing photo"
 msgstr "Fejl ved foto-redigering"
 
@@ -1284,23 +1324,23 @@ msgstr "Roterer billeder"
 msgid "Rotating picture \"{0}\""
 msgstr "Roterer billede \"{0}\""
 
-#: ../src/RotateCommand.cs:57
+#: ../src/RotateCommand.cs:74
 #, csharp-format
 msgid "Received exception \"{0}\" while rotating image {1}"
 msgstr "Modtog undtagelseen \"{0} ved rotering af billedet {1}"
 
-#: ../src/RotateCommand.cs:62
+#: ../src/RotateCommand.cs:79
 msgid "Unknown Error while Rotating Image."
 msgstr "Ukendt fejl ved rotering af billede."
 
-#: ../src/RotateCommand.cs:80
+#: ../src/RotateCommand.cs:97
 #, csharp-format
 msgid "Unable to rotate image"
 msgid_plural "Unable to rotate {0} images"
 msgstr[0] "Kan ikke rotere billede"
 msgstr[1] "Kan ikke rotere {0} billeder"
 
-#: ../src/RotateCommand.cs:81
+#: ../src/RotateCommand.cs:98
 #, csharp-format
 msgid ""
 "The image could not be rotated because it is on a read only file system or "
@@ -1434,6 +1474,12 @@ msgstr "Skalerer billede \"{0}\""
 #, csharp-format
 msgid "Transferring picture \"{0}\""
 msgstr "Overfører billede \"{0}\""
+
+#~ msgid "Export to _Original..."
+#~ msgstr "Eksportér til _original..."
+
+#~ msgid "Export to _VFS..."
+#~ msgstr "Eksportér til _VFS..."
 
 #~ msgid "Error: Error while transfering, Aborting"
 #~ msgstr "Fejl: Fejl under overførsel, afbryder"
