@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-04-18 21:04-0400\n"
-"PO-Revision-Date: 2005-04-18 23:54-0400\n"
+"POT-Creation-Date: 2005-05-19 13:57-0400\n"
+"PO-Revision-Date: 2005-05-19 23:54-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -133,16 +133,16 @@ msgstr "dither"
 msgid "dither type"
 msgstr "dither type"
 
-#: ../libfspot/f-jpeg-utils.c:440
+#: ../libfspot/f-jpeg-utils.c:445
 msgid "File not found"
 msgstr "File not found"
 
-#: ../libfspot/f-jpeg-utils.c:463
+#: ../libfspot/f-jpeg-utils.c:468
 #, c-format
 msgid "Unknown transform type %d"
 msgstr "Unknown transform type %d"
 
-#: ../libfspot/f-jpeg-utils.c:471
+#: ../libfspot/f-jpeg-utils.c:476
 msgid "Operation failed"
 msgstr "Operation failed"
 
@@ -154,11 +154,11 @@ msgstr "Preview"
 msgid "Path"
 msgstr "Path"
 
-#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:68
+#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:67
 msgid "File"
 msgstr "File"
 
-#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:631
+#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:638
 msgid "Index"
 msgstr "Index"
 
@@ -190,10 +190,10 @@ msgstr "Unable to create directory."
 #: ../src/CameraFileSelectionDialog.cs:165
 #, csharp-format
 msgid ""
-"Error \"{0}\" while creating directory \"{0}\".  Check that the path and "
+"Error \"{0}\" while creating directory \"{1}\".  Check that the path and "
 "permissions are correct and try again"
 msgstr ""
-"Error \"{0}\" while creating directory \"{0}\".  Check that the path and "
+"Error \"{0}\" while creating directory \"{1}\".  Check that the path and "
 "permissions are correct and try again"
 
 #: ../src/CameraFileSelectionDialog.cs:186 ../src/CDExport.cs:139
@@ -240,26 +240,26 @@ msgstr "Port"
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "Transferring picture \"{0}\" To CD"
 
-#: ../src/CDExport.cs:59 ../src/FlickrExport.cs:93 ../src/GalleryExport.cs:421
+#: ../src/CDExport.cs:59 ../src/FlickrExport.cs:96 ../src/GalleryExport.cs:421
 #: ../src/ProgressDialog.cs:75 ../src/VfsExport.cs:88
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} of {1}"
 
-#: ../src/CDExport.cs:71 ../src/FlickrExport.cs:98 ../src/FolderExport.cs:162
+#: ../src/CDExport.cs:71 ../src/FlickrExport.cs:101 ../src/FolderExport.cs:167
 #: ../src/GalleryExport.cs:436 ../src/VfsExport.cs:115
 msgid "Done Sending Photos"
 msgstr "Done Sending Photos"
 
-#: ../src/CDExport.cs:73 ../src/FolderExport.cs:164 ../src/VfsExport.cs:117
+#: ../src/CDExport.cs:73 ../src/FolderExport.cs:169 ../src/VfsExport.cs:117
 msgid "Transfer Complete"
 msgstr "Transfer Complete"
 
-#: ../src/CDExport.cs:79 ../src/FolderExport.cs:169 ../src/VfsExport.cs:122
+#: ../src/CDExport.cs:79 ../src/FolderExport.cs:174 ../src/VfsExport.cs:122
 msgid "Error While Transferring"
 msgstr "Error While Transferring"
 
-#: ../src/CDExport.cs:84 ../src/FolderExport.cs:177 ../src/VfsExport.cs:130
+#: ../src/CDExport.cs:84 ../src/FolderExport.cs:182 ../src/VfsExport.cs:130
 msgid "Error Transferring"
 msgstr "Error Transferring"
 
@@ -271,11 +271,11 @@ msgstr "Error: Error while transferring; Aborting"
 msgid "Error: File Already Exists; Aborting"
 msgstr "Error: File Already Exists; Aborting"
 
-#: ../src/ColorDialog.cs:143
+#: ../src/ColorDialog.cs:145
 msgid "Error saving adjusted photo"
 msgstr "Error saving adjusted photo"
 
-#: ../src/ColorDialog.cs:144 ../src/MainWindow.cs:1185 ../src/PhotoView.cs:285
+#: ../src/ColorDialog.cs:146 ../src/MainWindow.cs:1183 ../src/PhotoView.cs:302
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save image {1}"
 msgstr "Received exception \"{0}\". Unable to save image {1}"
@@ -308,32 +308,32 @@ msgstr "Unknown Directory"
 msgid "Enter Password"
 msgstr "Enter Password"
 
-#: ../src/FlickrExport.cs:57
+#: ../src/FlickrExport.cs:58
 msgid "Enter Password for "
 msgstr "Enter Password for "
 
-#: ../src/FlickrExport.cs:88 ../src/GalleryExport.cs:417
+#: ../src/FlickrExport.cs:91 ../src/GalleryExport.cs:417
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Uploading picture \"{0}\""
 
-#: ../src/FlickrExport.cs:100 ../src/GalleryExport.cs:438
+#: ../src/FlickrExport.cs:103 ../src/GalleryExport.cs:438
 msgid "Upload Complete"
 msgstr "Upload Complete"
 
-#: ../src/FlickrExport.cs:105
+#: ../src/FlickrExport.cs:108
 msgid "Error Uploading To Flickr"
 msgstr "Error Uploading To Flickr"
 
-#: ../src/FlickrExport.cs:135 ../src/GalleryExport.cs:387
+#: ../src/FlickrExport.cs:138 ../src/GalleryExport.cs:387
 msgid "Uploading Pictures"
 msgstr "Uploading Pictures"
 
-#: ../src/FlickrExport.cs:145
+#: ../src/FlickrExport.cs:148
 msgid "Unable to log on."
 msgstr "Unable to log on."
 
-#: ../src/FlickrExport.cs:146
+#: ../src/FlickrExport.cs:149
 msgid ""
 "F-Spot was unable to log on to Flickr.  Make sure the settings you supplied "
 "are correct."
@@ -341,35 +341,35 @@ msgstr ""
 "F-Spot was unable to log on to Flickr.  Make sure the settings you supplied "
 "are correct."
 
-#: ../src/FolderExport.cs:128
+#: ../src/FolderExport.cs:129
 msgid "Building Gallery"
 msgstr "Building Gallery"
 
-#: ../src/FolderExport.cs:196
+#: ../src/FolderExport.cs:201
 msgid "Error: Error while transferring, Aborting"
 msgstr "Error: Error while transferring. Aborting"
 
-#: ../src/FolderExport.cs:199
+#: ../src/FolderExport.cs:204
 msgid "Error: File Already Exists, Aborting"
 msgstr "Error: File Already Exists. Aborting"
 
-#: ../src/FolderExport.cs:245
+#: ../src/FolderExport.cs:250
 msgid "Transfering Pictures"
 msgstr "Transferring Pictures"
 
-#: ../src/FolderExport.cs:629
+#: ../src/FolderExport.cs:636
 msgid "Prev"
 msgstr "Prev"
 
-#: ../src/FolderExport.cs:634 ../src/f-spot.glade.h:91
+#: ../src/FolderExport.cs:641 ../src/f-spot.glade.h:90
 msgid "Next"
 msgstr "Next"
 
-#: ../src/FolderExport.cs:697
+#: ../src/FolderExport.cs:704
 msgid "Gallery generated by "
 msgstr "Gallery generated by "
 
-#: ../src/FolderExport.cs:729
+#: ../src/FolderExport.cs:736
 msgid "Pages:"
 msgstr "Pages:"
 
@@ -622,42 +622,38 @@ msgid "Export to _Flickr..."
 msgstr "Export to _Flickr..."
 
 #: ../src/f-spot.glade.h:64
-msgid "Export to _Original..."
-msgstr "Export to _Original..."
+msgid "Export to _Folder..."
+msgstr "Export to _Folder..."
 
 #: ../src/f-spot.glade.h:65
-msgid "Export to _VFS..."
-msgstr "Export to _VFS..."
-
-#: ../src/f-spot.glade.h:66
 msgid "Export to _Web Gallery..."
 msgstr "Export to _Web Gallery..."
 
-#: ../src/f-spot.glade.h:67
+#: ../src/f-spot.glade.h:66
 msgid "F-Spot"
 msgstr "F-Spot"
 
-#: ../src/f-spot.glade.h:69
+#: ../src/f-spot.glade.h:68
 msgid "Fin_d"
 msgstr "Fin_d"
 
-#: ../src/f-spot.glade.h:70
+#: ../src/f-spot.glade.h:69
 msgid "Find by _Tag"
 msgstr "Find by _Tag"
 
-#: ../src/f-spot.glade.h:71
+#: ../src/f-spot.glade.h:70
 msgid "Flikr"
 msgstr "Flikr"
 
-#: ../src/f-spot.glade.h:72
+#: ../src/f-spot.glade.h:71
 msgid "Folder Export"
 msgstr "Folder Export"
 
-#: ../src/f-spot.glade.h:73
+#: ../src/f-spot.glade.h:72
 msgid "Folder URI:"
 msgstr "Folder URI:"
 
-#: ../src/f-spot.glade.h:74
+#: ../src/f-spot.glade.h:73
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
@@ -665,19 +661,19 @@ msgstr ""
 "Full Page\n"
 "Standard - 4x6"
 
-#: ../src/f-spot.glade.h:76
+#: ../src/f-spot.glade.h:75
 msgid "Gallery"
 msgstr "Gallery"
 
-#: ../src/f-spot.glade.h:77
+#: ../src/f-spot.glade.h:76
 msgid "Gallery Name:"
 msgstr "Gallery Name:"
 
-#: ../src/f-spot.glade.h:78
+#: ../src/f-spot.glade.h:77
 msgid "Gallery:"
 msgstr "Gallery:"
 
-#: ../src/f-spot.glade.h:79
+#: ../src/f-spot.glade.h:78
 msgid ""
 "Hairline\n"
 "0.25\"\n"
@@ -689,35 +685,35 @@ msgstr ""
 "0.5\"\n"
 "1\"\n"
 
-#: ../src/f-spot.glade.h:84
+#: ../src/f-spot.glade.h:83
 msgid "Hue:"
 msgstr "Hue:"
 
-#: ../src/f-spot.glade.h:85
+#: ../src/f-spot.glade.h:84
 msgid "Icon:"
 msgstr "Icon:"
 
-#: ../src/f-spot.glade.h:86
+#: ../src/f-spot.glade.h:85
 msgid "Import"
 msgstr "Import"
 
-#: ../src/f-spot.glade.h:87
+#: ../src/f-spot.glade.h:86
 msgid "Import From:"
 msgstr "Import From:"
 
-#: ../src/f-spot.glade.h:88
+#: ../src/f-spot.glade.h:87
 msgid "Import files after copy."
 msgstr "Import files after copy."
 
-#: ../src/f-spot.glade.h:89
+#: ../src/f-spot.glade.h:88
 msgid "Import from C_amera..."
 msgstr "Import from C_amera..."
 
-#: ../src/f-spot.glade.h:90
+#: ../src/f-spot.glade.h:89
 msgid "Include subdirectories."
 msgstr "Include subdirectories."
 
-#: ../src/f-spot.glade.h:92
+#: ../src/f-spot.glade.h:91
 msgid ""
 "None\n"
 "Title\n"
@@ -731,41 +727,45 @@ msgstr ""
 "Date\n"
 "Photo Details"
 
-#: ../src/f-spot.glade.h:97
+#: ../src/f-spot.glade.h:96
 msgid "Number of Copies:"
 msgstr "Number of Copies:"
 
-#: ../src/f-spot.glade.h:98
+#: ../src/f-spot.glade.h:97
 msgid "Open album in browser when done uploading"
 msgstr "Open album in browser when done uploading"
 
-#: ../src/f-spot.glade.h:99
+#: ../src/f-spot.glade.h:98
 msgid "Open destination when done exporting."
 msgstr "Open destination when done exporting."
 
-#: ../src/f-spot.glade.h:100
+#: ../src/f-spot.glade.h:99
 msgid "Page 1 of 3"
 msgstr "Page 1 of 3"
 
-#: ../src/f-spot.glade.h:101
+#: ../src/f-spot.glade.h:100
 msgid "Password:"
 msgstr "Password:"
 
-#: ../src/f-spot.glade.h:102
+#: ../src/f-spot.glade.h:101
 msgid "Pause"
 msgstr "Pause"
 
-#: ../src/f-spot.glade.h:103
+#: ../src/f-spot.glade.h:102
 msgid "Photo 0 of 0"
 msgstr "Photo 0 of 0"
 
-#: ../src/f-spot.glade.h:104
+#: ../src/f-spot.glade.h:103
 msgid "Photo Source:"
 msgstr "Photo Source:"
 
-#: ../src/f-spot.glade.h:105
+#: ../src/f-spot.glade.h:104
 msgid "PhotoSize:"
 msgstr "PhotoSize:"
+
+#: ../src/f-spot.glade.h:105
+msgid "Plain Files."
+msgstr "Plain Files."
 
 #: ../src/f-spot.glade.h:106
 msgid "Please verify that the settings for this gallery are correct."
@@ -1062,15 +1062,15 @@ msgid "(No Albums)"
 msgstr "(No Albums)"
 
 #. Gtk.Menu menu = new Gtk.Menu();
-#: ../src/ImportCommand.cs:313
+#: ../src/ImportCommand.cs:365
 msgid "Select Tag"
 msgstr "Select Tag"
 
-#: ../src/ImportCommand.cs:349
+#: ../src/ImportCommand.cs:401
 msgid "Directory does not exist."
 msgstr "Directory does not exist."
 
-#: ../src/ImportCommand.cs:350
+#: ../src/ImportCommand.cs:402
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
@@ -1131,58 +1131,58 @@ msgstr "Received error \"{0}\" while connecting to camera"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1000
+#: ../src/MainWindow.cs:995
 msgid "translator-credits"
 msgstr "Adam Weinberger <adamw@gnome.org>"
 
-#: ../src/MainWindow.cs:1131
+#: ../src/MainWindow.cs:1129
 msgid "Unsharp Mask"
 msgstr "Unsharp Mask"
 
-#: ../src/MainWindow.cs:1140
+#: ../src/MainWindow.cs:1138
 msgid "Amount:"
 msgstr "Amount:"
 
-#: ../src/MainWindow.cs:1141
+#: ../src/MainWindow.cs:1139
 msgid "Radius:"
 msgstr "Radius:"
 
-#: ../src/MainWindow.cs:1142
+#: ../src/MainWindow.cs:1140
 msgid "Threshold:"
 msgstr "Threshold:"
 
-#: ../src/MainWindow.cs:1184
+#: ../src/MainWindow.cs:1182
 msgid "Error saving sharpened photo"
 msgstr "Error saving sharpened photo"
 
-#: ../src/MainWindow.cs:1403
+#: ../src/MainWindow.cs:1401
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Delete the selected photo permanently?"
 msgstr[1] "Delete the {0} selected photos permanently?"
 
-#: ../src/MainWindow.cs:1407
+#: ../src/MainWindow.cs:1405
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
 msgstr[0] "This deletes all versions of the selected photo from your drive."
 msgstr[1] "This deletes all versions of the selected photos from your drive."
 
-#: ../src/MainWindow.cs:1410
+#: ../src/MainWindow.cs:1408
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Delete photo"
 msgstr[1] "_Delete photos"
 
-#: ../src/MainWindow.cs:1428
+#: ../src/MainWindow.cs:1426
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Remove the selected photo from F-Spot?"
 msgstr[1] "Remove the {0} selected photos from F-Spot??"
 
-#: ../src/MainWindow.cs:1433
+#: ../src/MainWindow.cs:1431
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1192,22 +1192,22 @@ msgstr ""
 "lost. The photos will remain on your computer and can be imported into F-"
 "Spot again."
 
-#: ../src/MainWindow.cs:1434
+#: ../src/MainWindow.cs:1432
 msgid "_Remove from Catalog"
 msgstr "_Remove from Catalogue"
 
-#: ../src/MainWindow.cs:1458
+#: ../src/MainWindow.cs:1456
 #, csharp-format
 msgid "Delete the selected tag?"
 msgid_plural "Delete the {0} selected tags?"
 msgstr[0] "Delete the selected tag?"
 msgstr[1] "Delete {0} selected tags?"
 
-#: ../src/MainWindow.cs:1463
+#: ../src/MainWindow.cs:1461
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr "If you delete a tag, all associations with photos are lost."
 
-#: ../src/MainWindow.cs:1464
+#: ../src/MainWindow.cs:1462
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Delete tag"
@@ -1267,7 +1267,47 @@ msgstr "Really Delete?"
 msgid "Really delete version \"{0}\"?"
 msgstr "Really delete version \"{0}\"?"
 
-#: ../src/PhotoView.cs:284
+#: ../src/PhotoView.cs:104
+msgid "No Constraint"
+msgstr "No Constraint"
+
+#: ../src/PhotoView.cs:105
+msgid "4 x 3 (Book)"
+msgstr "4 x 3 (Book)"
+
+#: ../src/PhotoView.cs:106
+msgid "4 x 6 (Postcard)"
+msgstr "4 x 6 (Postcard)"
+
+#: ../src/PhotoView.cs:107
+msgid "5 x 7 (L, 2L)"
+msgstr "5 x 7 (L, 2L)"
+
+#: ../src/PhotoView.cs:108
+msgid "8 x 10"
+msgstr "8 x 10"
+
+#: ../src/PhotoView.cs:109
+msgid "4 x 3 Portrait (Book)"
+msgstr "4 x 3 Portrait (Book)"
+
+#: ../src/PhotoView.cs:110
+msgid "4 x 6 Portrait (Postcard)"
+msgstr "4 x 6 Portrait (Postcard)"
+
+#: ../src/PhotoView.cs:111
+msgid "5 x 7 Portrait (L, 2L)"
+msgstr "5 x 7 Portrait (L, 2L)"
+
+#: ../src/PhotoView.cs:112
+msgid "8 x 10 Portrait"
+msgstr "8 x 10 Portrait"
+
+#: ../src/PhotoView.cs:113
+msgid "Square"
+msgstr "Square"
+
+#: ../src/PhotoView.cs:301
 msgid "Error editing photo"
 msgstr "Error editing photo"
 
@@ -1280,23 +1320,23 @@ msgstr "Rotating pictures"
 msgid "Rotating picture \"{0}\""
 msgstr "Rotating picture \"{0}\""
 
-#: ../src/RotateCommand.cs:57
+#: ../src/RotateCommand.cs:74
 #, csharp-format
 msgid "Received exception \"{0}\" while rotating image {1}"
 msgstr "Received exception \"{0}\" while rotating image {1}"
 
-#: ../src/RotateCommand.cs:62
+#: ../src/RotateCommand.cs:79
 msgid "Unknown Error while Rotating Image."
 msgstr "Unknown Error while Rotating Image."
 
-#: ../src/RotateCommand.cs:80
+#: ../src/RotateCommand.cs:97
 #, csharp-format
 msgid "Unable to rotate image"
 msgid_plural "Unable to rotate {0} images"
 msgstr[0] "Unable to rotate image"
 msgstr[1] "Unable to rotate {0} images"
 
-#: ../src/RotateCommand.cs:81
+#: ../src/RotateCommand.cs:98
 #, csharp-format
 msgid ""
 "The image could not be rotated because it is on a read only file system or "
