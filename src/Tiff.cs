@@ -1,7 +1,7 @@
 using FSpot;
 
 namespace FSpot.Tiff {
-	public enum TagId {
+	public enum TagId : ushort {
 		InteroperabilityIndex		= 0x0001,
 		InteroperabilityVersion	        = 0x0002,
 		
@@ -84,6 +84,9 @@ namespace FSpot.Tiff {
 		ImageHistory                    = 0x9212, // TIFF-EP null separated list
 
 		SubjectArea			= 0x9214,
+			
+		TIFFEPStandardID                = 0x9216,
+		       
 		MakerNote			= 0x927c,
 		UserComment			= 0x9286,
 		SubSecTime			= 0x9290,
@@ -192,7 +195,7 @@ namespace FSpot.Tiff {
 	}
 	
 	public class Tag {
-		public int Id;
+		public ushort Id;
 		public EntryType Type;
 		public int Count;
 		public string Name;
@@ -219,7 +222,7 @@ namespace FSpot.Tiff {
 		
 		public CanonTag (CanonId id, EntryType type, int count, string name, string description)
 		{
-			this.Id = (int)id;
+			this.Id = (ushort)id;
 			this.Type = type;
 			this.Count = count;
 			this.Name = name;
@@ -365,7 +368,7 @@ namespace FSpot.Tiff {
 			for (int pos = 0; pos < entry_length; pos += 12) {
 				DirectoryEntry entry = EntryFactory.CreateEntry (this, content, pos, this.endian);
 				entries.Add (entry);		
-				System.Console.WriteLine ("Added Entry {0}", entry.Id.ToString ());
+				System.Console.WriteLine ("Added Entry {0} {1}", entry.Id.ToString (), entry.Id.ToString ("x"));
 			}
 		}
 
@@ -467,6 +470,7 @@ namespace FSpot.Tiff {
 			
 			switch (type) {
 			case EntryType.Ifd:
+				System.Console.WriteLine ("Trying to load {0} {1}", tagid, tagid.ToString ("x"));
 				return new SubdirectoryEntry (input, start, header_endian);
 			case EntryType.Byte:
 				return new ByteEntry (input, start, header_endian);
@@ -481,29 +485,48 @@ namespace FSpot.Tiff {
 	public class MakerNoteEntry : SubdirectoryEntry {
 		public MakerNoteEntry (byte [] data, int offset, Endian endian) : base (data, offset, endian)
 		{
+		
 		}
-			
+
+		public override uint GetEntryCount ()
+		{
+			return 1;
+		}
+
 		public override void LoadExternal (System.IO.Stream stream)
 		{
 		}
 	}
 
-	public class SubdirectoryEntry : LongEntry {
+	public class SubdirectoryEntry : DirectoryEntry {
 		public uint directory_offset;
-		ImageDirectory Directory;
+		ImageDirectory [] Directory;
 		
 		public SubdirectoryEntry (byte [] data, int offset, Endian endian) : base (data, offset, endian)
 		{
-			if (count != 1)
-				throw new System.Exception ("Invalid Settings At Birth");
+			if (this.GetEntryCount () > 1) {
+				System.Console.WriteLine ("Count is greater than 1 ({1}) on Subdirectory {0} interesting", tagid, count);
+			}
+		}
+
+		public virtual uint GetEntryCount ()
+		{
+			return count;
 		}
 
 		public override void LoadExternal (System.IO.Stream stream)
 		{
-			directory_offset = BitConverter.ToUInt32 (raw_data, 0, endian == Endian.Little);
-			System.Console.WriteLine ("Entering Subdirectory {0} at {1}", tagid.ToString (), directory_offset);
-			Directory = new ImageDirectory (stream, directory_offset, endian);
-			System.Console.WriteLine ("Leaving Subdirectory {0} at {1}", tagid.ToString (), directory_offset);
+			uint entry_count = GetEntryCount ();
+			Directory = new ImageDirectory [count];
+
+			base.LoadExternal (stream);
+
+			for (int i = 0; i <  entry_count; i++) {
+				directory_offset = BitConverter.ToUInt32 (raw_data, i * 4, endian == Endian.Little);
+				System.Console.WriteLine ("Entering Subdirectory {0} at {1}", tagid.ToString (), directory_offset);
+				Directory [i] = new ImageDirectory (stream, directory_offset, endian);
+				System.Console.WriteLine ("Leaving Subdirectory {0} at {1}", tagid.ToString (), directory_offset);
+			}
 		}
 	}
 	
@@ -511,7 +534,7 @@ namespace FSpot.Tiff {
 		public LongEntry (byte [] data, int offset, Endian endian) : base (data, offset, endian)
 		{
 			if (type != EntryType.Long)
-				throw new System.Exception ("Invalid Settings At Birth");
+				throw new System.Exception (System.String.Format ("Invalid Settings At Birth {0}", tagid));
 		}
 	}
 
@@ -602,6 +625,7 @@ namespace FSpot.Tiff {
 				byte [] data = new byte [count * GetTypeSize ()];
 				if (stream.Read (data, 0, data.Length) < data.Length)
 					throw new System.Exception ("Short Read");
+				raw_data = data;
 			}
 		}
 
@@ -642,21 +666,22 @@ namespace FSpot.Tiff {
 				return raw_data;
 			}
 		}
+	}
 
-		public static void Main (string [] args)
+	public class TiffFile : ImageFile {
+		public Header Header;
+
+		public TiffFile (string path) : base (path)
 		{
-
-			foreach (string path in args) {
-				try {
-					System.IO.Stream input = System.IO.File.Open (path,  System.IO.FileMode.Open);
-					Header h = new Header (input);
-					input.Close ();
-					h.Dump ();
-				} catch (System.Exception e) {
-					System.Console.WriteLine ("error loading {0}", path);
-					System.Console.WriteLine (e.ToString ());
-				}
+			try {
+				System.IO.Stream input = System.IO.File.OpenRead (path);
+				Header h = new Header (input);
+				input.Close ();
+				h.Dump ();
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e.ToString ());
 			}
 		}
 	}
 }
+

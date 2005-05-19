@@ -1,13 +1,12 @@
 using ICSharpCode.SharpZipLib.Zip.Compression;
 
-namespace FSpot {
-	public class PngFile  {
-		string Path;
+namespace FSpot.Png {
+	public class PngFile : ImageFile {
 		System.Collections.ArrayList chunk_list;
 		
-		public PngFile (string path)
+		public PngFile (string path) : base (path)
 		{
-			this.Path = path;
+			this.path = path;
 			System.IO.Stream input = System.IO.File.Open (this.Path, System.IO.FileMode.Open);
 			Load (input);
 			input.Close ();
@@ -814,6 +813,16 @@ namespace FSpot {
 			}
 		}
 
+#if false
+		public class ImageFile {
+			string Path;
+			public ImageFile (string path)
+			{
+				this.Path = path;
+			}
+		}
+
+
 		public static void Main (string [] args) 
 		{
 			System.Collections.ArrayList failed = new System.Collections.ArrayList ();
@@ -861,5 +870,6 @@ namespace FSpot {
 
 			Gtk.Application.Run ();
 		}
+#endif
 	}
 }
