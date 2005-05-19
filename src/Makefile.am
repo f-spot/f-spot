@@ -5,6 +5,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/BitConverter.cs		\
 	$(srcdir)/PhotoArray.cs 		\
 	$(srcdir)/CDExport.cs			\
+	$(srcdir)/Ciff.cs			\
 	$(srcdir)/ColorDialog.cs		\
 	$(srcdir)/CompatFileChooser.cs		\
 	$(srcdir)/DateCommands.cs		\

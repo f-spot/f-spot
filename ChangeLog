@@ -1,10 +1,15 @@
 2005-05-19  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoLoader.cs: use ImageFile.
+
+	* src/Makefile.am (F_SPOT_CSDISTFILES): add CiffFile to the build.
+
 	* src/ThumbnailGenerator.cs: use ImageFile to load the thumbnail.
 
 	* src/ColorDialog.cs: use one of the new interfaces here.
 
-	* src/ImageFile.cs: add some new rather questionable interfaces to ImageFile.
+	* src/ImageFile.cs: add some new rather questionable interfaces to
+	ImageFile.
 
 	* src/Tiff.cs: fix value.
 

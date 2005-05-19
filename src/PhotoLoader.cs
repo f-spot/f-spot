@@ -15,20 +15,16 @@ namespace FSpot {
 
 		static public Gdk.Pixbuf Load (Photo photo) 
 		{
-			PixbufOrientation orientation = PixbufUtils.GetOrientation (photo.DefaultVersionPath);
-			Gdk.Pixbuf orig = new Gdk.Pixbuf (photo.DefaultVersionPath);
-			
-			Gdk.Pixbuf rotated = PixbufUtils.TransformOrientation (orig, orientation, true);
-			ValidateThumbnail (photo, rotated);
-			if (rotated != orig)
-				orig.Dispose ();
-
-			return rotated;
+			ImageFile img = ImageFile.Create (photo.DefaultVersionPath);
+			Gdk.Pixbuf pixbuf = img.Load ();
+			ValidateThumbnail (photo, pixbuf);
+			return pixbuf;
 		}
 
 		static public Gdk.Pixbuf LoadAtMaxSize (Photo photo, int width, int height) 
 		{
-			Gdk.Pixbuf pixbuf = PixbufUtils.LoadAtMaxSize (photo.DefaultVersionPath, width, height);
+			ImageFile img = ImageFile.Create (photo.DefaultVersionPath);
+			Gdk.Pixbuf pixbuf = img.Load (width, height);
 			ValidateThumbnail (photo.DefaultVersionPath, pixbuf);
 			return pixbuf;
 		}
