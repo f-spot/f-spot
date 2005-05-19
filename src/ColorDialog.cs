@@ -182,7 +182,8 @@ namespace FSpot {
 		private void HandlePhotoChanged (PhotoImageView view)
 		{
 			if (view.CurrentPhotoValid ()) {
-				AdjustedPixbuf = PhotoLoader.LoadAtMaxSize (view.Query.Photos [view.CurrentPhoto], 300, 300);
+				FSpot.ImageFile img = FSpot.ImageFile.Create (view.Query.Photos [view.CurrentPhoto].DefaultVersionPath);
+				AdjustedPixbuf = img.Load (150, 150);
 				ScaledPixbuf = AdjustedPixbuf.Copy ();			
 				RangeChanged (null, null);
 			}

@@ -1,5 +1,11 @@
 2005-05-19  Larry Ewing  <lewing@novell.com>
 
+	* src/ThumbnailGenerator.cs: use ImageFile to load the thumbnail.
+
+	* src/ColorDialog.cs: use one of the new interfaces here.
+
+	* src/ImageFile.cs: add some new rather questionable interfaces to ImageFile.
+
 	* src/Tiff.cs: fix value.
 
 	* src/Ciff.cs: start hacking Ciff as ImageFile

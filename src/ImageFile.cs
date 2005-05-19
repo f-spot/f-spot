@@ -27,7 +27,7 @@ namespace FSpot {
 			PixbufUtils.Save (pixbuf, stream, "jpeg", null, null);
 		}
 
-		public Gdk.Pixbuf Load ()
+		public virtual Gdk.Pixbuf Load ()
 		{
 			Gdk.Pixbuf orig = new Gdk.Pixbuf (this.Path);
 			
@@ -35,15 +35,22 @@ namespace FSpot {
 			//ValidateThumbnail (photo, rotated);
 			if (rotated != orig)
 				orig.Dispose ();
-
+			
 			return rotated;
 		}
-
-		public virtual PixbufOrientation GetOrientation () {
+		
+		public virtual Gdk.Pixbuf Load (int max_width, int max_height)
+		{
+			return PixbufUtils.LoadAtMaxSize (this.Path, max_width, max_height);
+		}
+		
+		public virtual PixbufOrientation GetOrientation () 
+		{
 			return PixbufOrientation.TopLeft;
 		}
 		
-		public virtual System.DateTime Date () {
+		public virtual System.DateTime Date () 
+		{
 			return File.GetCreationTimeUtc  (this.path);
 		}
 		
@@ -51,6 +58,8 @@ namespace FSpot {
 		{
 			if (path.ToLower().EndsWith (".jpg") || path.ToLower().EndsWith (".jpeg"))
 				return new JpegFile (path);
+			else if (path.ToLower ().EndsWith (".crw"))
+				return new FSpot.Ciff.CiffFile (path);
 			else
 				return new ImageFile (path);
 		}

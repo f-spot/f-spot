@@ -6,10 +6,12 @@ namespace FSpot {
 		public static Gdk.Pixbuf Create (string path)
 		{
 			try {
-				Gdk.Pixbuf image = PixbufUtils.LoadAtMaxSize (path, 256, 265);
-				if (image != null)
-					Save (image, path);
-				return image;
+				ImageFile img = ImageFile.Create (path);
+				Gdk.Pixbuf thumb = img.Load (256, 256);
+
+				if (thumb != null)
+					Save (thumb, path);
+				return thumb;
 			} catch {
 				return null;
 			}
