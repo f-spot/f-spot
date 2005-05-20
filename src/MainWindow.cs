@@ -151,6 +151,7 @@ public class MainWindow {
 		tag_selection_widget.SelectionChanged += OnTagSelectionChanged;
 		tag_selection_widget.DragDataGet += HandleTagSelectionDragDataGet;
 		tag_selection_widget.DragDrop += HandleTagSelectionDragDrop;
+		tag_selection_widget.DragBegin += HandleTagSelectionDragBegin;
 		Gtk.Drag.SourceSet (tag_selection_widget, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
 				    tag_target_table, DragAction.Copy | DragAction.Move);
 
@@ -459,6 +460,37 @@ public class MainWindow {
 		}
 	}
 
+	void HandleTagSelectionDragBegin (object sender, DragBeginArgs args)
+	{
+		Tag [] tags = tag_selection_widget.TagHighlight ();
+		int len = tags.Length;
+		int size = 32;
+		int csize = size/2 + len * size / 2 + 2;
+		
+		Pixbuf container = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, csize, csize);
+		container.Fill (0x00000000);
+		
+		bool use_icon = false;;
+		while (len-- > 0) {
+			Pixbuf thumbnail = tags[len].Icon;
+			
+			if (thumbnail != null) {
+				Pixbuf small = PixbufUtils.ScaleToMaxSize (thumbnail, size, size);				
+				
+				int x = len * (size/2) + (size - small.Width)/2;
+				int y = len * (size/2) + (size - small.Height)/2;
+
+				small.Composite (container, x, y, small.Width, small.Height, x, y, 1.0, 1.0, Gdk.InterpType.Nearest, 0xff);
+				small.Dispose ();
+
+				use_icon = true;
+			}
+		}
+		if (use_icon)
+			Gtk.Drag.SetIconPixbuf (args.Context, container, 0, 0);
+		container.Dispose ();
+	}
+	
 	void HandleTagSelectionDragDataGet (object sender, DragDataGetArgs args)
 	{		
 		UriList list = new UriList (SelectedPhotos ());
