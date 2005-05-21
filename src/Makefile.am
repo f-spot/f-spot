@@ -54,6 +54,8 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PhotoVersionCommands.cs	\
 	$(srcdir)/PhotoVersionMenu.cs		\
 	$(srcdir)/PhotoView.cs			\
+	$(srcdir)/PngFile.cs			\
+	$(srcdir)/PnmFile.cs			\
 	$(srcdir)/PixbufLoader.cs		\
 	$(srcdir)/PixbufUtils.cs		\
 	$(srcdir)/PixbufCache.cs		\
@@ -74,6 +76,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ThreadProgressDialog.cs	\
 	$(srcdir)/ThumbnailCache.cs		\
 	$(srcdir)/ThumbnailGenerator.cs		\
+	$(srcdir)/Tiff.cs			\
 	$(srcdir)/TimeAdaptor.cs		\
 	$(srcdir)/Util.cs			\
 	$(srcdir)/ThumbnailCommand.cs		\
