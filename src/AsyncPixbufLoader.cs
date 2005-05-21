@@ -2,7 +2,8 @@
 namespace FSpot {
 	public delegate void AreaUpdatedHandler (object sender, Gdk.Rectangle area);
 	public delegate void AreaPreparedHandler (object sender, System.EventArgs args);
-	
+
+
 	public class AsyncPixbufLoader : System.IDisposable {
 		System.IO.Stream stream;
 		Gdk.PixbufLoader loader;		
@@ -71,11 +72,7 @@ namespace FSpot {
 			ImageFile img = ImageFile.Create (filename);
 			orientation = img.Orientation;
 
-			// Fixme this is a huge hack
-			if (img is FSpot.Ciff.CiffFile)
-				stream =  ((FSpot.Ciff.CiffFile)img).PixbufLoaderStream ();
-			else 
-				stream = new System.IO.FileStream (filename, System.IO.FileMode.Open, System.IO.FileAccess.Read);
+			stream = System.IO.File.OpenRead (filename);
 			
 			loader = new Gdk.PixbufLoader ();
 			loader.AreaPrepared += ap;
@@ -116,8 +113,8 @@ namespace FSpot {
 				if (loader != null) {
 					loader.AreaPrepared -= ap;
 					loader.AreaUpdated -= au;
-					loader.Closed -= ev;
 					loader.Close ();
+					loader.Closed -= ev;
 					loader.Dispose ();
 				}
 
@@ -193,9 +190,6 @@ namespace FSpot {
 
 		public Gdk.Pixbuf Pixbuf {
 			get {
-				if (!area_prepared)
-					throw new System.Exception ("Load in progress but Pixbuf not ready");
-
 				return pixbuf;
 			}
 		}

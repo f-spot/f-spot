@@ -1,5 +1,12 @@
 2005-05-21  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoImageView.cs: handle closed, fall back to
+	ImageFile.Load if the progressive loader fails.  Set the error
+	pixbuf if things do fail.
+
+	* src/AsyncPixbufLoader.cs: always emit the closed event.  Remove
+	the ciff hack for now.
+
 	* src/Makefile.am: add new files to the build.
 
 	* src/PnmFile.cs: add simplistic pnm parser.

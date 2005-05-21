@@ -6,6 +6,8 @@ namespace FSpot {
 			loader = new FSpot.AsyncPixbufLoader ();
 			loader.AreaUpdated += HandlePixbufAreaUpdated;
 			loader.AreaPrepared += HandlePixbufPrepared;
+			loader.Done += HandleDone;
+
 			this.SizeAllocated += HandleSizeAllocated;
 			this.KeyPressEvent += HandleKeyPressEvent;
 			this.ScrollEvent += HandleScrollEvent;
@@ -147,6 +149,30 @@ namespace FSpot {
 			this.ZoomFit ();
 		}
 
+		private void HandleDone (object sender, System.EventArgs args)
+		{
+			// FIXME the error hander here needs to provide proper information and we should
+			// pass the state and the write exception in the args
+			Gdk.Pixbuf prev = this.Pixbuf;
+			try {
+				if (loader.Pixbuf == null) {
+					ImageFile  img = ImageFile.Create (Photo.DefaultVersionPath);
+					this.Pixbuf = img.Load ();
+					this.ZoomFit ();
+				}
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e.ToString ());
+				this.Pixbuf = new Gdk.Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0, 
+							      PixbufUtils.ErrorPixbuf.Width, 
+							      PixbufUtils.ErrorPixbuf.Height);
+				
+				this.ZoomFit ();
+			} finally{
+				if (prev != null)
+					prev.Dispose ();
+			}
+		}		
+		
 		private bool fit = true;
 		public bool Fit {
 			get {
@@ -202,6 +228,8 @@ namespace FSpot {
 								      PixbufUtils.ErrorPixbuf.Height);
 					if (old != null)
 						old.Dispose ();
+
+					this.ZoomFit ();
 				}
 			} else {	
 				Gdk.Pixbuf old = this.Pixbuf;
