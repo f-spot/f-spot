@@ -77,13 +77,19 @@ namespace FSpot {
 
 		protected override void ProcessRequest (RequestItem request)
 		{
-			base.ProcessRequest (request);
 
-			Gdk.Pixbuf image = request.result;
-			if (image != null) {
-				Save (image, request.path);
+			try {
+				base.ProcessRequest (request);
+
+				Gdk.Pixbuf image = request.result;
+				if (image != null) {
+					Save (image, request.path);
+				}
+
+				System.Threading.Thread.Sleep (75);
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e.ToString ());
 			}
-			System.Threading.Thread.Sleep (250);
 		}
 	}
 }

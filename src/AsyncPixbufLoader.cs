@@ -68,14 +68,14 @@ namespace FSpot {
 			area_prepared = false;
 			damage = Gdk.Rectangle.Zero;
 
-			try {
-				orientation = PixbufUtils.GetOrientation (filename);
-			} catch (System.Exception e) {
-				System.Console.WriteLine (e.ToString ());
-				orientation = PixbufOrientation.TopLeft;
-			}
+			ImageFile img = ImageFile.Create (filename);
+			orientation = img.Orientation;
 
-			stream = new System.IO.FileStream (filename, System.IO.FileMode.Open, System.IO.FileAccess.Read);
+			// Fixme this is a huge hack
+			if (img is FSpot.Ciff.CiffFile)
+				stream =  ((FSpot.Ciff.CiffFile)img).PixbufLoaderStream ();
+			else 
+				stream = new System.IO.FileStream (filename, System.IO.FileMode.Open, System.IO.FileAccess.Read);
 			
 			loader = new Gdk.PixbufLoader ();
 			loader.AreaPrepared += ap;
@@ -109,6 +109,8 @@ namespace FSpot {
 
 		private void Close () 
 		{
+			ThumbnailGenerator.Default.PopBlock ();
+				
 			try {
 				delay.Stop ();
 				if (loader != null) {

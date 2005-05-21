@@ -59,7 +59,6 @@ public class PixbufLoader {
 	   thread that there are pending items in the
 	   `processed_requests' queue.  */
 	ThreadNotify pending_notify;
-
 	/* Whether a notification is pending on `pending_notify'
 	   already or not.  */
 	private bool pending_notify_notified;
@@ -136,10 +135,11 @@ public class PixbufLoader {
 	{
 		Pixbuf orig_image;
 		try {
+			FSpot.ImageFile img = FSpot.ImageFile.Create (request.path);
 			if (request.width > 0) {
-				orig_image = PixbufUtils.LoadAtMaxSize (request.path, request.width, request.height);
+				orig_image = img.Load (request.width, request.height);
 			} else
-				orig_image = new Pixbuf (request.path);
+				orig_image = img.Load ();
 
 		} catch (GLib.GException ex){
 			return;		
