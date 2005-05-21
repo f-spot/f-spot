@@ -80,13 +80,24 @@ namespace FSpot.Tiff {
 		LightSource			= 0x9208,
 		Flash				= 0x9209,
 		FocalLength			= 0x920a,
-		
-		ImageHistory                    = 0x9212, // TIFF-EP null separated list
-
-		SubjectArea			= 0x9214,
 			
-		TIFFEPStandardID                = 0x9216,
-		       
+			FlashEnergy_TIFFEP                     = 0x920b,// TIFF-EP 
+			SpacialFrequencyResponse        = 0x920c,// TIFF-EP 
+			Noise                           = 0x920d,// TIFF-EP 
+			FocalPlaneXResolution_TIFFEP           = 0x920e,// TIFF-EP 
+			FocalPlaneYResolution_TIFFEP           = 0x920f,// TIFF-EP 
+			FocalPlaneResolutionUnit_TIFFEP        = 0x9210,// TIFF-EP 
+			ImageName                       = 0x9211,// TIFF-EP 
+			SecurityClassification          = 0x9212,// TIFF-EP 
+		
+			ImageHistory                    = 0x9213, // TIFF-EP null separated list
+
+	        SubjectArea			= 0x9214,
+
+			ExposureIndex_TIFFEP                   = 0x9215, // TIFF-EP
+			TIFFEPStandardID                = 0x9216, // TIFF-EP
+			SensingMethod_TIFFEP                  = 0x9217, // TIFF-EP
+			
 		MakerNote			= 0x927c,
 		UserComment			= 0x9286,
 		SubSecTime			= 0x9290,
@@ -284,7 +295,7 @@ namespace FSpot.Tiff {
 		public Endian endian;
 
 		private uint directory_offset;
-		ImageDirectory Directory;
+		public ImageDirectory Directory;
 
 		
 
@@ -476,6 +487,10 @@ namespace FSpot.Tiff {
 				return new ByteEntry (input, start, header_endian);
 			case EntryType.Long:
 				return new LongEntry (input, start, header_endian);
+			case EntryType.Short:
+				return new ShortEntry (input, start, header_endian);
+			case EntryType.Ascii:
+				return new AsciiEntry (input, start, header_endian);
 			}
 
 			return new DirectoryEntry (input, start, header_endian);
@@ -530,6 +545,23 @@ namespace FSpot.Tiff {
 		}
 	}
 	
+	public class ShortEntry : DirectoryEntry {
+		public ShortEntry (byte [] data, int offset, Endian endian) : base (data, offset, endian)
+		{
+		}
+
+		public ushort [] ShortValue
+		{
+			get {
+				ushort [] data = new ushort [raw_data.Length];
+				for (int i = 0; i < raw_data.Length; i+= 2) {
+					data [i] = BitConverter.ToUInt16 (raw_data, i, endian == Endian.Little);
+				}
+				return data;
+			}
+		}
+	}
+	
 	public class LongEntry : DirectoryEntry {
 		public LongEntry (byte [] data, int offset, Endian endian) : base (data, offset, endian)
 		{
@@ -543,6 +575,20 @@ namespace FSpot.Tiff {
 		{
 			if (type != EntryType.Byte)
 				throw new System.Exception ("Invalid Settings At Birth");
+		}
+	}
+	
+	public class AsciiEntry : DirectoryEntry {
+		public AsciiEntry (byte [] data, int offset, Endian endian) : base (data, offset, endian)
+		{
+			if (type != EntryType.Ascii)
+				throw new System.Exception (System.String.Format ("Invalid Settings At Birth {0}", tagid));
+		}
+
+		public string StringValue {
+			get {
+				return System.Text.Encoding.ASCII.GetString (raw_data);
+			}
 		}
 	}
 
@@ -653,6 +699,29 @@ namespace FSpot.Tiff {
 			System.Console.WriteLine ("value = {0} len = {1}", value, len);
 			SetData (tmp);
 		}
+	
+		public static System.DateTime DateTimeFromString(string dt)
+		 {
+			 // Exif DateTime strings are formatted as
+			 //      "YYYY:MM:DD HH:MM:SS"
+
+			 string delimiters = " :";
+			 string[] dt_data = dt.Split ( delimiters.ToCharArray(), 6 );
+			 System.DateTime result;
+			 result = new System.DateTime (System.Int32.Parse(dt_data[0]), 
+						       System.Int32.Parse(dt_data[1]), 
+						       System.Int32.Parse(dt_data[2]),
+						       System.Int32.Parse(dt_data[3]), 
+						       System.Int32.Parse(dt_data[4]), 
+						       System.Int32.Parse(dt_data[5]));
+			
+			return result;
+		}
+	
+		public void Dump ()
+		{
+			System.Console.WriteLine ("{0}-{1}({2})", this.tagid, this.type, this.count);
+		}
 		
 		public void SetData (byte [] data)
 		{
@@ -675,12 +744,26 @@ namespace FSpot.Tiff {
 		{
 			try {
 				System.IO.Stream input = System.IO.File.OpenRead (path);
-				Header h = new Header (input);
+				this.Header = new Header (input);
 				input.Close ();
-				h.Dump ();
+				//System.Console.WriteLine (this.Header.Dump ());
+
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e.ToString ());
 			}
+		}
+
+		public override PixbufOrientation GetOrientation ()
+		{
+			ShortEntry e = (ShortEntry)(this.Header.Directory.Lookup (TagId.Orientation));
+			return (PixbufOrientation)(e.ShortValue[0]);
+		}
+
+		public override System.DateTime Date ()
+		{
+			AsciiEntry e = (AsciiEntry)(this.Header.Directory.Lookup (TagId.DateTime));
+			System.DateTime time = DirectoryEntry.DateTimeFromString (e.StringValue);
+			return time;
 		}
 	}
 }
