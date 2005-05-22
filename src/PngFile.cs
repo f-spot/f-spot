@@ -7,7 +7,7 @@ namespace FSpot.Png {
 		public PngFile (string path) : base (path)
 		{
 			this.path = path;
-			System.IO.Stream input = System.IO.File.Open (this.Path, System.IO.FileMode.Open);
+			System.IO.Stream input = System.IO.File.OpenRead (this.Path);
 			Load (input);
 			input.Close ();
 		}

@@ -1,5 +1,7 @@
 2005-05-22  Larry Ewing  <lewing@novell.com>
 
+	* src/PngFile.cs: open the file in readonly mode.
+
 	* src/DirectoryCollection.cs: only use png icons for now.
 
 	* src/PhotoStore.cs: remove exception.
