@@ -513,10 +513,6 @@ public class PhotoStore : DbStore {
 
 	public Photo Create (DateTime time_in_utc, string path, out Pixbuf thumbnail)
 	{
-		if (! path.ToLower().EndsWith (".jpg") && ! path.ToLower().EndsWith (".jpeg"))
-			throw new Exception ("Only jpeg files supported");
-
-
 		uint unix_time = DbUtils.UnixTimeFromDateTime (time_in_utc);
 
 		SqliteCommand command = new SqliteCommand ();

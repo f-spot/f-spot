@@ -1,3 +1,10 @@
+2005-05-22  Larry Ewing  <lewing@novell.com>
+
+	* src/PhotoStore.cs: remove exception.
+
+	* src/Tiff.cs: add missing tag ids.  Add enums for some of the
+	more critical settings.
+
 2005-05-21  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoImageView.cs: handle closed, fall back to
