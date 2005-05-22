@@ -26,8 +26,10 @@ namespace FSpot.Tiff {
 		XResolution 			= 0x011a,
 		YResolution 			= 0x011b,
 		PlanarConfiguration 		= 0x011c,
-			T4Options                       = 0x0124,
-			T6Options                       = 0x0125,
+
+		T4Options                       = 0x0124,
+		T6Options                       = 0x0125,
+
 		ResolutionUnit  		= 0x0128,
 		TransferFunction 		= 0x012d,
 		Software 			= 0x0131,
@@ -36,25 +38,25 @@ namespace FSpot.Tiff {
 		WhitePoint			= 0x013e,
 		PrimaryChromaticities		= 0x013f,
 			
-			HalftoneHints                   = 0x0141,
-			// Tiled images
-			TileWidth                       = 0x0142,
-			TileLength                       = 0x0143,
-			TileOffsets                       = 0x0144,
-			TileByteCounts                      = 0x0145,
+		HalftoneHints                   = 0x0141,
+		// Tiled images
+		TileWidth                       = 0x0142,
+		TileLength                       = 0x0143,
+		TileOffsets                       = 0x0144,
+	        TileByteCounts                      = 0x0145,
 
 		SubIFDs                         = 0x014a, // TIFF-EP
 
-			// CMYK images
-			InkSet                          = 0x014c,
-			NumberOfInks                    = 0x014e,
-			InkNames                        = 0x014d,
-			DotRange                        = 0x0150,
-			TargetPrinter                   = 0x0151,
-			ExtraSamples                    = 0x0152,
-			SampleFormat                    = 0x0153,
-			SMinSampleValue                 = 0x0154,
-			SMaxSampleValue                 = 0x0155,
+		// CMYK images
+		InkSet                          = 0x014c,
+		NumberOfInks                    = 0x014e,
+	        InkNames                        = 0x014d,
+		DotRange                        = 0x0150,
+		TargetPrinter                   = 0x0151,
+		ExtraSamples                    = 0x0152,
+		SampleFormat                    = 0x0153,
+		SMinSampleValue                 = 0x0154,
+		SMaxSampleValue                 = 0x0155,
 		
 		TransferRange			= 0x0156,
 		
@@ -65,15 +67,17 @@ namespace FSpot.Tiff {
 		JPEGProc			= 0x0200,
 		JPEGInterchangeFormat	        = 0x0201,
 		JPEGInterchangeFormatLength	= 0x0202,
-			JPEGRestartInterval             = 0x0203,
-			JPEGLosslessPredictors          = 0x0205,
-			JPEGPointTransforms             = 0x0206,
-			JPEGQTables                     = 0x0207,
-			JPEGDCTables                    = 0x0208,
-			JPEGACTables                    = 0x0209,
+	        JPEGRestartInterval             = 0x0203,
+	        JPEGLosslessPredictors          = 0x0205,
+		JPEGPointTransforms             = 0x0206,
+		JPEGQTables                     = 0x0207,
+		JPEGDCTables                    = 0x0208,
+		JPEGACTables                    = 0x0209,
+
 		YCBCRCoefficients		= 0x0211,
 		YCBCRSubSampling		= 0x0212,
 		YCBCRPositioning		= 0x0213,
+
 		ReferenceBlackWhite		= 0x0214,
 		RelatedImageFileFormat   	= 0x1000,
 		RelatedImageWidth		= 0x1001,
@@ -85,6 +89,9 @@ namespace FSpot.Tiff {
 		ExposureTime			= 0x829a,
 		FNumber 			= 0x829d,
 		IPTCNAA	        		= 0x83bb,
+
+		PhotoshopPrivate                = 0x8649,
+
 		ExifIfdPointer      		= 0x8769,
 		InterColorProfile		= 0x8773,
 		ExposureProgram 		= 0x8822,
@@ -108,22 +115,22 @@ namespace FSpot.Tiff {
 		Flash				= 0x9209,
 		FocalLength			= 0x920a,
 			
-			FlashEnergy_TIFFEP                     = 0x920b,// TIFF-EP 
-			SpacialFrequencyResponse        = 0x920c,// TIFF-EP 
-			Noise                           = 0x920d,// TIFF-EP 
-			FocalPlaneXResolution_TIFFEP           = 0x920e,// TIFF-EP 
-			FocalPlaneYResolution_TIFFEP           = 0x920f,// TIFF-EP 
-			FocalPlaneResolutionUnit_TIFFEP        = 0x9210,// TIFF-EP 
-			ImageName                       = 0x9211,// TIFF-EP 
-			SecurityClassification          = 0x9212,// TIFF-EP 
+		FlashEnergy_TIFFEP              = 0x920b,// TIFF-EP 
+		SpacialFrequencyResponse        = 0x920c,// TIFF-EP 
+		Noise                           = 0x920d,// TIFF-EP 
+		FocalPlaneXResolution_TIFFEP    = 0x920e,// TIFF-EP 
+		FocalPlaneYResolution_TIFFEP    = 0x920f,// TIFF-EP 
+		FocalPlaneResolutionUnit_TIFFEP = 0x9210,// TIFF-EP 
+		ImageName                       = 0x9211,// TIFF-EP 
+		SecurityClassification          = 0x9212,// TIFF-EP 
 		
-			ImageHistory                    = 0x9213, // TIFF-EP null separated list
+		ImageHistory                    = 0x9213, // TIFF-EP null separated list
 
 	        SubjectArea			= 0x9214,
 
-			ExposureIndex_TIFFEP                   = 0x9215, // TIFF-EP
-			TIFFEPStandardID                = 0x9216, // TIFF-EP
-			SensingMethod_TIFFEP                  = 0x9217, // TIFF-EP
+		ExposureIndex_TIFFEP            = 0x9215, // TIFF-EP
+		TIFFEPStandardID                = 0x9216, // TIFF-EP
+		SensingMethod_TIFFEP            = 0x9217, // TIFF-EP
 			
 		MakerNote			= 0x927c,
 		UserComment			= 0x9286,
@@ -459,7 +466,7 @@ namespace FSpot.Tiff {
 			for (int pos = 0; pos < entry_length; pos += 12) {
 				DirectoryEntry entry = EntryFactory.CreateEntry (this, content, pos, this.endian);
 				entries.Add (entry);		
-				System.Console.WriteLine ("Added Entry {0} {1}", entry.Id.ToString (), entry.Id.ToString ("x"));
+				System.Console.WriteLine ("Added Entry {0} {1} - {2}", entry.Id.ToString (), entry.Id.ToString ("x"), entry.Type);
 				if (entry.Id == TagId.NewSubfileType) {
 					
 				}
@@ -702,6 +709,12 @@ namespace FSpot.Tiff {
 			}
 		}
 
+		public EntryType Type {
+			get {
+				return type;
+			}
+		}
+
 		public void SetOrigin (uint pos)
 		{
 			offset_origin = pos;
@@ -768,23 +781,46 @@ namespace FSpot.Tiff {
 				raw_data = data;
 			}
 
-			switch (this.Id) {
-			case TagId.NewSubfileType:
+			switch ((int)this.Id) {
+			case (int)TagId.NewSubfileType:
 				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new NewSubFileType {0}", (NewSubfileType)((LongEntry)this).LongValue [0]);
 				break;
-			case TagId.SubfileType:
+			case (int)TagId.SubfileType:
 				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new SubFileType {0}", (SubfileType)((ShortEntry)this).ShortValue [0]);
 				break;
-			case TagId.Compression:
+			case (int)TagId.Compression:
 				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new Compression {0}", (Compression)((ShortEntry)this).ShortValue [0]);
 				
 				break;
-			case TagId.JPEGProc:
+			case (int)TagId.JPEGProc:
 				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new JPEGProc {0}", (JPEGProc)((ShortEntry)this).ShortValue [0]);
 				
 				break;
-			case TagId.PhotometricInterpretation:
+			case (int)TagId.PhotometricInterpretation:
 				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new PhotometricInterpretation {0}", (PhotometricInterpretation)((ShortEntry)this).ShortValue [0]);
+				break;
+
+			case 50649:
+			case 50648:
+			case 50656:
+			case 50752:
+				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX {0}({1}) - {2} {3}", this.Id, this.Id.ToString ("x"), this.type, raw_data.Length);
+				System.Console.WriteLine ("XXXX ", System.Text.Encoding.ASCII.GetString (raw_data));
+				switch (this.type) {
+				case EntryType.Long:
+					foreach (uint val in ((LongEntry)this).LongValue)
+						System.Console.Write (" {0}", val);
+					break;
+				case EntryType.Short:
+					foreach (ushort val in ((ShortEntry)this).ShortValue)
+						System.Console.Write (" {0}", val);
+					break;
+				case EntryType.Byte:
+					foreach (byte val in this.RawData)
+						System.Console.Write (" {0}", val);
+					break;
+				}
+				System.Console.WriteLine ("");
 				break;
 			}
 		}
