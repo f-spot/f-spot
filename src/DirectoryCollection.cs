@@ -39,9 +39,11 @@ namespace FSpot {
 				System.IO.DirectoryInfo info = new System.IO.DirectoryInfo (path);
 				System.IO.FileInfo [] files = info.GetFiles ();
 				foreach (System.IO.FileInfo f in files) {
-					System.Console.WriteLine (f.FullName);
+					if (System.IO.Path.GetExtension (f.FullName).ToLower () == ".png") {
+						System.Console.WriteLine (f.FullName);
 					
-					images.Add (new FileBrowsableItem (f.FullName));
+						images.Add (new FileBrowsableItem (f.FullName));
+					}
 				}
 				
 				items = images.ToArray (typeof (FileBrowsableItem)) as FileBrowsableItem [];
