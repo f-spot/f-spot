@@ -531,6 +531,7 @@ public class PhotoStore : DbStore {
 		uint id = (uint) Connection.LastInsertRowId;
 		Photo photo = new Photo (id, unix_time, path);
 		AddToCache (photo);
+		photo.Loaded = true;
 
 		thumbnail = GenerateThumbnail (path);
 		return photo;
