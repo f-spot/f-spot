@@ -5,7 +5,8 @@ namespace FSpot.Tiff {
 		InteroperabilityIndex		= 0x0001,
 		InteroperabilityVersion	        = 0x0002,
 		
-		NewSubFileType                  = 0x00fe, // TIFF-EP
+		NewSubfileType                  = 0x00fe,
+		SubfileType                     = 0x00ff,
 		
 		ImageWidth 			= 0x0100,
 		ImageLength 			= 0x0101,
@@ -25,6 +26,8 @@ namespace FSpot.Tiff {
 		XResolution 			= 0x011a,
 		YResolution 			= 0x011b,
 		PlanarConfiguration 		= 0x011c,
+			T4Options                       = 0x0124,
+			T6Options                       = 0x0125,
 		ResolutionUnit  		= 0x0128,
 		TransferFunction 		= 0x012d,
 		Software 			= 0x0131,
@@ -32,8 +35,26 @@ namespace FSpot.Tiff {
 		Artist				= 0x013b,
 		WhitePoint			= 0x013e,
 		PrimaryChromaticities		= 0x013f,
+			
+			HalftoneHints                   = 0x0141,
+			// Tiled images
+			TileWidth                       = 0x0142,
+			TileLength                       = 0x0143,
+			TileOffsets                       = 0x0144,
+			TileByteCounts                      = 0x0145,
 
 		SubIFDs                         = 0x014a, // TIFF-EP
+
+			// CMYK images
+			InkSet                          = 0x014c,
+			NumberOfInks                    = 0x014e,
+			InkNames                        = 0x014d,
+			DotRange                        = 0x0150,
+			TargetPrinter                   = 0x0151,
+			ExtraSamples                    = 0x0152,
+			SampleFormat                    = 0x0153,
+			SMinSampleValue                 = 0x0154,
+			SMaxSampleValue                 = 0x0155,
 		
 		TransferRange			= 0x0156,
 		
@@ -44,6 +65,12 @@ namespace FSpot.Tiff {
 		JPEGProc			= 0x0200,
 		JPEGInterchangeFormat	        = 0x0201,
 		JPEGInterchangeFormatLength	= 0x0202,
+			JPEGRestartInterval             = 0x0203,
+			JPEGLosslessPredictors          = 0x0205,
+			JPEGPointTransforms             = 0x0206,
+			JPEGQTables                     = 0x0207,
+			JPEGDCTables                    = 0x0208,
+			JPEGACTables                    = 0x0209,
 		YCBCRCoefficients		= 0x0211,
 		YCBCRSubSampling		= 0x0212,
 		YCBCRPositioning		= 0x0213,
@@ -188,7 +215,60 @@ namespace FSpot.Tiff {
 		// Print Image Matching data
 		PimIfdPointer                   = 0xc4a5
 	}
+
+	public enum ExtraSamples {
+		Unspecified = 0,
+		AssociatedAlpha = 1,
+		UnassociatedAlpa = 2
+	}
+
+	public enum PhotometricInterpretation : ushort {
+		WhiteIsZero = 0,
+		BlackIsZero = 1,
+		RGB = 2,
+		PaletteColor = 3,
+		TransparencyMask = 4,
+			CMYK = 5,
+			YCbCr = 6,
+			CIELab = 8,
+			CFA = 32803  // ColorFilterArray... the good stuff
+	}
+
+	public enum PlanarConfiguration {
+		Chunky = 1,
+		Planar = 2
+	}
 	
+	public enum Compression {
+		Packed = 1,
+		Huffman = 2,
+		T4 = 3,
+		T6 = 4,
+		LZW = 5,
+		JPEG = 6,
+		JPEGStream = 7,  // TIFF-EP stores full jpeg stream 
+		PackBits = 32773
+	}
+
+	public enum JPEGProc {
+		BaselineSequencial = 1,
+		LosslessHuffman = 14,
+	}
+
+	public enum SubfileType {
+		FullResolution = 1,
+		ReducedResolution = 2,
+		PageOfMultipage = 3
+	}
+
+	[System.Flags]
+	public enum NewSubfileType : uint {
+		SingleImage = 0,
+		ReducedResolutionFlag = 1,
+		PageOfMultipageFlag = 1 << 1,
+		TransparencyMaskFlag = 1 << 2
+	}
+
 	public enum EntryType {
 		Byte = 1,
 		Ascii,
@@ -380,6 +460,9 @@ namespace FSpot.Tiff {
 				DirectoryEntry entry = EntryFactory.CreateEntry (this, content, pos, this.endian);
 				entries.Add (entry);		
 				System.Console.WriteLine ("Added Entry {0} {1}", entry.Id.ToString (), entry.Id.ToString ("x"));
+				if (entry.Id == TagId.NewSubfileType) {
+					
+				}
 			}
 		}
 
@@ -568,6 +651,17 @@ namespace FSpot.Tiff {
 			if (type != EntryType.Long)
 				throw new System.Exception (System.String.Format ("Invalid Settings At Birth {0}", tagid));
 		}
+
+		public uint [] LongValue
+		{
+			get {
+				uint [] data = new uint [raw_data.Length];
+				for (int i = 0; i < raw_data.Length; i+= 4) {
+					data [i] = BitConverter.ToUInt32 (raw_data, i, endian == Endian.Little);
+				}
+				return data;
+			}
+		}
 	}
 
 	public class ByteEntry : DirectoryEntry {
@@ -673,6 +767,26 @@ namespace FSpot.Tiff {
 					throw new System.Exception ("Short Read");
 				raw_data = data;
 			}
+
+			switch (this.Id) {
+			case TagId.NewSubfileType:
+				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new NewSubFileType {0}", (NewSubfileType)((LongEntry)this).LongValue [0]);
+				break;
+			case TagId.SubfileType:
+				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new SubFileType {0}", (SubfileType)((ShortEntry)this).ShortValue [0]);
+				break;
+			case TagId.Compression:
+				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new Compression {0}", (Compression)((ShortEntry)this).ShortValue [0]);
+				
+				break;
+			case TagId.JPEGProc:
+				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new JPEGProc {0}", (JPEGProc)((ShortEntry)this).ShortValue [0]);
+				
+				break;
+			case TagId.PhotometricInterpretation:
+				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new PhotometricInterpretation {0}", (PhotometricInterpretation)((ShortEntry)this).ShortValue [0]);
+				break;
+			}
 		}
 
 		protected void ParseStream (byte [] data, int start)
@@ -747,7 +861,6 @@ namespace FSpot.Tiff {
 				this.Header = new Header (input);
 				input.Close ();
 				//System.Console.WriteLine (this.Header.Dump ());
-
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e.ToString ());
 			}
