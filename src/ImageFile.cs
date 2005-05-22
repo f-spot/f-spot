@@ -3,7 +3,7 @@ using System.IO;
 namespace FSpot {
 	public class ImageFile {
 		protected string path;
-		
+
 		protected ImageFile (string path) 
 		{
 			this.path = path;
@@ -56,12 +56,27 @@ namespace FSpot {
 		
 		public static ImageFile Create (string path)
 		{
-			if (path.ToLower().EndsWith (".jpg") || path.ToLower().EndsWith (".jpeg"))
+			switch (System.IO.Path.GetExtension (path).ToLower ()) {
+			case ".jpeg":
 				return new JpegFile (path);
-			else if (path.ToLower ().EndsWith (".crw"))
+			case ".jpg":
+				return new JpegFile (path);
+			case ".png":
+				return new FSpot.Png.PngFile (path);
+			case ".tiff":
+			case ".tif":
+			case ".nef":
+			case ".dng":
+			case ".cr2":
+			case ".orf":
+				return new FSpot.Tiff.TiffFile (path);
+			case ".crw":
 				return new FSpot.Ciff.CiffFile (path);
-			else
+			case ".ppm":
+				return new FSpot.Pnm.PnmFile (path);
+			default:
 				return new ImageFile (path);
+			}
 		}
 	} 
 }
