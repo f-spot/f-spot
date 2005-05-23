@@ -1,6 +1,13 @@
+2005-05-23  Larry Ewing  <lewing@novell.com>
+
+	* src/PixbufUtils.cs: make LoadFromStream public for now.
+
 2005-05-22  Larry Ewing  <lewing@novell.com>
 
-	* src/PhotoStore.cs: fix 301968.
+	* src/Tiff.cs: handle loading thumbnails from cr2 files.
+
+	* src/PhotoStore.cs: If we've just created the photo mark it as
+	loaded. fixes #301968.
 
 	* src/f-spot.glade: make the predefined icon selector shadow in
 	and make fix the directory/month arrangement again.

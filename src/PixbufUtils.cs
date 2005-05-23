@@ -212,7 +212,7 @@ class PixbufUtils {
 #endif
 	}
 
-	static private Pixbuf LoadFromStream (System.IO.Stream input)
+	static public Pixbuf LoadFromStream (System.IO.Stream input)
 	{
 		Gdk.PixbufLoader loader = new Gdk.PixbufLoader ();
 		byte [] buffer = new byte [8192];

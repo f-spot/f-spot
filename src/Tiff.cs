@@ -10,7 +10,7 @@ namespace FSpot.Tiff {
 		
 		ImageWidth 			= 0x0100,
 		ImageLength 			= 0x0101,
-		BitsPersample 	         	= 0x0102,
+		BitsPerSample 	         	= 0x0102,
 		Compression 			= 0x0103,
 		PhotometricInterpretation 	= 0x0106,
 		FillOrder 			= 0x010a,
@@ -41,9 +41,9 @@ namespace FSpot.Tiff {
 		HalftoneHints                   = 0x0141,
 		// Tiled images
 		TileWidth                       = 0x0142,
-		TileLength                       = 0x0143,
-		TileOffsets                       = 0x0144,
-	        TileByteCounts                      = 0x0145,
+		TileLength                      = 0x0143,
+		TileOffsets                     = 0x0144,
+	        TileByteCounts                  = 0x0145,
 
 		SubIFDs                         = 0x014a, // TIFF-EP
 
@@ -235,10 +235,15 @@ namespace FSpot.Tiff {
 		RGB = 2,
 		PaletteColor = 3,
 		TransparencyMask = 4,
-			CMYK = 5,
+			Separated = 5,  // CMYK
 			YCbCr = 6,
 			CIELab = 8,
-			CFA = 32803  // ColorFilterArray... the good stuff
+			ICCLab = 9,
+			ITULab = 10,
+			LogL = 32844, // Log Luminance
+			LogLUV = 32845,
+			CFA = 32803,  // ColorFilterArray... the good stuff
+			LinearRaw = 34892  // DBG LinearRaw
 	}
 
 	public enum PlanarConfiguration {
@@ -254,7 +259,11 @@ namespace FSpot.Tiff {
 		LZW = 5,
 		JPEG = 6,
 		JPEGStream = 7,  // TIFF-EP stores full jpeg stream 
-		PackBits = 32773
+		Deflate = 8,
+		JBIG = 9,
+		JBIG_MRC,
+		PackBits = 32773,
+		Deflate_experimental = 0x80b2
 	}
 
 	public enum JPEGProc {
@@ -505,6 +514,12 @@ namespace FSpot.Tiff {
 			}
 		}
 
+		public System.Collections.ArrayList Entries {
+			get { 
+				return entries;
+			}
+		}
+
 		public DirectoryEntry Lookup (TagId id) 
 		{
 			foreach (DirectoryEntry entry in entries)
@@ -514,6 +529,18 @@ namespace FSpot.Tiff {
 			
 			return null;
 		}
+
+
+		public DirectoryEntry Lookup (uint id) 
+		{
+			foreach (DirectoryEntry entry in entries)
+				if ((uint)entry.Id == id)
+					return entry;
+
+			
+			return null;
+		}
+
 		
 		public string Dump ()
 		{
@@ -605,7 +632,7 @@ namespace FSpot.Tiff {
 
 	public class SubdirectoryEntry : DirectoryEntry {
 		public uint directory_offset;
-		ImageDirectory [] Directory;
+		public ImageDirectory [] Directory;
 		
 		public SubdirectoryEntry (byte [] data, int offset, Endian endian) : base (data, offset, endian)
 		{
@@ -640,14 +667,9 @@ namespace FSpot.Tiff {
 		{
 		}
 
-		public ushort [] ShortValue
-		{
+		public new ushort [] Value {
 			get {
-				ushort [] data = new ushort [raw_data.Length];
-				for (int i = 0; i < raw_data.Length; i+= 2) {
-					data [i] = BitConverter.ToUInt16 (raw_data, i, endian == Endian.Little);
-				}
-				return data;
+				return this.ShortValue;
 			}
 		}
 	}
@@ -659,14 +681,10 @@ namespace FSpot.Tiff {
 				throw new System.Exception (System.String.Format ("Invalid Settings At Birth {0}", tagid));
 		}
 
-		public uint [] LongValue
+		public new uint [] Value
 		{
 			get {
-				uint [] data = new uint [raw_data.Length];
-				for (int i = 0; i < raw_data.Length; i+= 4) {
-					data [i] = BitConverter.ToUInt32 (raw_data, i, endian == Endian.Little);
-				}
-				return data;
+				return this.LongValue;
 			}
 		}
 	}
@@ -686,12 +704,55 @@ namespace FSpot.Tiff {
 				throw new System.Exception (System.String.Format ("Invalid Settings At Birth {0}", tagid));
 		}
 
-		public string StringValue {
-			get {
-				return System.Text.Encoding.ASCII.GetString (raw_data);
+
+	}
+
+#if false
+	public class ImageLoader {
+		ushort width;
+		ushort length;
+		ushort [] bps;
+		PhotometricInterpretation interpretation;
+		Compression compression;
+		uint [] offsets;
+		uint [] strip_byte_counts;
+		uint rows_per_strip;
+		byte [] strip;
+
+		public ImageLoader (ImageDirectory directory) 
+		{
+			width = directory.Lookup (TagId.ImageWidth).ValueAsLong [0];
+			length = directory.Lookup (TagId.ImageLength).ValueAsLong [0];
+			
+			bps = ((ShortEntry)directory.Lookup (TagId.BitsPerSample)).Value;
+			
+			compression = (Compression) directory.Lookup (TagId.Compression).ValueAsLong [0];
+			interpretation = (PhotometricInterpretation) directory.Lookup (TagId.PhotometricInterpretation).ValueAsLong [0];
+			
+			offsets = directory.Lookup (TagId.StripOffsets).ValueAsLong;
+			strip_byte_counts = directory.Lookup (TagId.StripByteCounts).ValueAsLong;
+			rows_per_strip = directory.Lookup (TagId.RowsPerStrip).ValueAsLong [0];
+
+			if (interpretation != 
+		}
+
+
+		public Gdk.Pixbuf LoadPixbuf (System.IO.Stream stream) 
+		{
+			Gdk.Pixbuf dest = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, false, width, height);
+			strip = new byte [strip_byte_counts];
+			int row;
+			for (int i = 0; i < offsets.Length; i++) {
+				strip = new byte [strip_byte_counts [i]];
+				stream.Read (strip, 0, strip.Length);
+				switch (compression) {
+					case Compression.Notice
+
+				}
 			}
 		}
 	}
+#endif
 
 	public class DirectoryEntry {
 		protected TagId  tagid;
@@ -712,6 +773,12 @@ namespace FSpot.Tiff {
 		public EntryType Type {
 			get {
 				return type;
+			}
+		}
+		
+		public uint Count {
+			get {
+				return count;
 			}
 		}
 
@@ -783,24 +850,22 @@ namespace FSpot.Tiff {
 
 			switch ((int)this.Id) {
 			case (int)TagId.NewSubfileType:
-				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new NewSubFileType {0}", (NewSubfileType)((LongEntry)this).LongValue [0]);
+				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new NewSubFileType {0}", (NewSubfileType) this.ValueAsLong [0]);
 				break;
 			case (int)TagId.SubfileType:
-				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new SubFileType {0}", (SubfileType)((ShortEntry)this).ShortValue [0]);
+				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new SubFileType {0}", (SubfileType) this.ValueAsLong [0]);
 				break;
 			case (int)TagId.Compression:
-				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new Compression {0}", (Compression)((ShortEntry)this).ShortValue [0]);
+				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new Compression {0}", (Compression) this.ValueAsLong [0]);
 				
 				break;
 			case (int)TagId.JPEGProc:
-				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new JPEGProc {0}", (JPEGProc)((ShortEntry)this).ShortValue [0]);
+				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new JPEGProc {0}", (JPEGProc) this.ValueAsLong [0]);
 				
 				break;
 			case (int)TagId.PhotometricInterpretation:
-				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new PhotometricInterpretation {0}", (PhotometricInterpretation)((ShortEntry)this).ShortValue [0]);
+				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new PhotometricInterpretation {0}", (PhotometricInterpretation) this.ValueAsLong [0]);
 				break;
-
-			case 50649:
 			case 50648:
 			case 50656:
 			case 50752:
@@ -825,11 +890,22 @@ namespace FSpot.Tiff {
 			}
 		}
 
+		public void Dump ()
+		{
+			uint [] vals = this.ValueAsLong;
+			System.Console.Write ("{1}({2}) [{0}] (", vals.Length, this.Id, this.Type);
+			foreach (uint number in vals) {
+				System.Console.Write (" {0}", number);
+			}
+			System.Console.WriteLine (")");
+		}
+		
 		protected void ParseStream (byte [] data, int start)
 		{
 			int i = start;
 
-			count = BitConverter.ToUInt32 (data, i, endian == Endian.Little); i += 4;
+			count = BitConverter.ToUInt32 (data, i, endian == Endian.Little); 
+			i += 4;
 			int size = (int)count * GetTypeSize ();
 			if (size > 4)
 				data_offset = BitConverter.ToUInt32 (data, i, endian == Endian.Little);
@@ -868,24 +944,75 @@ namespace FSpot.Tiff {
 			return result;
 		}
 	
-		public void Dump ()
-		{
-			System.Console.WriteLine ("{0}-{1}({2})", this.tagid, this.type, this.count);
-		}
-		
 		public void SetData (byte [] data)
 		{
 			raw_data = data;
 			count = (uint)raw_data.Length / (uint)GetTypeSize ();
 		}
 		
+		public byte [] Value {
+			get {
+				return raw_data;
+			}
+		}
+
 		public byte [] RawData
 		{
 			get { 
 				return raw_data;
 			}
 		}
+
+		public string StringValue {
+			get {
+				return System.Text.Encoding.ASCII.GetString (raw_data);
+			}
+		}
+
+		public uint [] ValueAsLong
+		{
+			get {
+				uint [] data = new uint [raw_data.Length];
+				for (int i = 0; i < this.Count; i++) {
+					switch (this.Type) {
+					case EntryType.Long:
+						data [i] = BitConverter.ToUInt32 (raw_data, i * GetTypeSize (), endian == Endian.Little);
+						break;
+					case EntryType.Short:
+						data [i] = BitConverter.ToUInt16 (raw_data, i * GetTypeSize (), endian == Endian.Little);
+						break;
+					default:
+						throw new System.Exception ("Invalid conversion");
+					}
+				}
+				return data;
+			}
+		}
+
+		public uint [] LongValue
+		{
+			get {
+				uint [] data = new uint [raw_data.Length];
+				for (int i = 0; i < raw_data.Length; i+= 4) {
+					data [i] = BitConverter.ToUInt32 (raw_data, i, endian == Endian.Little);
+				}
+				return data;
+			}
+		}
+
+		public ushort [] ShortValue
+		{
+			get {
+				ushort [] data = new ushort [raw_data.Length];
+				for (int i = 0; i < raw_data.Length; i+= 2) {
+					data [i] = BitConverter.ToUInt16 (raw_data, i, endian == Endian.Little);
+				}
+				return data;
+			}
+		}
 	}
+
+
 
 	public class TiffFile : ImageFile {
 		public Header Header;
@@ -911,9 +1038,73 @@ namespace FSpot.Tiff {
 		public override System.DateTime Date ()
 		{
 			AsciiEntry e = (AsciiEntry)(this.Header.Directory.Lookup (TagId.DateTime));
-			System.DateTime time = DirectoryEntry.DateTimeFromString (e.StringValue);
-			return time;
+
+			if (e != null)
+				return DirectoryEntry.DateTimeFromString (e.StringValue);
+			else
+				return base.Date ();
 		}
+	}
+
+	public class Cr2File : TiffFile, IThumbnailContainer {
+
+		public Cr2File (string path) : base (path) 
+		{
+			try {
+				ImageDirectory directory = Header.Directory.NextDirectory.NextDirectory;
+				foreach (DirectoryEntry e in directory.Entries)
+					e.Dump ();
+
+				directory = Header.Directory.NextDirectory.NextDirectory.NextDirectory;
+				foreach (DirectoryEntry e in directory.Entries)
+					e.Dump ();
+
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e.ToString ());
+			}
+		}
+		
+		public Gdk.Pixbuf GetEmbeddedThumbnail ()
+		{
+			ImageDirectory directory;
+
+			directory = Header.Directory.NextDirectory;
+			
+			uint offset = directory.Lookup (TagId.JPEGInterchangeFormat).ValueAsLong [0];
+			uint length = directory.Lookup (TagId.JPEGInterchangeFormat).ValueAsLong [0];
+			
+			System.IO.Stream file = System.IO.File.OpenRead (this.path);
+			file.Position = offset;
+
+			byte [] data = new byte [length];
+
+			file.Read (data, 0, data.Length);
+			System.IO.MemoryStream stream = new System.IO.MemoryStream (data);
+			return PixbufUtils.LoadFromStream (stream);
+		}
+
+		public override Gdk.Pixbuf Load ()
+		{
+			return GetEmbeddedThumbnail ();
+		}
+
+		public override Gdk.Pixbuf Load (int width, int height)
+		{
+			return PixbufUtils.ScaleToMaxSize (this.Load (), width, height);
+		}
+
+
+		public override System.DateTime Date ()
+		{
+			SubdirectoryEntry sub = this.Header.Directory.Lookup (ExifIfdPointer);
+			AsciiEntry e = (AsciiEntry)(sub.Directory [0].Lookup (TagId.DateTimeOriginal));
+
+			if (e != null)
+				return DirectoryEntry.DateTimeFromString (e.StringValue);
+			else
+				return base.Date ();
+		}
+
 	}
 }
 
