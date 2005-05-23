@@ -420,7 +420,7 @@ namespace FSpot.Tiff {
 		{
 			System.Text.StringBuilder builder = new System.Text.StringBuilder ();
 			builder.Append (System.String.Format ("Header [{0}]\n", endian.ToString ()));
-			builder.Append (System.String.Format ("|-{0}", Directory.Dump ()));
+			builder.Append (System.String.Format ("|-{0}", Directory.Dump2 ()));
 			return builder.ToString ();
 		}
 	}
@@ -540,9 +540,17 @@ namespace FSpot.Tiff {
 			
 			return null;
 		}
-
 		
-		public string Dump ()
+		
+		public void Dump () 
+		{
+			System.Console.WriteLine ("Directory Start");
+			foreach (DirectoryEntry e in this.Entries)
+				e.Dump ();
+			System.Console.WriteLine ("End Directory");
+		}
+		
+		public string Dump2 ()
 		{
 			System.Text.StringBuilder builder = new System.Text.StringBuilder ();
 			builder.Append ("Dummping IFD");
@@ -555,7 +563,7 @@ namespace FSpot.Tiff {
 			
 			if (next_directory != null) {
 				builder.Append ("Dummping Next IFD");
-				builder.Append (next_directory.Dump ());
+				builder.Append (next_directory.Dump2 ());
 			}
 
 			return builder.ToString ();
@@ -658,6 +666,15 @@ namespace FSpot.Tiff {
 				System.Console.WriteLine ("Entering Subdirectory {0} at {1}", tagid.ToString (), directory_offset);
 				Directory [i] = new ImageDirectory (stream, directory_offset, endian);
 				System.Console.WriteLine ("Leaving Subdirectory {0} at {1}", tagid.ToString (), directory_offset);
+			}
+		}
+
+		public override void Dump ()
+		{
+			for (int i = 0; i < Directory.Length; i++) {
+				 System.Console.WriteLine ("Entering Subdirectory {0}.{2} at {1}", tagid.ToString (), directory_offset, i);
+				 Directory [i].Dump ();
+				 System.Console.WriteLine ("Leaving Subdirectory {0}.{2} at {1}", tagid.ToString (), directory_offset, i);
 			}
 		}
 	}
@@ -890,14 +907,25 @@ namespace FSpot.Tiff {
 			}
 		}
 
-		public void Dump ()
+		public virtual void Dump ()
 		{
-			uint [] vals = this.ValueAsLong;
-			System.Console.Write ("{1}({2}) [{0}] (", vals.Length, this.Id, this.Type);
-			foreach (uint number in vals) {
-				System.Console.Write (" {0}", number);
+			switch (this.Type) {
+			case EntryType.Short:
+			case EntryType.Long:
+				uint [] vals = this.ValueAsLong;
+				System.Console.Write ("{1}({2}) [{0}] (", vals.Length, this.Id, this.Type);
+				for (int i = 0; i < System.Math.Min (15, vals.Length); i++) {
+					System.Console.Write (" {0}", vals [i]);
+				}
+				System.Console.WriteLine (")");
+				break;
+			case EntryType.Ascii:
+				System.Console.WriteLine ("{1}({2}) (\"{0}\")", this.StringValue, this.Id, this.Type);
+				break;
+			default:
+				System.Console.WriteLine ("{1}({2}) [{0}]", this.Count, this.Id, this.Type);
+				break;
 			}
-			System.Console.WriteLine (")");
 		}
 		
 		protected void ParseStream (byte [] data, int start)
@@ -1023,6 +1051,13 @@ namespace FSpot.Tiff {
 				System.IO.Stream input = System.IO.File.OpenRead (path);
 				this.Header = new Header (input);
 				input.Close ();
+				
+				ImageDirectory directory = Header.Directory;
+				while (directory != null) {
+					//directory.Dump ();
+					directory = directory.NextDirectory;
+				}
+				
 				//System.Console.WriteLine (this.Header.Dump ());
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e.ToString ());
@@ -1044,43 +1079,62 @@ namespace FSpot.Tiff {
 			else
 				return base.Date ();
 		}
+
+		public Gdk.Pixbuf LoadJpegInterchangeFormat (ImageDirectory directory)
+		{
+			uint offset = directory.Lookup (TagId.JPEGInterchangeFormat).ValueAsLong [0];
+			uint length = directory.Lookup (TagId.JPEGInterchangeFormat).ValueAsLong [0];
+			   
+			System.IO.Stream file = System.IO.File.OpenRead (this.path);
+			System.IO.Stream dump = System.IO.File.Open (this.path + ".DUMP", System.IO.FileMode.OpenOrCreate);
+			
+			file.Position = offset;
+
+			byte [] data = new byte [32768];
+			int len;
+
+			Gdk.PixbufLoader loader = new Gdk.PixbufLoader ();
+
+			while ((len = file.Read (data, 0, data.Length)) > 0) {
+				dump.Write (data, 0, len);
+				loader.Write (data, (ulong)len);
+			}
+			dump.Close ();
+			loader.Close ();
+			file.Close ();
+
+			return loader.Pixbuf; 
+		}
 	}
+		
+	public class NefFile : TiffFile {
+		public NefFile (string path) : base (path) {}
+
+		public override Gdk.Pixbuf Load () 
+		{
+			SubdirectoryEntry sub = (SubdirectoryEntry) Header.Directory.Lookup (TagId.SubIFDs);
+			ImageDirectory jpeg_directory = sub.Directory [0];
+			return LoadJpegInterchangeFormat (jpeg_directory);
+		}
+
+		public override Gdk.Pixbuf Load (int width, int height)
+		{
+			return PixbufUtils.ScaleToMaxSize (this.Load (), width, height);
+		}
+	}
+		
 
 	public class Cr2File : TiffFile, IThumbnailContainer {
 
 		public Cr2File (string path) : base (path) 
 		{
-			try {
-				ImageDirectory directory = Header.Directory.NextDirectory.NextDirectory;
-				foreach (DirectoryEntry e in directory.Entries)
-					e.Dump ();
-
-				directory = Header.Directory.NextDirectory.NextDirectory.NextDirectory;
-				foreach (DirectoryEntry e in directory.Entries)
-					e.Dump ();
-
-			} catch (System.Exception e) {
-				System.Console.WriteLine (e.ToString ());
-			}
 		}
 		
 		public Gdk.Pixbuf GetEmbeddedThumbnail ()
 		{
 			ImageDirectory directory;
-
 			directory = Header.Directory.NextDirectory;
-			
-			uint offset = directory.Lookup (TagId.JPEGInterchangeFormat).ValueAsLong [0];
-			uint length = directory.Lookup (TagId.JPEGInterchangeFormat).ValueAsLong [0];
-			
-			System.IO.Stream file = System.IO.File.OpenRead (this.path);
-			file.Position = offset;
-
-			byte [] data = new byte [length];
-
-			file.Read (data, 0, data.Length);
-			System.IO.MemoryStream stream = new System.IO.MemoryStream (data);
-			return PixbufUtils.LoadFromStream (stream);
+			return LoadJpegInterchangeFormat (directory);
 		}
 
 		public override Gdk.Pixbuf Load ()
