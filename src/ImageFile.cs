@@ -63,11 +63,12 @@ namespace FSpot {
 				return new JpegFile (path);
 			case ".png":
 				return new FSpot.Png.PngFile (path);
+			case ".cr2":
+				return new FSpot.Tiff.Cr2File (path);
 			case ".tiff":
 			case ".tif":
 			case ".nef":
 			case ".dng":
-			case ".cr2":
 			case ".orf":
 				return new FSpot.Tiff.TiffFile (path);
 			case ".crw":

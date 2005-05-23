@@ -1,5 +1,7 @@
 2005-05-23  Larry Ewing  <lewing@novell.com>
 
+	* src/ImageFile.cs: use the cr2 loader for cr2files.
+
 	* src/PixbufUtils.cs: make LoadFromStream public for now.
 
 2005-05-22  Larry Ewing  <lewing@novell.com>
