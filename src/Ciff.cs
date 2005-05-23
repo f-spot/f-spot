@@ -23,7 +23,9 @@ namespace FSpot.Ciff {
 		ShutterReleaseTiming = 0x1011,
 		ReleaseSetting = 0x1016,
 		BaseISO = 0x101c,
+
 		Uknown2 = 0x1028,
+
 		FocalLength = 0x1029,
 		CanonShotInfo = 0x102a,
 		CanonColorInfo2 = 0x102c,
@@ -31,6 +33,40 @@ namespace FSpot.Ciff {
 		WhiteSample = 0x1030,
 		SensorInfo = 0x1031,
 		CanonCustomFunctions = 0x1033,
+		CanonPictureInfo = 0x1038,
+
+		Unknown3 = 0x1039,
+		Unknown4 = 0x1093,
+		Unknown5 = 0x10a8,
+		
+		WhiteBalanceTable = 0x10a9,
+		
+		Unknown6 = 0x10aa,
+
+		ColorTemperature = 0x10ae,
+		ColorSapce = 0x10b4,
+		
+		Unknown7 = 0x10b5,
+		unknown8 = 0x10c0,
+		Unknown9 = 0x10c1,
+
+		ImageFormat = 0x1803,
+		RecordID = 0x1804,
+		SelfTimerTime = 0x1806,
+		TargetDistanceSetting = 0x1807,
+		SerialNumber = 0x180b,
+		TimeStamp = 0x180e,
+		ImageInfo = 0x1810,
+		FlashInfo = 0x1813,
+		MeasuredEV = 0x1814,
+		FileNumber = 0x1817,
+		ExposureInfo = 0x1818,
+		
+		Unknown10 = 0x1834,
+
+		DecoderTable = 0x1835,
+		
+		Unknown11 = 0x183b,
 
 		// Image Data
 		RawData = 0x2005,
@@ -52,10 +88,9 @@ namespace FSpot.Ciff {
 		uint ImageHeight; // Number of vertical pixels
 		float PixelAspectratio;
 		int RotationAngle;  // degreess clockwise to rotate (orientation)
-		int ComponentBitDepth; // bits per component
-		int ColorBW; //  byte wise:  0 gray - 1 color ; byte 2 use aspect ratio ; 3 and 4 reserved
+		uint ComponentBitDepth; // bits per component
+		uint ColorBW; //  byte wise:  0 gray - 1 color ; byte 2 use aspect ratio ; 3 and 4 reserved
 	}
-
 
 	public enum EntryType : ushort {
 		Byte = 0x0000,
@@ -142,10 +177,23 @@ namespace FSpot.Ciff {
 			System.Console.WriteLine ("Dumping directory with {0} entries", entry_list.Count);
 			for (int i = 0; i < entry_list.Count; i++) {
 				Entry e = (Entry) entry_list[i];
-				System.Console.WriteLine ("\tentry[{0}] = {1}.{2}-{3}", i, e.Tag, e.Size, e.Offset); 
+				System.Console.WriteLine ("\tentry[{0}] = {1}..{5}({4}).{2}-{3}", i, e.Tag, e.Size, e.Offset, e.Tag.ToString ("x"), (uint)e.Tag & ~(uint)Mask.StorageFormat); 
 			}
 		}
 
+		public ImageDirectory ReadDirectory (Tag tag)
+		{
+			int pos = 0;
+			foreach (Entry e in entry_list) {
+				if (e.Tag == tag) {
+					uint subdir_start = this.start + e.Offset;
+					ImageDirectory subdir = new ImageDirectory (stream, subdir_start, subdir_start + e.Size, little);
+					return subdir;
+				}
+			}
+			return null;
+		}
+		
 		public byte [] ReadEntry (int pos)
 		{
 			Entry e = (Entry) entry_list [pos];
@@ -249,7 +297,8 @@ namespace FSpot.Ciff {
 		public void Dump ()
 		{
 			Root.Dump ();
-
+			ImageDirectory props = Root.ReadDirectory (Tag.ImageProps);
+			props.Dump ();
 			string path = "out2.jpg";
 			//System.IO.File.Delete (path);
 
@@ -271,6 +320,7 @@ namespace FSpot.Ciff {
 		{
 			return Root.ReadEntry (Tag.ThumbnailImage); 
 		}
+		
 		/*
 		public static void Main (string [] args)
 		{

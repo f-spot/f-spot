@@ -263,6 +263,7 @@ namespace FSpot.Tiff {
 		JBIG = 9,
 		JBIG_MRC,
 		PackBits = 32773,
+		NikonCompression = 34713,
 		Deflate_experimental = 0x80b2
 	}
 
@@ -1105,8 +1106,13 @@ namespace FSpot.Tiff {
 		}
 	}
 		
-	public class NefFile : TiffFile {
+	public class NefFile : TiffFile , IThumbnailContainer {
 		public NefFile (string path) : base (path) {}
+
+		public Gdk.Pixbuf GetEmbeddedThumbnail ()
+		{
+			return new Gdk.Pixbuf (path);
+		}
 
 		public override Gdk.Pixbuf Load () 
 		{

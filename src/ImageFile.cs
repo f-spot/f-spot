@@ -70,7 +70,7 @@ namespace FSpot {
 			case ".tiff":
 			case ".tif":
 			case ".dng":
-			case ".orf":
+				//case ".orf":
 				return new FSpot.Tiff.TiffFile (path);
 			case ".crw":
 				return new FSpot.Ciff.CiffFile (path);
