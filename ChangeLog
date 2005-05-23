@@ -1,5 +1,7 @@
 2005-05-23  Larry Ewing  <lewing@novell.com>
 
+	* src/Tiff.cs: small cleanups.
+
 	* src/ImageFile.cs: map nef to NefFile.
 
 	* src/Tiff.cs: decode the jpeg segment in the NEF version for now.

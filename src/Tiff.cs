@@ -1041,7 +1041,6 @@ namespace FSpot.Tiff {
 	}
 
 
-
 	public class TiffFile : ImageFile {
 		public Header Header;
 
@@ -1085,25 +1084,24 @@ namespace FSpot.Tiff {
 			uint offset = directory.Lookup (TagId.JPEGInterchangeFormat).ValueAsLong [0];
 			uint length = directory.Lookup (TagId.JPEGInterchangeFormat).ValueAsLong [0];
 			   
-			System.IO.Stream file = System.IO.File.OpenRead (this.path);
-			System.IO.Stream dump = System.IO.File.Open (this.path + ".DUMP", System.IO.FileMode.OpenOrCreate);
-			
-			file.Position = offset;
-
-			byte [] data = new byte [32768];
-			int len;
-
-			Gdk.PixbufLoader loader = new Gdk.PixbufLoader ();
-
-			while ((len = file.Read (data, 0, data.Length)) > 0) {
-				dump.Write (data, 0, len);
-				loader.Write (data, (ulong)len);
+			using (System.IO.Stream file = System.IO.File.OpenRead (this.path)) {
+				//System.IO.Stream dump = System.IO.File.Open (this.path + ".DUMP", System.IO.FileMode.OpenOrCreate);
+				
+				file.Position = offset;
+				
+				byte [] data = new byte [32768];
+				int len;
+				
+				Gdk.PixbufLoader loader = new Gdk.PixbufLoader ();
+				
+				while ((len = file.Read (data, 0, data.Length)) > 0) {
+					//dump.Write (data, 0, len);
+					loader.Write (data, (ulong)len);
+				}
+				//dump.Close ();
+				loader.Close ();
+				return loader.Pixbuf; 
 			}
-			dump.Close ();
-			loader.Close ();
-			file.Close ();
-
-			return loader.Pixbuf; 
 		}
 	}
 		
