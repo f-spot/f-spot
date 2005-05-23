@@ -475,7 +475,7 @@ namespace FSpot.Tiff {
 			for (int pos = 0; pos < entry_length; pos += 12) {
 				DirectoryEntry entry = EntryFactory.CreateEntry (this, content, pos, this.endian);
 				entries.Add (entry);		
-				System.Console.WriteLine ("Added Entry {0} {1} - {2}", entry.Id.ToString (), entry.Id.ToString ("x"), entry.Type);
+				System.Console.WriteLine ("Added Entry {0} {1} - {2} * {3}", entry.Id.ToString (), entry.Id.ToString ("x"), entry.Type, entry.Count);
 				if (entry.Id == TagId.NewSubfileType) {
 					
 				}
@@ -972,7 +972,7 @@ namespace FSpot.Tiff {
 		public uint [] ValueAsLong
 		{
 			get {
-				uint [] data = new uint [raw_data.Length];
+				uint [] data = new uint [this.Count];
 				for (int i = 0; i < this.Count; i++) {
 					switch (this.Type) {
 					case EntryType.Long:
@@ -1096,7 +1096,7 @@ namespace FSpot.Tiff {
 
 		public override System.DateTime Date ()
 		{
-			SubdirectoryEntry sub = this.Header.Directory.Lookup (ExifIfdPointer);
+			SubdirectoryEntry sub = (SubdirectoryEntry) this.Header.Directory.Lookup (TagId.ExifIfdPointer);
 			AsciiEntry e = (AsciiEntry)(sub.Directory [0].Lookup (TagId.DateTimeOriginal));
 
 			if (e != null)
