@@ -435,7 +435,7 @@ public class PhotoStore : DbStore {
 	public static void DeleteThumbnail (string path)
 	{
 		string uri = UriList.PathToFileUri (path).ToString ();
-		string path = Thumbnail.PathForUri (uri, ThumbnailSize.Large);
+		path = Thumbnail.PathForUri (uri, ThumbnailSize.Large);
 		if (File.Exists (path))
 			File.Delete (path);
 	}
