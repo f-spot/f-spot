@@ -230,7 +230,8 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 			throw new Exception ("Cannot delete original version");
 
 		string path = GetVersionPath (version_id);
-		File.Delete (path);
+		if (File.Exists (path))
+			File.Delete (path);
 		PhotoStore.DeleteThumbnail (path);
 
 		version_names.Remove (version_id);
@@ -434,7 +435,9 @@ public class PhotoStore : DbStore {
 	public static void DeleteThumbnail (string path)
 	{
 		string uri = UriList.PathToFileUri (path).ToString ();
-		File.Delete (Thumbnail.PathForUri (uri, ThumbnailSize.Large));
+		string path = Thumbnail.PathForUri (uri, ThumbnailSize.Large);
+		if (File.Exists (path))
+			File.Delete (path);
 	}
 
 	public static void MoveThumbnail (string old_path, string new_path)

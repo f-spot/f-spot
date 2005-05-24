@@ -1,9 +1,12 @@
 2005-05-23  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoStore.cs: Fix for #305208 from Daniel Drake.  Check for
+	existance of file before trying to delete it.
+
 	* src/Tiff.cs: make the embedded thumbnail call use the pixbuf
 	loader.
 
-	* src/ImageFile.cs: diable orf.
+	* src/ImageFile.cs: disable orf.
 
 	* src/Ciff.cs: step into the structure.
 
