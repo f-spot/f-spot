@@ -7,9 +7,9 @@ namespace FSpot.Png {
 		public PngFile (string path) : base (path)
 		{
 			this.path = path;
-			System.IO.Stream input = System.IO.File.OpenRead (this.Path);
-			Load (input);
-			input.Close ();
+			using (System.IO.Stream input = System.IO.File.OpenRead (this.Path)) {
+				Load (input);
+			}
 		}
 
 		/**
@@ -255,8 +255,8 @@ namespace FSpot.Png {
 					throw new System.Exception (System.String.Format ("unsupported {0}", Filter));
 					
 				Interlace = (InterlaceMethod) data [12];
-				if (Interlace != InterlaceMethod.None)
-					throw new System.Exception (System.String.Format ("unsupported {0}", Interlace));
+				//if (Interlace != InterlaceMethod.None)
+				//	throw new System.Exception (System.String.Format ("unsupported {0}", Interlace));
 
 			}
 

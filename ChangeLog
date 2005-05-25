@@ -1,5 +1,7 @@
 2005-05-25  Larry Ewing  <lewing@novell.com>
 
+	* src/PngFile.cs: don't bail on Adam7 for now.
+
 	* src/ImageFile.cs: fix the orientation on the raw formats we can load.
 
 	* src/Tiff.cs: fix up the jpeg loading code.  Handle errors more
