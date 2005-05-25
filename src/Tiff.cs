@@ -1121,7 +1121,7 @@ namespace FSpot.Tiff {
 
 		public Gdk.Pixbuf GetEmbeddedThumbnail ()
 		{
-			return new Gdk.Pixbuf (path);
+			return TransformAndDispose (new Gdk.Pixbuf (path));
 		}
 
 		public override Gdk.Pixbuf Load () 
@@ -1141,7 +1141,7 @@ namespace FSpot.Tiff {
 			if (pixbuf == null)
 				pixbuf = new Gdk.Pixbuf (path);
 
-			return pixbuf;
+			return TransformAndDispose (pixbuf);
 		}
 
 		public override Gdk.Pixbuf Load (int width, int height)
@@ -1161,7 +1161,7 @@ namespace FSpot.Tiff {
 		{
 			ImageDirectory directory;
 			directory = Header.Directory.NextDirectory;
-			return LoadJpegInterchangeFormat (directory);
+			return TransformAndDispose (LoadJpegInterchangeFormat (directory));
 		}
 
 		public override Gdk.Pixbuf Load ()

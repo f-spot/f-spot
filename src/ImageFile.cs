@@ -27,16 +27,23 @@ namespace FSpot {
 			PixbufUtils.Save (pixbuf, stream, "jpeg", null, null);
 		}
 
-		public virtual Gdk.Pixbuf Load ()
+		protected Gdk.Pixbuf TransformAndDispose (Gdk.Pixbuf orig)
 		{
-			Gdk.Pixbuf orig = new Gdk.Pixbuf (this.Path);
-			
+			if (orig == null)
+				return null;
+
 			Gdk.Pixbuf rotated = PixbufUtils.TransformOrientation (orig, this.Orientation, true);
 			//ValidateThumbnail (photo, rotated);
 			if (rotated != orig)
 				orig.Dispose ();
 			
 			return rotated;
+		}
+
+		public virtual Gdk.Pixbuf Load ()
+		{
+			Gdk.Pixbuf orig = new Gdk.Pixbuf (this.Path);
+			return TransformAndDispose (orig);
 		}
 		
 		public virtual Gdk.Pixbuf Load (int max_width, int max_height)
