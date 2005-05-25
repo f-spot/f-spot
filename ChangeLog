@@ -1,3 +1,8 @@
+2005-05-25  Larry Ewing  <lewing@novell.com>
+
+	* src/Tiff.cs: fix up the jpeg loading code.  Handle errors more
+	gracefully..
+
 2005-05-24  Miguel de Icaza  <miguel@novell.com>
 
 	* src/PhotoStore.cs: Fix build.

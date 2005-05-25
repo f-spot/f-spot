@@ -498,6 +498,7 @@ namespace FSpot.Tiff {
 		protected void LoadNextDirectory (System.IO.Stream stream)
 		{
 			System.Console.WriteLine ("next_directory_offset = {0}", next_directory_offset);
+			next_directory = null;
 			try {
 				if (next_directory_offset != 0)
 					next_directory = new ImageDirectory (stream, next_directory_offset, this.endian);
@@ -637,6 +638,11 @@ namespace FSpot.Tiff {
 		public override void LoadExternal (System.IO.Stream stream)
 		{
 		}
+		
+		public override void Dump ()
+		{
+
+		}
 	}
 
 	public class SubdirectoryEntry : DirectoryEntry {
@@ -658,7 +664,7 @@ namespace FSpot.Tiff {
 		public override void LoadExternal (System.IO.Stream stream)
 		{
 			uint entry_count = GetEntryCount ();
-			Directory = new ImageDirectory [count];
+			Directory = new ImageDirectory [entry_count];
 
 			base.LoadExternal (stream);
 
@@ -672,9 +678,11 @@ namespace FSpot.Tiff {
 
 		public override void Dump ()
 		{
-			for (int i = 0; i < Directory.Length; i++) {
+			for (int i = 0; i < GetEntryCount (); i++) {
 				 System.Console.WriteLine ("Entering Subdirectory {0}.{2} at {1}", tagid.ToString (), directory_offset, i);
-				 Directory [i].Dump ();
+				 if (Directory [i] != null)
+					 Directory [i].Dump ();
+				 
 				 System.Console.WriteLine ("Leaving Subdirectory {0}.{2} at {1}", tagid.ToString (), directory_offset, i);
 			}
 		}
@@ -1054,7 +1062,7 @@ namespace FSpot.Tiff {
 				
 				ImageDirectory directory = Header.Directory;
 				while (directory != null) {
-					//directory.Dump ();
+					///directory.Dump ();
 					directory = directory.NextDirectory;
 				}
 				
@@ -1083,25 +1091,27 @@ namespace FSpot.Tiff {
 		public Gdk.Pixbuf LoadJpegInterchangeFormat (ImageDirectory directory)
 		{
 			uint offset = directory.Lookup (TagId.JPEGInterchangeFormat).ValueAsLong [0];
-			uint length = directory.Lookup (TagId.JPEGInterchangeFormat).ValueAsLong [0];
+			uint length = directory.Lookup (TagId.JPEGInterchangeFormatLength).ValueAsLong [0];
 			   
 			using (System.IO.Stream file = System.IO.File.OpenRead (this.path)) {
-				//System.IO.Stream dump = System.IO.File.Open (this.path + ".DUMP", System.IO.FileMode.OpenOrCreate);
-				
 				file.Position = offset;
 				
 				byte [] data = new byte [32768];
-				int len;
-				
+				int read;
+
 				Gdk.PixbufLoader loader = new Gdk.PixbufLoader ();
 				
-				while ((len = file.Read (data, 0, data.Length)) > 0) {
-					//dump.Write (data, 0, len);
-					loader.Write (data, (ulong)len);
+				while (length > 0) {
+					read = file.Read (data, 0, (int)System.Math.Min ((int)data.Length, length));
+					if (read <= 0)
+						break;
+
+					loader.Write (data, (ulong)read);
+					length -= (uint) read;
 				}
-				//dump.Close ();
+				Gdk.Pixbuf result = loader.Pixbuf;
 				loader.Close ();
-				return loader.Pixbuf; 
+				return result; 
 			}
 		}
 	}
@@ -1118,7 +1128,20 @@ namespace FSpot.Tiff {
 		{
 			SubdirectoryEntry sub = (SubdirectoryEntry) Header.Directory.Lookup (TagId.SubIFDs);
 			ImageDirectory jpeg_directory = sub.Directory [0];
-			return LoadJpegInterchangeFormat (jpeg_directory);
+			
+			Gdk.Pixbuf pixbuf = null;
+			
+			try {
+				pixbuf = LoadJpegInterchangeFormat (jpeg_directory);
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e);
+				pixbuf = null;
+			}
+
+			if (pixbuf == null)
+				pixbuf = new Gdk.Pixbuf (path);
+
+			return pixbuf;
 		}
 
 		public override Gdk.Pixbuf Load (int width, int height)
