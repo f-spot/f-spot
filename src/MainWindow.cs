@@ -125,7 +125,6 @@ public class MainWindow {
 	{
 		this.db = db;
 
-		Mono.Posix.Catalog.Init ("f-spot", FSpot.Defines.LOCALE_DIR);
 		Glade.XML gui = Glade.XML.FromAssembly ("f-spot.glade", "main_window", "f-spot");
 		gui.Autoconnect (this);
 

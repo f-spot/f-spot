@@ -81,7 +81,7 @@ public class PhotoVersionMenu : Menu {
 		}
 
 		if (version_ids.Length == 1) {
-			MenuItem no_edits_menu_item = new MenuItem ("(No Edits)");
+			MenuItem no_edits_menu_item = new MenuItem (Mono.Posix.Catalog.GetString ("(No Edits)"));
 			no_edits_menu_item.Show ();
 			no_edits_menu_item.Sensitive = false;
 			Append (no_edits_menu_item);

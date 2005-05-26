@@ -276,11 +276,10 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		int num = 1;
 
 		while (true) {
-			string name;
-			if (num == 1)
-				name = "Modified";
-			else
-				name = String.Format ("Modified ({0})", num);
+			string name = Mono.Posix.Catalog.GetPluralString ("Modified", 
+								 "Modified ({0})", 
+								 num);
+			name = String.Format (name, num);
 
 			if (! VersionNameExists (name))
 				return CreateVersion (name, base_version_id, create_file);
@@ -374,7 +373,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 		// Note that the original version is never stored in the photo_versions table in the
 		// database.
-		AddVersionUnsafely (OriginalVersionId, "Original");
+		AddVersionUnsafely (OriginalVersionId, Mono.Posix.Catalog.GetString ("Original"));
 	}
 
 	public Photo (uint id, uint unix_time, string path)

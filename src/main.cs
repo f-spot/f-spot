@@ -13,6 +13,8 @@ public class Driver {
 		Gnome.Vfs.Vfs.Initialize ();
 		StockIcons.Initialize ();
 
+		Mono.Posix.Catalog.Init ("f-spot", FSpot.Defines.LOCALE_DIR);
+
 		// FIXME: Error checking is non-existant here...
 
 		string base_directory = FSpot.Global.BaseDirectory;
