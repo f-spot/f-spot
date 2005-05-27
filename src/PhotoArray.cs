@@ -1,7 +1,21 @@
 namespace FSpot {
 	public class PhotoArray : IPhotoCollection {
-		public PhotoArray (Photo [] photos) {
+		Photo [] photos;
+
+		public PhotoArray (Photo [] photos) 
+		{
 			this.photos = photos;
+		}
+
+		public void Add (Photo photo)
+		{
+		        Photo [] larger = new Photo [photos.Length + 1];
+			System.Array.Copy (photos, larger, photos.Length);
+			larger [photos.Length] = photo;
+			photos = larger;
+
+			if (Changed != null)
+				Changed (this);
 		}
 		
 		// IBrowsableCollection
@@ -20,7 +34,5 @@ namespace FSpot {
 				return photos;
 			}
 		}
-
-		Photo [] photos;
 	}
 }
