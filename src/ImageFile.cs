@@ -3,10 +3,26 @@ using System.IO;
 namespace FSpot {
 	public class ImageFile {
 		protected string path;
+		static System.Collections.Hashtable name_table;
 
 		protected ImageFile (string path) 
 		{
 			this.path = path;
+		}
+		
+		static ImageFile ()
+		{
+			name_table = new System.Collections.Hashtable ();
+			name_table [".jpeg"] = typeof (JpegFile);
+			name_table [".jpg"] = typeof (JpegFile);
+			name_table [".png"] = typeof (FSpot.Png.PngFile);
+			name_table [".cr2"] = typeof (FSpot.Tiff.Cr2File);
+			name_table [".nef"] = typeof (FSpot.Tiff.NefFile);
+			name_table [".tiff"] = typeof (FSpot.Tiff.TiffFile);
+			name_table [".tif"] = typeof (FSpot.Tiff.TiffFile);
+			name_table [".dng"] = typeof (FSpot.Tiff.TiffFile);
+			name_table [".crw"] = typeof (FSpot.Ciff.CiffFile);
+			name_table [".ppm"] = typeof (FSpot.Pnm.PnmFile);
 		}
 
 		public string Path {
@@ -63,29 +79,16 @@ namespace FSpot {
 		
 		public static ImageFile Create (string path)
 		{
-			switch (System.IO.Path.GetExtension (path).ToLower ()) {
-			case ".jpeg":
-				return new JpegFile (path);
-			case ".jpg":
-				return new JpegFile (path);
-			case ".png":
-				return new FSpot.Png.PngFile (path);
-			case ".cr2":
-				return new FSpot.Tiff.Cr2File (path);
-			case ".nef":
-				return new FSpot.Tiff.NefFile (path);
-			case ".tiff":
-			case ".tif":
-			case ".dng":
-				//case ".orf":
-				return new FSpot.Tiff.TiffFile (path);
-			case ".crw":
-				return new FSpot.Ciff.CiffFile (path);
-			case ".ppm":
-				return new FSpot.Pnm.PnmFile (path);
-			default:
-				return new ImageFile (path);
-			}
+			string extension = System.IO.Path.GetExtension (path).ToLower ();
+			System.Type t = (System.Type) name_table [extension];
+			
+			ImageFile img;
+			if (t != null)
+				img = (ImageFile) System.Activator.CreateInstance (t, new object[] {path});
+			else 
+				img = new ImageFile (path);
+
+			return img;
 		}
 	} 
 }
