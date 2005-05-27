@@ -21,7 +21,7 @@ namespace FSpot {
 
 			int available_height = Allocation.Height - 2 * BORDER_SIZE;
 			if (DisplayTags)
-				available_height -= TAG_ICON_SIZE + TAG_ICON_VSPACING;
+				available_height -= tag_icon_size + tag_icon_vspacing;
 			
 			if (DisplayDates && this.Style != null) {
 				Pango.FontMetrics metrics = this.PangoContext.GetMetrics (this.Style.FontDescription, 
@@ -31,8 +31,8 @@ namespace FSpot {
 			
 			thumbnail_width = (int) (available_height / thumbnail_ratio);
 
-			cell_width = ThumbnailWidth + 2 * CELL_BORDER_WIDTH;
-			cell_height = ThumbnailHeight + 2 * CELL_BORDER_WIDTH;
+			cell_width = ThumbnailWidth + 2 * cell_border_width;
+			cell_height = ThumbnailHeight + 2 * cell_border_width;
 			
 			SetSize (System.Math.Max (((uint) (num_cols * cell_width + 2 * BORDER_SIZE)), (uint)Allocation.Width), (uint) (num_rows * cell_height + 2 * BORDER_SIZE));
 
@@ -49,7 +49,7 @@ namespace FSpot {
 				int total = collection.Items.Length;
 
 				if (total > 0)
-					thumbnail_width = (Allocation.Width - (total * 2 * CELL_BORDER_WIDTH) - 2 * BORDER_SIZE)/ total;
+					thumbnail_width = (Allocation.Width - (total * 2 * cell_border_width) - 2 * BORDER_SIZE)/ total;
 			}
 
 			base.UpdateLayout ();

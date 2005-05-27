@@ -1,3 +1,16 @@
+2005-05-27  Larry Ewing  <lewing@novell.com>
+
+	* src/ScalingIconView.cs: fixup fo rthe variable name changes.
+
+	* src/QueryView.cs: add TrayView that scales to fit number of
+	items.  Move events into IconView, QueryView is an empty class
+	now.
+
+	* src/PhotoArray.cs: allow setting the array directly.
+
+	* src/IconView.cs: make some of the const items non const and
+	rename.  Move the events into IconView now that they are generic.
+
 2005-05-26  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoArray.cs: add the ability to add items.

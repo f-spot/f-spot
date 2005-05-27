@@ -84,7 +84,7 @@ public class IconView : Gtk.Layout {
 	}
 
 	// Size of the frame around the thumbnail.
-	protected const int CELL_BORDER_WIDTH = 10;
+	protected int cell_border_width = 10;
 
 	// Border around the scrolled area.
 	protected const int BORDER_SIZE = 6;
@@ -93,13 +93,13 @@ public class IconView : Gtk.Layout {
 	private const int SELECTION_THICKNESS = 5;
 
 	// Size of the tag icon in the view.
-	protected const int TAG_ICON_SIZE = 16;
+	protected int tag_icon_size = 16;
 
 	// Horizontal spacing between the tag icons
-	protected const int TAG_ICON_HSPACING = 2;
+	protected int tag_icon_hspacing = 2;
 
 	// Vertical spacing between the thumbnail and the row of tag icons.
-	protected const int TAG_ICON_VSPACING = 3;
+	protected int tag_icon_vspacing = 3;
 
 	// Various other layout values.
 	protected int cells_per_row;
@@ -177,8 +177,25 @@ public class IconView : Gtk.Layout {
 	public IconView (FSpot.IBrowsableCollection collection) : this () 
 	{
 		this.collection = collection;
+		
+		collection.Changed += HandleChanged;
+		collection.ItemChanged += HandleItemChanged;
 	}
 	
+	private void HandleChanged (FSpot.IBrowsableCollection sender)
+	{
+		// FIXME we should probably try to merge the selection forward
+		// but it needs some thought to be efficient.
+		UnselectAllCells ();
+		QueueResize ();
+	}
+	
+	private void HandleItemChanged (FSpot.IBrowsableCollection sender, int item)
+	{
+		UpdateThumbnail (item);
+		InvalidateCell (item);
+	}
+
 	//
 	// IPhotoSelection
 	//
@@ -386,11 +403,11 @@ public class IconView : Gtk.Layout {
 	{
 		int available_width = Allocation.Width - 2 * BORDER_SIZE;
 
-		cell_width = ThumbnailWidth + 2 * CELL_BORDER_WIDTH;
-		cell_height = ThumbnailHeight + 2 * CELL_BORDER_WIDTH;
+		cell_width = ThumbnailWidth + 2 * cell_border_width;
+		cell_height = ThumbnailHeight + 2 * cell_border_width;
 
 		if (DisplayTags)
-			cell_height += TAG_ICON_SIZE + TAG_ICON_VSPACING;
+			cell_height += tag_icon_size + tag_icon_vspacing;
 		
 		if (DisplayDates && this.Style != null) {
 			Pango.FontMetrics metrics = this.PangoContext.GetMetrics (this.Style.FontDescription, 
@@ -480,7 +497,7 @@ public class IconView : Gtk.Layout {
 		}
 
 		Gdk.Rectangle region = Gdk.Rectangle.Zero;
-		Gdk.Rectangle image_bounds = Expand (bounds, - CELL_BORDER_WIDTH);
+		Gdk.Rectangle image_bounds = Expand (bounds, - cell_border_width);
 		int expansion = ThrobExpansion (thumbnail_num, selected);
 
 		Gdk.Pixbuf thumbnail = null;
@@ -493,7 +510,7 @@ public class IconView : Gtk.Layout {
 					 true, out region.Width, out region.Height);
 			
 			region.X = (int) (bounds.X + (bounds.Width - region.Width) / 2);
-			region.Y = (int) bounds.Y + ThumbnailHeight - region.Height + CELL_BORDER_WIDTH;
+			region.Y = (int) bounds.Y + ThumbnailHeight - region.Height + cell_border_width;
 			
 			if (region.Width != thumbnail.Width && region.Height != thumbnail.Height)
 				cache.Reload (entry, thumbnail_num, thumbnail.Width, thumbnail.Height);
@@ -568,11 +585,11 @@ public class IconView : Gtk.Layout {
 			
 			layout.GetPixelSize (out layout_bounds.Width, out layout_bounds.Height);
 
-			layout_bounds.Y = bounds.Y + bounds.Height - CELL_BORDER_WIDTH - layout_bounds.Height;
+			layout_bounds.Y = bounds.Y + bounds.Height - cell_border_width - layout_bounds.Height;
 			layout_bounds.X = bounds.X + (bounds.Width - layout_bounds.Width) / 2;
 			
 			if (DisplayTags)
-				layout_bounds.Y -= TAG_ICON_SIZE;
+				layout_bounds.Y -= tag_icon_size;
 
 			if (layout_bounds.Intersect (area, out region)) {
 				Style.PaintLayout (Style, BinWindow, cell_state,
@@ -586,10 +603,10 @@ public class IconView : Gtk.Layout {
 			Tag [] tags = photo.Tags;
 			Gdk.Rectangle tag_bounds;
 
-			tag_bounds.X = bounds.X + (bounds.Width  + TAG_ICON_VSPACING - tags.Length * (TAG_ICON_SIZE + TAG_ICON_VSPACING)) / 2;
-			tag_bounds.Y = bounds.Y + bounds.Height - CELL_BORDER_WIDTH - TAG_ICON_SIZE;
-			tag_bounds.Width = TAG_ICON_SIZE;
-			tag_bounds.Height = TAG_ICON_SIZE;
+			tag_bounds.X = bounds.X + (bounds.Width  + tag_icon_vspacing - tags.Length * (tag_icon_size + tag_icon_vspacing)) / 2;
+			tag_bounds.Y = bounds.Y + bounds.Height - cell_border_width - tag_icon_size;
+			tag_bounds.Width = tag_icon_size;
+			tag_bounds.Height = tag_icon_size;
 
 			foreach (Tag t in tags) {
 				Pixbuf icon = null;
@@ -623,7 +640,7 @@ public class IconView : Gtk.Layout {
 					if (scaled_icon != icon)
 						scaled_icon.Dispose ();
 				}
-				tag_bounds.X += tag_bounds.Width + TAG_ICON_VSPACING;
+				tag_bounds.X += tag_bounds.Width + tag_icon_vspacing;
 			}
 		}
 	}
