@@ -1,5 +1,7 @@
 2005-05-28  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoLoader.cs: use IPhotoCollection.
+
 	* src/IBrowsableItem.cs: Add IndexOf to the interface.
 
 	* src/PhotoArray.cs: implement IndexOf.
