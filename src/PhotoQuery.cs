@@ -67,9 +67,12 @@ namespace FSpot {
 				Changed (this);
 		}
 		
-		public int IndexOf (Photo photo)
+		public int IndexOf (IBrowsableItem photo)
 		{
-			return IndexOf (photo.Id);
+			if (!(photo is Photo))
+				return -1;
+
+			return IndexOf (((Photo)photo).Id);
 		}
 		
 		public int IndexOf (uint photo_id)

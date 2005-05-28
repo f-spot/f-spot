@@ -1,3 +1,13 @@
+2005-05-28  Larry Ewing  <lewing@novell.com>
+
+	* src/IBrowsableItem.cs: Add IndexOf to the interface.
+
+	* src/PhotoArray.cs: implement IndexOf.
+
+	* src/PhotoQuery.cs: implement IndexOf.
+
+	* src/DirectoryCollection.cs: implement IndexOf.
+
 2005-05-27  Larry Ewing  <lewing@novell.com>
 
 	* src/ScalingIconView.cs: fixup fo rthe variable name changes.

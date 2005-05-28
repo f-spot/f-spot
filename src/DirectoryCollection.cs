@@ -30,6 +30,11 @@ namespace FSpot {
 			}
 		}
 
+		public int IndexOf (IBrowsableItem item)
+		{
+			return System.Array.IndexOf (items, item);
+		}
+
 		void LoadItems () {
 			// FIXME this should probably actually throw and exception
 			// if the directory doesn't exist.

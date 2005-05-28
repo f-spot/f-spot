@@ -7,6 +7,8 @@ namespace FSpot {
 			get;
 		}
 		
+		int IndexOf (IBrowsableItem item);
+
 		event IBrowsableCollectionChangedHandler Changed;
 		event IBrowsableCollectionItemChangedHandler ItemChanged;
 	}
