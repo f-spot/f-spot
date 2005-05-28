@@ -1,5 +1,10 @@
 2005-05-28  Larry Ewing  <lewing@novell.com>
 
+	* configure.in: bump the gtk-sharp required version.
+	
+	* src/StockIcons.cs: use stock add without the extra bogus
+	parameter.
+
 	* src/QueryView.cs: make sure cells_per_orw is always > 0;
 
 	* src/PhotoStore.cs: fix the compare function a little.
