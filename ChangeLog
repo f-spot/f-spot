@@ -1,5 +1,7 @@
 2005-05-28  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoStore.cs: fix the compare function a little.
+
 	* src/PhotoLoader.cs: use IPhotoCollection. Use ImageFile.
 
 	* src/IBrowsableItem.cs: Add IndexOf to the interface.

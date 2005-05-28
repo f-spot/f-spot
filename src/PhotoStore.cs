@@ -30,13 +30,21 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 	
 	public static int Compare (Photo photo1, Photo photo2)
 	{
-		int result = CompareImportDate (photo1, photo2);
+		int result = photo1.Id.CompareTo (photo2.Id);
+		
+		if (result == 0)
+			return 0;
+		else 
+			result = CompareImportDate (photo1, photo2);
+
 		if (result == 0)
 			result = CompareCurrentDir (photo1, photo2);
 		
 		if (result == 0)
 			result = CompareName (photo1, photo2);
-
+		
+		if (result == 0)
+			result = photo1.Id.CompareTo (photo2.Id);
 		
 		return result;
 	}
@@ -520,7 +528,8 @@ public class PhotoStore : DbStore {
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
 
-		command.CommandText = String.Format ("INSERT INTO photos (time, directory_path, name, description, default_version_id) " +
+		command.CommandText = String.Format ("INSERT INTO photos (time, " +
+						     "directory_path, name, description, default_version_id) " +
 						     "       VALUES ({0}, '{1}', '{2}', '', {3})                                       ",
 						     unix_time,
 						     SqlString (System.IO.Path.GetDirectoryName (path)),
