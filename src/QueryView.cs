@@ -23,7 +23,7 @@ public class TrayView : IconView {
 
 		int total_rows;
 		int available_width = Allocation.Width - 2 * BORDER_SIZE;
-		cells_per_row = available_width / 256;
+		cells_per_row = System.Math.Max (available_width / 256, 1);
 		int width = 0;
 		int height = 0;
 		
