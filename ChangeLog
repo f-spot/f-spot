@@ -1,5 +1,7 @@
 2005-05-30  Larry Ewing  <lewing@novell.com>
 
+	* src/ColorDialog.cs: cast Photo properly, missed this before.
+
 	* src/DirectoryCollection.cs: add Count.
 
 	* src/PhotoArray.cs: add Count.

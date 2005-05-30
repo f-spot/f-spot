@@ -140,7 +140,7 @@ namespace FSpot {
 				PixbufUtils.SaveJpeg (final, version_path, 95, data);
 				ThumbnailGenerator.Create (version_path).Dispose ();
 				photo.DefaultVersionId = version;
-				view.Query.Commit (view.CurrentPhoto);
+				((PhotoQuery)view.Query).Commit (view.CurrentPhoto);
 			} catch (System.Exception e) {
 				string msg = Mono.Posix.Catalog.GetString ("Error saving adjusted photo");
 				string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save image {1}"),
