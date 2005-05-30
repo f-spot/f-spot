@@ -882,14 +882,10 @@ public class IconView : Gtk.Layout {
 
 		GetCellPosition (cell_num, out x, out y);
 
-		if (y < adjustment.Value)
-			adjustment.Value = y; 
-		else if (y + cell_height > adjustment.Value + adjustment.PageSize) {
-			if (y + cell_height > adjustment.Upper)
-				UpdateLayout ();
+		if (y + cell_height > adjustment.Upper)
+			UpdateLayout ();
 
-			adjustment.Value = y + cell_height - adjustment.PageSize;
-		}
+		adjustment.Value = y + cell_height / 2 - adjustment.PageSize / 2;
 		
 		adjustment.ChangeValue ();
 

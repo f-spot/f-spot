@@ -202,7 +202,7 @@ namespace FSpot {
 		private void PhotoIndexChanged (BrowsablePointer item, IBrowsableItem old_item) 
 		{
 			// If it is just the position that changed fall out
-			if (Photo == (Photo)old_item)
+			if (old_item != null && Photo != null && Photo.Id == ((Photo)old_item).Id)
 				return;
 
 			if (load_async) {
@@ -287,7 +287,7 @@ namespace FSpot {
 
 		public void Last ()
 		{
-			item.Index = item.Count - 1;
+			item.Index = item.Collection.Count - 1;
 		}
 
 		protected override void OnDestroyed ()

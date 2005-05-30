@@ -1,5 +1,11 @@
 2005-05-30  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: when we scroll to an item scroll it to the
+	middle of the screen.
+
+	* src/PhotoImageView.cs: fix the fallthough case and sue count on
+	the proper item.
+
 	* src/ColorDialog.cs: cast Photo properly, missed this before.
 
 	* src/DirectoryCollection.cs: add Count.
