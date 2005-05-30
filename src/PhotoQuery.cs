@@ -15,6 +15,12 @@ namespace FSpot {
 			this.store = store;
 			photos = store.Query (null, range);
 		}
+
+		public int Count {
+			get {
+				return photos.Length;
+			}
+		}
 		
 		// IPhotoCollection Interface
 		public event FSpot.IBrowsableCollectionChangedHandler Changed;
@@ -69,22 +75,7 @@ namespace FSpot {
 		
 		public int IndexOf (IBrowsableItem photo)
 		{
-			if (!(photo is Photo))
-				return -1;
-
-			return IndexOf (((Photo)photo).Id);
-		}
-		
-		public int IndexOf (uint photo_id)
-		{
-			// FIXME OPTIMIZEME horrible linear search
-			for (int i = 0; i < photos.Length; i++) {
-				if (photo_id == photos [i].Id)
-					return i;
-			}
-			
-			// FIXME use a real exception
-			throw new Exception ("Photo index not found");
+			return System.Array.IndexOf (photos, photo);
 		}
 		
 		public void Commit (int index) 

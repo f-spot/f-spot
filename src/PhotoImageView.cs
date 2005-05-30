@@ -1,7 +1,14 @@
 
 namespace FSpot {
 	public class PhotoImageView : ImageView {
-		public PhotoImageView (PhotoQuery query)
+		public static double ZoomMultipler = 1.1;
+
+		public delegate void PhotoChangedHandler (PhotoImageView view);
+		public event PhotoChangedHandler PhotoChanged;
+		
+		protected BrowsablePointer item;
+		
+		public PhotoImageView (IPhotoCollection query)
 		{
 			loader = new FSpot.AsyncPixbufLoader ();
 			loader.AreaUpdated += HandlePixbufAreaUpdated;
@@ -12,43 +19,33 @@ namespace FSpot {
 			this.KeyPressEvent += HandleKeyPressEvent;
 			this.ScrollEvent += HandleScrollEvent;
 			this.Destroyed += HandleDestroy;
-			this.Query = query;
+			this.item = new BrowsablePointer (query, -1);
+			item.IndexChanged += PhotoIndexChanged;
 		}
-		
-		public static double ZoomMultipler = 1.1;
 
-		public delegate void PhotoChangedHandler (PhotoImageView view);
-		public event PhotoChangedHandler PhotoChanged;
 		
-		private int current_photo = -1;
+
 		public int CurrentPhoto {
 			get {
-				return current_photo;
+				return item.Index;
 			}
 			set {
-				if (current_photo == value && this.Pixbuf != null){
-					return;
-				} else {
-					current_photo = value;
-					this.PhotoIndexChanged ();
-				}
+				item.Index = value;
 			}
 		}
 
 		public Photo Photo {
 			get {
-				if (CurrentPhotoValid ()) 
-					return this.Query.Photos [CurrentPhoto];
-				else 
-					return null;
+				return (Photo)item.Current;
 			}
 		}
 
-		private PhotoQuery query;
-		public PhotoQuery Query {
+		private IPhotoCollection query;
+		public IPhotoCollection Query {
 			get {
-				return query;
+				return (IPhotoCollection)item.Collection;
 			}
+#if false
 			set {
 				if (query != null) {
 					query.Changed -= HandleQueryChanged;
@@ -59,6 +56,7 @@ namespace FSpot {
 				query.Changed += HandleQueryChanged;
 				query.ItemChanged += HandleQueryItemChanged;
 			}
+#endif
 		}
 
 		public Gdk.Pixbuf CompletePixbuf ()
@@ -76,7 +74,7 @@ namespace FSpot {
 			CurrentPhoto = -1;
 			CurrentPhoto = idx;
 		}
-
+		/*
 		private void HandleQueryChanged (IBrowsableCollection browsable)
 		{
 			if (query == browsable)
@@ -88,18 +86,10 @@ namespace FSpot {
 			if (item == CurrentPhoto)
 				Reload ();
 		}
-
+		*/
 		public bool CurrentPhotoValid ()
 		{
-			if (query == null ||
-			    query.Photos.Length == 0 ||
-			    CurrentPhoto >= Query.Photos.Length ||
-			    CurrentPhoto < 0) {
-				//System.Console.WriteLine ("Invalid CurrentPhoto");
-				return false;
-			}
-
-			return true;
+			return item.IsValid;
 		}
 
 		// Display.
@@ -209,9 +199,10 @@ namespace FSpot {
 		FSpot.AsyncPixbufLoader loader;
 		FSpot.AsyncPixbufLoader next_loader;
 
-		private void PhotoIndexChanged () 
+		private void PhotoIndexChanged (BrowsablePointer item, IBrowsableItem old_item) 
 		{
-			if (!CurrentPhotoValid ())
+			// If it is just the position that changed fall out
+			if (Photo == (Photo)old_item)
 				return;
 
 			if (load_async) {
@@ -233,7 +224,8 @@ namespace FSpot {
 				}
 			} else {	
 				Gdk.Pixbuf old = this.Pixbuf;
-				this.Pixbuf = FSpot.PhotoLoader.Load (Query, current_photo);
+				this.Pixbuf = FSpot.PhotoLoader.Load ((IPhotoCollection)item.Collection, 
+								      item.Index);
 				if (old != null)
 					old.Dispose ();
 			}
@@ -280,34 +272,22 @@ namespace FSpot {
 		}
 
 		public void Next () {
-			if (CurrentPhoto + 1 < query.Photos.Length)
-				CurrentPhoto++;
-			else
-				CurrentPhoto = 0;
+			item.MoveNext (true);
 		}
 		
 		public void Prev () 
 		{
-			if (CurrentPhoto > 0)
-				CurrentPhoto --;
-			else
-				CurrentPhoto = query.Photos.Length - 1;
+			item.MovePrevious (true);
 		}
 		
 		public void First ()
 		{
-			if (query.Photos.Length > 0)
-				CurrentPhoto = 0;
-			else
-				CurrentPhoto = -1;
+			item.Index = 0;
 		}
 
 		public void Last ()
 		{
-			if (query.Photos.Length > 0)
-				CurrentPhoto = query.Photos.Length -1;
-			else
-				CurrentPhoto = -1;
+			item.Index = item.Count - 1;
 		}
 
 		protected override void OnDestroyed ()

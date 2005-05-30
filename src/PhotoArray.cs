@@ -8,6 +8,12 @@ namespace FSpot {
 			list = new System.Collections.ArrayList (photos);
 		}
 
+		public int Count {
+			get {
+				return list.Count;
+			}
+		}
+
 		public void Add (Photo photo)
 		{
 			list.Add (photo);
@@ -54,6 +60,12 @@ namespace FSpot {
 		public PhotoArray (Photo [] photos) 
 		{
 			this.photos = photos;
+		}
+
+		public int Count {
+			get {
+				return photos.Length;
+			}
 		}
 
 		public void Add (Photo photo)
