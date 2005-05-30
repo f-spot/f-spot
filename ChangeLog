@@ -1,5 +1,16 @@
 2005-05-30  Larry Ewing  <lewing@novell.com>
 
+	* src/DirectoryCollection.cs: add Count.
+
+	* src/PhotoArray.cs: add Count.
+
+	* src/PhotoQuery.cs: implement count and fix IndexOf.
+
+	* src/IBrowsableItem.cs: add Browsable pointer. Add Count to
+	IBrowsableCollection.
+
+	* src/PhotoImageView.cs: use BrowsablePointer.
+
 	* src/MainWindow.cs: clean up the JumpTo method and consolidate
 	it with the Present method.
 

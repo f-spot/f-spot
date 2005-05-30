@@ -9,6 +9,12 @@ namespace FSpot {
 			LoadItems ();
 		}
 
+		public int Count {
+			get {
+				return items.Length;
+			}
+		}
+
 		// IBrowsableCollection
 		public IBrowsableItem [] Items {
 			get {
