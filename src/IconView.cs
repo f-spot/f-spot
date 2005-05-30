@@ -884,10 +884,15 @@ public class IconView : Gtk.Layout {
 
 		if (y < adjustment.Value)
 			adjustment.Value = y; 
-		else if (y + cell_height > adjustment.Value + adjustment.PageSize)
+		else if (y + cell_height > adjustment.Value + adjustment.PageSize) {
+			if (y + cell_height > adjustment.Upper)
+				UpdateLayout ();
+
 			adjustment.Value = y + cell_height - adjustment.PageSize;
+		}
 		
-		adjustment.Change ();
+		adjustment.ChangeValue ();
+
 	}
 
 
@@ -977,7 +982,7 @@ public class IconView : Gtk.Layout {
 
  	private void HandleButtonPressEvent (object obj, ButtonPressEventArgs args)
  	{
-		int cell_num = CellAtPosition ((int) args.Event.X, (int) args.Event.Y);
+		int cell_num = CellAtPosition ((int) args.Event.X, (int) args.Event.Y, false);
 
 		args.RetVal = true;
 

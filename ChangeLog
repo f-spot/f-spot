@@ -1,4 +1,14 @@
+2005-05-30  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: clean up the JumpTo method and consolidate
+	it with the Present method.
+
+	* src/IconView.cs: fix up the ScrollTo function so that it works
+	when the destination is outside the old dimentions.
+
 2005-05-28  Larry Ewing  <lewing@novell.com>
+
+	* src/PhotoImageView.cs: make the query a PhotoCollection.
 
 	* configure.in: bump the gtk-sharp required version.
 	

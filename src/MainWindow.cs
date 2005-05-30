@@ -300,13 +300,13 @@ public class MainWindow {
 			if (view_notebook.CurrentPage != 0)
 				view_notebook.CurrentPage = 0;
 				
-			Present (photo_view.CurrentPhoto);
+			JumpTo (photo_view.CurrentPhoto);
 			break;
 		case ModeType.PhotoView:
 			if (view_notebook.CurrentPage != 1)
 				view_notebook.CurrentPage = 1;
 			
-			Present (icon_view.FocusCell);
+			JumpTo (icon_view.FocusCell);
 			break;
 		}
 		UpdateToolbar ();
@@ -1355,22 +1355,9 @@ public class MainWindow {
 		fsview.Show ();
 	}
 	
-	void Present (int item)
-	{
-		switch (view_mode) {
-		case ModeType.IconView:
-			icon_view.ScrollTo (item);
-			icon_view.Throb (item);
-			break;
-		case ModeType.PhotoView:
-			photo_view.CurrentPhoto = item;
-			break;
-		}
-	}
-
 	void HandleFullScreenViewDestroy (object sender, EventArgs args)
 	{
-		Present (fsview.View.CurrentPhoto);
+		JumpTo (fsview.View.CurrentPhoto);
 		fsview = null;
 	}
 	
@@ -1600,8 +1587,8 @@ public class MainWindow {
 
 	void OnTagSelectionChanged (object obj)
 	{
-		SetViewMode (ModeType.IconView);
 		UpdateQuery ();
+		SetViewMode (ModeType.IconView);
 	}
 	
 	void HandleTagSelectionChanged (object obj, EventArgs args)
