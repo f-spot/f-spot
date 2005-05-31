@@ -191,7 +191,6 @@ public class IconView : Gtk.Layout {
 	{
 		// FIXME we should probably try to merge the selection forward
 		// but it needs some thought to be efficient.
-		UnselectAllCells ();
 		QueueResize ();
 	}
 	
@@ -221,39 +220,48 @@ public class IconView : Gtk.Layout {
 
 	public class SelectionCollection : IBrowsableCollection {
 		IBrowsableCollection parent;
-		Hashtable selected_cells = new Hashtable ();
+		Hashtable selected_cells;
 		int [] selection;
 		IBrowsableItem [] items;
+		IBrowsableItem [] old;
 
 		public SelectionCollection (IBrowsableCollection collection)
 		{
+			this.selected_cells = new Hashtable ();
 			this.parent = collection;
 			this.parent.Changed += HandleParentChanged;
+			this.parent.ItemChanged += HandleParentItemChanged;
 		}
 
 		private void HandleParentChanged (IBrowsableCollection collection)
 		{
-#if true
-			this.Clear ();
-#else 
-			IBrowsableItem [] old_items = this.Items;
-			this.Clear ();
-			int i = 0;
-			for (i = 0; i < items.Length; i++) {
-				IBrowsableItem item = items [i];
-				int index = this.IndexOf (item);
-				if (index > 0)
-					this.Add (index, false);
+			IBrowsableItem [] local = old;
+			selected_cells.Clear ();
+			ClearCached ();
+
+			if (old != null) {
+				int i = 0;
+
+				for (i = 0; i < local.Length; i++) {
+					int parent_index = parent.IndexOf (local [i]);
+					if (parent_index >= 0)
+						this.Add (parent_index, false);
+				}
 			}
-			if (i > 1)
-				SignalChange ();
-#endif
+
+			// Call the directly so that we don't reset old immediately this way the old selection
+			// set isn't actually lost until we change it.
+			if (this.Changed != null)
+				Changed (this);
+
 		}
 
-		private void HandleParentItemChanged (IBrowsableCollection collection, int item)
+		private void HandleParentItemChanged (IBrowsableCollection collection, int parent_index)
 		{
-			if (this.ItemChanged != null)
-				this.ItemChanged (collection, item);
+			int local_index = this.IndexOf (parent_index);
+			//System.Console.WriteLine ("parent = {0} local = {1}", parent_index, local_index);
+			if (local_index >= 0 && this.ItemChanged != null)
+				this.ItemChanged (collection, local_index);
 		}
 
 		public int [] Ids {
@@ -287,6 +295,11 @@ public class IconView : Gtk.Layout {
 		}
 
 		public void Clear ()
+		{
+			Clear (true);
+		}
+
+		public void Clear (bool update)
 		{
 			selected_cells.Clear ();
 			SignalChange ();
@@ -350,18 +363,25 @@ public class IconView : Gtk.Layout {
 			SignalChange ();
 		}
 
+		public int IndexOf (int parent_index)
+		{
+			return System.Array.IndexOf (this.Ids, parent_index);
+		}
+		
 		public int IndexOf (IBrowsableItem item)
 		{
 			if (!this.Contains (item))
 				return -1;
 
 			int parent_index = (int) selected_cells [item];
-			int [] ids = this.Ids;
-			return System.Array.IndexOf (ids, parent_index);
+			return System.Array.IndexOf (Ids, parent_index);
 		}
 
 		public void Remove (int cell)
 		{
+			if (!this.Contains (cell))
+				return;
+
 			IBrowsableItem item = parent.Items [cell];
 			this.Remove (item);
 
@@ -375,12 +395,17 @@ public class IconView : Gtk.Layout {
 
 		public event IBrowsableCollectionChangedHandler Changed;
 		public event IBrowsableCollectionItemChangedHandler ItemChanged;
-
-		private void SignalChange () 
+		
+		private void ClearCached ()
 		{
 			selection = null;
 			items = null;
+		}
 
+		private void SignalChange () 
+		{
+			ClearCached ();
+			old = this.Items;
 			if (Changed != null)
 				Changed (this);
 		}
@@ -457,24 +482,9 @@ public class IconView : Gtk.Layout {
 
 
 	// Private utility methods.
-	public void UnselectAllCells ()
-	{
-		selection.Clear ();		
-	}
-
 	public void SelectAllCells ()
 	{
 		selection.Add (0, collection.Count - 1);
-	}
-
-	private void SelectCellRange (int start, int end)
-	{
-		selection.Add (start, end);
-	}
-
-	private void UnselectCell (int cell_num)
-	{
-		selection.Remove (cell_num);
 	}
 
 	private void ToggleCell (int cell_num)

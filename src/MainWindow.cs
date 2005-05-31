@@ -1472,7 +1472,7 @@ public class MainWindow {
 
 	void HandleSelectNoneCommand (object sender, EventArgs args)
 	{
-		icon_view.UnselectAllCells ();
+		icon_view.Selection.Clear ();
 	}
 	
 	public void HandleDeleteSelectedTagCommand (object sender, EventArgs args)

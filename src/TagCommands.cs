@@ -376,8 +376,6 @@ public class TagCommands {
 					
 					tmp.Dispose ();
 				}
-
-				icon_view.UnselectAllCells ();
 			}
 		}
 
