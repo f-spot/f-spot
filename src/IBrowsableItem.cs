@@ -13,6 +13,8 @@ namespace FSpot {
 			get;
 		}
 
+		bool Contains (IBrowsableItem item);
+
 		event IBrowsableCollectionChangedHandler Changed;
 		event IBrowsableCollectionItemChangedHandler ItemChanged;
 	}

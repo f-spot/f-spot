@@ -1,5 +1,21 @@
 2005-05-30  Larry Ewing  <lewing@novell.com>
 
+	* src/IBrowsableItem.cs: add contains to the interface (one step
+	closer to IList).
+
+	* src/IconView.cs: use a custom IBrowsableCollection as the
+	selection.
+
+	* src/DirectoryCollection.cs: implement contains.
+
+	* src/PhotoQuery.cs: implement contains.
+
+	* src/PhotoArray.cs: implement contains.
+	
+	* src/MainWindow.cs: stop using the old selection interface.
+
+	* src/TagCommands.cs: stop using the old selection interface.
+
 	* src/IconView.cs: when we scroll to an item scroll it to the
 	middle of the screen.
 

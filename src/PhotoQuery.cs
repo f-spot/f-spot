@@ -22,6 +22,10 @@ namespace FSpot {
 			}
 		}
 		
+		public bool Contains (IBrowsableItem item) {
+			return IndexOf (item) >= 0;
+		}
+
 		// IPhotoCollection Interface
 		public event FSpot.IBrowsableCollectionChangedHandler Changed;
 		public event FSpot.IBrowsableCollectionItemChangedHandler ItemChanged;

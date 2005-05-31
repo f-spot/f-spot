@@ -391,9 +391,9 @@ public class TagCommands {
 
 		public void HandleIconViewSelectionChanged (IconView view) 
 		{
-			if (icon_view.SelectedIdxCount > 0)
+			if (icon_view.Selection.Count > 0)
 			{
-				FSpot.IBrowsableItem item = icon_view.Collection.Items [icon_view.SelectedIdxs [0]];
+				FSpot.IBrowsableItem item = icon_view.Collection.Items [icon_view.Selection.Ids [0]];
 				string path = item.DefaultVersionUri.LocalPath;
 				try {
 					preview_image.Pixbuf = new Gdk.Pixbuf (path);

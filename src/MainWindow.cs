@@ -189,6 +189,13 @@ public class MainWindow {
 		icon_view.DoubleClicked += HandleDoubleClicked;
 		icon_view.GrabFocus ();
 
+		Gtk.Window win3 = new Gtk.Window ("This is a window");
+		Gtk.ScrolledWindow scroll3 = new Gtk.ScrolledWindow ();
+	
+		win3.Add (scroll3);
+		scroll3.Add (new TrayView (icon_view.Selection));
+		win3.ShowAll ();
+
 		new FSpot.PreviewPopup (icon_view);
 
 		Gtk.Drag.SourceSet (icon_view, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
@@ -351,7 +358,7 @@ public class MainWindow {
 		else {
 			switch (view_mode) {
 			case ModeType.IconView:
-				ids = icon_view.SelectedIdxs;
+				ids = icon_view.Selection.Ids;
 				break;
 			default:
 			case ModeType.PhotoView:
@@ -697,7 +704,7 @@ public class MainWindow {
 
 			//Console.WriteLine ("Drop cell = {0} ({1},{2})", item, args.X, args.Y);
 			if (item >= 0) {
-				if (icon_view.CellIsSelected (item))
+				if (icon_view.Selection.Contains (item))
 					AttachTags (tag_selection_widget.TagHighlight (), SelectedIds());
 				else 
 					AttachTags (tag_selection_widget.TagHighlight (), new int [] {item});

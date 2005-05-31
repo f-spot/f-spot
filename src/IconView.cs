@@ -15,6 +15,7 @@ using System;
 using System.Reflection;
 using System.Collections;
 using System.IO;
+using FSpot;
 
 public class IconView : Gtk.Layout {
 
@@ -112,9 +113,6 @@ public class IconView : Gtk.Layout {
 	private int y_offset;
 	private int x_offset;
 
-	// Hash of all the order number of the items that are selected.
-	private Hashtable selected_cells;
-
 	// Drag and drop bookkeeping. 
 	private int click_x, click_y;
 
@@ -151,11 +149,10 @@ public class IconView : Gtk.Layout {
 	// Public API.
 	public IconView (IntPtr raw) : base (raw) {}
 
-	public IconView () : base (null, null)
+	protected IconView () : base (null, null)
 	{
 		cache = new FSpot.PixbufCache ();
 		cache.OnPixbufLoaded += HandlePixbufLoaded;
-		selected_cells = new Hashtable ();
 
 		ScrollAdjustmentsSet += new ScrollAdjustmentsSetHandler (HandleScrollAdjustmentsSet);
 		
@@ -177,11 +174,19 @@ public class IconView : Gtk.Layout {
 	public IconView (FSpot.IBrowsableCollection collection) : this () 
 	{
 		this.collection = collection;
+		this.selection = new SelectionCollection (collection);
 		
 		collection.Changed += HandleChanged;
 		collection.ItemChanged += HandleItemChanged;
+
+		selection.Changed += HandleSelectionChanged;
 	}
-	
+
+	private void HandleSelectionChanged (FSpot.IBrowsableCollection collection)
+	{
+		QueueDraw ();
+	}
+
 	private void HandleChanged (FSpot.IBrowsableCollection sender)
 	{
 		// FIXME we should probably try to merge the selection forward
@@ -207,34 +212,179 @@ public class IconView : Gtk.Layout {
 		}
 	}
 
-	public int [] SelectedIdxs {
+	protected SelectionCollection selection;
+	public SelectionCollection Selection {
 		get {
-			int [] selection = new int [selected_cells.Count];
-
-			int i = 0;
-			foreach (int cell in selected_cells.Keys)
-				selection [i ++] = cell;
-
-			Array.Sort (selection);
 			return selection;
 		}
 	}
 
-	public int SelectedIdxCount 
-	{
-		get {
-			return selected_cells.Count;
+	public class SelectionCollection : IBrowsableCollection {
+		IBrowsableCollection parent;
+		Hashtable selected_cells = new Hashtable ();
+		int [] selection;
+		IBrowsableItem [] items;
+
+		public SelectionCollection (IBrowsableCollection collection)
+		{
+			this.parent = collection;
+			this.parent.Changed += HandleParentChanged;
+		}
+
+		private void HandleParentChanged (IBrowsableCollection collection)
+		{
+			IBrowsableItem [] items = this.Items;
+			this.Clear ();
+			int i = 0;
+			for (i = 0; i < items.Length; i++) {
+				IBrowsableItem item = items [i];
+				int index = this.IndexOf (item);
+				if (index > 0)
+					this.Add (index, false);
+			}
+			if (i > 1)
+				SignalChange ();
+		}
+
+		private void HandleParentItemChanged (IBrowsableCollection collection, int item)
+		{
+			if (this.ItemChanged != null)
+				this.ItemChanged (collection, item);
+		}
+
+		public int [] Ids {
+			get {
+				if (selection != null)
+					return selection;
+				
+				selection = new int [selected_cells.Count];
+				
+				int i = 0;
+				foreach (int cell in selected_cells.Values)
+					selection [i ++] = cell;
+				
+				Array.Sort (selection);
+				return selection;
+			}
+		}
+
+		public IBrowsableItem [] Items {
+			get {
+				if (items != null)
+					return items;
+				
+				int [] ids = this.Ids;
+				items = new IBrowsableItem [ids.Length];
+				for (int i = 0; i < ids.Length; i++) {
+					items [i] = parent.Items [ids[i]];
+				}
+				return items;
+			}
+		}
+
+		public void Clear ()
+		{
+			selected_cells.Clear ();
+			SignalChange ();
+		}
+
+		public void Add (IBrowsableItem item)
+		{
+			if (this.Contains (item))
+				return;
+
+			int index = parent.IndexOf (item);
+			this.Add (index);
+		}
+
+		public int Count {
+			get {
+				return selected_cells.Count;
+			}
+		}
+
+		public bool Contains (IBrowsableItem item)
+		{
+			return selected_cells.ContainsKey (item);
+		}
+
+		public bool Contains (int num)
+		{
+			return this.Contains (parent.Items [num]);
+		}
+		
+		public void Add (int num)
+		{
+			this.Add (num, true);
+		}
+
+		private void Add (int num, bool notify)
+		{
+			if (this.Contains (num))
+			    return;
+			
+			IBrowsableItem item = parent.Items [num];
+			selected_cells [item] = num;
+
+			if (notify)
+				SignalChange ();
+		}
+
+		public void Add (int start, int end)
+		{
+			if (start == -1 || end == -1)
+				return;
+			
+			int current = Math.Min (start, end);
+			int final = Math.Max (start, end);				
+			
+			while (current <= final) {
+				this.Add (current, false);
+				current++;
+			}
+			
+			SignalChange ();
+		}
+
+		public int IndexOf (IBrowsableItem item)
+		{
+			if (!this.Contains (item))
+				return -1;
+
+			int parent_index = (int) selected_cells [item];
+			int [] ids = this.Ids;
+			return System.Array.IndexOf (ids, parent_index);
+		}
+
+		public void Remove (int cell)
+		{
+			IBrowsableItem item = parent.Items [cell];
+			this.Remove (item);
+
+		}
+		
+		public void Remove (IBrowsableItem item)
+		{
+			selected_cells.Remove (item);
+			SignalChange ();
+		}
+
+		public event IBrowsableCollectionChangedHandler Changed;
+		public event IBrowsableCollectionItemChangedHandler ItemChanged;
+
+		private void SignalChange () 
+		{
+			selection = null;
+			items = null;
+
+			if (Changed != null)
+				Changed (this);
 		}
 	}
 	
-	public bool IdxIsSelected (int num)
-	{
-		return CellIsSelected (num);
-	}
-
 	public int CurrentIdx {
 		get {
-			if (selected_cells.Count == 1 && IdxIsSelected (FocusCell))
+			if (selection.Count == 1 && selection.Contains (FocusCell))
 				return FocusCell;
 			else 
 				return -1;
@@ -305,87 +455,30 @@ public class IconView : Gtk.Layout {
 	// Private utility methods.
 	public void UnselectAllCells ()
 	{
-		if (selected_cells.Count == 0)
-			return;
-
-		if (selected_cells.Count < 100) {
-			foreach (int cell in selected_cells.Keys) {
-				InvalidateCell (cell);
-			}
-		} else {
-			QueueDraw ();
-		}
-		selected_cells.Clear ();		
-
-
-		if (SelectionChanged != null)
-			SelectionChanged (this);
-	}
-
-	public bool CellIsSelected (int cell_num)
-	{
-		return selected_cells.ContainsKey (cell_num);
-	}
-
-	private void SelectCellNoNotify (int cell_num)
-	{
-		if (CellIsSelected (cell_num))
-			return;
-
-		selected_cells.Add (cell_num, cell_num);
-
-		InvalidateCell (cell_num);
-	}
-
-	private void SelectCell (int cell_num)
-	{
-		SelectCellNoNotify (cell_num);
-
-		if (SelectionChanged != null)
-			SelectionChanged (this);
+		selection.Clear ();		
 	}
 
 	public void SelectAllCells ()
 	{
-		SelectCellRange (0, collection.Items.Length - 1);
+		selection.Add (0, collection.Count - 1);
 	}
 
 	private void SelectCellRange (int start, int end)
 	{
-		if (start == -1 || end == -1)
-			return;
-
-		int current = Math.Min (start, end);
-		int final = Math.Max (start, end);				
-	
-		while (current <= final) {
-			SelectCellNoNotify (current);
-			current++;
-		}
-
-		if (SelectionChanged != null)
-			SelectionChanged (this);
+		selection.Add (start, end);
 	}
 
 	private void UnselectCell (int cell_num)
 	{
-		if (! CellIsSelected (cell_num))
-			return;
-
-		selected_cells.Remove (cell_num);
-
-		InvalidateCell (cell_num);
-
-		if (SelectionChanged != null)
-			SelectionChanged (this);
+		selection.Remove (cell_num);
 	}
 
 	private void ToggleCell (int cell_num)
 	{
-		if (CellIsSelected (cell_num))
-			UnselectCell (cell_num);
+		if (selection.Contains (cell_num))
+		        selection.Remove (cell_num);
 		else
-			SelectCell (cell_num);
+			selection.Add (cell_num);
 	}
 
 
@@ -479,7 +572,7 @@ public class IconView : Gtk.Layout {
 		else
 			entry.Data = thumbnail_num;
 
-		bool selected = CellIsSelected (thumbnail_num);
+		bool selected = selection.Contains (thumbnail_num);
 		StateType cell_state = selected ? (HasFocus ? StateType.Selected :StateType.Active) : StateType.Normal;
 		
 		Style.PaintFlatBox (Style, BinWindow, cell_state, 
@@ -984,7 +1077,7 @@ public class IconView : Gtk.Layout {
 
 		if (cell_num < 0) {
 			args.RetVal = false;
-			UnselectAllCells ();
+			selection.Clear ();
 			return;
 		}
 
@@ -1003,10 +1096,10 @@ public class IconView : Gtk.Layout {
 			if ((args.Event.State & ModifierType.ControlMask) != 0) {
 				ToggleCell (cell_num);
 			} else if ((args.Event.State & ModifierType.ShiftMask) != 0) {
-				SelectCellRange (FocusCell, cell_num);
-			} else if (!CellIsSelected (cell_num)) {
-				UnselectAllCells ();
-				SelectCell (cell_num);
+				selection.Add (FocusCell, cell_num);
+			} else if (!selection.Contains (cell_num)) {
+				selection.Clear ();
+				selection.Add (cell_num);
 			}
 
 			if (args.Event.Button == 3){
@@ -1050,9 +1143,9 @@ public class IconView : Gtk.Layout {
 			case EventType.ButtonRelease:
 				if ((args.Event.State & ModifierType.ControlMask) == 0 &&
 				    (args.Event.State & ModifierType.ShiftMask  ) == 0 &&
-					(selected_cells.Count>1)) {
-					UnselectAllCells ();
-					SelectCell (cell_num);
+					(selection.Count > 1)) {
+					selection.Clear ();
+					selection.Add (FocusCell);
 				}
 	
 				break;
@@ -1112,10 +1205,10 @@ public class IconView : Gtk.Layout {
 		}	
 
 		if (shift) {
-			SelectCellRange (focus_old, FocusCell);
+			selection.Add (focus_old, FocusCell);
 		} else if (!control) {
-			UnselectAllCells ();
-			SelectCell (FocusCell);
+			selection.Clear ();
+			selection.Add (FocusCell);
 		} 
 	
 		ScrollTo (FocusCell);

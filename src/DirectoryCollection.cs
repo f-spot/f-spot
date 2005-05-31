@@ -15,6 +15,11 @@ namespace FSpot {
 			}
 		}
 
+		public bool Contains (IBrowsableItem item)
+		{
+			return IndexOf (item) >= 0;
+		}
+
 		// IBrowsableCollection
 		public IBrowsableItem [] Items {
 			get {

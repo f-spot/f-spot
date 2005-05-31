@@ -27,6 +27,11 @@ namespace FSpot {
 			return list.IndexOf (item);
 		}
 		
+		public bool Contains (IBrowsableItem item)
+		{
+			return list.Contains (item);
+		}
+
 		public IBrowsableItem [] Items {
 			get {
 				if (cache == null)
@@ -89,6 +94,11 @@ namespace FSpot {
 		public int IndexOf (IBrowsableItem item)
 		{
 			return System.Array.IndexOf (photos, item);
+		}
+
+		public bool Contains (IBrowsableItem item)
+		{
+			return IndexOf (item) >= 0;
 		}
 
 		public event IBrowsableCollectionChangedHandler Changed;
