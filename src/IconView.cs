@@ -233,7 +233,10 @@ public class IconView : Gtk.Layout {
 
 		private void HandleParentChanged (IBrowsableCollection collection)
 		{
-			IBrowsableItem [] items = this.Items;
+#if true
+			this.Clear ();
+#else 
+			IBrowsableItem [] old_items = this.Items;
 			this.Clear ();
 			int i = 0;
 			for (i = 0; i < items.Length; i++) {
@@ -244,6 +247,7 @@ public class IconView : Gtk.Layout {
 			}
 			if (i > 1)
 				SignalChange ();
+#endif
 		}
 
 		private void HandleParentItemChanged (IBrowsableCollection collection, int item)
@@ -275,7 +279,7 @@ public class IconView : Gtk.Layout {
 				
 				int [] ids = this.Ids;
 				items = new IBrowsableItem [ids.Length];
-				for (int i = 0; i < ids.Length; i++) {
+				for (int i = 0; i < items.Length; i++) {
 					items [i] = parent.Items [ids[i]];
 				}
 				return items;

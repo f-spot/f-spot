@@ -1,5 +1,7 @@
 2005-05-30  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: disable the broke selection merging logic.
+
 	* src/IBrowsableItem.cs: add contains to the interface (one step
 	closer to IList).
 
