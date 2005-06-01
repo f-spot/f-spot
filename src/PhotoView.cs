@@ -199,20 +199,6 @@ public class PhotoView : EventBox {
 			UpdateFinished (this);
 	}
 
-
-	// Browsing.
-
-	private void DisplayNext ()
-	{
-		photo_view.Next ();
-	}
-
-	private void DisplayPrevious ()
-	{
-		photo_view.Prev ();
-	}
-
-
 	// Event handlers.
 	private void HandleButtonPressEvent (object sender, ButtonPressEventArgs args)
 	{
@@ -225,12 +211,12 @@ public class PhotoView : EventBox {
 
 	private void HandleDisplayNextButtonClicked (object sender, EventArgs args)
 	{
-		DisplayNext ();
+		View.Item.MoveNext ();
 	}
 
 	private void HandleDisplayPreviousButtonClicked (object sender, EventArgs args)
 	{
-		DisplayPrevious ();
+		View.Item.MovePrevious ();
 	}
 
 

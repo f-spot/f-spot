@@ -23,7 +23,11 @@ namespace FSpot {
 			item.IndexChanged += PhotoIndexChanged;
 		}
 
-		
+		public BrowsablePointer Item {
+			get {
+				return item;
+			}
+		}
 
 		public int CurrentPhoto {
 			get {
@@ -266,25 +270,6 @@ namespace FSpot {
 				scrolled.SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic);
 		}
 
-		public void Next () {
-			item.MoveNext (true);
-		}
-		
-		public void Prev () 
-		{
-			item.MovePrevious (true);
-		}
-		
-		public void First ()
-		{
-			item.Index = 0;
-		}
-
-		public void Last ()
-		{
-			item.Index = item.Collection.Count - 1;
-		}
-
 		protected override void OnDestroyed ()
 		{
 			System.Console.WriteLine ("I'm feeling better");
@@ -300,18 +285,18 @@ namespace FSpot {
 			switch (args.Event.Key) {
 			case Gdk.Key.Page_Up:
 			case Gdk.Key.KP_Page_Up:
-				this.Prev ();
+				this.Item.MovePrevious ();
 				break;
 			case Gdk.Key.Home:
-				this.First ();
+				this.Item.Index = 0;
 				break;
 			case Gdk.Key.End:
-				this.Last ();
+				this.Item.Index = this.Query.Count - 1;
 				break;
 			case Gdk.Key.space:
 			case Gdk.Key.Page_Down:
 			case Gdk.Key.KP_Page_Down:
-				this.Next ();
+				this.Item.MoveNext ();
 				break;
 			case Gdk.Key.Key_0:
 				this.Fit = true;

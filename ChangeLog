@@ -1,5 +1,13 @@
 2005-06-01  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: make sure the item numer is sane.
+
+	* src/PhotoView.cs: remove local next and previous methods.  Use
+	View.Items instead.
+
+	* src/PhotoImageView.cs: remove next, previous, first, last
+	methods, use the Items methods instead.
+
 	* src/MainWindow.cs: move the selection tray out of the creation
 	function for now.
 

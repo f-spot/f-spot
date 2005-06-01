@@ -327,6 +327,9 @@ public class IconView : Gtk.Layout {
 
 		public bool Contains (int num)
 		{
+			if (num < 0 || num > parent.Count)
+				return false;
+
 			return this.Contains (parent.Items [num]);
 		}
 		
