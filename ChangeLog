@@ -1,3 +1,20 @@
+2005-06-01  Larry Ewing  <lewing@novell.com>
+
+	* PhotoImageView.cs: rework the done handler so that it handles
+	things more gracefully.
+
+	* src/Ciff.cs: return a null stream.  This should eventually
+	return the embedded jpeg stream at some point.
+	
+	* src/Tiff.cs: make PixbufStream always return false for tiff
+	files since they can't be loaded with a pixbuf loader anyway.
+
+	* src/ImageFile.cs: add PixbufStream method to allow async loading
+	for types that allow it.
+
+	* src/AsyncPixbufLoader.cs: use new image file insterface to get
+	the stream.
+
 2005-05-31  Larry Ewing  <lewing@novell.com>
 
 	* src/MainWindow.cs: use the selection interface instead of the

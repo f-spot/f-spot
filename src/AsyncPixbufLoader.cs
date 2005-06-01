@@ -72,8 +72,15 @@ namespace FSpot {
 			ImageFile img = ImageFile.Create (filename);
 			orientation = img.Orientation;
 
-			stream = System.IO.File.OpenRead (filename);
-			
+			stream = img.PixbufStream ();
+			if (stream == null) {
+				pixbuf = img.Load ();
+				done_reading = true;
+				if (Done != null)
+					Done (this, System.EventArgs.Empty);
+				return;
+			}
+
 			loader = new Gdk.PixbufLoader ();
 			loader.AreaPrepared += ap;
 			loader.AreaUpdated += au;
@@ -154,8 +161,9 @@ namespace FSpot {
 			do {
 				span = System.DateTime.Now - start_time;
 
-				int len = stream.Read (buffer, 0, buffer.Length);
+				int len;
 				try {
+					len = stream.Read (buffer, 0, buffer.Length);
 					loader.Write (buffer, (uint)len);
 				} catch (GLib.GException e) {
 					pixbuf = null;

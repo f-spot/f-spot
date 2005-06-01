@@ -275,7 +275,7 @@ namespace FSpot.Ciff {
 			return null;
 		}
 
-		public System.IO.Stream PixbufLoaderStream ()
+		public override System.IO.Stream PixbufStream ()
 		{
 			System.IO.MemoryStream stream = null; 
 			byte [] data = GetEmbeddedJpeg ();

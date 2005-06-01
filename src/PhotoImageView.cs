@@ -144,23 +144,18 @@ namespace FSpot {
 			// FIXME the error hander here needs to provide proper information and we should
 			// pass the state and the write exception in the args
 			Gdk.Pixbuf prev = this.Pixbuf;
-			try {
-				if (loader.Pixbuf == null) {
-					ImageFile  img = ImageFile.Create (Photo.DefaultVersionPath);
-					this.Pixbuf = img.Load ();
-					this.ZoomFit ();
-				}
-			} catch (System.Exception e) {
-				System.Console.WriteLine (e.ToString ());
+			if (loader.Pixbuf == null) {
 				this.Pixbuf = new Gdk.Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0, 
 							      PixbufUtils.ErrorPixbuf.Width, 
-							      PixbufUtils.ErrorPixbuf.Height);
+								      PixbufUtils.ErrorPixbuf.Height);
 				
-				this.ZoomFit ();
-			} finally{
-				if (prev != null)
-					prev.Dispose ();
+			} else {
+				this.Pixbuf = loader.Pixbuf;
 			}
+			this.ZoomFit ();
+
+			if (prev != this.Pixbuf && prev != null)
+				prev.Dispose ();
 		}		
 		
 		private bool fit = true;

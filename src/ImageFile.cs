@@ -3,6 +3,7 @@ using System.IO;
 namespace FSpot {
 	public class ImageFile {
 		protected string path;
+
 		static System.Collections.Hashtable name_table;
 
 		protected ImageFile (string path) 
@@ -10,6 +11,11 @@ namespace FSpot {
 			this.path = path;
 		}
 		
+		public virtual System.IO.Stream PixbufStream ()
+		{
+			return System.IO.File.OpenRead (this.path);
+		}
+
 		static ImageFile ()
 		{
 			name_table = new System.Collections.Hashtable ();

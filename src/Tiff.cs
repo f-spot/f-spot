@@ -1072,6 +1072,11 @@ namespace FSpot.Tiff {
 			}
 		}
 
+		public override System.IO.Stream PixbufStream ()
+		{
+			return null;
+		}
+
 		public override PixbufOrientation GetOrientation ()
 		{
 			ShortEntry e = (ShortEntry)(this.Header.Directory.Lookup (TagId.Orientation));
