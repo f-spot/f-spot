@@ -1,5 +1,8 @@
 2005-06-01  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: move the selection tray out of the creation
+	function for now.
+
 	* PhotoImageView.cs: rework the done handler so that it handles
 	things more gracefully.
 

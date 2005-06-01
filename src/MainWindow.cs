@@ -189,13 +189,6 @@ public class MainWindow {
 		icon_view.DoubleClicked += HandleDoubleClicked;
 		icon_view.GrabFocus ();
 
-		Gtk.Window win3 = new Gtk.Window ("This is a window");
-		Gtk.ScrolledWindow scroll3 = new Gtk.ScrolledWindow ();
-	
-		win3.Add (scroll3);
-		scroll3.Add (new TrayView (icon_view.Selection));
-		win3.ShowAll ();
-
 		new FSpot.PreviewPopup (icon_view);
 
 		Gtk.Drag.SourceSet (icon_view, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
@@ -975,6 +968,16 @@ public class MainWindow {
 		Gtk.ScrolledWindow scrolled = new ScrolledWindow ();
 		win.Add (scrolled);
 		scrolled.Add (view);
+		win.ShowAll ();
+	}
+
+	void HandleViewSelection (object sender, EventArgs args)
+	{
+		Gtk.Window win = new Gtk.Window ("This is a window");
+		Gtk.ScrolledWindow scroll = new Gtk.ScrolledWindow ();
+	
+		win.Add (scroll);
+		scroll.Add (new TrayView (icon_view.Selection));
 		win.ShowAll ();
 	}
 
