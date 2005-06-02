@@ -7,26 +7,16 @@ using System;
 public class PhotoView : EventBox {
 	FSpot.Delay description_delay; 
 
-	public int CurrentPhoto {
-		get {
-			return photo_view.CurrentPhoto;
-		}
-		set {
-			photo_view.CurrentPhoto = value;
-		}
-	}
-
 	public FSpot.PhotoImageView View {
 		get {
 			return photo_view;
 		}
 	}
 
-	private bool CurrentPhotoValid () {
-		if (query == null || query.Photos.Length == 0 || CurrentPhoto >= Query.Photos.Length)
-			return false;
-
-		return true;
+	public FSpot.BrowsablePointer Item {
+		get {
+			return photo_view.Item;
+		}
 	}
 
 	private PhotoStore photo_store;
@@ -145,9 +135,9 @@ public class PhotoView : EventBox {
 
 	private void UpdateButtonSensitivity ()
 	{
-		bool valid = CurrentPhotoValid ();
-		bool prev = valid && CurrentPhoto > 0;
-		bool next = valid && CurrentPhoto < query.Photos.Length -1;
+		bool valid = photo_view.Item.IsValid;
+		bool prev = valid && Item.Index > 0;
+		bool next = valid && Item.Index < query.Count - 1;
 
 		display_previous_button.Sensitive = prev;
 		display_next_button.Sensitive = next;
@@ -165,19 +155,19 @@ public class PhotoView : EventBox {
 			if (Query.Photos.Length == 0)
 				count_label.Text = String.Format ("{0} of {1}", 0, 0);
 			else 
-				count_label.Text = String.Format ("{0} of {1}", CurrentPhoto + 1, Query.Photos.Length);
+				count_label.Text = String.Format ("{0} of {1}", Item.Index + 1, Query.Count);
 		}
 	}
 
 	private void UpdateDescriptionEntry ()
 	{
 		description_entry.Changed -= HandleDescriptionChanged;
-		if (Query.Photos.Length > 0 && CurrentPhoto < Query.Photos.Length) {
+		if (Item.IsValid) {
 			if (description_entry.Sensitive == false)
 				description_entry.Sensitive = true;
-
-			if (description_entry.Text != Query.Photos[CurrentPhoto].Description) {
-				description_entry.Text = Query.Photos[CurrentPhoto].Description;
+			
+			if (description_entry.Text != Item.Current.Description) {
+				description_entry.Text = Item.Current.Description;
 			}
 		} else {
 			description_entry.Sensitive = false;
@@ -243,7 +233,7 @@ public class PhotoView : EventBox {
 			return;
 		}
 
-		Photo photo = query.Photos [CurrentPhoto];
+		Photo photo = (Photo)Item.Current;
 		Exif.ExifData exif_data = new Exif.ExifData (photo.DefaultVersionPath);
 
 		Pixbuf edited;
@@ -275,13 +265,13 @@ public class PhotoView : EventBox {
 				PixbufUtils.SaveJpeg (edited, photo.DefaultVersionPath, 
 						      95, exif_data);
 				FSpot.ThumbnailGenerator.Create (photo.DefaultVersionPath).Dispose ();
-				query.Commit (CurrentPhoto);
+				query.Commit (Item.Index);
 			} else {
 				// FIXME we need to invalidate the thumbnail in the cache as well
 				PixbufUtils.SaveJpeg (edited, photo.DefaultVersionPath, 
 						      95, exif_data);
 				FSpot.ThumbnailGenerator.Create (photo.DefaultVersionPath).Dispose ();
-				query.MarkChanged (CurrentPhoto);
+				query.MarkChanged (Item.Index);
 			}
 		} catch (System.Exception e) {
 			string msg = Mono.Posix.Catalog.GetString ("Error editing photo");
@@ -333,18 +323,18 @@ public class PhotoView : EventBox {
 	}
 
 	private void HandleDescriptionChanged (object sender, EventArgs args) {
-		if (!CurrentPhotoValid ())
+		if (!Item.IsValid)
 			return;
 
-		Query.Photos[CurrentPhoto].Description = description_entry.Text;
+		((Photo)Item.Current).Description = description_entry.Text;
 
 		if (description_delay.IsPending)
-			if (description_photo == CurrentPhoto)
+			if (description_photo == Item.Index)
 				description_delay.Stop ();
 			else
 				CommitPendingChanges ();
 
-		description_photo = CurrentPhoto;
+		description_photo = Item.Index;
 		description_delay.Start ();
 	}
 
@@ -364,11 +354,9 @@ public class PhotoView : EventBox {
 	private void HandlePhotoChanged (FSpot.PhotoImageView view)
 	{
 		CommitPendingChanges ();
-		bool valid = CurrentPhotoValid ();
-
 		Update ();
 
-		tag_view.Current = valid ? query.Photos [CurrentPhoto] : null;
+		tag_view.Current = (Photo)(Item.Current);
 
 		if (this.PhotoChanged != null)
 			PhotoChanged (this);

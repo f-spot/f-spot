@@ -300,7 +300,7 @@ public class MainWindow {
 			if (view_notebook.CurrentPage != 0)
 				view_notebook.CurrentPage = 0;
 				
-			JumpTo (photo_view.CurrentPhoto);
+			JumpTo (photo_view.Item.Index);
 			break;
 		case ModeType.PhotoView:
 			if (view_notebook.CurrentPage != 1)
@@ -347,7 +347,7 @@ public class MainWindow {
 		int [] ids = new int [0];
 
 		if (fsview != null)
-			ids = new int [] { fsview.View.CurrentPhoto };
+			ids = new int [] { fsview.View.Item.Index };
 		else {
 			switch (view_mode) {
 			case ModeType.IconView:
@@ -355,8 +355,8 @@ public class MainWindow {
 				break;
 			default:
 			case ModeType.PhotoView:
-				if (photo_view.View.CurrentPhotoValid ())
-					ids = new int [] { photo_view.CurrentPhoto };
+				if (photo_view.Item.IsValid)
+					ids = new int [] { photo_view.Item.Index };
 				break;
 			}
 		}
@@ -578,7 +578,7 @@ public class MainWindow {
 	{
 		switch (view_mode) {
 		case ModeType.PhotoView:
-			photo_view.CurrentPhoto = index;
+			photo_view.Item.Index = index;
 			break;
 		case ModeType.IconView:
 			icon_view.ScrollTo (index);
@@ -1360,14 +1360,14 @@ public class MainWindow {
 			fsview.Destroyed += HandleFullScreenViewDestroy;
 		}
 		// FIXME this needs to be another mode like PhotoView and IconView mode.
-		fsview.View.CurrentPhoto = active;
+		fsview.View.Item.Index = active;
 
 		fsview.Show ();
 	}
 	
 	void HandleFullScreenViewDestroy (object sender, EventArgs args)
 	{
-		JumpTo (fsview.View.CurrentPhoto);
+		JumpTo (fsview.View.Item.Index);
 		fsview = null;
 	}
 	

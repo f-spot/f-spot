@@ -1,3 +1,11 @@
+2005-06-02  Larry Ewing  <lewing@novell.com>
+
+	* src/PhotoView.cs: move to using the Item for indexing.  Remove
+	old indexing interface.
+
+	* src/MainWindow.cs: stop using the old current photo interfaces,
+	use the Browsable pointer stuff.
+
 2005-06-01  Larry Ewing  <lewing@novell.com>
 
 	* src/IconView.cs: make sure the item numer is sane.
