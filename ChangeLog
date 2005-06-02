@@ -1,5 +1,10 @@
 2005-06-02  Larry Ewing  <lewing@novell.com>
 
+	* src/JpegHeader.cs: be more careful with the output stream.
+
+	* src/PhotoImageView.cs: make reload work again hook back up to
+	item changed.
+
 	* src/TagView.cs: add a quick hack to set the size request on
 	expose.
 

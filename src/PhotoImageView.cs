@@ -19,6 +19,7 @@ namespace FSpot {
 			this.KeyPressEvent += HandleKeyPressEvent;
 			this.ScrollEvent += HandleScrollEvent;
 			this.Destroyed += HandleDestroy;
+			query.ItemChanged += HandleQueryItemChanged;
 			this.item = new BrowsablePointer (query, -1);
 			item.IndexChanged += PhotoIndexChanged;
 		}
@@ -65,9 +66,8 @@ namespace FSpot {
 			if (!Item.IsValid)
 				return;
 			
-			int idx = Item.Index;
-			Item.Index = -1;
-			Item.Index = idx;
+			PhotoIndexChanged (Item, null);
+			
 		}
 		/*
 		private void HandleQueryChanged (IBrowsableCollection browsable)
@@ -75,13 +75,13 @@ namespace FSpot {
 			if (query == browsable)
 				Reload ();
 		}
+		*/
 
 		public void HandleQueryItemChanged (IBrowsableCollection browsable, int item)
 		{
-			if (item == CurrentPhoto)
+			if (item == Item.Index)
 				Reload ();
 		}
-		*/
 
 		// Display.
 		private void HandlePixbufAreaUpdated (object sender, Gdk.Rectangle area)
