@@ -532,7 +532,7 @@ apply_brightness_and_contrast_to_pixbuf (ImageView *view,
 }
 
 static void
-apply_transform_to_pixbuf (ImageView *view, GdkPixbuf *pixbuf, int width, int height)
+apply_transform_to_pixbuf (ImageView *view, GdkPixbuf *pixbuf, int x, int y, int width, int height)
 {
 	char *p;
 	int line;
@@ -764,7 +764,7 @@ paint_rectangle (ImageView *view, ArtIRect *rect, GdkInterpType interp_type)
 		apply_brightness_and_contrast_to_pixbuf (view, tmp, d.x1 - d.x0, d.y1 - d.y0);
 
 	if (priv->transform != NULL)
-		apply_transform_to_pixbuf (view, tmp, d.x1 - d.x0, d.y1 - d.y0);
+		apply_transform_to_pixbuf (view, tmp, d.x0, d.y0, d.x1 - d.x0, d.y1 - d.y0);
 #endif
 
 #ifdef PACK_RGBA
