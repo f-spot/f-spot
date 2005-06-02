@@ -59,12 +59,17 @@ namespace FSpot {
 			//this.ExifData.Dump ();
 
 #if true //USE_UNSTABLE_JPEG_HEADER_CODE
-			using (System.IO.FileStream stream = System.IO.File.Open (path, System.IO.FileMode.OpenOrCreate)) {
+			string  temp_path = path;
+			using (System.IO.FileStream stream = System.IO.File.OpenRead (path)) {
 				JpegHeader header = new JpegHeader (stream);
-				header.Exif = this.ExifData;
-				stream.Position = 0;
-				stream.SetLength (0);
-				header.Save (stream);
+				using (System.IO.Stream output = FSpot.Unix.MakeSafeTemp (ref temp_path)) {
+					header.Exif = this.ExifData;
+					header.Save (output);
+				}
+			}
+			if (FSpot.Unix.Rename (temp_path, path) < 0) {
+				System.IO.File.Delete (temp_path);
+				throw new System.Exception (System.String.Format ("Unable to rename {0} to {1}", temp_path, path));
 			}
 #else 
 			JpegUtils.SaveExif (path, this.ExifData);
@@ -127,8 +132,7 @@ namespace FSpot {
 			return null;
 		}
 		
-		public Exif.ExifData ExifData 
-		{
+		public Exif.ExifData ExifData {
 			get {
 				if (this.exif_data == null) {
 					this.exif_data = new Exif.ExifData (path);

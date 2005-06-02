@@ -1171,7 +1171,11 @@ namespace FSpot.Tiff {
 
 		public override Gdk.Pixbuf Load ()
 		{
+#if false
 			return GetEmbeddedThumbnail ();
+#else
+			return DCRawFile.Load (this.Path, null);
+#endif
 		}
 
 		public override Gdk.Pixbuf Load (int width, int height)

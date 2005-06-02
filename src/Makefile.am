@@ -10,6 +10,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/CompatFileChooser.cs		\
 	$(srcdir)/DateCommands.cs		\
 	$(srcdir)/Db.cs				\
+	$(srcdir)/DCRawFile.cs			\
 	$(srcdir)/Delay.cs			\
 	$(srcdir)/DirectoryAdaptor.cs		\
 	$(srcdir)/DirectoryCollection.cs	\
@@ -78,6 +79,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ThumbnailGenerator.cs		\
 	$(srcdir)/Tiff.cs			\
 	$(srcdir)/TimeAdaptor.cs		\
+	$(srcdir)/Unix.cs			\
 	$(srcdir)/Util.cs			\
 	$(srcdir)/ThumbnailCommand.cs		\
 	$(srcdir)/QueryView.cs			\

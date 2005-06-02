@@ -1,5 +1,16 @@
 2005-06-02  Larry Ewing  <lewing@novell.com>
 
+	* src/Unix.cs: wrap mkstemp and rename.
+
+	* src/Tiff.cs: use dcraw to load cr2 files... Wow is it slow.
+	
+	* src/JpegFile.cs: use the safe temp file stuff to avoid problems
+	with reading while rotating.
+
+	* src/Makefile.am (F_SPOT_CSDISTFILES): add the new files.
+
+	* src/DCRawFile.cs: add simple dcraw based loader.
+
 	* src/TagView.cs: handle a null photo properly.
 
 	* libeog/image-view.c (endif): pass the position of the area to
