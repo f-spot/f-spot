@@ -1080,7 +1080,10 @@ namespace FSpot.Tiff {
 		public override PixbufOrientation GetOrientation ()
 		{
 			ShortEntry e = (ShortEntry)(this.Header.Directory.Lookup (TagId.Orientation));
-			return (PixbufOrientation)(e.ShortValue[0]);
+			if (e != null) 
+				return (PixbufOrientation)(e.ShortValue[0]);
+			else
+				return PixbufOrientation.TopLeft;
 		}
 
 		public override System.DateTime Date ()
@@ -1121,7 +1124,7 @@ namespace FSpot.Tiff {
 		}
 	}
 		
-	public class NefFile : TiffFile , IThumbnailContainer {
+	public class NefFile : TiffFile, IThumbnailContainer {
 		public NefFile (string path) : base (path) {}
 
 		public Gdk.Pixbuf GetEmbeddedThumbnail ()
@@ -1131,20 +1134,23 @@ namespace FSpot.Tiff {
 
 		public override Gdk.Pixbuf Load () 
 		{
-			SubdirectoryEntry sub = (SubdirectoryEntry) Header.Directory.Lookup (TagId.SubIFDs);
-			ImageDirectory jpeg_directory = sub.Directory [0];
-			
 			Gdk.Pixbuf pixbuf = null;
+			System.Console.WriteLine ("starting load");
 			
 			try {
+				SubdirectoryEntry sub = (SubdirectoryEntry) Header.Directory.Lookup (TagId.SubIFDs);
+				ImageDirectory jpeg_directory = sub.Directory [0];
+				
 				pixbuf = LoadJpegInterchangeFormat (jpeg_directory);
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e);
 				pixbuf = null;
 			}
 
-			if (pixbuf == null)
-				pixbuf = new Gdk.Pixbuf (path);
+			if (pixbuf == null) {
+				System.Console.WriteLine ("got here");
+				pixbuf = DCRawFile.Load (this.Path, null);
+			}
 
 			return TransformAndDispose (pixbuf);
 		}

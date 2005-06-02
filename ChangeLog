@@ -1,5 +1,7 @@
 2005-06-02  Larry Ewing  <lewing@novell.com>
 
+	* src/Tiff.cs: use dcraw on images that don't have embedded previews.
+
 	* src/PnmFile.cs: use the pixbuf loader for 8 bit images and the
 	the internal one for 16 bit images (even though it is still a
 	horrible hack).
