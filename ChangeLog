@@ -1,5 +1,8 @@
 2005-06-02  Larry Ewing  <lewing@novell.com>
 
+	* src/TagView.cs: add a quick hack to set the size request on
+	expose.
+
 	* src/ColorDialog.cs: use the new indexing interface.
 
 	* src/TagCommand.cs: use the new indexing and selection

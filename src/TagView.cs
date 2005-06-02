@@ -21,7 +21,6 @@ public class TagView : Gtk.Widget {
 					thumbnail_size);
 			QueueResize ();
 			QueueDraw ();
-				
 		}
 	}
 
@@ -29,6 +28,10 @@ public class TagView : Gtk.Widget {
 	{
 		if (photo == null)
 			return base.OnExposeEvent (args); 
+
+		SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * photo.Tags.Length,
+				thumbnail_size);
+
 
 		int tag_x = Allocation.X;
 		int tag_y = Allocation.Y + (Allocation.Height - thumbnail_size)/2;
