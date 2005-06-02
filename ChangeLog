@@ -1,5 +1,15 @@
 2005-06-02  Larry Ewing  <lewing@novell.com>
 
+	* src/ColorDialog.cs: use the new indexing interface.
+
+	* src/TagCommand.cs: use the new indexing and selection
+	interfaces.
+
+	* src/MainWindow.cs: fixup sleection changed handling for the
+	IconView.
+
+	* src/PhotoImageView.cs: remove old indexing interface.
+
 	* src/PhotoView.cs: move to using the Item for indexing.  Remove
 	old indexing interface.
 

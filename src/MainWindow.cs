@@ -185,7 +185,7 @@ public class MainWindow {
 
 		icon_view = new QueryView (query);
 		icon_view_scrolled.Add (icon_view);
-		icon_view.SelectionChanged += HandleSelectionChanged;
+		icon_view.Selection.Changed += HandleSelectionChanged;
 		icon_view.DoubleClicked += HandleDoubleClicked;
 		icon_view.GrabFocus ();
 
@@ -723,7 +723,7 @@ public class MainWindow {
 	// IconView event handlers
 	// 
 
-	void HandleSelectionChanged (IconView view)
+	void HandleSelectionChanged (FSpot.IBrowsableCollection collection)
 	{
 		info_box.Photo = CurrentPhoto;
 		if (info_display != null)

@@ -92,7 +92,7 @@ namespace FSpot {
 		
 		public void RangeChanged (object sender, EventArgs args)
 		{
-			if (!view.CurrentPhotoValid ())
+			if (!view.Item.IsValid)
 				return;
 
 #if USE_THREAD
@@ -109,11 +109,11 @@ namespace FSpot {
 		
 		public void Save ()
 		{
-			if (!view.CurrentPhotoValid ())
+			if (!view.Item.IsValid)
 				return;
 
 			Console.WriteLine ("Saving....");
-			Photo photo = view.Query.Photos[view.CurrentPhoto];
+			Photo photo = (Photo)view.Item.Current;
 			Exif.ExifData data = new Exif.ExifData (photo.DefaultVersionPath);
 			
 			bool created_version = false;
@@ -140,7 +140,7 @@ namespace FSpot {
 				PixbufUtils.SaveJpeg (final, version_path, 95, data);
 				ThumbnailGenerator.Create (version_path).Dispose ();
 				photo.DefaultVersionId = version;
-				((PhotoQuery)view.Query).Commit (view.CurrentPhoto);
+				((PhotoQuery)view.Query).Commit (view.Item.Index);
 			} catch (System.Exception e) {
 				string msg = Mono.Posix.Catalog.GetString ("Error saving adjusted photo");
 				string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save image {1}"),
@@ -181,8 +181,8 @@ namespace FSpot {
 
 		private void HandlePhotoChanged (PhotoImageView view)
 		{
-			if (view.CurrentPhotoValid ()) {
-				FSpot.ImageFile img = FSpot.ImageFile.Create (view.Query.Photos [view.CurrentPhoto].DefaultVersionPath);
+			if (view.Item.IsValid) {
+				FSpot.ImageFile img = FSpot.ImageFile.Create (((Photo)view.Item.Current).DefaultVersionPath);
 				AdjustedPixbuf = img.Load (150, 150);
 				ScaledPixbuf = AdjustedPixbuf.Copy ();			
 				RangeChanged (null, null);
@@ -199,7 +199,7 @@ namespace FSpot {
 			view = new FSpot.PhotoImageView (query);
 			view_scrolled.Add (view);
 			view.Show ();
-			view.CurrentPhoto = item;
+			view.Item.Index = item;
 
 			this.CreateDialog ("external_color_dialog");
 			AttachInterface ();

@@ -142,10 +142,6 @@ public class IconView : Gtk.Layout {
 	public delegate void DoubleClickedHandler (IconView view, int clicked_item);
 	public event DoubleClickedHandler DoubleClicked;
 
-	public delegate void SelectionChangedHandler (IconView view);
-	public event SelectionChangedHandler SelectionChanged;
-
-
 	// Public API.
 	public IconView (IntPtr raw) : base (raw) {}
 

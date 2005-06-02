@@ -346,12 +346,9 @@ public class TagCommands {
 		[Glade.Widget] Label photo_label;
 		[Glade.Widget] SpinButton photo_spin_button;
 
-		public int CurrentItem {
+		public FSpot.BrowsablePointer Item {
 			get {
-				return image_view.CurrentPhoto;
-			}
-			set {
-				image_view.CurrentPhoto = value;
+				return image_view.Item;
 			}
 		}
 		
@@ -359,7 +356,7 @@ public class TagCommands {
 		{
 			int value = photo_spin_button.ValueAsInt - 1;
 			
-			image_view.CurrentPhoto = value;
+			image_view.Item.Index = value;
 		}
 
 		private void HandleSelectionChanged ()
@@ -381,17 +378,18 @@ public class TagCommands {
 
 		public void HandlePhotoChanged (FSpot.PhotoImageView sender)
 		{
+			int item = image_view.Item.Index;
 			photo_label.Text = String.Format (Mono.Posix.Catalog.GetString ("Photo {0} of {1}"), 
-							  image_view.CurrentPhoto + 1, query.Photos.Length);
+							  item + 1, query.Count);
 
-			photo_spin_button.Value = image_view.CurrentPhoto + 1;
+			photo_spin_button.Value = item + 1;
 		}
 
-		public void HandleIconViewSelectionChanged (IconView view) 
+		public void HandleIconViewSelectionChanged (FSpot.IBrowsableCollection collection) 
 		{
 			if (icon_view.Selection.Count > 0)
 			{
-				FSpot.IBrowsableItem item = icon_view.Collection.Items [icon_view.Selection.Ids [0]];
+				FSpot.IBrowsableItem item = icon_view.Selection.Items [0];
 				string path = item.DefaultVersionUri.LocalPath;
 				try {
 					preview_image.Pixbuf = new Gdk.Pixbuf (path);
@@ -432,7 +430,7 @@ public class TagCommands {
 				photo_spin_button.Adjustment.StepIncrement = 1.0;
 				photo_spin_button.ValueChanged += HandleSpinButtonChanged;
 				
-				image_view.CurrentPhoto = 0;
+				image_view.Item.Index = 0;
 			} else {
 				photo_spin_button.Sensitive = false;
 				photo_spin_button.Value = 0.0;
@@ -452,7 +450,7 @@ public class TagCommands {
 			icon_view.ThumbnailWidth = 32;
 			icon_view.DisplayTags = false;
 			icon_view.DisplayDates = false;
-			icon_view.SelectionChanged += HandleIconViewSelectionChanged;
+			icon_view.Selection.Changed += HandleIconViewSelectionChanged;
 			icon_view.Show();
 
 			image_view.Show ();

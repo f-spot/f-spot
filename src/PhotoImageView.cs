@@ -29,15 +29,6 @@ namespace FSpot {
 			}
 		}
 
-		public int CurrentPhoto {
-			get {
-				return item.Index;
-			}
-			set {
-				item.Index = value;
-			}
-		}
-
 		public Photo Photo {
 			get {
 				return (Photo)item.Current;
@@ -71,12 +62,12 @@ namespace FSpot {
 
 		public void Reload ()
 		{
-			if (!CurrentPhotoValid ())
+			if (!Item.IsValid)
 				return;
 			
-			int idx = CurrentPhoto;
-			CurrentPhoto = -1;
-			CurrentPhoto = idx;
+			int idx = Item.Index;
+			Item.Index = -1;
+			Item.Index = idx;
 		}
 		/*
 		private void HandleQueryChanged (IBrowsableCollection browsable)
@@ -91,10 +82,6 @@ namespace FSpot {
 				Reload ();
 		}
 		*/
-		public bool CurrentPhotoValid ()
-		{
-			return item.IsValid;
-		}
 
 		// Display.
 		private void HandlePixbufAreaUpdated (object sender, Gdk.Rectangle area)
