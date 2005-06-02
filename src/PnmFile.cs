@@ -4,7 +4,44 @@ namespace FSpot.Pnm {
 		{
 			System.Console.WriteLine ("loading pnm file");
 		}
-		
+
+		public class Header {
+			public string Magic;
+			public int Width;
+			public int Height;
+			public ushort Max;
+			
+			public Header (System.IO.Stream stream) {
+				Magic = GetString (stream);
+				Width = int.Parse (GetString (stream));
+				Height = int.Parse (GetString (stream));
+				Max = ushort.Parse (GetString (stream));
+			}
+
+			public bool IsDeep {
+				get {
+					return Max > 256;
+				}
+			}
+
+			public void Dump ()
+			{
+				System.Console.WriteLine ("Loading ({0} - {1},{2} - {3})", 
+							  Magic, Width, Height, Max);
+			}
+		}
+
+		public override System.IO.Stream PixbufStream ()
+		{
+			System.IO.Stream stream = System.IO.File.OpenRead (this.path);
+			Header header = new Header (stream);
+			if (header.IsDeep)
+				return null;
+
+			stream.Position = 0;
+			return stream;
+		}
+
 		static string GetString (System.IO.Stream stream)
 		{
 			System.Text.StringBuilder builder = new System.Text.StringBuilder ();
@@ -64,6 +101,7 @@ namespace FSpot.Pnm {
 				
 				for (int i = 0; i < height; i++) {
 					stream.Read (buffer, 0, buffer.Length);
+					    
 					System.Runtime.InteropServices.Marshal.Copy (buffer, 0, 
 										     (System.IntPtr)pixels, buffer.Length);
 					
@@ -93,21 +131,18 @@ namespace FSpot.Pnm {
 
 		public static Gdk.Pixbuf Load (System.IO.Stream stream)
 		{
-			string magic = GetString (stream);
-			int width = int.Parse (GetString (stream));
-			int height = int.Parse (GetString (stream));
-			ushort max = ushort.Parse (GetString (stream));
-			
-			System.Console.WriteLine ("Loading ({0} - {1},{2} - {3})", magic, width, height, max);
+			Header header = new Header (stream);
+			header.Dump ();
 
-			switch (magic) {
+			switch (header.Magic) {
 			case "P6":
-				if (max < 256)
-					return LoadRGB8 (stream, width, height);
+				if (header.IsDeep)
+					return LoadRGB16 (stream, header.Width, header.Height);
 				else
-					return LoadRGB16 (stream, width, height);
+					return LoadRGB8 (stream, header.Width, header.Height);
+				break;
 			default:
-				throw new System.Exception (System.String.Format ("unknown pnm type {0}", magic));
+				throw new System.Exception (System.String.Format ("unknown pnm type {0}", header.Magic));
 			}			
 		}
 	}

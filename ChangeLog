@@ -1,5 +1,9 @@
 2005-06-02  Larry Ewing  <lewing@novell.com>
 
+	* src/PnmFile.cs: use the pixbuf loader for 8 bit images and the
+	the internal one for 16 bit images (even though it is still a
+	horrible hack).
+
 	* src/Unix.cs: wrap mkstemp and rename.
 
 	* src/Tiff.cs: use dcraw to load cr2 files... Wow is it slow.
