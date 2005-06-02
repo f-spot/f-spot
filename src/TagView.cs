@@ -17,8 +17,13 @@ public class TagView : Gtk.Widget {
 	public Photo Current {
 		set {
 			photo = value;
-			SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * photo.Tags.Length,
-					thumbnail_size);
+
+			if (photo != null) {
+				SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * photo.Tags.Length,
+						thumbnail_size);
+			} else {
+				SetSizeRequest (0, thumbnail_size);	
+			}
 			QueueResize ();
 			QueueDraw ();
 		}

@@ -1,5 +1,10 @@
 2005-06-02  Larry Ewing  <lewing@novell.com>
 
+	* src/TagView.cs: handle a null photo properly.
+
+	* libeog/image-view.c (endif): pass the position of the area to
+	adjust.
+
 	* src/JpegFile.cs: be more careful with the output stream.
 
 	* src/PhotoImageView.cs: make reload work again hook back up to
