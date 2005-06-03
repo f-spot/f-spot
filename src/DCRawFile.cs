@@ -4,7 +4,8 @@ namespace FSpot {
 			
 		public override System.IO.Stream PixbufStream ()
 		{
-			string args = System.String.Format ("-h -c {0}", this.path);
+			// FIXME this filename quoting is super lame
+			string args = System.String.Format ("-h -w -c \"{0}\"", this.path);
 
 			System.Diagnostics.Process process = new System.Diagnostics.Process ();
 			process.StartInfo = new System.Diagnostics.ProcessStartInfo ("dcraw", args);
@@ -16,7 +17,8 @@ namespace FSpot {
 		
 		public static Gdk.Pixbuf Load (string path, string args)
 		{
-			args = System.String.Format ("-h -c {0}", path);
+			// FIXME this filename quoting is super lame
+			args = System.String.Format ("-h -w -c \"{0}\"", path);
 
 			System.Console.WriteLine ("path = {0}, args = \"{1}\"", path, args);
 			 

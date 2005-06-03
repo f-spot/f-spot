@@ -1,5 +1,8 @@
 2005-06-02  Larry Ewing  <lewing@novell.com>
 
+	* src/DCRawFile.cs: do broken but better than nothing filename
+	quoting before creating the process.
+
 	* src/Tiff.cs: use dcraw on images that don't have embedded previews.
 
 	* src/PnmFile.cs: use the pixbuf loader for 8 bit images and the
