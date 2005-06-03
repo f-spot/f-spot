@@ -1,3 +1,8 @@
+2005-06-03  Larry Ewing  <lewing@novell.com>
+
+	* src/Tiff.cs: if nef file has a jpeg stream offer it as the
+	pixbuf stream.  This should make browsing d70 files zippy.
+
 2005-06-02  Larry Ewing  <lewing@novell.com>
 
 	* src/DCRawFile.cs: do broken but better than nothing filename

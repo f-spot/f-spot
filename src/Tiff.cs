@@ -892,6 +892,10 @@ namespace FSpot.Tiff {
 			case (int)TagId.PhotometricInterpretation:
 				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new PhotometricInterpretation {0}", (PhotometricInterpretation) this.ValueAsLong [0]);
 				break;
+			case (int)TagId.ImageWidth:
+			case (int)TagId.ImageLength:
+				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new {1} {0}", this.ValueAsLong [0], this.Id);
+				break;
 			case 50648:
 			case 50656:
 			case 50752:
@@ -1096,6 +1100,16 @@ namespace FSpot.Tiff {
 				return base.Date ();
 		}
 
+		public System.IO.Stream LookupJpegSubstream (ImageDirectory directory)
+		{
+			uint offset = directory.Lookup (TagId.JPEGInterchangeFormat).ValueAsLong [0];
+			uint length = directory.Lookup (TagId.JPEGInterchangeFormatLength).ValueAsLong [0];
+			
+			System.IO.Stream file = System.IO.File.OpenRead (this.path);
+			file.Position = offset;
+			return file;
+		}
+
 		public Gdk.Pixbuf LoadJpegInterchangeFormat (ImageDirectory directory)
 		{
 			uint offset = directory.Lookup (TagId.JPEGInterchangeFormat).ValueAsLong [0];
@@ -1132,6 +1146,17 @@ namespace FSpot.Tiff {
 			return TransformAndDispose (new Gdk.Pixbuf (path));
 		}
 
+		public override System.IO.Stream PixbufStream ()
+		{
+			try {
+				SubdirectoryEntry sub = (SubdirectoryEntry) Header.Directory.Lookup (TagId.SubIFDs);
+				ImageDirectory jpeg_directory = sub.Directory [0];
+				return LookupJpegSubstream (jpeg_directory);
+			} catch (System.Exception e) {
+				return null;
+			}
+		}
+		
 		public override Gdk.Pixbuf Load () 
 		{
 			Gdk.Pixbuf pixbuf = null;
