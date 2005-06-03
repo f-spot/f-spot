@@ -306,7 +306,7 @@ namespace FSpot {
 		{
 			MakeDir (gallery_path);
 
-			for (int i = 0; i < collection.Photos.Length; i++)
+			for (int i = 0; i < collection.Count; i++)
 			{
 				ProcessImage (i);
 			}
@@ -314,12 +314,12 @@ namespace FSpot {
 		
 		protected virtual string ImageName (int image_num)
 		{
-			return System.IO.Path.GetFileName (collection.Photos [image_num].DefaultVersionPath); 
+			return System.IO.Path.GetFileName (collection [image_num].DefaultVersionUri.LocalPath); 
 		}
 
 		public void ProcessImage (int image_num)
 		{
-			Photo photo = collection.Photos [image_num];
+			Photo photo = (Photo) collection [image_num];
 			string photo_path = photo.DefaultVersionPath;
 			string path;
 			ScaleRequest req;
@@ -448,13 +448,10 @@ namespace FSpot {
 		private void SetTime ()
 		{
 			try {
-				int i = 0;
-				foreach (Photo photo in collection.Photos) {
-					CreateComments (photo.DefaultVersionPath, i);
-					i++;
-				}
+				for (int i = 0; i < collection.Count; i++)
+					CreateComments (collection [i].DefaultVersionUri.LocalPath, i);
 
-				Directory.SetLastWriteTimeUtc(gallery_path, collection.Photos [0].Time);
+				Directory.SetLastWriteTimeUtc(gallery_path, collection [0].Time);
 
 				if (System.IO.Directory.Exists (SubdirPath ("mq")))
 				    CreateZipFile("mq");
@@ -524,7 +521,7 @@ namespace FSpot {
 		private void CreateInfo()
 		{
 			StreamWriter info = File.CreateText(Path.Combine (gallery_path, "info.txt"));
-			info.WriteLine("date|" + collection.Photos[0].Time.Date.ToString ("dd.MM.yyyy"));
+			info.WriteLine("date|" + collection [0].Time.Date.ToString ("dd.MM.yyyy"));
 			info.Close();
 		}
 	}
@@ -544,12 +541,12 @@ namespace FSpot {
 		
 		public override void Generate ()
 		{
-			if (collection.Photos.Length == 0)
+			if (collection.Count == 0)
 				return;
 			
 			base.Generate ();
 			
-			Photo [] photos = collection.Photos;
+			Photo [] photos = (Photo []) collection.Items;
 			
 			int i;
 			for (i = 0; i < photos.Length; i++)
@@ -637,7 +634,7 @@ namespace FSpot {
 
 			WritePageNav (writer, "index", IndexPath (i / perpage), Mono.Posix.Catalog.GetString("Index"));
 			
-			if (i < collection.Photos.Length -1)
+			if (i < collection.Count -1)
 				WritePageNav (writer, "next", PhotoIndexPath (i + 1), Mono.Posix.Catalog.GetString("Next"));
 
 			writer.RenderEndTag ();
@@ -654,7 +651,7 @@ namespace FSpot {
 			writer.RenderEndTag (); // a
 			
 			writer.RenderBeginTag ("div");
-			writer.Write (collection.Photos [i].Description);
+			writer.Write (collection [i].Description);
 			writer.RenderEndTag ();
 
 			writer.RenderEndTag ();
@@ -754,7 +751,7 @@ namespace FSpot {
 			writer.RenderBeginTag ("div");
 			
 			int start = page_num * perpage;
-			int end = Math.Min (start + perpage, collection.Photos.Length);
+			int end = Math.Min (start + perpage, collection.Count);
 			for (i = start; i < end; i++) {
 				writer.AddAttribute ("href", PhotoIndexPath (i));
 				writer.RenderBeginTag ("a");

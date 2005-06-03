@@ -222,7 +222,7 @@ namespace FSpot {
 	public class GalleryExport : GladeDialog {
 		public GalleryExport (IPhotoCollection selection) : base ("gallery_export_dialog")
 		{
-			this.photos = selection.Photos;
+			this.photos = (Photo []) selection.Items;
 
 			// FIXME this xml file path should be be retrieved from a central location not hard coded there
 			this.xml_path = System.IO.Path.Combine (FSpot.Global.BaseDirectory, "Accounts.xml");

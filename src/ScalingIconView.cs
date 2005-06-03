@@ -10,7 +10,7 @@ namespace FSpot {
 
 			int num_thumbnails;
 			if (collection != null)
-				num_thumbnails = collection.Items.Length;
+				num_thumbnails = collection.Count;
 			else
 				num_thumbnails = 0;
 
@@ -46,7 +46,7 @@ namespace FSpot {
 		protected override void UpdateLayout ()
 		{
 			if (collection != null) {
-				int total = collection.Items.Length;
+				int total = collection.Count;
 
 				if (total > 0)
 					thumbnail_width = (Allocation.Width - (total * 2 * cell_border_width) - 2 * BORDER_SIZE)/ total;

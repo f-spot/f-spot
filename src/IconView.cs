@@ -275,6 +275,13 @@ public class IconView : Gtk.Layout {
 				return selection;
 			}
 		}
+		
+		public IBrowsableItem this [int index] {
+			get {
+				int [] ids = this.Ids;
+				return parent [ids[index]];
+			}
+		}
 
 		public IBrowsableItem [] Items {
 			get {
@@ -284,7 +291,7 @@ public class IconView : Gtk.Layout {
 				int [] ids = this.Ids;
 				items = new IBrowsableItem [ids.Length];
 				for (int i = 0; i < items.Length; i++) {
-					items [i] = parent.Items [ids[i]];
+					items [i] = parent [ids[i]];
 				}
 				return items;
 			}
@@ -326,7 +333,7 @@ public class IconView : Gtk.Layout {
 			if (num < 0 || num > parent.Count)
 				return false;
 
-			return this.Contains (parent.Items [num]);
+			return this.Contains (parent [num]);
 		}
 		
 		public void Add (int num)
@@ -339,7 +346,7 @@ public class IconView : Gtk.Layout {
 			if (this.Contains (num))
 			    return;
 			
-			IBrowsableItem item = parent.Items [num];
+			IBrowsableItem item = parent [num];
 			selected_cells [item] = num;
 
 			if (notify)
@@ -381,7 +388,7 @@ public class IconView : Gtk.Layout {
 			if (!this.Contains (cell))
 				return;
 
-			IBrowsableItem item = parent.Items [cell];
+			IBrowsableItem item = parent [cell];
 			this.Remove (item);
 
 		}
@@ -422,7 +429,7 @@ public class IconView : Gtk.Layout {
 	// Updating.
 	public void UpdateThumbnail (int thumbnail_num)
 	{
-		FSpot.IBrowsableItem photo = collection.Items [thumbnail_num];
+		FSpot.IBrowsableItem photo = collection [thumbnail_num];
 		string thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
 		cache.Remove (thumbnail_path);
 		InvalidateCell (thumbnail_num);
@@ -448,14 +455,14 @@ public class IconView : Gtk.Layout {
 
 		if (x < BORDER_SIZE || x >= BORDER_SIZE + cells_per_row * cell_width)
 			return -1;
-		if (y < BORDER_SIZE || y >= BORDER_SIZE + (collection.Items.Length / cells_per_row + 1) * cell_height)
+		if (y < BORDER_SIZE || y >= BORDER_SIZE + (collection.Count / cells_per_row + 1) * cell_height)
 			return -1;
 
 		int column = (int) ((x - BORDER_SIZE) / cell_width);
 		int row = (int) ((y - BORDER_SIZE) / cell_height);
 		int cell_num = column + row * cells_per_row;
 
-		if (cell_num < collection.Items.Length)
+		if (cell_num < collection.Count)
 			return (int) cell_num;
 		else
 			return -1;
@@ -525,7 +532,7 @@ public class IconView : Gtk.Layout {
 
 		int num_thumbnails;
 		if (collection != null)
-			num_thumbnails = collection.Items.Length;
+			num_thumbnails = collection.Count;
 		else
 			num_thumbnails = 0;
 
@@ -576,7 +583,7 @@ public class IconView : Gtk.Layout {
 		if (!bounds.Intersect (area, out area))
 			return;
 		
-		FSpot.IBrowsableItem photo = collection.Items [thumbnail_num];
+		FSpot.IBrowsableItem photo = collection [thumbnail_num];
 		string thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
 		
 		FSpot.PixbufCache.CacheEntry entry = cache.Lookup (thumbnail_path);
@@ -774,12 +781,12 @@ public class IconView : Gtk.Layout {
 		//Preload (area, false);
 
 		for (i = 0, cell_num = start_cell_num;
-		     i < num_rows && cell_num < collection.Items.Length;
+		     i < num_rows && cell_num < collection.Count;
 		     i ++) {
 			int cell_x = start_cell_x;
 
 			//Console.WriteLine ("Drawing row {0}", start_cell_row + i);
-			for (int j = 0; j < num_cols && cell_num + j < collection.Items.Length; j ++) {
+			for (int j = 0; j < num_cols && cell_num + j < collection.Count; j ++) {
 				DrawCell (cell_num + j, area);
 				cell_x += cell_width;
 			}
@@ -911,8 +918,8 @@ public class IconView : Gtk.Layout {
 		int len = rows * cols;
 		int scell = start_cell_num;
 		int ecell = scell + len;
-		if (scell > collection.Items.Length - len) {
-		        ecell = collection.Items.Length;
+		if (scell > collection.Count - len) {
+		        ecell = collection.Count;
 			scell = System.Math.Max (0, scell - len);
 		} else
 			ecell = scell + len;
@@ -922,7 +929,7 @@ public class IconView : Gtk.Layout {
 		{
 			int cell = back ? ecell - i - 1 : scell + mid + i;
 
-			photo = collection.Items [cell];
+			photo = collection [cell];
 			thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
 			
 			entry = cache.Lookup (thumbnail_path);
@@ -930,7 +937,7 @@ public class IconView : Gtk.Layout {
 				cache.Request (thumbnail_path, cell, ThumbnailWidth, ThumbnailHeight);
 
 			cell = back ? scell + i : scell + mid - i - 1;
-			photo = collection.Items [cell];
+			photo = collection [cell];
 			thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
 			
 			entry = cache.Lookup (thumbnail_path);
@@ -1010,8 +1017,8 @@ public class IconView : Gtk.Layout {
 		Gdk.Pixbuf result = entry.ShallowCopyPixbuf ();
 		int order = (int) entry.Data;
 
-		if (order > 0 && order < collection.Items.Length) {
-			System.Uri uri = collection.Items [order].DefaultVersionUri;
+		if (order > 0 && order < collection.Count) {
+			System.Uri uri = collection [order].DefaultVersionUri;
 
 			if (result == null && !System.IO.File.Exists (FSpot.ThumbnailGenerator.ThumbnailPath (uri)))
 				FSpot.ThumbnailGenerator.Default.Request (uri.LocalPath, 0, 256, 256);
@@ -1195,7 +1202,7 @@ public class IconView : Gtk.Layout {
 			FocusCell = 0;
 			break;
 		case Gdk.Key.End:
-			FocusCell = collection.Items.Length - 1; 
+			FocusCell = collection.Count - 1; 
 			break;
 		case Gdk.Key.space:
 			ToggleCell (FocusCell);
@@ -1203,7 +1210,7 @@ public class IconView : Gtk.Layout {
 		case Gdk.Key.Return:
 			if (DoubleClicked == null)
 				break;
-			if (FocusCell < 0 || FocusCell > collection.Items.Length - 1)
+			if (FocusCell < 0 || FocusCell > collection.Count - 1)
 				break;
 			DoubleClicked (this, FocusCell);
 			break;
@@ -1212,7 +1219,7 @@ public class IconView : Gtk.Layout {
 			return;		
 		}
 		
-		if (FocusCell < 0 || FocusCell > collection.Items.Length - 1) {
+		if (FocusCell < 0 || FocusCell > collection.Count - 1) {
 			FocusCell = focus_old;
 			args.RetVal = false;
 		}	

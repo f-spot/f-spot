@@ -9,7 +9,7 @@ namespace FSpot {
 
 		static public Gdk.Pixbuf Load (IPhotoCollection query, int index)
 		{
-			Photo photo = query.Photos [index];
+			Photo photo = (Photo) query [index];
 			return Load (photo);
 		}
 

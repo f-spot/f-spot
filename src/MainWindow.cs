@@ -1608,7 +1608,7 @@ public class MainWindow {
 
 	void HandleQueryItemChanged (FSpot.IBrowsableCollection browsable, int item)
 	{
-		if (info_box.Photo == (browsable.Items[item] as Photo))
+		if (info_box.Photo == (browsable [item] as Photo))
 			info_box.Update ();
 	}
 	//

@@ -389,7 +389,7 @@ public class TagCommands {
 		{
 			if (icon_view.Selection.Count > 0)
 			{
-				FSpot.IBrowsableItem item = icon_view.Selection.Items [0];
+				FSpot.IBrowsableItem item = icon_view.Selection [0];
 				string path = item.DefaultVersionUri.LocalPath;
 				try {
 					preview_image.Pixbuf = new Gdk.Pixbuf (path);

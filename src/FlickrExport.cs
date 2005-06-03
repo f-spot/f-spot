@@ -77,7 +77,7 @@ namespace FSpot {
 		private void HandleProgressChanged (ProgressItem item)
 		{
 			//System.Console.WriteLine ("Changed value = {0}", item.Value);
-			progress_dialog.Fraction = (photo_index - 1.0 + item.Value) / (double) selection.Photos.Length;	
+			progress_dialog.Fraction = (photo_index - 1.0 + item.Value) / (double) selection.Count;
 		}
 		
 		private void Upload () {
@@ -86,15 +86,15 @@ namespace FSpot {
 			System.Collections.ArrayList ids = new System.Collections.ArrayList ();
 			try {
 
-				foreach (Photo photo in selection.Photos) {
+				foreach (Photo photo in selection.Items) {
 					progress_dialog.Message = System.String.Format (
                                                 Mono.Posix.Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
 
-					progress_dialog.Fraction = photo_index / (double)selection.Photos.Length;
+					progress_dialog.Fraction = photo_index / (double)selection.Count;
 					photo_index++;
 					progress_dialog.ProgressText = System.String.Format (
 						Mono.Posix.Catalog.GetString ("{0} of {1}"), photo_index, 
-						selection.Photos.Length);
+						selection.Count);
 
 					string id = fr.Upload (photo, scale, size);
 					ids.Add (id);
@@ -138,7 +138,7 @@ namespace FSpot {
 				command_thread.Name = Mono.Posix.Catalog.GetString ("Uploading Pictures");
 				
 				Dialog.Destroy ();
-				progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Photos.Length);
+				progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Count);
 				progress_dialog.Start ();
 			} else {
 				HigMessageDialog md = new HigMessageDialog (Dialog, 

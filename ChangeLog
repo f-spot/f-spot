@@ -1,5 +1,37 @@
 2005-06-03  Larry Ewing  <lewing@novell.com>
 
+	* src/IBrowsableItem.cs: add direct indexer so that we can avoid
+	making all collections mirror their internal structures as actual
+	arrays.  The collections that change a lot were doing far too much
+	work.
+
+	* src/CDExport.cs: use count and indexer.
+
+	* src/DirectoryCollection.cs: add indexer.
+
+	* src/GalleryExport.cs: use indexer.
+
+	* src/FolderExport.cs: use indexer.
+
+	* src/FlickrExport.cs: use indexers and count.
+	
+	* src/IPhotoCollection.cs: remove only method, start to deprecate.
+
+	* src/IconView.cs: use indexer and Count where appropriate.
+
+	* src/MainWindow.cs: use indexer.
+
+	* src/PhotoArray.cs: add indexers use them where appropriate.
+
+	* src/PhotoLoader.cs: use the indexer.
+
+	* src/PhotoQuery.cs: add indexer.
+
+	* src/ScalingIconView.cs: use count and direct indexer.
+
+	* src/TagCommands.cs: use the direct indexer not the Items
+	accessor.
+
 	* src/Tiff.cs: if nef file has a jpeg stream offer it as the
 	pixbuf stream.  This should make browsing d70 files zippy.
 

@@ -48,16 +48,16 @@ namespace FSpot {
 				Dialog.Destroy ();
 				Gnome.Vfs.Result result = Gnome.Vfs.Result.Ok;
 
-				foreach (Photo photo in selection.Photos) {
+				foreach (Photo photo in selection.Items) {
 					Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (photo.DefaultVersionUri.ToString ());
 					Gnome.Vfs.Uri target = dest.Clone ();
 					target = target.AppendFileName (source.ExtractShortName ());
 					Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
 					
 					progress_dialog.Message = System.String.Format (Mono.Posix.Catalog.GetString ("Transferring picture \"{0}\" To CD"), photo.Name);
-					progress_dialog.Fraction = photo_index / (double) selection.Photos.Length;
+					progress_dialog.Fraction = photo_index / (double) selection.Count;
 					progress_dialog.ProgressText = System.String.Format (Mono.Posix.Catalog.GetString ("{0} of {1}"), 
-											     photo_index, selection.Photos.Length);
+											     photo_index, selection.Count);
 					result = Gnome.Vfs.Xfer.XferUri (source, target, 
 									 Gnome.Vfs.XferOptions.Default, 
 									 Gnome.Vfs.XferErrorMode.Abort, 
@@ -138,7 +138,7 @@ namespace FSpot {
 			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Transfer));
 			command_thread.Name = Mono.Posix.Catalog.GetString ("Transferring Pictures");
 
-			progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Photos.Length);
+			progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Count);
 			progress_dialog.Start ();
 		}
 	}

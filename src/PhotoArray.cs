@@ -32,6 +32,12 @@ namespace FSpot {
 			return list.Contains (item);
 		}
 
+		public IBrowsableItem this [int index] {
+			get {
+				return (IBrowsableItem) list [index];
+			}
+		}
+
 		public IBrowsableItem [] Items {
 			get {
 				if (cache == null)
@@ -49,12 +55,6 @@ namespace FSpot {
 			}
 		}
 		
-		public Photo [] Photos {
-			get {
-				return (Photo []) this.Items;
-			}
-		}
-
 		public event IBrowsableCollectionChangedHandler Changed;
 		public event IBrowsableCollectionItemChangedHandler ItemChanged;
 	}
@@ -73,6 +73,7 @@ namespace FSpot {
 			}
 		}
 
+		/*
 		public void Add (Photo photo)
 		{
 		        Photo [] larger = new Photo [photos.Length + 1];
@@ -83,11 +84,18 @@ namespace FSpot {
 			if (Changed != null)
 				Changed (this);
 		}
-		
+		*/
+
 		// IBrowsableCollection
 		public IBrowsableItem [] Items {
 			get {
 				return photos;
+			}
+		}
+
+		public IBrowsableItem this [int index] {
+			get {
+				return photos [index];
 			}
 		}
 		
@@ -103,12 +111,5 @@ namespace FSpot {
 
 		public event IBrowsableCollectionChangedHandler Changed;
 		public event IBrowsableCollectionItemChangedHandler ItemChanged;
-
-		// IPhotoCollection
-		public Photo [] Photos {
-			get {
-				return photos;
-			}
-		}
 	}
 }

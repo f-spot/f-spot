@@ -27,6 +27,12 @@ namespace FSpot {
 			}
 		}
 
+		public IBrowsableItem this [int index] {
+			get {
+				return items [index];
+			}
+		}
+
 		public event FSpot.IBrowsableCollectionChangedHandler Changed;
 		public event FSpot.IBrowsableCollectionItemChangedHandler ItemChanged;
 

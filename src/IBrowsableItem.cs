@@ -9,6 +9,10 @@ namespace FSpot {
 		
 		int IndexOf (IBrowsableItem item);
 
+		IBrowsableItem this [int index] {
+			get;
+		}
+
 		int Count {
 			get;
 		}
@@ -69,7 +73,7 @@ namespace FSpot {
 				if (!this.IsValid)
 					return null;
 				else 
-					return collection.Items [index];
+					return collection [index];
 			}
 		}
 
