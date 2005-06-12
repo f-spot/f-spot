@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-06-05 16:15+0100\n"
-"PO-Revision-Date: 2005-06-05 16:22+0100\n"
+"PO-Revision-Date: 2005-06-12 15:17+0100\n"
 "Last-Translator: James Ogley <james@usr-local-bin.org>\n"
 "Language-Team: British English <l10n-en_GB-maint@gnome.bugs>\n"
 "MIME-Version: 1.0\n"
@@ -766,7 +766,7 @@ msgstr "PhotoSize:"
 
 #: ../src/f-spot.glade.h:105
 msgid "Plain Files."
-msgstr ""
+msgstr "Plain Files."
 
 #: ../src/f-spot.glade.h:106
 msgid "Please verify that the settings for this gallery are correct."
@@ -1134,7 +1134,9 @@ msgstr "Received error \"{0}\" while connecting to camera"
 #. * E.g. "Martin Willemoes Hansen"
 #: ../src/MainWindow.cs:1036
 msgid "translator-credits"
-msgstr "Dean Sas <dean@deansas.org>"
+msgstr ""
+"Dean Sas <dean@deansas.org>\n"
+"James Ogley <james@usr-local-bin.org>"
 
 #: ../src/MainWindow.cs:1170
 msgid "Unsharp Mask"
