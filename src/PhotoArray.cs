@@ -14,6 +14,12 @@ namespace FSpot {
 			}
 		}
 
+		public int Capacity {
+			set {
+				list.Capacity = value;
+			}
+		}
+
 		public void Add (Photo photo)
 		{
 			list.Add (photo);
