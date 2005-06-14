@@ -188,7 +188,7 @@ class PixbufUtils {
 
 		Gdk.Pixbuf result;
 		if (upscale || (scale < 1.0))
-			result = pixbuf.ScaleSimple (scale_width, scale_height, Gdk.InterpType.Bilinear);
+			result = pixbuf.ScaleSimple (scale_width, scale_height, (scale_width > 20) ? Gdk.InterpType.Bilinear : Gdk.InterpType.Nearest);
 		else
 			result = pixbuf.Copy ();
 

@@ -1,5 +1,11 @@
 2005-06-14  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufUtils.cs: ScaleToMaxSize fall down to simple
+	interpolation for very small images.
+
+	* src/IconView.cs: make the display handle null tags with a little
+	more grace.  Protect remove calls from invalid arguments.
+
 	* src/PhotoArray.cs: add capacity param.
 
 2005-06-07  Larry Ewing  <lewing@novell.com>
