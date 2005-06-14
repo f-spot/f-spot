@@ -214,6 +214,9 @@ public class IconView : Gtk.Layout {
 		}
 	}
 
+	// FIXME right now a selection change triggers a complete view redraw
+	// This should be optimized away by directly notifyiing the view of changed
+	// indexes rather than having the view connect to the collection.Changed event.      
 	public class SelectionCollection : IBrowsableCollection {
 		IBrowsableCollection parent;
 		Hashtable selected_cells;
@@ -385,11 +388,9 @@ public class IconView : Gtk.Layout {
 
 		public void Remove (int cell)
 		{
-			if (!this.Contains (cell))
-				return;
-
 			IBrowsableItem item = parent [cell];
-			this.Remove (item);
+			if (item != null)
+				this.Remove (item);
 
 		}
 		
@@ -720,8 +721,11 @@ public class IconView : Gtk.Layout {
 			tag_bounds.Y = bounds.Y + bounds.Height - cell_border_width - tag_icon_size;
 			tag_bounds.Width = tag_icon_size;
 			tag_bounds.Height = tag_icon_size;
-
+			
 			foreach (Tag t in tags) {
+				if (t == null)
+					continue;
+
 				Pixbuf icon = null;
 				if (t.Category.Icon == null) {
 					if (t.Icon == null)
