@@ -27,14 +27,7 @@ namespace LibGPhoto2
 		[MarshalAs(UnmanagedType.LPTStr)] public static string UNKNOWN = "application/octet-stream";
 		[MarshalAs(UnmanagedType.LPTStr)] public static string WAV = "audio/wav";
 	}
-	
-	[StructLayout(LayoutKind.Sequential)]
-	internal unsafe struct _CameraFile  {
 
-
-
-	}
-	
 	public class CameraFile : Object 
 	{
 		[DllImport ("libgphoto2.so")]

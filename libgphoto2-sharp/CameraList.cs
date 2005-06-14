@@ -3,13 +3,6 @@ using System.Runtime.InteropServices;
 
 namespace LibGPhoto2
 {
-	[StructLayout(LayoutKind.Sequential)]
-	internal unsafe struct CameraListEntry
-	{
-		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public string name;
-		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public string value;
-	}
-	
 	public class CameraList : Object 
 	{
 		[DllImport ("libgphoto2.so")]
