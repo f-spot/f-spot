@@ -1,5 +1,7 @@
 2005-06-14  Larry Ewing  <lewing@novell.com>
 
+	* src/GPhotoCamera.cs: make finalize a destructor.
+
 	* src/PixbufUtils.cs: ScaleToMaxSize fall down to simple
 	interpolation for very small images.
 

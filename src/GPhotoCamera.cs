@@ -67,9 +67,13 @@ public class GPhotoCamera
 		camera = new Camera ();
 		camera.SetAbilities (camera_abilities);
 
-		selected_camera__port_info_list_index = port_info_list.LookupPath (camera_list.GetValue (selected_camera__camera_list_index));
+		
+		string path  = camera_list.GetValue (selected_camera__camera_list_index);
+		System.Console.WriteLine ("Testing gphoto path = {0}", path);
+		selected_camera__port_info_list_index = port_info_list.LookupPath (path);
 
 		port_info = port_info_list.GetInfo (selected_camera__port_info_list_index);
+		System.Console.WriteLine ("PortInfo {0}, {1}", port_info.Name, port_info.Path);
 
 		camera.SetPortInfo (port_info);
 	}
@@ -197,7 +201,7 @@ public class GPhotoCamera
 		}
 	}
 	
-	public void Finalize ()
+	~GPhotoCamera ()
 	{
 		ReleaseGPhotoResources ();
 	}
