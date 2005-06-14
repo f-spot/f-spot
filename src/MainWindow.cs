@@ -187,6 +187,7 @@ public class MainWindow {
 		icon_view_scrolled.Add (icon_view);
 		icon_view.Selection.Changed += HandleSelectionChanged;
 		icon_view.DoubleClicked += HandleDoubleClicked;
+		icon_view.Vadjustment.ValueChanged += HandleIconViewScroll;
 		icon_view.GrabFocus ();
 
 		new FSpot.PreviewPopup (icon_view);
@@ -342,6 +343,7 @@ public class MainWindow {
 		}
 	}
 
+	private int lastTopLeftCell = -1;
 
 	public int [] SelectedIds () {
 		int [] ids = new int [0];
@@ -590,6 +592,37 @@ public class MainWindow {
 	void HandleAdaptorGlassSet (FSpot.GroupAdaptor sender, int index)
 	{
 		JumpTo (index);
+	}
+
+	/*
+	 * Keep the glass temporal slider in sync with the user's scrolling in the icon_view
+	 */
+	private void UpdateGlass ()
+	{
+		int cell_num = icon_view.TopLeftVisibleCell();
+		
+		if (cell_num == -1 || cell_num == lastTopLeftCell)
+			return;
+
+		lastTopLeftCell = cell_num;
+		FSpot.IBrowsableItem photo = icon_view.Collection.Items [cell_num];
+#if false
+		group_selector.Adaptor.GlassSet -= HandleAdaptorGlassSet;
+		group_selector.Adaptor.SetGlass (group_selector.Adaptor.IndexFromPhoto (photo));
+		group_selector.Adaptor.GlassSet = HandleAdaptorGlassSet;
+#else
+		/* 
+		 * FIXME this is a lame hack to get around a delagate chain.  This should 
+		 * actually operate directly on the adaptor not on the selector but I don't have 
+		 * time to fix it right now.
+		 */
+		group_selector.SetPosition (group_selector.Adaptor.IndexFromPhoto (photo));
+#endif
+	}
+	
+	void HandleIconViewScroll (object sender, EventArgs args)
+	{
+		UpdateGlass ();
 	}
 
 	//

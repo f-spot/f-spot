@@ -468,6 +468,11 @@ public class IconView : Gtk.Layout {
 		else
 			return -1;
 	}
+	
+	public int TopLeftVisibleCell ()
+	{
+		return CellAtPosition(BORDER_SIZE, (int)Vadjustment.Value + BORDER_SIZE + 8);
+	}
 
 	public void GetCellCenter (int cell_num, out int x, out int y)
 	{

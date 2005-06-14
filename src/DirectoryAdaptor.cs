@@ -39,8 +39,8 @@ namespace FSpot {
 	
 			int item = 0;
 			int i = 0;
-			while (i < query.Photos.Length) {
-				if (query.Photos [i].DirectoryPath == (string)dirs [group].Key) {
+			while (i < query.Count) {
+				if (((Photo)(query [i])).DirectoryPath == (string)dirs [group].Key) {
 					item = i;
 					break;
 				}
@@ -100,6 +100,27 @@ namespace FSpot {
 			
 			if (Changed != null)
 				Changed (this);
+		}
+
+		public override int IndexFromPhoto(FSpot.IBrowsableItem item)
+		{
+			Photo photo = (Photo)item;
+			string directory_path = photo.DirectoryPath;
+			
+			for (int i = 0; i < dirs.Length; i++) {
+				if ((string)dirs [i].Key == directory_path) {
+					return i;
+				}
+			}
+			
+			// FIXME not truly implemented
+			return 0;
+		}
+
+		public override int GetInitialPosition()
+		{
+			// FIXME not truly implemented
+			return 0;
 		}
 
 		public DirectoryAdaptor (PhotoQuery query) {

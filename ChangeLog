@@ -1,5 +1,17 @@
 2005-06-14  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: update the glass position as we scroll.
+	Based on a patch by Gabriel Burt gburt-at-uiuc.edu. 
+
+	* src/IconView.cs: add topLeftvisible call.  Replace with an
+	averaging window soon.
+
+	* src/TimeAdaptor.cs: add IndexFromPhoto and initial position.
+	
+	* src/GroupAdaptor.cs: add IndexFromPhoto.
+
+	* src/DirectoryAdaptor.cs: Implement the new methods.
+
 	* libgphoto2-sharp/CameraList.cs: remove unsued structure.
 
 	* libgphoto2-sharp/CameraFile.cs: remove unused and empty
@@ -394,6 +406,10 @@
 
 2005-05-14  Larry Ewing  <lewing@novell.com>
 
+<<<<<<< ChangeLog
+	* src/PngFile.cs: start decoding the important chunks.
+
+=======
 	* src/PngFile.cs: add iCCP chunk decoding.  fix some other stuff
 	yo.
 
@@ -404,6 +420,7 @@
 
 	* src/JpegFile.cs: remove BitConverter.
 
+>>>>>>> 1.762
 	* src/PixbufUtils.cs: add Save overload that takes a stream.  Fix
 	the options to the pixbuf save code.
 

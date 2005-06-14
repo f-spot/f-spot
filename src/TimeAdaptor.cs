@@ -23,12 +23,12 @@ namespace FSpot {
 		public int LookupItem (System.DateTime date)
 		{
 			int i = 0;
-			while (i < query.Photos.Length && query.Photos [i].Time < date)
+			while (i < query.Count && query [i].Time < date)
 				i++;
 
 			return i;
 		}
-
+		
 		public void SetLimits (int min, int max) 
 		{
 			Console.WriteLine ("min {0} max {1}", min, max);
@@ -78,6 +78,27 @@ namespace FSpot {
 			
 			return new DateTime (year, month, 1);
 		}
+		
+		public override int IndexFromPhoto (FSpot.IBrowsableItem photo) 
+		{
+			int year = photo.Time.Year;
+			int min_year = ((YearData)years [0]).Year;
+			int max_year = ((YearData)years [years.Count - 1]).Year;
+		
+			if (year < min_year || year > max_year) {
+				Console.WriteLine("TimeAdaptor.IndexFromPhoto year out of range: {0}", year);
+				return 0;
+			}
+
+			int index = photo.Time.Month - 1;
+			for (int i = 0; i < years.Count; i++)
+				if (year > ((YearData)years[i]).Year)
+					index += 12;
+
+			//Console.WriteLine("IndexFromPhoto " + photo.Name + " is " + index);
+
+			return index;
+		}
 
 		private void HandleChanged (IBrowsableCollection sender)
 		{
@@ -86,6 +107,20 @@ namespace FSpot {
 		}
 		
 		public override event ChangedHandler Changed;
+		
+		public override int GetInitialPosition ()
+		{
+			int i = 0;
+			for (; i < years.Count * 12; i++)
+				if (((YearData)years[i / 12]).Months[i % 12] != 0)
+					break;
+			
+			if (i == years.Count * 12)
+				return 0;
+
+			return i;
+		}
+		
 		public override void Reload () 
 		{
 			years.Clear ();
