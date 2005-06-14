@@ -121,6 +121,15 @@ namespace FSpot {
 			}
 		}
 
+		private void ScrollTo (int position)
+		{
+			Gdk.Rectangle box = BoxBounds (position);
+			if (box.X + box.Width > background.X + background.Width)
+			        Offset -= box.X + box.Width - (background.X + background.Width);
+			else if (box.X < background.X)
+				Offset += background.X - box.X;
+		}
+
 		private int scroll_offset;
 		public int Offset {
 			get {
@@ -153,7 +162,8 @@ namespace FSpot {
 			return src;
 		}
 
-		private void UpdateButtons () {
+		private void UpdateButtons () 
+		{
 			left.Sensitive = (scroll_offset < 0);
 			right.Sensitive = (box_counts.Length * BoxWidth > background.Width - scroll_offset);
 
@@ -232,6 +242,12 @@ namespace FSpot {
 			return false;
 		}
 
+		public void SetPosition (int group)
+		{
+			if (!glass.Dragging)
+				glass.SetPosition(group);
+		}
+
 		protected override bool OnButtonPressEvent (Gdk.EventButton args)
 		{
 			double x = args.X + action.X;
@@ -247,7 +263,9 @@ namespace FSpot {
 				int position;
 				if (BoxHit (x, y, out position)) {
 					BoxXHitFilled (x, out position);
+					glass.Dragging = true;
 					glass.SetPosition (position);
+					glass.Dragging = false;
 					return true;
 				}
 			}
@@ -366,36 +384,33 @@ namespace FSpot {
 
 	        public Rectangle BoxBarBounds (int item)
 		{
-			int total_height = background.Height;
 			double percent = box_counts [item] / (double) Math.Max (box_count_max, 1);
 
-			Rectangle box = Rectangle.Zero;
-			box.Height = (int) Math.Round ((total_height - box_top_padding) * percent + 0.5);
+			Rectangle box = BoxBounds (item);
+			Rectangle bar;
 
-			box.Y = background.Y + total_height - box.Height - 1;
-			
-			box.X = BoxX (item);
-			box.Width = Math.Max (BoxX (item + 1) - box.X, 1);
+			bar.Height = (int) Math.Ceiling ((box.Height - box_top_padding) * percent);
+			bar.Y = box.Y + box.Height - bar.Height - 1;
 
-			return box;
+		        bar.X = box.X + box_spacing;
+			bar.Width = box.Width - box_spacing * 2;
+
+			return bar;
 		}
 
 		private void DrawBox (Rectangle area, int item) 
 		{
-			Rectangle box = BoxBarBounds (item);
+			Rectangle bar = BoxBarBounds (item);
 			
-			box.X += box_spacing;
-			box.Width -= box_spacing * 2;
-			
-			if (box.Intersect (area, out area)) {
+			if (bar.Intersect (area, out area)) {
 				if (item < min_limit.Position || item > max_limit.Position) {
 #if false
-					box.Height += 1;
+					bar.Height += 1;
 
 					//GdkWindow.DrawRectangle (Style.ForegroundGC (StateType.Normal), false, box);
 					Style.PaintShadow (this.Style, GdkWindow, State, ShadowType.In, area, 
-							   this, null, box.X, box.Y, 
-							   box.Width, box.Height);
+							   this, null, bar.X, bar.Y, 
+							   bar.Width, bar.Height);
 #else
 					GdkWindow.DrawRectangle (Style.BackgroundGC (StateType.Active), true, area);
 #endif
@@ -613,6 +628,7 @@ namespace FSpot {
 					drag_position = current_position;
 				}
 				UpdatePopupPosition ();
+				selector.ScrollTo (drag_position);
 			}
 
 			public override void EndDrag (double x, double y)
@@ -682,8 +698,11 @@ namespace FSpot {
 			
 			public override void PositionChanged ()
 			{
-				selector.adaptor.SetGlass (Position);
+				if (Dragging)
+					selector.adaptor.SetGlass (Position);
+				selector.ScrollTo (Position);
 			}
+
 			
 			public Glass (GroupSelector selector) : base (selector) {
 				popup_widow = new Gtk.Window (Gtk.WindowType.Popup);
