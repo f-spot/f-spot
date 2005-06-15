@@ -7508,6 +7508,7 @@ Photo Details</property>
 		  <property name="can_focus">True</property>
 		  <property name="relief">GTK_RELIEF_NONE</property>
 		  <property name="focus_on_click">True</property>
+		  <signal name="clicked" handler="HandleImportCommand" last_modification_time="Wed, 15 Jun 2005 05:48:11 GMT"/>
 
 		  <child>
 		    <widget class="GtkImage" id="image14">
@@ -7546,7 +7547,7 @@ Photo Details</property>
 	  <child>
 	    <widget class="GtkLabel" id="label156">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">F-Spot Photo Ablbum</property>
+	      <property name="label" translatable="yes">F-Spot Photo Album</property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
