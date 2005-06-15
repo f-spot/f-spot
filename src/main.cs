@@ -22,12 +22,26 @@ public class Driver {
 			Directory.CreateDirectory (base_directory);
 
 		Db db = new Db (Path.Combine (base_directory, "photos.db"), true);
-		
+
 		Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {PixbufUtils.LoadFromAssembly ("f-spot-logo.png")};
 
 		new MainWindow (db);
-		
-		ParseCommands (args);
+
+		bool check_empty = true;
+		for (int i = 0; i < args.Length; i++) {
+			if (args [i] == "--import") {
+				if (++i < args.Length && (File.Exists (args [i]) || Directory.Exists (args[i]))) {
+					MainWindow.Toplevel.ImportFile (args [i]);
+					check_empty = false;
+				} else {
+					System.Console.WriteLine ("no valid path to import from");
+				}
+			}
+		}
+
+		if (check_empty && db.Empty)
+			MainWindow.Toplevel.ImportFile (null);
+
 
 		program.Run ();
 	}

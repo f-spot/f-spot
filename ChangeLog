@@ -1,6 +1,12 @@
+2005-06-15  Larry Ewing  <lewing@novell.com>
+
+	* src/main.cs: rework the arg parsing so that it handles the basic
+	startup correctly when there is no database but there is an
+	--import commandline.
+
 2005-06-14  Larry Ewing  <lewing@novell.com>
 
-	* src/f-spot.glade: new dialog.
+	* src/f-spot.glade: new import dialog.
 
 	* src/ImportCommand.cs: use the new dialog code.
 
