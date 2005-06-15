@@ -24,8 +24,14 @@ public class ImportCommand : FSpot.GladeDialog {
 	internal class BrowseSource : ImportSource {
 		public BrowseSource ()
 		{
-			this.Name = Mono.Posix.Catalog.GetString ("Choose Folder");
+			this.Name = Mono.Posix.Catalog.GetString ("Select Folder");
 			this.Icon = PixbufUtils.LoadThemeIcon ("stock_folder", 32);
+		}
+
+		public BrowseSource (string name, string icon)
+		{
+			this.Name = name;
+			this.Icon = PixbufUtils.LoadThemeIcon (icon, 32);
 		}
 	}
 
@@ -134,9 +140,12 @@ public class ImportCommand : FSpot.GladeDialog {
 	}
 	
 	private class SourceMenu : Gtk.Menu {
-		public SourceMenu () {
-			Gnome.Vfs.VolumeMonitor monitor = Gnome.Vfs.VolumeMonitor.Get ();
+		public int source_count;
 
+		public SourceMenu () {
+			source_count = 0;
+			Gnome.Vfs.VolumeMonitor monitor = Gnome.Vfs.VolumeMonitor.Get ();
+			
 			this.Append (new SourceItem (new BrowseSource ()));
 
 			this.Append (new Gtk.SeparatorMenuItem ());
@@ -162,6 +171,7 @@ public class ImportCommand : FSpot.GladeDialog {
 					 continue;
 				 }
 				 this.Append (item);
+				 source_count++;
 #else
 				 
 				 this.Append (new SourceItem (source));
@@ -172,15 +182,22 @@ public class ImportCommand : FSpot.GladeDialog {
 			GPhotoCamera cam = new GPhotoCamera ();
 			cam.DetectCameras ();
 			
-
 			if (cam.CameraList.Count () > 0)
 				this.Append (new Gtk.SeparatorMenuItem ());
 			
+			source_count += cam.CameraList.Count ();
 			for (int i = 0; i < cam.CameraList.Count (); i++) {
 				ImportSource source = new CameraSource (cam, i);
 				this.Append (new SourceItem (source));
 			}
 
+			if (source_count == 0) {
+				ImportSource source = new BrowseSource (Mono.Posix.Catalog.GetString ("(No Cameras Detected)"),
+									"emblem-camera");
+				SourceItem item = new SourceItem (source);
+				item.Sensitive = false;
+				this.Append (item);
+			}
 			/*
 			this.Append (new Gtk.SeparatorMenuItem ());
 			
@@ -195,7 +212,13 @@ public class ImportCommand : FSpot.GladeDialog {
 
 			this.ShowAll ();
 		}
-		
+
+		public int SourceCount {
+			get {
+				return source_count;
+			}
+		}
+
 		public int FindItemPosition (SourceItem source)
 		{
 			Gtk.Widget [] children = this.Children;
@@ -210,6 +233,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		public int FindItemPosition (string path)
 		{
 			Gtk.Widget [] children = this.Children;
+			System.Console.WriteLine ("looking for {0}", path);
 			for (int i = 0; i < children.Length; i++) {
 				if (children [i] is SourceItem) {
 					VfsSource vfs = ((SourceItem)(children [i])).Source as VfsSource;
@@ -348,7 +372,6 @@ public class ImportCommand : FSpot.GladeDialog {
 	{
 		if (args.ResponseId != ResponseType.Ok) {
 			this.Cancel ();
-			this.Dialog.Destroy();
 			return;
 		}
 	}
@@ -508,8 +531,8 @@ public class ImportCommand : FSpot.GladeDialog {
 			if (path != null) {
 				SourceItem path_item = new SourceItem (new VfsSource (path));
 				menu.Prepend (path_item);
-				//option.SetHistory (0);
 				path_item.ShowAll ();
+				//option.SetHistory (0);
 				SetImportPath (path);
 			}
 		} else if (item.Source is VfsSource) {

@@ -1,5 +1,9 @@
 2005-06-15  Larry Ewing  <lewing@novell.com>
 
+	* src/ImportCommand.cs: add empty source if no cameras are there.
+
+	* src/IBrowsableItem.cs: add fixme.
+
 	* src/f-spot.glade: fix typo, make the add button popup the import
 	dialog.
 
