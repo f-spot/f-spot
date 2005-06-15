@@ -1,5 +1,8 @@
 2005-06-15  Larry Ewing  <lewing@novell.com>
 
+	* src/ImportCommand.cs: check if we are one level down into the
+	dcim directory.
+
 	* src/ImportCommand.cs: set sensitivity of ok button appropriately.
 
 	* src/f-spot.glade: change name of ok button.

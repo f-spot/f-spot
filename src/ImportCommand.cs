@@ -237,7 +237,7 @@ public class ImportCommand : FSpot.GladeDialog {
 			for (int i = 0; i < children.Length; i++) {
 				if (children [i] is SourceItem) {
 					VfsSource vfs = ((SourceItem)(children [i])).Source as VfsSource;
-					if (vfs != null && vfs.uri == path)
+					if (vfs != null && (vfs.uri == path || path == (vfs.uri + "/dcim")))
 						return i;
 				}
 			}
