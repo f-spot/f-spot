@@ -437,7 +437,7 @@ public class ImportCommand : FSpot.GladeDialog {
 	
 	public void HandleTagToggled (object o, EventArgs args) 
 	{
-		//tag_option_menu.Sensitive = attach_check.Active;
+		tag_option_menu.Sensitive = attach_check.Active;
 	}
 
 	public void HandleImportBrowse (object o, EventArgs args) 
@@ -615,6 +615,18 @@ public class ImportCommand : FSpot.GladeDialog {
 		}
 
 		if (response == ResponseType.Ok) {
+			if (attach_check.Active && tag_selected != null) {
+				for (int i = 0; i < collection.Count; i++) {
+					Photo p = collection [i] as Photo;
+					
+					if (p == null)
+						continue;
+					
+					p.AddTag (tag_selected);
+					store.Commit (p);
+				}
+			}
+
 			this.Dialog.Destroy ();
 			return collection.Count;
 		} else {
