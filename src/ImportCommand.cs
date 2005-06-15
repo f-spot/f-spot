@@ -339,6 +339,7 @@ public class ImportCommand : FSpot.GladeDialog {
 	[Glade.Widget] Gtk.ScrolledWindow photo_scrolled;
 	[Glade.Widget] Gtk.CheckButton attach_check;
 	[Glade.Widget] Gtk.CheckButton recurse_check;
+	[Glade.Widget] Gtk.Button ok_button;
 	[Glade.Widget] Gtk.Image tag_image;
 	[Glade.Widget] Gtk.Label tag_label;
 	[Glade.Widget] Gtk.EventBox frame_eventbox;
@@ -372,6 +373,7 @@ public class ImportCommand : FSpot.GladeDialog {
 	{
 		if (args.ResponseId != ResponseType.Ok) {
 			this.Cancel ();
+			this.Dialog.Destroy ();
 			return;
 		}
 	}
@@ -423,6 +425,7 @@ public class ImportCommand : FSpot.GladeDialog {
 			return 0;
 
 		this.importer = imp;
+		this.ok_button.Sensitive = false;
 
 		total = importer.Prepare ();
 		UpdateProgressBar (0, total);
@@ -442,14 +445,16 @@ public class ImportCommand : FSpot.GladeDialog {
 		
 		if (importer != null)
 			importer.Finish ();
-
+		
 		importer = null;
 
 		//ThumbnailGenerator.Default.PopBlock ();
 		if (cancelled)
 			return 0;
-		else
+		else {
+			ok_button.Sensitive = true;
 			return total;
+		}
 	}
 	
 	public string ImportPath {
@@ -516,6 +521,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		
 		this.Cancel ();
 		this.copy = false;
+		this.ok_button.Sensitive = false;
 
 		Gtk.OptionMenu option = (Gtk.OptionMenu) sender;
 		Gtk.Menu menu = (Gtk.Menu)(option.Menu);
@@ -577,6 +583,8 @@ public class ImportCommand : FSpot.GladeDialog {
 		tagmenu.ShowAll ();
 		tagmenu.Populate (true);
 		tagmenu.Prepend (attach_item);
+
+		this.ok_button.Sensitive = false;
 		
 		recurse_check.Toggled += HandleRecurseToggled;
 
@@ -654,7 +662,7 @@ public class ImportCommand : FSpot.GladeDialog {
 			return collection.Count;
 		} else {
 			this.Cancel ();
-			this.Dialog.Destroy();
+			//this.Dialog.Destroy();
 			return 0;
 		}
 	}

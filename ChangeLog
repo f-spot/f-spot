@@ -1,5 +1,9 @@
 2005-06-15  Larry Ewing  <lewing@novell.com>
 
+	* src/ImportCommand.cs: set sensitivity of ok button appropriately.
+
+	* src/f-spot.glade: change name of ok button.
+
 	* src/ImportCommand.cs: add empty source if no cameras are there.
 
 	* src/IBrowsableItem.cs: add fixme.
