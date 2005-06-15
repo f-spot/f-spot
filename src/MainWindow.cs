@@ -242,9 +242,6 @@ public class MainWindow {
 			Toplevel = this;
 
 		UpdateToolbar ();
-
-		if (db.Empty)
-			HandleImportCommand (null, null);
 	}
 
 	// Index into the PhotoQuery.  If -1, no photo is selected or multiple photos are selected.

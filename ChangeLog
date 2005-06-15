@@ -1,5 +1,7 @@
 2005-06-15  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: remove the empty check from the constructor.
+
 	* src/main.cs: rework the arg parsing so that it handles the basic
 	startup correctly when there is no database but there is an
 	--import commandline.
