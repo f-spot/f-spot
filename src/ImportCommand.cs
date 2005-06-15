@@ -21,26 +21,81 @@ public class ImportCommand : FSpot.GladeDialog {
 		}
 	} 
 
-	internal class VolumeSource : ImportSource {
+	internal class BrowseSource : ImportSource {
+		public BrowseSource ()
+		{
+			this.Name = Mono.Posix.Catalog.GetString ("Choose Folder");
+		}
+	}
+
+	internal class VfsSource : ImportSource {
+		public string uri;
+		public bool SuggestCopy = false;
+
+		public VfsSource (string uri)
+		{ 
+			string [] components = uri.Split (new char [] { '/' });
+			this.Name = components [components.Length - 1];
+			this.uri = uri;
+		}
+
+		public virtual bool Contains (string path)
+		{
+			return false;
+		}
+
+		protected VfsSource () {}
+	}
+
+	internal class VolumeSource : VfsSource {
 		public Gnome.Vfs.Volume Volume;
+		public string mount_point;
 
 		public VolumeSource (Gnome.Vfs.Volume vol)
 		{
 			this.Volume = vol;
-			this.Name = vol.DisplayName;
-			
-                        this.Icon = PixbufUtils.LoadThemeIcon (vol.Icon, 32);
+			this.Name = vol.DisplayName.Replace ("_", "__");
+			mount_point = new Uri (vol.ActivationUri).LocalPath;
+			uri = mount_point;
+			SuggestCopy = true;
+
+			if (this.IsiPodPhoto)
+				this.Icon = PixbufUtils.LoadThemeIcon ("gnome-dev-ipod", 32);
+
+			if (this.Icon == null && this.IsDCIM)
+				this.Icon = PixbufUtils.LoadThemeIcon ("gnome-dev-media-cf", 32);
+
                         if (this.Icon == null)
+				this.Icon = PixbufUtils.LoadThemeIcon (vol.Icon, 32);
+			
+			if (this.Icon == null)
 				this.Icon = new Gdk.Pixbuf (vol.Icon);
 		}
+
+		private bool IsDCIM {
+			get {
+				return (Directory.Exists (System.IO.Path.Combine (mount_point, "DCIM")));
+			}
+		}
+
+		private bool IsiPodPhoto {
+			get {
+				return (Directory.Exists (System.IO.Path.Combine (mount_point, "Photos")) &&
+					Directory.Exists (System.IO.Path.Combine (mount_point, "iPod_Control")));
+			}
+		}
 	}
+
+	//internal classs FolderSource : ImportSource {
+	//	private string path;
+	//}
 
 	internal class DriveSource : ImportSource {
 		public Gnome.Vfs.Drive Drive;
 		
 		public DriveSource (Gnome.Vfs.Drive drive) 
 		{
-			this.Name = drive.DisplayName;
+			this.Name = drive.DisplayName.Replace ("_", "__");
 			this.Drive = drive;
 
 			if (drive.IsMounted) {
@@ -78,6 +133,51 @@ public class ImportCommand : FSpot.GladeDialog {
 		public SourceMenu () {
 			Gnome.Vfs.VolumeMonitor monitor = Gnome.Vfs.VolumeMonitor.Get ();
 
+			this.Append (new SourceItem (new BrowseSource ()));
+
+			this.Append (new Gtk.SeparatorMenuItem ());
+
+			foreach (Gnome.Vfs.Volume vol in monitor.MountedVolumes) {
+				System.Console.WriteLine ("{0} - {1} - {2} {3} {4} {5} {6}",
+							  vol.DisplayName, 
+							   vol.Icon, 
+							  vol.VolumeType.ToString (), 
+							  vol.ActivationUri, 
+							  vol.IsUserVisible,
+							  vol.IsMounted,
+							  vol.DeviceType);
+				
+				 if (vol.Drive != null)
+					 System.Console.WriteLine (vol.Drive.DeviceType.ToString ());
+				 
+				 ImportSource source = new VolumeSource (vol);
+#if true
+				 SourceItem item = new SourceItem (source);
+				 if (!vol.IsUserVisible || vol.DeviceType == Gnome.Vfs.DeviceType.Unknown) {
+					 item.Sensitive = false;
+					 continue;
+				 }
+				 this.Append (item);
+#else
+				 
+				 this.Append (new SourceItem (source));
+#endif
+			}
+
+
+			GPhotoCamera cam = new GPhotoCamera ();
+			cam.DetectCameras ();
+			
+			if (cam.CameraList.Count () > 0)
+				this.Append (new Gtk.SeparatorMenuItem ());
+
+			for (int i = 0; i < cam.CameraList.Count (); i++) {
+				ImportSource source = new CameraSource (cam, i);
+				this.Append (new SourceItem (source));
+			}
+
+			this.Append (new Gtk.SeparatorMenuItem ());
+
 			foreach (Gnome.Vfs.Drive drive in monitor.ConnectedDrives) {
 				ImportSource source = new DriveSource (drive);
 				
@@ -86,49 +186,39 @@ public class ImportCommand : FSpot.GladeDialog {
 				this.Append (item);
 			}
 
-			this.Append (new Gtk.SeparatorMenuItem ());
-
-			foreach (Gnome.Vfs.Volume vol in monitor.MountedVolumes) {
-				System.Console.WriteLine ("{0} - {1} - {2} {3} {4}",
-							  vol.DisplayName, 
-							   vol.Icon, 
-							  vol.VolumeType.ToString (), 
-							  vol.ActivationUri, 
-							  vol.IsMounted);
-				
-				 if (vol.Drive != null)
-					 System.Console.WriteLine (vol.Drive.DeviceType.ToString ());
-				 
-				 ImportSource source = new VolumeSource (vol);
-#if false
-				 SourceItem item = new SourceItem (source);
-				 this.Append (item);
-				 if (!vol.IsUserVisible) {
-					 item.Sensitive = false;
-				 }
-#else
-				 this.Append (new SourceItem (source));
-#endif
-			}
-
-			this.Append (new Gtk.SeparatorMenuItem ());
-			
-			GPhotoCamera cam = new GPhotoCamera ();
-			cam.DetectCameras ();
-			for (int i = 0; i < cam.CameraList.Count (); i++) {
-				ImportSource source = new CameraSource (cam, i);
-				this.Append (new SourceItem (source));
-			}
-
 			this.ShowAll ();
 		}
-	}
+		
+		public int FindItemPosition (SourceItem source)
+		{
+			Gtk.Widget [] children = this.Children;
+			for (int i = 0; i < children.Length; i++) {
+				if (children [i] == source) {
+					return i;
+				}
+			}
+			return -1;
+		}
+		
+		public int FindItemPosition (string path)
+		{
+			Gtk.Widget [] children = this.Children;
+			for (int i = 0; i < children.Length; i++) {
+				if (children [i] is SourceItem) {
+					VfsSource vfs = ((SourceItem)(children [i])).Source as VfsSource;
+					if (vfs != null && vfs.uri == path)
+						return i;
+				}
+			}
+			return -1;
+		}
+	}		
 	
 	private class PhotoGrid : Table {
 		const int NUM_COLUMNS = 5;
 		const int NUM_ROWS = 4;
-
-		const int CELL_WIDTH = 128;
+		
+	        const int CELL_WIDTH = 128;
 		const int CELL_HEIGHT = 96;
 
 		const int PADDING = 3;
@@ -212,47 +302,44 @@ public class ImportCommand : FSpot.GladeDialog {
 	}
 
 
-	[Glade.Widget] Gtk.Entry import_folder_entry;
 	[Glade.Widget] Gtk.OptionMenu tag_option_menu;
+	[Glade.Widget] Gtk.OptionMenu source_option_menu;
+	[Glade.Widget] Gtk.ScrolledWindow icon_scrolled;
+	[Glade.Widget] Gtk.ScrolledWindow photo_scrolled;
 	[Glade.Widget] Gtk.CheckButton attach_check;
 	[Glade.Widget] Gtk.CheckButton recurse_check;
 	[Glade.Widget] Gtk.Image tag_image;
 	[Glade.Widget] Gtk.Label tag_label;
+	[Glade.Widget] Gtk.EventBox frame_eventbox;
+	[Glade.Widget] ProgressBar progress_bar;
 	
 	Tag tag_selected;
 
-	Gtk.Dialog dialog;
 	PhotoGrid grid;
-	ProgressBar progress_bar;
 	Gtk.Window main_window;
 	string import_path;
-
+	FSpot.PhotoList collection;
 	bool cancelled;
+	bool copy;
+
+	int total;
+	PhotoStore store;
+
+	FSpot.Delay step;
+	
+	FSpot.PhotoImageView photo_view;
+	IconView tray;
+	ImportBackend importer;
 
 	public ImportCommand (Gtk.Window mw)
 	{
 		main_window = mw;
+		step = new FSpot.Delay (new GLib.IdleHandler (Step));
 	}
 
 	private void HandleDialogResponse (object obj, ResponseArgs args)
 	{
 		cancelled = true;
-	}
-
-	private void CreateDisplayDialog ()
-	{
-		dialog = new Gtk.Dialog ();
-		dialog.AddButton (Gtk.Stock.Cancel, 0);
-
-		grid = new PhotoGrid ();
-		progress_bar = new ProgressBar ();
-
-		dialog.VBox.PackStart (grid, true, true, 0);
-		dialog.VBox.PackStart (progress_bar, false, true, 0);
-
-		dialog.ShowAll ();
-
-		dialog.Response += new ResponseHandler (HandleDialogResponse);
 	}
 
 	private void UpdateProgressBar (int count, int total)
@@ -261,48 +348,70 @@ public class ImportCommand : FSpot.GladeDialog {
 		progress_bar.Fraction = (double) count / System.Math.Max (total, 1);
 	}
 
-	private int DoImport (FileImportBackend importer)
+	private void HandleTraySelectionChanged (FSpot.IBrowsableCollection collection) 
 	{
-		int total = importer.Prepare ();
-		
-		CreateDisplayDialog ();
-		UpdateProgressBar (0, total);
+		if (collection.Count > 0)
+			photo_view.Item.Index = tray.Selection.Ids[0];
+	}
 
-		cancelled = false;
+	private bool Step ()
+	{			
+		Photo photo;
+		Pixbuf thumbnail;
+		int count;
 		bool ongoing = true;
-		while (ongoing && total > 0) {
-			Photo photo;
-			Pixbuf thumbnail;
-			int count;
 
-			while (Application.EventsPending ())
-				Application.RunIteration ();
-
-			if (cancelled)
-				break;
-
-			ongoing = importer.Step (out photo, out thumbnail, out count);
-	
-			if (thumbnail == null){
-				Console.WriteLine ("Could not import file");
-				continue;
-			}
-
-			grid.AddThumbnail (thumbnail);
+		if (importer == null)
+			return false;
+		
+		ongoing = importer.Step (out photo, out thumbnail, out count);
+		
+		if (thumbnail == null) {
+			Console.WriteLine ("Could not import file");
+		} else {
+			//icon_scrolled.Visible = true;
+			collection.Add (photo);
+		
+			//grid.AddThumbnail (thumbnail);
 			UpdateProgressBar (count, total);
 			thumbnail.Dispose ();
 		}
 
-		if (cancelled)
-			importer.Cancel ();
-		else
+		if (ongoing && total > 0)
+			return true;
+		else 
+			return false;
+	}
+
+	private int DoImport (ImportBackend imp)
+	{
+		if (collection == null)
+			return 0;
+
+		this.importer = imp;
+
+		total = importer.Prepare ();
+		UpdateProgressBar (0, total);
+		
+		collection.Clear ();
+		collection.Capacity = total;
+
+		cancelled = false;
+		FSpot.ThumbnailGenerator.Default.PushBlock ();
+
+		while (total > 0 && this.Step ()) {
+			while (Application.EventsPending ())
+				Application.RunIteration ();
+		}
+
+		FSpot.ThumbnailGenerator.Default.PopBlock ();
+		
+		if (importer != null)
 			importer.Finish ();
 
-		dialog.Destroy ();
-		dialog = null;
-		grid = null;
-		progress_bar = null;
+		importer = null;
 
+		//ThumbnailGenerator.Default.PopBlock ();
 		if (cancelled)
 			return 0;
 		else
@@ -322,26 +431,43 @@ public class ImportCommand : FSpot.GladeDialog {
 
 	public void HandleImportBrowse (object o, EventArgs args) 
 	{
+		string path = ChoosePath ();
+		if (path != null) {
+			SetImportPath (path);
+		}
+	}
 	
+	public string ChoosePath ()
+	{
+		string path = null;
+
 		CompatFileChooserDialog file_selector =
 			new CompatFileChooserDialog ("Import", this.Dialog,
 						     CompatFileChooserDialog.Action.SelectFolder);
 
 		file_selector.SelectMultiple = false;
-		file_selector.Filename = import_folder_entry.Text;
+
+		if (ImportPath != null)
+			file_selector.Filename = ImportPath;
+		else
+			file_selector.Filename = System.Environment.GetEnvironmentVariable ("HOME");
 
 		int response = file_selector.Run ();
 
 		if ((ResponseType) response == ResponseType.Ok) {
-			import_path = file_selector.Filename;
-			import_folder_entry.Text = file_selector.Filename;
+			path = file_selector.Filename;
 		}
 
 		file_selector.Destroy ();
-		
+		return path;
 	}
 	
-	public void HandleTagMenuSelected (Tag t) 
+	public void SetImportPath (string path)
+	{
+		import_path = path;
+	}
+
+	private void HandleTagMenuSelected (Tag t) 
 	{
 		tag_selected = t;
 		//tag_image.Pixbuf = t.Icon;
@@ -349,13 +475,63 @@ public class ImportCommand : FSpot.GladeDialog {
 	
 	}
 	
-	public void HandleEntryActivate (object sender, EventArgs args)
+	private void HandleEntryActivate (object sender, EventArgs args)
 	{
 		this.Dialog.Respond (Gtk.ResponseType.Ok);
 	}
 
+
+
+	private void HandleSourceChanged (object sender, EventArgs args)
+	{
+		if (store == null || collection == null)
+			return;
+		
+		this.Cancel ();
+		this.copy = false;
+
+		Gtk.OptionMenu option = (Gtk.OptionMenu) sender;
+		Gtk.Menu menu = (Gtk.Menu)(option.Menu);
+		SourceItem item =  (SourceItem)(menu.Active);
+		System.Console.WriteLine ("item {0}", item);
+
+		if (!item.Sensitive)
+			return;
+
+		if (item.Source is BrowseSource) {
+			string path = ChoosePath ();
+			
+			if (path != null) {
+				SourceItem path_item = new SourceItem (new VfsSource (path));
+				menu.Prepend (path_item);
+				//option.SetHistory (0);
+				path_item.ShowAll ();
+				SetImportPath (path);
+			}
+		} else if (item.Source is VfsSource) {
+			VfsSource vfs = item.Source as VfsSource;
+
+			// If the paths are the Same no need to reload.
+			if (vfs is VolumeSource)
+				copy = true;
+			
+			SetImportPath (vfs.uri);
+		}
+
+		Start ();
+	}
+
+	private void HandleRecurseToggled (object sender, System.EventArgs args)
+	{
+		this.Cancel ();
+		while (Application.EventsPending ())
+			Application.RunIteration ();
+		this.Start ();
+	}
+
 	public int ImportFromFile (PhotoStore store, string path)
 	{
+		this.store = store;
 		this.CreateDialog ("import_dialog");
 		
 		this.Dialog.TransientFor = main_window;
@@ -367,31 +543,58 @@ public class ImportCommand : FSpot.GladeDialog {
 		
 		this.Dialog.DefaultResponse = ResponseType.Ok;
 		
-		import_folder_entry.Activated += HandleEntryActivate;
+		//import_folder_entry.Activated += HandleEntryActivate;
 
 		tagmenu.TagSelected += HandleTagMenuSelected;
 		tagmenu.ShowAll ();
 		tagmenu.Populate (true);
 		tagmenu.Prepend (attach_item);
 		
-		tag_option_menu.Menu = tagmenu;
-		//tag_option_menu.Menu = new SourceMenu ();
+		recurse_check.Toggled += HandleRecurseToggled;
 
+		tag_option_menu.Menu = tagmenu;
+		SourceMenu menu = new SourceMenu ();
+		source_option_menu.Menu = menu;
+
+		collection = new FSpot.PhotoList (new Photo [0]);
+		tray = new IconView (collection);
+		tray.Selection.Changed += HandleTraySelectionChanged;
+		icon_scrolled.SetSizeRequest (200, 480);
+		icon_scrolled.Add (tray);
+		//icon_scrolled.Visible = false;
+		tray.Show ();
+
+		photo_view = new FSpot.PhotoImageView (collection);
+		photo_scrolled.Add (photo_view);
+		photo_scrolled.SetSizeRequest (200, 480);
+		photo_view.Show ();
+
+		//FSpot.Global.ModifyColors (frame_eventbox);
+		FSpot.Global.ModifyColors (photo_scrolled);
+		FSpot.Global.ModifyColors (photo_view);
+
+		photo_view.Pixbuf = PixbufUtils.LoadFromAssembly ("f-spot-logo.png");
+		photo_view.Fit = true;
+			
 		tag_selected = null;
 		if (attach_check != null) {
 			attach_check.Toggled += HandleTagToggled;
 			HandleTagToggled (null, null);
 		}				
 
-		if (path != null)
-			import_folder_entry.Text = path;
-		else 
-			import_folder_entry.Text = System.Environment.GetEnvironmentVariable ("HOME");
+		this.Dialog.Show ();
+		source_option_menu.Changed += HandleSourceChanged;
+		if (path != null) {
+			SetImportPath (path);
+			int i = menu.FindItemPosition (path);
+			if (i > 0)
+				source_option_menu.SetHistory ((uint)i);
+		}
 						
 		ResponseType response = (ResponseType) this.Dialog.Run ();
 		
 		while (response == ResponseType.Ok) {
-			if (System.IO.Directory.Exists (import_folder_entry.Text))
+			if (System.IO.Directory.Exists (this.ImportPath))
 			    break;
 
 			HigMessageDialog md = new HigMessageDialog (this.Dialog,
@@ -399,7 +602,7 @@ public class ImportCommand : FSpot.GladeDialog {
 								    MessageType.Error,
 								    ButtonsType.Ok,
 								    Mono.Posix.Catalog.GetString ("Directory does not exist."),
-									    String.Format (Mono.Posix.Catalog.GetString ("The directory you selected \"{0}\" does not exist.  Please choose a different directory"), import_folder_entry.Text));
+									    String.Format (Mono.Posix.Catalog.GetString ("The directory you selected \"{0}\" does not exist.  Please choose a different directory"), this.ImportPath));
 			md.Run ();
 			md.Destroy ();
 
@@ -407,33 +610,60 @@ public class ImportCommand : FSpot.GladeDialog {
 		}
 
 		if (response == ResponseType.Ok) {
-			string [] pathimport =  {import_folder_entry.Text};
-			this.Dialog.Destroy();
-
-			Tag [] tags = null;		       
-			if (attach_check.Active && tag_selected != null)
-				tags = new Tag [] {tag_selected};
-			
-			bool recurse = true;
-			if (recurse_check != null)
-				recurse = recurse_check.Active;
-
-			return DoImport (new FileImportBackend (store, pathimport, recurse, tags));
-				
+			this.Dialog.Destroy ();
+			return collection.Count;
 		} else {
+			this.Cancel ();
 			this.Dialog.Destroy();
 			return 0;
 		}
 	}
 
+	public void Cancel ()
+	{
+		if (importer != null) {
+			importer.Cancel ();
+			importer = null;
+		}
+
+		
+		
+		if (collection == null || collection.Count == 0)
+			return;
+		
+		// FIXME this should be a transaction or a multiple remove.
+		for (int i = 0; i < collection.Count; i++) {
+			store.Remove ((Photo)(collection [i]));
+		}
+	}
+
+	public int Start ()
+	{
+		if (import_path == null)
+			return 0;
+
+		string [] pathimport =  {ImportPath};
+		//this.Dialog.Destroy();
+		
+		bool recurse = true;
+		if (recurse_check != null)
+			recurse = recurse_check.Active;
+		
+		if (collection == null)
+			return 0;
+
+		return DoImport (new FileImportBackend (store, pathimport, copy, recurse, null));
+	}
+
 	public int ImportFromPaths (PhotoStore store, string [] paths)
 	{
+
 		return ImportFromPaths (store, paths, null);
 	}
 
 	public int ImportFromPaths (PhotoStore store, string [] paths, Tag [] tags)
 	{
-		return DoImport (new FileImportBackend (store, paths, true, tags));
+		return DoImport (new FileImportBackend (store, paths, false, true, tags));
 	}
 	
 #if TEST_IMPORT_COMMAND
