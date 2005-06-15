@@ -167,8 +167,17 @@ public class FileImportBackend : ImportBackend {
 		if (imported_photos == null)
 			throw new Exception ("Not doing anything");
 
-		foreach (Photo p in imported_photos)
+		foreach (Photo p in imported_photos) {
+			if (copy) {
+				try {
+					System.IO.File.Delete (p.DefaultVersionPath);
+				} catch (System.Exception e) {
+					System.Console.WriteLine (e);
+				}
+			}
+			
 			store.Remove (p);
+		}
 
 		Finish ();
 	}

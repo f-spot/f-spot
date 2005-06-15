@@ -25,6 +25,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		public BrowseSource ()
 		{
 			this.Name = Mono.Posix.Catalog.GetString ("Choose Folder");
+			this.Icon = PixbufUtils.LoadThemeIcon ("stock_folder", 32);
 		}
 	}
 
@@ -37,6 +38,8 @@ public class ImportCommand : FSpot.GladeDialog {
 			string [] components = uri.Split (new char [] { '/' });
 			this.Name = components [components.Length - 1];
 			this.uri = uri;
+			
+			this.Icon = PixbufUtils.LoadThemeIcon ("stock_folder", 32);
 		}
 
 		public virtual bool Contains (string path)
@@ -62,7 +65,7 @@ public class ImportCommand : FSpot.GladeDialog {
 			if (this.IsiPodPhoto)
 				this.Icon = PixbufUtils.LoadThemeIcon ("gnome-dev-ipod", 32);
 
-			if (this.Icon == null && this.IsDCIM)
+			if (this.Icon == null && this.IsCamera)
 				this.Icon = PixbufUtils.LoadThemeIcon ("gnome-dev-media-cf", 32);
 
                         if (this.Icon == null)
@@ -72,7 +75,7 @@ public class ImportCommand : FSpot.GladeDialog {
 				this.Icon = new Gdk.Pixbuf (vol.Icon);
 		}
 
-		private bool IsDCIM {
+		private bool IsCamera {
 			get {
 				return (Directory.Exists (System.IO.Path.Combine (mount_point, "DCIM")));
 			}
@@ -115,6 +118,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		{
 			this.cam = cam;
 			this.CameraIndex = index;
+
 			//this.Name = String.Format ("{0} ({1})", cam.CameraList.GetName (index), cam.CameraList.GetValue (index));
 			this.Name = String.Format ("{0}", cam.CameraList.GetName (index));
 			this.Icon = PixbufUtils.LoadThemeIcon ("gnome-dev-camera", 32);
@@ -123,7 +127,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		}
 	}
 
-	internal class ImportSource {
+	internal abstract class ImportSource {
 		public object Backend;
 		public Gdk.Pixbuf Icon;
 		public string Name;
@@ -168,16 +172,18 @@ public class ImportCommand : FSpot.GladeDialog {
 			GPhotoCamera cam = new GPhotoCamera ();
 			cam.DetectCameras ();
 			
+
 			if (cam.CameraList.Count () > 0)
 				this.Append (new Gtk.SeparatorMenuItem ());
-
+			
 			for (int i = 0; i < cam.CameraList.Count (); i++) {
 				ImportSource source = new CameraSource (cam, i);
 				this.Append (new SourceItem (source));
 			}
 
+			/*
 			this.Append (new Gtk.SeparatorMenuItem ());
-
+			
 			foreach (Gnome.Vfs.Drive drive in monitor.ConnectedDrives) {
 				ImportSource source = new DriveSource (drive);
 				
@@ -185,6 +191,7 @@ public class ImportCommand : FSpot.GladeDialog {
 				item.Sensitive = drive.IsMounted;
 				this.Append (item);
 			}
+			*/
 
 			this.ShowAll ();
 		}
@@ -339,7 +346,11 @@ public class ImportCommand : FSpot.GladeDialog {
 
 	private void HandleDialogResponse (object obj, ResponseArgs args)
 	{
-		cancelled = true;
+		if (args.ResponseId != ResponseType.Ok) {
+			this.Cancel ();
+			this.Dialog.Destroy();
+			return;
+		}
 	}
 
 	private void UpdateProgressBar (int count, int total)
@@ -474,13 +485,6 @@ public class ImportCommand : FSpot.GladeDialog {
 		//tag_label.Text = t.Name;
 	
 	}
-	
-	private void HandleEntryActivate (object sender, EventArgs args)
-	{
-		this.Dialog.Respond (Gtk.ResponseType.Ok);
-	}
-
-
 
 	private void HandleSourceChanged (object sender, EventArgs args)
 	{
@@ -536,6 +540,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		
 		this.Dialog.TransientFor = main_window;
 		this.Dialog.WindowPosition = Gtk.WindowPosition.CenterOnParent;
+		this.Dialog.Response += HandleDialogResponse;
 
 		//Gtk.Menu menu = new Gtk.Menu();
 		MenuItem attach_item = new MenuItem (Mono.Posix.Catalog.GetString ("Select Tag"));
