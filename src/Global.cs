@@ -12,6 +12,12 @@ namespace FSpot {
 			}
 		}
 
+		public static string PhotoDirectory {
+			get {
+				return System.IO.Path.Combine (HomeDirectory, "Photos");
+			}
+		}
+
 		public static void ModifyColors (Gtk.Widget widget)
 		{
 #if false

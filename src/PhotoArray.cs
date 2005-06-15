@@ -14,6 +14,14 @@ namespace FSpot {
 			}
 		}
 
+		public void Clear ()
+		{
+			list.Clear ();
+
+			if (Changed != null)
+				Changed (this);
+		}
+
 		public int Capacity {
 			set {
 				list.Capacity = value;
