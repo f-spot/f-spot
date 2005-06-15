@@ -37,8 +37,7 @@ public class Driver {
 		for (int i = 0; i < args.Length; i++) {
 			if (args [i] == "--import") {
 				if (++i < args.Length && (File.Exists (args [i]) || Directory.Exists (args[i]))) {
-					UriList urilist = new UriList (new string [] {args [i]});
-					MainWindow.Toplevel.ImportUriList (urilist);
+					MainWindow.Toplevel.ImportFile (args [i]);
 				} else {
 					System.Console.WriteLine ("no valid path to import from");
 				}

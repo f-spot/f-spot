@@ -715,6 +715,14 @@ public class MainWindow {
 		}
 	}
 
+	public void ImportFile (string path)
+	{
+		ImportCommand command = new ImportCommand (main_window);
+		if (command.ImportFromFile (db.Photos, path) > 0) {
+			UpdateQuery ();
+		}
+	}
+
 	void HandleIconViewDragDataReceived (object sender, DragDataReceivedArgs args)
 	{
 	 	Widget source = Gtk.Drag.GetSourceWidget (args.Context);     

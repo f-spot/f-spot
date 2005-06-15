@@ -7,6 +7,7 @@ using System;
 public class FileImportBackend : ImportBackend {
 	PhotoStore store;
 	bool recurse;
+	bool copy;
 	string [] base_paths;
 	Tag [] tags;
 
@@ -17,8 +18,22 @@ public class FileImportBackend : ImportBackend {
 
 	private void AddPath (string path)
 	{
-		if (path.ToLower().EndsWith (".jpg") || path.ToLower().EndsWith (".jpeg"))
+		string extension = System.IO.Path.GetExtension (path).ToLower ();
+		
+		switch (extension) {
+		case ".jpeg":
+		case ".jpg":
+		case ".png":
+		case ".cr2":
+		case ".nef":
+		case ".tiff":
+		case ".tif":
+		case ".dng":
+		case ".crw":
+		case ".ppm":
 			file_paths.Add (path);
+			break;
+		}
 	}
 
 	private void GetListing (System.IO.DirectoryInfo info)
@@ -81,6 +96,23 @@ public class FileImportBackend : ImportBackend {
 		return file_paths.Count;
 	}
 
+	public static string UniqueName (string path, string filename)
+	{
+		int i = 1;
+		string dest = System.IO.Path.Combine (path, filename);
+
+		while (System.IO.File.Exists (dest)) {
+			filename = String.Format ("{0}-{1}{2}", 
+						  System.IO.Path.GetFileNameWithoutExtension (filename),
+						  i++,
+						  System.IO.Path.GetExtension (filename));
+			
+			dest = System.IO.Path.Combine (path, filename);
+		}
+		
+		return dest;
+	}
+
 	public override bool Step (out Photo photo, out Pixbuf thumbnail, out int count)
 	{
 		if (file_paths == null)
@@ -90,8 +122,31 @@ public class FileImportBackend : ImportBackend {
 			throw new Exception ("Already finished");
 
 		// FIXME Need to get the EXIF info etc.
-		photo = store.Create (file_paths [this.count] as string, out thumbnail);
+		string path = (string) file_paths [this.count];
+
+		if (copy) {
+			string name = System.IO.Path.GetFileName (path);
+			FSpot.ImageFile img = FSpot.ImageFile.Create (path);
+			DateTime time = img.Date ();
+			
+			string dest_dir = String.Format ("{0}{1}{2}{1}{3}{1}{4}",
+							 FSpot.Global.PhotoDirectory,
+							 System.IO.Path.DirectorySeparatorChar,
+							 time.Year,
+							 time.Month,
+							 time.Day);
+
+			if (!System.IO.Directory.Exists (dest_dir))
+				System.IO.Directory.CreateDirectory (dest_dir);
+			
+			string dest = UniqueName (dest_dir, name);
+
+			System.IO.File.Copy (path, dest);
+			path = dest;
+		}
 		
+		photo = store.Create (path, out thumbnail);
+
 		if (tags != null) {
 			foreach (Tag t in tags) {
 				photo.AddTag (t);
@@ -133,11 +188,12 @@ public class FileImportBackend : ImportBackend {
 		count = 0;
 	}
 
-	public FileImportBackend (PhotoStore store, string [] base_paths, bool recurse) : this (store, base_paths, recurse, null) {}
+	public FileImportBackend (PhotoStore store, string [] base_paths, bool recurse) : this (store, base_paths, false, recurse, null) {}
 
-	public FileImportBackend (PhotoStore store, string [] base_paths, bool recurse, Tag [] tags)
+	public FileImportBackend (PhotoStore store, string [] base_paths, bool copy, bool recurse, Tag [] tags)
 	{
 		this.store = store;
+		this.copy = copy;
 		this.base_paths = base_paths;
 		this.recurse = recurse;
 		this.tags = tags;
