@@ -105,8 +105,10 @@ namespace FSpot {
 					Pixbuf scale = null;
 					if (load_thumb) {
 						Pixbuf thumbscale = camera.GetPreviewPixbuf (file);
-						scale = PixbufUtils.ScaleToMaxSize (thumbscale, 64,64);
-						thumbscale.Dispose ();
+						if (thumbscale != null) {
+							scale = PixbufUtils.ScaleToMaxSize (thumbscale, 64,64);
+							thumbscale.Dispose ();
+						}
 					}
 					
 					preview_list_store.AppendValues (file.Directory, file.FileName, scale, index);

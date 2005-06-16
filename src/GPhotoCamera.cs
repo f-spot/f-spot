@@ -157,10 +157,15 @@ public class GPhotoCamera
 		GPhotoCameraFile selected_file = (GPhotoCameraFile) files [index];		
 
 		if (selected_file.PreviewFile == null) {
-			selected_file.PreviewFile = camera_fs.GetFile (selected_file.Directory,
-								       selected_file.FileName,
-								       CameraFileType.Preview,
-								       context);
+			try {
+				selected_file.PreviewFile = camera_fs.GetFile (selected_file.Directory,
+									       selected_file.FileName,
+									       CameraFileType.Preview,
+									       context);
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e.ToString ());
+				selected_file.PreviewFile = null;
+			}
 		}
 		
 		return selected_file.PreviewFile;
@@ -169,10 +174,13 @@ public class GPhotoCamera
 	public Pixbuf GetPreviewPixbuf (GPhotoCameraFile camfile)
 	{
 		CameraFile cfile = GetPreview (camfile);
-		byte[] bytedata = cfile.GetDataAndSize ();
-		MemoryStream dataStream = new MemoryStream (bytedata);
-
-		return new Pixbuf (dataStream);
+		if (cfile != null) {
+			byte[] bytedata = cfile.GetDataAndSize ();
+			MemoryStream dataStream = new MemoryStream (bytedata);
+			
+			return new Pixbuf (dataStream);
+		}
+		return null;
 	}
 	
 	public void SaveFile (int index, string filename)

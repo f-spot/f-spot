@@ -102,12 +102,12 @@ public class FileImportBackend : ImportBackend {
 		string dest = System.IO.Path.Combine (path, filename);
 
 		while (System.IO.File.Exists (dest)) {
-			filename = String.Format ("{0}-{1}{2}", 
-						  System.IO.Path.GetFileNameWithoutExtension (filename),
-						  i++,
-						  System.IO.Path.GetExtension (filename));
+			string numbered_name = String.Format ("{0}-{1}{2}", 
+							      System.IO.Path.GetFileNameWithoutExtension (filename),
+							      i++,
+							      System.IO.Path.GetExtension (filename));
 			
-			dest = System.IO.Path.Combine (path, filename);
+			dest = System.IO.Path.Combine (path, numbered_name);
 		}
 		
 		return dest;
