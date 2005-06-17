@@ -1,5 +1,9 @@
 2005-06-17  Larry Ewing  <lewing@novell.com>
 
+	* src/QueryDisplay.cs: add padding around the tags.
+
+	* src/f-spot.glade: remove the hbox entry.
+
 	* src/TagView.cs: change the tag display for TagView.
 
 	* src/MainWindow.cs: add the start of the search bar.

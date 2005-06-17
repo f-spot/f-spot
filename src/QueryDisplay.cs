@@ -14,7 +14,7 @@ namespace FSpot {
 			
 			Gtk.HBox hbox = new Gtk.HBox ();
 			hbox.Show ();
-			this.PackStart (hbox, false, false, 0);
+			this.PackStart (hbox, false, false, 6);
 
 			label = new Gtk.Label (Mono.Posix.Catalog.GetString ("Find: "));
 			label.Show ();
