@@ -24,6 +24,7 @@
 #include <config.h>
 #include <math.h>
 #include <stdlib.h>
+#include <gdk/gdk.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtkmain.h>
 #include <libgnome/gnome-macros.h>
@@ -591,6 +592,9 @@ paint_rectangle (ImageView *view, ArtIRect *rect, GdkInterpType interp_type)
 
 	/* Draw background if necessary, in four steps */
 
+
+	
+
 	/* Top */
 	if (yofs > 0) {
 		r.x0 = 0;
@@ -676,12 +680,9 @@ paint_rectangle (ImageView *view, ArtIRect *rect, GdkInterpType interp_type)
 
 	/* For all other cases, create a temporary pixbuf */
 
-#ifdef PACK_RGBA
-	tmp = gdk_pixbuf_new (GDK_COLORSPACE_RGB, TRUE, 8, d.x1 - d.x0, d.y1 - d.y0);
-#else
-	tmp = gdk_pixbuf_new (GDK_COLORSPACE_RGB, FALSE, 8, d.x1 - d.x0, d.y1 - d.y0);
-#endif
-
+	tmp = gdk_pixbuf_new (GDK_COLORSPACE_RGB, gdk_pixbuf_get_has_alpha (priv->pixbuf), 8, d.x1 - d.x0, d.y1 - d.y0);
+	gdk_pixbuf_fill (tmp, 0x00000000);
+	
 	if (!tmp) {
 		g_message ("paint_rectangle(): Could not allocate temporary pixbuf of "
 			   "size (%d, %d); skipping", d.x1 - d.x0, d.y1 - d.y0);
@@ -747,6 +748,7 @@ paint_rectangle (ImageView *view, ArtIRect *rect, GdkInterpType interp_type)
 
 	/* Draw! */
 
+#if 0
 	gdk_pixbuf_composite_color (priv->pixbuf,
 				    tmp,
 				    0, 0,
@@ -758,6 +760,16 @@ paint_rectangle (ImageView *view, ArtIRect *rect, GdkInterpType interp_type)
 				    d.x0 - xofs, d.y0 - yofs,
 				    check_size,
 				    check_1, check_2);
+#else
+	gdk_pixbuf_composite (priv->pixbuf,
+			      tmp,
+			      0, 0,
+			      d.x1 - d.x0, d.y1 - d.y0,
+			      -(d.x0 - xofs), -(d.y0 - yofs),
+			      priv->zoomx, priv->zoomy,
+			      unity_zoom (priv) ? GDK_INTERP_NEAREST : interp_type,
+			      255);
+#endif
 
 #ifdef LIBEOG_ETTORE_CHANGES
 	if (apply_brightness_and_contrast)
@@ -771,6 +783,7 @@ paint_rectangle (ImageView *view, ArtIRect *rect, GdkInterpType interp_type)
 	pack_pixbuf (tmp);
 #endif
 
+#if 0
 	gdk_draw_rgb_image_dithalign (GTK_WIDGET (view)->window,
 				      GTK_WIDGET (view)->style->black_gc,
 				      d.x0, d.y0,
@@ -779,6 +792,20 @@ paint_rectangle (ImageView *view, ArtIRect *rect, GdkInterpType interp_type)
 				      gdk_pixbuf_get_pixels (tmp),
 				      gdk_pixbuf_get_rowstride (tmp),
 				      d.x0 - xofs, d.y0 - yofs);
+#else
+	if (gdk_pixbuf_get_has_alpha (priv->pixbuf))
+		paint_background (view, &d, rect);
+
+	gdk_pixbuf_render_to_drawable_alpha (tmp,
+					     GTK_WIDGET (view)->window,
+					     0, 0,
+					     d.x0, d.y0,
+					     d.x1 - d.x0, d.y1 - d.y0,
+					     priv->dither,
+					     GDK_PIXBUF_ALPHA_FULL,
+					     0,
+					     d.x0 - xofs, d.y0 - yofs);
+#endif
 
 	g_object_unref (tmp);
 
