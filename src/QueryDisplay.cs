@@ -3,6 +3,7 @@ namespace FSpot {
 		PhotoQuery query;
 		TagView tag_view;
 		Gtk.Label label;
+		Gtk.HBox warning_box;
 		
 		public QueryDisplay (PhotoQuery query) {
 			this.query = query;

@@ -1,5 +1,15 @@
 2005-06-17  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: never display dates if the size is versy small.
+
+	* src/MainWindow.cs: hook up the zoom icons.
+
+	* src/Makefile.am: add the zoom resources.
+
+	* src/StockIcons.cs: add the zoom stock items.
+
+	* src/f-spot.glade: add the zoom images.
+
 	* src/QueryDisplay.cs: add padding around the tags.
 
 	* src/f-spot.glade: remove the hbox entry.

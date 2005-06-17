@@ -82,6 +82,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Unix.cs			\
 	$(srcdir)/Util.cs			\
 	$(srcdir)/ThumbnailCommand.cs		\
+	$(srcdir)/QueryDisplay.cs		\
 	$(srcdir)/QueryView.cs			\
 	$(srcdir)/ZoomUtils.cs			\
 	$(srcdir)/GPhotoCamera.cs		\
@@ -188,6 +189,8 @@ RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-rotate-90.png,f-spot-rotate-90.png		\
 	-resource:$(top_srcdir)/icons/f-spot-rotate-270.png,f-spot-rotate-270.png	\
 	-resource:$(top_srcdir)/icons/f-spot-slideshow.png,f-spot-slideshow.png		\
+	-resource:$(top_srcdir)/icons/f-spot-stock_near.png,f-spot-stock_near.png	\
+	-resource:$(top_srcdir)/icons/f-spot-stock_far.png,f-spot-stock_far.png		\
 	-resource:$(top_srcdir)/icons/f-spot-fullscreen.png,f-spot-fullscreen.png	\
 	-resource:$(top_srcdir)/icons/f-spot-simple-white.css,f-spot-simple-white.css	\
 	-resource:$(srcdir)/f-spot.glade,f-spot.glade

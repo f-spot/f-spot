@@ -72,6 +72,9 @@ public class MainWindow {
 
 	[Glade.Widget] VPaned info_vpaned;
 
+	[Glade.Widget] Gtk.Image near_image;
+	[Glade.Widget] Gtk.Image far_image;
+
 	PhotoVersionMenu versions_submenu;
 
 	Gtk.ToggleButton browse_button;
@@ -210,6 +213,9 @@ public class MainWindow {
 		if (zoom_scale != null) {
 			zoom_scale.ValueChanged += HandleZoomScaleValueChanged;
 		}
+		
+		near_image.SetFromStock ("f-spot-stock_near", IconSize.SmallToolbar);
+		far_image.SetFromStock ("f-spot-stock_far", IconSize.SmallToolbar);
 
 		menu = new TagMenu (find_tag, db.Tags);
 		menu.TagSelected += HandleFindTagMenuSelected;

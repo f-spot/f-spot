@@ -34,7 +34,9 @@ public class StockIcons {
 			FromDef ("f-spot-red-eye", Catalog.GetString ("Reduce Red-Eye"), 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-rotate-270", Catalog.GetString ("Rotate _Left"), 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-rotate-90", Catalog.GetString ("Rotate _Right"), 0, Gdk.ModifierType.ShiftMask, null),
-			FromDef ("f-spot-loading", Catalog.GetString ("Loading"), 0, Gdk.ModifierType.ShiftMask, null)
+			FromDef ("f-spot-loading", Catalog.GetString ("Loading"), 0, Gdk.ModifierType.ShiftMask, null),
+			FromDef ("f-spot-stock_near", Catalog.GetString ("Near"), 0, Gdk.ModifierType.ShiftMask, null),
+			FromDef ("f-spot-stock_far", Catalog.GetString ("Far"), 0, Gdk.ModifierType.ShiftMask, null)
 		};
 
 		IconFactory icon_factory = new IconFactory ();

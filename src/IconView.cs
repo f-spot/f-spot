@@ -75,7 +75,10 @@ public class IconView : Gtk.Layout {
 	private bool display_dates = true;
 	public bool DisplayDates {
 		get {
-			return display_dates;
+			if (cell_width > 100)
+				return display_dates;
+			else 
+				return false;
 		}
 
 		set {
