@@ -5,6 +5,7 @@ using Gdk;
 public class TagView : Gtk.Widget {
 	private int thumbnail_size = 20;
 	private Photo photo;
+	private Tag [] tags;
 	private static int TAG_ICON_VSPACING = 5;
 
 	public TagView ()
@@ -29,29 +30,37 @@ public class TagView : Gtk.Widget {
 		}
 	}
 
+	public Tag [] Tags {
+		get {
+			return tags;
+		}
+		set {
+			this.tags = value;
+			this.QueueDraw ();
+		}
+	}
+	
 	protected override bool OnExposeEvent (Gdk.EventExpose args)
 	{
-		if (photo == null)
-			return base.OnExposeEvent (args); 
+		if (photo != null)
+			tags = photo.Tags;
 
-		SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * photo.Tags.Length,
+		if (tags == null)
+			return base.OnExposeEvent (args);
+
+		SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * tags.Length,
 				thumbnail_size);
-
 
 		int tag_x = Allocation.X;
 		int tag_y = Allocation.Y + (Allocation.Height - thumbnail_size)/2;
 		
-		foreach (Tag t in photo.Tags) {
+		foreach (Tag t in tags) {
 			Pixbuf icon = null;
 			
-			if (t.Category.Icon == null) {
-				if (t.Icon == null)
-					continue;
-				icon = t.Icon;
-			} else {
-				Category category = t.Category;
-				while (category.Category.Icon != null)
-					category = category.Category;
+			icon = t.Icon;
+
+			Category category = t.Category;
+			while (icon == null && category.Category != null) {
 				icon = category.Icon;
 			}
 			
