@@ -67,6 +67,8 @@ public class MainWindow {
 	[Glade.Widget] MenuItem attach_tag;
 	[Glade.Widget] MenuItem remove_tag;
 	[Glade.Widget] MenuItem find_tag;
+	
+	[Glade.Widget] Scale zoom_scale;
 
 	[Glade.Widget] VPaned info_vpaned;
 
@@ -201,6 +203,10 @@ public class MainWindow {
 		TagMenu menu = new TagMenu (attach_tag, db.Tags);
 		menu.TagSelected += HandleAttachTagMenuSelected;
 
+		if (zoom_scale != null) {
+			zoom_scale.ValueChanged += HandleZoomScaleValueChanged;
+		}
+
 		menu = new TagMenu (find_tag, db.Tags);
 		menu.TagSelected += HandleFindTagMenuSelected;
 
@@ -299,12 +305,14 @@ public class MainWindow {
 				view_notebook.CurrentPage = 0;
 				
 			JumpTo (photo_view.Item.Index);
+			zoom_scale.Value = icon_view.ThumbnailWidth / 256.0;
 			break;
 		case ModeType.PhotoView:
 			if (view_notebook.CurrentPage != 1)
 				view_notebook.CurrentPage = 1;
 			
 			JumpTo (icon_view.FocusCell);
+			zoom_scale.Value = photo_view.Zoom;
 			break;
 		}
 		UpdateToolbar ();
@@ -326,7 +334,6 @@ public class MainWindow {
 				view_button.Active = state;
 		}
 	}
-		
 
 	void HandleViewNotebookSwitchPage (object sender, SwitchPageArgs args)
 	{
@@ -1409,6 +1416,18 @@ public class MainWindow {
 		fsview = null;
 	}
 	
+	void HandleZoomScaleValueChanged (object sender, System.EventArgs args)
+	{
+		switch (view_mode) {
+		case ModeType.PhotoView:
+			photo_view.Zoom = System.Math.Max (0.1, zoom_scale.Value);
+			break;
+		case ModeType.IconView:
+			icon_view.ThumbnailWidth = (int)(System.Math.Max (10, zoom_scale.Value * 256));
+			break;
+		}
+	}
+
 	void HandleZoomOut (object sender, EventArgs args)
 	{
 		switch (view_mode) {
