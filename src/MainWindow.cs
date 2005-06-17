@@ -1420,7 +1420,8 @@ public class MainWindow {
 	{
 		switch (view_mode) {
 		case ModeType.PhotoView:
-			photo_view.Zoom = System.Math.Max (0.1, zoom_scale.Value);
+			if (photo_view.Zoom != zoom_scale.Value) 
+				photo_view.Zoom = System.Math.Max (0.1, zoom_scale.Value);
 			break;
 		case ModeType.IconView:
 			icon_view.ThumbnailWidth = (int)(System.Math.Max (10, zoom_scale.Value * 256));

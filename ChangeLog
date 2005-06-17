@@ -1,5 +1,8 @@
 2005-06-17  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: only set the photo_zoom if the value differs
+	to preserve the Fit case.
+
 	* src/f-spot.glade: add the zoom scale.
 
 	* src/MainWindow.cs: hook up zoom slider.
