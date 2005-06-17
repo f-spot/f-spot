@@ -188,7 +188,7 @@ public class MainWindow {
 		view_vbox.PackStart (group_selector, false, false, 0);
 		view_vbox.ReorderChild (group_selector, 0);
 
-		FSpot.QueryDisplay query_display = new FSpot.QueryDisplay (query);
+		FSpot.QueryDisplay query_display = new FSpot.QueryDisplay (query, tag_selection_widget);
 		view_vbox.PackStart (query_display, false, false, 0);
 		view_vbox.ReorderChild (query_display, 1);
 

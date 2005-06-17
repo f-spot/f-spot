@@ -1,5 +1,11 @@
 2005-06-17  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: pass the tag_selection_widget for now until
+	we have a proper way to clear the selection.
+
+	* src/QueryDisplay.cs: add a warning and a close button to the the
+	search bar.
+
 	* src/IconView.cs: never display dates if the size is versy small.
 
 	* src/MainWindow.cs: hook up the zoom icons.
