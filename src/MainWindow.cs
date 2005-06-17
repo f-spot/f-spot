@@ -185,6 +185,10 @@ public class MainWindow {
 		view_vbox.PackStart (group_selector, false, false, 0);
 		view_vbox.ReorderChild (group_selector, 0);
 
+		FSpot.QueryDisplay query_display = new FSpot.QueryDisplay (query);
+		view_vbox.PackStart (query_display, false, false, 0);
+		view_vbox.ReorderChild (query_display, 1);
+
 		icon_view = new QueryView (query);
 		icon_view_scrolled.Add (icon_view);
 		icon_view.Selection.Changed += HandleSelectionChanged;
@@ -243,6 +247,8 @@ public class MainWindow {
 		UpdateMenus ();
 		main_window.ShowAll ();
 		main_window.Destroyed += HandleCloseCommand;
+
+		query_display.HandleChanged (query);
 
 		if (Toplevel == null)
 			Toplevel = this;

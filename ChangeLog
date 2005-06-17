@@ -1,5 +1,10 @@
 2005-06-17  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: add the start of the search bar.
+
+	* src/QueryDisplay.cs: new widget to dislay and/or change the
+	active search.
+	
 	* src/MainWindow.cs: only set the photo_zoom if the value differs
 	to preserve the Fit case.
 
