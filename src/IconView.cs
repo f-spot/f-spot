@@ -35,8 +35,6 @@ public class IconView : Gtk.Layout {
 
 		set {
 			if (thumbnail_width != value) {
-				scroll = true;
-				scroll_value = Vadjustment.Value / Vadjustment.Upper;
 				thumbnail_width = value;
 				QueueResize ();
 			}
@@ -555,11 +553,12 @@ public class IconView : Gtk.Layout {
 		if (num_thumbnails % cells_per_row != 0)
 			num_rows ++;
 
-		SetSize ((uint) Allocation.Width, (uint) (num_rows * cell_height + 2 * BORDER_SIZE));
+		int height = num_rows * cell_height + 2 * BORDER_SIZE;
+		SetSize ((uint) Allocation.Width, (uint) height);
 
-		if (scroll) {
+		if (this.scroll) {
 			Vadjustment.Value = Vadjustment.Upper * scroll_value;
-			scroll = false;
+			this.scroll = false;
 		}
 		Vadjustment.StepIncrement = cell_height;
 		Vadjustment.Change ();
@@ -652,12 +651,22 @@ public class IconView : Gtk.Layout {
 
 			if (region.Width != thumbnail.Width && region.Height != thumbnail.Height) {
 				if (region.Width < thumbnail.Width && region.Height < thumbnail.Height) {
+					/*
 					temp_thumbnail = PixbufUtils.ScaleDown (thumbnail, 
 										region.Width, region.Height);
+					*/
+					temp_thumbnail = thumbnail.ScaleSimple (region.Width, region.Height,
+										InterpType.Bilinear);
+									      
 					
-					if (entry.Reload && expansion == 0)
-						cache.Update (entry, PixbufUtils.ShallowCopy (temp_thumbnail));
-					
+					lock (entry) {
+						if (entry.Reload && expansion == 0) {
+							if (entry.Path != null) {
+								entry.Pixbuf = PixbufUtils.ShallowCopy (temp_thumbnail);
+								entry.Reload = true;
+							}
+						}
+					}
 				} else {
 					temp_thumbnail = thumbnail.ScaleSimple (region.Width, region.Height, 
 										InterpType.Bilinear);
@@ -1099,6 +1108,8 @@ public class IconView : Gtk.Layout {
 
 	protected override void OnSizeAllocated (Gdk.Rectangle allocation)
 	{
+		scroll = true;
+		scroll_value = Vadjustment.Value / Vadjustment.Upper;
 		base.OnSizeAllocated (allocation);
 		UpdateLayout ();
 	}
