@@ -79,7 +79,7 @@ public class MainWindow {
 
 	Gtk.ToggleButton browse_button;
 	Gtk.ToggleButton view_button;
-	
+
 	InfoBox info_box;
 	FSpot.InfoDisplay info_display;
 	QueryView icon_view;
@@ -1432,11 +1432,11 @@ public class MainWindow {
 	{
 		switch (view_mode) {
 		case ModeType.PhotoView:
-			if (photo_view.Zoom != zoom_scale.Value) 
+			if (System.Math.Abs (photo_view.Zoom - zoom_scale.Value) > System.Double.Epsilon) 
 				photo_view.Zoom = System.Math.Max (0.1, zoom_scale.Value);
 			break;
 		case ModeType.IconView:
-			icon_view.ThumbnailWidth = (int)(System.Math.Max (10, zoom_scale.Value * 256));
+			icon_view.ThumbnailWidth = (int)(System.Math.Max (15, zoom_scale.Value * 256));
 			break;
 		}
 	}
