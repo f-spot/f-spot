@@ -22,6 +22,10 @@ public class IconView : Gtk.Layout {
 	// Public properties.
 	FSpot.PixbufCache cache;
 
+	/* preserve the scroll postion when possible */
+	private bool scroll;
+	private double scroll_value;
+
 	/* Width of the thumbnails. */
 	protected int thumbnail_width = 128;
 	public int ThumbnailWidth {
@@ -31,6 +35,8 @@ public class IconView : Gtk.Layout {
 
 		set {
 			if (thumbnail_width != value) {
+				scroll = true;
+				scroll_value = Vadjustment.Value / Vadjustment.Upper;
 				thumbnail_width = value;
 				QueueResize ();
 			}
@@ -551,6 +557,10 @@ public class IconView : Gtk.Layout {
 
 		SetSize ((uint) Allocation.Width, (uint) (num_rows * cell_height + 2 * BORDER_SIZE));
 
+		if (scroll) {
+			Vadjustment.Value = Vadjustment.Upper * scroll_value;
+			scroll = false;
+		}
 		Vadjustment.StepIncrement = cell_height;
 		Vadjustment.Change ();
 	}
