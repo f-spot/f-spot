@@ -1,5 +1,7 @@
 2005-06-18  Larry Ewing  <lewing@novell.com>
 
+	* src/ImageView.cs: only set the zoom if it differs enough.
+
 	* src/IconView.cs: change the thumbnail reloading logic, make sure
 	to always invalidate thumbnails we need to scale.
 

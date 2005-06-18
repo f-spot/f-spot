@@ -108,7 +108,14 @@ public class ImageView : Layout {
 
 	public void SetZoom (double zoom_x, double zoom_y)
 	{
-		image_view_set_zoom (Handle, zoom_x, zoom_y, false, 0, 0);
+		double old_zoom_x, old_zoom_y;
+
+		GetZoom (out old_zoom_x, out old_zoom_y);
+		if (System.Math.Abs (old_zoom_y - zoom_y) > System.Double.Epsilon
+		    || System.Math.Abs (old_zoom_x - zoom_x) > System.Double.Epsilon) {
+			//System.Console.WriteLine ("{0} {1} zooming", zoom_x, zoom_y);
+			image_view_set_zoom (Handle, zoom_x, zoom_y, false, 0, 0);
+		}
 	}
 
 	public void SetZoom (double zoom_x, double zoom_y, int anchor_x, int anchor_y)
