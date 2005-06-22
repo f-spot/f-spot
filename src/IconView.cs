@@ -556,7 +556,9 @@ public class IconView : Gtk.Layout {
 
 		cell_width = ThumbnailWidth + 2 * cell_border_width;
 		cell_height = ThumbnailHeight + 2 * cell_border_width;
-
+		cells_per_row = Math.Max ((int) (available_width / cell_width), 1);
+		cell_width += (available_width - cells_per_row * cell_width) / cells_per_row;
+		
 		if (DisplayTags)
 			cell_height += tag_icon_size + tag_icon_vspacing;
 		
@@ -565,8 +567,6 @@ public class IconView : Gtk.Layout {
 										  Pango.Language.FromString ("en_US"));
 			cell_height += PangoPixels (metrics.Ascent + metrics.Descent);
 		}
-
-		cells_per_row = Math.Max ((int) (available_width / cell_width), 1);
 
 		int num_thumbnails;
 		if (collection != null)
@@ -598,8 +598,6 @@ public class IconView : Gtk.Layout {
 			BinWindow.MoveResize (-x, -y, (int)(Hadjustment.Upper), (int)(Vadjustment.Upper));
 			Vadjustment.Value = y;
 			Hadjustment.Value = x;
-			Vadjustment.ChangeValue ();
-			Hadjustment.ChangeValue ();
 		}
 
 		if (scroll)
@@ -608,6 +606,8 @@ public class IconView : Gtk.Layout {
 		if (this.Width != Allocation.Width || this.Height != Allocation.Height)
 			SetSize ((uint)Allocation.Width, (uint)height);
 
+		Vadjustment.ChangeValue ();
+		Hadjustment.ChangeValue ();
 		BinWindow.ThawUpdates ();
 		BinWindow.ProcessUpdates (true);
 	}
@@ -886,8 +886,6 @@ public class IconView : Gtk.Layout {
 			
 		int row = cell_num / cells_per_row;
 		int col = cell_num % cells_per_row;
-
-		//x = col * cell_width + BORDER_SIZE + (Allocation.Width - 2 * BORDER_SIZE - cells_per_row * cell_width) * col /cells_per_row;
 
 		x = col * cell_width + BORDER_SIZE;
 		y = row * cell_height + BORDER_SIZE;
