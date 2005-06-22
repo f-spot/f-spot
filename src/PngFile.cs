@@ -55,11 +55,6 @@ namespace FSpot.Png {
 				byte [] inflated = Chunk.Inflate (data, i, data.Length - i);
 				text = TextChunk.Latin1.GetString (inflated, 0, inflated.Length);
 			}
-
-			new public static Chunk Create (string name, byte [] data)
-			{
-				return new ZtxtChunk (name, data);
-			}
 		}
 
 		public class TextChunk : Chunk {
@@ -77,11 +72,6 @@ namespace FSpot.Png {
 				keyword = GetString (ref i);
 				i++;
 				text = TextChunk.Latin1.GetString (data, i, data.Length - i);
-			}
-
-			public static Chunk Create (string name, byte [] data)
-			{
-				return new TextChunk (name, data);
 			}
 
 			public string Keyword {
@@ -113,11 +103,6 @@ namespace FSpot.Png {
 					throw new System.Exception ("Unknown Compression type");
 
 				profile = Chunk.Inflate (data, i, data.Length - i);
-			}
-
-			new public static Chunk Create (string name, byte [] data)
-			{
-				return new IccpChunk (name, data);
 			}
 
 			public string Keyword {
@@ -157,11 +142,6 @@ namespace FSpot.Png {
 			}
 
 			public ItxtChunk (string name, byte [] data) : base (name, data) {}
-
-			new protected static Chunk Create (string name, byte [] data)
-			{
-				return new ItxtChunk ("iTXt", data);
-			}
 		}
 
 		public class TimeChunk : Chunk {
@@ -188,12 +168,6 @@ namespace FSpot.Png {
 			}
 			
 			public TimeChunk (string name, byte [] data) : base (name, data) {}
-
-			public static Chunk Create (string name, byte [] data)
-			{
-				TimeChunk chunk = new TimeChunk (name, data);
-				return chunk;
-			}
 		}
 
 		public enum ColorType : byte {
@@ -293,16 +267,12 @@ namespace FSpot.Png {
 
 				return length;
 			}
-
-			new public static Chunk Create (string name, byte [] data)
-			{
-				return new IhdrChunk (name, data);
-			}
 		}
 
 		public class Chunk {
 			public string Name;
 			protected byte [] data;
+			protected static System.Collections.Hashtable name_table;
 
 			public byte [] Data {
 				get {
@@ -315,13 +285,15 @@ namespace FSpot.Png {
 			
 			static Chunk () 
 			{
-				name_table ["iTXt"] = new ChunkGenerator (ItxtChunk.Create);
-				name_table ["tXMP"] = new ChunkGenerator (TextChunk.Create);
-				name_table ["tEXt"] = new ChunkGenerator (TextChunk.Create);
-				name_table ["zTXt"] = new ChunkGenerator (ZtxtChunk.Create);
-				name_table ["tIME"] = new ChunkGenerator (TimeChunk.Create);
-				name_table ["iCCP"] = new ChunkGenerator (IccpChunk.Create);
-				name_table ["IHDR"] = new ChunkGenerator (IhdrChunk.Create);
+
+				name_table = new System.Collections.Hashtable ();
+				name_table ["iTXt"] = typeof (ItxtChunk);
+				name_table ["tXMP"] = typeof (TextChunk);
+				name_table ["tEXt"] = typeof (TextChunk);
+				name_table ["zTXt"] = typeof (ZtxtChunk);
+				name_table ["tIME"] = typeof (TimeChunk);
+				name_table ["iCCP"] = typeof (IccpChunk);
+				name_table ["IHDR"] = typeof (IhdrChunk);
 			}
 			
 			public Chunk (string name, byte [] data) 
@@ -372,14 +344,15 @@ namespace FSpot.Png {
 
 			public static Chunk Generate (string name, byte [] data)
 			{
-				ChunkGenerator gen = (ChunkGenerator) name_table [name];
-				
-				if (gen != null) {
-					//System.Console.WriteLine ("found generator");
-					return gen (name, data);
-				} else {
-					return new Chunk (name, data);
-				}
+				System.Type t = (System.Type) name_table [name];
+
+				Chunk chunk;
+				if (t != null)
+					chunk = (Chunk) System.Activator.CreateInstance (t, new object[] {name, data});
+				else
+				        chunk = new Chunk (name, data);
+
+				return chunk;
 			}
 
 			public static byte [] Inflate (byte [] input, int start, int length)
@@ -402,8 +375,6 @@ namespace FSpot.Png {
 				return result;
 			}
 
-			public delegate Chunk ChunkGenerator (string name, byte [] data);
-			protected static System.Collections.Hashtable name_table = new System.Collections.Hashtable ();
 		}
 
 		public class ChunkInflater {
@@ -761,7 +732,14 @@ namespace FSpot.Png {
 			}
 			return pixbuf;
 		}
-	
+
+		/*
+		public override Gdk.Pixbuf Load ()
+		{
+			return this.GetPixbuf ();
+		}
+		*/
+
 	        void Load (System.IO.Stream stream)
 		{
 			byte [] heading = new byte [8];
@@ -796,15 +774,19 @@ namespace FSpot.Png {
 				//System.Console.Write ("read one {0} {1}", chunk, chunk.Name);
 				chunk_list.Add (chunk);
 
+				/*
 				if (chunk is TextChunk) {
 					TextChunk text = (TextChunk) chunk;
-					//System.Console.Write (" Text Chunk {0} {1}", 
-					//		      text.Keyword, text.Text);
+					System.Console.Write (" Text Chunk {0} {1}", 
+							      text.Keyword, text.Text);
 				}
+				*/
 
+				/*
 				TimeChunk time = chunk as TimeChunk;
-				//if (time != null)
-				//	System.Console.Write(" Time {0}", time.Time);
+				if (time != null)
+					System.Console.Write(" Time {0}", time.Time);
+				*/
 
 				//System.Console.WriteLine ("");
 				
