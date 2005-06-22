@@ -367,6 +367,8 @@ public class PhotoView : EventBox {
 		CommitPendingChanges ();
 	}
 
+	Gtk.Tooltips tips = new Gtk.Tooltips ();
+
 	public PhotoView (FSpot.PhotoQuery query, PhotoStore photo_store)
 		: base ()
 	{
@@ -460,9 +462,15 @@ public class PhotoView : EventBox {
 		display_next_button.Clicked += new EventHandler (HandleDisplayNextButtonClicked);
 		toolbar_hbox.PackStart (display_next_button, false, true, 0);
 
+		tips.Enable ();
+
+
 		UpdateButtonSensitivity ();
 
 		vbox.ShowAll ();
+		tips.SetTip (crop_button, Mono.Posix.Catalog.GetString ("Crop image to selected area"), "so is this one");
+		tips.SetTip (redeye_button, Mono.Posix.Catalog.GetString ("Remove redeye from selected area"), "this is one too");
+		tips.SetTip (color_button, Mono.Posix.Catalog.GetString ("Adjust the image colors"), "This is a tip");
 	}
 
 }
