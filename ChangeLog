@@ -1,5 +1,14 @@
 2005-06-22  Larry Ewing  <lewing@novell.com>
 
+	* libeog/image-view.c: fix the redisplay code.
+
+i2005-06-22  Larry Ewing  <lewing@novell.com>
+
+	* src/IconView.cs: monkey with redraw code when scaling or
+	changing size.
+
+	* src/PhotoView.cs: add some tooltips.
+
 	* src/ImageFile.cs: make dng use the dng loader.
 
 	* src/Tiff.cs: make dng do something sane.

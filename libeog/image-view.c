@@ -680,8 +680,9 @@ paint_rectangle (ImageView *view, ArtIRect *rect, GdkInterpType interp_type)
 
 	/* For all other cases, create a temporary pixbuf */
 
-	tmp = gdk_pixbuf_new (GDK_COLORSPACE_RGB, gdk_pixbuf_get_has_alpha (priv->pixbuf), 8, d.x1 - d.x0, d.y1 - d.y0);
-	gdk_pixbuf_fill (tmp, 0x00000000);
+	tmp = gdk_pixbuf_new (GDK_COLORSPACE_RGB, FALSE , 8, d.x1 - d.x0, d.y1 - d.y0);
+	if (gdk_pixbuf_get_has_alpha (priv->pixbuf))
+		gdk_pixbuf_fill (tmp, 0x00000000);
 	
 	if (!tmp) {
 		g_message ("paint_rectangle(): Could not allocate temporary pixbuf of "
@@ -748,7 +749,7 @@ paint_rectangle (ImageView *view, ArtIRect *rect, GdkInterpType interp_type)
 
 	/* Draw! */
 
-#if 0
+#if 1
 	gdk_pixbuf_composite_color (priv->pixbuf,
 				    tmp,
 				    0, 0,
