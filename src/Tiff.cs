@@ -572,7 +572,7 @@ namespace FSpot.Tiff {
 		}
 	}
 	
-	public class DNFPrivateDirectory {
+	public class DNGPrivateDirectory {
 		
 
 	}
@@ -1060,9 +1060,9 @@ namespace FSpot.Tiff {
 		public TiffFile (string path) : base (path)
 		{
 			try {
-				System.IO.Stream input = System.IO.File.OpenRead (path);
-				this.Header = new Header (input);
-				input.Close ();
+				using (System.IO.Stream input = System.IO.File.OpenRead (path)) {
+					this.Header = new Header (input);
+				}
 				
 				ImageDirectory directory = Header.Directory;
 				while (directory != null) {
@@ -1137,7 +1137,21 @@ namespace FSpot.Tiff {
 			}
 		}
 	}
-		
+
+	public class DngFile : TiffFile {
+		public DngFile (string path) : base (path) {}
+
+		public override Gdk.Pixbuf Load (int width, int height)
+		{
+			return PixbufUtils.ScaleToMaxSize (this.Load (), width, height);
+		}
+
+		public override Gdk.Pixbuf Load ()
+		{
+			return DCRawFile.Load (this.path, null);
+		}
+	}
+	
 	public class NefFile : TiffFile, IThumbnailContainer {
 		public NefFile (string path) : base (path) {}
 
@@ -1172,11 +1186,9 @@ namespace FSpot.Tiff {
 				pixbuf = null;
 			}
 
-			if (pixbuf == null) {
-				System.Console.WriteLine ("got here");
-				pixbuf = DCRawFile.Load (this.Path, null);
-			}
-
+			if (pixbuf == null)
+				return DCRawFile.Load (this.Path, null);
+			
 			return TransformAndDispose (pixbuf);
 		}
 

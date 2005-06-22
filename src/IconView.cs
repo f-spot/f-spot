@@ -182,12 +182,16 @@ public class IconView : Gtk.Layout {
 		collection.Changed += HandleChanged;
 		collection.ItemChanged += HandleItemChanged;
 
-		selection.Changed += HandleSelectionChanged;
+		selection.DetailedChanged += HandleSelectionChanged;
 	}
 
-	private void HandleSelectionChanged (FSpot.IBrowsableCollection collection)
+	private void HandleSelectionChanged (FSpot.IBrowsableCollection collection, int [] ids)
 	{
-		QueueDraw ();
+		if (ids == null)
+			QueueDraw ();
+		else 
+			foreach (int id in ids)
+				InvalidateCell (id);
 	}
 
 	private void HandleChanged (FSpot.IBrowsableCollection sender)
@@ -260,6 +264,9 @@ public class IconView : Gtk.Layout {
 			if (this.Changed != null)
 				Changed (this);
 
+			if (this.DetailedChanged != null)
+				DetailedChanged (this, null);
+
 		}
 
 		private void HandleParentItemChanged (IBrowsableCollection collection, int parent_index)
@@ -314,8 +321,9 @@ public class IconView : Gtk.Layout {
 
 		public void Clear (bool update)
 		{
+			int [] ids = Ids;
 			selected_cells.Clear ();
-			SignalChange ();
+			SignalChange (ids);
 		}
 
 		public void Add (IBrowsableItem item)
@@ -360,7 +368,7 @@ public class IconView : Gtk.Layout {
 			selected_cells [item] = num;
 
 			if (notify)
-				SignalChange ();
+				SignalChange (new int [] {num});
 		}
 
 		public void Add (int start, int end)
@@ -370,13 +378,16 @@ public class IconView : Gtk.Layout {
 			
 			int current = Math.Min (start, end);
 			int final = Math.Max (start, end);				
-			
-			while (current <= final) {
+			int count = final - current + 1;
+			int [] ids = new int [count];
+
+			for (int i = 0; i < count; i++) {
 				this.Add (current, false);
+				ids [i] = current;
 				current++;
 			}
 			
-			SignalChange ();
+			SignalChange (ids);
 		}
 
 		public int IndexOf (int parent_index)
@@ -404,11 +415,15 @@ public class IconView : Gtk.Layout {
 		public void Remove (IBrowsableItem item)
 		{
 			selected_cells.Remove (item);
-			SignalChange ();
+			int parent_index = (int) selected_cells [item];
+			SignalChange (new int [] {parent_index});
 		}
 
 		public event IBrowsableCollectionChangedHandler Changed;
 		public event IBrowsableCollectionItemChangedHandler ItemChanged;
+
+		public delegate void DetailedCollectionChanged (IBrowsableCollection collection, int [] ids);
+		public event DetailedCollectionChanged DetailedChanged;
 		
 		private void ClearCached ()
 		{
@@ -416,12 +431,17 @@ public class IconView : Gtk.Layout {
 			items = null;
 		}
 
-		private void SignalChange () 
+		private void SignalChange (int [] ids) 
 		{
 			ClearCached ();
 			old = this.Items;
+			
+			
 			if (Changed != null)
 				Changed (this);
+			
+			if (DetailedChanged!= null)
+				DetailedChanged (this, ids);
 		}
 	}
 	
@@ -527,6 +547,11 @@ public class IconView : Gtk.Layout {
 	
 	protected virtual void UpdateLayout ()
 	{
+		UpdateLayout (Allocation);
+	}
+
+	protected virtual void UpdateLayout (Gdk.Rectangle Allocation)
+	{
 		int available_width = Allocation.Width - 2 * BORDER_SIZE;
 
 		cell_width = ThumbnailWidth + 2 * cell_border_width;
@@ -554,14 +579,37 @@ public class IconView : Gtk.Layout {
 			num_rows ++;
 
 		int height = num_rows * cell_height + 2 * BORDER_SIZE;
-		SetSize ((uint) Allocation.Width, (uint) height);
 
-		if (this.scroll) {
-			Vadjustment.Value = Vadjustment.Upper * scroll_value;
-			this.scroll = false;
-		}
 		Vadjustment.StepIncrement = cell_height;
-		Vadjustment.Change ();
+		int x = (int)(Hadjustment.Value);
+		int y = (int)(height * scroll_value);
+		SetSize (x, y, (int) Allocation.Width, (int) height);
+	}
+
+	void SetSize (int x, int y, int width, int height)
+	{
+		Hadjustment.Upper = System.Math.Max (Allocation.Width, width);
+		Vadjustment.Upper = System.Math.Max (Allocation.Height, height);
+		bool xchange = (int)(Hadjustment.Value) != x;
+		bool ychange = (int)(Vadjustment.Value) != y;
+
+		BinWindow.FreezeUpdates ();
+		if (xchange || ychange) {
+			BinWindow.MoveResize (-x, -y, (int)(Hadjustment.Upper), (int)(Vadjustment.Upper));
+			Vadjustment.Value = y;
+			Hadjustment.Value = x;
+			Vadjustment.ChangeValue ();
+			Hadjustment.ChangeValue ();
+		}
+
+		if (scroll)
+			scroll = false;
+
+		if (this.Width != Allocation.Width || this.Height != Allocation.Height)
+			SetSize ((uint)Allocation.Width, (uint)height);
+
+		BinWindow.ThawUpdates ();
+		BinWindow.ProcessUpdates (true);
 	}
 
 	static Gdk.Rectangle Expand (Gdk.Rectangle src, int width)
@@ -839,6 +887,8 @@ public class IconView : Gtk.Layout {
 		int row = cell_num / cells_per_row;
 		int col = cell_num % cells_per_row;
 
+		//x = col * cell_width + BORDER_SIZE + (Allocation.Width - 2 * BORDER_SIZE - cells_per_row * cell_width) * col /cells_per_row;
+
 		x = col * cell_width + BORDER_SIZE;
 		y = row * cell_height + BORDER_SIZE;
 	}
@@ -1038,6 +1088,7 @@ public class IconView : Gtk.Layout {
 
 	// Event handlers.
 
+	[GLib.ConnectBefore]
 	private void HandleAdjustmentValueChanged (object sender, EventArgs args)
 	{
 		Scroll ();
@@ -1108,10 +1159,9 @@ public class IconView : Gtk.Layout {
 
 	protected override void OnSizeAllocated (Gdk.Rectangle allocation)
 	{
-		scroll = true;
-		scroll_value = Vadjustment.Value / Vadjustment.Upper;
+		scroll_value = (Vadjustment.Value)/ (Vadjustment.Upper);
+		UpdateLayout (allocation);
 		base.OnSizeAllocated (allocation);
-		UpdateLayout ();
 	}
 
 	protected override bool OnExposeEvent (Gdk.EventExpose args)
