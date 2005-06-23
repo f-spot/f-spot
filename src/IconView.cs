@@ -588,14 +588,24 @@ public class IconView : Gtk.Layout {
 
 	void SetSize (int x, int y, int width, int height)
 	{
+		bool xchange = false; 
+		bool ychange = false; 
+
 		Hadjustment.Upper = System.Math.Max (Allocation.Width, width);
 		Vadjustment.Upper = System.Math.Max (Allocation.Height, height);
-		bool xchange = (int)(Hadjustment.Value) != x;
-		bool ychange = (int)(Vadjustment.Value) != y;
 
-		BinWindow.FreezeUpdates ();
+		if (scroll) {
+			xchange = (int)(Hadjustment.Value) != x;
+			ychange = (int)(Vadjustment.Value) != y;
+			scroll = false;
+		}
+
+		if (IsRealized) 
+			BinWindow.FreezeUpdates ();
+
 		if (xchange || ychange) {
-			BinWindow.MoveResize (-x, -y, (int)(Hadjustment.Upper), (int)(Vadjustment.Upper));
+			if (IsRealized) 
+				BinWindow.MoveResize (-x, -y, (int)(Hadjustment.Upper), (int)(Vadjustment.Upper));
 			Vadjustment.Value = y;
 			Hadjustment.Value = x;
 		}
@@ -610,8 +620,11 @@ public class IconView : Gtk.Layout {
 			Vadjustment.ChangeValue ();
 			Hadjustment.ChangeValue ();
 		}
-		BinWindow.ThawUpdates ();
-		BinWindow.ProcessUpdates (true);
+		
+		if (IsRealized) {
+			BinWindow.ThawUpdates ();
+			BinWindow.ProcessUpdates (true);
+		}
 	}
 
 	static Gdk.Rectangle Expand (Gdk.Rectangle src, int width)
@@ -1162,6 +1175,7 @@ public class IconView : Gtk.Layout {
 	protected override void OnSizeAllocated (Gdk.Rectangle allocation)
 	{
 		scroll_value = (Vadjustment.Value)/ (Vadjustment.Upper);
+		scroll = true;
 		UpdateLayout (allocation);
 		base.OnSizeAllocated (allocation);
 	}

@@ -1,3 +1,7 @@
+2005-06-23  Larry Ewing  <lewing@novell.com>
+
+	* src/IconView.cs: only mess with the window if it is realized.
+
 2005-06-22  Larry Ewing  <lewing@novell.com>
 
 	* src/IconView.cs: limit the minimum size to avoid nastiness.
