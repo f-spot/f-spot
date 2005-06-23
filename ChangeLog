@@ -1,5 +1,8 @@
 2005-06-22  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: limit the minimum size to avoid nastiness.
+	Tweak the scrolling code a little more.
+
 	* src/IconView.cs: expanded the cell width to devide up the space
 	evenly.
 

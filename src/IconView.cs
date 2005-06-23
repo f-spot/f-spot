@@ -605,9 +605,11 @@ public class IconView : Gtk.Layout {
 
 		if (this.Width != Allocation.Width || this.Height != Allocation.Height)
 			SetSize ((uint)Allocation.Width, (uint)height);
-
-		Vadjustment.ChangeValue ();
-		Hadjustment.ChangeValue ();
+		
+		if (xchange || ychange) {
+			Vadjustment.ChangeValue ();
+			Hadjustment.ChangeValue ();
+		}
 		BinWindow.ThawUpdates ();
 		BinWindow.ProcessUpdates (true);
 	}
@@ -696,6 +698,8 @@ public class IconView : Gtk.Layout {
 
 			region = Expand (region, expansion);
 			Pixbuf temp_thumbnail;			
+			region.Width = System.Math.Max (1, region.Width);
+			region.Height = System.Math.Max (1, region.Height); 
 
 			if (region.Width != thumbnail.Width && region.Height != thumbnail.Height) {
 				if (region.Width < thumbnail.Width && region.Height < thumbnail.Height) {
