@@ -1103,7 +1103,7 @@ namespace FSpot.Tiff {
 		public System.IO.Stream LookupJpegSubstream (ImageDirectory directory)
 		{
 			uint offset = directory.Lookup (TagId.JPEGInterchangeFormat).ValueAsLong [0];
-			uint length = directory.Lookup (TagId.JPEGInterchangeFormatLength).ValueAsLong [0];
+			//uint length = directory.Lookup (TagId.JPEGInterchangeFormatLength).ValueAsLong [0];
 			
 			System.IO.Stream file = System.IO.File.OpenRead (this.path);
 			file.Position = offset;
