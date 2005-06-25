@@ -10957,15 +10957,6 @@ Photo Details</property>
 		<widget class="GtkMenu" id="file2_menu">
 
 		  <child>
-		    <widget class="GtkImageMenuItem" id="new2">
-		      <property name="visible">True</property>
-		      <property name="stock_item">GNOMEUIINFO_MENU_NEW_ITEM</property>
-		      <property name="label" translatable="yes">_New</property>
-		      <property name="use_underline">True</property>
-		    </widget>
-		  </child>
-
-		  <child>
 		    <widget class="GtkImageMenuItem" id="open1">
 		      <property name="visible">True</property>
 		      <property name="stock_item">GNOMEUIINFO_MENU_OPEN_ITEM</property>
