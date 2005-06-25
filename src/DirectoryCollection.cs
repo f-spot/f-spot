@@ -52,6 +52,12 @@ namespace FSpot {
 			return System.Array.IndexOf (items, item);
 		}
 
+		public void MarkChanged (int num)
+		{
+			if (this.ItemChanged != null)
+				this.ItemChanged (this, num);
+		}
+
 		void LoadItems () {
 			// FIXME this should probably actually throw and exception
 			// if the directory doesn't exist.

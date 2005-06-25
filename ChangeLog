@@ -1,5 +1,7 @@
 2005-06-25  Larry Ewing  <lewing@novell.com>
 
+	* src/DirectoryCollection.cs: add MarkChanged call for now.
+
 	* src/RotateCommand.cs: make rotate work for IBrowsableItems.
 
 	* src/PhotoImageView.cs: start converting everything to use the
