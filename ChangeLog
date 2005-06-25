@@ -1,5 +1,11 @@
 2005-06-25  Larry Ewing  <lewing@novell.com>
 
+	* src/SingleView.cs: add new file for the out of db view mode.
+
+	* src/Tiff.cs: silence warning.
+
+	* src/PhotoImageView.cs: remove Photo property, use Index instead.
+
 	* src/PhotoPopup.cs: add a quick hack to work when MainWindow
 	doesn't exist.
 
