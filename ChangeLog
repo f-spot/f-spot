@@ -1,5 +1,10 @@
 2005-06-25  Larry Ewing  <lewing@novell.com>
 
+	* src/RotateCommand.cs: make rotate work for IBrowsableItems.
+
+	* src/PhotoImageView.cs: start converting everything to use the
+	IBrowsable interface.
+
 	* src/DirectoryCollection.cs: clean up the collection code a
 	bit. Delay imagefile creation until it is needed.  Filter on a few
 	more types.
