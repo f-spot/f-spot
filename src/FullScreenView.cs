@@ -61,13 +61,13 @@ namespace FSpot {
 		private Gtk.Button forward_button;
 		private Gtk.Button back_button;
 		
-		public FullScreenView (PhotoQuery query) : base ("Full Screen Mode")
+		public FullScreenView (IBrowsableCollection collection) : base ("Full Screen Mode")
 		{
 			try {
 				//scroll = new Gtk.ScrolledWindow (null, null);
 				
 				scroll = new ScrolledView ();
-				view = new PhotoImageView (query);
+				view = new PhotoImageView (collection);
 				view.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
 				view.PointerMode = ImageView.PointerModeType.Scroll;
 				this.Add (scroll);

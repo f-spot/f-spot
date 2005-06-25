@@ -1,5 +1,9 @@
 2005-06-25  Larry Ewing  <lewing@novell.com>
 
+	* src/FullScreenView.cs: Use IBrowsableItem.
+
+	* src/SingleView.cs: hook up the fullscreen menu item.
+
 	* src/Makefile.am (F_SPOT_CSDISTFILES): add SingleView to the build.
 
 	* src/f-spot.glade: add the new view window.

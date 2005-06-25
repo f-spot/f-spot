@@ -9,10 +9,12 @@ namespace FSpot {
 		protected Glade.XML xml;
 		private Gtk.Window window;
 		PhotoImageView image_view;
-
+		IconView directory_view;
 		string path;
 
 		DirectoryCollection collection;
+		
+		FullScreenView fsview;
 
 		public SingleView () : this (FSpot.Global.HomeDirectory) {}
 
@@ -33,7 +35,7 @@ namespace FSpot {
 
 			collection = new DirectoryCollection (path);
 			
-			IconView directory_view = new IconView (collection);
+			directory_view = new IconView (collection);
 			directory_view.Selection.Changed += HandleSelectionChanged;
 			directory_view.DisplayTags = false;
 			directory_view.DisplayDates = false;
@@ -110,9 +112,24 @@ namespace FSpot {
 
 		private void HandleViewFullscreen (object sender, System.EventArgs args)
 		{
+			if (fsview != null)
+				fsview.Destroy ();
 
+			fsview = new FSpot.FullScreenView (collection);
+			fsview.Destroyed += HandleFullScreenViewDestroy;
+
+			fsview.View.Item.Index = image_view.Item.Index;
+			fsview.Show ();
 		}
 		
+		private void HandleFullScreenViewDestroy (object sender, System.EventArgs args)
+		{
+			directory_view.Selection.Clear ();
+			if (fsview.View.Item.IsValid) 
+				directory_view.Selection.Add (fsview.View.Item.Index);
+			fsview = null;
+		}
+
 		private void HandleFileClose (object sender, System.EventArgs args)
 		{
 			this.Window.Destroy ();
