@@ -1,5 +1,7 @@
 2005-06-25  Larry Ewing  <lewing@novell.com>
 
+	* src/Makefile.am (F_SPOT_CSDISTFILES): add SingleView to the build.
+
 	* src/f-spot.glade: add the new view window.
 
 	* src/main.cs: add the --view command line option.
