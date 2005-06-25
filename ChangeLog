@@ -1,5 +1,13 @@
 2005-06-25  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoPopup.cs: add a quick hack to work when MainWindow
+	doesn't exist.
+
+	* src/QueryView.cs: fix some formatting, remove unused variables.
+
+	* src/SlideView.cs: move to IBrowsableItem move the slideview to
+	the FSpot namespace.
+
 	* src/PhotoLoader.cs: use IBrowsableItem here.
 
 	* src/DirectoryCollection.cs: add MarkChanged call for now.

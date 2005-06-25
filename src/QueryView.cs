@@ -25,7 +25,7 @@ public class TrayView : IconView {
 		int available_width = Allocation.Width - 2 * BORDER_SIZE;
 		cells_per_row = System.Math.Max (available_width / 256, 1);
 		int width = 0;
-		int height = 0;
+		//int height = 0;
 		
 		do {
 			cell_width = System.Math.Min (256, available_width / cells_per_row);
@@ -37,11 +37,9 @@ public class TrayView : IconView {
 			cells_per_row ++;
 		} while (total_rows > Allocation.Height / cell_height);
 		cells_per_row --;
-					
 
 
-		if (width != ThumbnailWidth)
-		{
+		if (width != ThumbnailWidth) {
 			thumbnail_width = width;
 		}
 

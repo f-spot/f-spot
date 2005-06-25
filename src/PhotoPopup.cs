@@ -18,6 +18,10 @@ using Gdk;
 public class PhotoPopup {
 	public void Activate (Gdk.EventButton eb) 
 	{
+		// FIXME this is a hack to handle the --view case for the time being.
+		if (MainWindow.Toplevel == null)
+			return;
+
 		int count = MainWindow.Toplevel.SelectedIds ().Length;
 		
 		Gtk.Menu popup_menu = new Gtk.Menu ();
