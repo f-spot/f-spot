@@ -61,14 +61,26 @@ namespace FSpot {
 				System.IO.DirectoryInfo info = new System.IO.DirectoryInfo (path);
 				System.IO.FileInfo [] files = info.GetFiles ();
 				foreach (System.IO.FileInfo f in files) {
-					if (System.IO.Path.GetExtension (f.FullName).ToLower () == ".png") {
+					switch (System.IO.Path.GetExtension (f.FullName)) {
+					case ".jpeg":
+					case ".jpg":
+					case ".png":
+					case ".cr2":
+					case ".nef":
+					case ".tiff":
+					case ".tif":
+					case ".dng":
+					case ".crw":
+					case ".ppm":
 						System.Console.WriteLine (f.FullName);
-					
 						images.Add (new FileBrowsableItem (f.FullName));
+						break;
 					}
 				}
 				
 				items = images.ToArray (typeof (FileBrowsableItem)) as FileBrowsableItem [];
+			} else if (System.IO.File.Exists (path)) {
+				items = new FileBrowsableItem [] { new FileBrowsableItem (path) };
 			} else {
 				items = new FileBrowsableItem [0];
 			}
@@ -78,11 +90,25 @@ namespace FSpot {
 
 	public class FileBrowsableItem : IBrowsableItem {
 		ImageFile img;
+		string path;
+		bool attempted;
+
 		public FileBrowsableItem (string path)
 		{
-			this.img = ImageFile.Create (path);
+			this.path = path;
 		}
 		
+		protected ImageFile Image {
+			get {
+				if (!attempted) {
+					img = ImageFile.Create (path);
+					attempted = true;
+				}
+
+				return img;
+			}
+		}
+
 		public Tag [] Tags {
 			get {
 				return null;
@@ -91,20 +117,20 @@ namespace FSpot {
 
 		public System.DateTime Time {
 			get {
-				return img.Date ();
+				return Image.Date ();
 			}
 		}
 		
 		public System.Uri DefaultVersionUri {
 			get {
-				return UriList.PathToFileUri (img.Path);
+				return UriList.PathToFileUri (path);
 			}
 		}
 
 		public string Description {
 			get {
-				if (img is JpegFile) 
-					return ((JpegFile)img).Description;
+				if (Image is JpegFile) 
+					return ((JpegFile)Image).Description;
 				else
 					return null;
 			}
@@ -112,7 +138,7 @@ namespace FSpot {
 
 		public string Name {
 			get {
-				return System.IO.Path.GetFileName (img.Path);
+				return System.IO.Path.GetFileName (Image.Path);
 			}
 		}
 	}

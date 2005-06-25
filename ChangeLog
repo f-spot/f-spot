@@ -1,3 +1,9 @@
+2005-06-25  Larry Ewing  <lewing@novell.com>
+
+	* src/DirectoryCollection.cs: clean up the collection code a
+	bit. Delay imagefile creation until it is needed.  Filter on a few
+	more types.
+
 2005-06-23  Larry Ewing  <lewing@novell.com>
 
 	* src/IconView.cs: only mess with the window if it is realized.
