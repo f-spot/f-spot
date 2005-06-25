@@ -21,11 +21,12 @@ namespace FSpot {
 			return pixbuf;
 		}
 
-		static public Gdk.Pixbuf LoadAtMaxSize (Photo photo, int width, int height) 
+		static public Gdk.Pixbuf LoadAtMaxSize (IBrowsableItem item, int width, int height) 
 		{
-			ImageFile img = ImageFile.Create (photo.DefaultVersionPath);
+			string path = item.DefaultVersionUri.LocalPath;
+			ImageFile img = ImageFile.Create (path);
 			Gdk.Pixbuf pixbuf = img.Load (width, height);
-			ValidateThumbnail (photo.DefaultVersionPath, pixbuf);
+			ValidateThumbnail (path, pixbuf);
 			return pixbuf;
 		}
 
