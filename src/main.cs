@@ -25,23 +25,35 @@ public class Driver {
 
 		Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {PixbufUtils.LoadFromAssembly ("f-spot-logo.png")};
 
-		new MainWindow (db);
-
-		bool check_empty = true;
+		bool view_only = false;
+		bool import = db.Empty;
+		string import_path = null;
 		for (int i = 0; i < args.Length; i++) {
-			if (args [i] == "--import") {
+			switch (args [i]) {
+			case "--import":
 				if (++i < args.Length && (File.Exists (args [i]) || Directory.Exists (args[i]))) {
-					MainWindow.Toplevel.ImportFile (args [i]);
-					check_empty = false;
+					import_path = args [i];
 				} else {
 					System.Console.WriteLine ("no valid path to import from");
 				}
+				break;
+			case "--view":
+				if (++i < args.Length && (File.Exists (args [i]) || Directory.Exists (args[i]))) {
+					new FSpot.SingleView (args [i]);
+					view_only = true;
+				} else {
+					System.Console.WriteLine ("no valid path to import from");
+				}
+				break;
 			}
+
 		}
 
-		if (check_empty && db.Empty)
-			MainWindow.Toplevel.ImportFile (null);
-
+		if (!view_only) {
+			new MainWindow (db);
+			if (import)
+				MainWindow.Toplevel.ImportFile (import_path);
+		}
 
 		program.Run ();
 	}
