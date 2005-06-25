@@ -8,7 +8,7 @@ namespace FSpot {
 		
 		protected BrowsablePointer item;
 		
-		public PhotoImageView (IPhotoCollection query)
+		public PhotoImageView (IBrowsableCollection query)
 		{
 			loader = new FSpot.AsyncPixbufLoader ();
 			loader.AreaUpdated += HandlePixbufAreaUpdated;
@@ -30,16 +30,17 @@ namespace FSpot {
 			}
 		}
 
-		public Photo Photo {
+		// FIXME fix the names
+		public IBrowsableItem Photo {
 			get {
-				return (Photo)item.Current;
+				return item.Current;
 			}
 		}
 
-		private IPhotoCollection query;
-		public IPhotoCollection Query {
+		private IBrowsableCollection query;
+		public IBrowsableCollection Query {
 			get {
-				return (IPhotoCollection)item.Collection;
+				return item.Collection;
 			}
 #if false
 			set {
@@ -188,12 +189,12 @@ namespace FSpot {
 		private void PhotoIndexChanged (BrowsablePointer item, IBrowsableItem old_item) 
 		{
 			// If it is just the position that changed fall out
-			if (old_item != null && Photo != null && Photo.Id == ((Photo)old_item).Id)
+			if (old_item != null && Photo != null && Photo.DefaultVersionUri == old_item.DefaultVersionUri)
 				return;
 
 			if (load_async) {
 				try {
-					loader.Load (Photo.DefaultVersionPath);
+					loader.Load (Photo.DefaultVersionUri.LocalPath);
 				} catch (System.Exception e) {
 					// FIXME we should check the exception type and do something
 					// like offer the user a chance to locate the moved file and
