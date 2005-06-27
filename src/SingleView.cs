@@ -6,6 +6,12 @@ namespace FSpot {
 		[Glade.Widget] Gtk.ScrolledWindow directory_scrolled;
 		[Glade.Widget] Gtk.HPaned info_hpaned;
 
+		[Glade.Widget] Gtk.CheckMenuItem side_pane_item;
+		[Glade.Widget] Gtk.CheckMenuItem toolbar_item;
+
+		[Glade.Widget] Gtk.Image near_image;
+		[Glade.Widget] Gtk.Image far_image;
+
 		protected Glade.XML xml;
 		private Gtk.Window window;
 		PhotoImageView image_view;
@@ -47,10 +53,13 @@ namespace FSpot {
 			image_scrolled.Add (image_view);
 			
 			Window.ShowAll ();
-
-			if (collection.Count < 2)
-				ShowSidebar = false;
 			
+			ShowToolbar = true;
+			ShowSidebar = collection.Count > 1;
+
+			near_image.SetFromStock ("f-spot-stock_near", Gtk.IconSize.SmallToolbar);
+			far_image.SetFromStock ("f-spot-stock_far", Gtk.IconSize.SmallToolbar);
+
 			if (collection.Count > 0)
 				directory_view.Selection.Add (0);
 		}
@@ -61,6 +70,8 @@ namespace FSpot {
 			}
 			set {
 				info_vbox.Visible = value;
+				if (side_pane_item.Active != value)
+					side_pane_item.Active = value;
 			}
 		}
 		
@@ -70,6 +81,8 @@ namespace FSpot {
 			}
 			set {
 				toolbar_hbox.Visible = value;
+				if (toolbar_item.Active != value)
+					toolbar_item.Active = value;
 			}
 		}
 
@@ -97,12 +110,17 @@ namespace FSpot {
 
 		private void HandleViewToolbar (object sender, System.EventArgs args)
 		{
-			ShowToolbar = !ShowToolbar;
+			ShowToolbar = toolbar_item.Active;
+		}
+		
+		private void HandleHideSidePane (object sender, System.EventArgs args) 
+		{
+			ShowSidebar = false;
 		}
 
 		private void HandleViewSidePane (object sender, System.EventArgs args)
 		{
-			ShowSidebar = !ShowSidebar;
+			ShowSidebar = side_pane_item.Active;
 		}
 
 		private void HandleViewSlideshow (object sender, System.EventArgs args)
