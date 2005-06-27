@@ -1,5 +1,10 @@
 2005-06-27  Larry Ewing  <lewing@novell.com>
 
+	* src/SingleView.cs: make slideshows work on IBrowsableItems.
+
+	* src/SlideView.cs: make the slideshow work properly with
+	IBrowsableItems
+	
 	* src/SingleView.cs: make the menu items so the proper state.
 	Start hooking up the zoom scale.
 

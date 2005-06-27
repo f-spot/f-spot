@@ -20,6 +20,8 @@ namespace FSpot {
 
 		DirectoryCollection collection;
 		
+		FSpot.Delay slide_delay;
+
 		FullScreenView fsview;
 
 		public SingleView () : this (FSpot.Global.HomeDirectory) {}
@@ -60,6 +62,8 @@ namespace FSpot {
 			near_image.SetFromStock ("f-spot-stock_near", Gtk.IconSize.SmallToolbar);
 			far_image.SetFromStock ("f-spot-stock_far", Gtk.IconSize.SmallToolbar);
 
+			slide_delay = new FSpot.Delay (new GLib.IdleHandler (SlideShow));
+			
 			if (collection.Count > 0)
 				directory_view.Selection.Add (0);
 		}
@@ -125,7 +129,22 @@ namespace FSpot {
 
 		private void HandleViewSlideshow (object sender, System.EventArgs args)
 		{
+			this.Window.GdkWindow.Cursor = new Gdk.Cursor (Gdk.CursorType.Watch);
+			slide_delay.Start ();
+		}
+		
+		private bool SlideShow ()
+		{
+			Gdk.Pixbuf bg = PixbufUtils.LoadFromScreen ();
+			IBrowsableItem [] items = new IBrowsableItem [collection.Count];
+			for (int i = 0; i < collection.Count; i++) {
+				items [i] = collection [i];
+			}
 
+			FSpot.FullSlide full = new FSpot.FullSlide (bg, items);
+			full.Play ();
+			this.Window.GdkWindow.Cursor = null;
+			return false;
 		}
 
 		private void HandleViewFullscreen (object sender, System.EventArgs args)
