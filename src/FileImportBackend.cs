@@ -31,6 +31,7 @@ public class FileImportBackend : ImportBackend {
 		case ".dng":
 		case ".crw":
 		case ".ppm":
+		case ".mrw":
 			file_paths.Add (path);
 			break;
 		}

@@ -25,10 +25,12 @@ namespace FSpot {
 			name_table [".cr2"] = typeof (FSpot.Tiff.Cr2File);
 			name_table [".nef"] = typeof (FSpot.Tiff.NefFile);
 			name_table [".tiff"] = typeof (FSpot.Tiff.TiffFile);
+			name_table [".orf"] =  typeof (FSpot.Tiff.TiffFile);
 			name_table [".tif"] = typeof (FSpot.Tiff.TiffFile);
 			name_table [".dng"] = typeof (FSpot.Tiff.DngFile);
 			name_table [".crw"] = typeof (FSpot.Ciff.CiffFile);
 			name_table [".ppm"] = typeof (FSpot.Pnm.PnmFile);
+			name_table [".mrw"] = typeof (FSpot.Mrw.MrwFile);
 		}
 
 		public string Path {
