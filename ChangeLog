@@ -1,5 +1,8 @@
 2005-07-01  Larry Ewing  <lewing@novell.com>
 
+	* src/Makefile.am (F_SPOT_CSDISTFILES): add MrwFile.cs to the
+	build.
+
 	* src/DirectoryCollection.cs: use ImageFile.HasLoader.
 
 	* src/FileImportBackend.cs: use ImageFile.HasLoader.
