@@ -1,5 +1,8 @@
 2005-07-02  Larry Ewing  <lewing@novell.com>
 
+	* src/ImageFile.cs: treat pef files as nef files for now (they
+	seem to be largely the same).
+
 	* src/RafFile.cs: fix typo.
 
 	* src/RafFile.cs: add new file RafFile.cs

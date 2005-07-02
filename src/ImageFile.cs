@@ -24,6 +24,7 @@ namespace FSpot {
 			name_table [".png"] = typeof (FSpot.Png.PngFile);
 			name_table [".cr2"] = typeof (FSpot.Tiff.Cr2File);
 			name_table [".nef"] = typeof (FSpot.Tiff.NefFile);
+			name_table [".pef"] = typeof (FSpot.Tiff.NefFile);
 			name_table [".tiff"] = typeof (FSpot.Tiff.TiffFile);
 			name_table [".orf"] =  typeof (FSpot.Tiff.TiffFile);
 			name_table [".tif"] = typeof (FSpot.Tiff.TiffFile);
