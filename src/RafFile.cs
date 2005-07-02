@@ -1,5 +1,5 @@
 namespace FSpot.Raf {
-	// This is reverse engineered from looking at the sample files I have.
+	// This is reverse engineered from looking at the sample files I have
 	// from what I can tell the file is always BigEndian, althogh the embedded jpeg may not be
 	// and there is a start long offset at 0x54 (or possibly 0x56 if it is a short) that points to
 	// the start of the embedded jpeg and followed by a long length that gives the length of the jpeg
@@ -51,7 +51,7 @@ namespace FSpot.Raf {
 		private byte [] GetEmbeddedJpeg ()
 		{
 			using (System.IO.Stream stream = System.IO.File.OpenRead (this.path)) {
-				stream.Position = 0x56;
+				stream.Position = 0x54;
 				byte [] data = new byte [8];
 				stream.Read (data, 0, data.Length);
 				uint offset = BitConverter.ToUInt32 (data, 0, false);
