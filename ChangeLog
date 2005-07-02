@@ -1,5 +1,12 @@
 2005-07-01  Larry Ewing  <lewing@novell.com>
 
+	* src/DirectoryCollection.cs: use ImageFile.HasLoader.
+
+	* src/FileImportBackend.cs: use ImageFile.HasLoader.
+
+	* src/ImageFile.cs: add a HasLoader test so that we can move to
+	better tests than extension comparisons.
+
 	* src/FileImportBackend.cs: allow importing mrw files.
 
 	* src/ImageFile.cs: hook the minolta loader up.

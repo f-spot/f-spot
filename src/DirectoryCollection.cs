@@ -67,20 +67,9 @@ namespace FSpot {
 				System.IO.DirectoryInfo info = new System.IO.DirectoryInfo (path);
 				System.IO.FileInfo [] files = info.GetFiles ();
 				foreach (System.IO.FileInfo f in files) {
-					switch (System.IO.Path.GetExtension (f.FullName)) {
-					case ".jpeg":
-					case ".jpg":
-					case ".png":
-					case ".cr2":
-					case ".nef":
-					case ".tiff":
-					case ".tif":
-					case ".dng":
-					case ".crw":
-					case ".ppm":
+					if (FSpot.ImageFile.HasLoader (f.FullName)) {
 						System.Console.WriteLine (f.FullName);
 						images.Add (new FileBrowsableItem (f.FullName));
-						break;
 					}
 				}
 				

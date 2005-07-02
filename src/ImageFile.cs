@@ -85,6 +85,14 @@ namespace FSpot {
 			return File.GetCreationTimeUtc  (this.path);
 		}
 		
+		public static bool HasLoader (string path)
+		{
+			string extension = System.IO.Path.GetExtension (path).ToLower ();
+			System.Type t = (System.Type) name_table [extension];
+			
+			return (t != null);
+		}
+
 		public static ImageFile Create (string path)
 		{
 			string extension = System.IO.Path.GetExtension (path).ToLower ();

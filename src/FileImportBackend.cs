@@ -18,23 +18,8 @@ public class FileImportBackend : ImportBackend {
 
 	private void AddPath (string path)
 	{
-		string extension = System.IO.Path.GetExtension (path).ToLower ();
-		
-		switch (extension) {
-		case ".jpeg":
-		case ".jpg":
-		case ".png":
-		case ".cr2":
-		case ".nef":
-		case ".tiff":
-		case ".tif":
-		case ".dng":
-		case ".crw":
-		case ".ppm":
-		case ".mrw":
+		if (FSpot.ImageFile.HasLoader (path))
 			file_paths.Add (path);
-			break;
-		}
 	}
 
 	private void GetListing (System.IO.DirectoryInfo info)
