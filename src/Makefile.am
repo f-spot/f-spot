@@ -64,6 +64,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PreviewPopup.cs 		\
 	$(srcdir)/PrintDialog.cs		\
 	$(srcdir)/ProgressDialog.cs		\
+	$(srcdir)/RafFile.cs			\
 	$(srcdir)/RotateCommand.cs		\
 	$(srcdir)/ScalingIconView.cs		\
 	$(srcdir)/SlideView.cs			\

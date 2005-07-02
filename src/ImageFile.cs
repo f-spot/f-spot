@@ -31,6 +31,7 @@ namespace FSpot {
 			name_table [".crw"] = typeof (FSpot.Ciff.CiffFile);
 			name_table [".ppm"] = typeof (FSpot.Pnm.PnmFile);
 			name_table [".mrw"] = typeof (FSpot.Mrw.MrwFile);
+			name_table [".raf"] = typeof (FSpot.Raf.RafFile);
 		}
 
 		public string Path {

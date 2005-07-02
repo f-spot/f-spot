@@ -1,5 +1,12 @@
 2005-07-02  Larry Ewing  <lewing@novell.com>
 
+	* src/RafFile.cs: add new file RafFile.cs
+
+	* src/Makefile.am (F_SPOT_CSDISTFILES): add RafFile.cs to the
+	build.
+
+	* src/ImageFile.cs: add raf to the list.
+
 	* src/MrwFile.cs: make the loader handle blocks in a different
 	order.
 
