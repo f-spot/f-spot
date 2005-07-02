@@ -3,6 +3,7 @@ using FSpot.Tiff;
 namespace FSpot.Mrw {
 	// Minolta raw format
 	// see http://www.dalibor.cz/minolta/raw_file_format.htm for details
+	// note that the blocks can be in any order.
 
 	public class Block {
 		protected byte [] name;
@@ -19,17 +20,39 @@ namespace FSpot.Mrw {
 			byte [] tmp = new byte [8];
 			stream.Read (tmp, 0, tmp.Length);
 			System.Array.Copy (tmp, name, name.Length);
-			System.Console.WriteLine (System.Text.Encoding.ASCII.GetString (name, 1, 3));
+			System.Console.WriteLine (this.Name);
 			Length = BitConverter.ToUInt32 (tmp, name.Length, false);
 			stream.Position = stream.Position + Length;
 		}
-		
+
+		public string Name {
+			get {
+				return System.Text.Encoding.ASCII.GetString (this.name, 1, 3);
+			}
+		}
+
 		public byte [] Data {
 			get {
 				if (data == null)
 					data = ReadData ();
 				
 				return data;
+			}
+		}
+
+		public static Block Create (System.IO.Stream stream)
+		{
+			byte [] tmp = new byte [4];
+			stream.Read (tmp, 0, tmp.Length);
+			stream.Position -= 4;
+			string name = System.Text.Encoding.ASCII.GetString (tmp, 1, 3);
+			switch (name) {
+			case "TTW":
+				return new TtwBlock (stream);
+			case "PRD":
+				return new PrdBlock (stream);
+			default:
+				return new Block (stream);
 			}
 		}
 
@@ -97,7 +120,8 @@ namespace FSpot.Mrw {
 
 		public TtwBlock (System.IO.Stream stream) : base (stream)
 		{
-
+			if (this.Name != "TTW")
+				throw new System.Exception (System.String.Format ("invalid block name {0}", this.Name));
 		}
 		
 		public FSpot.Tiff.Header TiffHeader {
@@ -125,12 +149,12 @@ namespace FSpot.Mrw {
 		protected void Load ()
 		{
 			stream.Position = Start + 8;
-			blocks = new Block [4];
+			System.Collections.ArrayList list = new System.Collections.ArrayList ();
 			
-			blocks [0] = new PrdBlock (stream);
-			blocks [1] = new TtwBlock (stream);
-			blocks [2] = new Block (stream);
-			blocks [3] = new Block (stream);
+			while (stream.Position < Start + 8 + Length) {
+				list.Add (Block.Create (stream));
+			}
+			blocks = (Block []) list.ToArray (typeof (Block));
 		}
 
 		public Block [] Blocks {
@@ -184,15 +208,18 @@ namespace FSpot.Mrw {
 		{
 			using (System.IO.Stream file = System.IO.File.OpenRead (this.path)) {
 				mrm = new MrmBlock (file);
-				System.Console.WriteLine ("here");
 				try {
-				Header = ((TtwBlock)mrm.Blocks [1]).TiffHeader;
-				Header.Dump ();
+					foreach (Block b in mrm.Blocks) {
+						if (b is TtwBlock) {
+							TtwBlock ttw = (TtwBlock) b;
+							Header = ttw.TiffHeader;
+							Header.Dump ();
+							break;
+						}
+					}
 				} catch (System.Exception e) {
 					System.Console.WriteLine (e.ToString ());
 				}
-					
-				System.Console.WriteLine ("here2");
 			}
 		}
 	}
