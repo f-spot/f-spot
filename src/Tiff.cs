@@ -394,18 +394,36 @@ namespace FSpot.Tiff {
 		private uint directory_offset;
 		public ImageDirectory Directory;
 
-		
-
 		public Header (System.IO.Stream stream)
 		{
 			byte [] data = new byte [8];
 			stream.Read (data, 0, data.Length);
+			if (data [0] == 'M' && data [1] == 'M')
+				endian = Endian.Big;
+			else if (data [0] == 'I' && data [1] == 'I')
+				endian = Endian.Little;
+
+			ushort marker = BitConverter.ToUInt16 (data, 2, endian == Endian.Little);
+			switch (marker) {
+			case 42:
+				System.Console.WriteLine ("Found Standard Tiff Marker {0}", marker);
+				break;
+			case 0x4f52:
+				System.Console.WriteLine ("Found Olympus Tiff Marker {0}", marker.ToString ("x"));
+				break;
+			default:
+				System.Console.WriteLine ("Found Unknown Tiff Marker {0}", marker.ToString ("x"));
+				break;
+			}
+
+			/*
 			if (data [0] == 'M' && data [1] == 'M' && data [2] == 0 && data [3] == 42)
 				endian = Endian.Big;
 			else if (data [0] == 'I' && data [1] == 'I' && data [2] == 42 && data [3] == 0)
 				endian = Endian.Little;
 			else
 				throw new System.Exception ("Invalid Tiff Header Block");
+			*/
 
 			System.Console.WriteLine ("Converting Something");
 			directory_offset = BitConverter.ToUInt32 (data, 4, endian == Endian.Little);
@@ -956,7 +974,7 @@ namespace FSpot.Tiff {
 				System.Array.Copy (data, i, raw_data, 0, size);
 			}
 		}
-		
+
 		public void SetData (string value)
 		{
 			int len = System.Text.Encoding.UTF8.GetByteCount (value);
@@ -1076,6 +1094,16 @@ namespace FSpot.Tiff {
 			}
 		}
 
+		public override System.DateTime Date ()
+		{
+			AsciiEntry e = (AsciiEntry)(this.Header.Directory.Lookup (TagId.DateTime));
+
+			if (e != null)
+				return DirectoryEntry.DateTimeFromString (e.StringValue);
+			else
+				return base.Date ();
+		}
+		
 		public override System.IO.Stream PixbufStream ()
 		{
 			return null;
@@ -1088,16 +1116,6 @@ namespace FSpot.Tiff {
 				return (PixbufOrientation)(e.ShortValue[0]);
 			else
 				return PixbufOrientation.TopLeft;
-		}
-
-		public override System.DateTime Date ()
-		{
-			AsciiEntry e = (AsciiEntry)(this.Header.Directory.Lookup (TagId.DateTime));
-
-			if (e != null)
-				return DirectoryEntry.DateTimeFromString (e.StringValue);
-			else
-				return base.Date ();
 		}
 
 		public System.IO.Stream LookupJpegSubstream (ImageDirectory directory)
@@ -1150,7 +1168,7 @@ namespace FSpot.Tiff {
 		{
 			return DCRawFile.Load (this.path, null);
 		}
-	}
+	}	
 	
 	public class NefFile : TiffFile, IThumbnailContainer {
 		public NefFile (string path) : base (path) {}

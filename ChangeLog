@@ -1,7 +1,13 @@
 2005-07-02  Larry Ewing  <lewing@novell.com>
 
+	* src/Tiff.cs: handle olympus orf files by being less strict about
+	the header format.
+
+	* src/ImageFile.cs: treat orf files as nef files for the time
+	being to get them loading.
+
 	* src/ImageFile.cs: treat pef files as nef files for now (they
-	seem to be largely the same).
+	seem to be largely the same structre).
 
 	* src/RafFile.cs: fix typo.
 
