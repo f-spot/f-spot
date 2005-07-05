@@ -1,6 +1,28 @@
 using FSpot;
 
 namespace FSpot.Tiff {
+
+	// This is primarily to preserve the names from the specification
+	// because they differ from the tiff standard names
+	public enum NiffId : ushort {
+		SubfileType                     = 0x00fe,
+			PelPathLength                   = 0x0100,
+			LineProgressionLength           = 257,
+			BitsPerSample                   = 0x0101,
+			PhotometricInterpretation       = 0x0106,
+			DataOffset                      = 0x0111,
+			SamplesPerPixel 		= 0x0115,
+			DataByteCounts                  = 0x0117,
+			PelPathResolution               = 0x011a,
+			LineProgressionResolution       = 0x011b,
+			ResolutionUnit  		= 0x0128,
+			ColumnsPerPelPath               = 322,
+			RowsPerLineProgression          = 323,
+			Rotation                        = 33465,
+			NavyCompression                 = 33466,
+			TileIndex                       = 33467
+	}
+
 	public enum TagId : ushort {
 		InteroperabilityIndex		= 0x0001,
 		InteroperabilityVersion	        = 0x0002,
@@ -88,6 +110,14 @@ namespace FSpot.Tiff {
 		Copyright			= 0x8298,
 		ExposureTime			= 0x829a,
 		FNumber 			= 0x829d,
+
+		// These are from the NIFF spec and only really valid when the header begins with IIN1
+		// see the NiffTag enum for the specifcation specific names
+			Rotation                        = 0x82b9,
+			NavyCompression                 = 0x82ba,
+			TileIndex                       = 0x82bb,
+		// end NIFF specific
+			
 		IPTCNAA	        		= 0x83bb,
 
 		PhotoshopPrivate                = 0x8649,
@@ -235,15 +265,15 @@ namespace FSpot.Tiff {
 		RGB = 2,
 		PaletteColor = 3,
 		TransparencyMask = 4,
-			Separated = 5,  // CMYK
-			YCbCr = 6,
-			CIELab = 8,
-			ICCLab = 9,
-			ITULab = 10,
-			LogL = 32844, // Log Luminance
-			LogLUV = 32845,
-			CFA = 32803,  // ColorFilterArray... the good stuff
-			LinearRaw = 34892  // DBG LinearRaw
+		Separated = 5,  // CMYK
+		YCbCr = 6,
+		CIELab = 8,
+		ICCLab = 9,
+		ITULab = 10,
+		LogL = 32844, // Log Luminance
+		LogLUV = 32845,
+		CFA = 32803,  // ColorFilterArray... the good stuff
+		LinearRaw = 34892  // DBG LinearRaw
 	}
 
 	public enum PlanarConfiguration {
@@ -411,6 +441,8 @@ namespace FSpot.Tiff {
 			case 0x4f52:
 				System.Console.WriteLine ("Found Olympus Tiff Marker {0}", marker.ToString ("x"));
 				break;
+			case 0x4e31:
+				System.Console.writeline ("Found Navy Interchnage File Format Tiff Marker {0}", marker.ToString ("x")); 
 			default:
 				System.Console.WriteLine ("Found Unknown Tiff Marker {0}", marker.ToString ("x"));
 				break;

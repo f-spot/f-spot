@@ -1,3 +1,13 @@
+2005-07-05  Larry Ewing  <lewing@novell.com>
+
+	* src/ImageFile.cs: actually load the panasonic raw files.
+
+	* src/Tiff.cs: add some extra niff tags info.
+
+2005-07-03  Larry Ewing  <lewing@novell.com>
+
+	* src/Tiff.cs: handle panasonic .raw files using the nef path.
+
 2005-07-02  Larry Ewing  <lewing@novell.com>
 
 	* src/Tiff.cs: handle olympus orf files by being less strict about
