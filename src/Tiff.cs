@@ -442,7 +442,8 @@ namespace FSpot.Tiff {
 				System.Console.WriteLine ("Found Olympus Tiff Marker {0}", marker.ToString ("x"));
 				break;
 			case 0x4e31:
-				System.Console.writeline ("Found Navy Interchnage File Format Tiff Marker {0}", marker.ToString ("x")); 
+				System.Console.WriteLine ("Found Navy Interchnage File Format Tiff Marker {0}", marker.ToString ("x")); 
+				break;
 			default:
 				System.Console.WriteLine ("Found Unknown Tiff Marker {0}", marker.ToString ("x"));
 				break;
