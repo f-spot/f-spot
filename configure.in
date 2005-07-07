@@ -114,7 +114,7 @@ AC_SUBST(ICONS_DIRECTORY)
 
 dnl -- Intl
 
-ALL_LINGUAS="bg ca cs da de el en_CA en_GB es eu fr hu it ja nb nl no pl rw sr sr@Latn sv zh_CN"
+ALL_LINGUAS="bg ca cs da de el en_CA en_GB es et eu fr hu it ja nb nl no pl rw sr sr@Latn sv zh_CN"
 
 GETTEXT_PACKAGE=f-spot
 AC_SUBST(GETTEXT_PACKAGE)
