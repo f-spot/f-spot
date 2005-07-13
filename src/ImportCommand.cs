@@ -83,14 +83,22 @@ public class ImportCommand : FSpot.GladeDialog {
 
 		private bool IsCamera {
 			get {
-				return (Directory.Exists (System.IO.Path.Combine (mount_point, "DCIM")));
+				try {
+					return (Directory.Exists (System.IO.Path.Combine (mount_point, "DCIM")));
+				} catch {
+					return false;
+				}
 			}
 		}
 
 		private bool IsiPodPhoto {
 			get {
-				return (Directory.Exists (System.IO.Path.Combine (mount_point, "Photos")) &&
-					Directory.Exists (System.IO.Path.Combine (mount_point, "iPod_Control")));
+				try {
+					return (Directory.Exists (System.IO.Path.Combine (mount_point, "Photos")) &&
+						Directory.Exists (System.IO.Path.Combine (mount_point, "iPod_Control")));
+				} catch {
+					return false;
+				}
 			}
 		}
 	}
