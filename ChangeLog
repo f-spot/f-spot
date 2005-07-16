@@ -1,5 +1,8 @@
 2005-07-16  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: Add patch from Shlomi Fish to fix crash durring
+	selection change.
+
 	* src/Tiff.cs: fix typo.
 
 2005-07-06  Lukas Lipka <lukas@pmad.net>

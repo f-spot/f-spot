@@ -414,8 +414,8 @@ public class IconView : Gtk.Layout {
 		
 		public void Remove (IBrowsableItem item)
 		{
-			selected_cells.Remove (item);
 			int parent_index = (int) selected_cells [item];
+			selected_cells.Remove (item);
 			SignalChange (new int [] {parent_index});
 		}
 
