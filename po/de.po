@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-05-20 15:01+0200\n"
-"PO-Revision-Date: 2005-05-20 14:49+0200\n"
+"POT-Creation-Date: 2005-07-21 10:56+0200\n"
+"PO-Revision-Date: 2005-07-21 10:55+0200\n"
 "Last-Translator: Frank Arnold <frank@scirocco-5v-turbo.de>\n"
 "Language-Team: German GNOME Translators <gnome-de@gnome.org >\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: ../f-spot.desktop.in.in.h:1
+#: ../f-spot.desktop.in.in.h:1 ../src/f-spot.glade.h:68
 msgid "F-Spot Photo Album"
 msgstr "F-Spot Fotoalbum"
 
@@ -105,31 +105,31 @@ msgstr "Es können nur lokale Dateien gespeichert werden."
 msgid "Unsupported image type for saving."
 msgstr "Nicht unterstütztes Bildformat zum Speichern."
 
-#: ../libeog/image-view.c:2082
+#: ../libeog/image-view.c:2110
 msgid "interpolation type"
 msgstr "Interpolationsart"
 
-#: ../libeog/image-view.c:2083
+#: ../libeog/image-view.c:2111
 msgid "the type of interpolation to use"
 msgstr "Die Art der Interpolation, die benutzt werden soll."
 
-#: ../libeog/image-view.c:2089 ../libeog/image-view.c:2096
+#: ../libeog/image-view.c:2117 ../libeog/image-view.c:2124
 msgid "check type"
 msgstr "Kachelungsart"
 
-#: ../libeog/image-view.c:2090
+#: ../libeog/image-view.c:2118
 msgid "the type of chequering to use"
 msgstr "Der Art der Kachelung, die benutzt werden soll"
 
-#: ../libeog/image-view.c:2097
+#: ../libeog/image-view.c:2125
 msgid "the size of chequers to use"
 msgstr "Die Größe der Kacheln"
 
-#: ../libeog/image-view.c:2103
+#: ../libeog/image-view.c:2131
 msgid "dither"
 msgstr "Rastern"
 
-#: ../libeog/image-view.c:2104
+#: ../libeog/image-view.c:2132
 msgid "dither type"
 msgstr "Rasterungsart"
 
@@ -154,11 +154,11 @@ msgstr "Vorschau"
 msgid "Path"
 msgstr "Pfad"
 
-#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:67
+#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:71
 msgid "File"
 msgstr "Datei"
 
-#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:638
+#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:635
 msgid "Index"
 msgstr "Index"
 
@@ -171,11 +171,11 @@ msgstr "Vorschaubilder werden heruntergeladen"
 msgid "Downloading Preview of {0}"
 msgstr "Vorschau von {0} wird heruntergeladen"
 
-#: ../src/CameraFileSelectionDialog.cs:145
+#: ../src/CameraFileSelectionDialog.cs:147
 msgid "Unknown destination."
 msgstr "Unbekanntes Ziel."
 
-#: ../src/CameraFileSelectionDialog.cs:146
+#: ../src/CameraFileSelectionDialog.cs:148
 msgid ""
 "When copying files from a camera you must select a valid destination on the "
 "local filesystem"
@@ -183,11 +183,11 @@ msgstr ""
 "Wenn Dateien von einer Kamera kopiert werden sollen, muss ein gültiges Ziel "
 "im lokalen Dateisystem gewählt werden"
 
-#: ../src/CameraFileSelectionDialog.cs:164
+#: ../src/CameraFileSelectionDialog.cs:166
 msgid "Unable to create directory."
 msgstr "Verzeichnis konnte nicht erstellt werden."
 
-#: ../src/CameraFileSelectionDialog.cs:165
+#: ../src/CameraFileSelectionDialog.cs:167
 #, csharp-format
 msgid ""
 "Error \"{0}\" while creating directory \"{1}\".  Check that the path and "
@@ -197,34 +197,33 @@ msgstr ""
 "aufgetreten. Überprüfen Sie den Pfad und die Zugriffsrechte. Versuchen Sie "
 "es danach noch einmal."
 
-#: ../src/CameraFileSelectionDialog.cs:186 ../src/CDExport.cs:139
-#: ../src/VfsExport.cs:196
+#: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:139
 msgid "Transferring Pictures"
 msgstr "Bilder werden übertragen"
 
-#: ../src/CameraFileSelectionDialog.cs:209
+#: ../src/CameraFileSelectionDialog.cs:211
 #, csharp-format
 msgid "Copying file {0} of {1}"
 msgstr "Kopieren der Datei {0} von {1}"
 
-#: ../src/CameraFileSelectionDialog.cs:219
+#: ../src/CameraFileSelectionDialog.cs:221
 msgid "Done Copying Files"
 msgstr "Kopieren der Dateien abgeschlossen"
 
-#: ../src/CameraFileSelectionDialog.cs:221
+#: ../src/CameraFileSelectionDialog.cs:223
 msgid "Download Complete"
 msgstr "Herunterladen abgeschlossen"
 
-#: ../src/CameraFileSelectionDialog.cs:226
+#: ../src/CameraFileSelectionDialog.cs:228
 msgid "Error transferring file"
 msgstr "Fehler bei der Dateiübertragung"
 
-#: ../src/CameraFileSelectionDialog.cs:247
+#: ../src/CameraFileSelectionDialog.cs:249
 #, csharp-format
 msgid "Transferring \"{0}\" from camera"
 msgstr "Übertragung der Datei »{0}« von der Kamera"
 
-#: ../src/CameraFileSelectionDialog.cs:268
+#: ../src/CameraFileSelectionDialog.cs:270
 msgid "Select Destination"
 msgstr "Zielverzeichnis wählen"
 
@@ -242,33 +241,33 @@ msgid "Transferring picture \"{0}\" To CD"
 msgstr "Übertragung des Bilds »{0}« auf CD"
 
 #: ../src/CDExport.cs:59 ../src/FlickrExport.cs:96 ../src/GalleryExport.cs:421
-#: ../src/ProgressDialog.cs:75 ../src/VfsExport.cs:88
+#: ../src/ProgressDialog.cs:75
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} von {1}"
 
 #: ../src/CDExport.cs:71 ../src/FlickrExport.cs:101 ../src/FolderExport.cs:167
-#: ../src/GalleryExport.cs:436 ../src/VfsExport.cs:115
+#: ../src/GalleryExport.cs:436
 msgid "Done Sending Photos"
 msgstr "Verschicken der Fotos abgeschlossen"
 
-#: ../src/CDExport.cs:73 ../src/FolderExport.cs:169 ../src/VfsExport.cs:117
+#: ../src/CDExport.cs:73 ../src/FolderExport.cs:169
 msgid "Transfer Complete"
 msgstr "Übertragung abgeschlossen"
 
-#: ../src/CDExport.cs:79 ../src/FolderExport.cs:174 ../src/VfsExport.cs:122
+#: ../src/CDExport.cs:79 ../src/FolderExport.cs:174
 msgid "Error While Transferring"
 msgstr "Fehler bei der Übertragung"
 
-#: ../src/CDExport.cs:84 ../src/FolderExport.cs:182 ../src/VfsExport.cs:130
+#: ../src/CDExport.cs:84 ../src/FolderExport.cs:182
 msgid "Error Transferring"
 msgstr "Übertragungsfehler"
 
-#: ../src/CDExport.cs:99 ../src/VfsExport.cs:144
+#: ../src/CDExport.cs:99
 msgid "Error: Error while transferring; Aborting"
 msgstr "Fehler: Fehler bei der Übertragung, abgebrochen"
 
-#: ../src/CDExport.cs:102 ../src/VfsExport.cs:147
+#: ../src/CDExport.cs:102
 msgid "Error: File Already Exists; Aborting"
 msgstr "Fehler: Datei ist bereits vorhanden, abgebrochen"
 
@@ -276,7 +275,7 @@ msgstr "Fehler: Datei ist bereits vorhanden, abgebrochen"
 msgid "Error saving adjusted photo"
 msgstr "Fehler beim Speichern des abgeglichenen Fotos"
 
-#: ../src/ColorDialog.cs:146 ../src/MainWindow.cs:1215 ../src/PhotoView.cs:302
+#: ../src/ColorDialog.cs:146 ../src/MainWindow.cs:1281 ../src/PhotoView.cs:278
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save image {1}"
 msgstr ""
@@ -360,19 +359,19 @@ msgstr "Fehler: Datei ist bereits vorhanden, abgebrochen"
 msgid "Transfering Pictures"
 msgstr "Bilder werden übertragen"
 
-#: ../src/FolderExport.cs:636
+#: ../src/FolderExport.cs:633
 msgid "Prev"
 msgstr "Vorheriges"
 
-#: ../src/FolderExport.cs:641 ../src/f-spot.glade.h:90
+#: ../src/FolderExport.cs:638 ../src/f-spot.glade.h:95
 msgid "Next"
 msgstr "Nächstes"
 
-#: ../src/FolderExport.cs:704
+#: ../src/FolderExport.cs:701
 msgid "Gallery generated by "
 msgstr "Galerie erstellt mit "
 
-#: ../src/FolderExport.cs:736
+#: ../src/FolderExport.cs:733
 msgid "Pages:"
 msgstr "Seiten:"
 
@@ -570,94 +569,106 @@ msgid "Destination Temp"
 msgstr "Zieltemperatur"
 
 #: ../src/f-spot.glade.h:50
+msgid "Directory"
+msgstr "Verzeichnis"
+
+#: ../src/f-spot.glade.h:51
 msgid "Display Side_bar"
 msgstr "_Seitenleiste anzeigen"
 
-#: ../src/f-spot.glade.h:51
+#: ../src/f-spot.glade.h:52
 msgid "Display T_ags"
 msgstr "M_arkierungen anzeigen"
 
-#: ../src/f-spot.glade.h:52
+#: ../src/f-spot.glade.h:53
 msgid "Display _Dates"
 msgstr "_Datum anzeigen"
 
-#: ../src/f-spot.glade.h:53
+#: ../src/f-spot.glade.h:54
 msgid "Display _Timeline"
 msgstr "Zei_tleiste anzeigen"
 
-#: ../src/f-spot.glade.h:54
+#: ../src/f-spot.glade.h:55
 msgid "E-Mail:"
 msgstr "E-Mail:"
 
-#: ../src/f-spot.glade.h:55
+#: ../src/f-spot.glade.h:56
 msgid "E_xport To CD..."
 msgstr "Export auf _CD…"
 
-#: ../src/f-spot.glade.h:56
+#: ../src/f-spot.glade.h:57
 msgid "Edit Tag Icon"
 msgstr "Markierungssymbol ändern"
 
-#: ../src/f-spot.glade.h:57
+#: ../src/f-spot.glade.h:58
 msgid "Export"
 msgstr "Exportieren"
 
-#: ../src/f-spot.glade.h:58
+#: ../src/f-spot.glade.h:59
 msgid "Export Tags and Categories"
 msgstr "Markierungen und Kategorien exportieren"
 
-#: ../src/f-spot.glade.h:59
+#: ../src/f-spot.glade.h:60
 msgid "Export tags and categories"
 msgstr "Markierungen und Kategorien exportieren"
 
-#: ../src/f-spot.glade.h:60
+#: ../src/f-spot.glade.h:61
 msgid "Export titles and comments"
 msgstr "Titel und Kommentare exportieren"
 
-#: ../src/f-spot.glade.h:61
+#: ../src/f-spot.glade.h:62
 msgid "Export to Album:"
 msgstr "Export in Album:"
 
-#: ../src/f-spot.glade.h:62
+#: ../src/f-spot.glade.h:63
 msgid "Export to Original"
 msgstr "Export zu Original"
 
-#: ../src/f-spot.glade.h:63
+#: ../src/f-spot.glade.h:64
 msgid "Export to _Flickr..."
 msgstr "Export zu _Flickr…"
 
-#: ../src/f-spot.glade.h:64
+#: ../src/f-spot.glade.h:65
 msgid "Export to _Folder..."
 msgstr "Export in _Ordner…"
 
-#: ../src/f-spot.glade.h:65
+#: ../src/f-spot.glade.h:66
 msgid "Export to _Web Gallery..."
 msgstr "Export in _Web-Galerie…"
 
-#: ../src/f-spot.glade.h:66
+#: ../src/f-spot.glade.h:67
 msgid "F-Spot"
 msgstr "F-Spot"
 
-#: ../src/f-spot.glade.h:68
+#: ../src/f-spot.glade.h:69
+msgid "F-Spot Photo Viewer"
+msgstr "F-Spot Fotobetrachter"
+
+#: ../src/f-spot.glade.h:70
+msgid "F-Spot View"
+msgstr "F-Spot Betrachtung"
+
+#: ../src/f-spot.glade.h:72
 msgid "Fin_d"
 msgstr "_Suchen"
 
-#: ../src/f-spot.glade.h:69
+#: ../src/f-spot.glade.h:73
 msgid "Find by _Tag"
 msgstr "Suchen nach _Markierungen"
 
-#: ../src/f-spot.glade.h:70
+#: ../src/f-spot.glade.h:74
 msgid "Flikr"
 msgstr "Flickr"
 
-#: ../src/f-spot.glade.h:71
+#: ../src/f-spot.glade.h:75
 msgid "Folder Export"
 msgstr "Ordner-Export"
 
-#: ../src/f-spot.glade.h:72
+#: ../src/f-spot.glade.h:76
 msgid "Folder URI:"
 msgstr "Ordner-URI:"
 
-#: ../src/f-spot.glade.h:73
+#: ../src/f-spot.glade.h:77
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
@@ -665,19 +676,23 @@ msgstr ""
 "Ganzseitig\n"
 "Standard - 10x15"
 
-#: ../src/f-spot.glade.h:75
+#: ../src/f-spot.glade.h:79 ../src/StockIcons.cs:30
+msgid "Fullscreen"
+msgstr "Vollbild"
+
+#: ../src/f-spot.glade.h:80
 msgid "Gallery"
 msgstr "Galerie"
 
-#: ../src/f-spot.glade.h:76
+#: ../src/f-spot.glade.h:81
 msgid "Gallery Name:"
-msgstr "Galeriename:"
+msgstr "Galerie-Name:"
 
-#: ../src/f-spot.glade.h:77
+#: ../src/f-spot.glade.h:82
 msgid "Gallery:"
 msgstr "Galerie:"
 
-#: ../src/f-spot.glade.h:78
+#: ../src/f-spot.glade.h:83
 msgid ""
 "Hairline\n"
 "0.25\"\n"
@@ -689,35 +704,35 @@ msgstr ""
 "12,5 mm\n"
 "25 mm\n"
 
-#: ../src/f-spot.glade.h:83
+#: ../src/f-spot.glade.h:88
 msgid "Hue:"
 msgstr "Farbton:"
 
-#: ../src/f-spot.glade.h:84
+#: ../src/f-spot.glade.h:89
 msgid "Icon:"
 msgstr "Symbol:"
 
-#: ../src/f-spot.glade.h:85
+#: ../src/f-spot.glade.h:90
 msgid "Import"
 msgstr "Importieren"
 
-#: ../src/f-spot.glade.h:86
-msgid "Import From:"
-msgstr "Importieren von:"
+#: ../src/f-spot.glade.h:91
+msgid "Import Source:"
+msgstr "Quelle importieren:"
 
-#: ../src/f-spot.glade.h:87
+#: ../src/f-spot.glade.h:92
 msgid "Import files after copy."
 msgstr "Dateien nach dem Kopieren importieren."
 
-#: ../src/f-spot.glade.h:88
+#: ../src/f-spot.glade.h:93
 msgid "Import from C_amera..."
 msgstr "Import von _Kamera…"
 
-#: ../src/f-spot.glade.h:89
+#: ../src/f-spot.glade.h:94
 msgid "Include subdirectories."
 msgstr "Unterverzeichnisse einbeziehen."
 
-#: ../src/f-spot.glade.h:91
+#: ../src/f-spot.glade.h:96
 msgid ""
 "None\n"
 "Title\n"
@@ -731,116 +746,116 @@ msgstr ""
 "Datum\n"
 "Bildinformationen"
 
-#: ../src/f-spot.glade.h:96
+#: ../src/f-spot.glade.h:101
 msgid "Number of Copies:"
 msgstr "Anzahl der Kopien:"
 
-#: ../src/f-spot.glade.h:97
+#: ../src/f-spot.glade.h:102
 msgid "Open album in browser when done uploading"
 msgstr "Nach dem Hochladen das Album in einem Browser öffnen"
 
-#: ../src/f-spot.glade.h:98
+#: ../src/f-spot.glade.h:103
 msgid "Open destination when done exporting."
 msgstr "Nach dem Exportieren das Ziel öffnen."
 
-#: ../src/f-spot.glade.h:99
+#: ../src/f-spot.glade.h:104
 msgid "Page 1 of 3"
 msgstr "Seite 1 von 3"
 
-#: ../src/f-spot.glade.h:100
+#: ../src/f-spot.glade.h:105
 msgid "Password:"
 msgstr "Passwort:"
 
-#: ../src/f-spot.glade.h:101
+#: ../src/f-spot.glade.h:106
 msgid "Pause"
 msgstr "Pause"
 
-#: ../src/f-spot.glade.h:102
+#: ../src/f-spot.glade.h:107
 msgid "Photo 0 of 0"
 msgstr "Foto 0 von 0"
 
-#: ../src/f-spot.glade.h:103
+#: ../src/f-spot.glade.h:108
 msgid "Photo Source:"
 msgstr "Fotoquelle:"
 
-#: ../src/f-spot.glade.h:104
+#: ../src/f-spot.glade.h:109
 msgid "PhotoSize:"
 msgstr "Fotogröße:"
 
-#: ../src/f-spot.glade.h:105
+#: ../src/f-spot.glade.h:110
 msgid "Plain Files."
 msgstr "Einfache Dateien."
 
-#: ../src/f-spot.glade.h:106
+#: ../src/f-spot.glade.h:111
 msgid "Please verify that the settings for this gallery are correct."
 msgstr ""
 "Überprüfen Sie bitte, ob die Einstellungen für diese Galerie korrekt sind."
 
-#: ../src/f-spot.glade.h:107
+#: ../src/f-spot.glade.h:112
 msgid "Prefix: "
 msgstr "Präfix: "
 
-#: ../src/f-spot.glade.h:108
+#: ../src/f-spot.glade.h:113
 msgid "Previous"
 msgstr "Vorheriges"
 
-#: ../src/f-spot.glade.h:109
+#: ../src/f-spot.glade.h:114
 msgid "Print Crop Marks"
 msgstr "Schnittmarkierungen drucken"
 
-#: ../src/f-spot.glade.h:110
+#: ../src/f-spot.glade.h:115
 msgid "Rem_ove Tag"
 msgstr "Markierung ent_fernen"
 
-#: ../src/f-spot.glade.h:111
+#: ../src/f-spot.glade.h:116
 msgid "Resize to: "
 msgstr "Größe ändern auf: "
 
-#: ../src/f-spot.glade.h:112 ../src/StockIcons.cs:35
+#: ../src/f-spot.glade.h:117 ../src/StockIcons.cs:35
 msgid "Rotate _Left"
 msgstr "_Links drehen"
 
-#: ../src/f-spot.glade.h:113 ../src/StockIcons.cs:36
+#: ../src/f-spot.glade.h:118 ../src/StockIcons.cs:36
 msgid "Rotate _Right"
 msgstr "_Rechts drehen"
 
-#: ../src/f-spot.glade.h:114
+#: ../src/f-spot.glade.h:119
 msgid "Saturation:"
 msgstr "Sättigung:"
 
-#: ../src/f-spot.glade.h:115
+#: ../src/f-spot.glade.h:120
 msgid "Scale images to no larger than: "
 msgstr "Bildskalierung nicht größer als:"
 
-#: ../src/f-spot.glade.h:116
+#: ../src/f-spot.glade.h:121
 msgid "Select Files To Copy From Camera..."
 msgstr "Von der Kamera zu kopierende Dateien auswählen…"
 
-#: ../src/f-spot.glade.h:117
+#: ../src/f-spot.glade.h:122
 msgid "Select Tags..."
 msgstr "Markierungen auswählen…"
 
-#: ../src/f-spot.glade.h:118
+#: ../src/f-spot.glade.h:123
 msgid "Select _All"
 msgstr "Alles a_uswählen"
 
-#: ../src/f-spot.glade.h:119
+#: ../src/f-spot.glade.h:124
 msgid "Select _None"
 msgstr "Alles a_bwählen"
 
-#: ../src/f-spot.glade.h:120
+#: ../src/f-spot.glade.h:125
 msgid "Select a tag..."
 msgstr "Eine Markierung auswählen…"
 
-#: ../src/f-spot.glade.h:121
+#: ../src/f-spot.glade.h:126
 msgid "Select the camera you want to transfer files from."
 msgstr "Auswahl der Kamera, von der Dateien übertragen werden sollen."
 
-#: ../src/f-spot.glade.h:122
+#: ../src/f-spot.glade.h:127
 msgid "Selected Camera: "
 msgstr "Gewählte Kamera: "
 
-#: ../src/f-spot.glade.h:123
+#: ../src/f-spot.glade.h:128
 msgid ""
 "Selection\n"
 "Gallery\n"
@@ -850,203 +865,223 @@ msgstr ""
 "Galerie\n"
 "aktuelle Ansicht"
 
-#: ../src/f-spot.glade.h:126
+#: ../src/f-spot.glade.h:131
 msgid "Send _Mail..."
 msgstr "_Email verschicken…"
 
-#: ../src/f-spot.glade.h:127
+#: ../src/f-spot.glade.h:132
 msgid "Set _Date Range..."
 msgstr "_Datumsspanne einstellen…"
 
-#: ../src/f-spot.glade.h:128
+#: ../src/f-spot.glade.h:133
 msgid "Set as _Background"
 msgstr "Als Hintergrund_bild verwenden"
 
-#: ../src/f-spot.glade.h:129
+#: ../src/f-spot.glade.h:134
+msgid "Show or hide the side pane"
+msgstr "Seitenleiste anzeigen oder verbergen"
+
+#: ../src/f-spot.glade.h:135
+msgid "Show or hide the toolbar"
+msgstr "Werkzeugleiste anzeigen oder verbergen"
+
+#: ../src/f-spot.glade.h:136
+msgid "Side _pane"
+msgstr "Seiten_leiste"
+
+#: ../src/f-spot.glade.h:137 ../src/StockIcons.cs:31
+msgid "Slideshow"
+msgstr "Diashow"
+
+#: ../src/f-spot.glade.h:138
 msgid "Source Temp"
 msgstr "Quelltemperatur"
 
-#: ../src/f-spot.glade.h:130
+#: ../src/f-spot.glade.h:139
 msgid "Strip Image Metadata"
 msgstr "Metadaten des Bilds entfernen"
 
-#: ../src/f-spot.glade.h:131
+#: ../src/f-spot.glade.h:140
 msgid "Strip metadata"
 msgstr "Metadaten entfernen"
 
-#: ../src/f-spot.glade.h:132 ../src/TagCommands.cs:295
+#: ../src/f-spot.glade.h:141 ../src/TagCommands.cs:295
 msgid "Tag name:"
 msgstr "Markierungsname"
 
-#: ../src/f-spot.glade.h:133
+#: ../src/f-spot.glade.h:142
+msgid "Toolbar"
+msgstr "Werkzeugleiste"
+
+#: ../src/f-spot.glade.h:143
 msgid "URI:"
 msgstr "URI:"
 
-#: ../src/f-spot.glade.h:134
+#: ../src/f-spot.glade.h:144
 msgid "URL:"
 msgstr "URL:"
 
-#: ../src/f-spot.glade.h:135
+#: ../src/f-spot.glade.h:145
 msgid "Use Original."
 msgstr "Original verwenden"
 
-#: ../src/f-spot.glade.h:136
+#: ../src/f-spot.glade.h:146
 msgid "Use static HTML."
 msgstr "Statisches HTML verwenden."
 
-#: ../src/f-spot.glade.h:137
+#: ../src/f-spot.glade.h:147
 msgid "Username:"
 msgstr "Benutzername:"
 
-#: ../src/f-spot.glade.h:138
+#: ../src/f-spot.glade.h:148
 msgid "View"
 msgstr "Ansicht"
 
-#: ../src/f-spot.glade.h:139
+#: ../src/f-spot.glade.h:149
 msgid "View photos in browser when done uploading"
 msgstr "Nach dem Hochladen die Fotos in einem Browser anzeigen"
 
-#: ../src/f-spot.glade.h:140
+#: ../src/f-spot.glade.h:150
 msgid "Virtual Filesystem"
 msgstr "Virtuelles Dateisystem"
 
-#: ../src/f-spot.glade.h:141
+#: ../src/f-spot.glade.h:151
 msgid "Will print Using: US Letter size on Generic Postscript"
 msgstr "Druckeinstellungen: Papiergröße US-Letter auf Generic Postscript"
 
-#: ../src/f-spot.glade.h:142
+#: ../src/f-spot.glade.h:152
 msgid "Write only these Items to CD"
 msgstr "Nur diese Dateien auf CD schreiben"
 
-#: ../src/f-spot.glade.h:143
+#: ../src/f-spot.glade.h:153
 msgid "Zoom _In"
 msgstr "Ansicht ver_größern"
 
-#: ../src/f-spot.glade.h:144
+#: ../src/f-spot.glade.h:154
 msgid "Zoom _Out"
 msgstr "Ansicht ver_kleinern"
 
-#: ../src/f-spot.glade.h:145
+#: ../src/f-spot.glade.h:155
 msgid "_Attach Tag"
 msgstr "Markierung hinzu_fügen"
 
-#: ../src/f-spot.glade.h:146
+#: ../src/f-spot.glade.h:156
 msgid "_Attach Tag To Selection"
 msgstr "Markierung zur Aus_wahl hinzufügen"
 
-#: ../src/f-spot.glade.h:147
+#: ../src/f-spot.glade.h:157
 msgid "_Clear Date Range"
 msgstr "Datumsspanne _zurücksetzen"
 
-#: ../src/f-spot.glade.h:148
+#: ../src/f-spot.glade.h:158
 msgid "_Close"
 msgstr "S_chließen"
 
-#: ../src/f-spot.glade.h:149
+#: ../src/f-spot.glade.h:159
 msgid "_Delete Selected Tag"
 msgstr "Ausgewählte Markierung _löschen"
 
-#: ../src/f-spot.glade.h:150
+#: ../src/f-spot.glade.h:160
 msgid "_Delete Version"
 msgstr "Version _löschen"
 
-#: ../src/f-spot.glade.h:151
+#: ../src/f-spot.glade.h:161
 msgid "_Delete from Drive"
 msgstr "Vom Laufwerk _löschen"
 
-#: ../src/f-spot.glade.h:152
+#: ../src/f-spot.glade.h:162
 msgid "_Directory"
 msgstr "_Verzeichnis"
 
-#: ../src/f-spot.glade.h:153
+#: ../src/f-spot.glade.h:163
 msgid "_EXIF Data"
 msgstr "_EXIF Daten"
 
-#: ../src/f-spot.glade.h:154
+#: ../src/f-spot.glade.h:164
 msgid "_Edit Selected Tag..."
 msgstr "Ausgewählte Markierung _bearbeiten…"
 
-#: ../src/f-spot.glade.h:155
+#: ../src/f-spot.glade.h:165
 msgid "_Export"
 msgstr "E_xportieren"
 
-#: ../src/f-spot.glade.h:156
+#: ../src/f-spot.glade.h:166
 msgid "_Fullscreen"
 msgstr "_Vollbild"
 
-#: ../src/f-spot.glade.h:157
+#: ../src/f-spot.glade.h:167
 msgid "_Import..."
 msgstr "I_mportieren…"
 
-#: ../src/f-spot.glade.h:158
+#: ../src/f-spot.glade.h:168
 msgid "_Large"
 msgstr "_Groß"
 
-#: ../src/f-spot.glade.h:159
+#: ../src/f-spot.glade.h:169
 msgid "_Medium"
 msgstr "_Mittel"
 
-#: ../src/f-spot.glade.h:160
+#: ../src/f-spot.glade.h:170
 msgid "_Month"
 msgstr "_Monat"
 
-#: ../src/f-spot.glade.h:161
+#: ../src/f-spot.glade.h:171
 msgid "_Print..."
 msgstr "_Drucken…"
 
-#: ../src/f-spot.glade.h:162
+#: ../src/f-spot.glade.h:172
 msgid "_Remove From Catalog"
 msgstr "Aus dem Katalog ent_fernen"
 
-#: ../src/f-spot.glade.h:163
+#: ../src/f-spot.glade.h:173
 msgid "_Remove Tag From Selection"
 msgstr "Markierung der Auswahl ent_fernen"
 
-#: ../src/f-spot.glade.h:164
+#: ../src/f-spot.glade.h:174
 msgid "_Rename Version"
 msgstr "Version _umbenennen"
 
-#: ../src/f-spot.glade.h:165
+#: ../src/f-spot.glade.h:175
 msgid "_Sharpen..."
 msgstr "_Schärfen…"
 
-#: ../src/f-spot.glade.h:166
+#: ../src/f-spot.glade.h:176
 msgid "_Size"
 msgstr "G_röße"
 
-#: ../src/f-spot.glade.h:167
+#: ../src/f-spot.glade.h:177
 msgid "_Slideshow"
 msgstr "Dia_show"
 
-#: ../src/f-spot.glade.h:168
+#: ../src/f-spot.glade.h:178
 msgid "_Small"
 msgstr "_Klein"
 
-#: ../src/f-spot.glade.h:169
+#: ../src/f-spot.glade.h:179
 msgid "_Tags"
 msgstr "_Markierungen"
 
-#: ../src/f-spot.glade.h:170
+#: ../src/f-spot.glade.h:180
 msgid "_Update Thumbnail"
 msgstr "Bildvorschau _aktualisieren"
 
-#: ../src/f-spot.glade.h:171
+#: ../src/f-spot.glade.h:181
 msgid "_Version"
 msgstr "_Version"
 
-#: ../src/f-spot.glade.h:172
+#: ../src/f-spot.glade.h:182
 msgid "_View"
 msgstr "_Ansicht"
 
-#: ../src/f-spot.glade.h:173
+#: ../src/f-spot.glade.h:183
 msgid "dialog1"
 msgstr "Bilder auf CD schreiben"
 
-#: ../src/f-spot.glade.h:174
+#: ../src/f-spot.glade.h:184
 msgid "pixels"
 msgstr "Pixel"
 
-#: ../src/f-spot.glade.h:175
+#: ../src/f-spot.glade.h:185
 msgid "x"
 msgstr "x"
 
@@ -1066,16 +1101,24 @@ msgstr "(Nicht verbunden)"
 msgid "(No Albums)"
 msgstr "(Keine Alben)"
 
+#: ../src/ImportCommand.cs:27
+msgid "Select Folder"
+msgstr "Ordner wählen"
+
+#: ../src/ImportCommand.cs:203
+msgid "(No Cameras Detected)"
+msgstr "(Keine Kameras erkannt)"
+
 #. Gtk.Menu menu = new Gtk.Menu();
-#: ../src/ImportCommand.cs:365
+#: ../src/ImportCommand.cs:583
 msgid "Select Tag"
 msgstr "Markierung auswählen"
 
-#: ../src/ImportCommand.cs:401
+#: ../src/ImportCommand.cs:648
 msgid "Directory does not exist."
 msgstr "Verzeichnis ist nicht vorhanden."
 
-#: ../src/ImportCommand.cs:402
+#: ../src/ImportCommand.cs:649
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
@@ -1112,11 +1155,11 @@ msgstr "(Keine)"
 msgid "No EXIF info available"
 msgstr "Keine EXIF-Info verfügbar"
 
-#: ../src/MainWindow.cs:878
+#: ../src/MainWindow.cs:934
 msgid "No cameras detected."
-msgstr "Keine Kamera erkannt."
+msgstr "Keine Kameras erkannt."
 
-#: ../src/MainWindow.cs:879
+#: ../src/MainWindow.cs:935
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1124,11 +1167,11 @@ msgstr ""
 "F-Spot konnte keine an diesem System angeschlossene Kamera finden. "
 "Vergewissern Sie sich, dass die Kamera angeschlossen und eingeschaltet ist."
 
-#: ../src/MainWindow.cs:906
+#: ../src/MainWindow.cs:962
 msgid "Error connecting to camera"
 msgstr "Fehler beim Verbinden zur Kamera"
 
-#: ../src/MainWindow.cs:907
+#: ../src/MainWindow.cs:963
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Während dem Verbinden zur Kamera wurde der Fehler »{0}« empfangen"
@@ -1136,58 +1179,58 @@ msgstr "Während dem Verbinden zur Kamera wurde der Fehler »{0}« empfangen"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1027
+#: ../src/MainWindow.cs:1093
 msgid "translator-credits"
 msgstr "Frank Arnold <frank@scirocco-5v-turbo.de>"
 
-#: ../src/MainWindow.cs:1161
+#: ../src/MainWindow.cs:1227
 msgid "Unsharp Mask"
 msgstr "Weichzeichnen"
 
-#: ../src/MainWindow.cs:1170
+#: ../src/MainWindow.cs:1236
 msgid "Amount:"
 msgstr "Betrag:"
 
-#: ../src/MainWindow.cs:1171
+#: ../src/MainWindow.cs:1237
 msgid "Radius:"
 msgstr "Radius:"
 
-#: ../src/MainWindow.cs:1172
+#: ../src/MainWindow.cs:1238
 msgid "Threshold:"
 msgstr "Schwellwert:"
 
-#: ../src/MainWindow.cs:1214
+#: ../src/MainWindow.cs:1280
 msgid "Error saving sharpened photo"
 msgstr "Fehler beim Speichern des geschärften Bilds"
 
-#: ../src/MainWindow.cs:1433
+#: ../src/MainWindow.cs:1499
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Das ausgewählte Foto dauerhaft löschen?"
 msgstr[1] "Die {0} ausgewählten Fotos dauerhaft löschen?"
 
-#: ../src/MainWindow.cs:1437
+#: ../src/MainWindow.cs:1503
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Dies löscht alle Versionen des gewählten Fotos vom Laufwerk."
 msgstr[1] "Dies löscht alle Versionen der gewählten Fotos vom Laufwerk."
 
-#: ../src/MainWindow.cs:1440
+#: ../src/MainWindow.cs:1506
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "Foto _löschen"
 msgstr[1] "Fotos _löschen"
 
-#: ../src/MainWindow.cs:1458
+#: ../src/MainWindow.cs:1524
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Das ausgewählte Foto aus F-Spot entfernen?"
 msgstr[1] "Die {0} ausgewählten Fotos aus F-Spot entfernen?"
 
-#: ../src/MainWindow.cs:1463
+#: ../src/MainWindow.cs:1529
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1197,45 +1240,45 @@ msgstr ""
 "Markierungsinformationen verloren. Die Fotos bleiben auf dem Rechner "
 "erhalten und können wieder in F-Spot importiert werden."
 
-#: ../src/MainWindow.cs:1464
+#: ../src/MainWindow.cs:1530
 msgid "_Remove from Catalog"
 msgstr "Aus dem Katalog ent_fernen"
 
-#: ../src/MainWindow.cs:1488
+#: ../src/MainWindow.cs:1554
 #, csharp-format
 msgid "Delete the selected tag?"
 msgid_plural "Delete the {0} selected tags?"
 msgstr[0] "Die ausgewählte Markierung löschen?"
 msgstr[1] "Die {0} ausgewählten Markierungen löschen?"
 
-#: ../src/MainWindow.cs:1493
+#: ../src/MainWindow.cs:1559
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr ""
 "Wenn eine Markierung gelöscht wird, gehen alle Verbindungen zu Fotos "
 "verloren."
 
-#: ../src/MainWindow.cs:1494
+#: ../src/MainWindow.cs:1560
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "Markierung _löschen"
 msgstr[1] "Markierungen _löschen"
 
-#: ../src/PhotoPopup.cs:26
+#: ../src/PhotoPopup.cs:30
 msgid "Copy Image Location"
 msgstr "Bildadresse kopieren"
 
-#: ../src/PhotoPopup.cs:38
+#: ../src/PhotoPopup.cs:42
 msgid "Remove From Catalog"
 msgstr "Aus dem Katalog entfernen"
 
-#: ../src/PhotoPopup.cs:40
+#: ../src/PhotoPopup.cs:44
 msgid "Delete From Drive"
 msgstr "Vom Laufwerk löschen"
 
 #.
 #. FIXME TagMenu is ugly.
 #.
-#: ../src/PhotoPopup.cs:48
+#: ../src/PhotoPopup.cs:52
 msgid "Attach Tag"
 msgstr "Markierung hinzufügen"
 
@@ -1243,7 +1286,7 @@ msgstr "Markierung hinzufügen"
 #. FIXME finish the IPhotoSelection stuff and move the activate handler into the class
 #. this current method is way too complicated.
 #.
-#: ../src/PhotoPopup.cs:58
+#: ../src/PhotoPopup.cs:62
 msgid "Remove Tag"
 msgstr "Markierung entfernen"
 
@@ -1274,76 +1317,88 @@ msgstr "Wirklich löschen?"
 msgid "Really delete version \"{0}\"?"
 msgstr "Soll die Version »{0}« wirklich gelöscht werden?"
 
-#: ../src/PhotoView.cs:104
+#: ../src/PhotoView.cs:94
 msgid "No Constraint"
 msgstr "Keine Beschränkung"
 
-#: ../src/PhotoView.cs:105
+#: ../src/PhotoView.cs:95
 msgid "4 x 3 (Book)"
 msgstr "10 x 7,5 (Book)"
 
-#: ../src/PhotoView.cs:106
+#: ../src/PhotoView.cs:96
 msgid "4 x 6 (Postcard)"
 msgstr "10 x 15 (Postkarte)"
 
-#: ../src/PhotoView.cs:107
+#: ../src/PhotoView.cs:97
 msgid "5 x 7 (L, 2L)"
 msgstr "12,5 x 17,5 (L, 2L)"
 
-#: ../src/PhotoView.cs:108
+#: ../src/PhotoView.cs:98
 msgid "8 x 10"
 msgstr "20 x 25"
 
-#: ../src/PhotoView.cs:109
+#: ../src/PhotoView.cs:99
 msgid "4 x 3 Portrait (Book)"
 msgstr "10 x 7,5 Hochformat (Book)"
 
-#: ../src/PhotoView.cs:110
+#: ../src/PhotoView.cs:100
 msgid "4 x 6 Portrait (Postcard)"
 msgstr "10 x 15 Hochformat (Postkarte)"
 
-#: ../src/PhotoView.cs:111
+#: ../src/PhotoView.cs:101
 msgid "5 x 7 Portrait (L, 2L)"
 msgstr "12,5 x 17,5 Hochformat (L, 2L)"
 
-#: ../src/PhotoView.cs:112
+#: ../src/PhotoView.cs:102
 msgid "8 x 10 Portrait"
 msgstr "20 x 25 Hochformat"
 
-#: ../src/PhotoView.cs:113
+#: ../src/PhotoView.cs:103
 msgid "Square"
 msgstr "Quadrat"
 
-#: ../src/PhotoView.cs:301
+#: ../src/PhotoView.cs:277
 msgid "Error editing photo"
 msgstr "Fehler beim Bearbeiten des Fotos"
 
-#: ../src/RotateCommand.cs:24
-msgid "Rotating pictures"
-msgstr "Bilder drehen"
+#: ../src/PhotoView.cs:471
+msgid "Crop image to selected area"
+msgstr "Bild auf den gewählten Bereich zuschneiden"
 
-#: ../src/RotateCommand.cs:33
-#, csharp-format
-msgid "Rotating picture \"{0}\""
-msgstr "Drehen des Bilds »{0}«"
+#: ../src/PhotoView.cs:472
+msgid "Remove redeye from selected area"
+msgstr "Rote Augen aus gewähltem Bereich entfernen"
 
-#: ../src/RotateCommand.cs:74
+#: ../src/PhotoView.cs:473
+msgid "Adjust the image colors"
+msgstr "Bildfarben abgleichen"
+
+#: ../src/RotateCommand.cs:56
 #, csharp-format
 msgid "Received exception \"{0}\" while rotating image {1}"
 msgstr "Die Ausnahme »{0}« wurde beim Drehen des Bilds {1} empfangen."
 
-#: ../src/RotateCommand.cs:79
+#: ../src/RotateCommand.cs:61
 msgid "Unknown Error while Rotating Image."
 msgstr "Beim Drehen des Bilds ist ein unbekannter Fehler aufgetreten."
 
-#: ../src/RotateCommand.cs:97
+#: ../src/RotateCommand.cs:74
+msgid "Rotating pictures"
+msgstr "Bilder drehen"
+
+#: ../src/RotateCommand.cs:84
+#, csharp-format
+msgid "Rotating picture \"{0}\""
+msgstr "Drehen des Bilds »{0}«"
+
+#: ../src/RotateCommand.cs:115
 #, csharp-format
 msgid "Unable to rotate image"
 msgid_plural "Unable to rotate {0} images"
 msgstr[0] "Das Bild konnte nicht gedreht werden"
 msgstr[1] "{0} Bilder konnten nicht gedreht werden"
 
-#: ../src/RotateCommand.cs:98
+#: ../src/RotateCommand.cs:119
 #, csharp-format
 msgid ""
 "The image could not be rotated because it is on a read only file system or "
@@ -1368,14 +1423,6 @@ msgstr "Zuschneiden"
 msgid "Edit Image"
 msgstr "Bild bearbeiten"
 
-#: ../src/StockIcons.cs:30
-msgid "Fullscreen"
-msgstr "Vollbild"
-
-#: ../src/StockIcons.cs:31
-msgid "Slideshow"
-msgstr "Diashow"
-
 #: ../src/StockIcons.cs:32
 msgid "Logo"
 msgstr "Logo"
@@ -1391,6 +1438,14 @@ msgstr "Rote Augen reduzieren"
 #: ../src/StockIcons.cs:37
 msgid "Loading"
 msgstr "Ladend"
+
+#: ../src/StockIcons.cs:38
+msgid "Near"
+msgstr "Nah"
+
+#: ../src/StockIcons.cs:39
+msgid "Far"
+msgstr "Fern"
 
 #: ../src/TagCommands.cs:46
 msgid "(No categories)"
@@ -1428,17 +1483,17 @@ msgstr "Kategoriename:"
 msgid "Edit Tag"
 msgstr "Markierung bearbeiten:"
 
-#: ../src/TagCommands.cs:386
+#: ../src/TagCommands.cs:382
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Foto {0} von {1}"
 
-#: ../src/TagCommands.cs:413
+#: ../src/TagCommands.cs:409
 #, csharp-format
 msgid "Edit icon For category {0}"
 msgstr "Symbol für Kategorie {0} ändern"
 
-#: ../src/TagCommands.cs:415
+#: ../src/TagCommands.cs:411
 #, csharp-format
 msgid "Edit icon for tag {0}"
 msgstr "Symbol für Markierung {0} ändern"
@@ -1468,15 +1523,14 @@ msgstr ""
 "Fehler empfangen:\n"
 "»{0}«\n"
 
-#: ../src/VfsExport.cs:77
-#, csharp-format
-msgid "Scaling picture \"{0}\""
-msgstr "Skalieren des Bilds »{0}«"
+#~ msgid "Import From:"
+#~ msgstr "Importieren von:"
 
-#: ../src/VfsExport.cs:84
-#, csharp-format
-msgid "Transferring picture \"{0}\""
-msgstr "Übertragung des Bilds »{0}«"
+#~ msgid "Scaling picture \"{0}\""
+#~ msgstr "Skalieren des Bilds »{0}«"
+
+#~ msgid "Transferring picture \"{0}\""
+#~ msgstr "Übertragung des Bilds »{0}«"
 
 #~ msgid "Export to _Original..."
 #~ msgstr "Export zu _Original…"
