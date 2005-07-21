@@ -444,7 +444,7 @@ public class TagCommands {
 			else if (System.IO.Directory.Exists ("/usr/share/icons/gnome/48x48/emblems"))
 				icon_view = new IconView (new FSpot.DirectoryCollection ("/usr/local/share/icons/gnome/48x48/emblems"));
 			else // This will just load an empty collection if the directory doesn't exist.
-				icon_view = new IconView (new FSpot.DirectoryCollection ("/usr/shar/icons/gnome/48x48/emblems"));
+				icon_view = new IconView (new FSpot.DirectoryCollection ("/usr/share/icons/gnome/48x48/emblems"));
 
 			icon_scrolled_window.Add (icon_view);
 			icon_view.ThumbnailWidth = 32;
