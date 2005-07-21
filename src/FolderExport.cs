@@ -437,12 +437,12 @@ namespace FSpot {
 		
 		protected override string ImageName (int photo_index)
 		{
-			return String.Format ("img-{0}.jpg", photo_index);
+			return String.Format ("img-{0}.jpg", photo_index + 1);
 		}
 
-		private string AlternateName (int photo_index, string extention) 
+		private string AlternateName (int photo_index, string extension) 
 		{
-			return System.IO.Path.GetFileNameWithoutExtension (ImageName (photo_index)) + extention;
+			return System.IO.Path.GetFileNameWithoutExtension (ImageName (photo_index)) + extension;
 		}
 
 		private void SetTime ()
@@ -466,8 +466,9 @@ namespace FSpot {
 
 		private void CreateComments(string photo_path, int photo_index)
 		{
-			StreamWriter comment = File.CreateText(SubdirPath  ("comments", "img-" + photo_index + ".txt"));
-			comment.WriteLine("<span>image " + photo_index + "</span>\n");
+			StreamWriter comment = File.CreateText(SubdirPath  ("comments", AlternateName (photo_index, "txt")));
+			comment.Write("<span>image " + photo_index + "</span> ");
+			comment.Write (collection [photo_index].Description + "\n");
 			comment.Close();
 		}
 
@@ -521,7 +522,9 @@ namespace FSpot {
 		private void CreateInfo()
 		{
 			StreamWriter info = File.CreateText(Path.Combine (gallery_path, "info.txt"));
+			info.WriteLine("name|" + gallery_name);
 			info.WriteLine("date|" + collection [0].Time.Date.ToString ("dd.MM.yyyy"));
+			info.WriteLine("description|" + description);
 			info.Close();
 		}
 	}
