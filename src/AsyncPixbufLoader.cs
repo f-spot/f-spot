@@ -87,9 +87,9 @@ namespace FSpot {
 			loader.Closed += ev;
 
 			ThumbnailGenerator.Default.PushBlock ();
+			//AsyncIORead (null);
 			delay.Start ();
 		}			
-
 
 		public Gdk.PixbufLoader Loader {
 			get {
@@ -116,6 +116,10 @@ namespace FSpot {
 			ThumbnailGenerator.Default.PopBlock ();
 				
 			try {
+				if (handle != null) {
+					stream.EndRead (handle);
+					handle = null;
+				}
 				delay.Stop ();
 				if (loader != null) {
 					loader.AreaPrepared -= ap;
@@ -151,6 +155,49 @@ namespace FSpot {
 
 			//System.Console.WriteLine ("orig {0} tform {1}", damage.ToString (), area.ToString ());
 			damage = Gdk.Rectangle.Zero;
+		}
+
+		System.IAsyncResult handle;
+		
+		private void AsyncIORead (System.IAsyncResult last)
+		{
+			int len = 0;
+
+			System.DateTime start_time = System.DateTime.Now;
+			if (last != null) {
+				start_time = (System.DateTime)last.AsyncState;
+				System.TimeSpan span = System.DateTime.Now - start_time;
+
+				len = stream.EndRead (last);
+				handle = null;
+				if (len > 0) {
+					try {
+						loader.Write (buffer, (uint)len);
+						UpdateListeners ();
+					} catch (GLib.GException e) {
+						pixbuf = null;
+					}
+				} else {
+					UpdateListeners ();
+					done_reading = true;
+					Close ();
+					return;
+				}
+				/*
+				if (span.TotalMilliseconds > chunk_timeout) {
+					delay.Start ();
+					return;
+				}
+				*/
+			}
+			handle = stream.BeginRead (buffer, 0, buffer.Length, new System.AsyncCallback (AsyncIORead), start_time);
+		}
+
+		private bool AsyncIORead () 
+		{
+			AsyncIORead (null);
+			delay.Stop ();
+			return false;
 		}
 
 		private bool AsyncRead () 
