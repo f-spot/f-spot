@@ -1,3 +1,9 @@
+2005-07-26  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: add an open handler.
+
+	* src/AsyncPixbufLoader.cs: add some error handling to the loader.
+
 2005-07-26  Larry Ewing  <lewing@localhost.localdomain>
 
 	* po/POTFILES.in: add missing files.

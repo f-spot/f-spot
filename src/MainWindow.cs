@@ -909,6 +909,11 @@ public class MainWindow {
 	// Main menu commands
 	//
 
+	void HandleOpenCommand (object sender, EventArgs e)
+	{
+		FSpot.SingleView single = new FSpot.SingleView ();
+	}
+
 	void HandleImportCommand (object sender, EventArgs e)
 	{
 		db.Sync = false;
@@ -1421,7 +1426,7 @@ public class MainWindow {
 
 		fsview.Show ();
 	}
-	
+
 	void HandleFullScreenViewDestroy (object sender, EventArgs args)
 	{
 		JumpTo (fsview.View.Item.Index);
