@@ -1,3 +1,15 @@
+2005-07-30  Larry Ewing  <lewing@novell.com>
+
+	* configure.in: switch to using gtk-sharp-2.0
+
+	* src/Makefile.am: go 2.0
+
+	* src/PhotoImageView.cs: 2.0 changes
+
+	* src/SimpleCalendar.cs: 2.0 changes
+
+	* src/PreviewPopup.cs: 2.0 changes
+
 2005-07-26  Larry Ewing  <lewing@novell.com>
 
 	* src/MainWindow.cs: add an open handler.
