@@ -29,7 +29,7 @@ namespace FSpot {
 			}
 		}
 			
-		public System.DateTime Month
+		new public System.DateTime Month
 		{
 			get {
 				uint year;

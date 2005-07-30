@@ -13,7 +13,7 @@ public class PhotoView : EventBox {
 		}
 	}
 
-	public FSpot.BrowsablePointer Item {
+	new public FSpot.BrowsablePointer Item {
 		get {
 			return photo_view.Item;
 		}

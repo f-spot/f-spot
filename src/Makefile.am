@@ -92,76 +92,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/CameraSelectionDialog.cs	\
 	$(srcdir)/CameraFileSelectionDialog.cs	\
 	$(srcdir)/TagSelectionDialog.cs		\
-	$(srcdir)/main.cs			\
-						\
-	$(srcdir)/gnomevfs/Gnome.VfsSharp.voidObjectObjectSignal.cs	\
-	$(srcdir)/gnomevfs/Gnome.VfsSharp.voidObjectSignal.cs	\
-	$(srcdir)/gnomevfs/ObjectManager.cs			\
-	$(srcdir)/gnomevfs/Async.cs				\
-	$(srcdir)/gnomevfs/AsyncCallback.cs			\
-	$(srcdir)/gnomevfs/AsyncCallbackNative.cs		\
-	$(srcdir)/gnomevfs/AsyncDirectoryLoadCallback.cs	\
-	$(srcdir)/gnomevfs/AsyncDirectoryLoadCallbackNative.cs	\
-	$(srcdir)/gnomevfs/AsyncReadCallback.cs			\
-	$(srcdir)/gnomevfs/AsyncReadCallbackNative.cs		\
-	$(srcdir)/gnomevfs/AsyncWriteCallback.cs		\
-	$(srcdir)/gnomevfs/AsyncWriteCallbackNative.cs		\
-	$(srcdir)/gnomevfs/Directory.cs				\
-	$(srcdir)/gnomevfs/FileFlags.cs				\
-	$(srcdir)/gnomevfs/FileInfo.cs				\
-	$(srcdir)/gnomevfs/FileInfoFields.cs			\
-	$(srcdir)/gnomevfs/FileInfoOptions.cs			\
-	$(srcdir)/gnomevfs/FilePermissions.cs			\
-	$(srcdir)/gnomevfs/FileType.cs				\
-	$(srcdir)/gnomevfs/Handle.cs				\
-	$(srcdir)/gnomevfs/MimeType.cs				\
-	$(srcdir)/gnomevfs/MimeActionType.cs			\
-	$(srcdir)/gnomevfs/MimeAction.cs			\
-	$(srcdir)/gnomevfs/MimeApplication.cs			\
-	$(srcdir)/gnomevfs/MimeApplicationArgumentType.cs	\
-	$(srcdir)/gnomevfs/ModuleCallback.cs			\
-	$(srcdir)/gnomevfs/ModuleCallbackAuthentication.cs	\
-	$(srcdir)/gnomevfs/ModuleCallbackFullAuthenticationFlags.cs	\
-	$(srcdir)/gnomevfs/ModuleCallbackFillAuthentication.cs	\
-	$(srcdir)/gnomevfs/ModuleCallbackFullAuthentication.cs	\
-	$(srcdir)/gnomevfs/ModuleCallbackSaveAuthentication.cs	\
-	$(srcdir)/gnomevfs/ModuleCallbackStatusMessage.cs	\
-	$(srcdir)/gnomevfs/Monitor.cs				\
-	$(srcdir)/gnomevfs/MonitorType.cs			\
-	$(srcdir)/gnomevfs/OpenMode.cs				\
-	$(srcdir)/gnomevfs/Result.cs				\
-	$(srcdir)/gnomevfs/SeekPosition.cs			\
-	$(srcdir)/gnomevfs/SetFileInfoMask.cs			\
-	$(srcdir)/gnomevfs/Sync.cs				\
-	$(srcdir)/gnomevfs/Vfs.cs				\
-	$(srcdir)/gnomevfs/Volume.cs				\
-	$(srcdir)/gnomevfs/VolumeMonitor.cs			\
-	$(srcdir)/gnomevfs/Drive.cs				\
-	$(srcdir)/gnomevfs/DriveConnectedHandler.cs		\
-	$(srcdir)/gnomevfs/DriveDisconnectedHandler.cs		\
-	$(srcdir)/gnomevfs/DeviceType.cs			\
-	$(srcdir)/gnomevfs/VolumeType.cs			\
-	$(srcdir)/gnomevfs/VolumePreUnmountHandler.cs		\
-	$(srcdir)/gnomevfs/VolumeUnmountedHandler.cs		\
-	$(srcdir)/gnomevfs/VolumeMountedHandler.cs		\
-	$(srcdir)/gnomevfs/Uri.cs				\
-	$(srcdir)/gnomevfs/UriHideOptions.cs			\
-	$(srcdir)/gnomevfs/VfsException.cs			\
-	$(srcdir)/gnomevfs/VfsStream.cs				\
-	$(srcdir)/gnomevfs/VfsStreamAsyncResult.cs		\
-	$(srcdir)/gnomevfs/XferErrorAction.cs			\
-	$(srcdir)/gnomevfs/XferOverwriteAction.cs		\
-	$(srcdir)/gnomevfs/Xfer.cs				\
-	$(srcdir)/gnomevfs/XferPhase.cs				\
-	$(srcdir)/gnomevfs/XferOptions.cs			\
-	$(srcdir)/gnomevfs/XferErrorMode.cs			\
-	$(srcdir)/gnomevfs/XferOverwriteMode.cs			\
-	$(srcdir)/gnomevfs/XferProgressCallback.cs		\
-	$(srcdir)/gnomevfs/XferProgressInfo.cs			\
-	$(srcdir)/gnomevfs/XferProgressStatus.cs		\
-	$(srcdir)/gnomevfs/XferProgressCallbackNative.cs
-
-
+	$(srcdir)/main.cs
 
 ASSEMBLIES =					\
 	-r:$(top_builddir)/libgphoto2-sharp/libgphoto2-sharp.dll   \
@@ -170,9 +101,10 @@ ASSEMBLIES =					\
 	-r:Mono.Data.SqliteClient		\
 	-r:Mono.Posix				\
 	-r:ICSharpCode.SharpZipLib		\
-	-pkg:gtkhtml-sharp			\
-	-pkg:glade-sharp			\
-	-pkg:gconf-sharp
+	-pkg:gtkhtml-sharp-2.0			\
+	-pkg:glade-sharp-2.0			\
+	-pkg:gnome-vfs-sharp-2.0		\
+	-pkg:gconf-sharp-2.0
 
 RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-browse.png,f-spot-browse.png		\

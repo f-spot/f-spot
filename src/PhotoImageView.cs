@@ -24,7 +24,7 @@ namespace FSpot {
 			item.IndexChanged += PhotoIndexChanged;
 		}
 
-		public BrowsablePointer Item {
+		new public BrowsablePointer Item {
 			get {
 				return item;
 			}
