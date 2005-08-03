@@ -71,6 +71,9 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 			int result = Photo.CompareCurrentDir (p1, p2);
 			
+			if (result == 0)
+				result = CompareName (p1, p2);
+
 			return result;
 		}
 	}
@@ -358,6 +361,18 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		foreach (Tag tag in taglist)
 			RemoveTag (tag);
 	}	
+
+	public void RemoveCategory (Tag []taglist)
+	{
+		foreach (Tag tag in taglist) {
+			Category cat = tag as Category;
+
+			if (cat != null)
+				RemoveCategory (cat.Children);
+
+			RemoveTag (tag);
+		}
+	}
 
 	public bool HasTag (Tag tag)
 	{
@@ -799,7 +814,7 @@ public class PhotoStore : DbStore {
 		Photo [] photos = Query (tags);	
 
 		foreach (Photo photo in photos) {
-			photo.RemoveTag (tags);
+			photo.RemoveCategory (tags);
 			Commit (photo);
 		}
 		

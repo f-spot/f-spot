@@ -1,3 +1,9 @@
+2005-08-03  Larry Ewing  <lewing@novell.com>
+
+	* src/PhotoStore.cs: add patch from Joerg Buesse to sort all the
+	way down to filename in CompareDirectory.  Add start of fix for
+	tag removal bug.
+
 2005-07-30  Larry Ewing  <lewing@novell.com>
 
 	* configure.in: switch to using gtk-sharp-2.0
