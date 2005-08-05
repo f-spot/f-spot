@@ -8,6 +8,17 @@ namespace FSpot.Raf {
 	// Following that there seem to be more offsets and lengths (probably for the raw data) that I haven't
 	// completely figured out yet.  More to follow.
 
+	// ALL the sample files I have begin with "FUJIFILMCCD-RAW "
+
+	
+	public class WhiteBalance {
+		// see dcraw parse_fuli
+		public WhiteBalance (System.IO.Stream stream)
+		{
+
+		}
+	}
+	
 	public class RafFile : ImageFile {
 		public RafFile (string path) : base (path)
 		{
@@ -52,13 +63,20 @@ namespace FSpot.Raf {
 		{
 			using (System.IO.Stream stream = System.IO.File.OpenRead (this.path)) {
 				stream.Position = 0x54;
-				byte [] data = new byte [8];
+				byte [] data = new byte [24];
 				stream.Read (data, 0, data.Length);
-				uint offset = BitConverter.ToUInt32 (data, 0, false);
-				uint length = BitConverter.ToUInt32 (data, 4, false);
-				
-				byte [] image = new byte [length];
-				stream.Position = offset;
+				uint jpeg_offset = BitConverter.ToUInt32 (data, 0, false);
+				uint jpeg_length = BitConverter.ToUInt32 (data, 4, false);
+
+				uint wb_offset = BitConverter.ToUInt32 (data, 8, false);
+				uint wb_length = BitConverter.ToUInt32 (data, 12, false);
+
+				uint raw_offset = BitConverter.ToUInt32 (data, 16, false);
+				uint raw_length = BitConverter.ToUInt32 (data, 20, false);
+
+
+				byte [] image = new byte [jpeg_length];
+				stream.Position = jpeg_offset;
 				stream.Read (image, 0, image.Length);
 				return image;
 			}
