@@ -18,6 +18,7 @@ noinst_DATA =					\
 	f-spot-stock_near.png			\
 	f-spot-stock_far.png			\
 	f-spot-question-mark.png		\
+	f-spot-simple.css			\
 	f-spot-simple-white.css
 
 pixmapdir = $(datadir)/pixmaps

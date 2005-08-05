@@ -1,6 +1,12 @@
 2005-08-04  Larry Ewing  <lewing@novell.com>
 
-	* configure.in: update sqlite check based on teh beagle sqlite
+	* icons/f-spot-simple.css: add a new style from Jakub.
+
+	* src/FolderExport.cs: change html to match the new style.
+
+	* src/Makefile.am: add the new styleheet as a resource.
+	
+	* configure.in: update sqlite check based on the beagle sqlite
 	check.
 
 2005-08-03  Larry Ewing  <lewing@novell.com>

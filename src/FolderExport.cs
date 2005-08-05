@@ -95,7 +95,7 @@ namespace FSpot {
 			thumb_scrolledwindow.Add (view);
 			HandleSizeActive (null, null);
 			name_entry.Text = gallery_name;
-			uri_entry.Text = System.IO.Path.Combine (FSpot.Global.HomeDirectory, "public_html");
+			uri_entry.Text = System.IO.Path.Combine (FSpot.Global.HomeDirectory, "Desktop");
 			if (!System.IO.Directory.Exists (uri_entry.Text))
 				uri_entry.Text = FSpot.Global.HomeDirectory;
 
@@ -533,7 +533,8 @@ namespace FSpot {
 	{
 		int current;
 		int perpage = 16;
-		string stylesheet = "f-spot-simple-white.css";
+		//string stylesheet = "f-spot-simple-white.css";
+		string stylesheet = "f-spot-simple.css";
 		
 		public HtmlGallery (IPhotoCollection selection, string path, string name) : base (selection, path, name) 
 		{ 
@@ -618,19 +619,26 @@ namespace FSpot {
 			//writer.Indent = 4;
 			
 			//writer.Write ("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
+			writer.WriteLine ("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">");
 			writer.RenderBeginTag ("html");
 			
 			WriteHeader (writer);
 			
 			writer.RenderBeginTag ("body");
 
-			writer.AddAttribute ("class", "navi");
+			writer.AddAttribute ("class", "container1");
+			writer.RenderBeginTag ("div");
+
+			writer.AddAttribute ("class", "header");
 			writer.RenderBeginTag ("div");
 
 			writer.AddAttribute ("id", "title");
 			writer.RenderBeginTag ("div");
-			writer.Write (description);
+			writer.Write (gallery_name);
 			writer.RenderEndTag ();
+
+			writer.AddAttribute ("class", "navi");
+			writer.RenderBeginTag ("div");
 
 			if (i > 0)
 				WritePageNav (writer, "prev", PhotoIndexPath (i - 1), Mono.Posix.Catalog.GetString("Prev"));
@@ -640,7 +648,9 @@ namespace FSpot {
 			if (i < collection.Count -1)
 				WritePageNav (writer, "next", PhotoIndexPath (i + 1), Mono.Posix.Catalog.GetString("Next"));
 
-			writer.RenderEndTag ();
+			writer.RenderEndTag (); //navi
+			
+			writer.RenderEndTag (); //header
 			
 			writer.AddAttribute ("class", "photo");
 			writer.RenderBeginTag ("div");
@@ -649,15 +659,19 @@ namespace FSpot {
 			writer.RenderBeginTag ("a");
 			
 			writer.AddAttribute ("src", PhotoWebPath (i));
+			writer.AddAttribute ("alt", "#");
 			writer.RenderBeginTag ("img");
 			writer.RenderEndTag ();
 			writer.RenderEndTag (); // a
 			
+			writer.AddAttribute ("id", "description");
 			writer.RenderBeginTag ("div");
 			writer.Write (collection [i].Description);
 			writer.RenderEndTag ();
 
 			writer.RenderEndTag ();
+			
+			writer.RenderEndTag (); //container1
 
 			WriteFooter (writer);
 			
@@ -678,7 +692,7 @@ namespace FSpot {
 		
 		static string IndexTitle (int page)
 		{
-			return String.Format ("{0}", page);
+			return String.Format ("{0}", page + 1);
 		}
 
 		public void WriteHeader (System.Web.UI.HtmlTextWriter writer)
@@ -719,22 +733,30 @@ namespace FSpot {
 			//writer.Indent = 4;
 
 			//writer.Write ("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
+			writer.WriteLine ("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">");
 			writer.RenderBeginTag ("html");
 			WriteHeader (writer);
 			
 			writer.RenderBeginTag ("body");
 
-			writer.AddAttribute ("class", "navi");
+			writer.AddAttribute ("class", "container1");
+			writer.RenderBeginTag ("div");
+
+			writer.AddAttribute ("class", "header");
 			writer.RenderBeginTag ("div");
 
 			writer.AddAttribute ("id", "title");
 			writer.RenderBeginTag ("div");
-			writer.Write (description);
-			writer.RenderEndTag ();
+			writer.Write (gallery_name);
+			writer.RenderEndTag (); //title div
 			
+			writer.AddAttribute ("class", "navi");
 			writer.RenderBeginTag ("div");
-			writer.Write (Mono.Posix.Catalog.GetString ("Pages:"));
-			writer.RenderEndTag ();
+
+			writer.AddAttribute ("class", "navilabel");
+			writer.RenderBeginTag ("div");
+			writer.Write (Mono.Posix.Catalog.GetString ("Page:"));
+			writer.RenderEndTag (); //pages div
 			
 			int i;
 			for (i = 0; i < PageCount; i++) {
@@ -744,11 +766,12 @@ namespace FSpot {
 				writer.AddAttribute ("href", IndexPath (i));
 				writer.RenderBeginTag ("a");
 				writer.Write (IndexTitle (i));
-				writer.RenderEndTag ();
+				writer.RenderEndTag (); //a
 				
-				writer.RenderEndTag ();
+				writer.RenderEndTag (); //navipage
 			}
-			writer.RenderEndTag ();
+			writer.RenderEndTag (); //navi
+			writer.RenderEndTag (); //header
 			
 			writer.AddAttribute ("class", "thumbs");
 			writer.RenderBeginTag ("div");
@@ -760,12 +783,22 @@ namespace FSpot {
 				writer.RenderBeginTag ("a");
 				
 				writer.AddAttribute  ("src", PhotoThumbPath (i));
+				writer.AddAttribute  ("alt", "#");
 				writer.RenderBeginTag ("img");
 				writer.RenderEndTag ();
 				
-				writer.RenderEndTag ();
+				writer.RenderEndTag (); //a
 			}
 			
+			writer.RenderEndTag (); //thumbs
+			
+			writer.AddAttribute ("id", "gallery_description");
+			writer.RenderBeginTag ("div");
+			writer.Write (description);
+			writer.RenderEndTag (); //description
+
+			writer.RenderEndTag (); //container1
+
 			WriteFooter (writer);
 			
 			writer.RenderEndTag (); //body
