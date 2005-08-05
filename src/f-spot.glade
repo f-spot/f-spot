@@ -6925,6 +6925,7 @@ Photo Details</property>
 		      <property name="label" translatable="yes">_Fullscreen</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleViewFullscreen" last_modification_time="Thu, 10 Jun 2004 02:58:42 GMT"/>
+		      <accelerator key="F11" modifiers="0" signal="activate"/>
 		    </widget>
 		  </child>
 
@@ -7030,7 +7031,7 @@ Photo Details</property>
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">_Month</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">False</property>
+			      <property name="active">True</property>
 			      <signal name="activate" handler="HandleArrangeByTime" last_modification_time="Fri, 20 Aug 2004 22:26:32 GMT"/>
 			    </widget>
 			  </child>
