@@ -1352,8 +1352,6 @@ public class MainWindow {
 
 	private bool SlideShow ()
 	{
-		Pixbuf bg = PixbufUtils.LoadFromScreen (main_window.GdkWindow);
-
 		int [] ids = SelectedIds ();
 		Photo [] photos = null;
 		if (ids.Length < 2) {
@@ -1376,7 +1374,7 @@ public class MainWindow {
 			return false;
 		}
 
-		FSpot.FullSlide full = new FSpot.FullSlide (bg, photos);
+		FSpot.FullSlide full = new FSpot.FullSlide (main_window, photos);
 		full.Play ();
 		main_window.GdkWindow.Cursor = null;
 		return false;

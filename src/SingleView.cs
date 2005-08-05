@@ -135,13 +135,12 @@ namespace FSpot {
 		
 		private bool SlideShow ()
 		{
-			Gdk.Pixbuf bg = PixbufUtils.LoadFromScreen (Window.GdkWindow);
 			IBrowsableItem [] items = new IBrowsableItem [collection.Count];
 			for (int i = 0; i < collection.Count; i++) {
 				items [i] = collection [i];
 			}
 
-			FSpot.FullSlide full = new FSpot.FullSlide (bg, items);
+			FSpot.FullSlide full = new FSpot.FullSlide (Window, items);
 			full.Play ();
 			this.Window.GdkWindow.Cursor = null;
 			return false;

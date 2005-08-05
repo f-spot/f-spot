@@ -5,7 +5,7 @@ namespace FSpot {
 		private Gtk.ScrolledWindow scroll;
 		private Delay hide;
 
-		public IconView (IntPtr raw) : base (raw) {}
+		public ScrolledView (System.IntPtr raw) : base (raw) {}
 
 		public ScrolledView () : base () {
 			scroll = new Gtk.ScrolledWindow  (null, null);

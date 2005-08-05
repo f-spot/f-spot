@@ -1,5 +1,11 @@
 2005-08-05  Larry Ewing  <lewing@novell.com>
 
+	* src/FullSlide.cs: set the transient and do the capture here.
+
+	* src/MainWindow.cs: use the new fullslide interface.
+
+	* src/SingleView.cs: use the new fullslide interface.
+
 	* src/PixbufUtils.cs: add FromScreen that takes a window argument.
 
 	* src/MainWindow.cs: use window from screen.
