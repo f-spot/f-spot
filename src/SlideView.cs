@@ -14,14 +14,15 @@ namespace FSpot {
 		private Gdk.Cursor busy;
 		private Gdk.Cursor none;
 		
-		public FullSlide (Gdk.Pixbuf bg, IBrowsableItem [] items) : base ("Slideshow")
+		public FullSlide (Gtk.Window parent, IBrowsableItem [] items) : base ("Slideshow")
 		{
-			screenshot = bg;
+			screenshot =  PixbufUtils.LoadFromScreen (parent.GdkWindow);
+			this.TransientFor = parent;
 
 			this.ButtonPressEvent += HandleSlideViewButtonPressEvent;
 			this.KeyPressEvent += HandleSlideViewKeyPressEvent;
 			this.AddEvents ((int) (EventMask.ButtonPressMask | EventMask.KeyPressMask | EventMask.PointerMotionMask));
-			slideview = new SlideView (bg, items);
+			slideview = new SlideView (screenshot, items);
 			this.Add (slideview);
 			this.Decorated = false;
 			this.Fullscreen();
