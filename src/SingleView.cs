@@ -135,7 +135,7 @@ namespace FSpot {
 		
 		private bool SlideShow ()
 		{
-			Gdk.Pixbuf bg = PixbufUtils.LoadFromScreen ();
+			Gdk.Pixbuf bg = PixbufUtils.LoadFromScreen (Window.GdkWindow);
 			IBrowsableItem [] items = new IBrowsableItem [collection.Count];
 			for (int i = 0; i < collection.Count; i++) {
 				items [i] = collection [i];

@@ -1352,7 +1352,7 @@ public class MainWindow {
 
 	private bool SlideShow ()
 	{
-		Pixbuf bg = PixbufUtils.LoadFromScreen ();
+		Pixbuf bg = PixbufUtils.LoadFromScreen (main_window.GdkWindow);
 
 		int [] ids = SelectedIds ();
 		Photo [] photos = null;

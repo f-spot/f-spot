@@ -321,6 +321,23 @@ class PixbufUtils {
 		return icon;
 	}
 		
+	static public Pixbuf LoadFromScreen (Gdk.Window win) {
+		Gdk.Screen screen = win.Screen;
+		Drawable d = screen.RootWindow;
+		int monitor = screen.GetMonitorAtWindow (win);
+		Gdk.Rectangle geom = screen.GetMonitorGeometry (monitor);
+		
+		//
+		// We use the screen width and height because that reflects
+		// the current resolution, the RootWindow can actually be different.
+		//
+
+		Pixbuf buf = new Pixbuf (Colorspace.Rgb, false, 8, geom.Width, geom.Height);
+		
+		return buf.GetFromDrawable (d,
+					    d.Colormap, geom.X, geom.Y, 0, 0, 
+					    geom.Width, geom.Height);
+	}
 
 	static public Pixbuf LoadFromScreen () {
 		Screen screen = Display.Default.GetScreen (0);
