@@ -1,7 +1,8 @@
 2005-08-11  Larry Ewing  <lewing@novell.com>
 
-	* src/PhotoImageView.cs: fix this up.
-
+	* src/PhotoImageView.cs: Check to make sure the item is valid
+	before failing out.
+	
 	* src/PhotoStore.cs: pass a valid array to savev it gets cranky if
 	it is just null.
 

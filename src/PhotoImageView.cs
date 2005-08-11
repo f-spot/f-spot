@@ -179,6 +179,22 @@ namespace FSpot {
 		FSpot.AsyncPixbufLoader loader;
 		FSpot.AsyncPixbufLoader next_loader;
 
+		private void LoadErrorImage (System.Exception e)
+		{
+			// FIXME we should check the exception type and do something
+			// like offer the user a chance to locate the moved file and
+			// update the db entry, but for now just set the error pixbuf
+			
+			Gdk.Pixbuf old = this.Pixbuf;
+			this.Pixbuf = new Gdk.Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0, 
+						      PixbufUtils.ErrorPixbuf.Width, 
+						      PixbufUtils.ErrorPixbuf.Height);
+			if (old != null)
+				old.Dispose ();
+			
+			this.ZoomFit ();
+		}
+
 		private void PhotoIndexChanged (BrowsablePointer item, IBrowsableItem old_item) 
 		{
 			// If it is just the position that changed fall out
@@ -187,20 +203,12 @@ namespace FSpot {
 
 			if (load_async) {
 				try {
-					loader.Load (Item.Current.DefaultVersionUri.LocalPath);
+					if (Item.IsValid)
+						loader.Load (Item.Current.DefaultVersionUri.LocalPath);
+					else 
+						LoadErrorImage (null);
 				} catch (System.Exception e) {
-					// FIXME we should check the exception type and do something
-					// like offer the user a chance to locate the moved file and
-					// update the db entry, but for now just set the error pixbuf
-
-					Gdk.Pixbuf old = this.Pixbuf;
-					this.Pixbuf = new Gdk.Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0, 
-								      PixbufUtils.ErrorPixbuf.Width, 
-								      PixbufUtils.ErrorPixbuf.Height);
-					if (old != null)
-						old.Dispose ();
-
-					this.ZoomFit ();
+					LoadErrorImage (e);
 				}
 			} else {	
 				Gdk.Pixbuf old = this.Pixbuf;
