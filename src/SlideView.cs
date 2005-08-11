@@ -17,6 +17,9 @@ namespace FSpot {
 		public FullSlide (Gtk.Window parent, IBrowsableItem [] items) : base ("Slideshow")
 		{
 			screenshot =  PixbufUtils.LoadFromScreen (parent.GdkWindow);
+			
+			this.Destroyed += HandleDestroyed;
+
 			this.TransientFor = parent;
 
 			this.ButtonPressEvent += HandleSlideViewButtonPressEvent;
@@ -94,16 +97,16 @@ namespace FSpot {
 			return false;
 		}
 		
-		protected override void OnDestroyed ()
+		private void HandleDestroyed (object sender, System.EventArgs args)
 		{
-			base.OnDestroyed ();
 			hide.Stop ();
 
 			this.busy.Unref ();
 			if (this.none != null)
 				this.none.Unref ();
+
 		}
-		
+
 		private void HandleSlideViewButtonPressEvent (object sender, ButtonPressEventArgs args)
 		{
 			this.Destroy ();

@@ -17,6 +17,7 @@ namespace FSpot {
 			ebox.ShowAll ();
 			
 			hide = new Delay (2000, new GLib.IdleHandler (HideControls));
+			this.Destroyed += HandleDestroyed;
 		}
 
 		public bool HideControls ()
@@ -33,9 +34,8 @@ namespace FSpot {
 			ebox.Show ();
 		}
 
-		protected override void OnDestroyed ()
+		private void HandleDestroyed (object sender, System.EventArgs args)
 		{
-			base.OnDestroyed ();
 			hide.Stop ();
 		}
 

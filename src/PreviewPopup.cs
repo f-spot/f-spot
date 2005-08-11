@@ -206,7 +206,7 @@ namespace FSpot {
 			this.Destroy ();
 		}
 
-		protected override void OnDestroyed ()
+		private void HandleDestroyed (object sender, System.EventArgs args)
 		{
 			this.preview_cache.Dispose ();
 		}
@@ -235,6 +235,7 @@ namespace FSpot {
 			
 			this.KeyReleaseEvent += HandleKeyRelease;
 			this.ButtonPressEvent += HandleButtonPress;
+			this.Destroyed += HandleDestroyed;
 
 			this.view = view;
 			view.MotionNotifyEvent += HandleIconViewMotion;

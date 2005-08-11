@@ -22,8 +22,9 @@ namespace FSpot {
 			query.ItemChanged += HandleQueryItemChanged;
 			this.item = new BrowsablePointer (query, -1);
 			item.IndexChanged += PhotoIndexChanged;
+			this.Destroyed += HandleDestroyed;
 		}
-
+		
 		new public BrowsablePointer Item {
 			get {
 				return item;
@@ -249,12 +250,6 @@ namespace FSpot {
 			
 			if (scrolled != null)
 				scrolled.SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic);
-		}
-
-		protected override void OnDestroyed ()
-		{
-			System.Console.WriteLine ("I'm feeling better");
-			base.OnDestroyed ();
 		}
 
 		[GLib.ConnectBefore]
