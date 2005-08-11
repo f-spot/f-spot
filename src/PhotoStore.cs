@@ -447,7 +447,7 @@ public class PhotoStore : DbStore {
 		// Save embedded thumbnails in a silightly invalid way so that we know to regnerate them later.
 		if (thumbnail != null) 
 			PixbufUtils.SaveAtomic (thumbnail, Thumbnail.PathForUri (uri, ThumbnailSize.Large), 
-						"png", null, null);
+						"png", new string [] { null} , new string [] { null});
 		else 
 			thumbnail = FSpot.ThumbnailGenerator.Create (path);
 		

@@ -1,5 +1,10 @@
 2005-08-11  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoImageView.cs: fix this up.
+
+	* src/PhotoStore.cs: pass a valid array to savev it gets cranky if
+	it is just null.
+
 	* src/SlideView.cs: make OnDestroyed into a signal delegate to
 	avoid gtk# bug.
 

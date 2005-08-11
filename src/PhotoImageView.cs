@@ -18,7 +18,6 @@ namespace FSpot {
 			this.SizeAllocated += HandleSizeAllocated;
 			this.KeyPressEvent += HandleKeyPressEvent;
 			this.ScrollEvent += HandleScrollEvent;
-			this.Destroyed += HandleDestroy;
 			query.ItemChanged += HandleQueryItemChanged;
 			this.item = new BrowsablePointer (query, -1);
 			item.IndexChanged += PhotoIndexChanged;
@@ -307,7 +306,7 @@ namespace FSpot {
 			this.Fit = false;
 		}
 		
-		private void HandleDestroy (object sender, System.EventArgs args)
+		private void HandleDestroyed (object sender, System.EventArgs args)
 		{
 			//loader.AreaUpdated -= HandlePixbufAreaUpdated;
 			//loader.AreaPrepared -= HandlePixbufPrepared;
