@@ -683,6 +683,11 @@ namespace FSpot {
 						i++;
 					}
 
+
+					Style.PaintFlatBox (selector.Style, selector.GdkWindow, State, ShadowType.In, 
+							    area, selector, "glass", bounds.X, inner.Y + inner.Height + border, 
+							    bounds.Width, handle_height);
+
 					Style.PaintHandle (selector.Style, selector.GdkWindow, State, ShadowType.In, 
 							    area, selector, "glass", bounds.X, inner.Y + inner.Height + border, 
 							    bounds.Width, handle_height, Orientation.Horizontal);

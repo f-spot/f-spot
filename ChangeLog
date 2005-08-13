@@ -1,3 +1,8 @@
+2005-08-13  Larry Ewing  <lewing@novell.com>
+
+	* src/GroupSelector.cs: draw the background so that that themes
+	that don't fill the handle region don't look ugly.
+
 2005-08-12  Larry Ewing  <lewing@novell.com>
 
 	* src/TagCommands.cs: fix the path logic.
