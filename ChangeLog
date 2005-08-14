@@ -1,3 +1,8 @@
+2005-08-14  Larry Ewing  <lewing@novell.com>
+
+	* src/ImportCommand.cs: wrap the last attempt to load the image in
+	a try block.
+
 2005-08-13  Larry Ewing  <lewing@novell.com>
 
 	* src/GroupSelector.cs: draw the background so that that themes

@@ -77,8 +77,12 @@ public class ImportCommand : FSpot.GladeDialog {
                         if (this.Icon == null)
 				this.Icon = PixbufUtils.LoadThemeIcon (vol.Icon, 32);
 			
-			if (this.Icon == null)
-				this.Icon = new Gdk.Pixbuf (vol.Icon);
+			try {
+				if (this.Icon == null)
+					this.Icon = new Gdk.Pixbuf (vol.Icon);
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e.ToString ());
+			}
 		}
 
 		private bool IsCamera {
