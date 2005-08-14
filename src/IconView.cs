@@ -163,7 +163,7 @@ public class IconView : Gtk.Layout {
 		ButtonReleaseEvent += new ButtonReleaseEventHandler (HandleButtonReleaseEvent);
 		KeyPressEvent += new KeyPressEventHandler (HandleKeyPressEvent);
 
-		DestroyEvent += new DestroyEventHandler (HandleDestroyEvent);
+		Destroyed += HandleDestroyed;
 
 		AddEvents ((int) EventMask.KeyPressMask
 			   | (int) EventMask.KeyReleaseMask 
@@ -1156,14 +1156,18 @@ public class IconView : Gtk.Layout {
 
 	public void InvalidateCell (int order) 
 	{
+		if (dead) return;
 		Rectangle cell_area = CellBounds (order);
 		// FIXME where are we computing the bounds incorrectly
 		cell_area.Width -= 1;
 		cell_area.Height -= 1;
-		Gdk.Rectangle visible = new Gdk.Rectangle ((int)Hadjustment.Value, (int)Vadjustment.Value, Allocation.Width, Allocation.Height);
-		if (cell_area.Intersect (visible, out cell_area)) {
+		Gdk.Rectangle visible = new Gdk.Rectangle ((int)Hadjustment.Value, 
+							   (int)Vadjustment.Value, 
+							   Allocation.Width, 
+							   Allocation.Height);
+
+		if (BinWindow != null && cell_area.Intersect (visible, out cell_area))
 			BinWindow.InvalidateRect (cell_area, false);
-		}
 	}
 			
 	private void HandleScrollAdjustmentsSet (object sender, ScrollAdjustmentsSetArgs args)
@@ -1333,8 +1337,10 @@ public class IconView : Gtk.Layout {
 		ScrollTo (FocusCell);
 	}
 
-	private void HandleDestroyEvent (object sender, DestroyEventArgs args)
+	bool dead = false;
+	private void HandleDestroyed (object sender, System.EventArgs args)
 	{
+		cache.OnPixbufLoaded -= HandlePixbufLoaded;
 		CancelThrob ();
 	}
 }

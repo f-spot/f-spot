@@ -1,5 +1,7 @@
 2005-08-14  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: fix up the iconview destroy handling.
+
 	* src/ImportCommand.cs: wrap the last attempt to load the image in
 	a try block.
 
