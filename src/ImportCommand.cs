@@ -378,7 +378,7 @@ public class ImportCommand : FSpot.GladeDialog {
 	public ImportCommand (Gtk.Window mw)
 	{
 		main_window = mw;
-		step = new FSpot.Delay (new GLib.IdleHandler (Step));
+		step = new FSpot.Delay (10, new GLib.IdleHandler (Step));
 	}
 
 	private void HandleDialogResponse (object obj, ResponseArgs args)
@@ -392,6 +392,9 @@ public class ImportCommand : FSpot.GladeDialog {
 
 	private void UpdateProgressBar (int count, int total)
 	{
+		if (progress_bar == null)
+			return;
+
 		progress_bar.Text = String.Format ("Importing {0} of {1}", count, total);
 		progress_bar.Fraction = (double) count / System.Math.Max (total, 1);
 	}
@@ -437,7 +440,7 @@ public class ImportCommand : FSpot.GladeDialog {
 			return 0;
 
 		this.importer = imp;
-		this.ok_button.Sensitive = false;
+		//this.ok_button.Sensitive = false;
 
 		total = importer.Prepare ();
 		UpdateProgressBar (0, total);
@@ -464,7 +467,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		if (cancelled)
 			return 0;
 		else {
-			ok_button.Sensitive = true;
+			//ok_button.Sensitive = true;
 			return total;
 		}
 	}
@@ -533,7 +536,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		
 		this.Cancel ();
 		this.copy = false;
-		this.ok_button.Sensitive = false;
+		//this.ok_button.Sensitive = false;
 
 		Gtk.OptionMenu option = (Gtk.OptionMenu) sender;
 		Gtk.Menu menu = (Gtk.Menu)(option.Menu);
@@ -583,7 +586,6 @@ public class ImportCommand : FSpot.GladeDialog {
 		this.Dialog.WindowPosition = Gtk.WindowPosition.CenterOnParent;
 		this.Dialog.Response += HandleDialogResponse;
 
-		//Gtk.Menu menu = new Gtk.Menu();
 		MenuItem attach_item = new MenuItem (Mono.Posix.Catalog.GetString ("Select Tag"));
 		TagMenu tagmenu = new TagMenu (null, MainWindow.Toplevel.Database.Tags);
 		
@@ -596,7 +598,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		tagmenu.Populate (true);
 		tagmenu.Prepend (attach_item);
 
-		this.ok_button.Sensitive = false;
+		//		this.ok_button.Sensitive = false;
 		
 		recurse_check.Toggled += HandleRecurseToggled;
 
@@ -605,7 +607,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		source_option_menu.Menu = menu;
 
 		collection = new FSpot.PhotoList (new Photo [0]);
-		tray = new IconView (collection);
+		tray = new TrayView (collection);
 		tray.Selection.Changed += HandleTraySelectionChanged;
 		icon_scrolled.SetSizeRequest (200, 480);
 		icon_scrolled.Add (tray);
@@ -685,8 +687,6 @@ public class ImportCommand : FSpot.GladeDialog {
 			importer.Cancel ();
 			importer = null;
 		}
-
-		
 		
 		if (collection == null || collection.Count == 0)
 			return;
@@ -717,12 +717,12 @@ public class ImportCommand : FSpot.GladeDialog {
 
 	public int ImportFromPaths (PhotoStore store, string [] paths)
 	{
-
 		return ImportFromPaths (store, paths, null);
 	}
 
 	public int ImportFromPaths (PhotoStore store, string [] paths, Tag [] tags)
 	{
+		collection = new FSpot.PhotoList (new Photo [0]);
 		return DoImport (new FileImportBackend (store, paths, false, true, tags));
 	}
 	
