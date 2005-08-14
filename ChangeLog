@@ -1,5 +1,8 @@
 2005-08-14  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoImageView.cs: try to regenerate the thumbnail if we get
+	an exception trying to load it.
+
 	* src/ImportCommand.cs: make the import commands work from paths
 	again.
 

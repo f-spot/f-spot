@@ -96,8 +96,8 @@ namespace FSpot {
 				next.Fill (0x00000000);
 #endif
 #if true
+			System.Uri uri = Item.Current.DefaultVersionUri;
 			try {
-				System.Uri uri = Item.Current.DefaultVersionUri;
 				Gdk.Pixbuf thumb = new Gdk.Pixbuf (ThumbnailGenerator.ThumbnailPath (uri));
 				if (thumb != null && next != null)
 					thumb.Composite (next, 0, 0,
@@ -113,7 +113,9 @@ namespace FSpot {
 					thumb.Dispose ();
 				}
 			} catch (System.Exception e) {
-				System.Console.WriteLine (e.ToString ());
+				FSpot.ThumbnailGenerator.Default.Request (uri.LocalPath, 0, 256, 256);	
+				if (!(e is GLib.GException)) 
+					System.Console.WriteLine (e.ToString ());
 			}
 #endif
 
