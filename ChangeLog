@@ -1,5 +1,8 @@
 2005-08-14  Larry Ewing  <lewing@novell.com>
 
+	* src/ImportCommand.cs: reverse the icon logic now that gnome
+	seems to handle more devices properly
+
 	* src/IconView.cs: fix up the iconview destroy handling.
 
 	* src/ImportCommand.cs: wrap the last attempt to load the image in
