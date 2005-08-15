@@ -43,6 +43,9 @@ public class ImportCommand : FSpot.GladeDialog {
 		{ 
 			string [] components = uri.Split (new char [] { '/' });
 			this.Name = components [components.Length - 1];
+			if (this.Name == "")
+				this.Name = components [components.Length - 2];
+
 			this.uri = uri;
 			
 			this.Icon = PixbufUtils.LoadThemeIcon ("stock_folder", 32);
@@ -434,13 +437,22 @@ public class ImportCommand : FSpot.GladeDialog {
 			return false;
 	}
 
+	public bool AllowFinish
+	{
+		set {
+			if (this.ok_button != null)
+				this.ok_button.Sensitive = value;
+		}
+	}
+
+
 	private int DoImport (ImportBackend imp)
 	{
 		if (collection == null)
 			return 0;
 
 		this.importer = imp;
-		//this.ok_button.Sensitive = false;
+		AllowFinish = false;
 
 		total = importer.Prepare ();
 		UpdateProgressBar (0, total);
@@ -467,7 +479,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		if (cancelled)
 			return 0;
 		else {
-			//ok_button.Sensitive = true;
+			AllowFinish = true;
 			return total;
 		}
 	}
@@ -536,7 +548,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		
 		this.Cancel ();
 		this.copy = false;
-		//this.ok_button.Sensitive = false;
+		AllowFinish = false;
 
 		Gtk.OptionMenu option = (Gtk.OptionMenu) sender;
 		Gtk.Menu menu = (Gtk.Menu)(option.Menu);
@@ -598,7 +610,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		tagmenu.Populate (true);
 		tagmenu.Prepend (attach_item);
 
-		//		this.ok_button.Sensitive = false;
+	        AllowFinish = false;
 		
 		recurse_check.Toggled += HandleRecurseToggled;
 
@@ -637,8 +649,16 @@ public class ImportCommand : FSpot.GladeDialog {
 		if (path != null) {
 			SetImportPath (path);
 			int i = menu.FindItemPosition (path);
-			if (i > 0)
+
+			if (i > 0) {
 				source_option_menu.SetHistory ((uint)i);
+			} else if (System.IO.Directory.Exists (path)) {
+				SourceItem path_item = new SourceItem (new VfsSource (path));
+				menu.Prepend (path_item);
+				path_item.ShowAll ();
+				SetImportPath (path);
+				source_option_menu.SetHistory (0);
+			} 
 		}
 						
 		ResponseType response = (ResponseType) this.Dialog.Run ();

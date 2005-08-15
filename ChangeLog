@@ -1,3 +1,9 @@
+2005-08-15  Larry Ewing  <lewing@novell.com>
+
+	* src/ImportCommand.cs: fix button sensistivity.  Fix --import
+	path handling so that it starts importing from the path
+	immediately.
+
 2005-08-14  Larry Ewing  <lewing@novell.com>
 
 	* src/MainWindow.cs: fix device name.
