@@ -221,6 +221,9 @@ public class GPhotoCamera
 			foreach (GPhotoCameraFile curcamfile in files)
 				curcamfile.ReleaseGPhotoResources ();
 
+		// FIXME check to make sure we don't need to dispose of these
+		// things explicitly.
+		/*
 		if (camera_fs != null) 
 			camera_fs.Dispose ();
 		if (camera != null) 
@@ -229,6 +232,7 @@ public class GPhotoCamera
 		camera_list.Dispose ();
 		abilities_list.Dispose ();
 		port_info_list.Dispose ();
+		*/
 		context.Dispose ();
 	}
 }
