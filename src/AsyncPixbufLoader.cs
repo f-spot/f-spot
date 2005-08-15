@@ -47,7 +47,7 @@ namespace FSpot {
 		public bool Loading
 		{
 			get {
-				return done_reading;
+				return !done_reading;
 			}
 		}
 
@@ -124,11 +124,9 @@ namespace FSpot {
 				if (loader != null) { 
 					loader.AreaPrepared -= ap;
 					loader.AreaUpdated -= au;
+					// this can throw exceptions
 					loader.Close ();
-					loader.Dispose ();
 				}
-
-				loader = null;
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e.ToString ());
 				if (pixbuf != null)
