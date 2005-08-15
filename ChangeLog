@@ -1,5 +1,9 @@
 2005-08-15  Larry Ewing  <lewing@novell.com>
 
+	* src/AsyncPixbufLoader.cs: reorder some of the operations.
+
+	* src/PhotoImageView.cs: add some debug output.
+
 	* src/AsyncPixbufLoader.cs: make sure your variables mean what you
 	think they mean.... ouch.
 

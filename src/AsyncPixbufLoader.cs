@@ -134,17 +134,17 @@ namespace FSpot {
 
 				pixbuf = null;
 			} finally {
-				if (stream != null) 
-					stream.Close ();
-
-				stream = null;
-				
 				if (loader != null) {
 					loader.Closed -= ev;
 					loader.Dispose ();
 				}
 
 				loader = null;
+
+				if (stream != null) 
+					stream.Close ();
+
+				stream = null;
 			}
 		}
 
