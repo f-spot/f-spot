@@ -7,17 +7,17 @@ namespace FSpot {
 			return Load (query, index);
 		}
 
-		static public Gdk.Pixbuf Load (IPhotoCollection query, int index)
+		static public Gdk.Pixbuf Load (IBrowsableCollection collection, int index)
 		{
-			Photo photo = (Photo) query [index];
-			return Load (photo);
+			IBrowsableItem item = collection [index];
+			return Load (item);
 		}
 
-		static public Gdk.Pixbuf Load (Photo photo) 
+		static public Gdk.Pixbuf Load (IBrowsableItem item) 
 		{
-			ImageFile img = ImageFile.Create (photo.DefaultVersionPath);
+			ImageFile img = ImageFile.Create (item.DefaultVersionUri.LocalPath);
 			Gdk.Pixbuf pixbuf = img.Load ();
-			ValidateThumbnail (photo, pixbuf);
+			ValidateThumbnail (item, pixbuf);
 			return pixbuf;
 		}
 
@@ -30,9 +30,9 @@ namespace FSpot {
 			return pixbuf;
 		}
 
-		static public Gdk.Pixbuf ValidateThumbnail (Photo photo, Gdk.Pixbuf pixbuf)
+		static public Gdk.Pixbuf ValidateThumbnail (IBrowsableItem item, Gdk.Pixbuf pixbuf)
 		{
-			return ValidateThumbnail (photo.DefaultVersionPath, pixbuf);
+			return ValidateThumbnail (item.DefaultVersionUri.LocalPath, pixbuf);
 		}
 
 		static public bool ThumbnailIsValid (System.Uri uri, Gdk.Pixbuf thumbnail)

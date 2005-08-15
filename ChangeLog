@@ -1,5 +1,8 @@
 2005-08-14  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoLoader.cs: make everything work with IBrowsableItem
+	instead of photo.
+
 	* src/PhotoImageView.cs: try one more method of loading if the
 	pixbuf loader failed.  Other misc cleanups.
 	
