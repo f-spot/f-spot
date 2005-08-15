@@ -553,7 +553,7 @@ namespace Exif {
 		
 		public void SetData (byte []data)
 		{
-			SetData (data, 1);
+			SetData (data, data.Length);
 		}
 
 		public void SetData (uint s)
