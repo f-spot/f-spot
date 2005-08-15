@@ -82,7 +82,7 @@ public class FileImportBackend : ImportBackend {
 		return file_paths.Count;
 	}
 
-	public static string UniqueName (string path, string filename)
+	private static string UniqueName (string path, string filename)
 	{
 		int i = 1;
 		string dest = System.IO.Path.Combine (path, filename);
