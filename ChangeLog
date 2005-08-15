@@ -1,5 +1,7 @@
 2005-08-15  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: change the about dialog code to work with gtk# 2.
+
 	* src/ImportCommand.cs: Load the first image in the PhotoView as
 	soon as there is one.
 

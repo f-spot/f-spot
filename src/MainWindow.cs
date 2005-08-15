@@ -1124,7 +1124,7 @@ public class MainWindow {
                 new About ("F-Spot", 
 			   FSpot.Defines.VERSION, 
 			   "Copyright 2003-2005 Novell Inc.",
-                           null, authors, null, translators, null).Show();
+                           null, authors, new string [0], translators, null).Show();
 	}
 
 	void HandleArrangeByTime (object sender, EventArgs args)
