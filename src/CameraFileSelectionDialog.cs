@@ -76,7 +76,7 @@ namespace FSpot {
 			
 			file_tree.Model = preview_list_store;
 			
-			copied_file_destination.Text = FSpot.Global.HomeDirectory;
+			copied_file_destination.Text = FSpot.Global.PhotoDirectory;
 			
 			GetPreviews ();
 		}
@@ -251,6 +251,11 @@ namespace FSpot {
 			progress_dialog.Message = msg;
 			
 			camera.SaveFile (index, path);
+			
+			string dest = FileImportBackend.ChooseLocation (path);
+			System.IO.File.Move (path, dest);
+			path = dest;
+
 			return path;
 		}
 		

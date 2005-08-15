@@ -82,7 +82,7 @@ public class FileImportBackend : ImportBackend {
 		return file_paths.Count;
 	}
 
-	private static string UniqueName (string path, string filename)
+	public static string UniqueName (string path, string filename)
 	{
 		int i = 1;
 		string dest = System.IO.Path.Combine (path, filename);
@@ -99,6 +99,27 @@ public class FileImportBackend : ImportBackend {
 		return dest;
 	}
 
+	public static string ChooseLocation (string path)
+	{
+		string name = System.IO.Path.GetFileName (path);
+		FSpot.ImageFile img = FSpot.ImageFile.Create (path);
+		DateTime time = img.Date ();
+		
+		string dest_dir = String.Format ("{0}{1}{2}{1}{3}{1}{4}",
+						 FSpot.Global.PhotoDirectory,
+						 System.IO.Path.DirectorySeparatorChar,
+						 time.Year,
+						 time.Month,
+						 time.Day);
+		
+		if (!System.IO.Directory.Exists (dest_dir))
+			System.IO.Directory.CreateDirectory (dest_dir);
+		
+		string dest = UniqueName (dest_dir, name);
+		
+		return dest;
+	}
+
 	public override bool Step (out Photo photo, out Pixbuf thumbnail, out int count)
 	{
 		if (file_paths == null)
@@ -111,21 +132,7 @@ public class FileImportBackend : ImportBackend {
 		string path = (string) file_paths [this.count];
 
 		if (copy) {
-			string name = System.IO.Path.GetFileName (path);
-			FSpot.ImageFile img = FSpot.ImageFile.Create (path);
-			DateTime time = img.Date ();
-			
-			string dest_dir = String.Format ("{0}{1}{2}{1}{3}{1}{4}",
-							 FSpot.Global.PhotoDirectory,
-							 System.IO.Path.DirectorySeparatorChar,
-							 time.Year,
-							 time.Month,
-							 time.Day);
-
-			if (!System.IO.Directory.Exists (dest_dir))
-				System.IO.Directory.CreateDirectory (dest_dir);
-			
-			string dest = UniqueName (dest_dir, name);
+			string dest = ChooseLocation (path);
 
 			System.IO.File.Copy (path, dest);
 			path = dest;
@@ -208,7 +215,7 @@ public class FileImportBackend : ImportBackend {
 
 		Db db = new Db (path, true);
 
-		FileImportBackend import = new FileImportBackend (db.Photos, args [0], true);
+		FileImportBackend import = new FileImportBackend (db.Photos, args [0],true);
 
 		Console.WriteLine ("Preparing...");
 
