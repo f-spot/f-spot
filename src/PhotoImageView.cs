@@ -135,8 +135,14 @@ namespace FSpot {
 				// FIXME in some cases the image passes completely through the
 				// pixbuf loader without properly loading... I'm not sure what to do about this other
 				// than try to load the image one last time.
-				this.Pixbuf = FSpot.PhotoLoader.Load (item.Collection, 
-								      item.Index);
+				try {
+					this.Pixbuf = FSpot.PhotoLoader.Load (item.Collection, 
+									      item.Index);
+				} catch (System.Exception e) {
+					if (!(e is GLib.GException))
+						System.Console.WriteLine (e.ToString ());
+				}
+
 				if (this.Pixbuf == null)
 					this.Pixbuf = new Gdk.Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0, 
 								      PixbufUtils.ErrorPixbuf.Width, 
