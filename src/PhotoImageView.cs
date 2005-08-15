@@ -132,10 +132,15 @@ namespace FSpot {
 			// pass the state and the write exception in the args
 			Gdk.Pixbuf prev = this.Pixbuf;
 			if (loader.Pixbuf == null) {
-				this.Pixbuf = new Gdk.Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0, 
-							      PixbufUtils.ErrorPixbuf.Width, 
+				// FIXME in some cases the image passes completely through the
+				// pixbuf loader without properly loading... I'm not sure what to do about this other
+				// than try to load the image one last time.
+				this.Pixbuf = FSpot.PhotoLoader.Load (item.Collection, 
+								      item.Index);
+				if (this.Pixbuf == null)
+					this.Pixbuf = new Gdk.Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0, 
+								      PixbufUtils.ErrorPixbuf.Width, 
 								      PixbufUtils.ErrorPixbuf.Height);
-				
 			} else {
 				this.Pixbuf = loader.Pixbuf;
 			}
@@ -207,17 +212,21 @@ namespace FSpot {
 				try {
 					if (Item.IsValid)
 						loader.Load (Item.Current.DefaultVersionUri.LocalPath);
-					else 
+					else
 						LoadErrorImage (null);
+
 				} catch (System.Exception e) {
+					System.Console.WriteLine (e.ToString ());
 					LoadErrorImage (e);
 				}
 			} else {	
 				Gdk.Pixbuf old = this.Pixbuf;
-				this.Pixbuf = FSpot.PhotoLoader.Load ((IPhotoCollection)item.Collection, 
+				this.Pixbuf = FSpot.PhotoLoader.Load (item.Collection, 
 								      item.Index);
 				if (old != null)
 					old.Dispose ();
+
+				this.ZoomFit ();
 			}
 			
 			this.UnsetSelection ();
@@ -231,8 +240,6 @@ namespace FSpot {
 			Gdk.Pixbuf pixbuf = this.Pixbuf;
 			Gtk.ScrolledWindow scrolled = this.Parent as Gtk.ScrolledWindow;
 			
-			//System.Console.WriteLine ("ZoomFit");
-
 			if (pixbuf == null)
 				return;
 
@@ -321,12 +328,6 @@ namespace FSpot {
 			//loader.AreaUpdated -= HandlePixbufAreaUpdated;
 			//loader.AreaPrepared -= HandlePixbufPrepared;
 			loader.Dispose ();
-		}
-
-		protected override bool OnDestroyEvent (Gdk.Event evnt)
-		{
-			System.Console.WriteLine ("I'm feeling better");
-			return base.OnDestroyEvent (evnt);
 		}
 	}
 }

@@ -1,5 +1,8 @@
 2005-08-14  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoImageView.cs: try one more method of loading if the
+	pixbuf loader failed.  Other misc cleanups.
+	
 	* src/PhotoImageView.cs: try to regenerate the thumbnail if we get
 	an exception trying to load it.
 
