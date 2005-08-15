@@ -57,6 +57,14 @@ namespace FSpot {
 			}
 		}
 		
+		private void FileLoad (ImageFile img)
+		{
+			pixbuf = img.Load ();
+			done_reading = true;
+			if (Done != null)
+				Done (this, System.EventArgs.Empty);
+		}
+
 		public void Load (string filename)
 		{
 			delay.Stop ();
@@ -74,10 +82,7 @@ namespace FSpot {
 
 			stream = img.PixbufStream ();
 			if (stream == null) {
-				pixbuf = img.Load ();
-				done_reading = true;
-				if (Done != null)
-					Done (this, System.EventArgs.Empty);
+				FileLoad (img);
 				return;
 			}
 
@@ -116,12 +121,8 @@ namespace FSpot {
 			ThumbnailGenerator.Default.PopBlock ();
 				
 			try {
-				if (handle != null) {
-					stream.EndRead (handle);
-					handle = null;
-				}
 				delay.Stop ();
-				if (loader != null) {
+				if (loader != null) { 
 					loader.AreaPrepared -= ap;
 					loader.AreaUpdated -= au;
 					loader.Close ();
@@ -131,6 +132,7 @@ namespace FSpot {
 
 				loader = null;
 			} catch (System.Exception e) {
+				System.Console.WriteLine (e.ToString ());
 				if (pixbuf != null)
 					pixbuf.Dispose ();
 
@@ -157,49 +159,6 @@ namespace FSpot {
 			damage = Gdk.Rectangle.Zero;
 		}
 
-		System.IAsyncResult handle;
-		
-		private void AsyncIORead (System.IAsyncResult last)
-		{
-			int len = 0;
-
-			System.DateTime start_time = System.DateTime.Now;
-			if (last != null) {
-				start_time = (System.DateTime)last.AsyncState;
-				System.TimeSpan span = System.DateTime.Now - start_time;
-
-				len = stream.EndRead (last);
-				handle = null;
-				if (len > 0) {
-					try {
-						loader.Write (buffer, (uint)len);
-						UpdateListeners ();
-					} catch (GLib.GException e) {
-						pixbuf = null;
-					}
-				} else {
-					UpdateListeners ();
-					done_reading = true;
-					Close ();
-					return;
-				}
-				/*
-				if (span.TotalMilliseconds > chunk_timeout) {
-					delay.Start ();
-					return;
-				}
-				*/
-			}
-			handle = stream.BeginRead (buffer, 0, buffer.Length, new System.AsyncCallback (AsyncIORead), start_time);
-		}
-
-		private bool AsyncIORead () 
-		{
-			AsyncIORead (null);
-			delay.Stop ();
-			return false;
-		}
-
 		private bool AsyncRead () 
 		{
 			System.DateTime start_time = System.DateTime.Now;
@@ -211,13 +170,17 @@ namespace FSpot {
 				int len;
 				try {
 					len = stream.Read (buffer, 0, buffer.Length);
-					loader.Write (buffer, (uint)len);
+					loader.Write (buffer, (ulong)len);
 				} catch (GLib.GException e) {
+					System.Console.WriteLine (e.ToString ());
 					pixbuf = null;
 					len = -1;
 				}
 
 				if (len <= 0) {
+					if (loader.Pixbuf == null)
+						pixbuf = null;
+
 					UpdateListeners ();
 					done_reading = true;
 					Close ();

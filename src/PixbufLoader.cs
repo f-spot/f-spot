@@ -141,8 +141,9 @@ public class PixbufLoader {
 			} else
 				orig_image = img.Load ();
 
-		} catch (GLib.GException ex){
-			return;		
+		} catch (GLib.GException e){
+								System.Console.WriteLine (e.ToString ());
+return;		
 		}
 		
 		if (orig_image == null)

@@ -1,5 +1,9 @@
 2005-08-14  Larry Ewing  <lewing@novell.com>
 
+	* src/AsyncPixbufLoader.cs: clean up the error handling a little,
+	set the pixbuf to null if we've reached the end and the signals
+	have never fired.
+
 	* src/ImageFile.cs: load svgs with the default loader.
 
 	* src/FileImportBackend.cs: make the UniqueName private.
