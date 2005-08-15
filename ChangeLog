@@ -1,5 +1,9 @@
 2005-08-15  Larry Ewing  <lewing@novell.com>
 
+	* src/JpegHeader.cs: remove the eoi check at the end of the
+	stream, read everything after sos as the stream (this is what the
+	jpegtran routines did).
+
 	* icons/f-spot-simple*: new style info.
 
 	* icons/f-spot.js: new javascript for theme code.

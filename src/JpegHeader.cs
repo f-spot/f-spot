@@ -277,19 +277,12 @@ public class JpegHeader {
 				at_image = true;
 			
 		}
-		
-		long image_data_length = stream.Length - stream.Position - 2;
+
+		long image_data_length = stream.Length - stream.Position;
 		this.image_data = new byte [image_data_length];
 
 		if (stream.Read (image_data, 0, (int)image_data_length) != image_data_length)
 			throw new System.Exception ("truncated image data or something");
-		
-		marker = Marker.Load (stream);
-		this.Markers.Add (marker);
-
-		if (marker.Type != JpegMarker.Eoi)
-			throw new System.Exception ("couldn't find eoi marker");
-
 	}
 
 	
