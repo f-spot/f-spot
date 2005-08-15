@@ -6,7 +6,7 @@ namespace FSpot {
 
 		static System.Collections.Hashtable name_table;
 
-		protected ImageFile (string path) 
+		public ImageFile (string path) 
 		{
 			this.path = path;
 		}
@@ -20,6 +20,7 @@ namespace FSpot {
 		{
 			name_table = new System.Collections.Hashtable ();
 			name_table [".jpeg"] = typeof (JpegFile);
+			name_table [".svg"] = typeof (ImageFile);
 			name_table [".jpg"] = typeof (JpegFile);
 			name_table [".png"] = typeof (FSpot.Png.PngFile);
 			name_table [".cr2"] = typeof (FSpot.Tiff.Cr2File);
