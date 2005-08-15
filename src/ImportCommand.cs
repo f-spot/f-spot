@@ -146,6 +146,12 @@ public class ImportCommand : FSpot.GladeDialog {
 			if (this.Icon == null)
 				this.Icon = PixbufUtils.LoadThemeIcon ("gnome-dev-media-cf", 32);
 		}
+
+		public string Port {
+			get {
+				return cam.CameraList.GetValue (CameraIndex);
+			}
+		}
 	}
 
 	internal abstract class ImportSource {
@@ -202,8 +208,10 @@ public class ImportCommand : FSpot.GladeDialog {
 			
 			source_count += cam.CameraList.Count ();
 			for (int i = 0; i < cam.CameraList.Count (); i++) {
-				ImportSource source = new CameraSource (cam, i);
-				this.Append (new SourceItem (source));
+				if (source_count == 1 || cam.CameraList.GetValue (i) != "usb:") {
+					ImportSource source = new CameraSource (cam, i);
+					this.Append (new SourceItem (source));
+				}
 			}
 
 			if (source_count == 0) {
@@ -576,6 +584,12 @@ public class ImportCommand : FSpot.GladeDialog {
 				copy = true;
 			
 			SetImportPath (vfs.uri);
+		} else if (item.Source is CameraSource) {
+			CameraSource csource = item.Source as CameraSource;
+			string port = "gphoto2:" + csource.Port;
+			this.Cancel ();
+			this.Dialog.Destroy ();
+			MainWindow.Toplevel.ImportCamera (port);
 		}
 
 		Start ();

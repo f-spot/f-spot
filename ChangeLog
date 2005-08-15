@@ -1,5 +1,8 @@
 2005-08-15  Larry Ewing  <lewing@novell.com>
 
+	* src/ImportCommand.cs: make the camera sources do something (even
+	though is isn't quite the right thing).
+
 	* src/PixbufUtils.cs: silence some of the warnings.
 
 	* src/GPhotoCamera.cs: be less agressive with disposing of things
