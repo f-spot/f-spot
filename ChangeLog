@@ -1,7 +1,9 @@
 2005-08-14  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: fix device name.
+
 	* src/MainWindow.cs: start reworking the camera import handling.
-	
+
 	* src/main.cs: add import from camera handling.
 
 	* src/AsyncPixbufLoader.cs: clean up the error handling a little,

@@ -955,7 +955,7 @@ public class MainWindow {
 				if (camera_device != null) {
 					string port = camera_device.Remove (0, "gphoto2:".Length);
 					for (int i = 0; i < num_cameras; i++)
-						if (cam.CameraList.GetValue (i) == camera_device) {
+						if (cam.CameraList.GetValue (i) == port) {
 							selected_cam = i;
 							found = true;
 							break;
