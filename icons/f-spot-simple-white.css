@@ -2,10 +2,11 @@ body {
   font-family: luxi sans, trebuchet ms, sans-serif;
   color: #999;
   margin: 12px;
+  font-size: 11pt;
 }
 
 .navi { 
-//  background: #f9f9f9;
+  /* background: #f9f9f9; */
   border: 1px solid #eee;
   padding: 6px;
   margin-left: auto;
@@ -21,13 +22,12 @@ body {
   padding-right: 6px;
 }
 
-.navi #title { 
+#title { 
   color: Goldenrod;
   font-weight: bold;
+  font-size: 14pt;
   float: left;
-  margin: 0;
-  padding: 0;
-  margin-left: 3px;
+  margin: 4px;
 }
 
 div.navipage { 
@@ -87,14 +87,30 @@ div.photo div {
   margin-top: 6px;
   font-size: 18px;
   font-family: Luxi Serif, Georgia, Helvetica;
-//  font-style: italic;
+  /* font-style: italic; */
 }
 
-div.footer { 
+div.footer  { 
   font-size: 10px;
-  position: absolute;
+  position: fixed;
   bottom: 12px;
-  text-align: center;
-  left: 0px;
-  right: 0px;
  }
+
+div#gallery_description {
+  text-align: center;
+}
+
+div#styleboxcontainer {
+	position: fixed;
+	bottom: 0px;
+	right: 8px;
+	font-size: 10px;
+	margin: 4px;
+	padding: 4px;
+}
+
+#stylebox ul {
+	list-style-type: none;
+	padding-left: 0px;
+}
+

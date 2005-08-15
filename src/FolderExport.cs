@@ -41,7 +41,7 @@ namespace FSpot {
 		
 		[Glade.Widget] Gtk.RadioButton static_radio;
 		[Glade.Widget] Gtk.RadioButton original_radio;
-		[Glade.Widget] Gtk.RadioButton none_radio;
+		[Glade.Widget] Gtk.RadioButton plain_radio;
 
 		[Glade.Widget] Gtk.SpinButton size_spin;
 
@@ -117,7 +117,7 @@ namespace FSpot {
 			Gnome.Vfs.Result result = Gnome.Vfs.Result.Ok;
 
 			try {
-				Dialog.Destroy ();
+				Dialog.Hide ();
 				
 				Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (Path.Combine (gallery_path, gallery_name));
 				Gnome.Vfs.Uri target = dest.Clone();
@@ -185,6 +185,7 @@ namespace FSpot {
 				// created.
 				if (!dest.IsLocal)
 					System.IO.Directory.Delete (gallery_path, true);
+				Dialog.Destroy ();
 			}
 		}
 		
@@ -533,8 +534,9 @@ namespace FSpot {
 	{
 		int current;
 		int perpage = 16;
-		//string stylesheet = "f-spot-simple-white.css";
 		string stylesheet = "f-spot-simple.css";
+		string altstylesheet = "f-spot-simple-white.css";
+		string javascript = "f-spot.js";
 		
 		public HtmlGallery (IPhotoCollection selection, string path, string name) : base (selection, path, name) 
 		{ 
@@ -570,6 +572,30 @@ namespace FSpot {
 				fs.Write (buffer, 0,  n);						    
 			
 			fs.Close ();
+			/* quick and stupid solution
+			   this should have been iterated over an array of stylesheets, really
+			*/
+			s = assembly.GetManifestResourceStream (altstylesheet);
+			fs = System.IO.File.Open (SubdirPath ("style", altstylesheet), System.IO.FileMode.Create);
+
+			buffer = new byte [8192];
+			n = 0;
+			while ((n = s.Read (buffer, 0, buffer.Length)) != 0)
+				fs.Write (buffer, 0,  n);						    
+			
+			fs.Close ();
+			/* Javascript for persistant style change */
+			MakeDir (SubdirPath ("script"));
+		  s = assembly.GetManifestResourceStream (javascript);
+			fs = System.IO.File.Open (SubdirPath ("script", javascript), System.IO.FileMode.Create);
+
+			buffer = new byte [8192];
+			n = 0;
+			while ((n = s.Read (buffer, 0, buffer.Length)) != 0)
+				fs.Write (buffer, 0,  n);						    
+			
+			fs.Close ();
+	
 		}
 		
 		public int PageCount {
@@ -624,6 +650,7 @@ namespace FSpot {
 			
 			WriteHeader (writer);
 			
+			writer.AddAttribute ("onload", "checkForTheme()");
 			writer.RenderBeginTag ("body");
 
 			writer.AddAttribute ("class", "container1");
@@ -671,7 +698,39 @@ namespace FSpot {
 
 			writer.RenderEndTag ();
 			
-			writer.RenderEndTag (); //container1
+		  //Style Selection Box
+			writer.AddAttribute ("id", "styleboxcontainer");
+			writer.RenderBeginTag ("div");
+			writer.AddAttribute ("id", "stylebox");
+			writer.AddAttribute ("style", "display: none;");
+			writer.RenderBeginTag ("div");
+			writer.RenderBeginTag("ul");
+			writer.RenderBeginTag("li");
+			writer.AddAttribute ("href", "#");
+			writer.AddAttribute ("title", "Dark");
+			writer.AddAttribute ("onclick", "setActiveStyleSheet('Dark')");
+			writer.RenderBeginTag("a");
+			writer.Write ("Dark");
+			writer.RenderEndTag (); //a
+			writer.RenderEndTag (); //li
+			writer.RenderBeginTag("li");
+			writer.AddAttribute ("href", "#");
+			writer.AddAttribute ("title", "Light");
+			writer.AddAttribute ("onclick", "setActiveStyleSheet('Light')");
+			writer.RenderBeginTag("a");
+			writer.Write ("Light");
+			writer.RenderEndTag (); //a
+			writer.RenderEndTag (); //li
+			writer.RenderEndTag (); //ul
+			writer.RenderEndTag (); //div stylebox
+			writer.RenderBeginTag ("div");
+			writer.Write ("<span class=\"style_toggle\">"); 
+			writer.Write ("<a href=\"javascript:toggle_stylebox()\">");
+			writer.Write ("<span id=\"showlink\">Show Styles</span><span id=\"hidelink\" ");
+			writer.Write ("style=\"display:none;\">Hide Styles</span></a></span>\n");
+			writer.RenderEndTag (); //div toggle
+			writer.RenderEndTag (); //div styleboxcontainer
+			writer.RenderEndTag (); //container1	
 
 			WriteFooter (writer);
 			
@@ -701,12 +760,19 @@ namespace FSpot {
 			writer.RenderBeginTag ("title");
 			writer.Write (gallery_name);
 			writer.RenderEndTag ();
-			
-			writer.AddAttribute ("type", "text/css");
-			writer.AddAttribute ("media", "screen");
-			writer.RenderBeginTag ("style");
-			writer.Write (String.Format ("@import url( {0} );",  "style/" + stylesheet));
-			writer.RenderEndTag ();
+
+			writer.Write ("<link type=\"text/css\" rel=\"stylesheet\" href=\"");
+			writer.Write (String.Format ("{0}", "style/" + stylesheet));
+			writer.Write ("\" title=\"Dark\" media=\"screen\" />\n");
+
+			writer.Write ("<link type=\"text/css\" rel=\"prefetch ") ;
+			writer.Write ("alternate stylesheet\" href=\"");
+			writer.Write (String.Format ("{0}", "style/" + altstylesheet));
+			writer.Write ("\" title=\"Light\" media=\"screen\" />\n");
+
+			writer.Write ("<script src=\"script/" + javascript + "\"");
+			writer.Write (" type=\"text/javascript\"></script>\n");
+
 			writer.RenderEndTag ();
 		}
 		
@@ -737,8 +803,11 @@ namespace FSpot {
 			writer.RenderBeginTag ("html");
 			WriteHeader (writer);
 			
+			writer.AddAttribute ("onload", "checkForTheme()");
 			writer.RenderBeginTag ("body");
+			
 
+			
 			writer.AddAttribute ("class", "container1");
 			writer.RenderBeginTag ("div");
 
@@ -796,7 +865,39 @@ namespace FSpot {
 			writer.RenderBeginTag ("div");
 			writer.Write (description);
 			writer.RenderEndTag (); //description
-
+			
+      //Style Selection Box
+			writer.AddAttribute ("id", "styleboxcontainer");
+			writer.RenderBeginTag ("div");
+			writer.AddAttribute ("id", "stylebox");
+			writer.AddAttribute ("style", "display: none;");
+			writer.RenderBeginTag ("div");
+			writer.RenderBeginTag("ul");
+			writer.RenderBeginTag("li");
+			writer.AddAttribute ("href", "#");
+			writer.AddAttribute ("title", "Dark");
+			writer.AddAttribute ("onclick", "setActiveStyleSheet('Dark')");
+			writer.RenderBeginTag("a");
+			writer.Write ("Dark");
+			writer.RenderEndTag (); //a
+			writer.RenderEndTag (); //li
+			writer.RenderBeginTag("li");
+			writer.AddAttribute ("href", "#");
+			writer.AddAttribute ("title", "Light");
+			writer.AddAttribute ("onclick", "setActiveStyleSheet('Light')");
+			writer.RenderBeginTag("a");
+			writer.Write ("Light");
+			writer.RenderEndTag (); //a
+			writer.RenderEndTag (); //li
+			writer.RenderEndTag (); //ul
+			writer.RenderEndTag (); //div stylebox
+			writer.RenderBeginTag ("div");
+			writer.Write ("<span class=\"style_toggle\">"); 
+			writer.Write ("<a href=\"javascript:toggle_stylebox()\">");
+			writer.Write ("<span id=\"showlink\">Show Styles</span><span id=\"hidelink\" ");
+			writer.Write ("style=\"display:none;\">Hide Styles</span></a></span>\n");
+			writer.RenderEndTag (); //div toggle
+			writer.RenderEndTag (); //div styleboxcontainer
 			writer.RenderEndTag (); //container1
 
 			WriteFooter (writer);

@@ -1,5 +1,14 @@
 2005-08-15  Larry Ewing  <lewing@novell.com>
 
+	* icons/f-spot-simple*: new style info.
+
+	* icons/f-spot.js: new javascript for theme code.
+
+	* src/FolderExport.cs: integrate jimmac's export fixes. Fix out of
+	order destruction problem.
+
+	* src/Makefile.am: jimmac's fancy html.
+
 	* src/ImportCommand.cs: fix button sensistivity.  Fix --import
 	path handling so that it starts importing from the path
 	immediately.

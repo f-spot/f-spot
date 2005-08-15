@@ -174,3 +174,18 @@ div.footer {
 	width: 640px;
 	margin: auto;
  }
+
+div#styleboxcontainer {
+	position: fixed;
+	bottom: 0px;
+	right: 8px;
+	font-size: 10px;
+	margin: 4px;
+	padding: 4px;
+}
+
+#stylebox ul {
+	list-style-type: none;
+	padding-left: 0px;
+}
+

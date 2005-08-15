@@ -129,6 +129,7 @@ RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-fullscreen.png,f-spot-fullscreen.png	\
 	-resource:$(top_srcdir)/icons/f-spot-simple-white.css,f-spot-simple-white.css	\
 	-resource:$(top_srcdir)/icons/f-spot-simple.css,f-spot-simple.css	\
+	-resource:$(top_srcdir)/icons/f-spot.js,f-spot.js	\
 	-resource:$(srcdir)/f-spot.glade,f-spot.glade
 
 fspotlibdir = $(libdir)/f-spot
