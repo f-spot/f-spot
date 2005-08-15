@@ -927,11 +927,16 @@ public class MainWindow {
 
 	void HandleImportFromCameraCommand (object sender, EventArgs e)
 	{
+		ImportCamera (null);
+	}
+
+	public void ImportCamera (string camera_device)
+	{
 		GPhotoCamera cam = new GPhotoCamera();
 
 		try {
 			int num_cameras = cam.DetectCameras();
-			int selected_cam;
+			int selected_cam = 0;
 
 			if (num_cameras < 1) {
 				HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
@@ -946,8 +951,21 @@ public class MainWindow {
 			} else if (num_cameras == 1) {
 				selected_cam = 0;
 			} else {
-				FSpot.CameraSelectionDialog camselect = new FSpot.CameraSelectionDialog (cam.CameraList);
-				selected_cam = camselect.Run ();
+				bool found = false;
+				if (camera_device != null) {
+					string port = camera_device.Remove (0, "gphoto2:".Length);
+					for (int i = 0; i < num_cameras; i++)
+						if (cam.CameraList.GetValue (i) == camera_device) {
+							selected_cam = i;
+							found = true;
+							break;
+						}
+				}
+				
+				if (!found) {
+					FSpot.CameraSelectionDialog camselect = new FSpot.CameraSelectionDialog (cam.CameraList);
+					selected_cam = camselect.Run ();
+				}
 			}
 
 			if (selected_cam >= 0) {
@@ -1089,7 +1107,10 @@ public class MainWindow {
 			"Ewen Cheslack-Postava",
 			"Patanjali Somayaji",
 			"Matt Jones",
-			"Martin Willemoes Hansen"
+			"Martin Willemoes Hansen",
+			"Joerg Buesse",
+			"Jakub Steiner",
+			"Xavier Bouchoux"
 		};
 
                 // Translators should localize the following string

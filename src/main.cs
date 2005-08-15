@@ -28,14 +28,16 @@ public class Driver {
 		bool view_only = false;
 		bool import = db.Empty;
 		string import_path = null;
+
 		for (int i = 0; i < args.Length; i++) {
 			switch (args [i]) {
 			case "--import":
-				if (++i < args.Length && (File.Exists (args [i]) || Directory.Exists (args[i]))) {
+				if (++i < args.Length && (args [i].StartsWith ("gphoto2:") || File.Exists (args [i]) || Directory.Exists (args[i]))) {
 					import_path = args [i];
 				} else {
 					System.Console.WriteLine ("no valid path to import from");
 				}
+				import = true;
 				break;
 			case "--view":
 				if (++i < args.Length && (File.Exists (args [i]) || Directory.Exists (args[i]))) {
@@ -51,23 +53,14 @@ public class Driver {
 
 		if (!view_only) {
 			new MainWindow (db);
-			if (import)
-				MainWindow.Toplevel.ImportFile (import_path);
+			if (import) {
+				if (import_path.StartsWith ("gphoto2:"))
+					MainWindow.Toplevel.ImportCamera (import_path);
+				else
+					MainWindow.Toplevel.ImportFile (import_path);
+			}
 		}
 
 		program.Run ();
-	}
-
-	private static void  ParseCommands (string [] args) 
-	{
-		for (int i = 0; i < args.Length; i++) {
-			if (args [i] == "--import") {
-				if (++i < args.Length && (File.Exists (args [i]) || Directory.Exists (args[i]))) {
-					MainWindow.Toplevel.ImportFile (args [i]);
-				} else {
-					System.Console.WriteLine ("no valid path to import from");
-				}
-			}
-		}
 	}
 }
