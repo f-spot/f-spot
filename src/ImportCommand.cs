@@ -410,10 +410,19 @@ public class ImportCommand : FSpot.GladeDialog {
 		progress_bar.Fraction = (double) count / System.Math.Max (total, 1);
 	}
 
-	private void HandleTraySelectionChanged (FSpot.IBrowsableCollection collection) 
+	private void HandleCollectionChanged (FSpot.IBrowsableCollection col)
 	{
-		if (collection.Count > 0)
+		if (collection.Count == 1) {
+			photo_view.Item.Index = -1;
+			photo_view.Item.Index = 0;
+		}
+	}
+
+	private void HandleTraySelectionChanged (FSpot.IBrowsableCollection coll) 
+	{
+		if (tray.Selection.Count > 0)
 			photo_view.Item.Index = tray.Selection.Ids[0];
+		
 	}
 
 	private bool Step ()
@@ -633,6 +642,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		source_option_menu.Menu = menu;
 
 		collection = new FSpot.PhotoList (new Photo [0]);
+		collection.Changed += HandleCollectionChanged;
 		tray = new TrayView (collection);
 		tray.Selection.Changed += HandleTraySelectionChanged;
 		icon_scrolled.SetSizeRequest (200, 480);
