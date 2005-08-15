@@ -116,8 +116,7 @@ namespace FSpot {
 				; //step
 		}
 
-		private void Close () 
-		{
+		private void Close () {
 			ThumbnailGenerator.Default.PopBlock ();
 				
 			try {
@@ -126,7 +125,6 @@ namespace FSpot {
 					loader.AreaPrepared -= ap;
 					loader.AreaUpdated -= au;
 					loader.Close ();
-					loader.Closed -= ev;
 					loader.Dispose ();
 				}
 
@@ -140,8 +138,15 @@ namespace FSpot {
 			} finally {
 				if (stream != null) 
 					stream.Close ();
-				
+
 				stream = null;
+				
+				if (loader != null) {
+					loader.Closed -= ev;
+					loader.Dispose ();
+				}
+
+				loader = null;
 			}
 		}
 
@@ -178,8 +183,12 @@ namespace FSpot {
 				}
 
 				if (len <= 0) {
-					if (loader.Pixbuf == null)
+					if (loader.Pixbuf == null) {
+						if (pixbuf != null)
+							pixbuf.Dispose ();
+
 						pixbuf = null;
+					}
 
 					UpdateListeners ();
 					done_reading = true;

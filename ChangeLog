@@ -1,5 +1,11 @@
 2005-08-15  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoImageView.cs: only try to fallback load the image if
+	we've loaded the whole image and still not gotten a Pixbuf.
+
+	* src/AsyncPixbufLoader.cs: more logic to correctly handle all the
+	possible exception cases and such.
+
 	* src/PhotoImageView.cs: handle the case when the loader fails.
 
 	* src/MainWindow.cs: change the about dialog code to work with gtk# 2.
