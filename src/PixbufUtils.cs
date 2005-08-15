@@ -146,7 +146,7 @@ class PixbufUtils {
 				int count;
 				
 				byte [] data = new byte [8192];
-				while (((count = fs.Read (data, 0, 8192)) > 0) && this.Write (data, (uint)count))
+				while (((count = fs.Read (data, 0, 8192)) > 0) && this.Write (data, (ulong)count))
 					;
 				
 				this.Close ();
@@ -219,7 +219,7 @@ class PixbufUtils {
 		int n;
 
 		while ((n = input.Read (buffer, 0, 8192)) != 0)
-			loader.Write (buffer, (uint) n);
+			loader.Write (buffer, (ulong) n);
 		
 		loader.Close ();
 		return loader.Pixbuf;
