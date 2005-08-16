@@ -857,10 +857,8 @@ i2005-06-22  Larry Ewing  <lewing@novell.com>
 
 2005-05-14  Larry Ewing  <lewing@novell.com>
 
-<<<<<<< ChangeLog
 	* src/PngFile.cs: start decoding the important chunks.
 
-=======
 	* src/PngFile.cs: add iCCP chunk decoding.  fix some other stuff
 	yo.
 
@@ -871,7 +869,6 @@ i2005-06-22  Larry Ewing  <lewing@novell.com>
 
 	* src/JpegFile.cs: remove BitConverter.
 
->>>>>>> 1.762
 	* src/PixbufUtils.cs: add Save overload that takes a stream.  Fix
 	the options to the pixbuf save code.
 
