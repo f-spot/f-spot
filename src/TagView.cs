@@ -10,7 +10,7 @@ public class TagView : Gtk.Widget {
 
 	public TagView ()
 	{
-			Flags |= (int)WidgetFlags.NoWindow;
+		SetFlag (WidgetFlags.NoWindow);
 	}
 
 	protected TagView (IntPtr raw) : base (raw) {}
