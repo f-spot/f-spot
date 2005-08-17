@@ -319,7 +319,7 @@ namespace FSpot {
 
 		protected override void OnRealized ()
 		{
-			Flags |= (int)WidgetFlags.Realized;
+			SetFlag (WidgetFlags.Realized);
 			GdkWindow = ParentWindow;
 
 			base.OnRealized ();
@@ -954,7 +954,7 @@ namespace FSpot {
 
 		public GroupSelector () : base () 
 		{
-			Flags |= (int)WidgetFlags.NoWindow;
+			SetFlag (WidgetFlags.NoWindow);
 
 			background = Rectangle.Zero;
 			glass = new Glass (this);

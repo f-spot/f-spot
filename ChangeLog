@@ -1,5 +1,8 @@
 2005-08-17  Larry Ewing  <lewing@novell.com>
 
+	* src/GroupSelector.cs: use SetFlag rather that changing the flag
+	directly.
+
 	* src/f-spot.glade: turn off the stupid month raio again.  I
 	really really hate glade.
 
