@@ -911,7 +911,7 @@ public class MainWindow {
 
 	void HandleOpenCommand (object sender, EventArgs e)
 	{
-		FSpot.SingleView single = new FSpot.SingleView ();
+		new FSpot.SingleView ();
 	}
 
 	void HandleImportCommand (object sender, EventArgs e)
@@ -1629,8 +1629,8 @@ public class MainWindow {
 		}
 		
 		String data = paths.ToString ();
-		primary.SetText (data);
-		clipboard.SetText (data);
+		primary.Text = data;
+		clipboard.Text = data;
 	}
 
 	void HandleSetAsBackgroundCommand (object sender, EventArgs args)
