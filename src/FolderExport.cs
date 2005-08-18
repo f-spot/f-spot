@@ -668,6 +668,7 @@ namespace FSpot {
 			writer.RenderBeginTag ("div");
 
 			if (i > 0)
+				// Abbreviation of previous	
 				WritePageNav (writer, "prev", PhotoIndexPath (i - 1), Mono.Posix.Catalog.GetString("Prev"));
 
 			WritePageNav (writer, "index", IndexPath (i / perpage), Mono.Posix.Catalog.GetString("Index"));
