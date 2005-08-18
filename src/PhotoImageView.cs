@@ -152,10 +152,11 @@ namespace FSpot {
 					this.Pixbuf = new Gdk.Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0, 
 								      PixbufUtils.ErrorPixbuf.Width, 
 								      PixbufUtils.ErrorPixbuf.Height);
+
+				this.ZoomFit ();
 			} else {
 				this.Pixbuf = loader.Pixbuf;
 			}
-			this.ZoomFit ();
 
 			if (prev != this.Pixbuf && prev != null)
 				prev.Dispose ();

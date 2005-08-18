@@ -1,5 +1,8 @@
 2005-08-18  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoImageView.cs: only zoom fit if the image didn't pass
+	successfully through the loader.
+
 	* src/MainWindow.cs: Silence some wanrings.
 
 2005-08-17  Larry Ewing  <lewing@novell.com>
