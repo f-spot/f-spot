@@ -103,9 +103,11 @@ public class PhotoView : EventBox {
 		new SelectionConstraint (Mono.Posix.Catalog.GetString ("Square"), 1.0)
 	};
 
+	private System.Collections.Hashtable constraint_table = new System.Collections.Hashtable ();
+
 	private void HandleSelectionConstraintOptionMenuActivated (object sender, EventArgs args)
 	{
-		selection_constraint_ratio_idx = (int) (sender as GLib.Object).Data [CONSTRAINT_RATIO_IDX_KEY];
+		selection_constraint_ratio_idx = (int) constraint_table [sender];
 		photo_view.SelectionXyRatio = constraints [selection_constraint_ratio_idx].XyRatio;
 	}
 
@@ -117,7 +119,7 @@ public class PhotoView : EventBox {
 		foreach (SelectionConstraint c in constraints) {
 			MenuItem menu_item = new MenuItem (c.Label);
 			menu_item.Show ();
-			menu_item.Data.Add (CONSTRAINT_RATIO_IDX_KEY, i);
+			constraint_table [menu_item] = i;
 			menu_item.Activated += new EventHandler (HandleSelectionConstraintOptionMenuActivated);
 
 			menu.Append (menu_item);
