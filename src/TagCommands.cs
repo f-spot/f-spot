@@ -439,7 +439,11 @@ public class TagCommands {
 			
 			// FIXME this path choosing method is completely wrong/broken/evil it needs to be
 			// based on real data but I want to get this release out.
-			if (System.IO.Directory.Exists ("/opt/gnome/share/icons/gnome/48x48/emblems"))
+			string theme_dir = System.IO.Path.Combine (FSpot.Defines.GNOME_ICON_THEME_PREFIX,
+								   "share/icons/gnome/48x48/emblems");
+			if (System.IO.Directory.Exists (theme_dir))
+				icon_view = new IconView (new FSpot.DirectoryCollection (theme_dir));
+			else if (System.IO.Directory.Exists ("/opt/gnome/share/icons/gnome/48x48/emblems"))
 				icon_view = new IconView (new FSpot.DirectoryCollection ("/opt/gnome/share/icons/gnome/48x48/emblems"));
 			else if (System.IO.Directory.Exists ("/usr/share/icons/gnome/48x48/emblems"))
 				icon_view = new IconView (new FSpot.DirectoryCollection ("/usr/share/icons/gnome/48x48/emblems"));

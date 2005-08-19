@@ -1,5 +1,12 @@
 2005-08-18  Larry Ewing  <lewing@novell.com>
 
+	* configure.in: add icon theme define.
+
+	* src/Defines.cs.in: add icon theme define.
+
+	* src/TagCommands.cs: use icon theme define to find emblems.
+	Based on a patch by Loz.
+
 	* src/PhotoView.cs: rework the constraint index passing to avoid
 	gtk# changes.
 
