@@ -144,6 +144,9 @@ AC_SUBST(expanded_libdir)
 
 AC_CONFIG_FILES([src/f-spot],[chmod +x src/f-spot])
 
+GNOME_ICON_THEME_PREFIX=`$PKG_CONFIG --variable=prefix gnome-icon-theme`
+AC_SUBST(GNOME_ICON_THEME_PREFIX)
+
 AC_OUTPUT([
 Makefile
 icons/Makefile
