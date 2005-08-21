@@ -221,7 +221,8 @@ namespace FSpot.Ciff {
 	public class CiffFile : FSpot.ImageFile {
 		public ImageDirectory Root;
 		System.IO.Stream stream;
-
+		private uint version;
+		
 		public CiffFile (string path) : base (path)
 		{
 			System.IO.Stream input = System.IO.File.OpenRead (path);
@@ -245,7 +246,7 @@ namespace FSpot.Ciff {
 			if (System.Text.Encoding.ASCII.GetString (header, 6, 8) != "HEAPCCDR") 
 				throw new System.Exception ("Invalid Ciff Header Block");
 			
-			uint version =  BitConverter.ToUInt32 (header, 14, little);
+			version =  BitConverter.ToUInt32 (header, 14, little);
 			
 			//
 			
