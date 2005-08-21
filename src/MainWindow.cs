@@ -13,7 +13,7 @@ using System.Text.RegularExpressions;
 using LibGPhoto2;
 
 public class MainWindow {
-        public static MainWindow Toplevel = null;
+        public static MainWindow Toplevel;
 
 	Db db;
 
@@ -1365,6 +1365,11 @@ public class MainWindow {
 			info_vpaned.Show ();
 	}
 
+	public void Present ()
+	{
+		main_window.Present ();
+	}
+	
 	void HandleViewSlideShow (object sender, EventArgs args)
 	{
 		main_window.GdkWindow.Cursor = new Gdk.Cursor (Gdk.CursorType.Watch);
@@ -1704,6 +1709,8 @@ public class MainWindow {
 	{
 		if (info_box.Photo == (browsable [item] as Photo))
 			info_box.Update ();
+
+		UpdateMenus ();
 	}
 	//
 	// Handle Main Menu 
