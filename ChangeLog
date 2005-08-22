@@ -1,5 +1,8 @@
 2005-08-21  Larry Ewing  <lewing@novell.com>
 
+	* src/ImportCommand.cs: add a timeout based hack to make sure the
+	import progresses.
+
 	* src/main.cs: check the value before we use it, avoinding a crash
 	the firs time someone runs f-spot.
 

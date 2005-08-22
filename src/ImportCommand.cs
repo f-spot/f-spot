@@ -450,8 +450,10 @@ public class ImportCommand : FSpot.GladeDialog {
 
 		if (ongoing && total > 0)
 			return true;
-		else 
+		else {
+			System.Console.WriteLine ("Stopping");
 			return false;
+		}
 	}
 
 	public bool AllowFinish
@@ -481,8 +483,13 @@ public class ImportCommand : FSpot.GladeDialog {
 		FSpot.ThumbnailGenerator.Default.PushBlock ();
 
 		while (total > 0 && this.Step ()) {
-			while (Application.EventsPending ())
+			System.DateTime start_time = System.DateTime.Now;
+			System.TimeSpan span = start_time - start_time;
+
+			while (Application.EventsPending () && span.TotalMilliseconds < 100) {
+				span = System.DateTime.Now - start_time;
 				Application.RunIteration ();
+			}
 		}
 
 		FSpot.ThumbnailGenerator.Default.PopBlock ();
