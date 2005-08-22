@@ -1,5 +1,8 @@
 2005-08-21  Larry Ewing  <lewing@novell.com>
 
+	* src/main.cs: check the value before we use it, avoinding a crash
+	the firs time someone runs f-spot.
+
 	* src/Ciff.cs: remove warning.
 
 	* src/MainWindow.cs: Fix 313850. Add present method.

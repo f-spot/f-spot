@@ -54,7 +54,7 @@ public class Driver {
 		if (!view_only) {
 			new MainWindow (db);
 			if (import) {
-				if (import_path.StartsWith ("gphoto2:"))
+				if (import_path != null && import_path.StartsWith ("gphoto2:"))
 					MainWindow.Toplevel.ImportCamera (import_path);
 				else
 					MainWindow.Toplevel.ImportFile (import_path);
