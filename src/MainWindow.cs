@@ -1707,10 +1707,10 @@ public class MainWindow {
 
 	void HandleQueryItemChanged (FSpot.IBrowsableCollection browsable, int item)
 	{
-		if (info_box.Photo == (browsable [item] as Photo))
+		if (photo_view.Item.Index == item) {
+			UpdateMenus ();
 			info_box.Update ();
-
-		UpdateMenus ();
+		}
 	}
 	//
 	// Handle Main Menu 

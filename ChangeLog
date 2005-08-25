@@ -1,5 +1,7 @@
 2005-08-25  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: add present call.
+
 	* src/main.cs: move the basic command calls to a core component.
 
 	* src/Core.cs: new class that implements the remote control stuff.
