@@ -1,5 +1,7 @@
 2005-08-25  Larry Ewing  <lewing@novell.com>
 
+	* src/Core.cs: exit when all the toplevels are gone.
+
 	* src/MainWindow.cs: add present call.
 
 	* src/main.cs: move the basic command calls to a core component.

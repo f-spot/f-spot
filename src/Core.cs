@@ -15,7 +15,14 @@ namespace FSpot {
 	{
 		MainWindow origanizer;
 		Db db;
+		System.Collections.ArrayList toplevels;
 		static DBus.Connection connection;
+
+		public Core (Db db)
+		{
+			this.db = db;
+			toplevels = new System.Collections.ArrayList ();
+		}
 
 		public static DBus.Connection Connection {
 			get {
@@ -30,11 +37,6 @@ namespace FSpot {
 		{
 			DBus.Service service = DBus.Service.Get (Connection, "org.gnome.FSpot");
 			return (Core)service.GetObject (typeof (Core), "/org/gnome/FSpot/Core");
-		}
-
-		public Core (Db db)
-		{
-			this.db = db;
 		}
 
 		public void RegisterServer ()
@@ -73,8 +75,10 @@ namespace FSpot {
 
 		public MainWindow MainWindow {
 			get {
-				if (origanizer == null)
+				if (origanizer == null) {
 					origanizer = new MainWindow (db);
+					Register (origanizer.Window);
+				}
 				
 				return origanizer;
 			}
@@ -82,15 +86,32 @@ namespace FSpot {
 			
 		public override void Organize () 
 		{
-			MainWindow.Present ();
+			MainWindow.Window.Present ();
 		}
 		
 		public override void View (string path)
 		{
 			if (System.IO.File.Exists (path) || System.IO.Directory.Exists (path))
-				new FSpot.SingleView (path);
+				Register (new FSpot.SingleView (path).Window);
 			else
 				System.Console.WriteLine ("no valid path to import from");
+		}
+
+		public void Register (Gtk.Window window)
+		{
+			toplevels.Add (window);
+			window.Destroyed += HandleDestroyed;
+		}
+
+		public void HandleDestroyed (object sender, System.EventArgs args)
+		{
+			toplevels.Remove (sender);
+			if (toplevels.Count == 0) {
+				// FIXME
+				// Should use Application.Quit(), but for that to work we need to terminate the threads
+				// first too.
+				System.Environment.Exit (0);
+			}
 		}
 	}
 }
