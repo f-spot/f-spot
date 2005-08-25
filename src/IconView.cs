@@ -749,11 +749,12 @@ public class IconView : Gtk.Layout {
 			
 			Gdk.Rectangle draw = Expand (region, 1);
 			
-			Style.PaintShadow (Style, BinWindow, cell_state,
-					   ShadowType.Out, area, this, 
-					   "IconView", 
-					   draw.X, draw.Y, 
-					   draw.Width, draw.Height);			
+			if (!temp_thumbnail.HasAlpha) 
+				Style.PaintShadow (Style, BinWindow, cell_state,
+						   ShadowType.Out, area, this, 
+						   "IconView", 
+						   draw.X, draw.Y, 
+						   draw.Width, draw.Height);			
 			
 			if (region.Intersect (area, out draw)) {
 				temp_thumbnail.RenderToDrawable (BinWindow, Style.WhiteGC,

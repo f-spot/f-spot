@@ -1,5 +1,7 @@
 2005-08-25  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: don't draw the shadow on images with alpha.
+
 	* src/AsyncPixbufLoader.cs: add a Prepared flag.
 
 	* src/PhotoImageView.cs: use the loader prepared flag.
