@@ -7,60 +7,75 @@ public class Driver {
 
 	public static void Main (string [] args)
 	{
-		Application.Init ();
-		Program program = new Program (FSpot.Defines.PACKAGE, FSpot.Defines.VERSION, Modules.UI, args);
-
-		Gnome.Vfs.Vfs.Initialize ();
-		StockIcons.Initialize ();
-
-		Mono.Posix.Catalog.Init ("f-spot", FSpot.Defines.LOCALE_DIR);
-
-		// FIXME: Error checking is non-existant here...
-
-		string base_directory = FSpot.Global.BaseDirectory;
-		if (! File.Exists (base_directory))
-			Directory.CreateDirectory (base_directory);
-
-		Db db = new Db (Path.Combine (base_directory, "photos.db"), true);
-
-		Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {PixbufUtils.LoadFromAssembly ("f-spot-logo.png")};
-
 		bool view_only = false;
-		bool import = db.Empty;
-		string import_path = null;
+		bool import = false;
+		bool empty = false;
+		Program program = null;
+		FSpot.CoreControl control = null;
 
+		try {
+			control = FSpot.Core.FindInstance ();
+			System.Console.WriteLine ("Found active FSpot server {0}", control);
+		} catch (System.Exception e) { 
+			System.Console.WriteLine (e.ToString ());
+		}
+
+		if (control == null) {
+			FSpot.Core core = null;
+			Application.Init ();
+			program = new Program (FSpot.Defines.PACKAGE, 
+					       FSpot.Defines.VERSION, 
+					       Modules.UI, args);
+			
+			Gnome.Vfs.Vfs.Initialize ();
+			StockIcons.Initialize ();
+			
+			Mono.Posix.Catalog.Init ("f-spot", FSpot.Defines.LOCALE_DIR);
+			Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {PixbufUtils.LoadFromAssembly ("f-spot-logo.png")};
+			
+			// FIXME: Error checking is non-existant here...
+			
+			string base_directory = FSpot.Global.BaseDirectory;
+			if (! File.Exists (base_directory))
+				Directory.CreateDirectory (base_directory);
+			
+			Db db = new Db (Path.Combine (base_directory, "photos.db"), true);
+			core = new FSpot.Core (db);
+
+			try {
+				core.RegisterServer ();
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e.ToString ());
+			}
+
+			empty = db.Empty;
+			control = core;
+		}			
+			
 		for (int i = 0; i < args.Length; i++) {
 			switch (args [i]) {
 			case "--import":
-				if (++i < args.Length && (args [i].StartsWith ("gphoto2:") || File.Exists (args [i]) || Directory.Exists (args[i]))) {
-					import_path = args [i];
-				} else {
-					System.Console.WriteLine ("no valid path to import from");
-				}
+				if (++i < args.Length)
+					control.Import (args [i]);
+
 				import = true;
 				break;
 			case "--view":
-				if (++i < args.Length && (File.Exists (args [i]) || Directory.Exists (args[i]))) {
-					new FSpot.SingleView (args [i]);
-					view_only = true;
-				} else {
-					System.Console.WriteLine ("no valid path to import from");
-				}
+				if (++i < args.Length)
+					control.View (args [i]);
+
+				view_only = true;
 				break;
 			}
-
 		}
 
-		if (!view_only) {
-			new MainWindow (db);
-			if (import) {
-				if (import_path != null && import_path.StartsWith ("gphoto2:"))
-					MainWindow.Toplevel.ImportCamera (import_path);
-				else
-					MainWindow.Toplevel.ImportFile (import_path);
-			}
-		}
+		if (empty && !import)
+			control.Import (FSpot.Global.HomeDirectory);
 
-		program.Run ();
+		if (import || !view_only)
+			control.Organize ();
+		
+		if (program != null)
+			program.Run ();
 	}
 }
