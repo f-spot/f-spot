@@ -156,6 +156,9 @@ namespace FSpot {
 				this.ZoomFit ();
 			} else {
 				this.Pixbuf = loader.Pixbuf;
+
+				if (!loader.Prepared)
+					this.ZoomFit ();
 			}
 
 			if (prev != this.Pixbuf && prev != null)

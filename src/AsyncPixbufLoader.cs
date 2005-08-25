@@ -51,6 +51,13 @@ namespace FSpot {
 			}
 		}
 
+		public bool Prepared
+		{
+			get {
+				return area_prepared;
+			}
+		}
+
 		public string Path {
 			get {
 				return path;
