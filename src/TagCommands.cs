@@ -414,7 +414,11 @@ public class TagCommands {
 			preview_image.Pixbuf = t.Icon;
 
 			query = new FSpot.PhotoQuery (db.Photos);
-			query.Tags = new Tag [] { t, db.Tags.Hidden };
+			
+			if (db.Tags.Hidden != null)
+				query.Tags = new Tag [] { t, db.Tags.Hidden };
+			else 
+				query.Tags = new Tag [] { t };
 
 			image_view = new FSpot.PhotoImageView (query);
 			image_view.SelectionXyRatio = 1.0;

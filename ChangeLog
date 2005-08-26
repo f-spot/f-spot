@@ -1,5 +1,10 @@
 2005-08-26  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoStore.cs: make more checks on the existance of the
+	hidden tag.
+
+	* src/TagCommands.cs: make sure the hidden tag is there.
+
 	* src/MainWindow.cs: remove present call add window.
 
 2005-08-25  Larry Ewing  <lewing@novell.com>

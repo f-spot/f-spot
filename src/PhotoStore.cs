@@ -1062,11 +1062,12 @@ public class PhotoStore : DbStore {
 		bool hide = true;
 		if (tags != null) {
 			foreach (Tag t in tags) {
-				if (t.Id == tag_store.Hidden.Id) 
+				if (tag_store.Hidden == null || t.Id == tag_store.Hidden.Id) 
 					hide = false;
 			}
-		}
-		
+		} else
+			hide = tag_store.Hidden != null;
+
 		// The SQL query that we want to construct is:
 		//
 		// SELECT photos.id
@@ -1103,23 +1104,26 @@ public class PhotoStore : DbStore {
 		}
 		
 		if (tags != null && tags.Length > 0) {
-				bool first = true;
-				foreach (Tag t in tags) {
-					if (t.Id == tag_store.Hidden.Id)
-						continue;
-					
-					if (first) {
-						query_builder.Append (String.Format ("{0} photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN (",
-										     hide || range != null ? " AND " : " WHERE "));
-					}
-					
-					query_builder.Append (String.Format ("{0}{1} ", first ? "" : ", ", t.Id));
-					
-					first = false;
+			bool first = true;
+			foreach (Tag t in tags) {
+				if (t == null)
+					continue;
+				
+				if (tag_store.Hidden != null && t.Id == tag_store.Hidden.Id)
+					continue;
+				
+				if (first) {
+					query_builder.Append (String.Format ("{0} photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN (",
+									     hide || range != null ? " AND " : " WHERE "));
 				}
 				
-				if (!first)
-					query_builder.Append (")) ");
+				query_builder.Append (String.Format ("{0}{1} ", first ? "" : ", ", t.Id));
+				
+					first = false;
+			}
+			
+			if (!first)
+				query_builder.Append (")) ");
 		}
 		
 		query_builder.Append ("ORDER BY photos.time");
