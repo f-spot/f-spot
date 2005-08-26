@@ -1147,10 +1147,7 @@ public class MainWindow {
 
 	void HandleCloseCommand (object sender, EventArgs args)
 	{
-		// FIXME
-		// Should use Application.Quit(), but for that to work we need to terminate the threads
-		// first too.
-		Environment.Exit (0);
+		this.Window.Destroy ();
 	}
 	
 	void HandleCreateVersionCommand (object obj, EventArgs args)
@@ -1365,9 +1362,10 @@ public class MainWindow {
 			info_vpaned.Show ();
 	}
 
-	public void Present ()
-	{
-		main_window.Present ();
+	public Gtk.Window Window {
+		get {
+			return main_window;
+		}
 	}
 	
 	void HandleViewSlideShow (object sender, EventArgs args)
