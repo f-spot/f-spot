@@ -8,6 +8,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Ciff.cs			\
 	$(srcdir)/ColorDialog.cs		\
 	$(srcdir)/CompatFileChooser.cs		\
+	$(srcdir)/Core.cs			\
 	$(srcdir)/DateCommands.cs		\
 	$(srcdir)/Db.cs				\
 	$(srcdir)/DCRawFile.cs			\
@@ -101,6 +102,7 @@ ASSEMBLIES =					\
 	-r:Mono.Data.SqliteClient		\
 	-r:Mono.Posix				\
 	-r:ICSharpCode.SharpZipLib		\
+	-pkg:dbus-sharp				\
 	-pkg:gtkhtml-sharp-2.0			\
 	-pkg:glade-sharp-2.0			\
 	-pkg:gnome-vfs-sharp-2.0		\
