@@ -22,7 +22,7 @@ public class RotateCommand {
 		string temporary_path = original_path + ".tmp";	// FIXME make it unique
 		
 		try {
-			#if false
+#if false
 			JpegUtils.Transform (original_path, temporary_path, 
 					     direction == Direction.Clockwise ? JpegUtils.TransformType.Rotate90 
 					     : JpegUtils.TransformType.Rotate270);
@@ -53,12 +53,12 @@ public class RotateCommand {
 			
 		} catch (System.Exception e) {
 			System.Console.WriteLine (e.ToString ());
-			string longmsg = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\" while rotating image {1}"),
+			string longmsg = String.Format (Mono.Posix.Catalog.GetString ("Received error \"{0}\" while rotating image {1}"),
 							e.Message, System.IO.Path.GetFileName (original_path));
 			
 			HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, 
 								    MessageType.Warning, ButtonsType.Ok, 
-								    Mono.Posix.Catalog.GetString ("Unknown Error while Rotating Image."),
+								    Mono.Posix.Catalog.GetString ("Error while Rotating Image."),
 								    longmsg);
 			md.Run ();
 			md.Destroy ();
