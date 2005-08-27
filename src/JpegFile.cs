@@ -61,10 +61,8 @@ namespace FSpot {
 #if true //USE_UNSTABLE_JPEG_HEADER_CODE
 			string  temp_path = path;
 			using (System.IO.FileStream stream = System.IO.File.OpenRead (path)) {
-				JpegHeader header = new JpegHeader (stream);
 				using (System.IO.Stream output = FSpot.Unix.MakeSafeTemp (ref temp_path)) {
-					header.Exif = this.ExifData;
-					header.Save (output);
+					SaveMetaData (stream, output);
 				}
 			}
 			if (FSpot.Unix.Rename (temp_path, path) < 0) {
