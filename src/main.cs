@@ -15,9 +15,9 @@ public class Driver {
 
 		try {
 			control = FSpot.Core.FindInstance ();
-			System.Console.WriteLine ("Found active FSpot server {0}", control);
+			System.Console.WriteLine ("Found active FSpot server: {0}", control);
 		} catch (System.Exception e) { 
-			System.Console.WriteLine (e.ToString ());
+			System.Console.WriteLine ("Unable to find active server: {0}", e.Message);
 		}
 
 		if (control == null) {
