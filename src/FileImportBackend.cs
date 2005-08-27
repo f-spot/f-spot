@@ -24,7 +24,13 @@ public class FileImportBackend : ImportBackend {
 
 	private void GetListing (System.IO.DirectoryInfo info)
 	{
-		GetListing (info, info.GetFiles (), recurse);
+		try {
+			GetListing (info, info.GetFiles (), recurse);
+		} catch (System.UnauthorizedAccessException e) {
+			System.Console.WriteLine ("Unable to access directory {0}", info.FullName);
+		} catch (System.Exception e) {
+			System.Console.WriteLine ("{0}", e.ToString ());
+		}
 	}
 
 	private void GetListing (System.IO.DirectoryInfo info, System.IO.FileInfo [] files, bool recurse)

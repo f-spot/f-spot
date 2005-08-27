@@ -1,5 +1,8 @@
 2005-08-26  Larry Ewing  <lewing@novell.com>
 
+	* src/FileImportBackend.cs: don't stop scanning if we hit an
+	unreadable directory.
+
 	* src/PhotoStore.cs: make more checks on the existance of the
 	hidden tag.
 
