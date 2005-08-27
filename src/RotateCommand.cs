@@ -53,7 +53,7 @@ public class RotateCommand {
 			
 		} catch (System.Exception e) {
 			System.Console.WriteLine (e.ToString ());
-			string longmsg = String.Format (Mono.Posix.Catalog.GetString ("Received error \"{0}\" while rotating image {1}"),
+			string longmsg = String.Format (Mono.Posix.Catalog.GetString ("Received error \"{0}\" while attempting to rotate {1}"),
 							e.Message, System.IO.Path.GetFileName (original_path));
 			
 			HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, 
