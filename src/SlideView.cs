@@ -324,6 +324,7 @@ namespace FSpot {
 			
 			return false;			
 		}
+
 		
 		private bool HandleTweenIdle ()
 		{
@@ -333,47 +334,25 @@ namespace FSpot {
 					return false;
 				}
 				
+				if (current_tween >= tweens.Length) {
+					tween_idle = 0;
+					return false;
+				}
+
 				if (current_tween < tweens.Length && tweens[current_tween] == null) {
 					tweens[current_tween] = new Pixbuf (Colorspace.Rgb, false, 8, 
 									    Allocation.Width, Allocation.Height);
 				}
-				
-				switch (current_tween) {
-				case 9:
-					tweens[current_tween] = Blend (tweens[current_tween], prev, next, .15);
-					break;
-				case 8:
-					tweens[current_tween] = Blend (tweens[current_tween], prev, next, .3);
-					break;
-				case 7:
-					tweens[current_tween] = Blend (tweens[current_tween], prev, next, .4);
-					break;
-				case 6:
-					tweens[current_tween] = Blend (tweens[current_tween], prev, next, .5);
-					break;
-				case 5:
-					tweens[current_tween] = Blend (tweens[current_tween], prev, next, .6);
-					break;
-				case 4:
-					tweens[current_tween] = Blend (tweens[current_tween], prev, next, .7);
-					break;
-				case 3:
-					tweens[current_tween] = Blend (tweens[current_tween], prev, next, .8);
-					break;
-				case 2:
-					tweens[current_tween] = Blend (tweens[current_tween], prev, next, .9);
-					break;
-				case 1:
-					tweens[current_tween] = Blend (tweens[current_tween], prev, next, .97);
-				break;
-				case 0:
-					tweens[current_tween] = Blend (tweens[current_tween], prev, next, .99);
-					break;
-				default:
-					tween_idle = 0;
-					return false;
-				}
-				
+
+				double blend_val;
+#if USE_EXP
+				double blend_t = (-10 * current_tween) / ((double)tweens.Length - 1);
+				blend_val = 1.0 - (.01 / (.01 + (.99 * Math.Exp(blend_t))));
+#else
+				double [] blends = new double [] { .99, .97, .9, .8, .7, .6, .5, .4, .3, .15};
+				blend_val = blends [current_tween];
+#endif
+				tweens[current_tween] = Blend (tweens[current_tween], prev, next, blend_val);
 				current_tween++;
 				return true;
 			}
