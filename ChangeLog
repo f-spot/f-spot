@@ -1,5 +1,9 @@
 2005-08-29  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoImageView.cs: use SetTransparentColor.
+
+	* src/ImageView.cs: add SetTransparentColor wrapper.
+
 	* src/PhotoView.cs: add error message.
 	
 	* src/ColorDialog.cs: make the saving error a little more clear.

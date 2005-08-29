@@ -79,6 +79,13 @@ public class ImageView : Layout {
 		f_image_view_unset_selection (Handle);
 	}
 
+	[DllImport ("libfspoteog")]
+	static extern void image_view_set_transparent_color (IntPtr view, out Gdk.Color color);
+
+	public void SetTransparentColor (Gdk.Color color)
+	{
+		image_view_set_transparent_color (Handle, out color);
+	} 
 
 	[DllImport ("libfspoteog")]
 	static extern void image_view_set_pixbuf (IntPtr view, IntPtr pixbuf);

@@ -22,8 +22,14 @@ namespace FSpot {
 			this.item = new BrowsablePointer (query, -1);
 			item.IndexChanged += PhotoIndexChanged;
 			this.Destroyed += HandleDestroyed;
+			this.SetTransparentColor (this.Style.BaseColors [(int)Gtk.StateType.Normal]);
 		}
 		
+		protected override void OnStyleSet (Gtk.Style previous)
+		{
+			this.SetTransparentColor (this.Style.Backgrounds [(int)Gtk.StateType.Normal]);
+		}
+
 		new public BrowsablePointer Item {
 			get {
 				return item;
