@@ -149,7 +149,7 @@ namespace FSpot {
 								     e.Message, photo.Name);
 					
 					HigMessageDialog md = new HigMessageDialog ((Gtk.Window)Dialog.Toplevel, DialogFlags.DestroyWithParent, 
-									    Gtk.MessageType.Error, ButtonsType.Ok, 
+										    Gtk.MessageType.Error, ButtonsType.Ok, 
 										    msg,
 										    desc);
 					md.Run ();
@@ -160,7 +160,8 @@ namespace FSpot {
 				}
 			} else {
 				string msg = Mono.Posix.Catalog.GetString ("Error saving adjusted photo");
-				string desc = Mono.Posix.Catalog.GetString ("F-Spot cannot yet edit images of this type");
+				string desc = String.Format (Mono.Posix.Catalog.GetString ("F-Spot {0} cannot yet edit images of this type"), 
+							     FSpot.Defines.VERSION);
 				
 				HigMessageDialog md = new HigMessageDialog ((Gtk.Window)Dialog.Toplevel, DialogFlags.DestroyWithParent, 
 									    Gtk.MessageType.Error, ButtonsType.Ok, 
