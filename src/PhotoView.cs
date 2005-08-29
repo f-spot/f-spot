@@ -227,9 +227,20 @@ public class PhotoView : EventBox {
 	private void ProcessImage (bool redeye)
 	{
 		int x, y, width, height;
-		if (! photo_view.GetSelection (out x, out y, out width, out height))
+		if (! photo_view.GetSelection (out x, out y, out width, out height)) {
+			string msg = Mono.Posix.Catalog.GetString ("No selection available");
+			string desc = Mono.Posix.Catalog.GetString ("This tool requires an active selection. Please select a region of the image and try the operation again");
+			
+			HigMessageDialog md = new HigMessageDialog ((Gtk.Window)this.Toplevel, DialogFlags.DestroyWithParent, 
+								    Gtk.MessageType.Info, ButtonsType.Ok, 
+								    msg,
+								    desc);
+
+			md.Run ();
+			md.Destroy ();
 			return;
-		
+		}		
+
 		Pixbuf original_pixbuf = photo_view.CompletePixbuf ();
 		if (original_pixbuf == null) {
 			return;
