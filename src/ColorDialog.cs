@@ -114,50 +114,62 @@ namespace FSpot {
 
 			Console.WriteLine ("Saving....");
 			Photo photo = (Photo)view.Item.Current;
-			Exif.ExifData data = new Exif.ExifData (photo.DefaultVersionPath);
-			
-			bool created_version = false;
-			uint version = photo.DefaultVersionId;
-			if (version == Photo.OriginalVersionId) {
-				version = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);
-				created_version = true;
-			}
-			
-			Gdk.Pixbuf orig = view.CompletePixbuf ();
-			
-			Gdk.Pixbuf final = new Gdk.Pixbuf (Gdk.Colorspace.Rgb,
-							   false, 8,
-							   orig.Width, 
-							   orig.Height);
-			
-			PixbufUtils.ColorAdjust (orig,
-						 final,
-						 view.Transform);
-			
-			try {
-				string version_path = photo.GetVersionPath (version);
+			FSpot.ImageFile img = FSpot.ImageFile.Create (photo.DefaultVersionPath);
 
-				PixbufUtils.SaveJpeg (final, version_path, 95, data);
-				ThumbnailGenerator.Create (version_path).Dispose ();
-				photo.DefaultVersionId = version;
-				((PhotoQuery)view.Query).Commit (view.Item.Index);
-			} catch (System.Exception e) {
+			if (img is FSpot.JpegFile) {
+				FSpot.JpegFile jimg = img as JpegFile;
+				
+				bool created_version = false;
+				uint version = photo.DefaultVersionId;
+				if (version == Photo.OriginalVersionId) {
+					version = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);
+					created_version = true;
+				}
+				
+				Gdk.Pixbuf orig = view.CompletePixbuf ();
+				
+				Gdk.Pixbuf final = new Gdk.Pixbuf (Gdk.Colorspace.Rgb,
+								   false, 8,
+								   orig.Width, 
+								   orig.Height);
+				
+				PixbufUtils.ColorAdjust (orig,
+							 final,
+							 view.Transform);
+				
+				try {
+					string version_path = photo.GetVersionPath (version);
+					PixbufUtils.SaveJpeg (final, version_path, 95, jimg.ExifData);
+					ThumbnailGenerator.Create (version_path).Dispose ();
+					photo.DefaultVersionId = version;
+					((PhotoQuery)view.Query).Commit (view.Item.Index);
+				} catch (System.Exception e) {
+					string msg = Mono.Posix.Catalog.GetString ("Error saving adjusted photo");
+					string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save image {1}"),
+								     e.Message, photo.Name);
+					
+					HigMessageDialog md = new HigMessageDialog ((Gtk.Window)Dialog.Toplevel, DialogFlags.DestroyWithParent, 
+									    Gtk.MessageType.Error, ButtonsType.Ok, 
+										    msg,
+										    desc);
+					md.Run ();
+					md.Destroy ();
+					
+					if (created_version)
+						photo.DeleteVersion (version);
+				}
+			} else {
 				string msg = Mono.Posix.Catalog.GetString ("Error saving adjusted photo");
-				string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save image {1}"),
-							     e.Message, photo.Name);
+				string desc = Mono.Posix.Catalog.GetString ("F-Spot cannot yet edit images of this type");
 				
 				HigMessageDialog md = new HigMessageDialog ((Gtk.Window)Dialog.Toplevel, DialogFlags.DestroyWithParent, 
 									    Gtk.MessageType.Error, ButtonsType.Ok, 
 									    msg,
 									    desc);
+
 				md.Run ();
 				md.Destroy ();
-
-				if (created_version)
-					photo.DeleteVersion (version);
 			}
-			
-			Console.WriteLine ("Saving....");
 			this.Dialog.Sensitive = false;
 			this.Dialog.Destroy ();
 		}
