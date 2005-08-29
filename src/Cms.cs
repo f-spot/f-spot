@@ -6,9 +6,10 @@ using System;
 using System.Runtime.InteropServices;
 
 namespace Cms {
-	public enum Format {
+	public enum Format : uint {
 		Rgb8  = 262169,
 		Rgba8 = 262297,
+		Rgba8Planar = 266393,
 		Gbr8  = 263193
 	}
 	
@@ -31,15 +32,15 @@ namespace Cms {
 		[DllImport("liblcms-1.0.0.dll")]
 		static extern IntPtr cmsCreateMultiprofileTransform (HandleRef [] hProfiles,
 								     int nProfiles,
-								     short InputFormat,
-								     short OutputFormat,
+								     Format InputFormat,
+								     Format OutputFormat,
 								     int Intent,
-								     short dwFlags);
+								     uint dwFlags);
 
 		public Transform (Profile [] profiles,
 				  Format input_format,
 				  Format output_format,
-				  Intent intent, short flags)
+				  Intent intent, uint flags)
 		{
 			HandleRef [] handles = new HandleRef [profiles.Length];
 			for (int i = 0; i < profiles.Length; i++) {
@@ -47,26 +48,26 @@ namespace Cms {
 			}
 
 			this.handle = new HandleRef (this, cmsCreateMultiprofileTransform (handles, handles.Length, 
-											   (short)input_format,
-											   (short) output_format, 
+											   input_format,
+											   output_format, 
 											   (int)intent, flags));
 		}
 
 		[DllImport("liblcms-1.0.0.dll")]
 		static extern IntPtr cmsCreateTransform(HandleRef Input,
-							short InputFormat,
+							Format InputFormat,
 							HandleRef Output,
-							short OutputFormat,
+							Format OutputFormat,
 							int Intent,
-							short dwFlags);
+							uint dwFlags);
 
 		public Transform (Profile input, Format input_format,
 				  Profile output, Format output_format,
-				  Intent intent, short flags)
+				  Intent intent, uint flags)
 		{
-			this.handle = new HandleRef (this, cmsCreateTransform (input.Handle, (short)input_format,
-									       output.Handle, (short)output_format,
-									       (int)intent, (short)flags));
+			this.handle = new HandleRef (this, cmsCreateTransform (input.Handle, input_format,
+									       output.Handle, output_format,
+									       (int)intent, flags));
 		}
 		
 		[DllImport("liblcms-1.0.0.dll")]

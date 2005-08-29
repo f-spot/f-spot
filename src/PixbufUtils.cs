@@ -527,7 +527,7 @@ class PixbufUtils {
 
 	public static Cms.Format PixbufCmsFormat (Pixbuf buf)
 	{
-		return buf.HasAlpha ? Cms.Format.Rgba8 : Cms.Format.Rgb8;
+		return buf.HasAlpha ? Cms.Format.Rgba8Planar : Cms.Format.Rgb8;
 	}
 
 	public static unsafe void ColorAdjust (Pixbuf src, Pixbuf dest, 
