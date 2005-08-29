@@ -70,7 +70,7 @@ public class Driver {
 		}
 
 		if (empty && !import)
-			control.Import (FSpot.Global.HomeDirectory);
+			control.Import (null);
 
 		if (import || !view_only)
 			control.Organize ();

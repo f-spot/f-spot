@@ -1,5 +1,9 @@
 2005-08-29  Larry Ewing  <lewing@novell.com>
 
+	* src/main.cs: don't set the import path here let the user set it.
+
+	* src/Core.cs: null protect the import command.
+
 	* src/PhotoImageView.cs: use SetTransparentColor.
 
 	* src/ImageView.cs: add SetTransparentColor wrapper.

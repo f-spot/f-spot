@@ -58,7 +58,7 @@ namespace FSpot {
 
 			public bool Execute ()
 			{
-				if (path.StartsWith ("gphoto2:"))
+				if (path != null && path.StartsWith ("gphoto2:"))
 					main.ImportCamera (path);
 				else
 					main.ImportFile (path);
