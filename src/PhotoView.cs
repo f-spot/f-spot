@@ -232,7 +232,7 @@ public class PhotoView : EventBox {
 			string desc = Mono.Posix.Catalog.GetString ("This tool requires an active selection. Please select a region of the image and try the operation again");
 			
 			HigMessageDialog md = new HigMessageDialog ((Gtk.Window)this.Toplevel, DialogFlags.DestroyWithParent, 
-								    Gtk.MessageType.Info, ButtonsType.Ok, 
+								    Gtk.MessageType.Error, ButtonsType.Ok, 
 								    msg,
 								    desc);
 
