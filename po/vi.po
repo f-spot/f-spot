@@ -1,0 +1,1515 @@
+# Vietnamese translation for F-Spot.
+# Copyright © 2005 Gnome i18n Project for Vietnamese.
+# Clytie Siddall <clytie@riverland.net.au>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: f-spot Gnome HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-08-29 02:58+0000\n"
+"PO-Revision-Date: 2005-08-30 13:12+0930\n"
+"Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
+"Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"X-Generator: LocFactoryEditor 1.2.2\n"
+
+#: ../f-spot.desktop.in.in.h:1 ../src/f-spot.glade.h:68
+msgid "F-Spot Photo Album"
+msgstr "Tập Ảnh F-Spot"
+
+#: ../f-spot.desktop.in.in.h:2
+msgid "Photo Album"
+msgstr "Tập Ảnh"
+
+#: ../libeog/eog-file-selection.c:29 ../libeog/eog-file-selection.c:46
+msgid "By Extension"
+msgstr "Theo phần mở rộng"
+
+#: ../libeog/eog-file-selection.c:30
+msgid "BMP"
+msgstr "BMP"
+
+#: ../libeog/eog-file-selection.c:31
+msgid "GIF"
+msgstr "GIF"
+
+#: ../libeog/eog-file-selection.c:32
+msgid "ICO"
+msgstr "ICO"
+
+#: ../libeog/eog-file-selection.c:33 ../libeog/eog-file-selection.c:48
+msgid "JPEG"
+msgstr "JPEG"
+
+#: ../libeog/eog-file-selection.c:34 ../libeog/eog-file-selection.c:51
+msgid "PNG"
+msgstr "PNG"
+
+# Re-visit this item
+#: ../libeog/eog-file-selection.c:35
+msgid "PNM"
+msgstr "PNM"
+
+#: ../libeog/eog-file-selection.c:36
+msgid "RAS"
+msgstr "RAS"
+
+#: ../libeog/eog-file-selection.c:37
+msgid "SVG"
+msgstr "SVG"
+
+#: ../libeog/eog-file-selection.c:38
+msgid "TGA"
+msgstr "TGA"
+
+#: ../libeog/eog-file-selection.c:39
+msgid "TIFF"
+msgstr "TIFF"
+
+#: ../libeog/eog-file-selection.c:40
+msgid "XBM"
+msgstr "XBM"
+
+# Re-visit this item
+#: ../libeog/eog-file-selection.c:41 ../libeog/eog-file-selection.c:54
+msgid "XPM"
+msgstr "XPM"
+
+#: ../libeog/eog-file-selection.c:207
+msgid "Unsupported file format."
+msgstr "Dạng thức tập tin không được hỗ trợ."
+
+#: ../libeog/eog-file-selection.c:225
+msgid "Determine File Type:"
+msgstr "Xác định kiểu tập tin:"
+
+#: ../libeog/eog-file-selection.c:268
+msgid "Load Image"
+msgstr "Tải ảnh"
+
+#: ../libeog/eog-file-selection.c:274
+msgid "Save Image"
+msgstr "Lưu ảnh"
+
+#: ../libeog/eog-image.c:773
+msgid "No image loaded."
+msgstr "Chưa tải ảnh."
+
+#: ../libeog/eog-image.c:780
+msgid "Can't save non local files."
+msgstr "Không thể lưu tập tin không phải cục bộ."
+
+#: ../libeog/eog-image.c:803
+msgid "Unsupported image type for saving."
+msgstr "Không hỗ trợ lưu kiểu ảnh này."
+
+#: ../libeog/image-view.c:2110
+msgid "interpolation type"
+msgstr "Kiểu nội suy"
+
+# Type: select
+# Description
+#: ../libeog/image-view.c:2111
+msgid "the type of interpolation to use"
+msgstr "kiểu nội suy cần dùng"
+
+#: ../libeog/image-view.c:2117 ../libeog/image-view.c:2124
+msgid "check type"
+msgstr "kiểu kiểm tra"
+
+#: ../libeog/image-view.c:2118
+msgid "the type of chequering to use"
+msgstr "kiểu kẻ ô vuông cần dùng"
+
+#: ../libeog/image-view.c:2125
+msgid "the size of chequers to use"
+msgstr "kích thước ô vuông cần dùng"
+
+#: ../libeog/image-view.c:2131
+msgid "dither"
+msgstr "rung động"
+
+#: ../libeog/image-view.c:2132
+msgid "dither type"
+msgstr "kiểu rung động"
+
+#: ../libfspot/f-jpeg-utils.c:445
+msgid "File not found"
+msgstr "Không tìm thấy tập tin"
+
+#: ../libfspot/f-jpeg-utils.c:468
+#, c-format
+msgid "Unknown transform type %d"
+msgstr "Không biết kiểu chuyển đổi %d."
+
+#: ../libfspot/f-jpeg-utils.c:476
+msgid "Operation failed"
+msgstr "Thao tác thất bại."
+
+#: ../src/CameraFileSelectionDialog.cs:65
+msgid "Preview"
+msgstr "Xem thử"
+
+#: ../src/CameraFileSelectionDialog.cs:67
+msgid "Path"
+msgstr "Đường dẫn"
+
+#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:71
+msgid "File"
+msgstr "Tập tin"
+
+#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:674
+msgid "Index"
+msgstr "Chỉ mục"
+
+#: ../src/CameraFileSelectionDialog.cs:87
+msgid "Downloading Previews"
+msgstr "Đang tải khung xem thử về"
+
+#: ../src/CameraFileSelectionDialog.cs:95
+#, csharp-format
+msgid "Downloading Preview of {0}"
+msgstr "Đang tải khung xem thử {0} về"
+
+#: ../src/CameraFileSelectionDialog.cs:147
+msgid "Unknown destination."
+msgstr "Không biết đích."
+
+#: ../src/CameraFileSelectionDialog.cs:148
+msgid ""
+"When copying files from a camera you must select a valid destination on the "
+"local filesystem"
+msgstr "Khi sao chép tập tin từ máy ảnh, bạn cần phải chọn đích hợp lệ trong hệ thống tập tin cục bộ."
+
+#: ../src/CameraFileSelectionDialog.cs:166
+msgid "Unable to create directory."
+msgstr "Không thể tạo thư mục."
+
+#: ../src/CameraFileSelectionDialog.cs:167
+#, csharp-format
+msgid ""
+"Error \"{0}\" while creating directory \"{1}\".  Check that the path and "
+"permissions are correct and try again"
+msgstr "Gặp lỗi « {0} » khi tạo thư mục « {1} ». Hãy kiểm tra có đường dẫn và quyền truy cập đúng, rồi thử lại."
+
+#: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:139
+msgid "Transferring Pictures"
+msgstr "Đang truyền ảnh"
+
+#: ../src/CameraFileSelectionDialog.cs:211
+#, csharp-format
+msgid "Copying file {0} of {1}"
+msgstr "Đang sao chép tập tin {0} trên {1}"
+
+#: ../src/CameraFileSelectionDialog.cs:221
+msgid "Done Copying Files"
+msgstr "Sao chép xong tập tin."
+
+#: ../src/CameraFileSelectionDialog.cs:223
+msgid "Download Complete"
+msgstr "Tải về xong rồi."
+
+#: ../src/CameraFileSelectionDialog.cs:228
+msgid "Error transferring file"
+msgstr "Gặp lỗi khi truyền tập tin"
+
+#: ../src/CameraFileSelectionDialog.cs:249
+#, csharp-format
+msgid "Transferring \"{0}\" from camera"
+msgstr "Đang truyền {0} từ máy ảnh"
+
+#: ../src/CameraFileSelectionDialog.cs:275
+msgid "Select Destination"
+msgstr "Chọn đích"
+
+#: ../src/CameraSelectionDialog.cs:27 ../src/StockIcons.cs:27
+msgid "Camera"
+msgstr "Máy ảnh"
+
+#: ../src/CameraSelectionDialog.cs:28
+msgid "Port"
+msgstr "Cổng"
+
+#: ../src/CDExport.cs:57
+#, csharp-format
+msgid "Transferring picture \"{0}\" To CD"
+msgstr "Đang truyền ảnh « {0} » vào đĩa CD"
+
+#: ../src/CDExport.cs:59 ../src/FlickrExport.cs:96 ../src/GalleryExport.cs:421
+#: ../src/ProgressDialog.cs:75
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} trên {1}"
+
+#: ../src/CDExport.cs:71 ../src/FlickrExport.cs:101 ../src/FolderExport.cs:167
+#: ../src/GalleryExport.cs:436
+msgid "Done Sending Photos"
+msgstr "Gởi xong ảnh."
+
+#: ../src/CDExport.cs:73 ../src/FolderExport.cs:169
+msgid "Transfer Complete"
+msgstr "Truyền xong rồi."
+
+#: ../src/CDExport.cs:79 ../src/FolderExport.cs:174
+msgid "Error While Transferring"
+msgstr "Gặp lỗi trong khi truyền"
+
+#: ../src/CDExport.cs:84 ../src/FolderExport.cs:182
+msgid "Error Transferring"
+msgstr "Lỗi truyền"
+
+#: ../src/CDExport.cs:99 ../src/FolderExport.cs:202
+msgid "Error: Error while transferring; Aborting"
+msgstr "Gặp lỗi khi truyền nên hủy bỏ"
+
+#: ../src/CDExport.cs:102 ../src/FolderExport.cs:205
+msgid "Error: File Already Exists; Aborting"
+msgstr "Lỗi: tập tin đã có nên hủy bỏ"
+
+#: ../src/ColorDialog.cs:145
+msgid "Error saving adjusted photo"
+msgstr "Gặp lỗi khi lưu ảnh đã điều chỉnh"
+
+#: ../src/ColorDialog.cs:146 ../src/MainWindow.cs:1304 ../src/PhotoView.cs:280
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to save image {1}"
+msgstr "Đã nhận ngoài lệ « {0} » nên không thể lưu ảnh « {1} »."
+
+#: ../src/Exif.cs:226
+msgid "Image Directory"
+msgstr "Thư mục ảnh"
+
+#: ../src/Exif.cs:228
+msgid "Thumbnail Directory"
+msgstr "Thư mục hình thu nhỏ"
+
+#: ../src/Exif.cs:230
+msgid "Exif Directory"
+msgstr "Thư mục Exif"
+
+#: ../src/Exif.cs:232
+msgid "GPS Directory"
+msgstr "Thư mục GPS"
+
+#: ../src/Exif.cs:234
+msgid "InterOperability Directory"
+msgstr "Thư mục thao tác với nhau"
+
+#: ../src/Exif.cs:236
+msgid "Unknown Directory"
+msgstr "Không biết thư mục này"
+
+#: ../src/FlickrExport.cs:49
+msgid "Enter Password"
+msgstr "Nhập mật khẩu"
+
+#: ../src/FlickrExport.cs:58
+msgid "Enter Password for "
+msgstr "Nhập mật khẩu cho "
+
+#: ../src/FlickrExport.cs:91 ../src/GalleryExport.cs:417
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr "Đang tải ảnh « {0} » lên"
+
+#: ../src/FlickrExport.cs:103 ../src/GalleryExport.cs:438
+msgid "Upload Complete"
+msgstr "Tải lên xong rồi."
+
+#: ../src/FlickrExport.cs:108
+msgid "Error Uploading To Flickr"
+msgstr "Gặp lỗi khi tải lên Flickr"
+
+#: ../src/FlickrExport.cs:138 ../src/GalleryExport.cs:387
+msgid "Uploading Pictures"
+msgstr "Đang tải ảnh lên"
+
+#: ../src/FlickrExport.cs:148
+msgid "Unable to log on."
+msgstr "Không thể đăng nhập."
+
+#: ../src/FlickrExport.cs:149
+msgid ""
+"F-Spot was unable to log on to Flickr.  Make sure the settings you supplied "
+"are correct."
+msgstr "Trình F-Spot không thể đăng nhập vào Flickr. Bạn hãy đảm bảo đã cung cấp thiết lập đúng."
+
+#: ../src/FolderExport.cs:129
+msgid "Building Gallery"
+msgstr "Đang xây dụng phòng trưng bày"
+
+#: ../src/FolderExport.cs:251
+msgid "Transfering Pictures"
+msgstr "Đang truyền ảnh"
+
+#. Abbreviation of previous
+#: ../src/FolderExport.cs:672
+msgid "Prev"
+msgstr "Lùi"
+
+#: ../src/FolderExport.cs:677 ../src/f-spot.glade.h:95
+msgid "Next"
+msgstr "Kế"
+
+#: ../src/FolderExport.cs:785
+msgid "Gallery generated by"
+msgstr "Phòng trưng bày được tạo ra bởi"
+
+#: ../src/FolderExport.cs:828
+msgid "Page:"
+msgstr "Trang:"
+
+#: ../src/FullScreenView.cs:102
+msgid "Exit fullscreen"
+msgstr "Thoát toàn màn hình"
+
+#: ../src/f-spot.glade.h:1
+msgid "\n"
+msgstr "\n"
+
+#: ../src/f-spot.glade.h:3
+msgid " "
+msgstr " "
+
+#: ../src/f-spot.glade.h:4
+msgid "..."
+msgstr "..."
+
+#: ../src/f-spot.glade.h:5
+msgid "<b></b>"
+msgstr "<b></b>"
+
+#: ../src/f-spot.glade.h:6
+msgid "<b>Account</b>"
+msgstr "<b>Tài khoản</b>"
+
+#: ../src/f-spot.glade.h:7
+msgid "<b>Album</b>"
+msgstr "<b>Tập</b>"
+
+#: ../src/f-spot.glade.h:8
+msgid "<b>Color Temperature</b>"
+msgstr "<b>Nhiệt độ màu</b>"
+
+#: ../src/f-spot.glade.h:9
+msgid "<b>Destination</b>"
+msgstr "<b>Đích</b>"
+
+#: ../src/f-spot.glade.h:10
+msgid "<b>End Date</b>"
+msgstr "<b>Ngày cuối</b>"
+
+#: ../src/f-spot.glade.h:11
+msgid "<b>Export Method</b>"
+msgstr "<b>Cách xuất</b>"
+
+#: ../src/f-spot.glade.h:12
+msgid "<b>Exposure</b>"
+msgstr "<b>Phơi năng</b>"
+
+#: ../src/f-spot.glade.h:13
+msgid "<b>From Image</b>"
+msgstr "<b>Từ ảnh</b>"
+
+#: ../src/f-spot.glade.h:14
+msgid "<b>Gallery</b>"
+msgstr "<b>Phòng trưng bày</b>"
+
+#: ../src/f-spot.glade.h:15
+msgid "<b>Histogram</b>"
+msgstr "<b>Biểu đồ tần suất</b>"
+
+#: ../src/f-spot.glade.h:16
+msgid "<b>Items to Burn</b>"
+msgstr "<b>Mục cần ghi</b>"
+
+#: ../src/f-spot.glade.h:17
+msgid "<b>Photograph Layout</b>"
+msgstr "<b>Bố trí ảnh chụp</b>"
+
+#: ../src/f-spot.glade.h:18
+msgid "<b>Photos</b>"
+msgstr "<b>Ảnh chụp</b>"
+
+#: ../src/f-spot.glade.h:19
+msgid "<b>Predefined</b>"
+msgstr "<b>Định sẵn</b>"
+
+#: ../src/f-spot.glade.h:20
+msgid "<b>Preview</b>"
+msgstr "<b>Xem thử</b>"
+
+#: ../src/f-spot.glade.h:21
+msgid "<b>Printer Details</b>"
+msgstr "<b>Chi tiết máy in</b>"
+
+#: ../src/f-spot.glade.h:22
+msgid "<b>Start Date</b>"
+msgstr "<b>Ngày đầu</b>: %s"
+
+#: ../src/f-spot.glade.h:23
+msgid "<b>Style</b>"
+msgstr "<b>Kiểu dáng</b>"
+
+#: ../src/f-spot.glade.h:24
+msgid "<small> </small>"
+msgstr "<small> </small>"
+
+#: ../src/f-spot.glade.h:25
+msgid "<small></small>"
+msgstr "<small></small>"
+
+#: ../src/f-spot.glade.h:26
+msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
+msgstr "<span weight='bold' size='larger'>Gặp lỗi khi kết nối đến Phòng trưng bày</span>\n"
+
+#: ../src/f-spot.glade.h:28
+msgid "Ad_just Color..."
+msgstr "_Chỉnh màu..."
+
+#: ../src/f-spot.glade.h:29
+msgid "Adjust Color"
+msgstr "Chỉnh màu"
+
+#: ../src/f-spot.glade.h:30
+msgid "Arranged _By"
+msgstr "Sắp xếp _bởi"
+
+#: ../src/f-spot.glade.h:31
+msgid "Attach Tag:"
+msgstr "Đính thẻ :"
+
+#: ../src/f-spot.glade.h:32
+msgid "Border:"
+msgstr "Viền:"
+
+#: ../src/f-spot.glade.h:33
+msgid "Brightness:"
+msgstr "Độ sáng:"
+
+#: ../src/f-spot.glade.h:34 ../src/StockIcons.cs:26
+msgid "Browse"
+msgstr "Duyệt"
+
+#: ../src/f-spot.glade.h:35
+msgid "Browse Previously Scheduled Files"
+msgstr "Duyệt tập tin đã định thời trước"
+
+#: ../src/f-spot.glade.h:36
+msgid "CD"
+msgstr "Đĩa CD"
+
+#: ../src/f-spot.glade.h:37
+msgid "Camera Selection"
+msgstr "Máy ảnh chọn"
+
+#: ../src/f-spot.glade.h:38
+msgid "Caption:"
+msgstr "Phụ đề :"
+
+#: ../src/f-spot.glade.h:39
+msgid "Category:"
+msgstr "Phân loại:"
+
+#: ../src/f-spot.glade.h:40
+msgid "Co_nfigure"
+msgstr "_Cấu hình"
+
+#: ../src/f-spot.glade.h:41
+msgid "Contrast:"
+msgstr "Độ tương phản:"
+
+#: ../src/f-spot.glade.h:42
+msgid "Copy Files To: "
+msgstr "Chép tập tin vào :"
+
+#: ../src/f-spot.glade.h:43
+msgid "Create CD"
+msgstr "Tạo đĩa CD"
+
+#: ../src/f-spot.glade.h:44
+msgid "Create New _Category..."
+msgstr "Tạo _loại mới..."
+
+#: ../src/f-spot.glade.h:45
+msgid "Create New _Tag..."
+msgstr "Tạo _thẻ mới..."
+
+#: ../src/f-spot.glade.h:46
+msgid "Create _new version..."
+msgstr "Tạo phiên bản _mới"
+
+#: ../src/f-spot.glade.h:47
+msgid "Crop Photo to Fit"
+msgstr "Xén ảnh chụp để vừa"
+
+#: ../src/f-spot.glade.h:48
+msgid "Description:"
+msgstr "Mô tả :"
+
+#: ../src/f-spot.glade.h:49
+msgid "Destination Temp"
+msgstr "Nhiệt độ đích"
+
+#: ../src/f-spot.glade.h:50
+msgid "Directory"
+msgstr "Thư mục"
+
+#: ../src/f-spot.glade.h:51
+msgid "Display Side_bar"
+msgstr "Hiện _khung lề"
+
+#: ../src/f-spot.glade.h:52
+msgid "Display T_ags"
+msgstr "Hiện t_hẻ"
+
+#: ../src/f-spot.glade.h:53
+msgid "Display _Dates"
+msgstr "Hiện _ngày"
+
+#: ../src/f-spot.glade.h:54
+msgid "Display _Timeline"
+msgstr "Hiện tuyến_ thời"
+
+#: ../src/f-spot.glade.h:55
+msgid "E-Mail:"
+msgstr "Địa chỉ thư :"
+
+#: ../src/f-spot.glade.h:56
+msgid "E_xport To CD..."
+msgstr "Xuất vào đĩa CD..."
+
+#: ../src/f-spot.glade.h:57
+msgid "Edit Tag Icon"
+msgstr "Sửa đổi biểu tượng thẻ"
+
+#: ../src/f-spot.glade.h:58
+msgid "Export"
+msgstr "Xuất"
+
+#: ../src/f-spot.glade.h:59
+msgid "Export Tags and Categories"
+msgstr "Xuất thẻ và loại"
+
+#: ../src/f-spot.glade.h:60
+msgid "Export tags and categories"
+msgstr "Xuất thẻ và loại."
+
+#: ../src/f-spot.glade.h:61
+msgid "Export titles and comments"
+msgstr "Xuất tiêu đề và chú thích"
+
+#: ../src/f-spot.glade.h:62
+msgid "Export to Album:"
+msgstr "Xuất vào Tập:"
+
+#: ../src/f-spot.glade.h:63
+msgid "Export to Original"
+msgstr "Xuất vào gốc"
+
+#: ../src/f-spot.glade.h:64
+msgid "Export to _Flickr..."
+msgstr "Xuất vào _Flickr..."
+
+#: ../src/f-spot.glade.h:65
+msgid "Export to _Folder..."
+msgstr "Xuất vào _danh mục..."
+
+#: ../src/f-spot.glade.h:66
+msgid "Export to _Web Gallery..."
+msgstr "Xuất vào phòng trưng bày _Mạng..."
+
+#: ../src/f-spot.glade.h:67
+msgid "F-Spot"
+msgstr "F-Spot"
+
+#: ../src/f-spot.glade.h:69
+msgid "F-Spot Photo Viewer"
+msgstr "Bộ xem ảnh chụp F-Spot"
+
+#: ../src/f-spot.glade.h:70
+msgid "F-Spot View"
+msgstr "Khung xem F-Spot"
+
+#: ../src/f-spot.glade.h:72
+msgid "Fin_d"
+msgstr "_Tìm"
+
+#: ../src/f-spot.glade.h:73
+msgid "Find by _Tag"
+msgstr "Tìm theo _thẻ"
+
+#: ../src/f-spot.glade.h:74
+msgid "Flikr"
+msgstr "Flikr"
+
+#: ../src/f-spot.glade.h:75
+msgid "Folder Export"
+msgstr "Xuất danh mục"
+
+#: ../src/f-spot.glade.h:76
+msgid "Folder URI:"
+msgstr "URI danh mục:"
+
+#: ../src/f-spot.glade.h:77
+msgid ""
+"Full Page\n"
+"Standard - 4x6"
+msgstr ""
+"Toàn trang\n"
+"Chuẩn — 4 × 6"
+
+#: ../src/f-spot.glade.h:79 ../src/StockIcons.cs:30
+msgid "Fullscreen"
+msgstr "Toàn màn hình"
+
+#: ../src/f-spot.glade.h:80
+msgid "Gallery"
+msgstr "Phòng trưng bày"
+
+#: ../src/f-spot.glade.h:81
+msgid "Gallery Name:"
+msgstr "Tên phòng trưng bày"
+
+#: ../src/f-spot.glade.h:82
+msgid "Gallery:"
+msgstr "Phòng trưng bày:"
+
+#: ../src/f-spot.glade.h:83
+msgid ""
+"Hairline\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
+msgstr ""
+"Nét hất lên\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
+
+#: ../src/f-spot.glade.h:88
+msgid "Hue:"
+msgstr "Sắc:"
+
+#: ../src/f-spot.glade.h:89
+msgid "Icon:"
+msgstr "Biểu tượng:"
+
+#: ../src/f-spot.glade.h:90
+msgid "Import"
+msgstr "Nhập"
+
+#: ../src/f-spot.glade.h:91
+msgid "Import Source:"
+msgstr "Nhập nguồn:"
+
+#: ../src/f-spot.glade.h:92
+msgid "Import files after copy."
+msgstr "Nhập tập tin sau khi sao chép."
+
+#: ../src/f-spot.glade.h:93
+msgid "Import from C_amera..."
+msgstr "Nhập từ _máy ảnh..."
+
+#: ../src/f-spot.glade.h:94
+msgid "Include subdirectories."
+msgstr "Gồm thư mục con."
+
+#: ../src/f-spot.glade.h:96
+msgid ""
+"None\n"
+"Title\n"
+"Filename\n"
+"Date\n"
+"Photo Details"
+msgstr ""
+"Không có\n"
+"Tiêu đề\n"
+"Tên tập tin\n"
+"Ngày\n"
+"Chi tiết ảnh chụp"
+
+#: ../src/f-spot.glade.h:101
+msgid "Number of Copies:"
+msgstr "Số bản sao :"
+
+#: ../src/f-spot.glade.h:102
+msgid "Open album in browser when done uploading"
+msgstr "Mở tập trong bộ duyệt khi tải lên xong."
+
+#: ../src/f-spot.glade.h:103
+msgid "Open destination when done exporting."
+msgstr "_Mở đích khi xuất xong."
+
+#: ../src/f-spot.glade.h:104
+msgid "Page 1 of 3"
+msgstr "Trang 1 trên 3"
+
+#: ../src/f-spot.glade.h:105
+msgid "Password:"
+msgstr "Mật khẩu :"
+
+#: ../src/f-spot.glade.h:106
+msgid "Pause"
+msgstr "Tạm dừng"
+
+#: ../src/f-spot.glade.h:107
+msgid "Photo 0 of 0"
+msgstr "Ảnh 0 trên 0"
+
+#: ../src/f-spot.glade.h:108
+msgid "Photo Source:"
+msgstr "Nguồn ảnh chụp:"
+
+#: ../src/f-spot.glade.h:109
+msgid "PhotoSize:"
+msgstr "Cỡ ảnh chụp:"
+
+#: ../src/f-spot.glade.h:110
+msgid "Plain Files."
+msgstr "Tập tin thô."
+
+#: ../src/f-spot.glade.h:111
+msgid "Please verify that the settings for this gallery are correct."
+msgstr "Hãy kiểm tra lại thiết đặt của phòng trưng bày này xem có đúng không."
+
+#: ../src/f-spot.glade.h:112
+msgid "Prefix: "
+msgstr "Tiền tố :"
+
+#: ../src/f-spot.glade.h:113
+msgid "Previous"
+msgstr "Trước đó"
+
+#: ../src/f-spot.glade.h:114
+msgid "Print Crop Marks"
+msgstr "In dấu xén"
+
+#: ../src/f-spot.glade.h:115
+msgid "Rem_ove Tag"
+msgstr "_Gỡ bỏ thẻ"
+
+#: ../src/f-spot.glade.h:116
+msgid "Resize to: "
+msgstr "Đổi cỡ thành:"
+
+#: ../src/f-spot.glade.h:117 ../src/StockIcons.cs:35
+msgid "Rotate _Left"
+msgstr "Xoay _trái"
+
+#: ../src/f-spot.glade.h:118 ../src/StockIcons.cs:36
+msgid "Rotate _Right"
+msgstr "Xoay _phải"
+
+#: ../src/f-spot.glade.h:119
+msgid "Saturation:"
+msgstr "Độ _bão hoà:"
+
+#: ../src/f-spot.glade.h:120
+msgid "Scale images to no larger than: "
+msgstr "Co dãn ảnh không phải lớn hơn:"
+
+#: ../src/f-spot.glade.h:121
+msgid "Select Files To Copy From Camera..."
+msgstr "Chọn các tập tin cần sao chép từ máy ảnh... "
+
+#: ../src/f-spot.glade.h:122
+msgid "Select Tags..."
+msgstr "Chọn các thẻ..."
+
+#: ../src/f-spot.glade.h:123
+msgid "Select _All"
+msgstr "Chọn Tất _cả"
+
+#: ../src/f-spot.glade.h:124
+msgid "Select _None"
+msgstr "Chọn _không gì"
+
+#: ../src/f-spot.glade.h:125
+msgid "Select a tag..."
+msgstr "_Chọn thẻ..."
+
+#: ../src/f-spot.glade.h:126
+msgid "Select the camera you want to transfer files from."
+msgstr "_Chọn máy ảnh từ đó bạn muốn truyền tập tin."
+
+#: ../src/f-spot.glade.h:127
+msgid "Selected Camera: "
+msgstr "Máy ảnh đã chọn:"
+
+#: ../src/f-spot.glade.h:128
+msgid ""
+"Selection\n"
+"Gallery\n"
+"Viewport"
+msgstr ""
+"Lựa chọn\n"
+"Phòng trưng bày\n"
+"Cổng xem"
+
+#: ../src/f-spot.glade.h:131
+msgid "Send _Mail..."
+msgstr "_Gởi thư..."
+
+#: ../src/f-spot.glade.h:132
+msgid "Set _Date Range..."
+msgstr "Đặt phạm vị _ngày..."
+
+#: ../src/f-spot.glade.h:133
+msgid "Set as _Background"
+msgstr "Đặt làm _nền"
+
+#: ../src/f-spot.glade.h:134
+msgid "Show or hide the side pane"
+msgstr "Hiển thị hay ẩn khung lề"
+
+#: ../src/f-spot.glade.h:135
+msgid "Show or hide the toolbar"
+msgstr "Hiển thị hay ẩn thanh công cụ"
+
+#: ../src/f-spot.glade.h:136
+msgid "Side _pane"
+msgstr "Khung _lề"
+
+#: ../src/f-spot.glade.h:137 ../src/StockIcons.cs:31
+msgid "Slideshow"
+msgstr "Chiều ảnh"
+
+#: ../src/f-spot.glade.h:138
+msgid "Source Temp"
+msgstr "Nguồn tạm"
+
+#: ../src/f-spot.glade.h:139
+msgid "Strip Image Metadata"
+msgstr "Tước siêu dữ liệu ra ảnh"
+
+#: ../src/f-spot.glade.h:140
+msgid "Strip metadata"
+msgstr "Tước siêu dữ liệu"
+
+#: ../src/f-spot.glade.h:141 ../src/TagCommands.cs:295
+msgid "Tag name:"
+msgstr "Tên thẻ :"
+
+#: ../src/f-spot.glade.h:142
+msgid "Toolbar"
+msgstr "Thanh công cụ"
+
+#: ../src/f-spot.glade.h:143
+msgid "URI:"
+msgstr "URI"
+
+#: ../src/f-spot.glade.h:144
+msgid "URL:"
+msgstr "URL:"
+
+#: ../src/f-spot.glade.h:145
+msgid "Use Original."
+msgstr "Dùng điều gốc."
+
+#: ../src/f-spot.glade.h:146
+msgid "Use static HTML."
+msgstr "Dùng HTML tĩnh"
+
+#: ../src/f-spot.glade.h:147
+msgid "Username:"
+msgstr "Tên người dùng:"
+
+#: ../src/f-spot.glade.h:148
+msgid "View"
+msgstr "Xem"
+
+#: ../src/f-spot.glade.h:149
+msgid "View photos in browser when done uploading"
+msgstr "Xem ảnh chụp trong bộ duyệt khi tải lên xong."
+
+#: ../src/f-spot.glade.h:150
+msgid "Virtual Filesystem"
+msgstr "Hệ thống tập tin ảo"
+
+#: ../src/f-spot.glade.h:151
+msgid "Will print Using: US Letter size on Generic Postscript"
+msgstr "Sẽ in dùng: giây kích thước Lá thư Mỹ trên Postscript Chung"
+
+#: ../src/f-spot.glade.h:152
+msgid "Write only these Items to CD"
+msgstr "Ghi chỉ những mục này vào đĩa CD"
+
+#: ../src/f-spot.glade.h:153
+msgid "Zoom _In"
+msgstr "Phóng _to"
+
+#: ../src/f-spot.glade.h:154
+msgid "Zoom _Out"
+msgstr "Thu _nhỏ"
+
+#: ../src/f-spot.glade.h:155
+msgid "_Attach Tag"
+msgstr "_Đính thẻ"
+
+#: ../src/f-spot.glade.h:156
+msgid "_Attach Tag To Selection"
+msgstr "Đính thẻ vào vùng chọn"
+
+#: ../src/f-spot.glade.h:157
+msgid "_Clear Date Range"
+msgstr "_Xóa phạm vị ngày"
+
+#: ../src/f-spot.glade.h:158
+msgid "_Close"
+msgstr "Đón_g"
+
+#: ../src/f-spot.glade.h:159
+msgid "_Delete Selected Tag"
+msgstr "_Xóa bỏ thẻ được chọn"
+
+#: ../src/f-spot.glade.h:160
+msgid "_Delete Version"
+msgstr "_Xóa bỏ phiên bản"
+
+#: ../src/f-spot.glade.h:161
+msgid "_Delete from Drive"
+msgstr "_Xóa bỏ ra Đĩa"
+
+#: ../src/f-spot.glade.h:162
+msgid "_Directory"
+msgstr "_Thư mục"
+
+#: ../src/f-spot.glade.h:163
+msgid "_EXIF Data"
+msgstr "Dữ liệu EXIF:"
+
+#: ../src/f-spot.glade.h:164
+msgid "_Edit Selected Tag..."
+msgstr "_Sửa đổi thẻ đã chọn.."
+
+#: ../src/f-spot.glade.h:165
+msgid "_Export"
+msgstr "_Xuất"
+
+#: ../src/f-spot.glade.h:166
+msgid "_Fullscreen"
+msgstr "Toàn _màn hình"
+
+#: ../src/f-spot.glade.h:167
+msgid "_Import..."
+msgstr "_Nhập..."
+
+#: ../src/f-spot.glade.h:168
+msgid "_Large"
+msgstr "_Lớn"
+
+#: ../src/f-spot.glade.h:169
+msgid "_Medium"
+msgstr "_Vừa"
+
+#: ../src/f-spot.glade.h:170
+msgid "_Month"
+msgstr "_Tháng"
+
+#: ../src/f-spot.glade.h:171
+msgid "_Print..."
+msgstr "_In..."
+
+#: ../src/f-spot.glade.h:172
+msgid "_Remove From Catalog"
+msgstr "Gỡ_bỏ ra Phân loại"
+
+#: ../src/f-spot.glade.h:173
+msgid "_Remove Tag From Selection"
+msgstr "Gỡ _bỏ thẻ ra vùng chọn"
+
+#: ../src/f-spot.glade.h:174
+msgid "_Rename Version"
+msgstr "_Đổi tên phiên bản"
+
+#: ../src/f-spot.glade.h:175
+msgid "_Sharpen..."
+msgstr "Mài _sắc..."
+
+#: ../src/f-spot.glade.h:176
+msgid "_Size"
+msgstr "_Cỡ"
+
+#: ../src/f-spot.glade.h:177
+msgid "_Slideshow"
+msgstr "_Chiều ảnh"
+
+#: ../src/f-spot.glade.h:178
+msgid "_Small"
+msgstr "_Nhỏ"
+
+#: ../src/f-spot.glade.h:179
+msgid "_Tags"
+msgstr "_Thẻ"
+
+#: ../src/f-spot.glade.h:180
+msgid "_Update Thumbnail"
+msgstr "_Cập nhật hình thu nhỏ"
+
+#: ../src/f-spot.glade.h:181
+msgid "_Version"
+msgstr "_Phiên bản"
+
+#: ../src/f-spot.glade.h:182
+msgid "_View"
+msgstr "_Xem"
+
+#: ../src/f-spot.glade.h:183
+msgid "dialog1"
+msgstr "thoại1"
+
+#: ../src/f-spot.glade.h:184
+msgid "pixels"
+msgstr "điểm ảnh"
+
+#: ../src/f-spot.glade.h:185
+msgid "x"
+msgstr "×"
+
+#: ../src/GalleryExport.cs:442
+msgid "Error Uploading To Gallery"
+msgstr "Gặp lỗi khi tải lên Phòng trưng bày"
+
+#: ../src/GalleryExport.cs:474
+msgid "(No Gallery)"
+msgstr "(Không Phòng trưng bày)"
+
+#: ../src/GalleryExport.cs:531
+msgid "(Not Connected)"
+msgstr "(Chưa kết nối)"
+
+#: ../src/GalleryExport.cs:532
+msgid "(No Albums)"
+msgstr "(Không Tập)"
+
+#: ../src/ImportCommand.cs:27
+msgid "Select Folder"
+msgstr "Chọn danh mục"
+
+#: ../src/ImportCommand.cs:218
+msgid "(No Cameras Detected)"
+msgstr "(Chưa phát hiện máy ảnh nào)"
+
+#: ../src/ImportCommand.cs:631
+msgid "Select Tag"
+msgstr "Chọn thẻ"
+
+#: ../src/ImportCommand.cs:705
+msgid "Directory does not exist."
+msgstr "Không có thư mục này."
+
+#: ../src/ImportCommand.cs:706
+#, csharp-format
+msgid ""
+"The directory you selected \"{0}\" does not exist.  Please choose a "
+"different directory"
+msgstr ""
+"Thư mục « {0} » được chọn không tồn tại. Hãy chọn thư mục khác."
+
+# Description
+#: ../src/InfoBox.cs:70 ../src/PhotoVersionCommands.cs:55
+msgid "Name:"
+msgstr "Tên:"
+
+#: ../src/InfoBox.cs:72
+msgid "Version:"
+msgstr "Phiên bản:"
+
+#: ../src/InfoBox.cs:74
+msgid "Date:"
+msgstr "Ngày:"
+
+#: ../src/InfoBox.cs:76
+msgid "Size:"
+msgstr "Cỡ :"
+
+#: ../src/InfoBox.cs:78
+msgid "Exposure:"
+msgstr "Phơi nắng:"
+
+#: ../src/InfoBox.cs:156
+msgid "(None)"
+msgstr "(Không có)"
+
+#: ../src/InfoDisplay.cs:110
+msgid "No EXIF info available"
+msgstr "Không có thông tin EXIF sẵn sàng."
+
+#: ../src/MainWindow.cs:944
+msgid "No cameras detected."
+msgstr "Chưa phát hiện máy ảnh nào."
+
+#: ../src/MainWindow.cs:945
+msgid ""
+"F-Spot was unable to find any cameras attached to this system.  Double check "
+"that the camera is connected and has power"
+msgstr "Trình F-Spot không thể tìm máy ảnh nào được kết nối đến hệ thống này. Hãy kiểm tra lại máy ảnh được kết nối và có điện."
+
+#: ../src/MainWindow.cs:985
+msgid "Error connecting to camera"
+msgstr "Gặp lỗi khi kết nối đến máy ảnh."
+
+#: ../src/MainWindow.cs:986
+#, csharp-format
+msgid "Received error \"{0}\" while connecting to camera"
+msgstr "Nhận lỗi « {0} » khi kết nối đến máy ảnh."
+
+#. Translators should localize the following string
+#. * which will give them credit in the About box.
+#. * E.g. "Martin Willemoes Hansen"
+#: ../src/MainWindow.cs:1119
+msgid "translator-credits"
+msgstr "Nhóm Việt hóa Gnome <gnomevi-list@lists.sourceforge.net>"
+
+#: ../src/MainWindow.cs:1250
+msgid "Unsharp Mask"
+msgstr "Giảm độ sắc của mặt nạ..."
+
+#: ../src/MainWindow.cs:1259
+msgid "Amount:"
+msgstr "Lượng:"
+
+#: ../src/MainWindow.cs:1260
+msgid "Radius:"
+msgstr "Bán kính:"
+
+#: ../src/MainWindow.cs:1261
+msgid "Threshold:"
+msgstr "Ngưỡng:"
+
+#: ../src/MainWindow.cs:1303
+msgid "Error saving sharpened photo"
+msgstr "Gặp lỗi khi lưu ảnh chụp đã mài sắc"
+
+#: ../src/MainWindow.cs:1526
+#, csharp-format
+msgid "Delete the selected photo permanently?"
+msgid_plural "Delete the {0} selected photos permanently?"
+msgstr[0] "Xóa bỏ vĩnh viễn ảnh chụp được chọn phải không?"
+
+#: ../src/MainWindow.cs:1530
+msgid "This deletes all versions of the selected photo from your drive."
+msgid_plural ""
+"This deletes all versions of the selected photos from your drive."
+msgstr[0] "Việc này xóa bỏ mọi phiên bản của ảnh chụp được chọn ra đĩa bạn."
+
+#: ../src/MainWindow.cs:1533
+msgid "_Delete photo"
+msgid_plural "_Delete photos"
+msgstr[0] "_Xóa bỏ ảnh chụp"
+
+#: ../src/MainWindow.cs:1551
+#, csharp-format
+msgid "Remove the selected photo from F-Spot?"
+msgid_plural "Remove the {0} selected photos from F-Spot?"
+msgstr[0] "Gỡ bỏ ảnh chụp được chọn ra trình F-Spot phải không?"
+
+#: ../src/MainWindow.cs:1556
+msgid ""
+"If you remove photos from the F-Spot catalog all tag information will be "
+"lost. The photos remain on your computer and can be imported into F-Spot "
+"again."
+msgstr "Nếu bạn gỡ bỏ ảnh chụp ra phân loại F-Spot thì tất cả thông tin thẻ trên nó sẽ bị mất. Tùy nhiên, ảnh chụp đó còn lại trên máy bạn, thì có thể nhập nó vào F-Spot lần nữa."
+
+#: ../src/MainWindow.cs:1557
+msgid "_Remove from Catalog"
+msgstr "Gỡ _bỏ ra Phân loại"
+
+#: ../src/MainWindow.cs:1581
+#, csharp-format
+msgid "Delete the selected tag?"
+msgid_plural "Delete the {0} selected tags?"
+msgstr[0] "Xóa bỏ thẻ được chọn phải không?"
+
+#: ../src/MainWindow.cs:1586
+msgid "If you delete a tag, all associations with photos are lost."
+msgstr "Nếu bạn xóa bỏ một thẻ, các cách tượng ứng với ảnh chụp bị mất."
+
+#: ../src/MainWindow.cs:1587
+msgid "_Delete tag"
+msgid_plural "_Delete tags"
+msgstr[0] "Xóa bỏ thẻ"
+
+#: ../src/PhotoPopup.cs:30
+msgid "Copy Image Location"
+msgstr "Chép địa điểm ảnh"
+
+#: ../src/PhotoPopup.cs:42
+msgid "Remove From Catalog"
+msgstr "Gỡ _bỏ ra Phân loại"
+
+#: ../src/PhotoPopup.cs:44
+msgid "Delete From Drive"
+msgstr "Xóa bỏ ra Đĩa"
+
+#.
+#. FIXME TagMenu is ugly.
+#.
+#: ../src/PhotoPopup.cs:52
+msgid "Attach Tag"
+msgstr "Đính thẻ"
+
+#.
+#. FIXME finish the IPhotoSelection stuff and move the activate handler into the class
+#. this current method is way too complicated.
+#.
+#: ../src/PhotoPopup.cs:62
+msgid "Remove Tag"
+msgstr "Gỡ _bỏ thẻ"
+
+#: ../src/PhotoStore.cs:290
+#, csharp-format
+msgid "Modified"
+msgid_plural "Modified ({0})"
+msgstr[0] "Đã sửa đổi ({0})"
+
+#. Note that the original version is never stored in the photo_versions table in the
+#. database.
+#: ../src/PhotoStore.cs:399
+msgid "Original"
+msgstr "Gốc"
+
+#. Fixme this should really set parent menu
+#. items insensitve
+#: ../src/PhotoTagMenu.cs:72
+msgid "(No Tags)"
+msgstr "(Không thẻ)"
+
+#: ../src/PhotoVersionCommands.cs:54
+msgid "Create New Version"
+msgstr "Tạo phiên bản mới"
+
+#: ../src/PhotoVersionCommands.cs:59
+msgid "Rename Version"
+msgstr "Đổi tên phiên bản mới"
+
+#: ../src/PhotoVersionCommands.cs:60
+msgid "New name:"
+msgstr "Tên mới :"
+
+#: ../src/PhotoVersionCommands.cs:126
+msgid "Really Delete?"
+msgstr "Thật sự xóa bỏ không?"
+
+#: ../src/PhotoVersionCommands.cs:132
+#, csharp-format
+msgid "Really delete version \"{0}\"?"
+msgstr "Thật sự xóa bỏ phiên bản « {0} » không?"
+
+#: ../src/PhotoVersionMenu.cs:84
+msgid "(No Edits)"
+msgstr "(Chưa sửa)"
+
+#: ../src/PhotoView.cs:94
+msgid "No Constraint"
+msgstr "(Không ràng buộc)"
+
+#: ../src/PhotoView.cs:95
+msgid "4 x 3 (Book)"
+msgstr "4 × 3 (Quyển)"
+
+#: ../src/PhotoView.cs:96
+msgid "4 x 6 (Postcard)"
+msgstr "4 × 6 (Bưu thiếp)"
+
+#: ../src/PhotoView.cs:97
+msgid "5 x 7 (L, 2L)"
+msgstr "5 × 7 (L, 2L)"
+
+#: ../src/PhotoView.cs:98
+msgid "8 x 10"
+msgstr "8 × 10"
+
+#: ../src/PhotoView.cs:99
+msgid "4 x 3 Portrait (Book)"
+msgstr "4 × 3 Chân dung (Quyển)"
+
+#: ../src/PhotoView.cs:100
+msgid "4 x 6 Portrait (Postcard)"
+msgstr "4 × 6 Chân dung (Bưu thiếp)"
+
+#: ../src/PhotoView.cs:101
+msgid "5 x 7 Portrait (L, 2L)"
+msgstr "5 × 7 Chân dung (L. 2L)"
+
+#: ../src/PhotoView.cs:102
+msgid "8 x 10 Portrait"
+msgstr "8 × 10 Chân dung"
+
+#: ../src/PhotoView.cs:103
+msgid "Square"
+msgstr "Vuông"
+
+#: ../src/PhotoView.cs:279
+msgid "Error editing photo"
+msgstr "Gặp lỗi khi sửa đổi ảnh chụp"
+
+#: ../src/PhotoView.cs:473
+msgid "Crop image to selected area"
+msgstr "Xén ảnh ở ngoại vùng đã chọn."
+
+#: ../src/PhotoView.cs:474
+msgid "Remove redeye from selected area"
+msgstr "Gỡ bỏ mắt đỏ ra vùng đã chọn"
+
+#: ../src/PhotoView.cs:475
+msgid "Adjust the image colors"
+msgstr "Chỉnh màu sắc của ảnh"
+
+#: ../src/RotateCommand.cs:56
+#, csharp-format
+msgid "Received error \"{0}\" while attempting to rotate {1}"
+msgstr "Nhận lỗi « {0} » trong khi cố xoay {1}."
+
+#: ../src/RotateCommand.cs:61
+msgid "Error while Rotating Image."
+msgstr "Gặp lỗi trong khi xoay ảnh."
+
+#: ../src/RotateCommand.cs:74
+msgid "Rotating pictures"
+msgstr "Đang xoay ảnh"
+
+#: ../src/RotateCommand.cs:84
+#, csharp-format
+msgid "Rotating picture \"{0}\""
+msgstr "Đang xoay ảnh « {0} »"
+
+#: ../src/RotateCommand.cs:115
+#, csharp-format
+msgid "Unable to rotate image"
+msgid_plural "Unable to rotate {0} images"
+msgstr[0] "Không thể xoay {0} ảnh."
+
+#: ../src/RotateCommand.cs:119
+#, csharp-format
+msgid ""
+"The image could not be rotated because it is on a read only file system or "
+"media such as a CDROM.  Please check the permissions and try again"
+msgid_plural ""
+"{0} images could not be rotated because they are on a read only file system "
+"or media such as a CDROM.  Please check the permissions and try again"
+msgstr[0] "Không thể xoay ảnh này vì nó nằm trong hệ thống tập tin hoặc phương tiện không có khả năng đọc, như đĩa CD-ROM. Bạn hãy kiểm tra quyền truy cập nó, và thử lại."
+
+#: ../src/StockIcons.cs:28
+msgid "Crop"
+msgstr "Xén"
+
+#: ../src/StockIcons.cs:29
+msgid "Edit Image"
+msgstr "Sửa đổi ảnh"
+
+#: ../src/StockIcons.cs:32
+msgid "Logo"
+msgstr "Biểu hình"
+
+#: ../src/StockIcons.cs:33
+msgid "Question"
+msgstr "Câu hỏi"
+
+#: ../src/StockIcons.cs:34
+msgid "Reduce Red-Eye"
+msgstr "Giảm mắt đỏ"
+
+#: ../src/StockIcons.cs:37
+msgid "Loading"
+msgstr "Đang tải"
+
+#: ../src/StockIcons.cs:38
+msgid "Near"
+msgstr "Gần"
+
+#: ../src/StockIcons.cs:39
+msgid "Far"
+msgstr "Xa"
+
+#: ../src/TagCommands.cs:46
+msgid "(No categories)"
+msgstr "(Không phân loại)"
+
+#: ../src/TagCommands.cs:80 ../src/TagCommands.cs:217
+msgid "This name is already in use"
+msgstr "Tên này đã được dùng"
+
+#: ../src/TagCommands.cs:129 ../src/TagPopup.cs:20
+msgid "Create New Tag"
+msgstr "Tạo thẻ mới"
+
+#: ../src/TagCommands.cs:130
+msgid "Name of new tag:"
+msgstr "Tên thẻ mới :"
+
+#: ../src/TagCommands.cs:133 ../src/TagPopup.cs:22
+msgid "Create New Category"
+msgstr "Tạo phân loại mới"
+
+#: ../src/TagCommands.cs:134
+msgid "Name of new category:"
+msgstr "Tạo phân loại mới :"
+
+#: ../src/TagCommands.cs:291
+msgid "Edit Category"
+msgstr "Sửa đổi phân loại"
+
+#: ../src/TagCommands.cs:292
+msgid "Category name:"
+msgstr "Tên phân loại :"
+
+#: ../src/TagCommands.cs:294 ../src/TagPopup.cs:27
+msgid "Edit Tag"
+msgstr "Sửa đổi thẻ"
+
+#: ../src/TagCommands.cs:382
+#, csharp-format
+msgid "Photo {0} of {1}"
+msgstr "Chụp ảnh {0} trên {1}"
+
+#: ../src/TagCommands.cs:409
+#, csharp-format
+msgid "Edit icon For category {0}"
+msgstr "_Sửa đổi biểu tượng cho phân loại {0}"
+
+#: ../src/TagCommands.cs:411
+#, csharp-format
+msgid "Edit icon for tag {0}"
+msgstr "Sửa đổi biểu tượng cho thẻ {0}"
+
+#: ../src/TagPopup.cs:30
+msgid "Delete Tag"
+msgstr "Xóa bỏ thẻ"
+
+#: ../src/TagPopup.cs:35
+msgid "Attach Tag To Selection"
+msgstr "Đính thẻ vào vùng chọn"
+
+#: ../src/TagPopup.cs:38
+msgid "Remove Tag From Selection"
+msgstr "Gỡ bỏ thẻ ra vùng chọn"
+
+#: ../src/Unix.cs:37
+msgid "Unable to create temporary file"
+msgstr "Không tạo được tập tin tạm"
+
+#: ../src/Util.cs:270
+msgid "There was an error invoking the external handler"
+msgstr "Gặp lỗi khi gọi bộ xử lý bên ngoài."
+
+#: ../src/Util.cs:271
+#, csharp-format
+msgid ""
+"Received error:\n"
+"\"{0}\"\n"
+msgstr ""
+"Nhận lỗi :\n"
+" « {0} »\n"
+
+#: ../src/QueryDisplay.cs:29
+msgid "Find: "
+msgstr "Tìm: "
+
+#: ../src/QueryDisplay.cs:44
+msgid "No matching images found "
+msgstr "Không tìm thấy ảnh khớp nào"
