@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-27 17:21-0400\n"
-"PO-Revision-Date: 2005-08-27 23:54-0400\n"
+"POT-Creation-Date: 2005-08-31 17:20-0400\n"
+"PO-Revision-Date: 2005-08-31 23:54-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -270,14 +270,19 @@ msgstr "Error: Error while transferring; Aborting"
 msgid "Error: File Already Exists; Aborting"
 msgstr "Error: File Already Exists; Aborting"
 
-#: src/ColorDialog.cs:145
+#: src/ColorDialog.cs:147 src/ColorDialog.cs:162
 msgid "Error saving adjusted photo"
 msgstr "Error saving adjusted photo"
 
-#: src/ColorDialog.cs:146 src/MainWindow.cs:1304 src/PhotoView.cs:280
+#: src/ColorDialog.cs:148 src/MainWindow.cs:1304 src/PhotoView.cs:291
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save image {1}"
 msgstr "Received exception \"{0}\". Unable to save image {1}"
+
+#: src/ColorDialog.cs:163
+#, csharp-format
+msgid "F-Spot {0} cannot yet edit images of this type"
+msgstr "F-Spot {0} cannot yet edit images of this type"
 
 #: src/Exif.cs:226
 msgid "Image Directory"
@@ -1359,19 +1364,31 @@ msgstr "8 x 10 Portrait"
 msgid "Square"
 msgstr "Square"
 
-#: src/PhotoView.cs:279
+#: src/PhotoView.cs:231
+msgid "No selection available"
+msgstr "No selection available"
+
+#: src/PhotoView.cs:232
+msgid ""
+"This tool requires an active selection. Please select a region of the image "
+"and try the operation again"
+msgstr ""
+"This tool requires an active selection. Please select a region of the image "
+"and try the operation again"
+
+#: src/PhotoView.cs:290
 msgid "Error editing photo"
 msgstr "Error editing photo"
 
-#: src/PhotoView.cs:473
+#: src/PhotoView.cs:484
 msgid "Crop image to selected area"
 msgstr "Crop image to selected area"
 
-#: src/PhotoView.cs:474
+#: src/PhotoView.cs:485
 msgid "Remove redeye from selected area"
 msgstr "Remove redeye from selected area"
 
-#: src/PhotoView.cs:475
+#: src/PhotoView.cs:486
 msgid "Adjust the image colors"
 msgstr "Adjust the image colours"
 
