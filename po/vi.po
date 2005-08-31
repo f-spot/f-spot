@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot Gnome HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-29 02:58+0000\n"
-"PO-Revision-Date: 2005-08-30 13:12+0930\n"
+"POT-Creation-Date: 2005-08-31 10:58+0000\n"
+"PO-Revision-Date: 2005-08-31 22:14+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -182,7 +182,9 @@ msgstr "Không biết đích."
 msgid ""
 "When copying files from a camera you must select a valid destination on the "
 "local filesystem"
-msgstr "Khi sao chép tập tin từ máy ảnh, bạn cần phải chọn đích hợp lệ trong hệ thống tập tin cục bộ."
+msgstr ""
+"Khi sao chép tập tin từ máy ảnh, bạn cần phải chọn đích hợp lệ trong hệ "
+"thống tập tin cục bộ."
 
 #: ../src/CameraFileSelectionDialog.cs:166
 msgid "Unable to create directory."
@@ -193,7 +195,9 @@ msgstr "Không thể tạo thư mục."
 msgid ""
 "Error \"{0}\" while creating directory \"{1}\".  Check that the path and "
 "permissions are correct and try again"
-msgstr "Gặp lỗi « {0} » khi tạo thư mục « {1} ». Hãy kiểm tra có đường dẫn và quyền truy cập đúng, rồi thử lại."
+msgstr ""
+"Gặp lỗi « {0} » khi tạo thư mục « {1} ». Hãy kiểm tra có đường dẫn và quyền "
+"truy cập đúng, rồi thử lại."
 
 #: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:139
 msgid "Transferring Pictures"
@@ -269,14 +273,19 @@ msgstr "Gặp lỗi khi truyền nên hủy bỏ"
 msgid "Error: File Already Exists; Aborting"
 msgstr "Lỗi: tập tin đã có nên hủy bỏ"
 
-#: ../src/ColorDialog.cs:145
+#: ../src/ColorDialog.cs:147 ../src/ColorDialog.cs:162
 msgid "Error saving adjusted photo"
 msgstr "Gặp lỗi khi lưu ảnh đã điều chỉnh"
 
-#: ../src/ColorDialog.cs:146 ../src/MainWindow.cs:1304 ../src/PhotoView.cs:280
+#: ../src/ColorDialog.cs:148 ../src/MainWindow.cs:1304 ../src/PhotoView.cs:291
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save image {1}"
 msgstr "Đã nhận ngoài lệ « {0} » nên không thể lưu ảnh « {1} »."
+
+#: ../src/ColorDialog.cs:163
+#, csharp-format
+msgid "F-Spot {0} cannot yet edit images of this type"
+msgstr "Trình F-Spot {0} chưa có khả năng hiệu chỉnh ảnh kiểu này."
 
 #: ../src/Exif.cs:226
 msgid "Image Directory"
@@ -335,7 +344,9 @@ msgstr "Không thể đăng nhập."
 msgid ""
 "F-Spot was unable to log on to Flickr.  Make sure the settings you supplied "
 "are correct."
-msgstr "Trình F-Spot không thể đăng nhập vào Flickr. Bạn hãy đảm bảo đã cung cấp thiết lập đúng."
+msgstr ""
+"Trình F-Spot không thể đăng nhập vào Flickr. Bạn hãy đảm bảo đã cung cấp "
+"thiết lập đúng."
 
 #: ../src/FolderExport.cs:129
 msgid "Building Gallery"
@@ -464,7 +475,9 @@ msgstr "<small></small>"
 
 #: ../src/f-spot.glade.h:26
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
-msgstr "<span weight='bold' size='larger'>Gặp lỗi khi kết nối đến Phòng trưng bày</span>\n"
+msgstr ""
+"<span weight='bold' size='larger'>Gặp lỗi khi kết nối đến Phòng trưng bày</"
+"span>\n"
 
 #: ../src/f-spot.glade.h:28
 msgid "Ad_just Color..."
@@ -1107,8 +1120,7 @@ msgstr "Không có thư mục này."
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
 "different directory"
-msgstr ""
-"Thư mục « {0} » được chọn không tồn tại. Hãy chọn thư mục khác."
+msgstr "Thư mục « {0} » được chọn không tồn tại. Hãy chọn thư mục khác."
 
 # Description
 #: ../src/InfoBox.cs:70 ../src/PhotoVersionCommands.cs:55
@@ -1147,7 +1159,9 @@ msgstr "Chưa phát hiện máy ảnh nào."
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
-msgstr "Trình F-Spot không thể tìm máy ảnh nào được kết nối đến hệ thống này. Hãy kiểm tra lại máy ảnh được kết nối và có điện."
+msgstr ""
+"Trình F-Spot không thể tìm máy ảnh nào được kết nối đến hệ thống này. Hãy "
+"kiểm tra lại máy ảnh được kết nối và có điện."
 
 #: ../src/MainWindow.cs:985
 msgid "Error connecting to camera"
@@ -1213,7 +1227,10 @@ msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
 "again."
-msgstr "Nếu bạn gỡ bỏ ảnh chụp ra phân loại F-Spot thì tất cả thông tin thẻ trên nó sẽ bị mất. Tùy nhiên, ảnh chụp đó còn lại trên máy bạn, thì có thể nhập nó vào F-Spot lần nữa."
+msgstr ""
+"Nếu bạn gỡ bỏ ảnh chụp ra phân loại F-Spot thì tất cả thông tin thẻ trên nó "
+"sẽ bị mất. Tùy nhiên, ảnh chụp đó còn lại trên máy bạn, thì có thể nhập nó "
+"vào F-Spot lần nữa."
 
 #: ../src/MainWindow.cs:1557
 msgid "_Remove from Catalog"
@@ -1344,19 +1361,29 @@ msgstr "8 × 10 Chân dung"
 msgid "Square"
 msgstr "Vuông"
 
-#: ../src/PhotoView.cs:279
+#: ../src/PhotoView.cs:231
+msgid "No selection available"
+msgstr "Không có vùng chọn sẵn sàng."
+
+#: ../src/PhotoView.cs:232
+msgid ""
+"This tool requires an active selection. Please select a region of the image "
+"and try the operation again"
+msgstr "Công cụ này cần thiết vùng chọn hoạt động. Hãy chọn một vùng trong ảnh này, rồi thử lại."
+
+#: ../src/PhotoView.cs:290
 msgid "Error editing photo"
 msgstr "Gặp lỗi khi sửa đổi ảnh chụp"
 
-#: ../src/PhotoView.cs:473
+#: ../src/PhotoView.cs:484
 msgid "Crop image to selected area"
 msgstr "Xén ảnh ở ngoại vùng đã chọn."
 
-#: ../src/PhotoView.cs:474
+#: ../src/PhotoView.cs:485
 msgid "Remove redeye from selected area"
 msgstr "Gỡ bỏ mắt đỏ ra vùng đã chọn"
 
-#: ../src/PhotoView.cs:475
+#: ../src/PhotoView.cs:486
 msgid "Adjust the image colors"
 msgstr "Chỉnh màu sắc của ảnh"
 
@@ -1392,7 +1419,10 @@ msgid ""
 msgid_plural ""
 "{0} images could not be rotated because they are on a read only file system "
 "or media such as a CDROM.  Please check the permissions and try again"
-msgstr[0] "Không thể xoay ảnh này vì nó nằm trong hệ thống tập tin hoặc phương tiện không có khả năng đọc, như đĩa CD-ROM. Bạn hãy kiểm tra quyền truy cập nó, và thử lại."
+msgstr[0] ""
+"Không thể xoay ảnh này vì nó nằm trong hệ thống tập tin hoặc phương tiện "
+"không có khả năng đọc, như đĩa CD-ROM. Bạn hãy kiểm tra quyền truy cập nó, "
+"và thử lại."
 
 #: ../src/StockIcons.cs:28
 msgid "Crop"
