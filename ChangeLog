@@ -1,5 +1,7 @@
 2005-09-01  Larry Ewing  <lewing@novell.com>
 
+	* src/TagView.cs: handle missing icons with a little more grace.
+
 	* src/FileImportBackend.cs: handle issues while importing photos,
 	fix from Shlomi Fish for =310536.
 
