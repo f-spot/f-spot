@@ -773,25 +773,57 @@ namespace FSpot.Png {
 				
 				//System.Console.Write ("read one {0} {1}", chunk, chunk.Name);
 				chunk_list.Add (chunk);
-
+				
 				/*
 				if (chunk is TextChunk) {
 					TextChunk text = (TextChunk) chunk;
 					System.Console.Write (" Text Chunk {0} {1}", 
 							      text.Keyword, text.Text);
 				}
-				*/
 
-				/*
 				TimeChunk time = chunk as TimeChunk;
 				if (time != null)
 					System.Console.Write(" Time {0}", time.Time);
 				*/
-
 				//System.Console.WriteLine ("");
 				
 				if (chunk.Name == "IEND")
 					break;
+			}
+		}
+
+		public string LookupText (string keyword)
+		{
+			foreach (Chunk chunk in chunk_list) {
+				TextChunk text = chunk as TextChunk;
+				if (text != null && text.Keyword == keyword)
+					return text.Text;
+			}
+			return null;
+		}
+
+		public override string Description {
+			get {
+				string description = LookupText ("Description");
+
+				if (description != null)
+					return description;
+				else
+					return LookupText ("Comment");
+			}
+		}
+
+		public override System.DateTime Date {
+			get {
+				// FIXME: we should first try parsing the
+				// LookupText ("Creation Time") as a valid date
+
+				foreach (Chunk chunk in chunk_list) {
+					TimeChunk time = chunk as TimeChunk;
+					if (time != null)
+						return time.Time.ToUniversalTime ();
+				}
+				return base.Date;
 			}
 		}
 
