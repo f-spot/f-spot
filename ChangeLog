@@ -1,3 +1,8 @@
+2005-09-01  Larry Ewing  <lewing@novell.com>
+
+	* src/FileImportBackend.cs: handle issues while importing photos,
+	fix from Shlomi Fish for =310536.
+
 2005-08-30  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoView.cs: change the message type.

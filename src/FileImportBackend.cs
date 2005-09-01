@@ -136,24 +136,30 @@ public class FileImportBackend : ImportBackend {
 
 		// FIXME Need to get the EXIF info etc.
 		string path = (string) file_paths [this.count];
-
-		if (copy) {
-			string dest = ChooseLocation (path);
-
-			System.IO.File.Copy (path, dest);
-			path = dest;
-		}
 		
-		photo = store.Create (path, out thumbnail);
-
-		if (tags != null) {
-			foreach (Tag t in tags) {
-				photo.AddTag (t);
+		try {
+			if (copy) {
+				string dest = ChooseLocation (path);
+				
+				System.IO.File.Copy (path, dest);
+				path = dest;
 			}
-			store.Commit(photo);
+			
+			photo = store.Create (path, out thumbnail);
+			
+			if (tags != null) {
+				foreach (Tag t in tags) {
+					photo.AddTag (t);
+				}
+				store.Commit(photo);
+			}
+			imported_photos.Add (photo);
+			
+		} catch (System.Exception e) {
+			System.Console.WriteLine ("Error importing {0}\n{1}", path, e.ToString ());
+			thumbnail = null;
+			photo = null;
 		}
-		
-		imported_photos.Add (photo);
 
 		this.count ++;
 		count = this.count;
