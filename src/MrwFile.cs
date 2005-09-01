@@ -176,17 +176,19 @@ namespace FSpot.Mrw {
 		public MrwFile (string path) : base (path)
 		{
 			LoadBlocks ();
-			System.Console.WriteLine ("testing {0}", this.Date ().ToString ());
+			System.Console.WriteLine ("testing {0}", this.Date.ToString ());
 		}
 
-		public override System.DateTime Date () 
+		public override System.DateTime Date
 		{
-			AsciiEntry e = (AsciiEntry)(this.Header.Directory.Lookup (TagId.DateTime));
-
-			if (e != null)
-				return DirectoryEntry.DateTimeFromString (e.StringValue);
-			else
-				return base.Date ();
+			get {
+				AsciiEntry e = (AsciiEntry)(this.Header.Directory.Lookup (TagId.DateTime));
+				
+				if (e != null)
+					return DirectoryEntry.DateTimeFromString (e.StringValue);
+				else
+					return base.Date;
+			}
 		}
 
 		public override System.IO.Stream PixbufStream ()

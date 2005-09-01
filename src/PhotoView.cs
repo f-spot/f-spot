@@ -323,7 +323,7 @@ public class PhotoView : EventBox {
 			FSpot.ImageFile img = FSpot.ImageFile.Create (photo.DefaultVersionPath);
 			if (img is FSpot.JpegFile) {
 				FSpot.JpegFile jimg = img as FSpot.JpegFile;
-				jimg.Description = photo.Description;
+				jimg.SetDescription (photo.Description);
 				jimg.SaveMetaData (photo.DefaultVersionPath);
 			}
 			//Query.Store.Commit (photo);

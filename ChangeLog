@@ -1,5 +1,32 @@
 2005-09-01  Larry Ewing  <lewing@novell.com>
 
+	* src/DirectoryCollection.cs: date is now a property.x
+
+	* src/Tiff.cs: make date a property.
+
+	* src/MrwFile.cs: Date is a property.
+
+	* src/PngFile.cs: extract some metadata from the png files.
+
+	* src/JpegFile.cs: SetDescription is a method Date and Description
+	are properties.
+
+	* src/PhotoView.cs: JpegImage.SetDescription is a property now.
+
+	* src/Tiff.cs: date is a property now.
+
+	* src/FileImportBackend.cs: date is a property now.
+
+	* src/main.cs: add shutdown command line option.
+
+	* src/Core.cs: add shutdown method.
+
+	* src/ImageFile.cs: add Description property make Date a property
+	rather than a normal method.
+
+	* src/PhotoStore.cs: import image descriptions when importing
+	photos.  Refactor the code slightly.
+
 	* src/TagView.cs: handle missing icons with a little more grace.
 
 	* src/FileImportBackend.cs: handle issues while importing photos,

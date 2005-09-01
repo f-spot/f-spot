@@ -532,23 +532,18 @@ public class PhotoStore : DbStore {
 	public Photo Create (string path, out Pixbuf thumbnail)
 	{
 		FSpot.ImageFile img = FSpot.ImageFile.Create (path);
-		DateTime time = img.Date ();
-		return Create (time, path, out thumbnail);
-	}
-
-	public Photo Create (DateTime time_in_utc, string path, out Pixbuf thumbnail)
-	{
-		uint unix_time = DbUtils.UnixTimeFromDateTime (time_in_utc);
-
+		uint unix_time = DbUtils.UnixTimeFromDateTime (img.Date);
+		string description = img.Description != null ? img.Description : "";
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
 
 		command.CommandText = String.Format ("INSERT INTO photos (time, " +
 						     "directory_path, name, description, default_version_id) " +
-						     "       VALUES ({0}, '{1}', '{2}', '', {3})                                       ",
+						     "       VALUES ({0}, '{1}', '{2}', '{3}', {4})                                       ",
 						     unix_time,
 						     SqlString (System.IO.Path.GetDirectoryName (path)),
 						     SqlString (System.IO.Path.GetFileName (path)),
+						     SqlString (description),
 						     Photo.OriginalVersionId);
 
 		command.ExecuteScalar ();

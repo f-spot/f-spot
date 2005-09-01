@@ -112,7 +112,7 @@ namespace FSpot {
 
 		public System.DateTime Time {
 			get {
-				return Image.Date ();
+				return Image.Date;
 			}
 		}
 		

@@ -9,6 +9,9 @@ namespace FSpot {
 		
 		[DBus.Method]
 		public abstract void View (string path);
+
+		[DBus.Method]
+		public abstract void Shutdown ();
 	}
 
 	public class Core : CoreControl
@@ -95,6 +98,11 @@ namespace FSpot {
 				Register (new FSpot.SingleView (path).Window);
 			else
 				System.Console.WriteLine ("no valid path to import from");
+		}
+
+		public override void Shutdown ()
+		{
+			System.Environment.Exit (0);
 		}
 
 		public void Register (Gtk.Window window)

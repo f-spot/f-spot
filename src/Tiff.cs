@@ -1018,24 +1018,24 @@ namespace FSpot.Tiff {
 			SetData (tmp);
 		}
 	
-		public static System.DateTime DateTimeFromString(string dt)
-		 {
-			 // Exif DateTime strings are formatted as
-			 //      "YYYY:MM:DD HH:MM:SS"
-
-			 string delimiters = " :";
-			 string[] dt_data = dt.Split ( delimiters.ToCharArray(), 6 );
-			 System.DateTime result;
-			 result = new System.DateTime (System.Int32.Parse(dt_data[0]), 
-						       System.Int32.Parse(dt_data[1]), 
-						       System.Int32.Parse(dt_data[2]),
-						       System.Int32.Parse(dt_data[3]), 
-						       System.Int32.Parse(dt_data[4]), 
-						       System.Int32.Parse(dt_data[5]));
+		public static System.DateTime DateTimeFromString (string dt)
+		{
+			// Exif DateTime strings are formatted as
+			//      "YYYY:MM:DD HH:MM:SS"
+			
+			string delimiters = " :";
+			string[] dt_data = dt.Split ( delimiters.ToCharArray(), 6 );
+			System.DateTime result;
+			result = new System.DateTime (System.Int32.Parse(dt_data[0]), 
+						      System.Int32.Parse(dt_data[1]), 
+						      System.Int32.Parse(dt_data[2]),
+						      System.Int32.Parse(dt_data[3]), 
+						      System.Int32.Parse(dt_data[4]), 
+						      System.Int32.Parse(dt_data[5]));
 			
 			return result;
 		}
-	
+		
 		public void SetData (byte [] data)
 		{
 			raw_data = data;
@@ -1127,14 +1127,16 @@ namespace FSpot.Tiff {
 			}
 		}
 
-		public override System.DateTime Date ()
+		public override System.DateTime Date
 		{
-			AsciiEntry e = (AsciiEntry)(this.Header.Directory.Lookup (TagId.DateTime));
-
-			if (e != null)
-				return DirectoryEntry.DateTimeFromString (e.StringValue);
-			else
-				return base.Date ();
+			get {
+				AsciiEntry e = (AsciiEntry)(this.Header.Directory.Lookup (TagId.DateTime));
+				
+				if (e != null)
+					return DirectoryEntry.DateTimeFromString (e.StringValue);
+				else
+					return base.Date;
+			}
 		}
 		
 		public override System.IO.Stream PixbufStream ()
@@ -1278,15 +1280,17 @@ namespace FSpot.Tiff {
 		}
 
 
-		public override System.DateTime Date ()
+		public override System.DateTime Date
 		{
-			SubdirectoryEntry sub = (SubdirectoryEntry) this.Header.Directory.Lookup (TagId.ExifIfdPointer);
-			AsciiEntry e = (AsciiEntry)(sub.Directory [0].Lookup (TagId.DateTimeOriginal));
-
-			if (e != null)
-				return DirectoryEntry.DateTimeFromString (e.StringValue);
-			else
-				return base.Date ();
+			get {
+				SubdirectoryEntry sub = (SubdirectoryEntry) this.Header.Directory.Lookup (TagId.ExifIfdPointer);
+				AsciiEntry e = (AsciiEntry)(sub.Directory [0].Lookup (TagId.DateTimeOriginal));
+				
+				if (e != null)
+					return DirectoryEntry.DateTimeFromString (e.StringValue);
+				else
+					return base.Date;
+			}
 		}
 
 	}

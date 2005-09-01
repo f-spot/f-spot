@@ -54,6 +54,9 @@ public class Driver {
 			
 		for (int i = 0; i < args.Length; i++) {
 			switch (args [i]) {
+			case "--shutdown":
+				control.Shutdown ();
+				break;
 			case "--import":
 				if (++i < args.Length)
 					control.Import (args [i]);

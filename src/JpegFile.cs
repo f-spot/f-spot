@@ -10,7 +10,7 @@ namespace FSpot {
 		
 		public JpegFile (string path) : base (path) {}
 
-		public string Description {
+		public override string Description {
 			get {
 				// FIXME this should probably read the raw data because libexif sucks.
 				Exif.ExifContent exif_content = this.ExifData.GetContents (Exif.Ifd.Exif);
@@ -21,17 +21,19 @@ namespace FSpot {
 				
 				return entry.Value;
 			}
-			set {
-				string description = value;
+		}
 
-				Exif.ExifContent exif_content = this.ExifData.GetContents (Exif.Ifd.Exif);			
-				int len = System.Text.Encoding.BigEndianUnicode.GetByteCount (description);
-				string heading = "ASCII\0\0\0";
-				byte [] data = new byte [len + heading.Length];
-				System.Text.Encoding.ASCII.GetBytes (heading, 0, heading.Length, data, 0);
-				System.Text.Encoding.ASCII.GetBytes (description, 0, description.Length, data, heading.Length);
-				exif_content.GetEntry (Exif.Tag.UserComment).SetData (data);
-			}
+		public void SetDescription (string value)
+		{
+			string description = value;
+			
+			Exif.ExifContent exif_content = this.ExifData.GetContents (Exif.Ifd.Exif);			
+			int len = System.Text.Encoding.BigEndianUnicode.GetByteCount (description);
+			string heading = "ASCII\0\0\0";
+			byte [] data = new byte [len + heading.Length];
+			System.Text.Encoding.ASCII.GetBytes (heading, 0, heading.Length, data, 0);
+			System.Text.Encoding.ASCII.GetBytes (description, 0, description.Length, data, heading.Length);
+			exif_content.GetEntry (Exif.Tag.UserComment).SetData (data);
 		}
 
 		private void UpdateMeta ()
@@ -168,19 +170,21 @@ namespace FSpot {
 			e.SetData ((ushort)orientation);
 		}
 		
-		public override System.DateTime Date () {
-			System.DateTime time;
-			try {
-				using (Exif.ExifData ed = new Exif.ExifData (path)) {
-					Exif.ExifContent content = ed.GetContents (Exif.Ifd.Exif);
-					Exif.ExifEntry entry = content.GetEntry (Exif.Tag.DateTimeOriginal);
-					time = Exif.ExifUtil.DateTimeFromString (entry.Value); 
-					time = time.ToUniversalTime ();
+		public override System.DateTime Date {
+			get {
+				System.DateTime time;
+				try {
+					using (Exif.ExifData ed = new Exif.ExifData (path)) {
+						Exif.ExifContent content = ed.GetContents (Exif.Ifd.Exif);
+						Exif.ExifEntry entry = content.GetEntry (Exif.Tag.DateTimeOriginal);
+						time = Exif.ExifUtil.DateTimeFromString (entry.Value); 
+						time = time.ToUniversalTime ();
+					}
+				} catch (System.Exception e) {
+					time = base.Date;
 				}
-			} catch (System.Exception e) {
-				time = base.Date ();
+				return time;
 			}
-			return time;
 		}
 		
 	}

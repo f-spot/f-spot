@@ -44,10 +44,16 @@ namespace FSpot {
 			}
 		}
 
-
 		public PixbufOrientation Orientation {
 			get {
 				return GetOrientation ();
+			}
+		}
+
+		public virtual string Description
+		{
+			get { 
+				return null;
 			}
 		}
 		
@@ -85,11 +91,13 @@ namespace FSpot {
 			return PixbufOrientation.TopLeft;
 		}
 		
-		public virtual System.DateTime Date () 
+		public virtual System.DateTime Date 
 		{
-			return File.GetCreationTimeUtc  (this.path);
+			get {
+				return File.GetCreationTimeUtc  (this.path);
+			}
 		}
-		
+
 		public static bool HasLoader (string path)
 		{
 			string extension = System.IO.Path.GetExtension (path).ToLower ();
