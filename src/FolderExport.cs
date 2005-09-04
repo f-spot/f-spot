@@ -248,7 +248,7 @@ namespace FSpot {
 				size = size_spin.ValueAsInt;
 
 			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Upload));
-			command_thread.Name = Mono.Posix.Catalog.GetString ("Transfering Pictures");
+			command_thread.Name = Mono.Posix.Catalog.GetString ("Transferring Pictures");
 
 			//FIXME: get the files/dirs count in a cleaner way than (* 5 + 2(zip) + 9)
 			// selection * 5 (original, mq, lq, thumbs, comments)
