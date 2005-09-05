@@ -196,7 +196,7 @@ namespace FSpot {
 			StopTweenIdle ();
 			
 			if (current_idx != next_idx && next != null)
-				this.FromPixbuf = next;
+				this.Pixbuf = next;
 			
 			current_idx = next_idx;
 			
@@ -305,7 +305,7 @@ namespace FSpot {
 			if (current_tween--  > 0) {
 				StartTransitionTimer ();
 				System.DateTime start_time = System.DateTime.Now;
-				this.FromPixbuf = tweens[current_tween];
+				this.Pixbuf = tweens[current_tween];
 				GdkWindow.ProcessUpdates (false);
 				System.TimeSpan span = System.DateTime.Now  - start_time;
 				
@@ -425,7 +425,7 @@ namespace FSpot {
 						old.Dispose ();
 				} else {
 					using (Pixbuf frame =  GetScaled (photos[current_idx])) {
-						this.FromPixbuf =  frame;
+						this.Pixbuf =  frame;
 						current.Dispose ();
 					}
 				}
@@ -460,7 +460,7 @@ namespace FSpot {
 			this.photos = photos;
 
 			if (background != null) {
-				this.FromPixbuf = background;
+				this.Pixbuf = background;
 				background.Dispose ();
 				
 				current_idx = -1;
