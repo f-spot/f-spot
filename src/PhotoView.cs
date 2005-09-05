@@ -175,6 +175,11 @@ public class PhotoView : EventBox {
 			description_entry.Sensitive = false;
 			description_entry.Text = "";
 		}
+		if (description_entry.Text == "")
+			tips.SetTip (description_entry, description_entry.Text, "This is a tip");
+		else
+			tips.SetTip (description_entry, null, "This is a tip");
+
 		description_entry.Changed += HandleDescriptionChanged;
 	}    
 
@@ -347,6 +352,7 @@ public class PhotoView : EventBox {
 			else
 				CommitPendingChanges ();
 
+		tips.SetTip (description_entry, description_entry.Text, "This is a tip");
 		description_photo = Item.Index;
 		description_delay.Start ();
 	}
@@ -484,6 +490,10 @@ public class PhotoView : EventBox {
 		tips.SetTip (crop_button, Mono.Posix.Catalog.GetString ("Crop image to selected area"), "so is this one");
 		tips.SetTip (redeye_button, Mono.Posix.Catalog.GetString ("Remove redeye from selected area"), "this is one too");
 		tips.SetTip (color_button, Mono.Posix.Catalog.GetString ("Adjust the image colors"), "This is a tip");
+		tips.SetTip (constraints_option_menu, Mono.Posix.Catalog.GetString ("Constrain the aspect ratio of the selection"), "This is a tip");
+		tips.SetTip (display_next_button, Mono.Posix.Catalog.GetString ("Next image"), "This is a tip");
+		tips.SetTip (display_previous_button, Mono.Posix.Catalog.GetString ("Previous image"), "This is a tip");
+
 	}
 
 }
