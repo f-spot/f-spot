@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot Gnome HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-31 10:58+0000\n"
-"PO-Revision-Date: 2005-08-31 22:14+0930\n"
+"POT-Creation-Date: 2005-09-08 10:18+0200\n"
+"PO-Revision-Date: 2005-09-08 20:39+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -200,6 +200,7 @@ msgstr ""
 "truy cập đúng, rồi thử lại."
 
 #: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:139
+#: ../src/FolderExport.cs:251
 msgid "Transferring Pictures"
 msgstr "Đang truyền ảnh"
 
@@ -277,7 +278,7 @@ msgstr "Lỗi: tập tin đã có nên hủy bỏ"
 msgid "Error saving adjusted photo"
 msgstr "Gặp lỗi khi lưu ảnh đã điều chỉnh"
 
-#: ../src/ColorDialog.cs:148 ../src/MainWindow.cs:1304 ../src/PhotoView.cs:291
+#: ../src/ColorDialog.cs:148 ../src/MainWindow.cs:1304 ../src/PhotoView.cs:296
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save image {1}"
 msgstr "Đã nhận ngoài lệ « {0} » nên không thể lưu ảnh « {1} »."
@@ -351,10 +352,6 @@ msgstr ""
 #: ../src/FolderExport.cs:129
 msgid "Building Gallery"
 msgstr "Đang xây dụng phòng trưng bày"
-
-#: ../src/FolderExport.cs:251
-msgid "Transfering Pictures"
-msgstr "Đang truyền ảnh"
 
 #. Abbreviation of previous
 #: ../src/FolderExport.cs:672
@@ -656,8 +653,8 @@ msgid "Find by _Tag"
 msgstr "Tìm theo _thẻ"
 
 #: ../src/f-spot.glade.h:74
-msgid "Flikr"
-msgstr "Flikr"
+msgid "Flickr"
+msgstr "Flickr"
 
 #: ../src/f-spot.glade.h:75
 msgid "Folder Export"
@@ -1361,31 +1358,45 @@ msgstr "8 × 10 Chân dung"
 msgid "Square"
 msgstr "Vuông"
 
-#: ../src/PhotoView.cs:231
+#: ../src/PhotoView.cs:236
 msgid "No selection available"
 msgstr "Không có vùng chọn sẵn sàng."
 
-#: ../src/PhotoView.cs:232
+#: ../src/PhotoView.cs:237
 msgid ""
 "This tool requires an active selection. Please select a region of the image "
 "and try the operation again"
-msgstr "Công cụ này cần thiết vùng chọn hoạt động. Hãy chọn một vùng trong ảnh này, rồi thử lại."
+msgstr ""
+"Công cụ này cần thiết vùng chọn hoạt động. Hãy chọn một vùng trong ảnh này, "
+"rồi thử lại."
 
-#: ../src/PhotoView.cs:290
+#: ../src/PhotoView.cs:295
 msgid "Error editing photo"
 msgstr "Gặp lỗi khi sửa đổi ảnh chụp"
 
-#: ../src/PhotoView.cs:484
+#: ../src/PhotoView.cs:490
 msgid "Crop image to selected area"
 msgstr "Xén ảnh ở ngoại vùng đã chọn."
 
-#: ../src/PhotoView.cs:485
+#: ../src/PhotoView.cs:491
 msgid "Remove redeye from selected area"
 msgstr "Gỡ bỏ mắt đỏ ra vùng đã chọn"
 
-#: ../src/PhotoView.cs:486
+#: ../src/PhotoView.cs:492
 msgid "Adjust the image colors"
 msgstr "Chỉnh màu sắc của ảnh"
+
+#: ../src/PhotoView.cs:493
+msgid "Constrain the aspect ratio of the selection"
+msgstr "Ràng buộc tỷ lệ hình thể của vùng chọn"
+
+#: ../src/PhotoView.cs:494
+msgid "Next image"
+msgstr "Ảnh kế"
+
+#: ../src/PhotoView.cs:495
+msgid "Previous image"
+msgstr "Ảnh trước"
 
 #: ../src/RotateCommand.cs:56
 #, csharp-format
@@ -1499,8 +1510,8 @@ msgstr "Chụp ảnh {0} trên {1}"
 
 #: ../src/TagCommands.cs:409
 #, csharp-format
-msgid "Edit icon For category {0}"
-msgstr "_Sửa đổi biểu tượng cho phân loại {0}"
+msgid "Edit icon for category {0}"
+msgstr "Sửa đổi biểu tượng cho phân loại {0}"
 
 #: ../src/TagCommands.cs:411
 #, csharp-format
