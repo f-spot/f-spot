@@ -1069,8 +1069,6 @@ public class IconView : Gtk.Layout {
 
 	private bool HandleThrobTimer () 
 	{
-		//Console.WriteLine ("throb out {1} {0}", throb_cell, 1 - Math.Cos (throb_state));
-
 		InvalidateCell (throb_cell);
 		if (throb_state++ < throb_state_max) {
 			return true;
@@ -1135,9 +1133,21 @@ public class IconView : Gtk.Layout {
 		// Pixbuf option iformation to verify the thumbnail validity later
 		int width, height;
 		PixbufUtils.Fit (result, ThumbnailWidth, ThumbnailHeight, false, out width, out height);
-		if (result.Width != width && result.Height != height) {
+		if (result.Width > width && result.Height > height) {
 			//  System.Console.WriteLine ("scaling");
 			Gdk.Pixbuf temp = PixbufUtils.ScaleDown (result, width, height);
+			result.Dispose ();
+			result = temp;
+		} else if (result.Width < ThumbnailWidth && result.Height < ThumbnailHeight) {
+			// FIXME this is a workaround to handle images whose actual size is smaller than 
+			// the thumbnail size, it needs to be fixed at a different level.
+			Gdk.Pixbuf temp = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, ThumbnailWidth, ThumbnailHeight);
+			temp.Fill (0x00000000);
+			result.CopyArea (0, 0, 
+					 result.Width, result.Height, 
+					 temp, 
+					 (temp.Width - result.Width)/ 2,
+					 temp.Height - result.Height);
 			result.Dispose ();
 			result = temp;
 		}
@@ -1156,8 +1166,10 @@ public class IconView : Gtk.Layout {
 	}
 
 	public void InvalidateCell (int order) 
-	{
-		if (dead) return;
+	{		
+		if (dead) 
+			return;
+
 		Rectangle cell_area = CellBounds (order);
 		// FIXME where are we computing the bounds incorrectly
 		cell_area.Width -= 1;
