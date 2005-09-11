@@ -1,3 +1,8 @@
+i2005-09-10  Larry Ewing  <lewing@novell.com>
+
+	* src/PixbufCache.cs: stop an evil loop caused by images smaller
+	than the thumbnail size.
+
 2005-09-05  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoView.cs: add some tooltips to the more of the photoview
@@ -9,7 +14,7 @@
 
 	* src/FolderExport.cs: fix misspelling.
 
-	* src/f-spot.glade: fix typo.
+	* Src/f-spot.glade: fix typo.
 
 2005-09-01  Larry Ewing  <lewing@novell.com>
 
