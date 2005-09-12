@@ -1,8 +1,7 @@
 namespace FSpot.Iptc {
-#if false
 	public enum Format
 	{
-		Uknown,
+		Unknown,
 		String,
 		Numeric,
 		Binary,
@@ -12,8 +11,7 @@ namespace FSpot.Iptc {
 		Date,
 		Time
 	};
-	
- #endif
+
 	public enum Record
 	{
 		Envelope = 1 << 8,
@@ -36,7 +34,7 @@ namespace FSpot.Iptc {
 		ServiceIdentifier   = Record.Envelope | 30,
 		EnvelopeNumber      = Record.Envelope | 40,
 		ProductID           = Record.Envelope | 50,
-		EnvelopPriority     = Record.Envelope | 60,
+		EnvelopePriority    = Record.Envelope | 60,
 		DateSent            = Record.Envelope | 70,
 		TimeSent            = Record.Envelope | 80,
 		CodedCharacterSet   = Record.Envelope | 90,
@@ -101,15 +99,21 @@ namespace FSpot.Iptc {
 		ObjectDataPreviewFileFormatVersion  = Record.Application | 201,
 		ObjectDataPreviewData    = Record.Application | 202,
 		
+		SizeMode                 = Record.PreObjectData | 10,
+		MaxSubfileSize           = Record.PreObjectData | 20,
+		ObjectDataSizeAnnounced  = Record.PreObjectData | 90,
+		MaximumObjectDataSize    = Record.PreObjectData | 95,
 
+		Subfile                  = Record.ObjectData | 10,
+
+		ConfirmedObjectDataSize  = Record.PostObjectData | 10
 	}
-#if false
+
 	public class DataSetInfo 
 	{
-		byte RecordNumber;
-		byte DataSetNumber;
-		string Name;
-		string Description;.
+		DataSetID ID;
+		public string Name;
+		public string Description;
 		bool Mandatory;
 		bool Repeatable;
 		uint MinSize;
@@ -117,34 +121,66 @@ namespace FSpot.Iptc {
 		Format Format;
 		
 		private static DataSetInfo [] datasets = {
-			new DataSetInfo (1, 00, Format.Binary, "Model Version", true, false, 2, 2, 
-					 Mono.Posix.Catalog.GetString ("IPTC Information Interchange Model (IIM) Version number"));
-			new DataSetInfo (1, 05, Format.String, "Destination", false, true, 0, 1024, 
-					 Mono.Posix.Catalog.GetString ("OSI Destination routing information"));
-			new DataSetInfo (1, 20, Format.Binary, "File Format", true, false, 2, 2, 
-					 Mono.Posix.Catalog.GetString ("IPTC file format"));
-			new DataSetInfo (1, 30, "Service Identifier", true, false, 0, 10, Mono.Posix.Catalog.GetString ("Identifies the provider and product"));
-			new DataSetInfo (1, 40, "Envelope Number", true, false, 8, 8, Mono.Posix.Catalog.GetString ("A unique number")),
-			new DataSetInfo (1, 50, "Product I.D.", false, true, 0, 32, Mono.Posix.Catalog.GetString ("A unique number")),
-			new DataSetInfo (1, 50, "Product I.D.", false, true, 0, 32, Mono.Posix.Catalog.GetString ("Provides ")),
+			new DataSetInfo (DataSetID.ModelVersion, Format.Short, "Model Version", true, false, 2, 2, 
+					 Mono.Posix.Catalog.GetString ("IPTC Information Interchange Model (IIM) Version number")),
+			new DataSetInfo (DataSetID.Destination, Format.String, "Destination", false, true, 0, 1024, 
+					 Mono.Posix.Catalog.GetString ("OSI Destination routing information")),
+			new DataSetInfo (DataSetID.FileFormat, Format.Short, "File Format", true, false, 2, 2, 
+					 Mono.Posix.Catalog.GetString ("IPTC file format")),
+			new DataSetInfo (DataSetID.ServiceIdentifier, Format.String, "Service Identifier", true, false, 0, 10, 
+					 Mono.Posix.Catalog.GetString ("Identifies the provider and product")),
+			new DataSetInfo (DataSetID.EnvelopeNumber, Format.Numeric, "Envelope Number", true, false, 8, 8, 
+					 Mono.Posix.Catalog.GetString ("A unique number identifying the envelope")), // FIXME
+			new DataSetInfo (DataSetID.ProductID, Format.Numeric, "Product I.D.", false, true, 0, 32, 
+					 Mono.Posix.Catalog.GetString ("A unique number")), // FIXME
+			new DataSetInfo (DataSetID.EnvelopePriority, Format.Numeric, "Envelope Priority", false, false, 1, 1, 
+					 Mono.Posix.Catalog.GetString ("The envelope handling priority between 1 (most urgent) and 9 (least urgent)")),
+			new DataSetInfo (DataSetID.DateSent, Format.Date, "Date Sent", true, false, 8, 8, 
+					 Mono.Posix.Catalog.GetString ("The year month and day (CCYYMMDD) the service sent the material")),
+			new DataSetInfo (DataSetID.TimeSent, Format.Date, "Time Sent", false, false, 11, 11, 
+					 Mono.Posix.Catalog.GetString ("The hour minute and second the (HHMMSS+HHMM) the service sent the material")),
+			new DataSetInfo (DataSetID.CodedCharacterSet, Format.Time, "Coded Character Set", false, false, 0, 32, 
+					 Mono.Posix.Catalog.GetString ("The character set designation")), // FIXME
+			new DataSetInfo (DataSetID.UNO, Format.String, "Unique Name of Object", false, false, 14, 80,
+					 Mono.Posix.Catalog.GetString ("External globally unique object identifier")),
+			// UCD : IPR  : ODE            : OVI
+			//   8 :[1-32]:[61 - IPR count]:[1-9]
+
+			new DataSetInfo (DataSetID.ARMIdentifier, Format.Short, "ARM Identifier", false, false, 2, 2,
+					 Mono.Posix.Catalog.GetString ("Abstract Relationship Method (ARM) identifier")),
+			new DataSetInfo (DataSetID.ARMVersion, Format.Short, "ARM Version", false, false, 2, 2,
+					 Mono.Posix.Catalog.GetString ("Abstract Relationship Method (ARM) version number.")),
 			
+			new DataSetInfo (DataSetID.RecordVersion, Format.Short, "Record Version", false, false, 2, 2,
+					 Mono.Posix.Catalog.GetString ("Number identifying the IIM version this application record uses")),
+			new DataSetInfo (DataSetID.ObjectTypeReference, Format.String, "Object Type Reference", false, false, 3, 64,
+					 Mono.Posix.Catalog.GetString ("Number identifying the IIM version this application record uses")),
+			// Object Type Number : Object Type Name
+			//                  2 : [0-64]
+		};
+
+		public static DataSetInfo FindInfo (DataSetID id)
+		{
+			foreach (DataSetInfo info in datasets)
+				if (id == (DataSetID)info.ID)
+					return info;
+						
+			return new DataSetInfo (id, Format.Unknown, "Unknown", false, false, 3, 64,
+						Mono.Posix.Catalog.GetString ("Unkown IIM DataSet"));
 		}
 
-		public DataSetInfo (byte recnum, byte setnum, Format format, string name, bool mandatory, bool repeatable, uint min, uint max, string description)
+		protected DataSetInfo (DataSetID id, Format format, string name, bool mandatory, bool repeatable, uint min, uint max, string description)
 		{
-			RecordNumber = recnum;
-			DataSetNumber = setnum;
-			
+			ID = id;
 			Name = name;
 			Description = description;
-			Format = Format;
-		        Mandatory = optional;
+			Format = format;
+		        Mandatory = mandatory;
 			Repeatable = repeatable;
 			MinSize = min;
 			MaxSize = max;
 		}
 	}
-#endif
 
 	public class DataSet 
 	{
@@ -186,11 +222,27 @@ namespace FSpot.Iptc {
 			stream.Read (Data, 0, Data.Length);
 		}
 
+		public DataSetID ID {
+			get {
+				return (DataSetID) (RecordNumber << 8 | DataSetNumber);
+			}
+		}
+		
 		public void Save (System.IO.Stream stream)
 		{
 			stream.WriteByte (TagMarker);
 			stream.WriteByte (RecordNumber);
 			stream.WriteByte (DataSetNumber);
+			if (Data.Length < LengthMask) {
+				byte [] len = FSpot.BitConverter.GetBytes ((ushort)Data.Length, false);
+				stream.Write (len, 0, len.Length);
+			} else {
+				byte [] len =  FSpot.BitConverter.GetBytes ((ushort)LengthMask & 8, false);
+				stream.Write (len, 0, len.Length);
+				len = FSpot.BitConverter.GetBytes ((ulong) Data.Length, false);
+				stream.Write (len, 0, len.Length);
+			}
+			stream.Write (Data, 0, Data.Length);
 		}
 	}
 
@@ -206,18 +258,19 @@ namespace FSpot.Iptc {
 		public void Load (System.IO.Stream stream)
 		{
 			while (stream.Position < stream.Length) {
-				DataSet dset = new DataSet ();
-				dset.Load (stream);
-				DataSetID id = (DataSetID)((int)dset.RecordNumber << 8 | (int)dset.DataSetNumber);
-				System.Console.WriteLine ("{0}:{1} - {2}", dset.RecordNumber, dset.DataSetNumber, id.ToString ());
-				sets.Add (dset);
+				DataSet data = new DataSet ();
+				data.Load (stream);
+				DataSetInfo info = DataSetInfo.FindInfo (data.ID);
+				System.Console.WriteLine ("{0}:{1} - {2} {3}", data.RecordNumber, data.DataSetNumber, 
+							  data.ID.ToString (), info.Description);
+				sets.Add (data);
 			}
 		}
 
 		public void Save (System.IO.Stream stream) 
 		{
-			foreach (DataSet dset in sets) {
-				dset.Save (stream);
+			foreach (DataSet data in sets) {
+				data.Save (stream);
 			}
 		}
 	}
