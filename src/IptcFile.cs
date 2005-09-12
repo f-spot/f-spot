@@ -1,11 +1,26 @@
 namespace FSpot.Iptc {
-	public class DataSet {
+#if false
+	public class DataSetInfo 
+	{
+		byte RecordNumber;
+		byte DataSetNumber;
+		string Name;
+		string Description;.
+		bool Optional;
+		bool Repeatable;
+		uint MinSize;
+		uint MaxSize
+	}
+#endif
+
+	public class DataSet 
+	{
 		public byte RecordNumber;
 		public byte DataSetNumber;
 		public byte [] Data;
 		
 		const byte TagMarker = 0x1c;
-		const uint LengthMask = 1 << 15;
+		const ushort LengthMask = 1 << 15;
 
 		public void Load (System.IO.Stream stream)
 		{
@@ -20,8 +35,18 @@ namespace FSpot.Iptc {
 
 			ulong length = FSpot.BitConverter.ToUInt16 (rec, 3, false);			
 
-			if ((length & (LengthMask)) > 0)
-				throw new System.Exception ("long records not currently supported");
+			if ((length & (LengthMask)) > 0) {
+				// Note: if the high bit of the length is set the record is more than 32k long
+				// and the length is stored in what would normaly be the record data, so we read
+				// that data convert it to a long and continue on.
+				ushort lsize = (ushort)((ushort)length & ~LengthMask);
+				if (lsize > 8)
+					throw new System.Exception ("Wow, that is a lot of data");
+
+				byte [] ldata = new byte [8];
+				stream.Read (ldata, 8 - lsize, lsize);
+				length = FSpot.BitConverter.ToUInt64 (ldata, 0, false);
+			}
 
 			// FIXME if the length is greater than 32768 we re
 			Data = new byte [length];
@@ -36,7 +61,8 @@ namespace FSpot.Iptc {
 		}
 	}
 
-	public class IptcFile {
+	public class IptcFile 
+	{
 		System.Collections.ArrayList sets = new System.Collections.ArrayList ();
 		
 		public IptcFile (System.IO.Stream stream)
