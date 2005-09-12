@@ -8,7 +8,25 @@ namespace FSpot {
 	public class JpegFile : ImageFile, IThumbnailContainer {
 		private Exif.ExifData exif_data;
 		
-		public JpegFile (string path) : base (path) {}
+		public JpegFile (string path) : base (path) 
+		{
+#if TEST_METADATA
+			using (System.IO.FileStream stream = System.IO.File.OpenRead (path)) {
+				JpegHeader header = new JpegHeader (stream);
+				JpegHeader.Marker marker = header.FindMarker (JpegHeader.JpegMarker.App13, "Photoshop 3.0");
+				if (marker != null) {
+					System.IO.Stream bimstream = new System.IO.MemoryStream (marker.Data);
+					bimstream.Position = "Photoshop 3.0".Length + 1;
+					FSpot.Bim.BimFile bim = new FSpot.Bim.BimFile (bimstream);
+					FSpot.Bim.Entry e = bim.FindEntry (FSpot.Bim.EntryType.IPTC);
+					if (e != null) {
+						System.IO.Stream iptcstream = new System.IO.MemoryStream (e.Data);
+					        FSpot.Iptc.IptcFile iptc = new FSpot.Iptc.IptcFile (iptcstream);
+					}				     
+				}
+			}
+#endif
+		}
 
 		public override string Description {
 			get {

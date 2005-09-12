@@ -1,5 +1,5 @@
 namespace FSpot.Bim {
-	enum Type : ushort {
+	public enum EntryType : ushort {
 		IPTC = 0x0404
 	}
 
@@ -10,10 +10,10 @@ namespace FSpot.Bim {
 	  type 0x0404, I don't know any other types at the moment.
 	*/
 
-	internal class Entry
+	public class Entry
 	{
-		ushort  Type;
-		byte [] Data;
+		public ushort  Type;
+		public byte [] Data;
 
 		public Entry ()
 		{
@@ -30,13 +30,13 @@ namespace FSpot.Bim {
 			
 			Type = FSpot.BitConverter.ToUInt16 (header, 4, false);
 
-			if (Type == (ushort)FSpot.Bim.Type.IPTC)
+			if (Type == (ushort)FSpot.Bim.EntryType.IPTC)
 				System.Console.WriteLine ("found iptc data");
 
-		        int offset = stream.ReadByte () + 1 ;
-			offset += (offset & 1);
+		        int offset = stream.ReadByte ();
+			offset += ((offset +  1) & 1);
 		       
-			stream.Position += offset - 1;
+			stream.Position += offset;
 			stream.Read (header, 0, 4);
 			uint length = FSpot.BitConverter.ToUInt32 (header, 0, false);
 
@@ -67,6 +67,15 @@ namespace FSpot.Bim {
 		public BimFile (System.IO.Stream stream)
 		{
 			Load (stream);
+		}
+		
+		public Entry FindEntry (EntryType type)
+		{
+			foreach (Entry current in entries)
+				if (current.Type == (ushort)type)
+					return current;
+
+			return null;
 		}
 
 		public void Load (System.IO.Stream stream)

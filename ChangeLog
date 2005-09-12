@@ -1,3 +1,13 @@
+2005-09-11  Larry Ewing  <lewing@novell.com>
+
+	* src/Bim.cs: add FindEntry logic.
+
+	* src/IptcFile.cs: add the start of an IPTC file parser.
+
+	* src/JpegFile.cs: add some test logic for the new metadata code.
+
+	* src/Bim.cs: add the start of a photoshop 3.0 metadata parser.
+
 i2005-09-10  Larry Ewing  <lewing@novell.com>
 
 	* src/PixbufCache.cs: stop an evil loop caused by images smaller
