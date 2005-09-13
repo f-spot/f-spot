@@ -1,3 +1,15 @@
+2005-09-13  Larry Ewing  <lewing@novell.com>
+
+	* src/Makefile.am (F_SPOT_CSDISTFILES): add Bim.cs and IptcFile.cs
+	to the build.
+
+	* src/IptcFile.cs: add more info.
+
+	* src/JpegFile.cs: add more extraction logic for now.
+
+	* src/Bim.cs: add identifiers for many more of the types, add name
+	parsing, and fix up saving.
+
 2005-09-12  Larry Ewing  <lewing@novell.com>
 
 	* src/IptcFile.cs: start filling in the metadata names and descriptions.

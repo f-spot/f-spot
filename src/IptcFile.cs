@@ -46,7 +46,8 @@ namespace FSpot.Iptc {
 		ObjectTypeReference      = Record.Application | 3,
 		ObjectAttributeReference = Record.Application | 4,
 		ObjectName               = Record.Application | 5,
-		EditStatus               = Record.Application | 8,
+		EditStatus               = Record.Application | 7,
+		EditorialUpdate          = Record.Application | 8,
 		Urgency                  = Record.Application | 10,
 		SubjectReference         = Record.Application | 12,
 		Category                 = Record.Application | 15,
@@ -154,9 +155,24 @@ namespace FSpot.Iptc {
 			new DataSetInfo (DataSetID.RecordVersion, Format.Short, "Record Version", false, false, 2, 2,
 					 Mono.Posix.Catalog.GetString ("Number identifying the IIM version this application record uses")),
 			new DataSetInfo (DataSetID.ObjectTypeReference, Format.String, "Object Type Reference", false, false, 3, 64,
-					 Mono.Posix.Catalog.GetString ("Number identifying the IIM version this application record uses")),
+					 Mono.Posix.Catalog.GetString ("Object type reference")), // FIXME
 			// Object Type Number : Object Type Name
 			//                  2 : [0-64]
+
+			new DataSetInfo (DataSetID.ObjectAttributeReference, Format.String, "Object Attribute Reference", false, true, 4, 68,
+					 Mono.Posix.Catalog.GetString ("Object attribute reference")), // FIXME
+
+			// Object Attribute number : Object Attribute Name
+			//                       3 : [0-64]
+			
+			new DataSetInfo (DataSetID.ObjectName, Format.String, "Object Name", false, false, 4, 68,
+					 Mono.Posix.Catalog.GetString ("Object name")), // FIXME
+			new DataSetInfo (DataSetID.EditStatus, Format.String, "Edit Status", false, false, 0, 64,
+					 Mono.Posix.Catalog.GetString ("Status of the objectdata according to the provider")),
+			new DataSetInfo (DataSetID.EditorialUpdate, Format.String, "Object Name", false, false, 4, 68,
+					 Mono.Posix.Catalog.GetString ("Object name")), // FIXME
+
+			
 		};
 
 		public static DataSetInfo FindInfo (DataSetID id)

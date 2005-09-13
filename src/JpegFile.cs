@@ -13,12 +13,34 @@ namespace FSpot {
 #if TEST_METADATA
 			using (System.IO.FileStream stream = System.IO.File.OpenRead (path)) {
 				JpegHeader header = new JpegHeader (stream);
-				JpegHeader.Marker marker = header.FindMarker (JpegHeader.JpegMarker.App13, "Photoshop 3.0");
+				
+				string name = "Exif";
+				JpegHeader.Marker marker = header.FindMarker (JpegHeader.JpegMarker.App1, name);
 				if (marker != null) {
-					System.IO.Stream bimstream = new System.IO.MemoryStream (marker.Data);
-					bimstream.Position = "Photoshop 3.0".Length + 1;
+					int len = name.Length + 2;
+					System.IO.Stream exifstream = new System.IO.MemoryStream (marker.Data, len, marker.Data.Length - len, false);
+					FSpot.Tiff.Header exif = new FSpot.Tiff.Header (exifstream);
+					FSpot.Tiff.DirectoryEntry e = exif.Directory.Lookup (FSpot.Tiff.TagId.XMP);
+					if (e != null) {
+						//System.IO.Stream xmpstream = new MemoryStream (e.RawData);
+						System.Console.WriteLine (System.Text.Encoding.ASCII.GetString (e.RawData));
+					}
+				}
+
+				name = "http://ns.adobe.com/xap/1.0/";
+				marker = header.FindMarker (JpegHeader.JpegMarker.App1, name);
+				if (marker != null) {
+					int len = name.Length + 1;
+					System.Console.WriteLine (System.Text.Encoding.ASCII.GetString (marker.Data, len, marker.Data.Length - len));
+				}
+
+				name = "Photoshop 3.0";
+				marker = header.FindMarker (JpegHeader.JpegMarker.App13, name);
+				if (marker != null) {
+					int len = name.Length + 1;
+					System.IO.Stream bimstream = new System.IO.MemoryStream (marker.Data, len, marker.Data.Length - len, false);
 					FSpot.Bim.BimFile bim = new FSpot.Bim.BimFile (bimstream);
-					FSpot.Bim.Entry e = bim.FindEntry (FSpot.Bim.EntryType.IPTC);
+					FSpot.Bim.Entry e = bim.FindEntry (FSpot.Bim.EntryType.IPTCNAA);
 					if (e != null) {
 						System.IO.Stream iptcstream = new System.IO.MemoryStream (e.Data);
 					        FSpot.Iptc.IptcFile iptc = new FSpot.Iptc.IptcFile (iptcstream);

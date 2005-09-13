@@ -1,6 +1,59 @@
 namespace FSpot.Bim {
 	public enum EntryType : ushort {
-		IPTC = 0x0404
+		ObsoleteImageInfo = 0x03e8,  
+		MacPrintManager = 0x03e9,
+		MacPrintXML = 0x03ea,
+		ObsoleteIndexedColorTable = 0x03eb,
+		ResolutionInfo = 0x03ed,
+		AlphaChannelNames = 0x03ee,
+		DisplayInfo = 0x03ef,
+		Caption = 0x03f0,
+		Border = 0x03f1,
+		BackgroundColor = 0x03f2,
+		PrintFlags = 0x03f3,
+		GrayHalftone = 0x03f4,
+		ColorHalftone = 0x03f5,
+		DuotoneHalftone = 0x03f6,
+		GrayTransfer = 0x03f7,
+		ColorTransfer = 0x03f8,
+		DuotoneTransfer = 0x03f9,
+		DuotoneInformation = 0x03fa,
+		BWDot = 0x03fb,
+		ObsoleteUnknown1 = 0x03fc,
+		LayerState = 0x0400,
+		WorkingPath = 0x0401,
+		LayerGroupInfomation = 0x0402,
+		ObsoleteUnknown2 = 0x0403,
+		IPTCNAA = 0x0404,
+		RawImageMode = 0x0405,
+		JpegQuality = 0x0406,
+		GridGuideInformation = 0x0408,
+		ThumbnailResource = 0x0409,
+		Copyright = 0x040a,
+		URL = 0x040b,
+		ThumbnailResource2 = 0x040c,
+		GlobalAngle = 0x040d,
+		ColorSamplers = 0x040e,
+		ICCProfile = 0x040f,
+		Watermark = 0x0410,
+		ICCUntagged = 0x0411,
+		EffectsVisible = 0x0412,
+		SpotHalftone = 0x0413,
+		LastID = 0x0414,
+		UnicodeAlphaNames = 0x0415,
+		IndexedColorTable = 0x0416,
+		TransparentIndex = 0x0417,
+		GlobalAltitude = 0x0419,
+		Slices = 0x041a,
+		WorkflowURL = 0x041b,
+		XPEPJump = 0x041c,
+		AlphaIdentifiers = 0x041d,
+		URLList = 0x041e,
+		VersionInfo = 0x0421,
+		FirstPath = 0x07d0,
+		LastPAth = 0x0bb6,
+		ClippingPathName = 0x0bb7,
+		PrintFlages = 0x2710,
 	}
 
 	/*
@@ -8,13 +61,17 @@ namespace FSpot.Bim {
 	  a list of records starting with a 8Bim\0 followed by a 16 bit
 	  value that is the record type then a 8 bit offset and 32bit length. IPTC data is
 	  type 0x0404, I don't know any other types at the moment.
+
+	  see http://www.fine-view.com/jp/lab/doc/ps6ffspecsv2.pdf and the section on image resource blocks.
 	*/
 
 	public class Entry
 	{
 		public ushort  Type;
+		public string  Name;
 		public byte [] Data;
 
+		const string Marker = "8BIM";
 		public Entry ()
 		{
 
@@ -25,18 +82,24 @@ namespace FSpot.Bim {
 			byte [] header = new byte [6];
 			
 			stream.Read (header, 0, header.Length);
-			if (System.Text.Encoding.ASCII.GetString (header, 0, 4) != "8BIM")
+			if (System.Text.Encoding.ASCII.GetString (header, 0, 4) != Marker)
 				throw new System.Exception ("missing header");
 			
 			Type = FSpot.BitConverter.ToUInt16 (header, 4, false);
 
-			if (Type == (ushort)FSpot.Bim.EntryType.IPTC)
+			if (Type == (ushort)FSpot.Bim.EntryType.IPTCNAA)
 				System.Console.WriteLine ("found iptc data");
 
-		        int offset = stream.ReadByte ();
-			offset += ((offset +  1) & 1);
-		       
-			stream.Position += offset;
+		        int name_length = stream.ReadByte ();
+			if (name_length > 0) {
+				byte [] name_data = new byte [name_length];
+				stream.Read (name_data, 0, name_length);
+				Name = System.Text.Encoding.ASCII.GetString (name_data);
+			}
+			
+			if (name_length % 2 == 0)
+				stream.ReadByte ();
+
 			stream.Read (header, 0, 4);
 			uint length = FSpot.BitConverter.ToUInt32 (header, 0, false);
 
@@ -49,14 +112,31 @@ namespace FSpot.Bim {
 			return header.Length + Data.Length;
 		}
 		
-		public int Save (System.IO.Stream stream) 
+		public void Save (System.IO.Stream stream) 
 		{
-			//stream.Write (System.Text.Encoding.ASCII.GetBytes ("8BIM"));
-			//stream.Write (FSpot.BitConverter.GetBytes (Type, false));
-			//stream.Write (FSpot.BitConverter.GetBytes ((uint)Data.Length, false));
-			//stream.Write (Data);
+			byte [] tmp;
+			tmp = System.Text.Encoding.ASCII.GetBytes (Marker);
+			stream.Write (tmp, 0, tmp.Length);
+			tmp = FSpot.BitConverter.GetBytes (Type, false);
+			stream.Write (tmp, 0, tmp.Length);
 
-			return 10 + Data.Length;
+			// Write the name
+			stream.WriteByte ((byte)Name.Length);
+			tmp = System.Text.Encoding.ASCII.GetBytes (Name);
+			stream.Write (tmp, 0, tmp.Length);
+
+			// Pad the name
+			if (tmp.Length % 2 == 0)
+				stream.WriteByte (0);
+
+			// Write the data
+			tmp  = FSpot.BitConverter.GetBytes ((uint)Data.Length, false);
+			stream.Write (tmp, 0, tmp.Length);
+
+			stream.Write (Data, 0, Data.Length);
+			// Pad the data
+			if (Data.Length % 2 > 0)
+				stream.WriteByte (0);
 		}
 	}
 
@@ -82,9 +162,14 @@ namespace FSpot.Bim {
 		{
 			while (stream.Position < stream.Length)
 			{
-				System.Console.WriteLine ("read");
 				Entry current = new Entry ();
 				current.Load (stream);
+				System.Console.WriteLine ("read {0} - {1}", ((EntryType)current.Type).ToString (), current.Name);
+				try {
+					//System.Console.WriteLine (System.Text.Encoding.ASCII.GetString (current.Data));
+				} catch (System.Exception e) {
+					System.Console.WriteLine (e.ToString ());
+				}
 				entries.Add (current);
 			}
 		}

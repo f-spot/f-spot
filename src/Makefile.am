@@ -2,6 +2,7 @@ CSC = mcs -unsafe -debug -nowarn:0169
 
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/AsyncPixbufLoader.cs		\
+	$(srcdir)/Bim.cs			\
 	$(srcdir)/BitConverter.cs		\
 	$(srcdir)/PhotoArray.cs 		\
 	$(srcdir)/CDExport.cs			\
@@ -42,6 +43,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/InfoBox.cs			\
 	$(srcdir)/InfoDisplay.cs		\
 	$(srcdir)/IPhotoCollection.cs		\
+	$(srcdir)/IptcFile.cs			\
 	$(srcdir)/JpegFile.cs			\
 	$(srcdir)/JpegHeader.cs			\
 	$(srcdir)/JpegUtils.cs			\
