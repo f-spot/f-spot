@@ -210,11 +210,11 @@ namespace FSpot.Iptc {
 		public void Load (System.IO.Stream stream)
 		{
 			byte [] rec = new byte [5];
-			stream.Read (rec, 0, rec.Length);
-			if (rec [0] != TagMarker)
-				throw new System.Exception (System.String.Format ("Invalid tag marker found {0} != 0x1c", 
-							    TagMarker.ToString ("x")));
-			
+			int len = stream.Read (rec, 0, rec.Length);
+			if (rec [0] != TagMarker) {
+				throw new System.Exception (System.String.Format ("Invalid tag marker found {0} != {1} with {2} bytes remaining {3}", 
+							    rec[0].ToString ("x"), TagMarker.ToString ("x"), stream.Length - stream.Position, len));
+			}
 			RecordNumber = rec [1];
 			DataSetNumber = rec [2];
 

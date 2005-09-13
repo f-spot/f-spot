@@ -1117,6 +1117,28 @@ namespace FSpot.Tiff {
 				
 				ImageDirectory directory = Header.Directory;
 				while (directory != null) {
+#if TEST_METADATA 
+					FSpot.Tiff.DirectoryEntry e = directory.Lookup (FSpot.Tiff.TagId.XMP);
+					if (e != null) {
+						//System.IO.Stream xmpstream = new MemoryStream (e.RawData);
+						System.Console.WriteLine (System.Text.Encoding.ASCII.GetString (e.RawData));
+					}	
+					e = directory.Lookup (FSpot.Tiff.TagId.PhotoshopPrivate);
+					if (e != null) {
+						System.IO.Stream bimstream = new System.IO.MemoryStream (e.RawData);
+						FSpot.Bim.BimFile bim = new FSpot.Bim.BimFile (bimstream);
+						FSpot.Bim.Entry be = bim.FindEntry (FSpot.Bim.EntryType.IPTCNAA);
+						if (be != null) {
+							System.IO.Stream iptcstream = new System.IO.MemoryStream (be.Data);
+							FSpot.Iptc.IptcFile iptc = new FSpot.Iptc.IptcFile (iptcstream);
+						}				     
+					}	
+					e = directory.Lookup (FSpot.Tiff.TagId.IPTCNAA);
+					if (e != null) {
+						System.IO.Stream iptcstream = new System.IO.MemoryStream (e.RawData);
+						FSpot.Iptc.IptcFile iptc = new FSpot.Iptc.IptcFile (iptcstream);
+					}	
+#endif					
 					///directory.Dump ();
 					directory = directory.NextDirectory;
 				}

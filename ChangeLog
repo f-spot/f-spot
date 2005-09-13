@@ -1,5 +1,10 @@
 2005-09-13  Larry Ewing  <lewing@novell.com>
 
+	* src/IptcFile.cs: fix up some of the error reporting.
+
+	* src/Tiff.cs: add extraction logic to tiff files as well, this is
+	all just a little bit too recursive.
+
 	* src/Makefile.am (F_SPOT_CSDISTFILES): add Bim.cs and IptcFile.cs
 	to the build.
 
