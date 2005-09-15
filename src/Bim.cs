@@ -29,7 +29,7 @@ namespace FSpot.Bim {
 		JpegQuality = 0x0406,
 		GridGuideInformation = 0x0408,
 		ThumbnailResource = 0x0409,
-		Copyright = 0x040a,
+		CopyrightFlag = 0x040a,
 		URL = 0x040b,
 		ThumbnailResource2 = 0x040c,
 		GlobalAngle = 0x040d,
@@ -53,7 +53,7 @@ namespace FSpot.Bim {
 		FirstPath = 0x07d0,
 		LastPAth = 0x0bb6,
 		ClippingPathName = 0x0bb7,
-		PrintFlages = 0x2710,
+		PrintFlags2 = 0x2710,
 	}
 
 	/*

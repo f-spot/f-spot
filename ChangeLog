@@ -1,3 +1,15 @@
+2005-09-15  Larry Ewing  <lewing@novell.com>
+
+	* src/PngFile.cs: start xmp extraction in test logic.
+
+	* src/Tiff.cs: add xmp debug code.
+
+	* src/JpegFile.cs: add xmp extraction logic.
+
+	* src/XmpFile.cs: add stub for xmp parsing.
+
+	* src/Bim.cs: fix some tag names.
+
 2005-09-13  Larry Ewing  <lewing@novell.com>
 
 	* src/IptcFile.cs: fix up some of the error reporting.

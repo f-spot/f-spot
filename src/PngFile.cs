@@ -9,6 +9,18 @@ namespace FSpot.Png {
 			this.path = path;
 			using (System.IO.Stream input = System.IO.File.OpenRead (this.Path)) {
 				Load (input);
+#if TEST_METADATA
+				// FIXME we should avoid the coversion to and from a string here
+				// and make the stream from the deflated data.
+			        TextChunk xmpchunk = LookupTextChunk ("iTXt:XML:com.adobe.xmp");
+				if (xmpchunk == null)
+					xmpchunk = LookupTextChunk ("XMP");
+
+				if (xmpchunk != null) {
+					System.IO.Stream xmpstream = new System.IO.MemoryStream (xmpchunk.TextData);
+					FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);
+				}
+#endif
 			}
 		}
 
@@ -32,6 +44,13 @@ namespace FSpot.Png {
 		public class ZtxtChunk : TextChunk {
 			//public static string Name = "zTXt";
 
+			protected bool compressed = true;
+			public bool Compressed {
+				get {
+					return compressed;
+				}
+			}
+			
 			byte compression;
 			public byte Compression {
 			        get {
@@ -52,8 +71,7 @@ namespace FSpot.Png {
 				i++;
 				Compression = data [i++];
 
-				byte [] inflated = Chunk.Inflate (data, i, data.Length - i);
-				text = TextChunk.Latin1.GetString (inflated, 0, inflated.Length);
+				text_data = Chunk.Inflate (data, i, data.Length - i);
 			}
 		}
 
@@ -62,6 +80,8 @@ namespace FSpot.Png {
 
 			protected string keyword;
 			protected string text;
+			protected byte [] text_data;
+
 			public static System.Text.Encoding Latin1 = System.Text.Encoding.GetEncoding (28591);
 			public TextChunk (string name, byte [] data) : base (name, data) {}
 
@@ -71,7 +91,9 @@ namespace FSpot.Png {
 
 				keyword = GetString (ref i);
 				i++;
-				text = TextChunk.Latin1.GetString (data, i, data.Length - i);
+				int len = data.Length - i;
+				text_data = new byte [len];
+				System.Array.Copy (data, i, text_data, 0, len);
 			}
 
 			public string Keyword {
@@ -80,9 +102,16 @@ namespace FSpot.Png {
 				}
 			}
 
+			public byte [] TextData 
+			{
+				get {
+					return text_data;
+				}
+			}
+			
 			public string Text {
 				get {
-					return text;
+					return TextChunk.Latin1.GetString (text_data, 0, text_data.Length);
 				}
 			}
 		}
@@ -122,22 +151,22 @@ namespace FSpot.Png {
 			//public static string Name = "zTXt";
 
 			string Language;
-			bool Compressed;
 
 			public override void Load (byte [] data)
 			{
 				int i = 0;
 				keyword = GetString (ref i);
 				i++;
-				Compressed = (data [i++] != 0);
+				compressed = (data [i++] != 0);
 				Compression = data [i++];
 				Language = GetString (ref i);
 				i++;
 				if (Compressed) {
-					byte [] inflated = Chunk.Inflate (data, i, data.Length - i);
-					text = TextChunk.Latin1.GetString (inflated, 0, inflated.Length);
+					text_data = Chunk.Inflate (data, i, data.Length - i);
 				} else {
-					text = TextChunk.Latin1.GetString (data, i, data.Length - i);
+					int len = data.Length - i;
+					text_data = new byte [len];
+					System.Array.Copy (data, i, text_data, 0, len);
 				}
 			}
 
@@ -753,7 +782,7 @@ namespace FSpot.Png {
 			    heading [5] != 10 ||
 			    heading [6] != 26 ||
 			    heading [7] != 10)
-			    throw new System.Exception ("This ain't no png file");
+			    throw new System.Exception ("Invalid PNG magic number");
 
 			chunk_list = new System.Collections.ArrayList ();
 
@@ -773,8 +802,8 @@ namespace FSpot.Png {
 				
 				//System.Console.Write ("read one {0} {1}", chunk, chunk.Name);
 				chunk_list.Add (chunk);
-				
-				/*
+
+#if false //TEST_METADATA				
 				if (chunk is TextChunk) {
 					TextChunk text = (TextChunk) chunk;
 					System.Console.Write (" Text Chunk {0} {1}", 
@@ -784,7 +813,7 @@ namespace FSpot.Png {
 				TimeChunk time = chunk as TimeChunk;
 				if (time != null)
 					System.Console.Write(" Time {0}", time.Time);
-				*/
+#endif
 				//System.Console.WriteLine ("");
 				
 				if (chunk.Name == "IEND")
@@ -794,13 +823,23 @@ namespace FSpot.Png {
 
 		public string LookupText (string keyword)
 		{
+			TextChunk chunk = LookupTextChunk (keyword);
+			if (chunk != null)
+				return chunk.Text;
+
+			return null;
+		}
+
+		public TextChunk LookupTextChunk (string keyword)
+		{
 			foreach (Chunk chunk in chunk_list) {
 				TextChunk text = chunk as TextChunk;
 				if (text != null && text.Keyword == keyword)
-					return text.Text;
+					return text;
 			}
-			return null;
+			return null;	
 		}
+
 
 		public override string Description {
 			get {

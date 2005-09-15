@@ -22,8 +22,8 @@ namespace FSpot {
 					FSpot.Tiff.Header exif = new FSpot.Tiff.Header (exifstream);
 					FSpot.Tiff.DirectoryEntry e = exif.Directory.Lookup (FSpot.Tiff.TagId.XMP);
 					if (e != null) {
-						//System.IO.Stream xmpstream = new MemoryStream (e.RawData);
-						System.Console.WriteLine (System.Text.Encoding.ASCII.GetString (e.RawData));
+						//System.Console.WriteLine (System.Text.Encoding.ASCII.GetString (e.RawData));
+						FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (new MemoryStream (e.RawData));
 					}
 				}
 
@@ -31,7 +31,16 @@ namespace FSpot {
 				marker = header.FindMarker (JpegHeader.JpegMarker.App1, name);
 				if (marker != null) {
 					int len = name.Length + 1;
-					System.Console.WriteLine (System.Text.Encoding.ASCII.GetString (marker.Data, len, marker.Data.Length - len));
+					//System.Console.WriteLine (System.Text.Encoding.ASCII.GetString (marker.Data, len, 
+					//								marker.Data.Length - len));
+					System.IO.Stream xmpstream = new System.IO.MemoryStream (marker.Data, len, 
+												 marker.Data.Length - len, false);
+
+					FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);					
+					using (System.IO.Stream outstream = System.IO.File.OpenWrite (path + ".xmp")) {
+						outstream.Write (marker.Data, len, marker.Data.Length - len);
+					}
+					       
 				}
 
 				name = "Photoshop 3.0";

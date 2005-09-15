@@ -1120,8 +1120,8 @@ namespace FSpot.Tiff {
 #if TEST_METADATA 
 					FSpot.Tiff.DirectoryEntry e = directory.Lookup (FSpot.Tiff.TagId.XMP);
 					if (e != null) {
-						//System.IO.Stream xmpstream = new MemoryStream (e.RawData);
-						System.Console.WriteLine (System.Text.Encoding.ASCII.GetString (e.RawData));
+						System.IO.Stream xmpstream = new System.IO.MemoryStream (e.RawData);
+						FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);
 					}	
 					e = directory.Lookup (FSpot.Tiff.TagId.PhotoshopPrivate);
 					if (e != null) {
