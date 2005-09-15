@@ -4,16 +4,6 @@ using System.Runtime.InteropServices;
 namespace LibGPhoto2
 {
 	[StructLayout(LayoutKind.Sequential)]
-	internal unsafe struct CameraPrivateLibrary
-	{
-	}
-	
-	[StructLayout(LayoutKind.Sequential)]
-	internal unsafe struct CameraPrivateCore
-	{
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct CameraText
 	{
 		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=(32*1024))] string text;
