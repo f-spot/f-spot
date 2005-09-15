@@ -221,7 +221,7 @@ public class JpegHeader {
 		}
 	}
 
-	/* JFIF JFXX ICC_PROFILE http://ns.adobe.com/xap/1.0/ */
+	/* JFIF JFXX ICC_PROFILE http://ns.adobe.com/xap/1.0/ Photoshop 3.0*/
 	
 	public System.Collections.ArrayList Markers {
 		get {
