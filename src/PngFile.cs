@@ -17,6 +17,10 @@ namespace FSpot.Png {
 					xmpchunk = LookupTextChunk ("XMP");
 
 				if (xmpchunk != null) {
+					using (System.IO.Stream outstream = System.IO.File.OpenWrite (Path + ".xmp")) {
+						outstream.Write (xmpchunk.TextData, 0, xmpchunk.TextData.Length);
+					}
+					
 					System.IO.Stream xmpstream = new System.IO.MemoryStream (xmpchunk.TextData);
 					FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);
 				}
@@ -81,6 +85,7 @@ namespace FSpot.Png {
 			protected string keyword;
 			protected string text;
 			protected byte [] text_data;
+			protected System.Text.Encoding encoding = Latin1;
 
 			public static System.Text.Encoding Latin1 = System.Text.Encoding.GetEncoding (28591);
 			public TextChunk (string name, byte [] data) : base (name, data) {}
@@ -111,7 +116,7 @@ namespace FSpot.Png {
 			
 			public string Text {
 				get {
-					return TextChunk.Latin1.GetString (text_data, 0, text_data.Length);
+					return encoding.GetString (text_data, 0, text_data.Length);
 				}
 			}
 		}
@@ -151,6 +156,7 @@ namespace FSpot.Png {
 			//public static string Name = "zTXt";
 
 			string Language;
+			string LocalizedKeyword;
 
 			public override void Load (byte [] data)
 			{
@@ -161,6 +167,9 @@ namespace FSpot.Png {
 				Compression = data [i++];
 				Language = GetString (ref i);
 				i++;
+				LocalizedKeyword = GetString (ref i, System.Text.Encoding.UTF8);
+				i++;
+
 				if (Compressed) {
 					text_data = Chunk.Inflate (data, i, data.Length - i);
 				} else {
@@ -170,7 +179,10 @@ namespace FSpot.Png {
 				}
 			}
 
-			public ItxtChunk (string name, byte [] data) : base (name, data) {}
+			public ItxtChunk (string name, byte [] data) : base (name, data) 
+			{
+				encoding = System.Text.Encoding.UTF8;
+			}
 		}
 
 		public class TimeChunk : Chunk {
@@ -317,7 +329,7 @@ namespace FSpot.Png {
 
 				name_table = new System.Collections.Hashtable ();
 				name_table ["iTXt"] = typeof (ItxtChunk);
-				name_table ["tXMP"] = typeof (TextChunk);
+				name_table ["tXMP"] = typeof (ItxtChunk);
 				name_table ["tEXt"] = typeof (TextChunk);
 				name_table ["zTXt"] = typeof (ZtxtChunk);
 				name_table ["tIME"] = typeof (TimeChunk);
@@ -332,14 +344,20 @@ namespace FSpot.Png {
 				Load (data);
 			}
 
-			protected string GetString  (ref int i) 
+			
+			protected string GetString  (ref int i, System.Text.Encoding enc) 
 			{
 				for (; i < data.Length; i++) {
 					if (data [i] == 0)
 						break;
 				}	
 				
-				return TextChunk.Latin1.GetString (data, 0, i);
+				return enc.GetString (data, 0, i);
+			}
+
+			protected string GetString  (ref int i) 
+			{
+				return GetString (ref i, TextChunk.Latin1);
 			}
 
 			public virtual void Load (byte [] data)
@@ -803,11 +821,11 @@ namespace FSpot.Png {
 				//System.Console.Write ("read one {0} {1}", chunk, chunk.Name);
 				chunk_list.Add (chunk);
 
-#if false //TEST_METADATA				
+#if TEST_METADATA				
 				if (chunk is TextChunk) {
 					TextChunk text = (TextChunk) chunk;
 					System.Console.Write (" Text Chunk {0} {1}", 
-							      text.Keyword, text.Text);
+							      text.Keyword, "", text.Text);
 				}
 
 				TimeChunk time = chunk as TimeChunk;
