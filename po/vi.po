@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: f-spot Gnome HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-09-08 10:18+0200\n"
-"PO-Revision-Date: 2005-09-08 20:39+0930\n"
+"PO-Revision-Date: 2005-09-16 16:04+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -215,7 +215,7 @@ msgstr "Sao chép xong tập tin."
 
 #: ../src/CameraFileSelectionDialog.cs:223
 msgid "Download Complete"
-msgstr "Tải về xong rồi."
+msgstr "Việc tải về hoàn thành."
 
 #: ../src/CameraFileSelectionDialog.cs:228
 msgid "Error transferring file"
@@ -256,7 +256,7 @@ msgstr "Gởi xong ảnh."
 
 #: ../src/CDExport.cs:73 ../src/FolderExport.cs:169
 msgid "Transfer Complete"
-msgstr "Truyền xong rồi."
+msgstr "Việc truyền hoàn thành."
 
 #: ../src/CDExport.cs:79 ../src/FolderExport.cs:174
 msgid "Error While Transferring"
@@ -327,7 +327,7 @@ msgstr "Đang tải ảnh « {0} » lên"
 
 #: ../src/FlickrExport.cs:103 ../src/GalleryExport.cs:438
 msgid "Upload Complete"
-msgstr "Tải lên xong rồi."
+msgstr "Việc tải lên hoàn thành."
 
 #: ../src/FlickrExport.cs:108
 msgid "Error Uploading To Flickr"
@@ -626,7 +626,7 @@ msgstr "Xuất vào _Flickr..."
 
 #: ../src/f-spot.glade.h:65
 msgid "Export to _Folder..."
-msgstr "Xuất vào _danh mục..."
+msgstr "Xuất vào _thư mục..."
 
 #: ../src/f-spot.glade.h:66
 msgid "Export to _Web Gallery..."
@@ -658,11 +658,11 @@ msgstr "Flickr"
 
 #: ../src/f-spot.glade.h:75
 msgid "Folder Export"
-msgstr "Xuất danh mục"
+msgstr "Xuất thư mục"
 
 #: ../src/f-spot.glade.h:76
 msgid "Folder URI:"
-msgstr "URI danh mục:"
+msgstr "URI thư mục:"
 
 #: ../src/f-spot.glade.h:77
 msgid ""
@@ -1098,7 +1098,7 @@ msgstr "(Không Tập)"
 
 #: ../src/ImportCommand.cs:27
 msgid "Select Folder"
-msgstr "Chọn danh mục"
+msgstr "Chọn thư mục"
 
 #: ../src/ImportCommand.cs:218
 msgid "(No Cameras Detected)"
@@ -1431,7 +1431,7 @@ msgid_plural ""
 "{0} images could not be rotated because they are on a read only file system "
 "or media such as a CDROM.  Please check the permissions and try again"
 msgstr[0] ""
-"Không thể xoay ảnh này vì nó nằm trong hệ thống tập tin hoặc phương tiện "
+"Không thể xoay ảnh này vì nó nằm trong hệ thống tập tin hoặc vật chứa "
 "không có khả năng đọc, như đĩa CD-ROM. Bạn hãy kiểm tra quyền truy cập nó, "
 "và thử lại."
 
