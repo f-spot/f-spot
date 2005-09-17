@@ -96,8 +96,17 @@ namespace FSpot {
 		{
 			if (System.IO.File.Exists (path) || System.IO.Directory.Exists (path))
 				Register (new FSpot.SingleView (path).Window);
-			else
-				System.Console.WriteLine ("no valid path to import from");
+			else {
+				try {
+					System.Uri uri = new System.Uri (path);
+					path = uri.LocalPath;
+					if (System.IO.File.Exists (path) || System.IO.Directory.Exists (path))
+						Register (new FSpot.SingleView (path).Window);
+				} catch (System.Exception e) {
+					System.Console.WriteLine (e.ToString ());
+					System.Console.WriteLine ("no real valid path to import from {0}", path);
+				}
+			} 
 		}
 
 		public override void Shutdown ()
