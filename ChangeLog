@@ -1,4 +1,13 @@
+2005-09-17  Larry Ewing  <lewing@novell.com>
+
+	* Makefile.am (desktop_in_files): add f-spot-view.desktop.in.
+
+	* f-spot-view.desktop.in: add a desktop file for the --view
+	command line.
+
 2005-09-16  Larry Ewing  <lewing@novell.com>
+
+	* src/Core.cs: support local file paths.
 
 	* src/PngFile.cs: update the tXMP handling and fix the iTXT loader
 	to do parsing properly.

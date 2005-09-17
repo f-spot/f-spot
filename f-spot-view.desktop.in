@@ -1,0 +1,18 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+_Name=F-Spot Photo Viewer
+_GenericName=Photo Viewer
+TryExec=f-spot
+Exec=f-spot --view %u
+Icon=f-spot-logo
+StartupNotify=false
+Terminal=false
+Type=Application
+Categories=Application;Graphics;Photograph;
+X-GNOME-Bugzilla-Bugzilla=GNOME
+X-GNOME-Bugzilla-Product=f-spot
+X-GNOME-Bugzilla-Component=General
+X-GNOME-Bugzilla-Version=0.1.2
+X-SuSE-translate=true
+MimeType=image/bmp;image/gif;image/jpeg;image/jpg;image/pjpeg;image/png;image/tiff;image/x-bmp;image/x-gray;image/x-icb;image/x-ico;image/x-png;image/x-portable-anymap;image/x-portable-bitmap;image/x-portable-graymap;image/x-portable-pixmap;image/x-psd;image/x-xbitmap;image/x-xpixmap;image/x-pcx;image/x-dcraw;
