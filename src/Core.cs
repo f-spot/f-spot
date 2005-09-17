@@ -16,7 +16,7 @@ namespace FSpot {
 
 	public class Core : CoreControl
 	{
-		MainWindow origanizer;
+		MainWindow organizer;
 		Db db;
 		System.Collections.ArrayList toplevels;
 		static DBus.Connection connection;
@@ -78,12 +78,12 @@ namespace FSpot {
 
 		public MainWindow MainWindow {
 			get {
-				if (origanizer == null) {
-					origanizer = new MainWindow (db);
-					Register (origanizer.Window);
+				if (organizer == null) {
+					organizer = new MainWindow (db);
+					Register (organizer.Window);
 				}
 				
-				return origanizer;
+				return organizer;
 			}
 		}
 			
@@ -129,6 +129,8 @@ namespace FSpot {
 				// first too.
 				System.Environment.Exit (0);
 			}
+			if (organizer.Window == sender)
+				organizer = null;
 		}
 	}
 }

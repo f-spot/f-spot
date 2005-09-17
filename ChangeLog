@@ -1,5 +1,7 @@
 2005-09-17  Larry Ewing  <lewing@novell.com>
 
+	* src/Core.cs: handle destruction on the main window properly.
+
 	* Makefile.am (desktop_in_files): add f-spot-view.desktop.in.
 
 	* f-spot-view.desktop.in: add a desktop file for the --view
