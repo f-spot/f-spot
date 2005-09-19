@@ -41,7 +41,7 @@ namespace SemWeb {
 		public RdfXmlReader(TextReader document) : this(new XmlTextReader(document)) {
 		}
 
-		public RdfXmlReader(Stream document) : this(new StreamReader(document)) {
+		public RdfXmlReader(Stream document) : this(new XmlTextReader(document)) {
 		}
 
 		public RdfXmlReader(string file) : this(GetReader(file)) {
@@ -58,19 +58,13 @@ namespace SemWeb {
 			this.storage = storage;
 									
 			while (xml.Read()) {
-				if (xml.NodeType != XmlNodeType.Element) continue;
-				
 				if (xml.NamespaceURI == NS.RDF && xml.LocalName == "RDF" ) {
 					while (xml.Read()) {
 						if (xml.NodeType == XmlNodeType.Element)
 							ParseDescription();
 					}
 					
-				} else {
-					ParseDescription();
-				
 				}
-				break;
 			}
 
 			xml.Close();
@@ -117,6 +111,8 @@ namespace SemWeb {
 			
 			string nodeID = xml.GetAttribute("nodeID", NS.RDF);
 			string about = xml.GetAttribute("about", NS.RDF);
+			//if (about == null)
+			//	about = xml.GetAttribute("about");
 			string ID = xml.GetAttribute("ID", NS.RDF);
 			if (isset(nodeID) + isset(about) + isset(ID) > 1)
 				OnError("An entity description cannot specify more than one of rdf:nodeID, rdf:about, and rdf:ID");

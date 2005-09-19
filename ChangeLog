@@ -1,5 +1,8 @@
 2005-09-19  Larry Ewing  <lewing@novell.com>
 
+	* semweb/XmlParser.cs: modify the parsing loop to keep looking for
+	the rdf element.
+
 	* configure.in: add semweb by Joshua Tauberer <tauberer@for.net>
 	to the build.  Integrate it into the automake build.  I may move
 	to using a public version later but for now I want the changes
