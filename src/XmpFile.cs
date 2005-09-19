@@ -1,12 +1,13 @@
 using SemWeb;
 
 namespace FSpot.Xmp {
-	public class XmpFile 
+	public class XmpFile : SemWeb.StatementSource
 	{
-		SemWeb.MemoryStore store = new SemWeb.MemoryStore ();
+		SemWeb.MemoryStore store;
 
 		public XmpFile (System.IO.Stream stream)
 		{
+			store = new SemWeb.MemoryStore ();
 			Load (stream);
 		}
 
@@ -16,6 +17,11 @@ namespace FSpot.Xmp {
 			Dump ();
 		}
 		
+		public void Select (SemWeb.StatementSink sink)
+		{
+			store.Select (sink);
+		}
+		
 		public void Dump ()
 		{
 			foreach (SemWeb.Statement stmt in store) {
@@ -23,12 +29,6 @@ namespace FSpot.Xmp {
 			}
 		}
 
-		/*
-		public void Build ()
-		{
-			MemoryStore query = store.Select (new Statement (null, (Entity)"http://
-		}
-		*/
 #if TEST_XMP
 		static void Main (string [] args)
 		{

@@ -115,12 +115,29 @@ namespace FSpot.Iptc {
 		DataSetID ID;
 		public string Name;
 		public string Description;
+		public string XmpName;
 		bool Mandatory;
 		bool Repeatable;
 		uint MinSize;
 		uint MaxSize;
-		Format Format;
+		public Format Format;
 		
+		public static SemWeb.NamespaceManager Namespaces;
+		public static System.Collections.Hashtable IDTable;
+
+		static DataSetInfo ()
+		{
+			Namespaces = new SemWeb.NamespaceManager ();
+			Namespaces.AddNamespace ("http://ns.adobe.com/photoshop/1.0/", "photoshop");
+			Namespaces.AddNamespace ("http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/", "Iptc4xmpCore");
+			Namespaces.AddNamespace ("http://purl.org/dc/elements/1.1/", "dc");
+			
+			IDTable = new System.Collections.Hashtable ();
+			foreach (DataSetInfo info in datasets) {
+				IDTable [info.ID] = info;
+			}
+		}
+
 		private static DataSetInfo [] datasets = {
 			new DataSetInfo (DataSetID.ModelVersion, Format.Short, "Model Version", true, false, 2, 2, 
 					 Mono.Posix.Catalog.GetString ("IPTC Information Interchange Model (IIM) Version number")),
@@ -166,12 +183,54 @@ namespace FSpot.Iptc {
 			//                       3 : [0-64]
 			
 			new DataSetInfo (DataSetID.ObjectName, Format.String, "Object Name", false, false, 4, 68,
-					 Mono.Posix.Catalog.GetString ("Object name")), // FIXME
+					 Mono.Posix.Catalog.GetString ("Object name"), "dc:title"), // FIXME
 			new DataSetInfo (DataSetID.EditStatus, Format.String, "Edit Status", false, false, 0, 64,
 					 Mono.Posix.Catalog.GetString ("Status of the objectdata according to the provider")),
 			new DataSetInfo (DataSetID.EditorialUpdate, Format.String, "Object Name", false, false, 4, 68,
 					 Mono.Posix.Catalog.GetString ("Object name")), // FIXME
 
+			new DataSetInfo (DataSetID.City, Format.String, "City", false, false, 0, 32,
+					 Mono.Posix.Catalog.GetString ("Name of the city the content is focussing on"),
+					 "photoshop:City"),
+			/*
+			new DataSetInfo (DataSetID.CopyrightNotice, Format.String, "Copyright Notice", false, false, 0, 128,
+					 Mono.Posix.Catalog.GetString ("Copyright information for"),
+					 "dc:rights[@xml:lang=\"x-default\"]"),
+			*/
+			new DataSetInfo (DataSetID.PrimaryLocationName, Format.String, "Country", false, false, 0, 64,
+					 Mono.Posix.Catalog.GetString ("Full name of the country of the focus of the content"),
+					 "photoshop:Country"),
+			new DataSetInfo (DataSetID.PrimaryLocationCode, Format.String, "ISO Country Code", false, false, 0, 3,
+					 Mono.Posix.Catalog.GetString ("Two or three letter ISO3166 code of the country of the focus of the content"),
+					 "Itpc4xmpCore:CountryCode"),
+			/*
+			new DataSetInfo (DataSetID.ByLine, Format.String, "Creator", false, false, 0, 32,
+					 Mono.Posix.Catalog.GetString ("bleh"),  // FIXME
+					 "dc:creator/*[1]"),
+			*/
+			new DataSetInfo (DataSetID.ByLineTitle, Format.String, "Creator's Jobtitle", false, true, 0, 32,
+					 Mono.Posix.Catalog.GetString ("The title of the author or creator"),
+					 "photoshop:AuthorsPosition"),
+
+			new DataSetInfo (DataSetID.WriterEditor, Format.String, "Caption/Description writer", false, true, 0, 32,
+					 Mono.Posix.Catalog.GetString ("The person involved in writing, editing or" +
+								       "correcting the objectdata or caption/abstract"),
+					 "photoshop:CaptionWriter"),
+			new DataSetInfo (DataSetID.Headline, Format.String, "Headline", false, false, 0, 256,
+					 Mono.Posix.Catalog.GetString ("Headline of the content"),
+					 "photoshop:Headline"),
+			new DataSetInfo (DataSetID.SpecialInstructions, Format.String, "Instructions", false, false, 0, 256,
+					 Mono.Posix.Catalog.GetString ("Intructions from the creator to the reciever not covered by other fields"),
+					 "photoshop:Instructions"),
+			/*
+			new DataSetInfo (DataSetID.ObjectAttributeReference, Format.String, "Intellectual genre", false, true, 4, 68,
+					 Mono.Posix.Catalog.GetString ("Intellectual genre of the object")
+					 "Iptc4xmpCore:IntellectualGenre"), // FIXME
+			*/
+			// Object Attribute number : Object Attribute Name
+			//                       3 : [0-64]
+			
+			
 			
 		};
 
@@ -185,7 +244,10 @@ namespace FSpot.Iptc {
 						Mono.Posix.Catalog.GetString ("Unkown IIM DataSet"));
 		}
 
-		protected DataSetInfo (DataSetID id, Format format, string name, bool mandatory, bool repeatable, uint min, uint max, string description)
+		protected DataSetInfo (DataSetID id, Format format, string name, bool mandatory, bool repeatable, uint min, uint max, string description) : this (id, format, name, mandatory, repeatable, min, max, description, null)
+		{ }
+
+		protected DataSetInfo (DataSetID id, Format format, string name, bool mandatory, bool repeatable, uint min, uint max, string description, string xmpname)
 		{
 			ID = id;
 			Name = name;
@@ -195,6 +257,7 @@ namespace FSpot.Iptc {
 			Repeatable = repeatable;
 			MinSize = min;
 			MaxSize = max;
+			XmpName = xmpname;
 		}
 	}
 
@@ -243,7 +306,17 @@ namespace FSpot.Iptc {
 				return (DataSetID) (RecordNumber << 8 | DataSetNumber);
 			}
 		}
-		
+
+		public string XmpPredicate {
+			get {
+				DataSetInfo info = (DataSetInfo) DataSetInfo.IDTable [this.ID];
+				if (info != null && info.XmpName != null) {
+					return DataSetInfo.Namespaces.Resolve (info.XmpName);
+				}
+				return null;
+			}
+		}
+
 		public void Save (System.IO.Stream stream)
 		{
 			stream.WriteByte (TagMarker);
@@ -260,22 +333,48 @@ namespace FSpot.Iptc {
 			}
 			stream.Write (Data, 0, Data.Length);
 		}
+
+		public string XmpObject 
+		{
+			get {
+				DataSetInfo info = (DataSetInfo) DataSetInfo.IDTable [this.ID];
+				if (info != null && info.Format == Format.String) {
+					return System.Text.Encoding.UTF8.GetString (this.Data);
+				}
+				return null;
+			}
+		}
 	}
 
-	public class IptcFile 
+	public class IptcFile : SemWeb.StatementSource
 	{
 		System.Collections.ArrayList sets = new System.Collections.ArrayList ();
+
 		
 		public IptcFile (System.IO.Stream stream)
 		{
 			Load (stream);
+		}
+
+		public void Select (SemWeb.StatementSink sink)
+		{
+			foreach (DataSet data in sets) {
+				if (data.XmpPredicate != null) {
+					sink.Add (new SemWeb.Statement ((SemWeb.Entity)"", (SemWeb.Entity)data.XmpPredicate, (SemWeb.Entity)data.XmpObject));
+				}
+			}
 		}
 		
 		public void Load (System.IO.Stream stream)
 		{
 			while (stream.Position < stream.Length) {
 				DataSet data = new DataSet ();
-				data.Load (stream);
+
+				try {
+					data.Load (stream);
+				} catch (System.Exception e) {
+					System.Console.WriteLine (e.ToString ());
+				}
 				DataSetInfo info = DataSetInfo.FindInfo (data.ID);
 				System.Console.WriteLine ("{0}:{1} - {2} {3}", data.RecordNumber, data.DataSetNumber, 
 							  data.ID.ToString (), info.Description);

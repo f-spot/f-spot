@@ -13,7 +13,8 @@ namespace FSpot {
 #if TEST_METADATA
 			using (System.IO.FileStream stream = System.IO.File.OpenRead (path)) {
 				JpegHeader header = new JpegHeader (stream);
-				
+				FSpot.MetadataStore store = new FSpot.MetadataStore ();
+
 				string name = "Exif";
 				JpegHeader.Marker marker = header.FindMarker (JpegHeader.JpegMarker.App1, name);
 				if (marker != null) {
@@ -24,6 +25,7 @@ namespace FSpot {
 					if (e != null) {
 						//System.Console.WriteLine (System.Text.Encoding.ASCII.GetString (e.RawData));
 						FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (new MemoryStream (e.RawData));
+						xmp.Select (store);
 					}
 				}
 
@@ -37,10 +39,7 @@ namespace FSpot {
 												 marker.Data.Length - len, false);
 
 					FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);					
-					using (System.IO.Stream outstream = System.IO.File.OpenWrite (path + ".xmp")) {
-						outstream.Write (marker.Data, len, marker.Data.Length - len);
-					}
-					       
+					xmp.Select (store);
 				}
 
 				name = "Photoshop 3.0";
@@ -49,12 +48,10 @@ namespace FSpot {
 					int len = name.Length + 1;
 					System.IO.Stream bimstream = new System.IO.MemoryStream (marker.Data, len, marker.Data.Length - len, false);
 					FSpot.Bim.BimFile bim = new FSpot.Bim.BimFile (bimstream);
-					FSpot.Bim.Entry e = bim.FindEntry (FSpot.Bim.EntryType.IPTCNAA);
-					if (e != null) {
-						System.IO.Stream iptcstream = new System.IO.MemoryStream (e.Data);
-					        FSpot.Iptc.IptcFile iptc = new FSpot.Iptc.IptcFile (iptcstream);
-					}				     
+					bim.Select (store);
 				}
+
+				store.Dump ();
 			}
 #endif
 		}

@@ -1,5 +1,15 @@
 2005-09-19  Larry Ewing  <lewing@novell.com>
 
+	* src/JpegFile.cs: use the metadata store.
+
+	* src/Makefile.am: add missing files.
+
+	* src/Bim.cs: make BimFile into a StatementSouce.
+
+	* src/IptcFile.cs: make IptcFile into a StatementSource.
+
+	* AUTHORS: add note about semweb to the AUTHORS file.
+
 	* semweb/XmlParser.cs: modify the parsing loop to keep looking for
 	the rdf element.
 

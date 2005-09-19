@@ -50,6 +50,7 @@ namespace FSpot.Bim {
 		AlphaIdentifiers = 0x041d,
 		URLList = 0x041e,
 		VersionInfo = 0x0421,
+		XMP = 0x0424,
 		FirstPath = 0x07d0,
 		LastPAth = 0x0bb6,
 		ClippingPathName = 0x0bb7,
@@ -86,9 +87,6 @@ namespace FSpot.Bim {
 				throw new System.Exception ("missing header");
 			
 			Type = FSpot.BitConverter.ToUInt16 (header, 4, false);
-
-			if (Type == (ushort)FSpot.Bim.EntryType.IPTCNAA)
-				System.Console.WriteLine ("found iptc data");
 
 		        int name_length = stream.ReadByte ();
 			if (name_length > 0) {
@@ -140,15 +138,37 @@ namespace FSpot.Bim {
 		}
 	}
 
-	public class BimFile
+	public class BimFile : SemWeb.StatementSource
 	{
 		System.Collections.ArrayList entries = new System.Collections.ArrayList ();
-		
+
 		public BimFile (System.IO.Stream stream)
 		{
 			Load (stream);
 		}
 		
+		public void Select (SemWeb.StatementSink sink)
+		{
+			foreach (Entry e in entries) {
+				EntryType type = (EntryType) e.Type;
+
+				switch (type) {
+				case EntryType.IPTCNAA:
+					System.IO.Stream iptcstream = new System.IO.MemoryStream (e.Data);
+					FSpot.Iptc.IptcFile iptc = new FSpot.Iptc.IptcFile (iptcstream);
+					iptc.Select (sink);
+					break;
+				case EntryType.XMP:
+					System.IO.Stream xmpstream = new System.IO.MemoryStream (e.Data);
+					FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);
+					xmp.Select (sink);
+					break;
+				default:
+					break;
+				}
+			}
+		}
+
 		public Entry FindEntry (EntryType type)
 		{
 			foreach (Entry current in entries)
