@@ -1,4 +1,4 @@
-CSC = mcs -unsafe -debug -nowarn:0169
+CSC = mcs -unsafe -debug -nowarn:0169 -d:TEST_METADATA
 
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/AsyncPixbufLoader.cs		\
@@ -49,6 +49,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/JpegUtils.cs			\
 	$(srcdir)/Cms.cs			\
 	$(srcdir)/MainWindow.cs			\
+	$(srcdir)/MetadataStore.cs		\
 	$(srcdir)/MrwFile.cs			\
 	$(srcdir)/PhotoImageView.cs		\
 	$(srcdir)/PhotoLoader.cs		\
@@ -95,10 +96,12 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/CameraSelectionDialog.cs	\
 	$(srcdir)/CameraFileSelectionDialog.cs	\
 	$(srcdir)/TagSelectionDialog.cs		\
+	$(srcdir)/XmpFile.cs			\
 	$(srcdir)/main.cs
 
 ASSEMBLIES =					\
 	-r:$(top_builddir)/libgphoto2-sharp/libgphoto2-sharp.dll   \
+	-r:$(top_builddir)/semweb/SemWeb.dll	\
 	-r:System.Data				\
 	-r:System.Web				\
 	-r:Mono.Data.SqliteClient		\
