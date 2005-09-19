@@ -4,6 +4,7 @@ SUBDIRS = 		\
 	libjpegtran	\
 	libfspot	\
 	libgphoto2-sharp \
+	semweb		\
 	po		\
 	src	
 

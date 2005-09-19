@@ -1,3 +1,14 @@
+2005-09-19  Larry Ewing  <lewing@novell.com>
+
+	* configure.in: add semweb by Joshua Tauberer <tauberer@for.net>
+	to the build.  Integrate it into the automake build.  I may move
+	to using a public version later but for now I want the changes
+	local.
+
+	* semweb/: import semweb source into f-spot.
+
+	* Makefile.am: add semweb directory to the build.
+
 2005-09-17  Larry Ewing  <lewing@novell.com>
 
 	* src/Core.cs: handle destruction on the main window properly.
