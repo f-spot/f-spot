@@ -418,7 +418,7 @@ namespace FSpot.Tiff {
 		}
 	}
 
-	public class Header {
+	public class Header : SemWeb.StatementSource {
 		public Endian endian;
 
 		private uint directory_offset;
@@ -466,6 +466,31 @@ namespace FSpot.Tiff {
 			
 			System.Console.WriteLine ("Reading First IFD");
 			Directory = new ImageDirectory (stream, directory_offset, endian); 
+		}
+		
+		public void Select (SemWeb.StatementSink sink)
+		{
+			FSpot.Tiff.DirectoryEntry e = Directory.Lookup (FSpot.Tiff.TagId.XMP);
+			if (e != null) {
+				System.IO.Stream xmpstream = new System.IO.MemoryStream (e.RawData);
+				FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);
+				xmp.Select (sink);
+			}	
+
+			e = Directory.Lookup (FSpot.Tiff.TagId.PhotoshopPrivate);
+			if (e != null) {
+				System.IO.Stream bimstream = new System.IO.MemoryStream (e.RawData);
+				FSpot.Bim.BimFile bim = new FSpot.Bim.BimFile (bimstream);
+
+				bim.Select (sink);
+			}	
+
+			e = Directory.Lookup (FSpot.Tiff.TagId.IPTCNAA);
+			if (e != null) {
+				System.IO.Stream iptcstream = new System.IO.MemoryStream (e.RawData);
+				FSpot.Iptc.IptcFile iptc = new FSpot.Iptc.IptcFile (iptcstream);
+				iptc.Select (sink);
+			}	
 		}
 
 		public string Dump ()
@@ -1118,26 +1143,9 @@ namespace FSpot.Tiff {
 				ImageDirectory directory = Header.Directory;
 				while (directory != null) {
 #if TEST_METADATA 
-					FSpot.Tiff.DirectoryEntry e = directory.Lookup (FSpot.Tiff.TagId.XMP);
-					if (e != null) {
-						System.IO.Stream xmpstream = new System.IO.MemoryStream (e.RawData);
-						FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);
-					}	
-					e = directory.Lookup (FSpot.Tiff.TagId.PhotoshopPrivate);
-					if (e != null) {
-						System.IO.Stream bimstream = new System.IO.MemoryStream (e.RawData);
-						FSpot.Bim.BimFile bim = new FSpot.Bim.BimFile (bimstream);
-						FSpot.Bim.Entry be = bim.FindEntry (FSpot.Bim.EntryType.IPTCNAA);
-						if (be != null) {
-							System.IO.Stream iptcstream = new System.IO.MemoryStream (be.Data);
-							FSpot.Iptc.IptcFile iptc = new FSpot.Iptc.IptcFile (iptcstream);
-						}				     
-					}	
-					e = directory.Lookup (FSpot.Tiff.TagId.IPTCNAA);
-					if (e != null) {
-						System.IO.Stream iptcstream = new System.IO.MemoryStream (e.RawData);
-						FSpot.Iptc.IptcFile iptc = new FSpot.Iptc.IptcFile (iptcstream);
-					}	
+					FSpot.MetadataStore store = new FSpot.MetadataStore ();
+					Select (store);
+					store.Dump ();
 #endif					
 					///directory.Dump ();
 					directory = directory.NextDirectory;
@@ -1147,6 +1155,11 @@ namespace FSpot.Tiff {
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e.ToString ());
 			}
+		}
+
+		public void Select (SemWeb.StatementSink sink)
+		{
+			Header.Select (sink);
 		}
 
 		public override System.DateTime Date

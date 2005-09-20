@@ -5,55 +5,24 @@ namespace FSpot {
 		Gdk.Pixbuf GetEmbeddedThumbnail ();
 	}
 
-	public class JpegFile : ImageFile, IThumbnailContainer {
+	public class JpegFile : ImageFile, IThumbnailContainer, SemWeb.StatementSource {
 		private Exif.ExifData exif_data;
 		
 		public JpegFile (string path) : base (path) 
 		{
 #if TEST_METADATA
+			MetadataStore store = new MetadataStore ();
+			Select (store);
+			store.Dump ();
+#endif
+		}
+
+		public void Select (SemWeb.StatementSink sink)
+		{
 			using (System.IO.FileStream stream = System.IO.File.OpenRead (path)) {
 				JpegHeader header = new JpegHeader (stream);
-				FSpot.MetadataStore store = new FSpot.MetadataStore ();
-
-				string name = "Exif";
-				JpegHeader.Marker marker = header.FindMarker (JpegHeader.JpegMarker.App1, name);
-				if (marker != null) {
-					int len = name.Length + 2;
-					System.IO.Stream exifstream = new System.IO.MemoryStream (marker.Data, len, marker.Data.Length - len, false);
-					FSpot.Tiff.Header exif = new FSpot.Tiff.Header (exifstream);
-					FSpot.Tiff.DirectoryEntry e = exif.Directory.Lookup (FSpot.Tiff.TagId.XMP);
-					if (e != null) {
-						//System.Console.WriteLine (System.Text.Encoding.ASCII.GetString (e.RawData));
-						FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (new MemoryStream (e.RawData));
-						xmp.Select (store);
-					}
-				}
-
-				name = "http://ns.adobe.com/xap/1.0/";
-				marker = header.FindMarker (JpegHeader.JpegMarker.App1, name);
-				if (marker != null) {
-					int len = name.Length + 1;
-					//System.Console.WriteLine (System.Text.Encoding.ASCII.GetString (marker.Data, len, 
-					//								marker.Data.Length - len));
-					System.IO.Stream xmpstream = new System.IO.MemoryStream (marker.Data, len, 
-												 marker.Data.Length - len, false);
-
-					FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);					
-					xmp.Select (store);
-				}
-
-				name = "Photoshop 3.0";
-				marker = header.FindMarker (JpegHeader.JpegMarker.App13, name);
-				if (marker != null) {
-					int len = name.Length + 1;
-					System.IO.Stream bimstream = new System.IO.MemoryStream (marker.Data, len, marker.Data.Length - len, false);
-					FSpot.Bim.BimFile bim = new FSpot.Bim.BimFile (bimstream);
-					bim.Select (store);
-				}
-
-				store.Dump ();
+				header.Select (sink);
 			}
-#endif
 		}
 
 		public override string Description {

@@ -3,11 +3,11 @@ using SemWeb;
 namespace FSpot.Xmp {
 	public class XmpFile : SemWeb.StatementSource
 	{
-		SemWeb.MemoryStore store;
+		MetadataStore store;
 
 		public XmpFile (System.IO.Stream stream)
 		{
-			store = new SemWeb.MemoryStore ();
+			store = new MetadataStore ();
 			Load (stream);
 		}
 
@@ -32,7 +32,8 @@ namespace FSpot.Xmp {
 #if TEST_XMP
 		static void Main (string [] args)
 		{
-			new XmpFile (System.IO.File.OpenRead (args [0]));
+			XmpFile xmp = new XmpFile (System.IO.File.OpenRead (args [0]));
+			xmp.Store.Dump ();
 #if false
 			System.IO.StreamReader stream = new System.IO.StreamReader (System.IO.File.OpenRead (args [0]));
 

@@ -1,3 +1,20 @@
+2005-09-20  Larry Ewing  <lewing@novell.com>
+
+	* src/Tiff.cs: make TiffFile a souce and make Tiff.Header a source.
+
+	* src/JpegFile.cs: make JpegFile a source, use JpegHeader as a
+	source and Tiff.Header as a source, to clean up the processing.
+
+	* src/JpegHeader.cs: make JpegHeader into a source.
+
+	* src/MetadataStore.cs: add more namespaces.
+
+	* src/XmpFile.cs: make the store into a metadata store.
+
+	* src/MetadataStore.cs: add some output processing.
+
+	* src/XmpFile.cs: make the store a metadata store.
+
 2005-09-19  JP Rosevear  <jpr@novell.com>
 
 	* f-spot-view.desktop.in: make generic name "Photo Management" and
