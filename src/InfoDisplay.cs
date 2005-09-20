@@ -115,8 +115,38 @@ namespace FSpot {
 					empty = false;
 					stream.Write ("<tr><th align=left bgcolor=\"" + ig + "\" colspan=2>" 
 						      + Mono.Posix.Catalog.GetString ("Extended Metadata") + "</th><tr>");
-					StreamSink sink = new StreamSink (source, stream, this);
-					source.Select (sink);
+					MetadataStore store = new MetadataStore ();
+					source.Select (store);
+					foreach (Statement stmt in store) {
+						if (stmt.Subject.Uri == null)
+							continue;
+
+						string predicate = stmt.Predicate.ToString ();
+						string path = System.IO.Path.GetDirectoryName (predicate);
+						string title = System.IO.Path.GetFileName (predicate);
+
+						stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
+						stream.Write (title);
+						stream.Write ("</font></td><td>");
+						
+						string s = stmt.Object.ToString ();
+						if (stmt.Object is SemWeb.Literal) {
+							s = ((SemWeb.Literal)(stmt.Object)).Value;
+						} else {
+							MemoryStore substore = store.Select (new Statement ((Entity)stmt.Object, null, null, null));
+							s = "";
+							foreach (Statement sub in substore) {
+								if (sub.Object is Literal) {
+									s += ((Literal)(sub.Object)).Value + "<br>";
+								}
+							}
+						}
+
+						if (s != null && s != "")
+							stream.Write (s);
+
+						stream.Write ("</td><tr>");
+					}
 				}
 			}
 			
