@@ -118,19 +118,19 @@ msgstr "tarkista tyyppi"
 
 #: ../libeog/image-view.c:2118
 msgid "the type of chequering to use"
-msgstr ""
+msgstr "käytettävän ruudutuksen tyyppi"
 
 #: ../libeog/image-view.c:2125
 msgid "the size of chequers to use"
-msgstr ""
+msgstr "käytettävien ruutujen koko"
 
 #: ../libeog/image-view.c:2131
 msgid "dither"
-msgstr ""
+msgstr "sekoiteväritys"
 
 #: ../libeog/image-view.c:2132
 msgid "dither type"
-msgstr ""
+msgstr "sekoitevärityksen tyyppi"
 
 #: ../libfspot/f-jpeg-utils.c:445
 msgid "File not found"
@@ -569,7 +569,7 @@ msgstr "Näytä _sivupalkki"
 
 #: ../src/f-spot.glade.h:52
 msgid "Display T_ags"
-msgstr "Näytä _nimilaput"
+msgstr "Näytä _merkinnät"
 
 #: ../src/f-spot.glade.h:53
 msgid "Display _Dates"
@@ -597,11 +597,11 @@ msgstr "Vie"
 
 #: ../src/f-spot.glade.h:59
 msgid "Export Tags and Categories"
-msgstr "Vie nimilaput ja luokat"
+msgstr "Vie merkinnät ja luokat"
 
 #: ../src/f-spot.glade.h:60
 msgid "Export tags and categories"
-msgstr "Vie nimilaput ja luokat"
+msgstr "Vie merkinnät ja luokat"
 
 #: ../src/f-spot.glade.h:61
 msgid "Export titles and comments"
@@ -823,7 +823,7 @@ msgstr "Valitse kamerasta kopioitavat tiedostot..."
 
 #: ../src/f-spot.glade.h:122
 msgid "Select Tags..."
-msgstr "Valitse _nimilaput..."
+msgstr "Valitse _merkinnät..."
 
 #: ../src/f-spot.glade.h:123
 msgid "Select _All"
@@ -835,7 +835,7 @@ msgstr "Älä valitse _mitään"
 
 #: ../src/f-spot.glade.h:125
 msgid "Select a tag..."
-msgstr "Valitse nimilappu..."
+msgstr "Valitse merkintä..."
 
 #: ../src/f-spot.glade.h:126
 msgid "Select the camera you want to transfer files from."
@@ -969,7 +969,7 @@ msgstr "_Sulje"
 
 #: ../src/f-spot.glade.h:159
 msgid "_Delete Selected Tag"
-msgstr "_Poista valittu tagi"
+msgstr "_Poista valittu merkintä"
 
 #: ../src/f-spot.glade.h:160
 msgid "_Delete Version"
@@ -989,7 +989,7 @@ msgstr "_EXIF-tiedot"
 
 #: ../src/f-spot.glade.h:164
 msgid "_Edit Selected Tag..."
-msgstr "_Muokkaa valittua tagia..."
+msgstr "_Muokkaa valittua merkintää..."
 
 #: ../src/f-spot.glade.h:165
 msgid "_Export"
@@ -1025,7 +1025,7 @@ msgstr "Poista sisällysluettelosta"
 
 #: ../src/f-spot.glade.h:173
 msgid "_Remove Tag From Selection"
-msgstr "_Poista tagi valinnasta"
+msgstr "_Poista merkintä valinnasta"
 
 #: ../src/f-spot.glade.h:174
 msgid "_Rename Version"
@@ -1049,7 +1049,7 @@ msgstr "_Pieni"
 
 #: ../src/f-spot.glade.h:179
 msgid "_Tags"
-msgstr "_Nimilaput"
+msgstr "_Merkinnät"
 
 #: ../src/f-spot.glade.h:180
 msgid "_Update Thumbnail"
@@ -1229,7 +1229,7 @@ msgid ""
 "again."
 msgstr ""
 "Jos poistat valokuvia F-SPotin luettelosta, menetetään kaikki kuviin "
-"liittyvien tagien tiedot. Valokuvat säilyvät tietokoneellasi ja voidaan "
+"liittyvien merkintöjen tiedot. Valokuvat säilyvät tietokoneellasi ja voidaan "
 "tuoda F-Spotiin uudestaan."
 
 #: ../src/MainWindow.cs:1557
@@ -1240,18 +1240,18 @@ msgstr "_Poista luettelosta"
 #, csharp-format
 msgid "Delete the selected tag?"
 msgid_plural "Delete the {0} selected tags?"
-msgstr[0] "Poista valittu tagi?"
-msgstr[1] "Poista {0} valittua tagia?"
+msgstr[0] "Poista valittu merkintä?"
+msgstr[1] "Poista {0} valittua merkintää?"
 
 #: ../src/MainWindow.cs:1586
 msgid "If you delete a tag, all associations with photos are lost."
-msgstr "Jos poistat tagin, menetetään kaikki assosiaatiot valukuviin."
+msgstr "Jos poistat merkinnän, menetetään kaikki assosiaatiot valokuviin."
 
 #: ../src/MainWindow.cs:1587
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
-msgstr[0] "_Poista tagi"
-msgstr[1] "_Poista tagit"
+msgstr[0] "_Poista merkintä"
+msgstr[1] "_Poista merkinnät"
 
 #: ../src/PhotoPopup.cs:30
 msgid "Copy Image Location"
@@ -1297,7 +1297,7 @@ msgstr "Alkuperäinen"
 #. items insensitve
 #: ../src/PhotoTagMenu.cs:72
 msgid "(No Tags)"
-msgstr "(Ei nimilappuja)"
+msgstr "(Ei merkintöjä)"
 
 #: ../src/PhotoVersionCommands.cs:54
 msgid "Create New Version"
@@ -1488,11 +1488,11 @@ msgstr "Tämä nimi on jo käytössä"
 
 #: ../src/TagCommands.cs:129 ../src/TagPopup.cs:20
 msgid "Create New Tag"
-msgstr "Luo uusi tagi"
+msgstr "Luo uusi merkintä"
 
 #: ../src/TagCommands.cs:130
 msgid "Name of new tag:"
-msgstr "Uuden tagin nimi:"
+msgstr "Uuden merkinnän nimi:"
 
 #: ../src/TagCommands.cs:133 ../src/TagPopup.cs:22
 msgid "Create New Category"
@@ -1512,7 +1512,7 @@ msgstr "Luokan nimi:"
 
 #: ../src/TagCommands.cs:294 ../src/TagPopup.cs:27
 msgid "Edit Tag"
-msgstr "Muokkaa tagia"
+msgstr "Muokkaa merkintää"
 
 #: ../src/TagCommands.cs:382
 #, csharp-format
@@ -1527,19 +1527,19 @@ msgstr "Muokkaa luokan {0} kuvaketta"
 #: ../src/TagCommands.cs:411
 #, csharp-format
 msgid "Edit icon for tag {0}"
-msgstr "Muokkaa tagin {0} kuvaketta"
+msgstr "Muokkaa merkinnän {0} kuvaketta"
 
 #: ../src/TagPopup.cs:30
 msgid "Delete Tag"
-msgstr "Poista tagi"
+msgstr "Poista merkintä"
 
 #: ../src/TagPopup.cs:35
 msgid "Attach Tag To Selection"
-msgstr "Liitä tagi valintaan"
+msgstr "Liitä merkintä valintaan"
 
 #: ../src/TagPopup.cs:38
 msgid "Remove Tag From Selection"
-msgstr "Poista tagi valinnasta"
+msgstr "Poista merkintä valinnasta"
 
 #: ../src/Unix.cs:37
 msgid "Unable to create temporary file"
