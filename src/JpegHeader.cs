@@ -1,4 +1,4 @@
-public class JpegHeader {
+public class JpegHeader : SemWeb.StatementSource {
 	public enum JpegMarker {
 		Tem = 0x01,
 		Rst0 = 0xd0,  // RstN used for resync, ignore
@@ -194,6 +194,40 @@ public class JpegHeader {
 		return null;
 	}
 	
+	public void Select (SemWeb.StatementSink sink)
+	{
+		string name = "Exif";
+		Marker marker = FindMarker (JpegHeader.JpegMarker.App1, name);
+		if (marker != null) {
+			int len = name.Length + 2;
+			System.IO.Stream exifstream = new System.IO.MemoryStream (marker.Data, len, marker.Data.Length - len, false);
+			FSpot.Tiff.Header exif = new FSpot.Tiff.Header (exifstream);
+			exif.Select (sink);
+		}
+		
+		name = "http://ns.adobe.com/xap/1.0/";
+		marker = FindMarker (JpegHeader.JpegMarker.App1, name);
+		if (marker != null) {
+			int len = name.Length + 1;
+			//System.Console.WriteLine (System.Text.Encoding.ASCII.GetString (marker.Data, len, 
+			//								marker.Data.Length - len));
+			System.IO.Stream xmpstream = new System.IO.MemoryStream (marker.Data, len, 
+										 marker.Data.Length - len, false);
+			
+			FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);					
+			xmp.Select (sink);
+		}
+		
+		name = "Photoshop 3.0";
+		marker = FindMarker (JpegHeader.JpegMarker.App13, name);
+		if (marker != null) {
+			int len = name.Length + 1;
+			System.IO.Stream bimstream = new System.IO.MemoryStream (marker.Data, len, marker.Data.Length - len, false);
+			FSpot.Bim.BimFile bim = new FSpot.Bim.BimFile (bimstream);
+					bim.Select (sink);
+		}
+	}
+
 	public Exif.ExifData Exif {
 		get {
 			Marker m = FindMarker (JpegMarker.App1, "Exif");
