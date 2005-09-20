@@ -1130,7 +1130,7 @@ namespace FSpot.Tiff {
 	}
 
 
-	public class TiffFile : ImageFile {
+	public class TiffFile : ImageFile, SemWeb.StatementSource {
 		public Header Header;
 
 		public TiffFile (string path) : base (path)

@@ -1,5 +1,9 @@
 2005-09-20  Larry Ewing  <lewing@novell.com>
 
+	* src/Tiff.cs: make TiffFile a source.
+
+	* src/InfoDisplay.cs: start working on the rdf display.
+
 	* src/Tiff.cs: make TiffFile a souce and make Tiff.Header a source.
 
 	* src/JpegFile.cs: make JpegFile a source, use JpegHeader as a

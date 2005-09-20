@@ -1,4 +1,5 @@
 using System;
+using SemWeb;
 
 namespace FSpot {
 	public class InfoDisplay : Gtk.HTML {
@@ -34,7 +35,7 @@ namespace FSpot {
 			this.Update ();
 		}
 		
-		private string Color (Gdk.Color color)
+		private static string Color (Gdk.Color color)
 		{
 			Byte r = (byte)(color.Red / 256);
 			Byte b = (byte)(color.Blue / 256);
@@ -64,9 +65,10 @@ namespace FSpot {
 			string fg = Color (this.Style.Foreground (Gtk.StateType.Active));
 			string ig = Color (this.Style.Base (Gtk.StateType.Active));
 
-			int i = 0;
+			stream.Write ("<table width=100% cellpadding=5 cellspacing=0>");
+			bool empty = true;
+
 			if (exif_info != null) {
-				bool empty = true;
 				foreach (Exif.ExifContent content in exif_info.GetContents ()) {
 					Exif.ExifEntry [] entries = content.GetEntries ();
 					if (entries.Length > 0) {
@@ -74,10 +76,11 @@ namespace FSpot {
 						break;
 					}
 				}
-				
-				stream.Write ("<table width=100% cellpadding=5 cellspacing=0>");
+
 				if (exif_info.Data.Length > 0)
 					stream.Write ("<tr><td colspan=2 align=\"center\" bgcolor=\"" + ig + "\"><img center src=\"exif:thumbnail\"></td></tr>");
+
+				int i = 0;
 				if (!empty) {
 					foreach (Exif.ExifContent content in exif_info.GetContents ()) {
 						Exif.ExifEntry [] entries = content.GetEntries ();
@@ -101,18 +104,80 @@ namespace FSpot {
 							stream.Write (s);
 							stream.Write ("</td><tr>");
 						}
-						
 					}
-				} else {
-					stream.Write ("<table width=100% cellspacing=10 cellpadding=5 >");
-					string msg = String.Format ("<tr><td valign=top align=center bgcolor=\"{0}\">" 
-								    + "<b>{1}</b></td></tr>", ig,
-								    Mono.Posix.Catalog.GetString ("No EXIF info available"));
-					stream.Write (msg);
-					stream.Write ("</table>");
 				}
-				End (stream, Gtk.HTMLStreamStatus.Ok);
 			}
+
+			if (photo != null) {
+				ImageFile img = ImageFile.Create (photo.DefaultVersionPath);
+				if (img is SemWeb.StatementSource) {
+					StatementSource source = (StatementSource)img;
+					empty = false;
+					stream.Write ("<tr><th align=left bgcolor=\"" + ig + "\" colspan=2>" 
+						      + Mono.Posix.Catalog.GetString ("Extended Metadata") + "</th><tr>");
+					StreamSink sink = new StreamSink (source, stream, this);
+					source.Select (sink);
+				}
+			}
+			
+			if (empty) {
+				string msg = String.Format ("<tr><td valign=top align=center bgcolor=\"{0}\">" 
+							    + "<b>{1}</b></td></tr>", ig,
+							    Mono.Posix.Catalog.GetString ("No EXIF info available"));
+				stream.Write (msg);
+			}
+
+			stream.Write ("</table>");
+			End (stream, Gtk.HTMLStreamStatus.Ok);
+		}
+
+		private class StreamSink : SemWeb.StatementSink
+		{
+			Gtk.HTMLStream stream;
+			SemWeb.StatementSource source;
+			InfoDisplay info;
+
+			public StreamSink (SemWeb.StatementSource source, Gtk.HTMLStream stream, InfoDisplay info)
+			{
+				this.stream = stream;
+				this.info = info;
+				this.source = source;
+			}
+
+			public bool Add (SemWeb.Statement stmt)
+			{
+				string predicate = stmt.Predicate.ToString ();
+				string path = System.IO.Path.GetDirectoryName (predicate);
+				string title = System.IO.Path.GetFileName (predicate);
+				string bg = InfoDisplay.Color (info.Style.Background (Gtk.StateType.Active));
+				string fg = InfoDisplay.Color (info.Style.Foreground (Gtk.StateType.Active));
+
+				//if (MetadataStore.Namespaces.GetPrefix (path) != null) {
+				if (stmt.Object is Literal) {
+					stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
+					stream.Write (title);
+					stream.Write ("</font></td><td>");
+
+					string s = stmt.Object.ToString ();
+					if (stmt.Object is SemWeb.Literal) {
+						s = ((SemWeb.Literal)(stmt.Object)).Value;
+					} 
+					/*
+					else {
+						MemoryStore store = source.Select (stmt.Invert (), new SelectPartialFilter (true, false, false, false));
+						s = "";
+						foreach (Statement sub in store) {
+							s += sub.Object.ToString () + "/n";
+						}
+					}
+					*/
+					if (s != null && s != "")
+						stream.Write (s);
+					stream.Write ("</td><tr>");
+				}
+				return true;
+			}
+
 		}
 	}
 }
