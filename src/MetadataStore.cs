@@ -43,6 +43,32 @@ namespace FSpot {
 			}
 		}
 
+		public static void AddLiteral (StatementSink sink, string predicate, string type, Literal value)
+		{
+			Entity empty = new Entity (null);
+			Statement top = new Statement ("", (Entity)MetadataStore.Namespaces.Resolve (predicate), empty);
+			Statement desc = new Statement (empty, 
+							(Entity)MetadataStore.Namespaces.Resolve ("rdf:type"), 
+							(Entity)MetadataStore.Namespaces.Resolve (type));
+			sink.Add (desc);
+			Statement literal = new Statement (empty,
+							   (Entity)MetadataStore.Namespaces.Resolve ("rdf:li"),
+							   value);
+			sink.Add (literal);
+			sink.Add (top);
+		}
+
+		public static void AddLiteral (StatementSink sink, string predicate, string value)
+		{
+			Statement stmt = new Statement ((Entity)"", 
+							(Entity)MetadataStore.Namespaces.Resolve (predicate), 
+							new Literal (value));
+			sink.Add (stmt);
+		}
+
+
+		
+
 		private class StatementWriter : StatementSink 
 		{
 			string name;

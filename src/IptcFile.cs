@@ -1,3 +1,5 @@
+using SemWeb;
+
 namespace FSpot.Iptc {
 	public enum Format
 	{
@@ -192,26 +194,21 @@ namespace FSpot.Iptc {
 			new DataSetInfo (DataSetID.City, Format.String, "City", false, false, 0, 32,
 					 Mono.Posix.Catalog.GetString ("Name of the city the content is focussing on"),
 					 "photoshop:City"),
-			/*
 			new DataSetInfo (DataSetID.CopyrightNotice, Format.String, "Copyright Notice", false, false, 0, 128,
 					 Mono.Posix.Catalog.GetString ("Copyright information for"),
-					 "dc:rights[@xml:lang=\"x-default\"]"),
-			*/
+					 "dc:rights"),
 			new DataSetInfo (DataSetID.PrimaryLocationName, Format.String, "Country", false, false, 0, 64,
 					 Mono.Posix.Catalog.GetString ("Full name of the country of the focus of the content"),
 					 "photoshop:Country"),
 			new DataSetInfo (DataSetID.PrimaryLocationCode, Format.String, "ISO Country Code", false, false, 0, 3,
 					 Mono.Posix.Catalog.GetString ("Two or three letter ISO3166 code of the country of the focus of the content"),
 					 "Itpc4xmpCore:CountryCode"),
-			/*
 			new DataSetInfo (DataSetID.ByLine, Format.String, "Creator", false, false, 0, 32,
 					 Mono.Posix.Catalog.GetString ("bleh"),  // FIXME
-					 "dc:creator/*[1]"),
-			*/
+					 "dc:creator"),
 			new DataSetInfo (DataSetID.ByLineTitle, Format.String, "Creator's Jobtitle", false, true, 0, 32,
 					 Mono.Posix.Catalog.GetString ("The title of the author or creator"),
 					 "photoshop:AuthorsPosition"),
-
 			new DataSetInfo (DataSetID.WriterEditor, Format.String, "Caption/Description writer", false, true, 0, 32,
 					 Mono.Posix.Catalog.GetString ("The person involved in writing, editing or" +
 								       "correcting the objectdata or caption/abstract"),
@@ -222,11 +219,9 @@ namespace FSpot.Iptc {
 			new DataSetInfo (DataSetID.SpecialInstructions, Format.String, "Instructions", false, false, 0, 256,
 					 Mono.Posix.Catalog.GetString ("Intructions from the creator to the reciever not covered by other fields"),
 					 "photoshop:Instructions"),
-			/*
 			new DataSetInfo (DataSetID.ObjectAttributeReference, Format.String, "Intellectual genre", false, true, 4, 68,
-					 Mono.Posix.Catalog.GetString ("Intellectual genre of the object")
-					 "Iptc4xmpCore:IntellectualGenre"), // FIXME
-			*/
+					 Mono.Posix.Catalog.GetString ("Intellectual genre of the object"),
+					 "Iptc4xmpCore:IntellectualGenre"),
 			// Object Attribute number : Object Attribute Name
 			//                       3 : [0-64]
 			
@@ -338,9 +333,9 @@ namespace FSpot.Iptc {
 		{
 			get {
 				DataSetInfo info = (DataSetInfo) DataSetInfo.IDTable [this.ID];
-				if (info != null && info.Format == Format.String) {
+				//if (info != null && info.Format == Format.String) {
 					return System.Text.Encoding.UTF8.GetString (this.Data);
-				}
+					//}
 				return null;
 			}
 		}
@@ -358,11 +353,41 @@ namespace FSpot.Iptc {
 
 		public void Select (SemWeb.StatementSink sink)
 		{
+			Entity keywords = null;
+
 			foreach (DataSet data in sets) {
-				if (data.XmpPredicate != null) {
-					sink.Add (new SemWeb.Statement ((SemWeb.Entity)"", 
-									(SemWeb.Entity)data.XmpPredicate, 
-									new SemWeb.Literal (data.XmpObject)));
+				switch (data.ID) {
+				case DataSetID.CopyrightNotice:
+					MetadataStore.AddLiteral (sink, "dc:rights", "rdf:Alt", new Literal (data.XmpObject, "x-default", null));
+					break;
+				case DataSetID.ByLine:
+					MetadataStore.AddLiteral (sink, "dc:creator", "rdf:Seq", new Literal (data.XmpObject, "x-default", null));
+					break;
+				case DataSetID.CaptionAbstract:
+					MetadataStore.AddLiteral (sink, "dc:description", "rdf:Alt", new Literal (data.XmpObject, "x-default", null));
+					break;
+				case DataSetID.ObjectName:
+					MetadataStore.AddLiteral (sink, "dc:title", "rdf:Alt", new Literal (data.XmpObject, "x-default", null));
+					break;
+				case DataSetID.Keywords:
+					if (keywords == null) {
+						keywords = new Entity (null);
+						sink.Add (new Statement ((Entity)"", MetadataStore.Namespaces.Resolve ("dc:subject"), keywords)); 
+						sink.Add (new Statement (keywords, 
+									 (Entity)MetadataStore.Namespaces.Resolve ("rdf:type"),
+									 (Entity)MetadataStore.Namespaces.Resolve ("rdf:Bag")));
+					}
+					sink.Add (new Statement (keywords, 
+								 MetadataStore.Namespaces.Resolve ("rdf:li"), 
+								 new Literal (data.XmpObject, "x-default", null)));
+					break;
+				default:
+					if (data.XmpPredicate != null) {
+						sink.Add (new Statement ((Entity)"", 
+									 (Entity)data.XmpPredicate, 
+									 new Literal (data.XmpObject)));
+					}
+					break;
 				}
 			}
 		}
@@ -371,7 +396,7 @@ namespace FSpot.Iptc {
 		{
 			while (stream.Position < stream.Length) {
 				DataSet data = new DataSet ();
-
+				
 				try {
 					data.Load (stream);
 				} catch (System.Exception e) {

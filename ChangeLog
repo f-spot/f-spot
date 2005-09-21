@@ -1,5 +1,22 @@
 2005-09-21  Larry Ewing  <lewing@novell.com>
 
+	* src/IptcFile.cs: convert many more of the items to rdf, do title
+	correctly.
+
+	* src/PngFile.cs: use the metadata store methods parse more of the
+	chunks.
+
+	* src/MetadataStore.cs: move the Add methods here.
+
+	* src/IptcFile.cs: parse keywords and other more complex datatypes.
+
+	* src/PngFile.cs: parse dc:title dc:creator and dc:description
+	from the png text chunks.
+
+	* src/MetadataStore.cs: add namespace.
+
+	* src/InfoDisplay.cs: tweaks.
+
 	* src/f-spot.glade: change the menu entry name.
 
 	* src/MainWindow.cs: change the dialog name.

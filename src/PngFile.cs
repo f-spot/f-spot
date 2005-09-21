@@ -11,7 +11,7 @@ namespace FSpot.Png {
 		}
 
 		/**
-		   Title 	Short (one line) title or caption for image
+		   Title 	Short (one line) title or caption for image 
 		   Author 	Name of image's creator
 		   Description 	Description of image (possibly long)
 		   Copyright 	Copyright notice
@@ -28,87 +28,51 @@ namespace FSpot.Png {
 		*/
 		public void Select (SemWeb.StatementSink sink)
 		{
-			// FIXME we should avoid the coversion to and from a string here
-			// and make the stream from the deflated data.
-			TextChunk xmpchunk = LookupTextChunk ("XML:com.adobe.xmp");
-			if (xmpchunk == null)
-				xmpchunk = LookupTextChunk ("XMP");
-			
-			if (xmpchunk != null) {
-				System.IO.Stream xmpstream = new System.IO.MemoryStream (xmpchunk.TextData);
-				FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);
-				xmp.Select (sink);
-			}
-
-			string description = LookupText ("Description");
-			if (description != null) {
-				SinkType (new Literal (description, "x-default", null), "dc:description", "rdf:Alt", sink);
-			}
-
-			string title = LookupText ("Title");
-			if (title != null) {
-				SinkType (new Literal (title, "x-description", null), "dc:title", "rdf:Alt", sink);
-			}
-			
-			string author = LookupText ("Author");
-			if (author != null) {
-				SinkType (new Literal (author), "dc:creator", "rdf:Seq", sink);
-			}
-
-			SinkLiteral ("Comment", "exif:UserComment", sink);
-			SinkLiteral ("Software", "xmp:CreatorTool", sink);
 			foreach (Chunk c in Chunks) {
 				if (c is TimeChunk) {
 					TimeChunk tc = c as TimeChunk;
-					string date = tc.Time.ToString ("yyyy-MM-ddThh:mm:ss");
-					SinkLiteralValue (date, "xmp:ModifyDate", sink);
+
+					MetadataStore.AddLiteral (sink, "xmp:ModifyDate", tc.Time.ToString ("yyyy-MM-ddThh:mm:ss"));
+				} else if (c is TextChunk) {
+					TextChunk text = c as TextChunk;
+
+					switch (text.Keyword) {
+					case "XMP":
+					case "XML:com.adobe.xmp":
+						System.IO.Stream xmpstream = new System.IO.MemoryStream (text.TextData);
+						FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);
+						xmp.Select (sink);
+						break;
+					case "Comment":
+						MetadataStore.AddLiteral (sink, "exif:UserComment", text.Text);
+						break;
+					case "Software":
+						MetadataStore.AddLiteral (sink, "xmp:CreatorTool", text.Text);
+						break;
+					case "Title":
+						MetadataStore.AddLiteral (sink, "dc:title", "rdf:Alt", new Literal (text.Text, "x-default", null));
+						break;
+					case "Author":
+						MetadataStore.AddLiteral (sink, "dc:creator", "rdf:Seq", new Literal (text.Text));
+						break;
+					case "Copyright":
+						MetadataStore.AddLiteral (sink, "dc:rights", "rdf:Alt", new Literal (text.Text, "x-default", null));
+						break;
+					case "Description":
+						MetadataStore.AddLiteral (sink, "dc:description", "rdf:Alt", new Literal (text.Text, "x-default", null));
+						break;
+					case "Creation Time":
+						try {
+							System.DateTime time = System.DateTime.Parse (text.Text);
+							MetadataStore.AddLiteral (sink, "xmp:CreateDate", time.ToString ("yyyy-MM-ddThh:mm:ss"));
+						} catch (System.Exception e) {
+							System.Console.WriteLine (e.ToString ());
+						}
+						break;
+					}
 				}
 			}
-			
 		}
-		
-		public void SinkLiteralValue (string value, string predicate, StatementSink sink)
-		{
-			Statement stmt = new Statement ((Entity)"", 
-							(Entity)MetadataStore.Namespaces.Resolve (predicate), 
-							new Literal (value));
-			sink.Add (stmt);
-		}
-
-		public void SinkType (Literal value, string predicate, string type, StatementSink sink)
-		{
-			Entity empty = new Entity (null);
-			Statement top = new Statement ("", (Entity)MetadataStore.Namespaces.Resolve (predicate), empty);
-			Statement desc = new Statement (empty, 
-							(Entity)MetadataStore.Namespaces.Resolve ("rdf:type"), 
-							(Entity)MetadataStore.Namespaces.Resolve (type));
-			sink.Add (desc);
-			Statement literal = new Statement (empty,
-							   (Entity)MetadataStore.Namespaces.Resolve ("rdf:li"),
-							   value);
-			sink.Add (literal);
-			sink.Add (top);
-		}
-
-		public void SinkLiteral (string keyword, string predicate, StatementSink sink)
-		{
-			string value = LookupText (keyword);
-			if (value != null)
-				SinkLiteralValue (value, predicate, sink);
-		}
-
-		/*
-		public void SinkAltText (string keyword, string predicate, StatementSink sink)
-		{
-			string value = LookupText (keyword);
-			if (value != null) {
-				Statement first = new Statement (
-				Statement top = new Statement((Entity)""
-							      (Entity)MetadataStore.Namespaces.Resolve (predicate),
-							      first.Subject);
-			}
-		}
-		*/
 
 		public System.Collections.ArrayList Chunks {
 			get {
