@@ -13,8 +13,12 @@ namespace FSpot.Xmp {
 
 		public void Load (System.IO.Stream stream)
 		{
-			store.Import (new SemWeb.RdfXmlReader (stream));
-			Dump ();
+			try {
+				store.Import (new SemWeb.RdfXmlReader (stream));
+				Dump ();
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e.ToString ());
+			}
 		}
 		
 		public void Select (SemWeb.StatementSink sink)

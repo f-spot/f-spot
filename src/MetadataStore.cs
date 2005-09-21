@@ -19,6 +19,7 @@ namespace FSpot {
 			Namespaces.AddNamespace ("http://ns.adobe.com/xap/1.0/bj/", "xmpBJ");
 			Namespaces.AddNamespace ("http://ns.adobe.com/xap/1.0/mm/", "xmpMM");
 			Namespaces.AddNamespace ("http://ns.adobe.com/exif/1.0/", "exif");
+			Namespaces.AddNamespace ("http://ns.adobe.com/tiff/1.0/", "tiff");
 		}
 		
 		public void Dump ()

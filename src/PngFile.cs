@@ -1,31 +1,13 @@
 using ICSharpCode.SharpZipLib.Zip.Compression;
+using SemWeb;
 
 namespace FSpot.Png {
-	public class PngFile : ImageFile {
+	public class PngFile : ImageFile, SemWeb.StatementSource {
 		System.Collections.ArrayList chunk_list;
 		
 		public PngFile (string path) : base (path)
 		{
 			this.path = path;
-			using (System.IO.Stream input = System.IO.File.OpenRead (this.Path)) {
-				Load (input);
-#if TEST_METADATA
-				// FIXME we should avoid the coversion to and from a string here
-				// and make the stream from the deflated data.
-			        TextChunk xmpchunk = LookupTextChunk ("iTXt:XML:com.adobe.xmp");
-				if (xmpchunk == null)
-					xmpchunk = LookupTextChunk ("XMP");
-
-				if (xmpchunk != null) {
-					using (System.IO.Stream outstream = System.IO.File.OpenWrite (Path + ".xmp")) {
-						outstream.Write (xmpchunk.TextData, 0, xmpchunk.TextData.Length);
-					}
-					
-					System.IO.Stream xmpstream = new System.IO.MemoryStream (xmpchunk.TextData);
-					FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);
-				}
-#endif
-			}
 		}
 
 		/**
@@ -44,7 +26,86 @@ namespace FSpot.Png {
 
 		   Other keywords may be defined for other purposes. Keywords of general interest can be registered with th
 		*/
-		
+
+		public void Select (SemWeb.StatementSink sink)
+		{
+			// FIXME we should avoid the coversion to and from a string here
+			// and make the stream from the deflated data.
+			TextChunk xmpchunk = LookupTextChunk ("iTXt:XML:com.adobe.xmp");
+			if (xmpchunk == null)
+				xmpchunk = LookupTextChunk ("XMP");
+			
+			if (xmpchunk != null) {
+				System.IO.Stream xmpstream = new System.IO.MemoryStream (xmpchunk.TextData);
+				FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);
+				xmp.Select (sink);
+			}
+
+			/*
+			  FIXME these values are definted as alternate
+			
+			string description = LookupText ("Description");
+			if (description != null) {
+				// FIXME alt type
+				Statement stmt = new Alt ((Entity)"", (Entity)"dc:description", (Entity)description);
+				sink.Add (stmt);
+			}
+
+			string title = LookupText ("title");
+			if (title != null) {
+			        // FIXME alt type
+				Statement stmt = new Alt ((Entity)"", (Entity)"dc:title", (Entity)title);
+			}
+
+			string author = LookupText ("Author");
+			if (description != null) {
+				// FIXME seq type
+				Statement stmt = new Seq ((Entity)"", (Entity)"dc:creator", (Entity)author);
+				sink.Add (stmt);
+			}
+			*/
+
+			SinkLiteral ("Comment", "exif:UserComment", sink);
+			SinkLiteral ("Software", "xmp:CreatorTool", sink);
+
+		}
+
+		public void SinkLiteral (string keyword, string predicate, StatementSink sink)
+		{
+			string value = LookupText (keyword);
+			if (value != null) {
+				Statement stmt = new Statement ((Entity)"", 
+								(Entity)MetadataStore.Namespaces.Resolve (predicate), 
+								new Literal (value));
+				sink.Add (stmt);
+			}
+		}
+
+		/*
+		public void SinkAltText (string keyword, string predicate, StatementSink sink)
+		{
+			string value = LookupText (keyword);
+			if (value != null) {
+				Statement first = new Statement (
+				Statement top = new Statement((Entity)""
+							      (Entity)MetadataStore.Namespaces.Resolve (predicate),
+							      first.Subject);
+			}
+		}
+		*/
+
+		public System.Collections.ArrayList Chunks {
+			get {
+				if (chunk_list == null) {
+					using (System.IO.Stream input = System.IO.File.OpenRead (this.Path)) {
+						Load (input);
+					}
+				}
+				
+				return chunk_list;
+			}
+		}
+
 		public class ZtxtChunk : TextChunk {
 			//public static string Name = "zTXt";
 
@@ -699,7 +760,7 @@ namespace FSpot.Png {
 			Chunk palette = null;
 			Chunk transparent = null;
 
-			foreach (Chunk chunk in chunk_list) {
+			foreach (Chunk chunk in Chunks) {
 				if (chunk.Name == "IDAT")
 					ci.Add (chunk);
 				else if (chunk.Name == "PLTE") 
@@ -708,7 +769,7 @@ namespace FSpot.Png {
 					transparent = chunk;
 			}
 
-			IhdrChunk ihdr = (IhdrChunk) chunk_list [0];
+			IhdrChunk ihdr = (IhdrChunk) Chunks [0];
 			System.Console.WriteLine ("Attempting to to inflate image {0}.{1}({2}, {3})", ihdr.Color, ihdr.Depth, ihdr.Width, ihdr.Height);
 			ScanlineDecoder decoder = new ScanlineDecoder (ci, ihdr.GetScanlineLength (0), ihdr.Height);
 			decoder.Fill ();
@@ -850,7 +911,7 @@ namespace FSpot.Png {
 
 		public TextChunk LookupTextChunk (string keyword)
 		{
-			foreach (Chunk chunk in chunk_list) {
+			foreach (Chunk chunk in Chunks) {
 				TextChunk text = chunk as TextChunk;
 				if (text != null && text.Keyword == keyword)
 					return text;
@@ -875,7 +936,7 @@ namespace FSpot.Png {
 				// FIXME: we should first try parsing the
 				// LookupText ("Creation Time") as a valid date
 
-				foreach (Chunk chunk in chunk_list) {
+				foreach (Chunk chunk in Chunks) {
 					TimeChunk time = chunk as TimeChunk;
 					if (time != null)
 						return time.Time.ToUniversalTime ();
