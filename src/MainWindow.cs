@@ -1013,7 +1013,7 @@ public class MainWindow {
 		}
 
 		info_display = new FSpot.InfoDisplay ();
-		info_display_window = new Gtk.Dialog ("EXIF Data", main_window, 
+		info_display_window = new Gtk.Dialog ("Metadata Browser", main_window, 
 						      Gtk.DialogFlags.NoSeparator | Gtk.DialogFlags.DestroyWithParent);
 		info_display_window.SetDefaultSize (400, 400);
 		Gtk.ScrolledWindow scroll = new ScrolledWindow ();
