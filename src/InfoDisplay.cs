@@ -57,6 +57,14 @@ namespace FSpot {
 			} 
 		}
 
+		private static string Escape (string value)
+		{
+			value = value.Replace ("&", "&amp;");
+			value = value.Replace (">", "&gt;");
+			value = value.Replace ("<", "&lt;");
+			return value;
+		}
+
 		private void Update ()
 		{
 			Gtk.HTMLStream stream = this.Begin (null, "text/html; charset=utf-8", Gtk.HTMLBeginFlags.Scroll);
@@ -112,40 +120,42 @@ namespace FSpot {
 				ImageFile img = ImageFile.Create (photo.DefaultVersionPath);
 				if (img is SemWeb.StatementSource) {
 					StatementSource source = (StatementSource)img;
-					empty = false;
-					stream.Write ("<tr><th align=left bgcolor=\"" + ig + "\" colspan=2>" 
-						      + Mono.Posix.Catalog.GetString ("Extended Metadata") + "</th><tr>");
 					MetadataStore store = new MetadataStore ();
 					source.Select (store);
-					foreach (Statement stmt in store) {
-						if (stmt.Subject.Uri == null)
-							continue;
 
-						string predicate = stmt.Predicate.ToString ();
-						string path = System.IO.Path.GetDirectoryName (predicate);
-						string title = System.IO.Path.GetFileName (predicate);
+					if (store.StatementCount > 0) {
+						empty = false;
+						stream.Write ("<tr><th align=left bgcolor=\"" + ig + "\" colspan=2>" 
+							      + Mono.Posix.Catalog.GetString ("Extended Metadata") + "</th><tr>");
 
-						stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
-						stream.Write (title);
-						stream.Write ("</font></td><td>");
-						
-						string s = stmt.Object.ToString ();
-						if (stmt.Object is SemWeb.Literal) {
-							s = ((SemWeb.Literal)(stmt.Object)).Value;
-						} else {
-							MemoryStore substore = store.Select (new Statement ((Entity)stmt.Object, null, null, null));
-							s = "";
-							foreach (Statement sub in substore) {
-								if (sub.Object is Literal) {
-									s += ((Literal)(sub.Object)).Value + "<br>";
-								}
+						foreach (Statement stmt in store) {
+							
+							// Skip anonymous subjects because they are
+							// probably part of a collection
+							if (stmt.Subject.Uri == null) 
+								continue;
+							
+							string predicate = stmt.Predicate.ToString ();
+							string path = System.IO.Path.GetDirectoryName (predicate);
+							string title = System.IO.Path.GetFileName (predicate);
+							
+							stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
+							stream.Write (title);
+							stream.Write ("</font></td><td>");
+							
+							string s = "";
+							if (stmt.Object is SemWeb.Literal) {
+								s = Escape (((SemWeb.Literal)(stmt.Object)).Value);
+							} else {
+								MemoryStore substore = store.Select (new Statement ((Entity)stmt.Object, null, null, null));
+								WriteCollection (substore, stream);
 							}
+							
+							if (s != null && s != "")
+								stream.Write (s);
+							
+							stream.Write ("</td><tr>");
 						}
-
-						if (s != null && s != "")
-							stream.Write (s);
-
-						stream.Write ("</td><tr>");
 					}
 				}
 			}
@@ -153,12 +163,42 @@ namespace FSpot {
 			if (empty) {
 				string msg = String.Format ("<tr><td valign=top align=center bgcolor=\"{0}\">" 
 							    + "<b>{1}</b></td></tr>", ig,
-							    Mono.Posix.Catalog.GetString ("No EXIF info available"));
+							    Mono.Posix.Catalog.GetString ("No metadata available"));
 				stream.Write (msg);
 			}
 
 			stream.Write ("</table>");
 			End (stream, Gtk.HTMLStreamStatus.Ok);
+		}
+
+		private void WriteCollection (MemoryStore substore, Gtk.HTMLStream stream)
+		{
+			string s = "";
+			bool first = true;
+
+			foreach (Statement sub in substore) {
+				string predicate = sub.Predicate.ToString ();
+				string path = System.IO.Path.GetDirectoryName (predicate);
+				string title = System.IO.Path.GetFileName (predicate);
+
+				if (sub.Object is Literal) {
+					if (!first)
+						s += "<br>";
+					else
+						first = false;
+
+					/*					
+					s += System.String.Format ("predicate: {0} path: {1} title: {2} value: {3}",
+								   predicate, path, title, ((Literal)(sub.Object)).Value);
+					*/
+					s += Escape (((Literal)(sub.Object)).Value);
+				} else {
+					s += System.String.Format ("RDF Type: ({0})<br>", Escape (new Uri (sub.Object.ToString ()).Fragment));
+				}
+			}
+
+			if (s != "")
+				stream.Write (s);
 		}
 
 		private class StreamSink : SemWeb.StatementSink

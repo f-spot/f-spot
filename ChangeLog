@@ -1,10 +1,15 @@
 2005-09-21  Larry Ewing  <lewing@novell.com>
 
+	* src/IptcFile.cs: make the literals literal.
+
+	* src/InfoDisplay.cs: clean up the container display a bit.
+
 	* src/MetadataStore.cs: add tiff namespace.
 
 	* src/XmpFile.cs: don't pass xml exceptions up the stack.
 
-	* src/PngFile.cs: make PngFile a source, pass along the simple properties.
+	* src/PngFile.cs: make PngFile a source, pass along the simple
+	properties.
 
 2005-09-20  Larry Ewing  <lewing@novell.com>
 

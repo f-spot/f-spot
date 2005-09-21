@@ -360,7 +360,9 @@ namespace FSpot.Iptc {
 		{
 			foreach (DataSet data in sets) {
 				if (data.XmpPredicate != null) {
-					sink.Add (new SemWeb.Statement ((SemWeb.Entity)"", (SemWeb.Entity)data.XmpPredicate, (SemWeb.Entity)data.XmpObject));
+					sink.Add (new SemWeb.Statement ((SemWeb.Entity)"", 
+									(SemWeb.Entity)data.XmpPredicate, 
+									new SemWeb.Literal (data.XmpObject)));
 				}
 			}
 		}
