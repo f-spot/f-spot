@@ -26,7 +26,6 @@ namespace FSpot.Png {
 
 		   Other keywords may be defined for other purposes. Keywords of general interest can be registered with th
 		*/
-
 		public void Select (SemWeb.StatementSink sink)
 		{
 			// FIXME we should avoid the coversion to and from a string here
@@ -67,17 +66,30 @@ namespace FSpot.Png {
 
 			SinkLiteral ("Comment", "exif:UserComment", sink);
 			SinkLiteral ("Software", "xmp:CreatorTool", sink);
-
+			foreach (Chunk c in Chunks) {
+				if (c is TimeChunk) {
+					TimeChunk tc = c as TimeChunk;
+					string date = tc.Time.ToString ("yyyy-MM-ddThh:mm:ss");
+					SinkLiteralValue (date, "xmp:ModifyDate", sink);
+				}
+			}
+			
+		}
+		
+		public void SinkLiteralValue (string value, string predicate, StatementSink sink)
+		{
+			Statement stmt = new Statement ((Entity)"", 
+							(Entity)MetadataStore.Namespaces.Resolve (predicate), 
+							new Literal (value));
+			sink.Add (stmt);
 		}
 
 		public void SinkLiteral (string keyword, string predicate, StatementSink sink)
 		{
 			string value = LookupText (keyword);
 			if (value != null) {
-				Statement stmt = new Statement ((Entity)"", 
-								(Entity)MetadataStore.Namespaces.Resolve (predicate), 
-								new Literal (value));
-				sink.Add (stmt);
+				SinkLiteralValue (value, predicate, 
+sink);
 			}
 		}
 

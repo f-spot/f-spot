@@ -75,6 +75,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/SingleView.cs			\
 	$(srcdir)/StockIcons.cs			\
 	$(srcdir)/SimpleCalendar.cs		\
+	$(srcdir)/SvgFile.cs			\
 	$(srcdir)/TagCommands.cs		\
 	$(srcdir)/TagMenu.cs			\
 	$(srcdir)/TagPopup.cs			\

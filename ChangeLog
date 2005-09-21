@@ -1,5 +1,16 @@
 2005-09-21  Larry Ewing  <lewing@novell.com>
 
+	* src/ImageFile.cs: use SvgFile when loading svg files.
+
+	* src/InfoDisplay.cs: handle complex types inside complex types
+	(sort of).
+
+	* src/PngFile.cs: transfer TimeChunks as triples.
+
+	* src/SvgFile.cs: add XMP extraction for svg files.
+
+	* src/Makefile.am: add SvgFile.cs.
+
 	* src/IptcFile.cs: make the literals literal.
 
 	* src/InfoDisplay.cs: clean up the container display a bit.
