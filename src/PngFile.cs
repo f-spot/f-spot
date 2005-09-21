@@ -22,7 +22,7 @@ namespace FSpot.Png {
 		   Source 	Device used to create the image
 		   Comment 	Miscellaneous comment
 		   
-		   xmp is iTXt:XML:com.adobe.xmp
+		   xmp is XML:com.adobe.xmp
 
 		   Other keywords may be defined for other purposes. Keywords of general interest can be registered with th
 		*/
@@ -30,7 +30,7 @@ namespace FSpot.Png {
 		{
 			// FIXME we should avoid the coversion to and from a string here
 			// and make the stream from the deflated data.
-			TextChunk xmpchunk = LookupTextChunk ("iTXt:XML:com.adobe.xmp");
+			TextChunk xmpchunk = LookupTextChunk ("XML:com.adobe.xmp");
 			if (xmpchunk == null)
 				xmpchunk = LookupTextChunk ("XMP");
 			
@@ -40,29 +40,20 @@ namespace FSpot.Png {
 				xmp.Select (sink);
 			}
 
-			/*
-			  FIXME these values are definted as alternate
-			
 			string description = LookupText ("Description");
 			if (description != null) {
-				// FIXME alt type
-				Statement stmt = new Alt ((Entity)"", (Entity)"dc:description", (Entity)description);
-				sink.Add (stmt);
+				SinkType (new Literal (description, "x-default", null), "dc:description", "rdf:Alt", sink);
 			}
 
-			string title = LookupText ("title");
+			string title = LookupText ("Title");
 			if (title != null) {
-			        // FIXME alt type
-				Statement stmt = new Alt ((Entity)"", (Entity)"dc:title", (Entity)title);
+				SinkType (new Literal (title, "x-description", null), "dc:title", "rdf:Alt", sink);
 			}
-
+			
 			string author = LookupText ("Author");
-			if (description != null) {
-				// FIXME seq type
-				Statement stmt = new Seq ((Entity)"", (Entity)"dc:creator", (Entity)author);
-				sink.Add (stmt);
+			if (author != null) {
+				SinkType (new Literal (author), "dc:creator", "rdf:Seq", sink);
 			}
-			*/
 
 			SinkLiteral ("Comment", "exif:UserComment", sink);
 			SinkLiteral ("Software", "xmp:CreatorTool", sink);
@@ -84,13 +75,26 @@ namespace FSpot.Png {
 			sink.Add (stmt);
 		}
 
+		public void SinkType (Literal value, string predicate, string type, StatementSink sink)
+		{
+			Entity empty = new Entity (null);
+			Statement top = new Statement ("", (Entity)MetadataStore.Namespaces.Resolve (predicate), empty);
+			Statement desc = new Statement (empty, 
+							(Entity)MetadataStore.Namespaces.Resolve ("rdf:type"), 
+							(Entity)MetadataStore.Namespaces.Resolve (type));
+			sink.Add (desc);
+			Statement literal = new Statement (empty,
+							   (Entity)MetadataStore.Namespaces.Resolve ("rdf:li"),
+							   value);
+			sink.Add (literal);
+			sink.Add (top);
+		}
+
 		public void SinkLiteral (string keyword, string predicate, StatementSink sink)
 		{
 			string value = LookupText (keyword);
-			if (value != null) {
-				SinkLiteralValue (value, predicate, 
-sink);
-			}
+			if (value != null)
+				SinkLiteralValue (value, predicate, sink);
 		}
 
 		/*

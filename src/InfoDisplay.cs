@@ -194,7 +194,8 @@ namespace FSpot {
 					s += Escape (((Literal)(sub.Object)).Value);
 				} else {
 					try {
-						s += System.String.Format ("RDF Type: ({0})<br>", Escape (new Uri (sub.Object.ToString ()).Fragment));
+						s += System.String.Format ("RDF Type: ({0})<br>", Escape (new Uri (sub.Object.ToString ()).Fragment), Escape (sub.ToString ()));
+						//						s += System.String.Format ("RDF Type: {1} ({0})<br>", Escape (new Uri (sub.Object.ToString ()).Fragment), Escape (sub.ToString ()));
 					} catch {
 						s += System.String.Format ("Type: ({0})<br>", Escape (sub.ToString ()));
 						MemoryStore substore2 = substore.Select (new Statement ((Entity)sub.Object, null, null, null));

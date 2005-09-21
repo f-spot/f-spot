@@ -6932,7 +6932,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="exif_data">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">_EXIF Data</property>
+		      <property name="label" translatable="yes">_Metadata Browser</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleViewFullExif" last_modification_time="Thu, 23 Sep 2004 21:15:21 GMT"/>
 		      <accelerator key="i" modifiers="GDK_CONTROL_MASK" signal="activate"/>
