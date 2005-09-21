@@ -1,5 +1,8 @@
 2005-09-21  Larry Ewing  <lewing@novell.com>
 
+	* src/f-spot.in: add semweb to MONO_PATH so f-spot can be run from
+	the source directory again.
+
 	* src/ImageFile.cs: use SvgFile when loading svg files.
 
 	* src/InfoDisplay.cs: handle complex types inside complex types
