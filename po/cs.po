@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-29 18:57+0000\n"
-"PO-Revision-Date: 2005-08-29 22:17+0200\n"
+"POT-Creation-Date: 2005-09-21 10:19+0200\n"
+"PO-Revision-Date: 2005-09-21 10:40+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,13 +18,13 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ../f-spot.desktop.in.in.h:1 ../src/f-spot.glade.h:68
-msgid "F-Spot Photo Album"
-msgstr "Album fotografií F-Spot"
+#: ../f-spot.desktop.in.in.h:1 ../src/f-spot.glade.h:67
+msgid "F-Spot"
+msgstr "F-Spot"
 
 #: ../f-spot.desktop.in.in.h:2
-msgid "Photo Album"
-msgstr "Album fotografií"
+msgid "Photo Management"
+msgstr "Správa fotografií"
 
 #: ../libeog/eog-file-selection.c:29 ../libeog/eog-file-selection.c:46
 msgid "By Extension"
@@ -199,6 +199,7 @@ msgstr ""
 "oprávnění jsou správně, a zkuste to znovu"
 
 #: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:139
+#: ../src/FolderExport.cs:251
 msgid "Transferring Pictures"
 msgstr "Přenáším obrázky"
 
@@ -276,7 +277,7 @@ msgstr "Chyba: Soubor již existuje; končím"
 msgid "Error saving adjusted photo"
 msgstr "Chyba při ukládání upravené fotografie"
 
-#: ../src/ColorDialog.cs:148 ../src/MainWindow.cs:1304 ../src/PhotoView.cs:291
+#: ../src/ColorDialog.cs:148 ../src/MainWindow.cs:1304 ../src/PhotoView.cs:296
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save image {1}"
 msgstr "Přijata výjimka \"{0}\". Nemohu uložit obrázek {1}"
@@ -350,10 +351,6 @@ msgstr ""
 #: ../src/FolderExport.cs:129
 msgid "Building Gallery"
 msgstr "Sestavuji galerii"
-
-#: ../src/FolderExport.cs:251
-msgid "Transfering Pictures"
-msgstr "Přenáším obrázky"
 
 #. Abbreviation of previous
 #: ../src/FolderExport.cs:672
@@ -633,9 +630,9 @@ msgstr "Exportovat do _adresáře..."
 msgid "Export to _Web Gallery..."
 msgstr "Exportovat do _galerie na WWW..."
 
-#: ../src/f-spot.glade.h:67
-msgid "F-Spot"
-msgstr "F-Spot"
+#: ../src/f-spot.glade.h:68
+msgid "F-Spot Photo Album"
+msgstr "Album fotografií F-Spot"
 
 #: ../src/f-spot.glade.h:69
 msgid "F-Spot Photo Viewer"
@@ -654,8 +651,8 @@ msgid "Find by _Tag"
 msgstr "Hledat podle _tagu"
 
 #: ../src/f-spot.glade.h:74
-msgid "Flikr"
-msgstr "Flikr"
+msgid "Flickr"
+msgstr "Flickr"
 
 #: ../src/f-spot.glade.h:75
 msgid "Folder Export"
@@ -1146,9 +1143,13 @@ msgstr "Expozice:"
 msgid "(None)"
 msgstr "(Žádné)"
 
-#: ../src/InfoDisplay.cs:110
-msgid "No EXIF info available"
-msgstr "Nejsou k dispozici informace EXIF"
+#: ../src/InfoDisplay.cs:129
+msgid "Extended Metadata"
+msgstr "Rozšířená metadata"
+
+#: ../src/InfoDisplay.cs:166
+msgid "No metadata available"
+msgstr "Žádná metadata nejsou k dispozici"
 
 #: ../src/MainWindow.cs:944
 msgid "No cameras detected."
@@ -1375,31 +1376,45 @@ msgstr "8 × 10 Portrét"
 msgid "Square"
 msgstr "Čtverec"
 
-#: ../src/PhotoView.cs:231
+#: ../src/PhotoView.cs:236
 msgid "No selection available"
 msgstr "Žádný výběr není k dispozici"
 
-#: ../src/PhotoView.cs:232
+#: ../src/PhotoView.cs:237
 msgid ""
 "This tool requires an active selection. Please select a region of the image "
 "and try the operation again"
-msgstr "Tento nástroj vyžaduje aktivní výběr. Zvolte prosím oblast obrázku a zkuste tuto operaci znovu"
+msgstr ""
+"Tento nástroj vyžaduje aktivní výběr. Zvolte prosím oblast obrázku a zkuste "
+"tuto operaci znovu"
 
-#: ../src/PhotoView.cs:290
+#: ../src/PhotoView.cs:295
 msgid "Error editing photo"
 msgstr "Chyba při upravování fotografie"
 
-#: ../src/PhotoView.cs:484
+#: ../src/PhotoView.cs:490
 msgid "Crop image to selected area"
 msgstr "Oříznout obrázek na vybranou oblast"
 
-#: ../src/PhotoView.cs:485
+#: ../src/PhotoView.cs:491
 msgid "Remove redeye from selected area"
 msgstr "Odstranit červené oko z vybrané oblasti"
 
-#: ../src/PhotoView.cs:486
+#: ../src/PhotoView.cs:492
 msgid "Adjust the image colors"
 msgstr "Upravit barvy obrázku"
+
+#: ../src/PhotoView.cs:493
+msgid "Constrain the aspect ratio of the selection"
+msgstr "Omezit poměr stran výběru"
+
+#: ../src/PhotoView.cs:494
+msgid "Next image"
+msgstr "Následující obrázek"
+
+#: ../src/PhotoView.cs:495
+msgid "Previous image"
+msgstr "Předchozí obrázek"
 
 #: ../src/RotateCommand.cs:56
 #, csharp-format
@@ -1520,10 +1535,9 @@ msgstr "Upravit tag"
 msgid "Photo {0} of {1}"
 msgstr "Fotografie {0} z {1}"
 
-# FIXME: s/F/f/
 #: ../src/TagCommands.cs:409
 #, csharp-format
-msgid "Edit icon For category {0}"
+msgid "Edit icon for category {0}"
 msgstr "Upravit ikonu pro kategorii {0}"
 
 #: ../src/TagCommands.cs:411
@@ -1567,6 +1581,15 @@ msgstr "Hledat: "
 #: ../src/QueryDisplay.cs:44
 msgid "No matching images found "
 msgstr "Nenalezen žádný odpovídající obrázek "
+
+#~ msgid "Photo Album"
+#~ msgstr "Album fotografií"
+
+#~ msgid "Transfering Pictures"
+#~ msgstr "Přenáším obrázky"
+
+#~ msgid "No EXIF info available"
+#~ msgstr "Nejsou k dispozici informace EXIF"
 
 #~ msgid "Error: Error while transferring, Aborting"
 #~ msgstr "Chyba: Chyba při přenosu, končím"
