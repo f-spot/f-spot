@@ -1,4 +1,5 @@
 using FSpot;
+using SemWeb;
 
 namespace FSpot.Tiff {
 
@@ -470,27 +471,47 @@ namespace FSpot.Tiff {
 		
 		public void Select (SemWeb.StatementSink sink)
 		{
-			FSpot.Tiff.DirectoryEntry e = Directory.Lookup (FSpot.Tiff.TagId.XMP);
-			if (e != null) {
-				System.IO.Stream xmpstream = new System.IO.MemoryStream (e.RawData);
-				FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);
-				xmp.Select (sink);
-			}	
-
-			e = Directory.Lookup (FSpot.Tiff.TagId.PhotoshopPrivate);
-			if (e != null) {
-				System.IO.Stream bimstream = new System.IO.MemoryStream (e.RawData);
-				FSpot.Bim.BimFile bim = new FSpot.Bim.BimFile (bimstream);
-
-				bim.Select (sink);
-			}	
-
-			e = Directory.Lookup (FSpot.Tiff.TagId.IPTCNAA);
-			if (e != null) {
-				System.IO.Stream iptcstream = new System.IO.MemoryStream (e.RawData);
-				FSpot.Iptc.IptcFile iptc = new FSpot.Iptc.IptcFile (iptcstream);
-				iptc.Select (sink);
-			}	
+			foreach (DirectoryEntry e in Directory.Entries) {
+				switch (e.Id) {
+				case TagId.IPTCNAA:
+					System.IO.Stream iptcstream = new System.IO.MemoryStream (e.RawData);
+					FSpot.Iptc.IptcFile iptc = new FSpot.Iptc.IptcFile (iptcstream);
+					iptc.Select (sink);
+					break;
+				case TagId.PhotoshopPrivate:
+					System.IO.Stream bimstream = new System.IO.MemoryStream (e.RawData);
+					FSpot.Bim.BimFile bim = new FSpot.Bim.BimFile (bimstream);
+					bim.Select (sink);
+					break;
+				case TagId.XMP:
+					System.IO.Stream xmpstream = new System.IO.MemoryStream (e.RawData);
+					FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);
+					xmp.Select (sink);
+					break;
+				case TagId.ImageDescription:
+					MetadataStore.AddLiteral (sink, "dc:description", "rdf:Alt", 
+								  new Literal (e.ValueAsString [0], "x-default", null));
+					break;
+				case TagId.Copyright:
+					MetadataStore.AddLiteral (sink, "dc:rights", "rdf:Alt", 
+								  new Literal (e.ValueAsString [0], "x-default", null));
+					break;
+				case TagId.Artist:
+					MetadataStore.AddLiteral (sink, "dc:creator", "rdf:Seq", 
+								  new Literal (e.ValueAsString [0]));
+					break;
+				case TagId.Software:
+					MetadataStore.AddLiteral (sink, "xmp:CreatorTool", e.ValueAsString [0]);
+					break;	
+				case TagId.ImageWidth:
+				case TagId.ImageLength:
+				case TagId.SamplesPerPixel:
+				case TagId.Model:
+				case TagId.Make:
+					MetadataStore.AddLiteral (sink, "tiff:" + e.Id.ToString (), e.ValueAsString [0]);
+					break;
+				}
+			}
 		}
 
 		public string Dump ()
@@ -806,7 +827,6 @@ namespace FSpot.Tiff {
 				throw new System.Exception (System.String.Format ("Invalid Settings At Birth {0}", tagid));
 		}
 
-
 	}
 
 #if false
@@ -1086,6 +1106,26 @@ namespace FSpot.Tiff {
 			}
 		}
 
+		public string [] ValueAsString
+		{
+			get {
+				switch (this.Type) {
+				case EntryType.Short:
+				case EntryType.Long:
+					uint [] vals = this.ValueAsLong;
+					string [] str_vals = new string [vals.Length];
+					for (int i = 0; i < vals.Length; i++) {
+						str_vals [i] = vals [i].ToString ();
+					}
+					return str_vals;
+				case EntryType.Ascii:
+					string [] v = StringValue.Split ('\0');
+					return v;
+				}
+				return null;
+			}
+		}
+
 		public uint [] ValueAsLong
 		{
 			get {
@@ -1098,6 +1138,8 @@ namespace FSpot.Tiff {
 					case EntryType.Short:
 						data [i] = BitConverter.ToUInt16 (raw_data, i * GetTypeSize (), endian == Endian.Little);
 						break;
+					case EntryType.Byte:
+						data [i] = raw_data [i];
 					default:
 						throw new System.Exception ("Invalid conversion");
 					}
@@ -1191,7 +1233,6 @@ namespace FSpot.Tiff {
 		public System.IO.Stream LookupJpegSubstream (ImageDirectory directory)
 		{
 			uint offset = directory.Lookup (TagId.JPEGInterchangeFormat).ValueAsLong [0];
-			//uint length = directory.Lookup (TagId.JPEGInterchangeFormatLength).ValueAsLong [0];
 			
 			System.IO.Stream file = System.IO.File.OpenRead (this.path);
 			file.Position = offset;
