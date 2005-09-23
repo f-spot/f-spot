@@ -1,6 +1,6 @@
 namespace FSpot.Raf {
 	// This is reverse engineered from looking at the sample files I have
-	// from what I can tell the file is always BigEndian, althogh the embedded jpeg may not be
+	// from what I can tell the file is always BigEndian, although the embedded jpeg may not be
 	// and there is a start long offset at 0x54 (or possibly 0x56 if it is a short) that points to
 	// the start of the embedded jpeg and followed by a long length that gives the length of the jpeg
 	// data.   
@@ -19,7 +19,7 @@ namespace FSpot.Raf {
 		}
 	}
 	
-	public class RafFile : ImageFile {
+	public class RafFile : ImageFile, SemWeb.StatementSource {
 		public RafFile (string path) : base (path)
 		{
 			
@@ -59,6 +59,16 @@ namespace FSpot.Raf {
 			return scaled;
 		}
 
+		public void Select (SemWeb.StatementSink sink)
+		{
+			byte [] data = GetEmbeddedJpeg ();
+			if (data != null) {
+				System.IO.Stream stream = new System.IO.MemoryStream (data);
+				JpegHeader header = new JpegHeader (stream);
+				header.Select (sink);
+			}
+		}
+
 		private byte [] GetEmbeddedJpeg ()
 		{
 			using (System.IO.Stream stream = System.IO.File.OpenRead (this.path)) {
@@ -70,6 +80,7 @@ namespace FSpot.Raf {
 
 				uint wb_offset = BitConverter.ToUInt32 (data, 8, false);
 				uint wb_length = BitConverter.ToUInt32 (data, 12, false);
+				
 
 				uint raw_offset = BitConverter.ToUInt32 (data, 16, false);
 				uint raw_length = BitConverter.ToUInt32 (data, 20, false);

@@ -1267,6 +1267,7 @@ namespace FSpot.Tiff {
 					case TagId.ExifVersion:
 						return new string [] { StringValue };
 						break;
+					case TagId.FileSource:
 					case TagId.SceneType:
 						return ArrayToString (this.RawData);
 					default:

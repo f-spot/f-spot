@@ -169,7 +169,7 @@ namespace FSpot.Mrw {
 		
 	}
 	
-	public class MrwFile : ImageFile {
+	public class MrwFile : ImageFile, SemWeb.StatementSource {
 		MrmBlock mrm;
 		FSpot.Tiff.Header Header;
 
@@ -189,6 +189,11 @@ namespace FSpot.Mrw {
 				else
 					return base.Date;
 			}
+		}
+		
+		public void Select (SemWeb.StatementSink sink)
+		{
+			this.Header.Select (sink);
 		}
 
 		public override System.IO.Stream PixbufStream ()
