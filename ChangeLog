@@ -1,5 +1,14 @@
 2005-09-22  Larry Ewing  <lewing@novell.com>
 
+	* src/MetadataStore.cs: add methods for actually setting sequences
+	with values. Add a store for setting up the display.
+
+	* src/Tiff.cs: add rational parsing, add a whole bunch more tags
+	to the rdf sink.
+	
+	* src/PngFile.cs: convert the cHRM chunk to the tiff WhitePoint
+	and PrimaryChromaticities.
+
 	* src/Tiff.cs: start moving the tiff properties over.
 
 2005-09-21  Larry Ewing  <lewing@novell.com>

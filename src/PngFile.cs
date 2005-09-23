@@ -47,7 +47,6 @@ namespace FSpot.Png {
 						MetadataStore.AddLiteral (sink, "exif:UserComment", text.Text);
 						break;
 					case "Software":
-						MetadataStore.AddLiteral (sink, "xmp:CreatorTool", text.Text);
 						break;
 					case "Title":
 						MetadataStore.AddLiteral (sink, "dc:title", "rdf:Alt", new Literal (text.Text, "x-default", null));
@@ -70,6 +69,21 @@ namespace FSpot.Png {
 						}
 						break;
 					}
+				} else if (c is ColorChunk) {
+					ColorChunk color = (ColorChunk)c;
+					string [] whitepoint = new string [2];
+					whitepoint [0] = color.WhiteX.ToString ();
+					whitepoint [1] = color.WhiteY.ToString ();
+					MetadataStore.Add (sink, "tiff:WhitePoint", "rdf:Seq", whitepoint);
+					int i = 0;
+					string [] rgb = new string [6];
+					rgb [i++] = color.RedX.ToString ();
+					rgb [i++] = color.RedY.ToString ();
+					rgb [i++] = color.GreenX.ToString ();
+					rgb [i++] = color.GreenY.ToString ();
+					rgb [i++] = color.BlueX.ToString ();
+					rgb [i++] = color.BlueY.ToString ();
+					MetadataStore.Add (sink, "tiff:PrimaryChromaticities", "rdf:Seq", rgb);
 				}
 			}
 		}
@@ -252,6 +266,54 @@ namespace FSpot.Png {
 			public TimeChunk (string name, byte [] data) : base (name, data) {}
 		}
 
+		public class ColorChunk : Chunk {
+			// FIXME this should be represented like a tiff rational
+			public const uint Denominator = 100000;
+
+			public ColorChunk (string name, byte [] data) : base (name, data) {}
+
+			public FSpot.Tiff.Rational WhiteX {
+				get {
+					return new FSpot.Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 0, false), Denominator);
+				}
+			}
+			public FSpot.Tiff.Rational WhiteY {
+				get { 
+					return new FSpot.Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 4, false), Denominator);
+				}
+			}
+			public FSpot.Tiff.Rational RedX {
+				get { 
+					return new FSpot.Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 8, false), Denominator);
+				}
+			}
+			public FSpot.Tiff.Rational RedY {
+				get { 
+					return new FSpot.Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 12, false), Denominator);
+				}
+			}
+			public FSpot.Tiff.Rational GreenX {
+				get { 
+					return new FSpot.Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 16, false), Denominator);
+				}
+			}
+			public FSpot.Tiff.Rational GreenY {
+				get { 
+					return new FSpot.Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 20, false), Denominator);
+				}
+			}
+			public FSpot.Tiff.Rational BlueX {
+				get { 
+					return new FSpot.Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 24, false), Denominator);
+				}
+			}
+			public FSpot.Tiff.Rational BlueY {
+				get { 
+					return new FSpot.Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 28, false), Denominator);
+				}
+			}
+		}
+
 		public enum ColorType : byte {
 			Gray = 0,
 			Rgb = 2,
@@ -376,6 +438,7 @@ namespace FSpot.Png {
 				name_table ["tIME"] = typeof (TimeChunk);
 				name_table ["iCCP"] = typeof (IccpChunk);
 				name_table ["IHDR"] = typeof (IhdrChunk);
+				name_table ["cHRM"] = typeof (ColorChunk);
 			}
 			
 			public Chunk (string name, byte [] data) 

@@ -97,9 +97,9 @@ namespace FSpot.Tiff {
 		JPEGDCTables                    = 0x0208,
 		JPEGACTables                    = 0x0209,
 
-		YCBCRCoefficients		= 0x0211,
-		YCBCRSubSampling		= 0x0212,
-		YCBCRPositioning		= 0x0213,
+		YCbCrCoefficients		= 0x0211,
+		YCbCrSubSampling		= 0x0212,
+		YCbCrPositioning		= 0x0213,
 
 		ReferenceBlackWhite		= 0x0214,
 		RelatedImageFileFormat   	= 0x1000,
@@ -252,6 +252,27 @@ namespace FSpot.Tiff {
 		
 		// Print Image Matching data
 		PimIfdPointer                   = 0xc4a5
+	}
+
+	public struct Rational {
+		uint Numerator;
+		uint Denominator;
+		public Rational (uint numerator, uint denominator)
+		{
+			Numerator = numerator;
+			Denominator = denominator;
+		}
+
+		public override string ToString ()
+		{
+			return System.String.Format ("{0}/{1}", Numerator, Denominator);
+		}
+		
+		public double Value {
+			get {
+				return Numerator / (double)Denominator;
+			}
+		}
 	}
 
 	public enum ExtraSamples {
@@ -469,9 +490,15 @@ namespace FSpot.Tiff {
 			Directory = new ImageDirectory (stream, directory_offset, endian); 
 		}
 		
+		
 		public void Select (SemWeb.StatementSink sink)
 		{
-			foreach (DirectoryEntry e in Directory.Entries) {
+			SelectDirectory (Directory, sink);
+		}
+
+		private void SelectDirectory (ImageDirectory dir, StatementSink sink)
+		{
+			foreach (DirectoryEntry e in dir.Entries) {
 				switch (e.Id) {
 				case TagId.IPTCNAA:
 					System.IO.Stream iptcstream = new System.IO.MemoryStream (e.RawData);
@@ -492,6 +519,10 @@ namespace FSpot.Tiff {
 					MetadataStore.AddLiteral (sink, "dc:description", "rdf:Alt", 
 								  new Literal (e.ValueAsString [0], "x-default", null));
 					break;
+				case TagId.UserComment:
+					MetadataStore.AddLiteral (sink, "exif:UserComment", "rdf:Alt", 
+								  new Literal (e.ValueAsString [0], "x-default", null));
+					break;
 				case TagId.Copyright:
 					MetadataStore.AddLiteral (sink, "dc:rights", "rdf:Alt", 
 								  new Literal (e.ValueAsString [0], "x-default", null));
@@ -500,12 +531,64 @@ namespace FSpot.Tiff {
 					MetadataStore.AddLiteral (sink, "dc:creator", "rdf:Seq", 
 								  new Literal (e.ValueAsString [0]));
 					break;
+				case TagId.ExifIfdPointer:
+					//SelectDirectory (((SubdirectoryEntry)e).Directory [0], sink);
+					break;
 				case TagId.Software:
 					MetadataStore.AddLiteral (sink, "xmp:CreatorTool", e.ValueAsString [0]);
-					break;	
+					break;
+				case TagId.DateTime:
+					MetadataStore.AddLiteral (sink, "xmp:ModifyDate", 
+								  e.ValueAsDate.ToString ("yyyy-MM-ddThh:mm:ss"));
+					break;
+				case TagId.DateTimeOriginal:
+				case TagId.DateTimeDigitized:
+					// FIXME subsectime needs to be included in these values
+					// FIXME shouldn't DateTimeOriginal be xmp:CreateDate? the spec says no but wtf?
+					MetadataStore.AddLiteral (sink, "exif:" + e.Id.ToString (), 
+								  e.ValueAsDate.ToString ("yyyy-MM-ddThh:mm:ss"));
+					break;
+				case TagId.ExifVersion:
+				case TagId.FlashPixVersion:
+				case TagId.ColorSpace:
+				case TagId.CompressedBitsPerPixel:
+				case TagId.PixelYDimension:
+				case TagId.PixelXDimension:
+				case TagId.RelatedSoundFile:
+				case TagId.ExposureTime:
+				case TagId.FNumber:
+				case TagId.ExposureProgram:
+				case TagId.SpectralSensitivity:
+					MetadataStore.AddLiteral (sink, "exif:" + e.Id.ToString (), e.ValueAsString [0]);
+					break;
+				case TagId.ComponentsConfiguration:
+				case TagId.ISOSpeedRatings:
+				case TagId.ShutterSpeedValue:
+				case TagId.ApertureValue:
+				case TagId.BrightnessValue:
+				case TagId.ExposureBiasValue:
+				case TagId.MaxApertureValue:
+				case TagId.SubjectDistance:
+					MetadataStore.Add (sink, "exif:" + e.Id.ToString (), "rdf:Seq", e.ValueAsString);
+					break;
+				case TagId.TransferFunction:
+				case TagId.YCbCrSubSampling:
+				case TagId.WhitePoint:
+				case TagId.PrimaryChromaticities:
+				case TagId.YCbCrCoefficients:
+				case TagId.ReferenceBlackWhite:
+				case TagId.BitsPerSample:
+					MetadataStore.Add (sink, "tiff:" + e.Id.ToString (), "rdf:Seq", e.ValueAsString);
+					break;
+				case TagId.Orientation:
+				case TagId.Compression:
+				case TagId.PhotometricInterpretation:					
+				case TagId.SamplesPerPixel:
+				case TagId.PlanarConfiguration:
+				case TagId.YCbCrPositioning:
+				case TagId.ResolutionUnit:
 				case TagId.ImageWidth:
 				case TagId.ImageLength:
-				case TagId.SamplesPerPixel:
 				case TagId.Model:
 				case TagId.Make:
 					MetadataStore.AddLiteral (sink, "tiff:" + e.Id.ToString (), e.ValueAsString [0]);
@@ -1106,23 +1189,44 @@ namespace FSpot.Tiff {
 			}
 		}
 
+		public System.DateTime ValueAsDate
+		{
+			get {
+				return DirectoryEntry.DateTimeFromString (StringValue);
+			}
+		}
+
 		public string [] ValueAsString
 		{
 			get {
+				string [] value_strings = null;
+
 				switch (this.Type) {
 				case EntryType.Short:
 				case EntryType.Long:
-					uint [] vals = this.ValueAsLong;
-					string [] str_vals = new string [vals.Length];
-					for (int i = 0; i < vals.Length; i++) {
-						str_vals [i] = vals [i].ToString ();
+					{
+						uint [] vals = this.ValueAsLong;
+						value_strings = new string [vals.Length];
+						
+						for (int i = 0; i < vals.Length; i++)
+							value_strings [i] = vals [i].ToString ();
 					}
-					return str_vals;
+					break;
+				case EntryType.Rational:
+					{
+						uint [] vals = this.LongValue;
+						value_strings = new string [vals.Length / 2];
+						
+						for (int i = 0; i < vals.Length; i += 2)
+							//value_strings [i/2] = System.String.Format ("{0}/{1}", vals [i], vals [i + 1]);
+							value_strings [i/2] = new Rational (vals [i], vals [i + 1]).ToString ();
+					}
+					break;
 				case EntryType.Ascii:
-					string [] v = StringValue.Split ('\0');
-					return v;
+					value_strings = StringValue.Split ('\0');
+					break;
 				}
-				return null;
+				return value_strings;
 			}
 		}
 
@@ -1140,6 +1244,7 @@ namespace FSpot.Tiff {
 						break;
 					case EntryType.Byte:
 						data [i] = raw_data [i];
+						break;
 					default:
 						throw new System.Exception ("Invalid conversion");
 					}
@@ -1151,9 +1256,9 @@ namespace FSpot.Tiff {
 		public uint [] LongValue
 		{
 			get {
-				uint [] data = new uint [raw_data.Length];
+				uint [] data = new uint [raw_data.Length / 4];
 				for (int i = 0; i < raw_data.Length; i+= 4) {
-					data [i] = BitConverter.ToUInt32 (raw_data, i, endian == Endian.Little);
+					data [i/4] = BitConverter.ToUInt32 (raw_data, i, endian == Endian.Little);
 				}
 				return data;
 			}

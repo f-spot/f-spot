@@ -5,7 +5,8 @@ namespace FSpot {
 	public class MetadataStore : MemoryStore
 	{
 		public static NamespaceManager Namespaces;
-		
+		private static MetadataStore descriptions;
+
 		static MetadataStore ()
 		{
 			Namespaces = new NamespaceManager ();
@@ -21,8 +22,26 @@ namespace FSpot {
 			Namespaces.AddNamespace ("http://ns.adobe.com/exif/1.0/", "exif");
 			Namespaces.AddNamespace ("http://ns.adobe.com/tiff/1.0/", "tiff");
 			Namespaces.AddNamespace ("http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdf");
+			Namespaces.AddNamespace ("http://www.w3.org/2000/01/rdf-schema#", "rdfs");
 		}
 		
+		public static MetadataStore Descriptions {
+			get {
+				if (descriptions == null) {
+					descriptions = new MetadataStore ();
+					System.IO.Stream stream = System.Reflection.Assembly.GetCallingAssembly ().GetManifestResourceStream ("dces.rdf");
+					if (stream != null) {
+						descriptions.Import (new RdfXmlReader (stream));
+					} else {
+						System.Console.WriteLine ("Can't find resource");
+					}
+					descriptions.Dump ();
+				}
+				
+				return descriptions;
+			}
+		}
+
 		public void Dump ()
 		{
 			foreach (SemWeb.Statement stmt in this) {
@@ -38,9 +57,11 @@ namespace FSpot {
 			*/
 
 			/* Use the statement writer to filter the messages */
+			/*
 			foreach (string nspace in Namespaces.GetNamespaces ()) {
 				this.Select (new StatementWriter (nspace));
 			}
+			*/
 		}
 
 		public static void AddLiteral (StatementSink sink, string predicate, string type, Literal value)
@@ -66,8 +87,26 @@ namespace FSpot {
 			sink.Add (stmt);
 		}
 
+		public static void Add (StatementSink sink, string predicate, string type, string [] values)
+		{
+			if (values == null)
+				System.Console.WriteLine ("{0} has no values; skipping", predicate);
 
-		
+			Entity empty = new Entity (null);
+			Statement top = new Statement ("", (Entity)MetadataStore.Namespaces.Resolve (predicate), empty);
+			Statement desc = new Statement (empty, 
+							(Entity)MetadataStore.Namespaces.Resolve ("rdf:type"), 
+							(Entity)MetadataStore.Namespaces.Resolve (type));
+			sink.Add (desc);
+			foreach (string value in values) {
+				Statement literal = new Statement (empty,
+								   (Entity)MetadataStore.Namespaces.Resolve ("rdf:li"),
+								   new Literal (value, null, null));
+				sink.Add (literal);
+			}
+			sink.Add (top);
+		}
+					
 
 		private class StatementWriter : StatementSink 
 		{
