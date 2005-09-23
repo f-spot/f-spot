@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-06 18:03-0400\n"
+"POT-Creation-Date: 2005-09-23 09:26-0400\n"
 "PO-Revision-Date: 2005-09-06 23:54-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
@@ -17,13 +17,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: f-spot.desktop.in.in.h:1 src/f-spot.glade.h:68
-msgid "F-Spot Photo Album"
-msgstr "F-Spot Photo Album"
+#: f-spot.desktop.in.in.h:1 f-spot-view.desktop.in.h:1 src/f-spot.glade.h:67
+msgid "F-Spot"
+msgstr "F-Spot"
 
-#: f-spot.desktop.in.in.h:2
-msgid "Photo Album"
-msgstr "Photo Album"
+#: f-spot.desktop.in.in.h:2 f-spot-view.desktop.in.h:2
+msgid "Photo Management"
+msgstr "Photo Management"
 
 #: libeog/eog-file-selection.c:29 libeog/eog-file-selection.c:46
 msgid "By Extension"
@@ -627,9 +627,9 @@ msgstr "Export to _Folder..."
 msgid "Export to _Web Gallery..."
 msgstr "Export to _Web Gallery..."
 
-#: src/f-spot.glade.h:67
-msgid "F-Spot"
-msgstr "F-Spot"
+#: src/f-spot.glade.h:68
+msgid "F-Spot Photo Album"
+msgstr "F-Spot Photo Album"
 
 #: src/f-spot.glade.h:69
 msgid "F-Spot Photo Viewer"
@@ -984,32 +984,32 @@ msgid "_Directory"
 msgstr "_Directory"
 
 #: src/f-spot.glade.h:163
-msgid "_EXIF Data"
-msgstr "_EXIF Data"
-
-#: src/f-spot.glade.h:164
 msgid "_Edit Selected Tag..."
 msgstr "_Edit Selected Tag..."
 
-#: src/f-spot.glade.h:165
+#: src/f-spot.glade.h:164
 msgid "_Export"
 msgstr "_Export"
 
-#: src/f-spot.glade.h:166
+#: src/f-spot.glade.h:165
 msgid "_Fullscreen"
 msgstr "_Fullscreen"
 
-#: src/f-spot.glade.h:167
+#: src/f-spot.glade.h:166
 msgid "_Import..."
 msgstr "_Import..."
 
-#: src/f-spot.glade.h:168
+#: src/f-spot.glade.h:167
 msgid "_Large"
 msgstr "_Large"
 
-#: src/f-spot.glade.h:169
+#: src/f-spot.glade.h:168
 msgid "_Medium"
 msgstr "_Medium"
+
+#: src/f-spot.glade.h:169
+msgid "_Metadata Browser"
+msgstr "_Metadata Browser"
 
 #: src/f-spot.glade.h:170
 msgid "_Month"
@@ -1140,9 +1140,141 @@ msgstr "Exposure:"
 msgid "(None)"
 msgstr "(None)"
 
-#: src/InfoDisplay.cs:110
-msgid "No EXIF info available"
-msgstr "No EXIF info available"
+#: src/InfoDisplay.cs:129
+msgid "Extended Metadata"
+msgstr "Extended Metadata"
+
+#: src/InfoDisplay.cs:166
+msgid "No metadata available"
+msgstr "No metadata available"
+
+#: src/IptcFile.cs:145
+msgid "IPTC Information Interchange Model (IIM) Version number"
+msgstr "IPTC Information Interchange Model (IIM) Version number"
+
+#: src/IptcFile.cs:147
+msgid "OSI Destination routing information"
+msgstr "OSI Destination routing information"
+
+#: src/IptcFile.cs:149
+msgid "IPTC file format"
+msgstr "IPTC file format"
+
+#: src/IptcFile.cs:151
+msgid "Identifies the provider and product"
+msgstr "Identifies the provider and product"
+
+#: src/IptcFile.cs:153
+msgid "A unique number identifying the envelope"
+msgstr "A unique number identifying the envelope"
+
+#: src/IptcFile.cs:155
+msgid "A unique number"
+msgstr "A unique number"
+
+#: src/IptcFile.cs:157
+msgid ""
+"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgstr ""
+"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+
+#: src/IptcFile.cs:159
+msgid "The year month and day (CCYYMMDD) the service sent the material"
+msgstr "The year month and day (CCYYMMDD) the service sent the material"
+
+#: src/IptcFile.cs:161
+msgid ""
+"The hour minute and second the (HHMMSS+HHMM) the service sent the material"
+msgstr ""
+"The hour minute and second (HHMMSS+HHMM) the service sent the material"
+
+#: src/IptcFile.cs:163
+msgid "The character set designation"
+msgstr "The character set designation"
+
+#: src/IptcFile.cs:165
+msgid "External globally unique object identifier"
+msgstr "External globally unique object identifier"
+
+#: src/IptcFile.cs:170
+msgid "Abstract Relationship Method (ARM) identifier"
+msgstr "Abstract Relationship Method (ARM) identifier"
+
+#: src/IptcFile.cs:172
+msgid "Abstract Relationship Method (ARM) version number."
+msgstr "Abstract Relationship Method (ARM) version number."
+
+#: src/IptcFile.cs:175
+msgid "Number identifying the IIM version this application record uses"
+msgstr "Number identifying the IIM version this application record uses"
+
+#: src/IptcFile.cs:177
+msgid "Object type reference"
+msgstr "Object type reference"
+
+#: src/IptcFile.cs:182
+msgid "Object attribute reference"
+msgstr "Object attribute reference"
+
+#: src/IptcFile.cs:188 src/IptcFile.cs:192
+msgid "Object name"
+msgstr "Object name"
+
+#: src/IptcFile.cs:190
+msgid "Status of the objectdata according to the provider"
+msgstr "Status of the objectdata according to the provider"
+
+#: src/IptcFile.cs:195
+msgid "Name of the city the content is focussing on"
+msgstr "Name of the city the content is focusing on"
+
+#: src/IptcFile.cs:198
+msgid "Copyright information for"
+msgstr "Copyright information for"
+
+#: src/IptcFile.cs:201
+msgid "Full name of the country of the focus of the content"
+msgstr "Full name of the country of the focus of the content"
+
+#: src/IptcFile.cs:204
+msgid ""
+"Two or three letter ISO3166 code of the country of the focus of the content"
+msgstr ""
+"Two or three letter ISO3166 code of the country of the focus of the content"
+
+#: src/IptcFile.cs:207
+msgid "bleh"
+msgstr "bleh"
+
+#: src/IptcFile.cs:210
+msgid "The title of the author or creator"
+msgstr "The title of the author or creator"
+
+#: src/IptcFile.cs:213
+msgid ""
+"The person involved in writing, editing orcorrecting the objectdata or "
+"caption/abstract"
+msgstr ""
+"The person involved in writing, editing or correcting the objectdata or "
+"caption/abstract"
+
+#: src/IptcFile.cs:217
+msgid "Headline of the content"
+msgstr "Headline of the content"
+
+#: src/IptcFile.cs:220
+msgid ""
+"Intructions from the creator to the reciever not covered by other fields"
+msgstr ""
+"Intructions from the creator to the reciever not covered by other fields"
+
+#: src/IptcFile.cs:223
+msgid "Intellectual genre of the object"
+msgstr "Intellectual genre of the object"
+
+#: src/IptcFile.cs:239
+msgid "Unkown IIM DataSet"
+msgstr "Unkown IIM DataSet"
 
 #: src/MainWindow.cs:944
 msgid "No cameras detected."
