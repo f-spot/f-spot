@@ -254,9 +254,41 @@ namespace FSpot.Tiff {
 		PimIfdPointer                   = 0xc4a5
 	}
 
+	public struct SRational {
+		public int Numerator;
+		public int Denominator;
+		
+		public SRational (int numerator, int denominator)
+		{
+			Numerator = numerator;
+			Denominator = denominator;
+		}
+
+		public static SRational BitwiseCopy (Rational rational)
+		{
+			unsafe {
+				SRational result = new SRational (0, 0);
+				SRational *p = &result;
+				*((Rational *)p) = rational;
+				return result;
+			}
+		}
+
+		public override string ToString ()
+		{
+			return System.String.Format ("{0}/{1}", Numerator, Denominator);
+		}
+		
+		public double Value {
+			get {
+				return Numerator / (double)Denominator;
+			}
+		}
+	}
+
 	public struct Rational {
-		uint Numerator;
-		uint Denominator;
+		public uint Numerator;
+		public uint Denominator;
 		public Rational (uint numerator, uint denominator)
 		{
 			Numerator = numerator;
@@ -499,6 +531,7 @@ namespace FSpot.Tiff {
 		private void SelectDirectory (ImageDirectory dir, StatementSink sink)
 		{
 			foreach (DirectoryEntry e in dir.Entries) {
+				System.Console.WriteLine ("{0}", e.Id);
 				switch (e.Id) {
 				case TagId.IPTCNAA:
 					System.IO.Stream iptcstream = new System.IO.MemoryStream (e.RawData);
@@ -532,7 +565,13 @@ namespace FSpot.Tiff {
 								  new Literal (e.ValueAsString [0]));
 					break;
 				case TagId.ExifIfdPointer:
-					//SelectDirectory (((SubdirectoryEntry)e).Directory [0], sink);
+					try {
+						ImageDirectory sub = ((SubdirectoryEntry)e).Directory [0];
+						System.Console.WriteLine ("{0}", sub);
+						SelectDirectory (sub, sink);
+					} catch (System.Exception exc) {
+						System.Console.WriteLine (exc);
+					}
 					break;
 				case TagId.Software:
 					MetadataStore.AddLiteral (sink, "xmp:CreatorTool", e.ValueAsString [0]);
@@ -548,6 +587,8 @@ namespace FSpot.Tiff {
 					MetadataStore.AddLiteral (sink, "exif:" + e.Id.ToString (), 
 								  e.ValueAsDate.ToString ("yyyy-MM-ddThh:mm:ss"));
 					break;
+					//case TagId.Flash:
+					//case TagId.SpatialFrequencyResponse
 				case TagId.ExifVersion:
 				case TagId.FlashPixVersion:
 				case TagId.ColorSpace:
@@ -559,16 +600,39 @@ namespace FSpot.Tiff {
 				case TagId.FNumber:
 				case TagId.ExposureProgram:
 				case TagId.SpectralSensitivity:
-					MetadataStore.AddLiteral (sink, "exif:" + e.Id.ToString (), e.ValueAsString [0]);
-					break;
-				case TagId.ComponentsConfiguration:
-				case TagId.ISOSpeedRatings:
 				case TagId.ShutterSpeedValue:
 				case TagId.ApertureValue:
 				case TagId.BrightnessValue:
 				case TagId.ExposureBiasValue:
 				case TagId.MaxApertureValue:
 				case TagId.SubjectDistance:
+				case TagId.MeteringMode:
+				case TagId.LightSource:
+				case TagId.FocalLength:
+				case TagId.FlashEnergy:
+				case TagId.FocalPlaneXResolution:
+				case TagId.FocalPlaneYResolution:
+				case TagId.FocalPlaneResolutionUnit:
+				case TagId.ExposureIndex:
+				case TagId.SensingMethod:
+				case TagId.FileSource:
+				case TagId.SceneType:
+				case TagId.CustomRendered:
+				case TagId.ExposureMode:
+				case TagId.WhiteBalance:
+				case TagId.DigitalZoomRatio:
+				case TagId.FocalLengthIn35mmFilm:
+				case TagId.SceneCaptureType:
+				case TagId.GainControl:
+				case TagId.Contrast:
+				case TagId.Saturation:
+				case TagId.Sharpness:
+					MetadataStore.AddLiteral (sink, "exif:" + e.Id.ToString (), e.ValueAsString [0]);
+					break;
+				case TagId.ComponentsConfiguration:
+				case TagId.ISOSpeedRatings:
+				case TagId.SubjectArea:
+				case TagId.SubjectLocation:
 					MetadataStore.Add (sink, "exif:" + e.Id.ToString (), "rdf:Seq", e.ValueAsString);
 					break;
 				case TagId.TransferFunction:
@@ -1183,51 +1247,48 @@ namespace FSpot.Tiff {
 			}
 		}
 
-		public string StringValue {
-			get {
-				return System.Text.Encoding.ASCII.GetString (raw_data);
-			}
-		}
-
-		public System.DateTime ValueAsDate
-		{
-			get {
-				return DirectoryEntry.DateTimeFromString (StringValue);
-			}
-		}
-
 		public string [] ValueAsString
 		{
 			get {
-				string [] value_strings = null;
-
 				switch (this.Type) {
 				case EntryType.Short:
 				case EntryType.Long:
-					{
-						uint [] vals = this.ValueAsLong;
-						value_strings = new string [vals.Length];
-						
-						for (int i = 0; i < vals.Length; i++)
-							value_strings [i] = vals [i].ToString ();
-					}
-					break;
+					return ArrayToString (this.ValueAsLong);
 				case EntryType.Rational:
-					{
-						uint [] vals = this.LongValue;
-						value_strings = new string [vals.Length / 2];
-						
-						for (int i = 0; i < vals.Length; i += 2)
-							//value_strings [i/2] = System.String.Format ("{0}/{1}", vals [i], vals [i + 1]);
-							value_strings [i/2] = new Rational (vals [i], vals [i + 1]).ToString ();
+					return ArrayToString (this.RationalValue);
+				case EntryType.SRational:
+					return ArrayToString (this.SRationalValue);
+				case EntryType.Undefined:
+					switch (Id) {
+					case TagId.UserComment:
+						return new string [] { UserCommentValue };
+						break;
+					case TagId.FlashPixVersion:
+					case TagId.ExifVersion:
+						return new string [] { StringValue };
+						break;
+					case TagId.SceneType:
+						return ArrayToString (this.RawData);
+					default:
+						System.Console.WriteLine ("Cannont convert type \"{0}\" to string", Id);
+						break;
 					}
 					break;
 				case EntryType.Ascii:
-					value_strings = StringValue.Split ('\0');
+					return StringValue.Split ('\0');
 					break;
 				}
-				return value_strings;
+				return null;
 			}
+		}
+
+		private string [] ArrayToString (System.Array array)
+		{
+			string [] vals = new string [array.Length];
+			for (int i = 0; i < array.Length; i++)
+				vals [i] = array.GetValue (i).ToString ();
+
+			return vals;
 		}
 
 		public uint [] ValueAsLong
@@ -1252,14 +1313,93 @@ namespace FSpot.Tiff {
 				return data;
 			}
 		}
+		
+		// The following methods are usded to convert the data 
+		// to the various type regardless of the entry
+		// type, they are used internally in processing the data
+		// Use at your own risk.
+
+		public string StringValue {
+			get {
+				return System.Text.Encoding.ASCII.GetString (raw_data);
+			}
+		}
+
+		public System.DateTime ValueAsDate
+		{
+			get {
+				return DirectoryEntry.DateTimeFromString (StringValue);
+			}
+		}
+
+		// This is a special type, you 
+		public string UserCommentValue
+		{
+			get {
+				string charset = System.Text.Encoding.ASCII.GetString (raw_data, 0, 8);
+				string value = null;
+				switch (charset) {
+				case "ASCII\0\0\0":
+					value = System.Text.Encoding.ASCII.GetString (raw_data, 8, raw_data.Length - 8);
+					break;
+				case "UNICODE\0":
+					value = System.Text.Encoding.Unicode.GetString (raw_data, 8, raw_data.Length - 8);
+					break;
+				case "SJIS\0\0\0\0":
+					// FIXME I'm pretty sure this isn't actually the encoding name.
+					System.Text.Encoding encoding = System.Text.Encoding.GetEncoding ("SJIS");
+					value = encoding.GetString (raw_data, 8, raw_data.Length - 8);
+					break;
+				case "\0\0\0\0\0\0\0\0":
+					// FIXME the spec says to use the local encoding in this case, we could probably
+					// do something smarter, but whatever.
+					value = System.Text.Encoding.Default.GetString (raw_data, 8, raw_data.Length - 8);
+					break;
+				default:
+					throw new System.Exception (System.String.Format ("Invalid charset name: {0}", charset));
+				}
+				return value;
+			}
+			set {
+				// FIXME this should use ascii if it can
+				SetData (System.Text.Encoding.Unicode.GetBytes ("UNICODE\0" + value));
+			}
+		}
+
+		public SRational [] SRationalValue
+		{
+			get {
+				Rational [] vals = RationalValue;
+				SRational [] data = new SRational [vals.Length];
+				
+				for (int i = 0; i < vals.Length; i++)
+					data [i] = SRational.BitwiseCopy (vals [i]);
+
+				return data;
+			}
+		}
+
+		public Rational [] RationalValue
+		{
+			get {
+				uint [] vals = LongValue;
+				Rational [] data = new Rational [vals.Length / 2];
+
+				for (int i = 0; i < vals.Length; i += 2)
+					data [i/2] = new Rational (vals [i], vals [i + 1]);
+				
+				return data;
+			}
+			
+		}
 
 		public uint [] LongValue
 		{
 			get {
 				uint [] data = new uint [raw_data.Length / 4];
-				for (int i = 0; i < raw_data.Length; i+= 4) {
+				for (int i = 0; i < raw_data.Length; i+= 4)
 					data [i/4] = BitConverter.ToUInt32 (raw_data, i, endian == Endian.Little);
-				}
+
 				return data;
 			}
 		}

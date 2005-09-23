@@ -89,8 +89,10 @@ namespace FSpot {
 
 		public static void Add (StatementSink sink, string predicate, string type, string [] values)
 		{
-			if (values == null)
+			if (values == null) {
 				System.Console.WriteLine ("{0} has no values; skipping", predicate);
+				return;
+			}
 
 			Entity empty = new Entity (null);
 			Statement top = new Statement ("", (Entity)MetadataStore.Namespaces.Resolve (predicate), empty);

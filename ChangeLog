@@ -1,3 +1,12 @@
+2005-09-23  Larry Ewing  <lewing@novell.com>
+
+	* src/Tiff.cs: handle srational, clean up output methods, add more
+	tags.
+
+	* src/PngFile.cs: parse more tags.
+
+	* src/MetadataStore.cs: actually skip this case.
+
 2005-09-22  Larry Ewing  <lewing@novell.com>
 
 	* src/MetadataStore.cs: add methods for actually setting sequences

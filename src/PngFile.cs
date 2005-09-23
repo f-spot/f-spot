@@ -84,6 +84,8 @@ namespace FSpot.Png {
 					rgb [i++] = color.BlueX.ToString ();
 					rgb [i++] = color.BlueY.ToString ();
 					MetadataStore.Add (sink, "tiff:PrimaryChromaticities", "rdf:Seq", rgb);
+				} else if (c.Name == "sRGB") {
+					MetadataStore.AddLiteral (sink, "exif:ColorSpace", "1");
 				}
 			}
 		}
