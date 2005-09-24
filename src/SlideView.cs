@@ -213,7 +213,8 @@ namespace FSpot {
 						next.Dispose ();
 					
 					next = GetScaled (photos [idx]);
-					
+					if (next == null)
+						next = GetScaled (PixbufUtils.ShallowCopy (PixbufUtils.ErrorPixbuf));
 					
 					next_idx = idx;
 					StartTweenIdle ();
@@ -282,6 +283,9 @@ namespace FSpot {
 		private Pixbuf GetScaled (IBrowsableItem photo)
 		{
 			Pixbuf orig = FSpot.PhotoLoader.LoadAtMaxSize (photo, Allocation.Width, Allocation.Height);
+			if (orig == null)
+				return null;
+
 			Pixbuf result = GetScaled (orig);
 			if (orig != result)
 				orig.Dispose ();
