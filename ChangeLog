@@ -1,5 +1,7 @@
 2005-09-24  Larry Ewing  <lewing@novell.com>
 
+	* src/InfoDisplay.cs: clean up output spew a little.
+
 	* src/Makefile.am: add dces.rdf to the build.
 
 	* src/Tiff.cs: don't print out a denominator of one for rationals.
