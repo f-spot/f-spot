@@ -10,8 +10,8 @@ namespace FSpot {
 
 		private Exif.ExifData exif_info;
 
-		private Photo photo;
-		public Photo Photo {
+		private IBrowsableItem photo;
+		public IBrowsableItem Photo {
 			get {
 				return photo;
 			}
@@ -22,7 +22,7 @@ namespace FSpot {
 					exif_info.Dispose ();
 
 				if (photo != null) {
-					exif_info = new Exif.ExifData (photo.DefaultVersionPath);
+					exif_info = new Exif.ExifData (photo.DefaultVersionUri.LocalPath);
 				} else {
 					exif_info = null;
 				}
@@ -62,6 +62,7 @@ namespace FSpot {
 			value = value.Replace ("&", "&amp;");
 			value = value.Replace (">", "&gt;");
 			value = value.Replace ("<", "&lt;");
+			value = value.Replace ("\n", "<br>");
 			return value;
 		}
 
@@ -117,7 +118,7 @@ namespace FSpot {
 			}
 
 			if (photo != null) {
-				ImageFile img = ImageFile.Create (photo.DefaultVersionPath);
+				ImageFile img = ImageFile.Create (photo.DefaultVersionUri.LocalPath);
 				if (img is SemWeb.StatementSource) {
 					StatementSource source = (StatementSource)img;
 					MetadataStore store = new MetadataStore ();
@@ -137,8 +138,34 @@ namespace FSpot {
 							
 							string predicate = stmt.Predicate.ToString ();
 							string path = System.IO.Path.GetDirectoryName (predicate);
-							string title = System.IO.Path.GetFileName (predicate);
-							
+							SelectPartialFilter filter = new SelectPartialFilter (true, true, false, false);
+							filter.SelectFirst = true;
+#if false
+							Statement sstmt = new Statement (stmt.Predicate,
+											 (Entity)"http://www.gnome.org/projects/f-spot/ns/Label",
+											 null);
+#else
+							Statement sstmt = new Statement (stmt.Predicate,
+											 (Entity)MetadataStore.Namespaces.Resolve ("rdfs:label"),
+											 null);
+#endif							
+
+							string title = null;
+#if true
+							System.Console.WriteLine ("predicate = {0}", stmt.Predicate);
+							foreach (Statement tstmt in MetadataStore.Descriptions.Select (sstmt)) {
+								System.Console.WriteLine ("GHGHGHG {0}", tstmt.ToString ());
+								if (tstmt.Object is Literal) {
+									title = ((Literal)tstmt.Object).Value;
+								}
+							}
+							if (title == null) {
+								System.Console.WriteLine ("found nothing");
+								title = System.IO.Path.GetFileName (predicate);
+							}
+#else
+							title = System.IO.Path.GetFileName (predicate);
+#endif
 							stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
 							stream.Write (title);
 							stream.Write ("</font></td><td>");

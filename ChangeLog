@@ -1,5 +1,10 @@
 2005-09-23  Larry Ewing  <lewing@novell.com>
 
+	* src/dces.rdf: add dublin core descriptions.
+
+	* src/InfoDisplay.cs: get the the lable string from the
+	description store.
+
 	* src/RafFile.cs: turn raf into a source.
 
 	* src/MrwFile.cs: turn mrw into a source.

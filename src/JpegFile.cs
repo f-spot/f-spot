@@ -10,7 +10,7 @@ namespace FSpot {
 		
 		public JpegFile (string path) : base (path) 
 		{
-#if TEST_METADATA
+#if false // TEST_METADATA
 			MetadataStore store = new MetadataStore ();
 			Select (store);
 			store.Dump ();
