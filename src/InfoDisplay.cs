@@ -76,6 +76,7 @@ namespace FSpot {
 
 			stream.Write ("<table width=100% cellpadding=5 cellspacing=0>");
 			bool empty = true;
+			bool missing = false;
 
 			if (exif_info != null) {
 				foreach (Exif.ExifContent content in exif_info.GetContents ()) {
@@ -118,77 +119,93 @@ namespace FSpot {
 			}
 
 			if (photo != null) {
-				ImageFile img = ImageFile.Create (photo.DefaultVersionUri.LocalPath);
-				if (img is SemWeb.StatementSource) {
-					StatementSource source = (StatementSource)img;
-					MetadataStore store = new MetadataStore ();
-					source.Select (store);
-
-					if (store.StatementCount > 0) {
-						empty = false;
-						stream.Write ("<tr><th align=left bgcolor=\"" + ig + "\" colspan=2>" 
-							      + Mono.Posix.Catalog.GetString ("Extended Metadata") + "</th><tr>");
-
-						foreach (Statement stmt in store) {
-							
-							// Skip anonymous subjects because they are
-							// probably part of a collection
-							if (stmt.Subject.Uri == null) 
-								continue;
-							
-							string predicate = stmt.Predicate.ToString ();
-							string path = System.IO.Path.GetDirectoryName (predicate);
-							SelectPartialFilter filter = new SelectPartialFilter (true, true, false, false);
-							filter.SelectFirst = true;
+				MetadataStore store = new MetadataStore ();
+				try {
+					ImageFile img = ImageFile.Create (photo.DefaultVersionUri.LocalPath);
+					if (img is SemWeb.StatementSource) {
+						StatementSource source = (StatementSource)img;
+						source.Select (store);
+					}
+				} catch (System.IO.FileNotFoundException nf) {
+					missing = true;
+				} 
+				
+				if (store.StatementCount > 0) {
+					empty = false;
+					stream.Write ("<tr><th align=left bgcolor=\"" + ig + "\" colspan=2>" 
+						      + Mono.Posix.Catalog.GetString ("Extended Metadata") + "</th><tr>");
+					
+					foreach (Statement stmt in store) {
+						
+						// Skip anonymous subjects because they are
+						// probably part of a collection
+						if (stmt.Subject.Uri == null) 
+							continue;
+						
+						string predicate = stmt.Predicate.ToString ();
+						string path = System.IO.Path.GetDirectoryName (predicate);
+						SelectPartialFilter filter = new SelectPartialFilter (true, true, false, false);
+						filter.SelectFirst = true;
 #if false
-							Statement sstmt = new Statement (stmt.Predicate,
-											 (Entity)"http://www.gnome.org/projects/f-spot/ns/Label",
-											 null);
+						Statement sstmt = new Statement (stmt.Predicate,
+										 (Entity)"http://www.gnome.org/projects/f-spot/ns/Label",
+										 null);
 #else
-							Statement sstmt = new Statement (stmt.Predicate,
-											 (Entity)MetadataStore.Namespaces.Resolve ("rdfs:label"),
-											 null);
+						Statement sstmt = new Statement (stmt.Predicate,
+										 (Entity)MetadataStore.Namespaces.Resolve ("rdfs:label"),
+										 null);
 #endif							
-
-							string title = null;
+						string title = null;
 #if true
-							foreach (Statement tstmt in MetadataStore.Descriptions.Select (sstmt)) {
-								if (tstmt.Object is Literal) {
-									title = ((Literal)tstmt.Object).Value;
-								}
+						foreach (Statement tstmt in MetadataStore.Descriptions.Select (sstmt)) {
+							if (tstmt.Object is Literal) {
+								title = ((Literal)tstmt.Object).Value;
 							}
-							if (title == null) {
-								System.Console.WriteLine ("found nothing matching {0}", stmt.Predicate);
-								title = System.IO.Path.GetFileName (predicate);
-							}
-#else
-							title = System.IO.Path.GetFileName (predicate);
-#endif
-							stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
-							stream.Write (title);
-							stream.Write ("</font></td><td>");
-							
-							string s = "";
-							if (stmt.Object is SemWeb.Literal) {
-								s = Escape (((SemWeb.Literal)(stmt.Object)).Value);
-							} else {
-								MemoryStore substore = store.Select (new Statement ((Entity)stmt.Object, null, null, null));
-								WriteCollection (substore, stream);
-							}
-							
-							if (s != null && s != "")
-								stream.Write (s);
-							
-							stream.Write ("</td><tr>");
 						}
+						if (title == null) {
+							//System.Console.WriteLine ("found nothing matching {0}", stmt.Predicate);
+							title = System.IO.Path.GetFileName (predicate);
+						}
+#else
+						title = System.IO.Path.GetFileName (predicate);
+#endif
+						stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
+						stream.Write (title);
+						stream.Write ("</font></td><td>");
+						
+						string s = "";
+						if (stmt.Object is SemWeb.Literal) {
+							s = Escape (((SemWeb.Literal)(stmt.Object)).Value);
+						} else {
+							MemoryStore substore = store.Select (new Statement ((Entity)stmt.Object, null, null, null));
+							WriteCollection (substore, stream);
+						}
+						
+						if (s != null && s != "")
+							stream.Write (s);
+						
+						stream.Write ("</td><tr>");
 					}
 				}
 			}
 			
 			if (empty) {
-				string msg = String.Format ("<tr><td valign=top align=center bgcolor=\"{0}\">" 
-							    + "<b>{1}</b></td></tr>", ig,
-							    Mono.Posix.Catalog.GetString ("No metadata available"));
+				string msg;
+				if (photo == null) {
+					// FIXME we should pass the full selection to the info display and let it
+					// handle multiple items however it wants.
+					msg = String.Format ("<tr><td valign=top align=center bgcolor=\"{0}\">" 
+							     + "<b>{1}</b></td></tr>", ig,
+							     Mono.Posix.Catalog.GetString ("No active image"));
+				} else if (missing) {
+					string text = String.Format (Mono.Posix.Catalog.GetString ("The image \"{0}\" does not exist"), photo.DefaultVersionUri);
+					msg = String.Format ("<tr><td valign=top align=center bgcolor=\"{0}\">" 
+							     + "<b>{1}</b></td></tr>", ig, text);
+				} else {
+					msg = String.Format ("<tr><td valign=top align=center bgcolor=\"{0}\">" 
+							     + "<b>{1}</b></td></tr>", ig,
+							     Mono.Posix.Catalog.GetString ("No metadata available"));
+				}
 				stream.Write (msg);
 			}
 

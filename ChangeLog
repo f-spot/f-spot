@@ -1,5 +1,11 @@
 2005-09-24  Larry Ewing  <lewing@novell.com>
 
+	* src/InfoDisplay.cs: handle missing images and inactive messages
+	with a little grace.
+
+	* src/SlideView.cs: display an error pixbuf rather than crahsing
+	if the image is missing. 
+
 	* src/ImageView.cs: hold onto the delegate we create.
 
 	* src/InfoDisplay.cs: clean up output spew a little.
