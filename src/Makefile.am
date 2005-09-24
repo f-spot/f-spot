@@ -138,6 +138,7 @@ RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-simple-white.css,f-spot-simple-white.css	\
 	-resource:$(top_srcdir)/icons/f-spot-simple.css,f-spot-simple.css	\
 	-resource:$(top_srcdir)/icons/f-spot.js,f-spot.js	\
+	-resource:$(srcdir)/dces.rdf,dces.rdf			\
 	-resource:$(srcdir)/f-spot.glade,f-spot.glade
 
 fspotlibdir = $(libdir)/f-spot
@@ -148,7 +149,7 @@ bin_SCRIPTS = f-spot
 
 F_SPOT_CSFILES = $(F_SPOT_CSDISTFILES) Defines.cs
 
-f-spot.exe: $(F_SPOT_CSFILES) f-spot.glade
+f-spot.exe: $(F_SPOT_CSFILES) f-spot.glade dces.rdf
 	$(CSC) -out:$@ $(CSFLAGS) $(F_SPOT_CSFILES) $(ASSEMBLIES) $(RESOURCES)
 
 all: f-spot.exe

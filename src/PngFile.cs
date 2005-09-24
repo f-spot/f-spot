@@ -29,7 +29,11 @@ namespace FSpot.Png {
 		public void Select (SemWeb.StatementSink sink)
 		{
 			foreach (Chunk c in Chunks) {
-				if (c is TimeChunk) {
+				if (c is IhdrChunk) {
+					IhdrChunk ih = c as IhdrChunk;
+					MetadataStore.AddLiteral (sink, "tiff:ImageWidth", ih.Width.ToString ());
+					MetadataStore.AddLiteral (sink, "tiff:ImageLength", ih.Height.ToString ());
+				} else if(c is TimeChunk) {
 					TimeChunk tc = c as TimeChunk;
 
 					MetadataStore.AddLiteral (sink, "xmp:ModifyDate", tc.Time.ToString ("yyyy-MM-ddThh:mm:ss"));
@@ -86,6 +90,13 @@ namespace FSpot.Png {
 					MetadataStore.Add (sink, "tiff:PrimaryChromaticities", "rdf:Seq", rgb);
 				} else if (c.Name == "sRGB") {
 					MetadataStore.AddLiteral (sink, "exif:ColorSpace", "1");
+				} else if (c is PhysChunk) {
+					PhysChunk phys = (PhysChunk)c;
+					uint denominator = (uint) (phys.InMeters ? 100 : 1);
+					
+					MetadataStore.AddLiteral (sink, "tiff:ResolutionUnit", phys.InMeters ? "3" : "1");
+					MetadataStore.AddLiteral (sink, "tiff:XResolution", new FSpot.Tiff.Rational (phys.PixelsPerUnitX, denominator).ToString ());
+					MetadataStore.AddLiteral (sink, "tiff:YResolution", new FSpot.Tiff.Rational (phys.PixelsPerUnitY, denominator).ToString ());
 				}
 			}
 		}
@@ -136,6 +147,28 @@ namespace FSpot.Png {
 			}
 		}
 
+		public class PhysChunk : Chunk {
+			public PhysChunk (string name, byte [] data) : base (name, data) {}
+			
+			public uint PixelsPerUnitX {
+				get {
+					return BitConverter.ToUInt32 (data, 0, false);
+				}
+			}
+
+			public uint PixelsPerUnitY {
+				get {
+					return BitConverter.ToUInt32 (data, 4, false);
+				}
+			}
+			
+			public bool InMeters {
+				get {
+					return data [8] == 0;
+				}
+			}
+		}
+		
 		public class TextChunk : Chunk {
 			//public static string Name = "tEXt";
 
@@ -441,6 +474,7 @@ namespace FSpot.Png {
 				name_table ["iCCP"] = typeof (IccpChunk);
 				name_table ["IHDR"] = typeof (IhdrChunk);
 				name_table ["cHRM"] = typeof (ColorChunk);
+				name_table ["pHYs"] = typeof (PhysChunk);
 			}
 			
 			public Chunk (string name, byte [] data) 

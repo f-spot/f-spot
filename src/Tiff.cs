@@ -276,6 +276,9 @@ namespace FSpot.Tiff {
 
 		public override string ToString ()
 		{
+			if (Denominator == 1)
+				return Numerator.ToString ();
+
 			return System.String.Format ("{0}/{1}", Numerator, Denominator);
 		}
 		
@@ -297,6 +300,9 @@ namespace FSpot.Tiff {
 
 		public override string ToString ()
 		{
+			if (Denominator == 1)
+				return Numerator.ToString ();
+			
 			return System.String.Format ("{0}/{1}", Numerator, Denominator);
 		}
 		
@@ -561,8 +567,7 @@ namespace FSpot.Tiff {
 								  new Literal (e.ValueAsString [0], "x-default", null));
 					break;
 				case TagId.Artist:
-					MetadataStore.AddLiteral (sink, "dc:creator", "rdf:Seq", 
-								  new Literal (e.ValueAsString [0]));
+					MetadataStore.Add (sink, "dc:creator", "rdf:Seq", e.ValueAsString);
 					break;
 				case TagId.ExifIfdPointer:
 					try {
@@ -588,6 +593,7 @@ namespace FSpot.Tiff {
 								  e.ValueAsDate.ToString ("yyyy-MM-ddThh:mm:ss"));
 					break;
 					//case TagId.Flash:
+					
 					//case TagId.SpatialFrequencyResponse
 				case TagId.ExifVersion:
 				case TagId.FlashPixVersion:
