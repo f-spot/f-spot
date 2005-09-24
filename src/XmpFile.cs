@@ -15,7 +15,7 @@ namespace FSpot.Xmp {
 		{
 			try {
 				store.Import (new SemWeb.RdfXmlReader (stream));
-				Dump ();
+				//Dump ();
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e.ToString ());
 			}
@@ -37,7 +37,7 @@ namespace FSpot.Xmp {
 		static void Main (string [] args)
 		{
 			XmpFile xmp = new XmpFile (System.IO.File.OpenRead (args [0]));
-			xmp.Store.Dump ();
+			//xmp.Store.Dump ();
 #if false
 			System.IO.StreamReader stream = new System.IO.StreamReader (System.IO.File.OpenRead (args [0]));
 

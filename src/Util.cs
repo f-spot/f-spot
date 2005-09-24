@@ -39,6 +39,21 @@ class Semaphore {
 	}
 }
 
+class Timer : IDisposable {
+	System.DateTime start;
+	string label;
+
+	public Timer (string label) {
+		this.label = label;
+		start = System.DateTime.Now;
+	}
+
+	public void Dispose ()
+	{
+		System.Console.WriteLine ("{0} timer elapsed: {1}", label, (System.DateTime.Now - start));
+	}
+}
+
 public class UriList : ArrayList {
 	public UriList (Photo [] photos) {
 		foreach (Photo p in photos) {

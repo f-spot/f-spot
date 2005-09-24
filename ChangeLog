@@ -1,5 +1,11 @@
 2005-09-24  Larry Ewing  <lewing@novell.com>
 
+	* src/XmpFile.cs: silence debug output.
+
+	* src/Tiff.cs: silence a bunch of debug noise.
+
+	* src/Util.cs: add trivial timer class for debugging.
+
 	* src/InfoDisplay.cs: handle missing images and inactive messages
 	with a little grace.
 

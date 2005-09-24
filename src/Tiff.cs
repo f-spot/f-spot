@@ -486,6 +486,7 @@ namespace FSpot.Tiff {
 
 		public Header (System.IO.Stream stream)
 		{
+			using (new Timer ("new Tiff.Header")) {
 			byte [] data = new byte [8];
 			stream.Read (data, 0, data.Length);
 			if (data [0] == 'M' && data [1] == 'M')
@@ -526,18 +527,21 @@ namespace FSpot.Tiff {
 			
 			System.Console.WriteLine ("Reading First IFD");
 			Directory = new ImageDirectory (stream, directory_offset, endian); 
+			}
 		}
 		
 		
 		public void Select (SemWeb.StatementSink sink)
 		{
-			SelectDirectory (Directory, sink);
+			using (new Timer ("Tiff.Header.Select")) {
+				SelectDirectory (Directory, sink);
+			}
 		}
 
 		private void SelectDirectory (ImageDirectory dir, StatementSink sink)
 		{
 			foreach (DirectoryEntry e in dir.Entries) {
-				System.Console.WriteLine ("{0}", e.Id);
+				//System.Console.WriteLine ("{0}", e.Id);
 				switch (e.Id) {
 				case TagId.IPTCNAA:
 					System.IO.Stream iptcstream = new System.IO.MemoryStream (e.RawData);
@@ -572,7 +576,6 @@ namespace FSpot.Tiff {
 				case TagId.ExifIfdPointer:
 					try {
 						ImageDirectory sub = ((SubdirectoryEntry)e).Directory [0];
-						System.Console.WriteLine ("{0}", sub);
 						SelectDirectory (sub, sink);
 					} catch (System.Exception exc) {
 						System.Console.WriteLine (exc);
@@ -726,7 +729,7 @@ namespace FSpot.Tiff {
 			for (int pos = 0; pos < entry_length; pos += 12) {
 				DirectoryEntry entry = EntryFactory.CreateEntry (this, content, pos, this.endian);
 				entries.Add (entry);		
-				System.Console.WriteLine ("Added Entry {0} {1} - {2} * {3}", entry.Id.ToString (), entry.Id.ToString ("x"), entry.Type, entry.Count);
+				//System.Console.WriteLine ("Added Entry {0} {1} - {2} * {3}", entry.Id.ToString (), entry.Id.ToString ("x"), entry.Type, entry.Count);
 				if (entry.Id == TagId.NewSubfileType) {
 					
 				}
@@ -1439,7 +1442,7 @@ namespace FSpot.Tiff {
 #if TEST_METADATA 
 					FSpot.MetadataStore store = new FSpot.MetadataStore ();
 					Select (store);
-					store.Dump ();
+					//store.Dump ();
 #endif					
 					///directory.Dump ();
 					directory = directory.NextDirectory;
