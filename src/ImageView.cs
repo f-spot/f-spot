@@ -14,11 +14,12 @@ public class ImageView : Layout {
 	[DllImport ("libgobject-2.0-0.dll")]
 	static extern uint g_signal_connect_data (IntPtr obj, String name, SelectionChangedDelegate cb, int key, IntPtr p, int flags);
 
+	SelectionChangedDelegate holder;
 	public ImageView () : base (null, null)
 	{
 		Raw = f_image_view_new ();
 
-		g_signal_connect_data (Raw, "selection_changed", new SelectionChangedDelegate (SelectionChangedCallback), 0,
+		g_signal_connect_data (Raw, "selection_changed", holder = new SelectionChangedDelegate (SelectionChangedCallback), 0,
 				       IntPtr.Zero, 0);
 	}
 

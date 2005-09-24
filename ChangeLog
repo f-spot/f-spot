@@ -1,5 +1,7 @@
 2005-09-24  Larry Ewing  <lewing@novell.com>
 
+	* src/ImageView.cs: hold onto the delegate we create.
+
 	* src/InfoDisplay.cs: clean up output spew a little.
 
 	* src/Makefile.am: add dces.rdf to the build.
