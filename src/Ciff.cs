@@ -325,6 +325,7 @@ namespace FSpot.Ciff {
 		{
 			byte [] data = null;
 			ImageDirectory props = Root.ReadDirectory (Tag.ImageProps);
+			ImageDirectory camera = props.ReadDirectory (Tag.CameraObject);
 
 			data = props.ReadEntry (Tag.TimeStamp);
 			if (data != null)
@@ -351,6 +352,21 @@ namespace FSpot.Ciff {
 								  (1000000 * (1 / spec.PixelAspectRatio)).ToString ());
 				}
 					
+			}
+			
+			data = camera.ReadEntry (Tag.CanonRawMakeModel);
+			if (data != null) {
+				string make_model = System.Text.Encoding.ASCII.GetString (data, 0, data.Length - 1);
+				string [] vals = make_model.Split (new char [] {'\0'});
+				MetadataStore.AddLiteral (sink, "tiff:Make", vals [0]); 
+				MetadataStore.AddLiteral (sink, "tiff:Model", vals [1]); 
+			}
+
+			// FIXME this may not be the best thing to store here but
+			data = camera.ReadEntry (Tag.OwnerName);
+			if (data != null) {
+				string name = System.Text.Encoding.ASCII.GetString (data, 0, data.Length - 1);
+				MetadataStore.AddLiteral (sink, "dc:creator", "rdf:Alt", new Literal (name, "x-default", null)); 
 			}
 		}
 
