@@ -266,12 +266,11 @@ namespace FSpot.Tiff {
 
 		public static SRational BitwiseCopy (Rational rational)
 		{
-			unsafe {
-				SRational result = new SRational (0, 0);
-				SRational *p = &result;
-				*((Rational *)p) = rational;
-				return result;
-			}
+			SRational result;
+
+			result.Numerator = unchecked ((int) rational.Numerator);
+			result.Denominator = unchecked ((int) rational.Denominator);
+			return result;
 		}
 
 		public override string ToString ()

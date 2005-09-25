@@ -56,7 +56,7 @@ namespace FSpot.Ciff {
 		TargetDistanceSetting = 0x1807,
 		SerialNumber = 0x180b,
 		TimeStamp = 0x180e,
-		ImageInfo = 0x1810,
+		ImageSpec = 0x1810,
 		FlashInfo = 0x1813,
 		MeasuredEV = 0x1814,
 		FileNumber = 0x1817,
@@ -83,13 +83,100 @@ namespace FSpot.Ciff {
 		ExifInformation = 0x300b
 	}
 
-	public struct ImageInfo {
-		uint ImageWidth;  // Number of horizontal pixels
-		uint ImageHeight; // Number of vertical pixels
-		float PixelAspectratio;
-		int RotationAngle;  // degreess clockwise to rotate (orientation)
-		uint ComponentBitDepth; // bits per component
-		uint ColorBW; //  byte wise:  0 gray - 1 color ; byte 2 use aspect ratio ; 3 and 4 reserved
+	public struct ImageSpec {
+		public uint ImageWidth;  // Number of horizontal pixels
+		public uint ImageHeight; // Number of vertical pixels
+		public float PixelAspectRatio;
+		public int RotationAngle;  // degreess clockwise to rotate (orientation)
+		public uint ComponentBitDepth; // bits per component
+		public uint ColorBitDepth; // bits per component * channels
+		public uint ColorBW; //  byte wise:  0 gray - 1 color ; byte 2 use aspect ratio ; 3 and 4 reserved
+
+		public ImageSpec (byte [] data, bool little)
+		{
+			ImageWidth = BitConverter.ToUInt32 (data, 0, little);
+			ImageHeight = BitConverter.ToUInt32 (data, 4, little);
+			unsafe {
+				float *p = &PixelAspectRatio;
+				*((uint *)p) = BitConverter.ToUInt32 (data, 8, little);
+			}
+			RotationAngle = BitConverter.ToInt32 (data, 12, little);
+			ComponentBitDepth = BitConverter.ToUInt32 (data, 16, little);
+			ColorBitDepth = BitConverter.ToUInt32 (data, 20, little);
+			ColorBW = BitConverter.ToUInt32 (data, 24, little);
+			System.Console.WriteLine ("0x{0}", ColorBW.ToString ("x"));
+		}
+
+		public PixbufOrientation Orientation {
+			get {
+				int angle = RotationAngle % 360;
+				if (angle < 45)
+					return PixbufOrientation.TopLeft;
+				else if (angle < 135)
+					return PixbufOrientation.LeftBottom;
+				else if (angle < 225)
+					return PixbufOrientation.BottomRight;
+				else if (angle < 315)
+					return PixbufOrientation.RightTop;
+				else
+					return PixbufOrientation.TopLeft;
+			}
+		}
+
+		public bool IsColor {
+			get {
+				return (ColorBW & 1) > 0;
+
+			}
+		}
+
+		public bool HasSquarePixels {
+			get {
+				return (ColorBW & 1 << 1) == 0;
+			}
+		}
+	}
+
+	public struct CaptureTime {
+		uint seconds;
+		int tz_offset;
+		uint tz_data;
+
+		public CaptureTime (byte [] data, bool little)
+		{
+			seconds = BitConverter.ToUInt32 (data, 0, little);
+			tz_offset = BitConverter.ToInt32 (data, 4, little);
+			tz_data = BitConverter.ToUInt32 (data, 8, little);
+		}
+
+		public System.DateTime LocalTime {
+			get {
+				return new System.DateTime (1970, 1, 1).AddSeconds (seconds);
+			}
+		}
+
+		public bool HasTimezone {
+			get {
+				return ((1 << 31 & tz_data) > 0);
+			}
+		}
+
+		public override string ToString ()
+		{
+			string tz = "";
+			
+			if (HasTimezone)
+				if (tz_offset != 0)
+					tz = System.String.Format ("{0}{1}:{2}", 
+								   seconds > 0 ? "+" : "-", 
+								   tz_offset / 3600, 
+								   tz_offset / 60 % 60);
+				else 
+					tz = "Z";
+
+		       
+			return System.String.Format ("{0}{1}", LocalTime.ToString ("yyyy-MM-ddThh:mm:ss"), tz);
+		}
 	}
 
 	public enum EntryType : ushort {
@@ -120,13 +207,18 @@ namespace FSpot.Ciff {
 			Size = BitConverter.ToUInt32 (data, pos + 2, little);
 			Offset = BitConverter.ToUInt32 (data, pos + 6, little);
 		}	
+		
+		public EntryType Type {
+			get {
+				return GetType (Tag);
+			}
+		}
 
 		public static EntryType GetType (Tag tag) 
 		{
 			EntryType type = (EntryType) ((ushort)tag & (ushort)Mask.Type);
 			return type;
 		}
-		
 
 		public static bool IsDirectory (Tag tag)
 		{
@@ -135,7 +227,6 @@ namespace FSpot.Ciff {
 		}
 	}
 
-	
 	public class ImageDirectory {
 		System.Collections.ArrayList entry_list;
 		uint Count;
@@ -177,13 +268,12 @@ namespace FSpot.Ciff {
 			System.Console.WriteLine ("Dumping directory with {0} entries", entry_list.Count);
 			for (int i = 0; i < entry_list.Count; i++) {
 				Entry e = (Entry) entry_list[i];
-				System.Console.WriteLine ("\tentry[{0}] = {1}..{5}({4}).{2}-{3}", i, e.Tag, e.Size, e.Offset, e.Tag.ToString ("x"), (uint)e.Tag & ~(uint)Mask.StorageFormat); 
+				System.Console.WriteLine ("\tentry[{0}] = {1}.{6}.{5}({4}).{2}-{3}", i, e.Tag, e.Size, e.Offset, e.Tag.ToString ("x"), (uint)e.Tag & ~(uint)Mask.StorageFormat, e.Type); 
 			}
 		}
 
 		public ImageDirectory ReadDirectory (Tag tag)
 		{
-			int pos = 0;
 			foreach (Entry e in entry_list) {
 				if (e.Tag == tag) {
 					uint subdir_start = this.start + e.Offset;
@@ -218,10 +308,11 @@ namespace FSpot.Ciff {
 		}
 	}
 	
-	public class CiffFile : FSpot.ImageFile {
+	public class CiffFile : FSpot.ImageFile , SemWeb.StatementSource {
 		public ImageDirectory Root;
 		System.IO.Stream stream;
 		private uint version;
+		bool little;
 		
 		public CiffFile (string path) : base (path)
 		{
@@ -230,12 +321,44 @@ namespace FSpot.Ciff {
 			this.Dump ();
 		}
 
+		public void Select (SemWeb.StatementSink sink)
+		{
+			byte [] data = null;
+			ImageDirectory props = Root.ReadDirectory (Tag.ImageProps);
+
+			data = props.ReadEntry (Tag.TimeStamp);
+			if (data != null)
+				MetadataStore.AddLiteral (sink, "xmp:CreateDate", new CaptureTime (data, little).ToString ());
+
+			data = props.ReadEntry (Tag.ImageSpec);
+			if (data != null) {
+				ImageSpec spec = new ImageSpec (data, little);
+				MetadataStore.AddLiteral (sink, "tiff:Orientation", ((int)spec.Orientation).ToString ());
+				MetadataStore.AddLiteral (sink, "tiff:ImageWidth", spec.ImageWidth.ToString ());
+				MetadataStore.AddLiteral (sink, "tiff:ImageLength", spec.ImageHeight.ToString ());
+				string comp = spec.ComponentBitDepth.ToString ();
+
+				if (spec.IsColor) {
+					MetadataStore.Add (sink, "tiff:BitsPerSample", "rdf:Seq", new string [] { comp, comp, comp });
+				} else {
+					MetadataStore.Add (sink, "tiff:BitsPerSample", "rdf:Seq", new string [] { comp });
+				}					
+				
+				if (!spec.HasSquarePixels) {
+					MetadataStore.AddLiteral (sink, "tiff:XResolution", 
+								  (1000000 * spec.PixelAspectRatio).ToString ());
+					MetadataStore.AddLiteral (sink, "tiff:YResolution", 
+								  (1000000 * (1 / spec.PixelAspectRatio)).ToString ());
+				}
+					
+			}
+		}
+
 		public void Load (System.IO.Stream stream) 
 		{
 			byte [] header = new byte [26];  // the spec reserves the first 26 bytes as the header block
 			stream.Read (header, 0, header.Length);
 
-			bool little;
 			uint start;
 			
 			little = (header [0] == 'I' && header [1] == 'I');
@@ -254,12 +377,34 @@ namespace FSpot.Ciff {
 			Root = new ImageDirectory (stream, start, end, little);
 		}
 
-		/*
-		public override System.DateTime Date () 
+		public override PixbufOrientation GetOrientation ()
 		{
+			PixbufOrientation orientation = PixbufOrientation.TopLeft;
+			ImageDirectory props = Root.ReadDirectory (Tag.ImageProps);
+		       	byte [] data = props.ReadEntry (Tag.ImageSpec);
+			
+			if (data != null)
+				orientation = new ImageSpec (data, little).Orientation;
+			else 
+				System.Console.WriteLine ("NO ORIENTATION");
 
+			return orientation;
 		}
-		*/
+
+		public override System.DateTime Date {
+			get {
+				ImageDirectory props = Root.ReadDirectory (Tag.ImageProps);
+				byte [] date = props.ReadEntry (Tag.TimeStamp);
+
+				if (date == null)
+					return base.Date;
+				else 
+					System.Console.WriteLine ("NO DATE");
+
+
+				return new CaptureTime (date, little).LocalTime;
+			}
+		}
 
 		public override Gdk.Pixbuf Load ()
 		{
@@ -300,10 +445,10 @@ namespace FSpot.Ciff {
 			Root.Dump ();
 			ImageDirectory props = Root.ReadDirectory (Tag.ImageProps);
 			props.Dump ();
-			string path = "out2.jpg";
-			//System.IO.File.Delete (path);
-
 			/*
+				 string path = "out2.jpg";
+			System.IO.File.Delete (path);
+
 			System.IO.Stream output = System.IO.File.Open (path, System.IO.FileMode.OpenOrCreate);
 			byte [] data = GetEmbeddedThumbnail ();
 			System.Console.WriteLine ("data length {0}", data != null ? data.Length : -1);

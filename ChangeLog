@@ -1,3 +1,12 @@
+2005-09-25  Larry Ewing  <lewing@novell.com>
+
+	* src/Tiff.cs: make the srational conversion safe.
+
+	* src/BitConverter.cs: add an int converter.
+
+	* src/Ciff.cs: start processing the crw metadata, hook up
+	orientation and date in the process.
+
 2005-09-24  Larry Ewing  <lewing@novell.com>
 
 	* src/XmpFile.cs: silence debug output.

@@ -61,6 +61,11 @@ namespace FSpot {
 			return Swap (val, little);
 		}
 
+		public static int ToInt32 (byte [] data, int position, bool little)
+		{
+			return unchecked ((int) ToUInt32 (data, position, little));
+		}
+
 		public static ulong ToUInt64 (byte [] data, int position, bool little)
 		{
 			ulong val = System.BitConverter.ToUInt64(data, position);
