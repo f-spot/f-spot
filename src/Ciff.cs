@@ -362,12 +362,14 @@ namespace FSpot.Ciff {
 				MetadataStore.AddLiteral (sink, "tiff:Model", vals [1]); 
 			}
 
-			// FIXME this may not be the best thing to store here but
+			/*
+			// FIXME this doesn't appear to be ascii.
 			data = camera.ReadEntry (Tag.OwnerName);
 			if (data != null) {
 				string name = System.Text.Encoding.ASCII.GetString (data, 0, data.Length - 1);
-				MetadataStore.AddLiteral (sink, "dc:creator", "rdf:Alt", new Literal (name, "x-default", null)); 
+				MetadataStore.AddLiteral (sink, "dc:creator", "rdf:Seq", new SemWeb.Literal (name));
 			}
+			*/
 		}
 
 		public void Load (System.IO.Stream stream) 
