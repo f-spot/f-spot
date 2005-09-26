@@ -1,3 +1,8 @@
+2005-09-26  Larry Ewing  <lewing@novell.com>
+
+	* src/main.cs: remove extra call to Gtk.Application.Init to fix
+	init arguments.
+
 2005-09-25  Larry Ewing  <lewing@novell.com>
 
 	* src/Ciff.cs: add some more fields.

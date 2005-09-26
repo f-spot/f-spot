@@ -22,7 +22,6 @@ public class Driver {
 
 		if (control == null) {
 			FSpot.Core core = null;
-			Application.Init ();
 			program = new Program (FSpot.Defines.PACKAGE, 
 					       FSpot.Defines.VERSION, 
 					       Modules.UI, args);
