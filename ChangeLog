@@ -1,5 +1,8 @@
 2005-09-26  Larry Ewing  <lewing@novell.com>
 
+	* src/TagStore.cs: throw an exception if we try to remove a
+	category with children.
+
 	* src/main.cs: remove extra call to Gtk.Application.Init to fix
 	init arguments.
 

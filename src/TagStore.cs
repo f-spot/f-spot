@@ -403,16 +403,14 @@ public class TagStore : DbStore {
 	{
 		RemoveFromCache (item);
 		
+		Category category = item as Category;
+		if (category != null && 
+		    category.Children != null && 
+		    category.Children.Length > 0)
+			throw new System.InvalidOperationException ("Cannot remove category that contains children");
+
 		((Tag)item).Category = null;
 		
-		// FIXME this should either throw an exception or make one
-		// command, not recurse.
-		if (item is Category) {
-			Category category = (Category)item;
-			foreach (Tag tag in category.Children)
-				Remove (tag);
-		}
-
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
 
