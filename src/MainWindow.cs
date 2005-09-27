@@ -310,6 +310,9 @@ public class MainWindow {
 
 	public void SetViewMode (ModeType value)
 	{
+		if (view_mode == value)
+			return;
+
 		view_mode = value;
 		switch (view_mode) {
 		case ModeType.IconView:
