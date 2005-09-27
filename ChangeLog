@@ -1,5 +1,11 @@
 2005-09-26  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: handle removing a tag and its children at the
+	same time.
+
+	* src/TagStore.cs: clean up the exception logic. Add a comparer
+	for the remove command.
+
 	* src/MainWindow.cs: integrate category removal error dialog patch
 	from Bengt Thuree (see #171346). 
 	
