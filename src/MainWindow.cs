@@ -450,7 +450,7 @@ public class MainWindow {
 				if (icon == null) {
 					// FIXME this needs a lot more work.
 					try {
-						Pixbuf tmp = PixbufUtils.LoadAtMaxSize (query.Photos[num].DefaultVersionPath, 128, 128);
+						Pixbuf tmp = FSpot.PhotoLoader.LoadAtMaxSize (query.Items [num], 128, 128);
 						icon = PixbufUtils.TagIconFromPixbuf (tmp);
 						tmp.Dispose ();
 					} catch {

@@ -1,5 +1,8 @@
 2005-09-27  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: use the PhotoLoader to create the icon so
+	that raw files work properly.
+
 	* src/QueryView.cs: show the photo popup.
 
 	* src/IconView.cs: make the ContextMenu virtual.
