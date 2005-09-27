@@ -1,5 +1,8 @@
 2005-09-26  Larry Ewing  <lewing@novell.com>
 
+	* src/TagCommands.cs: allow only one selection to be active at a
+	time.
+
 	* src/TagStore.cs: fix the sort logic.
 
 	* src/MainWindow.cs: handle removing a tag and its children at the

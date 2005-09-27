@@ -365,6 +365,9 @@ public class TagCommands {
 			Gdk.Pixbuf tmp = null;
 		       
 			image_view.GetSelection (out x, out y, out width, out height);
+			if (width > 0 && height > 0) 
+				icon_view.Selection.Clear ();
+				
 			if (image_view.Pixbuf != null) {
 				if (width > 0 && height > 0) {
 					tmp = new Gdk.Pixbuf (image_view.Pixbuf, x, y, width, height);
