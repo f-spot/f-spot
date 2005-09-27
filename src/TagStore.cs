@@ -173,6 +173,54 @@ public class Category : Tag {
 	}
 }
 
+public class InvalidTagOperationException : InvalidOperationException {
+	public Tag tag;
+	
+	public InvalidTagOperationException (Tag t, string message) : base (message)
+	{
+		tag = t;
+	}
+
+	public Tag Tag {
+		get {
+			return tag;
+		}
+	}
+
+}
+
+public class TagRemoveComparer : IComparer {
+	public int Compare (object obj1, object obj2) 
+	{
+		Tag t1 = obj1 as Tag;
+		Tag t2 = obj2 as Tag;
+		
+		return Compare (t1, t2);
+	}
+       
+	public int Compare (Tag t1, Tag t2)
+	{
+		bool c1 = t1 is Category;
+		bool c2 = t2 is Category;
+		
+		if (c1 == c2) {
+			if (c1 && c2) {
+				for (Category cat = t1 as Category; cat.Category != null; cat = cat.Category) {
+					if (cat == t2.Category)
+						return 1;
+				}
+			}
+			
+			return t1.Name.CompareTo (t2.Name);
+		}
+
+		if (c1)
+			return 1;
+		else
+			return -1;
+	}
+}
+
 public delegate void TagCreatedHandler(Tag t);
 public delegate void TagChangedHandler(Tag t);
 public delegate void TagDeletedHandler(Tag t);
@@ -401,14 +449,14 @@ public class TagStore : DbStore {
 	
 	public override void Remove (DbItem item)
 	{
-		RemoveFromCache (item);
-		
 		Category category = item as Category;
 		if (category != null && 
 		    category.Children != null && 
 		    category.Children.Length > 0)
-			throw new System.InvalidOperationException ("Cannot remove category that contains children");
+			throw new InvalidTagOperationException (category, "Cannot remove category that contains children");
 
+		RemoveFromCache (item);
+		
 		((Tag)item).Category = null;
 		
 		SqliteCommand command = new SqliteCommand ();
