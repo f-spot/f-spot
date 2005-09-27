@@ -1258,10 +1258,8 @@ public class IconView : Gtk.Layout {
 		}
 	}
 
-	void ContextMenu (ButtonPressEventArgs args, int cell_num)
+	void virtual ContextMenu (ButtonPressEventArgs args, int cell_num)
 	{
-		PhotoPopup popup = new PhotoPopup ();
-		popup.Activate (args.Event);
 	}
 	
 	private void HandleButtonReleaseEvent (object sender, ButtonReleaseEventArgs args)

@@ -51,5 +51,11 @@ public class QueryView : IconView {
 	public QueryView (System.IntPtr raw) : base (raw) {}
 
 	public QueryView (FSpot.IBrowsableCollection query) : base (query) {}
+
+	public override ContextMenu (ButtonPressEventArgs args, int cell_num)
+	{
+		PhotoPopup popup = new PhotoPopup ();
+		popup.Activate (args.Event);
+	}
 }
 

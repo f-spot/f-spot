@@ -1,3 +1,11 @@
+2005-09-27  Larry Ewing  <lewing@novell.com>
+
+	* src/QueryView.cs: show the photo popup.
+
+	* src/IconView.cs: make the ContextMenu virtual.
+
+	* src/MainWindow.cs: if the mode is already set, don't set it again.
+	
 2005-09-26  Larry Ewing  <lewing@novell.com>
 
 	* src/TagCommands.cs: allow only one selection to be active at a
