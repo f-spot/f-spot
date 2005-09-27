@@ -1,5 +1,8 @@
 2005-09-26  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: integrate category removal error dialog patch
+	from Bengt Thuree (see #171346). 
+	
 	* src/TagStore.cs: throw an exception if we try to remove a
 	category with children.
 

@@ -1578,18 +1578,49 @@ public class MainWindow {
 	public void HandleDeleteSelectedTagCommand (object sender, EventArgs args)
 	{
 		Tag [] tags = this.tag_selection_widget.TagHighlight ();
- 		string header = Mono.Posix.Catalog.GetPluralString ("Delete the selected tag?",
-								 "Delete the {0} selected tags?", 
-								 tags.Length);
-
-		header = String.Format (header, tags.Length);
-		string msg = Mono.Posix.Catalog.GetString("If you delete a tag, all associations with photos are lost.");
-		string ok_caption = Mono.Posix.Catalog.GetPluralString ("_Delete tag", "_Delete tags", tags.Length);
-		 
- 		if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(main_window, DialogFlags.DestroyWithParent, MessageType.Warning, header, msg, ok_caption)) {                              
- 			db.Photos.Remove (tags);
-			icon_view.QueueDraw ();
- 		}
+		bool okToDelete = true;
+		string ProblemCategoryName = "";
+		
+		// Check if we are supposed to delete a Category with sub tags. If so, we can not.
+		foreach (Tag slaskTag in tags) {
+			if (slaskTag != null) {
+				if (slaskTag is Category) {
+					Category slaskCategory = (Category)slaskTag;
+					if (slaskCategory.Children.Length > 1) {
+						okToDelete = false;
+						ProblemCategoryName = slaskCategory.Name;
+					}
+//					System.Console.WriteLine ("{0} --> {1}", slaskCategory.Name, okToDelete);
+				}		
+			}
+		} // foreach
+		
+		if (okToDelete) {
+		
+ 			string header = Mono.Posix.Catalog.GetPluralString ("Delete the selected tag?",
+									 "Delete the {0} selected tags?", 
+									 tags.Length);
+	
+			header = String.Format (header, tags.Length);
+			string msg = Mono.Posix.Catalog.GetString("If you delete a tag, all associations with photos are lost.");
+			string ok_caption = Mono.Posix.Catalog.GetPluralString ("_Delete tag", "_Delete tags", tags.Length);
+			 
+ 			if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(main_window, DialogFlags.DestroyWithParent, MessageType.Warning, header, msg, ok_caption)) {                              
+ 				db.Photos.Remove (tags);
+				icon_view.QueueDraw ();
+ 			}
+ 		} else { // A Category is not empty. Can not delete it.
+ 			string msg = Mono.Posix.Catalog.GetString ("Category is not empty");
+			string desc = String.Format (Mono.Posix.Catalog.GetString ("Can not delete categorys which has tags. Please delete tags under \"{0}\" first"),
+						     ProblemCategoryName);
+			
+			HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
+								    Gtk.MessageType.Error, ButtonsType.Ok, 
+								    msg,
+								    desc);
+			md.Run ();
+			md.Destroy ();
+		}
 	}
 
 	void HandleUpdateThumbnailCommand (object sende, EventArgs args)
