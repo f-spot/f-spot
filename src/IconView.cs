@@ -1258,7 +1258,7 @@ public class IconView : Gtk.Layout {
 		}
 	}
 
-	void virtual ContextMenu (ButtonPressEventArgs args, int cell_num)
+	protected virtual void ContextMenu (ButtonPressEventArgs args, int cell_num)
 	{
 	}
 	
