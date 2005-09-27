@@ -518,13 +518,13 @@ namespace FSpot.Tiff {
 				throw new System.Exception ("Invalid Tiff Header Block");
 			*/
 
-			System.Console.WriteLine ("Converting Something");
+			//System.Console.WriteLine ("Converting Something");
 			directory_offset = BitConverter.ToUInt32 (data, 4, endian == Endian.Little);
 			
 			if (directory_offset < 8)
 				throw new System.Exception ("Invalid IFD0 Offset [" + directory_offset.ToString () + "]"); 
 			
-			System.Console.WriteLine ("Reading First IFD");
+			//System.Console.WriteLine ("Reading First IFD");
 			Directory = new ImageDirectory (stream, directory_offset, endian); 
 			}
 		}
@@ -716,7 +716,7 @@ namespace FSpot.Tiff {
 		protected virtual void ReadEntries (System.IO.Stream stream) 
 		{
 			num_entries = Converter.ReadUShort (stream, endian);
-			System.Console.WriteLine ("reading {0} entries", num_entries);
+			//System.Console.WriteLine ("reading {0} entries", num_entries);
 
 			entries = new System.Collections.ArrayList (num_entries);
 			int entry_length = num_entries * 12;
@@ -749,14 +749,14 @@ namespace FSpot.Tiff {
 		
 		protected void LoadNextDirectory (System.IO.Stream stream)
 		{
-			System.Console.WriteLine ("next_directory_offset = {0}", next_directory_offset);
+			//System.Console.WriteLine ("next_directory_offset = {0}", next_directory_offset);
 			next_directory = null;
 			try {
 				if (next_directory_offset != 0)
 					next_directory = new ImageDirectory (stream, next_directory_offset, this.endian);
 
 			} catch (System.Exception e) {
-				System.Console.WriteLine ("Error loading directory {0}", e.ToString ());
+				//System.Console.WriteLine ("Error loading directory {0}", e.ToString ());
 				next_directory = null;
 				next_directory_offset = 0;
 			}		
@@ -798,10 +798,10 @@ namespace FSpot.Tiff {
 		
 		public void Dump () 
 		{
-			System.Console.WriteLine ("Directory Start");
+			//System.Console.WriteLine ("Directory Start");
 			foreach (DirectoryEntry e in this.Entries)
 				e.Dump ();
-			System.Console.WriteLine ("End Directory");
+			//System.Console.WriteLine ("End Directory");
 		}
 		
 		public string Dump2 ()
@@ -860,7 +860,7 @@ namespace FSpot.Tiff {
 			
 			switch (type) {
 			case EntryType.Ifd:
-				System.Console.WriteLine ("Trying to load {0} {1}", tagid, tagid.ToString ("x"));
+				//System.Console.WriteLine ("Trying to load {0} {1}", tagid, tagid.ToString ("x"));
 				return new SubdirectoryEntry (input, start, header_endian);
 			case EntryType.Byte:
 				return new ByteEntry (input, start, header_endian);
@@ -922,20 +922,20 @@ namespace FSpot.Tiff {
 
 			for (int i = 0; i <  entry_count; i++) {
 				directory_offset = BitConverter.ToUInt32 (raw_data, i * 4, endian == Endian.Little);
-				System.Console.WriteLine ("Entering Subdirectory {0} at {1}", tagid.ToString (), directory_offset);
+				//System.Console.WriteLine ("Entering Subdirectory {0} at {1}", tagid.ToString (), directory_offset);
 				Directory [i] = new ImageDirectory (stream, directory_offset, endian);
-				System.Console.WriteLine ("Leaving Subdirectory {0} at {1}", tagid.ToString (), directory_offset);
+				//System.Console.WriteLine ("Leaving Subdirectory {0} at {1}", tagid.ToString (), directory_offset);
 			}
 		}
 
 		public override void Dump ()
 		{
 			for (int i = 0; i < GetEntryCount (); i++) {
-				 System.Console.WriteLine ("Entering Subdirectory {0}.{2} at {1}", tagid.ToString (), directory_offset, i);
-				 if (Directory [i] != null)
-					 Directory [i].Dump ();
-				 
-				 System.Console.WriteLine ("Leaving Subdirectory {0}.{2} at {1}", tagid.ToString (), directory_offset, i);
+				//System.Console.WriteLine ("Entering Subdirectory {0}.{2} at {1}", tagid.ToString (), directory_offset, i);
+				if (Directory [i] != null)
+					Directory [i].Dump ();
+				
+				//System.Console.WriteLine ("Leaving Subdirectory {0}.{2} at {1}", tagid.ToString (), directory_offset, i);
 			}
 		}
 	}
@@ -981,9 +981,8 @@ namespace FSpot.Tiff {
 			if (type != EntryType.Ascii)
 				throw new System.Exception (System.String.Format ("Invalid Settings At Birth {0}", tagid));
 		}
-
 	}
-
+	
 #if false
 	public class ImageLoader {
 		ushort width;
@@ -1125,12 +1124,13 @@ namespace FSpot.Tiff {
 				raw_data = data;
 			}
 
+#if false
 			switch ((int)this.Id) {
 			case (int)TagId.NewSubfileType:
-				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new NewSubFileType {0}", (NewSubfileType) this.ValueAsLong [0]);
+				//System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new NewSubFileType {0}", (NewSubfileType) this.ValueAsLong [0]);
 				break;
 			case (int)TagId.SubfileType:
-				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new SubFileType {0}", (SubfileType) this.ValueAsLong [0]);
+				//System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new SubFileType {0}", (SubfileType) this.ValueAsLong [0]);
 				break;
 			case (int)TagId.Compression:
 				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new Compression {0}", (Compression) this.ValueAsLong [0]);
@@ -1169,6 +1169,7 @@ namespace FSpot.Tiff {
 				System.Console.WriteLine ("");
 				break;
 			}
+#endif
 		}
 
 		public virtual void Dump ()
@@ -1214,7 +1215,7 @@ namespace FSpot.Tiff {
 			byte [] tmp = new byte [len + 1];
 			System.Text.Encoding.UTF8.GetBytes (value, 0, value.Length, tmp, 0);
 			tmp[len] = 0;
-			System.Console.WriteLine ("value = {0} len = {1}", value, len);
+			System.Console.WriteLine ("SetData: value = {0} len = {1}", value, len);
 			SetData (tmp);
 		}
 	
@@ -1279,7 +1280,7 @@ namespace FSpot.Tiff {
 					case TagId.SceneType:
 						return ArrayToString (this.RawData);
 					default:
-						System.Console.WriteLine ("Cannont convert type \"{0}\" to string", Id);
+						System.Console.WriteLine ("Cannot convert type \"{0}\" to string", Id);
 						break;
 					}
 					break;

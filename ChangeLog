@@ -1,5 +1,7 @@
 2005-09-27  Larry Ewing  <lewing@novell.com>
 
+	* src/Tiff.cs: remove a bunch of debug output.
+
 	* src/MainWindow.cs: use the PhotoLoader to create the icon so
 	that raw files work properly.
 
