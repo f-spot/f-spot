@@ -7,21 +7,21 @@ namespace FSpot.Tiff {
 	// because they differ from the tiff standard names
 	public enum NiffId : ushort {
 		SubfileType                     = 0x00fe,
-			PelPathLength                   = 0x0100,
-			LineProgressionLength           = 257,
-			BitsPerSample                   = 0x0101,
-			PhotometricInterpretation       = 0x0106,
-			DataOffset                      = 0x0111,
-			SamplesPerPixel 		= 0x0115,
-			DataByteCounts                  = 0x0117,
-			PelPathResolution               = 0x011a,
-			LineProgressionResolution       = 0x011b,
-			ResolutionUnit  		= 0x0128,
-			ColumnsPerPelPath               = 322,
-			RowsPerLineProgression          = 323,
-			Rotation                        = 33465,
-			NavyCompression                 = 33466,
-			TileIndex                       = 33467
+		PelPathLength                   = 0x0100,
+		LineProgressionLength           = 257,
+		BitsPerSample                   = 0x0101,
+		PhotometricInterpretation       = 0x0106,
+		DataOffset                      = 0x0111,
+		SamplesPerPixel 		= 0x0115,
+		DataByteCounts                  = 0x0117,
+		PelPathResolution               = 0x011a,
+		LineProgressionResolution       = 0x011b,
+		ResolutionUnit  		= 0x0128,
+		ColumnsPerPelPath               = 322,
+		RowsPerLineProgression          = 323,
+	        Rotation                        = 33465,
+	        NavyCompression                 = 33466,
+		TileIndex                       = 33467
 	}
 
 	public enum TagId : ushort {
@@ -331,7 +331,7 @@ namespace FSpot.Tiff {
 		ITULab = 10,
 		LogL = 32844, // Log Luminance
 		LogLUV = 32845,
-		CFA = 32803,  // ColorFilterArray... the good stuff
+		ColorFilterArray = 32803,  // ColorFilterArray... the good stuff
 		LinearRaw = 34892  // DBG LinearRaw
 	}
 
@@ -508,15 +508,6 @@ namespace FSpot.Tiff {
 				System.Console.WriteLine ("Found Unknown Tiff Marker {0}", marker.ToString ("x"));
 				break;
 			}
-
-			/*
-			if (data [0] == 'M' && data [1] == 'M' && data [2] == 0 && data [3] == 42)
-				endian = Endian.Big;
-			else if (data [0] == 'I' && data [1] == 'I' && data [2] == 42 && data [3] == 0)
-				endian = Endian.Little;
-			else
-				throw new System.Exception ("Invalid Tiff Header Block");
-			*/
 
 			//System.Console.WriteLine ("Converting Something");
 			directory_offset = BitConverter.ToUInt32 (data, 4, endian == Endian.Little);
@@ -780,7 +771,6 @@ namespace FSpot.Tiff {
 				if (entry.Id == id)
 					return entry;
 
-			
 			return null;
 		}
 
@@ -791,7 +781,6 @@ namespace FSpot.Tiff {
 				if ((uint)entry.Id == id)
 					return entry;
 
-			
 			return null;
 		}
 		
@@ -810,9 +799,9 @@ namespace FSpot.Tiff {
 			builder.Append ("Dummping IFD");
 			foreach (DirectoryEntry entry in entries) {
 				builder.Append (entry.ToString ()+ "\n");
-				if (entry is SubdirectoryEntry) {
+
+				if (entry is SubdirectoryEntry)
 					builder.Append ("Found SUBDIRECTORYENTRY\n");
-				}
 			}
 			
 			if (next_directory != null) {
@@ -959,8 +948,7 @@ namespace FSpot.Tiff {
 				throw new System.Exception (System.String.Format ("Invalid Settings At Birth {0}", tagid));
 		}
 
-		public new uint [] Value
-		{
+		public new uint [] Value {
 			get {
 				return this.LongValue;
 			}
@@ -1271,11 +1259,9 @@ namespace FSpot.Tiff {
 					switch (Id) {
 					case TagId.UserComment:
 						return new string [] { UserCommentValue };
-						break;
 					case TagId.FlashPixVersion:
 					case TagId.ExifVersion:
 						return new string [] { StringValue };
-						break;
 					case TagId.FileSource:
 					case TagId.SceneType:
 						return ArrayToString (this.RawData);
