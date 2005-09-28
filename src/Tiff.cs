@@ -366,6 +366,71 @@ namespace FSpot.Tiff {
 		ReducedResolution = 2,
 		PageOfMultipage = 3
 	}
+	
+	public enum ExposureProgram {
+		NotDefined = 0,
+		Manual = 1,
+		NormalProgram = 2,  // Normal Program
+		AperturePriority = 3, // Aperture priority
+		ShutterPriorty = 4, // Shutter priority
+		CreativeProgram = 5, // Creative program
+		ActionProgram = 6, // Action program
+		PortraitMode = 7, // Portrait mode
+		LandscapeMode = 8 // Landscape mode
+	}
+
+	public enum MeteringMode {
+		Uknown = 0,
+		Average = 1,
+		CenterWeightedAverage = 2,
+		Spot = 3,
+		MulitSpot = 4,
+		Pattern = 5,
+		Partial = 6,
+	}
+
+	public enum LightSource {
+		Unknown = 0,
+		Daylight = 1,
+		Fluorescent = 2,
+		Tungsten = 3,
+		Fash = 4,
+		FineWeather = 9,
+		CloudyWeather = 10,
+		Shade = 11,
+		DaylightFluorescent = 12,
+		DaylightWhiteFluorescent = 13,
+		CoolWhiteFluorescent = 14,
+		WhiteFluorescent = 15,
+		StandardLightA = 17,
+		StandardLightB = 18,
+		StandardLightC = 19,
+		D55 = 20,
+		D65 = 21,
+		D75 = 22,
+		D50 = 23,
+		ISOStudioTungsten = 24,
+		OtherSource = 255
+	}
+
+	public enum ComponentsConfiguration {
+		DoesNotExist = 0,
+		Y = 1,
+		Cb = 2,
+		Cr = 3,
+		R = 4,
+		G = 6,
+	}
+
+	public enum SensingMethod : short {
+		NotDefined = 1,
+			OneChipColorAreaSensor = 2,
+			TwoChipColorAreaSensor = 3,
+			ThreeChipColorAreaSensor = 4,
+			ColorSequentialAreaSensor = 5,
+			TrilinearSensor = 7,
+			ColorSequentialLinearSensor = 8
+	}
 
 	[System.Flags]
 	public enum NewSubfileType : uint {

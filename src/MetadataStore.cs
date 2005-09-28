@@ -26,6 +26,16 @@ namespace FSpot {
 						 typeof (PixbufOrientation)),
 				new Description ("tiff:PhotometricInterpretation", Catalog.GetString ("Photometric Interpretation"), 
 						 typeof (FSpot.Tiff.PhotometricInterpretation)),
+				new Description ("exif:ExposureProgram", Catalog.GetString ("Exposure Program"), 
+						 typeof (FSpot.Tiff.ExposureProgram)),
+				new Description ("exif:MeteringMode", Catalog.GetString ("Metering Mode"), 
+						 typeof (FSpot.Tiff.MeteringMode)),
+				new Description ("exif:ComponentsConfiguration", Catalog.GetString ("Components Configuration"),
+						 typeof (FSpot.Tiff.ComponentsConfiguration)),
+				new Description ("exif:LightSource", Catalog.GetString ("Light Source"),
+						 typeof (FSpot.Tiff.ComponentsConfiguration)),
+				new Description ("exif:SensingMethod", Catalog.GetString ("Sensing Method"),
+						 typeof (FSpot.Tiff.SensingMethod))
 			};
 			
 			table = new System.Collections.Hashtable ();
