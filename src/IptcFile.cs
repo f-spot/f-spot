@@ -124,21 +124,7 @@ namespace FSpot.Iptc {
 		uint MaxSize;
 		public Format Format;
 		
-		public static SemWeb.NamespaceManager Namespaces;
 		public static System.Collections.Hashtable IDTable;
-
-		static DataSetInfo ()
-		{
-			Namespaces = new SemWeb.NamespaceManager ();
-			Namespaces.AddNamespace ("http://ns.adobe.com/photoshop/1.0/", "photoshop");
-			Namespaces.AddNamespace ("http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/", "Iptc4xmpCore");
-			Namespaces.AddNamespace ("http://purl.org/dc/elements/1.1/", "dc");
-			
-			IDTable = new System.Collections.Hashtable ();
-			foreach (DataSetInfo info in datasets) {
-				IDTable [info.ID] = info;
-			}
-		}
 
 		private static DataSetInfo [] datasets = {
 			new DataSetInfo (DataSetID.ModelVersion, Format.Short, "Model Version", true, false, 2, 2, 
@@ -224,9 +210,6 @@ namespace FSpot.Iptc {
 					 "Iptc4xmpCore:IntellectualGenre"),
 			// Object Attribute number : Object Attribute Name
 			//                       3 : [0-64]
-			
-			
-			
 		};
 
 		public static DataSetInfo FindInfo (DataSetID id)
@@ -306,7 +289,7 @@ namespace FSpot.Iptc {
 			get {
 				DataSetInfo info = (DataSetInfo) DataSetInfo.IDTable [this.ID];
 				if (info != null && info.XmpName != null) {
-					return DataSetInfo.Namespaces.Resolve (info.XmpName);
+					return MetadataStore.Namespaces.Resolve (info.XmpName);
 				}
 				return null;
 			}
