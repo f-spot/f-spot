@@ -150,7 +150,7 @@ namespace FSpot {
 
 						stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
 						stream.Write (title);
-						stream.Write ("</font></td><td>");
+						stream.Write ("</font></td><td width=100%>");
 						
 					        if (value != null)
 							value = Escape (value);
@@ -193,9 +193,7 @@ namespace FSpot {
 
 		private void WriteCollection (MemoryStore substore, Gtk.HTMLStream stream)
 		{
-			string s = "";
-			bool first = true;
-			string type;
+			string type = null;
 
 			foreach (Statement stmt in substore) {
 				if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("rdf:type")) {
@@ -204,43 +202,40 @@ namespace FSpot {
 				}
 			}
 			
-			stream.Write ("<table cellpadding=5 cellspacing=0>");
+			stream.Write ("<table cellpadding=5 cellspacing=0 width=100%>");
 			foreach (Statement sub in substore) {
-				string predicate = sub.Predicate.ToString ();
-				string title = System.IO.Path.GetFileName (predicate);
-				string prefix;
-				string ns;
-
-				MetadataStore.Namespaces.Normalize (predicate, out prefix, out title);
-
-			
 				if (sub.Object is Literal) {
-					if (prefix != "rdf")
-						 s += String.Format ("<tr bgcolor={3}><td bgcolor={2}>{0}</td><td>{1}</td></tr>",  
+					string predicate = sub.Predicate.ToString ();
+					string title = System.IO.Path.GetFileName (predicate);
+					string value = ((Literal)(sub.Object)).Value;
+					string prefix;
+					string vc = "";
+					
+					Description.GetDescription (substore, sub, out title, out value);
+
+					if (type != "Alt")
+						vc = " bgcolor=" + Color (Style.Backgrounds [(int)Gtk.StateType.Normal]);
+
+					if (type == null)
+						 stream.Write (String.Format ("<tr bgcolor={3}><td bgcolor={2}>{0}</td><td width=100%>{1}</td></tr>",  
 								     Escape (title), 
-								     Escape (((Literal)(sub.Object)).Value),
+								     Escape (value),
 								     Color (Style.MidColors [(int)Gtk.StateType.Normal]),
-								     Color (Style.Backgrounds [(int)Gtk.StateType.Normal]));
-					else
-						s += String.Format ("<tr><td bgcolor={1}>{0}</td></tr>", 
-								    Escape (((Literal)(sub.Object)).Value),
-								    Color (Style.Backgrounds [(int)Gtk.StateType.Normal]));
+								     Color (Style.Backgrounds [(int)Gtk.StateType.Normal])));
+					else 
+						stream.Write (String.Format ("<tr><td{1}>{0}</td></tr>", 
+								    Escape (value),
+								    vc));
 				} else {
-					try {
-						s += System.String.Format ("RDF Type: ({0})<br>", 
-									   Escape (new Uri (sub.Object.ToString ()).Fragment));
-					} catch {
-						//s += System.String.Format ("Type: ({0})<br>", Escape (sub.ToString ()));
+					if (type == null) {
+						stream.Write ("<tr><td>");
 						MemoryStore substore2 = substore.Select (new Statement ((Entity)sub.Object, null, null, null));
 						if (substore.StatementCount > 0)
 							WriteCollection (substore2, stream);
+						stream.Write ("</tr><td>");
 					}
 				}
 			}
-			
-			if (s != "")
-				stream.Write (s);
-			
 			stream.Write ("</table>");
 		}
 

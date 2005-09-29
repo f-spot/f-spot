@@ -70,7 +70,7 @@ namespace FSpot {
 			this.formater = formater;
 		}
 		
-		public static void GetDescription (MetadataStore store, Statement stmt, out string label, out string value)
+		public static void GetDescription (MemoryStore store, Statement stmt, out string label, out string value)
 		{
 			string predicate = stmt.Predicate.ToString ();
 
@@ -108,7 +108,7 @@ namespace FSpot {
 			this.type = type;
 		}
 
-		public virtual string GetValue (MetadataStore store, Literal obj)
+		public virtual string GetValue (MemoryStore store, Literal obj)
 		{
 			string result = obj.Value;
 
