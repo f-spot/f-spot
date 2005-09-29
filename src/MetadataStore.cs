@@ -30,12 +30,20 @@ namespace FSpot {
 						 typeof (FSpot.Tiff.ExposureProgram)),
 				new Description ("exif:MeteringMode", Catalog.GetString ("Metering Mode"), 
 						 typeof (FSpot.Tiff.MeteringMode)),
+				new Description ("exif:ExposureMode", Catalog.GetString ("Exposure Mode"), 
+						 typeof (FSpot.Tiff.ExposureMode)),
 				new Description ("exif:ComponentsConfiguration", Catalog.GetString ("Components Configuration"),
 						 typeof (FSpot.Tiff.ComponentsConfiguration)),
 				new Description ("exif:LightSource", Catalog.GetString ("Light Source"),
-						 typeof (FSpot.Tiff.ComponentsConfiguration)),
+						 typeof (FSpot.Tiff.LightSource)),
 				new Description ("exif:SensingMethod", Catalog.GetString ("Sensing Method"),
-						 typeof (FSpot.Tiff.SensingMethod))
+						 typeof (FSpot.Tiff.SensingMethod)),
+				new Description ("exif:ColorSpace", Catalog.GetString ("Color Space"),
+						 typeof (FSpot.Tiff.ColorSpace)),
+				new Description ("tiff:ResolutionUnit", Catalog.GetString ("Resolution Unit"),
+						 typeof (FSpot.Tiff.ResolutionUnit)),
+				new Description ("exif:FocalPlaneResolutionUnit", Catalog.GetString ("Focal Plane Resolution Unit"),
+						 typeof (FSpot.Tiff.ResolutionUnit))
 			};
 			
 			table = new System.Collections.Hashtable ();
@@ -105,8 +113,12 @@ namespace FSpot {
 			string result = obj.Value;
 
 			if (type.IsEnum) {
-				object o = System.Enum.Parse (type, obj.Value);
-				result = o.ToString ();
+				try {
+					object o = System.Enum.Parse (type, obj.Value);
+					result = o.ToString ();
+				} catch (System.Exception e) {
+					System.Console.WriteLine ("Value \"{2}\" not found in {0}\n{1}", type, e, result);
+				}
 			}
 			/*
 			else if (type == typeof (Rational)) {
@@ -203,13 +215,18 @@ namespace FSpot {
 
 		public static void Add (StatementSink sink, string predicate, string type, string [] values)
 		{
+			Add (sink, new Entity (""), predicate, type, values);
+		}
+
+		public static void Add (StatementSink sink, Entity subject, string predicate, string type, string [] values)
+		{
 			if (values == null) {
 				System.Console.WriteLine ("{0} has no values; skipping", predicate);
 				return;
 			}
 
 			Entity empty = new Entity (null);
-			Statement top = new Statement ("", (Entity)MetadataStore.Namespaces.Resolve (predicate), empty);
+			Statement top = new Statement (subject, (Entity)MetadataStore.Namespaces.Resolve (predicate), empty);
 			Statement desc = new Statement (empty, 
 							(Entity)MetadataStore.Namespaces.Resolve ("rdf:type"), 
 							(Entity)MetadataStore.Namespaces.Resolve (type));
@@ -222,7 +239,6 @@ namespace FSpot {
 			}
 			sink.Add (top);
 		}
-					
 
 		private class StatementWriter : StatementSink 
 		{
@@ -253,7 +269,6 @@ namespace FSpot {
 				return false;
 			}
 		}			
-
 
 		public void DumpNode (XPathSemWebNavigator navi, int depth)
 		{

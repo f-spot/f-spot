@@ -291,6 +291,7 @@ namespace FSpot.Tiff {
 	public struct Rational {
 		public uint Numerator;
 		public uint Denominator;
+
 		public Rational (uint numerator, uint denominator)
 		{
 			Numerator = numerator;
@@ -309,6 +310,56 @@ namespace FSpot.Tiff {
 			get {
 				return Numerator / (double)Denominator;
 			}
+		}
+	}
+
+	struct UserComment {
+		string Charset;
+		public string Value;
+
+		public UserComment (byte [] raw_data, bool little)
+		{
+			string charset = System.Text.Encoding.ASCII.GetString (raw_data, 0, 8);
+			string value = null;
+			System.Text.Encoding enc;
+
+			switch (charset) {
+			case "ASCII\0\0\0":
+				enc = System.Text.Encoding.ASCII;
+				break;
+			case "UNICODE\0":
+				enc = System.Text.Encoding.Unicode;
+				break;
+			case "SJIS\0\0\0\0":
+				// FIXME I'm pretty sure this isn't actually the encoding name.
+				enc = System.Text.Encoding.GetEncoding ("SJIS");
+				break;
+			case "\0\0\0\0\0\0\0\0":
+				// FIXME the spec says to use the local encoding in this case, we could probably
+				// do something smarter, but whatever.
+				enc = System.Text.Encoding.Default;
+				break;
+			default:
+				enc = null;
+				throw new System.Exception (System.String.Format ("Invalid charset name: {0}", charset));
+			}
+
+			Charset = charset;
+			Value = enc.GetString (raw_data, 8, raw_data.Length - 8);
+		}
+	}
+
+	public struct CFAPattern {
+		public ushort Rows;
+		public ushort Columns;
+		public byte [] Values;
+		
+		public CFAPattern (byte [] raw_data, bool little)
+		{
+			Columns = BitConverter.ToUInt16 (raw_data, 0, little);
+			Rows = BitConverter.ToUInt16 (raw_data, 2, little);
+			Values = new byte [Rows * Columns];
+			System.Array.Copy (raw_data, 4, Values, 0, Values.Length);
 		}
 	}
 
@@ -379,6 +430,12 @@ namespace FSpot.Tiff {
 		LandscapeMode = 8 // Landscape mode
 	}
 
+	public enum ExposureMode {
+		Auto = 0,
+		Manual = 1,
+		AutoBracket = 2
+	}
+
 	public enum MeteringMode {
 		Uknown = 0,
 		Average = 1,
@@ -413,6 +470,11 @@ namespace FSpot.Tiff {
 		OtherSource = 255
 	}
 
+	public enum ColorSpace : ushort {
+		sRGB = 1,
+		Uncalibrated = 0xffff
+	}
+
 	public enum ComponentsConfiguration {
 		DoesNotExist = 0,
 		Y = 1,
@@ -422,14 +484,20 @@ namespace FSpot.Tiff {
 		G = 6,
 	}
 
+	public enum ResolutionUnit : ushort {
+	        Uncalibrated = 1,
+		Inch = 2,
+		Centimeter = 3
+	}
+	
 	public enum SensingMethod : short {
 		NotDefined = 1,
-			OneChipColorAreaSensor = 2,
-			TwoChipColorAreaSensor = 3,
-			ThreeChipColorAreaSensor = 4,
-			ColorSequentialAreaSensor = 5,
-			TrilinearSensor = 7,
-			ColorSequentialLinearSensor = 8
+		OneChipColorAreaSensor = 2,
+		TwoChipColorAreaSensor = 3,
+		ThreeChipColorAreaSensor = 4,
+		ColorSequentialAreaSensor = 5,
+		TrilinearSensor = 7,
+		ColorSequentialLinearSensor = 8
 	}
 
 	[System.Flags]
@@ -653,6 +721,25 @@ namespace FSpot.Tiff {
 					//case TagId.Flash:
 					
 					//case TagId.SpatialFrequencyResponse
+				case TagId.CFAPattern:
+					CFAPattern pattern = new CFAPattern (e.RawData, e.IsLittle);
+					Entity empty = new Entity (null);
+					Statement top = new Statement ("", 
+								       (Entity)MetadataStore.Namespaces.Resolve ("exif:" + e.Id.ToString ()),
+								       empty);
+					
+					Statement cols = new Statement (empty, 
+									(Entity) MetadataStore.Namespaces.Resolve ("exif:Columns"),
+									new Literal (pattern.Columns.ToString (), null, null));
+					sink.Add (cols);
+					Statement rows = new Statement (empty, 
+									(Entity) MetadataStore.Namespaces.Resolve ("exif:Rows"),
+									new Literal (pattern.Rows.ToString (), null, null));
+					sink.Add (rows);
+					string [] vals = e.ArrayToString (pattern.Values);
+					MetadataStore.Add (sink, empty, "exif:Values", "rdf:Seq", vals);
+					sink.Add (top);
+					break;
 				case TagId.ExifVersion:
 				case TagId.FlashPixVersion:
 				case TagId.ColorSpace:
@@ -998,12 +1085,6 @@ namespace FSpot.Tiff {
 		public ShortEntry (byte [] data, int offset, Endian endian) : base (data, offset, endian)
 		{
 		}
-
-		public new ushort [] Value {
-			get {
-				return this.ShortValue;
-			}
-		}
 	}
 	
 	public class LongEntry : DirectoryEntry {
@@ -1011,12 +1092,6 @@ namespace FSpot.Tiff {
 		{
 			if (type != EntryType.Long)
 				throw new System.Exception (System.String.Format ("Invalid Settings At Birth {0}", tagid));
-		}
-
-		public new uint [] Value {
-			get {
-				return this.LongValue;
-			}
 		}
 	}
 
@@ -1152,6 +1227,12 @@ namespace FSpot.Tiff {
 			}
 		}
 
+		public bool IsLittle {
+			get {
+				return (endian == Endian.Little);
+			}
+		}
+
 		public static int ParseHeader (byte [] data, int start, out TagId tagid, out EntryType type, Endian endian)
 		{
 			tagid = (TagId) BitConverter.ToUInt16 (data, start, endian == Endian.Little);
@@ -1186,19 +1267,19 @@ namespace FSpot.Tiff {
 				//System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new SubFileType {0}", (SubfileType) this.ValueAsLong [0]);
 				break;
 			case (int)TagId.Compression:
-				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new Compression {0}", (Compression) this.ValueAsLong [0]);
+				//System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new Compression {0}", (Compression) this.ValueAsLong [0]);
 				
 				break;
 			case (int)TagId.JPEGProc:
-				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new JPEGProc {0}", (JPEGProc) this.ValueAsLong [0]);
+				//System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new JPEGProc {0}", (JPEGProc) this.ValueAsLong [0]);
 				
 				break;
 			case (int)TagId.PhotometricInterpretation:
-				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new PhotometricInterpretation {0}", (PhotometricInterpretation) this.ValueAsLong [0]);
+				//System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new PhotometricInterpretation {0}", (PhotometricInterpretation) this.ValueAsLong [0]);
 				break;
 			case (int)TagId.ImageWidth:
 			case (int)TagId.ImageLength:
-				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new {1} {0}", this.ValueAsLong [0], this.Id);
+				//System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new {1} {0}", this.ValueAsLong [0], this.Id);
 				break;
 			case 50648:
 			case 50656:
@@ -1207,7 +1288,7 @@ namespace FSpot.Tiff {
 				System.Console.WriteLine ("XXXX ", System.Text.Encoding.ASCII.GetString (raw_data));
 				switch (this.type) {
 				case EntryType.Long:
-					foreach (uint val in ((LongEntry)this).LongValue)
+					foreach (uint val in ((LongEntry)this).Value)
 						System.Console.Write (" {0}", val);
 					break;
 				case EntryType.Short:
@@ -1295,7 +1376,30 @@ namespace FSpot.Tiff {
 			raw_data = data;
 			count = (uint)raw_data.Length / (uint)GetTypeSize ();
 		}
-		
+
+#if false		
+		public object  GetValue () {
+			switch (Type) {
+			case EntryType.Short:
+				return ShortValue;
+			case EntryType.Long:
+				return LongValue;
+			case  EntryType.Rational:
+				return RationalValue;
+			case EntryType.SRational:
+				return SRationalValue;
+			case EntryType.Ascii:
+				return StringValue.Split ('\0');
+				break;
+			default:
+				System.Console.WriteLine ("{1}({2}) [{0}]", this.Count, this.Id, this.Type);
+				break;
+
+				}
+			}
+		}
+#endif
+
 		public byte [] Value {
 			get {
 				return raw_data;
@@ -1343,7 +1447,7 @@ namespace FSpot.Tiff {
 			}
 		}
 
-		private string [] ArrayToString (System.Array array)
+		public string [] ArrayToString (System.Array array)
 		{
 			string [] vals = new string [array.Length];
 			for (int i = 0; i < array.Length; i++)
@@ -1393,37 +1497,11 @@ namespace FSpot.Tiff {
 			}
 		}
 
-		// This is a special type, you 
 		public string UserCommentValue
 		{
 			get {
-				string charset = System.Text.Encoding.ASCII.GetString (raw_data, 0, 8);
-				string value = null;
-				switch (charset) {
-				case "ASCII\0\0\0":
-					value = System.Text.Encoding.ASCII.GetString (raw_data, 8, raw_data.Length - 8);
-					break;
-				case "UNICODE\0":
-					value = System.Text.Encoding.Unicode.GetString (raw_data, 8, raw_data.Length - 8);
-					break;
-				case "SJIS\0\0\0\0":
-					// FIXME I'm pretty sure this isn't actually the encoding name.
-					System.Text.Encoding encoding = System.Text.Encoding.GetEncoding ("SJIS");
-					value = encoding.GetString (raw_data, 8, raw_data.Length - 8);
-					break;
-				case "\0\0\0\0\0\0\0\0":
-					// FIXME the spec says to use the local encoding in this case, we could probably
-					// do something smarter, but whatever.
-					value = System.Text.Encoding.Default.GetString (raw_data, 8, raw_data.Length - 8);
-					break;
-				default:
-					throw new System.Exception (System.String.Format ("Invalid charset name: {0}", charset));
-				}
-				return value;
-			}
-			set {
-				// FIXME this should use ascii if it can
-				SetData (System.Text.Encoding.Unicode.GetBytes ("UNICODE\0" + value));
+				UserComment comment = new UserComment (raw_data, IsLittle);
+				return comment.Value;
 			}
 		}
 

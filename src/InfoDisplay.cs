@@ -59,6 +59,9 @@ namespace FSpot {
 
 		private static string Escape (string value)
 		{
+			if (value == null) 
+				return "(null)";
+
 			value = value.Replace ("&", "&amp;");
 			value = value.Replace (">", "&gt;");
 			value = value.Replace ("<", "&lt;");
@@ -88,36 +91,35 @@ namespace FSpot {
 				}
 
 				if (exif_info.Data.Length > 0)
-					stream.Write ("<tr><td colspan=2 align=\"center\" bgcolor=\"" + ig + "\"><img center src=\"exif:thumbnail\"></td></tr>");
+					stream.Write (String.Format ("<tr><td colspan=2 align=\"center\" bgcolor=\"{0}\">" + 
+								     "<img center src=\"exif:thumbnail\"></td></tr>", ig));
 
 				int i = 0;
-				if (!empty) {
-					foreach (Exif.ExifContent content in exif_info.GetContents ()) {
-						Exif.ExifEntry [] entries = content.GetEntries ();
-						
-						i++;
-						if (entries.Length < 1)
-							continue;
-						
-						stream.Write ("<tr><th align=left bgcolor=\"" + ig + "\" colspan=2>" 
-							      + Exif.ExifUtil.GetIfdNameExtended ((Exif.Ifd)i - 1) + "</th><tr>");
-						
-						foreach (Exif.ExifEntry entry in entries) {
-							stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
-							if (entry.Title != null)
-								stream.Write (entry.Title);
-							else
-								stream.Write ("&lt;Unknown Tag ID=" + entry.Tag.ToString () + "&gt;");
-							stream.Write ("</font></td><td>");
-							string s = entry.Value;
-							if (s != null && s != "")
+				foreach (Exif.ExifContent content in exif_info.GetContents ()) {
+					Exif.ExifEntry [] entries = content.GetEntries ();
+					
+					i++;
+					if (entries.Length < 1)
+						continue;
+					
+					stream.Write ("<tr><th align=left bgcolor=\"" + ig + "\" colspan=2>" 
+						      + Exif.ExifUtil.GetIfdNameExtended ((Exif.Ifd)i - 1) + "</th><tr>");
+					
+					foreach (Exif.ExifEntry entry in entries) {
+						stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
+						if (entry.Title != null)
+							stream.Write (entry.Title);
+						else
+							stream.Write ("&lt;Unknown Tag ID=" + entry.Tag.ToString () + "&gt;");
+						stream.Write ("</font></td><td>");
+						string s = entry.Value;
+						if (s != null && s != "")
 							stream.Write (s);
-							stream.Write ("</td><tr>");
-						}
+						stream.Write ("</td><tr>");
 					}
 				}
 			}
-
+			
 			if (photo != null) {
 				MetadataStore store = new MetadataStore ();
 				try {
@@ -136,53 +138,29 @@ namespace FSpot {
 						      + Mono.Posix.Catalog.GetString ("Extended Metadata") + "</th><tr>");
 					
 					foreach (Statement stmt in store) {
-						
 						// Skip anonymous subjects because they are
 						// probably part of a collection
 						if (stmt.Subject.Uri == null) 
 							continue;
 						
-						string predicate = stmt.Predicate.ToString ();
-						string path = System.IO.Path.GetDirectoryName (predicate);
-						SelectPartialFilter filter = new SelectPartialFilter (true, true, false, false);
-						filter.SelectFirst = true;
-#if false
-						Statement sstmt = new Statement (stmt.Predicate,
-										 (Entity)"http://www.gnome.org/projects/f-spot/ns/Label",
-										 null);
-#else
-						Statement sstmt = new Statement (stmt.Predicate,
-										 (Entity)MetadataStore.Namespaces.Resolve ("rdfs:label"),
-										 null);
-#endif							
-						string title = null;
-#if true
-						foreach (Statement tstmt in MetadataStore.Descriptions.Select (sstmt)) {
-							if (tstmt.Object is Literal) {
-								title = ((Literal)tstmt.Object).Value;
-							}
-						}
-						if (title == null) {
-							//System.Console.WriteLine ("found nothing matching {0}", stmt.Predicate);
-							title = System.IO.Path.GetFileName (predicate);
-						}
-#else
-						title = System.IO.Path.GetFileName (predicate);
-#endif
+						string title;
+						string value;
+
+						Description.GetDescription (store, stmt, out title, out value);
+
 						stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
 						stream.Write (title);
 						stream.Write ("</font></td><td>");
 						
-						string s = "";
-						if (stmt.Object is SemWeb.Literal) {
-							s = Escape (((SemWeb.Literal)(stmt.Object)).Value);
-						} else {
+					        if (value != null)
+							value = Escape (value);
+						else {
 							MemoryStore substore = store.Select (new Statement ((Entity)stmt.Object, null, null, null));
 							WriteCollection (substore, stream);
 						}
 						
-						if (s != null && s != "")
-							stream.Write (s);
+						if (value != null && value != "")
+							stream.Write (value);
 						
 						stream.Write ("</td><tr>");
 					}
@@ -217,39 +195,53 @@ namespace FSpot {
 		{
 			string s = "";
 			bool first = true;
+			string type;
 
+			foreach (Statement stmt in substore) {
+				if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("rdf:type")) {
+					string prefix;
+					MetadataStore.Namespaces.Normalize (stmt.Object.ToString (), out prefix, out type);
+				}
+			}
+			
+			stream.Write ("<table cellpadding=5 cellspacing=0>");
 			foreach (Statement sub in substore) {
 				string predicate = sub.Predicate.ToString ();
-				string path = System.IO.Path.GetDirectoryName (predicate);
 				string title = System.IO.Path.GetFileName (predicate);
+				string prefix;
+				string ns;
 
+				MetadataStore.Namespaces.Normalize (predicate, out prefix, out title);
+
+			
 				if (sub.Object is Literal) {
-					if (!first)
-						s += "<br>";
+					if (prefix != "rdf")
+						 s += String.Format ("<tr bgcolor={3}><td bgcolor={2}>{0}</td><td>{1}</td></tr>",  
+								     Escape (title), 
+								     Escape (((Literal)(sub.Object)).Value),
+								     Color (Style.MidColors [(int)Gtk.StateType.Normal]),
+								     Color (Style.Backgrounds [(int)Gtk.StateType.Normal]));
 					else
-						first = false;
-
-					/*					
-					s += System.String.Format ("predicate: {0} path: {1} title: {2} value: {3}",
-								   predicate, path, title, ((Literal)(sub.Object)).Value);
-					*/
-					s += Escape (((Literal)(sub.Object)).Value);
+						s += String.Format ("<tr><td bgcolor={1}>{0}</td></tr>", 
+								    Escape (((Literal)(sub.Object)).Value),
+								    Color (Style.Backgrounds [(int)Gtk.StateType.Normal]));
 				} else {
 					try {
 						s += System.String.Format ("RDF Type: ({0})<br>", 
-									   Escape (new Uri (sub.Object.ToString ()).Fragment), 
-									   Escape (sub.ToString ()));
-
+									   Escape (new Uri (sub.Object.ToString ()).Fragment));
 					} catch {
-						s += System.String.Format ("Type: ({0})<br>", Escape (sub.ToString ()));
+						//s += System.String.Format ("Type: ({0})<br>", Escape (sub.ToString ()));
 						MemoryStore substore2 = substore.Select (new Statement ((Entity)sub.Object, null, null, null));
-						WriteCollection (substore2, stream);
+						if (substore.StatementCount > 0)
+							WriteCollection (substore2, stream);
 					}
 				}
 			}
-
+			
 			if (s != "")
 				stream.Write (s);
+			
+			stream.Write ("</table>");
 		}
 
 		private class StreamSink : SemWeb.StatementSink
@@ -268,7 +260,6 @@ namespace FSpot {
 			public bool Add (SemWeb.Statement stmt)
 			{
 				string predicate = stmt.Predicate.ToString ();
-				string path = System.IO.Path.GetDirectoryName (predicate);
 				string title = System.IO.Path.GetFileName (predicate);
 				string bg = InfoDisplay.Color (info.Style.Background (Gtk.StateType.Active));
 				string fg = InfoDisplay.Color (info.Style.Foreground (Gtk.StateType.Active));
@@ -279,10 +270,7 @@ namespace FSpot {
 					stream.Write (title);
 					stream.Write ("</font></td><td>");
 
-					string s = stmt.Object.ToString ();
-					if (stmt.Object is SemWeb.Literal) {
-						s = ((SemWeb.Literal)(stmt.Object)).Value;
-					} 
+					string s = ((SemWeb.Literal)(stmt.Object)).Value;
 					/*
 					else {
 						MemoryStore store = source.Select (stmt.Invert (), new SelectPartialFilter (true, false, false, false));
