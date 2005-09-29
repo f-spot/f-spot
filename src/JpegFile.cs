@@ -20,7 +20,7 @@ namespace FSpot {
 		public void Select (SemWeb.StatementSink sink)
 		{
 			using (System.IO.FileStream stream = System.IO.File.OpenRead (path)) {
-				JpegHeader header = new JpegHeader (stream);
+				JpegHeader header = new JpegHeader (stream, true);
 				header.Select (sink);
 			}
 		}

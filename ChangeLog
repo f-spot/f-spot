@@ -1,5 +1,9 @@
 2005-09-29  Larry Ewing  <lewing@novell.com>
 
+	* src/JpegFile.cs: just load the metadata in the Select statement.
+
+	* src/JpegHeader.cs: add a mode where we don't read the image data.
+
 	* src/IptcFile.cs: use metadata store everywhere.
 
 	* src/InfoDisplay.cs: allow collections to be named as well.

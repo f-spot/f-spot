@@ -276,17 +276,22 @@ public class JpegHeader : SemWeb.StatementSource {
 
 	public JpegHeader (System.IO.Stream stream)
 	{
-		Load (stream);
+		Load (stream, false);
+	}
+
+	public JpegHeader (System.IO.Stream stream, bool metadata_only)
+	{
+		Load (stream, metadata_only);
 	}
 
 	public JpegHeader (string filename) 
 	{
 		System.Console.WriteLine ("opening {0}", filename);
 		System.IO.FileStream stream = new System.IO.FileStream (filename, System.IO.FileMode.Open);
-		Load (stream);
+		Load (stream, false);
 	}
 
-	private void Load (System.IO.Stream stream) 
+	private void Load (System.IO.Stream stream, bool metadata_only) 
 	{
 		marker_list.Clear ();
 		image_data = null;
@@ -303,13 +308,16 @@ public class JpegHeader : SemWeb.StatementSource {
 			if (marker == null)
 				continue;
 
-			System.Console.WriteLine ("loaded marker {0} length {1}", marker.Type, marker.Data.Length);
+			//System.Console.WriteLine ("loaded marker {0} length {1}", marker.Type, marker.Data.Length);
 
 			this.Markers.Add (marker);
 			
-			if (marker.Type == JpegMarker.Sos)
+			if (marker.Type == JpegMarker.Sos) {
 				at_image = true;
-			
+
+				if (metadata_only)
+					return;
+			}
 		}
 
 		long image_data_length = stream.Length - stream.Position;
