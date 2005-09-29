@@ -156,6 +156,7 @@ all: f-spot.exe
 
 EXTRA_DIST =					\
 	$(F_SPOT_CSDISTFILES)			\
+	dces.rdf				\
 	f-spot.exe.config.in			\
 	f-spot.glade				\
 	f-spot.in

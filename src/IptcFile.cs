@@ -126,6 +126,14 @@ namespace FSpot.Iptc {
 		
 		public static System.Collections.Hashtable IDTable;
 
+		static DataSetInfo ()
+		{
+			IDTable = new System.Collections.Hashtable ();
+			foreach (DataSetInfo info in datasets) {
+				IDTable [info.ID] = info;
+			}
+		}
+
 		private static DataSetInfo [] datasets = {
 			new DataSetInfo (DataSetID.ModelVersion, Format.Short, "Model Version", true, false, 2, 2, 
 					 Mono.Posix.Catalog.GetString ("IPTC Information Interchange Model (IIM) Version number")),
@@ -210,7 +218,7 @@ namespace FSpot.Iptc {
 					 "Iptc4xmpCore:IntellectualGenre"),
 			// Object Attribute number : Object Attribute Name
 			//                       3 : [0-64]
-		};
+		};		
 
 		public static DataSetInfo FindInfo (DataSetID id)
 		{

@@ -1,5 +1,9 @@
 2005-09-29  Larry Ewing  <lewing@novell.com>
 
+	* src/Makefile.am: add the rdf to extra dist.
+
+	* src/IptcFile.cs: add the info table back.
+
 	* src/JpegFile.cs: just load the metadata in the Select statement.
 
 	* src/JpegHeader.cs: add a mode where we don't read the image data.
