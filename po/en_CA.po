@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-23 09:26-0400\n"
+"POT-Creation-Date: 2005-09-28 21:25-0400\n"
 "PO-Revision-Date: 2005-09-06 23:54-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
@@ -275,7 +275,7 @@ msgstr "Error: File Already Exists; Aborting"
 msgid "Error saving adjusted photo"
 msgstr "Error saving adjusted photo"
 
-#: src/ColorDialog.cs:148 src/MainWindow.cs:1304 src/PhotoView.cs:296
+#: src/ColorDialog.cs:148 src/MainWindow.cs:1307 src/PhotoView.cs:296
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save image {1}"
 msgstr "Received exception \"{0}\". Unable to save image {1}"
@@ -1140,11 +1140,20 @@ msgstr "Exposure:"
 msgid "(None)"
 msgstr "(None)"
 
-#: src/InfoDisplay.cs:129
+#: src/InfoDisplay.cs:136
 msgid "Extended Metadata"
 msgstr "Extended Metadata"
 
-#: src/InfoDisplay.cs:166
+#: src/InfoDisplay.cs:199
+msgid "No active image"
+msgstr "No active image"
+
+#: src/InfoDisplay.cs:201
+#, csharp-format
+msgid "The image \"{0}\" does not exist"
+msgstr "The image \"{0}\" does not exist"
+
+#: src/InfoDisplay.cs:207
 msgid "No metadata available"
 msgstr "No metadata available"
 
@@ -1185,8 +1194,7 @@ msgstr "The year month and day (CCYYMMDD) the service sent the material"
 #: src/IptcFile.cs:161
 msgid ""
 "The hour minute and second the (HHMMSS+HHMM) the service sent the material"
-msgstr ""
-"The hour minute and second (HHMMSS+HHMM) the service sent the material"
+msgstr "The hour minute and second (HHMMSS+HHMM) the service sent the material"
 
 #: src/IptcFile.cs:163
 msgid "The character set designation"
@@ -1276,11 +1284,11 @@ msgstr "Intellectual genre of the object"
 msgid "Unkown IIM DataSet"
 msgstr "Unkown IIM DataSet"
 
-#: src/MainWindow.cs:944
+#: src/MainWindow.cs:947
 msgid "No cameras detected."
 msgstr "No cameras detected."
 
-#: src/MainWindow.cs:945
+#: src/MainWindow.cs:948
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1288,11 +1296,11 @@ msgstr ""
 "F-Spot was unable to find any cameras attached to this system.  Double-check "
 "that the camera is connected and has power"
 
-#: src/MainWindow.cs:985
+#: src/MainWindow.cs:988
 msgid "Error connecting to camera"
 msgstr "Error connecting to camera"
 
-#: src/MainWindow.cs:986
+#: src/MainWindow.cs:989
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Received error \"{0}\" while connecting to camera"
@@ -1300,58 +1308,58 @@ msgstr "Received error \"{0}\" while connecting to camera"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: src/MainWindow.cs:1119
+#: src/MainWindow.cs:1122
 msgid "translator-credits"
 msgstr "Adam Weinberger <adamw@gnome.org>"
 
-#: src/MainWindow.cs:1250
+#: src/MainWindow.cs:1253
 msgid "Unsharp Mask"
 msgstr "Unsharp Mask"
 
-#: src/MainWindow.cs:1259
+#: src/MainWindow.cs:1262
 msgid "Amount:"
 msgstr "Amount:"
 
-#: src/MainWindow.cs:1260
+#: src/MainWindow.cs:1263
 msgid "Radius:"
 msgstr "Radius:"
 
-#: src/MainWindow.cs:1261
+#: src/MainWindow.cs:1264
 msgid "Threshold:"
 msgstr "Threshold:"
 
-#: src/MainWindow.cs:1303
+#: src/MainWindow.cs:1306
 msgid "Error saving sharpened photo"
 msgstr "Error saving sharpened photo"
 
-#: src/MainWindow.cs:1526
+#: src/MainWindow.cs:1529
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Delete the selected photo permanently?"
 msgstr[1] "Delete the {0} selected photos permanently?"
 
-#: src/MainWindow.cs:1530
+#: src/MainWindow.cs:1533
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
 msgstr[0] "This deletes all versions of the selected photo from your drive."
 msgstr[1] "This deletes all versions of the selected photos from your drive."
 
-#: src/MainWindow.cs:1533
+#: src/MainWindow.cs:1536
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Delete photo"
 msgstr[1] "_Delete photos"
 
-#: src/MainWindow.cs:1551
+#: src/MainWindow.cs:1554
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Remove the selected photo from F-Spot?"
 msgstr[1] "Remove the {0} selected photos from F-Spot??"
 
-#: src/MainWindow.cs:1556
+#: src/MainWindow.cs:1559
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1361,26 +1369,92 @@ msgstr ""
 "lost. The photos will remain on your computer and can be imported into F-"
 "Spot again."
 
-#: src/MainWindow.cs:1557
+#: src/MainWindow.cs:1560
 msgid "_Remove from Catalog"
 msgstr "_Remove from Catalogue"
 
-#: src/MainWindow.cs:1581
+#: src/MainWindow.cs:1588
 #, csharp-format
 msgid "Delete the selected tag?"
 msgid_plural "Delete the {0} selected tags?"
 msgstr[0] "Delete the selected tag?"
 msgstr[1] "Delete {0} selected tags?"
 
-#: src/MainWindow.cs:1586
+#: src/MainWindow.cs:1593
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr "If you delete a tag, all associations with photos are lost."
 
-#: src/MainWindow.cs:1587
+#: src/MainWindow.cs:1594
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Delete tag"
 msgstr[1] "_Delete tags"
+
+#. A Category is not empty. Can not delete it.
+#: src/MainWindow.cs:1608
+msgid "Category is not empty"
+msgstr "Category is not empty"
+
+#: src/MainWindow.cs:1609
+#, csharp-format
+msgid ""
+"Can not delete categorys which has tags. Please delete tags under \"{0}\" "
+"first"
+msgstr ""
+"Cannot delete categories which have tags. Please delete tags under \"{0}\" "
+"first"
+
+#: src/MetadataStore.cs:17
+msgid "Creator"
+msgstr "Creator"
+
+#: src/MetadataStore.cs:18
+msgid "Title"
+msgstr "Title"
+
+#: src/MetadataStore.cs:19
+msgid "Copyright"
+msgstr "Copyright"
+
+#: src/MetadataStore.cs:20
+msgid "Subject and Keywords"
+msgstr "Subject and Keywords"
+
+#: src/MetadataStore.cs:21
+msgid "Compression"
+msgstr "Compression"
+
+#: src/MetadataStore.cs:23
+msgid "Planar Configuration"
+msgstr "Planar Configuration"
+
+#: src/MetadataStore.cs:25
+msgid "Orientation"
+msgstr "Orientation"
+
+#: src/MetadataStore.cs:27
+msgid "Photometric Interpretation"
+msgstr "Photometric Interpretation"
+
+#: src/MetadataStore.cs:29
+msgid "Exposure Program"
+msgstr "Exposure Program"
+
+#: src/MetadataStore.cs:31
+msgid "Metering Mode"
+msgstr "Metering Mode"
+
+#: src/MetadataStore.cs:33
+msgid "Components Configuration"
+msgstr "Components Configuration"
+
+#: src/MetadataStore.cs:35
+msgid "Light Source"
+msgstr "Light Source"
+
+#: src/MetadataStore.cs:37
+msgid "Sensing Method"
+msgstr "Sensing Method"
 
 #: src/PhotoPopup.cs:30
 msgid "Copy Image Location"
@@ -1641,17 +1715,17 @@ msgstr "Category name:"
 msgid "Edit Tag"
 msgstr "Edit Tag"
 
-#: src/TagCommands.cs:382
+#: src/TagCommands.cs:385
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Photo {0} of {1}"
 
-#: src/TagCommands.cs:409
+#: src/TagCommands.cs:412
 #, csharp-format
 msgid "Edit icon for category {0}"
 msgstr "Edit icon for category {0}"
 
-#: src/TagCommands.cs:411
+#: src/TagCommands.cs:414
 #, csharp-format
 msgid "Edit icon for tag {0}"
 msgstr "Edit icon for tag {0}"
@@ -1672,11 +1746,11 @@ msgstr "Remove Tag From Selection"
 msgid "Unable to create temporary file"
 msgstr "Unable to create temporary file"
 
-#: src/Util.cs:270
+#: src/Util.cs:285
 msgid "There was an error invoking the external handler"
 msgstr "There was an error invoking the external handler"
 
-#: src/Util.cs:271
+#: src/Util.cs:286
 #, csharp-format
 msgid ""
 "Received error:\n"
