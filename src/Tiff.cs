@@ -369,6 +369,10 @@ namespace FSpot.Tiff {
 		UnassociatedAlpa = 2
 	}
 
+	public enum FileSource {
+		DCF = 3,
+	}
+
 	public enum PhotometricInterpretation : ushort {
 		WhiteIsZero = 0,
 		BlackIsZero = 1,
@@ -436,6 +440,10 @@ namespace FSpot.Tiff {
 		AutoBracket = 2
 	}
 
+	public enum SceneType {
+		DirectlyPhotographed = 1
+	}
+
 	public enum MeteringMode {
 		Uknown = 0,
 		Average = 1,
@@ -444,6 +452,44 @@ namespace FSpot.Tiff {
 		MulitSpot = 4,
 		Pattern = 5,
 		Partial = 6,
+	}
+
+	public enum SceneCaptureType : ushort {
+		Standard = 0,
+		Landscape = 1,
+		Portrait = 2,
+		NightScene = 3
+	}
+
+	public enum GainControl : ushort {
+		None = 0,
+		LowGainUp = 1,
+		HighGainUp = 2,
+		LowGainDown = 3,
+		HighGainDown = 4
+	}
+
+	public enum Contrast : ushort {
+		Normal = 0,
+		Soft = 1,
+		Hard = 2
+	}
+	
+	public enum Saturation : ushort {
+		Normal = 0,
+		Low = 1,
+		High = 2
+	}
+
+	public enum WhiteBalance : ushort {
+		Auto = 0,
+	        Manual = 1
+	}
+
+	public enum Sharpness : ushort {
+		Normal = 0,
+		Soft = 1,
+		Hard = 2
 	}
 
 	public enum LightSource {

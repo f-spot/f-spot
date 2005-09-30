@@ -26,6 +26,8 @@ namespace FSpot {
 						 typeof (PixbufOrientation)),
 				new Description ("tiff:PhotometricInterpretation", Catalog.GetString ("Photometric Interpretation"), 
 						 typeof (FSpot.Tiff.PhotometricInterpretation)),
+				new Description ("tiff:ResolutionUnit", Catalog.GetString ("Resolution Unit"),
+						 typeof (FSpot.Tiff.ResolutionUnit)),
 				new Description ("exif:ExposureProgram", Catalog.GetString ("Exposure Program"), 
 						 typeof (FSpot.Tiff.ExposureProgram)),
 				new Description ("exif:MeteringMode", Catalog.GetString ("Metering Mode"), 
@@ -40,10 +42,27 @@ namespace FSpot {
 						 typeof (FSpot.Tiff.SensingMethod)),
 				new Description ("exif:ColorSpace", Catalog.GetString ("Color Space"),
 						 typeof (FSpot.Tiff.ColorSpace)),
-				new Description ("tiff:ResolutionUnit", Catalog.GetString ("Resolution Unit"),
-						 typeof (FSpot.Tiff.ResolutionUnit)),
+				new Description ("exif:WhiteBalance", Catalog.GetString ("White Balance"),
+						 typeof (FSpot.Tiff.WhiteBalance)),
 				new Description ("exif:FocalPlaneResolutionUnit", Catalog.GetString ("Focal Plane Resolution Unit"),
-						 typeof (FSpot.Tiff.ResolutionUnit))
+						 typeof (FSpot.Tiff.ResolutionUnit)),
+				new Description ("exif:FileSource", Catalog.GetString ("File Source Type"),
+						 typeof (FSpot.Tiff.FileSource)),
+				new Description ("exif:SceneCaptureType", Catalog.GetString ("Scene Capture Type"),
+						 typeof (FSpot.Tiff.SceneCaptureType)),
+				new Description ("exif:GainControl", Catalog.GetString ("Gain Control"),
+						 typeof (FSpot.Tiff.GainControl)),
+				new Description ("exif:Constrast", Catalog.GetString ("Contrast"),
+						 typeof (FSpot.Tiff.Contrast)),
+				new Description ("exif:Saturation", Catalog.GetString ("Saturation"),
+						 typeof (FSpot.Tiff.Saturation)),
+				new Description ("exif:Sharpness", Catalog.GetString ("Sharpness"),
+						 typeof (FSpot.Tiff.Sharpness)),
+				new Description ("exif:SceneType", Catalog.GetString ("Scene Type"),
+						 typeof (FSpot.Tiff.SceneType))
+
+
+
 			};
 			
 			table = new System.Collections.Hashtable ();
