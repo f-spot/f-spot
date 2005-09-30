@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-29 10:28-0400\n"
+"POT-Creation-Date: 2005-09-30 15:56-0400\n"
 "PO-Revision-Date: 2005-09-06 23:54-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
@@ -1437,40 +1437,72 @@ msgid "Photometric Interpretation"
 msgstr "Photometric Interpretation"
 
 #: src/MetadataStore.cs:29
-msgid "Exposure Program"
-msgstr "Exposure Program"
-
-#: src/MetadataStore.cs:31
-msgid "Metering Mode"
-msgstr "Metering Mode"
-
-#: src/MetadataStore.cs:33
-msgid "Exposure Mode"
-msgstr "Exposure Mode"
-
-#: src/MetadataStore.cs:35
-msgid "Components Configuration"
-msgstr "Components Configuration"
-
-#: src/MetadataStore.cs:37
-msgid "Light Source"
-msgstr "Light Source"
-
-#: src/MetadataStore.cs:39
-msgid "Sensing Method"
-msgstr "Sensing Method"
-
-#: src/MetadataStore.cs:41
-msgid "Color Space"
-msgstr "Colour Space"
-
-#: src/MetadataStore.cs:43
 msgid "Resolution Unit"
 msgstr "Resolution Unit"
 
+#: src/MetadataStore.cs:31
+msgid "Exposure Program"
+msgstr "Exposure Program"
+
+#: src/MetadataStore.cs:33
+msgid "Metering Mode"
+msgstr "Metering Mode"
+
+#: src/MetadataStore.cs:35
+msgid "Exposure Mode"
+msgstr "Exposure Mode"
+
+#: src/MetadataStore.cs:37
+msgid "Components Configuration"
+msgstr "Components Configuration"
+
+#: src/MetadataStore.cs:39
+msgid "Light Source"
+msgstr "Light Source"
+
+#: src/MetadataStore.cs:41
+msgid "Sensing Method"
+msgstr "Sensing Method"
+
+#: src/MetadataStore.cs:43
+msgid "Color Space"
+msgstr "Colour Space"
+
 #: src/MetadataStore.cs:45
+msgid "White Balance"
+msgstr "White Balance"
+
+#: src/MetadataStore.cs:47
 msgid "Focal Plane Resolution Unit"
 msgstr "Focal Plane Resolution Unit"
+
+#: src/MetadataStore.cs:49
+msgid "File Source Type"
+msgstr "File Source Type"
+
+#: src/MetadataStore.cs:51
+msgid "Scene Capture Type"
+msgstr "Scene Capture Type"
+
+#: src/MetadataStore.cs:53
+msgid "Gain Control"
+msgstr "Gain Control"
+
+#: src/MetadataStore.cs:55
+msgid "Contrast"
+msgstr "Contrast"
+
+#: src/MetadataStore.cs:57
+msgid "Saturation"
+msgstr "Saturation"
+
+#: src/MetadataStore.cs:59
+msgid "Sharpness"
+msgstr "Sharpness"
+
+#: src/MetadataStore.cs:61
+msgid "Scene Type"
+msgstr "Scene Type"
 
 #: src/PhotoPopup.cs:30
 msgid "Copy Image Location"
