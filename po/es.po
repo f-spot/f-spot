@@ -1,3 +1,4 @@
+# translation of es.po to 
 # Traducción de f-spot al español
 # Spanish translation for f-spot
 # Copyright (C) 2004 muine's COPYRIGHT HOLDER
@@ -10,31 +11,28 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: f-spot.HEAD.es\n"
+"Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-28 10:08+0200\n"
-"PO-Revision-Date: 2005-09-28 16:55+0100\n"
-"Last-Translator: Jorge Gonzalez <jorge.gonzalez.gonzalez@hispalinux.es>\n"
-"Language-Team:  <traductores@es.gnome.org>\n"
+"POT-Creation-Date: 2005-09-30 22:10+0200\n"
+"PO-Revision-Date: 2005-09-30 22:13+0200\n"
+"Last-Translator: \n"
+"Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../f-spot.desktop.in.in.h:1
-#: ../f-spot-view.desktop.in.h:1
+#: ../f-spot.desktop.in.in.h:1 ../f-spot-view.desktop.in.h:1
 #: ../src/f-spot.glade.h:67
 msgid "F-Spot"
 msgstr "F-Spot"
 
-#: ../f-spot.desktop.in.in.h:2
-#: ../f-spot-view.desktop.in.h:2
+#: ../f-spot.desktop.in.in.h:2 ../f-spot-view.desktop.in.h:2
 msgid "Photo Management"
 msgstr "Gestor de fotografías"
 
-#: ../libeog/eog-file-selection.c:29
-#: ../libeog/eog-file-selection.c:46
+#: ../libeog/eog-file-selection.c:29 ../libeog/eog-file-selection.c:46
 msgid "By Extension"
 msgstr "Por extensión"
 
@@ -50,13 +48,11 @@ msgstr "GIF"
 msgid "ICO"
 msgstr "ICO"
 
-#: ../libeog/eog-file-selection.c:33
-#: ../libeog/eog-file-selection.c:48
+#: ../libeog/eog-file-selection.c:33 ../libeog/eog-file-selection.c:48
 msgid "JPEG"
 msgstr "JPEG"
 
-#: ../libeog/eog-file-selection.c:34
-#: ../libeog/eog-file-selection.c:51
+#: ../libeog/eog-file-selection.c:34 ../libeog/eog-file-selection.c:51
 msgid "PNG"
 msgstr "PNG"
 
@@ -84,8 +80,7 @@ msgstr "TIFF"
 msgid "XBM"
 msgstr "XBM"
 
-#: ../libeog/eog-file-selection.c:41
-#: ../libeog/eog-file-selection.c:54
+#: ../libeog/eog-file-selection.c:41 ../libeog/eog-file-selection.c:54
 msgid "XPM"
 msgstr "XPM"
 
@@ -125,8 +120,7 @@ msgstr "tipo de interpolación"
 msgid "the type of interpolation to use"
 msgstr "el tipo de interpolación a usar"
 
-#: ../libeog/image-view.c:2117
-#: ../libeog/image-view.c:2124
+#: ../libeog/image-view.c:2117 ../libeog/image-view.c:2124
 msgid "check type"
 msgstr "comprobar tipo"
 
@@ -167,13 +161,11 @@ msgstr "Previsualizar"
 msgid "Path"
 msgstr "Ruta"
 
-#: ../src/CameraFileSelectionDialog.cs:69
-#: ../src/f-spot.glade.h:71
+#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:71
 msgid "File"
 msgstr "Archivo"
 
-#: ../src/CameraFileSelectionDialog.cs:71
-#: ../src/FolderExport.cs:674
+#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:674
 msgid "Index"
 msgstr "Índice"
 
@@ -191,8 +183,12 @@ msgid "Unknown destination."
 msgstr "Destino desconocido."
 
 #: ../src/CameraFileSelectionDialog.cs:148
-msgid "When copying files from a camera you must select a valid destination on the local filesystem"
-msgstr "Cuando copie fotografías desde una cámara debe seleccionar un destino válido en el disco duro local"
+msgid ""
+"When copying files from a camera you must select a valid destination on the "
+"local filesystem"
+msgstr ""
+"Cuando copie fotografías desde una cámara debe seleccionar un destino válido "
+"en el disco duro local"
 
 #: ../src/CameraFileSelectionDialog.cs:166
 msgid "Unable to create directory."
@@ -200,11 +196,14 @@ msgstr "Imposible crear el directorio."
 
 #: ../src/CameraFileSelectionDialog.cs:167
 #, csharp-format
-msgid "Error \"{0}\" while creating directory \"{1}\".  Check that the path and permissions are correct and try again"
-msgstr "Error «{0}» al crear el directorio «{1}».  Compruebe que la ruta y los permisos sean correctos e inténtelo de nuevo"
+msgid ""
+"Error \"{0}\" while creating directory \"{1}\".  Check that the path and "
+"permissions are correct and try again"
+msgstr ""
+"Error «{0}» al crear el directorio «{1}».  Compruebe que la ruta y los "
+"permisos sean correctos e inténtelo de nuevo"
 
-#: ../src/CameraFileSelectionDialog.cs:188
-#: ../src/CDExport.cs:139
+#: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:139
 #: ../src/FolderExport.cs:251
 msgid "Transferring Pictures"
 msgstr "Transfiriendo las fotografías"
@@ -235,8 +234,7 @@ msgstr "Transfiriendo «{0}» desde la cámara"
 msgid "Select Destination"
 msgstr "Seleccionar el destino"
 
-#: ../src/CameraSelectionDialog.cs:27
-#: ../src/StockIcons.cs:27
+#: ../src/CameraSelectionDialog.cs:27 ../src/StockIcons.cs:27
 msgid "Camera"
 msgstr "Cámara"
 
@@ -249,54 +247,42 @@ msgstr "Puerto"
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "Transfiriendo imagen «{0}» al CD"
 
-#: ../src/CDExport.cs:59
-#: ../src/FlickrExport.cs:96
-#: ../src/GalleryExport.cs:421
+#: ../src/CDExport.cs:59 ../src/FlickrExport.cs:96 ../src/GalleryExport.cs:421
 #: ../src/ProgressDialog.cs:75
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} de {1}"
 
-#: ../src/CDExport.cs:71
-#: ../src/FlickrExport.cs:101
-#: ../src/FolderExport.cs:167
+#: ../src/CDExport.cs:71 ../src/FlickrExport.cs:101 ../src/FolderExport.cs:167
 #: ../src/GalleryExport.cs:436
 msgid "Done Sending Photos"
 msgstr "Envío de fotografías terminado"
 
-#: ../src/CDExport.cs:73
-#: ../src/FolderExport.cs:169
+#: ../src/CDExport.cs:73 ../src/FolderExport.cs:169
 msgid "Transfer Complete"
 msgstr "Transferencia completada"
 
-#: ../src/CDExport.cs:79
-#: ../src/FolderExport.cs:174
+#: ../src/CDExport.cs:79 ../src/FolderExport.cs:174
 msgid "Error While Transferring"
 msgstr "Error al transferir"
 
-#: ../src/CDExport.cs:84
-#: ../src/FolderExport.cs:182
+#: ../src/CDExport.cs:84 ../src/FolderExport.cs:182
 msgid "Error Transferring"
 msgstr "Error al transferir"
 
-#: ../src/CDExport.cs:99
-#: ../src/FolderExport.cs:202
+#: ../src/CDExport.cs:99 ../src/FolderExport.cs:202
 msgid "Error: Error while transferring; Aborting"
 msgstr "Error: error al transferir; abortando"
 
-#: ../src/CDExport.cs:102
-#: ../src/FolderExport.cs:205
+#: ../src/CDExport.cs:102 ../src/FolderExport.cs:205
 msgid "Error: File Already Exists; Aborting"
 msgstr "Error: el fichero ya existe; abortando"
 
-#: ../src/ColorDialog.cs:147
-#: ../src/ColorDialog.cs:162
+#: ../src/ColorDialog.cs:147 ../src/ColorDialog.cs:162
 msgid "Error saving adjusted photo"
 msgstr "Error al guardar la foto ajustada"
 
-#: ../src/ColorDialog.cs:148
-#: ../src/MainWindow.cs:1307
-#: ../src/PhotoView.cs:296
+#: ../src/ColorDialog.cs:148 ../src/MainWindow.cs:1307 ../src/PhotoView.cs:296
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save image {1}"
 msgstr "Se recibió la excepción «{0}». No es posible guardar la imagen {1}"
@@ -338,14 +324,12 @@ msgstr "Introducir contraseña"
 msgid "Enter Password for "
 msgstr "Introducir contraseña para "
 
-#: ../src/FlickrExport.cs:91
-#: ../src/GalleryExport.cs:417
+#: ../src/FlickrExport.cs:91 ../src/GalleryExport.cs:417
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Subiendo imagen «{0}»"
 
-#: ../src/FlickrExport.cs:103
-#: ../src/GalleryExport.cs:438
+#: ../src/FlickrExport.cs:103 ../src/GalleryExport.cs:438
 msgid "Upload Complete"
 msgstr "Carga completada"
 
@@ -353,8 +337,7 @@ msgstr "Carga completada"
 msgid "Error Uploading To Flickr"
 msgstr "Error al subir las fotografías a Flickr"
 
-#: ../src/FlickrExport.cs:138
-#: ../src/GalleryExport.cs:387
+#: ../src/FlickrExport.cs:138 ../src/GalleryExport.cs:387
 msgid "Uploading Pictures"
 msgstr "Subiendo las fotografías"
 
@@ -363,8 +346,12 @@ msgid "Unable to log on."
 msgstr "No se pudo iniciar la sesión."
 
 #: ../src/FlickrExport.cs:149
-msgid "F-Spot was unable to log on to Flickr.  Make sure the settings you supplied are correct."
-msgstr "F-Spot no pudo iniciar una sesión en Flickr.  Compruebe que los datos sean correctos."
+msgid ""
+"F-Spot was unable to log on to Flickr.  Make sure the settings you supplied "
+"are correct."
+msgstr ""
+"F-Spot no pudo iniciar una sesión en Flickr.  Compruebe que los datos sean "
+"correctos."
 
 #: ../src/FolderExport.cs:129
 msgid "Building Gallery"
@@ -375,8 +362,7 @@ msgstr "Construyendo la galería"
 msgid "Prev"
 msgstr "Anterior"
 
-#: ../src/FolderExport.cs:677
-#: ../src/f-spot.glade.h:95
+#: ../src/FolderExport.cs:677 ../src/f-spot.glade.h:95
 msgid "Next"
 msgstr "Siguiente"
 
@@ -516,8 +502,7 @@ msgstr "Borde:"
 msgid "Brightness:"
 msgstr "Brillo:"
 
-#: ../src/f-spot.glade.h:34
-#: ../src/StockIcons.cs:26
+#: ../src/f-spot.glade.h:34 ../src/StockIcons.cs:26
 msgid "Browse"
 msgstr "Navegar"
 
@@ -689,8 +674,7 @@ msgstr ""
 "Página completa\n"
 "Estándar - 4x6"
 
-#: ../src/f-spot.glade.h:79
-#: ../src/StockIcons.cs:30
+#: ../src/f-spot.glade.h:79 ../src/StockIcons.cs:30
 msgid "Fullscreen"
 msgstr "Pantalla completa"
 
@@ -824,13 +808,11 @@ msgstr "_Eliminar etiqueta"
 msgid "Resize to: "
 msgstr "Redimensionar a: "
 
-#: ../src/f-spot.glade.h:117
-#: ../src/StockIcons.cs:35
+#: ../src/f-spot.glade.h:117 ../src/StockIcons.cs:35
 msgid "Rotate _Left"
 msgstr "Rotar a la _izquierda"
 
-#: ../src/f-spot.glade.h:118
-#: ../src/StockIcons.cs:36
+#: ../src/f-spot.glade.h:118 ../src/StockIcons.cs:36
 msgid "Rotate _Right"
 msgstr "Rotar a la _derecha"
 
@@ -904,8 +886,7 @@ msgstr "Mostrar u ocultar la barra de herramientas"
 msgid "Side _pane"
 msgstr "_Panel lateral"
 
-#: ../src/f-spot.glade.h:137
-#: ../src/StockIcons.cs:31
+#: ../src/f-spot.glade.h:137 ../src/StockIcons.cs:31
 msgid "Slideshow"
 msgstr "Diapositivas"
 
@@ -921,8 +902,7 @@ msgstr "Recorta los metadatos de la imagen"
 msgid "Strip metadata"
 msgstr "Recortar metadatos"
 
-#: ../src/f-spot.glade.h:141
-#: ../src/TagCommands.cs:295
+#: ../src/f-spot.glade.h:141 ../src/TagCommands.cs:295
 msgid "Tag name:"
 msgstr "Nombre de la etiqueta:"
 
@@ -1136,11 +1116,14 @@ msgstr "El directorio no existe."
 
 #: ../src/ImportCommand.cs:706
 #, csharp-format
-msgid "The directory you selected \"{0}\" does not exist.  Please choose a different directory"
-msgstr "El directorio seleccionado «{0}» no existe.  Por favor, elija un directorio distinto"
+msgid ""
+"The directory you selected \"{0}\" does not exist.  Please choose a "
+"different directory"
+msgstr ""
+"El directorio seleccionado «{0}» no existe.  Por favor, elija un directorio "
+"distinto"
 
-#: ../src/InfoBox.cs:70
-#: ../src/PhotoVersionCommands.cs:55
+#: ../src/InfoBox.cs:70 ../src/PhotoVersionCommands.cs:55
 msgid "Name:"
 msgstr "Nombre:"
 
@@ -1164,137 +1147,140 @@ msgstr "Exposición:"
 msgid "(None)"
 msgstr "(Ninguno)"
 
-#: ../src/InfoDisplay.cs:136
+#: ../src/InfoDisplay.cs:138
 msgid "Extended Metadata"
-msgstr ""
+msgstr "Metadatos extendidos"
 
-#: ../src/InfoDisplay.cs:199
+#: ../src/InfoDisplay.cs:177
 msgid "No active image"
 msgstr "No hay una imagen activa"
 
-#: ../src/InfoDisplay.cs:201
+#: ../src/InfoDisplay.cs:179
 #, csharp-format
 msgid "The image \"{0}\" does not exist"
 msgstr "La imagen «{0}» no existe"
 
-#: ../src/InfoDisplay.cs:207
+#: ../src/InfoDisplay.cs:185
 msgid "No metadata available"
 msgstr "No hay metadatos disponibles"
 
-#: ../src/IptcFile.cs:145
+#: ../src/IptcFile.cs:139
 msgid "IPTC Information Interchange Model (IIM) Version number"
 msgstr ""
 
-#: ../src/IptcFile.cs:147
+#: ../src/IptcFile.cs:141
 msgid "OSI Destination routing information"
 msgstr ""
 
-#: ../src/IptcFile.cs:149
+#: ../src/IptcFile.cs:143
 msgid "IPTC file format"
 msgstr "Formato de archivo IPTC"
 
-#: ../src/IptcFile.cs:151
+#: ../src/IptcFile.cs:145
 msgid "Identifies the provider and product"
 msgstr "Identifica al proveedor y al producto"
 
-#: ../src/IptcFile.cs:153
+#: ../src/IptcFile.cs:147
 msgid "A unique number identifying the envelope"
 msgstr "Un único número que identifique el sobre"
 
-#: ../src/IptcFile.cs:155
+#: ../src/IptcFile.cs:149
 msgid "A unique number"
 msgstr "Un único número"
 
-#: ../src/IptcFile.cs:157
+#: ../src/IptcFile.cs:151
 msgid "The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
 msgstr ""
 
-#: ../src/IptcFile.cs:159
+#: ../src/IptcFile.cs:153
 msgid "The year month and day (CCYYMMDD) the service sent the material"
 msgstr ""
 
-#: ../src/IptcFile.cs:161
+#: ../src/IptcFile.cs:155
 msgid "The hour minute and second the (HHMMSS+HHMM) the service sent the material"
 msgstr ""
 
-#: ../src/IptcFile.cs:163
+#: ../src/IptcFile.cs:157
 msgid "The character set designation"
 msgstr ""
 
-#: ../src/IptcFile.cs:165
+#: ../src/IptcFile.cs:159
 msgid "External globally unique object identifier"
 msgstr ""
 
-#: ../src/IptcFile.cs:170
+#: ../src/IptcFile.cs:164
 msgid "Abstract Relationship Method (ARM) identifier"
 msgstr ""
 
-#: ../src/IptcFile.cs:172
+#: ../src/IptcFile.cs:166
 msgid "Abstract Relationship Method (ARM) version number."
 msgstr ""
 
-#: ../src/IptcFile.cs:175
+#: ../src/IptcFile.cs:169
 msgid "Number identifying the IIM version this application record uses"
 msgstr ""
 
-#: ../src/IptcFile.cs:177
+#: ../src/IptcFile.cs:171
 msgid "Object type reference"
 msgstr "Referencia al tipo del objeto"
 
-#: ../src/IptcFile.cs:182
+#: ../src/IptcFile.cs:176
 msgid "Object attribute reference"
 msgstr "Referencia al atributo del objeto"
 
-#: ../src/IptcFile.cs:188
-#: ../src/IptcFile.cs:192
+#: ../src/IptcFile.cs:182 ../src/IptcFile.cs:186
 msgid "Object name"
 msgstr "Nombre del objeto"
 
-#: ../src/IptcFile.cs:190
+#: ../src/IptcFile.cs:184
 msgid "Status of the objectdata according to the provider"
 msgstr "Estado de los datos del objeto según el proveedor"
 
-#: ../src/IptcFile.cs:195
+#: ../src/IptcFile.cs:189
 msgid "Name of the city the content is focussing on"
 msgstr ""
 
-#: ../src/IptcFile.cs:198
+#: ../src/IptcFile.cs:192
 msgid "Copyright information for"
 msgstr "Información de Copyright para"
 
-#: ../src/IptcFile.cs:201
+#: ../src/IptcFile.cs:195
 msgid "Full name of the country of the focus of the content"
 msgstr ""
 
-#: ../src/IptcFile.cs:204
+#: ../src/IptcFile.cs:198
 msgid "Two or three letter ISO3166 code of the country of the focus of the content"
 msgstr "Código ISO3166 de dos o tres letras del país del fpco del contenido"
 
-#: ../src/IptcFile.cs:207
+#: ../src/IptcFile.cs:201
 msgid "bleh"
 msgstr "bleh"
 
-#: ../src/IptcFile.cs:210
+#: ../src/IptcFile.cs:204
 msgid "The title of the author or creator"
 msgstr "El título del autor o creador"
 
-#: ../src/IptcFile.cs:213
-msgid "The person involved in writing, editing orcorrecting the objectdata or caption/abstract"
-msgstr "La persona involucrada en la escritura, edición o corrección del dato objeto o la anotación/resumen"
+#: ../src/IptcFile.cs:207
+msgid ""
+"The person involved in writing, editing orcorrecting the objectdata or "
+"caption/abstract"
+msgstr ""
+"La persona involucrada en la escritura, edición o corrección del dato objeto "
+"o la anotación/resumen"
 
-#: ../src/IptcFile.cs:217
+#: ../src/IptcFile.cs:211
 msgid "Headline of the content"
 msgstr "Cabecera del contenido"
 
-#: ../src/IptcFile.cs:220
+#: ../src/IptcFile.cs:214
 msgid "Intructions from the creator to the reciever not covered by other fields"
 msgstr ""
 
-#: ../src/IptcFile.cs:223
+#: ../src/IptcFile.cs:217
 msgid "Intellectual genre of the object"
 msgstr "Género intelectual del objeto"
 
-#: ../src/IptcFile.cs:239
+#: ../src/IptcFile.cs:230
 msgid "Unkown IIM DataSet"
 msgstr ""
 
@@ -1303,8 +1289,12 @@ msgid "No cameras detected."
 msgstr "No se detectó ninguna cámara."
 
 #: ../src/MainWindow.cs:948
-msgid "F-Spot was unable to find any cameras attached to this system.  Double check that the camera is connected and has power"
-msgstr "F-Spot fue incapaz de detectar ninguna cámara conectada en este equipo.  Compruebe que la cámara está conectada y tiene alimentación"
+msgid ""
+"F-Spot was unable to find any cameras attached to this system.  Double check "
+"that the camera is connected and has power"
+msgstr ""
+"F-Spot fue incapaz de detectar ninguna cámara conectada en este equipo.  "
+"Compruebe que la cámara está conectada y tiene alimentación"
 
 #: ../src/MainWindow.cs:988
 msgid "Error connecting to camera"
@@ -1352,8 +1342,12 @@ msgstr[1] "¿Borrar permanentemente las {0} fotografías seleccionadas?"
 #: ../src/MainWindow.cs:1533
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural "This deletes all versions of the selected photos from your drive."
-msgstr[0] "Esto borrará de su ordenador todas las versiones de la fotografía seleccionada."
-msgstr[1] "Esto borrará de su ordenador todas las versiones de las fotografías seleccionadas."
+msgstr[0] ""
+"Esto borrará de su ordenador todas las versiones de la fotografía "
+"seleccionada."
+msgstr[1] ""
+"Esto borrará de su ordenador todas las versiones de las fotografías "
+"seleccionadas."
 
 #: ../src/MainWindow.cs:1536
 msgid "_Delete photo"
@@ -1369,8 +1363,14 @@ msgstr[0] "¿Eliminar la fotografía seleccionada de F-Spot?"
 msgstr[1] "¿Eliminar las {0} fotografías seleccionadas de F-Spot?"
 
 #: ../src/MainWindow.cs:1559
-msgid "If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again."
-msgstr "Si elimina fotografías del catálogo de F-Spot toda la información se perderá. Las fotos seguirán en su ordenador y podrá volverlas a cargar de nuevo en F-Spot."
+msgid ""
+"If you remove photos from the F-Spot catalog all tag information will be "
+"lost. The photos remain on your computer and can be imported into F-Spot "
+"again."
+msgstr ""
+"Si elimina fotografías del catálogo de F-Spot toda la información se "
+"perderá. Las fotos seguirán en su ordenador y podrá volverlas a cargar de "
+"nuevo en F-Spot."
 
 #: ../src/MainWindow.cs:1560
 msgid "_Remove from Catalog"
@@ -1400,8 +1400,112 @@ msgstr "La categoría no está vacía"
 
 #: ../src/MainWindow.cs:1609
 #, csharp-format
-msgid "Can not delete categorys which has tags. Please delete tags under \"{0}\" first"
-msgstr "No se pueden borrar categorías que tengan etiquetas. Por favor, borre las etiquetas de «{0}» antes"
+msgid ""
+"Can not delete categorys which has tags. Please delete tags under \"{0}\" "
+"first"
+msgstr ""
+"No se pueden borrar categorías que tengan etiquetas. Por favor, borre las "
+"etiquetas de «{0}» antes"
+
+#: ../src/MetadataStore.cs:17
+msgid "Creator"
+msgstr "Creador"
+
+#: ../src/MetadataStore.cs:18
+msgid "Title"
+msgstr "Título"
+
+#: ../src/MetadataStore.cs:19
+msgid "Copyright"
+msgstr "Copyright"
+
+#: ../src/MetadataStore.cs:20
+msgid "Subject and Keywords"
+msgstr ""
+
+#: ../src/MetadataStore.cs:21
+msgid "Compression"
+msgstr "Compresión"
+
+#: ../src/MetadataStore.cs:23
+msgid "Planar Configuration"
+msgstr ""
+
+#: ../src/MetadataStore.cs:25
+msgid "Orientation"
+msgstr "Orientación"
+
+#: ../src/MetadataStore.cs:27
+msgid "Photometric Interpretation"
+msgstr ""
+
+#: ../src/MetadataStore.cs:29
+msgid "Resolution Unit"
+msgstr ""
+
+#: ../src/MetadataStore.cs:31
+msgid "Exposure Program"
+msgstr "Programa de exposición"
+
+#: ../src/MetadataStore.cs:33
+msgid "Metering Mode"
+msgstr ""
+
+#: ../src/MetadataStore.cs:35
+msgid "Exposure Mode"
+msgstr "Modo de exposición"
+
+#: ../src/MetadataStore.cs:37
+msgid "Components Configuration"
+msgstr "Configuración de componentes"
+
+#: ../src/MetadataStore.cs:39
+msgid "Light Source"
+msgstr "Fuente de luz"
+
+#: ../src/MetadataStore.cs:41
+msgid "Sensing Method"
+msgstr "Método de sensibilidad"
+
+#: ../src/MetadataStore.cs:43
+msgid "Color Space"
+msgstr "Espacio de color"
+
+#: ../src/MetadataStore.cs:45
+msgid "White Balance"
+msgstr "Balance de blancos"
+
+#: ../src/MetadataStore.cs:47
+msgid "Focal Plane Resolution Unit"
+msgstr ""
+
+#: ../src/MetadataStore.cs:49
+msgid "File Source Type"
+msgstr "Tipo de origen de archivo"
+
+#: ../src/MetadataStore.cs:51
+msgid "Scene Capture Type"
+msgstr ""
+
+#: ../src/MetadataStore.cs:53
+msgid "Gain Control"
+msgstr "Control de ganancia"
+
+#: ../src/MetadataStore.cs:55
+msgid "Contrast"
+msgstr "Contraste"
+
+#: ../src/MetadataStore.cs:57
+msgid "Saturation"
+msgstr "Saturación"
+
+#: ../src/MetadataStore.cs:59
+msgid "Sharpness"
+msgstr "Enfoque"
+
+#: ../src/MetadataStore.cs:61
+msgid "Scene Type"
+msgstr "Tipo de escena"
 
 #: ../src/PhotoPopup.cs:30
 msgid "Copy Image Location"
@@ -1519,8 +1623,12 @@ msgid "No selection available"
 msgstr "No hay ninguna selección disponible"
 
 #: ../src/PhotoView.cs:237
-msgid "This tool requires an active selection. Please select a region of the image and try the operation again"
-msgstr "Esta herramienta necesita una selección activa. Por favor, seleccione una región de la imagen y reintente esta operación"
+msgid ""
+"This tool requires an active selection. Please select a region of the image "
+"and try the operation again"
+msgstr ""
+"Esta herramienta necesita una selección activa. Por favor, seleccione una "
+"región de la imagen y reintente esta operación"
 
 #: ../src/PhotoView.cs:295
 msgid "Error editing photo"
@@ -1577,10 +1685,19 @@ msgstr[1] "No se pudo rotar las {0} imágenes"
 
 #: ../src/RotateCommand.cs:119
 #, csharp-format
-msgid "The image could not be rotated because it is on a read only file system or media such as a CDROM.  Please check the permissions and try again"
-msgid_plural "{0} images could not be rotated because they are on a read only file system or media such as a CDROM.  Please check the permissions and try again"
-msgstr[0] "La imagen no se pudo rotar porque está en un sistema de archivos de sólo lectura como un CDROM.  Compruebe los permisos y vuelva a intentarlo"
-msgstr[1] "Las {0} imágenes no se han podido rotar porque están en un sistema de archivos de sólo lectura como un CDROM.  Compruebe los permisos y vuelva a intentarlo"
+msgid ""
+"The image could not be rotated because it is on a read only file system or "
+"media such as a CDROM.  Please check the permissions and try again"
+msgid_plural ""
+"{0} images could not be rotated because they are on a read only file system "
+"or media such as a CDROM.  Please check the permissions and try again"
+msgstr[0] ""
+"La imagen no se pudo rotar porque está en un sistema de archivos de sólo "
+"lectura como un CDROM.  Compruebe los permisos y vuelva a intentarlo"
+msgstr[1] ""
+"Las {0} imágenes no se han podido rotar porque están en un sistema de "
+"archivos de sólo lectura como un CDROM.  Compruebe los permisos y vuelva a "
+"intentarlo"
 
 #: ../src/StockIcons.cs:28
 msgid "Crop"
@@ -1618,13 +1735,11 @@ msgstr "Lejos"
 msgid "(No categories)"
 msgstr "(No hay categorías)"
 
-#: ../src/TagCommands.cs:80
-#: ../src/TagCommands.cs:217
+#: ../src/TagCommands.cs:80 ../src/TagCommands.cs:217
 msgid "This name is already in use"
 msgstr "Este nombre ya está siendo usado"
 
-#: ../src/TagCommands.cs:129
-#: ../src/TagPopup.cs:20
+#: ../src/TagCommands.cs:129 ../src/TagPopup.cs:20
 msgid "Create New Tag"
 msgstr "Crear nueva etiqueta"
 
@@ -1632,8 +1747,7 @@ msgstr "Crear nueva etiqueta"
 msgid "Name of new tag:"
 msgstr "Nombre de la nueva etiqueta:"
 
-#: ../src/TagCommands.cs:133
-#: ../src/TagPopup.cs:22
+#: ../src/TagCommands.cs:133 ../src/TagPopup.cs:22
 msgid "Create New Category"
 msgstr "Crear nueva categoría"
 
@@ -1649,8 +1763,7 @@ msgstr "Editar categoría"
 msgid "Category name:"
 msgstr "Nombre de la categoría:"
 
-#: ../src/TagCommands.cs:294
-#: ../src/TagPopup.cs:27
+#: ../src/TagCommands.cs:294 ../src/TagPopup.cs:27
 msgid "Edit Tag"
 msgstr "Editar etiqueta"
 
@@ -1705,21 +1818,4 @@ msgstr "Buscar: "
 #: ../src/QueryDisplay.cs:44
 msgid "No matching images found "
 msgstr "No se encontraron imágenes coincidentes con el criterio "
-
-#~ msgid "Photo Album"
-#~ msgstr "Álbum de fotos"
-#~ msgid "Error: Error while transferring, Aborting"
-#~ msgstr "Error: error al transferir, abortando"
-#~ msgid "Error: File Already Exists, Aborting"
-#~ msgstr "Error: el fichero ya existe, abortando"
-#~ msgid "Transfering Pictures"
-#~ msgstr "Transfiriendo las fotografías"
-#~ msgid "_EXIF Data"
-#~ msgstr "Datos _EXIF"
-#~ msgid "Received exception \"{0}\" while rotating image {1}"
-#~ msgstr "Se recibió la excepción «{0}» mientras se rotaba la imagen {1}"
-#~ msgid "Scaling picture \"{0}\""
-#~ msgstr "Escalando imagen «{0}»"
-#~ msgid "Transferring picture \"{0}\""
-#~ msgstr "Transfiriendo imagen «{0}»"
 
