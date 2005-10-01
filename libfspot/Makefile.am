@@ -5,6 +5,7 @@ INCLUDES =							\
 	-DG_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED		\
 	-DGDK_DISABLE_DEPRECATED -DGNOME_DISABLE_DEPRECATED	\
 	$(F_CFLAGS)						\
+	$(LCMS_CFLAGS)						\
 	$(WERROR)
 
 fspotlibdir = $(libdir)/f-spot
@@ -21,6 +22,7 @@ libfspot_la_SOURCES =				\
 	f-pixbuf-unsharp.c			\
 	f-marshal.c				\
 	f-marshal.h				\
+	f-screen-utils.c			\
 	f-utils.c				\
 	f-utils.h
 

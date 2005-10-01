@@ -1,5 +1,13 @@
 2005-10-01  Larry Ewing  <lewing@novell.com>
 
+	* libfspot/Makefile.am (INCLUDES): add the new file for the glue
+	function.
+
+	* src/Cms.cs: wrap the profile glue function.
+
+	* libfspot/f-screen-utils.c (f_screen_get_profile): add a simple
+	glue function to get the profile from the display.
+
 	* src/Cms.cs: bind CreateRGBProfile.
 
 	* src/Cms.cs: wrap the gamma table creation functions.	

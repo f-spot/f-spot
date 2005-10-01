@@ -217,6 +217,19 @@ namespace Cms {
 			return new Profile (cmsCreate_sRGBProfile());
 		}
 		
+		[DllImport ("libfspot")]
+		static extern IntPtr f_screen_get_profile (IntPtr screen);
+
+		public static Profile GetScreenProfile (Gdk.Screen screen)
+		{
+			IntPtr profile = f_screen_get_profile (screen.Handle);
+
+			if (profile = IntPtr.Zero)
+				return null;
+				
+			return new Profile (f_screen_get_profile (screen.Handle));
+		}
+
 		[DllImport("liblcms-1.0.0.dll")]
 		static extern IntPtr cmsCreateBCHSWabstractProfile(int nLUTPoints,
 								   double Bright, 
