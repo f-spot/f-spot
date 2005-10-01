@@ -21,6 +21,32 @@ namespace Cms {
 		AbsoluteColorimetric = 3
 	}
 
+	public struct ColorCIExyY {
+		public double x;
+		public double y;
+		public double Y;
+		
+		public ColorCIExyY (double x, double y, double Y)
+		{
+			this.x = x;
+			this.y = y;
+			this.Y = Y;
+		}
+	}
+
+	public struct ColorCIExyYTriple {
+		public ColorCIExyY Red;
+		public ColorCIExyY Green;
+		public ColorCIExyY Blue;
+
+		public ColorCIExyYTriple (ColorCIExyY red, ColorCIExyY green, ColorCIExyY blue)
+		{
+			Red = red;
+			Green = green;
+			Blue = blue;
+		}
+	}
+
 	public class GammaTable : IDisposable {
 		private HandleRef handle;
 		public HandleRef Handle {
@@ -215,6 +241,17 @@ namespace Cms {
 									   Saturation,
 									   TempSrc,
 									   TempDest));
+		}
+
+
+		[DllImport("liblcms-1.0.0.dll")]
+		static extern IntPtr cmsCreateRGBProfile (out ColorCIExyY whitepoint, 
+						          out ColorCIExyYTriple primaries,
+							  HandleRef gamma_table);
+
+		public Profile (ColorCIExyY whitepoint, ColorCIExyYTriple primaries, GammaTable gamma)
+		{
+			handle = new HandleRef (this, cmsCreateRGBProfile (out whitepoint, out primaries, gamma.Handle));
 		}
 
 		[DllImport("liblcms-1.0.0.dll")]
