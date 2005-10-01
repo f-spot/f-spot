@@ -20,7 +20,82 @@ namespace Cms {
 		Saturation = 2,
 		AbsoluteColorimetric = 3
 	}
+
+	public class GammaTable : IDisposable {
+		private HandleRef handle;
+		public HandleRef Handle {
+			get {
+				return handle;
+			}
+		}
+
+		[DllImport("liblcms-1.0.0.dll")]
+		static extern IntPtr cmsBuildGamma (int entry_count, double gamma);
+
+		public GammaTable (int count, double gamma)
+		{
+			handle = new HandleRef (this, cmsBuildGamma (count, gamma));
+		}
+
+		/*
+		  Does build a parametric curve based on parameters.
+		  Params[] does contain Gamma, a, b, c, d, e, f
+
+		  Type 1 :
+		  X = Y ^ Gamma   | Gamma = Params[0]
+		  
+		  Type 2 :
+		  CIE 122-1966
+		  Y = (aX + b)^Gamma  | X >= -b/a
+		  Y = 0               | else
+		  Type 3:
+		  
+		  IEC 61966-3
+		  Y = (aX + b)^Gamma | X <= -b/a
+		  Y = c              | else
+		  
+		  Type 4:
+		  IEC 61966-2.1 (sRGB)
+		  Y = (aX + b)^Gamma | X >= d
+		  Y = cX             | X < d
+		  
+		  Type 5:
+		  
+		  Y = (aX + b)^Gamma + e | X <= d
+		  Y = cX + f             | else
+		  
+		  Giving negative values for Type does result in reversed curve.
+		*/
+
+		// FIXME type should be an enum
+		[DllImport("liblcms-1.0.0.dll")]
+		static extern IntPtr cmsBuildParametricGamma (int entry_count, int type, double [] values);
 		
+		public GammaTable (int entry_count, int type, double [] values)
+		{
+			handle = new HandleRef (this, cmsBuildParametricGamma (entry_count, type, values));
+		}
+
+		[DllImport("liblcms-1.0.0.dll")]
+		static extern void cmsFreeGamma (HandleRef handle);
+		
+		private void Cleanup ()
+		{
+			cmsFreeGamma (handle);
+		}
+		
+		public void Dispose ()
+		{
+			Cleanup ();
+			System.GC.SuppressFinalize (this);
+		}
+		
+		~GammaTable ()
+		{
+			Cleanup ();
+		}
+	}
+	
 	public class Transform : IDisposable {
 		private HandleRef handle;
 		public HandleRef Handle {
@@ -88,7 +163,8 @@ namespace Cms {
 			System.GC.SuppressFinalize (this);
 		}
 		
-		private void Cleanup () {
+		private void Cleanup ()
+		{
 			cmsDeleteTransform (this.handle);
 		}
 		
@@ -140,7 +216,7 @@ namespace Cms {
 									   TempSrc,
 									   TempDest));
 		}
-		
+
 		[DllImport("liblcms-1.0.0.dll")]
 		static extern int cmsCloseProfile (HandleRef hprofile);
 
