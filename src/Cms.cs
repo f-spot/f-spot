@@ -224,7 +224,7 @@ namespace Cms {
 		{
 			IntPtr profile = f_screen_get_profile (screen.Handle);
 
-			if (profile = IntPtr.Zero)
+			if (profile == IntPtr.Zero)
 				return null;
 				
 			return new Profile (f_screen_get_profile (screen.Handle));
