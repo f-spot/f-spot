@@ -1,16 +1,22 @@
+using System.Xml;
 using SemWeb;
+
 
 namespace FSpot.Xmp {
 	public class XmpFile : SemWeb.StatementSource
 	{
 		MetadataStore store;
 
-		public XmpFile (System.IO.Stream stream)
+		public XmpFile (System.IO.Stream stream) : this ()
 		{
-			store = new MetadataStore ();
 			Load (stream);
 		}
-
+		
+		public XmpFile ()
+		{
+			store = new MetadataStore ();
+		}
+		
 		public void Load (System.IO.Stream stream)
 		{
 			try {
@@ -20,12 +26,29 @@ namespace FSpot.Xmp {
 				System.Console.WriteLine (e.ToString ());
 			}
 		}
+
+		public void Save (System.IO.Stream stream)
+		{
+			try {
+				XmlTextWriter text;
+				RdfXmlWriter writer;
+
+				text = new XmlTextWriter (stream, System.Text.Encoding.UTF8);
+				writer = new RdfXmlWriter (text, MetadataStore.Namespaces);
+				
+				store.Select (writer);
+				writer.Close ();
+				text.Close ();
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e);
+			}
+		}
 		
 		public void Select (SemWeb.StatementSink sink)
 		{
 			store.Select (sink);
 		}
-		
+
 		public void Dump ()
 		{
 			foreach (SemWeb.Statement stmt in store) {
