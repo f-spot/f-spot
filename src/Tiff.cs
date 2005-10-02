@@ -258,6 +258,12 @@ namespace FSpot.Tiff {
 		public int Numerator;
 		public int Denominator;
 		
+		public SRational (byte [] raw_data, int offset, bool little)
+		{
+			Numerator = BitConverter.ToInt32 (raw_data, offset, little);
+			Denominator = BitConverter.ToInt32 (raw_data, offset, little);
+		}
+
 		public SRational (int numerator, int denominator)
 		{
 			Numerator = numerator;
@@ -359,6 +365,42 @@ namespace FSpot.Tiff {
 			Rows = BitConverter.ToUInt16 (raw_data, 2, little);
 			Values = new byte [Rows * Columns];
 			System.Array.Copy (raw_data, 4, Values, 0, Values.Length);
+		}
+	}
+
+	public struct OECFTable {
+		public ushort Rows;
+		public ushort Columns;
+		public string [] Names;
+		public SRational [] Values;
+		
+		public OECFTable (byte [] raw_data, bool little)
+		{
+			Columns = BitConverter.ToUInt16 (raw_data, 0, little);
+			Rows = BitConverter.ToUInt16 (raw_data, 2, little);
+			Names = new string [Columns];
+			Values = new SRational [Columns * Rows];
+
+			int pos = 2;
+			int i;
+			int type_size = DirectoryEntry.GetTypeSize (EntryType.SRational);
+
+			for (i = 0; i < Names.Length; i++)
+				Names [i] = ReadString (raw_data, ref pos);
+			
+			for (i = 0; i < Values.Length; i++)
+				Values [i] = new SRational (raw_data, pos + i * type_size, little);
+			
+		}
+
+		public string ReadString (byte [] data, ref int pos)
+		{
+			int start = pos;
+			for (; pos < data.Length; pos++) {
+				if (data [pos] == 0)
+					break;
+			}	
+			return System.Text.Encoding.ASCII.GetString (data, start, pos - start);
 		}
 	}
 

@@ -280,12 +280,17 @@ namespace FSpot {
 			public int Width;
 			public int Height;
 			public bool Skip;
-			public ScaleRequest (string name, int width, int height, bool skip)
+			public bool CopyExif;
+
+			public ScaleRequest (string name, int width, int height, bool skip) : this (name, width, height, skip, false) {}
+
+			public ScaleRequest (string name, int width, int height, bool skip, bool exif)
 			{
 				this.Name = name != null ? name : "";
 				this.Width = width;
 				this.Height = height;
 				this.Skip = skip;
+				this.CopyExif = exif;
 			}
 
 			public static ScaleRequest Default = new ScaleRequest ("", 0, 0, false);
@@ -337,21 +342,32 @@ namespace FSpot {
 			
 			Gdk.Pixbuf img = null;
 			Gdk.Pixbuf scaled = null;
-			
+
+			Exif.ExifData data = new Exif.ExifData (photo_path);
+			if (data != null && data.Handle.Handle == System.IntPtr.Zero)
+				data = null;
+
 			for (int i = 1; i < requests.Length; i++) {
 				req = requests [i];
 				if (scale && req.AvoidScale (size))
 					continue;
 
-				if (img == null)
+				if (img == null) 
 					scaled = PixbufUtils.LoadAtMaxSize (photo_path, req.Width, req.Height);
 				else
 					scaled = PixbufUtils.ScaleToMaxSize (img, req.Width, req.Height, false);
 				
 				MakeDir (SubdirPath (req.Name));
 				path = SubdirPath (req.Name, ImageName (image_num));
-				scaled.Savev (path, "jpeg", pixbuf_keys, pixbuf_values);
+
+
 				
+				if (req.CopyExif && data != null) {
+					PixbufUtils.SaveJpeg (scaled, path, 90, data);
+				} else 
+					scaled.Savev (path, "jpeg", pixbuf_keys, pixbuf_values);
+				
+
 				if (img != null)
 					img.Dispose ();
 			}
@@ -422,8 +438,8 @@ namespace FSpot {
 		{ 
 			requests = new ScaleRequest [] { new ScaleRequest ("hq", 0, 0, false),
 							 new ScaleRequest ("mq", 800, 600, true),
-							 new ScaleRequest ("lq", 640, 480, false),
-							 new ScaleRequest ("thumbs", 120, 90, false) };
+							 new ScaleRequest ("lq", 640, 480, false, true),
+							 new ScaleRequest ("thumbs", 120, 120, false) };
 		}
 
 		public override void Generate ()
