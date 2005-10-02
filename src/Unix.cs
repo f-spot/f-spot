@@ -33,7 +33,7 @@ namespace FSpot {
 			int fd = mkstemp (template_bytes);
 
 			if (fd < 0) {
-				Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
+				//Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
 				throw new System.ApplicationException (Mono.Posix.Catalog.GetString ("Unable to create temporary file"));
 			}
 

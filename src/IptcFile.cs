@@ -323,11 +323,11 @@ namespace FSpot.Iptc {
 		public string XmpObject 
 		{
 			get {
-				DataSetInfo info = (DataSetInfo) DataSetInfo.IDTable [this.ID];
+				//DataSetInfo info = (DataSetInfo) DataSetInfo.IDTable [this.ID];
 				//if (info != null && info.Format == Format.String) {
 					return System.Text.Encoding.UTF8.GetString (this.Data);
 					//}
-				return null;
+					//return null;
 			}
 		}
 	}

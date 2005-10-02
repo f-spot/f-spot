@@ -320,7 +320,6 @@ namespace FSpot.Tiff {
 		public UserComment (byte [] raw_data, bool little)
 		{
 			string charset = System.Text.Encoding.ASCII.GetString (raw_data, 0, 8);
-			string value = null;
 			System.Text.Encoding enc;
 
 			switch (charset) {
@@ -1487,7 +1486,6 @@ namespace FSpot.Tiff {
 					break;
 				case EntryType.Ascii:
 					return StringValue.Split ('\0');
-					break;
 				}
 				return null;
 			}

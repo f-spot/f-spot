@@ -1581,8 +1581,6 @@ public class MainWindow {
 	public void HandleDeleteSelectedTagCommand (object sender, EventArgs args)
 	{
 		Tag [] tags = this.tag_selection_widget.TagHighlight ();
-		bool can_delete = true;
-
 
 		System.Array.Sort (tags, new TagRemoveComparer ());
 		string header = Mono.Posix.Catalog.GetPluralString ("Delete the selected tag?",

@@ -208,7 +208,6 @@ namespace FSpot {
 					string predicate = sub.Predicate.ToString ();
 					string title = System.IO.Path.GetFileName (predicate);
 					string value = ((Literal)(sub.Object)).Value;
-					string prefix;
 					string vc = "";
 					
 					Description.GetDescription (substore, sub, out title, out value);
