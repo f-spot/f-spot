@@ -133,6 +133,16 @@ namespace FSpot {
 				} 
 				
 				if (store.StatementCount > 0) {
+#if false
+					using (System.IO.Stream xmpstream = System.IO.File.OpenWrite ("tmp.xmp")) {
+						xmpstream.Length = 0;
+						FSpot.Xmp.XmpFile file;
+
+						file = new FSpot.Xmp.XmpFile ();
+						store.Select (file);
+						file.Save (xmpstream);
+					}
+#endif
 					empty = false;
 					stream.Write ("<tr><th align=left bgcolor=\"" + ig + "\" colspan=2>" 
 						      + Mono.Posix.Catalog.GetString ("Extended Metadata") + "</th><tr>");

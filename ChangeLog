@@ -1,5 +1,14 @@
 2005-10-02  Larry Ewing  <lewing@novell.com>
 
+	* src/XmpFile.cs: add the requisit processing instructions and
+	xmpmeta element.
+	
+	* src/InfoDisplay.cs: add a disabled debugging dump of the xmp to
+	a file.
+
+	* semweb/XmlWriter.cs: don't close the writers when we close the
+	rdf writer, we may want to add more info.
+
 	* src/XmpFile.cs: basic writing.
 
 	* src/PixelBuffer.cs: start new class for deep image data.

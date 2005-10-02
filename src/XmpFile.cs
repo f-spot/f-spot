@@ -3,7 +3,7 @@ using SemWeb;
 
 
 namespace FSpot.Xmp {
-	public class XmpFile : SemWeb.StatementSource
+	public class XmpFile : SemWeb.StatementSource, SemWeb.StatementSink
 	{
 		MetadataStore store;
 
@@ -34,14 +34,25 @@ namespace FSpot.Xmp {
 				RdfXmlWriter writer;
 
 				text = new XmlTextWriter (stream, System.Text.Encoding.UTF8);
-				writer = new RdfXmlWriter (text, MetadataStore.Namespaces);
-				
-				store.Select (writer);
-				writer.Close ();
+				using (writer = new RdfXmlWriter (text, MetadataStore.Namespaces)) {
+					text.WriteProcessingInstruction ("xpacket", "begin=\"\ufeff\" id=\"testing\"");
+					text.WriteStartElement ("x:xmpmeta");
+					text.WriteAttributeString ("xmlns", "x", null, "adobe:ns:meta/");
+					store.Select (writer);
+
+				}
+				text.WriteEndElement ();
+				text.WriteProcessingInstruction ("xpacket", "end=\"r\"");
 				text.Close ();
+				
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e);
 			}
+		}
+
+		public bool Add (Statement stmt)
+		{
+			return ((SemWeb.StatementSink)store).Add (stmt);
 		}
 		
 		public void Select (SemWeb.StatementSink sink)

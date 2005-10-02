@@ -202,7 +202,7 @@ namespace SemWeb {
 			base.Close();
 			if (doc != null)
 				doc.WriteTo(writer);
-			writer.Close();
+			//writer.Close();
 		}
 	}
 
@@ -297,7 +297,7 @@ namespace SemWeb {
 				writer.WriteEndElement();
 				writer.WriteEndElement();
 			}
-			writer.Close();
+			//writer.Close();
 		}
 
 		
