@@ -34,6 +34,8 @@ namespace FSpot {
 						 typeof (FSpot.Tiff.MeteringMode)),
 				new Description ("exif:ExposureMode", Catalog.GetString ("Exposure Mode"), 
 						 typeof (FSpot.Tiff.ExposureMode)),
+				new Description ("exif:CustomRendered", Catalog.GetString ("Custom Rendered"), 
+						 typeof (FSpot.Tiff.CustomRendered)),
 				new Description ("exif:ComponentsConfiguration", Catalog.GetString ("Components Configuration"),
 						 typeof (FSpot.Tiff.ComponentsConfiguration)),
 				new Description ("exif:LightSource", Catalog.GetString ("Light Source"),
