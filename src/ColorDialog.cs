@@ -40,7 +40,7 @@ namespace FSpot {
 		{
 			if (brightness_scale == null)
 				return;
-
+			
 			Cms.Profile srgb = Cms.Profile.CreateSRgb ();
 			Cms.Profile bchsw = Cms.Profile.CreateAbstract (10, brightness_scale.Value,
 									contrast_scale.Value,
@@ -198,8 +198,39 @@ namespace FSpot {
 				FSpot.ImageFile img = FSpot.ImageFile.Create (((Photo)view.Item.Current).DefaultVersionPath);
 				AdjustedPixbuf = img.Load (150, 150);
 				ScaledPixbuf = AdjustedPixbuf.Copy ();			
+#if false
+				Cms.Profile srgb = Cms.Profile.CreateSRgb ();
+				Cms.Profile lab = Cms.Profile.CreateLab ();
+				Cms.Profile [] list = new Cms.Profile [] { srgb, lab };
+
+			        Cms.Transform t = new Cms.Transform (list, 
+								     PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
+								     PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
+								     Cms.Intent.Perceptual, 0x0000);
+
+				PixbufUtils.ColorAdjust (AdjustedPixbuf,
+							 ScaledPixbuf,
+							 t);
+#endif
 				RangeChanged (null, null);
 			}
+		}
+
+		private void HandleResetClicked (object sender, EventArgs args)
+		{
+			brightness_scale.Value = 1.0;
+			contrast_scale.Value = 1.0;
+			hue_scale.Value = 0.0;			
+			sat_scale.Value = 0.0;
+			source_spinbutton.Value = 6500;
+			dest_spinbutton.Value = 6500;
+
+			brightness_spinbutton.Adjustment.ChangeValue ();
+			contrast_spinbutton.Adjustment.ChangeValue ();
+			hue_spinbutton.Adjustment.ChangeValue ();
+			sat_spinbutton.Adjustment.ChangeValue ();
+			source_spinbutton.Adjustment.ChangeValue ();
+			dest_spinbutton.Adjustment.ChangeValue ();
 		}
 		
 		private void HandleCancelClicked (object sender, EventArgs args)
@@ -234,13 +265,13 @@ namespace FSpot {
 #endif
 			this.Dialog.Destroyed += HandleDestroyed;
 
-			#if true
+#if true
 			Gdk.Color c = this.Dialog.Style.Backgrounds [(int)Gtk.StateType.Active];
 			hist.Color [0] = (byte) (c.Red / 0xff);
 			hist.Color [1] = (byte) (c.Green / 0xff);
 			hist.Color [2] = (byte) (c.Blue / 0xff);
 			hist.Color [3] = 0xff;
-			#endif
+#endif
 
 			histogram_image.Pixbuf = hist.GeneratePixbuf ();
 

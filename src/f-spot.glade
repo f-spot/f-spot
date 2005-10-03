@@ -8569,16 +8569,16 @@ Photo Details</property>
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
-	    <widget class="GtkButton" id="cancel_button">
+	    <widget class="GtkButton" id="reset_button">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
-	      <property name="label">gtk-cancel</property>
+	      <property name="label">gtk-revert-to-saved</property>
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <property name="response_id">-6</property>
-	      <signal name="clicked" handler="HandleCancelClicked" last_modification_time="Thu, 02 Sep 2004 18:30:59 GMT"/>
+	      <signal name="clicked" handler="HandleResetClicked" last_modification_time="Mon, 03 Oct 2005 22:23:24 GMT"/>
 	    </widget>
 	  </child>
 
