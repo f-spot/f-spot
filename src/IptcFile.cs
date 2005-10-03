@@ -196,7 +196,7 @@ namespace FSpot.Iptc {
 					 "photoshop:Country"),
 			new DataSetInfo (DataSetID.PrimaryLocationCode, Format.String, "ISO Country Code", false, false, 0, 3,
 					 Mono.Posix.Catalog.GetString ("Two or three letter ISO3166 code of the country of the focus of the content"),
-					 "Itpc4xmpCore:CountryCode"),
+					 "Iptc4xmpCore:CountryCode"),
 			new DataSetInfo (DataSetID.ByLine, Format.String, "Creator", false, false, 0, 32,
 					 Mono.Posix.Catalog.GetString ("bleh"),  // FIXME
 					 "dc:creator"),
