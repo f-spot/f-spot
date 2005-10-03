@@ -217,6 +217,22 @@ namespace Cms {
 			return new Profile (cmsCreate_sRGBProfile());
 		}
 		
+		[DllImport ("liblcms-1.0.0.dll")]
+		static extern IntPtr cmsCreateLabProfile (out ColorCIExyY WhitePoint);
+
+		public static Profile CreateLab (ColorCIExyY wp)
+		{
+			return new Profile (cmsCreateLabProfile (out wp));
+		}			
+
+		[DllImport ("liblcms-1.0.0.dll")]
+		static extern IntPtr cmsCreateLabProfile (IntPtr foo);
+
+		public static Profile CreateLab ()
+		{
+			return new Profile (cmsCreateLabProfile (IntPtr.Zero));
+		}			
+		
 		[DllImport ("libfspot")]
 		static extern IntPtr f_screen_get_profile (IntPtr screen);
 
