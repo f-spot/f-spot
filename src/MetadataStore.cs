@@ -54,7 +54,7 @@ namespace FSpot {
 						 typeof (FSpot.Tiff.SceneCaptureType)),
 				new Description ("exif:GainControl", Catalog.GetString ("Gain Control"),
 						 typeof (FSpot.Tiff.GainControl)),
-				new Description ("exif:Constrast", Catalog.GetString ("Contrast"),
+				new Description ("exif:Contrast", Catalog.GetString ("Contrast"),
 						 typeof (FSpot.Tiff.Contrast)),
 				new Description ("exif:Saturation", Catalog.GetString ("Saturation"),
 						 typeof (FSpot.Tiff.Saturation)),
