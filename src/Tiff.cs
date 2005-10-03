@@ -481,6 +481,11 @@ namespace FSpot.Tiff {
 		AutoBracket = 2
 	}
 
+	public enum CustomRendered : ushort {
+		Normal = 0,
+		Custom = 1
+	}
+
 	public enum SceneType {
 		DirectlyPhotographed = 1
 	}
@@ -532,6 +537,7 @@ namespace FSpot.Tiff {
 		Soft = 1,
 		Hard = 2
 	}
+
 
 	public enum LightSource {
 		Unknown = 0,
