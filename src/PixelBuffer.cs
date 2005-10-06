@@ -1,7 +1,7 @@
 namespace FSpot.Imaging {
 	public enum PixelBufferDepth {
-		Normal = 8,
-		Deep = 16
+		UInt8 = 8,
+		UInt16 = 16
 	}
 
 	public class UInt16Buffer : PixelBuffer {
@@ -11,18 +11,37 @@ namespace FSpot.Imaging {
 		{
 			this.width = width;
 			this.height = height;
+			depth = PixelBufferDepth.UInt16;
 
 			row_stride = width;
 
 			data = new ushort [width * height];
 		}
 
-		public override void Fill (int x, int y, ushort [] data, int offset, int length)
+		public UInt16Buffer (Gdk.Pixbuf pixbuf, Cms.Profile profile)
 		{
+			for (int r = 0; r < height; r++) {
+				
 
+			}
+		}
+
+		public ToPixbuf (Cms.Profile destination_profile)
+		{
+			Cms.Profile [] list = new Cms.Profile { profile, destination_profile };
+			Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, false, 8, 
+							    orig.Width, orig.Height);
+			Cms.Transform t = new Cms.Transform (list,
+							     
+			
 		}
 
 		public override void Fill (int x, int y, ushort [] data, int offset, int length)
+		{
+			
+		}
+
+		public override void Fill (int x, int y, byte [] data, int offset, int length)
 		{
 			
 		}
@@ -50,7 +69,8 @@ namespace FSpot.Imaging {
 		protected int width;
 		protected int height;
 		protected PixelBufferDepth depth;
-		
+		protected Cms.Profile profile;
+
 		new PixelBuffer (int width, int height, PixelBufferDepth depth)
 		{
 			if 
