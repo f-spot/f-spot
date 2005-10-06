@@ -938,7 +938,7 @@ namespace FSpot.Tiff {
 			ReadHeader (stream);			
 			ReadEntries (stream);
 			ReadFooter (stream);
-
+			
 			LoadEntries (stream);
 			LoadNextDirectory (stream);
 		}
@@ -953,7 +953,7 @@ namespace FSpot.Tiff {
 		{
 			num_entries = Converter.ReadUShort (stream, endian);
 			//System.Console.WriteLine ("reading {0} entries", num_entries);
-
+			
 			entries = new System.Collections.ArrayList (num_entries);
 			int entry_length = num_entries * 12;
 			byte [] content = new byte [entry_length];
@@ -990,7 +990,7 @@ namespace FSpot.Tiff {
 			try {
 				if (next_directory_offset != 0)
 					next_directory = new ImageDirectory (stream, next_directory_offset, this.endian);
-
+				
 			} catch (System.Exception e) {
 				//System.Console.WriteLine ("Error loading directory {0}", e.ToString ());
 				next_directory = null;
@@ -1155,10 +1155,16 @@ namespace FSpot.Tiff {
 			base.LoadExternal (stream);
 
 			for (int i = 0; i <  entry_count; i++) {
-				directory_offset = BitConverter.ToUInt32 (raw_data, i * 4, endian == Endian.Little);
-				//System.Console.WriteLine ("Entering Subdirectory {0} at {1}", tagid.ToString (), directory_offset);
-				Directory [i] = new ImageDirectory (stream, directory_offset, endian);
 				//System.Console.WriteLine ("Leaving Subdirectory {0} at {1}", tagid.ToString (), directory_offset);
+				//System.Console.WriteLine ("Leaving Subdirectory {0} at {1}", tagid.ToString (), directory_offset);
+				try {
+					directory_offset = BitConverter.ToUInt32 (raw_data, i * 4, endian == Endian.Little);
+					Directory [i] = new ImageDirectory (stream, directory_offset, endian);
+				} catch (System.Exception e) {
+					System.Console.WriteLine ("Error loading Subdirectory {0} at {2} of {3}bytes:\n{1}", 
+								  this.Id, e, directory_offset, stream.Length);
+				}
+					
 			}
 		}
 
