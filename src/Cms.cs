@@ -10,9 +10,11 @@ namespace Cms {
 		Rgb8  = 262169,
 		Rgba8 = 262297,
 		Rgba8Planar = 266393,
-		Gbr8  = 263193
+		Gbr8  = 263193,
+		Rgb16 = 262170,
+		Rgb16Planar = 266266,
+		Rgb16se = 26418
 	}
-	
 
 	public enum Intent {
 		Perceptual = 0,
