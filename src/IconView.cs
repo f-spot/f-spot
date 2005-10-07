@@ -968,10 +968,7 @@ public class IconView : Gtk.Layout {
 		offscreen.Subtract (onscreen);
 
 		PreloadRegion (offscreen, ystep);
-		offscreen.Destroy ();
-		//PreloadRegion (onscreen, ystep);
 		Preload (area, false);
-		onscreen.Destroy ();
 
 		y_offset = (int) Vadjustment.Value;
 		x_offset = (int) Hadjustment.Value;
