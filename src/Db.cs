@@ -55,6 +55,11 @@ public abstract class DbStore {
 		item_cache.Remove (item.Id);
 	}
 
+	public bool CacheEmpty {
+		get {
+			return item_cache.Count == 0;
+		}
+	}
 
 	// Sqlite stuff.
 

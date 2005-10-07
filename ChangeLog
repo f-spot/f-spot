@@ -1,7 +1,9 @@
 2005-10-07  Larry Ewing  <lewing@novell.com>
 
+	* src/Db.cs: add add a Cache empty property.
+
 	* src/ImportCommand.cs: handle exceptions while creating vfs
-	sources.
+	sources. (ugh burn:/// ugh)
 
 	* src/IconView.cs: remove region.Destroy calls.
 
