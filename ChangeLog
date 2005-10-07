@@ -1,5 +1,8 @@
 2005-10-07  Larry Ewing  <lewing@novell.com>
 
+	* src/ImportCommand.cs: handle exceptions while creating vfs
+	sources.
+
 	* src/IconView.cs: remove region.Destroy calls.
 
 	* src/Cms.cs: add more types.

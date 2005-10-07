@@ -67,8 +67,15 @@ public class ImportCommand : FSpot.GladeDialog {
 		{
 			this.Volume = vol;
 			this.Name = vol.DisplayName.Replace ("_", "__");
-			mount_point = new Uri (vol.ActivationUri).LocalPath;
+
+			try {
+				mount_point = new Uri (vol.ActivationUri).LocalPath;
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e);
+			}
+
 			uri = mount_point;
+			
 			SuggestCopy = true;
 
                         if (this.Icon == null)
@@ -551,7 +558,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		file_selector.Destroy ();
 		return path;
 	}
-	
+
 	public void SetImportPath (string path)
 	{
 		import_path = path;
