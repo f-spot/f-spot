@@ -13,7 +13,9 @@ namespace Cms {
 		Gbr8  = 263193,
 		Rgb16 = 262170,
 		Rgb16Planar = 266266,
-		Rgb16se = 26418
+		Rgba16 = 262298,
+		Rgba16se = 264436,
+		Rgb16se = 264218
 	}
 
 	public enum Intent {
