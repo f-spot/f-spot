@@ -6,6 +6,7 @@ namespace FSpot {
 	public class ColorDialog : GladeDialog {
 		Gdk.Pixbuf ScaledPixbuf;
 		Gdk.Pixbuf AdjustedPixbuf;
+		bool changed = false;
 
 #if USE_THREAD		
 		Delay expose_timeout;
@@ -36,8 +37,11 @@ namespace FSpot {
 		
 		FSpot.Histogram hist;
 		
+
 		private void Adjust ()
 		{
+			changed = true;
+
 			if (brightness_scale == null)
 				return;
 			
@@ -55,6 +59,8 @@ namespace FSpot {
 							    PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
 							    Cms.Intent.Perceptual, 0x0000);
 			
+			
+
 			lock (AdjustedPixbuf) {
 				PixbufUtils.ColorAdjust (ScaledPixbuf,
 							 AdjustedPixbuf,
@@ -109,6 +115,11 @@ namespace FSpot {
 		
 		public void Save ()
 		{
+			if (!changed) {
+				this.Dialog.Destroy ();
+				return;
+			}
+
 			if (!view.Item.IsValid)
 				return;
 
@@ -226,11 +237,8 @@ namespace FSpot {
 			dest_spinbutton.Value = 6500;
 
 			brightness_spinbutton.Adjustment.ChangeValue ();
-			contrast_spinbutton.Adjustment.ChangeValue ();
-			hue_spinbutton.Adjustment.ChangeValue ();
-			sat_spinbutton.Adjustment.ChangeValue ();
-			source_spinbutton.Adjustment.ChangeValue ();
-			dest_spinbutton.Adjustment.ChangeValue ();
+
+			changed = false;
 		}
 		
 		private void HandleCancelClicked (object sender, EventArgs args)
@@ -297,6 +305,7 @@ namespace FSpot {
 			dest_spinbutton.ValueChanged += RangeChanged;
 
 			HandlePhotoChanged (view);
+			changed = false;
 		}
 	}
 }
