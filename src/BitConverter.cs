@@ -16,6 +16,11 @@ namespace FSpot {
 				((ushort) ((ushort)(val >> 8) | (ushort)(val << 8)))
 				: val;
 		}
+
+		public static ushort Swap (ushort val)
+		{
+			return ((ushort) ((ushort)(val >> 8) | (ushort)(val << 8)));
+		}
 		
 		public static ulong Swap (ulong val, bool little)
 		{

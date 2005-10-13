@@ -17,14 +17,60 @@ namespace FSpot.Imaging {
 
 			depth = PixelBufferDepth.UInt16;
 
-			row_stride = width * 3;
+			rowstride = width * nchannels;
 
 			data = new ushort [width * height * nchannels];
 		}
 
-		public override void Fill8 (int i, int j, byte [] src_data, int offset, int count)
+		public UInt16Buffer (Gdk.Pixbuf pixbuf, Cms.Profile profile)
 		{
+			this.profile = profile;
+			width = pixbuf.Width;
+			height = pixbuf.Height;
+			this.nchannels = pixbuf.HasAlpha ? 4 : 3;
+			
+			depth = PixelBufferDepth.UInt16;
 
+			data = new ushort [width * height * nchannels];
+			
+			unsafe {
+				byte * src_pixels = (byte *) pixbuf.Pixels;
+				int src_stride = pixbuf.Rowstride;
+				int count = pixbuf.Width * nchannels;
+
+				for (int row = 0; row < height; row++) {
+					Fill8 (row, 0, src_pixels, row * src_stride, count);
+				}
+			}
+		}
+
+		public Cms.Format Format {
+			get {
+				return nchannels > 3 ? Cms.Format.Rgba16 : Cms.Format.Rgb16;
+			}
+		}
+
+		public unsafe void Fill8 (int i, int j, byte * src_data, int offset, int count)
+		{
+			ushort * rowpix;
+			
+			fixed (ushort * pixels = &data [0]) {
+				rowpix = pixels + i * rowstride + j;
+				
+					for (int col = 0; col < count; col++) {
+						int val = src_data [col];
+						rowpix [col] = (ushort) (val << 8 & val);
+					}
+			}
+		}
+
+		public override void Fill8 (int row, int col, byte [] value, int start_offset, int len)
+		{
+			unsafe {
+				fixed (byte * src_data = &value[0]) {
+					Fill8 (row, col, src_data, start_offset, len);
+				}
+			}
 		}
 
 		public override void Fill16 (int i, int j, byte [] src_data, int offset, int count, bool little)
@@ -34,7 +80,7 @@ namespace FSpot.Imaging {
 			else
 				Fill16Swap (i, j, src_data, offset, count);
 		}
-
+		
 		public void Fill16 (int i, int j, byte [] src_data, int offset, int count)
 		{ 
 			unsafe {
@@ -42,7 +88,7 @@ namespace FSpot.Imaging {
 
 				fixed (ushort * pixels = &data [0]) {
 					fixed (ushort * src_pixels = &src_data [offset]) {
-						rowpix = pixels + i * row_stride + j;
+						rowpix = pixels + i * rowstride + j;
 
 						for (int col = 0; col < count; col ++)
 							rowpix [col] = src_pixels [col];
@@ -58,7 +104,7 @@ namespace FSpot.Imaging {
 
 				fixed (ushort * pixels = &data [0]) {
 					fixed (ushort * src_pixels = &src_data [offset]) {
-						rowpix = pixels + i * row_stride + j;
+						rowpix = pixels + i * rowstride + j;
 
 						for (int col = 0; col < count; col ++)
 							rowpix [col] = BitConverter.Swap (src_pixels [col]);
@@ -85,7 +131,7 @@ namespace FSpot.Imaging {
 					byte * destpix = (byte *) pixbuf.Pixels;
 					
 					for (int row = 0; row < height; row++)
-						t.Apply ((IntPtr) (srcpix + row * row_stride),
+						t.Apply ((IntPtr) (srcpix + row * rowstride),
 							 (IntPtr) (destpix + row * pixbuf.Rowstride),
 							 (uint)width);
 				}
@@ -105,7 +151,7 @@ namespace FSpot.Imaging {
 						for (int col = 0; col < width * nchannels; col++)
 							destpix [col] = (byte) (srcpix [col] >> 8);
 						
-						srcpix += row_stride;
+						srcpix += rowstride;
 						destpix += pixbuf.Rowstride;
 					}
 				}
@@ -134,7 +180,7 @@ namespace FSpot.Imaging {
 #endif
 
 	public abstract class PixelBuffer {
-		protected int row_stride;
+		protected int rowstride;
 		protected int width;
 		protected int height;
 		protected int nchannels;
@@ -157,7 +203,7 @@ namespace FSpot.Imaging {
 				return height;
 			}
 		}
-					   
+
 		public abstract void Fill8 (int row, int col, byte [] value, int start_offset, int len);
 
 		public abstract void Fill16 (int row, int col, byte [] data, int offset, int len, bool little);
