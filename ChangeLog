@@ -1,4 +1,11 @@
+2005-10-16  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: use the remove array overloads.
+
 2005-10-13  Larry Ewing  <lewing@novell.com>
+
+	* src/PnmFile.cs: use the pixelbuffer code for loading deep pnm
+	files.
 
 	* src/PixelBuffer.cs: fix the pixbuf ctor.
 

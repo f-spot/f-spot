@@ -1535,15 +1535,15 @@ public class MainWindow {
 								 photos.Length);
 		string ok_caption = Mono.Posix.Catalog.GetPluralString ("_Delete photo", "_Delete photos", photos.Length);
 		if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(main_window, DialogFlags.DestroyWithParent, MessageType.Warning, header, msg, ok_caption)) {                              
+			
 			foreach (Photo photo in photos) {
 				foreach (uint id in photo.VersionIds) {
 					Console.WriteLine (" path == {0}", photo.GetVersionPath (id)); 
 					photo.DeleteVersion (id, true);
 				}
-
-				db.Photos.Remove (photo);
 			}
-
+			db.Photos.Remove (photos);
+			
 			UpdateQuery ();
 		}
 	}
@@ -1560,10 +1560,7 @@ public class MainWindow {
 		string ok_caption = Mono.Posix.Catalog.GetString("_Remove from Catalog");
 		if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(main_window, DialogFlags.DestroyWithParent, 
 									   MessageType.Warning, header, msg, ok_caption)) {                              
-			foreach (Photo photo in photos) {
-				db.Photos.Remove (photo);
-			}
-
+			db.Photos.Remove (photos);
 			UpdateQuery ();
 		}
 	}
