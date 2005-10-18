@@ -48,9 +48,21 @@ class Timer : IDisposable {
 		start = System.DateTime.Now;
 	}
 
+	pulbic System.TimeSpan ElapsedTime
+	{
+		get {
+			return System.DateTime.Now - start;
+		}
+	}
+
+	public void WriteElapsed ()
+	{
+		System.Console.WriteLine ("{0} timer elapsed: {1}", label, ElapsedTime);
+	}
+
 	public void Dispose ()
 	{
-		System.Console.WriteLine ("{0} timer elapsed: {1}", label, (System.DateTime.Now - start));
+		WriteElapsed ();
 	}
 }
 
