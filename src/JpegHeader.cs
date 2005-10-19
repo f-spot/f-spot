@@ -175,10 +175,9 @@ public class JpegHeader : SemWeb.StatementSource {
 				stream.WriteByte ((byte)this.Type);
 				ushort length = (ushort)(this.Data.Length + 2);
 				
-				length = FSpot.BitConverter.Swap (length, false);
-				
-				stream.WriteByte ((byte)(length & 0x00ff));
-				stream.WriteByte ((byte)((length >> 8) & 0x00ff));
+				byte [] len = FSpot.BitConverter.GetBytes (length, false);
+				stream.Write (len, 0, len.Length);
+
 				stream.Write (this.Data, 0, this.Data.Length);
 				break;
 			}

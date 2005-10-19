@@ -1,5 +1,8 @@
 2005-10-19  Larry Ewing  <lewing@novell.com>
 
+	* src/JpegHeader.cs: fix the byte order of the length data when
+	writting on a big endian arch.
+
 	* src/FolderExport.cs: move to IBrowsable*.
 
 	* src/PhotoQuery.cs: move to IBrowsable*.
