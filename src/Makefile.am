@@ -1,4 +1,4 @@
-CSC = mcs -unsafe -debug -nowarn:0169 -d:TEST_METADATA
+CSC = mcs -unsafe -debug -nowarn:0169 -nowarn:0612 -d:TEST_METADATA
 
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/AsyncPixbufLoader.cs		\
@@ -42,7 +42,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ImportStore.cs		\
 	$(srcdir)/InfoBox.cs			\
 	$(srcdir)/InfoDisplay.cs		\
-	$(srcdir)/IPhotoCollection.cs		\
 	$(srcdir)/IptcFile.cs			\
 	$(srcdir)/JpegFile.cs			\
 	$(srcdir)/JpegHeader.cs			\
@@ -65,6 +64,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PixbufLoader.cs		\
 	$(srcdir)/PixbufUtils.cs		\
 	$(srcdir)/PixbufCache.cs		\
+	$(srcdir)/PixelBuffer.cs		\
 	$(srcdir)/PreviewPopup.cs 		\
 	$(srcdir)/PrintDialog.cs		\
 	$(srcdir)/ProgressDialog.cs		\

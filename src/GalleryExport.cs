@@ -220,7 +220,7 @@ namespace FSpot {
 	}
 	
 	public class GalleryExport : GladeDialog {
-		public GalleryExport (IPhotoCollection selection) : base ("gallery_export_dialog")
+		public GalleryExport (IBrowsableCollection selection) : base ("gallery_export_dialog")
 		{
 			this.photos = (Photo []) selection.Items;
 

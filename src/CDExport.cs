@@ -2,7 +2,7 @@ using System.Runtime.InteropServices;
 
 namespace FSpot {
 	public class CDExport : GladeDialog {
-		IPhotoCollection selection;
+		IBrowsableCollection selection;
 
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
 		[Glade.Widget] Gtk.CheckButton remove_check;
@@ -16,7 +16,7 @@ namespace FSpot {
 		FSpot.ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
 
-		public CDExport (IPhotoCollection selection) : base ("cd_export_dialog")
+		public CDExport (IBrowsableCollection selection) : base ("cd_export_dialog")
 		{
 			this.selection = selection;
 			
@@ -48,7 +48,7 @@ namespace FSpot {
 				Dialog.Destroy ();
 				Gnome.Vfs.Result result = Gnome.Vfs.Result.Ok;
 
-				foreach (Photo photo in selection.Items) {
+				foreach (IBrowsableItem photo in selection.Items) {
 					Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (photo.DefaultVersionUri.ToString ());
 					Gnome.Vfs.Uri target = dest.Clone ();
 					target = target.AppendFileName (source.ExtractShortName ());

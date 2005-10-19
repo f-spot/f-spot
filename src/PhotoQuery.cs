@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 
 namespace FSpot {
-	public class PhotoQuery : FSpot.IPhotoCollection {
+	public class PhotoQuery : FSpot.IBrowsableCollection {
 		private Photo [] photos;
 		private PhotoStore store;
 		private Tag [] tags;

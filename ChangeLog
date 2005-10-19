@@ -1,4 +1,30 @@
+2005-10-19  Larry Ewing  <lewing@novell.com>
+
+	* src/PhotoQuery.cs: move to IBrowsable*.
+
+	* src/PhotoArray.cs: move to IBrowsable*.
+
+	* src/Makefile.am (F_SPOT_CSDISTFILES): remove IPhotoCollection
+	from the build.
+
+	* src/IPhotoCollection.cs: remove file, this was an empty
+	interface.
+
+	* src/GalleryExport.cs: switch to IBrowsable*.
+
+	* src/FlickrRemote.cs: switch to IBrowsable*.
+
+	* src/FlickrExport.cs: swtich to IBrowsable*.
+
+	* src/CDExport.cs: switch to IBrowsable*.
+
 2005-10-18  Larry Ewing  <lewing@novell.com>
+
+	* src/JpegHeader.cs: write out Rst and Tem markers.
+
+	* src/RotateCommand.cs: 
+
+	* src/Util.cs: fixe typos, add string param.
 
 	* src/Util.cs: add some members to Timer.
 

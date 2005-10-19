@@ -1,5 +1,5 @@
 namespace FSpot {
-	public class PhotoList : IPhotoCollection {
+	public class PhotoList : IBrowsableCollection {
 		System.Collections.ArrayList list;
 		IBrowsableItem [] cache;
 
@@ -28,7 +28,7 @@ namespace FSpot {
 			}
 		}
 
-		public void Add (Photo photo)
+		public void Add (IBrowsableItem photo)
 		{
 			list.Add (photo);
 			cache = null;
@@ -55,7 +55,7 @@ namespace FSpot {
 		public IBrowsableItem [] Items {
 			get {
 				if (cache == null)
-					cache = (IBrowsableItem []) list.ToArray (typeof (Photo));
+					cache = (IBrowsableItem []) list.ToArray (typeof (IBrowsableItem));
 
 				return cache;
 			}
@@ -73,10 +73,10 @@ namespace FSpot {
 		public event IBrowsableCollectionItemChangedHandler ItemChanged;
 	}
 
-	public class PhotoArray : IPhotoCollection {
-		Photo [] photos;
+	public class PhotoArray : IBrowsableCollection {
+		IBrowsableItem [] photos;
 
-		public PhotoArray (Photo [] photos) 
+		public PhotoArray (IBrowsableItem [] photos) 
 		{
 			this.photos = photos;
 		}

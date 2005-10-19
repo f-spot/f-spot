@@ -1,6 +1,6 @@
 namespace FSpot {
 	public class FlickrExport : GladeDialog {
-		IPhotoCollection selection;
+		IBrowsableCollection selection;
 
 		[Glade.Widget] Gtk.CheckButton scale_check;
 		[Glade.Widget] Gtk.CheckButton meta_check;
@@ -22,7 +22,7 @@ namespace FSpot {
 
 		FlickrRemote fr = new FlickrRemote ();
 
-		public FlickrExport (IPhotoCollection selection) : base ("flickr_export_dialog")
+		public FlickrExport (IBrowsableCollection selection) : base ("flickr_export_dialog")
 		{
 			this.selection = selection;
 
@@ -86,7 +86,7 @@ namespace FSpot {
 			System.Collections.ArrayList ids = new System.Collections.ArrayList ();
 			try {
 
-				foreach (Photo photo in selection.Items) {
+				foreach (IBrowsableItem photo in selection.Items) {
 					progress_dialog.Message = System.String.Format (
                                                 Mono.Posix.Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
 

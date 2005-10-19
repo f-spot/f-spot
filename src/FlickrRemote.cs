@@ -5,6 +5,8 @@
 using System;
 using System.IO;
 using System.Text;
+using FSpot;
+
 
 public class FlickrRemote {
 	// This is the uo
@@ -32,12 +34,12 @@ public class FlickrRemote {
 		}
 	}
 
-	public string Upload (Photo photo)
+	public string Upload (IBrowsableItem photo)
 	{
 		return Upload (photo, false, 0);
 	}
 	
-	public string Upload (Photo photo, bool scale, int size)
+	public string Upload (IBrowsableItem photo, bool scale, int size)
 	{
 		if (email == null || passwd == null)
 			throw new Exception ("Must Login First");
@@ -52,7 +54,7 @@ public class FlickrRemote {
 			client.Add ("email", email);
 			client.Add ("password", passwd);
 			
-			string path = photo.DefaultVersionPath;
+			string path = photo.DefaultVersionUri.LocalPath;
 			file = new FileInfo (path);
 			
 			if (scale) {
