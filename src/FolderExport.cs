@@ -29,7 +29,7 @@ using ICSharpCode.SharpZipLib.GZip;
 
 namespace FSpot {
 	public class FolderExport : GladeDialog {
-		IPhotoCollection selection;
+		IBrowsableCollection selection;
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
 		[Glade.Widget] Gtk.Entry uri_entry;
 		[Glade.Widget] Gtk.Entry name_entry;
@@ -60,7 +60,7 @@ namespace FSpot {
 		FSpot.ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
 		
-		public FolderExport (IPhotoCollection selection) : base ("folder_export_dialog")
+		public FolderExport (IBrowsableCollection selection) : base ("folder_export_dialog")
 		{
 			/*
 			Gnome.Vfs.ModuleCallbackFullAuthentication auth = new Gnome.Vfs.ModuleCallbackFullAuthentication ();
@@ -262,7 +262,7 @@ namespace FSpot {
 
 	internal class FolderGallery 
 	{
-		protected IPhotoCollection collection;
+		protected IBrowsableCollection collection;
 		protected string gallery_name;
 		protected string gallery_path;
 		protected bool scale;
@@ -300,7 +300,7 @@ namespace FSpot {
 			}
 		}
 		
-		internal FolderGallery (IPhotoCollection selection, string path, string gallery_name)
+		internal FolderGallery (IBrowsableCollection selection, string path, string gallery_name)
 		{
 			this.collection = selection;
 			this.gallery_name = gallery_name;
@@ -325,8 +325,8 @@ namespace FSpot {
 
 		public void ProcessImage (int image_num)
 		{
-			Photo photo = (Photo) collection [image_num];
-			string photo_path = photo.DefaultVersionPath;
+			IBrowsableItem photo = collection [image_num];
+			string photo_path = photo.DefaultVersionUri.LocalPath;
 			string path;
 			ScaleRequest req;
 
@@ -434,7 +434,7 @@ namespace FSpot {
 
 	class OriginalGallery : FolderGallery
 	{
-		public OriginalGallery (IPhotoCollection selection, string path, string name) : base (selection, path, name) 
+		public OriginalGallery (IBrowsableCollection selection, string path, string name) : base (selection, path, name) 
 		{ 
 			requests = new ScaleRequest [] { new ScaleRequest ("hq", 0, 0, false),
 							 new ScaleRequest ("mq", 800, 600, true),
@@ -554,7 +554,7 @@ namespace FSpot {
 		string altstylesheet = "f-spot-simple-white.css";
 		string javascript = "f-spot.js";
 		
-		public HtmlGallery (IPhotoCollection selection, string path, string name) : base (selection, path, name) 
+		public HtmlGallery (IBrowsableCollection selection, string path, string name) : base (selection, path, name) 
 		{ 
 			requests = new ScaleRequest [] { new ScaleRequest ("hq", 0, 0, false),
 							 new ScaleRequest ("mq", 480, 320, false),
@@ -568,7 +568,7 @@ namespace FSpot {
 			
 			base.Generate ();
 			
-			Photo [] photos = (Photo []) collection.Items;
+			IBrowsableItem [] photos = collection.Items;
 			
 			int i;
 			for (i = 0; i < photos.Length; i++)
