@@ -192,8 +192,26 @@ public class JpegHeader : SemWeb.StatementSource {
 		}
 		return null;
 	}
+
+	public Cms.Profile GetProfile ()
+	{
+		Marker m = FindMarker (JpegMarker.App2, "ICC_PROFILE");
+		int offset = "ICC_PROFILE\0".Length;
+		try {
+			if (m != null)
+				return new Cms.Profile (m.Data, offset, m.Data.Length - offset); 
+		} catch (System.Exception e) {
+			System.Console.WriteLine (e);
+		}
+		
+		FSpot.Tiff.Header exif = GetExifHeader ();
+		if (exif != null)
+			return exif.Directory.GetProfile ();
+		
+		return null;
+	}
 	
-	public void Select (SemWeb.StatementSink sink)
+	private FSpot.Tiff.Header GetExifHeader ()
 	{
 		string name = "Exif";
 		Marker marker = FindMarker (JpegHeader.JpegMarker.App1, name);
@@ -201,11 +219,19 @@ public class JpegHeader : SemWeb.StatementSource {
 			int len = name.Length + 2;
 			System.IO.Stream exifstream = new System.IO.MemoryStream (marker.Data, len, marker.Data.Length - len, false);
 			FSpot.Tiff.Header exif = new FSpot.Tiff.Header (exifstream);
-			exif.Select (sink);
+			return exif;
 		}
+		return null;
+	}
+	
+	public void Select (SemWeb.StatementSink sink)
+	{
+		FSpot.Tiff.Header exif = GetExifHeader ();
+		if (exif != null)
+			exif.Select (sink);
 		
-		name = "http://ns.adobe.com/xap/1.0/";
-		marker = FindMarker (JpegHeader.JpegMarker.App1, name);
+		string name = "http://ns.adobe.com/xap/1.0/";
+		Marker marker = FindMarker (JpegHeader.JpegMarker.App1, name);
 		if (marker != null) {
 			int len = name.Length + 1;
 			//System.Console.WriteLine (System.Text.Encoding.ASCII.GetString (marker.Data, len, 
@@ -325,8 +351,6 @@ public class JpegHeader : SemWeb.StatementSource {
 		if (stream.Read (image_data, 0, (int)image_data_length) != image_data_length)
 			throw new System.Exception ("truncated image data or something");
 	}
-
-	
 
 	public byte [] ImageData {
 		get {

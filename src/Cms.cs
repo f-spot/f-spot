@@ -346,11 +346,28 @@ namespace Cms {
 		}
 		
 		[DllImport("liblcms-1.0.0.dll")]
-		static extern IntPtr cmsOpenProfileFromMem (byte [] data, uint length);
+		static extern unsafe IntPtr cmsOpenProfileFromMem (byte *data, uint length);
 
-		public Profile (byte [] data)
+		public Profile (byte [] data) : this (data, 0, data.Length) {}
+
+		public Profile (byte [] data, int start_offset, int length)
 		{
-			IntPtr profileh = cmsOpenProfileFromMem (data, (uint)data.Length);
+			if (start_offset < 0)
+				throw new System.ArgumentOutOfRangeException ("start_offset < 0");
+
+			if (data.Length - start_offset < 0)
+				throw new System.ArgumentOutOfRangeException ("start_offset > data.Length");
+
+			if (data.Length - length - start_offset < 0)
+				throw new System.ArgumentOutOfRangeException ("start_offset + length > data.Length");
+			 
+			IntPtr profileh;
+			unsafe {
+				fixed (byte * start = & data [start_offset]) {
+					profileh = cmsOpenProfileFromMem (start, (uint)length);
+				}
+			}
+
 			if (profileh == IntPtr.Zero)
 				throw new System.Exception ("Invalid Profile Data");
 			else 
