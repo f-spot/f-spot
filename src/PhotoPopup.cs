@@ -67,6 +67,6 @@ public class PhotoPopup {
 		remove_item.ShowAll ();
 		popup_menu.Append (remove_item);
 
-		popup_menu.Popup (null, null, null, IntPtr.Zero, eb.Button, eb.Time);
+		popup_menu.Popup (null, null, null, eb.Button, eb.Time);
 	}   
 }

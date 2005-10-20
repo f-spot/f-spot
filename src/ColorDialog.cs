@@ -30,6 +30,8 @@ namespace FSpot {
 		private FSpot.PhotoImageView view;
 
 		Cms.Transform next_transform;
+		Cms.Profile image_profile = Cms.Profile.CreateStandardRgb ();
+		Cms.Profile adjustment_profile;
 
 #if USE_THREAD
 		Thread thread;
@@ -45,22 +47,28 @@ namespace FSpot {
 			if (brightness_scale == null)
 				return;
 			
-			Cms.Profile srgb = Cms.Profile.CreateSRgb ();
-			Cms.Profile bchsw = Cms.Profile.CreateAbstract (10, brightness_scale.Value,
-									contrast_scale.Value,
-									hue_scale.Value, 
-									sat_scale.Value,
-									source_spinbutton.ValueAsInt, 
-									dest_spinbutton.ValueAsInt);
+			Cms.Profile display_profile = null; //Cms.Profile.GetScreenProfile (view.Screen);
+
+			if (display_profile == null)
+				display_profile = Cms.Profile.CreateStandardRgb ();
+
+			adjustment_profile = Cms.Profile.CreateAbstract (10, brightness_scale.Value,
+									 contrast_scale.Value,
+									 hue_scale.Value, 
+									 sat_scale.Value,
+									 source_spinbutton.ValueAsInt, 
+									 dest_spinbutton.ValueAsInt);
 			
-			Cms.Profile [] list = new Cms.Profile [] { srgb, bchsw, srgb };
+			System.Console.WriteLine ("{0} {1} {2}", image_profile, adjustment_profile, display_profile);
+
+			Cms.Profile [] list = new Cms.Profile [] { image_profile, adjustment_profile, display_profile };
+
 			next_transform = new Cms.Transform (list, 
 							    PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
 							    PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
 							    Cms.Intent.Perceptual, 0x0000);
 			
 			
-
 			lock (AdjustedPixbuf) {
 				PixbufUtils.ColorAdjust (ScaledPixbuf,
 							 AdjustedPixbuf,
@@ -144,9 +152,22 @@ namespace FSpot {
 								   orig.Width, 
 								   orig.Height);
 				
+				Cms.Profile abs = Cms.Profile.CreateAbstract (100, brightness_scale.Value,
+									      contrast_scale.Value,
+									      hue_scale.Value, 
+									      sat_scale.Value,
+									      source_spinbutton.ValueAsInt, 
+									      dest_spinbutton.ValueAsInt);
+				
+				Cms.Profile [] list = new Cms.Profile [] { image_profile, abs, image_profile };
+				Cms.Transform transform = new Cms.Transform (list,
+									     PixbufUtils.PixbufCmsFormat (orig),
+									     PixbufUtils.PixbufCmsFormat (final),
+									     Cms.Intent.Perceptual, 0x0000);
+		
 				PixbufUtils.ColorAdjust (orig,
 							 final,
-							 view.Transform);
+							 transform);
 				
 				try {
 					string version_path = photo.GetVersionPath (version);
@@ -207,6 +228,13 @@ namespace FSpot {
 		{
 			if (view.Item.IsValid) {
 				FSpot.ImageFile img = FSpot.ImageFile.Create (((Photo)view.Item.Current).DefaultVersionPath);
+
+				image_profile = img.GetProfile ();
+				
+				// FIXME fall back to rgb for now
+				if (image_profile == null)
+					image_profile = Cms.Profile.CreateStandardRgb ();
+
 				AdjustedPixbuf = img.Load (150, 150);
 				ScaledPixbuf = AdjustedPixbuf.Copy ();			
 #if false

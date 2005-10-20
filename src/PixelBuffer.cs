@@ -116,7 +116,7 @@ namespace FSpot.Imaging {
 		public override Gdk.Pixbuf ToPixbuf (Cms.Profile destination_profile)
 		{
 #if true //USE_LCMS
-			profile = Cms.Profile.CreateSRgb ();
+			profile = Cms.Profile.CreateStandardRgb ();
 			Cms.Profile [] list = new Cms.Profile [] { profile, destination_profile };
 			Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, false, 8, 
 							    width, height);

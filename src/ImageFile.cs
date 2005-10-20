@@ -91,6 +91,12 @@ namespace FSpot {
 			return PixbufOrientation.TopLeft;
 		}
 		
+		// FIXME this need to have an intent just like the loading stuff.
+		public virtual Cms.Profile GetProfile ()
+		{
+			return null;
+		}
+		
 		public virtual System.DateTime Date 
 		{
 			get {

@@ -1,3 +1,16 @@
+2005-10-20  Larry Ewing  <lewing@novell.com>
+
+	* src/PixelBuffer.cs: use the new method name.
+
+	* src/PhotoPopup.cs: use the nondeprecated method.
+
+	* src/ColorDialog.cs: use the image profile when creating the
+	transform.
+
+	* src/PngFile.cs: create a profile from the embedded image data.
+
+	* src/ImageFile.cs: add get profile virtual method.
+
 2005-10-19  Larry Ewing  <lewing@novell.com>
 
 	* src/JpegFile.cs: expose the profile to the world.

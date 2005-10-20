@@ -1,5 +1,6 @@
 using ICSharpCode.SharpZipLib.Zip.Compression;
 using SemWeb;
+using Cms;
 
 namespace FSpot.Png {
 	public class PngFile : ImageFile, SemWeb.StatementSource {
@@ -301,6 +302,27 @@ namespace FSpot.Png {
 			public TimeChunk (string name, byte [] data) : base (name, data) {}
 		}
 
+		public class StandardRgbChunk : Chunk {
+			public StandardRgbChunk (string name, byte [] data) : base (name, data) {}
+			
+			public Cms.Intent RenderingIntent {
+				get {
+					return (Cms.Intent) data [0];
+				}
+			}
+		}
+
+		public class GammaChunk : Chunk {
+			public GammaChunk (string name, byte [] data) : base (name, data) {}
+			private const int divisor = 100000;
+
+			public double Gamma {
+				get {
+					return FSpot.BitConverter.ToUInt32 (data, 0, false) / (double) divisor;
+				}
+			}
+		}
+		
 		public class ColorChunk : Chunk {
 			// FIXME this should be represented like a tiff rational
 			public const uint Denominator = 100000;
@@ -475,6 +497,8 @@ namespace FSpot.Png {
 				name_table ["IHDR"] = typeof (IhdrChunk);
 				name_table ["cHRM"] = typeof (ColorChunk);
 				name_table ["pHYs"] = typeof (PhysChunk);
+				name_table ["gAMA"] = typeof (GammaChunk);
+				name_table ["sRGB"] = typeof (StandardRgbChunk);
 			}
 			
 			public Chunk (string name, byte [] data) 
@@ -998,6 +1022,63 @@ namespace FSpot.Png {
 			return null;	
 		}
 
+		public override Cms.Profile GetProfile ()
+		{
+			ColorChunk color = null;
+			IccpChunk icc = null;
+			GammaChunk gamma = null;
+			StandardRgbChunk srgb = null;
+			double gamma_value = 2.2;
+			ColorCIExyY red = new ColorCIExyY (0.64, 0.33, 1.0);
+			ColorCIExyY green = new ColorCIExyY (0.3, 0.6, 1.0);
+			ColorCIExyY blue = new ColorCIExyY (0.15, 0.06, 1.0);
+			ColorCIExyY whitepoint = new ColorCIExyY (0.3127, 0.329, 1.0);
+			ColorCIExyYTriple chroma = new ColorCIExyYTriple (red, green, blue);
+
+			System.Console.WriteLine ("Trying to get profile");
+
+			foreach (Chunk chunk in Chunks) {
+				if (color == null) 
+					color = chunk as ColorChunk;
+				if (icc == null)
+					icc = chunk as IccpChunk;
+				if (srgb == null)
+					srgb = chunk as StandardRgbChunk;
+				if (gamma == null)
+					gamma = chunk as GammaChunk;
+			}
+			
+			System.Console.WriteLine ("color: {0} icc: {1} srgb: {2} gamma: {3}", color, icc, srgb, gamma);
+
+			if (icc != null) {
+				try {
+					return new Profile (icc.Profile);
+				} catch (System.Exception ex) {
+					System.Console.WriteLine ("Error trying to decode embedded profile" + ex.ToString ());
+				}
+			}
+
+			if (srgb != null)
+				return Profile.CreateStandardRgb ();
+
+			if (gamma != null)
+				gamma_value = 1 / gamma.Gamma;
+			
+			if (color != null) {
+				whitepoint = new ColorCIExyY (color.WhiteX.Value, color.WhiteY.Value, 1.0);
+				red = new ColorCIExyY (color.RedX.Value, color.RedY.Value, 1.0);
+				green = new ColorCIExyY (color.GreenX.Value, color.GreenY.Value, 1.0);
+				blue = new ColorCIExyY (color.BlueX.Value, color.BlueY.Value, 1.0);
+				chroma = new ColorCIExyYTriple (red, green, blue);
+			}
+
+			if (color != null || gamma != null) {
+				GammaTable table = new GammaTable (256, gamma_value);
+				return new Profile (whitepoint, chroma, new GammaTable [] {table, table, table});
+			}
+			
+			return null;
+		}
 
 		public override string Description {
 			get {
