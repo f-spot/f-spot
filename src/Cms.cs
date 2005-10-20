@@ -58,6 +58,11 @@ namespace Cms {
 				return handle;
 			}
 		}
+		
+		internal struct GammaTableStruct {
+			public int Count;
+			public ushort StartOfData;  // ushort array Count entries long
+		}
 
 		[DllImport("liblcms-1.0.0.dll")]
 		static extern IntPtr cmsBuildGamma (int entry_count, double gamma);
@@ -104,6 +109,24 @@ namespace Cms {
 		public GammaTable (int entry_count, int type, double [] values)
 		{
 			handle = new HandleRef (this, cmsBuildParametricGamma (entry_count, type, values));
+		}
+		
+		[DllImport("liblcms-1.0.0.dll")]
+		static extern IntPtr cmsAllocGamma (int entry_count);
+
+		public GammaTable (ushort [] values) : this (values, 0, values.Length) {}
+
+		public GammaTable (ushort [] values, int start_offset, int length)
+		{
+			handle = new HandleRef (this, cmsAllocGamma (length));
+			unsafe {
+				GammaTableStruct *gt = (GammaTableStruct *)handle.Handle;
+
+				ushort *data = & (gt->StartOfData);
+				for (int i = 0; i < length; i++) {
+					data [i] = values [start_offset + i];
+				}
+			}
 		}
 
 		[DllImport("liblcms-1.0.0.dll")]
@@ -215,12 +238,24 @@ namespace Cms {
 
 		[DllImport("liblcms-1.0.0.dll")]
 		static extern IntPtr cmsCreate_sRGBProfile();
-		
+
 		public static Profile CreateSRgb () 
+		{
+			return CreateStandardRgb ();
+		}
+		
+		public static Profile CreateStandardRgb () 
 		{
 			return new Profile (cmsCreate_sRGBProfile());
 		}
 		
+		public static Profile CreateAdobeRgb ()
+		{
+			System.Console.WriteLine ("FIXME returning invalid Adobe profile");
+			// FIXME this needs to either load or generate an Adobe profile 
+			return CreateStandardRgb ();
+		}
+
 		[DllImport ("liblcms-1.0.0.dll")]
 		static extern IntPtr cmsCreateLabProfile (out ColorCIExyY WhitePoint);
 
@@ -280,11 +315,20 @@ namespace Cms {
 		[DllImport("liblcms-1.0.0.dll")]
 		static extern IntPtr cmsCreateRGBProfile (out ColorCIExyY whitepoint, 
 						          out ColorCIExyYTriple primaries,
-							  HandleRef gamma_table);
+							  HandleRef [] gamma_table);
 
-		public Profile (ColorCIExyY whitepoint, ColorCIExyYTriple primaries, GammaTable gamma)
+		public Profile (ColorCIExyY whitepoint, ColorCIExyYTriple primaries, GammaTable [] gamma)
 		{
-			handle = new HandleRef (this, cmsCreateRGBProfile (out whitepoint, out primaries, gamma.Handle));
+			HandleRef [] tbls = new HandleRef [3];
+			tbls [0] = gamma [0].Handle;
+			tbls [1] = gamma [1].Handle;
+			tbls [2] = gamma [2].Handle;
+
+			handle = new HandleRef (this, cmsCreateRGBProfile (out whitepoint, out primaries, tbls));
+
+			// FIXME this is only here to avoid a mar
+			//foreach (GammaTable t in gamma)
+			//System.Console.WriteLine (t.ToString ());
 		}
 
 		[DllImport("liblcms-1.0.0.dll")]
@@ -306,7 +350,11 @@ namespace Cms {
 
 		public Profile (byte [] data)
 		{
-			this.handle = new HandleRef (this, cmsOpenProfileFromMem (data, (uint)data.Length));
+			IntPtr profileh = cmsOpenProfileFromMem (data, (uint)data.Length);
+			if (profileh == IntPtr.Zero)
+				throw new System.Exception ("Invalid Profile Data");
+			else 
+				this.handle = new HandleRef (this, profileh);
 		}
 
 		protected Profile (IntPtr handle)

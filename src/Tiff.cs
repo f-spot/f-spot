@@ -564,7 +564,8 @@ namespace FSpot.Tiff {
 	}
 
 	public enum ColorSpace : ushort {
-		sRGB = 1,
+		StandardRGB = 1,  // sRGB
+		AdobeRGB = 2,
 		Uncalibrated = 0xffff
 	}
 
@@ -1029,7 +1030,89 @@ namespace FSpot.Tiff {
 			return null;
 		}
 		
-		
+		public Cms.Profile GetProfile ()
+		{
+			Cms.ColorCIExyY whitepoint = new Cms.ColorCIExyY (0, 0, 0);
+			Cms.ColorCIExyYTriple primaries = new Cms.ColorCIExyYTriple (whitepoint, whitepoint, whitepoint);
+			Cms.GammaTable [] transfer = null;
+			int bits_per_sample = 8;
+			int i;
+			
+			foreach (DirectoryEntry e in entries) {
+				switch (e.Id) {
+				case TagId.InterColorProfile:
+					try {
+						return new Cms.Profile (e.RawData);
+					} catch (System.Exception ex) {
+						System.Console.WriteLine (ex);
+					}
+					break;
+				case TagId.ColorSpace:
+					switch ((ColorSpace)e.ValueAsLong [0]) {
+					case ColorSpace.StandardRGB:
+						return Cms.Profile.CreateStandardRgb ();
+					case ColorSpace.AdobeRGB:
+						return Cms.Profile.CreateAdobeRgb ();
+					case ColorSpace.Uncalibrated:
+						System.Console.WriteLine ("Uncalibrated colorspace");
+						break;
+					}
+					break;
+
+				case TagId.WhitePoint:
+					Rational [] white = e.RationalValue;
+					whitepoint.x = white [0].Value;
+					whitepoint.y = white [1].Value;
+					whitepoint.Y = 1.0;
+					break;
+				case TagId.PrimaryChromaticities:
+					Rational [] colors = e.RationalValue;
+					primaries.Red.x = colors [0].Value;
+					primaries.Red.y = colors [1].Value;
+					primaries.Red.Y = 1.0;
+
+					primaries.Green.x = colors [2].Value;
+					primaries.Green.y = colors [3].Value;
+					primaries.Green.Y = 1.0;
+
+					primaries.Blue.x = colors [4].Value;
+					primaries.Blue.y = colors [5].Value;
+					primaries.Blue.Y = 1.0;
+					break;
+				case TagId.TransferFunction:
+					ushort [] trns = e.ShortValue;
+					ushort gamma_count = (ushort) (1 << bits_per_sample);
+					Cms.GammaTable [] tables = new Cms.GammaTable [3];
+					System.Console.WriteLine ("Parsing transfer function: count = {0}", trns.Length);
+
+					// FIXME we should use the TransferRange here
+					// FIXME we should use bits per sample here
+					for (int c = 0; c < 3; c++) {
+						tables [c] = new Cms.GammaTable (trns, c * gamma_count, gamma_count);
+					}
+
+					transfer = tables;
+					break;
+				}
+			}
+
+			// assume a gamma of 2.2 if it isn't set explicitly
+			if (transfer == null) {
+				Cms.GammaTable basic = new Cms.GammaTable (1 << bits_per_sample, 2.2);
+
+				transfer = new Cms.GammaTable [3];
+				transfer [0] = basic;
+				transfer [1] = basic;
+				transfer [2] = basic;
+			}
+			
+			// if we didn't get a white point or primaries, give up
+			if (whitepoint.Y != 1.0 || primaries.Red.Y != 1.0)
+				return null;
+				
+			return new Cms.Profile (whitepoint, primaries, transfer);
+		}
+
 		public void Dump () 
 		{
 			//System.Console.WriteLine ("Directory Start");
@@ -1360,10 +1443,10 @@ namespace FSpot.Tiff {
 #if false
 			switch ((int)this.Id) {
 			case (int)TagId.NewSubfileType:
-				//System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new NewSubFileType {0}", (NewSubfileType) this.ValueAsLong [0]);
+				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new NewSubFileType {0}", (NewSubfileType) this.ValueAsLong [0]);
 				break;
 			case (int)TagId.SubfileType:
-				//System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new SubFileType {0}", (SubfileType) this.ValueAsLong [0]);
+				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new SubFileType {0}", (SubfileType) this.ValueAsLong [0]);
 				break;
 			case (int)TagId.Compression:
 				//System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new Compression {0}", (Compression) this.ValueAsLong [0]);
@@ -1764,7 +1847,10 @@ namespace FSpot.Tiff {
 	}	
 	
 	public class NefFile : TiffFile, IThumbnailContainer {
-		public NefFile (string path) : base (path) {}
+		public NefFile (string path) : base (path) 
+		{
+			Header.Dump ();
+		}
 
 		public Gdk.Pixbuf GetEmbeddedThumbnail ()
 		{
