@@ -25,6 +25,14 @@ namespace FSpot {
 			}
 		}
 
+		public Cms.Profile GetProfile ()
+		{
+			using (System.IO.FileStream stream = System.IO.File.OpenRead (path)) {
+				JpegHeader header = new JpegHeader (stream, true);
+				return header.GetProfile ();
+			}
+		}
+
 		public override string Description {
 			get {
 				// FIXME this should probably read the raw data because libexif sucks.
