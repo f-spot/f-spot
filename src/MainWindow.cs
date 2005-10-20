@@ -817,6 +817,10 @@ public class MainWindow {
 			HandleViewFullscreen (sender, args);
 			args.RetVal = true;
 			break;
+		case Gdk.Key.Escape:
+			SetViewMode (ModeType.IconView);
+			args.RetVal = true;
+			break;
 		default:
 			break;
 		}

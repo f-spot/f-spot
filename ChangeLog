@@ -1,5 +1,8 @@
 2005-10-19  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: make escape return to the icon view (from
+	Gabriel Burt).
+
 	* src/Cms.cs: add a new byte ctor that allows an offset.
 
 	* src/JpegHeader.cs: add profile extraction.
