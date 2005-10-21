@@ -3,6 +3,7 @@
 //
 
 using System;
+using System.Collections;
 using System.Runtime.InteropServices;
 
 namespace Cms {
@@ -63,8 +64,6 @@ namespace Cms {
 			public int Count;
 			public ushort StartOfData;  // ushort array Count entries long
 		}
-
-		public static int lockobj;
 
 		[DllImport("liblcms-1.0.0.dll")]
 		static extern IntPtr cmsBuildGamma (int entry_count, double gamma);
@@ -231,6 +230,8 @@ namespace Cms {
 	}
 
 	public class Profile : IDisposable {
+		static Profile srgb = new Profile (cmsCreate_sRGBProfile());
+
 		private HandleRef handle;
 		public HandleRef Handle {
 			get {
@@ -246,7 +247,6 @@ namespace Cms {
 			return CreateStandardRgb ();
 		}
 		
-		static Profile srgb = new Profile (cmsCreate_sRGBProfile());
 
 		public static Profile CreateStandardRgb () 
 		{
@@ -282,11 +282,11 @@ namespace Cms {
 		public static Profile GetScreenProfile (Gdk.Screen screen)
 		{
 			IntPtr profile = f_screen_get_profile (screen.Handle);
-
+			
 			if (profile == IntPtr.Zero)
 				return null;
-				
-			return new Profile (f_screen_get_profile (screen.Handle));
+			
+			return new Profile (profile);
 		}
 
 		[DllImport("liblcms-1.0.0.dll")]
