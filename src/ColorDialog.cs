@@ -47,32 +47,33 @@ namespace FSpot {
 			if (brightness_scale == null)
 				return;
 			
-			Cms.Profile display_profile = null; //Cms.Profile.GetScreenProfile (view.Screen);
+			Cms.Profile display_profile = Cms.Profile.GetScreenProfile (view.Screen);
 			Cms.Profile [] list;
 
 			if (display_profile == null)
 				display_profile = Cms.Profile.CreateStandardRgb ();
 
-			adjustment_profile = Cms.Profile.CreateAbstract (10, brightness_scale.Value,
-									 contrast_scale.Value,
-									 hue_scale.Value, 
-									 sat_scale.Value,
-									 source_spinbutton.ValueAsInt, 
-									 dest_spinbutton.ValueAsInt);
+			using (adjustment_profile = Cms.Profile.CreateAbstract (10, brightness_scale.Value,
+										contrast_scale.Value,
+										hue_scale.Value, 
+										sat_scale.Value,
+										source_spinbutton.ValueAsInt, 
+										dest_spinbutton.ValueAsInt)) {
 			
-			System.Console.WriteLine ("{0} {1} {2}", image_profile, adjustment_profile, display_profile);
-			if (AdjustedPixbuf.HasAlpha) {
-				System.Console.WriteLine ("Cannot currently adjust images with an alpha channel");
-				list = new Cms.Profile [] { image_profile, display_profile };
-			} else
-				list = new Cms.Profile [] { image_profile, adjustment_profile, display_profile };
+			//System.Console.WriteLine ("{0} {1} {2}", image_profile, adjustment_profile, display_profile);
+				if (AdjustedPixbuf.HasAlpha) {
+					System.Console.WriteLine ("Cannot currently adjust images with an alpha channel");
+					list = new Cms.Profile [] { image_profile, display_profile };
+				} else
+					list = new Cms.Profile [] { image_profile, adjustment_profile, display_profile };
+				
+				next_transform = new Cms.Transform (list, 
+								    PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
+								    PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
+								    Cms.Intent.Perceptual, 0x0000);
+			
+			}
 
-			next_transform = new Cms.Transform (list, 
-							    PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
-							    PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
-							    Cms.Intent.Perceptual, 0x0000);
-			
-			
 			lock (AdjustedPixbuf) {
 				PixbufUtils.ColorAdjust (ScaledPixbuf,
 							 AdjustedPixbuf,

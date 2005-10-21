@@ -906,12 +906,13 @@ namespace FSpot.Tiff {
 			}
 		}
 
-		public string Dump ()
+		public void Dump (string name)
 		{
-			System.Text.StringBuilder builder = new System.Text.StringBuilder ();
-			builder.Append (System.String.Format ("Header [{0}]\n", endian.ToString ()));
-			builder.Append (System.String.Format ("|-{0}", Directory.Dump2 ()));
-			return builder.ToString ();
+			ImageDirectory ifd = Directory;
+			for (int i = 0; ifd != null; i++) {
+				ifd.Dump (System.String.Format ("IFD[{0}]:", i));
+				ifd = ifd.NextDirectory;
+			}
 		}
 	}
 
@@ -1113,12 +1114,12 @@ namespace FSpot.Tiff {
 			return new Cms.Profile (whitepoint, primaries, transfer);
 		}
 
-		public void Dump () 
+		public void Dump (string name) 
 		{
-			//System.Console.WriteLine ("Directory Start");
+			System.Console.WriteLine ("Starting {0}", name);
 			foreach (DirectoryEntry e in this.Entries)
-				e.Dump ();
-			//System.Console.WriteLine ("End Directory");
+				e.Dump (name);
+			System.Console.WriteLine ("Ending {0}", name);
 		}
 		
 		public string Dump2 ()
@@ -1139,11 +1140,6 @@ namespace FSpot.Tiff {
 
 			return builder.ToString ();
 		}
-	}
-	
-	public class DNGPrivateDirectory {
-		
-
 	}
 	
 	public class EntryFactory {
@@ -1171,8 +1167,8 @@ namespace FSpot.Tiff {
 				//return new MakerNoteEntry (input, start, header_endian);
 				//case TagId.PimIfdPointer:
 				//return new 
-			case TagId.MakerNote:
-				return new MakerNoteEntry (input, start, header_endian);
+				//case TagId.MakerNote:
+				//return new MakerNoteEntry (input, start, header_endian);
 			}
 			
 			switch (type) {
@@ -1207,12 +1203,8 @@ namespace FSpot.Tiff {
 		public override void LoadExternal (System.IO.Stream stream)
 		{
 		}
-		
-		public override void Dump ()
-		{
-
-		}
 	}
+
 
 	public class SubdirectoryEntry : DirectoryEntry {
 		public uint directory_offset;
@@ -1238,8 +1230,6 @@ namespace FSpot.Tiff {
 			base.LoadExternal (stream);
 
 			for (int i = 0; i <  entry_count; i++) {
-				//System.Console.WriteLine ("Leaving Subdirectory {0} at {1}", tagid.ToString (), directory_offset);
-				//System.Console.WriteLine ("Leaving Subdirectory {0} at {1}", tagid.ToString (), directory_offset);
 				try {
 					directory_offset = BitConverter.ToUInt32 (raw_data, i * 4, endian == Endian.Little);
 					Directory [i] = new ImageDirectory (stream, directory_offset, endian);
@@ -1251,14 +1241,17 @@ namespace FSpot.Tiff {
 			}
 		}
 
-		public override void Dump ()
+		public override void Dump (string name)
 		{
 			for (int i = 0; i < GetEntryCount (); i++) {
-				//System.Console.WriteLine ("Entering Subdirectory {0}.{2} at {1}", tagid.ToString (), directory_offset, i);
-				if (Directory [i] != null)
-					Directory [i].Dump ();
-				
-				//System.Console.WriteLine ("Leaving Subdirectory {0}.{2} at {1}", tagid.ToString (), directory_offset, i);
+				string subdirname = System.String.Format ("{0}{1}[{2}]({3})]", name, tagid, i, directory_offset);
+
+				try {
+					if (Directory [i] != null)
+						Directory [i].Dump (subdirname);
+				} catch (System.Exception e) {
+					System.Console.WriteLine (e);
+				}
 			}
 		}
 	}
@@ -1373,8 +1366,7 @@ namespace FSpot.Tiff {
 			offset_origin = pos;
 		}
 
-		public uint Position
-		{
+		public uint Position {
 			get {
 				return offset_origin + data_offset;
 			}
@@ -1488,23 +1480,23 @@ namespace FSpot.Tiff {
 #endif
 		}
 
-		public virtual void Dump ()
+		public virtual void Dump (string name)
 		{
 			switch (this.Type) {
 			case EntryType.Short:
 			case EntryType.Long:
 				uint [] vals = this.ValueAsLong;
-				System.Console.Write ("{1}({2}) [{0}] (", vals.Length, this.Id, this.Type);
+				System.Console.Write ("{3}{1}({2}) [{0}] (", vals.Length, this.Id, this.Type, name);
 				for (int i = 0; i < System.Math.Min (15, vals.Length); i++) {
 					System.Console.Write (" {0}", vals [i]);
 				}
 				System.Console.WriteLine (")");
 				break;
 			case EntryType.Ascii:
-				System.Console.WriteLine ("{1}({2}) (\"{0}\")", this.StringValue, this.Id, this.Type);
+				System.Console.WriteLine ("{3}{1}({2}) (\"{0}\")", this.StringValue, this.Id, this.Type, name);
 				break;
 			default:
-				System.Console.WriteLine ("{1}({2}) [{0}]", this.Count, this.Id, this.Type);
+				System.Console.WriteLine ("{3}{1}({2}) [{0}]", this.Count, this.Id, this.Type, name);
 				break;
 			}
 		}
@@ -1588,15 +1580,13 @@ namespace FSpot.Tiff {
 			}
 		}
 
-		public byte [] RawData
-		{
+		public byte [] RawData {
 			get { 
 				return raw_data;
 			}
 		}
 
-		public string [] ValueAsString
-		{
+		public string [] ValueAsString {
 			get {
 				switch (this.Type) {
 				case EntryType.Short:
@@ -1637,8 +1627,7 @@ namespace FSpot.Tiff {
 			return vals;
 		}
 
-		public uint [] ValueAsLong
-		{
+		public uint [] ValueAsLong {
 			get {
 				uint [] data = new uint [this.Count];
 				for (int i = 0; i < this.Count; i++) {
@@ -1671,23 +1660,20 @@ namespace FSpot.Tiff {
 			}
 		}
 
-		public System.DateTime ValueAsDate
-		{
+		public System.DateTime ValueAsDate {
 			get {
 				return DirectoryEntry.DateTimeFromString (StringValue);
 			}
 		}
 
-		public string UserCommentValue
-		{
+		public string UserCommentValue {
 			get {
 				UserComment comment = new UserComment (raw_data, IsLittle);
 				return comment.Value;
 			}
 		}
 
-		public SRational [] SRationalValue
-		{
+		public SRational [] SRationalValue {
 			get {
 				Rational [] vals = RationalValue;
 				SRational [] data = new SRational [vals.Length];
@@ -1699,8 +1685,7 @@ namespace FSpot.Tiff {
 			}
 		}
 
-		public Rational [] RationalValue
-		{
+		public Rational [] RationalValue {
 			get {
 				uint [] vals = LongValue;
 				Rational [] data = new Rational [vals.Length / 2];
@@ -1713,8 +1698,7 @@ namespace FSpot.Tiff {
 			
 		}
 
-		public uint [] LongValue
-		{
+		public uint [] LongValue {
 			get {
 				uint [] data = new uint [raw_data.Length / 4];
 				for (int i = 0; i < raw_data.Length; i+= 4)
@@ -1724,8 +1708,7 @@ namespace FSpot.Tiff {
 			}
 		}
 
-		public ushort [] ShortValue
-		{
+		public ushort [] ShortValue {
 			get {
 				ushort [] data = new ushort [raw_data.Length];
 				for (int i = 0; i < raw_data.Length; i+= 2) {
@@ -1746,19 +1729,8 @@ namespace FSpot.Tiff {
 				using (System.IO.Stream input = System.IO.File.OpenRead (path)) {
 					this.Header = new Header (input);
 				}
-				
-				ImageDirectory directory = Header.Directory;
-				while (directory != null) {
-#if TEST_METADATA 
-					FSpot.MetadataStore store = new FSpot.MetadataStore ();
-					Select (store);
-					//store.Dump ();
-#endif					
-					///directory.Dump ();
-					directory = directory.NextDirectory;
-				}
-				
-				//System.Console.WriteLine (this.Header.Dump ());
+
+				//Header.Dump ("");
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e.ToString ());
 			}
@@ -1849,7 +1821,6 @@ namespace FSpot.Tiff {
 	public class NefFile : TiffFile, IThumbnailContainer {
 		public NefFile (string path) : base (path) 
 		{
-			Header.Dump ();
 		}
 
 		public Gdk.Pixbuf GetEmbeddedThumbnail ()

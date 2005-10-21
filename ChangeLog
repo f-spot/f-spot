@@ -1,5 +1,13 @@
 2005-10-21  Larry Ewing  <lewing@novell.com>
 
+	* src/MrwFile.cs: call dump with the right parameters.
+	
+
+	* src/ColorDialog.cs: use the screen profile.
+
+	* libfspot/f-screen-utils.c (f_screen_get_profile): expose the
+	function, duh.
+
 	* src/ColorDialog.cs: turn off adjustments for images with alpha
 	for now, since adjustment profiles break badly with alpha.
 

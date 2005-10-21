@@ -10,7 +10,7 @@
 #include <gdk/gdkx.h>
 #include <lcms.h>
 
-static cmsHPROFILE *
+cmsHPROFILE *
 f_screen_get_profile (GdkScreen *screen)
 {
 	Display *dpy;
@@ -35,8 +35,6 @@ f_screen_get_profile (GdkScreen *screen)
 		profile = cmsOpenProfileFromMem(str, nitems);
 		XFree (str);
 		return profile;
-	} else {
-		g_warning ("No screen profile found");
+	} else
 		return NULL;
-	}
 }
