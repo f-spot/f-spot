@@ -64,6 +64,8 @@ namespace Cms {
 			public ushort StartOfData;  // ushort array Count entries long
 		}
 
+		public static int lockobj;
+
 		[DllImport("liblcms-1.0.0.dll")]
 		static extern IntPtr cmsBuildGamma (int entry_count, double gamma);
 
@@ -244,9 +246,11 @@ namespace Cms {
 			return CreateStandardRgb ();
 		}
 		
+		static Profile srgb = new Profile (cmsCreate_sRGBProfile());
+
 		public static Profile CreateStandardRgb () 
 		{
-			return new Profile (cmsCreate_sRGBProfile());
+			return srgb;
 		}
 		
 		public static Profile CreateAdobeRgb ()
@@ -367,11 +371,48 @@ namespace Cms {
 					profileh = cmsOpenProfileFromMem (start, (uint)length);
 				}
 			}
-
+			
 			if (profileh == IntPtr.Zero)
 				throw new System.Exception ("Invalid Profile Data");
 			else 
 				this.handle = new HandleRef (this, profileh);
+		}
+		
+		[DllImport("liblcms-1.0.0.dll")]
+		extern static IntPtr cmsTakeModel (HandleRef handle);
+		
+		public string Model {
+			get {
+				lock (srgb) {
+					return Marshal.PtrToStringAnsi (cmsTakeModel (handle));
+				}
+			}
+		}
+
+		[DllImport("liblcms-1.0.0.dll")]
+		extern static IntPtr cmsTakeProductName (HandleRef handle);
+
+		public string ProductName {
+			get {
+				lock (srgb) {
+					return Marshal.PtrToStringAnsi (cmsTakeProductName (handle));
+				}
+			}
+		}
+		[DllImport("liblcms-1.0.0.dll")]
+		extern static IntPtr cmsTakeProductDesc (HandleRef handle);
+
+		public string ProductDescription {
+			get {
+				lock (srgb) {
+					return Marshal.PtrToStringAnsi (cmsTakeProductDesc (handle));
+				}
+			}
+		}
+
+		public override string ToString ()
+		{
+			return ProductName;
 		}
 
 		protected Profile (IntPtr handle)

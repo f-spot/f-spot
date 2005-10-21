@@ -1,3 +1,10 @@
+2005-10-21  Larry Ewing  <lewing@novell.com>
+
+	* src/ColorDialog.cs: turn off adjustments for images with alpha
+	for now, since adjustment profiles break badly with alpha.
+
+	* src/Cms.cs: expose the model and name and description.
+
 2005-10-20  Larry Ewing  <lewing@novell.com>
 
 	* src/PixelBuffer.cs: use the new method name.

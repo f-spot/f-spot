@@ -48,6 +48,7 @@ namespace FSpot {
 				return;
 			
 			Cms.Profile display_profile = null; //Cms.Profile.GetScreenProfile (view.Screen);
+			Cms.Profile [] list;
 
 			if (display_profile == null)
 				display_profile = Cms.Profile.CreateStandardRgb ();
@@ -60,8 +61,11 @@ namespace FSpot {
 									 dest_spinbutton.ValueAsInt);
 			
 			System.Console.WriteLine ("{0} {1} {2}", image_profile, adjustment_profile, display_profile);
-
-			Cms.Profile [] list = new Cms.Profile [] { image_profile, adjustment_profile, display_profile };
+			if (AdjustedPixbuf.HasAlpha) {
+				System.Console.WriteLine ("Cannot currently adjust images with an alpha channel");
+				list = new Cms.Profile [] { image_profile, display_profile };
+			} else
+				list = new Cms.Profile [] { image_profile, adjustment_profile, display_profile };
 
 			next_transform = new Cms.Transform (list, 
 							    PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
