@@ -1,7 +1,12 @@
 2005-10-21  Larry Ewing  <lewing@novell.com>
 
-	* src/MrwFile.cs: call dump with the right parameters.
+	* src/ImageFile.cs: add srf files using the nef type.
+
+	* src/f-spot.glade: misc updates.
+
+	* src/Tiff.cs: fix up dump output.
 	
+	* src/MrwFile.cs: call dump with the right parameters.
 
 	* src/ColorDialog.cs: use the screen profile.
 
