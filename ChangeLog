@@ -1,5 +1,7 @@
 2005-10-21  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufUtils.cs: make the adjustment profile deeper.
+
 	* src/Cms.cs: clean up screen profile, return cached srgb profile.
 
 	* src/ImageFile.cs: add srf files using the nef type.

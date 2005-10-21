@@ -539,8 +539,8 @@ class PixbufUtils {
 			throw new Exception ("Invalid Dimensions");
 
 		//Cms.Profile eos10d = new Cms.Profile ("/home/lewing/ICCProfiles/EOS-10D-True-Color-Non-Linear.icm");
-		Cms.Profile srgb = Cms.Profile.CreateSRgb ();
-		Cms.Profile bchsw = Cms.Profile.CreateAbstract (10, brightness, contrast,
+		Cms.Profile srgb = Cms.Profile.CreateStandardRgb ();
+		Cms.Profile bchsw = Cms.Profile.CreateAbstract (256, brightness, contrast,
 								hue, saturation, src_color, 
 								dest_color);
 
