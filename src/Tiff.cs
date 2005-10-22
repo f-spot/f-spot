@@ -1037,7 +1037,6 @@ namespace FSpot.Tiff {
 			Cms.ColorCIExyYTriple primaries = new Cms.ColorCIExyYTriple (whitepoint, whitepoint, whitepoint);
 			Cms.GammaTable [] transfer = null;
 			int bits_per_sample = 8;
-			int i;
 			
 			foreach (DirectoryEntry e in entries) {
 				switch (e.Id) {

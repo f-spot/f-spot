@@ -35,11 +35,8 @@ Searching:
         search.
 
 Timeline:
-      * Apply the update patch in bugzilla that make the glass position
-        update when the Icon View scrolls.
       * Fix the limits so that they don't scroll off screen but scroll
         onto a resting zone instead.
-      * Use different image for the scroll buttons.
 
 Image View:
       * Add a histogram overlay. The current histogram can basically
@@ -82,15 +79,6 @@ Editing:
         as pluggable effects.
 
 Raw Photos: (this is broken down into a bit of a progression)
-      * Add basic support importing/tracking raw files along with normal
-        to the import code.  We need to make sure that even if we don't
-        yet let you do much with the raw file we at least copy it off of
-        the import source.
-      * Use one of the available raw parsers to to load the data and
-        convert it via lcms into something the current View code can
-        render.  This might have to start out in a separate dialog at
-        first then save the corrected version as a JPEG that we load
-        from that point on.
       * Implement 16bit scaling code. Move the current Editing logic
         from operating directly on pixbufs to operating on our own
         internal object that supports deep images and pixbufs (and
@@ -106,18 +94,8 @@ Icon View:
       * Add grouping display.  This can be based on the same information
         the GroupSelector uses but it should be displayed as bar inline
         in the IconView.
-      * Fix the icon cache to limit cache items based on size not count
-        since we are storing the thumbnails at the size we display them
-        now.  This should allow a much deeper cache smaller icon sizes
-        which will help them out significantly.
-      * Implement better Icon preloading.  The current code still spends
-        too much time loading images as the are exposed, not loading
-        them before.
 
 Import:
-      * Add the updated Imported from camera patch to the CVS tree,
-        either integrate libgphoto2# directly into f-spot or build a
-        separate patch that installs the assembly into the GAC.
       * Fix the UI for both directory and camera import.  Allow the user
         to specify A batch description, camera type, photographer and
         copyright setting.  It would be nice to have An All rights
@@ -133,91 +111,6 @@ Export:
       * The current export dialogs have placeholders for scaling and tag
         export.  These need to be hooked up now that the exif saving
         works.
-      * Add a static html export template.  Tuomas has done a basic css
-        based version that should simple to implement and template. The
-        format gthumb uses should also be examined and possibly copied.
-      * Test the SUSE 9.3 gnome-vfs libs against f-spot's vfs bindings
-        make sure that the auth callbacks work, implement a gui handler
-        once they are.
-      * The export code should be broken down into modules and made
-        pluggable.
-      * All the export dialogs need save history about what directories
-        and accounts were used in the past and offer completion in then
-        entries.
-
-Metadata:
-      * Store all the operations we apply to an image in the image
-        metadata.  This includes export/import/editing.  This should
-        include a specification about what types we know about and
-        preferably be able to be serialized as RDF in an XMP file.
-      * Allow metadata export as XMP.  We should be able to save all the
-        metadata we are carrying as an XMP file externally and in the
-        JPEG.  The current save jpeg code can support saveing multiple
-        JPEG markers.
-      * Sync up the metadata description with whatever beagle decides to
-        standardize on.  Ideally we can attack the format along with the
-        beagle crew and standardize on how we describe the f-spot tuples
-        for import, export and editing.
-      * Cope with images no longer on disc using stored metadata and
-        beagle searches to replace missing images.  Prompt for CD
-        insertion, display web image, find files that were moved outside
-        of f-spot.
-      * Finish the managed tiff/EXIF parser.
-
-Raw Photos: (this is broken down into a bit of a progression)
-      * Add basic support importing/tracking raw files along with normal
-        import code.
-      * Use one of the available raw parsers to to load the data and
-        convert it via lcms into something the current View code can
-        render.  Save the new version as a jpeg that we load from that
-        point on.
-      * Implement 16bit scaling code. Move the current Editing logic
-        from operating directly on pixbufs to operating on our own
-        internal object that supports deep images and pixbufs.  We can
-        also clean up use of the Pixbuf utility class.
-      * Use the new image objects in a managed replacement of the
-        current image view and do color correction on the fly in the
-        image view code.  Hopefully we can count on it being fast enough
-        to do real time.
-      * Support 16bit png and tiff/DNF files. 
-
-Icon View:
-      * Add grouping display.  This can be based on the same information
-        the GroupSelector uses but it should be displayed as bar inline
-        in the IconView.
-      * Fix the icon cache to limit cache items based on size not count
-        since we are storing the thumbnails at the size we display them
-        now.  This should allow a much deeper cache smaller icon sizes
-        which will help them out significantly.
-      * Implement better Icon preloading.  The current code still spends
-        too much time loading images as the are exposed, not loading
-        them before.
-
-Import:
-      * Add the updated Imported from camera patch to the CVS tree,
-        either integrate libgphoto2# directly into f-spot or build a
-        separate patch that installs the assembly into the GAC.
-      * Fix the UI for both directory and camera import.  Allow the user
-        to specify A batch description, camera type, photographer and
-        copyright setting.  It would be nice to have An All rights
-        reserved and the various creative commons options there already.
-      * On initial startup do a search for all the images on the
-        machine, either using beagle or locate or simple directory
-        watching.
-      * Watch directories we've already imported from for new files
-        (using inotify?) and offer the ability to add them as they show
-        up.
-
-Export:
-      * The current export dialogs have placeholders for scaling and tag
-        export.  These need to be hooked up now that the exif saving
-        works.
-      * Add a static html export template.  Tuomas has done a basic css
-        based version that should simple to implement and template. The
-        format gthumb uses should also be examined.
-      * Test the SUSE 9.3 gnome-vfs libs against f-spot's vfs bindings
-        make sure that the auth callbacks work, implement a gui handler
-        once they are.
       * The export code should be broken down into modules and made
         pluggable.
       * All the export dialogs need save history about what directories
