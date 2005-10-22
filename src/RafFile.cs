@@ -78,13 +78,13 @@ namespace FSpot.Raf {
 				uint jpeg_offset = BitConverter.ToUInt32 (data, 0, false);
 				uint jpeg_length = BitConverter.ToUInt32 (data, 4, false);
 
-				uint wb_offset = BitConverter.ToUInt32 (data, 8, false);
-				uint wb_length = BitConverter.ToUInt32 (data, 12, false);
+				// FIXME implement wb parsing
+				//uint wb_offset = BitConverter.ToUInt32 (data, 8, false);
+				//uint wb_length = BitConverter.ToUInt32 (data, 12, false);
 				
-
-				uint raw_offset = BitConverter.ToUInt32 (data, 16, false);
-				uint raw_length = BitConverter.ToUInt32 (data, 20, false);
-
+				// FIXME implement decoding
+				//uint raw_offset = BitConverter.ToUInt32 (data, 16, false);
+				//uint raw_length = BitConverter.ToUInt32 (data, 20, false);
 
 				byte [] image = new byte [jpeg_length];
 				stream.Position = jpeg_offset;
