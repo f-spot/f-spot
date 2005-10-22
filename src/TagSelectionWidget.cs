@@ -215,15 +215,22 @@ public class TagSelectionWidget : TreeView {
 
 
 	// Data functions.
+	private static string ToHashColor (Gdk.Color color)
+	{
+		byte r = (byte) (color.Red >> 8);
+		byte g = (byte) (color.Green >> 8);
+		byte b = (byte) (color.Blue >> 8);
+		return String.Format ("#{0:x}{1:x}{2:x}", r, g, b);
+	}
 
 	private void SetBackground (CellRenderer renderer, Tag tag)
 	{
 		// FIXME this should be themable but Gtk# doesn't give me access to the proper
 		// members in GtkStyle for that.
 		if (tag is Category)
-			renderer.CellBackground = "#cccccc";
+			renderer.CellBackground = ToHashColor (this.Style.MidColors [(int) Gtk.StateType.Normal]);
 		else
-			renderer.CellBackground = "#ffffff";
+			renderer.CellBackground = ToHashColor (this.Style.LightColors [(int) Gtk.StateType.Normal]);
 	}
 
 	private void CheckBoxDataFunc (TreeViewColumn column,
@@ -279,118 +286,140 @@ public class TagSelectionWidget : TreeView {
 		(renderer as CellRendererText).Text = tag.Name;
 	}
 
-	private bool TreeIterForTag(Tag tag, out TreeIter iter) {
+	private bool TreeIterForTag(Tag tag, out TreeIter iter) 
+	{
 		TreeIter root = TreeIter.Zero;
 		iter = TreeIter.Zero;
-		bool valid = Model.GetIterFirst(out root);
+	
+		bool valid = Model.GetIterFirst (out root);
+		
 		while (valid) {
-			if (TreeIterForTagRecurse(tag, root, out iter))
+			if (TreeIterForTagRecurse (tag, root, out iter))
 				return true;
+
 			valid = Model.IterNext (ref root);
 		}
 		return false;
-    }
+	}
 
 	// Depth first traversal
-	private bool TreeIterForTagRecurse(Tag tag, TreeIter parent, out TreeIter iter) {
-		bool valid = Model.IterChildren(out iter, parent);
+	private bool TreeIterForTagRecurse (Tag tag, TreeIter parent, out TreeIter iter) 
+	{
+		bool valid = Model.IterChildren (out iter, parent);
+
 		while (valid) {
-			if (TreeIterForTagRecurse(tag, iter, out iter))
+			if (TreeIterForTagRecurse (tag, iter, out iter))
 				return true;
 			valid = Model.IterNext (ref iter);
 		}
-		GLib.Value value = new GLib.Value();
-		Model.GetValue(parent, 0, ref value);
+
+		GLib.Value value = new GLib.Value ();
+		Model.GetValue (parent, 0, ref value);
 		iter = parent;
+
 		if (tag.Id == (uint) value)
 			return true;
+
 		return false;
 	}
 	
 	// Copy a branch of the tree to a new parent
 	// (note, this doesn't work generically as it only copies the first value of each node)
-	private void CopyBranch(TreeIter src, TreeIter dest, bool is_root, bool is_parent) {
+	private void CopyBranch (TreeIter src, TreeIter dest, bool is_root, bool is_parent) 
+	{
 		TreeIter copy, iter;
-		GLib.Value value = new GLib.Value();
+		GLib.Value value = new GLib.Value ();
 		TreeStore store = Model as TreeStore;
 		bool valid;
 		
-		store.GetValue(src, 0, ref value);
+		store.GetValue (src, 0, ref value);
 		if (is_parent) {
-			Tag tag = (Tag)tag_store.Get((uint)value);
+			Tag tag = (Tag) tag_store.Get ((uint)value);
 			// we need to figure out where to insert it in the correct order
 			copy = InsertInOrder(dest, is_root, tag);
 		} else { 
-			copy = store.AppendValues(dest, (uint)value);
+			copy = store.AppendValues (dest, (uint)value);
 		}
 		
-		valid = Model.IterChildren(out iter, src);
+		valid = Model.IterChildren (out iter, src);
 		while (valid) {
 			// child nodes are already ordered
-			CopyBranch(iter, copy, false, false);
+			CopyBranch (iter, copy, false, false);
 			valid = Model.IterNext (ref iter);
 		}
 	}
 
 	// insert tag into the correct place in the tree, with parent. return the new TagIter in iter.
-	private TreeIter InsertInOrder(TreeIter parent, bool is_root, Tag tag) {
-		TreeIter iter;
+	private TreeIter InsertInOrder (TreeIter parent, bool is_root, Tag tag) 
+	{
 		TreeStore store = Model as TreeStore;
+		TreeIter iter;
 		Tag compare;
 		bool valid;
+
 		if (is_root)
-			valid = store.GetIterFirst(out iter);
+			valid = store.GetIterFirst (out iter);
 		else
-			valid = store.IterChildren(out iter, parent);
+			valid = store.IterChildren (out iter, parent);
 			
 		while (valid) {
 			//I have no desire to figure out a more performant sort over this...
-			GLib.Value value = new GLib.Value();
+			GLib.Value value = new GLib.Value ();
 			store.GetValue(iter, 0, ref value);
-			compare = (Tag)tag_store.Get((uint)value);
-			if (compare.CompareTo(tag) > 0) {
-				store.InsertBefore(out iter, iter);
-				store.SetValue(iter, 0, tag.Id);
+			compare = (Tag)tag_store.Get ((uint) value);
+
+			if (compare.CompareTo (tag) > 0) {
+				iter = store.InsertNodeBefore (iter);
+				store.SetValue (iter, 0, tag.Id);
 				return iter;
 			}
 			valid = store.IterNext(ref iter);
 		}
+
 		if (is_root) 
-			store.Append(out iter);
+			iter = store.AppendNode (); 
 		else
-			iter = store.Append(parent);
-		store.SetValue(iter, 0, tag.Id);
+			iter = store.AppendNode (); 
+
+		store.SetValue (iter, 0, tag.Id);
 		return iter;
 	}	
 			
-	private void HandleTagDeleted(Tag tag) {
+	private void HandleTagDeleted (Tag tag) 
+	{
 		TreeIter iter;
-		if (TreeIterForTag(tag, out iter)) 
-			(Model as TreeStore).Remove(ref iter);
+
+		if (TreeIterForTag (tag, out iter)) 
+			(Model as TreeStore).Remove (ref iter);
 	}
 	
-	private void HandleTagCreated(Tag tag) {
+	private void HandleTagCreated (Tag tag) 
+	{
 		TreeIter iter;
-		if (TreeIterForTag(tag.Category, out iter)) {
+
+		if (TreeIterForTag (tag.Category, out iter)) {
 			// create dialog doesn't let you create a top level tag...
-			InsertInOrder(iter, false, tag);
+			InsertInOrder (iter, false, tag);
 		}
 	}
 	
-	private void HandleTagChanged(Tag tag) {
+	private void HandleTagChanged (Tag tag) 
+	{
 		TreeStore store = Model as TreeStore;
 		TreeIter iter, category_iter, parent_iter;
-		TreeIterForTag(tag, out iter);
+		TreeIterForTag (tag, out iter);
+
 		bool category_valid = TreeIterForTag(tag.Category, out category_iter);
 		bool parent_valid = Model.IterParent(out parent_iter, iter);
-		if ((category_valid && (category_iter.Equals(parent_iter))) || (!category_valid && !parent_valid)) {
+
+		if ((category_valid && (category_iter.Equals (parent_iter))) || (!category_valid && !parent_valid)) {
 			// if we haven't been reparented
-			TreePath path = store.GetPath(iter); 
-			store.EmitRowChanged(path, iter);
+			TreePath path = store.GetPath (iter); 
+			store.EmitRowChanged (path, iter);
 		} else {
 			// It is a bit tougher. We need to do an annoying clone of structs...
-			CopyBranch(iter, category_iter, !category_valid, true);
-			store.Remove(ref iter);
+			CopyBranch (iter, category_iter, !category_valid, true);
+			store.Remove (ref iter);
 		}
 	}
 	// Constructor.

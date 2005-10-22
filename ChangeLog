@@ -1,5 +1,10 @@
 2005-10-22  Larry Ewing  <lewing@novell.com>
 
+	* src/DirectoryCollection.cs: add File collection.
+
+	* src/TagSelectionWidget.cs: fixup, colors to work with themes,
+	use new gtk# functions for treeiters cleanup formatting.
+
 	* src/PnmFile.cs: rework the 16bit conversion code, add new
 	methods, add Xmp generation.
 
