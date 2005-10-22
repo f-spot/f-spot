@@ -553,6 +553,12 @@ namespace FSpot.Png {
 				}
 			}
 
+			public bool CheckCrc (uint crc)
+			{
+				// FIXME implement me
+				return true;
+			}
+
 			public static Chunk Generate (string name, byte [] data)
 			{
 				System.Type t = (System.Type) name_table [name];
@@ -613,7 +619,6 @@ namespace FSpot.Png {
 				int result = 0;
 				do {
 					Fill ();
-					int attempt = length - result;
 					result += inflater.Inflate (data, start + result, length - result);
 					//System.Console.WriteLine ("Attempting Second after fill Inflate {0} {1} {2}", attempt, result, length - result);
 				} while (result < length && chunks.Count > 0);
@@ -979,8 +984,8 @@ namespace FSpot.Png {
 				uint crc = BitConverter.ToUInt32 (heading, 0, false);
 
 				Chunk chunk = Chunk.Generate (name, data);
-				//if (crc != chunk.Crc ())
-				//	throw new System.Exception ("chunk crc check failed");
+				if (! chunk.CheckCrc (crc))
+					throw new System.Exception ("chunk crc check failed");
 				
 				//System.Console.Write ("read one {0} {1}", chunk, chunk.Name);
 				chunk_list.Add (chunk);

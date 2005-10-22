@@ -19,10 +19,10 @@ public class RotateCommand {
 
 	private void Transform (Direction direction, string original_path)
 	{
-		string temporary_path = original_path + ".tmp";	// FIXME make it unique
-		
 		try {
 #if false
+			string temporary_path = original_path + ".tmp";	// FIXME make it unique
+		
 			JpegUtils.Transform (original_path, temporary_path, 
 					     direction == Direction.Clockwise ? JpegUtils.TransformType.Rotate90 
 					     : JpegUtils.TransformType.Rotate270);

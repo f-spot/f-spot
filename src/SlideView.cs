@@ -100,11 +100,6 @@ namespace FSpot {
 		private void HandleDestroyed (object sender, System.EventArgs args)
 		{
 			hide.Stop ();
-
-			this.busy.Unref ();
-			if (this.none != null)
-				this.none.Unref ();
-
 		}
 
 		private void HandleSlideViewButtonPressEvent (object sender, ButtonPressEventArgs args)
