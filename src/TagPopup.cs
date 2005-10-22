@@ -38,6 +38,6 @@ public class TagPopup {
 		GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Remove Tag From Selection"),
 				      new EventHandler (MainWindow.Toplevel.HandleRemoveTagCommand), count > 0);
 
-		popup_menu.Popup (null, null, null, IntPtr.Zero, eb.Button, eb.Time);
+		popup_menu.Popup (null, null, null, eb.Button, eb.Time);
 	}
 }
