@@ -1,5 +1,11 @@
 2005-10-24  Larry Ewing  <lewing@novell.com>
 
+	* src/TimeAdaptor.cs: Reverse the time sorting.
+
+	* src/DirectoryAdaptor.cs: remove GetInitialPosition.
+
+	* src/GroupAdaptor.cs: removed unused initial position call.
+
 	* src/GroupSelector.cs: use Inflate.
 
 	* src/IconView.cs: use the Inflate method on Gdk.Rectangle now

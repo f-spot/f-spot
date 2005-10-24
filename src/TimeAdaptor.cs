@@ -23,7 +23,7 @@ namespace FSpot {
 		public int LookupItem (System.DateTime date)
 		{
 			int i = 0;
-			while (i < query.Count && query [i].Time < date)
+			while (i < query.Count && query [i].Time > date)
 				i++;
 
 			return i;
@@ -36,7 +36,11 @@ namespace FSpot {
 			DateTime end = DateFromIndex (max).AddMonths (1);
 			
 			Console.WriteLine ("{0} {1}", start, end);
-			query.Range = new PhotoStore.DateRange (start, end);
+			if (start > end)
+				query.Range = new PhotoStore.DateRange (end, start);
+			else 
+				query.Range = new PhotoStore.DateRange (start, end);
+				
 		}
 
 		public override int Count ()
@@ -55,7 +59,7 @@ namespace FSpot {
 		{
 			DateTime start = DateFromIndex (item);
 			
-			if (start.Month == 1)
+			if (start.Month == 12)
 				return start.Year.ToString ();
 			else 
 				return null;
@@ -65,34 +69,35 @@ namespace FSpot {
 		{
 			YearData data = (YearData)years [item/12];
 
-			return data.Months[item % 12];
+			return data.Months [item % 12];
 		}
 
 		public DateTime DateFromIndex (int item) 
 		{
 			item = Math.Max (item, 0);
 			item = Math.Min (years.Count * 12 - 1, item);
-
-			int year =  (int)((YearData)years [item / 12]).Year;
-			int month = (item % 12) + 1;
 			
-			return new DateTime (year, month, 1);
+			int year =  (int)((YearData)years [item / 12]).Year;
+			int month = 12 - (item % 12);
+			
+			return new DateTime (year, month, DateTime.DaysInMonth (year, month)).AddDays (1.0).AddMilliseconds (-.1);
 		}
 		
 		public override int IndexFromPhoto (FSpot.IBrowsableItem photo) 
 		{
 			int year = photo.Time.Year;
-			int min_year = ((YearData)years [0]).Year;
-			int max_year = ((YearData)years [years.Count - 1]).Year;
+			int max_year = ((YearData)years [0]).Year;
+			int min_year = ((YearData)years [years.Count - 1]).Year;
 		
 			if (year < min_year || year > max_year) {
-				Console.WriteLine("TimeAdaptor.IndexFromPhoto year out of range: {0}", year);
+				Console.WriteLine("TimeAdaptor.IndexFromPhoto year out of range[{1},{2}]: {0}", year, min_year, max_year);
 				return 0;
 			}
 
-			int index = photo.Time.Month - 1;
+			int index = 12 - photo.Time.Month;
+
 			for (int i = 0; i < years.Count; i++)
-				if (year > ((YearData)years[i]).Year)
+				if (year < ((YearData)years[i]).Year)
 					index += 12;
 
 			//Console.WriteLine("IndexFromPhoto " + photo.Name + " is " + index);
@@ -108,25 +113,14 @@ namespace FSpot {
 		
 		public override event ChangedHandler Changed;
 		
-		public override int GetInitialPosition ()
-		{
-			int i = 0;
-			for (; i < years.Count * 12; i++)
-				if (((YearData)years[i / 12]).Months[i % 12] != 0)
-					break;
-			
-			if (i == years.Count * 12)
-				return 0;
-
-			return i;
-		}
-		
 		public override void Reload () 
 		{
 			years.Clear ();
 
 			Photo [] photos = query.Store.Query (null, null);
 			Array.Sort (query.Photos);
+			Array.Reverse (query.Photos);
+			Array.Reverse (photos);
 
 			if (photos.Length > 0) {
 				YearData data = new YearData ();
@@ -135,12 +129,13 @@ namespace FSpot {
 				foreach (Photo photo in photos) {
 					int current = photo.Time.Year;
 					if (current != data.Year) {
+						
 						data.Year = current;
 						data.Months = new int [12];
 						years.Add (data);
 						//Console.WriteLine ("Found Year {0}", current);
 					}
-					data.Months [photo.Time.Month - 1] += 1;
+					data.Months [12 - photo.Time.Month] += 1;
 				}
 			} else {
 				YearData data = new YearData ();

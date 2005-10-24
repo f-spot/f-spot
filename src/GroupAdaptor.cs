@@ -15,7 +15,6 @@ namespace FSpot {
 
 		public abstract void SetGlass (int item);
 		public abstract int IndexFromPhoto (FSpot.IBrowsableItem photo);
-		public abstract int GetInitialPosition ();
 
 		public delegate void GlassSetHandler (GroupAdaptor adaptor, int index);
 		public virtual event GlassSetHandler GlassSet;

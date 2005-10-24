@@ -117,12 +117,6 @@ namespace FSpot {
 			return 0;
 		}
 
-		public override int GetInitialPosition()
-		{
-			// FIXME not truly implemented
-			return 0;
-		}
-
 		public DirectoryAdaptor (PhotoQuery query) {
 			this.query = query;
 			this.query.Changed += HandleChanged;
