@@ -40,13 +40,6 @@ int f_pixbuf_get_scaled_height (GdkPixbuf *pixbuf, int size);
 
 
 /* Picture ops.  */
-
-GdkPixbuf *f_pixbuf_copy_rotate_90  (GdkPixbuf *src,
-				     gboolean   counter_clockwise);
-GdkPixbuf *f_pixbuf_copy_mirror     (GdkPixbuf *src,
-				     gboolean   mirror,
-				     gboolean   flip);
-
 GdkPixbuf *f_pixbuf_copy_apply_brightness_and_contrast (GdkPixbuf *src,
 							float brightness,
 							float contrast);

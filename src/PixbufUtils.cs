@@ -756,23 +756,6 @@ class PixbufUtils {
 	// Bindings from libf.
 
 	[DllImport ("libfspot")]
-	static extern IntPtr f_pixbuf_copy_rotate_90 (IntPtr src, bool counter_clockwise);
-
-	public static Pixbuf Rotate90 (Pixbuf src, bool counter_clockwise)
-	{
-		return new Pixbuf (f_pixbuf_copy_rotate_90 (src.Handle, counter_clockwise));
-	}
-
-	[DllImport ("libfspot")]
-	static extern IntPtr f_pixbuf_copy_mirror (IntPtr src, bool mirror, bool flip);
-
-	// FIXME not very readable
-	public static Pixbuf Mirror (Pixbuf src, bool mirror, bool flip)
-	{
-		return new Pixbuf (f_pixbuf_copy_mirror (src.Handle, mirror, flip));
-	}
-
-	[DllImport ("libfspot")]
 	static extern IntPtr f_pixbuf_copy_apply_brightness_and_contrast (IntPtr src, float brightness, float contrast);
 
 	public static Pixbuf ApplyBrightnessAndContrast (Pixbuf src, float brightness, float contrast)

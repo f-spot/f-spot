@@ -1,3 +1,13 @@
+2005-10-24  Larry Ewing  <lewing@novell.com>
+
+	* libfspot/f-pixbuf-utils.h: remove the old rotate90 and mirror
+	functions.
+
+	* libfspot/f-pixbuf-utils.c: remove the old rotate90 and mirror
+	functions.
+
+	* src/PixbufUtils.cs: remove the old copy and mirror functions.
+
 2005-10-22  Larry Ewing  <lewing@novell.com>
 
 	* src/DirectoryCollection.cs: add File collection.
