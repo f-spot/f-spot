@@ -498,7 +498,8 @@ public class IconView : Gtk.Layout {
 	
 	public int TopLeftVisibleCell ()
 	{
-		return CellAtPosition(BORDER_SIZE, (int)Vadjustment.Value + BORDER_SIZE + 8);
+		//return CellAtPosition(BORDER_SIZE, (int)Vadjustment.Value + BORDER_SIZE + 8);
+		return CellAtPosition(BORDER_SIZE, (int) (Vadjustment.Value + Allocation.Height * (Vadjustment.Value / Vadjustment.Upper)) + BORDER_SIZE + 8);
 	}
 
 	public void GetCellCenter (int cell_num, out int x, out int y)
@@ -627,15 +628,6 @@ public class IconView : Gtk.Layout {
 		}
 	}
 
-	static Gdk.Rectangle Expand (Gdk.Rectangle src, int width)
-	{
-		src.X -= width;
-		src.Y -= width;
-		src.Width += width * 2;
-		src.Height += width * 2;
-		return src;
-	}
-
 	int ThrobExpansion (int cell, bool selected)
 	{
 		int expansion = 0;
@@ -681,7 +673,8 @@ public class IconView : Gtk.Layout {
 				    bounds.X, bounds.Y,
 				    bounds.Width - 1, bounds.Height - 1);
 		
-		Gdk.Rectangle focus = Expand (bounds, -3);
+		Gdk.Rectangle focus = Gdk.Rectangle.Inflate (bounds, -3, -3);
+
 		if (HasFocus && thumbnail_num == FocusCell) {
 			Style.PaintFocus(Style, BinWindow, 
 					 cell_state, area, 
@@ -691,14 +684,14 @@ public class IconView : Gtk.Layout {
 		}
 
 		Gdk.Rectangle region = Gdk.Rectangle.Zero;
-		Gdk.Rectangle image_bounds = Expand (bounds, - cell_border_width);
+		Gdk.Rectangle image_bounds = Gdk.Rectangle.Inflate (bounds, -cell_border_width, -cell_border_width);
 		int expansion = ThrobExpansion (thumbnail_num, selected);
 
 		Gdk.Pixbuf thumbnail = null;
 		if (entry != null)
 			thumbnail = entry.ShallowCopyPixbuf ();
 
-		if (Expand (image_bounds, expansion + 1).Intersect (area, out image_bounds) && thumbnail != null) {
+		if (Gdk.Rectangle.Inflate (image_bounds, expansion + 1, expansion + 1).Intersect (area, out image_bounds) && thumbnail != null) {
 			
 			PixbufUtils.Fit (thumbnail, ThumbnailWidth, ThumbnailHeight, 
 					 true, out region.Width, out region.Height);
@@ -709,7 +702,7 @@ public class IconView : Gtk.Layout {
 			if (region.Width != thumbnail.Width && region.Height != thumbnail.Height)
 				cache.Reload (entry, thumbnail_num, thumbnail.Width, thumbnail.Height);
 
-			region = Expand (region, expansion);
+			region = Gdk.Rectangle.Inflate (region, expansion, expansion);
 			Pixbuf temp_thumbnail;			
 			region.Width = System.Math.Max (1, region.Width);
 			region.Height = System.Math.Max (1, region.Height); 
@@ -747,7 +740,7 @@ public class IconView : Gtk.Layout {
 			region.Width = temp_thumbnail.Width;
 			region.Height = temp_thumbnail.Height;
 			
-			Gdk.Rectangle draw = Expand (region, 1);
+			Gdk.Rectangle draw = Gdk.Rectangle.Inflate (region, 1, 1);
 			
 			if (!temp_thumbnail.HasAlpha) 
 				Style.PaintShadow (Style, BinWindow, cell_state,

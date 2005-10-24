@@ -153,15 +153,6 @@ namespace FSpot {
 			}
 		}
 		
-		private static Gdk.Rectangle Expand (Gdk.Rectangle src, int width)
-		{
-			src.X -= width;
-			src.Y -= width;
-			src.Width += width * 2;
-			src.Height += width * 2;
-			return src;
-		}
-
 		private void UpdateButtons () 
 		{
 			left.Sensitive = (scroll_offset < 0);
@@ -657,7 +648,7 @@ namespace FSpot {
 			{
 				Rectangle box = InnerBounds ();
 
-				box = Expand (box, border);
+				box.Inflate  (border, border);
 				box.Height += handle_height;
 				
 				return box;
@@ -675,7 +666,7 @@ namespace FSpot {
 					box.Width -= 1;
 					box.Height -= 1;
 					while (i < border) {
-						box = Expand (box, 1);
+						boc.Inflate (1, 1);
 						
 						selector.Style.BackgroundGC (State).ClipRectangle = area;
 						selector.GdkWindow.DrawRectangle (selector.Style.BackgroundGC (State), 

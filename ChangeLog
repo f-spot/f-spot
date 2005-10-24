@@ -1,5 +1,10 @@
 2005-10-24  Larry Ewing  <lewing@novell.com>
 
+	* src/GroupSelector.cs: use Inflate.
+
+	* src/IconView.cs: use the Inflate method on Gdk.Rectangle now
+	that it exists.
+
 	* libfspot/f-pixbuf-utils.h: remove the old rotate90 and mirror
 	functions.
 
