@@ -88,7 +88,9 @@ namespace FSpot.Imaging {
 				ushort * rowpix;
 
 				fixed (ushort * pixels = &data [0]) {
-					fixed (ushort * src_pixels = &src_data [offset]) {
+					fixed (ushort * bytes = &src_data [offset]) {
+						ushort * src_pixels= (ushort *) bytes;
+
 						rowpix = pixels + i * rowstride + j;
 
 						for (int col = 0; col < count; col ++)
@@ -104,7 +106,8 @@ namespace FSpot.Imaging {
 				ushort * rowpix;
 
 				fixed (ushort * pixels = &data [0]) {
-					fixed (ushort * src_pixels = &src_data [offset]) {
+					fixed (ushort * bytes = &src_data [offset]) {
+						ushort * src_pixels = (ushort *) bytes;
 						rowpix = pixels + i * rowstride + j;
 
 						for (int col = 0; col < count; col ++)
