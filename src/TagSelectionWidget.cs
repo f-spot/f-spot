@@ -138,7 +138,7 @@ public class TagSelectionWidget : TreeView {
 		Tag [] tags = category.Children;
 
 		foreach (Tag t in tags) {
-			TreeIter iter = (Model as TreeStore).AppendValues (parent_iter, t.Id);
+			TreeIter iter = (Model as TreeStore).AppendValues (parent_iter, t.Id, t.Name);
 			if (t is Category)
 				LoadCategory (t as Category, iter);
 		}
@@ -173,7 +173,7 @@ public class TagSelectionWidget : TreeView {
 		// FIXME: This should be fixed in GTK#...  It's gross.
 
 		foreach (Tag t in tag_store.RootCategory.Children) {
-			TreeIter iter = (Model as TreeStore).AppendValues (t.Id);
+			TreeIter iter = (Model as TreeStore).AppendValues (t.Id, t.Name);
 			if (t is Category)
 				LoadCategory (t as Category, iter);
 		}
@@ -333,12 +333,12 @@ public class TagSelectionWidget : TreeView {
 		bool valid;
 		
 		store.GetValue (src, 0, ref value);
+		Tag tag = (Tag) tag_store.Get ((uint)value);
 		if (is_parent) {
-			Tag tag = (Tag) tag_store.Get ((uint)value);
 			// we need to figure out where to insert it in the correct order
 			copy = InsertInOrder(dest, is_root, tag);
 		} else { 
-			copy = store.AppendValues (dest, (uint)value);
+			copy = store.AppendValues (dest, (uint)value, tag.Name);
 		}
 		
 		valid = Model.IterChildren (out iter, src);
@@ -371,6 +371,7 @@ public class TagSelectionWidget : TreeView {
 			if (compare.CompareTo (tag) > 0) {
 				iter = store.InsertNodeBefore (iter);
 				store.SetValue (iter, 0, tag.Id);
+				store.SetValue (iter, 1, tag.Id);
 				return iter;
 			}
 			valid = store.IterNext(ref iter);
@@ -382,6 +383,7 @@ public class TagSelectionWidget : TreeView {
 			iter = store.AppendNode (); 
 
 		store.SetValue (iter, 0, tag.Id);
+		store.SetValue (iter, 1, tag.Name);
 		return iter;
 	}	
 			
@@ -425,7 +427,7 @@ public class TagSelectionWidget : TreeView {
 	// Constructor.
 
 	public TagSelectionWidget (TagStore tag_store)
-		: base (new TreeStore (typeof (uint)))
+		: base (new TreeStore (typeof (uint), typeof(string)))
 	{
 		HeadersVisible = false;
 		Selection.Mode = SelectionMode.Multiple;
@@ -433,10 +435,15 @@ public class TagSelectionWidget : TreeView {
 		CellRendererToggle toggle_renderer = new CellRendererToggle ();
 		toggle_renderer.Toggled += new ToggledHandler (OnCellToggled);
 
-		AppendColumn ("check", toggle_renderer, new TreeCellDataFunc (CheckBoxDataFunc));
-		AppendColumn ("icon", new CellRendererPixbuf (), new TreeCellDataFunc (IconDataFunc));
-		AppendColumn ("name", new CellRendererText (), new TreeCellDataFunc (NameDataFunc));
+		TreeViewColumn column;
+		column = AppendColumn ("check", toggle_renderer, new TreeCellDataFunc (CheckBoxDataFunc));
+		column.SortColumnId = 0;
 
+		AppendColumn ("icon", new CellRendererPixbuf (), new TreeCellDataFunc (IconDataFunc));
+
+		column = AppendColumn ("name", new CellRendererText (), new TreeCellDataFunc (NameDataFunc));
+		column.SortColumnId = 1;
+		
 		this.tag_store = tag_store;
 		selection = new Hashtable ();
 
@@ -445,6 +452,10 @@ public class TagSelectionWidget : TreeView {
 		tag_store.TagDeleted += new TagDeletedHandler(HandleTagDeleted);
 		tag_store.TagCreated += new TagCreatedHandler(HandleTagCreated);
 		tag_store.TagChanged += new TagChangedHandler(HandleTagChanged);
+		
+		// TODO make the search find tags that are not currently expanded
+		EnableSearch = true;
+		SearchColumn = 1;
 	}
 
 

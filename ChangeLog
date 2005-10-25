@@ -1,3 +1,8 @@
+2005-10-20  Gabriel Burt  <gabriel.burt@gmail.com>
+
+       * src/TagSelectionWidget.cs: modified Model to allow for interactive
+       searching by tag name. Fixes #316051.
+
 2005-10-25  Larry Ewing  <lewing@novell.com>
 
 	* libfspot/f-jpeg-utils.c: include patch from Luca Ferretti to
