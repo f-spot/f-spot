@@ -615,16 +615,16 @@ namespace FSpot {
 		}
 		
 		private class Glass : Manipulator {
-			Gtk.Window popup_widow;
+			Gtk.Window popup_window;
 			Gtk.Label popup_label;
 			int drag_position;
 
 			public Glass (GroupSelector selector) : base (selector) 
 			{
-				popup_widow = new Gtk.Window (Gtk.WindowType.Popup);
+				popup_window = new TipWindow ();
 				popup_label = new Gtk.Label ("");
 				popup_label.Show ();
-				popup_widow.Add (popup_label);
+				popup_window.Add (popup_label);
 			}
 
 			private int handle_height = 15;
@@ -638,21 +638,21 @@ namespace FSpot {
 			{
 				int x = 0, y = 0;				
 				Rectangle bounds = Bounds ();
-				Requisition requisition = popup_widow.SizeRequest ();
-				popup_widow.Resize  (requisition.Width, requisition.Height);
+				Requisition requisition = popup_window.SizeRequest ();
+				popup_window.Resize  (requisition.Width, requisition.Height);
 				selector.GdkWindow.GetOrigin (out x, out y);
 				x += bounds.X + (bounds.Width - requisition.Width) / 2;
 				y += bounds.Y - requisition.Height;
 				x = Math.Max (x, 0);
 				x = Math.Min (x, selector.Screen.Width - requisition.Width);
-				popup_widow.Move (x, y);
+				popup_window.Move (x, y);
 			}
 
 			public override void StartDrag (double x, double y, uint time)
 			{
 				base.StartDrag (x, y, time);
 				popup_label.Text = selector.Adaptor.GlassLabel (this.Position);
-				popup_widow.Show ();
+				popup_window.Show ();
 				UpdatePopupPosition ();
 				drag_position = this.Position;
 			}
@@ -687,7 +687,7 @@ namespace FSpot {
 				this.SetPosition (position);
 				State = StateType.Prelight;
 				Dragging = false;
-				popup_widow.Hide ();
+				popup_window.Hide ();
 			}
 
 			private Rectangle InnerBounds ()

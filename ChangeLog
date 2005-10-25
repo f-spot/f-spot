@@ -1,5 +1,11 @@
 2005-10-25  Larry Ewing  <lewing@novell.com>
 
+	* src/GroupSelector.cs: use TipWindow.
+
+	* src/Makefile.am: add TipWindow.cs.
+	
+	* src/TipWindow.cs: simple class to get closer to tooltip appearance.
+
 	* src/TimeAdaptor.cs: use the fullname of the month in the tip.
 
 	* src/GroupSelector.cs: rework some of the scrolling logic.
