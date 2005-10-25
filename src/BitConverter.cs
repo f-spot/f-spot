@@ -1,3 +1,6 @@
+using System;
+using System.Runtime.InteropServices;
+
 namespace FSpot {
 	public class BitConverter {
 		public static uint Swap (uint val, bool little) 
@@ -64,6 +67,17 @@ namespace FSpot {
 		{
 			uint val = System.BitConverter.ToUInt32 (data, position);
 			return Swap (val, little);
+		}
+
+		public static float ToSingle (byte [] data, int position, bool little)
+		{
+			float retval;
+			unsafe {
+				uint * ptr;
+				ptr = (uint *)&retval;
+				*ptr = ToUInt32 (data, position, little);
+			}
+			return retval;
 		}
 
 		public static int ToInt32 (byte [] data, int position, bool little)

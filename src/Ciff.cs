@@ -1,3 +1,5 @@
+using System;
+
 namespace FSpot.Ciff {
 	public enum Tag {
 		// Byte valuesad
@@ -83,6 +85,8 @@ namespace FSpot.Ciff {
 		ExifInformation = 0x300b
 	}
 
+	
+
 	public struct ImageSpec {
 		public uint ImageWidth;  // Number of horizontal pixels
 		public uint ImageHeight; // Number of vertical pixels
@@ -96,10 +100,8 @@ namespace FSpot.Ciff {
 		{
 			ImageWidth = BitConverter.ToUInt32 (data, 0, little);
 			ImageHeight = BitConverter.ToUInt32 (data, 4, little);
-			unsafe {
-				float *p = &PixelAspectRatio;
-				*((uint *)p) = BitConverter.ToUInt32 (data, 8, little);
-			}
+
+			PixelAspectRatio = BitConverter.ToSingle (data, 8, little);
 			RotationAngle = BitConverter.ToInt32 (data, 12, little);
 			ComponentBitDepth = BitConverter.ToUInt32 (data, 16, little);
 			ColorBitDepth = BitConverter.ToUInt32 (data, 20, little);

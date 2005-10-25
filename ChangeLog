@@ -1,5 +1,9 @@
 2005-10-25  Larry Ewing  <lewing@novell.com>
 
+	* src/Ciff.cs: use ToSingle;
+
+	* src/BitConverter.cs: add ToSingle method.
+
 	* src/Makefile.am (F_SPOT_CSDISTFILES): ignore obsolete wanring on
 	Mono.Posix.GetString.
 
