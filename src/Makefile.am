@@ -1,4 +1,4 @@
-CSC = mcs -unsafe -debug -nowarn:0169 -nowarn:0612 -d:TEST_METADATA
+CSC = mcs -unsafe -debug -nowarn:0618 -nowarn:0169 -nowarn:0612 -d:TEST_METADATA
 
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/AsyncPixbufLoader.cs		\

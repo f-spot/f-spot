@@ -1,5 +1,8 @@
 2005-10-25  Larry Ewing  <lewing@novell.com>
 
+	* src/Makefile.am (F_SPOT_CSDISTFILES): ignore obsolete wanring on
+	Mono.Posix.GetString.
+
 	* src/Cms.cs: remove the size specifier.
 
 	* src/GroupSelector.cs: use TipWindow.
