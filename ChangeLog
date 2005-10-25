@@ -1,5 +1,7 @@
 2005-10-25  Larry Ewing  <lewing@novell.com>
 
+	* src/TimeAdaptor.cs: use the fullname of the month in the tip.
+
 	* src/GroupSelector.cs: rework some of the scrolling logic.
 
 	* src/Cms.cs: add ctor for linearization devicelink profile.
