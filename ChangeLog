@@ -1,5 +1,9 @@
 2005-10-25  Larry Ewing  <lewing@novell.com>
 
+	* src/GroupSelector.cs: rework some of the scrolling logic.
+
+	* src/Cms.cs: add ctor for linearization devicelink profile.
+	
 	* src/Cms.cs: set the error action to only display the error
 	message for now.
 
@@ -32,7 +36,7 @@
 2005-10-22  Larry Ewing  <lewing@novell.com>
 
 	* src/DirectoryCollection.cs: add File collection.
-
+bN	
 	* src/TagSelectionWidget.cs: fixup, colors to work with themes,
 	use new gtk# functions for treeiters cleanup formatting.
 

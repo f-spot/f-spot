@@ -28,10 +28,13 @@ namespace FSpot {
 		public Gdk.Rectangle legend;
 		public Gdk.Rectangle action;
 
-		int    box_count_max;
-		int [] box_counts = new int [0];
+
 		Pango.Layout [] tick_layouts;
-		bool   has_limits;
+		int [] box_counts = new int [0];
+		int box_count_max;
+		int min_filled;
+		int max_filled;
+		bool has_limits;
 		
 		protected FSpot.GroupAdaptor adaptor;
 		public FSpot.GroupAdaptor Adaptor {
@@ -40,15 +43,15 @@ namespace FSpot {
 					adaptor.Changed -= HandleAdaptorChanged;
 
 				adaptor = value;
+				HandleAdaptorChanged (adaptor);
 				has_limits = adaptor is FSpot.ILimitable;				
 
 				if (has_limits) {
 				    min_limit.SetPosition (0, false);
 				    max_limit.SetPosition (adaptor.Count () - 1, false);
 				}
-
+				
 				adaptor.Changed += HandleAdaptorChanged;
-				HandleAdaptorChanged (adaptor);
 			}
 			get {
 				return adaptor;
@@ -87,19 +90,41 @@ namespace FSpot {
 				min_limit.SetPosition (0, false);
 				max_limit.SetPosition (adaptor.Count () - 1, false);
 			}
+			
+			for (i = min_limit.Position; i < box_counts.Length; i++)
+				if (box_counts [i] > 0)
+						break;
+			
+			SetPosition (i < box_counts.Length ? i : min_limit.Position);
+			ScrollTo (min_limit.Position);
+
 			this.QueueDraw ();
 		}
 		
 		private int [] Counts {
 			set {
+				bool min_found = false;
 				box_count_max = 0;
-				foreach (int count in value)
-					box_count_max = Math.Max (count, box_count_max);
-				
+				min_filled = 0;
+				max_filled = 0;
+
 				if (value != null)
 					box_counts = value;
 				else
 					value = new int [0];
+
+				for (int i = 0; i < box_counts.Length; i++){
+					int count = box_counts [i];
+					box_count_max = Math.Max (count, box_count_max);
+
+					if (count > 0) { 
+						if (!min_found) {
+							min_filled = i;
+							min_found = true;
+						}
+						max_filled = i;
+					}
+				}
 			}
 		}
 
@@ -123,8 +148,14 @@ namespace FSpot {
 
 		private void ScrollTo (int position)
 		{
-			Gdk.Rectangle box = BoxBounds (position);
-			if (box.X + box.Width > background.X + background.Width)
+			if (position ==  min_filled)
+				position = 0;
+			else if (position == max_filled)
+				position = box_counts.Length - 1;
+			
+			Gdk.Rectangle box = new Box (this, position).Bounds;
+
+			if (box.Right > background.Right)
 			        Offset -= box.X + box.Width - (background.X + background.Width);
 			else if (box.X < background.X)
 				Offset += background.X - box.X;
@@ -163,17 +194,6 @@ namespace FSpot {
 
 			if (!right.Sensitive && right_delay.IsPending)
 				right_delay.Stop ();
-		}
-
-		static bool IsInside (Rectangle bounds, double x, double y) 
-		{
-			if (x >= bounds.X && 
-			    x < bounds.X + bounds.Width && 
-			    y >= bounds.Y &&
-			    y < bounds.Y + bounds.Height)
-				return true;
-
-			return false;
 		}
 
 		private void BoxXHitFilled (double x, out int out_position)
@@ -225,7 +245,9 @@ namespace FSpot {
 		private bool BoxHit (double x, double y, out int position) 
 		{
 			if (BoxXHit (x, out position)) {
-				if (IsInside (BoxBounds (position), x, y))
+				Box box = new Box (this, position);
+
+				if (box.Bounds.Contains ((int) x, (int) y))
 					return true;
 
 				position++;
@@ -244,11 +266,11 @@ namespace FSpot {
 			double x = args.X + action.X;
 			double y = args.Y + action.Y;
 
-			if (glass.IsInside (x, y)) {
+			if (glass.Contains (x, y)) {
 				glass.StartDrag (x, y, args.Time);
-			} else if (has_limits && min_limit.IsInside (x, y)) {
+			} else if (has_limits && min_limit.Contains (x, y)) {
 				min_limit.StartDrag (x, y, args.Time);
-			} else if (has_limits && max_limit.IsInside (x, y)) {
+			} else if (has_limits && max_limit.Contains (x, y)) {
 				max_limit.StartDrag (x, y, args.Time);
 			} else {
 				int position;
@@ -300,9 +322,9 @@ namespace FSpot {
 			} else if (max_limit.Dragging) {
 				max_limit.UpdateDrag (x, y);
 			} else {
-				glass.State = glass.IsInside (x, y) ? StateType.Prelight : StateType.Normal;
-				min_limit.State = min_limit.IsInside (x, y) ? StateType.Prelight : StateType.Normal;
-				max_limit.State = max_limit.IsInside (x, y) ? StateType.Prelight : StateType.Normal;
+				glass.State = glass.Contains (x, y) ? StateType.Prelight : StateType.Normal;
+				min_limit.State = min_limit.Contains (x, y) ? StateType.Prelight : StateType.Normal;
+				max_limit.State = max_limit.Contains (x, y) ? StateType.Prelight : StateType.Normal;
 			}
 
 			return base.OnMotionNotifyEvent (args);
@@ -360,38 +382,44 @@ namespace FSpot {
 		{
 			 return scroll_offset + background.X + (int) Math.Round (BoxWidth * item);
 		}
-		
-		public Rectangle BoxBounds (int item) 
-		{
-			Rectangle box = Rectangle.Zero;
-			box.Height = background.Height;
-			box.Y = background.Y;
+
+		private struct Box {
+			Gdk.Rectangle bounds;
+			Gdk.Rectangle bar;
 			
-			box.X = BoxX (item);
-			box.Width = Math.Max (BoxX (item + 1) - box.X, 1);
+			public Box (GroupSelector selector, int item)
+			{
+				bounds.Height = selector.background.Height;
+				bounds.Y = selector.background.Y;
+				bounds.X = selector.BoxX (item);
+				bounds.Width = Math.Max (selector.BoxX (item + 1) - bounds.X, 1);
+				
+				double percent = selector.box_counts [item] / (double) Math.Max (selector.box_count_max, 1);
+				bar = bounds;
+				bar.Height = (int) Math.Ceiling ((bounds.Height - selector.box_top_padding) * percent);
+				bar.Y += bounds.Height - bar.Height - 1;
+				
+				bar.Inflate (-selector.box_spacing, 0);
+			}
+			
+			public Gdk.Rectangle Bounds {
+				get {
+					return bounds;
+				}
+			}
 
-			return box;
-		}
+			public Gdk.Rectangle Bar {
+				get {
+					return bar;
+				}
+			}
 
-	        public Rectangle BoxBarBounds (int item)
-		{
-			double percent = box_counts [item] / (double) Math.Max (box_count_max, 1);
-
-			Rectangle box = BoxBounds (item);
-			Rectangle bar;
-
-			bar.Height = (int) Math.Ceiling ((box.Height - box_top_padding) * percent);
-			bar.Y = box.Y + box.Height - bar.Height - 1;
-
-		        bar.X = box.X + box_spacing;
-			bar.Width = box.Width - box_spacing * 2;
-
-			return bar;
 		}
 
 		private void DrawBox (Rectangle area, int item) 
 		{
-			Rectangle bar = BoxBarBounds (item);
+			Box box = new Box (this, item);
+			Rectangle bar = box.Bar;
 			
 			if (bar.Intersect (area, out area)) {
 				if (item < min_limit.Position || item > max_limit.Position) {
@@ -447,12 +475,18 @@ namespace FSpot {
 			}
 		}
 
-		public class Manipulator {
+		public abstract class Manipulator {
 			protected GroupSelector selector;
+			protected Delay timer;
 			public bool Dragging;
-
 			public Point DragStart;
 
+			public Manipulator (GroupSelector selector) 
+			{
+				this.selector = selector;
+				timer = new Delay (50, new GLib.IdleHandler (DragTimeout)); 
+			}
+			
 			protected int drag_offset;
 			public int DragOffset {
 				set {
@@ -476,18 +510,43 @@ namespace FSpot {
 			public virtual void StartDrag (double x, double y, uint time) 
 			{
 				State = StateType.Active;
+				timer.Start ();
 				Dragging = true;
 				DragStart.X = (int)x;
 				DragStart.Y = (int)y;	
 			}
 
+			private bool DragTimeout ()
+			{
+				int x, y;
+				selector.GetPointer (out x, out y);
+				x += selector.Allocation.X;
+				y += selector.Allocation.Y;
+				UpdateDrag ((double) x, (double) y);
+
+				return true;
+			}
+
 			public virtual void UpdateDrag (double x, double y)
 			{
+				Rectangle bounds = Bounds ();
+
+				int scroll = selector.background.X - bounds.Left;
+				if (scroll > 0 && selector.Offset < 0) {
+					selector.Offset = Math.Min (selector.Offset + scroll, 0);
+					if (selector.Offset == 0)
+						return;
+				}
+
+				System.Console.WriteLine ("scroll {0}, x {1}", scroll, x);
+
 				DragOffset = (int)x - DragStart.X;
 			}
 
 			public virtual void EndDrag (double x, double y)
 			{
+				timer.Stop ();
+
 				Rectangle box = Bounds ();
 				double middle = box.X + (box.Width / 2.0);
 
@@ -543,30 +602,15 @@ namespace FSpot {
 				}
 			}
 
-			public virtual void Draw (Rectangle area)
-			{
-				Console.WriteLine ("implement me Draw ({0})", area);
-			}
+			public abstract void Draw (Rectangle area);
 			
-			public virtual void PositionChanged ()
-			{
-				throw new Exception ("Unimplemented");
-			}
+			public abstract void PositionChanged ();
 
-			public virtual Rectangle Bounds () 
-			{
-				Console.WriteLine ("implement me Bounds ()");
-				return Rectangle.Zero;
-			}
+			public abstract Rectangle Bounds ();
 
-			public virtual bool IsInside (double x, double y)
+			public virtual bool Contains (double x, double y)
 			{
-				return GroupSelector.IsInside (Bounds (), x, y);
-			}
-
-			public Manipulator (GroupSelector selector) 
-			{
-				this.selector = selector;
+				return Bounds ().Contains ((int)x, (int)y);
 			}
 		}
 		
@@ -575,8 +619,15 @@ namespace FSpot {
 			Gtk.Label popup_label;
 			int drag_position;
 
-			private int handle_height = 15;
+			public Glass (GroupSelector selector) : base (selector) 
+			{
+				popup_widow = new Gtk.Window (Gtk.WindowType.Popup);
+				popup_label = new Gtk.Label ("");
+				popup_label.Show ();
+				popup_widow.Add (popup_label);
+			}
 
+			private int handle_height = 15;
 			private int border {
 				get {
 					return selector.box_spacing * 2;
@@ -624,6 +675,8 @@ namespace FSpot {
 
 			public override void EndDrag (double x, double y)
 			{
+				timer.Stop ();
+
 				Rectangle box = Bounds ();
 				double middle = box.X + (box.Width / 2.0);
 
@@ -639,7 +692,7 @@ namespace FSpot {
 
 			private Rectangle InnerBounds ()
 			{
-				Rectangle box = selector.BoxBounds (Position);
+				Rectangle box = new Box (selector, Position).Bounds;
 				box.X += DragOffset;
 				return box;
 			}
@@ -666,7 +719,7 @@ namespace FSpot {
 					box.Width -= 1;
 					box.Height -= 1;
 					while (i < border) {
-						boc.Inflate (1, 1);
+						box.Inflate (1, 1);
 						
 						selector.Style.BackgroundGC (State).ClipRectangle = area;
 						selector.GdkWindow.DrawRectangle (selector.Style.BackgroundGC (State), 
@@ -698,14 +751,8 @@ namespace FSpot {
 					selector.adaptor.SetGlass (Position);
 				selector.ScrollTo (Position);
 			}
-
 			
-			public Glass (GroupSelector selector) : base (selector) {
-				popup_widow = new Gtk.Window (Gtk.WindowType.Popup);
-				popup_label = new Gtk.Label ("");
-				popup_label.Show ();
-				popup_widow.Add (popup_label);
-			}
+
 		}
 
 		public class Limit : Manipulator {
