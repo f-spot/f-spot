@@ -184,7 +184,7 @@ namespace FSpot.Tiff {
 		SensingMethod			= 0xa217,
 		FileSource			= 0xa300,
 		SceneType			= 0xa301,
-		NewCFAPattern		        = 0xa302,
+		ExifCFAPattern		        = 0xa302,
 		CustomRendered  		= 0xa401,
 		ExposureMode			= 0xa402,
 		WhiteBalance			= 0xa403,
@@ -358,13 +358,29 @@ namespace FSpot.Tiff {
 		public ushort Rows;
 		public ushort Columns;
 		public byte [] Values;
-		
+
 		public CFAPattern (byte [] raw_data, bool little)
 		{
 			Columns = BitConverter.ToUInt16 (raw_data, 0, little);
 			Rows = BitConverter.ToUInt16 (raw_data, 2, little);
+
 			Values = new byte [Rows * Columns];
 			System.Array.Copy (raw_data, 4, Values, 0, Values.Length);
+		}
+
+		/* 
+		 * Note the Exif spec defines a CFA pattern tag that includes the row and column counts as shorts
+		 * inside the first four bytes of the entry.  The Tiff-EP standard define the CFARepeatPattern tag
+		 * that contains the row and column counts presumably since the Exif version wouldn't allow you to
+		 * alter the endian of the file without knowing the tag layout.
+		 */
+		
+		public CFAPattern (ushort rows, ushort cols, byte [] raw_data,  bool little)
+		{
+			Columns = rows;
+			Rows = cols;
+			Values = new byte [rows * cols];
+			System.Array.Copy (raw_data, 0, Values, 0, Values.Length);
 		}
 	}
 
@@ -538,7 +554,6 @@ namespace FSpot.Tiff {
 		Hard = 2
 	}
 
-
 	public enum LightSource {
 		Unknown = 0,
 		Daylight = 1,
@@ -596,10 +611,9 @@ namespace FSpot.Tiff {
 
 	[System.Flags]
 	public enum NewSubfileType : uint {
-		SingleImage = 0,
-		ReducedResolutionFlag = 1,
-		PageOfMultipageFlag = 1 << 1,
-		TransparencyMaskFlag = 1 << 2
+		ReducedResolution = 1,
+		PageOfMultipage= 1 << 1,
+		TransparencyMask = 1 << 2
 	}
 
 	public enum EntryType {
@@ -755,7 +769,7 @@ namespace FSpot.Tiff {
 			}
 		}
 
-		private void SelectDirectory (ImageDirectory dir, StatementSink sink)
+		public void SelectDirectory (ImageDirectory dir, StatementSink sink)
 		{
 			foreach (DirectoryEntry e in dir.Entries) {
 				//System.Console.WriteLine ("{0}", e.Id);
@@ -815,7 +829,7 @@ namespace FSpot.Tiff {
 					//case TagId.Flash:
 					
 					//case TagId.SpatialFrequencyResponse
-				case TagId.CFAPattern:
+				case TagId.ExifCFAPattern:
 					CFAPattern pattern = new CFAPattern (e.RawData, e.IsLittle);
 					Entity empty = new Entity (null);
 					Statement top = new Statement ("", 
@@ -1735,13 +1749,12 @@ namespace FSpot.Tiff {
 			}
 		}
 
-		public void Select (SemWeb.StatementSink sink)
+		public virtual void Select (SemWeb.StatementSink sink)
 		{
-			Header.Select (sink);
+			Header.SelectDirectory (Header.Directory, sink);
 		}
 
-		public override System.DateTime Date
-		{
+		public override System.DateTime Date {
 			get {
 				AsciiEntry e = (AsciiEntry)(this.Header.Directory.Lookup (TagId.DateTime));
 				
@@ -1820,6 +1833,40 @@ namespace FSpot.Tiff {
 	public class NefFile : TiffFile, IThumbnailContainer {
 		public NefFile (string path) : base (path) 
 		{
+		}
+
+		public override void Select (SemWeb.StatementSink sink)
+		{
+			DirectoryEntry e = Header.Directory.Lookup (TagId.NewSubfileType);
+
+			if (e == null) {
+				base.Select (sink);
+				return;
+			}
+
+			ImageDirectory dir = Header.Directory;
+			SubdirectoryEntry sub = (SubdirectoryEntry) dir.Lookup (TagId.ExifIfdPointer);
+			
+			if (sub != null)
+				Header.SelectDirectory (sub.Directory [0], sink);
+			
+			sub = (SubdirectoryEntry) Header.Directory.Lookup (TagId.SubIFDs);	
+
+			int i = 0;
+			do {
+				uint dirtype = e.ValueAsLong [0];
+				if (dirtype == 0) {
+					Header.SelectDirectory (dir, sink);
+					break;
+				}
+					
+				if (sub == null)
+					break;
+
+				dir = sub.Directory [i];
+				e = dir.Lookup (TagId.NewSubfileType);
+				i++;
+			} while (i < sub.Directory.Length);
 		}
 
 		public Gdk.Pixbuf GetEmbeddedThumbnail ()

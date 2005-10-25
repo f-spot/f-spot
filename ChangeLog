@@ -1,4 +1,11 @@
+2005-10-25  Larry Ewing  <lewing@novell.com>
+
+	* src/Tiff.cs: add logic to find the right subfile in NefFile.
+	Fix broken CFA parsing logic.
+
 2005-10-24  Larry Ewing  <lewing@novell.com>
+
+	* src/Tiff.cs: 
 
 	* src/TimeAdaptor.cs: Reverse the time sorting.
 
