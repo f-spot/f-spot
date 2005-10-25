@@ -19,6 +19,34 @@ namespace Cms {
 		Rgb16se = 264218
 	}
 
+	public enum IccColorSpace : uint {
+		XYZ                        = 0x58595A20,  /* 'XYZ ' */
+		Lab                        = 0x4C616220L,  /* 'Lab ' */
+		Luv                        = 0x4C757620L,  /* 'Luv ' */
+		YCbCr                      = 0x59436272L,  /* 'YCbr' */
+		Yxy                        = 0x59787920L,  /* 'Yxy ' */
+		Rgb                        = 0x52474220L,  /* 'RGB ' */
+		Gray                       = 0x47524159L,  /* 'GRAY' */
+		Hsv                        = 0x48535620L,  /* 'HSV ' */
+		Hls                        = 0x484C5320L,  /* 'HLS ' */
+		Cmyk                       = 0x434D594BL,  /* 'CMYK' */
+		Cmy                        = 0x434D5920L,  /* 'CMY ' */
+		Color2                     = 0x32434C52L,  /* '2CLR' */
+		Color3                     = 0x33434C52L,  /* '3CLR' */
+		Color4                     = 0x34434C52L,  /* '4CLR' */
+		Color5                     = 0x35434C52L,  /* '5CLR' */
+		Color6                     = 0x36434C52L,  /* '6CLR' */
+		Color7                     = 0x37434C52L,  /* '7CLR' */
+		Color8                     = 0x38434C52L,  /* '8CLR' */
+		Color9                     = 0x39434C52L,  /* '9CLR' */
+		Color10                    = 0x41434C52L,  /* 'ACLR' */
+		Color11                    = 0x42434C52L,  /* 'BCLR' */
+		Color12                    = 0x43434C52L,  /* 'CCLR' */
+		Color13                    = 0x44434C52L,  /* 'DCLR' */
+		Color14                    = 0x45434C52L,  /* 'ECLR' */
+		Color15                    = 0x46434C52L,  /* 'FCLR' */
+	}
+
 	public enum Intent {
 		Perceptual = 0,
 		RelativeColorimetric = 1,
@@ -321,7 +349,17 @@ namespace Cms {
 									   TempDest));
 		}
 
-		//public static Profile CreateLinearizationDeviceLink (
+		[DllImport("liblcms-1.0.0.dll")]
+		static extern IntPtr cmsCreateLinearizationDeviceLink (IccColorSpace color_space, HandleRef [] tables);
+		
+		public Profile (IccColorSpace color_space, GammaTable [] gamma)
+		{
+			HandleRef [] gamma_handles = new HandleRef [gamma.Length];
+			for (int i = 0; i < gamma_handles.Length; i++)
+				gamma_handles [i] = gamma [i].Handle;
+
+			handle = new HandleRef (this, cmsCreateLinearizationDeviceLink (color_space, gamma_handles));
+		}
 
 		[DllImport("liblcms-1.0.0.dll")]
 		static extern IntPtr cmsCreateRGBProfile (out ColorCIExyY whitepoint, 
