@@ -232,6 +232,11 @@ namespace Cms {
 	public class Profile : IDisposable {
 		static Profile srgb = new Profile (cmsCreate_sRGBProfile());
 
+		static Profile ()
+		{
+			SetErrorAction (ErrorAction.Show);
+		}
+
 		private HandleRef handle;
 		public HandleRef Handle {
 			get {
@@ -289,6 +294,7 @@ namespace Cms {
 			return new Profile (profile);
 		}
 
+
 		[DllImport("liblcms-1.0.0.dll")]
 		static extern IntPtr cmsCreateBCHSWabstractProfile(int nLUTPoints,
 								   double Bright, 
@@ -315,6 +321,7 @@ namespace Cms {
 									   TempDest));
 		}
 
+		//public static Profile CreateLinearizationDeviceLink (
 
 		[DllImport("liblcms-1.0.0.dll")]
 		static extern IntPtr cmsCreateRGBProfile (out ColorCIExyY whitepoint, 
@@ -408,6 +415,20 @@ namespace Cms {
 					return Marshal.PtrToStringAnsi (cmsTakeProductDesc (handle));
 				}
 			}
+		}
+
+		private enum ErrorAction {
+			Abort,
+			Show,
+			Ignore
+		}
+
+		[DllImport("liblcms-1.0.0.dll")]
+		static extern void cmsErrorAction (ErrorAction action);
+
+		private static void SetErrorAction (ErrorAction act)
+		{
+			cmsErrorAction (act);
 		}
 
 		public override string ToString ()

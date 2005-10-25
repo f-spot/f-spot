@@ -1,5 +1,8 @@
 2005-10-25  Larry Ewing  <lewing@novell.com>
 
+	* src/Cms.cs: set the error action to only display the error
+	message for now.
+
 	* src/Tiff.cs: add logic to find the right subfile in NefFile.
 	Fix broken CFA parsing logic.
 
