@@ -1,5 +1,7 @@
 2005-10-25  Larry Ewing  <lewing@novell.com>
 
+	* src/PixelBuffer.cs: make the cast explicit.
+
 	* src/Ciff.cs: use ToSingle;
 
 	* src/BitConverter.cs: add ToSingle method.

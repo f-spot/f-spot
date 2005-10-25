@@ -54,7 +54,8 @@ namespace FSpot.Imaging {
 		{
 			ushort * rowpix;
 			
-			fixed (ushort * pixels = &data [0]) {
+			fixed (ushort * bytes = &data [0]) {
+				ushort * pixels = (ushort *)bytes;
 				rowpix = pixels + i * rowstride + j;
 				
 					for (int col = 0; col < count; col++) {
