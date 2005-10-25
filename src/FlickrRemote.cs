@@ -73,7 +73,7 @@ public class FlickrRemote {
 				StringBuilder taglist = new StringBuilder ();
 				
 				foreach (Tag t in photo.Tags) {
-					taglist.Append (t.Name + " ");
+					taglist.Append ("\"" + t.Name + "\" ");
 				}
 				
 				client.Add ("tags", taglist.ToString ());
