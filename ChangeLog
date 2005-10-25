@@ -1,5 +1,8 @@
 2005-10-25  Larry Ewing  <lewing@novell.com>
 
+	* libfspot/f-jpeg-utils.c: include patch from Luca Ferretti to
+	fix libexif header inclusion.
+
 	* src/PixelBuffer.cs: more fixes.
 
 	* src/PixelBuffer.cs: make the casts explicit.

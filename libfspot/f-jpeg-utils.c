@@ -49,9 +49,9 @@
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
 
-#include <exif-data.h>
-#include <exif-content.h>
-#include <exif-entry.h>
+#include <libexif/exif-data.h>
+#include <libexif/exif-content.h>
+#include <libexif/exif-entry.h>
 
 #define BUFFER_SIZE 8192
 
