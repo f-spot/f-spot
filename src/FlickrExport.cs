@@ -37,6 +37,13 @@ namespace FSpot {
 
 			Dialog.ShowAll ();
 			Dialog.Response += HandleResponse;
+
+			LoadPreference (Preferences.EXPORT_FLICKR_SCALE);
+			LoadPreference (Preferences.EXPORT_FLICKR_SIZE);
+			LoadPreference (Preferences.EXPORT_FLICKR_BROWSER);
+			LoadPreference (Preferences.EXPORT_FLICKR_TAGS);
+			LoadPreference (Preferences.EXPORT_FLICKR_STRIP_META);
+			LoadPreference (Preferences.EXPORT_FLICKR_EMAIL);
 		}
 
 		public void HandleSizeActive (object sender, System.EventArgs args)
@@ -140,6 +147,14 @@ namespace FSpot {
 				Dialog.Destroy ();
 				progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Count);
 				progress_dialog.Start ();
+
+				// Save these settings for next time
+				Preferences.Set (Preferences.EXPORT_FLICKR_SCALE, scale);
+				Preferences.Set (Preferences.EXPORT_FLICKR_SIZE, size);
+				Preferences.Set (Preferences.EXPORT_FLICKR_BROWSER, open);
+				Preferences.Set (Preferences.EXPORT_FLICKR_TAGS, tag_check.Active);
+				Preferences.Set (Preferences.EXPORT_FLICKR_STRIP_META, meta_check.Active);
+				Preferences.Set (Preferences.EXPORT_FLICKR_EMAIL, email_entry.Text);
 			} else {
 				HigMessageDialog md = new HigMessageDialog (Dialog, 
 									    Gtk.DialogFlags.Modal |
@@ -150,6 +165,46 @@ namespace FSpot {
 				md.Run ();
 				md.Destroy ();
 				return;
+			}
+		}
+
+		void LoadPreference (string key)
+		{
+			object val = Preferences.Get (key);
+
+			if (val == null)
+				return;
+			
+			//System.Console.WriteLine("Setting {0} to {1}", key, val);
+
+			switch (key) {
+			case Preferences.EXPORT_FLICKR_SCALE:
+				if (scale_check.Active != (bool) val)
+					scale_check.Active = (bool) val;
+				break;
+
+			case Preferences.EXPORT_FLICKR_SIZE:
+				size_spin.Value = (double) (int) val;
+				break;
+
+			case Preferences.EXPORT_FLICKR_BROWSER:
+				if (open_check.Active != (bool) val)
+					open_check.Active = (bool) val;
+				break;
+
+			case Preferences.EXPORT_FLICKR_TAGS:
+				if (tag_check.Active != (bool) val)
+					tag_check.Active = (bool) val;
+				break;
+
+			case Preferences.EXPORT_FLICKR_STRIP_META:
+				if (meta_check.Active != (bool) val)
+					meta_check.Active = (bool) val;
+				break;
+
+			case Preferences.EXPORT_FLICKR_EMAIL:
+				email_entry.Text = (string) val;
+				break;
 			}
 		}
 	}

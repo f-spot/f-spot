@@ -245,6 +245,11 @@ namespace FSpot {
 			connect = true;
 			HandleSizeActive (null, null);
 			Connect ();
+
+			LoadPreference (Preferences.EXPORT_GALLERY_SCALE);
+			LoadPreference (Preferences.EXPORT_GALLERY_SIZE);
+			LoadPreference (Preferences.EXPORT_GALLERY_BROWSER);
+			LoadPreference (Preferences.EXPORT_GALLERY_META);
 		}
 		
 		Gtk.ResponseHandler rh;
@@ -388,6 +393,12 @@ namespace FSpot {
 				
 				progress_dialog = new FSpot.ThreadProgressDialog (command_thread, photos.Length);
 				progress_dialog.Start ();
+
+				// Save these settings for next time
+				Preferences.Set (Preferences.EXPORT_GALLERY_SCALE, scale);
+				Preferences.Set (Preferences.EXPORT_GALLERY_SIZE, size);
+				Preferences.Set (Preferences.EXPORT_GALLERY_BROWSER, browser);
+				Preferences.Set (Preferences.EXPORT_GALLERY_META, meta);
 			}
 		}
 		
@@ -575,6 +586,37 @@ namespace FSpot {
 		public void HandleAddAlbum (object sender, System.EventArgs args)
 		{
 			album_add = new GalleryAddAlbum (account.Gallery);
+		}
+
+		void LoadPreference (string key)
+		{
+			object val = Preferences.Get (key);
+
+			if (val == null)
+				return;
+			
+			//System.Console.WriteLine("Setting {0} to {1}", key, val);
+
+			switch (key) {
+			case Preferences.EXPORT_GALLERY_SCALE:
+				if (scale_check.Active != (bool) val)
+					scale_check.Active = (bool) val;
+				break;
+
+			case Preferences.EXPORT_GALLERY_SIZE:
+				size_spin.Value = (double) (int) val;
+				break;
+			
+			case Preferences.EXPORT_GALLERY_BROWSER:
+				if (browser_check.Active != (bool) val)
+					browser_check.Active = (bool) val;
+				break;
+			
+			case Preferences.EXPORT_GALLERY_META:
+				if (meta_check.Active != (bool) val)
+					meta_check.Active = (bool) val;
+				break;
+			}
 		}
 	}
 }

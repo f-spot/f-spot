@@ -1069,7 +1069,12 @@ public class IconView : Gtk.Layout {
 		}
 	}
 
-	public void ScrollTo (int cell_num)
+ 	public void ScrollTo (int cell_num)
+ 	{
+		ScrollTo (cell_num, true);
+	}
+
+	public void ScrollTo (int cell_num, bool center)
 	{
 		if (!IsRealized)
 			return;
@@ -1083,7 +1088,10 @@ public class IconView : Gtk.Layout {
 		if (y + cell_height > adjustment.Upper)
 			UpdateLayout ();
 
-		adjustment.Value = y + cell_height / 2 - adjustment.PageSize / 2;
+		if (center)
+			adjustment.Value = y + cell_height / 2 - adjustment.PageSize / 2;
+		else
+			adjustment.Value = y;
 		
 		adjustment.ChangeValue ();
 

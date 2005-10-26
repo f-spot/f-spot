@@ -10,6 +10,8 @@ using System.Collections;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 
+using FSpot;
+
 using LibGPhoto2;
 
 public class MainWindow {
@@ -19,6 +21,8 @@ public class MainWindow {
 
 	TagSelectionWidget tag_selection_widget;
 	[Glade.Widget] Gtk.Window main_window;
+
+	[Glade.Widget] Gtk.HPaned main_hpaned;
 	[Glade.Widget] Gtk.VBox left_vbox;
 	[Glade.Widget] Gtk.VBox group_vbox;
 	[Glade.Widget] Gtk.VBox view_vbox;
@@ -60,7 +64,11 @@ public class MainWindow {
 	[Glade.Widget] MenuItem sharpen;
 	[Glade.Widget] MenuItem remove_from_catalog;
 
-	[Glade.Widget] MenuItem display_tags_menu_item;
+	[Glade.Widget] CheckMenuItem display_toolbar;
+	[Glade.Widget] CheckMenuItem display_sidebar;
+	[Glade.Widget] CheckMenuItem display_timeline;
+	[Glade.Widget] CheckMenuItem display_dates_menu_item;
+	[Glade.Widget] CheckMenuItem display_tags_menu_item;
 
 	[Glade.Widget] MenuItem set_as_background;
 
@@ -74,6 +82,8 @@ public class MainWindow {
 
 	[Glade.Widget] Gtk.Image near_image;
 	[Glade.Widget] Gtk.Image far_image;
+
+	Gtk.Toolbar toolbar;
 
 	PhotoVersionMenu versions_submenu;
 
@@ -133,9 +143,14 @@ public class MainWindow {
 		Glade.XML gui = Glade.XML.FromAssembly ("f-spot.glade", "main_window", "f-spot");
 		gui.Autoconnect (this);
 
+		LoadPreference (Preferences.MAIN_WINDOW_WIDTH);
+		LoadPreference (Preferences.MAIN_WINDOW_X);
+		LoadPreference (Preferences.MAIN_WINDOW_MAXIMIZED);
+		LoadPreference (Preferences.SIDEBAR_POSITION);
+
 		slide_delay = new FSpot.Delay (new GLib.IdleHandler (SlideShow));
 
-		Gtk.Toolbar toolbar = new Gtk.Toolbar ();
+		toolbar = new Gtk.Toolbar ();
 		toolbar_vbox.PackStart (toolbar);
 		GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-270", new System.EventHandler (HandleRotate270Command));
 		GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-90", new System.EventHandler (HandleRotate90Command));
@@ -193,6 +208,9 @@ public class MainWindow {
 		view_vbox.ReorderChild (query_display, 1);
 
 		icon_view = new QueryView (query);
+		LoadPreference (Preferences.THUMBNAIL_WIDTH);
+		LoadPreference (Preferences.SHOW_TAGS);
+		LoadPreference (Preferences.SHOW_DATES);
 		icon_view_scrolled.Add (icon_view);
 		icon_view.Selection.Changed += HandleSelectionChanged;
 		icon_view.DoubleClicked += HandleDoubleClicked;
@@ -252,12 +270,22 @@ public class MainWindow {
 
 		UpdateMenus ();
 		main_window.ShowAll ();
-		main_window.Destroyed += HandleCloseCommand;
+
+		LoadPreference (Preferences.SHOW_TOOLBAR);
+		LoadPreference (Preferences.SHOW_SIDEBAR);
+		LoadPreference (Preferences.SHOW_TIMELINE);
+		
+		Preferences.SettingChanged += OnPreferencesChanged;
+
+		main_window.DeleteEvent += HandleDeleteEvent;
 
 		query_display.HandleChanged (query);
 
 		if (Toplevel == null)
 			Toplevel = this;
+
+		// When the icon_view is loaded, set it's initial scroll position
+		icon_view.SizeAllocated += HandleIconViewReady;
 
 		UpdateToolbar ();
 	}
@@ -642,6 +670,15 @@ public class MainWindow {
 	void HandleIconViewScroll (object sender, EventArgs args)
 	{
 		UpdateGlass ();
+	}
+
+	void HandleIconViewReady (object sender, EventArgs args)
+	{
+		LoadPreference (Preferences.ICON_VIEW_POSITION);
+
+		// We only want to set the position the first time
+		// the icon_view is ready (eg on startup)
+		icon_view.SizeAllocated -= HandleIconViewReady;
 	}
 
 	//
@@ -1152,8 +1189,45 @@ public class MainWindow {
 		adaptor.GlassSet += HandleAdaptorGlassSet;
 	}
 
+	// Called when the user clicks the X button	
+	void HandleDeleteEvent (object sender, DeleteEventArgs args)
+	{
+		Close();
+		args.RetVal = true;
+	}
+
 	void HandleCloseCommand (object sender, EventArgs args)
 	{
+		Close();
+	}
+	
+	void Close ()
+	{
+		int x, y, width, height;
+		main_window.GetPosition (out x, out y);
+		main_window.GetSize (out width, out height);
+
+		bool maximized = ((main_window.GdkWindow.State & Gdk.WindowState.Maximized) > 0);
+		Preferences.Set (Preferences.MAIN_WINDOW_MAXIMIZED, maximized);
+
+		if (!maximized) {
+			Preferences.Set (Preferences.MAIN_WINDOW_X,		x);
+			Preferences.Set (Preferences.MAIN_WINDOW_Y,		y);
+			Preferences.Set (Preferences.MAIN_WINDOW_WIDTH,		width);
+			Preferences.Set (Preferences.MAIN_WINDOW_HEIGHT,	height);
+		}
+
+		Preferences.Set (Preferences.SHOW_TOOLBAR,		toolbar.Visible);
+		Preferences.Set (Preferences.SHOW_SIDEBAR,		info_vpaned.Visible);
+		Preferences.Set (Preferences.SHOW_TIMELINE,		group_selector.Visible);
+		Preferences.Set (Preferences.SHOW_TAGS,			icon_view.DisplayTags);
+		Preferences.Set (Preferences.SHOW_DATES,		icon_view.DisplayDates);
+
+		Preferences.Set (Preferences.SIDEBAR_POSITION,		main_hpaned.Position);
+		Preferences.Set (Preferences.THUMBNAIL_WIDTH,		icon_view.ThumbnailWidth);
+	
+		Preferences.Set (Preferences.ICON_VIEW_POSITION, icon_view.TopLeftVisibleCell ());
+
 		this.Window.Destroy ();
 	}
 	
@@ -1343,6 +1417,14 @@ public class MainWindow {
 		icon_view.ThumbnailWidth = 256;	
 	}
 
+	void HandleDisplayToolbar (object sender, EventArgs args)
+	{
+		if (display_toolbar.Active)
+			toolbar.Show ();
+		else
+			toolbar.Hide ();
+	}
+
 	void HandleDisplayTags (object sender, EventArgs args)
 	{
 		icon_view.DisplayTags = !icon_view.DisplayTags;
@@ -1350,7 +1432,10 @@ public class MainWindow {
 	
 	void HandleDisplayDates (object sender, EventArgs args)
 	{
-		icon_view.DisplayDates = !icon_view.DisplayDates;
+		// Peg the icon_view's value to the MenuItem's active state,
+		// as icon_view.DisplayDates's get won't always be equal to it's true value
+		// because of logic to hide dates when zoomed way out.
+		icon_view.DisplayDates = display_dates_menu_item.Active;
 	}
 
 	void HandleDisplayGroupSelector (object sender, EventArgs args)
@@ -1686,6 +1771,88 @@ public class MainWindow {
 
 	void HandleClearDateRange (object sender, EventArgs args) {
 		query.Range = null;
+	}
+	
+	void OnPreferencesChanged (object sender, GConf.NotifyEventArgs args)
+	{
+		LoadPreference (args.Key);
+	}
+
+	void LoadPreference (String key)
+	{
+		object val = Preferences.Get (key);
+
+		if (val == null)
+			return;
+		
+		//System.Console.WriteLine("Setting {0} to {1}", key, val);
+
+		switch (key) {
+		case Preferences.MAIN_WINDOW_MAXIMIZED:
+			if ((bool) val)
+				main_window.Maximize ();
+			else
+				main_window.Unmaximize ();
+			break;
+
+		case Preferences.MAIN_WINDOW_X:
+		case Preferences.MAIN_WINDOW_Y:
+			main_window.Move((int) Preferences.Get(Preferences.MAIN_WINDOW_X),
+					(int) Preferences.Get(Preferences.MAIN_WINDOW_Y));
+			break;
+		
+		case Preferences.MAIN_WINDOW_WIDTH:
+		case Preferences.MAIN_WINDOW_HEIGHT:
+			main_window.SetDefaultSize((int) Preferences.Get(Preferences.MAIN_WINDOW_WIDTH),
+					(int) Preferences.Get(Preferences.MAIN_WINDOW_HEIGHT));
+
+			main_window.ReshowWithInitialSize();
+			break;
+		
+		case Preferences.SHOW_TOOLBAR:
+			if (display_toolbar.Active != (bool) val)
+				display_toolbar.Active = (bool) val;
+			break;
+		
+		case Preferences.SHOW_SIDEBAR:
+			if (display_sidebar.Active != (bool) val)
+				display_sidebar.Active = (bool) val;
+			break;
+		
+		case Preferences.SHOW_TIMELINE:
+			if (display_timeline.Active != (bool) val)
+				display_timeline.Active = (bool) val;
+			break;
+		
+		case Preferences.SHOW_TAGS:
+			if (display_tags_menu_item.Active != (bool) val)
+				display_tags_menu_item.Active = (bool) val;
+			break;
+		
+		case Preferences.SHOW_DATES:
+			if (display_dates_menu_item.Active != (bool) val)
+				display_dates_menu_item.Active = (bool) val;
+				//display_dates_menu_item.Toggle ();
+			break;
+		
+		case Preferences.SIDEBAR_POSITION:
+			if (main_hpaned.Position != (int) val)
+				main_hpaned.Position = (int) val;
+			break;
+		
+		case Preferences.THUMBNAIL_WIDTH:
+			if (icon_view.ThumbnailWidth != (int) val)
+				icon_view.ThumbnailWidth = (int) val;
+			break;
+		
+		case Preferences.ICON_VIEW_POSITION:
+			if (icon_view.TopLeftVisibleCell () != (int) val) {
+				icon_view.FocusCell = (int) val;
+				photo_view.Item.Index = (int) val;
+				icon_view.ScrollTo ((int) val, false);
+			}
+			break;
+		}
 	}
 
 	// Version Id updates.

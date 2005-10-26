@@ -6966,7 +6966,17 @@ Photo Details</property>
 		  </child>
 
 		  <child>
-		    <widget class="GtkCheckMenuItem" id="display_timeline1">
+		    <widget class="GtkCheckMenuItem" id="display_toolbar">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">Display Too_lbar</property>
+		      <property name="use_underline">True</property>
+		      <property name="active">True</property>
+		      <signal name="activate" handler="HandleDisplayToolbar" last_modification_time="Tue, 11 Jan 2005 07:04:13 GMT"/>
+		    </widget>
+		  </child>
+
+		  <child>
+		    <widget class="GtkCheckMenuItem" id="display_timeline">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Display _Timeline</property>
 		      <property name="use_underline">True</property>
@@ -6976,7 +6986,7 @@ Photo Details</property>
 		  </child>
 
 		  <child>
-		    <widget class="GtkCheckMenuItem" id="display_sidebar1">
+		    <widget class="GtkCheckMenuItem" id="display_sidebar">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Display Side_bar</property>
 		      <property name="use_underline">True</property>
@@ -7297,7 +7307,7 @@ Photo Details</property>
 	  <property name="spacing">0</property>
 
 	  <child>
-	    <widget class="GtkHPaned" id="hpaned1">
+	    <widget class="GtkHPaned" id="main_hpaned">
 	      <property name="visible">True</property>
 	      <property name="can_focus">True</property>
 	      <property name="position">200</property>
