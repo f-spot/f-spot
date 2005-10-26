@@ -1,22 +1,22 @@
 2005-10-19  Gabriel Burt  <gabriel.burt@gmail.com>
- 
- 	* src/MainWindow.cs: added loading and storing of prefs via GConf.
- 	Includes window size, position, maximized state, icon_view scroll
- 	position, show toolbar, sidebar, timeline, tags, dates.
- 	
- 	* src/Preferences.cs: New file. Defines the prefs used by F-Spot and
- 	provides helper methods for getting, setting, and listening to them.
- 
- 	* src/IconView.cs: changed ScrollTo to optionally valign top or center.
- 	
- 	* src/FlickrExport.cs: save export preferences, fixes #310615.
- 
- 	* src/GalleryExport.cs: save export preferences, fixes #305733
- 	
- 	* src/f-spot.glade: changed some MenuItem names, added display_toolbar.
- 	
- 	* src/MakeFile.am: added Preferences.cs to the build.
-  
+
+	* src/MainWindow.cs: added loading and storing of prefs via GConf.
+	Includes window size, position, maximized state, icon_view scroll
+	position, show toolbar, sidebar, timeline, tags, dates.
+
+	* src/Preferences.cs: New file. Defines the prefs used by F-Spot and
+	provides helper methods for getting, setting, and listening to them.
+
+	* src/IconView.cs: changed ScrollTo to optionally valign top or center.
+
+	* src/FlickrExport.cs: save export preferences, fixes #310615.
+
+	* src/GalleryExport.cs: save export preferences, fixes #305733
+
+	* src/f-spot.glade: changed some MenuItem names, added display_toolbar.
+
+	* src/MakeFile.am: added Preferences.cs to the build.
+
 2005-10-25  Larry Ewing  <lewing@novell.com>
 
 	* src/FlickrRemote.cs: Integrate patch from Adam Israel it quote
@@ -24,8 +24,8 @@
 
 2005-10-20  Gabriel Burt  <gabriel.burt@gmail.com>
 
-       * src/TagSelectionWidget.cs: modified Model to allow for interactive
-       searching by tag name. Fixes #316051.
+	* src/TagSelectionWidget.cs: modified Model to allow for interactive
+	searching by tag name. Fixes #316051.
 
 2005-10-25  Larry Ewing  <lewing@novell.com>
 
