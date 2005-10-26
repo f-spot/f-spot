@@ -1,3 +1,9 @@
+2005-10-26  Larry Ewing  <lewing@novell.com>
+
+	* src/TimeAdaptor.cs: tryout putting the count int the tip.
+
+	* src/MainWindow.cs: fix grammar slightly.
+
 2005-10-19  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/MainWindow.cs: added loading and storing of prefs via GConf.
@@ -89,7 +95,7 @@
 2005-10-22  Larry Ewing  <lewing@novell.com>
 
 	* src/DirectoryCollection.cs: add File collection.
-bN	
+	
 	* src/TagSelectionWidget.cs: fixup, colors to work with themes,
 	use new gtk# functions for treeiters cleanup formatting.
 

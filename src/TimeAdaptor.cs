@@ -52,7 +52,7 @@ namespace FSpot {
 		{
 			DateTime start = DateFromIndex (item);
 			
-			return start.ToString ("MMMM yyyy");
+			return String.Format ("{0} ({1})", start.ToString ("MMMM yyyy"), Value (item));
 		}
 
 		public override string TickLabel (int item)

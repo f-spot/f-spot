@@ -1690,8 +1690,9 @@ public class MainWindow {
 
 				// A Category is not empty. Can not delete it.
 				string error_msg = Mono.Posix.Catalog.GetString ("Category is not empty");
-				string error_desc = String.Format (Mono.Posix.Catalog.GetString ("Can not delete categorys which has tags. Please delete tags under \"{0}\" first"),
-						     e.Tag.Name);
+				string error_desc = String.Format (Mono.Posix.Catalog.GetString ("Can not delete categories that have tags." + 
+												 "Please delete tags under \"{0}\" first"),
+								   e.Tag.Name);
 				
 				HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
 									    Gtk.MessageType.Error, ButtonsType.Ok, 
