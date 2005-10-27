@@ -59,6 +59,7 @@ public class MainWindow {
 	[Glade.Widget] MenuItem export;
 	[Glade.Widget] MenuItem print;
 	[Glade.Widget] MenuItem select_none;
+	[Glade.Widget] MenuItem copy_location;
 	[Glade.Widget] MenuItem adjust_color;
 	[Glade.Widget] MenuItem exif_data;
 	[Glade.Widget] MenuItem sharpen;
@@ -1955,6 +1956,7 @@ public class MainWindow {
 		print.Sensitive = active_selection;
 		export.Sensitive = active_selection;
 		select_none.Sensitive = active_selection;
+		copy_location.Sensitive = active_selection;
 		exif_data.Sensitive = active_selection;
 		sharpen.Sensitive = active_selection;
 		remove_from_catalog.Sensitive = active_selection;

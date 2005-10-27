@@ -6777,9 +6777,11 @@ Photo Details</property>
 		<widget class="GtkMenu" id="edit2_menu">
 
 		  <child>
-		    <widget class="GtkImageMenuItem" id="copy">
+		    <widget class="GtkMenuItem" id="copy_location">
 		      <property name="visible">True</property>
-		      <property name="stock_item">GNOMEUIINFO_MENU_COPY_ITEM</property>
+		      <property name="label" translatable="yes">Copy Locat_ion</property>
+		      <property name="use_underline">True</property>
+		      <signal name="activate" handler="HandleCopyLocation"/>
 		    </widget>
 		  </child>
 
