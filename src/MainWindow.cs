@@ -1950,7 +1950,6 @@ public class MainWindow {
 		rotate_right.Sensitive = active_selection;
 		update_thumbnail.Sensitive = active_selection;
 		delete_from_drive.Sensitive = active_selection;
-		copy.Sensitive = active_selection;
 		
 		send_mail.Sensitive = active_selection;
 		print.Sensitive = active_selection;
