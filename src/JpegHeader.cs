@@ -1,3 +1,7 @@
+using System;
+using System.IO;
+using FSpot.Xmp;
+
 public class JpegHeader : SemWeb.StatementSource {
 	public enum JpegMarker {
 		Tem = 0x01,
@@ -94,30 +98,46 @@ public class JpegHeader : SemWeb.StatementSource {
 			this.Type = type;
 			this.Data = data;
 		}
-		
+
 		public bool IsApp {
 			get {
 				return (this.Type >= JpegMarker.App0 && this.Type <= JpegMarker.App15);
 			}
 		}
 
-		public string Name {
-			get {
-				if (!this.IsApp)
-					return null;
+		public bool Matches (Signature sig) 
+		{
+			if (Type == sig.Id) {
+				if (sig.Name == null)
+					return true;
 				
-				int j;
-				for (j = 0; j < this.Data.Length; j++) {
+				byte [] name = System.Text.Encoding.ASCII.GetBytes (sig.Name);
+
+				for (int i = 0; i < name.Length; i++)
+					if (Data [i] != name [i])
+						return false;
+				
+				return true;
+			}
+			return false;
+		}
+
+		public string GetName ()
+		{
+			if (!this.IsApp)
+				return null;
+			
+			int j;
+			for (j = 0; j < this.Data.Length; j++) {
 					if (this.Data [j] == 0x00)
 						break;
 					
-				}
-				
-				if (j > 0)
-					return System.Text.Encoding.ASCII.GetString (this.Data, 0, j);
-				else 
-					return null;
 			}
+			
+			if (j > 0)
+				return System.Text.Encoding.ASCII.GetString (this.Data, 0, j);
+			else 
+				return null;
 		}
 
 		public static Marker Load (System.IO.Stream stream) {
@@ -184,22 +204,47 @@ public class JpegHeader : SemWeb.StatementSource {
 		}
 	}
 
-	public Marker FindMarker (JpegMarker id, string name)
+	public class Signature {
+		public JpegMarker Id;
+		public string Name;
+
+		public Signature (JpegMarker marker, string name)
+		{
+			Id = marker;
+			Name = name;
+		}
+
+		public int WriteName (Stream stream)
+		{
+			byte [] sig = System.Text.Encoding.ASCII.GetBytes (Name);
+			stream.Write (sig, 0, sig.Length);
+			return sig.Length;
+		}
+	}	
+
+	public Marker FindMarker (Signature sig)
 	{
 		foreach (Marker m in Markers) {
-			if (m.Type == id && m.Name == name)
+			if (m.Matches (sig))
 				return m;
 		}
+
 		return null;
+	}
+
+
+	public Marker FindMarker (JpegMarker id, string name)
+	{
+		return FindMarker (new Signature (id, name));
 	}
 
 	public Cms.Profile GetProfile ()
 	{
-		Marker m = FindMarker (JpegMarker.App2, "ICC_PROFILE");
-		int offset = "ICC_PROFILE\0".Length;
+		string name = "ICC_PROFILE\0";
+		Marker m = FindMarker (JpegMarker.App2, name);
 		try {
 			if (m != null)
-				return new Cms.Profile (m.Data, offset, m.Data.Length - offset); 
+				return new Cms.Profile (m.Data, name.Length, m.Data.Length - name.Length); 
 		} catch (System.Exception e) {
 			System.Console.WriteLine (e);
 		}
@@ -213,16 +258,22 @@ public class JpegHeader : SemWeb.StatementSource {
 	
 	private FSpot.Tiff.Header GetExifHeader ()
 	{
-		string name = "Exif";
-		Marker marker = FindMarker (JpegHeader.JpegMarker.App1, name);
-		if (marker != null) {
-			int len = name.Length + 2;
-			System.IO.Stream exifstream = new System.IO.MemoryStream (marker.Data, len, marker.Data.Length - len, false);
-			FSpot.Tiff.Header exif = new FSpot.Tiff.Header (exifstream);
-			return exif;
-		}
-		return null;
+		string name = ExifSignature.Name;
+		Marker marker = FindMarker (ExifSignature);
+
+		if (marker == null)
+			return null;
+		
+		System.IO.Stream exifstream = new System.IO.MemoryStream (marker.Data, name.Length, marker.Data.Length - name.Length, false);
+		FSpot.Tiff.Header exif = new FSpot.Tiff.Header (exifstream);
+		return exif;
 	}
+
+	public static Signature XmpSignature = new Signature (JpegMarker.App1, "http://ns.adobe.com/xap/1.0/\0");
+	public static Signature ExifSignature = new Signature (JpegMarker.App1, "Exif\0\0");
+	public static Signature PhotoshopSignature = new Signature (JpegMarker.App13, "Photoshop 3.0\0");
+	public static Signature JfifSignature = new Signature (JpegMarker.App0, "JFIF\0");
+	public static Signature JfxxSignature = new Signature (JpegMarker.App0, "JFXX\0");
 	
 	public void Select (SemWeb.StatementSink sink)
 	{
@@ -230,23 +281,23 @@ public class JpegHeader : SemWeb.StatementSource {
 		if (exif != null)
 			exif.Select (sink);
 		
-		string name = "http://ns.adobe.com/xap/1.0/";
-		Marker marker = FindMarker (JpegHeader.JpegMarker.App1, name);
+		string name = XmpSignature.Name;
+		Marker marker = FindMarker (XmpSignature);
 		if (marker != null) {
-			int len = name.Length + 1;
+			int len = name.Length;
 			//System.Console.WriteLine (System.Text.Encoding.ASCII.GetString (marker.Data, len, 
 			//								marker.Data.Length - len));
 			System.IO.Stream xmpstream = new System.IO.MemoryStream (marker.Data, len, 
 										 marker.Data.Length - len, false);
 			
-			FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);					
+			XmpFile xmp = new XmpFile (xmpstream);					
 			xmp.Select (sink);
 		}
 		
-		name = "Photoshop 3.0";
-		marker = FindMarker (JpegHeader.JpegMarker.App13, name);
+		name = PhotoshopSignature.Name;
+		marker = FindMarker (PhotoshopSignature);
 		if (marker != null) {
-			int len = name.Length + 1;
+			int len = name.Length;
 			System.IO.Stream bimstream = new System.IO.MemoryStream (marker.Data, len, marker.Data.Length - len, false);
 			FSpot.Bim.BimFile bim = new FSpot.Bim.BimFile (bimstream);
 					bim.Select (sink);
@@ -255,29 +306,59 @@ public class JpegHeader : SemWeb.StatementSource {
 
 	public Exif.ExifData Exif {
 		get {
-			Marker m = FindMarker (JpegMarker.App1, "Exif");
+			Marker m = FindMarker (ExifSignature);
 
 			if (m  == null)
 				return null;
 
 			return new Exif.ExifData (m.Data);
 		}
-		set {
-			Marker m;
-			while ((m = FindMarker (JpegMarker.App1, "Exif")) != null)
-				this.Markers.Remove (m);
+	}
 
-			byte [] raw_data = value.Save ();
-			for (int i = 1; i < Markers.Count; i++) {
-				m = (Marker) this.Markers [i];
-
-				if (m.IsApp && m.Type == JpegMarker.App0)
-					continue;
+	public void Replace (Signature sig, Marker data)
+	{
+		bool added = false;
+		for (int i = 1; i < Markers.Count; i++) {
+			Marker m = (Marker) Markers [i];
+			
+			if (m.Matches (sig)) {
 				
-				this.Markers.Insert (i, new Marker (JpegMarker.App1, raw_data));
-				return;
+				if (!added) {
+					m = data;
+					added = true;
+				} else
+					Markers.RemoveAt (i--);
+				
+			} else if (!m.IsApp || m.Type > sig.Id) {
+				if (!added) {
+					Markers.Insert (i, data); 
+					added = true;
+				}
 			}
 		}
+
+		if (!added)
+			throw new System.Exception (String.Format ("unable to replace {0} marker", sig.Name));
+	}
+
+	public void SetExif (Exif.ExifData value)
+	{
+		byte [] raw_data = value.Save ();
+		Marker exif = new Marker (ExifSignature.Id, raw_data);
+
+		Replace (ExifSignature, exif);
+	}	
+	
+	public void SetXmp (XmpFile xmp)
+	{
+		MemoryStream stream = new MemoryStream ();
+
+		XmpSignature.WriteName (stream);
+		xmp.Save (stream);
+
+		Marker xmp_marker = new Marker (XmpSignature.Id, stream.ToArray ());
+
+		Replace (XmpSignature, xmp_marker);
 	}
 
 	/* JFIF JFXX ICC_PROFILE http://ns.adobe.com/xap/1.0/ Photoshop 3.0*/

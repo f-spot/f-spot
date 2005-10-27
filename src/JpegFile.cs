@@ -73,8 +73,8 @@ namespace FSpot {
 		{
 			JpegHeader header = new JpegHeader (input);
 			UpdateMeta ();
-
-			header.Exif = this.ExifData;
+			
+			header.SetExif (this.ExifData);
 			header.Save (output);
 		}
 		
@@ -82,9 +82,6 @@ namespace FSpot {
 		{
 			UpdateMeta ();
 
-			//this.ExifData.Dump ();
-
-#if true //USE_UNSTABLE_JPEG_HEADER_CODE
 			string  temp_path = path;
 			using (System.IO.FileStream stream = System.IO.File.OpenRead (path)) {
 				using (System.IO.Stream output = FSpot.Unix.MakeSafeTemp (ref temp_path)) {
@@ -95,10 +92,6 @@ namespace FSpot {
 				System.IO.File.Delete (temp_path);
 				throw new System.Exception (System.String.Format ("Unable to rename {0} to {1}", temp_path, path));
 			}
-#else 
-			JpegUtils.SaveExif (path, this.ExifData);
-#endif
-
 		}
 		
 		public override void Save (Gdk.Pixbuf pixbuf, System.IO.Stream stream)

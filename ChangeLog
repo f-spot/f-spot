@@ -1,5 +1,9 @@
 2005-10-26  Larry Ewing  <lewing@novell.com>
 
+	* src/JpegFile.cs: use SetExif.
+	
+	* src/JpegHeader.cs: add xmp write support to the jpeg stream.	
+
 	* src/TimeAdaptor.cs: tryout putting the count int the tip.
 
 	* src/MainWindow.cs: fix grammar slightly.
