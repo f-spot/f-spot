@@ -3,6 +3,7 @@ using GLib;
 using Gtk;
 using GtkSharp;
 using System;
+using FSpot.Xmp;
 
 public class PhotoView : EventBox {
 	FSpot.Delay description_delay; 
@@ -329,6 +330,18 @@ public class PhotoView : EventBox {
 			if (img is FSpot.JpegFile) {
 				FSpot.JpegFile jimg = img as FSpot.JpegFile;
 				jimg.SetDescription (photo.Description);
+#if UPDATE_XMP_TAGS 				
+				FSpot.Xmp.XmpFile xmp = new XmpFile ();
+				Tag [] tags = photo.Tags;
+				string [] names = new string [tags.Length];
+				
+				for (int i = 0; i < tags.Length; i++)
+					names [i] = tags [i].Name;
+				
+				FSpot.MetadataStore.Add (xmp, "dc:subject", "rdf:Bag", names);
+				xmp.Dump ();
+				jimg.SetXmp (xmp);
+#endif
 				jimg.SaveMetaData (photo.DefaultVersionPath);
 			}
 			//Query.Store.Commit (photo);

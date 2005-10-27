@@ -1,4 +1,5 @@
 using System.IO;
+using FSpot.Xmp;
 
 namespace FSpot {
 	public interface IThumbnailContainer {
@@ -7,6 +8,7 @@ namespace FSpot {
 
 	public class JpegFile : ImageFile, IThumbnailContainer, SemWeb.StatementSource {
 		private Exif.ExifData exif_data;
+		private XmpFile xmp;
 		
 		public JpegFile (string path) : base (path) 
 		{
@@ -59,6 +61,11 @@ namespace FSpot {
 			System.Text.Encoding.ASCII.GetBytes (description, 0, description.Length, data, heading.Length);
 			exif_content.GetEntry (Exif.Tag.UserComment).SetData (data);
 		}
+		
+		public void SetXmp (XmpFile xmp)
+		{
+			this.xmp = xmp;
+		}
 
 		private void UpdateMeta ()
 		{
@@ -75,6 +82,10 @@ namespace FSpot {
 			UpdateMeta ();
 			
 			header.SetExif (this.ExifData);
+
+			if (xmp != null)
+				header.SetXmp (xmp);
+
 			header.Save (output);
 		}
 		

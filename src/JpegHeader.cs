@@ -143,6 +143,8 @@ public class JpegHeader : SemWeb.StatementSource {
 		public static Marker Load (System.IO.Stream stream) {
 			byte [] raw = new byte [2];
 			ushort length;
+		       
+			// FIXME there is a potential loop here.
 			
 			raw [0] = (byte)stream.ReadByte ();
 			if (raw [0] != 0xff)
@@ -204,6 +206,13 @@ public class JpegHeader : SemWeb.StatementSource {
 		}
 	}
 
+	public static Signature JfifSignature = new Signature (JpegMarker.App0, "JFIF\0");
+	public static Signature JfxxSignature = new Signature (JpegMarker.App0, "JFXX\0");
+	public static Signature XmpSignature = new Signature (JpegMarker.App1, "http://ns.adobe.com/xap/1.0/\0");
+	public static Signature ExifSignature = new Signature (JpegMarker.App1, "Exif\0\0");
+	public static Signature IccProfileSignature = new Signature (JpegMarker.App2, "ICC_PROFILE\0");
+	public static Signature PhotoshopSignature = new Signature (JpegMarker.App13, "Photoshop 3.0\0");
+
 	public class Signature {
 		public JpegMarker Id;
 		public string Name;
@@ -240,8 +249,8 @@ public class JpegHeader : SemWeb.StatementSource {
 
 	public Cms.Profile GetProfile ()
 	{
-		string name = "ICC_PROFILE\0";
-		Marker m = FindMarker (JpegMarker.App2, name);
+		Marker m = FindMarker (IccProfileSignature);
+		string name = IccProfileSignature.Name;
 		try {
 			if (m != null)
 				return new Cms.Profile (m.Data, name.Length, m.Data.Length - name.Length); 
@@ -269,12 +278,6 @@ public class JpegHeader : SemWeb.StatementSource {
 		return exif;
 	}
 
-	public static Signature XmpSignature = new Signature (JpegMarker.App1, "http://ns.adobe.com/xap/1.0/\0");
-	public static Signature ExifSignature = new Signature (JpegMarker.App1, "Exif\0\0");
-	public static Signature PhotoshopSignature = new Signature (JpegMarker.App13, "Photoshop 3.0\0");
-	public static Signature JfifSignature = new Signature (JpegMarker.App0, "JFIF\0");
-	public static Signature JfxxSignature = new Signature (JpegMarker.App0, "JFXX\0");
-	
 	public void Select (SemWeb.StatementSink sink)
 	{
 		FSpot.Tiff.Header exif = GetExifHeader ();
@@ -324,7 +327,7 @@ public class JpegHeader : SemWeb.StatementSource {
 			if (m.Matches (sig)) {
 				
 				if (!added) {
-					m = data;
+					Markers [i] = data;
 					added = true;
 				} else
 					Markers.RemoveAt (i--);
@@ -360,8 +363,6 @@ public class JpegHeader : SemWeb.StatementSource {
 
 		Replace (XmpSignature, xmp_marker);
 	}
-
-	/* JFIF JFXX ICC_PROFILE http://ns.adobe.com/xap/1.0/ Photoshop 3.0*/
 	
 	public System.Collections.ArrayList Markers {
 		get {
