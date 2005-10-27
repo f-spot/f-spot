@@ -371,7 +371,7 @@ public class TagSelectionWidget : TreeView {
 			if (compare.CompareTo (tag) > 0) {
 				iter = store.InsertNodeBefore (iter);
 				store.SetValue (iter, 0, tag.Id);
-				store.SetValue (iter, 1, tag.Id);
+				store.SetValue (iter, 1, tag.Name);
 				return iter;
 			}
 			valid = store.IterNext(ref iter);
