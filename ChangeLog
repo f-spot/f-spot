@@ -1,5 +1,8 @@
 2005-10-27  Larry Ewing  <lewing@novell.com>
 
+	* src/TagSelectionWidget.cs: fix incorrect change when removing
+	warnings, expand parent when adding a tag to a category.
+
 	* src/TagSelectionWidget.cs: fix pasteo.
 
 	* src/MainWindow.cs: remove the reference to copy.

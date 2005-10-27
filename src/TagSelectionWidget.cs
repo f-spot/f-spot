@@ -379,8 +379,10 @@ public class TagSelectionWidget : TreeView {
 
 		if (is_root) 
 			iter = store.AppendNode (); 
-		else
-			iter = store.AppendNode (); 
+		else {
+			iter = store.AppendNode (parent); 
+			ExpandRow (Model.GetPath (parent), false);
+		}
 
 		store.SetValue (iter, 0, tag.Id);
 		store.SetValue (iter, 1, tag.Name);
