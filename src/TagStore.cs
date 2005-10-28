@@ -135,6 +135,17 @@ public class Tag : DbItem, IComparable {
 			return Category.CompareTo (tag.Category);
 		}
 	}
+	
+	public bool IsAncestorOf (Tag tag)
+	{
+		for (Category parent = tag.Category; parent != null; parent = parent.Category) {
+			if (parent == this)
+				return true;
+		}
+
+		return false;
+	}
+
 }
 
 

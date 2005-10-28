@@ -1,3 +1,15 @@
+2005-10-28  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/MainWindow.cs: add support for dropping tags onto other tags
+	to reparent them.
+
+	* src/TagStore.cs: add IsAncestorOf function to prevent tags from
+	becoming a child of one's children.
+
+	* src/TagCommands.cs: Hide one's children as potential Categories
+	When editing a tag's icon, allow the user to select an entire image
+	by clicking on it instead of having to select a box.  Fixes #319908.
+
 2005-10-27  Larry Ewing  <lewing@novell.com>
 
 	* src/TagSelectionWidget.cs: fix incorrect change when removing

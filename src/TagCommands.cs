@@ -225,7 +225,7 @@ public class TagCommands {
 		private void PopulateCategories (ArrayList categories, Category parent)
 		{
 			foreach (Tag tag in parent.Children) {
-				if (tag is Category) {
+				if (tag is Category && !this.tag.IsAncestorOf (tag)) {
 					categories.Add (tag);
 					PopulateCategories (categories, tag as Category);
 				}
@@ -375,6 +375,8 @@ public class TagCommands {
 					preview_image.Pixbuf = PixbufUtils.TagIconFromPixbuf (tmp);
 					
 					tmp.Dispose ();
+				} else {
+					preview_image.Pixbuf = PixbufUtils.TagIconFromPixbuf (image_view.Pixbuf);
 				}
 			}
 		}
@@ -390,6 +392,7 @@ public class TagCommands {
 
 		public void HandleIconViewSelectionChanged (FSpot.IBrowsableCollection collection) 
 		{
+			// FIXME this handler seems to be called twice for each selection change
 			if (icon_view.Selection.Count > 0)
 			{
 				FSpot.IBrowsableItem item = icon_view.Selection [0];

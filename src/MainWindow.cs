@@ -130,6 +130,7 @@ public class MainWindow {
 	private static TargetEntry [] tag_dest_target_table = new TargetEntry [] {
 		new TargetEntry ("application/x-fspot-photos", 0, (uint) TargetType.PhotoList),
 		new TargetEntry ("text/uri-list", 0, (uint) TargetType.UriList),
+		new TargetEntry ("application/x-fspot-tags", 0, (uint) TargetType.TagList),
 	};
 
 	const int PHOTO_IDX_NONE = -1;
@@ -585,7 +586,7 @@ public class MainWindow {
 				AddTagExtended (num, tags);
 			}
 			break;
-		case (uint)TargetType.TagList:
+		case (uint)TargetType.UriList:
 			UriList list = new UriList (args.SelectionData);
 			
 			foreach (string path in list.ToLocalPaths ()) {
@@ -599,6 +600,24 @@ public class MainWindow {
 				photo.AddTag (tags);
 			}
 			InvalidateViews ();
+			break;
+		case (uint)TargetType.TagList:
+			Tag child = tag_selection_widget.TagHighlight ()[0];
+			Tag parent = tags[0];
+
+			// FIXME with this reparenting via dnd, you cannot move a tag to root.
+			if (child != parent && !child.IsAncestorOf(parent) && child.Category != parent && parent is Category)
+			{
+				child.Category = parent as Category;
+
+				// Saving changes will automatically cause the TreeView to be updated
+				db.Tags.Commit (child);
+				
+				args.RetVal = true;
+			} else {
+				args.RetVal = false;
+			}
+
 			break;
 		}
 	}
