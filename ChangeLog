@@ -1,3 +1,7 @@
+2005-10-29  Larry Ewing  <lewing@novell.com>
+
+	* src/JpegHeader.cs: make the jpeg header code handle trunated files.
+
 2005-10-28  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/MainWindow.cs: add support for dropping tags onto other tags

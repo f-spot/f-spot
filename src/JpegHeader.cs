@@ -144,6 +144,9 @@ public class JpegHeader : SemWeb.StatementSource {
 			byte [] raw = new byte [2];
 			ushort length;
 		       
+			if (stream.Length - stream.Position < 2)
+				return null;
+
 			// FIXME there is a potential loop here.
 			
 			raw [0] = (byte)stream.ReadByte ();
@@ -154,9 +157,6 @@ public class JpegHeader : SemWeb.StatementSource {
 			switch (id) {
 			case JpegMarker.Soi:
 			case JpegMarker.Eoi:
-				return new Marker (id, null);
-
-			/*  These rst* and tem can be skipped but I'm not sure of the circumstances right now */
 			case JpegMarker.Rst0:
 			case JpegMarker.Rst1:
 			case JpegMarker.Rst2:
@@ -167,8 +167,7 @@ public class JpegHeader : SemWeb.StatementSource {
 			case JpegMarker.Rst7:
 			case JpegMarker.Tem: 
 			case (JpegMarker) 0:
-				System.Console.WriteLine ("found marker = {0}, skipping", id);
-				return null;
+				return new Marker (id, null);
 			default:
 				stream.Read (raw, 0, 2);
 				length = FSpot.BitConverter.ToUInt16 (raw, 0, false);
@@ -413,7 +412,7 @@ public class JpegHeader : SemWeb.StatementSource {
 			marker = Marker.Load (stream);
 
 			if (marker == null)
-				continue;
+				break;
 
 			//System.Console.WriteLine ("loaded marker {0} length {1}", marker.Type, marker.Data.Length);
 
