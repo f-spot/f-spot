@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using FSpot.Xmp;
 
@@ -203,10 +204,13 @@ namespace FSpot {
 				System.DateTime time;
 				try {
 					using (Exif.ExifData ed = new Exif.ExifData (path)) {
-						Exif.ExifContent content = ed.GetContents (Exif.Ifd.Exif);
-						Exif.ExifEntry entry = content.GetEntry (Exif.Tag.DateTimeOriginal);
-						time = Exif.ExifUtil.DateTimeFromString (entry.Value); 
-						time = time.ToUniversalTime ();
+						string time_str = "";				
+						time_str = ed.LookupFirstValue (Exif.Tag.DateTimeOriginal);
+
+						if (time_str == null || time_str == "") 
+							time_str = ed.LookupFirstValue (Exif.Tag.DateTime);
+
+						time = Exif.ExifUtil.DateTimeFromString (time_str).ToUniversalTime (); 
 					}
 				} catch (System.Exception e) {
 					time = base.Date;
