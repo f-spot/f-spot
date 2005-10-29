@@ -1,6 +1,9 @@
 2005-10-29  Larry Ewing  <lewing@novell.com>
 
-	* src/JpegHeader.cs: make the jpeg header code handle trunated files.
+	* src/Tiff.cs: simplify rationals when convering them to strings
+	when possible.  Don't add invalid dates to the statement store.
+
+	* src/JpegHeader.cs: make the jpeg header code handle truncated files.
 
 2005-10-28  Gabriel Burt  <gabriel.burt@gmail.com>
 

@@ -1,5 +1,6 @@
 using FSpot;
 using SemWeb;
+using System;
 
 namespace FSpot.Tiff {
 
@@ -281,10 +282,14 @@ namespace FSpot.Tiff {
 
 		public override string ToString ()
 		{
-			if (Denominator == 1)
-				return Numerator.ToString ();
+			if (Numerator == 0)
+				return "0";
+			else if (Numerator % Denominator == 0)
+				return String.Format ("{0}", Numerator / Denominator);
+			else if (Denominator % Numerator == 0)
+				return String.Format ("1/{0}", Denominator / Numerator);
 
-			return System.String.Format ("{0}/{1}", Numerator, Denominator);
+			return String.Format ("{0}/{1}", Numerator, Denominator);
 		}
 		
 		public double Value {
@@ -306,10 +311,14 @@ namespace FSpot.Tiff {
 
 		public override string ToString ()
 		{
-			if (Denominator == 1)
-				return Numerator.ToString ();
-			
-			return System.String.Format ("{0}/{1}", Numerator, Denominator);
+			if (Numerator == 0)
+				return "0";
+			else if (Numerator % Denominator == 0)
+				return String.Format ("{0}", Numerator / Denominator);
+			else if (Denominator % Numerator == 0)
+				return String.Format ("1/{0}", Denominator / Numerator);
+
+			return String.Format ("{0}/{1}", Numerator, Denominator);
 		}
 		
 		public double Value {
@@ -816,15 +825,25 @@ namespace FSpot.Tiff {
 					MetadataStore.AddLiteral (sink, "xmp:CreatorTool", e.ValueAsString [0]);
 					break;
 				case TagId.DateTime:
+					try {
+
 					MetadataStore.AddLiteral (sink, "xmp:ModifyDate", 
 								  e.ValueAsDate.ToString ("yyyy-MM-ddThh:mm:ss"));
+					} catch (System.Exception ex) {
+						System.Console.WriteLine (String.Format ("error parsing {0}\n{1}", e.ValueAsString[0], ex));
+					}
+
 					break;
 				case TagId.DateTimeOriginal:
 				case TagId.DateTimeDigitized:
 					// FIXME subsectime needs to be included in these values
 					// FIXME shouldn't DateTimeOriginal be xmp:CreateDate? the spec says no but wtf?
-					MetadataStore.AddLiteral (sink, "exif:" + e.Id.ToString (), 
-								  e.ValueAsDate.ToString ("yyyy-MM-ddThh:mm:ss"));
+					try {
+						MetadataStore.AddLiteral (sink, "exif:" + e.Id.ToString (), 
+									  e.ValueAsDate.ToString ("yyyy-MM-ddThh:mm:ss"));
+					} catch (System.Exception ex) {
+						System.Console.WriteLine (String.Format ("error parsing {0}\n{1}", e.ValueAsString[0], ex));
+					}
 					break;
 					//case TagId.Flash:
 					
