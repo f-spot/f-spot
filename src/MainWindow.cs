@@ -1160,18 +1160,23 @@ public class MainWindow {
 			"Nat Friedman",
 			"Miguel de Icaza",
 			"Vladimir Vukicevic",
+			"Aaron Bockover",
 			"Jon Trowbridge",
 			"Joe Shaw",
 			"Tambet Ingo",
+			"Bengt Thuree",
 			"MOREAU Vincent",
+			"Alvaro del Castillo",
 			"Lee Willis",
 			"Alessandro Gervaso",
 			"Peter Johanson",
 			"Grahm Orr",
 			"Ewen Cheslack-Postava",
+			"Gabriel Burt",
 			"Patanjali Somayaji",
 			"Matt Jones",
 			"Martin Willemoes Hansen",
+			"Joshua Tauberer",
 			"Joerg Buesse",
 			"Jakub Steiner",
 			"Xavier Bouchoux"
@@ -1587,11 +1592,15 @@ public class MainWindow {
 			double old_zoom = photo_view.Zoom;
 
 			old_zoom /= FSpot.PhotoImageView.ZoomMultipler;
-			if (old_zoom < .001) {
+
+			int offset_x, offset_y, scaled_width, scaled_height;
+			photo_view.View.GetOffsets (out offset_x, out offset_y, out scaled_width, out scaled_height);
+
+			if (scaled_width <= 256 && old_zoom < 1.0)
 				SetViewMode (ModeType.IconView);
-			} else {
+			else
 				photo_view.Zoom = old_zoom;
-			}
+			
 			break;
 		case ModeType.IconView:
 			int width = icon_view.ThumbnailWidth;

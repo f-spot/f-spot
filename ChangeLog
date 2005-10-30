@@ -1,5 +1,10 @@
 2005-10-29  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: commit a slightly modified patch from Bengt
+	Thuree to switch out of photo view mode when zooming out.  Add
+	some people to the credits dialog (If you are reading this and
+	feel you should be listed too, remind me please).
+
 	* src/MetadataStore.cs: fix names.
 
 	* src/JpegFile.cs: look for DataTime original and DateTime.
