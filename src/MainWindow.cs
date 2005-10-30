@@ -1159,6 +1159,7 @@ public class MainWindow {
 			"Laurence Hygate",
 			"Nat Friedman",
 			"Miguel de Icaza",
+			"Todd Berman",
 			"Vladimir Vukicevic",
 			"Aaron Bockover",
 			"Jon Trowbridge",
