@@ -14,10 +14,10 @@ namespace FSpot {
 		static Description ()
 		{
 			Description [] preset = new Description [] {
-				new Description ("rdf:creator", Catalog.GetString ("Creator")),
-				new Description ("rdf:title", Catalog.GetString ("Title")),
-				new Description ("rdf:rights", Catalog.GetString ("Copyright")),
-				new Description ("rdf:subject", Catalog.GetString ("Subject and Keywords")),
+				new Description ("dc:creator", Catalog.GetString ("Creator")),
+				new Description ("dc:title", Catalog.GetString ("Title")),
+				new Description ("dc:rights", Catalog.GetString ("Copyright")),
+				new Description ("dc:subject", Catalog.GetString ("Subject and Keywords")),
 				new Description ("tiff:Compression", Catalog.GetString ("Compression"), 
 						 typeof (FSpot.Tiff.Compression)),
 				new Description ("tiff:PlanarConfiguration", Catalog.GetString ("Planar Configuration"), 

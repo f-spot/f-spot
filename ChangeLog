@@ -1,5 +1,7 @@
 2005-10-29  Larry Ewing  <lewing@novell.com>
 
+	* src/MetadataStore.cs: fix names.
+
 	* src/JpegFile.cs: look for DataTime original and DateTime.
 
 	* src/Tiff.cs: simplify rationals when convering them to strings
