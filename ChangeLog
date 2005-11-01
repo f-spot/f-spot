@@ -1,5 +1,7 @@
 2005-11-01  Larry Ewing  <lewing@novell.com>
 
+	* src/Loupe.cs: new file.
+
 	* src/ImageFile.cs: use write time if it is older than ctime.
 
 	* src/Tiff.cs: add some code to simplify the string value of the rational.
