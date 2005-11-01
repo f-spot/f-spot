@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 
 namespace FSpot {
@@ -11,9 +12,9 @@ namespace FSpot {
 			this.path = path;
 		}
 		
-		public virtual System.IO.Stream PixbufStream ()
+		public virtual Stream PixbufStream ()
 		{
-			return System.IO.File.OpenRead (this.path);
+			return File.OpenRead (this.path);
 		}
 
 		static ImageFile ()
@@ -101,7 +102,15 @@ namespace FSpot {
 		public virtual System.DateTime Date 
 		{
 			get {
-				return File.GetCreationTimeUtc  (this.path);
+				// FIXME mono uses the file change time (ctime) incorrectly
+				// as the creation time so we try to work around that slightly
+				DateTime create = File.GetCreationTimeUtc  (this.path);
+				DateTime write =  File.GetLastWriteTimeUtc (this.path);
+
+				if (create < write)
+					return create;
+				else 
+					return write;
 			}
 		}
 

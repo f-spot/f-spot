@@ -1,6 +1,10 @@
 2005-11-01  Larry Ewing  <lewing@novell.com>
 
-	* src/InfoBox.cs: XMP metadata for the info box so that we pick up
+	* src/ImageFile.cs: use write time if it is older than ctime.
+
+	* src/Tiff.cs: add some code to simplify the string value of the rational.
+
+	* src/InfoBox.cs: generated rdf metadata for the info box so that we pick up
 	metadata from all image types.
 
 	* src/ImageView.cs: wrap f_image_view_window_coords_to_image as
