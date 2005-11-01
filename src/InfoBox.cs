@@ -1,6 +1,8 @@
 using Gtk;
 using System;
 using System.IO;
+using FSpot;
+using SemWeb;
 
 // FIXME TODO: We want to use something like EClippedLabel here throughout so it handles small sizes
 // gracefully using ellipsis.
@@ -109,67 +111,152 @@ public class InfoBox : VBox {
 		exposure_info_label.Text = "";
 	}
 
-	private static string ExposureInfoText (string aperture,
-						string exposure,
-						string iso_speed)
-	{
-		string info = "";
+	private class ImageInfo : StatementSink {
+		string width;
+		string height;
+		string aperture;
+		string fnumber;
+		string exposure;
+		string iso_speed;
+		bool add = true;
+		Resource iso_anon;
+
+		MemoryStore store;
 		
-		if (aperture != null && aperture != "") {
-			aperture.Trim();
-			info += aperture + " ";
+		DateTime date;
+
+		public ImageInfo (ImageFile img) 
+		{
+			// FIXME We use the memory store to hold the anonymous statements
+			// as they are added so that we can query for them later to 
+			// resolve anonymous nodes.
+			store = new MemoryStore ();
+
+			if (img == null) 
+				return;
+
+			if (img is StatementSource) {
+				SemWeb.StatementSource source = (SemWeb.StatementSource)img;
+				source.Select (this);
+
+				// If we couldn't find the ISO speed because of the ordering
+				// search the memory store for the values
+				if (iso_speed == null && iso_anon != null) {
+					add = false;
+					store.Select (this)
+				}
+			}
+
+			if (img is JpegFile) {
+				int real_width;
+				int real_height;
+
+				JpegUtils.GetSize (img.Path, out real_width, out real_height);
+				width = real_width.ToString ();
+				height = real_height.ToString ();
+			}
+
+			date = img.Date;
 		}
-		if (exposure != null && exposure != "")
-			info += exposure + " ";
-		if (iso_speed != null && iso_speed != "")
-			info += "\nISO " + iso_speed;
-		
-		return info;
+
+		public bool Add (SemWeb.Statement stmt)
+		{
+			if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("tiff:ImageWidth"))
+				width = ((Literal)stmt.Object).Value;
+			else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("tiff:ImageLength"))
+				height = ((Literal)stmt.Object).Value;
+			else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:ExposureTime"))
+				exposure = ((Literal)stmt.Object).Value;
+			else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:ApertureValue"))
+				aperture = ((Literal)stmt.Object).Value;
+			else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:FNumber"))
+				fnumber = ((Literal)stmt.Object).Value;
+			else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:ISOSpeedRatings"))
+				iso_anon = stmt.Object;
+			else if (stmt.Subject == iso_anon && stmt.Predicate == MetadataStore.Namespaces.Resolve ("rdf:li"))
+				iso_speed = ((Literal)stmt.Object).Value;
+			else if (add && stmt.Subject.Uri == null)
+				store.Add (stmt);
+
+			if (width == null || height == null || exposure == null || aperture == null || iso_speed == null)
+				return true;
+			else
+				return false;
+		}
+
+		public string ExposureInfo {
+			get {
+				string info = "";
+
+				if  (fnumber != null && fnumber != "") {
+					FSpot.Tiff.Rational rat = new FSpot.Tiff.Rational (fnumber);
+					info += String.Format ("f/{0:.0} ", rat.Value);
+				} else if (aperture != null && aperture != "") {
+					FSpot.Tiff.Rational rat = new FSpot.Tiff.Rational (aperture);
+					info += String.Format ("f/{0:.0} ", Math.Pow (2, rat.Value / 2));
+				}
+
+				if (exposure != null && exposure != "")
+					info += exposure + " sec ";
+
+				if (iso_speed != null && iso_speed != "")
+					info += "\nISO " + iso_speed;
+				
+				if (info == "")
+					return Mono.Posix.Catalog.GetString ("(None)");
+				
+				return info;
+			}
+		}
+
+		public string Dimentions {
+			get {
+				if (width != null && height != null)
+					return String.Format ("{0}x{1}", width, height);
+				else 
+					return Mono.Posix.Catalog.GetString ("(Unknown)");
+			}
+		}
+
+		public string Date {
+			get {
+				if (date > DateTime.MinValue && date < DateTime.MaxValue)
+					return date.ToShortDateString () + "\n" + date.ToShortTimeString ();
+				else 
+					return Mono.Posix.Catalog.GetString ("(Unknown)");
+			}
+		}
 	}
+		
 
 	public void Update ()
 	{
+		ImageFile img;
+		ImageInfo info;
+
 		if (photo == null) {
 			Clear ();
 			return;
 		}
-
-		name_entry.Text = System.IO.Path.GetFileName (photo.Path);
-
-		ExifUtils.ExposureInfo exposure_info;
+		
+		
+		string path = photo.DefaultVersionUri.LocalPath;
+		name_entry.Text = System.IO.Path.GetFileName (path);
 		try {
-			exposure_info = ExifUtils.GetExposureInfo (photo.Path);
+			using (new Timer ("building info")) {
+				img = ImageFile.Create (path);
+				info = new ImageInfo (img);
+			}
 		} catch (System.Exception e) {
-			System.Console.WriteLine (e.ToString ());
-			exposure_info = new ExifUtils.ExposureInfo ();
+			System.Console.WriteLine (e);
+			info = new ImageInfo (null);			
 		}
+
 
 		name_entry.Sensitive = true;
-
-		string text = ExposureInfoText (exposure_info.ApertureValue,
-						exposure_info.ExposureTime,
-						exposure_info.IsoSpeed);
-
-		if (text != "")
-			exposure_info_label.Text = text;
-		else
-			exposure_info_label.Text = Mono.Posix.Catalog.GetString ("(None)");
-
-		int width = 0, height = 0;
-		try {
-			JpegUtils.GetSize (photo.DefaultVersionPath, out width, out height);
-		} catch {
-		}
-
-		if (width == 0 || height == 0)
-			size_label.Text = "(Unknown)";
-		else
-			size_label.Text = String.Format ("{0}x{1}", width, height);
-
-		if (exposure_info.DateTime != null && exposure_info.DateTime != "") {
-			date_label.Text = photo.Time.ToShortDateString () + "\n" + photo.Time.ToShortTimeString ();
-		} else
-			date_label.Text = "(Unknown)";
+		exposure_info_label.Text = info.ExposureInfo;
+		size_label.Text = info.Dimentions;
+		date_label.Text = info.Date;
 
 		PhotoVersionMenu menu = new PhotoVersionMenu (photo);
 		menu.VersionIdChanged += new PhotoVersionMenu.VersionIdChangedHandler (HandleVersionIdChanged);
@@ -181,6 +268,7 @@ public class InfoBox : VBox {
 				// FIXME GTK# why not just .History = i ?
 				version_option_menu.SetHistory (i);
 				break;
+
 			}
 			i ++;
 		}

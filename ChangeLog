@@ -1,3 +1,13 @@
+2005-11-01  Larry Ewing  <lewing@novell.com>
+
+	* src/InfoBox.cs: XMP metadata for the info box so that we pick up
+	metadata from all image types.
+
+	* src/ImageView.cs: wrap f_image_view_window_coords_to_image as
+	WindowCoordsToImage.
+
+	* libfspot/f-image-view.c: expose f_image_view_window_coords_to_image.
+
 2005-10-29  Larry Ewing  <lewing@novell.com>
 
 	* src/MainWindow.cs: commit a slightly modified patch from Bengt
