@@ -308,6 +308,21 @@ namespace FSpot.Tiff {
 			Numerator = numerator;
 			Denominator = denominator;
 		}
+		
+		public Rational (string value)
+		{
+			string [] vals = value.Split ('/');
+			if (vals.Length == 2) {
+				this.Numerator = UInt32.Parse (vals [0]);
+				this.Denominator = UInt32.Parse (vals [1]);
+				return;
+			} if (vals.Length == 1) {
+				double tmp = Double.Parse (value);
+				this.Numerator = (uint) (tmp * 100000);
+				this.Denominator = 100000;
+			} else
+				throw new System.Exception ("unable to parse rational value");
+		}
 
 		public override string ToString ()
 		{
