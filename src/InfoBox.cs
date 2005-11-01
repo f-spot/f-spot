@@ -143,7 +143,7 @@ public class InfoBox : VBox {
 				// search the memory store for the values
 				if (iso_speed == null && iso_anon != null) {
 					add = false;
-					store.Select (this)
+					store.Select (this);
 				}
 			}
 
