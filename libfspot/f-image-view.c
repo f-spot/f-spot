@@ -98,11 +98,10 @@ struct _FImageViewPrivate {
 
 
 /* Utility functions.  */
-
-static void
-window_coords_to_image (FImageView *image_view,
-			int window_x, int window_y,
-			int *image_x_return, int *image_y_return)
+void
+f_image_view_window_coords_to_image (FImageView *image_view,
+				     int window_x, int window_y,
+				     int *image_x_return, int *image_y_return)
 {
 	GdkPixbuf *pixbuf;
 	int x_offset, y_offset;
@@ -568,9 +567,9 @@ impl_button_press_event (GtkWidget *widget,
 		/* Erase existing selection rectangle.  */
 		draw_selection (image_view, NULL);
 
-		window_coords_to_image (image_view,
-					button_event->x, button_event->y,
-					&priv->selection.x1, &priv->selection.y1);
+		f_image_view_window_coords_to_image (image_view,
+						     button_event->x, button_event->y,
+						     &priv->selection.x1, &priv->selection.y1);
 		priv->selection_active = FALSE;
 		priv->selection.x2 = priv->selection.x1;
 		priv->selection.y2 = priv->selection.y1;
@@ -632,7 +631,7 @@ impl_motion_notify_event (GtkWidget *widget,
 		priv->selection_active = TRUE;
 	}
 
-	window_coords_to_image (image_view, x, y, &image_x, &image_y);
+	f_image_view_window_coords_to_image (image_view, x, y, &image_x, &image_y);
 
 	switch (priv->mode) {
 	case MODE_DRAG_X1:

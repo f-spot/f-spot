@@ -140,7 +140,6 @@ public class ImageView : Layout {
 		image_view_get_zoom (Handle, out zoomx, out zoomy);
 	}
 
-
 	[DllImport ("libfspoteog")]
 	static extern void image_view_get_offsets_and_size (IntPtr view,
 							    out int xofs_return, out int yofs_return,
@@ -151,6 +150,20 @@ public class ImageView : Layout {
 		image_view_get_offsets_and_size (Handle,
 						 out x_offset, out y_offset, out scaled_width, out scaled_height);
 	}
+
+	[DllImport ("libfspot")]
+	static extern void f_image_view_window_coords_to_image (IntPtr view,
+								int window_x, int window_y,
+								out int image_x, out int image_y);
+
+	public Gdk.Point WindowCoordsToImage (Gdk.Point win)
+	{
+		Gdk.Point img;
+
+		f_image_view_window_coords_to_image (Handle, win.X, win.Y, out img.X, out img.Y);
+		return img;
+	}
+
 
 	public Gdk.Rectangle ImageCoordsToWindow (Gdk.Rectangle image)
 	{
