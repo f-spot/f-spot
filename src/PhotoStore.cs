@@ -6,7 +6,7 @@ using System.Collections;
 using System.IO;
 using System.Text;
 using System;
-
+using FSpot;
 
 public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 	// IComparable 
@@ -382,6 +382,67 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		return tags.Contains (tag);
 	}
 
+	private static FSpot.Xmp.XmpFile CreateXmp (FSpot.IBrowsableItem item)
+	{
+		FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile ();
+
+		Tag [] tags = item.Tags;
+		string [] names = new string [tags.Length];
+		
+		for (int i = 0; i < tags.Length; i++)
+			names [i] = tags [i].Name;
+		
+		FSpot.MetadataStore.Add (xmp, "dc:subject", "rdf:Bag", names);
+		xmp.Dump ();
+
+		return xmp;
+	}
+
+	public void WriteMetadataToImage ()
+	{
+		string path = this.DefaultVersionPath;
+
+		FSpot.ImageFile img = FSpot.ImageFile.Create (path);
+		if (img is FSpot.JpegFile) {
+			FSpot.JpegFile jimg = img as FSpot.JpegFile;
+			
+			jimg.SetDescription (this.Description);
+		
+			FSpot.Xmp.XmpFile xmp = CreateXmp (this);
+			jimg.SetXmp (xmp);
+
+			jimg.SaveMetaData (path);
+		}
+	}
+
+	public uint SaveVersion (Gdk.Pixbuf buffer, bool create_version)
+	{
+		uint version = DefaultVersionId;
+		ImageFile img = ImageFile.Create (DefaultVersionUri.LocalPath);
+		Exif.ExifData exif_data = new Exif.ExifData (DefaultVersionPath);
+
+		// Always create a version if the source is not a jpeg for now.
+		create_version = create_version || !(img is FSpot.JpegFile);
+
+		if (create_version)
+			version = CreateDefaultModifiedVersion (DefaultVersionId, false);
+
+		try {
+			string version_path = GetVersionPath (version);
+			
+			PixbufUtils.SaveJpeg (buffer, version_path, 95, exif_data);
+			FSpot.ThumbnailGenerator.Create (version_path).Dispose ();
+			DefaultVersionId = version;
+			
+		} catch (System.Exception e) {
+			if (create_version)
+				DeleteVersion (version);
+			
+			throw e;
+		}
+		
+		return version;
+	}
 
 	// Constructor
 	public Photo (uint id, uint unix_time, string directory_path, string name)

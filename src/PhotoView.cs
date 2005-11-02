@@ -260,8 +260,6 @@ public class PhotoView : EventBox {
 			Gdk.Rectangle area = new Gdk.Rectangle (x, y, width, height);
 			edited = PixbufUtils.RemoveRedeye (original_pixbuf, 
 							   area);
-
-
 		} else { // Crop (I told you it was ugly)
 			edited = new Pixbuf (original_pixbuf.Colorspace, 
 					     false, original_pixbuf.BitsPerSample,
@@ -278,20 +276,10 @@ public class PhotoView : EventBox {
 		bool version = false;
 
 		try {
-			if (photo.DefaultVersionId == Photo.OriginalVersionId) {
-				photo.DefaultVersionId = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);
-				version = true;
-				PixbufUtils.SaveJpeg (edited, photo.DefaultVersionPath, 
-						      95, exif_data);
-				FSpot.ThumbnailGenerator.Create (photo.DefaultVersionPath).Dispose ();
-				query.Commit (Item.Index);
-			} else {
-				// FIXME we need to invalidate the thumbnail in the cache as well
-				PixbufUtils.SaveJpeg (edited, photo.DefaultVersionPath, 
-						      95, exif_data);
-				FSpot.ThumbnailGenerator.Create (photo.DefaultVersionPath).Dispose ();
-				query.MarkChanged (Item.Index);
-			}
+			bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
+			photo.SaveVersion (edited, create_version);
+			query.Commit (Item.Index);
+			query.MarkChanged (Item.Index);
 		} catch (System.Exception e) {
 			string msg = Mono.Posix.Catalog.GetString ("Error editing photo");
 			string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save image {1}"),
@@ -303,9 +291,6 @@ public class PhotoView : EventBox {
 								    desc);
 			md.Run ();
 			md.Destroy ();
-
-			if (version)
-				photo.DeleteVersion (photo.DefaultVersionId);
 		}
 		
 		photo_view.Fit = true;
@@ -326,25 +311,9 @@ public class PhotoView : EventBox {
 
 #if true // UPDATE_EXIF_DESCRIPTION
 			Photo photo = query.Photos [description_photo];
-			FSpot.ImageFile img = FSpot.ImageFile.Create (photo.DefaultVersionPath);
-			if (img is FSpot.JpegFile) {
-				FSpot.JpegFile jimg = img as FSpot.JpegFile;
-				jimg.SetDescription (photo.Description);
-#if UPDATE_XMP_TAGS 				
-				FSpot.Xmp.XmpFile xmp = new XmpFile ();
-				Tag [] tags = photo.Tags;
-				string [] names = new string [tags.Length];
-				
-				for (int i = 0; i < tags.Length; i++)
-					names [i] = tags [i].Name;
-				
-				FSpot.MetadataStore.Add (xmp, "dc:subject", "rdf:Bag", names);
-				xmp.Dump ();
-				jimg.SetXmp (xmp);
-#endif
-				jimg.SaveMetaData (photo.DefaultVersionPath);
-			}
-			//Query.Store.Commit (photo);
+
+			photo.WriteMetadataToImage ();
+
 			Query.Commit (description_photo);
 #else
 			Query.Commit (description_photo);

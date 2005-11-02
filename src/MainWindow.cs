@@ -28,7 +28,6 @@ public class MainWindow {
 	[Glade.Widget] Gtk.VBox view_vbox;
 
 	[Glade.Widget] Gtk.VBox toolbar_vbox;
-	
 
 	[Glade.Widget] ScrolledWindow icon_view_scrolled;
 	[Glade.Widget] Box photo_box;
@@ -103,6 +102,7 @@ public class MainWindow {
 	
 	string last_import_path;
 	ModeType view_mode;
+	bool write_metadata = false;
 
 	// Drag and Drop
 	enum TargetType {
@@ -470,7 +470,13 @@ public class MainWindow {
 
 	public void AddTagExtended (int num, Tag [] tags)
 	{
-		query.Photos [num].AddTag (tags);
+		Photo p = query.Photos [num];
+
+		p.AddTag (tags);
+
+		if (write_metadata)
+			p.WriteMetadataToImage ();
+
 		query.Commit (num);
 
 		foreach (Tag t in tags) {
@@ -1390,22 +1396,11 @@ public class MainWindow {
 				Gdk.Pixbuf final = PixbufUtils.UnsharpMask (orig, radius_spin.Value, amount_spin.Value, threshold_spin.Value);
 			
 				Photo photo = query.Photos [id];
-				Exif.ExifData exif_data = new Exif.ExifData (photo.DefaultVersionPath);
 				
-				bool created_version = false;
-				uint version = photo.DefaultVersionId;
-				if (version == Photo.OriginalVersionId) {
-					version = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);
-					created_version = true;
-				}
-				
+				bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
+
 				try {
-					string version_path = photo.GetVersionPath (version);
-					
-					PixbufUtils.SaveJpeg (final, version_path, 95, exif_data);
-					FSpot.ThumbnailGenerator.Create (version_path).Dispose ();
-					photo.DefaultVersionId = version;
-					query.Commit (id);
+					photo.SaveVersion (final, create_version);
 				} catch (System.Exception e) {
 					string msg = Mono.Posix.Catalog.GetString ("Error saving sharpened photo");
 					string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save image {1}"),
@@ -1417,9 +1412,6 @@ public class MainWindow {
 										    desc);
 					md.Run ();
 					md.Destroy ();
-					
-					if (created_version)
-						photo.DeleteVersion (version);
 				}
 			
 			}

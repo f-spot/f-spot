@@ -138,76 +138,48 @@ namespace FSpot {
 
 			Console.WriteLine ("Saving....");
 			Photo photo = (Photo)view.Item.Current;
-			FSpot.ImageFile img = FSpot.ImageFile.Create (photo.DefaultVersionPath);
-
-			if (img is FSpot.JpegFile) {
-				FSpot.JpegFile jimg = img as JpegFile;
+			bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
+			uint version = photo.DefaultVersionId;
+			
+			Gdk.Pixbuf orig = view.CompletePixbuf ();
+			Gdk.Pixbuf final = new Gdk.Pixbuf (Gdk.Colorspace.Rgb,
+							   false, 8,
+							   orig.Width, 
+							   orig.Height);
 				
-				bool created_version = false;
-				uint version = photo.DefaultVersionId;
-				if (version == Photo.OriginalVersionId) {
-					version = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);
-					created_version = true;
-				}
-				
-				Gdk.Pixbuf orig = view.CompletePixbuf ();
-				
-				Gdk.Pixbuf final = new Gdk.Pixbuf (Gdk.Colorspace.Rgb,
-								   false, 8,
-								   orig.Width, 
-								   orig.Height);
-				
-				Cms.Profile abs = Cms.Profile.CreateAbstract (100, brightness_scale.Value,
-									      contrast_scale.Value,
-									      hue_scale.Value, 
-									      sat_scale.Value,
-									      source_spinbutton.ValueAsInt, 
-									      dest_spinbutton.ValueAsInt);
-				
-				Cms.Profile [] list = new Cms.Profile [] { image_profile, abs, image_profile };
-				Cms.Transform transform = new Cms.Transform (list,
-									     PixbufUtils.PixbufCmsFormat (orig),
-									     PixbufUtils.PixbufCmsFormat (final),
-									     Cms.Intent.Perceptual, 0x0000);
-		
-				PixbufUtils.ColorAdjust (orig,
-							 final,
-							 transform);
-				
-				try {
-					string version_path = photo.GetVersionPath (version);
-					PixbufUtils.SaveJpeg (final, version_path, 95, jimg.ExifData);
-					ThumbnailGenerator.Create (version_path).Dispose ();
-					photo.DefaultVersionId = version;
-					((PhotoQuery)view.Query).Commit (view.Item.Index);
-				} catch (System.Exception e) {
-					string msg = Mono.Posix.Catalog.GetString ("Error saving adjusted photo");
-					string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save image {1}"),
-								     e.Message, photo.Name);
-					
-					HigMessageDialog md = new HigMessageDialog ((Gtk.Window)Dialog.Toplevel, DialogFlags.DestroyWithParent, 
-										    Gtk.MessageType.Error, ButtonsType.Ok, 
-										    msg,
-										    desc);
-					md.Run ();
-					md.Destroy ();
-					
-					if (created_version)
-						photo.DeleteVersion (version);
-				}
-			} else {
+			Cms.Profile abs = Cms.Profile.CreateAbstract (100, brightness_scale.Value,
+								      contrast_scale.Value,
+								      hue_scale.Value, 
+								      sat_scale.Value,
+								      source_spinbutton.ValueAsInt, 
+								      dest_spinbutton.ValueAsInt);
+			
+			Cms.Profile [] list = new Cms.Profile [] { image_profile, abs, image_profile };
+			Cms.Transform transform = new Cms.Transform (list,
+								     PixbufUtils.PixbufCmsFormat (orig),
+								     PixbufUtils.PixbufCmsFormat (final),
+								     Cms.Intent.Perceptual, 0x0000);
+			
+			PixbufUtils.ColorAdjust (orig,
+						 final,
+						 transform);
+			
+			try {
+				photo.SaveVersion (final, create_version);
+				((PhotoQuery)view.Query).Commit (view.Item.Index);
+			} catch (System.Exception e) {
 				string msg = Mono.Posix.Catalog.GetString ("Error saving adjusted photo");
-				string desc = String.Format (Mono.Posix.Catalog.GetString ("F-Spot {0} cannot yet edit images of this type"), 
-							     FSpot.Defines.VERSION);
+				string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save image {1}"),
+							     e.Message, photo.Name);
 				
 				HigMessageDialog md = new HigMessageDialog ((Gtk.Window)Dialog.Toplevel, DialogFlags.DestroyWithParent, 
 									    Gtk.MessageType.Error, ButtonsType.Ok, 
 									    msg,
 									    desc);
-
 				md.Run ();
 				md.Destroy ();
 			}
+
 			this.Dialog.Sensitive = false;
 			this.Dialog.Destroy ();
 		}
