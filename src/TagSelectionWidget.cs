@@ -359,9 +359,11 @@ public class TagSelectionWidget : TreeView {
 
 		if (is_root)
 			valid = store.GetIterFirst (out iter);
-		else
+		else {
 			valid = store.IterChildren (out iter, parent);
-			
+			ExpandRow (Model.GetPath (parent), false);
+		}
+
 		while (valid) {
 			//I have no desire to figure out a more performant sort over this...
 			GLib.Value value = new GLib.Value ();
@@ -379,10 +381,8 @@ public class TagSelectionWidget : TreeView {
 
 		if (is_root) 
 			iter = store.AppendNode (); 
-		else {
+		else
 			iter = store.AppendNode (parent); 
-			ExpandRow (Model.GetPath (parent), false);
-		}
 
 		store.SetValue (iter, 0, tag.Id);
 		store.SetValue (iter, 1, tag.Name);
