@@ -139,7 +139,6 @@ namespace FSpot {
 			Console.WriteLine ("Saving....");
 			Photo photo = (Photo)view.Item.Current;
 			bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
-			uint version = photo.DefaultVersionId;
 			
 			Gdk.Pixbuf orig = view.CompletePixbuf ();
 			Gdk.Pixbuf final = new Gdk.Pixbuf (Gdk.Colorspace.Rgb,
