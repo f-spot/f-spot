@@ -35,6 +35,35 @@ namespace FSpot {
 		{
 			UpdateSample ();
 		}
+		
+		private void HandleOkClicked ()
+		{
+			Photo photo = view.Item.Current as Photo;
+
+			if (photo == null)
+				return;
+			
+			Gdk.Pixbuf orig = view.Pixbuf;
+			Gdk.Pixbuf final = PixbufUtils.UnsharpMask (orig, radius_spin.Value, amount_spin.Value, threshold_spin.Value);
+			
+			bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
+			
+			try {
+				photo.SaveVersion (final, create_version);
+			} catch (System.Exception e) {
+				string msg = Mono.Posix.Catalog.GetString ("Error saving sharpened photo");
+				string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save image {1}"),
+							     e.Message, photo.Name);
+				
+				HigMessageDialog md = new HigMessageDialog (this, DialogFlags.DestroyWithParent, 
+									    Gtk.MessageType.Error, ButtonsType.Ok, 
+									    msg,
+									    desc);
+				md.Run ();
+				md.Destroy ();
+			}
+
+		}
 
 		protected override void BuildUI ()
 		{
@@ -88,7 +117,7 @@ namespace FSpot {
 			region.Y = p.Y;
 			region.Width = 256;
 			region.Height = 256;
-			region.Offset (-128, -128);
+			region.Offset (- Math.Min (region.X, 128), - Math.Min (region.Y, 128));
 
 			UpdateSample ();
 		}
@@ -115,14 +144,9 @@ namespace FSpot {
 			coords = new Gdk.Point ((int) args.Event.X, (int) args.Event.Y);
 			
 			SetSamplePoint (view.WindowCoordsToImage (coords));
-			QueueDraw ();
+			//QueueDraw ();
 		}
 		
-		private void HandleButtonPressEvent (object obj, ButtonPressEventArgs args)
-		{
-			Destroy ();
-		}
-
 		private void HandleDestroyed (object sender, System.EventArgs args)
 		{
 			view.MotionNotifyEvent -= HandleImageViewMotion;
@@ -147,7 +171,6 @@ namespace FSpot {
 			
 			TransientFor = (Gtk.Window) view.Toplevel;
 			view.MotionNotifyEvent += HandleImageViewMotion;
-			ButtonPressEvent += HandleButtonPressEvent;
 
 			SetSamplePoint (Gdk.Point.Zero);
 			box.ShowAll ();

@@ -1,5 +1,7 @@
 2005-11-02  Larry Ewing  <lewing@novell.com>
 
+	* src/Loupe.cs: add save logic.  Fix button press stuff.
+
 	* src/PhotoView.cs: use SaveVersion.
 
 	* src/PhotoStore.cs: add WriteMetadataToImage and SaveVersion
