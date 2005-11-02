@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-31 14:15-0500\n"
+"POT-Creation-Date: 2005-11-02 10:45-0500\n"
 "PO-Revision-Date: 2005-09-06 23:54-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
@@ -271,19 +271,14 @@ msgstr "Error: Error while transferring; Aborting"
 msgid "Error: File Already Exists; Aborting"
 msgstr "Error: File Already Exists; Aborting"
 
-#: src/ColorDialog.cs:184 src/ColorDialog.cs:199
+#: src/ColorDialog.cs:170
 msgid "Error saving adjusted photo"
 msgstr "Error saving adjusted photo"
 
-#: src/ColorDialog.cs:185 src/MainWindow.cs:1411 src/PhotoView.cs:297
+#: src/ColorDialog.cs:171 src/MainWindow.cs:1406 src/PhotoView.cs:285
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save image {1}"
 msgstr "Received exception \"{0}\". Unable to save image {1}"
-
-#: src/ColorDialog.cs:200
-#, csharp-format
-msgid "F-Spot {0} cannot yet edit images of this type"
-msgstr "F-Spot {0} cannot yet edit images of this type"
 
 #: src/Exif.cs:226
 msgid "Image Directory"
@@ -1124,29 +1119,33 @@ msgstr ""
 "The directory you selected, \"{0}\", does not exist.  Please choose a "
 "different directory"
 
-#: src/InfoBox.cs:70 src/PhotoVersionCommands.cs:55
+#: src/InfoBox.cs:72 src/PhotoVersionCommands.cs:55
 msgid "Name:"
 msgstr "Name:"
 
-#: src/InfoBox.cs:72
+#: src/InfoBox.cs:74
 msgid "Version:"
 msgstr "Version:"
 
-#: src/InfoBox.cs:74
+#: src/InfoBox.cs:76
 msgid "Date:"
 msgstr "Date:"
 
-#: src/InfoBox.cs:76
+#: src/InfoBox.cs:78
 msgid "Size:"
 msgstr "Size:"
 
-#: src/InfoBox.cs:78
+#: src/InfoBox.cs:80
 msgid "Exposure:"
 msgstr "Exposure:"
 
-#: src/InfoBox.cs:156
+#: src/InfoBox.cs:206
 msgid "(None)"
 msgstr "(None)"
+
+#: src/InfoBox.cs:217 src/InfoBox.cs:226
+msgid "(Unknown)"
+msgstr "(Unknown)"
 
 #: src/InfoDisplay.cs:148
 msgid "Extended Metadata"
@@ -1292,11 +1291,11 @@ msgstr "Intellectual genre of the object"
 msgid "Unkown IIM DataSet"
 msgstr "Unkown IIM DataSet"
 
-#: src/MainWindow.cs:1008
+#: src/MainWindow.cs:1014
 msgid "No cameras detected."
 msgstr "No cameras detected."
 
-#: src/MainWindow.cs:1009
+#: src/MainWindow.cs:1015
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1304,11 +1303,11 @@ msgstr ""
 "F-Spot was unable to find any cameras attached to this system.  Double-check "
 "that the camera is connected and has power"
 
-#: src/MainWindow.cs:1049
+#: src/MainWindow.cs:1055
 msgid "Error connecting to camera"
 msgstr "Error connecting to camera"
 
-#: src/MainWindow.cs:1050
+#: src/MainWindow.cs:1056
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Received error \"{0}\" while connecting to camera"
@@ -1316,58 +1315,58 @@ msgstr "Received error \"{0}\" while connecting to camera"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: src/MainWindow.cs:1189
+#: src/MainWindow.cs:1195
 msgid "translator-credits"
 msgstr "Adam Weinberger <adamw@gnome.org>"
 
-#: src/MainWindow.cs:1357
+#: src/MainWindow.cs:1363
 msgid "Unsharp Mask"
 msgstr "Unsharp Mask"
 
-#: src/MainWindow.cs:1366
+#: src/MainWindow.cs:1372
 msgid "Amount:"
 msgstr "Amount:"
 
-#: src/MainWindow.cs:1367
+#: src/MainWindow.cs:1373
 msgid "Radius:"
 msgstr "Radius:"
 
-#: src/MainWindow.cs:1368
+#: src/MainWindow.cs:1374
 msgid "Threshold:"
 msgstr "Threshold:"
 
-#: src/MainWindow.cs:1410
+#: src/MainWindow.cs:1405
 msgid "Error saving sharpened photo"
 msgstr "Error saving sharpened photo"
 
-#: src/MainWindow.cs:1648
+#: src/MainWindow.cs:1640
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Delete the selected photo permanently?"
 msgstr[1] "Delete the {0} selected photos permanently?"
 
-#: src/MainWindow.cs:1652
+#: src/MainWindow.cs:1644
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
 msgstr[0] "This deletes all versions of the selected photo from your drive."
 msgstr[1] "This deletes all versions of the selected photos from your drive."
 
-#: src/MainWindow.cs:1655
+#: src/MainWindow.cs:1647
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Delete photo"
 msgstr[1] "_Delete photos"
 
-#: src/MainWindow.cs:1673
+#: src/MainWindow.cs:1665
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Remove the selected photo from F-Spot?"
 msgstr[1] "Remove the {0} selected photos from F-Spot??"
 
-#: src/MainWindow.cs:1678
+#: src/MainWindow.cs:1670
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1377,33 +1376,33 @@ msgstr ""
 "lost. The photos will remain on your computer and can be imported into F-"
 "Spot again."
 
-#: src/MainWindow.cs:1679
+#: src/MainWindow.cs:1671
 msgid "_Remove from Catalog"
 msgstr "_Remove from Catalogue"
 
-#: src/MainWindow.cs:1702
+#: src/MainWindow.cs:1694
 #, csharp-format
 msgid "Delete the selected tag?"
 msgid_plural "Delete the {0} selected tags?"
 msgstr[0] "Delete the selected tag?"
 msgstr[1] "Delete {0} selected tags?"
 
-#: src/MainWindow.cs:1707
+#: src/MainWindow.cs:1699
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr "If you delete a tag, all associations with photos are lost."
 
-#: src/MainWindow.cs:1708
+#: src/MainWindow.cs:1700
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Delete tag"
 msgstr[1] "_Delete tags"
 
 #. A Category is not empty. Can not delete it.
-#: src/MainWindow.cs:1722
+#: src/MainWindow.cs:1714
 msgid "Category is not empty"
 msgstr "Category is not empty"
 
-#: src/MainWindow.cs:1723
+#: src/MainWindow.cs:1715
 #, csharp-format
 msgid ""
 "Can not delete categories that have tags.Please delete tags under \"{0}\" "
@@ -1552,7 +1551,7 @@ msgstr[1] "Modified ({0})"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: src/PhotoStore.cs:399
+#: src/PhotoStore.cs:460
 msgid "Original"
 msgstr "Original"
 
@@ -1639,31 +1638,31 @@ msgstr ""
 "This tool requires an active selection. Please select a region of the image "
 "and try the operation again"
 
-#: src/PhotoView.cs:296
+#: src/PhotoView.cs:284
 msgid "Error editing photo"
 msgstr "Error editing photo"
 
-#: src/PhotoView.cs:503
+#: src/PhotoView.cs:472
 msgid "Crop image to selected area"
 msgstr "Crop image to selected area"
 
-#: src/PhotoView.cs:504
+#: src/PhotoView.cs:473
 msgid "Remove redeye from selected area"
 msgstr "Remove redeye from selected area"
 
-#: src/PhotoView.cs:505
+#: src/PhotoView.cs:474
 msgid "Adjust the image colors"
 msgstr "Adjust the image colours"
 
-#: src/PhotoView.cs:506
+#: src/PhotoView.cs:475
 msgid "Constrain the aspect ratio of the selection"
 msgstr "Constrain the aspect ratio of the selection"
 
-#: src/PhotoView.cs:507
+#: src/PhotoView.cs:476
 msgid "Next image"
 msgstr "Next image"
 
-#: src/PhotoView.cs:508
+#: src/PhotoView.cs:477
 msgid "Previous image"
 msgstr "Previous image"
 
