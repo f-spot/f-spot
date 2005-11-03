@@ -81,10 +81,13 @@ namespace FSpot {
 			table.Attach (SetFancyStyle (new Gtk.Label (Mono.Posix.Catalog.GetString ("Radius:"))), 0, 1, 1, 2);
 			table.Attach (SetFancyStyle (new Gtk.Label (Mono.Posix.Catalog.GetString ("Threshold:"))), 0, 1, 2, 3);
 			
-			SetFancyStyle (amount_spin = new Gtk.SpinButton (0.5, 100.0, .01));
-			SetFancyStyle (radius_spin = new Gtk.SpinButton (5.0, 50.0, .01));
+			SetFancyStyle (amount_spin = new Gtk.SpinButton (0.00, 100.0, .01));
+			SetFancyStyle (radius_spin = new Gtk.SpinButton (1.0, 50.0, .01));
 			SetFancyStyle (threshold_spin = new Gtk.SpinButton (0.0, 50.0, .01));
-			
+			amount_spin.Value = .5;
+			radius_spin.Value = 5;
+			threshold_spin.Value = 0.0;
+
 			amount_spin.ValueChanged += HandleSettingsChanged;
 			radius_spin.ValueChanged += HandleSettingsChanged;
 			threshold_spin.ValueChanged += HandleSettingsChanged;
@@ -117,8 +120,15 @@ namespace FSpot {
 			region.Y = p.Y;
 			region.Width = 256;
 			region.Height = 256;
-			region.Offset (- Math.Min (region.X, 128), - Math.Min (region.Y, 128));
+			
+			if (view.Pixbuf != null) {
+				Gdk.Pixbuf pixbuf = view.Pixbuf;
 
+				region.Offset (- Math.Min (region.X, Math.Max (region.Right - pixbuf.Width, 128)), 
+					       - Math.Min (region.Y, Math.Max (region.Bottom - pixbuf.Height, 128)));
+				
+				region.Intersect (new Gdk.Rectangle (0, 0, pixbuf.Width, pixbuf.Height));
+			}
 			UpdateSample ();
 		}
 

@@ -510,7 +510,7 @@ namespace FSpot {
 			public virtual void StartDrag (double x, double y, uint time) 
 			{
 				State = StateType.Active;
-				timer.Start ();
+				//timer.Start ();
 				Dragging = true;
 				DragStart.X = (int)x;
 				DragStart.Y = (int)y;	
