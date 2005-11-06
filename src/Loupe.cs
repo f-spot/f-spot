@@ -1,5 +1,7 @@
 using Gtk;
 using System;
+using System.Runtime.InteropServices;
+using Cairo;
 
 namespace FSpot {
 	public class Sharpener : Loupe {
@@ -107,11 +109,39 @@ namespace FSpot {
 		protected Image image;
 		protected VBox box; 
 		protected Gdk.Rectangle region;
+		bool use_shape_ext = false;
+		Gdk.Pixbuf source;
+		private int radius = 128;
+		Gdk.Point start;
+		Gdk.Point last;
 
 		public Loupe (PhotoImageView view) : base ("my window")
 		{ 
 			this.view = view;
+			Decorated = false;
+
+			Gdk.Visual visual = Gdk.Visual.GetBestWithDepth (32);
+			if (visual != null)
+				Colormap = new Gdk.Colormap (visual, false);
+			else
+				use_shape_ext = true;
+
 			BuildUI ();
+		}
+
+		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
+		{
+			base.OnSizeAllocated (allocation);
+			if (use_shape_ext) {
+				Gdk.Pixmap bitmap = new Gdk.Pixmap (GdkWindow, 
+								    allocation.Width, 
+								    allocation.Height, 1);
+
+				Graphics g = CreateDrawable (bitmap);
+				DrawShape (g, allocation.Width, allocation.Height);
+				((IDisposable)g).Dispose ();
+				ShapeCombineMask (bitmap, 0, 0);
+			}
 		}
 
 		public void SetSamplePoint (Gdk.Point p)
@@ -134,17 +164,18 @@ namespace FSpot {
 
 		protected virtual void UpdateSample ()
 		{
-			if (view.Pixbuf == null) {
-				System.Console.WriteLine ("no image");
-				image.Pixbuf = null;
-				return;
-			}
+			if (source != null)
+				source.Dispose ();
 			
-			Gdk.Pixbuf old = image.Pixbuf;
-			image.FromPixbuf = new Gdk.Pixbuf (view.Pixbuf, region.X, region.Y, region.Width, region.Height);
+			source = null;
 
-			if (old != null)
-				old.Dispose ();
+			if (view.Pixbuf == null)
+				return;
+			
+			source = new Gdk.Pixbuf (view.Pixbuf,
+						 region.X, region.Y,
+						 region.Width, region.Height);
+			this.QueueDraw ();
 		}
 
 		[GLib.ConnectBefore]
@@ -154,9 +185,81 @@ namespace FSpot {
 			coords = new Gdk.Point ((int) args.Event.X, (int) args.Event.Y);
 			
 			SetSamplePoint (view.WindowCoordsToImage (coords));
-			//QueueDraw ();
 		}
 		
+		private void DrawShape (Cairo.Graphics g, int width, int height)
+		{
+			int inner = 10;
+			int border = 5;
+			int inner_x = radius + 2 * border + inner;
+
+			g.Operator = Operator.Source;
+			g.Color = new Cairo.Color (0,0,0,0);
+			g.Rectangle (0, 0, width, height);
+			g.Paint ();
+
+			g.NewPath ();
+			g.Operator = Operator.Over;
+			g.Translate (width / 2, height /2);
+			g.Rotate (Math.PI / 4);
+			g.Color = new Cairo.Color (0.4, 0.4, 0.4, .7);
+			
+			g.Rectangle (0, - (border + inner), inner_x, 2 * (border + inner));
+			g.Arc (inner_x, 0, inner + border, 0, 2 * Math.PI);
+			g.Arc (0, 0, radius + border, 0, 2 * Math.PI);
+			g.Fill ();
+
+			g.Color = new Cairo.Color (0, 0, 0, 1.0);
+			g.Operator = Operator.DestOut;
+			g.Arc (inner_x, 0, inner, 0, 2 * Math.PI);
+			g.Fill ();
+
+			g.Operator = Operator.Over;
+			g.Matrix = Matrix.Identity;
+			g.Translate (width / 2, height /2);
+			SetSourcePixbuf (g, source, -source.Width / 2, -source.Height / 2);
+			g.Arc (0, 0, radius, 0, 2 * Math.PI);
+			g.Fill ();
+		}
+
+		protected override bool OnExposeEvent (Gdk.EventExpose args)
+		{
+			//foreach (Rectangle area in args.Region.GetRectangles ()) {
+			//}
+	
+			if (!use_shape_ext) {
+				Graphics g = CreateDrawable (GdkWindow);
+				DrawShape (g, Allocation.Width, Allocation.Height);
+				//base.OnExposeEvent (args);
+				((IDisposable)g).Dispose ();
+			}
+			return false;
+
+		}
+		
+		bool dragging = false;
+		private void HandleMotionNotifyEvent (object sender, MotionNotifyEventArgs args)
+		{
+			if (dragging)
+				Move ((int) args.Event.XRoot - start.X, (int) args.Event.YRoot - start.Y);
+		}
+
+
+		private void HandleButtonPressEvent (object sender, ButtonPressEventArgs args)
+		{
+			switch (args.Event.Type) {
+			case Gdk.EventType.ButtonPress:
+				start = new Gdk.Point ((int)args.Event.X, (int)args.Event.Y);
+				dragging = true;
+				break;
+			}
+		}
+
+		private void HandleButtonReleaseEvent (object sender, ButtonReleaseEventArgs args)
+		{
+			dragging = false;
+		}
+
 		private void HandleDestroyed (object sender, System.EventArgs args)
 		{
 			view.MotionNotifyEvent -= HandleImageViewMotion;
@@ -167,6 +270,31 @@ namespace FSpot {
 			widget.ModifyFg (Gtk.StateType.Normal, new Gdk.Color (127, 127, 127));
 			widget.ModifyBg (Gtk.StateType.Normal, new Gdk.Color (0, 0, 0));
 			return widget;
+		}
+		
+		
+		[DllImport("libgdk-x11-2.0.so")]
+		extern static void gdk_cairo_set_source_pixbuf (IntPtr handle,
+								IntPtr pixbuf,
+								double        pixbuf_x,
+								double        pixbuf_y);
+
+		static void SetSourcePixbuf (Graphics g, Gdk.Pixbuf pixbuf, double x, double y)
+		{
+			gdk_cairo_set_source_pixbuf (g.Handle, pixbuf.Handle, x, y);
+		}
+
+
+		[DllImport("libgdk-x11-2.0.so")]
+		static extern IntPtr gdk_cairo_create (IntPtr raw);
+		
+		public static Cairo.Graphics CreateDrawable (Gdk.Drawable drawable)
+		{
+			Cairo.Graphics g = new Cairo.Graphics (gdk_cairo_create (drawable.Handle));
+			if (g == null) 
+				throw new Exception ("Couldn't create Cairo Graphics!");
+			
+			return g;
 		}
 		
 		protected virtual void BuildUI ()
@@ -184,6 +312,13 @@ namespace FSpot {
 
 			SetSamplePoint (Gdk.Point.Zero);
 			box.ShowAll ();
+			SetSizeRequest (300, 300);
+
+			AddEvents ((int) (Gdk.EventMask.PointerMotionMask| Gdk.EventMask.ButtonPressMask
+					  | Gdk.EventMask.ButtonReleaseMask));
+			ButtonPressEvent += HandleButtonPressEvent;
+			ButtonReleaseEvent += HandleButtonReleaseEvent;
+			MotionNotifyEvent += HandleMotionNotifyEvent;
 		}
 	}
 }
