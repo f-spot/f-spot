@@ -1,3 +1,9 @@
+2005-11-07  Nat Friedman  <nat@novell.com>
+
+	* src/f-spot.glade: Add [ and ] accelerators for rotating images.
+	Make the rotation actions in the menus behave the same as the
+	toolbar buttons -- e.g. rotate left is now rotate 270, not 90.
+
 2005-11-07  Larry Ewing  <lewing@novell.com>
 
 	* src/Loupe.cs: fix the hotspot, update only on motion.

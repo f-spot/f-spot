@@ -6816,7 +6816,8 @@ Photo Details</property>
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Rotate _Left</property>
 		      <property name="use_underline">True</property>
-		      <signal name="activate" handler="HandleRotate90Command" last_modification_time="Sat, 07 Feb 2004 02:25:23 GMT"/>
+		      <signal name="activate" handler="HandleRotate270Command" last_modification_time="Sat, 07 Feb 2004 02:25:23 GMT"/>
+		      <accelerator key="bracketleft" modifiers="0" signal="activate"/>
 		    </widget>
 		  </child>
 
@@ -6825,7 +6826,8 @@ Photo Details</property>
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Rotate _Right</property>
 		      <property name="use_underline">True</property>
-		      <signal name="activate" handler="HandleRotate270Command" last_modification_time="Sat, 07 Feb 2004 02:26:31 GMT"/>
+		      <signal name="activate" handler="HandleRotate90Command" last_modification_time="Sat, 07 Feb 2004 02:26:31 GMT"/>
+		      <accelerator key="bracketright" modifiers="0" signal="activate"/>
 		    </widget>
 		  </child>
 
@@ -7073,7 +7075,7 @@ Photo Details</property>
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">_Directory</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">False</property>
+			      <property name="active">True</property>
 			      <property name="group">month</property>
 			      <signal name="activate" handler="HandleArrangeByDirectory" last_modification_time="Fri, 20 Aug 2004 22:26:32 GMT"/>
 			    </widget>
