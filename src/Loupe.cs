@@ -115,6 +115,8 @@ namespace FSpot {
 		private int inner = 128;
 		Gdk.Point start;
 		Gdk.Point last;
+		Gdk.Point hotspot;
+		
 
 		public Loupe (PhotoImageView view) : base ("don't peek")
 		{ 
@@ -219,6 +221,13 @@ namespace FSpot {
 			g.Arc (0, 0, radius + border, 0, 2 * Math.PI);
 			g.Fill ();
 
+			double hx = inner_x;
+			double hy = 0;
+			
+			UserToDevice (g, ref hx, ref hy);
+			hotspot.X = (int)hx;
+			hotspot.Y = (int)hy;
+
 			g.Color = new Cairo.Color (0, 0, 0, 1.0);
 			g.Operator = Operator.DestOut;
 			g.Arc (inner_x, 0, inner, 0, 2 * Math.PI);
@@ -250,11 +259,28 @@ namespace FSpot {
 		{
 			double x = args.Event.XRoot;
 			double y = args.Event.YRoot;
-			
-			if (dragging)
-				Move ((int)x - start.X, (int)y - start.Y);
+			Gdk.Point view_coords;
 
-			
+			if (dragging) {
+				Move ((int)x - start.X, (int)y - start.Y);
+				/*
+				Gtk.Window toplevel = (Gtk.Window) view.Toplevel;
+				toplevel.GetPosition (out view_coords.X,
+						      out view_coords.Y);
+				
+				view_coords.Offset (-(int) x - start.X, -(int) y - start.Y);
+				
+				toplevel.TranslateCoordinates (view, 
+							       view_coords.X, 
+							       view_coords.Y, 
+							       out view_coords.X, 
+							       out view_coords.Y);
+				*/
+				view.GetPointer (out view_coords.X, out view_coords.Y);
+				view_coords.Offset ((int) - args.Event.X, (int) - args.Event.Y);
+				view_coords.Offset (hotspot.X, hotspot.Y);
+				SetSamplePoint (view.WindowCoordsToImage (view_coords));
+			}
 		}
 
 		private void HandleIndexChanged (BrowsablePointer pointer, IBrowsableItem old)
@@ -290,6 +316,14 @@ namespace FSpot {
 		}
 		
 		
+                [DllImport ("libcairo-2.dll")]
+                static extern void cairo_user_to_device (IntPtr cr, ref double x, ref double y);
+
+		static void UserToDevice (Graphics g, ref double x, ref double y)
+		{
+			cairo_user_to_device (g.Handle, ref x, ref y);
+		}
+
 		[DllImport("libgdk-x11-2.0.so")]
 		extern static void gdk_cairo_set_source_pixbuf (IntPtr handle,
 								IntPtr pixbuf,
@@ -325,7 +359,7 @@ namespace FSpot {
 			SetFancyStyle (this);
 			
 			TransientFor = (Gtk.Window) view.Toplevel;
-			view.MotionNotifyEvent += HandleImageViewMotion;
+			//view.MotionNotifyEvent += HandleImageViewMotion;
 			view.Item.IndexChanged += HandleIndexChanged;
 
 			SetSamplePoint (Gdk.Point.Zero);
