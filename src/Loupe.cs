@@ -112,10 +112,11 @@ namespace FSpot {
 		bool use_shape_ext = false;
 		Gdk.Pixbuf source;
 		private int radius = 128;
+		private int inner = 128;
 		Gdk.Point start;
 		Gdk.Point last;
 
-		public Loupe (PhotoImageView view) : base ("my window")
+		public Loupe (PhotoImageView view) : base ("don't peek")
 		{ 
 			this.view = view;
 			Decorated = false;
@@ -141,6 +142,12 @@ namespace FSpot {
 				DrawShape (g, allocation.Width, allocation.Height);
 				((IDisposable)g).Dispose ();
 				ShapeCombineMask (bitmap, 0, 0);
+			} else {
+				Realize ();
+				Graphics g = CreateDrawable (GdkWindow);
+				DrawShape (g, Allocation.Width, Allocation.Height);
+				//base.OnExposeEvent (args);
+				((IDisposable)g).Dispose ();
 			}
 		}
 
@@ -153,10 +160,10 @@ namespace FSpot {
 			
 			if (view.Pixbuf != null) {
 				Gdk.Pixbuf pixbuf = view.Pixbuf;
-
+				
 				region.Offset (- Math.Min (region.X, Math.Max (region.Right - pixbuf.Width, 128)), 
 					       - Math.Min (region.Y, Math.Max (region.Bottom - pixbuf.Height, 128)));
-				
+
 				region.Intersect (new Gdk.Rectangle (0, 0, pixbuf.Width, pixbuf.Height));
 			}
 			UpdateSample ();
@@ -172,6 +179,8 @@ namespace FSpot {
 			if (view.Pixbuf == null)
 				return;
 			
+			inner = (int) (radius * view.Zoom);
+			//Resize (2 * (radius + inner), 2 * (radius + inner)); 
 			source = new Gdk.Pixbuf (view.Pixbuf,
 						 region.X, region.Y,
 						 region.Width, region.Height);
@@ -189,10 +198,11 @@ namespace FSpot {
 		
 		private void DrawShape (Cairo.Graphics g, int width, int height)
 		{
-			int inner = 10;
 			int border = 5;
-			int inner_x = radius + 2 * border + inner;
-
+			int inner_x = radius + border + inner;
+			int cx = radius + 2 * border;
+			int cy = radius + 2 * border;
+			
 			g.Operator = Operator.Source;
 			g.Color = new Cairo.Color (0,0,0,0);
 			g.Rectangle (0, 0, width, height);
@@ -200,7 +210,7 @@ namespace FSpot {
 
 			g.NewPath ();
 			g.Operator = Operator.Over;
-			g.Translate (width / 2, height /2);
+			g.Translate (cx, cy);
 			g.Rotate (Math.PI / 4);
 			g.Color = new Cairo.Color (0.4, 0.4, 0.4, .7);
 			
@@ -216,17 +226,15 @@ namespace FSpot {
 
 			g.Operator = Operator.Over;
 			g.Matrix = Matrix.Identity;
-			g.Translate (width / 2, height /2);
-			SetSourcePixbuf (g, source, -source.Width / 2, -source.Height / 2);
+			g.Translate (cx, cy);
+			if (source != null)
+				SetSourcePixbuf (g, source, -source.Width / 2, -source.Height / 2);
 			g.Arc (0, 0, radius, 0, 2 * Math.PI);
 			g.Fill ();
 		}
 
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
-			//foreach (Rectangle area in args.Region.GetRectangles ()) {
-			//}
-	
 			if (!use_shape_ext) {
 				Graphics g = CreateDrawable (GdkWindow);
 				DrawShape (g, Allocation.Width, Allocation.Height);
@@ -240,10 +248,19 @@ namespace FSpot {
 		bool dragging = false;
 		private void HandleMotionNotifyEvent (object sender, MotionNotifyEventArgs args)
 		{
+			double x = args.Event.XRoot;
+			double y = args.Event.YRoot;
+			
 			if (dragging)
-				Move ((int) args.Event.XRoot - start.X, (int) args.Event.YRoot - start.Y);
+				Move ((int)x - start.X, (int)y - start.Y);
+
+			
 		}
 
+		private void HandleIndexChanged (BrowsablePointer pointer, IBrowsableItem old)
+		{
+			UpdateSample ();
+		}
 
 		private void HandleButtonPressEvent (object sender, ButtonPressEventArgs args)
 		{
@@ -309,13 +326,16 @@ namespace FSpot {
 			
 			TransientFor = (Gtk.Window) view.Toplevel;
 			view.MotionNotifyEvent += HandleImageViewMotion;
+			view.Item.IndexChanged += HandleIndexChanged;
 
 			SetSamplePoint (Gdk.Point.Zero);
 			box.ShowAll ();
-			SetSizeRequest (300, 300);
+			SetSizeRequest (400, 400);
 
-			AddEvents ((int) (Gdk.EventMask.PointerMotionMask| Gdk.EventMask.ButtonPressMask
+			AddEvents ((int) (Gdk.EventMask.PointerMotionMask
+					  | Gdk.EventMask.ButtonPressMask
 					  | Gdk.EventMask.ButtonReleaseMask));
+
 			ButtonPressEvent += HandleButtonPressEvent;
 			ButtonReleaseEvent += HandleButtonReleaseEvent;
 			MotionNotifyEvent += HandleMotionNotifyEvent;
