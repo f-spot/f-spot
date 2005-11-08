@@ -8,6 +8,7 @@ namespace FSpot {
 		Gtk.SpinButton amount_spin = new Gtk.SpinButton (0.5, 100.0, .01);
 		Gtk.SpinButton radius_spin = new Gtk.SpinButton (5.0, 50.0, .01);
 		Gtk.SpinButton threshold_spin = new Gtk.SpinButton (0.0, 50.0, .01);
+		Gtk.Dialog dialog;
 		
 		public Sharpener (PhotoImageView view) : base (view)
 		{	
@@ -15,22 +16,17 @@ namespace FSpot {
 
 		protected override void UpdateSample ()
 		{
-			if (view.Pixbuf == null) {
-				System.Console.WriteLine ("no image");
-				image.Pixbuf = null;
-				return;
-			}
-			
-			Gdk.Pixbuf old = image.Pixbuf;
-			Gdk.Pixbuf sample = new Gdk.Pixbuf (view.Pixbuf, region.X, region.Y, region.Width, region.Height);
-			if (sample != null) {
-				image.Pixbuf = PixbufUtils.UnsharpMask (sample, radius_spin.Value, amount_spin.Value, threshold_spin.Value);
-				sample.Dispose ();
-			} else 
-				image.Pixbuf = null;
+			base.UpdateSample ();
 
-			if (old != null)
-				old.Dispose ();
+			if (overlay != null)
+				overlay.Dispose ();
+
+			overlay = null;
+			if (source != null)
+				overlay = PixbufUtils.UnsharpMask (source, 
+								   radius_spin.Value, 
+								   amount_spin.Value, 
+								   threshold_spin.Value);
 		}
 
 		private void HandleSettingsChanged (object sender, EventArgs args)
@@ -71,10 +67,12 @@ namespace FSpot {
 		{
 			base.BuildUI ();
 
-			this.BorderWidth = 12;
-			box.Spacing = 6;
-
-			this.Title = Mono.Posix.Catalog.GetString ("Sharpen");
+			string title = Mono.Posix.Catalog.GetString ("Sharpen");
+			dialog = new Gtk.Dialog (title, (Gtk.Window) view.Toplevel,
+						 DialogFlags.DestroyWithParent, new object [0]);
+			dialog.BorderWidth = 12;
+			dialog.VBox.Spacing = 6;
+			
 			Gtk.Table table = new Gtk.Table (3, 2, false);
 			table.ColumnSpacing = 6;
 			table.RowSpacing = 6;
@@ -99,18 +97,18 @@ namespace FSpot {
 			table.Attach (threshold_spin, 1, 2, 2, 3);
 			
 			table.ShowAll ();
-		        box.PackStart (table);
+			dialog.VBox.PackStart (table);
+			dialog.Show ();
 		}
 
 	}
 
 	public class Loupe : Gtk.Window {
 		protected PhotoImageView view;
-		protected Image image;
-		protected VBox box; 
 		protected Gdk.Rectangle region;
 		bool use_shape_ext = false;
-		Gdk.Pixbuf source;
+		protected Gdk.Pixbuf source;
+		protected Gdk.Pixbuf overlay;
 		private int radius = 128;
 		private int inner = 128;
 		Gdk.Point start;
@@ -118,7 +116,7 @@ namespace FSpot {
 		Gdk.Point hotspot;
 		
 
-		public Loupe (PhotoImageView view) : base (WindowType.Popup)
+		public Loupe (PhotoImageView view) : base ("Loupe")
 		{ 
 			this.view = view;
 			Decorated = false;
@@ -148,7 +146,6 @@ namespace FSpot {
 				Realize ();
 				Graphics g = CreateDrawable (GdkWindow);
 				DrawShape (g, Allocation.Width, Allocation.Height);
-				//base.OnExposeEvent (args);
 				((IDisposable)g).Dispose ();
 			}
 		}
@@ -182,7 +179,6 @@ namespace FSpot {
 				return;
 			
 			inner = (int) (radius * view.Zoom);
-			//Resize (2 * (radius + inner), 2 * (radius + inner)); 
 			source = new Gdk.Pixbuf (view.Pixbuf,
 						 region.X, region.Y,
 						 region.Width, region.Height);
@@ -240,6 +236,14 @@ namespace FSpot {
 				SetSourcePixbuf (g, source, -source.Width / 2, -source.Height / 2);
 			g.Arc (0, 0, radius, 0, 2 * Math.PI);
 			g.Fill ();
+
+			if (overlay != null)
+				SetSourcePixbuf (g, overlay, -overlay.Width / 2, -overlay.Height / 2);
+			g.Arc (0, 0, radius, Math.PI * .25, Math.PI * 1.25);
+			g.FillPreserve ();
+			g.ClosePath ();
+			g.Color = new Cairo.Color (1.0, 1.0, 1.0, 1.0);
+			g.Stroke ();
 		}
 
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
@@ -366,20 +370,16 @@ namespace FSpot {
 		
 		protected virtual void BuildUI ()
 		{
-			box = new VBox ();
-			this.Add (box);
-			image = new Image ();
-			box.PackStart (image);
-			box.ShowAll ();
-
 			SetFancyStyle (this);
 			
 			TransientFor = (Gtk.Window) view.Toplevel;
+			SkipPagerHint = true;
+			SkipTaskbarHint = true;
+
 			//view.MotionNotifyEvent += HandleImageViewMotion;
 			view.Item.IndexChanged += HandleIndexChanged;
 
 			SetSamplePoint (Gdk.Point.Zero);
-			box.ShowAll ();
 			SetSizeRequest (400, 400);
 
 			AddEvents ((int) (Gdk.EventMask.PointerMotionMask
