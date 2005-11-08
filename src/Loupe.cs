@@ -249,12 +249,10 @@ namespace FSpot {
 
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
-			if (!use_shape_ext) {
-				Graphics g = CreateDrawable (GdkWindow);
-				DrawShape (g, Allocation.Width, Allocation.Height);
-				//base.OnExposeEvent (args);
-				((IDisposable)g).Dispose ();
-			}
+			Graphics g = CreateDrawable (GdkWindow);
+			DrawShape (g, Allocation.Width, Allocation.Height);
+			//base.OnExposeEvent (args);
+			((IDisposable)g).Dispose ();
 			return false;
 
 		}
