@@ -118,7 +118,7 @@ namespace FSpot {
 		Gdk.Point hotspot;
 		
 
-		public Loupe (PhotoImageView view) : base ("don't peek")
+		public Loupe (PhotoImageView view) : base (WindowType.Popup)
 		{ 
 			this.view = view;
 			Decorated = false;
@@ -255,32 +255,44 @@ namespace FSpot {
 		}
 		
 		bool dragging = false;
+		Delay drag;
+		Gdk.Point pos;
+
 		private void HandleMotionNotifyEvent (object sender, MotionNotifyEventArgs args)
 		{
-			double x = args.Event.XRoot;
-			double y = args.Event.YRoot;
-			Gdk.Point view_coords;
+		        pos.X = (int) args.Event.XRoot - start.X;
+		        pos.Y = (int) args.Event.YRoot - start.Y;
 
-			if (dragging) {
-				Move ((int)x - start.X, (int)y - start.Y);
-				/*
-				Gtk.Window toplevel = (Gtk.Window) view.Toplevel;
-				toplevel.GetPosition (out view_coords.X,
-						      out view_coords.Y);
-				
-				view_coords.Offset (-(int) x - start.X, -(int) y - start.Y);
-				
-				toplevel.TranslateCoordinates (view, 
-							       view_coords.X, 
-							       view_coords.Y, 
-							       out view_coords.X, 
-							       out view_coords.Y);
-				*/
-				view.GetPointer (out view_coords.X, out view_coords.Y);
-				view_coords.Offset ((int) - args.Event.X, (int) - args.Event.Y);
-				view_coords.Offset (hotspot.X, hotspot.Y);
-				SetSamplePoint (view.WindowCoordsToImage (view_coords));
-			}
+			if (dragging)
+				drag.Start ();
+		}
+
+		private bool MoveWindow ()
+		{
+			if (!dragging)
+				return false;
+			
+			Gdk.Point view_coords;
+			Gdk.Point top;
+			Gdk.Point current;
+			
+			GdkWindow.GetOrigin (out current.X, out current.Y);
+		
+			if (current == pos)
+				return false;
+			
+			Move (pos.X, pos.Y);
+			
+			pos.Offset (hotspot.X, hotspot.Y);
+			Gtk.Window toplevel = (Gtk.Window) view.Toplevel;
+			toplevel.GdkWindow.GetOrigin (out top.X, out top.Y);
+			toplevel.TranslateCoordinates (view, 
+						       pos.X - top.X,  pos.Y - top.Y, 
+						       out view_coords.X, out view_coords.Y);
+
+			SetSamplePoint (view.WindowCoordsToImage (view_coords));
+
+			return false;
 		}
 
 		private void HandleIndexChanged (BrowsablePointer pointer, IBrowsableItem old)
@@ -294,6 +306,10 @@ namespace FSpot {
 			case Gdk.EventType.ButtonPress:
 				start = new Gdk.Point ((int)args.Event.X, (int)args.Event.Y);
 				dragging = true;
+				break;
+			case Gdk.EventType.TwoButtonPress:
+				dragging = false;
+				this.Hide ();
 				break;
 			}
 		}
@@ -373,6 +389,8 @@ namespace FSpot {
 			ButtonPressEvent += HandleButtonPressEvent;
 			ButtonReleaseEvent += HandleButtonReleaseEvent;
 			MotionNotifyEvent += HandleMotionNotifyEvent;
+
+			drag = new Delay (20, new GLib.IdleHandler (MoveWindow));
 		}
 	}
 }
