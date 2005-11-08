@@ -237,13 +237,14 @@ namespace FSpot {
 			g.Arc (0, 0, radius, 0, 2 * Math.PI);
 			g.Fill ();
 
-			if (overlay != null)
+			if (overlay != null) {
 				SetSourcePixbuf (g, overlay, -overlay.Width / 2, -overlay.Height / 2);
-			g.Arc (0, 0, radius, Math.PI * .25, Math.PI * 1.25);
-			g.FillPreserve ();
-			g.ClosePath ();
-			g.Color = new Cairo.Color (1.0, 1.0, 1.0, 1.0);
-			g.Stroke ();
+				g.Arc (0, 0, radius, Math.PI * .25, Math.PI * 1.25);
+				g.ClosePath ();
+				g.FillPreserve ();
+				g.Color = new Cairo.Color (1.0, 1.0, 1.0, 1.0);
+				g.Stroke ();
+			}
 		}
 
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
