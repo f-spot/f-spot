@@ -1,5 +1,8 @@
 2005-11-08  Larry Ewing  <lewing@novell.com>
 
+	* src/Loupe.cs: queue a resize iff the dimentions have changed so that the
+	mask gets updated.
+
 	* src/Loupe.cs: do something sane in the shape extension case.
 
 	* src/Loupe.cs: draw the loupe normally when the there is no overlay.

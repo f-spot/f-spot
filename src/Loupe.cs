@@ -142,6 +142,7 @@ namespace FSpot {
 				DrawShape (g, allocation.Width, allocation.Height);
 				((IDisposable)g).Dispose ();
 				ShapeCombineMask (bitmap, 0, 0);
+				bitmap.Dispose ();
 			} else {
 				Realize ();
 				Graphics g = CreateDrawable (GdkWindow);
@@ -178,7 +179,12 @@ namespace FSpot {
 			if (view.Pixbuf == null)
 				return;
 			
-			inner = (int) (radius * view.Zoom);
+			int small = (int) (radius * view.Zoom);
+			if (small != inner) {
+				inner = small;
+				this.QueueResize ();
+			}
+
 			source = new Gdk.Pixbuf (view.Pixbuf,
 						 region.X, region.Y,
 						 region.Width, region.Height);
