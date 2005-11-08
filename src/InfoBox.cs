@@ -192,6 +192,7 @@ public class InfoBox : VBox {
 					FSpot.Tiff.Rational rat = new FSpot.Tiff.Rational (fnumber);
 					info += String.Format ("f/{0:.0} ", rat.Value);
 				} else if (aperture != null && aperture != "") {
+					// Convert from APEX to fnumber
 					FSpot.Tiff.Rational rat = new FSpot.Tiff.Rational (aperture);
 					info += String.Format ("f/{0:.0} ", Math.Pow (2, rat.Value / 2));
 				}
