@@ -11556,7 +11556,7 @@ Photo Details</property>
 	      </child>
 
 	      <child>
-		<widget class="GtkHScale" id="hscale1">
+		<widget class="GtkHScale" id="zoom_scale">
 		  <property name="width_request">100</property>
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
