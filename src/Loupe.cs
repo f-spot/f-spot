@@ -68,7 +68,7 @@ namespace FSpot {
 			base.BuildUI ();
 
 			string title = Mono.Posix.Catalog.GetString ("Sharpen");
-			dialog = new Gtk.Dialog (title, (Gtk.Window) view.Toplevel,
+			dialog = new Gtk.Dialog (title, (Gtk.Window) this,
 						 DialogFlags.DestroyWithParent, new object [0]);
 			dialog.BorderWidth = 12;
 			dialog.VBox.Spacing = 6;
@@ -111,10 +111,10 @@ namespace FSpot {
 		protected Gdk.Pixbuf overlay;
 		private int radius = 128;
 		private int inner = 128;
+		private int border = 5;
 		Gdk.Point start;
 		Gdk.Point last;
 		Gdk.Point hotspot;
-		
 
 		public Loupe (PhotoImageView view) : base ("Loupe")
 		{ 
@@ -128,6 +128,30 @@ namespace FSpot {
 				use_shape_ext = true;
 
 			BuildUI ();
+		}
+
+		public int Radius {
+			get {
+				return radius;
+			}
+			set {
+				if (radius != value) {
+					radius = value;
+					UpdateSample ();
+				}
+			}
+		}
+
+		public int Border {
+			get {
+				return border;
+			}
+			set {
+				if (border != value) {
+					border = value;
+					UpdateSample ();
+				}
+			}
 		}
 
 		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
@@ -155,14 +179,14 @@ namespace FSpot {
 		{
 			region.X = p.X;
 			region.Y = p.Y;
-			region.Width = 256;
-			region.Height = 256;
+			region.Width = 2 * radius;
+			region.Height = 2 * radius;
 			
 			if (view.Pixbuf != null) {
 				Gdk.Pixbuf pixbuf = view.Pixbuf;
 				
-				region.Offset (- Math.Min (region.X, Math.Max (region.Right - pixbuf.Width, 128)), 
-					       - Math.Min (region.Y, Math.Max (region.Bottom - pixbuf.Height, 128)));
+				region.Offset (- Math.Min (region.X, Math.Max (region.Right - pixbuf.Width, radius)), 
+					       - Math.Min (region.Y, Math.Max (region.Bottom - pixbuf.Height, radius)));
 
 				region.Intersect (new Gdk.Rectangle (0, 0, pixbuf.Width, pixbuf.Height));
 			}
@@ -199,10 +223,32 @@ namespace FSpot {
 			
 			SetSamplePoint (view.WindowCoordsToImage (coords));
 		}
+
+		private Gdk.Point GetHotspot ()
+		{
+			Matrix m = new Matrix ();
+			
+			int inner_x = radius + border + inner;
+			int cx = radius + 2 * border;
+			int cy = radius + 2 * border;
+
+			m.Translate (cx, cy);
+			m.Rotate (Math.PI / 4);
+			
+			double hx = inner_x;
+			double hy = 0;
+			
+			m.TransformPoint (ref hx, ref hy);
+			
+			Gdk.Point p;
+			p.X = (int)hx;
+			p.Y = (int)hy;
+			
+			return p;
+		}
 		
 		private void DrawShape (Cairo.Graphics g, int width, int height)
 		{
-			int border = 5;
 			int inner_x = radius + border + inner;
 			int cx = radius + 2 * border;
 			int cy = radius + 2 * border;
@@ -290,8 +336,9 @@ namespace FSpot {
 			if (current == pos)
 				return false;
 			
+			//hotspot = GetHotspot ();
 			Move (pos.X, pos.Y);
-			
+
 			pos.Offset (hotspot.X, hotspot.Y);
 			Gtk.Window toplevel = (Gtk.Window) view.Toplevel;
 			toplevel.GdkWindow.GetOrigin (out top.X, out top.Y);
@@ -300,6 +347,7 @@ namespace FSpot {
 						       out view_coords.X, out view_coords.Y);
 
 			SetSamplePoint (view.WindowCoordsToImage (view_coords));
+
 
 			return false;
 		}
