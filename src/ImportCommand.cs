@@ -37,7 +37,6 @@ public class ImportCommand : FSpot.GladeDialog {
 
 	internal class VfsSource : ImportSource {
 		public string uri;
-		public bool SuggestCopy = false;
 
 		public VfsSource (string uri)
 		{ 
@@ -76,8 +75,6 @@ public class ImportCommand : FSpot.GladeDialog {
 
 			uri = mount_point;
 			
-			SuggestCopy = true;
-
                         if (this.Icon == null)
 				this.Icon = PixbufUtils.LoadThemeIcon (vol.Icon, 32);
 			
@@ -369,6 +366,7 @@ public class ImportCommand : FSpot.GladeDialog {
 	[Glade.Widget] Gtk.ScrolledWindow photo_scrolled;
 	[Glade.Widget] Gtk.CheckButton attach_check;
 	[Glade.Widget] Gtk.CheckButton recurse_check;
+	[Glade.Widget] Gtk.CheckButton copy_check;
 	[Glade.Widget] Gtk.Button ok_button;
 	[Glade.Widget] Gtk.Image tag_image;
 	[Glade.Widget] Gtk.Label tag_label;
@@ -578,7 +576,7 @@ public class ImportCommand : FSpot.GladeDialog {
 			return;
 		
 		this.Cancel ();
-		this.copy = false;
+		this.copy = copy_check.Active;
 		AllowFinish = false;
 
 		Gtk.OptionMenu option = (Gtk.OptionMenu) sender;
@@ -601,11 +599,6 @@ public class ImportCommand : FSpot.GladeDialog {
 			}
 		} else if (item.Source is VfsSource) {
 			VfsSource vfs = item.Source as VfsSource;
-
-			// If the paths are the Same no need to reload.
-			if (vfs is VolumeSource)
-				copy = true;
-			
 			SetImportPath (vfs.uri);
 		} else if (item.Source is CameraSource) {
 			CameraSource csource = item.Source as CameraSource;
@@ -650,6 +643,7 @@ public class ImportCommand : FSpot.GladeDialog {
 	        AllowFinish = false;
 		
 		recurse_check.Toggled += HandleRecurseToggled;
+		copy_check.Toggled += HandleRecurseToggled;
 
 		tag_option_menu.Menu = tagmenu;
 		SourceMenu menu = new SourceMenu ();
@@ -749,10 +743,11 @@ public class ImportCommand : FSpot.GladeDialog {
 		if (collection == null || collection.Count == 0)
 			return;
 		
-		// FIXME this should be a transaction or a multiple remove.
-		for (int i = 0; i < collection.Count; i++) {
-			store.Remove ((Photo)(collection [i]));
-		}
+		Photo [] photos = new Photo [collection.Count];
+		for (int i = 0; i < collection.Count; i++)
+			photos [i] = (Photo) collection [i];
+
+		store.Remove (photos);
 	}
 
 	public int Start ()

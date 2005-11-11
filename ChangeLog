@@ -1,3 +1,13 @@
+2005-11-11  Larry Ewing  <lewing@novell.com>
+
+	* src/f-spot.glade: add copy option.
+
+	* src/ImportCommand.cs: add copy option to the import dialog.
+
+2005-11-10  Larry Ewing  <lewing@novell.com>
+
+	* src/PhotoView.cs: remove unused variable.
+
 2005-11-10  Nat Friedman  <nat@novell.com>
 
 	* src/MainWindow.cs: Added support for creating and applying tags
