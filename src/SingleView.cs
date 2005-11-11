@@ -1,3 +1,6 @@
+using Gtk;
+using System;
+
 namespace FSpot {
 	public class SingleView {
 		[Glade.Widget] Gtk.HBox toolbar_hbox;
@@ -11,6 +14,8 @@ namespace FSpot {
 
 		[Glade.Widget] Gtk.Image near_image;
 		[Glade.Widget] Gtk.Image far_image;
+
+		[Glade.Widget] Gtk.Scale zoom_scale;
 
 		protected Glade.XML xml;
 		private Gtk.Window window;
@@ -52,9 +57,12 @@ namespace FSpot {
 			image_view = new PhotoImageView (collection);
 			FSpot.Global.ModifyColors (image_view);
 			FSpot.Global.ModifyColors (image_scrolled);
+			image_view.ZoomChanged += HandleZoomChanged;
 			image_scrolled.Add (image_view);
 			
 			Window.ShowAll ();
+
+			zoom_scale.ValueChanged += HandleZoomScaleValueChanged;
 			
 			ShowToolbar = true;
 			ShowSidebar = collection.Count > 1;
@@ -108,8 +116,10 @@ namespace FSpot {
 		
 		private void HandleSelectionChanged (FSpot.IBrowsableCollection selection) 
 		{
-			if (selection.Count > 0)
+			if (selection.Count > 0) {
 				image_view.Item.Index = ((IconView.SelectionCollection)selection).Ids[0];
+				zoom_scale.Value = image_view.Zoom;
+			}
 		}
 
 		private void HandleViewToolbar (object sender, System.EventArgs args)
@@ -164,6 +174,18 @@ namespace FSpot {
 			if (fsview.View.Item.IsValid) 
 				directory_view.Selection.Add (fsview.View.Item.Index);
 			fsview = null;
+		}
+
+		private void HandleZoomScaleValueChanged (object sender, System.EventArgs args)
+		{
+			if (zoom_scale.Value != image_view.Zoom)
+				image_view.Zoom = Math.Max (0.1, zoom_scale.Value);
+		}
+
+		private void HandleZoomChanged (object sender, System.EventArgs args)
+		{
+			if (zoom_scale.Value != image_view.Zoom)
+				zoom_scale.Value = Math.Max (0.1, image_view.Zoom);
 		}
 
 		private void HandleFileClose (object sender, System.EventArgs args)

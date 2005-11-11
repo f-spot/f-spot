@@ -14,12 +14,18 @@ public class ImageView : Layout {
 	[DllImport ("libgobject-2.0-0.dll")]
 	static extern uint g_signal_connect_data (IntPtr obj, String name, SelectionChangedDelegate cb, int key, IntPtr p, int flags);
 
-	SelectionChangedDelegate holder;
+	SelectionChangedDelegate selection_holder;
+	SelectionChangedDelegate zoom_holder;
 	public ImageView () : base (null, null)
 	{
 		Raw = f_image_view_new ();
 
-		g_signal_connect_data (Raw, "selection_changed", holder = new SelectionChangedDelegate (SelectionChangedCallback), 0,
+		g_signal_connect_data (Raw, "selection_changed", 
+				       selection_holder = new SelectionChangedDelegate (SelectionChangedCallback), 0,
+				       IntPtr.Zero, 0);
+
+		g_signal_connect_data (Raw, "zoom_changed", 
+				       zoom_holder = new SelectionChangedDelegate (ZoomChangedCallback), 0,
 				       IntPtr.Zero, 0);
 	}
 
@@ -230,8 +236,17 @@ public class ImageView : Layout {
 		if (view.SelectionChanged != null)
 			view.SelectionChanged ();
 	}
-
 	public delegate void SelectionChangedHandler ();
 	public event SelectionChangedHandler SelectionChanged;
+
+	private static void ZoomChangedCallback (IntPtr raw, IntPtr unused_data)
+	{
+		ImageView view = GLib.Object.GetObject (raw, false) as ImageView;
+
+		if (view.ZoomChanged != null)
+			view.ZoomChanged (view, System.EventArgs.Empty);
+	}
+	public delegate void ZoomChangedHandler (object sender, System.EventArgs args);
+	public event ZoomChangedHandler ZoomChanged;
 }
 }

@@ -1,5 +1,9 @@
 2005-11-11  Larry Ewing  <lewing@novell.com>
 
+	* src/ImageView.cs: wrap the zoom-changed signal.
+
+	* src/SingleView.cs: hook up the zoom slider.
+
 	* src/MainWindow.cs: small optimizations.  Start converting the
 	selection to a collection.
 
