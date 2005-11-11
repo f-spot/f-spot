@@ -273,7 +273,6 @@ public class PhotoView : EventBox {
 		// be fixed there.
 		photo_view.Pixbuf = edited;
 		photo_view.UnsetSelection ();
-		bool version = false;
 
 		try {
 			bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
