@@ -24,7 +24,7 @@ public class DbItem {
 public abstract class DbStore {
 	// DbItem cache.
 
-	Hashtable item_cache;
+	protected Hashtable item_cache;
 	bool cache_is_immortal;
 
 	protected void AddToCache (DbItem item)

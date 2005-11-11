@@ -6735,7 +6735,7 @@ Photo Details</property>
 		      <signal name="activate" handler="HandleSendMailCommand" last_modification_time="Mon, 07 Jun 2004 22:31:01 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image22">
+			<widget class="GtkImage" id="image24">
 			  <property name="visible">True</property>
 			  <property name="stock">gnome-stock-mail-fwd</property>
 			  <property name="icon_size">1</property>
@@ -6885,7 +6885,6 @@ Photo Details</property>
 		      <property name="label" translatable="yes">_Remove From Catalog</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleRemoveCommand" last_modification_time="Thu, 10 Jun 2004 03:21:10 GMT"/>
-		      <accelerator key="Delete" modifiers="0" signal="activate"/>
 		    </widget>
 		  </child>
 
@@ -7405,7 +7404,90 @@ Photo Details</property>
 		  <property name="spacing">0</property>
 
 		  <child>
-		    <placeholder/>
+		    <widget class="GtkHBox" id="tagbar">
+		      <property name="border_width">2</property>
+		      <property name="homogeneous">False</property>
+		      <property name="spacing">1</property>
+
+		      <child>
+			<widget class="GtkLabel" id="label160">
+			  <property name="visible">True</property>
+			  <property name="label" translatable="yes">Tags: </property>
+			  <property name="use_underline">False</property>
+			  <property name="use_markup">False</property>
+			  <property name="justify">GTK_JUSTIFY_LEFT</property>
+			  <property name="wrap">False</property>
+			  <property name="selectable">False</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+			  <property name="width_chars">-1</property>
+			  <property name="single_line_mode">False</property>
+			  <property name="angle">0</property>
+			</widget>
+			<packing>
+			  <property name="padding">0</property>
+			  <property name="expand">False</property>
+			  <property name="fill">False</property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkEntry" id="tag_entry">
+			  <property name="visible">True</property>
+			  <property name="can_focus">True</property>
+			  <property name="has_focus">True</property>
+			  <property name="editable">True</property>
+			  <property name="visibility">True</property>
+			  <property name="max_length">0</property>
+			  <property name="text" translatable="yes"></property>
+			  <property name="has_frame">True</property>
+			  <property name="invisible_char">*</property>
+			  <property name="activates_default">False</property>
+			  <signal name="activate" handler="HandleTagEntryActivate" last_modification_time="Mon, 07 Nov 2005 20:18:18 GMT"/>
+			</widget>
+			<packing>
+			  <property name="padding">0</property>
+			  <property name="expand">True</property>
+			  <property name="fill">True</property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkButton" id="tag_close_button">
+			  <property name="visible">True</property>
+			  <property name="can_focus">True</property>
+			  <property name="relief">GTK_RELIEF_NONE</property>
+			  <property name="focus_on_click">True</property>
+			  <signal name="pressed" handler="HandleTagBarCloseButtonPressed" last_modification_time="Tue, 08 Nov 2005 01:22:39 GMT"/>
+
+			  <child>
+			    <widget class="GtkImage" id="image23">
+			      <property name="visible">True</property>
+			      <property name="stock">gtk-close</property>
+			      <property name="icon_size">4</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			  </child>
+			</widget>
+			<packing>
+			  <property name="padding">0</property>
+			  <property name="expand">False</property>
+			  <property name="fill">False</property>
+			</packing>
+		      </child>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">True</property>
+		      <property name="pack_type">GTK_PACK_END</property>
+		    </packing>
 		  </child>
 
 		  <child>
@@ -7671,6 +7753,7 @@ Photo Details</property>
 	  <property name="padding">0</property>
 	  <property name="expand">False</property>
 	  <property name="fill">False</property>
+	  <property name="pack_type">GTK_PACK_END</property>
 	</packing>
       </child>
     </widget>

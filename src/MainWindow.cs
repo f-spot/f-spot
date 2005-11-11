@@ -15,6 +15,7 @@ using FSpot;
 using LibGPhoto2;
 
 public class MainWindow {
+
         public static MainWindow Toplevel;
 
 	Db db;
@@ -82,6 +83,9 @@ public class MainWindow {
 
 	[Glade.Widget] Gtk.Image near_image;
 	[Glade.Widget] Gtk.Image far_image;
+
+	[Glade.Widget] Gtk.HBox tagbar;
+	[Glade.Widget] Gtk.Entry tag_entry;
 
 	Gtk.Toolbar toolbar;
 
@@ -173,6 +177,7 @@ public class MainWindow {
 		tag_selection_widget.DragDataGet += HandleTagSelectionDragDataGet;
 		tag_selection_widget.DragDrop += HandleTagSelectionDragDrop;
 		tag_selection_widget.DragBegin += HandleTagSelectionDragBegin;
+		tag_selection_widget.KeyPressEvent += HandleTagSelectionKeyPress;
 		Gtk.Drag.SourceSet (tag_selection_widget, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
 				    tag_target_table, DragAction.Copy | DragAction.Move);
 
@@ -251,6 +256,7 @@ public class MainWindow {
 		icon_view.DragMotion += HandleIconViewDragMotion;
 		icon_view.DragDrop += HandleIconViewDragDrop;
 		icon_view.DragDataReceived += HandleIconViewDragDataReceived;
+		icon_view.KeyPressEvent += HandleIconViewKeyPressEvent;
 
 		photo_view = new PhotoView (query, db.Photos);
 		photo_box.Add (photo_view);
@@ -259,6 +265,13 @@ public class MainWindow {
 		photo_view.KeyPressEvent += HandlePhotoViewKeyPressEvent;
 		photo_view.UpdateStarted += HandlePhotoViewUpdateStarted;
 		photo_view.UpdateFinished += HandlePhotoViewUpdateFinished;
+
+		// Tag typing: focus the tag entry if the user starts typing a tag
+		icon_view.KeyPressEvent += HandlePossibleTagTyping;
+		photo_view.KeyPressEvent += HandlePossibleTagTyping;
+		tag_entry.KeyPressEvent += HandleTagEntryKeyPressEvent;
+		tag_entry.FocusOutEvent += HandleTagEntryFocusOutEvent;
+		tag_entry.Changed += HandleTagEntryChanged;
 
 		Gtk.Drag.DestSet (photo_view, DestDefaults.All, tag_target_table, 
 				  DragAction.Copy | DragAction.Move); 
@@ -272,6 +285,8 @@ public class MainWindow {
 
 		UpdateMenus ();
 		main_window.ShowAll ();
+
+		tagbar.Hide ();
 
 		LoadPreference (Preferences.SHOW_TOOLBAR);
 		LoadPreference (Preferences.SHOW_SIDEBAR);
@@ -455,7 +470,6 @@ public class MainWindow {
 	private void RotateSelectedPictures (RotateCommand.Direction direction)
 	{
 		RotateCommand command = new RotateCommand (main_window);
-
 		
 		int [] selected_ids = SelectedIds ();
 		if (command.Execute (direction, SelectedPhotos (selected_ids))) {
@@ -505,13 +519,9 @@ public class MainWindow {
 	{
 		if (args.Event.Button == 3)
 		{
-			TreePath path;
-			tag_selection_widget.Selection.UnselectAll ();
-			if (tag_selection_widget.GetPathAtPos ((int)args.Event.X, (int)args.Event.Y, out path)) {
-				tag_selection_widget.Selection.SelectPath (path);
-			}
 			TagPopup popup = new TagPopup ();
-			popup.Activate (args.Event, tag_selection_widget.TagAtPosition ((int)args.Event.X, (int)args.Event.Y));
+			popup.Activate (args.Event, tag_selection_widget.TagAtPosition ((int)args.Event.X, (int)args.Event.Y),
+					tag_selection_widget.TagHighlight ());
 			args.RetVal = true;
 		}
 	}
@@ -626,6 +636,8 @@ public class MainWindow {
 
 			break;
 		}
+
+		UpdateTagEntryFromSelection ();
 	}
 
 #if SHOW_CALENDAR
@@ -789,6 +801,13 @@ public class MainWindow {
 		args.RetVal = true;
 	}
 
+	void HandleIconViewKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
+	{
+		if (args.Event.Key == Gdk.Key.Delete) {
+			HandleRemoveCommand (sender, (EventArgs) args);
+		}
+	}
+
 	public void ImportUriList (UriList list) 
 	{
 		ImportCommand command = new ImportCommand (main_window);
@@ -824,6 +843,8 @@ public class MainWindow {
 					AttachTags (tag_selection_widget.TagHighlight (), SelectedIds());
 				else 
 					AttachTags (tag_selection_widget.TagHighlight (), new int [] {item});
+
+				UpdateTagEntryFromSelection ();
 			}
 			break;
 		case (uint)TargetType.UriList:
@@ -851,7 +872,9 @@ public class MainWindow {
 		info_box.Photo = CurrentPhoto;
 		if (info_display != null)
 			info_display.Photo = CurrentPhoto;
+
 		UpdateMenus ();
+		UpdateTagEntryFromSelection ();
 	}
 
 	void HandleDoubleClicked (IconView icon_view, int clicked_item)
@@ -870,6 +893,7 @@ public class MainWindow {
 		if (info_display != null)
 			info_display.Photo = CurrentPhoto;
 		UpdateMenus ();
+		UpdateTagEntryFromSelection ();
 	}
 	
 	void HandlePhotoViewKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
@@ -882,6 +906,10 @@ public class MainWindow {
 			break;
 		case Gdk.Key.Escape:
 			SetViewMode (ModeType.IconView);
+			args.RetVal = true;
+			break;
+		case Gdk.Key.Delete:
+			HandleRemoveCommand (sender, (EventArgs) args);
 			args.RetVal = true;
 			break;
 		default:
@@ -960,6 +988,8 @@ public class MainWindow {
 		foreach (int num in SelectedIds ()) {
 			AddTagExtended (num, new Tag [] {t});
 		}
+
+		UpdateTagEntryFromSelection ();
 	}
 	
 	void HandleFindTagMenuSelected (Tag t)
@@ -973,6 +1003,8 @@ public class MainWindow {
 			query.Photos [num].RemoveTag (t);
 			query.Commit (num);
 		}
+
+		UpdateTagEntryFromSelection ();
 	}
 
 	//
@@ -1338,16 +1370,71 @@ public class MainWindow {
 			query.Photos [num].RemoveTag (tags);
 			query.Commit (num);
 		}
+
+		UpdateTagEntryFromSelection ();
 	}
 
-	public void HandleEditSelectedTag (object obj, EventArgs args)
+	public void HandleEditSelectedTag (object sender, EventArgs ea)
 	{
-		Tag [] tags = tag_selection_widget.TagHighlight ();
+		Tag [] tags = this.tag_selection_widget.TagHighlight ();
 		if (tags.Length != 1)
+			return;
+
+		HandleEditSelectedTagWithTag (tags [0]);
+	}
+
+	public void HandleEditSelectedTagWithTag (Tag tag)
+	{
+		if (tag == null)
 			return;
 		
 		TagCommands.Edit command = new TagCommands.Edit (db, main_window);
-		command.Execute (tags [0]);
+		command.Execute (tag);
+		if (view_mode == ModeType.IconView)
+			icon_view.QueueDraw ();
+	}
+
+	public void HandleMergeTagsCommand (object obj, EventArgs args)
+	{
+		Tag [] tags = this.tag_selection_widget.TagHighlight ();
+		if (tags.Length < 2)
+			return;
+
+		System.Array.Sort (tags, new TagRemoveComparer ());
+		string header = Mono.Posix.Catalog.GetString ("Merge the {0} selected tags?");
+		
+		header = String.Format (header, tags.Length);
+		string msg = Mono.Posix.Catalog.GetString("This operation will delete all but one of the selected tags.");
+		string ok_caption = Mono.Posix.Catalog.GetString ("_Merge tags");
+		
+		if (ResponseType.Ok != HigMessageDialog.RunHigConfirmation(main_window, 
+									   DialogFlags.DestroyWithParent, 
+									   MessageType.Warning, 
+									   header, 
+									   msg, 
+									   ok_caption))
+			return;
+		
+		// The surviving tag is tags [0].  removetags will contain
+		// the tags to be merged.
+		Tag [] removetags = new Tag [tags.Length - 1];
+		Array.Copy (tags, 1, removetags, 0, tags.Length - 1);
+
+
+		// Remove the defunct tags from all the photos and
+		// replace them with the new tag.
+		Photo [] photos = db.Photos.Query (tags, null);
+		foreach (Photo p in photos) {
+			p.RemoveTag (removetags);
+			p.AddTag (tags [0]);
+			db.Photos.Commit (p);
+		}
+
+		// Remove the defunct tags from the tag list.
+		db.Photos.Remove (removetags);
+
+		UpdateTagEntryFromSelection ();
+		icon_view.QueueDraw ();
 	}
 
 	void HandleAdjustColor (object sender, EventArgs args)
@@ -1685,15 +1772,24 @@ public class MainWindow {
 	{
 		icon_view.Selection.Clear ();
 	}
-	
+
+	public void HandleTagSelectionKeyPress (object sender, Gtk.KeyPressEventArgs args)
+	{
+		if (args.Event.Key == Gdk.Key.Delete)
+			HandleDeleteSelectedTagCommand (sender, (EventArgs) args);
+	}
+
 	public void HandleDeleteSelectedTagCommand (object sender, EventArgs args)
 	{
 		Tag [] tags = this.tag_selection_widget.TagHighlight ();
 
 		System.Array.Sort (tags, new TagRemoveComparer ());
-		string header = Mono.Posix.Catalog.GetPluralString ("Delete the selected tag?",
-								    "Delete the {0} selected tags?", 
-								    tags.Length);
+
+		string header;
+		if (tags.Length == 1)
+			header = String.Format (Mono.Posix.Catalog.GetString ("Delete tag \"{0}\"?"), tags [0].Name);
+		else
+			header = String.Format (Mono.Posix.Catalog.GetString ("Delete the {0} selected tags?"), tags.Length);
 		
 		header = String.Format (header, tags.Length);
 		string msg = Mono.Posix.Catalog.GetString("If you delete a tag, all associations with photos are lost.");
@@ -1988,5 +2084,264 @@ public class MainWindow {
 		remove_tag_from_selection.Sensitive = tag_sensitive && active_selection;
 	}
 
-}
+	// Tag typing
 
+	private ArrayList selected_photos_tagnames;
+
+	private void UpdateTagEntryFromSelection ()
+	{
+		Hashtable taghash = new Hashtable ();
+
+		Photo [] sel = SelectedPhotos (SelectedIds ());
+		foreach (Photo p in sel) {
+			foreach (Tag t in p.Tags) {
+				int count = 1;
+				string tagname = t.Name;
+
+				if (taghash.Contains (tagname))
+					count = ((int) taghash [tagname]) + 1;
+
+				taghash [tagname] = count;
+			}
+		}
+
+		selected_photos_tagnames = new ArrayList ();
+		foreach (string tagname in taghash.Keys)
+			if ((int) (taghash [tagname]) == sel.Length)
+				selected_photos_tagnames.Add (tagname);
+		selected_photos_tagnames.Sort ();
+
+		string taglist = "";
+		foreach (string tagname in selected_photos_tagnames) {
+			if (taglist == "")
+				taglist = tagname;
+			else
+				taglist = taglist + ", " + tagname;
+		}
+
+		tag_entry.Text = taglist;
+
+		ClearTagCompletions ();
+	}
+
+	public void HandlePossibleTagTyping (object sender, Gtk.KeyPressEventArgs args)
+	{
+		if (tagbar.Visible && tag_entry.HasFocus)
+			return;
+
+#if !ALLOW_TAG_TYPING_WITHOUT_HOTKEY
+		if (args.Event.Key != Gdk.Key.t)
+			return;
+#endif
+
+#if ALLOW_TAG_TYPING_WITHOUT_HOTKEY
+		char c = System.Convert.ToChar (Gdk.Keyval.ToUnicode ((uint) args.Event.Key));
+		if (! System.Char.IsLetter (c))
+			return;
+#endif
+		
+		if (tag_entry.Text.Length > 0)
+			tag_entry.Text += ", ";
+
+#if ALLOW_TAG_TYPING_WITHOUT_HOTKEY
+		tag_entry.Text += c;
+#endif
+
+		tagbar.Show ();
+		tag_entry.GrabFocus ();
+		tag_entry.SelectRegion (-1, -1);
+	}
+
+	// "Activate" means the user pressed the enter key
+	public void HandleTagEntryActivate (object sender, EventArgs args)
+	{
+		string [] tagnames = GetTypedTagNames ();
+		int [] selected_photos = SelectedIds ();
+
+		if (selected_photos == null || tagnames == null)
+			return;
+
+               int sel_start, sel_end;
+               if (tag_entry.GetSelectionBounds (out sel_start, out sel_end) && tag_completion_index != -1) {
+                       tag_entry.InsertText (", ", ref sel_end);
+                       tag_entry.SelectRegion (-1, -1);
+                       tag_entry.Position = sel_end + 2;
+                       ClearTagCompletions ();
+                       return;
+               }
+
+
+	       // Add any new tags to the selected photos
+	       Category default_category = null;
+	       Tag [] selection = tag_selection_widget.TagHighlight ();
+	       if (selection.Length > 0) {
+		       if (selection [0] is Category)
+			       default_category = (Category) selection [0];
+		       else
+			       default_category = selection [0].Category;
+	       }
+
+	       foreach (string tagname in tagnames) {
+		       if (tagname.Length == 0)
+			       continue;
+
+		       Tag t = db.Tags.GetTagByName (tagname);
+		       if (t == null) {
+			       t = db.Tags.CreateTag (default_category, tagname);
+			       db.Tags.Commit (t);
+		       }
+
+		       Tag [] tags = new Tag [1];
+		       tags [0] = t;
+
+		       foreach (int num in selected_photos)
+			       AddTagExtended (num, tags);
+	       }
+
+	       // Remove any removed tags from the selected photos
+	       foreach (string tagname in selected_photos_tagnames) {
+		       if (! IsTagInList (tagnames, tagname)) {
+				
+			       Tag tag = db.Tags.GetTagByName (tagname);
+
+			       foreach (int num in selected_photos) {
+				       query.Photos [num].RemoveTag (tag);
+				       query.Commit (num);
+			       }
+		       }
+	       }
+
+	       UpdateTagEntryFromSelection ();
+	       if (view_mode == ModeType.IconView) {
+		       icon_view.QueueDraw ();
+		       icon_view.GrabFocus ();
+	       } else {
+		       photo_view.QueueDraw ();
+		       photo_view.View.GrabFocus ();
+	       }
+	}
+
+	private void HideTagbar ()
+	{
+		if (! tagbar.Visible)
+			return;
+		
+		// Cancel any pending edits...
+		UpdateTagEntryFromSelection ();
+
+		tagbar.Hide ();
+
+		if (view_mode == ModeType.IconView)
+			icon_view.GrabFocus ();
+		else
+			photo_view.View.GrabFocus ();
+
+		ClearTagCompletions ();
+	}
+
+	public void HandleTagBarCloseButtonPressed (object sender, EventArgs args)
+	{
+		HideTagbar ();
+	}
+
+	public void HandleTagEntryKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
+	{
+		args.RetVal = false;
+
+		if (args.Event.Key == Gdk.Key.Escape) { 
+			HideTagbar ();
+			args.RetVal = true;
+		} else if (args.Event.Key == Gdk.Key.Tab) {
+			DoTagCompletion ();
+			args.RetVal = true;
+		} else
+			ClearTagCompletions ();
+	}
+
+	bool tag_ignore_changes = false;
+	public void HandleTagEntryChanged (object sender, EventArgs args)
+	{
+		if (tag_ignore_changes)
+			return;
+
+		ClearTagCompletions ();
+	}
+
+	int tag_completion_index = -1;
+	Tag [] tag_completions;
+	string tag_completion_typed_so_far;
+	int tag_completion_typed_position;
+	private void DoTagCompletion ()
+	{
+		string completion;
+		
+		if (tag_completion_index != -1) {
+			tag_completion_index = (tag_completion_index + 1) % tag_completions.Length;
+		} else {
+
+			tag_completion_typed_position = tag_entry.Position;
+		    
+			string right_of_cursor = tag_entry.Text.Substring (tag_completion_typed_position);
+			if (right_of_cursor.Length > 1)
+				return;
+
+			int last_comma = tag_entry.Text.LastIndexOf (',');
+			if (last_comma > tag_completion_typed_position)
+				return;
+
+			tag_completion_typed_so_far = tag_entry.Text.Substring (last_comma + 1).TrimStart (new char [] {' '});
+			if (tag_completion_typed_so_far == null || tag_completion_typed_so_far.Length == 0)
+				return;
+
+			tag_completions = db.Tags.GetTagsByNameStart (tag_completion_typed_so_far);
+			if (tag_completions == null)
+				return;
+
+			tag_completion_index = 0;
+		}
+
+		tag_ignore_changes = true;
+		completion = tag_completions [tag_completion_index].Name.Substring (tag_completion_typed_so_far.Length);
+		tag_entry.Text = tag_entry.Text.Substring (0, tag_completion_typed_position) + completion;
+		tag_ignore_changes = false;
+
+		tag_entry.Position = tag_entry.Text.Length;
+		tag_entry.SelectRegion (tag_completion_typed_position, tag_entry.Text.Length);
+	}
+
+	private void ClearTagCompletions ()
+	{
+		tag_completion_index = -1;
+		tag_completions = null;
+	}
+
+
+	public void HandleTagEntryFocusOutEvent (object sender, EventArgs args)
+	{
+		UpdateTagEntryFromSelection ();
+		//		HideTagbar ();
+	}
+
+	private string [] GetTypedTagNames ()
+	{
+		string [] tagnames = tag_entry.Text.Split (new char [] {','});
+
+		ArrayList list = new ArrayList ();
+		for (int i = 0; i < tagnames.Length; i ++) {
+			string s = tagnames [i].Trim ();
+
+			if (s.Length > 0)
+				list.Add (s);
+		}
+
+		return (string []) (list.ToArray (typeof (string)));
+	}
+
+	private bool IsTagInList (string [] tags, string tag)
+	{
+		foreach (string t in tags)
+			if (t == tag)
+				return true;
+		return false;
+	}
+}

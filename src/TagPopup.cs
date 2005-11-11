@@ -12,7 +12,7 @@
 using System;
 
 public class TagPopup {
-	public void Activate (Gdk.EventButton eb, Tag tag)
+	public void Activate (Gdk.EventButton eb, Tag tag, Tag [] tags)
 	{
 		int count = MainWindow.Toplevel.SelectedIds ().Length;
 		Gtk.Menu popup_menu = new Gtk.Menu ();
@@ -24,19 +24,30 @@ public class TagPopup {
 		
 		GtkUtil.MakeMenuSeparator (popup_menu);
 
-		GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Edit Tag"),
-				      new EventHandler (MainWindow.Toplevel.HandleEditSelectedTag), tag != null);
+		string editstr = String.Format (Mono.Posix.Catalog.GetString ("Edit Tag \"{0}\""), tag.Name);
+		GtkUtil.MakeMenuItem (popup_menu, editstr, delegate { MainWindow.Toplevel.HandleEditSelectedTagWithTag (tag); }, true);
 
-		GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Delete Tag"),
-				      new EventHandler (MainWindow.Toplevel.HandleDeleteSelectedTagCommand), tag != null);
-				      
+		GtkUtil.MakeMenuItem (popup_menu,
+				      Mono.Posix.Catalog.GetPluralString ("Delete Tag", "Delete Tags", tags.Length),
+				      new EventHandler (MainWindow.Toplevel.HandleDeleteSelectedTagCommand), tags != null && tags.Length > 0);
+		
 		GtkUtil.MakeMenuSeparator (popup_menu);
 
-		GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Attach Tag To Selection"),
+		GtkUtil.MakeMenuItem (popup_menu,
+				      Mono.Posix.Catalog.GetPluralString ("Attach Tag To Selection", "Attach Tags To Selection", tags.Length),
 				      new EventHandler (MainWindow.Toplevel.HandleAttachTagCommand), count > 0);
 
-		GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Remove Tag From Selection"),
+		GtkUtil.MakeMenuItem (popup_menu,
+				      Mono.Posix.Catalog.GetPluralString ("Remove Tag From Selection", "Remove Tags From Selection", tags.Length),
 				      new EventHandler (MainWindow.Toplevel.HandleRemoveTagCommand), count > 0);
+
+		if (tags.Length > 1) {
+			GtkUtil.MakeMenuSeparator (popup_menu);
+
+			GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Merge Tags"),
+					      new EventHandler (MainWindow.Toplevel.HandleMergeTagsCommand), tags.Length > 1);
+
+		}
 
 		popup_menu.Popup (null, null, null, eb.Button, eb.Time);
 	}

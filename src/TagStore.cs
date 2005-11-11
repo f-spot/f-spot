@@ -268,6 +268,30 @@ public class TagStore : DbStore {
 		}
 	}
 
+	public Tag GetTagByName (string name)
+	{
+		foreach (Tag t in this.item_cache.Values) {
+			if (t.Name.ToLower () == name.ToLower ())
+				return t;
+		}
+
+		return null;
+	}
+
+	public Tag [] GetTagsByNameStart (string s)
+	{
+		ArrayList l = new ArrayList ();
+		foreach (Tag t in this.item_cache.Values) {
+			if (t.Name.ToLower ().StartsWith (s.ToLower ()))
+				l.Add (t);
+		}
+
+		if (l.Count == 0)
+			return null;
+
+		return (Tag []) (l.ToArray (typeof (Tag)));
+	}
+
 	// In this store we keep all the items (i.e. the tags) in memory at all times.  This is
 	// mostly to simplify handling of the parent relationship between tags, but it also makes it
 	// a little bit faster.  We achieve this by passing "true" as the cache_is_immortal to our

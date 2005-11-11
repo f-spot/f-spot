@@ -1,3 +1,27 @@
+2005-11-10  Nat Friedman  <nat@novell.com>
+
+	* src/MainWindow.cs: Added support for creating and applying tags
+	by typing them into a tagbar entry.  Added support for merging
+	tags.  Support for multiselection operations in the tag sidebar.
+	Handle photo deleting in the icon and photo views by catching the
+	keypress in the icon and photo view widgets, not as a menu
+	accelerator.  Pressing delete in the tag treeview will now delete
+	the selected tags.  Fixed several bugs.
+
+	* src/TagPopup.cs: Added support for merging tags.  Added support
+	for multiselection tag actions.
+
+	* src/TagSelectionWidget.cs: Handle top-level tag creation.
+
+	* src/Db.cs: Made the item_cache protected so the TagStore
+	subclass can access it.
+
+	* src/TagStore.cs: Added GetTagByName and GetTagByNameStart, both
+	of which are case-insensitive.
+
+	* src/f-spot.glade: Remove the Delete accelerator for deleting
+	photos.  Add the tag typing bar.
+
 2005-11-08  Larry Ewing  <lewing@novell.com>
 
 	* src/Loupe.cs: queue a resize iff the dimentions have changed so that the

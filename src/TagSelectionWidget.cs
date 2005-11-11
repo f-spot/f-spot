@@ -290,7 +290,7 @@ public class TagSelectionWidget : TreeView {
 	{
 		TreeIter root = TreeIter.Zero;
 		iter = TreeIter.Zero;
-	
+
 		bool valid = Model.GetIterFirst (out root);
 		
 		while (valid) {
@@ -399,12 +399,14 @@ public class TagSelectionWidget : TreeView {
 	
 	private void HandleTagCreated (Tag tag) 
 	{
-		TreeIter iter;
+		TreeIter iter = TreeIter.Zero;
 
-		if (TreeIterForTag (tag.Category, out iter)) {
-			// create dialog doesn't let you create a top level tag...
-			InsertInOrder (iter, false, tag);
-		}
+		if (tag.Category != tag_store.RootCategory)
+			TreeIterForTag (tag.Category, out iter);
+
+		InsertInOrder (iter,
+			       tag.Category.Name == tag_store.RootCategory.Name,
+			       tag);
 	}
 	
 	private void HandleTagChanged (Tag tag) 
