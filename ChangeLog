@@ -1,5 +1,8 @@
 2005-11-11  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: small optimizations.  Start converting the
+	selection to a collection.
+
 	* src/Loupe.cs: move some of the internal settings to properties.
 
 	* src/f-spot.glade: add copy option.

@@ -429,8 +429,93 @@ public class MainWindow {
 
 		return ids;
 	}
-	
 
+	public class Selection : IBrowsableCollection {
+		MainWindow win;
+
+		public Selection (MainWindow win)
+		{
+			this.win = win;
+		}
+		
+		public int Count {
+			get {
+				switch (win.view_mode) {
+				case ModeType.PhotoView:
+					return win.photo_view.Item.IsValid ? 1 : 0;
+				case ModeType.IconView:
+					return win.icon_view.Selection.Count;
+				}
+				return 0;
+			}
+		}
+
+		public int IndexOf (IBrowsableItem item)
+		{
+			switch (win.view_mode) {
+			case ModeType.PhotoView:
+				return item == win.photo_view.Item.Current ? 0 : -1;
+			case ModeType.IconView:
+				return win.icon_view.Selection.IndexOf (item);
+			}
+			return -1;
+		}
+		
+		public bool Contains (IBrowsableItem item)
+		{
+			switch (win.view_mode) {
+			case ModeType.PhotoView:
+				return item == win.photo_view.Item.Current ? true : false;
+			case ModeType.IconView:
+				return win.icon_view.Selection.Contains (item);
+			}
+			return false;
+		}
+		
+		public IBrowsableItem this [int index] {
+			get {
+				switch (win.view_mode) {
+				case ModeType.PhotoView:
+					if (index == 0)
+						return win.photo_view.Item.Current;
+					break;
+				case ModeType.IconView:
+					return win.icon_view.Selection [index];
+				}
+				throw new ArgumentOutOfRangeException ();
+			}
+		}
+		 
+		public IBrowsableItem [] Items {
+			get {
+				switch (win.view_mode) {
+				case ModeType.PhotoView:
+					if (win.photo_view.Item.IsValid)
+						return new IBrowsableItem [] {win.photo_view.Item.Current};
+
+					break;
+				case ModeType.IconView:
+					return win.icon_view.Selection.Items;
+				}
+				return new IBrowsableItem [0];
+			}
+		}
+
+		private void HandleSelectionChanged (IBrowsableCollection collection)
+		{
+			if (Changed != null)
+				Changed (this);
+		}
+
+		private void HandleSelectionItemChanged (IBrowsableCollection collection, int item)
+		{
+			if (ItemChanged != null)
+				ItemChanged (this, item);
+		}
+
+		public event IBrowsableCollectionChangedHandler Changed;
+		public event IBrowsableCollectionItemChangedHandler ItemChanged;
+	}
 	//
 	// Selection Interface
 	//
@@ -1423,7 +1508,7 @@ public class MainWindow {
 
 		// Remove the defunct tags from all the photos and
 		// replace them with the new tag.
-		Photo [] photos = db.Photos.Query (tags, null);
+		Photo [] photos = db.Photos.Query (tags);
 		foreach (Photo p in photos) {
 			p.RemoveTag (removetags);
 			p.AddTag (tags [0]);
@@ -2092,35 +2177,42 @@ public class MainWindow {
 	{
 		Hashtable taghash = new Hashtable ();
 
-		Photo [] sel = SelectedPhotos (SelectedIds ());
-		foreach (Photo p in sel) {
-			foreach (Tag t in p.Tags) {
+		Photo [] sel = SelectedPhotos ();
+		for (int i = 0; i < sel.Length; i++) {
+			foreach (Tag tag in sel [i].Tags) {
 				int count = 1;
-				string tagname = t.Name;
 
-				if (taghash.Contains (tagname))
-					count = ((int) taghash [tagname]) + 1;
+				if (taghash.Contains (tag))
+					count = ((int) taghash [tag]) + 1;
 
-				taghash [tagname] = count;
+				if (count <= i)
+					taghash.Remove (tag);
+				else 
+					taghash [tag] = count;
 			}
+			
+			if (taghash.Count == 0)
+				break;
 		}
 
 		selected_photos_tagnames = new ArrayList ();
-		foreach (string tagname in taghash.Keys)
-			if ((int) (taghash [tagname]) == sel.Length)
-				selected_photos_tagnames.Add (tagname);
+		foreach (Tag tag in taghash.Keys)
+			if ((int) (taghash [tag]) == sel.Length) {
+				System.Console.WriteLine (tag.Name);
+				selected_photos_tagnames.Add (tag.Name);
+			}
+
 		selected_photos_tagnames.Sort ();
 
-		string taglist = "";
+		StringBuilder sb = new StringBuilder ();
 		foreach (string tagname in selected_photos_tagnames) {
-			if (taglist == "")
-				taglist = tagname;
-			else
-				taglist = taglist + ", " + tagname;
+			if (sb.Length > 0)
+				sb.Append (", ");
+
+			sb.Append (tagname);
 		}
 
-		tag_entry.Text = taglist;
-
+		tag_entry.Text = sb.ToString ();
 		ClearTagCompletions ();
 	}
 
