@@ -266,6 +266,8 @@ public class MainWindow {
 		photo_view.UpdateStarted += HandlePhotoViewUpdateStarted;
 		photo_view.UpdateFinished += HandlePhotoViewUpdateFinished;
 
+		photo_view.View.ZoomChanged += HandleZoomChanged;
+
 		// Tag typing: focus the tag entry if the user starts typing a tag
 		icon_view.KeyPressEvent += HandlePossibleTagTyping;
 		photo_view.KeyPressEvent += HandlePossibleTagTyping;
@@ -1746,6 +1748,19 @@ public class MainWindow {
 			break;
 		case ModeType.IconView:
 			icon_view.ThumbnailWidth = (int)(System.Math.Max (15, zoom_scale.Value * 256));
+			break;
+		}
+	}
+
+	void HandleZoomChanged (object sender, System.EventArgs args)
+	{
+		double value;
+		switch (view_mode) {
+		case ModeType.PhotoView:
+			if (photo_view.Zoom != zoom_scale.Value) 
+				zoom_scale.Value = photo_view.Zoom;
+			break;
+		case ModeType.IconView:
 			break;
 		}
 	}
