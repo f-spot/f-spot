@@ -288,9 +288,19 @@ namespace Cms {
 		
 		public static Profile CreateAdobeRgb ()
 		{
-			System.Console.WriteLine ("FIXME returning invalid Adobe profile");
-			// FIXME this needs to either load or generate an Adobe profile 
-			return CreateStandardRgb ();
+			// FIXME I'm basing this off the values set in the 300D
+			// exif data when the adobe profile is selected.  They could
+			// easily be off
+			ColorCIExyY wp = new ColorCIExyY (.313, .329, 1.0);
+			ColorCIExyYTriple primaries = new ColorCIExyYTriple (
+				new ColorCIExyY (.64, .33, 1.0),
+				new ColorCIExyY (.21, .71, 1.0),
+				new ColorCIExyY (.15, .06, 1.0));
+			
+			GammaTable g = new GammaTable (4096, 2.2);
+			GammaTable [] gamma = new GammaTable [] { g, g, g, g};
+
+			return new Profile (wp, primaries, gamma);
 		}
 
 		[DllImport ("liblcms-1.0.0.dll")]
