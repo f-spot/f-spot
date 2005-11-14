@@ -182,7 +182,7 @@ namespace FSpot.Mrw {
 		public override System.DateTime Date
 		{
 			get {
-				AsciiEntry e = (AsciiEntry)(this.Header.Directory.Lookup (TagId.DateTime));
+				DirectoryEntry e = this.Header.Directory.Lookup (TagId.DateTime);
 				
 				if (e != null)
 					return DirectoryEntry.DateTimeFromString (e.StringValue);

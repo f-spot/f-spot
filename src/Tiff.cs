@@ -201,6 +201,7 @@ namespace FSpot.Tiff {
 		ImageUniqueId   		= 0xa420,
 
 		// The Following IDs are not described the EXIF spec
+		Gamma                           = 0xa500,
 
 		// The XMP spec declares that XMP data should live 0x2bc when
 		// embedded in tiff images.
@@ -1085,6 +1086,7 @@ namespace FSpot.Tiff {
 			Cms.ColorCIExyYTriple primaries = new Cms.ColorCIExyYTriple (whitepoint, whitepoint, whitepoint);
 			Cms.GammaTable [] transfer = null;
 			int bits_per_sample = 8;
+			double gamma = 2.2;
 			
 			foreach (DirectoryEntry e in entries) {
 				switch (e.Id) {
@@ -1141,19 +1143,26 @@ namespace FSpot.Tiff {
 
 					transfer = tables;
 					break;
+				case TagId.ExifIfdPointer:
+					SubdirectoryEntry exif = (SubdirectoryEntry) e;
+					DirectoryEntry ee = exif.Directory [0].Lookup ((int)TagId.Gamma);
+					
+					if (ee == null)
+						break;
+
+					Rational rgamma = ee.RationalValue [0];
+					gamma = rgamma.Value;
+					break;
 				}
 			}
 
 			// assume a gamma of 2.2 if it isn't set explicitly
 			if (transfer == null) {
-				Cms.GammaTable basic = new Cms.GammaTable (1 << bits_per_sample, 2.2);
-
-				transfer = new Cms.GammaTable [3];
-				transfer [0] = basic;
-				transfer [1] = basic;
-				transfer [2] = basic;
+				Cms.GammaTable basic = new Cms.GammaTable (1 << bits_per_sample, gamma);
+				
+				transfer = new Cms.GammaTable [] { basic, basic, basic };
 			}
-			
+
 			// if we didn't get a white point or primaries, give up
 			if (whitepoint.Y != 1.0 || primaries.Red.Y != 1.0)
 				return null;
@@ -1228,8 +1237,6 @@ namespace FSpot.Tiff {
 				return new LongEntry (input, start, header_endian);
 			case EntryType.Short:
 				return new ShortEntry (input, start, header_endian);
-			case EntryType.Ascii:
-				return new AsciiEntry (input, start, header_endian);
 			}
 
 			return new DirectoryEntry (input, start, header_endian);
@@ -1325,19 +1332,11 @@ namespace FSpot.Tiff {
 		}
 	}
 	
-	public class AsciiEntry : DirectoryEntry {
-		public AsciiEntry (byte [] data, int offset, Endian endian) : base (data, offset, endian)
-		{
-			if (type != EntryType.Ascii)
-				throw new System.Exception (System.String.Format ("Invalid Settings At Birth {0}", tagid));
-		}
-	}
-	
 #if false
 	public class ImageLoader {
-		ushort width;
-		ushort length;
-		ushort [] bps;
+		int width;
+		int length;
+		int [] bps;
 		PhotometricInterpretation interpretation;
 		Compression compression;
 		uint [] offsets;
@@ -1349,8 +1348,7 @@ namespace FSpot.Tiff {
 		{
 			width = directory.Lookup (TagId.ImageWidth).ValueAsLong [0];
 			length = directory.Lookup (TagId.ImageLength).ValueAsLong [0];
-			
-			bps = ((ShortEntry)directory.Lookup (TagId.BitsPerSample)).Value;
+			bps = directory.Lookup (TagId.BitsPerSample).ValueAsLong;
 			
 			compression = (Compression) directory.Lookup (TagId.Compression).ValueAsLong [0];
 			interpretation = (PhotometricInterpretation) directory.Lookup (TagId.PhotometricInterpretation).ValueAsLong [0];
@@ -1790,7 +1788,7 @@ namespace FSpot.Tiff {
 
 		public override System.DateTime Date {
 			get {
-				AsciiEntry e = (AsciiEntry)(this.Header.Directory.Lookup (TagId.DateTime));
+				DirectoryEntry e = this.Header.Directory.Lookup (TagId.DateTime);
 				
 				if (e != null)
 					return DirectoryEntry.DateTimeFromString (e.StringValue);
@@ -1979,7 +1977,7 @@ namespace FSpot.Tiff {
 		{
 			get {
 				SubdirectoryEntry sub = (SubdirectoryEntry) this.Header.Directory.Lookup (TagId.ExifIfdPointer);
-				AsciiEntry e = (AsciiEntry)(sub.Directory [0].Lookup (TagId.DateTimeOriginal));
+				DirectoryEntry e = sub.Directory [0].Lookup (TagId.DateTimeOriginal);
 				
 				if (e != null)
 					return DirectoryEntry.DateTimeFromString (e.StringValue);

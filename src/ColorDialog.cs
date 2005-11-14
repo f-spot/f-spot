@@ -103,6 +103,7 @@ namespace FSpot {
 		
 		public void HandleDestroyed (object sender, EventArgs arg)
 		{
+			view.Transform = null;
 			view.PhotoChanged -= HandlePhotoChanged;
 #if USE_THREAD
 			expose_timeout.Stop ();
@@ -202,33 +203,37 @@ namespace FSpot {
 
 		private void HandlePhotoChanged (PhotoImageView view)
 		{
-			if (view.Item.IsValid) {
-				FSpot.ImageFile img = FSpot.ImageFile.Create (((Photo)view.Item.Current).DefaultVersionPath);
-
-				image_profile = img.GetProfile ();
-				
-				// FIXME fall back to rgb for now
-				if (image_profile == null)
-					image_profile = Cms.Profile.CreateStandardRgb ();
-
-				AdjustedPixbuf = img.Load (150, 150);
-				ScaledPixbuf = AdjustedPixbuf.Copy ();			
-#if false
-				Cms.Profile srgb = Cms.Profile.CreateSRgb ();
-				Cms.Profile lab = Cms.Profile.CreateLab ();
-				Cms.Profile [] list = new Cms.Profile [] { srgb, lab };
-
-			        Cms.Transform t = new Cms.Transform (list, 
-								     PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
-								     PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
-								     Cms.Intent.Perceptual, 0x0000);
-
-				PixbufUtils.ColorAdjust (AdjustedPixbuf,
-							 ScaledPixbuf,
-							 t);
-#endif
-				RangeChanged (null, null);
+			if (!view.Item.IsValid) {
+				image_profile = null;
+				return;
 			}
+			
+			FSpot.ImageFile img = FSpot.ImageFile.Create (((Photo)view.Item.Current).DefaultVersionPath);
+			
+			image_profile = img.GetProfile ();
+			
+			// FIXME fall back to rgb for now
+			if (image_profile == null)
+				image_profile = Cms.Profile.CreateStandardRgb ();
+			
+			AdjustedPixbuf = img.Load (150, 150);
+			ScaledPixbuf = AdjustedPixbuf.Copy ();			
+
+#if false
+			Cms.Profile srgb = Cms.Profile.CreateSRgb ();
+			Cms.Profile lab = Cms.Profile.CreateLab ();
+			Cms.Profile [] list = new Cms.Profile [] { srgb, lab };
+			
+			Cms.Transform t = new Cms.Transform (list, 
+							     PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
+							     PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
+							     Cms.Intent.Perceptual, 0x0000);
+			
+			PixbufUtils.ColorAdjust (AdjustedPixbuf,
+						 ScaledPixbuf,
+						 t);
+#endif
+			RangeChanged (null, null);
 		}
 
 		private void HandleResetClicked (object sender, EventArgs args)

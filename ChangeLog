@@ -1,3 +1,14 @@
+2005-11-14  Larry Ewing  <lewing@novell.com>
+
+	* src/MrwFile.cs: use DirectoryEntry not ascii entry.
+
+	* src/ColorDialog.cs: reset the transform when the dialog is closed.
+
+	* src/Tiff.cs: read the Gamma value from the exif info (where is
+	this tag actually defined?).  Remove AsciiEntry as a type.
+
+	* src/Cms.cs: add a profile for adobe rgb.
+
 2005-11-13  Larry Ewing  <lewing@novell.com>
 
 	* src/Cms.cs: clean up the handle array creation code.
