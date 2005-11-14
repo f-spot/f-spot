@@ -354,11 +354,16 @@ namespace Cms {
 		
 		public Profile (IccColorSpace color_space, GammaTable [] gamma)
 		{
+			handle = new HandleRef (this, cmsCreateLinearizationDeviceLink (color_space, CopyHandles (gamma)));
+		}
+
+		private static HandleRef [] CopyHandles (GammaTable [] gamma)
+		{
 			HandleRef [] gamma_handles = new HandleRef [gamma.Length];
 			for (int i = 0; i < gamma_handles.Length; i++)
 				gamma_handles [i] = gamma [i].Handle;
-
-			handle = new HandleRef (this, cmsCreateLinearizationDeviceLink (color_space, gamma_handles));
+			
+			return gamma_handles;
 		}
 
 		[DllImport("liblcms-1.0.0.dll")]
@@ -368,16 +373,7 @@ namespace Cms {
 
 		public Profile (ColorCIExyY whitepoint, ColorCIExyYTriple primaries, GammaTable [] gamma)
 		{
-			HandleRef [] tbls = new HandleRef [3];
-			tbls [0] = gamma [0].Handle;
-			tbls [1] = gamma [1].Handle;
-			tbls [2] = gamma [2].Handle;
-
-			handle = new HandleRef (this, cmsCreateRGBProfile (out whitepoint, out primaries, tbls));
-
-			// FIXME this is only here to avoid a mar
-			//foreach (GammaTable t in gamma)
-			//System.Console.WriteLine (t.ToString ());
+			handle = new HandleRef (this, cmsCreateRGBProfile (out whitepoint, out primaries, CopyHandles (gamma)));
 		}
 
 		[DllImport("liblcms-1.0.0.dll")]
