@@ -1,5 +1,7 @@
 2005-11-14  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: remove unused variable.
+
 	* src/MrwFile.cs: use DirectoryEntry not ascii entry.
 
 	* src/ColorDialog.cs: reset the transform when the dialog is closed.

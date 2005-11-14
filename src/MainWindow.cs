@@ -1754,7 +1754,6 @@ public class MainWindow {
 
 	void HandleZoomChanged (object sender, System.EventArgs args)
 	{
-		double value;
 		switch (view_mode) {
 		case ModeType.PhotoView:
 			if (photo_view.Zoom != zoom_scale.Value) 
