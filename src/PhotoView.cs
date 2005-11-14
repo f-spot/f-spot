@@ -253,7 +253,6 @@ public class PhotoView : EventBox {
 		}
 
 		Photo photo = (Photo)Item.Current;
-		Exif.ExifData exif_data = new Exif.ExifData (photo.DefaultVersionPath);
 
 		Pixbuf edited;
 		if (redeye) {

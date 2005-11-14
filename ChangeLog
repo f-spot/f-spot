@@ -1,3 +1,10 @@
+2005-11-13  Larry Ewing  <lewing@novell.com>
+
+	* src/PhotoView.cs: remove unused variable.
+
+	* src/MainWindow.cs: hook to the ZoomChanged event and update the
+	zoom scale from it.
+
 2005-11-11  Larry Ewing  <lewing@novell.com>
 
 	* src/ImageView.cs: wrap the zoom-changed signal.
