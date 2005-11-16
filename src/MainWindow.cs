@@ -1052,6 +1052,7 @@ public class MainWindow {
 		//Console.WriteLine ("Drag received {0}", source == null ? "null" : source.TypeName);
 
 		HandleAttachTagCommand (sender, null);
+		UpdateTagEntryFromSelection ();
 		
 		Gtk.Drag.Finish (args.Context, true, false, args.Time);
 	}	
