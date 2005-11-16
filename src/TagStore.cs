@@ -270,10 +270,9 @@ public class TagStore : DbStore {
 
 	public Tag GetTagByName (string name)
 	{
-		foreach (Tag t in this.item_cache.Values) {
+		foreach (Tag t in this.item_cache.Values)
 			if (t.Name.ToLower () == name.ToLower ())
 				return t;
-		}
 
 		return null;
 	}

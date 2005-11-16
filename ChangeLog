@@ -1,3 +1,8 @@
+2005-11-15  Nat Friedman  <nat@novell.com>
+
+	* src/MainWindow.cs: With tag typing, correct for capitalization
+	differences in the retrieved tag and what the user typed.
+
 2005-11-14  Larry Ewing  <lewing@novell.com>
 
 	* src/MainWindow.cs: remove unused variable.

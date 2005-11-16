@@ -2211,10 +2211,8 @@ public class MainWindow {
 
 		selected_photos_tagnames = new ArrayList ();
 		foreach (Tag tag in taghash.Keys)
-			if ((int) (taghash [tag]) == sel.Length) {
-				System.Console.WriteLine (tag.Name);
+			if ((int) (taghash [tag]) == sel.Length)
 				selected_photos_tagnames.Add (tag.Name);
-			}
 
 		selected_photos_tagnames.Sort ();
 
@@ -2276,7 +2274,6 @@ public class MainWindow {
                        return;
                }
 
-
 	       // Add any new tags to the selected photos
 	       Category default_category = null;
 	       Tag [] selection = tag_selection_widget.TagHighlight ();
@@ -2287,15 +2284,19 @@ public class MainWindow {
 			       default_category = selection [0].Category;
 	       }
 
-	       foreach (string tagname in tagnames) {
-		       if (tagname.Length == 0)
+	       for (int i = 0; i < tagnames.Length; i ++) {
+		       if (tagnames [i].Length == 0)
 			       continue;
 
-		       Tag t = db.Tags.GetTagByName (tagname);
+		       Tag t = db.Tags.GetTagByName (tagnames [i]);
+
 		       if (t == null) {
-			       t = db.Tags.CreateTag (default_category, tagname);
+			       t = db.Tags.CreateTag (default_category, tagnames [i]);
 			       db.Tags.Commit (t);
 		       }
+
+		       // Correct for capitalization differences
+		       tagnames [i] = t.Name;
 
 		       Tag [] tags = new Tag [1];
 		       tags [0] = t;
@@ -2303,7 +2304,7 @@ public class MainWindow {
 		       foreach (int num in selected_photos)
 			       AddTagExtended (num, tags);
 	       }
-
+	       
 	       // Remove any removed tags from the selected photos
 	       foreach (string tagname in selected_photos_tagnames) {
 		       if (! IsTagInList (tagnames, tagname)) {
