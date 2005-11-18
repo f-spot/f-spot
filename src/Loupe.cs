@@ -112,8 +112,10 @@ namespace FSpot {
 		private int radius = 128;
 		private int inner = 128;
 		private int border = 5;
+		private double angle = Math.PI / 4;
 		Gdk.Point start;
-		Gdk.Point last;
+		Gdk.Point start_hot;
+		Gdk.Point pos_hot;
 		Gdk.Point hotspot;
 
 		public Loupe (PhotoImageView view) : base ("Loupe")
@@ -151,6 +153,22 @@ namespace FSpot {
 					border = value;
 					UpdateSample ();
 				}
+			}
+		}
+
+		public double Angle {
+			get {
+				return angle;
+			}
+			set {
+				Gdk.Point then = GetHotspot ();
+				angle = value;
+				Gdk.Point now = GetHotspot ();
+				System.Console.WriteLine ("{0} now {1}", then, now);
+				int x, y;
+				GdkWindow.GetOrigin (out x, out y);
+				Move (x + then.X - now.X, y + then.Y - now.Y);
+				QueueResize ();
 			}
 		}
 
@@ -227,13 +245,14 @@ namespace FSpot {
 		private Gdk.Point GetHotspot ()
 		{
 			Matrix m = new Matrix ();
-			
+			m.InitIdentity ();
+
 			int inner_x = radius + border + inner;
 			int cx = radius + 2 * border;
 			int cy = radius + 2 * border;
 
 			m.Translate (cx, cy);
-			m.Rotate (Math.PI / 4);
+			m.Rotate (angle);
 			
 			double hx = inner_x;
 			double hy = 0;
@@ -261,7 +280,7 @@ namespace FSpot {
 			g.NewPath ();
 			g.Operator = Operator.Over;
 			g.Translate (cx, cy);
-			g.Rotate (Math.PI / 4);
+			g.Rotate (angle);
 			g.Color = new Cairo.Color (0.4, 0.4, 0.4, .7);
 			
 			g.Rectangle (0, - (border + inner), inner_x, 2 * (border + inner));
@@ -291,7 +310,7 @@ namespace FSpot {
 
 			if (overlay != null) {
 				SetSourcePixbuf (g, overlay, -overlay.Width / 2, -overlay.Height / 2);
-				g.Arc (0, 0, radius, Math.PI * .25, Math.PI * 1.25);
+				g.Arc (0, 0, radius, angle, angle + Math.PI);
 				g.ClosePath ();
 				g.FillPreserve ();
 				g.Color = new Cairo.Color (1.0, 1.0, 1.0, 1.0);
@@ -310,23 +329,44 @@ namespace FSpot {
 		}
 		
 		bool dragging = false;
+		bool rotate = false;
 		Delay drag;
 		Gdk.Point pos;
+		double start_angle = 0;
+		Gdk.Point root_pos;
+		Gdk.Point start_root;
 
 		private void HandleMotionNotifyEvent (object sender, MotionNotifyEventArgs args)
 		{
 		        pos.X = (int) args.Event.XRoot - start.X;
 		        pos.Y = (int) args.Event.YRoot - start.Y;
+			root_pos.X = (int) args.Event.XRoot - start_root.X;
+			root_pos.Y = (int) args.Event.YRoot - start_root.Y;
 
 			if (dragging)
 				drag.Start ();
 		}
 
-		private bool MoveWindow ()
+		private bool DragUpdate ()
 		{
 			if (!dragging)
 				return false;
-			
+
+			if (!rotate) {
+				return MoveWindow ();
+			} else {
+				double dist = Math.Sqrt (root_pos.X * root_pos.X + root_pos.Y * root_pos.Y);
+				double angle = Math.Asin (root_pos.X / dist);
+				if (root_pos.Y > 0)
+					angle += Math.PI;
+				System.Console.WriteLine ("angle = {0}", angle);
+				Angle = start_angle + angle;
+				return false;	
+			}
+		}
+
+		private bool MoveWindow ()
+		{
 			Gdk.Point view_coords;
 			Gdk.Point top;
 			Gdk.Point current;
@@ -336,7 +376,6 @@ namespace FSpot {
 			if (current == pos)
 				return false;
 			
-			//hotspot = GetHotspot ();
 			Move (pos.X, pos.Y);
 
 			pos.Offset (hotspot.X, hotspot.Y);
@@ -347,7 +386,6 @@ namespace FSpot {
 						       out view_coords.X, out view_coords.Y);
 
 			SetSamplePoint (view.WindowCoordsToImage (view_coords));
-
 
 			return false;
 		}
@@ -361,8 +399,15 @@ namespace FSpot {
 		{
 			switch (args.Event.Type) {
 			case Gdk.EventType.ButtonPress:
-				start = new Gdk.Point ((int)args.Event.X, (int)args.Event.Y);
-				dragging = true;
+				if (args.Event.Button == 1) {
+					start = new Gdk.Point ((int)args.Event.X, (int)args.Event.Y);
+					start_root = new Gdk.Point ((int)args.Event.XRoot, (int)args.Event.YRoot);
+					dragging = true;
+					rotate = (args.Event.State & Gdk.ModifierType.ShiftMask) > 0;
+					start_angle = Angle;
+				} else {
+					Angle += Math.PI /8;
+				}
 				break;
 			case Gdk.EventType.TwoButtonPress:
 				dragging = false;
@@ -443,7 +488,7 @@ namespace FSpot {
 			ButtonReleaseEvent += HandleButtonReleaseEvent;
 			MotionNotifyEvent += HandleMotionNotifyEvent;
 
-			drag = new Delay (20, new GLib.IdleHandler (MoveWindow));
+			drag = new Delay (20, new GLib.IdleHandler (DragUpdate));
 		}
 	}
 }
