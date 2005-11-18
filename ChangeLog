@@ -7,6 +7,8 @@
 
 2005-11-14  Larry Ewing  <lewing@novell.com>
 
+	* src/Cms.cs: expose the colorant retrieval bits of lcms.
+
 	* src/MainWindow.cs: remove unused variable.
 
 	* src/MrwFile.cs: use DirectoryEntry not ascii entry.

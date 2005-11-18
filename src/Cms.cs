@@ -65,6 +65,41 @@ namespace Cms {
 			this.y = y;
 			this.Y = Y;
 		}
+
+		[DllImport("liblcms-1.0.0.dll")]
+		static extern void cmsxyY2XYZ (out ColorCIEXYZ dest, ref ColorCIExyY src);
+
+		public ColorCIEXYZ ToCIEXYZ ()
+		{
+			ColorCIEXYZ dest;
+			cmsxyY2XYZ (out dest, ref this);
+			
+			return dest;
+		}
+	}
+
+	public struct ColorCIEXYZ {
+		public double x;
+		public double y;
+		public double z;
+		
+		public ColorCIEXYZ (double x, double y, double z)
+		{
+			this.x = x;
+			this.y = y;
+			this.z = z;
+		}
+
+		[DllImport("liblcms-1.0.0.dll")]
+		static extern void cmsXYZ2xyY (out ColorCIExyY dest, ref ColorCIEXYZ source);
+		
+		public ColorCIExyY ToCIExyY ()
+		{
+			ColorCIExyY dest;
+			cmsXYZ2xyY (out dest, ref this);
+			
+			return dest;
+		}
 	}
 
 	public struct ColorCIExyYTriple {
@@ -77,6 +112,19 @@ namespace Cms {
 			Red = red;
 			Green = green;
 			Blue = blue;
+		}
+	}
+
+	public struct ColorCIEXYZTriple {
+		public ColorCIEXYZ Red;
+		public ColorCIEXYZ Blue;
+		public ColorCIEXYZ Green;
+
+		ColorCIEXYZTriple (ColorCIEXYZ red, ColorCIEXYZ green, ColorCIEXYZ blue)
+		{
+			Red = red;
+			Blue = blue;
+			Green = green;
 		}
 	}
 
@@ -288,10 +336,10 @@ namespace Cms {
 		
 		public static Profile CreateAdobeRgb ()
 		{
-			// FIXME I'm basing this off the values set in the 300D
+			// FIXME I'm basing this off the values set in the camera
 			// exif data when the adobe profile is selected.  They could
 			// easily be off
-			ColorCIExyY wp = new ColorCIExyY (.313, .329, 1.0);
+			ColorCIExyY wp = new ColorCIExyY (.3127, .329, 1.0);
 			ColorCIExyYTriple primaries = new ColorCIExyYTriple (
 				new ColorCIExyY (.64, .33, 1.0),
 				new ColorCIExyY (.21, .71, 1.0),
@@ -318,7 +366,19 @@ namespace Cms {
 		{
 			return new Profile (cmsCreateLabProfile (IntPtr.Zero));
 		}			
+
+		[DllImport ("liblcms-1.0.0.dll")]
+		static extern IntPtr cmsCreateGrayProfile (ref ColorCIExyY white_point,
+							   HandleRef transfer_function);
 		
+		public static Profile CreateGray (ColorCIExyY white_point, GammaTable transfer)
+		{
+			if (transfer == null)
+				return new Profile (cmsCreateGrayProfile (ref white_point, new GammaTable (4096, 2.2).Handle));
+			else
+				return new Profile (cmsCreateGrayProfile (ref white_point, transfer.Handle));
+		}
+
 		[DllImport ("libfspot")]
 		static extern IntPtr f_screen_get_profile (IntPtr screen);
 
@@ -427,6 +487,44 @@ namespace Cms {
 				throw new System.Exception ("Invalid Profile Data");
 			else 
 				this.handle = new HandleRef (this, profileh);
+		}
+
+		[DllImport("liblcms-1.0.0.dll")]
+		extern static bool cmsTakeMediaWhitePoint (out ColorCIEXYZ wp, HandleRef handle);
+		
+		public ColorCIEXYZ MediaWhitePoint {
+			get {
+				ColorCIEXYZ wp;
+				if (!cmsTakeMediaWhitePoint (out wp, handle))
+					throw new ApplicationException ("unable to retrieve white point from profile");
+				return wp;
+			}
+		}
+
+		[DllImport("liblcms-1.0.0.dll")]
+		extern static bool cmsTakeMediaBlackPoint (out ColorCIEXYZ black, HandleRef handle);
+		
+		public ColorCIEXYZ MediaBlackPoint {
+			get {
+				ColorCIEXYZ black;
+				if (!cmsTakeMediaBlackPoint (out black, handle))
+					throw new ApplicationException ("unable to retrieve white point from profile");
+				
+				return black;
+			}
+		}
+		
+		[DllImport("liblcms-1.0.0.dll")]
+		extern static bool cmsTakeColorants (out ColorCIEXYZTriple colors, HandleRef handle);
+
+		public ColorCIEXYZTriple Colorants {
+			get {
+				ColorCIEXYZTriple colors;
+				if (! cmsTakeColorants (out colors, handle))
+					throw new ApplicationException ("Unable to retrieve profile colorants");
+				
+				return colors;
+			}				
 		}
 		
 		[DllImport("liblcms-1.0.0.dll")]
