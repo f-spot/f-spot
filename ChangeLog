@@ -1,5 +1,8 @@
 2005-11-18  Larry Ewing  <lewing@novell.com>
 
+	* src/ColorDialog.cs: calculate the change state rather than
+	storing it.
+
 	* src/ExifUtil.cs: remove file.
 
 	* src/Makefile.am (F_SPOT_CSDISTFILES): rmove ExifUtils from the

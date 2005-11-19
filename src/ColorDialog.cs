@@ -6,7 +6,6 @@ namespace FSpot {
 	public class ColorDialog : GladeDialog {
 		Gdk.Pixbuf ScaledPixbuf;
 		Gdk.Pixbuf AdjustedPixbuf;
-		bool changed = false;
 
 #if USE_THREAD		
 		Delay expose_timeout;
@@ -42,38 +41,48 @@ namespace FSpot {
 
 		private void Adjust ()
 		{
-			changed = true;
 
 			if (brightness_scale == null)
 				return;
 			
 			Cms.Profile display_profile = Cms.Profile.GetScreenProfile (view.Screen);
 			Cms.Profile [] list;
-
+			Cms.Profile source_profile;
+			
 			if (display_profile == null)
 				display_profile = Cms.Profile.CreateStandardRgb ();
-
-			using (adjustment_profile = Cms.Profile.CreateAbstract (10, brightness_scale.Value,
-										contrast_scale.Value,
-										hue_scale.Value, 
-										sat_scale.Value,
-										source_spinbutton.ValueAsInt, 
-										dest_spinbutton.ValueAsInt)) {
+			
+			//source_profile = Cms.Profile.CreateGray (image_profile.MediaWhitePoint.ToCIExyY (), null);
 			
 			//System.Console.WriteLine ("{0} {1} {2}", image_profile, adjustment_profile, display_profile);
-				if (AdjustedPixbuf.HasAlpha) {
+			
+			if (!Changed || AdjustedPixbuf.HasAlpha) {
+				if (AdjustedPixbuf.HasAlpha)
 					System.Console.WriteLine ("Cannot currently adjust images with an alpha channel");
-					list = new Cms.Profile [] { image_profile, display_profile };
-				} else
-					list = new Cms.Profile [] { image_profile, adjustment_profile, display_profile };
-				
+
+				list = new Cms.Profile [] { image_profile, display_profile };
+
 				next_transform = new Cms.Transform (list, 
 								    PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
 								    PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
 								    Cms.Intent.Perceptual, 0x0000);
-			
+			} else {
+				using (adjustment_profile = Cms.Profile.CreateAbstract (20, brightness_scale.Value,
+											contrast_scale.Value,
+											hue_scale.Value, 
+											sat_scale.Value,
+											source_spinbutton.ValueAsInt, 
+											dest_spinbutton.ValueAsInt)) {
+					
+					list = new Cms.Profile [] { image_profile, adjustment_profile, display_profile };
+					
+					next_transform = new Cms.Transform (list, 
+									    PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
+									    PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
+									    Cms.Intent.Perceptual, 0x0000);
+				}
 			}
-
+			
 			lock (AdjustedPixbuf) {
 				PixbufUtils.ColorAdjust (ScaledPixbuf,
 							 AdjustedPixbuf,
@@ -85,7 +94,7 @@ namespace FSpot {
 #endif
 			}
 		}
-			
+		
 		public bool QueueDraw ()
 		{
 			lock (AdjustedPixbuf) {
@@ -129,7 +138,7 @@ namespace FSpot {
 		
 		public void Save ()
 		{
-			if (!changed) {
+			if (!Changed) {
 				this.Dialog.Destroy ();
 				return;
 			}
@@ -154,7 +163,8 @@ namespace FSpot {
 								      source_spinbutton.ValueAsInt, 
 								      dest_spinbutton.ValueAsInt);
 			
-			Cms.Profile [] list = new Cms.Profile [] { image_profile, abs, image_profile };
+			// FIXME this shouldn't use the screen as the destination profile.
+			Cms.Profile [] list = new Cms.Profile [] { image_profile, abs, Cms.Profile.GetScreenProfile (view.Screen) };
 			Cms.Transform transform = new Cms.Transform (list,
 								     PixbufUtils.PixbufCmsFormat (orig),
 								     PixbufUtils.PixbufCmsFormat (final),
@@ -201,6 +211,12 @@ namespace FSpot {
 			view.PhotoChanged -= HandlePhotoChanged;
 		}
 
+		private void HandleProfileSelected (object sender, EventArgs args)
+		{
+		       
+			
+		}
+
 		private void HandlePhotoChanged (PhotoImageView view)
 		{
 			if (!view.Item.IsValid) {
@@ -236,6 +252,20 @@ namespace FSpot {
 			RangeChanged (null, null);
 		}
 
+		private bool Changed {
+			get {
+				bool changed = false;
+			        changed |= (brightness_scale.Value != 1.0);
+			        changed |= (contrast_scale.Value != 1.0);
+			        changed |= (hue_scale.Value != 0.0);
+			        changed |= (sat_scale.Value != 0.0);
+				changed |= (source_spinbutton.Value != 6500);
+				changed |= (dest_spinbutton.Value != 6500);
+
+				return changed;
+			}
+		}
+
 		private void HandleResetClicked (object sender, EventArgs args)
 		{
 			brightness_scale.Value = 1.0;
@@ -247,7 +277,6 @@ namespace FSpot {
 
 			brightness_spinbutton.Adjustment.ChangeValue ();
 
-			changed = false;
 		}
 		
 		private void HandleCancelClicked (object sender, EventArgs args)
@@ -314,7 +343,6 @@ namespace FSpot {
 			dest_spinbutton.ValueChanged += RangeChanged;
 
 			HandlePhotoChanged (view);
-			changed = false;
 		}
 	}
 }
