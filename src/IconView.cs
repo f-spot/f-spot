@@ -389,6 +389,26 @@ public class IconView : Gtk.Layout {
 			
 			SignalChange (ids);
 		}
+		
+		// Remove a range, except the start entry
+		public void Remove (int start, int end)
+		{
+			if (start == -1 || end == -1)
+				return;
+			
+			int current = Math.Min (start + 1, end);
+			int final = Math.Max (start - 1, end);				
+			int count = final - current + 1;
+			int [] ids = new int [count];
+
+			for (int i = 0; i < count; i++) {
+				this.Remove (current, false);
+				ids [i] = current;
+				current++;
+			}
+
+			SignalChange (ids);
+		}
 
 		public int IndexOf (int parent_index)
 		{
@@ -406,17 +426,32 @@ public class IconView : Gtk.Layout {
 
 		public void Remove (int cell)
 		{
+			Remove (cell, true);
+		}
+
+		private void Remove (int cell, bool notify)
+		{
 			IBrowsableItem item = parent [cell];
 			if (item != null)
-				this.Remove (item);
+				this.Remove (item, notify);
 
 		}
-		
+
 		public void Remove (IBrowsableItem item)
 		{
+			Remove (item, true);
+		}
+
+		private void Remove (IBrowsableItem item, bool notify)
+		{
+			if (item == null)
+				return;
+
 			int parent_index = (int) selected_cells [item];
 			selected_cells.Remove (item);
-			SignalChange (new int [] {parent_index});
+
+			if (notify)
+				SignalChange (new int [] {parent_index});
 		}
 
 		public event IBrowsableCollectionChangedHandler Changed;
@@ -1165,9 +1200,6 @@ public class IconView : Gtk.Layout {
 
 	public void InvalidateCell (int order) 
 	{		
-		if (dead) 
-			return;
-
 		Rectangle cell_area = CellBounds (order);
 		// FIXME where are we computing the bounds incorrectly
 		cell_area.Width -= 1;
@@ -1302,10 +1334,16 @@ public class IconView : Gtk.Layout {
 			FocusCell += cells_per_row;
 			break;
 		case Gdk.Key.Left:
-			FocusCell--;
+			if (control && shift)
+				FocusCell -= FocusCell % cells_per_row;
+			else
+				FocusCell--;
 			break;
 		case Gdk.Key.Right:
-			FocusCell++;
+			if (control && shift)
+				FocusCell += cells_per_row - (FocusCell % cells_per_row) - 1;
+			else
+				FocusCell++;
 			break;
 		case Gdk.Key.Up:
 			FocusCell -= cells_per_row;
@@ -1331,13 +1369,19 @@ public class IconView : Gtk.Layout {
 			return;		
 		}
 		
-		if (FocusCell < 0 || FocusCell > collection.Count - 1) {
-			FocusCell = focus_old;
+		FocusCell = Math.Max (FocusCell, 0);
+		FocusCell = Math.Min (FocusCell, collection.Count - 1);
+		
+		if (FocusCell == focus_old) {
 			args.RetVal = false;
-		}	
+			return;
+		}
 
 		if (shift) {
-			selection.Add (focus_old, FocusCell);
+			if (focus_old != FocusCell && selection.Contains (focus_old) && selection.Contains (FocusCell))
+				selection.Remove (FocusCell, focus_old);
+			else
+				selection.Add (focus_old, FocusCell);
 		} else if (!control) {
 			selection.Clear ();
 			selection.Add (FocusCell);
@@ -1346,7 +1390,6 @@ public class IconView : Gtk.Layout {
 		ScrollTo (FocusCell);
 	}
 
-	bool dead = false;
 	private void HandleDestroyed (object sender, System.EventArgs args)
 	{
 		cache.OnPixbufLoaded -= HandlePixbufLoaded;
