@@ -566,15 +566,6 @@ namespace Exif {
 			this.SetData (FSpot.BitConverter.GetBytes (s, this.ByteOrder == ByteOrder.Intel));
 		}	    
 
-		public void SetData (ushort [] data)
-		{
-		} 
-		
-		public void SetData (short [] data)
-		{
-			
-		}
-
 		public void SetData (string value)
 		{
 			int len = System.Text.Encoding.UTF8.GetByteCount (value);
