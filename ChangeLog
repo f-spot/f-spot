@@ -1,5 +1,10 @@
 2005-11-18  Larry Ewing  <lewing@novell.com>
 
+	* src/ExifUtil.cs: remove file.
+
+	* src/Makefile.am (F_SPOT_CSDISTFILES): rmove ExifUtils from the
+	build it is no longer used.
+
 	* src/PngFile.cs: increase the number of entries in the gamma
 	table.
 
