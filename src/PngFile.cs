@@ -1078,7 +1078,7 @@ namespace FSpot.Png {
 			}
 
 			if (color != null || gamma != null) {
-				GammaTable table = new GammaTable (256, gamma_value);
+				GammaTable table = new GammaTable (1024, gamma_value);
 				return new Profile (whitepoint, chroma, new GammaTable [] {table, table, table});
 			}
 			

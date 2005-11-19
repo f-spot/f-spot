@@ -10,6 +10,7 @@ namespace FSpot {
 	*/
 
 	public interface IBrowsableCollection {
+		// FIXME this should really be ToArray ()
 		IBrowsableItem [] Items {
 			get;
 		}
