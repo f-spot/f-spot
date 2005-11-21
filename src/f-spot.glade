@@ -8916,7 +8916,7 @@ Photo Details</property>
 		      <property name="digits">1</property>
 		      <property name="update_policy">GTK_UPDATE_CONTINUOUS</property>
 		      <property name="inverted">False</property>
-		      <property name="adjustment">1 -100 100 0.0500000007451 1 0</property>
+		      <property name="adjustment">0 -100 100 0.0500000007451 1 0</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -8976,7 +8976,7 @@ Photo Details</property>
 		      <property name="digits">1</property>
 		      <property name="update_policy">GTK_UPDATE_CONTINUOUS</property>
 		      <property name="inverted">False</property>
-		      <property name="adjustment">0 -40 40 0.10000000149 0.5 0</property>
+		      <property name="adjustment">0 -90 90 0.10000000149 0.5 0</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>

@@ -1,5 +1,10 @@
 2005-11-21  Larry Ewing  <lewing@novell.com>
 
+	* src/ColorDialog.cs: fix up the destination profile so that is
+	actually something.  clean up the changed logic slightly.
+
+	* src/f-spot.glade: set the limits to more appropriate values.
+
 	* src/Cms.cs: use the new abstrct profile creation function.
 
 	* libfspot/f-screen-utils.c (f_cmsCreateBCHSWabstractProfile):

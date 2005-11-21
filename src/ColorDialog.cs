@@ -164,7 +164,11 @@ namespace FSpot {
 								      dest_spinbutton.ValueAsInt);
 			
 			// FIXME this shouldn't use the screen as the destination profile.
-			Cms.Profile [] list = new Cms.Profile [] { image_profile, abs, Cms.Profile.GetScreenProfile (view.Screen) };
+			Cms.Profile destination = Cms.Profile.GetScreenProfile (view.Screen);
+			if (destination == null)
+				destination = Cms.Profile.CreateStandardRgb ();
+
+			Cms.Profile [] list = new Cms.Profile [] { image_profile, abs, destination };
 			Cms.Transform transform = new Cms.Transform (list,
 								     PixbufUtils.PixbufCmsFormat (orig),
 								     PixbufUtils.PixbufCmsFormat (final),
@@ -252,15 +256,22 @@ namespace FSpot {
 			RangeChanged (null, null);
 		}
 
+		private const double b = 0.0;
+		private const double c = 1.0;
+		private const double h = 0.0;
+		private const double s = 0.0;
+		private const double st = 6500;
+		private const double dt = 6500;
+
 		private bool Changed {
 			get {
 				bool changed = false;
-			        changed |= (brightness_scale.Value != 1.0);
-			        changed |= (contrast_scale.Value != 1.0);
-			        changed |= (hue_scale.Value != 0.0);
-			        changed |= (sat_scale.Value != 0.0);
-				changed |= (source_spinbutton.Value != 6500);
-				changed |= (dest_spinbutton.Value != 6500);
+			        changed |= (brightness_scale.Value != b);
+			        changed |= (contrast_scale.Value != c);
+			        changed |= (hue_scale.Value != h);
+			        changed |= (sat_scale.Value != s);
+				changed |= (source_spinbutton.Value != st);
+				changed |= (dest_spinbutton.Value != dt);
 
 				return changed;
 			}
@@ -268,15 +279,14 @@ namespace FSpot {
 
 		private void HandleResetClicked (object sender, EventArgs args)
 		{
-			brightness_scale.Value = 1.0;
-			contrast_scale.Value = 1.0;
-			hue_scale.Value = 0.0;			
-			sat_scale.Value = 0.0;
-			source_spinbutton.Value = 6500;
-			dest_spinbutton.Value = 6500;
+			brightness_scale.Value = b;
+			contrast_scale.Value = c;
+			hue_scale.Value = h;			
+			sat_scale.Value = s;
+			source_spinbutton.Value = st;
+			dest_spinbutton.Value = st;
 
 			brightness_spinbutton.Adjustment.ChangeValue ();
-
 		}
 		
 		private void HandleCancelClicked (object sender, EventArgs args)
