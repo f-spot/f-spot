@@ -1,5 +1,9 @@
 2005-11-21  Larry Ewing  <lewing@novell.com>
 
+	* libfspot/f-screen-utils.cs: remove unused param.
+
+	* src/Cms.cs: remove unused param.
+
 	* src/ColorDialog.cs: fix up the destination profile so that is
 	actually something.  clean up the changed logic slightly.
 

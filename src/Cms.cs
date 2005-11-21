@@ -417,8 +417,7 @@ namespace Cms {
 								     double Saturation,
 								     int TempSrc, 
 								     int TempDest,
-								     HandleRef [] tables,
-								     int table_count);
+								     HandleRef [] tables);
 		
 		public static Profile CreateAbstract (int nLUTPoints,
 						      double Bright,
@@ -447,7 +446,6 @@ namespace Cms {
 						      int TempSrc,
 						      int TempDest)
 		{
-
 			return new Profile (f_cmsCreateBCHSWabstractProfile (nLUTPoints,
 									     Bright,
 									     Contrast,
@@ -455,8 +453,7 @@ namespace Cms {
 									     Saturation,
 									     TempSrc,
 									     TempDest,
-									     CopyHandles (tables),
-									     tables.Length));
+									     CopyHandles (tables)));
 		}
 
 		[DllImport("liblcms-1.0.0.dll")]
