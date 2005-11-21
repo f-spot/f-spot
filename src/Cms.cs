@@ -321,7 +321,15 @@ namespace Cms {
 		}
 
 		[DllImport("liblcms-1.0.0.dll")]
-		static extern IntPtr cmsCreate_sRGBProfile();
+		static extern IntPtr _cmsCreateProfilePlaceholder ();
+		
+		private Profile () : this (_cmsCreateProfilePlaceholder ())
+		{
+			
+		}
+
+		[DllImport("liblcms-1.0.0.dll")]
+		static extern IntPtr cmsCreate_sRGBProfile ();
 
 		public static Profile CreateSRgb () 
 		{
@@ -401,6 +409,16 @@ namespace Cms {
 								   double Saturation,
 								   int TempSrc, 
 								   int TempDest);
+		[DllImport("libfspot")]
+		static extern IntPtr f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
+								     double Bright, 
+								     double Contrast,
+								     double Hue,
+								     double Saturation,
+								     int TempSrc, 
+								     int TempDest,
+								     HandleRef [] tables,
+								     int table_count);
 		
 		public static Profile CreateAbstract (int nLUTPoints,
 						      double Bright,
@@ -410,13 +428,35 @@ namespace Cms {
 						      int TempSrc,
 						      int TempDest)
 		{
-			return new Profile (cmsCreateBCHSWabstractProfile (nLUTPoints,
-									   Bright,
-									   Contrast,
-									   Hue,
-									   Saturation,
-									   TempSrc,
-									   TempDest));
+#if TEST_ABSTRACT			
+			GammaTable gamma = new GammaTable (1024, .45);
+			GammaTable line = new GammaTable (1024, 1.0);
+			GammaTable [] tables = new GammaTable [] { gamma, line, line };
+#else
+			GammaTable [] tables = null;
+#endif
+			return CreateAbstract (nLUTPoints, Bright, Contrast, Hue, Saturation, tables, TempSrc, TempDest);
+		}
+
+		public static Profile CreateAbstract (int nLUTPoints,
+						      double Bright,
+						      double Contrast,
+						      double Hue,
+						      double Saturation,
+						      GammaTable [] tables,
+						      int TempSrc,
+						      int TempDest)
+		{
+
+			return new Profile (f_cmsCreateBCHSWabstractProfile (nLUTPoints,
+									     Bright,
+									     Contrast,
+									     Hue,
+									     Saturation,
+									     TempSrc,
+									     TempDest,
+									     CopyHandles (tables),
+									     tables.Length));
 		}
 
 		[DllImport("liblcms-1.0.0.dll")]
@@ -429,6 +469,9 @@ namespace Cms {
 
 		private static HandleRef [] CopyHandles (GammaTable [] gamma)
 		{
+			if (gamma == null)
+				return null;
+
 			HandleRef [] gamma_handles = new HandleRef [gamma.Length];
 			for (int i = 0; i < gamma_handles.Length; i++)
 				gamma_handles [i] = gamma [i].Handle;

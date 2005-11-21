@@ -1,4 +1,13 @@
+2005-11-21  Larry Ewing  <lewing@novell.com>
+
+	* src/Cms.cs: use the new abstrct profile creation function.
+
+	* libfspot/f-screen-utils.c (f_cmsCreateBCHSWabstractProfile):
+	new abstract profile creation function.
+
 2005-11-18  Larry Ewing  <lewing@novell.com>
+
+	* src/Exif.cs: remove unsed stubs.
 
 	* src/ColorDialog.cs: calculate the change state rather than
 	storing it.
@@ -101,7 +110,7 @@
 
 2005-11-08  Larry Ewing  <lewing@novell.com>
 
-	* src/Loupe.cs: queue a resize iff the dimentions have changed so that the
+	* src/Loupe.cs: queue a resize iff the dimensions have changed so that the
 	mask gets updated.
 
 	* src/Loupe.cs: do something sane in the shape extension case.
@@ -1684,7 +1693,7 @@ i2005-06-22  Larry Ewing  <lewing@novell.com>
 	it with the Present method.
 
 	* src/IconView.cs: fix up the ScrollTo function so that it works
-	when the destination is outside the old dimentions.
+	when the destination is outside the old dimensions.
 
 2005-05-28  Larry Ewing  <lewing@novell.com>
 
