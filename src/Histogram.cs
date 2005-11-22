@@ -1,3 +1,5 @@
+using System;
+
 namespace FSpot {
 	public class Histogram {
 		public Histogram (Gdk.Pixbuf src)
@@ -13,22 +15,34 @@ namespace FSpot {
 		public void FillValues (Gdk.Pixbuf src)
 
 		{
-			values = new int [256, 3];
+			values = new int [265, 3];
 
 			if (src.BitsPerSample != 8)
 				throw new System.Exception ("Invalid bits per sample");
 						
 			unsafe {
 				byte * srcb = (byte *)src.Pixels;
-				for (int j = 0; j < src.Height; j++) {
-					for (int i = 0; i < src.Width; i++) {
-						values [*(srcb++), 0]++;
-						values [*(srcb++), 1]++;
-						values [*(srcb++), 2]++;
-						if (src.HasAlpha)
-							srcb++;
+				byte * pixels = srcb;
+				bool alpha = src.HasAlpha;
+				int rowstride = src.Rowstride;
+				int width = src.Width;
+				int height = src.Height;
+
+				// FIXME array bounds checks slow this down a lot
+				// so we use a pointer.  It is sad but I want fastness
+				fixed (int * v = &values [0,0]) {
+					for (int j = 0; j < height; j++) {
+						for (int i = 0; i < width; i++) {
+							v [*(srcb++) * 3 + 0]++;
+							v [*(srcb++) * 3 + 1]++;
+							v [*(srcb++) * 3 + 2]++;
+							
+							if (alpha)
+								srcb++;
+							
+						}
+						srcb =  ((byte *) pixels) + j * rowstride;
 					}
-					srcb =  ((byte *) src.Pixels) + j * src.Rowstride;
 				}
 			}
 			if (pixbuf != null) {
@@ -45,28 +59,42 @@ namespace FSpot {
 				}
 			}
 			unsafe {
-				byte * pixels = (byte *)image.Pixels;
-				pixels += (image.Height -1) * image.Rowstride;
+				int height = image.Height;
+				int rowstride = image.Rowstride;
+				int r = 0;
+				int b = 0;
+				int g = 0;
+				
+				for (int i = 0; i < image.Width; i++) {
+					byte * pixels = (byte *)image.Pixels + i * 4;
+					
+					if (max > 0) {
+						r = values [i, 0] * height / max;
+						g = values [i, 1] * height / max;
+						b = values [i, 2] * height / max;
+					} else 
+						r = g = b = 0;
 
-				for (int j = 0; j < image.Height; j++) {
-					for (int i = 0; i < image.Width; i++) {
-						byte found = 0x00;
-						byte * offset = pixels + i * image.NChannels;
+					int top = Math.Max (r, Math.Max (g, b));
 
-						offset [0] = (j < image.Height * (values [i, 0]/(double)max)) ? found = (byte)0xff : (byte)0x00;
-						offset [1] = (j < image.Height * (values [i, 1]/(double)max)) ? found = (byte)0xff : (byte)0x00;
-						offset [2] = (j < image.Height * (values [i, 2]/(double)max)) ? found = (byte)0xff : (byte)0x00;
-
-						if (found == 0x00) {
-							offset [0] = Color [0];
-							offset [1] = Color [1];
-							offset [2] = Color [2];
-							offset [3] = Color [3];
-						} else {
-							offset [3] = 0xff;
-						}
+					int j = 0;
+					for (; j < height - top; j++) {
+						pixels [0] = Color [0];
+						pixels [1] = Color [1];
+						pixels [2] = Color [2];
+						pixels [3] = Color [3];
+						pixels += rowstride;
 					}
-					pixels -= image.Rowstride;
+					for (; j < height; j++) {
+						byte found = 0x00;
+						
+						pixels [0] = (byte) ((j >= height - r) ? 0xff : 0x00);
+						pixels [1] = (byte) ((j >= height - g) ? 0xff : 0x00);
+						pixels [2] = (byte) ((j >= height - b) ? 0xff : 0x00);
+						pixels [3] = 0xff;
+						pixels += rowstride;
+					}
+
 				}
 			}
 		}	
@@ -79,7 +107,7 @@ namespace FSpot {
 			return pixbuf;
 		}
 						     
-		private int [,] values = new int [256,3];
+		private int [,] values = new int [256, 3];
 		public int [,] Values {
 			get {
 				return values;
