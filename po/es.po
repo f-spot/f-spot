@@ -7,15 +7,15 @@
 # Antonio Ognio <gnrfan@gnrfan.orf>, 2004.
 # Jorge Gonzalez <jorge.gonzalez.gonzalez@hispalinux.es>, 2004, 2005.
 # Francisco Javier F. Serrador <serrador@tecknolabs.com>, 2005.
+# Jorge González <jorge.gonzalez.gonzalez@hispalinux.es>, 2005.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: f-spot.es\n"
+"Project-Id-Version: f-spot.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-13 12:21+0100\n"
-"PO-Revision-Date: 2005-11-13 12:29+0100\n"
-"Last-Translator: Jorge González González <jorge.gonzalez.gonzalez@hispalinux."
-"es>\n"
+"POT-Creation-Date: 2005-11-23 18:15+0100\n"
+"PO-Revision-Date: 2005-11-24 00:28+0100\n"
+"Last-Translator: Jorge González <jorge.gonzalez.gonzalez@hispalinux.es>\n"
 "Language-Team: Español <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -278,11 +278,12 @@ msgstr "Error: error al transferir; abortando"
 msgid "Error: File Already Exists; Aborting"
 msgstr "Error: el fichero ya existe; abortando"
 
-#: ../src/ColorDialog.cs:170
+#: ../src/ColorDialog.cs:185
 msgid "Error saving adjusted photo"
 msgstr "Error al guardar la foto ajustada"
 
-#: ../src/ColorDialog.cs:171 ../src/MainWindow.cs:1578 ../src/PhotoView.cs:284
+#: ../src/ColorDialog.cs:186 ../src/Loupe.cs:53 ../src/MainWindow.cs:1581
+#: ../src/PhotoView.cs:283
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save image {1}"
 msgstr "Se recibió la excepción «{0}». No es posible guardar la imagen {1}"
@@ -471,8 +472,7 @@ msgstr "<small></small>"
 
 #: ../src/f-spot.glade.h:26
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
-msgstr ""
-"<span weight='bold' size='larger'>Error al conectar con Gallery</span>\n"
+msgstr "<span weight='bold' size='larger'>Error al conectar con Gallery</span>\n"
 
 #: ../src/f-spot.glade.h:28
 msgid "Ad_just Color..."
@@ -1205,8 +1205,7 @@ msgid "A unique number"
 msgstr "Un único número"
 
 #: ../src/IptcFile.cs:151
-msgid ""
-"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgid "The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
 msgstr "La urgencia del sobre, entre 1 (muy urgente) y 9 (poco urgente)"
 
 #: ../src/IptcFile.cs:153
@@ -1214,8 +1213,7 @@ msgid "The year month and day (CCYYMMDD) the service sent the material"
 msgstr "El año, mes y día (CCAAMMDD) en la que el servicio envió el material"
 
 #: ../src/IptcFile.cs:155
-msgid ""
-"The hour minute and second the (HHMMSS+HHMM) the service sent the material"
+msgid "The hour minute and second the (HHMMSS+HHMM) the service sent the material"
 msgstr ""
 "La hora, minuto y segundo (HHMMSS+HHMM) en la que el servicio envió el "
 "material"
@@ -1269,8 +1267,7 @@ msgid "Full name of the country of the focus of the content"
 msgstr "Nombre completo del país donde está el foco del contenido"
 
 #: ../src/IptcFile.cs:198
-msgid ""
-"Two or three letter ISO3166 code of the country of the focus of the content"
+msgid "Two or three letter ISO3166 code of the country of the focus of the content"
 msgstr "Código ISO3166 de dos o tres letras del país del foco del contenido"
 
 #: ../src/IptcFile.cs:201
@@ -1294,8 +1291,7 @@ msgid "Headline of the content"
 msgstr "Cabecera del contenido"
 
 #: ../src/IptcFile.cs:214
-msgid ""
-"Intructions from the creator to the reciever not covered by other fields"
+msgid "Intructions from the creator to the reciever not covered by other fields"
 msgstr ""
 "Instrucciones del creador para el receptor que no están cubiertas por otros "
 "campos"
@@ -1308,11 +1304,31 @@ msgstr "Género intelectual del objeto"
 msgid "Unkown IIM DataSet"
 msgstr "Conjunto de datos IIM desconocido"
 
-#: ../src/MainWindow.cs:1131
+#: ../src/Loupe.cs:52 ../src/MainWindow.cs:1580
+msgid "Error saving sharpened photo"
+msgstr "Error al guardar la foto enfocada"
+
+#: ../src/Loupe.cs:70
+msgid "Sharpen"
+msgstr "Enfoque"
+
+#: ../src/Loupe.cs:80 ../src/MainWindow.cs:1547
+msgid "Amount:"
+msgstr "Cantidad:"
+
+#: ../src/Loupe.cs:81 ../src/MainWindow.cs:1548
+msgid "Radius:"
+msgstr "Radio:"
+
+#: ../src/Loupe.cs:82 ../src/MainWindow.cs:1549
+msgid "Threshold:"
+msgstr "Umbral:"
+
+#: ../src/MainWindow.cs:1134
 msgid "No cameras detected."
 msgstr "No se detectó ninguna cámara."
 
-#: ../src/MainWindow.cs:1132
+#: ../src/MainWindow.cs:1135
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1320,11 +1336,11 @@ msgstr ""
 "F-Spot fue incapaz de detectar ninguna cámara conectada en este equipo.  "
 "Compruebe que la cámara está conectada y tiene alimentación"
 
-#: ../src/MainWindow.cs:1172
+#: ../src/MainWindow.cs:1175
 msgid "Error connecting to camera"
 msgstr "Error al conectar con la cámara"
 
-#: ../src/MainWindow.cs:1173
+#: ../src/MainWindow.cs:1176
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Se recibió el error «{0}» al conectar con la cámara"
@@ -1332,74 +1348,56 @@ msgstr "Se recibió el error «{0}» al conectar con la cámara"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1312
+#: ../src/MainWindow.cs:1315
 msgid "translator-credits"
-msgstr "Jorge González <jorge.gonzalez.gonzalez@hispalinux.es>"
+msgstr "Jorge González <jorge.gonzalez.gonzalez@hispalinux.es>, 2005."
 
-#: ../src/MainWindow.cs:1489
+#: ../src/MainWindow.cs:1492
 #, csharp-format
 msgid "Merge the {0} selected tags?"
 msgstr "¿Combinar las {0} etiquetas seleccionadas?"
 
-#: ../src/MainWindow.cs:1492
+#: ../src/MainWindow.cs:1495
 msgid "This operation will delete all but one of the selected tags."
 msgstr "Esta operación borrará todo excepto una de las siguientes etiquetas."
 
-#: ../src/MainWindow.cs:1493
+#: ../src/MainWindow.cs:1496
 msgid "_Merge tags"
 msgstr "_Combinar etiquetas"
 
-#: ../src/MainWindow.cs:1535
+#: ../src/MainWindow.cs:1538
 msgid "Unsharp Mask"
 msgstr "Máscara de definición"
 
-#: ../src/MainWindow.cs:1544
-msgid "Amount:"
-msgstr "Cantidad:"
-
-#: ../src/MainWindow.cs:1545
-msgid "Radius:"
-msgstr "Radio:"
-
-#: ../src/MainWindow.cs:1546
-msgid "Threshold:"
-msgstr "Umbral:"
-
-#: ../src/MainWindow.cs:1577
-msgid "Error saving sharpened photo"
-msgstr "Error al guardar la foto enfocada"
-
-#: ../src/MainWindow.cs:1812
+#: ../src/MainWindow.cs:1827
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "¿Borrar permanentemente la fotografía seleccionada?"
 msgstr[1] "¿Borrar permanentemente las {0} fotografías seleccionadas?"
 
-#: ../src/MainWindow.cs:1816
+#: ../src/MainWindow.cs:1831
 msgid "This deletes all versions of the selected photo from your drive."
-msgid_plural ""
-"This deletes all versions of the selected photos from your drive."
-msgstr[0] ""
-"Esto borrará de su unidad todas las versiones de la fotografía seleccionada."
+msgid_plural "This deletes all versions of the selected photos from your drive."
+msgstr[0] "Esto borrará de su unidad todas las versiones de la fotografía seleccionada."
 msgstr[1] ""
 "Esto borrará de su unidad todas las versiones de las fotografías "
 "seleccionadas."
 
-#: ../src/MainWindow.cs:1819
+#: ../src/MainWindow.cs:1834
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Borrar la fotografía"
 msgstr[1] "_Borrar las fotografías"
 
-#: ../src/MainWindow.cs:1837
+#: ../src/MainWindow.cs:1852
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "¿Eliminar la fotografía seleccionada de F-Spot?"
 msgstr[1] "¿Eliminar las {0} fotografías seleccionadas de F-Spot?"
 
-#: ../src/MainWindow.cs:1842
+#: ../src/MainWindow.cs:1857
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1409,42 +1407,43 @@ msgstr ""
 "etiquetas se perderá. Las fotos seguirán en su equipo y podrá volverlas a "
 "importar de nuevo en F-Spot."
 
-#: ../src/MainWindow.cs:1843
+#: ../src/MainWindow.cs:1858
 msgid "_Remove from Catalog"
 msgstr "_Borrar del catálogo"
 
-#: ../src/MainWindow.cs:1875
+#: ../src/MainWindow.cs:1890
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "¿Borrar etiqueta {0}?"
 
-#: ../src/MainWindow.cs:1877
+#: ../src/MainWindow.cs:1892
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "¿Borrar las {0} etiquetas seleccionadas?"
 
-#: ../src/MainWindow.cs:1880
+#: ../src/MainWindow.cs:1895
 msgid "If you delete a tag, all associations with photos are lost."
-msgstr ""
-"Si borra una etiqueta, todas las asociaciones con las fotos se perderán."
+msgstr "Si borra una etiqueta, todas las asociaciones con las fotos se perderán."
 
-#: ../src/MainWindow.cs:1881
+#: ../src/MainWindow.cs:1896
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Borrar etiqueta"
 msgstr[1] "_Borrar etiquetas"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:1895
+#: ../src/MainWindow.cs:1910
 msgid "Category is not empty"
 msgstr "La categoría no está vacía"
 
-#: ../src/MainWindow.cs:1896
+#: ../src/MainWindow.cs:1911
 #, csharp-format
 msgid ""
 "Can not delete categories that have tags.Please delete tags under \"{0}\" "
 "first"
-msgstr "No se pueden borrar categorías que tengan etiquetas. Por favor, borre las etiquetas de «{0}» antes"
+msgstr ""
+"No se pueden borrar categorías que tengan etiquetas. Por favor, borre las "
+"etiquetas de «{0}» antes"
 
 #: ../src/MetadataStore.cs:17
 msgid "Creator"
@@ -1673,31 +1672,31 @@ msgstr ""
 "Esta herramienta necesita una selección activa. Por favor, seleccione una "
 "región de la imagen y reintente esta operación"
 
-#: ../src/PhotoView.cs:283
+#: ../src/PhotoView.cs:282
 msgid "Error editing photo"
 msgstr "Error al editar la foto"
 
-#: ../src/PhotoView.cs:471
+#: ../src/PhotoView.cs:470
 msgid "Crop image to selected area"
 msgstr "Recortar la imagen al área seleccionada"
 
-#: ../src/PhotoView.cs:472
+#: ../src/PhotoView.cs:471
 msgid "Remove redeye from selected area"
 msgstr "Eliminar los ojos rojos del área seleccionada"
 
-#: ../src/PhotoView.cs:473
+#: ../src/PhotoView.cs:472
 msgid "Adjust the image colors"
 msgstr "Ajustar los colores de la imagen"
 
-#: ../src/PhotoView.cs:474
+#: ../src/PhotoView.cs:473
 msgid "Constrain the aspect ratio of the selection"
 msgstr "Limitar la proporción de la selección"
 
-#: ../src/PhotoView.cs:475
+#: ../src/PhotoView.cs:474
 msgid "Next image"
 msgstr "Siguiente imagen"
 
-#: ../src/PhotoView.cs:476
+#: ../src/PhotoView.cs:475
 msgid "Previous image"
 msgstr "Imagen anterior"
 
@@ -1878,5 +1877,3 @@ msgstr "Buscar: "
 msgid "No matching images found "
 msgstr "No se encontraron imágenes coincidentes con el criterio "
 
-#~ msgid "F-Spot {0} cannot yet edit images of this type"
-#~ msgstr "F-Spot {0} todavía no puede editar imágenes de este tipo"
