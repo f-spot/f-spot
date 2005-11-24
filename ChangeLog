@@ -1,3 +1,8 @@
+2005-11-24  Miguel de Icaza  <miguel@novell.com>
+
+	* src/MainWindow.cs: Do not crash if there is an error deleting
+	the file, report a cute error to the user.
+
 2005-11-21  Larry Ewing  <lewing@novell.com>
 
 	* src/Histogram.cs: speed up the analysis and drawing slightly.

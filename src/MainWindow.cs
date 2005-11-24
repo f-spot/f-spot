@@ -1820,6 +1820,26 @@ public class MainWindow {
 			break;
 		}
 	}
+
+	public void DeleteException (Exception e, string fname)
+	{
+		string ok_caption = Mono.Posix.Catalog.GetString ("_Ok");
+		string error = Mono.Posix.Catalog.GetString ("Error Deleting Picture");
+		string msg;
+
+		if (e is UnauthorizedAccessException)
+			msg = String.Format (
+				Mono.Posix.Catalog.GetString ("No permission to delete the file:\n{0}"), 
+				fname);
+		else
+			msg = String.Format (
+				Mono.Posix.Catalog.GetString ("An error of type {0} ocurred when deleting the file:\n{1}"),
+				e.GetType (), fname);
+		
+		HigMessageDialog.RunHigConfirmation (
+			main_window, DialogFlags.DestroyWithParent, MessageType.Error,
+			error, msg, ok_caption);
+	}
 	
 	public void HandleDeleteCommand (object sender, EventArgs args)
 	{
@@ -1836,8 +1856,12 @@ public class MainWindow {
 			
 			foreach (Photo photo in photos) {
 				foreach (uint id in photo.VersionIds) {
-					Console.WriteLine (" path == {0}", photo.GetVersionPath (id)); 
-					photo.DeleteVersion (id, true);
+					Console.WriteLine (" path == {0}", photo.GetVersionPath (id));
+					try {
+						photo.DeleteVersion (id, true);
+					} catch (Exception e) {
+						DeleteException (e, photo.GetVersionPath (id));
+					}
 				}
 			}
 			db.Photos.Remove (photos);
