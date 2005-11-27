@@ -2,15 +2,15 @@
 # Copyright (C) 2005, Free Software Foundation.
 # This file is distributed under the same license as the F-Spot package.
 # Justina Klingaitė <justina.klingaite@gmail.com>, 2005.
-# Žygimantas Beručka <uid0@akl.lt>, 2005.
+# Žygimantas Beručka <zygis@gnome.org>, 2005.
 #
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-14 12:01+0200\n"
-"PO-Revision-Date: 2005-11-14 13:55+0200\n"
+"POT-Creation-Date: 2005-11-27 18:27+0200\n"
+"PO-Revision-Date: 2005-11-27 18:39+0200\n"
 "Last-Translator: Žygimantas Beručka <zygis@gnome.org>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
@@ -273,11 +273,12 @@ msgstr "Klaida: perduodant įvyko klaida. Nutraukiama"
 msgid "Error: File Already Exists; Aborting"
 msgstr "Klaida: byla jau egzistuoja. Nutraukiama"
 
-#: ../src/ColorDialog.cs:171
+#: ../src/ColorDialog.cs:185
 msgid "Error saving adjusted photo"
 msgstr "Saugant pakoreguotą nuotrauką įvyko klaida"
 
-#: ../src/ColorDialog.cs:172 ../src/MainWindow.cs:1580 ../src/PhotoView.cs:283
+#: ../src/ColorDialog.cs:186 ../src/Loupe.cs:53 ../src/MainWindow.cs:1581
+#: ../src/PhotoView.cs:283
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save image {1}"
 msgstr "Gauta išimtis „{0}“. Nepavyko išsaugoti paveikslėlio {1}"
@@ -1127,8 +1128,7 @@ msgstr "Aplankas neegzistuoja."
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
 "different directory"
-msgstr ""
-"Jūsų pasirinktas aplankas „{0}“ neegzistuoja. Pasirinkite kitą aplanką"
+msgstr "Jūsų pasirinktas aplankas „{0}“ neegzistuoja. Pasirinkite kitą aplanką"
 
 #: ../src/InfoBox.cs:72 ../src/PhotoVersionCommands.cs:55
 msgid "Name:"
@@ -1211,7 +1211,8 @@ msgstr "Metai, mėnuo ir diena (AAMMMMDD), kada tarnyba atsiuntė medžiagą"
 #: ../src/IptcFile.cs:155
 msgid ""
 "The hour minute and second the (HHMMSS+HHMM) the service sent the material"
-msgstr "Valanda, minutė ir sekundė (VVMMSS+VVMM), kada tarnyba atsiuntė medžiagą"
+msgstr ""
+"Valanda, minutė ir sekundė (VVMMSS+VVMM), kada tarnyba atsiuntė medžiagą"
 
 #: ../src/IptcFile.cs:157
 msgid "The character set designation"
@@ -1231,7 +1232,8 @@ msgstr "Abstraktus ryšio metodo (ARM) versijos numeris."
 
 #: ../src/IptcFile.cs:169
 msgid "Number identifying the IIM version this application record uses"
-msgstr "Skaičius identifikuojantis IIM versiją, kurią naudoja šios programos įrašai"
+msgstr ""
+"Skaičius identifikuojantis IIM versiją, kurią naudoja šios programos įrašai"
 
 #: ../src/IptcFile.cs:171
 msgid "Object type reference"
@@ -1250,24 +1252,22 @@ msgid "Status of the objectdata according to the provider"
 msgstr "Objekto duomenų statusas pagal tiekėją"
 
 #: ../src/IptcFile.cs:189
-#, fuzzy
 msgid "Name of the city the content is focussing on"
-msgstr "Miesto pavadinimas ant kurio turinys yra sufokusuotas"
+msgstr "Miesto pavadinimas, kuriame fotografuota ši nuotrauka"
 
 #: ../src/IptcFile.cs:192
 msgid "Copyright information for"
 msgstr "Autorinių teisių informacija"
 
 #: ../src/IptcFile.cs:195
-#, fuzzy
 msgid "Full name of the country of the focus of the content"
-msgstr "Sufokusuoto turinio pilnas šalies pavadinimas"
+msgstr "Pilnas šalies pavadinimas, kurioje fotografuota ši nuotrauka"
 
 #: ../src/IptcFile.cs:198
-#, fuzzy
 msgid ""
 "Two or three letter ISO3166 code of the country of the focus of the content"
-msgstr "Sufokusuoto turinio šalies dviejų ar trijų raidžių kodas ISO3166 "
+msgstr ""
+"Dviejų ar trijų raidžių šalies, kurioje fotografuota ši nuotrauka, ISO3166 kodas"
 
 #: ../src/IptcFile.cs:201
 msgid "bleh"
@@ -1281,8 +1281,7 @@ msgstr "Autoriaus arba kūrėjo pavadinimas"
 msgid ""
 "The person involved in writing, editing orcorrecting the objectdata or "
 "caption/abstract"
-msgstr ""
-"Asmuo rašęs, redagavęs ar keitęs objekto duomenis ar pavadinimą"
+msgstr "Asmuo rašęs, redagavęs ar keitęs objekto duomenis ar pavadinimą"
 
 #: ../src/IptcFile.cs:211
 msgid "Headline of the content"
@@ -1301,11 +1300,31 @@ msgstr "Intelektualus objekto žanras"
 msgid "Unkown IIM DataSet"
 msgstr "Nežinomas IIM duomenų rinkinys"
 
-#: ../src/MainWindow.cs:1133
+#: ../src/Loupe.cs:52 ../src/MainWindow.cs:1580
+msgid "Error saving sharpened photo"
+msgstr "Išsaugant paryškintą nuotrauką įvyko klaida"
+
+#: ../src/Loupe.cs:70
+msgid "Sharpen"
+msgstr "Paryškinti"
+
+#: ../src/Loupe.cs:80 ../src/MainWindow.cs:1547
+msgid "Amount:"
+msgstr "Kiekis:"
+
+#: ../src/Loupe.cs:81 ../src/MainWindow.cs:1548
+msgid "Radius:"
+msgstr "Spindulys:"
+
+#: ../src/Loupe.cs:82 ../src/MainWindow.cs:1549
+msgid "Threshold:"
+msgstr "Slenkstis:"
+
+#: ../src/MainWindow.cs:1134
 msgid "No cameras detected."
 msgstr "Fotoaparatų neaptikta."
 
-#: ../src/MainWindow.cs:1134
+#: ../src/MainWindow.cs:1135
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1313,11 +1332,11 @@ msgstr ""
 "F-Spot nepavyko surasti nei vieno prie šios sistemos prijungto fotoaparato. "
 "Patikrinkite ar fotoaparatas prijungtas ir įjungtas"
 
-#: ../src/MainWindow.cs:1174
+#: ../src/MainWindow.cs:1175
 msgid "Error connecting to camera"
 msgstr "Prijungiant fotoaparatą įvyko klaida"
 
-#: ../src/MainWindow.cs:1175
+#: ../src/MainWindow.cs:1176
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Prijungiant fotoaparatą gauta klaida „{0}“"
@@ -1325,47 +1344,57 @@ msgstr "Prijungiant fotoaparatą gauta klaida „{0}“"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1314
+#: ../src/MainWindow.cs:1315
 msgid "translator-credits"
 msgstr ""
 "Justina Klingaitė <justina.klingaite@gmail.com>,\n"
 "Žygimantas Beručka <zygis@gnome.org>"
 
-#: ../src/MainWindow.cs:1491
+#: ../src/MainWindow.cs:1492
 #, csharp-format
 msgid "Merge the {0} selected tags?"
 msgstr "Sujungti {0} pasirinktas žymes?"
 
-#: ../src/MainWindow.cs:1494
+#: ../src/MainWindow.cs:1495
 msgid "This operation will delete all but one of the selected tags."
 msgstr ""
 "Atlikus šią operaciją bus ištrintos visos išskyrus vieną pasirinktos žymės."
 
-#: ../src/MainWindow.cs:1495
+#: ../src/MainWindow.cs:1496
 msgid "_Merge tags"
 msgstr "_Sujungti žymes"
 
-#: ../src/MainWindow.cs:1537
+#: ../src/MainWindow.cs:1538
 msgid "Unsharp Mask"
 msgstr "Neryški kaukė"
 
-#: ../src/MainWindow.cs:1546
-msgid "Amount:"
-msgstr "Kiekis:"
-
-#: ../src/MainWindow.cs:1547
-msgid "Radius:"
-msgstr "Spindulys:"
-
-#: ../src/MainWindow.cs:1548
-msgid "Threshold:"
-msgstr "Slenkstis:"
-
-#: ../src/MainWindow.cs:1579
-msgid "Error saving sharpened photo"
-msgstr "Išsaugant paryškintą nuotrauką įvyko klaida"
-
 #: ../src/MainWindow.cs:1826
+msgid "_Ok"
+msgstr "_Gerai"
+
+#: ../src/MainWindow.cs:1827
+msgid "Error Deleting Picture"
+msgstr "Klaida trinant paveikslėlį"
+
+#: ../src/MainWindow.cs:1832
+#, csharp-format
+msgid ""
+"No permission to delete the file:\n"
+"{0}"
+msgstr ""
+"Nėra leidimo ištrinti šią bylą:\n"
+"{0}"
+
+#: ../src/MainWindow.cs:1836
+#, csharp-format
+msgid ""
+"An error of type {0} ocurred when deleting the file:\n"
+"{1}"
+msgstr ""
+"Trinant šią bylą iškilo {0} tipo klaida:\n"
+"{1}"
+
+#: ../src/MainWindow.cs:1847
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
@@ -1373,7 +1402,7 @@ msgstr[0] "Visam laikui ištrinti pasirinktą nuotrauką?"
 msgstr[1] "Visam laikui ištrinti {0} pasirinktas nuotraukas?"
 msgstr[2] "Visam laikui ištrinti {0} pasirinktų nuotraukų?"
 
-#: ../src/MainWindow.cs:1830
+#: ../src/MainWindow.cs:1851
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
@@ -1381,14 +1410,14 @@ msgstr[0] "Visos pasirinktos nuotraukos versijos bus ištrintos iš Jūsų disko
 msgstr[1] "Visų pasirinktų nuotraukų versijos bus ištrintos iš Jūsų disko."
 msgstr[2] "Visų pasirinktų nuotraukų versijos bus ištrintos iš Jūsų disko."
 
-#: ../src/MainWindow.cs:1833
+#: ../src/MainWindow.cs:1854
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Ištrinti nuotrauką"
 msgstr[1] "_Ištrinti nuotraukas"
 msgstr[2] "_Ištrinti nuotraukų"
 
-#: ../src/MainWindow.cs:1851
+#: ../src/MainWindow.cs:1876
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
@@ -1396,7 +1425,7 @@ msgstr[0] "Pašalinti pasirinktą nuotrauką iš F-Spot?"
 msgstr[1] "Pašalinti {0} pasirinktas nuotraukas iš F-Spot?"
 msgstr[2] "Pašalinti {0} pasirinktų nuotraukų iš F-Spot?"
 
-#: ../src/MainWindow.cs:1856
+#: ../src/MainWindow.cs:1881
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1406,27 +1435,27 @@ msgstr ""
 "prarasta. Nuotraukos liks Jūsų kompiuteryje ir jas bus galima importuoti į F-"
 "Spot dar kartą."
 
-#: ../src/MainWindow.cs:1857
+#: ../src/MainWindow.cs:1882
 msgid "_Remove from Catalog"
 msgstr "_Pašalinti iš katalogo"
 
-#: ../src/MainWindow.cs:1889
+#: ../src/MainWindow.cs:1914
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Ištrinti žymę „{0}“?"
 
-#: ../src/MainWindow.cs:1891
+#: ../src/MainWindow.cs:1916
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Ištrinti {0} pasirinktas žymes?"
 
-#: ../src/MainWindow.cs:1894
+#: ../src/MainWindow.cs:1919
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr ""
 "Jeigu ištrinsite žymę, visos asociacijos susijusios su nuotraukomis bus "
 "prarastos."
 
-#: ../src/MainWindow.cs:1895
+#: ../src/MainWindow.cs:1920
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Ištrinti žymę"
@@ -1434,11 +1463,11 @@ msgstr[1] "_Ištrinti žymes"
 msgstr[2] "_Ištrinti žymes"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:1909
+#: ../src/MainWindow.cs:1934
 msgid "Category is not empty"
 msgstr "Kategorija yra netuščia"
 
-#: ../src/MainWindow.cs:1910
+#: ../src/MainWindow.cs:1935
 #, csharp-format
 msgid ""
 "Can not delete categories that have tags.Please delete tags under \"{0}\" "
@@ -1520,7 +1549,7 @@ msgstr "Baltas balansas"
 
 #: ../src/MetadataStore.cs:49
 msgid "Focal Plane Resolution Unit"
-msgstr ""
+msgstr "Židinio plokštumos raiškos vienetas"
 
 #: ../src/MetadataStore.cs:51
 msgid "File Source Type"
@@ -1671,8 +1700,8 @@ msgid ""
 "This tool requires an active selection. Please select a region of the image "
 "and try the operation again"
 msgstr ""
-"Šiam įrankiui reikia aktyvaus pasirinkimo. Pasirinkite dalį paveikslėlio "
-"ir bandykite dar kartą"
+"Šiam įrankiui reikia aktyvaus pasirinkimo. Pasirinkite dalį paveikslėlio ir "
+"bandykite dar kartą"
 
 #: ../src/PhotoView.cs:282
 msgid "Error editing photo"
@@ -1878,7 +1907,7 @@ msgid ""
 "\"{0}\"\n"
 msgstr ""
 "Gauta klaida:\n"
-"\"{0}\"\n"
+"„{0}“\n"
 
 #: ../src/QueryDisplay.cs:29
 msgid "Find: "
