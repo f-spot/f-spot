@@ -17,6 +17,12 @@
 	
 	* src/f-spot.glade: Remove menu items referring to categories
 
+	* src/TagSelectionWidget.cs: Save and restore which tags are expanded.
+
+	* src/MainWindow.cs: Call the TagSelectionWidget save command on exit.
+
+	* src/Preferences.cs: Added key string for expanded tags preference.
+
 2005-11-24  Miguel de Icaza  <miguel@novell.com>
 
 	* src/MainWindow.cs: Do not crash if there is an error deleting

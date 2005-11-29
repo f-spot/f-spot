@@ -18,6 +18,7 @@ namespace FSpot
 		public const string SHOW_TIMELINE = "/apps/f-spot/ui/show_timeline";
 		public const string SHOW_TAGS = "/apps/f-spot/ui/show_tags";
 		public const string SHOW_DATES = "/apps/f-spot/ui/show_dates";
+		public const string EXPANDED_TAGS = "/apps/f-spot/ui/expanded_tags";
 		
 		public const string SIDEBAR_POSITION = "/apps/f-spot/ui/sidebar_size";
 		public const string THUMBNAIL_WIDTH = "/apps/f-spot/ui/thumbnail_width";

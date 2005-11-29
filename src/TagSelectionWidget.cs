@@ -428,6 +428,87 @@ public class TagSelectionWidget : TreeView {
 			store.Remove (ref iter);
 		}
 	}
+	
+	void ExpandDefaults ()
+	{
+		object val = FSpot.Preferences.Get (FSpot.Preferences.EXPANDED_TAGS);
+
+		if (val == null)
+			ExpandAll ();
+		else {
+			ArrayList expanded_tags = new ArrayList (val as int[]);
+				
+			if (expanded_tags.Count < 1)
+				return;
+
+			TreeIter [] iters = ModelIters ();
+
+			foreach (TreeIter iter in iters)
+			{
+				GLib.Value v = new GLib.Value ();
+				Model.GetValue (iter, 0, ref v);
+				int tag_id = (int)(uint) v;
+				if (expanded_tags.Contains (tag_id)) {
+					ExpandRow (Model.GetPath (iter), false);
+				}
+			}
+		}
+	}
+
+	// Returns a flattened array of TreeIter's from the Model
+	TreeIter [] ModelIters ()
+	{
+		TreeIter root;
+		if (Model.GetIterFirst (out root))
+		{
+			return ModelIters (root, true).ToArray (typeof (TreeIter)) as TreeIter [];
+		}
+
+		return null;
+	}
+
+	// Returns ArrayList containing the root TreeIter and all TreeIters at root's level and
+	// descended from it
+	ArrayList ModelIters (TreeIter root, bool first)
+	{
+		ArrayList model_iters = new ArrayList (Model.IterNChildren ());
+
+		model_iters.Add (root);
+
+		// Append any children
+		TreeIter child;
+		if (Model.IterChildren (out child, root))
+			model_iters.AddRange (ModelIters (child, true));
+		
+		// Append any siblings and their children
+		if (first) {
+			while (Model.IterNext (ref root)) {
+				model_iters.AddRange (ModelIters (root, false));
+			}
+		}
+
+		return model_iters;
+	}
+
+	public void SaveExpandDefaults ()
+	{
+		ArrayList expanded_tags = new ArrayList ();
+		
+		TreeIter [] iters = ModelIters ();
+
+		foreach (TreeIter iter in iters)
+		{
+			if (GetRowExpanded (Model.GetPath (iter))) {
+				GLib.Value v = new GLib.Value ();
+				Model.GetValue (iter, 0, ref v);
+				expanded_tags.Add ((int)(uint) v);
+			}
+		}
+
+		if (expanded_tags.Count > 0)
+			FSpot.Preferences.Set (	FSpot.Preferences.EXPANDED_TAGS,
+						(int []) expanded_tags.ToArray (typeof (int)));
+	}
 	// Constructor.
 
 	public TagSelectionWidget (TagStore tag_store)
@@ -452,7 +533,9 @@ public class TagSelectionWidget : TreeView {
 		selection = new Hashtable ();
 
 		Update ();
-		ExpandAll ();
+		
+		ExpandDefaults ();
+
 		tag_store.TagDeleted += new TagDeletedHandler(HandleTagDeleted);
 		tag_store.TagCreated += new TagCreatedHandler(HandleTagCreated);
 		tag_store.TagChanged += new TagChangedHandler(HandleTagChanged);

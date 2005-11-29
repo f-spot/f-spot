@@ -1379,6 +1379,8 @@ public class MainWindow {
 		Preferences.Set (Preferences.THUMBNAIL_WIDTH,		icon_view.ThumbnailWidth);
 	
 		Preferences.Set (Preferences.ICON_VIEW_POSITION, icon_view.TopLeftVisibleCell ());
+		
+		tag_selection_widget.SaveExpandDefaults ();
 
 		this.Window.Destroy ();
 	}
