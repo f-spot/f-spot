@@ -86,8 +86,6 @@ namespace FSpot {
 						pixels += rowstride;
 					}
 					for (; j < height; j++) {
-						byte found = 0x00;
-						
 						pixels [0] = (byte) ((j >= height - r) ? 0xff : 0x00);
 						pixels [1] = (byte) ((j >= height - g) ? 0xff : 0x00);
 						pixels [2] = (byte) ((j >= height - b) ? 0xff : 0x00);
