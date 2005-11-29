@@ -6761,6 +6761,7 @@ Photo Details</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleCloseCommand" last_modification_time="Tue, 09 Dec 2003 20:59:54 GMT"/>
 		      <accelerator key="w" modifiers="GDK_CONTROL_MASK" signal="activate"/>
+		      <accelerator key="q" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 		    </widget>
 		  </child>
 		</widget>
