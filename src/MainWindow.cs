@@ -1931,8 +1931,8 @@ public class MainWindow {
 				System.Console.WriteLine ("this is something or another");
 
 				// A Category is not empty. Can not delete it.
-				string error_msg = Mono.Posix.Catalog.GetString ("Category is not empty");
-				string error_desc = String.Format (Mono.Posix.Catalog.GetString ("Can not delete categories that have tags." + 
+				string error_msg = Mono.Posix.Catalog.GetString ("Tag is not empty");
+				string error_desc = String.Format (Mono.Posix.Catalog.GetString ("Can not delete tags that have tags within them." + 
 												 "Please delete tags under \"{0}\" first"),
 								   e.Tag.Name);
 				

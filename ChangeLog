@@ -6,6 +6,17 @@
 
 	* src/f-spot.glade: Allow closing F-Spot with ctrl-q.
 
+	* src/MainWindow.cs: change references to categories to tags because
+	user's never need to make tags that can't have children and having
+	tags and categories is a very confusing thing.
+	
+	* src/TagCommands.cs: change references to Category to Tag
+
+	* src/TagPopup.cs: Allow only creation of new 'tags' which are what
+	used to be called categories.
+	
+	* src/f-spot.glade: Remove menu items referring to categories
+
 2005-11-24  Miguel de Icaza  <miguel@novell.com>
 
 	* src/MainWindow.cs: Do not crash if there is an error deleting

@@ -18,8 +18,6 @@ public class TagPopup {
 		Gtk.Menu popup_menu = new Gtk.Menu ();
 		
 		GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Create New Tag"),
-				      new EventHandler (MainWindow.Toplevel.HandleCreateNewTagCommand), true);
-		GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Create New Category"),
 				      new EventHandler (MainWindow.Toplevel.HandleCreateNewCategoryCommand), true);
 		
 		GtkUtil.MakeMenuSeparator (popup_menu);

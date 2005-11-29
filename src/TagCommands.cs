@@ -43,7 +43,7 @@ public class TagCommands {
 			Menu menu = new Menu ();
 
 			if (categories.Count == 0) {
-				MenuItem item = new MenuItem (Mono.Posix.Catalog.GetString ("(No categories)"));
+				MenuItem item = new MenuItem (Mono.Posix.Catalog.GetString ("(No tags)"));
 				category_option_menu.Sensitive = false;
 				menu.Append (item);
 			} else {
@@ -124,16 +124,8 @@ public class TagCommands {
 
 			this.Dialog.DefaultResponse = ResponseType.Ok;
 
-			switch (type) {
-			case TagType.Tag:
-				this.Dialog.Title = Mono.Posix.Catalog.GetString ("Create New Tag");
-				prompt_label.Text = Mono.Posix.Catalog.GetString ("Name of new tag:");
-				break;
-			case TagType.Category:
-				this.Dialog.Title = Mono.Posix.Catalog.GetString ("Create New Category");
-				prompt_label.Text = Mono.Posix.Catalog.GetString ("Name of new category:");
-				break;
-			}
+			this.Dialog.Title = Mono.Posix.Catalog.GetString ("Create New Tag");
+			prompt_label.Text = Mono.Posix.Catalog.GetString ("Name of new tag:");
 
 			PopulateCategoryOptionMenu ();
 			this.Category = default_category;
@@ -287,13 +279,8 @@ public class TagCommands {
 			tag = t;
 			this.Dialog.DefaultResponse = ResponseType.Ok;
 
-			if (t is Category) {
-				this.Dialog.Title = Mono.Posix.Catalog.GetString ("Edit Category");
-				prompt_label.Text = Mono.Posix.Catalog.GetString ("Category name:");
-			} else {
-				this.Dialog.Title = Mono.Posix.Catalog.GetString ("Edit Tag");
-				prompt_label.Text = Mono.Posix.Catalog.GetString ("Tag name:");
-			}
+			this.Dialog.Title = Mono.Posix.Catalog.GetString ("Edit Tag");
+			prompt_label.Text = Mono.Posix.Catalog.GetString ("Tag name:");
 
 			orig_name = last_valid_name = t.Name;
 			tag_name_entry.Text = t.Name;
