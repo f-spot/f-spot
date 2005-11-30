@@ -509,8 +509,60 @@ public class TagSelectionWidget : TreeView {
 			FSpot.Preferences.Set (	FSpot.Preferences.EXPANDED_TAGS,
 						(int []) expanded_tags.ToArray (typeof (int)));
 	}
-	// Constructor.
 
+	public void EditSelectedTagName ()
+	{
+		TreePath [] rows = Selection.GetSelectedRows();
+		if (rows.Length != 1)
+			return;
+		
+		SetCursor (rows[0], name_column, true);
+	}
+	
+	public void HandleTagNameEdited (object sender, EditedArgs args)
+	{
+		args.RetVal = false;
+
+		TreeIter iter;
+
+		if (!Model.GetIterFromString (out iter, args.Path))
+			return;
+
+		GLib.Value value = new GLib.Value ();
+		Model.GetValue (iter, 0, ref value);
+		uint tag_id = (uint) value;
+		Tag tag = tag_store.Get (tag_id) as Tag;
+
+		// Ignore if it hasn't changed
+		if (tag.Name == args.NewText)
+			return;
+
+		// Check that the tag doesn't already exist
+		if (MainWindow.Toplevel.Database.Tags.GetTagByName (args.NewText) != null) {
+			HigMessageDialog md = new HigMessageDialog (MainWindow.Toplevel.GtkWindow,
+				DialogFlags.DestroyWithParent, 
+				MessageType.Warning, ButtonsType.Ok, 
+				Mono.Posix.Catalog.GetString ("Error renaming tag"),
+				Mono.Posix.Catalog.GetString ("This name is already in use"));
+
+			md.Run ();
+			md.Destroy ();
+			this.GrabFocus ();
+			return;
+		}
+
+		tag.Name = args.NewText;
+		MainWindow.Toplevel.Database.Tags.Commit (tag);
+
+		args.RetVal = true;
+		return;
+	}
+
+	TreeViewColumn check_column;
+	TreeViewColumn icon_column;
+	TreeViewColumn name_column;
+
+	// Constructor.
 	public TagSelectionWidget (TagStore tag_store)
 		: base (new TreeStore (typeof (uint), typeof(string)))
 	{
@@ -520,14 +572,18 @@ public class TagSelectionWidget : TreeView {
 		CellRendererToggle toggle_renderer = new CellRendererToggle ();
 		toggle_renderer.Toggled += new ToggledHandler (OnCellToggled);
 
-		TreeViewColumn column;
-		column = AppendColumn ("check", toggle_renderer, new TreeCellDataFunc (CheckBoxDataFunc));
-		column.SortColumnId = 0;
+		check_column = AppendColumn ("check", toggle_renderer, new TreeCellDataFunc (CheckBoxDataFunc));
+		check_column.SortColumnId = 0;
 
-		AppendColumn ("icon", new CellRendererPixbuf (), new TreeCellDataFunc (IconDataFunc));
+		icon_column = AppendColumn ("icon", new CellRendererPixbuf (), new TreeCellDataFunc (IconDataFunc));
 
-		column = AppendColumn ("name", new CellRendererText (), new TreeCellDataFunc (NameDataFunc));
-		column.SortColumnId = 1;
+		CellRendererText tr = new CellRendererText ();
+		tr.Editable = true;
+		tr.Edited += HandleTagNameEdited;
+		tr.Mode = CellRendererMode.Editable;
+
+		name_column = AppendColumn ("name", tr, new TreeCellDataFunc (NameDataFunc));
+		name_column.SortColumnId = 1;
 		
 		this.tag_store = tag_store;
 		selection = new Hashtable ();
@@ -543,6 +599,9 @@ public class TagSelectionWidget : TreeView {
 		// TODO make the search find tags that are not currently expanded
 		EnableSearch = true;
 		SearchColumn = 1;
+
+		// Transparent white
+		empty_pixbuf.Fill(0xffffff00);
 	}
 
 

@@ -343,6 +343,12 @@ public class MainWindow {
 		}
 	}
 
+	public Gtk.Window GtkWindow {
+		get {
+			return main_window;
+		}
+	}
+
 	public ModeType ViewMode {
 		get {
 			return view_mode;
@@ -1899,10 +1905,33 @@ public class MainWindow {
 		icon_view.Selection.Clear ();
 	}
 
+	// This ConnectBefore is needed because otherwise the editability of the name
+	// column will steal returns, spaces, and clicks if the tag name is focused
+	[GLib.ConnectBefore]
 	public void HandleTagSelectionKeyPress (object sender, Gtk.KeyPressEventArgs args)
 	{
-		if (args.Event.Key == Gdk.Key.Delete)
-			HandleDeleteSelectedTagCommand (sender, (EventArgs) args);
+		args.RetVal = true;
+
+		switch (args.Event.Key) {
+		case Gdk.Key.Delete:
+ 			HandleDeleteSelectedTagCommand (sender, (EventArgs) args);
+			break;
+		
+		/*case Gdk.Key.space:
+		case Gdk.Key.Return:
+			tag_selection_widget.ToggleSelectedTags ();
+			break;*/
+
+		case Gdk.Key.F2:
+			tag_selection_widget.EditSelectedTagName ();
+			break;
+		
+		default:
+			args.RetVal = false;
+			break;
+		}
+
+		return;
 	}
 
 	public void HandleDeleteSelectedTagCommand (object sender, EventArgs args)

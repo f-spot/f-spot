@@ -23,6 +23,12 @@
 
 	* src/Preferences.cs: Added key string for expanded tags preference.
 
+	* src/MainWindow.cs: listen for F2 to start editing a tag's name.
+	
+	* src/TagCommands.cs: do case-insenstive matching to prevent duplicate tags.
+	
+	* src/TagSelectionWidget.cs: Make tag names editable inline
+
 2005-11-24  Miguel de Icaza  <miguel@novell.com>
 
 	* src/MainWindow.cs: Do not crash if there is an error deleting

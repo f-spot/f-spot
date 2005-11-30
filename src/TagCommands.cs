@@ -60,7 +60,7 @@ public class TagCommands {
 		private bool TagNameExistsInCategory (string name, Category category)
 		{
 			foreach (Tag tag in category.Children) {
-				if (tag.Name == name)
+				if (String.Compare(tag.Name, name, true) == 0)
 					return true;
 
 				if (tag is Category && TagNameExistsInCategory (name, tag as Category))
@@ -130,6 +130,7 @@ public class TagCommands {
 			PopulateCategoryOptionMenu ();
 			this.Category = default_category;
 			Update ();
+			tag_name_entry.GrabFocus ();
 
 			ResponseType response = (ResponseType) this.Dialog.Run ();
 
@@ -184,7 +185,7 @@ public class TagCommands {
 		private bool TagNameExistsInCategory (string name, Category category)
 		{
 			foreach (Tag tag in category.Children) {
-				if (tag.Name == name)
+				if (String.Compare(tag.Name, name, true) == 0)
 					return true;
 
 				if (tag is Category && TagNameExistsInCategory (name, tag as Category))
@@ -290,6 +291,8 @@ public class TagCommands {
 			
 			icon_button.Clicked += HandleIconButtonClicked;
 			icon_button.SetSizeRequest (48, 48);
+			
+			tag_name_entry.GrabFocus ();
 
 			category_option_menu.Changed += HandleTagNameEntryChanged;
 			ResponseType response = (ResponseType) this.Dialog.Run ();
