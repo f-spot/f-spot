@@ -8,6 +8,9 @@
 	* src/TagStore.cs: make root tag name translatable.
 
 	* po/POTFILES.in: add TagStore.cs
+	
+	* src/MainWindow.cs: new tags in the type-to-find bar are created as
+	Category not Tag objects so they can have children.
 
 2005-11-30  Larry Ewing  <lewing@novell.com>
 

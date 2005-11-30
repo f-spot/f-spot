@@ -2354,7 +2354,7 @@ public class MainWindow {
 		       Tag t = db.Tags.GetTagByName (tagnames [i]);
 
 		       if (t == null) {
-			       t = db.Tags.CreateTag (default_category, tagnames [i]);
+			       t = db.Tags.CreateCategory (default_category, tagnames [i]) as Tag;
 			       db.Tags.Commit (t);
 		       }
 
