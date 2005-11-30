@@ -1,10 +1,19 @@
 2005-11-30  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: show the prefernce dialog.
+
+	* src/f-spot.glade: hook up more signals.
+	
+	* src/PreferenceDialog.cs: handle close and show with a little
+	more sanity.
+
 	* src/f-spot.glade: add the start of the new dialog.
 
 	* src/PreferenceDialog.cs: get and set the metadata preference.
 
 	* src/Preferences.cs: add metadata option.
+
+	* src/Makefile.am: add PreferenceDialog.cs.
 
 2005-11-30  Gabriel Burt <gabriel.burt@gmail.com>
 

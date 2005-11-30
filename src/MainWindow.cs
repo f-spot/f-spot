@@ -1207,8 +1207,7 @@ public class MainWindow {
 
 	public void HandlePreferences (object sender, EventArgs args)
 	{
-		
-		
+		PreferenceDialog.Show ();
 	}
 	
 	void HandleViewFullExif (object sender, EventArgs args)
