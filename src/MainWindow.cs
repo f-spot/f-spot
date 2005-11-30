@@ -153,6 +153,7 @@ public class MainWindow {
 		LoadPreference (Preferences.MAIN_WINDOW_X);
 		LoadPreference (Preferences.MAIN_WINDOW_MAXIMIZED);
 		LoadPreference (Preferences.SIDEBAR_POSITION);
+		LoadPreference (Preferences.METADATA_EMBED_IN_IMAGE);
 
 		slide_delay = new FSpot.Delay (new GLib.IdleHandler (SlideShow));
 
@@ -1192,7 +1193,7 @@ public class MainWindow {
 		}
 	}
 	
-	unsafe void HandlePrintCommand (object sender, EventArgs e)
+	void HandlePrintCommand (object sender, EventArgs e)
 	{
 		new FSpot.PrintDialog (SelectedPhotos ());
 	}
@@ -1202,6 +1203,12 @@ public class MainWindow {
 	{
 		info_display_window = null;
 		info_display = null;
+	}
+
+	public void HandlePreferences (object sender, EventArgs args)
+	{
+		
+		
 	}
 	
 	void HandleViewFullExif (object sender, EventArgs args)
@@ -2123,6 +2130,9 @@ public class MainWindow {
 				photo_view.Item.Index = (int) val;
 				icon_view.ScrollTo ((int) val, false);
 			}
+			break;
+		case Preferences.METADATA_EMBED_IN_IMAGE:
+			write_metadata = (bool) val;
 			break;
 		}
 	}

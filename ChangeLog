@@ -6,6 +6,11 @@
 
 2005-11-30  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: set the write metadata flag based on a gconf
+	key.
+
+	* src/Preferences.cs: add metadata preference.
+
 	* src/PixbufUtils.cs: update the adjustment dialog calls.
 
 	* src/f-spot.glade: rework the adjustment dialog.  Add reset

@@ -36,6 +36,8 @@ namespace FSpot
 		public const string EXPORT_GALLERY_BROWSER = "/apps/f-spot/export/gallery/browser";
 		public const string EXPORT_GALLERY_META = "/apps/f-spot/export/gallery/meta";
 
+		public const string METADATA_EMBED_IN_IMAGE = "/apps/f-spot/metadata/embed_in_image";
+
 		static GConf.Client client;
 		static GConf.NotifyEventHandler changed_handler;
 
@@ -62,6 +64,7 @@ namespace FSpot
 			case MAIN_WINDOW_WIDTH:
 				return null;
 			
+			case METADATA_EMBED_IN_IMAGE:
 			case MAIN_WINDOW_MAXIMIZED:
 				return false;
 
