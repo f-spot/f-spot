@@ -1,3 +1,14 @@
+2005-11-30  Gabriel Burt <gabriel.burt@gmail.com>
+
+	* src/TagCommands.cs: added ability to create tags and categories
+	with toplevel as the parent. Fixes bug #165035.
+
+	* src/TagSelectionWidget.cs: changes for same fix.
+	
+	* src/TagStore.cs: make root tag name translatable.
+
+	* po/POTFILES.in: add TagStore.cs
+
 2005-11-30  Larry Ewing  <lewing@novell.com>
 
 	* src/MainWindow.cs: show the prefernce dialog.

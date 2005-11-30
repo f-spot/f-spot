@@ -38,20 +38,15 @@ public class TagCommands {
 		private void PopulateCategoryOptionMenu ()
 		{
 			categories = new ArrayList ();
+			categories.Add (tag_store.RootCategory);
 			PopulateCategories (categories, tag_store.RootCategory);
 
 			Menu menu = new Menu ();
 
-			if (categories.Count == 0) {
-				MenuItem item = new MenuItem (Mono.Posix.Catalog.GetString ("(No tags)"));
-				category_option_menu.Sensitive = false;
-				menu.Append (item);
-			} else {
-				foreach (Category category in categories)
-					menu.Append (TagMenu.TagItem.IndentedItem (category));
+			foreach (Category category in categories)
+				menu.Append (TagMenu.TagItem.IndentedItem (category));
 
-				category_option_menu.Sensitive = true;
-			}
+			category_option_menu.Sensitive = true;
 
 			menu.ShowAll ();
 			category_option_menu.Menu = menu;
@@ -218,7 +213,7 @@ public class TagCommands {
 		private void PopulateCategories (ArrayList categories, Category parent)
 		{
 			foreach (Tag tag in parent.Children) {
-				if (tag is Category && !this.tag.IsAncestorOf (tag)) {
+				if (tag is Category && tag != this.tag && !this.tag.IsAncestorOf (tag)) {
 					categories.Add (tag);
 					PopulateCategories (categories, tag as Category);
 				}
@@ -256,10 +251,7 @@ public class TagCommands {
 				     parent = parent.Category)
 					label_builder.Append ("  ");
 				
-				if (category == root)
-					label_builder.Append ("(Toplevel)");
-				else 
-					label_builder.Append (category.Name);
+				label_builder.Append (category.Name);
 				
 				// FIXME escape underscores.
 				MenuItem item = new MenuItem (label_builder.ToString ());

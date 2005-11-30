@@ -415,7 +415,8 @@ public class TagStore : DbStore {
 	public TagStore (SqliteConnection connection, bool is_new)
 		: base (connection, true)
 	{
-		root_category = new Category (null, 0, "root");
+		// The label for the root category is used in new and edit tag dialogs
+		root_category = new Category (null, 0, Mono.Posix.Catalog.GetString ("(None)"));
 
 		if (! is_new) {
 			LoadAllTags ();
