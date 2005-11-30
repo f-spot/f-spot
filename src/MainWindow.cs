@@ -92,7 +92,7 @@ public class MainWindow {
 	PhotoVersionMenu versions_submenu;
 
 	Gtk.ToggleButton browse_button;
-	Gtk.ToggleButton view_button;
+	Gtk.ToggleButton edit_button;
 
 	InfoBox info_box;
 	FSpot.InfoDisplay info_display;
@@ -161,9 +161,12 @@ public class MainWindow {
 		GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-270", new System.EventHandler (HandleRotate270Command));
 		GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-90", new System.EventHandler (HandleRotate90Command));
 		toolbar.AppendSpace ();
+
+		// FIXME putting these two toggle buttons in a radio group would prevent
+		// the two toggle sounds from being emitted every time you switch modes
 		browse_button = GtkUtil.MakeToolbarToggleButton (toolbar, "f-spot-browse", 
 								 new System.EventHandler (HandleToggleViewBrowse)) as ToggleButton;
-		view_button = GtkUtil.MakeToolbarToggleButton (toolbar, "f-spot-edit-image", 
+		edit_button = GtkUtil.MakeToolbarToggleButton (toolbar, "f-spot-edit-image", 
 							       new System.EventHandler (HandleToggleViewPhoto)) as ToggleButton;
 		toolbar.AppendSpace ();
 		GtkUtil.MakeToolbarButton (toolbar, "f-spot-fullscreen", new System.EventHandler (HandleViewFullscreen));
@@ -395,11 +398,11 @@ public class MainWindow {
 				browse_button.Active = state;
 		}
 
-		if (view_button != null) {
+		if (edit_button != null) {
 			bool state = view_mode == ModeType.PhotoView;
 			
-			if (view_button.Active != state)
-				view_button.Active = state;
+			if (edit_button.Active != state)
+				edit_button.Active = state;
 		}
 	}
 
@@ -1700,23 +1703,18 @@ public class MainWindow {
 
 	void HandleToggleViewBrowse (object sender, EventArgs args)
 	{
-	        ToggleButton toggle = sender as ToggleButton;
-		if (toggle != null) {
-			if (toggle.Active)
-				SetViewMode (ModeType.IconView);
-		} else
+		if (view_mode == ModeType.IconView)
+			browse_button.Active = true;
+		else if (browse_button.Active)
 			SetViewMode (ModeType.IconView);
 	}
 
 	void HandleToggleViewPhoto (object sender, EventArgs args)
 	{
-	        ToggleButton toggle = sender as ToggleButton;
-		
-		if (toggle != null) {
-			if (toggle.Active)
-				SetViewMode (ModeType.PhotoView);
-		} else
-			SetViewMode (ModeType.IconView);
+		if (view_mode == ModeType.PhotoView)
+			edit_button.Active = true;
+		else if (edit_button.Active)
+			SetViewMode (ModeType.PhotoView);
 	}
 
 	void HandleViewBrowse (object sender, EventArgs args)
