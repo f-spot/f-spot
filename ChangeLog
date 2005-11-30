@@ -1,3 +1,11 @@
+2005-11-30  Larry Ewing  <lewing@novell.com>
+
+	* src/f-spot.glade: add the start of the new dialog.
+
+	* src/PreferenceDialog.cs: get and set the metadata preference.
+
+	* src/Preferences.cs: add metadata option.
+
 2005-11-30  Gabriel Burt <gabriel.burt@gmail.com>
 
 	* src/MainWindow.cs: When in browse or edit mode, clicking the toggle

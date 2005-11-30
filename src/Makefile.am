@@ -64,6 +64,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PixbufUtils.cs		\
 	$(srcdir)/PixbufCache.cs		\
 	$(srcdir)/PixelBuffer.cs		\
+	$(srcdir)/PreferenceDialog.cs 		\
 	$(srcdir)/Preferences.cs 		\
 	$(srcdir)/PreviewPopup.cs 		\
 	$(srcdir)/PrintDialog.cs		\
