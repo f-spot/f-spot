@@ -40,12 +40,13 @@ f_screen_get_profile (GdkScreen *screen)
 }
 
 typedef struct {
-                double Brightness;
-                double Contrast;
-                double Hue;
-                double Saturation;
-                cmsCIEXYZ WPsrc, WPdest;
-
+	double Exposure;
+	double Brightness;
+	double Contrast;
+	double Hue;
+	double Saturation;
+	cmsCIEXYZ WPsrc, WPdest;
+	
 } BCHSWADJUSTS, *LPBCHSWADJUSTS;
 
 
@@ -63,7 +64,7 @@ int bchswSampler(register WORD In[], register WORD Out[], register LPVOID Cargo)
 
     // Do some adjusts on LCh
     
-    LChOut.L = LChIn.L * bchsw ->Contrast + bchsw ->Brightness;
+    LChOut.L = LChIn.L * bchsw ->Exposure + bchsw ->Brightness;
     LChOut.C = MAX (0, LChIn.C + bchsw ->Saturation);
     LChOut.h = LChIn.h + bchsw ->Hue;
     
@@ -87,30 +88,28 @@ int bchswSampler(register WORD In[], register WORD Out[], register LPVOID Cargo)
 // contrast, Saturation and white point displacement
 
 cmsHPROFILE LCMSEXPORT f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
+						       double Exposure,
 						       double Bright, 
 						       double Contrast,
 						       double Hue,
 						       double Saturation,
-						       int TempSrc, 
-						       int TempDest,
-						       LPGAMMATABLE Tables [],
-						       int nTable)
+						       cmsCIExyY current_wp,
+						       cmsCIExyY destination_wp,
+						       LPGAMMATABLE Tables [])
 {
      cmsHPROFILE hICC;
      LPLUT Lut;
      BCHSWADJUSTS bchsw;
      cmsCIExyY WhitePnt;
 
+     bchsw.Exposure   = Exposure;
      bchsw.Brightness = Bright;
      bchsw.Contrast   = Contrast;
      bchsw.Hue        = Hue;
      bchsw.Saturation = Saturation;
      
-     cmsWhitePointFromTemp(TempSrc,  &WhitePnt);         
-     cmsxyY2XYZ(&bchsw.WPsrc, &WhitePnt);
-
-     cmsWhitePointFromTemp(TempDest, &WhitePnt);
-     cmsxyY2XYZ(&bchsw.WPdest, &WhitePnt);
+     cmsxyY2XYZ(&bchsw.WPsrc, &current_wp);
+     cmsxyY2XYZ(&bchsw.WPdest, &destination_wp);
     
       hICC = _cmsCreateProfilePlaceholder();
        if (!hICC)                          // can't allocate

@@ -10,14 +10,17 @@ namespace FSpot {
 #if USE_THREAD		
 		Delay expose_timeout;
 #endif
-		[Glade.Widget] private Gtk.SpinButton source_spinbutton;
-		[Glade.Widget] private Gtk.SpinButton dest_spinbutton;
-
+		[Glade.Widget] private Gtk.HScale exposure_scale;
+		[Glade.Widget] private Gtk.HScale temp_scale;
+		[Glade.Widget] private Gtk.HScale temptint_scale;
 		[Glade.Widget] private Gtk.HScale brightness_scale;
 		[Glade.Widget] private Gtk.HScale contrast_scale;
 		[Glade.Widget] private Gtk.HScale hue_scale;
 		[Glade.Widget] private Gtk.HScale sat_scale;
 		
+		[Glade.Widget] private Gtk.SpinButton exposure_spinbutton;
+		[Glade.Widget] private Gtk.SpinButton temp_spinbutton;
+		[Glade.Widget] private Gtk.SpinButton temptint_spinbutton;
 		[Glade.Widget] private Gtk.SpinButton brightness_spinbutton;
 		[Glade.Widget] private Gtk.SpinButton contrast_spinbutton;
 		[Glade.Widget] private Gtk.SpinButton hue_spinbutton;
@@ -25,6 +28,9 @@ namespace FSpot {
 		
 		[Glade.Widget] private Gtk.ScrolledWindow view_scrolled;
 		[Glade.Widget] private Gtk.Image histogram_image;
+
+		[Glade.Widget] private Gtk.CheckButton white_check;
+		[Glade.Widget] private Gtk.CheckButton exposure_check;
 		
 		private FSpot.PhotoImageView view;
 
@@ -47,14 +53,9 @@ namespace FSpot {
 			
 			Cms.Profile display_profile = Cms.Profile.GetScreenProfile (view.Screen);
 			Cms.Profile [] list;
-			Cms.Profile source_profile;
 			
 			if (display_profile == null)
 				display_profile = Cms.Profile.CreateStandardRgb ();
-			
-			//source_profile = Cms.Profile.CreateGray (image_profile.MediaWhitePoint.ToCIExyY (), null);
-			
-			//System.Console.WriteLine ("{0} {1} {2}", image_profile, adjustment_profile, display_profile);
 			
 			if (!Changed || AdjustedPixbuf.HasAlpha) {
 				if (AdjustedPixbuf.HasAlpha)
@@ -67,13 +68,8 @@ namespace FSpot {
 								    PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
 								    Cms.Intent.Perceptual, 0x0000);
 			} else {
-				using (adjustment_profile = Cms.Profile.CreateAbstract (20, brightness_scale.Value,
-											contrast_scale.Value,
-											hue_scale.Value, 
-											sat_scale.Value,
-											source_spinbutton.ValueAsInt, 
-											dest_spinbutton.ValueAsInt)) {
 					
+				using (adjustment_profile = AdjustmentProfile ()) {
 					list = new Cms.Profile [] { image_profile, adjustment_profile, display_profile };
 					
 					next_transform = new Cms.Transform (list, 
@@ -94,7 +90,25 @@ namespace FSpot {
 #endif
 			}
 		}
-		
+
+		public bool UseWhiteSettings {
+			get {
+				if (white_check != null)
+					return white_check.Active;
+				else
+					return true;
+			}
+		}
+
+		public bool UseExposureSettings {
+			get {
+				if (exposure_check != null)
+					return exposure_check.Active;
+				else 
+					return true;
+			}
+		}
+
 		public bool QueueDraw ()
 		{
 			lock (AdjustedPixbuf) {
@@ -156,12 +170,7 @@ namespace FSpot {
 							   orig.Width, 
 							   orig.Height);
 				
-			Cms.Profile abs = Cms.Profile.CreateAbstract (100, brightness_scale.Value,
-								      contrast_scale.Value,
-								      hue_scale.Value, 
-								      sat_scale.Value,
-								      source_spinbutton.ValueAsInt, 
-								      dest_spinbutton.ValueAsInt);
+			Cms.Profile abs = AdjustmentProfile ();
 			
 			// FIXME this shouldn't use the screen as the destination profile.
 			Cms.Profile destination = Cms.Profile.GetScreenProfile (view.Screen);
@@ -236,7 +245,7 @@ namespace FSpot {
 			if (image_profile == null)
 				image_profile = Cms.Profile.CreateStandardRgb ();
 			
-			AdjustedPixbuf = img.Load (150, 150);
+			AdjustedPixbuf = img.Load (256, 256);
 			ScaledPixbuf = AdjustedPixbuf.Copy ();			
 
 #if false
@@ -256,39 +265,110 @@ namespace FSpot {
 			RangeChanged (null, null);
 		}
 
-		private const double b = 0.0;
+		private const double e = 0.0;
+		private const double b = 1.0;
 		private const double c = 1.0;
 		private const double h = 0.0;
 		private const double s = 0.0;
-		private const double st = 6500;
-		private const double dt = 6500;
+		private const double t = 5000;
+		private const double tt = 0.0;
+
+		private Cms.Profile AdjustmentProfile ()
+		{
+			Cms.Profile profile;
+			Cms.ColorCIEXYZ src_wp;
+			Cms.ColorCIEXYZ dest_wp;
+
+			double exposure = e;
+			double brightness = b;
+			double contrast = c;
+			double hue = h;
+			double saturation = s;
+			
+			if (UseWhiteSettings) {
+				//src_wp = image_profile.MediaWhitePoint;
+				src_wp = Cms.ColorCIExyY.WhitePointFromTemperature ((int)t).ToXYZ ();
+				dest_wp = Cms.ColorCIExyY.WhitePointFromTemperature ((int)temp_scale.Value).ToXYZ ();
+				Cms.ColorCIELab dest_lab = dest_wp.ToLab (src_wp);
+				System.Console.WriteLine ("before {0}", dest_lab);
+				dest_lab.a += temptint_scale.Value;
+				System.Console.WriteLine ("after {0}", dest_lab);
+				dest_wp = dest_lab.ToXYZ (src_wp);
+			} else {
+				src_wp = Cms.ColorCIExyY.WhitePointFromTemperature ((int)t).ToXYZ ();
+				dest_wp = src_wp;
+			}
+
+			if (UseExposureSettings) {
+				exposure = exposure_scale.Value;
+				brightness = brightness_scale.Value;
+				contrast = contrast_scale.Value;
+				hue = hue_scale.Value;
+				saturation = sat_scale.Value;
+			}
+
+			profile = Cms.Profile.CreateAbstract (20, 
+							      Math.Pow (2.0, exposure),
+							      brightness,
+							      contrast,
+							      hue,
+							      saturation,
+							      null,
+							      src_wp.ToxyY (),
+							      dest_wp.ToxyY ());
+
+			return profile;
+		}
 
 		private bool Changed {
 			get {
 				bool changed = false;
+				changed |= (exposure_scale.Value != e);
 			        changed |= (brightness_scale.Value != b);
 			        changed |= (contrast_scale.Value != c);
 			        changed |= (hue_scale.Value != h);
 			        changed |= (sat_scale.Value != s);
-				changed |= (source_spinbutton.Value != st);
-				changed |= (dest_spinbutton.Value != dt);
+				changed |= (temp_scale.Value != t);
+				changed |= (temptint_scale.Value != tt);
 
 				return changed;
 			}
 		}
-
-		private void HandleResetClicked (object sender, EventArgs args)
+		
+		private void ResetWhiteBalance ()
 		{
+			temp_scale.Value = t;
+			temptint_scale.Value = tt;
+		}
+
+		private void ResetCorrections ()
+		{
+			exposure_scale.Value = e;
 			brightness_scale.Value = b;
 			contrast_scale.Value = c;
 			hue_scale.Value = h;			
 			sat_scale.Value = s;
-			source_spinbutton.Value = st;
-			dest_spinbutton.Value = st;
+		}
 
-			brightness_spinbutton.Adjustment.ChangeValue ();
+		private void HandleResetClicked (object sender, EventArgs args)
+		{
+			ResetCorrections ();
+			ResetWhiteBalance ();
+			brightness_scale.Adjustment.ChangeValue ();
 		}
 		
+		private void HandleWPResetClicked (object sender, EventArgs args)
+		{
+			ResetWhiteBalance ();
+			brightness_scale.Adjustment.ChangeValue ();
+		}
+
+		private void HandleExposureResetClicked (object sender, EventArgs args)
+		{
+			ResetCorrections ();
+			brightness_scale.Adjustment.ChangeValue ();
+		}
+
 		private void HandleCancelClicked (object sender, EventArgs args)
 		{
 			Cancel ();
@@ -331,26 +411,31 @@ namespace FSpot {
 
 			histogram_image.Pixbuf = hist.GeneratePixbuf ();
 
+			exposure_spinbutton.Adjustment = exposure_scale.Adjustment;
+			temp_spinbutton.Adjustment = temp_scale.Adjustment;
+			temptint_spinbutton.Adjustment = temptint_scale.Adjustment;
 			brightness_spinbutton.Adjustment = brightness_scale.Adjustment;
 			contrast_spinbutton.Adjustment = contrast_scale.Adjustment;
 			hue_spinbutton.Adjustment = hue_scale.Adjustment;
 			sat_spinbutton.Adjustment = sat_scale.Adjustment;
 			
-			brightness_spinbutton.Adjustment.Change ();
-			contrast_spinbutton.Adjustment.Change ();
-			hue_spinbutton.Adjustment.Change ();
-			sat_spinbutton.Adjustment.Change ();
+			temp_spinbutton.Adjustment.ChangeValue ();
+			temptint_spinbutton.Adjustment.ChangeValue ();
 			brightness_spinbutton.Adjustment.ChangeValue ();
 			contrast_spinbutton.Adjustment.ChangeValue ();
 			hue_spinbutton.Adjustment.ChangeValue ();
 			sat_spinbutton.Adjustment.ChangeValue ();
+			contrast_spinbutton.Adjustment.ChangeValue ();
+			hue_spinbutton.Adjustment.ChangeValue ();
+			sat_spinbutton.Adjustment.ChangeValue ();
 			
+			exposure_scale.ValueChanged += RangeChanged;
+			temp_scale.ValueChanged += RangeChanged;
+			temptint_scale.ValueChanged += RangeChanged;
 			brightness_scale.ValueChanged += RangeChanged;
 			contrast_scale.ValueChanged += RangeChanged;
 			hue_scale.ValueChanged += RangeChanged;
 			sat_scale.ValueChanged += RangeChanged;
-			source_spinbutton.ValueChanged += RangeChanged;
-			dest_spinbutton.ValueChanged += RangeChanged;
 
 			HandlePhotoChanged (view);
 		}

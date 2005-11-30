@@ -16,7 +16,11 @@ namespace Cms {
 		Rgb16Planar = 266266,
 		Rgba16 = 262298,
 		Rgba16se = 264436,
-		Rgb16se = 264218
+		Rgb16se = 264218,
+		Lab8 = 655385,
+	        Lab16 = 655386,
+		Xyz16 = 589858,
+		Yxy16 = 917530
 	}
 
 	public enum IccColorSpace : uint {
@@ -48,9 +52,9 @@ namespace Cms {
 	}
 
 	public enum Intent {
-		Perceptual = 0,
+		Perceptual           = 0,
 		RelativeColorimetric = 1,
-		Saturation = 2,
+		Saturation           = 2,
 		AbsoluteColorimetric = 3
 	}
 
@@ -67,14 +71,39 @@ namespace Cms {
 		}
 
 		[DllImport("liblcms-1.0.0.dll")]
+		static extern bool cmsWhitePointFromTemp(int TempSrc,  out ColorCIExyY white_point);
+
+		public static ColorCIExyY WhitePointFromTemperature (int temp)
+		{
+			ColorCIExyY wp;
+			cmsWhitePointFromTemp (temp, out wp);
+			return wp;
+		}
+
+		[DllImport("liblcms-1.0.0.dll")]
 		static extern void cmsxyY2XYZ (out ColorCIEXYZ dest, ref ColorCIExyY src);
 
-		public ColorCIEXYZ ToCIEXYZ ()
+		public ColorCIEXYZ ToXYZ ()
 		{
 			ColorCIEXYZ dest;
 			cmsxyY2XYZ (out dest, ref this);
 			
 			return dest;
+		}
+
+		public ColorCIELab ToLab (ColorCIExyY wp)
+		{
+			return this.ToXYZ ().ToLab (wp);
+		}
+
+		public ColorCIELab ToLab (ColorCIEXYZ wp)
+		{
+			return this.ToXYZ ().ToLab (wp);
+		}
+
+		public override string ToString ()
+		{
+			return String.Format ("(x={0}, y={1}, Y={2})", x, y, Y);
 		}
 	}
 
@@ -93,12 +122,83 @@ namespace Cms {
 		[DllImport("liblcms-1.0.0.dll")]
 		static extern void cmsXYZ2xyY (out ColorCIExyY dest, ref ColorCIEXYZ source);
 		
-		public ColorCIExyY ToCIExyY ()
+		public ColorCIExyY ToxyY ()
 		{
 			ColorCIExyY dest;
 			cmsXYZ2xyY (out dest, ref this);
 			
 			return dest;
+		}
+
+		[DllImport("liblcms-1.0.0.dll")]
+		static extern void cmsXYZ2Lab (ref ColorCIEXYZ wp, out ColorCIELab lab, ref ColorCIEXYZ xyz);
+
+		public ColorCIELab ToLab (ColorCIEXYZ wp)
+		{
+			ColorCIELab lab;
+			cmsXYZ2Lab (ref wp, out lab, ref this);
+
+			return lab;
+		}
+
+		public ColorCIELab ToLab (ColorCIExyY wp)
+		{
+			return ToLab (wp.ToXYZ ());
+		}
+
+		public override string ToString ()
+		{
+			return String.Format ("(x={0}, y={1}, z={2})", x, y, z);
+		}
+	}
+
+	public struct ColorCIELab {
+		public double L;
+		public double a;
+		public double b;
+
+		[DllImport("liblcms-1.0.0.dll")]
+		static extern void cmsLab2LCh (out ColorCIELCh lch, ref ColorCIELab lab);
+
+		public ColorCIELCh ToLCh ()
+		{
+			ColorCIELCh lch;
+			cmsLab2LCh (out lch, ref this);
+
+			return lch;
+		}
+
+		[DllImport("liblcms-1.0.0.dll")]
+		static extern void cmsLab2XYZ (ref ColorCIEXYZ wp, out ColorCIEXYZ xyz, ref ColorCIELab lab);
+		
+		public ColorCIEXYZ ToXYZ (ColorCIEXYZ wp)
+		{
+			ColorCIEXYZ xyz;
+			cmsLab2XYZ (ref wp, out xyz, ref this);
+
+			return xyz;
+		}
+
+		public override string ToString ()
+		{
+			return String.Format ("(L={0}, a={1}, b={2})", L, a, b);
+		}
+	}
+
+	public struct ColorCIELCh {
+		public double L;
+		public double C;
+		public double h;
+		
+		[DllImport("liblcms-1.0.0.dll")]
+		static extern void cmsLCh2Lab (out ColorCIELab lab, ref ColorCIELCh lch);
+		
+		public ColorCIELab ToLab ()
+		{
+			ColorCIELab lab;
+			cmsLCh2Lab (out lab, ref this);
+
+			return lab;
 		}
 	}
 
@@ -409,17 +509,20 @@ namespace Cms {
 								   double Saturation,
 								   int TempSrc, 
 								   int TempDest);
+
 		[DllImport("libfspot")]
 		static extern IntPtr f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
+								     double Exposure,
 								     double Bright, 
 								     double Contrast,
 								     double Hue,
 								     double Saturation,
-								     int TempSrc, 
-								     int TempDest,
+								     ColorCIExyY src_wp, 
+								     ColorCIExyY dest_wp,
 								     HandleRef [] tables);
 		
 		public static Profile CreateAbstract (int nLUTPoints,
+						      double Exposure,
 						      double Bright,
 						      double Contrast,
 						      double Hue,
@@ -427,32 +530,50 @@ namespace Cms {
 						      int TempSrc,
 						      int TempDest)
 		{
-#if TEST_ABSTRACT			
-			GammaTable gamma = new GammaTable (1024, .45);
+#if true			
+			GammaTable gamma = new GammaTable (1024, 1/Bright);
 			GammaTable line = new GammaTable (1024, 1.0);
 			GammaTable [] tables = new GammaTable [] { gamma, line, line };
+			return CreateAbstract (nLUTPoints, Exposure, 0.0, Contrast, Hue, Saturation, tables, 
+					       ColorCIExyY.WhitePointFromTemperature (TempSrc), 
+					       ColorCIExyY.WhitePointFromTemperature (TempDest));
 #else
 			GammaTable [] tables = null;
+			return CreateAbstract (nLUTPoints, Exposure, Bright, Contrast, Hue, Saturation, tables, 
+					       ColorCIExyY.WhitePointFromTemperature (TempSrc), 
+					       ColorCIExyY.WhitePointFromTemperature (TempDest));
 #endif
-			return CreateAbstract (nLUTPoints, Bright, Contrast, Hue, Saturation, tables, TempSrc, TempDest);
 		}
 
 		public static Profile CreateAbstract (int nLUTPoints,
+						      double Exposure,
 						      double Bright,
 						      double Contrast,
 						      double Hue,
 						      double Saturation,
 						      GammaTable [] tables,
-						      int TempSrc,
-						      int TempDest)
+						      ColorCIExyY src_wp,
+						      ColorCIExyY dest_wp)
 		{
+			if (tables == null) {
+				GammaTable gamma = new GammaTable (1024, 1.0/Bright);
+				GammaTable line = new GammaTable (1024, 1.0);
+				tables = new GammaTable [] { gamma, line, line };
+			}
+
+			System.Console.WriteLine ("e {0}", Exposure);
+			System.Console.WriteLine ("b {0}", Bright);
+			System.Console.WriteLine ("c {0}", Contrast);
+			System.Console.WriteLine ("h {0}", Hue);
+			System.Console.WriteLine ("s {0} {1} {2}", Saturation, src_wp, dest_wp);
 			return new Profile (f_cmsCreateBCHSWabstractProfile (nLUTPoints,
-									     Bright,
+									     Exposure,
+									     0.0, //Bright,
 									     Contrast,
 									     Hue,
 									     Saturation,
-									     TempSrc,
-									     TempDest,
+									     src_wp,
+									     dest_wp,
 									     CopyHandles (tables)));
 		}
 

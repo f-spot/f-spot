@@ -1,3 +1,19 @@
+2005-11-30  Larry Ewing  <lewing@novell.com>
+
+	* src/PixbufUtils.cs: update the adjustment dialog calls.
+
+	* src/f-spot.glade: rework the adjustment dialog.  Add reset
+	functions.
+	
+	* src/ColorDialog.cs: change the sliders and color correction
+	functions.
+
+	* src/Cms.cs: add new color types. Change the abstract profile
+	logic.
+	
+	* libfspot/f-screen-utils.c (f_cmsCreateBCHSWabstractProfile):
+	adjust the equations for the exposure correction.
+
 2005-11-29  Larry Ewing  <lewing@novell.com>
 
 	* src/Histogram.cs: small cleanups.
