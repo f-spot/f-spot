@@ -531,7 +531,7 @@ namespace Cms {
 						      int TempDest)
 		{
 #if true			
-			GammaTable gamma = new GammaTable (1024, 1/Bright);
+			GammaTable gamma = new GammaTable (1024, Math.Pow (10, -Bright/100));
 			GammaTable line = new GammaTable (1024, 1.0);
 			GammaTable [] tables = new GammaTable [] { gamma, line, line };
 			return CreateAbstract (nLUTPoints, Exposure, 0.0, Contrast, Hue, Saturation, tables, 
@@ -556,7 +556,7 @@ namespace Cms {
 						      ColorCIExyY dest_wp)
 		{
 			if (tables == null) {
-				GammaTable gamma = new GammaTable (1024, 1.0/Bright);
+				GammaTable gamma = new GammaTable (1024, Math.Pow (10, -Bright/100));
 				GammaTable line = new GammaTable (1024, 1.0);
 				tables = new GammaTable [] { gamma, line, line };
 			}
