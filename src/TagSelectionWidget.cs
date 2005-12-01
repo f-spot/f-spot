@@ -436,12 +436,13 @@ public class TagSelectionWidget : TreeView {
 		if (val == null)
 			ExpandAll ();
 		else {
-			ArrayList expanded_tags = new ArrayList (val as int[]);
-				
-			if (expanded_tags.Count < 1)
+			TreeIter [] iters = ModelIters ();
+			if (iters == null || iters.Length == 0)
 				return;
 
-			TreeIter [] iters = ModelIters ();
+			ArrayList expanded_tags = new ArrayList (val as int[]);
+			if (expanded_tags.Count < 1)
+				return;
 
 			foreach (TreeIter iter in iters)
 			{
@@ -495,6 +496,8 @@ public class TagSelectionWidget : TreeView {
 		ArrayList expanded_tags = new ArrayList ();
 		
 		TreeIter [] iters = ModelIters ();
+		if (iters == null)
+			return;
 
 		foreach (TreeIter iter in iters)
 		{
