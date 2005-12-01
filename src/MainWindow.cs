@@ -616,10 +616,13 @@ public class MainWindow {
 	{
 		if (args.Event.Button == 3)
 		{
-			TagPopup popup = new TagPopup ();
-			popup.Activate (args.Event, tag_selection_widget.TagAtPosition ((int)args.Event.X, (int)args.Event.Y),
-					tag_selection_widget.TagHighlight ());
-			args.RetVal = true;
+			Tag tag = tag_selection_widget.TagAtPosition((int)args.Event.X, (int)args.Event.Y);
+			if (tag != null) {
+				TagPopup popup = new TagPopup ();
+				popup.Activate (args.Event, tag_selection_widget.TagAtPosition ((int)args.Event.X, (int)args.Event.Y),
+				tag_selection_widget.TagHighlight ());
+				args.RetVal = true;
+			}
 		}
 	}
 

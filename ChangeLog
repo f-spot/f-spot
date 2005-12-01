@@ -1,3 +1,8 @@
+2005-11-30  Daniel Svensson <daniel@nittionio.nu>
+
+	* src/MainWindow.cs: Don't show tag context menu unless over a tag,
+	prevents crasher, fixes bug #322290.
+
 2005-11-30  Gabriel Burt <gabriel.burt@gmail.com>
 
 	* src/TagCommands.cs: added ability to create tags and categories
