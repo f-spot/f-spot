@@ -290,7 +290,6 @@ namespace FSpot {
 				src_wp = Cms.ColorCIExyY.WhitePointFromTemperature ((int)t).ToXYZ ();
 				dest_wp = Cms.ColorCIExyY.WhitePointFromTemperature ((int)temp_scale.Value).ToXYZ ();
 				Cms.ColorCIELab dest_lab = dest_wp.ToLab (src_wp);
-				System.Console.WriteLine ("before {0}", dest_lab);
 				dest_lab.a += temptint_scale.Value;
 				System.Console.WriteLine ("after {0}", dest_lab);
 				dest_wp = dest_lab.ToXYZ (src_wp);
@@ -337,36 +336,36 @@ namespace FSpot {
 		
 		private void ResetWhiteBalance ()
 		{
-			temp_scale.Value = t;
-			temptint_scale.Value = tt;
+			temp_scale.Adjustment.Value = t;
+			temptint_scale.Adjustment.Value = tt;
 		}
 
 		private void ResetCorrections ()
 		{
-			exposure_scale.Value = e;
-			brightness_scale.Value = b;
-			contrast_scale.Value = c;
-			hue_scale.Value = h;			
-			sat_scale.Value = s;
+			exposure_scale.Adjustment.Value = e;
+			brightness_scale.Adjustment.Value = b;
+			contrast_scale.Adjustment.Value = c;
+			hue_scale.Adjustment.Value = h;			
+			sat_scale.Adjustment.Value = s;
 		}
 
 		private void HandleResetClicked (object sender, EventArgs args)
 		{
 			ResetCorrections ();
 			ResetWhiteBalance ();
-			brightness_scale.Adjustment.ChangeValue ();
+			//brightness_scale.Adjustment.ChangeValue ();
 		}
 		
 		private void HandleWPResetClicked (object sender, EventArgs args)
 		{
 			ResetWhiteBalance ();
-			brightness_scale.Adjustment.ChangeValue ();
+			//brightness_scale.Adjustment.ChangeValue ();
 		}
 
 		private void HandleExposureResetClicked (object sender, EventArgs args)
 		{
 			ResetCorrections ();
-			brightness_scale.Adjustment.ChangeValue ();
+			//brightness_scale.Adjustment.ChangeValue ();
 		}
 
 		private void HandleCancelClicked (object sender, EventArgs args)

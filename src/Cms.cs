@@ -561,11 +561,13 @@ namespace Cms {
 				tables = new GammaTable [] { gamma, line, line };
 			}
 
+			/*
 			System.Console.WriteLine ("e {0}", Exposure);
 			System.Console.WriteLine ("b {0}", Bright);
 			System.Console.WriteLine ("c {0}", Contrast);
 			System.Console.WriteLine ("h {0}", Hue);
 			System.Console.WriteLine ("s {0} {1} {2}", Saturation, src_wp, dest_wp);
+			*/
 			return new Profile (f_cmsCreateBCHSWabstractProfile (nLUTPoints,
 									     Exposure,
 									     0.0, //Bright,
