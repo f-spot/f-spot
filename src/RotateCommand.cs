@@ -44,7 +44,7 @@ public class RotateCommand {
 				jimg.SetOrientation (orientation);
 				jimg.SaveMetaData (original_path);
 			} else {
-				throw new ApplicationException ("Unable to rotate image type");
+				throw new ApplicationException ("Unable to rotate photo type");
 			}
 #endif					
 			Gdk.Pixbuf thumb = FSpot.ThumbnailGenerator.Create (original_path);
@@ -58,7 +58,7 @@ public class RotateCommand {
 			
 			HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, 
 								    MessageType.Warning, ButtonsType.Ok, 
-								    Mono.Posix.Catalog.GetString ("Error while Rotating Image."),
+								    Mono.Posix.Catalog.GetString ("Error while rotating photo."),
 								    longmsg);
 			md.Run ();
 			md.Destroy ();
@@ -71,7 +71,7 @@ public class RotateCommand {
 		ProgressDialog progress_dialog = null;
 		
 		if (items.Length > 1) {
-			progress_dialog = new ProgressDialog (Mono.Posix.Catalog.GetString ("Rotating pictures"),
+			progress_dialog = new ProgressDialog (Mono.Posix.Catalog.GetString ("Rotating photos"),
 							      ProgressDialog.CancelButtonType.Stop,
 							      items.Length, parent_window);
 		}
@@ -81,7 +81,7 @@ public class RotateCommand {
 		foreach (IBrowsableItem item in items) {
 			Photo p = item as Photo;
 			if (progress_dialog != null
-			    && progress_dialog.Update (String.Format (Mono.Posix.Catalog.GetString ("Rotating picture \"{0}\""), p.Name)))
+			    && progress_dialog.Update (String.Format (Mono.Posix.Catalog.GetString ("Rotating photo \"{0}\""), p.Name)))
 				break;
 
 
@@ -112,12 +112,12 @@ public class RotateCommand {
 			progress_dialog.Destroy ();
 		
 		if (readonly_count > 0){ 
-			string notice = Mono.Posix.Catalog.GetPluralString ("Unable to rotate image",  
-									    "Unable to rotate {0} images",  
+			string notice = Mono.Posix.Catalog.GetPluralString ("Unable to rotate photo",  
+									    "Unable to rotate {0} photos",  
 									    readonly_count);
 
-			string desc = Mono.Posix.Catalog.GetPluralString ("The image could not be rotated because it is on a read only file system or media such as a CDROM.  Please check the permissions and try again",  
-									  "{0} images could not be rotated because they are on a read only file system or media such as a CDROM.  Please check the permissions and try again",  readonly_count);
+			string desc = Mono.Posix.Catalog.GetPluralString ("The photo could not be rotated because it is on a read only file system or media such as a CDROM.  Please check the permissions and try again",  
+									  "{0} photos could not be rotated because they are on a read only file system or media such as a CDROM.  Please check the permissions and try again",  readonly_count);
 			
 			HigMessageDialog md = new HigMessageDialog (parent_window, 
 								    DialogFlags.DestroyWithParent,

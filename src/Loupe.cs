@@ -50,7 +50,7 @@ namespace FSpot {
 				photo.SaveVersion (final, create_version);
 			} catch (System.Exception e) {
 				string msg = Mono.Posix.Catalog.GetString ("Error saving sharpened photo");
-				string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save image {1}"),
+				string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
 							     e.Message, photo.Name);
 				
 				HigMessageDialog md = new HigMessageDialog (this, DialogFlags.DestroyWithParent, 

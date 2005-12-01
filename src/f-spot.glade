@@ -242,7 +242,7 @@
 	  <child>
 	    <widget class="GtkLabel" id="category_label">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Parent tag:</property>
+	      <property name="label" translatable="yes">Parent Tag:</property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -270,7 +270,7 @@
 	  <child>
 	    <widget class="GtkLabel" id="prompt_label">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Tag name:</property>
+	      <property name="label" translatable="yes">Tag Name:</property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -840,7 +840,7 @@
 	    <widget class="GtkTreeView" id="cameraList">
 	      <property name="width_request">300</property>
 	      <property name="visible">True</property>
-	      <property name="tooltip" translatable="yes">Select the camera you want to transfer files from.</property>
+	      <property name="tooltip" translatable="yes">Select the camera from which you want to transfer files</property>
 	      <property name="can_focus">True</property>
 	      <property name="headers_visible">True</property>
 	      <property name="rules_hint">True</property>
@@ -866,7 +866,7 @@
   <property name="width_request">500</property>
   <property name="height_request">500</property>
   <property name="visible">True</property>
-  <property name="title" translatable="yes">Select Files To Copy From Camera...</property>
+  <property name="title" translatable="yes">Select Photos to Copy From Camera...</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
@@ -1086,7 +1086,7 @@
 	      <child>
 		<widget class="GtkLabel" id="copy_files_to_label">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">Copy Files To: </property>
+		  <property name="label" translatable="yes">Copy Files to: </property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1237,7 +1237,7 @@
 		<widget class="GtkCheckButton" id="import_files_checkbox">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
-		  <property name="label" translatable="yes">Import files after copy.</property>
+		  <property name="label" translatable="yes">Import files after copy</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
@@ -1275,7 +1275,7 @@
 
 <widget class="GtkDialog" id="date_range_dialog">
   <property name="visible">True</property>
-  <property name="title" translatable="yes">dialog1</property>
+  <property name="title" translatable="yes">Set Date Range</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
@@ -1567,7 +1567,7 @@
 	  <child>
 	    <widget class="GtkLabel" id="prompt_label">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Tag name:</property>
+	      <property name="label" translatable="yes">Tag Name:</property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1595,7 +1595,7 @@
 	  <child>
 	    <widget class="GtkLabel" id="category_label">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Parent tag:</property>
+	      <property name="label" translatable="yes">Parent Tag:</property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1982,7 +1982,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label96">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;From Image&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">&lt;b&gt;From Photo&lt;/b&gt;</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">True</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -2090,7 +2090,7 @@
   <property name="width_request">300</property>
   <property name="height_request">300</property>
   <property name="visible">True</property>
-  <property name="title" translatable="yes">Select a tag...</property>
+  <property name="title" translatable="yes">Select a Tag...</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
@@ -2175,7 +2175,7 @@
 
 <widget class="GtkDialog" id="print_dialog">
   <property name="visible">True</property>
-  <property name="title" translatable="yes">dialog1</property>
+  <property name="title" translatable="yes">Print</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
@@ -2315,7 +2315,7 @@
 			      <child>
 				<widget class="GtkLabel" id="label30">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">PhotoSize:</property>
+				  <property name="label" translatable="yes">Photo Size:</property>
 				  <property name="use_underline">False</property>
 				  <property name="use_markup">False</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -2750,7 +2750,7 @@ Photo Details</property>
 			      <child>
 				<widget class="GtkLabel" id="label34">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">Will print Using: US Letter size on Generic Postscript</property>
+				  <property name="label" translatable="yes">Will print using: US Letter size on Generic Postscript</property>
 				  <property name="use_underline">False</property>
 				  <property name="use_markup">False</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -4348,7 +4348,7 @@ Photo Details</property>
 			    <widget class="GtkCheckButton" id="open_check">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Open destination when done exporting.</property>
+			      <property name="label" translatable="yes">Open destination when done exporting</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
@@ -5105,7 +5105,7 @@ Photo Details</property>
 					    <widget class="GtkCheckButton" id="checkbutton7">
 					      <property name="visible">True</property>
 					      <property name="can_focus">True</property>
-					      <property name="label" translatable="yes">Scale images to no larger than: </property>
+					      <property name="label" translatable="yes">Scale photos to no larger than: </property>
 					      <property name="use_underline">True</property>
 					      <property name="relief">GTK_RELIEF_NORMAL</property>
 					      <property name="focus_on_click">True</property>
@@ -5456,7 +5456,7 @@ Photo Details</property>
 					    <widget class="GtkCheckButton" id="checkbutton9">
 					      <property name="visible">True</property>
 					      <property name="can_focus">True</property>
-					      <property name="label" translatable="yes">Scale images to no larger than: </property>
+					      <property name="label" translatable="yes">Scale photos to no larger than: </property>
 					      <property name="use_underline">True</property>
 					      <property name="relief">GTK_RELIEF_NORMAL</property>
 					      <property name="focus_on_click">True</property>
@@ -5547,7 +5547,7 @@ Photo Details</property>
 					<widget class="GtkCheckButton" id="checkbutton10">
 					  <property name="visible">True</property>
 					  <property name="can_focus">True</property>
-					  <property name="label" translatable="yes">Strip Image Metadata</property>
+					  <property name="label" translatable="yes">Strip image metadata</property>
 					  <property name="use_underline">True</property>
 					  <property name="relief">GTK_RELIEF_NORMAL</property>
 					  <property name="focus_on_click">True</property>
@@ -5807,7 +5807,7 @@ Photo Details</property>
 					    <widget class="GtkCheckButton" id="checkbutton11">
 					      <property name="visible">True</property>
 					      <property name="can_focus">True</property>
-					      <property name="label" translatable="yes">Scale images to no larger than: </property>
+					      <property name="label" translatable="yes">Scale photos to no larger than: </property>
 					      <property name="use_underline">True</property>
 					      <property name="relief">GTK_RELIEF_NORMAL</property>
 					      <property name="focus_on_click">True</property>
@@ -5904,7 +5904,7 @@ Photo Details</property>
 					    <widget class="GtkCheckButton" id="checkbutton13">
 					      <property name="visible">True</property>
 					      <property name="can_focus">True</property>
-					      <property name="label" translatable="yes">Strip Image Metadata</property>
+					      <property name="label" translatable="yes">Strip image metadata</property>
 					      <property name="use_underline">True</property>
 					      <property name="relief">GTK_RELIEF_NORMAL</property>
 					      <property name="focus_on_click">True</property>
@@ -5923,7 +5923,7 @@ Photo Details</property>
 					    <widget class="GtkCheckButton" id="checkbutton14">
 					      <property name="visible">True</property>
 					      <property name="can_focus">True</property>
-					      <property name="label" translatable="yes">Export Tags</property>
+					      <property name="label" translatable="yes">Export tags</property>
 					      <property name="use_underline">True</property>
 					      <property name="relief">GTK_RELIEF_NORMAL</property>
 					      <property name="focus_on_click">True</property>
@@ -6492,7 +6492,7 @@ Photo Details</property>
 				<widget class="GtkCheckButton" id="tag_check">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">Export tags and categories</property>
+				  <property name="label" translatable="yes">Export tags</property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>
@@ -6616,7 +6616,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="import_from_camera1">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Import from C_amera...</property>
+		      <property name="label" translatable="yes">Import From C_amera...</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleImportFromCameraCommand" last_modification_time="Tue, 03 Aug 2004 16:20:28 GMT"/>
 		    </widget>
@@ -6639,7 +6639,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="create_version_menu_item">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Create _new version...</property>
+		      <property name="label" translatable="yes">Create _New Version...</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleCreateVersionCommand" last_modification_time="Tue, 09 Dec 2003 20:42:48 GMT"/>
 		    </widget>
@@ -6708,7 +6708,7 @@ Photo Details</property>
 			  <child>
 			    <widget class="GtkMenuItem" id="export_to_cd1">
 			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">E_xport To CD...</property>
+			      <property name="label" translatable="yes">E_xport to CD...</property>
 			      <property name="use_underline">True</property>
 			      <signal name="activate" handler="HandleExportToCD" last_modification_time="Wed, 12 Jan 2005 22:49:52 GMT"/>
 			    </widget>
@@ -6874,7 +6874,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="delete_from_drive">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">_Delete from Drive</property>
+		      <property name="label" translatable="yes">_Delete From Drive</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleDeleteCommand" last_modification_time="Fri, 06 Feb 2004 22:50:57 GMT"/>
 		    </widget>
@@ -7036,7 +7036,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="zoom_in">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Zoom _In</property>
+		      <property name="label" translatable="yes">Zoom _in</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleZoomIn" last_modification_time="Sat, 21 Aug 2004 16:37:10 GMT"/>
 		      <accelerator key="equal" modifiers="GDK_CONTROL_MASK" signal="activate"/>
@@ -7046,7 +7046,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="zoom_out">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Zoom _Out</property>
+		      <property name="label" translatable="yes">Zoom _out</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleZoomOut" last_modification_time="Sat, 21 Aug 2004 16:37:10 GMT"/>
 		      <accelerator key="minus" modifiers="GDK_CONTROL_MASK" signal="activate"/>
@@ -7062,7 +7062,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="arranged_by">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Arranged _By</property>
+		      <property name="label" translatable="yes">Arranged _by</property>
 		      <property name="use_underline">True</property>
 
 		      <child>
@@ -7239,7 +7239,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="attach_tag_to_selection">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">_Attach Tag To Selection</property>
+		      <property name="label" translatable="yes">_Attach Tag to Selection</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleAttachTagCommand" last_modification_time="Wed, 21 Jan 2004 05:44:42 GMT"/>
 		      <accelerator key="t" modifiers="GDK_CONTROL_MASK" signal="activate"/>
@@ -7884,7 +7884,7 @@ Photo Details</property>
 			  <child>
 			    <widget class="GtkCheckButton" id="remove_check">
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Write only these Items to CD</property>
+			      <property name="label" translatable="yes">Write only these photos to CD</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
@@ -7934,7 +7934,7 @@ Photo Details</property>
 	      <child>
 		<widget class="GtkLabel" id="label98">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Items to Burn&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">&lt;b&gt;Photos to Burn&lt;/b&gt;</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">True</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -9310,7 +9310,7 @@ Photo Details</property>
 	    <widget class="GtkCheckButton" id="recurse_check">
 	      <property name="visible">True</property>
 	      <property name="can_focus">True</property>
-	      <property name="label" translatable="yes">Include subdirectories.</property>
+	      <property name="label" translatable="yes">Include subdirectories</property>
 	      <property name="use_underline">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
@@ -9543,7 +9543,7 @@ Photo Details</property>
 		<widget class="GtkCheckButton" id="attach_check">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
-		  <property name="label" translatable="yes">Attach Tag:</property>
+		  <property name="label" translatable="yes">Attach tag:</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
@@ -9989,7 +9989,7 @@ Photo Details</property>
 			    <widget class="GtkCheckButton" id="open_check">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Open destination when done exporting.</property>
+			      <property name="label" translatable="yes">Open destination when done exporting</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
@@ -10093,7 +10093,7 @@ Photo Details</property>
 			    <widget class="GtkRadioButton" id="original_radio">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Use Original.</property>
+			      <property name="label" translatable="yes">Create gallery using "Original"</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
@@ -10112,7 +10112,7 @@ Photo Details</property>
 			    <widget class="GtkRadioButton" id="static_radio">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Use static HTML.</property>
+			      <property name="label" translatable="yes">Create standalone web gallery</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
@@ -10132,7 +10132,7 @@ Photo Details</property>
 			    <widget class="GtkRadioButton" id="plain_radio">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Plain Files.</property>
+			      <property name="label" translatable="yes">Save the files only</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
@@ -12032,7 +12032,7 @@ Photo Details</property>
 			<widget class="GtkCheckButton" id="metadata_check">
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">Write _Metadata to File</property>
+			  <property name="label" translatable="yes">Write _metadata to file</property>
 			  <property name="use_underline">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>

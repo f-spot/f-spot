@@ -122,7 +122,7 @@ namespace FSpot {
 		      
 		private void RunGnomePrintDialog ()
 		{
-			Gnome.PrintDialog gnome_dialog = new Gnome.PrintDialog (print_job, "Print Images", 0);
+			Gnome.PrintDialog gnome_dialog = new Gnome.PrintDialog (print_job, "Print Photos", 0);
 			int response = gnome_dialog.Run ();
 			
 			switch (response) {

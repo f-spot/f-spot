@@ -878,7 +878,7 @@ namespace FSpot.Png {
 			}
 
 			IhdrChunk ihdr = (IhdrChunk) Chunks [0];
-			System.Console.WriteLine ("Attempting to to inflate image {0}.{1}({2}, {3})", ihdr.Color, ihdr.Depth, ihdr.Width, ihdr.Height);
+			System.Console.WriteLine ("Attempting to to inflate photo {0}.{1}({2}, {3})", ihdr.Color, ihdr.Depth, ihdr.Width, ihdr.Height);
 			ScanlineDecoder decoder = new ScanlineDecoder (ci, ihdr.GetScanlineLength (0), ihdr.Height);
 			decoder.Fill ();
 			//Gdk.Pixbuf pixbuf = decoder.GetPixbuf ();

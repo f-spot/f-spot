@@ -235,7 +235,7 @@ public class PhotoView : EventBox {
 		int x, y, width, height;
 		if (! photo_view.GetSelection (out x, out y, out width, out height)) {
 			string msg = Mono.Posix.Catalog.GetString ("No selection available");
-			string desc = Mono.Posix.Catalog.GetString ("This tool requires an active selection. Please select a region of the image and try the operation again");
+			string desc = Mono.Posix.Catalog.GetString ("This tool requires an active selection. Please select a region of the photo and try the operation again");
 			
 			HigMessageDialog md = new HigMessageDialog ((Gtk.Window)this.Toplevel, DialogFlags.DestroyWithParent, 
 								    Gtk.MessageType.Error, ButtonsType.Ok, 
@@ -280,7 +280,7 @@ public class PhotoView : EventBox {
 			query.MarkChanged (Item.Index);
 		} catch (System.Exception e) {
 			string msg = Mono.Posix.Catalog.GetString ("Error editing photo");
-			string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save image {1}"),
+			string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
 						     e.Message, photo.Name);
 
 			HigMessageDialog md = new HigMessageDialog ((Gtk.Window)this.Toplevel, DialogFlags.DestroyWithParent, 
@@ -467,12 +467,12 @@ public class PhotoView : EventBox {
 		UpdateButtonSensitivity ();
 
 		vbox.ShowAll ();
-		tips.SetTip (crop_button, Mono.Posix.Catalog.GetString ("Crop image to selected area"), "so is this one");
-		tips.SetTip (redeye_button, Mono.Posix.Catalog.GetString ("Remove redeye from selected area"), "this is one too");
-		tips.SetTip (color_button, Mono.Posix.Catalog.GetString ("Adjust the image colors"), "This is a tip");
-		tips.SetTip (constraints_option_menu, Mono.Posix.Catalog.GetString ("Constrain the aspect ratio of the selection"), "This is a tip");
-		tips.SetTip (display_next_button, Mono.Posix.Catalog.GetString ("Next image"), "This is a tip");
-		tips.SetTip (display_previous_button, Mono.Posix.Catalog.GetString ("Previous image"), "This is a tip");
+		tips.SetTip (crop_button, Mono.Posix.Catalog.GetString ("Crop photo to selected area"), "");
+		tips.SetTip (redeye_button, Mono.Posix.Catalog.GetString ("Remove redeye from selected area"), "");
+		tips.SetTip (color_button, Mono.Posix.Catalog.GetString ("Adjust the photo colors"), "");
+		tips.SetTip (constraints_option_menu, Mono.Posix.Catalog.GetString ("Constrain the aspect ratio of the selection"), "");
+		tips.SetTip (display_next_button, Mono.Posix.Catalog.GetString ("Next photo"), "");
+		tips.SetTip (display_previous_button, Mono.Posix.Catalog.GetString ("Previous photo"), "");
 
 	}
 

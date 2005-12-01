@@ -41,7 +41,7 @@ namespace FSpot {
 			warning_image.Show ();
 			warning_box.PackStart (warning_image, false, false, 0);
 			
-			Gtk.Label warning = new Gtk.Label (Mono.Posix.Catalog.GetString ("No matching images found "));
+			Gtk.Label warning = new Gtk.Label (Mono.Posix.Catalog.GetString ("No matching photos found "));
 			warning_box.PackStart (warning, false, false, 0);
 			warning_box.ShowAll ();
 			warning_box.Spacing = 6;

@@ -184,9 +184,9 @@ namespace FSpot {
 					// handle multiple items however it wants.
 					msg = String.Format ("<tr><td valign=top align=center bgcolor=\"{0}\">" 
 							     + "<b>{1}</b></td></tr>", ig,
-							     Mono.Posix.Catalog.GetString ("No active image"));
+							     Mono.Posix.Catalog.GetString ("No active photo"));
 				} else if (missing) {
-					string text = String.Format (Mono.Posix.Catalog.GetString ("The image \"{0}\" does not exist"), photo.DefaultVersionUri);
+					string text = String.Format (Mono.Posix.Catalog.GetString ("The photo \"{0}\" does not exist"), photo.DefaultVersionUri);
 					msg = String.Format ("<tr><td valign=top align=center bgcolor=\"{0}\">" 
 							     + "<b>{1}</b></td></tr>", ig, text);
 				} else {

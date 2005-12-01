@@ -26,7 +26,7 @@ public class StockIcons {
 			FromDef ("f-spot-browse", Catalog.GetString ("Browse"), 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-camera", Catalog.GetString ("Camera"), 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-crop", Catalog.GetString ("Crop"), 0, Gdk.ModifierType.ShiftMask, null),
-			FromDef ("f-spot-edit-image", Catalog.GetString ("Edit Image"), 0, Gdk.ModifierType.ShiftMask, null),
+			FromDef ("f-spot-edit-image", Catalog.GetString ("Edit Photo"), 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-fullscreen", Catalog.GetString ("Fullscreen"), 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-slideshow", Catalog.GetString ("Slideshow"), 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-logo", Catalog.GetString ("Logo"), 0, Gdk.ModifierType.ShiftMask, null),

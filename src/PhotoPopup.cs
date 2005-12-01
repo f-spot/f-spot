@@ -27,7 +27,7 @@ public class PhotoPopup {
 		Gtk.Menu popup_menu = new Gtk.Menu ();
 		bool have_selection = count > 0;
 
-		GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Copy Image Location"), 
+		GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Copy Photo Location"), 
 				      new EventHandler (MainWindow.Toplevel.HandleCopyLocation), have_selection);
 		
 		GtkUtil.MakeMenuSeparator (popup_menu);

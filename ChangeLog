@@ -1,3 +1,9 @@
+2005-11-30  Gabriel Burt <gabriel.burt@gmail.com>
+
+	* src/f-spot.glade and many others: Change 'image' to 'photo', apply HIG
+	guidelines for capitalization, reword some labels. Many changes based
+	on patch from Alexandre Prokoudine, alexandre.prokoudine@gmail.com
+
 2005-12-01  Larry Ewing  <lewing@novell.com>
 
 	* src/ColorDialog.cs: clean up adjusment values slightly
@@ -26,7 +32,7 @@
 	
 	* src/MainWindow.cs: new tags in the type-to-find bar are created as
 	Category not Tag objects so they can have children.
-
+	
 2005-11-30  Larry Ewing  <lewing@novell.com>
 
 	* src/MainWindow.cs: show the prefernce dialog.
@@ -101,7 +107,7 @@
 	* src/TagCommands.cs: do case-insenstive matching to prevent duplicate tags.
 	
 	* src/TagSelectionWidget.cs: Make tag names editable inline
-
+	
 2005-11-24  Miguel de Icaza  <miguel@novell.com>
 
 	* src/MainWindow.cs: Do not crash if there is an error deleting

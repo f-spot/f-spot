@@ -393,11 +393,7 @@ public class TagCommands {
 		{
 			this.CreateDialog ("edit_icon_dialog");
 
-			if (t is Category) {
-				this.Dialog.Title = String.Format (Mono.Posix.Catalog.GetString ("Edit icon for category {0}"), t.Name);
-			} else {
-				this.Dialog.Title = String.Format (Mono.Posix.Catalog.GetString ("Edit icon for tag {0}"), t.Name);
-			}
+			this.Dialog.Title = String.Format (Mono.Posix.Catalog.GetString ("Edit Icon for Tag {0}"), t.Name);
 
 			preview_image.Pixbuf = t.Icon;
 

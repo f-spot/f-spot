@@ -192,7 +192,7 @@ namespace FSpot {
 				((PhotoQuery)view.Query).Commit (view.Item.Index);
 			} catch (System.Exception e) {
 				string msg = Mono.Posix.Catalog.GetString ("Error saving adjusted photo");
-				string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save image {1}"),
+				string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
 							     e.Message, photo.Name);
 				
 				HigMessageDialog md = new HigMessageDialog ((Gtk.Window)Dialog.Toplevel, DialogFlags.DestroyWithParent, 
