@@ -301,7 +301,7 @@ namespace FSpot {
 			g.Fill ();
 
 			g.Operator = Operator.Over;
-			g.Matrix = Matrix.Identity;
+			g.Matrix = new Matrix ();
 			g.Translate (cx, cy);
 			if (source != null)
 				SetSourcePixbuf (g, source, -source.Width / 2, -source.Height / 2);
