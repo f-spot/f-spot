@@ -9263,7 +9263,7 @@ Photo Details</property>
 		      <child>
 			<widget class="GtkLabel" id="label157">
 			  <property name="visible">True</property>
-			  <property name="label">Finish Import</property>
+			  <property name="label" translatable="yes">Import</property>
 			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>

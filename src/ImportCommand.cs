@@ -391,10 +391,13 @@ public class ImportCommand : FSpot.GladeDialog {
 	IconView tray;
 	ImportBackend importer;
 
+	string loading_string;
+
 	public ImportCommand (Gtk.Window mw)
 	{
 		main_window = mw;
 		step = new FSpot.Delay (10, new GLib.IdleHandler (Step));
+		loading_string = Mono.Posix.Catalog.GetString ("Loading {0} of {1}");
 	}
 
 	private void HandleDialogResponse (object obj, ResponseArgs args)
@@ -411,7 +414,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		if (progress_bar == null)
 			return;
 
-		progress_bar.Text = String.Format ("Importing {0} of {1}", count, total);
+		progress_bar.Text = String.Format (loading_string, count, total);
 		progress_bar.Fraction = (double) count / System.Math.Max (total, 1);
 	}
 
@@ -449,7 +452,9 @@ public class ImportCommand : FSpot.GladeDialog {
 			collection.Add (photo);
 		
 			//grid.AddThumbnail (thumbnail);
-			UpdateProgressBar (count, total);
+			if (count < total)
+				UpdateProgressBar (count + 1, total);
+
 			thumbnail.Dispose ();
 		}
 
@@ -477,9 +482,11 @@ public class ImportCommand : FSpot.GladeDialog {
 
 		this.importer = imp;
 		AllowFinish = false;
-
+		
 		total = importer.Prepare ();
-		UpdateProgressBar (0, total);
+
+		if (total > 0)
+			UpdateProgressBar (1, total);
 		
 		collection.Clear ();
 		collection.Capacity = total;
@@ -508,6 +515,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		if (cancelled)
 			return 0;
 		else {
+			progress_bar.Text = Mono.Posix.Catalog.GetString ("Done Loading");
 			AllowFinish = true;
 			return total;
 		}

@@ -3,6 +3,12 @@
 	* src/f-spot.glade and many others: Change 'image' to 'photo', apply HIG
 	guidelines for capitalization, reword some labels. Many changes based
 	on patch from Alexandre Prokoudine, alexandre.prokoudine@gmail.com
+	
+	* src/ImportCommand.cs: Change progress bar text to "Loading x of N"
+	and to "Done Loading" when done. Fix off-by-one error.
+
+	* src/f-spot.glade: Change "Finish Importing" to "Import" and make it
+	translatable.
 
 2005-12-01  Larry Ewing  <lewing@novell.com>
 
