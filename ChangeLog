@@ -1,5 +1,7 @@
 2005-12-02  Larry Ewing  <lewing@novell.com>
 
+	* src/ColorDialog.cs: fix the default brightness value.
+
 	* src/Loupe.cs: make it build with mono 1.1.10 class libraries.
 
 	* src/Mail/*: import then modify the mono SmtpMail and

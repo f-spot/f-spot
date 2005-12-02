@@ -266,7 +266,7 @@ namespace FSpot {
 		}
 
 		private const double e = 0.0;
-		private const double b = 1.0;
+		private const double b = 0.0;
 		private const double c = 1.0;
 		private const double h = 0.0;
 		private const double s = 0.0;
