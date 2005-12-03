@@ -35,7 +35,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		if (result == 0)
 			return 0;
 		else 
-			result = CompareImportDate (photo1, photo2);
+			result = CompareDate (photo1, photo2);
 
 		if (result == 0)
 			result = CompareCurrentDir (photo1, photo2);
@@ -49,7 +49,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		return result;
 	}
 
-	private static int CompareImportDate (Photo photo1, Photo photo2)
+	private static int CompareDate (Photo photo1, Photo photo2)
 	{
 		return DateTime.Compare (photo1.time, photo2.time);
 	}
@@ -89,7 +89,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 	private string directory_path;
 	private string name;
 
-	public string Path {
+	private string Path {
 		get {
 			return directory_path + "/" + name;
 		}
@@ -210,7 +210,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 			return null;
 	}
 
-	public string GetVersionPath (uint version_id)
+        public string GetVersionPath (uint version_id)
 	{
 		if (version_id == OriginalVersionId)
 			return Path;
@@ -462,6 +462,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 	public Photo (uint id, uint unix_time, string path)
 		: this (id, unix_time,
+
 			System.IO.Path.GetDirectoryName (path),
 			System.IO.Path.GetFileName (path))
 	{
@@ -470,10 +471,9 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 }
 
 public class PhotoStore : DbStore {
-
 	TagStore tag_store;
+	
 	public static ThumbnailFactory ThumbnailFactory = new ThumbnailFactory (ThumbnailSize.Large);
-
 
 	// FIXME this is a hack.  Since we don't have Gnome.ThumbnailFactory.SaveThumbnail() in
 	// GTK#, and generate them by ourselves directly with Gdk.Pixbuf, we have to make sure here
@@ -580,10 +580,10 @@ public class PhotoStore : DbStore {
 		command.Connection = Connection;
 
 		command.CommandText =
-			"CREATE TABLE photo_versions (      " +
-			"	photo_id      INTEGER,      " +
-			"       version_id    INTEGER,      " +
-			"       name          STRING        " +
+			"CREATE TABLE photo_versions (    " +
+			"       photo_id        INTEGER,  " +
+			"       version_id      INTEGER,  " +
+			"       name            STRING,   " +
 			")";
 
 		command.ExecuteNonQuery ();
@@ -606,7 +606,7 @@ public class PhotoStore : DbStore {
 
 		command.CommandText = String.Format ("INSERT INTO photos (time, " +
 						     "directory_path, name, description, default_version_id) " +
-						     "       VALUES ({0}, '{1}', '{2}', '{3}', {4})                                       ",
+						     "       VALUES ({0}, '{1}', '{2}', '{3}', {4})",
 						     unix_time,
 						     SqlString (System.IO.Path.GetDirectoryName (newPath)),
 						     SqlString (System.IO.Path.GetFileName (newPath)),
@@ -621,7 +621,9 @@ public class PhotoStore : DbStore {
 		AddToCache (photo);
 		photo.Loaded = true;
 
-		thumbnail = GenerateThumbnail (newPath);
+		thumbnail = GenerateThumbnail (newPath);		
+		EmitAdded (photo);
+
 		return photo;
 	}
 
@@ -636,7 +638,6 @@ public class PhotoStore : DbStore {
 		while (reader.Read ()) {
 			uint version_id = Convert.ToUInt32 (reader [0]);
 			string name = reader[1].ToString ();
-
 			photo.AddVersionUnsafely (version_id, name);
 		}
 
@@ -666,7 +667,7 @@ public class PhotoStore : DbStore {
 						     "FROM photo_versions ");
 		
 		SqliteDataReader reader = command.ExecuteReader ();
-
+		
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader [0]);
 			Photo photo = LookupInCache (id) as Photo;
@@ -687,6 +688,15 @@ public class PhotoStore : DbStore {
 				
 				photo.AddVersionUnsafely (version_id, name);
 			}
+
+			/*
+			string directory_path = null;
+			if (reader [3] != null)
+				directory_path = reader [3].ToString ();
+			System.Console.WriteLine ("directory_path = {0}", directory_path);
+			*/
+
+
 		}
 	}
 
@@ -762,9 +772,9 @@ public class PhotoStore : DbStore {
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
 		command.CommandText = String.Format ("SELECT tag_id, version_id, name " +
-						     "FROM photo_tags, photo_versions " +
-						     "WHERE photo_tags.photo_id = photo_versions.photo_id " +
-						     "AND photo_tags.photo_id = {0}", photo.Id);
+						     "  FROM photo_tags, photo_versions " +
+						     " WHERE photo_tags.photo_id = photo_versions.photo_id " +
+						     "   AND photo_tags.photo_id = {0}", photo.Id);
 
 		SqliteDataReader reader = command.ExecuteReader ();
 
@@ -887,6 +897,8 @@ public class PhotoStore : DbStore {
 
 	public void Remove (Photo []items)
 	{
+		EmitRemoved (items);
+
 		StringBuilder query_builder = new StringBuilder ();
 		StringBuilder tv_query_builder = new StringBuilder ();
 		for (int i = 0; i < items.Length; i++) {
@@ -927,31 +939,7 @@ public class PhotoStore : DbStore {
 
 	public override void Remove (DbItem item)
 	{
-		RemoveFromCache (item);
-
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-
-		command.CommandText = String.Format ("DELETE FROM photos WHERE id = {0}", item.Id);
-		command.ExecuteNonQuery ();
-
-		command.Dispose ();
-
-		command = new SqliteCommand ();
-		command.Connection = Connection;
-
-		command.CommandText = String.Format ("DELETE FROM photo_tags WHERE photo_id = {0}", item.Id);
-		command.ExecuteNonQuery ();
-
-		command.Dispose ();
-
-		command = new SqliteCommand ();
-		command.Connection = Connection;
-
-		command.CommandText = String.Format ("DELETE FROM photo_versions WHERE photo_id = {0}", item.Id);
-		command.ExecuteNonQuery ();
-
-		command.Dispose ();
+		Remove (new Photo [] { (Photo)item });
 	}
 
 	public override void Commit (DbItem item)
@@ -1011,6 +999,8 @@ public class PhotoStore : DbStore {
 			command.ExecuteNonQuery ();
 			command.Dispose ();
 		}
+
+		EmitChanged (item);
 	}
 	
 	public class DateRange 

@@ -82,20 +82,35 @@ public abstract class DbStore {
 
 	protected void EmitAdded (DbItem item)
 	{
+		EmitAdded (new DbItem [] { item });
+	}
+
+	protected void EmitAdded (DbItem [] items)
+	{
 		if (ItemsAdded != null)
-			ItemsAdded (this, new DbItemEventArgs (item));
+			ItemsAdded (this, new DbItemEventArgs (items));
 	}
 
 	protected void EmitChanged (DbItem item)
 	{
+		EmitChanged (new DbItem [] { item });
+	}
+
+	protected void EmitChanged (DbItem [] items)
+	{
 		if (ItemsChanged != null)
-			ItemsChanged (this, new DbItemEventArgs (item));
+			ItemsChanged (this, new DbItemEventArgs (items));
 	}
 
 	protected void EmitRemoved (DbItem item)
 	{
+		EmitRemoved (new DbItem [] { item });
+	}
+
+	protected void EmitRemoved (DbItem [] items)
+	{
 		if (ItemsRemoved != null)
-			ItemsRemoved (this, new DbItemEventArgs (item));
+			ItemsRemoved (this, new DbItemEventArgs (items));
 	}
 
 	public bool CacheEmpty {
