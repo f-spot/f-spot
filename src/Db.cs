@@ -20,9 +20,34 @@ public class DbItem {
 
 
 // A Store maps to a SQL table.  We have separate stores (i.e. SQL tables) for tags, photos and imports.
+public class DbItemEventArgs {
+	private DbItem [] items;
+	
+	public DbItem [] Items {
+		get { return items; }
+	}
+	
+	public DbItemEventArgs (DbItem [] items)
+	{
+		this.items = items;
+	}
+	
+	public DbItemEventArgs (DbItem item)
+	{
+		this.items = new DbItem [] { item };
+	}
+}
+
+public delegate void ItemsAddedHandler (object sender, DbItemEventArgs args);
+public delegate void ItemsRemovedHandler (object sender, DbItemEventArgs args);
+public delegate void ItemsChangedHandler (object sender, DbItemEventArgs args);
 
 public abstract class DbStore {
 	// DbItem cache.
+
+	public event ItemsAddedHandler   ItemsAdded;
+	public event ItemsRemovedHandler ItemsRemoved;
+	public event ItemsChangedHandler ItemsChanged;
 
 	protected Hashtable item_cache;
 	bool cache_is_immortal;
@@ -53,6 +78,24 @@ public abstract class DbStore {
 	protected void RemoveFromCache (DbItem item)
 	{
 		item_cache.Remove (item.Id);
+	}
+
+	protected void EmitAdded (DbItem item)
+	{
+		if (ItemsAdded != null)
+			ItemsAdded (this, new DbItemEventArgs (item));
+	}
+
+	protected void EmitChanged (DbItem item)
+	{
+		if (ItemsChanged != null)
+			ItemsChanged (this, new DbItemEventArgs (item));
+	}
+
+	protected void EmitRemoved (DbItem item)
+	{
+		if (ItemsRemoved != null)
+			ItemsRemoved (this, new DbItemEventArgs (item));
 	}
 
 	public bool CacheEmpty {

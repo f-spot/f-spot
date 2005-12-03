@@ -424,6 +424,31 @@ public class TagStore : DbStore {
 			CreateTable ();
 			CreateDefaultTags ();
 		}
+		
+		ItemsAdded += HandleItemsAdded;
+		ItemsChanged += HandleItemsChanged;
+		ItemsRemoved += HandleItemsRemoved;
+	}
+
+	private void HandleItemsAdded (object sender, DbItemEventArgs args)
+	{
+		foreach (DbItem item in args.Items)
+			if (TagCreated != null)
+				TagCreated((Tag)item);	
+	}
+
+	private void HandleItemsChanged (object sender, DbItemEventArgs args)
+	{
+		foreach (DbItem item in args.Items)
+			if (TagChanged != null)
+				TagChanged((Tag)item);	
+	}
+
+	private void HandleItemsRemoved (object sender, DbItemEventArgs args)
+	{
+		foreach (DbItem item in args.Items)
+			if (TagDeleted != null)
+				TagDeleted ((Tag)item);	
 	}
 
 	private uint InsertTagIntoTable (Category parent_category, string name, bool is_category)
@@ -454,9 +479,10 @@ public class TagStore : DbStore {
 		uint id = InsertTagIntoTable (category, name, false);
 
 		Tag tag = new Tag (category, id, name);
+
 		AddToCache (tag);
-		if (TagCreated != null)
-			TagCreated(tag);	
+		EmitAdded (tag);
+		
 		return tag;
 	}
 
@@ -468,9 +494,10 @@ public class TagStore : DbStore {
 		uint id = InsertTagIntoTable (parent_category, name, true);
 
 		Category new_category = new Category (parent_category, id, name);
+
 		AddToCache (new_category);
-		if (TagCreated != null)
-			TagCreated(new_category);
+		EmitAdded (new_category);
+
 		return new_category;
 	}
 
@@ -501,7 +528,7 @@ public class TagStore : DbStore {
 		command.ExecuteNonQuery ();
 
 		command.Dispose ();
-		TagDeleted((Tag)item);
+		EmitRemoved (item);
 	}
 
 
@@ -540,8 +567,7 @@ public class TagStore : DbStore {
 
 		command.Dispose ();
 		
-		if (TagChanged != null)
-			TagChanged(tag);
+		EmitChanged (tag);
 	}
 
 
