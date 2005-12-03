@@ -515,7 +515,8 @@ public class ImportCommand : FSpot.GladeDialog {
 		if (cancelled)
 			return 0;
 		else {
-			progress_bar.Text = Mono.Posix.Catalog.GetString ("Done Loading");
+			if (progress_bar != null)
+				progress_bar.Text = Mono.Posix.Catalog.GetString ("Done Loading");
 			AllowFinish = true;
 			return total;
 		}
@@ -781,10 +782,20 @@ public class ImportCommand : FSpot.GladeDialog {
 		return ImportFromPaths (store, paths, null);
 	}
 
+    public int ImportFromPaths (PhotoStore store, string [] paths, bool copy)
+    {
+        return ImportFromPaths (store, paths, null, copy);
+    }
+
 	public int ImportFromPaths (PhotoStore store, string [] paths, Tag [] tags)
 	{
+		return ImportFromPaths (store, paths, tags, false);
+	}
+	
+	public int ImportFromPaths (PhotoStore store, string [] paths, Tag [] tags, bool copy)
+	{
 		collection = new FSpot.PhotoList (new Photo [0]);
-		return DoImport (new FileImportBackend (store, paths, false, true, tags));
+		return DoImport (new FileImportBackend (store, paths, copy, true, tags));
 	}
 	
 #if TEST_IMPORT_COMMAND

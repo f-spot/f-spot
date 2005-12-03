@@ -908,10 +908,10 @@ public class MainWindow {
 		}
 	}
 
-	public void ImportUriList (UriList list) 
+	public void ImportUriList (UriList list, bool copy) 
 	{
 		ImportCommand command = new ImportCommand (main_window);
-		if (command.ImportFromPaths (db.Photos, list.ToLocalPaths ()) > 0) {
+		if (command.ImportFromPaths (db.Photos, list.ToLocalPaths (), copy) > 0) {
 			UpdateQuery ();
 		}
 	}
@@ -956,7 +956,7 @@ public class MainWindow {
 				return;
 
 			UriList list = new UriList (args.SelectionData);
-			ImportUriList (list);
+			ImportUriList (list, (args.Context.Action & Gdk.DragAction.Copy) != 0);
 			break;
 		}
 

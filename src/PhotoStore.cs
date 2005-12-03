@@ -590,9 +590,15 @@ public class PhotoStore : DbStore {
 		command.Dispose ();
 	}
 
+
 	public Photo Create (string path, out Pixbuf thumbnail)
 	{
-		FSpot.ImageFile img = FSpot.ImageFile.Create (path);
+		return Create (path, path, out thumbnail);
+	}
+
+	public Photo Create (string newPath, string origPath, out Pixbuf thumbnail)
+	{
+		FSpot.ImageFile img = FSpot.ImageFile.Create (origPath);
 		uint unix_time = DbUtils.UnixTimeFromDateTime (img.Date);
 		string description = img.Description != null ? img.Description : "";
 		SqliteCommand command = new SqliteCommand ();
@@ -602,8 +608,8 @@ public class PhotoStore : DbStore {
 						     "directory_path, name, description, default_version_id) " +
 						     "       VALUES ({0}, '{1}', '{2}', '{3}', {4})                                       ",
 						     unix_time,
-						     SqlString (System.IO.Path.GetDirectoryName (path)),
-						     SqlString (System.IO.Path.GetFileName (path)),
+						     SqlString (System.IO.Path.GetDirectoryName (newPath)),
+						     SqlString (System.IO.Path.GetFileName (newPath)),
 						     SqlString (description),
 						     Photo.OriginalVersionId);
 
@@ -611,11 +617,11 @@ public class PhotoStore : DbStore {
 		command.Dispose ();
 
 		uint id = (uint) Connection.LastInsertRowId;
-		Photo photo = new Photo (id, unix_time, path);
+		Photo photo = new Photo (id, unix_time, newPath);
 		AddToCache (photo);
 		photo.Loaded = true;
 
-		thumbnail = GenerateThumbnail (path);
+		thumbnail = GenerateThumbnail (newPath);
 		return photo;
 	}
 

@@ -140,12 +140,12 @@ public class FileImportBackend : ImportBackend {
 		try {
 			if (copy) {
 				string dest = ChooseLocation (path);
-				
 				System.IO.File.Copy (path, dest);
+				photo = store.Create (dest, path, out thumbnail);
 				path = dest;
+			} else {
+                photo = store.Create (path, out thumbnail);
 			}
-			
-			photo = store.Create (path, out thumbnail);
 			
 			if (tags != null) {
 				foreach (Tag t in tags) {

@@ -5,6 +5,29 @@
 	* src/TagStore.cs: refactor the event to piggyback on the DbStore
 	events (for now).
 
+2005-12-02  Aaron Bockover  <aaron@aaronbock.net>
+
+	* src/PhotoStore.cs (Create): Accept a new/destination path and an
+	orignal/source path; create the file based on the original path and
+	perform all other actions based on the new path; this forces metadata
+	parsing to be done on the original path, meaning mtime will be used from
+	the orginal and not the copy as date/time in case the photo lacks
+	EXIF date/time information
+
+	* src/FileImportBackend.cs (Step): if photo is to be copied and imported, 
+	pass both the original and the new path to PhotoStore.Create
+	
+	* src/ImportCommand.cs: Added two overloaded ImportFromPaths methods that
+	will preserve existing calls but also allow a 'copy' boolean to be passed;
+	for preserved calls, the default copy value is false
+
+	* src/MainWindow.cs: Added a 'copy' parameter to ImportUriList; set
+	copy option to true if DnD drag action contains the DragAction.Copy flag
+
+	* src/ImportCommand.cs (DoImport):  guard against a NullReferenceException
+	before setting progress_bar.Text; if the import was invoked from DnD,
+	progress_bar won't exist
+
 2005-12-02  Larry Ewing  <lewing@novell.com>
 
 	* src/MailDialog.cs: start new dialog to use the smtp transport
