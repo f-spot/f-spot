@@ -298,30 +298,44 @@ namespace FSpot {
 			switch (args.Event.Key) {
 			case Gdk.Key.Page_Up:
 			case Gdk.Key.KP_Page_Up:
+			case Gdk.Key.Up:
+			case Gdk.Key.KP_Up:
+			case Gdk.Key.Left:
+			case Gdk.Key.KP_Left:
 				this.Item.MovePrevious ();
 				break;
 			case Gdk.Key.Home:
+			case Gdk.Key.KP_Home:
 				this.Item.Index = 0;
 				break;
 			case Gdk.Key.End:
+			case Gdk.Key.KP_End:
 				this.Item.Index = this.Query.Count - 1;
 				break;
-			case Gdk.Key.space:
 			case Gdk.Key.Page_Down:
 			case Gdk.Key.KP_Page_Down:
+			case Gdk.Key.Down:
+			case Gdk.Key.KP_Down:
+			case Gdk.Key.Right:
+			case Gdk.Key.KP_Right:
+			case Gdk.Key.space:
+			case Gdk.Key.KP_Space:
 				this.Item.MoveNext ();
 				break;
 			case Gdk.Key.Key_0:
+			case Gdk.Key.KP_0:
 				this.Fit = true;
 				break;
 			case Gdk.Key.Key_1:
+			case Gdk.Key.KP_1:
 				this.Zoom =  1.0;
 				break;
 			case Gdk.Key.Key_2:
+			case Gdk.Key.KP_2:
 				this.Zoom = 2.0;
 				break;
-			case Gdk.Key.KP_Subtract:
 			case Gdk.Key.minus:
+			case Gdk.Key.KP_Subtract:
 				this.Zoom /= ZoomMultipler;
 				break;
 			case Gdk.Key.plus:
