@@ -3,6 +3,7 @@ namespace FSpot {
 		PhotoQuery query;
 		TagView tag_view;
 		Gtk.Label label;
+		Gtk.Label untagged;
 		Gtk.HBox warning_box;
 		Gtk.Button clear_button;
 		TagSelectionWidget selector;
@@ -30,10 +31,14 @@ namespace FSpot {
 			label.Show ();
 			hbox.PackStart (label, false, false, 0);
 			
+			untagged = new Gtk.Label (Mono.Posix.Catalog.GetString ("Untagged photos"));
+			untagged.Visible = false;
+			hbox.PackStart (untagged, false, false, 0);
+
 			tag_view = new TagView ();
 			tag_view.Show ();
 			hbox.PackStart (tag_view, false, false, 0);
-
+			
 			warning_box = new Gtk.HBox ();
 			warning_box.PackStart (new Gtk.Label (""));
 			
@@ -52,6 +57,7 @@ namespace FSpot {
 		
 		public void HandleClearButtonClicked (object sender, System.EventArgs args)
 		{
+			query.Untagged = false;
 			selector.TagSelection = new Tag [] { };
 		}
 
@@ -61,10 +67,11 @@ namespace FSpot {
 			
 			Tag [] tags = query.Tags;
 			tag_view.Tags = tags;
-			if (tags != null && tags.Length > 0)
+			if ((tags != null && tags.Length > 0) || query.Untagged)
 				active_search = true;
 			
 			this.Visible = active_search;
+			untagged.Visible = query.Untagged;
 			warning_box.Visible = (query.Count < 1);
 		}
 	}

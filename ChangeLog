@@ -14,6 +14,11 @@
 	
 	* f-spot.desktop.in.in: Change title and tooltip to be more
 	informative.
+	
+	* src/QueryDisplay.cs: Add label for when finding untagged photos
+	
+	* src/PhotoQuery.cs: Make finding untagged mutually exclusive of
+	setting a range or tag selection.
 
 2005-12-03  Gabriel Burt <gabriel.burt@gmail.com>
 
