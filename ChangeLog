@@ -19,6 +19,14 @@
 	
 	* src/PhotoQuery.cs: Make finding untagged mutually exclusive of
 	setting a range or tag selection.
+	
+	* src/MainWindow.cs: Modify tag context menu to appear even if
+	activated not over a tag.
+	
+	* src/TagPopup.cs: Create context menu aware that might not be over a
+	tag, so disable some options as needed.
+	
+	* src/Util.cs: Check if the callback arg is null before using it.
 
 2005-12-03  Gabriel Burt <gabriel.burt@gmail.com>
 

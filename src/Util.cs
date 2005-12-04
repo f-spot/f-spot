@@ -196,7 +196,10 @@ class GtkUtil {
 		} else {
 			i = new Gtk.MenuItem (l);
 		}
-		i.Activated += e;
+
+		if (e != null)
+			i.Activated += e;
+
                 i.Sensitive = enabled;
 		
 		menu.Append (i);

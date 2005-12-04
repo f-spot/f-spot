@@ -22,12 +22,16 @@ public class TagPopup {
 		
 		GtkUtil.MakeMenuSeparator (popup_menu);
 
-		string editstr = String.Format (Mono.Posix.Catalog.GetString ("Edit Tag \"{0}\""), tag.Name);
-		GtkUtil.MakeMenuItem (popup_menu, editstr, delegate { MainWindow.Toplevel.HandleEditSelectedTagWithTag (tag); }, true);
+		if (tag == null)
+			GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Edit Tag"), null, false);
+		else {
+			string editstr = String.Format (Mono.Posix.Catalog.GetString ("Edit Tag \"{0}\""), tag.Name);
+			GtkUtil.MakeMenuItem (popup_menu, editstr, delegate { MainWindow.Toplevel.HandleEditSelectedTagWithTag (tag); }, true);
+		}
 
 		GtkUtil.MakeMenuItem (popup_menu,
 				      Mono.Posix.Catalog.GetPluralString ("Delete Tag", "Delete Tags", tags.Length),
-				      new EventHandler (MainWindow.Toplevel.HandleDeleteSelectedTagCommand), tags != null && tags.Length > 0);
+				      new EventHandler (MainWindow.Toplevel.HandleDeleteSelectedTagCommand), tag != null && tags != null && tags.Length > 0);
 		
 		GtkUtil.MakeMenuSeparator (popup_menu);
 
