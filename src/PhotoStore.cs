@@ -1105,7 +1105,18 @@ public class PhotoStore : DbStore {
 						     "     WHERE directory_path = \"{0}\"", dir.FullName);
 
 		return Query (query_string);
-	}	   
+	}
+
+	public Photo [] QueryUntagged ()
+	{
+		StringBuilder query_builder = new StringBuilder ();
+
+		query_builder.Append ("SELECT * FROM photos WHERE id NOT IN " +
+					"(SELECT DISTINCT photo_id FROM photo_tags) " +
+					"ORDER BY time");
+
+		return Query (query_builder.ToString ());
+	}
 
 	public Photo [] Query (Tag [] tags, DateRange range)
 	{

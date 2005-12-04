@@ -2054,6 +2054,14 @@ public class MainWindow {
 		query.Range = null;
 	}
 	
+	void HandleFindUntagged (object sender, EventArgs args) {
+		tag_selection_widget.SelectionChanged -= OnTagSelectionChanged;
+		tag_selection_widget.TagSelection = new Tag [] {};
+		tag_selection_widget.SelectionChanged += OnTagSelectionChanged;
+
+		query.Untagged = true;
+	}
+	
 	void OnPreferencesChanged (object sender, GConf.NotifyEventArgs args)
 	{
 		LoadPreference (args.Key);

@@ -1,3 +1,20 @@
+2005-12-04  Gabriel Burt <gabriel.burt@gmail.com>
+
+	* src/MainWindow.cs: Add handler for finding untagged photos.
+	
+	* src/PhotoQuery.cs: Add gettable Untagged property that initiates
+	a search for untagged photos.
+	
+	* src/PhotoStore.cs: Add method to search for untagged photos.
+	
+	* src/f-spot.glade: Add menu item to find untagged photos.
+	
+	* src/TagSelectionWidget.cs: Prevent strange crasher when returning
+	empty Tag array.
+	
+	* f-spot.desktop.in.in: Change title and tooltip to be more
+	informative.
+
 2005-12-03  Gabriel Burt <gabriel.burt@gmail.com>
 
 	* src/PhotoImageView.cs: Added more keybindings for going to the next

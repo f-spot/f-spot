@@ -7175,6 +7175,21 @@ Photo Details</property>
 		      <property name="visible">True</property>
 		    </widget>
 		  </child>
+		  
+		  <child>
+		    <widget class="GtkMenuItem" id="find_untagged">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">_Untagged Photos</property>
+		      <property name="use_underline">True</property>
+		      <signal name="activate" handler="HandleFindUntagged"/>
+		    </widget>
+		  </child>
+		  
+		  <child>
+		    <widget class="GtkSeparatorMenuItem" id="separator115">
+		      <property name="visible">True</property>
+		    </widget>
+		  </child>
 
 		  <child>
 		    <widget class="GtkMenuItem" id="find_tag">

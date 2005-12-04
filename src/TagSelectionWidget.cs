@@ -115,7 +115,12 @@ public class TagSelectionWidget : TreeView {
 		get {
 			ArrayList selection = new ArrayList ();
 			GetSelectionForCategory (selection, tag_store.RootCategory);
-			return (Tag []) selection.ToArray (typeof (Tag));
+
+			// For some reason an empty Tag [] causes crasher problems
+			if (selection.Count == 0)
+				return null;
+			else
+				return (Tag []) selection.ToArray (typeof (Tag));
 		}
 
 		set {
@@ -126,7 +131,9 @@ public class TagSelectionWidget : TreeView {
 
 			//FIXME this should really just toggle the items not rebuild the list
 			Update ();
-			SelectionChanged (this);
+
+			if (SelectionChanged != null)
+				SelectionChanged (this);
 		}
 	}
 

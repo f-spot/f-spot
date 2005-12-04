@@ -76,6 +76,18 @@ namespace FSpot {
 				RequestReload ();
 			}
 		}
+		
+		public bool Untagged {
+			set {
+				if (value) {
+					range = null;
+					tags = null;
+
+					photos = store.QueryUntagged ();
+					RequestReload ();
+				}
+			}
+		}
 
 		public void RequestReload ()
 		{
