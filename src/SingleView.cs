@@ -101,7 +101,7 @@ namespace FSpot {
 		void HandleRotate90Command (object sender, System.EventArgs args) 
 		{
 			RotateCommand command = new RotateCommand (this.Window);
-			if (command.Execute (RotateCommand.Direction.Clockwise, new IBrowsableItem [] { image_view.Item.Current })) {
+			if (command.Execute (RotateDirection.Clockwise, new IBrowsableItem [] { image_view.Item.Current })) {
 				collection.MarkChanged (image_view.Item.Index);
 			}
 		}
@@ -109,7 +109,7 @@ namespace FSpot {
 		void HandleRotate270Command (object sender, System.EventArgs args) 
 		{
 			RotateCommand command = new RotateCommand (this.Window);
-			if (command.Execute (RotateCommand.Direction.Counterclockwise, new IBrowsableItem [] { image_view.Item.Current })) {
+			if (command.Execute (RotateDirection.Counterclockwise, new IBrowsableItem [] { image_view.Item.Current })) {
 				collection.MarkChanged (image_view.Item.Index);
 			}
 		}
