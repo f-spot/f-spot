@@ -287,6 +287,10 @@ public class MainWindow {
 		view_notebook.SwitchPage += HandleViewNotebookSwitchPage;
 		adaptor.GlassSet += HandleAdaptorGlassSet;
 
+		this.selection = new Selection (this);
+		this.selection.Changed += HandleSelectionChanged;
+		this.selection.ItemChanged += HandleSelectionItemChanged;
+
 		UpdateMenus ();
 		main_window.ShowAll ();
 
@@ -300,10 +304,6 @@ public class MainWindow {
 
 		main_window.DeleteEvent += HandleDeleteEvent;
 		
-		this.selection = new Selection (this);
-		this.selection.Changed += HandleSelectionChanged;
-		this.selection.ItemChanged += HandleSelectionItemChanged;
-
 		query_display.HandleChanged (query);
 
 		if (Toplevel == null)
@@ -318,19 +318,10 @@ public class MainWindow {
 	// Index into the PhotoQuery.  If -1, no photo is selected or multiple photos are selected.
 	private int ActiveIndex () 
 	{
-		if (view_mode == ModeType.IconView && icon_view.CurrentIdx != -1)
-			return icon_view.CurrentIdx;
-
-	        int [] selection = SelectedIds ();
-		if (selection.Length == 1) 
-			return selection [0];
-		else 
+		if (selection.Count == 1)
+			return SelectedIds() [0];
+		else
 			return PHOTO_IDX_NONE;
-	}
-
-	public bool PhotoSelectionActive ()
-	{
-		return SelectedIds().Length > 0;
 	}
 
 	private Photo CurrentPhoto {
@@ -2226,7 +2217,7 @@ public class MainWindow {
 	void UpdateMenus ()
 	{
 		bool tag_sensitive = tag_selection_widget.Selection.CountSelectedRows () > 0;
-		bool active_selection = PhotoSelectionActive ();
+		bool active_selection = selection.Count > 0;
 		bool single_active = CurrentPhoto != null;
 		
 		if (!single_active) {

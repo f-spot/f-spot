@@ -1,5 +1,8 @@
 2005-12-05  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: use the selection object in a couple more
+	places.
+	
 	* src/MainWindow.cs: Unify the selection interface.  Clean up some
 	of the change notification.  Avoid calculating some things if they
 	are hidden.
