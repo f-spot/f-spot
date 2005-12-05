@@ -549,7 +549,7 @@ public class TagSelectionWidget : TreeView {
 
 		// Check that the tag doesn't already exist
 		if (MainWindow.Toplevel.Database.Tags.GetTagByName (args.NewText) != null) {
-			HigMessageDialog md = new HigMessageDialog (MainWindow.Toplevel.GtkWindow,
+			HigMessageDialog md = new HigMessageDialog (MainWindow.Toplevel.Window,
 				DialogFlags.DestroyWithParent, 
 				MessageType.Warning, ButtonsType.Ok, 
 				Mono.Posix.Catalog.GetString ("Error renaming tag"),
