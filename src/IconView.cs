@@ -271,6 +271,10 @@ public class IconView : Gtk.Layout {
 
 		private void HandleParentItemChanged (IBrowsableCollection collection, int parent_index)
 		{
+			// If the item isn't part of the selection ignore it
+			if (!this.Contains (collection [parent_index]))
+			    return;
+
 			int local_index = this.IndexOf (parent_index);
 			//System.Console.WriteLine ("parent = {0} local = {1}", parent_index, local_index);
 			if (local_index >= 0 && this.ItemChanged != null)
@@ -479,15 +483,6 @@ public class IconView : Gtk.Layout {
 				DetailedChanged (this, ids);
 		}
 	}
-	
-	public int CurrentIdx {
-		get {
-			if (selection.Count == 1 && selection.Contains (FocusCell))
-				return FocusCell;
-			else 
-				return -1;
-		}
-	}
 
 	// Updating.
 	public void UpdateThumbnail (int thumbnail_num)
@@ -498,9 +493,7 @@ public class IconView : Gtk.Layout {
 		InvalidateCell (thumbnail_num);
 	}
 
-
 	// Cell Geometry
-
 	public int CellAtPosition (int x, int y)
 	{
 		return CellAtPosition (x, y, true);
