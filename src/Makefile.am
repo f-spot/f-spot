@@ -1,6 +1,22 @@
-CSC = mcs -unsafe -debug -nowarn:0618 -nowarn:0169 -nowarn:0612 -d:TEST_METADATA
+CSC = mcs
+CSFLAGS = -unsafe -debug -nowarn:0618 -nowarn:0169 -nowarn:0612 -d:TEST_METADATA 
 
 F_SPOT_CSDISTFILES =				\
+	$(srcdir)/Mail/Base64AttachmentEncoder.cs	\
+	$(srcdir)/Mail/EsmtpClient.cs		\
+	$(srcdir)/Mail/EsmtpMail.cs		\
+	$(srcdir)/Mail/EsmtpStream.cs		\
+	$(srcdir)/Mail/IAttachmentEncoder.cs	\
+	$(srcdir)/Mail/MailAddressCollection.cs	\
+	$(srcdir)/Mail/MailAddress.cs		\
+	$(srcdir)/Mail/MailHeader.cs		\
+	$(srcdir)/Mail/MailMessageWrapper.cs	\
+	$(srcdir)/Mail/MailUtil.cs		\
+	$(srcdir)/Mail/MimeTypes.cs		\
+	$(srcdir)/Mail/SmtpException.cs		\
+	$(srcdir)/Mail/SmtpResponse.cs		\
+	$(srcdir)/Mail/ToUUEncodingTransform.cs	\
+	$(srcdir)/Mail/UUAttachmentEncoder.cs	\
 	$(srcdir)/AsyncPixbufLoader.cs		\
 	$(srcdir)/Bim.cs			\
 	$(srcdir)/BitConverter.cs		\
@@ -46,9 +62,11 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/JpegHeader.cs			\
 	$(srcdir)/JpegUtils.cs			\
 	$(srcdir)/Cms.cs			\
+	$(srcdir)/Loupe.cs			\
 	$(srcdir)/MainWindow.cs			\
 	$(srcdir)/MetadataStore.cs		\
 	$(srcdir)/MrwFile.cs			\
+	$(srcdir)/Operation.cs			\
 	$(srcdir)/PhotoImageView.cs		\
 	$(srcdir)/PhotoLoader.cs		\
 	$(srcdir)/PhotoPopup.cs			\
@@ -64,7 +82,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PixbufUtils.cs		\
 	$(srcdir)/PixbufCache.cs		\
 	$(srcdir)/PixelBuffer.cs		\
-	$(srcdir)/PreferenceDialog.cs 		\
+	$(srcdir)/PreferenceDialog.cs		\
 	$(srcdir)/Preferences.cs 		\
 	$(srcdir)/PreviewPopup.cs 		\
 	$(srcdir)/PrintDialog.cs		\
@@ -109,6 +127,8 @@ ASSEMBLIES =					\
 	-r:System.Web				\
 	-r:Mono.Data.SqliteClient		\
 	-r:Mono.Posix				\
+	-r:Mono.Cairo				\
+	-r:Mono.Security			\
 	-r:ICSharpCode.SharpZipLib		\
 	-pkg:dbus-sharp				\
 	-pkg:gtkhtml-sharp-2.0			\

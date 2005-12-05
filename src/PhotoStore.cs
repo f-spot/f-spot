@@ -583,7 +583,7 @@ public class PhotoStore : DbStore {
 			"CREATE TABLE photo_versions (    " +
 			"       photo_id        INTEGER,  " +
 			"       version_id      INTEGER,  " +
-			"       name            STRING,   " +
+			"       name            STRING    " +
 			")";
 
 		command.ExecuteNonQuery ();

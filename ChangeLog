@@ -1,3 +1,18 @@
+2005-12-05  Larry Ewing  <lewing@novell.com>
+
+	* configure.in: bump mono required version to 1.1.10 to pick up
+	cairo.
+
+	* src/Makefile.am: add the mail commands and the Loupe to the
+	build.
+
+	* src/RotateCommand.cs: refactor to split out the rotations into
+	operations.
+	
+	* src/PhotoStore.cs: fix typo.
+
+	* src/Operation.cs: add new file.
+
 2005-12-04  Gabriel Burt <gabriel.burt@gmail.com>
 
 	* src/MainWindow.cs: Add handler for finding untagged photos.
@@ -34,6 +49,8 @@
 	and previous photos, including left/right/up/down keys, and KP_ keys.
 
 2005-12-03  Larry Ewing  <lewing@novell.com>
+
+	* src/main.cs: change the message to sound more possitive.
 
 	* src/Db.cs: add some emit overloads.
 
