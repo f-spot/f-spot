@@ -8,6 +8,45 @@ using System.Text;
 using System;
 using FSpot;
 
+public class PhotoVersion : FSpot.IBrowsableItem {
+	Photo photo;
+	uint version_id;
+	
+	public System.DateTime Time {
+		get { return photo.Time; }
+	}
+
+	public Tag [] Tags {
+		get { return photo.Tags; }
+	}
+
+	public Uri DefaultVersionUri {
+		get { return UriList.PathToFileUri (photo.GetVersionPath (version_id));}
+	}
+
+	public string Description {
+		get { return photo.Description; }
+	}
+
+	public string Name {
+		get { return photo.GetVersionName (version_id); }
+	}
+
+	public Photo Photo {
+		get { return photo; }
+	}
+
+	public uint VersionId {
+		get { return version_id; }
+	}
+
+	public PhotoVersion (Photo photo, uint version_id)
+	{
+		this.photo = photo;
+		this.version_id = version_id;
+	}
+}
+
 public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 	// IComparable 
 	public int CompareTo (object obj) {
@@ -156,6 +195,11 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 			Array.Sort (ids);
 			return ids;
 		}
+	}
+
+	public IBrowsableItem GetVersion (uint version_id)
+	{
+		return new PhotoVersion (this, version_id);
 	}
 
 	private uint default_version_id = OriginalVersionId;
