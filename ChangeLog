@@ -1,5 +1,11 @@
 2005-12-05  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: expose the Selection to the public. Do a
+	little more house keeping.
+	
+	* src/IconView.cs: don't do anything if the changed item isn't in
+	the selection.
+
 	* src/MainWindow.cs: use the selection object in a couple more
 	places.
 	

@@ -102,7 +102,7 @@ public class MainWindow {
 	FSpot.FullScreenView fsview;
 	FSpot.PhotoQuery query;
 	FSpot.GroupSelector group_selector;
-	Selection selection;
+	MainSelection selection;
 	
 	FSpot.Delay slide_delay;
 	
@@ -140,6 +140,26 @@ public class MainWindow {
 	};
 
 	const int PHOTO_IDX_NONE = -1;
+
+	//
+	// Public Properties
+	//
+
+	public Db Database {
+		get { return db; }
+	}
+
+	public Gtk.Window Window {
+		get { return main_window; }
+	}
+	
+	public ModeType ViewMode {
+		get { return view_mode; }
+	}
+
+	public MainSelection Selection {
+		get { return selection; }
+	}
 
 	//
 	// Constructor
@@ -287,7 +307,7 @@ public class MainWindow {
 		view_notebook.SwitchPage += HandleViewNotebookSwitchPage;
 		adaptor.GlassSet += HandleAdaptorGlassSet;
 
-		this.selection = new Selection (this);
+		this.selection = new MainSelection (this);
 		this.selection.Changed += HandleSelectionChanged;
 		this.selection.ItemChanged += HandleSelectionItemChanged;
 
@@ -315,15 +335,6 @@ public class MainWindow {
 		UpdateToolbar ();
 	}
 
-	// Index into the PhotoQuery.  If -1, no photo is selected or multiple photos are selected.
-	private int ActiveIndex () 
-	{
-		if (selection.Count == 1)
-			return SelectedIds() [0];
-		else
-			return PHOTO_IDX_NONE;
-	}
-
 	private Photo CurrentPhoto {
 		get {
 			int active = ActiveIndex ();
@@ -334,22 +345,13 @@ public class MainWindow {
 		}
 	}
 
-	public Db Database {
-		get {
-			return db;
-		}
-	}
-
-	public Gtk.Window GtkWindow {
-		get {
-			return main_window;
-		}
-	}
-
-	public ModeType ViewMode {
-		get {
-			return view_mode;
-		}
+	// Index into the PhotoQuery.  If -1, no photo is selected or multiple photos are selected.
+	private int ActiveIndex () 
+	{
+		if (selection.Count == 1)
+			return SelectedIds() [0];
+		else
+			return PHOTO_IDX_NONE;
 	}
 
 	// Switching mode.
@@ -435,10 +437,10 @@ public class MainWindow {
 		return ids;
 	}
 
-	public class Selection : IBrowsableCollection {
+	public class MainSelection : IBrowsableCollection {
 		MainWindow win;
 
-		public Selection (MainWindow win)
+		public MainSelection (MainWindow win)
 		{
 			this.win = win;
 			win.icon_view.Selection.Changed += HandleSelectionChanged;
@@ -512,6 +514,9 @@ public class MainWindow {
 
 		private void HandleQueryItemChanged (IBrowsableCollection collection, int item)
 		{
+			// FIXME for now we only listen to changes directly from the query
+			// when we are in PhotoView mode because we presume that we'll get
+			// proper notification from the icon view selection in icon view mode
 			if (win.view_mode == ModeType.PhotoView && ItemChanged != null) 
 				if (win.photo_view.Item.Index == item)
 					ItemChanged (this, 0);
@@ -1689,12 +1694,6 @@ public class MainWindow {
 			info_vpaned.Show ();
 	}
 
-	public Gtk.Window Window {
-		get {
-			return main_window;
-		}
-	}
-	
 	void HandleViewSlideShow (object sender, EventArgs args)
 	{
 		main_window.GdkWindow.Cursor = new Gdk.Cursor (Gdk.CursorType.Watch);
