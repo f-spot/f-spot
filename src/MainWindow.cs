@@ -102,6 +102,7 @@ public class MainWindow {
 	FSpot.FullScreenView fsview;
 	FSpot.PhotoQuery query;
 	FSpot.GroupSelector group_selector;
+	Selection selection;
 	
 	FSpot.Delay slide_delay;
 	
@@ -198,8 +199,6 @@ public class MainWindow {
 		left_vbox.PackStart (info_box, false, true, 0);
 
 		query = new FSpot.PhotoQuery (db.Photos);
-		query.ItemChanged += HandleQueryItemChanged;
-
 #if SHOW_CALENDAR
 		FSpot.SimpleCalendar cal = new FSpot.SimpleCalendar (query);
 		cal.DaySelected += HandleCalendarDaySelected;
@@ -224,7 +223,6 @@ public class MainWindow {
 		LoadPreference (Preferences.SHOW_TAGS);
 		LoadPreference (Preferences.SHOW_DATES);
 		icon_view_scrolled.Add (icon_view);
-		icon_view.Selection.Changed += HandleSelectionChanged;
 		icon_view.DoubleClicked += HandleDoubleClicked;
 		icon_view.Vadjustment.ValueChanged += HandleIconViewScroll;
 		icon_view.GrabFocus ();
@@ -265,7 +263,6 @@ public class MainWindow {
 
 		photo_view = new PhotoView (query, db.Photos);
 		photo_box.Add (photo_view);
-		photo_view.PhotoChanged += HandlePhotoViewPhotoChanged;
 		photo_view.ButtonPressEvent += HandlePhotoViewButtonPressEvent;
 		photo_view.KeyPressEvent += HandlePhotoViewKeyPressEvent;
 		photo_view.UpdateStarted += HandlePhotoViewUpdateStarted;
@@ -302,6 +299,10 @@ public class MainWindow {
 		Preferences.SettingChanged += OnPreferencesChanged;
 
 		main_window.DeleteEvent += HandleDeleteEvent;
+		
+		this.selection = new Selection (this);
+		this.selection.Changed += HandleSelectionChanged;
+		this.selection.ItemChanged += HandleSelectionItemChanged;
 
 		query_display.HandleChanged (query);
 
@@ -449,6 +450,10 @@ public class MainWindow {
 		public Selection (MainWindow win)
 		{
 			this.win = win;
+			win.icon_view.Selection.Changed += HandleSelectionChanged;
+			win.icon_view.Selection.ItemChanged += HandleSelectionItemChanged;
+			win.photo_view.PhotoChanged += HandlePhotoChanged;
+			win.query.ItemChanged += HandleQueryItemChanged;
 		}
 		
 		public int Count {
@@ -514,21 +519,52 @@ public class MainWindow {
 			}
 		}
 
+		private void HandleQueryItemChanged (IBrowsableCollection collection, int item)
+		{
+			if (win.view_mode == ModeType.PhotoView && ItemChanged != null) 
+				if (win.photo_view.Item.Index == item)
+					ItemChanged (this, 0);
+		}
+
+		private void HandlePhotoChanged (PhotoView sender)
+		{
+			if (win.view_mode == ModeType.PhotoView && Changed != null)
+				Changed (this);
+		}
+
 		private void HandleSelectionChanged (IBrowsableCollection collection)
 		{
-			if (Changed != null)
+			if (win.view_mode == ModeType.IconView && Changed != null)
 				Changed (this);
 		}
 
 		private void HandleSelectionItemChanged (IBrowsableCollection collection, int item)
 		{
-			if (ItemChanged != null)
+			if (win.view_mode == ModeType.IconView && ItemChanged != null)
 				ItemChanged (this, item);
 		}
-
+		
 		public event IBrowsableCollectionChangedHandler Changed;
 		public event IBrowsableCollectionItemChangedHandler ItemChanged;
 	}
+
+	private void HandleSelectionChanged (IBrowsableCollection collection)
+	{
+		info_box.Photo = CurrentPhoto;
+		if (info_display != null)
+			info_display.Photo = CurrentPhoto;
+
+		UpdateMenus ();
+		UpdateTagEntryFromSelection ();
+	}
+
+	private void HandleSelectionItemChanged (IBrowsableCollection collection, int item)
+	{
+		UpdateMenus ();
+		UpdateTagEntryFromSelection ();
+	}
+
+
 	//
 	// Selection Interface
 	//
@@ -735,7 +771,6 @@ public class MainWindow {
 			break;
 		}
 
-		UpdateTagEntryFromSelection ();
 	}
 
 #if SHOW_CALENDAR
@@ -782,8 +817,11 @@ public class MainWindow {
 	 */
 	private void UpdateGlass ()
 	{
+		// If people cant see the timeline don't update it.
+		if (! display_timeline.Active)
+			return;
+
 		int cell_num = icon_view.TopLeftVisibleCell();
-		
 		if (cell_num == -1 || cell_num == lastTopLeftCell)
 			return;
 
@@ -795,7 +833,7 @@ public class MainWindow {
 		group_selector.Adaptor.GlassSet = HandleAdaptorGlassSet;
 #else
 		/* 
-		 * FIXME this is a lame hack to get around a delagate chain.  This should 
+		 * FIXME this is a lame hack to get around a delegate chain.  This should 
 		 * actually operate directly on the adaptor not on the selector but I don't have 
 		 * time to fix it right now.
 		 */
@@ -941,8 +979,6 @@ public class MainWindow {
 					AttachTags (tag_selection_widget.TagHighlight (), SelectedIds());
 				else 
 					AttachTags (tag_selection_widget.TagHighlight (), new int [] {item});
-
-				UpdateTagEntryFromSelection ();
 			}
 			break;
 		case (uint)TargetType.UriList:
@@ -965,16 +1001,6 @@ public class MainWindow {
 	// IconView event handlers
 	// 
 
-	void HandleSelectionChanged (FSpot.IBrowsableCollection collection)
-	{
-		info_box.Photo = CurrentPhoto;
-		if (info_display != null)
-			info_display.Photo = CurrentPhoto;
-
-		UpdateMenus ();
-		UpdateTagEntryFromSelection ();
-	}
-
 	void HandleDoubleClicked (IconView icon_view, int clicked_item)
 	{
 		icon_view.FocusCell = clicked_item;
@@ -984,15 +1010,6 @@ public class MainWindow {
 	//
 	// PhotoView event handlers.
 	//
-
-	void HandlePhotoViewPhotoChanged (PhotoView sender)
-	{
-		info_box.Photo = CurrentPhoto;
-		if (info_display != null)
-			info_display.Photo = CurrentPhoto;
-		UpdateMenus ();
-		UpdateTagEntryFromSelection ();
-	}
 	
 	void HandlePhotoViewKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
 	{
@@ -1063,7 +1080,6 @@ public class MainWindow {
 		//Console.WriteLine ("Drag received {0}", source == null ? "null" : source.TypeName);
 
 		HandleAttachTagCommand (sender, null);
-		UpdateTagEntryFromSelection ();
 		
 		Gtk.Drag.Finish (args.Context, true, false, args.Time);
 	}	
@@ -1284,6 +1300,7 @@ public class MainWindow {
 
 	void HandleSendMailCommand (object sender, EventArgs args)
 	{
+ #if false
 		StringBuilder url = new StringBuilder ("mailto:?subject=my%20photos");
 
 		foreach (Photo p in SelectedPhotos ()) {
@@ -1291,6 +1308,24 @@ public class MainWindow {
 		}
 
 		GnomeUtil.UrlShow (main_window, url.ToString ());
+#else
+		MailMessage message = new MailMessage ();
+		message.From = "popelewi@yahoo.com";
+		message.To = "lewing@novell.com";
+		message.Subject = "test";
+
+		foreach (Photo p in SelectedPhotos ()) {
+			message.Attachments.Add (new MailAttachment (p.DefaultVersionPath, MailEncoding.Base64));
+		}
+
+		//EsmtpMail mail = new EsmtpMail ("smtp.gmail.com", "lewing", "ricedream", true);
+		try {
+			EsmtpMail mail = new EsmtpMail ("smtp.mail.yahoo.com", "popelewi", "batman", false);
+			mail.Send (message);
+		} catch (FSpot.Mail.SmtpException se) {
+			System.Console.WriteLine (se);
+		}
+		#endif
 	}
 
 	void HandleAbout (object sender, EventArgs args)
@@ -1476,8 +1511,6 @@ public class MainWindow {
 			query.Photos [num].RemoveTag (tags);
 			query.Commit (num);
 		}
-
-		UpdateTagEntryFromSelection ();
 	}
 
 	public void HandleEditSelectedTag (object sender, EventArgs ea)
@@ -1538,8 +1571,8 @@ public class MainWindow {
 
 		// Remove the defunct tags from the tag list.
 		db.Photos.Remove (removetags);
-
 		UpdateTagEntryFromSelection ();
+
 		icon_view.QueueDraw ();
 	}
 
@@ -2186,14 +2219,7 @@ public class MainWindow {
 	{
 		UpdateMenus ();
 	}
-
-	void HandleQueryItemChanged (FSpot.IBrowsableCollection browsable, int item)
-	{
-		if (photo_view.Item.Index == item) {
-			UpdateMenus ();
-			info_box.Update ();
-		}
-	}
+	
 	//
 	// Handle Main Menu 
 
@@ -2261,6 +2287,9 @@ public class MainWindow {
 
 	private void UpdateTagEntryFromSelection ()
 	{
+		if (!tagbar.Visible)
+			return;
+
 		Hashtable taghash = new Hashtable ();
 
 		Photo [] sel = SelectedPhotos ();
@@ -2324,6 +2353,7 @@ public class MainWindow {
 #endif
 
 		tagbar.Show ();
+		UpdateTagEntryFromSelection ();
 		tag_entry.GrabFocus ();
 		tag_entry.SelectRegion (-1, -1);
 	}
@@ -2390,7 +2420,6 @@ public class MainWindow {
 		       }
 	       }
 
-	       UpdateTagEntryFromSelection ();
 	       if (view_mode == ModeType.IconView) {
 		       icon_view.QueueDraw ();
 		       icon_view.GrabFocus ();
@@ -2405,9 +2434,9 @@ public class MainWindow {
 		if (! tagbar.Visible)
 			return;
 		
-		// Cancel any pending edits...
 		UpdateTagEntryFromSelection ();
 
+		// Cancel any pending edits...
 		tagbar.Hide ();
 
 		if (view_mode == ModeType.IconView)
