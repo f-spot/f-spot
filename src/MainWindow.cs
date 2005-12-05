@@ -1099,8 +1099,6 @@ public class MainWindow {
 		foreach (int num in SelectedIds ()) {
 			AddTagExtended (num, new Tag [] {t});
 		}
-
-		UpdateTagEntryFromSelection ();
 	}
 	
 	void HandleFindTagMenuSelected (Tag t)
@@ -1114,8 +1112,6 @@ public class MainWindow {
 			query.Photos [num].RemoveTag (t);
 			query.Commit (num);
 		}
-
-		UpdateTagEntryFromSelection ();
 	}
 
 	//

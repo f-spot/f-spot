@@ -1,5 +1,7 @@
 2005-12-05  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: remove extra calls to UpdateTagEntryFromSelection.
+
 	* src/TagSelectionWidget.cs: use Window instead of GtkWindow.
 
 	* src/main.cs: change the dbus error message to a non error
