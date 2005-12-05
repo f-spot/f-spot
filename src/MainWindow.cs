@@ -9,9 +9,10 @@ using System.Text;
 using System.Collections;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
+using System.Web.Mail;
 
 using FSpot;
-
+using FSpot.Mail;
 using LibGPhoto2;
 
 public class MainWindow {
@@ -564,7 +565,7 @@ public class MainWindow {
 	// Commands
 	//
 
-	private void RotateSelectedPictures (RotateCommand.Direction direction)
+	private void RotateSelectedPictures (RotateDirection direction)
 	{
 		RotateCommand command = new RotateCommand (main_window);
 		
@@ -1995,12 +1996,12 @@ public class MainWindow {
 
 	public void HandleRotate90Command (object sender, EventArgs args)
 	{
-		RotateSelectedPictures (RotateCommand.Direction.Clockwise);
+		RotateSelectedPictures (RotateDirection.Clockwise);
 	}
 
 	public void HandleRotate270Command (object sender, EventArgs args)
 	{
-		RotateSelectedPictures (RotateCommand.Direction.Counterclockwise);
+		RotateSelectedPictures (RotateDirection.Counterclockwise);
 	}
 
 	public void HandleCopyLocation (object sender, EventArgs args)
