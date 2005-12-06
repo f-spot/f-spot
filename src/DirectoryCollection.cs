@@ -77,7 +77,7 @@ namespace FSpot {
 		}
 
 		public event FSpot.IBrowsableCollectionChangedHandler Changed;
-		public event FSpot.IBrowsableCollectionItemChangedHandler ItemChanged;
+		public event FSpot.IBrowsableCollectionItemsChangedHandler ItemsChanged;
 
 		public int IndexOf (IBrowsableItem item)
 		{
@@ -86,10 +86,14 @@ namespace FSpot {
 
 		public void MarkChanged (int num)
 		{
-			if (this.ItemChanged != null)
-				this.ItemChanged (this, num);
+			MarkChanged (new BrowsableArgs (num));
 		}
 
+		public void MarkChanged (BrowsableArgs args)
+		{
+			if (this.ItemsChanged != null)
+				this.ItemsChanged (this, args);
+		}
 
 		protected void LoadItems (FileInfo [] files) {
 			ArrayList images = new ArrayList ();

@@ -1,6 +1,7 @@
 namespace FSpot {
 	public delegate void IBrowsableCollectionChangedHandler (IBrowsableCollection collection);
-	public delegate void IBrowsableCollectionItemChangedHandler (IBrowsableCollection collection, int item);
+	public delegate void IBrowsableCollectionItemsChangedHandler (IBrowsableCollection collection, BrowsableArgs args);
+
 
 	/*
 	public interface IBrowsableSelection : IBrowsableCollection {
@@ -8,6 +9,24 @@ namespace FSpot {
 		int [] ParentPositions ();
 	}
 	*/
+
+	public class BrowsableArgs : System.EventArgs {
+		int [] items;
+
+		public int [] Items {
+			get { return items; }
+		}
+
+		public BrowsableArgs (int num)
+		{
+			items = new int [] { num };
+		}
+
+		public BrowsableArgs (int [] items)
+		{
+			this.items = items;
+		}
+	}
 
 	public interface IBrowsableCollection {
 		// FIXME this should really be ToArray ()
@@ -33,7 +52,7 @@ namespace FSpot {
 		// item has been added or removed which adds too much
 		// overhead.
 		event IBrowsableCollectionChangedHandler Changed;
-		event IBrowsableCollectionItemChangedHandler ItemChanged;
+		event IBrowsableCollectionItemsChangedHandler ItemsChanged;
 	}
 
 	public interface IBrowsableItem {

@@ -309,7 +309,7 @@ public class MainWindow {
 
 		this.selection = new MainSelection (this);
 		this.selection.Changed += HandleSelectionChanged;
-		this.selection.ItemChanged += HandleSelectionItemChanged;
+		this.selection.ItemsChanged += HandleSelectionItemsChanged;
 
 		UpdateMenus ();
 		main_window.ShowAll ();
@@ -444,9 +444,9 @@ public class MainWindow {
 		{
 			this.win = win;
 			win.icon_view.Selection.Changed += HandleSelectionChanged;
-			win.icon_view.Selection.ItemChanged += HandleSelectionItemChanged;
+			win.icon_view.Selection.ItemsChanged += HandleSelectionItemsChanged;
 			win.photo_view.PhotoChanged += HandlePhotoChanged;
-			win.query.ItemChanged += HandleQueryItemChanged;
+			win.query.ItemsChanged += HandleQueryItemsChanged;
 		}
 		
 		public int Count {
@@ -512,14 +512,20 @@ public class MainWindow {
 			}
 		}
 
-		private void HandleQueryItemChanged (IBrowsableCollection collection, int item)
+		private void HandleQueryItemsChanged (IBrowsableCollection collection, BrowsableArgs args)
 		{
 			// FIXME for now we only listen to changes directly from the query
 			// when we are in PhotoView mode because we presume that we'll get
 			// proper notification from the icon view selection in icon view mode
-			if (win.view_mode == ModeType.PhotoView && ItemChanged != null) 
-				if (win.photo_view.Item.Index == item)
-					ItemChanged (this, 0);
+			if (win.view_mode != ModeType.PhotoView || ItemsChanged == null) 
+				return;
+
+			foreach (int item in args.Items) {
+				if (win.photo_view.Item.Index == item ) {
+					ItemsChanged (this, new BrowsableArgs (0));
+					break;
+				}
+			}
 		}
 
 		private void HandlePhotoChanged (PhotoView sender)
@@ -534,14 +540,14 @@ public class MainWindow {
 				Changed (this);
 		}
 
-		private void HandleSelectionItemChanged (IBrowsableCollection collection, int item)
+		private void HandleSelectionItemsChanged (IBrowsableCollection collection,  BrowsableArgs args)
 		{
-			if (win.view_mode == ModeType.IconView && ItemChanged != null)
-				ItemChanged (this, item);
+			if (win.view_mode == ModeType.IconView && ItemsChanged != null)
+				ItemsChanged (this, args);
 		}
 		
 		public event IBrowsableCollectionChangedHandler Changed;
-		public event IBrowsableCollectionItemChangedHandler ItemChanged;
+		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
 	}
 
 	private void HandleSelectionChanged (IBrowsableCollection collection)
@@ -554,7 +560,7 @@ public class MainWindow {
 		UpdateTagEntryFromSelection ();
 	}
 
-	private void HandleSelectionItemChanged (IBrowsableCollection collection, int item)
+	private void HandleSelectionItemsChanged (IBrowsableCollection collection, BrowsableArgs args)
 	{
 		UpdateMenus ();
 		UpdateTagEntryFromSelection ();
@@ -1292,7 +1298,6 @@ public class MainWindow {
 
 	void HandleSendMailCommand (object sender, EventArgs args)
 	{
- #if false
 		StringBuilder url = new StringBuilder ("mailto:?subject=my%20photos");
 
 		foreach (Photo p in SelectedPhotos ()) {
@@ -1300,24 +1305,6 @@ public class MainWindow {
 		}
 
 		GnomeUtil.UrlShow (main_window, url.ToString ());
-#else
-		MailMessage message = new MailMessage ();
-		message.From = "popelewi@yahoo.com";
-		message.To = "lewing@novell.com";
-		message.Subject = "test";
-
-		foreach (Photo p in SelectedPhotos ()) {
-			message.Attachments.Add (new MailAttachment (p.DefaultVersionPath, MailEncoding.Base64));
-		}
-
-		//EsmtpMail mail = new EsmtpMail ("smtp.gmail.com", "lewing", "ricedream", true);
-		try {
-			EsmtpMail mail = new EsmtpMail ("smtp.mail.yahoo.com", "popelewi", "batman", false);
-			mail.Send (message);
-		} catch (FSpot.Mail.SmtpException se) {
-			System.Console.WriteLine (se);
-		}
-		#endif
 	}
 
 	void HandleAbout (object sender, EventArgs args)

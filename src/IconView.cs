@@ -180,7 +180,7 @@ public class IconView : Gtk.Layout {
 		this.selection = new SelectionCollection (collection);
 		
 		collection.Changed += HandleChanged;
-		collection.ItemChanged += HandleItemChanged;
+		collection.ItemsChanged += HandleItemsChanged;
 
 		selection.DetailedChanged += HandleSelectionChanged;
 	}
@@ -201,10 +201,12 @@ public class IconView : Gtk.Layout {
 		QueueResize ();
 	}
 	
-	private void HandleItemChanged (FSpot.IBrowsableCollection sender, int item)
+	private void HandleItemsChanged (FSpot.IBrowsableCollection sender, BrowsableArgs args)
 	{
-		UpdateThumbnail (item);
-		InvalidateCell (item);
+		foreach (int item in args.Items) {
+			UpdateThumbnail (item);
+			InvalidateCell (item);
+		}
 	}
 
 	//
@@ -240,7 +242,7 @@ public class IconView : Gtk.Layout {
 			this.selected_cells = new Hashtable ();
 			this.parent = collection;
 			this.parent.Changed += HandleParentChanged;
-			this.parent.ItemChanged += HandleParentItemChanged;
+			this.parent.ItemsChanged += HandleParentItemsChanged;
 		}
 
 		private void HandleParentChanged (IBrowsableCollection collection)
@@ -269,16 +271,26 @@ public class IconView : Gtk.Layout {
 
 		}
 
-		private void HandleParentItemChanged (IBrowsableCollection collection, int parent_index)
-		{
-			// If the item isn't part of the selection ignore it
-			if (!this.Contains (collection [parent_index]))
-			    return;
+		private void HandleParentItemsChanged (IBrowsableCollection collection, BrowsableArgs args)
+		{			
+			if (this.ItemsChanged == null)
+				return;
 
-			int local_index = this.IndexOf (parent_index);
-			//System.Console.WriteLine ("parent = {0} local = {1}", parent_index, local_index);
-			if (local_index >= 0 && this.ItemChanged != null)
-				this.ItemChanged (collection, local_index);
+			ArrayList local_ids = new ArrayList ();
+			foreach (int parent_index in args.Items) {
+				// If the item isn't part of the selection ignore it
+				if (!this.Contains (collection [parent_index]))
+					return;
+
+				int local_index = this.IndexOf (parent_index);
+				if (local_index >= 0)
+					local_ids.Add (local_index);
+			}
+
+			if (local_ids.Count == 0)
+				return;
+
+			ItemsChanged (this, new BrowsableArgs ((int [])local_ids.ToArray (typeof (int))));
 		}
 
 		public int [] Ids {
@@ -459,7 +471,7 @@ public class IconView : Gtk.Layout {
 		}
 
 		public event IBrowsableCollectionChangedHandler Changed;
-		public event IBrowsableCollectionItemChangedHandler ItemChanged;
+		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
 
 		public delegate void DetailedCollectionChanged (IBrowsableCollection collection, int [] ids);
 		public event DetailedCollectionChanged DetailedChanged;

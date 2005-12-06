@@ -70,7 +70,7 @@ namespace FSpot {
 		}
 		
 		public event IBrowsableCollectionChangedHandler Changed;
-		public event IBrowsableCollectionItemChangedHandler ItemChanged;
+		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
 	}
 
 	public class PhotoArray : IBrowsableCollection {
@@ -124,6 +124,6 @@ namespace FSpot {
 		}
 
 		public event IBrowsableCollectionChangedHandler Changed;
-		public event IBrowsableCollectionItemChangedHandler ItemChanged;
+		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
 	}
 }

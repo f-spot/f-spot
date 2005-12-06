@@ -18,7 +18,7 @@ namespace FSpot {
 			this.SizeAllocated += HandleSizeAllocated;
 			this.KeyPressEvent += HandleKeyPressEvent;
 			this.ScrollEvent += HandleScrollEvent;
-			query.ItemChanged += HandleQueryItemChanged;
+			query.ItemsChanged += HandleQueryItemsChanged;
 			this.item = new BrowsablePointer (query, -1);
 			item.IndexChanged += PhotoIndexChanged;
 			this.Destroyed += HandleDestroyed;
@@ -45,12 +45,12 @@ namespace FSpot {
 			set {
 				if (query != null) {
 					query.Changed -= HandleQueryChanged;
-					query.ItemChanged -= HandleQueryItemChanged;
+					query.ItemsChanged -= HandleQueryItemsChanged;
 				}
 
 				query = value;
 				query.Changed += HandleQueryChanged;
-				query.ItemChanged += HandleQueryItemChanged;
+				query.ItemsChanged += HandleQueryItemsChanged;
 			}
 #endif
 		}
@@ -77,10 +77,12 @@ namespace FSpot {
 		}
 		*/
 
-		public void HandleQueryItemChanged (IBrowsableCollection browsable, int item)
+		public void HandleQueryItemsChanged (IBrowsableCollection browsable, BrowsableArgs args)
 		{
-			if (item == Item.Index)
-				Reload ();
+			foreach (int item in args.Items) {
+				if (item == Item.Index)
+					Reload ();
+			}
 		}
 
 		// Display.

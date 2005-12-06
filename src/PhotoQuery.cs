@@ -28,7 +28,7 @@ namespace FSpot {
 
 		// IPhotoCollection Interface
 		public event FSpot.IBrowsableCollectionChangedHandler Changed;
-		public event FSpot.IBrowsableCollectionItemChangedHandler ItemChanged;
+		public event FSpot.IBrowsableCollectionItemsChangedHandler ItemsChanged;
 		
 		public IBrowsableItem this [int index] {
 			get {
@@ -116,7 +116,7 @@ namespace FSpot {
 		
 		public void MarkChanged (int index)
 		{
-			ItemChanged (this, index);
+			ItemsChanged (this, new BrowsableArgs (index));
 		}
 	}
 }

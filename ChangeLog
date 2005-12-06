@@ -1,5 +1,17 @@
 2005-12-05  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoQuery.cs:
+	* src/IBrowsableItem.cs: 
+	* src/IconView.cs:
+	* src/MainWindow.cs:
+	* src/PhotoArray.cs:
+	* src/PhotoImageView.cs:
+	* src/PhotoQuery.cs:
+	* src/DirectoryCollection.cs: Change the parameters of the
+	ItemsChanged event in the BrowsableCollection so that it passes
+	the arguments in and Args object that contains an array.  The goal
+	is to use this to pass a reason along in the args eventually.
+	
 	* configure.in: drop the mono required version.
 
 	* src/Makefile.am: add the cairo files to the build.
