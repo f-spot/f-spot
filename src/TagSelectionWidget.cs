@@ -395,47 +395,60 @@ public class TagSelectionWidget : TreeView {
 		store.SetValue (iter, 1, tag.Name);
 		return iter;
 	}	
-			
-	private void HandleTagDeleted (Tag tag) 
+
+	private void HandleTagsRemoved (object sender, DbItemEventArgs args)
 	{
 		TreeIter iter;
 
-		if (TreeIterForTag (tag, out iter)) 
-			(Model as TreeStore).Remove (ref iter);
-	}
-	
-	private void HandleTagCreated (Tag tag) 
-	{
-		TreeIter iter = TreeIter.Zero;
+		foreach (DbItem item in args.Items) {
+			Tag tag = (Tag)item;
 
-		if (tag.Category != tag_store.RootCategory)
-			TreeIterForTag (tag.Category, out iter);
-
-		InsertInOrder (iter,
-			       tag.Category.Name == tag_store.RootCategory.Name,
-			       tag);
-	}
-	
-	private void HandleTagChanged (Tag tag) 
-	{
-		TreeStore store = Model as TreeStore;
-		TreeIter iter, category_iter, parent_iter;
-		TreeIterForTag (tag, out iter);
-
-		bool category_valid = TreeIterForTag(tag.Category, out category_iter);
-		bool parent_valid = Model.IterParent(out parent_iter, iter);
-
-		if ((category_valid && (category_iter.Equals (parent_iter))) || (!category_valid && !parent_valid)) {
-			// if we haven't been reparented
-			TreePath path = store.GetPath (iter); 
-			store.EmitRowChanged (path, iter);
-		} else {
-			// It is a bit tougher. We need to do an annoying clone of structs...
-			CopyBranch (iter, category_iter, !category_valid, true);
-			store.Remove (ref iter);
+			if (TreeIterForTag (tag, out iter)) 
+				(Model as TreeStore).Remove (ref iter);
 		}
 	}
 	
+	private void HandleTagsAdded (object sender, DbItemEventArgs args)
+	{
+		TreeIter iter = TreeIter.Zero;
+		
+		foreach (DbItem item in args.Items) {
+			Tag tag = (Tag)item;
+
+			if (tag.Category != tag_store.RootCategory)
+				TreeIterForTag (tag.Category, out iter);
+
+			InsertInOrder (iter,
+				       tag.Category.Name == tag_store.RootCategory.Name,
+				       tag);
+		}
+	}
+	
+	private void HandleTagsChanged (object sender, DbItemEventArgs args)
+	{
+		TreeStore store = Model as TreeStore;
+		TreeIter iter, category_iter, parent_iter;
+
+		foreach (DbItem item in args.Items) {
+			Tag tag = (Tag) item;
+
+			TreeIterForTag (tag, out iter);
+			
+			bool category_valid = TreeIterForTag(tag.Category, out category_iter);
+			bool parent_valid = Model.IterParent(out parent_iter, iter);
+			
+			if ((category_valid && (category_iter.Equals (parent_iter))) || (!category_valid && !parent_valid)) {
+				// if we haven't been reparented
+				TreePath path = store.GetPath (iter); 
+				store.EmitRowChanged (path, iter);
+			} else {
+				// It is a bit tougher. We need to do an annoying clone of structs...
+				CopyBranch (iter, category_iter, !category_valid, true);
+				store.Remove (ref iter);
+			}
+		}
+	}
+
 	void ExpandDefaults ()
 	{
 		object val = FSpot.Preferences.Get (FSpot.Preferences.EXPANDED_TAGS);
@@ -602,10 +615,10 @@ public class TagSelectionWidget : TreeView {
 		
 		ExpandDefaults ();
 
-		tag_store.TagDeleted += new TagDeletedHandler(HandleTagDeleted);
-		tag_store.TagCreated += new TagCreatedHandler(HandleTagCreated);
-		tag_store.TagChanged += new TagChangedHandler(HandleTagChanged);
-		
+		tag_store.ItemsAdded += HandleTagsAdded;
+		tag_store.ItemsRemoved += HandleTagsRemoved;
+		tag_store.ItemsChanged += HandleTagsChanged;
+
 		// TODO make the search find tags that are not currently expanded
 		EnableSearch = true;
 		SearchColumn = 1;

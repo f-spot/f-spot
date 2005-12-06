@@ -18,8 +18,6 @@ public class DbItem {
 	}
 }
 
-
-// A Store maps to a SQL table.  We have separate stores (i.e. SQL tables) for tags, photos and imports.
 public class DbItemEventArgs {
 	private DbItem [] items;
 	
@@ -37,6 +35,8 @@ public class DbItemEventArgs {
 		this.items = new DbItem [] { item };
 	}
 }
+
+// A Store maps to a SQL table.  We have separate stores (i.e. SQL tables) for tags, photos and imports.
 
 public delegate void ItemsAddedHandler (object sender, DbItemEventArgs args);
 public delegate void ItemsRemovedHandler (object sender, DbItemEventArgs args);

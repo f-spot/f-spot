@@ -232,16 +232,7 @@ public class TagRemoveComparer : IComparer {
 	}
 }
 
-public delegate void TagCreatedHandler(Tag t);
-public delegate void TagChangedHandler(Tag t);
-public delegate void TagDeletedHandler(Tag t);
-
 public class TagStore : DbStore {
-
-	public event TagCreatedHandler TagCreated;
-	public event TagChangedHandler TagChanged;
-	public event TagDeletedHandler TagDeleted;
-	
 	Category root_category;
 	public Category RootCategory {
 		get {
@@ -424,31 +415,6 @@ public class TagStore : DbStore {
 			CreateTable ();
 			CreateDefaultTags ();
 		}
-		
-		ItemsAdded += HandleItemsAdded;
-		ItemsChanged += HandleItemsChanged;
-		ItemsRemoved += HandleItemsRemoved;
-	}
-
-	private void HandleItemsAdded (object sender, DbItemEventArgs args)
-	{
-		foreach (DbItem item in args.Items)
-			if (TagCreated != null)
-				TagCreated((Tag)item);	
-	}
-
-	private void HandleItemsChanged (object sender, DbItemEventArgs args)
-	{
-		foreach (DbItem item in args.Items)
-			if (TagChanged != null)
-				TagChanged((Tag)item);	
-	}
-
-	private void HandleItemsRemoved (object sender, DbItemEventArgs args)
-	{
-		foreach (DbItem item in args.Items)
-			if (TagDeleted != null)
-				TagDeleted ((Tag)item);	
 	}
 
 	private uint InsertTagIntoTable (Category parent_category, string name, bool is_category)

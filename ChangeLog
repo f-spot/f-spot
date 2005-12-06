@@ -1,3 +1,12 @@
+2005-12-06  Larry Ewing  <lewing@novell.com>
+
+	* src/Db.cs: move comment.
+
+	* src/TagStore.cs: remove the old signals.
+
+	* src/TagSelectionWidget.cs: use the db store signals not the
+	higher level ones.
+
 2005-12-05  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoQuery.cs:
