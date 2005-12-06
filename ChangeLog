@@ -1,5 +1,12 @@
 2005-12-05  Larry Ewing  <lewing@novell.com>
 
+	* configure.in: drop the mono required version.
+
+	* src/Makefile.am: add the cairo files to the build.
+
+	* src/Cairo/: add the Cairo binding from mono-1.1.10 to the build
+	so we don't need to require that version.
+	
 	* src/MainWindow.cs: remove extra calls to UpdateTagEntryFromSelection.
 
 	* src/TagSelectionWidget.cs: use Window instead of GtkWindow.

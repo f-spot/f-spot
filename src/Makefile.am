@@ -2,6 +2,12 @@ CSC = mcs
 CSFLAGS = -unsafe -debug -nowarn:0618 -nowarn:0169 -nowarn:0612 -d:TEST_METADATA 
 
 F_SPOT_CSDISTFILES =				\
+	$(srcdir)/Cairo/Cairo.cs		\
+	$(srcdir)/Cairo/Surface.cs		\
+	$(srcdir)/Cairo/FontOptions.cs		\
+	$(srcdir)/Cairo/Matrix.cs		\
+	$(srcdir)/Cairo/Pattern.cs		\
+	$(srcdir)/Cairo/Graphics.cs		\
 	$(srcdir)/Mail/Base64AttachmentEncoder.cs	\
 	$(srcdir)/Mail/EsmtpClient.cs		\
 	$(srcdir)/Mail/EsmtpMail.cs		\
@@ -127,7 +133,6 @@ ASSEMBLIES =					\
 	-r:System.Web				\
 	-r:Mono.Data.SqliteClient		\
 	-r:Mono.Posix				\
-	-r:Mono.Cairo				\
 	-r:Mono.Security			\
 	-r:ICSharpCode.SharpZipLib		\
 	-pkg:dbus-sharp				\
