@@ -1,5 +1,11 @@
 2005-12-06  Larry Ewing  <lewing@novell.com>
 
+	* src/Tiff.cs: Match what the encoder does.
+
+	* src/Exif.cs: fix the logic when setting values.
+
+	* src/JpegFile.cs: fix the coputed length of the comment.
+
 	* src/Db.cs: move comment.
 
 	* src/TagStore.cs: remove the old signals.

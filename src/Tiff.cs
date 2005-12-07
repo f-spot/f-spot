@@ -358,7 +358,7 @@ namespace FSpot.Tiff {
 				enc = System.Text.Encoding.ASCII;
 				break;
 			case "UNICODE\0":
-				enc = System.Text.Encoding.Unicode;
+				enc = System.Text.Encoding.BigEndianUnicode;
 				break;
 			case "SJIS\0\0\0\0":
 				// FIXME I'm pretty sure this isn't actually the encoding name.
@@ -1156,10 +1156,8 @@ namespace FSpot.Tiff {
 				}
 			}
 
-			// assume a gamma of 2.2 if it isn't set explicitly
 			if (transfer == null) {
 				Cms.GammaTable basic = new Cms.GammaTable (1 << bits_per_sample, gamma);
-				
 				transfer = new Cms.GammaTable [] { basic, basic, basic };
 			}
 
@@ -1949,6 +1947,7 @@ namespace FSpot.Tiff {
 
 		public Cr2File (string path) : base (path) 
 		{
+			//this.Header.Dump ("loading");
 		}
 		
 		public Gdk.Pixbuf GetEmbeddedThumbnail ()

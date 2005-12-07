@@ -553,17 +553,17 @@ namespace Exif {
 		
 		public void SetData (byte []data)
 		{
-			SetData (data, data.Length);
+			SetData (data, 1);
 		}
 
 		public void SetData (uint s)
 		{
-			this.SetData (FSpot.BitConverter.GetBytes (s, this.ByteOrder == ByteOrder.Intel));
+			this.SetData (FSpot.BitConverter.GetBytes (s, this.ByteOrder == ByteOrder.Intel), 4);
 		}
 
 		public void SetData (ushort s)
 		{
-			this.SetData (FSpot.BitConverter.GetBytes (s, this.ByteOrder == ByteOrder.Intel));
+			this.SetData (FSpot.BitConverter.GetBytes (s, this.ByteOrder == ByteOrder.Intel), 2);
 		}	    
 
 		public void SetData (string value)

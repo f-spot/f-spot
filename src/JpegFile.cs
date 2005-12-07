@@ -53,14 +53,23 @@ namespace FSpot {
 		public void SetDescription (string value)
 		{
 			string description = value;
-			
+#if USE_UNICODE_COMMENTS		
 			Exif.ExifContent exif_content = this.ExifData.GetContents (Exif.Ifd.Exif);			
 			int len = System.Text.Encoding.BigEndianUnicode.GetByteCount (description);
+			string heading = "UNICODE\0";
+			byte [] data = new byte [len + heading.Length];
+			System.Text.Encoding.ASCII.GetBytes (heading, 0, heading.Length, data, 0);
+			System.Text.Encoding.BigEndianUnicode.GetBytes (description, 0, description.Length, data, heading.Length);
+			exif_content.GetEntry (Exif.Tag.UserComment).SetData (data);
+#else
+			Exif.ExifContent exif_content = this.ExifData.GetContents (Exif.Ifd.Exif);			
+			int len = System.Text.Encoding.ASCII.GetByteCount (description);
 			string heading = "ASCII\0\0\0";
 			byte [] data = new byte [len + heading.Length];
 			System.Text.Encoding.ASCII.GetBytes (heading, 0, heading.Length, data, 0);
 			System.Text.Encoding.ASCII.GetBytes (description, 0, description.Length, data, heading.Length);
 			exif_content.GetEntry (Exif.Tag.UserComment).SetData (data);
+#endif
 		}
 		
 		public void SetXmp (XmpFile xmp)
