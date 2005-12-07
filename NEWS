@@ -1,3 +1,18 @@
+f-spot 0.1.4 - Dec 7 2005 - Ouch
+--------------------------------
+- Generate color profiles from image metadata for use when processing
+  color.
+- Fix bugs in metadata reading and writting.
+- Improve tag application and editng.
+- Add Xmp write support.
+- Allow storage of tags in XMP in jpegs.
+- Improved color editing dialog.
+- Look at more tags when calculating photo date.
+- Parse more metadata from raw files.
+- Display metadata from all image types in the info dialog.
+- Improve group selected widget.
+- Display newest photos first.
+
 f-spot 0.1.3 - Sep 29 2005 - Sol
 --------------------------------
 - New rdf metadata backend.
