@@ -7175,7 +7175,7 @@ Photo Details</property>
 		      <property name="visible">True</property>
 		    </widget>
 		  </child>
-		  
+
 		  <child>
 		    <widget class="GtkMenuItem" id="find_untagged">
 		      <property name="visible">True</property>
@@ -7184,7 +7184,7 @@ Photo Details</property>
 		      <signal name="activate" handler="HandleFindUntagged"/>
 		    </widget>
 		  </child>
-		  
+
 		  <child>
 		    <widget class="GtkSeparatorMenuItem" id="separator115">
 		      <property name="visible">True</property>
@@ -10108,7 +10108,7 @@ Photo Details</property>
 			    <widget class="GtkRadioButton" id="original_radio">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Create gallery using "Original"</property>
+			      <property name="label" translatable="yes">Create gallery using &quot;Original&quot;</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
@@ -11359,7 +11359,6 @@ Photo Details</property>
 
 		  <child>
 		    <widget class="GtkLabel" id="label166">
-		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">&lt;small&gt;Contrast:&lt;/small&gt;</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">True</property>
@@ -11387,7 +11386,6 @@ Photo Details</property>
 
 		  <child>
 		    <widget class="GtkHScale" id="contrast_scale">
-		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
 		      <property name="draw_value">False</property>
 		      <property name="value_pos">GTK_POS_RIGHT</property>
@@ -11478,7 +11476,6 @@ Photo Details</property>
 
 		  <child>
 		    <widget class="GtkSpinButton" id="contrast_spinbutton">
-		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
 		      <property name="climb_rate">1</property>
 		      <property name="digits">0</property>
@@ -11634,7 +11631,6 @@ Photo Details</property>
 
 		      <child>
 			<widget class="GtkButton" id="white_button">
-			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
@@ -12129,7 +12125,6 @@ supported image formats.&lt;/i&gt;&lt;/small&gt;</property>
 
 	  <child>
 	    <widget class="GtkFrame" id="frame41">
-	      <property name="visible">True</property>
 	      <property name="label_xalign">0</property>
 	      <property name="label_yalign">0.5</property>
 	      <property name="shadow_type">GTK_SHADOW_NONE</property>
