@@ -2,11 +2,11 @@ namespace FSpot {
 	public delegate void IBrowsableCollectionChangedHandler (IBrowsableCollection collection);
 	public delegate void IBrowsableCollectionItemsChangedHandler (IBrowsableCollection collection, BrowsableArgs args);
 
-
 	/*
 	public interface IBrowsableSelection : IBrowsableCollection {
-		IBrowsableCollection Buggy;
 		int [] ParentPositions ();
+		public void Clear ();
+		public void SelectAll ();
 	}
 	*/
 
@@ -120,6 +120,16 @@ namespace FSpot {
 			}
 		}
 
+		public void MoveFirst ()
+		{
+			Index = 0;
+		}
+
+		public void MoveLast ()
+		{
+			Index = collection.Count - 1;
+		}
+		
 		public void MoveNext ()
 		{
 			MoveNext (false);
@@ -166,6 +176,7 @@ namespace FSpot {
 				}				
 			}
 		}
+
 
 		protected virtual void HandleCollectionChanged (IBrowsableCollection collection)
 		{
