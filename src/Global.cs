@@ -17,7 +17,7 @@ namespace FSpot {
 				return System.IO.Path.Combine (HomeDirectory, "Photos");
 			}
 		}
-
+		
 		public static void ModifyColors (Gtk.Widget widget)
 		{
 #if false
@@ -37,21 +37,16 @@ namespace FSpot {
 #endif 
 		}
 
-#if false
-		private Cms.Profile display_profile;
-		public Cms.Profile DisplayProfile {
-			get {
-				return Cms.Profile.CreateSRgb ();
-			}
+		private static Cms.Profile display_profile;
+		public static Cms.Profile DisplayProfile {
+			set { display_profile = value; }
+			get { return display_profile; }
 		}
-		
-		private System.Collections.Hashtable profile_cache;
-		public Cms.Transform DisplayTranform (Cms.Profile image_profile)
-		{
-			if (image_profile == null && display_profile == null)
-				return null;
-		}
-#endif
 
+		private static Cms.Profile destination_profile;
+		public static Cms.Profile DestinationProfile {
+			set { destination_profile = value; }
+			get { return destination_profile; }
+		}
 	}
 }

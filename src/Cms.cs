@@ -442,7 +442,7 @@ namespace Cms {
 			return srgb;
 		}
 		
-		public static Profile CreateAdobeRgb ()
+		public static Profile CreateAlternateRgb ()
 		{
 			// FIXME I'm basing this off the values set in the camera
 			// exif data when the adobe profile is selected.  They could

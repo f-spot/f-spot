@@ -1102,7 +1102,7 @@ namespace FSpot.Tiff {
 					case ColorSpace.StandardRGB:
 						return Cms.Profile.CreateStandardRgb ();
 					case ColorSpace.AdobeRGB:
-						return Cms.Profile.CreateAdobeRgb ();
+						return Cms.Profile.CreateAlternateRgb ();
 					case ColorSpace.Uncalibrated:
 						System.Console.WriteLine ("Uncalibrated colorspace");
 						break;
