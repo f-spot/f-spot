@@ -7,6 +7,8 @@ namespace FSpot {
 		public event PhotoChangedHandler PhotoChanged;
 		
 		protected BrowsablePointer item;
+		protected FSpot.Loupe loupe;
+		protected FSpot.Loupe sharpener;
 		
 		public PhotoImageView (IBrowsableCollection query)
 		{
@@ -14,7 +16,7 @@ namespace FSpot {
 			loader.AreaUpdated += HandlePixbufAreaUpdated;
 			loader.AreaPrepared += HandlePixbufPrepared;
 			loader.Done += HandleDone;
-
+			
 			this.SizeAllocated += HandleSizeAllocated;
 			this.KeyPressEvent += HandleKeyPressEvent;
 			this.ScrollEvent += HandleScrollEvent;
@@ -106,6 +108,7 @@ namespace FSpot {
 #if true
 			System.Uri uri = Item.Current.DefaultVersionUri;
 			try {
+
 				Gdk.Pixbuf thumb = new Gdk.Pixbuf (ThumbnailGenerator.ThumbnailPath (uri));
 				if (thumb != null && next != null)
 					thumb.Composite (next, 0, 0,
@@ -207,7 +210,6 @@ namespace FSpot {
 
 		bool load_async = true;
 		FSpot.AsyncPixbufLoader loader;
-		FSpot.AsyncPixbufLoader next_loader;
 
 		private void LoadErrorImage (System.Exception e)
 		{
@@ -232,16 +234,20 @@ namespace FSpot {
 				return;
 
 			if (load_async) {
+				Gdk.Pixbuf old = this.Pixbuf;
 				try {
-					if (Item.IsValid)
-						loader.Load (Item.Current.DefaultVersionUri.LocalPath);
-					else
+					if (Item.IsValid) {
+						System.Uri uri = Item.Current.DefaultVersionUri;
+						loader.Load (uri.LocalPath);
+					} else
 						LoadErrorImage (null);
 
 				} catch (System.Exception e) {
 					System.Console.WriteLine (e.ToString ());
 					LoadErrorImage (e);
 				}
+				if (old != null)
+					old.Dispose ();
 			} else {	
 				Gdk.Pixbuf old = this.Pixbuf;
 				this.Pixbuf = FSpot.PhotoLoader.Load (item.Collection, 
@@ -273,7 +279,7 @@ namespace FSpot {
 								   (uint) available_height,
 								   (uint) pixbuf.Width, 
 								   (uint) pixbuf.Height, 
-								   false);
+								   true);
 			
 			double image_zoom = zoom_to_fit;
 			/*
@@ -339,6 +345,18 @@ namespace FSpot {
 			case Gdk.Key.minus:
 			case Gdk.Key.KP_Subtract:
 				this.Zoom /= ZoomMultipler;
+				break;
+			case Gdk.Key.s:
+				if (sharpener == null)
+					sharpener = new Sharpener (this);
+
+				sharpener.Show ();
+				break;
+			case Gdk.Key.v:
+				if (loupe == null)
+					loupe = new Loupe (this);
+
+				loupe.Show ();
 				break;
 			case Gdk.Key.plus:
 			case Gdk.Key.KP_Add:
