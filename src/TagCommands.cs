@@ -200,7 +200,7 @@ public class TagCommands {
 				ok_button.Sensitive = false;
 				already_in_use_label.Markup = "";
 			} else if (TagNameExistsInCategory (name, db.Tags.RootCategory)
-				   && name != orig_name) {
+				   && String.Compare(name, orig_name, true) != 0) {
 				ok_button.Sensitive = false;
 				already_in_use_label.Markup = "<small>" + Mono.Posix.Catalog.GetString ("This name is already in use") + "</small>";
 			} else {

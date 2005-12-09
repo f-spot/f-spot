@@ -561,7 +561,8 @@ public class TagSelectionWidget : TreeView {
 			return;
 
 		// Check that the tag doesn't already exist
-		if (MainWindow.Toplevel.Database.Tags.GetTagByName (args.NewText) != null) {
+		if (String.Compare (args.NewText, tag.Name, true) != 0 &&
+				MainWindow.Toplevel.Database.Tags.GetTagByName (args.NewText) != null) {
 			HigMessageDialog md = new HigMessageDialog (MainWindow.Toplevel.Window,
 				DialogFlags.DestroyWithParent, 
 				MessageType.Warning, ButtonsType.Ok, 
