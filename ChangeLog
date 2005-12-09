@@ -1,3 +1,8 @@
+2005-12-09  Larry Ewing  <lewing@novell.com>
+
+	* libfspot/f-image-view.c: patch from Diego Gonzolez to avoid a
+	crash when applying selection constrants to an empty image view.
+
 2005-12-08  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoImageView.cs: remove redundant functions.

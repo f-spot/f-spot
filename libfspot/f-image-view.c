@@ -297,6 +297,9 @@ adjust_height_for_constraints (FImageView *image_view)
 	} else {
 		GdkPixbuf *pixbuf = image_view_get_pixbuf (IMAGE_VIEW (image_view));
 
+		if (pixbuf == null)
+			return FALSE;
+
 		if (*py1 + offset >= gdk_pixbuf_get_height (pixbuf)) {
 			*py2 = gdk_pixbuf_get_height (pixbuf) - 1;
 			g_object_unref (pixbuf);
@@ -340,6 +343,9 @@ adjust_width_for_constraints (FImageView *image_view)
 		*px2 = *px1 - offset;
 	} else {
 		GdkPixbuf *pixbuf = image_view_get_pixbuf (IMAGE_VIEW (image_view));
+
+		if (pixbuf == null)
+			return FALSE;
 
 		if (*px1 + offset >= gdk_pixbuf_get_width (pixbuf)) {
 			*px2 = gdk_pixbuf_get_width (pixbuf) - 1;
