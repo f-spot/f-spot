@@ -1,5 +1,9 @@
 2005-12-09  Larry Ewing  <lewing@novell.com>
 
+	* po/ru.po: add ru.po from Alexandre Prokoudine to the build.
+
+	* configure.in: added ru.po to ALL_LINGUAS.
+
 	* libfspot/f-image-view.c: patch from Diego Gonzolez to avoid a
 	crash when applying selection constrants to an empty image view.
 
