@@ -21,8 +21,8 @@ namespace GalleryRemote {
 		DeleteAlbum = 8,
 		CreateSubAlbum = 16
 	}
-	
-	public class Album {
+
+	public class Album : IComparable {
 		public int RefNum;
 		public string Name = null;
 		public string Title = null;
@@ -30,32 +30,52 @@ namespace GalleryRemote {
 		public int ParentRefNum;
 		public int ResizeSize;
 		public int ThumbSize;
+		public ArrayList Images = null;
+		public string BaseURL;
 		
 		Gallery gallery;
 		
 		public AlbumPermission Perms = AlbumPermission.None;
 		Hashtable extras = null;
+
+		public Album Parent {
+			get {
+				if (ParentRefNum != 0)
+					return gallery.LookupAlbum (ParentRefNum);
+				else
+					return null;
+			}
+		}
+
+		protected ArrayList parents = null;
+		public ArrayList Parents {
+			get {
+				if (parents != null)
+					return parents;
+
+				if (Parent == null) {
+				       parents = new ArrayList ();
+				} else {
+					parents = Parent.Parents.Clone () as ArrayList;
+					parents.Add (Parent.RefNum);
+				}
+
+				return parents;
+			}
+		}
 		
 		public Album (Gallery gallery, string name, int ref_num) 
 		{
 			Name = name;
 			this.gallery = gallery;
 			this.RefNum = ref_num;
-		}
-		
-		public Album Parent () 
-		{
-			if (ParentRefNum != 0)
-				return gallery.LookupAlbum (ParentRefNum);
-			else
-				return null;
+			Images = new ArrayList ();
 		}
 		
 		public void Rename (string name) 
 		{
 			gallery.MoveAlbum (this, name);
 		}
-		
 
 		public void Add (Photo photo) 
 		{
@@ -76,21 +96,58 @@ namespace GalleryRemote {
 		
 		public string GetUrl ()
 		{
-			// FIXME this is a hack
-			string url = gallery.Uri.ToString ();
-			string end = "gallery_remote2.php";
+			return gallery.GetAlbumUrl(this);
+		}
 
-			if (url.EndsWith (end))
-				url = url.Remove (url.Length - end.Length, end.Length); 
+		public int CompareTo (Object obj)
+		{
+			Album other = obj as Album;
 
-			Album album = this;
-			string path = album.Name;
-			while (album.Parent () != null) {
-				album = album.Parent ();
-				path = album.Name + "/" + path;
+			int numThis = this.Parents.Count;
+			int numOther = other.Parents.Count;
+			int thisVal = -1, otherVal = -1;
+
+			//find where they first differ
+			int maxIters = Math.Min (numThis, numOther);
+			int i = 0;
+			while (i < maxIters) {
+			       	thisVal = (int)this.Parents[i];
+				otherVal = (int)other.Parents[i];
+				if (thisVal != otherVal) {
+					break;
+				}
+				i++;
 			}
-			url = url + path;
-			return url;
+
+			int retVal;
+			if (i < numThis && i < numOther) {
+				//Parentage differed
+				retVal = thisVal.CompareTo (otherVal);
+
+			} else if (i < numThis) {
+				//other shorter
+			       	thisVal = (int)this.Parents[i];
+				retVal = thisVal.CompareTo (other.RefNum);
+
+				//if equal, we want to make the shorter one come first
+				if (retVal == 0)
+					retVal = 1;
+
+			} else if (i < numOther) {
+				//this shorter
+				otherVal = (int)other.Parents[i];
+				retVal = this.RefNum.CompareTo (otherVal);
+
+				//if equal, we want to make the shorter one come first
+				if (retVal == 0)
+					retVal = -1;
+
+			} else {
+				//children of the same parent
+				retVal = this.RefNum.CompareTo (other.RefNum);
+			}
+
+			return retVal;
 		}
 	}
 	
@@ -107,9 +164,12 @@ namespace GalleryRemote {
 		public int RawFilesize;
 		
 		public string Caption;
+		public string Description;
 		public int Clicks;
 		
-		private Album Owner;
+		public Album Owner;
+
+		public string Url;
 		
 		public Image (Album album, string name) {
 			Name = name;
@@ -155,17 +215,17 @@ namespace GalleryRemote {
 		}
 	}
 
-	public class Gallery {
-		public ArrayList Albums = null;
-		public FSpot.ProgressItem Progress;
-		Uri uri;
+	public abstract class Gallery
+	{
+		protected Uri uri;
 		public Uri Uri{
 			get {
 				return uri;
 			}
 		}
+
 		
-		string name;
+		protected string name;
 		public string Name {
 			get {
 				return name;
@@ -175,63 +235,176 @@ namespace GalleryRemote {
 			}
 		}
 
-		HttpWebRequest request = null;
-		CookieContainer cookies = null;
+		protected GalleryVersion version;
 		
-		private Album CurrentAlbum;
-		private Image CurrentImage;
-		
-		public Gallery (string url) : this (url, url) {}
-
-		public Gallery (string name, string url)
-		{
-			this.name = name;
-			this.uri = new Uri (url);
-			request = (HttpWebRequest)WebRequest.Create(uri);
-			cookies = new CookieContainer ();	       
-			Albums = new ArrayList ();
-		}
-		
-		private void StreamWrite (Stream stream, string str)
-		{
-			Byte [] data = Encoding.ASCII.GetBytes (str);
-			stream.Write (data, 0, data.Length);
-		}
-		
-		private void AltParseResponse (HttpWebResponse response, FSpot.ProgressItem progress)
-		{
-			try {
-				Stream response_stream = response.GetResponseStream ();
-				long length = response.ContentLength;
-				
-				System.Console.WriteLine ("ContentLength = {0}", length);
-				
-				int i = 0;
-				while (response_stream.ReadByte () >= 0) {
-					if (length != -1) 
-						progress.Value = i++ / length;
-					else {
-						if (progress.Value < .9)
-							progress.Value += .1;
-						else 
-							progress.Value = 0;
-					}
-				}
-			} finally {
-				response.Close ();
+		public GalleryVersion Version {
+			get {
+				return version;
 			}
 		}
 
-		private void ParseResponse (HttpWebResponse response)
-		{
-			StreamReader reader = null;
-			try {
-				Stream response_stream = response.GetResponseStream ();
+		protected ArrayList albums;
+		public ArrayList Albums{
+			get {
+				return albums;
+			}
+		}
 
-				reader = new StreamReader (response_stream, Encoding.UTF8);
+		protected CookieContainer cookies = null;
+		public FSpot.ProgressItem Progress = null;
+
+		public abstract bool Login (string username, string passwd);
+		public abstract ArrayList FetchAlbums ();
+		public abstract ArrayList FetchAlbumsPrune ();
+		public abstract bool MoveAlbum (Album album, string end_name);
+		public abstract bool AddItem (Album album, string path, string filename, string caption, bool autorotate);
+		//public abstract Album AlbumProperties (string album);
+		public abstract bool NewAlbum (string parent_name, string name, string title, string description);
+		public abstract ArrayList FetchAlbumImages (Album album, bool include_ablums);
+
+		public abstract string GetAlbumUrl (Album album);
+		
+		public Gallery (string name)
+		{
+			this.name = name;
+			cookies = new CookieContainer ();	       
+			albums = new ArrayList ();
+		}
+
+		public static GalleryVersion DetectGalleryVersion (string url)
+		{
+			//Figure out if the url is for G1 or G2
+			Console.WriteLine ("Detecting Gallery version");
+
+			GalleryVersion version;
+
+			if (url.EndsWith (Gallery1.script_name)) {
+				version = GalleryVersion.Version1;
+			} else if (url.EndsWith (Gallery2.script_name)) {
+				version = GalleryVersion.Version2;
+			} else {
+				//check what script is available on the server
 				
-				ParseResult (reader);
+				FormClient client = new FormClient ();
+
+				try {
+					client.Submit (new Uri (Gallery.FixUrl (url, Gallery1.script_name)));
+					version =  GalleryVersion.Version1;
+
+				} catch (System.Net.WebException e) {
+
+					try {
+						client.Submit (new Uri (Gallery.FixUrl (url, Gallery2.script_name)));
+						version =  GalleryVersion.Version2;
+
+					} catch (System.Net.WebException e2) {
+						//Uh oh, neither version detected
+						version = GalleryVersion.VersionUnknown;
+					}
+				}
+			}
+
+			Console.WriteLine ("Detected: " + version.ToString());
+			return version;
+		}
+		
+
+		public bool IsConnected ()
+		{
+			
+			bool retVal = true;
+			//Console.WriteLine ("^^^^^^^Checking IsConnected");
+			foreach (Cookie cookie in cookies.GetCookies(Uri)) {
+				bool isExpired = cookie.Expired;
+				//Console.WriteLine (cookie.Name + " " + (isExpired ? "expired" : "valid"));
+				if (isExpired)
+					retVal = false;
+			}
+			//return cookies.GetCookies(Uri).Count > 0;
+			return retVal;
+		}
+		//Reads until it finds the start of the response
+		protected StreamReader findResponse (HttpWebResponse response)
+		{
+			StreamReader reader = new StreamReader (response.GetResponseStream (), Encoding.UTF8);
+			if (reader == null)
+				throw new GalleryException ("Failed to initialize reader");
+
+			string line;
+			while ((line = reader.ReadLine ()) != null) {
+				if (line.IndexOf ("#__GR2PROTO__", 0) > -1)
+					break;
+			}
+
+			if (line == null) {
+				// failed to find the response
+				throw new GalleryException ("Failed to find start of response");
+			}
+
+			return reader;
+
+		}
+
+		protected string [] GetNextLine (StreamReader reader)
+		{
+			char [] value_split = new char [1] {'='};
+			bool haveLine = false;
+			string[] array = null;
+			while(!haveLine) {
+				string line = reader.ReadLine ();
+				//Console.WriteLine ("READING: " + line);
+				if (line != null) {
+					array = line.Split (value_split, 2);
+					haveLine = !LineIgnored (array);
+				}
+				else {
+					//end of input
+					return null;
+				}
+			}
+
+			return array;
+		}
+
+		private bool LineIgnored (string[] line)
+		{
+			if (line[0].StartsWith ("debug")) {
+				return true;
+			} else if (line[0].StartsWith ("can_create_root")) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		protected bool ParseLogin (HttpWebResponse response)
+		{
+			string [] data;
+			StreamReader reader = null;
+			ResultCode status = ResultCode.UnknownResponse;
+			string status_text = "Error: Unable to parse server response";
+			try {
+
+				reader = findResponse (response);
+				while ((data = GetNextLine (reader)) != null) {
+					if (data[0] == "status") {
+						status = (ResultCode) int.Parse (data [1]);
+					} else if (data[0].StartsWith ("status_text")) {
+						status_text = data[1];
+						Console.WriteLine ("StatusText : {0}", data[1]);
+					} else if (data[0].StartsWith ("server_version")) {
+						//FIXME we should use the to determine what capabilities the server has
+					} else {
+						Console.WriteLine ("Unparsed Line in ParseLogin(): {0}={1}", data[0], data[1]);
+					}
+				}
 				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
+				if (status != ResultCode.Success) {
+					Console.WriteLine (status_text);
+					throw new GalleryCommandException (status_text, status);
+				}
+
+				return true;
 			} finally {
 				if (reader != null)
 					reader.Close ();
@@ -239,47 +412,58 @@ namespace GalleryRemote {
 				response.Close ();
 			}
 		}
-		
-		private void ParseResult (StreamReader reader)
-		{		
-			Albums.Clear ();
-			
+
+		public ArrayList ParseFetchAlbums (HttpWebResponse response)
+		{
+			//Console.WriteLine ("in ParseFetchAlbums()");
+			string [] data;
+			StreamReader reader = null;
 			ResultCode status = ResultCode.UnknownResponse;
 			string status_text = "Error: Unable to parse server response";
-			
-			Album current_album = null;
-			Image current_image = null;
-			
-			string line;
-			char [] value_split = new char [1] {'='};
-			bool inresult = false;
-			
-			while ((line = reader.ReadLine ()) != null) {
-				if (line.IndexOf ("#__GR2PROTO__", 0) > -1) {
-					inresult = true;
-				} else if (inresult) {
-					string [] data = line.Split (value_split, 2);
-					
-				if (data[0] == "status") {
+			albums = new ArrayList ();
+			try {
+
+				Album current_album = null;
+				reader = findResponse (response);
+				while ((data = GetNextLine (reader)) != null) {
+					//Console.WriteLine ("Parsing Line: {0}={1}", data[0], data[1]);
+					if (data[0] == "status") {
 						status = (ResultCode) int.Parse (data [1]);
 					} else if (data[0].StartsWith ("status_text")) {
 						status_text = data[1];
 						Console.WriteLine ("StatusText : {0}", data[1]);
 					} else if (data[0].StartsWith ("album.name")) {
-						string [] segments = data[0].Split (new char[1]{'.'});
-						int ref_num = int.Parse (segments[segments.Length -1]);
+						//this is the URL name
+						int ref_num = -1;
+						if (this.Version == GalleryVersion.Version1) {
+							string [] segments = data[0].Split (new char[1]{'.'});
+							ref_num = int.Parse (segments[segments.Length -1]);
+						} else {
+							ref_num = int.Parse (data[1]);
+						}
 						current_album = new Album (this, data[1], ref_num);
-						Albums.Add (current_album);
+						albums.Add (current_album);
+						//Console.WriteLine ("current_album: " + data[1]);
 					} else if (data[0].StartsWith ("album.title")) {
+						//this is the display name
 						current_album.Title = data[1];
 					} else if (data[0].StartsWith ("album.summary")) {
 						current_album.Summary = data[1];
 					} else if (data[0].StartsWith ("album.parent")) {
-						current_album.ParentRefNum = int.Parse (data[1]);
+						//FetchAlbums and G2 FetchAlbumsPrune return ints 
+						//G1 FetchAlbumsPrune returns album names (and 0 for root albums)
+						try {
+							current_album.ParentRefNum = int.Parse (data[1]);
+						} catch (System.FormatException e) {
+							current_album.ParentRefNum = LookupAlbum (data[1]).RefNum;
+						}
+						//Console.WriteLine ("album.parent data[1]: " + data[1]);
 					} else if (data[0].StartsWith ("album.resize_size")) {
 						current_album.ResizeSize = int.Parse (data[1]);
 					} else if (data[0].StartsWith ("album.thumb_size")) {
-						current_album.ResizeSize = int.Parse (data[1]);
+						current_album.ThumbSize = int.Parse (data[1]);
+					} else if (data[0].StartsWith ("album.info.extrafields")) {
+						//ignore, this is the album description
 					} else if (data[0].StartsWith ("album.perms.add")) {
 						if (data[1] == "true")
 							current_album.Perms |= AlbumPermission.Add;
@@ -298,14 +482,310 @@ namespace GalleryRemote {
 					} else if (data[0].StartsWith ("album_count")) {
 						if (Albums.Count != int.Parse (data[1]))
 							Console.WriteLine ("Parsed album count does not match album_count.  Something is amiss");
+					} else {
+						Console.WriteLine ("Unparsed Line in ParseFetchAlbums(): {0}={1}", data[0], data[1]);
+					}
+				}
+				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
+				if (status != ResultCode.Success) {
+					Console.WriteLine (status_text);
+					throw new GalleryCommandException (status_text, status);
+				}
+
+				//Console.WriteLine (After parse albums.Count + " albums parsed");
+				return albums;
+			} finally {
+				if (reader != null)
+					reader.Close ();
+				
+				response.Close ();
+			}
+		}
+
+		public bool ParseAddItem (HttpWebResponse response)
+		{
+			return ParseBasic (response);
+		}
+
+		public bool ParseNewAlbum (HttpWebResponse response)
+		{
+			return ParseBasic (response);
+		}
+
+		public bool ParseMoveAlbum (HttpWebResponse response)
+		{
+			return ParseBasic (response);
+		}
+		/*
+		public Album ParseAlbumProperties (HttpWebResponse response)
+		{
+			string [] data;
+			StreamReader reader = null;
+			ResultCode status = ResultCode.UnknownResponse;
+			string status_text = "Error: Unable to parse server response";
+			try {
+
+				reader = findResponse (response);
+				while ((data = GetNextLine (reader)) != null) {
+					if (data[0] == "status") {
+						status = (ResultCode) int.Parse (data [1]);
+					} else if (data[0].StartsWith ("status_text")) {
+						status_text = data[1];
+						Console.WriteLine ("StatusText : {0}", data[1]);
+					} else if (data[0].StartsWith ("auto-resize")) {
+						//ignore
+					} else {
+						Console.WriteLine ("Unparsed Line in ParseBasic(): {0}={1}", data[0], data[1]);
+					}
+				}
+				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
+				if (status != ResultCode.Success) {
+					Console.WriteLine (status_text);
+					throw new GalleryCommandException (status_text, status);
+				}
+
+				return true;
+			} finally {
+				if (reader != null)
+					reader.Close ();
+				
+				response.Close ();
+			}
+		}
+		*/
+
+		private bool ParseBasic (HttpWebResponse response)
+		{
+			string [] data;
+			StreamReader reader = null;
+			ResultCode status = ResultCode.UnknownResponse;
+			string status_text = "Error: Unable to parse server response";
+			try {
+
+				reader = findResponse (response);
+				while ((data = GetNextLine (reader)) != null) {
+					if (data[0] == "status") {
+						status = (ResultCode) int.Parse (data [1]);
+					} else if (data[0].StartsWith ("status_text")) {
+						status_text = data[1];
+						Console.WriteLine ("StatusText : {0}", data[1]);
+					} else {
+						Console.WriteLine ("Unparsed Line in ParseBasic(): {0}={1}", data[0], data[1]);
+					}
+				}
+				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
+				if (status != ResultCode.Success) {
+					Console.WriteLine (status_text);
+					throw new GalleryCommandException (status_text, status);
+				}
+
+				return true;
+			} finally {
+				if (reader != null)
+					reader.Close ();
+				
+				response.Close ();
+			}
+		}
+
+		public Album LookupAlbum (string name) 
+		{
+			Album match = null;
+			
+			foreach (Album album in albums) {
+				if (album.Name == name) {
+					match = album;
+					break;
+				}
+			}
+			return match;
+		}
+		
+		public Album LookupAlbum (int ref_num) 
+		{
+			// FIXME this is really not the best way to do this
+			Album match = null;
+			
+			foreach (Album album in albums) { 
+				if (album.RefNum == ref_num) {
+					match = album;
+					break;
+				}
+			}
+			return match;
+		}
+
+		public static string FixUrl(string url, string end)
+		{
+			string fixedUrl = url;
+			if (!url.EndsWith (end)) {
+				if (!url.EndsWith ("/"))
+					fixedUrl = url + "/";
+				fixedUrl = fixedUrl + end;
+			}
+			return fixedUrl;
+			
+		}
+		
+	}
+
+	public class Gallery1 : Gallery
+	{
+		public const string script_name = "gallery_remote2.php"; 
+		public Gallery1 (string url) : this (url, url) {}
+		public Gallery1 (string name, string url) : base (name)
+		{
+			this.uri = new Uri (FixUrl (url, script_name));
+			version = GalleryVersion.Version1;
+		}
+
+		public override bool Login (string username, string passwd)
+		{
+			try {
+				//Console.WriteLine ("Gallery1: Attempting to login");
+				FormClient client = new FormClient (cookies);
+				
+				client.Add ("cmd", "login");
+				client.Add ("protocol_version", "2.3");
+				client.Add ("uname", username);
+				client.Add ("password", passwd);
+				
+				bool success = ParseLogin (client.Submit (uri));
+
+				return success;
+			} catch (Exception e) {
+				Console.WriteLine ("Exception: " + e);
+				return false;
+			}
+		}
+		
+		public override ArrayList FetchAlbums ()
+		{
+			FormClient client = new FormClient (cookies); 
+			
+			client.Add ("cmd", "fetch-albums");
+			client.Add ("protocol_version", "2.3");
+			
+			return ParseFetchAlbums (client.Submit (uri));
+		}
+		
+		
+		public override bool MoveAlbum (Album album, string end_name)
+		{
+			FormClient client = new FormClient (cookies);
+			
+			client.Add ("cmd", "move-album");
+			client.Add ("protocol_version", "2.7");
+			client.Add ("set_albumName", album.Name);
+			client.Add ("set_destalbumName", end_name);
+			
+			return ParseMoveAlbum (client.Submit (uri));
+		}
+		
+		public override bool AddItem (Album album,
+				     string path, 
+				     string filename,
+				     string caption, 
+				     bool autorotate)
+		{
+			FormClient client = new FormClient (cookies);
+			
+			client.Add ("cmd", "add-item");
+			client.Add ("protocol_version", "2.9");
+			client.Add ("set_albumName", album.Name);
+			client.Add ("caption", caption);
+			client.Add ("userfile_name", filename);
+			client.Add ("force_filename", filename);
+			client.Add ("auto_rotate", autorotate ? "yes" : "no");
+			client.Add ("userfile", new FileInfo (path));
+			
+			return ParseAddItem (client.Submit (uri, Progress));
+		}
+		
+		/*
+		public override Album AlbumProperties (string album)
+		{
+			FormClient client = new FormClient (cookies);
+			client.Add ("cmd", "album-properties");
+			client.Add ("protocol_version", "2.3");
+			client.Add ("set_albumName", album);
+			
+			return ParseAlbumProperties (client.Submit (uri));
+		}
+		*/
+		
+		public override bool NewAlbum (string parent_name, 
+				      string name, 
+				      string title, 
+				      string description)
+		{
+			FormClient client = new FormClient (cookies);
+			client.Add ("cmd", "new-album");
+			client.Add ("protocol_version", "2.8");
+			client.Add ("set_albumName", parent_name);
+			client.Add ("newAlbumName", name);
+			client.Add ("newAlbumTitle", title);
+			client.Add ("newAlbumDesc", description);
+
+			return ParseNewAlbum (client.Submit (uri));
+		}
+		
+		public override ArrayList FetchAlbumImages (Album album, bool include_ablums)
+		{
+			FormClient client = new FormClient (cookies);
+			client.Add ("cmd", "fetch-album-images");
+			client.Add ("protocol_version","2.3");
+			client.Add ("set_albumName", album.Name);
+			client.Add ("albums_too", include_ablums ? "yes" : "no");
+			
+			album.Images = ParseFetchAlbumImages (client.Submit (uri), album);
+			return album.Images;
+		}
+		
+		public override ArrayList FetchAlbumsPrune ()
+		{
+			FormClient client = new FormClient (cookies);
+			client.Add ("cmd", "fetch-albums-prune");
+			client.Add ("protocol_version", "2.3");
+			client.Add ("check_writable", "no");
+
+			ArrayList a = ParseFetchAlbums (client.Submit (uri));
+			a.Sort();
+			return a;
+		}
+
+		public ArrayList ParseFetchAlbumImages (HttpWebResponse response, Album album)
+		{
+			string [] data;
+			StreamReader reader = null;
+			ResultCode status = ResultCode.UnknownResponse;
+			string status_text = "Error: Unable to parse server response";
+			try {
+				Image current_image = null;
+				reader = findResponse (response);
+				while ((data = GetNextLine (reader)) != null) {
+					if (data[0] == "status") {
+						status = (ResultCode) int.Parse (data [1]);
+					} else if (data[0].StartsWith ("status_text")) {
+						status_text = data[1];
+						Console.WriteLine ("StatusText : {0}", data[1]);
 					} else if (data[0].StartsWith ("image.name")) {
-						current_image = new Image (CurrentAlbum, data[1]);
+						current_image = new Image (album, data[1]);
+						album.Images.Add (current_image);
 					} else if (data[0].StartsWith ("image.raw_width")) {
 						current_image.RawWidth = int.Parse (data[1]);
 					} else if (data[0].StartsWith ("image.raw_height")) {
-				       current_image.RawHeight = int.Parse (data[1]);
+						current_image.RawHeight = int.Parse (data[1]);
 					} else if (data[0].StartsWith ("image.raw_height")) {
 						current_image.RawHeight = int.Parse (data[1]);
+					} else if (data[0].StartsWith ("image.raw_filesize")) {
+					} else if (data[0].StartsWith ("image.capturedate.year")) {
+					} else if (data[0].StartsWith ("image.capturedate.mon")) {
+					} else if (data[0].StartsWith ("image.capturedate.mday")) {
+					} else if (data[0].StartsWith ("image.capturedate.hours")) {
+					} else if (data[0].StartsWith ("image.capturedate.minutes")) {
+					} else if (data[0].StartsWith ("image.capturedate.seconds")) {
+					} else if (data[0].StartsWith ("image.hidden")) {
 					} else if (data[0].StartsWith ("image.resizedName")) {
 						current_image.ResizedName = data[1];
 					} else if (data[0].StartsWith ("image.resized_width")) {
@@ -320,66 +800,115 @@ namespace GalleryRemote {
 						current_image.ThumbHeight = int.Parse (data[1]);
 					} else if (data[0].StartsWith ("image.caption")) {
 						current_image.Caption = data[1];
+					} else if (data[0].StartsWith ("image.extrafield.Description")) {
+						current_image.Description = data[1];
 					} else if (data[0].StartsWith ("image.clicks")) {
-						current_image.Clicks = int.Parse (data[1]);
+						try {
+							current_image.Clicks = int.Parse (data[1]);
+						} catch (System.FormatException e) {
+							current_image.Clicks = 0;
+						}
+					} else if (data[0].StartsWith ("baseurl")) {
+						album.BaseURL = data[1];
 					} else if (data[0].StartsWith ("image_count")) {
-						
+						if (album.Images.Count != int.Parse (data[1]))
+							Console.WriteLine ("Parsed image count for " + album.Name + "(" + album.Images.Count + ") does not match image_count (" + data[1] + ").  Something is amiss");
 					} else {
-						Console.WriteLine ("Unparsed result: name=\"{0}\", value=\"{1}\"", data[0], data[1]);
+						Console.WriteLine ("Unparsed Line in ParseFetchAlbumImages(): {0}={1}", data[0], data[1]);
 					}
-				} else {
-					// FIXME we should really do
-					// something more intelligent
-					// with bogus response data.
-				        Console.WriteLine ("GARBAGE" + line);
 				}
+				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
+				if (status != ResultCode.Success) {
+					Console.WriteLine (status_text);
+					throw new GalleryCommandException (status_text, status);
+				}
+
+
+				//Set the Urls for downloading the images.
+				string baseUrl = album.BaseURL + "/";
+				foreach (Image image in album.Images) {
+					image.Url = baseUrl + image.Name;
+				}
+
+				return album.Images;
+			} finally {
+				if (reader != null)
+					reader.Close ();
+				
+				response.Close ();
 			}
-			
-			if (current_album != null)
-				Console.WriteLine ("found {0} albums", Albums.Count);
-			 
-			if (status != ResultCode.Success) {
-				Console.WriteLine (status_text);
-				throw new GalleryCommandException (status_text, status);
+		}
+
+		public override string GetAlbumUrl (Album album)
+		{
+			string url = Uri.ToString();
+			url = url.Remove (url.Length - script_name.Length, script_name.Length); 
+
+			string path = album.Name;
+			while (album.Parent != null) {
+				album = album.Parent;
+				path = album.Name + "/" + path;
+			}	
+			url = url + path;
+			url = url.Replace (" ", "%20");
+			return url;
+		}
+
+		
+	}
+	public class Gallery2 : Gallery
+	{
+		public const string script_name = "main.php";
+
+		public Gallery2 (string url) : this (url, url) {}
+		public Gallery2 (string name, string url) : base (name)
+		{
+			this.uri = new Uri (FixUrl (url, script_name));
+			version = GalleryVersion.Version2;
+		}
+
+		public override bool Login (string username, string passwd)
+		{
+			try {
+				//Console.WriteLine ("Gallery2: Attempting to login");
+				FormClient client = new FormClient (cookies);
+				
+				client.Add ("g2_form[cmd]", "login");
+				client.Add ("g2_form[protocol_version]", "2.3");
+				client.Add ("g2_form[uname]", username);
+				client.Add ("g2_form[password]", passwd);
+				AddG2Specific (client);
+				
+				bool success = ParseLogin (client.Submit (uri));
+
+				return success;
+			} catch (Exception e) {
+				Console.WriteLine ("Exception: " + e);
+				return false;
 			}
 		}
 		
-		public void Login (string username, string passwd)
+		public override ArrayList FetchAlbums ()
+		{
+			//FetchAlbums doesn't exist for G2, we have to use FetchAlbumsPrune()
+			return FetchAlbumsPrune ();
+		}
+		
+		
+		public override bool MoveAlbum (Album album, string end_name)
 		{
 			FormClient client = new FormClient (cookies);
 			
-			client.Add ("cmd", "login");
-			client.Add ("protocol_version", "2.3");
-			client.Add ("uname", username);
-			client.Add ("password", passwd);
+			client.Add ("g2_form[cmd]", "move-album");
+			client.Add ("g2_form[protocol_version]", "2.7");
+			client.Add ("g2_form[set_albumName]", album.Name);
+			client.Add ("g2_form[set_destalbumName]", end_name);
+			AddG2Specific (client);
 			
-			ParseResponse (client.Submit (uri));
+			return ParseMoveAlbum (client.Submit (uri));
 		}
 		
-		public void FetchAlbums ()
-		{
-			FormClient client = new FormClient (cookies); 
-			
-			client.Add ("cmd", "fetch-albums");
-			client.Add ("protocol_version", "2.3");
-			
-			ParseResponse (client.Submit (uri));
-		}
-		
-		
-		public void MoveAlbum (Album album, string end_name)
-		{
-			FormClient client = new FormClient (cookies);
-			
-			client.Add ("cmd", "move-album");
-			client.Add ("protocol_version", "2.7");
-			client.Add ("set_albumName", album.Name);
-			client.Add ("set_destalbumName", end_name);
-			
-			ParseResponse (client.Submit (uri));
-		}
-		
-		public void AddItem (Album album,
+		public override bool AddItem (Album album,
 				     string path, 
 				     string filename,
 				     string caption, 
@@ -387,101 +916,177 @@ namespace GalleryRemote {
 		{
 			FormClient client = new FormClient (cookies);
 			
-			client.Add ("cmd", "add-item");
-			client.Add ("protocol_version", "2.9");
-			client.Add ("set_albumName", album.Name);
-			client.Add ("userfile_name", filename);
-			client.Add ("force_filename", filename);
-			client.Add ("auto_rotate", autorotate ? "yes" : "no");
-			client.Add ("caption", caption);
-			client.Add ("userfile", new FileInfo (path));
+			client.Add ("g2_form[cmd]", "add-item");
+			client.Add ("g2_form[protocol_version]", "2.9");
+			client.Add ("g2_form[set_albumName]", album.Name);
+			client.Add ("g2_form[caption]", caption);
+			client.Add ("g2_form[userfile_name]", filename);
+			client.Add ("g2_form[force_filename]", filename);
+			client.Add ("g2_form[auto_rotate]", autorotate ? "yes" : "no");
+			client.Add ("g2_userfile", new FileInfo (path));
+			AddG2Specific (client);
 			
-			ParseResponse (client.Submit (uri, Progress));
+			return ParseAddItem (client.Submit (uri, Progress));
 		}
 		
-		public void AlbumProperties (string album)
+		/*
+		public override Album AlbumProperties (string album)
 		{
 			FormClient client = new FormClient (cookies);
 			client.Add ("cmd", "album-properties");
 			client.Add ("protocol_version", "2.3");
 			client.Add ("set_albumName", album);
 			
-			ParseResponse (client.Submit (uri));
+			return ParseAlbumProperties (client.Submit (uri));
 		}
+		*/
 		
-		public void NewAlbum (string parent_name, 
+		public override bool NewAlbum (string parent_name, 
 				      string name, 
 				      string title, 
 				      string description)
 		{
 			FormClient client = new FormClient (cookies);
-			client.Add ("cmd", "new-album");
-			client.Add ("protocol_version", "2.8");
-			client.Add ("set_AlbumName", parent_name);
-			client.Add ("newAlbumName", name);
-			client.Add ("newAlbumTitle", title);
-			client.Add ("newAlbumDesc", description);
-			
-			ParseResponse (client.Submit (uri));
+			client.Add ("g2_form[cmd]", "new-album");
+			client.Add ("g2_form[protocol_version]", "2.8");
+			client.Add ("g2_form[set_albumName]", parent_name);
+			client.Add ("g2_form[newAlbumName]", name);
+			client.Add ("g2_form[newAlbumTitle]", title);
+			client.Add ("g2_form[newAlbumDesc]", description);
+			AddG2Specific (client);
+
+			return ParseNewAlbum (client.Submit (uri));
 		}
 		
-		public void FetchAlbumImages (string album_name, bool include_ablums)
-		{
-			FetchAlbumImages (LookupAlbum (album_name), include_ablums);
-		}
-		
-		public void FetchAlbumImages (Album album, bool include_ablums)
+		public override ArrayList FetchAlbumImages (Album album, bool include_ablums)
 		{
 			FormClient client = new FormClient (cookies);
-			client.Add ("cmd", "fetch-albums-images");
-			client.Add ("protocol_version","2.3");
-			client.Add ("set_AlbumName", album.Name);
-			client.Add ("albums_too", include_ablums ? "yes" : "no");
+			client.Add ("g2_form[cmd]", "fetch-album-images");
+			client.Add ("g2_form[protocol_version]","2.3");
+			client.Add ("g2_form[set_albumName]", album.Name);
+			client.Add ("g2_form[albums_too]", include_ablums ? "yes" : "no");
+			AddG2Specific (client);
 			
-			CurrentAlbum = album;
-			
-			ParseResponse (client.Submit (uri));
+			album.Images = ParseFetchAlbumImages (client.Submit (uri), album);
+			return album.Images;
 		}
 		
-		public void FetchAlbumsPrune ()
+		public override ArrayList FetchAlbumsPrune ()
 		{
 			FormClient client = new FormClient (cookies);
-			client.Add ("cmd", "fetch-albums-prune");
-			client.Add ("protocol_version", "2.3");
-			client.Add ("check_writable", "no");
+			client.Add ("g2_form[cmd]", "fetch-albums-prune");
+			client.Add ("g2_form[protocol_version]", "2.3");
+			client.Add ("g2_form[check_writable]", "no");
+			AddG2Specific (client);
 			
-			ParseResponse (client.Submit (uri));
+			ArrayList a = ParseFetchAlbums (client.Submit (uri));
+			a.Sort();
+			return a;
+		}
+
+		private void AddG2Specific (FormClient client)
+		{
+			client.Add("g2_controller", "remote.GalleryRemote");
+		}
+
+		public ArrayList ParseFetchAlbumImages (HttpWebResponse response, Album album)
+		{
+			string [] data;
+			StreamReader reader = null;
+			ResultCode status = ResultCode.UnknownResponse;
+			string status_text = "Error: Unable to parse server response";
+			try {
+				Image current_image = null;
+				string baseUrl = Uri.ToString() + "?g2_view=core.DownloadItem&g2_itemId=";
+				reader = findResponse (response);
+				while ((data = GetNextLine (reader)) != null) {
+					if (data[0] == "status") {
+						status = (ResultCode) int.Parse (data [1]);
+					} else if (data[0].StartsWith ("status_text")) {
+						status_text = data[1];
+						Console.WriteLine ("StatusText : {0}", data[1]);
+					} else if (data[0].StartsWith ("image.name")) {
+						//for G2 this is the number used to download the image.
+						current_image = new Image (album, "awaiting 'title'");
+						album.Images.Add (current_image);
+						current_image.Url = baseUrl + data[1];
+					} else if (data[0].StartsWith ("image.title")) {
+						//for G2 the "title" is the name"
+						current_image.Name = data[1];
+					} else if (data[0].StartsWith ("image.raw_width")) {
+						current_image.RawWidth = int.Parse (data[1]);
+					} else if (data[0].StartsWith ("image.raw_height")) {
+						current_image.RawHeight = int.Parse (data[1]);
+					} else if (data[0].StartsWith ("image.raw_height")) {
+						current_image.RawHeight = int.Parse (data[1]);
+					//ignore these for now
+					} else if (data[0].StartsWith ("image.raw_filesize")) {
+					} else if (data[0].StartsWith ("image.forceExtension")) {
+					} else if (data[0].StartsWith ("image.capturedate.year")) {
+					} else if (data[0].StartsWith ("image.capturedate.mon")) {
+					} else if (data[0].StartsWith ("image.capturedate.mday")) {
+					} else if (data[0].StartsWith ("image.capturedate.hours")) {
+					} else if (data[0].StartsWith ("image.capturedate.minutes")) {
+					} else if (data[0].StartsWith ("image.capturedate.seconds")) {
+					} else if (data[0].StartsWith ("image.hidden")) {
+					} else if (data[0].StartsWith ("image.resizedName")) {
+						current_image.ResizedName = data[1];
+					} else if (data[0].StartsWith ("image.resized_width")) {
+						current_image.ResizedWidth = int.Parse (data[1]);
+					} else if (data[0].StartsWith ("image.resized_height")) {
+						current_image.ResizedHeight = int.Parse (data[1]);
+					} else if (data[0].StartsWith ("image.thumbName")) {
+						current_image.ThumbName = data[1];
+					} else if (data[0].StartsWith ("image.thumb_width")) {
+						current_image.ThumbWidth = int.Parse (data[1]);
+					} else if (data[0].StartsWith ("image.thumb_height")) {
+						current_image.ThumbHeight = int.Parse (data[1]);
+					} else if (data[0].StartsWith ("image.caption")) {
+						current_image.Caption = data[1];
+					} else if (data[0].StartsWith ("image.extrafield.Description")) {
+						current_image.Description = data[1];
+					} else if (data[0].StartsWith ("image.clicks")) {
+						try {
+							current_image.Clicks = int.Parse (data[1]);
+						} catch (System.FormatException e) {
+							current_image.Clicks = 0;
+						}
+					} else if (data[0].StartsWith ("baseurl")) {
+						album.BaseURL = data[1];
+					} else if (data[0].StartsWith ("image_count")) {
+						if (album.Images.Count != int.Parse (data[1]))
+							Console.WriteLine ("Parsed image count for " + album.Name + "(" + album.Images.Count + ") does not match image_count (" + data[1] + ").  Something is amiss");
+					} else {
+						Console.WriteLine ("Unparsed Line in ParseFetchAlbumImages(): {0}={1}", data[0], data[1]);
+					}
+				}
+				Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
+				if (status != ResultCode.Success) {
+					Console.WriteLine (status_text);
+					throw new GalleryCommandException (status_text, status);
+				}
+
+				return album.Images;
+
+			} finally {
+				if (reader != null)
+					reader.Close ();
+				
+				response.Close ();
+			}
+		}
+
+		public override string GetAlbumUrl (Album album)
+		{
+			return Uri.ToString() + "?g2_view=core.ShowItem&g2_itemId=" + album.Name;
 		}
 		
-		public Album LookupAlbum (string name) 
-		{
-			Album match = null;
-			
-			foreach (Album album in Albums) {
-				if (album.Name == name) {
-					match = album;
-					break;
-				}
-			}
-			return match;
-		}
-		
-		public Album LookupAlbum (int ref_num) 
-		{
-			// FIXME this is really not the best way to do this
-			Album match = null;
-			
-			foreach (Album album in Albums) { 
-				if (album.RefNum == ref_num) {
-					match = album;
-					break;
-				}
-			}
-			return match;
-		}
+	}
+
+	public enum GalleryVersion : byte 
+	{
+		VersionUnknown = 0,
+		Version1 = 1,
+		Version2 = 2	 
 	}
 }
-	
-	
-	
-	

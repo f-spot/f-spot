@@ -1,5 +1,12 @@
 2005-12-09  Larry Ewing  <lewing@novell.com>
 
+	* src/GalleryExport.cs:
+	* src/GalleryRemote.cs:
+	* src/f-spot.glade: Patch from Ben Monnahan to improve the gallery
+	export code to handle Gallery versions 1 and 2.  With a patch from
+	Ruben Vermeersch to add the ability to create albums from the
+	export dailog.
+
 	* po/ru.po: add ru.po from Alexandre Prokoudine to the build.
 
 	* configure.in: added ru.po to ALL_LINGUAS.

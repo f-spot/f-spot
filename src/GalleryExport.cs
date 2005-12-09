@@ -1,32 +1,78 @@
+using System;
+using System.Net;
+using System.IO;
+using System.Text;
+using System.Collections;
+using System.Collections.Specialized;
+using System.Web;
+
+using GalleryRemote;
+
 namespace FSpot {
 	public class GalleryAccount {
-		public GalleryAccount (string name, string url, string username, string password)
+		public GalleryAccount (string name, string url, string username, string password) : this (name, url, username, password, GalleryVersion.VersionUnknown) {}
+		public GalleryAccount (string name, string url, string username, string password, GalleryVersion version)
 		{
 			this.name = name;
 			this.username = username;
 			this.password = password;
 			this.Url = url;
+
+			if (version != GalleryVersion.VersionUnknown) {
+				this.version = version;
+			} else {
+				this.version = Gallery.DetectGalleryVersion(Url);
+			}
 		}
-		
-		public GalleryRemote.Gallery Connect ()
+
+		public Gallery Connect ()
 		{
-			GalleryRemote.Gallery gal = null;
-			gal = new GalleryRemote.Gallery (url);
-			gal.Login (username, password);
-			gallery = gal;
-			connected = true;
+			//System.Console.WriteLine ("GalleryAccount.Connect()");
+			
+			Gallery gal = null;
+
+			if (version == GalleryVersion.Version1) {
+				gal = new Gallery1 (url, url);
+			} else if (version == GalleryVersion.Version2) {
+				gal = new Gallery2 (url, url);
+			} else {
+				throw new Exception ("Cannot connect to a Gallery for which the version is unknown");
+			}
+
+			System.Console.WriteLine ("Gallery created: " + gal);
+
+			if (gal.Login (username, password)) {
+				//System.Console.WriteLine ("Login successful");
+				gallery = gal;
+				connected = true;
+			}
+
 			return gallery;
+		}
+
+		GalleryVersion version;
+		public GalleryVersion Version{
+			get {
+				return version;
+			}
 		}
 
 		private bool connected;
 		public bool Connected {
 			get {
-				return connected;
+				bool retVal = false;
+				if(gallery != null) {
+					retVal = gallery.IsConnected ();
+				}
+				if (connected != retVal) {
+					System.Console.WriteLine ("Connected and retVal for IsConnected() don't agree");
+				}
+				return retVal;
 			}
 		}
 
-		GalleryRemote.Gallery gallery;
-		public GalleryRemote.Gallery Gallery {
+		Gallery gallery;
+		public Gallery Gallery {
 			get {
 				return gallery;
 			}
@@ -49,8 +95,6 @@ namespace FSpot {
 			}
 			set {
 				url = value;
-				if (url != null && !url.EndsWith ("/gallery_remote2.php"))
-					url = url + "/gallery_remote2.php";
 			}
 		}
 
@@ -76,20 +120,164 @@ namespace FSpot {
 	}
 
 	
+	public class GalleryAccountManager 
+	{
+		private static GalleryAccountManager instance;
+		string xml_path;
+		ArrayList accounts;
 
+		public delegate void AccountListChangedHandler (GalleryAccountManager manager);
+		public event AccountListChangedHandler AccountListChanged;
+		
+		public static GalleryAccountManager GetInstance ()
+		{
+			if (instance == null) {
+				instance = new GalleryAccountManager ();
+			}
+
+			return instance;
+		}
+
+		private GalleryAccountManager ()
+		{
+			// FIXME this xml file path should be be retrieved from a central location not hard coded there
+			this.xml_path = System.IO.Path.Combine (FSpot.Global.BaseDirectory, "Accounts.xml");
+			
+			accounts = new ArrayList ();
+			ReadAccounts ();
+		}	
+
+		private void OnAccountListChanged ()
+		{
+			if (AccountListChanged != null)
+				AccountListChanged (this);
+		}
+
+		public ArrayList GetAccounts ()
+		{
+			return accounts;
+		}
+
+		public void AddAccount (GalleryAccount account)
+		{
+			AddAccount (account, true);
+		}
+
+		public void AddAccount (GalleryAccount account, bool write)
+		{
+			accounts.Add (account);
+		
+			OnAccountListChanged ();
+
+			if (write)
+				
+				WriteAccounts ();
+		}
+
+		public void WriteAccounts ()
+		{
+			System.Xml.XmlTextWriter writer = new System.Xml.XmlTextWriter (xml_path, System.Text.Encoding.Default);
+			
+			writer.Formatting = System.Xml.Formatting.Indented;
+			writer.Indentation = 2;
+			writer.IndentChar = ' ';
+
+			writer.WriteStartDocument (true);
+			
+			writer.WriteStartElement ("GalleryRemote");
+			foreach (GalleryAccount account in accounts) {
+				writer.WriteStartElement ("Account");
+				writer.WriteElementString ("Name", account.Name);
+				
+				writer.WriteElementString ("Url", account.Url);
+				writer.WriteElementString ("Username", account.Username);
+				writer.WriteElementString ("Password", account.Password);
+				writer.WriteElementString ("Version", account.Version.ToString());
+				writer.WriteEndElement (); //Account
+			}
+			writer.WriteEndElement ();
+			writer.WriteEndDocument ();
+			writer.Close ();
+		}
+
+		private GalleryAccount ParseAccount (System.Xml.XmlNode node) 
+		{
+			if (node.Name != "Account")
+				
+				return null;
+
+			string name = null;
+			string url = null;
+			string username = null;
+			string password = null;
+			GalleryVersion version = GalleryVersion.VersionUnknown;
+
+			foreach (System.Xml.XmlNode child in node.ChildNodes) {
+				if (child.Name == "Name") {
+					name = child.ChildNodes [0].Value;
+				
+				} else if (child.Name == "Url") {
+					url = child.ChildNodes [0].Value;
+				} else if (child.Name == "Password") {
+					password = child.ChildNodes [0].Value;
+				} else if (child.Name == "Username") {
+					username = child.ChildNodes [0].Value;
+				} else if (child.Name == "Version") {
+					string versionString = child.ChildNodes [0].Value;
+					if (versionString == "Version1") 
+						version = GalleryVersion.Version1;
+					else if (versionString == "Version2")
+						version = GalleryVersion.Version2;
+					else
+						Console.WriteLine ("Unexpected versions string: " + versionString);
+				}
+			}
+			return new GalleryAccount (name, url, username, password, version);
+		}
+
+		private void ReadAccounts ()
+		{
+			try {
+				
+				string query = "//GalleryRemote/Account";
+				System.Xml.XmlDocument doc = new System.Xml.XmlDocument ();
+				
+				//System.Console.WriteLine ("xml_path: " + xml_path);
+				doc.Load (xml_path);
+				System.Xml.XmlNodeList nodes = doc.SelectNodes (query);
+				
+				//System.Console.WriteLine ("selected {0} nodes match {1}", nodes.Count, query);
+				foreach (System.Xml.XmlNode node in nodes) {
+					GalleryAccount account = ParseAccount (node);
+					if (account != null)
+						AddAccount (account, false);
+				
+				}
+			} catch (System.Exception e) {
+				// FIXME do something
+				System.Console.WriteLine ("Exception loading gallery accounts");
+				System.Console.WriteLine (e);
+				
+				OnAccountListChanged ();
+			}
+
+			OnAccountListChanged ();
+		}
+	}
+	
+
+	
 	public class AccountDialog : GladeDialog {
-		public AccountDialog (GalleryExport export) : this (export, null) { 
+		public AccountDialog (Gtk.Window parent) : this (parent, null) { 
 			Dialog.Response += HandleAddResponse;
 			add_button.Sensitive = false;
 			status_area.Visible = false;
 		}
 		
-		public AccountDialog (GalleryExport export, GalleryAccount account) :  base ("gallery_add_dialog")
+		public AccountDialog (Gtk.Window parent, GalleryAccount account) :  base ("gallery_add_dialog")
 		{
-			this.export = export;
-
 			this.Dialog.Modal = false;
-			this.Dialog.TransientFor = export.Dialog;
+			this.Dialog.TransientFor = parent;
 			this.Dialog.Show ();
 			
 			this.account = account;
@@ -133,7 +321,7 @@ namespace FSpot {
 									     url, 
 									     username,
 									     password);
-				export.AddAccount (account);
+				GalleryAccountManager.GetInstance ().AddAccount (account);
 			}
 			Dialog.Destroy ();
 		}
@@ -147,8 +335,6 @@ namespace FSpot {
 				account.Password = password;
 			}
 		}
-
-		GalleryExport export;
 
 		private GalleryAccount account;
 		private string name;
@@ -175,57 +361,91 @@ namespace FSpot {
 		[Glade.Widget] Gtk.Entry description_entry;
 		[Glade.Widget] Gtk.Entry title_entry;
 		
-		GalleryRemote.Gallery gallery;
-		GalleryRemote.Album parent;
+		[Glade.Widget] Gtk.Button add_button;
+		[Glade.Widget] Gtk.Button cancel_button;
 
-		public GalleryAddAlbum (GalleryRemote.Gallery gallery) : base ("gallery_add_album_dialog")
+		private GalleryExport export;
+		private Gallery gallery;
+		private string parent;
+		private string name;
+		private string description;
+		private string title;
+
+		public GalleryAddAlbum (GalleryExport export, Gallery gallery) : base ("gallery_add_album_dialog")
 		{
+			this.export = export;
+			this.gallery = gallery;	
+			PopulateAlbums ();
 			
-		}
-#if false
-		public GalleryRemote.Album Parent {
-			get {
-				return Parent;
-			}
-		}
+			Dialog.Response += HandleAddResponse;
 
-		public bool Run {
-
+			name_entry.Changed += HandleChanged;
+			description_entry.Changed += HandleChanged;
+			title_entry.Changed += HandleChanged;
+			HandleChanged (null, null);
 		}
 		
-		private PopulateAlbums ()
+		private void PopulateAlbums ()
 		{
 			Gtk.Menu menu = new Gtk.Menu ();
-			foreach (GalleryRemote.Album album in albums) {
+			Gtk.MenuItem top_item = new Gtk.MenuItem (Mono.Posix.Catalog.GetString ("(TopLevel)"));
+			menu.Append (top_item);
+
+			foreach (Album album in gallery.Albums) {
 				System.Text.StringBuilder label_builder = new System.Text.StringBuilder ();
 				
-				for (GalleryRemote.Album parent = album.Parent ();
-				     parent != null;
-				     parent = parent.Parent ()) {
+				for (int i=0; i < album.Parents.Count; i++) {
 					label_builder.Append ("  ");
-					//Console.WriteLine ("looping");
 				}
 				label_builder.Append (album.Title);
 				
 				Gtk.MenuItem item = new Gtk.MenuItem (label_builder.ToString ());
 				menu.Append (item);
 				
-				GalleryRemote.AlbumPermission add_permission = album.Perms & GalleryRemote.AlbumPermission.Add;
+				AlbumPermission create_sub = album.Perms & AlbumPermission.CreateSubAlbum;
 				
-				if (add_permission == 0)
+				if (create_sub == 0)
 					item.Sensitive = false;
 			}
+
+			album_optionmenu.Sensitive = true;
+			menu.ShowAll ();
+			album_optionmenu.Menu = menu;
 		}
-#endif
+		
+		private void HandleChanged (object sender, EventArgs args)
+		{
+			if (gallery.Albums.Count == 0 || album_optionmenu.History <= 0) {
+				parent = "";
+			} else {
+				parent = ((Album) gallery.Albums [album_optionmenu.History-1]).Name;
+			}
+			name = name_entry.Text;
+			description = description_entry.Text;
+			title = title_entry.Text;
+
+			if (name == "" || description == "" || title == "")
+				add_button.Sensitive = false;
+			else
+				add_button.Sensitive = true;
+		}
+		
+		[GLib.ConnectBefore]
+		protected void HandleAddResponse (object sender, Gtk.ResponseArgs args)
+		{
+			if (args.ResponseId == Gtk.ResponseType.Ok) {
+				gallery.NewAlbum (parent, name, title, description);
+				export.HandleAlbumAdded ();
+			}
+			Dialog.Destroy ();
+		}
 	}
+
 	
 	public class GalleryExport : GladeDialog {
 		public GalleryExport (IBrowsableCollection selection) : base ("gallery_export_dialog")
 		{
 			this.photos = (Photo []) selection.Items;
-
-			// FIXME this xml file path should be be retrieved from a central location not hard coded there
-			this.xml_path = System.IO.Path.Combine (FSpot.Global.BaseDirectory, "Accounts.xml");
 			
 			IconView view = new IconView (selection);
 			view.DisplayDates = false;
@@ -238,8 +458,10 @@ namespace FSpot {
 			view.Show ();
 			Dialog.Show ();
 
-			LoadAccounts ();
-
+			GalleryAccountManager manager = GalleryAccountManager.GetInstance ();
+			manager.AccountListChanged += PopulateGalleryOptionMenu;
+			PopulateGalleryOptionMenu (manager);
+			
 			rh = new Gtk.ResponseHandler (HandleResponse);
 			Dialog.Response += HandleResponse;
 			connect = true;
@@ -264,9 +486,9 @@ namespace FSpot {
 		int photo_index;
 		FSpot.ThreadProgressDialog progress_dialog;
 		
-		System.Collections.ArrayList accounts;
+		ArrayList accounts;
 		private GalleryAccount account;
-		private GalleryRemote.Album album;
+		private Album album;
 
 		private string xml_path;
 
@@ -297,73 +519,6 @@ namespace FSpot {
 
 		System.Threading.Thread command_thread;
 		
-		public void WriteAccounts ()
-		{
-			System.Xml.XmlTextWriter writer = new System.Xml.XmlTextWriter (xml_path, System.Text.Encoding.Default);
-			writer.Formatting = System.Xml.Formatting.Indented;
-			writer.Indentation = 2;
-			writer.IndentChar = ' ';
-
-			writer.WriteStartDocument (true);
-			
-			writer.WriteStartElement ("GalleryRemote");
-			foreach (GalleryAccount account in accounts) {
-				writer.WriteStartElement ("Account");
-				writer.WriteElementString ("Name", account.Name);
-				writer.WriteElementString ("Url", account.Url);
-				writer.WriteElementString ("Username", account.Username);
-				writer.WriteElementString ("Password", account.Password);
-				writer.WriteEndElement (); //Account
-			}
-			writer.WriteEndElement ();
-			writer.WriteEndDocument ();
-			writer.Close ();
-		}
-
-		private GalleryAccount ParseAccount (System.Xml.XmlNode node) 
-		{
-			if (node.Name != "Account")
-				return null;
-
-			string name = null;
-			string url = null;
-			string username = null;
-			string password = null;
-
-			foreach (System.Xml.XmlNode child in node.ChildNodes) {
-				if (child.Name == "Name") {
-					name = child.ChildNodes [0].Value;
-				} else if (child.Name == "Url") {
-					url = child.ChildNodes [0].Value;
-				} else if (child.Name == "Password") {
-					password = child.ChildNodes [0].Value;
-				} else if (child.Name == "Username") {
-					username = child.ChildNodes [0].Value;
-				}
-			}
-			return new GalleryAccount (name, url, username, password);
-		}
-
-		private void ReadAccounts ()
-		{
-			try {
-				string query = "//GalleryRemote/Account";
-				System.Xml.XmlDocument doc = new System.Xml.XmlDocument ();
-				doc.Load (xml_path);
-				System.Xml.XmlNodeList nodes = doc.SelectNodes (query);
-				
-				System.Console.WriteLine ("selected {0} nodes match {1}", nodes.Count, query);
-				foreach (System.Xml.XmlNode node in nodes) {
-					GalleryAccount account = ParseAccount (node);
-					if (account != null)
-						AddAccount (account, false);
-				}
-			} catch (System.Exception e) {
-				// FIXME do something
-				PopulateGalleryOptionMenu ();
-				PopulateAlbumOptionMenu (null);
-			}
-		}
 
 		private void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
@@ -382,8 +537,8 @@ namespace FSpot {
 			meta = meta_check.Active;
 
 			if (account != null) { 
-				System.Console.WriteLine ("history = {0}", album_optionmenu.History);
-				album = (GalleryRemote.Album) account.Gallery.Albums [System.Math.Max (0, album_optionmenu.History)]; 
+				//System.Console.WriteLine ("history = {0}", album_optionmenu.History);
+				album = (Album) account.Gallery.Albums [Math.Max (0, album_optionmenu.History)]; 
 				photo_index = 0;
 				
 				Dialog.Destroy ();
@@ -408,7 +563,7 @@ namespace FSpot {
 			progress_dialog.Fraction = (photo_index - 1.0 + item.Value) / (double) photos.Length;
 		}
 
-		public void HandleSizeActive (object sender, System.EventArgs args)
+		public void HandleSizeActive (object sender, EventArgs args)
 		{
 			size_spin.Sensitive = scale_check.Active;
 		}
@@ -458,29 +613,11 @@ namespace FSpot {
 			}
 		}
 		
-		private void LoadAccounts ()
-		{ 
-			accounts = new System.Collections.ArrayList ();
-			ReadAccounts ();
-		}
-
-		public void AddAccount (GalleryAccount account)
-		{
-			AddAccount (account, true);
-		}
-
-		public void AddAccount (GalleryAccount account, bool write)
-		{
-			accounts.Add (account);
-			PopulateGalleryOptionMenu ();
-			if (write)
-				WriteAccounts ();
-		}
-
-		private void PopulateGalleryOptionMenu ()
+		private void PopulateGalleryOptionMenu (GalleryAccountManager manager)
 		{
 			Gtk.Menu menu = new Gtk.Menu ();
 			
+			accounts = manager.GetAccounts ();
 			if (accounts == null || accounts.Count == 0) {
 				Gtk.MenuItem item = new Gtk.MenuItem (Mono.Posix.Catalog.GetString ("(No Gallery)"));
 				menu.Append (item);
@@ -510,12 +647,12 @@ namespace FSpot {
 			} catch (System.Exception ex) {
 				PopulateAlbumOptionMenu (account.Gallery);
 				
-				AccountDialog dialog = new AccountDialog (this, account);
+				AccountDialog dialog = new AccountDialog (this.Dialog, account);
 				Gtk.ResponseType response = (Gtk.ResponseType) dialog.Dialog.Run ();
 
 				dialog.Dialog.Destroy ();				
 				if (response == Gtk.ResponseType.Ok) {
-					WriteAccounts ();
+					GalleryAccountManager.GetInstance ().WriteAccounts ();
 					Connect ();
 				}
 			} 
@@ -526,10 +663,16 @@ namespace FSpot {
 			Connect ();
 		}
 
-		private void PopulateAlbumOptionMenu (GalleryRemote.Gallery gallery)
+		public void HandleAlbumAdded () {
+			GalleryAccount account = (GalleryAccount) accounts [gallery_optionmenu.History];
+			PopulateAlbumOptionMenu (account.Gallery);
+		}
+
+		private void PopulateAlbumOptionMenu (Gallery gallery)
 		{
 			System.Collections.ArrayList albums = null;
 			if (gallery != null) {
+				//gallery.FetchAlbumsPrune ();
 				gallery.FetchAlbums ();
 				albums = gallery.Albums;
 			}
@@ -547,23 +690,22 @@ namespace FSpot {
 
 				ok_button.Sensitive = false;
 				album_optionmenu.Sensitive = false;
-				album_button.Sensitive = false;
+
+				if (disconnected) 
+					album_button.Sensitive = false;
 			} else {
-				foreach (GalleryRemote.Album album in albums) {
+				foreach (Album album in albums) {
 					System.Text.StringBuilder label_builder = new System.Text.StringBuilder ();
 					
-					for (GalleryRemote.Album parent = album.Parent ();
-					     parent != null;
-					     parent = parent.Parent ()) {
+					for (int i=0; i < album.Parents.Count; i++) {
 						label_builder.Append ("  ");
-						//Console.WriteLine ("looping");
 					}
 					label_builder.Append (album.Title);
 
 					Gtk.MenuItem item = new Gtk.MenuItem (label_builder.ToString ());
 					menu.Append (item);
 			
-				        GalleryRemote.AlbumPermission add_permission = album.Perms & GalleryRemote.AlbumPermission.Add;
+				        AlbumPermission add_permission = album.Perms & AlbumPermission.Add;
 
 					if (add_permission == 0)
 						item.Sensitive = false;
@@ -580,12 +722,12 @@ namespace FSpot {
 		
 		public void HandleAddGallery (object sender, System.EventArgs args)
 		{
-			gallery_add = new AccountDialog (this);
+			gallery_add = new AccountDialog (this.Dialog);
 		}
 
 		public void HandleAddAlbum (object sender, System.EventArgs args)
 		{
-			album_add = new GalleryAddAlbum (account.Gallery);
+			album_add = new GalleryAddAlbum (this, account.Gallery);
 		}
 
 		void LoadPreference (string key)
@@ -595,7 +737,7 @@ namespace FSpot {
 			if (val == null)
 				return;
 			
-			//System.Console.WriteLine("Setting {0} to {1}", key, val);
+			//System.Console.WriteLine ("Setting {0} to {1}", key, val);
 
 			switch (key) {
 			case Preferences.EXPORT_GALLERY_SCALE:
