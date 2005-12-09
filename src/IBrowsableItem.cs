@@ -77,13 +77,33 @@ namespace FSpot {
 		}
 	}
 
-	public delegate void ItemIndexChangedHandler (BrowsablePointer pointer, IBrowsableItem old);
+
+	public class BrowsablePointerChangedArgs {
+		IBrowsableItem previous_item;
+		int previous_index;
+		
+		public IBrowsableItem PreviousItem {
+			get { return previous_item; }
+		}
+		
+		public int PreviousIndex {
+			get { return previous_index; }
+		}
+
+		public BrowsablePointerChangedArgs (IBrowsableItem old_item, int old_index)
+		{
+			previous_item = old_item;
+			previous_index = old_index;
+		}
+	}
+
+	public delegate void ItemChangedHandler (BrowsablePointer pointer, BrowsablePointerChangedArgs old);
 
 	public class BrowsablePointer {
 		IBrowsableCollection collection;
 		IBrowsableItem item;
 		int index;
-		public event ItemIndexChangedHandler IndexChanged;
+		public event ItemChangedHandler Changed;
 
 		public BrowsablePointer (IBrowsableCollection collection, int index)
 		{
@@ -92,12 +112,11 @@ namespace FSpot {
 			item = Current;
 
 			collection.Changed += HandleCollectionChanged;
+			collection.ItemsChanged += HandleCollectionItemsChanged;
 		}
 
 		public IBrowsableCollection Collection {
-			get {
-				return collection;
-			}
+			get { return collection; }
 		}
 
 		public IBrowsableItem Current {
@@ -115,9 +134,7 @@ namespace FSpot {
 		}
 
 		public bool IsValid {
-			get {
-				return Valid (this.Index);
-			}
+			get { return Valid (this.Index); }
 		}
 
 		public void MoveFirst ()
@@ -163,25 +180,46 @@ namespace FSpot {
 		}
 
 		public int Index {
-			get {
-				return index;
-			}
+			get { return index; }
 			set {
 				if (index != value) {
-					IBrowsableItem old = item;
-					index = value;
-					item = Current;
-					if (IndexChanged != null)
-						IndexChanged (this, old);
+					SetIndex (value);
 				}				
 			}
 		}
 
-
-		protected virtual void HandleCollectionChanged (IBrowsableCollection collection)
+		private void SetIndex (int value)
 		{
+			BrowsablePointerChangedArgs args;
+			
+			args = new BrowsablePointerChangedArgs (Current, index);
+			
+			index = value;
+			item = Current;
+			
+			if (Changed != null)
+				Changed (this, args);
+		}
+
+		protected void HandleCollectionItemsChanged (IBrowsableCollection collection,
+							     BrowsableArgs event_args)
+		{
+			foreach (int item in event_args.Items)
+				if (item == Index) 
+					SetIndex (Index);
+		}
+		
+		protected void HandleCollectionChanged (IBrowsableCollection collection)
+		{
+			int old_location = Index;
 			int next_location = collection.IndexOf (item);
-		        Index = Valid (next_location) ? next_location : 0;
+			
+			if (Valid (next_location))
+				SetIndex (next_location);
+			else if (Valid (old_location))
+				SetIndex (old_location);
+			else
+				SetIndex (0);
 		}
 	}
 }	

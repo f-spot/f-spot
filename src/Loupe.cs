@@ -390,7 +390,7 @@ namespace FSpot {
 			return false;
 		}
 
-		private void HandleIndexChanged (BrowsablePointer pointer, IBrowsableItem old)
+		private void HandleItemChanged (BrowsablePointer pointer, BrowsablePointerChangedArgs args)
 		{
 			UpdateSample ();
 		}
@@ -475,7 +475,7 @@ namespace FSpot {
 			SkipTaskbarHint = true;
 
 			//view.MotionNotifyEvent += HandleImageViewMotion;
-			view.Item.IndexChanged += HandleIndexChanged;
+			view.Item.Changed += HandleItemChanged;
 
 			SetSamplePoint (Gdk.Point.Zero);
 			SetSizeRequest (400, 400);

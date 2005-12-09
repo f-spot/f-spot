@@ -1,3 +1,11 @@
+2005-12-08  Larry Ewing  <lewing@novell.com>
+
+	* src/PhotoImageView.cs: remove redundant functions.
+	
+	* src/IBrowsableItem.cs: rework the changed event to pass the
+	previous item and the previous index.  Listen to the ItemChanged
+	even on the collection and fire the changed event if it matches.
+
 2005-12-08  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/TagCommands.cs:

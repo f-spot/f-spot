@@ -20,9 +20,8 @@ namespace FSpot {
 			this.SizeAllocated += HandleSizeAllocated;
 			this.KeyPressEvent += HandleKeyPressEvent;
 			this.ScrollEvent += HandleScrollEvent;
-			query.ItemsChanged += HandleQueryItemsChanged;
 			this.item = new BrowsablePointer (query, -1);
-			item.IndexChanged += PhotoIndexChanged;
+			item.Changed += PhotoItemChanged;
 			this.Destroyed += HandleDestroyed;
 			this.SetTransparentColor (this.Style.BaseColors [(int)Gtk.StateType.Normal]);
 		}
@@ -68,23 +67,7 @@ namespace FSpot {
 			if (!Item.IsValid)
 				return;
 			
-			PhotoIndexChanged (Item, null);
-			
-		}
-		/*
-		private void HandleQueryChanged (IBrowsableCollection browsable)
-		{
-			if (query == browsable)
-				Reload ();
-		}
-		*/
-
-		public void HandleQueryItemsChanged (IBrowsableCollection browsable, BrowsableArgs args)
-		{
-			foreach (int item in args.Items) {
-				if (item == Item.Index)
-					Reload ();
-			}
+			PhotoItemChanged (Item, null);
 		}
 
 		// Display.
@@ -227,10 +210,12 @@ namespace FSpot {
 			this.ZoomFit ();
 		}
 
-		private void PhotoIndexChanged (BrowsablePointer item, IBrowsableItem old_item) 
+		private void PhotoItemChanged (BrowsablePointer item, BrowsablePointerChangedArgs args) 
 		{
 			// If it is just the position that changed fall out
-			if (old_item != null && Item.IsValid && this.Item.Current.DefaultVersionUri == old_item.DefaultVersionUri)
+			if (args.PreviousItem != null && 
+			    Item.IsValid && 
+			    this.Item.Current.DefaultVersionUri == args.PreviousItem.DefaultVersionUri)
 				return;
 
 			if (load_async) {
