@@ -161,9 +161,15 @@ public class InfoBox : VBox {
 
 		public bool Add (SemWeb.Statement stmt)
 		{
-			if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("tiff:ImageWidth"))
-				width = ((Literal)stmt.Object).Value;
-			else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("tiff:ImageLength"))
+			if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("tiff:ImageWidth")) {
+				if (width == null)
+					width = ((Literal)stmt.Object).Value;
+				} else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("tiff:ImageLength")) {
+				if (height == null)
+					height = ((Literal)stmt.Object).Value;
+			} else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:PixelXDimension"))
+				width = ((Literal)stmt.Object).Value;						      
+			else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:PixelYDimension"))
 				height = ((Literal)stmt.Object).Value;
 			else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:ExposureTime"))
 				exposure = ((Literal)stmt.Object).Value;
@@ -210,7 +216,7 @@ public class InfoBox : VBox {
 			}
 		}
 
-		public string Dimentions {
+		public string Dimensions {
 			get {
 				if (width != null && height != null)
 					return String.Format ("{0}x{1}", width, height);
@@ -256,7 +262,7 @@ public class InfoBox : VBox {
 
 		name_entry.Sensitive = true;
 		exposure_info_label.Text = info.ExposureInfo;
-		size_label.Text = info.Dimentions;
+		size_label.Text = info.Dimensions;
 		date_label.Text = info.Date;
 
 		PhotoVersionMenu menu = new PhotoVersionMenu (photo);
