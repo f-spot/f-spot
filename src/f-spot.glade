@@ -7197,7 +7197,7 @@ Photo Details</property>
 		      <signal name="activate" handler="HandleTagMenuActivate" last_modification_time="Thu, 17 Jun 2004 16:52:18 GMT"/>
 		    </widget>
 		  </child>
-		  
+
 		  <child>
 		    <widget class="GtkSeparatorMenuItem" id="separator111">
 		      <property name="visible">True</property>
@@ -7948,23 +7948,22 @@ Photo Details</property>
 	      <child>
 		<widget class="GtkEventBox" id="eventbox1">
 		  <property name="visible">True</property>
+		  <property name="can_focus">True</property>
 		  <property name="events">GDK_BUTTON_PRESS_MASK</property>
 		  <property name="visible_window">True</property>
 		  <property name="above_child">False</property>
-		  <property name="can_focus">True</property>
 		  <signal name="button_press_event" handler="HandleZoomOut" last_modification_time="Mon, 05 Dec 2005 04:56:18 GMT"/>
-	  
+
 		  <child>
 		    <widget class="GtkImage" id="far_image">
-		      <property name="can_focus">True</property>
-		      <property name="sensitive">True</property>
 		      <property name="visible">True</property>
+		      <property name="can_focus">True</property>
 		      <property name="xalign">0.5</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		    </widget>
-	          </child>
+		  </child>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -7995,10 +7994,10 @@ Photo Details</property>
 	      <child>
 		<widget class="GtkEventBox" id="eventbox2">
 		  <property name="visible">True</property>
+		  <property name="can_focus">True</property>
 		  <property name="events">GDK_BUTTON_PRESS_MASK</property>
 		  <property name="visible_window">True</property>
 		  <property name="above_child">False</property>
-		  <property name="can_focus">True</property>
 		  <signal name="button_press_event" handler="HandleZoomIn" last_modification_time="Mon, 05 Dec 2005 04:56:18 GMT"/>
 
 		  <child>
@@ -8010,7 +8009,7 @@ Photo Details</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		    </widget>
-	          </child>
+		  </child>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -10835,6 +10834,7 @@ Photo Details</property>
 
 	      <child>
 		<widget class="GtkMenu" id="view2_menu">
+
 		  <child>
 		    <widget class="GtkMenuItem" id="slideshow">
 		      <property name="visible">True</property>
@@ -10853,7 +10853,7 @@ Photo Details</property>
 		      <accelerator key="F11" modifiers="0" signal="activate"/>
 		    </widget>
 		  </child>
-		  
+
 		  <child>
 		    <widget class="GtkSeparatorMenuItem" id="separator26">
 		      <property name="visible">True</property>
@@ -10888,7 +10888,7 @@ Photo Details</property>
 		      <property name="visible">True</property>
 		    </widget>
 		  </child>
-		  
+
 		  <child>
 		    <widget class="GtkMenuItem" id="zoom_in">
 		      <property name="visible">True</property>
@@ -10908,7 +10908,6 @@ Photo Details</property>
 		      <accelerator key="minus" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 		    </widget>
 		  </child>
-
 		</widget>
 	      </child>
 	    </widget>
@@ -11190,23 +11189,22 @@ Photo Details</property>
 	      <child>
 		<widget class="GtkEventBox" id="eventbox1">
 		  <property name="visible">True</property>
+		  <property name="can_focus">True</property>
 		  <property name="events">GDK_BUTTON_PRESS_MASK</property>
 		  <property name="visible_window">True</property>
 		  <property name="above_child">False</property>
-		  <property name="can_focus">True</property>
 		  <signal name="button_press_event" handler="HandleZoomOut" last_modification_time="Mon, 05 Dec 2005 04:56:18 GMT"/>
-	  
+
 		  <child>
 		    <widget class="GtkImage" id="far_image">
-		      <property name="can_focus">True</property>
-		      <property name="sensitive">True</property>
 		      <property name="visible">True</property>
+		      <property name="can_focus">True</property>
 		      <property name="xalign">0.5</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		    </widget>
-	          </child>
+		  </child>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -11237,10 +11235,10 @@ Photo Details</property>
 	      <child>
 		<widget class="GtkEventBox" id="eventbox2">
 		  <property name="visible">True</property>
+		  <property name="can_focus">True</property>
 		  <property name="events">GDK_BUTTON_PRESS_MASK</property>
 		  <property name="visible_window">True</property>
 		  <property name="above_child">False</property>
-		  <property name="can_focus">True</property>
 		  <signal name="button_press_event" handler="HandleZoomIn" last_modification_time="Mon, 05 Dec 2005 04:56:18 GMT"/>
 
 		  <child>
@@ -11252,7 +11250,7 @@ Photo Details</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		    </widget>
-	          </child>
+		  </child>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -11840,7 +11838,6 @@ Photo Details</property>
 
 		  <child>
 		    <widget class="GtkCheckButton" id="exposure_check">
-		      <property name="visible">True</property>
 		      <property name="has_default">True</property>
 		      <property name="has_focus">True</property>
 		      <property name="label" translatable="yes"></property>
@@ -11886,7 +11883,6 @@ Photo Details</property>
 
 		  <child>
 		    <widget class="GtkButton" id="button27">
-		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
 		      <property name="relief">GTK_RELIEF_NONE</property>
 		      <property name="focus_on_click">True</property>
@@ -12155,7 +12151,6 @@ Photo Details</property>
 
 		  <child>
 		    <widget class="GtkCheckButton" id="white_check">
-		      <property name="visible">True</property>
 		      <property name="label" translatable="yes"></property>
 		      <property name="use_underline">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
@@ -12173,7 +12168,6 @@ Photo Details</property>
 
 		  <child>
 		    <widget class="GtkButton" id="white_reset">
-		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
 		      <property name="relief">GTK_RELIEF_NONE</property>
 		      <property name="focus_on_click">True</property>
@@ -12521,7 +12515,7 @@ supported image formats.&lt;/i&gt;&lt;/small&gt;</property>
 		      </child>
 
 		      <child>
-			<widget class="GtkComboBox" id="combobox1">
+			<widget class="GtkComboBox" id="display_combo">
 			  <property name="visible">True</property>
 			  <property name="items" translatable="yes">From Screen
 Standard RGB</property>
@@ -12538,7 +12532,7 @@ Standard RGB</property>
 		      </child>
 
 		      <child>
-			<widget class="GtkComboBox" id="combobox2">
+			<widget class="GtkComboBox" id="destination_combo">
 			  <property name="visible">True</property>
 			  <property name="items" translatable="yes">Standard RGB
 Image Profile
