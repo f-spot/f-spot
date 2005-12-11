@@ -118,7 +118,7 @@ namespace FSpot {
 		{
 			if (selection.Count > 0) {
 				image_view.Item.Index = ((IconView.SelectionCollection)selection).Ids[0];
-				zoom_scale.Value = image_view.Zoom;
+				zoom_scale.Value = image_view.NormalizedZoom;
 			}
 		}
 
@@ -175,17 +175,25 @@ namespace FSpot {
 				directory_view.Selection.Add (fsview.View.Item.Index);
 			fsview = null;
 		}
+		
+		public void HandleZoomOut (object sender, System.EventArgs args)
+		{
+			image_view.ZoomOut ();
+		}
+
+		public void HandleZoomIn (object sender, System.EventArgs args)
+		{
+			image_view.ZoomIn ();
+		}
 
 		private void HandleZoomScaleValueChanged (object sender, System.EventArgs args)
 		{
-			if (zoom_scale.Value != image_view.Zoom)
-				image_view.Zoom = Math.Max (0.1, zoom_scale.Value);
+			image_view.NormalizedZoom = zoom_scale.Value;
 		}
 
 		private void HandleZoomChanged (object sender, System.EventArgs args)
 		{
-			if (zoom_scale.Value != image_view.Zoom)
-				zoom_scale.Value = Math.Max (0.1, image_view.Zoom);
+			zoom_scale.Value = image_view.NormalizedZoom;
 		}
 
 		private void HandleFileClose (object sender, System.EventArgs args)

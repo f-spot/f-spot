@@ -1,3 +1,36 @@
+2005-12-09  Gabriel Burt  <gabriel.burt@gmail.com>
+	
+	* libeog/image-view.c
+	* libeog/image-view.h: Add function to recompute the minimum zoom
+
+	* src/IconView.cs: Change zoom factor, automatically scale the dynamic
+	zoom range into 0.0 - 1.0 range, add ZoomChanged event, add ZoomIn and
+	ZoomOut methods. Added ctrl-mouse-wheel zooming from Pasi Savolainen,
+	psavo@iki.fi.
+
+	* src/ImageView.cs: Add method to update minimum zoom for when a new
+	pixbuf is loaded.
+
+	* src/MainWindow.cs: Move details of zooming in/out to the IconView
+	and PhotoView classes, keep the zoom_scale in sync with the current
+	zoom level.
+
+	* src/PhotoImageView.cs: Handle the details of zooming in/out,
+	providing ZoomIn/ZoomOut methods, and update the minimum zoom when
+	appropriate.  Fix bug that caused arrow keys to always go to
+	next/previous photo even if zoomed in (when they should pan).
+
+	* src/PhotoView.cs: Pass on zoom commands to the PhotoImageView
+
+	* src/Preferences.cs: Remove THUMBNAIL_SIZE preference, add ZOOM
+
+	* src/SingleView.cs: Make zooming work with above changes, add
+	handlers for zooming via the menu and keybindings.
+
+	* src/f-spot.glade: Remove the Size menu, make the near/far images
+	surrounding the zoom_scale clickable, rearrange the order of the View
+	menu for the SingleView mode and add Zoom In/Out commands to it.
+
 2005-12-09  Larry Ewing  <lewing@novell.com>
 
 	* src/GalleryExport.cs:

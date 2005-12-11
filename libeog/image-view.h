@@ -121,6 +121,8 @@ void image_view_get_scaled_size (ImageView *view, gint *width, gint *height);
 
 void image_view_set_transparent_color (ImageView *view, const GdkColor *color);
 
+void image_view_update_min_zoom (ImageView *view);
+
 #ifdef LIBEOG_ETTORE_CHANGES
 void image_view_get_offsets_and_size (ImageView *view,
 				      int *xofs_return, int *yofs_return,

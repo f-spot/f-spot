@@ -25,19 +25,38 @@ public class IconView : Gtk.Layout {
 	/* preserve the scroll postion when possible */
 	private bool scroll;
 	private double scroll_value;
+	
+	// Zooming factor.
+	protected const double ZOOM_FACTOR = 1.2;
 
 	/* Width of the thumbnails. */
 	protected int thumbnail_width = 128;
+	protected const int MAX_THUMBNAIL_WIDTH = 256;
+	protected const int MIN_THUMBNAIL_WIDTH = 64;
 	public int ThumbnailWidth {
 		get {
 			return thumbnail_width;
 		}
-
 		set {
+			value = Math.Min(value, MAX_THUMBNAIL_WIDTH);
+			value = Math.Max(value, MIN_THUMBNAIL_WIDTH);
+
 			if (thumbnail_width != value) {
 				thumbnail_width = value;
 				QueueResize ();
+
+				if (ZoomChanged != null)
+					ZoomChanged (this, System.EventArgs.Empty);
 			}
+		}
+	}
+
+	public double Zoom {
+		get {
+			return ((double)(ThumbnailWidth - MIN_THUMBNAIL_WIDTH) / (double)(MAX_THUMBNAIL_WIDTH - MIN_THUMBNAIL_WIDTH));
+		}
+		set {
+			ThumbnailWidth = (int) ((value) * (MAX_THUMBNAIL_WIDTH - MIN_THUMBNAIL_WIDTH)) + MIN_THUMBNAIL_WIDTH;
 		}
 	}
 
@@ -148,6 +167,9 @@ public class IconView : Gtk.Layout {
 	// Public events.
 	public delegate void DoubleClickedHandler (IconView view, int clicked_item);
 	public event DoubleClickedHandler DoubleClicked;
+	
+	public delegate void ZoomChangedHandler (object sender, System.EventArgs args);
+	public event ZoomChangedHandler ZoomChanged;
 
 	// Public API.
 	public IconView (IntPtr raw) : base (raw) {}
@@ -162,6 +184,7 @@ public class IconView : Gtk.Layout {
 		ButtonPressEvent += new ButtonPressEventHandler (HandleButtonPressEvent);
 		ButtonReleaseEvent += new ButtonReleaseEventHandler (HandleButtonReleaseEvent);
 		KeyPressEvent += new KeyPressEventHandler (HandleKeyPressEvent);
+		ScrollEvent += new ScrollEventHandler(HandleScrollEvent);
 
 		Destroyed += HandleDestroyed;
 
@@ -1136,7 +1159,16 @@ public class IconView : Gtk.Layout {
 		adjustment.ChangeValue ();
 
 	}
-
+	
+	public void ZoomIn ()
+	{
+		ThumbnailWidth = (int) (ThumbnailWidth * ZOOM_FACTOR);
+	}
+	
+	public void ZoomOut ()
+	{
+		ThumbnailWidth = (int) (ThumbnailWidth / ZOOM_FACTOR);
+	}
 
 	// Event handlers.
 
@@ -1222,6 +1254,22 @@ public class IconView : Gtk.Layout {
 	{
 		if (args.Vadjustment != null)
 			args.Vadjustment.ValueChanged += new EventHandler (HandleAdjustmentValueChanged);
+	}
+
+	private void HandleScrollEvent(object sender, ScrollEventArgs args) 
+	{
+		// Activated only by Control + ScrollWheelUp/ScrollWheelDown
+		if (ModifierType.ControlMask != (args.Event.State & ModifierType.ControlMask))
+			return;
+		
+		if (args.Event.Direction == ScrollDirection.Up) {
+			ZoomIn ();
+			// stop event from propagating.
+			args.RetVal = true;			
+		} else if (args.Event.Direction == ScrollDirection.Down ) {
+			ZoomOut ();
+			args.RetVal = true;
+		}
 	}
 
 	protected override void OnSizeAllocated (Gdk.Rectangle allocation)

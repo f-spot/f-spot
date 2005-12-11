@@ -230,6 +230,10 @@ public class MainWindow {
 
 		group_selector.Adaptor  = adaptor;
 		group_selector.ShowAll ();
+		
+		if (zoom_scale != null) {
+			zoom_scale.ValueChanged += HandleZoomScaleValueChanged;
+		}
 
 		view_vbox.PackStart (group_selector, false, false, 0);
 		view_vbox.ReorderChild (group_selector, 0);
@@ -239,7 +243,8 @@ public class MainWindow {
 		view_vbox.ReorderChild (query_display, 1);
 
 		icon_view = new QueryView (query);
-		LoadPreference (Preferences.THUMBNAIL_WIDTH);
+		icon_view.ZoomChanged += HandleZoomChanged;
+		LoadPreference (Preferences.ZOOM);
 		LoadPreference (Preferences.SHOW_TAGS);
 		LoadPreference (Preferences.SHOW_DATES);
 		icon_view_scrolled.Add (icon_view);
@@ -258,10 +263,6 @@ public class MainWindow {
 		TagMenu menu = new TagMenu (attach_tag, db.Tags);
 		menu.TagSelected += HandleAttachTagMenuSelected;
 
-		if (zoom_scale != null) {
-			zoom_scale.ValueChanged += HandleZoomScaleValueChanged;
-		}
-		
 		near_image.SetFromStock ("f-spot-stock_near", IconSize.SmallToolbar);
 		far_image.SetFromStock ("f-spot-stock_far", IconSize.SmallToolbar);
 
@@ -372,14 +373,14 @@ public class MainWindow {
 				view_notebook.CurrentPage = 0;
 				
 			JumpTo (photo_view.Item.Index);
-			zoom_scale.Value = icon_view.ThumbnailWidth / 256.0;
+			zoom_scale.Value = icon_view.Zoom;
 			break;
 		case ModeType.PhotoView:
 			if (view_notebook.CurrentPage != 1)
 				view_notebook.CurrentPage = 1;
 			
 			JumpTo (icon_view.FocusCell);
-			zoom_scale.Value = photo_view.Zoom;
+			//zoom_scale.Value = 0.0;
 			break;
 		}
 		UpdateToolbar ();
@@ -1407,7 +1408,7 @@ public class MainWindow {
 		Preferences.Set (Preferences.SHOW_DATES,		icon_view.DisplayDates);
 
 		Preferences.Set (Preferences.SIDEBAR_POSITION,		main_hpaned.Position);
-		Preferences.Set (Preferences.THUMBNAIL_WIDTH,		icon_view.ThumbnailWidth);
+		Preferences.Set (Preferences.ZOOM,			icon_view.Zoom);
 	
 		Preferences.Set (Preferences.ICON_VIEW_POSITION, icon_view.TopLeftVisibleCell ());
 		
@@ -1626,21 +1627,6 @@ public class MainWindow {
 		dialog.Destroy ();
 	}
 
-	void HandleViewSmall (object sender, EventArgs args)
-	{
-		icon_view.ThumbnailWidth = 64;	
-	}
-
-	void HandleViewMedium (object sender, EventArgs args)
-	{
-		icon_view.ThumbnailWidth = 128;	
-	}
-
-	void HandleViewLarge (object sender, EventArgs args)
-	{
-		icon_view.ThumbnailWidth = 256;	
-	}
-
 	void HandleDisplayToolbar (object sender, EventArgs args)
 	{
 		if (display_toolbar.Active)
@@ -1764,79 +1750,73 @@ public class MainWindow {
 	{
 		switch (view_mode) {
 		case ModeType.PhotoView:
-			if (System.Math.Abs (photo_view.Zoom - zoom_scale.Value) > System.Double.Epsilon) 
-				photo_view.Zoom = System.Math.Max (0.1, zoom_scale.Value);
+			photo_view.View.ZoomChanged -= HandleZoomChanged;
+			photo_view.NormalizedZoom = zoom_scale.Value;
+			photo_view.View.ZoomChanged += HandleZoomChanged;
 			break;
 		case ModeType.IconView:
-			icon_view.ThumbnailWidth = (int)(System.Math.Max (15, zoom_scale.Value * 256));
+			icon_view.ZoomChanged -= HandleZoomChanged;
+			icon_view.Zoom = zoom_scale.Value;
+			icon_view.ZoomChanged += HandleZoomChanged;
 			break;
 		}
 	}
-
+	
 	void HandleZoomChanged (object sender, System.EventArgs args)
 	{
+		zoom_scale.ValueChanged -= HandleZoomScaleValueChanged;
+
 		switch (view_mode) {
 		case ModeType.PhotoView:
-			if (photo_view.Zoom != zoom_scale.Value) 
-				zoom_scale.Value = photo_view.Zoom;
+			zoom_scale.Value = photo_view.NormalizedZoom;
 			break;
 		case ModeType.IconView:
+			double zoom = icon_view.Zoom;
+			if (zoom == 0.0 || zoom == 100.0 || zoom != zoom_scale.Value)
+				zoom_scale.Value = zoom;
+
 			break;
 		}
+		
+		zoom_scale.ValueChanged += HandleZoomScaleValueChanged;
 	}
 
 	void HandleZoomOut (object sender, EventArgs args)
 	{
+		ZoomOut ();
+	}
+	
+	void HandleZoomIn (object sender, EventArgs args)
+	{
+		ZoomIn ();
+	}
+	
+	private void ZoomOut ()
+	{
 		switch (view_mode) {
 		case ModeType.PhotoView:
-			double old_zoom = photo_view.Zoom;
-
-			old_zoom /= FSpot.PhotoImageView.ZoomMultipler;
-
-			int offset_x, offset_y, scaled_width, scaled_height;
-			photo_view.View.GetOffsets (out offset_x, out offset_y, out scaled_width, out scaled_height);
-
-			if (scaled_width <= 256 && old_zoom < 1.0)
-				SetViewMode (ModeType.IconView);
-			else
-				photo_view.Zoom = old_zoom;
-			
+			photo_view.ZoomOut ();
 			break;
 		case ModeType.IconView:
-			int width = icon_view.ThumbnailWidth;
-			
-			width /= 2;
-			width = Math.Max (width, 64);
-			width = Math.Min (width, 256);
-			icon_view.ThumbnailWidth = width;
-
+			icon_view.ZoomOut ();
 			break;
 		}
 	}
-
-	void HandleZoomIn (object sender, EventArgs args)
+	
+	private void ZoomIn ()
 	{
 		switch (view_mode) {
 		case ModeType.PhotoView:
 			double old_zoom = photo_view.Zoom;
 			try {
-				photo_view.Zoom *= FSpot.PhotoImageView.ZoomMultipler;
+				photo_view.ZoomIn ();
 			} catch {
 				photo_view.Zoom = old_zoom;
 			}
 			
 			break;
 		case ModeType.IconView:
-			int width = icon_view.ThumbnailWidth;
-			 
-			width *= 2;
-			width = Math.Max (width, 64);
-			if (width >= 512) {
-				photo_view.Zoom = 0.0;
-				SetViewMode (ModeType.PhotoView);
-			} else {
-				icon_view.ThumbnailWidth = width;
-			}			
+			icon_view.ZoomIn ();
 			break;
 		}
 	}
@@ -2134,9 +2114,8 @@ public class MainWindow {
 				main_hpaned.Position = (int) val;
 			break;
 		
-		case Preferences.THUMBNAIL_WIDTH:
-			if (icon_view.ThumbnailWidth != (int) val)
-				icon_view.ThumbnailWidth = (int) val;
+		case Preferences.ZOOM:
+			icon_view.Zoom = (double) val;
 			break;
 		
 		case Preferences.ICON_VIEW_POSITION:

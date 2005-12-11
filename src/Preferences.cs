@@ -21,7 +21,7 @@ namespace FSpot
 		public const string EXPANDED_TAGS = "/apps/f-spot/ui/expanded_tags";
 		
 		public const string SIDEBAR_POSITION = "/apps/f-spot/ui/sidebar_size";
-		public const string THUMBNAIL_WIDTH = "/apps/f-spot/ui/thumbnail_width";
+		public const string ZOOM = "/apps/f-spot/ui/zoom";
 		public const string ICON_VIEW_POSITION = "/apps/f-spot/ui/icon_view_position";
 
 		public const string EXPORT_FLICKR_SCALE = "/apps/f-spot/export/flickr/scale";
@@ -76,7 +76,7 @@ namespace FSpot
 				return true;
 		
 			case SIDEBAR_POSITION:
-			case THUMBNAIL_WIDTH:
+			case ZOOM:
 			case ICON_VIEW_POSITION:
 				return null;
 			}

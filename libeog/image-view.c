@@ -56,8 +56,8 @@
 
 /* Maximum zoom factor */
 
-#define MAX_ZOOM_FACTOR 20
-#define MIN_ZOOM_FACTOR 0.01
+#define MAX_ZOOM_FACTOR 5
+#define MIN_ZOOM_FACTOR 0.05
 
 /* Private part of the ImageView structure */
 struct _ImageViewPrivate {
@@ -67,6 +67,9 @@ struct _ImageViewPrivate {
 	/* Current zoom factors */
 	double zoomx;
 	double zoomy;
+	
+	/* Minimum Zoom Factor for This Pixbuf */
+	double MIN_ZOOM;
 
 	/* Previous zoom factor and zoom anchor point stored for size_allocate */
 	double old_zoomx;
@@ -1404,13 +1407,14 @@ image_view_scroll_event (GtkWidget *widget, GdkEventScroll *event)
 {
 	ImageView *view;
 	ImageViewPrivate *priv;
-	double zoom_factor;
-	int xofs, yofs;
 
 	view = IMAGE_VIEW (widget);
 	priv = view->priv;
-
+	
 	/* Compute zoom factor and scrolling offsets; we'll only use either of them */
+
+	double zoom_factor;
+	int xofs, yofs;
 
 	xofs = priv->hadj->page_increment / 2; /* same as in gtkscrolledwindow.c */
 	yofs = priv->vadj->page_increment / 2;
@@ -1792,15 +1796,17 @@ image_view_set_zoom (ImageView *view, double zoomx, double zoomy,
 	g_return_if_fail (zoomy > 0.0);
 
 	priv = view->priv;
+		
+	image_view_update_min_zoom (view);
 
 	if (zoomx > MAX_ZOOM_FACTOR)
 		zoomx = MAX_ZOOM_FACTOR;
-	else if (zoomx < MIN_ZOOM_FACTOR)
-		zoomx = MIN_ZOOM_FACTOR;
+	else if (zoomx < priv->MIN_ZOOM)
+		zoomx = priv->MIN_ZOOM;
 	if (zoomy > MAX_ZOOM_FACTOR)
 		zoomy = MAX_ZOOM_FACTOR;
-	else if (zoomy < MIN_ZOOM_FACTOR)
-		zoomy = MIN_ZOOM_FACTOR;
+	else if (zoomy < priv->MIN_ZOOM)
+		zoomy = priv->MIN_ZOOM;
 
 	if (DOUBLE_EQUAL (priv->zoomx, zoomx) &&
 	    DOUBLE_EQUAL (priv->zoomy, zoomy))
@@ -2184,6 +2190,25 @@ image_view_class_init (ImageViewClass *class)
 	widget_class->focus_out_event = image_view_focus_out_event;
 }
 
+void
+image_view_update_min_zoom (ImageView *view)
+{
+	ImageViewPrivate *priv = view->priv;
+
+	priv->MIN_ZOOM = MIN_ZOOM_FACTOR;
+	if (priv->pixbuf) {
+		double width = (double) gdk_pixbuf_get_width (priv->pixbuf);
+		double height = (double) gdk_pixbuf_get_height (priv->pixbuf);
+
+		priv->MIN_ZOOM = ((double) GTK_WIDGET (view)->allocation.width)/ width;
+
+		if (((double) GTK_WIDGET (view)->allocation.height) / height < priv->MIN_ZOOM)
+			priv->MIN_ZOOM = ((double) GTK_WIDGET (view)->allocation.height)/ height;
+
+		if (priv->MIN_ZOOM > 1.0)
+			priv->MIN_ZOOM = 1.0;
+	}
+}
 
 #ifdef LIBEOG_ETTORE_CHANGES
 

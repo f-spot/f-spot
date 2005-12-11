@@ -1,8 +1,7 @@
+using System;
 
 namespace FSpot {
 	public class PhotoImageView : ImageView {
-		public static double ZoomMultipler = 1.1;
-
 		public delegate void PhotoChangedHandler (PhotoImageView view);
 		public event PhotoChangedHandler PhotoChanged;
 		
@@ -117,6 +116,7 @@ namespace FSpot {
 			if (prev != null)
 				prev.Dispose ();
 
+			UpdateMinZoom ();
 			this.ZoomFit ();
 		}
 
@@ -147,27 +147,31 @@ namespace FSpot {
 								      PixbufUtils.ErrorPixbuf.Width, 
 								      PixbufUtils.ErrorPixbuf.Height);
 
+				UpdateMinZoom ();
 				this.ZoomFit ();
 			} else {
 				this.Pixbuf = loader.Pixbuf;
 
-				if (!loader.Prepared)
+				if (!loader.Prepared) {
+					UpdateMinZoom ();
 					this.ZoomFit ();
+				}
 			}
 
 			if (prev != this.Pixbuf && prev != null)
 				prev.Dispose ();
-		}		
+		}
 		
 		private bool fit = true;
 		public bool Fit {
 			get {
-				return fit;
+				return (Zoom == MIN_ZOOM);
 			}
 			set {
-				fit = value;
-				if (fit)
+				if (!fit && value)
 					ZoomFit ();
+				
+				fit = value;
 			}
 		}
 
@@ -180,8 +184,33 @@ namespace FSpot {
 			}
 			
 			set {
-				this.Fit = false;
-				this.SetZoom (value, value);
+				//Console.WriteLine ("Setting zoom to {0}, MIN = {1}", value, MIN_ZOOM);
+				value = System.Math.Min (value, MAX_ZOOM);
+				value = System.Math.Max (value, MIN_ZOOM);
+
+				double zoom = Zoom;
+				if (value == zoom)
+					return;
+
+				if (System.Math.Abs (zoom - value) < System.Double.Epsilon)
+					return;
+
+				if (value == MIN_ZOOM)
+					this.Fit = true;
+				else {
+					this.Fit = false;
+					this.SetZoom (value, value);
+				}
+			}
+		}
+		
+		// Zoom scaled between 0.0 and 1.0
+		public double NormalizedZoom {
+			get {
+				return (Zoom - MIN_ZOOM) / (MAX_ZOOM - MIN_ZOOM);
+			}
+			set {
+				Zoom = (value * (MAX_ZOOM - MIN_ZOOM)) + MIN_ZOOM;
 			}
 		}
 		
@@ -189,7 +218,7 @@ namespace FSpot {
 		{
 			if (fit)
 				ZoomFit ();
-		}	
+		}
 
 		bool load_async = true;
 		FSpot.AsyncPixbufLoader loader;
@@ -207,6 +236,7 @@ namespace FSpot {
 			if (old != null)
 				old.Dispose ();
 			
+			UpdateMinZoom ();
 			this.ZoomFit ();
 		}
 
@@ -240,6 +270,7 @@ namespace FSpot {
 				if (old != null)
 					old.Dispose ();
 
+				UpdateMinZoom ();
 				this.ZoomFit ();
 			}
 			
@@ -248,7 +279,17 @@ namespace FSpot {
 			if (PhotoChanged != null)
 				PhotoChanged (this);
 		}
-
+		
+		public void ZoomIn ()
+		{
+			Zoom = Zoom * ZOOM_FACTOR;
+		}
+		
+		public void ZoomOut ()
+		{
+			Zoom = Zoom / ZOOM_FACTOR;
+		}
+		
 		private void ZoomFit ()
 		{
 			Gdk.Pixbuf pixbuf = this.Pixbuf;
@@ -266,7 +307,7 @@ namespace FSpot {
 								   (uint) pixbuf.Height, 
 								   true);
 			
-			double image_zoom = zoom_to_fit;
+			double image_zoom = Math.Min(1.0, zoom_to_fit);
 			/*
 			System.Console.WriteLine ("Zoom = {0}, {1}, {2}", image_zoom, 
 						  available_width, 
@@ -281,20 +322,36 @@ namespace FSpot {
 			if (scrolled != null)
 				scrolled.SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic);
 		}
-
+		
 		[GLib.ConnectBefore]
 		private void HandleKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
 		{
 			// FIXME I really need to figure out why overriding is not working
 			// for any of the default handlers.
+			args.RetVal = true;
+		
+			// Check for KeyPad arrow keys, which scroll the window when zoomed in
+			// but should go to the next/previous photo when not zoomed (no scrollbars)
+			if (this.Fit) {
+				switch (args.Event.Key) {
+				case Gdk.Key.Up:
+				case Gdk.Key.Left:
+				case Gdk.Key.KP_Up:
+				case Gdk.Key.KP_Left:
+					this.Item.MovePrevious ();
+					return;
+				case Gdk.Key.Down:
+				case Gdk.Key.Right:
+				case Gdk.Key.KP_Down:
+				case Gdk.Key.KP_Right:
+					this.Item.MoveNext ();
+					return;
+				}
+			}
 
 			switch (args.Event.Key) {
 			case Gdk.Key.Page_Up:
 			case Gdk.Key.KP_Page_Up:
-			case Gdk.Key.Up:
-			case Gdk.Key.KP_Up:
-			case Gdk.Key.Left:
-			case Gdk.Key.KP_Left:
 				this.Item.MovePrevious ();
 				break;
 			case Gdk.Key.Home:
@@ -307,10 +364,6 @@ namespace FSpot {
 				break;
 			case Gdk.Key.Page_Down:
 			case Gdk.Key.KP_Page_Down:
-			case Gdk.Key.Down:
-			case Gdk.Key.KP_Down:
-			case Gdk.Key.Right:
-			case Gdk.Key.KP_Right:
 			case Gdk.Key.space:
 			case Gdk.Key.KP_Space:
 				this.Item.MoveNext ();
@@ -329,7 +382,7 @@ namespace FSpot {
 				break;
 			case Gdk.Key.minus:
 			case Gdk.Key.KP_Subtract:
-				this.Zoom /= ZoomMultipler;
+				ZoomOut ();
 				break;
 			case Gdk.Key.s:
 				if (sharpener == null)
@@ -343,15 +396,16 @@ namespace FSpot {
 
 				loupe.Show ();
 				break;
+			case Gdk.Key.equal:
 			case Gdk.Key.plus:
 			case Gdk.Key.KP_Add:
-				this.Zoom *= ZoomMultipler;
+				ZoomIn ();
 				break;
 			default:
 				args.RetVal = false;
 				return;
 			}
-			args.RetVal = true;
+
 			return;
 		}
 		

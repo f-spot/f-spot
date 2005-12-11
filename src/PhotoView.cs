@@ -50,8 +50,6 @@ public class PhotoView : EventBox {
 
 	FSpot.AsyncPixbufLoader loader = new FSpot.AsyncPixbufLoader ();
 
-	private const double MAX_ZOOM = 5.0;
-
 	public double Zoom {
 		get {
 			return photo_view.Zoom;
@@ -59,6 +57,16 @@ public class PhotoView : EventBox {
 
 		set {
 			photo_view.Zoom = value;
+		}
+	}
+	
+	public double NormalizedZoom {
+		get {
+			return photo_view.NormalizedZoom;
+		}
+
+		set {
+			photo_view.NormalizedZoom = value;
 		}
 	}
 
@@ -195,6 +203,16 @@ public class PhotoView : EventBox {
 
 		if (UpdateFinished != null)
 			UpdateFinished (this);
+	}
+
+	public void ZoomIn ()
+	{
+		photo_view.ZoomIn ();
+	}
+	
+	public void ZoomOut ()
+	{
+		photo_view.ZoomOut ();
 	}
 
 	// Event handlers.

@@ -8,6 +8,17 @@ namespace FSpot {
 public class ImageView : Layout {
 	private Cms.Transform transform;
 
+	public static double ZOOM_FACTOR = 1.1;
+
+	protected const double MAX_ZOOM = 5.0;
+
+	protected double min_zoom = 0.1;
+	protected double MIN_ZOOM {
+		get {
+			return min_zoom;
+		}
+	}
+
 	[DllImport ("libfspot")]
 	static extern IntPtr f_image_view_new ();
 
@@ -213,6 +224,28 @@ public class ImageView : Layout {
 
 	[DllImport ("libfspoteog")]
 	static extern void image_view_set_display_transform (IntPtr view, HandleRef transform);
+	
+	[DllImport ("libfspoteog")]
+	static extern void image_view_update_min_zoom (IntPtr view);
+	protected void UpdateMinZoom ()
+	{
+		if (Pixbuf != null) {
+			min_zoom = Math.Min (1.0,
+					Math.Min ((double)Allocation.Width / (double)Pixbuf.Width,
+					(double)Allocation.Height / (double)Pixbuf.Height));
+
+		} else {
+			min_zoom = 0.1;
+		}
+
+		System.Console.WriteLine ("min_zoom updated to {0}", min_zoom);
+
+		image_view_update_min_zoom (Handle);
+		
+		// Since this affects the zoom_scale we should alert it
+		if (ZoomChanged != null)
+			ZoomChanged (this, System.EventArgs.Empty);
+	}
 
 	public Cms.Transform Transform {
 		set {
@@ -226,7 +259,6 @@ public class ImageView : Layout {
 			return transform;
 		}
 	}
-
 
 	private delegate void SelectionChangedDelegate (IntPtr obj, IntPtr data);
 	private static void SelectionChangedCallback (IntPtr raw, IntPtr unused_data)
