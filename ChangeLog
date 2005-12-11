@@ -1,3 +1,9 @@
+2005-12-11  Larry Ewing  <lewing@novell.com>
+
+	* src/GalleryExport.cs: Patch from Ben Monnahan to allow and empty
+	desctiption when creating a gallery and to select a newly created
+	gallery by default.
+
 2005-12-09  Gabriel Burt  <gabriel.burt@gmail.com>
 	
 	* libeog/image-view.c

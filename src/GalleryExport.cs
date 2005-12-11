@@ -424,7 +424,7 @@ namespace FSpot {
 			description = description_entry.Text;
 			title = title_entry.Text;
 
-			if (name == "" || description == "" || title == "")
+			if (name == "" || title == "")
 				add_button.Sensitive = false;
 			else
 				add_button.Sensitive = true;
@@ -435,7 +435,7 @@ namespace FSpot {
 		{
 			if (args.ResponseId == Gtk.ResponseType.Ok) {
 				gallery.NewAlbum (parent, name, title, description);
-				export.HandleAlbumAdded ();
+				export.HandleAlbumAdded (title);
 			}
 			Dialog.Destroy ();
 		}
@@ -663,9 +663,17 @@ namespace FSpot {
 			Connect ();
 		}
 
-		public void HandleAlbumAdded () {
+		public void HandleAlbumAdded (string title) {
 			GalleryAccount account = (GalleryAccount) accounts [gallery_optionmenu.History];
 			PopulateAlbumOptionMenu (account.Gallery);
+				
+			// make the newly created album selected
+			ArrayList albums = account.Gallery.Albums;
+			for (int i=0; i < albums.Count; i++) {
+				if (((Album)albums[i]).Title == title) {
+					album_optionmenu.SetHistory((uint)i);
+				}
+			}
 		}
 
 		private void PopulateAlbumOptionMenu (Gallery gallery)
