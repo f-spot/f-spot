@@ -1,3 +1,15 @@
+2005-12-12  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: Mark the selection changed when the view mode
+	changes.
+
+2005-12-09  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/MainWindow.cs: Update the sensitivity of the zoom menu items
+	when the zoom changes.
+
+	* src/SingleView.cs: Start syncing zoom state to menu items.
+	
 2005-12-11  Larry Ewing  <lewing@novell.com>
 
 	* src/FolderExport.cs: fix up the comment files for the original
@@ -42,6 +54,13 @@
 	* src/f-spot.glade: Remove the Size menu, make the near/far images
 	surrounding the zoom_scale clickable, rearrange the order of the View
 	menu for the SingleView mode and add Zoom In/Out commands to it.
+	
+	* src/MainWindow.cs: Organize menu widgets, make zoom items not
+	sensitive as appropriate, fix bug where menu items not updated
+	properly when switching between Edit/Browse mode.
+	
+	* src/SingleView.cs: Variables for zoom items to be able to make
+	them not sensitive as appropriate.
 
 2005-12-09  Larry Ewing  <lewing@novell.com>
 
