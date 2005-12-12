@@ -483,8 +483,8 @@ namespace FSpot {
 
 		private void CreateComments(string photo_path, int photo_index)
 		{
-			StreamWriter comment = File.CreateText(SubdirPath  ("comments", AlternateName (photo_index, "txt")));
-			comment.Write("<span>photo " + photo_index + "</span> ");
+			StreamWriter comment = File.CreateText(SubdirPath  ("comments", AlternateName (photo_index, ".txt")));
+			comment.Write("<span>photo " + (photo_index + 1) + "</span> ");
 			comment.Write (collection [photo_index].Description + "\n");
 			comment.Close();
 		}
