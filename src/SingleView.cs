@@ -11,6 +11,9 @@ namespace FSpot {
 
 		[Glade.Widget] Gtk.CheckMenuItem side_pane_item;
 		[Glade.Widget] Gtk.CheckMenuItem toolbar_item;
+		
+		[Glade.Widget] Gtk.MenuItem zoom_in;
+		[Glade.Widget] Gtk.MenuItem zoom_out;
 
 		[Glade.Widget] Gtk.Image near_image;
 		[Glade.Widget] Gtk.Image far_image;
@@ -194,6 +197,10 @@ namespace FSpot {
 		private void HandleZoomChanged (object sender, System.EventArgs args)
 		{
 			zoom_scale.Value = image_view.NormalizedZoom;
+
+			// FIXME something is broken here
+			//zoom_in.Sensitive = (zoom_scale.Value != 1.0);
+			//zoom_out.Sensitive = (zoom_scale.Value != 0.0);
 		}
 
 		private void HandleFileClose (object sender, System.EventArgs args)

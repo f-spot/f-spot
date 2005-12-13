@@ -36,48 +36,56 @@ public class MainWindow {
 	[Glade.Widget] Notebook view_notebook;
 	[Glade.Widget] ScrolledWindow tag_selection_scrolled;
 
-	//
-	// Menu items
-	//
+	// File
 	[Glade.Widget] MenuItem version_menu_item;
 	[Glade.Widget] MenuItem create_version_menu_item;
 	[Glade.Widget] MenuItem delete_version_menu_item;
 	[Glade.Widget] MenuItem rename_version_menu_item;
-
-	[Glade.Widget] MenuItem delete_selected_tag;
-	[Glade.Widget] MenuItem edit_selected_tag;
-
-	[Glade.Widget] MenuItem attach_tag_to_selection;
-	[Glade.Widget] MenuItem remove_tag_from_selection;
-
-	[Glade.Widget] MenuItem copy;
-	[Glade.Widget] MenuItem rotate_left;
-	[Glade.Widget] MenuItem rotate_right;
-	[Glade.Widget] MenuItem update_thumbnail;
-	[Glade.Widget] MenuItem delete_from_drive;
-
-	[Glade.Widget] MenuItem send_mail;
+	
 	[Glade.Widget] MenuItem export;
 	[Glade.Widget] MenuItem print;
-	[Glade.Widget] MenuItem select_none;
-	[Glade.Widget] MenuItem copy_location;
-	[Glade.Widget] MenuItem adjust_color;
-	[Glade.Widget] MenuItem exif_data;
-	[Glade.Widget] MenuItem sharpen;
-	[Glade.Widget] MenuItem remove_from_catalog;
+	[Glade.Widget] MenuItem send_mail;
 
+	// Edit
+	[Glade.Widget] MenuItem copy_location;
+	[Glade.Widget] MenuItem select_none;
+	[Glade.Widget] MenuItem rotate_left;
+	[Glade.Widget] MenuItem rotate_right;
+
+	[Glade.Widget] MenuItem adjust_color;
+	[Glade.Widget] MenuItem sharpen;
+
+	[Glade.Widget] MenuItem update_thumbnail;
+	[Glade.Widget] MenuItem delete_from_drive;
+	[Glade.Widget] MenuItem remove_from_catalog;
+	[Glade.Widget] MenuItem set_as_background;
+
+	[Glade.Widget] MenuItem attach_tag;
+	[Glade.Widget] MenuItem remove_tag;
+
+	// View
+	[Glade.Widget] MenuItem exif_data;
+	
 	[Glade.Widget] CheckMenuItem display_toolbar;
 	[Glade.Widget] CheckMenuItem display_sidebar;
 	[Glade.Widget] CheckMenuItem display_timeline;
 	[Glade.Widget] CheckMenuItem display_dates_menu_item;
 	[Glade.Widget] CheckMenuItem display_tags_menu_item;
 
-	[Glade.Widget] MenuItem set_as_background;
+	[Glade.Widget] MenuItem zoom_in;
+	[Glade.Widget] MenuItem zoom_out;
 
-	[Glade.Widget] MenuItem attach_tag;
-	[Glade.Widget] MenuItem remove_tag;
+	// Find
 	[Glade.Widget] MenuItem find_tag;
 	
+	// Tags
+	[Glade.Widget] MenuItem edit_selected_tag;
+	[Glade.Widget] MenuItem delete_selected_tag;
+
+	[Glade.Widget] MenuItem attach_tag_to_selection;
+	[Glade.Widget] MenuItem remove_tag_from_selection;
+	
+	// Other Widgets
 	[Glade.Widget] Scale zoom_scale;
 
 	[Glade.Widget] VPaned info_vpaned;
@@ -380,9 +388,10 @@ public class MainWindow {
 				view_notebook.CurrentPage = 1;
 			
 			JumpTo (icon_view.FocusCell);
-			//zoom_scale.Value = 0.0;
+			zoom_scale.Value = photo_view.NormalizedZoom;
 			break;
 		}
+		Selection.MarkChanged ();
 		UpdateToolbar ();
 	}
 	
@@ -484,6 +493,12 @@ public class MainWindow {
 			return false;
 		}
 		
+		public void MarkChanged ()
+		{
+			if (Changed != null)
+				Changed (this);
+		}
+		
 		public IBrowsableItem this [int index] {
 			get {
 				switch (win.view_mode) {
@@ -535,7 +550,7 @@ public class MainWindow {
 				Changed (this);
 		}
 
-		private void HandleSelectionChanged (IBrowsableCollection collection)
+		public void HandleSelectionChanged (IBrowsableCollection collection)
 		{
 			if (win.view_mode == ModeType.IconView && Changed != null)
 				Changed (this);
@@ -546,7 +561,7 @@ public class MainWindow {
 			if (win.view_mode == ModeType.IconView && ItemsChanged != null)
 				ItemsChanged (this, args);
 		}
-		
+
 		public event IBrowsableCollectionChangedHandler Changed;
 		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
 	}
@@ -1760,23 +1775,31 @@ public class MainWindow {
 			icon_view.ZoomChanged += HandleZoomChanged;
 			break;
 		}
+		
+		zoom_in.Sensitive = (zoom_scale.Value != 1.0);
+		zoom_out.Sensitive = (zoom_scale.Value != 0.0);
 	}
 	
 	void HandleZoomChanged (object sender, System.EventArgs args)
 	{
 		zoom_scale.ValueChanged -= HandleZoomScaleValueChanged;
 
+		double zoom = .5;
 		switch (view_mode) {
 		case ModeType.PhotoView:
-			zoom_scale.Value = photo_view.NormalizedZoom;
+			zoom = photo_view.NormalizedZoom;
+			zoom_scale.Value = zoom;
 			break;
 		case ModeType.IconView:
-			double zoom = icon_view.Zoom;
+			zoom = icon_view.Zoom;
 			if (zoom == 0.0 || zoom == 100.0 || zoom != zoom_scale.Value)
 				zoom_scale.Value = zoom;
 
 			break;
 		}
+		
+		zoom_in.Sensitive = (zoom != 1.0);
+		zoom_out.Sensitive = (zoom != 0.0);
 		
 		zoom_scale.ValueChanged += HandleZoomScaleValueChanged;
 	}
