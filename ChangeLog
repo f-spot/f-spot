@@ -1,9 +1,17 @@
 2005-12-15  Larry Ewing  <lewing@novell.com>
 
+	* src/AsyncPixbufLoader.cs: handle more of the magic internally so
+	we can be smarterer about it.
+	
+	* src/PhotoImageView.cs: move a bunch of the loading hacks into
+	the async loader.
+
+	* src/DCRawFile.cs: don't let dcraw flip the image, we'll do it.
+	
 	* src/DCRawFile.cs: wrap the output stream with a wrapper to keep
 	it from being disposed prematurely.  Add a new method to provide a
 	stream.
-	
+
 2005-12-12  Larry Ewing  <lewing@novell.com>
 
 	* src/MainWindow.cs: Mark the selection changed when the view mode
