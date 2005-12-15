@@ -1,8 +1,10 @@
 2005-12-15  Larry Ewing  <lewing@novell.com>
 
+	* src/AsyncPixbufLoader.cs: diable the thumbnail hack.
+	
 	* src/AsyncPixbufLoader.cs: handle more of the magic internally so
 	we can be smarterer about it.
-	
+
 	* src/PhotoImageView.cs: move a bunch of the loading hacks into
 	the async loader.
 

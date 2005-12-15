@@ -130,11 +130,14 @@ namespace FSpot {
 					System.Console.WriteLine (e.ToString ());
 			}
 
+#if false
 			if (AreaPrepared != null && thumb != null) {
 			
 				pixbuf = thumb;
 				AreaPrepared (this, new AreaPreparedArgs (true));
 			}
+#endif
+
 
 			stream = img.PixbufStream ();
 			if (stream == null) {
