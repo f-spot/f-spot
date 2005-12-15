@@ -1,3 +1,9 @@
+2005-12-15  Larry Ewing  <lewing@novell.com>
+
+	* src/DCRawFile.cs: wrap the output stream with a wrapper to keep
+	it from being disposed prematurely.  Add a new method to provide a
+	stream.
+	
 2005-12-12  Larry Ewing  <lewing@novell.com>
 
 	* src/MainWindow.cs: Mark the selection changed when the view mode
