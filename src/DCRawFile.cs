@@ -74,7 +74,7 @@ namespace FSpot {
 			
 		public override System.IO.Stream PixbufStream ()
 		{
-			return new RawPixbufStream (this.path);
+			return RawPixbufStream (this.path);
 		}
 
 		public static System.IO.Stream RawPixbufStream (string path)
