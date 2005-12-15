@@ -70,54 +70,23 @@ namespace FSpot {
 		}
 
 		// Display.
-		private void HandlePixbufAreaUpdated (object sender, Gdk.Rectangle area)
+		private void HandlePixbufAreaUpdated (object sender, AreaUpdatedArgs args)
 		{
-			area = this.ImageCoordsToWindow (area);
+			Gdk.Rectangle area = this.ImageCoordsToWindow (args.Area);
 			this.QueueDrawArea (area.X, area.Y, area.Width, area.Height);
 		}
 		
-		private void HandlePixbufPrepared (object sender, System.EventArgs args)
+		private void HandlePixbufPrepared (object sender, AreaPreparedArgs args)
 		{
 			Gdk.Pixbuf prev = this.Pixbuf;
 			Gdk.Pixbuf next = loader.Pixbuf;
-
-#if SPEED_COPY_DATA
-			if (next != null && prev != null && next.Width == prev.Width && prev.Height == next.Height)
-				prev.CopyArea (0, 0, next.Width, next.Height, next, 0, 0);
-			else
-				next.Fill (0x00000000);
-#endif
-#if true
-			System.Uri uri = Item.Current.DefaultVersionUri;
-			try {
-
-				Gdk.Pixbuf thumb = new Gdk.Pixbuf (ThumbnailGenerator.ThumbnailPath (uri));
-				if (thumb != null && next != null)
-					thumb.Composite (next, 0, 0,
-							 next.Width, next.Height,
-							 0.0, 0.0,
-							 next.Width/(double)thumb.Width, next.Height/(double)thumb.Height,
-							 Gdk.InterpType.Bilinear, 0xff);
-				
-				if (thumb != null) {
-					if (!ThumbnailGenerator.ThumbnailIsValid (thumb, uri))
-						FSpot.ThumbnailGenerator.Default.Request (uri.LocalPath, 0, 256, 256);
-					
-					thumb.Dispose ();
-				}
-			} catch (System.Exception e) {
-				FSpot.ThumbnailGenerator.Default.Request (uri.LocalPath, 0, 256, 256);	
-				if (!(e is GLib.GException)) 
-					System.Console.WriteLine (e.ToString ());
-			}
-#endif
 
 			this.Pixbuf = next;
 			if (prev != null)
 				prev.Dispose ();
 
 			UpdateMinZoom ();
-			this.ZoomFit ();
+			this.ZoomFit (args.ReducedResolution);
 		}
 
 		private void HandleDone (object sender, System.EventArgs args)
@@ -253,7 +222,7 @@ namespace FSpot {
 				try {
 					if (Item.IsValid) {
 						System.Uri uri = Item.Current.DefaultVersionUri;
-						loader.Load (uri.LocalPath);
+						loader.Load (uri);
 					} else
 						LoadErrorImage (null);
 
@@ -290,10 +259,17 @@ namespace FSpot {
 			Zoom = Zoom / ZOOM_FACTOR;
 		}
 		
+		bool upscale;
 		private void ZoomFit ()
 		{
+			ZoomFit (upscale);
+		}
+
+		private void ZoomFit (bool upscale)
+		{			
 			Gdk.Pixbuf pixbuf = this.Pixbuf;
 			Gtk.ScrolledWindow scrolled = this.Parent as Gtk.ScrolledWindow;
+			this.upscale = upscale;
 			
 			if (pixbuf == null)
 				return;
@@ -305,9 +281,9 @@ namespace FSpot {
 								   (uint) available_height,
 								   (uint) pixbuf.Width, 
 								   (uint) pixbuf.Height, 
-								   true);
+								   upscale);
 			
-			double image_zoom = Math.Min(1.0, zoom_to_fit);
+			double image_zoom = zoom_to_fit;
 			/*
 			System.Console.WriteLine ("Zoom = {0}, {1}, {2}", image_zoom, 
 						  available_width, 

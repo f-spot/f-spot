@@ -80,7 +80,7 @@ namespace FSpot {
 		public static System.IO.Stream RawPixbufStream (string path)
 		{
 			// FIXME this filename quoting is super lame
-			string args = System.String.Format ("-h -w -c \"{0}\"", path);
+			string args = System.String.Format ("-h -w -c -t 0 \"{0}\"", path);
 
 			System.Diagnostics.Process process = new System.Diagnostics.Process ();
 			process.StartInfo = new System.Diagnostics.ProcessStartInfo ("dcraw", args);

@@ -1,16 +1,44 @@
+using System;
+
 
 namespace FSpot {
-	public delegate void AreaUpdatedHandler (object sender, Gdk.Rectangle area);
-	public delegate void AreaPreparedHandler (object sender, System.EventArgs args);
+	public delegate void AreaUpdatedHandler (object sender, AreaUpdatedArgs area);
+	public delegate void AreaPreparedHandler (object sender, AreaPreparedArgs args);
 
+	public class AreaPreparedArgs : System.EventArgs {
+		bool reduced_resolution;
+
+		public bool ReducedResolution {
+			get { return reduced_resolution; }
+		}
+	
+		public AreaPreparedArgs (bool reduced_resolution)
+		{
+			this.reduced_resolution = reduced_resolution;
+		}
+	}
+
+	public class AreaUpdatedArgs : System.EventArgs {
+		Gdk.Rectangle area;
+
+		public Gdk.Rectangle Area { 
+			get { return area; }
+		}
+
+		public AreaUpdatedArgs (Gdk.Rectangle area)
+		{
+			this.area = area;
+		}
+	}
 
 	public class AsyncPixbufLoader : System.IDisposable {
 		System.IO.Stream stream;
 		Gdk.PixbufLoader loader;		
-		string path;
+		Uri uri;
 		bool area_prepared = false;
 		bool done_reading = false;
 		Gdk.Pixbuf pixbuf;
+		Gdk.Pixbuf thumb;
 		PixbufOrientation orientation;
 
 		private Gdk.AreaUpdatedHandler au;
@@ -47,7 +75,7 @@ namespace FSpot {
 		public bool Loading
 		{
 			get {
-				return !done_reading;
+				return ! done_reading;
 			}
 		}
 
@@ -60,7 +88,13 @@ namespace FSpot {
 
 		public string Path {
 			get {
-				return path;
+				return uri.LocalPath;
+			}
+		}
+
+		public Gdk.Pixbuf Pixbuf {
+			get {
+				return pixbuf;
 			}
 		}
 		
@@ -72,10 +106,11 @@ namespace FSpot {
 				Done (this, System.EventArgs.Empty);
 		}
 
-		public void Load (string filename)
+		public void Load (Uri uri)
 		{
+			this.uri = uri;
+
 			delay.Stop ();
-			path = filename;
 
 			if (!done_reading)
 				Close ();
@@ -84,8 +119,22 @@ namespace FSpot {
 			area_prepared = false;
 			damage = Gdk.Rectangle.Zero;
 
-			ImageFile img = ImageFile.Create (filename);
+			ImageFile img = ImageFile.Create (Path);
 			orientation = img.Orientation;
+
+			try {
+			thumb = new Gdk.Pixbuf (ThumbnailGenerator.ThumbnailPath (uri));
+			} catch (System.Exception e) {
+				FSpot.ThumbnailGenerator.Default.Request (uri.LocalPath, 0, 256, 256);	
+				if (!(e is GLib.GException)) 
+					System.Console.WriteLine (e.ToString ());
+			}
+
+			if (AreaPrepared != null && thumb != null) {
+			
+				pixbuf = thumb;
+				AreaPrepared (this, new AreaPreparedArgs (true));
+			}
 
 			stream = img.PixbufStream ();
 			if (stream == null) {
@@ -163,7 +212,7 @@ namespace FSpot {
 				area = PixbufUtils.TransformAndCopy (loader.Pixbuf, pixbuf, orientation, damage);
 			
 			if (area.Width != 0 && area.Height != 0 && AreaUpdated != null)
-				AreaUpdated (this, area);
+				AreaUpdated (this, new AreaUpdatedArgs (area));
 
 			//System.Console.WriteLine ("orig {0} tform {1}", damage.ToString (), area.ToString ());
 			damage = Gdk.Rectangle.Zero;
@@ -181,6 +230,8 @@ namespace FSpot {
 				try {
 					len = stream.Read (buffer, 0, buffer.Length);
 					loader.Write (buffer, (ulong)len);
+				} catch (System.ObjectDisposedException od) {
+					len = -1;
 				} catch (GLib.GException e) {
 					System.Console.WriteLine (e.ToString ());
 					pixbuf = null;
@@ -208,24 +259,28 @@ namespace FSpot {
 		
 		private void HandleAreaPrepared (object sender, System.EventArgs args)
 		{
-			Gdk.Pixbuf old = pixbuf;
 			pixbuf = PixbufUtils.TransformOrientation (loader.Pixbuf, orientation, false);
+
+			if (thumb != null && pixbuf != null)
+				thumb.Composite (pixbuf, 0, 0,
+						 pixbuf.Width, pixbuf.Height,
+						 0.0, 0.0,
+						 pixbuf.Width/(double)thumb.Width, pixbuf.Height/(double)thumb.Height,
+						 Gdk.InterpType.Bilinear, 0xff);
+			
+			if (thumb != null)
+				if (!ThumbnailGenerator.ThumbnailIsValid (thumb, uri))
+					FSpot.ThumbnailGenerator.Default.Request (Path, 0, 256, 256);
 
 			area_prepared = true;			
 			if (AreaUpdated != null)
-				AreaPrepared (this, System.EventArgs.Empty);
+				AreaPrepared (this, new AreaPreparedArgs (false));
 
-			if (old != null) {
-				old.Dispose ();
-			}
+			if (thumb != null)
+				thumb.Dispose ();
+			thumb = null;
 		}
 
-		public Gdk.Pixbuf Pixbuf {
-			get {
-				return pixbuf;
-			}
-		}
-	       
 		private void HandleAreaUpdated (object sender, Gdk.AreaUpdatedArgs args)
 		{
 			Gdk.Rectangle area = new Gdk.Rectangle (args.X, args.Y, args.Width, args.Height);
@@ -241,7 +296,7 @@ namespace FSpot {
 			// FIXME This should probably queue the
 			// thumbnail regeneration to a worker thread
 			if (validate_thumbnail && done_reading && pixbuf != null) {
-				PhotoLoader.ValidateThumbnail (path, pixbuf);
+				PhotoLoader.ValidateThumbnail (Path, pixbuf);
 			}
 
 			if (Done != null)
