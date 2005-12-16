@@ -1911,7 +1911,7 @@ namespace FSpot.Tiff {
 				ImageDirectory jpeg_directory = sub.Directory [0];
 				return LookupJpegSubstream (jpeg_directory);
 			} catch (System.Exception e) {
-				return null;
+				return DCRawFile.RawPixbufStream (path);
 			}
 		}
 		
@@ -1949,12 +1949,24 @@ namespace FSpot.Tiff {
 		{
 			//this.Header.Dump ("loading");
 		}
-		
+
+		/*
+		public override PixbufOrientation GetOrientation ()
+		{
+			return PixbufOrientation.TopLeft;
+		}
+		*/
+
 		public Gdk.Pixbuf GetEmbeddedThumbnail ()
 		{
 			ImageDirectory directory;
 			directory = Header.Directory.NextDirectory;
 			return TransformAndDispose (LoadJpegInterchangeFormat (directory));
+		}
+
+		public override System.IO.Stream PixbufStream ()
+		{
+			return DCRawFile.RawPixbufStream (path);
 		}
 
 		public override Gdk.Pixbuf Load ()

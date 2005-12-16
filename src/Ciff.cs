@@ -443,13 +443,12 @@ namespace FSpot.Ciff {
 
 		public override System.IO.Stream PixbufStream ()
 		{
-			System.IO.MemoryStream stream = null; 
 			byte [] data = GetEmbeddedJpeg ();
 			
 			if (data != null)
-				stream = new System.IO.MemoryStream (data);
-				
-			return stream;
+				return new System.IO.MemoryStream (data);
+			else	
+				return DCRawFile.RawPixbufStream (path);
 		}
 
 		public override Gdk.Pixbuf Load (int width, int height)

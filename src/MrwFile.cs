@@ -198,7 +198,7 @@ namespace FSpot.Mrw {
 
 		public override System.IO.Stream PixbufStream ()
 		{
-			return null;
+			return DCRawFile.RawPixbufStream (path);
 		}
 		
 		public override Gdk.Pixbuf Load ()

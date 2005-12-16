@@ -1,7 +1,22 @@
 2005-12-15  Larry Ewing  <lewing@novell.com>
 
-	* src/AsyncPixbufLoader.cs: diable the thumbnail hack.
-	
+	* src/AsyncPixbufLoader.cs: make our own async io wrapper since
+	the default on for mono doesn't work.  Add some hacks to avoid
+	canceling running io but instead just flip to the next read.  Need
+	massive cleanup. 
+
+	* src/Tiff.cs: use RawPixbufStream.
+
+	* src/DCRawFile.cs: move the command name up.
+
+	* src/MrwFile.cs: use RawPixbufStream.
+
+	* src/Ciff.cs: fallback to RawPixbufStream.
+
+	* src/RafFile.cs: fallback to the RawPixbufStream.
+
+	* src/AsyncPixbufLoader.cs: disable the thumbnail hack.
+
 	* src/AsyncPixbufLoader.cs: handle more of the magic internally so
 	we can be smarterer about it.
 

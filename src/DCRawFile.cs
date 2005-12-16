@@ -71,6 +71,7 @@ namespace FSpot {
 
 	public class DCRawFile : ImageFile {
 		public DCRawFile (string path) : base (path) {}
+		const string dcraw_command = "dcraw";
 			
 		public override System.IO.Stream PixbufStream ()
 		{
@@ -83,7 +84,7 @@ namespace FSpot {
 			string args = System.String.Format ("-h -w -c -t 0 \"{0}\"", path);
 
 			System.Diagnostics.Process process = new System.Diagnostics.Process ();
-			process.StartInfo = new System.Diagnostics.ProcessStartInfo ("dcraw", args);
+			process.StartInfo = new System.Diagnostics.ProcessStartInfo (dcraw_command, args);
 			process.StartInfo.RedirectStandardOutput = true;
 			process.StartInfo.UseShellExecute = false;
 			process.Start ();
@@ -98,7 +99,7 @@ namespace FSpot {
 			System.Console.WriteLine ("path = {0}, args = \"{1}\"", path, args);
 			 
 			using (System.Diagnostics.Process process = new System.Diagnostics.Process ()) {
-				process.StartInfo = new System.Diagnostics.ProcessStartInfo ("dcraw", args);
+				process.StartInfo = new System.Diagnostics.ProcessStartInfo (dcraw_command, args);
 				process.StartInfo.RedirectStandardOutput = true;
 				process.StartInfo.UseShellExecute = false;
 				process.Start ();
