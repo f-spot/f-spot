@@ -238,8 +238,6 @@ public class ImageView : Layout {
 			min_zoom = 0.1;
 		}
 
-		System.Console.WriteLine ("min_zoom updated to {0}", min_zoom);
-
 		image_view_update_min_zoom (Handle);
 		
 		// Since this affects the zoom_scale we should alert it

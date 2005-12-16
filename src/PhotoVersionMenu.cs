@@ -11,7 +11,6 @@ public class PhotoVersionMenu : Menu {
 
 		set {
 			version_id = value;
-			UpdateMenuItems ();
 		}
 	}
 
@@ -19,47 +18,29 @@ public class PhotoVersionMenu : Menu {
 	public event VersionIdChangedHandler VersionIdChanged;
 
 	private struct MenuItemInfo {
-		public CheckMenuItem MenuItem;
+		public MenuItem Item;
 		public uint VersionId;
 
-		public MenuItemInfo (CheckMenuItem menu_item, uint id)
+		public MenuItemInfo (MenuItem menu_item, uint id)
 		{
-			MenuItem = menu_item;
+			Item = menu_item;
 			VersionId = id;
 		}
 	}
 
 	private MenuItemInfo [] item_infos;
-	static bool updating_menu_items;
 
 	// Lame way to emulate radio menu items since the the radio menu item API in GTK# is kinda busted.
 	private void HandleMenuItemActivated (object sender, EventArgs args)
 	{
-		if (updating_menu_items)
-			return;
-
 		foreach (MenuItemInfo info in item_infos) {
-			if (info.MenuItem == sender) {
+			if (info.Item == sender && info.VersionId != VersionId) {
 				VersionId = info.VersionId;
 				if (VersionIdChanged != null)
 					VersionIdChanged (this);
 				break;
 			}
 		}
-	}
-
-	private void UpdateMenuItems ()
-	{
-		updating_menu_items = true;
-
-		foreach (MenuItemInfo info in item_infos) {
-			if (info.VersionId == version_id)
-				info.MenuItem.Active = true;
-			else
-				info.MenuItem.Active = false;
-		}
-
-		updating_menu_items = false;
 	}
 
 	public PhotoVersionMenu (Photo photo)
@@ -71,8 +52,9 @@ public class PhotoVersionMenu : Menu {
 
 		int i = 0;
 		foreach (uint id in version_ids) {
-			CheckMenuItem menu_item = new CheckMenuItem (photo.GetVersionName (id));
+			MenuItem menu_item = new MenuItem (photo.GetVersionName (id));
 			menu_item.Show ();
+			menu_item.Sensitive = true;
 			menu_item.Activated += new EventHandler (HandleMenuItemActivated);
 
 			item_infos [i ++] = new MenuItemInfo (menu_item, id);
@@ -86,28 +68,5 @@ public class PhotoVersionMenu : Menu {
 			no_edits_menu_item.Sensitive = false;
 			Append (no_edits_menu_item);
 		}
-
-		UpdateMenuItems ();
-	}
-
-	public static MenuItem NewCreateVersionMenuItem ()
-	{
-		MenuItem menu_item = new MenuItem ("Create New Version...");
-		menu_item.Show ();
-		return menu_item;
-	}
-
-	public static MenuItem NewDeleteVersionMenuItem ()
-	{
-		MenuItem menu_item = new MenuItem ("Delete Version");
-		menu_item.Show ();
-		return menu_item;
-	}
-
-	public static MenuItem NewRenameVersionMenuItem ()
-	{
-		MenuItem menu_item = new MenuItem ("Rename Version");
-		menu_item.Show ();
-		return menu_item;
 	}
 }

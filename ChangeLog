@@ -1,3 +1,14 @@
+2005-12-16  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/ImageView.cs: remove debug output.
+	
+	* src/InfoBox.cs: prevent display glitch where options in versions
+	menu would appear gray.
+	
+	* src/PhotoVersionMenu.cs: change version options from CheckMenuItems
+	to normal MenuItems, remove old cruft code, don't signal a versionId
+	change if the current version is reselected.
+
 2005-12-16  Larry Ewing  <lewing@novell.com>
 
 	* src/AsyncPixbufLoader.cs: clean up the debug output tweak the

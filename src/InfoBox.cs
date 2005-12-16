@@ -266,6 +266,7 @@ public class InfoBox : VBox {
 		size_label.Text = info.Dimensions;
 		date_label.Text = info.Date;
 
+		version_option_menu.Sensitive = true;
 		PhotoVersionMenu menu = new PhotoVersionMenu (photo);
 		menu.VersionIdChanged += new PhotoVersionMenu.VersionIdChangedHandler (HandleVersionIdChanged);
 		menu.WidthRequest = version_option_menu.Allocation.Width;
@@ -277,12 +278,9 @@ public class InfoBox : VBox {
 				// FIXME GTK# why not just .History = i ?
 				version_option_menu.SetHistory (i);
 				break;
-
 			}
-			i ++;
+			i++;
 		}
-
-		version_option_menu.Sensitive = true;
 	}
 
 
