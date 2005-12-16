@@ -25,7 +25,7 @@ public class TagPopup {
 		if (tag == null)
 			GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Edit Tag"), null, false);
 		else {
-			string editstr = String.Format (Mono.Posix.Catalog.GetString ("Edit Tag \"{0}\""), tag.Name);
+			string editstr = String.Format (Mono.Posix.Catalog.GetString ("Edit Tag \"{0}\""), tag.Name.Replace ("_", "__"));
 			GtkUtil.MakeMenuItem (popup_menu, editstr, delegate { MainWindow.Toplevel.HandleEditSelectedTagWithTag (tag); }, true);
 		}
 

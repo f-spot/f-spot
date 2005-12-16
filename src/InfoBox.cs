@@ -82,6 +82,7 @@ public class InfoBox : VBox {
 
 		name_entry = new Entry ();
 		name_entry.WidthChars = 1;
+		name_entry.Editable = false;
 		table.Attach (name_entry, 1, 2, 0, 1,
 			      AttachOptions.Expand | AttachOptions.Fill, AttachOptions.Fill,
 			      3, 0);
@@ -267,6 +268,7 @@ public class InfoBox : VBox {
 
 		PhotoVersionMenu menu = new PhotoVersionMenu (photo);
 		menu.VersionIdChanged += new PhotoVersionMenu.VersionIdChangedHandler (HandleVersionIdChanged);
+		menu.WidthRequest = version_option_menu.Allocation.Width;
 		version_option_menu.Menu = menu;
 
 		uint i = 0;

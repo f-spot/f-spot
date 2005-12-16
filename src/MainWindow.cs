@@ -1626,7 +1626,7 @@ public class MainWindow {
 				} catch (System.Exception e) {
 					string msg = Mono.Posix.Catalog.GetString ("Error saving sharpened photo");
 					string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
-								     e.Message, photo.Name);
+								     e.Message, photo.Name.Replace ("_", "__"));
 					
 					HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
 										    Gtk.MessageType.Error, ButtonsType.Ok, 
@@ -1853,11 +1853,11 @@ public class MainWindow {
 		if (e is UnauthorizedAccessException)
 			msg = String.Format (
 				Mono.Posix.Catalog.GetString ("No permission to delete the file:\n{0}"), 
-				fname);
+				fname).Replace ("_", "__");
 		else
 			msg = String.Format (
 				Mono.Posix.Catalog.GetString ("An error of type {0} ocurred when deleting the file:\n{1}"),
-				e.GetType (), fname);
+				e.GetType (), fname.Replace ("_", "__"));
 		
 		HigMessageDialog.RunHigConfirmation (
 			main_window, DialogFlags.DestroyWithParent, MessageType.Error,
@@ -1957,7 +1957,7 @@ public class MainWindow {
 
 		string header;
 		if (tags.Length == 1)
-			header = String.Format (Mono.Posix.Catalog.GetString ("Delete tag \"{0}\"?"), tags [0].Name);
+			header = String.Format (Mono.Posix.Catalog.GetString ("Delete tag \"{0}\"?"), tags [0].Name.Replace ("_", "__"));
 		else
 			header = String.Format (Mono.Posix.Catalog.GetString ("Delete the {0} selected tags?"), tags.Length);
 		
@@ -1980,7 +1980,7 @@ public class MainWindow {
 				string error_msg = Mono.Posix.Catalog.GetString ("Tag is not empty");
 				string error_desc = String.Format (Mono.Posix.Catalog.GetString ("Can not delete tags that have tags within them.  " + 
 												 "Please delete tags under \"{0}\" first"),
-								   e.Tag.Name);
+								   e.Tag.Name.Replace ("_", "__"));
 				
 				HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
 									    Gtk.MessageType.Error, ButtonsType.Ok, 

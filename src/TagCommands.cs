@@ -251,7 +251,7 @@ public class TagCommands {
 				     parent = parent.Category)
 					label_builder.Append ("  ");
 				
-				label_builder.Append (category.Name);
+				label_builder.Append (category.Name.Replace ("_", "__"));
 				
 				// FIXME escape underscores.
 				MenuItem item = new MenuItem (label_builder.ToString ());

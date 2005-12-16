@@ -1,3 +1,15 @@
+2005-12-16  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/InfoBox.cs: make file name entry not editable and make the
+	version menu popup to the full width of the menu.
+	
+	* src/MainWindow.cs:
+	* src/TagCommands.cs:
+	* src/TagMenu.cs:
+	* src/TagPopup.cs: make tag/file names with _'s display correctly.
+	
+	* f-spot-view.desktop.in: change title to "F-Spot Photo Viewer"
+
 2005-12-15  Larry Ewing  <lewing@novell.com>
 
 	* src/AsyncPixbufLoader.cs: make our own async io wrapper since
