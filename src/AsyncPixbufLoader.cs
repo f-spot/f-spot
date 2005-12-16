@@ -31,7 +31,6 @@ namespace FSpot {
 			this.area = area;
 		}
 	}
-	
 
 	public class AsyncPixbufLoader : System.IDisposable {
 		StreamWrapper stream;
@@ -48,7 +47,7 @@ namespace FSpot {
 		private System.EventHandler ev;
 
 		//byte [] buffer = new byte [8192];
-		byte [] buffer = new byte [32768];
+		byte [] buffer = new byte [1 << 15];
 
 		public event AreaUpdatedHandler AreaUpdated;
 		public event AreaPreparedHandler AreaPrepared;
@@ -69,7 +68,7 @@ namespace FSpot {
 
 		public AsyncPixbufLoader ()
 		{
-			delay = new Delay (10, new GLib.IdleHandler (AsyncRead));
+			delay = new Delay (0, new GLib.IdleHandler (AsyncRead));
 			ap = new System.EventHandler (HandleAreaPrepared);
 			au = new Gdk.AreaUpdatedHandler (HandleAreaUpdated);
 			ev = new System.EventHandler (HandleClosed);
@@ -77,28 +76,24 @@ namespace FSpot {
 		
 		public bool Loading
 		{
-			get {
-				return ! done_reading;
-			}
+			get { return ! done_reading; }
 		}
 
 		public bool Prepared
 		{
-			get {
-				return area_prepared;
-			}
+			get { return area_prepared; }
 		}
 
 		public string Path {
-			get {
-				return uri.LocalPath;
-			}
+			get { return uri.LocalPath; }
 		}
 
 		public Gdk.Pixbuf Pixbuf {
-			get {
-				return pixbuf;
-			}
+			get { return pixbuf; }
+		}
+
+		public Gdk.PixbufLoader Loader {
+			get { return loader; }
 		}
 		
 		private void FileLoad (ImageFile img)
@@ -156,13 +151,6 @@ namespace FSpot {
 			//AsyncIORead (null);
 			delay.Start ();
 		}			
-
-		public Gdk.PixbufLoader Loader {
-			get {
-				return loader;
-			}
-		}
-
 
 	        private void LoadToAreaPrepared ()
 		{
@@ -226,8 +214,8 @@ namespace FSpot {
 			damage = Gdk.Rectangle.Zero;
 		}
 
-		private delegate int ReadDelegate (byte [] buffer, int offset, int count);
 		private class StreamWrapper {
+			private delegate int ReadDelegate (byte [] buffer, int offset, int count);
 			System.IO.Stream stream;
 			IAsyncResult iar;
 
@@ -269,12 +257,10 @@ namespace FSpot {
 		{
 			try {
 				if (result == null) {
-					System.Console.WriteLine ("start read");
-					using (new Timer ("begin read")) {
-						result = stream.BeginRead (buffer, 0, buffer.Length, AsyncIOEnd, stream);
-					}
+					//System.Console.WriteLine ("start read");
+					result = stream.BeginRead (buffer, 0, buffer.Length, AsyncIOEnd, stream);
 				} else {
-					Console.WriteLine ("not done");
+					//Console.WriteLine ("not done");
 					UpdateListeners ();
 				}
 			} catch (System.Exception e) {
@@ -289,7 +275,7 @@ namespace FSpot {
 
 		private void AsyncIOEnd (IAsyncResult iar)
 		{
-			System.Console.WriteLine ("ioended");
+			//System.Console.WriteLine ("ioended");
 			if (stream == (StreamWrapper)iar.AsyncState)
 				Gtk.Application.Invoke (ReadDone);
 		}
@@ -302,7 +288,7 @@ namespace FSpot {
 			int len = 0;
 			try {
 				len = stream.EndRead (result);
-				System.Console.WriteLine ("read {0} bytes", len);
+				//System.Console.WriteLine ("read {0} bytes", len);
 				loader.Write (buffer, (ulong)len);
 			} catch (System.ObjectDisposedException od) {
 				System.Console.WriteLine ("error in endread {0}", od);
