@@ -8,19 +8,21 @@ public class TagMenu : Menu {
 	public delegate void TagSelectedHandler (Tag t);
 	public event TagSelectedHandler TagSelected;
 
-	public class TagItem : Gtk.ImageMenuItem {
+	public class TagItem : Gtk.ImageMenuItem
+	{
 		public Tag Value;
 
 		public TagItem (Tag t) : this (t, t.Name) { }
 		
-		public TagItem (Tag t, string name) : base (name)
+		public TagItem (Tag t, string name) : base (name.Replace ("_", "__"))
 		{
 			Value = t;
 			if (t.Icon != null)
 				this.Image = new Gtk.Image (t.Icon);
 		}
 
-		public static TagItem IndentedItem (Tag t) {
+		public static TagItem IndentedItem (Tag t)
+		{
 			System.Text.StringBuilder label_builder = new System.Text.StringBuilder ();
 			
 			for (Category parent = t.Category; 
@@ -48,11 +50,13 @@ public class TagMenu : Menu {
 
 	protected TagMenu (IntPtr raw) : base (raw) {}
 
-	public void Populate () {
+	public void Populate ()
+	{
 		Populate (false);
 	}
 
-	public void Populate (bool flat) { 
+	public void Populate (bool flat)
+	{ 
 		if (flat)
 			PopulateFlat (tag_store.RootCategory, this);
 		else
@@ -75,7 +79,8 @@ public class TagMenu : Menu {
 		} 
 	}
 
-	public void Populate (Category cat, Gtk.Menu parent) {
+	public void Populate (Category cat, Gtk.Menu parent)
+	{
 		foreach (Widget w in parent.Children) {
 			w.Destroy ();
 		}
@@ -106,7 +111,8 @@ public class TagMenu : Menu {
 		} 
 	}
 	
-	private void HandlePopulate (object obj, EventArgs args) {
+	private void HandlePopulate (object obj, EventArgs args)
+	{
 		this.Populate ();
 	}
 	
@@ -120,5 +126,4 @@ public class TagMenu : Menu {
 				Console.WriteLine ("Item was not a TagItem");
 		}
 	}
-
 }
