@@ -1,3 +1,35 @@
+2005-12-18  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/Db.cs: add methods for starting, committing, and rolling
+	back transactions.
+	
+	* src/GroupSelector.cs: Add tooltips to > and < buttons
+
+	* src/MainWindow.cs: Keep find_untagged menu item in sync with the
+	status of the query. Wrap attaching and unattaching tags to photos
+	in transactions for big speedup. Provide static method for adding
+	tooltips to widgets. Fix bugs in merging tags and popup the edit tag
+	dialog on the surviving tag.
+	
+	* src/PhotoQuery.cs: Don't clear ranges when finding untagged photos.
+	
+	* src/PhotoStore.cs: Allow date range in find untagged query.
+	
+	* src/PhotoView.cs:
+	* src/QueryDisplay.cs: Wrap TagView in EventBox for tooltips.
+	
+	* src/TagCommands.cs: Make text entry labels header case.
+	
+	* src/TagStore.cs: Add method for adding all the descendents of a
+	category to an ArrayList.  Fix TagRemoveComparer logic.
+	
+	* src/TagView.cs: Set the parent EventBox's tooltip.
+	
+	* src/TimeAdaptor.cs: Separate SetLimits function for future use.
+	
+	* src/f-spot.glade: Add tooltips to zoom images and slider, import +
+	button, make Find Untagged a CheckMenuItem.
+
 2005-12-16  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/ImageView.cs: remove debug output.

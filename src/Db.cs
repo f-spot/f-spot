@@ -196,6 +196,30 @@ public class Db : IDisposable {
 		}
 	}
 
+	public void BeginTransaction () {
+		SqliteCommand command = new SqliteCommand ();
+		command.Connection = sqlite_connection;
+		command.CommandText = "BEGIN TRANSACTION";
+		command.ExecuteScalar ();
+		command.Dispose ();
+	}
+	
+	public void CommitTransaction () {
+		SqliteCommand command = new SqliteCommand ();
+		command.Connection = sqlite_connection;
+		command.CommandText = "COMMIT TRANSACTION";
+		command.ExecuteScalar ();
+		command.Dispose ();
+	}
+	
+	public void RollbackTransaction () {
+		SqliteCommand command = new SqliteCommand ();
+		command.Connection = sqlite_connection;
+		command.CommandText = "ROLLBACK";
+		command.ExecuteScalar ();
+		command.Dispose ();
+	}
+
 	SqliteConnection sqlite_connection;
 
 

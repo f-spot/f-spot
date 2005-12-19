@@ -145,7 +145,6 @@ public class Tag : DbItem, IComparable {
 
 		return false;
 	}
-
 }
 
 
@@ -162,6 +161,22 @@ public class Category : Tag {
 		set {
 			children = new ArrayList (value);
 			children_need_sort = true;
+		}
+	}
+
+	// Appends all of this categories descendents to the list
+	public void AddDescendentsTo (ArrayList list)
+	{
+		foreach (Tag tag in children) {
+			if (! list.Contains (tag))
+				list.Add (tag);
+
+			if (! (tag is Category))
+				continue;
+
+			Category cat = tag as Category;
+
+			cat.AddDescendentsTo (list);
 		}
 	}
 
@@ -200,6 +215,8 @@ public class InvalidTagOperationException : InvalidOperationException {
 
 }
 
+// Sorts tags into an order that it will be safe to delete
+// them in (eg children first).
 public class TagRemoveComparer : IComparer {
 	public int Compare (object obj1, object obj2) 
 	{
@@ -211,24 +228,12 @@ public class TagRemoveComparer : IComparer {
        
 	public int Compare (Tag t1, Tag t2)
 	{
-		bool c1 = t1 is Category;
-		bool c2 = t2 is Category;
-		
-		if (c1 == c2) {
-			if (c1 && c2) {
-				for (Category cat = t1 as Category; cat.Category != null; cat = cat.Category) {
-					if (cat == t2.Category)
-						return 1;
-				}
-			}
-			
-			return t1.Name.CompareTo (t2.Name);
-		}
-
-		if (c1)
+		if (t1.IsAncestorOf (t2))
 			return 1;
-		else
+		else if (t2.IsAncestorOf (t1))
 			return -1;
+		else
+			return 0;
 	}
 }
 

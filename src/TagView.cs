@@ -8,8 +8,12 @@ public class TagView : Gtk.Widget {
 	private Tag [] tags;
 	private static int TAG_ICON_VSPACING = 5;
 
-	public TagView ()
+	private EventBox parent;
+
+	public TagView (EventBox parent)
 	{
+		this.parent = parent;
+
 		SetFlag (WidgetFlags.NoWindow);
 	}
 
@@ -54,7 +58,10 @@ public class TagView : Gtk.Widget {
 		int tag_x = Allocation.X;
 		int tag_y = Allocation.Y + (Allocation.Height - thumbnail_size)/2;
 		
+		string [] names = new string [tags.Length];
+		int i = 0;
 		foreach (Tag t in tags) {
+			names [i++] = t.Name;
 			Pixbuf icon = null;
 			
 			icon = t.Icon;
@@ -79,6 +86,8 @@ public class TagView : Gtk.Widget {
 						      RgbDither.None, tag_x, tag_y);
 			tag_x += thumbnail_size + TAG_ICON_VSPACING;
 		}
+		MainWindow.SetTip (parent, String.Join (", ", names));
+
 		return base.OnExposeEvent (args);
 	}
 }

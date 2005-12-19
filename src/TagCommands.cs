@@ -120,7 +120,7 @@ public class TagCommands {
 			this.Dialog.DefaultResponse = ResponseType.Ok;
 
 			this.Dialog.Title = Mono.Posix.Catalog.GetString ("Create New Tag");
-			prompt_label.Text = Mono.Posix.Catalog.GetString ("Name of new tag:");
+			prompt_label.Text = Mono.Posix.Catalog.GetString ("Name of New Tag:");
 
 			PopulateCategoryOptionMenu ();
 			this.Category = default_category;
@@ -273,7 +273,7 @@ public class TagCommands {
 			this.Dialog.DefaultResponse = ResponseType.Ok;
 
 			this.Dialog.Title = Mono.Posix.Catalog.GetString ("Edit Tag");
-			prompt_label.Text = Mono.Posix.Catalog.GetString ("Tag name:");
+			prompt_label.Text = Mono.Posix.Catalog.GetString ("Tag Name:");
 
 			orig_name = last_valid_name = t.Name;
 			tag_name_entry.Text = t.Name;

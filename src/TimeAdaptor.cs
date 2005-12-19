@@ -34,13 +34,17 @@ namespace FSpot {
 			Console.WriteLine ("min {0} max {1}", min, max);
 			DateTime start = DateFromIndex (min);
 			DateTime end = DateFromIndex (max).AddMonths (1);
-			
+
+			SetLimits (start, end);
+		}
+
+		public void SetLimits (DateTime start, DateTime end)
+		{
 			Console.WriteLine ("{0} {1}", start, end);
 			if (start > end)
 				query.Range = new PhotoStore.DateRange (end, start);
 			else 
 				query.Range = new PhotoStore.DateRange (start, end);
-				
 		}
 
 		public override int Count ()

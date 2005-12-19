@@ -7414,10 +7414,11 @@ Photo Details</property>
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="find_untagged">
+		    <widget class="GtkCheckMenuItem" id="find_untagged">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">_Untagged Photos</property>
 		      <property name="use_underline">True</property>
+		      <property name="active">False</property>
 		      <signal name="activate" handler="HandleFindUntagged"/>
 		    </widget>
 		  </child>
@@ -7878,6 +7879,7 @@ Photo Details</property>
 		  <property name="can_focus">True</property>
 		  <property name="relief">GTK_RELIEF_NONE</property>
 		  <property name="focus_on_click">True</property>
+	          <property name="tooltip" translatable="yes">Import photos</property>
 		  <signal name="clicked" handler="HandleImportCommand" last_modification_time="Wed, 15 Jun 2005 05:48:11 GMT"/>
 
 		  <child>
@@ -7952,6 +7954,7 @@ Photo Details</property>
 		  <property name="events">GDK_BUTTON_PRESS_MASK</property>
 		  <property name="visible_window">True</property>
 		  <property name="above_child">False</property>
+		  <property name="tooltip" translatable="yes">Zoom out</property>
 		  <signal name="button_press_event" handler="HandleZoomOut" last_modification_time="Mon, 05 Dec 2005 04:56:18 GMT"/>
 
 		  <child>
@@ -7983,6 +7986,7 @@ Photo Details</property>
 		  <property name="update_policy">GTK_UPDATE_CONTINUOUS</property>
 		  <property name="inverted">False</property>
 		  <property name="adjustment">0.784615384615 0 1 0.10000000149 0 0</property>
+		  <property name="tooltip" translatable="yes">Adjust zoom</property>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -7998,6 +8002,7 @@ Photo Details</property>
 		  <property name="events">GDK_BUTTON_PRESS_MASK</property>
 		  <property name="visible_window">True</property>
 		  <property name="above_child">False</property>
+		  <property name="tooltip" translatable="yes">Zoom in</property>
 		  <signal name="button_press_event" handler="HandleZoomIn" last_modification_time="Mon, 05 Dec 2005 04:56:18 GMT"/>
 
 		  <child>
@@ -11193,6 +11198,7 @@ Photo Details</property>
 		  <property name="events">GDK_BUTTON_PRESS_MASK</property>
 		  <property name="visible_window">True</property>
 		  <property name="above_child">False</property>
+		  <property name="tooltip" translatable="yes">Zoom out</property>
 		  <signal name="button_press_event" handler="HandleZoomOut" last_modification_time="Mon, 05 Dec 2005 04:56:18 GMT"/>
 
 		  <child>
@@ -11224,6 +11230,7 @@ Photo Details</property>
 		  <property name="update_policy">GTK_UPDATE_CONTINUOUS</property>
 		  <property name="inverted">False</property>
 		  <property name="adjustment">0 0 1 0.00999999977648 0.10000000149 0.10000000149</property>
+		  <property name="tooltip" translatable="yes">Adjust zoom</property>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -11239,6 +11246,7 @@ Photo Details</property>
 		  <property name="events">GDK_BUTTON_PRESS_MASK</property>
 		  <property name="visible_window">True</property>
 		  <property name="above_child">False</property>
+		  <property name="tooltip" translatable="yes">Zoom in</property>
 		  <signal name="button_press_event" handler="HandleZoomIn" last_modification_time="Mon, 05 Dec 2005 04:56:18 GMT"/>
 
 		  <child>

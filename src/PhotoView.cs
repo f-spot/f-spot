@@ -429,8 +429,10 @@ public class PhotoView : EventBox {
 		HBox inner_hbox = new HBox (false, 2);
 		//inner_hbox.BorderWidth = 6;
 
-		tag_view = new TagView ();
-		inner_hbox.PackStart (tag_view, false, true, 0);
+		EventBox tag_view_box = new EventBox ();
+		tag_view = new TagView (tag_view_box);
+		tag_view_box.Add (tag_view);
+		inner_hbox.PackStart (tag_view_box, false, true, 0);
 
 		description_entry = new Entry ();
 		inner_hbox.PackStart (description_entry, true, true, 0);

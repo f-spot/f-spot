@@ -77,6 +77,7 @@ public class MainWindow {
 
 	// Find
 	[Glade.Widget] MenuItem find_tag;
+	[Glade.Widget] CheckMenuItem find_untagged;
 	
 	// Tags
 	[Glade.Widget] MenuItem edit_selected_tag;
@@ -148,6 +149,8 @@ public class MainWindow {
 	};
 
 	const int PHOTO_IDX_NONE = -1;
+
+	private static Gtk.Tooltips toolTips = new Gtk.Tooltips ();
 
 	//
 	// Public Properties
@@ -227,6 +230,7 @@ public class MainWindow {
 		left_vbox.PackStart (info_box, false, true, 0);
 
 		query = new FSpot.PhotoQuery (db.Photos);
+		query.Changed += HandleQueryChanged;
 #if SHOW_CALENDAR
 		FSpot.SimpleCalendar cal = new FSpot.SimpleCalendar (query);
 		cal.DaySelected += HandleCalendarDaySelected;
@@ -646,23 +650,21 @@ public class MainWindow {
 		query.Commit (num);
 
 		foreach (Tag t in tags) {
-			Pixbuf icon = null;
+			if (t.Icon != null)
+				continue;
 
-			if (t.Icon == null) {
-				if (icon == null) {
-					// FIXME this needs a lot more work.
-					try {
-						Pixbuf tmp = FSpot.PhotoLoader.LoadAtMaxSize (query.Items [num], 128, 128);
-						icon = PixbufUtils.TagIconFromPixbuf (tmp);
-						tmp.Dispose ();
-					} catch {
-						icon = null;
-					}
-				}
-				
-				t.Icon = icon;
-				db.Tags.Commit (t);
+			// FIXME this needs a lot more work.
+			Pixbuf icon = null;
+			try {
+				Pixbuf tmp = FSpot.PhotoLoader.LoadAtMaxSize (query.Items [num], 128, 128);
+				icon = PixbufUtils.TagIconFromPixbuf (tmp);
+				tmp.Dispose ();
+			} catch {
+				icon = null;
 			}
+			
+			t.Icon = icon;
+			db.Tags.Commit (t);
 		}
 	}
 
@@ -750,13 +752,16 @@ public class MainWindow {
 
 		switch (args.Info) {
 		case (uint)TargetType.PhotoList:
+			db.BeginTransaction ();
 			foreach (int num in SelectedIds ()) {
 				AddTagExtended (num, tags);
 			}
+			db.CommitTransaction ();
 			break;
 		case (uint)TargetType.UriList:
 			UriList list = new UriList (args.SelectionData);
 			
+			db.BeginTransaction ();
 			foreach (string path in list.ToLocalPaths ()) {
 				Photo photo = db.Photos.GetByPath (path);
 				
@@ -767,6 +772,7 @@ public class MainWindow {
 				// FIXME this should really follow the AddTagsExtended path too
 				photo.AddTag (tags);
 			}
+			db.CommitTransaction ();
 			InvalidateViews ();
 			break;
 		case (uint)TargetType.TagList:
@@ -1118,9 +1124,11 @@ public class MainWindow {
 
 	public void HandleAttachTagMenuSelected (Tag t) 
 	{
+		db.BeginTransaction ();
 		foreach (int num in SelectedIds ()) {
 			AddTagExtended (num, new Tag [] {t});
 		}
+		db.CommitTransaction ();
 	}
 	
 	void HandleFindTagMenuSelected (Tag t)
@@ -1130,10 +1138,12 @@ public class MainWindow {
 
 	public void HandleRemoveTagMenuSelected (Tag t)
 	{
+		db.BeginTransaction ();
 		foreach (int num in SelectedIds ()) {
 			query.Photos [num].RemoveTag (t);
 			query.Commit (num);
 		}
+		db.CommitTransaction ();
 	}
 
 	//
@@ -1494,19 +1504,23 @@ public class MainWindow {
 
 	void AttachTags (Tag [] tags, int [] ids) 
 	{
+		db.BeginTransaction ();
 		foreach (int num in ids) {
 			AddTagExtended (num, tags);
 		}
+		db.CommitTransaction ();
 	}
 
 	public void HandleRemoveTagCommand (object obj, EventArgs args)
 	{
 		Tag [] tags = this.tag_selection_widget.TagHighlight ();
 
+		db.BeginTransaction ();
 		foreach (int num in SelectedIds ()) {
 			query.Photos [num].RemoveTag (tags);
 			query.Commit (num);
 		}
+		db.CommitTransaction ();
 	}
 
 	public void HandleEditSelectedTag (object sender, EventArgs ea)
@@ -1534,12 +1548,33 @@ public class MainWindow {
 		Tag [] tags = this.tag_selection_widget.TagHighlight ();
 		if (tags.Length < 2)
 			return;
-
-		System.Array.Sort (tags, new TagRemoveComparer ());
-		string header = Mono.Posix.Catalog.GetString ("Merge the {0} selected tags?");
 		
+		string header = Mono.Posix.Catalog.GetString ("Merge the {0} selected tags?");
 		header = String.Format (header, tags.Length);
-		string msg = Mono.Posix.Catalog.GetString("This operation will delete all but one of the selected tags.");
+
+		// If a tag with children tags is selected for merging, we
+		// should also merge its children..
+		ArrayList all_tags = new ArrayList (tags.Length);
+		foreach (Tag tag in tags) {
+			if (! all_tags.Contains (tag))
+				all_tags.Add (tag);
+			else
+				continue;
+
+			if (! (tag is Category))
+				continue;
+
+			(tag as Category).AddDescendentsTo (all_tags);
+		}
+
+		// debug..
+		tags = (Tag []) all_tags.ToArray (typeof (Tag));
+		System.Array.Sort (tags, new TagRemoveComparer ());
+		foreach (Tag tag in tags) {
+			System.Console.WriteLine ("tag: {0}", tag.Name);
+		}
+
+		string msg = Mono.Posix.Catalog.GetString("This operation will merge the selected tags and any sub-tags into a single tag.");
 		string ok_caption = Mono.Posix.Catalog.GetString ("_Merge tags");
 		
 		if (ResponseType.Ok != HigMessageDialog.RunHigConfirmation(main_window, 
@@ -1550,26 +1585,30 @@ public class MainWindow {
 									   ok_caption))
 			return;
 		
-		// The surviving tag is tags [0].  removetags will contain
-		// the tags to be merged.
+		// The surviving tag is the last tag, as it is definitely not a child of any other the
+		// other tags.  removetags will contain the tags to be merged.
+		Tag survivor = tags[tags.Length - 1];
+		
 		Tag [] removetags = new Tag [tags.Length - 1];
-		Array.Copy (tags, 1, removetags, 0, tags.Length - 1);
+		Array.Copy (tags, 0, removetags, 0, tags.Length - 1);
 
-
-		// Remove the defunct tags from all the photos and
-		// replace them with the new tag.
-		Photo [] photos = db.Photos.Query (tags);
+		// Add the surviving tag to all the photos with the other tags
+		Photo [] photos = db.Photos.Query (removetags);
 		foreach (Photo p in photos) {
-			p.RemoveTag (removetags);
-			p.AddTag (tags [0]);
-			db.Photos.Commit (p);
+			p.AddTag (survivor);
 		}
 
-		// Remove the defunct tags from the tag list.
+		// Remove the defunct tags, which removes them from the photos, commits
+		// the photos, and removes the tags from the TagStore
+		db.BeginTransaction ();
 		db.Photos.Remove (removetags);
+		db.CommitTransaction ();
+
 		UpdateTagEntryFromSelection ();
 
 		icon_view.QueueDraw ();
+
+		HandleEditSelectedTagWithTag (survivor);
 	}
 
 	void HandleAdjustColor (object sender, EventArgs args)
@@ -1778,6 +1817,12 @@ public class MainWindow {
 		
 		zoom_in.Sensitive = (zoom_scale.Value != 1.0);
 		zoom_out.Sensitive = (zoom_scale.Value != 0.0);
+	}
+	
+	void HandleQueryChanged (IBrowsableCollection sender)
+	{
+		if (find_untagged.Active != query.Untagged)
+			find_untagged.Active = query.Untagged;
 	}
 	
 	void HandleZoomChanged (object sender, System.EventArgs args)
@@ -2063,11 +2108,19 @@ public class MainWindow {
 	}
 	
 	void HandleFindUntagged (object sender, EventArgs args) {
-		tag_selection_widget.SelectionChanged -= OnTagSelectionChanged;
-		tag_selection_widget.TagSelection = new Tag [] {};
-		tag_selection_widget.SelectionChanged += OnTagSelectionChanged;
+		if (query.Untagged == find_untagged.Active)
+			return;
 
-		query.Untagged = true;
+		if (query.Untagged)
+			query.Untagged = false;
+		else {
+			// Having tags selected wouldn't make sense
+			tag_selection_widget.SelectionChanged -= OnTagSelectionChanged;
+			tag_selection_widget.TagSelection = new Tag [] {};
+			tag_selection_widget.SelectionChanged += OnTagSelectionChanged;
+
+			query.Untagged = true;
+		}
 	}
 	
 	void OnPreferencesChanged (object sender, GConf.NotifyEventArgs args)
@@ -2362,6 +2415,7 @@ public class MainWindow {
 			       default_category = selection [0].Category;
 	       }
 
+		db.BeginTransaction ();
 	       for (int i = 0; i < tagnames.Length; i ++) {
 		       if (tagnames [i].Length == 0)
 			       continue;
@@ -2382,6 +2436,7 @@ public class MainWindow {
 		       foreach (int num in selected_photos)
 			       AddTagExtended (num, tags);
 	       }
+		db.CommitTransaction ();
 	       
 	       // Remove any removed tags from the selected photos
 	       foreach (string tagname in selected_photos_tagnames) {
@@ -2527,5 +2582,10 @@ public class MainWindow {
 			if (t == tag)
 				return true;
 		return false;
+	}
+
+	public static void SetTip (Widget widget, string tip)
+	{
+		toolTips.SetTip (widget, tip, tip);
 	}
 }

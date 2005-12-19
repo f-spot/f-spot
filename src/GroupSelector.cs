@@ -1,4 +1,5 @@
 using System;
+using Mono.Unix;
 using Gtk;
 using Gdk;
 using GLib;
@@ -27,7 +28,6 @@ namespace FSpot {
 		public Gdk.Rectangle background;
 		public Gdk.Rectangle legend;
 		public Gdk.Rectangle action;
-
 
 		Pango.Layout [] tick_layouts;
 		int [] box_counts = new int [0];
@@ -1016,6 +1016,9 @@ namespace FSpot {
 			right.ButtonReleaseEvent += HandleScrollReleaseEvent;
 			right_delay = new Delay (50, new GLib.IdleHandler (HandleScrollRight));
 			//right.Clicked += HandleScrollRight;
+            
+			MainWindow.SetTip (left, Catalog.GetString ("More dates"));
+			MainWindow.SetTip (right, Catalog.GetString ("More dates"));
 
 			this.Put (left, 0, 0);
 			this.Put (right, 100, 0);

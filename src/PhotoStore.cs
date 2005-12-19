@@ -1143,13 +1143,20 @@ public class PhotoStore : DbStore {
 		return Query (query_string);
 	}
 
-	public Photo [] QueryUntagged ()
+	public Photo [] QueryUntagged (DateRange range)
 	{
 		StringBuilder query_builder = new StringBuilder ();
 
 		query_builder.Append ("SELECT * FROM photos WHERE id NOT IN " +
-					"(SELECT DISTINCT photo_id FROM photo_tags) " +
-					"ORDER BY time");
+					"(SELECT DISTINCT photo_id FROM photo_tags) ");
+		
+		if (range != null) {
+			query_builder.Append (String.Format ("AND photos.time >= {0} AND photos.time < {1} ",
+							     DbUtils.UnixTimeFromDateTime (range.Start), 
+							     DbUtils.UnixTimeFromDateTime (range.End)));
+		}
+
+		query_builder.Append("ORDER BY time");
 
 		return Query (query_builder.ToString ());
 	}

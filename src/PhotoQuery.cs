@@ -73,8 +73,12 @@ namespace FSpot {
 			}
 			set {
 				range = value;
-				photos = store.Query (tags, range);
-				untagged = false;
+				
+				if (untagged)
+					photos = store.QueryUntagged (range);
+				else
+					photos = store.Query (tags, range);
+
 				RequestReload ();
 			}
 		}
@@ -85,13 +89,15 @@ namespace FSpot {
 				return untagged;
 			}
 			set {
-				untagged = value;
+				if (untagged != value) {
+					untagged = value;
 
-				if (untagged) {
-					range = null;
-					tags = null;
-
-					photos = store.QueryUntagged ();
+					if (untagged) {
+						tags = null;
+						photos = store.QueryUntagged (range);
+					} else
+						photos = store.Query (tags, range);
+					
 					RequestReload ();
 				}
 			}
