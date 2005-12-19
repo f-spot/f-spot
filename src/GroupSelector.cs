@@ -50,6 +50,17 @@ namespace FSpot {
 				    min_limit.SetPosition (0, false);
 				    max_limit.SetPosition (adaptor.Count () - 1, false);
 				}
+			
+				if (adaptor is TimeAdaptor) {
+					MainWindow.SetTip (left, Catalog.GetString ("More dates"));
+					MainWindow.SetTip (right, Catalog.GetString ("More dates"));
+				} else if (adaptor is DirectoryAdaptor) {
+					MainWindow.SetTip (left, Catalog.GetString ("More directories"));
+					MainWindow.SetTip (right, Catalog.GetString ("More directories"));
+				} else {
+					MainWindow.SetTip (left, Catalog.GetString ("More"));
+					MainWindow.SetTip (right, Catalog.GetString ("More"));
+				}
 				
 				adaptor.Changed += HandleAdaptorChanged;
 			}
@@ -1017,9 +1028,6 @@ namespace FSpot {
 			right_delay = new Delay (50, new GLib.IdleHandler (HandleScrollRight));
 			//right.Clicked += HandleScrollRight;
             
-			MainWindow.SetTip (left, Catalog.GetString ("More dates"));
-			MainWindow.SetTip (right, Catalog.GetString ("More dates"));
-
 			this.Put (left, 0, 0);
 			this.Put (right, 100, 0);
 			left.Show ();

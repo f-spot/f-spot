@@ -29,6 +29,9 @@
 	
 	* src/f-spot.glade: Add tooltips to zoom images and slider, import +
 	button, make Find Untagged a CheckMenuItem.
+	
+	* src/GroupSelector.cs: Make the 'more' tooltips correct for
+	different Adaptors.
 
 2005-12-16  Gabriel Burt  <gabriel.burt@gmail.com>
 
