@@ -1,3 +1,7 @@
+2005-12-20  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/TagView.cs: prevent infinite loop.
+
 2005-12-18  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/Db.cs: add methods for starting, committing, and rolling

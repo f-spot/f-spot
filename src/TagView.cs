@@ -62,13 +62,13 @@ public class TagView : Gtk.Widget {
 		int i = 0;
 		foreach (Tag t in tags) {
 			names [i++] = t.Name;
-			Pixbuf icon = null;
 			
-			icon = t.Icon;
+			Pixbuf icon = t.Icon;
 
 			Category category = t.Category;
-			while (icon == null && category.Category != null) {
+			while (icon == null && category != null) {
 				icon = category.Icon;
+				category = category.Category;
 			}
 			
 			if (icon == null)
