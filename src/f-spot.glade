@@ -242,8 +242,8 @@
 	  <child>
 	    <widget class="GtkLabel" id="category_label">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Parent Tag:</property>
-	      <property name="use_underline">False</property>
+	      <property name="label" translatable="yes">P_arent Tag:</property>
+	      <property name="use_underline">True</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
 	      <property name="wrap">False</property>
@@ -252,6 +252,7 @@
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="mnemonic_widget">category_option_menu</property>
 	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	      <property name="width_chars">-1</property>
 	      <property name="single_line_mode">False</property>
@@ -270,8 +271,8 @@
 	  <child>
 	    <widget class="GtkLabel" id="prompt_label">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Tag Name:</property>
-	      <property name="use_underline">False</property>
+	      <property name="label" translatable="yes">_Tag Name:</property>
+	      <property name="use_underline">True</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
 	      <property name="wrap">False</property>
@@ -280,6 +281,7 @@
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="mnemonic_widget">tag_name_entry</property>
 	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	      <property name="width_chars">-1</property>
 	      <property name="single_line_mode">False</property>
@@ -1058,8 +1060,8 @@
 
 	      <child>
 		<widget class="GtkLabel" id="prefix_label">
-		  <property name="label" translatable="yes">Prefix: </property>
-		  <property name="use_underline">False</property>
+		  <property name="label" translatable="yes">_Prefix: </property>
+		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
 		  <property name="wrap">False</property>
@@ -1068,6 +1070,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="mnemonic_widget">prefix_entry</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -1086,8 +1089,8 @@
 	      <child>
 		<widget class="GtkLabel" id="copy_files_to_label">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">Copy Files to: </property>
-		  <property name="use_underline">False</property>
+		  <property name="label" translatable="yes">Copy _Files to: </property>
+		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
 		  <property name="wrap">False</property>
@@ -1096,6 +1099,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="mnemonic_widget">copied_file_destination</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -1217,7 +1221,7 @@
 		<widget class="GtkButton" id="select_tag_button">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
-		  <property name="label" translatable="yes">Select Tags...</property>
+		  <property name="label" translatable="yes">_Select Tags...</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
@@ -1237,7 +1241,7 @@
 		<widget class="GtkCheckButton" id="import_files_checkbox">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
-		  <property name="label" translatable="yes">Import files after copy</property>
+		  <property name="label" translatable="yes">_Import files after copy</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
@@ -1567,8 +1571,8 @@
 	  <child>
 	    <widget class="GtkLabel" id="prompt_label">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Tag Name:</property>
-	      <property name="use_underline">False</property>
+	      <property name="label" translatable="yes">_Tag Name:</property>
+	      <property name="use_underline">True</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
 	      <property name="wrap">False</property>
@@ -1577,6 +1581,7 @@
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="mnemonic_widget">tag_name_entry</property>
 	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	      <property name="width_chars">-1</property>
 	      <property name="single_line_mode">False</property>
@@ -1595,8 +1600,8 @@
 	  <child>
 	    <widget class="GtkLabel" id="category_label">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Parent Tag:</property>
-	      <property name="use_underline">False</property>
+	      <property name="label" translatable="yes">P_arent Tag:</property>
+	      <property name="use_underline">True</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
 	      <property name="wrap">False</property>
@@ -1605,6 +1610,7 @@
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="mnemonic_widget">category_option_menu</property>
 	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	      <property name="width_chars">-1</property>
 	      <property name="single_line_mode">False</property>
@@ -1640,8 +1646,8 @@
 	  <child>
 	    <widget class="GtkLabel" id="icon_label">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Icon:</property>
-	      <property name="use_underline">False</property>
+	      <property name="label" translatable="yes">_Icon:</property>
+	      <property name="use_underline">True</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
 	      <property name="wrap">False</property>
@@ -1650,6 +1656,7 @@
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="mnemonic_widget">icon_button</property>
 	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	      <property name="width_chars">-1</property>
 	      <property name="single_line_mode">False</property>
@@ -2287,8 +2294,8 @@
 			      <child>
 				<widget class="GtkLabel" id="label29">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">Photo Source:</property>
-				  <property name="use_underline">False</property>
+				  <property name="label" translatable="yes">P_hoto Source:</property>
+				  <property name="use_underline">True</property>
 				  <property name="use_markup">False</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
 				  <property name="wrap">False</property>
@@ -2315,8 +2322,8 @@
 			      <child>
 				<widget class="GtkLabel" id="label30">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">Photo Size:</property>
-				  <property name="use_underline">False</property>
+				  <property name="label" translatable="yes">Photo _Size:</property>
+				  <property name="use_underline">True</property>
 				  <property name="use_markup">False</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
 				  <property name="wrap">False</property>
@@ -2461,8 +2468,8 @@ Standard - 4x6</property>
 				  <child>
 				    <widget class="GtkLabel" id="label31">
 				      <property name="visible">True</property>
-				      <property name="label" translatable="yes">Caption:</property>
-				      <property name="use_underline">False</property>
+				      <property name="label" translatable="yes">C_aption:</property>
+				      <property name="use_underline">True</property>
 				      <property name="use_markup">False</property>
 				      <property name="justify">GTK_JUSTIFY_LEFT</property>
 				      <property name="wrap">False</property>
@@ -2489,8 +2496,8 @@ Standard - 4x6</property>
 				  <child>
 				    <widget class="GtkLabel" id="label32">
 				      <property name="visible">True</property>
-				      <property name="label" translatable="yes">Border:</property>
-				      <property name="use_underline">False</property>
+				      <property name="label" translatable="yes">_Border:</property>
+				      <property name="use_underline">True</property>
 				      <property name="use_markup">False</property>
 				      <property name="justify">GTK_JUSTIFY_LEFT</property>
 				      <property name="wrap">False</property>
@@ -2583,7 +2590,7 @@ Photo Details</property>
 				<widget class="GtkCheckButton" id="checkbutton1">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">Crop Photo to Fit</property>
+				  <property name="label" translatable="yes">Crop photo to _fit</property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>
@@ -2602,7 +2609,7 @@ Photo Details</property>
 				<widget class="GtkCheckButton" id="checkbutton2">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">Print Crop Marks</property>
+				  <property name="label" translatable="yes">Print crop _marks</property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>
@@ -2699,8 +2706,8 @@ Photo Details</property>
 				  <child>
 				    <widget class="GtkLabel" id="label33">
 				      <property name="visible">True</property>
-				      <property name="label" translatable="yes">Number of Copies:</property>
-				      <property name="use_underline">False</property>
+				      <property name="label" translatable="yes">N_umber of Copies:</property>
+				      <property name="use_underline">True</property>
 				      <property name="use_markup">False</property>
 				      <property name="justify">GTK_JUSTIFY_LEFT</property>
 				      <property name="wrap">False</property>
@@ -2709,6 +2716,7 @@ Photo Details</property>
 				      <property name="yalign">0.5</property>
 				      <property name="xpad">0</property>
 				      <property name="ypad">0</property>
+				      <property name="mnemonic_widget">spinbutton1</property>
 				      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				      <property name="width_chars">-1</property>
 				      <property name="single_line_mode">False</property>
@@ -3289,8 +3297,8 @@ Photo Details</property>
 			      <child>
 				<widget class="GtkLabel" id="gallery_label">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">Gallery:</property>
-				  <property name="use_underline">False</property>
+				  <property name="label" translatable="yes">_Gallery:</property>
+				  <property name="use_underline">True</property>
 				  <property name="use_markup">False</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
 				  <property name="wrap">False</property>
@@ -3299,6 +3307,7 @@ Photo Details</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="mnemonic_widget">gallery_optionmenu</property>
 				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				  <property name="width_chars">-1</property>
 				  <property name="single_line_mode">False</property>
@@ -3447,8 +3456,8 @@ Photo Details</property>
 			      <child>
 				<widget class="GtkLabel" id="album_label">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">Export to Album:</property>
-				  <property name="use_underline">False</property>
+				  <property name="label" translatable="yes">_Export to Album:</property>
+				  <property name="use_underline">True</property>
 				  <property name="use_markup">False</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
 				  <property name="wrap">False</property>
@@ -3457,6 +3466,7 @@ Photo Details</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="mnemonic_widget">album_optionmenu</property>
 				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				  <property name="width_chars">-1</property>
 				  <property name="single_line_mode">False</property>
@@ -3510,7 +3520,7 @@ Photo Details</property>
 			    <widget class="GtkCheckButton" id="browser_check">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Open album in browser when done uploading</property>
+			      <property name="label" translatable="yes">Open _album in browser when done uploading</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
@@ -3594,7 +3604,7 @@ Photo Details</property>
 				<widget class="GtkCheckButton" id="scale_check">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">Resize to: </property>
+				  <property name="label" translatable="yes">_Resize to: </property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>
@@ -3669,7 +3679,7 @@ Photo Details</property>
 			    <widget class="GtkCheckButton" id="meta_check">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Export titles and comments</property>
+			      <property name="label" translatable="yes">Export _titles and comments</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
@@ -3810,8 +3820,8 @@ Photo Details</property>
 	  <child>
 	    <widget class="GtkLabel" id="gallery_label">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Parent Album:</property>
-	      <property name="use_underline">False</property>
+	      <property name="label" translatable="yes">_Parent Album:</property>
+	      <property name="use_underline">True</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
 	      <property name="wrap">False</property>
@@ -3820,6 +3830,7 @@ Photo Details</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="mnemonic_widget">album_optionmenu</property>
 	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	      <property name="width_chars">-1</property>
 	      <property name="single_line_mode">False</property>
@@ -3838,8 +3849,8 @@ Photo Details</property>
 	  <child>
 	    <widget class="GtkLabel" id="password_label">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Title:</property>
-	      <property name="use_underline">False</property>
+	      <property name="label" translatable="yes">_Title:</property>
+	      <property name="use_underline">True</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
 	      <property name="wrap">False</property>
@@ -3848,6 +3859,7 @@ Photo Details</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="mnemonic_widget">title_entry</property>
 	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	      <property name="width_chars">-1</property>
 	      <property name="single_line_mode">False</property>
@@ -3887,8 +3899,8 @@ Photo Details</property>
 	  <child>
 	    <widget class="GtkLabel" id="descroption_label">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Description:</property>
-	      <property name="use_underline">False</property>
+	      <property name="label" translatable="yes">_Description:</property>
+	      <property name="use_underline">True</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
 	      <property name="wrap">False</property>
@@ -3897,6 +3909,7 @@ Photo Details</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="mnemonic_widget">description_entry</property>
 	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	      <property name="width_chars">-1</property>
 	      <property name="single_line_mode">False</property>
@@ -3936,8 +3949,8 @@ Photo Details</property>
 	  <child>
 	    <widget class="GtkLabel" id="name_label">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Album Name:</property>
-	      <property name="use_underline">False</property>
+	      <property name="label" translatable="yes">_Album Name:</property>
+	      <property name="use_underline">True</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
 	      <property name="wrap">False</property>
@@ -3946,6 +3959,7 @@ Photo Details</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="mnemonic_widget">name_entry</property>
 	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	      <property name="width_chars">-1</property>
 	      <property name="single_line_mode">False</property>
@@ -4187,8 +4201,8 @@ Photo Details</property>
 	      <child>
 		<widget class="GtkLabel" id="gallery_label">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">Gallery Name:</property>
-		  <property name="use_underline">False</property>
+		  <property name="label" translatable="yes">_Gallery Name:</property>
+		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
 		  <property name="wrap">False</property>
@@ -4197,6 +4211,7 @@ Photo Details</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="mnemonic_widget">gallery_entry</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -4236,8 +4251,8 @@ Photo Details</property>
 	      <child>
 		<widget class="GtkLabel" id="password_label">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">Password:</property>
-		  <property name="use_underline">False</property>
+		  <property name="label" translatable="yes">_Password:</property>
+		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
 		  <property name="wrap">False</property>
@@ -4246,6 +4261,7 @@ Photo Details</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="mnemonic_widget">password_entry</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -4285,8 +4301,8 @@ Photo Details</property>
 	      <child>
 		<widget class="GtkLabel" id="username_label">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">Username:</property>
-		  <property name="use_underline">False</property>
+		  <property name="label" translatable="yes">_Username:</property>
+		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
 		  <property name="wrap">False</property>
@@ -4295,6 +4311,7 @@ Photo Details</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="mnemonic_widget">username_entry</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -4334,8 +4351,8 @@ Photo Details</property>
 	      <child>
 		<widget class="GtkLabel" id="url_label">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">URL:</property>
-		  <property name="use_underline">False</property>
+		  <property name="label" translatable="yes">U_RL:</property>
+		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
 		  <property name="wrap">False</property>
@@ -4344,6 +4361,7 @@ Photo Details</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="mnemonic_widget">url_entry</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -4573,8 +4591,8 @@ Photo Details</property>
 			      <child>
 				<widget class="GtkLabel" id="label53">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">URI:</property>
-				  <property name="use_underline">False</property>
+				  <property name="label" translatable="yes">_URI:</property>
+				  <property name="use_underline">True</property>
 				  <property name="use_markup">False</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
 				  <property name="wrap">False</property>
@@ -4583,6 +4601,7 @@ Photo Details</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="mnemonic_widget">uri_entry</property>
 				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				  <property name="width_chars">-1</property>
 				  <property name="single_line_mode">False</property>
@@ -4625,7 +4644,7 @@ Photo Details</property>
 			    <widget class="GtkCheckButton" id="open_check">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Open destination when done exporting</property>
+			      <property name="label" translatable="yes">_Open destination when done exporting</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
@@ -4734,7 +4753,7 @@ Photo Details</property>
 				<widget class="GtkCheckButton" id="scale_check">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">Resize to: </property>
+				  <property name="label" translatable="yes">_Resize to: </property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>
@@ -4808,7 +4827,7 @@ Photo Details</property>
 			  <child>
 			    <widget class="GtkCheckButton" id="meta_check">
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Strip metadata</property>
+			      <property name="label" translatable="yes">_Strip metadata</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
@@ -5078,8 +5097,8 @@ Photo Details</property>
 					  <child>
 					    <widget class="GtkLabel" id="label61">
 					      <property name="visible">True</property>
-					      <property name="label" translatable="yes">Gallery:</property>
-					      <property name="use_underline">False</property>
+					      <property name="label" translatable="yes">G_allery:</property>
+					      <property name="use_underline">True</property>
 					      <property name="use_markup">False</property>
 					      <property name="justify">GTK_JUSTIFY_LEFT</property>
 					      <property name="wrap">False</property>
@@ -5088,6 +5107,7 @@ Photo Details</property>
 					      <property name="yalign">0.5</property>
 					      <property name="xpad">0</property>
 					      <property name="ypad">0</property>
+					      <property name="mnemonic_widget">optionmenu1</property>
 					      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 					      <property name="width_chars">-1</property>
 					      <property name="single_line_mode">False</property>
@@ -5236,8 +5256,8 @@ Photo Details</property>
 					  <child>
 					    <widget class="GtkLabel" id="label64">
 					      <property name="visible">True</property>
-					      <property name="label" translatable="yes">Export to Album:</property>
-					      <property name="use_underline">False</property>
+					      <property name="label" translatable="yes">_Export to Album:</property>
+					      <property name="use_underline">True</property>
 					      <property name="use_markup">False</property>
 					      <property name="justify">GTK_JUSTIFY_LEFT</property>
 					      <property name="wrap">False</property>
@@ -5246,6 +5266,7 @@ Photo Details</property>
 					      <property name="yalign">0.5</property>
 					      <property name="xpad">0</property>
 					      <property name="ypad">0</property>
+					      <property name="mnemonic_widget">optionmenu2</property>
 					      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 					      <property name="width_chars">-1</property>
 					      <property name="single_line_mode">False</property>
@@ -5298,7 +5319,7 @@ Photo Details</property>
 					<widget class="GtkCheckButton" id="checkbutton6">
 					  <property name="visible">True</property>
 					  <property name="can_focus">True</property>
-					  <property name="label" translatable="yes">Open album in browser when done uploading</property>
+					  <property name="label" translatable="yes">_Open album in browser when done uploading</property>
 					  <property name="use_underline">True</property>
 					  <property name="relief">GTK_RELIEF_NORMAL</property>
 					  <property name="focus_on_click">True</property>
@@ -5382,7 +5403,7 @@ Photo Details</property>
 					    <widget class="GtkCheckButton" id="checkbutton7">
 					      <property name="visible">True</property>
 					      <property name="can_focus">True</property>
-					      <property name="label" translatable="yes">Scale photos to no larger than: </property>
+					      <property name="label" translatable="yes">_Scale photos to no larger than: </property>
 					      <property name="use_underline">True</property>
 					      <property name="relief">GTK_RELIEF_NORMAL</property>
 					      <property name="focus_on_click">True</property>
@@ -5473,7 +5494,7 @@ Photo Details</property>
 					<widget class="GtkCheckButton" id="checkbutton8">
 					  <property name="visible">True</property>
 					  <property name="can_focus">True</property>
-					  <property name="label" translatable="yes">Export titles and comments</property>
+					  <property name="label" translatable="yes">E_xport titles and comments</property>
 					  <property name="use_underline">True</property>
 					  <property name="relief">GTK_RELIEF_NORMAL</property>
 					  <property name="focus_on_click">True</property>
@@ -5531,8 +5552,8 @@ Photo Details</property>
 		      <child>
 			<widget class="GtkLabel" id="gallery">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Gallery</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">_Gallery</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
@@ -5591,8 +5612,8 @@ Photo Details</property>
 					  <child>
 					    <widget class="GtkLabel" id="label70">
 					      <property name="visible">True</property>
-					      <property name="label" translatable="yes">URI:</property>
-					      <property name="use_underline">False</property>
+					      <property name="label" translatable="yes">_URI:</property>
+					      <property name="use_underline">True</property>
 					      <property name="use_markup">False</property>
 					      <property name="justify">GTK_JUSTIFY_LEFT</property>
 					      <property name="wrap">False</property>
@@ -5601,6 +5622,7 @@ Photo Details</property>
 					      <property name="yalign">0.5</property>
 					      <property name="xpad">0</property>
 					      <property name="ypad">0</property>
+					      <property name="mnemonic_widget">entry9</property>
 					      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 					      <property name="width_chars">-1</property>
 					      <property name="single_line_mode">False</property>
@@ -5733,7 +5755,7 @@ Photo Details</property>
 					    <widget class="GtkCheckButton" id="checkbutton9">
 					      <property name="visible">True</property>
 					      <property name="can_focus">True</property>
-					      <property name="label" translatable="yes">Scale photos to no larger than: </property>
+					      <property name="label" translatable="yes">_Scale photos to no larger than: </property>
 					      <property name="use_underline">True</property>
 					      <property name="relief">GTK_RELIEF_NORMAL</property>
 					      <property name="focus_on_click">True</property>
@@ -5824,7 +5846,7 @@ Photo Details</property>
 					<widget class="GtkCheckButton" id="checkbutton10">
 					  <property name="visible">True</property>
 					  <property name="can_focus">True</property>
-					  <property name="label" translatable="yes">Strip image metadata</property>
+					  <property name="label" translatable="yes">Strip image _metadata</property>
 					  <property name="use_underline">True</property>
 					  <property name="relief">GTK_RELIEF_NORMAL</property>
 					  <property name="focus_on_click">True</property>
@@ -5882,8 +5904,8 @@ Photo Details</property>
 		      <child>
 			<widget class="GtkLabel" id="label68">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Virtual Filesystem</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">_Virtual Filesystem</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
@@ -5942,8 +5964,8 @@ Photo Details</property>
 					  <child>
 					    <widget class="GtkLabel" id="label75">
 					      <property name="visible">True</property>
-					      <property name="label" translatable="yes">E-Mail:</property>
-					      <property name="use_underline">False</property>
+					      <property name="label" translatable="yes">E-_Mail:</property>
+					      <property name="use_underline">True</property>
 					      <property name="use_markup">False</property>
 					      <property name="justify">GTK_JUSTIFY_LEFT</property>
 					      <property name="wrap">False</property>
@@ -5952,6 +5974,7 @@ Photo Details</property>
 					      <property name="yalign">0.5</property>
 					      <property name="xpad">0</property>
 					      <property name="ypad">0</property>
+					      <property name="mnemonic_widget">entry12</property>
 					      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 					      <property name="width_chars">-1</property>
 					      <property name="single_line_mode">False</property>
@@ -6084,7 +6107,7 @@ Photo Details</property>
 					    <widget class="GtkCheckButton" id="checkbutton11">
 					      <property name="visible">True</property>
 					      <property name="can_focus">True</property>
-					      <property name="label" translatable="yes">Scale photos to no larger than: </property>
+					      <property name="label" translatable="yes">_Scale photos to no larger than: </property>
 					      <property name="use_underline">True</property>
 					      <property name="relief">GTK_RELIEF_NORMAL</property>
 					      <property name="focus_on_click">True</property>
@@ -6181,7 +6204,7 @@ Photo Details</property>
 					    <widget class="GtkCheckButton" id="checkbutton13">
 					      <property name="visible">True</property>
 					      <property name="can_focus">True</property>
-					      <property name="label" translatable="yes">Strip image metadata</property>
+					      <property name="label" translatable="yes">Strip image _metadata</property>
 					      <property name="use_underline">True</property>
 					      <property name="relief">GTK_RELIEF_NORMAL</property>
 					      <property name="focus_on_click">True</property>
@@ -6200,7 +6223,7 @@ Photo Details</property>
 					    <widget class="GtkCheckButton" id="checkbutton14">
 					      <property name="visible">True</property>
 					      <property name="can_focus">True</property>
-					      <property name="label" translatable="yes">Export tags</property>
+					      <property name="label" translatable="yes">_Export tags</property>
 					      <property name="use_underline">True</property>
 					      <property name="relief">GTK_RELIEF_NORMAL</property>
 					      <property name="focus_on_click">True</property>
@@ -6269,8 +6292,8 @@ Photo Details</property>
 		      <child>
 			<widget class="GtkLabel" id="label69">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Flickr</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">_Flickr</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
@@ -6508,8 +6531,8 @@ Photo Details</property>
 			      <child>
 				<widget class="GtkLabel" id="label90">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">E-Mail:</property>
-				  <property name="use_underline">False</property>
+				  <property name="label" translatable="yes">E-_Mail:</property>
+				  <property name="use_underline">True</property>
 				  <property name="use_markup">False</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
 				  <property name="wrap">False</property>
@@ -6518,6 +6541,7 @@ Photo Details</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="mnemonic_widget">email_entry</property>
 				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				  <property name="width_chars">-1</property>
 				  <property name="single_line_mode">False</property>
@@ -6560,7 +6584,7 @@ Photo Details</property>
 			    <widget class="GtkCheckButton" id="open_check">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">View photos in browser when done uploading</property>
+			      <property name="label" translatable="yes">_View photos in browser when done uploading</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
@@ -6669,7 +6693,7 @@ Photo Details</property>
 				<widget class="GtkCheckButton" id="scale_check">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">Resize to: </property>
+				  <property name="label" translatable="yes">_Resize to: </property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>
@@ -6750,7 +6774,7 @@ Photo Details</property>
 				<widget class="GtkCheckButton" id="meta_check">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">Strip metadata</property>
+				  <property name="label" translatable="yes">Strip _metadata</property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>
@@ -6769,7 +6793,7 @@ Photo Details</property>
 				<widget class="GtkCheckButton" id="tag_check">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">Export tags</property>
+				  <property name="label" translatable="yes">_Export tags</property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>
@@ -7876,10 +7900,10 @@ Photo Details</property>
 	      <child>
 		<widget class="GtkButton" id="button22">
 		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">Import photos</property>
 		  <property name="can_focus">True</property>
 		  <property name="relief">GTK_RELIEF_NONE</property>
 		  <property name="focus_on_click">True</property>
-	          <property name="tooltip" translatable="yes">Import photos</property>
 		  <signal name="clicked" handler="HandleImportCommand" last_modification_time="Wed, 15 Jun 2005 05:48:11 GMT"/>
 
 		  <child>
@@ -7950,11 +7974,11 @@ Photo Details</property>
 	      <child>
 		<widget class="GtkEventBox" id="eventbox1">
 		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">Zoom out</property>
 		  <property name="can_focus">True</property>
 		  <property name="events">GDK_BUTTON_PRESS_MASK</property>
 		  <property name="visible_window">True</property>
 		  <property name="above_child">False</property>
-		  <property name="tooltip" translatable="yes">Zoom out</property>
 		  <signal name="button_press_event" handler="HandleZoomOut" last_modification_time="Mon, 05 Dec 2005 04:56:18 GMT"/>
 
 		  <child>
@@ -7986,7 +8010,6 @@ Photo Details</property>
 		  <property name="update_policy">GTK_UPDATE_CONTINUOUS</property>
 		  <property name="inverted">False</property>
 		  <property name="adjustment">0.784615384615 0 1 0.10000000149 0 0</property>
-		  <property name="tooltip" translatable="yes">Adjust zoom</property>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -7998,11 +8021,11 @@ Photo Details</property>
 	      <child>
 		<widget class="GtkEventBox" id="eventbox2">
 		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">Zoom in</property>
 		  <property name="can_focus">True</property>
 		  <property name="events">GDK_BUTTON_PRESS_MASK</property>
 		  <property name="visible_window">True</property>
 		  <property name="above_child">False</property>
-		  <property name="tooltip" translatable="yes">Zoom in</property>
 		  <signal name="button_press_event" handler="HandleZoomIn" last_modification_time="Mon, 05 Dec 2005 04:56:18 GMT"/>
 
 		  <child>
@@ -8165,7 +8188,7 @@ Photo Details</property>
 			  <child>
 			    <widget class="GtkCheckButton" id="remove_check">
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Write only these photos to CD</property>
+			      <property name="label" translatable="yes">_Write only these photos to CD</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
@@ -8184,7 +8207,7 @@ Photo Details</property>
 			    <widget class="GtkButton" id="browes_button">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Browse Previously Scheduled Files</property>
+			      <property name="label" translatable="yes">_Browse Previously Scheduled Files</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
@@ -8416,8 +8439,8 @@ Photo Details</property>
 		      <child>
 			<widget class="GtkLabel" id="contrast_label">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Contrast:</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">C_ontrast:</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>
 			  <property name="wrap">False</property>
@@ -8426,6 +8449,7 @@ Photo Details</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">contrast_scale</property>
 			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <property name="width_chars">-1</property>
 			  <property name="single_line_mode">False</property>
@@ -8444,8 +8468,8 @@ Photo Details</property>
 		      <child>
 			<widget class="GtkLabel" id="hue_label">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Hue:</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">_Hue:</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_RIGHT</property>
 			  <property name="wrap">False</property>
@@ -8454,6 +8478,7 @@ Photo Details</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">hue_scale</property>
 			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <property name="width_chars">-1</property>
 			  <property name="single_line_mode">False</property>
@@ -8472,8 +8497,8 @@ Photo Details</property>
 		      <child>
 			<widget class="GtkLabel" id="sat_label">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Saturation:</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">_Saturation:</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
@@ -8482,6 +8507,7 @@ Photo Details</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">sat_scale</property>
 			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <property name="width_chars">-1</property>
 			  <property name="single_line_mode">False</property>
@@ -8500,8 +8526,8 @@ Photo Details</property>
 		      <child>
 			<widget class="GtkLabel" id="">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Brightness:</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">_Brightness:</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_RIGHT</property>
 			  <property name="wrap">False</property>
@@ -8510,6 +8536,7 @@ Photo Details</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">brightness_scale</property>
 			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <property name="width_chars">-1</property>
 			  <property name="single_line_mode">False</property>
@@ -8745,8 +8772,8 @@ Photo Details</property>
 		      <child>
 			<widget class="GtkLabel" id="label24">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Source Temp</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">So_urce Temp</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
@@ -8773,8 +8800,8 @@ Photo Details</property>
 		      <child>
 			<widget class="GtkLabel" id="dest_temp_label">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Destination Temp</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">_Destination Temp</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
@@ -9139,8 +9166,8 @@ Photo Details</property>
 			      <child>
 				<widget class="GtkLabel" id="label129">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">Folder URI:</property>
-				  <property name="use_underline">False</property>
+				  <property name="label" translatable="yes">_Folder URI:</property>
+				  <property name="use_underline">True</property>
 				  <property name="use_markup">False</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
 				  <property name="wrap">False</property>
@@ -9149,6 +9176,7 @@ Photo Details</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="mnemonic_widget">uri_entry</property>
 				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				  <property name="width_chars">-1</property>
 				  <property name="single_line_mode">False</property>
@@ -9167,8 +9195,8 @@ Photo Details</property>
 			      <child>
 				<widget class="GtkLabel" id="label137">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">Gallery Name:</property>
-				  <property name="use_underline">False</property>
+				  <property name="label" translatable="yes">_Gallery Name:</property>
+				  <property name="use_underline">True</property>
 				  <property name="use_markup">False</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
 				  <property name="wrap">False</property>
@@ -9177,6 +9205,7 @@ Photo Details</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="mnemonic_widget">name_entry</property>
 				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				  <property name="width_chars">-1</property>
 				  <property name="single_line_mode">False</property>
@@ -9224,7 +9253,7 @@ Photo Details</property>
 			    <widget class="GtkCheckButton" id="open_check">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Open destination when done exporting.</property>
+			      <property name="label" translatable="yes">Open _destination when done exporting</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
@@ -9334,7 +9363,7 @@ Photo Details</property>
 				<widget class="GtkCheckButton" id="scale_check">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">Resize to: </property>
+				  <property name="label" translatable="yes">_Resize to: </property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>
@@ -10072,8 +10101,8 @@ Photo Details</property>
 			      <child>
 				<widget class="GtkLabel" id="label140">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">Folder URI:</property>
-				  <property name="use_underline">False</property>
+				  <property name="label" translatable="yes">_Folder URI:</property>
+				  <property name="use_underline">True</property>
 				  <property name="use_markup">False</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
 				  <property name="wrap">False</property>
@@ -10100,8 +10129,8 @@ Photo Details</property>
 			      <child>
 				<widget class="GtkLabel" id="label141">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">Gallery Name:</property>
-				  <property name="use_underline">False</property>
+				  <property name="label" translatable="yes">G_allery Name:</property>
+				  <property name="use_underline">True</property>
 				  <property name="use_markup">False</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
 				  <property name="wrap">False</property>
@@ -10110,6 +10139,7 @@ Photo Details</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="mnemonic_widget">name_entry</property>
 				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				  <property name="width_chars">-1</property>
 				  <property name="single_line_mode">False</property>
@@ -10270,7 +10300,7 @@ Photo Details</property>
 			    <widget class="GtkCheckButton" id="open_check">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Open destination when done exporting</property>
+			      <property name="label" translatable="yes">Open _destination when done exporting</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
@@ -10374,7 +10404,7 @@ Photo Details</property>
 			    <widget class="GtkRadioButton" id="original_radio">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Create gallery using &quot;Original&quot;</property>
+			      <property name="label" translatable="yes">Create _gallery using &quot;Original&quot;</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
@@ -10393,7 +10423,7 @@ Photo Details</property>
 			    <widget class="GtkRadioButton" id="static_radio">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Create standalone web gallery</property>
+			      <property name="label" translatable="yes">Create standalone _web gallery</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
@@ -10413,7 +10443,7 @@ Photo Details</property>
 			    <widget class="GtkRadioButton" id="plain_radio">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Save the files only</property>
+			      <property name="label" translatable="yes">_Save the files only</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="focus_on_click">True</property>
@@ -10498,7 +10528,7 @@ Photo Details</property>
 				<widget class="GtkCheckButton" id="scale_check">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">Resize to: </property>
+				  <property name="label" translatable="yes">_Resize to: </property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>
@@ -10578,8 +10608,8 @@ Photo Details</property>
 			      <child>
 				<widget class="GtkLabel" id="label150">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">Description:</property>
-				  <property name="use_underline">False</property>
+				  <property name="label" translatable="yes">D_escription:</property>
+				  <property name="use_underline">True</property>
 				  <property name="use_markup">False</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
 				  <property name="wrap">False</property>
@@ -10588,6 +10618,7 @@ Photo Details</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="mnemonic_widget">description_entry</property>
 				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				  <property name="width_chars">-1</property>
 				  <property name="single_line_mode">False</property>
@@ -11194,11 +11225,11 @@ Photo Details</property>
 	      <child>
 		<widget class="GtkEventBox" id="eventbox1">
 		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">Zoom out</property>
 		  <property name="can_focus">True</property>
 		  <property name="events">GDK_BUTTON_PRESS_MASK</property>
 		  <property name="visible_window">True</property>
 		  <property name="above_child">False</property>
-		  <property name="tooltip" translatable="yes">Zoom out</property>
 		  <signal name="button_press_event" handler="HandleZoomOut" last_modification_time="Mon, 05 Dec 2005 04:56:18 GMT"/>
 
 		  <child>
@@ -11230,7 +11261,6 @@ Photo Details</property>
 		  <property name="update_policy">GTK_UPDATE_CONTINUOUS</property>
 		  <property name="inverted">False</property>
 		  <property name="adjustment">0 0 1 0.00999999977648 0.10000000149 0.10000000149</property>
-		  <property name="tooltip" translatable="yes">Adjust zoom</property>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -11242,11 +11272,11 @@ Photo Details</property>
 	      <child>
 		<widget class="GtkEventBox" id="eventbox2">
 		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">Zoom in</property>
 		  <property name="can_focus">True</property>
 		  <property name="events">GDK_BUTTON_PRESS_MASK</property>
 		  <property name="visible_window">True</property>
 		  <property name="above_child">False</property>
-		  <property name="tooltip" translatable="yes">Zoom in</property>
 		  <signal name="button_press_event" handler="HandleZoomIn" last_modification_time="Mon, 05 Dec 2005 04:56:18 GMT"/>
 
 		  <child>
@@ -11442,8 +11472,8 @@ Photo Details</property>
 	      <child>
 		<widget class="GtkLabel" id="label162">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Histogram&lt;/b&gt;</property>
-		  <property name="use_underline">False</property>
+		  <property name="label" translatable="yes">&lt;b&gt;Histo_gram&lt;/b&gt;</property>
+		  <property name="use_underline">True</property>
 		  <property name="use_markup">True</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
 		  <property name="wrap">False</property>
@@ -11489,8 +11519,8 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkLabel" id="label163">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">&lt;small&gt;Hue:&lt;/small&gt;</property>
-		      <property name="use_underline">False</property>
+		      <property name="label" translatable="yes">&lt;small&gt;_Hue:&lt;/small&gt;</property>
+		      <property name="use_underline">True</property>
 		      <property name="use_markup">True</property>
 		      <property name="justify">GTK_JUSTIFY_RIGHT</property>
 		      <property name="wrap">False</property>
@@ -11499,6 +11529,7 @@ Photo Details</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">hue_scale</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -11517,8 +11548,8 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkLabel" id="label164">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">&lt;small&gt;Brightness:&lt;/small&gt;</property>
-		      <property name="use_underline">False</property>
+		      <property name="label" translatable="yes">&lt;small&gt;_Brightness:&lt;/small&gt;</property>
+		      <property name="use_underline">True</property>
 		      <property name="use_markup">True</property>
 		      <property name="justify">GTK_JUSTIFY_RIGHT</property>
 		      <property name="wrap">False</property>
@@ -11527,6 +11558,7 @@ Photo Details</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">brightness_scale</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -11609,8 +11641,8 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkLabel" id="label165">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">&lt;small&gt;Exposure:&lt;/small&gt;</property>
-		      <property name="use_underline">False</property>
+		      <property name="label" translatable="yes">&lt;small&gt;_Exposure:&lt;/small&gt;</property>
+		      <property name="use_underline">True</property>
 		      <property name="use_markup">True</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
 		      <property name="wrap">False</property>
@@ -11619,6 +11651,7 @@ Photo Details</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">exposure_scale</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -11679,8 +11712,8 @@ Photo Details</property>
 
 		  <child>
 		    <widget class="GtkLabel" id="label166">
-		      <property name="label" translatable="yes">&lt;small&gt;Contrast:&lt;/small&gt;</property>
-		      <property name="use_underline">False</property>
+		      <property name="label" translatable="yes">&lt;small&gt;C_ontrast:&lt;/small&gt;</property>
+		      <property name="use_underline">True</property>
 		      <property name="use_markup">True</property>
 		      <property name="justify">GTK_JUSTIFY_CENTER</property>
 		      <property name="wrap">False</property>
@@ -11689,6 +11722,7 @@ Photo Details</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">contrast_scale</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -11747,8 +11781,8 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkLabel" id="label167">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">&lt;small&gt;Saturation:&lt;/small&gt;</property>
-		      <property name="use_underline">False</property>
+		      <property name="label" translatable="yes">&lt;small&gt;_Saturation:&lt;/small&gt;</property>
+		      <property name="use_underline">True</property>
 		      <property name="use_markup">True</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
 		      <property name="wrap">False</property>
@@ -11757,6 +11791,7 @@ Photo Details</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">sat_scale</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -11867,8 +11902,8 @@ Photo Details</property>
 		    <widget class="GtkLabel" id="label168">
 		      <property name="width_request">300</property>
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">&lt;b&gt;Corrections&lt;/b&gt;</property>
-		      <property name="use_underline">False</property>
+		      <property name="label" translatable="yes">&lt;b&gt;Co_rrections&lt;/b&gt;</property>
+		      <property name="use_underline">True</property>
 		      <property name="use_markup">True</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
 		      <property name="wrap">False</property>
@@ -11877,6 +11912,7 @@ Photo Details</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">button27</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -11991,8 +12027,8 @@ Photo Details</property>
 		      <child>
 			<widget class="GtkLabel" id="label169">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">&lt;small&gt;Tint:&lt;/small&gt;</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">&lt;small&gt;_Tint:&lt;/small&gt;</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">True</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
@@ -12001,6 +12037,7 @@ Photo Details</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">temptint_scale</property>
 			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <property name="width_chars">-1</property>
 			  <property name="single_line_mode">False</property>
@@ -12019,8 +12056,8 @@ Photo Details</property>
 		      <child>
 			<widget class="GtkLabel" id="label170">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">&lt;small&gt;Temp:&lt;/small&gt;</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">&lt;small&gt;Te_mp:&lt;/small&gt;</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">True</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
@@ -12029,6 +12066,7 @@ Photo Details</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">temp_scale</property>
 			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <property name="width_chars">-1</property>
 			  <property name="single_line_mode">False</property>
@@ -12205,8 +12243,8 @@ Photo Details</property>
 		    <widget class="GtkLabel" id="label171">
 		      <property name="width_request">300</property>
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">&lt;b&gt;White Balance&lt;/b&gt;</property>
-		      <property name="use_underline">False</property>
+		      <property name="label" translatable="yes">&lt;b&gt;_White Balance&lt;/b&gt;</property>
+		      <property name="use_underline">True</property>
 		      <property name="use_markup">True</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
 		      <property name="wrap">False</property>
@@ -12469,8 +12507,8 @@ supported image formats.&lt;/i&gt;&lt;/small&gt;</property>
 		      <child>
 			<widget class="GtkLabel" id="label185">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Display:</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">_Display:</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
@@ -12497,8 +12535,8 @@ supported image formats.&lt;/i&gt;&lt;/small&gt;</property>
 		      <child>
 			<widget class="GtkLabel" id="label186">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Output:</property>
-			  <property name="use_underline">False</property>
+			  <property name="label" translatable="yes">_Output:</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
