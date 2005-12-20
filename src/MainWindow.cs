@@ -1341,12 +1341,14 @@ public class MainWindow {
 			"Laurence Hygate",
 			"Alex Graveley",
 			"Todd Berman",
+			"Ben Monnahan",
 			"Vladimir Vukicevic",
 			"Aaron Bockover",
 			"Bengt Thuree",
 			"Jon Trowbridge",
 			"Joe Shaw",
 			"Nat Friedman",
+			"Ruben Vermeersch",
 			"Tambet Ingo",
 			"MOREAU Vincent",
 			"Alvaro del Castillo",
@@ -1354,6 +1356,7 @@ public class MainWindow {
 			"Alessandro Gervaso",
 			"Peter Johanson",
 			"Miguel de Icaza",
+			"Chad Files",
 			"Grahm Orr",
 			"Ewen Cheslack-Postava",
 			"Gabriel Burt",
@@ -1549,7 +1552,9 @@ public class MainWindow {
 		if (tags.Length < 2)
 			return;
 		
-		string header = Mono.Posix.Catalog.GetString ("Merge the {0} selected tags?");
+		// Translators, The singular case will never happen here.
+		string header = Mono.Posix.Catalog.GetPluralString ("Merge the selected tag",
+								    "Merge the {0} selected tags?", tags.Length);
 		header = String.Format (header, tags.Length);
 
 		// If a tag with children tags is selected for merging, we
@@ -1570,11 +1575,13 @@ public class MainWindow {
 		// debug..
 		tags = (Tag []) all_tags.ToArray (typeof (Tag));
 		System.Array.Sort (tags, new TagRemoveComparer ());
+
 		foreach (Tag tag in tags) {
 			System.Console.WriteLine ("tag: {0}", tag.Name);
 		}
 
 		string msg = Mono.Posix.Catalog.GetString("This operation will merge the selected tags and any sub-tags into a single tag.");
+
 		string ok_caption = Mono.Posix.Catalog.GetString ("_Merge tags");
 		
 		if (ResponseType.Ok != HigMessageDialog.RunHigConfirmation(main_window, 
@@ -1913,8 +1920,8 @@ public class MainWindow {
 	{
    		Photo[] photos = SelectedPhotos();
    		string header = Mono.Posix.Catalog.GetPluralString ("Delete the selected photo permanently?", 
-								 "Delete the {0} selected photos permanently?", 
-								 photos.Length);
+								    "Delete the {0} selected photos permanently?", 
+								    photos.Length);
 		header = String.Format (header, photos.Length);
 		string msg = Mono.Posix.Catalog.GetPluralString ("This deletes all versions of the selected photo from your drive.", 
 								 "This deletes all versions of the selected photos from your drive.", 
@@ -1942,8 +1949,8 @@ public class MainWindow {
 	{
    		Photo[] photos = SelectedPhotos();
    		string header = Mono.Posix.Catalog.GetPluralString ("Remove the selected photo from F-Spot?",
-								 "Remove the {0} selected photos from F-Spot?", 
-								 photos.Length);
+								    "Remove the {0} selected photos from F-Spot?", 
+								    photos.Length);
 
 		header = String.Format (header, photos.Length);
 		string msg = Mono.Posix.Catalog.GetString("If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again.");
