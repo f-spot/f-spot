@@ -273,7 +273,7 @@ namespace FSpot {
 		protected ScaleRequest [] requests;
 		
 		protected string [] pixbuf_keys = {"quality"};
-		protected string [] pixbuf_values = {"75"};
+		protected string [] pixbuf_values = {"95"};
 
 		protected struct ScaleRequest {
 			public string Name;
