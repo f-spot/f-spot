@@ -311,7 +311,7 @@ namespace FSpot {
 			if (overlay != null) {
 				SetSourcePixbuf (g, overlay, -overlay.Width / 2, -overlay.Height / 2);
 				g.Arc (0, 0, radius, angle, angle + Math.PI);
-				g.ClosePath ();
+				//g.ClosePath ();
 				g.FillPreserve ();
 				g.Color = new Cairo.Color (1.0, 1.0, 1.0, 1.0);
 				g.Stroke ();
@@ -416,6 +416,11 @@ namespace FSpot {
 			}
 		}
 
+		private void HandleViewZoomChanged (object sender, System.EventArgs args)
+		{
+			UpdateSample ();
+		}
+
 		private void HandleButtonReleaseEvent (object sender, ButtonReleaseEventArgs args)
 		{
 			dragging = false;
@@ -428,8 +433,8 @@ namespace FSpot {
 
 		protected Widget SetFancyStyle (Widget widget)
 		{
-			widget.ModifyFg (Gtk.StateType.Normal, new Gdk.Color (127, 127, 127));
-			widget.ModifyBg (Gtk.StateType.Normal, new Gdk.Color (0, 0, 0));
+			//widget.ModifyFg (Gtk.StateType.Normal, new Gdk.Color (127, 127, 127));
+			//widget.ModifyBg (Gtk.StateType.Normal, new Gdk.Color (0, 0, 0));
 			return widget;
 		}
 		
@@ -476,6 +481,7 @@ namespace FSpot {
 
 			//view.MotionNotifyEvent += HandleImageViewMotion;
 			view.Item.Changed += HandleItemChanged;
+			view.ZoomChanged += HandleViewZoomChanged;
 
 			SetSamplePoint (Gdk.Point.Zero);
 			SetSizeRequest (400, 400);
