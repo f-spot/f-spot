@@ -5,6 +5,7 @@ namespace FSpot {
 	internal class TipWindow : Gtk.Window {
 		public TipWindow () : base (Gtk.WindowType.Popup) 
 		{
+			Name = "gtk-tooltips";
 			AppPaintable = true;
 			BorderWidth = 4;
 		}

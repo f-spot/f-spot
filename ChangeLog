@@ -1,5 +1,8 @@
 2005-12-24  Larry Ewing  <lewing@novell.com>
 
+	* src/TipWindow.cs: set the name to "gtk-tooltips" so we can pick
+	up more of the style settings.
+
 	* src/DCRawFile.cs: make the stream disposable.
 
 	* src/Loupe.cs: rework the style of the sharpen call.
