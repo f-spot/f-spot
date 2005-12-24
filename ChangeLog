@@ -1,5 +1,8 @@
 2005-12-24  Larry Ewing  <lewing@novell.com>
 
+	* src/AsyncPixbufLoader.cs: move more completely to the async
+	interface.
+
 	* src/Scanning.cs: bind more of the interface.
 
 	* src/FolderExport.cs: use a higher quality setting.  This should
