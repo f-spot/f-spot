@@ -35,6 +35,14 @@ namespace FSpot.Scanning {
 		Blue
 	}
 	
+	public enum OptionType {
+		Bool,
+		Int,
+		String,
+		Button,
+		Group
+	}
+
 	public class ScanException : Exception {
 		Status status;
 		
@@ -138,6 +146,31 @@ namespace FSpot.Scanning {
 			
 	}
 
+	public class Option {
+		private class OptionRange {
+			int min;
+			int max;
+			int quant;
+		}
+
+		private class _OptionDescriptor {
+			IntPtr name;
+			IntPtr title;
+			IntPtr desc;
+			OptionType ValueType;
+			Unit unit;
+			int size;
+			int capabilities;
+			int constraint_type;
+			IntPtr contstraint;
+			
+			public object [] GetConstraint {
+				
+			}
+		}
+
+	}
+
 	public class Device {
 		HandleRef handle;
 		bool blocking = true;
@@ -147,12 +180,15 @@ namespace FSpot.Scanning {
 		}
 
 		[DllImport("libsane.so.1")]
+		Status sane_get_select_fd (HandleRef handle, out int fd);
+
 		internal int FileDescriptor {
 			get {
 				int fd;
-				
-				Sane
-				
+				sane_get_select_fd (handle, out in fd);
+				return fd;
+			}
+		}
 
 		[DllImport("libsane.so.1")]
 		Status sane_set_io_mode (HandleRef handle, bool blocking);
@@ -192,9 +228,15 @@ namespace FSpot.Scanning {
 		}
 
 		[DllImport ("libsane.so.1")]
+		Status sane_read (HandleRef handle, byte *buffer, int max_length, int length);
+		
+		private void S
+		
+
+		[DllImport ("libsane.so.1")]
 		Status sane_start (HandleRef handle);
 
-		private Start ()
+		private void Start ()
 		{
 			Status status;
 
@@ -203,6 +245,8 @@ namespace FSpot.Scanning {
 			if (Status != Status.Good)
 				throw new ScanException (status);
 		}
+
+		
 
 		[DllImport ("libsane.so.1")]
 		void sane_cancel (HandleRef handle);
