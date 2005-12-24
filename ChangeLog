@@ -1,5 +1,7 @@
 2005-12-24  Larry Ewing  <lewing@novell.com>
 
+	* src/DCRawFile.cs: make the stream disposable.
+
 	* src/Loupe.cs: rework the style of the sharpen call.
 
 2005-12-20  Alexandre Prokoudine  <alexandre.prokoudine@gmail.com>
