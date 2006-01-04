@@ -387,7 +387,7 @@ namespace FSpot.Ciff {
 			
 			// HEAP is the type CCDR is the subtype
 			if (System.Text.Encoding.ASCII.GetString (header, 6, 8) != "HEAPCCDR") 
-				throw new System.Exception ("Invalid Ciff Header Block");
+				throw new ImageFormatException ("Invalid Ciff Header Block");
 			
 			version =  BitConverter.ToUInt32 (header, 14, little);
 			

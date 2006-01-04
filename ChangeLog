@@ -1,3 +1,13 @@
+2006-01-03  Larry Ewing  <lewing@novell.com>
+
+	* src/Makefile.am (F_SPOT_CSDISTFILES): add X3fFile.cs
+
+	* src/Ciff.cs: throw ImageFormatException.
+
+	* src/ImageFile.cs: add foveon.  Andd new exception type.
+
+	* src/X3fFile.cs: add X3f parser to the build.
+
 2005-12-26  Larry Ewing  <lewing@novell.com>
 
 	* src/AsyncPixbufLoader.cs: move back to the old loader until the

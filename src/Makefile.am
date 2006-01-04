@@ -123,6 +123,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/CameraSelectionDialog.cs	\
 	$(srcdir)/CameraFileSelectionDialog.cs	\
 	$(srcdir)/TagSelectionDialog.cs		\
+	$(srcdir)/X3fFile.cs			\
 	$(srcdir)/XmpFile.cs			\
 	$(srcdir)/main.cs
 

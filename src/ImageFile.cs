@@ -2,6 +2,12 @@ using System;
 using System.IO;
 
 namespace FSpot {
+	public class ImageFormatException : ApplicationException {
+		public ImageFormatException (string msg) : base (msg)
+		{
+		}
+	}
+
 	public class ImageFile {
 		protected string path;
 
@@ -38,6 +44,7 @@ namespace FSpot {
 			name_table [".ppm"] = typeof (FSpot.Pnm.PnmFile);
 			name_table [".mrw"] = typeof (FSpot.Mrw.MrwFile);
 			name_table [".raf"] = typeof (FSpot.Raf.RafFile);
+			name_table [".x3f"] = typeof (FSpot.X3f.X3fFile);
 		}
 
 		public string Path {
