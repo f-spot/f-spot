@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using GLib;
 
@@ -8,7 +9,7 @@ namespace FSpot {
 	public enum IOFlags {
 		Append = 1,
 		Nonblock = 1 << 1,
-		Readble = 1 << 2,
+		Readable = 1 << 2,
 		Writable = 1 << 3,
 		Seekable = 1 << 4
 	}
@@ -20,28 +21,33 @@ namespace FSpot {
 		Again
 	}
 
+	public enum IOCondition {
+		// FIXME this is not a real condition
+		Unknown
+	}
+
 	public class IOChannel : System.IO.Stream {
 		private HandleRef handle;
 		
-		private delegate IOFunc (HandleRef source_channel, IOCondition, IntPtr data);
+		private delegate void IOFunc (HandleRef source_channel, IOCondition cond, IntPtr data);
 
 		[DllImport("libglib-2.0-0.dll")]
-		static extern IOFLag g_io_channel_get_flags ();
+		static extern IOFlags g_io_channel_get_flags ();
 
 		public override bool CanRead {
 			get { 
-				IOFLag flags = g_io_channel_get_flags ();
+				IOFlags flags = g_io_channel_get_flags ();
 
-				return flags & IOFLag.Readable == IOFLag.Readable; 
+				return (flags & IOFlags.Readable) == IOFlags.Readable; 
 			}
 		}
 
 		public override bool CanSeek {
 			get {
 #if NOTDONE				
-				IOFLag flags = g_io_channel_get_flags ();
+				IOFlags flags = g_io_channel_get_flags ();
 
-				return flags & IOFLag.Seekable == IOFLag.Seekable; 
+				return (flags & IOFlags.Seekable) == IOFlags.Seekable; 
 #else
 				return false;
 #endif
@@ -50,9 +56,9 @@ namespace FSpot {
 
 		public override bool CanWrite {
 			get {
-				IOFLag flags = g_io_channel_get_flags ();
+				IOFlags flags = g_io_channel_get_flags ();
 
-				return flags & IOFLag.Writable == IOFLag.Writable; 
+				return (flags & IOFlags.Writable) == IOFlags.Writable; 
 			}
 		}
 
@@ -72,7 +78,7 @@ namespace FSpot {
 		}
 
 		[DllImport("libglib-2.0-0.dll")]
-		IntPtr g_io_channel_unix_new (int fd);
+		static extern IntPtr g_io_channel_unix_new (int fd);
 
 		public IOChannel (int fd)
 		{
@@ -96,7 +102,7 @@ namespace FSpot {
 		}
 
 		[DllImport("libglib-2.0-0.dll")]
-		static extern IOStatus g_io_channel_write_chars (HandleRef channel, byte *data, long count, out long bytes_written, out IntPtr error);
+		static extern unsafe IOStatus g_io_channel_write_chars (HandleRef channel, byte *data, long count, out long bytes_written, out IntPtr error);
 		
 		public override void Write (byte [] buffer, int offset, int count)
 		{
@@ -118,22 +124,22 @@ namespace FSpot {
 						throw new GException (error);
 					
 					real_offset += written;
-					count -= written;
+					count -= (int) written;
 				}
 			}
 		}
 		
 		[DllImport("libglib-2.0-0.dll")]
-		static extern int g_io_channel_read_chars (HandleRef channel, byte *data, long count, out long bytes_read, out IntPtr error);
+		static unsafe extern IOStatus g_io_channel_read_chars (HandleRef channel, byte *data, long count, out long bytes_read, out IntPtr error);
 
 		public override int Read (byte [] buffer, int offset, int count)
 		{
-			int len;
 			long read;
 			IOStatus status;
+			IntPtr error;
 
 			unsafe {
-				fixed (byte *data = buffer[offset]) {
+				fixed (byte *data = &buffer[offset]) {
 					status = g_io_channel_read_chars (handle, data, (long)count, out read, out error);
 				}
 				
@@ -142,6 +148,17 @@ namespace FSpot {
 			}
 			
 			return (int)read;
+		}
+
+		public override void SetLength (long length)
+		{
+			throw new NotSupportedException ();
+		}
+		
+		public override long Seek (long position, SeekOrigin origin)
+		{
+			//FIXME this should be supported
+			throw new NotSupportedException ();
 		}
 	}
 }
