@@ -1,4 +1,12 @@
+2006-01-05  Larry Ewing  <lewing@novell.com>
+
+	* src/IOChannel.cs: debug iochannel binding.
+
+	* src/IOChannel.cs: fix up g_spawn binding.
+
 2006-01-04  Larry Ewing  <lewing@novell.com>
+
+	* src/InternalProcess.cs: add gspawn binding.
 
 	* src/IOChannel.cs: add iochannel binding.
 

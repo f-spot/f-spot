@@ -4,6 +4,17 @@ using System.Runtime.InteropServices;
 using GLib;
 
 namespace FSpot {
+	[Flags]
+	internal enum InternalProcessFlags {
+		LeaveDescriptorsOpen =       1 << 0,
+		DoNotReapChild =             1 << 1,
+		SearchPath =                 1 << 2,
+		StandardOutputToDevNull =    1 << 3,
+		StandardErrorToDevNull =     1 << 4,
+		ChildInheritsStandardInput = 1 << 5,
+		FileAndArgvZero =            1 << 6
+	}
+
 	internal class InternalProcess {
 		int stdin;
 		int stdout;
@@ -34,13 +45,14 @@ namespace FSpot {
 		static extern bool g_spawn_async_with_pipes (string working_dir,
 							     string [] argv,
 							     string [] envp,
-							     int flags,
+							     InternalProcessFlags flags,
 							     IntPtr child_setup,
 							     IntPtr child_data,
 							     IntPtr pid,
 							     ref int stdin,
 							     ref int stdout,
-							     ref int stderr,
+							     IntPtr err,
+							     //ref int stderr,
 							     out IntPtr error);
 		
 		public InternalProcess (string path, string [] args)
@@ -53,15 +65,16 @@ namespace FSpot {
 				args = nargs;
 			}
 			
-			g_spawn_async_with_pipes (path, args, null, 0, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero,
-						  ref stdin, ref stdout, ref stderr, out error);
+			g_spawn_async_with_pipes (path, args, null, InternalProcessFlags.SearchPath, 
+						  IntPtr.Zero, IntPtr.Zero, IntPtr.Zero,
+						  ref stdin, ref stdout, IntPtr.Zero, out error);
 
 			if (error != IntPtr.Zero)
 				throw new GException (error);
 
 			input = new IOChannel (stdin);
 			output = new IOChannel (stdout);
-			errorput = new IOChannel (stderr);
+			//errorput = new IOChannel (stderr);
 		}
 	}
 }
