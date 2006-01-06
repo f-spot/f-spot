@@ -128,6 +128,7 @@ namespace FSpot {
 		{
 			view.Transform = null;
 			view.PhotoChanged -= HandlePhotoChanged;
+			view.QueueDraw ();
 #if USE_THREAD
 			expose_timeout.Stop ();
 #endif
@@ -210,8 +211,9 @@ namespace FSpot {
 		public void Cancel ()
 		{
 			view.Transform = null;
-			view.QueueDraw ();
 			view.PhotoChanged -= HandlePhotoChanged;
+			view.QueueDraw ();
+			System.Console.WriteLine ("clearing window");
 			this.Dialog.Destroy ();
 		}
 		
