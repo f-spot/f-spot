@@ -68,7 +68,7 @@ namespace FSpot {
 
 		public AsyncPixbufLoader ()
 		{
-			delay = new Delay (0, new GLib.IdleHandler (AsyncRead));
+			delay = new Delay (10, new GLib.IdleHandler (AsyncRead));
 			ap = new System.EventHandler (HandleAreaPrepared);
 			au = new Gdk.AreaUpdatedHandler (HandleAreaUpdated);
 			ev = new System.EventHandler (HandleClosed);
@@ -149,7 +149,10 @@ namespace FSpot {
 
 			ThumbnailGenerator.Default.PushBlock ();
 			//AsyncIORead (null);
-			delay.Start ();
+			if (nstream is IOChannel)
+				((IOChannel)nstream).DataReady += IOChannelRead;
+			else
+				delay.Start ();
 		}			
 
 	        private void LoadToAreaPrepared ()
@@ -253,6 +256,11 @@ namespace FSpot {
 			}
 		}
 
+		private void IOChannelRead (object sender, DataReadEventArgs args)
+		{
+			args.Continue = AsyncIORead ();
+		}
+
 		private bool AsyncIORead ()
 		{
 			try {
@@ -292,7 +300,7 @@ namespace FSpot {
 				loader.Write (buffer, (ulong)len);
 			} catch (System.ObjectDisposedException od) {
 				System.Console.WriteLine ("error in endread {0}", od);
-				delay.Start ();
+				//delay.Start ();
 				len = -1;
 			} catch (GLib.GException e) {
 				System.Console.WriteLine (e.ToString ());

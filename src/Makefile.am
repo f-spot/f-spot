@@ -63,6 +63,8 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ImportStore.cs		\
 	$(srcdir)/InfoBox.cs			\
 	$(srcdir)/InfoDisplay.cs		\
+	$(srcdir)/InternalProcess.cs		\
+	$(srcdir)/IOChannel.cs			\
 	$(srcdir)/IptcFile.cs			\
 	$(srcdir)/JpegFile.cs			\
 	$(srcdir)/JpegHeader.cs			\

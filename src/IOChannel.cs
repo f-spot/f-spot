@@ -22,9 +22,34 @@ namespace FSpot {
 	}
 
 	public enum IOCondition {
-		// FIXME this is not a real condition
-		Unknown
+		// FIXME these are system dependent and I'm hardcoding them because I don't
+		// want to write glue today.  If you are debugging image loading and get
+		// to this point and find that that your problem is my fault, well...  we all
+		// have bad days.
+		In = 1,
+		Out = 4,
+		Priority = 2,
+		Error = 8,
+		HungUp = 16,
+		Invalid = 32
 	}
+
+	public class DataReadEventArgs : EventArgs {
+		public bool Continue;
+		IOCondition condition;
+		
+		public IOCondition Condition {
+			get { return condition; }
+		}
+
+		public DataReadEventArgs (IOCondition condition)
+		{
+			this.condition = condition;
+			Continue = true;
+		}
+	}
+	
+	public delegate void IOChannelDataReadyEvent (object sender, DataReadEventArgs args);
 
 	public class IOChannel : System.IO.Stream {
 		private HandleRef handle;
@@ -163,18 +188,38 @@ namespace FSpot {
 		}
 
 		[DllImport("libglib-2.0-0.dll")]
-		static extern uint g_io_channel_add_watch (HandleRef handle, IOCondition cond, IOFunc func, IntPtr data);
-		
-		IOFunc watch_holder;
+		static extern uint g_io_add_watch (HandleRef handle, IOCondition cond, IOFunc func, IntPtr data);
+
 		private uint AddWatch (IOCondition condition, IOFunc func)
 		{
-			watch_holder = new IOFunc (WatchCallback);
-			return g_io_channel_add_watch (handle, condition, watch_holder, IntPtr.Zero);
+			return g_io_add_watch (handle, condition, func, IntPtr.Zero);
+		}
+		
+		// FIXME this should hold more than one source in a table
+		// but I am lazy
+		uint data_ready_source;
+		private IOChannelDataReadyEvent data_ready;
+		private IOFunc func;
+		public event IOChannelDataReadyEvent DataReady {
+			add {
+				data_ready += value;
+				func = new IOFunc (DataReadyHandler);
+				data_ready_source = AddWatch (IOCondition.In, func);
+			}
+			remove {
+				GLib.Source.Remove (data_ready_source);
+				data_ready_source = 0;
+				data_ready -= value;
+			}
 		}
 
-		private bool WatchCallback (IntPtr channel, IOCondition condtion, IntPtr data)
+		private bool DataReadyHandler (IntPtr channel, IOCondition condition, IntPtr data)
 		{
+			DataReadEventArgs args = new DataReadEventArgs (condition);
+			if (data_ready != null) 
+				data_ready (this, args);
 			
+			return args.Continue;
 		}
 
 		public override void SetLength (long length)
@@ -232,12 +277,23 @@ namespace FSpot {
 		{
 			IntPtr error;
 
+			if (data_ready_source != 0)
+				GLib.Source.Remove (data_ready_source);
+			data_ready_source = 0;
+
 			g_io_channel_shutdown (handle, false, out error);
 			
 			base.Close ();
 
 			if (error != IntPtr.Zero)
 				throw new GException (error);
+		}
+
+		~IOChannel ()
+		{
+			if (data_ready_source != 0)
+				GLib.Source.Remove (data_ready_source);
+			data_ready_source = 0;
 		}
 	}
 }

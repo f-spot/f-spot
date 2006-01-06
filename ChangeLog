@@ -1,8 +1,17 @@
 2006-01-05  Larry Ewing  <lewing@novell.com>
 
+	* src/Makefile.am (F_SPOT_CSDISTFILES): add InternalProcess and
+	IOChannel to the build.
+
+	* src/IOChannel.cs: wrap the watch stuff and use it for polling.
+
+	* src/AsyncPixbufLoader.cs: use IOChannel.DataReady.
+
+	* src/DCRawFile.cs: use InternalProcess.
+
 	* src/IOChannel.cs: debug iochannel binding.
 
-	* src/IOChannel.cs: fix up g_spawn binding.
+	* src/InternalProcess.cs: fix up g_spawn binding.
 
 2006-01-04  Larry Ewing  <lewing@novell.com>
 

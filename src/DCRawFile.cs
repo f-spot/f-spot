@@ -66,7 +66,7 @@ namespace FSpot {
 		{
 			stream.Close ();
 			stream = null;
-			process.Dispose ();
+			//process.Dispose ();
 			process = null;
 		}
 	}
@@ -81,6 +81,14 @@ namespace FSpot {
 		}
 
 		public static System.IO.Stream RawPixbufStream (string path)
+		{
+			string [] args = new string [] { dcraw_command, "-h", "-w", "-c", "-t", "0", path };
+			
+			InternalProcess proc = new InternalProcess (System.IO.Path.GetDirectoryName (path), args);
+			return proc.StandardOutput;
+		}
+		
+		public static System.IO.Stream RawPixbufStream3 (string path)
 		{
 			// FIXME this filename quoting is super lame
 			string args = System.String.Format ("-h -w -c -t 0 \"{0}\"", path);
