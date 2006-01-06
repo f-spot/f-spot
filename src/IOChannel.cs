@@ -273,6 +273,9 @@ namespace FSpot {
 		[DllImport("libglib-2.0-0.dll")]
 		static extern IOStatus g_io_channel_shutdown (HandleRef handle, bool flush, out IntPtr error);
 
+		[DllImport("libglib-2.0-0.dll")]
+		static extern void g_io_channel_unref (HandleRef handle);
+
 		public override void Close ()
 		{
 			IntPtr error;
@@ -287,6 +290,8 @@ namespace FSpot {
 
 			if (error != IntPtr.Zero)
 				throw new GException (error);
+
+			g_io_channel_unref (handle);
 		}
 
 		~IOChannel ()

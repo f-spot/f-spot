@@ -220,7 +220,7 @@ namespace FSpot.Mrw {
 						if (b is TtwBlock) {
 							TtwBlock ttw = (TtwBlock) b;
 							Header = ttw.TiffHeader;
-							Header.Dump ("TTW:");
+							//Header.Dump ("TTW:");
 							break;
 						}
 					}

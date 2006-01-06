@@ -85,10 +85,11 @@ namespace FSpot {
 			string [] args = new string [] { dcraw_command, "-h", "-w", "-c", "-t", "0", path };
 			
 			InternalProcess proc = new InternalProcess (System.IO.Path.GetDirectoryName (path), args);
+			proc.StandardInput.Close ();
 			return proc.StandardOutput;
 		}
 		
-		public static System.IO.Stream RawPixbufStream3 (string path)
+		public static System.IO.Stream RawPixbufStreamOld (string path)
 		{
 			// FIXME this filename quoting is super lame
 			string args = System.String.Format ("-h -w -c -t 0 \"{0}\"", path);

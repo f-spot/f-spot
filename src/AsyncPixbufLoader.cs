@@ -59,7 +59,7 @@ namespace FSpot {
 
 		// Limit pass control back to the main loop after
 		// chunk_timeout miliseconds.
-		int  chunk_timeout = 100;
+		int  chunk_timeout = 50;
 
 		Delay delay;
 		IAsyncResult result;
@@ -68,7 +68,7 @@ namespace FSpot {
 
 		public AsyncPixbufLoader ()
 		{
-			delay = new Delay (10, new GLib.IdleHandler (AsyncRead));
+			delay = new Delay (0, new GLib.IdleHandler (AsyncRead));
 			ap = new System.EventHandler (HandleAreaPrepared);
 			au = new Gdk.AreaUpdatedHandler (HandleAreaUpdated);
 			ev = new System.EventHandler (HandleClosed);
@@ -258,7 +258,16 @@ namespace FSpot {
 
 		private void IOChannelRead (object sender, DataReadEventArgs args)
 		{
-			args.Continue = AsyncIORead ();
+			Console.WriteLine ("IO read {0}", args.Condition);
+
+			if ( (System.IO.Stream)sender == stream.Stream)				
+				args.Continue = AsyncRead ();
+			else {
+				args.Continue = false;
+				stream.Close ();
+			}
+
+			return;
 		}
 
 		private bool AsyncIORead ()
@@ -326,7 +335,7 @@ namespace FSpot {
 	
 		private bool AsyncRead () 
 		{
-#if true
+#if false
 			return AsyncIORead ();
 #else	
 			return NormalRead ();
