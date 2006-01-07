@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-06 23:06+0200\n"
-"PO-Revision-Date:  2006-01-06 23:28+0200\n"
+"POT-Creation-Date: 2006-01-07 13:03+0200\n"
+"PO-Revision-Date:  2006-01-07 13:20+0200\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1455,11 +1455,12 @@ msgstr "Sisällön otsikko"
 msgid ""
 "Intructions from the creator to the reciever not covered by other fields"
 msgstr ""
-"Ohjeita sisällöntuottajalta käyttäjälle aiheista, joita muut kentät eivät kata"
+"Ohjeita sisällöntuottajalta käyttäjälle aiheista, joita muut kentät eivät "
+"kata"
 
 #: ../src/IptcFile.cs:217
 msgid "Intellectual genre of the object"
-msgstr ""
+msgstr "Kohteen tyylilaji"
 
 #: ../src/IptcFile.cs:230
 msgid "Unkown IIM DataSet"
@@ -1638,8 +1639,8 @@ msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
 "\"{0}\" first"
 msgstr ""
-"Merkintöjä ei voi poistaa, jos ne sisältävät muita merkintöjä. Poista kohteen "
-"\"{0}\" sisällä olevat merkinnät ensin"
+"Merkintöjä ei voi poistaa, jos ne sisältävät muita merkintöjä. Poista "
+"kohteen \"{0}\" sisällä olevat merkinnät ensin"
 
 #: ../src/MetadataStore.cs:17
 msgid "Creator"
@@ -1663,7 +1664,7 @@ msgstr "Pakkaus"
 
 #: ../src/MetadataStore.cs:23
 msgid "Planar Configuration"
-msgstr ""
+msgstr "Tason määrittely"
 
 #: ../src/MetadataStore.cs:25
 msgid "Orientation"
@@ -1691,7 +1692,7 @@ msgstr "Valotustila"
 
 #: ../src/MetadataStore.cs:37
 msgid "Custom Rendered"
-msgstr ""
+msgstr "Oma esitysmäärittely"
 
 #: ../src/MetadataStore.cs:39
 msgid "Components Configuration"
@@ -1715,7 +1716,7 @@ msgstr "Valkotasapaino"
 
 #: ../src/MetadataStore.cs:49
 msgid "Focal Plane Resolution Unit"
-msgstr ""
+msgstr "Polttotason kuvatarkkuuden yksikkö"
 
 #: ../src/MetadataStore.cs:51
 msgid "File Source Type"
@@ -1723,11 +1724,11 @@ msgstr "Tiedoston lähteen tyyppi"
 
 #: ../src/MetadataStore.cs:53
 msgid "Scene Capture Type"
-msgstr ""
+msgstr "Näkymän tallennustyyppi"
 
 #: ../src/MetadataStore.cs:55
 msgid "Gain Control"
-msgstr ""
+msgstr "Signaalivahvistuksen ohjaus"
 
 #: ../src/MetadataStore.cs:57
 msgid "Contrast"
@@ -1913,7 +1914,7 @@ msgstr[0] "Valokuvaa ei voi kiertää"
 msgstr[1] "Valokuvia ({0} kpl) ei voi kiertää"
 
 #: ../src/RotateCommand.cs:197
-#, fuzzy, csharp-format
+#, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
 "media such as a CDROM.  Please check the permissions and try again"
