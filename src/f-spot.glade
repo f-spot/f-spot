@@ -11712,6 +11712,7 @@ Photo Details</property>
 
 		  <child>
 		    <widget class="GtkLabel" id="label166">
+		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">&lt;small&gt;C_ontrast:&lt;/small&gt;</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">True</property>
@@ -11735,26 +11736,6 @@ Photo Details</property>
 		      <property name="bottom_attach">5</property>
 		      <property name="x_options">fill</property>
 		      <property name="y_options"></property>
-		    </packing>
-		  </child>
-
-		  <child>
-		    <widget class="GtkHScale" id="contrast_scale">
-		      <property name="can_focus">True</property>
-		      <property name="draw_value">False</property>
-		      <property name="value_pos">GTK_POS_RIGHT</property>
-		      <property name="digits">2</property>
-		      <property name="update_policy">GTK_UPDATE_CONTINUOUS</property>
-		      <property name="inverted">False</property>
-		      <property name="adjustment">0 0 10 0.00999999977648 0.5 0</property>
-		    </widget>
-		    <packing>
-		      <property name="left_attach">1</property>
-		      <property name="right_attach">2</property>
-		      <property name="top_attach">4</property>
-		      <property name="bottom_attach">5</property>
-		      <property name="x_options">fill</property>
-		      <property name="y_options">fill</property>
 		    </packing>
 		  </child>
 
@@ -11831,14 +11812,15 @@ Photo Details</property>
 
 		  <child>
 		    <widget class="GtkSpinButton" id="contrast_spinbutton">
+		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
 		      <property name="climb_rate">1</property>
-		      <property name="digits">0</property>
+		      <property name="digits">2</property>
 		      <property name="numeric">False</property>
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">1 0 100 1 10 10</property>
+		      <property name="adjustment">0 -1 1 0.00999999977648 0.00999999977648 0.10000000149</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
@@ -11866,6 +11848,27 @@ Photo Details</property>
 		      <property name="right_attach">2</property>
 		      <property name="top_attach">2</property>
 		      <property name="bottom_attach">3</property>
+		      <property name="x_options">fill</property>
+		      <property name="y_options">fill</property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkHScale" id="contrast_scale">
+		      <property name="visible">True</property>
+		      <property name="can_focus">True</property>
+		      <property name="draw_value">False</property>
+		      <property name="value_pos">GTK_POS_RIGHT</property>
+		      <property name="digits">2</property>
+		      <property name="update_policy">GTK_UPDATE_CONTINUOUS</property>
+		      <property name="inverted">False</property>
+		      <property name="adjustment">0 -1 1 0.00999999977648 0.00999999977648 0</property>
+		    </widget>
+		    <packing>
+		      <property name="left_attach">1</property>
+		      <property name="right_attach">2</property>
+		      <property name="top_attach">4</property>
+		      <property name="bottom_attach">5</property>
 		      <property name="x_options">fill</property>
 		      <property name="y_options">fill</property>
 		    </packing>

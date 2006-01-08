@@ -269,7 +269,7 @@ namespace FSpot {
 
 		private const double e = 0.0;
 		private const double b = 0.0;
-		private const double c = 1.0;
+		private const double c = 0.0;
 		private const double h = 0.0;
 		private const double s = 0.0;
 		private const double t = 5000;
@@ -293,7 +293,7 @@ namespace FSpot {
 				dest_wp = Cms.ColorCIExyY.WhitePointFromTemperature ((int)temp_scale.Value).ToXYZ ();
 				Cms.ColorCIELab dest_lab = dest_wp.ToLab (src_wp);
 				dest_lab.a += temptint_scale.Value;
-				System.Console.WriteLine ("after {0}", dest_lab);
+				//System.Console.WriteLine ("after {0}", dest_lab);
 				dest_wp = dest_lab.ToXYZ (src_wp);
 			} else {
 				src_wp = Cms.ColorCIExyY.WhitePointFromTemperature ((int)t).ToXYZ ();
@@ -426,7 +426,6 @@ namespace FSpot {
 			contrast_spinbutton.Adjustment.ChangeValue ();
 			hue_spinbutton.Adjustment.ChangeValue ();
 			sat_spinbutton.Adjustment.ChangeValue ();
-			contrast_spinbutton.Adjustment.ChangeValue ();
 			hue_spinbutton.Adjustment.ChangeValue ();
 			sat_spinbutton.Adjustment.ChangeValue ();
 			

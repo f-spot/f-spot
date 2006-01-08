@@ -1,5 +1,9 @@
 2006-01-08  Larry Ewing  <lewing@novell.com>
 
+	* src/ColorDialog.cs: fix the contrast defaults
+
+	* src/f-spot.glade: show the constrast again.
+
 	* libfspot/f-screen-utils.c (bchswSampler): add a contrast
 	function.
 
