@@ -59,7 +59,7 @@ namespace FSpot {
 
 		// Limit pass control back to the main loop after
 		// chunk_timeout miliseconds.
-		int  chunk_timeout = 50;
+		int  chunk_timeout = 75;
 
 		Delay delay;
 		IAsyncResult result;
@@ -128,13 +128,6 @@ namespace FSpot {
 					System.Console.WriteLine (e.ToString ());
 			}
 
-#if true
-			if (AreaPrepared != null && thumb != null) {
-				pixbuf = thumb;
-				AreaPrepared (this, new AreaPreparedArgs (true));
-			}
-#endif
-
 			System.IO.Stream nstream = img.PixbufStream ();
 			if (nstream == null) {
 				FileLoad (img);
@@ -147,12 +140,18 @@ namespace FSpot {
 			loader.AreaUpdated += au;
 			loader.Closed += ev;
 
+			if (AreaPrepared != null && thumb != null) {
+				pixbuf = thumb;
+				AreaPrepared (this, new AreaPreparedArgs (true));
+			}
+
 			ThumbnailGenerator.Default.PushBlock ();
 			//AsyncIORead (null);
-			if (nstream is IOChannel)
+			if (nstream is IOChannel) {
 				((IOChannel)nstream).DataReady += IOChannelRead;
-			else
+			} else
 				delay.Start ();
+
 		}			
 
 	        private void LoadToAreaPrepared ()
@@ -258,7 +257,7 @@ namespace FSpot {
 
 		private void IOChannelRead (object sender, DataReadEventArgs args)
 		{
-			Console.WriteLine ("IO read {0}", args.Condition);
+			//Console.WriteLine ("IO read {0}", args.Condition);
 
 			if ( (System.IO.Stream)sender == stream.Stream)				
 				args.Continue = AsyncRead ();
