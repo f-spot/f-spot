@@ -10,7 +10,7 @@ public class ImageView : Layout {
 
 	public static double ZOOM_FACTOR = 1.1;
 
-	protected const double MAX_ZOOM = 5.0;
+	protected const double MAX_ZOOM = 10.0;
 
 	protected double min_zoom = 0.1;
 	protected double MIN_ZOOM {
@@ -208,6 +208,22 @@ public class ImageView : Layout {
 	{
 		set {
 			image_view_set_display_brightness (Handle, (float) value);
+		}
+	}
+
+	[DllImport ("libfspoteog")]
+	static extern void image_view_set_interp_type (IntPtr view, Gdk.InterpType interpolation);
+	
+	[DllImport ("libfspoteog")]
+	static extern Gdk.InterpType image_view_get_interp_type (IntPtr view);
+
+	public Gdk.InterpType Interpolation 
+	{
+		set {
+			image_view_set_interp_type (Handle, value);
+		}
+		get {
+			return image_view_get_interp_type (Handle);
 		}
 	}
 

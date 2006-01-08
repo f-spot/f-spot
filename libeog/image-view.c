@@ -56,7 +56,7 @@
 
 /* Maximum zoom factor */
 
-#define MAX_ZOOM_FACTOR 5
+#define MAX_ZOOM_FACTOR 10
 #define MIN_ZOOM_FACTOR 0.05
 
 /* Private part of the ImageView structure */
