@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Runtime.InteropServices;
 
 namespace FSpot.Scanning {
@@ -42,7 +43,7 @@ namespace FSpot.Scanning {
 		Button,
 		Group
 	}
-
+	
 	public class ScanException : Exception {
 		Status status;
 		
@@ -63,16 +64,15 @@ namespace FSpot.Scanning {
 		private const BufferLength = 128;
 
 		public string ResourceName {
-			get { return Marshal.PtrToStringAnsi (resource) }
+			get { return Marshal.PtrToStringAnsi (resource); }
 		}
-
+		
 		internal AuthorizeEventArgs (IntPtr resource, IntPtr username, IntPtr password)
 		{
 			this.resource = resource;
 			this.username_buffer = username;
 			this.password_buffer = password;
 		}
-
 		
 		public SetUsername (string username)
 		{
@@ -83,7 +83,7 @@ namespace FSpot.Scanning {
 		{
 			CopyToBuffer (password, password_buffer);
 		}
-
+		
 		private CopyToBuffer (string value, IntPtr buffer)
 		{
 			byte [] data;
@@ -93,9 +93,11 @@ namespace FSpot.Scanning {
 			
 			length = Math.Min (data.Length, BufferLength);
 			data [length - 1] = 0;
-			Marshal.Copy (data, 0,  buffer, Math.Min (data.Length, length);
+			Marshal.Copy (data, 0,  buffer, Math.Min (data.Length, length));
 		}
 	}
+	
+	public delegate AuthorizeEvent (object sender, ScanAuthorizeEventArgs args);
 
 	public class DeviceList {
 		int version;
@@ -118,32 +120,34 @@ namespace FSpot.Scanning {
 		//	  SANE_Char password[SANE_MAX_PASSWORD_LEN]);
 		
 
-		internal delegate void AuthorizeCallback (IntPtr resource, IntPtr username, IntPtr password);
+		private delegate void AuthorizeCallback (IntPtr resource, IntPtr username, IntPtr password);
 
 		[DllImport("libsane.so.1")]
-		Status sane_init (out version, AuthorizeCallback func);
+		static extern Status sane_init (out version, AuthorizeCallback func);
 		
 		private Init ()
 		{
-			Status status = sane_init (out version, new AuthorizeCallback (Authorize));
+			Status status = sane_init (out version, new AuthorizeCallback (HandleAuthorize));
 		}
 		
-		private void Authorize (IntPtr resource, IntPtr username, IntPtr password)
+		private void HandleAuthorize (IntPtr resource, IntPtr username, IntPtr password)
 		{
-			AuthorizeEventArgs = new AuthorizeEventArgs (resource, username, password);
+			AuthorizeEventArgs args = new AuthorizeEventArgs (resource, username, password);
+			if (CheckAuthority != null)
+				CheckAuthority (this, args);
+			else
+				thow new ApplicationException ("You must provide credentials");
 		}
 
+		public AuthorizeEvent CheckAuthority;
+
 		[DllImport("libsane.so.1")]
-		Status sane_get_devices (IntPtr list_pointer, bool local_only);
+		static extern Status sane_get_devices (IntPtr list_pointer, bool local_only);
 
 		QueryDevices (bool local_only)
 		{
 			
 		}
-	}
-		
-	public class Scan {
-			
 	}
 
 	public class Option {
@@ -168,19 +172,100 @@ namespace FSpot.Scanning {
 				
 			}
 		}
-
 	}
 
+	public struct Parameters {
+		public Frame Frame;
+		public bool LastFrame;
+		public int Lines;
+		public int Depth;
+		public int PixelsPerLine;
+		public int BytesPerLine;
+	} 
+
+	internal class FrameStream : Stream {
+		Device device;
+
+		public bool CanRead {
+			get { return true; }
+		}
+
+		public bool CanSeek {
+			get { return false; }
+		}
+
+		public bool CanWrite {
+			get { return false; }
+		}
+
+		public override long Length {
+			get {
+				throw new NotSupportedException ();
+			}
+		}
+
+		public override long Position {
+			get {
+				throw new NotSupportedException ();
+			}
+			set {
+				throw new NotSupportedException ();
+			}
+		}
+
+		internal FrameStream (Device device) {
+			this.device = device;
+		}
+
+		public override int Read (byte [] buffer, int offset, int count)
+		{
+			return device.Read (buffer, offset, count);
+		}
+	}
+	
 	public class Device {
 		HandleRef handle;
 		bool blocking = true;
-		
+
+		private struct PrivateDevice {
+			public IntPtr Vendor;
+			public IntPtr Model;
+			public IntPtr Type;
+			
+			public PrivateDevice (IntPtr raw) 
+			{
+				Marshal.PtrToStructure (raw, this);
+			}
+		}
+
 		public HandleRef Handle {
 			get { return handle; }
 		}
 
+		private PrivateDevice PrivateDevice {
+			get { return new PrivateDevice (handle.Handle); }
+		}
+
+		public Vendor {
+			get { 
+				return Marshall.PtrToStringAnsi (InternalDevice.Vendor);
+			}
+		}
+		
+		public Model {
+			get { 
+				return Marshall.PtrToStringAnsi (InternalDevice.Model);
+			}
+		}
+		
+		public Type {
+			get { 
+				return Marshall.PtrToStringAnsi (InternalDevice.Type);
+			}
+		}
+
 		[DllImport("libsane.so.1")]
-		Status sane_get_select_fd (HandleRef handle, out int fd);
+		static extern Status sane_get_select_fd (HandleRef handle, out int fd);
 
 		internal int FileDescriptor {
 			get {
@@ -191,7 +276,7 @@ namespace FSpot.Scanning {
 		}
 
 		[DllImport("libsane.so.1")]
-		Status sane_set_io_mode (HandleRef handle, bool blocking);
+		static extern Status sane_set_io_mode (HandleRef handle, bool blocking);
 
 		public bool Blocking {
 			get { return blocking };
@@ -206,13 +291,13 @@ namespace FSpot.Scanning {
 			}
 		}
 
-		internal Device (string name)
+		public Device (string name)
 		{
-			Open (name)
+			Open (name);
 		}
-
+		
 		[DllImport("libsane.so.1")]
-		Status same_open (string name, out IntPtr handle)
+		static extern Status sane_open (string name, out IntPtr handle);
 
 		private void Open (string name)
 		{
@@ -228,15 +313,30 @@ namespace FSpot.Scanning {
 		}
 
 		[DllImport ("libsane.so.1")]
-		Status sane_read (HandleRef handle, byte *buffer, int max_length, int length);
+		static extern Status sane_read (HandleRef handle, byte *buffer, int max_length, out int length);
 		
-		private void S
-		
+		public override int Read (byte [] buffer, int offset, int count)
+		{
+			Status status;
+			int length;
 
+			unsafe {
+				fixed (byte *data = &buffer[offset]) {
+					status = sane_read (handle, data, count, out length);
+				}
+			}
+			
+			if (status != Status.Good)
+				throw new ScanException (status);
+			
+			return length;
+		}
+				
+		
 		[DllImport ("libsane.so.1")]
-		Status sane_start (HandleRef handle);
+		static extern Status sane_start (HandleRef handle);
 
-		private void Start ()
+		private void SystemStart ()
 		{
 			Status status;
 
@@ -246,15 +346,23 @@ namespace FSpot.Scanning {
 				throw new ScanException (status);
 		}
 
-		
-
 		[DllImport ("libsane.so.1")]
-		void sane_cancel (HandleRef handle);
+		static extern void sane_cancel (HandleRef handle);
 
 		private Cancel ()
 		{
 			sane_cancel (handle);
 		}
 
+		[DllImport ("libsane.so.1")]
+		static extern Status sane_get_parameters (HandleRef handle, out Parameters parameters);
+		
+		public Parameters GetParameters ()
+		{
+			Parameters parameters;
+
+			sane_get_parameters (handle, out parameters);
+			return parameters;
+		}
 	}
 }
