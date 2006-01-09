@@ -231,6 +231,8 @@ public class MainWindow {
 
 		query = new FSpot.PhotoQuery (db.Photos);
 		query.Changed += HandleQueryChanged;
+
+		db.Photos.ItemsChanged += HandleDbItemsChanged;
 #if SHOW_CALENDAR
 		FSpot.SimpleCalendar cal = new FSpot.SimpleCalendar (query);
 		cal.DaySelected += HandleCalendarDaySelected;
@@ -413,6 +415,18 @@ public class MainWindow {
 			
 			if (edit_button.Active != state)
 				edit_button.Active = state;
+		}
+	}
+
+	private void HandleDbItemsChanged (object sender, DbItemEventArgs args)
+	{
+		foreach (DbItem item in args.Items) {
+			Photo p = item as Photo;
+				if (p == null)
+					continue;
+				
+				if (write_metadata)
+					p.WriteMetadataToImage ();
 		}
 	}
 
@@ -644,8 +658,10 @@ public class MainWindow {
 
 		p.AddTag (tags);
 
+		/*
 		if (write_metadata)
 			p.WriteMetadataToImage ();
+		*/
 
 		query.Commit (num);
 
@@ -1520,7 +1536,13 @@ public class MainWindow {
 
 		db.BeginTransaction ();
 		foreach (int num in SelectedIds ()) {
-			query.Photos [num].RemoveTag (tags);
+			Photo p = query.Photos [num];
+
+			p.RemoveTag (tags);
+			/*
+			if (write_metadata)
+				p.WriteMetadataToImage ();
+			*/
 			query.Commit (num);
 		}
 		db.CommitTransaction ();
