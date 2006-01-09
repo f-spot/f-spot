@@ -12,18 +12,6 @@ namespace FSpot {
 		}
 
 		[DllImport ("libc")]
-		static extern int strerror_r (Mono.Unix.Error err, System.Text.StringBuilder sb, int count);
-
-		public static string ErrorString (Mono.Unix.Error errno)
-		{
-			System.Text.StringBuilder sb = new System.Text.StringBuilder (256);
-			strerror_r (errno, sb, sb.Capacity);
-
-			return sb.ToString ();
-		}
-		
-
-		[DllImport ("libc")]
 		static extern int mkstemp (byte []template);
 
 		public static Mono.Unix.UnixStream MakeSafeTemp (ref string template)
