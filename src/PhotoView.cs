@@ -324,16 +324,8 @@ public class PhotoView : EventBox {
 	{
 		if (description_delay.IsPending) {
 			description_delay.Stop ();
-
-#if true // UPDATE_EXIF_DESCRIPTION
 			Photo photo = query.Photos [description_photo];
-
-			photo.WriteMetadataToImage ();
-
 			Query.Commit (description_photo);
-#else
-			Query.Commit (description_photo);
-#endif
 		}
 		return true;
 	}
