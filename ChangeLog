@@ -1,5 +1,8 @@
 2006-01-09  Larry Ewing  <lewing@novell.com>
 
+	* src/Tiff.cs: Cleanup some of the output, convert
+	ComponentsConfiguration to xmp.
+
 	* src/PhotoView.cs: remove the explicit call to
 	WriteMetadataToImage, let the commit update it.
 

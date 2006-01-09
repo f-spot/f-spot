@@ -527,6 +527,7 @@ namespace FSpot.Tiff {
 		Custom = 1
 	}
 
+
 	public enum SceneType {
 		DirectlyPhotographed = 1
 	}
@@ -762,7 +763,7 @@ namespace FSpot.Tiff {
 			ushort marker = BitConverter.ToUInt16 (data, 2, endian == Endian.Little);
 			switch (marker) {
 			case 42:
-				System.Console.WriteLine ("Found Standard Tiff Marker {0}", marker);
+				//System.Console.WriteLine ("Found Standard Tiff Marker {0}", marker);
 				break;
 			case 0x4f52:
 				System.Console.WriteLine ("Found Olympus Tiff Marker {0}", marker.ToString ("x"));
@@ -1649,6 +1650,8 @@ namespace FSpot.Tiff {
 					case TagId.FileSource:
 					case TagId.SceneType:
 						return ArrayToString (this.RawData);
+					case TagId.ComponentsConfiguration:
+						return ArrayToString (ValueAsLong);
 					default:
 						System.Console.WriteLine ("Cannot convert type \"{0}\" to string", Id);
 						break;
@@ -1681,6 +1684,7 @@ namespace FSpot.Tiff {
 					case EntryType.Short:
 						data [i] = BitConverter.ToUInt16 (raw_data, i * GetTypeSize (), endian == Endian.Little);
 						break;
+					case EntryType.Undefined:
 					case EntryType.Byte:
 						data [i] = raw_data [i];
 						break;
@@ -1773,7 +1777,7 @@ namespace FSpot.Tiff {
 					this.Header = new Header (input);
 				}
 
-				//Header.Dump ("");
+				//Header.Dump ("Tiff:");
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e.ToString ());
 			}
@@ -1863,6 +1867,7 @@ namespace FSpot.Tiff {
 	public class NefFile : TiffFile, IThumbnailContainer {
 		public NefFile (string path) : base (path) 
 		{
+			//Header.Directory.Dump ("Nikon:");
 		}
 
 		public override void Select (SemWeb.StatementSink sink)
@@ -1947,7 +1952,7 @@ namespace FSpot.Tiff {
 
 		public Cr2File (string path) : base (path) 
 		{
-			//Header.Dump ("loading");
+			//Header.Dump ("Cr2:");
 		}
 
 		/*
