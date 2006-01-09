@@ -1947,7 +1947,7 @@ namespace FSpot.Tiff {
 
 		public Cr2File (string path) : base (path) 
 		{
-			//this.Header.Dump ("loading");
+			//Header.Dump ("loading");
 		}
 
 		/*
@@ -1964,9 +1964,15 @@ namespace FSpot.Tiff {
 			return TransformAndDispose (LoadJpegInterchangeFormat (directory));
 		}
 
+
 		public override System.IO.Stream PixbufStream ()
 		{
-			return DCRawFile.RawPixbufStream (path);
+			uint offset = Header.Directory.Lookup (TagId.StripOffsets).ValueAsLong [0];
+			System.IO.Stream file = System.IO.File.OpenRead (this.path);
+			file.Position = offset;
+			return file;
+			//return LookupJpegSubstream (Header.Directory.NextDirectory);
+			//return DCRawFile.RawPixbufStream (path);
 		}
 
 		public override Gdk.Pixbuf Load ()

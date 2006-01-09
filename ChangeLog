@@ -1,5 +1,7 @@
 2006-01-08  Larry Ewing  <lewing@novell.com>
 
+	* src/Tiff.cs: Load ifd0 for the fastpath.
+
 	* src/Scanning.cs: update the bindings a bit.
 
 	* src/AsyncPixbufLoader.cs: tweak some values.
