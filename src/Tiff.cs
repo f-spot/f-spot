@@ -1790,8 +1790,18 @@ namespace FSpot.Tiff {
 
 		public override System.DateTime Date {
 			get {
-				DirectoryEntry e = this.Header.Directory.Lookup (TagId.DateTime);
-				
+				SubdirectoryEntry sub = (SubdirectoryEntry) this.Header.Directory.Lookup (TagId.ExifIfdPointer);
+				DirectoryEntry e;
+
+				if (sub != null) {
+					e = sub.Directory [0].Lookup (TagId.DateTimeOriginal);
+					
+					if (e != null)
+						return DirectoryEntry.DateTimeFromString (e.StringValue);
+				}
+
+				e = this.Header.Directory.Lookup (TagId.DateTime);
+
 				if (e != null)
 					return DirectoryEntry.DateTimeFromString (e.StringValue);
 				else
@@ -1850,8 +1860,26 @@ namespace FSpot.Tiff {
 		}
 	}
 
-	public class DngFile : TiffFile {
-		public DngFile (string path) : base (path) {}
+	public class DngFile : NefFile {
+		public DngFile (string path) : base (path) 
+		{
+			Header.Dump ("dng:");
+		}
+
+		public override System.IO.Stream PixbufStream ()
+		{
+			try {
+				SubdirectoryEntry sub = (SubdirectoryEntry) Header.Directory.Lookup (TagId.SubIFDs);
+				ImageDirectory directory = sub.Directory [sub.Directory.Length - 1];
+
+				uint offset = directory.Lookup (TagId.StripOffsets).ValueAsLong [0];
+				System.IO.Stream file = System.IO.File.OpenRead (this.path);
+				file.Position = offset;
+				return file;
+			} catch {
+				return DCRawFile.RawPixbufStream (path);
+			}
+		}
 
 		public override Gdk.Pixbuf Load (int width, int height)
 		{
