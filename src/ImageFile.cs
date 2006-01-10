@@ -83,7 +83,7 @@ namespace FSpot {
 			
 			return rotated;
 		}
-
+		
 		public virtual Gdk.Pixbuf Load ()
 		{
 			Gdk.Pixbuf orig = new Gdk.Pixbuf (this.Path);
@@ -92,9 +92,16 @@ namespace FSpot {
 		
 		public virtual Gdk.Pixbuf Load (int max_width, int max_height)
 		{
-			return PixbufUtils.LoadAtMaxSize (this.Path, max_width, max_height);
+			System.IO.Stream stream = PixbufStream ();
+			if (stream == null)
+				return PixbufUtils.ScaleToMaxSize (this.Load (),  max_width, max_height);	
+			
+			using (stream) {
+				PixbufUtils.AspectLoader aspect = new PixbufUtils.AspectLoader (max_width, max_height);
+				return aspect.Load (stream, Orientation);
+			}	
 		}
-		
+	
 		public virtual PixbufOrientation GetOrientation () 
 		{
 			return PixbufOrientation.TopLeft;

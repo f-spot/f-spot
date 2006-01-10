@@ -1,6 +1,9 @@
 2006-01-10  Larry Ewing  <lewing@novell.com>
 
-	* src/Tiff.cs: use the aspect loader on PixbufStream in the
+	* src/Tiff.cs: use the default ImageFile implmentation for sized
+	loading.
+
+	* src/ImageFile.cs: use the aspect loader on PixbufStream in the
 	default Load (int, int) implementation.
 
 	* src/PixbufUtils.cs: make the aspect loader load from streams
