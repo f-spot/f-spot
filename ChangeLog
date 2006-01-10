@@ -1,5 +1,7 @@
 2006-01-09  Larry Ewing  <lewing@novell.com>
 
+	* src/Tiff.cs: fixup the dng metadata loading.
+
 	* src/TagSelectionWidget.cs: disable the background color for categories.
 
 	* src/Tiff.cs: use embedded jpegs to speed up the dng display.
@@ -17,7 +19,7 @@
 	ItemsChanged event on the store, not by hand.
 
 2006-01-08  Larry Ewing  <lewing@novell.com>
-
+Ti
 	* src/Tiff.cs: Load ifd0 for the fastpath.
 
 	* src/Scanning.cs: update the bindings a bit.

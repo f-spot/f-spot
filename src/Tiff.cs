@@ -862,8 +862,6 @@ namespace FSpot.Tiff {
 						System.Console.WriteLine (String.Format ("error parsing {0}\n{1}", e.ValueAsString[0], ex));
 					}
 					break;
-					//case TagId.Flash:
-					
 					//case TagId.SpatialFrequencyResponse
 				case TagId.ExifCFAPattern:
 					CFAPattern pattern = new CFAPattern (e.RawData, e.IsLittle);
@@ -1860,7 +1858,7 @@ namespace FSpot.Tiff {
 		}
 	}
 
-	public class DngFile : NefFile {
+	public class DngFile : TiffFile {
 		public DngFile (string path) : base (path) 
 		{
 			Header.Dump ("dng:");
@@ -1881,6 +1879,62 @@ namespace FSpot.Tiff {
 			}
 		}
 
+		public override void Select (SemWeb.StatementSink sink)
+		{
+			
+			/* this is just a sanity pass, if the first ifd is not a subfile use the normal
+			 * tiff path 
+			 */
+			DirectoryEntry e = Header.Directory.Lookup (TagId.NewSubfileType);
+			if (e == null) {
+				base.Select (sink);
+				return;
+			}
+
+			/*
+			 * Even though Ifd0 doesn't have the full resolution image
+			 * it would have the XMP data so we look for it
+			 */
+			e = Header.Directory.Lookup (TagId.XMP);
+			if (e != null) {
+				System.IO.Stream xmpstream = new System.IO.MemoryStream (e.RawData);
+				FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);
+				xmp.Select (sink);
+			}
+
+			/* 
+			 * Ifd0 will also have the exif directory
+			 */
+			ImageDirectory dir = Header.Directory;
+			SubdirectoryEntry sub = (SubdirectoryEntry) dir.Lookup (TagId.ExifIfdPointer);
+			if (sub != null)
+				Header.SelectDirectory (sub.Directory [0], sink);
+			
+			/*
+			 * now we lookup subifd0 (we should probably scan the newsubfile types here)
+			 * and load the metadata we are interested in from it.
+			 */
+			sub = (SubdirectoryEntry) Header.Directory.Lookup (TagId.SubIFDs);	
+
+			int i = 0;
+			do {
+				uint dirtype = e.ValueAsLong [0];
+				if (dirtype == 0) {
+					Header.SelectDirectory (dir, sink);
+					break;
+				}
+					
+				if (sub == null)
+					break;
+
+				dir = sub.Directory [i];
+				e = dir.Lookup (TagId.NewSubfileType);
+				i++;
+			} while (i < sub.Directory.Length);
+
+			
+		}
+
 		public override Gdk.Pixbuf Load (int width, int height)
 		{
 			return PixbufUtils.ScaleToMaxSize (this.Load (), width, height);
@@ -1895,7 +1949,7 @@ namespace FSpot.Tiff {
 	public class NefFile : TiffFile, IThumbnailContainer {
 		public NefFile (string path) : base (path) 
 		{
-			//Header.Directory.Dump ("Nikon:");
+			Header.Directory.Dump ("Nikon:");
 		}
 
 		public override void Select (SemWeb.StatementSink sink)
