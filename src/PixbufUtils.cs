@@ -136,35 +136,38 @@ class PixbufUtils {
 				SetSize (scale_width, scale_height);
 		}
 
+		public Pixbuf Load (System.IO.Stream stream, PixbufOrientation orientation)
+		{
+			int count;
+			byte [] data = new byte [8192];
+			while (((count = stream.Read (data, 0, 8192)) > 0) && this.Write (data, (ulong)count))
+				;
+			
+			this.Close ();
+			Gdk.Pixbuf rotated = TransformOrientation (this.Pixbuf, orientation, true);
+			
+			if (this.Pixbuf != rotated) {
+				CopyThumbnailOptions (this.Pixbuf, rotated);
+					this.Pixbuf.Dispose ();
+			}
+			
+			return rotated;
+		}
+		
 		public Pixbuf LoadFromFile (string path)
 		{
 			FileStream fs = null;
 
 			try {
 				orientation = GetOrientation (path);
-				fs = File.OpenRead (path);
-				int count;
+				using (fs = File.OpenRead (path)) {
 				
-				byte [] data = new byte [8192];
-				while (((count = fs.Read (data, 0, 8192)) > 0) && this.Write (data, (ulong)count))
-					;
-				
-				this.Close ();
-				Gdk.Pixbuf rotated = TransformOrientation (this.Pixbuf, orientation, true);
-				
-				if (this.Pixbuf != rotated) {
-					CopyThumbnailOptions (this.Pixbuf, rotated);
-					this.Pixbuf.Dispose ();
+					return Load (fs, orientation);
 				}
-				return rotated;
 			} catch (Exception e) {
 				System.Console.WriteLine ("Error loading photo {0}", path);
 				return null;
-			} finally {
-				if (fs != null)
-					fs.Close ();
-			}
-
+			} 
 		}
 	}
 

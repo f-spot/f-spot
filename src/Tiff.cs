@@ -1879,6 +1879,11 @@ namespace FSpot.Tiff {
 			}
 		}
 
+		public override Gdk.Pixbuf Load ()
+		{
+			return DCRawFile.Load (this.path, null);
+		}
+
 		public override void Select (SemWeb.StatementSink sink)
 		{
 			
@@ -1933,16 +1938,6 @@ namespace FSpot.Tiff {
 			} while (i < sub.Directory.Length);
 
 			
-		}
-
-		public override Gdk.Pixbuf Load (int width, int height)
-		{
-			return PixbufUtils.ScaleToMaxSize (this.Load (), width, height);
-		}
-
-		public override Gdk.Pixbuf Load ()
-		{
-			return DCRawFile.Load (this.path, null);
 		}
 	}	
 	
@@ -2022,11 +2017,6 @@ namespace FSpot.Tiff {
 			
 			return TransformAndDispose (pixbuf);
 		}
-
-		public override Gdk.Pixbuf Load (int width, int height)
-		{
-			return PixbufUtils.ScaleToMaxSize (this.Load (), width, height);
-		}
 	}
 		
 
@@ -2064,18 +2054,8 @@ namespace FSpot.Tiff {
 
 		public override Gdk.Pixbuf Load ()
 		{
-#if false
-			return GetEmbeddedThumbnail ();
-#else
 			return DCRawFile.Load (this.Path, null);
-#endif
 		}
-
-		public override Gdk.Pixbuf Load (int width, int height)
-		{
-			return PixbufUtils.ScaleToMaxSize (this.Load (), width, height);
-		}
-
 
 		public override System.DateTime Date
 		{
