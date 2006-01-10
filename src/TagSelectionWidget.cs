@@ -234,10 +234,12 @@ public class TagSelectionWidget : TreeView {
 	{
 		// FIXME this should be themable but Gtk# doesn't give me access to the proper
 		// members in GtkStyle for that.
+		/*
 		if (tag is Category)
 			renderer.CellBackground = ToHashColor (this.Style.MidColors [(int) Gtk.StateType.Normal]);
 		else
 			renderer.CellBackground = ToHashColor (this.Style.LightColors [(int) Gtk.StateType.Normal]);
+		*/
 	}
 
 	private void CheckBoxDataFunc (TreeViewColumn column,
