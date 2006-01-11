@@ -170,8 +170,6 @@ namespace FSpot {
 			IOStatus status;
 			IntPtr error;
 
-			System.Console.WriteLine ("In read");
-
 			unsafe {
 				fixed (byte *data = &buffer[offset]) {
 					status = g_io_channel_read_chars (handle, data, count, out read, out error);
@@ -180,10 +178,7 @@ namespace FSpot {
 				if (error != IntPtr.Zero)
 					throw new GException (error);
 			}
-			
-			System.Console.WriteLine ("read {0}", read);
-						
-			
+
 			return (int)read;
 		}
 
