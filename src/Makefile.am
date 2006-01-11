@@ -114,6 +114,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ThumbnailGenerator.cs		\
 	$(srcdir)/Tiff.cs			\
 	$(srcdir)/TimeAdaptor.cs		\
+	$(srcdir)/TimeDialog.cs			\
 	$(srcdir)/TipWindow.cs			\
 	$(srcdir)/Unix.cs			\
 	$(srcdir)/Util.cs			\

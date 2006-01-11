@@ -1,3 +1,13 @@
+2006-01-11  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: add the new dialog.
+
+	* src/f-spot.glade: add the new dialog.
+
+	* Makefile.am: add TimeDialog.cs.
+
+	* src/TimeDialog.cs: update the time dialog.
+
 2006-01-10  Larry Ewing  <lewing@novell.com>
 
 	* src/TimeDialog.cs: start time dialog.

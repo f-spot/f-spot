@@ -1640,6 +1640,11 @@ public class MainWindow {
 		HandleEditSelectedTagWithTag (survivor);
 	}
 
+	void HandleAdjustTime (object sender, EventArgs args)
+	{
+		TimeDialog time = new TimeDialog (new PhotoList (Selection.Items));
+	}
+
 	void HandleAdjustColor (object sender, EventArgs args)
 	{
 		if (ActiveIndex () > 0) {
