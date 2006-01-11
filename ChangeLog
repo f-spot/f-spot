@@ -1,10 +1,18 @@
 2006-01-11  Larry Ewing  <lewing@novell.com>
 
-	* src/MainWindow.cs: create a new collection when passing it to the time dialog.
+	* src/FolderExport.cs: fix Original comment file names.
 
-	* src/FolderExport.cs: use FileChooserButton rather than a simple entry to pick a folder.
+	* src/FolderExport.cs: turn on remote source browsing, exporting
+	to remote folders works now.
 
-	* src/f-spot.glade: remove the uri_entry from the FolderExport dialog, update the Time dialog.
+	* src/MainWindow.cs: create a new collection when passing it to
+	the time dialog.
+
+	* src/FolderExport.cs: use FileChooserButton rather than a simple
+	entry to pick a folder.
+
+	* src/f-spot.glade: remove the uri_entry from the FolderExport
+	dialog, update the Time dialog.
 
 	* src/TimeDialog.cs: update the time dialog.
 	

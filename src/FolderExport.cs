@@ -105,6 +105,7 @@ namespace FSpot {
 			uri_chooser = new Gtk.FileChooserButton (Mono.Posix.Catalog.GetString ("Select Export Folder"),
 								 Gtk.FileChooserAction.SelectFolder);
 			uri_chooser.SetFilename (uri_path);
+			uri_chooser.LocalOnly = false;
 			chooser_hbox.PackStart (uri_chooser);
 
 			Dialog.ShowAll ();
@@ -495,7 +496,7 @@ namespace FSpot {
 
 		private void CreateComments(string photo_path, int photo_index)
 		{
-			StreamWriter comment = File.CreateText(SubdirPath  ("comments", AlternateName (photo_index + 1, ".txt")));
+			StreamWriter comment = File.CreateText(SubdirPath  ("comments", photo_index + 1 + ".txt"));
 			comment.Write("<span>photo " + (photo_index + 1) + "</span> ");
 			comment.Write (collection [photo_index].Description + "\n");
 			comment.Close();
