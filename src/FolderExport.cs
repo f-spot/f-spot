@@ -174,9 +174,7 @@ namespace FSpot {
 					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Error While Transferring");
 				}
 
-				if (open)
-					GnomeUtil.UrlShow (null, target.ToString ());
-
+				Gtk.Application.Invoke (target.ToString (), EventArgs.Empty , new System.EventHandler (Show));
 			} catch (System.Exception e) {
 				progress_dialog.Message = e.ToString ();
 				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error Transferring");
@@ -189,6 +187,12 @@ namespace FSpot {
 			}
 		}
 		
+		private void Show (object sender, EventArgs args)
+		{
+			if (open)
+				GnomeUtil.UrlShow (null, sender.ToString ());
+		}
+
 		private int Progress (Gnome.Vfs.XferProgressInfo info)
 		{
 			progress_dialog.ProgressText = info.Phase.ToString ();
@@ -235,7 +239,7 @@ namespace FSpot {
 				Dialog.Destroy ();
 				return;
 			}
-
+			
 			dest = new Gnome.Vfs.Uri (uri_entry.Text);
 			open = open_check.Active;
 			scale = scale_check.Active;
