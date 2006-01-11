@@ -31,7 +31,6 @@ namespace FSpot {
 	public class FolderExport : GladeDialog {
 		IBrowsableCollection selection;
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
-		[Glade.Widget] Gtk.Entry uri_entry;
 		[Glade.Widget] Gtk.Entry name_entry;
 		[Glade.Widget] Gtk.Entry description_entry;
 
@@ -44,8 +43,11 @@ namespace FSpot {
 		[Glade.Widget] Gtk.RadioButton plain_radio;
 
 		[Glade.Widget] Gtk.SpinButton size_spin;
+		
+		[Glade.Widget] Gtk.HBox chooser_hbox;
 
 		Gnome.Vfs.Uri dest;
+		Gtk.FileChooserButton uri_chooser;
 		
 		int photo_index;
 		bool open;
@@ -95,9 +97,15 @@ namespace FSpot {
 			thumb_scrolledwindow.Add (view);
 			HandleSizeActive (null, null);
 			name_entry.Text = gallery_name;
-			uri_entry.Text = System.IO.Path.Combine (FSpot.Global.HomeDirectory, "Desktop");
-			if (!System.IO.Directory.Exists (uri_entry.Text))
-				uri_entry.Text = FSpot.Global.HomeDirectory;
+
+			string uri_path = System.IO.Path.Combine (FSpot.Global.HomeDirectory, "Desktop");
+			if (!System.IO.Directory.Exists (uri_path))
+			        uri_path = FSpot.Global.HomeDirectory;
+
+			uri_chooser = new Gtk.FileChooserButton (Mono.Posix.Catalog.GetString ("Select Export Folder"),
+								 Gtk.FileChooserAction.SelectFolder);
+			uri_chooser.SetFilename (uri_path);
+			chooser_hbox.PackStart (uri_chooser);
 
 			Dialog.ShowAll ();
 
@@ -240,7 +248,7 @@ namespace FSpot {
 				return;
 			}
 			
-			dest = new Gnome.Vfs.Uri (uri_entry.Text);
+			dest = new Gnome.Vfs.Uri (uri_chooser.Uri);
 			open = open_check.Active;
 			scale = scale_check.Active;
 			gallery_name = name_entry.Text;

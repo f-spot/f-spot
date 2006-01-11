@@ -18,7 +18,10 @@ namespace FSpot {
 		[Glade.Widget] DateEdit date_edit;
 
 		[Glade.Widget] Frame tray_frame;
+		
+		[Glade.Widget] Gtk.Entry entry;
 
+		
 		IBrowsableCollection collection;
 		IconView tray;
 		PhotoImageView view;
@@ -41,7 +44,10 @@ namespace FSpot {
 
 			date_edit.TimeChanged += HandleTimeChanged;
 			date_edit.DateChanged += HandleTimeChanged;
-
+			Gtk.Entry entry = (Gtk.Entry) date_edit.Children [0];
+			entry.Changed += HandleTimeChanged;
+			entry = (Gtk.Entry) date_edit.Children [2];
+			entry.Changed += HandleTimeChanged;
 			Dialog.ShowAll ();
 			HandleCollectionChanged (collection);
 		}

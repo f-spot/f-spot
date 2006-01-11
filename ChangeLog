@@ -1,5 +1,13 @@
 2006-01-11  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: create a new collection when passing it to the time dialog.
+
+	* src/FolderExport.cs: use FileChooserButton rather than a simple entry to pick a folder.
+
+	* src/f-spot.glade: remove the uri_entry from the FolderExport dialog, update the Time dialog.
+
+	* src/TimeDialog.cs: update the time dialog.
+	
 	* src/FolderExport.cs: call show in the main thread, the command
 	likes to make gtk calls.
 
