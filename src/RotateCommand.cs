@@ -42,10 +42,7 @@ namespace FSpot {
 					     direction == RotateDirection.Clockwise ? JpegUtils.TransformType.Rotate90 
 					     : JpegUtils.TransformType.Rotate270);
 			
-			// FIXME way to do this atomically in .NET?  I think Move() raises an exception
-			// if the destination path points to an existing file.
-			File.Delete (original_path);
-			File.Move (temporary_path, original_path);
+			Unix.Rename (temporary_path, original_path);
 		}
 
 		private static void RotateOrientation (string original_path, RotateDirection direction)
