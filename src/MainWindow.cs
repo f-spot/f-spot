@@ -422,12 +422,16 @@ public class MainWindow {
 	{
 		foreach (DbItem item in args.Items) {
 			Photo p = item as Photo;
-				if (p == null)
-					continue;
-				
-				if (write_metadata)
-					p.WriteMetadataToImage ();
+			if (p == null)
+				continue;
+			
+			if (write_metadata)
+				p.WriteMetadataToImage ();
+			
 		}
+		
+		if (args is TimeChangedEventArgs)
+			InvalidateViews ();
 	}
 
 	void HandleViewNotebookSwitchPage (object sender, SwitchPageArgs args)
@@ -657,12 +661,6 @@ public class MainWindow {
 		Photo p = query.Photos [num];
 
 		p.AddTag (tags);
-
-		/*
-		if (write_metadata)
-			p.WriteMetadataToImage ();
-		*/
-
 		query.Commit (num);
 
 		foreach (Tag t in tags) {
@@ -1642,7 +1640,7 @@ public class MainWindow {
 
 	void HandleAdjustTime (object sender, EventArgs args)
 	{
-		TimeDialog time = new TimeDialog (new PhotoList (Selection.Items));
+		TimeDialog time = new TimeDialog (db, new PhotoList (Selection.Items));
 	}
 
 	void HandleAdjustColor (object sender, EventArgs args)

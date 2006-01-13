@@ -10,6 +10,7 @@ namespace FSpot {
 	public class JpegFile : ImageFile, IThumbnailContainer, SemWeb.StatementSource {
 		private Exif.ExifData exif_data;
 		private XmpFile xmp;
+		private JpegHeader header;
 		
 		public JpegFile (string path) : base (path) 
 		{
@@ -20,25 +21,30 @@ namespace FSpot {
 #endif
 		}
 
+		public JpegHeader Header {
+			get {
+				if (header == null) {
+					using (System.IO.FileStream stream = System.IO.File.OpenRead (path)) {
+						header = new JpegHeader (stream, true);
+					}
+				}
+				return header;
+			}
+		}
+
 		public void Select (SemWeb.StatementSink sink)
 		{
-			using (System.IO.FileStream stream = System.IO.File.OpenRead (path)) {
-				JpegHeader header = new JpegHeader (stream, true);
-				header.Select (sink);
-			}
+			Header.Select (sink);
 		}
 
 		public override Cms.Profile GetProfile ()
 		{
-			using (System.IO.FileStream stream = System.IO.File.OpenRead (path)) {
-				JpegHeader header = new JpegHeader (stream, true);
-				return header.GetProfile ();
-			}
-
+			return Header.GetProfile ();
 		}
 
 		public override string Description {
 			get {
+#if true
 				// FIXME this should probably read the raw data because libexif sucks.
 				Exif.ExifContent exif_content = this.ExifData.GetContents (Exif.Ifd.Exif);
 				Exif.ExifEntry entry = exif_content.Lookup (Exif.Tag.UserComment);
@@ -47,6 +53,9 @@ namespace FSpot {
 					return null;
 				
 				return entry.Value;
+#else
+
+#endif
 			}
 		}
 
@@ -208,10 +217,17 @@ namespace FSpot {
 			e.SetData ((ushort)orientation);
 		}
 		
+		public void SetDateTimeOriginal (DateTime time)
+		{
+			Exif.ExifEntry e = ExifData.LookupFirst (Exif.Tag.DateTimeOriginal);
+			e.SetData (time);
+		}
+
 		public override System.DateTime Date {
 			get {
 				System.DateTime time;
 				try {
+#if true
 					using (Exif.ExifData ed = new Exif.ExifData (path)) {
 						string time_str = "";				
 						time_str = ed.LookupFirstValue (Exif.Tag.DateTimeOriginal);
@@ -220,6 +236,25 @@ namespace FSpot {
 							time_str = ed.LookupFirstValue (Exif.Tag.DateTime);
 
 						time = Exif.ExifUtil.DateTimeFromString (time_str).ToUniversalTime (); 
+#else
+						TiffHeader tiff = Header.GetExifHeader ();
+						SubdirectoryEntry sub = (SubdirectoryEntry) tiff.Directory.Lookup (TagId.ExifIfdPointer);
+						DirectoryEntry e;
+						
+						if (sub != null) {
+							e = sub.Directory [0].Lookup (TagId.DateTimeOriginal);
+							
+							if (e != null)
+								return DirectoryEntry.DateTimeFromString (e.StringValue);
+						}
+						
+						e = tiff.Directory.Lookup (TagId.DateTime);
+
+						if (e != null)
+							return DirectoryEntry.DateTimeFromString (e.StringValue);
+						
+						return base.Date;
+#endif
 					}
 				} catch (System.Exception e) {
 					time = base.Date;

@@ -1,5 +1,9 @@
 2006-01-13  Larry Ewing  <lewing@novell.com>
 
+	* src/JpegFile.cs: set the time on DateTimeOriginal.
+
+	* src/MainWindow.cs: update TimeDialog construction.
+
 	* src/f-spot.glade: update with new names and widgets.
 
 	* src/PhotoStore.cs: add a new commit method that lets one pass
