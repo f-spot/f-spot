@@ -98,8 +98,13 @@ public abstract class DbStore {
 
 	protected void EmitChanged (DbItem [] items)
 	{
+		EmitChanged (items, new DbItemEventArgs (items));
+	}
+
+	protected void EmitChanged (DbItem [] items, DbItemEventArgs args)
+	{
 		if (ItemsChanged != null)
-			ItemsChanged (this, new DbItemEventArgs (items));
+			ItemsChanged (this, args);
 	}
 
 	protected void EmitRemoved (DbItem item)
@@ -156,6 +161,31 @@ public abstract class DbStore {
 	protected static string SqlString (string s) {
 		return s.Replace ("'", "''");
 	}
+
+	public void BeginTransaction () {
+		SqliteCommand command = new SqliteCommand ();
+		command.Connection = Connection;
+		command.CommandText = "BEGIN TRANSACTION";
+		command.ExecuteScalar ();
+		command.Dispose ();
+	}
+	
+	public void CommitTransaction () {
+		SqliteCommand command = new SqliteCommand ();
+		command.Connection = Connection;
+		command.CommandText = "COMMIT TRANSACTION";
+		command.ExecuteScalar ();
+		command.Dispose ();
+	}
+	
+	public void RollbackTransaction () {
+		SqliteCommand command = new SqliteCommand ();
+		command.Connection = Connection;
+		command.CommandText = "ROLLBACK";
+		command.ExecuteScalar ();
+		command.Dispose ();
+	}
+
 }
 
 

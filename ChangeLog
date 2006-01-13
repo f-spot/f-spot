@@ -1,5 +1,16 @@
 2006-01-13  Larry Ewing  <lewing@novell.com>
 
+	* src/f-spot.glade: update with new names and widgets.
+
+	* src/PhotoStore.cs: add a new commit method that lets one pass
+	the args (this should move to the opration interface).
+
+	* src/Db.cs: add transactions to the stores (this is probably not
+	a good idea).
+
+	* src/TimeDialog.cs: make the dialog do something.  Account for
+	the brokeness in Gnome.DateEdit.
+
 	* src/PhotoImageView.cs: fix argument checking.
 
 2006-01-11  Larry Ewing  <lewing@novell.com>

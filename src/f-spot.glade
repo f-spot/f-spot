@@ -12596,7 +12596,7 @@ Custom
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
-	    <widget class="GtkButton" id="cancelbutton7">
+	    <widget class="GtkButton" id="cancel_button">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
@@ -12609,7 +12609,7 @@ Custom
 	  </child>
 
 	  <child>
-	    <widget class="GtkButton" id="okbutton8">
+	    <widget class="GtkButton" id="ok_button">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
@@ -12675,6 +12675,8 @@ Custom
 
 			      <child>
 				<widget class="GtkScrolledWindow" id="view_scrolled">
+				  <property name="width_request">320</property>
+				  <property name="height_request">200</property>
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
 				  <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
@@ -13107,6 +13109,7 @@ Custom
 
 		      <child>
 			<widget class="GtkScrolledWindow" id="tray_scrolled">
+			  <property name="width_request">140</property>
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
 			  <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>

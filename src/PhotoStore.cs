@@ -123,6 +123,9 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		get {
 			return time;
 		}
+		set {
+			time = value;
+		}
 	}
 
 	private string directory_path;
@@ -451,7 +454,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 			FSpot.JpegFile jimg = img as FSpot.JpegFile;
 			
 			jimg.SetDescription (this.Description);
-		
+			jimg.SetDateTimeOriginal (this.Time);
 			FSpot.Xmp.XmpFile xmp = CreateXmp (this);
 			jimg.SetXmp (xmp);
 
@@ -988,8 +991,21 @@ public class PhotoStore : DbStore {
 
 	public override void Commit (DbItem item)
 	{
-		Photo photo = item as Photo;
+		DbItemEventArgs args = new DbItemEventArgs (item);
+		Commit (args.Items, args);
+	}
 
+	public void Commit (DbItem [] items, DbItemEventArgs args)
+	{
+		BeginTransaction ();
+		foreach (DbItem item in items) {
+			Update ((Photo)item);
+		}
+		EmitChanged (items, args);
+		CommitTransaction ();
+	}
+	
+        private void Update (Photo photo) {
 		// Update photo.
 
 		SqliteCommand command = new SqliteCommand ();
@@ -1043,8 +1059,6 @@ public class PhotoStore : DbStore {
 			command.ExecuteNonQuery ();
 			command.Dispose ();
 		}
-
-		EmitChanged (item);
 	}
 	
 	public class DateRange 
