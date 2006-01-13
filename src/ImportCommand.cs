@@ -81,7 +81,7 @@ public class ImportCommand : FSpot.GladeDialog {
 			if (this.IsiPodPhoto)
 				this.Icon = PixbufUtils.LoadThemeIcon ("gnome-dev-ipod", 32);
 
-                        if (this.Icon == null)			if (this.Icon == null && this.IsCamera)
+			if (this.Icon == null && this.IsCamera)
 				this.Icon = PixbufUtils.LoadThemeIcon ("gnome-dev-media-cf", 32);
 
 			try {
