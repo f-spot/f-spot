@@ -997,12 +997,16 @@ public class PhotoStore : DbStore {
 
 	public void Commit (DbItem [] items, DbItemEventArgs args)
 	{
-		BeginTransaction ();
+		if (items.Length > 1)
+			BeginTransaction ();
+
 		foreach (DbItem item in items) {
 			Update ((Photo)item);
 		}
 		EmitChanged (items, args);
-		CommitTransaction ();
+
+		if (items.Length > 1)
+			CommitTransaction ();
 	}
 	
         private void Update (Photo photo) {
