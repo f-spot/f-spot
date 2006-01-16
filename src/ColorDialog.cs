@@ -12,7 +12,7 @@ namespace FSpot {
 		protected override Cms.Profile GenerateProfile ()
 		{
 			return Cms.Profile.CreateAbstract (nsteps,
-							   0.0,
+							   1.0,
 							   32.0,
 							   0.0,
 							   0.0,
@@ -31,7 +31,7 @@ namespace FSpot {
 		protected override Cms.Profile GenerateProfile ()
 		{
 			return Cms.Profile.CreateAbstract (nsteps,
-							   0.0,
+							   1.0,
 							   0.0,
 							   0.0,
 							   0.0,
