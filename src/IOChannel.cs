@@ -132,6 +132,9 @@ namespace FSpot {
 
 			if (error != IntPtr.Zero)
 				throw new GException (error);
+
+			if (status != IOStatus.Normal)
+				throw new Exception (String.Format ("Status = {0}", status));
 		}
 
 		[DllImport("libglib-2.0-0.dll")]
@@ -174,10 +177,13 @@ namespace FSpot {
 				fixed (byte *data = &buffer[offset]) {
 					status = g_io_channel_read_chars (handle, data, count, out read, out error);
 				}
-				
-				if (error != IntPtr.Zero)
-					throw new GException (error);
 			}
+
+			if (error != IntPtr.Zero)
+				throw new GException (error);
+
+			if (status != IOStatus.Normal)
+				throw new Exception (String.Format ("Status = {0}", status));
 
 			return (int)read;
 		}

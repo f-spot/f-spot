@@ -1640,7 +1640,7 @@ public class MainWindow {
 
 	void HandleAdjustTime (object sender, EventArgs args)
 	{
-		TimeDialog time = new TimeDialog (db, new PhotoList (Selection.Items));
+		new TimeDialog (db, new PhotoList (Selection.Items));
 	}
 
 	void HandleAdjustColor (object sender, EventArgs args)
