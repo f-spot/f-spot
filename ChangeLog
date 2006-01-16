@@ -1,5 +1,8 @@
 2006-01-16  Larry Ewing  <lewing@novell.com>
 
+	* src/f-spot.glade: remove stray can default setting that was
+	triggering a critical warning.
+
 	* src/ColorDialog.cs: fix the contrast setting.
 
 	* src/StockIcons.cs: add new icons.
