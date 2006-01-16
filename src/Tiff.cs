@@ -1775,7 +1775,9 @@ namespace FSpot.Tiff {
 					this.Header = new Header (input);
 				}
 
-				//Header.Dump ("Tiff:");
+#if DEBUG_LOADER
+				Header.Dump (this.ToSring () + ":");
+#endif
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e.ToString ());
 			}
@@ -1861,7 +1863,6 @@ namespace FSpot.Tiff {
 	public class DngFile : TiffFile {
 		public DngFile (string path) : base (path) 
 		{
-			Header.Dump ("dng:");
 		}
 
 		public override System.IO.Stream PixbufStream ()
@@ -1944,7 +1945,6 @@ namespace FSpot.Tiff {
 	public class NefFile : TiffFile, IThumbnailContainer {
 		public NefFile (string path) : base (path) 
 		{
-			Header.Directory.Dump ("Nikon:");
 		}
 
 		public override void Select (SemWeb.StatementSink sink)
@@ -2024,7 +2024,6 @@ namespace FSpot.Tiff {
 
 		public Cr2File (string path) : base (path) 
 		{
-			//Header.Dump ("Cr2:");
 		}
 
 		/*
