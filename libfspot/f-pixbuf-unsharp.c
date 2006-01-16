@@ -323,6 +323,75 @@ pixbuf_set_column (GdkPixbuf *buf, guchar *src, int col)
     }
 }
 
+GdkPixbuf * f_pixbuf_unsharp_l_mask (GdkPixbuf *src_buf, 
+				     double radius, 
+				     double amount, 
+				     double threshold)
+{
+  GdkPixbuf *dest_buf;
+  int width = gdk_pixbuf_get_width (src_buf);
+  int height = gdk_pixbuf_get_height (src_buf);
+  int channels = gdk_pixbuf_get_n_channels (src_buf);
+  int i;
+  int row;
+  gdouble *cmatrix = NULL;
+  gint     cmatrix_length;
+  gdouble *ctable;
+  guchar *src;
+  guchar *dest;
+  int span = channels * width;
+  int diff;
+  int value;
+
+  dest_buf = gdk_pixbuf_new (GDK_COLORSPACE_RGB,
+			     gdk_pixbuf_get_has_alpha (src_buf),
+			     8,
+			     width,
+			     height);
+
+  cmatrix_length = gen_convolve_matrix (radius, &cmatrix);
+  ctable = gen_lookup_table (cmatrix, cmatrix_length);
+  
+  /* walk the columns */
+  for (i = 0; i < height; i++) {
+    src  = pixbuf_get_row (src_buf, i);
+    dest = pixbuf_get_row (dest_buf, i);
+    blur_line (ctable, cmatrix, cmatrix_length, src, dest, width, channels);
+  }
+  g_free (src);
+  g_free (dest);
+
+  /* walk the rows */
+  src  = g_new (guchar, height * channels);
+  dest = g_new (guchar, height * channels);
+  for (i = 0; i < width; i++) {
+    pixbuf_get_column (src_buf, src, i);
+    pixbuf_get_column (dest_buf, dest, i);
+
+    blur_line (ctable, cmatrix, cmatrix_length, src, dest, height, channels);
+    pixbuf_set_column (dest_buf, dest, i);
+  }
+  g_free (src);
+  g_free (dest);
+  
+  /* threshold the values */
+  for (row = 0; row < height; row++) {
+    src  = pixbuf_get_row (src_buf, row);
+    dest = pixbuf_get_row (dest_buf, row);
+    
+    for (i = 0; i < span; i += channels) {
+      diff = src[i] - dest[i];
+      if (abs (2 * diff) < threshold)
+	diff = 0;
+
+      value = src[i] + amount * diff;
+      dest[i] = (guchar)CLAMP (value, 0x00, 0xff);
+    }
+  }
+
+  return dest_buf;
+}
+
 GdkPixbuf *
 f_pixbuf_unsharp_mask (GdkPixbuf *src_buf, 
 		       double radius, 

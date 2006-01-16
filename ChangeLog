@@ -1,5 +1,8 @@
 2006-01-16  Larry Ewing  <lewing@novell.com>
 
+	* libfspot/f-pixbuf-unsharp.c: add start of an unsharp mask for
+	the l channel.
+
 	* src/Tiff.cs: remove some of the debug output.
 
 	* configure.in: bump the version number.
