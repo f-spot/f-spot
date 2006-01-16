@@ -47,6 +47,9 @@ public class PhotoView : EventBox {
 	private Gtk.Button crop_button;
 	private Gtk.Button redeye_button;
 	private Gtk.Button color_button;
+	
+	Gtk.Button desaturate_button;
+	Gtk.Button sepia_button;
 
 	FSpot.AsyncPixbufLoader loader = new FSpot.AsyncPixbufLoader ();
 
@@ -156,6 +159,8 @@ public class PhotoView : EventBox {
 		crop_button.Sensitive = valid;
 		redeye_button.Sensitive = valid;
 		color_button.Sensitive = valid;
+		desaturate_button.Sensitive = valid;
+		sepia_button.Sensitive = valid;
 	}
 
 	private void UpdateCountLabel ()
@@ -245,6 +250,23 @@ public class PhotoView : EventBox {
 	{
 		ProcessImage (false);
 	}
+	
+	private void HandleSepiaButtonClicked (object sender, EventArgs args)
+	{
+		FSpot.SepiaTone sepia = new FSpot.SepiaTone ((Photo)View.Item.Current);
+		sepia.Pixbuf = View.CompletePixbuf ();
+		sepia.Adjust ();
+		query.Commit (Item.Index);
+	}
+
+	private void HandleDesaturateButtonClicked (object sender, EventArgs args)
+	{
+		FSpot.Desaturate desaturate = new FSpot.Desaturate ((Photo) View.Item.Current);
+		desaturate.Pixbuf = View.CompletePixbuf ();
+		desaturate.Adjust ();
+		query.Commit (Item.Index);
+	}
+
 
 	// FIXME this design sucks, I'm just doing it this way while
 	// I redesign the editing system.
@@ -454,6 +476,16 @@ public class PhotoView : EventBox {
 		toolbar_hbox.PackStart (color_button, false, true, 0);
 	
 		color_button.Clicked += new EventHandler (HandleColorButtonClicked);
+
+		desaturate_button = new ToolbarButton ();
+		desaturate_button.Add (new Gtk.Image ("f-spot-desaturate", IconSize.Button));
+		toolbar_hbox.PackStart (desaturate_button, false, true, 0);
+		desaturate_button.Clicked += HandleDesaturateButtonClicked;
+
+		sepia_button = new ToolbarButton ();
+		sepia_button.Add (new Gtk.Image ("f-spot-sepia", IconSize.Button));
+		toolbar_hbox.PackStart (sepia_button, false, true, 0);
+		sepia_button.Clicked += HandleSepiaButtonClicked;
 
 		/* Spacer Label */
 		toolbar_hbox.PackStart (new Label (""), true, true, 0);

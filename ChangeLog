@@ -1,5 +1,19 @@
 2006-01-16  Larry Ewing  <lewing@novell.com>
 
+	* src/StockIcons.cs: add new icons.
+	
+	* src/PhotoView.cs: add desaturate button and sepia button.
+
+	* src/ColorDialog.cs: add sepia and desaturate buttons.
+
+	* src/Makefile.am: add new icons to resources.
+
+	* src/IOChannel.cs: revert warning change.
+
+	* src/MainWindow.cs: silence warning.
+
+	* src/IOChannel.cs: get rid of some warnings.
+
 	* libfspot/f-pixbuf-unsharp.c: add start of an unsharp mask for
 	the l channel.
 

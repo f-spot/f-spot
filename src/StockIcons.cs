@@ -26,6 +26,7 @@ public class StockIcons {
 			FromDef ("f-spot-browse", Catalog.GetString ("Browse"), 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-camera", Catalog.GetString ("Camera"), 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-crop", Catalog.GetString ("Crop"), 0, Gdk.ModifierType.ShiftMask, null),
+			FromDef ("f-spot-desaturate", Catalog.GetString ("Desaturate"), 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-edit-image", Catalog.GetString ("Edit Photo"), 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-fullscreen", Catalog.GetString ("Fullscreen"), 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-slideshow", Catalog.GetString ("Slideshow"), 0, Gdk.ModifierType.ShiftMask, null),
@@ -34,6 +35,7 @@ public class StockIcons {
 			FromDef ("f-spot-red-eye", Catalog.GetString ("Reduce Red-Eye"), 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-rotate-270", Catalog.GetString ("Rotate _Left"), 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-rotate-90", Catalog.GetString ("Rotate _Right"), 0, Gdk.ModifierType.ShiftMask, null),
+			FromDef ("f-spot-sepia", Catalog.GetString ("Sepia Tone"), 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-loading", Catalog.GetString ("Loading"), 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-stock_near", Catalog.GetString ("Near"), 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-stock_far", Catalog.GetString ("Far"), 0, Gdk.ModifierType.ShiftMask, null)

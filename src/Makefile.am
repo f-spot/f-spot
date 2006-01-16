@@ -149,6 +149,7 @@ RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-browse.png,f-spot-browse.png		\
 	-resource:$(top_srcdir)/icons/f-spot-crop.png,f-spot-crop.png			\
 	-resource:$(top_srcdir)/icons/f-spot-camera.png,f-spot-camera.png		\
+	-resource:$(top_srcdir)/icons/f-spot-desaturate.png,f-spot-desaturate.png	\
 	-resource:$(top_srcdir)/icons/f-spot-edit-image.png,f-spot-edit-image.png	\
 	-resource:$(top_srcdir)/icons/f-spot-events.png,f-spot-events.png		\
 	-resource:$(top_srcdir)/icons/f-spot-favorite.png,f-spot-favorite.png 		\
@@ -162,6 +163,7 @@ RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-red-eye.png,f-spot-red-eye.png		\
 	-resource:$(top_srcdir)/icons/f-spot-rotate-90.png,f-spot-rotate-90.png		\
 	-resource:$(top_srcdir)/icons/f-spot-rotate-270.png,f-spot-rotate-270.png	\
+	-resource:$(top_srcdir)/icons/f-spot-sepia.png,f-spot-sepia.png			\
 	-resource:$(top_srcdir)/icons/f-spot-slideshow.png,f-spot-slideshow.png		\
 	-resource:$(top_srcdir)/icons/f-spot-stock_near.png,f-spot-stock_near.png	\
 	-resource:$(top_srcdir)/icons/f-spot-stock_far.png,f-spot-stock_far.png		\
