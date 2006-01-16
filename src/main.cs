@@ -13,6 +13,23 @@ public class Driver {
 		Program program = null;
 		FSpot.CoreControl control = null;
 
+		foreach (string arg in args) {
+			if (arg == "--help") {
+				System.Console.WriteLine ("Usage f-spot [OPTION. ..]\n");
+				System.Console.WriteLine ("  --import [uri]\t\t\timport from the given uri");
+				System.Console.WriteLine ("  --view <file>\t\t\t\tview a file or directory ");
+				System.Console.WriteLine ("  --shutdown\t\t\t\tshutdown a running f-spot server");
+				System.Console.WriteLine ("  --help\t\t\t\tview this message");
+				System.Console.WriteLine ("");
+
+				program = new Program (FSpot.Defines.PACKAGE, 
+						       FSpot.Defines.VERSION, 
+						       Modules.UI, args);
+				return;
+			}
+		}
+
+
 		try {
 			control = FSpot.Core.FindInstance ();
 			System.Console.WriteLine ("Found active FSpot server: {0}", control);
@@ -53,6 +70,13 @@ public class Driver {
 			
 		for (int i = 0; i < args.Length; i++) {
 			switch (args [i]) {
+			case "--help":
+				System.Console.WriteLine ("Usage f-spot [command [options]]\n");
+				System.Console.WriteLine ("--import [uri]\timport from the given uri");
+				System.Console.WriteLine ("--view <file>\tview a file or directory ");
+				System.Console.WriteLine ("--shutdown\tshutdown a running f-spot server");
+				System.Console.WriteLine ("--help\tview this message");
+				break;
 			case "--shutdown":
 				control.Shutdown ();
 				break;
