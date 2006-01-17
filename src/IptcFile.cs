@@ -204,14 +204,14 @@ namespace FSpot.Iptc {
 					 Mono.Posix.Catalog.GetString ("The title of the author or creator"),
 					 "photoshop:AuthorsPosition"),
 			new DataSetInfo (DataSetID.WriterEditor, Format.String, "Caption/Description writer", false, true, 0, 32,
-					 Mono.Posix.Catalog.GetString ("The person involved in writing, editing or" +
-								       "correcting the objectdata or caption/abstract"),
+					 Mono.Posix.Catalog.GetString ("The person involved in writing, editing or " +
+								       "correcting the object data or caption/abstract"),
 					 "photoshop:CaptionWriter"),
 			new DataSetInfo (DataSetID.Headline, Format.String, "Headline", false, false, 0, 256,
 					 Mono.Posix.Catalog.GetString ("Headline of the content"),
 					 "photoshop:Headline"),
 			new DataSetInfo (DataSetID.SpecialInstructions, Format.String, "Instructions", false, false, 0, 256,
-					 Mono.Posix.Catalog.GetString ("Intructions from the creator to the reciever not covered by other fields"),
+					 Mono.Posix.Catalog.GetString ("Instructions from the creator to the receiver not covered by other fields"),
 					 "photoshop:Instructions"),
 			new DataSetInfo (DataSetID.ObjectAttributeReference, Format.String, "Intellectual genre", false, true, 4, 68,
 					 Mono.Posix.Catalog.GetString ("Intellectual genre of the object"),
@@ -227,7 +227,7 @@ namespace FSpot.Iptc {
 					return info;
 						
 			return new DataSetInfo (id, Format.Unknown, "Unknown", false, false, 3, 64,
-						Mono.Posix.Catalog.GetString ("Unkown IIM DataSet"));
+						Mono.Posix.Catalog.GetString ("Unknown IIM DataSet"));
 		}
 
 		protected DataSetInfo (DataSetID id, Format format, string name, bool mandatory, bool repeatable, uint min, uint max, string description) : this (id, format, name, mandatory, repeatable, min, max, description, null)

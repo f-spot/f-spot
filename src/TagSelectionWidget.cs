@@ -39,6 +39,9 @@ public class TagSelectionWidget : TreeView {
 	// FIXME this is a hack.
 	private static Pixbuf empty_pixbuf = new Pixbuf (Colorspace.Rgb, true, 8, 1, 1);
 
+	// If these are changed, the base () call in the constructor must be updated.
+	private const int IdColumn = 0;
+	private const int NameColumn = 1;
 
 	// Selection management.
 
@@ -59,7 +62,7 @@ public class TagSelectionWidget : TreeView {
 
 		GLib.Value value = new GLib.Value ();
 
-		Model.GetValue (iter, 0, ref value);
+		Model.GetValue (iter, IdColumn, ref value);
 		uint tag_id = (uint) value;
 		Tag tag = tag_store.Get (tag_id) as Tag;
 
@@ -129,8 +132,7 @@ public class TagSelectionWidget : TreeView {
 			foreach (Tag t in value)
 				Select (t);
 
-			//FIXME this should really just toggle the items not rebuild the list
-			Update ();
+			QueueDraw ();
 
 			if (SelectionChanged != null)
 				SelectionChanged (this);
@@ -163,7 +165,7 @@ public class TagSelectionWidget : TreeView {
 		foreach (TreePath path in rows) {
 			GLib.Value value = new GLib.Value ();
 			Model.GetIter (out iter, path);
-			Model.GetValue (iter, 0, ref value);
+			Model.GetValue (iter, IdColumn, ref value);
 			uint tag_id = (uint) value;
 			tags[i] = tag_store.Get (tag_id) as Tag;
 			i++;
@@ -197,7 +199,7 @@ public class TagSelectionWidget : TreeView {
 		Model.GetIter (out iter, path);
 
 		GLib.Value value = new GLib.Value ();
-		Model.GetValue (iter, 0, ref value);
+		Model.GetValue (iter, IdColumn, ref value);
 		uint tag_id = (uint) value;
 		Tag tag = tag_store.Get (tag_id) as Tag;
 
@@ -248,7 +250,7 @@ public class TagSelectionWidget : TreeView {
 				       TreeIter iter)
 	{
 		GLib.Value value = new GLib.Value ();
-		Model.GetValue (iter, 0, ref value);
+		Model.GetValue (iter, IdColumn, ref value);
 		uint tag_id = (uint) value;
 		Tag tag = tag_store.Get (tag_id) as Tag;
 
@@ -262,7 +264,7 @@ public class TagSelectionWidget : TreeView {
 				   TreeIter iter)
 	{
 		GLib.Value value = new GLib.Value ();
-		Model.GetValue (iter, 0, ref value);
+		Model.GetValue (iter, IdColumn, ref value);
 		uint tag_id = (uint) value;
 		Tag tag = tag_store.Get (tag_id) as Tag;
 
@@ -285,7 +287,7 @@ public class TagSelectionWidget : TreeView {
 			return;
 
 		GLib.Value value = new GLib.Value ();
-		Model.GetValue (iter, 0, ref value);
+		Model.GetValue (iter, IdColumn, ref value);
 		uint tag_id = (uint) value;
 
 		Tag tag = tag_store.Get (tag_id) as Tag;
@@ -323,7 +325,7 @@ public class TagSelectionWidget : TreeView {
 		}
 
 		GLib.Value value = new GLib.Value ();
-		Model.GetValue (parent, 0, ref value);
+		Model.GetValue (parent, IdColumn, ref value);
 		iter = parent;
 
 		if (tag.Id == (uint) value)
@@ -341,7 +343,7 @@ public class TagSelectionWidget : TreeView {
 		TreeStore store = Model as TreeStore;
 		bool valid;
 		
-		store.GetValue (src, 0, ref value);
+		store.GetValue (src, IdColumn, ref value);
 		Tag tag = (Tag) tag_store.Get ((uint)value);
 		if (is_parent) {
 			// we need to figure out where to insert it in the correct order
@@ -368,21 +370,19 @@ public class TagSelectionWidget : TreeView {
 
 		if (is_root)
 			valid = store.GetIterFirst (out iter);
-		else {
+		else
 			valid = store.IterChildren (out iter, parent);
-			ExpandRow (Model.GetPath (parent), false);
-		}
 
 		while (valid) {
 			//I have no desire to figure out a more performant sort over this...
 			GLib.Value value = new GLib.Value ();
-			store.GetValue(iter, 0, ref value);
+			store.GetValue(iter, IdColumn, ref value);
 			compare = (Tag)tag_store.Get ((uint) value);
 
 			if (compare.CompareTo (tag) > 0) {
 				iter = store.InsertNodeBefore (iter);
-				store.SetValue (iter, 0, tag.Id);
-				store.SetValue (iter, 1, tag.Name);
+				store.SetValue (iter, IdColumn, tag.Id);
+				store.SetValue (iter, NameColumn, tag.Name);
 				return iter;
 			}
 			valid = store.IterNext(ref iter);
@@ -390,11 +390,13 @@ public class TagSelectionWidget : TreeView {
 
 		if (is_root) 
 			iter = store.AppendNode (); 
-		else
+		else {
 			iter = store.AppendNode (parent); 
+			ExpandRow (Model.GetPath (parent), false);
+		}
 
-		store.SetValue (iter, 0, tag.Id);
-		store.SetValue (iter, 1, tag.Name);
+		store.SetValue (iter, IdColumn, tag.Id);
+		store.SetValue (iter, NameColumn, tag.Name);
 		return iter;
 	}	
 
@@ -469,7 +471,7 @@ public class TagSelectionWidget : TreeView {
 			foreach (TreeIter iter in iters)
 			{
 				GLib.Value v = new GLib.Value ();
-				Model.GetValue (iter, 0, ref v);
+				Model.GetValue (iter, IdColumn, ref v);
 				int tag_id = (int)(uint) v;
 				if (expanded_tags.Contains (tag_id)) {
 					ExpandRow (Model.GetPath (iter), false);
@@ -525,7 +527,7 @@ public class TagSelectionWidget : TreeView {
 		{
 			if (GetRowExpanded (Model.GetPath (iter))) {
 				GLib.Value v = new GLib.Value ();
-				Model.GetValue (iter, 0, ref v);
+				Model.GetValue (iter, IdColumn, ref v);
 				expanded_tags.Add ((int)(uint) v);
 			}
 		}
@@ -554,7 +556,7 @@ public class TagSelectionWidget : TreeView {
 			return;
 
 		GLib.Value value = new GLib.Value ();
-		Model.GetValue (iter, 0, ref value);
+		Model.GetValue (iter, IdColumn, ref value);
 		uint tag_id = (uint) value;
 		Tag tag = tag_store.Get (tag_id) as Tag;
 
@@ -590,7 +592,7 @@ public class TagSelectionWidget : TreeView {
 
 	// Constructor.
 	public TagSelectionWidget (TagStore tag_store)
-		: base (new TreeStore (typeof (uint), typeof(string)))
+		: base (new TreeStore (typeof(uint), typeof(string)))
 	{
 		HeadersVisible = false;
 		Selection.Mode = SelectionMode.Multiple;
@@ -609,7 +611,7 @@ public class TagSelectionWidget : TreeView {
 		tr.Mode = CellRendererMode.Editable;
 
 		name_column = AppendColumn ("name", tr, new TreeCellDataFunc (NameDataFunc));
-		name_column.SortColumnId = 1;
+		name_column.SortColumnId = NameColumn;
 		
 		this.tag_store = tag_store;
 		selection = new Hashtable ();

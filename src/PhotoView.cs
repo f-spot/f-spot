@@ -3,10 +3,13 @@ using GLib;
 using Gtk;
 using GtkSharp;
 using System;
+using Mono.Posix;
 using FSpot.Xmp;
 
 public class PhotoView : EventBox {
 	FSpot.Delay description_delay; 
+
+	private bool has_selection = false;
 
 	public FSpot.PhotoImageView View {
 		get {
@@ -156,6 +159,16 @@ public class PhotoView : EventBox {
 		display_previous_button.Sensitive = prev;
 		display_next_button.Sensitive = next;
 
+		if (valid) {
+			if (has_selection) {
+				tips.SetTip (crop_button, Catalog.GetString ("Crop photo to selected area"), "");
+				tips.SetTip (redeye_button, Catalog.GetString ("Remove redeye from selected area"), "");
+			} else {
+				tips.SetTip (crop_button, Catalog.GetString ("Select an area to crop"), null);
+				tips.SetTip (redeye_button, Catalog.GetString ("Select an area to remove redeye"), null);
+			}
+		}
+
 		crop_button.Sensitive = valid;
 		redeye_button.Sensitive = valid;
 		color_button.Sensitive = valid;
@@ -189,10 +202,11 @@ public class PhotoView : EventBox {
 			description_entry.Sensitive = false;
 			description_entry.Text = "";
 		}
-		if (description_entry.Text == "")
-			tips.SetTip (description_entry, description_entry.Text, "This is a tip");
+
+		if (description_entry.Text != "")
+			tips.SetTip (description_entry, description_entry.Text, description_entry.Text);
 		else
-			tips.SetTip (description_entry, null, "This is a tip");
+			tips.SetTip (description_entry, null, null);
 
 		description_entry.Changed += HandleDescriptionChanged;
 	}    
@@ -393,6 +407,16 @@ public class PhotoView : EventBox {
 			PhotoChanged (this);
 	}
 
+	private void HandleSelectionChanged ()
+	{
+		int x, y, width, height;
+		bool old = has_selection;
+		has_selection = photo_view.GetSelection (out x, out y, out width, out height);
+	
+		if (has_selection != old)
+			UpdateButtonSensitivity ();
+	}
+
 	private void HandleDestroy (object sender, System.EventArgs args)
 	{
 		CommitPendingChanges ();
@@ -425,6 +449,7 @@ public class PhotoView : EventBox {
 		
 		photo_view = new FSpot.PhotoImageView (query);
 		photo_view.PhotoChanged += HandlePhotoChanged;
+		photo_view.SelectionChanged += HandleSelectionChanged;
 
 		ScrolledWindow photo_view_scrolled = new ScrolledWindow (null, null);
 
@@ -448,6 +473,8 @@ public class PhotoView : EventBox {
 		tag_view_box.Add (tag_view);
 		inner_hbox.PackStart (tag_view_box, false, true, 0);
 
+		Label comment = new Label (Catalog.GetString ("Comment:"));
+		inner_hbox.PackStart (comment, false, false, 0);
 		description_entry = new Entry ();
 		inner_hbox.PackStart (description_entry, true, true, 0);
 		description_entry.Changed += HandleDescriptionChanged;
@@ -511,13 +538,10 @@ public class PhotoView : EventBox {
 		UpdateButtonSensitivity ();
 
 		vbox.ShowAll ();
-		tips.SetTip (crop_button, Mono.Posix.Catalog.GetString ("Crop photo to selected area"), "");
-		tips.SetTip (redeye_button, Mono.Posix.Catalog.GetString ("Remove redeye from selected area"), "");
 		tips.SetTip (color_button, Mono.Posix.Catalog.GetString ("Adjust the photo colors"), "");
 		tips.SetTip (constraints_option_menu, Mono.Posix.Catalog.GetString ("Constrain the aspect ratio of the selection"), "");
 		tips.SetTip (display_next_button, Mono.Posix.Catalog.GetString ("Next photo"), "");
 		tips.SetTip (display_previous_button, Mono.Posix.Catalog.GetString ("Previous photo"), "");
-
 	}
 
 }

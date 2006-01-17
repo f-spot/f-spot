@@ -1,3 +1,24 @@
+2005-01-16  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/MainWindow.cs: Make rotate toolbar buttons sensitive to whether
+	there are photo(s) selected.  Add tooltips to all toolbar buttons.
+	
+	* src/PhotoView.cs: Make redeye/crop buttons display tooltip that
+	tells the user to first select an area on the photo if no selection
+	has been made. Fix bug with the description_entry tooltip. Add label
+	"Comment:" before the description entry.
+
+	* src/TagSelectionWidget.cs: Fix bug that caused tree not to expand
+	if the child added was the parent's first. Also, instead of refreshing
+	and losing expansions when the TagSelection changes, simply queue a
+	redraw.
+	
+	* src/f-spot.glade: Make the icon button in the edit tag dialog have
+	normal relief so it's obvious it can be clicked, and add a tooltip.
+	
+	* src/MainWindow.cs:
+	* src/IptcFile.cs: Fix typos caught by Clytie Siddall (#325578).
+
 2006-01-16  Larry Ewing  <lewing@novell.com>
 
 	* src/f-spot.glade: remove stray can default setting that was

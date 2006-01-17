@@ -3,6 +3,7 @@ using Gtk;
 using GtkSharp;
 using Glade;
 using Gnome;
+using Mono.Posix;
 using System;
 using System.Text;
 
@@ -114,6 +115,9 @@ public class MainWindow {
 	MainSelection selection;
 	
 	FSpot.Delay slide_delay;
+
+	Widget rl_button;
+	Widget rr_button;
 	
 	string last_import_path;
 	ModeType view_mode;
@@ -192,19 +196,27 @@ public class MainWindow {
 
 		toolbar = new Gtk.Toolbar ();
 		toolbar_vbox.PackStart (toolbar);
-		GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-270", new System.EventHandler (HandleRotate270Command));
-		GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-90", new System.EventHandler (HandleRotate90Command));
+
+		rl_button = GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-270", new System.EventHandler (HandleRotate270Command));
+		rr_button = GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-90", new System.EventHandler (HandleRotate90Command));
 		toolbar.AppendSpace ();
 
 		// FIXME putting these two toggle buttons in a radio group would prevent
 		// the two toggle sounds from being emitted every time you switch modes
 		browse_button = GtkUtil.MakeToolbarToggleButton (toolbar, "f-spot-browse", 
 								 new System.EventHandler (HandleToggleViewBrowse)) as ToggleButton;
+		SetTip (browse_button, Catalog.GetString ("Browse many photos simultaneously"));
 		edit_button = GtkUtil.MakeToolbarToggleButton (toolbar, "f-spot-edit-image", 
 							       new System.EventHandler (HandleToggleViewPhoto)) as ToggleButton;
+		SetTip (edit_button, Catalog.GetString ("View and edit a photo"));
+
 		toolbar.AppendSpace ();
-		GtkUtil.MakeToolbarButton (toolbar, "f-spot-fullscreen", new System.EventHandler (HandleViewFullscreen));
-		GtkUtil.MakeToolbarButton (toolbar, "f-spot-slideshow", new System.EventHandler (HandleViewSlideShow));
+
+		Widget fs_button = GtkUtil.MakeToolbarButton (toolbar, "f-spot-fullscreen", new System.EventHandler (HandleViewFullscreen));
+		SetTip (fs_button, Catalog.GetString ("View photos fullscreen"));
+		
+		Widget ss_button = GtkUtil.MakeToolbarButton (toolbar, "f-spot-slideshow", new System.EventHandler (HandleViewSlideShow));
+		SetTip (ss_button, Catalog.GetString ("View photos in a slideshow"));
 
 		tag_selection_widget = new TagSelectionWidget (db.Tags);
 		tag_selection_scrolled.Add (tag_selection_widget);
@@ -1933,7 +1945,7 @@ public class MainWindow {
 				fname).Replace ("_", "__");
 		else
 			msg = String.Format (
-				Mono.Posix.Catalog.GetString ("An error of type {0} ocurred when deleting the file:\n{1}"),
+				Mono.Posix.Catalog.GetString ("An error of type {0} occurred while deleting the file:\n{1}"),
 				e.GetType (), fname.Replace ("_", "__"));
 		
 		HigMessageDialog.RunHigConfirmation (
@@ -2340,6 +2352,32 @@ public class MainWindow {
 
 		attach_tag_to_selection.Sensitive = tag_sensitive && active_selection;
 		remove_tag_from_selection.Sensitive = tag_sensitive && active_selection;
+		
+		if (rl_button != null) {
+			if (selection.Count == 0) {
+				rl_button.Sensitive = false;
+				SetTip (rl_button, "");
+			} else {
+				rl_button.Sensitive = true;
+
+				string msg = Catalog.GetPluralString ("Rotate selected photo left",
+				    "Rotate selected photos left", selection.Count);
+				SetTip (rl_button, String.Format (msg, selection.Count));
+			}
+		}
+		
+		if (rr_button != null) {
+			if (selection.Count == 0) {
+				rr_button.Sensitive = false;
+				SetTip (rr_button, "");
+			} else {
+				rr_button.Sensitive = true;
+
+				string msg = Catalog.GetPluralString ("Rotate selected photo right",
+				    "Rotate selected photos right", selection.Count);
+				SetTip (rr_button, String.Format (msg, selection.Count));
+			}
+		}
 	}
 
 	// Tag typing
@@ -2618,6 +2656,6 @@ public class MainWindow {
 
 	public static void SetTip (Widget widget, string tip)
 	{
-		toolTips.SetTip (widget, tip, tip);
+		toolTips.SetTip (widget, tip, null);
 	}
 }
