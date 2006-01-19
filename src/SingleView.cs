@@ -42,6 +42,9 @@ namespace FSpot {
 			xml = new Glade.XML (null, "f-spot.glade", glade_name, "f-spot");
 			xml.Autoconnect (this);
 			window = (Gtk.Window) xml.GetWidget (glade_name);
+		
+			LoadPreference (Preferences.VIEWER_WIDTH);
+			LoadPreference (Preferences.VIEWER_MAXIMIZED);
 
 			Gtk.Toolbar toolbar = new Gtk.Toolbar ();
 			toolbar_hbox.PackStart (toolbar);
@@ -66,14 +69,18 @@ namespace FSpot {
 			Window.ShowAll ();
 
 			zoom_scale.ValueChanged += HandleZoomScaleValueChanged;
+		
+			LoadPreference (Preferences.VIEWER_SHOW_TOOLBAR);
 			
-			ShowToolbar = true;
 			ShowSidebar = collection.Count > 1;
 
 			near_image.SetFromStock ("f-spot-stock_near", Gtk.IconSize.SmallToolbar);
 			far_image.SetFromStock ("f-spot-stock_far", Gtk.IconSize.SmallToolbar);
 
 			slide_delay = new FSpot.Delay (new GLib.IdleHandler (SlideShow));
+
+			Preferences.SettingChanged += OnPreferencesChanged;
+			window.DeleteEvent += HandleDeleteEvent;
 			
 			if (collection.Count > 0)
 				directory_view.Selection.Add (0);
@@ -202,10 +209,35 @@ namespace FSpot {
 			//zoom_in.Sensitive = (zoom_scale.Value != 1.0);
 			//zoom_out.Sensitive = (zoom_scale.Value != 0.0);
 		}
+	
+		void HandleDeleteEvent (object sender, DeleteEventArgs args)
+		{
+			SavePreferences ();
+			this.Window.Destroy ();
+			args.RetVal = true;
+		}
 
 		private void HandleFileClose (object sender, System.EventArgs args)
 		{
+			SavePreferences ();
 			this.Window.Destroy ();
+		}
+
+
+		private void SavePreferences  ()
+		{
+			int width, height;
+			window.GetSize (out width, out height);
+		
+			bool maximized = ((window.GdkWindow.State & Gdk.WindowState.Maximized) > 0);
+			Preferences.Set (Preferences.VIEWER_MAXIMIZED, maximized);
+		
+			if (!maximized) {
+				Preferences.Set (Preferences.VIEWER_WIDTH,	width);
+				Preferences.Set (Preferences.VIEWER_HEIGHT,	height);
+			}
+		
+			Preferences.Set (Preferences.VIEWER_SHOW_TOOLBAR,	toolbar_hbox.Visible);
 		}
 
 		private void HandleFileOpen (object sender, System.EventArgs args)
@@ -228,6 +260,43 @@ namespace FSpot {
 			}
 			
 			file_selector.Destroy ();
+		}
+
+		void OnPreferencesChanged (object sender, GConf.NotifyEventArgs args)
+		{
+			LoadPreference (args.Key);
+		}
+
+		void LoadPreference (String key)
+		{
+			object val = Preferences.Get (key);
+
+			if (val == null)
+				return;
+			
+			switch (key) {
+			case Preferences.VIEWER_MAXIMIZED:
+				if ((bool) val)
+					window.Maximize ();
+				else
+					window.Unmaximize ();
+				break;
+
+			case Preferences.VIEWER_WIDTH:
+			case Preferences.VIEWER_HEIGHT:
+				window.SetDefaultSize((int) Preferences.Get(Preferences.VIEWER_WIDTH),
+						(int) Preferences.Get(Preferences.VIEWER_HEIGHT));
+
+				window.ReshowWithInitialSize();
+				break;
+			
+			case Preferences.VIEWER_SHOW_TOOLBAR:
+				if (toolbar_item.Active != (bool) val)
+					toolbar_item.Active = (bool) val;
+
+				toolbar_hbox.Visible = (bool) val;
+				break;
+			}
 		}
 
 		public Gtk.Window Window {

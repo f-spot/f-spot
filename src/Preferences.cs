@@ -13,6 +13,11 @@ namespace FSpot
 		public const string MAIN_WINDOW_WIDTH = "/apps/f-spot/ui/main_window_width";
 		public const string MAIN_WINDOW_HEIGHT = "/apps/f-spot/ui/main_window_height";
 		
+		public const string VIEWER_WIDTH = "/apps/f-spot/ui/viewer_width";
+		public const string VIEWER_HEIGHT = "/apps/f-spot/ui/viewer_height";
+		public const string VIEWER_MAXIMIZED = "/apps/f-spot/ui/viewer_maximized";
+		public const string VIEWER_SHOW_TOOLBAR = "/apps/f-spot/ui/viewer_show_toolbar";
+		
 		public const string SHOW_TOOLBAR = "/apps/f-spot/ui/show_toolbar";
 		public const string SHOW_SIDEBAR = "/apps/f-spot/ui/show_sidebar";
 		public const string SHOW_TIMELINE = "/apps/f-spot/ui/show_timeline";
