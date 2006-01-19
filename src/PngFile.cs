@@ -470,6 +470,47 @@ namespace FSpot.Png {
 			}
 		}
 
+		public class Crc {
+			static uint [] lookup;
+			uint value = 0xffffffff;
+		
+			public uint Value {
+				get { return (value ^ 0xffffffff); }
+			}
+
+			static Crc () {
+				lookup = new uint [265];
+				uint c, n;
+				int k;
+				
+				for (n = 0; n < 256; n++) {
+					c = n;
+					for (k = 0; k < 8; k++) {
+						if ((c & 1) != 0)
+							c = 0xedb88320 ^ (c >> 1);
+						else
+							c = c >> 1;
+					}
+					lookup [n] = c;
+				}
+			}
+
+			public Crc ()
+			{
+			}
+
+			public void Add (byte [] buffer)
+			{
+				Add (buffer, 0, buffer.Length);
+			}
+
+			public void Add (byte [] buffer, int offset, int len)
+			{
+				for (int i = offset; i < len; i++) 
+					value = lookup [(value ^ buffer[i]) & 0xff] ^ (value >> 8); 
+			}
+		}
+
 		public class Chunk {
 			public string Name;
 			protected byte [] data;
@@ -553,10 +594,14 @@ namespace FSpot.Png {
 				}
 			}
 
-			public bool CheckCrc (uint crc)
+			public bool CheckCrc (uint value)
 			{
-				// FIXME implement me
-				return true;
+				byte [] name = System.Text.Encoding.ASCII.GetBytes (Name);
+				Crc crc = new Crc ();
+				crc.Add (name);
+				crc.Add (data);
+
+				return crc.Value == value;
 			}
 
 			public static Chunk Generate (string name, byte [] data)
