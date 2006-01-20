@@ -52,6 +52,7 @@ namespace FSpot.Png {
 						MetadataStore.AddLiteral (sink, "exif:UserComment", text.Text);
 						break;
 					case "Software":
+						MetadataStore.AddLiteral (sink, "xmp:CreatorTool", text.Text);
 						break;
 					case "Title":
 						MetadataStore.AddLiteral (sink, "dc:title", "rdf:Alt", new Literal (text.Text, "x-default", null));
@@ -137,6 +138,12 @@ namespace FSpot.Png {
 
 			public ZtxtChunk (string name, byte [] data) : base (name, data) {}
 			
+			public override void SetText (string text)
+			{
+				byte [] data = encoding.GetBytes (text);
+				text_data = Chunk.Deflate (data, 0, data.Length);
+			}
+			
 			public override void Load (byte [] data) 
 			{
 				int i = 0;
@@ -174,7 +181,6 @@ namespace FSpot.Png {
 			//public static string Name = "tEXt";
 
 			protected string keyword;
-			protected string text;
 			protected byte [] text_data;
 			protected System.Text.Encoding encoding = Latin1;
 
@@ -198,13 +204,17 @@ namespace FSpot.Png {
 				}
 			}
 
-			public byte [] TextData 
-			{
+			public byte [] TextData {
 				get {
 					return text_data;
 				}
 			}
 			
+			public virtual void SetText (string text)
+			{
+				text_data = encoding.GetBytes (text);
+			}
+
 			public string Text {
 				get {
 					return encoding.GetString (text_data, 0, text_data.Length);
@@ -268,6 +278,11 @@ namespace FSpot.Png {
 					text_data = new byte [len];
 					System.Array.Copy (data, i, text_data, 0, len);
 				}
+			}
+
+			public override void SetText (string text)
+			{
+				
 			}
 
 			public ItxtChunk (string name, byte [] data) : base (name, data) 
@@ -473,9 +488,15 @@ namespace FSpot.Png {
 		public class Crc {
 			static uint [] lookup;
 			uint value = 0xffffffff;
-		
+			uint length;
+			System.IO.Stream stream;
+
 			public uint Value {
 				get { return (value ^ 0xffffffff); }
+			}
+
+			public uint Length {
+				get { return length; }
 			}
 
 			static Crc () {
@@ -499,15 +520,31 @@ namespace FSpot.Png {
 			{
 			}
 
-			public void Add (byte [] buffer)
+			public Crc (System.IO.Stream stream)
 			{
-				Add (buffer, 0, buffer.Length);
+				this.stream = stream;
+			}
+			
+			public void Write (byte [] buffer)
+			{
+				Write (buffer, 0, buffer.Length);
 			}
 
-			public void Add (byte [] buffer, int offset, int len)
+			public void Write (byte [] buffer, int offset, int len)
 			{
 				for (int i = offset; i < len; i++) 
 					value = lookup [(value ^ buffer[i]) & 0xff] ^ (value >> 8); 
+
+				length += (uint)len;
+
+				if (stream != null)
+					stream.Write (buffer, offset, len);
+			}
+
+			public void WriteSum ()
+			{
+				byte [] data = BitConverter.GetBytes (Value, false);
+				stream.Write (data, 0, data.Length);
 			}
 		}
 
@@ -569,6 +606,18 @@ namespace FSpot.Png {
 			{
 				
 			}
+			
+			public virtual void Save (System.IO.Stream stream)
+			{
+				byte [] name_bytes = System.Text.Encoding.ASCII.GetBytes (Name);
+				uint length = (uint) (name_bytes.Length + data.Length);
+				byte [] length_bytes = BitConverter.GetBytes (length, false);
+				stream.Write (length_bytes, 0, length_bytes.Length);
+				Crc crc = new Crc (stream);
+				crc.Write (name_bytes);
+				crc.Write (data);
+				crc.WriteSum ();
+			}
 
 			public bool Critical {
 				get {
@@ -598,8 +647,8 @@ namespace FSpot.Png {
 			{
 				byte [] name = System.Text.Encoding.ASCII.GetBytes (Name);
 				Crc crc = new Crc ();
-				crc.Add (name);
-				crc.Add (data);
+				crc.Write (name);
+				crc.Write (data);
 
 				return crc.Value == value;
 			}
@@ -626,17 +675,27 @@ namespace FSpot.Png {
 				
 				byte [] buf = new byte [1024];
 				int inflate_length;
-				while ((inflate_length = inflater.Inflate (buf)) > 0) {
+				while ((inflate_length = inflater.Inflate (buf)) > 0)
 					output.Write (buf, 0, inflate_length);
-				}
 				
-				byte [] result = new byte [output.Length];
-				output.Position = 0;
-				output.Read (result, 0, result.Length);
 				output.Close ();
-				return result;
+				return output.ToArray ();
 			}
 
+			public static byte [] Deflate (byte [] input, int offset, int length)
+			{
+				System.IO.MemoryStream output = new System.IO.MemoryStream ();
+				Deflater deflater = new Deflater ();
+				deflater.SetInput (input, offset, length);
+				
+				byte [] buf = new byte [1024];
+				int deflate_length;
+				while ((deflate_length = deflater.Deflate (buf)) > 0)
+					output.Write (buf, 0, deflate_length);
+
+				output.Close ();
+				return output.ToArray ();
+			}
 		}
 
 		public class ChunkInflater {
@@ -1004,6 +1063,7 @@ namespace FSpot.Png {
 	        void Load (System.IO.Stream stream)
 		{
 			byte [] heading = new byte [8];
+			byte [] crc_data = new byte [4];
 			stream.Read (heading, 0, heading.Length);
 
 			if (heading [0] != 137 ||
@@ -1025,8 +1085,8 @@ namespace FSpot.Png {
 				if (length > 0)
 					stream.Read (data, 0, data.Length);
 
-				stream.Read (heading, 0, 4);
-				uint crc = BitConverter.ToUInt32 (heading, 0, false);
+				stream.Read (crc_data, 0, 4);
+				uint crc = BitConverter.ToUInt32 (crc_data, 0, false);
 
 				Chunk chunk = Chunk.Generate (name, data);
 				if (! chunk.CheckCrc (crc))
@@ -1139,6 +1199,19 @@ namespace FSpot.Png {
 				else
 					return LookupText ("Comment");
 			}
+		}
+
+		public void SetDescription (string description) 
+		{
+			TextChunk text = null;
+			foreach (Chunk chunk in Chunks) {
+				text = chunk as TextChunk;
+				if (text != null && text.Keyword == "Description")
+					text.SetText (description);
+			}
+
+			if (text == null)
+				throw new System.Exception ("boo");
 		}
 
 		public override System.DateTime Date {
