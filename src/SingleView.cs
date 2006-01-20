@@ -25,7 +25,10 @@ namespace FSpot {
 		PhotoImageView image_view;
 		IconView directory_view;
 		string path;
-
+		private 
+		
+		InfoDialog metadata_dialog;
+		
 		DirectoryCollection collection;
 		
 		FSpot.Delay slide_delay;
@@ -129,6 +132,8 @@ namespace FSpot {
 			if (selection.Count > 0) {
 				image_view.Item.Index = ((IconView.SelectionCollection)selection).Ids[0];
 				zoom_scale.Value = image_view.NormalizedZoom;
+				if (metadata_dialog != null)
+					metadata_dialog.InfoDisplay.Photo = image_view.Item.Current;
 			}
 		}
 
@@ -152,7 +157,26 @@ namespace FSpot {
 			this.Window.GdkWindow.Cursor = new Gdk.Cursor (Gdk.CursorType.Watch);
 			slide_delay.Start ();
 		}
+	
+		private void HandleViewMetadata (object sender, System.EventArgs args)
+		{
+			if (metadata_dialog != null) {
+				metadata_dialog.Present ();
+				return;
+			}
+			
+			metadata_dialog = new InfoDialog (window);
+			metadata_dialog.InfoDisplay.Photo = image_view.Item.Current;
+			
+			metadata_dialog.ShowAll ();
+			metadata_dialog.Destroyed += HandleMetadataDestroyed;
+		}
 		
+		private void HandleMetadataDestroyed (object sender, System.EventArgs args)
+		{
+			metadata_dialog = null;
+		}
+	
 		private bool SlideShow ()
 		{
 			IBrowsableItem [] items = new IBrowsableItem [collection.Count];

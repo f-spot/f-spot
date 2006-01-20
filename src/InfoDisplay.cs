@@ -2,6 +2,25 @@ using System;
 using SemWeb;
 
 namespace FSpot {
+	public class InfoDialog : Gtk.Dialog {
+		InfoDisplay info_display;
+		public InfoDisplay InfoDisplay {
+			get { return info_display; }
+		}
+
+		public InfoDialog (Gtk.Window parent) : base (Mono.Posix.Catalog.GetString ("Metadata Browser"),
+											    parent,
+											    Gtk.DialogFlags.NoSeparator | Gtk.DialogFlags.DestroyWithParent)
+		{
+			info_display = new InfoDisplay ();
+			SetDefaultSize (400, 400);
+			Gtk.ScrolledWindow scrolled = new Gtk.ScrolledWindow ();
+			VBox.PackStart (scrolled);
+			scrolled.Add (info_display);
+		}
+	}
+
+
 	public class InfoDisplay : Gtk.HTML {
 		public InfoDisplay () 
 		{

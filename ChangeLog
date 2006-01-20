@@ -1,3 +1,12 @@
+2006-01-20  Larry Ewing  <lewing@novell.com>
+
+	* src/InfoDisplay.cs: add InfoDialog.
+
+	* src/SingleView.cs: allow InfoDialogs for single views (these
+	should really be in the side pane).
+
+	* src/f-spot.glade: add menu entries for viewing metadata.
+
 2005-01-18  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/SingleView.cs: remember last size, maximized state, and toolbar
