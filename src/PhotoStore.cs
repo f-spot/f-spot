@@ -492,7 +492,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 	}
 
 	// Constructor
-	public Photo (uint id, uint unix_time, string directory_path, string name)
+	public Photo (uint id, long unix_time, string directory_path, string name)
 		: base (id)
 	{
 		time = DbUtils.DateTimeFromUnixTime (unix_time);
@@ -507,7 +507,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		AddVersionUnsafely (OriginalVersionId, Mono.Posix.Catalog.GetString ("Original"));
 	}
 
-	public Photo (uint id, uint unix_time, string path)
+	public Photo (uint id, long unix_time, string path)
 		: this (id, unix_time,
 
 			System.IO.Path.GetDirectoryName (path),
@@ -646,7 +646,7 @@ public class PhotoStore : DbStore {
 	public Photo Create (string newPath, string origPath, out Pixbuf thumbnail)
 	{
 		FSpot.ImageFile img = FSpot.ImageFile.Create (origPath);
-		uint unix_time = DbUtils.UnixTimeFromDateTime (img.Date);
+		long unix_time = DbUtils.UnixTimeFromDateTime (img.Date);
 		string description = img.Description != null ? img.Description : "";
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
@@ -860,7 +860,7 @@ public class PhotoStore : DbStore {
 
 		if (reader.Read ()) {
 			photo = new Photo (id,
-					   Convert.ToUInt32 (reader [0]),
+					   Convert.ToInt64 (reader [0]),
 					   reader [1].ToString (),
 					   reader [2].ToString ());
 
@@ -908,7 +908,7 @@ public class PhotoStore : DbStore {
 
 		if (reader.Read ()) {
 			photo = new Photo (Convert.ToUInt32 (reader [0]),
-					   Convert.ToUInt32 (reader [1]),
+					   Convert.ToInt64 (reader [1]),
 					   directory_path,
 					   filename);
 
@@ -1113,7 +1113,7 @@ public class PhotoStore : DbStore {
 
 			if (photo == null) {
 				photo = new Photo (id,
-						   Convert.ToUInt32 (reader [1]),
+						   Convert.ToInt64 (reader [1]),
 						   reader [2].ToString (),
 						   reader [3].ToString ());
 				

@@ -1,3 +1,11 @@
+2006-01-22  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/Db.cs:
+	* src/ImportStore.cs:
+	* src/PhotoStore.cs: Use long instead of uint for Unix dates to
+	support dates before 1970. Patch by Fredrik Noring, noring@nocrew.org,
+	and updated by Curtis Hovey.
+
 2006-01-21  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* f-spot.desktop.in.in:

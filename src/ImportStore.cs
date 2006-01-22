@@ -15,7 +15,7 @@ public class ImportStore : DbStore {
 			}
 		}
 
-		public Import (uint id, uint unix_time)
+		public Import (uint id, long unix_time)
 			: base (id)
 		{
 			time = DbUtils.DateTimeFromUnixTime (unix_time);
@@ -51,7 +51,7 @@ public class ImportStore : DbStore {
 
 	public Import Create (DateTime time_in_utc)
 	{
-		uint unix_time = DbUtils.UnixTimeFromDateTime (time_in_utc);
+		long unix_time = DbUtils.UnixTimeFromDateTime (time_in_utc);
 
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
