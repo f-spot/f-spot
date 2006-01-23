@@ -1,5 +1,7 @@
 2006-01-23  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoStore.cs: commit the photo time when updating the photo.
+
 	* src/MetadataStore.cs: redo the logic.
 
 	* src/PhotoStore.cs: call update instead of add.

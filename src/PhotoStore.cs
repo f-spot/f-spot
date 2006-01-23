@@ -1024,10 +1024,12 @@ public class PhotoStore : DbStore {
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
 		command.CommandText = String.Format ("UPDATE photos SET description = '{0}',     " +
-						     "                  default_version_id = {1} " +
-						     "              WHERE id = {2}",
+						     "                  default_version_id = {1}, " +
+						     "                  time = {2} " +
+						     "              WHERE id = {3}",
 						     SqlString (photo.Description),
 						     photo.DefaultVersionId,
+						     DbUtils.UnixTimeFromDateTime (photo.Time),
 						     photo.Id);
 		command.ExecuteNonQuery ();
 		command.Dispose ();
