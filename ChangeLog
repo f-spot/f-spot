@@ -1,5 +1,7 @@
 2006-01-22  Larry Ewing  <lewing@novell.com>
 
+	* src/PngFile.cs: stop using makesafetemp for now.
+
 	* src/JpegHeader.cs: add GetXmp method.
 
 	* src/PhotoStore.cs: clean up the Xmp updating slightly, handle

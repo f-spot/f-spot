@@ -1206,8 +1206,8 @@ namespace FSpot.Png {
 
 		public void Save (string path)
 		{
-			string  temp_path = path;
-			using (System.IO.Stream output = FSpot.Unix.MakeSafeTemp (ref temp_path)) {
+			string  temp_path = path + ".tmp.png";
+			using (System.IO.Stream output = System.IO.File.OpenWrite (temp_path)) {
 				Save (output);
 			}
 			if (FSpot.Unix.Rename (temp_path, path) < 0) {
