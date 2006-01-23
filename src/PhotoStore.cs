@@ -440,7 +440,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		for (int i = 0; i < tags.Length; i++)
 			names [i] = tags [i].Name;
 		
-		FSpot.MetadataStore.Add (xmp, "dc:subject", "rdf:Bag", names);
+		xmp.Store.Update ("dc:subject", "rdf:Bag", names);
 		xmp.Dump ();
 
 		return xmp;
