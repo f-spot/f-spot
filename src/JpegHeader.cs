@@ -277,12 +277,8 @@ public class JpegHeader : SemWeb.StatementSource {
 		return exif;
 	}
 
-	public void Select (SemWeb.StatementSink sink)
+	public XmpFile GetXmp ()
 	{
-		FSpot.Tiff.Header exif = GetExifHeader ();
-		if (exif != null)
-			exif.Select (sink);
-		
 		string name = XmpSignature.Name;
 		Marker marker = FindMarker (XmpSignature);
 		if (marker != null) {
@@ -293,11 +289,23 @@ public class JpegHeader : SemWeb.StatementSource {
 										 marker.Data.Length - len, false);
 			
 			XmpFile xmp = new XmpFile (xmpstream);					
-			xmp.Select (sink);
+			return xmp;
 		}
+		return null;
+	}
+
+	public void Select (SemWeb.StatementSink sink)
+	{
+		FSpot.Tiff.Header exif = GetExifHeader ();
+		if (exif != null)
+			exif.Select (sink);
 		
-		name = PhotoshopSignature.Name;
-		marker = FindMarker (PhotoshopSignature);
+		XmpFile xmp = GetXmp ();
+		if (xmp != null)
+			xmp.Select (sink);
+		
+		string name = PhotoshopSignature.Name;
+		JpegHeader.Marker marker = FindMarker (PhotoshopSignature);
 		if (marker != null) {
 			int len = name.Length;
 			System.IO.Stream bimstream = new System.IO.MemoryStream (marker.Data, len, marker.Data.Length - len, false);

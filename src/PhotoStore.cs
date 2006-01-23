@@ -429,9 +429,10 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		return tags.Contains (tag);
 	}
 
-	private static FSpot.Xmp.XmpFile CreateXmp (FSpot.IBrowsableItem item)
+	private static FSpot.Xmp.XmpFile UpdateXmp (FSpot.IBrowsableItem item, FSpot.Xmp.XmpFile xmp)
 	{
-		FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile ();
+		if (xmp == null) 
+			xmp = new FSpot.Xmp.XmpFile ();
 
 		Tag [] tags = item.Tags;
 		string [] names = new string [tags.Length];
@@ -455,10 +456,18 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 			
 			jimg.SetDescription (this.Description);
 			jimg.SetDateTimeOriginal (this.Time);
-			FSpot.Xmp.XmpFile xmp = CreateXmp (this);
-			jimg.SetXmp (xmp);
+			jimg.SetXmp (UpdateXmp (this, jimg.Header.GetXmp ()));
 
 			jimg.SaveMetaData (path);
+		} else if (img is FSpot.Png.PngFile) {
+			FSpot.Png.PngFile png = img as FSpot.Png.PngFile;
+			
+			if (img.Description != this.Description)
+				png.SetDescription (this.Description);
+			
+			png.SetXmp (UpdateXmp (this, png.GetXmp ()));
+
+			png.Save (path);
 		}
 	}
 

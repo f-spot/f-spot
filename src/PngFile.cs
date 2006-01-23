@@ -1,6 +1,8 @@
 using ICSharpCode.SharpZipLib.Zip.Compression;
 using SemWeb;
 using Cms;
+using System.IO;
+using FSpot.Xmp;
 
 namespace FSpot.Png {
 	public class PngFile : ImageFile, SemWeb.StatementSource {
@@ -136,12 +138,26 @@ namespace FSpot.Png {
 				}
 			}
 
-			public ZtxtChunk (string name, byte [] data) : base (name, data) {}
-			
+			public ZtxtChunk (string keyword, string text) : base ()
+			{
+				Name = "zTXt";
+				Compression = 0;
+				this.keyword = keyword;
+			}
+
+			public ZtxtChunk (string name, byte [] data) : base (name, data)
+			{
+			}			
+
+			protected ZtxtChunk ()
+			{
+			}
+
 			public override void SetText (string text)
 			{
-				byte [] data = encoding.GetBytes (text);
-				text_data = Chunk.Deflate (data, 0, data.Length);
+				/* FIXME this is broken */
+				text_data = encoding.GetBytes (text);
+				data = Chunk.Deflate (text_data, 0, text_data.Length);
 			}
 			
 			public override void Load (byte [] data) 
@@ -185,7 +201,22 @@ namespace FSpot.Png {
 			protected System.Text.Encoding encoding = Latin1;
 
 			public static System.Text.Encoding Latin1 = System.Text.Encoding.GetEncoding (28591);
-			public TextChunk (string name, byte [] data) : base (name, data) {}
+
+			public TextChunk (string name, byte [] data) : base (name, data) 
+			{
+			}
+
+			protected TextChunk ()
+			{
+			}
+
+
+			public TextChunk (string keyword, string text)
+			{
+				this.Name = "tEXt";
+				this.keyword = keyword;
+				SetText (text);
+			}
 
 			public override void Load (byte [] data)
 			{
@@ -213,6 +244,12 @@ namespace FSpot.Png {
 			public virtual void SetText (string text)
 			{
 				text_data = encoding.GetBytes (text);
+
+				byte [] keyword_data = Latin1.GetBytes (keyword);
+				data = new byte [keyword_data.Length + 1 + text_data.Length];
+				System.Array.Copy (keyword_data, 0, data, 0, keyword_data.Length);
+				data [keyword_data.Length] = 0;
+				System.Array.Copy (text_data, 0, data, keyword_data.Length + 1, text_data.Length);
 			}
 
 			public string Text {
@@ -282,12 +319,60 @@ namespace FSpot.Png {
 
 			public override void SetText (string text)
 			{
+				byte [] raw = System.Text.Encoding.UTF8.GetBytes (text);
+				SetText (raw);
+			}
+
+			public void SetText (byte [] raw)
+			{
+				MemoryStream stream = new MemoryStream ();
+				byte [] tmp;
+
+				text_data = raw;
+
+				tmp = Latin1.GetBytes (keyword);
+				stream.Write (tmp, 0, tmp.Length);
+				stream.WriteByte (0);
+
+				stream.WriteByte ((byte)(compressed ? 1 : 0));
+				stream.WriteByte (Compression);
+
+				if (Language != null && Language != "") {
+					tmp = Latin1.GetBytes (Language);
+					stream.Write (tmp, 0, tmp.Length);
+				}
+				stream.WriteByte (0);
+
+				if (LocalizedKeyword != null && LocalizedKeyword != "") {
+					tmp = System.Text.Encoding.UTF8.GetBytes (LocalizedKeyword);
+					stream.Write (tmp, 0, tmp.Length);
+				}
+				stream.WriteByte (0);
 				
+				if (compressed) {
+					tmp = Deflate (text_data, 0, text_data.Length);
+					stream.Write (tmp, 0, tmp.Length);
+				} else {
+					stream.Write (text_data, 0, text_data.Length);
+				}
+				this.data = stream.ToArray ();
 			}
 
 			public ItxtChunk (string name, byte [] data) : base (name, data) 
 			{
+				this.Name = name;
 				encoding = System.Text.Encoding.UTF8;
+			}
+
+			public ItxtChunk (string keyword, string language, bool compressed) : base ()
+			{
+				encoding = System.Text.Encoding.UTF8;
+				this.Name = "iTXt";
+				this.keyword = keyword;
+				this.Language = language;
+				this.LocalizedKeyword = "";
+				this.compressed = compressed;
+				this.Compression = 0;
 			}
 		}
 
@@ -315,6 +400,12 @@ namespace FSpot.Png {
 			}
 			
 			public TimeChunk (string name, byte [] data) : base (name, data) {}
+			
+			public TimeChunk ()
+			{
+				this.Name = "tIME";
+				this.Time = System.DateTime.Now;
+			}
 		}
 
 		public class StandardRgbChunk : Chunk {
@@ -579,13 +670,16 @@ namespace FSpot.Png {
 				name_table ["sRGB"] = typeof (StandardRgbChunk);
 			}
 			
+			protected Chunk ()
+			{
+			}
+			
 			public Chunk (string name, byte [] data) 
 			{
 				this.Name = name;
 				this.data = data;
 				Load (data);
 			}
-
 			
 			protected string GetString  (ref int i, System.Text.Encoding enc) 
 			{
@@ -610,8 +704,7 @@ namespace FSpot.Png {
 			public virtual void Save (System.IO.Stream stream)
 			{
 				byte [] name_bytes = System.Text.Encoding.ASCII.GetBytes (Name);
-				uint length = (uint) (name_bytes.Length + data.Length);
-				byte [] length_bytes = BitConverter.GetBytes (length, false);
+				byte [] length_bytes = BitConverter.GetBytes ((uint)data.Length, false);
 				stream.Write (length_bytes, 0, length_bytes.Length);
 				Crc crc = new Crc (stream);
 				crc.Write (name_bytes);
@@ -1053,12 +1146,7 @@ namespace FSpot.Png {
 			return pixbuf;
 		}
 
-		/*
-		public override Gdk.Pixbuf Load ()
-		{
-			return this.GetPixbuf ();
-		}
-		*/
+		private static byte [] magic = new byte [] { 137, 80, 78, 71, 13, 10, 26, 10 };
 
 	        void Load (System.IO.Stream stream)
 		{
@@ -1066,15 +1154,9 @@ namespace FSpot.Png {
 			byte [] crc_data = new byte [4];
 			stream.Read (heading, 0, heading.Length);
 
-			if (heading [0] != 137 ||
-			    heading [1] != 80 ||
-			    heading [2] != 78 ||
-			    heading [3] != 71 ||
-			    heading [4] != 13 ||
-			    heading [5] != 10 ||
-			    heading [6] != 26 ||
-			    heading [7] != 10)
-			    throw new System.Exception ("Invalid PNG magic number");
+			for (int i = 0; i < heading.Length; i++)
+				if (heading [i] != magic [i])
+					throw new System.Exception ("Invalid PNG magic number");
 
 			chunk_list = new System.Collections.ArrayList ();
 
@@ -1095,21 +1177,42 @@ namespace FSpot.Png {
 				//System.Console.Write ("read one {0} {1}", chunk, chunk.Name);
 				chunk_list.Add (chunk);
 
-#if TEST_METADATA				
+#if false			       
 				if (chunk is TextChunk) {
 					TextChunk text = (TextChunk) chunk;
 					System.Console.Write (" Text Chunk {0} {1}", 
-							      text.Keyword, "", text.Text);
+							      text.Keyword, "", "");
 				}
 
 				TimeChunk time = chunk as TimeChunk;
 				if (time != null)
 					System.Console.Write(" Time {0}", time.Time);
 #endif
-				//System.Console.WriteLine ("");
+				System.Console.WriteLine ("");
 				
 				if (chunk.Name == "IEND")
 					break;
+			}
+		}
+
+
+		public void Save (System.IO.Stream stream)
+		{
+			stream.Write (magic, 0, magic.Length);
+			foreach (Chunk chunk in Chunks) {
+				chunk.Save (stream);
+			}
+		}
+
+		public void Save (string path)
+		{
+			string  temp_path = path;
+			using (System.IO.Stream output = FSpot.Unix.MakeSafeTemp (ref temp_path)) {
+				Save (output);
+			}
+			if (FSpot.Unix.Rename (temp_path, path) < 0) {
+				System.IO.File.Delete (temp_path);
+				throw new System.Exception (System.String.Format ("Unable to rename {0} to {1}", temp_path, path));
 			}
 		}
 
@@ -1204,14 +1307,57 @@ namespace FSpot.Png {
 		public void SetDescription (string description) 
 		{
 			TextChunk text = null;
-			foreach (Chunk chunk in Chunks) {
-				text = chunk as TextChunk;
-				if (text != null && text.Keyword == "Description")
-					text.SetText (description);
-			}
+			text = LookupTextChunk ("Description");
+			
+			if (text != null)
+				text.SetText (description);
+			else 
+				Insert (new TextChunk ("Description", description));
+		}
 
-			if (text == null)
-				throw new System.Exception ("boo");
+		public XmpFile GetXmp ()
+		{
+			TextChunk xmpchunk  = LookupTextChunk ("XML:com.adobe.xmp");
+			if (xmpchunk == null)
+				xmpchunk = LookupTextChunk ("XMP");
+
+			if (xmpchunk == null)
+				return null;
+			
+			using (MemoryStream stream = new MemoryStream (xmpchunk.TextData)) {
+				return new XmpFile (stream);
+			}
+		}
+
+		public void SetXmp (XmpFile xmp)
+		{
+			TextChunk text = null;
+
+			text = LookupTextChunk ("XML:com.adobe.xmp");
+			if (text != null)
+				Chunks.Remove (text);
+			
+			text = LookupTextChunk ("XMP");
+			if (text != null)
+				Chunks.Remove (text);
+
+			ItxtChunk itext = new ItxtChunk ("XML:com.adobe.xmp", "en", false);
+			MemoryStream stream = new MemoryStream ();
+			xmp.Save (stream);
+			itext.SetText (stream.ToArray ());
+			Insert (itext);
+		}
+
+		private void Insert (Chunk chunk)
+		{
+			// FIXME The point of this function is to enforce ordering constraints
+			// it obviously isn't complete right now.
+			if (chunk is IhdrChunk)
+				Chunks.Insert (0, chunk);
+			else if (chunk is TextChunk)
+				Chunks.Insert (1, chunk);
+			else
+				throw new System.Exception ("Uknown ordering for chunk");
 		}
 
 		public override System.DateTime Date {
@@ -1236,7 +1382,6 @@ namespace FSpot.Png {
 				this.Path = path;
 			}
 		}
-
 
 		public static void Main (string [] args) 
 		{
