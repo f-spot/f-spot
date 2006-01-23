@@ -243,46 +243,27 @@ namespace FSpot {
 		{
 			Entity anon = null;
 
+			System.Collections.ArrayList to_remove = new System.Collections.ArrayList ();
 			foreach (Statement stmt in this) {
 				if (stmt.Predicate == MetadataStore.Namespaces.Resolve (predicate)) {
 					anon = (Entity) stmt.Object;
+					to_remove.Add (stmt);
 					break;
 				}
 			}
 
-			if (anon == null) {
-				System.Console.WriteLine ("Did not find subject");
-				Add (this, predicate, type, values);
-				return;
-			}
-
-			System.Collections.Hashtable list = new System.Collections.Hashtable ();
-			System.Collections.ArrayList to_remove = new System.Collections.ArrayList ();
-
-			foreach (string name in values)
-				list [name] = name;
-
-			foreach (Statement stmt in this) {
-				if (stmt.Subject == anon) {
-					if (stmt.Object is Literal) {
-						string literal = ((Literal)stmt.Object).Value;
-						if (list.Contains (literal))
-							list.Remove (literal);
-						else
-							to_remove.Add (stmt);
+			if (anon != null) {
+				foreach (Statement stmt in this) {
+					if (stmt.Subject == anon) {
+						to_remove.Add (stmt);
 					}
-
 				}
 			}
 
 			foreach (Statement stmt in to_remove)
 				this.Remove (stmt);
-			
-			foreach (string name in list.Keys) {
-				Statement stmt  = new Statement (anon, (Entity)MetadataStore.Namespaces.Resolve ("rdf:li"),
-								 new Literal (name, null, null));
-				this.Add (stmt);
-			}
+
+			Add (this, predicate, type, values);
 		}
 		
 		public static void Add (StatementSink sink, Entity subject, string predicate, string type, string [] values)

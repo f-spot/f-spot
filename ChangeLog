@@ -1,5 +1,7 @@
 2006-01-23  Larry Ewing  <lewing@novell.com>
 
+	* src/MetadataStore.cs: redo the logic.
+
 	* src/PhotoStore.cs: call update instead of add.
 
 	* src/XmpFile.cs: expose the store.
