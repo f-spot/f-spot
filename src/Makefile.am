@@ -156,6 +156,7 @@ RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-hidden.png,f-spot-hidden.png 		\
 	-resource:$(top_srcdir)/icons/f-spot-loading.png,f-spot-loading.png		\
 	-resource:$(top_srcdir)/icons/f-spot-logo.png,f-spot-logo.png			\
+	-resource:$(top_srcdir)/icons/f-spot-new-tag.png,f-spot-new-tag.png		\
 	-resource:$(top_srcdir)/icons/f-spot-other.png,f-spot-other.png			\
 	-resource:$(top_srcdir)/icons/f-spot-people.png,f-spot-people.png 		\
 	-resource:$(top_srcdir)/icons/f-spot-places.png,f-spot-places.png 		\

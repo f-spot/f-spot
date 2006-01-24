@@ -6,6 +6,7 @@ using GtkSharp;
 using System.Collections;
 using System.IO;
 using System;
+using Mono.Posix;
 
 public class ImportCommand : FSpot.GladeDialog {
 	internal class SourceItem : ImageMenuItem {
@@ -637,24 +638,16 @@ public class ImportCommand : FSpot.GladeDialog {
 		this.Dialog.WindowPosition = Gtk.WindowPosition.CenterOnParent;
 		this.Dialog.Response += HandleDialogResponse;
 
-		MenuItem attach_item = new MenuItem (Mono.Posix.Catalog.GetString ("Select Tag"));
-		TagMenu tagmenu = new TagMenu (null, MainWindow.Toplevel.Database.Tags);
+		CreateTagMenu ();
+		
+	        AllowFinish = false;
 		
 		this.Dialog.DefaultResponse = ResponseType.Ok;
 		
 		//import_folder_entry.Activated += HandleEntryActivate;
-
-		tagmenu.TagSelected += HandleTagMenuSelected;
-		tagmenu.ShowAll ();
-		tagmenu.Populate (true);
-		tagmenu.Prepend (attach_item);
-
-	        AllowFinish = false;
-		
 		recurse_check.Toggled += HandleRecurseToggled;
 		copy_check.Toggled += HandleRecurseToggled;
 
-		tag_option_menu.Menu = tagmenu;
 		SourceMenu menu = new SourceMenu ();
 		source_option_menu.Menu = menu;
 
@@ -740,6 +733,31 @@ public class ImportCommand : FSpot.GladeDialog {
 			//this.Dialog.Destroy();
 			return 0;
 		}
+	}
+
+	private void CreateTagMenu ()
+	{
+		TagMenu tagmenu = new TagMenu (null, MainWindow.Toplevel.Database.Tags);
+
+		tagmenu.Append (new MenuItem (Catalog.GetString ("Select Tag")));
+		
+		tagmenu.Populate (true);
+		
+		GtkUtil.MakeMenuSeparator (tagmenu);
+		GtkUtil.MakeMenuItem (tagmenu, Catalog.GetString ("Create New Tag"),
+				"f-spot-new-tag", MainWindow.Toplevel.HandleCreateNewCategoryCommand, true);
+		
+		tagmenu.TagSelected += HandleTagMenuSelected;
+		MainWindow.Toplevel.Database.Tags.ItemsAdded += HandleTagsAdded;
+		
+		tagmenu.ShowAll ();
+		tag_option_menu.Menu = tagmenu;
+	}
+
+	private void HandleTagsAdded (object sender, DbItemEventArgs args)
+	{
+		// The user added a tag, so recreate the tag menu
+		CreateTagMenu ();
 	}
 
 	public void Cancel ()
