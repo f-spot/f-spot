@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-23 22:52+0100\n"
-"PO-Revision-Date: 2006-01-16 22:54+0100\n"
+"POT-Creation-Date: 2006-01-27 20:19+0100\n"
+"PO-Revision-Date: 2006-01-27 20:22+0100\n"
 "Last-Translator: Jorge González <jorge.gonzalez.gonzalez@hispalinux.es>\n"
 "Language-Team: Español <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -605,7 +605,7 @@ msgstr "Adjuntar etiqueta:"
 
 #: ../src/f-spot.glade.h:56
 msgid "Authorize"
-msgstr ""
+msgstr "Autorizar"
 
 #: ../src/f-spot.glade.h:57 ../src/StockIcons.cs:26
 msgid "Browse"
@@ -712,9 +712,8 @@ msgid "Edit Tag Icon"
 msgstr "Editar la etiqueta del icono"
 
 #: ../src/f-spot.glade.h:83
-#, fuzzy
 msgid "Edit icon"
-msgstr "Editar la etiqueta del icono"
+msgstr "Editar el icono"
 
 #: ../src/f-spot.glade.h:84
 msgid "Export"
@@ -755,6 +754,10 @@ msgid ""
 "Spot the authorization. Close the browser and press \"Continue\" to start "
 "the export process."
 msgstr ""
+"F-Spot necesita su autorización para poder subir fotografías a su cuenta de "
+"Flickr. Pulse el botón «Autorizar» para abrir un navegador y dar la "
+"autorización a F-Spot. Cierre el navegador y pulse el botón «Continuar» para "
+"comenzar la exportación."
 
 #: ../src/f-spot.glade.h:95
 msgid "Fin_d"
@@ -829,9 +832,8 @@ msgid "Include subdirectories"
 msgstr "Incluir las subcarpetas"
 
 #: ../src/f-spot.glade.h:115 ../src/InfoDisplay.cs:11
-#, fuzzy
 msgid "Metadata Browser"
-msgstr "Examinador de _metadatos"
+msgstr "Examinador de metadatos"
 
 #: ../src/f-spot.glade.h:116
 msgid "N_umber of Copies:"
@@ -911,11 +913,11 @@ msgstr "Act_ualizar miniaturas"
 msgid "Rem_ove Tag"
 msgstr "_Eliminar etiqueta"
 
-#: ../src/f-spot.glade.h:138 ../src/StockIcons.cs:36
+#: ../src/f-spot.glade.h:138 ../src/StockIcons.cs:37
 msgid "Rotate _Left"
 msgstr "Rotar a la _izquierda"
 
-#: ../src/f-spot.glade.h:139 ../src/StockIcons.cs:37
+#: ../src/f-spot.glade.h:139 ../src/StockIcons.cs:38
 msgid "Rotate _Right"
 msgstr "Rotar a la _derecha"
 
@@ -1293,7 +1295,7 @@ msgstr "diálogo1"
 
 #: ../src/f-spot.glade.h:235
 msgid "for a difference of"
-msgstr ""
+msgstr "para una diferencia de"
 
 #: ../src/f-spot.glade.h:236
 msgid "img_000.jpg"
@@ -1339,32 +1341,28 @@ msgstr "Más subcarpetas"
 msgid "More"
 msgstr "Más"
 
-#: ../src/ImportCommand.cs:27
+#: ../src/ImportCommand.cs:28
 msgid "Select Folder"
 msgstr "Seleccionar la carpeta"
 
-#: ../src/ImportCommand.cs:222
+#: ../src/ImportCommand.cs:223
 msgid "(No Cameras Detected)"
 msgstr "(No se detectó ninguna cámara)"
 
-#: ../src/ImportCommand.cs:400
+#: ../src/ImportCommand.cs:401
 #, csharp-format
 msgid "Loading {0} of {1}"
 msgstr "Cargando {0} de {1}"
 
-#: ../src/ImportCommand.cs:519
+#: ../src/ImportCommand.cs:520
 msgid "Done Loading"
 msgstr "Finalizó la carga"
 
-#: ../src/ImportCommand.cs:640
-msgid "Select Tag"
-msgstr "Seleccionar etiqueta"
-
-#: ../src/ImportCommand.cs:715
+#: ../src/ImportCommand.cs:708
 msgid "Directory does not exist."
 msgstr "La carpeta no existe."
 
-#: ../src/ImportCommand.cs:716
+#: ../src/ImportCommand.cs:709
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
@@ -1372,6 +1370,15 @@ msgid ""
 msgstr ""
 "La carpeta seleccionada «{0}» no existe.  Por favor, elija una carpeta "
 "distinta"
+
+#: ../src/ImportCommand.cs:742
+msgid "Select Tag"
+msgstr "Seleccionar etiqueta"
+
+#: ../src/ImportCommand.cs:747 ../src/StockIcons.cs:34
+#: ../src/TagCommands.cs:122 ../src/TagPopup.cs:20
+msgid "Create New Tag"
+msgstr "Crear nueva etiqueta"
 
 #: ../src/InfoBox.cs:72 ../src/PhotoVersionCommands.cs:55
 msgid "Name:"
@@ -1522,7 +1529,6 @@ msgid "The title of the author or creator"
 msgstr "El título del autor o creador"
 
 #: ../src/IptcFile.cs:207
-#, fuzzy
 msgid ""
 "The person involved in writing, editing or correcting the object data or "
 "caption/abstract"
@@ -1535,7 +1541,6 @@ msgid "Headline of the content"
 msgstr "Cabecera del contenido"
 
 #: ../src/IptcFile.cs:214
-#, fuzzy
 msgid ""
 "Instructions from the creator to the receiver not covered by other fields"
 msgstr ""
@@ -1547,7 +1552,6 @@ msgid "Intellectual genre of the object"
 msgstr "Género intelectual del objeto"
 
 #: ../src/IptcFile.cs:230
-#, fuzzy
 msgid "Unknown IIM DataSet"
 msgstr "Conjunto de datos IIM desconocido"
 
@@ -1573,20 +1577,19 @@ msgstr "Umbral:"
 
 #: ../src/MainWindow.cs:208
 msgid "Browse many photos simultaneously"
-msgstr ""
+msgstr "Examinar varias fotos simultáneamente"
 
 #: ../src/MainWindow.cs:211
 msgid "View and edit a photo"
-msgstr ""
+msgstr "Ver y editar una foto"
 
 #: ../src/MainWindow.cs:216
-#, fuzzy
 msgid "View photos fullscreen"
-msgstr "Salir de pantalla completa"
+msgstr "Ver fotos en pantalla completa"
 
 #: ../src/MainWindow.cs:219
 msgid "View photos in a slideshow"
-msgstr ""
+msgstr "Ver fotos como diapositivas"
 
 #: ../src/MainWindow.cs:1211
 msgid "No cameras detected."
@@ -1659,7 +1662,7 @@ msgstr ""
 "{0}"
 
 #: ../src/MainWindow.cs:1948
-#, fuzzy, csharp-format
+#, csharp-format
 msgid ""
 "An error of type {0} occurred while deleting the file:\n"
 "{1}"
@@ -1747,18 +1750,16 @@ msgstr ""
 "antes las etiquetas de «{0}»"
 
 #: ../src/MainWindow.cs:2363
-#, fuzzy
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
-msgstr[0] "¿Eliminar la fotografía seleccionada de F-Spot?"
-msgstr[1] "¿Eliminar las {0} fotografías seleccionadas de F-Spot?"
+msgstr[0] "Rotar la fotografía seleccionada a la izquierda"
+msgstr[1] "Rotar las fotografías seleccionadas a la izquierda"
 
 #: ../src/MainWindow.cs:2376
-#, fuzzy
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
-msgstr[0] "¿Eliminar la fotografía seleccionada de F-Spot?"
-msgstr[1] "¿Eliminar las {0} fotografías seleccionadas de F-Spot?"
+msgstr[0] "Rotar la fotografía seleccionada a la derecha"
+msgstr[1] "Rotar las fotografías seleccionadas a la derecha"
 
 #: ../src/MetadataStore.cs:17
 msgid "Creator"
@@ -1985,11 +1986,11 @@ msgstr "Eliminar los ojos rojos del área seleccionada"
 
 #: ../src/PhotoView.cs:167
 msgid "Select an area to crop"
-msgstr ""
+msgstr "Seleccionar un área a recortar"
 
 #: ../src/PhotoView.cs:168
 msgid "Select an area to remove redeye"
-msgstr ""
+msgstr "Seleccionar un área para eliminar ojos rojos"
 
 #: ../src/PhotoView.cs:291
 msgid "No selection available"
@@ -2009,7 +2010,7 @@ msgstr "Error al editar la foto"
 
 #: ../src/PhotoView.cs:476
 msgid "Comment:"
-msgstr ""
+msgstr "Comentario:"
 
 #: ../src/PhotoView.cs:541
 msgid "Adjust the photo colors"
@@ -2084,34 +2085,34 @@ msgid "Fullscreen"
 msgstr "Pantalla completa"
 
 #: ../src/StockIcons.cs:32
-msgid "Slideshow"
-msgstr "Diapositivas"
+msgid "Loading"
+msgstr "Cargando"
 
 #: ../src/StockIcons.cs:33
 msgid "Logo"
 msgstr "Logo"
 
-#: ../src/StockIcons.cs:34
+#: ../src/StockIcons.cs:35
 msgid "Question"
 msgstr "Pregunta"
 
-#: ../src/StockIcons.cs:35
+#: ../src/StockIcons.cs:36
 msgid "Reduce Red-Eye"
 msgstr "Reducir ojos-rojos"
 
-#: ../src/StockIcons.cs:38
+#: ../src/StockIcons.cs:39
 msgid "Sepia Tone"
 msgstr "Tono sepia"
 
-#: ../src/StockIcons.cs:39
-msgid "Loading"
-msgstr "Cargando"
-
 #: ../src/StockIcons.cs:40
+msgid "Slideshow"
+msgstr "Diapositivas"
+
+#: ../src/StockIcons.cs:41
 msgid "Near"
 msgstr "Cerca"
 
-#: ../src/StockIcons.cs:41
+#: ../src/StockIcons.cs:42
 msgid "Far"
 msgstr "Lejos"
 
@@ -2119,10 +2120,6 @@ msgstr "Lejos"
 #: ../src/TagSelectionWidget.cs:574
 msgid "This name is already in use"
 msgstr "Este nombre ya está siendo usado"
-
-#: ../src/TagCommands.cs:122 ../src/TagPopup.cs:20
-msgid "Create New Tag"
-msgstr "Crear nueva etiqueta"
 
 #: ../src/TagCommands.cs:123
 msgid "Name of New Tag:"
