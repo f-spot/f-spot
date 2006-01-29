@@ -8,22 +8,36 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-13 14:24+0300\n"
-"PO-Revision-Date: 2005-09-08 20:50+0200\n"
+"POT-Creation-Date: 2006-01-29 18:16+0200\n"
+"PO-Revision-Date: 2006-01-29 18:27+0200\n"
 "Last-Translator: Stathis Kamperis <stathisk@med.auth.gr>\n"
 "Language-Team: Greek <team@gnome.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);"
 
-#: ../f-spot.desktop.in.in.h:1 ../src/f-spot.glade.h:68
-msgid "F-Spot Photo Album"
-msgstr "Άλμπουμ φωτογραφιών F-Spot"
+#: ../f-spot.desktop.in.in.h:1
+#, fuzzy
+msgid "F-Spot Photo Manager"
+msgstr "Προβολέας εικόνων F-Spot"
 
 #: ../f-spot.desktop.in.in.h:2
-msgid "Photo Album"
-msgstr "Φωτογραφικό άλμπουμ"
+msgid "Organize, enjoy, and share your photos"
+msgstr "Οργανώστε απολαύστε και μοιραστείτε τις φωτογραφίες σας"
+
+#: ../f-spot.desktop.in.in.h:3
+msgid "Photo Manager"
+msgstr ""
+
+#: ../f-spot-view.desktop.in.h:1 ../src/f-spot.glade.h:90
+msgid "F-Spot Photo Viewer"
+msgstr "Προβολέας εικόνων F-Spot"
+
+#: ../f-spot-view.desktop.in.h:2
+#, fuzzy
+msgid "Photo Viewer"
+msgstr "Προβολέας εικόνων F-Spot"
 
 #: ../libeog/eog-file-selection.c:29 ../libeog/eog-file-selection.c:46
 msgid "By Extension"
@@ -105,34 +119,34 @@ msgstr "Αδύνατη η αποθήκευση μη τοπικών αρχείω�
 msgid "Unsupported image type for saving."
 msgstr "Μη υποστηριζόμενος τύπος εικόνας για αποθήκευση."
 
-#: ../libeog/image-view.c:2110
+#: ../libeog/image-view.c:2116
 msgid "interpolation type"
 msgstr "τύπος παρεμβολής "
 
-#: ../libeog/image-view.c:2111
+#: ../libeog/image-view.c:2117
 msgid "the type of interpolation to use"
 msgstr "ο τύπος της παρεμβολής που θα χρησιμοποιηθεί"
 
-#: ../libeog/image-view.c:2117 ../libeog/image-view.c:2124
+#: ../libeog/image-view.c:2123 ../libeog/image-view.c:2130
 msgid "check type"
 msgstr "έλεγχος τύπου"
 
-#: ../libeog/image-view.c:2118
+#: ../libeog/image-view.c:2124
 #, fuzzy
 msgid "the type of chequering to use"
 msgstr "Τύπος παιχνιδιού. Το όνομα της παραλλαγής παιχνιδιού για χρήση."
 
-#: ../libeog/image-view.c:2125
+#: ../libeog/image-view.c:2131
 #, fuzzy
 msgid "the size of chequers to use"
 msgstr "μέγεθος από"
 
-#: ../libeog/image-view.c:2131
+#: ../libeog/image-view.c:2137
 #, fuzzy
 msgid "dither"
 msgstr "Smithers"
 
-#: ../libeog/image-view.c:2132
+#: ../libeog/image-view.c:2138
 #, fuzzy
 msgid "dither type"
 msgstr "Άλλος τύπος"
@@ -158,11 +172,11 @@ msgstr "Προεπισκόπηση"
 msgid "Path"
 msgstr "Διαδρομή"
 
-#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:71
+#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:92
 msgid "File"
 msgstr "Αρχείο"
 
-#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:674
+#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:703
 msgid "Index"
 msgstr "Κατάλογος"
 
@@ -201,7 +215,7 @@ msgstr ""
 "διαδρομή και τα δικαιώματα είναι σωστά και προσπαθήστε ξανά"
 
 #: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:139
-#: ../src/FolderExport.cs:251
+#: ../src/FolderExport.cs:264
 msgid "Transferring Pictures"
 msgstr "Μεταφορά εικόνων"
 
@@ -244,51 +258,49 @@ msgstr "Θύρα"
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "Μεταφορά εικόνας \"{0}\" στο CD"
 
-#: ../src/CDExport.cs:59 ../src/FlickrExport.cs:96 ../src/GalleryExport.cs:421
-#: ../src/ProgressDialog.cs:75
+#. This indicates the current photo is photo {0} of {1} out of photos
+#: ../src/CDExport.cs:59 ../src/FlickrExport.cs:103
+#: ../src/GalleryExport.cs:587 ../src/ProgressDialog.cs:75
+#: ../src/TimeDialog.cs:105
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} από {1}"
 
-#: ../src/CDExport.cs:71 ../src/FlickrExport.cs:101 ../src/FolderExport.cs:167
-#: ../src/GalleryExport.cs:436
+#: ../src/CDExport.cs:71 ../src/FlickrExport.cs:108 ../src/FolderExport.cs:176
+#: ../src/GalleryExport.cs:602
 msgid "Done Sending Photos"
 msgstr "Ολοκληρώθηκε η αποστολή φωτογραφιών"
 
-#: ../src/CDExport.cs:73 ../src/FolderExport.cs:169
+#: ../src/CDExport.cs:73 ../src/FolderExport.cs:178
 msgid "Transfer Complete"
 msgstr "Η μεταφορά ολοκληρώθηκε"
 
-#: ../src/CDExport.cs:79 ../src/FolderExport.cs:174
+#: ../src/CDExport.cs:79 ../src/FolderExport.cs:183
 msgid "Error While Transferring"
 msgstr "Σφάλμα κατά τη μεταφορά"
 
-#: ../src/CDExport.cs:84 ../src/FolderExport.cs:182
+#: ../src/CDExport.cs:84 ../src/FolderExport.cs:189
 msgid "Error Transferring"
 msgstr "Σφάλμα μεταφοράς"
 
-#: ../src/CDExport.cs:99 ../src/FolderExport.cs:202
+#: ../src/CDExport.cs:99 ../src/FolderExport.cs:215
 msgid "Error: Error while transferring; Aborting"
 msgstr "Σφάλμα: Σφάλμα κατά τη μεταφορά - Ματαίωση"
 
-#: ../src/CDExport.cs:102 ../src/FolderExport.cs:205
+#: ../src/CDExport.cs:102 ../src/FolderExport.cs:218
 msgid "Error: File Already Exists; Aborting"
 msgstr "Σφάλμα: Το αρχείο υπάρχει ήδη - Ματαίωση"
 
-#: ../src/ColorDialog.cs:147 ../src/ColorDialog.cs:162
+#: ../src/ColorDialog.cs:301
 #, fuzzy
 msgid "Error saving adjusted photo"
 msgstr "Σφάλμα"
 
-#: ../src/ColorDialog.cs:148 ../src/MainWindow.cs:1304 ../src/PhotoView.cs:296
+#: ../src/ColorDialog.cs:302 ../src/Loupe.cs:53 ../src/MainWindow.cs:1711
+#: ../src/PhotoView.cs:337
 #, fuzzy, csharp-format
-msgid "Received exception \"{0}\". Unable to save image {1}"
+msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Ελήφθη αποθήκευση εικόνα "
-
-#: ../src/ColorDialog.cs:163
-#, csharp-format
-msgid "F-Spot {0} cannot yet edit images of this type"
-msgstr "Το F-Spot {0} δε μπορεί ακόμη να επεξεργαστεί εικόνες αυτού του τύπου"
 
 #: ../src/Exif.cs:226
 msgid "Image Directory"
@@ -314,36 +326,36 @@ msgstr "Κατάλογος InterOperability"
 msgid "Unknown Directory"
 msgstr "Άγνωστος κατάλογος"
 
-#: ../src/FlickrExport.cs:49
+#: ../src/FlickrExport.cs:56
 msgid "Enter Password"
 msgstr "Εισαγωγή κωδικού"
 
-#: ../src/FlickrExport.cs:58
+#: ../src/FlickrExport.cs:65
 msgid "Enter Password for "
 msgstr "Εισαγωγή κωδικού για "
 
-#: ../src/FlickrExport.cs:91 ../src/GalleryExport.cs:417
+#: ../src/FlickrExport.cs:98 ../src/GalleryExport.cs:583
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Ανέβασμα εικόνας  \"{0}\""
 
-#: ../src/FlickrExport.cs:103 ../src/GalleryExport.cs:438
+#: ../src/FlickrExport.cs:110 ../src/GalleryExport.cs:604
 msgid "Upload Complete"
 msgstr "Ανέβασμα ολοκληρώθηκε"
 
-#: ../src/FlickrExport.cs:108
+#: ../src/FlickrExport.cs:115
 msgid "Error Uploading To Flickr"
 msgstr "Σφάλμα ανεβάσματος στο Flickr"
 
-#: ../src/FlickrExport.cs:138 ../src/GalleryExport.cs:387
+#: ../src/FlickrExport.cs:145 ../src/GalleryExport.cs:547
 msgid "Uploading Pictures"
 msgstr "Ανέβασμα εικόνων"
 
-#: ../src/FlickrExport.cs:148
+#: ../src/FlickrExport.cs:163
 msgid "Unable to log on."
 msgstr "Αδύνατη η σύνδεση."
 
-#: ../src/FlickrExport.cs:149
+#: ../src/FlickrExport.cs:164
 msgid ""
 "F-Spot was unable to log on to Flickr.  Make sure the settings you supplied "
 "are correct."
@@ -351,24 +363,29 @@ msgstr ""
 "Το F-Spot δεν κατάφερε να συνδεθεί στο Flickr. Βεβαιωθείτε ότι οι ρυθμίσεις "
 "που παρείχατε είναι σωστές."
 
-#: ../src/FolderExport.cs:129
+#: ../src/FolderExport.cs:105
+#, fuzzy
+msgid "Select Export Folder"
+msgstr "Επιλογή φακέλου"
+
+#: ../src/FolderExport.cs:138
 msgid "Building Gallery"
 msgstr "Κατασκευή συλλογής"
 
 #. Abbreviation of previous
-#: ../src/FolderExport.cs:672
+#: ../src/FolderExport.cs:701
 msgid "Prev"
 msgstr "Προηγ"
 
-#: ../src/FolderExport.cs:677 ../src/f-spot.glade.h:95
+#: ../src/FolderExport.cs:706 ../src/f-spot.glade.h:115
 msgid "Next"
 msgstr "Επόμ"
 
-#: ../src/FolderExport.cs:785
+#: ../src/FolderExport.cs:814
 msgid "Gallery generated by"
 msgstr "Η συλλογή δημιουργήθηκε από"
 
-#: ../src/FolderExport.cs:828
+#: ../src/FolderExport.cs:857
 msgid "Page:"
 msgstr "Σελίδα:"
 
@@ -389,286 +406,390 @@ msgid "..."
 msgstr "..."
 
 #: ../src/f-spot.glade.h:5
+msgid "0000:00:00 00:00:00"
+msgstr "0000:00:00 00:00:00"
+
+#: ../src/f-spot.glade.h:6
+msgid "00:00:00"
+msgstr "00:00:00"
+
+#: ../src/f-spot.glade.h:7
 msgid "<b></b>"
 msgstr "<b></b>"
 
-#: ../src/f-spot.glade.h:6
+#: ../src/f-spot.glade.h:8
 msgid "<b>Account</b>"
 msgstr "<b>Λογαριασμός</b>"
 
-#: ../src/f-spot.glade.h:7
+#: ../src/f-spot.glade.h:9
+msgid "<b>Action</b>"
+msgstr "<b>Ενέργεια</b>"
+
+#: ../src/f-spot.glade.h:10
 msgid "<b>Album</b>"
 msgstr "<b>Άλμπουμ</b>"
 
-#: ../src/f-spot.glade.h:8
+#: ../src/f-spot.glade.h:11
+#, fuzzy
+msgid "<b>Co_rrections</b>"
+msgstr "<b>Φωτογραφίες</b>"
+
+#: ../src/f-spot.glade.h:12
+msgid "<b>Color Management</b>"
+msgstr "<b>Διαχείριση Χρώματος</b>"
+
+#: ../src/f-spot.glade.h:13
 msgid "<b>Color Temperature</b>"
 msgstr "<b>Θερμοκρασία χρώματος</b>"
 
-#: ../src/f-spot.glade.h:9
+#: ../src/f-spot.glade.h:14
 msgid "<b>Destination</b>"
 msgstr "<b>Προορισμός</b>"
 
-#: ../src/f-spot.glade.h:10
+#: ../src/f-spot.glade.h:15
 msgid "<b>End Date</b>"
 msgstr "<b>Τελική ημέρα</b>"
 
-#: ../src/f-spot.glade.h:11
+#: ../src/f-spot.glade.h:16
 msgid "<b>Export Method</b>"
 msgstr "<b>Μέθοδος εξαγωγής</b>"
 
-#: ../src/f-spot.glade.h:12
+#: ../src/f-spot.glade.h:17
 msgid "<b>Exposure</b>"
 msgstr "<b>Έκθεση</b>"
 
-#: ../src/f-spot.glade.h:13
-msgid "<b>From Image</b>"
-msgstr "<b>Από εικόνα</b>"
-
-#: ../src/f-spot.glade.h:14
-msgid "<b>Gallery</b>"
-msgstr "<b>Συλλογή εικόνων</b>"
-
-#: ../src/f-spot.glade.h:15
-msgid "<b>Histogram</b>"
-msgstr "<b>Ιστόγραμμα</b>"
-
-#: ../src/f-spot.glade.h:16
-msgid "<b>Items to Burn</b>"
-msgstr "<b>Αντικείμενα προς εγγραφή</b>"
-
-#: ../src/f-spot.glade.h:17
-msgid "<b>Photograph Layout</b>"
-msgstr "<b>Διάταξη φωτογραφίας</b>"
-
 #: ../src/f-spot.glade.h:18
-msgid "<b>Photos</b>"
+#, fuzzy
+msgid "<b>From Photo</b>"
 msgstr "<b>Φωτογραφίες</b>"
 
 #: ../src/f-spot.glade.h:19
-msgid "<b>Predefined</b>"
-msgstr "<b>Προκαθορισμένο</b>"
+msgid "<b>Gallery</b>"
+msgstr "<b>Συλλογή εικόνων</b>"
 
 #: ../src/f-spot.glade.h:20
-msgid "<b>Preview</b>"
-msgstr "<b>Προεπισκόπηση</b>"
+#, fuzzy
+msgid "<b>Histo_gram</b>"
+msgstr "<b>Ιστόγραμμα</b>"
 
 #: ../src/f-spot.glade.h:21
-msgid "<b>Printer Details</b>"
-msgstr "<b>Λεπτομέρειες εκτυπωτή</b>"
+msgid "<b>Histogram</b>"
+msgstr "<b>Ιστόγραμμα</b>"
 
 #: ../src/f-spot.glade.h:22
-msgid "<b>Start Date</b>"
+#, fuzzy
+msgid "<b>Metadata</b>"
 msgstr "<b>Αρχική ημέρα</b>"
 
 #: ../src/f-spot.glade.h:23
+msgid "<b>Photograph Layout</b>"
+msgstr "<b>Διάταξη φωτογραφίας</b>"
+
+#: ../src/f-spot.glade.h:24
+#, fuzzy
+msgid "<b>Photos to Burn</b>"
+msgstr "<b>Αντικείμενα προς εγγραφή</b>"
+
+#: ../src/f-spot.glade.h:25
+msgid "<b>Photos</b>"
+msgstr "<b>Φωτογραφίες</b>"
+
+#: ../src/f-spot.glade.h:26
+msgid "<b>Predefined</b>"
+msgstr "<b>Προκαθορισμένο</b>"
+
+#: ../src/f-spot.glade.h:27
+msgid "<b>Preview</b>"
+msgstr "<b>Προεπισκόπηση</b>"
+
+#: ../src/f-spot.glade.h:28
+msgid "<b>Printer Details</b>"
+msgstr "<b>Λεπτομέρειες εκτυπωτή</b>"
+
+#: ../src/f-spot.glade.h:29
+#, fuzzy
+msgid "<b>Reference Photo</b>"
+msgstr "<b>Φωτογραφίες</b>"
+
+#: ../src/f-spot.glade.h:30
+msgid "<b>Start Date</b>"
+msgstr "<b>Αρχική ημέρα</b>"
+
+#: ../src/f-spot.glade.h:31
 msgid "<b>Style</b>"
 msgstr "<b>Στυλ</b>"
 
-#: ../src/f-spot.glade.h:24
+#: ../src/f-spot.glade.h:32
+#, fuzzy
+msgid "<b>_White Balance</b>"
+msgstr "<b>Στυλ</b>"
+
+#: ../src/f-spot.glade.h:33
 msgid "<small> </small>"
 msgstr "<small> </small>"
 
-#: ../src/f-spot.glade.h:25
+#: ../src/f-spot.glade.h:34
+msgid "<small>1 of 1</small>"
+msgstr "<small>1 από 1</small>"
+
+#: ../src/f-spot.glade.h:35
 msgid "<small></small>"
 msgstr "<small></small>"
 
-#: ../src/f-spot.glade.h:26
+#: ../src/f-spot.glade.h:36
+msgid ""
+"<small><i>Enable this option to store tags and descriptions inside \n"
+"supported image formats.</i></small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:38
+#, fuzzy
+msgid "<small>C_ontrast:</small>"
+msgstr "<small></small>"
+
+#: ../src/f-spot.glade.h:39
+#, fuzzy
+msgid "<small>Te_mp:</small>"
+msgstr "<small></small>"
+
+#: ../src/f-spot.glade.h:40
+#, fuzzy
+msgid "<small>_Brightness:</small>"
+msgstr "<small></small>"
+
+#: ../src/f-spot.glade.h:41
+#, fuzzy
+msgid "<small>_Exposure:</small>"
+msgstr "<small></small>"
+
+#: ../src/f-spot.glade.h:42
+#, fuzzy
+msgid "<small>_Hue:</small>"
+msgstr "<small></small>"
+
+#: ../src/f-spot.glade.h:43
+#, fuzzy
+msgid "<small>_Saturation:</small>"
+msgstr "<small></small>"
+
+#: ../src/f-spot.glade.h:44
+#, fuzzy
+msgid "<small>_Tint:</small>"
+msgstr "<small></small>"
+
+#: ../src/f-spot.glade.h:45
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
 msgstr "<span weight='bold' size='larger'>Σφάλμα σύνδεσης στη Συλλογή</span>\n"
 
-#: ../src/f-spot.glade.h:28
+#: ../src/f-spot.glade.h:47
 msgid "Ad_just Color..."
 msgstr "Προ_σαρμογή χρώματος..."
 
-#: ../src/f-spot.glade.h:29
+#: ../src/f-spot.glade.h:48
 msgid "Adjust Color"
 msgstr "Προσαρμογή χρώματος"
 
-#: ../src/f-spot.glade.h:30
-msgid "Arranged _By"
+#: ../src/f-spot.glade.h:49
+#, fuzzy
+msgid "Adjust Time"
+msgstr "Προσαρμογή χρώματος"
+
+#: ../src/f-spot.glade.h:50
+msgid "Adjust _Time"
+msgstr ""
+
+#: ../src/f-spot.glade.h:51
+msgid "Adjust all photos by {}"
+msgstr ""
+
+#: ../src/f-spot.glade.h:52
+#, fuzzy
+msgid "Adjust the date of all photos to {}"
+msgstr "Προσαρμογή των χρώματων της εικόνας"
+
+#: ../src/f-spot.glade.h:53
+msgid "Appears to have been taken on:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:54
+#, fuzzy
+msgid "Arranged _by"
 msgstr "Ταξινομημένα _κατά"
 
-#: ../src/f-spot.glade.h:31
-msgid "Attach Tag:"
+#: ../src/f-spot.glade.h:55
+#, fuzzy
+msgid "Attach tag:"
 msgstr "Επισύναψη ετικέτας:"
 
-#: ../src/f-spot.glade.h:32
-msgid "Border:"
-msgstr "Πλαίσιο:"
-
-#: ../src/f-spot.glade.h:33
-msgid "Brightness:"
-msgstr "Φωτεινότητα:"
-
-#: ../src/f-spot.glade.h:34 ../src/StockIcons.cs:26
+#: ../src/f-spot.glade.h:56 ../src/StockIcons.cs:26
 msgid "Browse"
 msgstr "Περιήγηση"
 
-#: ../src/f-spot.glade.h:35
-#, fuzzy
-msgid "Browse Previously Scheduled Files"
-msgstr "Περιήγηση Αρχεία"
-
-#: ../src/f-spot.glade.h:36
+#: ../src/f-spot.glade.h:57
 msgid "CD"
 msgstr "CD"
 
-#: ../src/f-spot.glade.h:37
+#: ../src/f-spot.glade.h:58
+#, fuzzy
+msgid "C_aption:"
+msgstr "Λεζάντα:"
+
+#: ../src/f-spot.glade.h:59
+#, fuzzy
+msgid "C_ontrast:"
+msgstr "Αντίθεση:"
+
+#: ../src/f-spot.glade.h:60
 msgid "Camera Selection"
 msgstr "Επιλογή κάμερας"
 
-#: ../src/f-spot.glade.h:38
-msgid "Caption:"
-msgstr "Λεζάντα:"
-
-#: ../src/f-spot.glade.h:39
-msgid "Category:"
-msgstr "Κατηγορία:"
-
-#: ../src/f-spot.glade.h:40
+#: ../src/f-spot.glade.h:61
 msgid "Co_nfigure"
 msgstr "_Ρύθμιση"
 
-#: ../src/f-spot.glade.h:41
-msgid "Contrast:"
-msgstr "Αντίθεση:"
+#: ../src/f-spot.glade.h:62
+#, fuzzy
+msgid "Copy Locat_ion"
+msgstr "Αντιγραφή τοποθεσίας εικόνας"
 
-#: ../src/f-spot.glade.h:42
-msgid "Copy Files To: "
-msgstr "Αντιγραφή αρχείων σε:"
+#: ../src/f-spot.glade.h:63
+msgid "Copy _Files to: "
+msgstr "Αντιγραφή _αρχείων σε: "
 
-#: ../src/f-spot.glade.h:43
+#: ../src/f-spot.glade.h:64
+msgid "Copy file to the Photos folder"
+msgstr ""
+
+#: ../src/f-spot.glade.h:65
 msgid "Create CD"
 msgstr "Δημιουργία CD"
 
-#: ../src/f-spot.glade.h:44
-msgid "Create New _Category..."
-msgstr "Δημιουργία ν_έας κατηγορίας..."
-
-#: ../src/f-spot.glade.h:45
+#: ../src/f-spot.glade.h:66
 msgid "Create New _Tag..."
 msgstr "Δημιουργία νέας _ετικέτας..."
 
-#: ../src/f-spot.glade.h:46
-msgid "Create _new version..."
+#: ../src/f-spot.glade.h:67
+#, fuzzy
+msgid "Create _New Version..."
 msgstr "Δημιουργία _νέας έκδοσης..."
 
-#: ../src/f-spot.glade.h:47
+#: ../src/f-spot.glade.h:68
+msgid "Create _gallery using \"Original\""
+msgstr ""
+
+#: ../src/f-spot.glade.h:69
+msgid "Create standalone _web gallery"
+msgstr ""
+
+#: ../src/f-spot.glade.h:70
 #, fuzzy
-msgid "Crop Photo to Fit"
+msgid "Crop photo to _fit"
 msgstr "Φωτογραφία Ταίριασμα"
 
-#: ../src/f-spot.glade.h:48
-msgid "Description:"
+#: ../src/f-spot.glade.h:71
+#, fuzzy
+msgid "D_escription:"
 msgstr "Περιγραφή:"
 
-#: ../src/f-spot.glade.h:49
-#, fuzzy
-msgid "Destination Temp"
-msgstr "Φακέλος Προορισμού:"
-
-#: ../src/f-spot.glade.h:50
+#: ../src/f-spot.glade.h:72
 msgid "Directory"
 msgstr "Κατάλογος"
 
-#: ../src/f-spot.glade.h:51
+#: ../src/f-spot.glade.h:73
 msgid "Display Side_bar"
 msgstr "Εμφάνιση πλε_υρικής στήλης"
 
-#: ../src/f-spot.glade.h:52
+#: ../src/f-spot.glade.h:74
 msgid "Display T_ags"
 msgstr "Προβολή ε_τικετών"
 
-#: ../src/f-spot.glade.h:53
+#: ../src/f-spot.glade.h:75
+#, fuzzy
+msgid "Display Too_lbar"
+msgstr "Προβολή ε_τικετών"
+
+#: ../src/f-spot.glade.h:76
 msgid "Display _Dates"
 msgstr "Εμφάνιση ημερο_μηνιών"
 
-#: ../src/f-spot.glade.h:54
+#: ../src/f-spot.glade.h:77
 msgid "Display _Timeline"
 msgstr "Προβολή _ζώνης ώρας"
 
-#: ../src/f-spot.glade.h:55
-msgid "E-Mail:"
+#: ../src/f-spot.glade.h:78
+msgid "E-_Mail:"
 msgstr "E-Mail:"
 
-#: ../src/f-spot.glade.h:56
-msgid "E_xport To CD..."
+#: ../src/f-spot.glade.h:79
+#, fuzzy
+msgid "E_xport titles and comments"
+msgstr "Εξαγωγή τίτλων και σχολίων"
+
+#: ../src/f-spot.glade.h:80
+#, fuzzy
+msgid "E_xport to CD..."
 msgstr "Ε_ξαγωγή σε CD..."
 
-#: ../src/f-spot.glade.h:57
+#: ../src/f-spot.glade.h:81
 msgid "Edit Tag Icon"
 msgstr "Επεξεργασία εικονιδίου ετικέτας"
 
-#: ../src/f-spot.glade.h:58
+#: ../src/f-spot.glade.h:82
+msgid "Edit icon"
+msgstr "Επεξεργασία εικονιδίου"
+
+#: ../src/f-spot.glade.h:83
 msgid "Export"
 msgstr "Εξαγωγή"
 
-#: ../src/f-spot.glade.h:59
-msgid "Export Tags and Categories"
-msgstr "Εξαγωγή Ετικετών και Κατηγοριών"
-
-#: ../src/f-spot.glade.h:60
-msgid "Export tags and categories"
-msgstr "Εξαγωγή ετικετών και κατηγοριών"
-
-#: ../src/f-spot.glade.h:61
-msgid "Export titles and comments"
+#: ../src/f-spot.glade.h:84
+#, fuzzy
+msgid "Export _titles and comments"
 msgstr "Εξαγωγή τίτλων και σχολίων"
 
-#: ../src/f-spot.glade.h:62
-msgid "Export to Album:"
-msgstr "Εξαγωγή στο Άλμπουμ:"
-
-#: ../src/f-spot.glade.h:63
-msgid "Export to Original"
-msgstr "Εξαγωγή στο αρχικό"
-
-#: ../src/f-spot.glade.h:64
+#: ../src/f-spot.glade.h:85
 msgid "Export to _Flickr..."
 msgstr "Εξαγωγή στο _Flickr..."
 
-#: ../src/f-spot.glade.h:65
+#: ../src/f-spot.glade.h:86
 msgid "Export to _Folder..."
 msgstr "Εξαγωγή στο _φάκελο..."
 
-#: ../src/f-spot.glade.h:66
+#: ../src/f-spot.glade.h:87
 msgid "Export to _Web Gallery..."
 msgstr "Εξαγωγή σε συλλογή _Web..."
 
-#: ../src/f-spot.glade.h:67
+#: ../src/f-spot.glade.h:88
 msgid "F-Spot"
 msgstr "F-Spot"
 
-#: ../src/f-spot.glade.h:69
-msgid "F-Spot Photo Viewer"
-msgstr "Προβολέας εικόνων F-Spot"
+#: ../src/f-spot.glade.h:89
+msgid "F-Spot Photo Album"
+msgstr "Άλμπουμ φωτογραφιών F-Spot"
 
-#: ../src/f-spot.glade.h:70
+#: ../src/f-spot.glade.h:91
 msgid "F-Spot View"
 msgstr "Προβολή F-Spot"
 
-#: ../src/f-spot.glade.h:72
+#: ../src/f-spot.glade.h:93
 msgid "Fin_d"
 msgstr "Εύ_ρεση"
 
-#: ../src/f-spot.glade.h:73
+#: ../src/f-spot.glade.h:94
 msgid "Find by _Tag"
 msgstr "Εύρεση με βάση την _ετικέτα"
 
-#: ../src/f-spot.glade.h:74
-#, fuzzy
-msgid "Flickr"
-msgstr "Flikr"
-
-#: ../src/f-spot.glade.h:75
+#: ../src/f-spot.glade.h:95
 msgid "Folder Export"
 msgstr "Φάκελος εξαγωγής"
 
-#: ../src/f-spot.glade.h:76
-msgid "Folder URI:"
-msgstr "Κατάλογος URI:"
+#: ../src/f-spot.glade.h:96
+msgid ""
+"From Screen\n"
+"Standard RGB"
+msgstr ""
 
-#: ../src/f-spot.glade.h:77
+#: ../src/f-spot.glade.h:98
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
@@ -676,23 +797,21 @@ msgstr ""
 "Πλήρης σελίδα\n"
 "Κανονικό - 4x6"
 
-#: ../src/f-spot.glade.h:79 ../src/StockIcons.cs:30
-msgid "Fullscreen"
-msgstr "Πλήρης οθόνη"
+#: ../src/f-spot.glade.h:100
+#, fuzzy
+msgid "G_allery Name:"
+msgstr "Όνομα συλλογής:"
 
-#: ../src/f-spot.glade.h:80
+#: ../src/f-spot.glade.h:101
+#, fuzzy
+msgid "G_allery:"
+msgstr "Συλλογή:"
+
+#: ../src/f-spot.glade.h:102
 msgid "Gallery"
 msgstr "Συλλογή"
 
-#: ../src/f-spot.glade.h:81
-msgid "Gallery Name:"
-msgstr "Όνομα συλλογής:"
-
-#: ../src/f-spot.glade.h:82
-msgid "Gallery:"
-msgstr "Συλλογή:"
-
-#: ../src/f-spot.glade.h:83
+#: ../src/f-spot.glade.h:103
 msgid ""
 "Hairline\n"
 "0.25\"\n"
@@ -700,35 +819,39 @@ msgid ""
 "1\"\n"
 msgstr ""
 
-#: ../src/f-spot.glade.h:88
-msgid "Hue:"
-msgstr "Απόχρωση:"
-
-#: ../src/f-spot.glade.h:89
-msgid "Icon:"
-msgstr "Εικονίδιο:"
-
-#: ../src/f-spot.glade.h:90
+#: ../src/f-spot.glade.h:108
 msgid "Import"
 msgstr "Εισαγωγή"
 
-#: ../src/f-spot.glade.h:91
+#: ../src/f-spot.glade.h:109
+#, fuzzy
+msgid "Import From C_amera..."
+msgstr "Εισαγωγή από _κάμερα..."
+
+#: ../src/f-spot.glade.h:110
 msgid "Import Source:"
 msgstr "Πηγή εισαγωγής:"
 
-#: ../src/f-spot.glade.h:92
-msgid "Import files after copy."
-msgstr "Εισαγωγή αρχείων μετά την αντιγραφή."
+#: ../src/f-spot.glade.h:111
+#, fuzzy
+msgid "Import photos"
+msgstr "Εισαγωγή από:"
 
-#: ../src/f-spot.glade.h:93
-msgid "Import from C_amera..."
-msgstr "Εισαγωγή από _κάμερα..."
-
-#: ../src/f-spot.glade.h:94
-msgid "Include subdirectories."
+#: ../src/f-spot.glade.h:112
+#, fuzzy
+msgid "Include subdirectories"
 msgstr "Συμπερίληψη υποκαταλόγων."
 
-#: ../src/f-spot.glade.h:96
+#: ../src/f-spot.glade.h:113 ../src/InfoDisplay.cs:11
+msgid "Metadata Browser"
+msgstr ""
+
+#: ../src/f-spot.glade.h:114
+#, fuzzy
+msgid "N_umber of Copies:"
+msgstr "Αριθμός αντιγράφων:"
+
+#: ../src/f-spot.glade.h:116
 msgid ""
 "None\n"
 "Title\n"
@@ -742,379 +865,554 @@ msgstr ""
 "Ημέρα\n"
 "Λεπτομέρειες φωτογραφίας"
 
-#: ../src/f-spot.glade.h:101
-msgid "Number of Copies:"
-msgstr "Αριθμός αντιγράφων:"
-
-#: ../src/f-spot.glade.h:102
-msgid "Open album in browser when done uploading"
+#: ../src/f-spot.glade.h:121
+#, fuzzy
+msgid "Open _album in browser when done uploading"
 msgstr ""
 "Άνοιγμα του άλμπουμ στο φυλλομετρητή μετά την ολοκλήρωση του ανεβάσματος"
 
-#: ../src/f-spot.glade.h:103
-msgid "Open destination when done exporting."
+#: ../src/f-spot.glade.h:122
+#, fuzzy
+msgid "Open _destination when done exporting"
 msgstr "Άνοιγμα προορισμού μετά την ολοκλήρωση της εξαγωγής."
 
-#: ../src/f-spot.glade.h:104
+#: ../src/f-spot.glade.h:123
+msgid "P_arent Tag:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:124
+msgid "P_hoto Source:"
+msgstr "Πηγή _φωτογραφίας:"
+
+#: ../src/f-spot.glade.h:125
 msgid "Page 1 of 3"
 msgstr "Σελίδα 1 από 3"
 
-#: ../src/f-spot.glade.h:105
-msgid "Password:"
-msgstr "Κωδικός:"
-
-#: ../src/f-spot.glade.h:106
+#: ../src/f-spot.glade.h:126
 msgid "Pause"
 msgstr "Παύση"
 
-#: ../src/f-spot.glade.h:107
+#: ../src/f-spot.glade.h:127
 msgid "Photo 0 of 0"
 msgstr "Φωτογραφία 0 από 0"
 
-#: ../src/f-spot.glade.h:108
-msgid "Photo Source:"
-msgstr "Πηγή φωτογραφίας:"
+#: ../src/f-spot.glade.h:128
+msgid "Photo _Size:"
+msgstr "_Μέγεθος φωτογραφίας:"
 
-#: ../src/f-spot.glade.h:109
-msgid "PhotoSize:"
-msgstr "Μέγεθος φωτογραφίας:"
-
-#: ../src/f-spot.glade.h:110
-msgid "Plain Files."
-msgstr "Κανονικά αρχεία."
-
-#: ../src/f-spot.glade.h:111
+#: ../src/f-spot.glade.h:129
 msgid "Please verify that the settings for this gallery are correct."
 msgstr "Παρακαλώ ελέγξτε ότι οι ρυθμίσεις γι' αυτή τη συλλογή είναι σωστές."
 
-#: ../src/f-spot.glade.h:112
-msgid "Prefix: "
-msgstr "Πρόθεμα:"
+#: ../src/f-spot.glade.h:130
+msgid "Preferences"
+msgstr "Προτιμήσεις"
 
-#: ../src/f-spot.glade.h:113
+#: ../src/f-spot.glade.h:131
 msgid "Previous"
 msgstr "Προηγούμενο"
 
-#: ../src/f-spot.glade.h:114
-#, fuzzy
-msgid "Print Crop Marks"
+#: ../src/f-spot.glade.h:132
+msgid "Print"
 msgstr "Εκτύπωση"
 
-#: ../src/f-spot.glade.h:115
+#: ../src/f-spot.glade.h:133
+#, fuzzy
+msgid "Print crop _marks"
+msgstr "Εκτύπωση"
+
+#: ../src/f-spot.glade.h:134
+#, fuzzy
+msgid "Re_fresh Thumbnail"
+msgstr "_Ενημέρωση μικρογραφίας"
+
+#: ../src/f-spot.glade.h:135
 msgid "Rem_ove Tag"
 msgstr "Α_φαίρεση ετικέτας"
 
-#: ../src/f-spot.glade.h:116
-msgid "Resize to: "
-msgstr "Αλλαγή μεγέθους σε:"
-
-#: ../src/f-spot.glade.h:117 ../src/StockIcons.cs:35
+#: ../src/f-spot.glade.h:136 ../src/StockIcons.cs:37
 msgid "Rotate _Left"
 msgstr "Περιστροφή _αριστερά"
 
-#: ../src/f-spot.glade.h:118 ../src/StockIcons.cs:36
+#: ../src/f-spot.glade.h:137 ../src/StockIcons.cs:38
 msgid "Rotate _Right"
 msgstr "Περιστροφή _δεξιά"
 
-#: ../src/f-spot.glade.h:119
-msgid "Saturation:"
-msgstr "Κορεσμός:"
-
-#: ../src/f-spot.glade.h:120
-msgid "Scale images to no larger than: "
-msgstr "Κλιμάκωση εικόνων όχι περισσότερο από:"
-
-#: ../src/f-spot.glade.h:121
-msgid "Select Files To Copy From Camera..."
+#: ../src/f-spot.glade.h:138
+#, fuzzy
+msgid "Select Photos to Copy From Camera..."
 msgstr "Επιλέξτε τα αρχεία που θέλετε να αντιγράψετε από την κάμερα..."
 
-#: ../src/f-spot.glade.h:122
-msgid "Select Tags..."
-msgstr "Επιλογή ετικετών..."
-
-#: ../src/f-spot.glade.h:123
+#: ../src/f-spot.glade.h:139
 msgid "Select _All"
 msgstr "Επιλογή _όλων"
 
-#: ../src/f-spot.glade.h:124
+#: ../src/f-spot.glade.h:140
 msgid "Select _None"
 msgstr "Επιλογή _κανενός"
 
-#: ../src/f-spot.glade.h:125
-msgid "Select a tag..."
+#: ../src/f-spot.glade.h:141
+#, fuzzy
+msgid "Select a Tag..."
 msgstr "Επιλογή ετικέτας..."
 
-#: ../src/f-spot.glade.h:126
-msgid "Select the camera you want to transfer files from."
+#: ../src/f-spot.glade.h:142
+#, fuzzy
+msgid "Select the camera from which you want to transfer files"
 msgstr "Επιλέξτε την κάμερα απ' όπου θέλετε να μεταφέρετε αρχεία."
 
-#: ../src/f-spot.glade.h:127
+#: ../src/f-spot.glade.h:143
 msgid "Selected Camera: "
 msgstr "Επιλεγμένη κάμερα:"
 
-#: ../src/f-spot.glade.h:128
+#: ../src/f-spot.glade.h:144
 msgid ""
 "Selection\n"
 "Gallery\n"
 "Viewport"
 msgstr ""
 
-#: ../src/f-spot.glade.h:131
+#: ../src/f-spot.glade.h:147
 msgid "Send _Mail..."
 msgstr "Α_ποστολή Μail..."
 
-#: ../src/f-spot.glade.h:132
+#: ../src/f-spot.glade.h:148
+#, fuzzy
+msgid "Set Date Range"
+msgstr "Ορισμός εύρους _ημερομηνίας..."
+
+#: ../src/f-spot.glade.h:149
 msgid "Set _Date Range..."
 msgstr "Ορισμός εύρους _ημερομηνίας..."
 
-#: ../src/f-spot.glade.h:133
+#: ../src/f-spot.glade.h:150
 msgid "Set as _Background"
 msgstr "Ορισμός ως _παρασκήνιο"
 
-#: ../src/f-spot.glade.h:134
+#: ../src/f-spot.glade.h:151
 msgid "Show or hide the side pane"
 msgstr ""
 
-#: ../src/f-spot.glade.h:135
+#: ../src/f-spot.glade.h:152
 msgid "Show or hide the toolbar"
 msgstr "Εμφάνιση ή απόκρυψη της εργαλειοθήκης"
 
-#: ../src/f-spot.glade.h:136
+#: ../src/f-spot.glade.h:153
 msgid "Side _pane"
 msgstr ""
 
-#: ../src/f-spot.glade.h:137 ../src/StockIcons.cs:31
-msgid "Slideshow"
-msgstr "Διαφάνεια"
-
-#: ../src/f-spot.glade.h:138
+#: ../src/f-spot.glade.h:154
 #, fuzzy
-msgid "Source Temp"
+msgid "So_urce Temp"
 msgstr "Πηγή POP URI"
 
-#: ../src/f-spot.glade.h:139
-msgid "Strip Image Metadata"
-msgstr "Αφαίρεση μεταδεδομένων εικόνας"
+#: ../src/f-spot.glade.h:155
+msgid ""
+"Standard RGB\n"
+"Image Profile\n"
+"Custom\n"
+msgstr ""
 
-#: ../src/f-spot.glade.h:140
-msgid "Strip metadata"
+#: ../src/f-spot.glade.h:159
+#, fuzzy
+msgid "Strip _metadata"
 msgstr "Αφαίρεση μεταδεδομένων"
 
-#: ../src/f-spot.glade.h:141 ../src/TagCommands.cs:295
-msgid "Tag name:"
-msgstr "Όνομα ετικέτας:"
+#: ../src/f-spot.glade.h:160
+#, fuzzy
+msgid "Strip image _metadata"
+msgstr "Αφαίρεση μεταδεδομένων εικόνας"
 
-#: ../src/f-spot.glade.h:142
+#: ../src/f-spot.glade.h:161
+#, fuzzy
+msgid "Tags: "
+msgstr "_Ετικέτες"
+
+#: ../src/f-spot.glade.h:162
 msgid "Toolbar"
 msgstr "Εργαλειοθήκη"
 
-#: ../src/f-spot.glade.h:143
-msgid "URI:"
-msgstr "URI:"
-
-#: ../src/f-spot.glade.h:144
-msgid "URL:"
+#: ../src/f-spot.glade.h:163
+msgid "U_RL:"
 msgstr "URL:"
 
-#: ../src/f-spot.glade.h:145
-msgid "Use Original."
-msgstr "Χρήση αρχικής."
-
-#: ../src/f-spot.glade.h:146
-msgid "Use static HTML."
-msgstr "Χρήση στατικού HTML."
-
-#: ../src/f-spot.glade.h:147
-msgid "Username:"
-msgstr "Όνομα χρήστη:"
-
-#: ../src/f-spot.glade.h:148
+#: ../src/f-spot.glade.h:164
 msgid "View"
 msgstr "Προβολή"
 
-#: ../src/f-spot.glade.h:149
-msgid "View photos in browser when done uploading"
+#: ../src/f-spot.glade.h:165
+msgid "Was actually taken on: "
 msgstr ""
-"Προβολή φωτογραφιών στο φυλλομετρητή μετά την ολοκλήρωση του ανεβάσματος"
 
-#: ../src/f-spot.glade.h:150
-msgid "Virtual Filesystem"
-msgstr "Εικονικό σύστημα αρχείων"
-
-#: ../src/f-spot.glade.h:151
+#: ../src/f-spot.glade.h:166
 #, fuzzy
-msgid "Will print Using: US Letter size on Generic Postscript"
+msgid "Will print using: US Letter size on Generic Postscript"
 msgstr "εκτύπωση Letter μέγεθος στο Γενικό"
 
-#: ../src/f-spot.glade.h:152
-msgid "Write only these Items to CD"
-msgstr "Εγγραφή μόνο αυτών των αντικειμένων στο CD"
+#: ../src/f-spot.glade.h:167
+msgid "Write _metadata to file"
+msgstr ""
 
-#: ../src/f-spot.glade.h:153
-msgid "Zoom _In"
+#: ../src/f-spot.glade.h:168
+msgid "Zoom _in"
 msgstr "_Μεγέθυνση"
 
-#: ../src/f-spot.glade.h:154
-msgid "Zoom _Out"
+#: ../src/f-spot.glade.h:169
+msgid "Zoom _out"
 msgstr "Σ_μίκρυνση"
 
-#: ../src/f-spot.glade.h:155
+#: ../src/f-spot.glade.h:170
+msgid "Zoom in"
+msgstr "Μεγέθυνση"
+
+#: ../src/f-spot.glade.h:171
+msgid "Zoom out"
+msgstr "Σμίκρυνση"
+
+#: ../src/f-spot.glade.h:172
+msgid "_Album Name:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:173
 msgid "_Attach Tag"
 msgstr "_Επισύναψη ετικέτας"
 
-#: ../src/f-spot.glade.h:156
-msgid "_Attach Tag To Selection"
+#: ../src/f-spot.glade.h:174
+#, fuzzy
+msgid "_Attach Tag to Selection"
 msgstr "Ε_πισύναψη ετικέτας στην επιλογή"
 
-#: ../src/f-spot.glade.h:157
+#: ../src/f-spot.glade.h:175
+#, fuzzy
+msgid "_Border:"
+msgstr "Πλαίσιο:"
+
+#: ../src/f-spot.glade.h:176
+msgid "_Brightness:"
+msgstr "_Φωτεινότητα:"
+
+#: ../src/f-spot.glade.h:177
+#, fuzzy
+msgid "_Browse Previously Scheduled Files"
+msgstr "Περιήγηση Αρχεία"
+
+#: ../src/f-spot.glade.h:178
 msgid "_Clear Date Range"
 msgstr "Κα_θαρισμός εύρους ημερομηνίας"
 
-#: ../src/f-spot.glade.h:158
+#: ../src/f-spot.glade.h:179
 msgid "_Close"
 msgstr "_Κλείσιμο"
 
-#: ../src/f-spot.glade.h:159
+#: ../src/f-spot.glade.h:180
+msgid "_Delete From Drive"
+msgstr "_Διαγραφή από το δίσκο"
+
+#: ../src/f-spot.glade.h:181
 msgid "_Delete Selected Tag"
 msgstr "_Διαγραφή επιλεγμένης ετικέτας"
 
-#: ../src/f-spot.glade.h:160
+#: ../src/f-spot.glade.h:182
 msgid "_Delete Version"
 msgstr "_Διαγραφή έκδοσης"
 
-#: ../src/f-spot.glade.h:161
-msgid "_Delete from Drive"
-msgstr "_Διαγραφή από δίσκο"
+#: ../src/f-spot.glade.h:183
+msgid "_Description:"
+msgstr "_Περιγραφή:"
 
-#: ../src/f-spot.glade.h:162
+#: ../src/f-spot.glade.h:184
+#, fuzzy
+msgid "_Destination Temp"
+msgstr "Φακέλος Προορισμού:"
+
+#: ../src/f-spot.glade.h:185
 msgid "_Directory"
 msgstr "_Κατάλογος"
 
-#: ../src/f-spot.glade.h:163
-msgid "_EXIF Data"
-msgstr "Δεδομένα _EXIF"
+#: ../src/f-spot.glade.h:186
+#, fuzzy
+msgid "_Display:"
+msgstr "Προβολή ε_τικετών"
 
-#: ../src/f-spot.glade.h:164
+#: ../src/f-spot.glade.h:187
 msgid "_Edit Selected Tag..."
 msgstr "_Επεξεργασία επιλεγμένης ετικέτας"
 
-#: ../src/f-spot.glade.h:165
+#: ../src/f-spot.glade.h:188
 msgid "_Export"
 msgstr "_Εξαγωγή"
 
-#: ../src/f-spot.glade.h:166
+#: ../src/f-spot.glade.h:189
+#, fuzzy
+msgid "_Export tags"
+msgstr "_Εξαγωγή"
+
+#: ../src/f-spot.glade.h:190
+#, fuzzy
+msgid "_Export to Album:"
+msgstr "Εξαγωγή στο Άλμπουμ:"
+
+#: ../src/f-spot.glade.h:191
+msgid "_Flickr"
+msgstr "_Flickr"
+
+#: ../src/f-spot.glade.h:192
+msgid "_Folder:"
+msgstr "_Φάκελος:"
+
+#: ../src/f-spot.glade.h:193
 msgid "_Fullscreen"
 msgstr "_Πλήρης Οθόνη"
 
-#: ../src/f-spot.glade.h:167
+#: ../src/f-spot.glade.h:194
+#, fuzzy
+msgid "_Gallery"
+msgstr "Συλλογή"
+
+#: ../src/f-spot.glade.h:195
+#, fuzzy
+msgid "_Gallery Name:"
+msgstr "Όνομα συλλογής:"
+
+#: ../src/f-spot.glade.h:196
+#, fuzzy
+msgid "_Gallery:"
+msgstr "Συλλογή:"
+
+#: ../src/f-spot.glade.h:197
+#, fuzzy
+msgid "_Hue:"
+msgstr "Απόχρωση:"
+
+#: ../src/f-spot.glade.h:198
+msgid "_Icon:"
+msgstr "_Εικονίδιο:"
+
+#: ../src/f-spot.glade.h:199
+#, fuzzy
+msgid "_Import files after copy"
+msgstr "Εισαγωγή αρχείων μετά την αντιγραφή."
+
+#: ../src/f-spot.glade.h:200
 msgid "_Import..."
 msgstr "Ει_σαγωγή..."
 
-#: ../src/f-spot.glade.h:168
-msgid "_Large"
-msgstr "_Μεγάλο"
+#: ../src/f-spot.glade.h:201
+msgid "_Metadata Browser"
+msgstr ""
 
-#: ../src/f-spot.glade.h:169
-msgid "_Medium"
-msgstr "_Μεσαίο"
-
-#: ../src/f-spot.glade.h:170
+#: ../src/f-spot.glade.h:202
 msgid "_Month"
 msgstr "_Μήνας"
 
-#: ../src/f-spot.glade.h:171
+#: ../src/f-spot.glade.h:203
+#, fuzzy
+msgid "_Open album in browser when done uploading"
+msgstr ""
+"Άνοιγμα του άλμπουμ στο φυλλομετρητή μετά την ολοκλήρωση του ανεβάσματος"
+
+#: ../src/f-spot.glade.h:204
+#, fuzzy
+msgid "_Open destination when done exporting"
+msgstr "Άνοιγμα προορισμού μετά την ολοκλήρωση της εξαγωγής."
+
+#: ../src/f-spot.glade.h:205
+msgid "_Output:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:206
+#, fuzzy
+msgid "_Parent Album:"
+msgstr "Φωτογραφικό άλμπουμ"
+
+#: ../src/f-spot.glade.h:207
+#, fuzzy
+msgid "_Password:"
+msgstr "Κωδικός:"
+
+#: ../src/f-spot.glade.h:208
+msgid "_Prefix: "
+msgstr "_Πρόθεμα: "
+
+#: ../src/f-spot.glade.h:209
 msgid "_Print..."
 msgstr "Εκτύ_πωση..."
 
-#: ../src/f-spot.glade.h:172
+#: ../src/f-spot.glade.h:210
 msgid "_Remove From Catalog"
 msgstr "_Αφαίρεση από τον κατάλογο"
 
-#: ../src/f-spot.glade.h:173
+#: ../src/f-spot.glade.h:211
 msgid "_Remove Tag From Selection"
 msgstr "Α_φαίρεση ετικέτας από την επιλογή"
 
-#: ../src/f-spot.glade.h:174
+#: ../src/f-spot.glade.h:212
 msgid "_Rename Version"
 msgstr "_Μετονομασία έκδοσης"
 
-#: ../src/f-spot.glade.h:175
+#: ../src/f-spot.glade.h:213
+#, fuzzy
+msgid "_Resize to: "
+msgstr "Αλλαγή μεγέθους σε:"
+
+#: ../src/f-spot.glade.h:214
+#, fuzzy
+msgid "_Saturation:"
+msgstr "Κορεσμός:"
+
+#: ../src/f-spot.glade.h:215
+msgid "_Save the files only"
+msgstr ""
+
+#: ../src/f-spot.glade.h:216
+#, fuzzy
+msgid "_Scale photos to no larger than: "
+msgstr "Κλιμάκωση εικόνων όχι περισσότερο από:"
+
+#: ../src/f-spot.glade.h:217
+#, fuzzy
+msgid "_Select Tags..."
+msgstr "Επιλογή ετικετών..."
+
+#: ../src/f-spot.glade.h:218
 msgid "_Sharpen..."
 msgstr "_Όξυνση..."
 
-#: ../src/f-spot.glade.h:176
-msgid "_Size"
-msgstr "_Μέγεθος"
-
-#: ../src/f-spot.glade.h:177
+#: ../src/f-spot.glade.h:219
 msgid "_Slideshow"
 msgstr "_Διαφάνεια"
 
-#: ../src/f-spot.glade.h:178
-msgid "_Small"
-msgstr "Μι_κρό"
+#: ../src/f-spot.glade.h:220
+#, fuzzy
+msgid "_Strip metadata"
+msgstr "Αφαίρεση μεταδεδομένων"
 
-#: ../src/f-spot.glade.h:179
+#: ../src/f-spot.glade.h:221
+#, fuzzy
+msgid "_Tag Name:"
+msgstr "Όνομα ετικέτας:"
+
+#: ../src/f-spot.glade.h:222
 msgid "_Tags"
 msgstr "_Ετικέτες"
 
-#: ../src/f-spot.glade.h:180
-msgid "_Update Thumbnail"
-msgstr "_Ενημέρωση μικρογραφίας"
+#: ../src/f-spot.glade.h:223
+msgid "_Title:"
+msgstr "_Τίτλος:"
 
-#: ../src/f-spot.glade.h:181
+#: ../src/f-spot.glade.h:224
+msgid "_URI:"
+msgstr "_URI:"
+
+#: ../src/f-spot.glade.h:225
+msgid "_Untagged Photos"
+msgstr ""
+
+#: ../src/f-spot.glade.h:226
+#, fuzzy
+msgid "_Username:"
+msgstr "Όνομα χρήστη:"
+
+#: ../src/f-spot.glade.h:227
 msgid "_Version"
 msgstr "Έ_κδοση"
 
-#: ../src/f-spot.glade.h:182
+#: ../src/f-spot.glade.h:228
 msgid "_View"
 msgstr "_Προβολή"
 
-#: ../src/f-spot.glade.h:183
+#: ../src/f-spot.glade.h:229
+#, fuzzy
+msgid "_View photos in browser when done uploading"
+msgstr ""
+"Προβολή φωτογραφιών στο φυλλομετρητή μετά την ολοκλήρωση του ανεβάσματος"
+
+#: ../src/f-spot.glade.h:230
+#, fuzzy
+msgid "_Virtual Filesystem"
+msgstr "Εικονικό σύστημα αρχείων"
+
+#: ../src/f-spot.glade.h:231
+#, fuzzy
+msgid "_Write only these photos to CD"
+msgstr "Εγγραφή μόνο αυτών των αντικειμένων στο CD"
+
+#: ../src/f-spot.glade.h:232
 msgid "dialog1"
 msgstr "διάλογος1"
 
-#: ../src/f-spot.glade.h:184
+#: ../src/f-spot.glade.h:233
+msgid "for a difference of"
+msgstr ""
+
+#: ../src/f-spot.glade.h:234
+msgid "img_000.jpg"
+msgstr "img_000.jpg"
+
+#: ../src/f-spot.glade.h:235
 msgid "pixels"
 msgstr "εικονοστοιχεία"
 
-#: ../src/f-spot.glade.h:185
+#: ../src/f-spot.glade.h:236
 msgid "x"
 msgstr "x"
 
-#: ../src/GalleryExport.cs:442
+#: ../src/GalleryExport.cs:391
+msgid "(TopLevel)"
+msgstr ""
+
+#: ../src/GalleryExport.cs:608
 msgid "Error Uploading To Gallery"
 msgstr "Σφάλμα ανεβάσματος στη συλλογή"
 
-#: ../src/GalleryExport.cs:474
+#: ../src/GalleryExport.cs:622
 msgid "(No Gallery)"
 msgstr "(Καμία συλλογή)"
 
-#: ../src/GalleryExport.cs:531
+#: ../src/GalleryExport.cs:693
 msgid "(Not Connected)"
 msgstr "(Δε συνδέθηκε)"
 
-#: ../src/GalleryExport.cs:532
+#: ../src/GalleryExport.cs:694
 msgid "(No Albums)"
 msgstr "(Κανένα άλμπουμ)"
 
-#: ../src/ImportCommand.cs:27
+#: ../src/GroupSelector.cs:55 ../src/GroupSelector.cs:56
+msgid "More dates"
+msgstr ""
+
+#: ../src/GroupSelector.cs:58 ../src/GroupSelector.cs:59
+#, fuzzy
+msgid "More directories"
+msgstr "Συμπερίληψη υποκαταλόγων."
+
+#: ../src/GroupSelector.cs:61 ../src/GroupSelector.cs:62
+msgid "More"
+msgstr "Περισσότερα"
+
+#: ../src/ImportCommand.cs:28
 msgid "Select Folder"
 msgstr "Επιλογή φακέλου"
 
-#: ../src/ImportCommand.cs:218
+#: ../src/ImportCommand.cs:223
 msgid "(No Cameras Detected)"
 msgstr "(Δεν εντοπίσθηκαν κάμερες)"
 
-#: ../src/ImportCommand.cs:631
-msgid "Select Tag"
-msgstr "Επιλογή ετικέτας"
+#: ../src/ImportCommand.cs:401
+#, fuzzy, csharp-format
+msgid "Loading {0} of {1}"
+msgstr "Αντιγραφή αρχείου {0} από {1}"
 
-#: ../src/ImportCommand.cs:705
+#: ../src/ImportCommand.cs:520
+#, fuzzy
+msgid "Done Loading"
+msgstr "Φόρτωση"
+
+#: ../src/ImportCommand.cs:708
 msgid "Directory does not exist."
 msgstr "Ο κατάλογος δεν υπάρχει."
 
-#: ../src/ImportCommand.cs:706
+#: ../src/ImportCommand.cs:709
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
@@ -1123,39 +1421,231 @@ msgstr ""
 "Ο κατάλογος που επιλέξατε \"{0}\" δεν υπάρχει. Παρακαλώ επιλέξτε ένα "
 "διαφορετικό κατάλογο"
 
-#: ../src/InfoBox.cs:70 ../src/PhotoVersionCommands.cs:55
+#: ../src/ImportCommand.cs:742
+msgid "Select Tag"
+msgstr "Επιλογή ετικέτας"
+
+#: ../src/ImportCommand.cs:747 ../src/StockIcons.cs:34
+#: ../src/TagCommands.cs:122 ../src/TagPopup.cs:20
+msgid "Create New Tag"
+msgstr "Δημιουργία νέας ετικέτας"
+
+#: ../src/InfoBox.cs:72 ../src/PhotoVersionCommands.cs:55
 msgid "Name:"
 msgstr "Όνομα:"
 
-#: ../src/InfoBox.cs:72
+#: ../src/InfoBox.cs:74
 msgid "Version:"
 msgstr "Έκδοση:"
 
-#: ../src/InfoBox.cs:74
+#: ../src/InfoBox.cs:76
 msgid "Date:"
 msgstr "Ημερομηνία:"
 
-#: ../src/InfoBox.cs:76
+#: ../src/InfoBox.cs:78
 msgid "Size:"
 msgstr "Μέγεθος:"
 
-#: ../src/InfoBox.cs:78
+#: ../src/InfoBox.cs:80
 msgid "Exposure:"
 msgstr "Έκθεση:"
 
-#: ../src/InfoBox.cs:156
+#. The label for the root category is used in new and edit tag dialogs
+#: ../src/InfoBox.cs:214 ../src/TagStore.cs:415
 msgid "(None)"
 msgstr "(Κανένα)"
 
-#: ../src/InfoDisplay.cs:110
-msgid "No EXIF info available"
-msgstr "Δεν υπάρχουν διαθέσιμες πληροφορίες EXIF"
+#: ../src/InfoBox.cs:225 ../src/InfoBox.cs:234
+msgid "(Unknown)"
+msgstr "(Άγνωστο)"
 
-#: ../src/MainWindow.cs:944
+#: ../src/InfoDisplay.cs:167
+msgid "Extended Metadata"
+msgstr ""
+
+#: ../src/InfoDisplay.cs:206
+msgid "No active photo"
+msgstr ""
+
+#: ../src/InfoDisplay.cs:208
+#, fuzzy, csharp-format
+msgid "The photo \"{0}\" does not exist"
+msgstr "Ο κατάλογος δεν υπάρχει."
+
+#: ../src/InfoDisplay.cs:214
+#, fuzzy
+msgid "No metadata available"
+msgstr "Δεν υπάρχει διαθέσιμη επιλογή"
+
+#: ../src/IptcFile.cs:139
+msgid "IPTC Information Interchange Model (IIM) Version number"
+msgstr ""
+
+#: ../src/IptcFile.cs:141
+msgid "OSI Destination routing information"
+msgstr ""
+
+#: ../src/IptcFile.cs:143
+#, fuzzy
+msgid "IPTC file format"
+msgstr "Μη υποστηριζόμενη μορφή αρχείου."
+
+#: ../src/IptcFile.cs:145
+msgid "Identifies the provider and product"
+msgstr ""
+
+#: ../src/IptcFile.cs:147
+msgid "A unique number identifying the envelope"
+msgstr ""
+
+#: ../src/IptcFile.cs:149
+msgid "A unique number"
+msgstr "Ένας μοναδικός αριθμός"
+
+#: ../src/IptcFile.cs:151
+msgid ""
+"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgstr ""
+
+#: ../src/IptcFile.cs:153
+msgid "The year month and day (CCYYMMDD) the service sent the material"
+msgstr ""
+
+#: ../src/IptcFile.cs:155
+msgid ""
+"The hour minute and second the (HHMMSS+HHMM) the service sent the material"
+msgstr ""
+
+#: ../src/IptcFile.cs:157
+msgid "The character set designation"
+msgstr ""
+
+#: ../src/IptcFile.cs:159
+msgid "External globally unique object identifier"
+msgstr ""
+
+#: ../src/IptcFile.cs:164
+msgid "Abstract Relationship Method (ARM) identifier"
+msgstr ""
+
+#: ../src/IptcFile.cs:166
+msgid "Abstract Relationship Method (ARM) version number."
+msgstr ""
+
+#: ../src/IptcFile.cs:169
+msgid "Number identifying the IIM version this application record uses"
+msgstr ""
+
+#: ../src/IptcFile.cs:171
+msgid "Object type reference"
+msgstr ""
+
+#: ../src/IptcFile.cs:176
+msgid "Object attribute reference"
+msgstr ""
+
+#: ../src/IptcFile.cs:182 ../src/IptcFile.cs:186
+#, fuzzy
+msgid "Object name"
+msgstr "Νέο όνομα:"
+
+#: ../src/IptcFile.cs:184
+msgid "Status of the objectdata according to the provider"
+msgstr ""
+
+#: ../src/IptcFile.cs:189
+msgid "Name of the city the content is focussing on"
+msgstr ""
+
+#: ../src/IptcFile.cs:192
+msgid "Copyright information for"
+msgstr ""
+
+#: ../src/IptcFile.cs:195
+msgid "Full name of the country of the focus of the content"
+msgstr ""
+
+#: ../src/IptcFile.cs:198
+msgid ""
+"Two or three letter ISO3166 code of the country of the focus of the content"
+msgstr ""
+
+#: ../src/IptcFile.cs:201
+msgid "bleh"
+msgstr ""
+
+#: ../src/IptcFile.cs:204
+msgid "The title of the author or creator"
+msgstr ""
+
+#: ../src/IptcFile.cs:207
+msgid ""
+"The person involved in writing, editing or correcting the object data or "
+"caption/abstract"
+msgstr ""
+
+#: ../src/IptcFile.cs:211
+msgid "Headline of the content"
+msgstr ""
+
+#: ../src/IptcFile.cs:214
+msgid ""
+"Instructions from the creator to the receiver not covered by other fields"
+msgstr ""
+
+#: ../src/IptcFile.cs:217
+msgid "Intellectual genre of the object"
+msgstr ""
+
+#: ../src/IptcFile.cs:230
+#, fuzzy
+msgid "Unknown IIM DataSet"
+msgstr "Άγνωστος κατάλογος"
+
+#: ../src/Loupe.cs:52 ../src/MainWindow.cs:1710
+#, fuzzy
+msgid "Error saving sharpened photo"
+msgstr "Σφάλμα"
+
+#: ../src/Loupe.cs:70
+#, fuzzy
+msgid "Sharpen"
+msgstr "_Όξυνση..."
+
+#: ../src/Loupe.cs:80 ../src/MainWindow.cs:1677
+msgid "Amount:"
+msgstr "Ποσό:"
+
+#: ../src/Loupe.cs:81 ../src/MainWindow.cs:1678
+msgid "Radius:"
+msgstr "Ακτίνα:"
+
+#: ../src/Loupe.cs:82 ../src/MainWindow.cs:1679
+msgid "Threshold:"
+msgstr "Κατώφλι:"
+
+#: ../src/MainWindow.cs:208
+msgid "Browse many photos simultaneously"
+msgstr ""
+
+#: ../src/MainWindow.cs:211
+msgid "View and edit a photo"
+msgstr ""
+
+#: ../src/MainWindow.cs:216
+#, fuzzy
+msgid "View photos fullscreen"
+msgstr "Έξοδος από πλήρη οθόνη"
+
+#: ../src/MainWindow.cs:219
+msgid "View photos in a slideshow"
+msgstr ""
+
+#: ../src/MainWindow.cs:1211
 msgid "No cameras detected."
 msgstr "Δεν εντοπίσθηκαν κάμερες."
 
-#: ../src/MainWindow.cs:945
+#: ../src/MainWindow.cs:1212
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1163,11 +1653,11 @@ msgstr ""
 "Το F-Spot δεν κατάφερε να βρει καμιά κάμερα συνδεδεμένη στο σύστημά σας. "
 "Ελέγξτε ξανά ότι η κάμερα είναι συνδεδεμένη και ότι έχει τροφοδοσία"
 
-#: ../src/MainWindow.cs:985
+#: ../src/MainWindow.cs:1252
 msgid "Error connecting to camera"
 msgstr "Σφάλμα σύνδεσης με κάμερα"
 
-#: ../src/MainWindow.cs:986
+#: ../src/MainWindow.cs:1253
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Ελήφθη σφάλμα  \"{0}\" κατά τη σύνδεση με την κάμερα"
@@ -1175,64 +1665,87 @@ msgstr "Ελήφθη σφάλμα  \"{0}\" κατά τη σύνδεση με τ�
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1119
+#: ../src/MainWindow.cs:1401
 msgid "translator-credits"
 msgstr ""
 "Kostas Papadimas <pkst@gnome.org>\n"
 "Stathis Kamperis <stathisk@med.auth.gr>"
 
-#: ../src/MainWindow.cs:1250
+#. Translators, The singular case will never happen here.
+#: ../src/MainWindow.cs:1588
+#, fuzzy, csharp-format
+msgid "Merge the selected tag"
+msgid_plural "Merge the {0} selected tags?"
+msgstr[0] "Διαγραφή επιλεγμένης ετικέτας"
+msgstr[1] "Διαγραφή {0} επιλεγμένων ετικετών;"
+
+#: ../src/MainWindow.cs:1615
+msgid ""
+"This operation will merge the selected tags and any sub-tags into a single "
+"tag."
+msgstr ""
+
+#: ../src/MainWindow.cs:1617
+#, fuzzy
+msgid "_Merge tags"
+msgstr "_Διαγραφή ετικέτας"
+
+#: ../src/MainWindow.cs:1668
 #, fuzzy
 msgid "Unsharp Mask"
 msgstr "Mask"
 
-#: ../src/MainWindow.cs:1259
-msgid "Amount:"
-msgstr "Ποσό:"
+#: ../src/MainWindow.cs:1938
+msgid "_Ok"
+msgstr "Εν_τάξει"
 
-#: ../src/MainWindow.cs:1260
-msgid "Radius:"
-msgstr "Ακτίνα:"
-
-#: ../src/MainWindow.cs:1261
-msgid "Threshold:"
-msgstr "Κατώφλι:"
-
-#: ../src/MainWindow.cs:1303
+#: ../src/MainWindow.cs:1939
 #, fuzzy
-msgid "Error saving sharpened photo"
-msgstr "Σφάλμα"
+msgid "Error Deleting Picture"
+msgstr "Μεταφορά εικόνων"
 
-#: ../src/MainWindow.cs:1526
+#: ../src/MainWindow.cs:1944
+#, csharp-format
+msgid ""
+"No permission to delete the file:\n"
+"{0}"
+msgstr ""
+
+#: ../src/MainWindow.cs:1948
+#, csharp-format
+msgid ""
+"An error of type {0} occurred while deleting the file:\n"
+"{1}"
+msgstr ""
+
+#: ../src/MainWindow.cs:1959
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Να διαγραφεί μόνιμα η φωτογραφία;"
 msgstr[1] "Να διαγραφούν μόνιμα οι {0} φωτογραφίες;"
 
-#: ../src/MainWindow.cs:1530
+#: ../src/MainWindow.cs:1963
 msgid "This deletes all versions of the selected photo from your drive."
-msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
-msgstr[0] ""
+msgstr ""
 "Αυτό σβήνει όλες τις εκδόσεις της επιλεγμένης φωτογραφίας από το δίσκο σας."
-msgstr[1] ""
 "Αυτό σβήνει όλες τις εκδόσεις της επιλεγμένων φωτογραφιών από το δίσκο σας."
 
-#: ../src/MainWindow.cs:1533
+#: ../src/MainWindow.cs:1966
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Διαγραφή φωτογραφίας"
 msgstr[1] "_Διαγραφή φωτογραφιών"
 
-#: ../src/MainWindow.cs:1551
+#: ../src/MainWindow.cs:1988
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Διαγραφή της επιλεγμένης φωτογραφίας από το F-Spot?"
 msgstr[1] "Διαγραφή των {0} επιλεγμένων φωτογραφιών από το F-Spot?"
 
-#: ../src/MainWindow.cs:1556
+#: ../src/MainWindow.cs:1993
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1242,30 +1755,172 @@ msgstr ""
 "των ετικετών θα χαθούν. Οι φωτογραφίες θα παραμείνουν στον υπολογιστή και θα "
 "μπορούν να εισαχθούν από το F-Spoit ξανά."
 
-#: ../src/MainWindow.cs:1557
+#: ../src/MainWindow.cs:1994
 msgid "_Remove from Catalog"
 msgstr "_Αφαίρεση από τον κατάλογο"
 
-#: ../src/MainWindow.cs:1581
-#, csharp-format
-msgid "Delete the selected tag?"
-msgid_plural "Delete the {0} selected tags?"
-msgstr[0] "Διαγραφή επιλεγμένης ετικέτας"
-msgstr[1] "Διαγραφή {0} επιλεγμένων ετικετών;"
+#: ../src/MainWindow.cs:2049
+#, fuzzy, csharp-format
+msgid "Delete tag \"{0}\"?"
+msgstr "_Διαγραφή ετικέτας"
 
-#: ../src/MainWindow.cs:1586
+#: ../src/MainWindow.cs:2051
+#, fuzzy, csharp-format
+msgid "Delete the {0} selected tags?"
+msgstr "Διαγραφή επιλεγμένης ετικέτας"
+
+#: ../src/MainWindow.cs:2054
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr ""
 "Αν διαγράψετε μία ετικέτα, όλες οι συσχετίσεις με τις φωτογραφίες θα χαθούν."
 
-#: ../src/MainWindow.cs:1587
+#: ../src/MainWindow.cs:2055
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Διαγραφή ετικέτας"
 msgstr[1] "_Διαγραφή ετικετών"
 
+#. A Category is not empty. Can not delete it.
+#: ../src/MainWindow.cs:2069
+msgid "Tag is not empty"
+msgstr ""
+
+#: ../src/MainWindow.cs:2070
+#, csharp-format
+msgid ""
+"Can not delete tags that have tags within them.  Please delete tags under "
+"\"{0}\" first"
+msgstr ""
+
+#: ../src/MainWindow.cs:2363
+#, fuzzy
+msgid "Rotate selected photo left"
+msgid_plural "Rotate selected photos left"
+msgstr[0] "Διαγραφή της επιλεγμένης φωτογραφίας από το F-Spot?"
+msgstr[1] "Διαγραφή των {0} επιλεγμένων φωτογραφιών από το F-Spot?"
+
+#: ../src/MainWindow.cs:2376
+#, fuzzy
+msgid "Rotate selected photo right"
+msgid_plural "Rotate selected photos right"
+msgstr[0] "Διαγραφή της επιλεγμένης φωτογραφίας από το F-Spot?"
+msgstr[1] "Διαγραφή των {0} επιλεγμένων φωτογραφιών από το F-Spot?"
+
+#: ../src/MetadataStore.cs:17
+msgid "Creator"
+msgstr "Δημιουργός"
+
+#: ../src/MetadataStore.cs:18
+msgid "Title"
+msgstr "Τίτλος"
+
+#: ../src/MetadataStore.cs:19
+msgid "Copyright"
+msgstr ""
+
+#: ../src/MetadataStore.cs:20
+msgid "Subject and Keywords"
+msgstr ""
+
+#: ../src/MetadataStore.cs:21
+msgid "Compression"
+msgstr "Συμπίεση"
+
+#: ../src/MetadataStore.cs:23
+msgid "Planar Configuration"
+msgstr ""
+
+#: ../src/MetadataStore.cs:25
+msgid "Orientation"
+msgstr "Προσανατολισμός"
+
+#: ../src/MetadataStore.cs:27
+msgid "Photometric Interpretation"
+msgstr ""
+
+#: ../src/MetadataStore.cs:29
+msgid "Resolution Unit"
+msgstr "Μονάδα ανάλυσης"
+
+#: ../src/MetadataStore.cs:31
+#, fuzzy
+msgid "Exposure Program"
+msgstr "Έκθεση:"
+
+#: ../src/MetadataStore.cs:33
+msgid "Metering Mode"
+msgstr ""
+
+#: ../src/MetadataStore.cs:35
+#, fuzzy
+msgid "Exposure Mode"
+msgstr "Έκθεση:"
+
+#: ../src/MetadataStore.cs:37
+msgid "Custom Rendered"
+msgstr ""
+
+#: ../src/MetadataStore.cs:39
+msgid "Components Configuration"
+msgstr ""
+
+#: ../src/MetadataStore.cs:41
+#, fuzzy
+msgid "Light Source"
+msgstr "Πηγή φωτογραφίας:"
+
+#: ../src/MetadataStore.cs:43
+msgid "Sensing Method"
+msgstr ""
+
+#: ../src/MetadataStore.cs:45
+msgid "Color Space"
+msgstr ""
+
+#: ../src/MetadataStore.cs:47
+msgid "White Balance"
+msgstr ""
+
+#: ../src/MetadataStore.cs:49
+msgid "Focal Plane Resolution Unit"
+msgstr ""
+
+#: ../src/MetadataStore.cs:51
+#, fuzzy
+msgid "File Source Type"
+msgstr "Πηγή POP URI"
+
+#: ../src/MetadataStore.cs:53
+msgid "Scene Capture Type"
+msgstr ""
+
+#: ../src/MetadataStore.cs:55
+msgid "Gain Control"
+msgstr ""
+
+#: ../src/MetadataStore.cs:57
+#, fuzzy
+msgid "Contrast"
+msgstr "Αντίθεση:"
+
+#: ../src/MetadataStore.cs:59
+#, fuzzy
+msgid "Saturation"
+msgstr "Κορεσμός:"
+
+#: ../src/MetadataStore.cs:61
+#, fuzzy
+msgid "Sharpness"
+msgstr "_Όξυνση..."
+
+#: ../src/MetadataStore.cs:63
+#, fuzzy
+msgid "Scene Type"
+msgstr "έλεγχος τύπου"
+
 #: ../src/PhotoPopup.cs:30
-msgid "Copy Image Location"
+#, fuzzy
+msgid "Copy Photo Location"
 msgstr "Αντιγραφή τοποθεσίας εικόνας"
 
 #: ../src/PhotoPopup.cs:42
@@ -1291,7 +1946,7 @@ msgstr "Επισύναψη ετικέτας"
 msgid "Remove Tag"
 msgstr "Αφαίρεση ετικέτας"
 
-#: ../src/PhotoStore.cs:290
+#: ../src/PhotoStore.cs:337
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
@@ -1300,7 +1955,7 @@ msgstr[1] "Τροποιημένα {0}"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/PhotoStore.cs:399
+#: ../src/PhotoStore.cs:516
 msgid "Original"
 msgstr "Αρχικό"
 
@@ -1331,236 +1986,266 @@ msgstr "Αλήθεια να γίνει διαγραφή?"
 msgid "Really delete version \"{0}\"?"
 msgstr "Αλήθεια να γίνει διαγραφή της έκδοσης \"{0}\";"
 
-#: ../src/PhotoVersionMenu.cs:84
+#: ../src/PhotoVersionMenu.cs:66
 msgid "(No Edits)"
 msgstr "Όχι Tags"
 
-#: ../src/PhotoView.cs:94
+#: ../src/PhotoView.cs:109
 msgid "No Constraint"
 msgstr "Κανένας περιορισμός"
 
-#: ../src/PhotoView.cs:95
+#: ../src/PhotoView.cs:110
 msgid "4 x 3 (Book)"
 msgstr "4 x 3 (Βιβλίο)"
 
-#: ../src/PhotoView.cs:96
+#: ../src/PhotoView.cs:111
 msgid "4 x 6 (Postcard)"
 msgstr "4 x 6 (Καρτ ποστάλ)"
 
-#: ../src/PhotoView.cs:97
+#: ../src/PhotoView.cs:112
 msgid "5 x 7 (L, 2L)"
 msgstr "5 x 7 (L, 2L)"
 
-#: ../src/PhotoView.cs:98
+#: ../src/PhotoView.cs:113
 msgid "8 x 10"
 msgstr "8 x 10"
 
-#: ../src/PhotoView.cs:99
+#: ../src/PhotoView.cs:114
 msgid "4 x 3 Portrait (Book)"
 msgstr "4 x 3 Πορτραίτο (Βιβλίο)"
 
-#: ../src/PhotoView.cs:100
+#: ../src/PhotoView.cs:115
 msgid "4 x 6 Portrait (Postcard)"
 msgstr "4 x 6 Πορτραίτο (Καρτ ποστάλ)"
 
-#: ../src/PhotoView.cs:101
+#: ../src/PhotoView.cs:116
 msgid "5 x 7 Portrait (L, 2L)"
 msgstr "5 x 7 Πορτραίτο (L, 2L)"
 
-#: ../src/PhotoView.cs:102
+#: ../src/PhotoView.cs:117
 msgid "8 x 10 Portrait"
 msgstr "8 x 10 Πορτραίτο"
 
-#: ../src/PhotoView.cs:103
+#: ../src/PhotoView.cs:118
 msgid "Square"
 msgstr "Τετράγωνο"
 
-#: ../src/PhotoView.cs:236
-msgid "No selection available"
-msgstr "Δεν υπάρχει διαθέσιμη επιλογή"
-
-#: ../src/PhotoView.cs:237
-msgid ""
-"This tool requires an active selection. Please select a region of the image "
-"and try the operation again"
-msgstr ""
-
-#: ../src/PhotoView.cs:295
-msgid "Error editing photo"
-msgstr "Σφάλμα επεξεργασίας φωτογραφίας"
-
-#: ../src/PhotoView.cs:490
-msgid "Crop image to selected area"
+#: ../src/PhotoView.cs:164
+#, fuzzy
+msgid "Crop photo to selected area"
 msgstr "Κοπή εικόνας στην επιλεγμένη περιοχή"
 
-#: ../src/PhotoView.cs:491
+#: ../src/PhotoView.cs:165
 msgid "Remove redeye from selected area"
 msgstr ""
 
-#: ../src/PhotoView.cs:492
-msgid "Adjust the image colors"
+#: ../src/PhotoView.cs:167
+msgid "Select an area to crop"
+msgstr ""
+
+#: ../src/PhotoView.cs:168
+msgid "Select an area to remove redeye"
+msgstr ""
+
+#: ../src/PhotoView.cs:291
+msgid "No selection available"
+msgstr "Δεν υπάρχει διαθέσιμη επιλογή"
+
+#: ../src/PhotoView.cs:292
+msgid ""
+"This tool requires an active selection. Please select a region of the photo "
+"and try the operation again"
+msgstr ""
+
+#: ../src/PhotoView.cs:336
+msgid "Error editing photo"
+msgstr "Σφάλμα επεξεργασίας φωτογραφίας"
+
+#: ../src/PhotoView.cs:476
+msgid "Comment:"
+msgstr ""
+
+#: ../src/PhotoView.cs:541
+#, fuzzy
+msgid "Adjust the photo colors"
 msgstr "Προσαρμογή των χρώματων της εικόνας"
 
-#: ../src/PhotoView.cs:493
+#: ../src/PhotoView.cs:542
 msgid "Constrain the aspect ratio of the selection"
 msgstr ""
 
-#: ../src/PhotoView.cs:494
-#, fuzzy
-msgid "Next image"
-msgstr "Επεξεργασία εικόνας"
+#: ../src/PhotoView.cs:543
+msgid "Next photo"
+msgstr "Επόμενη φωτογραφία"
 
-#: ../src/PhotoView.cs:495
-#, fuzzy
-msgid "Previous image"
-msgstr "Προηγούμενο"
+#: ../src/PhotoView.cs:544
+msgid "Previous photo"
+msgstr "Προηγούμενη φωτογραφία"
 
-#: ../src/RotateCommand.cs:56
+#: ../src/RotateCommand.cs:154
+msgid "Rotating photos"
+msgstr "Περιστροφή φωτογραφιών"
+
+#: ../src/RotateCommand.cs:165
+#, fuzzy, csharp-format
+msgid "Rotating photo \"{0}\""
+msgstr "Περιστροφή εικόνας \"{0}\""
+
+#: ../src/RotateCommand.cs:190
+#, fuzzy, csharp-format
+msgid "Unable to rotate photo"
+msgid_plural "Unable to rotate {0} photos"
+msgstr[0] "Αδύνατη η περιστροφή της εικόνας"
+msgstr[1] "Αδύνατη η περιστροφή των {0} εικόνων"
+
+#: ../src/RotateCommand.cs:194
+#, fuzzy, csharp-format
+msgid ""
+"The photo could not be rotated because it is on a read only file system or "
+"media such as a CDROM.  Please check the permissions and try again"
+"{0} photos could not be rotated because they are on a read only file system "
+"or media such as a CDROM.  Please check the permissions and try again"
+msgstr ""
+"Αδύνατη η περιστροφή της εικόνας γιατί βρίσκεται σε σύστημα αρχείων ή μέσο "
+"μόνο για ανάγνωση, όπως ένα CDROM. Παρακαλώ ελέγξτε τα δικαιώματα και "
+"προσπαθήστε ξανά"
+"Αδύνατη η περιστροφή των εικόνων {0} γιατί βρίσκονται σε σύστημα αρχείων ή "
+"μέσο μόνο για ανάγνωση, όπως ένα CDROM. Παρακαλώ ελέγξτε τα δικαιώματα και "
+"προσπαθήστε ξανά"
+
+#: ../src/RotateCommand.cs:216
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "Ελήφθη σφάλμα  \"{0}\" κατά την προσπάθεια περιστροφής {1}"
 
-#: ../src/RotateCommand.cs:61
-msgid "Error while Rotating Image."
+#: ../src/RotateCommand.cs:221
+#, fuzzy
+msgid "Error while rotating photo."
 msgstr "Σφάλμα κατά την περιστροφή της εικόνας."
-
-#: ../src/RotateCommand.cs:74
-msgid "Rotating pictures"
-msgstr "Περιστροφή εικόνων"
-
-#: ../src/RotateCommand.cs:84
-#, csharp-format
-msgid "Rotating picture \"{0}\""
-msgstr "Περιστροφή εικόνας \"{0}\""
-
-#: ../src/RotateCommand.cs:115
-#, csharp-format
-msgid "Unable to rotate image"
-msgid_plural "Unable to rotate {0} images"
-msgstr[0] "Αδύνατη η περιστροφή της εικόνας"
-msgstr[1] "Αδύνατη η περιστροφή των {0} εικόνων"
-
-#: ../src/RotateCommand.cs:119
-#, csharp-format
-msgid ""
-"The image could not be rotated because it is on a read only file system or "
-"media such as a CDROM.  Please check the permissions and try again"
-msgid_plural ""
-"{0} images could not be rotated because they are on a read only file system "
-"or media such as a CDROM.  Please check the permissions and try again"
-msgstr[0] ""
-"Αδύνατη η περιστροφή της εικόνας γιατί βρίσκεται σε σύστημα αρχείων ή μέσο "
-"μόνο για ανάγνωση, όπως ένα CDROM. Παρακαλώ ελέγξτε τα δικαιώματα και "
-"προσπαθήστε ξανά"
-msgstr[1] ""
-"Αδύνατη η περιστροφή των εικόνων {0} γιατί βρίσκονται σε σύστημα αρχείων ή "
-"μέσο μόνο για ανάγνωση, όπως ένα CDROM. Παρακαλώ ελέγξτε τα δικαιώματα και "
-"προσπαθήστε ξανά"
 
 #: ../src/StockIcons.cs:28
 msgid "Crop"
 msgstr "Κοπή"
 
 #: ../src/StockIcons.cs:29
-msgid "Edit Image"
-msgstr "Επεξεργασία εικόνας"
+msgid "Desaturate"
+msgstr ""
+
+#: ../src/StockIcons.cs:30
+msgid "Edit Photo"
+msgstr "Επεξεργασία φωτογραφίας"
+
+#: ../src/StockIcons.cs:31
+msgid "Fullscreen"
+msgstr "Πλήρης οθόνη"
 
 #: ../src/StockIcons.cs:32
-msgid "Logo"
-msgstr "Λογότυπο"
-
-#: ../src/StockIcons.cs:33
-msgid "Question"
-msgstr "Ερώτηση"
-
-#: ../src/StockIcons.cs:34
-msgid "Reduce Red-Eye"
-msgstr "Κόκκινο"
-
-#: ../src/StockIcons.cs:37
 msgid "Loading"
 msgstr "Φόρτωση"
 
-#: ../src/StockIcons.cs:38
+#: ../src/StockIcons.cs:33
+msgid "Logo"
+msgstr "Λογότυπο"
+
+#: ../src/StockIcons.cs:35
+msgid "Question"
+msgstr "Ερώτηση"
+
+#: ../src/StockIcons.cs:36
+msgid "Reduce Red-Eye"
+msgstr "Κόκκινο"
+
+#: ../src/StockIcons.cs:39
+msgid "Sepia Tone"
+msgstr ""
+
+#: ../src/StockIcons.cs:40
+msgid "Slideshow"
+msgstr "Διαφάνεια"
+
+#: ../src/StockIcons.cs:41
 msgid "Near"
 msgstr "Κοντά"
 
-#: ../src/StockIcons.cs:39
+#: ../src/StockIcons.cs:42
 msgid "Far"
 msgstr "Μακριά"
 
-#: ../src/TagCommands.cs:46
-msgid "(No categories)"
-msgstr "(Καμία κατηγορία)"
-
-#: ../src/TagCommands.cs:80 ../src/TagCommands.cs:217
+#: ../src/TagCommands.cs:75 ../src/TagCommands.cs:205
+#: ../src/TagSelectionWidget.cs:574
 msgid "This name is already in use"
 msgstr "Το όνομα αυτό χρησιμοποιείται ήδη"
 
-#: ../src/TagCommands.cs:129 ../src/TagPopup.cs:20
-msgid "Create New Tag"
-msgstr "Δημιουργία νέας ετικέτας"
-
-#: ../src/TagCommands.cs:130
-msgid "Name of new tag:"
+#: ../src/TagCommands.cs:123
+#, fuzzy
+msgid "Name of New Tag:"
 msgstr "Όνομα νέας ετικέτας:"
 
-#: ../src/TagCommands.cs:133 ../src/TagPopup.cs:22
-msgid "Create New Category"
-msgstr "Δημιουργία νέας κατηγορίας"
-
-#: ../src/TagCommands.cs:134
-msgid "Name of new category:"
-msgstr "Όνομα νέας κατηγορίας:"
-
-#: ../src/TagCommands.cs:291
-msgid "Edit Category"
-msgstr "Επεξεργασία κατηγορίας"
-
-#: ../src/TagCommands.cs:292
-msgid "Category name:"
-msgstr "Όνομα κατηγορίας:"
-
-#: ../src/TagCommands.cs:294 ../src/TagPopup.cs:27
+#: ../src/TagCommands.cs:275 ../src/TagPopup.cs:26
 msgid "Edit Tag"
 msgstr "Επεξεργασία ετικέτας"
 
-#: ../src/TagCommands.cs:382
+#: ../src/TagCommands.cs:276
+#, fuzzy
+msgid "Tag Name:"
+msgstr "Όνομα ετικέτας:"
+
+#: ../src/TagCommands.cs:369
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Φωτογραφία {0} από {1}"
 
-#: ../src/TagCommands.cs:409
+#: ../src/TagCommands.cs:396
 #, fuzzy, csharp-format
-msgid "Edit icon for category {0}"
-msgstr "Επεξεργασία εικονιδίου για την κατηγορία {0}"
-
-#: ../src/TagCommands.cs:411
-#, csharp-format
-msgid "Edit icon for tag {0}"
+msgid "Edit Icon for Tag {0}"
 msgstr "Επεξεργασία εικονιδίου για την ετικέτα {0}"
 
-#: ../src/TagPopup.cs:30
+#: ../src/TagPopup.cs:28
+#, fuzzy, csharp-format
+msgid "Edit Tag \"{0}\""
+msgstr "Επεξεργασία ετικέτας"
+
+#: ../src/TagPopup.cs:33
+#, fuzzy
 msgid "Delete Tag"
+msgid_plural "Delete Tags"
+msgstr[0] "Διαγραφή ετικέτας"
+msgstr[1] "Διαγραφή ετικέτας"
+
+#: ../src/TagPopup.cs:39
+#, fuzzy
+msgid "Attach Tag To Selection"
+msgid_plural "Attach Tags To Selection"
+msgstr[0] "Επισύναψη ετικέτας στην επιλογή"
+msgstr[1] "Επισύναψη ετικέτας στην επιλογή"
+
+#: ../src/TagPopup.cs:43
+#, fuzzy
+msgid "Remove Tag From Selection"
+msgid_plural "Remove Tags From Selection"
+msgstr[0] "Αφαίρεση ετικέτας από την επιλογή"
+msgstr[1] "Αφαίρεση ετικέτας από την επιλογή"
+
+#: ../src/TagPopup.cs:49
+#, fuzzy
+msgid "Merge Tags"
 msgstr "Διαγραφή ετικέτας"
 
-#: ../src/TagPopup.cs:35
-msgid "Attach Tag To Selection"
-msgstr "Επισύναψη ετικέτας στην επιλογή"
+#: ../src/TagSelectionWidget.cs:573
+#, fuzzy
+msgid "Error renaming tag"
+msgstr "Σφάλμα επεξεργασίας φωτογραφίας"
 
-#: ../src/TagPopup.cs:38
-msgid "Remove Tag From Selection"
-msgstr "Αφαίρεση ετικέτας από την επιλογή"
-
-#: ../src/Unix.cs:37
+#. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
+#: ../src/Unix.cs:25
 msgid "Unable to create temporary file"
 msgstr "Αδύνατη η δημιουργία προσωρινού αρχείου"
 
-#: ../src/Util.cs:270
+#: ../src/Util.cs:299
 msgid "There was an error invoking the external handler"
 msgstr "Συνέβη ένα σφάλμα κατά την ενεργοποίηση του εξωτερικού χειριστή"
 
-#: ../src/Util.cs:271
+#: ../src/Util.cs:300
 #, csharp-format
 msgid ""
 "Received error:\n"
@@ -1569,13 +2254,101 @@ msgstr ""
 "Ελήφθη σφάλμα:\n"
 "\"{0}\"\n"
 
-#: ../src/QueryDisplay.cs:29
+#: ../src/QueryDisplay.cs:35
 msgid "Find: "
 msgstr "Εύρεση:"
 
-#: ../src/QueryDisplay.cs:44
-msgid "No matching images found "
+#: ../src/QueryDisplay.cs:39
+msgid "Untagged photos"
+msgstr ""
+
+#: ../src/QueryDisplay.cs:56
+#, fuzzy
+msgid "No matching photos found "
 msgstr "Δεν βρέθηκαν εικόνες που να ταιριάζουν"
+
+#: ../src/QueryDisplay.cs:64
+msgid "Clear search"
+msgstr ""
+
+#~ msgid "F-Spot {0} cannot yet edit images of this type"
+#~ msgstr ""
+#~ "Το F-Spot {0} δε μπορεί ακόμη να επεξεργαστεί εικόνες αυτού του τύπου"
+
+#~ msgid "<b>From Image</b>"
+#~ msgstr "<b>Από εικόνα</b>"
+
+#~ msgid "Create New _Category..."
+#~ msgstr "Δημιουργία ν_έας κατηγορίας..."
+
+#~ msgid "Export Tags and Categories"
+#~ msgstr "Εξαγωγή Ετικετών και Κατηγοριών"
+
+#~ msgid "Export tags and categories"
+#~ msgstr "Εξαγωγή ετικετών και κατηγοριών"
+
+#~ msgid "Export to Original"
+#~ msgstr "Εξαγωγή στο αρχικό"
+
+#~ msgid "Plain Files."
+#~ msgstr "Κανονικά αρχεία."
+
+#~ msgid "Use Original."
+#~ msgstr "Χρήση αρχικής."
+
+#~ msgid "Use static HTML."
+#~ msgstr "Χρήση στατικού HTML."
+
+#~ msgid "_Delete from Drive"
+#~ msgstr "_Διαγραφή από δίσκο"
+
+#~ msgid "_EXIF Data"
+#~ msgstr "Δεδομένα _EXIF"
+
+#~ msgid "_Large"
+#~ msgstr "_Μεγάλο"
+
+#~ msgid "_Medium"
+#~ msgstr "_Μεσαίο"
+
+#~ msgid "_Size"
+#~ msgstr "_Μέγεθος"
+
+#~ msgid "_Small"
+#~ msgstr "Μι_κρό"
+
+#~ msgid "No EXIF info available"
+#~ msgstr "Δεν υπάρχουν διαθέσιμες πληροφορίες EXIF"
+
+#, fuzzy
+#~ msgid "Next image"
+#~ msgstr "Επεξεργασία εικόνας"
+
+#, fuzzy
+#~ msgid "Previous image"
+#~ msgstr "Προηγούμενο"
+
+#~ msgid "Edit Image"
+#~ msgstr "Επεξεργασία εικόνας"
+
+#~ msgid "(No categories)"
+#~ msgstr "(Καμία κατηγορία)"
+
+#~ msgid "Create New Category"
+#~ msgstr "Δημιουργία νέας κατηγορίας"
+
+#~ msgid "Name of new category:"
+#~ msgstr "Όνομα νέας κατηγορίας:"
+
+#~ msgid "Edit Category"
+#~ msgstr "Επεξεργασία κατηγορίας"
+
+#~ msgid "Category name:"
+#~ msgstr "Όνομα κατηγορίας:"
+
+#, fuzzy
+#~ msgid "Edit icon for category {0}"
+#~ msgstr "Επεξεργασία εικονιδίου για την κατηγορία {0}"
 
 #~ msgid "Transfering Pictures"
 #~ msgstr "Μεταφορά εικόνων"
@@ -1586,9 +2359,6 @@ msgstr "Δεν βρέθηκαν εικόνες που να ταιριάζουν"
 #, fuzzy
 #~ msgid "Error: File Already Exists, Aborting"
 #~ msgstr "Σφάλμα Αρχείο"
-
-#~ msgid "Import From:"
-#~ msgstr "Εισαγωγή από:"
 
 #, fuzzy
 #~ msgid "Received exception \"{0}\" while rotating image {1}"
