@@ -68,6 +68,12 @@ namespace FSpot {
 					Changed (this);
 			}
 		}
+
+		public void MarkChanged (int item)
+		{
+			if (ItemsChanged != null)
+				ItemsChanged (this, new BrowsableArgs (item));
+		}
 		
 		public event IBrowsableCollectionChangedHandler Changed;
 		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
@@ -121,6 +127,18 @@ namespace FSpot {
 		public bool Contains (IBrowsableItem item)
 		{
 			return IndexOf (item) >= 0;
+		}
+
+		public void MarkChanged (int item)
+		{
+			if (ItemsChanged != null)
+				ItemsChanged (this, new BrowsableArgs (item));
+		}
+
+		public void Reload ()
+		{
+			if (Changed != null)
+				Changed (this);
 		}
 
 		public event IBrowsableCollectionChangedHandler Changed;

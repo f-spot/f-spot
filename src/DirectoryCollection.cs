@@ -84,6 +84,12 @@ namespace FSpot {
 			return Array.IndexOf (items, item);
 		}
 
+		public void Reload ()
+		{
+			if (Changed != null)
+				Changed (this);
+		}
+		
 		public void MarkChanged (int num)
 		{
 			MarkChanged (new BrowsableArgs (num));
