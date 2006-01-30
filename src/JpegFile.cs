@@ -220,7 +220,8 @@ namespace FSpot {
 		public void SetDateTimeOriginal (DateTime time)
 		{
 			Exif.ExifEntry e = ExifData.LookupFirst (Exif.Tag.DateTimeOriginal);
-			e.SetData (time);
+			if (e != null)
+				e.SetData (time);
 		}
 
 		public override System.DateTime Date {
