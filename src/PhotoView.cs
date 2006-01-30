@@ -360,7 +360,6 @@ public class PhotoView : EventBox {
 	{
 		if (description_delay.IsPending) {
 			description_delay.Stop ();
-			Photo photo = query.Photos [description_photo];
 			Query.Commit (description_photo);
 		}
 		return true;

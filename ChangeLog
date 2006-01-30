@@ -1,5 +1,7 @@
 2006-01-30  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoView.cs: remove unused variable.
+
 	* src/JpegFile.cs: make sure the entry exists before trying to set
 	it.
 
