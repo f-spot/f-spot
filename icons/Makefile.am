@@ -9,6 +9,7 @@ noinst_DATA =					\
 	f-spot-fullscreen.png			\
 	f-spot-hidden.png			\
 	f-spot-loading.png			\
+	f-spot-new-tag.png			\
 	f-spot-other.png			\
 	f-spot-people.png			\
 	f-spot-places.png			\
@@ -20,7 +21,7 @@ noinst_DATA =					\
 	f-spot-stock_near.png			\
 	f-spot-stock_far.png			\
 	f-spot-question-mark.png		\
-	f-spot.js			\
+	f-spot.js				\
 	f-spot-simple.css			\
 	f-spot-simple-white.css
 
