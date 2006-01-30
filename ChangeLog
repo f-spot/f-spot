@@ -1,5 +1,8 @@
 2006-01-30  Larry Ewing  <lewing@novell.com>
 
+	* src/IOChannel.cs: dump unexpected status states to the console
+	for now.
+
 	* src/PhotoView.cs: remove unused variable.
 
 	* src/JpegFile.cs: make sure the entry exists before trying to set

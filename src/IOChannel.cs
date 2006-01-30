@@ -130,6 +130,9 @@ namespace FSpot {
 			
 			status = g_io_channel_flush (handle, out error);
 
+			if (status != IOStatus.Normal || status != IOStatus.Eof)
+				System.Console.WriteLine ("IOChannel status = {0}", status);
+
 			if (error != IntPtr.Zero)
 				throw new GException (error);
 		}
@@ -175,6 +178,9 @@ namespace FSpot {
 					status = g_io_channel_read_chars (handle, data, count, out read, out error);
 				}
 			}
+
+			if (status != IOStatus.Normal || status != IOStatus.Eof)
+				System.Console.WriteLine ("IOChannel status = {0}", status);
 
 			if (error != IntPtr.Zero)
 				throw new GException (error);
