@@ -55,6 +55,7 @@ public class MainWindow {
 
 	[Glade.Widget] MenuItem adjust_color;
 	[Glade.Widget] MenuItem sharpen;
+	[Glade.Widget] MenuItem adjust_time;
 
 	[Glade.Widget] MenuItem update_thumbnail;
 	[Glade.Widget] MenuItem delete_from_drive;
@@ -2329,6 +2330,7 @@ public class MainWindow {
 
 		set_as_background.Sensitive = single_active;
 		adjust_color.Sensitive = single_active;
+		adjust_time.Sensitive = active_selection;
 
 		attach_tag.Sensitive = active_selection;
 		remove_tag.Sensitive = active_selection;
@@ -2349,6 +2351,7 @@ public class MainWindow {
 
 		delete_selected_tag.Sensitive = tag_sensitive;
 		edit_selected_tag.Sensitive = tag_sensitive;
+
 
 		attach_tag_to_selection.Sensitive = tag_sensitive && active_selection;
 		remove_tag_from_selection.Sensitive = tag_sensitive && active_selection;

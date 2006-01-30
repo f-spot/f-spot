@@ -1,3 +1,16 @@
+2006-01-30  Larry Ewing  <lewing@novell.com>
+
+	* src/f-spot.glade: fix up the time dialog give the time menu item
+	a name.
+
+	* src/MainWindow.cs: set the adjust_time menu item sensitivity
+	based on the selection.
+
+	* src/TimeDialog.cs: fix the interval option and make the offset
+	entry do something.  TimeSpan parsing still seems to be a mess.
+	Hide the action frame if onlt one photo is selectd (should these
+	just be insensive?)
+
 2006-01-28  Larry Ewing  <lewing@novell.com>
 
 	* src/f-spot.glade: revert accidental change to f-spot.glade.
