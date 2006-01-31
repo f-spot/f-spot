@@ -471,6 +471,7 @@ public class PhotoView : EventBox {
 		tag_view = new TagView (tag_view_box);
 		tag_view_box.Add (tag_view);
 		inner_hbox.PackStart (tag_view_box, false, true, 0);
+		FSpot.Global.ModifyColors (tag_view);
 
 		Label comment = new Label (Catalog.GetString ("Comment:"));
 		inner_hbox.PackStart (comment, false, false, 0);
