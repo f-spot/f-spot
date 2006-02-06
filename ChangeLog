@@ -1,5 +1,9 @@
 2006-02-05  Larry Ewing  <lewing@novell.com>
 
+	* Makefile.am: add FlickrNet to the build.
+
+	* configure.in: add FlickrNet to the build.
+
 	* src/f-spot.glade: change dialog for flicr.net.
 
 	* src/FlickrExport.cs: Update to use flickr.net (based on a patch from acs)

@@ -1,4 +1,5 @@
 SUBDIRS = 		\
+	FlickrNet	\
 	icons		\
 	libeog		\
 	libjpegtran	\
