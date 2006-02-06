@@ -133,6 +133,7 @@ F_SPOT_CSDISTFILES =				\
 ASSEMBLIES =					\
 	-r:$(top_builddir)/libgphoto2-sharp/libgphoto2-sharp.dll   \
 	-r:$(top_builddir)/semweb/SemWeb.dll	\
+	-r:$(top_builddir)/FlickrNet/FlickrNet.dll	\
 	-r:System.Data				\
 	-r:System.Web				\
 	-r:Mono.Data.SqliteClient		\
