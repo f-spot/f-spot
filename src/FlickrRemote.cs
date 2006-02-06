@@ -1,39 +1,143 @@
 /*
  * Simple upload based on the api at 
  * http://www.flickr.com/services/api/upload.api.html
+ *
+ * Modified by acs in order to use Flickr.Net
+ * 
+ * Modified in order to use the new Auth API
+ * 
+ * We use now the search API also
+ * 
  */
 using System;
 using System.IO;
 using System.Text;
+using System.Collections;
+using FlickrNet;
 using FSpot;
 
-
 public class FlickrRemote {
+    
+	// This should be private but you know, this is Free Software ;-)
+	// Keys from acs
+	private static string     _apikey = "c6b39ee183385d9ce4ea188f85945016";
+	private static string     _sharedsecret = "0a951ac44a423a04";
+	
 	// This is the uo
-	public static string UploadUrl = "http://www.flickr.com/tools/uploader_go.gne";
-	public static string AuthUrl = "http://www.flickr.com/tools/auth.gne";
+	public static string      UploadUrl = "http://www.flickr.com/tools/uploader_go.gne";
+	public static string      AuthUrl = "http://www.flickr.com/tools/auth.gne";
+	public static Licenses    licenses;
 	
-	string email;
-	string passwd;
-	string username;
-	long limit;
-	long used;
-	bool pro;
-
-	public bool ExportTags;
+	private string            email;
+	private string            passwd;
+	private string            username;
+	private long              limit;
+	private long              used;
+	private bool              pro;
+	private string            frob;
+	private string            token;
+	private Auth              auth;
+	private Flickr            flickr;
+	
+	public bool               ExportTags;
 	public FSpot.ProgressItem Progress;
-
-	public FlickrRemote ()
-	{
-		//FIXME this api is lame
-	}
 	
-	public bool Pro {
-		get {
-			return pro;
+	public FlickrRemote (string token)
+	{
+		if (token == null || token.Length == 0) {
+			this.flickr = new Flickr (_apikey, _sharedsecret);
+			this.token = null;
+		} else {
+			this.flickr = new Flickr (_apikey, _sharedsecret, token);
+			this.token = token;
 		}
 	}
 
+	public string Token {
+		get { return token; }
+		set {
+			token = value;
+			flickr.ApiToken = value;
+		}
+	}
+
+	public bool Pro {
+		get { return pro; }
+
+	}
+
+	public Auth Authorization {
+		get { return auth; }
+	}
+			
+	public License[] GetLicenses () 
+	{
+		// Licenses won't change normally in a user session
+		if (licenses == null) {
+			try {
+				licenses = flickr.PhotosLicensesGetInfo(); 
+			} catch (FlickrNet.FlickrException e ) {
+				Console.WriteLine ( e.Code + ": " + e.Verbose );
+				return null;
+			}
+		}
+		return licenses.LicenseCollection;
+	}
+	
+	public ArrayList Search (string[] tags, int licenseId)
+	{
+		ArrayList photos_url = new ArrayList ();
+		// Photos photos = flickr.PhotosSearchText (tags, licenseId);
+		Photos photos = flickr.PhotosSearch (tags);
+	
+		if (photos != null) {
+			foreach (FlickrNet.Photo photo in photos.PhotoCollection) {
+				photos_url.Add (photo.ThumbnailUrl);
+			}
+		}
+
+		return photos_url;
+	}
+	
+	public ArrayList Search (string tags, int licenseId) 
+	{
+		ArrayList photos_url = new ArrayList ();
+		Photos photos = flickr.PhotosSearchText (tags, licenseId);
+
+		if (photos != null) {
+			foreach (FlickrNet.Photo photo in photos.PhotoCollection) {
+				photos_url.Add (photo.ThumbnailUrl);
+			}
+		}
+		return photos_url;
+	}
+	
+	public bool CheckLogin () 
+	{
+		if (frob == null) {
+			frob = flickr.AuthGetFrob ();
+			if (frob ==  null) {
+				Console.WriteLine ("ERROR: Problems login in Flickr. Don't have a frob");
+				return false;
+			}
+		}
+
+		if (token == null) {
+			try {
+				auth = flickr.AuthGetToken(frob);
+				token = auth.Token;
+				flickr.ApiToken = token;
+
+				return true;
+			} catch (FlickrNet.FlickrException ex) {
+				Console.WriteLine ("ERROR: Problems login in Flickr - "+ex.Verbose);
+
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	public string Upload (IBrowsableItem photo)
 	{
 		return Upload (photo, false, 0);
@@ -41,65 +145,43 @@ public class FlickrRemote {
 	
 	public string Upload (IBrowsableItem photo, bool scale, int size)
 	{
-		if (email == null || passwd == null)
+		if (token == null) {            
 			throw new Exception ("Must Login First");
-		
+		}
 		// FIXME flickr needs rotation
-
-		FileInfo file = null;
-		string error_verbose;
-		int error_value;
-		try {
-			FormClient client = new FormClient ();
-			client.Add ("email", email);
-			client.Add ("password", passwd);
-			
-			string path = photo.DefaultVersionUri.LocalPath;
-			file = new FileInfo (path);
+		
+		string path = photo.DefaultVersionUri.LocalPath; 
+		FileInfo file = new FileInfo (path);
+		string   error_verbose;
+		
+		try {            
+			string tags = null;
 			
 			if (scale) {
-				// we set the title here because we are making a temporary image.
-				client.Add ("title", file.Name);
 				path = PixbufUtils.Resize (path, size, true);
 				file = new FileInfo (path);
 			}
 			
-			client.Add ("photo", file);
-			if (photo.Description != null) {
-				client.Add ("description", photo.Description);
-			}
-			
 			if (ExportTags && photo.Tags != null) {
 				StringBuilder taglist = new StringBuilder ();
+				Tag [] t = photo.Tags;
 				
-				foreach (Tag t in photo.Tags) {
-					taglist.Append ("\"" + t.Name + "\" ");
+				for (int i = 0; i < t.Length; i++) {
+					if (i > 0)
+						taglist.Append (", ");
+					
+					taglist.Append (t[i].Name);
 				}
 				
-				client.Add ("tags", taglist.ToString ());
+				tags = taglist.ToString ();
 			}
-			
-			Stream response = client.Submit (UploadUrl, this.Progress).GetResponseStream ();
-			
-			System.Xml.XmlDocument doc = new System.Xml.XmlDocument ();
-			doc.Load (response);
-			
-			System.Xml.XmlNode node = doc.SelectSingleNode ("//uploader/status");
-			string status = node.ChildNodes [0].Value;
-			if (status == "ok") {
-				node = node.NextSibling;
-				string photoid = node.ChildNodes [0].Value;
-				
-				System.Console.WriteLine ("Successful upload: photoid={0}", photoid);
+			try {
+				string photoid = 
+					flickr.UploadPicture (path, photo.Name, photo.Description, tags);
 				return photoid;
-			} else {
-				node = node.NextSibling;
-				error_value = int.Parse (node.ChildNodes [0].Value);
-				
-				System.Console.WriteLine ("Got Error {0} while uploading", error_value);
-
-				node = node.NextSibling;
-				error_verbose = node.ChildNodes [0].Value;
+			} catch (FlickrNet.FlickrException ex) {
+				Console.WriteLine ("Problems uploading picture: " + ex.ToString());
+				error_verbose = ex.ToString();
 			}
 		} catch (Exception e) {
 			// FIXME we need to distinguish between file IO errors and xml errors here
@@ -108,48 +190,13 @@ public class FlickrRemote {
 			if (file != null && scale)
 				file.Delete ();
 		}
-
+		
 		throw new System.Exception (error_verbose);
 	}
-
-	public bool Login (string email, string passwd)
-	{
-		this.email = email;
-		this.passwd = passwd;
-
-		FormClient client = new FormClient ();
-		client.Add ("email", email);
-		client.Add ("password", passwd);
-
-		try {
-			Stream response = client.Submit (AuthUrl, this.Progress).GetResponseStream ();
-		
-			System.Xml.XmlDocument doc = new System.Xml.XmlDocument ();
-			doc.Load (response);
-
-			System.Xml.XmlNode node = doc.SelectSingleNode ("//user/username");
-			this.username = node.ChildNodes [0].Value;
-
-			node = doc.SelectSingleNode ("//user/status/pro");
-			this.pro = (int.Parse (node.ChildNodes [0].Value) == 1);
-
-			node = doc.SelectSingleNode ("//user/transfer");
-			foreach (System.Xml.XmlNode child in node.ChildNodes) {
-				switch (child.Name) {
-				case "limit":
-					this.limit = long.Parse (child.ChildNodes [0].Value);
-					break;
-				case "used":
-					this.used = long.Parse (child.ChildNodes [0].Value);
-					break;
-				}
-			}
-			System.Console.WriteLine ("User {0} successfully logged in", this.username);
-			return true;
-		} catch (Exception e) {
-			System.Console.WriteLine (e);
-			return false;
-		}
-
+	
+	public void tryWebLogin () {
+		frob = flickr.AuthGetFrob ();
+		string login_url = flickr.AuthCalcUrl (frob, FlickrNet.AuthLevel.Write);
+		Gnome.Url.Show (login_url);
 	}
 }

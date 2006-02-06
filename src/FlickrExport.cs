@@ -2,13 +2,16 @@ namespace FSpot {
 	public class FlickrExport : GladeDialog {
 		IBrowsableCollection selection;
 
-		[Glade.Widget] Gtk.CheckButton scale_check;
-		[Glade.Widget] Gtk.CheckButton meta_check;
-		[Glade.Widget] Gtk.CheckButton tag_check;
-		[Glade.Widget] Gtk.CheckButton open_check;
-		[Glade.Widget] Gtk.Entry email_entry;
-		[Glade.Widget] Gtk.SpinButton size_spin;
+		[Glade.Widget] Gtk.CheckButton    scale_check;
+		[Glade.Widget] Gtk.CheckButton    meta_check;
+		[Glade.Widget] Gtk.CheckButton    tag_check;
+		[Glade.Widget] Gtk.CheckButton    open_check;
+		//[Glade.Widget] Gtk.Entry          email_entry;
+		[Glade.Widget] Gtk.SpinButton     size_spin;
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
+		[Glade.Widget] Gtk.Button         auth_flickr;
+		[Glade.Widget] Gtk.Button         auth_done_flickr;
+		[Glade.Widget] Gtk.Button         do_export_flickr;
 		
 		System.Threading.Thread command_thread;
 		ThreadProgressDialog progress_dialog;
@@ -17,10 +20,12 @@ namespace FSpot {
 		bool open;
 		bool scale;
 
+		string token;
+
 		int photo_index;
 		int size;
 
-		FlickrRemote fr = new FlickrRemote ();
+		FlickrRemote fr;
 
 		public FlickrExport (IBrowsableCollection selection) : base ("flickr_export_dialog")
 		{
@@ -37,13 +42,21 @@ namespace FSpot {
 
 			Dialog.ShowAll ();
 			Dialog.Response += HandleResponse;
+			auth_flickr.Clicked += HandleLogin;
 
 			LoadPreference (Preferences.EXPORT_FLICKR_SCALE);
 			LoadPreference (Preferences.EXPORT_FLICKR_SIZE);
 			LoadPreference (Preferences.EXPORT_FLICKR_BROWSER);
 			LoadPreference (Preferences.EXPORT_FLICKR_TAGS);
 			LoadPreference (Preferences.EXPORT_FLICKR_STRIP_META);
-			LoadPreference (Preferences.EXPORT_FLICKR_EMAIL);
+			LoadPreference (Preferences.EXPORT_FLICKR_TOKEN);
+
+			do_export_flickr.Sensitive = false;
+			if (token != null && token.Length > 0) {
+				GLib.Idle.Add (IdleLogin);
+			}
+
+			fr = new FlickrRemote (token);
 		}
 
 		public void HandleSizeActive (object sender, System.EventArgs args)
@@ -51,34 +64,10 @@ namespace FSpot {
 			size_spin.Sensitive = scale_check.Active;
 		}
 
-		private string GetPassword (string email) 
-		{
-			Gtk.Dialog password_dialog = new Gtk.Dialog (Mono.Posix.Catalog.GetString ("Enter Password"),
-								     Dialog, Gtk.DialogFlags.Modal);
-			
-			Gtk.Entry password_entry = new Gtk.Entry ();
-			password_entry.ActivatesDefault = true;
-			password_entry.Visibility = false;
-
-			password_dialog.VBox.BorderWidth = 12;
-			password_dialog.VBox.Spacing = 6;
-			password_dialog.VBox.PackStart (new Gtk.Label (Mono.Posix.Catalog.GetString ("Enter Password for ") + email));
-			password_dialog.VBox.PackStart (password_entry);
-			password_dialog.AddButton (Gtk.Stock.Ok, Gtk.ResponseType.Ok);
-			password_dialog.HasSeparator = false;
-			password_dialog.DefaultResponse = Gtk.ResponseType.Ok;
-			password_dialog.ShowAll ();
-			password_dialog.Run ();
-			string password =  password_entry.Text;
-			password_dialog.Destroy ();
-			return password;
-		}
-
-		private bool Login () {
+		private void Login () {
 			fr.Progress = null;
-			string email = email_entry.Text;
-			string password = GetPassword (email);
-			return fr.Login (email, password);
+			fr.tryWebLogin();
+			token = fr.Token;
 		}
 
 		private void HandleProgressChanged (ProgressItem item)
@@ -92,7 +81,6 @@ namespace FSpot {
 			fr.Progress.Changed += HandleProgressChanged;
 			System.Collections.ArrayList ids = new System.Collections.ArrayList ();
 			try {
-
 				foreach (IBrowsableItem photo in selection.Items) {
 					progress_dialog.Message = System.String.Format (
                                                 Mono.Posix.Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
@@ -127,10 +115,36 @@ namespace FSpot {
 			}
 		}
 		
+		private void HandleLogin (object sender, System.EventArgs args)
+		{
+			Login ();
+			do_export_flickr.Sensitive = true;
+		}
+		
+		private bool IdleLogin ()
+		{
+			HandleLogin (null, null);
+			return false;
+		}
+		
 		private void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
 			if (args.ResponseId != Gtk.ResponseType.Ok) {
 				Dialog.Destroy ();
+				return;
+			}
+			
+			if (!fr.CheckLogin()) {
+				do_export_flickr.Sensitive = false;
+				HigMessageDialog md = 
+					new HigMessageDialog (Dialog, 
+							      Gtk.DialogFlags.Modal |
+							      Gtk.DialogFlags.DestroyWithParent,
+							      Gtk.MessageType.Error, Gtk.ButtonsType.Ok, 
+							      Mono.Posix.Catalog.GetString ("Unable to log on."),
+							      Mono.Posix.Catalog.GetString ("F-Spot was unable to log on to Flickr.  Make sure you have given the authentication using Flickr web browser interface."));
+				md.Run ();
+				md.Destroy ();
 				return;
 			}
 			
@@ -140,32 +154,20 @@ namespace FSpot {
 			if (scale)
 				size = size_spin.ValueAsInt;
 
-			if (Login ()) {
-				command_thread = new  System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
-				command_thread.Name = Mono.Posix.Catalog.GetString ("Uploading Pictures");
-				
-				Dialog.Destroy ();
-				progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Count);
-				progress_dialog.Start ();
-
-				// Save these settings for next time
-				Preferences.Set (Preferences.EXPORT_FLICKR_SCALE, scale);
-				Preferences.Set (Preferences.EXPORT_FLICKR_SIZE, size);
-				Preferences.Set (Preferences.EXPORT_FLICKR_BROWSER, open);
-				Preferences.Set (Preferences.EXPORT_FLICKR_TAGS, tag_check.Active);
-				Preferences.Set (Preferences.EXPORT_FLICKR_STRIP_META, meta_check.Active);
-				Preferences.Set (Preferences.EXPORT_FLICKR_EMAIL, email_entry.Text);
-			} else {
-				HigMessageDialog md = new HigMessageDialog (Dialog, 
-									    Gtk.DialogFlags.Modal |
-									    Gtk.DialogFlags.DestroyWithParent,
-									    Gtk.MessageType.Error, Gtk.ButtonsType.Ok, 
-									    Mono.Posix.Catalog.GetString ("Unable to log on."),
-									    Mono.Posix.Catalog.GetString ("F-Spot was unable to log on to Flickr.  Make sure the settings you supplied are correct."));
-				md.Run ();
-				md.Destroy ();
-				return;
-			}
+			command_thread = new  System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
+			command_thread.Name = Mono.Posix.Catalog.GetString ("Uploading Pictures");
+			
+			Dialog.Destroy ();
+			progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Count);
+			progress_dialog.Start ();
+			
+			// Save these settings for next time
+			Preferences.Set (Preferences.EXPORT_FLICKR_SCALE, scale);
+			Preferences.Set (Preferences.EXPORT_FLICKR_SIZE, size);
+			Preferences.Set (Preferences.EXPORT_FLICKR_BROWSER, open);
+			Preferences.Set (Preferences.EXPORT_FLICKR_TAGS, tag_check.Active);
+			Preferences.Set (Preferences.EXPORT_FLICKR_STRIP_META, meta_check.Active);
+			Preferences.Set (Preferences.EXPORT_FLICKR_TOKEN, fr.Token);
 		}
 
 		void LoadPreference (string key)
@@ -201,10 +203,14 @@ namespace FSpot {
 				if (meta_check.Active != (bool) val)
 					meta_check.Active = (bool) val;
 				break;
-
+			case Preferences.EXPORT_FLICKR_TOKEN:
+				token = (string) val;
+			        break;
+				/*				
 			case Preferences.EXPORT_FLICKR_EMAIL:
 				email_entry.Text = (string) val;
 				break;
+				*/
 			}
 		}
 	}
