@@ -35,6 +35,7 @@ namespace FSpot
 		public const string EXPORT_FLICKR_TAGS = "/apps/f-spot/export/flickr/tags";
 		public const string EXPORT_FLICKR_STRIP_META = "/apps/f-spot/export/flickr/strip_meta";
 		public const string EXPORT_FLICKR_EMAIL = "/apps/f-spot/export/flickr/email";
+		public const string EXPORT_FLICKR_TOKEN = "/apps/f-spot/export/flickr/token";
 
 		public const string EXPORT_GALLERY_SCALE = "/apps/f-spot/export/gallery/scale";
 		public const string EXPORT_GALLERY_SIZE = "/apps/f-spot/export/gallery/size";
