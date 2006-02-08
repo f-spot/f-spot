@@ -346,6 +346,26 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		}
 	}
 
+	public uint CreateNamedVersion (string name, uint base_version_id, bool create_file)
+	{
+		int num = 1;
+		
+		string final_name;
+		while (true) {
+			final_name = String.Format (
+					Mono.Posix.Catalog.GetPluralString ("Modified in {1}", "Modified in {1} ({0})", num),
+					num, name);
+
+			if (num > 1)
+				final_name = name + String.Format(" ({0})", num);
+
+			if (! VersionNameExists (final_name))
+				return CreateVersion (final_name, base_version_id, create_file);
+
+			num ++;
+		}
+	}
+
 	public void RenameVersion (uint version_id, string new_name)
 	{
 		if (version_id == OriginalVersionId)

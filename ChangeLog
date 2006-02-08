@@ -1,3 +1,23 @@
+2006-02-08  Gabriel Burt <gabriel.burt@gmail.com>
+
+	* po/POTFILES.in: Add OpenWithMenu.cs and VfsExport.cs
+
+	* src/MainWindow.cs: Add handler for 'open with' command that takes
+	the MimeApplication and opens it with the selected photos, making
+	copies of them first if desired.
+
+	* src/Makefile.am: Add OpenWithMenu.cs
+
+	* src/OpenWithMenu.cs: New file that creates the submenu of an Open
+	With menu, filling it with the applications appropriate to a
+	combination of mimetypes passed in.  All Open With code based
+	on a patch by Loz (gnome2@flower.powernet.co.uk).
+
+	* src/PhotoPopup.cs: Add 'Open With' menu to the photo popup menu (BGO
+	#156506).
+
+	* src/PhotoStore.cs: New create new version method.
+
 2006-02-05  Larry Ewing  <lewing@novell.com>
 
 	* src/Preferences.cs: add flickr token path.

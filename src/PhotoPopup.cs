@@ -14,6 +14,7 @@
 using System;
 using Gtk;
 using Gdk;
+using Mono.Posix;
 
 public class PhotoPopup {
 	public void Activate (Gdk.EventButton eb) 
@@ -26,7 +27,7 @@ public class PhotoPopup {
 		
 		Gtk.Menu popup_menu = new Gtk.Menu ();
 		bool have_selection = count > 0;
-
+		
 		GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Copy Photo Location"), 
 				      new EventHandler (MainWindow.Toplevel.HandleCopyLocation), have_selection);
 		
@@ -38,6 +39,10 @@ public class PhotoPopup {
 				      new EventHandler (MainWindow.Toplevel.HandleRotate90Command), have_selection);
 
 		GtkUtil.MakeMenuSeparator (popup_menu);
+
+		OpenWithMenu owm = OpenWithMenu.AppendMenuTo (popup_menu, MainWindow.Toplevel.SelectedMimeTypes);
+		owm.IgnoreApp = "f-spot";
+		owm.ApplicationActivated += MainWindow.Toplevel.HandleOpenWith;
 
 		GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Remove From Catalog"), 
 				      new EventHandler (MainWindow.Toplevel.HandleRemoveCommand), have_selection);

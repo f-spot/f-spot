@@ -2383,6 +2383,43 @@ public class MainWindow {
 		}
 	}
 
+	public void HandleOpenWith (Gnome.Vfs.MimeApplication mime_application)
+	{
+		Photo[] selected = SelectedPhotos ();
+
+		if (selected == null || selected.Length < 1)
+			return;
+		
+		string header = Catalog.GetPluralString ("Create New Version?", "Create New Versions?", selected.Length); 
+		
+		string msg = String.Format (Catalog.GetPluralString (
+				"Before launching {1}, should F-Spot create a new version of the selected photo to preserve the original?",
+				"Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?", selected.Length),
+				selected.Length, mime_application.Name);
+
+		// FIXME add a cancel button?
+		Gtk.ResponseType response = HigMessageDialog.RunHigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
+									   MessageType.Question, Gtk.ButtonsType.YesNo, 
+									   header, msg);
+
+		bool create_new_versions = (response == Gtk.ResponseType.Yes);
+
+		GLib.List uri_list = new GLib.List (typeof (string));
+		foreach (Photo photo in selected) {
+			if (create_new_versions) {
+				// exception handling? Out of space, blah, blah
+				// FIXME give the new version a better name, based on the app's name that we're opening it with
+				uint version = photo.CreateNamedVersion (mime_application.Name, photo.DefaultVersionId, true);
+				photo.DefaultVersionId = version;
+				UpdateForVersionIdChange (version);
+			}
+
+			uri_list.Append (photo.DefaultVersionPath);
+		}
+		
+		mime_application.Launch (uri_list);
+	}
+
 	// Tag typing
 
 	private ArrayList selected_photos_tagnames;
@@ -2655,6 +2692,20 @@ public class MainWindow {
 			if (t == tag)
 				return true;
 		return false;
+	}
+
+	public string [] SelectedMimeTypes ()
+	{
+		ArrayList mimes = new ArrayList ();
+
+		foreach (Photo p in SelectedPhotos ()) {
+			string mime = Gnome.Vfs.MimeType.GetMimeTypeForUri (p.DefaultVersionPath);
+
+			if (! mimes.Contains (mime))
+				mimes.Add (mime);
+		}
+
+		return mimes.ToArray (typeof (string)) as string [];
 	}
 
 	public static void SetTip (Widget widget, string tip)

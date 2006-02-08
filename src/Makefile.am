@@ -74,6 +74,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/MainWindow.cs			\
 	$(srcdir)/MetadataStore.cs		\
 	$(srcdir)/MrwFile.cs			\
+	$(srcdir)/OpenWithMenu.cs		\
 	$(srcdir)/Operation.cs			\
 	$(srcdir)/PhotoImageView.cs		\
 	$(srcdir)/PhotoLoader.cs		\
