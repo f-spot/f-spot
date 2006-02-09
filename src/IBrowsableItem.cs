@@ -214,6 +214,13 @@ namespace FSpot {
 			int old_location = Index;
 			int next_location = collection.IndexOf (item);
 			
+			if (old_location == next_location) {
+				if (! Valid (next_location))
+					SetIndex (0);
+
+				return;
+			}
+			
 			if (Valid (next_location))
 				SetIndex (next_location);
 			else if (Valid (old_location))
