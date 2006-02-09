@@ -1,5 +1,12 @@
 2006-02-08  Gabriel Burt <gabriel.burt@gmail.com>
 
+	* src/TagSelectionWidget.cs: Put the checkbox, icon, and name into a
+	single column so that all tag names, even when in different
+	hierarchies, aren't aligned.  Makes the Tag list much nicer. Fixes
+	BGO #329401.
+
+2006-02-08  Gabriel Burt <gabriel.burt@gmail.com>
+
 	* po/POTFILES.in: Add OpenWithMenu.cs and VfsExport.cs
 
 	* src/MainWindow.cs: Add handler for 'open with' command that takes
