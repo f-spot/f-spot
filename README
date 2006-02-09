@@ -1,17 +1,20 @@
+F-Spot Photo Manager
+http://f-spot.org/
+
 Requirements:
 
 	- GNOME development libraries 2.4 or later,
 	  http://www.gnome.org
 
-	- Mono 0.28 or later, http://www.go-mono.net
+	- Mono 1.1.7 or later, http://www.go-mono.net
 
-	- gtk-sharp from Mono CVS, http://www.go-mono.com/anoncvs.html
+	- gtk-sharp 2.7 or later, http://www.go-mono.net
 
-	- libexif 0.5.1 or later, http://libexif.sourceforge.net
+	- libexif 0.5.7 to 0.7.0, http://libexif.sourceforge.net
 
 	- Sqlite 2.8.6 or later
 
-	- liblcms 0.12 or later, http://www.littlecms.com/
+	- liblcms 1.12 or later, http://www.littlecms.com/
 
 	- libgphoto2 2.1.4 or later, http://www.gphoto.org
 
@@ -19,18 +22,3 @@ To compile, just go through the normal autogen/configure stuff and
 then make install.
 
 To launch F-Spot, run $(prefix)/bin/f-spot.
-
-
-	*** WARNING ***
-
-	This is not ready for end-user consumption yet.
-
-	In particular, the format of the database is still changing
-	and the code doesn't handle upgrading existing tables when the
-	schema changes.
-
-	If things stop working after a CVS update, chances are that
-	the database format has changed.  In that case you will have
-	to nuke your database (rm ~/.gnome2/f-spot/photos.db) and
-	start over, importing all your pictures again.
-
