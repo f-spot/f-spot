@@ -2,9 +2,10 @@ using Gtk;
 using Gnome;
 using System;
 using System.IO;
+using System.Runtime.InteropServices;
+using System.Text;
 
 public class Driver {
-
 	public static void Main (string [] args)
 	{
 		bool view_only = false;
@@ -13,6 +14,8 @@ public class Driver {
 		Program program = null;
 		FSpot.CoreControl control = null;
 
+		SetProcessName (FSpot.Defines.PACKAGE);
+		
 		foreach (string arg in args) {
 			if (arg == "--help") {
 				System.Console.WriteLine ("Usage f-spot [OPTION. ..]\n");
@@ -98,5 +101,22 @@ public class Driver {
 		
 		if (program != null)
 			program.Run ();
+	}
+
+	[DllImport("libc")]
+	private static extern int prctl(int option, string name, ulong arg3,
+					ulong arg4, ulong arg5);
+	
+	public static void SetProcessName(string name)
+	{
+		try {
+			if(prctl(15 /* PR_SET_NAME */, name,
+				 0, 0, 0) != 0) {
+				throw new ApplicationException("Error setting process name: " +
+							       Mono.Unix.Native.Stdlib.GetLastError());
+			}
+		} catch (DllNotFoundException de) {
+			/* noop */
+		}
 	}
 }

@@ -1,3 +1,26 @@
+2006-02-09  Larry Ewing  <lewing@novell.com>
+
+	* src/main.cs: set the process name using prctl based on Aaron's
+	snippet.
+
+2006-02-08  Larry Ewing  <lewing@novell.com>
+
+	* src/IconView.cs: add a hack to suppress scrolling if the size
+	change is because of a collection change.
+
+	* src/IBrowsableItem.cs: don't reload the image if the old and new
+	index are the same and valid.
+
+	* src/Makefile.am: add f-spot-adjust-colors.png as a resource.
+
+	* src/PhotoView.cs: add use f-spot-adjust-colors.png
+
+	* src/StockIcons.cs: add f-spot-adjust-colors.png
+
+	* icons/Makefile.am: add f-spot-adjust-colors.png
+
+	* src/OpenWithMenu.cs: try to clean up the icon loading a bit.
+
 2006-02-09  Gabriel Burt <gabriel.burt@gmail.com>
 
 	* NEWS: added some things for the next release.
