@@ -499,7 +499,7 @@ public class PhotoView : EventBox {
 		redeye_button.Clicked += new EventHandler (HandleRedEyeButtonClicked);
 
 		color_button = new ToolbarButton ();
-		color_button.Add (new Gtk.Image ("f-spot-edit-image", IconSize.Button));
+		color_button.Add (new Gtk.Image ("f-spot-adjust-colors", IconSize.Button));
 		toolbar_hbox.PackStart (color_button, false, true, 0);
 	
 		color_button.Clicked += new EventHandler (HandleColorButtonClicked);

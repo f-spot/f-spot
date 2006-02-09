@@ -148,6 +148,7 @@ ASSEMBLIES =					\
 	-pkg:gconf-sharp-2.0
 
 RESOURCES =										\
+	-resource:$(top_srcdir)/icons/f-spot-adjust-colors.png,f-spot-adjust-colors.png		\
 	-resource:$(top_srcdir)/icons/f-spot-browse.png,f-spot-browse.png		\
 	-resource:$(top_srcdir)/icons/f-spot-crop.png,f-spot-crop.png			\
 	-resource:$(top_srcdir)/icons/f-spot-camera.png,f-spot-camera.png		\

@@ -1,4 +1,5 @@
 noinst_DATA =					\
+	f-spot-adjust-colors.png		\
 	f-spot-browse.png			\
 	f-spot-camera.png			\
 	f-spot-crop.png				\

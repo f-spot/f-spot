@@ -23,6 +23,7 @@ public class StockIcons {
 	public static void Initialize ()
 	{
 		Gtk.StockItem [] stock_items = {	
+			FromDef ("f-spot-adjust-colors", Catalog.GetString ("Adjust Colors"), 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-browse", Catalog.GetString ("Browse"), 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-camera", Catalog.GetString ("Camera"), 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-crop", Catalog.GetString ("Crop"), 0, Gdk.ModifierType.ShiftMask, null),
