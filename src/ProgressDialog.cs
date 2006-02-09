@@ -12,19 +12,24 @@ public class ProgressDialog : Gtk.Dialog {
 		cancelled = true;
 	}
 
-
 	public enum CancelButtonType {
 		Cancel,
-		Stop
+		Stop,
+		None
 	};
-
-	
 
 	private CancelButtonType cancel_button_type;
 	private int total_count;
 
 	private ProgressBar progress_bar;
+	public ProgressBar Bar {
+		get { return progress_bar; }
+	}
+
 	private Label message_label;
+	public Label Message {
+		get { return message_label; }
+	}
 
 	private DateTime start_time;
 
@@ -40,7 +45,9 @@ public class ProgressDialog : Gtk.Dialog {
 		Title = title;
 		this.cancel_button_type = cancel_button_type;
 		this.total_count = total_count;
-		this.TransientFor = parent_window;
+
+		if (parent_window != null)
+			this.TransientFor = parent_window;
 
 		HasSeparator = false;
 		BorderWidth = 6;

@@ -1,5 +1,35 @@
 2006-02-08  Gabriel Burt <gabriel.burt@gmail.com>
 
+	* po/POTFILES.in: Added new file Updater.cs
+
+	* src/Core.cs: intitialize the Db within the Core, provide static
+	method for accessing the Db object.
+
+	* src/Db.cs: Add MetaStore property and run the Database.Updater upon
+	initialization.
+	
+	* src/Makefile.am: Add Updater.cs and MetaStore.cs
+
+	* src/MetaStore.cs: Add new database table that is just a key/value
+	hash that keeps track of things like what tag id corresponds to the
+	Hidden tag, and what version of the database and F-Spot produced the
+	database.
+
+	* src/ProgressDialog.cs: Add option for no cancel button, give access
+	to the progress bar and message label via properties
+
+	* src/TagStore.cs: Translate default tag names (BGO #170545), utilize
+	MetaStore for keeping track of the Hidden tag instead of string
+	matching. Remove the silly 'Other' tag.
+
+	* src/Updater.cs: New file, upon start up checks if the database is
+	the most current version, and if not it updates it (BGO #329146). The
+	only update it currently does is remove empty 'Other' tags.
+	
+	* src/main.cs: Move the Db initialization code into Core.cs
+
+2006-02-08  Gabriel Burt <gabriel.burt@gmail.com>
+
 	* src/TagSelectionWidget.cs: Put the checkbox, icon, and name into a
 	single column so that all tag names, even when in different
 	hierarchies, aren't aligned.  Makes the Tag list much nicer. Fixes

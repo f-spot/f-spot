@@ -1,3 +1,5 @@
+using System.IO;
+
 namespace FSpot {
 	[DBus.Interface ("org.gnome.FSpot.Core")]
 	public abstract class CoreControl {
@@ -17,14 +19,21 @@ namespace FSpot {
 	public class Core : CoreControl
 	{
 		MainWindow organizer;
-		Db db;
+		private static Db db;
 		System.Collections.ArrayList toplevels;
 		static DBus.Connection connection;
 
-		public Core (Db db)
+		public Core ()
 		{
-			this.db = db;
 			toplevels = new System.Collections.ArrayList ();
+					
+			// Load the database, upgrading/creating it as needed
+			string base_directory = FSpot.Global.BaseDirectory;
+			if (! File.Exists (base_directory))
+				Directory.CreateDirectory (base_directory);
+			
+			db = new Db ();
+			db.Init (Path.Combine (base_directory, "photos.db"), true);
 		}
 
 		public static DBus.Connection Connection {
@@ -34,6 +43,10 @@ namespace FSpot {
 
 				return connection;
 			}
+		}
+
+		public static Db Database {
+			get { return db; }
 		}
 
 		public static Core FindInstance ()

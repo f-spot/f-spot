@@ -196,26 +196,27 @@ public class Db : IDisposable {
 	TagStore tag_store;
 	PhotoStore photo_store;
  	ImportStore import_store;
+ 	MetaStore meta_store;
 	bool empty;
 
 	public TagStore Tags {
-		get {
-			return tag_store;
-		}
+		get { return tag_store; }
 	}
 
 	public ImportStore Imports {
-		get {
-			return import_store;
-		}
+		get { return import_store; }
 	}
 
 	public PhotoStore Photos {
-		get {
-			return photo_store;
-		}
+		get { return photo_store; }
+	}
+	
+	public MetaStore Meta {
+		get { return meta_store; }
 	}
 
+	// This affects how often the database writes data back to disk, and
+	// therefore how likely corruption is in the event of power loss.
 	public bool Sync {
 		set {
 			SqliteCommand command = new SqliteCommand ();
@@ -251,11 +252,11 @@ public class Db : IDisposable {
 	}
 
 	SqliteConnection sqlite_connection;
+	public SqliteConnection Connection {
+		get { return sqlite_connection; }
+	}
 
-
-	// Constructor.
-
-	public Db (string path, bool create_if_missing)
+	public void Init (string path, bool create_if_missing)
 	{
 		bool new_db = ! File.Exists (path);
 
@@ -266,11 +267,17 @@ public class Db : IDisposable {
 		sqlite_connection.ConnectionString = "URI=file:" + path;
 
 		sqlite_connection.Open ();
+		
+		// Load or create the meta table
+ 		meta_store = new MetaStore (sqlite_connection, new_db);
+
+		// Update the database schema if necessary
+		FSpot.Database.Updater.Run (this);
 
 		tag_store = new TagStore (sqlite_connection, new_db);
 		import_store = new ImportStore (sqlite_connection, new_db);
  		photo_store = new PhotoStore (sqlite_connection, new_db, tag_store);
-
+		
 		empty = new_db;
 	}
 

@@ -51,12 +51,7 @@ public class Driver {
 			
 			// FIXME: Error checking is non-existant here...
 			
-			string base_directory = FSpot.Global.BaseDirectory;
-			if (! File.Exists (base_directory))
-				Directory.CreateDirectory (base_directory);
-			
-			Db db = new Db (Path.Combine (base_directory, "photos.db"), true);
-			core = new FSpot.Core (db);
+			core = new FSpot.Core ();
 
 			try {
 				core.RegisterServer ();
@@ -64,9 +59,9 @@ public class Driver {
 				System.Console.WriteLine (e.ToString ());
 			}
 
-			empty = db.Empty;
+			empty = FSpot.Core.Database.Empty;
 			control = core;
-		}			
+		}
 			
 		for (int i = 0; i < args.Length; i++) {
 			switch (args [i]) {

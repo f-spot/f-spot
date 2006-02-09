@@ -1,6 +1,7 @@
 using Gdk;
 using Gnome;
 using Gtk;
+using Mono.Posix;
 using Mono.Data.SqliteClient;
 using System.Collections;
 using System.IO;
@@ -317,9 +318,6 @@ public class TagStore : DbStore {
 
 			tag.SortPriority = Convert.ToInt32 (reader[3]);
 			AddToCache (tag);
-			
-			if (tag.Name == "Hidden")
-				hidden = tag;
 		}
 
 		reader.Close ();
@@ -348,6 +346,9 @@ public class TagStore : DbStore {
 		}
 		reader.Close ();
 		command.Dispose ();
+
+		if (FSpot.Core.Database.Meta.HiddenTagId.Value != null)
+			hidden = LookupInCache ((uint) FSpot.Core.Database.Meta.HiddenTagId.ValueAsInt) as Tag;
 	}
 
 
@@ -373,36 +374,33 @@ public class TagStore : DbStore {
 
 	private void CreateDefaultTags ()
 	{
-		Tag favorites_tag = CreateTag (RootCategory, "Favorites");
+		Tag favorites_tag = CreateTag (RootCategory, Catalog.GetString ("Favorites"));
 		favorites_tag.StockIconName = "f-spot-favorite.png";
 		favorites_tag.SortPriority = -10;
 		Commit (favorites_tag);
 
-		Tag hidden_tag = CreateTag (RootCategory, "Hidden");
+		Tag hidden_tag = CreateTag (RootCategory, Catalog.GetString ("Hidden"));
 		hidden_tag.StockIconName = "f-spot-hidden.png";
 		hidden_tag.SortPriority = -9;
 		this.hidden = hidden_tag;
 		Commit (hidden_tag);
+		FSpot.Core.Database.Meta.HiddenTagId.ValueAsInt = (int) hidden_tag.Id;
+		FSpot.Core.Database.Meta.Commit (FSpot.Core.Database.Meta.HiddenTagId);
 
-		Tag people_category = CreateCategory (RootCategory, "People");
+		Tag people_category = CreateCategory (RootCategory, Catalog.GetString ("People"));
 		people_category.StockIconName = "f-spot-people.png";
 		people_category.SortPriority = -8;
 		Commit (people_category);
 
-		Tag places_category = CreateCategory (RootCategory, "Places");
+		Tag places_category = CreateCategory (RootCategory, Catalog.GetString ("Places"));
 		places_category.StockIconName = "f-spot-places.png";
 		places_category.SortPriority = -8;
 		Commit (places_category);
 
-		Tag events_category = CreateCategory (RootCategory, "Events");
+		Tag events_category = CreateCategory (RootCategory, Catalog.GetString ("Events"));
 		events_category.StockIconName = "f-spot-events.png";
 		events_category.SortPriority = -7;
 		Commit (events_category);
-
-		Tag other_category = CreateCategory (RootCategory, "Other");
-		other_category.StockIconName = "f-spot-other.png";
-		other_category.SortPriority = -6;
-		Commit (other_category);
 	}
 
 

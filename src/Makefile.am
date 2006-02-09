@@ -72,6 +72,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Cms.cs			\
 	$(srcdir)/Loupe.cs			\
 	$(srcdir)/MainWindow.cs			\
+	$(srcdir)/MetaStore.cs			\
 	$(srcdir)/MetadataStore.cs		\
 	$(srcdir)/MrwFile.cs			\
 	$(srcdir)/OpenWithMenu.cs		\
@@ -118,6 +119,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/TimeDialog.cs			\
 	$(srcdir)/TipWindow.cs			\
 	$(srcdir)/Unix.cs			\
+	$(srcdir)/Updater.cs			\
 	$(srcdir)/Util.cs			\
 	$(srcdir)/ThumbnailCommand.cs		\
 	$(srcdir)/QueryDisplay.cs		\
