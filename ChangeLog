@@ -1,5 +1,7 @@
 2006-02-10  Larry Ewing  <lewing@novell.com>
 
+	* src/OpenWithMenu.cs: make try to load icons if enabled.
+
 	* src/FlickrExport.cs: hook up the metadata check.
 
 	* src/FlickrRemote.cs: add support for striping metadata when

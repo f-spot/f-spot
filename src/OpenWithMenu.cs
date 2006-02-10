@@ -144,26 +144,24 @@ public class OpenWithMenu: Gtk.Menu {
 			App = mime_application;
 			
 			if (menu.ShowIcons) {
-				//System.Console.WriteLine ("icon = {0}", mime_application.Icon);
-				
-				// FIXME this is stupid, the mime_application.Icon is sometimes just a file name
-				// and sometimes a full path.
-				//int w, h;
-				//w = h = (int) IconSize.Menu;
-				//string icon = mime_application.Icon;
-				//Console.WriteLine ("w/h = {0}", w);
+				System.Console.WriteLine ("icon = {0}", mime_application.Icon);
 
-				//Pixbuf img = new Pixbuf (icon, w, h);
-				//Image = new Gtk.Image (mime_application.Icon);
+				if (mime_application.Icon != null) {
+					Gdk.Pixbuf pixbuf = null; 
 
-				/*if (Image == null)
-					Image = new Gtk.Image ("/usr/share/pixmaps/" + mime_application.Icon);
-				
-				if (Image == null)
-					Image = new Gtk.Image ("/usr/share/icons/gnome/24x24/apps/" + mime_application.Icon);
+					try {
+						if (mime_application.Icon.StartsWith ("/"))
+							pixbuf = new Gdk.Pixbuf (mime_application.Icon, 16, 16);
+						else 
+							pixbuf = IconTheme.Default.LoadIcon (mime_application.Icon,
+											     16, (IconLookupFlags)0);
+					} catch (System.Exception e) {
+						pixbuf = null;
+					}
 
-				if (Image != null)
-					(Image as Gtk.Image).IconSize = Gtk.IconSize.Menu;*/
+					if (pixbuf != null)
+						Image = new Gtk.Image (pixbuf);
+				}
 			}
 		}
 	}
