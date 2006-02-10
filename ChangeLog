@@ -1,5 +1,8 @@
 2006-02-10  Larry Ewing  <lewing@novell.com>
 
+	* src/f-spot.in (libdir): add the FlickrNet path to the MONO_PATH
+	when running the uninstalled version.
+
 	* src/ImportCommand.cs: small cleanups.
 
 	* src/FlickrRemote.cs: expose the Auth token to the caller.
