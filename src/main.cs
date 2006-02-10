@@ -32,19 +32,24 @@ public class Driver {
 			}
 		}
 
-
+		/* 
+		 * FIXME we need to inialize gobject before making the dbus calls, we'll go 
+		 * ahead and do it like this for now.
+		 */ 
+		program = new Program (FSpot.Defines.PACKAGE, 
+				       FSpot.Defines.VERSION, 
+				       Modules.UI, args);		
+		
 		try {
 			control = FSpot.Core.FindInstance ();
 			System.Console.WriteLine ("Found active FSpot server: {0}", control);
+			program = null;
 		} catch (System.Exception e) { 
 			System.Console.WriteLine ("Starting new FSpot server");
 		}
 
 		if (control == null) {
 			FSpot.Core core = null;
-			program = new Program (FSpot.Defines.PACKAGE, 
-					       FSpot.Defines.VERSION, 
-					       Modules.UI, args);
 			
 			Gnome.Vfs.Vfs.Initialize ();
 			StockIcons.Initialize ();
@@ -68,13 +73,6 @@ public class Driver {
 			
 		for (int i = 0; i < args.Length; i++) {
 			switch (args [i]) {
-			case "--help":
-				System.Console.WriteLine ("Usage f-spot [command [options]]\n");
-				System.Console.WriteLine ("--import [uri]\timport from the given uri");
-				System.Console.WriteLine ("--view <file>\tview a file or directory ");
-				System.Console.WriteLine ("--shutdown\tshutdown a running f-spot server");
-				System.Console.WriteLine ("--help\tview this message");
-				break;
 			case "--shutdown":
 				control.Shutdown ();
 				break;

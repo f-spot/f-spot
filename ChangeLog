@@ -1,5 +1,9 @@
 2006-02-09  Larry Ewing  <lewing@novell.com>
 
+	* src/main.cs: create a new program before making the dbus calls.
+	Something somewhere isn't getting itialized properly otherwise and
+	this avoids the problem.
+
 	* src/f-spot.in (libdir): use exec -a when lauching mono.
 
 	* src/main.cs: set the process name using prctl based on Aaron's
