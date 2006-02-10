@@ -1,5 +1,7 @@
 2006-02-10  Larry Ewing  <lewing@novell.com>
 
+	* src/ImportCommand.cs: small cleanups.
+
 	* src/FlickrRemote.cs: expose the Auth token to the caller.
 
 	* src/FlickrExport.cs: start reworking the auth checking code for

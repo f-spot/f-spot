@@ -419,14 +419,6 @@ public class ImportCommand : FSpot.GladeDialog {
 		progress_bar.Fraction = (double) count / System.Math.Max (total, 1);
 	}
 
-	private void HandleCollectionChanged (FSpot.IBrowsableCollection col)
-	{
-		if (collection.Count == 1) {
-			photo_view.Item.Index = -1;
-			photo_view.Item.Index = 0;
-		}
-	}
-
 	private void HandleTraySelectionChanged (FSpot.IBrowsableCollection coll) 
 	{
 		if (tray.Selection.Count > 0)
@@ -652,8 +644,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		source_option_menu.Menu = menu;
 
 		collection = new FSpot.PhotoList (new Photo [0]);
-		collection.Changed += HandleCollectionChanged;
-		tray = new TrayView (collection);
+		tray = new FSpot.ScalingIconView (collection);
 		tray.Selection.Changed += HandleTraySelectionChanged;
 		icon_scrolled.SetSizeRequest (200, 480);
 		icon_scrolled.Add (tray);
@@ -800,11 +791,11 @@ public class ImportCommand : FSpot.GladeDialog {
 		return ImportFromPaths (store, paths, null);
 	}
 
-    public int ImportFromPaths (PhotoStore store, string [] paths, bool copy)
-    {
-        return ImportFromPaths (store, paths, null, copy);
-    }
-
+	public int ImportFromPaths (PhotoStore store, string [] paths, bool copy)
+	{
+		return ImportFromPaths (store, paths, null, copy);
+	}
+	
 	public int ImportFromPaths (PhotoStore store, string [] paths, Tag [] tags)
 	{
 		return ImportFromPaths (store, paths, tags, false);
