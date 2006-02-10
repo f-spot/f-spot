@@ -140,10 +140,10 @@ public class FlickrRemote {
 	
 	public string Upload (IBrowsableItem photo)
 	{
-		return Upload (photo, false, 0);
+		return Upload (photo, false, 0, true);
 	}
 	
-	public string Upload (IBrowsableItem photo, bool scale, int size)
+	public string Upload (IBrowsableItem photo, bool scale, int size, bool copy_metadata)
 	{
 		if (token == null) {            
 			throw new Exception ("Must Login First");
@@ -158,7 +158,7 @@ public class FlickrRemote {
 			string tags = null;
 			
 			if (scale) {
-				path = PixbufUtils.Resize (path, size, true);
+				path = PixbufUtils.Resize (path, size, copy_metadata);
 				file = new FileInfo (path);
 			}
 			
@@ -168,7 +168,7 @@ public class FlickrRemote {
 				
 				for (int i = 0; i < t.Length; i++) {
 					if (i > 0)
-						taglist.Append (", ");
+						taglist.Append (",");
 					
 					taglist.Append (t[i].Name);
 				}

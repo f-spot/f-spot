@@ -19,6 +19,7 @@ namespace FSpot {
 		
 		bool open;
 		bool scale;
+		bool copy_metadata;
 
 		string token;
 
@@ -91,7 +92,7 @@ namespace FSpot {
 						Mono.Posix.Catalog.GetString ("{0} of {1}"), photo_index, 
 						selection.Count);
 
-					string id = fr.Upload (photo, scale, size);
+					string id = fr.Upload (photo, scale, size, copy_metadata);
 					ids.Add (id);
 					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Done Sending Photos");
 					progress_dialog.Fraction = 1.0;
@@ -151,6 +152,8 @@ namespace FSpot {
 			fr.ExportTags = tag_check.Active;
 			open = open_check.Active;
 			scale = scale_check.Active;
+			copy_metadata = open_check.Active;
+
 			if (scale)
 				size = size_spin.ValueAsInt;
 
