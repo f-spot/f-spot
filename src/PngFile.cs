@@ -3,11 +3,29 @@ using SemWeb;
 using Cms;
 using System.IO;
 using FSpot.Xmp;
+using System.Collections;
 
 namespace FSpot.Png {
 	public class PngFile : ImageFile, SemWeb.StatementSource {
-		System.Collections.ArrayList chunk_list;
-		
+		PngHeader header;
+
+		private PngHeader Header {
+			get {
+				if (header == null) {
+					using (System.IO.Stream input = System.IO.File.OpenRead (this.Path)) {
+					        header = new PngHeader (input);
+					}
+				}
+				
+				return header;
+			}
+		}
+
+		public System.Collections.ArrayList Chunks {
+			get { return Header.Chunks; }
+		}
+
+
 		public PngFile (string path) : base (path)
 		{
 			this.path = path;
@@ -102,18 +120,6 @@ namespace FSpot.Png {
 					MetadataStore.AddLiteral (sink, "tiff:XResolution", new FSpot.Tiff.Rational (phys.PixelsPerUnitX, denominator).ToString ());
 					MetadataStore.AddLiteral (sink, "tiff:YResolution", new FSpot.Tiff.Rational (phys.PixelsPerUnitY, denominator).ToString ());
 				}
-			}
-		}
-
-		public System.Collections.ArrayList Chunks {
-			get {
-				if (chunk_list == null) {
-					using (System.IO.Stream input = System.IO.File.OpenRead (this.Path)) {
-						Load (input);
-					}
-				}
-				
-				return chunk_list;
 			}
 		}
 
@@ -1148,60 +1154,106 @@ namespace FSpot.Png {
 
 		private static byte [] magic = new byte [] { 137, 80, 78, 71, 13, 10, 26, 10 };
 
-	        void Load (System.IO.Stream stream)
-		{
-			byte [] heading = new byte [8];
-			byte [] crc_data = new byte [4];
-			stream.Read (heading, 0, heading.Length);
-
-			for (int i = 0; i < heading.Length; i++)
+				
+		public class PngHeader {
+			ArrayList chunk_list;
+			
+			public ArrayList Chunks { 
+				get { return chunk_list; }
+			}
+			
+			public PngHeader (Stream stream) 
+			{
+				byte [] heading = new byte [8];
+				byte [] crc_data = new byte [4];
+				stream.Read (heading, 0, heading.Length);
+				
+				for (int i = 0; i < heading.Length; i++)
 				if (heading [i] != magic [i])
 					throw new System.Exception ("Invalid PNG magic number");
-
-			chunk_list = new System.Collections.ArrayList ();
-
-			for (int i = 0; stream.Read (heading, 0, heading.Length) == heading.Length; i++) {
-				uint length = BitConverter.ToUInt32 (heading, 0, false);
-				string name = System.Text.Encoding.ASCII.GetString (heading, 4, 4);
-				byte [] data = new byte [length];
-				if (length > 0)
-					stream.Read (data, 0, data.Length);
-
-				stream.Read (crc_data, 0, 4);
-				uint crc = BitConverter.ToUInt32 (crc_data, 0, false);
-
-				Chunk chunk = Chunk.Generate (name, data);
-				if (! chunk.CheckCrc (crc))
-					throw new System.Exception ("chunk crc check failed");
 				
-				//System.Console.Write ("read one {0} {1}", chunk, chunk.Name);
-				chunk_list.Add (chunk);
-
+				chunk_list = new System.Collections.ArrayList ();
+				
+				for (int i = 0; stream.Read (heading, 0, heading.Length) == heading.Length; i++) {
+					uint length = BitConverter.ToUInt32 (heading, 0, false);
+					string name = System.Text.Encoding.ASCII.GetString (heading, 4, 4);
+					byte [] data = new byte [length];
+					if (length > 0)
+						stream.Read (data, 0, data.Length);
+					
+					stream.Read (crc_data, 0, 4);
+					uint crc = BitConverter.ToUInt32 (crc_data, 0, false);
+					
+					Chunk chunk = Chunk.Generate (name, data);
+					if (! chunk.CheckCrc (crc))
+						throw new System.Exception ("chunk crc check failed");
+					
+					//System.Console.Write ("read one {0} {1}", chunk, chunk.Name);
+					chunk_list.Add (chunk);
+					
 #if false			       
-				if (chunk is TextChunk) {
-					TextChunk text = (TextChunk) chunk;
-					System.Console.Write (" Text Chunk {0} {1}", 
-							      text.Keyword, "", "");
-				}
+					if (chunk is TextChunk) {
+						TextChunk text = (TextChunk) chunk;
+						System.Console.Write (" Text Chunk {0} {1}", 
+								      text.Keyword, "", "");
+					}
+					
+					TimeChunk time = chunk as TimeChunk;
+					if (time != null)
+						System.Console.Write(" Time {0}", time.Time);
 
-				TimeChunk time = chunk as TimeChunk;
-				if (time != null)
-					System.Console.Write(" Time {0}", time.Time);
+					System.Console.WriteLine ("");
 #endif
-				System.Console.WriteLine ("");
-				
-				if (chunk.Name == "IEND")
-					break;
+					
+					if (chunk.Name == "IEND")
+						break;
+				}
+			}
+
+			internal string LookupText (string keyword)
+			{
+				TextChunk chunk = LookupTextChunk (keyword);
+				if (chunk != null)
+					return chunk.Text;
+
+				return null;
+			}
+			
+			internal TextChunk LookupTextChunk (string keyword)
+			{
+				foreach (Chunk chunk in Chunks) {
+					TextChunk text = chunk as TextChunk;
+					if (text != null && text.Keyword == keyword)
+						return text;
+				}
+				return null;	
+			}
+			
+			internal void Insert (Chunk chunk)
+			{
+				// FIXME The point of this function is to enforce ordering constraints
+				// it obviously isn't complete right now.
+				if (chunk is IhdrChunk)
+				Chunks.Insert (0, chunk);
+				else if (chunk is TextChunk)
+					Chunks.Insert (1, chunk);
+				else
+					throw new System.Exception ("Uknown ordering for chunk");
+			}
+			
+			public void Save (System.IO.Stream stream)
+			{
+				stream.Write (magic, 0, magic.Length);
+				foreach (Chunk chunk in Chunks) {
+					chunk.Save (stream);
+				}
 			}
 		}
 
 
 		public void Save (System.IO.Stream stream)
 		{
-			stream.Write (magic, 0, magic.Length);
-			foreach (Chunk chunk in Chunks) {
-				chunk.Save (stream);
-			}
+			Header.Save (stream);
 		}
 
 		public void Save (string path)
@@ -1216,23 +1268,21 @@ namespace FSpot.Png {
 			}
 		}
 
-		public string LookupText (string keyword)
+		public override void Save (Gdk.Pixbuf pixbuf, System.IO.Stream stream)
 		{
-			TextChunk chunk = LookupTextChunk (keyword);
-			if (chunk != null)
-				return chunk.Text;
+			string [] opt = new string [] { "comment", null };
+			byte [] buffer = PixbufUtils.Save (pixbuf, "png", null, null);
+			MemoryStream mem = new MemoryStream (buffer);
+			PngHeader converted = new PngHeader (mem);
 
-			return null;
-		}
-
-		public TextChunk LookupTextChunk (string keyword)
-		{
-			foreach (Chunk chunk in Chunks) {
-				TextChunk text = chunk as TextChunk;
-				if (text != null && text.Keyword == keyword)
-					return text;
+			/* FIXME we need to update the XMP metadata here */
+			foreach (Chunk c in Chunks) {
+				if (c is TextChunk) {
+					converted.Insert (c);
+				}
 			}
-			return null;	
+
+			converted.Save (stream);
 		}
 
 		public override Cms.Profile GetProfile ()
@@ -1295,31 +1345,31 @@ namespace FSpot.Png {
 
 		public override string Description {
 			get {
-				string description = LookupText ("Description");
+				string description = Header.LookupText ("Description");
 
 				if (description != null)
 					return description;
 				else
-					return LookupText ("Comment");
+					return Header.LookupText ("Comment");
 			}
 		}
 
 		public void SetDescription (string description) 
 		{
 			TextChunk text = null;
-			text = LookupTextChunk ("Description");
+			text = Header.LookupTextChunk ("Description");
 			
 			if (text != null)
 				text.SetText (description);
 			else 
-				Insert (new TextChunk ("Description", description));
+				Header.Insert (new TextChunk ("Description", description));
 		}
 
 		public XmpFile GetXmp ()
 		{
-			TextChunk xmpchunk  = LookupTextChunk ("XML:com.adobe.xmp");
+			TextChunk xmpchunk  = Header.LookupTextChunk ("XML:com.adobe.xmp");
 			if (xmpchunk == null)
-				xmpchunk = LookupTextChunk ("XMP");
+				xmpchunk = Header.LookupTextChunk ("XMP");
 
 			if (xmpchunk == null)
 				return null;
@@ -1333,11 +1383,11 @@ namespace FSpot.Png {
 		{
 			TextChunk text = null;
 
-			text = LookupTextChunk ("XML:com.adobe.xmp");
+			text = Header.LookupTextChunk ("XML:com.adobe.xmp");
 			if (text != null)
 				Chunks.Remove (text);
 			
-			text = LookupTextChunk ("XMP");
+			text = Header.LookupTextChunk ("XMP");
 			if (text != null)
 				Chunks.Remove (text);
 
@@ -1345,19 +1395,7 @@ namespace FSpot.Png {
 			MemoryStream stream = new MemoryStream ();
 			xmp.Save (stream);
 			itext.SetText (stream.ToArray ());
-			Insert (itext);
-		}
-
-		private void Insert (Chunk chunk)
-		{
-			// FIXME The point of this function is to enforce ordering constraints
-			// it obviously isn't complete right now.
-			if (chunk is IhdrChunk)
-				Chunks.Insert (0, chunk);
-			else if (chunk is TextChunk)
-				Chunks.Insert (1, chunk);
-			else
-				throw new System.Exception ("Uknown ordering for chunk");
+			Header.Insert (itext);
 		}
 
 		public override System.DateTime Date {

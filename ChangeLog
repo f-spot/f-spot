@@ -1,5 +1,12 @@
 2006-02-10  Larry Ewing  <lewing@novell.com>
 
+	* src/JpegFile.cs: use the exifData property.
+
+	* src/PngFile.cs: fix ImageFile.Save for png.  Refactor Png to contain
+	PngHeader.
+
+	* src/PhotoStore.cs: use ImageFile.Save when saveing a version.
+
 	* src/f-spot.in (libdir): add the FlickrNet path to the MONO_PATH
 	when running the uninstalled version.
 

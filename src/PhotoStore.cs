@@ -495,10 +495,12 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 	{
 		uint version = DefaultVersionId;
 		ImageFile img = ImageFile.Create (DefaultVersionUri.LocalPath);
-		Exif.ExifData exif_data = new Exif.ExifData (DefaultVersionPath);
 
 		// Always create a version if the source is not a jpeg for now.
 		create_version = create_version || !(img is FSpot.JpegFile);
+
+		if (buffer == null)
+			throw new ApplicationException ("invalid (null) image");
 
 		if (create_version)
 			version = CreateDefaultModifiedVersion (DefaultVersionId, false);
@@ -506,11 +508,13 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		try {
 			string version_path = GetVersionPath (version);
 			
-			PixbufUtils.SaveJpeg (buffer, version_path, 95, exif_data);
+			using (Stream stream = File.OpenWrite (version_path)) {
+				img.Save (buffer, stream);
+			}
 			FSpot.ThumbnailGenerator.Create (version_path).Dispose ();
 			DefaultVersionId = version;
-			
 		} catch (System.Exception e) {
+			System.Console.WriteLine (e);
 			if (create_version)
 				DeleteVersion (version);
 			

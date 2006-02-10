@@ -138,7 +138,7 @@ namespace FSpot {
 			byte [] thumb_data = PixbufUtils.Save (thumbnail, "jpeg", null, null);
 
 			// now update the exif data
-			exif_data.Data = thumb_data;
+			ExifData.Data = thumb_data;
 			thumbnail.Dispose ();
 
 			Exif.ExifEntry e;
