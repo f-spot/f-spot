@@ -1,3 +1,9 @@
+2006-02-10  Gabriel Burt <gabriel.burt@gmail.com>
+
+	* src/TagSelectionWidget.cs: Revert back to sucky layout because
+	putting all the CellRenderers in one column made it so you couldn't
+	check the checkbox without having the tag selected first. Ugh.
+
 2006-02-09  Larry Ewing  <lewing@novell.com>
 
 	* src/f-spot.glade: set the image height so the dialog doesn't

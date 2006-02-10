@@ -543,13 +543,13 @@ public class TagSelectionWidget : TreeView {
 		if (rows.Length != 1)
 			return;
 		
-		SetCursor (rows[0], complete_column, true);
+		SetCursor (rows[0], name_column, true);
 	}
 	
 	public void HandleTagNameEdited (object sender, EditedArgs args)
 	{
 		args.RetVal = false;
-		
+
 		TreeIter iter;
 
 		if (!Model.GetIterFromString (out iter, args.Path))
@@ -586,10 +586,9 @@ public class TagSelectionWidget : TreeView {
 		return;
 	}
 
-	CellRendererToggle toggle_render;
-	CellRendererPixbuf pix_render;
-	TreeViewColumn complete_column;
-	CellRendererText text_render;
+	TreeViewColumn check_column;
+	TreeViewColumn icon_column;
+	TreeViewColumn name_column;
 
 	// Constructor.
 	public TagSelectionWidget (TagStore tag_store)
@@ -598,24 +597,21 @@ public class TagSelectionWidget : TreeView {
 		HeadersVisible = false;
 		Selection.Mode = SelectionMode.Multiple;
 
-		complete_column = new TreeViewColumn ();
+		CellRendererToggle toggle_renderer = new CellRendererToggle ();
+		toggle_renderer.Toggled += new ToggledHandler (OnCellToggled);
 
-		toggle_render = new CellRendererToggle ();
-		toggle_render.Toggled += new ToggledHandler (OnCellToggled);
-		complete_column.PackStart (toggle_render, false);
+		check_column = AppendColumn ("check", toggle_renderer, new TreeCellDataFunc (CheckBoxDataFunc));
+		check_column.SortColumnId = 0;
 
-		pix_render = new CellRendererPixbuf ();
-		complete_column.PackStart (pix_render, false);
-		complete_column.SetCellDataFunc (pix_render, new TreeCellDataFunc (IconDataFunc));
+		icon_column = AppendColumn ("icon", new CellRendererPixbuf (), new TreeCellDataFunc (IconDataFunc));
 
-		text_render = new CellRendererText ();
-		text_render.Editable = true;
-		text_render.Edited += HandleTagNameEdited;
-		text_render.Mode = CellRendererMode.Editable;
-		complete_column.PackStart (text_render, true);
-		complete_column.SetCellDataFunc (text_render, new TreeCellDataFunc (NameDataFunc));
+		CellRendererText tr = new CellRendererText ();
+		tr.Editable = true;
+		tr.Edited += HandleTagNameEdited;
+		tr.Mode = CellRendererMode.Editable;
 
-		AppendColumn (complete_column);
+		name_column = AppendColumn ("name", tr, new TreeCellDataFunc (NameDataFunc));
+		name_column.SortColumnId = NameColumn;
 		
 		this.tag_store = tag_store;
 		selection = new Hashtable ();
