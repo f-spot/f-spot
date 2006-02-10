@@ -1,5 +1,7 @@
 2006-02-09  Larry Ewing  <lewing@novell.com>
 
+	* src/f-spot.in (libdir): use exec -a when lauching mono.
+
 	* src/main.cs: set the process name using prctl based on Aaron's
 	snippet.
 

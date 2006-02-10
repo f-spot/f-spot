@@ -12,4 +12,4 @@ else
     EXE_TO_RUN="$libdir/f-spot/f-spot.exe"
 fi
 
-mono --debug $EXE_TO_RUN "$@"
+exec -a @PACKAGE@ mono $EXE_TO_RUN "$@"
