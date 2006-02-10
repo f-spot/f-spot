@@ -6528,7 +6528,7 @@ Photo Details</property>
 			  </child>
 
 			  <child>
-			    <widget class="GtkLabel" id="label205">
+			    <widget class="GtkLabel" id="auth_label">
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">F-Spot needs your authorization in order to upload photos to your Flickr account. Press the button &quot;Authorize&quot; to open a web browser and give F-Spot the authorization. Close the browser and press &quot;Continue&quot; to start the export process.</property>
 			      <property name="use_underline">False</property>
@@ -10913,6 +10913,7 @@ Photo Details</property>
 
 	      <child>
 		<widget class="GtkImage" id="histogram_image">
+		  <property name="height_request">132</property>
 		  <property name="visible">True</property>
 		  <property name="xalign">0.5</property>
 		  <property name="yalign">0.5</property>
