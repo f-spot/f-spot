@@ -1,5 +1,7 @@
 2006-02-10  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoView.cs: fix crop to handle images with alpha.
+
 	* src/ImageFile.cs: throw not implemented on calls to Save.
 
 	* src/JpegFile.cs: use the exifData property.

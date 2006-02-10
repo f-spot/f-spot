@@ -315,7 +315,7 @@ public class PhotoView : EventBox {
 							   area);
 		} else { // Crop (I told you it was ugly)
 			edited = new Pixbuf (original_pixbuf.Colorspace, 
-					     false, original_pixbuf.BitsPerSample,
+					     original_pixbuf.HasAlpha, original_pixbuf.BitsPerSample,
 					     width, height);
 			
 			original_pixbuf.CopyArea (x, y, width, height, edited, 0, 0);
