@@ -23,17 +23,7 @@ public class FlickrRemote {
 	private static string     _apikey = "c6b39ee183385d9ce4ea188f85945016";
 	private static string     _sharedsecret = "0a951ac44a423a04";
 	
-	// This is the uo
-	public static string      UploadUrl = "http://www.flickr.com/tools/uploader_go.gne";
-	public static string      AuthUrl = "http://www.flickr.com/tools/auth.gne";
 	public static Licenses    licenses;
-	
-	private string            email;
-	private string            passwd;
-	private string            username;
-	private long              limit;
-	private long              used;
-	private bool              pro;
 	private string            frob;
 	private string            token;
 	private Auth              auth;
@@ -61,15 +51,10 @@ public class FlickrRemote {
 		}
 	}
 
-	public bool Pro {
-		get { return pro; }
-
+	public Flickr Connection {
+		get { return flickr; }
 	}
 
-	public Auth Authorization {
-		get { return auth; }
-	}
-			
 	public License[] GetLicenses () 
 	{
 		// Licenses won't change normally in a user session
@@ -112,13 +97,13 @@ public class FlickrRemote {
 		return photos_url;
 	}
 	
-	public bool CheckLogin () 
+	public Auth CheckLogin () 
 	{
 		if (frob == null) {
 			frob = flickr.AuthGetFrob ();
 			if (frob ==  null) {
 				Console.WriteLine ("ERROR: Problems login in Flickr. Don't have a frob");
-				return false;
+				return null;
 			}
 		}
 
@@ -128,19 +113,16 @@ public class FlickrRemote {
 				token = auth.Token;
 				flickr.ApiToken = token;
 
-				return true;
+				return auth;
 			} catch (FlickrNet.FlickrException ex) {
 				Console.WriteLine ("ERROR: Problems login in Flickr - "+ex.Verbose);
 
-				return false;
+				return null;
 			}
 		}
-		return true;
-	}
-	
-	public string Upload (IBrowsableItem photo)
-	{
-		return Upload (photo, false, 0, true);
+
+		auth = flickr.AuthCheckToken ("token");
+		return auth;
 	}
 	
 	public string Upload (IBrowsableItem photo, bool scale, int size, bool copy_metadata)
@@ -194,7 +176,7 @@ public class FlickrRemote {
 		throw new System.Exception (error_verbose);
 	}
 	
-	public void tryWebLogin () {
+	public void TryWebLogin () {
 		frob = flickr.AuthGetFrob ();
 		string login_url = flickr.AuthCalcUrl (frob, FlickrNet.AuthLevel.Write);
 		Gnome.Url.Show (login_url);

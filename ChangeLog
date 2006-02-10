@@ -1,5 +1,10 @@
 2006-02-10  Larry Ewing  <lewing@novell.com>
 
+	* src/FlickrRemote.cs: expose the Auth token to the caller.
+
+	* src/FlickrExport.cs: start reworking the auth checking code for
+	flickr.
+
 	* src/OpenWithMenu.cs: make try to load icons if enabled.
 
 	* src/FlickrExport.cs: hook up the metadata check.
