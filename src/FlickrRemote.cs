@@ -125,7 +125,7 @@ public class FlickrRemote {
 		return auth;
 	}
 	
-	public string Upload (IBrowsableItem photo, bool scale, int size, bool copy_metadata)
+	public string Upload (IBrowsableItem photo, bool scale, int size, bool copy_metadata, bool is_public, bool is_family, bool is_friend)
 	{
 		if (token == null) {            
 			throw new Exception ("Must Login First");
@@ -159,7 +159,7 @@ public class FlickrRemote {
 			}
 			try {
 				string photoid = 
-					flickr.UploadPicture (path, photo.Name, photo.Description, tags);
+					flickr.UploadPicture (path, photo.Name, photo.Description, tags, is_public, is_family, is_friend);
 				return photoid;
 			} catch (FlickrNet.FlickrException ex) {
 				Console.WriteLine ("Problems uploading picture: " + ex.ToString());

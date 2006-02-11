@@ -1,5 +1,12 @@
 2006-02-11  Larry Ewing  <lewing@novell.com>
 
+	* src/f-spot.glade: add permissions to the export dialog.
+
+	* src/FlickrExport.cs: adf permissions to the dialog.
+	
+	* src/FlickrRemote.cs: set the permissions on the photo durring
+	upload.
+
 	* src/MetadataStore.cs: only create add keywords if there are
 	some.
 

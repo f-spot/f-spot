@@ -17,6 +17,9 @@ namespace FSpot {
 		[Glade.Widget] Gtk.Button         auth_done_flickr;
 		[Glade.Widget] Gtk.Button         do_export_flickr;
 		[Glade.Widget] Gtk.Label          auth_label;
+		[Glade.Widget] Gtk.RadioButton    public_radio;
+		[Glade.Widget] Gtk.CheckButton    family_check;
+		[Glade.Widget] Gtk.CheckButton    friend_check;
 
 		System.Threading.Thread command_thread;
 		ThreadProgressDialog progress_dialog;
@@ -25,6 +28,10 @@ namespace FSpot {
 		bool open;
 		bool scale;
 		bool copy_metadata;
+
+		bool is_public;
+		bool is_friend;
+		bool is_family;
 
 		string token;
 
@@ -36,6 +43,7 @@ namespace FSpot {
 
 		string auth_text;
 		Delay auth_delay;
+
 
 		public FlickrExport (IBrowsableCollection selection) : base ("flickr_export_dialog")
 		{
@@ -49,6 +57,9 @@ namespace FSpot {
 
 			thumb_scrolledwindow.Add (view);
 			HandleSizeActive (null, null);
+			
+			public_radio.Toggled += HandlePublicChanged;
+			public_radio.Active = true;
 
 			Dialog.ShowAll ();
 			Dialog.Response += HandleResponse;
@@ -72,7 +83,7 @@ namespace FSpot {
 
 		public bool StartAuth ()
 		{
-			auth_label.Text = Catalog.GetString ("Checking credentials...");
+			auth_flickr.Label = Catalog.GetString ("Checking credentials...");
 			auth_flickr.Sensitive = false;
 			
 			if (command_thread == null || ! command_thread.IsAlive) {
@@ -174,7 +185,7 @@ namespace FSpot {
 						Catalog.GetString ("{0} of {1}"), photo_index, 
 						selection.Count);
 
-					string id = fr.Upload (photo, scale, size, copy_metadata);
+					string id = fr.Upload (photo, scale, size, copy_metadata, is_public, is_family, is_friend);
 					ids.Add (id);
 					progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
 					progress_dialog.Fraction = 1.0;
@@ -210,6 +221,13 @@ namespace FSpot {
 			return false;
 		}
 		
+		private void HandlePublicChanged (object sender, EventArgs args)
+		{
+			bool sensitive = ! public_radio.Active;
+			friend_check.Sensitive = sensitive;
+			family_check.Sensitive = sensitive;
+		}
+
 		private void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
 			if (args.ResponseId != Gtk.ResponseType.Ok) {
@@ -239,7 +257,9 @@ namespace FSpot {
 			open = open_check.Active;
 			scale = scale_check.Active;
 			copy_metadata = open_check.Active;
-
+			is_public = public_radio.Active;
+			is_family = family_check.Active;
+			is_friend = friend_check.Active;
 			if (scale)
 				size = size_spin.ValueAsInt;
 
