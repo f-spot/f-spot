@@ -68,7 +68,7 @@ namespace FSpot {
 		
 		public virtual void Save (Gdk.Pixbuf pixbuf, System.IO.Stream stream)
 		{
-			PixbufUtils.Save (pixbuf, stream, "jpeg", null, null);
+			throw new NotImplementedException ();
 		}
 
 		protected Gdk.Pixbuf TransformAndDispose (Gdk.Pixbuf orig)
