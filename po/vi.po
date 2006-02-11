@@ -6,8 +6,8 @@ msgid ""
 ""
 msgstr "Project-Id-Version: f-spot Gnome HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-10 01:02+0100\n"
-"PO-Revision-Date: 2006-02-10 16:20+1030\n"
+"POT-Creation-Date: 2006-02-11 01:00+0100\n"
+"PO-Revision-Date: 2006-02-11 17:49+1030\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -254,13 +254,14 @@ msgid "Transferring picture \"{0}\" To CD"
 msgstr "Đang truyền ảnh « {0} » vào đĩa CD"
 
 #.This indicates the current photo is photo {0} of {1} out of photos
-#:../src/CDExport.cs:59 ../src/FlickrExport.cs:91 ../src/GalleryExport.cs:587
-#:../src/ProgressDialog.cs:82 ../src/TimeDialog.cs:130 ../src/VfsExport.cs:88
+#:../src/CDExport.cs:59 ../src/FlickrExport.cs:174
+#:../src/GalleryExport.cs:587 ../src/ProgressDialog.cs:82
+#:../src/TimeDialog.cs:130 ../src/VfsExport.cs:88
 #,csharp-format
 msgid "{0} of {1}"
 msgstr "{0} trên {1}"
 
-#:../src/CDExport.cs:71 ../src/FlickrExport.cs:96 ../src/FolderExport.cs:176
+#:../src/CDExport.cs:71 ../src/FlickrExport.cs:179 ../src/FolderExport.cs:176
 #:../src/GalleryExport.cs:602 ../src/VfsExport.cs:115
 msgid "Done Sending Photos"
 msgstr "Gởi xong ảnh."
@@ -319,31 +320,48 @@ msgstr "Thư mục thao tác với nhau"
 msgid "Unknown Directory"
 msgstr "Không biết thư mục này"
 
-#:../src/FlickrExport.cs:86 ../src/GalleryExport.cs:583
+#:../src/FlickrExport.cs:75
+msgid "Checking credentials..."
+msgstr "Đang kiểm tra thông tin xác thực..."
+
+#:../src/FlickrExport.cs:125
+#,csharp-format
+msgid "You are currently logged into Flickr as {0}"
+msgstr "Bạn hiệh thời đã đăng nhập vào Flickr với tư cách {0}."
+
+#:../src/FlickrExport.cs:127
+msgid "Log in as a different user"
+msgstr "Đăng nhập với tư cách người dùng khác"
+
+#:../src/FlickrExport.cs:131 ../src/f-spot.glade.h:55
+msgid "Authorize"
+msgstr "Xác thực"
+
+#:../src/FlickrExport.cs:169 ../src/GalleryExport.cs:583
 #,csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Đang tải ảnh « {0} » lên"
 
-#:../src/FlickrExport.cs:98 ../src/GalleryExport.cs:604
+#:../src/FlickrExport.cs:181 ../src/GalleryExport.cs:604
 msgid "Upload Complete"
 msgstr "Việc tải lên hoàn thành."
 
-#:../src/FlickrExport.cs:103
+#:../src/FlickrExport.cs:186
 msgid "Error Uploading To Flickr"
 msgstr "Gặp lỗi khi tải lên Flickr"
 
-#:../src/FlickrExport.cs:144
+#:../src/FlickrExport.cs:230
 msgid "Unable to log on."
 msgstr "Không thể đăng nhập."
 
-#:../src/FlickrExport.cs:145
+#:../src/FlickrExport.cs:231
 msgid ""
 "F-Spot was unable to log on to Flickr.  Make sure you have given the "
 "authentication using Flickr web browser interface."
 msgstr "Trình F-Spot không thể đăng nhập vào Flickr. Bạn hãy đảm bảo đã cung cấp "
 "thông tin xác thực bằng giao diện bộ duyệt Mạng của Flickr."
 
-#:../src/FlickrExport.cs:158 ../src/GalleryExport.cs:547
+#:../src/FlickrExport.cs:247 ../src/GalleryExport.cs:547
 msgid "Uploading Pictures"
 msgstr "Đang tải ảnh lên"
 
@@ -584,10 +602,6 @@ msgstr "Sắp xếp _bởi"
 msgid "Attach tag:"
 msgstr "Đính thẻ:"
 
-#:../src/f-spot.glade.h:55
-msgid "Authorize"
-msgstr "Xác thực"
-
 #:../src/f-spot.glade.h:56 ../src/StockIcons.cs:27
 msgid "Browse"
 msgstr "Duyệt"
@@ -734,7 +748,10 @@ msgid ""
 "account. Press the button \"Authorize\" to open a web browser and give F-"
 "Spot the authorization. Close the browser and press \"Continue\" to start "
 "the export process."
-msgstr "Trình F-Spot cần thiết bạn xác thực, để tải ảnh chụp lên tài khoản Flickr của bạn. Hãy bấm nút « Xác thực » để mở bộ duyệt Mạng và đưa thông tin xác thực ra trình F-Spot. Đóng bộ duyệt Mạng rồi bấm nút « Tiếp tục » để sở khởi tiến trình xuất ra."
+msgstr "Trình F-Spot cần thiết bạn xác thực, để tải ảnh chụp lên tài khoản Flickr "
+"của bạn. Hãy bấm nút « Xác thực » để mở bộ duyệt Mạng và đưa thông tin xác "
+"thực ra trình F-Spot. Đóng bộ duyệt Mạng rồi bấm nút « Tiếp tục » để sở khởi "
+"tiến trình xuất ra."
 
 #:../src/f-spot.glade.h:94
 msgid "Fin_d"
@@ -1337,26 +1354,26 @@ msgstr "(Chưa phát hiện máy ảnh nào)"
 msgid "Loading {0} of {1}"
 msgstr "Đang tải {0} trên {1}"
 
-#:../src/ImportCommand.cs:520
+#:../src/ImportCommand.cs:512
 msgid "Done Loading"
 msgstr "Đã tải xong"
 
-#:../src/ImportCommand.cs:708
+#:../src/ImportCommand.cs:699
 msgid "Directory does not exist."
 msgstr "Không có thư mục này."
 
-#:../src/ImportCommand.cs:709
+#:../src/ImportCommand.cs:700
 #,csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
 "different directory"
 msgstr "Thư mục « {0} » được chọn không tồn tại. Hãy chọn thư mục khác."
 
-#:../src/ImportCommand.cs:742
+#:../src/ImportCommand.cs:733
 msgid "Select Tag"
 msgstr "Chọn thẻ"
 
-#:../src/ImportCommand.cs:747 ../src/StockIcons.cs:35
+#:../src/ImportCommand.cs:738 ../src/StockIcons.cs:35
 #:../src/TagCommands.cs:122 ../src/TagPopup.cs:20
 msgid "Create New Tag"
 msgstr "Tạo thẻ mới"
@@ -1729,7 +1746,8 @@ msgid ""
 "photo to preserve the original?"
 msgid_plural "Before launching {1}, should F-Spot create new versions of the selected "
 "photos to preserve the originals?"
-msgstr[0] "Trước khi khởi chạy {1}, trình F-Spot nên tạo bản sao của ảnh chụp đã chọn, để bảo tồn ảnh chụp gốc không?"
+msgstr[0] "Trước khi khởi chạy {1}, trình F-Spot nên tạo bản sao của ảnh chụp đã chọn, "
+"để bảo tồn ảnh chụp gốc không?"
 
 #:../src/MetadataStore.cs:17
 msgid "Creator"
@@ -1880,7 +1898,7 @@ msgstr[0] "Đã sửa đổi trong {1} ({0})"
 
 #.Note that the original version is never stored in the photo_versions table in the
 #.database.
-#:../src/PhotoStore.cs:536
+#:../src/PhotoStore.cs:540
 msgid "Original"
 msgstr "Gốc"
 
@@ -2180,7 +2198,8 @@ msgstr "Cập nhật Cơ sở dữ liệu F-Spot"
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
-msgstr "Hãy đợi trong khi cơ sở dữ liệu của nơi trưng bày F-Spot đang được cập nhật. Có thể kéo dài một lát."
+msgstr "Hãy đợi trong khi cơ sở dữ liệu của nơi trưng bày F-Spot đang được cập nhật. "
+"Có thể kéo dài một lát."
 
 #:../src/Util.cs:299
 msgid "There was an error invoking the external handler"
