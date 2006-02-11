@@ -263,7 +263,8 @@ namespace FSpot {
 			foreach (Statement stmt in to_remove)
 				this.Remove (stmt);
 
-			Add (this, predicate, type, values);
+			if (values.Length > 0)
+				Add (this, predicate, type, values);
 		}
 		
 		public static void Add (StatementSink sink, Entity subject, string predicate, string type, string [] values)
