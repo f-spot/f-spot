@@ -104,7 +104,7 @@ public class PhotoVersionCommands {
 				store.Commit (photo);
 			} catch (Exception e) {
 					string msg = Mono.Posix.Catalog.GetString ("Could not create a new version");
-					string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to create version \"{1}\"),
+					string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to create version \"{1}\""),
 								     e.Message, name);
 					
 					HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, 
@@ -148,7 +148,7 @@ public class PhotoVersionCommands {
 				} catch (Exception e) {
 					// FIXME show error dialog.
 					string msg = Mono.Posix.Catalog.GetString ("Could not delete a version");
-					string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to delete version \"{1}\"),
+					string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to delete version \"{1}\""),
 								     e.Message, photo.Name);
 					
 					HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, 
@@ -190,7 +190,7 @@ public class PhotoVersionCommands {
 				store.Commit (photo);
 			} catch (Exception e) {
 					string msg = Mono.Posix.Catalog.GetString ("Could not rename a version");
-					string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to rename version to \"{1}\"),
+					string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to rename version to \"{1}\""),
 								     e.Message, new_name);
 					
 					HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, 

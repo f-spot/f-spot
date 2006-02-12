@@ -1,5 +1,8 @@
 2006-02-12  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoVersionCommands.cs: remember to save the file before
+	committing it.
+
 	* src/PhotoVersionCommands.cs: commit Bengt's patch from #142806.
 
 	* src/ThreadProgressDialog.cs: clamp the fraction value.
