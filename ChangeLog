@@ -1,5 +1,12 @@
 2006-02-12  Larry Ewing  <lewing@novell.com>
 
+	* src/Preferences.cs: add the privacy options for flickr.
+
+	* src/FlickrExport.cs: clean up the message text for the various states, handle exceptions
+	in TryWebLogin.  Store the privacy settingings in gconf.
+
+	* src/f-spot.glade: clean up flicker export message text.
+
 	* src/PngFile.cs: remove unused variable.
 
 	* src/Updater.cs: fix the bug I introduced.

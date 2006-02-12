@@ -65,19 +65,21 @@ namespace FSpot {
 				case State.Connected:
 					auth_flickr.Sensitive = true;
 					do_export_flickr.Sensitive = false;
+					auth_label.Text = Catalog.GetString ("Return to this window after you have finished the authorization process on Flickr.com and click the \"Complete Authorization\" button below");
 					auth_flickr.Label = Catalog.GetString ("Complete Authorization");
 					break;
 				case State.InAuth:
 					auth_flickr.Sensitive = false;
+					auth_label.Text = Catalog.GetString ("Logging into Flickr.Com");
 					auth_flickr.Label = Catalog.GetString ("Checking credentials...");
 					do_export_flickr.Sensitive = false;
 					break;
 				case State.Authorized:
 					do_export_flickr.Sensitive = true;
 					auth_flickr.Sensitive = true;
-					auth_label.Text = System.String.Format (Catalog.GetString ("You are currently logged into Flickr as {0}"),
+					auth_label.Text = System.String.Format (Catalog.GetString ("Welcome {0} you are connected to Flickr.Com"),
 										auth.User.UserName);
-					auth_flickr.Label = Catalog.GetString ("Log in as a different user");
+					auth_flickr.Label = String.Format (Catalog.GetString ("Sign in as a different user"), auth.User.UserName);
 					break;
 				}
 				state = value;
@@ -99,7 +101,6 @@ namespace FSpot {
 			HandleSizeActive (null, null);
 			
 			public_radio.Toggled += HandlePublicChanged;
-			public_radio.Active = true;
 
 			Dialog.ShowAll ();
 			Dialog.Response += HandleResponse;
@@ -112,6 +113,9 @@ namespace FSpot {
 			LoadPreference (Preferences.EXPORT_FLICKR_TAGS);
 			LoadPreference (Preferences.EXPORT_FLICKR_STRIP_META);
 			LoadPreference (Preferences.EXPORT_FLICKR_TOKEN);
+			LoadPreference (Preferences.EXPORT_FLICKR_PUBLIC);
+			LoadPreference (Preferences.EXPORT_FLICKR_FAMILY);
+			LoadPreference (Preferences.EXPORT_FLICKR_FRIENDS);
 
 			do_export_flickr.Sensitive = false;
 			fr = new FlickrRemote (token);			
@@ -148,6 +152,7 @@ namespace FSpot {
 					token = args.Auth.Token;
 					auth = args.Auth;
 					CurrentState = State.Authorized;
+					Preferences.Set (Preferences.EXPORT_FLICKR_TOKEN, fr.Token);
 				} else {
 					CurrentState = State.Disconnected;
 				}
@@ -183,14 +188,27 @@ namespace FSpot {
 			token = null;
 			auth = null;
 			fr = new FlickrRemote (token);
+			Preferences.Set (Preferences.EXPORT_FLICKR_TOKEN, "");
 			CurrentState = State.Disconnected;
 		}
 
 		private void Login () 
 		{
-			fr = new FlickrRemote (token);
-			fr.TryWebLogin();
-			CurrentState = State.Connected;
+			try {
+				fr = new FlickrRemote (token);
+				fr.TryWebLogin();
+				CurrentState = State.Connected;
+			} catch (FlickrException e) {
+				HigMessageDialog md = 
+					new HigMessageDialog (Dialog, 
+							      Gtk.DialogFlags.Modal |
+							      Gtk.DialogFlags.DestroyWithParent,
+							      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+							      "Unable to log on", e.Message);
+				md.Run ();
+				md.Destroy ();
+				CurrentState = State.Disconnected;
+			}
 		}
 
 		private void HandleProgressChanged (ProgressItem item)
@@ -204,7 +222,7 @@ namespace FSpot {
 		{
 			if (args.UploadComplete) {
 				progress_dialog.Fraction = photo_index / (double) selection.Count;				
-				progress_dialog.ProgressText = String.Format (Catalog.GetString ("Waiting for confirmation {0} of {1}"),
+				progress_dialog.ProgressText = String.Format (Catalog.GetString ("Waiting for response {0} of {1}"),
 									      photo_index, selection.Count);
 			}
 			progress_dialog.Fraction = (photo_index - 1.0 + (args.Bytes / (double) info.Length)) / (double) selection.Count;		      
@@ -327,6 +345,9 @@ namespace FSpot {
 			Preferences.Set (Preferences.EXPORT_FLICKR_TAGS, tag_check.Active);
 			Preferences.Set (Preferences.EXPORT_FLICKR_STRIP_META, meta_check.Active);
 			Preferences.Set (Preferences.EXPORT_FLICKR_TOKEN, fr.Token);
+			Preferences.Set (Preferences.EXPORT_FLICKR_PUBLIC, public_radio.Active);
+			Preferences.Set (Preferences.EXPORT_FLICKR_FAMILY, family_check.Active);
+			Preferences.Set (Preferences.EXPORT_FLICKR_FRIENDS, friend_check.Active);
 		}
 
 		void LoadPreference (string key)
@@ -337,27 +358,24 @@ namespace FSpot {
 				return;
 			
 			//System.Console.WriteLine("Setting {0} to {1}", key, val);
+			bool active;
 
 			switch (key) {
 			case Preferences.EXPORT_FLICKR_SCALE:
 				if (scale_check.Active != (bool) val)
 					scale_check.Active = (bool) val;
 				break;
-
 			case Preferences.EXPORT_FLICKR_SIZE:
 				size_spin.Value = (double) (int) val;
 				break;
-
 			case Preferences.EXPORT_FLICKR_BROWSER:
 				if (open_check.Active != (bool) val)
 					open_check.Active = (bool) val;
 				break;
-
 			case Preferences.EXPORT_FLICKR_TAGS:
 				if (tag_check.Active != (bool) val)
 					tag_check.Active = (bool) val;
 				break;
-
 			case Preferences.EXPORT_FLICKR_STRIP_META:
 				if (meta_check.Active != (bool) val)
 					meta_check.Active = (bool) val;
@@ -365,6 +383,24 @@ namespace FSpot {
 			case Preferences.EXPORT_FLICKR_TOKEN:
 				token = (string) val;
 			        break;
+			case Preferences.EXPORT_FLICKR_PUBLIC:
+				active = (bool) val;
+				if (public_radio.Active != active)
+					public_radio.Active = active;
+				break;
+			case Preferences.EXPORT_FLICKR_FAMILY:
+				active = (bool) val;
+				if (family_check.Active != active)
+					family_check.Active = active;
+				break;
+			case Preferences.EXPORT_FLICKR_FRIENDS:
+				active = (bool) val;
+				if (friend_check.Active != active)
+					friend_check.Active = active;
+				break;
+				/*				
+			case Preferences.EXPORT_FLICKR_EMAIL:
+
 				/*				
 			case Preferences.EXPORT_FLICKR_EMAIL:
 				email_entry.Text = (string) val;
