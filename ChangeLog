@@ -1,5 +1,7 @@
 2006-02-12  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoVersionCommands.cs: commit Bengt's patch from #142806.
+
 	* src/ThreadProgressDialog.cs: clamp the fraction value.
 
 	* src/GalleryExport.cs: clean up the exception case slightly.

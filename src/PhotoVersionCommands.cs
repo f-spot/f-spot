@@ -102,10 +102,18 @@ public class PhotoVersionCommands {
 			try {
 				photo.DefaultVersionId = photo.CreateVersion (name, photo.DefaultVersionId, true);
 				store.Commit (photo);
-			} catch {
-				// FIXME show error dialog.
-				Console.WriteLine ("error");
-				return false;
+			} catch (Exception e) {
+					string msg = Mono.Posix.Catalog.GetString ("Could not create a new version");
+					string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to create version \"{1}\"),
+								     e.Message, name);
+					
+					HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, 
+										    Gtk.MessageType.Error, ButtonsType.Ok, 
+										    msg,
+										    desc);
+					md.Run ();
+					md.Destroy ();
+					return false;
 			}
 
 			return true;
@@ -137,10 +145,19 @@ public class PhotoVersionCommands {
 				try {
 					photo.DeleteVersion (photo.DefaultVersionId);
 					store.Commit (photo);
-				} catch {
+				} catch (Exception e) {
 					// FIXME show error dialog.
-					dialog.Destroy ();
-					Console.WriteLine ("error");
+					string msg = Mono.Posix.Catalog.GetString ("Could not delete a version");
+					string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to delete version \"{1}\"),
+								     e.Message, photo.Name);
+					
+					HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, 
+										    Gtk.MessageType.Error, ButtonsType.Ok, 
+										    msg,
+										    desc);
+					md.Run ();
+					md.Destroy ();
+					dialog.Destroy (); // Delete confirmation window.
 					return false;
 				}
 
@@ -171,10 +188,18 @@ public class PhotoVersionCommands {
 			try {
 				photo.RenameVersion (photo.DefaultVersionId, new_name);
 				store.Commit (photo);
-			} catch {
-				// FIXME error dialog.
-				Console.WriteLine ("error");
-				return false;
+			} catch (Exception e) {
+					string msg = Mono.Posix.Catalog.GetString ("Could not rename a version");
+					string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to rename version to \"{1}\"),
+								     e.Message, new_name);
+					
+					HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, 
+										    Gtk.MessageType.Error, ButtonsType.Ok, 
+										    msg,
+										    desc);
+					md.Run ();
+					md.Destroy ();
+					return false;
 			}
 
 			return true;
