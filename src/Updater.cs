@@ -20,15 +20,22 @@ namespace FSpot.Database {
 			
 			// Update from version 0 to 1: Remove empty Other tags
 			AddUpdate (delegate (Db db) {
-				string hidden_id = SelectSingleString ("SELECT id FROM tags WHERE name = 'Other'");
+				string other_id = SelectSingleString ("SELECT id FROM tags WHERE name = 'Other'");
 
 				if (hidden_id == null)
 					return;
 
 				string photo_count = SelectSingleString (
-					String.Format ("SELECT COUNT(*) FROM photo_tags WHERE tag_id = {0}", hidden_id));
+					String.Format ("SELECT COUNT(*) FROM photo_tags  WHERE tag_id = {0}", other_id));
 
 				if (photo_count == null)
+					return;
+				
+				// Check for tags with the Other parent
+				string child_count = SelectSingleString (
+					String.Format ("SELECT COUNT(*) FROM tags WHERE category_id = {0}", other_id));
+
+				if (child_count == null)
 					return;
 
 				int count = System.Int32.Parse (photo_count);
