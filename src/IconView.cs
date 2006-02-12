@@ -25,6 +25,9 @@ public class IconView : Gtk.Layout {
 	/* preserve the scroll postion when possible */
 	private bool scroll;
 	private double scroll_value;
+
+	/* suppress it sometimes */
+	bool suppress_scroll = false;
 	
 	// Zooming factor.
 	protected const double ZOOM_FACTOR = 1.2;
@@ -221,6 +224,7 @@ public class IconView : Gtk.Layout {
 	{
 		// FIXME we should probably try to merge the selection forward
 		// but it needs some thought to be efficient.
+		suppress_scroll = true;
 		QueueResize ();
 	}
 	
@@ -822,14 +826,15 @@ public class IconView : Gtk.Layout {
 								 draw.X, draw.Y);
 			}
 			
-			if (temp_thumbnail != thumbnail)
+			if (temp_thumbnail != thumbnail) {
 				temp_thumbnail.Dispose ();
+			}
 			
 		}
 		
-		if (thumbnail != null) 
+		if (thumbnail != null) {
 			thumbnail.Dispose ();
-		
+		}
 		Gdk.Rectangle layout_bounds = Gdk.Rectangle.Zero;
 		if (DisplayDates) {
 			string date;
@@ -903,8 +908,9 @@ public class IconView : Gtk.Layout {
 								      region.X, region.Y, 
 								      region.Width, region.Height,
 								      RgbDither.None, region.X, region.Y);
-					if (scaled_icon != icon)
+					if (scaled_icon != icon) {
 						scaled_icon.Dispose ();
+					}
 				}
 				tag_bounds.X += tag_bounds.Width + tag_icon_vspacing;
 			}
@@ -1218,6 +1224,7 @@ public class IconView : Gtk.Layout {
 					 temp, 
 					 (temp.Width - result.Width)/ 2,
 					 temp.Height - result.Height);
+
 			result.Dispose ();
 			result = temp;
 		}
@@ -1275,7 +1282,8 @@ public class IconView : Gtk.Layout {
 	protected override void OnSizeAllocated (Gdk.Rectangle allocation)
 	{
 		scroll_value = (Vadjustment.Value)/ (Vadjustment.Upper);
-		scroll = true;
+		scroll = !suppress_scroll;
+		suppress_scroll = false;
 		UpdateLayout (allocation);
 		base.OnSizeAllocated (allocation);
 	}
