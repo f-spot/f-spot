@@ -604,8 +604,10 @@ namespace FSpot {
 				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Upload Complete");
 				progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 			} catch (System.Exception e) {
-				progress_dialog.Message = e.ToString ();
-				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error Uploading To Gallery");
+				progress_dialog.Message = String.Format (Mono.Posix.Catalog.GetString ("Error Uploading To Gallery: {0}"),
+									 e.Message);
+				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error");
+				System.Console.WriteLine (e);
 			}
 			
 			if (browser) {

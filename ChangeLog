@@ -1,3 +1,12 @@
+2006-02-12  Larry Ewing  <lewing@novell.com>
+
+	* src/ThreadProgressDialog.cs: clamp the fraction value.
+
+	* src/GalleryExport.cs: clean up the exception case slightly.
+
+	* src/FlickrExport.cs: Clean up the authorization and logout code
+	so that it follows the flickr model a little better.
+
 2006-02-11  Larry Ewing  <lewing@novell.com>
 
 	* src/f-spot.glade: add permissions to the export dialog.

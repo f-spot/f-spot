@@ -124,7 +124,7 @@ namespace FSpot {
 		{
 			message_label.Text = message;
 			progress_bar.Text = progress_text;
-			progress_bar.Fraction = (double) fraction;
+			progress_bar.Fraction = System.Math.Min (1.0, System.Math.Max (0.0, fraction));
 			button.Label = button_label;
 
 			return false;

@@ -1,5 +1,6 @@
 using FlickrNet;
 using System;
+using System.IO;
 using System.Threading;
 using Mono.Posix;
 
@@ -24,7 +25,7 @@ namespace FSpot {
 		System.Threading.Thread command_thread;
 		ThreadProgressDialog progress_dialog;
 		ProgressItem progress_item;
-		
+
 		bool open;
 		bool scale;
 		bool copy_metadata;
@@ -37,12 +38,51 @@ namespace FSpot {
 
 		int photo_index;
 		int size;
-		Auth authorization;
+		Auth auth;
 
 		FlickrRemote fr;
 
 		string auth_text;
-		Delay auth_delay;
+		private State state;
+
+		private enum State {
+			Disconnected,
+			Connected,
+			InAuth,
+			Authorized
+		}
+
+		private State CurrentState {
+			get { return state; }
+			set {
+				switch (value) {
+				case State.Disconnected:
+					auth_label.Text = auth_text;
+					auth_flickr.Sensitive = true;
+					do_export_flickr.Sensitive = false;
+					auth_flickr.Label = Catalog.GetString ("Authorize");
+					break;
+				case State.Connected:
+					auth_flickr.Sensitive = true;
+					do_export_flickr.Sensitive = false;
+					auth_flickr.Label = Catalog.GetString ("Complete Authorization");
+					break;
+				case State.InAuth:
+					auth_flickr.Sensitive = false;
+					auth_flickr.Label = Catalog.GetString ("Checking credentials...");
+					do_export_flickr.Sensitive = false;
+					break;
+				case State.Authorized:
+					do_export_flickr.Sensitive = true;
+					auth_flickr.Sensitive = true;
+					auth_label.Text = System.String.Format (Catalog.GetString ("You are currently logged into Flickr as {0}"),
+										auth.User.UserName);
+					auth_flickr.Label = Catalog.GetString ("Log in as a different user");
+					break;
+				}
+				state = value;
+			}
+		}
 
 
 		public FlickrExport (IBrowsableCollection selection) : base ("flickr_export_dialog")
@@ -63,7 +103,7 @@ namespace FSpot {
 
 			Dialog.ShowAll ();
 			Dialog.Response += HandleResponse;
-			auth_flickr.Clicked += HandleLogin;
+			auth_flickr.Clicked += HandleClicked;
 			auth_text = auth_label.Text;
 
 			LoadPreference (Preferences.EXPORT_FLICKR_SCALE);
@@ -72,20 +112,17 @@ namespace FSpot {
 			LoadPreference (Preferences.EXPORT_FLICKR_TAGS);
 			LoadPreference (Preferences.EXPORT_FLICKR_STRIP_META);
 			LoadPreference (Preferences.EXPORT_FLICKR_TOKEN);
-			auth_delay = new Delay (3000, StartAuth);
+
 			do_export_flickr.Sensitive = false;
 			fr = new FlickrRemote (token);			
 			if (token != null && token.Length > 0) {
 				StartAuth ();
-				auth_delay.Start ();
 			}
 		}
 
 		public bool StartAuth ()
 		{
-			auth_flickr.Label = Catalog.GetString ("Checking credentials...");
-			auth_flickr.Sensitive = false;
-			
+			CurrentState = State.InAuth;
 			if (command_thread == null || ! command_thread.IsAlive) {
 				command_thread = new Thread (new ThreadStart (CheckAuthorization));
 				command_thread.Start ();
@@ -103,8 +140,18 @@ namespace FSpot {
 				args.Exception = e;
 			}
 			
-			auth_delay.Stop ();
-			Gtk.Application.Invoke (this, args, HandleAuthorized);
+			Gtk.Application.Invoke (this, args, delegate (object sender, EventArgs sargs) {
+				AuthorizationEventArgs args = (AuthorizationEventArgs) sargs;
+				
+				do_export_flickr.Sensitive = args.Auth != null;
+				if (args.Auth != null) {
+					token = args.Auth.Token;
+					auth = args.Auth;
+					CurrentState = State.Authorized;
+				} else {
+					CurrentState = State.Disconnected;
+				}
+			});
 		}
 
 		private class AuthorizationEventArgs : System.EventArgs {
@@ -126,37 +173,24 @@ namespace FSpot {
 			}
 		}
 
-		private void HandleAuthorized (object sender, EventArgs sargs)
-		{
-			AuthorizationEventArgs args = (AuthorizationEventArgs) sargs;
-
-			auth_flickr.Sensitive = true;
-			do_export_flickr.Sensitive = args.Auth != null;
-			if (args.Auth != null) {
-				auth_label.Text = System.String.Format (Catalog.GetString ("You are currently logged into Flickr as {0}"),
-									args.Auth.User.UserName);
-				auth_flickr.Label = Catalog.GetString ("Log in as a different user");
-				token = args.Auth.Token;
-			} else {
-				auth_label.Text = auth_text;
-				auth_flickr.Label = Catalog.GetString ("Authorize");
-				System.Console.WriteLine (args.Exception);
-				auth_delay.Start ();
-			}
-		}
-
 		public void HandleSizeActive (object sender, System.EventArgs args)
 		{
 			size_spin.Sensitive = scale_check.Active;
 		}
 
-		private void Login () 
+		private void Logout ()
 		{
 			token = null;
+			auth = null;
+			fr = new FlickrRemote (token);
+			CurrentState = State.Disconnected;
+		}
+
+		private void Login () 
+		{
 			fr = new FlickrRemote (token);
 			fr.TryWebLogin();
-			token = fr.Token;
-			auth_delay.Start ();
+			CurrentState = State.Connected;
 		}
 
 		private void HandleProgressChanged (ProgressItem item)
@@ -165,14 +199,22 @@ namespace FSpot {
 			progress_dialog.Fraction = (photo_index - 1.0 + item.Value) / (double) selection.Count;
 		}
 
+		FileInfo info;
 		private void HandleFlickrProgress (object sender, UploadProgressEventArgs args)
 		{
-			
+			if (args.UploadComplete) {
+				progress_dialog.Fraction = photo_index / (double) selection.Count;				
+				progress_dialog.ProgressText = String.Format (Catalog.GetString ("Waiting for confirmation {0} of {1}"),
+									      photo_index, selection.Count);
+			}
+			progress_dialog.Fraction = (photo_index - 1.0 + (args.Bytes / (double) info.Length)) / (double) selection.Count;		      
 		}
 		
 		private void Upload () {
-			fr.Progress = new ProgressItem ();
-			fr.Progress.Changed += HandleProgressChanged;
+			progress_item = new ProgressItem ();
+			progress_item.Changed += HandleProgressChanged;
+			fr.Connection.OnUploadProgress += HandleFlickrProgress;
+
 			System.Collections.ArrayList ids = new System.Collections.ArrayList ();
 			try {
 				foreach (IBrowsableItem photo in selection.Items) {
@@ -184,7 +226,8 @@ namespace FSpot {
 					progress_dialog.ProgressText = System.String.Format (
 						Catalog.GetString ("{0} of {1}"), photo_index, 
 						selection.Count);
-
+					
+					info = new FileInfo (photo.DefaultVersionUri.LocalPath);
 					string id = fr.Upload (photo, scale, size, copy_metadata, is_public, is_family, is_friend);
 					ids.Add (id);
 					progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
@@ -193,8 +236,10 @@ namespace FSpot {
 					progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 				}
 			} catch (System.Exception e) {
-				progress_dialog.Message = e.ToString ();
-				progress_dialog.ProgressText = Catalog.GetString ("Error Uploading To Flickr");
+				progress_dialog.Message = String.Format (Catalog.GetString ("Error Uploading To Flickr: {0}"),
+									 e.Message);
+				progress_dialog.ProgressText = Catalog.GetString ("Error");
+				System.Console.WriteLine (e);
 			}
 
 			if (open && ids.Count != 0) {
@@ -209,16 +254,22 @@ namespace FSpot {
 			}
 		}
 		
-		private void HandleLogin (object sender, System.EventArgs args)
+		private void HandleClicked (object sender, System.EventArgs args)
 		{
-			Login ();
-			do_export_flickr.Sensitive = true;
-		}
-		
-		private bool IdleAuth ()
-		{
-			CheckAuthorization ();
-			return false;
+			switch (CurrentState) {
+			case State.Disconnected:
+				Login ();
+				break;
+			case State.Connected:
+				StartAuth ();
+				break;
+			case State.InAuth:
+				break;
+			case State.Authorized:
+				Logout ();
+				Login ();
+				break;
+			}
 		}
 		
 		private void HandlePublicChanged (object sender, EventArgs args)
@@ -252,7 +303,6 @@ namespace FSpot {
 				return;
 			}
 
-			auth_delay.Stop ();
 			fr.ExportTags = tag_check.Active;
 			open = open_check.Active;
 			scale = scale_check.Active;
