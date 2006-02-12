@@ -1,5 +1,7 @@
 2006-02-12  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: don't start up the import dialog with a path selected.
+
 	* src/Preferences.cs: add the privacy options for flickr.
 
 	* src/FlickrExport.cs: clean up the message text for the various states, handle exceptions

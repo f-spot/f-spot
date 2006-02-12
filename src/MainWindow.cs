@@ -1186,7 +1186,7 @@ public class MainWindow {
 	{
 		db.Sync = false;
 		ImportCommand command = new ImportCommand (main_window);
-		if (command.ImportFromFile (db.Photos, this.last_import_path) > 0) {
+		if (command.ImportFromFile (db.Photos, null) > 0) {
 			this.last_import_path = command.ImportPath;
 			UpdateQuery ();
 		}
