@@ -22,7 +22,7 @@ namespace FSpot.Database {
 			AddUpdate (delegate (Db db) {
 				string other_id = SelectSingleString ("SELECT id FROM tags WHERE name = 'Other'");
 
-				if (hidden_id == null)
+				if (other_id == null)
 					return;
 
 				string photo_count = SelectSingleString (

@@ -1,5 +1,7 @@
 2006-02-12  Larry Ewing  <lewing@novell.com>
 
+	* src/Updater.cs: fix the bug I introduced.
+
 	* src/Updater.cs: don't remove the Other tag if it has child
 	tags. Patch from Ruben Vermeersch.
 
@@ -19,7 +21,7 @@
 
 	* src/f-spot.glade: add permissions to the export dialog.
 
-	* src/FlickrExport.cs: adf permissions to the dialog.
+	* src/FlickrExport.cs: add permissions to the dialog.
 	
 	* src/FlickrRemote.cs: set the permissions on the photo durring
 	upload.
