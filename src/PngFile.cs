@@ -1270,7 +1270,6 @@ namespace FSpot.Png {
 
 		public override void Save (Gdk.Pixbuf pixbuf, System.IO.Stream stream)
 		{
-			string [] opt = new string [] { "comment", null };
 			byte [] buffer = PixbufUtils.Save (pixbuf, "png", null, null);
 			MemoryStream mem = new MemoryStream (buffer);
 			PngHeader converted = new PngHeader (mem);

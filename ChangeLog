@@ -1,5 +1,7 @@
 2006-02-12  Larry Ewing  <lewing@novell.com>
 
+	* src/PngFile.cs: remove unused variable.
+
 	* src/Updater.cs: fix the bug I introduced.
 
 	* src/Updater.cs: don't remove the Other tag if it has child
