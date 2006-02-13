@@ -1,5 +1,8 @@
 2006-02-13  Larry Ewing  <lewing@novell.com>
-	
+
+	* src/DirectoryCollection.cs: use and array list rather than an
+	array.
+
 	* src/PhotoView.cs: add tips to the grayscale and sepia buttons.
 
 	* src/f-spot.glade: remove a bunch of unused menu items.

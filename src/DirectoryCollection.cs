@@ -32,19 +32,17 @@ namespace FSpot {
 
 				LoadItems (info.GetFiles ());
 			} else if (File.Exists (path)) {
-				items = new FileBrowsableItem [] { new FileBrowsableItem (path) };
-			} else {
-				items = new FileBrowsableItem [0];
+				items.Add (new FileBrowsableItem (path)) ;
 			}
 		}
 	}
 
 	public class FileCollection : IBrowsableCollection {
-		protected FileBrowsableItem [] items;
+		protected ArrayList items;
 
 		protected FileCollection ()
 		{
-
+			items = new ArrayList ();
 		}
 
 		public FileCollection (FileInfo [] files)
@@ -54,26 +52,24 @@ namespace FSpot {
 
 		public int Count {
 			get {
-				return items.Length;
+				return items.Count;
 			}
 		}
 
 		public bool Contains (IBrowsableItem item)
 		{
-			return IndexOf (item) >= 0;
+			return Contains (item);
 		}
 
 		// IBrowsableCollection
 		public IBrowsableItem [] Items {
 			get {
-				return items;
+				return items.ToArray (typeof (IBrowsableItem)) as IBrowsableItem [];
 			}
 		}
 
 		public IBrowsableItem this [int index] {
-			get {
-				return items [index];
-			}
+			get { return (IBrowsableItem) items [index]; }
 		}
 
 		public event FSpot.IBrowsableCollectionChangedHandler Changed;
@@ -81,7 +77,7 @@ namespace FSpot {
 
 		public int IndexOf (IBrowsableItem item)
 		{
-			return Array.IndexOf (items, item);
+			return IndexOf (item);
 		}
 
 		public void Reload ()
@@ -102,18 +98,16 @@ namespace FSpot {
 		}
 
 		protected void LoadItems (FileInfo [] files) {
-			ArrayList images = new ArrayList ();
-
+			items.Clear ();
 			foreach (FileInfo f in files) {
 				if (FSpot.ImageFile.HasLoader (f.FullName)) {
 					Console.WriteLine (f.FullName);
-					images.Add (new FileBrowsableItem (f.FullName));
+					items.Add (new FileBrowsableItem (f.FullName));
 				}
 			}
-				
-			items = images.ToArray (typeof (FileBrowsableItem)) as FileBrowsableItem [];
-		}
 
+			this.Reload ();
+		}
 	}
 
 	public class FileBrowsableItem : IBrowsableItem {
