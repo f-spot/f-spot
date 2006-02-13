@@ -1,5 +1,9 @@
 2006-02-13  Larry Ewing  <lewing@novell.com>
 
+	* src/f-spot.glade: give the infobox a littel more room.
+
+	* src/TagMenu.cs: don't modify the list while iterating.
+
 	* src/VfsExport.cs: remove VfsExport.cs from the repo.
 
 	* po/POTFILES.in: remove VfsExport.cs is is no longer valid.
@@ -20,8 +24,6 @@
 
 	* src/OpenWithMenu.cs: fix a couple of cases of modifying the
 	container while iterating.
-
-	* src/TagMenu.cs: don't modify the list while iterating.
 
 	* src/PhotoView.cs: add tips to the grayscale and sepia buttons.
 

@@ -81,9 +81,9 @@ public class TagMenu : Menu {
 
 	public void Populate (Category cat, Gtk.Menu parent)
 	{
-		foreach (Widget w in parent.Children) {
-			w.Destroy ();
-		}
+		Widget [] dead_pool = parent.Children;
+		for (int i = 0; i < dead_pool.Length; i++)
+			dead_pool [i].Destroy ();
 
 		foreach (Tag t in cat.Children) {
 			TagItem item = new TagItem (t);
