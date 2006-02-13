@@ -1,4 +1,6 @@
 2006-02-13  Larry Ewing  <lewing@novell.com>
+	
+	* src/PhotoView.cs: add tips to the grayscale and sepia buttons.
 
 	* src/f-spot.glade: remove a bunch of unused menu items.
 	
@@ -32,8 +34,6 @@
 
 	* src/OpenWithMenu.cs: fix a couple of cases of modifying the
 	container while iterating.
-
-	* src/PhotoView.cs: add tips to the grayscale and sepia buttons.
 
 2006-02-12  Larry Ewing  <lewing@novell.com>
 

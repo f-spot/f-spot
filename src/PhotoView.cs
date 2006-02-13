@@ -542,6 +542,8 @@ public class PhotoView : EventBox {
 		tips.SetTip (constraints_option_menu, Mono.Posix.Catalog.GetString ("Constrain the aspect ratio of the selection"), "");
 		tips.SetTip (display_next_button, Mono.Posix.Catalog.GetString ("Next photo"), "");
 		tips.SetTip (display_previous_button, Mono.Posix.Catalog.GetString ("Previous photo"), "");
+		tips.SetTip (desaturate_button, Mono.Posix.Catalog.GetString ("Convert the photo to black and white"), "");
+		tips.SetTip (sepia_button, Mono.Posix.Catalog.GetString ("Convert the photo to sepia tones"), "");
 	}
 
 }
