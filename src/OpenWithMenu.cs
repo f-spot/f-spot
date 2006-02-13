@@ -75,6 +75,12 @@ public class OpenWithMenu: Gtk.Menu {
 			Append (i);
 		}
 
+		if (Children.Length == 0) {
+			MenuItem none = new Gtk.MenuItem (Mono.Posix.Catalog.GetString ("No applications available"));
+			none.Sensitive = false;
+			Append (none);
+		}
+
 		ShowAll ();
 
 		populated = true;

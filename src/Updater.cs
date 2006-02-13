@@ -19,35 +19,51 @@ namespace FSpot.Database {
 			// The order these are added is important as they will be run sequentially
 			
 			// Update from version 0 to 1: Remove empty Other tags
-			AddUpdate (delegate (Db db) {
+			AddUpdate (delegate (SqliteConnection connection) {
 				string other_id = SelectSingleString ("SELECT id FROM tags WHERE name = 'Other'");
 
 				if (other_id == null)
 					return;
 
-				string photo_count = SelectSingleString (
-					String.Format ("SELECT COUNT(*) FROM photo_tags  WHERE tag_id = {0}", other_id));
-
-				if (photo_count == null)
+				// Don't do anything if there are subtags
+				string tag_count = SelectSingleString (
+					String.Format ("SELECT COUNT(*) FROM tags WHERE category_id = {0}", other_id));
+				
+				if (tag_count == null || System.Int32.Parse (tag_count) != 0)
 					return;
 				
-				// Check for tags with the Other parent
-				string child_count = SelectSingleString (
-					String.Format ("SELECT COUNT(*) FROM tags WHERE category_id = {0}", other_id));
+				// Don't do anything if there are photos tagged with this
+				string photo_count = SelectSingleString (
+					String.Format ("SELECT COUNT(*) FROM photo_tags WHERE tag_id = {0}", other_id));
 
-				if (child_count == null)
-					return;
-
-				int count = System.Int32.Parse (photo_count);
-				if (count != 0)
+				if (photo_count == null || System.Int32.Parse (photo_count) != 0)
 					return;
 
 				// Finally, we know that the Other tag exists and has no children, so remove it
 				ExecuteNonQuery ("DELETE FROM tags WHERE name = 'Other'");
 			});
+
+			// Update from version 1 to 2: Restore Other tags that were removed leaving dangling child tags
+			AddUpdate (delegate (SqliteConnection connection) {
+				string tag_count = SelectSingleString ("SELECT COUNT(*) FROM tags WHERE category_id != 0 AND category_id NOT IN (SELECT id FROM tags)");
+
+				// If there are no dangling tags, then don't do anything
+				if (tag_count == null || System.Int32.Parse (tag_count) == 0)
+					return;
+
+				ExecuteScalar ("INSERT INTO tags (name, category_id, is_category, icon) VALUES ('Other', 0, 1, 'stock_icon:f-spot-other.png')");
+
+				ExecuteNonQuery (String.Format (
+					@"UPDATE tags SET category_id = {0} WHERE id IN 
+					(SELECT id FROM tags WHERE category_id != 0 AND category_id 
+					NOT IN (SELECT id FROM tags))",
+					connection.LastInsertRowId));
+
+				System.Console.WriteLine ("Other tag restored.  Sorry about that!");
+			});
 			
-			// Update from version 1 to 2
-			//AddUpdate (delegate (Db db) {
+			// Update from version 2 to 3
+			//AddUpdate (delegate (SqliteConnection connection) {
 			//	do update here
 			//});
 		}
@@ -202,7 +218,7 @@ namespace FSpot.Database {
 			return temp_name;
 		}
 
-		private delegate void UpdateCode (Db db);
+		private delegate void UpdateCode (SqliteConnection connection);
 
 		private class Update {
 			public int Version;
@@ -224,7 +240,7 @@ namespace FSpot.Database {
 
 			public void Execute (Db db, MetaItem db_version)
 			{
-				code (db);
+				code (db.Connection);
 				
 				Console.WriteLine ("Updated database from version {0} to {1}",
 						db_version.ValueAsInt,
