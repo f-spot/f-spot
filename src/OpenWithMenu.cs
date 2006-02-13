@@ -51,8 +51,10 @@ public class OpenWithMenu: Gtk.Menu {
 		
 		if (this.mime_types != mime_types && populated) {
 			populated = false;
-			foreach (Widget child in Children)
-				child.Destroy ();
+
+			Widget [] dead_pool = Children;
+			for (int i = 0; i < dead_pool.Length; i++)
+				dead_pool [i].Destroy ();
 		}
 
 		if (populated)
@@ -102,6 +104,9 @@ public class OpenWithMenu: Gtk.Menu {
 
 		bool first = true;
 		foreach (string mime_type in mime_types) {
+			if (mime_type == null)
+				continue;
+
 			MimeApplication [] apps = Gnome.Vfs.Mime.GetAllApplications (mime_type);
 
 			foreach (MimeApplication app in apps) {
@@ -121,10 +126,15 @@ public class OpenWithMenu: Gtk.Menu {
 					intersection.Add (app);
 			}
 
-			if (! first)
-				foreach (MimeApplication app in intersection)
-					if (System.Array.IndexOf (apps, app) == -1)
+			if (! first) {
+				for (int i = 0; i < intersection.Count; i++) {
+					MimeApplication app = intersection [i] as MimeApplication;
+					if (System.Array.IndexOf (apps, app) == -1) {
 						intersection.Remove (app);
+						i--;
+					}
+				}
+			}
 
 			first = false;
 		}
