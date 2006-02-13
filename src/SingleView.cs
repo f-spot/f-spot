@@ -200,7 +200,7 @@ namespace FSpot {
 			if ((ResponseType) response == ResponseType.Ok) 
 				collection.Path = chooser.Filename;
 
-			//chooser.Destroy ();
+			chooser.Destroy ();
 		}
 
 		private void HandleOpen (object sender, System.EventArgs args)
@@ -217,7 +217,7 @@ namespace FSpot {
 			if ((ResponseType) response == ResponseType.Ok) 
 				collection.Path = chooser.Filename;
 
-			//chooser.Destroy ();
+			chooser.Destroy ();
 		}
 		
 		private void HandleMetadataDestroyed (object sender, System.EventArgs args)
