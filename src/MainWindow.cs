@@ -1011,6 +1011,25 @@ public class MainWindow {
 		}
 	}
 
+	public void ImportUdi (string udi)
+	{
+		/* probably a camera we need to contruct on of our gphoto2 uris */
+		Hal.Device dev = new Hal.Device (Core.HalContext, udi);
+		string mount_point = dev.GetPropertyString ("volume.mount_point");
+		int bus = dev.GetPropertyInt ("usb.bus_number");
+		int device = dev.GetPropertyInt ("usb.linux.device_number");
+		System.Console.WriteLine ("dev = {1} exists = {2} mount_point = {0} {3},{4}", mount_point, dev, dev.Exists, bus, device);
+
+		if (! dev.Exists || mount_point != null) {
+			ImportFile (mount_point);
+		} else {
+			string gphoto_uri = String.Format ("gphoto2:usb:{0},{1}", bus.ToString ("d3") , device.ToString ("d3"));
+			System.Console.WriteLine ("gphoto_uri = {0}", gphoto_uri);
+			ImportCamera (gphoto_uri);
+		} 
+			
+	}
+
 	void HandleIconViewDragDataReceived (object sender, DragDataReceivedArgs args)
 	{
 	 	Widget source = Gtk.Drag.GetSourceWidget (args.Context);     
@@ -1406,7 +1425,7 @@ public class MainWindow {
 
                 new About ("F-Spot", 
 			   FSpot.Defines.VERSION, 
-			   "Copyright 2003-2005 Novell Inc.",
+			   Mono.Posix.Catalog.GetString ("Copyright 2003-2006 Novell Inc."),
                            null, authors, new string [0], translators, null).Show();
 	}
 
