@@ -1011,6 +1011,7 @@ public class MainWindow {
 		}
 	}
 
+#if false
 	public void ImportUdi (string udi)
 	{
 		/* probably a camera we need to contruct on of our gphoto2 uris */
@@ -1029,6 +1030,7 @@ public class MainWindow {
 		} 
 			
 	}
+#endif
 
 	void HandleIconViewDragDataReceived (object sender, DragDataReceivedArgs args)
 	{
