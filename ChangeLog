@@ -1,6 +1,14 @@
 2006-02-13  Larry Ewing  <lewing@novell.com>
 
-	* src/f-spot.glade: give the infobox a littel more room.
+	* src/f-spot.glade: remove a bunch of unused menu items.
+	
+	* src/MainWindow.cs: expose HandleAbout to the public.
+
+	* src/SingleView.cs: handle about dialog.
+
+	* src/ImportCommand.cs: clean up formatting.
+
+	* src/f-spot.glade: give the infobox a little more room.
 
 	* src/TagMenu.cs: don't modify the list while iterating.
 

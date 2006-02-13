@@ -171,6 +171,16 @@ namespace FSpot {
 			metadata_dialog.ShowAll ();
 			metadata_dialog.Destroyed += HandleMetadataDestroyed;
 		}
+
+		private void HandleAbout (object sender, System.EventArgs args)
+		{
+			MainWindow.HandleAbout (sender, args);
+		}
+
+		private void HandleOpen (object sender, System.EventArgs args)
+		{
+
+		}
 		
 		private void HandleMetadataDestroyed (object sender, System.EventArgs args)
 		{

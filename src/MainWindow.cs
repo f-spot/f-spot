@@ -1381,7 +1381,7 @@ public class MainWindow {
 		GnomeUtil.UrlShow (main_window, url.ToString ());
 	}
 
-	void HandleAbout (object sender, EventArgs args)
+	public static void HandleAbout (object sender, EventArgs args)
 	{
 		string [] authors = new string [] {
 			"Ettore Perazzoli",

@@ -10371,20 +10371,7 @@ Photo Details</property>
 		    <widget class="GtkImageMenuItem" id="open1">
 		      <property name="visible">True</property>
 		      <property name="stock_item">GNOMEUIINFO_MENU_OPEN_ITEM</property>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkImageMenuItem" id="save1">
-		      <property name="visible">True</property>
-		      <property name="stock_item">GNOMEUIINFO_MENU_SAVE_ITEM</property>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkImageMenuItem" id="save_as1">
-		      <property name="visible">True</property>
-		      <property name="stock_item">GNOMEUIINFO_MENU_SAVE_AS_ITEM</property>
+		      <signal name="activate" handler="HandleOpen" last_modification_time="Mon, 13 Feb 2006 23:30:05 GMT"/>
 		    </widget>
 		  </child>
 
@@ -10399,72 +10386,6 @@ Photo Details</property>
 		      <property name="visible">True</property>
 		      <property name="stock_item">GNOMEUIINFO_MENU_CLOSE_ITEM</property>
 		      <signal name="activate" handler="HandleFileClose" last_modification_time="Sat, 25 Jun 2005 18:52:28 GMT"/>
-		    </widget>
-		  </child>
-		</widget>
-	      </child>
-	    </widget>
-	  </child>
-
-	  <child>
-	    <widget class="GtkMenuItem" id="edit3">
-	      <property name="visible">True</property>
-	      <property name="stock_item">GNOMEUIINFO_MENU_EDIT_TREE</property>
-
-	      <child>
-		<widget class="GtkMenu" id="edit3_menu">
-
-		  <child>
-		    <widget class="GtkImageMenuItem" id="cut1">
-		      <property name="visible">True</property>
-		      <property name="stock_item">GNOMEUIINFO_MENU_CUT_ITEM</property>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkImageMenuItem" id="copy1">
-		      <property name="visible">True</property>
-		      <property name="stock_item">GNOMEUIINFO_MENU_COPY_ITEM</property>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkImageMenuItem" id="paste1">
-		      <property name="visible">True</property>
-		      <property name="stock_item">GNOMEUIINFO_MENU_PASTE_ITEM</property>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkImageMenuItem" id="clear1">
-		      <property name="visible">True</property>
-		      <property name="stock_item">GNOMEUIINFO_MENU_CLEAR_ITEM</property>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkSeparatorMenuItem" id="separator23">
-		      <property name="visible">True</property>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkImageMenuItem" id="properties1">
-		      <property name="visible">True</property>
-		      <property name="stock_item">GNOMEUIINFO_MENU_PROPERTIES_ITEM</property>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkSeparatorMenuItem" id="separator24">
-		      <property name="visible">True</property>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkImageMenuItem" id="preferences1">
-		      <property name="visible">True</property>
-		      <property name="stock_item">GNOMEUIINFO_MENU_PREFERENCES_ITEM</property>
 		    </widget>
 		  </child>
 		</widget>
@@ -10580,6 +10501,7 @@ Photo Details</property>
 		    <widget class="GtkImageMenuItem" id="about2">
 		      <property name="visible">True</property>
 		      <property name="stock_item">GNOMEUIINFO_MENU_ABOUT_ITEM</property>
+		      <signal name="activate" handler="HandleAbout" last_modification_time="Mon, 13 Feb 2006 23:36:32 GMT"/>
 		    </widget>
 		  </child>
 		</widget>
