@@ -1,5 +1,6 @@
 using Gtk;
 using System;
+using Mono.Posix;
 
 namespace FSpot {
 	public class SingleView {
@@ -177,9 +178,46 @@ namespace FSpot {
 			MainWindow.HandleAbout (sender, args);
 		}
 
+		private void HandleNewWindow (object sender, System.EventArgs args)
+		{
+			/* FIXME this needs to register witth the core */
+			new SingleView (path);
+		}
+
+		private void HandleOpenFolder (object sender, System.EventArgs args)
+		{
+			FileChooserDialog chooser = new FileChooserDialog (Catalog.GetString ("Open Folder"),
+									   window,
+									   FileChooserAction.SelectFolder);
+
+			chooser.AddButton (Stock.Cancel, ResponseType.Cancel);
+			chooser.AddButton (Stock.Open, ResponseType.Ok);
+
+			chooser.SetFilename (collection.Path);
+
+			int response = chooser.Run ();
+
+			if ((ResponseType) response == ResponseType.Ok) 
+				collection.Path = chooser.Filename;
+
+			//chooser.Destroy ();
+		}
+
 		private void HandleOpen (object sender, System.EventArgs args)
 		{
+			FileChooserDialog chooser = new FileChooserDialog (Catalog.GetString ("Open"),
+									   window,
+									   FileChooserAction.Open);
 
+			chooser.AddButton (Stock.Cancel, ResponseType.Cancel);
+			chooser.AddButton (Stock.Open, ResponseType.Ok);
+
+			chooser.SetFilename (collection.Path);
+			int response = chooser.Run ();
+			if ((ResponseType) response == ResponseType.Ok) 
+				collection.Path = chooser.Filename;
+
+			//chooser.Destroy ();
 		}
 		
 		private void HandleMetadataDestroyed (object sender, System.EventArgs args)
@@ -256,7 +294,6 @@ namespace FSpot {
 			SavePreferences ();
 			this.Window.Destroy ();
 		}
-
 
 		private void SavePreferences  ()
 		{

@@ -1,5 +1,10 @@
 2006-02-13  Larry Ewing  <lewing@novell.com>
 
+	* src/DirectoryCollection.cs: handle setting the path with a
+	little more grace.
+
+	* src/SingleView.cs: implement HandleOpen and HandleOpenFolder.
+
 	* src/IOChannel.cs: fix the debug condition.
 
 	* src/DirectoryCollection.cs: use and array list rather than an
