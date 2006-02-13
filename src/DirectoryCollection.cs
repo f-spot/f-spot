@@ -32,7 +32,9 @@ namespace FSpot {
 
 				LoadItems (info.GetFiles ());
 			} else if (File.Exists (path)) {
+				items.Clear ();
 				items.Add (new FileBrowsableItem (path)) ;
+				Reload ();
 			}
 		}
 	}
