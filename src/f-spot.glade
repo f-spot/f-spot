@@ -10368,10 +10368,54 @@ Photo Details</property>
 		<widget class="GtkMenu" id="file2_menu">
 
 		  <child>
+		    <widget class="GtkImageMenuItem" id="new_window1">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">_New Window</property>
+		      <property name="use_underline">True</property>
+		      <signal name="activate" handler="HandleNewWindow" last_modification_time="Tue, 14 Feb 2006 00:10:33 GMT"/>
+		      <accelerator key="N" modifiers="GDK_CONTROL_MASK" signal="activate"/>
+
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image41">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-new</property>
+			  <property name="icon_size">1</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
+		    </widget>
+		  </child>
+
+		  <child>
 		    <widget class="GtkImageMenuItem" id="open1">
 		      <property name="visible">True</property>
 		      <property name="stock_item">GNOMEUIINFO_MENU_OPEN_ITEM</property>
 		      <signal name="activate" handler="HandleOpen" last_modification_time="Mon, 13 Feb 2006 23:30:05 GMT"/>
+		    </widget>
+		  </child>
+
+		  <child>
+		    <widget class="GtkImageMenuItem" id="open_folder1">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">Open _Folder...</property>
+		      <property name="use_underline">True</property>
+		      <signal name="activate" handler="HandleOpenFolder" last_modification_time="Tue, 14 Feb 2006 00:07:44 GMT"/>
+		      <accelerator key="O" modifiers="GDK_CONTROL_MASK | GDK_SHIFT_MASK" signal="activate"/>
+
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image42">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-open</property>
+			  <property name="icon_size">1</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		  </child>
 
