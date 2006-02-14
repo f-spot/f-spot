@@ -1,3 +1,8 @@
+2006-02-14  Gabriel Burt <gabriel.burt@gmail.com>
+
+	* src/ImportCommand.cs: Make the import source selector menu not
+	trigger unless you actually activate an option.
+
 2006-02-13  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
 	* configure.in: Added 'gl' to ALL_LINGUAS.

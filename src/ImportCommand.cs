@@ -102,10 +102,18 @@ public class ImportCommand : FSpot.GladeDialog {
 		public SourceItem (ImportSource source) : base (source.Name)
 		{
 			this.Source = source;
+	
+			Activated += HandleActivated;
 			
 			Gdk.Pixbuf icon = source.Icon;
 			if (icon != null)
 				this.Image = new Gtk.Image (icon);
+		}
+
+		private void HandleActivated (object sender, EventArgs args)
+		{
+			if (ImportCommand.OpenDialog != null)
+				ImportCommand.OpenDialog.Source = this;
 		}
 	} 
 
@@ -377,6 +385,7 @@ public class ImportCommand : FSpot.GladeDialog {
 	FSpot.PhotoList collection;
 	bool cancelled;
 	bool copy;
+	SourceMenu menu;
 
 	int total;
 	PhotoStore store;
@@ -389,11 +398,58 @@ public class ImportCommand : FSpot.GladeDialog {
 
 	string loading_string;
 
+	private static ImportCommand import_command;
+	protected static ImportCommand OpenDialog {
+		get { return import_command; }
+	}
+	
+	private SourceItem Source {
+		set {
+			if (store == null || collection == null)
+				return;
+			
+			SourceItem item = value;
+			
+			this.Cancel ();
+			this.copy = copy_check.Active;
+			AllowFinish = false;
+
+			System.Console.WriteLine ("item {0}", item);
+
+			if (!item.Sensitive)
+				return;
+
+			if (item.Source is BrowseSource) {
+				string path = ChoosePath ();
+				
+				if (path != null) {
+					SourceItem path_item = new SourceItem (new VfsSource (path));
+					menu.Prepend (path_item);
+					path_item.ShowAll ();
+					//option.SetHistory (0);
+					SetImportPath (path);
+				}
+			} else if (item.Source is VfsSource) {
+				VfsSource vfs = item.Source as VfsSource;
+				SetImportPath (vfs.uri);
+			} else if (item.Source is CameraSource) {
+				CameraSource csource = item.Source as CameraSource;
+				string port = "gphoto2:" + csource.Port;
+				this.Cancel ();
+				this.Dialog.Destroy ();
+				MainWindow.Toplevel.ImportCamera (port);
+			}
+
+			Start ();
+		}
+	}
+
 	public ImportCommand (Gtk.Window mw)
 	{
 		main_window = mw;
 		step = new FSpot.Delay (10, new GLib.IdleHandler (Step));
 		loading_string = Mono.Posix.Catalog.GetString ("Loading {0} of {1}");
+		import_command = this;
 	}
 
 	private void HandleDialogResponse (object obj, ResponseArgs args)
@@ -566,46 +622,6 @@ public class ImportCommand : FSpot.GladeDialog {
 	
 	}
 
-	private void HandleSourceChanged (object sender, EventArgs args)
-	{
-		if (store == null || collection == null)
-			return;
-		
-		this.Cancel ();
-		this.copy = copy_check.Active;
-		AllowFinish = false;
-
-		Gtk.OptionMenu option = (Gtk.OptionMenu) sender;
-		Gtk.Menu menu = (Gtk.Menu)(option.Menu);
-		SourceItem item =  (SourceItem)(menu.Active);
-		System.Console.WriteLine ("item {0}", item);
-
-		if (!item.Sensitive)
-			return;
-
-		if (item.Source is BrowseSource) {
-			string path = ChoosePath ();
-			
-			if (path != null) {
-				SourceItem path_item = new SourceItem (new VfsSource (path));
-				menu.Prepend (path_item);
-				path_item.ShowAll ();
-				//option.SetHistory (0);
-				SetImportPath (path);
-			}
-		} else if (item.Source is VfsSource) {
-			VfsSource vfs = item.Source as VfsSource;
-			SetImportPath (vfs.uri);
-		} else if (item.Source is CameraSource) {
-			CameraSource csource = item.Source as CameraSource;
-			string port = "gphoto2:" + csource.Port;
-			this.Cancel ();
-			this.Dialog.Destroy ();
-			MainWindow.Toplevel.ImportCamera (port);
-		}
-
-		Start ();
-	}
 
 	private void HandleRecurseToggled (object sender, System.EventArgs args)
 	{
@@ -634,7 +650,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		recurse_check.Toggled += HandleRecurseToggled;
 		copy_check.Toggled += HandleRecurseToggled;
 
-		SourceMenu menu = new SourceMenu ();
+		menu = new SourceMenu ();
 		source_option_menu.Menu = menu;
 
 		collection = new FSpot.PhotoList (new Photo [0]);
@@ -664,7 +680,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		}				
 
 		this.Dialog.Show ();
-		source_option_menu.Changed += HandleSourceChanged;
+		//source_option_menu.Changed += HandleSourceChanged;
 		if (path != null) {
 			SetImportPath (path);
 			int i = menu.FindItemPosition (path);
