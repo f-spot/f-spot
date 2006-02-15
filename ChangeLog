@@ -1,3 +1,14 @@
+2006-02-14  Larry Ewing  <lewing@novell.com>
+
+	* src/DirectoryCollection.cs: make FileCollection a subclass of
+	PhotoList since they did the same thing.
+
+	* src/PhotoArray.cs: add missing methods from FileCollection to
+	PhotoList.
+
+	* src/SingleView.cs: combine Open and OpenFolder into a single
+	function.
+
 2006-02-14  Gabriel Burt <gabriel.burt@gmail.com>
 
 	* src/ImportCommand.cs: Make the import source selector menu not

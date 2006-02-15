@@ -130,12 +130,14 @@ namespace FSpot {
 		
 		private void HandleSelectionChanged (FSpot.IBrowsableCollection selection) 
 		{
+			System.Console.WriteLine ("selection changed");
 			if (selection.Count > 0) {
 				image_view.Item.Index = ((IconView.SelectionCollection)selection).Ids[0];
 				zoom_scale.Value = image_view.NormalizedZoom;
 				if (metadata_dialog != null)
 					metadata_dialog.InfoDisplay.Photo = image_view.Item.Current;
 			}
+			System.Console.WriteLine ("selection changed");
 		}
 
 		private void HandleViewToolbar (object sender, System.EventArgs args)
@@ -184,42 +186,42 @@ namespace FSpot {
 			new SingleView (path);
 		}
 
+
 		private void HandleOpenFolder (object sender, System.EventArgs args)
 		{
-			FileChooserDialog chooser = new FileChooserDialog (Catalog.GetString ("Open Folder"),
-									   window,
-									   FileChooserAction.SelectFolder);
-
-			chooser.AddButton (Stock.Cancel, ResponseType.Cancel);
-			chooser.AddButton (Stock.Open, ResponseType.Ok);
-
-			chooser.SetFilename (collection.Path);
-
-			int response = chooser.Run ();
-
-			if ((ResponseType) response == ResponseType.Ok) 
-				collection.Path = chooser.Filename;
-
-			chooser.Destroy ();
+			Open (FileChooserAction.SelectFolder);
 		}
 
 		private void HandleOpen (object sender, System.EventArgs args)
 		{
-			FileChooserDialog chooser = new FileChooserDialog (Catalog.GetString ("Open"),
+			Open (FileChooserAction.Open);
+		}
+
+		private void Open (FileChooserAction action)
+		{
+			string title = Catalog.GetString ("Open");
+
+			if (action == FileChooserAction.SelectFolder)
+				title = Catalog.GetString ("Select Folder");
+
+			FileChooserDialog chooser = new FileChooserDialog (title,
 									   window,
-									   FileChooserAction.Open);
+									   action);
 
 			chooser.AddButton (Stock.Cancel, ResponseType.Cancel);
 			chooser.AddButton (Stock.Open, ResponseType.Ok);
 
-			chooser.SetFilename (collection.Path);
+			chooser.SetFilename (path);
 			int response = chooser.Run ();
-			if ((ResponseType) response == ResponseType.Ok) 
+
+			if ((ResponseType) response == ResponseType.Ok) {
+				path = chooser.Filename;
 				collection.Path = chooser.Filename;
+			}
 
 			chooser.Destroy ();
 		}
-		
+
 		private void HandleMetadataDestroyed (object sender, System.EventArgs args)
 		{
 			metadata_dialog = null;

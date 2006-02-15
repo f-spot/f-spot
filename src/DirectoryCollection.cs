@@ -20,6 +20,7 @@ namespace FSpot {
 			set {
 				path = value;
 				Load ();
+				System.Console.WriteLine ("XXXXX after load");
 			}
 		}
 
@@ -29,78 +30,27 @@ namespace FSpot {
 
 			if (Directory.Exists (path)) {
 				DirectoryInfo info = new DirectoryInfo (path);
-
 				LoadItems (info.GetFiles ());
 			} else if (File.Exists (path)) {
-				items.Clear ();
-				items.Add (new FileBrowsableItem (path)) ;
-				Reload ();
+				list.Clear ();
+				Add (new FileBrowsableItem (path));
 			}
 		}
 	}
 
-	public class FileCollection : IBrowsableCollection {
-		protected ArrayList items;
-
-		protected FileCollection ()
+	public class FileCollection : PhotoList {
+		protected FileCollection () : base (new IBrowsableItem [0])
 		{
-			items = new ArrayList ();
 		}
 
-		public FileCollection (FileInfo [] files)
+		public FileCollection (FileInfo [] files) : this ()
 		{
 			LoadItems (files);
 		}
 
-		public int Count {
-			get {
-				return items.Count;
-			}
-		}
-
-		public bool Contains (IBrowsableItem item)
+		protected void LoadItems (FileInfo [] files) 
 		{
-			return Contains (item);
-		}
-
-		// IBrowsableCollection
-		public IBrowsableItem [] Items {
-			get {
-				return items.ToArray (typeof (IBrowsableItem)) as IBrowsableItem [];
-			}
-		}
-
-		public IBrowsableItem this [int index] {
-			get { return (IBrowsableItem) items [index]; }
-		}
-
-		public event FSpot.IBrowsableCollectionChangedHandler Changed;
-		public event FSpot.IBrowsableCollectionItemsChangedHandler ItemsChanged;
-
-		public int IndexOf (IBrowsableItem item)
-		{
-			return IndexOf (item);
-		}
-
-		public void Reload ()
-		{
-			if (Changed != null)
-				Changed (this);
-		}
-		
-		public void MarkChanged (int num)
-		{
-			MarkChanged (new BrowsableArgs (num));
-		}
-
-		public void MarkChanged (BrowsableArgs args)
-		{
-			if (this.ItemsChanged != null)
-				this.ItemsChanged (this, args);
-		}
-
-		protected void LoadItems (FileInfo [] files) {
-			items.Clear ();
+			ArrayList items = new ArrayList ();
 			foreach (FileInfo f in files) {
 				if (FSpot.ImageFile.HasLoader (f.FullName)) {
 					Console.WriteLine (f.FullName);
@@ -108,6 +58,7 @@ namespace FSpot {
 				}
 			}
 
+			list = items;
 			this.Reload ();
 		}
 	}

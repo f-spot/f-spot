@@ -1,6 +1,6 @@
 namespace FSpot {
 	public class PhotoList : IBrowsableCollection {
-		System.Collections.ArrayList list;
+		protected System.Collections.ArrayList list;
 		IBrowsableItem [] cache;
 
 		public PhotoList (IBrowsableItem [] photos)
@@ -17,9 +17,7 @@ namespace FSpot {
 		public void Clear ()
 		{
 			list.Clear ();
-
-			if (Changed != null)
-				Changed (this);
+			Reload ();
 		}
 
 		public int Capacity {
@@ -51,6 +49,23 @@ namespace FSpot {
 				return (IBrowsableItem) list [index];
 			}
 		}
+		
+		public void Reload ()
+		{
+			if (Changed != null)
+				Changed (this);
+		}
+		
+		public void MarkChanged (int num)
+		{
+			MarkChanged (new BrowsableArgs (num));
+		}
+
+		public void MarkChanged (BrowsableArgs args)
+		{
+			if (ItemsChanged != null)
+				ItemsChanged (this, args);
+		}
 
 		public IBrowsableItem [] Items {
 			get {
@@ -69,12 +84,6 @@ namespace FSpot {
 			}
 		}
 
-		public void MarkChanged (int item)
-		{
-			if (ItemsChanged != null)
-				ItemsChanged (this, new BrowsableArgs (item));
-		}
-		
 		public event IBrowsableCollectionChangedHandler Changed;
 		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
 	}
