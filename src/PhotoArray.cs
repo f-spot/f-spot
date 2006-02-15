@@ -29,11 +29,15 @@ namespace FSpot {
 		public void Add (IBrowsableItem photo)
 		{
 			list.Add (photo);
-			cache = null;
-			if (Changed != null)
-				Changed (this);
+			Reload ();
 		}
 
+		public void Add (IBrowsableItem [] items)
+		{
+			list.AddRange (items);
+			Reload ();
+		}
+		
 		public int IndexOf (IBrowsableItem item)
 		{
 			return list.IndexOf (item);
@@ -52,6 +56,7 @@ namespace FSpot {
 		
 		public void Reload ()
 		{
+			cache = null;
 			if (Changed != null)
 				Changed (this);
 		}
@@ -75,12 +80,8 @@ namespace FSpot {
 				return cache;
 			}
 			set {
-				cache = null;
 				list.Clear ();
-				list.Add (value);
-
-				if (Changed != null)
-					Changed (this);
+				Add (value);
 			}
 		}
 
