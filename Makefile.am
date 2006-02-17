@@ -6,6 +6,7 @@ SUBDIRS = 		\
 	libfspot	\
 	libgphoto2-sharp \
 	semweb		\
+	tools		\
 	po		\
 	src	
 

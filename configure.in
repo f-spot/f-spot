@@ -116,6 +116,24 @@ AC_SUBST(EXIF_SOVERSION)
 
 dnl --- Set up paths
 
+AC_ARG_WITH(gnome-screensaver,[ --with-gnome-screensaver=PREFIX  set gnome gnome-screensaver prefix])
+
+if test "x$with_gnome_screensaver" != "x"; then
+	gnome_screensaver_prefix=$with_gnome_screensaver
+else
+	gnome_screensaver_prefix=$prefix		   
+fi
+
+if test -d $gnome_screensaver_prefix/lib/gnome-screensaver; then
+	GNOME_SCREENSAVER_SAVERDIR=$gnome_screensaver_prefix/lib/gnome-screensaver/gnome-screensaver
+else 
+	GNOME_SCREENSAVER_SAVERDIR=$gnome_screensaver_prefix/libexec/gnome-screensaver
+fi
+
+GNOME_SCREENSAVER_THEMESDIR=$gnome_screensaver_prefix/share/gnome-screensaver/themes
+
+AC_SUBST(GNOME_SCREENSAVER_SAVERDIR)
+AC_SUBST(GNOME_SCREENSAVER_THEMESDIR)
 
 ICONS_DIRECTORY=${datadir}/${PACKAGE}-${VERSION}
 
@@ -159,6 +177,7 @@ libjpegtran/Makefile
 libfspot/Makefile
 libgphoto2-sharp/Makefile
 semweb/Makefile
+tools/Makefile
 po/Makefile.in
 src/Defines.cs
 src/f-spot.exe.config

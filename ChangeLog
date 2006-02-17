@@ -1,5 +1,13 @@
 2006-02-17  Larry Ewing  <lewing@novell.com>
 
+	* tools/Makefile.am: add screensaver wrappers for
+	gnomescreensaver.
+
+	* tools/f-spot-screensaver.desktop.in: screensaver theme wrapper.
+
+	* configure.in: add some crufty checks to try to figure out the
+	gnome-screensaver paths.
+	
 	* src/Core.cs: remove debug output.
 
 	* src/JpegHeader.cs: remove debug output.
