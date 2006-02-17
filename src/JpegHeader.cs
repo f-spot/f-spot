@@ -380,8 +380,8 @@ public class JpegHeader : SemWeb.StatementSource {
 	public void Save (System.IO.Stream stream)
 	{
 		foreach (Marker marker in marker_list) {
-			System.Console.WriteLine ("saving marker {0} {1}", marker.Type, 
-						   (marker.Data != null) ? marker.Data.Length .ToString (): "(null)");
+			//System.Console.WriteLine ("saving marker {0} {1}", marker.Type, 
+			//			   (marker.Data != null) ? marker.Data.Length .ToString (): "(null)");
 			marker.Save (stream);
 			if (marker.Type == JpegMarker.Sos)
 				stream.Write (ImageData, 0, ImageData.Length);
@@ -400,7 +400,7 @@ public class JpegHeader : SemWeb.StatementSource {
 
 	public JpegHeader (string filename) 
 	{
-		System.Console.WriteLine ("opening {0}", filename);
+		//System.Console.WriteLine ("opening {0}", filename);
 		System.IO.FileStream stream = new System.IO.FileStream (filename, System.IO.FileMode.Open);
 		Load (stream, false);
 	}

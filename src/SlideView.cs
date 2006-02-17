@@ -16,8 +16,6 @@ namespace FSpot {
 		{
 			string env = Environment.GetEnvironmentVariable ("XSCREENSAVER_WINDOW");
 
-			System.Console.WriteLine("on realize");
-
 			env = env.ToLower ();
 			try {
 				if (env.StartsWith ("0x"))
@@ -454,7 +452,6 @@ namespace FSpot {
 			if (Pixbuf == null)
 				return;
 
-			System.Console.WriteLine ("size allocate");
 			//
 			// The size has changed so we need to reload the images.
 			//
