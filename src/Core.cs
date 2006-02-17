@@ -126,7 +126,6 @@ namespace FSpot {
 		public void ShowSlides (string name)
 		{
 			Tag tag;
-			System.Console.WriteLine ("blech:");
 
 			if (name != null)
 				tag = db.Tags.GetTagByName (name);
@@ -134,8 +133,6 @@ namespace FSpot {
 				int id = (int) Preferences.Get (Preferences.SCREENSAVER_TAG);
 				tag = db.Tags.GetTagById (id);
 			}
-
-			System.Console.WriteLine ("Tag = {0}", tag.Name);
 
 			Photo [] photos = db.Photos.Query (new Tag [] { tag } );
 			Gtk.Window window = new XScreenSaverSlide ();
