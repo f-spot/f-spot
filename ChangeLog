@@ -1,5 +1,9 @@
 2006-02-17  Larry Ewing  <lewing@novell.com>
 
+	* src/Core.cs: use random sort.
+
+	* src/PhotoStore.cs: add a random sort.
+
 	* src/FlickrRemote.cs: add quotes around tags to handle multuword
 	tags better.
 

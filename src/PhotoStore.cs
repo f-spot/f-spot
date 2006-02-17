@@ -117,6 +117,14 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		}
 	}
 
+	public class RandomSort : IComparer {
+		Random random = new Random ();
+		
+		public int Compare (object obj1, object obj2) {
+			return random.Next (-5, 5);
+		}
+	}
+
 	// The time is always in UTC.
 	private DateTime time;
 	public DateTime Time {

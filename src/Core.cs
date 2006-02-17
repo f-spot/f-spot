@@ -1,4 +1,5 @@
 using System.IO;
+using System;
 
 namespace FSpot {
 	[DBus.Interface ("org.gnome.FSpot.Core")]
@@ -135,6 +136,7 @@ namespace FSpot {
 			}
 
 			Photo [] photos = db.Photos.Query (new Tag [] { tag } );
+			Array.Sort (photos, new Photo.RandomSort ());
 			Gtk.Window window = new XScreenSaverSlide ();
 
 			Register (window);
