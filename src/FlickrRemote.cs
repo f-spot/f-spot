@@ -152,7 +152,7 @@ public class FlickrRemote {
 					if (i > 0)
 						taglist.Append (",");
 					
-					taglist.Append (t[i].Name);
+					taglist.Append (String.Format ("\"{0}\"", t[i].Name));
 				}
 				
 				tags = taglist.ToString ();

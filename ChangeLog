@@ -1,5 +1,8 @@
 2006-02-17  Larry Ewing  <lewing@novell.com>
 
+	* src/FlickrRemote.cs: add quotes around tags to handle multuword
+	tags better.
+
 	* tools/Makefile.am: add screensaver wrappers for
 	gnomescreensaver.
 
