@@ -5,6 +5,10 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 
+
+
+namespace FSpot {
+
 public class Driver {
 	public static void Main (string [] args)
 	{
@@ -12,9 +16,9 @@ public class Driver {
 		bool import = false;
 		bool empty = false;
 		Program program = null;
-		FSpot.CoreControl control = null;
+		CoreControl control = null;
 
-		SetProcessName (FSpot.Defines.PACKAGE);
+		SetProcessName (Defines.PACKAGE);
 		
 		foreach (string arg in args) {
 			if (arg == "--help") {
@@ -23,11 +27,20 @@ public class Driver {
 				System.Console.WriteLine ("  --view <file>\t\t\t\tview a file or directory ");
 				System.Console.WriteLine ("  --shutdown\t\t\t\tshutdown a running f-spot server");
 				System.Console.WriteLine ("  --help\t\t\t\tview this message");
-				System.Console.WriteLine ("");
 
-				program = new Program (FSpot.Defines.PACKAGE, 
-						       FSpot.Defines.VERSION, 
+				System.Console.WriteLine ("");
+				program = new Program (Defines.PACKAGE, 
+						       Defines.VERSION, 
 						       Modules.UI, args);
+				return;
+			} else if (arg == "--slideshow") {
+				program = new Program (Defines.PACKAGE, 
+						       Defines.VERSION, 
+						       Modules.UI, args);
+				Core core = new Core ();
+				core.ShowSlides (null);
+				program.Run ();
+				System.Console.WriteLine ("done");
 				return;
 			}
 		}
@@ -36,12 +49,12 @@ public class Driver {
 		 * FIXME we need to inialize gobject before making the dbus calls, we'll go 
 		 * ahead and do it like this for now.
 		 */ 
-		program = new Program (FSpot.Defines.PACKAGE, 
-				       FSpot.Defines.VERSION, 
+		program = new Program (Defines.PACKAGE, 
+				       Defines.VERSION, 
 				       Modules.UI, args);		
 		
 		try {
-			control = FSpot.Core.FindInstance ();
+			control = Core.FindInstance ();
 			System.Console.WriteLine ("Found active FSpot server: {0}", control);
 			program = null;
 		} catch (System.Exception e) { 
@@ -49,17 +62,17 @@ public class Driver {
 		}
 
 		if (control == null) {
-			FSpot.Core core = null;
+			Core core = null;
 			
 			Gnome.Vfs.Vfs.Initialize ();
 			StockIcons.Initialize ();
 			
-			Mono.Posix.Catalog.Init ("f-spot", FSpot.Defines.LOCALE_DIR);
+			Mono.Posix.Catalog.Init ("f-spot", Defines.LOCALE_DIR);
 			Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {PixbufUtils.LoadFromAssembly ("f-spot-logo.png")};
 			
 			// FIXME: Error checking is non-existant here...
 			
-			core = new FSpot.Core ();
+			core = new Core ();
 
 			try {
 				core.RegisterServer ();
@@ -67,7 +80,7 @@ public class Driver {
 				System.Console.WriteLine (e.ToString ());
 			}
 
-			empty = FSpot.Core.Database.Empty;
+			empty = Core.Database.Empty;
 			control = core;
 		}
 			
@@ -99,6 +112,8 @@ public class Driver {
 		
 		if (program != null)
 			program.Run ();
+
+		System.Console.WriteLine ("exiting");
 	}
 
 	[DllImport("libc")]
@@ -117,4 +132,6 @@ public class Driver {
 			/* noop */
 		}
 	}
+}
+
 }

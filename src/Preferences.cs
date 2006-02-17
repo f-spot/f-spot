@@ -4,6 +4,29 @@ using Mono.Posix;
 
 namespace FSpot
 {
+	public class PreferenceSetting
+	{
+		private string key;
+
+		public string Key {
+			get { return key; }
+		}
+		
+		public object Value {
+			get {
+				return Preferences.Get (key);
+			}
+			set {
+				Preferences.Set (key, Value);
+			}
+		}
+		
+		public PreferenceSetting (string key)
+		{
+			this.key = key;
+		}
+	}
+
 	public class Preferences
 	{
 		public const string MAIN_WINDOW_MAXIMIZED = "/apps/f-spot/ui/maximized";
@@ -44,6 +67,8 @@ namespace FSpot
 		public const string EXPORT_GALLERY_SIZE = "/apps/f-spot/export/gallery/size";
 		public const string EXPORT_GALLERY_BROWSER = "/apps/f-spot/export/gallery/browser";
 		public const string EXPORT_GALLERY_META = "/apps/f-spot/export/gallery/meta";
+
+		public const string SCREENSAVER_TAG = "/apps/f-spot/screensaver/tag_id";
 
 		public const string METADATA_EMBED_IN_IMAGE = "/apps/f-spot/metadata/embed_in_image";
 
@@ -88,6 +113,8 @@ namespace FSpot
 			case ZOOM:
 			case ICON_VIEW_POSITION:
 				return null;
+			case SCREENSAVER_TAG:
+				return  (uint) 1;
 			}
 
 			return null;

@@ -8,21 +8,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Cairo/Matrix.cs		\
 	$(srcdir)/Cairo/Pattern.cs		\
 	$(srcdir)/Cairo/Graphics.cs		\
-	$(srcdir)/Mail/Base64AttachmentEncoder.cs	\
-	$(srcdir)/Mail/EsmtpClient.cs		\
-	$(srcdir)/Mail/EsmtpMail.cs		\
-	$(srcdir)/Mail/EsmtpStream.cs		\
-	$(srcdir)/Mail/IAttachmentEncoder.cs	\
-	$(srcdir)/Mail/MailAddressCollection.cs	\
-	$(srcdir)/Mail/MailAddress.cs		\
-	$(srcdir)/Mail/MailHeader.cs		\
-	$(srcdir)/Mail/MailMessageWrapper.cs	\
-	$(srcdir)/Mail/MailUtil.cs		\
-	$(srcdir)/Mail/MimeTypes.cs		\
-	$(srcdir)/Mail/SmtpException.cs		\
-	$(srcdir)/Mail/SmtpResponse.cs		\
-	$(srcdir)/Mail/ToUUEncodingTransform.cs	\
-	$(srcdir)/Mail/UUAttachmentEncoder.cs	\
 	$(srcdir)/AsyncPixbufLoader.cs		\
 	$(srcdir)/Bim.cs			\
 	$(srcdir)/BitConverter.cs		\

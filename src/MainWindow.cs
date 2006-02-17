@@ -13,7 +13,6 @@ using System.Text.RegularExpressions;
 using System.Web.Mail;
 
 using FSpot;
-using FSpot.Mail;
 using LibGPhoto2;
 
 public class MainWindow {

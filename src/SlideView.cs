@@ -7,6 +7,45 @@ using GLib;
 using System.Runtime.InteropServices;
 
 namespace FSpot {
+	public class XScreenSaverSlide : Gtk.Window {
+		public XScreenSaverSlide () : base ("")
+		{
+		}
+	       
+		protected override void OnRealized ()
+		{
+			string env = Environment.GetEnvironmentVariable ("XSCREENSAVER_WINDOW");
+
+			System.Console.WriteLine("on realize");
+
+			env = env.ToLower ();
+			try {
+				if (env.StartsWith ("0x"))
+					env = env.Substring (2);
+
+				uint xid = UInt32.Parse (env, System.Globalization.NumberStyles.HexNumber);
+
+				GdkWindow = Gdk.Window.ForeignNew (xid);
+				GdkWindow.Events = EventMask.ExposureMask | EventMask.StructureMask | EventMask.EnterNotifyMask 
+					| EventMask.LeaveNotifyMask | EventMask.FocusChangeMask;
+				
+				Style.SetBackground (GdkWindow, Gtk.StateType.Normal);
+				GdkWindow.SetDecorations ((Gdk.WMDecoration) 0);
+				GdkWindow.UserData = this.Handle;
+				SetFlag (WidgetFlags.Realized);
+				SizeRequest ();
+				Gdk.Rectangle geom;
+				int depth;
+				GdkWindow.GetGeometry (out geom.X, out geom.Y, out geom.Width, out geom.Height, out depth);
+				SizeAllocate (new Gdk.Rectangle (geom.X, geom.Y, geom.Width, geom.Height));
+				Resize (geom.Width, geom.Height);
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e);
+				base.OnRealized ();
+			}
+		}
+	}
+
 	public class FullSlide : Gtk.Window {
 		private SlideView slideview;
 		private Gdk.Pixbuf screenshot;
@@ -126,8 +165,9 @@ namespace FSpot {
 		uint flip_timer = 0;
 		uint transition_timer = 0;
 		
+		uint fail_count = 0;
 		bool animate = true;
-		uint animate_max = 160;
+		uint animate_max = 200;
 		
 		bool black = false;
 		uint flip_interval = 2000;
@@ -140,12 +180,8 @@ namespace FSpot {
 		}
 		
 		public bool Animate {
-			get {
-				return animate;
-			}
-			set {
-				animate = value;
-			}
+			get { return animate; }
+			set { animate = value; }
 		}
 		
 		public void Play () 
@@ -300,23 +336,31 @@ namespace FSpot {
 		
 		private bool HandleTransitionTimer ()
 		{			
+			System.DateTime start_time = System.DateTime.Now;
 			transition_timer = 0;
 			if (current_tween--  > 0) {
 				StartTransitionTimer ();
-				System.DateTime start_time = System.DateTime.Now;
 				this.Pixbuf = tweens[current_tween];
 				GdkWindow.ProcessUpdates (false);
 				System.TimeSpan span = System.DateTime.Now  - start_time;
 				
-				if (animate && span.TotalMilliseconds > animate_max) {
-					animate = false;
-					System.Console.WriteLine ("Disabling slide animation due to excessive frame interval {0}ms", 
-								  span.TotalMilliseconds);
-					current_tween = 0;
-				}
+				if (Animate) { 
+					if (span.TotalMilliseconds > animate_max) {
+						fail_count++;
+						
+						if (fail_count > 3) {
+							Animate = false;
+							System.Console.WriteLine ("Disabling slide animation due to 3 consecutive excessive frame intervals {0}ms", 
+										  span.TotalMilliseconds);
+							current_tween = 0;
+						}
+					} else {
+						fail_count = 0;
+					}
+				} 
 			} else {
 				ShowNext ();
-				
+
 				PreloadNextImage (current_idx + 1);
 				StartFlipTimer ();
 			}
@@ -328,7 +372,7 @@ namespace FSpot {
 		private bool HandleTweenIdle ()
 		{
 			using (Pixbuf prev = this.Pixbuf) {	
-				if (!animate) {
+				if (!Animate) {
 					ClearTweens ();
 					return false;
 				}
@@ -409,7 +453,8 @@ namespace FSpot {
 		{	
 			if (Pixbuf == null)
 				return;
-			
+
+			System.Console.WriteLine ("size allocate");
 			//
 			// The size has changed so we need to reload the images.
 			//

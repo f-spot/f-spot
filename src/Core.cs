@@ -86,6 +86,7 @@ namespace FSpot {
 		public override void Import (string path) 
 		{
 			ImportCommand cmd = new ImportCommand (MainWindow, path);
+			//cmd.Execute ();
 			GLib.Idle.Add (new GLib.IdleHandler (cmd.Execute));
 		}
 
@@ -117,9 +118,35 @@ namespace FSpot {
 						Register (new FSpot.SingleView (path).Window);
 				} catch (System.Exception e) {
 					System.Console.WriteLine (e.ToString ());
-					System.Console.WriteLine ("no real valid path to import from {0}", path);
+					System.Console.WriteLine ("no real valid path to view from {0}", path);
 				}
 			} 
+		}
+
+		public void ShowSlides (string name)
+		{
+			Tag tag;
+			System.Console.WriteLine ("blech:");
+
+			if (name != null)
+				tag = db.Tags.GetTagByName (name);
+			else {
+				int id = (int) Preferences.Get (Preferences.SCREENSAVER_TAG);
+				tag = db.Tags.GetTagById (id);
+			}
+
+			System.Console.WriteLine ("Tag = {0}", tag.Name);
+
+			Photo [] photos = db.Photos.Query (new Tag [] { tag } );
+			Gtk.Window window = new XScreenSaverSlide ();
+
+			Register (window);
+			Gdk.Pixbuf black = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, false, 8, 1, 1);
+			black.Fill (0x00000000);
+			SlideView slideview = new SlideView (black , photos);
+			window.Add (slideview);
+			window.ShowAll ();
+			slideview.Play ();
 		}
 
 		public override void Shutdown ()

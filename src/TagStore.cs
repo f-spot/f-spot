@@ -274,6 +274,15 @@ public class TagStore : DbStore {
 		return null;
 	}
 
+	public Tag GetTagById (int id)
+	{
+		foreach (Tag t in this.item_cache.Values)
+			if (t.Id == id)
+				return t;
+
+		return null;
+	}
+
 	public Tag [] GetTagsByNameStart (string s)
 	{
 		ArrayList l = new ArrayList ();

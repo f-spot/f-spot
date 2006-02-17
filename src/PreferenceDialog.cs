@@ -27,12 +27,14 @@ namespace FSpot {
 		[Glade.Widget] private CheckButton metadata_check;
 		[Glade.Widget] private ComboBox display_combo;
 		[Glade.Widget] private ComboBox destination_combo;
+		[Glade.Widget] private OptionMenu tag_option;
 		private static PreferenceDialog prefs = null;
+		int screensaver_tag;
 
 		public PreferenceDialog () : base ("main_preferences")
 		{
 			LoadPreference (Preferences.METADATA_EMBED_IN_IMAGE);
-
+			LoadPreference (Preferences.SCREENSAVER_TAG);
 
 			Gtk.CellRendererText name_cell = new Gtk.CellRendererText ();
 			Gtk.CellRendererText desc_cell = new Gtk.CellRendererText ();
@@ -51,23 +53,34 @@ namespace FSpot {
 			destination_combo.SetCellDataFunc (desc_cell, new CellLayoutDataFunc (ProfileList.ProfileDescriptionDataFunc));
 			destination_combo.Changed += HandleDisplayChanged;
 
+			//Tag t = MainWindow.Toplevel.Database.Tags.GetTagById (screensaver_tag);
+			TagMenu tagmenu = new TagMenu (null, MainWindow.Toplevel.Database.Tags);
+			tagmenu.Populate (true);
+			tag_option.Menu = tagmenu;
+			tagmenu.TagSelected += HandleTagMenuSelected;
 
 			Preferences.SettingChanged += OnPreferencesChanged;
 			this.Dialog.Destroyed += HandleDestroyed;
 		}
 
-		public void HandleDisplayChanged (object sender, System.EventArgs args)
+		private void HandleDisplayChanged (object sender, System.EventArgs args)
 		{
 			TreeIter iter;
 			if (display_combo.GetActiveIter (out iter))
 				FSpot.Global.DisplayProfile = (Profile) display_combo.Model.GetValue (iter, 0);
 		}
 		
-		public void HandleDestinationChanged (object sender, System.EventArgs args)
+		private void HandleDestinationChanged (object sender, System.EventArgs args)
 		{
 			TreeIter iter;
 			if (destination_combo.GetActiveIter (out iter))
 				FSpot.Global.DestinationProfile = (Profile) destination_combo.Model.GetValue (iter, 0);
+		}
+
+		private void HandleTagMenuSelected (Tag t)
+		{
+			screensaver_tag = (int) t.Id;
+			Preferences.Set (Preferences.SCREENSAVER_TAG, (int) t.Id);
 		}
 
 		void OnPreferencesChanged (object sender, GConf.NotifyEventArgs args)
@@ -89,6 +102,14 @@ namespace FSpot {
 				bool active = (bool) val;
 				if (metadata_check.Active != active)
 					metadata_check.Active = active;
+				break;
+			case Preferences.SCREENSAVER_TAG:
+				try {
+					screensaver_tag = (int) val;
+				} catch (System.Exception e) {
+					Console.WriteLine (e);
+					screensaver_tag = 0;
+				}
 				break;
 			}
 		}

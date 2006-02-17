@@ -1,3 +1,29 @@
+2006-02-17  Larry Ewing  <lewing@novell.com>
+
+	* src/main.cs: add command line option.
+	
+	* src/f-spot.glade: add tag option menu.
+
+	* src/TagStore.cs: add method to GetTagById.
+	
+	* src/PreferenceDialog.cs: allow the user to pick a tag for
+	screensaver mode.
+	
+	* src/Preferences.cs: save a preference for the screensaver tag
+	id.
+	
+	* src/Core.cs: add ShowSlides method, don't expose it over dbus
+	for now.
+	
+	* src/SlideView.cs: Add new widget operate in foreign windows for
+	screensaver mode.  Be more forgiving about slow frames, only
+	disable the animation if multiple frames are slow in a row.
+
+	* src/MainWindow.cs: remove FSpot.Mail namespace reference.
+
+	* src/Makefile.am (F_SPOT_CSDISTFILES): remove Mail/* from the
+	build, it wasn't being used anywhere.
+
 2006-02-14  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoArray.cs: clean up the implmentation a little.
