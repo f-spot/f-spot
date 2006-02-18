@@ -1,5 +1,9 @@
 2006-02-17  Larry Ewing  <lewing@novell.com>
 
+	* src/InfoBox.cs: remove debug output.
+
+	* src/Tiff.cs: silence some debug output.
+
 	* src/PreferenceDialog.cs: add button to set f-spot as the
 	gnome-screensaver theme.  Set the optionmenu history to the
 	currently selected tag.

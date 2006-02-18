@@ -752,7 +752,7 @@ namespace FSpot.Tiff {
 
 		public Header (System.IO.Stream stream)
 		{
-			using (new Timer ("new Tiff.Header")) {
+			//using (new Timer ("new Tiff.Header")) {
 			byte [] data = new byte [8];
 			stream.Read (data, 0, data.Length);
 			if (data [0] == 'M' && data [1] == 'M')
@@ -784,15 +784,15 @@ namespace FSpot.Tiff {
 			
 			//System.Console.WriteLine ("Reading First IFD");
 			Directory = new ImageDirectory (stream, directory_offset, endian); 
-			}
+			//}
 		}
 		
 		
 		public void Select (SemWeb.StatementSink sink)
 		{
-			using (new Timer ("Tiff.Header.Select")) {
+			//using (new Timer ("Tiff.Header.Select")) {
 				SelectDirectory (Directory, sink);
-			}
+			//}
 		}
 
 		public void SelectDirectory (ImageDirectory dir, StatementSink sink)

@@ -251,10 +251,10 @@ public class InfoBox : VBox {
 		string path = photo.DefaultVersionUri.LocalPath;
 		name_entry.Text = System.IO.Path.GetFileName (path);
 		try {
-			using (new Timer ("building info")) {
+			//using (new Timer ("building info")) {
 				img = ImageFile.Create (path);
 				info = new ImageInfo (img);
-			}
+				//}
 		} catch (System.Exception e) {
 			System.Console.WriteLine (e);
 			info = new ImageInfo (null);			
