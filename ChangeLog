@@ -1,5 +1,7 @@
 2006-02-17  Larry Ewing  <lewing@novell.com>
 
+	* src/Preferences.cs: remove invalid cast when getting default.
+
 	* src/Core.cs: use random sort.
 
 	* src/PhotoStore.cs: add a random sort.

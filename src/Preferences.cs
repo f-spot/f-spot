@@ -114,7 +114,7 @@ namespace FSpot
 			case ICON_VIEW_POSITION:
 				return null;
 			case SCREENSAVER_TAG:
-				return  (uint) 1;
+				return 1;
 			}
 
 			return null;
