@@ -93,9 +93,13 @@ namespace FSpot {
 		public virtual Gdk.Pixbuf Load (int max_width, int max_height)
 		{
 			System.IO.Stream stream = PixbufStream ();
-			if (stream == null)
-				return PixbufUtils.ScaleToMaxSize (this.Load (),  max_width, max_height);	
-			
+			if (stream == null) {
+				Gdk.Pixbuf orig = this.Load ();
+				Gdk.Pixbuf scaled = PixbufUtils.ScaleToMaxSize (orig,  max_width, max_height);	
+				orig.Dispose ();
+				return scaled;
+			}
+
 			using (stream) {
 				PixbufUtils.AspectLoader aspect = new PixbufUtils.AspectLoader (max_width, max_height);
 				return aspect.Load (stream, Orientation);

@@ -1,5 +1,7 @@
 2006-02-18  Larry Ewing  <lewing@novell.com>
 
+	* src/ImageFile.cs: dispose the temp pixbuf properly.
+
 	* src/PixbufUtils.cs: make AspectLoader a wrapper around
 	Pixbufloader and explicitly dispose the Loader once things are
 	loaded.
