@@ -1,5 +1,16 @@
 2006-02-17  Larry Ewing  <lewing@novell.com>
 
+	* src/PreferenceDialog.cs: add button to set f-spot as the
+	gnome-screensaver theme.  Set the optionmenu history to the
+	currently selected tag.
+
+	* src/Preferences.cs: add key for gnome-screensaver theme and
+	watch gnome-screensaver theme key for changes.
+
+	* src/TagMenu.cs: add method for getting the position of a tag.
+
+	* src/f-spot.glade: add button clean up text.
+
 	* src/Preferences.cs: remove invalid cast when getting default.
 
 	* src/Core.cs: use random sort.

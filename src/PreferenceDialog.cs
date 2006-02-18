@@ -28,13 +28,16 @@ namespace FSpot {
 		[Glade.Widget] private ComboBox display_combo;
 		[Glade.Widget] private ComboBox destination_combo;
 		[Glade.Widget] private OptionMenu tag_option;
+		[Glade.Widget] private Button set_saver_button;
 		private static PreferenceDialog prefs = null;
 		int screensaver_tag;
+		private const string SaverCommand = "f-spot-screensaver";
 
 		public PreferenceDialog () : base ("main_preferences")
 		{
 			LoadPreference (Preferences.METADATA_EMBED_IN_IMAGE);
 			LoadPreference (Preferences.SCREENSAVER_TAG);
+			LoadPreference (Preferences.GNOME_SCREENSAVER_THEME);
 
 			Gtk.CellRendererText name_cell = new Gtk.CellRendererText ();
 			Gtk.CellRendererText desc_cell = new Gtk.CellRendererText ();
@@ -53,11 +56,18 @@ namespace FSpot {
 			destination_combo.SetCellDataFunc (desc_cell, new CellLayoutDataFunc (ProfileList.ProfileDescriptionDataFunc));
 			destination_combo.Changed += HandleDisplayChanged;
 
-			//Tag t = MainWindow.Toplevel.Database.Tags.GetTagById (screensaver_tag);
+			Tag t = MainWindow.Toplevel.Database.Tags.GetTagById (screensaver_tag);
 			TagMenu tagmenu = new TagMenu (null, MainWindow.Toplevel.Database.Tags);
+	
 			tagmenu.Populate (true);
 			tag_option.Menu = tagmenu;
+
+			int history = tagmenu.GetPosition (t);
+			if (history >= 0)
+				tag_option.SetHistory ((uint)history);
+
 			tagmenu.TagSelected += HandleTagMenuSelected;
+			set_saver_button.Clicked += HandleUseFSpot;
 
 			Preferences.SettingChanged += OnPreferencesChanged;
 			this.Dialog.Destroyed += HandleDestroyed;
@@ -81,6 +91,11 @@ namespace FSpot {
 		{
 			screensaver_tag = (int) t.Id;
 			Preferences.Set (Preferences.SCREENSAVER_TAG, (int) t.Id);
+		}
+
+		private void HandleUseFSpot (object sender, EventArgs args)
+		{
+			Preferences.Set (Preferences.GNOME_SCREENSAVER_THEME, new string [] { SaverCommand });
 		}
 
 		void OnPreferencesChanged (object sender, GConf.NotifyEventArgs args)
@@ -110,6 +125,10 @@ namespace FSpot {
 					Console.WriteLine (e);
 					screensaver_tag = 0;
 				}
+				break;
+			case Preferences.GNOME_SCREENSAVER_THEME:
+				string [] names = (string []) val;
+				set_saver_button.Sensitive = (names.Length != 1 || names [0] != SaverCommand);
 				break;
 			}
 		}

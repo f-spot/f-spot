@@ -55,6 +55,24 @@ public class TagMenu : Menu {
 		Populate (false);
 	}
 
+	public int GetPosition (Tag t)
+	{
+		// FIXME right now this only works on flat menus
+
+		int i = 0;
+		foreach (Widget w in this.Children) {
+			TagItem item = w as TagItem;
+			if (w != null) {
+				if (t == item.Value)
+					return i;
+			}
+			i++;
+		}
+		
+		return -1;
+
+	}
+
 	public void Populate (bool flat)
 	{ 
 		if (flat)

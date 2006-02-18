@@ -72,6 +72,8 @@ namespace FSpot
 
 		public const string METADATA_EMBED_IN_IMAGE = "/apps/f-spot/metadata/embed_in_image";
 
+		public const string GNOME_SCREENSAVER_THEME = "/apps/gnome-screensaver/themes";
+
 		static GConf.Client client;
 		static GConf.NotifyEventHandler changed_handler;
 
@@ -83,6 +85,7 @@ namespace FSpot
 
 					changed_handler = new GConf.NotifyEventHandler (OnSettingChanged);
 					client.AddNotify ("/apps/f-spot", changed_handler);
+					client.AddNotify ("/apps/gnome-screensaver/themes", changed_handler);
 				}
 				return client;
 			}
