@@ -264,7 +264,7 @@ public class JpegHeader : SemWeb.StatementSource {
 		return null;
 	}
 	
-	private FSpot.Tiff.Header GetExifHeader ()
+	public FSpot.Tiff.Header GetExifHeader ()
 	{
 		string name = ExifSignature.Name;
 		Marker marker = FindMarker (ExifSignature);
@@ -272,9 +272,10 @@ public class JpegHeader : SemWeb.StatementSource {
 		if (marker == null)
 			return null;
 		
-		System.IO.Stream exifstream = new System.IO.MemoryStream (marker.Data, name.Length, marker.Data.Length - name.Length, false);
-		FSpot.Tiff.Header exif = new FSpot.Tiff.Header (exifstream);
-		return exif;
+		using (System.IO.Stream exifstream = new System.IO.MemoryStream (marker.Data, name.Length, marker.Data.Length - name.Length, false)) {
+			FSpot.Tiff.Header exif = new FSpot.Tiff.Header (exifstream);
+			return exif;
+		}
 	}
 
 	public XmpFile GetXmp ()
@@ -285,11 +286,12 @@ public class JpegHeader : SemWeb.StatementSource {
 			int len = name.Length;
 			//System.Console.WriteLine (System.Text.Encoding.ASCII.GetString (marker.Data, len, 
 			//								marker.Data.Length - len));
-			System.IO.Stream xmpstream = new System.IO.MemoryStream (marker.Data, len, 
-										 marker.Data.Length - len, false);
+			using (System.IO.Stream xmpstream = new System.IO.MemoryStream (marker.Data, len, 
+											marker.Data.Length - len, false)) {
 			
-			XmpFile xmp = new XmpFile (xmpstream);					
-			return xmp;
+				XmpFile xmp = new XmpFile (xmpstream);					
+				return xmp;
+			}
 		}
 		return null;
 	}
@@ -308,9 +310,10 @@ public class JpegHeader : SemWeb.StatementSource {
 		JpegHeader.Marker marker = FindMarker (PhotoshopSignature);
 		if (marker != null) {
 			int len = name.Length;
-			System.IO.Stream bimstream = new System.IO.MemoryStream (marker.Data, len, marker.Data.Length - len, false);
-			FSpot.Bim.BimFile bim = new FSpot.Bim.BimFile (bimstream);
-					bim.Select (sink);
+			using (System.IO.Stream bimstream = new System.IO.MemoryStream (marker.Data, len, marker.Data.Length - len, false)) {
+				FSpot.Bim.BimFile bim = new FSpot.Bim.BimFile (bimstream);
+				bim.Select (sink);
+			}
 		}
 	}
 
@@ -361,14 +364,14 @@ public class JpegHeader : SemWeb.StatementSource {
 	
 	public void SetXmp (XmpFile xmp)
 	{
-		MemoryStream stream = new MemoryStream ();
-
-		XmpSignature.WriteName (stream);
-		xmp.Save (stream);
-
-		Marker xmp_marker = new Marker (XmpSignature.Id, stream.ToArray ());
-
-		Replace (XmpSignature, xmp_marker);
+		using (MemoryStream stream = new MemoryStream ()) {
+			
+			XmpSignature.WriteName (stream);
+			xmp.Save (stream);
+			
+			Marker xmp_marker = new Marker (XmpSignature.Id, stream.ToArray ());
+			Replace (XmpSignature, xmp_marker);
+		}
 	}
 	
 	public System.Collections.ArrayList Markers {
@@ -401,8 +404,9 @@ public class JpegHeader : SemWeb.StatementSource {
 	public JpegHeader (string filename) 
 	{
 		//System.Console.WriteLine ("opening {0}", filename);
-		System.IO.FileStream stream = new System.IO.FileStream (filename, System.IO.FileMode.Open);
-		Load (stream, false);
+		using (System.IO.FileStream stream = new System.IO.FileStream (filename, System.IO.FileMode.Open)) {
+			Load (stream, false);
+		}
 	}
 
 	private void Load (System.IO.Stream stream, bool metadata_only) 
