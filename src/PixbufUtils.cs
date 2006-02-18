@@ -98,7 +98,8 @@ class PixbufUtils {
 	// FIXME: These should be in GTK#.  When my patch is committed, these LoadFrom* methods will
 	// go away.
 
-	public class AspectLoader : Gdk.PixbufLoader {
+	public class AspectLoader {
+		Gdk.PixbufLoader loader = new Gdk.PixbufLoader ();
 		int max_width;
 		int max_height;
 		PixbufOrientation orientation;
@@ -107,7 +108,7 @@ class PixbufUtils {
 		{
 			this.max_height = max_height;
 			this.max_width = max_width;
-			SizePrepared += HandleSizePrepared;
+			loader.SizePrepared += HandleSizePrepared;
 		}
 
 		private void HandleSizePrepared (object obj, SizePreparedArgs args)
@@ -133,35 +134,35 @@ class PixbufUtils {
 			int scale_height = (int)(scale * args.Height);
 
 			if (scale < 1.0)
-				SetSize (scale_width, scale_height);
+				loader.SetSize (scale_width, scale_height);
 		}
 
 		public Pixbuf Load (System.IO.Stream stream, PixbufOrientation orientation)
 		{
 			int count;
 			byte [] data = new byte [8192];
-			while (((count = stream.Read (data, 0, 8192)) > 0) && this.Write (data, (ulong)count))
+			while (((count = stream.Read (data, 0, data.Length)) > 0) && loader.Write (data, (ulong)count))
 				;
 			
-			this.Close ();
-			Gdk.Pixbuf rotated = TransformOrientation (this.Pixbuf, orientation, true);
+			loader.Close ();
+			Pixbuf orig = loader.Pixbuf;
+			Gdk.Pixbuf rotated = TransformOrientation (orig, orientation, true);
 			
-			if (this.Pixbuf != rotated) {
-				CopyThumbnailOptions (this.Pixbuf, rotated);
-					this.Pixbuf.Dispose ();
+			if (orig != rotated) {
+				CopyThumbnailOptions (orig, rotated);
+				orig.Dispose ();
 			}
-			
+			loader.Dispose ();
 			return rotated;
 		}
 		
 		public Pixbuf LoadFromFile (string path)
 		{
 			FileStream fs = null;
-
+			
 			try {
 				orientation = GetOrientation (path);
 				using (fs = File.OpenRead (path)) {
-				
 					return Load (fs, orientation);
 				}
 			} catch (Exception e) {
@@ -225,7 +226,9 @@ class PixbufUtils {
 			loader.Write (buffer, (ulong) n);
 		
 		loader.Close ();
+		
 		return loader.Pixbuf;
+		
 	}
 	
 
@@ -389,8 +392,6 @@ class PixbufUtils {
 
 		Pixbuf scaled = new Pixbuf (Colorspace.Rgb, false, 8, width, height);
 		scaled.Fill (0x000000); 
-
-		//System.Console.WriteLine ("pos= {0}", pos.ToString ());
 
 		orig.Composite (scaled, pos.X, pos.Y, 
 				pos.Width, pos.Height,
