@@ -127,6 +127,11 @@ namespace FSpot {
 				}
 				break;
 			case Preferences.GNOME_SCREENSAVER_THEME:
+				if (val == null) {
+					set_saver_button.Sensitive = false;
+					return;
+				}
+
 				string [] names = (string []) val;
 				set_saver_button.Sensitive = (names.Length != 1 || names [0] != SaverCommand);
 				break;

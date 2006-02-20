@@ -1,5 +1,7 @@
 2006-02-20  Larry Ewing  <lewing@novell.com>
 
+	* src/PreferenceDialog.cs: make sure we handle a null value.
+
 	* src/Core.cs: add a register call back into the slideview.
 
 	* src/PhotoImageView.cs: handle the loupe destroy case properly.
