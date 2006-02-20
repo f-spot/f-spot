@@ -1,5 +1,50 @@
 2006-02-20  Larry Ewing  <lewing@novell.com>
 
+	* src/GalleryExport.cs: handle a bad gallery url. fixes #326575.
+	Also avoid trying to load the accounts if they don't exist.
+
+	* src/FlickrExport.cs: mark the message for translation.
+	
+2006-02-13  Gabriel Burt <gabriel.burt@gmail.com>
+
+	* src/f-spot.glade: Change "Arranged" to "Arrange" in the View menu.
+	Add Reverse Order check item to the View menu.  Change "Directory" to
+	"Folder".
+
+	* src/GroupSelector.cs: Improve upon Thomas' patch by adding the ability
+	to switch from Month to Directory in the context menu, and add Reverse
+	Order checkbox to the View menu.  Make the context menu reverse order
+	items a checkbox too.
+
+	* src/MainWindow.cs: Update HandleArrange handlers and add
+	HandleReverseOrder function, make them public so they can be used
+	by the context menu produced in GroupSelector.
+
+2006-02-13  Thomas Van Machelen  <thomas.vanmachelen@gmail.com>
+ 
+	* src/GroupAdaptor.cs
+	* src/DirectoryAdaptor.cs
+	* src/TimeAdaptor.cs: Added OrderAscending property to allow different
+	sorting. Added PhotoFromIndex method.
+
+	* src/GroupSelector.cs: Added property to retrieve current glass
+	position.  Added dropdown menu to change sort order. Fixes BGO
+	#321260.
+
+	* src/MainWindow.cs: Added loading and saving of new preferences,
+	remove ICON_VIEW_POSITION preference. Handle reverse order command.
+
+	* src/Preferences.cs: Added three new preferences that store
+	the active adaptor, the glass position and the sort order.
+
+	* src/Util.cs: Add method to create dropdown menu's with check
+	menu items.
+
+	* src/f-spot.glade: Set the default adaptor button to the
+	'month' button.
+ 
+2006-02-20  Larry Ewing  <lewing@novell.com>
+
 	* src/MainWindow.cs: fix #331358
 
 	* src/SlideView.cs: clean up the creation function, make play a

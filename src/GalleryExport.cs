@@ -5,6 +5,7 @@ using System.Text;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Web;
+using Mono.Posix;
 
 using GalleryRemote;
 
@@ -237,8 +238,13 @@ namespace FSpot {
 
 		private void ReadAccounts ()
 		{
+
+			if (! File.Exists (xml_path)) {
+			    OnAccountListChanged ();
+			    return;
+			}
+
 			try {
-				
 				string query = "//GalleryRemote/Account";
 				System.Xml.XmlDocument doc = new System.Xml.XmlDocument ();
 				
@@ -257,8 +263,6 @@ namespace FSpot {
 				// FIXME do something
 				System.Console.WriteLine ("Exception loading gallery accounts");
 				System.Console.WriteLine (e);
-				
-				OnAccountListChanged ();
 			}
 
 			OnAccountListChanged ();
@@ -309,6 +313,7 @@ namespace FSpot {
 				add_button.Sensitive = false;
 			else
 				add_button.Sensitive = true;
+
 		}
 		
 		[GLib.ConnectBefore]
@@ -317,6 +322,22 @@ namespace FSpot {
 
 
 			if (args.ResponseId == Gtk.ResponseType.Ok) {
+				try {
+					new Uri (url);
+				} catch (System.UriFormatException e) {
+					HigMessageDialog md = 
+						new HigMessageDialog (Dialog, 
+								      Gtk.DialogFlags.Modal |
+								      Gtk.DialogFlags.DestroyWithParent,
+								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+								      Catalog.GetString ("Invalid URL"),
+								      Catalog.GetString ("The gallery URL entry does not appear to be a valid URL"));
+					md.Run ();
+					md.Destroy ();
+					return;
+				}
+				   
+
 				GalleryAccount account = new GalleryAccount (name, 
 									     url, 
 									     username,

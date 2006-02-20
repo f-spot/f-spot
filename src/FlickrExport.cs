@@ -204,7 +204,7 @@ namespace FSpot {
 							      Gtk.DialogFlags.Modal |
 							      Gtk.DialogFlags.DestroyWithParent,
 							      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
-							      "Unable to log on", e.Message);
+							      Catalog.GetString ("Unable to log on"), e.Message);
 				md.Run ();
 				md.Destroy ();
 				CurrentState = State.Disconnected;
