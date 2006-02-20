@@ -127,6 +127,11 @@ namespace FSpot {
 		private class SlideShow
 		{
 			SlideView slideview;
+			Gtk.Window window;
+			
+			public Gtk.Window Window {
+				get { return window; }
+			}
 
 			public SlideShow (string name)
 			{
@@ -141,7 +146,7 @@ namespace FSpot {
 				
 				Photo [] photos = db.Photos.Query (new Tag [] { tag } );
 				Array.Sort (photos, new Photo.RandomSort ());
-				Gtk.Window window = new XScreenSaverSlide ();
+				window = new XScreenSaverSlide ();
 
 				Gdk.Pixbuf black = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, false, 8, 1, 1);
 				black.Fill (0x00000000);
@@ -160,6 +165,7 @@ namespace FSpot {
 		public void ShowSlides (string name)
 		{
 			SlideShow show = new SlideShow (name);
+			Register (show.Window);
 			GLib.Idle.Add (new GLib.IdleHandler (show.Execute));
 		}
 

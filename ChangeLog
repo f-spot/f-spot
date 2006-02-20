@@ -1,5 +1,7 @@
 2006-02-20  Larry Ewing  <lewing@novell.com>
 
+	* src/Core.cs: add a register call back into the slideview.
+
 	* src/PhotoImageView.cs: handle the loupe destroy case properly.
 
 	* src/GalleryExport.cs: handle a bad gallery url. fixes #326575.
