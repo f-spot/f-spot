@@ -1,3 +1,7 @@
+2006-02-20  Larry Ewing  <lewing@novell.com>
+
+	* src/f-spot.glade: add cancel button to f-spot.glade fixes #324903.
+
 2006-02-19  Larry Ewing  <lewing@novell.com>
 
 	* src/Loupe.cs: avoid a bug in gtk# and catch null handles.
