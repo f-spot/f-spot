@@ -2,6 +2,12 @@
 
 	* src/MainWindow.cs: fix #331358
 
+	* src/SlideView.cs: clean up the creation function, make play a
+	noop if there are no photos. Don't dispose null values.
+
+	* src/Core.cs: start slideshow in idle function so that the
+	AsyncLoader starts inside the mainloop.
+
 	* tools/Makefile.am: add f-spot-import to the build.
 
 	* tools/f-spot-import: add script to launch f-spot import based on
