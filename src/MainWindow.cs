@@ -1678,7 +1678,7 @@ public class MainWindow {
 
 	void HandleAdjustColor (object sender, EventArgs args)
 	{
-		if (ActiveIndex () > 0) {
+		if (ActiveIndex () >= 0) {
 			SetViewMode (ModeType.PhotoView);
 			new FSpot.ColorDialog (photo_view.View);
 		}
