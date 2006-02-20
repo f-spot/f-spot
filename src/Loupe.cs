@@ -230,6 +230,12 @@ namespace FSpot {
 			source = new Gdk.Pixbuf (view.Pixbuf,
 						 region.X, region.Y,
 						 region.Width, region.Height);
+			
+			//FIXME sometimes that ctor returns results with a null
+			//handle this case ourselves
+			if (source.Handle == IntPtr.Zero)
+				source = null;
+
 			this.QueueDraw ();
 		}
 

@@ -1,5 +1,7 @@
 2006-02-19  Larry Ewing  <lewing@novell.com>
 
+	* src/Loupe.cs: avoid a bug in gtk# and catch null handles.
+
 	* src/SlideView.cs: make slideview work when run standalone.
 
 2006-02-18  Larry Ewing  <lewing@novell.com>
