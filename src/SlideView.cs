@@ -46,7 +46,7 @@ namespace FSpot {
 					System.Console.WriteLine (e);
 				}
 			} else {
-				System.Console.WriteLine ("{0} not set, falling back to window");
+				System.Console.WriteLine ("{0} not set, falling back to window", ScreenSaverEnviroment);
 			}
 
 			SetSizeRequest (640, 480);
@@ -194,6 +194,9 @@ namespace FSpot {
 		
 		public void Play () 
 		{
+			if (photos.Length < 1)
+				return;
+
 			StopTweenIdle ();
 			if (current_idx >= 0) {
 				Pixbuf frame = GetScaled (photos[current_idx]);
@@ -258,10 +261,11 @@ namespace FSpot {
 					next_idx = idx;
 					StartTweenIdle ();
 					
-
 					return true;
 				} else {
-					next.Dispose ();
+					if (next != null)
+						next.Dispose ();
+
 					next = GetScaled (photos [0]);
 					next_idx = 0;
 					StartTweenIdle ();
@@ -435,9 +439,9 @@ namespace FSpot {
 		
 		private void StopTranstionTimer ()
 		{
-			if (transition_timer != 0) {
+			if (transition_timer != 0)
 				GLib.Source.Remove (transition_timer);
-			}
+
 			transition_timer = 0;
 		}
 		
@@ -450,30 +454,31 @@ namespace FSpot {
 		
 		private void StopFlipTimer ()
 		{	
-			if (flip_timer != 0) {
+			if (flip_timer != 0)
 				GLib.Source.Remove (flip_timer);
-			}
+
 			flip_timer = 0;
 		}
 
 		
 		private void HandleSizeAllocate (object sender, SizeAllocatedArgs args)
 		{	
-			if (Pixbuf == null)
+			Pixbuf current = this.Pixbuf;
+
+			if (current == null)
 				return;
 
 			//
 			// The size has changed so we need to reload the images.
 			//
-			Pixbuf current = this.Pixbuf;
 			if (current.Width != Allocation.Width || current.Height != Allocation.Height) {
 				bool playing = (flip_timer != 0 || transition_timer != 0);
 				
 				if (current_idx < 0) {
-					Gdk.Pixbuf old = this.Pixbuf;
-					this.Pixbuf = GetScaled (this.Pixbuf);
-					if (old != this.Pixbuf)
-						old.Dispose ();
+					using (Gdk.Pixbuf old = this.Pixbuf) {
+						this.Pixbuf = GetScaled (old);
+						current.Dispose ();
+					}
 				} else {
 					using (Pixbuf frame =  GetScaled (photos[current_idx])) {
 						this.Pixbuf =  frame;
@@ -494,9 +499,9 @@ namespace FSpot {
 
 		private void ClearTweens () {
 			for (int i = 0; i < tweens.Length; i++) {
-			if (tweens[i] != null) 
-				tweens[i].Dispose ();
-			tweens[i] = null;
+				if (tweens[i] != null) 
+					tweens[i].Dispose ();
+				tweens[i] = null;
 			}
 		}
 		

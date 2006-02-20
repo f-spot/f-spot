@@ -21,8 +21,8 @@ namespace FSpot {
 	{
 		MainWindow organizer;
 		private static Db db;
-		System.Collections.ArrayList toplevels;
 		static DBus.Connection connection;
+		System.Collections.ArrayList toplevels;
 
 		public Core ()
 		{
@@ -102,7 +102,7 @@ namespace FSpot {
 			}
 		}
 			
-		public override void Organize () 
+		public override void Organize ()
 		{
 			MainWindow.Window.Present ();
 		}
@@ -123,30 +123,46 @@ namespace FSpot {
 				}
 			} 
 		}
+		
+		private class SlideShow
+		{
+			SlideView slideview;
+
+			public SlideShow (string name)
+			{
+				Tag tag;
+				
+				if (name != null)
+					tag = db.Tags.GetTagByName (name);
+				else {
+					int id = (int) Preferences.Get (Preferences.SCREENSAVER_TAG);
+					tag = db.Tags.GetTagById (id);
+				}
+				
+				Photo [] photos = db.Photos.Query (new Tag [] { tag } );
+				Array.Sort (photos, new Photo.RandomSort ());
+				Gtk.Window window = new XScreenSaverSlide ();
+
+				Gdk.Pixbuf black = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, false, 8, 1, 1);
+				black.Fill (0x00000000);
+				slideview = new SlideView (black , photos);
+				window.Add (slideview);
+				window.ShowAll ();
+			}
+
+			public bool Execute ()
+			{
+				slideview.Play ();
+				return false;
+			}
+		}
 
 		public void ShowSlides (string name)
 		{
-			Tag tag;
-
-			if (name != null)
-				tag = db.Tags.GetTagByName (name);
-			else {
-				int id = (int) Preferences.Get (Preferences.SCREENSAVER_TAG);
-				tag = db.Tags.GetTagById (id);
-			}
-
-			Photo [] photos = db.Photos.Query (new Tag [] { tag } );
-			Array.Sort (photos, new Photo.RandomSort ());
-			Gtk.Window window = new XScreenSaverSlide ();
-
-			Register (window);
-			Gdk.Pixbuf black = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, false, 8, 1, 1);
-			black.Fill (0x00000000);
-			SlideView slideview = new SlideView (black , photos);
-			window.Add (slideview);
-			window.ShowAll ();
-			slideview.Play ();
+			SlideShow show = new SlideShow (name);
+			GLib.Idle.Add (new GLib.IdleHandler (show.Execute));
 		}
+
 
 		public override void Shutdown ()
 		{
