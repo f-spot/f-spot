@@ -8,7 +8,7 @@ namespace FSpot {
 		protected BrowsablePointer item;
 		protected FSpot.Loupe loupe;
 		protected FSpot.Loupe sharpener;
-		
+
 		public PhotoImageView (IBrowsableCollection query)
 		{
 			loader = new FSpot.AsyncPixbufLoader ();
@@ -300,6 +300,16 @@ namespace FSpot {
 				scrolled.SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic);
 		}
 		
+		private void HandleLoupeDestroy (object sender, EventArgs args)
+		{
+			if (sender == loupe)
+				loupe = null;
+
+			if (sender == sharpener)
+				sharpener = null;
+
+		}
+
 		[GLib.ConnectBefore]
 		private void HandleKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
 		{
@@ -362,14 +372,18 @@ namespace FSpot {
 				ZoomOut ();
 				break;
 			case Gdk.Key.s:
-				if (sharpener == null)
+				if (sharpener == null) {
 					sharpener = new Sharpener (this);
+					sharpener.Destroyed += HandleLoupeDestroy;
+				}
 
 				sharpener.Show ();
 				break;
 			case Gdk.Key.v:
-				if (loupe == null)
+				if (loupe == null) {
 					loupe = new Loupe (this);
+					loupe.Destroyed += HandleLoupeDestroy;
+				}
 
 				loupe.Show ();
 				break;

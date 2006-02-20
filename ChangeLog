@@ -1,5 +1,7 @@
 2006-02-20  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoImageView.cs: handle the loupe destroy case properly.
+
 	* src/GalleryExport.cs: handle a bad gallery url. fixes #326575.
 	Also avoid trying to load the accounts if they don't exist.
 
