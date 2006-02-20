@@ -1,5 +1,11 @@
 2006-02-20  Larry Ewing  <lewing@novell.com>
 
+	* tools/Makefile.am: add f-spot-import to the build.
+
+	* tools/f-spot-import: add script to launch f-spot import based on
+	hal id.  This will eventually be replaced by some hal logic in the
+	app.
+
 	* src/f-spot.glade: add cancel button to f-spot.glade fixes #324903.
 
 2006-02-19  Larry Ewing  <lewing@novell.com>

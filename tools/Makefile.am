@@ -9,6 +9,7 @@ themes_DATA = $(themes_in_files:.desktop.in=.desktop)
 
 EXTRA_DIST = 			\
 	$(saver_SCRIPTS)	\
+	$(bin_SCRIPTS)		\
 	$(themes_in_files)
 
 DISTCLEANFILES = 	\
@@ -18,3 +19,4 @@ DISTCLEANFILES = 	\
 saverdir = @GNOME_SCREENSAVER_SAVERDIR@
 saver_SCRIPTS = f-spot-screensaver
 
+bin_SCRIPTS = f-spot-import

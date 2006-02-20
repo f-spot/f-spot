@@ -1,0 +1,20 @@
+#!/bin/bash
+
+udi="$1"
+#xmessage $udi
+mount_point=`hal-get-property --udi="$udi" --key=volume.mount_point`
+if [ -n "$mount_point" ]; then
+      # USB Mass Storage camera: need to pass f-spot a mount point
+
+      f-spot --import "$mount_point"
+else
+     # Some other camera try GPhoto2
+
+     bus=`hal-get-property --udi="$udi" --key=usb.bus_number`
+     dev=`hal-get-property --udi="$udi" --key=usb.linux.device_number`
+     uri=`printf gphoto2:usb:%.3d,%.3d $bus $dev`
+
+     echo $uri
+
+     f-spot --import "$uri"
+fi
