@@ -48,9 +48,12 @@ namespace FSpot
 		public const string SHOW_DATES = "/apps/f-spot/ui/show_dates";
 		public const string EXPANDED_TAGS = "/apps/f-spot/ui/expanded_tags";
 		
+		public const string GLASS_POSITION = "/apps/f-spot/ui/glass_position";
+		public const string GROUP_ADAPTOR = "/apps/f-spot/ui/group_adaptor";
+		public const string GROUP_ADAPTOR_ORDER_ASC = "/apps/f-spot/ui/group_adaptor_sort_asc";
+		
 		public const string SIDEBAR_POSITION = "/apps/f-spot/ui/sidebar_size";
 		public const string ZOOM = "/apps/f-spot/ui/zoom";
-		public const string ICON_VIEW_POSITION = "/apps/f-spot/ui/icon_view_position";
 
 		public const string EXPORT_FLICKR_SCALE = "/apps/f-spot/export/flickr/scale";
 		public const string EXPORT_FLICKR_SIZE = "/apps/f-spot/export/flickr/size";
@@ -105,6 +108,11 @@ namespace FSpot
 			case MAIN_WINDOW_MAXIMIZED:
 				return false;
 
+			case GROUP_ADAPTOR:
+			case GLASS_POSITION:
+			case GROUP_ADAPTOR_ORDER_ASC:
+				return null;
+
 			case SHOW_TOOLBAR:
 			case SHOW_SIDEBAR:
 			case SHOW_TIMELINE:
@@ -114,7 +122,6 @@ namespace FSpot
 		
 			case SIDEBAR_POSITION:
 			case ZOOM:
-			case ICON_VIEW_POSITION:
 				return null;
 			case SCREENSAVER_TAG:
 				return 1;

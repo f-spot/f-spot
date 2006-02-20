@@ -120,7 +120,7 @@ public class HigMessageDialog : Gtk.Dialog
 		AddButton (ok_caption, Gtk.ResponseType.Ok, false);
 	}
 	
-	void AddButton (string stock_id, Gtk.ResponseType response, bool is_default)
+	public void AddButton (string stock_id, Gtk.ResponseType response, bool is_default)
 	{
 		Gtk.Button button = new Gtk.Button (stock_id);
 		button.CanDefault = true;

@@ -76,6 +76,10 @@ public class MainWindow {
 	[Glade.Widget] MenuItem zoom_in;
 	[Glade.Widget] MenuItem zoom_out;
 
+	[Glade.Widget] RadioMenuItem month;
+	[Glade.Widget] RadioMenuItem directory;
+	[Glade.Widget] CheckMenuItem reverse_order;
+
 	// Find
 	[Glade.Widget] MenuItem find_tag;
 	[Glade.Widget] CheckMenuItem find_untagged;
@@ -252,9 +256,8 @@ public class MainWindow {
 #endif
 
 		group_selector = new FSpot.GroupSelector ();
-		FSpot.GroupAdaptor adaptor = new FSpot.TimeAdaptor (query);
+		group_selector.Adaptor = new FSpot.TimeAdaptor (query);
 
-		group_selector.Adaptor  = adaptor;
 		group_selector.ShowAll ();
 		
 		if (zoom_scale != null) {
@@ -332,7 +335,10 @@ public class MainWindow {
 		photo_view.DragDataReceived += HandlePhotoViewDragDataReceived;
 
 		view_notebook.SwitchPage += HandleViewNotebookSwitchPage;
-		adaptor.GlassSet += HandleAdaptorGlassSet;
+		group_selector.Adaptor.GlassSet += HandleAdaptorGlassSet;
+		group_selector.Adaptor.Changed += HandleAdaptorChanged;
+		LoadPreference (Preferences.GROUP_ADAPTOR);
+		LoadPreference (Preferences.GROUP_ADAPTOR_ORDER_ASC);
 
 		this.selection = new MainSelection (this);
 		this.selection.Changed += HandleSelectionChanged;
@@ -862,6 +868,11 @@ public class MainWindow {
 		JumpTo (index);
 	}
 
+	void HandleAdaptorChanged (FSpot.GroupAdaptor sender)
+	{
+		UpdateGlass ();
+	}
+
 	/*
 	 * Keep the glass temporal slider in sync with the user's scrolling in the icon_view
 	 */
@@ -872,7 +883,7 @@ public class MainWindow {
 			return;
 
 		int cell_num = icon_view.TopLeftVisibleCell();
-		if (cell_num == -1 || cell_num == lastTopLeftCell)
+		if (cell_num == -1 /*|| cell_num == lastTopLeftCell*/)
 			return;
 
 		lastTopLeftCell = cell_num;
@@ -898,7 +909,7 @@ public class MainWindow {
 
 	void HandleIconViewReady (object sender, EventArgs args)
 	{
-		LoadPreference (Preferences.ICON_VIEW_POSITION);
+		LoadPreference (Preferences.GLASS_POSITION);
 
 		// We only want to set the position the first time
 		// the icon_view is ready (eg on startup)
@@ -1430,22 +1441,53 @@ public class MainWindow {
                            null, authors, new string [0], translators, null).Show();
 	}
 
-	void HandleArrangeByTime (object sender, EventArgs args)
+	public void HandleArrangeByTime (object sender, EventArgs args)
 	{
+		if (group_selector.Adaptor is TimeAdaptor)
+			return;
+
 		group_selector.Adaptor.GlassSet -= HandleAdaptorGlassSet;
-		FSpot.GroupAdaptor adaptor = new FSpot.TimeAdaptor (query);
-		group_selector.Adaptor = adaptor;
+		group_selector.Adaptor.Changed -= HandleAdaptorChanged;
+		group_selector.Adaptor = new FSpot.TimeAdaptor (query);
+
 		group_selector.Mode = FSpot.GroupSelector.RangeType.Min;
-		adaptor.GlassSet += HandleAdaptorGlassSet;
+		group_selector.Adaptor.GlassSet += HandleAdaptorGlassSet;
+		group_selector.Adaptor.Changed += HandleAdaptorChanged;
+
+		if (sender != month)
+			month.Active = true;
 	}
 
-	void HandleArrangeByDirectory (object sender, EventArgs args)
+	public void HandleArrangeByDirectory (object sender, EventArgs args)
 	{
+		if (group_selector.Adaptor is DirectoryAdaptor)
+			return;
+
 		group_selector.Adaptor.GlassSet -= HandleAdaptorGlassSet;
-		FSpot.GroupAdaptor adaptor = new FSpot.DirectoryAdaptor (query);		
-		group_selector.Adaptor = adaptor;
+		group_selector.Adaptor.Changed -= HandleAdaptorChanged;
+		group_selector.Adaptor = new FSpot.DirectoryAdaptor (query); 	
+
 		group_selector.Mode = FSpot.GroupSelector.RangeType.Min;
-		adaptor.GlassSet += HandleAdaptorGlassSet;
+		group_selector.Adaptor.GlassSet += HandleAdaptorGlassSet;
+		group_selector.Adaptor.Changed += HandleAdaptorChanged;
+
+		if (sender != directory)
+			directory.Active = true;
+	}
+	
+	public void HandleReverseOrder (object sender, EventArgs args)
+	{
+		Gtk.CheckMenuItem item = sender as Gtk.CheckMenuItem;
+
+		if (group_selector.Adaptor.OrderAscending == item.Active)
+			return;
+		
+		group_selector.Adaptor.OrderAscending = item.Active;
+		icon_view.QueueDraw ();
+
+		// FIXME this is blah...we need UIManager love here
+		if (item != reverse_order)
+			reverse_order.Active = item.Active;
 	}
 
 	// Called when the user clicks the X button	
@@ -1482,11 +1524,13 @@ public class MainWindow {
 		Preferences.Set (Preferences.SHOW_TAGS,			icon_view.DisplayTags);
 		Preferences.Set (Preferences.SHOW_DATES,		icon_view.DisplayDates);
 
+		Preferences.Set (Preferences.GROUP_ADAPTOR,		(group_selector.Adaptor is DirectoryAdaptor) ? 1 : 0);
+		Preferences.Set (Preferences.GROUP_ADAPTOR_ORDER_ASC,   group_selector.Adaptor.OrderAscending);
+		Preferences.Set (Preferences.GLASS_POSITION,		group_selector.GlassPosition);
+		
 		Preferences.Set (Preferences.SIDEBAR_POSITION,		main_hpaned.Position);
 		Preferences.Set (Preferences.ZOOM,			icon_view.Zoom);
 	
-		Preferences.Set (Preferences.ICON_VIEW_POSITION, icon_view.TopLeftVisibleCell ());
-		
 		tag_selection_widget.SaveExpandDefaults ();
 
 		this.Window.Destroy ();
@@ -1635,7 +1679,7 @@ public class MainWindow {
 
 		string msg = Mono.Posix.Catalog.GetString("This operation will merge the selected tags and any sub-tags into a single tag.");
 
-		string ok_caption = Mono.Posix.Catalog.GetString ("_Merge tags");
+		string ok_caption = Mono.Posix.Catalog.GetString ("_Merge Tags");
 		
 		if (ResponseType.Ok != HigMessageDialog.RunHigConfirmation(main_window, 
 									   DialogFlags.DestroyWithParent, 
@@ -2250,6 +2294,22 @@ public class MainWindow {
 				//display_dates_menu_item.Toggle ();
 			break;
 		
+		case Preferences.GROUP_ADAPTOR:
+			if ((int) val == 1)
+				directory.Active = true;
+			break;
+
+		case Preferences.GROUP_ADAPTOR_ORDER_ASC:
+			if (reverse_order.Active != (bool) val)
+				reverse_order.Active = (bool) val;
+			//group_selector.Adaptor.OrderAscending = (bool) val;
+			break;
+
+		case Preferences.GLASS_POSITION:
+			IBrowsableItem photo = group_selector.Adaptor.PhotoFromIndex ((int) val);
+			JumpTo (query.IndexOf (photo));
+			break;
+			
 		case Preferences.SIDEBAR_POSITION:
 			if (main_hpaned.Position != (int) val)
 				main_hpaned.Position = (int) val;
@@ -2259,13 +2319,6 @@ public class MainWindow {
 			icon_view.Zoom = (double) val;
 			break;
 		
-		case Preferences.ICON_VIEW_POSITION:
-			if (icon_view.TopLeftVisibleCell () != (int) val) {
-				icon_view.FocusCell = (int) val;
-				photo_view.Item.Index = (int) val;
-				icon_view.ScrollTo ((int) val, false);
-			}
-			break;
 		case Preferences.METADATA_EMBED_IN_IMAGE:
 			write_metadata = (bool) val;
 			break;
@@ -2417,10 +2470,23 @@ public class MainWindow {
 				"Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?", selected.Length),
 				selected.Length, mime_application.Name);
 
-		// FIXME add a cancel button?
-		Gtk.ResponseType response = HigMessageDialog.RunHigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
-									   MessageType.Question, Gtk.ButtonsType.YesNo, 
-									   header, msg);
+		// FIXME add cancel button? add help button?
+		HigMessageDialog hmd = new HigMessageDialog(main_window, DialogFlags.DestroyWithParent, 
+								   MessageType.Question, Gtk.ButtonsType.None,
+								   header, msg);
+		hmd.AddButton (Gtk.Stock.No, Gtk.ResponseType.No, false);
+		//hmd.AddButton (Gtk.Stock.Cancel, Gtk.ResponseType.Cancel, false);
+		hmd.AddButton (Gtk.Stock.Yes, Gtk.ResponseType.Yes, true);
+
+		Gtk.ResponseType response = Gtk.ResponseType.Cancel;
+ 		try {
+ 			response = (Gtk.ResponseType) hmd.Run();
+ 		} finally {
+ 			hmd.Destroy();
+ 		}
+
+		if (response == Gtk.ResponseType.Cancel)
+			return;
 
 		bool create_new_versions = (response == Gtk.ResponseType.Yes);
 
@@ -2428,7 +2494,6 @@ public class MainWindow {
 		foreach (Photo photo in selected) {
 			if (create_new_versions) {
 				// exception handling? Out of space, blah, blah
-				// FIXME give the new version a better name, based on the app's name that we're opening it with
 				uint version = photo.CreateNamedVersion (mime_application.Name, photo.DefaultVersionId, true);
 				photo.DefaultVersionId = version;
 				UpdateForVersionIdChange (version);

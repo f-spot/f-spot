@@ -6,6 +6,19 @@ namespace FSpot {
 		public PhotoQuery query;
 		System.Collections.DictionaryEntry [] dirs;
 
+		private bool order_ascending = true;
+		public override bool OrderAscending {
+			get {
+				return order_ascending;
+			}
+			set {
+				if (order_ascending != value) {
+					order_ascending = value;
+					Reload();
+				}
+			}
+		}
+
 		// FIXME store the Photo.Id list here not just the count
 		private class Group : IComparer {
 			public int Count = 1;
@@ -37,15 +50,7 @@ namespace FSpot {
 
 			Console.WriteLine ("Selected Path {0}", dirs [group].Key);
 	
-			int item = 0;
-			int i = 0;
-			while (i < query.Count) {
-				if (((Photo)(query [i])).DirectoryPath == (string)dirs [group].Key) {
-					item = i;
-					break;
-				}
-				i++;
-			}
+			int item = LookupItem (group);
 
 			if (GlassSet != null)
 				GlassSet (this, item);
@@ -98,6 +103,11 @@ namespace FSpot {
 			Array.Sort (dirs, new DirectoryAdaptor.Group ());
 			Array.Sort (query.Photos, new Photo.CompareDirectory ());
 			
+			if (!order_ascending) {
+				Array.Reverse (dirs);
+				Array.Reverse (query.Photos);
+			}
+			
 			if (Changed != null)
 				Changed (this);
 		}
@@ -114,6 +124,23 @@ namespace FSpot {
 			}
 			
 			// FIXME not truly implemented
+			return 0;
+		}
+
+		public override FSpot.IBrowsableItem PhotoFromIndex (int item) 
+		{
+			return query.Items [LookupItem (item)];
+		}
+
+		private int LookupItem (int group)
+		{
+			int i = 0;
+			while (i < query.Count) {
+				if (((Photo)(query [i])).DirectoryPath == (string)dirs [group].Key) {
+					return i;
+				}
+				i++;
+			}
 			return 0;
 		}
 

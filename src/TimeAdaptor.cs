@@ -4,6 +4,19 @@ using System.Collections;
 namespace FSpot {
 	public class TimeAdaptor : GroupAdaptor, FSpot.ILimitable {
 		public PhotoQuery query;
+		private bool order_ascending = false;
+		public override bool OrderAscending {
+			get {
+				return order_ascending;
+			}
+			set {
+				if (value != order_ascending) {
+					order_ascending = value;
+					Reload();
+				}
+			}
+		
+		}
 
 		ArrayList years = new ArrayList ();
 		struct YearData {
@@ -22,7 +35,26 @@ namespace FSpot {
 
 		public int LookupItem (System.DateTime date)
 		{
+			if (order_ascending) 
+				return LookUpItemAscending (date);
+			
+			return LookUpItemDescending (date);
+		}
+
+		private int LookUpItemAscending (System.DateTime date)
+		{
 			int i = 0;
+
+			while (i < query.Count && query [i].Time < date)
+				i++;
+
+			return i;
+		}
+
+		private int LookUpItemDescending (System.DateTime date)
+		{
+			int i = 0;
+
 			while (i < query.Count && query [i].Time > date)
 				i++;
 
@@ -63,7 +95,7 @@ namespace FSpot {
 		{
 			DateTime start = DateFromIndex (item);
 			
-			if (start.Month == 12)
+			if ((start.Month == 12 && !order_ascending) || (start.Month == 1 && order_ascending))
 				return start.Year.ToString ();
 			else 
 				return null;
@@ -81,6 +113,22 @@ namespace FSpot {
 			item = Math.Max (item, 0);
 			item = Math.Min (years.Count * 12 - 1, item);
 			
+			if (order_ascending)
+				return DateFromIndexAscending (item);
+
+			return DateFromIndexDescending (item);
+		}
+
+		private DateTime DateFromIndexAscending (int item)
+		{
+			int year = (int)((YearData)years [item / 12]).Year;
+			int month = 1 + (item % 12);
+
+			return new DateTime(year, month, 1);
+		}
+
+		private DateTime DateFromIndexDescending (int item)
+		{
 			int year =  (int)((YearData)years [item / 12]).Year;
 			int month = 12 - (item % 12);
 			
@@ -88,6 +136,34 @@ namespace FSpot {
 		}
 		
 		public override int IndexFromPhoto (FSpot.IBrowsableItem photo) 
+		{
+			if (order_ascending)
+			       return IndexFromPhotoAscending (photo);
+
+			return IndexFromPhotoDescending (photo);	
+		}
+
+		private int IndexFromPhotoAscending (FSpot.IBrowsableItem photo)
+		{
+			int year = photo.Time.Year;
+			int max_year = ((YearData)years [years.Count - 1]).Year;
+			int min_year = ((YearData)years [0]).Year;
+
+			if (year < min_year || year > max_year) {
+				Console.WriteLine("TimeAdaptor.IndexFromPhoto year out of range[{1},{2}]: {0}", year, min_year, max_year);
+				return 0;
+			}
+
+			int index = photo.Time.Month - 1;
+
+			for (int i = 0 ; i < years.Count; i++)
+				if (year > ((YearData)years[i]).Year)
+					index += 12;
+			
+			return index;						
+		}
+
+		private int IndexFromPhotoDescending (FSpot.IBrowsableItem photo)
 		{
 			int year = photo.Time.Year;
 			int max_year = ((YearData)years [0]).Year;
@@ -109,6 +185,13 @@ namespace FSpot {
 			return index;
 		}
 
+		public override FSpot.IBrowsableItem PhotoFromIndex (int item)
+	       	{
+			DateTime start = DateFromIndex (item);
+			return query.Items [LookupItem (start)];
+		
+		}
+
 		private void HandleChanged (IBrowsableCollection sender)
 		{
 			Console.WriteLine ("Reloading");
@@ -123,8 +206,12 @@ namespace FSpot {
 
 			Photo [] photos = query.Store.Query (null, null);
 			Array.Sort (query.Photos);
-			Array.Reverse (query.Photos);
-			Array.Reverse (photos);
+			Array.Sort (photos);
+
+			if (!order_ascending) {				
+				Array.Reverse (query.Photos);
+				Array.Reverse (photos);
+			}
 
 			if (photos.Length > 0) {
 				YearData data = new YearData ();
@@ -139,7 +226,10 @@ namespace FSpot {
 						years.Add (data);
 						//Console.WriteLine ("Found Year {0}", current);
 					}
-					data.Months [12 - photo.Time.Month] += 1;
+					if (order_ascending)
+						data.Months [photo.Time.Month - 1] += 1;
+					else
+						data.Months [12 - photo.Time.Month] += 1;
 				}
 			} else {
 				YearData data = new YearData ();

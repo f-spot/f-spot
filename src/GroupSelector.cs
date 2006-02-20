@@ -69,6 +69,12 @@ namespace FSpot {
 			}
 		}
 
+		public int GlassPosition {
+			get {
+				return glass.Position;
+			}
+		}
+
 		private void HandleAdaptorChanged (GroupAdaptor adaptor)
 		{
 			bool size_changed = box_counts.Length != adaptor.Count ();
@@ -274,6 +280,9 @@ namespace FSpot {
 
 		protected override bool OnButtonPressEvent (Gdk.EventButton args)
 		{
+			if (args.Button == 3)
+				return DrawOrderMenu (args); 
+
 			double x = args.X + action.X;
 			double y = args.Y + action.Y;
 
@@ -484,6 +493,26 @@ namespace FSpot {
 			if (tick.Intersect (area, out area)) {
 				GdkWindow.DrawRectangle (Style.ForegroundGC (State), true, area);
 			}
+		}
+
+		private bool DrawOrderMenu (Gdk.EventButton args)
+		{
+			Gtk.Menu order_menu = new Gtk.Menu();
+			
+			GtkUtil.MakeCheckMenuItem (order_menu, Mono.Posix.Catalog.GetString ("Arrange by _Month"),
+					      MainWindow.Toplevel.HandleArrangeByTime, true, (adaptor is TimeAdaptor), true);
+			
+			GtkUtil.MakeCheckMenuItem (order_menu, Mono.Posix.Catalog.GetString ("Arrange by _Folder"),
+					      MainWindow.Toplevel.HandleArrangeByDirectory, true, (adaptor is DirectoryAdaptor), true);
+
+			GtkUtil.MakeMenuSeparator (order_menu);
+
+			GtkUtil.MakeCheckMenuItem (order_menu, Mono.Posix.Catalog.GetString ("_Reverse Order"),
+					      MainWindow.Toplevel.HandleReverseOrder, true, adaptor.OrderAscending, false);
+
+			order_menu.Popup (null, null, null, args.Button, args.Time);
+
+			return base.OnButtonPressEvent (args);
 		}
 
 		public abstract class Manipulator {

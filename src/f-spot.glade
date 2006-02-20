@@ -7585,7 +7585,7 @@ Photo Details</property>
 		  <child>
 		    <widget class="GtkMenuItem" id="arranged_by">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Arranged _by</property>
+		      <property name="label" translatable="yes">Arrange _by</property>
 		      <property name="use_underline">True</property>
 
 		      <child>
@@ -7604,7 +7604,7 @@ Photo Details</property>
 			  <child>
 			    <widget class="GtkRadioMenuItem" id="directory">
 			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">_Directory</property>
+			      <property name="label" translatable="yes">_Folder</property>
 			      <property name="use_underline">True</property>
 			      <property name="active">False</property>
 			      <property name="group">month</property>
@@ -7615,6 +7615,17 @@ Photo Details</property>
 		      </child>
 		    </widget>
 		  </child>
+
+		  <child>
+		    <widget class="GtkCheckMenuItem" id="reverse_order">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">_Reverse Order</property>
+		      <property name="use_underline">True</property>
+		      <property name="active">False</property>
+		      <signal name="activate" handler="HandleReverseOrder"/>
+		    </widget>
+		  </child>
+
 		</widget>
 	      </child>
 	    </widget>

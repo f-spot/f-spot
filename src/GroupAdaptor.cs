@@ -6,6 +6,8 @@ namespace FSpot {
 	}
 	
 	public abstract class GroupAdaptor {
+		public abstract bool OrderAscending {get; set;}
+		
 		public abstract int Value (int item) ;
 		public abstract int Count ();
 		public abstract string TickLabel (int item);
@@ -15,6 +17,7 @@ namespace FSpot {
 
 		public abstract void SetGlass (int item);
 		public abstract int IndexFromPhoto (FSpot.IBrowsableItem photo);
+		public abstract FSpot.IBrowsableItem PhotoFromIndex (int item);
 
 		public delegate void GlassSetHandler (GroupAdaptor adaptor, int index);
 		public virtual event GlassSetHandler GlassSet;
