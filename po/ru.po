@@ -1,4 +1,4 @@
-# translation of ru.po to Russian
+# translation of f-spot to Russian
 # This file is distributed under the same license as the f-spot package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
 #
@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-18 14:42+0000\n"
-"PO-Revision-Date: 2006-02-19 09:15+0000\n"
-"Last-Translator: Alexandre Prokoudine <alexandre.prokoudine@gmail.com>\n"
-"Language-Team: Russian <gnome-cyr@gnome.org>\n"
+"POT-Creation-Date: 2006-02-20 13:33+0200\n"
+"PO-Revision-Date: 2006-02-20 15:54+0200\n"
+"Last-Translator: Leonid Kanter <leon@asplinux.ru>\n"
+"Language-Team:  <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -211,7 +211,7 @@ msgstr ""
 #: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:139
 #: ../src/FolderExport.cs:264
 msgid "Transferring Pictures"
-msgstr "Происходит передача фото"
+msgstr "Идёт копирование снимков"
 
 #: ../src/CameraFileSelectionDialog.cs:211
 #, csharp-format
@@ -233,7 +233,7 @@ msgstr "Ошибка при передаче файлов"
 #: ../src/CameraFileSelectionDialog.cs:249
 #, csharp-format
 msgid "Transferring \"{0}\" from camera"
-msgstr "Передаётся \"{0}\" из камеры"
+msgstr "Копируется \"{0}\" из камеры"
 
 #: ../src/CameraFileSelectionDialog.cs:275
 msgid "Select Destination"
@@ -263,7 +263,7 @@ msgstr "{0} из {1}"
 #: ../src/CDExport.cs:71 ../src/FlickrExport.cs:251 ../src/FolderExport.cs:176
 #: ../src/GalleryExport.cs:602
 msgid "Done Sending Photos"
-msgstr "Пересылка фото завершена"
+msgstr "Пересылка снимков завершена"
 
 #: ../src/CDExport.cs:73 ../src/FolderExport.cs:178
 msgid "Transfer Complete"
@@ -287,7 +287,7 @@ msgstr "Ошибка: Файл с таким именем уже существ�
 
 #: ../src/ColorDialog.cs:301
 msgid "Error saving adjusted photo"
-msgstr "Ошибка при сохранении изменённого фото"
+msgstr "Ошибка при сохранении изменённого снимка"
 
 #: ../src/ColorDialog.cs:302 ../src/Loupe.cs:53 ../src/MainWindow.cs:1732
 #: ../src/PhotoView.cs:337
@@ -328,8 +328,8 @@ msgid ""
 "Return to this window after you have finished the authorization process on "
 "Flickr.com and click the \"Complete Authorization\" button below"
 msgstr ""
-"Вернитесь к этому окну по завершении авторизации на Flickr.com "
-"и нажмите кнопку «Завершить авторизацию» внизу."
+"Вернитесь к этому окну по завершении авторизации на Flickr.com и нажмите "
+"кнопку «Завершить авторизацию» внизу."
 
 #: ../src/FlickrExport.cs:69
 msgid "Complete Authorization"
@@ -361,7 +361,7 @@ msgstr "Ожидание отклика {0} из {1}"
 #: ../src/FlickrExport.cs:240 ../src/GalleryExport.cs:583
 #, csharp-format
 msgid "Uploading picture \"{0}\""
-msgstr "Закачивается фото \"{0}\""
+msgstr "Закачивается снимок \"{0}\""
 
 #: ../src/FlickrExport.cs:253 ../src/GalleryExport.cs:604
 msgid "Upload Complete"
@@ -479,7 +479,7 @@ msgstr "<b>Место назначения</b>"
 
 #: ../src/f-spot.glade.h:16
 msgid "<b>End Date</b>"
-msgstr "<b>Дата начала</b>"
+msgstr "<b>Конечная дата</b>"
 
 #: ../src/f-spot.glade.h:17
 msgid "<b>Export Method</b>"
@@ -543,7 +543,7 @@ msgstr "<b>Хранитель экрана</b>"
 
 #: ../src/f-spot.glade.h:32
 msgid "<b>Start Date</b>"
-msgstr "<b>Дата конца</b>"
+msgstr "<b>Начальная дата</b>"
 
 #: ../src/f-spot.glade.h:33
 msgid "<b>Style</b>"
@@ -582,12 +582,12 @@ msgid ""
 "<small><i>Select the tag you like F-Spot to display images from while acting "
 "as the screensaver</i></small>"
 msgstr ""
-"<small><i>Выберите тэг, изображения с которым F-Spot будет показывать "
-"в качестве хранителя экрана</i></small>"
+"<small><i>Выберите тэг, изображения с которым F-Spot будет показывать в "
+"качестве хранителя экрана</i></small>"
 
 #: ../src/f-spot.glade.h:42
 msgid "<small>C_ontrast:</small>"
-msgstr "<small>_Контраст:</small>"
+msgstr "<small>_Контрастность:</small>"
 
 #: ../src/f-spot.glade.h:43
 msgid "<small>Te_mp:</small>"
@@ -611,7 +611,7 @@ msgstr "<small>_Насыщенность:</small>"
 
 #: ../src/f-spot.glade.h:48
 msgid "<small>_Tint:</small>"
-msgstr "<small>)Интенсивность:</small>"
+msgstr "<small>_Интенсивность:</small>"
 
 #: ../src/f-spot.glade.h:49
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
@@ -659,7 +659,7 @@ msgstr "По_дпись:"
 
 #: ../src/f-spot.glade.h:62
 msgid "C_ontrast:"
-msgstr "Ко_нтраст:"
+msgstr "Ко_нтрастность:"
 
 #: ../src/f-spot.glade.h:63
 msgid "Camera Selection"
@@ -671,15 +671,15 @@ msgstr "Н_астроить"
 
 #: ../src/f-spot.glade.h:65
 msgid "Copy Locat_ion"
-msgstr "Скопировать _местоположение"
+msgstr "Копировать _местоположение"
 
 #: ../src/f-spot.glade.h:66
 msgid "Copy _Files to: "
-msgstr "Скопировать файлы с_юда: "
+msgstr "Копировать _файлы в:"
 
 #: ../src/f-spot.glade.h:67
 msgid "Copy file to the Photos folder"
-msgstr "Скопировать файл в каталог Photos"
+msgstr "Копировать файл в каталог Photos"
 
 #: ../src/f-spot.glade.h:68
 msgid "Create CD"
@@ -791,9 +791,9 @@ msgid ""
 "account. Press the \"Authorize\" button to open a web browser and give F-"
 "Spot the authorization. "
 msgstr ""
-"F-Spot требуется ваша авторизация для загрузки фотографий на Flickr. "
-"Нажмите кнопку «Авторизоваться», чтобы открыть окно или вкладку "
-"браузера и авторизовать F-Spot."
+"Требуется ваша авторизация для загрузки фотографий на Flickr. Нажмите "
+"кнопку «Авторизоваться», чтобы открыть окно или вкладку браузера и "
+"авторизовать F-Spot."
 
 #: ../src/f-spot.glade.h:97
 msgid "Fin_d"
@@ -891,7 +891,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:125
 msgid "Open _Folder..."
-msgstr "ОТкрыть _каталог..."
+msgstr "Открыть _папку..."
 
 #: ../src/f-spot.glade.h:126
 msgid "Open _album in browser when done uploading"
@@ -919,7 +919,7 @@ msgstr "Пауза"
 
 #: ../src/f-spot.glade.h:132
 msgid "Photo 0 of 0"
-msgstr "Фото 0 из 0"
+msgstr "Снимок 0 из 0"
 
 #: ../src/f-spot.glade.h:133
 msgid "Photo _Size:"
@@ -975,7 +975,7 @@ msgstr "Выберите снимки для копирования с каме�
 
 #: ../src/f-spot.glade.h:146
 msgid "Select _All"
-msgstr "Выбрать _все"
+msgstr "_Выделить все"
 
 #: ../src/f-spot.glade.h:147
 msgid "Select _None"
@@ -1220,7 +1220,7 @@ msgstr "_Тон:"
 
 #: ../src/f-spot.glade.h:209
 msgid "_Icon:"
-msgstr "_Пиктограмма:"
+msgstr "_Значок:"
 
 #: ../src/f-spot.glade.h:210
 msgid "_Import files after copy"
@@ -1284,7 +1284,7 @@ msgstr "Пере_именовать версию"
 
 #: ../src/f-spot.glade.h:225
 msgid "_Resize to: "
-msgstr "Отм_асштабировать до: "
+msgstr "_Масштабировать до: "
 
 #: ../src/f-spot.glade.h:226
 msgid "_Saturation:"
@@ -1602,8 +1602,8 @@ msgid ""
 "The person involved in writing, editing or correcting the object data or "
 "caption/abstract"
 msgstr ""
-"Личность, участвующая в написании, редактировании или изменении "
-"данных объекта, его заголовка или введения"
+"Личность, участвующая в написании, редактировании или изменении данных "
+"объекта, его заголовка или введения"
 
 #: ../src/IptcFile.cs:211
 msgid "Headline of the content"
@@ -1659,14 +1659,14 @@ msgstr "Просмотреть в режиме слайдшоу"
 
 #: ../src/MainWindow.cs:1232
 msgid "No cameras detected."
-msgstr "Камера не обнаружена"
+msgstr "Камера не обнаружена."
 
 #: ../src/MainWindow.cs:1233
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
 msgstr ""
-"F-Spot не удалось обнаружить подключённую к компьютеру камеру. Проверьте, "
+"Не удалось обнаружить подключённую к компьютеру камеру. Проверьте, "
 "включена ли она и подключена ли к компьютеру."
 
 #: ../src/MainWindow.cs:1273
@@ -1946,7 +1946,7 @@ msgstr "Повышение яркости"
 
 #: ../src/MetadataStore.cs:57
 msgid "Contrast"
-msgstr "Контраст"
+msgstr "Контрастность"
 
 #: ../src/MetadataStore.cs:59
 msgid "Saturation"
@@ -2118,7 +2118,7 @@ msgstr "Квадрат"
 
 #: ../src/PhotoView.cs:164
 msgid "Crop photo to selected area"
-msgstr "Откадрировать по выделению"
+msgstr "Кадрировать по выделению"
 
 #: ../src/PhotoView.cs:165
 msgid "Remove redeye from selected area"
@@ -2229,7 +2229,7 @@ msgstr "Подстройка цвета"
 
 #: ../src/StockIcons.cs:29
 msgid "Crop"
-msgstr "Откадрировать"
+msgstr "Кадрировать"
 
 #: ../src/StockIcons.cs:30
 msgid "Desaturate"
@@ -2295,7 +2295,7 @@ msgstr "Имя метки:"
 #: ../src/TagCommands.cs:369
 #, csharp-format
 msgid "Photo {0} of {1}"
-msgstr "Фото {0} из {1}"
+msgstr "Снимок {0} из {1}"
 
 #: ../src/TagCommands.cs:396
 #, csharp-format
