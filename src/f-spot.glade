@@ -7625,7 +7625,6 @@ Photo Details</property>
 		      <signal name="activate" handler="HandleReverseOrder"/>
 		    </widget>
 		  </child>
-
 		</widget>
 	      </child>
 	    </widget>
@@ -12502,6 +12501,31 @@ Custom
 			      <property name="spacing">6</property>
 
 			      <child>
+				<widget class="GtkLabel" id="name_label">
+				  <property name="visible">True</property>
+				  <property name="label" translatable="yes">img_000.jpg</property>
+				  <property name="use_underline">False</property>
+				  <property name="use_markup">True</property>
+				  <property name="justify">GTK_JUSTIFY_LEFT</property>
+				  <property name="wrap">False</property>
+				  <property name="selectable">False</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+				  <property name="width_chars">-1</property>
+				  <property name="single_line_mode">False</property>
+				  <property name="angle">0</property>
+				</widget>
+				<packing>
+				  <property name="padding">0</property>
+				  <property name="expand">False</property>
+				  <property name="fill">False</property>
+				</packing>
+			      </child>
+
+			      <child>
 				<widget class="GtkScrolledWindow" id="view_scrolled">
 				  <property name="width_request">320</property>
 				  <property name="height_request">200</property>
@@ -12524,17 +12548,18 @@ Custom
 			      </child>
 
 			      <child>
-				<widget class="GtkHBox" id="hbox79">
+				<widget class="GtkHBox" id="hbox84">
 				  <property name="visible">True</property>
 				  <property name="homogeneous">False</property>
-				  <property name="spacing">6</property>
+				  <property name="spacing">0</property>
 
 				  <child>
-				    <widget class="GtkLabel" id="name_label">
+				    <widget class="GtkLabel" id="label209">
+				      <property name="width_request">60</property>
 				      <property name="visible">True</property>
-				      <property name="label" translatable="yes">img_000.jpg</property>
+				      <property name="label" translatable="yes"></property>
 				      <property name="use_underline">False</property>
-				      <property name="use_markup">True</property>
+				      <property name="use_markup">False</property>
 				      <property name="justify">GTK_JUSTIFY_LEFT</property>
 				      <property name="wrap">False</property>
 				      <property name="selectable">False</property>
@@ -12550,22 +12575,22 @@ Custom
 				    <packing>
 				      <property name="padding">0</property>
 				      <property name="expand">False</property>
-				      <property name="fill">True</property>
+				      <property name="fill">False</property>
 				    </packing>
 				  </child>
 
 				  <child>
 				    <widget class="GtkLabel" id="count_label">
 				      <property name="visible">True</property>
-				      <property name="label" translatable="yes">&lt;small&gt;1 of 1&lt;/small&gt;</property>
+				      <property name="label" translatable="yes">1 of 1</property>
 				      <property name="use_underline">False</property>
-				      <property name="use_markup">True</property>
-				      <property name="justify">GTK_JUSTIFY_LEFT</property>
+				      <property name="use_markup">False</property>
+				      <property name="justify">GTK_JUSTIFY_CENTER</property>
 				      <property name="wrap">False</property>
 				      <property name="selectable">False</property>
-				      <property name="xalign">1</property>
+				      <property name="xalign">0.5</property>
 				      <property name="yalign">0.5</property>
-				      <property name="xpad">0</property>
+				      <property name="xpad">30</property>
 				      <property name="ypad">0</property>
 				      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				      <property name="width_chars">-1</property>
@@ -12580,53 +12605,16 @@ Custom
 				  </child>
 
 				  <child>
-				    <placeholder/>
-				  </child>
-
-				  <child>
-				    <widget class="GtkButton" id="back_button">
+				    <widget class="GtkSpinButton" id="photo_spin">
 				      <property name="visible">True</property>
 				      <property name="can_focus">True</property>
-				      <property name="relief">GTK_RELIEF_NORMAL</property>
-				      <property name="focus_on_click">True</property>
-
-				      <child>
-					<widget class="GtkImage" id="image38">
-					  <property name="visible">True</property>
-					  <property name="stock">gtk-go-back</property>
-					  <property name="icon_size">4</property>
-					  <property name="xalign">0.5</property>
-					  <property name="yalign">0.5</property>
-					  <property name="xpad">0</property>
-					  <property name="ypad">0</property>
-					</widget>
-				      </child>
-				    </widget>
-				    <packing>
-				      <property name="padding">0</property>
-				      <property name="expand">False</property>
-				      <property name="fill">False</property>
-				    </packing>
-				  </child>
-
-				  <child>
-				    <widget class="GtkButton" id="forward_button">
-				      <property name="visible">True</property>
-				      <property name="can_focus">True</property>
-				      <property name="relief">GTK_RELIEF_NORMAL</property>
-				      <property name="focus_on_click">True</property>
-
-				      <child>
-					<widget class="GtkImage" id="image39">
-					  <property name="visible">True</property>
-					  <property name="stock">gtk-go-forward</property>
-					  <property name="icon_size">4</property>
-					  <property name="xalign">0.5</property>
-					  <property name="yalign">0.5</property>
-					  <property name="xpad">0</property>
-					  <property name="ypad">0</property>
-					</widget>
-				      </child>
+				      <property name="climb_rate">1</property>
+				      <property name="digits">0</property>
+				      <property name="numeric">False</property>
+				      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
+				      <property name="snap_to_ticks">False</property>
+				      <property name="wrap">False</property>
+				      <property name="adjustment">0 0 100 1 10 10</property>
 				    </widget>
 				    <packing>
 				      <property name="padding">0</property>
@@ -12637,7 +12625,7 @@ Custom
 				</widget>
 				<packing>
 				  <property name="padding">0</property>
-				  <property name="expand">False</property>
+				  <property name="expand">True</property>
 				  <property name="fill">True</property>
 				</packing>
 			      </child>
@@ -12652,7 +12640,7 @@ Custom
 				    <widget class="GtkTable" id="table25">
 				      <property name="visible">True</property>
 				      <property name="n_rows">2</property>
-				      <property name="n_columns">3</property>
+				      <property name="n_columns">2</property>
 				      <property name="homogeneous">False</property>
 				      <property name="row_spacing">6</property>
 				      <property name="column_spacing">6</property>
@@ -12676,7 +12664,7 @@ Custom
 				      <child>
 					<widget class="GtkLabel" id="label197">
 					  <property name="visible">True</property>
-					  <property name="label" translatable="yes">Was actually taken on: </property>
+					  <property name="label" translatable="yes">Adjusted date: </property>
 					  <property name="use_underline">False</property>
 					  <property name="use_markup">False</property>
 					  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -12704,11 +12692,11 @@ Custom
 				      <child>
 					<widget class="GtkLabel" id="label198">
 					  <property name="visible">True</property>
-					  <property name="label" translatable="yes">Appears to have been taken on:</property>
+					  <property name="label" translatable="yes">Current date:</property>
 					  <property name="use_underline">False</property>
 					  <property name="use_markup">False</property>
 					  <property name="justify">GTK_JUSTIFY_LEFT</property>
-					  <property name="wrap">False</property>
+					  <property name="wrap">True</property>
 					  <property name="selectable">False</property>
 					  <property name="xalign">0</property>
 					  <property name="yalign">0.5</property>
@@ -12777,7 +12765,7 @@ Custom
 				      <child>
 					<widget class="GtkLabel" id="label200">
 					  <property name="visible">True</property>
-					  <property name="label" translatable="yes">for a difference of</property>
+					  <property name="label" translatable="yes">difference:</property>
 					  <property name="use_underline">False</property>
 					  <property name="use_markup">False</property>
 					  <property name="justify">GTK_JUSTIFY_RIGHT</property>
@@ -12821,16 +12809,20 @@ Custom
 				    </widget>
 				    <packing>
 				      <property name="padding">0</property>
-				      <property name="expand">True</property>
-				      <property name="fill">True</property>
+				      <property name="expand">False</property>
+				      <property name="fill">False</property>
 				    </packing>
 				  </child>
 				</widget>
 				<packing>
 				  <property name="padding">0</property>
-				  <property name="expand">True</property>
+				  <property name="expand">False</property>
 				  <property name="fill">True</property>
 				</packing>
+			      </child>
+
+			      <child>
+				<placeholder/>
 			      </child>
 			    </widget>
 			  </child>
@@ -12958,7 +12950,6 @@ Custom
 
 				  <child>
 				    <widget class="GtkLabel" id="starting_label">
-				      <property name="visible">True</property>
 				      <property name="label" translatable="yes">min. Starting at {0}</property>
 				      <property name="use_underline">False</property>
 				      <property name="use_markup">False</property>
