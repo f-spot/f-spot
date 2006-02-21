@@ -1,3 +1,14 @@
+f-spot 0.1.20 - Feb 21 2005 - Life Saver
+----------------------------------------
+- New gnome-screensaver mode.
+- Timezone utc clean-ups.
+- Fixed time dialog set the date properly.
+- Expose the sort order to the ui. Fixes #321260.
+- Added cancel button to color dialog #324903.
+- Fixed memory leak in aysnc loader. #326940, #326660, 314034
+- Many more bugfixes.
+
+
 f-spot 0.1.9 - Feb 13 2006 - Hybrid
 -----------------------------------
 - Small import dialog improvements.
