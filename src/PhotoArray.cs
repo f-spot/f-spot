@@ -1,3 +1,5 @@
+using System.Collections;
+
 namespace FSpot {
 	public class PhotoList : IBrowsableCollection {
 		protected System.Collections.ArrayList list;
@@ -52,6 +54,12 @@ namespace FSpot {
 			get {
 				return (IBrowsableItem) list [index];
 			}
+		}
+		
+		public void Sort (IComparer compare)
+		{
+			list.Sort (compare);
+			Reload ();
 		}
 		
 		public void Reload ()

@@ -1,5 +1,13 @@
 2006-02-21  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoStore.cs: add a new compararer.
+
+	* src/PhotoArray.cs: add a sort method.
+
+	* src/MainWindow.cs: sort the collection before we pass it along.
+
+	* src/TimeDialog.cs: remove the sort
+
 	* src/TimeDialog.cs: fix the timezone handling so that everything
 	agrees.  Fix the photo spacing command.
 

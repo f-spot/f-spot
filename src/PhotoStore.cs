@@ -103,6 +103,21 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		return string.Compare (photo1.name, photo2.name);
 	}
 
+	public class CompareDateName : IComparer {
+		public int Compare (object obj1, object obj2) {
+			Photo p1 = (Photo)obj1;
+			Photo p2 = (Photo)obj2;
+
+			int result = Photo.CompareDate (p1, p2);
+			
+			if (result == 0)
+				result = CompareName (p1, p2);
+
+			return result;
+		}
+
+	}
+
 	public class CompareDirectory : IComparer {
 		public int Compare (object obj1, object obj2) {
 			Photo p1 = (Photo)obj1;

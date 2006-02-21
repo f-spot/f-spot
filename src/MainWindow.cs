@@ -1723,7 +1723,9 @@ public class MainWindow {
 
 	void HandleAdjustTime (object sender, EventArgs args)
 	{
-		new TimeDialog (db, new PhotoList (Selection.Items));
+		PhotoList list = new PhotoList (Selection.Items);
+		list.Sort (new Photo.CompareDateName ());
+		new TimeDialog (db, list);
 	}
 
 	void HandleAdjustColor (object sender, EventArgs args)

@@ -181,8 +181,6 @@ namespace FSpot {
 				photos [i] = (Photo) collection [i];
 			}
 			
-			Array.Sort (photos);
-
 			TimeSpan accum = new TimeSpan (0);
 			for (int j = Item.Index; j > 0; j--) {
 				date -= span;
