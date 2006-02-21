@@ -157,7 +157,7 @@ public class InfoBox : VBox {
 				height = real_height.ToString ();
 			}
 
-			date = img.Date;
+			date = img.Date.ToLocalTime ();
 		}
 
 		public bool Add (SemWeb.Statement stmt)

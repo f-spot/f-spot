@@ -483,7 +483,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 			FSpot.JpegFile jimg = img as FSpot.JpegFile;
 			
 			jimg.SetDescription (this.Description);
-			jimg.SetDateTimeOriginal (this.Time);
+			jimg.SetDateTimeOriginal (this.Time.ToLocalTime ());
 			jimg.SetXmp (UpdateXmp (this, jimg.Header.GetXmp ()));
 
 			jimg.SaveMetaData (path);

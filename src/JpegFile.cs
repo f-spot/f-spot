@@ -236,7 +236,7 @@ namespace FSpot {
 						if (time_str == null || time_str == "") 
 							time_str = ed.LookupFirstValue (Exif.Tag.DateTime);
 
-						time = Exif.ExifUtil.DateTimeFromString (time_str); 
+						time = Exif.ExifUtil.DateTimeFromString (time_str).ToUniversalTime (); 
 #else
 						TiffHeader tiff = Header.GetExifHeader ();
 						SubdirectoryEntry sub = (SubdirectoryEntry) tiff.Directory.Lookup (TagId.ExifIfdPointer);

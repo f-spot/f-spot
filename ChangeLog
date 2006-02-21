@@ -1,5 +1,11 @@
 2006-02-21  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoStore.cs: set the jpeg time in localtime.
+
+	* src/InfoBox.cs: photo.Time is Utc.
+
+	* src/JpegFile.cs: revert an accidental change.
+
 	* src/IconView.cs: convert times to LocalTime.
 
 	* src/Ciff.cs:
