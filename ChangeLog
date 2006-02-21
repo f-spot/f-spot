@@ -1,5 +1,8 @@
 2006-02-20  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: update tag entry when a tag is edited. fixes
+	#329683
+
 	* src/PreferenceDialog.cs: make sure we handle a null value.
 
 	* src/Core.cs: add a register call back into the slideview.

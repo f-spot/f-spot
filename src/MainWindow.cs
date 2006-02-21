@@ -249,6 +249,7 @@ public class MainWindow {
 		query.Changed += HandleQueryChanged;
 
 		db.Photos.ItemsChanged += HandleDbItemsChanged;
+		db.Tags.ItemsChanged += HandleTagsChanged;
 #if SHOW_CALENDAR
 		FSpot.SimpleCalendar cal = new FSpot.SimpleCalendar (query);
 		cal.DaySelected += HandleCalendarDaySelected;
@@ -450,6 +451,11 @@ public class MainWindow {
 		
 		if (args is TimeChangedEventArgs)
 			InvalidateViews ();
+	}
+
+	private void HandleTagsChanged (object sender, DbItemEventArgs args)
+	{
+		UpdateTagEntryFromSelection ();
 	}
 
 	void HandleViewNotebookSwitchPage (object sender, SwitchPageArgs args)
