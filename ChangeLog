@@ -1,10 +1,14 @@
+2006-02-21  Larry Ewing  <lewing@novell.com>
+
+	* src/SlideView.cs: patch from bengt to fix #332018.
+
 2006-02-21  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* configure.in: Added 'th' (Thai) to ALL_LINGUAS.
 
 2006-02-21  Larry Ewing  <lewing@novell.com>
 
-	* src/PhotoStore.cs: add a new compararer.
+	* src/PhotoStore.cs: add a new comparer.
 
 	* src/PhotoArray.cs: add a sort method.
 

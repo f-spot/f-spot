@@ -389,6 +389,11 @@ namespace FSpot {
 					return false;
 				}
 				
+				if (photos.Length < 2) { // Only one photo. Nothing to do
+					ClearTweens ();
+					return false;
+				}
+				
 				if (current_tween >= tweens.Length) {
 					tween_idle = 0;
 					return false;
