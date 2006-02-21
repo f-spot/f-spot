@@ -19,10 +19,12 @@ namespace FSpot {
 		[Glade.Widget] ScrolledWindow view_scrolled;
 		[Glade.Widget] ScrolledWindow tray_scrolled;
 
-		[Glade.Widget] Button back_button;
-		[Glade.Widget] Button forward_button;
+		//[Glade.Widget] Button back_button;
+		//[Glade.Widget] Button forward_button;
 		[Glade.Widget] Button ok_button;
 		[Glade.Widget] Button cancel_button;
+
+		[Glade.Widget] SpinButton photo_spin;
 
 		[Glade.Widget] Label name_label;
 		[Glade.Widget] Label old_label;
@@ -63,10 +65,15 @@ namespace FSpot {
 			Item.Changed += HandleItemChanged;
 			Item.MoveFirst ();
 
-			forward_button.Clicked += HandleForwardClicked;
-			back_button.Clicked += HandleBackClicked;
+			//forward_button.Clicked += HandleForwardClicked;
+			//back_button.Clicked += HandleBackClicked;
 			ok_button.Clicked += HandleOkClicked;
 			cancel_button.Clicked += HandleCancelClicked;
+
+			photo_spin.ValueChanged += HandleSpinChanged;
+			photo_spin.SetIncrements (1.0, 1.0);
+			photo_spin.Adjustment.StepIncrement = 1.0;
+			photo_spin.Wrap = true;
 
 			date_edit.TimeChanged += HandleTimeChanged;
 			date_edit.DateChanged += HandleTimeChanged;
@@ -108,30 +115,34 @@ namespace FSpot {
 
 			// The preceding text here is the second checkbutton in the Time dialog
 			// that says "Space all photos by []"
+#if false
 			starting_label.Text = String.Format (Catalog.GetString ("min. Starting at {0}"),
 							     EditTime);
+#else
+			starting_label.Text = "min.";
+#endif
 			difference_check.Label = String.Format (Catalog.GetString ("Shift all photos by {0}"),
 							      Offset);
 		}
 
 		void HandleItemChanged (BrowsablePointer pointer, BrowsablePointerChangedArgs args)
 		{
-			back_button.Sensitive = (Item.Index > 0 && collection.Count > 0);
-			forward_button.Sensitive = (Item.Index < collection.Count - 1);
+			//back_button.Sensitive = (Item.Index > 0 && collection.Count > 0);
+			//forward_button.Sensitive = (Item.Index < collection.Count - 1);
 
 			if (Item.IsValid) {
 				IBrowsableItem item = Item.Current;
 				
 				name_label.Text = item.Name;;
-				old_label.Text = item.Time.ToString ();
+				old_label.Text = item.Time.ToLocalTime ().ToString ();
 				
 				int i = collection.Count > 0 ? Item.Index + 1: 0;
 				// This indicates the current photo is photo {0} of {1} out of photos
 				count_label.Text = System.String.Format (Catalog.GetString ("{0} of {1}"), i, collection.Count);
 
-				DateTime actual = item.Time.ToUniversalTime ();
+				DateTime actual = item.Time;
 				date_edit.Time = actual;
-				gnome_dateedit_sucks = date_edit.Time - actual.ToLocalTime ();
+				gnome_dateedit_sucks = date_edit.Time - actual;
 			}
 			HandleTimeChanged (this, System.EventArgs.Empty);
 
@@ -139,6 +150,8 @@ namespace FSpot {
 				tray.Selection.Clear ();
 				tray.Selection.Add (Item.Index);
 			}
+
+			photo_spin.Value = Item.Index + 1;
 		}
 
 		private void ShiftByDifference ()
@@ -148,8 +161,10 @@ namespace FSpot {
 
 			for (int i = 0; i < collection.Count; i++) {
 				Photo p = (Photo) collection [i];
-				p.Time += span;
+				DateTime time = p.Time;
+				p.Time = time + span;
 				photos [i] = p;
+				System.Console.WriteLine ("XXXXX old: {0} new: {1} span: {2}", time, p.Time, span);
 			}
 			
 			db.Photos.Commit (photos, new TimeChangedEventArgs (photos, span));
@@ -161,20 +176,29 @@ namespace FSpot {
 		        long ticks = (long) (double.Parse (spacing_entry.Text) * TimeSpan.TicksPerMinute);
 			TimeSpan span = new TimeSpan (ticks);
 			Photo [] photos = new Photo [collection.Count];
-
+			
 			for (int i = 0; i < collection.Count; i++) {
 				photos [i] = (Photo) collection [i];
 			}
 			
 			Array.Sort (photos);
 
-			TimeSpan accum = span;
+			TimeSpan accum = new TimeSpan (0);
+			for (int j = Item.Index; j > 0; j--) {
+				date -= span;
+			}
+
 			for (int i = 0; i < photos.Length; i++) {
 				photos [i].Time = date + accum;
 				accum += span;
 			}
 			
 			db.Photos.Commit (photos, new TimeChangedEventArgs (photos, span));
+		}
+
+		void HandleSpinChanged (object sender, EventArgs args)
+		{
+			Item.Index = photo_spin.ValueAsInt - 1;
 		}
 
 		void HandleOkClicked (object sender, EventArgs args)
@@ -244,6 +268,7 @@ namespace FSpot {
 		{
 			if (sender.Count > 0) {
 				view.Item.Index = ((IconView.SelectionCollection)sender).Ids[0];
+
 			}
 		}
 
@@ -251,10 +276,12 @@ namespace FSpot {
 		{
 			bool multiple = collection.Count > 1;
 			tray_frame.Visible = multiple;
-			forward_button.Visible = multiple;
-			back_button.Visible = multiple;
+			//forward_button.Visible = multiple;
+			//back_button.Visible = multiple;
 			count_label.Visible = multiple;
+			photo_spin.Visible = multiple;
 			action_frame.Visible = multiple;
+			photo_spin.SetRange (1.0, (double) collection.Count);
 		}
 	}
 }

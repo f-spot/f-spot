@@ -450,7 +450,7 @@ public class MainWindow {
 		}
 		
 		if (args is TimeChangedEventArgs)
-			InvalidateViews ();
+			query.RequestReload ();
 	}
 
 	private void HandleTagsChanged (object sender, DbItemEventArgs args)
