@@ -1,5 +1,8 @@
 2006-02-21  Larry Ewing  <lewing@novell.com>
 
+	* src/Core.cs: handle missing photos by displaying an error
+	message.
+
 	* src/MainWindow.cs: patch form bengt to fix #332015.
 
 	* src/SlideView.cs: patch from bengt to fix #332018.

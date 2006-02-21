@@ -144,20 +144,50 @@ namespace FSpot {
 					tag = db.Tags.GetTagById (id);
 				}
 				
-				Photo [] photos = db.Photos.Query (new Tag [] { tag } );
-				Array.Sort (photos, new Photo.RandomSort ());
-				window = new XScreenSaverSlide ();
+				Photo [] photos;
+				if (tag != null)
+					photos = db.Photos.Query (new Tag [] { tag } );
+				else
+					photos = new Photo [0];
 
-				Gdk.Pixbuf black = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, false, 8, 1, 1);
-				black.Fill (0x00000000);
-				slideview = new SlideView (black , photos);
-				window.Add (slideview);
+				window = new XScreenSaverSlide ();
+				SetStyle (window);
+				if (photos.Length > 0) {
+					Array.Sort (photos, new Photo.RandomSort ());
+					
+					Gdk.Pixbuf black = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, false, 8, 1, 1);
+					black.Fill (0x00000000);
+					slideview = new SlideView (black, photos);
+					window.Add (slideview);
+				} else {
+					Gtk.Table table = new Gtk.Table (3, 3, false);
+					Gtk.HBox hbox = new Gtk.HBox ();
+					table.Attach (new Gtk.HBox (), 0, 1, 0, 1);
+					table.Attach (new Gtk.HBox (), 2, 3, 2, 3);
+					table.Attach (hbox, 1, 2, 1, 2);
+					hbox.PackStart (new Gtk.Image (Gtk.Stock.DialogWarning, Gtk.IconSize.Dialog),
+							false, false, 0);
+					string msg = Mono.Posix.Catalog.GetString ("No matching photos found");
+					Gtk.Label label = new Gtk.Label (msg);
+					label.LineWrap = true;
+					hbox.PackStart (label, false, false, 0);
+					window.Add (table);
+					SetStyle (label);
+					//SetStyle (image);
+				}
 				window.ShowAll ();
+			}
+
+			private void SetStyle (Gtk.Widget w) 
+			{
+				w.ModifyFg (Gtk.StateType.Normal, new Gdk.Color (127, 127, 127));
+				w.ModifyBg (Gtk.StateType.Normal, new Gdk.Color (0, 0, 0));
 			}
 
 			public bool Execute ()
 			{
-				slideview.Play ();
+				if (slideview != null)
+					slideview.Play ();
 				return false;
 			}
 		}
