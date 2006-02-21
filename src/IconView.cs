@@ -839,9 +839,9 @@ public class IconView : Gtk.Layout {
 		if (DisplayDates) {
 			string date;
 			if (cell_width > 200) {
-				date = photo.Time.ToString ();
+				date = photo.Time.ToLocalTime ().ToString ();
 			} else {
-				date = photo.Time.ToShortDateString ();
+				date = photo.Time.ToLocalTime ().ToShortDateString ();
 			}
 
 			Pango.Layout layout = (Pango.Layout)date_layouts [date];

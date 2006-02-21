@@ -1,8 +1,19 @@
+2006-02-21  Larry Ewing  <lewing@novell.com>
+
+	* src/IconView.cs: convert times to LocalTime.
+
+	* src/Ciff.cs:
+	* src/JpegFile.cs:
+	* src/MrwFile.cs: comvert to UniversalTime.
+
+	* src/Tiff.cs: convert Date to UniversalTime.  Remove cr2 date
+	override.
+
 2006-02-20  Larry Ewing  <lewing@novell.com>
 
 	* src/MainWindow.cs: update tag entry when a tag is edited. fixes
 	#329683
-
+	
 	* src/PreferenceDialog.cs: make sure we handle a null value.
 
 	* src/Core.cs: add a register call back into the slideview.

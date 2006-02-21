@@ -416,13 +416,12 @@ namespace FSpot.Ciff {
 				ImageDirectory props = Root.ReadDirectory (Tag.ImageProps);
 				byte [] date = props.ReadEntry (Tag.TimeStamp);
 
-				if (date == null)
-					return base.Date;
-				else 
+				if (date == null) {
 					System.Console.WriteLine ("NO DATE");
+					return base.Date;
+				}
 
-
-				return new CaptureTime (date, little).LocalTime;
+				return new CaptureTime (date, little).LocalTime.ToUniversalTime ();
 			}
 		}
 

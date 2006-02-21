@@ -236,7 +236,7 @@ namespace FSpot {
 						if (time_str == null || time_str == "") 
 							time_str = ed.LookupFirstValue (Exif.Tag.DateTime);
 
-						time = Exif.ExifUtil.DateTimeFromString (time_str).ToUniversalTime (); 
+						time = Exif.ExifUtil.DateTimeFromString (time_str); 
 #else
 						TiffHeader tiff = Header.GetExifHeader ();
 						SubdirectoryEntry sub = (SubdirectoryEntry) tiff.Directory.Lookup (TagId.ExifIfdPointer);
@@ -246,13 +246,13 @@ namespace FSpot {
 							e = sub.Directory [0].Lookup (TagId.DateTimeOriginal);
 							
 							if (e != null)
-								return DirectoryEntry.DateTimeFromString (e.StringValue);
+								return DirectoryEntry.DateTimeFromString (e.StringValue).ToUniversalTime ();
 						}
 						
 						e = tiff.Directory.Lookup (TagId.DateTime);
 
 						if (e != null)
-							return DirectoryEntry.DateTimeFromString (e.StringValue);
+							return DirectoryEntry.DateTimeFromString (e.StringValue).ToUniversalTime ();
 						
 						return base.Date;
 #endif

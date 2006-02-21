@@ -1797,13 +1797,13 @@ namespace FSpot.Tiff {
 					e = sub.Directory [0].Lookup (TagId.DateTimeOriginal);
 					
 					if (e != null)
-						return DirectoryEntry.DateTimeFromString (e.StringValue);
+						return DirectoryEntry.DateTimeFromString (e.StringValue).ToUniversalTime ();
 				}
 
 				e = this.Header.Directory.Lookup (TagId.DateTime);
 
 				if (e != null)
-					return DirectoryEntry.DateTimeFromString (e.StringValue);
+					return DirectoryEntry.DateTimeFromString (e.StringValue).ToUniversalTime ();
 				else
 					return base.Date;
 			}
@@ -2055,20 +2055,6 @@ namespace FSpot.Tiff {
 		{
 			return DCRawFile.Load (this.Path, null);
 		}
-
-		public override System.DateTime Date
-		{
-			get {
-				SubdirectoryEntry sub = (SubdirectoryEntry) this.Header.Directory.Lookup (TagId.ExifIfdPointer);
-				DirectoryEntry e = sub.Directory [0].Lookup (TagId.DateTimeOriginal);
-				
-				if (e != null)
-					return DirectoryEntry.DateTimeFromString (e.StringValue);
-				else
-					return base.Date;
-			}
-		}
-
 	}
 }
 
