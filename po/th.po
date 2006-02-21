@@ -1,0 +1,2113 @@
+# Thai translation of F-Spot.
+# Copyright (C) 2006 Free Software Foundation, Inc.
+# This file is distributed under the same license as the F-Spot package.
+# Isriya Paireepairit <markpeak@gmail.com>, 2006.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: F-Spot VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-02-06 10:18+0100\n"
+"PO-Revision-Date: 2006-02-21 16:37+0700\n"
+"Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
+"Language-Team: Thai <l10n@opentle.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;"
+
+#: ../f-spot.desktop.in.in.h:1
+msgid "F-Spot Photo Manager"
+msgstr "F-Spot: โปรแกรมจัดการรูปถ่าย"
+
+#: ../f-spot.desktop.in.in.h:2
+msgid "Organize, enjoy, and share your photos"
+msgstr ""
+
+#: ../f-spot.desktop.in.in.h:3
+msgid "Photo Manager"
+msgstr "โปรแกรมจัดการรูปถ่าย"
+
+#: ../f-spot-view.desktop.in.h:1 ../src/f-spot.glade.h:90
+msgid "F-Spot Photo Viewer"
+msgstr ""
+
+#: ../f-spot-view.desktop.in.h:2
+msgid "Photo Viewer"
+msgstr ""
+
+#: ../libeog/eog-file-selection.c:29 ../libeog/eog-file-selection.c:46
+msgid "By Extension"
+msgstr ""
+
+#: ../libeog/eog-file-selection.c:30
+msgid "BMP"
+msgstr "BMP"
+
+#: ../libeog/eog-file-selection.c:31
+msgid "GIF"
+msgstr "GIF"
+
+#: ../libeog/eog-file-selection.c:32
+msgid "ICO"
+msgstr "ICO"
+
+#: ../libeog/eog-file-selection.c:33 ../libeog/eog-file-selection.c:48
+msgid "JPEG"
+msgstr "JPEG"
+
+#: ../libeog/eog-file-selection.c:34 ../libeog/eog-file-selection.c:51
+msgid "PNG"
+msgstr "PNG"
+
+#: ../libeog/eog-file-selection.c:35
+msgid "PNM"
+msgstr "PNM"
+
+#: ../libeog/eog-file-selection.c:36
+msgid "RAS"
+msgstr "RAS"
+
+#: ../libeog/eog-file-selection.c:37
+msgid "SVG"
+msgstr "SVG"
+
+#: ../libeog/eog-file-selection.c:38
+msgid "TGA"
+msgstr "TGA"
+
+#: ../libeog/eog-file-selection.c:39
+msgid "TIFF"
+msgstr "TIFF"
+
+#: ../libeog/eog-file-selection.c:40
+msgid "XBM"
+msgstr "XBM"
+
+#: ../libeog/eog-file-selection.c:41 ../libeog/eog-file-selection.c:54
+msgid "XPM"
+msgstr "XPM"
+
+#: ../libeog/eog-file-selection.c:207
+msgid "Unsupported file format."
+msgstr "ไม่สนับสนุนแฟ้มชนิดนี้"
+
+#: ../libeog/eog-file-selection.c:225
+msgid "Determine File Type:"
+msgstr ""
+
+#: ../libeog/eog-file-selection.c:268
+msgid "Load Image"
+msgstr ""
+
+#: ../libeog/eog-file-selection.c:274
+msgid "Save Image"
+msgstr "บันทึกรูปภาพ"
+
+#: ../libeog/eog-image.c:773
+msgid "No image loaded."
+msgstr ""
+
+#: ../libeog/eog-image.c:780
+msgid "Can't save non local files."
+msgstr ""
+
+#: ../libeog/eog-image.c:803
+msgid "Unsupported image type for saving."
+msgstr ""
+
+#: ../libeog/image-view.c:2116
+msgid "interpolation type"
+msgstr ""
+
+#: ../libeog/image-view.c:2117
+msgid "the type of interpolation to use"
+msgstr ""
+
+#: ../libeog/image-view.c:2123 ../libeog/image-view.c:2130
+msgid "check type"
+msgstr ""
+
+#: ../libeog/image-view.c:2124
+msgid "the type of chequering to use"
+msgstr ""
+
+#: ../libeog/image-view.c:2131
+msgid "the size of chequers to use"
+msgstr ""
+
+#: ../libeog/image-view.c:2137
+msgid "dither"
+msgstr ""
+
+#: ../libeog/image-view.c:2138
+msgid "dither type"
+msgstr ""
+
+#: ../libfspot/f-jpeg-utils.c:445
+msgid "File not found"
+msgstr "ไม่พบแฟ้ม"
+
+#: ../libfspot/f-jpeg-utils.c:468
+#, c-format
+msgid "Unknown transform type %d"
+msgstr ""
+
+#: ../libfspot/f-jpeg-utils.c:476
+msgid "Operation failed"
+msgstr ""
+
+#: ../src/CameraFileSelectionDialog.cs:65
+msgid "Preview"
+msgstr "ภาพตัวอย่าง"
+
+#: ../src/CameraFileSelectionDialog.cs:67
+msgid "Path"
+msgstr "พาธ"
+
+#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:93
+msgid "File"
+msgstr "แฟ้ม"
+
+#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:703
+msgid "Index"
+msgstr "ดัชนี"
+
+#: ../src/CameraFileSelectionDialog.cs:87
+msgid "Downloading Previews"
+msgstr "กำลังดาวน์โหลดภาพตัวอย่าง"
+
+#: ../src/CameraFileSelectionDialog.cs:95
+#, csharp-format
+msgid "Downloading Preview of {0}"
+msgstr ""
+
+#: ../src/CameraFileSelectionDialog.cs:147
+msgid "Unknown destination."
+msgstr ""
+
+#: ../src/CameraFileSelectionDialog.cs:148
+msgid ""
+"When copying files from a camera you must select a valid destination on the "
+"local filesystem"
+msgstr ""
+
+#: ../src/CameraFileSelectionDialog.cs:166
+msgid "Unable to create directory."
+msgstr ""
+
+#: ../src/CameraFileSelectionDialog.cs:167
+#, csharp-format
+msgid ""
+"Error \"{0}\" while creating directory \"{1}\".  Check that the path and "
+"permissions are correct and try again"
+msgstr ""
+
+#: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:139
+#: ../src/FolderExport.cs:264
+msgid "Transferring Pictures"
+msgstr ""
+
+#: ../src/CameraFileSelectionDialog.cs:211
+#, csharp-format
+msgid "Copying file {0} of {1}"
+msgstr ""
+
+#: ../src/CameraFileSelectionDialog.cs:221
+msgid "Done Copying Files"
+msgstr ""
+
+#: ../src/CameraFileSelectionDialog.cs:223
+msgid "Download Complete"
+msgstr "ดาวน์โหลดเสร็จสิ้น"
+
+#: ../src/CameraFileSelectionDialog.cs:228
+msgid "Error transferring file"
+msgstr ""
+
+#: ../src/CameraFileSelectionDialog.cs:249
+#, csharp-format
+msgid "Transferring \"{0}\" from camera"
+msgstr ""
+
+#: ../src/CameraFileSelectionDialog.cs:275
+msgid "Select Destination"
+msgstr ""
+
+#: ../src/CameraSelectionDialog.cs:27 ../src/StockIcons.cs:27
+msgid "Camera"
+msgstr "กล้อง"
+
+#: ../src/CameraSelectionDialog.cs:28
+msgid "Port"
+msgstr "พอร์ต"
+
+#: ../src/CDExport.cs:57
+#, csharp-format
+msgid "Transferring picture \"{0}\" To CD"
+msgstr ""
+
+#. This indicates the current photo is photo {0} of {1} out of photos
+#: ../src/CDExport.cs:59 ../src/FlickrExport.cs:91 ../src/GalleryExport.cs:587
+#: ../src/ProgressDialog.cs:75 ../src/TimeDialog.cs:130
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} จาก {1}"
+
+#: ../src/CDExport.cs:71 ../src/FlickrExport.cs:96 ../src/FolderExport.cs:176
+#: ../src/GalleryExport.cs:602
+msgid "Done Sending Photos"
+msgstr ""
+
+#: ../src/CDExport.cs:73 ../src/FolderExport.cs:178
+msgid "Transfer Complete"
+msgstr ""
+
+#: ../src/CDExport.cs:79 ../src/FolderExport.cs:183
+msgid "Error While Transferring"
+msgstr ""
+
+#: ../src/CDExport.cs:84 ../src/FolderExport.cs:189
+msgid "Error Transferring"
+msgstr ""
+
+#: ../src/CDExport.cs:99 ../src/FolderExport.cs:215
+msgid "Error: Error while transferring; Aborting"
+msgstr ""
+
+#: ../src/CDExport.cs:102 ../src/FolderExport.cs:218
+msgid "Error: File Already Exists; Aborting"
+msgstr ""
+
+#: ../src/ColorDialog.cs:301
+msgid "Error saving adjusted photo"
+msgstr ""
+
+#: ../src/ColorDialog.cs:302 ../src/Loupe.cs:53 ../src/MainWindow.cs:1712
+#: ../src/PhotoView.cs:337
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to save photo {1}"
+msgstr ""
+
+#: ../src/Exif.cs:226
+msgid "Image Directory"
+msgstr ""
+
+#: ../src/Exif.cs:228
+msgid "Thumbnail Directory"
+msgstr ""
+
+#: ../src/Exif.cs:230
+msgid "Exif Directory"
+msgstr ""
+
+#: ../src/Exif.cs:232
+msgid "GPS Directory"
+msgstr ""
+
+#: ../src/Exif.cs:234
+msgid "InterOperability Directory"
+msgstr ""
+
+#: ../src/Exif.cs:236
+msgid "Unknown Directory"
+msgstr ""
+
+#: ../src/FlickrExport.cs:86 ../src/GalleryExport.cs:583
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr ""
+
+#: ../src/FlickrExport.cs:98 ../src/GalleryExport.cs:604
+msgid "Upload Complete"
+msgstr ""
+
+#: ../src/FlickrExport.cs:103
+msgid "Error Uploading To Flickr"
+msgstr ""
+
+#: ../src/FlickrExport.cs:144
+msgid "Unable to log on."
+msgstr ""
+
+#: ../src/FlickrExport.cs:145
+msgid ""
+"F-Spot was unable to log on to Flickr.  Make sure you have given the "
+"authentication using Flickr web browser interface."
+msgstr ""
+
+#: ../src/FlickrExport.cs:158 ../src/GalleryExport.cs:547
+msgid "Uploading Pictures"
+msgstr ""
+
+#: ../src/FolderExport.cs:105
+msgid "Select Export Folder"
+msgstr ""
+
+#: ../src/FolderExport.cs:138
+msgid "Building Gallery"
+msgstr ""
+
+#. Abbreviation of previous
+#: ../src/FolderExport.cs:701
+msgid "Prev"
+msgstr "ก่อนหน้า"
+
+#: ../src/FolderExport.cs:706 ../src/f-spot.glade.h:115
+msgid "Next"
+msgstr "ถัดไป"
+
+#: ../src/FolderExport.cs:814
+msgid "Gallery generated by"
+msgstr ""
+
+#: ../src/FolderExport.cs:857
+msgid "Page:"
+msgstr "หน้า:"
+
+#: ../src/FullScreenView.cs:102
+msgid "Exit fullscreen"
+msgstr "ออกจากเต็มหน้าจอ"
+
+#: ../src/f-spot.glade.h:1
+msgid "\n"
+msgstr "\n"
+
+#: ../src/f-spot.glade.h:3
+msgid " "
+msgstr " "
+
+#: ../src/f-spot.glade.h:4
+msgid "..."
+msgstr "..."
+
+#: ../src/f-spot.glade.h:5
+msgid "0000:00:00 00:00:00"
+msgstr ""
+
+#: ../src/f-spot.glade.h:6
+msgid "00:00:00"
+msgstr ""
+
+#: ../src/f-spot.glade.h:7
+msgid "5"
+msgstr ""
+
+#: ../src/f-spot.glade.h:8
+msgid "<b></b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:9
+msgid "<b>Account</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:10
+msgid "<b>Action</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:11
+msgid "<b>Album</b>"
+msgstr "<b>อัลบั้ม</b>"
+
+#: ../src/f-spot.glade.h:12
+msgid "<b>Co_rrections</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:13
+msgid "<b>Color Management</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:14
+msgid "<b>Color Temperature</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:15
+msgid "<b>Destination</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:16
+msgid "<b>End Date</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:17
+msgid "<b>Export Method</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:18
+msgid "<b>Exposure</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:19
+msgid "<b>From Photo</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:20
+msgid "<b>Gallery</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:21
+msgid "<b>Histo_gram</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:22
+msgid "<b>Histogram</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:23
+msgid "<b>Metadata</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:24
+msgid "<b>Photograph Layout</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:25
+msgid "<b>Photos to Burn</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:26
+msgid "<b>Photos</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:27
+msgid "<b>Predefined</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:28
+msgid "<b>Preview</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:29
+msgid "<b>Printer Details</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:30
+msgid "<b>Reference Photo</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:31
+msgid "<b>Start Date</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:32
+msgid "<b>Style</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:33
+msgid "<b>_White Balance</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:34
+msgid "<small> </small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:35
+msgid "<small>1 of 1</small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:36
+msgid "<small></small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:37
+msgid ""
+"<small><i>Enable this option to store tags and descriptions inside \n"
+"supported image formats.</i></small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:39
+msgid "<small>C_ontrast:</small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:40
+msgid "<small>Te_mp:</small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:41
+msgid "<small>_Brightness:</small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:42
+msgid "<small>_Exposure:</small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:43
+msgid "<small>_Hue:</small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:44
+msgid "<small>_Saturation:</small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:45
+msgid "<small>_Tint:</small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:46
+msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
+msgstr ""
+
+#: ../src/f-spot.glade.h:48
+msgid "Ad_just Color..."
+msgstr "ปรับ_สี..."
+
+#: ../src/f-spot.glade.h:49
+msgid "Adjust Color"
+msgstr "ปรับสี"
+
+#: ../src/f-spot.glade.h:50
+msgid "Adjust Time"
+msgstr "แก้ไขเวลา"
+
+#: ../src/f-spot.glade.h:51
+msgid "Adjust _Time"
+msgstr "แก้ไขเ_วลา"
+
+#: ../src/f-spot.glade.h:52
+msgid "Appears to have been taken on:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:53
+msgid "Arranged _by"
+msgstr "เ_รียงตาม"
+
+#: ../src/f-spot.glade.h:54
+msgid "Attach tag:"
+msgstr "ป้ายที่มี:"
+
+#: ../src/f-spot.glade.h:55
+msgid "Authorize"
+msgstr ""
+
+#: ../src/f-spot.glade.h:56 ../src/StockIcons.cs:26
+msgid "Browse"
+msgstr ""
+
+#: ../src/f-spot.glade.h:57
+msgid "CD"
+msgstr "ซีดี"
+
+#: ../src/f-spot.glade.h:58
+msgid "C_aption:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:59
+msgid "C_ontrast:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:60
+msgid "Camera Selection"
+msgstr "เลือกกล้องดิจิทัล"
+
+#: ../src/f-spot.glade.h:61
+msgid "Co_nfigure"
+msgstr "_ตั้งค่า"
+
+#: ../src/f-spot.glade.h:62
+msgid "Copy Locat_ion"
+msgstr "คัดลอก_ที่อยู่"
+
+#: ../src/f-spot.glade.h:63
+msgid "Copy _Files to: "
+msgstr "คัดลอกแ_ฟ้มไปยัง:"
+
+#: ../src/f-spot.glade.h:64
+msgid "Copy file to the Photos folder"
+msgstr ""
+
+#: ../src/f-spot.glade.h:65
+msgid "Create CD"
+msgstr "สร้างซีดี"
+
+#: ../src/f-spot.glade.h:66
+msgid "Create New _Tag..."
+msgstr "สร้าง_ป้ายใหม่..."
+
+#: ../src/f-spot.glade.h:67
+msgid "Create _New Version..."
+msgstr "สร้างเ_วอร์ชันใหม่..."
+
+#: ../src/f-spot.glade.h:68
+msgid "Create _gallery using \"Original\""
+msgstr ""
+
+#: ../src/f-spot.glade.h:69
+msgid "Create standalone _web gallery"
+msgstr ""
+
+#: ../src/f-spot.glade.h:70
+msgid "Crop photo to _fit"
+msgstr ""
+
+#: ../src/f-spot.glade.h:71
+msgid "D_escription:"
+msgstr "_คำอธิบาย:"
+
+#: ../src/f-spot.glade.h:72
+msgid "Directory"
+msgstr "ไดเรคทอรี"
+
+#: ../src/f-spot.glade.h:73
+msgid "Display Side_bar"
+msgstr "แสดงแถบ_ข้าง"
+
+#: ../src/f-spot.glade.h:74
+msgid "Display T_ags"
+msgstr "แสดง_ป้าย"
+
+#: ../src/f-spot.glade.h:75
+msgid "Display Too_lbar"
+msgstr "แสดงแ_ถบเครื่องมือ"
+
+#: ../src/f-spot.glade.h:76
+msgid "Display _Dates"
+msgstr "แสดง_วันที่"
+
+#: ../src/f-spot.glade.h:77
+msgid "Display _Timeline"
+msgstr "แสดงแถบเว_ลา"
+
+#: ../src/f-spot.glade.h:78
+msgid "E-_Mail:"
+msgstr "อีเ_มล:"
+
+#: ../src/f-spot.glade.h:79
+msgid "E_xport titles and comments"
+msgstr ""
+
+#: ../src/f-spot.glade.h:80
+msgid "E_xport to CD..."
+msgstr "ส่งออกเป็_นซีดี..."
+
+#: ../src/f-spot.glade.h:81
+msgid "Edit Tag Icon"
+msgstr ""
+
+#: ../src/f-spot.glade.h:82
+msgid "Edit icon"
+msgstr "แก้ไขไอคอน"
+
+#: ../src/f-spot.glade.h:83
+msgid "Export"
+msgstr "ส่งออก"
+
+#: ../src/f-spot.glade.h:84
+msgid "Export _titles and comments"
+msgstr ""
+
+#: ../src/f-spot.glade.h:85
+msgid "Export to _Flickr..."
+msgstr "ส่งออกไป_Flickr..."
+
+#: ../src/f-spot.glade.h:86
+msgid "Export to _Folder..."
+msgstr "ส่งออกไปโ_ฟลเดอร์..."
+
+#: ../src/f-spot.glade.h:87
+msgid "Export to _Web Gallery..."
+msgstr ""
+
+#: ../src/f-spot.glade.h:88
+msgid "F-Spot"
+msgstr "F-Spot"
+
+#: ../src/f-spot.glade.h:89
+msgid "F-Spot Photo Album"
+msgstr "อัลบั้มรูป F-Spot"
+
+#: ../src/f-spot.glade.h:91
+msgid "F-Spot View"
+msgstr ""
+
+#: ../src/f-spot.glade.h:92
+msgid ""
+"F-Spot needs your authorization in order to upload photos to your Flickr "
+"account. Press the button \"Authorize\" to open a web browser and give F-"
+"Spot the authorization. Close the browser and press \"Continue\" to start "
+"the export process."
+msgstr ""
+
+#: ../src/f-spot.glade.h:94
+msgid "Fin_d"
+msgstr "ค้น_หา"
+
+#: ../src/f-spot.glade.h:95
+msgid "Find by _Tag"
+msgstr "ค้นหาโดย_ป้าย"
+
+#: ../src/f-spot.glade.h:96
+msgid "Folder Export"
+msgstr "ส่งออกโฟลเดอร์"
+
+#: ../src/f-spot.glade.h:97
+msgid ""
+"From Screen\n"
+"Standard RGB"
+msgstr ""
+
+#: ../src/f-spot.glade.h:99
+msgid ""
+"Full Page\n"
+"Standard - 4x6"
+msgstr ""
+
+#: ../src/f-spot.glade.h:101
+msgid "G_allery Name:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:102
+msgid "G_allery:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:103
+msgid "Gallery"
+msgstr ""
+
+#: ../src/f-spot.glade.h:104
+msgid ""
+"Hairline\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
+msgstr ""
+
+#: ../src/f-spot.glade.h:109
+msgid "Import"
+msgstr "นำเข้า"
+
+#: ../src/f-spot.glade.h:110
+msgid "Import Source:"
+msgstr "ข้อมูลที่จะนำเข้า:"
+
+#: ../src/f-spot.glade.h:111
+msgid "Import photos"
+msgstr "นำเข้ารูปภาพ"
+
+#: ../src/f-spot.glade.h:112
+msgid "Include subdirectories"
+msgstr ""
+
+#: ../src/f-spot.glade.h:113 ../src/InfoDisplay.cs:11
+msgid "Metadata Browser"
+msgstr ""
+
+#: ../src/f-spot.glade.h:114
+msgid "N_umber of Copies:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:116
+msgid ""
+"None\n"
+"Title\n"
+"Filename\n"
+"Date\n"
+"Photo Details"
+msgstr ""
+
+#: ../src/f-spot.glade.h:121
+msgid "Open _album in browser when done uploading"
+msgstr ""
+
+#: ../src/f-spot.glade.h:122
+msgid "Open _destination when done exporting"
+msgstr ""
+
+#: ../src/f-spot.glade.h:123
+msgid "P_arent Tag:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:124
+msgid "P_hoto Source:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:125
+msgid "Page 1 of 3"
+msgstr ""
+
+#: ../src/f-spot.glade.h:126
+msgid "Pause"
+msgstr ""
+
+#: ../src/f-spot.glade.h:127
+msgid "Photo 0 of 0"
+msgstr "รูป 0 จาก 0"
+
+#: ../src/f-spot.glade.h:128
+msgid "Photo _Size:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:129
+msgid "Please verify that the settings for this gallery are correct."
+msgstr ""
+
+#: ../src/f-spot.glade.h:130
+msgid "Preferences"
+msgstr "ปรับแต่ง"
+
+#: ../src/f-spot.glade.h:131
+msgid "Previous"
+msgstr "ก่อนหน้า"
+
+#: ../src/f-spot.glade.h:132
+msgid "Print"
+msgstr "พิมพ์"
+
+#: ../src/f-spot.glade.h:133
+msgid "Print crop _marks"
+msgstr ""
+
+#: ../src/f-spot.glade.h:134
+msgid "Re_fresh Thumbnail"
+msgstr ""
+
+#: ../src/f-spot.glade.h:135
+msgid "Rem_ove Tag"
+msgstr ""
+
+#: ../src/f-spot.glade.h:136 ../src/StockIcons.cs:37
+msgid "Rotate _Left"
+msgstr "หมุนซ้า_ย"
+
+#: ../src/f-spot.glade.h:137 ../src/StockIcons.cs:38
+msgid "Rotate _Right"
+msgstr "หมุน_ขวา"
+
+#: ../src/f-spot.glade.h:138
+msgid "Select Photos to Copy From Camera..."
+msgstr "เลือกรูปที่ต้องการคัดลอกจากกล้องดิจิทัล..."
+
+#: ../src/f-spot.glade.h:139
+msgid "Select _All"
+msgstr "เลือก_ทั้งหมด"
+
+#: ../src/f-spot.glade.h:140
+msgid "Select _None"
+msgstr "ไม่เลือกทั้ง_หมด"
+
+#: ../src/f-spot.glade.h:141
+msgid "Select a Tag..."
+msgstr "เลือกป้าย..."
+
+#: ../src/f-spot.glade.h:142
+msgid "Select the camera from which you want to transfer files"
+msgstr "เลือกกล้องที่ต้องการเคลื่อนย้ายแฟ้ม"
+
+#: ../src/f-spot.glade.h:143
+msgid "Selected Camera: "
+msgstr "กล้องที่เลือก:"
+
+#: ../src/f-spot.glade.h:144
+msgid ""
+"Selection\n"
+"Gallery\n"
+"Viewport"
+msgstr ""
+
+#: ../src/f-spot.glade.h:147
+msgid "Send _Mail..."
+msgstr "ส่งเป็น_อีเมล..."
+
+#: ../src/f-spot.glade.h:148
+msgid "Set Date Range"
+msgstr "กำหนดช่วงเวลา"
+
+#: ../src/f-spot.glade.h:149
+msgid "Set _Date Range..."
+msgstr "กำหนด_ช่วงเวลา..."
+
+#: ../src/f-spot.glade.h:150
+msgid "Set as _Background"
+msgstr "ตั้งเป็น_พื้นหลัง"
+
+#: ../src/f-spot.glade.h:151 ../src/TimeDialog.cs:113
+#, csharp-format
+msgid "Shift all photos by {0}"
+msgstr ""
+
+#: ../src/f-spot.glade.h:152
+msgid "Show or hide the side pane"
+msgstr "แสดงหรือซ่อนแถบข้าง"
+
+#: ../src/f-spot.glade.h:153
+msgid "Show or hide the toolbar"
+msgstr "แสดงหรือซ่อนแถบเครื่องมือ"
+
+#: ../src/f-spot.glade.h:154
+msgid "Side _pane"
+msgstr ""
+
+#: ../src/f-spot.glade.h:155
+msgid "So_urce Temp"
+msgstr ""
+
+#: ../src/f-spot.glade.h:156
+msgid "Space all photos by"
+msgstr ""
+
+#: ../src/f-spot.glade.h:157
+msgid ""
+"Standard RGB\n"
+"Image Profile\n"
+"Custom\n"
+msgstr ""
+
+#: ../src/f-spot.glade.h:161
+msgid "Strip _metadata"
+msgstr ""
+
+#: ../src/f-spot.glade.h:162
+msgid "Strip image _metadata"
+msgstr ""
+
+#: ../src/f-spot.glade.h:163
+msgid "Tags: "
+msgstr "ป้าย:"
+
+#: ../src/f-spot.glade.h:164
+msgid "Toolbar"
+msgstr "แถบเครื่องมือ"
+
+#: ../src/f-spot.glade.h:165
+msgid "U_RL:"
+msgstr "U_RL:"
+
+#: ../src/f-spot.glade.h:166
+msgid "View"
+msgstr ""
+
+#: ../src/f-spot.glade.h:167
+msgid "Was actually taken on: "
+msgstr "ถ่ายเมื่อ:"
+
+#: ../src/f-spot.glade.h:168
+msgid "Will print using: US Letter size on Generic Postscript"
+msgstr ""
+
+#: ../src/f-spot.glade.h:169
+msgid "Write _metadata to file"
+msgstr "เ_ขียนข้อมูลภาพลงในแฟ้ม"
+
+#: ../src/f-spot.glade.h:170
+msgid "Zoom _in"
+msgstr "_ขยาย"
+
+#: ../src/f-spot.glade.h:171
+msgid "Zoom _out"
+msgstr "_ย่อ"
+
+#: ../src/f-spot.glade.h:172
+msgid "Zoom in"
+msgstr "ขยาย"
+
+#: ../src/f-spot.glade.h:173
+msgid "Zoom out"
+msgstr "ย่อ"
+
+#: ../src/f-spot.glade.h:174
+msgid "_Album Name:"
+msgstr "ชื่อ_อัลบั้ม:"
+
+#: ../src/f-spot.glade.h:175
+msgid "_Attach Tag"
+msgstr "แ_ปะป้าย"
+
+#: ../src/f-spot.glade.h:176
+msgid "_Attach Tag to Selection"
+msgstr "แ_ปะป้ายให้รูปที่เลือก"
+
+#: ../src/f-spot.glade.h:177
+msgid "_Border:"
+msgstr "_ขอบ:"
+
+#: ../src/f-spot.glade.h:178
+msgid "_Brightness:"
+msgstr "ความ_สว่าง:"
+
+#: ../src/f-spot.glade.h:179
+msgid "_Browse Previously Scheduled Files"
+msgstr ""
+
+#: ../src/f-spot.glade.h:180
+msgid "_Clear Date Range"
+msgstr "เ_ลิกกำหนดช่วงเวลา"
+
+#: ../src/f-spot.glade.h:181
+msgid "_Close"
+msgstr "ปิ_ด"
+
+#: ../src/f-spot.glade.h:182
+msgid "_Delete From Drive"
+msgstr "_ลบจากดิสก์"
+
+#: ../src/f-spot.glade.h:183
+msgid "_Delete Selected Tag"
+msgstr "_ลบป้ายที่เลือก"
+
+#: ../src/f-spot.glade.h:184
+msgid "_Delete Version"
+msgstr "_ลบเวอร์ชัน"
+
+#: ../src/f-spot.glade.h:185
+msgid "_Description:"
+msgstr "_คำอธิบาย:"
+
+#: ../src/f-spot.glade.h:186
+msgid "_Destination Temp"
+msgstr ""
+
+#: ../src/f-spot.glade.h:187
+msgid "_Directory"
+msgstr "ไ_ดเรกทอรี"
+
+#: ../src/f-spot.glade.h:188
+msgid "_Display:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:189
+msgid "_Edit Selected Tag..."
+msgstr "แ_ก้ไขป้ายที่เลือก..."
+
+#: ../src/f-spot.glade.h:190
+msgid "_Export"
+msgstr "_ส่งออก"
+
+#: ../src/f-spot.glade.h:191
+msgid "_Export tags"
+msgstr ""
+
+#: ../src/f-spot.glade.h:192
+msgid "_Export to Album:"
+msgstr "_ส่งออกเป็นอัลบั้ม:"
+
+#: ../src/f-spot.glade.h:193
+msgid "_Flickr"
+msgstr "_Flickr"
+
+#: ../src/f-spot.glade.h:194
+msgid "_Folder:"
+msgstr "โ_ฟลเดอร์"
+
+#: ../src/f-spot.glade.h:195
+msgid "_Fullscreen"
+msgstr "เ_ต็มหน้าจอ"
+
+#: ../src/f-spot.glade.h:196
+msgid "_Gallery"
+msgstr ""
+
+#: ../src/f-spot.glade.h:197
+msgid "_Gallery Name:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:198
+msgid "_Gallery:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:199
+msgid "_Hue:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:200
+msgid "_Icon:"
+msgstr "ไ_อคอน:"
+
+#: ../src/f-spot.glade.h:201
+msgid "_Import files after copy"
+msgstr ""
+
+#: ../src/f-spot.glade.h:202
+msgid "_Import..."
+msgstr "_นำเข้า..."
+
+#: ../src/f-spot.glade.h:203
+msgid "_Metadata Browser"
+msgstr "ตัวแ_สดงข้อมูลรูปภาพ"
+
+#: ../src/f-spot.glade.h:204
+msgid "_Month"
+msgstr "เ_ดือน"
+
+#: ../src/f-spot.glade.h:205
+msgid "_Open album in browser when done uploading"
+msgstr ""
+
+#: ../src/f-spot.glade.h:206
+msgid "_Open destination when done exporting"
+msgstr ""
+
+#: ../src/f-spot.glade.h:207
+msgid "_Output:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:208
+msgid "_Parent Album:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:209
+msgid "_Password:"
+msgstr "รหัส_ผ่าน:"
+
+#: ../src/f-spot.glade.h:210
+msgid "_Prefix: "
+msgstr ""
+
+#: ../src/f-spot.glade.h:211
+msgid "_Print..."
+msgstr "_พิมพ์..."
+
+#: ../src/f-spot.glade.h:212
+msgid "_Remove From Catalog"
+msgstr "_ลบจากแค็ตตาล็อก"
+
+#: ../src/f-spot.glade.h:213
+msgid "_Remove Tag From Selection"
+msgstr "_ลบป้ายของรูปที่เลือก"
+
+#: ../src/f-spot.glade.h:214
+msgid "_Rename Version"
+msgstr "เปลี่ยน_ชื่อเวอร์ชัน"
+
+#: ../src/f-spot.glade.h:215
+msgid "_Resize to: "
+msgstr "_ปรับขนาดเป็น:"
+
+#: ../src/f-spot.glade.h:216
+msgid "_Saturation:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:217
+msgid "_Save the files only"
+msgstr ""
+
+#: ../src/f-spot.glade.h:218
+msgid "_Scale photos to no larger than: "
+msgstr ""
+
+#: ../src/f-spot.glade.h:219
+msgid "_Select Tags..."
+msgstr "เลือก_ป้าย..."
+
+#: ../src/f-spot.glade.h:220
+msgid "_Sharpen..."
+msgstr ""
+
+#: ../src/f-spot.glade.h:221
+msgid "_Slideshow"
+msgstr "แสดง_สไลด์"
+
+#: ../src/f-spot.glade.h:222
+msgid "_Strip metadata"
+msgstr ""
+
+#: ../src/f-spot.glade.h:223
+msgid "_Tag Name:"
+msgstr "ชื่อ_ป้าย:"
+
+#: ../src/f-spot.glade.h:224
+msgid "_Tags"
+msgstr "_ป้าย"
+
+#: ../src/f-spot.glade.h:225
+msgid "_Title:"
+msgstr "_ชื่อ:"
+
+#: ../src/f-spot.glade.h:226
+msgid "_URI:"
+msgstr "_URI:"
+
+#: ../src/f-spot.glade.h:227
+msgid "_Untagged Photos"
+msgstr "รูปไ_ม่มีป้าย"
+
+#: ../src/f-spot.glade.h:228
+msgid "_Username:"
+msgstr "_ชื่อผู้ใช้:"
+
+#: ../src/f-spot.glade.h:229
+msgid "_Version"
+msgstr "เ_วอร์ชัน"
+
+#: ../src/f-spot.glade.h:230
+msgid "_View"
+msgstr "_มุมมอง"
+
+#: ../src/f-spot.glade.h:231
+msgid "_View photos in browser when done uploading"
+msgstr ""
+
+#: ../src/f-spot.glade.h:232
+msgid "_Virtual Filesystem"
+msgstr ""
+
+#: ../src/f-spot.glade.h:233
+msgid "_Write only these photos to CD"
+msgstr ""
+
+#: ../src/f-spot.glade.h:234
+msgid "dialog1"
+msgstr ""
+
+#: ../src/f-spot.glade.h:235
+msgid "for a difference of"
+msgstr ""
+
+#: ../src/f-spot.glade.h:236
+msgid "img_000.jpg"
+msgstr "img_000.jpg"
+
+#. The preceding text here is the second checkbutton in the Time dialog
+#. that says "Space all photos by []"
+#: ../src/f-spot.glade.h:237 ../src/TimeDialog.cs:111
+#, csharp-format
+msgid "min. Starting at {0}"
+msgstr ""
+
+#: ../src/f-spot.glade.h:238
+msgid "pixels"
+msgstr "พิกเซล"
+
+#: ../src/f-spot.glade.h:239
+msgid "x"
+msgstr ""
+
+#: ../src/GalleryExport.cs:391
+msgid "(TopLevel)"
+msgstr "(ชั้นบนสุด)"
+
+#: ../src/GalleryExport.cs:608
+msgid "Error Uploading To Gallery"
+msgstr ""
+
+#: ../src/GalleryExport.cs:622
+msgid "(No Gallery)"
+msgstr ""
+
+#: ../src/GalleryExport.cs:693
+msgid "(Not Connected)"
+msgstr "(ไม่ได้เชื่อมต่อ)"
+
+#: ../src/GalleryExport.cs:694
+msgid "(No Albums)"
+msgstr "(ไม่มีอัลบั้ม)"
+
+#: ../src/GroupSelector.cs:55 ../src/GroupSelector.cs:56
+msgid "More dates"
+msgstr ""
+
+#: ../src/GroupSelector.cs:58 ../src/GroupSelector.cs:59
+msgid "More directories"
+msgstr ""
+
+#: ../src/GroupSelector.cs:61 ../src/GroupSelector.cs:62
+msgid "More"
+msgstr ""
+
+#: ../src/ImportCommand.cs:28
+msgid "Select Folder"
+msgstr "เลือกโฟลเดอร์"
+
+#: ../src/ImportCommand.cs:223
+msgid "(No Cameras Detected)"
+msgstr "(ไม่พบกล้องดิจิทัล)"
+
+#: ../src/ImportCommand.cs:401
+#, csharp-format
+msgid "Loading {0} of {1}"
+msgstr "กำลังอ่าน {0} จาก {1}"
+
+#: ../src/ImportCommand.cs:520
+msgid "Done Loading"
+msgstr "อ่านข้อมูลเรียบร้อย"
+
+#: ../src/ImportCommand.cs:708
+msgid "Directory does not exist."
+msgstr "ไม่มีไดเรกทอรีนี้อยู่"
+
+#: ../src/ImportCommand.cs:709
+#, csharp-format
+msgid ""
+"The directory you selected \"{0}\" does not exist.  Please choose a "
+"different directory"
+msgstr ""
+
+#: ../src/ImportCommand.cs:742
+msgid "Select Tag"
+msgstr "เลือกป้าย"
+
+#: ../src/ImportCommand.cs:747 ../src/StockIcons.cs:34
+#: ../src/TagCommands.cs:122 ../src/TagPopup.cs:20
+msgid "Create New Tag"
+msgstr "สร้างป้ายใหม่"
+
+#: ../src/InfoBox.cs:72 ../src/PhotoVersionCommands.cs:55
+msgid "Name:"
+msgstr "ชื่อ:"
+
+#: ../src/InfoBox.cs:74
+msgid "Version:"
+msgstr "รุ่น:"
+
+#: ../src/InfoBox.cs:76
+msgid "Date:"
+msgstr "วันที่:"
+
+#: ../src/InfoBox.cs:78
+msgid "Size:"
+msgstr "ขนาดรูป:"
+
+#: ../src/InfoBox.cs:80
+msgid "Exposure:"
+msgstr ""
+
+#. The label for the root category is used in new and edit tag dialogs
+#: ../src/InfoBox.cs:214 ../src/TagStore.cs:415
+msgid "(None)"
+msgstr "(ไม่มี)"
+
+#: ../src/InfoBox.cs:225 ../src/InfoBox.cs:234
+msgid "(Unknown)"
+msgstr "(ไม่มีข้อมูล)"
+
+#: ../src/InfoDisplay.cs:167
+msgid "Extended Metadata"
+msgstr "ข้อมูลรูปภาพเพิ่มเติม"
+
+#: ../src/InfoDisplay.cs:206
+msgid "No active photo"
+msgstr ""
+
+#: ../src/InfoDisplay.cs:208
+#, csharp-format
+msgid "The photo \"{0}\" does not exist"
+msgstr "ไม่มีรูป \"{0}\" อยู่"
+
+#: ../src/InfoDisplay.cs:214
+msgid "No metadata available"
+msgstr "ไม่มีข้อมูลรูปภาพ"
+
+#: ../src/IptcFile.cs:139
+msgid "IPTC Information Interchange Model (IIM) Version number"
+msgstr ""
+
+#: ../src/IptcFile.cs:141
+msgid "OSI Destination routing information"
+msgstr ""
+
+#: ../src/IptcFile.cs:143
+msgid "IPTC file format"
+msgstr ""
+
+#: ../src/IptcFile.cs:145
+msgid "Identifies the provider and product"
+msgstr ""
+
+#: ../src/IptcFile.cs:147
+msgid "A unique number identifying the envelope"
+msgstr ""
+
+#: ../src/IptcFile.cs:149
+msgid "A unique number"
+msgstr ""
+
+#: ../src/IptcFile.cs:151
+msgid ""
+"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgstr ""
+
+#: ../src/IptcFile.cs:153
+msgid "The year month and day (CCYYMMDD) the service sent the material"
+msgstr ""
+
+#: ../src/IptcFile.cs:155
+msgid ""
+"The hour minute and second the (HHMMSS+HHMM) the service sent the material"
+msgstr ""
+
+#: ../src/IptcFile.cs:157
+msgid "The character set designation"
+msgstr ""
+
+#: ../src/IptcFile.cs:159
+msgid "External globally unique object identifier"
+msgstr ""
+
+#: ../src/IptcFile.cs:164
+msgid "Abstract Relationship Method (ARM) identifier"
+msgstr ""
+
+#: ../src/IptcFile.cs:166
+msgid "Abstract Relationship Method (ARM) version number."
+msgstr ""
+
+#: ../src/IptcFile.cs:169
+msgid "Number identifying the IIM version this application record uses"
+msgstr ""
+
+#: ../src/IptcFile.cs:171
+msgid "Object type reference"
+msgstr ""
+
+#: ../src/IptcFile.cs:176
+msgid "Object attribute reference"
+msgstr ""
+
+#: ../src/IptcFile.cs:182 ../src/IptcFile.cs:186
+msgid "Object name"
+msgstr ""
+
+#: ../src/IptcFile.cs:184
+msgid "Status of the objectdata according to the provider"
+msgstr ""
+
+#: ../src/IptcFile.cs:189
+msgid "Name of the city the content is focussing on"
+msgstr ""
+
+#: ../src/IptcFile.cs:192
+msgid "Copyright information for"
+msgstr ""
+
+#: ../src/IptcFile.cs:195
+msgid "Full name of the country of the focus of the content"
+msgstr ""
+
+#: ../src/IptcFile.cs:198
+msgid ""
+"Two or three letter ISO3166 code of the country of the focus of the content"
+msgstr ""
+
+#: ../src/IptcFile.cs:201
+msgid "bleh"
+msgstr ""
+
+#: ../src/IptcFile.cs:204
+msgid "The title of the author or creator"
+msgstr ""
+
+#: ../src/IptcFile.cs:207
+msgid ""
+"The person involved in writing, editing or correcting the object data or "
+"caption/abstract"
+msgstr ""
+
+#: ../src/IptcFile.cs:211
+msgid "Headline of the content"
+msgstr ""
+
+#: ../src/IptcFile.cs:214
+msgid ""
+"Instructions from the creator to the receiver not covered by other fields"
+msgstr ""
+
+#: ../src/IptcFile.cs:217
+msgid "Intellectual genre of the object"
+msgstr ""
+
+#: ../src/IptcFile.cs:230
+msgid "Unknown IIM DataSet"
+msgstr ""
+
+#: ../src/Loupe.cs:52 ../src/MainWindow.cs:1711
+msgid "Error saving sharpened photo"
+msgstr ""
+
+#: ../src/Loupe.cs:70
+msgid "Sharpen"
+msgstr ""
+
+#: ../src/Loupe.cs:80 ../src/MainWindow.cs:1678
+msgid "Amount:"
+msgstr ""
+
+#: ../src/Loupe.cs:81 ../src/MainWindow.cs:1679
+msgid "Radius:"
+msgstr ""
+
+#: ../src/Loupe.cs:82 ../src/MainWindow.cs:1680
+msgid "Threshold:"
+msgstr ""
+
+#: ../src/MainWindow.cs:209
+msgid "Browse many photos simultaneously"
+msgstr ""
+
+#: ../src/MainWindow.cs:212
+msgid "View and edit a photo"
+msgstr "แสดงและแก้ไขรูปภาพ"
+
+#: ../src/MainWindow.cs:217
+msgid "View photos fullscreen"
+msgstr "ดูรูปแบบเต็มหน้าจอ"
+
+#: ../src/MainWindow.cs:220
+msgid "View photos in a slideshow"
+msgstr "ดูรูปแบบภาพสไลด์"
+
+#: ../src/MainWindow.cs:1212
+msgid "No cameras detected."
+msgstr "ไม่พบกล้องดิจิทัล"
+
+#: ../src/MainWindow.cs:1213
+msgid ""
+"F-Spot was unable to find any cameras attached to this system.  Double check "
+"that the camera is connected and has power"
+msgstr ""
+
+#: ../src/MainWindow.cs:1253
+msgid "Error connecting to camera"
+msgstr "เกิดข้อผิดพลาดในการเชื่อมต่อกับกล้องดิจิทัล"
+
+#: ../src/MainWindow.cs:1254
+#, csharp-format
+msgid "Received error \"{0}\" while connecting to camera"
+msgstr "เกิดข้อผิดพลาด \"{0}\" ขณะเชื่อมต่อกล้องดิจิทัล"
+
+#. Translators should localize the following string
+#. * which will give them credit in the About box.
+#. * E.g. "Martin Willemoes Hansen"
+#: ../src/MainWindow.cs:1402
+msgid "translator-credits"
+msgstr "Isriya Paireepairit <markpeak@gmail.com>"
+
+#. Translators, The singular case will never happen here.
+#: ../src/MainWindow.cs:1589
+#, csharp-format
+msgid "Merge the selected tag"
+msgstr "รวมป้ายที่เลือกเข้าด้วยกัน"
+
+#: ../src/MainWindow.cs:1616
+msgid ""
+"This operation will merge the selected tags and any sub-tags into a single "
+"tag."
+msgstr ""
+
+#: ../src/MainWindow.cs:1618
+msgid "_Merge tags"
+msgstr "_รวมป้าย"
+
+#: ../src/MainWindow.cs:1669
+msgid "Unsharp Mask"
+msgstr ""
+
+#: ../src/MainWindow.cs:1939
+msgid "_Ok"
+msgstr "_ตกลง"
+
+#: ../src/MainWindow.cs:1940
+msgid "Error Deleting Picture"
+msgstr "เกิดข้อผิดพลาดขณะลบรูป"
+
+#: ../src/MainWindow.cs:1945
+#, csharp-format
+msgid ""
+"No permission to delete the file:\n"
+"{0}"
+msgstr ""
+"ไม่มีสิทธิ์ในการลบแฟ้ม\n"
+"{0}"
+
+#: ../src/MainWindow.cs:1949
+#, csharp-format
+msgid ""
+"An error of type {0} occurred while deleting the file:\n"
+"{1}"
+msgstr ""
+"เกิดข้อผิดพลาดแบบ {0} ขณะลบแฟ้ม\n"
+"{1}"
+
+#: ../src/MainWindow.cs:1960
+#, csharp-format
+msgid "Delete the selected photo permanently?"
+msgstr "ต้องการลบรูปที่เลือกอย่างถาวรหรือไม่?"
+
+#: ../src/MainWindow.cs:1964
+msgid "This deletes all versions of the selected photo from your drive."
+"This deletes all versions of the selected photos from your drive."
+msgstr ""
+
+#: ../src/MainWindow.cs:1967
+msgid "_Delete photo"
+msgstr "_ลบรูปภาพ"
+
+#: ../src/MainWindow.cs:1989
+#, csharp-format
+msgid "Remove the selected photo from F-Spot?"
+msgstr "ลบรูปภาพที่เลือกออกจาก F-Spot หรือไม่?"
+
+#: ../src/MainWindow.cs:1994
+msgid ""
+"If you remove photos from the F-Spot catalog all tag information will be "
+"lost. The photos remain on your computer and can be imported into F-Spot "
+"again."
+msgstr ""
+
+#: ../src/MainWindow.cs:1995
+msgid "_Remove from Catalog"
+msgstr "_ลบจากแค็ตตาล็อก"
+
+#: ../src/MainWindow.cs:2050
+#, csharp-format
+msgid "Delete tag \"{0}\"?"
+msgstr "ต้องการลบป้าย \"{0}\" หรือไม่?"
+
+#: ../src/MainWindow.cs:2052
+#, csharp-format
+msgid "Delete the {0} selected tags?"
+msgstr "ลบป้ายที่เลือก {0} ป้ายหรือไม่?"
+
+#: ../src/MainWindow.cs:2055
+msgid "If you delete a tag, all associations with photos are lost."
+msgstr ""
+
+#: ../src/MainWindow.cs:2056
+msgid "_Delete tag"
+msgstr "_ลบป้าย"
+
+#. A Category is not empty. Can not delete it.
+#: ../src/MainWindow.cs:2070
+msgid "Tag is not empty"
+msgstr ""
+
+#: ../src/MainWindow.cs:2071
+#, csharp-format
+msgid ""
+"Can not delete tags that have tags within them.  Please delete tags under "
+"\"{0}\" first"
+msgstr ""
+
+#: ../src/MainWindow.cs:2366
+msgid "Rotate selected photo left"
+msgstr "หมุนรูปที่เลือกไปทางซ้าย"
+
+#: ../src/MainWindow.cs:2379
+msgid "Rotate selected photo right"
+msgstr "หมุนรูปที่เลือกไปทางขวา"
+
+#: ../src/MetadataStore.cs:17
+msgid "Creator"
+msgstr ""
+
+#: ../src/MetadataStore.cs:18
+msgid "Title"
+msgstr ""
+
+#: ../src/MetadataStore.cs:19
+msgid "Copyright"
+msgstr "ลิขสิทธิ์"
+
+#: ../src/MetadataStore.cs:20
+msgid "Subject and Keywords"
+msgstr ""
+
+#: ../src/MetadataStore.cs:21
+msgid "Compression"
+msgstr "การบีบอัด"
+
+#: ../src/MetadataStore.cs:23
+msgid "Planar Configuration"
+msgstr ""
+
+#: ../src/MetadataStore.cs:25
+msgid "Orientation"
+msgstr ""
+
+#: ../src/MetadataStore.cs:27
+msgid "Photometric Interpretation"
+msgstr ""
+
+#: ../src/MetadataStore.cs:29
+msgid "Resolution Unit"
+msgstr ""
+
+#: ../src/MetadataStore.cs:31
+msgid "Exposure Program"
+msgstr ""
+
+#: ../src/MetadataStore.cs:33
+msgid "Metering Mode"
+msgstr ""
+
+#: ../src/MetadataStore.cs:35
+msgid "Exposure Mode"
+msgstr ""
+
+#: ../src/MetadataStore.cs:37
+msgid "Custom Rendered"
+msgstr ""
+
+#: ../src/MetadataStore.cs:39
+msgid "Components Configuration"
+msgstr ""
+
+#: ../src/MetadataStore.cs:41
+msgid "Light Source"
+msgstr ""
+
+#: ../src/MetadataStore.cs:43
+msgid "Sensing Method"
+msgstr ""
+
+#: ../src/MetadataStore.cs:45
+msgid "Color Space"
+msgstr ""
+
+#: ../src/MetadataStore.cs:47
+msgid "White Balance"
+msgstr ""
+
+#: ../src/MetadataStore.cs:49
+msgid "Focal Plane Resolution Unit"
+msgstr ""
+
+#: ../src/MetadataStore.cs:51
+msgid "File Source Type"
+msgstr ""
+
+#: ../src/MetadataStore.cs:53
+msgid "Scene Capture Type"
+msgstr ""
+
+#: ../src/MetadataStore.cs:55
+msgid "Gain Control"
+msgstr ""
+
+#: ../src/MetadataStore.cs:57
+msgid "Contrast"
+msgstr ""
+
+#: ../src/MetadataStore.cs:59
+msgid "Saturation"
+msgstr ""
+
+#: ../src/MetadataStore.cs:61
+msgid "Sharpness"
+msgstr ""
+
+#: ../src/MetadataStore.cs:63
+msgid "Scene Type"
+msgstr ""
+
+#: ../src/PhotoPopup.cs:30
+msgid "Copy Photo Location"
+msgstr "คัดลอกที่อยู่ภาพ"
+
+#: ../src/PhotoPopup.cs:42
+msgid "Remove From Catalog"
+msgstr "ลบจากแค็ตตาล็อก"
+
+#: ../src/PhotoPopup.cs:44
+msgid "Delete From Drive"
+msgstr "ลบจากดิสก์"
+
+#.
+#. FIXME TagMenu is ugly.
+#.
+#: ../src/PhotoPopup.cs:52
+msgid "Attach Tag"
+msgstr "แปะป้าย"
+
+#.
+#. FIXME finish the IPhotoSelection stuff and move the activate handler into the class
+#. this current method is way too complicated.
+#.
+#: ../src/PhotoPopup.cs:62
+msgid "Remove Tag"
+msgstr "ลบป้าย"
+
+#: ../src/PhotoStore.cs:337
+#, csharp-format
+msgid "Modified"
+msgstr "ผ่านการแก้ไข"
+
+#. Note that the original version is never stored in the photo_versions table in the
+#. database.
+#: ../src/PhotoStore.cs:516
+msgid "Original"
+msgstr "ต้นฉบับ"
+
+#. Fixme this should really set parent menu
+#. items insensitve
+#: ../src/PhotoTagMenu.cs:72
+msgid "(No Tags)"
+msgstr "(ไม่มี)"
+
+#: ../src/PhotoVersionCommands.cs:54
+msgid "Create New Version"
+msgstr ""
+
+#: ../src/PhotoVersionCommands.cs:59
+msgid "Rename Version"
+msgstr ""
+
+#: ../src/PhotoVersionCommands.cs:60
+msgid "New name:"
+msgstr ""
+
+#: ../src/PhotoVersionCommands.cs:126
+msgid "Really Delete?"
+msgstr ""
+
+#: ../src/PhotoVersionCommands.cs:132
+#, csharp-format
+msgid "Really delete version \"{0}\"?"
+msgstr ""
+
+#: ../src/PhotoVersionMenu.cs:66
+msgid "(No Edits)"
+msgstr "(ไม่มีการแก้ไข)"
+
+#: ../src/PhotoView.cs:109
+msgid "No Constraint"
+msgstr ""
+
+#: ../src/PhotoView.cs:110
+msgid "4 x 3 (Book)"
+msgstr ""
+
+#: ../src/PhotoView.cs:111
+msgid "4 x 6 (Postcard)"
+msgstr ""
+
+#: ../src/PhotoView.cs:112
+msgid "5 x 7 (L, 2L)"
+msgstr ""
+
+#: ../src/PhotoView.cs:113
+msgid "8 x 10"
+msgstr ""
+
+#: ../src/PhotoView.cs:114
+msgid "4 x 3 Portrait (Book)"
+msgstr ""
+
+#: ../src/PhotoView.cs:115
+msgid "4 x 6 Portrait (Postcard)"
+msgstr ""
+
+#: ../src/PhotoView.cs:116
+msgid "5 x 7 Portrait (L, 2L)"
+msgstr ""
+
+#: ../src/PhotoView.cs:117
+msgid "8 x 10 Portrait"
+msgstr ""
+
+#: ../src/PhotoView.cs:118
+msgid "Square"
+msgstr ""
+
+#: ../src/PhotoView.cs:164
+msgid "Crop photo to selected area"
+msgstr ""
+
+#: ../src/PhotoView.cs:165
+msgid "Remove redeye from selected area"
+msgstr "แก้ตาแดงในพื้นที่ที่เลือก"
+
+#: ../src/PhotoView.cs:167
+msgid "Select an area to crop"
+msgstr ""
+
+#: ../src/PhotoView.cs:168
+msgid "Select an area to remove redeye"
+msgstr "เลือกพื้นที่เพื่อแก้ตาแดง"
+
+#: ../src/PhotoView.cs:291
+msgid "No selection available"
+msgstr "ไม่ได้เลือกพื้นที่"
+
+#: ../src/PhotoView.cs:292
+msgid ""
+"This tool requires an active selection. Please select a region of the photo "
+"and try the operation again"
+msgstr ""
+"เครื่องมือนี้จำเป็นต้องเลือกพื้นที่ที่ต้องการทำงานก่อน กรุณาลองอีกครั้ง"
+
+#: ../src/PhotoView.cs:336
+msgid "Error editing photo"
+msgstr "เกิดปัญหาในการแก้ไขรูปภาพ"
+
+#: ../src/PhotoView.cs:476
+msgid "Comment:"
+msgstr "ความเห็น:"
+
+#: ../src/PhotoView.cs:541
+msgid "Adjust the photo colors"
+msgstr "ปรับแต่งระดับสีของภาพ"
+
+#: ../src/PhotoView.cs:542
+msgid "Constrain the aspect ratio of the selection"
+msgstr ""
+
+#: ../src/PhotoView.cs:543
+msgid "Next photo"
+msgstr "รูปถัดไป"
+
+#: ../src/PhotoView.cs:544
+msgid "Previous photo"
+msgstr "รูปก่อนหน้า"
+
+#: ../src/RotateCommand.cs:154
+msgid "Rotating photos"
+msgstr "กำลังหมุนรูปภาพ"
+
+#: ../src/RotateCommand.cs:165
+#, csharp-format
+msgid "Rotating photo \"{0}\""
+msgstr "กำลังหมุนรูปภาพ \"{0}\""
+
+#: ../src/RotateCommand.cs:190
+#, csharp-format
+msgid "Unable to rotate photo"
+msgstr "ไม่สามารถหมุนรูปภาพได้"
+
+#: ../src/RotateCommand.cs:194
+#, csharp-format
+msgid ""
+"The photo could not be rotated because it is on a read only file system or "
+"media such as a CDROM.  Please check the permissions and try again"
+"{0} photos could not be rotated because they are on a read only file system "
+"or media such as a CDROM.  Please check the permissions and try again"
+msgstr ""
+
+#: ../src/RotateCommand.cs:216
+#, csharp-format
+msgid "Received error \"{0}\" while attempting to rotate {1}"
+msgstr ""
+
+#: ../src/RotateCommand.cs:221
+msgid "Error while rotating photo."
+msgstr "เกิดข้อผิดพลาดขณะหมุนรูปภาพ"
+
+#: ../src/StockIcons.cs:28
+msgid "Crop"
+msgstr "ครอบตัด"
+
+#: ../src/StockIcons.cs:29
+msgid "Desaturate"
+msgstr ""
+
+#: ../src/StockIcons.cs:30
+msgid "Edit Photo"
+msgstr "แก้ไขรูป"
+
+#: ../src/StockIcons.cs:31
+msgid "Fullscreen"
+msgstr "เต็มหน้าจอ"
+
+#: ../src/StockIcons.cs:32
+msgid "Loading"
+msgstr "กำลังเรียก"
+
+#: ../src/StockIcons.cs:33
+msgid "Logo"
+msgstr ""
+
+#: ../src/StockIcons.cs:35
+msgid "Question"
+msgstr ""
+
+#: ../src/StockIcons.cs:36
+msgid "Reduce Red-Eye"
+msgstr "แก้ตาแดง"
+
+#: ../src/StockIcons.cs:39
+msgid "Sepia Tone"
+msgstr ""
+
+#: ../src/StockIcons.cs:40
+msgid "Slideshow"
+msgstr "แสดงสไลด์"
+
+#: ../src/StockIcons.cs:41
+msgid "Near"
+msgstr ""
+
+#: ../src/StockIcons.cs:42
+msgid "Far"
+msgstr ""
+
+#: ../src/TagCommands.cs:75 ../src/TagCommands.cs:205
+#: ../src/TagSelectionWidget.cs:574
+msgid "This name is already in use"
+msgstr "ชื่อนี้ถูกใช้แล้ว"
+
+#: ../src/TagCommands.cs:123
+msgid "Name of New Tag:"
+msgstr "ชื่อของป้ายใหม่:"
+
+#: ../src/TagCommands.cs:275 ../src/TagPopup.cs:26
+msgid "Edit Tag"
+msgstr "แก้ไขป้าย"
+
+#: ../src/TagCommands.cs:276
+msgid "Tag Name:"
+msgstr "ชื่อป้าย:"
+
+#: ../src/TagCommands.cs:369
+#, csharp-format
+msgid "Photo {0} of {1}"
+msgstr "รูปที่ {0} จาก {1}"
+
+#: ../src/TagCommands.cs:396
+#, csharp-format
+msgid "Edit Icon for Tag {0}"
+msgstr "แก้ไขไอคอนของป้าย {0}"
+
+#: ../src/TagPopup.cs:28
+#, csharp-format
+msgid "Edit Tag \"{0}\""
+msgstr "แก้ไขป้าย \"{0}\""
+
+#: ../src/TagPopup.cs:33
+msgid "Delete Tag"
+msgstr "ลบป้าย"
+
+#: ../src/TagPopup.cs:39
+msgid "Attach Tag To Selection"
+msgstr "ใส่ป้ายให้รูปที่เลือก"
+
+#: ../src/TagPopup.cs:43
+msgid "Remove Tag From Selection"
+msgstr "ลบป้ายจากรูปที่เลือก"
+
+#: ../src/TagPopup.cs:49
+msgid "Merge Tags"
+msgstr "รวมป้าย"
+
+#: ../src/TagSelectionWidget.cs:573
+msgid "Error renaming tag"
+msgstr "เกิดข้อผิดพลาดขณะเปลี่ยนชื่อป้าย"
+
+#. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
+#: ../src/Unix.cs:25
+msgid "Unable to create temporary file"
+msgstr ""
+
+#: ../src/Util.cs:299
+msgid "There was an error invoking the external handler"
+msgstr ""
+
+#: ../src/Util.cs:300
+#, csharp-format
+msgid ""
+"Received error:\n"
+"\"{0}\"\n"
+msgstr ""
+
+#: ../src/QueryDisplay.cs:35
+msgid "Find: "
+msgstr "ค้นหา:"
+
+#: ../src/QueryDisplay.cs:39
+msgid "Untagged photos"
+msgstr "รูปไม่ได้ใส่ป้าย"
+
+#: ../src/QueryDisplay.cs:56
+msgid "No matching photos found "
+msgstr "ไม่พบรูปที่ตรงเงื่อนไข"
+
+#: ../src/QueryDisplay.cs:64
+msgid "Clear search"
+msgstr "ล้างการค้นหา"
+
