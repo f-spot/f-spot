@@ -2314,10 +2314,13 @@ public class MainWindow {
 			break;
 
 		case Preferences.GLASS_POSITION:
-			IBrowsableItem photo = group_selector.Adaptor.PhotoFromIndex ((int) val);
-			JumpTo (query.IndexOf (photo));
+			if (query.Count > 0) {
+				IBrowsableItem photo = group_selector.Adaptor.PhotoFromIndex ((int) val);
+				
+				if (photo != null)
+					JumpTo (query.IndexOf (photo));
+			}
 			break;
-			
 		case Preferences.SIDEBAR_POSITION:
 			if (main_hpaned.Position != (int) val)
 				main_hpaned.Position = (int) val;
