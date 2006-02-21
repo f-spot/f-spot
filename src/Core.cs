@@ -1,5 +1,6 @@
 using System.IO;
 using System;
+using Mono.Posix;
 
 namespace FSpot {
 	[DBus.Interface ("org.gnome.FSpot.Core")]
@@ -160,19 +161,45 @@ namespace FSpot {
 					slideview = new SlideView (black, photos);
 					window.Add (slideview);
 				} else {
-					Gtk.Table table = new Gtk.Table (3, 3, false);
+					Gtk.HBox outer = new Gtk.HBox ();
 					Gtk.HBox hbox = new Gtk.HBox ();
-					table.Attach (new Gtk.HBox (), 0, 1, 0, 1);
-					table.Attach (new Gtk.HBox (), 2, 3, 2, 3);
-					table.Attach (hbox, 1, 2, 1, 2);
+					Gtk.VBox vbox = new Gtk.VBox ();
+
+					outer.PackStart (new Gtk.Label (""));
+					outer.PackStart (vbox, false, false, 0);
+					vbox.PackStart (new Gtk.Label (""));
+					vbox.PackStart (hbox, false, false, 0);
 					hbox.PackStart (new Gtk.Image (Gtk.Stock.DialogWarning, Gtk.IconSize.Dialog),
 							false, false, 0);
-					string msg = Mono.Posix.Catalog.GetString ("No matching photos found");
+					outer.PackStart (new Gtk.Label (""));
+
+					string msg;
+					string long_msg;
+
+					if (tag != null) {
+						msg = String.Format (Catalog.GetString ("No photos matching {0} found"), tag.Name);
+						long_msg = String.Format (Catalog.GetString ("The tag \"{0}\" is not applied to any photos. Try adding\n" +
+											     "the tag to some photos or selecting a different tag in the\n" +
+											     "F-Spot preference dialog."), tag.Name);
+					} else {
+						msg = Catalog.GetString ("Search returned no results");
+						long_msg = Catalog.GetString ("The tag F-Spot is looking for does not exist. Try\n" +
+									      "selecting a different tag in the F-Spot preference\n" +
+									      "dialog.");
+					}
+
 					Gtk.Label label = new Gtk.Label (msg);
-					label.LineWrap = true;
 					hbox.PackStart (label, false, false, 0);
-					window.Add (table);
+
+					Gtk.Label long_label = new Gtk.Label (long_msg);
+					long_label.Markup  = String.Format ("<small>{0}</small>", long_msg);
+
+					vbox.PackStart (long_label, false, false, 0);
+					vbox.PackStart (new Gtk.Label (""));
+
+					window.Add (outer);
 					SetStyle (label);
+					SetStyle (long_label);
 					//SetStyle (image);
 				}
 				window.ShowAll ();
