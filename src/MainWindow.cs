@@ -2314,7 +2314,7 @@ public class MainWindow {
 			break;
 
 		case Preferences.GLASS_POSITION:
-			if (query.Count > 0) {
+			if (query.Count >= (int) val) {
 				IBrowsableItem photo = group_selector.Adaptor.PhotoFromIndex ((int) val);
 				
 				if (photo != null)
