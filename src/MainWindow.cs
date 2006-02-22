@@ -2314,11 +2314,15 @@ public class MainWindow {
 			break;
 
 		case Preferences.GLASS_POSITION:
-			if (query.Count >= (int) val) {
-				IBrowsableItem photo = group_selector.Adaptor.PhotoFromIndex ((int) val);
-				
-				if (photo != null)
-					JumpTo (query.IndexOf (photo));
+			if (query.Count > 0) {
+				// If the database has changed since this pref was saved, this could cause
+				// an exception to be thrown.
+				try {
+					IBrowsableItem photo = group_selector.Adaptor.PhotoFromIndex ((int) val);
+					
+					if (photo != null)
+						JumpTo (query.IndexOf (photo));
+				} catch (Exception e) {}
 			}
 			break;
 		case Preferences.SIDEBAR_POSITION:
