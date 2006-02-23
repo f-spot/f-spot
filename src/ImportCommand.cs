@@ -259,38 +259,37 @@ public class ImportCommand : FSpot.GladeDialog {
 	private class SourceMenu : Gtk.Menu {
 		public int source_count;
 
+		private static Gnome.Vfs.VolumeMonitor monitor = Gnome.Vfs.VolumeMonitor.Get ();
+
 		public SourceMenu () {
 			source_count = 0;
-			Gnome.Vfs.VolumeMonitor monitor = Gnome.Vfs.VolumeMonitor.Get ();
 			
 			this.Append (new SourceItem (new BrowseSource ()));
-
 			this.Append (new Gtk.SeparatorMenuItem ());
 
+			// Add external hard drives to the menu
 			foreach (Gnome.Vfs.Volume vol in monitor.MountedVolumes) {
-				System.Console.WriteLine ("{0} - {1} - {2} {3} {4} {5} {6}",
+#if true
+				 if (!vol.IsUserVisible || vol.DeviceType == Gnome.Vfs.DeviceType.Unknown)
+					 continue;
+				
+				 System.Console.WriteLine ("{0} - {1} - {2} {3} {4} {5} {6}",
 							  vol.DisplayName, 
-							   vol.Icon, 
+							  vol.Icon, 
 							  vol.VolumeType.ToString (), 
 							  vol.ActivationUri, 
 							  vol.IsUserVisible,
 							  vol.IsMounted,
 							  vol.DeviceType);
-				
+				 
 				 if (vol.Drive != null)
 					 System.Console.WriteLine (vol.Drive.DeviceType.ToString ());
-				 
+
 				 ImportSource source = new VolumeSource (vol);
-#if true
 				 SourceItem item = new SourceItem (source);
-				 if (!vol.IsUserVisible || vol.DeviceType == Gnome.Vfs.DeviceType.Unknown) {
-					 item.Sensitive = false;
-					 continue;
-				 }
 				 this.Append (item);
 				 source_count++;
 #else
-				 
 				 this.Append (new SourceItem (source));
 #endif
 			}
@@ -299,21 +298,20 @@ public class ImportCommand : FSpot.GladeDialog {
 			GPhotoCamera cam = new GPhotoCamera ();
 			cam.DetectCameras ();
 			
-			if (cam.CameraList.Count () > 0)
+			if (cam.CameraList.Count () > 0) {
 				this.Append (new Gtk.SeparatorMenuItem ());
 			
-			source_count += cam.CameraList.Count ();
-			for (int i = 0; i < cam.CameraList.Count (); i++) {
-				if (source_count == 1 || cam.CameraList.GetValue (i) != "usb:") {
-					ImportSource source = new CameraSource (cam, i);
-					this.Append (new SourceItem (source));
+				source_count += cam.CameraList.Count ();
+				for (int i = 0; i < cam.CameraList.Count (); i++) {
+					if (source_count == 1 || cam.CameraList.GetValue (i) != "usb:") {
+						ImportSource source = new CameraSource (cam, i);
+						this.Append (new SourceItem (source));
+					}
 				}
-			}
-
-			if (source_count == 0) {
+			} else {
 				ImportSource source = new BrowseSource (Mono.Posix.Catalog.GetString ("(No Cameras Detected)"),
 									"emblem-camera");
-			SourceItem item = new SourceItem (source);
+				SourceItem item = new SourceItem (source);
 				item.Sensitive = false;
 				this.Append (item);
 			}

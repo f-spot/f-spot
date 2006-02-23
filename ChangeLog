@@ -1,3 +1,7 @@
+2006-02-23  Gabriel Burt <gabriel.burt@gmail.com>
+
+	* src/ImportCommand.cs: optimize loading the import dialog.
+
 2006-02-22  Larry Ewing  <lewing@novell.com>
 
 	* src/AsyncPixbufLoader.cs: don't print the pixbuf loader close
@@ -12,7 +16,7 @@
 2006-02-22  Gabriel Burt <gabriel.burt@gmail.com>
 
 	* src/MainWindow.cs: improve bengt/Larry's patch to fix #332015.
-
+	
 2006-02-21  Larry Ewing  <lewing@novell.com>
 
 	* src/Core.cs: clean up the error message.
