@@ -8,12 +8,12 @@ using SemWeb;
 // gracefully using ellipsis.
 
 public class InfoBox : VBox {
-
+	Delay update_delay;
 	private Photo photo;
 	public Photo Photo {
 		set {
 			photo = value;
-			Update ();
+			update_delay.Start ();
 		}
 
 		get {
@@ -237,16 +237,15 @@ public class InfoBox : VBox {
 	}
 		
 
-	public void Update ()
+	public bool Update ()
 	{
 		ImageFile img;
 		ImageInfo info;
 
 		if (photo == null) {
 			Clear ();
-			return;
+			return false;
 		}
-		
 		
 		string path = photo.DefaultVersionUri.LocalPath;
 		name_entry.Text = System.IO.Path.GetFileName (path);
@@ -281,6 +280,8 @@ public class InfoBox : VBox {
 			}
 			i++;
 		}
+
+		return false;
 	}
 
 
@@ -289,7 +290,8 @@ public class InfoBox : VBox {
 	public InfoBox () : base (false, 0)
 	{
 		SetupWidgets ();
-		Update ();
+		update_delay = new Delay (Update);
+		update_delay.Start ();
 
 		BorderWidth = 6;
 	}
