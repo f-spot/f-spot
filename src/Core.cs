@@ -247,7 +247,7 @@ namespace FSpot {
 				// first too.
 				System.Environment.Exit (0);
 			}
-			if (organizer.Window == sender)
+			if (organizer != null && organizer.Window == sender)
 				organizer = null;
 		}
 	}
