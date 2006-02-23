@@ -1,5 +1,8 @@
 2006-02-22  Larry Ewing  <lewing@novell.com>
 
+	* src/InfoBox.cs: use the Photo.Time not the metadata time here to
+	be consistant.
+
 	* src/InfoBox.cs: update the infobox in an idle handler.
 
 2006-02-22  Gabriel Burt <gabriel.burt@gmail.com>

@@ -124,8 +124,9 @@ public class InfoBox : VBox {
 
 		MemoryStore store;
 		
+#if USE_EXIF_DATE
 		DateTime date;
-
+#endif
 		public ImageInfo (ImageFile img) 
 		{
 			// FIXME We use the memory store to hold the anonymous statements
@@ -156,8 +157,9 @@ public class InfoBox : VBox {
 				width = real_width.ToString ();
 				height = real_height.ToString ();
 			}
-
+#if USE_EXIF_DATE
 			date = img.Date.ToLocalTime ();
+#endif
 		}
 
 		public bool Add (SemWeb.Statement stmt)
@@ -225,7 +227,7 @@ public class InfoBox : VBox {
 					return Mono.Posix.Catalog.GetString ("(Unknown)");
 			}
 		}
-
+#if USE_EXIF_DATE
 		public string Date {
 			get {
 				if (date > DateTime.MinValue && date < DateTime.MaxValue)
@@ -234,6 +236,7 @@ public class InfoBox : VBox {
 					return Mono.Posix.Catalog.GetString ("(Unknown)");
 			}
 		}
+#endif
 	}
 		
 
@@ -263,8 +266,13 @@ public class InfoBox : VBox {
 		name_entry.Sensitive = true;
 		exposure_info_label.Text = info.ExposureInfo;
 		size_label.Text = info.Dimensions;
+#if USE_EXIF_DATE
 		date_label.Text = info.Date;
-
+#else
+		date_label.Text = String.Format ("{0}\n{1}",
+						 photo.Time.ToShortDateString (),
+						 photo.Time.ToShortTimeString ());
+#endif
 		version_option_menu.Sensitive = true;
 		PhotoVersionMenu menu = new PhotoVersionMenu (photo);
 		menu.VersionIdChanged += new PhotoVersionMenu.VersionIdChangedHandler (HandleVersionIdChanged);
