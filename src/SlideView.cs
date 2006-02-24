@@ -28,6 +28,7 @@ namespace FSpot {
 					uint xid = UInt32.Parse (env, System.Globalization.NumberStyles.HexNumber);
 					
 					GdkWindow = Gdk.Window.ForeignNew (xid);
+					Style.Attach (GdkWindow);
 					GdkWindow.Events = EventMask.ExposureMask 
 						| EventMask.StructureMask 
 						| EventMask.EnterNotifyMask 
