@@ -12,4 +12,9 @@ else
     EXE_TO_RUN="$libdir/f-spot/f-spot.exe"
 fi
 
-exec -a @PACKAGE@ mono $EXE_TO_RUN "$@"
+if [ "x$1" = "x--debug" ]; then
+	MONO_OPTIONS="--debug"
+	echo "*** Running F-Spot in Debug Mode ***"
+fi
+
+exec -a @PACKAGE@ mono $MONO_OPTIONS $EXE_TO_RUN "$@"
