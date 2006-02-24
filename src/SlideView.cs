@@ -28,8 +28,11 @@ namespace FSpot {
 					uint xid = UInt32.Parse (env, System.Globalization.NumberStyles.HexNumber);
 					
 					GdkWindow = Gdk.Window.ForeignNew (xid);
-					GdkWindow.Events = EventMask.ExposureMask | EventMask.StructureMask | EventMask.EnterNotifyMask 
-						| EventMask.LeaveNotifyMask | EventMask.FocusChangeMask;
+					GdkWindow.Events = EventMask.ExposureMask 
+						| EventMask.StructureMask 
+						| EventMask.EnterNotifyMask 
+						| EventMask.LeaveNotifyMask 
+						| EventMask.FocusChangeMask;
 					
 					Style.SetBackground (GdkWindow, Gtk.StateType.Normal);
 					GdkWindow.SetDecorations ((Gdk.WMDecoration) 0);

@@ -1,3 +1,13 @@
+2006-02-24  Larry Ewing  <lewing@novell.com>
+
+	* src/FlickrRemote.cs: use UrlShow.
+
+	* src/FolderExport.cs: UrlShow does the hard work now.
+
+	* src/Util.cs: make UrlShow () operate in the main thread.
+
+	* src/FlickrExport.cs: pass the dialog.
+
 2006-02-23  Gabriel Burt <gabriel.burt@gmail.com>
 
 	* src/ImportCommand.cs: optimize loading the import dialog.

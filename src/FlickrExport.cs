@@ -268,7 +268,8 @@ namespace FSpot {
 					view_url = view_url + (first ? "=" : ",") + id;
 					first = false;
 				}
-				GnomeUtil.UrlShow (null, view_url);
+
+				GnomeUtil.UrlShow (progress_dialog, view_url);
 			}
 		}
 		

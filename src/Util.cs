@@ -300,21 +300,35 @@ class GtkUtil {
 }
 
 class GnomeUtil {
-	public static void UrlShow (Gtk.Window owner_window, string url)
+	Gtk.Window window;
+	string url;
+	
+	private GnomeUtil (Gtk.Window window, string url)
+	{
+		this.window = window;
+		this.url = url;
+	}
+		
+	public void Show () 
 	{
 		try {
 			Gnome.Url.Show (url);
 		} catch (Exception ge) {
-			System.Console.WriteLine (ge.ToString ());
-			HigMessageDialog md = new HigMessageDialog (owner_window, Gtk.DialogFlags.DestroyWithParent, 
-				Gtk.MessageType.Error, Gtk.ButtonsType.Ok, 
-				Mono.Posix.Catalog.GetString ("There was an error invoking the external handler"),
-				String.Format (Mono.Posix.Catalog.GetString ("Received error:\n\"{0}\"\n"), 
-				ge.Message));
+	       		System.Console.WriteLine (ge.ToString ());
+	       		HigMessageDialog md = new HigMessageDialog (window, Gtk.DialogFlags.DestroyWithParent, 
+	       			Gtk.MessageType.Error, Gtk.ButtonsType.Ok, 
+	       			Mono.Posix.Catalog.GetString ("There was an error invoking the external handler"),
+	       			String.Format (Mono.Posix.Catalog.GetString ("Received error:\n\"{0}\"\n"), 
+	       			ge.Message));
 
-			md.Run ();
-			md.Destroy ();
-		}
-		
+	       		md.Run ();
+	       		md.Destroy ();
+	       	}
+	}
+
+	public static void UrlShow (Gtk.Window owner_window, string url)
+	{
+		GnomeUtil disp = new GnomeUtil (owner_window, url);
+		Gtk.Application.Invoke (disp, null, delegate (object sender, EventArgs args) { ((GnomeUtil) disp).Show (); });
 	}
 }
