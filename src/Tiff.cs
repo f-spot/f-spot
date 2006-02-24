@@ -348,6 +348,12 @@ namespace FSpot.Tiff {
 		string Charset;
 		public string Value;
 
+		public UserComment (string value)
+		{
+			Charset = null;
+			Value = value;
+		}
+
 		public UserComment (byte [] raw_data, bool little)
 		{
 			string charset = System.Text.Encoding.ASCII.GetString (raw_data, 0, 8);
@@ -358,11 +364,16 @@ namespace FSpot.Tiff {
 				enc = System.Text.Encoding.ASCII;
 				break;
 			case "UNICODE\0":
-				enc = System.Text.Encoding.BigEndianUnicode;
+				enc = new System.Text.UnicodeEncoding (! little, true);
 				break;
 			case "SJIS\0\0\0\0":
-				// FIXME I'm pretty sure this isn't actually the encoding name.
-				enc = System.Text.Encoding.GetEncoding ("SJIS");
+				// FIXME this requires mono locale extras
+				try {
+					enc = System.Text.Encoding.GetEncoding ("shift_jis");
+				} catch {
+					System.Console.WriteLine ("missing shift-jis encoding");
+					enc = System.Text.Encoding.Default;
+				}
 				break;
 			case "\0\0\0\0\0\0\0\0":
 				// FIXME the spec says to use the local encoding in this case, we could probably
@@ -376,6 +387,38 @@ namespace FSpot.Tiff {
 
 			Charset = charset;
 			Value = enc.GetString (raw_data, 8, raw_data.Length - 8);
+		}
+
+		public byte [] GetBytes (bool is_little)
+		{
+			bool ascii = true;
+			string description = Value;
+			System.Text.Encoding enc;
+			string heading;
+
+			for (int i = 0; i < description.Length; i++) {
+				if (description [i] > 127) {
+					ascii = false;
+					break;
+				}
+			}
+
+			if (ascii) {
+				heading = "ASCII\0\0\0";
+				enc = new System.Text.ASCIIEncoding ();
+			} else {
+				heading = "UNICODE\0";
+				enc = new System.Text.UnicodeEncoding (! is_little, true);
+			}
+			
+			int len = enc.GetByteCount (description);
+			byte [] data = new byte [len + heading.Length];
+			System.Text.Encoding.ASCII.GetBytes (heading, 0, heading.Length, data, 0);
+			enc.GetBytes (Value, 0, Value.Length, data, heading.Length);
+			
+			UserComment c = new UserComment (data, is_little);
+			System.Console.WriteLine ("old = \"{0}\" new = \"{1}\" heading = \"{2}\"", c.Value, description, heading);
+			return data;
 		}
 	}
 

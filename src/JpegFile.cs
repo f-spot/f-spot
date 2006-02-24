@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using FSpot.Xmp;
+using FSpot.Tiff;
 
 namespace FSpot {
 	public interface IThumbnailContainer {
@@ -11,6 +12,7 @@ namespace FSpot {
 		private Exif.ExifData exif_data;
 		private XmpFile xmp;
 		private JpegHeader header;
+		private FSpot.Tiff.Header exif_header;
 		
 		public JpegFile (string path) : base (path) 
 		{
@@ -32,6 +34,16 @@ namespace FSpot {
 			}
 		}
 
+		public FSpot.Tiff.Header ExifHeader {
+			get {
+				if (exif_header == null) {
+					exif_header = Header.GetExifHeader ();
+				}
+				
+				return exif_header;
+			}
+		}
+
 		public void Select (SemWeb.StatementSink sink)
 		{
 			Header.Select (sink);
@@ -44,41 +56,25 @@ namespace FSpot {
 
 		public override string Description {
 			get {
-#if true
-				// FIXME this should probably read the raw data because libexif sucks.
 				Exif.ExifContent exif_content = this.ExifData.GetContents (Exif.Ifd.Exif);
 				Exif.ExifEntry entry = exif_content.Lookup (Exif.Tag.UserComment);
 
 				if (entry == null)
 					return null;
 				
-				return entry.Value;
-#else
-
-#endif
+				UserComment comment = new UserComment (entry.Data, entry.ByteOrder == Exif.ByteOrder.Intel);
+				return comment.Value;
 			}
 		}
 
 		public void SetDescription (string value)
 		{
-			string description = value;
-#if USE_UNICODE_COMMENTS		
 			Exif.ExifContent exif_content = this.ExifData.GetContents (Exif.Ifd.Exif);			
-			int len = System.Text.Encoding.BigEndianUnicode.GetByteCount (description);
-			string heading = "UNICODE\0";
-			byte [] data = new byte [len + heading.Length];
-			System.Text.Encoding.ASCII.GetBytes (heading, 0, heading.Length, data, 0);
-			System.Text.Encoding.BigEndianUnicode.GetBytes (description, 0, description.Length, data, heading.Length);
-			exif_content.GetEntry (Exif.Tag.UserComment).SetData (data);
-#else
-			Exif.ExifContent exif_content = this.ExifData.GetContents (Exif.Ifd.Exif);			
-			int len = System.Text.Encoding.ASCII.GetByteCount (description);
-			string heading = "ASCII\0\0\0";
-			byte [] data = new byte [len + heading.Length];
-			System.Text.Encoding.ASCII.GetBytes (heading, 0, heading.Length, data, 0);
-			System.Text.Encoding.ASCII.GetBytes (description, 0, description.Length, data, heading.Length);
-			exif_content.GetEntry (Exif.Tag.UserComment).SetData (data);
-#endif
+			Exif.ExifEntry entry = exif_content.GetEntry (Exif.Tag.UserComment);
+
+			UserComment comment = new UserComment (value);
+			byte [] data = comment.GetBytes (entry.ByteOrder == Exif.ByteOrder.Intel);
+			entry.SetData (data);
 		}
 		
 		public void SetXmp (XmpFile xmp)
@@ -181,13 +177,14 @@ namespace FSpot {
 		
 		public Exif.ExifData ExifData {
 			get {
-				if (this.exif_data == null) {
-					this.exif_data = new Exif.ExifData (path);
+				if (exif_data == null) {
+					exif_data = new Exif.ExifData (path);
 
-					if (this.exif_data.Handle.Handle == System.IntPtr.Zero)
-						this.exif_data = new Exif.ExifData ();
+					if (exif_data.Handle.Handle == System.IntPtr.Zero)
+						exif_data = new Exif.ExifData ();
 				}
-				return this.exif_data;
+				System.Console.WriteLine ("loading exif data");
+				return exif_data;
 			}
 			set {
 				this.exif_data = value;
@@ -197,13 +194,21 @@ namespace FSpot {
 		public override PixbufOrientation GetOrientation () 
 		{
 			PixbufOrientation orientation = PixbufOrientation.TopLeft;
+#if true
+			try {
+				DirectoryEntry e = ExifHeader.Directory.Lookup (TagId.Orientation);
+				orientation = (PixbufOrientation)e.ValueAsLong [0];
+			} catch {
+
+			}
+#else						     
 			Exif.ExifEntry e = this.ExifData.GetContents (Exif.Ifd.Zero).Lookup (Exif.Tag.Orientation);
 			
 			if (e != null) {
 				ushort [] value = e.GetDataUShort ();
 				orientation = (PixbufOrientation) value [0];
 			}
-			
+#endif			
 			if (orientation < PixbufOrientation.TopLeft || orientation > PixbufOrientation.LeftBottom)
 				orientation = PixbufOrientation.TopLeft;
 
