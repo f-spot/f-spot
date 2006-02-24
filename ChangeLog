@@ -1,9 +1,14 @@
+2006-02-24  Larry Ewing  <lewing@novell.com>
+
+	* src/Tiff.cs: if the length is zero treat it as empty.
+	If the length is 0 > < 8 throw an exceptio.
+	
 2006-02-24  Gabriel Burt <gabriel.burt@gmail.com>
 
 	* src/f-spot.in: If the user passes --debug, send it on to mono.
 
 2006-02-24  Larry Ewing  <lewing@novell.com>
-
+	
 	* src/Tiff.cs: add UserComment method to extract the data.
 
 	* src/JpegFile.cs: support unicode comments by bypassing libexif.

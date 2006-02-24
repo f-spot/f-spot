@@ -356,6 +356,14 @@ namespace FSpot.Tiff {
 
 		public UserComment (byte [] raw_data, bool little)
 		{
+			if (raw_data.Length == 8) { 
+				Charset = null;
+				Value = null;
+				return;
+			} else if (raw_data.Length < 8) {
+				throw new Exception ("Invalid UserComment value, no charset found");
+			}
+
 			string charset = System.Text.Encoding.ASCII.GetString (raw_data, 0, 8);
 			System.Text.Encoding enc;
 
