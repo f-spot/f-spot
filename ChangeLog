@@ -1,5 +1,8 @@
 2006-02-25  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufUtils.cs: distinguish the the errors we might get
+	while saving.
+
 	* src/PhotoView.cs: handle exceptions in the color adjuments.
 
 2006-02-24  Larry Ewing  <lewing@novell.com>

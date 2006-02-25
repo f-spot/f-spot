@@ -287,17 +287,19 @@ class PixbufUtils {
 			Array.Copy (values, terminated_values, values.Length);
 		}
 
-		gdk_pixbuf_save_to_bufferv (pixbuf.Handle, 
-					    out data, 
-					    out length, 
-					    type,
-					    terminated_options,
-					    terminated_values,
-					    out error);
-
+		bool error_set =  gdk_pixbuf_save_to_bufferv (pixbuf.Handle, 
+							      out data, 
+							      out length, 
+							      type,
+							      terminated_options,
+							      terminated_values,
+							      out error);
+		
 		if (error != IntPtr.Zero) 
 			throw new GLib.GException (error);
 
+		if (error_set)
+			throw new ApplicationException ("Unknown error while saving file");
 		byte [] content = new byte [length];
 		Marshal.Copy (data, content, 0, (int)length);
 
