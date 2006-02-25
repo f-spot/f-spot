@@ -265,23 +265,47 @@ public class PhotoView : EventBox {
 		ProcessImage (false);
 	}
 	
+	private void ShowError (System.Exception e, Photo photo)
+	{
+		string msg = Mono.Posix.Catalog.GetString ("Error editing photo");
+		string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
+					     e.Message, photo.Name);
+		
+		HigMessageDialog md = new HigMessageDialog ((Gtk.Window)this.Toplevel, DialogFlags.DestroyWithParent, 
+							    Gtk.MessageType.Error, ButtonsType.Ok, 
+							    msg,
+							    desc);
+		md.Run ();
+		md.Destroy ();
+		
+		md.Run ();
+		md.Destroy ();
+	}
+
 	private void HandleSepiaButtonClicked (object sender, EventArgs args)
 	{
-		FSpot.SepiaTone sepia = new FSpot.SepiaTone ((Photo)View.Item.Current);
-		sepia.Pixbuf = View.CompletePixbuf ();
-		sepia.Adjust ();
-		query.Commit (Item.Index);
+		try {
+			FSpot.SepiaTone sepia = new FSpot.SepiaTone ((Photo)View.Item.Current);
+			sepia.Pixbuf = View.CompletePixbuf ();
+			sepia.Adjust ();
+			query.Commit (Item.Index);
+		} catch (System.Exception e) {
+			ShowError (e, (Photo)View.Item.Current); 
+		}
 	}
 
 	private void HandleDesaturateButtonClicked (object sender, EventArgs args)
 	{
-		FSpot.Desaturate desaturate = new FSpot.Desaturate ((Photo) View.Item.Current);
-		desaturate.Pixbuf = View.CompletePixbuf ();
-		desaturate.Adjust ();
-		query.Commit (Item.Index);
+		try {
+			FSpot.Desaturate desaturate = new FSpot.Desaturate ((Photo) View.Item.Current);
+			desaturate.Pixbuf = View.CompletePixbuf ();
+			desaturate.Adjust ();
+			query.Commit (Item.Index);
+		} catch (System.Exception e) {
+			ShowError (e, (Photo)View.Item.Current);
+		}
 	}
-
-
+	
 	// FIXME this design sucks, I'm just doing it this way while
 	// I redesign the editing system.
 	private void ProcessImage (bool redeye)
@@ -333,16 +357,7 @@ public class PhotoView : EventBox {
 			query.Commit (Item.Index);
 			query.MarkChanged (Item.Index);
 		} catch (System.Exception e) {
-			string msg = Mono.Posix.Catalog.GetString ("Error editing photo");
-			string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
-						     e.Message, photo.Name);
-
-			HigMessageDialog md = new HigMessageDialog ((Gtk.Window)this.Toplevel, DialogFlags.DestroyWithParent, 
-								    Gtk.MessageType.Error, ButtonsType.Ok, 
-								    msg,
-								    desc);
-			md.Run ();
-			md.Destroy ();
+			ShowError (e, photo);
 		}
 		
 		photo_view.Fit = true;

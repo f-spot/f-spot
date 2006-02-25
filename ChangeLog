@@ -1,3 +1,7 @@
+2006-02-25  Larry Ewing  <lewing@novell.com>
+
+	* src/PhotoView.cs: handle exceptions in the color adjuments.
+
 2006-02-24  Larry Ewing  <lewing@novell.com>
 
 	* src/Tiff.cs: return an empty string not a null string.
