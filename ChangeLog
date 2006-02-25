@@ -1,5 +1,7 @@
 2006-02-24  Larry Ewing  <lewing@novell.com>
 
+	* src/Tiff.cs: return an empty string not a null string.
+
 	* src/PhotoView.cs: fix the tag view themeing.
 
 	* src/ImportCommand.cs: commit patch from Bengt to use the Global
