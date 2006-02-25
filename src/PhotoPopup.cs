@@ -17,6 +17,11 @@ using Gdk;
 using Mono.Posix;
 
 public class PhotoPopup {
+	public void Activate ()
+	{
+		Activate (null);
+	}
+
 	public void Activate (Gdk.EventButton eb) 
 	{
 		// FIXME this is a hack to handle the --view case for the time being.
@@ -72,6 +77,9 @@ public class PhotoPopup {
 		remove_item.ShowAll ();
 		popup_menu.Append (remove_item);
 
-		popup_menu.Popup (null, null, null, eb.Button, eb.Time);
+		if (eb != null)
+			popup_menu.Popup (null, null, null, eb.Button, eb.Time);
+		else 
+			popup_menu.Popup (null, null, null, 0, Gtk.Global.CurrentEventTime);
 	}   
 }

@@ -7583,46 +7583,6 @@ Photo Details</property>
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="tag_icon_size">
-		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Tag Icons</property>
-		      <property name="use_underline">True</property>
-
-		      <child>
-			<widget class="GtkMenu" id="tag_icon_size_menu">
-
-			  <child>
-			    <widget class="GtkRadioMenuItem" id="tag_normal">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">_Shown</property>
-			      <property name="use_underline">True</property>
-			      <property name="active">True</property>
-			      <signal name="activate" handler="HandleTagSizeChange" last_modification_time="Fri, 20 Aug 2004 22:26:32 GMT"/>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkRadioMenuItem" id="tag_off">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">_Hidden</property>
-			      <property name="use_underline">True</property>
-			      <property name="active">False</property>
-			      <property name="group">tag_normal</property>
-			      <signal name="activate" handler="HandleTagSizeChange" last_modification_time="Fri, 20 Aug 2004 22:26:32 GMT"/>
-			    </widget>
-			  </child>
-			</widget>
-		      </child>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkSeparatorMenuItem" id="separator16">
-		      <property name="visible">True</property>
-		    </widget>
-		  </child>
-
-		  <child>
 		    <widget class="GtkMenuItem" id="arranged_by">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Arrange _by</property>

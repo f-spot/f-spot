@@ -51,6 +51,9 @@ public class TagPopup {
 
 		}
 
-		popup_menu.Popup (null, null, null, eb.Button, eb.Time);
+		if (eb != null)
+ 			popup_menu.Popup (null, null, null, eb.Button, eb.Time);
+		else
+			popup_menu.Popup (null, null, null, 0, Gtk.Global.CurrentEventTime);
 	}
 }

@@ -240,7 +240,8 @@ public class MainWindow {
 				  DragAction.Copy | DragAction.Move ); 
 
 		tag_selection_widget.ButtonPressEvent += HandleTagSelectionButtonPressEvent;
-
+		tag_selection_widget.PopupMenu += HandleTagSelectionPopupMenu;
+		
 		info_box = new InfoBox ();
 		info_box.VersionIdChanged += HandleInfoBoxVersionIdChange;
 		left_vbox.PackStart (info_box, false, true, 0);
@@ -716,6 +717,13 @@ public class MainWindow {
 			tag_selection_widget.TagHighlight ());
 			args.RetVal = true;
 		}
+	}
+
+	void HandleTagSelectionPopupMenu (object sender, PopupMenuArgs args)
+	{
+		TagPopup popup = new TagPopup ();
+		popup.Activate (null, null, tag_selection_widget.TagHighlight ());
+		args.RetVal = true;
 	}
 
 	void HandleTagSelectionDragBegin (object sender, DragBeginArgs args)
@@ -1536,7 +1544,7 @@ public class MainWindow {
 		
 		Preferences.Set (Preferences.SIDEBAR_POSITION,		main_hpaned.Position);
 		Preferences.Set (Preferences.ZOOM,			icon_view.Zoom);
-	
+		
 		tag_selection_widget.SaveExpandDefaults ();
 
 		this.Window.Destroy ();
@@ -2329,7 +2337,7 @@ public class MainWindow {
 			if (main_hpaned.Position != (int) val)
 				main_hpaned.Position = (int) val;
 			break;
-		
+
 		case Preferences.ZOOM:
 			icon_view.Zoom = (double) val;
 			break;

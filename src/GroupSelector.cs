@@ -494,6 +494,12 @@ namespace FSpot {
 				GdkWindow.DrawRectangle (Style.ForegroundGC (State), true, area);
 			}
 		}
+		
+		protected override bool OnPopupMenu ()
+		{
+			DrawOrderMenu (null);
+			return true;
+		}
 
 		private bool DrawOrderMenu (Gdk.EventButton args)
 		{
@@ -510,9 +516,12 @@ namespace FSpot {
 			GtkUtil.MakeCheckMenuItem (order_menu, Mono.Posix.Catalog.GetString ("_Reverse Order"),
 					      MainWindow.Toplevel.HandleReverseOrder, true, adaptor.OrderAscending, false);
 
-			order_menu.Popup (null, null, null, args.Button, args.Time);
-
-			return base.OnButtonPressEvent (args);
+			if (args != null)
+				order_menu.Popup (null, null, null, args.Button, args.Time);
+			else
+				order_menu.Popup (null, null, null, 0, Gtk.Global.CurrentEventTime);
+			
+			return true;
 		}
 
 		public abstract class Manipulator {

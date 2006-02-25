@@ -244,6 +244,13 @@ public class PhotoView : EventBox {
 		}
 	}
 
+	protected override bool OnPopupMenu ()
+	{
+		PhotoPopup popup = new PhotoPopup ();
+		popup.Activate ();
+		return true;
+	}
+
 	private void HandleDisplayNextButtonClicked (object sender, EventArgs args)
 	{
 		View.Item.MoveNext ();
@@ -305,7 +312,7 @@ public class PhotoView : EventBox {
 			ShowError (e, (Photo)View.Item.Current);
 		}
 	}
-	
+
 	// FIXME this design sucks, I'm just doing it this way while
 	// I redesign the editing system.
 	private void ProcessImage (bool redeye)
