@@ -358,7 +358,7 @@ namespace FSpot.Tiff {
 		{
 			if (raw_data.Length == 8) { 
 				Charset = null;
-				Value = null;
+				Value = "";
 				return;
 			} else if (raw_data.Length < 8) {
 				throw new Exception ("Invalid UserComment value, no charset found");
