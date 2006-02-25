@@ -34,7 +34,7 @@ namespace FSpot {
 			UpdateSample ();
 		}
 		
-		private void HandleOkClicked ()
+		private void HandleOkClicked (object sender, EventArgs args)
 		{
 			Photo photo = view.Item.Current as Photo;
 
@@ -60,9 +60,20 @@ namespace FSpot {
 				md.Run ();
 				md.Destroy ();
 			}
-
+			
+			Destroy ();
 		}
 
+		public void HandleCancelClicked (object sender, EventArgs args)
+		{
+			Destroy ();
+		}
+
+		public void HandleLoupeDestroyed (object sender, EventArgs args)
+		{
+			dialog.Destroy ();
+		}
+		
 		protected override void BuildUI ()
 		{
 			base.BuildUI ();
@@ -96,9 +107,19 @@ namespace FSpot {
 			table.Attach (radius_spin, 1, 2, 1, 2);
 			table.Attach (threshold_spin, 1, 2, 2, 3);
 			
+			Gtk.Button cancel_button = new Gtk.Button (Gtk.Stock.Cancel);
+			cancel_button.Clicked += HandleCancelClicked;
+			dialog.AddActionWidget (cancel_button, Gtk.ResponseType.Cancel);
+			
+			Gtk.Button ok_button = new Gtk.Button (Gtk.Stock.Ok);
+			ok_button.Clicked += HandleOkClicked;
+			dialog.AddActionWidget (ok_button, Gtk.ResponseType.Cancel);
+
+			Destroyed += HandleLoupeDestroyed;
+			
 			table.ShowAll ();
 			dialog.VBox.PackStart (table);
-			dialog.Show ();
+			dialog.ShowAll ();
 		}
 
 	}
@@ -317,7 +338,7 @@ namespace FSpot {
 			if (overlay != null) {
 				SetSourcePixbuf (g, overlay, -overlay.Width / 2, -overlay.Height / 2);
 				g.Arc (0, 0, radius, angle, angle + Math.PI);
-				//g.ClosePath ();
+				g.ClosePath ();
 				g.FillPreserve ();
 				g.Color = new Cairo.Color (1.0, 1.0, 1.0, 1.0);
 				g.Stroke ();
@@ -417,7 +438,7 @@ namespace FSpot {
 				break;
 			case Gdk.EventType.TwoButtonPress:
 				dragging = false;
-				this.Hide ();
+				this.Destroy ();
 				break;
 			}
 		}
@@ -432,9 +453,13 @@ namespace FSpot {
 			dragging = false;
 		}
 
-		private void HandleDestroyed (object sender, System.EventArgs args)
+		protected override void OnDestroyed ()
 		{
 			view.MotionNotifyEvent -= HandleImageViewMotion;
+			view.Item.Changed -= HandleItemChanged;
+			view.ZoomChanged -= HandleViewZoomChanged;
+			
+			base.OnDestroyed ();
 		}
 
 		protected Widget SetFancyStyle (Widget widget)
@@ -464,7 +489,6 @@ namespace FSpot {
 			gdk_cairo_set_source_pixbuf (g.Handle, pixbuf.Handle, x, y);
 		}
 
-
 		[DllImport("libgdk-x11-2.0.so")]
 		static extern IntPtr gdk_cairo_create (IntPtr raw);
 		
@@ -484,7 +508,7 @@ namespace FSpot {
 			TransientFor = (Gtk.Window) view.Toplevel;
 			SkipPagerHint = true;
 			SkipTaskbarHint = true;
-
+			
 			//view.MotionNotifyEvent += HandleImageViewMotion;
 			view.Item.Changed += HandleItemChanged;
 			view.ZoomChanged += HandleViewZoomChanged;

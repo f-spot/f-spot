@@ -1,5 +1,7 @@
 2006-02-24  Larry Ewing  <lewing@novell.com>
 
+	* src/Loupe.cs: clean up the destruction handling.
+
 	* src/SlideView.cs: attach the style to the foreign window.
 
 	* src/Tiff.cs: if the length is zero treat it as empty.
