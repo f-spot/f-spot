@@ -1,5 +1,8 @@
 2006-02-24  Larry Ewing  <lewing@novell.com>
 
+	* src/ImportCommand.cs: commit patch from Bengt to use the Global
+	home setting.  Fixes #332257
+
 	* src/Loupe.cs: clean up the destruction handling.
 
 	* src/SlideView.cs: attach the style to the foreign window.

@@ -595,7 +595,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		if (ImportPath != null)
 			file_selector.Filename = ImportPath;
 		else
-			file_selector.Filename = System.Environment.GetEnvironmentVariable ("HOME");
+			file_selector.Filename = FSpot.Global.HomeDirectory;
 
 		int response = file_selector.Run ();
 
