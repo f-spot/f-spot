@@ -1,6 +1,27 @@
+2006-02-26  Larry Ewing  <lewing@novell.com>
+
+	* libfspot/f-screen-utils.c (bchswSampler): fix the contrast
+	function.
+
 2006-02-25  Larry Ewing  <lewing@novell.com>
 
-	* src/f-spot.glade: remove focus from hidden widget.
+	* src/QueryView.cs: 
+	* src/PhotoView.cs: handle OnPopupMenu.
+
+	* src/PhotoPopup.cs: handle a null event.
+
+	* src/MainWindow.cs: handle OnPopupMenu for tag selection widget.
+
+	* src/GroupSelector.cs: add OnPopupMenu handler (doesn't work yet).
+
+	* src/f-spot.glade: remove accidentally committed patch.
+
+	* src/TagPopup.cs: handle a null event.
+
+	* src/f-spot.in (EXE_TO_RUN): remove the ability to run f-spot
+	without installing it.
+
+	* src/f-spot.glade: remove focus from hidden widget. fixes #332146
 
 	* src/PixbufUtils.cs: distinguish the the errors we might get
 	while saving.

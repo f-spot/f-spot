@@ -64,14 +64,8 @@ int bchswSampler(register WORD In[], register WORD Out[], register LPVOID Cargo)
     
     cmsLabEncoded2Float(&LabIn, In);
      
-    cmsLab2LCh(&LChIn, &LabIn);
-
-    // Do some adjusts on LCh
-    
-    LChOut.L = LChIn.L * bchsw ->Exposure + bchsw ->Brightness;
-
-    shift = (LChOut.L > 0.5);
-    l = (LChOut.L + 100) / 200;
+    shift = (LabIn.L > 0.5);
+    l = LabIn.L / 100;
     if (shift)
 	    l = 1.0 - l;
 
@@ -88,8 +82,13 @@ int bchswSampler(register WORD In[], register WORD Out[], register LPVOID Cargo)
     if (shift)
 	    l = 1.0 - l;
 
-    LChOut.L = l * 200 - 100;
+    LabIn.L = l * 100;
 
+    cmsLab2LCh(&LChIn, &LabIn);
+
+    // Do some adjusts on LCh
+    
+    LChOut.L = LChIn.L * bchsw ->Exposure + bchsw ->Brightness;
 
     LChOut.C = MAX (0, LChIn.C + bchsw ->Saturation);
     LChOut.h = LChIn.h + bchsw ->Hue;
