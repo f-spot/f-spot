@@ -7,7 +7,8 @@ using System.Text;
 
 
 
-namespace FSpot {
+namespace FSpot 
+{
 
 public class Driver {
 	public static void Main (string [] args)
@@ -20,100 +21,111 @@ public class Driver {
 
 		SetProcessName (Defines.PACKAGE);
 		
-		foreach (string arg in args) {
-			if (arg == "--help") {
-				System.Console.WriteLine ("Usage f-spot [OPTION. ..]\n");
-				System.Console.WriteLine ("  --import [uri]\t\t\timport from the given uri");
-				System.Console.WriteLine ("  --view <file>\t\t\t\tview a file or directory ");
-				System.Console.WriteLine ("  --shutdown\t\t\t\tshutdown a running f-spot server");
-				System.Console.WriteLine ("  --help\t\t\t\tview this message");
-
-				System.Console.WriteLine ("");
-				program = new Program (Defines.PACKAGE, 
-						       Defines.VERSION, 
-						       Modules.UI, args);
-				return;
-			} else if (arg == "--slideshow") {
-				program = new Program (Defines.PACKAGE, 
-						       Defines.VERSION, 
-						       Modules.UI, args);
-				Core core = new Core ();
-				core.ShowSlides (null);
-				program.Run ();
-				System.Console.WriteLine ("done");
-				return;
-			}
-		}
-
-		/* 
-		 * FIXME we need to inialize gobject before making the dbus calls, we'll go 
-		 * ahead and do it like this for now.
-		 */ 
-		program = new Program (Defines.PACKAGE, 
-				       Defines.VERSION, 
-				       Modules.UI, args);		
-		
 		try {
-			control = Core.FindInstance ();
-			System.Console.WriteLine ("Found active FSpot server: {0}", control);
-			program = null;
-		} catch (System.Exception e) { 
-			System.Console.WriteLine ("Starting new FSpot server");
-		}
-
-		if (control == null) {
-			Core core = null;
+			foreach (string arg in args) {
+				if (arg == "--help") {
+					System.Console.WriteLine ("Usage f-spot [OPTION. ..]\n");
+					System.Console.WriteLine ("  --import [uri]\t\t\timport from the given uri");
+					System.Console.WriteLine ("  --view <file>\t\t\t\tview a file or directory ");
+					System.Console.WriteLine ("  --shutdown\t\t\t\tshutdown a running f-spot server");
+					System.Console.WriteLine ("  --slideshow\t\t\t\tdisplay a slideshow");
+					System.Console.WriteLine ("  --debug\t\t\t\trun f-spot with mono in debug mode");
+					System.Console.WriteLine ("  --help\t\t\t\tview this message");
+					
+					System.Console.WriteLine ("");
+					program = new Program (Defines.PACKAGE, 
+							       Defines.VERSION, 
+							       Modules.UI, args);
+					return;
+				} else if (arg == "--slideshow") {
+					program = new Program (Defines.PACKAGE, 
+							       Defines.VERSION, 
+						       Modules.UI, args);
+					Core core = new Core ();
+					core.ShowSlides (null);
+					program.Run ();
+					System.Console.WriteLine ("done");
+					return;
+				}
+			}
 			
-			Gnome.Vfs.Vfs.Initialize ();
-			StockIcons.Initialize ();
+			/* 
+			 * FIXME we need to inialize gobject before making the dbus calls, we'll go 
+			 * ahead and do it like this for now.
+			 */ 
+			program = new Program (Defines.PACKAGE, 
+					       Defines.VERSION, 
+					       Modules.UI, args);		
 			
-			Mono.Posix.Catalog.Init ("f-spot", Defines.LOCALE_DIR);
-			Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {PixbufUtils.LoadFromAssembly ("f-spot-logo.png")};
-			
-			// FIXME: Error checking is non-existant here...
-			
-			core = new Core ();
-
 			try {
-				core.RegisterServer ();
-			} catch (System.Exception e) {
-				System.Console.WriteLine (e.ToString ());
+				control = Core.FindInstance ();
+				System.Console.WriteLine ("Found active FSpot server: {0}", control);
+				program = null;
+			} catch (System.Exception e) { 
+				System.Console.WriteLine ("Starting new FSpot server");
 			}
-
-			empty = Core.Database.Empty;
-			control = core;
-		}
 			
-		for (int i = 0; i < args.Length; i++) {
-			switch (args [i]) {
-			case "--shutdown":
-				control.Shutdown ();
-				break;
-			case "--import":
-				if (++i < args.Length)
-					control.Import (args [i]);
-
-				import = true;
-				break;
-			case "--view":
-				if (++i < args.Length)
-					control.View (args [i]);
-
-				view_only = true;
-				break;
+			if (control == null) {
+				Core core = null;
+				
+				Gnome.Vfs.Vfs.Initialize ();
+				StockIcons.Initialize ();
+				
+				Mono.Posix.Catalog.Init ("f-spot", Defines.LOCALE_DIR);
+				Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {PixbufUtils.LoadFromAssembly ("f-spot-logo.png")};
+				
+			// FIXME: Error checking is non-existant here...
+				
+				core = new Core ();
+				
+				try {
+					core.RegisterServer ();
+				} catch (System.Exception e) {
+					System.Console.WriteLine (e.ToString ());
+				}
+				
+				empty = Core.Database.Empty;
+				control = core;
 			}
+			
+			for (int i = 0; i < args.Length; i++) {
+				switch (args [i]) {
+				case "--shutdown":
+					control.Shutdown ();
+					break;
+				case "--import":
+					if (++i < args.Length)
+						control.Import (args [i]);
+					
+					import = true;
+					break;
+				case "--view":
+					if (++i < args.Length)
+						control.View (args [i]);
+					
+					view_only = true;
+					break;
+				}
+			}
+			
+			if (empty && !import)
+				control.Import (null);
+			
+			if (import || !view_only)
+				control.Organize ();
+			
+			if (program != null)
+				program.Run ();
+			
+			System.Console.WriteLine ("exiting");
+		} catch (System.Exception e) {
+			Console.Error.WriteLine(e);
+			Gtk.Application.Init();
+			ExceptionDialog dlg = new ExceptionDialog(e);
+			dlg.Run();
+			dlg.Destroy();
+			System.Environment.Exit(1);
 		}
-
-		if (empty && !import)
-			control.Import (null);
-
-		if (import || !view_only)
-			control.Organize ();
-		
-		if (program != null)
-			program.Run ();
-
-		System.Console.WriteLine ("exiting");
 	}
 
 	[DllImport("libc")]

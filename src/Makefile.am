@@ -23,6 +23,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Delay.cs			\
 	$(srcdir)/DirectoryAdaptor.cs		\
 	$(srcdir)/DirectoryCollection.cs	\
+	$(srcdir)/ExceptionDialog.cs		\
 	$(srcdir)/Exif.cs			\
 	$(srcdir)/FlickrExport.cs		\
 	$(srcdir)/FlickrRemote.cs		\
