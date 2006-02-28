@@ -265,7 +265,8 @@ class PixbufUtils {
 	}
 
 	[DllImport("libgdk_pixbuf-2.0-0.dll")]
-	static extern bool gdk_pixbuf_save_to_bufferv (IntPtr raw, out IntPtr data, out uint length, string type, 
+	static extern bool gdk_pixbuf_save_to_bufferv (IntPtr raw, out IntPtr data, out IntPtr length, 
+						       string type, 
 						       string [] keys, string [] values, out IntPtr error);
 
 					
@@ -273,7 +274,7 @@ class PixbufUtils {
 	{
 		IntPtr error = IntPtr.Zero;
 		IntPtr data;
-		uint length;
+		IntPtr length;
 		string [] terminated_options = null;
 		string [] terminated_values = null;
 
@@ -301,7 +302,7 @@ class PixbufUtils {
 		if (!success)
 			throw new ApplicationException ("Unknown error while saving file");
 
-		byte [] content = new byte [length];
+		byte [] content = new byte [(int)length];
 		Marshal.Copy (data, content, 0, (int)length);
 
 		return content;
