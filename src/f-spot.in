@@ -6,6 +6,12 @@ libdir=@libdir@
 
 EXE_TO_RUN="$libdir/f-spot/f-spot.exe"
 
+if [ "x$1" = "x--uninstalled" ]; then
+	echo "*** Running uninstalled f-spot ***"
+	EXE_TO_RUN="./f-spot.exe"
+	export MONO_PATH=../FlickrNet:../libgphoto2-sharp:../semweb:$MONO_PATH
+fi
+
 if [ "x$1" = "x--debug" ]; then
 	MONO_OPTIONS="--debug"
 	echo "*** Running F-Spot in Debug Mode ***"
