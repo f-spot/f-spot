@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using Gtk;
 using Gdk;
 using Gnome.Vfs;
+using Mono.Unix;
 
 public class OpenWithMenu: Gtk.Menu {
 	public delegate void OpenWithHandler (MimeApplication app);
@@ -11,7 +12,7 @@ public class OpenWithMenu: Gtk.Menu {
 
 	public delegate string [] MimeFetcher ();
 	private MimeFetcher mime_fetcher;
-	
+
 	private string [] mime_types;
 	private bool populated = false;
 	
@@ -74,9 +75,9 @@ public class OpenWithMenu: Gtk.Menu {
 			i.Sensitive = (HideInvalid || intersection.Contains (app));
 			Append (i);
 		}
-
+		
 		if (Children.Length == 0) {
-			MenuItem none = new Gtk.MenuItem (Mono.Posix.Catalog.GetString ("No applications available"));
+			MenuItem none = new Gtk.MenuItem (Catalog.GetString ("No applications available"));
 			none.Sensitive = false;
 			Append (none);
 		}
@@ -88,7 +89,7 @@ public class OpenWithMenu: Gtk.Menu {
 
 	public static OpenWithMenu AppendMenuTo (Gtk.Menu menu, MimeFetcher mime_fetcher)
 	{
-		Gtk.MenuItem open_with = new Gtk.MenuItem (Mono.Posix.Catalog.GetString ("Open With"));
+		Gtk.MenuItem open_with = new Gtk.MenuItem (Catalog.GetString ("Open With"));
 
 		OpenWithMenu app_menu = new OpenWithMenu (mime_fetcher);
 		open_with.Submenu = app_menu;
@@ -114,6 +115,9 @@ public class OpenWithMenu: Gtk.Menu {
 				continue;
 
 			MimeApplication [] apps = Gnome.Vfs.Mime.GetAllApplications (mime_type);
+			for (int i = 0; i < apps.Length; i++) {
+				apps [i] = apps [i].Copy ();
+			}
 
 			foreach (MimeApplication app in apps) {
 				// Skip apps that don't take URIs
@@ -148,6 +152,7 @@ public class OpenWithMenu: Gtk.Menu {
 	
 	private void HandleItemActivated (object sender, EventArgs args)
 	{
+		AppMenuItem app = (sender as AppMenuItem);
 		if (ApplicationActivated != null)
 			ApplicationActivated ((sender as AppMenuItem).App);
 	}
@@ -160,8 +165,6 @@ public class OpenWithMenu: Gtk.Menu {
 			App = mime_application;
 			
 			if (menu.ShowIcons) {
-				System.Console.WriteLine ("icon = {0}", mime_application.Icon);
-
 				if (mime_application.Icon != null) {
 					Gdk.Pixbuf pixbuf = null; 
 
