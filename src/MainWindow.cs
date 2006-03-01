@@ -292,6 +292,7 @@ public class MainWindow {
 		icon_view.DragDataGet += HandleIconViewDragDataGet;
 
 		TagMenu menu = new TagMenu (attach_tag, db.Tags);
+		menu.NewTagHandler = HandleCreateTagAndAttach;
 		menu.TagSelected += HandleAttachTagMenuSelected;
 
 		near_image.SetFromStock ("f-spot-stock_near", IconSize.SmallToolbar);
@@ -1591,16 +1592,29 @@ public class MainWindow {
 			query.MarkChanged (ActiveIndex ());
 		}
 	}
+	
+	public void HandleCreateTagAndAttach (object sender, EventArgs args)
+	{
+		Tag new_tag = CreateTag ();
+
+		if (new_tag != null)
+			HandleAttachTagMenuSelected (new_tag);
+	}
 
 	public void HandleCreateNewCategoryCommand (object sender, EventArgs args)
 	{
-		TagCommands.Create command = new TagCommands.Create (db.Tags, main_window);
-		Tag new_tag = command.Execute (TagCommands.TagType.Category, tag_selection_widget.TagHighlight);
+		Tag new_tag = CreateTag ();
 		
 		if (new_tag != null) {
 			tag_selection_widget.ScrollTo (new_tag);
 			tag_selection_widget.TagHighlight = new Tag [] {new_tag};
 		}
+	}
+
+	public Tag CreateTag ()
+	{
+		TagCommands.Create command = new TagCommands.Create (db.Tags, main_window);
+		return command.Execute (TagCommands.TagType.Category, tag_selection_widget.TagHighlight);
 	}
 
 	public void HandleAttachTagCommand (object obj, EventArgs args)

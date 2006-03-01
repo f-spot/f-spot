@@ -737,26 +737,26 @@ public class ImportCommand : FSpot.GladeDialog {
 	private void CreateTagMenu ()
 	{
 		TagMenu tagmenu = new TagMenu (null, MainWindow.Toplevel.Database.Tags);
+		tagmenu.NewTagHandler = HandleNewTagSelected;
 
 		tagmenu.Append (new MenuItem (Catalog.GetString ("Select Tag")));
 		
 		tagmenu.Populate (true);
 		
-		GtkUtil.MakeMenuSeparator (tagmenu);
-		GtkUtil.MakeMenuItem (tagmenu, Catalog.GetString ("Create New Tag"),
-				"f-spot-new-tag", MainWindow.Toplevel.HandleCreateNewCategoryCommand, true);
-		
 		tagmenu.TagSelected += HandleTagMenuSelected;
-		MainWindow.Toplevel.Database.Tags.ItemsAdded += HandleTagsAdded;
 		
 		tagmenu.ShowAll ();
 		tag_option_menu.Menu = tagmenu;
 	}
 
-	private void HandleTagsAdded (object sender, DbItemEventArgs args)
+	private void HandleNewTagSelected (object sender, EventArgs args)
 	{
-		// The user added a tag, so recreate the tag menu
-		CreateTagMenu ();
+		Tag new_tag = MainWindow.Toplevel.CreateTag ();
+
+		if (new_tag != null) {
+			CreateTagMenu ();
+			tag_option_menu.SetHistory ((uint) (tag_option_menu.Menu as TagMenu).GetPosition (new_tag));
+		}
 	}
 
 	public void Cancel ()

@@ -7,9 +7,14 @@ public class TagMenu : Menu {
 
 	public delegate void TagSelectedHandler (Tag t);
 	public event TagSelectedHandler TagSelected;
+	
+	private EventHandler new_tag_handler = null;
+	public EventHandler NewTagHandler {
+		get { return new_tag_handler; }
+		set { new_tag_handler = value; }
+	}
 
-	public class TagItem : Gtk.ImageMenuItem
-	{
+	public class TagItem : Gtk.ImageMenuItem {
 		public Tag Value;
 
 		public TagItem (Tag t) : this (t, t.Name) { }
@@ -62,7 +67,7 @@ public class TagMenu : Menu {
 		int i = 0;
 		foreach (Widget w in this.Children) {
 			TagItem item = w as TagItem;
-			if (w != null) {
+			if (item != null) {
 				if (t == item.Value)
 					return i;
 			}
@@ -70,7 +75,6 @@ public class TagMenu : Menu {
 		}
 		
 		return -1;
-
 	}
 
 	public void Populate (bool flat)
@@ -79,6 +83,12 @@ public class TagMenu : Menu {
 			PopulateFlat (tag_store.RootCategory, this);
 		else
 			Populate (tag_store.RootCategory, this);
+
+		if (NewTagHandler != null) {
+			GtkUtil.MakeMenuSeparator (this);
+			GtkUtil.MakeMenuItem (this, Mono.Posix.Catalog.GetString ("Create New Tag"),
+					"f-spot-new-tag", NewTagHandler, true);
+		}
 	}
 
         public void PopulateFlat (Category cat, Gtk.Menu parent)

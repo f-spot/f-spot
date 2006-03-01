@@ -6,15 +6,15 @@ libdir=@libdir@
 
 EXE_TO_RUN="$libdir/f-spot/f-spot.exe"
 
-if [ "x$1" = "x--uninstalled" ]; then
+case "x--uninstalled" in ("x$1" | "x$2")
 	echo "*** Running uninstalled f-spot ***"
 	EXE_TO_RUN="./f-spot.exe"
 	export MONO_PATH=../FlickrNet:../libgphoto2-sharp:../semweb:$MONO_PATH
-fi
+esac
 
-if [ "x$1" = "x--debug" ]; then
+case "x--debug" in ("x$1" | "x$2")
 	MONO_OPTIONS="--debug"
 	echo "*** Running F-Spot in Debug Mode ***"
-fi
+esac
 
 exec -a @PACKAGE@ mono $MONO_OPTIONS $EXE_TO_RUN "$@"

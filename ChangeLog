@@ -5,6 +5,21 @@
 	* src/TagSelectionWidget.cs: Add ScrollTo (Tag) method. Fix the code
 	that was supposed to expand any parent tags to show new tags.
 
+	* src/ImportCommand.cs: New Tag stuff moved to TagMenu.  Select a new
+	tag when it's made.
+
+	* src/MainWindow.cs: Add New Tag option to the Attach menu. New
+	handler for creating new tag and attaching it.
+
+	* src/PhotoPopup.cs: Add New Tag option via TagMenu.
+
+	* src/TagMenu.cs: Add property for NewTagHandler which if set causes a
+	new tag option to be put into the tag menu. Fix bug in GetPosition
+	method.
+
+	* src/f-spot.in: allow both --debug and --uninstalled at the same time
+	in any order.
+
 2006-02-28  Gabriel Burt <gabriel.burt@gmail.com>
 
 	* src/f-spot.in: add --uninstalled option.

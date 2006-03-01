@@ -61,6 +61,7 @@ public class PhotoPopup {
 		//
 		MenuItem attach_item = new MenuItem (Mono.Posix.Catalog.GetString ("Attach Tag"));
 		TagMenu attach_menu = new TagMenu (attach_item, MainWindow.Toplevel.Database.Tags);
+		attach_menu.NewTagHandler = MainWindow.Toplevel.HandleCreateTagAndAttach;
 		attach_menu.TagSelected += MainWindow.Toplevel.HandleAttachTagMenuSelected;
 		attach_item.ShowAll ();
 		popup_menu.Append (attach_item);
