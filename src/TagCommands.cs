@@ -105,7 +105,7 @@ public class TagCommands {
 				}
 			}
 		}
-		public bool Execute (TagType type, Tag [] selection)
+		public Tag Execute (TagType type, Tag [] selection)
 		{
 			this.CreateDialog ("create_tag_dialog");
 
@@ -129,17 +129,15 @@ public class TagCommands {
 
 			ResponseType response = (ResponseType) this.Dialog.Run ();
 
-			bool success = false;
-
+			Tag new_tag = null;
 			if (response == ResponseType.Ok) {
 				try {
 					Category parent_category = Category;
 
 					if (type == TagType.Category)
-						tag_store.CreateCategory (parent_category, tag_name_entry.Text);
+						new_tag = tag_store.CreateCategory (parent_category, tag_name_entry.Text) as Tag;
 					else
-						tag_store.CreateTag (parent_category, tag_name_entry.Text);
-					success = true;
+						new_tag = tag_store.CreateTag (parent_category, tag_name_entry.Text);
 				} catch (Exception ex) {
 					// FIXME error dialog.
 					Console.WriteLine ("error {0}", ex);
@@ -147,7 +145,7 @@ public class TagCommands {
 			}
 
 			this.Dialog.Destroy ();
-			return success;
+			return new_tag;
 		}
 
 		public Create (TagStore tag_store, Gtk.Window parent_window)

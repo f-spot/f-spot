@@ -714,7 +714,7 @@ public class MainWindow {
 		{
 			TagPopup popup = new TagPopup ();
 			popup.Activate (args.Event, tag_selection_widget.TagAtPosition ((int)args.Event.X, (int)args.Event.Y),
-			tag_selection_widget.TagHighlight ());
+			tag_selection_widget.TagHighlight);
 			args.RetVal = true;
 		}
 	}
@@ -722,13 +722,13 @@ public class MainWindow {
 	void HandleTagSelectionPopupMenu (object sender, PopupMenuArgs args)
 	{
 		TagPopup popup = new TagPopup ();
-		popup.Activate (null, null, tag_selection_widget.TagHighlight ());
+		popup.Activate (null, null, tag_selection_widget.TagHighlight);
 		args.RetVal = true;
 	}
 
 	void HandleTagSelectionDragBegin (object sender, DragBeginArgs args)
 	{
-		Tag [] tags = tag_selection_widget.TagHighlight ();
+		Tag [] tags = tag_selection_widget.TagHighlight;
 		int len = tags.Length;
 		int size = 32;
 		int csize = size/2 + len * size / 2 + 2;
@@ -822,7 +822,7 @@ public class MainWindow {
 			InvalidateViews ();
 			break;
 		case (uint)TargetType.TagList:
-			Tag child = tag_selection_widget.TagHighlight ()[0];
+			Tag child = tag_selection_widget.TagHighlight [0];
 			Tag parent = tags[0];
 
 			// FIXME with this reparenting via dnd, you cannot move a tag to root.
@@ -1072,9 +1072,9 @@ public class MainWindow {
 			//Console.WriteLine ("Drop cell = {0} ({1},{2})", item, args.X, args.Y);
 			if (item >= 0) {
 				if (icon_view.Selection.Contains (item))
-					AttachTags (tag_selection_widget.TagHighlight (), SelectedIds());
+					AttachTags (tag_selection_widget.TagHighlight, SelectedIds());
 				else 
-					AttachTags (tag_selection_widget.TagHighlight (), new int [] {item});
+					AttachTags (tag_selection_widget.TagHighlight, new int [] {item});
 			}
 			break;
 		case (uint)TargetType.UriList:
@@ -1592,22 +1592,18 @@ public class MainWindow {
 		}
 	}
 
-	public void HandleCreateNewTagCommand (object sender, EventArgs args)
-	{
-		TagCommands.Create command = new TagCommands.Create (db.Tags, main_window);
-		command.Execute (TagCommands.TagType.Tag, tag_selection_widget.TagHighlight ());
-		
-	}
-
 	public void HandleCreateNewCategoryCommand (object sender, EventArgs args)
 	{
 		TagCommands.Create command = new TagCommands.Create (db.Tags, main_window);
-		command.Execute (TagCommands.TagType.Category, tag_selection_widget.TagHighlight ());
+		Tag new_tag = command.Execute (TagCommands.TagType.Category, tag_selection_widget.TagHighlight);
+		
+		if (new_tag != null)
+			tag_selection_widget.TagHighlight = new Tag [] {new_tag};
 	}
 
 	public void HandleAttachTagCommand (object obj, EventArgs args)
 	{
-		AttachTags (tag_selection_widget.TagHighlight (), SelectedIds ());
+		AttachTags (tag_selection_widget.TagHighlight, SelectedIds ());
 	}
 
 	void AttachTags (Tag [] tags, int [] ids) 
@@ -1621,7 +1617,7 @@ public class MainWindow {
 
 	public void HandleRemoveTagCommand (object obj, EventArgs args)
 	{
-		Tag [] tags = this.tag_selection_widget.TagHighlight ();
+		Tag [] tags = this.tag_selection_widget.TagHighlight;
 
 		db.BeginTransaction ();
 		foreach (int num in SelectedIds ()) {
@@ -1639,7 +1635,7 @@ public class MainWindow {
 
 	public void HandleEditSelectedTag (object sender, EventArgs ea)
 	{
-		Tag [] tags = this.tag_selection_widget.TagHighlight ();
+		Tag [] tags = this.tag_selection_widget.TagHighlight;
 		if (tags.Length != 1)
 			return;
 
@@ -1659,7 +1655,7 @@ public class MainWindow {
 
 	public void HandleMergeTagsCommand (object obj, EventArgs args)
 	{
-		Tag [] tags = this.tag_selection_widget.TagHighlight ();
+		Tag [] tags = this.tag_selection_widget.TagHighlight;
 		if (tags.Length < 2)
 			return;
 		
@@ -2121,7 +2117,7 @@ public class MainWindow {
 
 	public void HandleDeleteSelectedTagCommand (object sender, EventArgs args)
 	{
-		Tag [] tags = this.tag_selection_widget.TagHighlight ();
+		Tag [] tags = this.tag_selection_widget.TagHighlight;
 
 		System.Array.Sort (tags, new TagRemoveComparer ());
 
@@ -2625,7 +2621,7 @@ public class MainWindow {
 
 	       // Add any new tags to the selected photos
 	       Category default_category = null;
-	       Tag [] selection = tag_selection_widget.TagHighlight ();
+	       Tag [] selection = tag_selection_widget.TagHighlight;
 	       if (selection.Length > 0) {
 		       if (selection [0] is Category)
 			       default_category = (Category) selection [0];

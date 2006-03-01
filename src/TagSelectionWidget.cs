@@ -153,24 +153,38 @@ public class TagSelectionWidget : TreeView {
 		}
 	}
 
-	public Tag [] TagHighlight () {
-		TreeModel model;
-		TreeIter iter;
+	public Tag [] TagHighlight {
+		get {
+			TreeModel model;
+			TreeIter iter;
 
-		TreePath [] rows = Selection.GetSelectedRows(out model);
+			TreePath [] rows = Selection.GetSelectedRows(out model);
 
-		Tag [] tags = new Tag [rows.Length];
-		int i = 0;
+			Tag [] tags = new Tag [rows.Length];
+			int i = 0;
 
-		foreach (TreePath path in rows) {
-			GLib.Value value = new GLib.Value ();
-			Model.GetIter (out iter, path);
-			Model.GetValue (iter, IdColumn, ref value);
-			uint tag_id = (uint) value;
-			tags[i] = tag_store.Get (tag_id) as Tag;
-			i++;
+			foreach (TreePath path in rows) {
+				GLib.Value value = new GLib.Value ();
+				Model.GetIter (out iter, path);
+				Model.GetValue (iter, IdColumn, ref value);
+				uint tag_id = (uint) value;
+				tags[i] = tag_store.Get (tag_id) as Tag;
+				i++;
+			}
+			return tags;
 		}
-		return tags;
+
+		set {
+			if (value == null)
+				return;
+
+			Selection.UnselectAll ();
+
+			TreeIter iter;
+			foreach (Tag tag in value)
+				if (TreeIterForTag (tag, out iter))
+					Selection.SelectIter (iter);
+		}
 	}
 
 	public void Update ()

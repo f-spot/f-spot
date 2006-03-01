@@ -2,6 +2,13 @@
 
 	* src/f-spot.in: add --uninstalled option.
 
+	* src/TagCommands.cs: return the created tag instead of a bool.
+
+	* src/TagSelectionWidget.cs: Make TagHighlight a get/set property.
+
+	* src/MainWindow.cs: after creating a new tag, highlight it.  Use the
+	new TagHighlight property.
+
 2006-02-28  Larry Ewing  <lewing@novell.com>
 
 	* src/JpegFile.cs: set the orientation to TopLeft when saving the
