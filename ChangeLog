@@ -1,3 +1,8 @@
+2006-02-28  Larry Ewing  <lewing@novell.com>
+
+	* src/JpegFile.cs: set the orientation to TopLeft when saving the
+	image.  Fixes #332934
+
 2006-02-26  Larry Ewing  <lewing@novell.com>
 
 	* src/main.cs: use the new exception dialog.
