@@ -152,6 +152,7 @@ namespace FSpot {
 				e.SetData ((uint)pixbuf.Height);
 			
 			image_content = this.ExifData.GetContents (Exif.Ifd.Zero);
+			image_content.GetEntry (Exif.Tag.Orientation).SetData ((ushort)PixbufOrientation.TopLeft);
 			image_content.GetEntry (Exif.Tag.ImageWidth).SetData ((uint)pixbuf.Width);
 			image_content.GetEntry (Exif.Tag.ImageHeight).SetData ((uint)pixbuf.Height);
 
