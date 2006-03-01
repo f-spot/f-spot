@@ -1597,8 +1597,10 @@ public class MainWindow {
 		TagCommands.Create command = new TagCommands.Create (db.Tags, main_window);
 		Tag new_tag = command.Execute (TagCommands.TagType.Category, tag_selection_widget.TagHighlight);
 		
-		if (new_tag != null)
+		if (new_tag != null) {
+			tag_selection_widget.ScrollTo (new_tag);
 			tag_selection_widget.TagHighlight = new Tag [] {new_tag};
+		}
 	}
 
 	public void HandleAttachTagCommand (object obj, EventArgs args)

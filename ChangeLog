@@ -1,3 +1,10 @@
+2006-03-01  Gabriel Burt <gabriel.burt@gmail.com>
+
+	* src/MainWindow.cs: When a new tag is created, scroll to it.
+
+	* src/TagSelectionWidget.cs: Add ScrollTo (Tag) method. Fix the code
+	that was supposed to expand any parent tags to show new tags.
+
 2006-02-28  Gabriel Burt <gabriel.burt@gmail.com>
 
 	* src/f-spot.in: add --uninstalled option.

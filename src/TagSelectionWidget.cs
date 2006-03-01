@@ -153,6 +153,17 @@ public class TagSelectionWidget : TreeView {
 		}
 	}
 
+	public void ScrollTo (Tag tag)
+	{
+		TreeIter iter;
+		if (! TreeIterForTag (tag, out iter))
+			return;
+
+		TreePath path = Model.GetPath (iter);
+
+		ScrollToCell (path, null, false, 0, 0);
+	}
+
 	public Tag [] TagHighlight {
 		get {
 			TreeModel model;
@@ -391,17 +402,20 @@ public class TagSelectionWidget : TreeView {
 			//I have no desire to figure out a more performant sort over this...
 			GLib.Value value = new GLib.Value ();
 			store.GetValue(iter, IdColumn, ref value);
-			compare = (Tag)tag_store.Get ((uint) value);
+			compare = (Tag) tag_store.Get ((uint) value);
 
 			if (compare.CompareTo (tag) > 0) {
 				iter = store.InsertNodeBefore (iter);
 				store.SetValue (iter, IdColumn, tag.Id);
 				store.SetValue (iter, NameColumn, tag.Name);
+				
+				if (!is_root)
+					ExpandRow (Model.GetPath (parent), false);
 				return iter;
 			}
 			valid = store.IterNext(ref iter);
 		}
-
+		
 		if (is_root) 
 			iter = store.AppendNode (); 
 		else {
@@ -412,7 +426,7 @@ public class TagSelectionWidget : TreeView {
 		store.SetValue (iter, IdColumn, tag.Id);
 		store.SetValue (iter, NameColumn, tag.Name);
 		return iter;
-	}	
+	}
 
 	private void HandleTagsRemoved (object sender, DbItemEventArgs args)
 	{
