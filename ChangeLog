@@ -11,6 +11,8 @@
 	handler, calling the default handler then returning *false* instead of
 	true so others can listen for the event and handle it after us.
 
+	* src/MetaStore.cs: Add check null when loading the data column.
+
 2006-03-01  Larry Ewing  <lewing@novell.com>
 
 	* src/SlideView.cs: catch exceptions while loading the photo and

@@ -106,8 +106,12 @@ public class MetaStore : DbStore {
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader [0]);
+
 			string name = reader [1].ToString ();
-			string data = reader [2].ToString ();
+
+			string data = null;
+			if (reader [2] != null)
+				data = reader [2].ToString ();
 
 			MetaItem item = new MetaItem (id, name, data);
 
