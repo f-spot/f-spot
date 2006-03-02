@@ -708,7 +708,6 @@ public class MainWindow {
 		}
 	}
 
-	[GLib.ConnectBefore]
 	void HandleTagSelectionButtonPressEvent (object sender, ButtonPressEventArgs args)
 	{
 		if (args.Event.Button == 3)

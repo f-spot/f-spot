@@ -14,7 +14,9 @@ using System;
 public class TagPopup {
 	public void Activate (Gdk.EventButton eb, Tag tag, Tag [] tags)
 	{
-		int count = MainWindow.Toplevel.SelectedIds ().Length;
+		int photo_count = MainWindow.Toplevel.SelectedIds ().Length;
+		int tags_count = tags.Length;
+
 		Gtk.Menu popup_menu = new Gtk.Menu ();
 		
 		GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Create New Tag"),
@@ -22,32 +24,29 @@ public class TagPopup {
 		
 		GtkUtil.MakeMenuSeparator (popup_menu);
 
-		if (tag == null)
-			GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Edit Tag"), null, false);
-		else {
-			string editstr = String.Format (Mono.Posix.Catalog.GetString ("Edit Tag \"{0}\""), tag.Name.Replace ("_", "__"));
-			GtkUtil.MakeMenuItem (popup_menu, editstr, delegate { MainWindow.Toplevel.HandleEditSelectedTagWithTag (tag); }, true);
-		}
+		GtkUtil.MakeMenuItem (popup_menu,
+			Mono.Posix.Catalog.GetString ("Edit Tag"),
+			delegate { MainWindow.Toplevel.HandleEditSelectedTagWithTag (tag); }, tag != null && tags_count == 1);
 
 		GtkUtil.MakeMenuItem (popup_menu,
-				      Mono.Posix.Catalog.GetPluralString ("Delete Tag", "Delete Tags", tags.Length),
-				      new EventHandler (MainWindow.Toplevel.HandleDeleteSelectedTagCommand), tag != null && tags != null && tags.Length > 0);
+			Mono.Posix.Catalog.GetPluralString ("Delete Tag", "Delete Tags", tags_count),
+			new EventHandler (MainWindow.Toplevel.HandleDeleteSelectedTagCommand), tag != null);
 		
 		GtkUtil.MakeMenuSeparator (popup_menu);
 
 		GtkUtil.MakeMenuItem (popup_menu,
-				      Mono.Posix.Catalog.GetPluralString ("Attach Tag To Selection", "Attach Tags To Selection", tags.Length),
-				      new EventHandler (MainWindow.Toplevel.HandleAttachTagCommand), count > 0);
+				      Mono.Posix.Catalog.GetPluralString ("Attach Tag to Selection", "Attach Tags to Selection", tags_count),
+				      new EventHandler (MainWindow.Toplevel.HandleAttachTagCommand), tag != null && photo_count > 0);
 
 		GtkUtil.MakeMenuItem (popup_menu,
-				      Mono.Posix.Catalog.GetPluralString ("Remove Tag From Selection", "Remove Tags From Selection", tags.Length),
-				      new EventHandler (MainWindow.Toplevel.HandleRemoveTagCommand), count > 0);
+				      Mono.Posix.Catalog.GetPluralString ("Remove Tag From Selection", "Remove Tags From Selection", tags_count),
+				      new EventHandler (MainWindow.Toplevel.HandleRemoveTagCommand), tag != null && photo_count > 0);
 
-		if (tags.Length > 1) {
+		if (tags_count > 1 && tag != null) {
 			GtkUtil.MakeMenuSeparator (popup_menu);
 
 			GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Merge Tags"),
-					      new EventHandler (MainWindow.Toplevel.HandleMergeTagsCommand), tags.Length > 1);
+					      new EventHandler (MainWindow.Toplevel.HandleMergeTagsCommand), true);
 
 		}
 

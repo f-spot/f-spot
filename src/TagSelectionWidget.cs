@@ -573,6 +573,16 @@ public class TagSelectionWidget : TreeView {
 		
 		SetCursor (rows[0], name_column, true);
 	}
+
+	// Override the default ButtonPressEvent because it is stupid and
+	// returns true, meaning if you want to have another handler for the ButtonPress
+	// event you have to Glib.ConnectBefore.  Plus you usually want the default one to
+	// run first so it will select/unselect anything necessary before popping up a menu, say.
+	protected override bool OnButtonPressEvent (Gdk.EventButton button)
+	{
+		base.OnButtonPressEvent (button);
+		return false;
+	}
 	
 	public void HandleTagNameEdited (object sender, EditedArgs args)
 	{

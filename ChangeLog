@@ -1,3 +1,16 @@
+2006-03-01  Gabriel Burt <gabriel.burt@gmail.com>
+
+	* src/MainWindow.cs: Change the tag selection button press handler
+	so it's doesn't ConnectBefore the default handler, giving the popup
+	the benefit of knowing what is now selected/unselected.
+
+	* src/TagPopup.cs: Fix bugs in when the Edit/Delete/Attach/Unattach
+	menu items were sensitive.
+
+	* src/TagSelectionWidget.cs: Override the default ButtonPressEvent
+	handler, calling the default handler then returning *false* instead of
+	true so others can listen for the event and handle it after us.
+
 2006-03-01  Larry Ewing  <lewing@novell.com>
 
 	* src/SlideView.cs: catch exceptions while loading the photo and
