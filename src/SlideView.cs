@@ -329,7 +329,13 @@ namespace FSpot {
 		
 		private Pixbuf GetScaled (IBrowsableItem photo)
 		{
-			Pixbuf orig = FSpot.PhotoLoader.LoadAtMaxSize (photo, Allocation.Width, Allocation.Height);
+			Pixbuf orig;
+			try { 
+				orig = FSpot.PhotoLoader.LoadAtMaxSize (photo, Allocation.Width, Allocation.Height);
+			} catch {
+				orig = null;
+			}
+
 			if (orig == null)
 				return null;
 

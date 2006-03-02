@@ -1,5 +1,8 @@
 2006-03-01  Larry Ewing  <lewing@novell.com>
 
+	* src/SlideView.cs: catch exceptions while loading the photo and
+	return null instead.
+
 	* src/OpenWithMenu.cs: copy the MimeApplications to work around a
 	bug in the Gnome.Vfs bindings. Fixes #332949
 
