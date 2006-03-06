@@ -10,6 +10,7 @@ using System.Text;
 using System.Collections;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
+using System.Web;
 using System.Web.Mail;
 
 using FSpot;
@@ -1399,9 +1400,8 @@ public class MainWindow {
 		StringBuilder url = new StringBuilder ("mailto:?subject=my%20photos");
 
 		foreach (Photo p in SelectedPhotos ()) {
-			url.Append ("&attach=" + p.DefaultVersionPath);
+			url.Append ("&attach=" + HttpUtility.UrlEncode(p.DefaultVersionPath));
 		}
-
 		GnomeUtil.UrlShow (main_window, url.ToString ());
 	}
 
@@ -1451,7 +1451,7 @@ public class MainWindow {
 
                 new About ("F-Spot", 
 			   FSpot.Defines.VERSION, 
-			   Mono.Posix.Catalog.GetString ("Copyright 2003-2006 Novell Inc."),
+			   Mono.Posix.Catalog.GetString ("Copyright \x00a9 2003-2006 Novell Inc."),
                            null, authors, new string [0], translators, null).Show();
 	}
 
@@ -2496,9 +2496,8 @@ public class MainWindow {
 
 		if (selected == null || selected.Length < 1)
 			return;
-		
+
 		string header = Catalog.GetPluralString ("Create New Version?", "Create New Versions?", selected.Length); 
-		
 		string msg = String.Format (Catalog.GetPluralString (
 				"Before launching {1}, should F-Spot create a new version of the selected photo to preserve the original?",
 				"Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?", selected.Length),
@@ -2506,18 +2505,20 @@ public class MainWindow {
 
 		// FIXME add cancel button? add help button?
 		HigMessageDialog hmd = new HigMessageDialog(main_window, DialogFlags.DestroyWithParent, 
-								   MessageType.Question, Gtk.ButtonsType.None,
-								   header, msg);
+							    MessageType.Question, Gtk.ButtonsType.None,
+							    header, msg);
+
 		hmd.AddButton (Gtk.Stock.No, Gtk.ResponseType.No, false);
 		//hmd.AddButton (Gtk.Stock.Cancel, Gtk.ResponseType.Cancel, false);
 		hmd.AddButton (Gtk.Stock.Yes, Gtk.ResponseType.Yes, true);
 
 		Gtk.ResponseType response = Gtk.ResponseType.Cancel;
- 		try {
- 			response = (Gtk.ResponseType) hmd.Run();
- 		} finally {
- 			hmd.Destroy();
- 		}
+
+		try {
+			response = (Gtk.ResponseType) hmd.Run();
+		} finally {
+			hmd.Destroy ();
+		}
 
 		if (response == Gtk.ResponseType.Cancel)
 			return;
@@ -2527,15 +2528,18 @@ public class MainWindow {
 		GLib.List uri_list = new GLib.List (typeof (string));
 		foreach (Photo photo in selected) {
 			if (create_new_versions) {
-				// exception handling? Out of space, blah, blah
+				// FIXME exception handling? Out of space, blah, blah
 				uint version = photo.CreateNamedVersion (mime_application.Name, photo.DefaultVersionId, true);
 				photo.DefaultVersionId = version;
-				UpdateForVersionIdChange (version);
 			}
 
 			uri_list.Append (photo.DefaultVersionPath);
 		}
-		
+
+		if (create_new_versions) {
+			db.Photos.Commit (selected, new DbItemEventArgs (selected));
+		}
+
 		mime_application.Launch (uri_list);
 	}
 
