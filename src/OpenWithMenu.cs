@@ -153,8 +153,9 @@ public class OpenWithMenu: Gtk.Menu {
 	private void HandleItemActivated (object sender, EventArgs args)
 	{
 		AppMenuItem app = (sender as AppMenuItem);
+
 		if (ApplicationActivated != null)
-			ApplicationActivated ((sender as AppMenuItem).App);
+			ApplicationActivated (app.App);
 	}
 	
 	private class AppMenuItem : ImageMenuItem {
