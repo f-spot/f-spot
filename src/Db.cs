@@ -256,15 +256,47 @@ public class Db : IDisposable {
 		get { return sqlite_connection; }
 	}
 
+	private static int GetFileVersion (string path)
+	{
+		using (Stream stream = File.OpenRead (path)) {
+			byte [] data = new byte [15];
+			stream.Read (data, 0, data.Length);
+
+			string magic = System.Text.Encoding.ASCII.GetString (data, 0, data.Length);
+
+			switch (magic) {
+			case "SQLite format 3":
+				return 3;
+			case "** This file co":
+				return 2;
+			default:
+				return -1;
+			}
+		}
+	}
+
 	public void Init (string path, bool create_if_missing)
 	{
 		bool new_db = ! File.Exists (path);
+		string version_string = "";
 
 		if (new_db && ! create_if_missing)
 			throw new Exception (path + ": File not found");
 
+		if (! new_db) {
+			int version = Db.GetFileVersion (path);
+			// FIXME: we should probably display and error dialog if the version
+			// is anything other than the one we were built with, but for now at least
+			// use the right version.
+
+			if (version < 2)
+				throw new Exception ("Unsupported database version");
+			
+			version_string = String.Format (",version={0}", version);
+		}
+		
 		sqlite_connection = new SqliteConnection ();
-		sqlite_connection.ConnectionString = "URI=file:" + path;
+		sqlite_connection.ConnectionString = "URI=file:" + path + version_string;
 
 		sqlite_connection.Open ();
 		
