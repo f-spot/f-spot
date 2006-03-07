@@ -703,7 +703,7 @@ public class PhotoStore : DbStore {
 	{
 		FSpot.ImageFile img = FSpot.ImageFile.Create (origPath);
 		long unix_time = DbUtils.UnixTimeFromDateTime (img.Date);
-		string description = img.Description != null ? img.Description : "";
+		string description = img.Description != null  ? img.Description.Split ('\0') [0] : "";
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
 
