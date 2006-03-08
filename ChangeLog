@@ -1,7 +1,12 @@
 2006-03-08  Larry Ewing  <lewing@novell.com>
 
+	* src/ImportCommand.cs: remove PhotoFGride from the file.
+
+	* src/PhotoGrid.cs: new file, moving the import photogrid to it's
+	own file.
+
 	* src/ImportCommand.cs: use the camera count not the source count
-	when deciding to remove the usb entry. Fixes #326860.
+	when deciding to remove the usb entry. Fixes #324752.
 
 2006-03-07  Larry Ewing  <lewing@novell.com>
 
