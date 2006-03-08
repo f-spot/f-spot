@@ -1,7 +1,7 @@
 2006-03-08  Larry Ewing  <lewing@novell.com>
 
 	* src/ImportCommand.cs: use the camera count not the source count
-	when deciding to remove the usb entry.
+	when deciding to remove the usb entry. Fixes #326860.
 
 2006-03-07  Larry Ewing  <lewing@novell.com>
 
