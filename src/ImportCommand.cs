@@ -291,7 +291,6 @@ public class ImportCommand : FSpot.GladeDialog {
 	
 	Tag tag_selected;
 
-	PhotoGrid grid;
 	Gtk.Window main_window;
 	string import_path;
 	FSpot.PhotoList collection;
