@@ -1,6 +1,10 @@
 2006-03-07  Larry Ewing  <lewing@novell.com>
 
-	* src/Db.cs: add a small check to check the db version and load the right one.
+	* src/GroupSelector.cs: protect the various logic from zero
+	counts. Fixes #333745.
+
+	* src/Db.cs: add a small check to check the db version and load
+	the right one.
 
 	* src/OpenWithMenu.cs: use variable.
 

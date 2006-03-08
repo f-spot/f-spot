@@ -369,8 +369,10 @@ namespace FSpot {
 			attr.Wclass = WindowClass.InputOnly;
 			attr.EventMask = (int) Events;
 			attr.EventMask |= (int) (EventMask.ButtonPressMask | 
-				EventMask.ButtonReleaseMask | 
-				EventMask.PointerMotionMask);
+						 EventMask.KeyPressMask |
+						 EventMask.KeyReleaseMask |
+						 EventMask.ButtonReleaseMask | 
+						 EventMask.PointerMotionMask);
 				
 			event_window = new Gdk.Window (GdkWindow, attr, (int) (WindowAttributesType.X | WindowAttributesType.Y));
 			event_window.UserData = this.Handle;
@@ -413,13 +415,16 @@ namespace FSpot {
 				bounds.Y = selector.background.Y;
 				bounds.X = selector.BoxX (item);
 				bounds.Width = Math.Max (selector.BoxX (item + 1) - bounds.X, 1);
-				
+
+				if (item < 0 || item > selector.box_counts.Length - 1)
+					return;
+
 				double percent = selector.box_counts [item] / (double) Math.Max (selector.box_count_max, 1);
 				bar = bounds;
 				bar.Height = (int) Math.Ceiling ((bounds.Height - selector.box_top_padding) * percent);
 				bar.Y += bounds.Height - bar.Height - 1;
 				
-				bar.Inflate (-selector.box_spacing, 0);
+				bar.Inflate (- selector.box_spacing, 0);
 			}
 			
 			public Gdk.Rectangle Bounds {
@@ -575,6 +580,14 @@ namespace FSpot {
 
 				return true;
 			}
+			
+			protected bool PositionValid (int position)
+			{
+				if (position < 0 || position > selector.box_counts.Length - 1)
+					return false;
+
+				return true;
+			}
 
 			public virtual void UpdateDrag (double x, double y)
 			{
@@ -587,8 +600,7 @@ namespace FSpot {
 						return;
 				}
 
-				System.Console.WriteLine ("scroll {0}, x {1}", scroll, x);
-
+				//System.Console.WriteLine ("scroll {0}, x {1}", scroll, x);
 				DragOffset = (int)x - DragStart.X;
 			}
 
@@ -630,6 +642,9 @@ namespace FSpot {
 
 			public void SetPosition (int position, bool update)
 			{
+				if (! PositionValid (position))
+					return;
+				    
 				Rectangle then = Bounds ();
 				this.position = position;
 				Rectangle now = Bounds ();
@@ -758,40 +773,44 @@ namespace FSpot {
 
 			public override void Draw (Rectangle area)
 			{
+				if (! PositionValid (Position))
+					return;
+
 				Rectangle inner = InnerBounds ();
 				Rectangle bounds = Bounds ();
 				
-				if (bounds.Intersect (area, out area)) {
-					int i = 0;
-
-					Rectangle box = inner;
-					box.Width -= 1;
-					box.Height -= 1;
-					while (i < border) {
-						box.Inflate (1, 1);
-						
-						selector.Style.BackgroundGC (State).ClipRectangle = area;
-						selector.GdkWindow.DrawRectangle (selector.Style.BackgroundGC (State), 
-										  false, box);
-						i++;
-					}
-
-
-					Style.PaintFlatBox (selector.Style, selector.GdkWindow, State, ShadowType.In, 
-							    area, selector, "glass", bounds.X, inner.Y + inner.Height + border, 
-							    bounds.Width, handle_height);
-
-					Style.PaintHandle (selector.Style, selector.GdkWindow, State, ShadowType.In, 
-							    area, selector, "glass", bounds.X, inner.Y + inner.Height + border, 
-							    bounds.Width, handle_height, Orientation.Horizontal);
+				if (! bounds.Intersect (area, out area))
+				    return;
+				    
+				int i = 0;
+				
+				Rectangle box = inner;
+				box.Width -= 1;
+				box.Height -= 1;
+				while (i < border) {
+					box.Inflate (1, 1);
 					
-					Style.PaintShadow (selector.Style, selector.GdkWindow, State, ShadowType.Out, 
-							   area, selector, "glass", bounds.X, bounds.Y, bounds.Width, bounds.Height);
-
-					Style.PaintShadow (selector.Style, selector.GdkWindow, State, ShadowType.In, 
-							   area, selector, "glass", inner.X, inner.Y, inner.Width, inner.Height);
-
+					selector.Style.BackgroundGC (State).ClipRectangle = area;
+					selector.GdkWindow.DrawRectangle (selector.Style.BackgroundGC (State), 
+									  false, box);
+					i++;
 				}
+				
+				
+				Style.PaintFlatBox (selector.Style, selector.GdkWindow, State, ShadowType.In, 
+						    area, selector, "glass", bounds.X, inner.Y + inner.Height + border, 
+						    bounds.Width, handle_height);
+				
+				Style.PaintHandle (selector.Style, selector.GdkWindow, State, ShadowType.In, 
+						   area, selector, "glass", bounds.X, inner.Y + inner.Height + border, 
+						   bounds.Width, handle_height, Orientation.Horizontal);
+				
+				Style.PaintShadow (selector.Style, selector.GdkWindow, State, ShadowType.Out, 
+						   area, selector, "glass", bounds.X, bounds.Y, bounds.Width, bounds.Height);
+				
+				Style.PaintShadow (selector.Style, selector.GdkWindow, State, ShadowType.In, 
+						   area, selector, "glass", inner.X, inner.Y, inner.Width, inner.Height);
+				
 			}
 			
 			public override void PositionChanged ()
@@ -1070,6 +1089,8 @@ namespace FSpot {
 			this.Put (right, 100, 0);
 			left.Show ();
 			right.Show ();
+
+			CanFocus = true;
 			
 			Mode = RangeType.Min;
 			UpdateButtons ();
