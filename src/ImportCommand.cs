@@ -297,13 +297,14 @@ public class ImportCommand : FSpot.GladeDialog {
 
 			GPhotoCamera cam = new GPhotoCamera ();
 			cam.DetectCameras ();
-			
-			if (cam.CameraList.Count () > 0) {
+			int camera_count = cam.CameraList.Count ();
+
+			if (camera_count > 0) {
 				this.Append (new Gtk.SeparatorMenuItem ());
 			
-				source_count += cam.CameraList.Count ();
-				for (int i = 0; i < cam.CameraList.Count (); i++) {
-					if (source_count == 1 || cam.CameraList.GetValue (i) != "usb:") {
+				source_count += camera_count;
+				for (int i = 0; i < camera_count; i++) {
+					if (camera_count == 1 || cam.CameraList.GetValue (i) != "usb:") {
 						ImportSource source = new CameraSource (cam, i);
 						this.Append (new SourceItem (source));
 					}
