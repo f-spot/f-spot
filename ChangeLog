@@ -1,5 +1,8 @@
 2006-03-08  Larry Ewing  <lewing@novell.com>
 
+	* src/Db.cs: add an encoding string to the connection line for
+	verison 2 files.  Should fix bgo #333644 and bxc #77711.
+
 	* src/ImportCommand.cs: remove PhotoFGride from the file.
 
 	* src/PhotoGrid.cs: new file, moving the import photogrid to it's

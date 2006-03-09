@@ -293,6 +293,9 @@ public class Db : IDisposable {
 				throw new Exception ("Unsupported database version");
 			
 			version_string = String.Format (",version={0}", version);
+
+			if (version == 2)
+				version_string += ",encoding=UTF-8";
 		}
 		
 		sqlite_connection = new SqliteConnection ();
