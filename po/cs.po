@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-25 18:23+0100\n"
+"POT-Creation-Date: 2006-03-10 10:16+0100\n"
 "PO-Revision-Date: 2006-02-25 23:35+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -291,7 +291,7 @@ msgstr "Chyba: Soubor již existuje; končím"
 msgid "Error saving adjusted photo"
 msgstr "Chyba při ukládání upravené fotografie"
 
-#: ../src/ColorDialog.cs:302 ../src/Loupe.cs:53 ../src/MainWindow.cs:1792
+#: ../src/ColorDialog.cs:302 ../src/Loupe.cs:53 ../src/MainWindow.cs:1803
 #: ../src/PhotoView.cs:278
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
@@ -1295,7 +1295,7 @@ msgstr "_Přejmenovat verzi"
 msgid "_Resize to: "
 msgstr "Změnit _velikost na: "
 
-#: ../src/f-spot.glade.h:226 ../src/GroupSelector.cs:516
+#: ../src/f-spot.glade.h:226 ../src/GroupSelector.cs:521
 msgid "_Reverse Order"
 msgstr "_Obrátit pořadí"
 
@@ -1439,36 +1439,36 @@ msgstr "Více adresářů"
 msgid "More"
 msgstr "Více"
 
-#: ../src/GroupSelector.cs:508
+#: ../src/GroupSelector.cs:513
 msgid "Arrange by _Month"
 msgstr "Uspořádat podle _měsíce"
 
-#: ../src/GroupSelector.cs:511
+#: ../src/GroupSelector.cs:516
 msgid "Arrange by _Folder"
 msgstr "Uspořádat podle _adresáře"
 
-#: ../src/ImportCommand.cs:123
+#: ../src/ImportCommand.cs:36
 msgid "Select Folder"
 msgstr "Vybrat složku"
 
-#: ../src/ImportCommand.cs:312
+#: ../src/ImportCommand.cs:226
 msgid "(No Cameras Detected)"
 msgstr "(Nedetekován žádný fotoaparát)"
 
-#: ../src/ImportCommand.cs:449
+#: ../src/ImportCommand.cs:362
 #, csharp-format
 msgid "Loading {0} of {1}"
 msgstr "Načítám {0} z {1}"
 
-#: ../src/ImportCommand.cs:560
+#: ../src/ImportCommand.cs:473
 msgid "Done Loading"
 msgstr "Načítání dokončeno"
 
-#: ../src/ImportCommand.cs:707
+#: ../src/ImportCommand.cs:620
 msgid "Directory does not exist."
 msgstr "Adresář neexistuje."
 
-#: ../src/ImportCommand.cs:708
+#: ../src/ImportCommand.cs:621
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
@@ -1476,14 +1476,9 @@ msgid ""
 msgstr ""
 "Adresář {0}, který jste vybrali, neexistuje. Zvolte prosím jiný adresář"
 
-#: ../src/ImportCommand.cs:741
+#: ../src/ImportCommand.cs:655
 msgid "Select Tag"
 msgstr "Vybrat tag"
-
-#: ../src/ImportCommand.cs:746 ../src/StockIcons.cs:35
-#: ../src/TagCommands.cs:122 ../src/TagPopup.cs:20
-msgid "Create New Tag"
-msgstr "Vytvořit nový tag"
 
 #: ../src/InfoBox.cs:72 ../src/PhotoVersionCommands.cs:55
 msgid "Name:"
@@ -1656,7 +1651,7 @@ msgstr "Intelektuální žánr objektu"
 msgid "Unknown IIM DataSet"
 msgstr "Neznámý DataSet IIMF"
 
-#: ../src/Loupe.cs:52 ../src/MainWindow.cs:1791
+#: ../src/Loupe.cs:52 ../src/MainWindow.cs:1802
 msgid "Error saving sharpened photo"
 msgstr "Chyba při ukládání zaostřené fotografie"
 
@@ -1664,39 +1659,39 @@ msgstr "Chyba při ukládání zaostřené fotografie"
 msgid "Sharpen"
 msgstr "Zaostřit"
 
-#: ../src/Loupe.cs:91 ../src/MainWindow.cs:1758
+#: ../src/Loupe.cs:91 ../src/MainWindow.cs:1769
 msgid "Amount:"
 msgstr "Úroveň:"
 
-#: ../src/Loupe.cs:92 ../src/MainWindow.cs:1759
+#: ../src/Loupe.cs:92 ../src/MainWindow.cs:1770
 msgid "Radius:"
 msgstr "Poloměr:"
 
-#: ../src/Loupe.cs:93 ../src/MainWindow.cs:1760
+#: ../src/Loupe.cs:93 ../src/MainWindow.cs:1771
 msgid "Threshold:"
 msgstr "Práh:"
 
-#: ../src/MainWindow.cs:212
+#: ../src/MainWindow.cs:213
 msgid "Browse many photos simultaneously"
 msgstr "Proházet mnoho fotografií zároveň"
 
-#: ../src/MainWindow.cs:215
+#: ../src/MainWindow.cs:216
 msgid "View and edit a photo"
 msgstr "Zobrazit a upravit fotografii"
 
-#: ../src/MainWindow.cs:220
+#: ../src/MainWindow.cs:221
 msgid "View photos fullscreen"
 msgstr "Zobrazit fotografie na celé obrazovce"
 
-#: ../src/MainWindow.cs:223
+#: ../src/MainWindow.cs:224
 msgid "View photos in a slideshow"
 msgstr "Zobrazovat fotografie jako prezentaci"
 
-#: ../src/MainWindow.cs:1257
+#: ../src/MainWindow.cs:1258
 msgid "No cameras detected."
 msgstr "Nedetekován žádný fotoaparát."
 
-#: ../src/MainWindow.cs:1258
+#: ../src/MainWindow.cs:1259
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1704,11 +1699,11 @@ msgstr ""
 "F-Spot nemohl najít žádný fotoaparát připojený k tomuto systému. "
 "Zkontrolujte, že fotoaparát je připojen a má napájení"
 
-#: ../src/MainWindow.cs:1298
+#: ../src/MainWindow.cs:1299
 msgid "Error connecting to camera"
 msgstr "Chyba při připojování k fotoaparátu"
 
-#: ../src/MainWindow.cs:1299
+#: ../src/MainWindow.cs:1300
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Přijata chyba \"{0}\" při připojování k fotoaparátu"
@@ -1721,11 +1716,11 @@ msgid "translator-credits"
 msgstr "Miloslav Trmač"
 
 #: ../src/MainWindow.cs:1454
-msgid "Copyright 2003-2006 Novell Inc."
-msgstr "Copyright 2003-2006 Novell Inc."
+msgid "Copyright © 2003-2006 Novell Inc."
+msgstr "Copyright © 2003-2006 Novell Inc."
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1667
+#: ../src/MainWindow.cs:1678
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
@@ -1733,29 +1728,29 @@ msgstr[0] "Sloučit vybraný tag"
 msgstr[1] "Sloučit vybrané {0} tagy"
 msgstr[2] "Sloučit vybraných {0} tagů"
 
-#: ../src/MainWindow.cs:1694
+#: ../src/MainWindow.cs:1705
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
 msgstr "Tato operace sloučí vybrané tagy a všechny podtagy do jednoho tagu."
 
-#: ../src/MainWindow.cs:1696
+#: ../src/MainWindow.cs:1707
 msgid "_Merge Tags"
 msgstr "_Sloučit tagy"
 
-#: ../src/MainWindow.cs:1749
+#: ../src/MainWindow.cs:1760
 msgid "Unsharp Mask"
 msgstr "Maska rozostření"
 
-#: ../src/MainWindow.cs:2019
+#: ../src/MainWindow.cs:2030
 msgid "_Ok"
 msgstr "_Budiž"
 
-#: ../src/MainWindow.cs:2020
+#: ../src/MainWindow.cs:2031
 msgid "Error Deleting Picture"
 msgstr "Chyba při odstraňování obrázků"
 
-#: ../src/MainWindow.cs:2025
+#: ../src/MainWindow.cs:2036
 #, csharp-format
 msgid ""
 "No permission to delete the file:\n"
@@ -1764,7 +1759,7 @@ msgstr ""
 "Chybí oprávnění odstranit soubor:\n"
 "{0}"
 
-#: ../src/MainWindow.cs:2029
+#: ../src/MainWindow.cs:2040
 #, csharp-format
 msgid ""
 "An error of type {0} occurred while deleting the file:\n"
@@ -1773,7 +1768,7 @@ msgstr ""
 "Pri odstraňování souboru došlo k chybě typu {0}:\n"
 "{1}"
 
-#: ../src/MainWindow.cs:2040
+#: ../src/MainWindow.cs:2051
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
@@ -1781,7 +1776,7 @@ msgstr[0] "Natrvalo odstranit vybranou fotografii?"
 msgstr[1] "Natrvalo odstranit vybrané {0} fotografie?"
 msgstr[2] "Natrvalo odstranit vybraných {0} fotografií?"
 
-#: ../src/MainWindow.cs:2044
+#: ../src/MainWindow.cs:2055
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
@@ -1790,14 +1785,14 @@ msgstr[1] "To odstraní všechny verze vybraných fotografií z vašeho disku."
 msgstr[2] "To odstraní všechny verze vybraných fotografií z vašeho disku."
 
 #
-#: ../src/MainWindow.cs:2047
+#: ../src/MainWindow.cs:2058
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Odstranit fotografii"
 msgstr[1] "_Odstranit fotografie"
 msgstr[2] "_Odstranit fotografie"
 
-#: ../src/MainWindow.cs:2069
+#: ../src/MainWindow.cs:2080
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
@@ -1805,7 +1800,7 @@ msgstr[0] "Odstranit vybranou fotografii z F-Spotu?"
 msgstr[1] "Odstranit vybrané {0} fotografie z F-Spotu?"
 msgstr[2] "Odstranit vybraných {0} fotografií z F-Spotu?"
 
-#: ../src/MainWindow.cs:2074
+#: ../src/MainWindow.cs:2085
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1815,25 +1810,25 @@ msgstr ""
 "budou ztraceny. Fotografie zůstávají ve vašem počítači a lze je do F-Spot "
 "znovu importovat."
 
-#: ../src/MainWindow.cs:2075
+#: ../src/MainWindow.cs:2086
 msgid "_Remove from Catalog"
 msgstr "_Odstranit z katalogu"
 
-#: ../src/MainWindow.cs:2130
+#: ../src/MainWindow.cs:2141
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Odstranit tag \"{0}\"?"
 
-#: ../src/MainWindow.cs:2132
+#: ../src/MainWindow.cs:2143
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Odstranit {0} vybraných tagů?"
 
-#: ../src/MainWindow.cs:2135
+#: ../src/MainWindow.cs:2146
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr "Pokud odstraníte tag, všechny asociace s fotografiemi budou ztraceny."
 
-#: ../src/MainWindow.cs:2136
+#: ../src/MainWindow.cs:2147
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "Odstranit tag"
@@ -1841,11 +1836,11 @@ msgstr[1] "Odstranit tagy"
 msgstr[2] "Odstranit tagy"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2150
+#: ../src/MainWindow.cs:2161
 msgid "Tag is not empty"
 msgstr "Tag není prázdný"
 
-#: ../src/MainWindow.cs:2151
+#: ../src/MainWindow.cs:2162
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1854,28 +1849,28 @@ msgstr ""
 "Nemohu odstranit tagy, které obsahují tagy. Nejdříve prosím odstraňte tagy "
 "pod \"{0}\""
 
-#: ../src/MainWindow.cs:2462
+#: ../src/MainWindow.cs:2473
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Rotovat vybranou fotografii doleva"
 msgstr[1] "Rotovat vybrané fotografie doleva"
 msgstr[2] "Rotovat vybrané fotografie doleva"
 
-#: ../src/MainWindow.cs:2475
+#: ../src/MainWindow.cs:2486
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Rotovat vybranou fotografii doprava"
 msgstr[1] "Rotovat vybrané fotografie doprava"
 msgstr[2] "Rotovat vybrané fotografie doprava"
 
-#: ../src/MainWindow.cs:2489
+#: ../src/MainWindow.cs:2500
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Vytvořit novou verzi?"
 msgstr[1] "Vytvořit nové verze?"
 msgstr[2] "Vytvořit nove verze?"
 
-#: ../src/MainWindow.cs:2492
+#: ../src/MainWindow.cs:2502
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1991,11 +1986,11 @@ msgstr "Ostrost"
 msgid "Scene Type"
 msgstr "Typ scény"
 
-#: ../src/OpenWithMenu.cs:79
+#: ../src/OpenWithMenu.cs:80
 msgid "No applications available"
 msgstr "Žádné aplikace nejsou k dispozici"
 
-#: ../src/OpenWithMenu.cs:91
+#: ../src/OpenWithMenu.cs:92
 msgid "Open With"
 msgstr "Otevřít s"
 
@@ -2022,7 +2017,7 @@ msgstr "Připojit tag"
 #. FIXME finish the IPhotoSelection stuff and move the activate handler into the class
 #. this current method is way too complicated.
 #.
-#: ../src/PhotoPopup.cs:72
+#: ../src/PhotoPopup.cs:73
 msgid "Remove Tag"
 msgstr "Odstranit tag"
 
@@ -2283,6 +2278,10 @@ msgstr "Načítám"
 msgid "Logo"
 msgstr "Logo"
 
+#: ../src/StockIcons.cs:35 ../src/TagCommands.cs:122 ../src/TagPopup.cs:22
+msgid "Create New Tag"
+msgstr "Vytvořit nový tag"
+
 #: ../src/StockIcons.cs:36
 msgid "Question"
 msgstr "Otázka"
@@ -2308,8 +2307,8 @@ msgstr "Blízko"
 msgid "Far"
 msgstr "Daleko"
 
-#: ../src/TagCommands.cs:75 ../src/TagCommands.cs:205
-#: ../src/TagSelectionWidget.cs:574
+#: ../src/TagCommands.cs:75 ../src/TagCommands.cs:203
+#: ../src/TagSelectionWidget.cs:612
 msgid "This name is already in use"
 msgstr "Tento název se již používá"
 
@@ -2317,55 +2316,50 @@ msgstr "Tento název se již používá"
 msgid "Name of New Tag:"
 msgstr "Název nového tagu:"
 
-#: ../src/TagCommands.cs:275 ../src/TagPopup.cs:26
+#: ../src/TagCommands.cs:273 ../src/TagPopup.cs:28
 msgid "Edit Tag"
 msgstr "Upravit tag"
 
-#: ../src/TagCommands.cs:276
+#: ../src/TagCommands.cs:274
 msgid "Tag Name:"
 msgstr "Název tagu:"
 
-#: ../src/TagCommands.cs:369
+#: ../src/TagCommands.cs:367
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Fotografie {0} z {1}"
 
-#: ../src/TagCommands.cs:396
+#: ../src/TagCommands.cs:394
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "Upravit ikonu pro tag {0}"
 
-#: ../src/TagPopup.cs:28
-#, csharp-format
-msgid "Edit Tag \"{0}\""
-msgstr "Upravit tag \"{0}\""
-
-#: ../src/TagPopup.cs:33
+#: ../src/TagPopup.cs:32
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
 msgstr[0] "Odstranit tag"
 msgstr[1] "Odstranit tagy"
 msgstr[2] "Odstranit tagy"
 
-#: ../src/TagPopup.cs:39
-msgid "Attach Tag To Selection"
-msgid_plural "Attach Tags To Selection"
+#: ../src/TagPopup.cs:38
+msgid "Attach Tag to Selection"
+msgid_plural "Attach Tags to Selection"
 msgstr[0] "Připojit k výběru tag"
 msgstr[1] "Připojit k výběru tagy"
 msgstr[2] "Připojit k výběru tagy"
 
-#: ../src/TagPopup.cs:43
+#: ../src/TagPopup.cs:42
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
 msgstr[0] "Odstranit tag z výběru"
 msgstr[1] "Odstranit tagy z výběru"
 msgstr[2] "Odstranit tagy z výběru"
 
-#: ../src/TagPopup.cs:49
+#: ../src/TagPopup.cs:48
 msgid "Merge Tags"
 msgstr "Sloučit tagy"
 
-#: ../src/TagSelectionWidget.cs:573
+#: ../src/TagSelectionWidget.cs:611
 msgid "Error renaming tag"
 msgstr "Chyba při přejmenovávání tagu"
 
@@ -2434,6 +2428,15 @@ msgstr "Nenalezena žádná odpovídající fotografie "
 #: ../src/QueryDisplay.cs:64
 msgid "Clear search"
 msgstr "Vymazat hledání"
+
+#~ msgid "Edit Tag \"{0}\""
+#~ msgstr "Upravit tag \"{0}\""
+
+#~ msgid "Attach Tag To Selection"
+#~ msgid_plural "Attach Tags To Selection"
+#~ msgstr[0] "Připojit k výběru tag"
+#~ msgstr[1] "Připojit k výběru tagy"
+#~ msgstr[2] "Připojit k výběru tagy"
 
 #~ msgid "<small>1 of 1</small>"
 #~ msgstr "<small>1 z 1</small>"
