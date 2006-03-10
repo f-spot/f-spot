@@ -337,7 +337,7 @@ public class ImportCommand : FSpot.GladeDialog {
 					SourceItem path_item = new SourceItem (new VfsSource (path));
 					menu.Prepend (path_item);
 					path_item.ShowAll ();
-					option.SetHistory (0);
+					//option.SetHistory (0);
 					SetImportPath (path);
 				}
 			} else if (item.Source is VfsSource) {
