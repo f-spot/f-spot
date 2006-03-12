@@ -11,6 +11,8 @@ src/CameraFileSelectionDialog.cs
 src/CameraSelectionDialog.cs
 src/CDExport.cs
 src/ColorDialog.cs
+src/Core.cs
+src/ExceptionDialog.cs
 src/Exif.cs
 src/FlickrExport.cs
 src/FolderExport.cs
@@ -34,8 +36,10 @@ src/PhotoVersionMenu.cs
 src/PhotoView.cs
 src/ProgressDialog.cs
 src/RotateCommand.cs
+src/SingleView.cs
 src/StockIcons.cs
 src/TagCommands.cs
+src/TagMenu.cs
 src/TagPopup.cs
 src/TagSelectionWidget.cs
 src/TagStore.cs
@@ -44,3 +48,4 @@ src/Unix.cs
 src/Updater.cs
 src/Util.cs
 src/QueryDisplay.cs
+tools/f-spot-screensaver.desktop.in
