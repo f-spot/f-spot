@@ -6,7 +6,7 @@ using GtkSharp;
 using System.Collections;
 using System.IO;
 using System;
-using Mono.Posix;
+using Mono.Unix;
 
 public class ImportCommand : FSpot.GladeDialog {
 	internal class SourceItem : ImageMenuItem {
@@ -33,7 +33,7 @@ public class ImportCommand : FSpot.GladeDialog {
 	internal class BrowseSource : ImportSource {
 		public BrowseSource ()
 		{
-			this.Name = Mono.Posix.Catalog.GetString ("Select Folder");
+			this.Name = Catalog.GetString ("Select Folder");
 			this.Icon = PixbufUtils.LoadThemeIcon ("stock_folder", 32);
 		}
 
@@ -104,7 +104,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		private bool IsCamera {
 			get {
 				try {
-					return (Directory.Exists (System.IO.Path.Combine (mount_point, "DCIM")));
+					return (Directory.Exists (Path.Combine (mount_point, "DCIM")));
 				} catch {
 					return false;
 				}
@@ -114,8 +114,8 @@ public class ImportCommand : FSpot.GladeDialog {
 		private bool IsiPodPhoto {
 			get {
 				try {
-					return (Directory.Exists (System.IO.Path.Combine (mount_point, "Photos")) &&
-						Directory.Exists (System.IO.Path.Combine (mount_point, "iPod_Control")));
+					return (Directory.Exists (Path.Combine (mount_point, "Photos")) &&
+						Directory.Exists (Path.Combine (mount_point, "iPod_Control")));
 				} catch {
 					return false;
 				}
@@ -149,8 +149,11 @@ public class ImportCommand : FSpot.GladeDialog {
 			this.cam = cam;
 			this.CameraIndex = index;
 
-			//this.Name = String.Format ("{0} ({1})", cam.CameraList.GetName (index), cam.CameraList.GetValue (index));
+#if true
+			this.Name = String.Format ("{0} ({1})", cam.CameraList.GetName (index), cam.CameraList.GetValue (index));
+#else
 			this.Name = String.Format ("{0}", cam.CameraList.GetName (index));
+#endif
 			this.Icon = PixbufUtils.LoadThemeIcon ("gnome-dev-camera", 32);
 			if (this.Icon == null)
 				this.Icon = PixbufUtils.LoadThemeIcon ("gnome-dev-media-cf", 32);
@@ -182,7 +185,6 @@ public class ImportCommand : FSpot.GladeDialog {
 
 			// Add external hard drives to the menu
 			foreach (Gnome.Vfs.Volume vol in monitor.MountedVolumes) {
-#if true
 				 if (!vol.IsUserVisible || vol.DeviceType == Gnome.Vfs.DeviceType.Unknown)
 					 continue;
 				
@@ -202,9 +204,7 @@ public class ImportCommand : FSpot.GladeDialog {
 				 SourceItem item = new SourceItem (source);
 				 this.Append (item);
 				 source_count++;
-#else
-				 this.Append (new SourceItem (source));
-#endif
+
 			}
 
 
@@ -213,17 +213,23 @@ public class ImportCommand : FSpot.GladeDialog {
 			int camera_count = cam.CameraList.Count ();
 
 			if (camera_count > 0) {
-				this.Append (new Gtk.SeparatorMenuItem ());
-			
 				source_count += camera_count;
 				for (int i = 0; i < camera_count; i++) {
-					if (camera_count == 1 || cam.CameraList.GetValue (i) != "usb:") {
+					string handle = cam.CameraList.GetValue (i);
+					if (camera_count == 1 || handle != "usb:") {
+						if (handle.StartsWith ("disk:")) {
+							string path = handle.Substring ("disk:".Length);
+
+							if (FindItemPosition (path) != -1)
+								continue;
+						}
+			
 						ImportSource source = new CameraSource (cam, i);
 						this.Append (new SourceItem (source));
 					}
 				}
 			} else {
-				ImportSource source = new BrowseSource (Mono.Posix.Catalog.GetString ("(No Cameras Detected)"),
+				ImportSource source = new BrowseSource (Catalog.GetString ("(No Cameras Detected)"),
 									"emblem-camera");
 				SourceItem item = new SourceItem (source);
 				item.Sensitive = false;
@@ -292,26 +298,29 @@ public class ImportCommand : FSpot.GladeDialog {
 	Tag tag_selected;
 
 	Gtk.Window main_window;
-	string import_path;
 	FSpot.PhotoList collection;
-	bool cancelled;
 	bool copy;
 	SourceMenu menu;
 
 	int total;
 	PhotoStore store;
-
 	FSpot.Delay step;
 	
 	FSpot.PhotoImageView photo_view;
-	IconView tray;
 	ImportBackend importer;
+	IconView tray;
 
 	string loading_string;
 
+	//FIXME this is terrible way to do this.
 	private static ImportCommand import_command;
 	protected static ImportCommand OpenDialog {
 		get { return import_command; }
+	}
+
+	string import_path;
+	public string ImportPath {
+		get { return import_path; }
 	}
 	
 	private SourceItem Source {
@@ -359,7 +368,7 @@ public class ImportCommand : FSpot.GladeDialog {
 	{
 		main_window = mw;
 		step = new FSpot.Delay (10, new GLib.IdleHandler (Step));
-		loading_string = Mono.Posix.Catalog.GetString ("Loading {0} of {1}");
+		loading_string = Catalog.GetString ("Loading {0} of {1}");
 		import_command = this;
 	}
 
@@ -445,7 +454,6 @@ public class ImportCommand : FSpot.GladeDialog {
 		collection.Clear ();
 		collection.Capacity = total;
 
-		cancelled = false;
 		FSpot.ThumbnailGenerator.Default.PushBlock ();
 
 		while (total > 0 && this.Step ()) {
@@ -459,27 +467,22 @@ public class ImportCommand : FSpot.GladeDialog {
 		}
 
 		FSpot.ThumbnailGenerator.Default.PopBlock ();
-		
+
+		if (progress_bar != null)
+			progress_bar.Text = Catalog.GetString ("Done Loading");
+
+		AllowFinish = true;
+
+		return total;
+	}
+	
+	public void Finish ()
+	{
 		if (importer != null)
 			importer.Finish ();
 		
 		importer = null;
 
-		//ThumbnailGenerator.Default.PopBlock ();
-		if (cancelled)
-			return 0;
-		else {
-			if (progress_bar != null)
-				progress_bar.Text = Mono.Posix.Catalog.GetString ("Done Loading");
-			AllowFinish = true;
-			return total;
-		}
-	}
-	
-	public string ImportPath {
-		get {
-			return import_path;
-		}
 	}
 	
 	public void HandleTagToggled (object o, EventArgs args) 
@@ -598,7 +601,7 @@ public class ImportCommand : FSpot.GladeDialog {
 
 			if (i > 0) {
 				source_option_menu.SetHistory ((uint)i);
-			} else if (System.IO.Directory.Exists (path)) {
+			} else if (Directory.Exists (path)) {
 				SourceItem path_item = new SourceItem (new VfsSource (path));
 				menu.Prepend (path_item);
 				path_item.ShowAll ();
@@ -610,15 +613,17 @@ public class ImportCommand : FSpot.GladeDialog {
 		ResponseType response = (ResponseType) this.Dialog.Run ();
 		
 		while (response == ResponseType.Ok) {
-			if (System.IO.Directory.Exists (this.ImportPath))
-			    break;
+			if (Directory.Exists (this.ImportPath))
+				break;
 
 			HigMessageDialog md = new HigMessageDialog (this.Dialog,
-								    DialogFlags.DestroyWithParent,
-								    MessageType.Error,
-								    ButtonsType.Ok,
-								    Mono.Posix.Catalog.GetString ("Directory does not exist."),
-									    String.Format (Mono.Posix.Catalog.GetString ("The directory you selected \"{0}\" does not exist.  Please choose a different directory"), this.ImportPath));
+			        DialogFlags.DestroyWithParent,
+				MessageType.Error,
+				ButtonsType.Ok,
+				Catalog.GetString ("Directory does not exist."),
+				String.Format (Catalog.GetString ("The directory you selected \"{0}\" does not exist.  " + 
+								  "Please choose a different directory"), this.ImportPath));
+
 			md.Run ();
 			md.Destroy ();
 
@@ -626,6 +631,8 @@ public class ImportCommand : FSpot.GladeDialog {
 		}
 
 		if (response == ResponseType.Ok) {
+			this.Finish ();
+
 			if (attach_check.Active && tag_selected != null) {
 				for (int i = 0; i < collection.Count; i++) {
 					Photo p = collection [i] as Photo;
@@ -725,7 +732,11 @@ public class ImportCommand : FSpot.GladeDialog {
 	public int ImportFromPaths (PhotoStore store, string [] paths, Tag [] tags, bool copy)
 	{
 		collection = new FSpot.PhotoList (new Photo [0]);
-		return DoImport (new FileImportBackend (store, paths, copy, true, tags));
+		int count = DoImport (new FileImportBackend (store, paths, copy, true, tags));
+
+		Finish ();
+
+		return count;
 	}
 	
 #if TEST_IMPORT_COMMAND
