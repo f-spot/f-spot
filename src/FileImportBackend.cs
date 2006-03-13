@@ -4,6 +4,12 @@ using Gnome;
 using System.Collections;
 using System;
 
+public class ImportException : System.Exception {
+	public ImportException (string msg) : base (msg)
+	{
+	}
+}
+
 public class FileImportBackend : ImportBackend {
 	PhotoStore store;
 	bool recurse;
@@ -67,7 +73,7 @@ public class FileImportBackend : ImportBackend {
 	public override int Prepare ()
 	{
 		if (file_paths != null)
-			throw new Exception ("Busy");
+			throw new ImportException ("Busy");
 
 		file_paths = new ArrayList ();
 
@@ -129,10 +135,10 @@ public class FileImportBackend : ImportBackend {
 	public override bool Step (out Photo photo, out Pixbuf thumbnail, out int count)
 	{
 		if (file_paths == null)
-			throw new Exception ("Prepare() was not called");
+			throw new ImportException ("Prepare() was not called");
 
 		if (this.count == file_paths.Count)
-			throw new Exception ("Already finished");
+			throw new ImportException ("Already finished");
 
 		// FIXME Need to get the EXIF info etc.
 		string path = (string) file_paths [this.count];
@@ -170,7 +176,7 @@ public class FileImportBackend : ImportBackend {
 	public override void Cancel ()
 	{
 		if (imported_photos == null)
-			throw new Exception ("Not doing anything");
+			throw new ImportException ("Not doing anything");
 
 		foreach (Photo p in imported_photos) {
 			if (copy) {
@@ -190,7 +196,7 @@ public class FileImportBackend : ImportBackend {
 	public override void Finish ()
 	{
 		if (file_paths == null)
-			throw new Exception ("Not doing anything");
+			throw new ImportException ("Not doing anything");
 
 		file_paths = null;
 

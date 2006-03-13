@@ -141,7 +141,7 @@ public class ImportCommand : FSpot.GladeDialog {
 			this.cam = cam;
 			this.CameraIndex = index;
 
-#if true
+#if LONG_NAMES
 			this.Name = String.Format ("{0} ({1})", cam.CameraList.GetName (index), cam.CameraList.GetValue (index));
 #else
 			this.Name = String.Format ("{0}", cam.CameraList.GetName (index));
@@ -405,9 +405,15 @@ public class ImportCommand : FSpot.GladeDialog {
 		if (importer == null)
 			return false;
 		
-		ongoing = importer.Step (out photo, out thumbnail, out count);
-		
-		if (thumbnail == null) {
+		try {
+			// FIXME this is really just an incredibly ugly way of dealing
+			// with the recursive DoImport loops we sometimes get into
+			ongoing = importer.Step (out photo, out thumbnail, out count);
+		} catch (ImportException e){
+			return false;
+		}
+
+		if (photo == null || thumbnail == null) {
 			Console.WriteLine ("Could not import file");
 		} else {
 			//icon_scrolled.Visible = true;

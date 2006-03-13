@@ -1,5 +1,11 @@
 2006-03-12  Larry Ewing  <lewing@novell.com>
 
+	* src/ImportCommand.cs: catch import exceptions and stop stepping
+	if we receive one.
+
+	* src/FileImportBackend.cs: make the exceptions that we throw for
+	strange cases into ImportExceptions.
+
 	* src/ImportCommand.cs: handle settings changes while the dialog
 	is still running.
 
