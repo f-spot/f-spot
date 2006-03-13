@@ -424,11 +424,11 @@ public class ImportCommand : FSpot.GladeDialog {
 			collection.Add (photo);
 		
 			//grid.AddThumbnail (thumbnail);
-			if (count < total)
-				UpdateProgressBar (count + 1, total);
 
 			thumbnail.Dispose ();
 		}
+		if (count < total)
+			UpdateProgressBar (count + 1, total);
 
 		if (ongoing && total > 0)
 			return true;
@@ -713,6 +713,9 @@ public class ImportCommand : FSpot.GladeDialog {
 
 		string [] pathimport =  {ImportPath};
 		//this.Dialog.Destroy();
+		
+		if (copy_check != null)
+			copy = copy_check.Active;
 		
 		bool recurse = true;
 		if (recurse_check != null)
