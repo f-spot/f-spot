@@ -1,4 +1,22 @@
-f-spot 0.1.20 - Feb 21 2005 - Life Saver
+f-spot 0.1.11 - March 13 2006 - Old Guard
+-----------------------------------------
+- Much improved contrast function.
+- Database opens existing databases regardless of the sqlite
+  version.  b.g.o #333644 and b.x.c #77711
+- Database tries to force the correct encoding on v2 databases.
+- Import dialog is better about cleaning up after itself.
+- Valid cameras are no longer discarded from the camera list. b.g.o
+  #324752.
+- Group selector handles empty groups. b.g.o #333745
+- Many slideshow improvements.
+- Fix the erratic open with menu behavior. b.g.o #332949
+- Improve the tag menu behavior when adding tags.
+- Add --debug and --uninstalled command line options.
+- Fixed JPEG orientation when saving new versions.
+- Added a general exception dialog.
+- Manu many more bugfixes.
+
+f-spot 0.1.20 - Feb 21 2006 - Life Saver
 ----------------------------------------
 - New gnome-screensaver mode.
 - Timezone utc clean-ups.
