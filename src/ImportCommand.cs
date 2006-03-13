@@ -12,21 +12,13 @@ public class ImportCommand : FSpot.GladeDialog {
 	internal class SourceItem : ImageMenuItem {
 		public ImportSource Source;
 
-		public SourceItem (ImportSource source) : base (source.Name)
+		public SourceItem (ImportSource source) : base (source.Name.Replace ("_", "__"))
 		{
 			this.Source = source;
 	
-			Activated += HandleActivated;
-			
 			Gdk.Pixbuf icon = source.Icon;
 			if (icon != null)
 				this.Image = new Gtk.Image (icon);
-		}
-
-		private void HandleActivated (object sender, EventArgs args)
-		{
-			if (ImportCommand.OpenDialog != null)
-				ImportCommand.OpenDialog.Source = this;
 		}
 	} 
 
@@ -74,7 +66,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		public VolumeSource (Gnome.Vfs.Volume vol)
 		{
 			this.Volume = vol;
-			this.Name = vol.DisplayName.Replace ("_", "__");
+			this.Name = vol.DisplayName;
 
 			try {
 				mount_point = new Uri (vol.ActivationUri).LocalPath;
@@ -128,7 +120,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		
 		public DriveSource (Gnome.Vfs.Drive drive) 
 		{
-			this.Name = drive.DisplayName.Replace ("_", "__");
+			this.Name = drive.DisplayName;
 			this.Drive = drive;
 
 			if (drive.IsMounted) {
@@ -174,13 +166,17 @@ public class ImportCommand : FSpot.GladeDialog {
 	
 	private class SourceMenu : Gtk.Menu {
 		public int source_count;
+		ImportCommand command;
 
 		private static Gnome.Vfs.VolumeMonitor monitor = Gnome.Vfs.VolumeMonitor.Get ();
 
-		public SourceMenu () {
+		public SourceMenu (ImportCommand command) {
+			this.command = command;
 			source_count = 0;
 			
-			this.Append (new SourceItem (new BrowseSource ()));
+			SourceItem item = new SourceItem (new BrowseSource ());
+			item.Activated += HandleActivated;
+			this.Append (item);
 			this.Append (new Gtk.SeparatorMenuItem ());
 
 			// Add external hard drives to the menu
@@ -201,7 +197,8 @@ public class ImportCommand : FSpot.GladeDialog {
 					 System.Console.WriteLine (vol.Drive.DeviceType.ToString ());
 
 				 ImportSource source = new VolumeSource (vol);
-				 SourceItem item = new SourceItem (source);
+				 item = new SourceItem (source);
+				 item.Activated += HandleActivated;
 				 this.Append (item);
 				 source_count++;
 
@@ -225,13 +222,16 @@ public class ImportCommand : FSpot.GladeDialog {
 						}
 			
 						ImportSource source = new CameraSource (cam, i);
-						this.Append (new SourceItem (source));
+						item = new SourceItem (source);
+						item.Activated += HandleActivated;
+						this.Append (item);
 					}
 				}
 			} else {
 				ImportSource source = new BrowseSource (Catalog.GetString ("(No Cameras Detected)"),
 									"emblem-camera");
-				SourceItem item = new SourceItem (source);
+				item = new SourceItem (source);
+				item.Activated += HandleActivated;
 				item.Sensitive = false;
 				this.Append (item);
 			}
@@ -248,6 +248,11 @@ public class ImportCommand : FSpot.GladeDialog {
 			*/
 
 			this.ShowAll ();
+		}
+
+		private void HandleActivated (object sender, EventArgs args)
+		{
+			command.Source = (SourceItem) sender;
 		}
 
 		public int SourceCount {
@@ -312,12 +317,6 @@ public class ImportCommand : FSpot.GladeDialog {
 
 	string loading_string;
 
-	//FIXME this is terrible way to do this.
-	private static ImportCommand import_command;
-	protected static ImportCommand OpenDialog {
-		get { return import_command; }
-	}
-
 	string import_path;
 	public string ImportPath {
 		get { return import_path; }
@@ -369,7 +368,6 @@ public class ImportCommand : FSpot.GladeDialog {
 		main_window = mw;
 		step = new FSpot.Delay (10, new GLib.IdleHandler (Step));
 		loading_string = Catalog.GetString ("Loading {0} of {1}");
-		import_command = this;
 	}
 
 	private void HandleDialogResponse (object obj, ResponseArgs args)
@@ -533,16 +531,15 @@ public class ImportCommand : FSpot.GladeDialog {
 		tag_selected = t;
 		//tag_image.Pixbuf = t.Icon;
 		//tag_label.Text = t.Name;
-	
 	}
 
 
 	private void HandleRecurseToggled (object sender, System.EventArgs args)
 	{
 		this.Cancel ();
-		while (Application.EventsPending ())
-			Application.RunIteration ();
-		this.Start ();
+		this.Dialog.Sensitive = false;
+	       
+		Idle.Add (new IdleHandler (Start));
 	}
 
 	public int ImportFromFile (PhotoStore store, string path)
@@ -564,20 +561,20 @@ public class ImportCommand : FSpot.GladeDialog {
 		recurse_check.Toggled += HandleRecurseToggled;
 		copy_check.Toggled += HandleRecurseToggled;
 
-		menu = new SourceMenu ();
+		menu = new SourceMenu (this);
 		source_option_menu.Menu = menu;
 
 		collection = new FSpot.PhotoList (new Photo [0]);
 		tray = new FSpot.ScalingIconView (collection);
 		tray.Selection.Changed += HandleTraySelectionChanged;
-		icon_scrolled.SetSizeRequest (200, 480);
+		icon_scrolled.SetSizeRequest (200, 200);
 		icon_scrolled.Add (tray);
 		//icon_scrolled.Visible = false;
 		tray.Show ();
 
 		photo_view = new FSpot.PhotoImageView (collection);
 		photo_scrolled.Add (photo_view);
-		photo_scrolled.SetSizeRequest (200, 480);
+		photo_scrolled.SetSizeRequest (200, 200);
 		photo_view.Show ();
 
 		//FSpot.Global.ModifyColors (frame_eventbox);
@@ -696,10 +693,13 @@ public class ImportCommand : FSpot.GladeDialog {
 		store.Remove (photos);
 	}
 
-	public int Start ()
+	public bool Start ()
 	{
+		if (Dialog != null)
+			Dialog.Sensitive = true;
+
 		if (import_path == null)
-			return 0;
+			return false;
 
 		string [] pathimport =  {ImportPath};
 		//this.Dialog.Destroy();
@@ -709,9 +709,10 @@ public class ImportCommand : FSpot.GladeDialog {
 			recurse = recurse_check.Active;
 		
 		if (collection == null)
-			return 0;
+			return false;
 
-		return DoImport (new FileImportBackend (store, pathimport, copy, recurse, null));
+		DoImport (new FileImportBackend (store, pathimport, copy, recurse, null));
+		return false;
 	}
 
 	public int ImportFromPaths (PhotoStore store, string [] paths)
