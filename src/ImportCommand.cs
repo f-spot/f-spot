@@ -79,7 +79,7 @@ public class ImportCommand : FSpot.GladeDialog {
                         if (this.Icon == null)
 				this.Icon = PixbufUtils.LoadThemeIcon (vol.Icon, 32);
 			
-			if (this.IsiPodPhoto)
+			if (this.IsIPodPhoto)
 				this.Icon = PixbufUtils.LoadThemeIcon ("gnome-dev-ipod", 32);
 
 			if (this.Icon == null && this.IsCamera)
@@ -103,8 +103,12 @@ public class ImportCommand : FSpot.GladeDialog {
 			}
 		}
 
-		private bool IsiPodPhoto {
+		private bool IsIPodPhoto {
 			get {
+				if (Volume.DeviceType != Gnome.Vfs.DeviceType.MusicPlayer 
+				    && Volume.DeviceType != Gnome.Vfs.DeviceType.Apple)
+					return false;
+
 				try {
 					return (Directory.Exists (Path.Combine (mount_point, "Photos")) &&
 						Directory.Exists (Path.Combine (mount_point, "iPod_Control")));

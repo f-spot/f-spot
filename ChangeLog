@@ -1,7 +1,8 @@
 2006-03-12  Larry Ewing  <lewing@novell.com>
 
 	* src/ImportCommand.cs: catch import exceptions and stop stepping
-	if we receive one.
+	if we receive one.  Don't scan drives as ipods unless they are of
+	the right (this helps speed up the initial opening).
 
 	* src/FileImportBackend.cs: make the exceptions that we throw for
 	strange cases into ImportExceptions.
