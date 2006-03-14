@@ -6,8 +6,8 @@ msgid ""
 ""
 msgstr "Project-Id-Version: f-spot Gnome HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-10 02:18+0100\n"
-"PO-Revision-Date: 2006-03-10 18:22+1030\n"
+"POT-Creation-Date: 2006-03-14 10:22+0100\n"
+"PO-Revision-Date: 2006-03-14 23:00+1030\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -295,6 +295,47 @@ msgstr "Gặp lỗi khi lưu ảnh đã điều chỉnh"
 #,csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Mới nhận ngoài lệ « {0} » nên không thể lưu ảnh « {1} »."
+
+#:../src/Core.cs:180
+#,csharp-format
+msgid "No photos matching {0} found"
+msgstr "Không tìm thấy ảnh khớp {0} "
+
+#:../src/Core.cs:181
+#,csharp-format
+msgid ""
+"The tag \"{0}\" is not applied to any photos. Try adding\n"
+"the tag to some photos or selecting a different tag in the\n"
+"F-Spot preference dialog."
+msgstr "Thẻ « {0} » không phải được áp dụng vào ảnh nào.\n"
+"Hãy cố thêm thẻ này vào một số ảnh, hoặc chọn\n"
+"một thẻ khác trong hộp thoại tùy thích."
+
+#:../src/Core.cs:185
+msgid "Search returned no results"
+msgstr "Không tìm thấy."
+
+#:../src/Core.cs:186
+msgid ""
+"The tag F-Spot is looking for does not exist. Try\n"
+"selecting a different tag in the F-Spot preference\n"
+"dialog."
+msgstr "Trình F-Spot đang tìm một thẻ không tồn tại.\n"
+"Hãy cố chọn một thẻ khác trong hộp thoại tùy thích."
+
+#:../src/ExceptionDialog.cs:24
+msgid "F-Spot Encountered a Fatal Error"
+msgstr "Trình F-Spot đã gặp lỗi nghiêm trọng."
+
+#:../src/ExceptionDialog.cs:52
+msgid ""
+"This may be due to a programming error. Please help us make F-Spot better by "
+"reporting this error. Thank you in advance!"
+msgstr "Có lẽ vì gặp lỗi lập trình. Vui lòng giúp đỡ chúng tôi cải tiến trình F-Spot, bằng cách thông báo lỗi này. Cám ơn bạn trước !"
+
+#:../src/ExceptionDialog.cs:99
+msgid "An unhandled exception was thrown: "
+msgstr "Gặp ngoài lệ không được quản lý: "
 
 #:../src/Exif.cs:226
 msgid "Image Directory"
@@ -1434,35 +1475,35 @@ msgstr "Xếp theo _Tháng"
 msgid "Arrange by _Folder"
 msgstr "Xếp theo Th_ư mục"
 
-#:../src/ImportCommand.cs:36
+#:../src/ImportCommand.cs:28 ../src/SingleView.cs:205
 msgid "Select Folder"
 msgstr "Chọn thư mục"
 
-#:../src/ImportCommand.cs:226
+#:../src/ImportCommand.cs:235
 msgid "(No Cameras Detected)"
 msgstr "(Chưa phát hiện máy ảnh nào)"
 
-#:../src/ImportCommand.cs:362
+#:../src/ImportCommand.cs:374
 #,csharp-format
 msgid "Loading {0} of {1}"
 msgstr "Đang tải {0} trên {1}"
 
-#:../src/ImportCommand.cs:473
+#:../src/ImportCommand.cs:480
 msgid "Done Loading"
 msgstr "Đã tải xong"
 
-#:../src/ImportCommand.cs:620
+#:../src/ImportCommand.cs:630
 msgid "Directory does not exist."
 msgstr "Không có thư mục này."
 
-#:../src/ImportCommand.cs:621
+#:../src/ImportCommand.cs:631
 #,csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
 "different directory"
 msgstr "Thư mục « {0} » được chọn không tồn tại. Hãy chọn thư mục khác."
 
-#:../src/ImportCommand.cs:655
+#:../src/ImportCommand.cs:669
 msgid "Select Tag"
 msgstr "Chọn thẻ"
 
@@ -2190,6 +2231,10 @@ msgstr "Nhận lỗi « {0} » trong khi cố xoay {1}."
 msgid "Error while rotating photo."
 msgstr "Gặp lỗi trong khi xoay ảnh."
 
+#:../src/SingleView.cs:202
+msgid "Open"
+msgstr "Mở"
+
 #:../src/StockIcons.cs:26
 msgid "Adjust Colors"
 msgstr "Chỉnh màu"
@@ -2218,7 +2263,8 @@ msgstr "Đang tải"
 msgid "Logo"
 msgstr "Biểu hình"
 
-#:../src/StockIcons.cs:35 ../src/TagCommands.cs:122 ../src/TagPopup.cs:22
+#:../src/StockIcons.cs:35 ../src/TagCommands.cs:122 ../src/TagMenu.cs:89
+#:../src/TagPopup.cs:22
 msgid "Create New Tag"
 msgstr "Tạo thẻ mới"
 
@@ -2359,3 +2405,11 @@ msgstr "Không tìm thấy ảnh khớp nào "
 #:../src/QueryDisplay.cs:64
 msgid "Clear search"
 msgstr "Xoá tìm kiếm"
+
+#:../tools/f-spot-screensaver.desktop.in.h:1
+msgid "Display a slideshow from F-Spot"
+msgstr "Hiển thị chiều ảnh bằng F-Spot"
+
+#:../tools/f-spot-screensaver.desktop.in.h:2
+msgid "F-Spot photos"
+msgstr "Ảnh chụp F-Spot"
