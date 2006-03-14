@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-10 10:16+0100\n"
-"PO-Revision-Date: 2006-02-25 23:35+0100\n"
+"POT-Creation-Date: 2006-03-13 18:22+0100\n"
+"PO-Revision-Date: 2006-03-14 01:56+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -296,6 +296,49 @@ msgstr "Chyba při ukládání upravené fotografie"
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Přijata výjimka \"{0}\". Nemohu uložit obrázek {1}"
+
+#: ../src/Core.cs:180
+#, csharp-format
+msgid "No photos matching {0} found"
+msgstr "Nenalezena žádná fotografie odpovídající {0}"
+
+#: ../src/Core.cs:181
+#, csharp-format
+msgid ""
+"The tag \"{0}\" is not applied to any photos. Try adding\n"
+"the tag to some photos or selecting a different tag in the\n"
+"F-Spot preference dialog."
+msgstr ""
+"Tag \"{0}\" není přiřazen žádným fotografiím. Zkuste tag\n"
+"přidat k nějakým fotografiím nebo zvolit jiný tag v dialogu\n"
+"nastavení F-Spotu."
+
+#: ../src/Core.cs:185
+msgid "Search returned no results"
+msgstr "Hledání nevrátilo žádné výsledky"
+
+#: ../src/Core.cs:186
+msgid ""
+"The tag F-Spot is looking for does not exist. Try\n"
+"selecting a different tag in the F-Spot preference\n"
+"dialog."
+msgstr ""
+"Tag, který F-Spot hledá, neexistuje. Zkuste\n"
+"zvolit jiný tag v dialogu nastavení F-Spotu."
+
+#: ../src/ExceptionDialog.cs:24
+msgid "F-Spot Encountered a Fatal Error"
+msgstr "V F-Spotu došlo k fatální chybě"
+
+#: ../src/ExceptionDialog.cs:52
+msgid ""
+"This may be due to a programming error. Please help us make F-Spot better by "
+"reporting this error. Thank you in advance!"
+msgstr "To může být kvůli chybě při programování. Pomozte nám prosím vylepšit F-Spot ohlášením této chyby. Děkujeme!"
+
+#: ../src/ExceptionDialog.cs:99
+msgid "An unhandled exception was thrown: "
+msgstr "Byla hozena neobzloužená výjimka: "
 
 #: ../src/Exif.cs:226
 msgid "Image Directory"
@@ -1447,28 +1490,28 @@ msgstr "Uspořádat podle _měsíce"
 msgid "Arrange by _Folder"
 msgstr "Uspořádat podle _adresáře"
 
-#: ../src/ImportCommand.cs:36
+#: ../src/ImportCommand.cs:28 ../src/SingleView.cs:205
 msgid "Select Folder"
 msgstr "Vybrat složku"
 
-#: ../src/ImportCommand.cs:226
+#: ../src/ImportCommand.cs:235
 msgid "(No Cameras Detected)"
 msgstr "(Nedetekován žádný fotoaparát)"
 
-#: ../src/ImportCommand.cs:362
+#: ../src/ImportCommand.cs:374
 #, csharp-format
 msgid "Loading {0} of {1}"
 msgstr "Načítám {0} z {1}"
 
-#: ../src/ImportCommand.cs:473
+#: ../src/ImportCommand.cs:480
 msgid "Done Loading"
 msgstr "Načítání dokončeno"
 
-#: ../src/ImportCommand.cs:620
+#: ../src/ImportCommand.cs:630
 msgid "Directory does not exist."
 msgstr "Adresář neexistuje."
 
-#: ../src/ImportCommand.cs:621
+#: ../src/ImportCommand.cs:631
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
@@ -1476,7 +1519,7 @@ msgid ""
 msgstr ""
 "Adresář {0}, který jste vybrali, neexistuje. Zvolte prosím jiný adresář"
 
-#: ../src/ImportCommand.cs:655
+#: ../src/ImportCommand.cs:669
 msgid "Select Tag"
 msgstr "Vybrat tag"
 
@@ -2250,6 +2293,10 @@ msgstr "Přijata chyba \"{0}\" při pokusu rotovat {1}"
 msgid "Error while rotating photo."
 msgstr "Chyba při rotování fotografie."
 
+#: ../src/SingleView.cs:202
+msgid "Open"
+msgstr "Otevřít"
+
 #: ../src/StockIcons.cs:26
 msgid "Adjust Colors"
 msgstr "Upravit barvy"
@@ -2278,7 +2325,8 @@ msgstr "Načítám"
 msgid "Logo"
 msgstr "Logo"
 
-#: ../src/StockIcons.cs:35 ../src/TagCommands.cs:122 ../src/TagPopup.cs:22
+#: ../src/StockIcons.cs:35 ../src/TagCommands.cs:122 ../src/TagMenu.cs:89
+#: ../src/TagPopup.cs:22
 msgid "Create New Tag"
 msgstr "Vytvořit nový tag"
 
@@ -2428,6 +2476,14 @@ msgstr "Nenalezena žádná odpovídající fotografie "
 #: ../src/QueryDisplay.cs:64
 msgid "Clear search"
 msgstr "Vymazat hledání"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:1
+msgid "Display a slideshow from F-Spot"
+msgstr "Promítat snímky z F-Spotu"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:2
+msgid "F-Spot photos"
+msgstr "Fotografie F-Spotu"
 
 #~ msgid "Edit Tag \"{0}\""
 #~ msgstr "Upravit tag \"{0}\""
