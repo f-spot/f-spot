@@ -1,5 +1,8 @@
 2006-03-15  Larry Ewing  <lewing@novell.com>
 
+	* src/ExceptionDialog.cs: fix the resizing logic so that you
+	aren't stuck with a tiny box.
+
 	* src/FileImportBackend.cs: another patch from James Fitzsimons to
 	clean up directories we are not using upon cancel.  Fixes #334584.
 

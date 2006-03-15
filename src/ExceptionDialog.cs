@@ -20,7 +20,7 @@ namespace FSpot
            
             HasSeparator = false;
             BorderWidth = 5;
-            Resizable = false;
+            Resizable = true;
             Title = Catalog.GetString("F-Spot Encountered a Fatal Error");
             
             VBox.Spacing = 12;
@@ -31,15 +31,15 @@ namespace FSpot
         
             HBox hbox = new HBox(false, 12);
             hbox.BorderWidth = 5;
-            VBox.PackStart(hbox, false, false, 0);
+            VBox.PackStart(hbox);
         
             Image image = new Image(Stock.DialogError, IconSize.Dialog);
             image.Yalign = 0.05f;
-            hbox.PackStart(image, true, true, 0);
+            hbox.PackStart(image, false, false, 0);
 
             VBox label_vbox = new VBox(false, 0);
             label_vbox.Spacing = 12;
-            hbox.PackStart(label_vbox, false, false, 0);
+            hbox.PackStart(label_vbox);
 
             Label label = new Label("<b><big>" + Title + "</big></b>");
             label.UseMarkup = true;
@@ -67,10 +67,10 @@ namespace FSpot
             
             scroll.SetSizeRequest(450, 250);
 			
-			view.Editable = false;
-			view.Buffer.Text = debugInfo;
-			
-			label_vbox.PackStart(scroll, true, true, 0);
+	    view.Editable = false;
+	    view.Buffer.Text = debugInfo;
+	    
+	    label_vbox.PackStart(scroll);
 			
             hbox.ShowAll();
 
