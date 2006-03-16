@@ -3,7 +3,7 @@ using GLib;
 using Gtk;
 using GtkSharp;
 using System;
-using Mono.Posix;
+using Mono.Unix;
 using FSpot.Xmp;
 
 public class PhotoView : EventBox {
@@ -106,16 +106,16 @@ public class PhotoView : EventBox {
 	private int selection_constraint_ratio_idx;
 
 	private static SelectionConstraint [] constraints = {
-		new SelectionConstraint (Mono.Posix.Catalog.GetString ("No Constraint"), 0.0),
-		new SelectionConstraint (Mono.Posix.Catalog.GetString ("4 x 3 (Book)"), 4.0 / 3.0),
-		new SelectionConstraint (Mono.Posix.Catalog.GetString ("4 x 6 (Postcard)"), 6.0 / 4.0),
-		new SelectionConstraint (Mono.Posix.Catalog.GetString ("5 x 7 (L, 2L)"), 7.0 / 5.0),
-		new SelectionConstraint (Mono.Posix.Catalog.GetString ("8 x 10"), 10.0 / 8.0),
-		new SelectionConstraint (Mono.Posix.Catalog.GetString ("4 x 3 Portrait (Book)"), 3.0 / 4.0),
-		new SelectionConstraint (Mono.Posix.Catalog.GetString ("4 x 6 Portrait (Postcard)"), 4.0 / 6.0),
-		new SelectionConstraint (Mono.Posix.Catalog.GetString ("5 x 7 Portrait (L, 2L)"), 5.0 / 7.0),
-		new SelectionConstraint (Mono.Posix.Catalog.GetString ("8 x 10 Portrait"), 8.0 / 10.0),
-		new SelectionConstraint (Mono.Posix.Catalog.GetString ("Square"), 1.0)
+		new SelectionConstraint (Catalog.GetString ("No Constraint"), 0.0),
+		new SelectionConstraint (Catalog.GetString ("4 x 3 (Book)"), 4.0 / 3.0),
+		new SelectionConstraint (Catalog.GetString ("4 x 6 (Postcard)"), 6.0 / 4.0),
+		new SelectionConstraint (Catalog.GetString ("5 x 7 (L, 2L)"), 7.0 / 5.0),
+		new SelectionConstraint (Catalog.GetString ("8 x 10"), 10.0 / 8.0),
+		new SelectionConstraint (Catalog.GetString ("4 x 3 Portrait (Book)"), 3.0 / 4.0),
+		new SelectionConstraint (Catalog.GetString ("4 x 6 Portrait (Postcard)"), 4.0 / 6.0),
+		new SelectionConstraint (Catalog.GetString ("5 x 7 Portrait (L, 2L)"), 5.0 / 7.0),
+		new SelectionConstraint (Catalog.GetString ("8 x 10 Portrait"), 8.0 / 10.0),
+		new SelectionConstraint (Catalog.GetString ("Square"), 1.0)
 	};
 
 	private System.Collections.Hashtable constraint_table = new System.Collections.Hashtable ();
@@ -274,8 +274,8 @@ public class PhotoView : EventBox {
 	
 	private void ShowError (System.Exception e, Photo photo)
 	{
-		string msg = Mono.Posix.Catalog.GetString ("Error editing photo");
-		string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
+		string msg = Catalog.GetString ("Error editing photo");
+		string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
 					     e.Message, photo.Name);
 		
 		HigMessageDialog md = new HigMessageDialog ((Gtk.Window)this.Toplevel, DialogFlags.DestroyWithParent, 
@@ -319,8 +319,8 @@ public class PhotoView : EventBox {
 	{
 		int x, y, width, height;
 		if (! photo_view.GetSelection (out x, out y, out width, out height)) {
-			string msg = Mono.Posix.Catalog.GetString ("No selection available");
-			string desc = Mono.Posix.Catalog.GetString ("This tool requires an active selection. Please select a region of the photo and try the operation again");
+			string msg = Catalog.GetString ("No selection available");
+			string desc = Catalog.GetString ("This tool requires an active selection. Please select a region of the photo and try the operation again");
 			
 			HigMessageDialog md = new HigMessageDialog ((Gtk.Window)this.Toplevel, DialogFlags.DestroyWithParent, 
 								    Gtk.MessageType.Error, ButtonsType.Ok, 
@@ -560,12 +560,12 @@ public class PhotoView : EventBox {
 		UpdateButtonSensitivity ();
 
 		vbox.ShowAll ();
-		tips.SetTip (color_button, Mono.Posix.Catalog.GetString ("Adjust the photo colors"), "");
-		tips.SetTip (constraints_option_menu, Mono.Posix.Catalog.GetString ("Constrain the aspect ratio of the selection"), "");
-		tips.SetTip (display_next_button, Mono.Posix.Catalog.GetString ("Next photo"), "");
-		tips.SetTip (display_previous_button, Mono.Posix.Catalog.GetString ("Previous photo"), "");
-		tips.SetTip (desaturate_button, Mono.Posix.Catalog.GetString ("Convert the photo to black and white"), "");
-		tips.SetTip (sepia_button, Mono.Posix.Catalog.GetString ("Convert the photo to sepia tones"), "");
+		tips.SetTip (color_button, Catalog.GetString ("Adjust the photo colors"), "");
+		tips.SetTip (constraints_option_menu, Catalog.GetString ("Constrain the aspect ratio of the selection"), "");
+		tips.SetTip (display_next_button, Catalog.GetString ("Next photo"), "");
+		tips.SetTip (display_previous_button, Catalog.GetString ("Previous photo"), "");
+		tips.SetTip (desaturate_button, Catalog.GetString ("Convert the photo to black and white"), "");
+		tips.SetTip (sepia_button, Catalog.GetString ("Convert the photo to sepia tones"), "");
 	}
 
 }
