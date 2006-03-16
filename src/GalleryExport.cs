@@ -5,7 +5,7 @@ using System.Text;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Web;
-using Mono.Posix;
+using Mono.Unix;
 
 using GalleryRemote;
 
@@ -323,7 +323,11 @@ namespace FSpot {
 
 			if (args.ResponseId == Gtk.ResponseType.Ok) {
 				try {
-					new Uri (url);
+					Uri uri = new Uri (url);
+					if (uri.Scheme != Uri.UriSchemeHttp &&
+					    uri.Scheme != Uri.UriSchemeHttps)
+						throw new System.UriFormatException ();
+
 				} catch (System.UriFormatException e) {
 					HigMessageDialog md = 
 						new HigMessageDialog (Dialog, 
@@ -409,7 +413,7 @@ namespace FSpot {
 		private void PopulateAlbums ()
 		{
 			Gtk.Menu menu = new Gtk.Menu ();
-			Gtk.MenuItem top_item = new Gtk.MenuItem (Mono.Posix.Catalog.GetString ("(TopLevel)"));
+			Gtk.MenuItem top_item = new Gtk.MenuItem (Catalog.GetString ("(TopLevel)"));
 			menu.Append (top_item);
 
 			foreach (Album album in gallery.Albums) {
@@ -565,7 +569,7 @@ namespace FSpot {
 				Dialog.Destroy ();
 
 				command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
-				command_thread.Name = Mono.Posix.Catalog.GetString ("Uploading Pictures");
+				command_thread.Name = Catalog.GetString ("Uploading Pictures");
 				
 				progress_dialog = new FSpot.ThreadProgressDialog (command_thread, photos.Length);
 				progress_dialog.Start ();
@@ -601,11 +605,11 @@ namespace FSpot {
 
 					System.Console.WriteLine ("uploading {0}", photo_index);
 
-					progress_dialog.Message = System.String.Format (Mono.Posix.Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
+					progress_dialog.Message = System.String.Format (Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
 					progress_dialog.Fraction = photo_index / (double) photos.Length;
 					photo_index++;
 
-					progress_dialog.ProgressText = System.String.Format (Mono.Posix.Catalog.GetString ("{0} of {1}"), photo_index, photos.Length);
+					progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"), photo_index, photos.Length);
 					
 					if (scale) {
 						/* FIXME this is sick */
@@ -620,14 +624,14 @@ namespace FSpot {
 					}
 				}
 
-				progress_dialog.Message = Mono.Posix.Catalog.GetString ("Done Sending Photos");
+				progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
 				progress_dialog.Fraction = 1.0;
-				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Upload Complete");
+				progress_dialog.ProgressText = Catalog.GetString ("Upload Complete");
 				progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 			} catch (System.Exception e) {
-				progress_dialog.Message = String.Format (Mono.Posix.Catalog.GetString ("Error Uploading To Gallery: {0}"),
+				progress_dialog.Message = String.Format (Catalog.GetString ("Error Uploading To Gallery: {0}"),
 									 e.Message);
-				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error");
+				progress_dialog.ProgressText = Catalog.GetString ("Error");
 				System.Console.WriteLine (e);
 			}
 			
@@ -642,7 +646,7 @@ namespace FSpot {
 			
 			accounts = manager.GetAccounts ();
 			if (accounts == null || accounts.Count == 0) {
-				Gtk.MenuItem item = new Gtk.MenuItem (Mono.Posix.Catalog.GetString ("(No Gallery)"));
+				Gtk.MenuItem item = new Gtk.MenuItem (Catalog.GetString ("(No Gallery)"));
 				menu.Append (item);
 				gallery_optionmenu.Sensitive = false;
 			} else {
@@ -713,8 +717,8 @@ namespace FSpot {
 			bool disconnected = gallery == null || !account.Connected || albums == null;
 
 			if (disconnected || albums.Count == 0) {
-				string msg = disconnected ? Mono.Posix.Catalog.GetString ("(Not Connected)") 
-					: Mono.Posix.Catalog.GetString ("(No Albums)");
+				string msg = disconnected ? Catalog.GetString ("(Not Connected)") 
+					: Catalog.GetString ("(No Albums)");
 
 				Gtk.MenuItem item = new Gtk.MenuItem (msg);
 				menu.Append (item);
