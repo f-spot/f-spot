@@ -1,5 +1,8 @@
 2006-03-16  Larry Ewing  <lewing@novell.com>
 
+	* src/AsyncPixbufLoader.cs: Patch from Daniel Drake to fix
+	#170311.
+
 	* src/GalleryExport.cs: show an error if the scheme isn't http
 	based (based on a patch from  Ivan N. Zlatev fixes #334805).
 	Clean up mono.posix namespace issues.
