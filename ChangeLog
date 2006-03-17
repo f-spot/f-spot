@@ -1,5 +1,8 @@
 2006-03-16  Larry Ewing  <lewing@novell.com>
 
+	* src/FormClient.cs: Add some credential parsing to the uri and
+	fix the boundry function.
+
 	* src/AsyncPixbufLoader.cs: Patch from Daniel Drake to fix
 	#170311.
 

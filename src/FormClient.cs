@@ -49,10 +49,8 @@ class FormClient {
 	
 	private void GenerateBoundary () 
 	{
-		// FIXME this shouldn't really be hardcoded, look in camel/camel-mime-utils.c
-		// for a boundary algo.  camel_header_msgid_generate ()
-
-		boundary = "--------ieoau._._+2_8_GoodLuck8.3-ds0d0J0S0Kl234324jfLdsjfdAuaoei-----";
+		Guid guid = Guid.NewGuid ();
+		boundary = "--------" + guid.ToString () + "-----";
 		start_boundary = "--" + boundary; 
 		end_boundary = start_boundary + "--";
 	}
@@ -200,6 +198,16 @@ class FormClient {
 		Request = (HttpWebRequest) WebRequest.Create (uri);
 		CookieCollection cookie_collection = Cookies.GetCookies (uri);
 
+		if (uri.UserInfo != null && uri.UserInfo != "") {
+			NetworkCredential cred = new NetworkCredential ();
+			cred.GetCredential (uri, "basic");
+			CredentialCache credcache = new CredentialCache();
+			credcache.Add(uri, "basic", cred);
+			
+			Request.PreAuthenticate = true;
+			Request.Credentials = credcache;	
+		}
+
 		Request.CookieContainer = new CookieContainer ();
 		foreach (Cookie c in cookie_collection) {
 			if (SuppressCookiePath) 
@@ -207,7 +215,6 @@ class FormClient {
 			else
 				Request.CookieContainer.Add (c);
 		}
-
 
 		Request.Method = "POST";
 		Request.Headers["Accept-Charset"] = "utf-8;";
