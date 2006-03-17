@@ -670,6 +670,8 @@ namespace FSpot {
 						account.Connect ();
 					
 					PopulateAlbumOptionMenu (account.Gallery);
+				} else {
+					PopulateAlbumOptionMenu (null);
 				}
 			} catch (System.Exception ex) {
 				PopulateAlbumOptionMenu (account.Gallery);

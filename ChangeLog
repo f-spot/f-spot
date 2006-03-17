@@ -1,5 +1,8 @@
 2006-03-16  Larry Ewing  <lewing@novell.com>
 
+	* src/GalleryExport.cs: Fix for #334706 based on a patch from
+	Ivan N. Zlatev.
+
 	* src/FormClient.cs: Add some credential parsing to the uri and
 	fix the boundry function.
 
