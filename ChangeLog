@@ -1,5 +1,8 @@
 2006-03-17  Larry Ewing  <lewing@novell.com>
 
+	* src/IconView.cs: fix the drawing code to set the bg properly and
+	only draw the bg if needed.
+
 	* src/Global.cs: swap more colors.
 
 2006-03-16  Larry Ewing  <lewing@novell.com>

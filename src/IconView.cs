@@ -182,6 +182,8 @@ public class IconView : Gtk.Layout {
 		cache = new FSpot.PixbufCache ();
 		cache.OnPixbufLoaded += HandlePixbufLoaded;
 
+		System.Console.WriteLine ("typename = {0}", this.TypeName);
+
 		ScrollAdjustmentsSet += new ScrollAdjustmentsSetHandler (HandleScrollAdjustmentsSet);
 		
 		ButtonPressEvent += new ButtonPressEventHandler (HandleButtonPressEvent);
@@ -197,7 +199,7 @@ public class IconView : Gtk.Layout {
 		
 		CanFocus = true;
 
-		FSpot.Global.ModifyColors (this);
+		//FSpot.Global.ModifyColors (this);
 	}
 	
 	public IconView (FSpot.IBrowsableCollection collection) : this () 
@@ -733,12 +735,13 @@ public class IconView : Gtk.Layout {
 			entry.Data = thumbnail_num;
 
 		bool selected = selection.Contains (thumbnail_num);
-		StateType cell_state = selected ? (HasFocus ? StateType.Selected :StateType.Active) : StateType.Normal;
+		StateType cell_state = selected ? (HasFocus ? StateType.Selected : StateType.Active) : State;
 		
-		Style.PaintFlatBox (Style, BinWindow, cell_state, 
-				    ShadowType.Out, area, this, "IconView", 
-				    bounds.X, bounds.Y,
-				    bounds.Width - 1, bounds.Height - 1);
+		if (cell_state != State)
+			Style.PaintBox (Style, BinWindow, cell_state, 
+					ShadowType.Out, area, this, "IconView", 
+					bounds.X, bounds.Y,
+					bounds.Width - 1, bounds.Height - 1);
 		
 		Gdk.Rectangle focus = Gdk.Rectangle.Inflate (bounds, -3, -3);
 
@@ -1277,6 +1280,31 @@ public class IconView : Gtk.Layout {
 			ZoomOut ();
 			args.RetVal = true;
 		}
+	}
+
+	private void SetColors () 
+	{
+		if (IsRealized) {
+			BinWindow.Background = Style.BaseColors [(int)State];
+		}
+	}
+
+	protected override void OnRealized ()
+	{
+		base.OnRealized ();
+		SetColors ();
+	}
+
+	protected override void OnStateChanged (StateType previous)
+	{
+		base.OnStateChanged (previous);
+		SetColors ();
+	}
+	
+	protected override void OnStyleSet (Style previous)
+	{
+		base.OnStyleSet (previous);
+		SetColors ();
 	}
 
 	protected override void OnSizeAllocated (Gdk.Rectangle allocation)
