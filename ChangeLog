@@ -1,5 +1,10 @@
 2006-03-17  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoTagMenu.cs:
+	* src/TagCommands.cs
+	* src/TagMenu.cs: rename TagItem to TagMenuItem so that themes
+	pick it up better.  Fixes #334949.
+
 	* src/IconView.cs: fix the drawing code to set the bg properly and
 	only draw the bg if needed.
 

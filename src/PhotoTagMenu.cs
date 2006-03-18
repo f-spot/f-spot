@@ -33,16 +33,16 @@ public class PhotoTagMenu : Menu {
 	public event TagSelectedHandler TagSelected;
 	// This should be reworked to use a Selection interface to
 	// extract the current selection
-	private class TagItem : Gtk.ImageMenuItem {
+	private class TagMenuItem : Gtk.ImageMenuItem {
 		public Tag Value;
 
-		public TagItem (Tag t) : base (t.Name) {
+		public TagMenuItem (Tag t) : base (t.Name) {
 			Value = t;
 			if (t.Icon != null)
 				this.Image = new Gtk.Image (t.Icon);
 		}
 
-		protected TagItem (IntPtr raw) : base (raw) {}
+		protected TagMenuItem (IntPtr raw) : base (raw) {}
 	}
 
 	public PhotoTagMenu () : base () {
@@ -77,7 +77,7 @@ public class PhotoTagMenu : Menu {
 		}
 
 		foreach (Tag t in hash.Values) {
-			TagItem item = new TagItem (t);
+			TagMenuItem item = new TagMenuItem (t);
 			this.Append (item);
 			item.ShowAll ();
 			item.Activated += HandleActivate;
@@ -88,11 +88,11 @@ public class PhotoTagMenu : Menu {
 	void HandleActivate (object obj, EventArgs args)
 	{
 		if (TagSelected != null) {
-			TagItem t = obj as TagItem;
+			TagMenuItem t = obj as TagMenuItem;
 			if (t != null)
 				TagSelected (t.Value);
 			else 
-				Console.WriteLine ("Item was not a TagItem");
+				Console.WriteLine ("Item was not a TagMenuItem");
 		}
 	}
 }

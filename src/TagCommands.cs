@@ -44,7 +44,7 @@ public class TagCommands {
 			Menu menu = new Menu ();
 
 			foreach (Category category in categories)
-				menu.Append (TagMenu.TagItem.IndentedItem (category));
+				menu.Append (TagMenu.TagMenuItem.IndentedItem (category));
 
 			category_option_menu.Sensitive = true;
 

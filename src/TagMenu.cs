@@ -14,19 +14,19 @@ public class TagMenu : Menu {
 		set { new_tag_handler = value; }
 	}
 
-	public class TagItem : Gtk.ImageMenuItem {
+	public class TagMenuItem : Gtk.ImageMenuItem {
 		public Tag Value;
 
-		public TagItem (Tag t) : this (t, t.Name) { }
+		public TagMenuItem (Tag t) : this (t, t.Name) { }
 		
-		public TagItem (Tag t, string name) : base (name.Replace ("_", "__"))
+		public TagMenuItem (Tag t, string name) : base (name.Replace ("_", "__"))
 		{
 			Value = t;
 			if (t.Icon != null)
 				this.Image = new Gtk.Image (t.Icon);
 		}
 
-		public static TagItem IndentedItem (Tag t)
+		public static TagMenuItem IndentedItem (Tag t)
 		{
 			System.Text.StringBuilder label_builder = new System.Text.StringBuilder ();
 			
@@ -36,10 +36,10 @@ public class TagMenu : Menu {
 				label_builder.Append ("  ");
 			
 			label_builder.Append (t.Name.Replace ("_", "__"));
-			return new TagItem (t, label_builder.ToString ());
+			return new TagMenuItem (t, label_builder.ToString ());
 		}
 
-		protected TagItem (IntPtr raw) : base (raw) {}
+		protected TagMenuItem (IntPtr raw) : base (raw) {}
 	}
 
 	public TagMenu (MenuItem item, TagStore store) 
@@ -66,7 +66,7 @@ public class TagMenu : Menu {
 
 		int i = 0;
 		foreach (Widget w in this.Children) {
-			TagItem item = w as TagItem;
+			TagMenuItem item = w as TagMenuItem;
 			if (item != null) {
 				if (t == item.Value)
 					return i;
@@ -94,7 +94,7 @@ public class TagMenu : Menu {
         public void PopulateFlat (Category cat, Gtk.Menu parent)
 	{
 		foreach (Tag t in cat.Children) {
-			TagItem item = TagItem.IndentedItem (t);
+			TagMenuItem item = TagMenuItem.IndentedItem (t);
 			parent.Append (item);
 			item.ShowAll ();
 
@@ -114,7 +114,7 @@ public class TagMenu : Menu {
 			dead_pool [i].Destroy ();
 
 		foreach (Tag t in cat.Children) {
-			TagItem item = new TagItem (t);
+			TagMenuItem item = new TagMenuItem (t);
 			parent.Append (item);
 			item.ShowAll ();
 
@@ -127,7 +127,7 @@ public class TagMenu : Menu {
 				submenu.Prepend (sep);
 				sep.ShowAll ();
 
-				TagItem subitem = new TagItem (t);
+				TagMenuItem subitem = new TagMenuItem (t);
 				subitem.Activated += HandleActivate;
 				submenu.Prepend (subitem);
 				subitem.ShowAll ();
@@ -147,11 +147,11 @@ public class TagMenu : Menu {
 	void HandleActivate (object obj, EventArgs args)
 	{
 		if (TagSelected != null) {
-			TagItem t = obj as TagItem;
+			TagMenuItem t = obj as TagMenuItem;
 			if (t != null)
 				TagSelected (t.Value);
 			else 
-				Console.WriteLine ("Item was not a TagItem");
+				Console.WriteLine ("Item was not a TagMenuItem");
 		}
 	}
 }
