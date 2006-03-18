@@ -182,8 +182,6 @@ public class IconView : Gtk.Layout {
 		cache = new FSpot.PixbufCache ();
 		cache.OnPixbufLoaded += HandlePixbufLoaded;
 
-		System.Console.WriteLine ("typename = {0}", this.TypeName);
-
 		ScrollAdjustmentsSet += new ScrollAdjustmentsSetHandler (HandleScrollAdjustmentsSet);
 		
 		ButtonPressEvent += new ButtonPressEventHandler (HandleButtonPressEvent);
@@ -1286,6 +1284,7 @@ public class IconView : Gtk.Layout {
 	{
 		if (IsRealized) {
 			BinWindow.Background = Style.BaseColors [(int)State];
+			GdkWindow.Background = Style.BaseColors [(int)State];
 		}
 	}
 
