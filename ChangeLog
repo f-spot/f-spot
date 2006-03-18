@@ -1,6 +1,8 @@
 2006-03-18  Larry Ewing  <lewing@novell.com>
 
-	* src/IconView.cs: Set the backgrounf on the gdk window as well.
+	* src/PhotoView.cs: modify the colors on style changes as well.
+
+	* src/IconView.cs: Set the background on the gdk window as well.
 
 2006-03-17  Larry Ewing  <lewing@novell.com>
 

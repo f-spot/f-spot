@@ -42,7 +42,12 @@ public class PhotoView : EventBox {
 	}
 
 	private FSpot.PhotoImageView photo_view;
+	private ScrolledWindow photo_view_scrolled;
+	private EventBox background;
+
 	private TagView tag_view;
+	private EventBox tag_view_box;
+	
 	private Button display_next_button, display_previous_button;
 	private Label count_label;
 	private Entry description_entry;
@@ -373,7 +378,8 @@ public class PhotoView : EventBox {
 			PhotoChanged (this);
 	}
 
-	private void HandleColorButtonClicked (object sender, EventArgs args) {
+	private void HandleColorButtonClicked (object sender, EventArgs args) 
+	{
 		new FSpot.ColorDialog (photo_view);
 	}	
 
@@ -387,23 +393,24 @@ public class PhotoView : EventBox {
 		return true;
 	}
 
-	private void HandleDescriptionChanged (object sender, EventArgs args) {
+	private void HandleDescriptionChanged (object sender, EventArgs args) 
+	{
 		if (!Item.IsValid)
 			return;
-
+		
 		((Photo)Item.Current).Description = description_entry.Text;
-
+		
 		if (description_delay.IsPending)
 			if (description_photo == Item.Index)
 				description_delay.Stop ();
 			else
 				CommitPendingChanges ();
-
+		
 		tips.SetTip (description_entry, description_entry.Text, "This is a tip");
 		description_photo = Item.Index;
 		description_delay.Start ();
 	}
-
+	
 	
 
 	// Constructor.
@@ -458,11 +465,12 @@ public class PhotoView : EventBox {
 		Box vbox = new VBox (false, 6);
 		Add (vbox);
 
-		EventBox eventbox = new EventBox ();
+	        background = new EventBox ();
 		Frame frame = new Frame ();
-		eventbox.Add (frame);
+		background.Add (frame);
+
 		frame.ShadowType = ShadowType.In;
-		vbox.PackStart (eventbox, true, true, 0);
+		vbox.PackStart (background, true, true, 0);
 		
 		Box inner_vbox = new VBox (false , 2);
 
@@ -472,12 +480,7 @@ public class PhotoView : EventBox {
 		photo_view.PhotoChanged += HandlePhotoChanged;
 		photo_view.SelectionChanged += HandleSelectionChanged;
 
-		ScrolledWindow photo_view_scrolled = new ScrolledWindow (null, null);
-
-
-		FSpot.Global.ModifyColors (photo_view);
-		FSpot.Global.ModifyColors (eventbox);
-		FSpot.Global.ModifyColors (photo_view_scrolled);
+		photo_view_scrolled = new ScrolledWindow (null, null);
 
 		photo_view_scrolled.SetPolicy (PolicyType.Automatic, PolicyType.Automatic);
 		photo_view_scrolled.ShadowType = ShadowType.None;
@@ -489,11 +492,11 @@ public class PhotoView : EventBox {
 		HBox inner_hbox = new HBox (false, 2);
 		//inner_hbox.BorderWidth = 6;
 
-		EventBox tag_view_box = new EventBox ();
+		tag_view_box = new EventBox ();
 		tag_view = new TagView (tag_view_box);
 		tag_view_box.Add (tag_view);
 		inner_hbox.PackStart (tag_view_box, false, true, 0);
-		FSpot.Global.ModifyColors (tag_view_box);
+		SetColors ();
 
 		Label comment = new Label (Catalog.GetString ("Comment:"));
 		inner_hbox.PackStart (comment, false, false, 0);
@@ -567,6 +570,18 @@ public class PhotoView : EventBox {
 		tips.SetTip (desaturate_button, Catalog.GetString ("Convert the photo to black and white"), "");
 		tips.SetTip (sepia_button, Catalog.GetString ("Convert the photo to sepia tones"), "");
 	}
+	
+	private void SetColors ()
+	{
+		FSpot.Global.ModifyColors (tag_view_box);
+		FSpot.Global.ModifyColors (photo_view);
+		FSpot.Global.ModifyColors (background);
+		FSpot.Global.ModifyColors (photo_view_scrolled);
+	}
 
+	protected override void OnStyleSet (Style previous)
+	{
+		SetColors ();
+	}
 }
 
