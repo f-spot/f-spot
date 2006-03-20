@@ -1,3 +1,4 @@
+# translation of es.po to 
 # translation of es.po to Spanish
 # Traducción de f-spot al español
 # Spanish translation for f-spot
@@ -13,10 +14,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-04 17:06+0100\n"
-"PO-Revision-Date: 2006-03-04 17:09+0100\n"
+"POT-Creation-Date: 2006-03-20 15:53+0100\n"
+"PO-Revision-Date: 2006-03-20 16:00+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
-"Language-Team: Spanish <traductores@es.gnome.org>\n"
+"Language-Team:  <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -260,14 +261,14 @@ msgstr "Transfiriendo imagen «{0}» al CD"
 
 #. This indicates the current photo is photo {0} of {1} out of photos
 #: ../src/CDExport.cs:59 ../src/FlickrExport.cs:245
-#: ../src/GalleryExport.cs:608 ../src/ProgressDialog.cs:82
+#: ../src/GalleryExport.cs:612 ../src/ProgressDialog.cs:82
 #: ../src/TimeDialog.cs:141
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} de {1}"
 
 #: ../src/CDExport.cs:71 ../src/FlickrExport.cs:251 ../src/FolderExport.cs:176
-#: ../src/GalleryExport.cs:623
+#: ../src/GalleryExport.cs:627
 msgid "Done Sending Photos"
 msgstr "Envío de fotografías terminado"
 
@@ -296,10 +297,54 @@ msgid "Error saving adjusted photo"
 msgstr "Error al guardar la foto ajustada"
 
 #: ../src/ColorDialog.cs:302 ../src/Loupe.cs:53 ../src/MainWindow.cs:1803
-#: ../src/PhotoView.cs:278
+#: ../src/PhotoView.cs:283
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Se recibió la excepción «{0}». No es posible guardar la imagen {1}"
+
+#: ../src/Core.cs:180
+#, csharp-format
+msgid "No photos matching {0} found"
+msgstr "No se encontraron fotos coincidentes con {0}"
+
+#: ../src/Core.cs:181
+#, csharp-format
+msgid ""
+"The tag \"{0}\" is not applied to any photos. Try adding\n"
+"the tag to some photos or selecting a different tag in the\n"
+"F-Spot preference dialog."
+msgstr ""
+"La etiqueta «{0}» no se aplica a ninguna foto. Intente añadir\n"
+"la etiqueta a algunas fotos o seleccionar una etiqueta distinta\n"
+"en el diálogo de preferencias de F-Spot."
+
+#: ../src/Core.cs:185
+msgid "Search returned no results"
+msgstr "La búsqueda no devolvió ningún resultado"
+
+#: ../src/Core.cs:186
+msgid ""
+"The tag F-Spot is looking for does not exist. Try\n"
+"selecting a different tag in the F-Spot preference\n"
+"dialog."
+msgstr ""
+"La etiqueta que está buscando no existe. Intente\n"
+"seleccionar una etiqueta diferente en el diálogo de\n"
+"preferencias de F-Spot."
+
+#: ../src/ExceptionDialog.cs:24
+msgid "F-Spot Encountered a Fatal Error"
+msgstr "F-Spot encontró un error fatal."
+
+#: ../src/ExceptionDialog.cs:52
+msgid ""
+"This may be due to a programming error. Please help us make F-Spot better by "
+"reporting this error. Thank you in advance!"
+msgstr "Esto podría deberse a un error de programación. Por favor, ayúdenos a mejorar F-Spot informando de este error. Gracias."
+
+#: ../src/ExceptionDialog.cs:99
+msgid "An unhandled exception was thrown: "
+msgstr "Se produjo una excepción no tratada: "
 
 #: ../src/Exif.cs:226
 msgid "Image Directory"
@@ -368,12 +413,12 @@ msgstr "No es posible iniciar la sesión"
 msgid "Waiting for response {0} of {1}"
 msgstr "Esperando respuesta {0} de {1}"
 
-#: ../src/FlickrExport.cs:240 ../src/GalleryExport.cs:604
+#: ../src/FlickrExport.cs:240 ../src/GalleryExport.cs:608
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Subiendo imagen «{0}»"
 
-#: ../src/FlickrExport.cs:253 ../src/GalleryExport.cs:625
+#: ../src/FlickrExport.cs:253 ../src/GalleryExport.cs:629
 msgid "Upload Complete"
 msgstr "Carga completada"
 
@@ -382,7 +427,7 @@ msgstr "Carga completada"
 msgid "Error Uploading To Flickr: {0}"
 msgstr "Error al subir las fotografías a Flickr: {0}"
 
-#: ../src/FlickrExport.cs:259 ../src/GalleryExport.cs:630
+#: ../src/FlickrExport.cs:259 ../src/GalleryExport.cs:634
 msgid "Error"
 msgstr "Error"
 
@@ -398,7 +443,7 @@ msgstr ""
 "F-Spot no pudo iniciar una sesión en Flickr.  Compruebe que ha dado la "
 "autorización usando el interfaz web de Flickr."
 
-#: ../src/FlickrExport.cs:336 ../src/GalleryExport.cs:568
+#: ../src/FlickrExport.cs:336 ../src/GalleryExport.cs:572
 msgid "Uploading Pictures"
 msgstr "Subiendo las fotografías"
 
@@ -1296,7 +1341,7 @@ msgstr "_Renombrar la versión"
 msgid "_Resize to: "
 msgstr "_Redimensionar a: "
 
-#: ../src/f-spot.glade.h:226 ../src/GroupSelector.cs:516
+#: ../src/f-spot.glade.h:226 ../src/GroupSelector.cs:521
 msgid "_Reverse Order"
 msgstr "_Invertir el orden"
 
@@ -1399,32 +1444,32 @@ msgstr "píxeles"
 msgid "x"
 msgstr "x"
 
-#: ../src/GalleryExport.cs:333
+#: ../src/GalleryExport.cs:337
 msgid "Invalid URL"
 msgstr "URL inválida"
 
-#: ../src/GalleryExport.cs:334
+#: ../src/GalleryExport.cs:338
 msgid "The gallery URL entry does not appear to be a valid URL"
 msgstr "La URL de la galería no parece ser una URL válida"
 
-#: ../src/GalleryExport.cs:412
+#: ../src/GalleryExport.cs:416
 msgid "(TopLevel)"
 msgstr "(Nivel superior)"
 
-#: ../src/GalleryExport.cs:628
+#: ../src/GalleryExport.cs:632
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Error al subir a la galería: {0}"
 
-#: ../src/GalleryExport.cs:645
+#: ../src/GalleryExport.cs:649
 msgid "(No Gallery)"
 msgstr "(No hay galería)"
 
-#: ../src/GalleryExport.cs:716
+#: ../src/GalleryExport.cs:722
 msgid "(Not Connected)"
 msgstr "(No conectado)"
 
-#: ../src/GalleryExport.cs:717
+#: ../src/GalleryExport.cs:723
 msgid "(No Albums)"
 msgstr "(No hay álbumes)"
 
@@ -1440,36 +1485,36 @@ msgstr "Más subcarpetas"
 msgid "More"
 msgstr "Más"
 
-#: ../src/GroupSelector.cs:508
+#: ../src/GroupSelector.cs:513
 msgid "Arrange by _Month"
 msgstr "Ordenadas por _mes"
 
-#: ../src/GroupSelector.cs:511
+#: ../src/GroupSelector.cs:516
 msgid "Arrange by _Folder"
 msgstr "Ordenadas por _carpeta"
 
-#: ../src/ImportCommand.cs:123
+#: ../src/ImportCommand.cs:28 ../src/SingleView.cs:205
 msgid "Select Folder"
 msgstr "Seleccionar la carpeta"
 
-#: ../src/ImportCommand.cs:312
+#: ../src/ImportCommand.cs:235
 msgid "(No Cameras Detected)"
 msgstr "(No se detectó ninguna cámara)"
 
-#: ../src/ImportCommand.cs:449
+#: ../src/ImportCommand.cs:374
 #, csharp-format
 msgid "Loading {0} of {1}"
 msgstr "Cargando {0} de {1}"
 
-#: ../src/ImportCommand.cs:560
+#: ../src/ImportCommand.cs:480
 msgid "Done Loading"
 msgstr "Finalizó la carga"
 
-#: ../src/ImportCommand.cs:707
+#: ../src/ImportCommand.cs:630
 msgid "Directory does not exist."
 msgstr "La carpeta no existe."
 
-#: ../src/ImportCommand.cs:708
+#: ../src/ImportCommand.cs:631
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
@@ -1478,7 +1523,7 @@ msgstr ""
 "La carpeta seleccionada «{0}» no existe.  Por favor, elija una carpeta "
 "distinta"
 
-#: ../src/ImportCommand.cs:742
+#: ../src/ImportCommand.cs:669
 msgid "Select Tag"
 msgstr "Seleccionar etiqueta"
 
@@ -1672,27 +1717,27 @@ msgstr "Radio:"
 msgid "Threshold:"
 msgstr "Umbral:"
 
-#: ../src/MainWindow.cs:212
+#: ../src/MainWindow.cs:213
 msgid "Browse many photos simultaneously"
 msgstr "Examinar varias fotos simultáneamente"
 
-#: ../src/MainWindow.cs:215
+#: ../src/MainWindow.cs:216
 msgid "View and edit a photo"
 msgstr "Ver y editar una foto"
 
-#: ../src/MainWindow.cs:220
+#: ../src/MainWindow.cs:221
 msgid "View photos fullscreen"
 msgstr "Ver fotos en pantalla completa"
 
-#: ../src/MainWindow.cs:223
+#: ../src/MainWindow.cs:224
 msgid "View photos in a slideshow"
 msgstr "Ver fotos como diapositivas"
 
-#: ../src/MainWindow.cs:1257
+#: ../src/MainWindow.cs:1258
 msgid "No cameras detected."
 msgstr "No se detectó ninguna cámara."
 
-#: ../src/MainWindow.cs:1258
+#: ../src/MainWindow.cs:1259
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1700,11 +1745,11 @@ msgstr ""
 "F-Spot fue incapaz de detectar ninguna cámara conectada en este equipo.  "
 "Compruebe que la cámara está conectada y tiene alimentación"
 
-#: ../src/MainWindow.cs:1298
+#: ../src/MainWindow.cs:1299
 msgid "Error connecting to camera"
 msgstr "Error al conectar con la cámara"
 
-#: ../src/MainWindow.cs:1299
+#: ../src/MainWindow.cs:1300
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Se recibió el error «{0}» al conectar con la cámara"
@@ -1717,8 +1762,8 @@ msgid "translator-credits"
 msgstr "Jorge González <jorge.gonzalez.gonzalez@hispalinux.es>, 2004, 2005, 2006."
 
 #: ../src/MainWindow.cs:1454
-msgid "Copyright 2003-2006 Novell Inc."
-msgstr "Copyright 2003-2006 Novell Inc."
+msgid "Copyright © 2003-2006 Novell Inc."
+msgstr "Copyright © 2003-2006 Novell Inc."
 
 #. Translators, The singular case will never happen here.
 #: ../src/MainWindow.cs:1678
@@ -1864,7 +1909,7 @@ msgid_plural "Create New Versions?"
 msgstr[0] "¿Crear una nueva versión?"
 msgstr[1] "¿Crear nuevas versiones?"
 
-#: ../src/MainWindow.cs:2503
+#: ../src/MainWindow.cs:2502
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -2097,71 +2142,71 @@ msgstr "Se recibió la excepción «{0}». No es posible renombrar la versión a
 msgid "(No Edits)"
 msgstr "(No hay modificaciones)"
 
-#: ../src/PhotoView.cs:109
+#: ../src/PhotoView.cs:114
 msgid "No Constraint"
 msgstr "Sin restricción"
 
-#: ../src/PhotoView.cs:110
+#: ../src/PhotoView.cs:115
 msgid "4 x 3 (Book)"
 msgstr "4 x 3 (álbum)"
 
-#: ../src/PhotoView.cs:111
+#: ../src/PhotoView.cs:116
 msgid "4 x 6 (Postcard)"
 msgstr "4 x 6 (postal)"
 
-#: ../src/PhotoView.cs:112
+#: ../src/PhotoView.cs:117
 msgid "5 x 7 (L, 2L)"
 msgstr "5 x 7 (L, 2L)"
 
-#: ../src/PhotoView.cs:113
+#: ../src/PhotoView.cs:118
 msgid "8 x 10"
 msgstr "8 x 10"
 
-#: ../src/PhotoView.cs:114
+#: ../src/PhotoView.cs:119
 msgid "4 x 3 Portrait (Book)"
 msgstr "4 x 3 vertical (álbum)"
 
-#: ../src/PhotoView.cs:115
+#: ../src/PhotoView.cs:120
 msgid "4 x 6 Portrait (Postcard)"
 msgstr "4 x 6 vertical (postal)"
 
-#: ../src/PhotoView.cs:116
+#: ../src/PhotoView.cs:121
 msgid "5 x 7 Portrait (L, 2L)"
 msgstr "5 x 7 vertical (L, 2L)"
 
-#: ../src/PhotoView.cs:117
+#: ../src/PhotoView.cs:122
 msgid "8 x 10 Portrait"
 msgstr "8 x 10 vertical"
 
-#: ../src/PhotoView.cs:118
+#: ../src/PhotoView.cs:123
 msgid "Square"
 msgstr "Cuadadrado"
 
-#: ../src/PhotoView.cs:164
+#: ../src/PhotoView.cs:169
 msgid "Crop photo to selected area"
 msgstr "Recortar la foto al área seleccionada"
 
-#: ../src/PhotoView.cs:165
+#: ../src/PhotoView.cs:170
 msgid "Remove redeye from selected area"
 msgstr "Eliminar los ojos rojos del área seleccionada"
 
-#: ../src/PhotoView.cs:167
+#: ../src/PhotoView.cs:172
 msgid "Select an area to crop"
 msgstr "Seleccionar un área a recortar"
 
-#: ../src/PhotoView.cs:168
+#: ../src/PhotoView.cs:173
 msgid "Select an area to remove redeye"
 msgstr "Seleccionar un área para eliminar ojos rojos"
 
-#: ../src/PhotoView.cs:277
+#: ../src/PhotoView.cs:282
 msgid "Error editing photo"
 msgstr "Error al editar la foto"
 
-#: ../src/PhotoView.cs:322
+#: ../src/PhotoView.cs:327
 msgid "No selection available"
 msgstr "No hay ninguna selección disponible"
 
-#: ../src/PhotoView.cs:323
+#: ../src/PhotoView.cs:328
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -2169,31 +2214,31 @@ msgstr ""
 "Esta herramienta necesita una selección activa. Sleccione una región de la "
 "foto y reintente esta operación"
 
-#: ../src/PhotoView.cs:498
+#: ../src/PhotoView.cs:501
 msgid "Comment:"
 msgstr "Comentario:"
 
-#: ../src/PhotoView.cs:563
+#: ../src/PhotoView.cs:566
 msgid "Adjust the photo colors"
 msgstr "Ajustar los colores de la foto"
 
-#: ../src/PhotoView.cs:564
+#: ../src/PhotoView.cs:567
 msgid "Constrain the aspect ratio of the selection"
 msgstr "Limitar la proporción de la selección"
 
-#: ../src/PhotoView.cs:565
+#: ../src/PhotoView.cs:568
 msgid "Next photo"
 msgstr "Siguiente foto"
 
-#: ../src/PhotoView.cs:566
+#: ../src/PhotoView.cs:569
 msgid "Previous photo"
 msgstr "Foto anterior"
 
-#: ../src/PhotoView.cs:567
+#: ../src/PhotoView.cs:570
 msgid "Convert the photo to black and white"
 msgstr "Convertir la foto a blanco y negro"
 
-#: ../src/PhotoView.cs:568
+#: ../src/PhotoView.cs:571
 msgid "Convert the photo to sepia tones"
 msgstr "Convertir la foto a tonos sepia"
 
@@ -2237,6 +2282,10 @@ msgstr "Se recibió el error «{0}» al intentar rotar {1}"
 msgid "Error while rotating photo."
 msgstr "Error al rotar la foto."
 
+#: ../src/SingleView.cs:202
+msgid "Open"
+msgstr "Abrir"
+
 #: ../src/StockIcons.cs:26
 msgid "Adjust Colors"
 msgstr "Ajustar colores"
@@ -2265,7 +2314,8 @@ msgstr "Cargando"
 msgid "Logo"
 msgstr "Logo"
 
-#: ../src/StockIcons.cs:35 ../src/TagCommands.cs:122 ../src/TagPopup.cs:22
+#: ../src/StockIcons.cs:35 ../src/TagCommands.cs:122 ../src/TagMenu.cs:89
+#: ../src/TagPopup.cs:22
 msgid "Create New Tag"
 msgstr "Crear nueva etiqueta"
 
@@ -2411,4 +2461,12 @@ msgstr "No se encontraron imágenes coincidentes con el criterio "
 #: ../src/QueryDisplay.cs:64
 msgid "Clear search"
 msgstr "Vaciar búsqueda"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:1
+msgid "Display a slideshow from F-Spot"
+msgstr "Mostrar una exhibición de fotos desde F-Spot"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:2
+msgid "F-Spot photos"
+msgstr "Fotos de F-Spot"
 
