@@ -1827,7 +1827,7 @@ namespace FSpot.Tiff {
 				}
 
 #if DEBUG_LOADER
-				Header.Dump (this.ToSring () + ":");
+				Header.Dump (this.ToString () + ":");
 #endif
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e.ToString ());
@@ -1929,11 +1929,6 @@ namespace FSpot.Tiff {
 			} catch {
 				return DCRawFile.RawPixbufStream (path);
 			}
-		}
-
-		public override Gdk.Pixbuf Load ()
-		{
-			return DCRawFile.Load (this.path, null);
 		}
 
 		public override void Select (SemWeb.StatementSink sink)
