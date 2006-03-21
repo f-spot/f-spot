@@ -313,6 +313,14 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		string path = GetVersionPath (version_id);
 		if (File.Exists (path))
 			File.Delete (path);
+
+		try {
+			string thumb_path = ThumbnailGenerator.ThumbnailPath (path);
+			File.Delete (thumb_path);
+		} catch (System.Exception e) {
+			//ignore an error here we don't really care.
+		}
+
 		PhotoStore.DeleteThumbnail (path);
 
 		version_names.Remove (version_id);
