@@ -25,12 +25,11 @@ namespace FSpot {
 		private Gtk.Window window;
 		PhotoImageView image_view;
 		IconView directory_view;
-		string path;
-		private 
+		private Uri uri;
 		
 		InfoDialog metadata_dialog;
 		
-		DirectoryCollection collection;
+		UriCollection collection;
 		
 		FSpot.Delay slide_delay;
 
@@ -38,11 +37,22 @@ namespace FSpot {
 
 		public SingleView () : this (FSpot.Global.HomeDirectory) {}
 
-		public SingleView (string path) 
+
+		public SingleView (string path) : this (UriList.PathToFileUri (path)) 
+		{
+		}
+
+		public SingleView (Uri uri) : this (new Uri [] { uri })
+		{
+		}
+
+		public SingleView (Uri [] uris) 
 		{
 			string glade_name = "single_view";
-			this.path = path;
+			this.uri = uris [0];
 			
+			System.Console.WriteLine ("uri = {0}", uri.ToString ());
+
 			xml = new Glade.XML (null, "f-spot.glade", glade_name, "f-spot");
 			xml.Autoconnect (this);
 			window = (Gtk.Window) xml.GetWidget (glade_name);
@@ -56,7 +66,7 @@ namespace FSpot {
 			GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-90", new System.EventHandler (HandleRotate90Command));
 			toolbar.AppendSpace ();
 
-			collection = new DirectoryCollection (path);
+			collection = new UriCollection (uris);
 			
 			directory_view = new IconView (collection);
 			directory_view.Selection.Changed += HandleSelectionChanged;
@@ -183,7 +193,7 @@ namespace FSpot {
 		private void HandleNewWindow (object sender, System.EventArgs args)
 		{
 			/* FIXME this needs to register witth the core */
-			new SingleView (path);
+			new SingleView (uri);
 		}
 
 
@@ -211,12 +221,12 @@ namespace FSpot {
 			chooser.AddButton (Stock.Cancel, ResponseType.Cancel);
 			chooser.AddButton (Stock.Open, ResponseType.Ok);
 
-			chooser.SetFilename (path);
+			chooser.SetUri (uri.ToString ());
 			int response = chooser.Run ();
 
 			if ((ResponseType) response == ResponseType.Ok) {
-				path = chooser.Filename;
-				collection.Path = chooser.Filename;
+				uri = new System.Uri (chooser.Uri);
+				//collection. = uri.LocalPath;
 			}
 
 			chooser.Destroy ();
@@ -317,14 +327,11 @@ namespace FSpot {
 		{
 			string open = null;
 			
-			CompatFileChooserDialog file_selector =
-				new CompatFileChooserDialog ("Open", this.Window,
-							     CompatFileChooserDialog.Action.Open);
+			FileChooserDialog file_selector =
+				new FileChooserDialog ("Open", this.Window,
+						       FileChooserAction.Open);
 			
-			file_selector.SelectMultiple = false;
-			
-			file_selector.Filename = path;
-			
+			file_selector.SetUri (uri.ToString ());
 			int response = file_selector.Run ();
 			
 			if ((Gtk.ResponseType) response == Gtk.ResponseType.Ok) {

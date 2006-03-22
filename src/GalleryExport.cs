@@ -613,7 +613,7 @@ namespace FSpot {
 					
 					if (scale) {
 						/* FIXME this is sick */
-						string orig = photo.DefaultVersionPath;
+						string orig = photo.DefaultVersionUri.LocalPath;
 						string path = PixbufUtils.Resize (orig, size, true);
 						string final = path + System.IO.Path.GetExtension (orig);
 						System.IO.File.Move (path, final);

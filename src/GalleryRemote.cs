@@ -79,7 +79,7 @@ namespace GalleryRemote {
 
 		public void Add (Photo photo) 
 		{
-			Add (photo, photo.DefaultVersionPath);
+			Add (photo, photo.DefaultVersionUri.LocalPath);
 		}
 
 		public void Add (Photo photo, string path)		
@@ -89,7 +89,7 @@ namespace GalleryRemote {
 			
 			gallery.AddItem (this, 
 					 path,
-					 Path.GetFileName (photo.DefaultVersionPath),
+					 Path.GetFileName (photo.DefaultVersionUri.LocalPath),
 					 photo.Description, 
 					 true);
 		}

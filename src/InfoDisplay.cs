@@ -142,7 +142,7 @@ namespace FSpot {
 			if (photo != null) {
 				MetadataStore store = new MetadataStore ();
 				try {
-					ImageFile img = ImageFile.Create (photo.DefaultVersionUri.LocalPath);
+					ImageFile img = ImageFile.Create (photo.DefaultVersionUri);
 					if (img is SemWeb.StatementSource) {
 						StatementSource source = (StatementSource)img;
 						source.Select (store);

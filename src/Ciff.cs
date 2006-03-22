@@ -447,7 +447,7 @@ namespace FSpot.Ciff {
 			if (data != null)
 				return new System.IO.MemoryStream (data);
 			else	
-				return DCRawFile.RawPixbufStream (path);
+				return DCRawFile.RawPixbufStream (uri);
 		}
 
 		public override Gdk.Pixbuf Load (int width, int height)

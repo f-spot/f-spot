@@ -171,12 +171,23 @@ namespace FSpot.Mrw {
 	
 	public class MrwFile : ImageFile, SemWeb.StatementSource {
 		MrmBlock mrm;
-		FSpot.Tiff.Header Header;
+		FSpot.Tiff.Header header;
+
+		public MrwFile (System.Uri uri) : base (uri)
+		{
+		}
 
 		public MrwFile (string path) : base (path)
 		{
-			LoadBlocks ();
-			System.Console.WriteLine ("testing {0}", this.Date.ToString ());
+		}
+
+		public FSpot.Tiff.Header Header {
+			get {
+				if (mrm == null)
+					LoadBlocks ();
+				
+				return header;
+			}
 		}
 
 		public override System.DateTime Date
@@ -198,12 +209,14 @@ namespace FSpot.Mrw {
 
 		public override System.IO.Stream PixbufStream ()
 		{
-			return DCRawFile.RawPixbufStream (path);
+			return DCRawFile.RawPixbufStream (uri);
 		}
 		
 		public override Gdk.Pixbuf Load ()
 		{
-			return DCRawFile.Load (this.Path, null);
+			using (System.IO.Stream stream = Open ()) {
+				return new Gdk.Pixbuf (PixbufStream ());
+			}
 		}
 
 		public override Gdk.Pixbuf Load (int width, int height)
@@ -213,13 +226,13 @@ namespace FSpot.Mrw {
 
 		protected void LoadBlocks () 
 		{
-			using (System.IO.Stream file = System.IO.File.OpenRead (this.path)) {
+			using (System.IO.Stream file = Open ()) {
 				mrm = new MrmBlock (file);
 				try {
 					foreach (Block b in mrm.Blocks) {
 						if (b is TtwBlock) {
 							TtwBlock ttw = (TtwBlock) b;
-							Header = ttw.TiffHeader;
+							header = ttw.TiffHeader;
 							//Header.Dump ("TTW:");
 							break;
 						}

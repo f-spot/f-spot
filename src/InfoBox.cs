@@ -153,7 +153,7 @@ public class InfoBox : VBox {
 				int real_width;
 				int real_height;
 
-				JpegUtils.GetSize (img.Path, out real_width, out real_height);
+				JpegUtils.GetSize (img.Uri.LocalPath, out real_width, out real_height);
 				width = real_width.ToString ();
 				height = real_height.ToString ();
 			}
@@ -250,11 +250,10 @@ public class InfoBox : VBox {
 			return false;
 		}
 		
-		string path = photo.DefaultVersionUri.LocalPath;
-		name_entry.Text = System.IO.Path.GetFileName (path);
+		name_entry.Text = photo.Name;
 		try {
 			//using (new Timer ("building info")) {
-				img = ImageFile.Create (path);
+				img = ImageFile.Create (photo.DefaultVersionUri);
 				info = new ImageInfo (img);
 				//}
 		} catch (System.Exception e) {

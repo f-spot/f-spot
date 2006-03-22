@@ -15,7 +15,7 @@ namespace FSpot {
 
 		static public Gdk.Pixbuf Load (IBrowsableItem item) 
 		{
-			ImageFile img = ImageFile.Create (item.DefaultVersionUri.LocalPath);
+			ImageFile img = ImageFile.Create (item.DefaultVersionUri);
 			Gdk.Pixbuf pixbuf = img.Load ();
 			ValidateThumbnail (item, pixbuf);
 			return pixbuf;
@@ -23,16 +23,15 @@ namespace FSpot {
 
 		static public Gdk.Pixbuf LoadAtMaxSize (IBrowsableItem item, int width, int height) 
 		{
-			string path = item.DefaultVersionUri.LocalPath;
-			ImageFile img = ImageFile.Create (path);
+			ImageFile img = ImageFile.Create (item.DefaultVersionUri);
 			Gdk.Pixbuf pixbuf = img.Load (width, height);
-			ValidateThumbnail (path, pixbuf);
+			ValidateThumbnail (item.DefaultVersionUri, pixbuf);
 			return pixbuf;
 		}
 
 		static public Gdk.Pixbuf ValidateThumbnail (IBrowsableItem item, Gdk.Pixbuf pixbuf)
 		{
-			return ValidateThumbnail (item.DefaultVersionUri.LocalPath, pixbuf);
+			return ValidateThumbnail (item.DefaultVersionUri, pixbuf);
 		}
 
 		static public bool ThumbnailIsValid (System.Uri uri, Gdk.Pixbuf thumbnail)
@@ -43,6 +42,11 @@ namespace FSpot {
 		static public Gdk.Pixbuf ValidateThumbnail (string photo_path, Gdk.Pixbuf pixbuf)
 		{			
 			System.Uri uri = UriList.PathToFileUri (photo_path);
+			return ValidateThumbnail (uri, pixbuf);
+		}
+		
+		static public Gdk.Pixbuf ValidateThumbnail (System.Uri uri, Gdk.Pixbuf pixbuf)
+		{			
 			string thumbnail_path = Gnome.Thumbnail.PathForUri (uri.ToString (), 
 									    Gnome.ThumbnailSize.Large);
 
@@ -51,7 +55,7 @@ namespace FSpot {
 			if (pixbuf != null && thumbnail != null) {
 				if (!ThumbnailIsValid (uri, thumbnail)) {
 					System.Console.WriteLine ("regnerating thumbnail");
-					FSpot.ThumbnailGenerator.Default.Request (photo_path, 0, 256, 256);
+					FSpot.ThumbnailGenerator.Default.Request (uri.LocalPath, 0, 256, 256);
 				}
 
 			}

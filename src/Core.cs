@@ -114,10 +114,7 @@ namespace FSpot {
 				Register (new FSpot.SingleView (path).Window);
 			else {
 				try {
-					System.Uri uri = new System.Uri (path);
-					path = uri.LocalPath;
-					if (System.IO.File.Exists (path) || System.IO.Directory.Exists (path))
-						Register (new FSpot.SingleView (path).Window);
+					Register (new FSpot.SingleView (new Uri (path)).Window);
 				} catch (System.Exception e) {
 					System.Console.WriteLine (e.ToString ());
 					System.Console.WriteLine ("no real valid path to view from {0}", path);

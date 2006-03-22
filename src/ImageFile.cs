@@ -9,18 +9,32 @@ namespace FSpot {
 	}
 
 	public class ImageFile {
-		protected string path;
+		protected Uri uri;
 
 		static System.Collections.Hashtable name_table;
 
 		public ImageFile (string path) 
 		{
-			this.path = path;
+			this.uri = UriList.PathToFileUri (path);
 		}
 		
+		public ImageFile (Uri uri)
+		{
+			this.uri = uri;
+		}
+		
+		protected Stream Open ()
+		{
+			if (uri.Scheme == "file:")
+				return File.OpenRead (uri.LocalPath);
+
+			System.Console.WriteLine ("open uri = {0}", uri.ToString ());
+			return new Gnome.Vfs.VfsStream (uri.ToString (), FileMode.Open);
+		}
+
 		public virtual Stream PixbufStream ()
 		{
-			return File.OpenRead (this.path);
+			return Open ();
 		}
 
 		static ImageFile ()
@@ -47,23 +61,17 @@ namespace FSpot {
 			name_table [".x3f"] = typeof (FSpot.X3f.X3fFile);
 		}
 
-		public string Path {
-			get {
-				return this.path;
-			}
+		public Uri Uri {
+			get { return this.uri; }
 		}
 
 		public PixbufOrientation Orientation {
-			get {
-				return GetOrientation ();
-			}
+			get { return GetOrientation (); }
 		}
 
 		public virtual string Description
 		{
-			get { 
-				return null;
-			}
+			get { return null; }
 		}
 		
 		public virtual void Save (Gdk.Pixbuf pixbuf, System.IO.Stream stream)
@@ -86,7 +94,7 @@ namespace FSpot {
 		
 		public virtual Gdk.Pixbuf Load ()
 		{
-			Gdk.Pixbuf orig = new Gdk.Pixbuf (this.Path);
+			Gdk.Pixbuf orig = new Gdk.Pixbuf (Open ());
 			return TransformAndDispose (orig);
 		}
 		
@@ -122,8 +130,10 @@ namespace FSpot {
 			get {
 				// FIXME mono uses the file change time (ctime) incorrectly
 				// as the creation time so we try to work around that slightly
-				DateTime create = File.GetCreationTimeUtc  (this.path);
-				DateTime write =  File.GetLastWriteTimeUtc (this.path);
+				Gnome.Vfs.FileInfo info = new Gnome.Vfs.FileInfo (uri.ToString ());
+
+				DateTime create = info.Ctime;
+				DateTime write = info.Mtime;
 
 				if (create < write)
 					return create;
@@ -134,6 +144,12 @@ namespace FSpot {
 
 		public static bool HasLoader (string path)
 		{
+			return HasLoader (UriList.PathToFileUri (path));
+		}
+		
+		public static bool HasLoader (Uri uri)
+		{
+			string path = uri.AbsolutePath;
 			string extension = System.IO.Path.GetExtension (path).ToLower ();
 			System.Type t = (System.Type) name_table [extension];
 			
@@ -142,14 +158,20 @@ namespace FSpot {
 
 		public static ImageFile Create (string path)
 		{
+			return Create (UriList.PathToFileUri (path));
+		}
+
+		public static ImageFile Create (Uri uri)
+		{
+			string path = uri.AbsolutePath;
 			string extension = System.IO.Path.GetExtension (path).ToLower ();
 			System.Type t = (System.Type) name_table [extension];
-			
 			ImageFile img;
+
 			if (t != null)
-				img = (ImageFile) System.Activator.CreateInstance (t, new object[] {path});
+				img = (ImageFile) System.Activator.CreateInstance (t, new object[] { uri });
 			else 
-				img = new ImageFile (path);
+				img = new ImageFile (uri);
 
 			return img;
 		}

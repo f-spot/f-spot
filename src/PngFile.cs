@@ -12,7 +12,7 @@ namespace FSpot.Png {
 		private PngHeader Header {
 			get {
 				if (header == null) {
-					using (System.IO.Stream input = System.IO.File.OpenRead (this.Path)) {
+					using (System.IO.Stream input = Open ()) {
 					        header = new PngHeader (input);
 					}
 				}
@@ -25,11 +25,14 @@ namespace FSpot.Png {
 			get { return Header.Chunks; }
 		}
 
+		public PngFile (System.Uri uri) : base (uri)
+		{
+		}
 
 		public PngFile (string path) : base (path)
 		{
-			this.path = path;
 		}
+
 
 		/**
 		   Title 	Short (one line) title or caption for image 

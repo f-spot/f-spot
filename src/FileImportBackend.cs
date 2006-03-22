@@ -203,7 +203,7 @@ public class FileImportBackend : ImportBackend {
 		foreach (Photo p in imported_photos) {
 			if (copy) {
 				try {
-					System.IO.File.Delete (p.DefaultVersionPath);
+					System.IO.File.Delete (p.DefaultVersionUri.LocalPath);
 				} catch (System.Exception e) {
 					System.Console.WriteLine (e);
 				}
@@ -234,7 +234,7 @@ public class FileImportBackend : ImportBackend {
 		file_paths = null;
 		
 		foreach (Photo p in imported_photos) {
-			FSpot.ThumbnailGenerator.Default.Request (p.DefaultVersionPath, 0, 256, 256);
+			FSpot.ThumbnailGenerator.Default.Request (p.DefaultVersionUri.LocalPath, 0, 256, 256);
 		}
 
 		imported_photos = null;

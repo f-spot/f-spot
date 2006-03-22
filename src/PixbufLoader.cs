@@ -135,7 +135,13 @@ public class PixbufLoader {
 	{
 		Pixbuf orig_image;
 		try {
-			FSpot.ImageFile img = FSpot.ImageFile.Create (request.path);
+			FSpot.ImageFile img;
+
+			if (System.IO.File.Exists (request.path))
+				img = FSpot.ImageFile.Create (request.path);
+		        else
+				img = FSpot.ImageFile.Create (new Uri (request.path));
+
 			if (request.width > 0) {
 				orig_image = img.Load (request.width, request.height);
 			} else

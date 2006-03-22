@@ -401,14 +401,6 @@ public class JpegHeader : SemWeb.StatementSource {
 		Load (stream, metadata_only);
 	}
 
-	public JpegHeader (string filename) 
-	{
-		//System.Console.WriteLine ("opening {0}", filename);
-		using (System.IO.FileStream stream = new System.IO.FileStream (filename, System.IO.FileMode.Open)) {
-			Load (stream, false);
-		}
-	}
-
 	private void Load (System.IO.Stream stream, bool metadata_only) 
 	{
 		marker_list.Clear ();

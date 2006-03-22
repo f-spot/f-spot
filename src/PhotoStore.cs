@@ -288,15 +288,14 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 			return GetPathForVersionName (GetVersionName (version_id));
 	}
 
-	public string DefaultVersionPath {
-		get {
-			return GetVersionPath (DefaultVersionId);
-		}
+	public System.Uri VersionUri (uint version_id)
+	{
+		return UriList.PathToFileUri (GetVersionPath (version_id));
 	}
-
+	
 	public System.Uri DefaultVersionUri {
 		get {
-			return UriList.PathToFileUri (DefaultVersionPath);
+			return VersionUri (OriginalVersionId);
 		}
 	}
 
@@ -499,9 +498,9 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 	public void WriteMetadataToImage ()
 	{
-		string path = this.DefaultVersionPath;
+		string path = this.DefaultVersionUri.LocalPath;
 
-		FSpot.ImageFile img = FSpot.ImageFile.Create (path);
+		FSpot.ImageFile img = FSpot.ImageFile.Create (DefaultVersionUri);
 		if (img is FSpot.JpegFile) {
 			FSpot.JpegFile jimg = img as FSpot.JpegFile;
 			
@@ -525,7 +524,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 	public uint SaveVersion (Gdk.Pixbuf buffer, bool create_version)
 	{
 		uint version = DefaultVersionId;
-		ImageFile img = ImageFile.Create (DefaultVersionUri.LocalPath);
+		ImageFile img = ImageFile.Create (DefaultVersionUri);
 
 		// Always create a version if the source is not a jpeg for now.
 		create_version = create_version || !(img is FSpot.JpegFile);
@@ -602,11 +601,10 @@ public class PhotoStore : DbStore {
 	// Generates the thumbnail, returns the Pixbuf, and also stores it as a side effect
 	//
 
-	public static Pixbuf GenerateThumbnail (string path)
+	public static Pixbuf GenerateThumbnail (Uri uri)
 	{
-		string uri = UriList.PathToFileUri (path).ToString ();
 		Pixbuf thumbnail = null;
-		FSpot.ImageFile img = FSpot.ImageFile.Create (path);
+		FSpot.ImageFile img = FSpot.ImageFile.Create (uri);
 
 		if (img is FSpot.IThumbnailContainer) {
 			try {
@@ -618,10 +616,10 @@ public class PhotoStore : DbStore {
 
 		// Save embedded thumbnails in a silightly invalid way so that we know to regnerate them later.
 		if (thumbnail != null) 
-			PixbufUtils.SaveAtomic (thumbnail, Thumbnail.PathForUri (uri, ThumbnailSize.Large), 
+			PixbufUtils.SaveAtomic (thumbnail, FSpot.ThumbnailGenerator.ThumbnailPath (uri), 
 						"png", new string [] { null} , new string [] { null});
 		else 
-			thumbnail = FSpot.ThumbnailGenerator.Create (path);
+			thumbnail = FSpot.ThumbnailGenerator.Create (uri);
 		
 		return thumbnail;
 	}
@@ -732,7 +730,7 @@ public class PhotoStore : DbStore {
 		AddToCache (photo);
 		photo.Loaded = true;
 
-		thumbnail = GenerateThumbnail (newPath);		
+		thumbnail = GenerateThumbnail (UriList.PathToFileUri (newPath));		
 		EmitAdded (photo);
 
 		return photo;

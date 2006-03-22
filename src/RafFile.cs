@@ -20,9 +20,12 @@ namespace FSpot.Raf {
 	}
 	
 	public class RafFile : ImageFile, SemWeb.StatementSource {
+		public RafFile (System.Uri uri) : base (uri)
+		{
+		}
+
 		public RafFile (string path) : base (path)
 		{
-			
 		}
 
 		public override System.IO.Stream PixbufStream ()
@@ -32,7 +35,7 @@ namespace FSpot.Raf {
 			if (data != null)
 				return new System.IO.MemoryStream (data);
 			else
-				return DCRawFile.RawPixbufStream (path);
+				return DCRawFile.RawPixbufStream (uri);
 		}
  
 		public override Gdk.Pixbuf Load ()
@@ -70,7 +73,7 @@ namespace FSpot.Raf {
 
 		private byte [] GetEmbeddedJpeg ()
 		{
-			using (System.IO.Stream stream = System.IO.File.OpenRead (this.path)) {
+			using (System.IO.Stream stream = Open ()) {
 				stream.Position = 0x54;
 				byte [] data = new byte [24];
 				stream.Read (data, 0, data.Length);

@@ -1,16 +1,27 @@
+using System;
+using System.IO;
+
 namespace FSpot {
 	public class ThumbnailGenerator : PixbufLoader {
 		private static Gnome.ThumbnailFactory factory = new Gnome.ThumbnailFactory (Gnome.ThumbnailSize.Large);
 		static public ThumbnailGenerator Default = new ThumbnailGenerator ();
-
+		
 		public static Gdk.Pixbuf Create (string path)
 		{
+			if (File.Exists (path))
+				return Create (UriList.PathToFileUri (path));
+			
+			return Create (new Uri (path));
+		}
+		
+		public static Gdk.Pixbuf Create (Uri uri)
+		{
 			try {
-				ImageFile img = ImageFile.Create (path);
+				ImageFile img = ImageFile.Create (uri);
 				Gdk.Pixbuf thumb = img.Load (256, 256);
 
 				if (thumb != null)
-					Save (thumb, path);
+					Save (thumb, uri);
 				return thumb;
 			} catch {
 				return null;
@@ -43,10 +54,11 @@ namespace FSpot {
 			return ThumbnailPath (UriList.PathToFileUri (path));
 		}
 
-		public static void Save (Gdk.Pixbuf image, string path)
+		public static void Save (Gdk.Pixbuf image, Uri dest)
 		{			
-			string uri = UriList.PathToFileUri (path).ToString ();
-			System.DateTime mtime = System.IO.File.GetLastWriteTime (path);
+			string uri = dest.ToString ();
+			// Use Gnome.Vfs
+			System.DateTime mtime = System.IO.File.GetLastWriteTime (dest.LocalPath);
 			
 			PixbufUtils.SetOption (image, "tEXt::Thumb::URI", uri);
 			PixbufUtils.SetOption (image, "tEXt::Thumb::MTime", 
@@ -77,13 +89,18 @@ namespace FSpot {
 
 		protected override void ProcessRequest (RequestItem request)
 		{
-
 			try {
 				base.ProcessRequest (request);
 
 				Gdk.Pixbuf image = request.result;
 				if (image != null) {
-					Save (image, request.path);
+					Uri uri;
+					if (File.Exists (request.path))
+						uri = UriList.PathToFileUri (request.path);
+					else
+						uri = new Uri (request.path);
+
+					Save (image, uri);
 				}
 
 				System.Threading.Thread.Sleep (75);

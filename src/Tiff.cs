@@ -1822,7 +1822,22 @@ namespace FSpot.Tiff {
 		public TiffFile (string path) : base (path)
 		{
 			try {
-				using (System.IO.Stream input = System.IO.File.OpenRead (path)) {
+				using (System.IO.Stream input = Open ()) {
+					this.Header = new Header (input);
+				}
+
+#if DEBUG_LOADER
+				Header.Dump (this.ToString () + ":");
+#endif
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e.ToString ());
+			}
+		}
+
+		public TiffFile (Uri uri) : base (uri)
+		{
+			try {
+				using (System.IO.Stream input = Open ()) {
 					this.Header = new Header (input);
 				}
 
@@ -1878,7 +1893,7 @@ namespace FSpot.Tiff {
 		{
 			uint offset = directory.Lookup (TagId.JPEGInterchangeFormat).ValueAsLong [0];
 			
-			System.IO.Stream file = System.IO.File.OpenRead (this.path);
+			System.IO.Stream file = Open ();
 			file.Position = offset;
 			return file;
 		}
@@ -1888,7 +1903,7 @@ namespace FSpot.Tiff {
 			uint offset = directory.Lookup (TagId.JPEGInterchangeFormat).ValueAsLong [0];
 			uint length = directory.Lookup (TagId.JPEGInterchangeFormatLength).ValueAsLong [0];
 			   
-			using (System.IO.Stream file = System.IO.File.OpenRead (this.path)) {
+			using (System.IO.Stream file = Open ()) {
 				file.Position = offset;
 				
 				byte [] data = new byte [32768];
@@ -1916,6 +1931,10 @@ namespace FSpot.Tiff {
 		{
 		}
 
+		public DngFile (System.Uri uri) : base (uri) 
+		{
+		}
+
 		public override System.IO.Stream PixbufStream ()
 		{
 			try {
@@ -1923,11 +1942,11 @@ namespace FSpot.Tiff {
 				ImageDirectory directory = sub.Directory [sub.Directory.Length - 1];
 
 				uint offset = directory.Lookup (TagId.StripOffsets).ValueAsLong [0];
-				System.IO.Stream file = System.IO.File.OpenRead (this.path);
+				System.IO.Stream file = Open ();
 				file.Position = offset;
 				return file;
 			} catch {
-				return DCRawFile.RawPixbufStream (path);
+				return DCRawFile.RawPixbufStream (uri);
 			}
 		}
 
@@ -1993,6 +2012,10 @@ namespace FSpot.Tiff {
 		{
 		}
 
+		public NefFile (Uri uri) : base (uri)
+		{
+		}
+
 		public override void Select (SemWeb.StatementSink sink)
 		{
 			DirectoryEntry e = Header.Directory.Lookup (TagId.NewSubfileType);
@@ -2029,7 +2052,9 @@ namespace FSpot.Tiff {
 
 		public Gdk.Pixbuf GetEmbeddedThumbnail ()
 		{
-			return TransformAndDispose (new Gdk.Pixbuf (path));
+			using (System.IO.Stream stream = Open ()) {
+				return TransformAndDispose (new Gdk.Pixbuf (stream));
+			}
 		}
 
 		public override System.IO.Stream PixbufStream ()
@@ -2039,36 +2064,18 @@ namespace FSpot.Tiff {
 				ImageDirectory jpeg_directory = sub.Directory [0];
 				return LookupJpegSubstream (jpeg_directory);
 			} catch (System.Exception e) {
-				return DCRawFile.RawPixbufStream (path);
+				return DCRawFile.RawPixbufStream (uri);
 			}
-		}
-		
-		public override Gdk.Pixbuf Load () 
-		{
-			Gdk.Pixbuf pixbuf = null;
-			System.Console.WriteLine ("starting load");
-			
-			try {
-				SubdirectoryEntry sub = (SubdirectoryEntry) Header.Directory.Lookup (TagId.SubIFDs);
-				ImageDirectory jpeg_directory = sub.Directory [0];
-				
-				pixbuf = LoadJpegInterchangeFormat (jpeg_directory);
-			} catch (System.Exception e) {
-				System.Console.WriteLine (e);
-				pixbuf = null;
-			}
-
-			if (pixbuf == null)
-				return DCRawFile.Load (this.Path, null);
-			
-			return TransformAndDispose (pixbuf);
 		}
 	}
 		
 
 	public class Cr2File : TiffFile, IThumbnailContainer {
-
 		public Cr2File (string path) : base (path) 
+		{
+		}
+
+		public Cr2File (Uri uri) : base (uri)
 		{
 		}
 
@@ -2090,16 +2097,9 @@ namespace FSpot.Tiff {
 		public override System.IO.Stream PixbufStream ()
 		{
 			uint offset = Header.Directory.Lookup (TagId.StripOffsets).ValueAsLong [0];
-			System.IO.Stream file = System.IO.File.OpenRead (this.path);
+			System.IO.Stream file = Open ();
 			file.Position = offset;
 			return file;
-			//return LookupJpegSubstream (Header.Directory.NextDirectory);
-			//return DCRawFile.RawPixbufStream (path);
-		}
-
-		public override Gdk.Pixbuf Load ()
-		{
-			return DCRawFile.Load (this.Path, null);
 		}
 	}
 }

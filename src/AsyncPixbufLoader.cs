@@ -84,10 +84,6 @@ namespace FSpot {
 			get { return area_prepared; }
 		}
 
-		public string Path {
-			get { return uri.LocalPath; }
-		}
-
 		public Gdk.Pixbuf Pixbuf {
 			get { return pixbuf; }
 		}
@@ -117,7 +113,7 @@ namespace FSpot {
 			area_prepared = false;
 			damage = Gdk.Rectangle.Zero;
 
-			ImageFile img = ImageFile.Create (Path);
+			ImageFile img = ImageFile.Create (uri);
 			orientation = img.Orientation;
 
 			try {
@@ -393,7 +389,7 @@ namespace FSpot {
 			
 			if (thumb != null)
 				if (!ThumbnailGenerator.ThumbnailIsValid (thumb, uri))
-					FSpot.ThumbnailGenerator.Default.Request (Path, 0, 256, 256);
+					FSpot.ThumbnailGenerator.Default.Request (uri.LocalPath, 0, 256, 256);
 
 			area_prepared = true;			
 			if (AreaUpdated != null)
@@ -419,7 +415,7 @@ namespace FSpot {
 			// FIXME This should probably queue the
 			// thumbnail regeneration to a worker thread
 			if (validate_thumbnail && done_reading && pixbuf != null) {
-				PhotoLoader.ValidateThumbnail (Path, pixbuf);
+				PhotoLoader.ValidateThumbnail (uri, pixbuf);
 			}
 
 			if (Done != null)

@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections;
 
 namespace FSpot {
-	public class DirectoryCollection : FileCollection {
+	public class DirectoryCollection : UriCollection {
 		string path;
 
 		public DirectoryCollection (string path)
@@ -38,14 +38,72 @@ namespace FSpot {
 		}
 	}
 
-	public class FileCollection : PhotoList {
-		protected FileCollection () : base (new IBrowsableItem [0])
+	public class UriCollection : PhotoList {
+		protected UriCollection () : base (new IBrowsableItem [0])
 		{
 		}
 
-		public FileCollection (FileInfo [] files) : this ()
+		public UriCollection (FileInfo [] files) : this ()
 		{
 			LoadItems (files);
+		}
+
+		public UriCollection (Uri [] uri) : this ()
+		{
+			LoadItems (uri);
+		}
+
+		public void LoadItems (Uri [] uris)
+		{
+			foreach (Uri uri in uris) {
+
+				if (FSpot.ImageFile.HasLoader (uri)) {
+					Console.WriteLine (uri.ToString ());
+					Add (new FileBrowsableItem (uri));
+				} else {
+					Gnome.Vfs.FileInfo info = new Gnome.Vfs.FileInfo (uri.ToString ());
+					
+					if (info.Type == Gnome.Vfs.FileType.Directory)
+						new DirectoryLoader (this, uri);
+				}
+			}
+		}
+		
+		private class DirectoryLoader 
+		{
+			UriCollection collection;
+			Uri uri;
+
+			public DirectoryLoader (UriCollection collection, System.Uri uri)
+			{
+				this.collection = collection;
+				this.uri = uri;
+				Gnome.Vfs.Directory.GetEntries (uri.ToString (),
+								Gnome.Vfs.FileInfoOptions.Default,
+								20, 
+								(int)Gnome.Vfs.Async.Priority.Default,
+								InfoLoaded);
+			}
+			
+			private void InfoLoaded (Gnome.Vfs.Result result, Gnome.Vfs.FileInfo []info, uint entries_read)
+			{
+				if (result != Gnome.Vfs.Result.Ok && result != Gnome.Vfs.Result.ErrorEof)
+					return;
+
+				ArrayList items = new ArrayList ();
+
+				for (int i = 0; i < entries_read; i++) {
+					Gnome.Vfs.Uri vfs = new Gnome.Vfs.Uri (uri.ToString ());
+					vfs = vfs.AppendFileName (info [i].Name);
+					Uri file = new Uri (vfs.ToString ());
+					System.Console.WriteLine ("tesing uri = {0}", file.ToString ());
+					
+					if (FSpot.ImageFile.HasLoader (file))
+						items.Add (new FileBrowsableItem (file));
+				}
+				
+				collection.Add (items.ToArray (typeof (FileBrowsableItem)) as FileBrowsableItem []);
+			}
 		}
 
 		protected void LoadItems (FileInfo [] files) 
@@ -65,18 +123,23 @@ namespace FSpot {
 
 	public class FileBrowsableItem : IBrowsableItem {
 		ImageFile img;
-		string path;
+		Uri uri;
 		bool attempted;
+		
+		public FileBrowsableItem (Uri uri)
+		{
+			this.uri = uri;
+		}
 
 		public FileBrowsableItem (string path)
 		{
-			this.path = path;
+			this.uri = UriList.PathToFileUri (path);
 		}
 		
 		protected ImageFile Image {
 			get {
 				if (!attempted) {
-					img = ImageFile.Create (path);
+					img = ImageFile.Create (uri);
 					attempted = true;
 				}
 
@@ -98,7 +161,7 @@ namespace FSpot {
 		
 		public Uri DefaultVersionUri {
 			get {
-				return UriList.PathToFileUri (path);
+				return uri;
 			}
 		}
 
@@ -113,7 +176,7 @@ namespace FSpot {
 
 		public string Name {
 			get {
-				return Path.GetFileName (Image.Path);
+				return Path.GetFileName (Image.Uri.AbsolutePath);
 			}
 		}
 	}

@@ -72,7 +72,7 @@ namespace FSpot {
 		public void Adjust ()
 		{
 			bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
-			ImageFile img = ImageFile.Create (photo.DefaultVersionPath);
+			ImageFile img = ImageFile.Create (photo.DefaultVersionUri);
 
 			if (image == null)
 				image = img.Load ();
@@ -345,7 +345,7 @@ namespace FSpot {
 				return;
 			}
 			
-			FSpot.ImageFile img = FSpot.ImageFile.Create (((Photo)view.Item.Current).DefaultVersionPath);
+			FSpot.ImageFile img = FSpot.ImageFile.Create (((Photo)view.Item.Current).DefaultVersionUri);
 			
 			image_profile = img.GetProfile ();
 			

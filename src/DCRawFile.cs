@@ -72,16 +72,24 @@ namespace FSpot {
 	}
 
 	public class DCRawFile : ImageFile {
-		public DCRawFile (string path) : base (path) {}
 		const string dcraw_command = "dcraw";
-			
-		public override System.IO.Stream PixbufStream ()
+
+		public DCRawFile (string path) : base (path)
 		{
-			return RawPixbufStream (this.path);
 		}
 
-		public static System.IO.Stream RawPixbufStream (string path)
+		public DCRawFile (Uri uri) : base (uri)
 		{
+		}
+
+		public override System.IO.Stream PixbufStream ()
+		{
+			return RawPixbufStream (uri);
+		}
+
+		internal static System.IO.Stream RawPixbufStream (Uri location)
+		{
+			string path = location.LocalPath;
 			string [] args = new string [] { dcraw_command, "-h", "-w", "-c", "-t", "0", path };
 			
 			InternalProcess proc = new InternalProcess (System.IO.Path.GetDirectoryName (path), args);

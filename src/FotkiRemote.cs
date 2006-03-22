@@ -30,7 +30,7 @@ public class FotkiRemote {
 		client.SuppressCookiePath = true;
 		client.Add ("cmd", "uploadns1");
 		client.Add ("start", System.Web.HttpUtility.UrlEncode (path));
-		client.Add ("photo", new FileInfo (photo.DefaultVersionPath));
+		client.Add ("photo", new FileInfo (photo.DefaultVersionUri.LocalPath));
 		client.Add ("desc", photo.Description);
 		if (photo.Tags != null) {
 			StringBuilder taglist = new StringBuilder ();

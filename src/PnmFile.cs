@@ -1,11 +1,15 @@
 using FSpot.Imaging;
 using SemWeb;
+using System;
 
 namespace FSpot.Pnm {
 	public class PnmFile : ImageFile, StatementSource {
+		public PnmFile (Uri uri) : base (uri) 
+		{
+		}
+
 		public PnmFile (string path) : base (path) 
 		{
-			System.Console.WriteLine ("loading pnm file");
 		}
 
 		public class Header {
@@ -37,7 +41,7 @@ namespace FSpot.Pnm {
 
 		public void Select (StatementSink sink)
 		{
-			using (System.IO.Stream stream = System.IO.File.OpenRead (this.path)) {
+			using (System.IO.Stream stream = Open ()) {
 				Header header = new Header (stream);
 				MetadataStore.AddLiteral (sink, "tiff:ImageWidth", header.Width.ToString ());
 				MetadataStore.AddLiteral (sink, "tiff:ImageLength", header.Height.ToString ());
@@ -48,7 +52,7 @@ namespace FSpot.Pnm {
 		
 		public override System.IO.Stream PixbufStream ()
 		{
-			System.IO.Stream stream = System.IO.File.OpenRead (this.path);
+			System.IO.Stream stream = Open ();
 			Header header = new Header (stream);
 			if (header.IsDeep)
 				return null;
@@ -181,10 +185,10 @@ namespace FSpot.Pnm {
 		public override Gdk.Pixbuf Load ()
 		{
 			try {
-				System.IO.Stream stream = System.IO.File.OpenRead (this.path);
-				Gdk.Pixbuf pixbuf = PnmFile.Load (stream);
-				stream.Close ();
-				return pixbuf;
+				using (System.IO.Stream stream = Open ()) {
+					Gdk.Pixbuf pixbuf = PnmFile.Load (stream);
+					return pixbuf;
+				}
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e.ToString ());
 			}

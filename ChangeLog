@@ -1,3 +1,39 @@
+2006-03-22  Larry Ewing  <lewing@novell.com>
+
+	* src/DirectoryCollection.cs: Add UriCollection, rework to store uris not paths.
+
+	*  AsyncPixbufLoader.cs:
+	*  Ciff.cs:
+	*  ColorDialog.cs:
+	*  Core.cs:
+	*  DCRawFile.cs:
+	*  DirectoryCollection.cs:
+	*  FileImportBackend.cs:
+	*  FotkiRemote.cs:
+	*  GalleryExport.cs:
+	*  GalleryRemote.cs:
+	*  ImageFile.cs:
+	*  InfoBox.cs:
+	*  InfoDisplay.CS:
+	*  JpegFile.cs:
+	*  JpegHeader.cs:
+	*  MainWindow.cs:
+	*  MrwFile.cs:
+	*  PhotoLoader.cs:
+	*  PhotoStore.cs:
+	*  PixbufLoader.cs:
+	*  PngFile.cs:
+	*  PnmFile.cs:
+	*  PrintDialog.cs:
+	*  RafFile.cs:
+	*  SingleView.cs:
+	*  SvgFile.cs:
+	*  ThumbnailGenerator.cs:
+	*  Tiff.cs:
+	*  X3fFile.cs:  Use uri's instead of paths where ever possible,
+	add methods on imagefile to reopen the base stream when need and
+	use those everywhere.
+
 2006-03-22  Gabriel Burt <gabriel.burt@gmail.com>
 
 	* f-spot.desktop.in.in: Fix Photography category, from Vincent Fretin,

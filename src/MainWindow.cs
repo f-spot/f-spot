@@ -1400,7 +1400,7 @@ public class MainWindow {
 		StringBuilder url = new StringBuilder ("mailto:?subject=my%20photos");
 
 		foreach (Photo p in SelectedPhotos ()) {
-			url.Append ("&attach=" + HttpUtility.UrlEncode(p.DefaultVersionPath));
+			url.Append ("&attach=" + HttpUtility.UrlEncode(p.DefaultVersionUri.LocalPath));
 		}
 		GnomeUtil.UrlShow (main_window, url.ToString ());
 	}
@@ -1575,7 +1575,7 @@ public class MainWindow {
 	        long length = 0;
 
 		foreach (Photo p in photos) {
-			System.IO.FileInfo fi = new System.IO.FileInfo (p.DefaultVersionPath);
+			System.IO.FileInfo fi = new System.IO.FileInfo (p.DefaultVersionUri.LocalPath);
 
 			length += fi.Length;
 		}
@@ -2060,11 +2060,11 @@ public class MainWindow {
 			
 			foreach (Photo photo in photos) {
 				foreach (uint id in photo.VersionIds) {
-					Console.WriteLine (" path == {0}", photo.GetVersionPath (id));
+					Console.WriteLine (" path == {0}", photo.VersionUri (id).LocalPath);
 					try {
 						photo.DeleteVersion (id, true);
 					} catch (Exception e) {
-						DeleteException (e, photo.GetVersionPath (id));
+						DeleteException (e, photo.VersionUri (id).ToString ());
 					}
 				}
 			}
@@ -2210,7 +2210,7 @@ public class MainWindow {
 			if (i++ > 0)
 				paths.Append (" ");
 
-			paths.Append (System.IO.Path.GetFullPath (p.DefaultVersionPath));
+			paths.Append (System.IO.Path.GetFullPath (p.DefaultVersionUri.LocalPath));
 		}
 		
 		String data = paths.ToString ();
@@ -2230,7 +2230,7 @@ public class MainWindow {
 		client.Set ("/desktop/gnome/background/primary_color", "#000000");
 		client.Set ("/desktop/gnome/background/picture_options", "scaled");
 		client.Set ("/desktop/gnome/background/picture_opacity", 100);
-		client.Set ("/desktop/gnome/background/picture_filename", current.DefaultVersionPath);
+		client.Set ("/desktop/gnome/background/picture_filename", current.DefaultVersionUri.LocalPath);
 		client.Set ("/desktop/gnome/background/draw_background", true);
 	}
 
@@ -2533,7 +2533,7 @@ public class MainWindow {
 				photo.DefaultVersionId = version;
 			}
 
-			uri_list.Append (photo.DefaultVersionPath);
+			uri_list.Append (photo.DefaultVersionUri.ToString ());
 		}
 
 		if (create_new_versions) {
@@ -2822,7 +2822,7 @@ public class MainWindow {
 		ArrayList mimes = new ArrayList ();
 
 		foreach (Photo p in SelectedPhotos ()) {
-			string mime = Gnome.Vfs.MimeType.GetMimeTypeForUri (p.DefaultVersionPath);
+			string mime = Gnome.Vfs.MimeType.GetMimeTypeForUri (p.DefaultVersionUri.ToString ());
 
 			if (! mimes.Contains (mime))
 				mimes.Add (mime);

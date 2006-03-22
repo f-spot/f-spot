@@ -14,6 +14,10 @@ namespace FSpot {
 		private JpegHeader header;
 		private FSpot.Tiff.Header exif_header;
 		
+		public JpegFile (Uri uri) : base (uri)
+		{
+		}
+		
 		public JpegFile (string path) : base (path) 
 		{
 #if false // TEST_METADATA
@@ -26,7 +30,7 @@ namespace FSpot {
 		public JpegHeader Header {
 			get {
 				if (header == null) {
-					using (System.IO.FileStream stream = System.IO.File.OpenRead (path)) {
+					using (Stream stream = this.Open ()) {
 						header = new JpegHeader (stream, true);
 					}
 				}
@@ -179,7 +183,7 @@ namespace FSpot {
 		public Exif.ExifData ExifData {
 			get {
 				if (exif_data == null) {
-					exif_data = new Exif.ExifData (path);
+					exif_data = new Exif.ExifData (uri.LocalPath);
 
 					if (exif_data.Handle.Handle == System.IntPtr.Zero)
 						exif_data = new Exif.ExifData ();
@@ -234,7 +238,7 @@ namespace FSpot {
 			get {
 				System.DateTime time;
 				try {
-#if true
+#if flase
 					using (Exif.ExifData ed = new Exif.ExifData (path)) {
 						string time_str = "";				
 						time_str = ed.LookupFirstValue (Exif.Tag.DateTimeOriginal);
@@ -243,26 +247,25 @@ namespace FSpot {
 							time_str = ed.LookupFirstValue (Exif.Tag.DateTime);
 
 						time = Exif.ExifUtil.DateTimeFromString (time_str).ToUniversalTime (); 
+					}
 #else
-						TiffHeader tiff = Header.GetExifHeader ();
-						SubdirectoryEntry sub = (SubdirectoryEntry) tiff.Directory.Lookup (TagId.ExifIfdPointer);
-						DirectoryEntry e;
+					SubdirectoryEntry sub = (SubdirectoryEntry) ExifHeader.Directory.Lookup (TagId.ExifIfdPointer);
+					DirectoryEntry e;
+					
+					if (sub != null) {
+						e = sub.Directory [0].Lookup (TagId.DateTimeOriginal);
 						
-						if (sub != null) {
-							e = sub.Directory [0].Lookup (TagId.DateTimeOriginal);
-							
-							if (e != null)
-								return DirectoryEntry.DateTimeFromString (e.StringValue).ToUniversalTime ();
-						}
-						
-						e = tiff.Directory.Lookup (TagId.DateTime);
-
 						if (e != null)
 							return DirectoryEntry.DateTimeFromString (e.StringValue).ToUniversalTime ();
-						
-						return base.Date;
-#endif
 					}
+					
+					e = ExifHeader.Directory.Lookup (TagId.DateTime);
+					
+					if (e != null)
+						return DirectoryEntry.DateTimeFromString (e.StringValue).ToUniversalTime ();
+					
+					return base.Date;
+#endif
 				} catch (System.Exception e) {
 					time = base.Date;
 				}

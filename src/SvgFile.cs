@@ -1,15 +1,23 @@
+using System;
+
 namespace FSpot.Svg {
 	public class SvgFile : ImageFile, SemWeb.StatementSource 
 	{
 		MetadataStore store;
 		
-		public SvgFile (string path) : base (path) {}
+		public SvgFile (Uri uri) : base (uri)
+		{
+		}
+
+		public SvgFile (string path) : base (path) 
+		{
+		}
 
 		public MetadataStore Store {
 			get {
 				if (store == null) {
 					store = new MetadataStore ();
-					using (System.IO.Stream input = System.IO.File.OpenRead (this.Path)) {
+					using (System.IO.Stream input = Open ()) {
 						Load (input);
 					}
 				}

@@ -69,7 +69,7 @@ namespace FSpot.X3f {
 		internal Info Info {
 			get {
 				if (info == null)
-					info = new Info (File.OpenRead (path));
+					info = new Info (Open ());
 
 				return info;
 			}
@@ -78,20 +78,9 @@ namespace FSpot.X3f {
 		public X3fFile (string path) : base (path)
 		{
 		}
-		
-		public override Gdk.Pixbuf Load ()
-		{
-			Stream raw = DCRawFile.RawPixbufStream (path);
-			return TransformAndDispose (new Gdk.Pixbuf (raw));
-		}
-		
-		public override Gdk.Pixbuf Load (int width, int height)
-		{
-			Gdk.Pixbuf full = this.Load ();
-			Gdk.Pixbuf scaled  = PixbufUtils.ScaleToMaxSize (full, width, height);
-			full.Dispose ();
 
-			return scaled;
+		public X3fFile (System.Uri uri) : base (uri)
+		{
 		}
 		
 		public void Select (StatementSink sink)

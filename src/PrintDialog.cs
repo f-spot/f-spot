@@ -77,7 +77,7 @@ namespace FSpot {
 			Gnome.PrintContext ctx = print_job.Context;
 
 			foreach (Photo photo in photos) {
-				Gnome.Print.Beginpage (ctx, "F-Spot" + photo.DefaultVersionPath);				
+				Gnome.Print.Beginpage (ctx, "F-Spot" + photo.DefaultVersionUri.ToString ());				
 
 				Gdk.Pixbuf image = FSpot.PhotoLoader.Load (photo);
 
