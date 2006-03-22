@@ -157,6 +157,7 @@ public class PhotoView : EventBox {
 			tips.SetTip (redeye_button, Catalog.GetString ("Select an area to remove redeye"), null);
 		}
 	
+		
 		crop_button.Sensitive = valid;
 		redeye_button.Sensitive = valid;
 		color_button.Sensitive = valid;
@@ -182,9 +183,10 @@ public class PhotoView : EventBox {
 		if (Item.IsValid) {
 			if (description_entry.Sensitive == false)
 				description_entry.Sensitive = true;
-			
-			if (description_entry.Text != Item.Current.Description) {
-				description_entry.Text = Item.Current.Description;
+
+			string desc = Item.Current.Description;
+			if (description_entry.Text != desc) {
+				description_entry.Text = desc == null ? "" : desc;
 			}
 		} else {
 			description_entry.Sensitive = false;

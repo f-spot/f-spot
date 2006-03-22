@@ -1,7 +1,8 @@
 2006-03-22  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoView.cs: update the description etc, even if the photo
-	isn't the one you expect.
+	isn't the one you expect, handle null entries and only read the
+	entry once.
 
 	* src/Tiff.cs: fall back to open on PixbufStream;
 
