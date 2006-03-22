@@ -1,4 +1,4 @@
-
+using System.Net;
 using System;
 using Mono.Posix;
 
@@ -129,6 +129,18 @@ namespace FSpot
 
 			return null;
 		}
+		
+		public static object Get (string key, object default_val)
+		{
+			try {
+				return Client.Get (key);
+			} catch (GConf.NoSuchKeyException) {
+				if (default_val != null)
+					Client.Set (key, default_val);
+				
+				return default_val;
+			}
+		}
 
 		public static object Get (string key)
 		{
@@ -156,6 +168,50 @@ namespace FSpot
 			if (SettingChanged != null) {
 				SettingChanged (sender, args);
 			}
+		}
+
+		private static string ProxyBase =     "/system/http_proxy";
+		private static string UseProxyKey =   ProxyBase + "/use_http_proxy";
+		private static string HostKey =       ProxyBase + "/host";
+		private static string PortKey =       ProxyBase + "/port";
+		private static string UserKey =       ProxyBase + "/authentication_user";
+		private static string PaswordKey =    ProxyBase + "/authentication_password";
+		private static string BypassListKey = ProxyBase + "/ignore_hosts";
+		
+		public static WebProxy GetProxy () 
+		{
+			WebProxy proxy = null;
+			
+			if ((bool) Preferences.Get (UseProxyKey, false))
+				return null;
+
+			try {
+				string host;
+				int    port;
+				
+				host = (string) Preferences.Get (HostKey, null);
+				port = (int) Preferences.Get (PortKey, 0);
+				
+				string uri = "http://" + host + ":" + port.ToString();
+				proxy = new WebProxy(uri);
+
+				string [] bypass_list = (string []) Preferences.Get (BypassListKey, null);
+				if (bypass_list != null) {
+					for (int i = 0; i < bypass_list.Length; i++) {
+						bypass_list [i] = "http://" + bypass_list [i];
+					}
+					proxy.BypassList = bypass_list;
+				}
+
+				string username = (string) Preferences.Get (UserKey, "");
+				string password = (string) Preferences.Get (PaswordKey, "");
+
+				proxy.Credentials = new NetworkCredential (username, password);
+			} catch (Exception e) {
+				proxy = null;
+			}
+
+			return proxy;
 		}
 	}
 }
