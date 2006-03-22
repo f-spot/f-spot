@@ -1,5 +1,7 @@
 2006-03-22  Larry Ewing  <lewing@novell.com>
 
+	* src/DirectoryCollection.cs: handle errors reading the description.
+
 	* src/Global.cs: set the style all over.
 
 	* src/PhotoImageView.cs: clean up the error pixbuf setting a

@@ -167,10 +167,15 @@ namespace FSpot {
 
 		public string Description {
 			get {
-				if (Image != null)
-					return Image.Description;
-				else 
-					return null;
+				try {
+					if (Image != null)
+						return Image.Description;
+
+				} catch (System.Exception e) {
+					System.Console.WriteLine (e);
+				}
+
+				return null;
 			}
 		}	
 
