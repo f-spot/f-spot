@@ -25,8 +25,11 @@ namespace FSpot {
 		
 		protected Stream Open ()
 		{
-			if (uri.Scheme == "file:")
-				return File.OpenRead (uri.LocalPath);
+			//Gnome.Vfs.Uri vfs = new Gnome.Vfs.Uri (uri.ToString ());
+			// FIXME, this seems like the sane thing to do, but vfs streams seem to 
+			// actually be faster and they need more testing.
+			//if (vfs.IsLocal)
+			//	return File.OpenRead (uri.LocalPath);
 
 			System.Console.WriteLine ("open uri = {0}", uri.ToString ());
 			return new Gnome.Vfs.VfsStream (uri.ToString (), FileMode.Open);
@@ -94,8 +97,10 @@ namespace FSpot {
 		
 		public virtual Gdk.Pixbuf Load ()
 		{
-			Gdk.Pixbuf orig = new Gdk.Pixbuf (Open ());
-			return TransformAndDispose (orig);
+			using (Stream stream = PixbufStream ()) {
+				Gdk.Pixbuf orig = new Gdk.Pixbuf (stream);
+				return TransformAndDispose (orig);
+			}
 		}
 		
 		public virtual Gdk.Pixbuf Load (int max_width, int max_height)

@@ -1,5 +1,9 @@
 2006-03-22  Larry Ewing  <lewing@novell.com>
 
+	* src/Ciff.cs: remove the custom load implmentation.
+
+	* src/ImageFile.cs: make Load use PixbufStream.
+
 	* src/DirectoryCollection.cs: handle errors reading the description.
 
 	* src/Global.cs: set the style all over.

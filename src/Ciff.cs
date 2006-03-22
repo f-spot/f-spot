@@ -270,7 +270,8 @@ namespace FSpot.Ciff {
 			System.Console.WriteLine ("Dumping directory with {0} entries", entry_list.Count);
 			for (int i = 0; i < entry_list.Count; i++) {
 				Entry e = (Entry) entry_list[i];
-				System.Console.WriteLine ("\tentry[{0}] = {1}.{6}.{5}({4}).{2}-{3}", i, e.Tag, e.Size, e.Offset, e.Tag.ToString ("x"), (uint)e.Tag & ~(uint)Mask.StorageFormat, e.Type); 
+				System.Console.WriteLine ("\tentry[{0}] = {1}.{6}.{5}({4}).{2}-{3}", 
+							  i, e.Tag, e.Size, e.Offset, e.Tag.ToString ("x"), (uint)e.Tag & ~(uint)Mask.StorageFormat, e.Type); 
 			}
 		}
 
@@ -432,21 +433,6 @@ namespace FSpot.Ciff {
 
 				return new CaptureTime (date, little).LocalTime.ToUniversalTime ();
 			}
-		}
-
-		public override Gdk.Pixbuf Load ()
-		{
-			// FIXME this is a hack. No, really, I mean it.
-			
-			byte [] data = GetEmbeddedJpeg ();
-			if (data != null) {
-				Gdk.PixbufLoader loader = new Gdk.PixbufLoader ();
-				loader.Write (data, (ulong)data.Length);
-				Gdk.Pixbuf pixbuf = loader.Pixbuf;
-				loader.Close ();
-				return pixbuf;
-			}
-			return null;
 		}
 
 		public override System.IO.Stream PixbufStream ()
