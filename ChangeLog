@@ -1,5 +1,9 @@
 2006-03-22  Larry Ewing  <lewing@novell.com>
 
+	* src/AsyncPixbufLoader.cs: use the thumbnial loader overloads.
+
+	* src/PixbufLoader.cs: add uri overloads.
+
 	* src/PhotoView.cs: update the description etc, even if the photo
 	isn't the one you expect, handle null entries and only read the
 	entry once.

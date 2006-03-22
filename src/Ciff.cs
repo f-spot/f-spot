@@ -319,9 +319,7 @@ namespace FSpot.Ciff {
 		public ImageDirectory Root {
 			get {
 				if (root == null) {
-					using (System.IO.Stream stream = Open ()) {
-						root = Load (stream);
-					}
+					root = Load (Open ());
 				}
 				
 			        return root;
