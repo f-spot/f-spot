@@ -234,7 +234,7 @@ namespace FSpot.Ciff {
 		uint Count;
 		bool little;
 		uint start;
-		long DirPosition;
+		long DirPosition; 
 		System.IO.Stream stream;
 
 		public ImageDirectory (System.IO.Stream stream, uint start, long end, bool little)
@@ -311,16 +311,24 @@ namespace FSpot.Ciff {
 	}
 	
 	public class CiffFile : FSpot.ImageFile , SemWeb.StatementSource {
-		public ImageDirectory Root;
-		System.IO.Stream stream;
+		public ImageDirectory root;
 		private uint version;
 		bool little;
 		
-		public CiffFile (string path) : base (path)
+		public ImageDirectory Root {
+			get {
+				if (root == null) {
+					using (System.IO.Stream stream = Open ()) {
+						root = Load (stream);
+					}
+				}
+				
+			        return root;
+			}
+		}
+
+		public CiffFile (Uri uri) : base (uri)
 		{
-			System.IO.Stream input = System.IO.File.OpenRead (path);
-			this.Load (input);
-			this.Dump ();
 		}
 
 		public void Select (SemWeb.StatementSink sink)
@@ -374,7 +382,8 @@ namespace FSpot.Ciff {
 			*/
 		}
 
-		public void Load (System.IO.Stream stream) 
+
+		protected ImageDirectory Load (System.IO.Stream stream) 
 		{
 			byte [] header = new byte [26];  // the spec reserves the first 26 bytes as the header block
 			stream.Read (header, 0, header.Length);
@@ -394,7 +403,7 @@ namespace FSpot.Ciff {
 			//
 			
 			long end = stream.Length;
-			Root = new ImageDirectory (stream, start, end, little);
+			return new ImageDirectory (stream, start, end, little);
 		}
 
 		public override PixbufOrientation GetOrientation ()
