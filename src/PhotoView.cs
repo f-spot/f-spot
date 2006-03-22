@@ -6,40 +6,12 @@ using System;
 using Mono.Unix;
 using FSpot.Xmp;
 
+namespace FSpot {
 public class PhotoView : EventBox {
 	FSpot.Delay description_delay; 
 
 	private bool has_selection = false;
-
-	public FSpot.PhotoImageView View {
-		get {
-			return photo_view;
-		}
-	}
-
-	new public FSpot.BrowsablePointer Item {
-		get {
-			return photo_view.Item;
-		}
-	}
-
 	private PhotoStore photo_store;
-
-	private FSpot.PhotoQuery query;
-	public FSpot.PhotoQuery Query {
-		get {
-			return query;
-		}
-
-		set {
-			query = value;
-		}
-	}
-	
-	public void Reload ()
-	{
-		photo_view.Reload ();
-	}
 
 	private FSpot.PhotoImageView photo_view;
 	private ScrolledWindow photo_view_scrolled;
@@ -61,26 +33,11 @@ public class PhotoView : EventBox {
 
 	FSpot.AsyncPixbufLoader loader = new FSpot.AsyncPixbufLoader ();
 
-	public double Zoom {
-		get {
-			return photo_view.Zoom;
-		}
+	private OptionMenu constraints_option_menu;
+	private int selection_constraint_ratio_idx;
+	private uint restore_scrollbars_idle_id;
 
-		set {
-			photo_view.Zoom = value;
-		}
-	}
-	
-	public double NormalizedZoom {
-		get {
-			return photo_view.NormalizedZoom;
-		}
-
-		set {
-			photo_view.NormalizedZoom = value;
-		}
-	}
-
+	private System.Collections.Hashtable constraint_table = new System.Collections.Hashtable ();
 
 	// Public events.
 
@@ -107,9 +64,6 @@ public class PhotoView : EventBox {
 		}
 	}
 
-	private OptionMenu constraints_option_menu;
-	private int selection_constraint_ratio_idx;
-
 	private static SelectionConstraint [] constraints = {
 		new SelectionConstraint (Catalog.GetString ("No Constraint"), 0.0),
 		new SelectionConstraint (Catalog.GetString ("4 x 3 (Book)"), 4.0 / 3.0),
@@ -123,12 +77,40 @@ public class PhotoView : EventBox {
 		new SelectionConstraint (Catalog.GetString ("Square"), 1.0)
 	};
 
-	private System.Collections.Hashtable constraint_table = new System.Collections.Hashtable ();
+	public FSpot.PhotoImageView View {
+		get { return photo_view; }
+	}
+
+	new public FSpot.BrowsablePointer Item {
+		get { return photo_view.Item; }
+	}
+
+
+	private IBrowsableCollection query;
+	public IBrowsableCollection Query {
+		get { return query; }
+		set { query = value; }
+	}
+
+	public double Zoom {
+		get { return photo_view.Zoom; }
+		set { photo_view.Zoom = value; }
+	}
+	
+	public double NormalizedZoom {
+		get { return photo_view.NormalizedZoom; }
+		set { photo_view.NormalizedZoom = value; }
+	}
 
 	private void HandleSelectionConstraintOptionMenuActivated (object sender, EventArgs args)
 	{
 		selection_constraint_ratio_idx = (int) constraint_table [sender];
 		photo_view.SelectionXyRatio = constraints [selection_constraint_ratio_idx].XyRatio;
+	}
+
+	public void Reload ()
+	{
+		photo_view.Reload ();
 	}
 
 	private OptionMenu CreateConstraintsOptionMenu ()
@@ -151,9 +133,6 @@ public class PhotoView : EventBox {
 
 		return constraints_option_menu;
 	}
-
-	private uint restore_scrollbars_idle_id;
-
 
 	private void UpdateButtonSensitivity ()
 	{
@@ -186,7 +165,7 @@ public class PhotoView : EventBox {
 		if (query == null)
 			count_label.Text = "";
 		else {
-			if (Query.Photos.Length == 0)
+			if (query.Count == 0)
 				count_label.Text = String.Format ("{0} of {1}", 0, 0);
 			else 
 				count_label.Text = String.Format ("{0} of {1}", Item.Index + 1, Query.Count);
@@ -296,11 +275,16 @@ public class PhotoView : EventBox {
 
 	private void HandleSepiaButtonClicked (object sender, EventArgs args)
 	{
+		PhotoQuery pq = query as PhotoQuery;
+
+		if (pq == null)
+			return;
+
 		try {
 			FSpot.SepiaTone sepia = new FSpot.SepiaTone ((Photo)View.Item.Current);
 			sepia.Pixbuf = View.CompletePixbuf ();
 			sepia.Adjust ();
-			query.Commit (Item.Index);
+			pq.Commit (Item.Index);
 		} catch (System.Exception e) {
 			ShowError (e, (Photo)View.Item.Current); 
 		}
@@ -308,11 +292,16 @@ public class PhotoView : EventBox {
 
 	private void HandleDesaturateButtonClicked (object sender, EventArgs args)
 	{
+		PhotoQuery pq = query as PhotoQuery;
+
+		if (pq == null)
+			return;
+
 		try {
 			FSpot.Desaturate desaturate = new FSpot.Desaturate ((Photo) View.Item.Current);
 			desaturate.Pixbuf = View.CompletePixbuf ();
 			desaturate.Adjust ();
-			query.Commit (Item.Index);
+			pq.Commit (Item.Index);
 		} catch (System.Exception e) {
 			ShowError (e, (Photo)View.Item.Current);
 		}
@@ -366,8 +355,8 @@ public class PhotoView : EventBox {
 		try {
 			bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
 			photo.SaveVersion (edited, create_version);
-			query.Commit (Item.Index);
-			query.MarkChanged (Item.Index);
+			((PhotoQuery)query).Commit (Item.Index);
+			((PhotoQuery)query).MarkChanged (Item.Index);
 		} catch (System.Exception e) {
 			ShowError (e, photo);
 		}
@@ -388,7 +377,7 @@ public class PhotoView : EventBox {
 	{
 		if (description_delay.IsPending) {
 			description_delay.Stop ();
-			Query.Commit (description_photo);
+			((PhotoQuery)query).Commit (description_photo);
 		}
 		return true;
 	}
@@ -410,8 +399,6 @@ public class PhotoView : EventBox {
 		description_photo = Item.Index;
 		description_delay.Start ();
 	}
-	
-	
 
 	// Constructor.
 
@@ -426,6 +413,9 @@ public class PhotoView : EventBox {
 
 	private void HandlePhotoChanged (FSpot.PhotoImageView view)
 	{
+		if (! (query is PhotoQuery))
+			return;
+
 		CommitPendingChanges ();
 		Update ();
 
@@ -452,7 +442,7 @@ public class PhotoView : EventBox {
 
 	Gtk.Tooltips tips = new Gtk.Tooltips ();
 
-	public PhotoView (FSpot.PhotoQuery query, PhotoStore photo_store)
+	public PhotoView (IBrowsableCollection query, PhotoStore photo_store)
 		: base ()
 	{
 		this.query = query;
@@ -584,4 +574,4 @@ public class PhotoView : EventBox {
 		SetColors ();
 	}
 }
-
+}
