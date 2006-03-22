@@ -139,20 +139,24 @@ public class PhotoView : EventBox {
 		bool valid = photo_view.Item.IsValid;
 		bool prev = valid && Item.Index > 0;
 		bool next = valid && Item.Index < query.Count - 1;
+		bool edit = false;
+
+		if (valid) {
+			Gnome.Vfs.Uri vfs = new Gnome.Vfs.Uri (photo_view.Item.Current.DefaultVersionUri.ToString ());
+			valid = vfs.IsLocal;
+		}
 
 		display_previous_button.Sensitive = prev;
 		display_next_button.Sensitive = next;
 
-		if (valid) {
-			if (has_selection) {
-				tips.SetTip (crop_button, Catalog.GetString ("Crop photo to selected area"), "");
+		if (has_selection) {
+			tips.SetTip (crop_button, Catalog.GetString ("Crop photo to selected area"), "");
 				tips.SetTip (redeye_button, Catalog.GetString ("Remove redeye from selected area"), "");
-			} else {
-				tips.SetTip (crop_button, Catalog.GetString ("Select an area to crop"), null);
-				tips.SetTip (redeye_button, Catalog.GetString ("Select an area to remove redeye"), null);
-			}
+		} else {
+			tips.SetTip (crop_button, Catalog.GetString ("Select an area to crop"), null);
+			tips.SetTip (redeye_button, Catalog.GetString ("Select an area to remove redeye"), null);
 		}
-
+	
 		crop_button.Sensitive = valid;
 		redeye_button.Sensitive = valid;
 		color_button.Sensitive = valid;
@@ -413,8 +417,10 @@ public class PhotoView : EventBox {
 
 	private void HandlePhotoChanged (FSpot.PhotoImageView view)
 	{
-		if (! (query is PhotoQuery))
+		if (! (query is PhotoQuery)) {
+			Update ();
 			return;
+		}
 
 		CommitPendingChanges ();
 		Update ();
