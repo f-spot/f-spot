@@ -1877,7 +1877,7 @@ namespace FSpot.Tiff {
 		
 		public override System.IO.Stream PixbufStream ()
 		{
-			return null;
+			return Open ();
 		}
 
 		public override PixbufOrientation GetOrientation ()
