@@ -95,6 +95,8 @@ namespace FSpot {
 			// pass the state and the write exception in the args
 			Gdk.Pixbuf prev = this.Pixbuf;
 			if (loader.Pixbuf == null) {
+				System.Exception ex = null;
+
 				// FIXME in some cases the image passes completely through the
 				// pixbuf loader without properly loading... I'm not sure what to do about this other
 				// than try to load the image one last time.
@@ -108,16 +110,17 @@ namespace FSpot {
 					} catch (System.Exception e) {
 						if (!(e is GLib.GException))
 							System.Console.WriteLine (e.ToString ());
+
+						ex = e;
 					}
 				}
 
-				if (this.Pixbuf == null)
-					this.Pixbuf = new Gdk.Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0, 
-								      PixbufUtils.ErrorPixbuf.Width, 
-								      PixbufUtils.ErrorPixbuf.Height);
-
-				UpdateMinZoom ();
-				this.ZoomFit ();
+				if (this.Pixbuf == null) {
+					LoadErrorImage (ex);
+				} else {
+					UpdateMinZoom ();
+					this.ZoomFit ();
+				}
 			} else {
 				this.Pixbuf = loader.Pixbuf;
 

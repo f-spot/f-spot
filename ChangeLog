@@ -1,5 +1,8 @@
 2006-03-22  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoImageView.cs: clean up the error pixbuf setting a
+	little.
+
 	* src/PhotoView.cs: make the store and IBrowsableItem.
 
 	* src/Ciff.cs: fix ciff ctor to take uris.
