@@ -57,12 +57,18 @@ namespace FSpot {
 		public static void Save (Gdk.Pixbuf image, Uri dest)
 		{			
 			string uri = dest.ToString ();
+			System.DateTime mtime = DateTime.Now;
+
 			// Use Gnome.Vfs
-			System.DateTime mtime = System.IO.File.GetLastWriteTime (dest.LocalPath);
-			
-			PixbufUtils.SetOption (image, "tEXt::Thumb::URI", uri);
-			PixbufUtils.SetOption (image, "tEXt::Thumb::MTime", 
-					       ((uint)GLib.Marshaller.DateTimeTotime_t (mtime)).ToString ());
+			try {
+				mtime = File.GetLastWriteTime (dest.LocalPath);
+				
+				PixbufUtils.SetOption (image, "tEXt::Thumb::URI", uri);
+				PixbufUtils.SetOption (image, "tEXt::Thumb::MTime", 
+						       ((uint)GLib.Marshaller.DateTimeTotime_t (mtime)).ToString ());
+			} catch (System.Exception e) {
+				Console.WriteLine (e);
+			}
 
 			//System.Console.WriteLine ("saving uri \"{0}\" mtime \"{1}\"", 
 			//			  image.GetOption ("tEXt::Thumb::URI"), 

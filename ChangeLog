@@ -1,5 +1,8 @@
 2006-03-22  Larry Ewing  <lewing@novell.com>
 
+	* src/ThumbnailGenerator.cs: write invalid thumbnails for remote
+	images for now.
+
 	* src/PhotoLoader.cs:
 	* src/IconView.cs: request thumbnails via uri.
 
