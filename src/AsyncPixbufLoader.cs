@@ -119,7 +119,7 @@ namespace FSpot {
 			try {
 				thumb = new Gdk.Pixbuf (ThumbnailGenerator.ThumbnailPath (uri));
 			} catch (System.Exception e) {
-				FSpot.ThumbnailGenerator.Default.Request (uri.LocalPath, 0, 256, 256);	
+				//FSpot.ThumbnailGenerator.Default.Request (uri.ToString (), 0, 256, 256);	
 				if (!(e is GLib.GException)) 
 					System.Console.WriteLine (e.ToString ());
 			}
