@@ -1,5 +1,6 @@
 using System;
 using SemWeb;
+using System.IO;
 
 namespace FSpot {
 	public class InfoDialog : Gtk.Dialog {
@@ -41,7 +42,8 @@ namespace FSpot {
 					exif_info.Dispose ();
 
 				if (photo != null) {
-					exif_info = new Exif.ExifData (photo.DefaultVersionUri.LocalPath);
+					if (File.Exists (photo.DefaultVersionUri.LocalPath))
+						exif_info = new Exif.ExifData (photo.DefaultVersionUri.LocalPath);
 				} else {
 					exif_info = null;
 				}

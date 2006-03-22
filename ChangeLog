@@ -1,5 +1,7 @@
 2006-03-22  Larry Ewing  <lewing@novell.com>
 
+	* src/InfoDisplay.cs: only use libexif on local files right now.
+
 	* src/Preferences.cs: add proxy loader.
 
 	* src/ThumbnailGenerator.cs: write invalid thumbnails for remote
