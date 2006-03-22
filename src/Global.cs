@@ -17,16 +17,9 @@ namespace FSpot {
 				return System.IO.Path.Combine (HomeDirectory, "Photos");
 			}
 		}
-		
+
 		public static void ModifyColors (Gtk.Widget widget)
 		{
-#if false
-			Gdk.Color color = widget.Style.Background (Gtk.StateType.Normal);
-			color.Red = (ushort) (color.Red / 2);
-			color.Blue = (ushort) (color.Blue / 2);
-			color.Green = (ushort) (color.Green / 2);
-			widget.ModifyBg (Gtk.StateType.Normal, color);
-#else 
 			try {
 				widget.ModifyFg (Gtk.StateType.Normal, widget.Style.TextColors [(int)Gtk.StateType.Normal]);
 				widget.ModifyFg (Gtk.StateType.Active, widget.Style.TextColors [(int)Gtk.StateType.Active]);
@@ -37,9 +30,8 @@ namespace FSpot {
 				
 			} catch {
 				widget.ModifyFg (Gtk.StateType.Normal, widget.Style.Black);
-				widget.ModifyBg (Gtk.StateType.Normal, widget.Style.White);
+				widget.ModifyBg (Gtk.StateType.Normal, widget.Style.Black);
 			}
-#endif 
 		}
 
 		private static Cms.Profile display_profile;
