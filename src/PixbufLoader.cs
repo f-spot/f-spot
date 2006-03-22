@@ -118,6 +118,16 @@ public class PixbufLoader {
 		}
 	}
 
+	public void Request (Uri uri, int order)
+	{
+		Request (uri.ToString (), order);
+	}
+
+	public void Request (Uri uri, int order, int width, int height)
+	{
+		Request (uri.ToString (), order, width, height);
+	}
+
 	public void Cancel (string path)
 	{
 		lock (queue) {
@@ -148,8 +158,8 @@ public class PixbufLoader {
 				orig_image = img.Load ();
 
 		} catch (GLib.GException e){
-								System.Console.WriteLine (e.ToString ());
-return;		
+			System.Console.WriteLine (e.ToString ());
+			return;		
 		}
 		
 		if (orig_image == null)

@@ -1194,13 +1194,13 @@ public class IconView : Gtk.Layout {
 			System.Uri uri = collection [order].DefaultVersionUri;
 
 			if (result == null && !System.IO.File.Exists (FSpot.ThumbnailGenerator.ThumbnailPath (uri)))
-				FSpot.ThumbnailGenerator.Default.Request (uri.LocalPath, 0, 256, 256);
+				FSpot.ThumbnailGenerator.Default.Request (uri, 0, 256, 256);
 			
 			if (result == null)
 				return;
 			
 			if (!FSpot.PhotoLoader.ThumbnailIsValid (uri, result))
-				FSpot.ThumbnailGenerator.Default.Request (uri.LocalPath, 0, 256, 256);
+				FSpot.ThumbnailGenerator.Default.Request (uri, 0, 256, 256);
 		}
 			
 		if (result == null)
