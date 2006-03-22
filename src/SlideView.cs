@@ -89,9 +89,6 @@ namespace FSpot {
 			hide = new Delay (2000, new GLib.IdleHandler (HideCursor));
 		}
 
-		[DllImport("libgdk-2.0-0.dll")]
-		static extern IntPtr gdk_cursor_new_from_pixbuf (IntPtr display, IntPtr pixbuf, int x, int y);
-
 		public Gdk.Cursor Empty () 
 		{
 			Gdk.Cursor cempty = null;
@@ -99,8 +96,7 @@ namespace FSpot {
 			try {
 				Gdk.Pixbuf empty = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, 1, 1);
 			        empty.Fill (0x00000000);
-				IntPtr raw = gdk_cursor_new_from_pixbuf (this.GdkWindow.Display.Handle, empty.Handle, 0, 0);
-				cempty = new Gdk.Cursor (raw);
+				cempty = new Gdk.Cursor (GdkWindow.Display, empty, 0, 0);
 			} catch (System.Exception e){
 				System.Console.WriteLine (e.ToString ());
 				return null;
