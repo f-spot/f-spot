@@ -1,5 +1,7 @@
 2006-03-22  Larry Ewing  <lewing@novell.com>
 
+	* src/TagView.cs: use IBrowsableItem rather than Photo.
+
 	* src/PhotoArray.cs: add a set method to the indexer.
 
 	* src/MainWindow.cs: create the PhotoView properly.

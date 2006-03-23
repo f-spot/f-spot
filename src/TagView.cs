@@ -2,9 +2,10 @@ using System;
 using Gtk;
 using Gdk;
 
+namespace FSpot {
 public class TagView : Gtk.Widget {
 	private int thumbnail_size = 20;
-	private Photo photo;
+	private IBrowsableItem photo;
 	private Tag [] tags;
 	private static int TAG_ICON_VSPACING = 5;
 
@@ -19,11 +20,11 @@ public class TagView : Gtk.Widget {
 
 	protected TagView (IntPtr raw) : base (raw) {}
 
-	public Photo Current {
+	public IBrowsableItem Current {
 		set {
 			photo = value;
 
-			if (photo != null) {
+			if (photo != null && photo.Tags != null) {
 				SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * photo.Tags.Length,
 						thumbnail_size);
 			} else {
@@ -90,4 +91,5 @@ public class TagView : Gtk.Widget {
 
 		return base.OnExposeEvent (args);
 	}
+}
 }
