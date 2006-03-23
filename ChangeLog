@@ -1,5 +1,7 @@
 2006-03-22  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoStore.cs: fix DefaultVersionUri.
+
 	* src/JpegFile.cs: use the header method to get the ExifData.
 
 	* src/InfoDisplay.cs: try to save a little spaceby making the

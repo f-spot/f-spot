@@ -295,7 +295,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 	
 	public System.Uri DefaultVersionUri {
 		get {
-			return VersionUri (OriginalVersionId);
+			return VersionUri (DefaultVersionId);
 		}
 	}
 
