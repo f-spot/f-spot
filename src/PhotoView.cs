@@ -142,7 +142,6 @@ public class PhotoView : EventBox {
 		bool valid = photo_view.Item.IsValid;
 		bool prev = valid && Item.Index > 0;
 		bool next = valid && Item.Index < query.Count - 1;
-		bool edit = false;
 
 		if (valid) {
 			Gnome.Vfs.Uri vfs = new Gnome.Vfs.Uri (photo_view.Item.Current.DefaultVersionUri.ToString ());
