@@ -127,12 +127,12 @@ namespace FSpot {
 						      + Exif.ExifUtil.GetIfdNameExtended ((Exif.Ifd)i - 1) + "</th><tr>");
 					
 					foreach (Exif.ExifEntry entry in entries) {
-						stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
+						stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><small><font color=\"" + fg + "\">");
 						if (entry.Title != null)
 							stream.Write (entry.Title);
 						else
 							stream.Write ("&lt;Unknown Tag ID=" + entry.Tag.ToString () + "&gt;");
-						stream.Write ("</font></td><td>");
+						stream.Write ("</font></small></td><td>");
 						string s = entry.Value;
 						if (s != null && s != "")
 							stream.Write (s);
@@ -179,9 +179,9 @@ namespace FSpot {
 
 						Description.GetDescription (store, stmt, out title, out value);
 
-						stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
+						stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><small><font color=\"" + fg + "\">");
 						stream.Write (title);
-						stream.Write ("</font></td><td width=100%>");
+						stream.Write ("</font></small></td><td width=100%>");
 						
 					        if (value != null)
 							value = Escape (value);
