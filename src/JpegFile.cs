@@ -1,3 +1,4 @@
+#define USE_TIFF
 using System;
 using System.IO;
 using FSpot.Xmp;
@@ -20,11 +21,6 @@ namespace FSpot {
 		
 		public JpegFile (string path) : base (path) 
 		{
-#if false // TEST_METADATA
-			MetadataStore store = new MetadataStore ();
-			Select (store);
-			store.Dump ();
-#endif
 		}
 
 		public JpegHeader Header {
@@ -59,6 +55,15 @@ namespace FSpot {
 
 		public override string Description {
 			get {
+#if USE_TIFF
+				try {
+					DirectoryEntry e = ExifHeader.Directory.Lookup (TagId.Orientation);
+					return e.ValueAsString [0];
+				} catch (System.Exception e) {
+					Console.WriteLine (e);
+					return null;
+				}
+#else
 				Exif.ExifContent exif_content = this.ExifData.GetContents (Exif.Ifd.Exif);
 				Exif.ExifEntry entry = exif_content.Lookup (Exif.Tag.UserComment);
 
@@ -67,6 +72,7 @@ namespace FSpot {
 				
 				UserComment comment = new UserComment (entry.Data, entry.ByteOrder == Exif.ByteOrder.Intel);
 				return comment.Value;
+#endif				
 			}
 		}
 
@@ -198,12 +204,12 @@ namespace FSpot {
 		public override PixbufOrientation GetOrientation () 
 		{
 			PixbufOrientation orientation = PixbufOrientation.TopLeft;
-#if true
+#if USE_TIFF
 			try {
 				DirectoryEntry e = ExifHeader.Directory.Lookup (TagId.Orientation);
 				orientation = (PixbufOrientation)e.ValueAsLong [0];
 			} catch {
-
+				System.Console.WriteLine ("error checking orientation");
 			}
 #else						     
 			Exif.ExifEntry e = this.ExifData.GetContents (Exif.Ifd.Zero).Lookup (Exif.Tag.Orientation);
@@ -237,17 +243,7 @@ namespace FSpot {
 			get {
 				System.DateTime time;
 				try {
-#if false
-					using (Exif.ExifData ed = new Exif.ExifData (path)) {
-						string time_str = "";				
-						time_str = ed.LookupFirstValue (Exif.Tag.DateTimeOriginal);
-
-						if (time_str == null || time_str == "") 
-							time_str = ed.LookupFirstValue (Exif.Tag.DateTime);
-
-						time = Exif.ExifUtil.DateTimeFromString (time_str).ToUniversalTime (); 
-					}
-#else
+#if USE_TIFF
 					SubdirectoryEntry sub = (SubdirectoryEntry) ExifHeader.Directory.Lookup (TagId.ExifIfdPointer);
 					DirectoryEntry e;
 					
@@ -264,6 +260,14 @@ namespace FSpot {
 						return DirectoryEntry.DateTimeFromString (e.StringValue).ToUniversalTime ();
 					
 					return base.Date;
+#else
+					string time_str = "";				
+					time_str = ExifData.LookupFirstValue (Exif.Tag.DateTimeOriginal);
+					
+					if (time_str == null || time_str == "") 
+						time_str = ExifData.LookupFirstValue (Exif.Tag.DateTime);
+					
+					time = Exif.ExifUtil.DateTimeFromString (time_str).ToUniversalTime (); 
 #endif
 				} catch (System.Exception e) {
 					time = base.Date;

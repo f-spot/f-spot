@@ -1,5 +1,10 @@
 2006-03-22  Larry Ewing  <lewing@novell.com>
 
+	* src/JpegFile.cs: use more the tiff loader rather than libexif
+	for loading most fields.
+
+i2006-03-22  Larry Ewing  <lewing@novell.com>
+
 	* src/AsyncPixbufLoader.cs: use uri.
 
 	* src/PhotoLoader.cs: use uri.
