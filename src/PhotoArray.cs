@@ -54,6 +54,10 @@ namespace FSpot {
 			get {
 				return (IBrowsableItem) list [index];
 			}
+			set {
+				list [index] = value;
+				MarkChanged (index);
+			}
 		}
 		
 		public void Sort (IComparer compare)

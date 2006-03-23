@@ -1,5 +1,7 @@
 2006-03-22  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoArray.cs: add a set method to the indexer.
+
 	* src/MainWindow.cs: create the PhotoView properly.
 
 	* src/PhotoView.cs: use Query.Commit not store_commit when
