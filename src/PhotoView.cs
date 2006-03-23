@@ -419,10 +419,10 @@ public class PhotoView : EventBox {
 	{
 		if (query is PhotoQuery) {
 			CommitPendingChanges ();
-			Update ();
 		}
 		
 		tag_view.Current = Item.Current;
+		Update ();
 
 		if (this.PhotoChanged != null)
 			PhotoChanged (this);
