@@ -389,7 +389,7 @@ namespace FSpot {
 			
 			if (thumb != null)
 				if (!ThumbnailGenerator.ThumbnailIsValid (thumb, uri))
-					FSpot.ThumbnailGenerator.Default.Request (uri.LocalPath, 0, 256, 256);
+					FSpot.ThumbnailGenerator.Default.Request (uri, 0, 256, 256);
 
 			area_prepared = true;			
 			if (AreaUpdated != null)
