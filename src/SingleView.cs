@@ -46,6 +46,10 @@ namespace FSpot {
 		{
 		}
 
+		public SingleView (UriList list) : this (list.ToArray ())
+		{
+		}
+
 		public SingleView (Uri [] uris) 
 		{
 			string glade_name = "single_view";

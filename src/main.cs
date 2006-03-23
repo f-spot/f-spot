@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Collections;
 
 
 
@@ -88,6 +89,8 @@ public class Driver {
 				control = core;
 			}
 			
+			
+			UriList list = new UriList ();
 			for (int i = 0; i < args.Length; i++) {
 				switch (args [i]) {
 				case "--shutdown":
@@ -100,9 +103,12 @@ public class Driver {
 					import = true;
 					break;
 				case "--view":
-					if (++i < args.Length)
-						control.View (args [i]);
+					while (++i < args.Length)
+						list.AddUnknown (args [i]);
 					
+					if (list.Count > 0)
+						control.View (list.ToString ());
+
 					view_only = true;
 					break;
 				}

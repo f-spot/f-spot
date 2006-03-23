@@ -12,7 +12,7 @@ namespace FSpot {
 		public abstract void Organize ();
 		
 		[DBus.Method]
-		public abstract void View (string path);
+		public abstract void View (string list);
 
 		[DBus.Method]
 		public abstract void Shutdown ();
@@ -108,17 +108,18 @@ namespace FSpot {
 			MainWindow.Window.Present ();
 		}
 		
-		public override void View (string path)
+		public override void View (string list)
 		{
-			if (System.IO.File.Exists (path) || System.IO.Directory.Exists (path))
-				Register (new FSpot.SingleView (path).Window);
-			else {
-				try {
-					Register (new FSpot.SingleView (new Uri (path)).Window);
-				} catch (System.Exception e) {
-					System.Console.WriteLine (e.ToString ());
-					System.Console.WriteLine ("no real valid path to view from {0}", path);
-				}
+			Viewbla (new UriList (list));
+		}
+
+		public void Viewbla (UriList list)
+		{
+			try {
+				Register (new FSpot.SingleView (list).Window);
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e.ToString ());
+				System.Console.WriteLine ("no real valid path to view from {0}", list);
 			} 
 		}
 		

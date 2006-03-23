@@ -77,8 +77,11 @@ public class UriList : ArrayList {
 			Add (uri);
 		}
 	}
-
-
+	
+	public UriList () : base ()
+	{
+	}
+	
 	private void LoadFromString (string data) {
 		//string [] items = System.Text.RegularExpressions.Regex.Split ("\n", data);
 		string [] items = data.Split ('\n');
@@ -129,18 +132,24 @@ public class UriList : ArrayList {
 	{	
 		// FIXME this is so lame do real chacking at some point
 		foreach (string str in uris) {
-			Uri uri;
-
-			if (File.Exists (str) || Directory.Exists (str))
-				uri = PathToFileUri (str);
-			else 
-				uri = new Uri (str);
-			
-			Add (uri);
+			AddUnknown (str);
 		}
 	}
 
-	public UriList (string data) {
+	public void AddUnknown (string unknown)
+	{
+		Uri uri;
+		
+		if (File.Exists (unknown) || Directory.Exists (unknown))
+			uri = PathToFileUri (unknown);
+		else 
+			uri = new Uri (unknown);
+		
+		Add (uri);
+	}
+
+	public UriList (string data) 
+	{
 		LoadFromString (data);
 	}
 	
@@ -148,6 +157,26 @@ public class UriList : ArrayList {
 	{
 		// FIXME this should check the atom etc.
 		LoadFromString (System.Text.Encoding.UTF8.GetString (selection.Data));
+	}
+
+	public new Uri [] ToArray ()
+	{
+		return ToArray (typeof (Uri)) as Uri [];
+	}
+	
+	public void Add (string path)
+	{
+		AddUnknown (path);
+	}
+
+	public void Add (Uri uri)
+	{
+		Add ((object)uri);
+	}
+
+	public void Add (FSpot.IBrowsableItem item)
+	{
+		Add (item.DefaultVersionUri);
 	}
 
 	public override string ToString () {

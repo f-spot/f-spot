@@ -1,3 +1,17 @@
+2006-03-23  Larry Ewing  <lewing@novell.com>
+
+	* src/SingleView.cs: add a UriList constructor.
+
+	* src/Core.cs: pass a UriList to SingleView and create UriList
+	from the string passed to view (dbus # sucks).
+
+	* src/FileImportBackend.cs: request by uri not local path.
+
+	* src/main.cs: use UriList to build the list of uris from the
+	command line.
+
+	* src/Util.cs: extend the UriList class to be more useful.
+
 2006-03-22  Larry Ewing  <lewing@novell.com>
 
 	* src/Tiff.cs: fix the Unicode string marker. Fixes #333643.
