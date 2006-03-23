@@ -1,5 +1,7 @@
 2006-03-22  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoStore.cs: remove Trim calls.
+
 	* src/InfoDisplay.cs: only use libexif on local files right now.
 
 	* src/Preferences.cs: add proxy loader.

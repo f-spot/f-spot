@@ -954,8 +954,6 @@ public class PhotoStore : DbStore {
 		string directory_path = System.IO.Path.GetDirectoryName (path);
 		string filename = System.IO.Path.GetFileName (path);
 
-		directory_path = directory_path.Trim();
-		filename = filename.Trim();
 		command.CommandText = String.Format ("SELECT id,                                   " +
 				                     "       time,                                 " +
 						     "       description,                          " +
