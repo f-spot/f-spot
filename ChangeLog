@@ -1,5 +1,10 @@
 2006-03-22  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: create the PhotoView properly.
+
+	* src/PhotoView.cs: use Query.Commit not store_commit when
+	changing the photo.
+
 	* src/PhotoStore.cs: remove Trim calls.
 
 	* src/InfoDisplay.cs: only use libexif on local files right now.

@@ -11,8 +11,6 @@ public class PhotoView : EventBox {
 	FSpot.Delay description_delay; 
 
 	private bool has_selection = false;
-	private PhotoStore photo_store;
-
 	private FSpot.PhotoImageView photo_view;
 	private ScrolledWindow photo_view_scrolled;
 	private EventBox background;
@@ -134,6 +132,11 @@ public class PhotoView : EventBox {
 		return constraints_option_menu;
 	}
 
+	private void ItemChanged (BrowsablePointer item, BrowsablePointerChangedArgs args)
+	{
+		
+	}
+
 	private void UpdateButtonSensitivity ()
 	{
 		bool valid = photo_view.Item.IsValid;
@@ -149,14 +152,13 @@ public class PhotoView : EventBox {
 		display_previous_button.Sensitive = prev;
 		display_next_button.Sensitive = next;
 
-		if (has_selection) {
+		if (valid && has_selection) {
 			tips.SetTip (crop_button, Catalog.GetString ("Crop photo to selected area"), "");
-				tips.SetTip (redeye_button, Catalog.GetString ("Remove redeye from selected area"), "");
+			tips.SetTip (redeye_button, Catalog.GetString ("Remove redeye from selected area"), "");
 		} else {
 			tips.SetTip (crop_button, Catalog.GetString ("Select an area to crop"), null);
 			tips.SetTip (redeye_button, Catalog.GetString ("Select an area to remove redeye"), null);
 		}
-	
 		
 		crop_button.Sensitive = valid;
 		redeye_button.Sensitive = valid;
@@ -261,7 +263,7 @@ public class PhotoView : EventBox {
 	{
 		ProcessImage (false);
 	}
-	
+
 	private void ShowError (System.Exception e, Photo photo)
 	{
 		string msg = Catalog.GetString ("Error editing photo");
@@ -272,9 +274,6 @@ public class PhotoView : EventBox {
 							    Gtk.MessageType.Error, ButtonsType.Ok, 
 							    msg,
 							    desc);
-		md.Run ();
-		md.Destroy ();
-		
 		md.Run ();
 		md.Destroy ();
 	}
@@ -352,7 +351,6 @@ public class PhotoView : EventBox {
 			original_pixbuf.CopyArea (x, y, width, height, edited, 0, 0);
 		}
 
-
 		// FIXME the fact that the selection doesn't go away is a bug in ImageView, it should
 		// be fixed there.
 		photo_view.Pixbuf = edited;
@@ -362,7 +360,7 @@ public class PhotoView : EventBox {
 			bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
 			photo.SaveVersion (edited, create_version);
 			((PhotoQuery)query).Commit (Item.Index);
-			((PhotoQuery)query).MarkChanged (Item.Index);
+
 		} catch (System.Exception e) {
 			ShowError (e, photo);
 		}
@@ -419,15 +417,12 @@ public class PhotoView : EventBox {
 
 	private void HandlePhotoChanged (FSpot.PhotoImageView view)
 	{
-		if (! (query is PhotoQuery)) {
+		if (query is PhotoQuery) {
+			CommitPendingChanges ();
 			Update ();
-			return;
 		}
-
-		CommitPendingChanges ();
-		Update ();
-
-		tag_view.Current = (Photo)(Item.Current);
+		
+		tag_view.Current = Item.Current;
 
 		if (this.PhotoChanged != null)
 			PhotoChanged (this);
@@ -450,11 +445,10 @@ public class PhotoView : EventBox {
 
 	Gtk.Tooltips tips = new Gtk.Tooltips ();
 
-	public PhotoView (IBrowsableCollection query, PhotoStore photo_store)
+	public PhotoView (IBrowsableCollection query)
 		: base ()
 	{
 		this.query = query;
-		this.photo_store = photo_store;
 
 		description_delay = new FSpot.Delay (1000, new GLib.IdleHandler (CommitPendingChanges));
 		this.Destroyed += HandleDestroy;

@@ -315,7 +315,7 @@ public class MainWindow {
 		icon_view.DragDataReceived += HandleIconViewDragDataReceived;
 		icon_view.KeyPressEvent += HandleIconViewKeyPressEvent;
 
-		photo_view = new PhotoView (query, db.Photos);
+		photo_view = new PhotoView (query);
 		photo_box.Add (photo_view);
 		photo_view.ButtonPressEvent += HandlePhotoViewButtonPressEvent;
 		photo_view.KeyPressEvent += HandlePhotoViewKeyPressEvent;
