@@ -372,6 +372,7 @@ namespace FSpot.Tiff {
 				enc = System.Text.Encoding.ASCII;
 				break;
 			case "UNICODE\0":
+			case "Unicode\0":
 				enc = new System.Text.UnicodeEncoding (! little, true);
 				break;
 			case "SJIS\0\0\0\0":
@@ -415,7 +416,7 @@ namespace FSpot.Tiff {
 				heading = "ASCII\0\0\0";
 				enc = new System.Text.ASCIIEncoding ();
 			} else {
-				heading = "UNICODE\0";
+				heading = "Unicode\0";
 				enc = new System.Text.UnicodeEncoding (! is_little, true);
 			}
 			

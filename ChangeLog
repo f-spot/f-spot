@@ -1,5 +1,9 @@
 2006-03-22  Larry Ewing  <lewing@novell.com>
 
+	* src/Tiff.cs: fix the Unicode string marker. Fixes #333643.
+
+2006-03-22  Larry Ewing  <lewing@novell.com>
+
 	* src/JpegFile.cs: use more the tiff loader rather than libexif
 	for loading most fields.
 
@@ -145,6 +149,7 @@ i2006-03-22  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoView.cs: remove deprecated namespace for the catalog.
 
+>>>>>>> 1.1452
 2006-03-15  Larry Ewing  <lewing@novell.com>
 
 	* src/ExceptionDialog.cs: fix the resizing logic so that you
@@ -153,6 +158,7 @@ i2006-03-22  Larry Ewing  <lewing@novell.com>
 	* src/FileImportBackend.cs: another patch from James Fitzsimons to
 	clean up directories we are not using upon cancel.  Fixes #334584.
 
+>>>>>>> 1.1413
 2006-03-13  Larry Ewing  <lewing@novell.com>
 
 	* src/ImportCommand.cs: commit patch from James Fitzsimons to fix
