@@ -43,7 +43,6 @@ namespace FSpot {
 				if (exif_header == null) {
 					exif_header = Header.GetExifHeader ();
 				}
-				
 				return exif_header;
 			}
 		}
@@ -183,7 +182,7 @@ namespace FSpot {
 		public Exif.ExifData ExifData {
 			get {
 				if (exif_data == null) {
-					exif_data = new Exif.ExifData (uri.LocalPath);
+					exif_data = Header.Exif;
 
 					if (exif_data.Handle.Handle == System.IntPtr.Zero)
 						exif_data = new Exif.ExifData ();
@@ -238,7 +237,7 @@ namespace FSpot {
 			get {
 				System.DateTime time;
 				try {
-#if flase
+#if false
 					using (Exif.ExifData ed = new Exif.ExifData (path)) {
 						string time_str = "";				
 						time_str = ed.LookupFirstValue (Exif.Tag.DateTimeOriginal);
