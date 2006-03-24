@@ -68,7 +68,11 @@ namespace FSpot {
 					if (info.Type == Gnome.Vfs.FileType.Directory)
 						new DirectoryLoader (this, uri);
 					else {
-						if (info.MimeType == "text/xml") {
+						// FIXME ugh...
+						if (info.MimeType == "text/xml"
+						    || info.MimeType == "application/xml"
+						    || info.MimeType == "application/rss+xml"
+						    || info.MimeType == "text/plain") {
 							new RssLoader (this, uri);
 						}
 					}
@@ -84,13 +88,33 @@ namespace FSpot {
 				doc.Load (uri.ToString ());
 				XmlNamespaceManager ns = new XmlNamespaceManager (doc.NameTable);
 				ns.AddNamespace ("media", "http://search.yahoo.com/mrss");
+				ns.AddNamespace ("pheed", "http://www.pheed.com/pheed/");
+				ns.AddNamespace ("apple", "http://www.apple.com/ilife/wallpapers");
 				
 				ArrayList items = new ArrayList ();
 				XmlNodeList list = doc.SelectNodes ("/rss/channel/item/media:content", ns);
 				foreach (XmlNode item in list) {
 					Uri image_uri = new Uri (item.Attributes ["url"].Value);
-					System.Console.WriteLine ("uri = {0}", image_uri.ToString ());
+					System.Console.WriteLine ("flickr uri = {0}", image_uri.ToString ());
 					items.Add (new FileBrowsableItem (image_uri));
+				}
+					
+				if (list.Count < 1) {
+					list = doc.SelectNodes ("/rss/channel/item/pheed:imgsrc", ns);
+					foreach (XmlNode item in list) {
+						Uri image_uri = new Uri (item.InnerText.Trim ());
+						System.Console.WriteLine ("pheed uri = {0}", uri);
+						items.Add (new FileBrowsableItem (image_uri));
+					}
+				}
+
+				if (list.Count < 1) {
+					list = doc.SelectNodes ("/rss/channel/item/apple:image", ns);
+					foreach (XmlNode item in list) {
+						Uri image_uri = new Uri (item.InnerText.Trim ());
+						System.Console.WriteLine ("apple uri = {0}", uri);
+						items.Add (new FileBrowsableItem (image_uri));
+					}
 				}
 				collection.Add (items.ToArray (typeof (FileBrowsableItem)) as FileBrowsableItem []);
 			}
