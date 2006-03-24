@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Collections;
+using System.Xml;
 
 namespace FSpot {
 	public class DirectoryCollection : UriCollection {
@@ -61,14 +62,40 @@ namespace FSpot {
 					Console.WriteLine (uri.ToString ());
 					Add (new FileBrowsableItem (uri));
 				} else {
-					Gnome.Vfs.FileInfo info = new Gnome.Vfs.FileInfo (uri.ToString ());
+					Gnome.Vfs.FileInfo info = new Gnome.Vfs.FileInfo (uri.ToString (), 
+											  Gnome.Vfs.FileInfoOptions.GetMimeType);
 					
 					if (info.Type == Gnome.Vfs.FileType.Directory)
 						new DirectoryLoader (this, uri);
-				}
+					else {
+						if (info.MimeType == "text/xml") {
+							new RssLoader (this, uri);
+						}
+					}
+				} 
 			}
 		}
-		
+
+		private class RssLoader 
+		{
+			public RssLoader (UriCollection collection, System.Uri uri)
+			{
+				XmlDocument doc = new XmlDocument ();
+				doc.Load (uri.ToString ());
+				XmlNamespaceManager ns = new XmlNamespaceManager (doc.NameTable);
+				ns.AddNamespace ("media", "http://search.yahoo.com/mrss");
+				
+				ArrayList items = new ArrayList ();
+				XmlNodeList list = doc.SelectNodes ("/rss/channel/item/media:content", ns);
+				foreach (XmlNode item in list) {
+					Uri image_uri = new Uri (item.Attributes ["url"].Value);
+					System.Console.WriteLine ("uri = {0}", image_uri.ToString ());
+					items.Add (new FileBrowsableItem (image_uri));
+				}
+				collection.Add (items.ToArray (typeof (FileBrowsableItem)) as FileBrowsableItem []);
+			}
+		}
+
 		private class DirectoryLoader 
 		{
 			UriCollection collection;
@@ -101,8 +128,10 @@ namespace FSpot {
 					if (FSpot.ImageFile.HasLoader (file))
 						items.Add (new FileBrowsableItem (file));
 				}
-				
-				collection.Add (items.ToArray (typeof (FileBrowsableItem)) as FileBrowsableItem []);
+
+				Gtk.Application.Invoke (items, System.EventArgs.Empty, delegate (object sender, EventArgs args) {
+					collection.Add (items.ToArray (typeof (FileBrowsableItem)) as FileBrowsableItem []);
+				});
 			}
 		}
 
