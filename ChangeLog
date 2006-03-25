@@ -1,5 +1,7 @@
 2006-03-25  Larry Ewing  <lewing@novell.com>
 
+	* src/JpegHeader.cs: start handing short reads properly.
+
 	* src/ThumbnailGenerator.cs: use the gnome-vfs mtime foo.
 
 2006-03-25  Jakub Steiner <jimmac@ximian.com>

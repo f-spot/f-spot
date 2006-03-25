@@ -129,8 +129,8 @@ public class JpegHeader : SemWeb.StatementSource {
 			
 			int j;
 			for (j = 0; j < this.Data.Length; j++) {
-					if (this.Data [j] == 0x00)
-						break;
+				if (this.Data [j] == 0x00)
+					break;
 					
 			}
 			
@@ -139,8 +139,21 @@ public class JpegHeader : SemWeb.StatementSource {
 			else 
 				return null;
 		}
+		
+		private static int Read (Stream stream, byte [] dest, int start, int len)
+		{
+			int pos = 0;
 
-		public static Marker Load (System.IO.Stream stream) {
+			while (pos < len) {
+				int read = stream.Read (dest, pos + start, len - pos);
+				if (read < 0)
+					break;
+				pos += read;
+			}
+			return pos;
+		}
+
+		public static Marker Load (Stream stream) {
 			byte [] raw = new byte [2];
 			ushort length;
 		       
@@ -149,11 +162,11 @@ public class JpegHeader : SemWeb.StatementSource {
 
 			// FIXME there is a potential loop here.
 			
-			raw [0] = (byte)stream.ReadByte ();
-			if (raw [0] != 0xff)
+			int read = Read (stream, raw, 0, 2);
+			if (read < 2 && raw [0] != 0xff)
 				throw new System.Exception (System.String.Format ("Invalid marker found {0}", raw [0]));
 			
-			JpegMarker id = (JpegMarker) stream.ReadByte ();
+			JpegMarker id = (JpegMarker) raw [1];
 			switch (id) {
 			case JpegMarker.Soi:
 			case JpegMarker.Eoi:
@@ -169,11 +182,11 @@ public class JpegHeader : SemWeb.StatementSource {
 			case (JpegMarker) 0:
 				return new Marker (id, null);
 			default:
-				stream.Read (raw, 0, 2);
+				Read (stream, raw, 0, 2);
 				length = FSpot.BitConverter.ToUInt16 (raw, 0, false);
 				
 				byte [] data = new byte [length - 2];
-				stream.Read (data, 0, data.Length);
+				Read (stream, data, 0, data.Length);
 				return new Marker (id, data);
 			}
 			
@@ -425,8 +438,10 @@ public class JpegHeader : SemWeb.StatementSource {
 			if (marker.Type == JpegMarker.Sos) {
 				at_image = true;
 
-				if (metadata_only)
+				if (metadata_only) {
+					System.Console.WriteLine ("read = {0}", stream.Position);
 					return;
+				}
 			}
 		}
 
