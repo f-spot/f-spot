@@ -1,5 +1,8 @@
 2006-03-25  Larry Ewing  <lewing@novell.com>
 
+	* icons/Makefile.am (noinst_DATA): remove f-spot-find and
+	f-spot-find-light from the build until jimmac commits them.
+
 	* src/JpegHeader.cs: start handing short reads properly.
 
 	* src/ThumbnailGenerator.cs: use the gnome-vfs mtime foo.
