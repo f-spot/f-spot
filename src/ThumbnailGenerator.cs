@@ -32,8 +32,9 @@ namespace FSpot {
 		{
 			bool valid = false;
 
-			try {			
-				System.DateTime mtime = System.IO.File.GetLastWriteTime (uri.LocalPath);
+			try {	
+				Gnome.Vfs.FileInfo vfs = new Gnome.Vfs.FileInfo (uri.ToString ());
+				DateTime mtime = vfs.Mtime;
 				valid  = Gnome.Thumbnail.IsValid (thumbnail, uri.ToString (), mtime);
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e);
@@ -61,7 +62,9 @@ namespace FSpot {
 
 			// Use Gnome.Vfs
 			try {
-				mtime = File.GetLastWriteTime (dest.LocalPath);
+				Gnome.Vfs.FileInfo vfs = new Gnome.Vfs.FileInfo (uri);
+
+				mtime = vfs.Mtime;
 				
 				PixbufUtils.SetOption (image, "tEXt::Thumb::URI", uri);
 				PixbufUtils.SetOption (image, "tEXt::Thumb::MTime", 
