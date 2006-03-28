@@ -7,8 +7,6 @@ noinst_DATA =					\
 	f-spot-edit-image.png			\
 	f-spot-events.png			\
 	f-spot-favorite.png			\
-	f-spot-find.png			\
-	f-spot-find-light.png			\
 	f-spot-fullscreen.png			\
 	f-spot-hidden.png			\
 	f-spot-loading.png			\
