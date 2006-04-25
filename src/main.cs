@@ -148,6 +148,8 @@ public class Driver {
 			}
 		} catch (DllNotFoundException de) {
 			/* noop */
+		} catch (EntryPointNotFoundException de) {
+		    	/* noop */
 		}
 	}
 }
