@@ -114,10 +114,12 @@ namespace FSpot {
 			damage = Gdk.Rectangle.Zero;
 
 			ImageFile img = ImageFile.Create (uri);
-			orientation = img.Orientation;
-
+			orientation = Accelerometer.GetViewOrientation (img.Orientation);
+			
 			try {
+				PixbufOrientation thumb_orientation = Accelerometer.GetViewOrientation (PixbufOrientation.TopLeft);
 				thumb = new Gdk.Pixbuf (ThumbnailGenerator.ThumbnailPath (uri));
+				thumb = PixbufUtils.TransformOrientation (thumb, thumb_orientation);
 			} catch (System.Exception e) {
 				//FSpot.ThumbnailGenerator.Default.Request (uri.ToString (), 0, 256, 256);	
 				if (!(e is GLib.GException)) 

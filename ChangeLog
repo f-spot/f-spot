@@ -1,3 +1,18 @@
+2006-04-26  Nat Friedman  <nat@novell.com>
+
+	* src/PhotoImageView.cs: reload the image on orientaion change
+	events.
+
+	* src/AsyncPixbufLoader.cs: use the orientation of from the
+	accelerometer to adjust the orientation of the image while loading
+	it.
+
+	* src/Accelerometer.cs: listen to information from the hdaps
+	accelerometer and convert and provide events when the orientation
+	changes.
+
+	* src/Makefile.am: add Accelerometer.cs to the build.
+	
 2006-04-25  Larry Ewing  <lewing@novell.com>
 
 	* f-spot: Commit three of the four patches by Tom McLaughlin from 

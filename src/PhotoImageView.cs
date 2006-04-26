@@ -15,7 +15,9 @@ namespace FSpot {
 			loader.AreaUpdated += HandlePixbufAreaUpdated;
 			loader.AreaPrepared += HandlePixbufPrepared;
 			loader.Done += HandleDone;
-			
+
+			Accelerometer.OrientationChanged += HandleOrientationChanged;
+
 			this.SizeAllocated += HandleSizeAllocated;
 			this.KeyPressEvent += HandleKeyPressEvent;
 			this.ScrollEvent += HandleScrollEvent;
@@ -59,6 +61,11 @@ namespace FSpot {
 		{
 			loader.LoadToDone ();
 			return this.Pixbuf;
+		}
+
+		public void HandleOrientationChanged (object sender)
+		{
+			Reload ();
 		}
 
 		public void Reload ()
