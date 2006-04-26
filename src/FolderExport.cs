@@ -183,7 +183,9 @@ namespace FSpot {
 					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Error While Transferring");
 				}
 
-				GnomeUtil.UrlShow (null, target.ToString ());
+				if (open) {
+					GnomeUtil.UrlShow (null, target.ToString ());
+				}
 			} catch (System.Exception e) {
 				progress_dialog.Message = e.ToString ();
 				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error Transferring");
