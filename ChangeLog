@@ -1,3 +1,8 @@
+2006-05-01  Larry Ewing  <lewing@novell.com>
+ 
+ 	* src/FormClient.cs: use the default proxy in FormClient, patch
+ 	from Ivan N. Zlatev.  Fixes #316752.
+
 2006-04-26  Larry Ewing  <lewing@novell.com>
 
 	* src/FolderExport.cs: a patch from Stephane Delcroix to make the
