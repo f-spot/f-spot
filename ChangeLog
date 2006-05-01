@@ -1,5 +1,9 @@
 2006-05-01  Larry Ewing  <lewing@novell.com>
- 
+
+	* src/GalleryExport.cs: add an action to let the user remove
+	gallery entries.  Based on a patch from Chad Files.  Fixes
+	#334710.
+
  	* src/FormClient.cs: use the default proxy in FormClient, patch
  	from Ivan N. Zlatev.  Fixes #316752.
 

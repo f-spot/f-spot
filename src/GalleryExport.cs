@@ -175,6 +175,15 @@ namespace FSpot {
 				WriteAccounts ();
 		}
 
+		public void RemoveAccount (GalleryAccount account)
+		{
+			accounts.Remove (account);
+			
+			OnAccountListChanged ();
+			
+			WriteAccounts ();
+		}
+		
 		public void WriteAccounts ()
 		{
 			System.Xml.XmlTextWriter writer = new System.Xml.XmlTextWriter (xml_path, System.Text.Encoding.Default);
@@ -536,7 +545,8 @@ namespace FSpot {
 
 		[Glade.Widget] Gtk.Button album_button;
 		[Glade.Widget] Gtk.Button add_button;
-		
+		[Glade.Widget] Gtk.Button remove_button;
+
 		[Glade.Widget] Gtk.Button ok_button;
 		[Glade.Widget] Gtk.Button cancel_button;
 
@@ -649,12 +659,14 @@ namespace FSpot {
 				Gtk.MenuItem item = new Gtk.MenuItem (Catalog.GetString ("(No Gallery)"));
 				menu.Append (item);
 				gallery_optionmenu.Sensitive = false;
+				remove_button.Sensitive = false;
 			} else {
 				foreach (GalleryAccount account in accounts) {
 					Gtk.MenuItem item = new Gtk.MenuItem (account.Name);
 					menu.Append (item);		
 				}
 				gallery_optionmenu.Sensitive = true;
+				remove_button.Sensitive = true;
 			}
 
 			menu.ShowAll ();
@@ -760,6 +772,20 @@ namespace FSpot {
 		public void HandleAddGallery (object sender, System.EventArgs args)
 		{
 			gallery_add = new AccountDialog (this.Dialog);
+		}
+		
+		public void HandleDeleteGallery (object sender, System.EventArgs args)
+		{
+			string header = Catalog.GetString ("Remove the selected gallery?");
+			string msg = Catalog.GetString ("Remove the selected gallery from the list of galleries. This operation will not affect the actual gallery.");
+			string ok_caption = Catalog.GetString ("_Remove gallery");
+			if (Gtk.ResponseType.Ok == HigMessageDialog.RunHigConfirmation(this.Dialog, 
+										       Gtk.DialogFlags.DestroyWithParent, 
+										       Gtk.MessageType.Warning, 
+										       header, msg, ok_caption)) {
+
+				GalleryAccountManager.GetInstance ().RemoveAccount (account);
+			}
 		}
 
 		public void HandleAddAlbum (object sender, System.EventArgs args)

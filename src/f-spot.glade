@@ -3356,6 +3356,23 @@ Photo Details</property>
 				  <property name="fill">False</property>
 				</packing>
 			      </child>
+
+			      <child>
+				<widget class="GtkButton" id="remove_button">
+				  <property name="visible">True</property>
+				  <property name="can_focus">True</property>
+				  <property name="label">gtk-remove</property>
+				  <property name="use_stock">True</property>
+				  <property name="relief">GTK_RELIEF_NORMAL</property>
+				  <property name="focus_on_click">True</property>
+				  <signal name="clicked" handler="HandleDeleteGallery" last_modification_time="Tue, 11 Apr 2006 13:22:20 GMT"/>
+				</widget>
+				<packing>
+				  <property name="padding">0</property>
+				  <property name="expand">False</property>
+				  <property name="fill">False</property>
+				</packing>
+			      </child>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
