@@ -1,3 +1,10 @@
+2006-05-03  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: handle errors while loading the query, show a
+	dialog telling where we moved the old db.  Fixes bnc #161671.
+
+	* src/Db.cs: move the broken db out of the way.
+
 2006-05-01  Larry Ewing  <lewing@novell.com>
 
 	* src/GalleryExport.cs: add an action to let the user remove

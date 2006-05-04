@@ -198,6 +198,7 @@ public class Db : IDisposable {
  	ImportStore import_store;
  	MetaStore meta_store;
 	bool empty;
+	string path;
 
 	public TagStore Tags {
 		get { return tag_store; }
@@ -275,10 +276,30 @@ public class Db : IDisposable {
 		}
 	}
 
+	public string Repair ()
+	{
+		string backup_path = path;
+		int i = 0;
+
+		while (File.Exists (backup_path)) {
+			backup_path = String.Format ("{0}-{1}-{2}{3}",
+						     Path.GetFileNameWithoutExtension (path),
+						     System.DateTime.Now.ToString ("yyyyMMdd"),
+						     i++,
+						     Path.GetExtension (path));
+		}
+		
+		File.Move (path, backup_path);
+		Init (path, true);
+
+		return backup_path;
+	}
+
 	public void Init (string path, bool create_if_missing)
 	{
 		bool new_db = ! File.Exists (path);
 		string version_string = "";
+		this.path = path;
 
 		if (new_db && ! create_if_missing)
 			throw new Exception (path + ": File not found");

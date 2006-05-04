@@ -246,8 +246,15 @@ public class MainWindow {
 		info_box = new InfoBox ();
 		info_box.VersionIdChanged += HandleInfoBoxVersionIdChange;
 		left_vbox.PackStart (info_box, false, true, 0);
+		
+		try {
+			query = new FSpot.PhotoQuery (db.Photos);
+		} catch (System.Exception e) {
+			//FIXME assume any exception here is due to a corrupt db and handle that.
+			RestoreDb (e);
+			query = new FSpot.PhotoQuery (db.Photos);
+		}
 
-		query = new FSpot.PhotoQuery (db.Photos);
 		query.Changed += HandleQueryChanged;
 
 		db.Photos.ItemsChanged += HandleDbItemsChanged;
@@ -725,6 +732,20 @@ public class MainWindow {
 		TagPopup popup = new TagPopup ();
 		popup.Activate (null, null, tag_selection_widget.TagHighlight);
 		args.RetVal = true;
+	}
+
+	void RestoreDb (System.Exception e)
+	{
+		string backup = db.Repair ();
+		string short_msg = Mono.Posix.Catalog.GetString ("Error loading database.");
+		string long_msg = Mono.Posix.Catalog.GetString ("F-Spot encountered an error while loading the photo database" + 
+								"  the old database has be moved to {0} and a new database has been created.");
+
+		HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
+							    MessageType.Error, ButtonsType.Ok, 
+							    short_msg, String.Format (long_msg, backup));
+		md.Run ();
+		md.Destroy ();
 	}
 
 	void HandleTagSelectionDragBegin (object sender, DragBeginArgs args)
