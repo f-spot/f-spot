@@ -478,7 +478,7 @@ namespace FSpot {
 			cairo_user_to_device (g.Handle, ref x, ref y);
 		}
 
-		[DllImport("libgdk-x11-2.0.so")]
+		[DllImport("libgdk-2.0-0.dll")]
 		extern static void gdk_cairo_set_source_pixbuf (IntPtr handle,
 								IntPtr pixbuf,
 								double        pixbuf_x,
@@ -489,7 +489,7 @@ namespace FSpot {
 			gdk_cairo_set_source_pixbuf (g.Handle, pixbuf.Handle, x, y);
 		}
 
-		[DllImport("libgdk-x11-2.0.so")]
+		[DllImport("libgdk-2.0-0.dll")]
 		static extern IntPtr gdk_cairo_create (IntPtr raw);
 		
 		public static Cairo.Graphics CreateDrawable (Gdk.Drawable drawable)
