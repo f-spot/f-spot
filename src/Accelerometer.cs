@@ -81,10 +81,10 @@ namespace FSpot {
 
 			GetHDAPSCoords (out x, out y);
 
-			if (x > 100)
+			if (x > 40)
 				return Orient.TiltClockwise;
 
-			if (x < -100)
+			if (x < -40)
 				return Orient.TiltCounterclockwise;
 
 			return Orient.Normal;
