@@ -284,9 +284,6 @@ public class PhotoView : EventBox {
 							    desc);
 		md.Run ();
 		md.Destroy ();
-		
-		md.Run ();
-		md.Destroy ();
 	}
 
 	private void HandleSepiaButtonClicked (object sender, EventArgs args)
@@ -331,36 +328,41 @@ public class PhotoView : EventBox {
 			md.Destroy ();
 			return;
 		}		
-
-		Pixbuf original_pixbuf = photo_view.CompletePixbuf ();
-		if (original_pixbuf == null) {
-			return;
-		}
-
+		
 		Photo photo = (Photo)Item.Current;
-
-		Pixbuf edited;
-		if (redeye) {
-			Gdk.Rectangle area = new Gdk.Rectangle (x, y, width, height);
-			edited = PixbufUtils.RemoveRedeye (original_pixbuf, 
-							   area);
-		} else { // Crop (I told you it was ugly)
-			edited = new Pixbuf (original_pixbuf.Colorspace, 
-					     original_pixbuf.HasAlpha, original_pixbuf.BitsPerSample,
-					     width, height);
-			
-			original_pixbuf.CopyArea (x, y, width, height, edited, 0, 0);
-		}
-
-
-		// FIXME the fact that the selection doesn't go away is a bug in ImageView, it should
-		// be fixed there.
-		photo_view.Pixbuf = edited;
-		photo_view.UnsetSelection ();
-
 		try {
+			if (! System.IO.File.Exists (photo.DefaultVersionPath)) {
+				throw new System.IO.FileNotFoundException ();
+			}
+
+			Pixbuf original_pixbuf = photo_view.CompletePixbuf ();
+
+			if (original_pixbuf == null) {
+				return;
+			}
+			
+			Pixbuf edited;
+
+			if (redeye) {
+				Gdk.Rectangle area = new Gdk.Rectangle (x, y, width, height);
+				edited = PixbufUtils.RemoveRedeye (original_pixbuf, 
+								   area);
+			} else { // Crop (I told you it was ugly)
+				edited = new Pixbuf (original_pixbuf.Colorspace, 
+						     original_pixbuf.HasAlpha, original_pixbuf.BitsPerSample,
+						     width, height);
+				
+				original_pixbuf.CopyArea (x, y, width, height, edited, 0, 0);
+			}
+			
+			
+			// FIXME the fact that the selection doesn't go away is a bug in ImageView, it should
+			// be fixed there.
+			photo_view.UnsetSelection ();
+			
 			bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
 			photo.SaveVersion (edited, create_version);
+			photo_view.Pixbuf = edited;
 			query.Commit (Item.Index);
 			query.MarkChanged (Item.Index);
 		} catch (System.Exception e) {
