@@ -324,6 +324,8 @@ public class Db : IDisposable {
 
 		sqlite_connection.Open ();
 		
+		BeginTransaction ();
+
 		// Load or create the meta table
  		meta_store = new MetaStore (sqlite_connection, new_db);
 
@@ -334,6 +336,8 @@ public class Db : IDisposable {
 		import_store = new ImportStore (sqlite_connection, new_db);
  		photo_store = new PhotoStore (sqlite_connection, new_db, tag_store);
 		
+		CommitTransaction ();
+
 		empty = new_db;
 	}
 

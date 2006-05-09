@@ -57,35 +57,43 @@ public class Driver {
 					       Defines.VERSION, 
 					       Modules.UI, args);		
 			
-			try {
-				control = Core.FindInstance ();
-				System.Console.WriteLine ("Found active FSpot server: {0}", control);
-				program = null;
-			} catch (System.Exception e) { 
-				System.Console.WriteLine ("Starting new FSpot server");
-			}
-			
-			if (control == null) {
-				Core core = null;
-				
-				Gnome.Vfs.Vfs.Initialize ();
-				StockIcons.Initialize ();
-				
-				Mono.Posix.Catalog.Init ("f-spot", Defines.LOCALE_DIR);
-				Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {PixbufUtils.LoadFromAssembly ("f-spot-logo.png")};
-				
-			// FIXME: Error checking is non-existant here...
-				
-				core = new Core ();
-				
+			bool create = true;
+			while (control == null) {
 				try {
-					core.RegisterServer ();
-				} catch (System.Exception e) {
-					System.Console.WriteLine (e.ToString ());
+					control = Core.FindInstance ();
+					System.Console.WriteLine ("Found active FSpot server: {0}", control);
+					program = null;
+				} catch (System.Exception e) { 
+					Core.AssertOwnership ();
+					System.Console.WriteLine ("Starting new FSpot server");
 				}
-				
-				empty = Core.Database.Empty;
-				control = core;
+			
+				Core core = null;
+				try {
+					if (control == null && create) {
+						create = false;
+						Gnome.Vfs.Vfs.Initialize ();
+						StockIcons.Initialize ();
+						
+						Mono.Posix.Catalog.Init ("f-spot", Defines.LOCALE_DIR);
+						
+						core = new Core ();
+						core.RegisterServer ();
+
+						Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {PixbufUtils.LoadFromAssembly ("f-spot-logo.png")};
+						
+						// FIXME: Error checking is non-existant here...
+						
+						empty = Core.Database.Empty;
+						control = core;
+					}
+				} catch (System.Exception e) {
+					System.Console.WriteLine ("XXXXX\n{0}\nXXXXX", e);
+					control = null;
+
+					if (core != null)
+						core.UnregisterServer ();
+				}
 			}
 			
 			for (int i = 0; i < args.Length; i++) {
