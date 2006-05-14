@@ -1,3 +1,9 @@
+2006-05-14  Larry Ewing  <lewing@novell.com>
+
+	* src/FileImportBackend.cs: fix a bug in the directory cleanup
+	code so that it doesn't die horribly in the gphoto import case.
+	Fixes 326860.
+
 2006-05-08  Nat Friedman  <nat@novell.com>
 
 	* src/Accelerometer.cs: Make this more sensitive so that it works
@@ -244,7 +250,6 @@ i2006-03-22  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoView.cs: remove deprecated namespace for the catalog.
 
->>>>>>> 1.1452
 2006-03-15  Larry Ewing  <lewing@novell.com>
 
 	* src/ExceptionDialog.cs: fix the resizing logic so that you
@@ -253,7 +258,6 @@ i2006-03-22  Larry Ewing  <lewing@novell.com>
 	* src/FileImportBackend.cs: another patch from James Fitzsimons to
 	clean up directories we are not using upon cancel.  Fixes #334584.
 
->>>>>>> 1.1413
 2006-03-13  Larry Ewing  <lewing@novell.com>
 
 	* src/ImportCommand.cs: commit patch from James Fitzsimons to fix

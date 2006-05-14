@@ -21,7 +21,7 @@ public class FileImportBackend : ImportBackend {
 
 	ArrayList file_paths;
 	ArrayList imported_photos;
-	static Stack directories;
+	Stack directories;
 	
 	private void AddPath (string path)
 	{
@@ -115,6 +115,11 @@ public class FileImportBackend : ImportBackend {
 
 	public static string ChooseLocation (string path)
 	{
+		return ChooseLocation (path, null);
+	}
+
+	public static string ChooseLocation (string path, Stack created_directories)
+	{
 		string name = System.IO.Path.GetFileName (path);
 		FSpot.ImageFile img = FSpot.ImageFile.Create (path);
 		DateTime time = img.Date;
@@ -126,26 +131,29 @@ public class FileImportBackend : ImportBackend {
 						 time.Month,
 						 time.Day);
 		
-		if (!System.IO.Directory.Exists (dest_dir))
-		{
+		if (!System.IO.Directory.Exists (dest_dir)) {
 			System.IO.DirectoryInfo info;
-			// Split dest_dir into constituent parts so we can clean up each individual directory in
-			// event of a cancel.
-			string [] parts = dest_dir.Split (new char [] {'/'});
-			string nextPath = "";
-			for (int i = 0; i < parts.Length; i++) {
-				if (i == 0)
-					nextPath += parts [i];
-				else
-					nextPath += "/" + parts [i];
-				if (nextPath.Length > 0) {
-					info = new System.IO.DirectoryInfo (nextPath);
-					// only add the directory path if it didn't already exist and we haven't already added it.
-					if (!info.Exists && !directories.Contains (nextPath))
-						directories.Push (nextPath);
+
+			// If we want to know what directories were created we need to
+			// split dest_dir into constituent parts so we can clean up each 
+			// individual directory in event of a cancel.
+			if (created_directories != null) {
+				string [] parts = dest_dir.Split (new char [] {'/'});
+				string nextPath = "";
+				for (int i = 0; i < parts.Length; i++) {
+					if (i == 0)
+						nextPath += parts [i];
+					else
+						nextPath += "/" + parts [i];
+					if (nextPath.Length > 0) {
+						info = new System.IO.DirectoryInfo (nextPath);
+						// only add the directory path if it didn't already exist 
+						//and we haven't already added it.
+						if (!info.Exists && !created_directories.Contains (nextPath))
+							created_directories.Push (nextPath);
+					}
 				}
 			}
-			
 			info = System.IO.Directory.CreateDirectory (dest_dir);
 		}
 		
@@ -167,7 +175,7 @@ public class FileImportBackend : ImportBackend {
 		
 		try {
 			if (copy) {
-				string dest = ChooseLocation (path);
+				string dest = ChooseLocation (path, directories);
 				System.IO.File.Copy (path, dest);
 				photo = store.Create (dest, path, out thumbnail);
 				path = dest;
