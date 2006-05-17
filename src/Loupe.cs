@@ -197,16 +197,21 @@ namespace FSpot {
 		{
 			base.OnSizeAllocated (allocation);
 			if (use_shape_ext) {
-				Gdk.Pixmap bitmap = new Gdk.Pixmap (GdkWindow, 
-								    allocation.Width, 
-								    allocation.Height, 1);
+				try {
+					Gdk.Pixmap bitmap = new Gdk.Pixmap (GdkWindow, 
+									    allocation.Width, 
+									    allocation.Height, 1);
+					Graphics g = CreateDrawable (bitmap);
+					DrawShape (g, allocation.Width, allocation.Height);
+					((IDisposable)g).Dispose ();
+					ShapeCombineMask (bitmap, 0, 0);
+					bitmap.Dispose ();
+				} catch (System.Exception e) {
+					use_shape_ext = false;
+				}
+			} 
 
-				Graphics g = CreateDrawable (bitmap);
-				DrawShape (g, allocation.Width, allocation.Height);
-				((IDisposable)g).Dispose ();
-				ShapeCombineMask (bitmap, 0, 0);
-				bitmap.Dispose ();
-			} else {
+			if (! use_shape_ext) {
 				Realize ();
 				Graphics g = CreateDrawable (GdkWindow);
 				DrawShape (g, Allocation.Width, Allocation.Height);
@@ -478,7 +483,7 @@ namespace FSpot {
 			cairo_user_to_device (g.Handle, ref x, ref y);
 		}
 
-		[DllImport("libgdk-x11-2.0.so")]
+		[DllImport("libgdk-2.0-0.dll")]
 		extern static void gdk_cairo_set_source_pixbuf (IntPtr handle,
 								IntPtr pixbuf,
 								double        pixbuf_x,
@@ -489,7 +494,7 @@ namespace FSpot {
 			gdk_cairo_set_source_pixbuf (g.Handle, pixbuf.Handle, x, y);
 		}
 
-		[DllImport("libgdk-x11-2.0.so")]
+		[DllImport("libgdk-2.0-0.dll")]
 		static extern IntPtr gdk_cairo_create (IntPtr raw);
 		
 		public static Cairo.Graphics CreateDrawable (Gdk.Drawable drawable)
