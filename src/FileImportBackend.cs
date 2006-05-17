@@ -21,7 +21,8 @@ public class FileImportBackend : ImportBackend {
 
 	ArrayList file_paths;
 	ArrayList imported_photos;
-
+	Stack directories;
+	
 	private void AddPath (string path)
 	{
 		if (FSpot.ImageFile.HasLoader (path))
@@ -90,6 +91,7 @@ public class FileImportBackend : ImportBackend {
 		}	
 
 		imported_photos = new ArrayList ();
+		directories = new Stack ();
 
 		return file_paths.Count;
 	}
@@ -110,8 +112,13 @@ public class FileImportBackend : ImportBackend {
 		
 		return dest;
 	}
-
+	
 	public static string ChooseLocation (string path)
+	{
+		return ChooseLocation (path, null);
+	}
+
+	public static string ChooseLocation (string path, Stack created_directories)
 	{
 		string name = System.IO.Path.GetFileName (path);
 		FSpot.ImageFile img = FSpot.ImageFile.Create (path);
@@ -124,8 +131,29 @@ public class FileImportBackend : ImportBackend {
 						 time.Month,
 						 time.Day);
 		
-		if (!System.IO.Directory.Exists (dest_dir))
-			System.IO.Directory.CreateDirectory (dest_dir);
+		if (!System.IO.Directory.Exists (dest_dir)) {
+			System.IO.DirectoryInfo info;
+			// Split dest_dir into constituent parts so we can clean up each individual directory in
+			// event of a cancel.
+			if (created_directories != null) {
+				string [] parts = dest_dir.Split (new char [] {'/'});
+				string nextPath = "";
+				for (int i = 0; i < parts.Length; i++) {
+					if (i == 0)
+						nextPath += parts [i];
+					else
+						nextPath += "/" + parts [i];
+					if (nextPath.Length > 0) {
+						info = new System.IO.DirectoryInfo (nextPath);
+						// only add the directory path if it didn't already exist and we haven't already added it.
+						if (!info.Exists && !created_directories.Contains (nextPath))
+							created_directories.Push (nextPath);
+					}
+				}
+			}
+			
+			info = System.IO.Directory.CreateDirectory (dest_dir);
+		}
 		
 		string dest = UniqueName (dest_dir, name);
 		
@@ -145,12 +173,12 @@ public class FileImportBackend : ImportBackend {
 		
 		try {
 			if (copy) {
-				string dest = ChooseLocation (path);
+				string dest = ChooseLocation (path, directories);
 				System.IO.File.Copy (path, dest);
 				photo = store.Create (dest, path, out thumbnail);
 				path = dest;
 			} else {
-                photo = store.Create (path, out thumbnail);
+				photo = store.Create (path, out thumbnail);
 			}
 			
 			if (tags != null) {
@@ -189,8 +217,19 @@ public class FileImportBackend : ImportBackend {
 			
 			store.Remove (p);
 		}
-
-		Finish ();
+		
+		// clean up all the directories we created.
+		if (copy) {
+			string path;
+			System.IO.DirectoryInfo info;
+			while (directories.Count > 0) {
+				path = directories.Pop () as string;
+				info = new System.IO.DirectoryInfo (path);
+				// double check we aren't trying to delete a directory that still contains something!
+				if (info.Exists && info.GetFiles().Length == 0 && info.GetDirectories().Length == 0)
+					info.Delete ();
+			}
+		}
 	}
 
 	public override void Finish ()
@@ -199,7 +238,7 @@ public class FileImportBackend : ImportBackend {
 			throw new ImportException ("Not doing anything");
 
 		file_paths = null;
-
+		
 		foreach (Photo p in imported_photos) {
 			FSpot.ThumbnailGenerator.Default.Request (p.DefaultVersionPath, 0, 256, 256);
 		}
