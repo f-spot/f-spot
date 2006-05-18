@@ -404,6 +404,9 @@ public class IconView : Gtk.Layout {
 
 		private void Add (int num, bool notify)
 		{
+			if (num == -1)
+				return;
+		       
 			if (this.Contains (num))
 			    return;
 			
