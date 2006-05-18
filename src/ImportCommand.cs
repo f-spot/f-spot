@@ -319,6 +319,8 @@ public class ImportCommand : FSpot.GladeDialog {
 	ImportBackend importer;
 	IconView tray;
 
+	FSpot.Delay idle_start; 
+
 	string loading_string;
 
 	string import_path;
@@ -371,6 +373,7 @@ public class ImportCommand : FSpot.GladeDialog {
 	{
 		main_window = mw;
 		step = new FSpot.Delay (10, new GLib.IdleHandler (Step));
+		idle_start = new FSpot.Delay (new IdleHandler (Start));
 		loading_string = Catalog.GetString ("Loading {0} of {1}");
 	}
 
@@ -424,11 +427,11 @@ public class ImportCommand : FSpot.GladeDialog {
 			collection.Add (photo);
 		
 			//grid.AddThumbnail (thumbnail);
-			if (count < total)
-				UpdateProgressBar (count + 1, total);
 
 			thumbnail.Dispose ();
 		}
+		if (count < total)
+			UpdateProgressBar (count + 1, total);
 
 		if (ongoing && total > 0)
 			return true;
@@ -543,13 +546,12 @@ public class ImportCommand : FSpot.GladeDialog {
 		//tag_label.Text = t.Name;
 	}
 
-
 	private void HandleRecurseToggled (object sender, System.EventArgs args)
 	{
 		this.Cancel ();
 		this.Dialog.Sensitive = false;
 	       
-		Idle.Add (new IdleHandler (Start));
+		idle_start.Start ();
 	}
 
 	public int ImportFromFile (PhotoStore store, string path)
@@ -615,6 +617,7 @@ public class ImportCommand : FSpot.GladeDialog {
 				SetImportPath (path);
 				source_option_menu.SetHistory (0);
 			} 
+			idle_start.Start ();
 		}
 						
 		ResponseType response = (ResponseType) this.Dialog.Run ();
@@ -683,6 +686,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		if (new_tag != null) {
 			CreateTagMenu ();
 			tag_option_menu.SetHistory ((uint) (tag_option_menu.Menu as TagMenu).GetPosition (new_tag));
+			tag_selected = new_tag;
 		}
 	}
 
@@ -713,6 +717,9 @@ public class ImportCommand : FSpot.GladeDialog {
 
 		string [] pathimport =  {ImportPath};
 		//this.Dialog.Destroy();
+		
+		if (copy_check != null)
+			copy = copy_check.Active;
 		
 		bool recurse = true;
 		if (recurse_check != null)

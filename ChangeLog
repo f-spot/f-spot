@@ -1,5 +1,8 @@
 2006-05-17  Larry Ewing  <lewing@novell.com>
 
+	* src/ImportCommand.cs: start the import immediately if the
+	path is given.
+
 	* src/FileImportBackend.cs: don't use the directories stack when
 	it doens't apply.
 
