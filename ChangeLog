@@ -1,5 +1,9 @@
 2006-05-17  Larry Ewing  <lewing@novell.com>
 
+	* src/Util.cs: Add a method for url escaping.
+
+	* src/MainWindow.cs: use the new url escaping.
+
 	* src/ImportCommand.cs: start the import immediately if the
 	path is given.
 

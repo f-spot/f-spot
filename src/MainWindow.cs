@@ -1421,7 +1421,7 @@ public class MainWindow {
 		StringBuilder url = new StringBuilder ("mailto:?subject=my%20photos");
 
 		foreach (Photo p in SelectedPhotos ()) {
-			url.Append ("&attach=" + HttpUtility.UrlEncode(p.DefaultVersionPath));
+			url.Append ("&attach=" + UriList.EscapeString (p.DefaultVersionPath, true, true, true));
 		}
 		GnomeUtil.UrlShow (main_window, url.ToString ());
 	}
