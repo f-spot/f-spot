@@ -375,7 +375,8 @@ public class PhotoView : EventBox {
 			PhotoChanged (this);
 	}
 
-	private void HandleColorButtonClicked (object sender, EventArgs args) {
+	private void HandleColorButtonClicked (object sender, EventArgs args) 
+	{
 		new FSpot.ColorDialog (photo_view);
 	}	
 
