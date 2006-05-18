@@ -1,5 +1,8 @@
 2006-05-17  Larry Ewing  <lewing@novell.com>
 
+	* src/GalleryRemote.cs: add the ability to edit and remove
+	galleries.  Fix error handling and other general cleanups.
+
 	* src/IconView.cs: handle keypresses when no items exist.
 
 	* src/Util.cs: Add a method for url escaping.
