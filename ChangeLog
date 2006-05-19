@@ -1,5 +1,7 @@
 2006-05-19  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoView.cs: trap any errors while trying to edit an image.
+
 	* src/Util.cs: new method for safely encoding path urls.
 
 	* src/MainWindow.cs: handle errors when writing out metadata,
