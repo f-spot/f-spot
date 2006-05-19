@@ -1,3 +1,18 @@
+2006-05-19  Larry Ewing  <lewing@novell.com>
+
+	* src/Preferences.cs: Add key for gnome-screensaver mode.
+
+	* src/PrefercenceDialog.ce: set the gnome-screensaver mode as
+	well.
+
+2006-05-17  Larry Ewing  <lewing@novell.com>
+
+	* src/IconView.cs: handle keypresses when no items exist.
+
+2006-05-16  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: trap exceptions when syncing metadata.
+
 2006-05-14  Larry Ewing  <lewing@novell.com>
 
 	* src/FileImportBackend.cs: fix a bug in the directory cleanup
