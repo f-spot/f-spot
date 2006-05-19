@@ -1,5 +1,8 @@
 2006-05-19  Larry Ewing  <lewing@novell.com>
 
+	* src/CDExport.cs: Handle errors while uploading more gracefully
+	and avoid threading problems.
+
 	* src/Preferences.cs: Add key for gnome-screensaver mode.
 
 	* src/PrefercenceDialog.ce: set the gnome-screensaver mode as

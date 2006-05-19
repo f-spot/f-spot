@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using Mono.Unix;
 
 namespace FSpot {
 	public class CDExport : GladeDialog {
@@ -45,7 +46,6 @@ namespace FSpot {
 
 		public void Transfer () {
 			try {
-				Dialog.Destroy ();
 				Gnome.Vfs.Result result = Gnome.Vfs.Result.Ok;
 
 				foreach (IBrowsableItem photo in selection.Items) {
@@ -54,9 +54,9 @@ namespace FSpot {
 					target = target.AppendFileName (source.ExtractShortName ());
 					Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
 					
-					progress_dialog.Message = System.String.Format (Mono.Posix.Catalog.GetString ("Transferring picture \"{0}\" To CD"), photo.Name);
+					progress_dialog.Message = System.String.Format (Catalog.GetString ("Transferring picture \"{0}\" To CD"), photo.Name);
 					progress_dialog.Fraction = photo_index / (double) selection.Count;
-					progress_dialog.ProgressText = System.String.Format (Mono.Posix.Catalog.GetString ("{0} of {1}"), 
+					progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"), 
 											     photo_index, selection.Count);
 					result = Gnome.Vfs.Xfer.XferUri (source, target, 
 									 Gnome.Vfs.XferOptions.Default, 
@@ -67,22 +67,31 @@ namespace FSpot {
 					photo_index++;
 				}
 
+				// FIXME the error dialog here is ugly and needs improvement when strings are not frozen.
 				if (result == Gnome.Vfs.Result.Ok) {
-					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Done Sending Photos");
+					progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
 					progress_dialog.Fraction = 1.0;
-					progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Transfer Complete");
+					progress_dialog.ProgressText = Catalog.GetString ("Transfer Complete");
 					progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 					progress_dialog.Hide ();
 					system ("nautilus-cd-burner");
 				} else {
-					progress_dialog.ProgressText = result.ToString ();
-					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Error While Transferring");
+					throw new System.Exception (System.String.Format ("{0}\n{1}\n{2}", 
+											  progress_dialog.Message,
+											  Catalog.GetString ("Error While Transferring"), 
+											  result.ToString ()));
 				}
 
 			} catch (System.Exception e) {
 				progress_dialog.Message = e.ToString ();
-				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error Transferring");
+				progress_dialog.ProgressText = Catalog.GetString ("Error Transferring");
+				return;
 			}
+			Gtk.Application.Invoke (this.Destroy);
+		}
+		
+		private void Destroy (object sender, System.EventArgs args)
+		{
 			progress_dialog.Destroy ();
 		}
 	     
@@ -96,10 +105,10 @@ namespace FSpot {
 			
 			switch (info.Status) {
 			case Gnome.Vfs.XferProgressStatus.Vfserror:
-				progress_dialog.Message = Mono.Posix.Catalog.GetString ("Error: Error while transferring; Aborting");
+				progress_dialog.Message = Catalog.GetString ("Error: Error while transferring; Aborting");
 				return (int)Gnome.Vfs.XferErrorAction.Abort;
 			case Gnome.Vfs.XferProgressStatus.Overwrite:
-				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error: File Already Exists; Aborting");
+				progress_dialog.ProgressText = Catalog.GetString ("Error: File Already Exists; Aborting");
 				return (int)Gnome.Vfs.XferOverwriteAction.Abort;
 			default:
 				return 1;
@@ -134,9 +143,10 @@ namespace FSpot {
 			}
 
 			clean = remove_check.Active;
+			Dialog.Destroy ();
 
 			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Transfer));
-			command_thread.Name = Mono.Posix.Catalog.GetString ("Transferring Pictures");
+			command_thread.Name = Catalog.GetString ("Transferring Pictures");
 
 			progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Count);
 			progress_dialog.Start ();
