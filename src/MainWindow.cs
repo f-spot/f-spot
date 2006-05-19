@@ -485,7 +485,7 @@ public class MainWindow {
 	public int [] SelectedIds () {
 		int [] ids = new int [0];
 
-		if (fsview != null)
+		if (fsview != null && fsview.View.Item.IsValid)
 			ids = new int [] { fsview.View.Item.Index };
 		else {
 			switch (view_mode) {
