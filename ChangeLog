@@ -1,5 +1,10 @@
 2006-05-19  Larry Ewing  <lewing@novell.com>
 
+	* src/Util.cs: new method for safely encoding path urls.
+
+	* src/MainWindow.cs: handle errors when writing out metadata,
+	encode mailto: urls with the proper encoding routine.
+
 	* src/CDExport.cs: Handle errors while uploading more gracefully
 	and avoid threading problems.
 
