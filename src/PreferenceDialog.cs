@@ -32,6 +32,7 @@ namespace FSpot {
 		private static PreferenceDialog prefs = null;
 		int screensaver_tag;
 		private const string SaverCommand = "f-spot-screensaver";
+		private const string SaverMode = "single";
 
 		public PreferenceDialog () : base ("main_preferences")
 		{
@@ -95,6 +96,7 @@ namespace FSpot {
 
 		private void HandleUseFSpot (object sender, EventArgs args)
 		{
+			Preferences.Set (Preferences.GNOME_SCREENSAVER_MODE, SaverMode);
 			Preferences.Set (Preferences.GNOME_SCREENSAVER_THEME, new string [] { SaverCommand });
 		}
 
@@ -127,13 +129,14 @@ namespace FSpot {
 				}
 				break;
 			case Preferences.GNOME_SCREENSAVER_THEME:
-				if (val == null) {
-					set_saver_button.Sensitive = false;
-					return;
-				}
+			case Preferences.GNOME_SCREENSAVER_MODE:
+				string [] theme = (string []) Preferences.Get (Preferences.GNOME_SCREENSAVER_THEME);
+				string mode = (string) Preferences.Get (Preferences.GNOME_SCREENSAVER_MODE);
+				
+				bool sensitive = mode != SaverMode;
+				sensitive |= (theme == null || theme.Length != 1 || theme [0] != SaverCommand);
 
-				string [] names = (string []) val;
-				set_saver_button.Sensitive = (names.Length != 1 || names [0] != SaverCommand);
+				set_saver_button.Sensitive = sensitive;
 				break;
 			}
 		}
