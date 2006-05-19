@@ -1,5 +1,8 @@
 2006-05-19  Larry Ewing  <lewing@novell.com>
 
+	* src/ColorDialog.cs: trap any errors while loading the image for
+	adjustment.
+
 	* src/CDExport.cs: Handle errors while uploading more gracefully
 	and avoid threading problems.
 

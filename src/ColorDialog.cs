@@ -345,32 +345,36 @@ namespace FSpot {
 				return;
 			}
 			
-			FSpot.ImageFile img = FSpot.ImageFile.Create (((Photo)view.Item.Current).DefaultVersionPath);
-			
-			image_profile = img.GetProfile ();
-			
-			// FIXME fall back to rgb for now
-			if (image_profile == null)
-				image_profile = Cms.Profile.CreateStandardRgb ();
-			
-			AdjustedPixbuf = img.Load (256, 256);
-			ScaledPixbuf = AdjustedPixbuf.Copy ();			
-
-#if false
-			Cms.Profile srgb = Cms.Profile.CreateSRgb ();
-			Cms.Profile lab = Cms.Profile.CreateLab ();
-			Cms.Profile [] list = new Cms.Profile [] { srgb, lab };
-			
-			Cms.Transform t = new Cms.Transform (list, 
-							     PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
-							     PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
-							     Cms.Intent.Perceptual, 0x0000);
-			
-			PixbufUtils.ColorAdjust (AdjustedPixbuf,
-						 ScaledPixbuf,
-						 t);
-#endif
-			RangeChanged (null, null);
+			try {
+				FSpot.ImageFile img = FSpot.ImageFile.Create (((Photo)view.Item.Current).DefaultVersionPath);
+				
+				image_profile = img.GetProfile ();
+				
+				// FIXME fall back to rgb for now
+				if (image_profile == null)
+					image_profile = Cms.Profile.CreateStandardRgb ();
+				
+				AdjustedPixbuf = img.Load (256, 256);
+				ScaledPixbuf = AdjustedPixbuf.Copy ();			
+				
+				#if false
+				Cms.Profile srgb = Cms.Profile.CreateSRgb ();
+				Cms.Profile lab = Cms.Profile.CreateLab ();
+				Cms.Profile [] list = new Cms.Profile [] { srgb, lab };
+				
+				Cms.Transform t = new Cms.Transform (list, 
+								     PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
+								     PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
+								     Cms.Intent.Perceptual, 0x0000);
+				
+				PixbufUtils.ColorAdjust (AdjustedPixbuf,
+							 ScaledPixbuf,
+							 t);
+				#endif
+				RangeChanged (null, null);
+			} catch (System.Exception e) {
+				image_profile = null;
+			}
 		}
 
 		private const double e = 0.0;
