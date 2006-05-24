@@ -319,6 +319,8 @@ public class ImportCommand : FSpot.GladeDialog {
 	ImportBackend importer;
 	IconView tray;
 
+	FSpot.Delay idle_start; 
+
 	string loading_string;
 
 	string import_path;
@@ -363,7 +365,7 @@ public class ImportCommand : FSpot.GladeDialog {
 				MainWindow.Toplevel.ImportCamera (port);
 			}
 
-			Start ();
+			idle_start.Start ();
 		}
 	}
 
@@ -371,6 +373,7 @@ public class ImportCommand : FSpot.GladeDialog {
 	{
 		main_window = mw;
 		step = new FSpot.Delay (10, new GLib.IdleHandler (Step));
+		idle_start = new FSpot.Delay (new IdleHandler (Start));
 		loading_string = Catalog.GetString ("Loading {0} of {1}");
 	}
 
@@ -543,13 +546,12 @@ public class ImportCommand : FSpot.GladeDialog {
 		//tag_label.Text = t.Name;
 	}
 
-
 	private void HandleRecurseToggled (object sender, System.EventArgs args)
 	{
 		this.Cancel ();
 		this.Dialog.Sensitive = false;
 	       
-		Idle.Add (new IdleHandler (Start));
+		idle_start.Start ();
 	}
 
 	public int ImportFromFile (PhotoStore store, string path)
@@ -615,13 +617,19 @@ public class ImportCommand : FSpot.GladeDialog {
 				SetImportPath (path);
 				source_option_menu.SetHistory (0);
 			} 
+			idle_start.Start ();
 		}
 						
 		ResponseType response = (ResponseType) this.Dialog.Run ();
 		
 		while (response == ResponseType.Ok) {
-			if (Directory.Exists (this.ImportPath))
+			try {
+				if (Directory.Exists (this.ImportPath))
+					break;
+			} catch (System.Exception e){
+				System.Console.WriteLine (e);
 				break;
+			}
 
 			HigMessageDialog md = new HigMessageDialog (this.Dialog,
 			        DialogFlags.DestroyWithParent,
@@ -683,11 +691,14 @@ public class ImportCommand : FSpot.GladeDialog {
 		if (new_tag != null) {
 			CreateTagMenu ();
 			tag_option_menu.SetHistory ((uint) (tag_option_menu.Menu as TagMenu).GetPosition (new_tag));
+			tag_selected = new_tag;
 		}
 	}
 
 	public void Cancel ()
 	{
+		idle_start.Stop ();
+		step.Stop ();
 		if (importer != null) {
 			importer.Cancel ();
 			importer = null;

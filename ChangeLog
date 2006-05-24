@@ -1,5 +1,8 @@
 2006-05-24  Larry Ewing  <lewing@novell.com>
 
+	* src/ImportCommand.cs: fix cancelation in the import process
+	fixes all sorts of problems.
+
 	* src/ColorDialog.cs: handle errors while adjusting colors with a
 	little bit of grace.
 
