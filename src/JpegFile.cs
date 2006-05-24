@@ -57,7 +57,7 @@ namespace FSpot {
 			get {
 #if USE_TIFF
 				try {
-					DirectoryEntry e = ExifHeader.Directory.Lookup (TagId.Orientation);
+					DirectoryEntry e = ExifHeader.Directory.Lookup (TagId.UserComment);
 					return e.ValueAsString [0];
 				} catch (System.Exception e) {
 					Console.WriteLine (e);

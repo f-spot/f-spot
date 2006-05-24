@@ -4,6 +4,8 @@
 
 2006-05-24  Larry Ewing  <lewing@novell.com>
 
+	* src/JpegFile.cs: fix silly cut & paste error in Description code.
+
 	* src/MainWindow.cs: add method to get the proper toplevel window.
 
 	* src/PhotoPopup.cs: keep track of the creator widget.
