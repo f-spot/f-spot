@@ -1,3 +1,10 @@
+2006-05-24  Larry Ewing  <lewing@novell.com>
+
+	* src/ColorDialog.cs: handle errors while adjusting colors with a
+	little bit of grace.
+
+	* src/f-spot.glade: rename the vbox now that we are using it.
+
 2006-05-23  Larry Ewing  <lewing@novell.com>
 
 	* src/InfoDisplay.cs: catch exceptions in the info display dialog.
