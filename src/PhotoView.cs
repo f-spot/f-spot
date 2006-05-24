@@ -231,14 +231,14 @@ public class PhotoView : EventBox {
 		if (args.Event.Type == EventType.ButtonPress
 		    && args.Event.Button == 3) {
 			PhotoPopup popup = new PhotoPopup ();
-			popup.Activate (args.Event);
+			popup.Activate (this.Toplevel, args.Event);
 		}
 	}
 
 	protected override bool OnPopupMenu ()
 	{
 		PhotoPopup popup = new PhotoPopup ();
-		popup.Activate ();
+		popup.Activate (this.Toplevel);
 		return true;
 	}
 

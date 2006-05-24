@@ -679,9 +679,9 @@ public class MainWindow {
 	// Commands
 	//
 
-	private void RotateSelectedPictures (RotateDirection direction)
+	private void RotateSelectedPictures (Gtk.Window parent, RotateDirection direction)
 	{
-		RotateCommand command = new RotateCommand (main_window);
+		RotateCommand command = new RotateCommand (parent);
 		
 		int [] selected_ids = SelectedIds ();
 		if (command.Execute (direction, SelectedPhotos (selected_ids))) {
@@ -2066,6 +2066,21 @@ public class MainWindow {
 			main_window, DialogFlags.DestroyWithParent, MessageType.Error,
 			error, msg, ok_caption);
 	}
+
+	public Gtk.Window GetToplevel (object sender)
+	{
+		Widget wsender = sender as Widget;
+		Gtk.Window toplevel = null;
+
+		if (wsender != null)
+			toplevel = (Gtk.Window) wsender.Toplevel;
+		else if (fsview != null)
+			toplevel = fsview;
+		else 
+			toplevel = main_window;
+
+		return toplevel;
+	}
 	
 	public void HandleDeleteCommand (object sender, EventArgs args)
 	{
@@ -2078,7 +2093,13 @@ public class MainWindow {
 								 "This deletes all versions of the selected photos from your drive.", 
 								 photos.Length);
 		string ok_caption = Mono.Posix.Catalog.GetPluralString ("_Delete photo", "_Delete photos", photos.Length);
-		if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(main_window, DialogFlags.DestroyWithParent, MessageType.Warning, header, msg, ok_caption)) {                              
+		
+
+
+		if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(GetToplevel (sender), 
+									   DialogFlags.DestroyWithParent, 
+									   MessageType.Warning, 
+									   header, msg, ok_caption)) {                              
 			
 			foreach (Photo photo in photos) {
 				foreach (uint id in photo.VersionIds) {
@@ -2106,7 +2127,7 @@ public class MainWindow {
 		header = String.Format (header, photos.Length);
 		string msg = Mono.Posix.Catalog.GetString("If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again.");
 		string ok_caption = Mono.Posix.Catalog.GetString("_Remove from Catalog");
-		if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(main_window, DialogFlags.DestroyWithParent, 
+		if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(GetToplevel (sender), DialogFlags.DestroyWithParent, 
 									   MessageType.Warning, header, msg, ok_caption)) {                              
 			db.Photos.Remove (photos);
 			UpdateQuery ();
@@ -2209,12 +2230,12 @@ public class MainWindow {
 
 	public void HandleRotate90Command (object sender, EventArgs args)
 	{
-		RotateSelectedPictures (RotateDirection.Clockwise);
+		RotateSelectedPictures (GetToplevel (sender), RotateDirection.Clockwise);
 	}
 
 	public void HandleRotate270Command (object sender, EventArgs args)
 	{
-		RotateSelectedPictures (RotateDirection.Counterclockwise);
+		RotateSelectedPictures (GetToplevel (sender), RotateDirection.Counterclockwise);
 	}
 
 	public void HandleCopyLocation (object sender, EventArgs args)

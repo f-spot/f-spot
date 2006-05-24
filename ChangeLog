@@ -1,5 +1,15 @@
 2006-05-24  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: add method to get the proper toplevel window.
+
+	* src/PhotoPopup.cs: keep track of the creator widget.
+
+	* src/PhotoView.cs: pass the toplevel.
+
+	* src/FullScreenView.cs: pass the toplevel.
+
+	* src/QueryView.cs: pass the toplevel.
+
 	* src/ImportCommand.cs: fix cancelation in the import process
 	fixes all sorts of problems.
 

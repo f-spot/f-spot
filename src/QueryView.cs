@@ -62,7 +62,7 @@ public class QueryView : IconView {
 	protected override void ContextMenu (Gtk.ButtonPressEventArgs args, int cell_num)
 	{
 		PhotoPopup popup = new PhotoPopup ();
-		popup.Activate (args.Event);
+		popup.Activate (this.Toplevel, args.Event);
 	}
 }
 
