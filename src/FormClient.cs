@@ -115,11 +115,13 @@ class FormClient {
 					     + "{1}\r\n",
 					     MultipartHeader (name, value), value);
 		} else {
+			name = HttpUtility.UrlEncode (name.Replace(" ", "+"));
+			value = HttpUtility.UrlEncode (value.Replace(" ", "+"));
 			if (first_item) {
-				cmd = string.Format ("{0}={1}", name, HttpUtility.UrlEncode (value));
+				cmd = string.Format ("{0}={1}", name, value);
 				first_item = false;
 			} else {
-				cmd = string.Format ("&{0}={1}", name, HttpUtility.UrlEncode (value));
+				cmd = string.Format ("&{0}={1}", name, value);
 			}
 		}
 		//Console.WriteLine (cmd);
@@ -207,6 +209,8 @@ class FormClient {
 			Request.PreAuthenticate = true;
 			Request.Credentials = credcache;	
 		}
+
+		//System.Net.ServicePointManager.Expect100Continue = false;
 
 		Request.CookieContainer = new CookieContainer ();
 		foreach (Cookie c in cookie_collection) {
