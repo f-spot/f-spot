@@ -1,3 +1,9 @@
+2006-05-26  Larry Ewing  <lewing@novell.com>
+
+	* src/ColorDialog.cs: handle errors more gracefully.
+
+	* src/f-spot.glade: rename widget for color dialog.
+
 2006-05-19  Larry Ewing  <lewing@novell.com>
 
 	* src/MainWindow.cs: make sure the fsview image is valid before

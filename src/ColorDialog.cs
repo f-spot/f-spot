@@ -137,6 +137,9 @@ namespace FSpot {
 
 		[Glade.Widget] private Gtk.CheckButton white_check;
 		[Glade.Widget] private Gtk.CheckButton exposure_check;
+
+		[Glade.Widget] Gtk.Button ok_button;
+		[Glade.Widget] Gtk.VBox   control_vbox;
 		
 		private FSpot.PhotoImageView view;
 
@@ -157,6 +160,9 @@ namespace FSpot {
 			if (brightness_scale == null)
 				return;
 			
+			if (AdjustedPixbuf == null)
+				return;
+
 			Cms.Profile display_profile = Cms.Profile.GetScreenProfile (view.Screen);
 			Cms.Profile [] list;
 			
@@ -268,33 +274,34 @@ namespace FSpot {
 				return;
 
 			Console.WriteLine ("Saving....");
-			Photo photo = (Photo)view.Item.Current;
-			bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
-			
-			Gdk.Pixbuf orig = view.CompletePixbuf ();
-			Gdk.Pixbuf final = new Gdk.Pixbuf (Gdk.Colorspace.Rgb,
-							   false, 8,
-							   orig.Width, 
-							   orig.Height);
-				
-			Cms.Profile abs = AdjustmentProfile ();
-			
-			// FIXME this shouldn't use the screen as the destination profile.
-			Cms.Profile destination = Cms.Profile.GetScreenProfile (view.Screen);
-			if (destination == null)
-				destination = Cms.Profile.CreateStandardRgb ();
 
-			Cms.Profile [] list = new Cms.Profile [] { image_profile, abs, destination };
-			Cms.Transform transform = new Cms.Transform (list,
-								     PixbufUtils.PixbufCmsFormat (orig),
-								     PixbufUtils.PixbufCmsFormat (final),
-								     Cms.Intent.Perceptual, 0x0000);
-			
-			PixbufUtils.ColorAdjust (orig,
-						 final,
-						 transform);
-			
+			Photo photo = (Photo)view.Item.Current;
 			try {
+				bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
+				
+				Gdk.Pixbuf orig = view.CompletePixbuf ();
+				Gdk.Pixbuf final = new Gdk.Pixbuf (Gdk.Colorspace.Rgb,
+								   false, 8,
+								   orig.Width, 
+								   orig.Height);
+				
+				Cms.Profile abs = AdjustmentProfile ();
+				
+				// FIXME this shouldn't use the screen as the destination profile.
+				Cms.Profile destination = Cms.Profile.GetScreenProfile (view.Screen);
+				if (destination == null)
+					destination = Cms.Profile.CreateStandardRgb ();
+				
+				Cms.Profile [] list = new Cms.Profile [] { image_profile, abs, destination };
+				Cms.Transform transform = new Cms.Transform (list,
+									     PixbufUtils.PixbufCmsFormat (orig),
+									     PixbufUtils.PixbufCmsFormat (final),
+									     Cms.Intent.Perceptual, 0x0000);
+				
+				PixbufUtils.ColorAdjust (orig,
+							 final,
+							 transform);
+				
 				photo.SaveVersion (final, create_version);
 				((PhotoQuery)view.Query).Commit (view.Item.Index);
 			} catch (System.Exception e) {
@@ -340,39 +347,39 @@ namespace FSpot {
 
 		private void HandlePhotoChanged (PhotoImageView view)
 		{
-			if (!view.Item.IsValid) {
-				image_profile = null;
-				return;
-			}
-			
 			try {
+				if (!view.Item.IsValid)
+					throw new Exception ("Invalid Image");
+			
 				FSpot.ImageFile img = FSpot.ImageFile.Create (((Photo)view.Item.Current).DefaultVersionPath);
-				
-				image_profile = img.GetProfile ();
-				
+
+				try {
+					image_profile = img.GetProfile ();
+				} catch (System.Exception e) {
+					image_profile = null;
+					System.Console.WriteLine (e);
+				}
+
 				// FIXME fall back to rgb for now
 				if (image_profile == null)
 					image_profile = Cms.Profile.CreateStandardRgb ();
 				
 				AdjustedPixbuf = img.Load (256, 256);
 				ScaledPixbuf = AdjustedPixbuf.Copy ();			
-				
-				#if false
-				Cms.Profile srgb = Cms.Profile.CreateSRgb ();
-				Cms.Profile lab = Cms.Profile.CreateLab ();
-				Cms.Profile [] list = new Cms.Profile [] { srgb, lab };
-				
-				Cms.Transform t = new Cms.Transform (list, 
-								     PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
-								     PixbufUtils.PixbufCmsFormat (AdjustedPixbuf),
-								     Cms.Intent.Perceptual, 0x0000);
-				
-				PixbufUtils.ColorAdjust (AdjustedPixbuf,
-							 ScaledPixbuf,
-							 t);
-				#endif
+
+				// FIXME handle alpha
+				if (AdjustedPixbuf.HasAlpha)
+					throw new Exception ("Unsupported Alpha Channel");
+
+				control_vbox.Sensitive = true;
+				ok_button.Sensitive = true;
+
 				RangeChanged (null, null);
 			} catch (System.Exception e) {
+				control_vbox.Sensitive = false;
+				ok_button.Sensitive = false;
+				AdjustedPixbuf = null;
+				ScaledPixbuf = null;
 				image_profile = null;
 			}
 		}
