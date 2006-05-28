@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot 0.0.12\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-27 10:19+0200\n"
-"PO-Revision-Date: 2006-05-27 19:39+0800\n"
+"POT-Creation-Date: 2006-05-28 02:15+0200\n"
+"PO-Revision-Date: 2006-05-28 15:35+0800\n"
 "Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr "组织、欣赏及共享您的照片"
 
 #: ../f-spot.desktop.in.in.h:3
 msgid "Photo Manager"
-msgstr "照片管理"
+msgstr "照片管理器"
 
 #: ../f-spot-view.desktop.in.h:1 ../src/f-spot.glade.h:94
 msgid "F-Spot Photo Viewer"
@@ -130,11 +130,11 @@ msgstr "检查类型"
 
 #: ../libeog/image-view.c:2124
 msgid "the type of chequering to use"
-msgstr ""
+msgstr "要使用的格子类型"
 
 #: ../libeog/image-view.c:2131
 msgid "the size of chequers to use"
-msgstr ""
+msgstr "要使用的格子大小"
 
 #: ../libeog/image-view.c:2137
 msgid "dither"
@@ -303,8 +303,8 @@ msgid ""
 "the tag to some photos or selecting a different tag in the\n"
 "F-Spot preference dialog."
 msgstr ""
-"标记“{0}”未应用于任何照片。请试着将此标记添加到一些照片"
-"上，或者在 F-Spot 首选项对话框中选择不同的标记。"
+"标记“{0}”未应用于任何照片。请试着将此标记添加到一些照片上，或者在 F-Spot 首选"
+"项对话框中选择不同的标记。"
 
 #: ../src/Core.cs:183
 msgid "Search returned no results"
@@ -315,7 +315,8 @@ msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
 "dialog."
-msgstr "F-Spot 正在查找的标记不存在。请试着在 F-Spot 首选项对话框中选择不同的标记。"
+msgstr ""
+"F-Spot 正在查找的标记不存在。请试着在 F-Spot 首选项对话框中选择不同的标记。"
 
 #: ../src/ExceptionDialog.cs:24
 msgid "F-Spot Encountered a Fatal Error"
@@ -325,7 +326,9 @@ msgstr "F-Spot 遇到了严重错误"
 msgid ""
 "This may be due to a programming error. Please help us make F-Spot better by "
 "reporting this error. Thank you in advance!"
-msgstr "这可能是编程错误。如果您报告此错误的话，将有助于我们改进 F-Spot 的质量。先谢谢了！"
+msgstr ""
+"这可能是编程错误。如果您报告此错误的话，将有助于我们改进 F-Spot 的质量。先谢"
+"谢了！"
 
 #: ../src/ExceptionDialog.cs:99
 msgid "An unhandled exception was thrown: "
@@ -363,7 +366,9 @@ msgstr "身份验证"
 msgid ""
 "Return to this window after you have finished the authorization process on "
 "Flickr.com and click the \"Complete Authorization\" button below"
-msgstr "当您完成了在 Flickr.com 上的身份验证过程后，请返回到此窗口，然后单击下面的“完成验证”按钮"
+msgstr ""
+"当您完成了在 Flickr.com 上的身份验证过程后，请返回到此窗口，然后单击下面的“完"
+"成验证”按钮"
 
 #: ../src/FlickrExport.cs:69
 msgid "Complete Authorization"
@@ -422,7 +427,9 @@ msgstr "无法登录。"
 msgid ""
 "F-Spot was unable to log on to Flickr.  Make sure you have given the "
 "authentication using Flickr web browser interface."
-msgstr "F-Spot 无法登录到 Flickr。请确定您使用了 Flickr 的 Web 浏览器界面给出了正确的身份验证信息。"
+msgstr ""
+"F-Spot 无法登录到 Flickr。请确定您使用了 Flickr 的 Web 浏览器界面给出了正确的"
+"身份验证信息。"
 
 #: ../src/FlickrExport.cs:336 ../src/GalleryExport.cs:582
 msgid "Uploading Pictures"
@@ -610,12 +617,14 @@ msgid ""
 "<small><i>Enable this option to store tags and descriptions inside \n"
 "supported image formats.</i></small>"
 msgstr ""
+"<small><i>启用此选项可在支持的图像格式中存储标记和描述。</i></small>"
 
 #: ../src/f-spot.glade.h:41
 msgid ""
 "<small><i>Select the tag you like F-Spot to display images from while acting "
 "as the screensaver</i></small>"
 msgstr ""
+"<small><i>选择您想要 F-Spot 在屏幕保护程序中显示的图像</i></small>"
 
 #: ../src/f-spot.glade.h:42
 msgid "<small>C_ontrast:</small>"
@@ -634,19 +643,16 @@ msgid "<small>_Exposure:</small>"
 msgstr "<small>曝光(_E)：</small>"
 
 #: ../src/f-spot.glade.h:46
-#, fuzzy
 msgid "<small>_Hue:</small>"
-msgstr "<small></small>"
+msgstr "<small>色调(_H)：</small>"
 
 #: ../src/f-spot.glade.h:47
-#, fuzzy
 msgid "<small>_Saturation:</small>"
-msgstr "<small></small>"
+msgstr "<small>饱和度(_S)：</small>"
 
 #: ../src/f-spot.glade.h:48
-#, fuzzy
 msgid "<small>_Tint:</small>"
-msgstr "<small></small>"
+msgstr "<small>色度(_T)：</small>"
 
 #: ../src/f-spot.glade.h:49
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
@@ -830,6 +836,8 @@ msgid ""
 "account. Press the \"Authorize\" button to open a web browser and give F-"
 "Spot the authorization. "
 msgstr ""
+"要将照片上传到您的 Flickr 账户中，F-Spot 需要您进行身份验证。请单击“身份"
+"验证”按钮打开 Web 浏览器，以便对 F-Spot 进行验证。"
 
 #: ../src/f-spot.glade.h:98
 msgid "Fin_d"
@@ -978,9 +986,8 @@ msgid "Print"
 msgstr "打印"
 
 #: ../src/f-spot.glade.h:139
-#, fuzzy
 msgid "Print crop _marks"
-msgstr "打印分组标记(_M)"
+msgstr "打印裁剪标记(_M)"
 
 #: ../src/f-spot.glade.h:140
 msgid "Private"
@@ -1059,7 +1066,7 @@ msgstr "设置为背景(_B)"
 #: ../src/f-spot.glade.h:159 ../src/TimeDialog.cs:124
 #, csharp-format
 msgid "Shift all photos by {0}"
-msgstr ""
+msgstr "所有照片平移 {0}"
 
 #: ../src/f-spot.glade.h:160
 msgid "Show or hide the side pane"
@@ -1075,18 +1082,21 @@ msgstr "侧边栏(_P)"
 
 #: ../src/f-spot.glade.h:163
 msgid "So_urce Temp"
-msgstr ""
+msgstr "源温度(_U)"
 
 #: ../src/f-spot.glade.h:164
 msgid "Space all photos by"
-msgstr ""
+msgstr "照片的间隔为"
 
 #: ../src/f-spot.glade.h:165
 msgid ""
 "Standard RGB\n"
 "Image Profile\n"
 "Custom\n"
-msgstr "标准 RGB\n图像配置文件\n自定义\n"
+msgstr ""
+"标准 RGB\n"
+"图像配置文件\n"
+"自定义\n"
 
 #: ../src/f-spot.glade.h:169
 msgid "Strip _metadata"
@@ -1194,7 +1204,7 @@ msgstr "描述(_D)："
 
 #: ../src/f-spot.glade.h:195
 msgid "_Destination Temp"
-msgstr ""
+msgstr "目标温度(_D)"
 
 #: ../src/f-spot.glade.h:196
 msgid "_Display:"
@@ -1409,7 +1419,7 @@ msgstr "img_000.jpg"
 #: ../src/f-spot.glade.h:248 ../src/TimeDialog.cs:119
 #, csharp-format
 msgid "min. Starting at {0}"
-msgstr ""
+msgstr "分钟，从 {0} 开始"
 
 #: ../src/f-spot.glade.h:249
 msgid "pixels"
@@ -1456,7 +1466,7 @@ msgstr "删除选中的图库吗？"
 msgid ""
 "Remove the selected gallery from the list of galleries. This operation will "
 "not affect the actual gallery."
-msgstr ""
+msgstr "从图库列表中删除选中的图库。此操作将不会影响实际的图库。"
 
 #: ../src/GalleryExport.cs:781
 msgid "_Remove gallery"
@@ -1569,21 +1579,20 @@ msgid "OSI Destination routing information"
 msgstr ""
 
 #: ../src/IptcFile.cs:143
-#, fuzzy
 msgid "IPTC file format"
-msgstr "不支持的文件格式。"
+msgstr "IPTC 文件格式"
 
 #: ../src/IptcFile.cs:145
 msgid "Identifies the provider and product"
-msgstr ""
+msgstr "标识提供者和产品"
 
 #: ../src/IptcFile.cs:147
 msgid "A unique number identifying the envelope"
-msgstr ""
+msgstr "标识信封的唯一编号"
 
 #: ../src/IptcFile.cs:149
 msgid "A unique number"
-msgstr ""
+msgstr "唯一编号"
 
 #: ../src/IptcFile.cs:151
 msgid ""
@@ -1601,7 +1610,7 @@ msgstr ""
 
 #: ../src/IptcFile.cs:157
 msgid "The character set designation"
-msgstr ""
+msgstr "字符集识别"
 
 #: ../src/IptcFile.cs:159
 msgid "External globally unique object identifier"
@@ -1621,11 +1630,11 @@ msgstr ""
 
 #: ../src/IptcFile.cs:171
 msgid "Object type reference"
-msgstr ""
+msgstr "对象类型引用"
 
 #: ../src/IptcFile.cs:176
 msgid "Object attribute reference"
-msgstr ""
+msgstr "对象属性引用"
 
 #: ../src/IptcFile.cs:182 ../src/IptcFile.cs:186
 msgid "Object name"
@@ -1641,7 +1650,7 @@ msgstr ""
 
 #: ../src/IptcFile.cs:192
 msgid "Copyright information for"
-msgstr ""
+msgstr "版权信息"
 
 #: ../src/IptcFile.cs:195
 msgid "Full name of the country of the focus of the content"
@@ -1658,7 +1667,7 @@ msgstr ""
 
 #: ../src/IptcFile.cs:204
 msgid "The title of the author or creator"
-msgstr ""
+msgstr "作者或创建者的头衔"
 
 #: ../src/IptcFile.cs:207
 msgid ""
@@ -1668,7 +1677,7 @@ msgstr ""
 
 #: ../src/IptcFile.cs:211
 msgid "Headline of the content"
-msgstr ""
+msgstr "目录头条"
 
 #: ../src/IptcFile.cs:214
 msgid ""
@@ -1680,18 +1689,16 @@ msgid "Intellectual genre of the object"
 msgstr ""
 
 #: ../src/IptcFile.cs:230
-#, fuzzy
 msgid "Unknown IIM DataSet"
-msgstr "未知目录"
+msgstr "未知的 IIM 数据集"
 
 #: ../src/Loupe.cs:52 ../src/MainWindow.cs:1824
 msgid "Error saving sharpened photo"
 msgstr "保存锐化后图像错误"
 
 #: ../src/Loupe.cs:81
-#, fuzzy
 msgid "Sharpen"
-msgstr "锐化(_S)..."
+msgstr "锐化"
 
 #: ../src/Loupe.cs:91 ../src/MainWindow.cs:1791
 msgid "Amount:"
@@ -1730,7 +1737,9 @@ msgstr "装入数据库出错。"
 msgid ""
 "F-Spot encountered an error while loading the photo database  the old "
 "database has be moved to {0} and a new database has been created."
-msgstr "在装入照片数据库时 F-Spot 遇到了错误。旧的数据库已经移动到了 {0}，并同时创建了新数据库。"
+msgstr ""
+"在装入照片数据库时 F-Spot 遇到了错误。旧的数据库已经移动到了 {0}，并同时创建"
+"了新数据库。"
 
 #: ../src/MainWindow.cs:1283
 msgid "No cameras detected."
@@ -1773,7 +1782,7 @@ msgstr[0] "合并{0}个选中的标记吗？"
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
-msgstr ""
+msgstr "此操作将把选中的标记与其子标记合并到单一的标记中。"
 
 #: ../src/MainWindow.cs:1729
 msgid "_Merge Tags"
@@ -1781,7 +1790,7 @@ msgstr "合并标记(_M)"
 
 #: ../src/MainWindow.cs:1782
 msgid "Unsharp Mask"
-msgstr ""
+msgstr "晕光蒙片"
 
 #: ../src/MainWindow.cs:2052
 msgid "_Ok"
@@ -1796,14 +1805,18 @@ msgstr "删除图片出错"
 msgid ""
 "No permission to delete the file:\n"
 "{0}"
-msgstr "没有权限删除文件：\n{0}"
+msgstr ""
+"没有权限删除文件：\n"
+"{0}"
 
 #: ../src/MainWindow.cs:2062
 #, csharp-format
 msgid ""
 "An error of type {0} occurred while deleting the file:\n"
 "{1}"
-msgstr "删除文件时遇到了{0}类型的错误：\n{1}"
+msgstr ""
+"删除文件时遇到了{0}类型的错误：\n"
+"{1}"
 
 #: ../src/MainWindow.cs:2088
 #, csharp-format
@@ -1875,12 +1888,12 @@ msgstr "无法删除包含子标记的标记。请先删除“{0}”下的子标
 #: ../src/MainWindow.cs:2516
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
-msgstr[0] ""
+msgstr[0] "逆时针旋转选中的照片"
 
 #: ../src/MainWindow.cs:2529
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
-msgstr[0] ""
+msgstr[0] "顺时针旋转选中的照片"
 
 #: ../src/MainWindow.cs:2543
 msgid "Create New Version?"
@@ -1895,7 +1908,7 @@ msgid ""
 msgid_plural ""
 "Before launching {1}, should F-Spot create new versions of the selected "
 "photos to preserve the originals?"
-msgstr[0] ""
+msgstr[0] "在调用 {1} 之前，F-Spot 是否应创建选中照片的新版本，以便保留原始照片？"
 
 #: ../src/MetadataStore.cs:17
 msgid "Creator"
@@ -1919,7 +1932,7 @@ msgstr "压缩比"
 
 #: ../src/MetadataStore.cs:23
 msgid "Planar Configuration"
-msgstr ""
+msgstr "平面配置"
 
 #: ../src/MetadataStore.cs:25
 msgid "Orientation"
@@ -1927,7 +1940,7 @@ msgstr "方向"
 
 #: ../src/MetadataStore.cs:27
 msgid "Photometric Interpretation"
-msgstr ""
+msgstr "光度解释"
 
 #: ../src/MetadataStore.cs:29
 msgid "Resolution Unit"
@@ -1939,7 +1952,7 @@ msgstr "曝光程序"
 
 #: ../src/MetadataStore.cs:33
 msgid "Metering Mode"
-msgstr ""
+msgstr "测光模式"
 
 #: ../src/MetadataStore.cs:35
 msgid "Exposure Mode"
@@ -1959,7 +1972,7 @@ msgstr "光源"
 
 #: ../src/MetadataStore.cs:43
 msgid "Sensing Method"
-msgstr ""
+msgstr "传感方式"
 
 #: ../src/MetadataStore.cs:45
 msgid "Color Space"
@@ -1971,7 +1984,7 @@ msgstr "白平衡"
 
 #: ../src/MetadataStore.cs:49
 msgid "Focal Plane Resolution Unit"
-msgstr ""
+msgstr "焦平面分辨率单位"
 
 #: ../src/MetadataStore.cs:51
 msgid "File Source Type"
@@ -1979,7 +1992,7 @@ msgstr "文件源类型"
 
 #: ../src/MetadataStore.cs:53
 msgid "Scene Capture Type"
-msgstr ""
+msgstr "场景捕获类型"
 
 #: ../src/MetadataStore.cs:55
 msgid "Gain Control"
@@ -1998,9 +2011,8 @@ msgid "Sharpness"
 msgstr "锐度"
 
 #: ../src/MetadataStore.cs:63
-#, fuzzy
 msgid "Scene Type"
-msgstr "检查类型"
+msgstr "场景类型"
 
 #: ../src/OpenWithMenu.cs:80
 msgid "No applications available"
@@ -2120,56 +2132,55 @@ msgstr "无对比度"
 
 #: ../src/PhotoView.cs:67
 msgid "4 x 3 (Book)"
-msgstr ""
+msgstr "4 x 3 (书籍)"
 
 #: ../src/PhotoView.cs:68
 msgid "4 x 6 (Postcard)"
-msgstr ""
+msgstr "4 x 6 (明信片)"
 
 #: ../src/PhotoView.cs:69
 msgid "5 x 7 (L, 2L)"
-msgstr ""
+msgstr "5 x 7 (L, 2L)"
 
 #: ../src/PhotoView.cs:70
 msgid "8 x 10"
-msgstr ""
+msgstr "8 x 10"
 
 #: ../src/PhotoView.cs:71
 msgid "4 x 3 Portrait (Book)"
-msgstr ""
+msgstr "4 x 3 纵向(书籍)"
 
 #: ../src/PhotoView.cs:72
 msgid "4 x 6 Portrait (Postcard)"
-msgstr ""
+msgstr "4 x 6 纵向(明信片)"
 
 #: ../src/PhotoView.cs:73
 msgid "5 x 7 Portrait (L, 2L)"
-msgstr ""
+msgstr "5 x 7 纵向(L, 2L)"
 
 #: ../src/PhotoView.cs:74
 msgid "8 x 10 Portrait"
-msgstr ""
+msgstr "8 x 10 纵向"
 
 #: ../src/PhotoView.cs:75
 msgid "Square"
-msgstr ""
+msgstr "方形"
 
 #: ../src/PhotoView.cs:155
-#, fuzzy
 msgid "Crop photo to selected area"
-msgstr "剪裁照片以适合"
+msgstr "将照片裁剪到选中区域"
 
 #: ../src/PhotoView.cs:156
 msgid "Remove redeye from selected area"
-msgstr ""
+msgstr "去除选中区域的红眼"
 
 #: ../src/PhotoView.cs:158
 msgid "Select an area to crop"
-msgstr ""
+msgstr "选择要裁剪的区域"
 
 #: ../src/PhotoView.cs:159
 msgid "Select an area to remove redeye"
-msgstr ""
+msgstr "选择要去除红眼的区域"
 
 #: ../src/PhotoView.cs:268
 msgid "Error editing photo"
@@ -2177,13 +2188,13 @@ msgstr "编辑照片出错"
 
 #: ../src/PhotoView.cs:320
 msgid "No selection available"
-msgstr ""
+msgstr "没有选中范围"
 
 #: ../src/PhotoView.cs:321
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
-msgstr ""
+msgstr "此工具需要选中范围。请先选中"
 
 #: ../src/PhotoView.cs:490
 msgid "Comment:"
@@ -2195,7 +2206,7 @@ msgstr "调整照片颜色"
 
 #: ../src/PhotoView.cs:556
 msgid "Constrain the aspect ratio of the selection"
-msgstr ""
+msgstr "约束选中范围的纵横比"
 
 #: ../src/PhotoView.cs:557
 msgid "Next photo"
@@ -2207,11 +2218,11 @@ msgstr "上张照片"
 
 #: ../src/PhotoView.cs:559
 msgid "Convert the photo to black and white"
-msgstr ""
+msgstr "将照片转换为黑白"
 
 #: ../src/PhotoView.cs:560
 msgid "Convert the photo to sepia tones"
-msgstr ""
+msgstr "将照片作旧"
 
 #: ../src/RotateCommand.cs:154
 msgid "Rotating photos"
@@ -2229,7 +2240,7 @@ msgid_plural "Unable to rotate {0} photos"
 msgstr[0] "无法旋转{0}张照片"
 
 #: ../src/RotateCommand.cs:194
-#, fuzzy, csharp-format
+#, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
 "media such as a CDROM.  Please check the permissions and try again"
@@ -2237,8 +2248,8 @@ msgid_plural ""
 "{0} photos could not be rotated because they are on a read only file system "
 "or media such as a CDROM.  Please check the permissions and try again"
 msgstr[0] ""
-"无法旋转{0}个图像，因为其位于只读文件系统或类似 CDROM 的介质上。请检查权限然"
-"后再试一次。"
+"无法旋转{0}张照片，因为其位于只读文件系统或类似 CDROM 的介质上。请检查权限"
+"后再试一次"
 
 #: ../src/RotateCommand.cs:216
 #, csharp-format
@@ -2262,9 +2273,8 @@ msgid "Crop"
 msgstr "裁剪"
 
 #: ../src/StockIcons.cs:30
-#, fuzzy
 msgid "Desaturate"
-msgstr "饱和度"
+msgstr "降低饱和度"
 
 #: ../src/StockIcons.cs:31
 msgid "Edit Photo"
@@ -2297,7 +2307,7 @@ msgstr "消除红眼"
 
 #: ../src/StockIcons.cs:40
 msgid "Sepia Tone"
-msgstr ""
+msgstr "作旧"
 
 #: ../src/StockIcons.cs:41
 msgid "Slideshow"
@@ -2431,4 +2441,4 @@ msgstr "用 F-Spot 显示幻灯片"
 
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
-msgstr "F-Spot 导入照片"
+msgstr "F-Spot 照片"
