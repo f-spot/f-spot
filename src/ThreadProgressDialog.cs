@@ -132,10 +132,10 @@ namespace FSpot {
 
 		private void HandleDestroy (object sender, EventArgs args)
 		{
-			if (thread.IsAlive) 
-				thread.Abort ();
-
 			delay.Stop ();
+			if (thread.IsAlive) {
+				thread.Abort ();
+			}
 		}
 		
 		public void Start () {

@@ -77,10 +77,15 @@ namespace FSpot {
 			Gnome.PrintContext ctx = print_job.Context;
 
 			foreach (Photo photo in photos) {
-				Gnome.Print.Beginpage (ctx, "F-Spot" + photo.DefaultVersionPath);				
-
-				Gdk.Pixbuf image = FSpot.PhotoLoader.Load (photo);
-
+				Gdk.Pixbuf image = null;
+				try {
+					image = FSpot.PhotoLoader.Load (photo);
+					Gnome.Print.Beginpage (ctx, "F-Spot" + photo.DefaultVersionPath);				
+				} catch (System.Exception e) {
+					System.Console.WriteLine (e);
+					continue;
+				}
+				
 				bool rotate = false;
 				double width = page_width;
 				double height = page_height;
