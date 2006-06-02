@@ -285,12 +285,24 @@ namespace FSpot {
 		
 		private Pixbuf CrossFade (Pixbuf current, Pixbuf prev, Pixbuf next, double percent)
 		{ 
-			int width = Allocation.Width;
-			int height = Allocation.Height;
-			
-			prev.CopyArea (0, 0, width, height, current, 0, 0);
-			next.Composite (current, 0,0, width, height, 0, 0, 1, 1,
+			Rectangle area = new Rectangle (0, 0, Allocation.Width, Allocation.Height);
+			Rectangle rect = new Rectangle (0, 0, 256, 256);
+			Rectangle subarea;
+
+			while (rect.Y < area.Height) {
+				while (rect.X < area.Width) {
+					if (IsRealized)
+						GdkWindow.ProcessUpdates (false);
+
+					rect.Intersect (area, out subarea);
+					prev.CopyArea (subarea.X, subarea.Y, subarea.Width, subarea.Height, current, subarea.X, subarea.Y);
+					next.Composite (current, subarea.X, subarea.Y, subarea.Width, subarea.Height, 0, 0, 1, 1,
 					Gdk.InterpType.Nearest, (int) System.Math.Round (255 * percent));
+					rect.X += rect.Width;
+				}
+				rect.X = area.X;
+				rect.Y += rect.Height;
+			}
 			return current;
 		}
 		
@@ -321,7 +333,35 @@ namespace FSpot {
 		
 		private Pixbuf GetScaled (Pixbuf orig)
 		{
-			Pixbuf scaled = PixbufUtils.ScaleToAspect (orig, Allocation.Width, Allocation.Height);
+			Gdk.Rectangle pos;
+			int width = Allocation.Width;
+			int height = Allocation.Height;
+			double scale = PixbufUtils.Fit (orig, width, height, false, out pos.Width, out pos.Height);
+			pos.X = (width - pos.Width) / 2;
+			pos.Y = (height - pos.Height) / 2;
+			
+			Pixbuf scaled = new Pixbuf (Colorspace.Rgb, false, 8, width, height);
+			scaled.Fill (0x000000); 
+			
+			Rectangle rect = new Rectangle (pos.X, pos.Y, 256, 256);
+			Rectangle subarea;
+			
+			while (rect.Top < pos.Bottom) {
+				while (rect.X < pos.Right) {
+					if (IsRealized) 
+						GdkWindow.ProcessUpdates (false);
+
+					rect.Intersect (pos, out subarea);
+					orig.Composite (scaled, subarea.X, subarea.Y, 
+							subarea.Width, subarea.Height,
+							pos.X, pos.Y, scale, scale,
+							Gdk.InterpType.Bilinear,
+							255);
+					rect.X += rect.Width;
+				}
+				rect.X = pos.X;
+				rect.Y += rect.Height;
+			}
 			
 			orig.Dispose ();
 			return scaled;

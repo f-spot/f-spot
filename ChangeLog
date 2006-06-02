@@ -1,5 +1,8 @@
 2006-06-02  Larry Ewing  <lewing@novell.com>
 
+	* src/SlideView.cs: process expose events while doing long running
+	operations.
+
 	* src/FileImportBackend.cs: remove the readonly flag when we copy
 	files.
 
