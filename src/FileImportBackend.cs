@@ -3,6 +3,7 @@ using Gtk;
 using Gnome;
 using System.Collections;
 using System;
+using System.IO;
 
 public class ImportException : System.Exception {
 	public ImportException (string msg) : base (msg)
@@ -177,6 +178,12 @@ public class FileImportBackend : ImportBackend {
 				System.IO.File.Copy (path, dest);
 				photo = store.Create (dest, path, out thumbnail);
 				path = dest;
+				
+				try {
+					File.SetAttributes (dest, File.GetAttributes (dest) & ~FileAttributes.ReadOnly);
+				} catch (System.Exception e) {
+					// we don't want an exception here to be fatal.
+				}
 			} else {
 				photo = store.Create (path, out thumbnail);
 			}
