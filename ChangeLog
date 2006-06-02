@@ -1,7 +1,11 @@
 2006-06-02  Larry Ewing  <lewing@novell.com>
 
+	* src/FolderExport.cs: work around a bug in filechooserbutton.
+
 	* src/PhotoPopup.cs: pass the widget in the creation function
 	so that we can go modal on the right window.
+
+	* src/QueryView.cs: pass the widget to popup.
 	
 	* src/MainWindow.cs: use the new popup api and use the toplevel
 	properly.
