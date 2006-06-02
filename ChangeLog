@@ -1,5 +1,8 @@
 2006-06-02  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: wrap the metadata writing code in a
+	try/catch.
+
 	* src/Core.cs: add some methods to clean up the dbus
 	initialization.
 

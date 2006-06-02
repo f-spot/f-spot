@@ -453,10 +453,14 @@ public class MainWindow {
 			Photo p = item as Photo;
 			if (p == null)
 				continue;
-			
-			if (write_metadata)
-				p.WriteMetadataToImage ();
-			
+
+			if (write_metadata) {
+				try {
+					p.WriteMetadataToImage ();
+				} catch (System.Exception e) {
+					Console.WriteLine ("Error syncing metadata to file\n{0}", e);
+				}
+			}
 		}
 		
 		if (args is TimeChangedEventArgs)
@@ -1660,10 +1664,7 @@ public class MainWindow {
 			Photo p = query.Photos [num];
 
 			p.RemoveTag (tags);
-			/*
-			if (write_metadata)
-				p.WriteMetadataToImage ();
-			*/
+
 			query.Commit (num);
 		}
 		db.CommitTransaction ();
