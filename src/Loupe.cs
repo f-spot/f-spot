@@ -41,12 +41,12 @@ namespace FSpot {
 			if (photo == null)
 				return;
 			
-			Gdk.Pixbuf orig = view.Pixbuf;
-			Gdk.Pixbuf final = PixbufUtils.UnsharpMask (orig, radius_spin.Value, amount_spin.Value, threshold_spin.Value);
-			
-			bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
-			
 			try {
+				Gdk.Pixbuf orig = view.Pixbuf;
+				Gdk.Pixbuf final = PixbufUtils.UnsharpMask (orig, radius_spin.Value, amount_spin.Value, threshold_spin.Value);
+				
+				bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
+
 				photo.SaveVersion (final, create_version);
 			} catch (System.Exception e) {
 				string msg = Mono.Posix.Catalog.GetString ("Error saving sharpened photo");

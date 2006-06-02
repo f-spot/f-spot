@@ -1811,15 +1811,15 @@ public class MainWindow {
 
 		if (response == Gtk.ResponseType.Ok) {
 			foreach (int id in SelectedIds ()) {
-				Gdk.Pixbuf orig = FSpot.PhotoLoader.Load (query, id);
-				Gdk.Pixbuf final = PixbufUtils.UnsharpMask (orig, radius_spin.Value, amount_spin.Value, threshold_spin.Value);
-			
 				Photo photo = query.Photos [id];
-				
-				bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
-
 				try {
+					Gdk.Pixbuf orig = FSpot.PhotoLoader.Load (query, id);
+					Gdk.Pixbuf final = PixbufUtils.UnsharpMask (orig, radius_spin.Value, amount_spin.Value, threshold_spin.Value);
+					
+					bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
+
 					photo.SaveVersion (final, create_version);
+					query.Commit (id);
 				} catch (System.Exception e) {
 					string msg = Mono.Posix.Catalog.GetString ("Error saving sharpened photo");
 					string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),

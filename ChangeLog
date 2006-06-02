@@ -1,5 +1,12 @@
 2006-06-02  Larry Ewing  <lewing@novell.com>
 
+	* src/AsyncPixbufLoader.cs: handle more exceptions in the
+	exception case.
+
+	* src/Loupe.cs: handle errors while sharpening.
+
+	* src/MainWindow.cs: handle sharpen errors.
+
 	* src/FolderExport.cs: work around a bug in filechooserbutton.
 
 	* src/PhotoPopup.cs: pass the widget in the creation function
