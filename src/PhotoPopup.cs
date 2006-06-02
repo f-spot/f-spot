@@ -17,31 +17,41 @@ using Gdk;
 using Mono.Posix;
 
 public class PhotoPopup {
-	public void Activate ()
-	{
-		Activate (null);
+	Widget creator;
+
+	public Widget Creator {
+		get {
+			return creator;
+		}
 	}
 
-	public void Activate (Gdk.EventButton eb) 
+	public void Activate (Widget w)
+	{
+		Activate (w, null);
+	}
+
+	public void Activate (Widget w, Gdk.EventButton eb) 
 	{
 		// FIXME this is a hack to handle the --view case for the time being.
 		if (MainWindow.Toplevel == null)
 			return;
 
+		creator = w;
+
 		int count = MainWindow.Toplevel.SelectedIds ().Length;
 		
-		Gtk.Menu popup_menu = new Gtk.Menu ();
+		Gtk.Menu popup_menu = new Menu ();
 		bool have_selection = count > 0;
 		
 		GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Copy Photo Location"), 
-				      new EventHandler (MainWindow.Toplevel.HandleCopyLocation), have_selection);
+				      delegate { MainWindow.Toplevel.HandleCopyLocation (creator, null); }, have_selection);
 		
 		GtkUtil.MakeMenuSeparator (popup_menu);
 
 		GtkUtil.MakeMenuItem (popup_menu, "f-spot-rotate-270",
-				      new EventHandler (MainWindow.Toplevel.HandleRotate270Command), have_selection);
+				      delegate { MainWindow.Toplevel.HandleRotate270Command(creator, null); }, have_selection);
 		GtkUtil.MakeMenuItem (popup_menu, "f-spot-rotate-90", 
-				      new EventHandler (MainWindow.Toplevel.HandleRotate90Command), have_selection);
+				      delegate { MainWindow.Toplevel.HandleRotate90Command (creator, null); }, have_selection);
 
 		GtkUtil.MakeMenuSeparator (popup_menu);
 
@@ -50,9 +60,9 @@ public class PhotoPopup {
 		owm.ApplicationActivated += MainWindow.Toplevel.HandleOpenWith;
 
 		GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Remove From Catalog"), 
-				      new EventHandler (MainWindow.Toplevel.HandleRemoveCommand), have_selection);
+				      delegate { MainWindow.Toplevel.HandleRemoveCommand (creator, null); }, have_selection);
 		GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Delete From Drive"),
-				      new EventHandler (MainWindow.Toplevel.HandleDeleteCommand), have_selection);
+				      delegate { MainWindow.Toplevel.HandleDeleteCommand (creator, null); }, have_selection);
 
 		GtkUtil.MakeMenuSeparator (popup_menu);
 		
@@ -82,5 +92,7 @@ public class PhotoPopup {
 			popup_menu.Popup (null, null, null, eb.Button, eb.Time);
 		else 
 			popup_menu.Popup (null, null, null, 0, Gtk.Global.CurrentEventTime);
-	}   
+	}
+
+	
 }

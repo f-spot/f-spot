@@ -1,5 +1,13 @@
 2006-06-02  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoPopup.cs: pass the widget in the creation function
+	so that we can go modal on the right window.
+	
+	* src/MainWindow.cs: use the new popup api and use the toplevel
+	properly.
+
+	* src/FullScreenView.cs: use the new popup api.
+
 	* src/SlideView.cs: process expose events while doing long running
 	operations.
 
