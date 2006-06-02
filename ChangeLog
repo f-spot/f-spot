@@ -1,5 +1,8 @@
 2006-06-02  Larry Ewing  <lewing@novell.com>
 
+	* src/InfoDisplay.cs: handle errors while reading the file more
+	carefully.
+
 	* src/ImportCommand.cs: handle exceptions while checking for the
 	existance of a directory.
 

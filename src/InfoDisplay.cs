@@ -99,6 +99,7 @@ namespace FSpot {
 			stream.Write ("<table width=100% cellpadding=5 cellspacing=0>");
 			bool empty = true;
 			bool missing = false;
+			System.Exception error = null;
 
 			if (exif_info != null) {
 				foreach (Exif.ExifContent content in exif_info.GetContents ()) {
@@ -149,7 +150,15 @@ namespace FSpot {
 					}
 				} catch (System.IO.FileNotFoundException nf) {
 					missing = true;
-				} 
+				} catch (System.Exception e){
+					// Sometimes we don't get the right exception, check for the file
+					if (!System.IO.File.Exists (photo.DefaultVersionUri.LocalPath)) {
+						missing = true;
+					} else {
+						// if the file is there but we still got an exception display it.
+						error = e;
+					}
+				}
 				
 				if (store.StatementCount > 0) {
 #if false
@@ -212,6 +221,10 @@ namespace FSpot {
 					msg = String.Format ("<tr><td valign=top align=center bgcolor=\"{0}\">" 
 							     + "<b>{1}</b></td></tr>", ig,
 							     Mono.Posix.Catalog.GetString ("No metadata available"));
+
+					if (error != null) {
+						String.Format ("<pre>{0}</pre>", error);
+					}
 				}
 				stream.Write (msg);
 			}
