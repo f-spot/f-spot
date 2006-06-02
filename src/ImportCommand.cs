@@ -365,7 +365,7 @@ public class ImportCommand : FSpot.GladeDialog {
 				MainWindow.Toplevel.ImportCamera (port);
 			}
 
-			Start ();
+			idle_start.Start ();
 		}
 	}
 
@@ -697,6 +697,8 @@ public class ImportCommand : FSpot.GladeDialog {
 
 	public void Cancel ()
 	{
+		idle_start.Stop ();
+		step.Stop ();
 		if (importer != null) {
 			importer.Cancel ();
 			importer = null;
