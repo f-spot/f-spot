@@ -623,8 +623,13 @@ public class ImportCommand : FSpot.GladeDialog {
 		ResponseType response = (ResponseType) this.Dialog.Run ();
 		
 		while (response == ResponseType.Ok) {
-			if (Directory.Exists (this.ImportPath))
+			try {
+				if (Directory.Exists (this.ImportPath))
+					break;
+			} catch (System.Exception e){
+				System.Console.WriteLine (e);
 				break;
+			}
 
 			HigMessageDialog md = new HigMessageDialog (this.Dialog,
 			        DialogFlags.DestroyWithParent,
