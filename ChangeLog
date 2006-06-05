@@ -1,5 +1,7 @@
 2006-06-05  Larry Ewing  <lewing@novell.com>
 
+	* src/Db.cs: fix the time_t to DateTime function... ouch.
+
 	* src/JpegFile.cs: fix the description extraction logic.
 
 2006-05-04  Arangel Angov <arangel@linux.net.mk>

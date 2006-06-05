@@ -350,8 +350,8 @@ public class Db : IDisposable {
 public class DbUtils {
 	public static DateTime DateTimeFromUnixTime (long unix_time)
 	{
-		DateTime date_time = new DateTime (1970, 1, 1).ToLocalTime ();
-		return date_time.AddSeconds (unix_time);
+		DateTime date_time = new DateTime (1970, 1, 1);
+		return date_time.AddSeconds (unix_time).ToLocalTime ();
 	}
 
 	public static long UnixTimeFromDateTime (DateTime date_time)
