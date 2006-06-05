@@ -1,5 +1,8 @@
 2006-06-05  Larry Ewing  <lewing@novell.com>
 
+	* src/FileImportBackend.cs: if we want to move the file to where
+	it already is, just leave it there, don't think up a new name.
+
 	* src/ImportCommand.cs: make the import happen in an idle to avoid
 	some of the recursion that was causing some much trouble.
 
