@@ -57,12 +57,16 @@ namespace FSpot {
 			get {
 #if USE_TIFF
 				try {
-					DirectoryEntry e = ExifHeader.Directory.Lookup (TagId.UserComment);
-					return e.ValueAsString [0];
+					SubdirectoryEntry sub = (SubdirectoryEntry) ExifHeader.Directory.Lookup (TagId.ExifIfdPointer);
+					if (sub != null) {
+						DirectoryEntry entry = sub.Directory [0].Lookup (TagId.UserComment);
+						if (entry != null)
+							return entry.ValueAsString [0];
+					}
 				} catch (System.Exception e) {
 					Console.WriteLine (e);
-					return null;
 				}
+				return null;
 #else
 				Exif.ExifContent exif_content = this.ExifData.GetContents (Exif.Ifd.Exif);
 				Exif.ExifEntry entry = exif_content.Lookup (Exif.Tag.UserComment);
