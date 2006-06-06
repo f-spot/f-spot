@@ -1,5 +1,10 @@
 2006-06-06  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: make sure the fullscreen view is valid before
+	adding the item to the selection.
+
+	* src/GalleryExport.cs: use the right path function.
+
 	* src/GalleryExport.cs: remove remove button add edit button.
 
 	* src/f-spot.glade: add edit button.
