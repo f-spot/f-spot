@@ -351,11 +351,7 @@ namespace FSpot {
 				try {
 					len = stream.Read (buffer, 0, buffer.Length);
 					loader.Write (buffer, (ulong)len);
-				} catch (System.ObjectDisposedException od) {
-					len = -1;
-				} catch (GLib.GException e) {
-					System.Console.WriteLine (e.ToString ());
-					pixbuf = null;
+				} catch (Exception e) {
 					len = -1;
 				}
 
