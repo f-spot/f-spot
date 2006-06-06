@@ -742,8 +742,8 @@ public class MainWindow {
 	{
 		string backup = db.Repair ();
 		string short_msg = Mono.Posix.Catalog.GetString ("Error loading database.");
-		string long_msg = Mono.Posix.Catalog.GetString ("F-Spot encountered an error while loading the photo database" + 
-								"  the old database has be moved to {0} and a new database has been created.");
+		string long_msg = Mono.Posix.Catalog.GetString ("F-Spot encountered an error while loading the photo database. " + 
+								"The old database has be moved to {0} and a new database has been created.");
 
 		HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
 							    MessageType.Error, ButtonsType.Ok, 
