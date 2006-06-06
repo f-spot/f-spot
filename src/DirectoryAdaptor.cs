@@ -19,6 +19,12 @@ namespace FSpot {
 			}
 		}
 
+		public override PhotoQuery Query {
+			get {
+				return query;
+			}
+		}
+
 		// FIXME store the Photo.Id list here not just the count
 		private class Group : IComparer {
 			public int Count = 1;

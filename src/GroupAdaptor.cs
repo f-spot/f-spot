@@ -7,6 +7,7 @@ namespace FSpot {
 	
 	public abstract class GroupAdaptor {
 		public abstract bool OrderAscending {get; set;}
+		public abstract PhotoQuery Query {get;}
 		
 		public abstract int Value (int item) ;
 		public abstract int Count ();

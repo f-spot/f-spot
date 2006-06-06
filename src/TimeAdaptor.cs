@@ -4,6 +4,12 @@ using System.Collections;
 namespace FSpot {
 	public class TimeAdaptor : GroupAdaptor, FSpot.ILimitable {
 		public PhotoQuery query;
+		public override PhotoQuery Query {
+			get {
+				return query;
+			}
+		}
+		
 		private bool order_ascending = false;
 		public override bool OrderAscending {
 			get {
@@ -65,7 +71,13 @@ namespace FSpot {
 		{
 			Console.WriteLine ("min {0} max {1}", min, max);
 			DateTime start = DateFromIndex (min);
-			DateTime end = DateFromIndex (max).AddMonths (1);
+
+			DateTime end = DateFromIndex(max);
+
+			if (order_ascending)
+				end = end.AddMonths (1);
+			else
+			 	end = end.AddMonths(-1);
 
 			SetLimits (start, end);
 		}
@@ -138,34 +150,42 @@ namespace FSpot {
 		public override int IndexFromPhoto (FSpot.IBrowsableItem photo) 
 		{
 			if (order_ascending)
-			       return IndexFromPhotoAscending (photo);
+			       return IndexFromDateAscending (photo.Time);
 
-			return IndexFromPhotoDescending (photo);	
+			return IndexFromDateDescending (photo.Time);	
 		}
 
-		private int IndexFromPhotoAscending (FSpot.IBrowsableItem photo)
+		public int IndexFromDate (DateTime date)
 		{
-			int year = photo.Time.Year;
+			if (order_ascending)
+				return IndexFromDateAscending(date);
+
+			return IndexFromDateDescending(date);
+		}
+
+		private int IndexFromDateAscending(DateTime date)
+		{
+			int year = date.Year;
 			int max_year = ((YearData)years [years.Count - 1]).Year;
 			int min_year = ((YearData)years [0]).Year;
 
 			if (year < min_year || year > max_year) {
-				Console.WriteLine("TimeAdaptor.IndexFromPhoto year out of range[{1},{2}]: {0}", year, min_year, max_year);
+				Console.WriteLine("TimeAdaptor.IndexFromDate year out of range[{1},2{}]: {0}", year, min_year, max_year);
 				return 0;
 			}
 
-			int index = photo.Time.Month - 1;
+			int index = date.Month - 1;
 
 			for (int i = 0 ; i < years.Count; i++)
 				if (year > ((YearData)years[i]).Year)
 					index += 12;
-			
-			return index;						
+
+			return index;	
 		}
 
-		private int IndexFromPhotoDescending (FSpot.IBrowsableItem photo)
+		private int IndexFromDateDescending(DateTime date)
 		{
-			int year = photo.Time.Year;
+			int year = date.Year;
 			int max_year = ((YearData)years [0]).Year;
 			int min_year = ((YearData)years [years.Count - 1]).Year;
 		
@@ -174,13 +194,11 @@ namespace FSpot {
 				return 0;
 			}
 
-			int index = 12 - photo.Time.Month;
+			int index = 12 - date.Month;
 
 			for (int i = 0; i < years.Count; i++)
 				if (year < ((YearData)years[i]).Year)
 					index += 12;
-
-			//Console.WriteLine("IndexFromPhoto " + photo.Name + " is " + index);
 
 			return index;
 		}

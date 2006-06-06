@@ -1,3 +1,13 @@
+2006-05-31  Stephane Delcroix <stephane@delcroix.org>
+
+	* src/DirectoryAdaptor.cs:
+	* src/GroupAdaptor.cs: 
+	* src/GroupSelector.cs:
+	* src/MainWindow.cs:
+	* src/TimeAdaptor.cs: Clean up the date range setting and
+	display.  Update the timeline date range display to reflect the
+	current range.
+	
 2006-06-06  Larry Ewing  <lewing@novell.com>
 
 	* src/PreviewPopup.cs: commit patch from Loz for 153023.

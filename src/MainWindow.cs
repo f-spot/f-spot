@@ -1495,6 +1495,10 @@ public class MainWindow {
 
 		if (sender != month)
 			month.Active = true;
+
+		//update the selection in the Timeline
+		if (query.Range != null)
+			group_selector.SetLimitsToDates(query.Range.Start, query.Range.End);
 	}
 
 	public void HandleArrangeByDirectory (object sender, EventArgs args)
@@ -1527,6 +1531,13 @@ public class MainWindow {
 		// FIXME this is blah...we need UIManager love here
 		if (item != reverse_order)
 			reverse_order.Active = item.Active;
+		
+		//update the selection in the timeline
+		if ( query.Range != null && group_selector.Adaptor is TimeAdaptor) {
+			group_selector.SetLimitsToDates(query.Range.Start, query.Range.End);
+			
+		}
+
 	}
 
 	// Called when the user clicks the X button	
@@ -2280,9 +2291,15 @@ public class MainWindow {
 	void HandleSetDateRange (object sender, EventArgs args) {
 		DateCommands.Set set_command = new DateCommands.Set (query, main_window);
 		set_command.Execute ();
+		//update the TimeLine
+		if (group_selector.Adaptor is TimeAdaptor) 
+			group_selector.SetLimitsToDates(query.Range.Start, query.Range.End);
 	}
 
-	void HandleClearDateRange (object sender, EventArgs args) {
+	public void HandleClearDateRange (object sender, EventArgs args) {
+		if (group_selector.Adaptor is FSpot.TimeAdaptor) {
+			group_selector.ResetLimits();
+		}
 		query.Range = null;
 	}
 	

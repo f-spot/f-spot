@@ -521,6 +521,13 @@ namespace FSpot {
 			GtkUtil.MakeCheckMenuItem (order_menu, Mono.Posix.Catalog.GetString ("_Reverse Order"),
 					      MainWindow.Toplevel.HandleReverseOrder, true, adaptor.OrderAscending, false);
 
+			if (adaptor is TimeAdaptor && adaptor.Query.Range != null) {
+				GtkUtil.MakeMenuSeparator (order_menu);
+
+				GtkUtil.MakeMenuItem (order_menu, Mono.Posix.Catalog.GetString ("_Clear Date Range"), 
+						MainWindow.Toplevel.HandleClearDateRange);
+			}
+			
 			if (args != null)
 				order_menu.Popup (null, null, null, args.Button, args.Time);
 			else
@@ -1056,6 +1063,23 @@ namespace FSpot {
 			this.Offset = this.Offset;
 
 			UpdateButtons ();
+		}
+
+		public void ResetLimits ()
+		{
+			min_limit.SetPosition(0,false);
+			max_limit.SetPosition(adaptor.Count () - 1, false);
+		}
+
+		public void SetLimitsToDates(DateTime start, DateTime stop)
+		{
+			if (((TimeAdaptor)adaptor).OrderAscending) {
+				min_limit.SetPosition(((TimeAdaptor)adaptor).IndexFromDate(start),false);
+				max_limit.SetPosition(((TimeAdaptor)adaptor).IndexFromDate(stop),false);
+			} else {
+				min_limit.SetPosition(((TimeAdaptor)adaptor).IndexFromDate(stop),false);
+				max_limit.SetPosition(((TimeAdaptor)adaptor).IndexFromDate(start),false);
+			}
 		}
 
 		public GroupSelector () : base () 
