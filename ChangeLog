@@ -1,5 +1,7 @@
 2006-06-06  Larry Ewing  <lewing@novell.com>
 
+	* src/SlideView.cs: add expose processing from stable.
+
 	* src/FileImportBackend.cs: merge the duplicate patch from stable.
 
 	* src/Tiff.cs: avoid looping in the tiff directory loader.
