@@ -1,5 +1,7 @@
 2006-06-06  Larry Ewing  <lewing@novell.com>
 
+	* src/Exif.cs: don't copy if the array is zero length.
+
 	* src/ImportCommand.cs: do the import in an idle loop.
 
 	* src/Loupe.cs: handle exceptions in the Sharpener.
