@@ -22,6 +22,8 @@ public class FileImportBackend : ImportBackend {
 	ArrayList file_paths;
 	ArrayList imported_photos;
 	Stack directories;
+
+	bool prepare_canceled;
 	
 	private void AddPath (string path)
 	{
@@ -58,7 +60,7 @@ public class FileImportBackend : ImportBackend {
 		}
 	
 		foreach (System.IO.FileInfo f in files) {
-			if (exiting_entries [f.Name] == null) {
+			if (! exiting_entries.Contains (f.Name)) {
 				AddPath (f.FullName);
 			}
 		}
@@ -156,7 +158,11 @@ public class FileImportBackend : ImportBackend {
 			}
 			info = System.IO.Directory.CreateDirectory (dest_dir);
 		}
-		
+
+		// If the destination we'd like to use is the file itself return that
+		if (Path.Combine (dest_dir, name) == path)
+			return path;
+		 
 		string dest = UniqueName (dest_dir, name);
 		
 		return dest;
@@ -174,21 +180,37 @@ public class FileImportBackend : ImportBackend {
 		string path = (string) file_paths [this.count];
 		
 		try {
-			if (copy) {
-				string dest = ChooseLocation (path, directories);
+			string dest = path;
+
+			if (copy)
+				dest = ChooseLocation (path, directories);
+			
+			if (path == dest) {
+				photo = store.Create (path, out thumbnail);
+			} else {
 				System.IO.File.Copy (path, dest);
 				photo = store.Create (dest, path, out thumbnail);
 				path = dest;
-			} else {
-                photo = store.Create (path, out thumbnail);
+				try {
+					File.SetAttributes (dest, System.IO.FileAttributes.Normal);
+ 					DateTime create = File.GetCreationTime (path);
+ 					File.SetCreationTime (dest, create);
+ 					DateTime mod = File.GetLastWriteTime (path);
+ 					File.SetLastWriteTime (dest, mod);
+				} catch (Exception e) {
+					// we don't want an exception here to be fatal.
+				}
+
+				path = dest;
 			}
 			
 			if (tags != null) {
-				foreach (Tag t in tags) {
+				foreach (Tag t in tags)
 					photo.AddTag (t);
-				}
+
 				store.Commit(photo);
 			}
+
 			imported_photos.Add (photo);
 			
 		} catch (System.Exception e) {
