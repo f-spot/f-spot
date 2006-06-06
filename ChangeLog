@@ -1,5 +1,11 @@
 2006-06-06  Larry Ewing  <lewing@novell.com>
 
+	* src/main.cs: you get the idea.
+
+	* src/Db.cs: rework the dbus startup handling.
+
+	* src/Core.cs: rework the startup handling.
+
 	* src/SlideView.cs: add expose processing from stable.
 
 	* src/FileImportBackend.cs: merge the duplicate patch from stable.

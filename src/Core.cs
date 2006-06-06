@@ -24,11 +24,13 @@ namespace FSpot {
 		private static Db db;
 		static DBus.Connection connection;
 		System.Collections.ArrayList toplevels;
+		const string ServicePath = "org.gnome.FSpot";
+		const string CorePath = "/org/gnome/FSpot/Core";
 
 		public Core ()
 		{
 			toplevels = new System.Collections.ArrayList ();
-					
+			
 			// Load the database, upgrading/creating it as needed
 			string base_directory = FSpot.Global.BaseDirectory;
 			if (! File.Exists (base_directory))
@@ -53,16 +55,48 @@ namespace FSpot {
 
 		public static Core FindInstance ()
 		{
-			DBus.Service service = DBus.Service.Get (Connection, "org.gnome.FSpot");
-			return (Core)service.GetObject (typeof (Core), "/org/gnome/FSpot/Core");
+			DBus.Service service = DBus.Service.Get (Connection, ServicePath);
+			return (Core)service.GetObject (typeof (Core), CorePath);
+		}
+		
+		public void UnregisterServer ()
+		{
+			try { 
+				connection = null;
+				DBus.Service serv = DBus.Service.Get (Connection, ServicePath);
+				serv.UnregisterObject (this);
+			} catch (System.Exception e) {
+				// noop
+				System.Console.WriteLine ("unregister\n{0}\nunregister", e);
+			}
 		}
 
 		public void RegisterServer ()
 		{
-			DBus.Service service = new DBus.Service (Connection, "org.gnome.FSpot");
-			service.RegisterObject (this, "/org/gnome/FSpot/Core");
+			Service.RegisterObject (this, CorePath);
 		}
 		
+		public static void AssertOwnership () {
+			if (Service == null)
+				System.Console.WriteLine ("problems getting service");
+		}
+		
+		private static DBus.Service Service {
+			get {
+				DBus.Service service = null;
+
+				if (service == null) {
+					try {
+						service = DBus.Service.Get (Connection, ServicePath);
+					} catch (System.Exception e) {
+						//stem.Console.WriteLine (e);
+						service = new DBus.Service (Connection, ServicePath);
+					}
+				}				
+				return service;
+			}
+		}
+
 		private class ImportCommand 
 		{
 			string path;
