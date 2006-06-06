@@ -1,5 +1,9 @@
 2006-06-06  Larry Ewing  <lewing@novell.com>
 
+	* src/FolderExport.cs: work around a bug in filechooserbutton
+	where destroyed but not finalized buttons could crash on
+	filesystem change events.
+
 	* src/MainWindow.cs: make sure the fullscreen view is valid before
 	adding the item to the selection.
 

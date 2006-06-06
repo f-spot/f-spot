@@ -194,7 +194,8 @@ namespace FSpot {
 				// created.
 				if (!dest.IsLocal)
 					System.IO.Directory.Delete (gallery_path, true);
-				Dialog.Destroy ();
+				
+				Gtk.Application.Invoke (delegate { Dialog.Destroy(); });
 			}
 		}
 
@@ -241,7 +242,13 @@ namespace FSpot {
 		private void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
 			if (args.ResponseId != Gtk.ResponseType.Ok) {
+				// FIXME this is to work around a bug in gtk+ where
+				// the filesystem events are still listened to when
+				// a FileChooserButton is destroyed but not finalized
+				// and an event comes in that wants to update the child widgets.
 				Dialog.Destroy ();
+				uri_chooser.Dispose ();
+				uri_chooser = null;
 				return;
 			}
 			
