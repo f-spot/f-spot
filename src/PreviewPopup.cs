@@ -222,8 +222,8 @@ namespace FSpot {
 			return false;
 		}
 
-		public PreviewPopup (IconView view) : base (Gtk.WindowType.Popup)
-		{
+		public PreviewPopup (IconView view) : base (Gtk.WindowType.Toplevel)
+		{	
 			Gtk.VBox vbox = new Gtk.VBox ();
 			this.Add (vbox);
 			this.AddEvents ((int) (Gdk.EventMask.PointerMotionMask | 
@@ -231,6 +231,8 @@ namespace FSpot {
 					       Gdk.EventMask.ButtonPressMask));
 
 			this.Decorated = false;
+			this.SkipTaskbarHint = true;
+			this.SkipPagerHint = true;
 			this.SetPosition (Gtk.WindowPosition.None);
 			
 			this.KeyReleaseEvent += HandleKeyRelease;
