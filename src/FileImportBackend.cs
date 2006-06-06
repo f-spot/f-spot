@@ -3,6 +3,7 @@ using Gtk;
 using Gnome;
 using System.Collections;
 using System;
+using System.IO;
 
 public class ImportException : System.Exception {
 	public ImportException (string msg) : base (msg)
