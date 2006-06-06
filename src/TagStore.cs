@@ -383,10 +383,10 @@ public class TagStore : DbStore {
 
 	private void CreateDefaultTags ()
 	{
-		Tag favorites_tag = CreateTag (RootCategory, Catalog.GetString ("Favorites"));
-		favorites_tag.StockIconName = "f-spot-favorite.png";
-		favorites_tag.SortPriority = -10;
-		Commit (favorites_tag);
+		Category favorites_category = CreateCategory (RootCategory, Catalog.GetString ("Favorites"));
+		favorites_category.StockIconName = "f-spot-favorite.png";
+		favorites_category.SortPriority = -10;
+		Commit (favorites_category);
 
 		Tag hidden_tag = CreateTag (RootCategory, Catalog.GetString ("Hidden"));
 		hidden_tag.StockIconName = "f-spot-hidden.png";

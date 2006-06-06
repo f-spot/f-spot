@@ -62,7 +62,12 @@ namespace FSpot.Database {
 				System.Console.WriteLine ("Other tag restored.  Sorry about that!");
 			});
 			
-			// Update from version 2 to 3
+			// Update from version 2 to 3: ensure that Hidden is the only tag left which is a real tag (not category)
+			AddUpdate (delegate (SqliteConnection connection) {
+				ExecuteNonQuery ("UPDATE tags SET is_category = 1 WHERE name != 'Hidden'");
+			});
+			
+			// Update from version 3 to 4
 			//AddUpdate (delegate (SqliteConnection connection) {
 			//	do update here
 			//});
