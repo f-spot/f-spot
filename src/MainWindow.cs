@@ -2650,15 +2650,14 @@ public class MainWindow {
 			return;
 #endif
 		
-		if (tag_entry.Text.Length > 0)
-			tag_entry.Text += ", ";
-
 #if ALLOW_TAG_TYPING_WITHOUT_HOTKEY
 		tag_entry.Text += c;
 #endif
 
 		tagbar.Show ();
 		UpdateTagEntryFromSelection ();
+		if (tag_entry.Text.Length > 0)
+			tag_entry.Text += ", ";
 		tag_entry.GrabFocus ();
 		tag_entry.SelectRegion (-1, -1);
 	}

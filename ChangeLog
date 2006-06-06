@@ -1,3 +1,8 @@
+2006-05-31  Stephane Delcroix <stephane@delcroix.org>
+ 
+  	* src/MainWindow.cs: invert some lines to add the ", " when
+	starting Tag Typing
+	
 2006-06-05  Larry Ewing  <lewing@novell.com>
 
 	* src/Db.cs: fix the time_t to DateTime function... ouch.
