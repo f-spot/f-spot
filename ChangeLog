@@ -1,5 +1,7 @@
 2006-06-06  Larry Ewing  <lewing@novell.com>
 
+	* src/ImportCommand.cs: do the import in an idle loop.
+
 	* src/Loupe.cs: handle exceptions in the Sharpener.
 
 	* src/MainWindow.cs: handle more exceptions.

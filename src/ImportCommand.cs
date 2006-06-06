@@ -372,7 +372,7 @@ public class ImportCommand : FSpot.GladeDialog {
 	public ImportCommand (Gtk.Window mw)
 	{
 		main_window = mw;
-		step = new FSpot.Delay (10, new GLib.IdleHandler (Step));
+		step = new FSpot.Delay (new GLib.IdleHandler (Step));
 		idle_start = new FSpot.Delay (new IdleHandler (Start));
 		loading_string = Catalog.GetString ("Loading {0} of {1}");
 	}
@@ -417,6 +417,7 @@ public class ImportCommand : FSpot.GladeDialog {
 			// with the recursive DoImport loops we sometimes get into
 			ongoing = importer.Step (out photo, out thumbnail, out count);
 		} catch (ImportException e){
+			System.Console.WriteLine (e);
 			return false;
 		}
 
@@ -437,6 +438,10 @@ public class ImportCommand : FSpot.GladeDialog {
 			return true;
 		else {
 			System.Console.WriteLine ("Stopping");
+			if (progress_bar != null)
+				progress_bar.Text = Catalog.GetString ("Done Loading");
+			
+			AllowFinish = true;
 			return false;
 		}
 	}
@@ -465,8 +470,6 @@ public class ImportCommand : FSpot.GladeDialog {
 		collection.Clear ();
 		collection.Capacity = total;
 
-		FSpot.ThumbnailGenerator.Default.PushBlock ();
-
 		while (total > 0 && this.Step ()) {
 			System.DateTime start_time = System.DateTime.Now;
 			System.TimeSpan span = start_time - start_time;
@@ -477,23 +480,20 @@ public class ImportCommand : FSpot.GladeDialog {
 			}
 		}
 
-		FSpot.ThumbnailGenerator.Default.PopBlock ();
-
-		if (progress_bar != null)
-			progress_bar.Text = Catalog.GetString ("Done Loading");
-
-		AllowFinish = true;
-
 		return total;
 	}
 	
 	public void Finish ()
 	{
+		if (idle_start.IsPending || step.IsPending) {
+			AllowFinish = false;
+			return;
+		}
+		
 		if (importer != null)
 			importer.Finish ();
 		
 		importer = null;
-
 	}
 	
 	public void HandleTagToggled (object o, EventArgs args) 
@@ -732,16 +732,21 @@ public class ImportCommand : FSpot.GladeDialog {
 		if (recurse_check != null)
 			recurse = recurse_check.Active;
 		
-		if (collection == null)
-			return false;
+		importer = new FileImportBackend (store, pathimport, copy, recurse, null);
+		AllowFinish = false;
+		
+		total = importer.Prepare ();
+		
+		if (total > 0)
+			UpdateProgressBar (1, total);
+		
+		collection.Clear ();
+		collection.Capacity = total;
 
-		DoImport (new FileImportBackend (store, pathimport, copy, recurse, null));
+		if (total > 0)
+			step.Start ();
+	       
 		return false;
-	}
-
-	public int ImportFromPaths (PhotoStore store, string [] paths)
-	{
-		return ImportFromPaths (store, paths, null);
 	}
 
 	public int ImportFromPaths (PhotoStore store, string [] paths, bool copy)
