@@ -1,5 +1,7 @@
 2006-06-06  Larry Ewing  <lewing@novell.com>
 
+	* src/Loupe.cs: handle exceptions in the Sharpener.
+
 	* src/MainWindow.cs: handle more exceptions.
 
 	* src/AsyncPixbufLoader.cs: catch general exceptions durring I/O.
