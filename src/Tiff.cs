@@ -1,4 +1,4 @@
-#define DEBUG_LOADER
+//#define DEBUG_LOADER
 using FSpot;
 using SemWeb;
 using System;
