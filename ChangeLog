@@ -1,3 +1,7 @@
+2006-06-06  Larry Ewing  <lewing@novell.com>
+
+	* src/Tiff.cs: avoid looping in the tiff directory loader.
+
 2006-05-31  Stephane Delcroix <stephane@delcroix.org>
 
 	* src/DirectoryAdaptor.cs:

@@ -1,3 +1,4 @@
+#define DEBUG_LOADER
 using FSpot;
 using SemWeb;
 using System;
@@ -834,7 +835,9 @@ namespace FSpot.Tiff {
 			if (directory_offset < 8)
 				throw new System.Exception ("Invalid IFD0 Offset [" + directory_offset.ToString () + "]"); 
 			
-			//System.Console.WriteLine ("Reading First IFD");
+#if DEBUG_LOADER
+			System.Console.WriteLine ("Reading First IFD");
+#endif
 			Directory = new ImageDirectory (stream, directory_offset, endian); 
 			//}
 		}
@@ -850,7 +853,9 @@ namespace FSpot.Tiff {
 		public void SelectDirectory (ImageDirectory dir, StatementSink sink)
 		{
 			foreach (DirectoryEntry e in dir.Entries) {
-				//System.Console.WriteLine ("{0}", e.Id);
+#if DEBUG_LOADER
+				System.Console.WriteLine ("{0}", e.Id);
+#endif
 				switch (e.Id) {
 				case TagId.IPTCNAA:
 					System.IO.Stream iptcstream = new System.IO.MemoryStream (e.RawData);
@@ -1054,8 +1059,9 @@ namespace FSpot.Tiff {
 		protected virtual void ReadEntries (System.IO.Stream stream) 
 		{
 			num_entries = Converter.ReadUShort (stream, endian);
-			//System.Console.WriteLine ("reading {0} entries", num_entries);
-			
+#if DEBUG_LOADER
+			System.Console.WriteLine ("reading {0} entries", num_entries);
+#endif			
 			entries = new System.Collections.ArrayList (num_entries);
 			int entry_length = num_entries * 12;
 			byte [] content = new byte [entry_length];
@@ -1066,7 +1072,9 @@ namespace FSpot.Tiff {
 			for (int pos = 0; pos < entry_length; pos += 12) {
 				DirectoryEntry entry = EntryFactory.CreateEntry (this, content, pos, this.endian);
 				entries.Add (entry);		
-				//System.Console.WriteLine ("Added Entry {0} {1} - {2} * {3}", entry.Id.ToString (), entry.Id.ToString ("x"), entry.Type, entry.Count);
+#if DEBUG_LOADER
+				System.Console.WriteLine ("Added Entry {0} {1} - {2} * {3}", entry.Id.ToString (), entry.Id.ToString ("x"), entry.Type, entry.Count);
+#endif
 				if (entry.Id == TagId.NewSubfileType) {
 					
 				}
@@ -1087,10 +1095,12 @@ namespace FSpot.Tiff {
 		
 		protected void LoadNextDirectory (System.IO.Stream stream)
 		{
-			//System.Console.WriteLine ("next_directory_offset = {0}", next_directory_offset);
+#if DEBUG_LOADER
+			System.Console.WriteLine ("start_position = {1} next_directory_offset = {0}", next_directory_offset, orig_position);
+#endif
 			next_directory = null;
 			try {
-				if (next_directory_offset != 0)
+				if (next_directory_offset != 0 && next_directory_offset != orig_position)
 					next_directory = new ImageDirectory (stream, next_directory_offset, this.endian);
 				
 			} catch (System.Exception e) {
