@@ -1,22 +1,24 @@
+# translation of cs.po to
 # Czech translation of f-spot.
 # Copyright (C) 2004, 2005, 2006 f-spot'S COPYRIGHT HOLDER
 # Copyright (C) 2004, 2005, 2006 Miloslav Trmac <mitr@volny.cz>
 # This file is distributed under the same license as the f-spot package.
 # Miloslav Trmac <mitr@volny.cz>, 2004 - 2006.
+# Jakub Friedl <jfriedl@suse.cz>, 2006.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: f-spot VERSION\n"
+"Project-Id-Version: cs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-21 10:18+0200\n"
-"PO-Revision-Date: 2006-05-21 16:24+0200\n"
-"Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
-"Language-Team: Czech <cs@li.org>\n"
+"POT-Creation-Date: 2006-06-06 16:18+0200\n"
+"PO-Revision-Date: 2006-06-06 16:16+0200\n"
+"Last-Translator: Jakub Friedl <jfriedl@suse.cz>\n"
+"Language-Team:  <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: KBabel 1.10.2\n"
 
 #: ../f-spot.desktop.in.in.h:1
 msgid "F-Spot Photo Manager"
@@ -287,11 +289,11 @@ msgstr "Chyba: Chyba při přenosu; končím"
 msgid "Error: File Already Exists; Aborting"
 msgstr "Chyba: Soubor již existuje; končím"
 
-#: ../src/ColorDialog.cs:301
+#: ../src/ColorDialog.cs:308
 msgid "Error saving adjusted photo"
 msgstr "Chyba při ukládání upravené fotografie"
 
-#: ../src/ColorDialog.cs:302 ../src/Loupe.cs:53 ../src/MainWindow.cs:1825
+#: ../src/ColorDialog.cs:309 ../src/Loupe.cs:53 ../src/MainWindow.cs:1825
 #: ../src/PhotoView.cs:269
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
@@ -662,9 +664,8 @@ msgid "<small>_Saturation:</small>"
 msgstr "<small>_Sytost:</small>"
 
 #: ../src/f-spot.glade.h:48
-#, fuzzy
 msgid "<small>_Tint:</small>"
-msgstr "<small></small>"
+msgstr "<small>_Odstín:</small>"
 
 #: ../src/f-spot.glade.h:49
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
@@ -1100,7 +1101,7 @@ msgstr "_Teplota zdroje"
 
 #: ../src/f-spot.glade.h:164
 msgid "Space all photos by"
-msgstr ""
+msgstr "Oddálit všechny fotografie o"
 
 #: ../src/f-spot.glade.h:165
 msgid ""
@@ -1433,7 +1434,7 @@ msgstr "obr_000.jpg"
 #: ../src/f-spot.glade.h:248 ../src/TimeDialog.cs:119
 #, csharp-format
 msgid "min. Starting at {0}"
-msgstr ""
+msgstr "min. zač. na {0}"
 
 #: ../src/f-spot.glade.h:249
 msgid "pixels"
@@ -1453,7 +1454,7 @@ msgstr "Pole galerie URL zřejmě není platné URL"
 
 #: ../src/GalleryExport.cs:425
 msgid "(TopLevel)"
-msgstr ""
+msgstr "(TopLevel)"
 
 #: ../src/GalleryExport.cs:642
 #, csharp-format
@@ -1480,7 +1481,9 @@ msgstr "Odstranit vybranou galerii?"
 msgid ""
 "Remove the selected gallery from the list of galleries. This operation will "
 "not affect the actual gallery."
-msgstr "Odstranit vybranou galerii ze seznamu galerií. Tato operace nebude mít vliv na aktuální galerii."
+msgstr ""
+"Odstranit vybranou galerii ze seznamu galerií. Tato operace nebude mít vliv "
+"na aktuální galerii."
 
 #: ../src/GalleryExport.cs:781
 msgid "_Remove gallery"
@@ -1514,20 +1517,20 @@ msgstr "Vybrat složku"
 msgid "(No Cameras Detected)"
 msgstr "(Nedetekován žádný fotoaparát)"
 
-#: ../src/ImportCommand.cs:374
+#: ../src/ImportCommand.cs:377
 #, csharp-format
 msgid "Loading {0} of {1}"
 msgstr "Načítám {0} z {1}"
 
-#: ../src/ImportCommand.cs:480
+#: ../src/ImportCommand.cs:483
 msgid "Done Loading"
 msgstr "Načítání dokončeno"
 
-#: ../src/ImportCommand.cs:630
+#: ../src/ImportCommand.cs:638
 msgid "Directory does not exist."
 msgstr "Adresář neexistuje."
 
-#: ../src/ImportCommand.cs:631
+#: ../src/ImportCommand.cs:639
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
@@ -1535,7 +1538,7 @@ msgid ""
 msgstr ""
 "Adresář {0}, který jste vybrali, neexistuje. Zvolte prosím jiný adresář"
 
-#: ../src/ImportCommand.cs:669
+#: ../src/ImportCommand.cs:677
 msgid "Select Tag"
 msgstr "Vybrat tag"
 
@@ -1568,30 +1571,30 @@ msgstr "(Žádné)"
 msgid "(Unknown)"
 msgstr "(Neznámé)"
 
-#: ../src/InfoDisplay.cs:169
+#: ../src/InfoDisplay.cs:178
 msgid "Extended Metadata"
 msgstr "Rozšířená metadata"
 
-#: ../src/InfoDisplay.cs:208
+#: ../src/InfoDisplay.cs:217
 msgid "No active photo"
 msgstr "Žádná aktivní fotografie"
 
-#: ../src/InfoDisplay.cs:210
+#: ../src/InfoDisplay.cs:219
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "Fotografie \"{0}\" neexistuje"
 
-#: ../src/InfoDisplay.cs:216
+#: ../src/InfoDisplay.cs:225
 msgid "No metadata available"
 msgstr "Žádná metadata nejsou k dispozici"
 
 #: ../src/IptcFile.cs:139
 msgid "IPTC Information Interchange Model (IIM) Version number"
-msgstr "Číslo verze IPTC Information Interchange Model (IIM)"
+msgstr "Číslo verze IIM (IPTC Information Interchange Model)"
 
 #: ../src/IptcFile.cs:141
 msgid "OSI Destination routing information"
-msgstr ""
+msgstr "Směrovací informace OSI cíle"
 
 #: ../src/IptcFile.cs:143
 msgid "IPTC file format"
@@ -1634,11 +1637,11 @@ msgstr "Externí, globálně jedinečný identifikátor objektu"
 
 #: ../src/IptcFile.cs:164
 msgid "Abstract Relationship Method (ARM) identifier"
-msgstr ""
+msgstr "Identifikátor ARM (Abstract Relationship Method)"
 
 #: ../src/IptcFile.cs:166
 msgid "Abstract Relationship Method (ARM) version number."
-msgstr ""
+msgstr "Verze ARM (Abstract Relationship Method)"
 
 #: ../src/IptcFile.cs:169
 msgid "Number identifying the IIM version this application record uses"
@@ -1755,7 +1758,9 @@ msgstr "Chyba při načítání databáze."
 msgid ""
 "F-Spot encountered an error while loading the photo database  the old "
 "database has be moved to {0} and a new database has been created."
-msgstr "F-Spot narazil na chybu při načítání databáze fotografií. Stará databáze byla přesunuta do {0} a byla vytvořena nová databáze."
+msgstr ""
+"F-Spot narazil na chybu při načítání databáze fotografií. Stará databáze "
+"byla přesunuta do {0} a byla vytvořena nová databáze."
 
 #: ../src/MainWindow.cs:1283
 msgid "No cameras detected."
@@ -1838,7 +1843,7 @@ msgstr ""
 "Pri odstraňování souboru došlo k chybě typu {0}:\n"
 "{1}"
 
-#: ../src/MainWindow.cs:2073
+#: ../src/MainWindow.cs:2088
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
@@ -1846,7 +1851,7 @@ msgstr[0] "Natrvalo odstranit vybranou fotografii?"
 msgstr[1] "Natrvalo odstranit vybrané {0} fotografie?"
 msgstr[2] "Natrvalo odstranit vybraných {0} fotografií?"
 
-#: ../src/MainWindow.cs:2077
+#: ../src/MainWindow.cs:2092
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
@@ -1855,14 +1860,14 @@ msgstr[1] "To odstraní všechny verze vybraných fotografií z vašeho disku."
 msgstr[2] "To odstraní všechny verze vybraných fotografií z vašeho disku."
 
 #
-#: ../src/MainWindow.cs:2080
+#: ../src/MainWindow.cs:2095
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Odstranit fotografii"
 msgstr[1] "_Odstranit fotografie"
 msgstr[2] "_Odstranit fotografie"
 
-#: ../src/MainWindow.cs:2102
+#: ../src/MainWindow.cs:2123
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
@@ -1870,7 +1875,7 @@ msgstr[0] "Odstranit vybranou fotografii z F-Spotu?"
 msgstr[1] "Odstranit vybrané {0} fotografie z F-Spotu?"
 msgstr[2] "Odstranit vybraných {0} fotografií z F-Spotu?"
 
-#: ../src/MainWindow.cs:2107
+#: ../src/MainWindow.cs:2128
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1880,25 +1885,25 @@ msgstr ""
 "budou ztraceny. Fotografie zůstávají ve vašem počítači a lze je do F-Spot "
 "znovu importovat."
 
-#: ../src/MainWindow.cs:2108
+#: ../src/MainWindow.cs:2129
 msgid "_Remove from Catalog"
 msgstr "_Odstranit z katalogu"
 
-#: ../src/MainWindow.cs:2163
+#: ../src/MainWindow.cs:2184
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Odstranit tag \"{0}\"?"
 
-#: ../src/MainWindow.cs:2165
+#: ../src/MainWindow.cs:2186
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Odstranit {0} vybraných tagů?"
 
-#: ../src/MainWindow.cs:2168
+#: ../src/MainWindow.cs:2189
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr "Pokud odstraníte tag, všechny asociace s fotografiemi budou ztraceny."
 
-#: ../src/MainWindow.cs:2169
+#: ../src/MainWindow.cs:2190
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "Odstranit tag"
@@ -1906,11 +1911,11 @@ msgstr[1] "Odstranit tagy"
 msgstr[2] "Odstranit tagy"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2183
+#: ../src/MainWindow.cs:2204
 msgid "Tag is not empty"
 msgstr "Tag není prázdný"
 
-#: ../src/MainWindow.cs:2184
+#: ../src/MainWindow.cs:2205
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1919,28 +1924,28 @@ msgstr ""
 "Nemohu odstranit tagy, které obsahují tagy. Nejdříve prosím odstraňte tagy "
 "pod \"{0}\""
 
-#: ../src/MainWindow.cs:2495
+#: ../src/MainWindow.cs:2516
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Rotovat vybranou fotografii doleva"
 msgstr[1] "Rotovat vybrané fotografie doleva"
 msgstr[2] "Rotovat vybrané fotografie doleva"
 
-#: ../src/MainWindow.cs:2508
+#: ../src/MainWindow.cs:2529
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Rotovat vybranou fotografii doprava"
 msgstr[1] "Rotovat vybrané fotografie doprava"
 msgstr[2] "Rotovat vybrané fotografie doprava"
 
-#: ../src/MainWindow.cs:2522
+#: ../src/MainWindow.cs:2543
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Vytvořit novou verzi?"
 msgstr[1] "Vytvořit nové verze?"
 msgstr[2] "Vytvořit nove verze?"
 
-#: ../src/MainWindow.cs:2524
+#: ../src/MainWindow.cs:2545
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1949,8 +1954,14 @@ msgid_plural ""
 "Before launching {1}, should F-Spot create new versions of the selected "
 "photos to preserve the originals?"
 msgstr[0] ""
+"Má F-Spot vytvořit novou verzi vybrané fotografie před spuštěním {1} pro "
+"zachování originálu?"
 msgstr[1] ""
+"Má F-Spot vytvořit novou verzi vybrané fotografie před spuštěním {1} pro "
+"zachování originálů?"
 msgstr[2] ""
+"Má F-Spot vytvořit novou verzi vybrané fotografie před spuštěním {1} pro "
+"zachování originálů?"
 
 #: ../src/MetadataStore.cs:17
 msgid "Creator"
@@ -1974,7 +1985,7 @@ msgstr "Komprese"
 
 #: ../src/MetadataStore.cs:23
 msgid "Planar Configuration"
-msgstr ""
+msgstr "Plošná konfigurace"
 
 #: ../src/MetadataStore.cs:25
 msgid "Orientation"
@@ -1994,7 +2005,7 @@ msgstr "Program expozice:"
 
 #: ../src/MetadataStore.cs:33
 msgid "Metering Mode"
-msgstr ""
+msgstr "Režim měření"
 
 #: ../src/MetadataStore.cs:35
 msgid "Exposure Mode"
@@ -2002,7 +2013,7 @@ msgstr "Režim expozice:"
 
 #: ../src/MetadataStore.cs:37
 msgid "Custom Rendered"
-msgstr ""
+msgstr "Vlastní vykreslení"
 
 #: ../src/MetadataStore.cs:39
 msgid "Components Configuration"
@@ -2026,7 +2037,7 @@ msgstr "Vyvážení bílé"
 
 #: ../src/MetadataStore.cs:49
 msgid "Focal Plane Resolution Unit"
-msgstr ""
+msgstr "Jednotka rozlišení roviny zaostření"
 
 #: ../src/MetadataStore.cs:51
 msgid "File Source Type"
@@ -2064,22 +2075,22 @@ msgstr "Žádné aplikace nejsou k dispozici"
 msgid "Open With"
 msgstr "Otevřít s"
 
-#: ../src/PhotoPopup.cs:36
+#: ../src/PhotoPopup.cs:46
 msgid "Copy Photo Location"
 msgstr "Kopírovat umístění fotografie"
 
-#: ../src/PhotoPopup.cs:52
+#: ../src/PhotoPopup.cs:62
 msgid "Remove From Catalog"
 msgstr "Odstranit z katalogu"
 
-#: ../src/PhotoPopup.cs:54
+#: ../src/PhotoPopup.cs:64
 msgid "Delete From Drive"
 msgstr "Odstranit z jednotky"
 
 #.
 #. FIXME TagMenu is ugly.
 #.
-#: ../src/PhotoPopup.cs:62
+#: ../src/PhotoPopup.cs:72
 msgid "Attach Tag"
 msgstr "Připojit tag"
 
@@ -2087,7 +2098,7 @@ msgstr "Připojit tag"
 #. FIXME finish the IPhotoSelection stuff and move the activate handler into the class
 #. this current method is way too complicated.
 #.
-#: ../src/PhotoPopup.cs:73
+#: ../src/PhotoPopup.cs:83
 msgid "Remove Tag"
 msgstr "Odstranit tag"
 
@@ -2271,7 +2282,7 @@ msgstr "Převést fotografii na černobílou"
 
 #: ../src/PhotoView.cs:560
 msgid "Convert the photo to sepia tones"
-msgstr ""
+msgstr "Převést fotografii do sépie"
 
 #: ../src/RotateCommand.cs:154
 msgid "Rotating photos"
@@ -2366,9 +2377,8 @@ msgid "Reduce Red-Eye"
 msgstr "Omezit červené oči"
 
 #: ../src/StockIcons.cs:40
-#, fuzzy
 msgid "Sepia Tone"
-msgstr "Boční _panel"
+msgstr "Sépie"
 
 #: ../src/StockIcons.cs:41
 msgid "Slideshow"
@@ -2511,153 +2521,3 @@ msgstr "Promítat snímky z F-Spotu"
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr "Fotografie F-Spotu"
-
-#~ msgid "Edit Tag \"{0}\""
-#~ msgstr "Upravit tag \"{0}\""
-
-#~ msgid "Attach Tag To Selection"
-#~ msgid_plural "Attach Tags To Selection"
-#~ msgstr[0] "Připojit k výběru tag"
-#~ msgstr[1] "Připojit k výběru tagy"
-#~ msgstr[2] "Připojit k výběru tagy"
-
-#~ msgid "<small>1 of 1</small>"
-#~ msgstr "<small>1 z 1</small>"
-
-#~ msgid "Appears to have been taken on:"
-#~ msgstr "Zřejmě byl pořízen dne:"
-
-#~ msgid "Was actually taken on: "
-#~ msgstr "Byl ve skutečnosti pořízen dne: "
-
-#~ msgid "_Directory"
-#~ msgstr "_Adresářů"
-
-#~ msgid "_Merge tags"
-#~ msgstr "_Sloučit tagy"
-
-#~ msgid "F-Spot {0} cannot yet edit images of this type"
-#~ msgstr "F-Spot {0} ještě neumí upravovat obrázky tohoto typu"
-
-#~ msgid "Enter Password"
-#~ msgstr "Zadejte heslo"
-
-#~ msgid "Enter Password for "
-#~ msgstr "Zadejte heslo pro "
-
-#~ msgid "<b>From Image</b>"
-#~ msgstr "<b>Z obrázku</b>"
-
-#~ msgid "Create New _Category..."
-#~ msgstr "Vytvořit novou _kategorii..."
-
-#~ msgid "Export Tags and Categories"
-#~ msgstr "Exportovat tagy a kategorie"
-
-#~ msgid "Export tags and categories"
-#~ msgstr "Exportovat tagy a kategorie"
-
-#~ msgid "Export to Original"
-#~ msgstr "Exportovat do originálu"
-
-#~ msgid "Import from C_amera..."
-#~ msgstr "Importovat z _fotoaparátu..."
-
-#~ msgid "Password:"
-#~ msgstr "Heslo:"
-
-#~ msgid "Plain Files."
-#~ msgstr "Obyčejné soubory."
-
-#~ msgid "Use Original."
-#~ msgstr "Použít původní."
-
-#~ msgid "Use static HTML."
-#~ msgstr "Použít statické HTML."
-
-#~ msgid "_Delete from Drive"
-#~ msgstr "_Odstranit z jednotky"
-
-#~ msgid "_EXIF Data"
-#~ msgstr "_Data EXIF"
-
-#~ msgid "_Large"
-#~ msgstr "_Velké"
-
-#~ msgid "_Medium"
-#~ msgstr "_Střední"
-
-#~ msgid "_Size"
-#~ msgstr "_Velikost"
-
-#~ msgid "_Small"
-#~ msgstr "_Malé"
-
-#~ msgid "Next image"
-#~ msgstr "Následující obrázek"
-
-#~ msgid "Previous image"
-#~ msgstr "Předchozí obrázek"
-
-#~ msgid "Edit Image"
-#~ msgstr "Upravit obrázek"
-
-#~ msgid "(No categories)"
-#~ msgstr "(Žádné kategorie)"
-
-#~ msgid "Create New Category"
-#~ msgstr "Vytvořit novou kategorii"
-
-#~ msgid "Name of new category:"
-#~ msgstr "Název nové kategorie:"
-
-#~ msgid "Edit Category"
-#~ msgstr "Upravit kategorii"
-
-#~ msgid "Category name:"
-#~ msgstr "Název kategorie:"
-
-#~ msgid "Edit icon for category {0}"
-#~ msgstr "Upravit ikonu pro kategorii {0}"
-
-#~ msgid "Transfering Pictures"
-#~ msgstr "Přenáším obrázky"
-
-#~ msgid "No EXIF info available"
-#~ msgstr "Nejsou k dispozici informace EXIF"
-
-#~ msgid "Error: Error while transferring, Aborting"
-#~ msgstr "Chyba: Chyba při přenosu, končím"
-
-#~ msgid "Error: File Already Exists, Aborting"
-#~ msgstr "Chyba: Soubor již existuje, končím"
-
-#~ msgid "Received exception \"{0}\" while rotating image {1}"
-#~ msgstr "Přijata výjimka \"{0}\" při rotování obrázku {1}"
-
-#~ msgid "Scaling picture \"{0}\""
-#~ msgstr "Měním velikost obrázku \"{0}\""
-
-#~ msgid "Transferring picture \"{0}\""
-#~ msgstr "Přenáším obrázek \"{0}\""
-
-#~ msgid "Export to _Original..."
-#~ msgstr "Exportovat do _originálu..."
-
-#~ msgid "Export to _VFS..."
-#~ msgstr "Exportovat do _VFS..."
-
-#~ msgid "Add Gallery"
-#~ msgstr "Přidat galerii"
-
-#~ msgid "No Formatting"
-#~ msgstr "Bez formátování"
-
-#~ msgid "Gallery Settings"
-#~ msgstr "Nastavení galerie"
-
-#~ msgid "User_name:"
-#~ msgstr "_Jméno uživatele:"
-
-#~ msgid "Cancel"
-#~ msgstr "Zrušit"
