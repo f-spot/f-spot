@@ -324,13 +324,14 @@ public class Db : IDisposable {
 
 		sqlite_connection.Open ();
 		
-		BeginTransaction ();
 
 		// Load or create the meta table
  		meta_store = new MetaStore (sqlite_connection, new_db);
 
 		// Update the database schema if necessary
 		FSpot.Database.Updater.Run (this);
+
+		BeginTransaction ();
 
 		tag_store = new TagStore (sqlite_connection, new_db);
 		import_store = new ImportStore (sqlite_connection, new_db);
