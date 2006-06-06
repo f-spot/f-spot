@@ -1,5 +1,7 @@
 2006-06-06  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: handle more exceptions.
+
 	* src/AsyncPixbufLoader.cs: catch general exceptions durring I/O.
 
 	* src/FolderExport.cs: work around a bug in filechooserbutton
