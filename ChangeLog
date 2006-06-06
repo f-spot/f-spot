@@ -1,5 +1,9 @@
 2006-06-06  Larry Ewing  <lewing@novell.com>
 
+	* src/GalleryExport.cs: remove remove button add edit button.
+
+	* src/f-spot.glade: add edit button.
+	
 	* src/main.cs: you get the idea.
 
 	* src/Db.cs: rework the dbus startup handling.

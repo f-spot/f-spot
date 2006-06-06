@@ -32,6 +32,9 @@ namespace FSpot {
 			
 			Gallery gal = null;
 
+			if (version == GalleryVersion.VersionUnknown)
+				this.version = Gallery.DetectGalleryVersion(Url);
+
 			if (version == GalleryVersion.Version1) {
 				gal = new Gallery1 (url, url);
 			} else if (version == GalleryVersion.Version2) {
@@ -72,6 +75,12 @@ namespace FSpot {
 			}
 		}
 
+		public void MarkChanged ()
+		{
+			connected = false;
+			gallery = null;
+		}
+
 		Gallery gallery;
 		public Gallery Gallery {
 			get {
@@ -95,7 +104,10 @@ namespace FSpot {
 				return url;
 			}
 			set {
-				url = value;
+				if (url != value) {
+					url = value;
+					MarkChanged ();
+				}
 			}
 		}
 
@@ -105,7 +117,10 @@ namespace FSpot {
 				return username;
 			}
 			set {
-				username = value;
+				if (username != value) {
+					username = value;
+					MarkChanged ();
+				}
 			}
 		}
 
@@ -115,7 +130,10 @@ namespace FSpot {
 				return password;
 			}
 			set {
-				password = value;
+				if (password != value) {
+					password = value;
+					MarkChanged ();
+				}
 			}
 		}
 	}
@@ -127,7 +145,7 @@ namespace FSpot {
 		string xml_path;
 		ArrayList accounts;
 
-		public delegate void AccountListChangedHandler (GalleryAccountManager manager);
+		public delegate void AccountListChangedHandler (GalleryAccountManager manager, GalleryAccount changed_account);
 		public event AccountListChangedHandler AccountListChanged;
 		
 		public static GalleryAccountManager GetInstance ()
@@ -148,10 +166,18 @@ namespace FSpot {
 			ReadAccounts ();
 		}	
 
-		private void OnAccountListChanged ()
+		public void MarkChanged ()
 		{
+			MarkChanged (true, null);
+		}
+
+		public void MarkChanged (bool write, GalleryAccount changed_account)
+		{
+			if (write)
+				WriteAccounts ();
+
 			if (AccountListChanged != null)
-				AccountListChanged (this);
+				AccountListChanged (this, changed_account);
 		}
 
 		public ArrayList GetAccounts ()
@@ -167,23 +193,15 @@ namespace FSpot {
 		public void AddAccount (GalleryAccount account, bool write)
 		{
 			accounts.Add (account);
-		
-			OnAccountListChanged ();
-
-			if (write)
-				
-				WriteAccounts ();
+			MarkChanged (write, account);
 		}
 
 		public void RemoveAccount (GalleryAccount account)
 		{
 			accounts.Remove (account);
-			
-			OnAccountListChanged ();
-			
-			WriteAccounts ();
+			MarkChanged ();
 		}
-		
+
 		public void WriteAccounts ()
 		{
 			System.Xml.XmlTextWriter writer = new System.Xml.XmlTextWriter (xml_path, System.Text.Encoding.Default);
@@ -249,8 +267,8 @@ namespace FSpot {
 		{
 
 			if (! File.Exists (xml_path)) {
-			    OnAccountListChanged ();
-			    return;
+				MarkChanged ();
+				return;
 			}
 
 			try {
@@ -274,26 +292,25 @@ namespace FSpot {
 				System.Console.WriteLine (e);
 			}
 
-			OnAccountListChanged ();
+			MarkChanged ();
 		}
 	}
 	
-
-	
 	public class AccountDialog : GladeDialog {
-		public AccountDialog (Gtk.Window parent) : this (parent, null) { 
+		public AccountDialog (Gtk.Window parent) : this (parent, null, false) { 
 			Dialog.Response += HandleAddResponse;
 			add_button.Sensitive = false;
-			status_area.Visible = false;
 		}
 		
-		public AccountDialog (Gtk.Window parent, GalleryAccount account) :  base ("gallery_add_dialog")
+		public AccountDialog (Gtk.Window parent, GalleryAccount account, bool show_error) :  base ("gallery_add_dialog")
 		{
 			this.Dialog.Modal = false;
 			this.Dialog.TransientFor = parent;
-			this.Dialog.Show ();
+			this.Dialog.DefaultResponse = Gtk.ResponseType.Ok;
 			
 			this.account = account;
+
+			status_area.Visible = show_error;
 
 			if (account != null) {
 				gallery_entry.Text = account.Name;
@@ -302,7 +319,12 @@ namespace FSpot {
 				username_entry.Text = account.Username;
 				add_button.Label = Gtk.Stock.Ok;
 				Dialog.Response += HandleEditResponse;
-			} 
+			}
+
+			if (remove_button != null)
+				remove_button.Visible = account != null;
+
+			this.Dialog.Show ();
 
 			gallery_entry.Changed += HandleChanged;
 			url_entry.Changed += HandleChanged;
@@ -328,8 +350,6 @@ namespace FSpot {
 		[GLib.ConnectBefore]
 		protected void HandleAddResponse (object sender, Gtk.ResponseArgs args)
 		{
-
-
 			if (args.ResponseId == Gtk.ResponseType.Ok) {
 				try {
 					Uri uri = new Uri (url);
@@ -349,15 +369,14 @@ namespace FSpot {
 					md.Destroy ();
 					return;
 				}
-				   
 
+				Dialog.Destroy ();
 				GalleryAccount account = new GalleryAccount (name, 
 									     url, 
 									     username,
 									     password);
 				GalleryAccountManager.GetInstance ().AddAccount (account);
 			}
-			Dialog.Destroy ();
 		}
 
 		protected void HandleEditResponse (object sender, Gtk.ResponseArgs args)
@@ -367,7 +386,12 @@ namespace FSpot {
 				account.Url = url;
 				account.Username = username;
 				account.Password = password;
+				GalleryAccountManager.GetInstance ().MarkChanged (true, account);
+			} else if (args.ResponseId == Gtk.ResponseType.Reject) {
+				// NOTE we are using Reject to signal the remove action.
+				GalleryAccountManager.GetInstance ().RemoveAccount (account);
 			}
+			Dialog.Destroy ();				
 		}
 
 		private GalleryAccount account;
@@ -383,6 +407,7 @@ namespace FSpot {
 		[Glade.Widget] Gtk.Entry username_entry;
 
 		[Glade.Widget] Gtk.Button add_button;
+		[Glade.Widget] Gtk.Button remove_button;
 		[Glade.Widget] Gtk.Button cancel_button;
 
 		[Glade.Widget] Gtk.HBox status_area;
@@ -422,7 +447,7 @@ namespace FSpot {
 		private void PopulateAlbums ()
 		{
 			Gtk.Menu menu = new Gtk.Menu ();
-			Gtk.MenuItem top_item = new Gtk.MenuItem (Catalog.GetString ("(TopLevel)"));
+			Gtk.MenuItem top_item = new Gtk.MenuItem (Mono.Posix.Catalog.GetString ("(TopLevel)"));
 			menu.Append (top_item);
 
 			foreach (Album album in gallery.Albums) {
@@ -480,7 +505,7 @@ namespace FSpot {
 		public GalleryExport (IBrowsableCollection selection) : base ("gallery_export_dialog")
 		{
 			this.photos = (Photo []) selection.Items;
-			
+			album_button.Sensitive = false;
 			IconView view = new IconView (selection);
 			view.DisplayDates = false;
 			view.DisplayTags = false;
@@ -492,9 +517,13 @@ namespace FSpot {
 			view.Show ();
 			Dialog.Show ();
 
+
 			GalleryAccountManager manager = GalleryAccountManager.GetInstance ();
 			manager.AccountListChanged += PopulateGalleryOptionMenu;
-			PopulateGalleryOptionMenu (manager);
+			PopulateGalleryOptionMenu (manager, null);
+
+			if (edit_button != null)
+				edit_button.Clicked += HandleEditGallery;
 			
 			rh = new Gtk.ResponseHandler (HandleResponse);
 			Dialog.Response += HandleResponse;
@@ -545,8 +574,8 @@ namespace FSpot {
 
 		[Glade.Widget] Gtk.Button album_button;
 		[Glade.Widget] Gtk.Button add_button;
-		[Glade.Widget] Gtk.Button remove_button;
-
+		[Glade.Widget] Gtk.Button edit_button;
+		
 		[Glade.Widget] Gtk.Button ok_button;
 		[Glade.Widget] Gtk.Button cancel_button;
 
@@ -579,7 +608,7 @@ namespace FSpot {
 				Dialog.Destroy ();
 
 				command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
-				command_thread.Name = Catalog.GetString ("Uploading Pictures");
+				command_thread.Name = Mono.Posix.Catalog.GetString ("Uploading Pictures");
 				
 				progress_dialog = new FSpot.ThreadProgressDialog (command_thread, photos.Length);
 				progress_dialog.Start ();
@@ -615,15 +644,15 @@ namespace FSpot {
 
 					System.Console.WriteLine ("uploading {0}", photo_index);
 
-					progress_dialog.Message = System.String.Format (Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
+					progress_dialog.Message = System.String.Format (Mono.Posix.Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
 					progress_dialog.Fraction = photo_index / (double) photos.Length;
 					photo_index++;
 
-					progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"), photo_index, photos.Length);
+					progress_dialog.ProgressText = System.String.Format (Mono.Posix.Catalog.GetString ("{0} of {1}"), photo_index, photos.Length);
 					
 					if (scale) {
 						/* FIXME this is sick */
-						string orig = photo.DefaultVersionUri.LocalPath;
+						string orig = photo.DefaultVersionPath;
 						string path = PixbufUtils.Resize (orig, size, true);
 						string final = path + System.IO.Path.GetExtension (orig);
 						System.IO.File.Move (path, final);
@@ -634,14 +663,14 @@ namespace FSpot {
 					}
 				}
 
-				progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
+				progress_dialog.Message = Mono.Posix.Catalog.GetString ("Done Sending Photos");
 				progress_dialog.Fraction = 1.0;
-				progress_dialog.ProgressText = Catalog.GetString ("Upload Complete");
+				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Upload Complete");
 				progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 			} catch (System.Exception e) {
-				progress_dialog.Message = String.Format (Catalog.GetString ("Error Uploading To Gallery: {0}"),
+				progress_dialog.Message = String.Format (Mono.Posix.Catalog.GetString ("Error Uploading To Gallery: {0}"),
 									 e.Message);
-				progress_dialog.ProgressText = Catalog.GetString ("Error");
+				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error");
 				System.Console.WriteLine (e);
 			}
 			
@@ -650,51 +679,70 @@ namespace FSpot {
 			}
 		}
 		
-		private void PopulateGalleryOptionMenu (GalleryAccountManager manager)
+		private void PopulateGalleryOptionMenu (GalleryAccountManager manager, GalleryAccount changed_account)
 		{
 			Gtk.Menu menu = new Gtk.Menu ();
-			
+			this.account = changed_account;
+			int pos = -1;
+
 			accounts = manager.GetAccounts ();
 			if (accounts == null || accounts.Count == 0) {
-				Gtk.MenuItem item = new Gtk.MenuItem (Catalog.GetString ("(No Gallery)"));
+				Gtk.MenuItem item = new Gtk.MenuItem (Mono.Posix.Catalog.GetString ("(No Gallery)"));
 				menu.Append (item);
 				gallery_optionmenu.Sensitive = false;
-				remove_button.Sensitive = false;
+				edit_button.Sensitive = false;
 			} else {
+				int i = 0;
 				foreach (GalleryAccount account in accounts) {
+					if (account == changed_account)
+						pos = i;
+					
 					Gtk.MenuItem item = new Gtk.MenuItem (account.Name);
 					menu.Append (item);		
+					i++;
 				}
 				gallery_optionmenu.Sensitive = true;
-				remove_button.Sensitive = true;
+				edit_button.Sensitive = true;
 			}
 
 			menu.ShowAll ();
 			gallery_optionmenu.Menu = menu;
+			gallery_optionmenu.SetHistory ((uint)pos);
 		}
 
 		private void Connect ()
 		{
+			Connect (null);
+		}
+
+		private void Connect (GalleryAccount selected)
+		{
 			try {
 				if (accounts.Count != 0 && connect) {
-					account = (GalleryAccount) accounts [gallery_optionmenu.History];
+					if (selected == null)
+						account = (GalleryAccount) accounts [gallery_optionmenu.History];
+					else
+						account = selected;
+
 					if (!account.Connected)
 						account.Connect ();
 					
 					PopulateAlbumOptionMenu (account.Gallery);
-				} else {
-					PopulateAlbumOptionMenu (null);
+					album_button.Sensitive = true;
 				}
 			} catch (System.Exception ex) {
+				if (selected != null)
+					account = selected;
+
+				System.Console.WriteLine ("{0}",ex);
 				PopulateAlbumOptionMenu (account.Gallery);
+				album_button.Sensitive = false;
 				
-				AccountDialog dialog = new AccountDialog (this.Dialog, account);
+				AccountDialog dialog = new AccountDialog (this.Dialog, account, true);
 				Gtk.ResponseType response = (Gtk.ResponseType) dialog.Dialog.Run ();
 
-				dialog.Dialog.Destroy ();				
 				if (response == Gtk.ResponseType.Ok) {
-					GalleryAccountManager.GetInstance ().WriteAccounts ();
-					Connect ();
+					Connect (account);					
 				}
 			} 
 		}
@@ -731,14 +779,15 @@ namespace FSpot {
 			bool disconnected = gallery == null || !account.Connected || albums == null;
 
 			if (disconnected || albums.Count == 0) {
-				string msg = disconnected ? Catalog.GetString ("(Not Connected)") 
-					: Catalog.GetString ("(No Albums)");
+				string msg = disconnected ? Mono.Posix.Catalog.GetString ("(Not Connected)") 
+					: Mono.Posix.Catalog.GetString ("(No Albums)");
 
 				Gtk.MenuItem item = new Gtk.MenuItem (msg);
 				menu.Append (item);
 
 				ok_button.Sensitive = false;
 				album_optionmenu.Sensitive = false;
+				album_button.Sensitive = false;
 
 				if (disconnected) 
 					album_button.Sensitive = false;
@@ -774,22 +823,16 @@ namespace FSpot {
 			gallery_add = new AccountDialog (this.Dialog);
 		}
 		
-		public void HandleDeleteGallery (object sender, System.EventArgs args)
+		public void HandleEditGallery (object sender, System.EventArgs args)
 		{
-			string header = Catalog.GetString ("Remove the selected gallery?");
-			string msg = Catalog.GetString ("Remove the selected gallery from the list of galleries. This operation will not affect the actual gallery.");
-			string ok_caption = Catalog.GetString ("_Remove gallery");
-			if (Gtk.ResponseType.Ok == HigMessageDialog.RunHigConfirmation(this.Dialog, 
-										       Gtk.DialogFlags.DestroyWithParent, 
-										       Gtk.MessageType.Warning, 
-										       header, msg, ok_caption)) {
-
-				GalleryAccountManager.GetInstance ().RemoveAccount (account);
-			}
+			gallery_add = new AccountDialog (this.Dialog, account, false);
 		}
 
 		public void HandleAddAlbum (object sender, System.EventArgs args)
 		{
+			if (account == null)
+				throw new Exception (Catalog.GetString ("No acocunt selected"));
+				
 			album_add = new GalleryAddAlbum (this, account.Gallery);
 		}
 
