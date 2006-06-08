@@ -831,7 +831,7 @@ namespace FSpot {
 		public void HandleAddAlbum (object sender, System.EventArgs args)
 		{
 			if (account == null)
-				throw new Exception (Catalog.GetString ("No acocunt selected"));
+				throw new Exception (Catalog.GetString ("No account selected"));
 				
 			album_add = new GalleryAddAlbum (this, account.Gallery);
 		}
