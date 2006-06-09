@@ -1,5 +1,7 @@
 2006-06-09  Larry Ewing  <lewing@novell.com>
 
+	* src/main.cs: initialize translations in screensaver mode.
+
 	* src/Db.cs: fix the time round trip calculation but still revert
 	to the old time functions until an updater is ready.
 
