@@ -57,7 +57,7 @@ public class PhotoPopup : Gtk.Menu {
 
 		OpenWithMenu owm = OpenWithMenu.AppendMenuTo (popup_menu, MainWindow.Toplevel.SelectedMimeTypes);
 		owm.IgnoreApp = "f-spot";
-		owm.ApplicationActivated += MainWindow.Toplevel.HandleOpenWith;
+		owm.ApplicationActivated += delegate (Gnome.Vfs.MimeApplication app) { MainWindow.Toplevel.HandleOpenWith (creator, app); };
 
 		GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Remove From Catalog"), 
 				      delegate { MainWindow.Toplevel.HandleRemoveCommand (creator, null); }, have_selection);
@@ -71,7 +71,7 @@ public class PhotoPopup : Gtk.Menu {
 		//
 		MenuItem attach_item = new MenuItem (Mono.Posix.Catalog.GetString ("Attach Tag"));
 		TagMenu attach_menu = new TagMenu (attach_item, MainWindow.Toplevel.Database.Tags);
-		attach_menu.NewTagHandler = MainWindow.Toplevel.HandleCreateTagAndAttach;
+		attach_menu.NewTagHandler += delegate { MainWindow.Toplevel.HandleCreateTagAndAttach (creator, null); };
 		attach_menu.TagSelected += MainWindow.Toplevel.HandleAttachTagMenuSelected;
 		attach_item.ShowAll ();
 		popup_menu.Append (attach_item);

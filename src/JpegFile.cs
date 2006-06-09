@@ -68,14 +68,19 @@ namespace FSpot {
 				}
 				return null;
 #else
-				Exif.ExifContent exif_content = this.ExifData.GetContents (Exif.Ifd.Exif);
-				Exif.ExifEntry entry = exif_content.Lookup (Exif.Tag.UserComment);
-
-				if (entry == null)
+				try {
+					Exif.ExifContent exif_content = this.ExifData.GetContents (Exif.Ifd.Exif);
+					Exif.ExifEntry entry = exif_content.Lookup (Exif.Tag.UserComment);
+					
+					if (entry == null)
+						return null;
+					
+					UserComment comment = new UserComment (entry.Data, entry.ByteOrder == Exif.ByteOrder.Intel);
+					return comment.Value;
+				} catch (Exception e) {
+					// errors here shouldn't be fatal
 					return null;
-				
-				UserComment comment = new UserComment (entry.Data, entry.ByteOrder == Exif.ByteOrder.Intel);
-				return comment.Value;
+				}
 #endif				
 			}
 		}

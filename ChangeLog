@@ -1,5 +1,20 @@
 2006-06-09  Larry Ewing  <lewing@novell.com>
 
+	* src/HigMessagesDialog.cs: add new classes to start cleaning up
+	the exception dialogs.
+
+	* src/ImportCommand.cs: Call creat tag with info.
+
+	* src/JpegFile.cs: handle exceptions in the description code.
+
+	* src/Tiff.cs: allow zero lenght UserComments.
+
+	* src/PhotoPopup.cs: handle more dialog issues.
+
+	* src/MainWindow.cs: use the new exception dialog.
+
+	* src/PhotoView.cs: use the new exception dialog.
+	
 	* src/main.cs: initialize translations in screensaver mode.
 
 	* src/Db.cs: fix the time round trip calculation but still revert

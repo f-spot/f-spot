@@ -686,7 +686,7 @@ public class ImportCommand : FSpot.GladeDialog {
 
 	private void HandleNewTagSelected (object sender, EventArgs args)
 	{
-		Tag new_tag = MainWindow.Toplevel.CreateTag ();
+		Tag new_tag = MainWindow.Toplevel.CreateTag (Dialog, null);
 
 		if (new_tag != null) {
 			CreateTagMenu ();
