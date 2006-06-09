@@ -300,7 +300,7 @@ public class MainWindow {
 		icon_view.DragDataGet += HandleIconViewDragDataGet;
 
 		TagMenu menu = new TagMenu (attach_tag, db.Tags);
-		menu.NewTagHandler = HandleCreateTagAndAttach;
+		menu.NewTagHandler += delegate { HandleCreateTagAndAttach (main_window, null); };
 		menu.TagSelected += HandleAttachTagMenuSelected;
 
 		near_image.SetFromStock ("f-spot-stock_near", IconSize.SmallToolbar);
@@ -1579,7 +1579,7 @@ public class MainWindow {
 	{
 		PhotoVersionCommands.Create cmd = new PhotoVersionCommands.Create ();
 
-		if (cmd.Execute (db.Photos, CurrentPhoto, main_window)) {
+		if (cmd.Execute (db.Photos, CurrentPhoto, GetToplevel (null))) {
 			query.MarkChanged (ActiveIndex ());
 		}
 	}
@@ -1588,7 +1588,7 @@ public class MainWindow {
 	{
 		PhotoVersionCommands.Delete cmd = new PhotoVersionCommands.Delete ();
 
-		if (cmd.Execute (db.Photos, CurrentPhoto, main_window)) {
+		if (cmd.Execute (db.Photos, CurrentPhoto, GetToplevel (null))) {
 			query.MarkChanged (ActiveIndex ());
 		}
 	}
@@ -1619,7 +1619,7 @@ public class MainWindow {
 	
 	public void HandleCreateTagAndAttach (object sender, EventArgs args)
 	{
-		Tag new_tag = CreateTag ();
+		Tag new_tag = CreateTag (sender, args);
 
 		if (new_tag != null)
 			HandleAttachTagMenuSelected (new_tag);
@@ -1627,7 +1627,7 @@ public class MainWindow {
 
 	public void HandleCreateNewCategoryCommand (object sender, EventArgs args)
 	{
-		Tag new_tag = CreateTag ();
+		Tag new_tag = CreateTag (sender, args);
 		
 		if (new_tag != null) {
 			tag_selection_widget.ScrollTo (new_tag);
@@ -1635,9 +1635,9 @@ public class MainWindow {
 		}
 	}
 
-	public Tag CreateTag ()
+	public Tag CreateTag (object sender, EventArgs args)
 	{
-		TagCommands.Create command = new TagCommands.Create (db.Tags, main_window);
+		TagCommands.Create command = new TagCommands.Create (db.Tags, GetToplevel (sender));
 		return command.Execute (TagCommands.TagType.Category, tag_selection_widget.TagHighlight);
 	}
 
@@ -2081,7 +2081,7 @@ public class MainWindow {
 
 		return toplevel;
 	}
-	
+
 	public void HandleDeleteCommand (object sender, EventArgs args)
 	{
    		Photo[] photos = SelectedPhotos();
@@ -2533,7 +2533,7 @@ public class MainWindow {
 		}
 	}
 
-	public void HandleOpenWith (Gnome.Vfs.MimeApplication mime_application)
+	public void HandleOpenWith (object sender, Gnome.Vfs.MimeApplication mime_application)
 	{
 		Photo[] selected = SelectedPhotos ();
 
@@ -2547,7 +2547,7 @@ public class MainWindow {
 				selected.Length, mime_application.Name);
 
 		// FIXME add cancel button? add help button?
-		HigMessageDialog hmd = new HigMessageDialog(main_window, DialogFlags.DestroyWithParent, 
+		HigMessageDialog hmd = new HigMessageDialog(GetToplevel (sender), DialogFlags.DestroyWithParent, 
 							    MessageType.Question, Gtk.ButtonsType.None,
 							    header, msg);
 
@@ -2568,17 +2568,28 @@ public class MainWindow {
 
 		bool create_new_versions = (response == Gtk.ResponseType.Yes);
 
+		ArrayList errors = new ArrayList ();
 		GLib.List uri_list = new GLib.List (typeof (string));
 		foreach (Photo photo in selected) {
-			if (create_new_versions) {
-				// FIXME exception handling? Out of space, blah, blah
-				uint version = photo.CreateNamedVersion (mime_application.Name, photo.DefaultVersionId, true);
-				photo.DefaultVersionId = version;
-			}
+			// FIXME need to clean up the error dialog here.
+			try {
+				if (create_new_versions) {
+					uint version = photo.CreateNamedVersion (mime_application.Name, photo.DefaultVersionId, true);
+					photo.DefaultVersionId = version;
+				}
 
-			uri_list.Append (photo.DefaultVersionPath);
+				uri_list.Append (photo.DefaultVersionPath);
+			} catch (Exception e) {
+				errors.Add (new EditException (photo, e));
+			}
 		}
 
+		if (errors.Count > 0) {
+			Dialog md = new EditExceptionDialog (GetToplevel (sender), errors.ToArray (typeof (EditException)) as EditException []);
+			md.Run ();
+			md.Destroy ();
+		}
+		
 		if (create_new_versions) {
 			db.Photos.Commit (selected, new DbItemEventArgs (selected));
 		}

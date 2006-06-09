@@ -357,7 +357,7 @@ namespace FSpot.Tiff {
 
 		public UserComment (byte [] raw_data, bool little)
 		{
-			if (raw_data.Length == 8) { 
+			if (raw_data.Length == 8 || raw_data.Length == 0) { 
 				Charset = null;
 				Value = "";
 				return;

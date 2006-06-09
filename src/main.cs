@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
+using Mono.Unix;
 
 
 
@@ -24,6 +25,8 @@ public class Driver {
 		try {
 			foreach (string arg in args) {
 				if (arg == "--help") {
+					Catalog.Init ("f-spot", Defines.LOCALE_DIR);
+
 					System.Console.WriteLine ("Usage f-spot [OPTION. ..]\n");
 					System.Console.WriteLine ("  --import [uri]\t\t\timport from the given uri");
 					System.Console.WriteLine ("  --view <file>\t\t\t\tview a file or directory ");
@@ -38,6 +41,8 @@ public class Driver {
 							       Modules.UI, args);
 					return;
 				} else if (arg == "--slideshow") {
+					Catalog.Init ("f-spot", Defines.LOCALE_DIR);
+						
 					program = new Program (Defines.PACKAGE, 
 							       Defines.VERSION, 
 						       Modules.UI, args);
@@ -75,12 +80,11 @@ public class Driver {
 						Gnome.Vfs.Vfs.Initialize ();
 						StockIcons.Initialize ();
 						
-						Mono.Posix.Catalog.Init ("f-spot", Defines.LOCALE_DIR);
+						Catalog.Init ("f-spot", Defines.LOCALE_DIR);
+						Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {PixbufUtils.LoadFromAssembly ("f-spot-logo.png")};
 						
 						core = new Core ();
 						core.RegisterServer ();
-
-						Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {PixbufUtils.LoadFromAssembly ("f-spot-logo.png")};
 						
 						// FIXME: Error checking is non-existant here...
 						

@@ -526,7 +526,10 @@ namespace Exif {
 			get {
 				unsafe {
 					byte [] data = new byte [_handle->size]; 
-					Marshal.Copy (_handle->data, data, 0, (int)_handle->size);
+					
+					if (data.Length > 0)
+						Marshal.Copy (_handle->data, data, 0, (int)_handle->size);
+					
 					return data;
 				}
 			}

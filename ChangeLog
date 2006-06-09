@@ -1,3 +1,32 @@
+2006-06-09  Larry Ewing  <lewing@novell.com>
+
+	* src/Db.cs: don't start transaction until we are done upgrading.
+	
+	* src/Exif.cs: handle zero length entries.
+
+	* src/HigMessagesDialog.cs: add new classes to start cleaning up
+	the exception dialogs.
+
+	* src/ImportCommand.cs: Call creat tag with info.
+
+	* src/InfoBox.cs: convert time to localtime.
+
+	* src/JpegFile.cs: handle exceptions in the description code.
+
+	* src/Tiff.cs: allow zero lenght UserComments.
+
+	* src/PhotoPopup.cs: handle more dialog issues.
+
+	* src/MainWindow.cs: use the new exception dialog.
+
+	* src/PhotoView.cs: use the new exception dialog.
+
+	* src/main.cs: initialize translations in slideshow mode.
+
+2006-06-06  Larry Ewing  <lewing@novell.com>
+
+	* src/Exif.cs: don't copy if the array is zero length.
+
 2006-06-05  Larry Ewing  <lewing@novell.com>
 
 	* src/Tiff.cs: don't try to load the directory if it is us.  Clean

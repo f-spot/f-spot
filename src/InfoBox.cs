@@ -270,8 +270,8 @@ public class InfoBox : VBox {
 		date_label.Text = info.Date;
 #else
 		date_label.Text = String.Format ("{0}\n{1}",
-						 photo.Time.ToShortDateString (),
-						 photo.Time.ToShortTimeString ());
+						 photo.Time.ToLocalTime ().ToShortDateString (),
+						 photo.Time.ToLocalTime ().ToShortTimeString ());
 #endif
 		version_option_menu.Sensitive = true;
 		PhotoVersionMenu menu = new PhotoVersionMenu (photo);

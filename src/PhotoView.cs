@@ -3,7 +3,7 @@ using GLib;
 using Gtk;
 using GtkSharp;
 using System;
-using Mono.Posix;
+using Mono.Unix;
 using FSpot.Xmp;
 
 public class PhotoView : EventBox {
@@ -272,16 +272,9 @@ public class PhotoView : EventBox {
 		ProcessImage (false);
 	}
 	
-	private void ShowError (System.Exception e, Photo photo)
+	private void ShowError (System.Exception e, FSpot.IBrowsableItem photo)
 	{
-		string msg = Mono.Posix.Catalog.GetString ("Error editing photo");
-		string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
-					     e.Message, photo.Name);
-		
-		HigMessageDialog md = new HigMessageDialog ((Gtk.Window)this.Toplevel, DialogFlags.DestroyWithParent, 
-							    Gtk.MessageType.Error, ButtonsType.Ok, 
-							    msg,
-							    desc);
+		Dialog md = new FSpot.EditExceptionDialog ((Gtk.Window)this.Toplevel, e, photo); 
 		md.Run ();
 		md.Destroy ();
 	}
