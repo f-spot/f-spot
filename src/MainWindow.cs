@@ -2585,6 +2585,7 @@ public class MainWindow {
 
 		bool create_new_versions = (response == Gtk.ResponseType.Yes);
 
+		ArrayList errors = new ArrayList ();
 		GLib.List uri_list = new GLib.List (typeof (string));
 		foreach (Photo photo in selected) {
 			try {
