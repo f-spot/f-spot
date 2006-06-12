@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-08 10:49+0200\n"
-"PO-Revision-Date: 2006-06-08 10:49+0200\n"
+"POT-Creation-Date: 2006-06-12 10:30+0200\n"
+"PO-Revision-Date: 2006-06-12 10:31+0200\n"
 "Last-Translator: Jakub Friedl <jfriedl@suse.cz>\n"
 "Language-Team:  <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -669,8 +669,7 @@ msgstr "<small>_Odstín:</small>"
 
 #: ../src/f-spot.glade.h:49
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
-msgstr ""
-"<span weight='bold' size='larger'>Chyba při připojování ke galerii</span>\n"
+msgstr "<span weight='bold' size='larger'>Chyba při připojování ke galerii</span>\n"
 
 #: ../src/f-spot.glade.h:51
 msgid "Ad_just Color..."
@@ -1474,7 +1473,7 @@ msgid "(No Albums)"
 msgstr "(Žádná alba)"
 
 #: ../src/GalleryExport.cs:834
-msgid "No acocunt selected"
+msgid "No account selected"
 msgstr "Není vybrán žádný účet"
 
 #: ../src/GroupSelector.cs:55 ../src/GroupSelector.cs:56
@@ -1523,8 +1522,7 @@ msgstr "Adresář neexistuje."
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
 "different directory"
-msgstr ""
-"Adresář {0}, který jste vybrali, neexistuje. Zvolte prosím jiný adresář"
+msgstr "Adresář {0}, který jste vybrali, neexistuje. Zvolte prosím jiný adresář"
 
 #: ../src/ImportCommand.cs:677
 msgid "Select Tag"
@@ -1601,18 +1599,15 @@ msgid "A unique number"
 msgstr "Jedinečné číslo"
 
 #: ../src/IptcFile.cs:151
-msgid ""
-"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
-msgstr ""
-"Priorita obsluhování obálky mezi 1 (nejurgentnější) a 9 (nejméně urgentní)"
+msgid "The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgstr "Priorita obsluhování obálky mezi 1 (nejurgentnější) a 9 (nejméně urgentní)"
 
 #: ../src/IptcFile.cs:153
 msgid "The year month and day (CCYYMMDD) the service sent the material"
 msgstr "Rok, měsíc a den (SSRRMMDD), kdy služba odeslala materiál"
 
 #: ../src/IptcFile.cs:155
-msgid ""
-"The hour minute and second the (HHMMSS+HHMM) the service sent the material"
+msgid "The hour minute and second the (HHMMSS+HHMM) the service sent the material"
 msgstr "Hodina, minuta a sekunda (HHMMSS+HHMM), kdy služba odeslala materiál"
 
 #: ../src/IptcFile.cs:157
@@ -1664,8 +1659,7 @@ msgid "Full name of the country of the focus of the content"
 msgstr "Plný název země, na kterou se obsah zaměřuje"
 
 #: ../src/IptcFile.cs:198
-msgid ""
-"Two or three letter ISO3166 code of the country of the focus of the content"
+msgid "Two or three letter ISO3166 code of the country of the focus of the content"
 msgstr "Dvou nebo třípísmenný kó ISO3166 země, na kterou se obsah zaměřuje"
 
 #: ../src/IptcFile.cs:201
@@ -1689,8 +1683,7 @@ msgid "Headline of the content"
 msgstr "Nadpis obsahu"
 
 #: ../src/IptcFile.cs:214
-msgid ""
-"Instructions from the creator to the receiver not covered by other fields"
+msgid "Instructions from the creator to the receiver not covered by other fields"
 msgstr "Instrukce od tvůrce příjemci, nepokryté jinými poli"
 
 #: ../src/IptcFile.cs:217
@@ -1841,8 +1834,7 @@ msgstr[2] "Natrvalo odstranit vybraných {0} fotografií?"
 
 #: ../src/MainWindow.cs:2103
 msgid "This deletes all versions of the selected photo from your drive."
-msgid_plural ""
-"This deletes all versions of the selected photos from your drive."
+msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] "To odstraní všechny verze vybrané fotografie z vašeho disku."
 msgstr[1] "To odstraní všechny verze vybraných fotografií z vašeho disku."
 msgstr[2] "To odstraní všechny verze vybraných fotografií z vašeho disku."
@@ -2509,3 +2501,4 @@ msgstr "Promítat snímky z F-Spotu"
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr "Fotografie F-Spotu"
+
