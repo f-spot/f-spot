@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: cs\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-06-12 10:30+0200\n"
-"PO-Revision-Date: 2006-06-12 10:31+0200\n"
+"PO-Revision-Date: 2006-06-12 10:47+0200\n"
 "Last-Translator: Jakub Friedl <jfriedl@suse.cz>\n"
 "Language-Team:  <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -337,12 +337,12 @@ msgid ""
 "This may be due to a programming error. Please help us make F-Spot better by "
 "reporting this error. Thank you in advance!"
 msgstr ""
-"To může být kvůli chybě při programování. Pomozte nám prosím vylepšit F-Spot "
-"ohlášením této chyby. Děkujeme!"
+"Může to být způsobeno programátorskou chybou. Pomozte nám prosím "
+"vylepšit F-Spot ohlášením této chyby. Děkujeme!"
 
 #: ../src/ExceptionDialog.cs:99
 msgid "An unhandled exception was thrown: "
-msgstr "Byla hozena neobzloužená výjimka: "
+msgstr "Nastala neobsloužená výjimka: "
 
 #: ../src/Exif.cs:226
 msgid "Image Directory"
@@ -1769,7 +1769,9 @@ msgstr "Přijata chyba \"{0}\" při připojování k fotoaparátu"
 #. * E.g. "Martin Willemoes Hansen"
 #: ../src/MainWindow.cs:1472
 msgid "translator-credits"
-msgstr "Miloslav Trmač"
+msgstr ""
+"Miloslav Trmač,\n"
+"Jakub Friedl <jfriedl@suse.cz>"
 
 #: ../src/MainWindow.cs:1479
 msgid "Copyright © 2003-2006 Novell Inc."
