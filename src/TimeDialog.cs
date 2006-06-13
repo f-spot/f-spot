@@ -222,7 +222,7 @@ namespace FSpot {
 			try {
 				TimeSpan span = TimeSpan.Parse (offset_entry.Text);
 				if (span != current)
-					Offset = current;
+					Offset = span;
 			} catch (System.Exception e) {
 				System.Console.WriteLine ("unparsable span {0}", offset_entry.Text);
 			}
