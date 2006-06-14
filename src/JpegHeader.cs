@@ -498,7 +498,7 @@ public class JpegHeader : SemWeb.StatementSource {
 	 * GuessQuality is taken from the jpegdump utility
 	 * Copyright (c) 1992 Handmade Software, Inc.
 	 * by Allan N. Hessenflow licenced as GPL with the authors
-	 * premission.  Many Thanks.
+	 * permission.  Many Thanks.
 	 */
 	public int GuessQuality ()
 	{
@@ -554,11 +554,13 @@ public class JpegHeader : SemWeb.StatementSource {
 			}
 
 			if (table != null) {
-				double local_quality, variance;
+				double local_quality;
 				
 				cumsf /= 64.0;	/* mean scale factor */
 				cumsf2 /= 64.0;
-				//variance = cumsf2 - (cumsf * cumsf); /* variance */
+
+				//double variance;
+				//variance = cumsf2 - (cumsf * cumsf);
 
 				if (allones) /* special case for all-ones table */
 					local_quality = 100.0;
