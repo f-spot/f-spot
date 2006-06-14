@@ -1,3 +1,22 @@
+/*
+ * Copyright (c) 2006 Novell Inc. 
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public
+ * License along with this program; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
+
 using System;
 using System.IO;
 using FSpot.Xmp;
@@ -224,6 +243,7 @@ public class JpegHeader : SemWeb.StatementSource {
 	public static Signature ExifSignature = new Signature (JpegMarker.App1, "Exif\0\0");
 	public static Signature IccProfileSignature = new Signature (JpegMarker.App2, "ICC_PROFILE\0");
 	public static Signature PhotoshopSignature = new Signature (JpegMarker.App13, "Photoshop 3.0\0");
+	public static Signature QuantizationSignature = new Signature (JpegMarker.Dqt, null);
 
 	public class Signature {
 		public JpegMarker Id;
@@ -452,6 +472,107 @@ public class JpegHeader : SemWeb.StatementSource {
 			throw new System.Exception ("truncated image data or something");
 	}
 
+	static int [] StandardLuminanceQuantization = new int [] {
+	        16,  11,  12,  14,  12,  10,  16,  14,
+		13,  14,  18,  17,  16,  19,  24,  40,
+		26,  24,  22,  22,  24,  49,  35,  37,
+		29,  40,  58,  51,  61,  60,  57,  51,
+		56,  55,  64,  72,  92,  78,  64,  68,
+		87,  69,  55,  56,  80, 109,  81,  87,
+		95,  98, 103, 104, 103,  62,  77, 113,
+		121, 112, 100, 120,  92, 101, 103,  99
+	};
+
+	static int [] StandardChromninaceQuantization = new int [] {
+		17,  18,  18,  24,  21,  24,  47,  26,
+		26,  47,  99,  66,  56,  66,  99,  99,
+		99,  99,  99,  99,  99,  99,  99,  99,
+		99,  99,  99,  99,  99,  99,  99,  99,
+		99,  99,  99,  99,  99,  99,  99,  99,
+		99,  99,  99,  99,  99,  99,  99,  99,
+		99,  99,  99,  99,  99,  99,  99,  99,
+		99,  99,  99,  99,  99,  99,  99,  99
+	};
+	
+	/* 
+	 * GuessQuality is taken from the jpegdump utility
+	 * Copyright (c) 1992 Handmade Software, Inc.
+	 * by Allan N. Hessenflow licenced as GPL with the authors
+	 * premission.  Many Thanks.
+	 */
+	public int GuessQuality ()
+	{
+		Marker dqt = FindMarker (QuantizationSignature);
+		int quality = 0;
+		int position = 0;
+
+		while (position < dqt.Data.Length) {
+			int tableindex;
+			int [] table = null;
+			double cumsf = 0.0;
+			double cumsf2 = 0.0;
+			bool allones = true;
+			int row, col;
+			
+			tableindex = dqt.Data [position ++];
+
+			switch (tableindex & 0x0f) {
+			case 1:
+				table = StandardLuminanceQuantization;
+				break;
+			case 2:
+				table = StandardChromninaceQuantization;
+				break;
+			default:
+				table = null;
+				break;
+			}
+
+			for (row=0; row<8; row++) {
+				for (col=0; col<8; col++) {
+					uint val;
+					
+					if ((tableindex >> 4) > 0) {
+					        val = FSpot.BitConverter.ToUInt16 (dqt.Data, position, false);
+						position += 2;
+					} else
+						val = (uint) dqt.Data [position ++];
+
+					if (table != null) {
+						double x;
+
+						/* scaling factor in percent */
+						x = 100.0 * (double)val / (double)table [row*8+col];
+						cumsf += x;
+						cumsf2 += x * x;
+
+						/* separate check for all-ones table (Q 100) */
+						if (val != 1) 
+							allones = false;
+					}
+				}
+			}
+
+			if (table != null) {
+				double local_quality, variance;
+				
+				cumsf /= 64.0;	/* mean scale factor */
+				cumsf2 /= 64.0;
+				//variance = cumsf2 - (cumsf * cumsf); /* variance */
+
+				if (allones) /* special case for all-ones table */
+					local_quality = 100.0;
+				else if (cumsf <= 100.0)
+					local_quality = (200.0 - cumsf) / 2.0;
+				else
+					local_quality = 5000.0 / cumsf;
+				
+				quality = Math.Max (quality, (int)local_quality);
+			}
+		}
+		return quality;
+	}
+	
 	public byte [] ImageData {
 		get {
 			return image_data;
