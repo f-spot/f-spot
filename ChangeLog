@@ -1,5 +1,8 @@
 2006-06-14  Larry Ewing  <lewing@novell.com>
 
+	* src/TimeAdaptor.cs: commit patch from Thomas Van Machelen to fix
+	344750.
+
 	* src/JpegHeader.cs: add function to guess jpeg quality based on
 	dqt values, based on code from jpegdump utility by Allan
 	N. Hessenflow.  Used with permission.

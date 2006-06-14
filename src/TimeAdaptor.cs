@@ -170,7 +170,7 @@ namespace FSpot {
 			int min_year = ((YearData)years [0]).Year;
 
 			if (year < min_year || year > max_year) {
-				Console.WriteLine("TimeAdaptor.IndexFromDate year out of range[{1},2{}]: {0}", year, min_year, max_year);
+				Console.WriteLine("TimeAdaptor.IndexFromDate year out of range[{1},{2}]: {0}", year, min_year, max_year);
 				return 0;
 			}
 
