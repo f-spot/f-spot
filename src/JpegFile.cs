@@ -17,6 +17,11 @@ namespace FSpot {
 		
 		public JpegFile (Uri uri) : base (uri)
 		{
+			try {
+				System.Console.WriteLine ("approximate quality = {0}", Header.GuessQuality ());
+			} catch (Exception e) {
+				System.Console.WriteLine (e);
+			}
 		}
 		
 		public JpegFile (string path) : base (path) 
