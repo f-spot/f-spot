@@ -32,10 +32,10 @@ public class IthmbDb {
 		case 1015:
 			db = new IthmbDb (130, 88, Format.Rgb565);
 			break;
-		case 1016:
+		case 1016:  // untested
 			db = new IthmbDb (140, 140, Format.Rgb565);
 			break;
-		case 1017:
+		case 1017: // untested
 			db = new IthmbDb (56, 56, Format.Rgb565);
 			break;
 		case 1019:
