@@ -26,17 +26,35 @@ public class IthmbDb {
 		case 1009:
 			db = new IthmbDb (42, 30, Format.Rgb565);
 			break;
+		case 1013:  // 90 ccw
+			db = new IthmbDb (176, 220, Format.Rgb565);
+			break;
 		case 1015:
 			db = new IthmbDb (130, 88, Format.Rgb565);
 			break;
-		case 1013:
-			db = new IthmbDb (176, 220, Format.Rgb565);
+		case 1016:
+			db = new IthmbDb (140, 140, Format.Rgb565);
+			break;
+		case 1017:
+			db = new IthmbDb (56, 56, Format.Rgb565);
 			break;
 		case 1019:
 			db = new IthmbDb (720, 480, Format.IYUV);
 			break;
-		case 1020:
+		case 1020: // 90 ccw
 			db = new IthmbDb (176, 220, Format.Rgb565BE);
+			break;
+		case 1024:
+			db = new IthmbDb (320, 240, Format.Rgb565);
+			break;
+		case 1028:
+			db = new IthmbDb (100, 100, Format.Rgb565);
+			break;
+		case 1029:
+			db = new IthmbDb (200, 200, Format.Rgb565);
+			break;
+		case 1036:
+			db = new IthmbDb (50, 41, Format.Rgb565);
 			break;
 		default:
 			throw new ApplicationException ("unknown database type");
@@ -230,15 +248,15 @@ public class IthmbDb {
 					g = *(pixels ++);
 					b = *(pixels ++);
 
-#if false
+#if true
 					y = ((16829 * r + 33039 * g +  6416 * b + 32768) >> 16) + 16;
 					u = ((-9714 * r - 19071 * g + 28784 * b + 32768) >> 16) + 128;
 					v = ((28784 * r - 24103 * g -  4681 * b + 32768) >> 16) + 128;
 #else
 					// These were taken directly from the jfif spec
-					y  =    0.299  * r + 0.587  * g + 0.114  * b;
-					u  =   -0.1687 * r - 0.3313 * g + 0.5    * b + 128;
-					v  =    0.5    * r - 0.4187 * g - 0.0813 * b + 128;
+					y  = (int)(   0.299  * r + 0.587  * g + 0.114  * b);
+					u  = (int)(  -0.1687 * r - 0.3313 * g + 0.5    * b + 128);
+					v  = (int)(   0.5    * r - 0.4187 * g - 0.0813 * b + 128);
 #endif
 					y = Clamp (y, 0, 255);
 					u = Clamp (u, 0, 255);
@@ -323,6 +341,34 @@ public class IthmbDb {
 		stream.Close ();
 	}
 	
+	static void Main (string [] args)
+	{
+		Gtk.Application.Init ();
+			
+		string path = args [0];
+		string name = System.IO.Path.GetFileName (path);
+		int type = Int32.Parse (name.Substring (1, 4));
+		
+
+		Console.WriteLine ("path {0}, name {1}, id {2}", path, name, type);
+
+		Gdk.Pixbuf thumb = IthmbDb.Load (type,
+						 Int64.Parse (args [1]),
+						 0,
+						 path);
+
+		Gtk.Window win = new Gtk.Window ("iThumbnail Test");
+		Gtk.HBox hbox = new Gtk.HBox ();
+		Gtk.VBox vbox = new Gtk.VBox ();
+		win.Add (hbox);
+		hbox.PackStart (vbox);
+		Gtk.Image image = new Gtk.Image (thumb);
+		vbox.PackStart (image);
+		win.ShowAll ();
+		
+		Gtk.Application.Run ();
+	}
+#if false	
 	internal static void DisplayItem (iPodSharp.ImageItemRecord item, string basepath)
 	{		
 		Gtk.Window win = new Gtk.Window ("iThumbnail Test");
@@ -347,4 +393,5 @@ public class IthmbDb {
 
 		win.ShowAll ();
 	}
+#endif
 }
