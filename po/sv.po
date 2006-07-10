@@ -312,7 +312,9 @@ msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
 "the tag to some photos or selecting a different tag in the\n"
 "F-Spot preference dialog."
-msgstr "Taggen \"{0}\" är inte används inte på några foton. Prova att lägga sätta taggen på några foton, eller välja en annan tagg i F-Spots inställningar"
+msgstr "Taggen \"{0}\" har inte använts på några foton.\n"
+"Prova att lägga sätta taggen på några foton, eller välja en\n"
+"annan tagg i F-Spots inställningar."
 
 #: ../src/Core.cs:183
 msgid "Search returned no results"
@@ -323,11 +325,12 @@ msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
 "dialog."
-msgstr "Taggen som F-Spot letar efter finns inte. Försök välja en annan tagg i F-Spots inställningar"
+msgstr "Taggen som F-Spot letar efter finns inte. Prova\n"
+"att välja en annan tagg i F-Spots inställningar."
 
 #: ../src/ExceptionDialog.cs:24
 msgid "F-Spot Encountered a Fatal Error"
-msgstr "F-Spot stötte på ett ödesdigert fel"
+msgstr "F-Spot påträffade ett ödesdigert fel"
 
 #: ../src/ExceptionDialog.cs:52
 msgid "This may be due to a programming error. Please help us make F-Spot better by reporting this error. Thank you in advance!"
