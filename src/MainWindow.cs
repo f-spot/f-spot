@@ -2018,9 +2018,19 @@ public class MainWindow {
 		zoom_scale.ValueChanged += HandleZoomScaleValueChanged;
 	}
 
+	void HandleZoomOut (object sender, ButtonPressEventArgs args)
+	{
+		ZoomOut ();
+	}
+	
 	void HandleZoomOut (object sender, EventArgs args)
 	{
 		ZoomOut ();
+	}
+	
+	void HandleZoomIn (object sender, ButtonPressEventArgs args)
+	{
+		ZoomIn ();
 	}
 	
 	void HandleZoomIn (object sender, EventArgs args)
