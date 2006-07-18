@@ -2,6 +2,7 @@ using Gtk;
 using System;
 using System.Runtime.InteropServices;
 using Cairo;
+using Mono.Unix;
 
 namespace FSpot {
 	public class Sharpener : Loupe {
@@ -43,14 +44,17 @@ namespace FSpot {
 			
 			try {
 				Gdk.Pixbuf orig = view.Pixbuf;
-				Gdk.Pixbuf final = PixbufUtils.UnsharpMask (orig, radius_spin.Value, amount_spin.Value, threshold_spin.Value);
+				Gdk.Pixbuf final = PixbufUtils.UnsharpMask (orig,
+									    radius_spin.Value,
+									    amount_spin.Value,
+									    threshold_spin.Value);
 				
 				bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
 
 				photo.SaveVersion (final, create_version);
 			} catch (System.Exception e) {
-				string msg = Mono.Posix.Catalog.GetString ("Error saving sharpened photo");
-				string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
+				string msg = Catalog.GetString ("Error saving sharpened photo");
+				string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
 							     e.Message, photo.Name);
 				
 				HigMessageDialog md = new HigMessageDialog (this, DialogFlags.DestroyWithParent, 
@@ -78,7 +82,7 @@ namespace FSpot {
 		{
 			base.BuildUI ();
 
-			string title = Mono.Posix.Catalog.GetString ("Sharpen");
+			string title = Catalog.GetString ("Sharpen");
 			dialog = new Gtk.Dialog (title, (Gtk.Window) this,
 						 DialogFlags.DestroyWithParent, new object [0]);
 			dialog.BorderWidth = 12;
@@ -88,9 +92,9 @@ namespace FSpot {
 			table.ColumnSpacing = 6;
 			table.RowSpacing = 6;
 			
-			table.Attach (SetFancyStyle (new Gtk.Label (Mono.Posix.Catalog.GetString ("Amount:"))), 0, 1, 0, 1);
-			table.Attach (SetFancyStyle (new Gtk.Label (Mono.Posix.Catalog.GetString ("Radius:"))), 0, 1, 1, 2);
-			table.Attach (SetFancyStyle (new Gtk.Label (Mono.Posix.Catalog.GetString ("Threshold:"))), 0, 1, 2, 3);
+			table.Attach (SetFancyStyle (new Gtk.Label (Catalog.GetString ("Amount:"))), 0, 1, 0, 1);
+			table.Attach (SetFancyStyle (new Gtk.Label (Catalog.GetString ("Radius:"))), 0, 1, 1, 2);
+			table.Attach (SetFancyStyle (new Gtk.Label (Catalog.GetString ("Threshold:"))), 0, 1, 2, 3);
 			
 			SetFancyStyle (amount_spin = new Gtk.SpinButton (0.00, 100.0, .01));
 			SetFancyStyle (radius_spin = new Gtk.SpinButton (1.0, 50.0, .01));
@@ -121,7 +125,6 @@ namespace FSpot {
 			dialog.VBox.PackStart (table);
 			dialog.ShowAll ();
 		}
-
 	}
 
 	public class Loupe : Gtk.Window {
@@ -138,11 +141,15 @@ namespace FSpot {
 		Gdk.Point start_hot;
 		Gdk.Point pos_hot;
 		Gdk.Point hotspot;
+		double drag_angle;
 
 		public Loupe (PhotoImageView view) : base ("Loupe")
 		{ 
 			this.view = view;
 			Decorated = false;
+			
+			TransientFor = (Gtk.Window) view.Toplevel;
+			DestroyWithParent = true;
 
 			Gdk.Visual visual = Gdk.Visual.GetBestWithDepth (32);
 			if (visual != null)
@@ -332,6 +339,7 @@ namespace FSpot {
 			g.Translate (cx, cy);
 			if (source != null)
 				SetSourcePixbuf (g, source, -source.Width / 2, -source.Height / 2);
+
 			g.Arc (0, 0, radius, 0, 2 * Math.PI);
 			g.Fill ();
 
@@ -367,8 +375,9 @@ namespace FSpot {
 		{
 		        pos.X = (int) args.Event.XRoot - start.X;
 		        pos.Y = (int) args.Event.YRoot - start.Y;
-			root_pos.X = (int) args.Event.XRoot - start_root.X;
-			root_pos.Y = (int) args.Event.YRoot - start_root.Y;
+
+			root_pos.X = (int) args.Event.XRoot;
+			root_pos.Y = (int) args.Event.YRoot;
 
 			if (dragging)
 				drag.Start ();
@@ -382,11 +391,25 @@ namespace FSpot {
 			if (!rotate) {
 				return MoveWindow ();
 			} else {
-				double dist = Math.Sqrt (root_pos.X * root_pos.X + root_pos.Y * root_pos.Y);
-				double angle = Math.Asin (root_pos.X / dist);
-				if (root_pos.Y > 0)
-					angle += Math.PI;
-				System.Console.WriteLine ("angle = {0}", angle);
+				Gdk.Point initial = start_root;
+				Gdk.Point hot = start_hot;
+				Gdk.Point win = Gdk.Point.Zero;
+				
+				hot.X += win.X;
+				hot.Y += win.Y;
+				
+				initial.X -= hot.X;
+				initial.Y -= hot.Y;
+				Gdk.Point now = root_pos;
+				now.X -= hot.X;
+				now.Y -= hot.Y;
+				
+				Vector v1 = new Vector (initial);
+				Vector v2 = new Vector (now);
+
+				double angle = Vector.AngleBetween (v1, v2);
+				drag_angle = angle;
+				
 				Angle = start_angle + angle;
 				return false;	
 			}
@@ -429,9 +452,17 @@ namespace FSpot {
 				if (args.Event.Button == 1) {
 					start = new Gdk.Point ((int)args.Event.X, (int)args.Event.Y);
 					start_root = new Gdk.Point ((int)args.Event.XRoot, (int)args.Event.YRoot);
+					start_hot = GetHotspot ();
+
+					Gdk.Point win;
+					GdkWindow.GetOrigin (out win.X, out win.Y);
+					start_hot.X += win.X;
+					start_hot.Y += win.Y;
+
 					dragging = true;
 					rotate = (args.Event.State & Gdk.ModifierType.ShiftMask) > 0;
 					start_angle = Angle;
+					drag_angle = 0.0;
 				} else {
 					Angle += Math.PI /8;
 				}
