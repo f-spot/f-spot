@@ -20,16 +20,36 @@ public class FileImportBackend : ImportBackend {
 
 	int count;
 
-	ArrayList file_paths;
-	ArrayList imported_photos;
+	ArrayList import_info;
 	Stack directories;
 
-	bool prepare_canceled;
+	private class ImportInfo {
+		string original_path;
+		public string destination_path;
+		public Photo Photo;
+	       
+		public string OriginalPath {
+			get { return original_path; }
+		}
+		
+		public string DestinationPath {
+			get { return destination_path; }
+			set { destination_path = value; }
+		}
+		
+		public ImportInfo (string original)
+		{
+			original_path
+ = original;
+		        destination_path= null;
+			Photo = null;
+		}
+	}
 	
 	private void AddPath (string path)
 	{
 		if (FSpot.ImageFile.HasLoader (path))
-			file_paths.Add (path);
+			import_info.Add (new ImportInfo (path));
 	}
 
 	private void GetListing (System.IO.DirectoryInfo info)
@@ -43,12 +63,12 @@ public class FileImportBackend : ImportBackend {
 		}
 	}
 
-	private void GetListing (System.IO.DirectoryInfo info, System.IO.FileInfo [] files, bool recurse)
+	private void GetListing (System.IO.DirectoryInfo dirinfo, System.IO.FileInfo [] files, bool recurse)
 	{
-		System.Console.WriteLine ("Scanning {0}", info.FullName);
+		System.Console.WriteLine ("Scanning {0}", dirinfo.FullName);
 		Hashtable exiting_entries = new Hashtable ();
 
-		foreach (Photo p in store.Query (info)) {
+		foreach (Photo p in store.Query (dirinfo)) {
 			foreach (uint id in p.VersionIds) {
 				string name;
 				if (id == Photo.OriginalVersionId)
@@ -67,7 +87,7 @@ public class FileImportBackend : ImportBackend {
 		}
 
 		if (recurse) {
-			foreach (System.IO.DirectoryInfo d in info.GetDirectories ()){
+			foreach (System.IO.DirectoryInfo d in dirinfo.GetDirectories ()){
 				if (!d.Name.StartsWith ("."))
 					GetListing (d);
 			}
@@ -76,10 +96,10 @@ public class FileImportBackend : ImportBackend {
 
 	public override int Prepare ()
 	{
-		if (file_paths != null)
+		if (import_info != null)
 			throw new ImportException ("Busy");
 
-		file_paths = new ArrayList ();
+		import_info = new ArrayList ();
 
 		foreach (string path in base_paths) {
 			try {	
@@ -93,10 +113,8 @@ public class FileImportBackend : ImportBackend {
 			}
 		}	
 
-		imported_photos = new ArrayList ();
 		directories = new Stack ();
-
-		return file_paths.Count;
+		return import_info.Count;
 	}
 
 	public static string UniqueName (string path, string filename)
@@ -115,7 +133,7 @@ public class FileImportBackend : ImportBackend {
 		
 		return dest;
 	}
-
+	
 	public static string ChooseLocation (string path)
 	{
 		return ChooseLocation (path, null);
@@ -136,10 +154,8 @@ public class FileImportBackend : ImportBackend {
 		
 		if (!System.IO.Directory.Exists (dest_dir)) {
 			System.IO.DirectoryInfo info;
-
-			// If we want to know what directories were created we need to
-			// split dest_dir into constituent parts so we can clean up each 
-			// individual directory in event of a cancel.
+			// Split dest_dir into constituent parts so we can clean up each individual directory in
+			// event of a cancel.
 			if (created_directories != null) {
 				string [] parts = dest_dir.Split (new char [] {'/'});
 				string nextPath = "";
@@ -150,13 +166,13 @@ public class FileImportBackend : ImportBackend {
 						nextPath += "/" + parts [i];
 					if (nextPath.Length > 0) {
 						info = new System.IO.DirectoryInfo (nextPath);
-						// only add the directory path if it didn't already exist 
-						//and we haven't already added it.
+						// only add the directory path if it didn't already exist and we haven't already added it.
 						if (!info.Exists && !created_directories.Contains (nextPath))
 							created_directories.Push (nextPath);
 					}
 				}
 			}
+			
 			info = System.IO.Directory.CreateDirectory (dest_dir);
 		}
 
@@ -171,51 +187,51 @@ public class FileImportBackend : ImportBackend {
 
 	public override bool Step (out Photo photo, out Pixbuf thumbnail, out int count)
 	{
-		if (file_paths == null)
+		if (import_info == null)
 			throw new ImportException ("Prepare() was not called");
 
-		if (this.count == file_paths.Count)
+		if (this.count == import_info.Count)
 			throw new ImportException ("Already finished");
 
 		// FIXME Need to get the EXIF info etc.
-		string path = (string) file_paths [this.count];
-		
-		try {
-			string dest = path;
+		ImportInfo info = (ImportInfo)import_info [this.count];
 
+		try {
+			string destination = info.OriginalPath;
 			if (copy)
-				dest = ChooseLocation (path, directories);
+				destination = ChooseLocation (info.OriginalPath, directories);
 			
-			if (path == dest) {
-				photo = store.Create (path, out thumbnail);
+			// Don't copy if we are already home
+			if (info.OriginalPath == destination) {
+				info.DestinationPath = destination;
+				photo = store.Create (info.DestinationPath, out thumbnail);
 			} else {
-				System.IO.File.Copy (path, dest);
-				photo = store.Create (dest, path, out thumbnail);
-				path = dest;
+				System.IO.File.Copy (info.OriginalPath, destination);
+				info.DestinationPath = destination;
+
+				photo = store.Create (info.DestinationPath, info.OriginalPath, out thumbnail);
+
 				try {
-					File.SetAttributes (dest, System.IO.FileAttributes.Normal);
- 					DateTime create = File.GetCreationTime (path);
- 					File.SetCreationTime (dest, create);
- 					DateTime mod = File.GetLastWriteTime (path);
- 					File.SetLastWriteTime (dest, mod);
-				} catch (Exception e) {
+					File.SetAttributes (destination, File.GetAttributes (info.DestinationPath) & ~FileAttributes.ReadOnly);
+					DateTime create = File.GetCreationTime (info.OriginalPath);
+					File.SetCreationTime (info.DestinationPath, create);
+					DateTime mod = File.GetLastWriteTime (info.OriginalPath);
+					File.SetLastWriteTime (info.DestinationPath, mod);
+				} catch (System.Exception e) {
 					// we don't want an exception here to be fatal.
 				}
+			} 
 
-				path = dest;
-			}
-			
 			if (tags != null) {
-				foreach (Tag t in tags)
+				foreach (Tag t in tags) {
 					photo.AddTag (t);
-
+				}
 				store.Commit(photo);
 			}
-
-			imported_photos.Add (photo);
 			
+			info.Photo = photo;
 		} catch (System.Exception e) {
-			System.Console.WriteLine ("Error importing {0}\n{1}", path, e.ToString ());
+			System.Console.WriteLine ("Error importing {0}\n{1}", info.OriginalPath, e.ToString ());
 			thumbnail = null;
 			photo = null;
 		}
@@ -223,24 +239,26 @@ public class FileImportBackend : ImportBackend {
 		this.count ++;
 		count = this.count;
 
-		return count != file_paths.Count;
+		return count != import_info.Count;
 	}
 
 	public override void Cancel ()
 	{
-		if (imported_photos == null)
+		if (import_info == null)
 			throw new ImportException ("Not doing anything");
 
-		foreach (Photo p in imported_photos) {
-			if (copy) {
+		foreach (ImportInfo info in import_info) {
+			
+			if (info.OriginalPath != info.DestinationPath) {
 				try {
-					System.IO.File.Delete (p.DefaultVersionUri.LocalPath);
+					System.IO.File.Delete (info.DestinationPath);
 				} catch (System.Exception e) {
 					System.Console.WriteLine (e);
 				}
 			}
 			
-			store.Remove (p);
+			if (info.Photo != null)
+				store.Remove (info.Photo);
 		}
 		
 		// clean up all the directories we created.
@@ -259,16 +277,15 @@ public class FileImportBackend : ImportBackend {
 
 	public override void Finish ()
 	{
-		if (file_paths == null)
+		if (import_info == null)
 			throw new ImportException ("Not doing anything");
 
-		file_paths = null;
-		
-		foreach (Photo p in imported_photos) {
-			FSpot.ThumbnailGenerator.Default.Request (p.DefaultVersionUri, 0, 256, 256);
+		foreach (ImportInfo info in import_info) {
+			if (info.Photo != null) 
+				FSpot.ThumbnailGenerator.Default.Request (info.Photo.DefaultVersionUri, 0, 256, 256);
 		}
 
-		imported_photos = null;
+		import_info = null;
 		count = 0;
 	}
 

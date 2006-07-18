@@ -1,5 +1,8 @@
 2006-07-18  Larry Ewing  <lewing@novell.com>
 
+	* src/FileImportBackend.cs: fix up the tracking of imported
+	files.  Only remove files we copied.
+
 	* src/Loupe.cs: start fixing rotation.
 
 	* src/Vector.cs: simple vector class.
