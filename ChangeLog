@@ -1,5 +1,7 @@
 2006-07-18  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufUtils.cs: null terminate the save args.
+
 	* src/main.cs: stop startup notification if we contact a running
 	instance.
 

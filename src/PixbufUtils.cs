@@ -275,18 +275,23 @@ class PixbufUtils {
 		IntPtr error = IntPtr.Zero;
 		IntPtr data;
 		IntPtr length;
-		string [] terminated_options = null;
-		string [] terminated_values = null;
+		string [] terminated_options = options;
+		string [] terminated_values = values;
 
-		if (options != null) {
+		if (options != null && options [ options.Length - 1 ] != null) {
 			terminated_options = new string [options.Length + 1];
 			Array.Copy (options, terminated_options, options.Length);
 		}
 
-		if (options != null) {
+		if (values != null && values [ values.Length - 1] != null) {
 			terminated_values = new string [values.Length + 1];
 			Array.Copy (values, terminated_values, values.Length);
 		}
+		
+		if (terminated_options != null)
+			System.Console.WriteLine ("options = {0}, values = {1}", terminated_options [0], terminated_values [0]);
+		else
+			Console.WriteLine ("no options");
 
 		bool success = gdk_pixbuf_save_to_bufferv (pixbuf.Handle, 
 							     out data, 
