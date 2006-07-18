@@ -127,9 +127,11 @@ public class Driver {
 			if (empty && !import)
 				control.Import (null);
 			
-			if (import || !view_only)
+			if (import || !view_only) {
 				control.Organize ();
-			
+				Gdk.Global.NotifyStartupComplete ();
+			}			
+
 			if (program != null)
 				program.Run ();
 			

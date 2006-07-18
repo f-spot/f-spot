@@ -1,3 +1,8 @@
+2006-07-18  Larry Ewing  <lewing@novell.com>
+
+	* src/main.cs: stop startup notification if we contact a running
+	instance.
+
 2006-07-12  Larry Ewing  <lewing@novell.com>
 
 	* src/MainWindow.cs: patch from Gonzalo to make f-spot work with
