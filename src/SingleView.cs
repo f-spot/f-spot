@@ -78,6 +78,8 @@ namespace FSpot {
 			directory_view.DisplayDates = false;
 			directory_scrolled.Add (directory_view);
 
+			ThumbnailGenerator.Default.OnPixbufLoaded += delegate { directory_view.QueueDraw (); };
+
 			image_view = new PhotoImageView (collection);
 			FSpot.Global.ModifyColors (image_view);
 			FSpot.Global.ModifyColors (image_scrolled);
@@ -100,8 +102,22 @@ namespace FSpot {
 			Preferences.SettingChanged += OnPreferencesChanged;
 			window.DeleteEvent += HandleDeleteEvent;
 			
+			collection.Changed += HandleCollectionChanged;
+			
 			if (collection.Count > 0)
 				directory_view.Selection.Add (0);
+		}
+
+		public void HandleCollectionChanged (IBrowsableCollection collection)
+		{
+			Console.WriteLine ("changed");
+			if (collection.Count > 0) {
+				Console.WriteLine ("Added selection");
+				directory_view.Selection.Add (0);
+			}
+
+			if (collection.Count > 1)
+				ShowSidebar = true;
 		}
 
 		public bool ShowSidebar {

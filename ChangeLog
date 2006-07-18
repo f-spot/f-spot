@@ -1,5 +1,7 @@
 2006-07-18  Larry Ewing  <lewing@novell.com>
 
+	* src/SingleView.cs: listen to change events on the collection.
+
 	* src/FileImportBackend.cs: fix up the tracking of imported
 	files.  Only remove files we copied.
 
