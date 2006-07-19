@@ -259,6 +259,8 @@ public class MainWindow {
 
 		db.Photos.ItemsChanged += HandleDbItemsChanged;
 		db.Tags.ItemsChanged += HandleTagsChanged;
+		db.Tags.ItemsAdded += HandleTagsChanged;
+		db.Tags.ItemsRemoved += HandleTagsChanged;
 #if SHOW_CALENDAR
 		FSpot.SimpleCalendar cal = new FSpot.SimpleCalendar (query);
 		cal.DaySelected += HandleCalendarDaySelected;
@@ -469,6 +471,7 @@ public class MainWindow {
 
 	private void HandleTagsChanged (object sender, DbItemEventArgs args)
 	{
+		icon_view.QueueDraw ();
 		UpdateTagEntryFromSelection ();
 	}
 
@@ -1697,8 +1700,6 @@ public class MainWindow {
 		
 		TagCommands.Edit command = new TagCommands.Edit (db, main_window);
 		command.Execute (tag);
-		if (view_mode == ModeType.IconView)
-			icon_view.QueueDraw ();
 	}
 
 	public void HandleMergeTagsCommand (object obj, EventArgs args)
@@ -1765,10 +1766,6 @@ public class MainWindow {
 		db.BeginTransaction ();
 		db.Photos.Remove (removetags);
 		db.CommitTransaction ();
-
-		UpdateTagEntryFromSelection ();
-
-		icon_view.QueueDraw ();
 
 		HandleEditSelectedTagWithTag (survivor);
 	}
@@ -2235,7 +2232,6 @@ public class MainWindow {
 				md.Destroy ();
 			}
 		}
-		icon_view.QueueDraw ();
 	}
 
 	void HandleUpdateThumbnailCommand (object sende, EventArgs args)
@@ -2765,7 +2761,6 @@ public class MainWindow {
 	       }
 
 	       if (view_mode == ModeType.IconView) {
-		       icon_view.QueueDraw ();
 		       icon_view.GrabFocus ();
 	       } else {
 		       photo_view.QueueDraw ();

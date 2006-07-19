@@ -1,5 +1,9 @@
 2006-07-19  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: redraw the icon_view if the tag db changes
+	(add/remove/delete) and update the tag entry for the same events.
+	Fixes #345432.
+
 	* src/FolderExport.cs: Patch from Stephane Delcroix to fix bgo
 	#335935.
 
