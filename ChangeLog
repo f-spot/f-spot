@@ -1,5 +1,8 @@
 2006-07-19  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: listen to changes in the selection items and
+	update the infobox.  Mark items changed when creating versions.
+
 	* src/GalleryExport.cs: patch from Thomas Van Machelen for bgo
 	#346489.
 

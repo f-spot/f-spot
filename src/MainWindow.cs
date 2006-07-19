@@ -643,6 +643,7 @@ public class MainWindow {
 	{
 		UpdateMenus ();
 		UpdateTagEntryFromSelection ();
+		info_box.Update ();
 	}
 
 
@@ -2599,6 +2600,7 @@ public class MainWindow {
 					uint version = photo.CreateNamedVersion (mime_application.Name, photo.DefaultVersionId, true);
 					photo.DefaultVersionId = version;
 				}
+				query.MarkChanged (query.IndexOf (photo));
 			} catch (Exception e) {
 				errors.Add (new EditException (photo, e));
 			}
