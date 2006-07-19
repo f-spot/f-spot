@@ -1,3 +1,8 @@
+2006-07-19  Larry Ewing  <lewing@novell.com>
+
+	* src/FolderExport.cs: Patch from Stephane Delcroix to fix bgo
+	#335935.
+
 2006-07-18  Larry Ewing  <lewing@novell.com>
 
 	* src/SingleView.cs: listen to change events on the collection.

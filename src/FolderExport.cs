@@ -336,7 +336,7 @@ namespace FSpot {
 		
 		protected virtual string ImageName (int image_num)
 		{
-			return System.IO.Path.GetFileName (collection [image_num].DefaultVersionUri.LocalPath); 
+			return FileImportBackend.UniqueName(gallery_path, System.IO.Path.GetFileName (collection [image_num].DefaultVersionUri.LocalPath)); 
 		}
 
 		public void ProcessImage (int image_num)
@@ -376,14 +376,11 @@ namespace FSpot {
 				MakeDir (SubdirPath (req.Name));
 				path = SubdirPath (req.Name, ImageName (image_num));
 
-
-				
 				if (req.CopyExif && data != null) {
 					PixbufUtils.SaveJpeg (scaled, path, 90, data);
 				} else 
 					scaled.Savev (path, "jpeg", pixbuf_keys, pixbuf_values);
 				
-
 				if (img != null)
 					img.Dispose ();
 			}
