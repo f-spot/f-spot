@@ -459,6 +459,7 @@ namespace FSpot {
 				label_builder.Append (album.Title);
 				
 				Gtk.MenuItem item = new Gtk.MenuItem (label_builder.ToString ());
+				((Gtk.Label)item.Child).UseUnderline = false;
 				menu.Append (item);
 				
 				AlbumPermission create_sub = album.Perms & AlbumPermission.CreateSubAlbum;
@@ -801,6 +802,7 @@ namespace FSpot {
 					label_builder.Append (album.Title);
 
 					Gtk.MenuItem item = new Gtk.MenuItem (label_builder.ToString ());
+					((Gtk.Label)item.Child).UseUnderline = false;
 					menu.Append (item);
 			
 				        AlbumPermission add_permission = album.Perms & AlbumPermission.Add;
