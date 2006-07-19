@@ -842,7 +842,7 @@ public class MainWindow {
 				
 				// FIXME - at this point we should import the photo, and then continue
 				if (photo == null)
-					return;
+					continue;
 				
 				// FIXME this should really follow the AddTagsExtended path too
 				photo.AddTag (tags);
