@@ -370,13 +370,13 @@ namespace FSpot {
 					return;
 				}
 
-				Dialog.Destroy ();
 				GalleryAccount account = new GalleryAccount (name, 
 									     url, 
 									     username,
 									     password);
 				GalleryAccountManager.GetInstance ().AddAccount (account);
 			}
+			Dialog.Destroy ();
 		}
 
 		protected void HandleEditResponse (object sender, Gtk.ResponseArgs args)
