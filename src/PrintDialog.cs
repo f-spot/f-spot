@@ -125,6 +125,8 @@ namespace FSpot {
 			Gnome.PrintDialog gnome_dialog = new Gnome.PrintDialog (print_job, "Print Photos", 0);
 			int response = gnome_dialog.Run ();
 			
+			Render ();
+
 			switch (response) {
 			case (int) Gnome.PrintButtons.Print:
 				print_job.Print ();
@@ -147,7 +149,7 @@ namespace FSpot {
 
 			print_job = new Gnome.PrintJob (Gnome.PrintConfig.Default ());
 
-			Render ();
+			//Render ();
 
 #if ENABLE_CUSTOM_PRINT
 			int response = print_dialog.Run ();
