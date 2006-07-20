@@ -35,7 +35,7 @@ public class DateCommands {
 			bool success = false;
 
 			if (response == ResponseType.Ok) {
-				query.Range = new PhotoStore.DateRange (start_dateedit.Time, end_dateedit.Time);
+				query.Range = new PhotoStore.DateRange (start_dateedit.Time, end_dateedit.Time.Add(new System.TimeSpan(23,59,59)));
 				success = true;
 			}
 			

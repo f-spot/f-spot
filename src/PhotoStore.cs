@@ -1231,7 +1231,7 @@ public class PhotoStore : DbStore {
 					"(SELECT DISTINCT photo_id FROM photo_tags) ");
 		
 		if (range != null) {
-			query_builder.Append (String.Format ("AND photos.time >= {0} AND photos.time < {1} ",
+			query_builder.Append (String.Format ("AND photos.time >= {0} AND photos.time <= {1} ",
 							     DbUtils.UnixTimeFromDateTime (range.Start), 
 							     DbUtils.UnixTimeFromDateTime (range.End)));
 		}
@@ -1279,7 +1279,7 @@ public class PhotoStore : DbStore {
 				      "     FROM photos                      ");
 		
 		if (range != null) {
-			query_builder.Append (String.Format ("WHERE photos.time >= {0} AND photos.time < {1} ",
+			query_builder.Append (String.Format ("WHERE photos.time >= {0} AND photos.time <= {1} ",
 							     DbUtils.UnixTimeFromDateTime (range.Start), 
 							     DbUtils.UnixTimeFromDateTime (range.End)));
 		}

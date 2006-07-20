@@ -1,3 +1,13 @@
+2006-07-20  Stephane Delcroix <stephane@delcroix.org>
+ 
+ 	* src/DateCommands.cs:
+ 	* src/PhotoStore.cs: fix b.g.o. #344314
+ 
+2006-07-20  Stephane Delcroix <stephane@delcroix.org>
+ 
+ 	* src/MainWindow.cs: Add a test for empty query.Range. 
+ 	fix b.g.o. #348102
+ 
 2006-07-20  Larry Ewing  <lewing@novell.com>
 
 	* src/IptcFile.cs: clean up string.
