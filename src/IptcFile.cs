@@ -198,7 +198,7 @@ namespace FSpot.Iptc {
 					 Mono.Posix.Catalog.GetString ("Two or three letter ISO3166 code of the country of the focus of the content"),
 					 "Iptc4xmpCore:CountryCode"),
 			new DataSetInfo (DataSetID.ByLine, Format.String, "Creator", false, false, 0, 32,
-					 Mono.Posix.Catalog.GetString ("bleh"),  // FIXME
+					 Mono.Posix.Catalog.GetString ("Creator of the content"),  // FIXME
 					 "dc:creator"),
 			new DataSetInfo (DataSetID.ByLineTitle, Format.String, "Creator's Jobtitle", false, true, 0, 32,
 					 Mono.Posix.Catalog.GetString ("The title of the author or creator"),
