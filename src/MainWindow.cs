@@ -2299,7 +2299,7 @@ public class MainWindow {
 		DateCommands.Set set_command = new DateCommands.Set (query, main_window);
 		set_command.Execute ();
 		//update the TimeLine
-		if (group_selector.Adaptor is TimeAdaptor) 
+		if (group_selector.Adaptor is TimeAdaptor && query.Range != null) 
 			group_selector.SetLimitsToDates(query.Range.Start, query.Range.End);
 	}
 
