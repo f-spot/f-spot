@@ -333,10 +333,10 @@ namespace FSpot {
 				ProcessImage (i);
 			}
 		}
-		
+
 		protected virtual string ImageName (int image_num)
 		{
-			return FileImportBackend.UniqueName(gallery_path, System.IO.Path.GetFileName (collection [image_num].DefaultVersionUri.LocalPath)); 
+			return System.IO.Path.GetFileName(FileImportBackend.UniqueName(gallery_path, System.IO.Path.GetFileName (collection [image_num].DefaultVersionUri.LocalPath))); 
 		}
 
 		public void ProcessImage (int image_num)
@@ -574,6 +574,11 @@ namespace FSpot {
 							 new ScaleRequest ("thumbs", 120, 90, false) };
 		}
 		
+		protected override string ImageName (int photo_index)
+		{
+			return String.Format ("img-{0}.jpg", photo_index + 1);
+		}
+
 		public override void Generate ()
 		{
 			if (collection.Count == 0)

@@ -1,3 +1,8 @@
+2006-07-25  Larry Ewing  <lewing@novell.com>
+
+	* src/FolderExport.cs: new fix from Stephane for #335935 and
+	#348392 (which was caused by the orignal fix).
+
 2006-07-20  Stephane Delcroix <stephane@delcroix.org>
  
  	* src/DateCommands.cs:
