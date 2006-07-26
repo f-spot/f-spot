@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-10 10:13+0200\n"
-"PO-Revision-Date: 2006-04-10 15:00+0200\n"
+"POT-Creation-Date: 2006-07-26 10:36+0200\n"
+"PO-Revision-Date: 2006-07-26 18:34+0200\n"
 "Last-Translator: Bart de Koning <bratdaking@gmail.com>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -170,7 +170,7 @@ msgstr "Pad"
 msgid "File"
 msgstr "Bestand"
 
-#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:697
+#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:708
 msgid "Index"
 msgstr "Index"
 
@@ -208,8 +208,8 @@ msgstr ""
 "Fout \"{0}\" is opgetreden tijdens het maken van de map \"{1}\". Controleer "
 "of het pad en de rechten goed zijn en probeer het opnieuw."
 
-#: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:139
-#: ../src/FolderExport.cs:258
+#: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:149
+#: ../src/FolderExport.cs:267
 msgid "Transferring Pictures"
 msgstr "Afbeeldingen worden overgebracht"
 
@@ -254,74 +254,76 @@ msgstr "Afbeelding \"{0}\" wordt overgebracht naar de CD"
 
 #. This indicates the current photo is photo {0} of {1} out of photos
 #: ../src/CDExport.cs:59 ../src/FlickrExport.cs:245
-#: ../src/GalleryExport.cs:612 ../src/ProgressDialog.cs:82
+#: ../src/GalleryExport.cs:652 ../src/ProgressDialog.cs:82
 #: ../src/TimeDialog.cs:141
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} van {1}"
 
-#: ../src/CDExport.cs:71 ../src/FlickrExport.cs:251 ../src/FolderExport.cs:176
-#: ../src/GalleryExport.cs:627
+#: ../src/CDExport.cs:72 ../src/FlickrExport.cs:251 ../src/FolderExport.cs:176
+#: ../src/GalleryExport.cs:667
 msgid "Done Sending Photos"
 msgstr "Het verzenden van de foto's is gereed"
 
-#: ../src/CDExport.cs:73 ../src/FolderExport.cs:178
+#: ../src/CDExport.cs:74 ../src/FolderExport.cs:178
 msgid "Transfer Complete"
 msgstr "Overdracht is compleet"
 
-#: ../src/CDExport.cs:79 ../src/FolderExport.cs:183
+#: ../src/CDExport.cs:81 ../src/FolderExport.cs:183
 msgid "Error While Transferring"
 msgstr "Er is een fout opgetreden tijdens de overdracht"
 
-#: ../src/CDExport.cs:84 ../src/FolderExport.cs:189
+#: ../src/CDExport.cs:87 ../src/FolderExport.cs:191
 msgid "Error Transferring"
 msgstr "Overdrachtsfout"
 
-#: ../src/CDExport.cs:99 ../src/FolderExport.cs:209
+#: ../src/CDExport.cs:108 ../src/FolderExport.cs:212
 msgid "Error: Error while transferring; Aborting"
 msgstr ""
 "Fout: er is een fout opgetreden tijdens het overbrengen. De operatie is "
 "afgebroken"
 
-#: ../src/CDExport.cs:102 ../src/FolderExport.cs:212
+#: ../src/CDExport.cs:111 ../src/FolderExport.cs:215
 msgid "Error: File Already Exists; Aborting"
 msgstr "Fout: het bestand bestaat al. De operatie is afgebroken"
 
-#: ../src/ColorDialog.cs:301
+#: ../src/ColorDialog.cs:308
 msgid "Error saving adjusted photo"
 msgstr "Fout tijdens het bewaren van de gewijzigde foto"
 
-#: ../src/ColorDialog.cs:302 ../src/Loupe.cs:53 ../src/MainWindow.cs:1803
+#: ../src/ColorDialog.cs:309 ../src/Loupe.cs:57 ../src/MainWindow.cs:1834
 #: ../src/PhotoView.cs:269
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Uitzondering \"{0}\" ontvangen. Kan het bestand {1} niet opslaan"
 
-#: ../src/Core.cs:178
+#: ../src/Core.cs:212
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Geen met {0} overeenkomende foto's gevonden "
 
-#: ../src/Core.cs:179
+#: ../src/Core.cs:213
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
 "the tag to some photos or selecting a different tag in the\n"
 "F-Spot preference dialog."
-msgstr "Het label \"{0}\" is verbonden aan geen enkele foto. Probeer het label\n"
+msgstr ""
+"Het label \"{0}\" is verbonden aan geen enkele foto. Probeer het label\n"
 "aan enkele foto's te verbinden of selecteer een andere labele in het\n"
 "F-Spot voorkeuren menu."
 
-#: ../src/Core.cs:183
+#: ../src/Core.cs:217
 msgid "Search returned no results"
 msgstr "De zoekopdracht had geen resultaten"
 
-#: ../src/Core.cs:184
+#: ../src/Core.cs:218
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
 "dialog."
-msgstr "Het label, waar F-Spot naar zoekt, bestaat niet. Probeer\n"
+msgstr ""
+"Het label, waar F-Spot naar zoekt, bestaat niet. Probeer\n"
 "een andere label te selecteren in het voorkeurenmenu."
 
 #: ../src/ExceptionDialog.cs:24
@@ -332,8 +334,9 @@ msgstr "F-Spot is tegen een fatale fout aangelopen"
 msgid ""
 "This may be due to a programming error. Please help us make F-Spot better by "
 "reporting this error. Thank you in advance!"
-msgstr "Dit kan te wijten zijn aan een programmeerfout. Help ons alstublieft met het verbeteren "
-"van F-Spot door deze fout te rapporteren. Bij voorbaat dank!"
+msgstr ""
+"Dit kan te wijten zijn aan een programmeerfout. Help ons alstublieft met het "
+"verbeteren van F-Spot door deze fout te rapporteren. Bij voorbaat dank!"
 
 #: ../src/ExceptionDialog.cs:99
 msgid "An unhandled exception was thrown: "
@@ -371,8 +374,9 @@ msgstr "Autoriseer"
 msgid ""
 "Return to this window after you have finished the authorization process on "
 "Flickr.com and click the \"Complete Authorization\" button below"
-msgstr "Keer terug naar dit scherm nadat u het autorisatieproces heeft voltooid "
-"op Flickr.com en klik op de \"Autorisatie voltooid\" knop hieronder"
+msgstr ""
+"Keer terug naar dit scherm nadat u het autorisatieproces heeft voltooid op "
+"Flickr.com en klik op de \"Autorisatie voltooid\" knop hieronder"
 
 #: ../src/FlickrExport.cs:69
 msgid "Complete Authorization"
@@ -405,12 +409,12 @@ msgstr "Het aanmelden is mislukt"
 msgid "Waiting for response {0} of {1}"
 msgstr "Wacht voor respons {0} van {1}"
 
-#: ../src/FlickrExport.cs:240 ../src/GalleryExport.cs:608
+#: ../src/FlickrExport.cs:240 ../src/GalleryExport.cs:648
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Afbeelding \"{0}\" wordt geupload"
 
-#: ../src/FlickrExport.cs:253 ../src/GalleryExport.cs:629
+#: ../src/FlickrExport.cs:253 ../src/GalleryExport.cs:669
 msgid "Upload Complete"
 msgstr "Het uploaden is gereed"
 
@@ -419,7 +423,7 @@ msgstr "Het uploaden is gereed"
 msgid "Error Uploading To Flickr: {0}"
 msgstr "Er is een fout opgetreden tijdens het uploaden naar Flickr: {0}"
 
-#: ../src/FlickrExport.cs:259 ../src/GalleryExport.cs:634
+#: ../src/FlickrExport.cs:259 ../src/GalleryExport.cs:674
 msgid "Error"
 msgstr "Probleem"
 
@@ -435,7 +439,7 @@ msgstr ""
 "De aanmelding bij Flickr is mislukt. Controleer of u toestemming heeft "
 "gegeven via de Flickr webbrowser interface."
 
-#: ../src/FlickrExport.cs:336 ../src/GalleryExport.cs:572
+#: ../src/FlickrExport.cs:336 ../src/GalleryExport.cs:612
 msgid "Uploading Pictures"
 msgstr "De afbeeldingen worden geupload"
 
@@ -448,19 +452,19 @@ msgid "Building Gallery"
 msgstr "De galerie wordt opgebouwd"
 
 #. Abbreviation of previous
-#: ../src/FolderExport.cs:695
+#: ../src/FolderExport.cs:706
 msgid "Prev"
 msgstr "Vorige"
 
-#: ../src/FolderExport.cs:700 ../src/f-spot.glade.h:120
+#: ../src/FolderExport.cs:711 ../src/f-spot.glade.h:120
 msgid "Next"
 msgstr "Volgende"
 
-#: ../src/FolderExport.cs:808
+#: ../src/FolderExport.cs:819
 msgid "Gallery generated by"
 msgstr "Galerie is gemaakt door "
 
-#: ../src/FolderExport.cs:851
+#: ../src/FolderExport.cs:862
 msgid "Page:"
 msgstr "Pagina:"
 
@@ -623,15 +627,16 @@ msgid ""
 "<small><i>Enable this option to store tags and descriptions inside \n"
 "supported image formats.</i></small>"
 msgstr ""
-"<small><i>Gebruik deze optie om labels en beschrijvingen op te slaan "
-"in ondersteunde afbeeldingsformaten.</i></small>"
+"<small><i>Gebruik deze optie om labels en beschrijvingen op te slaan in "
+"ondersteunde afbeeldingsformaten.</i></small>"
 
 #: ../src/f-spot.glade.h:41
 msgid ""
 "<small><i>Select the tag you like F-Spot to display images from while acting "
 "as the screensaver</i></small>"
-msgstr "<small><i>Selecteer het label waarvan u wilt dat F-Spot de foto's gebruikt voor "
-"de schermbeveiliging</i></small>"
+msgstr ""
+"<small><i>Selecteer het label waarvan u wilt dat F-Spot de foto's gebruikt "
+"voor de schermbeveiliging</i></small>"
 
 #: ../src/f-spot.glade.h:42
 msgid "<small>C_ontrast:</small>"
@@ -1194,7 +1199,7 @@ msgstr "_Helderheid:"
 msgid "_Browse Previously Scheduled Files"
 msgstr "Door de reeds geplande bestanden _bladeren"
 
-#: ../src/f-spot.glade.h:189
+#: ../src/f-spot.glade.h:189 ../src/GroupSelector.cs:527
 msgid "_Clear Date Range"
 msgstr "Datum bereik _verwijderen"
 
@@ -1447,34 +1452,38 @@ msgstr "beeldpunten"
 msgid "x"
 msgstr "x"
 
-#: ../src/GalleryExport.cs:337
+#: ../src/GalleryExport.cs:366
 msgid "Invalid URL"
 msgstr "Onbekende URL"
 
-#: ../src/GalleryExport.cs:338
+#: ../src/GalleryExport.cs:367
 msgid "The gallery URL entry does not appear to be a valid URL"
 msgstr "De ingevoerde galerie URL lijkt geen toegestane URL te zijn"
 
-#: ../src/GalleryExport.cs:416
+#: ../src/GalleryExport.cs:450
 msgid "(TopLevel)"
 msgstr "(top-niveau)"
 
-#: ../src/GalleryExport.cs:632
+#: ../src/GalleryExport.cs:672
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Fout tijdens het versturen naar de galerie: {0}"
 
-#: ../src/GalleryExport.cs:649
+#: ../src/GalleryExport.cs:691
 msgid "(No Gallery)"
 msgstr "(Geen galerie)"
 
-#: ../src/GalleryExport.cs:722
+#: ../src/GalleryExport.cs:783
 msgid "(Not Connected)"
 msgstr "(Niet verbonden)"
 
-#: ../src/GalleryExport.cs:723
+#: ../src/GalleryExport.cs:784
 msgid "(No Albums)"
 msgstr "(Geen albums)"
+
+#: ../src/GalleryExport.cs:836
+msgid "No account selected"
+msgstr "Geen account geselecteerd"
 
 #: ../src/GroupSelector.cs:55 ../src/GroupSelector.cs:56
 msgid "More dates"
@@ -1496,7 +1505,7 @@ msgstr "Sorteren volgens maan_d"
 msgid "Arrange by _Folder"
 msgstr "Sorteren volgens _map"
 
-#: ../src/ImportCommand.cs:28 ../src/SingleView.cs:219
+#: ../src/ImportCommand.cs:28 ../src/SingleView.cs:235
 msgid "Select Folder"
 msgstr "Map selecteren"
 
@@ -1504,20 +1513,20 @@ msgstr "Map selecteren"
 msgid "(No Cameras Detected)"
 msgstr "(Geen camera's gevonden)"
 
-#: ../src/ImportCommand.cs:374
+#: ../src/ImportCommand.cs:377
 #, csharp-format
 msgid "Loading {0} of {1}"
 msgstr "Laadt bestand {0} van {1}"
 
-#: ../src/ImportCommand.cs:480
+#: ../src/ImportCommand.cs:442
 msgid "Done Loading"
 msgstr "Het laden is gereed"
 
-#: ../src/ImportCommand.cs:630
+#: ../src/ImportCommand.cs:638
 msgid "Directory does not exist."
 msgstr "De map bestaat niet."
 
-#: ../src/ImportCommand.cs:631
+#: ../src/ImportCommand.cs:639
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
@@ -1526,7 +1535,7 @@ msgstr ""
 "De map die u heeft geselecteerd \"{0}\" bestaat niet. Kies alstublieft een "
 "andere map"
 
-#: ../src/ImportCommand.cs:669
+#: ../src/ImportCommand.cs:677
 msgid "Select Tag"
 msgstr "Selecteer een label"
 
@@ -1559,20 +1568,20 @@ msgstr "(Geen)"
 msgid "(Unknown)"
 msgstr "(Onbekend)"
 
-#: ../src/InfoDisplay.cs:169
+#: ../src/InfoDisplay.cs:178
 msgid "Extended Metadata"
 msgstr "Uitgebreide metadata"
 
-#: ../src/InfoDisplay.cs:208
+#: ../src/InfoDisplay.cs:217
 msgid "No active photo"
 msgstr "Geen actieve foto"
 
-#: ../src/InfoDisplay.cs:210
+#: ../src/InfoDisplay.cs:219
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "De foto \"{0}\" bestaat niet"
 
-#: ../src/InfoDisplay.cs:216
+#: ../src/InfoDisplay.cs:225
 msgid "No metadata available"
 msgstr "Geen metadata beschikbaar"
 
@@ -1676,8 +1685,8 @@ msgstr ""
 "Twee of drie letter ISO3166 code van het land waar de inhoud op gericht is"
 
 #: ../src/IptcFile.cs:201
-msgid "bleh"
-msgstr "blah"
+msgid "Creator of the content"
+msgstr "Schepper van de inhoud"
 
 #: ../src/IptcFile.cs:204
 msgid "The title of the author or creator"
@@ -1710,23 +1719,23 @@ msgstr "Intellectueel genre van het object"
 msgid "Unknown IIM DataSet"
 msgstr "Onbekende IIM dataset"
 
-#: ../src/Loupe.cs:52 ../src/MainWindow.cs:1802
+#: ../src/Loupe.cs:56 ../src/MainWindow.cs:1833
 msgid "Error saving sharpened photo"
 msgstr "Fout tijdens het opslaan van de verscherpte foto"
 
-#: ../src/Loupe.cs:81
+#: ../src/Loupe.cs:85
 msgid "Sharpen"
 msgstr "Verscherpen"
 
-#: ../src/Loupe.cs:91 ../src/MainWindow.cs:1769
+#: ../src/Loupe.cs:95 ../src/MainWindow.cs:1800
 msgid "Amount:"
 msgstr "Hoeveelheid:"
 
-#: ../src/Loupe.cs:92 ../src/MainWindow.cs:1770
+#: ../src/Loupe.cs:96 ../src/MainWindow.cs:1801
 msgid "Radius:"
 msgstr "Straal:"
 
-#: ../src/Loupe.cs:93 ../src/MainWindow.cs:1771
+#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1802
 msgid "Threshold:"
 msgstr "Drempel:"
 
@@ -1747,11 +1756,23 @@ msgstr "Foto's op volledig scherm bekijken"
 msgid "View photos in a slideshow"
 msgstr "Foto's in een diashow bekijken"
 
-#: ../src/MainWindow.cs:1258
+#: ../src/MainWindow.cs:748
+msgid "Error loading database."
+msgstr "Fout tijdens het laden van de database."
+
+#: ../src/MainWindow.cs:749
+#, csharp-format
+msgid ""
+"F-Spot encountered an error while loading the photo database. The old "
+"database has be moved to {0} and a new database has been created."
+msgstr "Er is een fout opgetreden, terwijl F-Spot de fotodatabase probeerde te openen. "
+"De oude database is verplaatst naar {0} en een nieuwe database is aangemaakt."
+
+#: ../src/MainWindow.cs:1287
 msgid "No cameras detected."
 msgstr "Geen camera's gevonden."
 
-#: ../src/MainWindow.cs:1259
+#: ../src/MainWindow.cs:1288
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1759,11 +1780,11 @@ msgstr ""
 "F-Spot kan geen camera's vinden die verbonden zijn met dit systeem. "
 "Controleer of de camera verbonden is en over voldoende voeding beschikt"
 
-#: ../src/MainWindow.cs:1299
+#: ../src/MainWindow.cs:1328
 msgid "Error connecting to camera"
 msgstr "Fout tijdens het verbinden met de camera"
 
-#: ../src/MainWindow.cs:1300
+#: ../src/MainWindow.cs:1329
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Tijdens het verbinden met de camera werd fout \"{0}\" geconstateerd"
@@ -1771,7 +1792,7 @@ msgstr "Tijdens het verbinden met de camera werd fout \"{0}\" geconstateerd"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1447
+#: ../src/MainWindow.cs:1476
 msgid "translator-credits"
 msgstr ""
 "Taco Witte\n"
@@ -1779,19 +1800,19 @@ msgstr ""
 "\n"
 "Kijk voor meer info op http://nl.gnome.org/"
 
-#: ../src/MainWindow.cs:1454
+#: ../src/MainWindow.cs:1483
 msgid "Copyright © 2003-2006 Novell Inc."
 msgstr "Copyright © 2003-2006 Novell Inc."
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1678
+#: ../src/MainWindow.cs:1713
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "De geselecteerde label samenvoegen?"
 msgstr[1] "De {0} geselecteerde labels samenvoegen?"
 
-#: ../src/MainWindow.cs:1705
+#: ../src/MainWindow.cs:1740
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -1799,23 +1820,23 @@ msgstr ""
 "Deze operatie zal de geselecteerde labels en eventuele onderliggende labels "
 "in een enkele label samenvoegen."
 
-#: ../src/MainWindow.cs:1707
+#: ../src/MainWindow.cs:1742
 msgid "_Merge Tags"
 msgstr "_Labels samenvoegen"
 
-#: ../src/MainWindow.cs:1760
+#: ../src/MainWindow.cs:1791
 msgid "Unsharp Mask"
 msgstr "Verscherpen"
 
-#: ../src/MainWindow.cs:2030
+#: ../src/MainWindow.cs:2071
 msgid "_Ok"
 msgstr "_Ok"
 
-#: ../src/MainWindow.cs:2031
+#: ../src/MainWindow.cs:2072
 msgid "Error Deleting Picture"
 msgstr "Het verwijderen van de afbeeldingen is mislukt"
 
-#: ../src/MainWindow.cs:2036
+#: ../src/MainWindow.cs:2077
 #, csharp-format
 msgid ""
 "No permission to delete the file:\n"
@@ -1824,7 +1845,7 @@ msgstr ""
 "Geen toestemming om het bestand te verwijderen:\n"
 "{0}"
 
-#: ../src/MainWindow.cs:2040
+#: ../src/MainWindow.cs:2081
 #, csharp-format
 msgid ""
 "An error of type {0} occurred while deleting the file:\n"
@@ -1834,75 +1855,77 @@ msgstr ""
 "bestand:\n"
 "{1}"
 
-#: ../src/MainWindow.cs:2051
+#: ../src/MainWindow.cs:2107
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "De geselecteerde foto permanent verwijderen?"
 msgstr[1] "De {0} geselecteerde foto's permanent verwijderen?"
 
-#: ../src/MainWindow.cs:2055
+#: ../src/MainWindow.cs:2111
 msgid "This deletes all versions of the selected photo from your drive."
+msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
-msgstr ""
+msgstr[0] ""
 "Dit zal alle versies van de geselecteerde foto van uw schijf verwijderen."
+msgstr[1] ""
 "Dit zal alle versies van de geselecteerde foto's van uw schijf verwijderen."
 
-#: ../src/MainWindow.cs:2058
+#: ../src/MainWindow.cs:2114
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "Foto _verwijderen"
 msgstr[1] "Foto's _verwijderen"
 
-#: ../src/MainWindow.cs:2080
+#: ../src/MainWindow.cs:2142
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "De gelecteerde foto uit F-spot verwijderen?"
 msgstr[1] "De {0} geselecteerde foto's uit F-spot verwijderen?"
 
-#: ../src/MainWindow.cs:2085
+#: ../src/MainWindow.cs:2147
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
 "again."
 msgstr ""
-"Als u foto's uit de F-Spot catalogus verwijdert zal alle label informatie "
+"Als u foto's uit de F-Spot catalogus verwijdert, zal alle labelinformatie "
 "verloren gaan. De foto's zullen wel achterblijven op uw computer en kunnen "
 "opnieuw in F-Spot geïmporteerd worden."
 
-#: ../src/MainWindow.cs:2086
+#: ../src/MainWindow.cs:2148
 msgid "_Remove from Catalog"
 msgstr "Uit de _catalogus verwijderen"
 
-#: ../src/MainWindow.cs:2141
+#: ../src/MainWindow.cs:2203
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Label \"{0}\" verwijderen?"
 
-#: ../src/MainWindow.cs:2143
+#: ../src/MainWindow.cs:2205
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "De {0} geselecteerde labels verwijderen?"
 
-#: ../src/MainWindow.cs:2146
+#: ../src/MainWindow.cs:2208
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr ""
 "Als u een label verwijdert, zullen alle associaties met de foto's verloren "
 "gaan."
 
-#: ../src/MainWindow.cs:2147
+#: ../src/MainWindow.cs:2209
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "Label ver_wijderen"
 msgstr[1] "Labels ver_wijderen"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2161
+#: ../src/MainWindow.cs:2223
 msgid "Tag is not empty"
 msgstr "De label is niet leeg"
 
-#: ../src/MainWindow.cs:2162
+#: ../src/MainWindow.cs:2224
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1911,36 +1934,38 @@ msgstr ""
 "Labels die zelf labels bevatten kunnen niet verwijderd worden. Verwijder a.u."
 "b. de labels onder \"{0}\" eerst."
 
-#: ../src/MainWindow.cs:2473
+#: ../src/MainWindow.cs:2540
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Draai de geselecteerde foto linksom"
 msgstr[1] "Draai de geselecteerde foto's linksom"
 
-#: ../src/MainWindow.cs:2486
+#: ../src/MainWindow.cs:2553
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Draai de gelecteerde foto rechtsom"
 msgstr[1] "Draai de geselecteerde foto's rechtsom"
 
-#: ../src/MainWindow.cs:2500
+#: ../src/MainWindow.cs:2567
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Nieuwe versie creëren?"
 msgstr[1] "Nieuwe versies creëren?"
 
-#: ../src/MainWindow.cs:2502
+#: ../src/MainWindow.cs:2569
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
 "photo to preserve the original?"
+msgid_plural ""
 "Before launching {1}, should F-Spot create new versions of the selected "
 "photos to preserve the originals?"
-msgstr ""
+msgstr[0] ""
 "Moet F-spot eerst een nieuwe versie van de geselecteerde foto maken, "
 "alvorens {1} te starten, om zo het origineel te bewaren?"
-"Moet F-spot eerst nieuwe versies van de geselecteerde fotos maken, alvorens "
-"{1} te starten, om zo de originelen te bewaren?"
+msgstr[1] ""
+"Moet F-Spot eerst nieuwe versies van de geselecteerde foto's maken, "
+"alvorens {1} te starten, om zo de originelen te bewaren?"
 
 #: ../src/MetadataStore.cs:17
 msgid "Creator"
@@ -2055,22 +2080,22 @@ msgid "Open With"
 msgstr "Open met"
 
 # src/context.c:69
-#: ../src/PhotoPopup.cs:36
+#: ../src/PhotoPopup.cs:46
 msgid "Copy Photo Location"
 msgstr "Fotolocatie kopiëren"
 
-#: ../src/PhotoPopup.cs:52
+#: ../src/PhotoPopup.cs:62
 msgid "Remove From Catalog"
 msgstr "Uit de catalogus verwijderen"
 
-#: ../src/PhotoPopup.cs:54
+#: ../src/PhotoPopup.cs:64
 msgid "Delete From Drive"
 msgstr "Van de schijf verwijderen"
 
 #.
 #. FIXME TagMenu is ugly.
 #.
-#: ../src/PhotoPopup.cs:62
+#: ../src/PhotoPopup.cs:72
 msgid "Attach Tag"
 msgstr "Label bevestigen"
 
@@ -2078,7 +2103,7 @@ msgstr "Label bevestigen"
 #. FIXME finish the IPhotoSelection stuff and move the activate handler into the class
 #. this current method is way too complicated.
 #.
-#: ../src/PhotoPopup.cs:73
+#: ../src/PhotoPopup.cs:83
 msgid "Remove Tag"
 msgstr "Label verwijderen"
 
@@ -2234,31 +2259,31 @@ msgstr ""
 "Dit gereedschap heeft een actieve selectie nodig. Selecteert u a.u.b. een "
 "regio van de foto en probeer het opnieuw"
 
-#: ../src/PhotoView.cs:492
+#: ../src/PhotoView.cs:490
 msgid "Comment:"
 msgstr "Opmerking:"
 
-#: ../src/PhotoView.cs:557
+#: ../src/PhotoView.cs:555
 msgid "Adjust the photo colors"
 msgstr "Fotokleuren aanpassen"
 
-#: ../src/PhotoView.cs:558
+#: ../src/PhotoView.cs:556
 msgid "Constrain the aspect ratio of the selection"
 msgstr "Beperk de aspectratio van de selectie"
 
-#: ../src/PhotoView.cs:559
+#: ../src/PhotoView.cs:557
 msgid "Next photo"
 msgstr "Volgende foto"
 
-#: ../src/PhotoView.cs:560
+#: ../src/PhotoView.cs:558
 msgid "Previous photo"
 msgstr "Vorige foto"
 
-#: ../src/PhotoView.cs:561
+#: ../src/PhotoView.cs:559
 msgid "Convert the photo to black and white"
 msgstr "Converteer de foto van zwart naar wit"
 
-#: ../src/PhotoView.cs:562
+#: ../src/PhotoView.cs:560
 msgid "Convert the photo to sepia tones"
 msgstr "Converteer de foto naar sepia tonen"
 
@@ -2283,15 +2308,17 @@ msgstr[1] "De {0}foto's kunnen niet worden gedraaid"
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
 "media such as a CDROM.  Please check the permissions and try again"
+msgid_plural ""
 "{0} photos could not be rotated because they are on a read only file system "
 "or media such as a CDROM.  Please check the permissions and try again"
-msgstr ""
+msgstr[0] ""
 "De foto kan niet worden gedraaid, omdat het op een \"alleen lezen\" "
 "bestandssysteem of een medium als een CD-ROM staat. Controleer de rechten en "
 "probeer het opnieuw"
-"{0} foto's kunnen niet worden gedraaid, omdat ze op een \"alleen lezen\" "
-"bestandssysteem of een medium als een CD-ROM staan.  Controleer de rechten "
-"en probeer het opnieuw"
+msgstr[1] ""
+"{0} foto's kunnen niet worden gedraaid, omdat ze op een "
+"\"alleen lezen\" bestandssysteem of een medium als een CD-ROM staan. "
+"Controleer de rechten en probeer het opnieuw"
 
 #: ../src/RotateCommand.cs:216
 #, csharp-format
@@ -2302,7 +2329,7 @@ msgstr "Tijdens het draaien van {1} trad fout \"{0}\" op"
 msgid "Error while rotating photo."
 msgstr "Er is een fout opgetreden tijdens het draaien van de foto"
 
-#: ../src/SingleView.cs:216
+#: ../src/SingleView.cs:232
 msgid "Open"
 msgstr "Open"
 
@@ -2442,11 +2469,11 @@ msgstr "Gebeurtenissen"
 msgid "Unable to create temporary file"
 msgstr "Het tijdelijke bestand kan niet aangemaakt worden."
 
-#: ../src/Updater.cs:101
+#: ../src/Updater.cs:106
 msgid "Updating F-Spot Database"
 msgstr "Bijwerken van de F-spot database"
 
-#: ../src/Updater.cs:102
+#: ../src/Updater.cs:107
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -2454,12 +2481,12 @@ msgstr ""
 "Wacht alstublieft terwijl uw F-spot galerie database wordt bijgewerkt. Dit "
 "kan wat tijd kosten."
 
-#: ../src/Util.cs:349
+#: ../src/Util.cs:396
 msgid "There was an error invoking the external handler"
 msgstr ""
 "Er is een fout opgetreden bij het uitvoeren van de externe afhandelaar %s"
 
-#: ../src/Util.cs:350
+#: ../src/Util.cs:397
 #, csharp-format
 msgid ""
 "Received error:\n"
@@ -2491,6 +2518,9 @@ msgstr "Een diashow vanuit F-Spot vertonen"
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr "F-Spot foto's"
+
+#~ msgid "bleh"
+#~ msgstr "blah"
 
 #~ msgid "<small>1 of 1</small>"
 #~ msgstr "<small>1 van 1</small>"
