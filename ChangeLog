@@ -1,6 +1,7 @@
 2006-07-26  Larry Ewing  <lewing@novell.com>
 
-	* src/TagMenu.cs: remove the duplicate escaping.  Fixes #345596.
+	* src/TagMenu.cs: pratch from Thomas Van Machelen to remove the
+	duplicate escaping.  Fixes #345596.
 
 	* src/GPhotoCamera.cs: return a null pixbuf for a zero length
 	tumbnail for #348616.
