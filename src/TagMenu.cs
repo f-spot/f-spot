@@ -35,7 +35,7 @@ public class TagMenu : Menu {
 			     parent = parent.Category)
 				label_builder.Append ("  ");
 			
-			label_builder.Append (t.Name.Replace ("_", "__"));
+			label_builder.Append (t.Name);
 			return new TagMenuItem (t, label_builder.ToString ());
 		}
 
