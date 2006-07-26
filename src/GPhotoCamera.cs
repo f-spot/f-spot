@@ -176,9 +176,11 @@ public class GPhotoCamera
 		CameraFile cfile = GetPreview (camfile);
 		if (cfile != null) {
 			byte[] bytedata = cfile.GetDataAndSize ();
-			MemoryStream dataStream = new MemoryStream (bytedata);
-			
-			return new Pixbuf (dataStream);
+			if (bytedata.Length > 0) {
+				MemoryStream dataStream = new MemoryStream (bytedata);
+				
+				return new Pixbuf (dataStream);
+			}
 		}
 		return null;
 	}

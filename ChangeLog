@@ -1,3 +1,11 @@
+2006-07-26  Larry Ewing  <lewing@novell.com>
+
+	* src/GPhotoCamera.cs: return a null pixbuf for a zero length
+	tumbnail for 348616.
+
+	* libgphoto2-sharp/CameraFile.cs: make sure we don't try to copy
+	empty thumbnail.  Possible fix for #348616.
+
 2006-07-25  Larry Ewing  <lewing@novell.com>
 
 	* src/FolderExport.cs: new fix from Stephane for #335935 and
