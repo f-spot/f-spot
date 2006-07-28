@@ -135,7 +135,7 @@ namespace FSpot {
 		protected Gdk.Pixbuf overlay;
 		private int radius = 128;
 		private int inner = 128;
-		private int border = 5;
+		private int border = 6;
 		private double angle = Math.PI / 4;
 		Gdk.Point start;
 		Gdk.Point start_hot;
@@ -151,14 +151,66 @@ namespace FSpot {
 			TransientFor = (Gtk.Window) view.Toplevel;
 			DestroyWithParent = true;
 
-			Gdk.Visual visual = Gdk.Visual.GetBestWithDepth (32);
-			if (visual != null)
-				Colormap = new Gdk.Colormap (visual, false);
+
+			Gdk.Colormap cmap = GetRgbaColormap ();
+
+			if (cmap != null)
+				Colormap = cmap;
 			else
 				use_shape_ext = true;
 
 			BuildUI ();
 		}
+
+		[DllImport("libgdk-2.0-0.dll")]
+	        static extern bool gdk_screen_is_composited (IntPtr screen);
+		
+		[DllImport("libgdk-2.0-0.dll")]
+		static extern IntPtr gdk_screen_get_rgba_colormap (IntPtr screen);
+
+		[DllImport ("libgtk-win32-2.0-0.dll")]
+		static extern void gtk_widget_input_shape_combine_mask (IntPtr raw, IntPtr shape_mask, int offset_x, int offset_y);
+
+		public Gdk.Colormap GetRgbaColormap ()
+		{
+			try {
+				IntPtr raw_ret = gdk_screen_get_rgba_colormap(Screen.Handle);
+				Gdk.Colormap ret = GLib.Object.GetObject(raw_ret) as Gdk.Colormap;
+				return ret;
+			} catch {
+				Gdk.Visual visual = Gdk.Visual.GetBestWithDepth (32);
+				if (visual != null) {
+					Gdk.Colormap cmap = GetRgbaColormap ();
+					return cmap;
+				}
+			}
+			return null;
+		}
+
+		public bool IsComposited 
+		{
+			get { 
+#if false
+				try {
+					return gdk_screen_is_composited (Screen.Handle);
+				} catch {
+					//System.Console.WriteLine ("unable to query composite manager");
+				}
+#endif
+				return use_shape_ext;
+			}
+			set {
+				use_shape_ext = ! value;
+			}
+		}
+
+		public void InputShapeCombineMask(Gdk.Pixmap shape_mask, int offset_x, int offset_y)
+		{
+			gtk_widget_input_shape_combine_mask (Handle, shape_mask == null ? IntPtr.Zero : shape_mask.Handle, offset_x, offset_y);
+		}
+		
+		// FIXME
+		//screen "composited-changed"
 
 		public int Radius {
 			get {
@@ -192,7 +244,7 @@ namespace FSpot {
 				Gdk.Point then = GetHotspot ();
 				angle = value;
 				Gdk.Point now = GetHotspot ();
-				System.Console.WriteLine ("{0} now {1}", then, now);
+				//System.Console.WriteLine ("{0} now {1}", then, now);
 				int x, y;
 				GdkWindow.GetOrigin (out x, out y);
 				Move (x + then.X - now.X, y + then.Y - now.Y);
@@ -203,22 +255,8 @@ namespace FSpot {
 		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
 		{
 			base.OnSizeAllocated (allocation);
-			if (use_shape_ext) {
-				Gdk.Pixmap bitmap = new Gdk.Pixmap (GdkWindow, 
-								    allocation.Width, 
-								    allocation.Height, 1);
-
-				Graphics g = CreateDrawable (bitmap);
-				DrawShape (g, allocation.Width, allocation.Height);
-				((IDisposable)g).Dispose ();
-				ShapeCombineMask (bitmap, 0, 0);
-				bitmap.Dispose ();
-			} else {
-				Realize ();
-				Graphics g = CreateDrawable (GdkWindow);
-				DrawShape (g, Allocation.Width, Allocation.Height);
-				((IDisposable)g).Dispose ();
-			}
+			Realize ();
+			ShapeWindow ();
 		}
 
 		public void SetSamplePoint (Gdk.Point p)
@@ -252,7 +290,7 @@ namespace FSpot {
 			int small = (int) (radius * view.Zoom);
 			if (small != inner) {
 				inner = small;
-				this.QueueResize ();
+				QueueResize ();
 			}
 
 			source = new Gdk.Pixbuf (view.Pixbuf,
@@ -282,8 +320,8 @@ namespace FSpot {
 			m.InitIdentity ();
 
 			int inner_x = radius + border + inner;
-			int cx = radius + 2 * border;
-			int cy = radius + 2 * border;
+			int cx = radius + 4 * border + 2 * inner;
+			int cy = radius + 4 * border + 2 * inner;
 
 			m.Translate (cx, cy);
 			m.Rotate (angle);
@@ -300,11 +338,36 @@ namespace FSpot {
 			return p;
 		}
 		
+		private void ShapeWindow ()
+		{
+			Gdk.Pixmap bitmap = new Gdk.Pixmap (GdkWindow, 
+							    Allocation.Width, 
+							    Allocation.Height, 1);
+			
+			Graphics g = CreateDrawable (bitmap);
+			DrawShape (g, Allocation.Width, Allocation.Height);
+			((IDisposable)g).Dispose ();
+
+			if (use_shape_ext)
+				ShapeCombineMask (bitmap, 0, 0);
+			else {
+				Graphics rgba = CreateDrawable (GdkWindow);
+				DrawShape (rgba, Allocation.Width, Allocation.Height);
+				((IDisposable)rgba).Dispose ();
+				try {
+					InputShapeCombineMask (bitmap, 0,0);
+				} catch {
+					//System.Console.WriteLine ("no inut shaping");
+				}
+			}
+			bitmap.Dispose ();
+		}
+
 		private void DrawShape (Cairo.Graphics g, int width, int height)
 		{
 			int inner_x = radius + border + inner;
-			int cx = radius + 2 * border;
-			int cy = radius + 2 * border;
+			int cx = radius + 4 * border + 2 * inner;
+			int cy = radius + 4 * border + 2 * inner;
 			
 			g.Operator = Operator.Source;
 			g.Color = new Cairo.Color (0,0,0,0);
@@ -312,11 +375,11 @@ namespace FSpot {
 			g.Paint ();
 
 			g.NewPath ();
-			g.Operator = Operator.Over;
 			g.Translate (cx, cy);
 			g.Rotate (angle);
-			g.Color = new Cairo.Color (0.4, 0.4, 0.4, .7);
 			
+			g.Color = new Cairo.Color (0.2, 0.2, 0.2, .6);
+			g.Operator = Operator.Over;
 			g.Rectangle (0, - (border + inner), inner_x, 2 * (border + inner));
 			g.Arc (inner_x, 0, inner + border, 0, 2 * Math.PI);
 			g.Arc (0, 0, radius + border, 0, 2 * Math.PI);
@@ -332,7 +395,16 @@ namespace FSpot {
 			g.Color = new Cairo.Color (0, 0, 0, 1.0);
 			g.Operator = Operator.DestOut;
 			g.Arc (inner_x, 0, inner, 0, 2 * Math.PI);
+			g.FillPreserve ();
+			
+			g.Operator = Operator.Over;
+			RadialGradient rg = new RadialGradient (inner_x - (inner * 0.3), inner * 0.3 , inner * 0.1, inner_x, 0, inner);
+			rg.AddColorStop (0, new Cairo.Color (0.0, 0.2, .8, 0.5)); 
+			rg.AddColorStop (0.7, new Cairo.Color (0.0, 0.2, .8, 0.1)); 
+			rg.AddColorStop (1.0, new Cairo.Color (0.0, 0.0, 0.0, 0.0));
+			g.Source = rg;
 			g.Fill ();
+			rg.Destroy ();
 
 			g.Operator = Operator.Over;
 			g.Matrix = new Matrix ();

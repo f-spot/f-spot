@@ -298,7 +298,7 @@ public class Db : IDisposable {
 	public void Init (string path, bool create_if_missing)
 	{
 		bool new_db = ! File.Exists (path);
-		string version_string = "";
+		string version_string = ",version=3";
 		this.path = path;
 
 		if (new_db && ! create_if_missing)

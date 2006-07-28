@@ -1,3 +1,10 @@
+2006-07-28  Larry Ewing  <lewing@novell.com>
+
+	* src/Db.cs: use version 3 as the default.
+
+	* src/Loupe.cs: put some simple fallback wrappers around the
+	gtk+-2.10 compositing stuff.
+
 2006-07-26  Larry Ewing  <lewing@novell.com>
 
 	* src/TagMenu.cs: pratch from Thomas Van Machelen to remove the
