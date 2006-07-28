@@ -447,9 +447,11 @@ namespace FSpot {
 		private void PopulateAlbums ()
 		{
 			Gtk.Menu menu = new Gtk.Menu ();
-			Gtk.MenuItem top_item = new Gtk.MenuItem (Mono.Posix.Catalog.GetString ("(TopLevel)"));
-			menu.Append (top_item);
-
+			if (gallery.Version == GalleryVersion.Version1) {
+				Gtk.MenuItem top_item = new Gtk.MenuItem (Mono.Posix.Catalog.GetString ("(TopLevel)"));
+				menu.Append (top_item);
+			}
+			
 			foreach (Album album in gallery.Albums) {
 				System.Text.StringBuilder label_builder = new System.Text.StringBuilder ();
 				
