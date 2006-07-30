@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-16 12:33+0200\n"
-"PO-Revision-Date: 2006-03-16 12:42+0200\n"
+"POT-Creation-Date: 2006-07-30 10:48+0300\n"
+"PO-Revision-Date: 2006-07-30 10:49+0300\n"
 "Last-Translator: Žygimantas Beručka <zygis@gnome.org>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
@@ -171,7 +171,7 @@ msgstr "Kelias"
 msgid "File"
 msgstr "Rinkmena"
 
-#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:697
+#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:708
 msgid "Index"
 msgstr "Rodyklė"
 
@@ -209,8 +209,8 @@ msgstr ""
 "Kuriant aplanką {1} įvyko klaida {0}. Patikrinkite ar kelias ir teisės yra "
 "teisingi, tada bandykite vėl"
 
-#: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:139
-#: ../src/FolderExport.cs:258
+#: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:149
+#: ../src/FolderExport.cs:267
 msgid "Transferring Pictures"
 msgstr "Siunčiami paveikslėliai"
 
@@ -255,53 +255,53 @@ msgstr "Paveikslėlis „{0}“ siunčiamas į CD"
 
 #. This indicates the current photo is photo {0} of {1} out of photos
 #: ../src/CDExport.cs:59 ../src/FlickrExport.cs:245
-#: ../src/GalleryExport.cs:608 ../src/ProgressDialog.cs:82
+#: ../src/GalleryExport.cs:654 ../src/ProgressDialog.cs:82
 #: ../src/TimeDialog.cs:141
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} iš {1}"
 
-#: ../src/CDExport.cs:71 ../src/FlickrExport.cs:251 ../src/FolderExport.cs:176
-#: ../src/GalleryExport.cs:623
+#: ../src/CDExport.cs:72 ../src/FlickrExport.cs:251 ../src/FolderExport.cs:176
+#: ../src/GalleryExport.cs:669
 msgid "Done Sending Photos"
 msgstr "Fotografijos nusiųstos"
 
-#: ../src/CDExport.cs:73 ../src/FolderExport.cs:178
+#: ../src/CDExport.cs:74 ../src/FolderExport.cs:178
 msgid "Transfer Complete"
 msgstr "Siuntimas baigtas"
 
-#: ../src/CDExport.cs:79 ../src/FolderExport.cs:183
+#: ../src/CDExport.cs:81 ../src/FolderExport.cs:183
 msgid "Error While Transferring"
 msgstr "Siunčiant įvyko klaida"
 
-#: ../src/CDExport.cs:84 ../src/FolderExport.cs:189
+#: ../src/CDExport.cs:87 ../src/FolderExport.cs:191
 msgid "Error Transferring"
 msgstr "Siunčiant įvyko klaida"
 
-#: ../src/CDExport.cs:99 ../src/FolderExport.cs:209
+#: ../src/CDExport.cs:108 ../src/FolderExport.cs:212
 msgid "Error: Error while transferring; Aborting"
 msgstr "Klaida: siunčiant įvyko klaida. Nutraukiama"
 
-#: ../src/CDExport.cs:102 ../src/FolderExport.cs:212
+#: ../src/CDExport.cs:111 ../src/FolderExport.cs:215
 msgid "Error: File Already Exists; Aborting"
 msgstr "Klaida: rinkmena jau egzistuoja. Nutraukiama"
 
-#: ../src/ColorDialog.cs:301
+#: ../src/ColorDialog.cs:308
 msgid "Error saving adjusted photo"
 msgstr "Saugant pakoreguotą fotografiją įvyko klaida"
 
-#: ../src/ColorDialog.cs:302 ../src/Loupe.cs:53 ../src/MainWindow.cs:1803
-#: ../src/PhotoView.cs:278
+#: ../src/ColorDialog.cs:309 ../src/Loupe.cs:57 ../src/MainWindow.cs:1834
+#: ../src/PhotoView.cs:269
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Gauta išimtis „{0}“. Nepavyko išsaugoti fotografijos {1}"
 
-#: ../src/Core.cs:180
+#: ../src/Core.cs:212
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Fotografijų atitinkančių {0} nerasta"
 
-#: ../src/Core.cs:181
+#: ../src/Core.cs:213
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -312,11 +312,11 @@ msgstr ""
 "pridėti žymę kai kurioms fotografijoms arba F-Spot nustatymų\n"
 "dialoge pasirinkite kitą žymę."
 
-#: ../src/Core.cs:185
+#: ../src/Core.cs:217
 msgid "Search returned no results"
 msgstr "Paieška negrąžino jokių rezultatų"
 
-#: ../src/Core.cs:186
+#: ../src/Core.cs:218
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -408,12 +408,12 @@ msgstr "Nepavyko prisijungti"
 msgid "Waiting for response {0} of {1}"
 msgstr "Laukiama atsako {0} iš {1}"
 
-#: ../src/FlickrExport.cs:240 ../src/GalleryExport.cs:604
+#: ../src/FlickrExport.cs:240 ../src/GalleryExport.cs:650
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Siunčiamas paveikslėlis „{0}“"
 
-#: ../src/FlickrExport.cs:253 ../src/GalleryExport.cs:625
+#: ../src/FlickrExport.cs:253 ../src/GalleryExport.cs:671
 msgid "Upload Complete"
 msgstr "Išsiųsta"
 
@@ -422,7 +422,7 @@ msgstr "Išsiųsta"
 msgid "Error Uploading To Flickr: {0}"
 msgstr "Siunčiant į „Flickr“ įvyko klaida: {0}"
 
-#: ../src/FlickrExport.cs:259 ../src/GalleryExport.cs:630
+#: ../src/FlickrExport.cs:259 ../src/GalleryExport.cs:676
 msgid "Error"
 msgstr "Klaida"
 
@@ -438,7 +438,7 @@ msgstr ""
 "F-Spot nepavyko prisijungti prie Flickr. Įsitikinkite, kad nurodėte "
 "autentikaciją naudojant Flickr žiniatinklio naršyklės sąsają."
 
-#: ../src/FlickrExport.cs:336 ../src/GalleryExport.cs:568
+#: ../src/FlickrExport.cs:336 ../src/GalleryExport.cs:614
 msgid "Uploading Pictures"
 msgstr "Išsiunčiami paveikslėliai"
 
@@ -451,19 +451,19 @@ msgid "Building Gallery"
 msgstr "Kuriama galerija"
 
 #. Abbreviation of previous
-#: ../src/FolderExport.cs:695
+#: ../src/FolderExport.cs:706
 msgid "Prev"
 msgstr "Ankst"
 
-#: ../src/FolderExport.cs:700 ../src/f-spot.glade.h:120
+#: ../src/FolderExport.cs:711 ../src/f-spot.glade.h:120
 msgid "Next"
 msgstr "Seknt"
 
-#: ../src/FolderExport.cs:808
+#: ../src/FolderExport.cs:819
 msgid "Gallery generated by"
 msgstr "Galeriją sukūrė"
 
-#: ../src/FolderExport.cs:851
+#: ../src/FolderExport.cs:862
 msgid "Page:"
 msgstr "Puslapis:"
 
@@ -923,7 +923,7 @@ msgstr "Įtraukti poaplankius"
 msgid "Make F-Spot your screensaver"
 msgstr "Padaryti F-Spot ekrano užsklanda"
 
-#: ../src/f-spot.glade.h:118 ../src/InfoDisplay.cs:11
+#: ../src/f-spot.glade.h:118 ../src/InfoDisplay.cs:12
 msgid "Metadata Browser"
 msgstr "Metaduomenų naršyklė"
 
@@ -1190,7 +1190,7 @@ msgstr "R_yškumas:"
 msgid "_Browse Previously Scheduled Files"
 msgstr "_Naršyti anksčiau suplanuotas rinkmenas"
 
-#: ../src/f-spot.glade.h:189
+#: ../src/f-spot.glade.h:189 ../src/GroupSelector.cs:527
 msgid "_Clear Date Range"
 msgstr "_Išvalyti datos ribas"
 
@@ -1441,34 +1441,38 @@ msgstr "taškai"
 msgid "x"
 msgstr "x"
 
-#: ../src/GalleryExport.cs:333
+#: ../src/GalleryExport.cs:366
 msgid "Invalid URL"
 msgstr "Netinkamas URL"
 
-#: ../src/GalleryExport.cs:334
+#: ../src/GalleryExport.cs:367
 msgid "The gallery URL entry does not appear to be a valid URL"
 msgstr "Galerijos URL įrašas, atrodo, nėra tinkamas URL"
 
-#: ../src/GalleryExport.cs:412
+#: ../src/GalleryExport.cs:451
 msgid "(TopLevel)"
 msgstr "(Aukščiausiojo lygio)"
 
-#: ../src/GalleryExport.cs:628
+#: ../src/GalleryExport.cs:674
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Siunčiant į galeriją įvyko klaida: {0}"
 
-#: ../src/GalleryExport.cs:645
+#: ../src/GalleryExport.cs:693
 msgid "(No Gallery)"
 msgstr "(Nėra galerijos)"
 
-#: ../src/GalleryExport.cs:716
+#: ../src/GalleryExport.cs:785
 msgid "(Not Connected)"
 msgstr "(Neprisijungta)"
 
-#: ../src/GalleryExport.cs:717
+#: ../src/GalleryExport.cs:786
 msgid "(No Albums)"
 msgstr "(Nėra albumų)"
+
+#: ../src/GalleryExport.cs:838
+msgid "No account selected"
+msgstr "Nepasirinktas abonementas"
 
 #: ../src/GroupSelector.cs:55 ../src/GroupSelector.cs:56
 msgid "More dates"
@@ -1490,7 +1494,7 @@ msgstr "Rikiuoti pagal _mėnesį"
 msgid "Arrange by _Folder"
 msgstr "Rikiuoti pagal _aplanką"
 
-#: ../src/ImportCommand.cs:28 ../src/SingleView.cs:205
+#: ../src/ImportCommand.cs:28 ../src/SingleView.cs:235
 msgid "Select Folder"
 msgstr "Pasirinkite aplanką"
 
@@ -1498,27 +1502,27 @@ msgstr "Pasirinkite aplanką"
 msgid "(No Cameras Detected)"
 msgstr "(Fotoaparatų neaptikta)"
 
-#: ../src/ImportCommand.cs:374
+#: ../src/ImportCommand.cs:377
 #, csharp-format
 msgid "Loading {0} of {1}"
 msgstr "Įkeliama {0} iš {1}"
 
-#: ../src/ImportCommand.cs:480
+#: ../src/ImportCommand.cs:442
 msgid "Done Loading"
 msgstr "Įkelta"
 
-#: ../src/ImportCommand.cs:630
+#: ../src/ImportCommand.cs:638
 msgid "Directory does not exist."
 msgstr "Aplankas neegzistuoja."
 
-#: ../src/ImportCommand.cs:631
+#: ../src/ImportCommand.cs:639
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
 "different directory"
 msgstr "Jūsų pasirinktas aplankas „{0}“ neegzistuoja. Pasirinkite kitą aplanką"
 
-#: ../src/ImportCommand.cs:669
+#: ../src/ImportCommand.cs:677
 msgid "Select Tag"
 msgstr "Pasirinkite žymę"
 
@@ -1551,20 +1555,20 @@ msgstr "(Nėra)"
 msgid "(Unknown)"
 msgstr "(Nežinoma)"
 
-#: ../src/InfoDisplay.cs:167
+#: ../src/InfoDisplay.cs:178
 msgid "Extended Metadata"
 msgstr "Išplėsti meta duomenys"
 
-#: ../src/InfoDisplay.cs:206
+#: ../src/InfoDisplay.cs:217
 msgid "No active photo"
 msgstr "Nėra aktyvios fotografijos"
 
-#: ../src/InfoDisplay.cs:208
+#: ../src/InfoDisplay.cs:219
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "Fotografija „{0}“ neegzistuoja"
 
-#: ../src/InfoDisplay.cs:214
+#: ../src/InfoDisplay.cs:225
 msgid "No metadata available"
 msgstr "Meta duomenys neprieinami"
 
@@ -1664,8 +1668,8 @@ msgstr ""
 "kodas"
 
 #: ../src/IptcFile.cs:201
-msgid "bleh"
-msgstr "bleh"
+msgid "Creator of the content"
+msgstr "Turinio autorius"
 
 #: ../src/IptcFile.cs:204
 msgid "The title of the author or creator"
@@ -1696,23 +1700,23 @@ msgstr "Intelektualus objekto žanras"
 msgid "Unknown IIM DataSet"
 msgstr "Nežinomas IIM DataSet"
 
-#: ../src/Loupe.cs:52 ../src/MainWindow.cs:1802
+#: ../src/Loupe.cs:56 ../src/MainWindow.cs:1833
 msgid "Error saving sharpened photo"
 msgstr "Išsaugant paryškintą fotografiją įvyko klaida"
 
-#: ../src/Loupe.cs:81
+#: ../src/Loupe.cs:85
 msgid "Sharpen"
 msgstr "Paryškinti"
 
-#: ../src/Loupe.cs:91 ../src/MainWindow.cs:1769
+#: ../src/Loupe.cs:95 ../src/MainWindow.cs:1800
 msgid "Amount:"
 msgstr "Kiekis:"
 
-#: ../src/Loupe.cs:92 ../src/MainWindow.cs:1770
+#: ../src/Loupe.cs:96 ../src/MainWindow.cs:1801
 msgid "Radius:"
 msgstr "Spindulys:"
 
-#: ../src/Loupe.cs:93 ../src/MainWindow.cs:1771
+#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1802
 msgid "Threshold:"
 msgstr "Slenkstis:"
 
@@ -1732,11 +1736,24 @@ msgstr "Žiūrėti fotografijas visame ekrane"
 msgid "View photos in a slideshow"
 msgstr "Žiūrėti fotografijas kaip skaidres"
 
-#: ../src/MainWindow.cs:1258
+#: ../src/MainWindow.cs:748
+msgid "Error loading database."
+msgstr "Įvyko klaida įkeliant duomenų bazę."
+
+#: ../src/MainWindow.cs:749
+#, csharp-format
+msgid ""
+"F-Spot encountered an error while loading the photo database. The old "
+"database has be moved to {0} and a new database has been created."
+msgstr ""
+"F-Spot aptiko klaidą įkeliant fotografijų duomenų bazę. Sena duomenų bazė "
+"perkelta į {0} ir buvo sukurta nauja duomenų bazė."
+
+#: ../src/MainWindow.cs:1287
 msgid "No cameras detected."
 msgstr "Fotoaparatų neaptikta."
 
-#: ../src/MainWindow.cs:1259
+#: ../src/MainWindow.cs:1288
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1744,11 +1761,11 @@ msgstr ""
 "F-Spot nepavyko surasti nei vieno prie šios sistemos prijungto fotoaparato. "
 "Patikrinkite ar fotoaparatas prijungtas ir įjungtas"
 
-#: ../src/MainWindow.cs:1299
+#: ../src/MainWindow.cs:1328
 msgid "Error connecting to camera"
 msgstr "Prijungiant fotoaparatą įvyko klaida"
 
-#: ../src/MainWindow.cs:1300
+#: ../src/MainWindow.cs:1329
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Prijungiant fotoaparatą gauta klaida „{0}“"
@@ -1756,18 +1773,18 @@ msgstr "Prijungiant fotoaparatą gauta klaida „{0}“"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1447
+#: ../src/MainWindow.cs:1476
 msgid "translator-credits"
 msgstr ""
 "Justina Klingaitė <justina.klingaite@gmail.com>,\n"
 "Žygimantas Beručka <zygis@gnome.org>"
 
-#: ../src/MainWindow.cs:1454
+#: ../src/MainWindow.cs:1483
 msgid "Copyright © 2003-2006 Novell Inc."
 msgstr "Autorinės teisės © 2003-2006 Novell Inc."
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1678
+#: ../src/MainWindow.cs:1713
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
@@ -1775,7 +1792,7 @@ msgstr[0] "Sujungti pasirinktą žymę?"
 msgstr[1] "Sujungti {0} pasirinktas žymes?"
 msgstr[2] "Sujungti {0} pasirinktų žymių?"
 
-#: ../src/MainWindow.cs:1705
+#: ../src/MainWindow.cs:1740
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -1783,23 +1800,23 @@ msgstr ""
 "Atlikus šią operaciją bus sujungtos pasirinktos žymės ir bet kokios jose "
 "esančios žymės į vieną žymę."
 
-#: ../src/MainWindow.cs:1707
+#: ../src/MainWindow.cs:1742
 msgid "_Merge Tags"
 msgstr "_Sujungti žymes"
 
-#: ../src/MainWindow.cs:1760
+#: ../src/MainWindow.cs:1791
 msgid "Unsharp Mask"
 msgstr "Neryški kaukė"
 
-#: ../src/MainWindow.cs:2030
+#: ../src/MainWindow.cs:2071
 msgid "_Ok"
 msgstr "_Gerai"
 
-#: ../src/MainWindow.cs:2031
+#: ../src/MainWindow.cs:2072
 msgid "Error Deleting Picture"
 msgstr "Klaida trinant paveikslėlį"
 
-#: ../src/MainWindow.cs:2036
+#: ../src/MainWindow.cs:2077
 #, csharp-format
 msgid ""
 "No permission to delete the file:\n"
@@ -1808,7 +1825,7 @@ msgstr ""
 "Nėra leidimo ištrinti šią rinkmeną:\n"
 "{0}"
 
-#: ../src/MainWindow.cs:2040
+#: ../src/MainWindow.cs:2081
 #, csharp-format
 msgid ""
 "An error of type {0} occurred while deleting the file:\n"
@@ -1817,7 +1834,7 @@ msgstr ""
 "Iškilo {0} tipo klaida trinant rinkmeną:\n"
 "{1}"
 
-#: ../src/MainWindow.cs:2051
+#: ../src/MainWindow.cs:2107
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
@@ -1825,22 +1842,23 @@ msgstr[0] "Visam laikui ištrinti pasirinktą fotografiją?"
 msgstr[1] "Visam laikui ištrinti {0} pasirinktas fotografijas?"
 msgstr[2] "Visam laikui ištrinti {0} pasirinktų fotografijų?"
 
-#: ../src/MainWindow.cs:2055
+#: ../src/MainWindow.cs:2111
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
-msgstr[0] "Visos pasirinktos fotografijos versijos bus ištrintos iš Jūsų disko."
+msgstr[0] ""
+"Visos pasirinktos fotografijos versijos bus ištrintos iš Jūsų disko."
 msgstr[1] "Visų pasirinktų fotografijų versijos bus ištrintos iš Jūsų disko."
 msgstr[2] "Visų pasirinktų fotografijų versijos bus ištrintos iš Jūsų disko."
 
-#: ../src/MainWindow.cs:2058
+#: ../src/MainWindow.cs:2114
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Ištrinti fotografiją"
 msgstr[1] "_Ištrinti fotografijas"
 msgstr[2] "_Ištrinti fotografijų"
 
-#: ../src/MainWindow.cs:2080
+#: ../src/MainWindow.cs:2142
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
@@ -1848,37 +1866,37 @@ msgstr[0] "Pašalinti pasirinktą fotografiją iš F-Spot?"
 msgstr[1] "Pašalinti {0} pasirinktas fotografijas iš F-Spot?"
 msgstr[2] "Pašalinti {0} pasirinktų fotografijų iš F-Spot?"
 
-#: ../src/MainWindow.cs:2085
+#: ../src/MainWindow.cs:2147
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
 "again."
 msgstr ""
-"Jeigu pašalinsite fotografijas iš F-Spot katalogo, visa žymių informacija bus "
-"prarasta. Fotografijos liks Jūsų kompiuteryje ir jas bus galima importuoti į F-"
-"Spot dar kartą."
+"Jeigu pašalinsite fotografijas iš F-Spot katalogo, visa žymių informacija "
+"bus prarasta. Fotografijos liks Jūsų kompiuteryje ir jas bus galima "
+"importuoti į F-Spot dar kartą."
 
-#: ../src/MainWindow.cs:2086
+#: ../src/MainWindow.cs:2148
 msgid "_Remove from Catalog"
 msgstr "_Pašalinti iš katalogo"
 
-#: ../src/MainWindow.cs:2141
+#: ../src/MainWindow.cs:2203
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Ištrinti žymę „{0}“?"
 
-#: ../src/MainWindow.cs:2143
+#: ../src/MainWindow.cs:2205
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Ištrinti {0} pasirinktas žymes?"
 
-#: ../src/MainWindow.cs:2146
+#: ../src/MainWindow.cs:2208
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr ""
 "Jeigu ištrinsite žymę, visos asociacijos susijusios su fotografijomis bus "
 "prarastos."
 
-#: ../src/MainWindow.cs:2147
+#: ../src/MainWindow.cs:2209
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Ištrinti žymę"
@@ -1886,11 +1904,11 @@ msgstr[1] "_Ištrinti žymes"
 msgstr[2] "_Ištrinti žymes"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2161
+#: ../src/MainWindow.cs:2223
 msgid "Tag is not empty"
 msgstr "Žymė yra netuščia"
 
-#: ../src/MainWindow.cs:2162
+#: ../src/MainWindow.cs:2224
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1899,28 +1917,28 @@ msgstr ""
 "Nepavyko ištrinti žymių, kuriose yra žymių. Pirma ištrinkite žymes esančias "
 "„{0}“"
 
-#: ../src/MainWindow.cs:2473
+#: ../src/MainWindow.cs:2540
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Pasukti pasirinktą fotografiją kairėn"
 msgstr[1] "Pasukti pasirinktas fotografijas kairėn"
 msgstr[2] "Pasukti pasirinktas fotografijas kairėn"
 
-#: ../src/MainWindow.cs:2486
+#: ../src/MainWindow.cs:2553
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Pasukti pasirinktą fotografiją dešinėn"
 msgstr[1] "Pasukti pasirinktas fotografijas dešinėn"
 msgstr[2] "Pasukti pasirinktas fotografijas dešinėn"
 
-#: ../src/MainWindow.cs:2500
+#: ../src/MainWindow.cs:2567
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Sukurti naują versiją?"
 msgstr[1] "Sukurti naujas versijas?"
 msgstr[2] "Sukurti naujas versijas?"
 
-#: ../src/MainWindow.cs:2502
+#: ../src/MainWindow.cs:2569
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -2050,22 +2068,22 @@ msgstr "Nėra prieinamų programų"
 msgid "Open With"
 msgstr "Atverti su"
 
-#: ../src/PhotoPopup.cs:36
+#: ../src/PhotoPopup.cs:46
 msgid "Copy Photo Location"
 msgstr "Kopijuoti fotografijų vietą"
 
-#: ../src/PhotoPopup.cs:52
+#: ../src/PhotoPopup.cs:62
 msgid "Remove From Catalog"
 msgstr "Pašalinti iš katalogo"
 
-#: ../src/PhotoPopup.cs:54
+#: ../src/PhotoPopup.cs:64
 msgid "Delete From Drive"
 msgstr "Ištrinti iš disko"
 
 #.
 #. FIXME TagMenu is ugly.
 #.
-#: ../src/PhotoPopup.cs:62
+#: ../src/PhotoPopup.cs:72
 msgid "Attach Tag"
 msgstr "Prisegti žymę"
 
@@ -2073,11 +2091,11 @@ msgstr "Prisegti žymę"
 #. FIXME finish the IPhotoSelection stuff and move the activate handler into the class
 #. this current method is way too complicated.
 #.
-#: ../src/PhotoPopup.cs:73
+#: ../src/PhotoPopup.cs:83
 msgid "Remove Tag"
 msgstr "Pašalinti žymę"
 
-#: ../src/PhotoStore.cs:360
+#: ../src/PhotoStore.cs:367
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
@@ -2085,7 +2103,7 @@ msgstr[0] "Modifikuota"
 msgstr[1] "Modifikuota ({0})"
 msgstr[2] "Modifikuota ({0})"
 
-#: ../src/PhotoStore.cs:379
+#: ../src/PhotoStore.cs:386
 #, csharp-format
 msgid "Modified in {1}"
 msgid_plural "Modified in {1} ({0})"
@@ -2095,7 +2113,7 @@ msgstr[2] "Modifikuota {1} ({0})"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/PhotoStore.cs:563
+#: ../src/PhotoStore.cs:570
 msgid "Original"
 msgstr "Originalas"
 
@@ -2158,71 +2176,71 @@ msgstr "Gauta išimtis „{0}“. Nepavyko pervadinti versijos į „{1}“"
 msgid "(No Edits)"
 msgstr "(Nėra redagavimų)"
 
-#: ../src/PhotoView.cs:109
+#: ../src/PhotoView.cs:66
 msgid "No Constraint"
 msgstr "Nėra apribojimų"
 
-#: ../src/PhotoView.cs:110
+#: ../src/PhotoView.cs:67
 msgid "4 x 3 (Book)"
 msgstr "4 x 3 (Knyga)"
 
-#: ../src/PhotoView.cs:111
+#: ../src/PhotoView.cs:68
 msgid "4 x 6 (Postcard)"
 msgstr "4 x 6 (Atvirutė)"
 
-#: ../src/PhotoView.cs:112
+#: ../src/PhotoView.cs:69
 msgid "5 x 7 (L, 2L)"
 msgstr "5 x 7 (L, 2L)"
 
-#: ../src/PhotoView.cs:113
+#: ../src/PhotoView.cs:70
 msgid "8 x 10"
 msgstr "8 x 10"
 
-#: ../src/PhotoView.cs:114
+#: ../src/PhotoView.cs:71
 msgid "4 x 3 Portrait (Book)"
 msgstr "4 x 3 portretas (knyga)"
 
-#: ../src/PhotoView.cs:115
+#: ../src/PhotoView.cs:72
 msgid "4 x 6 Portrait (Postcard)"
 msgstr "4 x 6 portretas (atvirutė)"
 
-#: ../src/PhotoView.cs:116
+#: ../src/PhotoView.cs:73
 msgid "5 x 7 Portrait (L, 2L)"
 msgstr "5 x 7 portretas (L, 2L)"
 
-#: ../src/PhotoView.cs:117
+#: ../src/PhotoView.cs:74
 msgid "8 x 10 Portrait"
 msgstr "8 x 10 portretas"
 
-#: ../src/PhotoView.cs:118
+#: ../src/PhotoView.cs:75
 msgid "Square"
 msgstr "Kontrastas"
 
-#: ../src/PhotoView.cs:164
+#: ../src/PhotoView.cs:155
 msgid "Crop photo to selected area"
 msgstr "Apkirpti fotografiją pažymėtoje vietoje"
 
-#: ../src/PhotoView.cs:165
+#: ../src/PhotoView.cs:156
 msgid "Remove redeye from selected area"
 msgstr "Pašalinti raudonas akis iš pasirinktos vietos"
 
-#: ../src/PhotoView.cs:167
+#: ../src/PhotoView.cs:158
 msgid "Select an area to crop"
 msgstr "Pasirinkite iškirptiną vietą"
 
-#: ../src/PhotoView.cs:168
+#: ../src/PhotoView.cs:159
 msgid "Select an area to remove redeye"
 msgstr "Pasirinkite vietą raudonų akių šalinimui"
 
-#: ../src/PhotoView.cs:277
+#: ../src/PhotoView.cs:268
 msgid "Error editing photo"
 msgstr "Redaguojant fotografiją įvyko klaida"
 
-#: ../src/PhotoView.cs:322
+#: ../src/PhotoView.cs:320
 msgid "No selection available"
 msgstr "Pasirinkimas negalimas"
 
-#: ../src/PhotoView.cs:323
+#: ../src/PhotoView.cs:321
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -2230,31 +2248,31 @@ msgstr ""
 "Šiam įrankiui reikia aktyvaus pažymėjimo. Pažymėkite dalį fotografijos ir "
 "bandykite dar kartą"
 
-#: ../src/PhotoView.cs:498
+#: ../src/PhotoView.cs:490
 msgid "Comment:"
 msgstr "Komentaras:"
 
-#: ../src/PhotoView.cs:563
+#: ../src/PhotoView.cs:555
 msgid "Adjust the photo colors"
 msgstr "Pakoreguoti paveikslėlio spalvas"
 
-#: ../src/PhotoView.cs:564
+#: ../src/PhotoView.cs:556
 msgid "Constrain the aspect ratio of the selection"
 msgstr "Apriboti pasirinkimo aspekto proporciją"
 
-#: ../src/PhotoView.cs:565
+#: ../src/PhotoView.cs:557
 msgid "Next photo"
 msgstr "Sekanti fotografija"
 
-#: ../src/PhotoView.cs:566
+#: ../src/PhotoView.cs:558
 msgid "Previous photo"
 msgstr "Ankstesnė fotografija"
 
-#: ../src/PhotoView.cs:567
+#: ../src/PhotoView.cs:559
 msgid "Convert the photo to black and white"
 msgstr "Konvertuoti fotografiją į juodai baltą"
 
-#: ../src/PhotoView.cs:568
+#: ../src/PhotoView.cs:560
 msgid "Convert the photo to sepia tones"
 msgstr "Konvertuoti fotografiją į sepijos tonus"
 
@@ -2284,17 +2302,17 @@ msgid_plural ""
 "{0} photos could not be rotated because they are on a read only file system "
 "or media such as a CDROM.  Please check the permissions and try again"
 msgstr[0] ""
-"Šios fotografijos pasukti nepavyko, nes ji yra tik skaitymui skirtoje rinkmenų "
-"sistemoje arba tokioje laikmenoje kaip CDROM. Patikrinkite teises ir "
-"bandykite dar kartą"
+"Šios fotografijos pasukti nepavyko, nes ji yra tik skaitymui skirtoje "
+"rinkmenų sistemoje arba tokioje laikmenoje kaip CDROM. Patikrinkite teises "
+"ir bandykite dar kartą"
 msgstr[1] ""
-"{0} fotografijų pasukti nepavyko, nes jos yra tik skaitymui skirtoje rinkmenų "
-"sistemoje arba tokioje laikmenoje kaip CDROM. Patikrinkite teises ir "
-"bandykite dar kartą"
+"{0} fotografijų pasukti nepavyko, nes jos yra tik skaitymui skirtoje "
+"rinkmenų sistemoje arba tokioje laikmenoje kaip CDROM. Patikrinkite teises "
+"ir bandykite dar kartą"
 msgstr[2] ""
-"{0} fotografijų pasukti nepavyko, nes jos yra tik skaitymui skirtoje rinkmenų "
-"sistemoje arba tokioje laikmenoje kaip CDROM. Patikrinkite teises ir "
-"bandykite dar kartą"
+"{0} fotografijų pasukti nepavyko, nes jos yra tik skaitymui skirtoje "
+"rinkmenų sistemoje arba tokioje laikmenoje kaip CDROM. Patikrinkite teises "
+"ir bandykite dar kartą"
 
 #: ../src/RotateCommand.cs:216
 #, csharp-format
@@ -2305,7 +2323,7 @@ msgstr "Bandant pasukti {1} gauta klaida „{0}“"
 msgid "Error while rotating photo."
 msgstr "Sukant paveikslėlį įvyko klaida."
 
-#: ../src/SingleView.cs:202
+#: ../src/SingleView.cs:232
 msgid "Open"
 msgstr "Atverti"
 
@@ -2447,11 +2465,11 @@ msgstr "Įvykiai"
 msgid "Unable to create temporary file"
 msgstr "Nepavyko sukurti laikino aplanko"
 
-#: ../src/Updater.cs:101
+#: ../src/Updater.cs:106
 msgid "Updating F-Spot Database"
 msgstr "Atnaujinama F-Spot duomenų bazė"
 
-#: ../src/Updater.cs:102
+#: ../src/Updater.cs:107
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -2459,11 +2477,11 @@ msgstr ""
 "Palaukite, kol bus atnaujinta Jūsų F-Spot galerijos duomenų bazė. Tai gali "
 "šiek tiek užtrukti."
 
-#: ../src/Util.cs:320
+#: ../src/Util.cs:396
 msgid "There was an error invoking the external handler"
 msgstr "Iškviečiant išorinę doroklę iškilo klaida"
 
-#: ../src/Util.cs:321
+#: ../src/Util.cs:397
 #, csharp-format
 msgid ""
 "Received error:\n"
@@ -2495,3 +2513,6 @@ msgstr "Rodyti skaidrių šou iš F-Spot"
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr "F-Spot fotografijos"
+
+#~ msgid "bleh"
+#~ msgstr "bleh"
