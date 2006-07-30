@@ -58,7 +58,8 @@ namespace FSpot {
 							     e.Message, photo.Name);
 				
 				HigMessageDialog md = new HigMessageDialog (this, DialogFlags.DestroyWithParent, 
-									    Gtk.MessageType.Error, ButtonsType.Ok, 
+									    Gtk.MessageType.Error,
+									    ButtonsType.Ok, 
 									    msg,
 									    desc);
 				md.Run ();
@@ -151,14 +152,6 @@ namespace FSpot {
 			TransientFor = (Gtk.Window) view.Toplevel;
 			DestroyWithParent = true;
 
-
-			Gdk.Colormap cmap = GetRgbaColormap ();
-
-			if (cmap != null)
-				Colormap = cmap;
-			else
-				use_shape_ext = true;
-
 			BuildUI ();
 		}
 
@@ -241,21 +234,38 @@ namespace FSpot {
 				return angle;
 			}
 			set {
-				Gdk.Point then = GetHotspot ();
+				Gdk.Point then = hotspot;
 				angle = value;
-				Gdk.Point now = GetHotspot ();
+				Layout ();
+				Gdk.Point now = hotspot;
 				//System.Console.WriteLine ("{0} now {1}", then, now);
 				int x, y;
 				GdkWindow.GetOrigin (out x, out y);
+				//GdkWindow.MoveResize (x + then.X - now.X, y + then.Y - now.Y, Bounds.Width, Bounds.Height);
+				ShapeWindow ();
 				Move (x + then.X - now.X, y + then.Y - now.Y);
-				QueueResize ();
+				//QueueResize ();
 			}
 		}
 
 		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
 		{
+			if (IsRealized)
+				ShapeWindow ();
+
 			base.OnSizeAllocated (allocation);
-			Realize ();
+		}
+
+		protected override void OnRealized ()
+		{
+			Gdk.Colormap cmap = GetRgbaColormap ();
+
+			if (cmap != null)
+				Colormap = cmap;
+			else
+				use_shape_ext = true;
+			
+			base.OnRealized ();
 			ShapeWindow ();
 		}
 
@@ -314,32 +324,9 @@ namespace FSpot {
 			SetSamplePoint (view.WindowCoordsToImage (coords));
 		}
 
-		private Gdk.Point GetHotspot ()
-		{
-			Matrix m = new Matrix ();
-			m.InitIdentity ();
-
-			int inner_x = radius + border + inner;
-			int cx = radius + 4 * border + 2 * inner;
-			int cy = radius + 4 * border + 2 * inner;
-
-			m.Translate (cx, cy);
-			m.Rotate (angle);
-			
-			double hx = inner_x;
-			double hy = 0;
-			
-			m.TransformPoint (ref hx, ref hy);
-			
-			Gdk.Point p;
-			p.X = (int)hx;
-			p.Y = (int)hy;
-			
-			return p;
-		}
-		
 		private void ShapeWindow ()
 		{
+			Layout ();
 			Gdk.Pixmap bitmap = new Gdk.Pixmap (GdkWindow, 
 							    Allocation.Width, 
 							    Allocation.Height, 1);
@@ -362,12 +349,32 @@ namespace FSpot {
 			}
 			bitmap.Dispose ();
 		}
+		
+		Gdk.Point Center;
+	        Requisition Bounds;
+		
+		public void Layout ()
+		{
+			double a = radius + border;
+			double b = inner + border;
+			double x_proj = (a + b - border) * Math.Cos (angle);
+			double y_proj = (a + b - border) * Math.Sin (angle);
+			
+			Center.X = (int) Math.Ceiling (Math.Max (-x_proj + b, a));
+			Center.Y = (int) Math.Ceiling (Math.Max (-y_proj + b, a));
 
+			Bounds.Width = (int) Math.Ceiling (Math.Max (Math.Abs (x_proj) + b, a) + b + a);
+			Bounds.Height = (int) Math.Ceiling (Math.Max (Math.Abs (y_proj) + b, a) + b + a);
+			
+			hotspot.X = (int) Math.Ceiling (Center.X + x_proj);
+			hotspot.Y = (int) Math.Ceiling (Center.Y + y_proj);
+		}
+		
 		private void DrawShape (Cairo.Graphics g, int width, int height)
 		{
 			int inner_x = radius + border + inner;
-			int cx = radius + 4 * border + 2 * inner;
-			int cy = radius + 4 * border + 2 * inner;
+			int cx = Center.X;
+			int cy = Center.Y;
 			
 			g.Operator = Operator.Source;
 			g.Color = new Cairo.Color (0,0,0,0);
@@ -385,18 +392,14 @@ namespace FSpot {
 			g.Arc (0, 0, radius + border, 0, 2 * Math.PI);
 			g.Fill ();
 
-			double hx = inner_x;
-			double hy = 0;
-			
-			UserToDevice (g, ref hx, ref hy);
-			hotspot.X = (int)hx;
-			hotspot.Y = (int)hy;
-
 			g.Color = new Cairo.Color (0, 0, 0, 1.0);
 			g.Operator = Operator.DestOut;
 			g.Arc (inner_x, 0, inner, 0, 2 * Math.PI);
+#if true
+			g.Fill ();
+#else
 			g.FillPreserve ();
-			
+
 			g.Operator = Operator.Over;
 			RadialGradient rg = new RadialGradient (inner_x - (inner * 0.3), inner * 0.3 , inner * 0.1, inner_x, 0, inner);
 			rg.AddColorStop (0, new Cairo.Color (0.0, 0.2, .8, 0.5)); 
@@ -405,7 +408,7 @@ namespace FSpot {
 			g.Source = rg;
 			g.Fill ();
 			rg.Destroy ();
-
+#endif
 			g.Operator = Operator.Over;
 			g.Matrix = new Matrix ();
 			g.Translate (cx, cy);
@@ -524,7 +527,7 @@ namespace FSpot {
 				if (args.Event.Button == 1) {
 					start = new Gdk.Point ((int)args.Event.X, (int)args.Event.Y);
 					start_root = new Gdk.Point ((int)args.Event.XRoot, (int)args.Event.YRoot);
-					start_hot = GetHotspot ();
+					start_hot = hotspot;
 
 					Gdk.Point win;
 					GdkWindow.GetOrigin (out win.X, out win.Y);
@@ -604,6 +607,13 @@ namespace FSpot {
 			return g;
 		}
 		
+		protected override void OnSizeRequested (ref Requisition requisition) 
+		{
+			Layout ();
+			requisition = Bounds;
+			base.OnSizeRequested (ref requisition);
+		}
+
 		protected virtual void BuildUI ()
 		{
 			SetFancyStyle (this);
@@ -617,7 +627,6 @@ namespace FSpot {
 			view.ZoomChanged += HandleViewZoomChanged;
 
 			SetSamplePoint (Gdk.Point.Zero);
-			SetSizeRequest (400, 400);
 
 			AddEvents ((int) (Gdk.EventMask.PointerMotionMask
 					  | Gdk.EventMask.ButtonPressMask
