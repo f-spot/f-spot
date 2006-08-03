@@ -1,14 +1,14 @@
-# translation of f-spot.HEAD.po to Macedonian
+# translation of f-spot.HEAD.mk.po to Macedonian
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Jovan Naumovski <jovan@lugola.net>, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: f-spot.HEAD\n"
+"Project-Id-Version: f-spot.HEAD.mk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-22 18:21+0200\n"
-"PO-Revision-Date: 2006-05-23 22:44+0200\n"
+"POT-Creation-Date: 2006-08-02 18:25+0200\n"
+"PO-Revision-Date: 2006-08-03 03:01+0200\n"
 "Last-Translator: Jovan Naumovski <jovan@lugola.net>\n"
 "Language-Team: Macedonian <ossm-members@hedona.on.net.mk>\n"
 "MIME-Version: 1.0\n"
@@ -170,7 +170,7 @@ msgstr "Патека"
 msgid "File"
 msgstr "Датотека"
 
-#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:699
+#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:708
 msgid "Index"
 msgstr "Индекс"
 
@@ -192,8 +192,8 @@ msgid ""
 "When copying files from a camera you must select a valid destination on the "
 "local filesystem"
 msgstr ""
-"При копирање на датотеки од фотоапарат, мора да изберете валидна дестинација на "
-"локалниот датотечен систем"
+"При копирање на датотеки од фотоапарат, мора да изберете валидна дестинација "
+"на локалниот датотечен систем"
 
 #: ../src/CameraFileSelectionDialog.cs:166
 msgid "Unable to create directory."
@@ -205,11 +205,11 @@ msgid ""
 "Error \"{0}\" while creating directory \"{1}\".  Check that the path and "
 "permissions are correct and try again"
 msgstr ""
-"Грешка \"{0}\" при креирањето на директориумот \"{1}\".  Проверете дали патеката и "
-"дозволите се точни и обидете се повторно"
+"Грешка \"{0}\" при креирањето на директориумот \"{1}\".  Проверете дали "
+"патеката и дозволите се точни и обидете се повторно"
 
 #: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:149
-#: ../src/FolderExport.cs:260
+#: ../src/FolderExport.cs:267
 msgid "Transferring Pictures"
 msgstr "Префрлувам слики"
 
@@ -254,14 +254,14 @@ msgstr "Ја префрлувам сликата \"{0}\" на CD"
 
 #. This indicates the current photo is photo {0} of {1} out of photos
 #: ../src/CDExport.cs:59 ../src/FlickrExport.cs:245
-#: ../src/GalleryExport.cs:622 ../src/ProgressDialog.cs:82
+#: ../src/GalleryExport.cs:654 ../src/ProgressDialog.cs:82
 #: ../src/TimeDialog.cs:141
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} од {1}"
 
 #: ../src/CDExport.cs:72 ../src/FlickrExport.cs:251 ../src/FolderExport.cs:176
-#: ../src/GalleryExport.cs:637
+#: ../src/GalleryExport.cs:669
 msgid "Done Sending Photos"
 msgstr "Завршив со испраќање на сликите"
 
@@ -277,30 +277,30 @@ msgstr "Грешка при префрлањето"
 msgid "Error Transferring"
 msgstr "Грешка во префрлањето"
 
-#: ../src/CDExport.cs:108 ../src/FolderExport.cs:211
+#: ../src/CDExport.cs:108 ../src/FolderExport.cs:212
 msgid "Error: Error while transferring; Aborting"
 msgstr "Грешка: Грешка при префрлувањето; Прекинувам"
 
-#: ../src/CDExport.cs:111 ../src/FolderExport.cs:214
+#: ../src/CDExport.cs:111 ../src/FolderExport.cs:215
 msgid "Error: File Already Exists; Aborting"
 msgstr "Грешка: Датотеката веќе постои; Прекинувам"
 
-#: ../src/ColorDialog.cs:301
+#: ../src/ColorDialog.cs:308
 msgid "Error saving adjusted photo"
 msgstr "Грешка во зачувувањето на изменетата слика"
 
-#: ../src/ColorDialog.cs:302 ../src/Loupe.cs:53 ../src/MainWindow.cs:1825
+#: ../src/ColorDialog.cs:309 ../src/Loupe.cs:57 ../src/MainWindow.cs:1834
 #: ../src/PhotoView.cs:269
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Грешка \"{0}\". Не можам да ја зачувам сликата {1}"
 
-#: ../src/Core.cs:178
+#: ../src/Core.cs:212
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Не се пронајдени слики кои одговараат на {0}"
 
-#: ../src/Core.cs:179
+#: ../src/Core.cs:213
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -311,11 +311,11 @@ msgstr ""
 "додавање на етикетата на некои слики или со избирање на друга етикета во\n"
 "F-Spot диалогот со параметри."
 
-#: ../src/Core.cs:183
+#: ../src/Core.cs:217
 msgid "Search returned no results"
 msgstr "Нема резултати од барањето"
 
-#: ../src/Core.cs:184
+#: ../src/Core.cs:218
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -334,8 +334,8 @@ msgid ""
 "This may be due to a programming error. Please help us make F-Spot better by "
 "reporting this error. Thank you in advance!"
 msgstr ""
-"Ова е можеби поради грешка во програмирањето. Помогнете да го направиме F-Spot подобар "
-"со пријавување на оваа грешка. Ви благодариме однапред!"
+"Ова е можеби поради грешка во програмирањето. Помогнете да го направиме F-"
+"Spot подобар со пријавување на оваа грешка. Ви благодариме однапред!"
 
 #: ../src/ExceptionDialog.cs:99
 msgid "An unhandled exception was thrown: "
@@ -408,12 +408,12 @@ msgstr "Не можам да се најавам"
 msgid "Waiting for response {0} of {1}"
 msgstr "Чекам одговор {0} од {1}"
 
-#: ../src/FlickrExport.cs:240 ../src/GalleryExport.cs:618
+#: ../src/FlickrExport.cs:240 ../src/GalleryExport.cs:650
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Ја качувам сликата \"{0}\""
 
-#: ../src/FlickrExport.cs:253 ../src/GalleryExport.cs:639
+#: ../src/FlickrExport.cs:253 ../src/GalleryExport.cs:671
 msgid "Upload Complete"
 msgstr "Качувањето заврши"
 
@@ -422,7 +422,7 @@ msgstr "Качувањето заврши"
 msgid "Error Uploading To Flickr: {0}"
 msgstr "Грешка при качувањето до Flickr: {0}"
 
-#: ../src/FlickrExport.cs:259 ../src/GalleryExport.cs:644
+#: ../src/FlickrExport.cs:259 ../src/GalleryExport.cs:676
 msgid "Error"
 msgstr "Грешка"
 
@@ -435,10 +435,10 @@ msgid ""
 "F-Spot was unable to log on to Flickr.  Make sure you have given the "
 "authentication using Flickr web browser interface."
 msgstr ""
-"F-Spot не може да се најави на Flickr.  Проверете дали се авторизиравте преку "
-"Flickr интерфејсот во веб прелистувачот."
+"F-Spot не може да се најави на Flickr.  Проверете дали се авторизиравте "
+"преку Flickr интерфејсот во веб прелистувачот."
 
-#: ../src/FlickrExport.cs:336 ../src/GalleryExport.cs:582
+#: ../src/FlickrExport.cs:336 ../src/GalleryExport.cs:614
 msgid "Uploading Pictures"
 msgstr "Качувам слики"
 
@@ -451,19 +451,19 @@ msgid "Building Gallery"
 msgstr "Создавам галерија"
 
 #. Abbreviation of previous
-#: ../src/FolderExport.cs:697
+#: ../src/FolderExport.cs:706
 msgid "Prev"
 msgstr "Претходно"
 
-#: ../src/FolderExport.cs:702 ../src/f-spot.glade.h:120
+#: ../src/FolderExport.cs:711 ../src/f-spot.glade.h:120
 msgid "Next"
 msgstr "Следно"
 
-#: ../src/FolderExport.cs:810
+#: ../src/FolderExport.cs:819
 msgid "Gallery generated by"
 msgstr "Галерија генерирана од"
 
-#: ../src/FolderExport.cs:853
+#: ../src/FolderExport.cs:862
 msgid "Page:"
 msgstr "Страна:"
 
@@ -632,8 +632,8 @@ msgid ""
 "<small><i>Select the tag you like F-Spot to display images from while acting "
 "as the screensaver</i></small>"
 msgstr ""
-"<small><i>Одберете ја етикетата од која F-Spot ќе прикажува слики кога "
-"ќе служи како затишје</i></small>"
+"<small><i>Одберете ја етикетата од која F-Spot ќе прикажува слики кога ќе "
+"служи како затишје</i></small>"
 
 #: ../src/f-spot.glade.h:42
 msgid "<small>C_ontrast:</small>"
@@ -665,7 +665,9 @@ msgstr "<small>_Сенка:</small>"
 
 #: ../src/f-spot.glade.h:49
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
-msgstr "<span weight='bold' size='larger'>Грешка при поврзувањето со галеријата</span>\n"
+msgstr ""
+"<span weight='bold' size='larger'>Грешка при поврзувањето со галеријата</"
+"span>\n"
 
 #: ../src/f-spot.glade.h:51
 msgid "Ad_just Color..."
@@ -846,8 +848,8 @@ msgid ""
 "Spot the authorization. "
 msgstr ""
 "На F-Spot му треба Вашата авторизација за да качи слики на вашата Flickr "
-"сметка. Притиснете го копчето \"Авторизирај\" за да отворите веб прелистувач и да "
-"се авторизирате. "
+"сметка. Притиснете го копчето \"Авторизирај\" за да отворите веб прелистувач "
+"и да се авторизирате. "
 
 #: ../src/f-spot.glade.h:98
 msgid "Fin_d"
@@ -1188,7 +1190,7 @@ msgstr "_Светлост:"
 msgid "_Browse Previously Scheduled Files"
 msgstr "_Прелистај ги претходно закажаните датотеки"
 
-#: ../src/f-spot.glade.h:189
+#: ../src/f-spot.glade.h:189 ../src/GroupSelector.cs:527
 msgid "_Clear Date Range"
 msgstr "_Исчисти го опсегот на датите"
 
@@ -1439,50 +1441,38 @@ msgstr "пиксели"
 msgid "x"
 msgstr "x"
 
-#: ../src/GalleryExport.cs:346
+#: ../src/GalleryExport.cs:366
 msgid "Invalid URL"
 msgstr "Невалидна URL"
 
-#: ../src/GalleryExport.cs:347
+#: ../src/GalleryExport.cs:367
 msgid "The gallery URL entry does not appear to be a valid URL"
 msgstr "URL-то на галеријата не е валидно"
 
-#: ../src/GalleryExport.cs:425
+#: ../src/GalleryExport.cs:451
 msgid "(TopLevel)"
 msgstr "(Највисоко ниво)"
 
-#: ../src/GalleryExport.cs:642
+#: ../src/GalleryExport.cs:674
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Грешка во качувањето во галеријата: {0}"
 
-#: ../src/GalleryExport.cs:659
+#: ../src/GalleryExport.cs:693
 msgid "(No Gallery)"
 msgstr "(Нема галерија)"
 
-#: ../src/GalleryExport.cs:734
+#: ../src/GalleryExport.cs:785
 msgid "(Not Connected)"
 msgstr "(Не сум поврзан)"
 
-#: ../src/GalleryExport.cs:735
+#: ../src/GalleryExport.cs:786
 msgid "(No Albums)"
 msgstr "(Нема албуми)"
 
-#: ../src/GalleryExport.cs:779
-msgid "Remove the selected gallery?"
-msgstr "Да ја отстранам избраната галерија?"
-
-#: ../src/GalleryExport.cs:780
-msgid ""
-"Remove the selected gallery from the list of galleries. This operation will "
-"not affect the actual gallery."
-msgstr ""
-"Отстрани ја избраната галерија од листата со галерии. Оваа операција нема "
-"да влијае врз сегашната галерија."
-
-#: ../src/GalleryExport.cs:781
-msgid "_Remove gallery"
-msgstr "_Отстрани галерија"
+#: ../src/GalleryExport.cs:838
+msgid "No account selected"
+msgstr "Не се избрани сметки"
 
 #: ../src/GroupSelector.cs:55 ../src/GroupSelector.cs:56
 msgid "More dates"
@@ -1504,7 +1494,7 @@ msgstr "Подреди по _месец"
 msgid "Arrange by _Folder"
 msgstr "Подреди по _папка"
 
-#: ../src/ImportCommand.cs:28 ../src/SingleView.cs:219
+#: ../src/ImportCommand.cs:28 ../src/SingleView.cs:235
 msgid "Select Folder"
 msgstr "Одбери папка"
 
@@ -1512,29 +1502,27 @@ msgstr "Одбери папка"
 msgid "(No Cameras Detected)"
 msgstr "(Не се откриени фотоапарати)"
 
-#: ../src/ImportCommand.cs:374
+#: ../src/ImportCommand.cs:377
 #, csharp-format
 msgid "Loading {0} of {1}"
 msgstr "Вчитувам {0} од {1}"
 
-#: ../src/ImportCommand.cs:480
+#: ../src/ImportCommand.cs:442
 msgid "Done Loading"
 msgstr "Завршив со вчитување"
 
-#: ../src/ImportCommand.cs:630
+#: ../src/ImportCommand.cs:638
 msgid "Directory does not exist."
 msgstr "Директориумот не постои."
 
-#: ../src/ImportCommand.cs:631
+#: ../src/ImportCommand.cs:639
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
 "different directory"
-msgstr ""
-"Директориумот кој го избравте \"{0}\" не постои.  Одберете друг "
-"директориум"
+msgstr "Директориумот кој го избравте \"{0}\" не постои.  Одберете друг директориум"
 
-#: ../src/ImportCommand.cs:669
+#: ../src/ImportCommand.cs:677
 msgid "Select Tag"
 msgstr "Одбери етикета"
 
@@ -1567,20 +1555,20 @@ msgstr "(Без етикета родител)"
 msgid "(Unknown)"
 msgstr "(Непознато)"
 
-#: ../src/InfoDisplay.cs:169
+#: ../src/InfoDisplay.cs:178
 msgid "Extended Metadata"
 msgstr "Проширени метаподатоци"
 
-#: ../src/InfoDisplay.cs:208
+#: ../src/InfoDisplay.cs:217
 msgid "No active photo"
 msgstr "Нема активна слика"
 
-#: ../src/InfoDisplay.cs:210
+#: ../src/InfoDisplay.cs:219
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "Сликата \"{0}\" не постои"
 
-#: ../src/InfoDisplay.cs:216
+#: ../src/InfoDisplay.cs:225
 msgid "No metadata available"
 msgstr "Нема достапни мета податоци"
 
@@ -1618,7 +1606,9 @@ msgstr "Годината, месецот и денот (ГГГГММДД) ког
 
 #: ../src/IptcFile.cs:155
 msgid "The hour minute and second the (HHMMSS+HHMM) the service sent the material"
-msgstr "Часот, минутите и секундите (ЧЧММСС+ЧЧММ) кога сервисот го испрати материјалот"
+msgstr ""
+"Часот, минутите и секундите (ЧЧММСС+ЧЧММ) кога сервисот го испрати "
+"материјалот"
 
 #: ../src/IptcFile.cs:157
 msgid "The character set designation"
@@ -1638,7 +1628,9 @@ msgstr "Број на верзија на методот на апстрактн
 
 #: ../src/IptcFile.cs:169
 msgid "Number identifying the IIM version this application record uses"
-msgstr "Бројот со кој што се идентификува IIM верзијата која оваа апликација ја користи"
+msgstr ""
+"Бројот со кој што се идентификува IIM верзијата која оваа апликација ја "
+"користи"
 
 #: ../src/IptcFile.cs:171
 msgid "Object type reference"
@@ -1673,8 +1665,8 @@ msgid "Two or three letter ISO3166 code of the country of the focus of the conte
 msgstr "ISO3166 код од две или три букви од државата која е во фокусот на содржината"
 
 #: ../src/IptcFile.cs:201
-msgid "bleh"
-msgstr "bleh"
+msgid "Creator of the content"
+msgstr "Креатор на содржината"
 
 #: ../src/IptcFile.cs:204
 msgid "The title of the author or creator"
@@ -1685,8 +1677,8 @@ msgid ""
 "The person involved in writing, editing or correcting the object data or "
 "caption/abstract"
 msgstr ""
-"Личноста вклучена во пишувањето, уредувањето или корегирањето на податоците за објектот или "
-"поглавјето"
+"Личноста вклучена во пишувањето, уредувањето или корегирањето на податоците "
+"за објектот или поглавјето"
 
 #: ../src/IptcFile.cs:211
 msgid "Headline of the content"
@@ -1704,23 +1696,23 @@ msgstr "Интелектуален жанр на предметот"
 msgid "Unknown IIM DataSet"
 msgstr "Не познат IIM датасет"
 
-#: ../src/Loupe.cs:52 ../src/MainWindow.cs:1824
+#: ../src/Loupe.cs:56 ../src/MainWindow.cs:1833
 msgid "Error saving sharpened photo"
 msgstr "Грешка во зачувувањето на заострената слика"
 
-#: ../src/Loupe.cs:81
+#: ../src/Loupe.cs:86
 msgid "Sharpen"
 msgstr "Заостри"
 
-#: ../src/Loupe.cs:91 ../src/MainWindow.cs:1791
+#: ../src/Loupe.cs:96 ../src/MainWindow.cs:1800
 msgid "Amount:"
 msgstr "Количина:"
 
-#: ../src/Loupe.cs:92 ../src/MainWindow.cs:1792
+#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1801
 msgid "Radius:"
 msgstr "Радиус:"
 
-#: ../src/Loupe.cs:93 ../src/MainWindow.cs:1793
+#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1802
 msgid "Threshold:"
 msgstr "Нишка:"
 
@@ -1740,36 +1732,36 @@ msgstr "Прегледај ги сликите на цел екран"
 msgid "View photos in a slideshow"
 msgstr "Прегледај ги сликите во слајд шоу"
 
-#: ../src/MainWindow.cs:744
+#: ../src/MainWindow.cs:748
 msgid "Error loading database."
 msgstr "Грешка при вчитувањето на базата на податоци."
 
-#: ../src/MainWindow.cs:745
+#: ../src/MainWindow.cs:749
 #, csharp-format
 msgid ""
-"F-Spot encountered an error while loading the photo database  the old "
+"F-Spot encountered an error while loading the photo database. The old "
 "database has be moved to {0} and a new database has been created."
 msgstr ""
-"F-Spot дојде до грешка при вчитувањето на базата со слики.  Старата "
-"база е преместена во {0} и нова база беше направена."
+"F-Spot дојде до грешка при вчитувањето на базата со слики. Старата база е "
+"преместена во {0} и нова база беше направена."
 
-#: ../src/MainWindow.cs:1283
+#: ../src/MainWindow.cs:1287
 msgid "No cameras detected."
 msgstr "Не се откриени фотоапарати."
 
-#: ../src/MainWindow.cs:1284
+#: ../src/MainWindow.cs:1288
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
 msgstr ""
-"F-Spot не можеше да пронајде фотоапарат прикачен на овој систем.  Повторно проверете "
-"дали фотоапаратот е поврзан и е приклучен"
+"F-Spot не можеше да пронајде фотоапарат прикачен на овој систем.  Повторно "
+"проверете дали фотоапаратот е поврзан и е приклучен"
 
-#: ../src/MainWindow.cs:1324
+#: ../src/MainWindow.cs:1328
 msgid "Error connecting to camera"
 msgstr "Грешка при поврзувањето со фотоапаратот"
 
-#: ../src/MainWindow.cs:1325
+#: ../src/MainWindow.cs:1329
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Добив грешка \"{0}\" при поврзувањето со фотоапаратот"
@@ -1777,16 +1769,16 @@ msgstr "Добив грешка \"{0}\" при поврзувањето со ф�
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1472
+#: ../src/MainWindow.cs:1476
 msgid "translator-credits"
 msgstr "Jovan Naumovski"
 
-#: ../src/MainWindow.cs:1479
+#: ../src/MainWindow.cs:1483
 msgid "Copyright © 2003-2006 Novell Inc."
 msgstr "Copyright © 2003-2006 Novell Inc."
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1700
+#: ../src/MainWindow.cs:1713
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
@@ -1794,29 +1786,29 @@ msgstr[0] "Спои ја одбраната етикета?"
 msgstr[1] "Спои ги {0}-те одбрани етикети?"
 msgstr[2] "Спои ги {0}-те одбрани етикети?"
 
-#: ../src/MainWindow.cs:1727
+#: ../src/MainWindow.cs:1740
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
 msgstr "Оваа операција ќе ги спои одбраните етикети и подетикети во една етикета."
 
-#: ../src/MainWindow.cs:1729
+#: ../src/MainWindow.cs:1742
 msgid "_Merge Tags"
 msgstr "_Спои ги етикетите"
 
-#: ../src/MainWindow.cs:1782
+#: ../src/MainWindow.cs:1791
 msgid "Unsharp Mask"
 msgstr "Маска за заострување"
 
-#: ../src/MainWindow.cs:2052
+#: ../src/MainWindow.cs:2071
 msgid "_Ok"
 msgstr "_Во ред"
 
-#: ../src/MainWindow.cs:2053
+#: ../src/MainWindow.cs:2072
 msgid "Error Deleting Picture"
 msgstr "Грешка при бришењето на сликата"
 
-#: ../src/MainWindow.cs:2058
+#: ../src/MainWindow.cs:2077
 #, csharp-format
 msgid ""
 "No permission to delete the file:\n"
@@ -1825,7 +1817,7 @@ msgstr ""
 "Немам дозвола да ја избришам датотеката:\n"
 "{0}"
 
-#: ../src/MainWindow.cs:2062
+#: ../src/MainWindow.cs:2081
 #, csharp-format
 msgid ""
 "An error of type {0} occurred while deleting the file:\n"
@@ -1834,7 +1826,7 @@ msgstr ""
 "Грешка од тип {0} се случи при бришењето на датотеката:\n"
 "{1}"
 
-#: ../src/MainWindow.cs:2073
+#: ../src/MainWindow.cs:2107
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
@@ -1842,21 +1834,21 @@ msgstr[0] "Избриши ја одбраната слика засекогаш?
 msgstr[1] "Избриши ги одбраните слики засекогаш?"
 msgstr[2] "Избриши ги одбраните слики засекогаш?"
 
-#: ../src/MainWindow.cs:2077
+#: ../src/MainWindow.cs:2111
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Ова ќе ги избриши сите верзии од одбраната слика од твојот диск."
 msgstr[1] "Ова ќе ги избриши сите верзии од одбранате слики од твојот диск."
 msgstr[2] "Ова ќе ги избриши сите верзии од одбранате слики од твојот диск."
 
-#: ../src/MainWindow.cs:2080
+#: ../src/MainWindow.cs:2114
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Избриши ја сликата"
 msgstr[1] "_Избриши ги сликите"
 msgstr[2] "_Избриши ги сликите"
 
-#: ../src/MainWindow.cs:2102
+#: ../src/MainWindow.cs:2142
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
@@ -1864,35 +1856,37 @@ msgstr[0] "Да ја избришам одбраната слика од F-Spot?
 msgstr[1] "Да ги избришам {0}-те одбрани слики од F-Spot?"
 msgstr[2] "Да ги избришам {0}-те одбрани слики од F-Spot?"
 
-#: ../src/MainWindow.cs:2107
+#: ../src/MainWindow.cs:2147
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
 "again."
 msgstr ""
 "Ако ги избришите сликите од F-Spot каталогот, сите информации од етикетите "
-"ќе бидат изгубени. Сликите остануваат на компјутерот и повторно можат да бидат "
-"внесени во F-Spot."
+"ќе бидат изгубени. Сликите остануваат на компјутерот и повторно можат да "
+"бидат внесени во F-Spot."
 
-#: ../src/MainWindow.cs:2108
+#: ../src/MainWindow.cs:2148
 msgid "_Remove from Catalog"
 msgstr "_Отстрани од каталогот"
 
-#: ../src/MainWindow.cs:2163
+#: ../src/MainWindow.cs:2203
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Да ја избришам етикетата \"{0}\"?"
 
-#: ../src/MainWindow.cs:2165
+#: ../src/MainWindow.cs:2205
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Да ги избришам {0}-те одбрани етикети?"
 
-#: ../src/MainWindow.cs:2168
+#: ../src/MainWindow.cs:2208
 msgid "If you delete a tag, all associations with photos are lost."
-msgstr "Ако ја избришите етикетата, сите асоцијации со фотографиите ќе бидат изгубени."
+msgstr ""
+"Ако ја избришите етикетата, сите асоцијации со фотографиите ќе бидат "
+"изгубени."
 
-#: ../src/MainWindow.cs:2169
+#: ../src/MainWindow.cs:2209
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Избриши ја етикетата"
@@ -1900,41 +1894,41 @@ msgstr[1] "_Избриши ги етикетите"
 msgstr[2] "_Избриши ги етикетите"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2183
+#: ../src/MainWindow.cs:2223
 msgid "Tag is not empty"
 msgstr "Етикетата не е празна"
 
-#: ../src/MainWindow.cs:2184
+#: ../src/MainWindow.cs:2224
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
 "\"{0}\" first"
 msgstr ""
-"Не можам да ги избришам етикетите кои имаат етикети во нив.  Прво избришете ги етикетите под "
-"\"{0}\"."
+"Не можам да ги избришам етикетите кои имаат етикети во нив.  Прво избришете "
+"ги етикетите под \"{0}\"."
 
-#: ../src/MainWindow.cs:2495
+#: ../src/MainWindow.cs:2540
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Ротирај ја избраната слика налево"
 msgstr[1] "Ротирај ги избраните слики налево"
 msgstr[2] "Ротирај ги избраните слики налево"
 
-#: ../src/MainWindow.cs:2508
+#: ../src/MainWindow.cs:2553
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Ротирај ја избраната слика надесно"
 msgstr[1] "Ротирај ги избраните слики надесно"
 msgstr[2] "Ротирај ги избраните слики надесно"
 
-#: ../src/MainWindow.cs:2522
+#: ../src/MainWindow.cs:2567
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Да креирам нова верзија?"
 msgstr[1] "Да креирам нови верзии?"
 msgstr[2] "Да креирам нови верзии?"
 
-#: ../src/MainWindow.cs:2524
+#: ../src/MainWindow.cs:2569
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1943,14 +1937,14 @@ msgid_plural ""
 "Before launching {1}, should F-Spot create new versions of the selected "
 "photos to preserve the originals?"
 msgstr[0] ""
-"Дали пред кревањето на {1} F-Spot треба да направи нова верзија од одбраната слика "
-"за да го зачува оригиналот?"
+"Дали пред кревањето на {1} F-Spot треба да направи нова верзија од одбраната "
+"слика за да го зачува оригиналот?"
 msgstr[1] ""
-"Дали пред кревањето на {1} F-Spot треба да направи нови верзији од одбраните слики "
-"за да ги зачува оригиналите?"
+"Дали пред кревањето на {1} F-Spot треба да направи нови верзији од одбраните "
+"слики за да ги зачува оригиналите?"
 msgstr[2] ""
-"Дали пред кревањето на {1} F-Spot треба да направи нови верзији од одбраните слики "
-"за да ги зачува оригиналите?"
+"Дали пред кревањето на {1} F-Spot треба да направи нови верзији од одбраните "
+"слики за да ги зачува оригиналите?"
 
 #: ../src/MetadataStore.cs:17
 msgid "Creator"
@@ -2064,22 +2058,22 @@ msgstr "Не се достапни апликации"
 msgid "Open With"
 msgstr "Отвори со"
 
-#: ../src/PhotoPopup.cs:36
+#: ../src/PhotoPopup.cs:46
 msgid "Copy Photo Location"
 msgstr "Копирај ја локацијата на сликата"
 
-#: ../src/PhotoPopup.cs:52
+#: ../src/PhotoPopup.cs:62
 msgid "Remove From Catalog"
 msgstr "Отстрани од каталогот`"
 
-#: ../src/PhotoPopup.cs:54
+#: ../src/PhotoPopup.cs:64
 msgid "Delete From Drive"
 msgstr "Отстрани од драјвот"
 
 #.
 #. FIXME TagMenu is ugly.
 #.
-#: ../src/PhotoPopup.cs:62
+#: ../src/PhotoPopup.cs:72
 msgid "Attach Tag"
 msgstr "Прикачи етикета"
 
@@ -2087,7 +2081,7 @@ msgstr "Прикачи етикета"
 #. FIXME finish the IPhotoSelection stuff and move the activate handler into the class
 #. this current method is way too complicated.
 #.
-#: ../src/PhotoPopup.cs:73
+#: ../src/PhotoPopup.cs:83
 msgid "Remove Tag"
 msgstr "Отстрани етикета"
 
@@ -2241,8 +2235,8 @@ msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
 msgstr ""
-"За оваа алатка потребна е активна одбрана површина. Одберете површина од сликата "
-"и повторете ја операцијата"
+"За оваа алатка потребна е активна одбрана површина. Одберете површина од "
+"сликата и повторете ја операцијата"
 
 #: ../src/PhotoView.cs:490
 msgid "Comment:"
@@ -2298,14 +2292,17 @@ msgid_plural ""
 "{0} photos could not be rotated because they are on a read only file system "
 "or media such as a CDROM.  Please check the permissions and try again"
 msgstr[0] ""
-"Сликата не може да биде ротирана бидејќи е на датотечен систем кој е само за читање или "
-"на медиум како што е CDROM-от.  Проверете ги дозволите и обидете се повторно"
+"Сликата не може да биде ротирана бидејќи е на датотечен систем кој е само за "
+"читање или на медиум како што е CDROM-от.  Проверете ги дозволите и обидете "
+"се повторно"
 msgstr[1] ""
-"{0} слики не можат да бидат ротирани бидејќи се на датотечен систем кој е само за читање или "
-"на медиум како што е CDROM-от.  Проверете ги дозволите и обидете се повторно"
+"{0} слики не можат да бидат ротирани бидејќи се на датотечен систем кој е "
+"само за читање или на медиум како што е CDROM-от.  Проверете ги дозволите и "
+"обидете се повторно"
 msgstr[2] ""
-"{0} слики не можат да бидат ротирани бидејќи се на датотечен систем кој е само за читање или "
-"на медиум како што е CDROM-от.  Проверете ги дозволите и обидете се повторно"
+"{0} слики не можат да бидат ротирани бидејќи се на датотечен систем кој е "
+"само за читање или на медиум како што е CDROM-от.  Проверете ги дозволите и "
+"обидете се повторно"
 
 #: ../src/RotateCommand.cs:216
 #, csharp-format
@@ -2316,7 +2313,7 @@ msgstr "Добив грешка \"{0}\" при обидот за ротациј�
 msgid "Error while rotating photo."
 msgstr "Грешка при ротацијата на слииката"
 
-#: ../src/SingleView.cs:216
+#: ../src/SingleView.cs:232
 msgid "Open"
 msgstr "Отвори"
 
@@ -2458,17 +2455,17 @@ msgstr "Настани"
 msgid "Unable to create temporary file"
 msgstr "Не можам да креирам привремена датотека"
 
-#: ../src/Updater.cs:101
+#: ../src/Updater.cs:106
 msgid "Updating F-Spot Database"
 msgstr "Ја ажурирам базата на податоци на F-Spot"
 
-#: ../src/Updater.cs:102
+#: ../src/Updater.cs:107
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
 msgstr ""
-"Почекајте додека вашата F-Spot база на податоци на галеријата се ажурира. Ова може да потрае "
-"подолго време."
+"Почекајте додека вашата F-Spot база на податоци на галеријата се ажурира. "
+"Ова може да потрае подолго време."
 
 #: ../src/Util.cs:396
 msgid "There was an error invoking the external handler"
