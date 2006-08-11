@@ -23,6 +23,8 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 
+using Mono.Posix;
+
 using ICSharpCode.SharpZipLib.Checksums;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.GZip;
@@ -593,6 +595,9 @@ namespace FSpot {
 		string stylesheet = "f-spot-simple.css";
 		string altstylesheet = "f-spot-simple-white.css";
 		string javascript = "f-spot.js";
+
+        static string light = Mono.Posix.Catalog.GetString("Light");
+        static string dark = Mono.Posix.Catalog.GetString("Dark");
 		
 		public HtmlGallery (IBrowsableCollection selection, string path, string name) : base (selection, path, name) 
 		{ 
@@ -771,18 +776,18 @@ namespace FSpot {
 			writer.RenderBeginTag("ul");
 			writer.RenderBeginTag("li");
 			writer.AddAttribute ("href", "#");
-			writer.AddAttribute ("title", "Dark");
-			writer.AddAttribute ("onclick", "setActiveStyleSheet('Dark')");
+			writer.AddAttribute ("title", dark);
+			writer.AddAttribute ("onclick", "setActiveStyleSheet('" + dark + "')");
 			writer.RenderBeginTag("a");
-			writer.Write ("Dark");
+			writer.Write (dark);
 			writer.RenderEndTag (); //a
 			writer.RenderEndTag (); //li
 			writer.RenderBeginTag("li");
 			writer.AddAttribute ("href", "#");
-			writer.AddAttribute ("title", "Light");
-			writer.AddAttribute ("onclick", "setActiveStyleSheet('Light')");
+			writer.AddAttribute ("title", light);
+			writer.AddAttribute ("onclick", "setActiveStyleSheet('" + light + "')");
 			writer.RenderBeginTag("a");
-			writer.Write ("Light");
+			writer.Write (light);
 			writer.RenderEndTag (); //a
 			writer.RenderEndTag (); //li
 			writer.RenderEndTag (); //ul
@@ -790,8 +795,8 @@ namespace FSpot {
 			writer.RenderBeginTag ("div");
 			writer.Write ("<span class=\"style_toggle\">"); 
 			writer.Write ("<a href=\"javascript:toggle_stylebox()\">");
-			writer.Write ("<span id=\"showlink\">Show Styles</span><span id=\"hidelink\" ");
-			writer.Write ("style=\"display:none;\">Hide Styles</span></a></span>\n");
+			writer.Write ("<span id=\"showlink\">" + Catalog.GetString ("Show Styles") + "</span><span id=\"hidelink\" ");
+			writer.Write ("style=\"display:none;\">" + Catalog.GetString ("Hide Styles") + "</span></a></span>\n");
 			writer.RenderEndTag (); //div toggle
 			writer.RenderEndTag (); //div styleboxcontainer
 			writer.RenderEndTag (); //container1	
@@ -830,12 +835,12 @@ namespace FSpot {
 
 			writer.Write ("<link type=\"text/css\" rel=\"stylesheet\" href=\"");
 			writer.Write (String.Format ("{0}", "style/" + stylesheet));
-			writer.Write ("\" title=\"Dark\" media=\"screen\" />\n");
+			writer.Write ("\" title=\"" + dark + "\" media=\"screen\" />\n");
 
 			writer.Write ("<link type=\"text/css\" rel=\"prefetch ") ;
 			writer.Write ("alternate stylesheet\" href=\"");
 			writer.Write (String.Format ("{0}", "style/" + altstylesheet));
-			writer.Write ("\" title=\"Light\" media=\"screen\" />\n");
+			writer.Write ("\" title=\"" + light + "\" media=\"screen\" />\n");
 
 			writer.Write ("<script src=\"script/" + javascript + "\"");
 			writer.Write (" type=\"text/javascript\"></script>\n");
@@ -944,18 +949,18 @@ namespace FSpot {
 			writer.RenderBeginTag("ul");
 			writer.RenderBeginTag("li");
 			writer.AddAttribute ("href", "#");
-			writer.AddAttribute ("title", "Dark");
-			writer.AddAttribute ("onclick", "setActiveStyleSheet('Dark')");
+			writer.AddAttribute ("title", dark);
+			writer.AddAttribute ("onclick", "setActiveStyleSheet('" + dark + "')");
 			writer.RenderBeginTag("a");
-			writer.Write ("Dark");
+			writer.Write (dark);
 			writer.RenderEndTag (); //a
 			writer.RenderEndTag (); //li
 			writer.RenderBeginTag("li");
 			writer.AddAttribute ("href", "#");
-			writer.AddAttribute ("title", "Light");
-			writer.AddAttribute ("onclick", "setActiveStyleSheet('Light')");
+			writer.AddAttribute ("title", light);
+			writer.AddAttribute ("onclick", "setActiveStyleSheet('" + light + "')");
 			writer.RenderBeginTag("a");
-			writer.Write ("Light");
+			writer.Write (light);
 			writer.RenderEndTag (); //a
 			writer.RenderEndTag (); //li
 			writer.RenderEndTag (); //ul
@@ -963,8 +968,8 @@ namespace FSpot {
 			writer.RenderBeginTag ("div");
 			writer.Write ("<span class=\"style_toggle\">"); 
 			writer.Write ("<a href=\"javascript:toggle_stylebox()\">");
-			writer.Write ("<span id=\"showlink\">Show Styles</span><span id=\"hidelink\" ");
-			writer.Write ("style=\"display:none;\">Hide Styles</span></a></span>\n");
+			writer.Write ("<span id=\"showlink\">" + Mono.Posix.Catalog.GetString("Show Styles") + "</span><span id=\"hidelink\" ");
+			writer.Write ("style=\"display:none;\">" + Mono.Posix.Catalog.GetString("Hide Styles") + "</span></a></span>\n");
 			writer.RenderEndTag (); //div toggle
 			writer.RenderEndTag (); //div styleboxcontainer
 			writer.RenderEndTag (); //container1

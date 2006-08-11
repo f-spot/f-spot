@@ -1,5 +1,10 @@
 2006-08-11  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/FolderExport.cs: Internationalize several strings in generated HTML
+	gallerys.  Based on patch from Stephane Delcroix. Fixes BGO #349912.
+
+2006-08-11  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/MainWindow.cs: Don't steal [] characters from text entries.  Fixes
 	BGO #348733.
 
