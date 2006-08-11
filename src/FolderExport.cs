@@ -284,6 +284,7 @@ namespace FSpot {
 		protected bool scale;
 		protected int size;
 		protected string description;
+		protected string language;
 		protected System.Uri destination;
 
 		protected ScaleRequest [] requests;
@@ -427,6 +428,14 @@ namespace FSpot {
 				description = value;
 			}
 		}
+
+		public string Language {
+			get {
+				if (language == null)
+					language=GetLanguage();
+				return language;
+			}
+		}
 		
 		public Uri Destination {
 			get {
@@ -442,6 +451,24 @@ namespace FSpot {
 			this.size = size;
 			requests [0].Width = size;
 			requests [0].Height = size;
+		}
+
+		private string GetLanguage()
+		{
+			string language;
+ 
+			if ((language = Environment.GetEnvironmentVariable ("LC_ALL")) == null)
+				if ((language = Environment.GetEnvironmentVariable ("LC_MESSAGES")) == null)
+					if ((language = Environment.GetEnvironmentVariable ("LANG")) == null)
+						language = "en";
+ 
+			if (language.IndexOf('.') >= 0)
+				language = language.Substring(0,language.IndexOf('.'));
+			if (language.IndexOf('@') >= 0)
+				language = language.Substring(0,language.IndexOf('@'));
+			language = language.Replace('_','-');
+ 
+			return language;
 		}
 	}
 
@@ -680,6 +707,8 @@ namespace FSpot {
 			
 			//writer.Write ("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 			writer.WriteLine ("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">");
+			writer.AddAttribute ("xmlns", "http://www.w3.org/1999/xhtml");
+			writer.AddAttribute ("xml:lang", this.Language);
 			writer.RenderBeginTag ("html");
 			
 			WriteHeader (writer);
@@ -792,6 +821,9 @@ namespace FSpot {
 		public void WriteHeader (System.Web.UI.HtmlTextWriter writer)
 		{
 			writer.RenderBeginTag ("head");
+			/* It seems HtmlTextWriter always uses UTF-8, unless told otherwise */
+			writer.Write ("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />");
+			writer.WriteLine ();
 			writer.RenderBeginTag ("title");
 			writer.Write (gallery_name);
 			writer.RenderEndTag ();
@@ -835,6 +867,8 @@ namespace FSpot {
 
 			//writer.Write ("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 			writer.WriteLine ("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">");
+			writer.AddAttribute ("xmlns", "http://www.w3.org/1999/xhtml");
+			writer.AddAttribute ("xml:lang", this.Language);
 			writer.RenderBeginTag ("html");
 			WriteHeader (writer);
 			

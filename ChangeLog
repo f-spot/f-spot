@@ -1,3 +1,9 @@
+2006-08-11  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/FolderExport.cs: Add UTF-8 encoding and locale meta data to exported
+	HTML pages to support non-ASCII and RTL languages.  Patch by
+	Thomas Paris and Jean-Christophe Dubacq. Fixes BGO #329685.
+
 2006-07-30  Larry Ewing  <lewing@novell.com>
 
 	* src/Loupe.cs: clean up the loupe a little more, calculate the
