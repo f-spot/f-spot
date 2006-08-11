@@ -2248,11 +2248,23 @@ public class MainWindow {
 
 	public void HandleRotate90Command (object sender, EventArgs args)
 	{
+        // Don't steal characters from any text entries
+        if (Window.Focus is Gtk.Entry && Gtk.Global.CurrentEvent is Gdk.EventKey) {
+            Window.Focus.ProcessEvent (Gtk.Global.CurrentEvent);
+            return;
+        }
+
 		RotateSelectedPictures (GetToplevel (sender), RotateDirection.Clockwise);
 	}
 
 	public void HandleRotate270Command (object sender, EventArgs args)
 	{
+        // Don't steal characters from any text entries
+        if (Window.Focus is Gtk.Entry && Gtk.Global.CurrentEvent is Gdk.EventKey) {
+            Window.Focus.ProcessEvent (Gtk.Global.CurrentEvent);
+            return;
+        }
+
 		RotateSelectedPictures (GetToplevel (sender), RotateDirection.Counterclockwise);
 	}
 

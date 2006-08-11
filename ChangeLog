@@ -1,5 +1,10 @@
 2006-08-11  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/MainWindow.cs: Don't steal [] characters from text entries.  Fixes
+	BGO #348733.
+
+2006-08-11  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/FolderExport.cs: Add UTF-8 encoding and locale meta data to exported
 	HTML pages to support non-ASCII and RTL languages.  Patch by
 	Thomas Paris and Jean-Christophe Dubacq. Fixes BGO #329685.
