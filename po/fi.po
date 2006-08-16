@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-02 22:57+0300\n"
-"PO-Revision-Date: 2006-07-02 22:57+0300\n"
+"POT-Creation-Date: 2006-08-16 13:41+0300\n"
+"PO-Revision-Date: 2006-08-16 13:42+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -169,7 +169,7 @@ msgstr "Polku"
 msgid "File"
 msgstr "Tiedosto"
 
-#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:706
+#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:742
 msgid "Index"
 msgstr "Indeksi"
 
@@ -208,7 +208,7 @@ msgstr ""
 "ovat oikein ja yritä uudestaan"
 
 #: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:149
-#: ../src/FolderExport.cs:267
+#: ../src/FolderExport.cs:269
 msgid "Transferring Pictures"
 msgstr "Siirretään kuvia"
 
@@ -253,34 +253,34 @@ msgstr "Siirretään kuvaa \"{0}\" CD:lle"
 
 #. This indicates the current photo is photo {0} of {1} out of photos
 #: ../src/CDExport.cs:59 ../src/FlickrExport.cs:245
-#: ../src/GalleryExport.cs:651 ../src/ProgressDialog.cs:82
+#: ../src/GalleryExport.cs:654 ../src/ProgressDialog.cs:82
 #: ../src/TimeDialog.cs:141
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0}/{1}"
 
-#: ../src/CDExport.cs:72 ../src/FlickrExport.cs:251 ../src/FolderExport.cs:176
-#: ../src/GalleryExport.cs:666
+#: ../src/CDExport.cs:72 ../src/FlickrExport.cs:251 ../src/FolderExport.cs:178
+#: ../src/GalleryExport.cs:669
 msgid "Done Sending Photos"
 msgstr "Kuvien lähetys valmistui"
 
-#: ../src/CDExport.cs:74 ../src/FolderExport.cs:178
+#: ../src/CDExport.cs:74 ../src/FolderExport.cs:180
 msgid "Transfer Complete"
 msgstr "Siirto valmistui"
 
-#: ../src/CDExport.cs:81 ../src/FolderExport.cs:183
+#: ../src/CDExport.cs:81 ../src/FolderExport.cs:185
 msgid "Error While Transferring"
 msgstr "Virhe siirrettäessä"
 
-#: ../src/CDExport.cs:87 ../src/FolderExport.cs:191
+#: ../src/CDExport.cs:87 ../src/FolderExport.cs:193
 msgid "Error Transferring"
 msgstr "Virhe siirrossa"
 
-#: ../src/CDExport.cs:108 ../src/FolderExport.cs:212
+#: ../src/CDExport.cs:108 ../src/FolderExport.cs:214
 msgid "Error: Error while transferring; Aborting"
 msgstr "Virhe: Virhe siirrettäessä, keskeytetään"
 
-#: ../src/CDExport.cs:111 ../src/FolderExport.cs:215
+#: ../src/CDExport.cs:111 ../src/FolderExport.cs:217
 msgid "Error: File Already Exists; Aborting"
 msgstr "Virh: Tiedosto on jo olemassa, keskeytetään"
 
@@ -288,7 +288,7 @@ msgstr "Virh: Tiedosto on jo olemassa, keskeytetään"
 msgid "Error saving adjusted photo"
 msgstr "Virhe tallennettassa korjattua kuvaa"
 
-#: ../src/ColorDialog.cs:309 ../src/Loupe.cs:53 ../src/MainWindow.cs:1836
+#: ../src/ColorDialog.cs:309 ../src/Loupe.cs:57 ../src/MainWindow.cs:1834
 #: ../src/PhotoView.cs:269
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
@@ -406,12 +406,12 @@ msgstr "Kirjautuminen epäonnistui"
 msgid "Waiting for response {0} of {1}"
 msgstr "Odotetaan vastausta {0}/{1}"
 
-#: ../src/FlickrExport.cs:240 ../src/GalleryExport.cs:647
+#: ../src/FlickrExport.cs:240 ../src/GalleryExport.cs:650
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Viedään kuvaa \"{0}\""
 
-#: ../src/FlickrExport.cs:253 ../src/GalleryExport.cs:668
+#: ../src/FlickrExport.cs:253 ../src/GalleryExport.cs:671
 msgid "Upload Complete"
 msgstr "Kuvien vienti valmis"
 
@@ -420,7 +420,7 @@ msgstr "Kuvien vienti valmis"
 msgid "Error Uploading To Flickr: {0}"
 msgstr "Virhe vietäessä Flickr:iin: {0}"
 
-#: ../src/FlickrExport.cs:259 ../src/GalleryExport.cs:673
+#: ../src/FlickrExport.cs:259 ../src/GalleryExport.cs:676
 msgid "Error"
 msgstr "Virhe"
 
@@ -436,32 +436,48 @@ msgstr ""
 "F-Spot ei voinut kirjautua Flickriin. Tarkista että olet valtuuttanut "
 "yhteydenoton käyttäen Flickrin selainliittymää."
 
-#: ../src/FlickrExport.cs:336 ../src/GalleryExport.cs:611
+#: ../src/FlickrExport.cs:336 ../src/GalleryExport.cs:614
 msgid "Uploading Pictures"
 msgstr "Viedään kuvia"
 
-#: ../src/FolderExport.cs:105
+#: ../src/FolderExport.cs:107
 msgid "Select Export Folder"
 msgstr "Valitse vientikansio"
 
-#: ../src/FolderExport.cs:138
+#: ../src/FolderExport.cs:140
 msgid "Building Gallery"
 msgstr "Luodaan galleriaa"
 
+#: ../src/FolderExport.cs:599
+msgid "Light"
+msgstr "Vaalea"
+
+#: ../src/FolderExport.cs:600
+msgid "Dark"
+msgstr "Tumma"
+
 #. Abbreviation of previous
-#: ../src/FolderExport.cs:704
+#: ../src/FolderExport.cs:740
 msgid "Prev"
 msgstr "Edellinen"
 
-#: ../src/FolderExport.cs:709 ../src/f-spot.glade.h:120
+#: ../src/FolderExport.cs:745 ../src/f-spot.glade.h:120
 msgid "Next"
 msgstr "Seuraava"
 
-#: ../src/FolderExport.cs:817
+#: ../src/FolderExport.cs:798 ../src/FolderExport.cs:971
+msgid "Show Styles"
+msgstr "Näytä tyylit"
+
+#: ../src/FolderExport.cs:799 ../src/FolderExport.cs:972
+msgid "Hide Styles"
+msgstr "Piilota tyylit"
+
+#: ../src/FolderExport.cs:856
 msgid "Gallery generated by"
 msgstr "Gallerian luonut "
 
-#: ../src/FolderExport.cs:860
+#: ../src/FolderExport.cs:901
 msgid "Page:"
 msgstr "Sivu:"
 
@@ -1446,28 +1462,28 @@ msgstr "Virheellinen URL"
 msgid "The gallery URL entry does not appear to be a valid URL"
 msgstr "Gallerian URL ei näytä olevan kelvollinen URL"
 
-#: ../src/GalleryExport.cs:450
+#: ../src/GalleryExport.cs:451
 msgid "(TopLevel)"
 msgstr "(Ylätaso)"
 
-#: ../src/GalleryExport.cs:671
+#: ../src/GalleryExport.cs:674
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Virhe vietäessä galleriaan: {0}"
 
-#: ../src/GalleryExport.cs:690
+#: ../src/GalleryExport.cs:693
 msgid "(No Gallery)"
 msgstr "(Ei galleriaa)"
 
-#: ../src/GalleryExport.cs:782
+#: ../src/GalleryExport.cs:785
 msgid "(Not Connected)"
 msgstr "(Ei yhteyttä)"
 
-#: ../src/GalleryExport.cs:783
+#: ../src/GalleryExport.cs:786
 msgid "(No Albums)"
 msgstr "(Ei albumeita)"
 
-#: ../src/GalleryExport.cs:834
+#: ../src/GalleryExport.cs:838
 msgid "No account selected"
 msgstr "Tiliä ei ole valittu"
 
@@ -1491,7 +1507,7 @@ msgstr "Järjestä _kuukauden mukaan"
 msgid "Arrange by _Folder"
 msgstr "Järjestä k_ansion mukaan"
 
-#: ../src/ImportCommand.cs:28 ../src/SingleView.cs:219
+#: ../src/ImportCommand.cs:28 ../src/SingleView.cs:235
 msgid "Select Folder"
 msgstr "Valitse kansio"
 
@@ -1666,8 +1682,8 @@ msgstr ""
 "Sisällön kohteena olevan maan kaksi- tai kolmikirjaiminen ISO3166-koodi"
 
 #: ../src/IptcFile.cs:201
-msgid "bleh"
-msgstr "bleh"
+msgid "Creator of the content"
+msgstr "Sisällön luoja"
 
 #: ../src/IptcFile.cs:204
 msgid "The title of the author or creator"
@@ -1700,23 +1716,23 @@ msgstr "Kohteen tyylilaji"
 msgid "Unknown IIM DataSet"
 msgstr "Tuntematon IIM-tietojoukko"
 
-#: ../src/Loupe.cs:52 ../src/MainWindow.cs:1835
+#: ../src/Loupe.cs:56 ../src/MainWindow.cs:1833
 msgid "Error saving sharpened photo"
 msgstr "Virhe tallennettaessa terävöitettyä kuvaa"
 
-#: ../src/Loupe.cs:81
+#: ../src/Loupe.cs:86
 msgid "Sharpen"
 msgstr "_Terävöitä"
 
-#: ../src/Loupe.cs:91 ../src/MainWindow.cs:1802
+#: ../src/Loupe.cs:96 ../src/MainWindow.cs:1800
 msgid "Amount:"
 msgstr "Määrä:"
 
-#: ../src/Loupe.cs:92 ../src/MainWindow.cs:1803
+#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1801
 msgid "Radius:"
 msgstr "Säde:"
 
-#: ../src/Loupe.cs:93 ../src/MainWindow.cs:1804
+#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1802
 msgid "Threshold:"
 msgstr "Kynnysarvo:"
 
@@ -1736,24 +1752,24 @@ msgstr "Näytä kuvia kokoruututilassa"
 msgid "View photos in a slideshow"
 msgstr "Näytä kuvia diaesityksenä"
 
-#: ../src/MainWindow.cs:744
+#: ../src/MainWindow.cs:748
 msgid "Error loading database."
 msgstr "Virhe ladattaessa tietokantaa."
 
-#: ../src/MainWindow.cs:745
+#: ../src/MainWindow.cs:749
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
 "database has be moved to {0} and a new database has been created."
 msgstr ""
-"F-Spot törmäsi virheeseen valokuvatietokantaa ladattaessa. Vanha "
-"tietokanta on siirretty nimelle {0}  ja uusi tietokanta on luotu."
+"F-Spot törmäsi virheeseen valokuvatietokantaa ladattaessa. Vanha tietokanta "
+"on siirretty nimelle {0}  ja uusi tietokanta on luotu."
 
-#: ../src/MainWindow.cs:1283
+#: ../src/MainWindow.cs:1287
 msgid "No cameras detected."
 msgstr "Kameroita ei löytynyt."
 
-#: ../src/MainWindow.cs:1284
+#: ../src/MainWindow.cs:1288
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1761,11 +1777,11 @@ msgstr ""
 "F-Spot ei löytänyt järjestelmään liitettyjä kameroita. Tarkista uudestaan, "
 "että kamera on liitetty ja saa sähköä"
 
-#: ../src/MainWindow.cs:1324
+#: ../src/MainWindow.cs:1328
 msgid "Error connecting to camera"
 msgstr "Virhe yhdistettäessä kameraan"
 
-#: ../src/MainWindow.cs:1325
+#: ../src/MainWindow.cs:1329
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Saatiin virhe \"{0}\" otettaessa yhteyttä kameraan"
@@ -1773,26 +1789,26 @@ msgstr "Saatiin virhe \"{0}\" otettaessa yhteyttä kameraan"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1472
+#: ../src/MainWindow.cs:1476
 msgid "translator-credits"
 msgstr ""
 "Ilkka Tuohela, 2005.\n"
 "\n"
 "http://gnome.fi/"
 
-#: ../src/MainWindow.cs:1479
+#: ../src/MainWindow.cs:1483
 msgid "Copyright © 2003-2006 Novell Inc."
 msgstr "Copyright © 2003-2006 Novell Inc."
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1711
+#: ../src/MainWindow.cs:1713
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Yhdistä valittu merkintä"
 msgstr[1] "Yhdistä {0} valittua merkintää"
 
-#: ../src/MainWindow.cs:1738
+#: ../src/MainWindow.cs:1740
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -1800,23 +1816,23 @@ msgstr ""
 "Tämä toiminto yhdistää valitut merkinnät ja niiden alimerkinnät yhdeksi "
 "merkinnäksi."
 
-#: ../src/MainWindow.cs:1740
+#: ../src/MainWindow.cs:1742
 msgid "_Merge Tags"
 msgstr "_Yhdistä merkinnät"
 
-#: ../src/MainWindow.cs:1793
+#: ../src/MainWindow.cs:1791
 msgid "Unsharp Mask"
 msgstr "Epätarkka maski"
 
-#: ../src/MainWindow.cs:2063
+#: ../src/MainWindow.cs:2071
 msgid "_Ok"
 msgstr "_Ok"
 
-#: ../src/MainWindow.cs:2064
+#: ../src/MainWindow.cs:2072
 msgid "Error Deleting Picture"
 msgstr "Virhe poistettaessa kuvaa"
 
-#: ../src/MainWindow.cs:2069
+#: ../src/MainWindow.cs:2077
 #, csharp-format
 msgid ""
 "No permission to delete the file:\n"
@@ -1825,7 +1841,7 @@ msgstr ""
 "Oikeudet eivät riitä tiedoston poistamiseen:\n"
 "{0}"
 
-#: ../src/MainWindow.cs:2073
+#: ../src/MainWindow.cs:2081
 #, csharp-format
 msgid ""
 "An error of type {0} occurred while deleting the file:\n"
@@ -1834,34 +1850,34 @@ msgstr ""
 "Tiedostoa poistettaessa tapahtui virhe tyyppiä {0}:\n"
 "{1}"
 
-#: ../src/MainWindow.cs:2099
+#: ../src/MainWindow.cs:2107
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Poista valittu kuva pysyvästi?"
 msgstr[1] "Poista valitut {0} kuvaa pysyvästi?"
 
-#: ../src/MainWindow.cs:2103
+#: ../src/MainWindow.cs:2111
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Tämä poistaa valitun kuvan kaikki versiot kovalevyltäsi."
 msgstr[1] "Tämä poistaa valittujen kuvien kaikki versiot kovalevyltäsi."
 
-#: ../src/MainWindow.cs:2106
+#: ../src/MainWindow.cs:2114
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Poista kuva"
 msgstr[1] "_Poista kuvat"
 
-#: ../src/MainWindow.cs:2134
+#: ../src/MainWindow.cs:2142
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Poista valittu kuva F-Spotista?"
 msgstr[1] "Poista valitut {0} kuvaa F-Spotista?"
 
-#: ../src/MainWindow.cs:2139
+#: ../src/MainWindow.cs:2147
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1871,36 +1887,36 @@ msgstr ""
 "liittyvien merkintöjen tiedot. Valokuvat säilyvät tietokoneellasi ja voidaan "
 "tuoda F-Spotiin uudestaan."
 
-#: ../src/MainWindow.cs:2140
+#: ../src/MainWindow.cs:2148
 msgid "_Remove from Catalog"
 msgstr "_Poista luettelosta"
 
-#: ../src/MainWindow.cs:2195
+#: ../src/MainWindow.cs:2203
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Poistetaanko merkintä \"{0}\"?"
 
-#: ../src/MainWindow.cs:2197
+#: ../src/MainWindow.cs:2205
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Poista {0} valittua merkintää?"
 
-#: ../src/MainWindow.cs:2200
+#: ../src/MainWindow.cs:2208
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr "Jos poistat merkinnän, menetetään kaikki assosiaatiot valokuviin."
 
-#: ../src/MainWindow.cs:2201
+#: ../src/MainWindow.cs:2209
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Poista merkintä"
 msgstr[1] "_Poista merkinnät"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2215
+#: ../src/MainWindow.cs:2223
 msgid "Tag is not empty"
 msgstr "Merkintä ei ole tyhjä"
 
-#: ../src/MainWindow.cs:2216
+#: ../src/MainWindow.cs:2224
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1909,25 +1925,25 @@ msgstr ""
 "Merkintöjä ei voi poistaa, jos ne sisältävät muita merkintöjä. Poista "
 "kohteen \"{0}\" sisällä olevat merkinnät ensin"
 
-#: ../src/MainWindow.cs:2533
+#: ../src/MainWindow.cs:2552
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Kierrä valittua kuvaa vasemmalle"
 msgstr[1] "Kierrä valittuja kuvia vasemmalle"
 
-#: ../src/MainWindow.cs:2546
+#: ../src/MainWindow.cs:2565
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Kierrä valittua kuvaa oikealle"
 msgstr[1] "Kierrä valittuja kuvia oikealle"
 
-#: ../src/MainWindow.cs:2560
+#: ../src/MainWindow.cs:2579
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Luo uusi versio?"
 msgstr[1] "Luo uudet versiot?"
 
-#: ../src/MainWindow.cs:2562
+#: ../src/MainWindow.cs:2581
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -2302,7 +2318,7 @@ msgstr "Saatiin virhe \"{0}\" yritettäessä kääntää kuvaa {1}"
 msgid "Error while rotating photo."
 msgstr "Virhe kierrettäessä kuvaa."
 
-#: ../src/SingleView.cs:216
+#: ../src/SingleView.cs:232
 msgid "Open"
 msgstr "Avaa"
 
@@ -2489,6 +2505,9 @@ msgstr "Näytä diaesitys F-Spotista"
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr "F-Spot-valokuvat"
+
+#~ msgid "bleh"
+#~ msgstr "bleh"
 
 #~ msgid "Remove the selected gallery?"
 #~ msgstr "Poistetaanko valittu galleria?"
