@@ -1,3 +1,31 @@
+f-spot 0.2.0 - August 28 2006 - Steller
+---------------------------------------
+- Initial gnome-vfs --view support. 
+- Impoved static html and folder export logic.
+- Improved loupe.
+- Fixes for mono head.
+- Many many more fixes see ChangeLog.
+
+f-spot 0.1.12 - August 28 2006 - Cormorant
+------------------------------------------
+- Fix exif description bug.
+- Fix open with exception handling.
+- Enable translations in screensaver.
+- Fix the import dialog recursion issues.
+- Handle self referencial IFDs in tiff/exif.
+- Don't duplicate photos if they are already in the right place.
+- Handle errors while sharpening and loading images.
+- Work around gtk+ filechooser bug.
+- Avoid long intervals with no refresh in slideshow.
+- Handle errors while attempting to adjust colors. 
+- Avoid raising the main window above the fullscreen window.
+- Make the importer handle cancelation properly.
+- When copying files unset the readonly flag. 
+- Make the screensaver setup logic also handle the mode.
+- Improve missing file handling.
+- Start import immediately if path is passed on the command line.
+- Many more fixes
+
 f-spot 0.1.11 - March 13 2006 - Old Guard
 -----------------------------------------
 - Much improved contrast function.
