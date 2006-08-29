@@ -1,5 +1,15 @@
 2006-08-28  Larry Ewing  <lewing@novell.com>
 
+	* src/Makefile.am: move AssemblyInfo.cs.in to the right section.
+
+2006-08-29  Stephane Delcroix <stephane@delcroix.org>
+
+	* configure.in:
+	* src/Makefile.am:
+	* src/AssemblyInfo.cs.in: rules to create an build src/AssemblyInfo.cs
+
+2006-08-28  Larry Ewing  <lewing@novell.com>
+
 	* configure.in: Make 0.2.0 release.
 
 2006-08-11  Gabriel Burt  <gabriel.burt@gmail.com>

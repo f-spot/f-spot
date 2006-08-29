@@ -174,7 +174,9 @@ fspotlib_DATA = f-spot.exe.config	\
 
 bin_SCRIPTS = f-spot
 
-F_SPOT_CSFILES = $(F_SPOT_CSDISTFILES) Defines.cs
+F_SPOT_CSFILES = $(F_SPOT_CSDISTFILES)	\
+	Defines.cs			\
+	AssemblyInfo.cs
 
 f-spot.exe: $(F_SPOT_CSFILES) f-spot.glade dces.rdf
 	$(CSC) -out:$@ $(CSFLAGS) $(F_SPOT_CSFILES) $(ASSEMBLIES) $(RESOURCES)
