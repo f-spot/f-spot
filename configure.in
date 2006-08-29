@@ -116,6 +116,14 @@ AC_SUBST(EXIF_SOVERSION)
 
 dnl --- Set up paths
 
+AC_ARG_WITH(turtle, [ --with-turtle=DIR                set path to source directory for turtle])
+AM_CONDITIONAL(WITH_TURTLE, test "x$with_turtle" != "xno")
+if test "x$with_turtle" != "xno"; then
+   TURTLEDIR=$with_turtle
+
+   AC_SUBST(TURTLEDIR)
+fi
+
 AC_ARG_WITH(gnome-screensaver,[ --with-gnome-screensaver=PREFIX  set gnome gnome-screensaver prefix])
 
 if test "x$with_gnome_screensaver" != "x"; then
@@ -180,6 +188,7 @@ semweb/Makefile
 tools/Makefile
 po/Makefile.in
 src/Defines.cs
+src/AssemblyInfo.cs
 src/f-spot.exe.config
 src/Makefile
 f-spot.spec
