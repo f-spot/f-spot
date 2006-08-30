@@ -1,15 +1,22 @@
-#!/bin/sh
+#!/bin/bash
 
 prefix=@prefix@
 exec_prefix=@exec_prefix@
 libdir=@libdir@
+turtledir=@TURTLEDIR@
 
 EXE_TO_RUN="$libdir/f-spot/f-spot.exe"
+
+if test "x$turtledir" != "x"; then
+    export MONO_PATH=$turtledir/lib:$turtledir/gui:$MONO_PATH
+fi
 
 case "x--uninstalled" in ("x$1" | "x$2")
 	echo "*** Running uninstalled f-spot ***"
 	EXE_TO_RUN="./f-spot.exe"
 	export MONO_PATH=../FlickrNet:../libgphoto2-sharp:../semweb:$MONO_PATH
+
+
 esac
 
 case "x--debug" in ("x$1" | "x$2")
