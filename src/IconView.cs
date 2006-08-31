@@ -150,6 +150,8 @@ public class IconView : Gtk.Layout {
 	public int FocusCell {
 		set {
 			if (value != real_focus_cell) {
+				value = Math.Max (value, 0);
+				value = Math.Min (value, collection.Count - 1);
 				InvalidateCell (value);
 				InvalidateCell (real_focus_cell);
 				real_focus_cell = value;
@@ -163,9 +165,6 @@ public class IconView : Gtk.Layout {
 	// distinguish the GDK_2BUTTON_PRESS events that we actually care
 	// about.
 	private int click_count;
-
-	// The pixbuf we use when we can't load a thumbnail.
-	static Pixbuf error_pixbuf;
 
 	// Public events.
 	public delegate void DoubleClickedHandler (IconView view, int clicked_item);
@@ -1451,17 +1450,12 @@ public class IconView : Gtk.Layout {
 		case Gdk.Key.Return:
 			if (DoubleClicked == null)
 				break;
-			if (FocusCell < 0 || FocusCell > collection.Count - 1)
-				break;
 			DoubleClicked (this, FocusCell);
 			break;
 		default:	
 			args.RetVal = false;
 			return;		
 		}
-		
-		FocusCell = Math.Max (FocusCell, 0);
-		FocusCell = Math.Min (FocusCell, collection.Count - 1);
 		
 		if (FocusCell == focus_old) {
 			args.RetVal = false;
