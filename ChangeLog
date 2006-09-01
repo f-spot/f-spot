@@ -1,3 +1,9 @@
+2006-07-27  Stephane Delcroix <stephane@delcroix.org>
+ 
+ 	* src/CDExport.cs:
+ 	* src/f-spot.glade: Added an 'exported size' label to CDExport
+ 	dialog. fix b.g.o. #348923
+ 
 2006-08-21  Stephane Delcroix <stephane@delcroix.org>
 
 	* src/CDExport.cs: new UniqueName method working on Gnome.Vfs.Uri,

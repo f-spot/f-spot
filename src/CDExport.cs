@@ -7,7 +7,7 @@ namespace FSpot {
 
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
 		[Glade.Widget] Gtk.CheckButton remove_check;
-		
+		[Glade.Widget] Gtk.Label size_label;		
 
 		Gnome.Vfs.Uri dest = new Gnome.Vfs.Uri ("burn:///");
 		
@@ -20,13 +20,28 @@ namespace FSpot {
 		public CDExport (IBrowsableCollection selection) : base ("cd_export_dialog")
 		{
 			this.selection = selection;
-			
+
+			// Calculate the total size
+			long total_size = 0;
+			string path;
+			System.IO.FileInfo file_info;
+
+			foreach (Photo p in selection.Items) {
+				path = p.GetVersionPath(p.DefaultVersionId);
+				if (System.IO.File.Exists (path)) {
+					file_info = new System.IO.FileInfo (path);
+					total_size += file_info.Length;
+				}
+			}
+
 			IconView view = new IconView (selection);
 			view.DisplayDates = false;
 			view.DisplayTags = false;
 
 			Dialog.Modal = false;
 			Dialog.TransientFor = null;
+			
+			size_label.Text = ToHumanReadableSize(total_size);
 
 			thumb_scrolledwindow.Add (view);
 			Dialog.ShowAll ();
@@ -44,6 +59,24 @@ namespace FSpot {
 		[DllImport ("libc")] 
 		extern static int system (string program);
 
+	        public static Gnome.Vfs.Uri UniqueName (Gnome.Vfs.Uri path, string shortname)
+	        {
+	                int i = 1;
+			Gnome.Vfs.Uri target = path.Clone();
+	                Gnome.Vfs.Uri dest = target.AppendFileName(shortname);
+	
+	                while (dest.Exists) {
+	                        string numbered_name = System.String.Format ("{0}-{1}{2}",
+	                                                              System.IO.Path.GetFileNameWithoutExtension (shortname),
+	                                                              i++,
+	                                                              System.IO.Path.GetExtension (shortname));
+	
+	                	dest = target.AppendFileName(numbered_name);
+	                }
+	
+	                return dest;
+	        }
+	
 		public void Transfer () {
 			try {
 				Gnome.Vfs.Result result = Gnome.Vfs.Result.Ok;
@@ -51,7 +84,8 @@ namespace FSpot {
 				foreach (IBrowsableItem photo in selection.Items) {
 					Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (photo.DefaultVersionUri.ToString ());
 					Gnome.Vfs.Uri target = dest.Clone ();
-					target = target.AppendFileName (source.ExtractShortName ());
+//					target = target.AppendFileName (source.ExtractShortName ());
+					target = UniqueName (target, source.ExtractShortName ());
 					Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
 					
 					progress_dialog.Message = System.String.Format (Catalog.GetString ("Transferring picture \"{0}\" To CD"), photo.Name);
@@ -150,6 +184,31 @@ namespace FSpot {
 
 			progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Count);
 			progress_dialog.Start ();
+		}
+
+		private static string ToHumanReadableSize (long in_size)
+		{
+			string tmp_str = "";
+			float tmp_size = in_size;
+			int k = 0;
+			string[] size_abr = {"bytes", "kB", "MB", "GB", "TB" };
+
+			while (tmp_size > 700) { //it's easier to read 0.9MB than 932kB
+				tmp_size = tmp_size / 1024;
+				k++;
+			}
+
+			if (tmp_size < 7)
+				tmp_str = tmp_size.ToString ("#.##");
+			else if (tmp_size < 70)
+				tmp_str = tmp_size.ToString ("##.#");
+			else
+				tmp_str = tmp_size.ToString ("#,###");
+
+			if (k < size_abr.Length)
+				return tmp_str + " " + size_abr[k];
+			else
+				return in_size.ToString();
 		}
 	}
 }
