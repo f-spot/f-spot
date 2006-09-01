@@ -1,3 +1,18 @@
+2006-08-29  Stephane Delcroix <stephane@delcroix.org>
+ 
+ 	* gnome-keyring-sharp:
+ 	* google-sharp:
+ 	* configure.in:
+ 	* Makefile.am: 
+ 	* src/f-spot.in: Include gnome-keyring-sharp and google-sharp (CVS
+ 	versions) to the buildchain.
+ 
+ 	* src/Makefile.am:
+ 	* src/MainWindow.cs:
+ 	* src/Preferences.cs:
+ 	* src/f-spot.glade:
+ 	* src/PicasaWebExport.cs: Support for export to Picasaweb.
+ 
 2006-09-01  Larry Ewing  <lewing@novell.com>
 
 	* src/Tiff.cs: Workaround for bgo #350265 from Pasi Savolainen.

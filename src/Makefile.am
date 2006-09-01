@@ -75,6 +75,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PhotoView.cs			\
 	$(srcdir)/PngFile.cs			\
 	$(srcdir)/PnmFile.cs			\
+	$(srcdir)/PicasaWebExport.cs		\
 	$(srcdir)/PixbufLoader.cs		\
 	$(srcdir)/PixbufUtils.cs		\
 	$(srcdir)/PixbufCache.cs		\
@@ -125,6 +126,8 @@ ASSEMBLIES =					\
 	-r:$(top_builddir)/libgphoto2-sharp/libgphoto2-sharp.dll   \
 	-r:$(top_builddir)/semweb/SemWeb.dll	\
 	-r:$(top_builddir)/FlickrNet/FlickrNet.dll	\
+	-r:$(top_builddir)/google-sharp/google-sharp.dll	\
+	-r:$(top_builddir)/gnome-keyring-sharp/gnome-keyring-sharp.dll	\
 	-r:System.Data				\
 	-r:System.Web				\
 	-r:Mono.Data.SqliteClient		\
@@ -135,7 +138,8 @@ ASSEMBLIES =					\
 	-pkg:gtkhtml-sharp-2.0			\
 	-pkg:glade-sharp-2.0			\
 	-pkg:gnome-vfs-sharp-2.0		\
-	-pkg:gconf-sharp-2.0
+	-pkg:gconf-sharp-2.0			
+
 
 RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-adjust-colors.png,f-spot-adjust-colors.png		\

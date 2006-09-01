@@ -71,6 +71,11 @@ namespace FSpot
 		public const string EXPORT_GALLERY_BROWSER = "/apps/f-spot/export/gallery/browser";
 		public const string EXPORT_GALLERY_META = "/apps/f-spot/export/gallery/meta";
 
+		public const string EXPORT_PICASAWEB_SCALE = "/apps/f-spot/export/picasaweb/scale";
+		public const string EXPORT_PICASAWEB_SIZE = "/apps/f-spot/export/picasaweb/size";
+		public const string EXPORT_PICASAWEB_ROTATE = "/apps/f-spot/export/picasaweb/rotate";
+		public const string EXPORT_PICASAWEB_BROWSER = "/apps/f-spot/export/picasaweb/browser";
+
 		public const string SCREENSAVER_TAG = "/apps/f-spot/screensaver/tag_id";
 
 		public const string METADATA_EMBED_IN_IMAGE = "/apps/f-spot/metadata/embed_in_image";
@@ -119,7 +124,13 @@ namespace FSpot
 			case SHOW_TIMELINE:
 			case SHOW_TAGS:
 			case SHOW_DATES:
+			case EXPORT_PICASAWEB_SCALE:
+			case EXPORT_PICASAWEB_ROTATE:
+			case EXPORT_PICASAWEB_BROWSER:
 				return true;
+			
+			case EXPORT_PICASAWEB_SIZE:
+				return 800;
 		
 			case SIDEBAR_POSITION:
 			case ZOOM:

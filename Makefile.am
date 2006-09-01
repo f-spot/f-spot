@@ -1,5 +1,7 @@
 SUBDIRS = 		\
 	FlickrNet	\
+	google-sharp	\
+	gnome-keyring-sharp \
 	icons		\
 	libeog		\
 	libjpegtran	\

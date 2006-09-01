@@ -178,6 +178,8 @@ AC_SUBST(GNOME_ICON_THEME_PREFIX)
 AC_OUTPUT([
 Makefile
 FlickrNet/Makefile
+google-sharp/Makefile
+gnome-keyring-sharp/Makefile
 icons/Makefile
 libeog/Makefile
 libeog/cursors/Makefile

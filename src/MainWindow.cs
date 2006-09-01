@@ -1374,6 +1374,10 @@ public class MainWindow {
 		info_display_window.Destroyed += HandleInfoDisplayDestroy;
 	}
 
+	void HandleExportToPicasa (object sender, EventArgs args)
+	{
+		new FSpot.GoogleExport (new FSpot.PhotoArray (SelectedPhotos ()));
+	}
 
 	void HandleExportToGallery (object sender, EventArgs args)
 	{
