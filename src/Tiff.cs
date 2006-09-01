@@ -657,7 +657,7 @@ namespace FSpot.Tiff {
 		OtherSource = 255
 	}
 
-	public enum ColorSpace : ushort {
+	public enum ColorSpace {
 		StandardRGB = 1,  // sRGB
 		AdobeRGB = 2,
 		Uncalibrated = 0xffff
