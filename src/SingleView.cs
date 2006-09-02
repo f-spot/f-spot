@@ -295,6 +295,16 @@ namespace FSpot {
 			image_view.ZoomOut ();
 		}
 
+		public void HandleZoomOut (object sender, Gtk.ButtonPressEventArgs args)
+		{
+			image_view.ZoomOut ();
+		}
+
+		public void HandleZoomIn (object sender, Gtk.ButtonPressEventArgs args)
+		{
+			image_view.ZoomIn ();
+		}
+
 		public void HandleZoomIn (object sender, System.EventArgs args)
 		{
 			image_view.ZoomIn ();
