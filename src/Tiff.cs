@@ -376,12 +376,12 @@ namespace FSpot.Tiff {
 			case "Unicode\0":
 				enc = new System.Text.UnicodeEncoding (! little, true);
 				break;
-			case "SJIS\0\0\0\0":
+			case "JIS\0\0\0\0\0":
 				// FIXME this requires mono locale extras
 				try {
-					enc = System.Text.Encoding.GetEncoding ("shift_jis");
+					enc = System.Text.Encoding.GetEncoding ("euc-jp");
 				} catch {
-					System.Console.WriteLine ("missing shift-jis encoding");
+					System.Console.WriteLine ("missing jis0208 encoding");
 					enc = System.Text.Encoding.Default;
 				}
 				break;

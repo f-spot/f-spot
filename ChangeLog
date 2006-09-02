@@ -1,3 +1,17 @@
+2006-09-01  Larry Ewing  <lewing@novell.com>
+
+	* src/Tiff.cs: use JIS not SJIS after seeing 351880 and checking
+	the exif specification.
+
+2006-08-23  Bengt Thuree <bengt@thuree.com> 
+ 	
+ 	* src/MainWindow.cs,
+ 	* src/Makefile.am
+ 	* src/Preferences.cs
+ 	* src/f-spot.glade
+ 	* src/SendEmail.cs: Provides a small gui to resize photos when sending them by email.
+ 	Fixes bug #314559
+ 
 2006-08-29  Stephane Delcroix <stephane@delcroix.org>
  
  	* gnome-keyring-sharp:
