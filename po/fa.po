@@ -1,0 +1,2467 @@
+# Persian translation of f-spot.
+# Copyright (C) 2006 Sharif FarsiWeb, Inc.
+# This file is distributed under the same license as the f-spot package.
+# Sanaz Shahrokni <sanaz.shahrokni@gmail.com>, 2006.
+# Meelad Zakaria <meelad@farsiweb.info>, 2006.
+msgid ""
+msgstr ""
+"Project-Id-Version: f-spot HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-07-26 18:52+0330\n"
+"PO-Revision-Date: 2006-08-17 12:06+0330\n"
+"Last-Translator: Meelad Zakaria <meelad@farsiweb.info>\n"
+"Language-Team: Persian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../f-spot.desktop.in.in.h:1 
+msgid "F-Spot Photo Manager"
+msgstr "مدیر عکس اِف‌-اِسپات"
+
+#: ../f-spot.desktop.in.in.h:2
+msgid "Organize, enjoy, and share your photos"
+msgstr "عکس‌های خود را سازمان‌دهی کنید، از آنها لذت ببرید،  و با دیگران قسمت کنید "
+
+#: ../f-spot.desktop.in.in.h:3
+msgid "Photo Manager"
+msgstr "مدیر عکس"
+
+#: ../f-spot-view.desktop.in.h:1 ../src/f-spot.glade.h:94
+msgid "F-Spot Photo Viewer"
+msgstr "نمایش‌دهندهٔ عکس اِف‌-اِسپات"
+
+#: ../f-spot-view.desktop.in.h:2
+msgid "Photo Viewer"
+msgstr "نمایش‌دهندهٔ عکس"
+
+#: ../libeog/eog-file-selection.c:29 ../libeog/eog-file-selection.c:46
+msgid "By Extension"
+msgstr "با پسوند"
+
+#: ../libeog/eog-file-selection.c:30
+msgid "BMP"
+msgstr "BMP"
+
+#: ../libeog/eog-file-selection.c:31
+msgid "GIF"
+msgstr "GIF"
+
+#: ../libeog/eog-file-selection.c:32
+msgid "ICO"
+msgstr "ICO"
+
+#: ../libeog/eog-file-selection.c:33 ../libeog/eog-file-selection.c:48
+msgid "JPEG"
+msgstr "JPEG"
+
+#: ../libeog/eog-file-selection.c:34 ../libeog/eog-file-selection.c:51
+msgid "PNG"
+msgstr "PNG"
+
+#: ../libeog/eog-file-selection.c:35
+msgid "PNM"
+msgstr "PNM"
+
+#: ../libeog/eog-file-selection.c:36
+msgid "RAS"
+msgstr "RAS"
+
+#: ../libeog/eog-file-selection.c:37
+msgid "SVG"
+msgstr "SVG"
+
+#: ../libeog/eog-file-selection.c:38
+msgid "TGA"
+msgstr "TGA"
+
+#: ../libeog/eog-file-selection.c:39
+msgid "TIFF"
+msgstr "TIFF"
+
+#: ../libeog/eog-file-selection.c:40
+msgid "XBM"
+msgstr "XBM"
+
+#: ../libeog/eog-file-selection.c:41 ../libeog/eog-file-selection.c:54
+msgid "XPM"
+msgstr "XPM"
+
+#: ../libeog/eog-file-selection.c:207
+msgid "Unsupported file format."
+msgstr "قالب پرونده پشتیبانی نمی‌شود. "
+
+#: ../libeog/eog-file-selection.c:225
+msgid "Determine File Type:"
+msgstr "نوع پرونده را تعیین کنید:"
+
+#: ../libeog/eog-file-selection.c:268
+msgid "Load Image"
+msgstr "بار کردن تصویر"
+
+#: ../libeog/eog-file-selection.c:274
+msgid "Save Image"
+msgstr "ذخیرهٔ تصویر"
+
+#: ../libeog/eog-image.c:773
+msgid "No image loaded."
+msgstr "تصویری بار نشد."
+
+#: ../libeog/eog-image.c:780
+msgid "Can't save non local files."
+msgstr "نمی‌توان پرونده‌های غیر محلی را ذخیره کرد."
+
+#: ../libeog/eog-image.c:803
+msgid "Unsupported image type for saving."
+msgstr "ذخیرهٔ این نوع تصاویر پشتیبانی نمی‌شود."
+
+#: ../libeog/image-view.c:2116
+msgid "interpolation type"
+msgstr "نوع درون‌یابی"
+
+#: ../libeog/image-view.c:2117
+msgid "the type of interpolation to use"
+msgstr "استفاده از نوع درون‌یابی"
+
+#: ../libeog/image-view.c:2123 ../libeog/image-view.c:2130
+msgid "check type"
+msgstr "نوع چهارخانه"
+
+#: ../libeog/image-view.c:2124
+msgid "the type of chequering to use"
+msgstr "نوع چهارخانهٔ‌ مورد استفاده"
+
+#: ../libeog/image-view.c:2131
+msgid "the size of chequers to use"
+msgstr "اندازهٔ چهارخانهٔ‌ مورد استفاده"
+
+#: ../libeog/image-view.c:2137
+msgid "dither"
+msgstr "لرزه"
+
+#: ../libeog/image-view.c:2138
+msgid "dither type"
+msgstr "نوع لرزه"
+
+#: ../libfspot/f-jpeg-utils.c:445
+msgid "File not found"
+msgstr "پرونده‌ای پیدا نشد"
+
+#: ../libfspot/f-jpeg-utils.c:468
+#, c-format
+msgid "Unknown transform type %d"
+msgstr "نوع تبدیل نامعلوم %Id "
+
+#: ../libfspot/f-jpeg-utils.c:476
+msgid "Operation failed"
+msgstr "عملیات شکست خورد"
+
+#: ../src/CameraFileSelectionDialog.cs:65
+msgid "Preview"
+msgstr "پیش‌نمایش"
+
+#: ../src/CameraFileSelectionDialog.cs:67
+msgid "Path"
+msgstr "مسیر"
+
+#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:97
+msgid "File"
+msgstr "پرونده"
+
+#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:697
+msgid "Index"
+msgstr "نمایه"
+
+#: ../src/CameraFileSelectionDialog.cs:87
+msgid "Downloading Previews"
+msgstr "در حال بارگیری پیش‌نمایش‌ها"
+
+#: ../src/CameraFileSelectionDialog.cs:95
+#, csharp-format
+msgid "Downloading Preview of {0}"
+msgstr "در حال بارگیری پیش‌نمایش {0}"
+
+#: ../src/CameraFileSelectionDialog.cs:147
+msgid "Unknown destination."
+msgstr "مقصد نامعلوم."
+
+#: ../src/CameraFileSelectionDialog.cs:148
+msgid ""
+"When copying files from a camera you must select a valid destination on the "
+"local filesystem"
+msgstr ""
+"هنگام نسخه برداری از پرونده‌های دوربین باید مقصد معتبری در سیستم پرونده‌های"
+" محلی انتخاب کنید"
+
+#: ../src/CameraFileSelectionDialog.cs:166
+msgid "Unable to create directory."
+msgstr "ایجاد شاخه غیر ممکن است."
+
+#: ../src/CameraFileSelectionDialog.cs:167
+#, csharp-format
+msgid ""
+"Error \"{0}\" while creating directory \"{1}\".  Check that the path and "
+"permissions are correct and try again"
+msgstr ""
+"خطای «{0}» در حین ایجاد شاخهٔ «{1}». درستی مسیر و"
+" اجازه‌ها را بررسی کرده و دوباره امتحان کنید "
+
+#: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:139
+#: ../src/FolderExport.cs:258
+msgid "Transferring Pictures"
+msgstr "در حال انتقال عکس‌ها"
+
+#: ../src/CameraFileSelectionDialog.cs:211
+#, csharp-format
+msgid "Copying file {0} of {1}"
+msgstr "در حال نسخه‌برداری پروندهٔ {0}  از  {1}"
+
+#: ../src/CameraFileSelectionDialog.cs:221
+msgid "Done Copying Files"
+msgstr "نسخه‌برداری از پرونده‌ها انجام شد"
+
+#: ../src/CameraFileSelectionDialog.cs:223
+msgid "Download Complete"
+msgstr "بارگیری تمام شد"
+
+#: ../src/CameraFileSelectionDialog.cs:228
+msgid "Error transferring file"
+msgstr "خطا در انتقال پرونده"
+
+#: ../src/CameraFileSelectionDialog.cs:249
+#, csharp-format
+msgid "Transferring \"{0}\" from camera"
+msgstr "در حال انتقال «{0}» از دوربین"
+
+#: ../src/CameraFileSelectionDialog.cs:275
+msgid "Select Destination"
+msgstr "انتخاب مقصد"
+
+#: ../src/CameraSelectionDialog.cs:27 ../src/StockIcons.cs:28
+msgid "Camera"
+msgstr "دوربین"
+
+#: ../src/CameraSelectionDialog.cs:28
+msgid "Port"
+msgstr "درگاه"
+
+#: ../src/CDExport.cs:57
+#, csharp-format
+msgid "Transferring picture \"{0}\" To CD"
+msgstr "در حال انتقال عکس «{0}» به سی‌دی"
+
+#. This indicates the current photo is photo {0} of {1} out of photos
+#: ../src/CDExport.cs:59 ../src/FlickrExport.cs:245
+#: ../src/GalleryExport.cs:608 ../src/ProgressDialog.cs:82
+#: ../src/TimeDialog.cs:141
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} از {1}"
+
+#: ../src/CDExport.cs:71 ../src/FlickrExport.cs:251 ../src/FolderExport.cs:176
+#: ../src/GalleryExport.cs:623
+msgid "Done Sending Photos"
+msgstr "ارسال عکس‌ها انجام شد"
+
+#: ../src/CDExport.cs:73 ../src/FolderExport.cs:178
+msgid "Transfer Complete"
+msgstr "انتقال کامل شد"
+
+#: ../src/CDExport.cs:79 ../src/FolderExport.cs:183
+msgid "Error While Transferring"
+msgstr "خطا در حین انتقال"
+
+#: ../src/CDExport.cs:84 ../src/FolderExport.cs:189
+msgid "Error Transferring"
+msgstr "خطا در انتقال"
+
+#: ../src/CDExport.cs:99 ../src/FolderExport.cs:209
+msgid "Error: Error while transferring; Aborting"
+msgstr "خطا: خطا در حین انتقال؛ عملیات قطع می‌شود"
+
+#: ../src/CDExport.cs:102 ../src/FolderExport.cs:212
+msgid "Error: File Already Exists; Aborting"
+msgstr "خطا: پرونده از قبل موجود است؛ عملیات قطع می‌شود"
+
+#: ../src/ColorDialog.cs:301
+msgid "Error saving adjusted photo"
+msgstr "خطا در ذخیرهٔ  عکس دست‌کاری شده"
+
+#: ../src/ColorDialog.cs:302 ../src/Loupe.cs:53 ../src/MainWindow.cs:1803
+#: ../src/PhotoView.cs:278
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to save photo {1}"
+msgstr " استثنای «{0}» دریافت شد. ذخیرهٔ عکس {1} غیرممکن است"
+
+#: ../src/Core.cs:180
+#, csharp-format
+msgid "No photos matching {0} found"
+msgstr "هیچ عکسی با {0} مطابقت نداشت"
+
+#: ../src/Core.cs:181
+#, csharp-format
+msgid ""
+"The tag \"{0}\" is not applied to any photos. Try adding\n"
+"the tag to some photos or selecting a different tag in the\n"
+"F-Spot preference dialog."
+msgstr ""
+"برچسب «{0}» برای هیچ عکسی به کار نرفته است. برچسب را\n"
+" به تعدادی از عکس‌ها اضافه کنید یا برچسب متفاوتی را از\n"
+" محاورهٔ ترجیحات اِف-اِسپات انتخاب کنید."
+
+#: ../src/Core.cs:185
+msgid "Search returned no results"
+msgstr "جستجو بی‌نتیجه بود"
+
+#: ../src/Core.cs:186
+msgid ""
+"The tag F-Spot is looking for does not exist. Try\n"
+"selecting a different tag in the F-Spot preference\n"
+"dialog."
+msgstr ""
+"برچسبی که اِف-اِسپات جستجو می‌کند وجود ندارد.\n"
+"برچسب دیگری را از محاورهٔ ترجیحات اِف-اِسپات\n"
+"  انتخاب کنید."
+
+#: ../src/ExceptionDialog.cs:24
+msgid "F-Spot Encountered a Fatal Error"
+msgstr "اِف-اِسپات با خطای مهلکی مواجه شد"
+
+#: ../src/ExceptionDialog.cs:52
+msgid ""
+"This may be due to a programming error. Please help us make F-Spot better by "
+"reporting this error. Thank you in advance!"
+msgstr""
+ " شاید این خطا ناشی از اشکالی در برنامه‌نویسی باشد. لطفاً با گزارش آن، ما را در بهتر کردن"
+" برنامهٔ اِف-اِسپات یاری کنید. پیشاپیش از شما متشکریم! "
+
+#: ../src/ExceptionDialog.cs:99
+msgid "An unhandled exception was thrown: "
+msgstr "یک استثنای غیر قابل پردازش روی داده است: "
+
+#: ../src/Exif.cs:226
+msgid "Image Directory"
+msgstr "شاخهٔ تصاویر"
+
+#: ../src/Exif.cs:228
+msgid "Thumbnail Directory"
+msgstr "‌شاخهٔ مسطوره‌ها"
+
+#: ../src/Exif.cs:230
+msgid "Exif Directory"
+msgstr "شاخهٔ Exif"
+
+#: ../src/Exif.cs:232
+msgid "GPS Directory"
+msgstr "شاخهٔ GPS"
+
+#: ../src/Exif.cs:234
+msgid "InterOperability Directory"
+msgstr "شاخهٔ مشترک "
+
+#: ../src/Exif.cs:236
+msgid "Unknown Directory"
+msgstr "شاخهٔ نامعلوم"
+
+#: ../src/FlickrExport.cs:63 ../src/f-spot.glade.h:58
+msgid "Authorize"
+msgstr "اعطای اجازه"
+
+#: ../src/FlickrExport.cs:68
+msgid ""
+"Return to this window after you have finished the authorization process on "
+"Flickr.com and click the \"Complete Authorization\" button below"
+msgstr ""
+"پس از اتمام روند اعطای اجازه در Flickr.com مجدداً به"
+" این پنجره برگردید و روی دکمهٔ «پایان اعطای اجازه» در پایین، کلیک کنید"
+
+#: ../src/FlickrExport.cs:69
+msgid "Complete Authorization"
+msgstr "پایان اعطای اجازه"
+
+#: ../src/FlickrExport.cs:73
+msgid "Logging into Flickr.Com"
+msgstr "در حال ورود به سیستم Flickr.Com"
+
+#: ../src/FlickrExport.cs:74
+msgid "Checking credentials..."
+msgstr "در حال بررسی مدارک..."
+
+#: ../src/FlickrExport.cs:80
+#, csharp-format
+msgid "Welcome {0} you are connected to Flickr.Com"
+msgstr "{0} خوش آمدید، شما به وب‌گاه Flickr.Com وصل شده‌اید"
+
+#: ../src/FlickrExport.cs:82
+#, csharp-format
+msgid "Sign in as a different user"
+msgstr "ورود به عنوان کاربری دیگر"
+
+#: ../src/FlickrExport.cs:207
+msgid "Unable to log on"
+msgstr "ورود به سیستم ممکن نیست"
+
+#: ../src/FlickrExport.cs:225
+#, csharp-format
+msgid "Waiting for response {0} of {1}"
+msgstr "در انتظار جواب {0} از {1}"
+
+#: ../src/FlickrExport.cs:240 ../src/GalleryExport.cs:604
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr "در حال بارگذاری عکس «{0}»"
+
+#: ../src/FlickrExport.cs:253 ../src/GalleryExport.cs:625
+msgid "Upload Complete"
+msgstr "بارگذاری انجام شد"
+
+#: ../src/FlickrExport.cs:257
+#, csharp-format
+msgid "Error Uploading To Flickr: {0}"
+msgstr "خطا در هنگام بارگذاری در Flickr: {0}"
+
+#: ../src/FlickrExport.cs:259 ../src/GalleryExport.cs:630
+msgid "Error"
+msgstr "خطا"
+
+#: ../src/FlickrExport.cs:318
+msgid "Unable to log on."
+msgstr "ورود به سیستم ممکن نیست."
+
+#: ../src/FlickrExport.cs:319
+msgid ""
+"F-Spot was unable to log on to Flickr.  Make sure you have given the "
+"authentication using Flickr web browser interface."
+msgstr ""
+"اِف-اِسپات نتوانست وارد سیستم Flickr شود. مطمئن شوید"
+" با استفاده از واسط مرورگر وب Flickr اطلاعات هویتی صحیحی وارد کرده‌اید. "
+
+#: ../src/FlickrExport.cs:336 ../src/GalleryExport.cs:568
+msgid "Uploading Pictures"
+msgstr "در حال بارگذاری عکس‌ها"
+
+#: ../src/FolderExport.cs:105
+msgid "Select Export Folder"
+msgstr "پوشهٔ صدور را انتخاب کنید"
+
+#: ../src/FolderExport.cs:138
+msgid "Building Gallery"
+msgstr "در حال ساخت گالری"
+
+#. Abbreviation of previous
+#: ../src/FolderExport.cs:695
+msgid "Prev"
+msgstr "قبلی"
+
+#: ../src/FolderExport.cs:700 ../src/f-spot.glade.h:120
+msgid "Next"
+msgstr "بعدی"
+
+#: ../src/FolderExport.cs:808
+msgid "Gallery generated by"
+msgstr "سازندهٔ گالری "
+
+#: ../src/FolderExport.cs:851
+msgid "Page:"
+msgstr "صفحه:"
+
+#: ../src/FullScreenView.cs:102
+msgid "Exit fullscreen"
+msgstr "خروج از حالت تمام‌صفحه"
+
+#: ../src/f-spot.glade.h:1
+msgid "\n"
+msgstr "\n"
+
+#: ../src/f-spot.glade.h:3
+msgid " "
+msgstr " "
+
+#: ../src/f-spot.glade.h:4
+msgid "..."
+msgstr "..."
+
+#: ../src/f-spot.glade.h:5
+msgid "0000:00:00 00:00:00"
+msgstr ""
+
+#: ../src/f-spot.glade.h:6
+msgid "00:00:00"
+msgstr ""
+
+#: ../src/f-spot.glade.h:7
+msgid "1 of 1"
+msgstr "۱ از ۱"
+
+#: ../src/f-spot.glade.h:8
+msgid "5"
+msgstr "۵"
+
+#: ../src/f-spot.glade.h:9
+msgid "<b></b>"
+msgstr "<b></b>"
+
+#: ../src/f-spot.glade.h:10
+msgid "<b>Account</b>"
+msgstr "<b>حساب</b>"
+
+#: ../src/f-spot.glade.h:11
+msgid "<b>Action</b>"
+msgstr "<b>کنش</b>"
+
+#: ../src/f-spot.glade.h:12
+msgid "<b>Album</b>"
+msgstr "<b>آلبوم</b>"
+
+#: ../src/f-spot.glade.h:13
+msgid "<b>Co_rrections</b>"
+msgstr "<b>ا_صلاحات</b>"
+
+#: ../src/f-spot.glade.h:14
+msgid "<b>Color Management</b>"
+msgstr "<b>مدیریت رنگ</b>"
+
+#: ../src/f-spot.glade.h:15
+msgid "<b>Color Temperature</b>"
+msgstr "<b>دمای رنگ</b>"
+
+#: ../src/f-spot.glade.h:16
+msgid "<b>Destination</b>"
+msgstr "<b>مقصد</b>"
+
+#: ../src/f-spot.glade.h:17
+msgid "<b>End Date</b>"
+msgstr "<b>تاریخ اتمام</b>"
+
+#: ../src/f-spot.glade.h:18
+msgid "<b>Export Method</b>"
+msgstr "<b>روش صدور</b>"
+
+#: ../src/f-spot.glade.h:19
+msgid "<b>Exposure</b>"
+msgstr "<b>نوردهی</b>"
+
+#: ../src/f-spot.glade.h:20
+msgid "<b>From Photo</b>"
+msgstr "<b>از عکس</b>"
+
+#: ../src/f-spot.glade.h:21
+msgid "<b>Gallery</b>"
+msgstr "<b>گالری</b>"
+
+#: ../src/f-spot.glade.h:22
+msgid "<b>Histo_gram</b>"
+msgstr "<b>بافت_نما</b>"
+
+#: ../src/f-spot.glade.h:23
+msgid "<b>Histogram</b>"
+msgstr "<b>بافتنما</b>"
+
+#: ../src/f-spot.glade.h:24
+msgid "<b>Metadata</b>"
+msgstr "<b>فوق داده</b>"
+
+#: ../src/f-spot.glade.h:25
+msgid "<b>Photograph Layout</b>"
+msgstr "<b>صفحه‌بندی عکس</b>"
+
+#: ../src/f-spot.glade.h:26
+msgid "<b>Photos to Burn</b>"
+msgstr "<b>نوشتن عکس‌ها در سی‌دی</b>"
+
+#: ../src/f-spot.glade.h:27
+msgid "<b>Photos</b>"
+msgstr "<b>عکس‌ها</b>"
+
+#: ../src/f-spot.glade.h:28
+msgid "<b>Predefined</b>"
+msgstr "<b>از پیش تعریف شده</b>"
+
+#: ../src/f-spot.glade.h:29
+msgid "<b>Preview</b>"
+msgstr "<b>پیش‌نمایش</b>"
+
+#: ../src/f-spot.glade.h:30
+msgid "<b>Printer Details</b>"
+msgstr "<b>جزئیات چاپگر</b>"
+
+#: ../src/f-spot.glade.h:31
+msgid "<b>Reference Photo</b>"
+msgstr "<b>عکس مرجع</b>"
+
+#: ../src/f-spot.glade.h:32
+msgid "<b>Screensaver</b>"
+msgstr "<b>محافظ صفحهٔ نمایش</b>"
+
+#: ../src/f-spot.glade.h:33
+msgid "<b>Start Date</b>"
+msgstr "<b>تاریخ آغاز</b>"
+
+#: ../src/f-spot.glade.h:34
+msgid "<b>Style</b>"
+msgstr "<b>سبک</b>"
+
+#: ../src/f-spot.glade.h:35
+msgid "<b>Viewing permissions</b>"
+msgstr "<b>اجازهٔ نمایش</b>"
+
+#: ../src/f-spot.glade.h:36
+msgid "<b>_White Balance</b>"
+msgstr "<b>_موازنهٔ سفید </b>"
+
+#: ../src/f-spot.glade.h:37
+msgid "<small> </small>"
+msgstr "<small> </small>"
+
+#: ../src/f-spot.glade.h:38
+msgid "<small></small>"
+msgstr "<small></small>"
+
+#: ../src/f-spot.glade.h:39
+msgid ""
+"<small><i>Enable this option to store tags and descriptions inside \n"
+"supported image formats.</i></small>"
+msgstr ""
+"<small><i>برای ذخیرهٔ برچسب‌ها و شرح‌ها در قالب‌های تصویری که پشتیبانی می‌شوند، \n"
+"این گزینه را فعال کنید.</i></small>"
+
+#: ../src/f-spot.glade.h:41
+msgid ""
+"<small><i>Select the tag you like F-Spot to display images from while acting "
+"as the screensaver</i></small>"
+msgstr ""
+"</i></small>برچسبی را که مایلید اِف-اِسپات تصاویر آن را در هنگام کار"
+" به جای محافظ صفحه نمایش دهد، انتخاب کنید<small><i>"
+
+#: ../src/f-spot.glade.h:42
+msgid "<small>C_ontrast:</small>"
+msgstr "<small>_کنتراست:</small>"
+
+#: ../src/f-spot.glade.h:43
+msgid "<small>Te_mp:</small>"
+msgstr "<small>_دما:</small>"
+
+#: ../src/f-spot.glade.h:44
+msgid "<small>_Brightness:</small>"
+msgstr "<small>_روشنایی:</small>"
+
+#: ../src/f-spot.glade.h:45
+msgid "<small>_Exposure:</small>"
+msgstr "<small>_زمان نوردهی:</small>"
+
+#: ../src/f-spot.glade.h:46
+msgid "<small>_Hue:</small>"
+msgstr "<small>_پردهٔ رنگ:</small>"
+
+#: ../src/f-spot.glade.h:47
+msgid "<small>_Saturation:</small>"
+msgstr "<small>_غلظت:</small>"
+
+#: ../src/f-spot.glade.h:48
+msgid "<small>_Tint:</small>"
+msgstr "<small>_ته‌رنگ:</small>"
+
+#: ../src/f-spot.glade.h:49
+msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
+msgstr "<span weight='bold' size='larger'>خطا هنگام اتصال به گالری</span>\n"
+
+#: ../src/f-spot.glade.h:51
+msgid "Ad_just Color..."
+msgstr "_تنظیم رنگ..."
+
+#: ../src/f-spot.glade.h:52
+msgid "Adjust Color"
+msgstr "تنظیم رنگ"
+
+#: ../src/f-spot.glade.h:53
+msgid "Adjust Time"
+msgstr "تنظیم زمان"
+
+#: ../src/f-spot.glade.h:54
+msgid "Adjust _Time"
+msgstr "تنظیم _زمان"
+
+#: ../src/f-spot.glade.h:55
+msgid "Adjusted date: "
+msgstr "تاریخ تنظیم شده:"
+
+#: ../src/f-spot.glade.h:56
+msgid "Arrange _by"
+msgstr "مرتب سازی _بر اساس"
+
+#: ../src/f-spot.glade.h:57
+msgid "Attach tag:"
+msgstr "پیوست کردن برچسب:"
+
+#: ../src/f-spot.glade.h:59 ../src/StockIcons.cs:27
+msgid "Browse"
+msgstr "مرور"
+
+#: ../src/f-spot.glade.h:60
+msgid "CD"
+msgstr "سی‌دی"
+
+#: ../src/f-spot.glade.h:61
+msgid "C_aption:"
+msgstr "_شرح زیر تصویر"
+
+#: ../src/f-spot.glade.h:62
+msgid "C_ontrast:"
+msgstr "_کنتراست"
+
+#: ../src/f-spot.glade.h:63
+msgid "Camera Selection"
+msgstr "انتخاب دوربین"
+
+#: ../src/f-spot.glade.h:64
+msgid "Co_nfigure"
+msgstr "_پیکربندی"
+
+#: ../src/f-spot.glade.h:65
+msgid "Copy Locat_ion"
+msgstr "نسخه‌برداری _محل"
+
+#: ../src/f-spot.glade.h:66
+msgid "Copy _Files to: "
+msgstr "نسخه برداری از _پرونده‌ها در: "
+
+#: ../src/f-spot.glade.h:67
+msgid "Copy file to the Photos folder"
+msgstr "نسخه‌برداری از پرونده در پوشه‌ٔ عکس‌ها"
+
+#: ../src/f-spot.glade.h:68
+msgid "Create CD"
+msgstr "ایجاد سی‌دی"
+
+#: ../src/f-spot.glade.h:69
+msgid "Create New _Tag..."
+msgstr "ایجاد_برچسب جدید..."
+
+#: ../src/f-spot.glade.h:70
+msgid "Create _New Version..."
+msgstr "ایجاد نسخهٔ_جدید..."
+
+#: ../src/f-spot.glade.h:71
+msgid "Create _gallery using \"Original\""
+msgstr "ایجاد _گالری با استفاده از «اصلی»"
+
+#: ../src/f-spot.glade.h:72
+msgid "Create standalone _web gallery"
+msgstr "ایجاد گالری_ وبی مستقل"
+
+#: ../src/f-spot.glade.h:73
+msgid "Crop photo to _fit"
+msgstr "برش کناره‌های عکس به قدری که _جا شود"
+
+#: ../src/f-spot.glade.h:74
+msgid "Current date:"
+msgstr "تاریخ فعلی:"
+
+#: ../src/f-spot.glade.h:75
+msgid "D_escription:"
+msgstr "_شرح:"
+
+#: ../src/f-spot.glade.h:76
+msgid "Directory"
+msgstr "شاخه"
+
+#: ../src/f-spot.glade.h:77
+msgid "Display Side_bar"
+msgstr "نمایش _نوار کناری"
+
+#: ../src/f-spot.glade.h:78
+msgid "Display T_ags"
+msgstr "نمایش بر_چسب‌ها"
+
+#: ../src/f-spot.glade.h:79
+msgid "Display Too_lbar"
+msgstr "نمایش _نوار ابزار"
+
+#: ../src/f-spot.glade.h:80
+msgid "Display _Dates"
+msgstr "نمایش _تاریخ‌ها"
+
+#: ../src/f-spot.glade.h:81
+msgid "Display _Timeline"
+msgstr "نمایش _زمان‌بندی"
+
+#: ../src/f-spot.glade.h:82
+msgid "E-_Mail:"
+msgstr "نامهٔ_الکترونیک"
+
+#: ../src/f-spot.glade.h:83
+msgid "E_xport titles and comments"
+msgstr "_صدور عناوین و توضیحات"
+
+#: ../src/f-spot.glade.h:84
+msgid "E_xport to CD..."
+msgstr "_صدور به سی‌دی . . ."
+
+#: ../src/f-spot.glade.h:85
+msgid "Edit Tag Icon"
+msgstr "ویرایش شمایل برچسب"
+
+#: ../src/f-spot.glade.h:86
+msgid "Edit icon"
+msgstr "ویرایش شمایل"
+
+#: ../src/f-spot.glade.h:87
+msgid "Export"
+msgstr "صدور"
+
+#: ../src/f-spot.glade.h:88
+msgid "Export _titles and comments"
+msgstr "صدور _عناوین وتوضیحات"
+
+#: ../src/f-spot.glade.h:89
+msgid "Export to _Flickr..."
+msgstr "صدور به _Flickr..."
+
+#: ../src/f-spot.glade.h:90
+msgid "Export to _Folder..."
+msgstr "صدور به _پوشهٔ..."
+
+#: ../src/f-spot.glade.h:91
+msgid "Export to _Web Gallery..."
+msgstr "صدور به گالری _وبی..."
+
+#: ../src/f-spot.glade.h:92
+msgid "F-Spot"
+msgstr "اِف- اِسپات"
+
+#: ../src/f-spot.glade.h:93
+msgid "F-Spot Photo Album"
+msgstr "آلبوم عکس اِف- اِسپات"
+
+#: ../src/f-spot.glade.h:95
+msgid "F-Spot View"
+msgstr "نمایش اِف- اِسپات"
+
+#: ../src/f-spot.glade.h:96
+msgid ""
+"F-Spot needs your authorization in order to upload photos to your Flickr "
+"account. Press the \"Authorize\" button to open a web browser and give F-"
+"Spot the authorization. "
+msgstr ""
+" اِف- اِسپات برای بارگذاری عکس‌ها در حساب Flickr به اجازهٔ شما احتیاج "
+"دارد. برای باز کردن مرورگر وب، دکمهٔ «اعطای اجازه» را فشار دهید و به"
+" اِف- اِسپات اجازه بدهید."
+
+#: ../src/f-spot.glade.h:98
+msgid "Fin_d"
+msgstr "_پیدا کردن"
+
+#: ../src/f-spot.glade.h:99
+msgid "Find by _Tag"
+msgstr "پیدا کردن با _برچسب"
+
+#: ../src/f-spot.glade.h:100
+msgid "Folder Export"
+msgstr "صدور پوشه"
+
+#: ../src/f-spot.glade.h:101
+msgid ""
+"From Screen\n"
+"Standard RGB"
+msgstr ""
+"از صفحهٔ نمایش\n"
+"‏RGB استاندارد"
+
+#: ../src/f-spot.glade.h:103
+msgid ""
+"Full Page\n"
+"Standard - 4x6"
+msgstr ""
+"تمام صفحه\n"
+"استاندارد- ۴×۶"
+
+#: ../src/f-spot.glade.h:105
+msgid "G_allery Name:"
+msgstr "نام _گالری:"
+
+#: ../src/f-spot.glade.h:106
+msgid "G_allery:"
+msgstr "_گالری:"
+
+#: ../src/f-spot.glade.h:107
+msgid "Gallery"
+msgstr "گالری"
+
+#: ../src/f-spot.glade.h:108
+msgid ""
+"Hairline\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
+msgstr ""
+"خط موئی\n"
+"۰/۲۵ اینچ\n"
+"۰/۵ اینچ\n"
+"۱ اینچ\n"
+
+#: ../src/f-spot.glade.h:113
+msgid "Import"
+msgstr "وارد کردن"
+
+#: ../src/f-spot.glade.h:114
+msgid "Import Source:"
+msgstr "مبدأ ورود:"
+
+#: ../src/f-spot.glade.h:115
+msgid "Import photos"
+msgstr "وارد کردن عکس‌ها"
+
+#: ../src/f-spot.glade.h:116
+msgid "Include subdirectories"
+msgstr "شامل زیرشاخه‌ها"
+
+#: ../src/f-spot.glade.h:117
+msgid "Make F-Spot your screensaver"
+msgstr "تنظیم اِف-ا‌ِسپات به عنوان محافظ صفحه نمایش "
+
+#: ../src/f-spot.glade.h:118 ../src/InfoDisplay.cs:11
+msgid "Metadata Browser"
+msgstr "مرورگر فوق داده"
+
+#: ../src/f-spot.glade.h:119
+msgid "N_umber of Copies:"
+msgstr "ت_عداد نسخه‌ها:"
+
+#: ../src/f-spot.glade.h:121
+msgid ""
+"None\n"
+"Title\n"
+"Filename\n"
+"Date\n"
+"Photo Details"
+msgstr ""
+"هیچ‌کدام\n"
+"عنوان\n"
+"نام پرونده\n"
+"تاریخ\n"
+"جزئیات عکس"
+
+#: ../src/f-spot.glade.h:126
+msgid "Open _Folder..."
+msgstr "باز کردن _پوشه..."
+
+#: ../src/f-spot.glade.h:127
+msgid "Open _album in browser when done uploading"
+msgstr "پس از اتمام بارگذاری آ_لبوم در مرورگر باز شود"
+
+#: ../src/f-spot.glade.h:128
+msgid "Open _destination when done exporting"
+msgstr "پس از اتمام صدور م_قصد باز شود"
+
+#: ../src/f-spot.glade.h:129
+msgid "P_arent Tag:"
+msgstr "برچسب _والد:"
+
+#: ../src/f-spot.glade.h:130
+msgid "P_hoto Source:"
+msgstr "منبع _عکس:"
+
+#: ../src/f-spot.glade.h:131
+msgid "Page 1 of 3"
+msgstr "صفحهٔ ۱ از ۳"
+
+#: ../src/f-spot.glade.h:132
+msgid "Pause"
+msgstr "مکث"
+
+#: ../src/f-spot.glade.h:133
+msgid "Photo 0 of 0"
+msgstr "عکس ۰ از ۰"
+
+#: ../src/f-spot.glade.h:134
+msgid "Photo _Size:"
+msgstr "اندازهٔ ‌عک_س:"
+
+#: ../src/f-spot.glade.h:135
+msgid "Please verify that the settings for this gallery are correct."
+msgstr "لطفاً درستی تنظیمات این گالری را تأیید کنید."
+
+#: ../src/f-spot.glade.h:136
+msgid "Preferences"
+msgstr "ترجیحات"
+
+#: ../src/f-spot.glade.h:137
+msgid "Previous"
+msgstr "قبلی"
+
+#: ../src/f-spot.glade.h:138
+msgid "Print"
+msgstr "چاپ"
+
+#: ../src/f-spot.glade.h:139
+msgid "Print crop _marks"
+msgstr "چاپ ع_لائم برش کناره‌ها"
+
+#: ../src/f-spot.glade.h:140
+msgid "Private"
+msgstr "خصوصی"
+
+#: ../src/f-spot.glade.h:141
+msgid "Public"
+msgstr "همگانی"
+
+#: ../src/f-spot.glade.h:142
+msgid "Re_fresh Thumbnail"
+msgstr "_نوسازی مسطوره"
+
+#: ../src/f-spot.glade.h:143
+msgid "Rem_ove Tag"
+msgstr "_حذف برچسب"
+
+#: ../src/f-spot.glade.h:144 ../src/StockIcons.cs:38
+msgid "Rotate _Left"
+msgstr "چرخش به _چپ"
+
+#: ../src/f-spot.glade.h:145 ../src/StockIcons.cs:39
+msgid "Rotate _Right"
+msgstr "چرخش به _راست"
+
+#: ../src/f-spot.glade.h:146
+msgid "Select Photos to Copy From Camera..."
+msgstr "عکس‌هایی که باید از دوربین نسخه‌برداری شوند را انتخاب کنید..."
+
+#: ../src/f-spot.glade.h:147
+msgid "Select _All"
+msgstr "انتخاب _همه"
+
+#: ../src/f-spot.glade.h:148
+msgid "Select _None"
+msgstr "انتخاب هی_چ‌کدام"
+
+#: ../src/f-spot.glade.h:149
+msgid "Select a Tag..."
+msgstr "انتخاب برچسب..."
+
+#: ../src/f-spot.glade.h:150
+msgid "Select the camera from which you want to transfer files"
+msgstr "دوربینی را که می‌خواهید پرونده‌ها را از آن انتقال دهید، انتخاب کنید"
+
+#: ../src/f-spot.glade.h:151
+msgid "Selected Camera: "
+msgstr "دوربین انتخابی: "
+
+#: ../src/f-spot.glade.h:152
+msgid ""
+"Selection\n"
+"Gallery\n"
+"Viewport"
+msgstr ""
+"انتخاب\n"
+"گالری\n"
+"درگاه نمایش"
+
+#: ../src/f-spot.glade.h:155
+msgid "Send _Mail..."
+msgstr "ارسال _نامه..."
+
+#: ../src/f-spot.glade.h:156
+msgid "Set Date Range"
+msgstr "تنظیم محدودهٔ زمانی"
+
+#: ../src/f-spot.glade.h:157
+msgid "Set _Date Range..."
+msgstr "تنظیم محدودهٔ _زمانی..."
+
+#: ../src/f-spot.glade.h:158
+msgid "Set as _Background"
+msgstr "استفاده کردن به عنوان پ_س‌زمینه"
+
+#: ../src/f-spot.glade.h:159 ../src/TimeDialog.cs:124
+#, csharp-format
+msgid "Shift all photos by {0}"
+msgstr "جا‌به‌جایی تمام عکس‌ها به اندازهٔ {0} خانه"
+
+#: ../src/f-spot.glade.h:160
+msgid "Show or hide the side pane"
+msgstr "نشان دادن یا مخفی کردن قاب کناری "
+
+#: ../src/f-spot.glade.h:161
+msgid "Show or hide the toolbar"
+msgstr "نشان دادن یا مخفی کردن نوار ابزار"
+
+#: ../src/f-spot.glade.h:162
+msgid "Side _pane"
+msgstr "_قاب کناری"
+
+#: ../src/f-spot.glade.h:163
+msgid "So_urce Temp"
+msgstr "دمای _منبع"
+
+#: ../src/f-spot.glade.h:164
+msgid "Space all photos by"
+msgstr "فاصلهٔ گذاری همهٔ عکس‌ها به مقدار"
+
+#: ../src/f-spot.glade.h:165
+msgid ""
+"Standard RGB\n"
+"Image Profile\n"
+"Custom\n"
+msgstr ""
+"‏RGB استاندارد \n"
+"مجموعه تنظیمات تصویر\n"
+"سفارشی\n"
+
+#: ../src/f-spot.glade.h:169
+msgid "Strip _metadata"
+msgstr "‌برداشتن _فوق داده‌ها"
+
+#: ../src/f-spot.glade.h:170
+msgid "Strip image _metadata"
+msgstr "برداشتن _فوق داده‌ها از تصویر"
+
+#: ../src/f-spot.glade.h:171
+msgid "Tags: "
+msgstr "برچسب‌ها: "
+
+#: ../src/f-spot.glade.h:172
+msgid "Toolbar"
+msgstr "نوار ابزار"
+
+#: ../src/f-spot.glade.h:173
+msgid "U_RL:"
+msgstr "ن_شانی اینترنتی:"
+
+#: ../src/f-spot.glade.h:174
+msgid "View"
+msgstr "نمایش"
+
+#: ../src/f-spot.glade.h:175
+msgid "Visible to Family"
+msgstr "قابل نمایش برای خانواده"
+
+#: ../src/f-spot.glade.h:176
+msgid "Visible to Friends"
+msgstr "قابل نمایش برای دوستان"
+
+#: ../src/f-spot.glade.h:177
+msgid "Will print using: US Letter size on Generic Postscript"
+msgstr "چاپ با استفاده از: اندازهٔ  نامهٔ ایالات متحده در پست‌اسکریپت عام"
+
+#: ../src/f-spot.glade.h:178
+msgid "Write _metadata to file"
+msgstr "نوشتن _فوق داده‌ها در پرونده"
+
+#: ../src/f-spot.glade.h:179
+msgid "Zoom _in"
+msgstr "زوم به _داخل"
+
+#: ../src/f-spot.glade.h:180
+msgid "Zoom _out"
+msgstr "زوم به _خارج"
+
+#: ../src/f-spot.glade.h:181
+msgid "Zoom in"
+msgstr "زوم به داخل"
+
+#: ../src/f-spot.glade.h:182
+msgid "Zoom out"
+msgstr "زوم به خارج"
+
+#: ../src/f-spot.glade.h:183
+msgid "_Album Name:"
+msgstr "نام آ_لبوم:"
+
+#: ../src/f-spot.glade.h:184
+msgid "_Attach Tag"
+msgstr "_پیوست  کردن برچسب"
+
+#: ../src/f-spot.glade.h:185
+msgid "_Attach Tag to Selection"
+msgstr "_پیوست کردن برچسب به انتخاب"
+
+#: ../src/f-spot.glade.h:186
+msgid "_Border:"
+msgstr "_کناره:"
+
+#: ../src/f-spot.glade.h:187
+msgid "_Brightness:"
+msgstr "_روشنائی:"
+
+#: ../src/f-spot.glade.h:188
+msgid "_Browse Previously Scheduled Files"
+msgstr "م_رور پرونده‌های از پیش برنامه‌ریزی شده"
+
+#: ../src/f-spot.glade.h:189
+msgid "_Clear Date Range"
+msgstr "_پاک کردن محدودهٔ زمانی"
+
+#: ../src/f-spot.glade.h:190
+msgid "_Close"
+msgstr "بس_تن"
+
+#: ../src/f-spot.glade.h:191
+msgid "_Delete From Drive"
+msgstr "_حذف از دیسک گردان"
+
+#: ../src/f-spot.glade.h:192
+msgid "_Delete Selected Tag"
+msgstr "_حذف برچسب انتخابی"
+
+#: ../src/f-spot.glade.h:193
+msgid "_Delete Version"
+msgstr "_حذف نسخه"
+
+#: ../src/f-spot.glade.h:194
+msgid "_Description:"
+msgstr "_شرح:"
+
+#: ../src/f-spot.glade.h:195
+msgid "_Destination Temp"
+msgstr "_دمای مقصد"
+
+#: ../src/f-spot.glade.h:196
+msgid "_Display:"
+msgstr "_نمایش:"
+
+#: ../src/f-spot.glade.h:197
+msgid "_Edit Selected Tag..."
+msgstr "_ویرایش برچسب انتخاب شده..."
+
+#: ../src/f-spot.glade.h:198
+msgid "_Export"
+msgstr "_صدور"
+
+#: ../src/f-spot.glade.h:199
+msgid "_Export tags"
+msgstr "_صدور برچسب‌ها"
+
+#: ../src/f-spot.glade.h:200
+msgid "_Export to Album:"
+msgstr "_صدور به آلبوم:"
+
+#: ../src/f-spot.glade.h:201
+msgid "_Flickr"
+msgstr "_Flickr"
+
+#: ../src/f-spot.glade.h:202
+msgid "_Folder"
+msgstr "_پوشه"
+
+#: ../src/f-spot.glade.h:203
+msgid "_Folder:"
+msgstr "_پوشه:"
+
+#: ../src/f-spot.glade.h:204
+msgid "_Fullscreen"
+msgstr "_تمام‌صفحه"
+
+#: ../src/f-spot.glade.h:205
+msgid "_Gallery"
+msgstr "_گالری"
+
+#: ../src/f-spot.glade.h:206
+msgid "_Gallery Name:"
+msgstr "_نام گالری:"
+
+#: ../src/f-spot.glade.h:207
+msgid "_Gallery:"
+msgstr "_گالری:"
+
+#: ../src/f-spot.glade.h:208
+msgid "_Hue:"
+msgstr "_پردهٔ رنگ:"
+
+#: ../src/f-spot.glade.h:209
+msgid "_Icon:"
+msgstr "_شمایل:"
+
+#: ../src/f-spot.glade.h:210
+msgid "_Import files after copy"
+msgstr "_وارد کردن پرونده‌ها پس از نسخه برداری"
+
+#: ../src/f-spot.glade.h:211
+msgid "_Import..."
+msgstr "_واردکردن..."
+
+#: ../src/f-spot.glade.h:212
+msgid "_Metadata Browser"
+msgstr "مرورگر _فوق داده‌ها"
+
+#: ../src/f-spot.glade.h:213
+msgid "_Month"
+msgstr "_ماه"
+
+#: ../src/f-spot.glade.h:214
+msgid "_New Window"
+msgstr "پنجرهٔ _جدید"
+
+#: ../src/f-spot.glade.h:215
+msgid "_Open album in browser when done uploading"
+msgstr " _پس از اتمام بارگذاری آلبوم در مرورگر باز شود"
+
+#: ../src/f-spot.glade.h:216
+msgid "_Open destination when done exporting"
+msgstr " _پس از اتمام صدور مقصد باز شود"
+
+#: ../src/f-spot.glade.h:217
+msgid "_Output:"
+msgstr "_خروجی:"
+
+#: ../src/f-spot.glade.h:218
+msgid "_Parent Album:"
+msgstr "آلبوم _والد:"
+
+#: ../src/f-spot.glade.h:219
+msgid "_Password:"
+msgstr "_گذرواژه:"
+
+#: ../src/f-spot.glade.h:220
+msgid "_Prefix: "
+msgstr "_پیشوند: "
+
+#: ../src/f-spot.glade.h:221
+msgid "_Print..."
+msgstr "_چاپ..."
+
+#: ../src/f-spot.glade.h:222
+msgid "_Remove From Catalog"
+msgstr "_حذف از کاتالوگ"
+
+#: ../src/f-spot.glade.h:223
+msgid "_Remove Tag From Selection"
+msgstr "_حذف برچسب از انتخاب‌ها"
+
+#: ../src/f-spot.glade.h:224
+msgid "_Rename Version"
+msgstr "_تغییر نام نسخه"
+
+#: ../src/f-spot.glade.h:225
+msgid "_Resize to: "
+msgstr "_تغییر اندازهٔ به: "
+
+#: ../src/f-spot.glade.h:226 ../src/GroupSelector.cs:521
+msgid "_Reverse Order"
+msgstr "_معکوس کردن ترتیب"
+
+#: ../src/f-spot.glade.h:227
+msgid "_Saturation:"
+msgstr "_غلظت:"
+
+#: ../src/f-spot.glade.h:228
+msgid "_Save the files only"
+msgstr "فقط پرونده‌ها _ذخیره شوند"
+
+#: ../src/f-spot.glade.h:229
+msgid "_Scale photos to no larger than: "
+msgstr "بزرگتر نشدن _مقیاس عکس‌ها از: "
+
+#: ../src/f-spot.glade.h:230
+msgid "_Select Tags..."
+msgstr "_انتخاب برچسب‌ها..."
+
+#: ../src/f-spot.glade.h:231
+msgid "_Sharpen..."
+msgstr "_وضوح..."
+
+#: ../src/f-spot.glade.h:232
+msgid "_Slideshow"
+msgstr "_نمایش اسلایدی"
+
+#: ../src/f-spot.glade.h:233
+msgid "_Strip metadata"
+msgstr "_برداشتن فوق داده‌ها"
+
+#: ../src/f-spot.glade.h:234
+msgid "_Tag Name:"
+msgstr "نام _برچسب:"
+
+#: ../src/f-spot.glade.h:235
+msgid "_Tags"
+msgstr "_برچسب‌ها"
+
+#: ../src/f-spot.glade.h:236
+msgid "_Title:"
+msgstr "_عنوان:"
+
+#: ../src/f-spot.glade.h:237
+msgid "_URI:"
+msgstr "ن_شانی:"
+
+#: ../src/f-spot.glade.h:238
+msgid "_Untagged Photos"
+msgstr "عکس‌های _بدون برچسب "
+
+#: ../src/f-spot.glade.h:239
+msgid "_Username:"
+msgstr "_نام کاربری:"
+
+#: ../src/f-spot.glade.h:240
+msgid "_Version"
+msgstr "_نسخه"
+
+#: ../src/f-spot.glade.h:241
+msgid "_View"
+msgstr "_نمایش"
+
+#: ../src/f-spot.glade.h:242
+msgid "_View photos in browser when done uploading"
+msgstr "پس از انجام بارگذاری عکس‌ها در مرورگر _نمایش داده شود"
+
+#: ../src/f-spot.glade.h:243
+msgid "_Virtual Filesystem"
+msgstr "سیستم پرونده‌ای _مجازی"
+
+#: ../src/f-spot.glade.h:244
+msgid "_Write only these photos to CD"
+msgstr "فقط این عکس‌ها را در سی‌دی _نوشته شود "
+
+#: ../src/f-spot.glade.h:245
+msgid "dialog1"
+msgstr "محاورهٔ۱"
+
+#: ../src/f-spot.glade.h:246
+msgid "difference:"
+msgstr "تفاوت:"
+
+#: ../src/f-spot.glade.h:247
+msgid "img_000.jpg"
+msgstr "img_000.jpg"
+
+#. The preceding text here is the second checkbutton in the Time dialog
+#. that says "Space all photos by []"
+#: ../src/f-spot.glade.h:248 ../src/TimeDialog.cs:119
+#, csharp-format
+msgid "min. Starting at {0}"
+msgstr "{0} دقیقه. شروع در"
+
+#: ../src/f-spot.glade.h:249
+msgid "pixels"
+msgstr "نقاط"
+
+#: ../src/f-spot.glade.h:250
+msgid "x"
+msgstr "x"
+
+#: ../src/GalleryExport.cs:333
+msgid "Invalid URL"
+msgstr "نشانی اینترنتی نامعتبر"
+
+#: ../src/GalleryExport.cs:334
+msgid "The gallery URL entry does not appear to be a valid URL"
+msgstr "نشانی اینترنتی وارد شده برای گالری به نظر نشانی نامعتبری می‌آید"
+
+#: ../src/GalleryExport.cs:412
+msgid "(TopLevel)"
+msgstr "(سقف)"
+
+#: ../src/GalleryExport.cs:628
+#, csharp-format
+msgid "Error Uploading To Gallery: {0}"
+msgstr "خطا هنگام بارگذاری در گالری: {0}"
+
+#: ../src/GalleryExport.cs:645
+msgid "(No Gallery)"
+msgstr "(بدون گالری)"
+
+#: ../src/GalleryExport.cs:716
+msgid "(Not Connected)"
+msgstr "(متصل نیست)"
+
+#: ../src/GalleryExport.cs:717
+msgid "(No Albums)"
+msgstr "(بدون آلبوم)"
+
+#: ../src/GroupSelector.cs:55 ../src/GroupSelector.cs:56
+msgid "More dates"
+msgstr "تاریخ‌های بیشتر"
+
+#: ../src/GroupSelector.cs:58 ../src/GroupSelector.cs:59
+msgid "More directories"
+msgstr "شاخه‌های بیشتر"
+
+#: ../src/GroupSelector.cs:61 ../src/GroupSelector.cs:62
+msgid "More"
+msgstr "بیشتر"
+
+#: ../src/GroupSelector.cs:513
+msgid "Arrange by _Month"
+msgstr "مرتب سازی بر اساس _ماه"
+
+#: ../src/GroupSelector.cs:516
+msgid "Arrange by _Folder"
+msgstr "مرتب سازی بر اساس _پوشه"
+
+#: ../src/ImportCommand.cs:28 ../src/SingleView.cs:205
+msgid "Select Folder"
+msgstr "انتخاب پوشه"
+
+#: ../src/ImportCommand.cs:235
+msgid "(No Cameras Detected)"
+msgstr "(دوربینی تشخیص داده نشد)"
+
+#: ../src/ImportCommand.cs:374
+#, csharp-format
+msgid "Loading {0} of {1}"
+msgstr "در حال بار کردن {0} از {1} "
+
+#: ../src/ImportCommand.cs:480
+msgid "Done Loading"
+msgstr "بار کردن تمام شد"
+
+#: ../src/ImportCommand.cs:630
+msgid "Directory does not exist."
+msgstr "این شاخه وجود ندارد."
+
+#: ../src/ImportCommand.cs:631
+#, csharp-format
+msgid ""
+"The directory you selected \"{0}\" does not exist.  Please choose a "
+"different directory"
+msgstr ""
+"شاخه‌ای که انتخاب کرده‌اید «{0}» وجود ندارد. لطفاً "
+"شاخهٔ دیگری انتخاب کنید"
+
+#: ../src/ImportCommand.cs:669
+msgid "Select Tag"
+msgstr "انتخاب برچسب"
+
+#: ../src/InfoBox.cs:72 ../src/PhotoVersionCommands.cs:55
+msgid "Name:"
+msgstr "نام:"
+
+#: ../src/InfoBox.cs:74
+msgid "Version:"
+msgstr "نسخه:"
+
+#: ../src/InfoBox.cs:76
+msgid "Date:"
+msgstr "تاریخ:"
+
+#: ../src/InfoBox.cs:78
+msgid "Size:"
+msgstr "اندازه:"
+
+#: ../src/InfoBox.cs:80
+msgid "Exposure:"
+msgstr "زمان نوردهی:"
+
+#. The label for the root category is used in new and edit tag dialogs
+#: ../src/InfoBox.cs:216 ../src/TagStore.cs:422
+msgid "(None)"
+msgstr "(هیچ‌کدام)"
+
+#: ../src/InfoBox.cs:227 ../src/InfoBox.cs:236
+msgid "(Unknown)"
+msgstr "(نامعلوم)"
+
+#: ../src/InfoDisplay.cs:167
+msgid "Extended Metadata"
+msgstr "فوق داده‌های گسترش‌یافته"
+
+#: ../src/InfoDisplay.cs:206
+msgid "No active photo"
+msgstr "هیچ عکسی فعال نیست"
+
+#: ../src/InfoDisplay.cs:208
+#, csharp-format
+msgid "The photo \"{0}\" does not exist"
+msgstr "عکس «{0}» وجود ندارد"
+
+#: ../src/InfoDisplay.cs:214
+msgid "No metadata available"
+msgstr "هیچ فوق داده‌ای موجود نیست"
+
+#: ../src/IptcFile.cs:139
+msgid "IPTC Information Interchange Model (IIM) Version number"
+msgstr "شمارهٔ نسخهٔ مدل تبادل اطلاعات IPTC"
+
+#: ../src/IptcFile.cs:141
+msgid "OSI Destination routing information"
+msgstr "اطلاعات مسیریابی مقصد OSI"
+
+#: ../src/IptcFile.cs:143
+msgid "IPTC file format"
+msgstr "قالب پروندهٔ IPTC"
+
+#: ../src/IptcFile.cs:145
+msgid "Identifies the provider and product"
+msgstr "تأمین‌کننده و محصول را شناسایی می‌کند"
+
+#: ../src/IptcFile.cs:147
+msgid "A unique number identifying the envelope"
+msgstr "یک شماره که پاکت را به طور یکتا مشخص می‌کند"
+
+#: ../src/IptcFile.cs:149
+msgid "A unique number"
+msgstr "شمارهٔ یکتا"
+
+#: ../src/IptcFile.cs:151
+msgid ""
+"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgstr "اولویت رسیدگی به پاکت بین ۱ (فوری‌ترین) و ۹ (کم‌فوریت‌ترین) "
+
+#: ../src/IptcFile.cs:153
+msgid "The year month and day (CCYYMMDD) the service sent the material"
+msgstr "تاریخ با قالب سال ماه و روز (CCYYMMDD) ارسال داده‌ها توسط سرویس"
+
+#: ../src/IptcFile.cs:155
+msgid ""
+"The hour minute and second the (HHMMSS+HHMM) the service sent the material"
+msgstr "تاریخ با قالب ساعت، دقیقه و ثانیه (HHMMSS+HHMM) ارسال داده‌ها توسط سرویس"
+
+#: ../src/IptcFile.cs:157
+msgid "The character set designation"
+msgstr "تعیین مجموعهٔ نویسه"
+
+#: ../src/IptcFile.cs:159
+msgid "External globally unique object identifier"
+msgstr "شناسهٔ یکتای جهانی و خارجی شیء"
+
+#: ../src/IptcFile.cs:164
+msgid "Abstract Relationship Method (ARM) identifier"
+msgstr "شناسهٔ ARM"
+
+#: ../src/IptcFile.cs:166
+msgid "Abstract Relationship Method (ARM) version number."
+msgstr "شمارهٔ نسخهٔ ARM. "
+
+#: ../src/IptcFile.cs:169
+msgid "Number identifying the IIM version this application record uses"
+msgstr "شماره‌ای که نشان می‌دهد رکورد  این برنامه از کدام نسخهٔ IIM استفاده می‌کند"
+
+#: ../src/IptcFile.cs:171
+msgid "Object type reference"
+msgstr "مرجع نوع شیء"
+
+#: ../src/IptcFile.cs:176
+msgid "Object attribute reference"
+msgstr "مرجع مشخصهٔ شیء"
+
+#: ../src/IptcFile.cs:182 ../src/IptcFile.cs:186
+msgid "Object name"
+msgstr "نام شیء"
+
+#: ../src/IptcFile.cs:184
+msgid "Status of the objectdata according to the provider"
+msgstr "وضعیت داده‌های شیء به گفتهٔ تأمین کننده"
+
+#: ../src/IptcFile.cs:189
+msgid "Name of the city the content is focussing on"
+msgstr "نام شهری که عکس گرفته شده"
+
+#: ../src/IptcFile.cs:192
+msgid "Copyright information for"
+msgstr "اطلاعات حق نسخه‌برداری برای"
+
+#: ../src/IptcFile.cs:195
+msgid "Full name of the country of the focus of the content"
+msgstr "نام کامل کشوری که عکس گرفته شده"
+
+#: ../src/IptcFile.cs:198
+msgid ""
+"Two or three letter ISO3166 code of the country of the focus of the content"
+msgstr "کُد ISO3166 دو یا سه حرفی کشوری که عکس گرفته شده"
+
+#: ../src/IptcFile.cs:201
+msgid "bleh"
+msgstr "bleh"
+
+#: ../src/IptcFile.cs:204
+msgid "The title of the author or creator"
+msgstr "عنوان مؤلف یا سازنده"
+
+#: ../src/IptcFile.cs:207
+msgid ""
+"The person involved in writing, editing or correcting the object data or "
+"caption/abstract"
+msgstr ""
+"شخصی که در نوشتن، ویرایش یا تصحیح داده‌های شیء"
+" یا عنوان/خلاصه دست داشته است"
+
+#: ../src/IptcFile.cs:211
+msgid "Headline of the content"
+msgstr "عنوان محتوا"
+
+#: ../src/IptcFile.cs:214
+msgid ""
+"Instructions from the creator to the receiver not covered by other fields"
+msgstr "دستورالعمل‌هایی از طرف سازنده برای دریافت‌کننده که در فیلدهای دیگر پوشش  داده نمی‌شود"
+
+#: ../src/IptcFile.cs:217
+msgid "Intellectual genre of the object"
+msgstr "نوع معنوی شیء"
+
+#: ../src/IptcFile.cs:230
+msgid "Unknown IIM DataSet"
+msgstr "مجموعه داده‌های IIM ناشناخته"
+
+#: ../src/Loupe.cs:52 ../src/MainWindow.cs:1802
+msgid "Error saving sharpened photo"
+msgstr "خطا در ذخیرهٔ عکس واضح شده"
+
+#: ../src/Loupe.cs:81
+msgid "Sharpen"
+msgstr "وضوح"
+
+#: ../src/Loupe.cs:91 ../src/MainWindow.cs:1769
+msgid "Amount:"
+msgstr "مقدار:"
+
+#: ../src/Loupe.cs:92 ../src/MainWindow.cs:1770
+msgid "Radius:"
+msgstr "شعاع:"
+
+#: ../src/Loupe.cs:93 ../src/MainWindow.cs:1771
+msgid "Threshold:"
+msgstr "آستانه:"
+
+#: ../src/MainWindow.cs:213
+msgid "Browse many photos simultaneously"
+msgstr "مرور تعداد زیادی عکس به طور هم‌زمان"
+
+#: ../src/MainWindow.cs:216
+msgid "View and edit a photo"
+msgstr "نمایش و ویرایش عکس"
+
+#: ../src/MainWindow.cs:221
+msgid "View photos fullscreen"
+msgstr "نمایش عکس‌ها به طور تمام‌صفحه"
+
+#: ../src/MainWindow.cs:224
+msgid "View photos in a slideshow"
+msgstr "نمایش عکس‌ها به صورت نمایش اسلایدی"
+
+#: ../src/MainWindow.cs:1258
+msgid "No cameras detected."
+msgstr "دوربینی پیدا نشد."
+
+#: ../src/MainWindow.cs:1259
+msgid ""
+"F-Spot was unable to find any cameras attached to this system.  Double check "
+"that the camera is connected and has power"
+msgstr ""
+"اِف-اِسپات نتوانست دوربینی را که به سیستم متصل شده باشد پیدا کند. اتصال "
+"دوربین به کامپیوتر و منبع برق را دوباره بررسی کنید"
+#: ../src/MainWindow.cs:1299
+msgid "Error connecting to camera"
+msgstr "خطا هنگام اتصال به دوربین"
+
+#: ../src/MainWindow.cs:1300
+#, csharp-format
+msgid "Received error \"{0}\" while connecting to camera"
+msgstr "هنگام اتصال به دوربین، خطای «{0}» رخ داد"
+
+#. Translators should localize the following string
+#. * which will give them credit in the About box.
+#. * E.g. "Martin Willemoes Hansen"
+#: ../src/MainWindow.cs:1447
+msgid "translator-credits"
+msgstr""
+" ساناز شاه‌رکنی <sanaz.shahrokni@gmail.com>\n"
+"میلاد زکریا <meelad@farsiweb.info>"
+
+#: ../src/MainWindow.cs:1454
+msgid "Copyright © 2003-2006 Novell Inc."
+msgstr "حق نسخه‌برداری © ۲۰۰۳-۲۰۰۶  Novell Inc."
+
+#. Translators, The singular case will never happen here.
+#: ../src/MainWindow.cs:1678
+#, csharp-format
+msgid "Merge the selected tag"
+msgid_plural "Merge the {0} selected tags?"
+msgstr[0] "{0} برچسب انتخابی ادغام شوند؟"
+
+
+#: ../src/MainWindow.cs:1705
+msgid ""
+"This operation will merge the selected tags and any sub-tags into a single "
+"tag."
+msgstr""
+"این عملیات برچسب‌های انتخاب شده زیر مجموعه‌های آنها را در یک برچسب"
+" ادغام می‌کند."
+
+#: ../src/MainWindow.cs:1707
+msgid "_Merge Tags"
+msgstr "اد_غام برچسب‌ها"
+
+#: ../src/MainWindow.cs:1760
+msgid "Unsharp Mask"
+msgstr "کم کردن وضوح"
+
+#: ../src/MainWindow.cs:2030
+msgid "_Ok"
+msgstr "_تأئید"
+
+#: ../src/MainWindow.cs:2031
+msgid "Error Deleting Picture"
+msgstr "خطا هنگام حذف عکس"
+
+#: ../src/MainWindow.cs:2036
+#, csharp-format
+msgid ""
+"No permission to delete the file:\n"
+"{0}"
+msgstr ""
+"اجازهٔ حذف پرونده را ندارید:\n "
+"{0}"
+
+#: ../src/MainWindow.cs:2040
+#, csharp-format
+msgid ""
+"An error of type {0} occurred while deleting the file:\n"
+"{1}"
+msgstr ""
+"هنگام حذف این پرونده خطایی از نوع {0} ایجاد شد:\n"
+"{1}"
+
+#: ../src/MainWindow.cs:2051
+#, csharp-format
+msgid "Delete the selected photo permanently?"
+msgid_plural "Delete the {0} selected photos permanently?"
+msgstr[0] "عکس انتخابی برای همیشه حذف شود؟"
+msgstr[1] "{0} عکس انتخابی برای همیشه حذف شوند؟"
+
+#: ../src/MainWindow.cs:2055
+msgid "This deletes all versions of the selected photo from your drive."
+msgid_plural ""
+"This deletes all versions of the selected photos from your drive."
+msgstr[0] "این کار تمام نسخه‌های عکس انتخابی را از دیسک سخت حذف می‌کند."
+msgstr[1] "این کار تمام نسخه‌های عکس‌های انتخابی از دیسک سخت حذف می‌کند."
+
+#: ../src/MainWindow.cs:2058
+msgid "_Delete photo"
+msgid_plural "_Delete photos"
+msgstr[0] "_حذف عکس"
+msgstr[1] "_حذف عکس‌ها"
+
+#: ../src/MainWindow.cs:2080
+#, csharp-format
+msgid "Remove the selected photo from F-Spot?"
+msgid_plural "Remove the {0} selected photos from F-Spot?"
+msgstr[0] "عکس انتخابی از اِف-اِسپات حذف شود؟"
+msgstr[1] "{0} عکس‌ انتخابی از اِف-اِسپات حذف شوند؟"
+
+#: ../src/MainWindow.cs:2085
+msgid ""
+"If you remove photos from the F-Spot catalog all tag information will be "
+"lost. The photos remain on your computer and can be imported into F-Spot "
+"again."
+msgstr ""
+"اگرعکس‌ها را از کاتالوگ اِف-اِسپات حذف کنید، همهٔ اطلاعات برچسب‌های آنها از دست"
+"خواهد رفت. عکس‌ها روی کامپیوتر شما باقی خواهند ‌ماند و می‌توانید دوباره آنها را وارد اِف-اِسپات کنید."
+
+#: ../src/MainWindow.cs:2086
+msgid "_Remove from Catalog"
+msgstr "_حذف از کاتالوگ"
+
+#: ../src/MainWindow.cs:2141
+#, csharp-format
+msgid "Delete tag \"{0}\"?"
+msgstr "برچسب «{0}» حذف شود؟"
+
+#: ../src/MainWindow.cs:2143
+#, csharp-format
+msgid "Delete the {0} selected tags?"
+msgstr "{0} برچسب انتخابی حذف شوند؟"
+
+#: ../src/MainWindow.cs:2146
+msgid "If you delete a tag, all associations with photos are lost."
+msgstr "اگر برچسبی را حذف کنید، همهٔ ارتباطات آن با عکس‌ها از دست ‌می‌رود."
+
+#: ../src/MainWindow.cs:2147
+msgid "_Delete tag"
+msgid_plural "_Delete tags"
+msgstr[0] "_حذف برچسب"
+msgstr[1] "_حذف برچسب‌ها"
+
+#. A Category is not empty. Can not delete it.
+#: ../src/MainWindow.cs:2161
+msgid "Tag is not empty"
+msgstr "برچسب خالی نیست"
+
+#: ../src/MainWindow.cs:2162
+#, csharp-format
+msgid ""
+"Can not delete tags that have tags within them.  Please delete tags under "
+"\"{0}\" first"
+msgstr ""
+"نمی‌توان برچسب‌هایی را که درون‌ آنها برچسبی وجود دارد حذف کرد. لطفاً ابتدا برچسب‌های"
+" «{0}» را حذف کنید"
+
+#: ../src/MainWindow.cs:2473
+msgid "Rotate selected photo left"
+msgid_plural "Rotate selected photos left"
+msgstr[0] "چرخاندن عکس انتخابی به چپ"
+msgstr[1] "چرخاندن عکس‌های انتخابی به چپ"
+
+#: ../src/MainWindow.cs:2486
+msgid "Rotate selected photo right"
+msgid_plural "Rotate selected photos right"
+msgstr[0] "چرخاندن عکس انتخابی به راست"
+msgstr[1] "چرخاندن عکس‌های انتخابی به راست"
+
+#: ../src/MainWindow.cs:2500
+msgid "Create New Version?"
+msgid_plural "Create New Versions?"
+msgstr[0] "نسخهٔ جدیدی ایجاد شود؟"
+msgstr[1] "نسخه‌های جدید ایجاد شوند؟"
+
+#: ../src/MainWindow.cs:2502
+#, csharp-format
+msgid ""
+"Before launching {1}, should F-Spot create a new version of the selected "
+"photo to preserve the original?"
+msgid_plural ""
+"Before launching {1}, should F-Spot create new versions of the selected "
+"photos to preserve the originals?"
+msgstr[0] ""
+"قبل از اجرای {1}،  آیا لازم است اِف-اِسپات برای حفظ نسخهٔ اصلی عکس انتخاب شده، نسخهٔ "
+"جدیدی از آن ایجاد کند؟ "
+
+msgstr[1] ""
+"قبل از اجرای {1}،  آیا لازم است اِف-اِسپات برای حفظ نسخه‌های اصلی عکس‌های انتخاب شده، نسخه‌های "
+"جدیدی از آنها ایجاد کند؟ "
+#: ../src/MetadataStore.cs:17
+msgid "Creator"
+msgstr "سازنده"
+
+#: ../src/MetadataStore.cs:18
+msgid "Title"
+msgstr "عنوان"
+
+#: ../src/MetadataStore.cs:19
+msgid "Copyright"
+msgstr "حق نسخه‌برداری"
+
+#: ../src/MetadataStore.cs:20
+msgid "Subject and Keywords"
+msgstr "موضوع و کلیدواژه‌ها"
+
+#: ../src/MetadataStore.cs:21
+msgid "Compression"
+msgstr "فشردگی"
+
+#: ../src/MetadataStore.cs:23
+msgid "Planar Configuration"
+msgstr "پیکربندی سطحی"
+
+#: ../src/MetadataStore.cs:25
+msgid "Orientation"
+msgstr "جهت"
+
+#: ../src/MetadataStore.cs:27
+msgid "Photometric Interpretation"
+msgstr "تفسیر فوتومتری"
+
+#: ../src/MetadataStore.cs:29
+msgid "Resolution Unit"
+msgstr "واحد تفکیک‌پذیری "
+
+#: ../src/MetadataStore.cs:31
+msgid "Exposure Program"
+msgstr "برنامهٔ نوردهی"
+
+#: ../src/MetadataStore.cs:33
+msgid "Metering Mode"
+msgstr "حالت اندازه‌گیری"
+
+#: ../src/MetadataStore.cs:35
+msgid "Exposure Mode"
+msgstr "حالت نوردهی"
+
+#: ../src/MetadataStore.cs:37
+msgid "Custom Rendered"
+msgstr "پردازش تصویر سفارشی"
+
+#: ../src/MetadataStore.cs:39
+msgid "Components Configuration"
+msgstr "پیکربندی اجزاء"
+
+#: ../src/MetadataStore.cs:41
+msgid "Light Source"
+msgstr "منبع نور"
+
+#: ../src/MetadataStore.cs:43
+msgid "Sensing Method"
+msgstr "روش تشخیص"
+
+#: ../src/MetadataStore.cs:45
+msgid "Color Space"
+msgstr "فضای رنگ"
+
+#: ../src/MetadataStore.cs:47
+msgid "White Balance"
+msgstr "میزان نور سفید"
+
+#: ../src/MetadataStore.cs:49
+msgid "Focal Plane Resolution Unit"
+msgstr "واحد تفکیک‌پذیری سطح کانونی"
+
+#: ../src/MetadataStore.cs:51
+msgid "File Source Type"
+msgstr "نوع پروندهٔ منبع"
+
+#: ../src/MetadataStore.cs:53
+msgid "Scene Capture Type"
+msgstr "نوع گرفتن عکس"
+
+#: ../src/MetadataStore.cs:55
+msgid "Gain Control"
+msgstr "کنترل ورودی"
+
+#: ../src/MetadataStore.cs:57
+msgid "Contrast"
+msgstr "کنتراست"
+
+#: ../src/MetadataStore.cs:59
+msgid "Saturation"
+msgstr "غلظت"
+
+#: ../src/MetadataStore.cs:61
+msgid "Sharpness"
+msgstr "وضوح"
+
+#: ../src/MetadataStore.cs:63
+msgid "Scene Type"
+msgstr "نوع صحنه"
+
+#: ../src/OpenWithMenu.cs:80
+msgid "No applications available"
+msgstr "برنامه‌ای موجود نیست"
+
+#: ../src/OpenWithMenu.cs:92
+msgid "Open With"
+msgstr "باز کردن با"
+
+#: ../src/PhotoPopup.cs:36
+msgid "Copy Photo Location"
+msgstr "نسخه‌برداری از مکان عکس"
+
+#: ../src/PhotoPopup.cs:52
+msgid "Remove From Catalog"
+msgstr "حذف از کاتالوگ"
+
+#: ../src/PhotoPopup.cs:54
+msgid "Delete From Drive"
+msgstr "حذف از دیسک"
+
+#.
+#. FIXME TagMenu is ugly.
+#.
+#: ../src/PhotoPopup.cs:62
+msgid "Attach Tag"
+msgstr "پیوست کردن برچسب"
+
+#.
+#. FIXME finish the IPhotoSelection stuff and move the activate handler into the class
+#. this current method is way too complicated.
+#.
+#: ../src/PhotoPopup.cs:73
+msgid "Remove Tag"
+msgstr "حذف برچسب"
+
+#: ../src/PhotoStore.cs:360
+#, csharp-format
+msgid "Modified"
+msgid_plural "Modified ({0})"
+msgstr[0] "تغییر یافته"
+msgstr[1] "تغییر یافته({0})"
+
+#: ../src/PhotoStore.cs:379
+#, csharp-format
+msgid "Modified in {1}"
+msgid_plural "Modified in {1} ({0})"
+msgstr[0] "تغییر یافته در {1}"
+msgstr[1] "تغییر یافته در {1} ({0})"
+
+
+#. Note that the original version is never stored in the photo_versions table in the
+#. database.
+#: ../src/PhotoStore.cs:563
+msgid "Original"
+msgstr "اصلی"
+
+#. Fixme this should really set parent menu
+#. items insensitve
+#: ../src/PhotoTagMenu.cs:72
+msgid "(No Tags)"
+msgstr "(بدون برچسب)"
+
+#: ../src/PhotoVersionCommands.cs:54
+msgid "Create New Version"
+msgstr "ایجاد نسخهٔ جدید"
+
+#: ../src/PhotoVersionCommands.cs:59
+msgid "Rename Version"
+msgstr "تغییر نام نسخه"
+
+#: ../src/PhotoVersionCommands.cs:60
+msgid "New name:"
+msgstr "نام جدید:"
+
+#: ../src/PhotoVersionCommands.cs:106
+msgid "Could not create a new version"
+msgstr "ایجاد نسخهٔ جدید ممکن نیست"
+
+#: ../src/PhotoVersionCommands.cs:107
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to create version \"{1}\""
+msgstr "استثنای «{0}» دریافت شد. ایجاد نسخهٔ «{1}» غیرممکن است "
+
+#: ../src/PhotoVersionCommands.cs:134
+msgid "Really Delete?"
+msgstr "آیا واقعاً حذف شود؟"
+
+#: ../src/PhotoVersionCommands.cs:140
+#, csharp-format
+msgid "Really delete version \"{0}\"?"
+msgstr "آیا واقعاً می‌خواهید نسخهٔ «{0}» حذف شود؟"
+
+#. FIXME show error dialog.
+#: ../src/PhotoVersionCommands.cs:150
+msgid "Could not delete a version"
+msgstr "حذف نسخه غیرممکن است"
+
+#: ../src/PhotoVersionCommands.cs:151
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to delete version \"{1}\""
+msgstr "استثنای «{0}» دریافت شد. حذف نسخهٔ «{1}» غیرممکن است "
+
+#: ../src/PhotoVersionCommands.cs:192
+msgid "Could not rename a version"
+msgstr "تغییر نام نسخه غیرممکن است"
+
+#: ../src/PhotoVersionCommands.cs:193
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
+msgstr "استثنای «{0}» دریافت شد. ‌تغییر نام نسخه به «{1}» غیرممکن است "
+
+#: ../src/PhotoVersionMenu.cs:66
+msgid "(No Edits)"
+msgstr "(بدون ویرایش)"
+
+#: ../src/PhotoView.cs:109
+msgid "No Constraint"
+msgstr "بدون محدودیت"
+
+#: ../src/PhotoView.cs:110
+msgid "4 x 3 (Book)"
+msgstr "۳ × ۴ (کتاب)"
+
+#: ../src/PhotoView.cs:111
+msgid "4 x 6 (Postcard)"
+msgstr "۶ × ۴ (کارت‌پستال)"
+
+#: ../src/PhotoView.cs:112
+msgid "5 x 7 (L, 2L)"
+msgstr "۷ × ۵ (L, 2L)"
+
+#: ../src/PhotoView.cs:113
+msgid "8 x 10"
+msgstr "۱۰ × ۸"
+
+#: ../src/PhotoView.cs:114
+msgid "4 x 3 Portrait (Book)"
+msgstr "پرترهٔ ۴ × ۳ (کتاب)"
+
+#: ../src/PhotoView.cs:115
+msgid "4 x 6 Portrait (Postcard)"
+msgstr "پرترهٔ ۴ × ۶  (کارت‌پستال)"
+
+#: ../src/PhotoView.cs:116
+msgid "5 x 7 Portrait (L, 2L)"
+msgstr "پرترهٔ ۷ × ۵ (L, 2L)"
+
+#: ../src/PhotoView.cs:117
+msgid "8 x 10 Portrait"
+msgstr "پرترهٔ ۱۰ × ۸"
+
+#: ../src/PhotoView.cs:118
+msgid "Square"
+msgstr "مربع"
+
+#: ../src/PhotoView.cs:164
+msgid "Crop photo to selected area"
+msgstr "برش کناره‌های عکس به اندازهٔ ناحیهٔ انتخابی"
+
+#: ../src/PhotoView.cs:165
+msgid "Remove redeye from selected area"
+msgstr "حذف چشم قرمز از ناحیهٔ انتخابی"
+
+#: ../src/PhotoView.cs:167
+msgid "Select an area to crop"
+msgstr "ناحیه‌ای را برای برش کناره‌ها انتخاب کنید"
+
+#: ../src/PhotoView.cs:168
+msgid "Select an area to remove redeye"
+msgstr "ناحیه‌ای را برای حذف چشم قرمز انتخاب کنید "
+
+#: ../src/PhotoView.cs:277
+msgid "Error editing photo"
+msgstr "خطا در ویرایش عکس"
+
+#: ../src/PhotoView.cs:322
+msgid "No selection available"
+msgstr "هیچ انتخابی موجود نیست"
+
+#: ../src/PhotoView.cs:323
+msgid ""
+"This tool requires an active selection. Please select a region of the photo "
+"and try the operation again"
+msgstr ""
+ "این ابزار به انتخاب فعال نیاز دارد. لطفاً یک ناحیه از عکس را انتخاب کنید "
+"و عملیات را دوباره انجام دهید"
+
+#: ../src/PhotoView.cs:498
+msgid "Comment:"
+msgstr "توضیح:"
+
+#: ../src/PhotoView.cs:563
+msgid "Adjust the photo colors"
+msgstr "تنظیم رنگ عکس"
+
+#: ../src/PhotoView.cs:564
+msgid "Constrain the aspect ratio of the selection"
+msgstr "تحمیل قالب به عکس‌های انتخاب شده"
+
+#: ../src/PhotoView.cs:565
+msgid "Next photo"
+msgstr "عکس بعدی"
+
+#: ../src/PhotoView.cs:566
+msgid "Previous photo"
+msgstr "عکس قبلی"
+
+#: ../src/PhotoView.cs:567
+msgid "Convert the photo to black and white"
+msgstr "تبدیل عکس به سیاه و سفید"
+
+#: ../src/PhotoView.cs:568
+msgid "Convert the photo to sepia tones"
+msgstr "تغییر عکس با اثر سِپیا"
+
+#: ../src/RotateCommand.cs:154
+msgid "Rotating photos"
+msgstr "چرخاندن عکس‌ها"
+
+#: ../src/RotateCommand.cs:165
+#, csharp-format
+msgid "Rotating photo \"{0}\""
+msgstr "چرخش عکس «{0}»"
+
+#: ../src/RotateCommand.cs:190
+#, csharp-format
+msgid "Unable to rotate photo"
+msgid_plural "Unable to rotate {0} photos"
+msgstr[0] "چرخاندن عکس ممکن نیست"
+msgstr[1] "چرخاندن {0} عکس ممکن نیست"
+
+#: ../src/RotateCommand.cs:194
+#, csharp-format
+msgid ""
+"The photo could not be rotated because it is on a read only file system or "
+"media such as a CDROM.  Please check the permissions and try again"
+msgid_plural ""
+"{0} photos could not be rotated because they are on a read only file system "
+"or media such as a CDROM.  Please check the permissions and try again"
+msgstr[0] ""
+"نمی‌توان عکس را چرخاند چون در یک سیستم پرونده‌ای فقط خواندنی یا "
+"رسانه‌ای مانند سی‌دی ذخیره شده است. لطفاً اجازه‌ها را بررسی کنید و دوباره امتحان کنید"
+
+msgstr[1] ""
+
+"نمی‌توان {0} عکس را چرخاند چون در یک سیستم پرونده‌ای فقط خواندنی یا "
+"رسانه‌ای مانند سی‌دی ذخیره شده‌اند. لطفاً اجازه‌ها را بررسی کنید و دوباره امتحان کنید"
+
+
+#: ../src/RotateCommand.cs:216
+#, csharp-format
+msgid "Received error \"{0}\" while attempting to rotate {1}"
+msgstr " خطای «{0}» در حین تلاش برای چرخاندن {1} روی داد"
+
+#: ../src/RotateCommand.cs:221
+msgid "Error while rotating photo."
+msgstr "خطا در حین چرخاندن عکس."
+
+#: ../src/SingleView.cs:202
+msgid "Open"
+msgstr "بازکردن"
+
+#: ../src/StockIcons.cs:26
+msgid "Adjust Colors"
+msgstr "تنظیم رنگ‌ها"
+
+#: ../src/StockIcons.cs:29
+msgid "Crop"
+msgstr "برش کناره‌ها"
+
+#: ../src/StockIcons.cs:30
+msgid "Desaturate"
+msgstr "کم کردن غلظت"
+
+#: ../src/StockIcons.cs:31
+msgid "Edit Photo"
+msgstr "ویرایش عکس"
+
+#: ../src/StockIcons.cs:32
+msgid "Fullscreen"
+msgstr "تمام‌صفحه"
+
+#: ../src/StockIcons.cs:33
+msgid "Loading"
+msgstr "بارکردن"
+
+#: ../src/StockIcons.cs:34
+msgid "Logo"
+msgstr "نشان"
+
+#: ../src/StockIcons.cs:35 ../src/TagCommands.cs:122 ../src/TagMenu.cs:89
+#: ../src/TagPopup.cs:22
+msgid "Create New Tag"
+msgstr "ایجاد برچسب جدید"
+
+#: ../src/StockIcons.cs:36
+msgid "Question"
+msgstr "سؤال"
+
+#: ../src/StockIcons.cs:37
+msgid "Reduce Red-Eye"
+msgstr "کم کردن قرمزی چشم‌ها"
+
+#: ../src/StockIcons.cs:40
+msgid "Sepia Tone"
+msgstr "ته‌رنگ سِپیا"
+
+#: ../src/StockIcons.cs:41
+msgid "Slideshow"
+msgstr "نمایش اسلایدی"
+
+#: ../src/StockIcons.cs:42
+msgid "Near"
+msgstr "نزدیک"
+
+#: ../src/StockIcons.cs:43
+msgid "Far"
+msgstr "دور"
+
+#: ../src/TagCommands.cs:75 ../src/TagCommands.cs:203
+#: ../src/TagSelectionWidget.cs:612
+msgid "This name is already in use"
+msgstr "از این نام قبلاً استفاده شده است"
+
+#: ../src/TagCommands.cs:123
+msgid "Name of New Tag:"
+msgstr "نام برچسب جدید:"
+
+#: ../src/TagCommands.cs:273 ../src/TagPopup.cs:28
+msgid "Edit Tag"
+msgstr "ویرایش برچسب"
+
+#: ../src/TagCommands.cs:274
+msgid "Tag Name:"
+msgstr "نام برچسب:"
+
+#: ../src/TagCommands.cs:367
+#, csharp-format
+msgid "Photo {0} of {1}"
+msgstr "عکس {0} از {1}"
+
+#: ../src/TagCommands.cs:394
+#, csharp-format
+msgid "Edit Icon for Tag {0}"
+msgstr "ویرایش شمایل برای برچسب {0}"
+
+#: ../src/TagPopup.cs:32
+msgid "Delete Tag"
+msgid_plural "Delete Tags"
+msgstr[0] "حذف برچسب"
+msgstr[1] "حذف برچسب‌ها"
+
+#: ../src/TagPopup.cs:38
+msgid "Attach Tag to Selection"
+msgid_plural "Attach Tags to Selection"
+msgstr[0] "پیوست برچسب به انتخاب"
+msgstr[1] "پیوست برچسب‌ها به انتخاب"
+
+#: ../src/TagPopup.cs:42
+msgid "Remove Tag From Selection"
+msgid_plural "Remove Tags From Selection"
+msgstr[0] "حذف برچسب از انتخاب"
+msgstr[1] "حذف برچسب‌ها از انتخاب"
+
+#: ../src/TagPopup.cs:48
+msgid "Merge Tags"
+msgstr "ادغام برچسب‌ها"
+
+#: ../src/TagSelectionWidget.cs:611
+msgid "Error renaming tag"
+msgstr "خطا در تغییر نام برچسب"
+
+#: ../src/TagStore.cs:386
+msgid "Favorites"
+msgstr "محبوب‌ها"
+
+#: ../src/TagStore.cs:391
+msgid "Hidden"
+msgstr "مخفی"
+
+#: ../src/TagStore.cs:399
+msgid "People"
+msgstr "مردم"
+
+#: ../src/TagStore.cs:404
+msgid "Places"
+msgstr "مکان‌ها"
+
+#: ../src/TagStore.cs:409
+msgid "Events"
+msgstr "وقايع"
+
+#. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
+#: ../src/Unix.cs:25
+msgid "Unable to create temporary file"
+msgstr "ایجاد پروندهٔ موقت غیرممکن است"
+
+#: ../src/Updater.cs:101
+msgid "Updating F-Spot Database"
+msgstr "در حال به‌هنگام‌سازی پایگاه‌دادهٔ  اِف-اِسپات"
+
+#: ../src/Updater.cs:102
+msgid ""
+"Please wait while your F-Spot gallery's database is updated. This may take "
+"some time."
+msgstr ""
+"لطفاً صبر کنید تا پایگاه داده‌های گالری اِف-اِسپات به‌هنگام‌سازی شود. این کار ممکن است"
+"مدتی طول بکشد."
+#: ../src/Util.cs:320
+msgid "There was an error invoking the external handler"
+msgstr "هنگام احضار متصدی خارجی خطایی رخ داد"
+
+#: ../src/Util.cs:321
+#, csharp-format
+msgid ""
+"Received error:\n"
+"\"{0}\"\n"
+msgstr ""
+" خطایی رخ داد:\n"
+"«{0}»\n"
+
+#: ../src/QueryDisplay.cs:35
+msgid "Find: "
+msgstr "پیدا کردن: "
+
+#: ../src/QueryDisplay.cs:39
+msgid "Untagged photos"
+msgstr "عکس‌های بدون برچسب"
+
+#: ../src/QueryDisplay.cs:56
+msgid "No matching photos found "
+msgstr "عکسی پیدا نشد "
+
+#: ../src/QueryDisplay.cs:64
+msgid "Clear search"
+msgstr "پاک کردن جستجو"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:1
+msgid "Display a slideshow from F-Spot"
+msgstr "نمایش اسلایدهایی از اِف-اِسپات"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:2
+msgid "F-Spot photos"
+msgstr "عکس‌های اِف-اِسپات"
