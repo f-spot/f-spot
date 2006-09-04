@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: F-Spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-24 12:05+0200\n"
-"PO-Revision-Date: 2006-08-24\t 13:09-0400\n"
+"POT-Creation-Date: 2006-09-04 18:22+0200\n"
+"PO-Revision-Date: 2006-09-04\t 19:09-0400\n"
 "Last-Translator: Jordi Mas <jmas@softcatala.org>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "Organitzeu, gaudiu i compartiu fotografies"
 msgid "Photo Manager"
 msgstr "Gestor fotogràfic"
 
-#: ../f-spot-view.desktop.in.h:1 ../src/f-spot.glade.h:94
+#: ../f-spot-view.desktop.in.h:1 ../src/f-spot.glade.h:97
 msgid "F-Spot Photo Viewer"
 msgstr "Visualitzador fotogràfic F-Spot"
 
@@ -166,7 +166,7 @@ msgstr "Previsualitza"
 msgid "Path"
 msgstr "Camí"
 
-#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:97
+#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:100
 msgid "File"
 msgstr "Fitxer"
 
@@ -208,7 +208,7 @@ msgstr ""
 "S'ha produït un error \"{0}\" en crear el directori \"{1}\". Comproveu que "
 "el camí i els permisos són correctes i torneu-ho a provar"
 
-#: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:149
+#: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:183
 #: ../src/FolderExport.cs:269
 msgid "Transferring Pictures"
 msgstr "S'estan transferint les fotografies"
@@ -247,42 +247,42 @@ msgstr "Càmera"
 msgid "Port"
 msgstr "Port"
 
-#: ../src/CDExport.cs:57
+#: ../src/CDExport.cs:91
 #, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "S'està transferint la fotografia \"{0}\" al CD-ROM"
 
 #. This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/CDExport.cs:59 ../src/FlickrExport.cs:245
+#: ../src/CDExport.cs:93 ../src/FlickrExport.cs:245
 #: ../src/GalleryExport.cs:654 ../src/ProgressDialog.cs:82
 #: ../src/TimeDialog.cs:141
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} de {1}"
 
-#: ../src/CDExport.cs:72 ../src/FlickrExport.cs:251 ../src/FolderExport.cs:178
-#: ../src/GalleryExport.cs:669
+#: ../src/CDExport.cs:106 ../src/FlickrExport.cs:251
+#: ../src/FolderExport.cs:178 ../src/GalleryExport.cs:669
 msgid "Done Sending Photos"
 msgstr "S'han enviat les fotografies"
 
-#: ../src/CDExport.cs:74 ../src/FolderExport.cs:180
+#: ../src/CDExport.cs:108 ../src/FolderExport.cs:180
 msgid "Transfer Complete"
 msgstr "S'ha acabat la transferència"
 
-#: ../src/CDExport.cs:81 ../src/FolderExport.cs:185
+#: ../src/CDExport.cs:115 ../src/FolderExport.cs:185
 msgid "Error While Transferring"
 msgstr "S'ha produït un error mentre s'estava transferint"
 
-#: ../src/CDExport.cs:87 ../src/FolderExport.cs:193
+#: ../src/CDExport.cs:121 ../src/FolderExport.cs:193
 msgid "Error Transferring"
 msgstr "S'ha produït un error en transferir"
 
-#: ../src/CDExport.cs:108 ../src/FolderExport.cs:214
+#: ../src/CDExport.cs:142 ../src/FolderExport.cs:214
 msgid "Error: Error while transferring; Aborting"
 msgstr ""
 "Error: s'ha produït un error mentre s'estava transferint; s'està avortant"
 
-#: ../src/CDExport.cs:111 ../src/FolderExport.cs:217
+#: ../src/CDExport.cs:145 ../src/FolderExport.cs:217
 msgid "Error: File Already Exists; Aborting"
 msgstr "Error: el fitxer ja existeix; s'està avortant"
 
@@ -290,7 +290,7 @@ msgstr "Error: el fitxer ja existeix; s'està avortant"
 msgid "Error saving adjusted photo"
 msgstr "S'ha produït un error en desar una fotografia ajustada"
 
-#: ../src/ColorDialog.cs:309 ../src/Loupe.cs:57 ../src/MainWindow.cs:1834
+#: ../src/ColorDialog.cs:309 ../src/Loupe.cs:57 ../src/MainWindow.cs:1838
 #: ../src/PhotoView.cs:269
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
@@ -323,8 +323,7 @@ msgid ""
 "dialog."
 msgstr ""
 "L'equiqueta que el F-Spot està cercant no existeix. Proveu\n"
-"de seleccionar una etiqueta diferent al diàleg de preferències"
-"de l'F-Spot."
+"de seleccionar una etiqueta diferent al diàleg de preferènciesde l'F-Spot."
 
 #: ../src/ExceptionDialog.cs:24
 msgid "F-Spot Encountered a Fatal Error"
@@ -366,7 +365,7 @@ msgstr "Directori d'interoperabilitat"
 msgid "Unknown Directory"
 msgstr "El directori és desconegut"
 
-#: ../src/FlickrExport.cs:63 ../src/f-spot.glade.h:58
+#: ../src/FlickrExport.cs:63 ../src/f-spot.glade.h:59
 msgid "Authorize"
 msgstr "Autoritza"
 
@@ -466,7 +465,7 @@ msgstr "Fosc"
 msgid "Prev"
 msgstr "Anterior"
 
-#: ../src/FolderExport.cs:745 ../src/f-spot.glade.h:120
+#: ../src/FolderExport.cs:745 ../src/f-spot.glade.h:123
 msgid "Next"
 msgstr "Següent"
 
@@ -596,50 +595,55 @@ msgid "<b>Photos</b>"
 msgstr "<b>Fotografies</b>"
 
 #: ../src/f-spot.glade.h:28
+#
+msgid "<b>PicasaWeb Export</b>"
+msgstr "<b>Exportació a PicasaWeb</b>"
+
+#: ../src/f-spot.glade.h:29
 msgid "<b>Predefined</b>"
 msgstr "<b>Predefinit</b>"
 
-#: ../src/f-spot.glade.h:29
+#: ../src/f-spot.glade.h:30
 msgid "<b>Preview</b>"
 msgstr "<b>Previsualització</b>"
 
-#: ../src/f-spot.glade.h:30
+#: ../src/f-spot.glade.h:31
 msgid "<b>Printer Details</b>"
 msgstr "<b>Detalls de la impressora</b>"
 
-#: ../src/f-spot.glade.h:31
+#: ../src/f-spot.glade.h:32
 msgid "<b>Reference Photo</b>"
 msgstr "<b>Fotografia de referència</b>"
 
-#: ../src/f-spot.glade.h:32
+#: ../src/f-spot.glade.h:33
 msgid "<b>Screensaver</b>"
 msgstr "<b>Estalvi de pantalla</b>"
 
-#: ../src/f-spot.glade.h:33
+#: ../src/f-spot.glade.h:34
 msgid "<b>Start Date</b>"
 msgstr "<b>Data d'inici</b>"
 
-#: ../src/f-spot.glade.h:34
+#: ../src/f-spot.glade.h:35
 msgid "<b>Style</b>"
 msgstr "<b>Estil</b>"
 
-#: ../src/f-spot.glade.h:35
+#: ../src/f-spot.glade.h:36
 msgid "<b>Viewing permissions</b>"
 msgstr "<b>Permisos de visualització</b>"
 
-#: ../src/f-spot.glade.h:36
+#: ../src/f-spot.glade.h:37
 msgid "<b>_White Balance</b>"
 msgstr "<b>_Balanç de blancs</b>"
 
-#: ../src/f-spot.glade.h:37
+#: ../src/f-spot.glade.h:38
 msgid "<small> </small>"
 msgstr "<small> </small>"
 
-#: ../src/f-spot.glade.h:38
+#: ../src/f-spot.glade.h:39
 msgid "<small></small>"
 msgstr "<small></small>"
 
-#: ../src/f-spot.glade.h:39
+#: ../src/f-spot.glade.h:40
 msgid ""
 "<small><i>Enable this option to store tags and descriptions inside \n"
 "supported image formats.</i></small>"
@@ -648,7 +652,7 @@ msgstr ""
 "descriptors \n"
 "juntament amb les imatges de format implementat.</i></small>"
 
-#: ../src/f-spot.glade.h:41
+#: ../src/f-spot.glade.h:42
 msgid ""
 "<small><i>Select the tag you like F-Spot to display images from while acting "
 "as the screensaver</i></small>"
@@ -656,216 +660,226 @@ msgstr ""
 "<small><i>Seleccioneu l'etiqueta de les imatges que voleu que l'F-Spot "
 "mostri com a estalvi de pantalla</i></small>"
 
-#: ../src/f-spot.glade.h:42
+#: ../src/f-spot.glade.h:43
 msgid "<small>C_ontrast:</small>"
 msgstr "<small>C_ontrast:</small>"
 
-#: ../src/f-spot.glade.h:43
+#: ../src/f-spot.glade.h:44
 msgid "<small>Te_mp:</small>"
 msgstr "<small>Te_mp:</small>"
 
-#: ../src/f-spot.glade.h:44
+#: ../src/f-spot.glade.h:45
 msgid "<small>_Brightness:</small>"
 msgstr "<small>_Lluminositat:</small>"
 
-#: ../src/f-spot.glade.h:45
+#: ../src/f-spot.glade.h:46
 msgid "<small>_Exposure:</small>"
 msgstr "<small>_Exposició:</small>"
 
-#: ../src/f-spot.glade.h:46
+#: ../src/f-spot.glade.h:47
 msgid "<small>_Hue:</small>"
 msgstr "<small>_Matís:</small>"
 
-#: ../src/f-spot.glade.h:47
+#: ../src/f-spot.glade.h:48
 msgid "<small>_Saturation:</small>"
 msgstr "<small>_Saturació:</small>"
 
-#: ../src/f-spot.glade.h:48
+#: ../src/f-spot.glade.h:49
 msgid "<small>_Tint:</small>"
 msgstr "<small>_Tint:</small>"
 
-#: ../src/f-spot.glade.h:49
+#: ../src/f-spot.glade.h:50
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
 msgstr ""
 "<span weight='bold' size='larger'>S'ha produït un error en connectar amb la "
 "galeria</span>\n"
 
-#: ../src/f-spot.glade.h:51
+#: ../src/f-spot.glade.h:52
 msgid "Ad_just Color..."
 msgstr "A_justa el color..."
 
-#: ../src/f-spot.glade.h:52
+#: ../src/f-spot.glade.h:53
 msgid "Adjust Color"
 msgstr "Ajusta el color"
 
-#: ../src/f-spot.glade.h:53
+#: ../src/f-spot.glade.h:54
 msgid "Adjust Time"
 msgstr "Ajusta la data i l'hora"
 
-#: ../src/f-spot.glade.h:54
+#: ../src/f-spot.glade.h:55
 msgid "Adjust _Time"
 msgstr "Ajusta la da_ta i l'hora"
 
 #
-#: ../src/f-spot.glade.h:55
+#: ../src/f-spot.glade.h:56
 msgid "Adjusted date: "
 msgstr "Data ajustada: "
 
 #
-#: ../src/f-spot.glade.h:56
+#: ../src/f-spot.glade.h:57
 msgid "Arrange _by"
 msgstr "Ordena _per"
 
-#: ../src/f-spot.glade.h:57
+#: ../src/f-spot.glade.h:58
 msgid "Attach tag:"
 msgstr "Adjunta l'etiqueta:"
 
-#: ../src/f-spot.glade.h:59 ../src/StockIcons.cs:27
+#: ../src/f-spot.glade.h:60
+#
+msgid "Autorotate"
+msgstr "Autorotació"
+
+#: ../src/f-spot.glade.h:61 ../src/StockIcons.cs:27
 msgid "Browse"
 msgstr "Navega"
 
-#: ../src/f-spot.glade.h:60
+#: ../src/f-spot.glade.h:62
 msgid "CD"
 msgstr "CD"
 
-#: ../src/f-spot.glade.h:61
+#: ../src/f-spot.glade.h:63
 msgid "C_aption:"
 msgstr "Llegend_a:"
 
-#: ../src/f-spot.glade.h:62
+#: ../src/f-spot.glade.h:64
 msgid "C_ontrast:"
 msgstr "C_ontrast:"
 
-#: ../src/f-spot.glade.h:63
+#: ../src/f-spot.glade.h:65
 msgid "Camera Selection"
 msgstr "Selecció de la càmera"
 
-#: ../src/f-spot.glade.h:64
+#: ../src/f-spot.glade.h:66
 msgid "Co_nfigure"
 msgstr "Co_nfigura"
 
-#: ../src/f-spot.glade.h:65
+#: ../src/f-spot.glade.h:67
 msgid "Copy Locat_ion"
 msgstr "Copia la ub_icació"
 
-#: ../src/f-spot.glade.h:66
+#: ../src/f-spot.glade.h:68
 msgid "Copy _Files to: "
 msgstr "Copia els _fitxers a: "
 
-#: ../src/f-spot.glade.h:67
+#: ../src/f-spot.glade.h:69
 msgid "Copy file to the Photos folder"
 msgstr "Copia el fitxer a la carpeta de les fotografies"
 
-#: ../src/f-spot.glade.h:68
+#: ../src/f-spot.glade.h:70
 msgid "Create CD"
 msgstr "Crea un CD"
 
-#: ../src/f-spot.glade.h:69
+#: ../src/f-spot.glade.h:71
 msgid "Create New _Tag..."
 msgstr "Crea una etique_ta nova..."
 
-#: ../src/f-spot.glade.h:70
+#: ../src/f-spot.glade.h:72
 msgid "Create _New Version..."
 msgstr "Crea una versió _nova..."
 
-#: ../src/f-spot.glade.h:71
+#: ../src/f-spot.glade.h:73
 msgid "Create _gallery using \"Original\""
 msgstr "Crea una _galeria a partir de l'\"Original\""
 
-#: ../src/f-spot.glade.h:72
+#: ../src/f-spot.glade.h:74
 msgid "Create standalone _web gallery"
 msgstr "Crea una galeria _web"
 
-#: ../src/f-spot.glade.h:73
+#: ../src/f-spot.glade.h:75
 msgid "Crop photo to _fit"
 msgstr "Escapça la _fotografia fins que encaixi"
 
 #
-#: ../src/f-spot.glade.h:74
+#: ../src/f-spot.glade.h:76
 msgid "Current date:"
 msgstr "Data actual:"
 
-#: ../src/f-spot.glade.h:75
+#: ../src/f-spot.glade.h:77
 msgid "D_escription:"
 msgstr "D_escripció:"
 
-#: ../src/f-spot.glade.h:76
+#: ../src/f-spot.glade.h:78
 msgid "Directory"
 msgstr "Directori"
 
-#: ../src/f-spot.glade.h:77
+#: ../src/f-spot.glade.h:79
 msgid "Display Side_bar"
 msgstr "Mostra la _barra lateral"
 
-#: ../src/f-spot.glade.h:78
+#: ../src/f-spot.glade.h:80
 msgid "Display T_ags"
 msgstr "Mostr_a les etiquetes"
 
-#: ../src/f-spot.glade.h:79
+#: ../src/f-spot.glade.h:81
 msgid "Display Too_lbar"
 msgstr "Mostra la b_arra d'eines"
 
-#: ../src/f-spot.glade.h:80
+#: ../src/f-spot.glade.h:82
 msgid "Display _Dates"
 msgstr "Mostra les _dates"
 
-#: ../src/f-spot.glade.h:81
+#: ../src/f-spot.glade.h:83
 msgid "Display _Timeline"
 msgstr "Mos_tra el cronograma"
 
-#: ../src/f-spot.glade.h:82
+#: ../src/f-spot.glade.h:84
 msgid "E-_Mail:"
 msgstr "Adre_ça electrònica:"
 
-#: ../src/f-spot.glade.h:83
+#: ../src/f-spot.glade.h:85
 msgid "E_xport titles and comments"
 msgstr "E_xporta els títols i els comentaris"
 
-#: ../src/f-spot.glade.h:84
+#: ../src/f-spot.glade.h:86
 msgid "E_xport to CD..."
 msgstr "E_xporta al CD..."
 
-#: ../src/f-spot.glade.h:85
+#: ../src/f-spot.glade.h:87
 msgid "Edit Tag Icon"
 msgstr "Edita l'etiqueta de la icona"
 
-#: ../src/f-spot.glade.h:86
+#: ../src/f-spot.glade.h:88
 msgid "Edit icon"
 msgstr "Edita la icona"
 
-#: ../src/f-spot.glade.h:87
+#: ../src/f-spot.glade.h:89
 msgid "Export"
 msgstr "Exporta"
 
-#: ../src/f-spot.glade.h:88
+#: ../src/f-spot.glade.h:90
 msgid "Export _titles and comments"
 msgstr "Exporta els _títols i els comentaris"
 
-#: ../src/f-spot.glade.h:89
+#: ../src/f-spot.glade.h:91
 msgid "Export to _Flickr..."
 msgstr "Exporta al _Flickr..."
 
-#: ../src/f-spot.glade.h:90
+#: ../src/f-spot.glade.h:92
 msgid "Export to _Folder..."
 msgstr "Exporta a una _carpeta..."
 
-#: ../src/f-spot.glade.h:91
+#: ../src/f-spot.glade.h:93
+#
+msgid "Export to _Picasaweb..."
+msgstr "Exporta al _Picasaweb..."
+
+#: ../src/f-spot.glade.h:94
 msgid "Export to _Web Gallery..."
 msgstr "Exporta a una galeria _web..."
 
-#: ../src/f-spot.glade.h:92
+#: ../src/f-spot.glade.h:95
 msgid "F-Spot"
 msgstr "F-Spot"
 
-#: ../src/f-spot.glade.h:93
+#: ../src/f-spot.glade.h:96
 msgid "F-Spot Photo Album"
 msgstr "Àlbum de fotografies F-Spot"
 
-#: ../src/f-spot.glade.h:95
+#: ../src/f-spot.glade.h:98
 msgid "F-Spot View"
 msgstr "Visualització de l'F-Spot"
 
-#: ../src/f-spot.glade.h:96
+#: ../src/f-spot.glade.h:99
 msgid ""
 "F-Spot needs your authorization in order to upload photos to your Flickr "
 "account. Press the \"Authorize\" button to open a web browser and give F-"
@@ -875,19 +889,19 @@ msgstr ""
 "Flickr. Premeu el botó \"Autoritza\" per obrir el navegador i autoritzar l'F-"
 "Spot."
 
-#: ../src/f-spot.glade.h:98
+#: ../src/f-spot.glade.h:101
 msgid "Fin_d"
 msgstr "Ce_rca"
 
-#: ../src/f-spot.glade.h:99
+#: ../src/f-spot.glade.h:102
 msgid "Find by _Tag"
 msgstr "Cerca per e_tiqueta"
 
-#: ../src/f-spot.glade.h:100
+#: ../src/f-spot.glade.h:103
 msgid "Folder Export"
 msgstr "Exporta la carpeta"
 
-#: ../src/f-spot.glade.h:101
+#: ../src/f-spot.glade.h:104
 msgid ""
 "From Screen\n"
 "Standard RGB"
@@ -895,7 +909,7 @@ msgstr ""
 "De la pantalla\n"
 "RGB estàndard"
 
-#: ../src/f-spot.glade.h:103
+#: ../src/f-spot.glade.h:106
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
@@ -903,19 +917,19 @@ msgstr ""
 "Pàgina completa\n"
 "Estàndard - 4x6"
 
-#: ../src/f-spot.glade.h:105
+#: ../src/f-spot.glade.h:108
 msgid "G_allery Name:"
 msgstr "Nom de la g_aleria:"
 
-#: ../src/f-spot.glade.h:106
+#: ../src/f-spot.glade.h:109
 msgid "G_allery:"
 msgstr "G_aleria:"
 
-#: ../src/f-spot.glade.h:107
+#: ../src/f-spot.glade.h:110
 msgid "Gallery"
 msgstr "Galeria"
 
-#: ../src/f-spot.glade.h:108
+#: ../src/f-spot.glade.h:111
 msgid ""
 "Hairline\n"
 "0.25\"\n"
@@ -927,35 +941,35 @@ msgstr ""
 "0,5\"\n"
 "1\"\n"
 
-#: ../src/f-spot.glade.h:113
+#: ../src/f-spot.glade.h:116
 msgid "Import"
 msgstr "Importa"
 
-#: ../src/f-spot.glade.h:114
+#: ../src/f-spot.glade.h:117
 msgid "Import Source:"
 msgstr "Font d'importació:"
 
-#: ../src/f-spot.glade.h:115
+#: ../src/f-spot.glade.h:118
 msgid "Import photos"
 msgstr "Importa les fotografies"
 
-#: ../src/f-spot.glade.h:116
+#: ../src/f-spot.glade.h:119
 msgid "Include subdirectories"
 msgstr "Inclou els subdirectoris"
 
-#: ../src/f-spot.glade.h:117
+#: ../src/f-spot.glade.h:120
 msgid "Make F-Spot your screensaver"
 msgstr "Feu de l'F-Spot el vostre estalvi de pantalla"
 
-#: ../src/f-spot.glade.h:118 ../src/InfoDisplay.cs:12
+#: ../src/f-spot.glade.h:121 ../src/InfoDisplay.cs:12
 msgid "Metadata Browser"
 msgstr "Navegador de metadades"
 
-#: ../src/f-spot.glade.h:119
+#: ../src/f-spot.glade.h:122
 msgid "N_umber of Copies:"
 msgstr "N_ombre de còpies:"
 
-#: ../src/f-spot.glade.h:121
+#: ../src/f-spot.glade.h:124
 msgid ""
 "None\n"
 "Title\n"
@@ -969,111 +983,120 @@ msgstr ""
 "Data\n"
 "Detalls de la fotografia"
 
-#: ../src/f-spot.glade.h:126
+#: ../src/f-spot.glade.h:129
 msgid "Open _Folder..."
 msgstr "Obre una _carpeta..."
 
-#: ../src/f-spot.glade.h:127
+#: ../src/f-spot.glade.h:130
 msgid "Open _album in browser when done uploading"
 msgstr "Obre l'àlbum en el n_avegador quan finalitzis la pujada"
 
-#: ../src/f-spot.glade.h:128
+#: ../src/f-spot.glade.h:131
 msgid "Open _destination when done exporting"
 msgstr "Obre la _destinació quan finalitzis l'exportació"
 
-#: ../src/f-spot.glade.h:129
+#: ../src/f-spot.glade.h:132
 msgid "P_arent Tag:"
 msgstr "Etiqueta p_are:"
 
-#: ../src/f-spot.glade.h:130
+#: ../src/f-spot.glade.h:133
 msgid "P_hoto Source:"
 msgstr "Fo_nt de la fotografia:"
 
-#: ../src/f-spot.glade.h:131
+#: ../src/f-spot.glade.h:134
 msgid "Page 1 of 3"
 msgstr "Pàgina 1 de 3"
 
-#: ../src/f-spot.glade.h:132
+#: ../src/f-spot.glade.h:135
 msgid "Pause"
 msgstr "Pausa"
 
-#: ../src/f-spot.glade.h:133
+#: ../src/f-spot.glade.h:136
 msgid "Photo 0 of 0"
 msgstr "Fotografia 0 de 0"
 
-#: ../src/f-spot.glade.h:134
+#: ../src/f-spot.glade.h:137
 msgid "Photo _Size:"
 msgstr "Mida de la _fotografia:"
 
-#: ../src/f-spot.glade.h:135
+#: ../src/f-spot.glade.h:138
 msgid "Please verify that the settings for this gallery are correct."
 msgstr "Verifiqueu que els paràmetres d'aquesta galeria són correctes."
 
-#: ../src/f-spot.glade.h:136
+#: ../src/f-spot.glade.h:139
 msgid "Preferences"
 msgstr "Preferències"
 
-#: ../src/f-spot.glade.h:137
+#: ../src/f-spot.glade.h:140
 msgid "Previous"
 msgstr "Anterior"
 
-#: ../src/f-spot.glade.h:138
+#: ../src/f-spot.glade.h:141
 msgid "Print"
 msgstr "Imprimeix"
 
-#: ../src/f-spot.glade.h:139
+#: ../src/f-spot.glade.h:142
 msgid "Print crop _marks"
 msgstr "Imprimeix les _marques d'escapçada"
 
-#: ../src/f-spot.glade.h:140
+#: ../src/f-spot.glade.h:143
 msgid "Private"
 msgstr "Privat"
 
-#: ../src/f-spot.glade.h:141
+#: ../src/f-spot.glade.h:144
 msgid "Public"
 msgstr "Públic"
 
-#: ../src/f-spot.glade.h:142
+#: ../src/f-spot.glade.h:145
+#
+msgid "Public Album"
+msgstr "Àlbum públic"
+
+#: ../src/f-spot.glade.h:146
 msgid "Re_fresh Thumbnail"
 msgstr "_Actualitza la miniatura"
 
-#: ../src/f-spot.glade.h:143
+#: ../src/f-spot.glade.h:147
 msgid "Rem_ove Tag"
 msgstr "Elimi_na l'etiqueta"
 
-#: ../src/f-spot.glade.h:144 ../src/StockIcons.cs:38
+#: ../src/f-spot.glade.h:148
+msgid "Reset"
+msgstr "Reinicialitza"
+
+#: ../src/f-spot.glade.h:149 ../src/StockIcons.cs:38
 msgid "Rotate _Left"
 msgstr "Gira a l'_esquerra"
 
-#: ../src/f-spot.glade.h:145 ../src/StockIcons.cs:39
+#: ../src/f-spot.glade.h:150 ../src/StockIcons.cs:39
 msgid "Rotate _Right"
 msgstr "Gira a la _dreta"
 
-#: ../src/f-spot.glade.h:146
+#: ../src/f-spot.glade.h:151
 msgid "Select Photos to Copy From Camera..."
 msgstr "Seleccioneu els fitxers de la càmera que s'han de copiar..."
 
-#: ../src/f-spot.glade.h:147
+#: ../src/f-spot.glade.h:152
 msgid "Select _All"
 msgstr "Seleccion_a-ho tot"
 
-#: ../src/f-spot.glade.h:148
+#: ../src/f-spot.glade.h:153
 msgid "Select _None"
 msgstr "_No seleccionis res"
 
-#: ../src/f-spot.glade.h:149
+#: ../src/f-spot.glade.h:154
 msgid "Select a Tag..."
 msgstr "Selecciona una etiqueta..."
 
-#: ../src/f-spot.glade.h:150
+#: ../src/f-spot.glade.h:155
 msgid "Select the camera from which you want to transfer files"
 msgstr "Seleccioneu la càmera des d'on voleu transferir els fitxers"
 
-#: ../src/f-spot.glade.h:151
+#: ../src/f-spot.glade.h:156
 msgid "Selected Camera: "
 msgstr "Càmera seleccionada: "
 
-#: ../src/f-spot.glade.h:152
+#: ../src/f-spot.glade.h:157
 msgid ""
 "Selection\n"
 "Gallery\n"
@@ -1083,48 +1106,58 @@ msgstr ""
 "Galeria\n"
 "Àrea de visualització"
 
-#: ../src/f-spot.glade.h:155
+#: ../src/f-spot.glade.h:160
 msgid "Send _Mail..."
 msgstr "Envia un _correu..."
 
-#: ../src/f-spot.glade.h:156
+#: ../src/f-spot.glade.h:161
 msgid "Set Date Range"
 msgstr "Estableix el rang de les dates"
 
-#: ../src/f-spot.glade.h:157
+#: ../src/f-spot.glade.h:162
 msgid "Set _Date Range..."
 msgstr "Estableix el rang de les _dates..."
 
-#: ../src/f-spot.glade.h:158
+#: ../src/f-spot.glade.h:163
 msgid "Set as _Background"
 msgstr "Estable_ix com a fons"
 
-#: ../src/f-spot.glade.h:159 ../src/TimeDialog.cs:124
+#: ../src/f-spot.glade.h:164 ../src/TimeDialog.cs:124
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Canvia totes les fotografies per {0}"
 
-#: ../src/f-spot.glade.h:160
+#: ../src/f-spot.glade.h:165
 msgid "Show or hide the side pane"
 msgstr "Mostra o amaga la barra lateral"
 
-#: ../src/f-spot.glade.h:161
+#: ../src/f-spot.glade.h:166
 msgid "Show or hide the toolbar"
 msgstr "Mostra o amaga la barra d'eines"
 
-#: ../src/f-spot.glade.h:162
+#: ../src/f-spot.glade.h:167
 msgid "Side _pane"
 msgstr "Barra _lateral"
 
-#: ../src/f-spot.glade.h:163
+#
+#: ../src/f-spot.glade.h:168
+#
+msgid "Size"
+msgstr "Mida"
+
+#: ../src/f-spot.glade.h:169
+msgid "Size of the exported selection :"
+msgstr "Mida de la selecció exportada :"
+
+#: ../src/f-spot.glade.h:170
 msgid "So_urce Temp"
 msgstr "Fo_nt temporal"
 
-#: ../src/f-spot.glade.h:164
+#: ../src/f-spot.glade.h:171
 msgid "Space all photos by"
 msgstr "Espaia les fotografies"
 
-#: ../src/f-spot.glade.h:165
+#: ../src/f-spot.glade.h:172
 msgid ""
 "Standard RGB\n"
 "Image Profile\n"
@@ -1134,336 +1167,341 @@ msgstr ""
 "Perfil d'imatge\n"
 "Personalitzat\n"
 
-#: ../src/f-spot.glade.h:169
+#: ../src/f-spot.glade.h:176
 msgid "Strip _metadata"
 msgstr "Elimina les _metadades"
 
-#: ../src/f-spot.glade.h:170
+#: ../src/f-spot.glade.h:177
 msgid "Strip image _metadata"
 msgstr "Elimina les _metadades de la imatge"
 
-#: ../src/f-spot.glade.h:171
+#: ../src/f-spot.glade.h:178
 msgid "Tags: "
 msgstr "Etiquetes: "
 
-#: ../src/f-spot.glade.h:172
+#: ../src/f-spot.glade.h:179
 msgid "Toolbar"
 msgstr "Barra d'eines"
 
-#: ../src/f-spot.glade.h:173
+#: ../src/f-spot.glade.h:180
 msgid "U_RL:"
 msgstr "U_RL:"
 
-#: ../src/f-spot.glade.h:174
+#: ../src/f-spot.glade.h:181
 msgid "View"
 msgstr "Vista"
 
-#: ../src/f-spot.glade.h:175
+#: ../src/f-spot.glade.h:182
 msgid "Visible to Family"
 msgstr "Visible a la família"
 
-#: ../src/f-spot.glade.h:176
+#: ../src/f-spot.glade.h:183
 msgid "Visible to Friends"
 msgstr "Visible als amics"
 
-#: ../src/f-spot.glade.h:177
+#: ../src/f-spot.glade.h:184
 msgid "Will print using: US Letter size on Generic Postscript"
 msgstr "S'imprimirà usant: mida US Letter en Postscript genèric"
 
-#: ../src/f-spot.glade.h:178
+#: ../src/f-spot.glade.h:185
 msgid "Write _metadata to file"
 msgstr "Escriu les _metadades al fitxer"
 
-#: ../src/f-spot.glade.h:179
+#: ../src/f-spot.glade.h:186
 msgid "Zoom _in"
 msgstr "Ampl_ia"
 
-#: ../src/f-spot.glade.h:180
+#: ../src/f-spot.glade.h:187
 msgid "Zoom _out"
 msgstr "Reduei_x"
 
-#: ../src/f-spot.glade.h:181
+#: ../src/f-spot.glade.h:188
 msgid "Zoom in"
 msgstr "Amplia"
 
-#: ../src/f-spot.glade.h:182
+#: ../src/f-spot.glade.h:189
 msgid "Zoom out"
 msgstr "Redueix"
 
-#: ../src/f-spot.glade.h:183
+#: ../src/f-spot.glade.h:190
 msgid "_Album Name:"
 msgstr "_Nom de l'àlbum:"
 
-#: ../src/f-spot.glade.h:184
+#: ../src/f-spot.glade.h:191
+#
+msgid "_Album Title:"
+msgstr "_Títol de l'àlbum:"
+
+#: ../src/f-spot.glade.h:192
 msgid "_Attach Tag"
 msgstr "_Adjunta l'etiqueta"
 
-#: ../src/f-spot.glade.h:185
+#: ../src/f-spot.glade.h:193
 msgid "_Attach Tag to Selection"
 msgstr "_Adjunta l'etiqueta a la selecció"
 
-#: ../src/f-spot.glade.h:186
+#: ../src/f-spot.glade.h:194
 msgid "_Border:"
 msgstr "Co_ntorn:"
 
-#: ../src/f-spot.glade.h:187
+#: ../src/f-spot.glade.h:195
 msgid "_Brightness:"
 msgstr "_Lluminositat:"
 
-#: ../src/f-spot.glade.h:188
+#: ../src/f-spot.glade.h:196
 msgid "_Browse Previously Scheduled Files"
 msgstr "N_avega pels fitxers planificats anteriorment"
 
-#: ../src/f-spot.glade.h:189 ../src/GroupSelector.cs:527
+#: ../src/f-spot.glade.h:197 ../src/GroupSelector.cs:527
 msgid "_Clear Date Range"
 msgstr "_Neteja el rang de dates"
 
-#: ../src/f-spot.glade.h:190
+#: ../src/f-spot.glade.h:198
 msgid "_Close"
 msgstr "_Tanca"
 
-#: ../src/f-spot.glade.h:191
+#: ../src/f-spot.glade.h:199
 msgid "_Delete From Drive"
 msgstr "E_sborra del disc"
 
-#: ../src/f-spot.glade.h:192
+#: ../src/f-spot.glade.h:200
 msgid "_Delete Selected Tag"
 msgstr "_Esborra l'etiqueta seleccionada"
 
-#: ../src/f-spot.glade.h:193
+#: ../src/f-spot.glade.h:201
 msgid "_Delete Version"
 msgstr "S_uprimeix la versió"
 
-#: ../src/f-spot.glade.h:194
+#: ../src/f-spot.glade.h:202
 msgid "_Description:"
 msgstr "De_scripció:"
 
-#: ../src/f-spot.glade.h:195
+#: ../src/f-spot.glade.h:203
 msgid "_Destination Temp"
 msgstr "De_stinació temporal"
 
-#: ../src/f-spot.glade.h:196
+#: ../src/f-spot.glade.h:204
 msgid "_Display:"
 msgstr "_Mostra:"
 
-#: ../src/f-spot.glade.h:197
+#: ../src/f-spot.glade.h:205
 msgid "_Edit Selected Tag..."
 msgstr "E_dita l'etiqueta seleccionada..."
 
-#: ../src/f-spot.glade.h:198
+#: ../src/f-spot.glade.h:206
 msgid "_Export"
 msgstr "E_xporta"
 
-#: ../src/f-spot.glade.h:199
+#: ../src/f-spot.glade.h:207
 msgid "_Export tags"
 msgstr "E_xporta les etiquetes"
 
-#: ../src/f-spot.glade.h:200
+#: ../src/f-spot.glade.h:208
 msgid "_Export to Album:"
 msgstr "E_xporta a l'àlbum:"
 
-#: ../src/f-spot.glade.h:201
+#: ../src/f-spot.glade.h:209
 msgid "_Flickr"
 msgstr "_Flickr"
 
 #
-#: ../src/f-spot.glade.h:202
+#: ../src/f-spot.glade.h:210
 msgid "_Folder"
 msgstr "_Carpeta"
 
-#: ../src/f-spot.glade.h:203
+#: ../src/f-spot.glade.h:211
 msgid "_Folder:"
 msgstr "_Carpeta:"
 
-#: ../src/f-spot.glade.h:204
+#: ../src/f-spot.glade.h:212
 msgid "_Fullscreen"
 msgstr "_Pantalla completa"
 
-#: ../src/f-spot.glade.h:205
+#: ../src/f-spot.glade.h:213
 msgid "_Gallery"
 msgstr "_Galeria"
 
-#: ../src/f-spot.glade.h:206
+#: ../src/f-spot.glade.h:214
 msgid "_Gallery Name:"
 msgstr "_Nom de la galeria:"
 
-#: ../src/f-spot.glade.h:207
+#: ../src/f-spot.glade.h:215
 msgid "_Gallery:"
 msgstr "_Galeria:"
 
-#: ../src/f-spot.glade.h:208
+#: ../src/f-spot.glade.h:216
 msgid "_Hue:"
 msgstr "_Matís:"
 
-#: ../src/f-spot.glade.h:209
+#: ../src/f-spot.glade.h:217
 msgid "_Icon:"
 msgstr "_Icona:"
 
-#: ../src/f-spot.glade.h:210
+#: ../src/f-spot.glade.h:218
 msgid "_Import files after copy"
 msgstr "_Importa els fitxers després de la còpia"
 
-#: ../src/f-spot.glade.h:211
+#: ../src/f-spot.glade.h:219
 msgid "_Import..."
 msgstr "_Importa..."
 
-#: ../src/f-spot.glade.h:212
+#: ../src/f-spot.glade.h:220
 msgid "_Metadata Browser"
 msgstr "Navegador de _metadades"
 
-#: ../src/f-spot.glade.h:213
+#: ../src/f-spot.glade.h:221
 msgid "_Month"
 msgstr "_Mes"
 
-#: ../src/f-spot.glade.h:214
+#: ../src/f-spot.glade.h:222
 msgid "_New Window"
 msgstr "Finestra _nova"
 
-#: ../src/f-spot.glade.h:215
+#: ../src/f-spot.glade.h:223
 msgid "_Open album in browser when done uploading"
 msgstr "O_bre l'àlbum en el navegador quan finalitzis la pujada"
 
-#: ../src/f-spot.glade.h:216
+#: ../src/f-spot.glade.h:224
 msgid "_Open destination when done exporting"
 msgstr "O_bre la destinació quan finalitzis l'exportació"
 
-#: ../src/f-spot.glade.h:217
+#: ../src/f-spot.glade.h:225
 msgid "_Output:"
 msgstr "_Sortida:"
 
-#: ../src/f-spot.glade.h:218
+#: ../src/f-spot.glade.h:226
 msgid "_Parent Album:"
 msgstr "Àlbum _pare:"
 
-#: ../src/f-spot.glade.h:219
+#: ../src/f-spot.glade.h:227
 msgid "_Password:"
 msgstr "_Contrasenya:"
 
-#: ../src/f-spot.glade.h:220
+#: ../src/f-spot.glade.h:228
 msgid "_Prefix: "
 msgstr "_Prefix: "
 
-#: ../src/f-spot.glade.h:221
+#: ../src/f-spot.glade.h:229
 msgid "_Print..."
 msgstr "_Imprimeix..."
 
-#: ../src/f-spot.glade.h:222
+#: ../src/f-spot.glade.h:230
 msgid "_Remove From Catalog"
 msgstr "_Esborra del catàleg"
 
-#: ../src/f-spot.glade.h:223
+#: ../src/f-spot.glade.h:231
 msgid "_Remove Tag From Selection"
 msgstr "_Elimina l'etiqueta de la selecció"
 
-#: ../src/f-spot.glade.h:224
+#: ../src/f-spot.glade.h:232
 msgid "_Rename Version"
 msgstr "Can_via el nom de la versió"
 
-#: ../src/f-spot.glade.h:225
+#: ../src/f-spot.glade.h:233
 msgid "_Resize to: "
 msgstr "_Redimensiona a: "
 
-#: ../src/f-spot.glade.h:226 ../src/GroupSelector.cs:521
+#: ../src/f-spot.glade.h:234 ../src/GroupSelector.cs:521
 msgid "_Reverse Order"
 msgstr "_Ordre invers"
 
-#: ../src/f-spot.glade.h:227
+#: ../src/f-spot.glade.h:235
 msgid "_Saturation:"
 msgstr "_Saturació:"
 
-#: ../src/f-spot.glade.h:228
+#: ../src/f-spot.glade.h:236
 msgid "_Save the files only"
 msgstr "De_sa únicament els fitxers"
 
-#: ../src/f-spot.glade.h:229
+#: ../src/f-spot.glade.h:237
 msgid "_Scale photos to no larger than: "
 msgstr "_Escala les fotografies a no més de:"
 
-#: ../src/f-spot.glade.h:230
+#: ../src/f-spot.glade.h:238
 msgid "_Select Tags..."
 msgstr "_Seleccioneu les etiquetes..."
 
-#: ../src/f-spot.glade.h:231
+#: ../src/f-spot.glade.h:239
 msgid "_Sharpen..."
 msgstr "Nitide_sa..."
 
-#: ../src/f-spot.glade.h:232
+#: ../src/f-spot.glade.h:240
 msgid "_Slideshow"
 msgstr "_Projecció de diapositives"
 
-#: ../src/f-spot.glade.h:233
+#: ../src/f-spot.glade.h:241
 msgid "_Strip metadata"
 msgstr "_Elimina les metadades"
 
-#: ../src/f-spot.glade.h:234
+#: ../src/f-spot.glade.h:242
 msgid "_Tag Name:"
 msgstr "_Nom de l'etiqueta:"
 
-#: ../src/f-spot.glade.h:235
+#: ../src/f-spot.glade.h:243
 msgid "_Tags"
 msgstr "_Etiquetes"
 
-#: ../src/f-spot.glade.h:236
+#: ../src/f-spot.glade.h:244
 msgid "_Title:"
 msgstr "_Títol:"
 
-#: ../src/f-spot.glade.h:237
+#: ../src/f-spot.glade.h:245
 msgid "_URI:"
 msgstr "_URI:"
 
-#: ../src/f-spot.glade.h:238
+#: ../src/f-spot.glade.h:246
 msgid "_Untagged Photos"
 msgstr "_Fotografies sense etiqueta"
 
-#: ../src/f-spot.glade.h:239
+#: ../src/f-spot.glade.h:247
 msgid "_Username:"
 msgstr "_Nom d'usuari:"
 
-#: ../src/f-spot.glade.h:240
+#: ../src/f-spot.glade.h:248
 msgid "_Version"
 msgstr "_Versió"
 
-#: ../src/f-spot.glade.h:241
+#: ../src/f-spot.glade.h:249
 msgid "_View"
 msgstr "_Vista"
 
-#: ../src/f-spot.glade.h:242
+#: ../src/f-spot.glade.h:250
 msgid "_View photos in browser when done uploading"
 msgstr "O_bre l'àlbum en el navegador quan finalitzis la pujada"
 
-#: ../src/f-spot.glade.h:243
+#: ../src/f-spot.glade.h:251
 msgid "_Virtual Filesystem"
 msgstr "Sistema de fitxers _virtual"
 
-#: ../src/f-spot.glade.h:244
+#: ../src/f-spot.glade.h:252
 msgid "_Write only these photos to CD"
 msgstr "E_scriu només aquests elements al CD-ROM"
 
-#: ../src/f-spot.glade.h:245
+#: ../src/f-spot.glade.h:253
 msgid "dialog1"
 msgstr "dialog1"
 
 #
-#: ../src/f-spot.glade.h:246
+#: ../src/f-spot.glade.h:254
 msgid "difference:"
 msgstr "diferència:"
 
-#: ../src/f-spot.glade.h:247
+#: ../src/f-spot.glade.h:255
 msgid "img_000.jpg"
 msgstr "img_000.jpg"
 
 #. The preceding text here is the second checkbutton in the Time dialog
 #. that says "Space all photos by []"
-#: ../src/f-spot.glade.h:248 ../src/TimeDialog.cs:119
+#: ../src/f-spot.glade.h:256 ../src/TimeDialog.cs:119
 #, csharp-format
 msgid "min. Starting at {0}"
 msgstr "min. Comença a {0}"
 
-#: ../src/f-spot.glade.h:249
+#: ../src/f-spot.glade.h:257
 msgid "pixels"
 msgstr "píxels"
 
-#: ../src/f-spot.glade.h:250
+#: ../src/f-spot.glade.h:258
 msgid "x"
 msgstr "x"
 
@@ -1733,7 +1771,7 @@ msgstr "Tipus d'objecte"
 msgid "Unknown IIM DataSet"
 msgstr "El joc de dades MII és desconegut"
 
-#: ../src/Loupe.cs:56 ../src/MainWindow.cs:1833
+#: ../src/Loupe.cs:56 ../src/MainWindow.cs:1837
 msgid "Error saving sharpened photo"
 msgstr "S'ha produït un error en desar la fotografia amb més nitidesa"
 
@@ -1741,15 +1779,15 @@ msgstr "S'ha produït un error en desar la fotografia amb més nitidesa"
 msgid "Sharpen"
 msgstr "Nitidesa"
 
-#: ../src/Loupe.cs:96 ../src/MainWindow.cs:1800
+#: ../src/Loupe.cs:96 ../src/MainWindow.cs:1804
 msgid "Amount:"
 msgstr "Quantitat:"
 
-#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1801
+#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1805
 msgid "Radius:"
 msgstr "Radi:"
 
-#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1802
+#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1806
 msgid "Threshold:"
 msgstr "Llindar:"
 
@@ -1780,8 +1818,9 @@ msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
 "database has be moved to {0} and a new database has been created."
 msgstr ""
-"L'F-Spot ha trobat un error mentre s'estava carregant la base de dades de fotografies. "
-"L'antiga base de dades s'ha mogut a {0} i s'ha creat una nova base de dades."
+"L'F-Spot ha trobat un error mentre s'estava carregant la base de dades de "
+"fotografies. L'antiga base de dades s'ha mogut a {0} i s'ha creat una nova "
+"base de dades."
 
 #: ../src/MainWindow.cs:1287
 msgid "No cameras detected."
@@ -1808,24 +1847,24 @@ msgstr "S'ha rebut l'error \"{0}\" mentre es connectava amb la càmera"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1476
+#: ../src/MainWindow.cs:1480
 msgid "translator-credits"
 msgstr "Jordi Mas i Hernàndez <jmas@softcatala.org>"
 
 #
-#: ../src/MainWindow.cs:1483
+#: ../src/MainWindow.cs:1487
 msgid "Copyright © 2003-2006 Novell Inc."
 msgstr "Copyright © 2003-2006 Novell Inc."
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1713
+#: ../src/MainWindow.cs:1717
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Voleu esborrar l'etiqueta seleccionada?"
 msgstr[1] "Voleu esborrar les {0} etiquetes seleccionades?"
 
-#: ../src/MainWindow.cs:1740
+#: ../src/MainWindow.cs:1744
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -1834,23 +1873,23 @@ msgstr ""
 "una de sola."
 
 #
-#: ../src/MainWindow.cs:1742
+#: ../src/MainWindow.cs:1746
 msgid "_Merge Tags"
 msgstr "F_usiona les etiquetes"
 
-#: ../src/MainWindow.cs:1791
+#: ../src/MainWindow.cs:1795
 msgid "Unsharp Mask"
 msgstr "Màscara no nítida"
 
-#: ../src/MainWindow.cs:2071
+#: ../src/MainWindow.cs:2075
 msgid "_Ok"
 msgstr "D'ac_ord"
 
-#: ../src/MainWindow.cs:2072
+#: ../src/MainWindow.cs:2076
 msgid "Error Deleting Picture"
 msgstr "S'ha produït un error en esborrar la fotografia"
 
-#: ../src/MainWindow.cs:2077
+#: ../src/MainWindow.cs:2081
 #, csharp-format
 msgid ""
 "No permission to delete the file:\n"
@@ -1859,7 +1898,7 @@ msgstr ""
 "No teniu permís per esborrar el fitxer:\n"
 "{0}"
 
-#: ../src/MainWindow.cs:2081
+#: ../src/MainWindow.cs:2085
 #, csharp-format
 msgid ""
 "An error of type {0} occurred while deleting the file:\n"
@@ -1868,14 +1907,14 @@ msgstr ""
 "S'ha produït un error de tipus {0} en esborrar el fitxer:\n"
 "{1}"
 
-#: ../src/MainWindow.cs:2107
+#: ../src/MainWindow.cs:2111
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Voleu suprimir permanentment la fotografia seleccionada?"
 msgstr[1] "Voleu suprimir permanentment les {0} fotografies seleccionades?"
 
-#: ../src/MainWindow.cs:2111
+#: ../src/MainWindow.cs:2115
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
@@ -1884,20 +1923,20 @@ msgstr[0] ""
 msgstr[1] ""
 "Se suprimiran del disc totes les versions de les fotografies seleccionades."
 
-#: ../src/MainWindow.cs:2114
+#: ../src/MainWindow.cs:2118
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Suprimeix la fotografia"
 msgstr[1] "_Suprimeix les fotografies"
 
-#: ../src/MainWindow.cs:2142
+#: ../src/MainWindow.cs:2146
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Voleu suprimir la fotografia seleccionada de l'F-Spot?"
 msgstr[1] "Voleu suprimir les {0} fotografies seleccionades de l'F-Spot?"
 
-#: ../src/MainWindow.cs:2147
+#: ../src/MainWindow.cs:2151
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1907,38 +1946,38 @@ msgstr ""
 "etiquetes es perdrà. Les fotografies, però, es mantindran a l'ordinador i es "
 "podran tornar a importar a l'F-Spot."
 
-#: ../src/MainWindow.cs:2148
+#: ../src/MainWindow.cs:2152
 msgid "_Remove from Catalog"
 msgstr "_Esborra del catàleg"
 
-#: ../src/MainWindow.cs:2203
+#: ../src/MainWindow.cs:2207
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Voleu esborrar l'etiqueta \"{0}\"?"
 
-#: ../src/MainWindow.cs:2205
+#: ../src/MainWindow.cs:2209
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Voleu esborrar les etiquetes {0} seleccionades?"
 
-#: ../src/MainWindow.cs:2208
+#: ../src/MainWindow.cs:2212
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr ""
 "Si esborreu una etiqueta, totes les associacions amb les fotografies es "
 "perdran."
 
-#: ../src/MainWindow.cs:2209
+#: ../src/MainWindow.cs:2213
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Esborra l'etiqueta"
 msgstr[1] "_Esborra les etiquetes"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2223
+#: ../src/MainWindow.cs:2227
 msgid "Tag is not empty"
 msgstr "L'etiqueta no és buida"
 
-#: ../src/MainWindow.cs:2224
+#: ../src/MainWindow.cs:2228
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1947,25 +1986,25 @@ msgstr ""
 "No es poden esborrar etiquetes que contenen altres etiquetes. Primer "
 "esborreu les etiquetes \"{0}\""
 
-#: ../src/MainWindow.cs:2552
+#: ../src/MainWindow.cs:2556
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Gira la fotografia seleccionada cap a l'esquerra"
 msgstr[1] "Gira les fotografies seleccionades cap a l'esquerra"
 
-#: ../src/MainWindow.cs:2565
+#: ../src/MainWindow.cs:2569
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Gira la fotografia seleccionada cap a la dreta"
 msgstr[1] "Gira les fotografies seleccionades cap a la dreta"
 
-#: ../src/MainWindow.cs:2579
+#: ../src/MainWindow.cs:2583
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Voleu crear una versió nova?"
 msgstr[1] "Voleu crear versions noves?"
 
-#: ../src/MainWindow.cs:2581
+#: ../src/MainWindow.cs:2585
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -2250,7 +2289,7 @@ msgstr "Treu els ulls vermells de la zona seleccionada"
 
 #: ../src/PhotoView.cs:158
 msgid "Select an area to crop"
-msgstr "Seleccioneu l'àrea que voleu esborrar"
+msgstr "Seleccioneu l'àrea que voleu escapaçar"
 
 #: ../src/PhotoView.cs:159
 msgid "Select an area to remove redeye"
@@ -2622,10 +2661,6 @@ msgstr "Fotografies de l'F-Spot"
 
 #~ msgid "_Medium"
 #~ msgstr "_Mitjana"
-
-#
-#~ msgid "_Size"
-#~ msgstr "_Mida"
 
 #~ msgid "_Small"
 #~ msgstr "_Petita"
