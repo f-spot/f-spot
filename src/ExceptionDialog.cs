@@ -20,7 +20,7 @@ namespace FSpot
            
             HasSeparator = false;
             BorderWidth = 5;
-            Resizable = true;
+            Resizable = false;
             Title = Catalog.GetString("F-Spot Encountered a Fatal Error");
             
             VBox.Spacing = 12;
@@ -31,32 +31,37 @@ namespace FSpot
         
             HBox hbox = new HBox(false, 12);
             hbox.BorderWidth = 5;
-            VBox.PackStart(hbox);
+            VBox.PackStart(hbox, false, false, 0);
         
             Image image = new Image(Stock.DialogError, IconSize.Dialog);
-            image.Yalign = 0.05f;
-            hbox.PackStart(image, false, false, 0);
+            image.Yalign = 0.0f;
+            hbox.PackStart(image, true, true, 0);
 
             VBox label_vbox = new VBox(false, 0);
             label_vbox.Spacing = 12;
-            hbox.PackStart(label_vbox);
+            hbox.PackStart(label_vbox, false, false, 0);
 
-            Label label = new Label("<b><big>" + Title + "</big></b>");
+            Label label = new Label(String.Format("<b><big>{0}</big></b>", GLib.Markup.EscapeText(Title)));
             label.UseMarkup = true;
             label.Justify = Justification.Left;
             label.LineWrap = true;
             label.SetAlignment(0.0f, 0.5f);
             label_vbox.PackStart(label, false, false, 0);
 
-            label = new Gtk.Label(Catalog.GetString(
-                "This may be due to a programming error. Please help us make F-Spot better " + 
-                "by reporting this error. Thank you in advance!"));
+            label = new Label(e.Message);
                 
             label.UseMarkup = true;
             label.Justify = Gtk.Justification.Left;
             label.LineWrap = true;
             label.SetAlignment(0.0f, 0.5f);
             label_vbox.PackStart(label, false, false, 0);
+
+            Label details_label = new Label(String.Format("<b>{0}</b>", 
+                GLib.Markup.EscapeText(Catalog.GetString("Error Details"))));
+            details_label.UseMarkup = true;
+            Expander details_expander = new Expander("Details");
+            details_expander.LabelWidget = details_label;
+            label_vbox.PackStart(details_expander, true, true, 0);
 
             ScrolledWindow scroll = new ScrolledWindow();
             TextView view = new TextView();
@@ -67,27 +72,27 @@ namespace FSpot
             
             scroll.SetSizeRequest(450, 250);
 			
-	    view.Editable = false;
-	    view.Buffer.Text = debugInfo;
-	    
-	    label_vbox.PackStart(scroll);
+			view.Editable = false;
+			view.Buffer.Text = debugInfo;
+			
+			details_expander.Add(scroll);
 			
             hbox.ShowAll();
 
-            AddButton(Stock.Close, ResponseType.Close, true);
+			AddButton(Stock.Close, ResponseType.Close, true);
         }
 
         private void AddButton(string stock_id, Gtk.ResponseType response, bool is_default)
         {
             Button button = new Button(stock_id);
             button.CanDefault = true;
-            button.Show ();
+            button.Show();
 
             AddActionWidget(button, response);
 
             if(is_default) {
                 DefaultResponse = response;
-                button.AddAccelerator("activate", accel_group, (uint)Gdk.Key.Escape, 
+                button.AddAccelerator("activate", accel_group, (uint)Gdk.Key.Return, 
                     0, AccelFlags.Visible);
             }
         }
@@ -149,40 +154,34 @@ namespace FSpot
             
             return null;
         }
-	}
-	
-    public class LsbVersionInfo
-    {
-        private string [] filesToCheck = {
-            "*-release",
-            "slackware-version",
-            "debian_version"
-        };
         
-        private Hashtable harvest = new Hashtable(); 
-        
-        public LsbVersionInfo()
+        private class LsbVersionInfo
         {
-            foreach(string pattern in filesToCheck) {
-                foreach(string filename in Directory.GetFiles("/etc/", pattern)) {
-                    using(FileStream fs = File.OpenRead(filename)) {
-                        harvest[filename] = (new StreamReader(fs)).ReadToEnd();
+            private string [] filesToCheck = {
+                "*-release",
+                "slackware-version",
+                "debian_version"
+            };
+            
+            private Hashtable harvest = new Hashtable(); 
+            
+            public LsbVersionInfo()
+            {
+                foreach(string pattern in filesToCheck) {
+                    foreach(string filename in Directory.GetFiles("/etc/", pattern)) {
+                        using(FileStream fs = File.OpenRead(filename)) {
+                            harvest[filename] = (new StreamReader(fs)).ReadToEnd();
+                        }
                     }
                 }
             }
-        }
-        
-        public Hashtable Findings
-        {
-            get {
-                return harvest;
+            
+            public Hashtable Findings {
+                get { return harvest; }
             }
-        }
-        
-        public static Hashtable Harvest
-        {
-            get {
-                return (new LsbVersionInfo()).Findings;
+            
+            public static Hashtable Harvest {
+                get { return (new LsbVersionInfo()).Findings; }
             }
         }
     }
