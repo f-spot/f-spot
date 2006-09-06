@@ -1430,12 +1430,7 @@ public class MainWindow {
 
 	void HandleSendMailCommand (object sender, EventArgs args)
 	{
-		StringBuilder url = new StringBuilder ("mailto:?subject=my%20photos");
-
-		foreach (Photo p in SelectedPhotos ()) {
-			url.Append ("&attach=" + UriList.EscapeString (p.DefaultVersionUri.LocalPath, true, true, true));
-		}
-		GnomeUtil.UrlShow (main_window, url.ToString ());
+		new FSpot.SendEmail (new FSpot.PhotoArray (SelectedPhotos ()));
 	}
 
 	public static void HandleAbout (object sender, EventArgs args)

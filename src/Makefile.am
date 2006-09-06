@@ -88,6 +88,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/RafFile.cs			\
 	$(srcdir)/RotateCommand.cs		\
 	$(srcdir)/ScalingIconView.cs		\
+	$(srcdir)/SendEmail.cs                  \
 	$(srcdir)/SlideView.cs			\
 	$(srcdir)/SingleView.cs			\
 	$(srcdir)/StockIcons.cs			\

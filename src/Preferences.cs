@@ -76,6 +76,10 @@ namespace FSpot
 		public const string EXPORT_PICASAWEB_ROTATE = "/apps/f-spot/export/picasaweb/rotate";
 		public const string EXPORT_PICASAWEB_BROWSER = "/apps/f-spot/export/picasaweb/browser";
 
+ 		public const string EXPORT_EMAIL_SIZE = "/apps/f-spot/export/email/size";
+ 		public const string EXPORT_EMAIL_ROTATE = "/apps/f-spot/export/email/auto_rotate";
+ 		public const string EXPORT_EMAIL_DELETE_TIMEOUT_SEC = "/apps/f-spot/export/email/delete_timeout_seconds";
+
 		public const string SCREENSAVER_TAG = "/apps/f-spot/screensaver/tag_id";
 
 		public const string METADATA_EMBED_IN_IMAGE = "/apps/f-spot/metadata/embed_in_image";
@@ -137,6 +141,13 @@ namespace FSpot
 				return null;
 			case SCREENSAVER_TAG:
 				return 1;
+				
+			case EXPORT_EMAIL_SIZE:
+				return 3;	// medium size 640px
+			case EXPORT_EMAIL_ROTATE:
+				return true;	// auto rotate original photos
+			case EXPORT_EMAIL_DELETE_TIMEOUT_SEC:
+				return 30;	// delete temporary email pictures after 30 seconds
 			}
 
 			return null;
