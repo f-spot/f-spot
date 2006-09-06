@@ -170,7 +170,8 @@ namespace Mono.Google.Picasa {
 			XmlUtil xml = new XmlUtil ();
 			xml.WriteElementString ("title", title);
 			xml.WriteElementString ("description", desc);
-			string pubdate = date.ToString ("d' 'MMM' 'yyyy' 'H':'mm':'ss' 'zzz");
+			CultureInfo info = CultureInfo.InvariantCulture;
+			string pubdate = date.ToString ("d' 'MMM' 'yyyy' 'H':'mm':'ss' 'zzz", info);
 			pubdate = pubdate.Substring (0, pubdate.Length - 3) + "00"; // Replaces ':00' with '00'
 			xml.WriteElementString ("pubDate", pubdate);
 			xml.WriteElementString ("access", access.ToString ().ToLower (CultureInfo.InvariantCulture), PicasaNamespaces.GPhoto);
