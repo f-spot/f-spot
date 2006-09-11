@@ -1,3 +1,4 @@
+using System.IO;
 using System.Runtime.InteropServices;
 using Mono.Unix;
 
@@ -7,12 +8,14 @@ namespace FSpot {
 
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
 		[Glade.Widget] Gtk.CheckButton remove_check;
-		[Glade.Widget] Gtk.Label size_label;		
+		[Glade.Widget] Gtk.CheckButton rotate_check;
+		[Glade.Widget] Gtk.Label size_label;
 
 		Gnome.Vfs.Uri dest = new Gnome.Vfs.Uri ("burn:///");
 		
 		int photo_index;
 		bool clean;
+		bool rotate;
 
 		FSpot.ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
@@ -82,10 +85,21 @@ namespace FSpot {
 				Gnome.Vfs.Result result = Gnome.Vfs.Result.Ok;
 
 				foreach (IBrowsableItem photo in selection.Items) {
-					Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (photo.DefaultVersionUri.ToString ());
+					Gnome.Vfs.Uri source;
 					Gnome.Vfs.Uri target = dest.Clone ();
-//					target = target.AppendFileName (source.ExtractShortName ());
+					bool changed = false;
+					
+					//FIXME workaround to have JpegFile loads the image
+					string path = ImageFile.TempPath (photo.DefaultVersionUri.LocalPath);
+					
+					source = new Gnome.Vfs.Uri (photo.DefaultVersionUri.ToString ());
 					target = UniqueName (target, source.ExtractShortName ());
+ 					
+					// if we are rotating the image and the filter changed something
+					// use the new path as the source
+					if (rotate && OrientationFilter.Convert (photo.DefaultVersionUri.LocalPath, path))
+						source = new Gnome.Vfs.Uri (path);
+
 					Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
 					
 					progress_dialog.Message = System.String.Format (Catalog.GetString ("Transferring picture \"{0}\" To CD"), photo.Name);
@@ -97,7 +111,9 @@ namespace FSpot {
 									 Gnome.Vfs.XferErrorMode.Abort, 
 									 Gnome.Vfs.XferOverwriteMode.Replace, 
 									 cb);
-					
+
+					// cleanup any temp files
+					File.Delete (path);
 					photo_index++;
 				}
 
@@ -177,6 +193,7 @@ namespace FSpot {
 			}
 
 			clean = remove_check.Active;
+			rotate = rotate_check.Active;
 			Dialog.Destroy ();
 
 			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Transfer));

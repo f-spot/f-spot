@@ -38,6 +38,7 @@ namespace FSpot {
 
 		//[Glade.Widget] Gtk.CheckButton meta_check;
 		[Glade.Widget] Gtk.CheckButton scale_check;
+		[Glade.Widget] Gtk.CheckButton rotate_check;
 		[Glade.Widget] Gtk.CheckButton open_check;
 		
 		[Glade.Widget] Gtk.RadioButton static_radio;
@@ -54,6 +55,7 @@ namespace FSpot {
 		int photo_index;
 		bool open;
 		bool scale;
+		bool rotate;
 		int size;
 		
 		string description;
@@ -156,6 +158,11 @@ namespace FSpot {
 					System.Console.WriteLine ("Exporting full size image");
 				}
 
+				if (rotate) {
+					System.Console.WriteLine ("Exporting rotated image");
+					gallery.SetRotate();
+				}
+
 				gallery.Description = description;
 
 				gallery.Generate ();
@@ -253,10 +260,12 @@ namespace FSpot {
 				uri_chooser = null;
 				return;
 			}
-			
+
 			dest = new Gnome.Vfs.Uri (uri_chooser.Uri);
 			open = open_check.Active;
 			scale = scale_check.Active;
+			rotate = rotate_check.Active;
+
 			gallery_name = name_entry.Text;
 
 			if (description_entry != null)
@@ -285,6 +294,7 @@ namespace FSpot {
 		protected string gallery_path;
 		protected bool scale;
 		protected int size;
+		protected bool rotate;
 		protected string description;
 		protected string language;
 		protected System.Uri destination;
@@ -354,10 +364,12 @@ namespace FSpot {
 			MakeDir (SubdirPath (req.Name));
 			path = SubdirPath (req.Name, ImageName (image_num));
 			
-			if (!scale)
+			if (scale) 
+				PixbufUtils.Resize (photo_path, path, size, true); 	
+			else if (rotate && OrientationFilter.Convert (photo_path, path))
+				; // do nothing if it was successful the filter moved the file
+			else
 				File.Copy(photo_path, path, true);
-			else 
-				PixbufUtils.Resize (photo_path, path, size, true); 
 			
 			Gdk.Pixbuf img = null;
 			Gdk.Pixbuf scaled = null;
@@ -453,6 +465,10 @@ namespace FSpot {
 			this.size = size;
 			requests [0].Width = size;
 			requests [0].Height = size;
+		}
+
+		public void SetRotate () {
+			this.rotate = true;
 		}
 
 		private string GetLanguage()

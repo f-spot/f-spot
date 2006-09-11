@@ -70,6 +70,7 @@ namespace FSpot
 		public const string EXPORT_GALLERY_SIZE = "/apps/f-spot/export/gallery/size";
 		public const string EXPORT_GALLERY_BROWSER = "/apps/f-spot/export/gallery/browser";
 		public const string EXPORT_GALLERY_META = "/apps/f-spot/export/gallery/meta";
+		public const string EXPORT_GALLERY_ROTATE = "/apps/f-spot/export/gallery/rotate";
 
 		public const string EXPORT_PICASAWEB_SCALE = "/apps/f-spot/export/picasaweb/scale";
 		public const string EXPORT_PICASAWEB_SIZE = "/apps/f-spot/export/picasaweb/size";

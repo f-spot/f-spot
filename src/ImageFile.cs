@@ -180,5 +180,19 @@ namespace FSpot {
 
 			return img;
 		}
+		
+		// FIXME this is a horrible hack to get a temporary name
+		// with the right extension for ImageFile until we use the mime data
+		// properly.  It is here to make sure we can find the places that use
+		// this hack
+		public static string TempPath (string name)
+		{
+			string temp = System.IO.Path.GetTempFileName ();
+			string imgtemp = temp + System.IO.Path.GetExtension (name);
+
+			System.IO.File.Move (temp, imgtemp);
+
+			return imgtemp;
+		}
 	} 
 }

@@ -538,11 +538,13 @@ namespace FSpot {
 			LoadPreference (Preferences.EXPORT_GALLERY_SIZE);
 			LoadPreference (Preferences.EXPORT_GALLERY_BROWSER);
 			LoadPreference (Preferences.EXPORT_GALLERY_META);
+			LoadPreference (Preferences.EXPORT_GALLERY_ROTATE);
 		}
 		
 		Gtk.ResponseHandler rh;
 		
 		private bool scale;
+		private bool rotate;
 		private int size;
 		private bool browser;
 		private bool meta;
@@ -572,6 +574,7 @@ namespace FSpot {
 		[Glade.Widget] Gtk.CheckButton browser_check;
 		[Glade.Widget] Gtk.CheckButton scale_check;
 		[Glade.Widget] Gtk.CheckButton meta_check;
+		[Glade.Widget] Gtk.CheckButton rotate_check;
 		
 		[Glade.Widget] Gtk.SpinButton size_spin;
 
@@ -602,6 +605,7 @@ namespace FSpot {
 
 			browser = browser_check.Active;
 			meta = meta_check.Active;
+			rotate = rotate_check.Active;
 
 			if (account != null) { 
 				//System.Console.WriteLine ("history = {0}", album_optionmenu.History);
@@ -621,6 +625,7 @@ namespace FSpot {
 				Preferences.Set (Preferences.EXPORT_GALLERY_SIZE, size);
 				Preferences.Set (Preferences.EXPORT_GALLERY_BROWSER, browser);
 				Preferences.Set (Preferences.EXPORT_GALLERY_META, meta);
+				Preferences.Set (Preferences.EXPORT_GALLERY_ROTATE, rotate);
 			}
 		}
 		
@@ -660,6 +665,18 @@ namespace FSpot {
 						string final = path + System.IO.Path.GetExtension (orig);
 						System.IO.File.Move (path, final);
 						album.Add (photo, final);
+						System.IO.File.Delete (final);
+					} else if (rotate) {
+						string orig = photo.DefaultVersionUri.LocalPath;
+						// fixme hack to trick the stupid code in ImageFile.Create
+						string final = ImageFile.TempPath (orig);
+
+						if (OrientationFilter.Convert (orig, final)) {
+							album.Add (photo, final);
+							System.IO.File.Delete (final);
+						} else
+							album.Add (photo);
+
 						System.IO.File.Delete (final);
 					} else {
 						album.Add (photo);
@@ -867,6 +884,10 @@ namespace FSpot {
 			case Preferences.EXPORT_GALLERY_META:
 				if (meta_check.Active != (bool) val)
 					meta_check.Active = (bool) val;
+				break;
+			case Preferences.EXPORT_GALLERY_ROTATE:
+				if (rotate_check.Active != (bool) val)
+					rotate_check.Active = (bool) val;
 				break;
 			}
 		}
