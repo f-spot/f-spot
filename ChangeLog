@@ -1,3 +1,25 @@
+2006-09-11  Larry Ewing  <lewing@novell.com>
+
+	* src/PicasaWebExport.cs: make picasa use the OrientationFilter.
+
+	* src/OrientationFilter.cs: overly simple filter adjust image
+	orientation from whatever it is to top left.
+ 
+ 	* src/FolderExport.cs:
+ 	* src/GalleryExport.cs:
+ 	* src/CDExport.cs:
+ 	* src/Preferences.cs: 
+ 	* src/f-spot.glade: Use the new filter.
+
+2006-08-30  Stephane Delcroix  <stephane@delcroix.org>
+ 
+ 	* src/FolderExport.cs:
+ 	* src/GalleryExport.cs:
+ 	* src/CDExport.cs:
+ 	* src/Preferences.cs: 
+ 	* src/f-spot.glade: Add the UI and code for rotating pictures on
+ 	export. Fix b.g.o. 165645.
+
 2006-09-05  Stephane Delcroix  <stephane@delcroix.org>
  
  	* google-sharp/PicasaWeb.cs: Apply latest changes from google-sharp to
@@ -65,6 +87,7 @@
 	* src/IconView.cs: fix for 350366 based on the Patch from Arif
 	Lukito.
 
+>>>>>>> 1.1548
 2006-08-30  Larry Ewing  <lewing@novell.com>
 
 	* src/f-spot.in: use bash explicitly for now.

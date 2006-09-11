@@ -541,18 +541,13 @@ namespace FSpot {
 						System.IO.File.Delete (final);
 					} else if (rotate){
 						orig = photo.DefaultVersionUri.LocalPath;
-						path = System.IO.Path.GetTempFileName();
-						Exif.ExifData exif_data = new Exif.ExifData(orig);
-						PixbufOrientation orientation = PixbufUtils.GetOrientation (exif_data);
-						if (orientation == PixbufOrientation.RightTop)
-							JpegUtils.Transform (orig, path, JpegUtils.TransformType.Rotate90);
-						else if (orientation == PixbufOrientation.LeftBottom)
-							JpegUtils.Transform (orig, path, JpegUtils.TransformType.Rotate270);
-						else
-							File.Copy(orig, path, true);
-						final = path + System.IO.Path.GetExtension (orig);
-						System.IO.File.Move (path, final);
-						album.UploadPicture (final, photo.Description);
+						path = ImageFile.TempPath (orig);
+
+						if (OrientationFilter.Convert (orig, path))
+							album.UploadPicture (final, photo.Description);
+						else 
+							album.UploadPicture (photo.DefaultVersionUri.LocalPath, photo.Description);
+							
 						System.IO.File.Delete (final);
 					} else {
 						album.UploadPicture (photo.DefaultVersionUri.LocalPath, photo.Description);
