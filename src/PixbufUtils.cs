@@ -12,6 +12,9 @@ using System.IO;
 8888      8888    8888  8888    88          8888888888  8888888888          88
 88          88      88  88
 88          88  888888  888888
+
+t-l     t-r     b-r     b-l     l-t         r-t         r-b             l-b
+
 **/
 
 public enum PixbufOrientation {
