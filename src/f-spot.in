@@ -14,7 +14,7 @@ fi
 case "x--uninstalled" in ("x$1" | "x$2")
 	echo "*** Running uninstalled f-spot ***"
 	EXE_TO_RUN="./f-spot.exe"
-	export MONO_PATH=../FlickrNet:../libgphoto2-sharp:../semweb:$MONO_PATH
+	export MONO_PATH=../google-sharp:../gnome-keyring-sharp:../FlickrNet:../libgphoto2-sharp:../semweb:$MONO_PATH
 
 
 esac
