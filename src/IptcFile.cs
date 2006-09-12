@@ -336,6 +336,10 @@ namespace FSpot.Iptc {
 	{
 		System.Collections.ArrayList sets = new System.Collections.ArrayList ();
 
+                // False seems a safe default
+                public bool Distinct {
+                        get { return false; }
+                }
 		
 		public IptcFile (System.IO.Stream stream)
 		{

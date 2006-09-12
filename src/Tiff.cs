@@ -803,6 +803,11 @@ namespace FSpot.Tiff {
 		private uint directory_offset;
 		public ImageDirectory Directory;
 
+                // false seems a safe default
+                public bool Distinct {
+                        get { return false; }
+                }
+
 		public Header (System.IO.Stream stream)
 		{
 			//using (new Timer ("new Tiff.Header")) {
@@ -922,7 +927,7 @@ namespace FSpot.Tiff {
 					//case TagId.SpatialFrequencyResponse
 				case TagId.ExifCFAPattern:
 					CFAPattern pattern = new CFAPattern (e.RawData, e.IsLittle);
-					Entity empty = new Entity (null);
+					Entity empty = new BNode ();
 					Statement top = new Statement ("", 
 								       (Entity)MetadataStore.Namespaces.Resolve ("exif:" + e.Id.ToString ()),
 								       empty);
@@ -1829,6 +1834,11 @@ namespace FSpot.Tiff {
 
 	public class TiffFile : ImageFile, SemWeb.StatementSource {
 		public Header Header;
+
+                // false seems a safe default
+                public bool Distinct {
+                        get { return false; }
+                }
 
 		public TiffFile (string path) : base (path)
 		{

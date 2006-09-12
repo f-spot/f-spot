@@ -2,27 +2,52 @@ using System;
 using System.Collections;
 
 using SemWeb;
+using SemWeb.Stores;
+using SemWeb.Util;
 
 namespace SemWeb {
-	public class MemoryStore : Store, IEnumerable {
-		ArrayList statements = new ArrayList();
+	public class MemoryStore : Store, SupportsPersistableBNodes, IEnumerable {
+		StatementList statements;
 		
 		Hashtable statementsAboutSubject = new Hashtable();
 		Hashtable statementsAboutObject = new Hashtable();
 		
 		bool isIndexed = false;
 		internal bool allowIndexing = true;
+		internal bool checkForDuplicates = false;
+		bool distinct = true;
+		
+		string guid = null;
+		Hashtable pbnodeToId = null;
+		Hashtable pbnodeFromId = null;
 		
 		public MemoryStore() {
+			statements = new StatementList();
 		}
 		
-		public MemoryStore(StatementSource source) {
+		public MemoryStore(StatementSource source) : this() {
 			Import(source);
 		}
+		
+		public MemoryStore(Statement[] statements) {
+			this.statements = new StatementList(statements);
+		}
 
-		public IList Statements { get { return ArrayList.ReadOnly(statements); } }
-		  
+		public Statement[] ToArray() {
+			return (Statement[])statements.ToArray(typeof(Statement));
+		}
+
+		public IList Statements { get { return statements.ToArray(); } }
+		
+		public override bool Distinct { get { return distinct; } }
+		
 		public override int StatementCount { get { return statements.Count; } }
+		
+		public Statement this[int index] {
+			get {
+				return statements[index];
+			}
+		}
 		
 		IEnumerator IEnumerable.GetEnumerator() {
 			return statements.GetEnumerator();
@@ -32,12 +57,13 @@ namespace SemWeb {
 			statements.Clear();
 			statementsAboutSubject.Clear();
 			statementsAboutObject.Clear();
+			distinct = true;
 		}
 		
-		private ArrayList GetIndexArray(Hashtable from, Resource entity) {
-			ArrayList ret = (ArrayList)from[entity];
+		private StatementList GetIndexArray(Hashtable from, Resource entity) {
+			StatementList ret = (StatementList)from[entity];
 			if (ret == null) {
-				ret = new ArrayList();
+				ret = new StatementList();
 				from[entity] = ret;
 			}
 			return ret;
@@ -45,11 +71,19 @@ namespace SemWeb {
 		
 		public override void Add(Statement statement) {
 			if (statement.AnyNull) throw new ArgumentNullException();
+			if (checkForDuplicates && Contains(statement)) return;
 			statements.Add(statement);
 			if (isIndexed) {
 				GetIndexArray(statementsAboutSubject, statement.Subject).Add(statement);
 				GetIndexArray(statementsAboutObject, statement.Object).Add(statement);
 			}
+			if (!checkForDuplicates) distinct = false;
+		}
+		
+		public override void Import(StatementSource source) {
+			bool newDistinct = checkForDuplicates || ((StatementCount==0) && source.Distinct);
+			base.Import(source); // distinct set to false if !checkForDuplicates
+			distinct = newDistinct;
 		}
 		
 		public override void Remove(Statement statement) {
@@ -73,7 +107,7 @@ namespace SemWeb {
 			}
 		}
 		
-		public override Entity[] GetAllEntities() {
+		public override Entity[] GetEntities() {
 			Hashtable h = new Hashtable();
 			foreach (Statement s in Statements) {
 				if (s.Subject != null) h[s.Subject] = h;
@@ -84,27 +118,35 @@ namespace SemWeb {
 			return (Entity[])new ArrayList(h.Keys).ToArray(typeof(Entity));
 		}
 		
-		public override Entity[] GetAllPredicates() {
+		public override Entity[] GetPredicates() {
 			Hashtable h = new Hashtable();
 			foreach (Statement s in Statements)
 				h[s.Predicate] = h;
 			return (Entity[])new ArrayList(h.Keys).ToArray(typeof(Entity));
 		}
 
-		private void ShorterList(ref IList list1, IList list2) {
+		public override Entity[] GetMetas() {
+			Hashtable h = new Hashtable();
+			foreach (Statement s in Statements)
+				h[s.Meta] = h;
+			return (Entity[])new ArrayList(h.Keys).ToArray(typeof(Entity));
+		}
+
+		private void ShorterList(ref StatementList list1, StatementList list2) {
 			if (list2.Count < list1.Count)
 				list1 = list2;
 		}
 		
-		public override void Select(Statement template, SelectPartialFilter partialFilter, StatementSink result) {
-			IList source = statements;
+		public override void Select(Statement template, StatementSink result) {
+			StatementList source = statements;
 			
 			// The first time select is called, turn indexing on for the store.
 			// TODO: Perform this index in a background thread if there are a lot
 			// of statements.
 			if (!isIndexed && allowIndexing) {
 				isIndexed = true;
-				foreach (Statement statement in statements) {
+				for (int i = 0; i < StatementCount; i++) {
+					Statement statement = this[i];
 					GetIndexArray(statementsAboutSubject, statement.Subject).Add(statement);
 					GetIndexArray(statementsAboutObject, statement.Object).Add(statement);
 				}
@@ -115,30 +157,42 @@ namespace SemWeb {
 			
 			if (source == null) return;
 			
-			foreach (Statement statement in source) {
+			for (int i = 0; i < source.Count; i++) {
+				Statement statement = source[i];
 				if (!template.Matches(statement))
 					continue;
 				if (!result.Add(statement)) return;
 			}
 		}
 
-		public override void Select(Statement[] templates, SelectPartialFilter partialFilter, StatementSink result) {
-			foreach (Statement t in templates)
-				Select(t, result);
+		public override void Select(SelectFilter filter, StatementSink result) {
+			ResSet
+				s = filter.Subjects == null ? null : new ResSet(filter.Subjects),
+				p = filter.Predicates == null ? null : new ResSet(filter.Predicates),
+				o = filter.Objects == null ? null : new ResSet(filter.Objects),
+				m = filter.Metas == null ? null : new ResSet(filter.Metas);
+				
+			foreach (Statement st in statements) {
+				if (s != null && !s.Contains(st.Subject)) continue;
+				if (p != null && !p.Contains(st.Predicate)) continue;
+				if (o != null && !o.Contains(st.Object)) continue;
+				if (m != null && !m.Contains(st.Meta)) continue;
+				if (filter.LiteralFilters != null && !LiteralFilter.MatchesFilters(st.Object, filter.LiteralFilters, this)) continue;
+				if (!result.Add(st)) return;
+			}
 		}
 
 		public override void Replace(Entity a, Entity b) {
+			MemoryStore removals = new MemoryStore();
+			MemoryStore additions = new MemoryStore();
 			foreach (Statement statement in statements) {
 				if ((statement.Subject != null && statement.Subject == a) || (statement.Predicate != null && statement.Predicate == a) || (statement.Object != null && statement.Object == a) || (statement.Meta != null && statement.Meta == a)) {
-					Remove(statement);
-					Add(new Statement(
-						statement.Subject == a ? b : a,
-						statement.Predicate == a ? b : a,
-						statement.Object == a ? b : a,
-						statement.Meta == a ? b : a
-						));
+					removals.Add(statement);
+					additions.Add(statement.Replace(a, b));
 				}
 			}
+			RemoveAll(removals.ToArray());
+			Import(additions);
 		}
 		
 		public override void Replace(Statement find, Statement replacement) {
@@ -152,39 +206,27 @@ namespace SemWeb {
 				break; // should match just one statement anyway
 			}
 		}
-		
-		public override Entity[] FindEntities(Statement[] filters) {
-			ArrayList ents = new ArrayList();
-			foreach (Statement s in Select(filters[0])) {
-				if (s.Subject != null && filters[0].Subject == null)
-					ents.Add(s.Subject);
-				if (s.Predicate != null && filters[0].Predicate == null)
-					ents.Add(s.Predicate);
-				if (s.Object != null && filters[0].Object == null && s.Object is Entity)
-					ents.Add(s.Object);
-				if (s.Meta != null && filters[0].Meta == null)
-					ents.Add(s.Meta);
-			}
-			
-			foreach (Statement f in filters) {
-				if (f == filters[0]) continue;
-				
-				ArrayList e2 = new ArrayList();
-				foreach (Entity e in ents) {
-					Statement fe = new Statement(
-						f.Subject == null ? e : f.Subject,
-						f.Predicate == null ? e : f.Predicate,
-						f.Object == null ? e : f.Object,
-						f.Meta == null ? e : f.Meta);
-					if (Contains(fe))
-						e2.Add(e);
-				}
-				
-				ents = e2;
-			}
-			
-			return (Entity[])ents.ToArray(typeof(Entity));
-		}
 
+		string SupportsPersistableBNodes.GetStoreGuid() {
+			if (guid == null) guid = Guid.NewGuid().ToString("N");;
+			return guid;
+		}
+		
+		string SupportsPersistableBNodes.GetNodeId(BNode node) {
+			if (pbnodeToId == null) {
+				pbnodeToId = new Hashtable();
+				pbnodeFromId = new Hashtable();
+			}
+			if (pbnodeToId.ContainsKey(node)) return (string)pbnodeToId[node];
+			string id = pbnodeToId.Count.ToString();
+			pbnodeToId[node] = id;
+			pbnodeFromId[id] = node;
+			return id;
+		}
+		
+		BNode SupportsPersistableBNodes.GetNodeFromId(string persistentId) {
+			if (pbnodeFromId == null) return null;
+			return (BNode)pbnodeFromId[persistentId];
+		}
 	}
 }

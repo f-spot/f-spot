@@ -3,22 +3,19 @@ using System.Collections;
 
 namespace SemWeb {
 	
-	public abstract class Resource {
+	public abstract class Resource : IComparable {
+		internal object ekKey, ekValue;
 		internal ArrayList extraKeys;
 		
 		internal class ExtraKey {
 			public object Key;
 			public object Value; 
+			public ExtraKey(object k, object v) { Key = k; Value = v; }
 		}
 		
 		public abstract string Uri { get; }
 		
 		internal Resource() {
-		}
-		
-		public override string ToString() {
-			if (Uri != null) return Uri;
-			return "_";
 		}
 		
 		// These get rid of the warning about overring ==, !=.
@@ -40,6 +37,7 @@ namespace SemWeb {
 		}
 		
 		internal object GetResourceKey(object key) {
+			if (ekKey == key) return ekValue;
 			if (extraKeys == null) return null;
 			for (int i = 0; i < extraKeys.Count; i++) {
 				Resource.ExtraKey ekey = (Resource.ExtraKey)extraKeys[i];
@@ -49,25 +47,65 @@ namespace SemWeb {
 			return null;
 		}
 		internal void SetResourceKey(object key, object value) {
+			if (ekKey == null || ekKey == key) {
+				ekKey = key;
+				ekValue = value;
+				return;
+			}
+			
+			if (this is BNode) throw new InvalidOperationException("Only one resource key can be set for a BNode.");
+		
 			if (extraKeys == null) extraKeys = new ArrayList();
 			
 			foreach (Resource.ExtraKey ekey in extraKeys)
-				if (ekey.Key == key) { extraKeys.Remove(ekey); break; }
+				if (ekey.Key == key) { ekey.Value = value; return; }
 			
-			Resource.ExtraKey k = new Resource.ExtraKey();
-			k.Key = key;
-			k.Value = value;
-			
+			Resource.ExtraKey k = new Resource.ExtraKey(key, value);
 			extraKeys.Add(k);
 		}
+
+		int IComparable.CompareTo(object other) {
+			// We'll make an ordering over resources.
+			// First named entities, then bnodes, then literals.
+			// Named entities are sorted by URI.
+			// Bnodes by hashcode.
+			// Literals by their value, language, datatype.
 		
+			Resource r = (Resource)other;
+			if (Uri != null && r.Uri == null) return -1;
+			if (Uri == null && r.Uri != null) return 1;
+			if (this is BNode && r is Literal) return -1;
+			if (this is Literal && r is BNode) return 1;
+			
+			if (Uri != null) return String.Compare(Uri, r.Uri, false, System.Globalization.CultureInfo.InvariantCulture);
+			
+			if (this is BNode) return GetHashCode().CompareTo(r.GetHashCode());
+
+			if (this is Literal) {
+				int x = String.Compare(((Literal)this).Value, ((Literal)r).Value, false, System.Globalization.CultureInfo.InvariantCulture);
+				if (x != 0) return x;
+				x = String.Compare(((Literal)this).Language, ((Literal)r).Language, false, System.Globalization.CultureInfo.InvariantCulture);
+				if (x != 0) return x;
+				x = String.Compare(((Literal)this).DataType, ((Literal)r).DataType, false, System.Globalization.CultureInfo.InvariantCulture);
+				return x;
+			}
+			
+			return 0; // unreachable
+		}
 	}
 	
-	public sealed class Entity : Resource {
+	public class Entity : Resource {
 		private string uri;
-		int cachedHashCode = -1;
 		
-		public Entity(string uri) { if (uri != null) this.uri = string.Intern(uri); }
+		public Entity(string uri) {
+			if (uri == null) throw new ArgumentNullException("To construct entities with no URI, use the BNode class.");
+			//if (uri.Length == 0) throw new ArgumentException("uri cannot be the empty string");
+			this.uri = uri;
+		}
+		
+		// For the BNode constructor only.
+		internal Entity() {
+		}
 		
 		public override string Uri {
 			get {
@@ -78,44 +116,13 @@ namespace SemWeb {
 		public static implicit operator Entity(string uri) { return new Entity(uri); }
 		
 		public override int GetHashCode() {
-			if (cachedHashCode != -1) return cachedHashCode;
-			
-			if (Uri != null) {
-				cachedHashCode = Uri.GetHashCode();
-			} else if (extraKeys != null && extraKeys.Count == 1) {
-				ExtraKey v = (ExtraKey)extraKeys[0];
-				cachedHashCode = unchecked(v.Key.GetHashCode() + v.Value.GetHashCode());
-			}
-			
-			// If there's no Uri or ExtraKeys info, then this
-			// object is only equal to itself.  It's then safe
-			// to use object.GetHashCode().
-			if (cachedHashCode == -1) cachedHashCode = base.GetHashCode();
-			
-			return cachedHashCode;
+			if (uri == null) return base.GetHashCode(); // this is called from BNode.GetHashCode().
+			return uri.GetHashCode();
 		}
 			
 		public override bool Equals(object other) {
+			if (!(other is Resource)) return false;
 			if (object.ReferenceEquals(this, other)) return true;
-			if (!(other is Entity)) return false;
-			
-			// If anonymous, then we have to compare extraKeys.
-			if ((Uri == null && ((Resource)other).Uri == null)) {
-				ArrayList otherkeys = ((Resource)other).extraKeys;
-				if (otherkeys != null && extraKeys != null) {
-					for (int vi1 = 0; vi1 < extraKeys.Count; vi1++) {
-						ExtraKey v1 = (ExtraKey)extraKeys[vi1];
-						for (int vi2 = 0; vi2 < otherkeys.Count; vi2++) {
-							ExtraKey v2 = (ExtraKey)otherkeys[vi2];
-							if (v1.Key == v2.Key)
-								return v1.Value.Equals(v2.Value);
-						}
-					}
-				}
-				
-				return false;
-			}				
-			
 			return ((Resource)other).Uri != null && ((Resource)other).Uri == Uri;
 		}
 		
@@ -131,9 +138,73 @@ namespace SemWeb {
 		public static bool operator !=(Entity a, Entity b) {
 			return !(a == b);
 		}
+		
+		public override string ToString() {
+			return "<" + Uri + ">";
+		}
 	}
 	
+	public class BNode : Entity {
+		string localname;
+	
+		public BNode() {
+		}
+		
+		public BNode(string localName) {
+			localname = localName;
+			if (localname != null && localname.Length == 0) throw new ArgumentException("localname cannot be the empty string");
+		}
+		
+		public string LocalName { get { return localname; } }
+
+		public override int GetHashCode() {
+			if (ekKey != null)
+				return ekKey.GetHashCode() ^ ekValue.GetHashCode();
+			
+			// If there's no ExtraKeys info, then this
+			// object is only equal to itself.  It's then safe
+			// to use object.GetHashCode().
+			return base.GetHashCode();
+		}
+			
+		public override bool Equals(object other) {
+			if (object.ReferenceEquals(this, other)) return true;
+			if (!(other is BNode)) return false;
+			
+			object okKey = ((Resource)other).ekKey;
+			object okValue = ((Resource)other).ekValue;
+			
+			return (ekKey != null && okKey != null)
+				&& (ekKey == okKey)
+				&& ekValue.Equals(okValue);
+		}
+		
+		public override string ToString() {
+			if (LocalName != null)
+				return "_:" + LocalName;
+			else
+				return "_:bnode" + GetHashCode();
+		}
+	}
+	
+	public class Variable : BNode {
+		public Variable() : base() {
+		}
+		
+		public Variable(string variableName) : base(variableName) {
+		}
+		
+		public override string ToString() {
+			if (LocalName != null)
+				return "?" + LocalName;
+			else
+				return "?var" + GetHashCode();
+		}
+	}
+
 	public sealed class Literal : Resource { 
+		private const string XMLSCHEMANS = "http://www.w3.org/2001/XMLSchema#";
+
 		private string value, lang, type;
 		
 		public Literal(string value) : this(value, null, null) {
@@ -145,6 +216,9 @@ namespace SemWeb {
 		  this.value = string.Intern(value);
 		  this.lang = language;
 		  this.type = dataType;
+		  
+		  if (language != null && language.Length == 0) throw new ArgumentException("language cannot be the empty string");
+		  if (dataType != null && dataType.Length == 0) throw new ArgumentException("dataType cannot be the empty string");
 		}
 		
 		public static explicit operator Literal(string value) { return new Literal(value); }
@@ -227,6 +301,39 @@ namespace SemWeb {
 			}
 			
 			return new Literal(value, lang, datatype);
+		}
+		
+		public object ParseValue() {
+			string dt = DataType;
+			if (dt == null || !dt.StartsWith(XMLSCHEMANS)) return Value;
+			dt = dt.Substring(XMLSCHEMANS.Length);
+			
+			if (dt == "string" || dt == "normalizedString" || dt == "anyURI") return Value;
+			if (dt == "boolean") return (Value == "true" || Value == "1");
+			if (dt == "decimal" || dt == "integer" || dt == "nonPositiveInteger" || dt == "negativeInteger" || dt == "nonNegativeInteger" || dt == "positiveInteger") return Decimal.Parse(Value);
+			if (dt == "float") return float.Parse(Value);
+			if (dt == "double") return double.Parse(Value);
+			if (dt == "duration") return TimeSpan.Parse(Value); // syntax?
+			if (dt == "dateTime" || dt == "time" || dt == "date") return DateTime.Parse(Value); // syntax?
+			if (dt == "long") return long.Parse(Value);
+			if (dt == "int") return int.Parse(Value);
+			if (dt == "short") return short.Parse(Value);
+			if (dt == "byte") return sbyte.Parse(Value);
+			if (dt == "unsignedLong") return ulong.Parse(Value);
+			if (dt == "unsignedInt") return uint.Parse(Value);
+			if (dt == "unsignedShort") return ushort.Parse(Value);
+			if (dt == "unsignedByte") return byte.Parse(Value);
+			
+			return Value;
+		}
+		
+		public Literal Normalize() {
+			if (DataType == null) return this;
+			return new Literal(ParseValue().ToString(), Language, DataType);
+		}
+		
+		public static Literal Create(bool value) {
+			return new Literal(value ? "true" : "false", null, XMLSCHEMANS + "boolean");
 		}
 	}
 
@@ -334,7 +441,7 @@ namespace SemWeb {
 	*/
 }
 
-namespace SemWeb.Bind {
+namespace SemWeb.Util.Bind {
 	public class Any {
 		Entity ent;
 		Store model;

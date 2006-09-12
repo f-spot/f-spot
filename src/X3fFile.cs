@@ -66,6 +66,11 @@ namespace FSpot.X3f {
 	public class X3fFile : DCRawFile, SemWeb.StatementSource {
 		Info info;
 
+                // false seems a safe default
+                public bool Distinct {
+                        get { return false; }
+                }
+
 		internal Info Info {
 			get {
 				if (info == null)

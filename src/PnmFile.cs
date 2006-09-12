@@ -4,6 +4,12 @@ using System;
 
 namespace FSpot.Pnm {
 	public class PnmFile : ImageFile, StatementSource {
+
+                // false seems a safe default
+                public bool Distinct {
+                        get { return false; }
+                }
+
 		public PnmFile (Uri uri) : base (uri) 
 		{
 		}

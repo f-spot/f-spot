@@ -180,7 +180,7 @@ namespace FSpot {
 					foreach (Statement stmt in store) {
 						// Skip anonymous subjects because they are
 						// probably part of a collection
-						if (stmt.Subject.Uri == null) 
+						if (stmt.Subject.Uri == null && store.SelectSubjects (null, stmt.Subject).Length > 0)
 							continue;
 						
 						string title;
@@ -195,7 +195,7 @@ namespace FSpot {
 					        if (value != null)
 							value = Escape (value);
 						else {
-							MemoryStore substore = store.Select (new Statement ((Entity)stmt.Object, null, null, null));
+							MemoryStore substore = store.Select (new Statement ((Entity)stmt.Object, null, null, null)).Load();
 							WriteCollection (substore, stream);
 						}
 						
@@ -240,17 +240,16 @@ namespace FSpot {
 			string type = null;
 
 			foreach (Statement stmt in substore) {
-				if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("rdf:type")) {
+				if (stmt.Predicate.Uri == MetadataStore.Namespaces.Resolve ("rdf:type")) {
 					string prefix;
-					MetadataStore.Namespaces.Normalize (stmt.Object.ToString (), out prefix, out type);
+					MetadataStore.Namespaces.Normalize (stmt.Object.Uri, out prefix, out type);
 				}
 			}
 			
 			stream.Write ("<table cellpadding=5 cellspacing=0 width=100%>");
 			foreach (Statement sub in substore) {
 				if (sub.Object is Literal) {
-					string predicate = sub.Predicate.ToString ();
-					string title = System.IO.Path.GetFileName (predicate);
+					string title;
 					string value = ((Literal)(sub.Object)).Value;
 					string vc = "";
 					
@@ -272,7 +271,7 @@ namespace FSpot {
 				} else {
 					if (type == null) {
 						stream.Write ("<tr><td>");
-						MemoryStore substore2 = substore.Select (new Statement ((Entity)sub.Object, null, null, null));
+						MemoryStore substore2 = substore.Select (new Statement ((Entity)sub.Object, null, null, null)).Load();
 						if (substore.StatementCount > 0)
 							WriteCollection (substore2, stream);
 						stream.Write ("</tr><td>");
@@ -297,7 +296,7 @@ namespace FSpot {
 
 			public bool Add (SemWeb.Statement stmt)
 			{
-				string predicate = stmt.Predicate.ToString ();
+				string predicate = stmt.Predicate.Uri;
 				string title = System.IO.Path.GetFileName (predicate);
 				string bg = InfoDisplay.Color (info.Style.Background (Gtk.StateType.Active));
 				string fg = InfoDisplay.Color (info.Style.Foreground (Gtk.StateType.Active));

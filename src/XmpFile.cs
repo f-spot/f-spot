@@ -7,6 +7,11 @@ namespace FSpot.Xmp {
 	{
 		MetadataStore store;
 
+                // false seems like a safe default
+                public bool Distinct {
+                        get { return false; }
+                }
+
 		public MetadataStore Store {
 			get { return store; }
 		}
@@ -36,17 +41,31 @@ namespace FSpot.Xmp {
 			try {
 				XmlTextWriter text;
 				RdfXmlWriter writer;
+                                XmlDocument rdfdoc = new XmlDocument();
 
+                                // first, construct the rdf guts, semweb style
+                                writer = new RdfXmlWriter(rdfdoc);
+                                writer.Write(store);
+                                writer.Close();
+
+                                // now construct the xmp wrapper packet
 				text = new XmlTextWriter (stream, System.Text.Encoding.UTF8);
-				using (writer = new RdfXmlWriter (text, MetadataStore.Namespaces)) {
-					text.WriteProcessingInstruction ("xpacket", "begin=\"\ufeff\" id=\"testing\"");
-					text.WriteStartElement ("x:xmpmeta");
-					text.WriteAttributeString ("xmlns", "x", null, "adobe:ns:meta/");
-					store.Select (writer);
+ 				text.Formatting = Formatting.Indented;
+                        
+                                text.WriteProcessingInstruction ("xpacket", "begin=\"\ufeff\" id=\"testing\"");
+                                text.WriteStartElement ("x:xmpmeta");
+                                text.WriteAttributeString ("xmlns", "x", null, "adobe:ns:meta/");
 
-				}
-				text.WriteEndElement ();
-				text.WriteProcessingInstruction ("xpacket", "end=\"r\"");
+                                // insert the rdf block (unfortunately, losing formatting)
+                                // this ugliness is to prevent getting <?xml... decls in the
+                                // middle of the final xmp packet
+				//rdfdoc.WriteContentTo (text);
+                                //text.WriteRaw(rdfdoc.ChildNodes[1].OuterXml);
+				rdfdoc.ChildNodes[1].WriteTo (text);
+
+                                // now close off the xmp packet
+                                text.WriteEndElement ();
+                                text.WriteProcessingInstruction ("xpacket", "end=\"r\"");
 				text.Close ();
 				
 			} catch (System.Exception e) {

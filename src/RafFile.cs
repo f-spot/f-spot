@@ -20,6 +20,12 @@ namespace FSpot.Raf {
 	}
 	
 	public class RafFile : ImageFile, SemWeb.StatementSource {
+
+                // false seems a safe default
+                public bool Distinct {
+                        get { return false; }
+                }
+
 		public RafFile (System.Uri uri) : base (uri)
 		{
 		}

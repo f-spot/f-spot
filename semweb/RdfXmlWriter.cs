@@ -357,7 +357,7 @@ namespace SemWeb {
 			
 			if (writer != null) {
 				doc.WriteTo(writer);
-				writer.Close();
+				//writer.Close();
 			}
 		}
 		

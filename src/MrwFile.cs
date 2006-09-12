@@ -177,6 +177,11 @@ namespace FSpot.Mrw {
 		{
 		}
 
+                // false seems a safe default
+                public bool Distinct {
+                        get { return false; }
+                }
+
 		public MrwFile (string path) : base (path)
 		{
 		}

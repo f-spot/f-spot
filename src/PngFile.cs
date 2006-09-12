@@ -9,6 +9,11 @@ namespace FSpot.Png {
 	public class PngFile : ImageFile, SemWeb.StatementSource {
 		PngHeader header;
 
+                // false seems a safe default
+                public bool Distinct {
+                        get { return false; }
+                }
+
 		private PngHeader Header {
 			get {
 				if (header == null) {

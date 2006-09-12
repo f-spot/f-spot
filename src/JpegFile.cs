@@ -14,6 +14,11 @@ namespace FSpot {
 		private XmpFile xmp;
 		private JpegHeader header;
 		private FSpot.Tiff.Header exif_header;
+
+                // False seems a safe default
+                public bool Distinct {
+                        get { return false; }
+                }
 		
 		public JpegFile (Uri uri) : base (uri)
 		{

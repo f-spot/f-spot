@@ -108,6 +108,12 @@ public class JpegHeader : SemWeb.StatementSource {
 	private System.Collections.ArrayList marker_list = new System.Collections.ArrayList ();	
 	private byte [] image_data;
 
+                // False seems a safe default
+                public bool Distinct {
+                        get { return false; }
+                }
+
+
 	public class Marker {
 		public JpegMarker Type;
 		public byte [] Data;

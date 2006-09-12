@@ -140,6 +140,11 @@ namespace FSpot.Bim {
 
 	public class BimFile : SemWeb.StatementSource
 	{
+                // False seems a safe default
+                public bool Distinct {
+                        get { return false; }
+                }
+
 		System.Collections.ArrayList entries = new System.Collections.ArrayList ();
 
 		public BimFile (System.IO.Stream stream)

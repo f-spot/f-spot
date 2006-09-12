@@ -93,12 +93,13 @@ namespace FSpot {
 		
 		public static void GetDescription (MemoryStore store, Statement stmt, out string label, out string value)
 		{
-			string predicate = stmt.Predicate.ToString ();
+			string predicate = stmt.Predicate.Uri;
 
 			Description d = (Description) table [predicate];
 
 			label = System.IO.Path.GetFileName (predicate);
 			value = null;
+
 			if (stmt.Object is Literal)
 			        value = ((Literal)(stmt.Object)).Value;
 
@@ -213,8 +214,8 @@ namespace FSpot {
 
 		public static void AddLiteral (StatementSink sink, string predicate, string type, Literal value)
 		{
-			Entity empty = new Entity (null);
-			Statement top = new Statement ("", (Entity)MetadataStore.Namespaces.Resolve (predicate), empty);
+			Entity empty = new BNode ();
+			Statement top = new Statement (new BNode (), (Entity)MetadataStore.Namespaces.Resolve (predicate), empty);
 			Statement desc = new Statement (empty, 
 							(Entity)MetadataStore.Namespaces.Resolve ("rdf:type"), 
 							(Entity)MetadataStore.Namespaces.Resolve (type));
@@ -228,7 +229,7 @@ namespace FSpot {
 
 		public static void AddLiteral (StatementSink sink, string predicate, string value)
 		{
-			Statement stmt = new Statement ((Entity)"", 
+			Statement stmt = new Statement (new BNode (), 
 							(Entity)MetadataStore.Namespaces.Resolve (predicate), 
 							new Literal (value));
 			sink.Add (stmt);
@@ -236,7 +237,7 @@ namespace FSpot {
 
 		public static void Add (StatementSink sink, string predicate, string type, string [] values)
 		{
-			Add (sink, new Entity (""), predicate, type, values);
+			Add (sink, new BNode(), predicate, type, values);
 		}
 
 		public void Update (string predicate, string type, string [] values)
@@ -263,8 +264,9 @@ namespace FSpot {
 			foreach (Statement stmt in to_remove)
 				this.Remove (stmt);
 
-			if (values.Length > 0)
+			if (values.Length > 0) {
 				Add (this, predicate, type, values);
+                        }
 		}
 		
 		public static void Add (StatementSink sink, Entity subject, string predicate, string type, string [] values)
@@ -274,7 +276,7 @@ namespace FSpot {
 				return;
 			}
 
-			Entity empty = new Entity (null);
+                        Entity empty = new SemWeb.BNode();
 			Statement top = new Statement (subject, (Entity)MetadataStore.Namespaces.Resolve (predicate), empty);
 			Statement desc = new Statement (empty, 
 							(Entity)MetadataStore.Namespaces.Resolve ("rdf:type"), 

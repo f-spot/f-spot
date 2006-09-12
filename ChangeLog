@@ -1,5 +1,30 @@
 2006-09-11  Larry Ewing  <lewing@novell.com>
 
+	* src/Tiff.cs: Use BNode interface.
+	
+	* src/InfoDisplay.cs: fix to work with the new semweb import.
+	
+	* semweb/Resource.cs: disable empty uri check so we can parse
+	files with "" Subjects.
+	
+	* semweb/:
+	* src/Bim.cs:
+	* src/Ciff.cs:
+	* src/InfoDisplay.cs:
+	* src/IptcFile.cs:
+	* src/JpegFile.cs:
+	* src/JpegHeader.cs:
+	* src/MetadataStore.cs:
+	* src/MrwFile.cs:
+	* src/PngFile.cs:
+	* src/PnmFile.cs:
+	* src/RafFile.cs:
+	* src/SvgFile.cs:
+	* src/Tiff.cs:
+	* src/X3fFile.cs:
+	* src/XmpFile.cs: Patch from Karl Palsson to update to a new
+	semweb from #350995
+
 	* src/PicasaWebExport.cs: make picasa use the OrientationFilter.
 
 	* src/OrientationFilter.cs: overly simple filter adjust image

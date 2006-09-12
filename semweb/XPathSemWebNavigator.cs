@@ -15,7 +15,7 @@ namespace SemWeb.Util {
 		ArrayList stack = new ArrayList();
 		Position current;
 		
-		private static Entity ExpandEntitiesOfType = new Entity(null);
+		private static Entity ExpandEntitiesOfType = new BNode();
 		
 		Entity rdfType = NS.RDF+"type";
 		

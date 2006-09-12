@@ -315,6 +315,11 @@ namespace FSpot.Ciff {
 		public ImageDirectory root;
 		private uint version;
 		bool little;
+
+                // False seems a safe default
+                public bool Distinct {
+                        get { return false; }
+                }
 		
 		public ImageDirectory Root {
 			get {
