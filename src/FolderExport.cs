@@ -364,13 +364,13 @@ namespace FSpot {
 			MakeDir (SubdirPath (req.Name));
 			path = SubdirPath (req.Name, ImageName (image_num));
 			
-			if (scale) 
+			if (scale) {
 				PixbufUtils.Resize (photo_path, path, size, true); 	
-			else if (rotate && OrientationFilter.Convert (photo_path, path))
-				; // do nothing if it was successful the filter moved the file
-			else
+			} else if (rotate && OrientationFilter.Convert (photo_path, path)) {
+			} else {
 				File.Copy(photo_path, path, true);
-			
+			}
+
 			Gdk.Pixbuf img = null;
 			Gdk.Pixbuf scaled = null;
 
@@ -668,7 +668,7 @@ namespace FSpot {
 			fs.Close ();
 			/* Javascript for persistant style change */
 			MakeDir (SubdirPath ("script"));
-		  s = assembly.GetManifestResourceStream (javascript);
+			s = assembly.GetManifestResourceStream (javascript);
 			fs = System.IO.File.Open (SubdirPath ("script", javascript), System.IO.FileMode.Create);
 
 			buffer = new byte [8192];
