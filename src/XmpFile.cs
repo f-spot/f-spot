@@ -56,11 +56,6 @@ namespace FSpot.Xmp {
                                 text.WriteStartElement ("x:xmpmeta");
                                 text.WriteAttributeString ("xmlns", "x", null, "adobe:ns:meta/");
 
-                                // insert the rdf block (unfortunately, losing formatting)
-                                // this ugliness is to prevent getting <?xml... decls in the
-                                // middle of the final xmp packet
-				//rdfdoc.WriteContentTo (text);
-                                //text.WriteRaw(rdfdoc.ChildNodes[1].OuterXml);
 				rdfdoc.ChildNodes[1].WriteTo (text);
 
                                 // now close off the xmp packet
