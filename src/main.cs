@@ -29,6 +29,8 @@ public class Driver {
 					System.Console.WriteLine ("Usage f-spot [OPTION. ..]\n");
 					System.Console.WriteLine ("  --import [uri]\t\t\timport from the given uri");
 					System.Console.WriteLine ("  --view <file>\t\t\t\tview a file or directory ");
+					System.Console.WriteLine ("  --basedir <dir>\t\t\t<dir> where the photo database is located ");
+					System.Console.WriteLine ("  --photodir <dir>\t\t\timport photos in <dir> ");
 					System.Console.WriteLine ("  --shutdown\t\t\t\tshutdown a running f-spot server");
 					System.Console.WriteLine ("  --slideshow\t\t\t\tdisplay a slideshow");
 					System.Console.WriteLine ("  --debug\t\t\t\trun f-spot with mono in debug mode");
@@ -71,7 +73,25 @@ public class Driver {
 					Core.AssertOwnership ();
 					System.Console.WriteLine ("Starting new FSpot server");
 				}
-			
+				
+				// Process this before creating the Core
+				for (int i = 0; i < args.Length; i++) {
+					switch (args[i]) {
+					case "--basedir":
+							if (++i < args.Length) {
+								FSpot.Global.BaseDirectory = args [i];
+								System.Console.WriteLine("BaseDirectory is now {0}", args[i]);
+							}
+						break;
+					case "--photodir":
+							if (++i < args.Length) {
+								FSpot.Global.PhotoDirectory = args [i];
+								System.Console.WriteLine("PhotoDirectory is now {0}", args[i]);
+							}
+						break;
+					}
+				}
+
 				Core core = null;
 				try {
 					if (control == null && create) {

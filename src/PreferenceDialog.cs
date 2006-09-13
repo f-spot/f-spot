@@ -29,6 +29,7 @@ namespace FSpot {
 		[Glade.Widget] private ComboBox destination_combo;
 		[Glade.Widget] private OptionMenu tag_option;
 		[Glade.Widget] private Button set_saver_button;
+		[Glade.Widget] private FileChooserButton photosdir_chooser;
 		private static PreferenceDialog prefs = null;
 		int screensaver_tag;
 		private const string SaverCommand = "f-spot-screensaver";
@@ -39,6 +40,13 @@ namespace FSpot {
 			LoadPreference (Preferences.METADATA_EMBED_IN_IMAGE);
 			LoadPreference (Preferences.SCREENSAVER_TAG);
 			LoadPreference (Preferences.GNOME_SCREENSAVER_THEME);
+			if (!Global.CustomPhotoDirectory) {
+				photosdir_chooser.CurrentFolderChanged += HandlePhotosdirChanged;
+				photosdir_chooser.SetCurrentFolder (Global.PhotoDirectory);
+			} else {
+				photosdir_chooser.SetCurrentFolder(Global.PhotoDirectory);
+				photosdir_chooser.Sensitive = false;
+			}
 
 			Gtk.CellRendererText name_cell = new Gtk.CellRendererText ();
 			Gtk.CellRendererText desc_cell = new Gtk.CellRendererText ();
@@ -110,6 +118,12 @@ namespace FSpot {
 			Preferences.Set (Preferences.METADATA_EMBED_IN_IMAGE, metadata_check.Active);
 		}
 
+		void HandlePhotosdirChanged (object sender, System.EventArgs args)
+		{
+			Preferences.Set (Preferences.STORAGE_PATH, photosdir_chooser.Filename);
+			Global.PhotoDirectory = photosdir_chooser.Filename;
+		}
+
 		void LoadPreference (string key)
 		{
 			object val = Preferences.Get (key);
@@ -137,6 +151,9 @@ namespace FSpot {
 				sensitive |= (theme == null || theme.Length != 1 || theme [0] != SaverCommand);
 
 				set_saver_button.Sensitive = sensitive;
+				break;
+			case Preferences.STORAGE_PATH:
+				photosdir_chooser.SetCurrentFolder ((val));
 				break;
 			}
 		}

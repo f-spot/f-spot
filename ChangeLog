@@ -1,3 +1,14 @@
+2006-08-23  Stephane Delcroix <stephane@delcroix.org>
+ 
+ 	* src/Global.cs:
+ 	* src/Preferences.cs: 
+ 	* src/PreferenceDialog:
+ 	* src/main.cs
+ 	* src/f-spot.glade: Fix both bgo #325166 and #344361. Add a new
+ 	Preferences.STORAGE_PATH with ~/Photos as default, add an UI in the
+ 	preferences dialog, handle --photodir and --basedir command line
+	options.
+	
 2006-09-12  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* tools/f-spot-screensaver: add missing !/

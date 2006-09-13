@@ -5,16 +5,32 @@ namespace FSpot {
 				return System.IO.Path.Combine (System.Environment.GetEnvironmentVariable ("HOME"), "");	
 			}
 		}
+		
+		private static string base_dir = System.IO.Path.Combine (HomeDirectory,  System.IO.Path.Combine (".gnome2", "f-spot"));
 
 		public static string BaseDirectory {
 			get {
-				return System.IO.Path.Combine (HomeDirectory,  System.IO.Path.Combine (".gnome2", "f-spot"));
+				return base_dir;
+			}
+			set {
+				base_dir = value;
 			}
 		}
 
+		private static string photo_directory = (string) Preferences.Get(Preferences.STORAGE_PATH);
+
 		public static string PhotoDirectory {
 			get {
-				return System.IO.Path.Combine (HomeDirectory, "Photos");
+				return photo_directory;
+			}
+			set {
+				photo_directory = value;
+			}
+		}
+
+		public static bool CustomPhotoDirectory {
+			get {
+				return photo_directory != (string)Preferences.Get(Preferences.STORAGE_PATH);
 			}
 		}
 

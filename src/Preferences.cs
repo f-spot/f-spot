@@ -83,10 +83,13 @@ namespace FSpot
 
 		public const string SCREENSAVER_TAG = "/apps/f-spot/screensaver/tag_id";
 
+		public const string STORAGE_PATH = "/apps/f-spot/import/storage_path";
+
 		public const string METADATA_EMBED_IN_IMAGE = "/apps/f-spot/metadata/embed_in_image";
 
 		public const string GNOME_SCREENSAVER_THEME = "/apps/gnome-screensaver/themes";
 		public const string GNOME_SCREENSAVER_MODE = "/apps/gnome-screensaver/mode";
+
 
 		static GConf.Client client;
 		static GConf.NotifyEventHandler changed_handler;
@@ -140,9 +143,11 @@ namespace FSpot
 			case SIDEBAR_POSITION:
 			case ZOOM:
 				return null;
+
 			case SCREENSAVER_TAG:
 				return 1;
-				
+			case STORAGE_PATH:
+				return System.IO.Path.Combine (FSpot.Global.HomeDirectory, Catalog.GetString("Photos"));
 			case EXPORT_EMAIL_SIZE:
 				return 3;	// medium size 640px
 			case EXPORT_EMAIL_ROTATE:
