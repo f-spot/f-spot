@@ -153,7 +153,7 @@ namespace FSpot {
 				set_saver_button.Sensitive = sensitive;
 				break;
 			case Preferences.STORAGE_PATH:
-				photosdir_chooser.SetCurrentFolder ((val));
+				photosdir_chooser.SetCurrentFolder ((string)val);
 				break;
 			}
 		}
