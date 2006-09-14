@@ -1,5 +1,13 @@
 2006-09-14  Larry Ewing  <lewing@novell.com>
 
+	* src/PhotoStore.cs: reuse the ImageFile when generating the
+	thumbnail.
+
+	* src/XmpTagsImporter.cs:
+	* src/XmpTagsMetadata.cs: Add these files from Bengt's import
+	patch so that I can edit them with revision control.  The are not
+	part of the build yet.
+
 	* src/ImportCommand.cs: turn off tag display.
 
 	* src/Tiff.cs: add CFA array with a proper BNode.
