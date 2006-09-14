@@ -582,6 +582,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		icon_scrolled.SetSizeRequest (200, 200);
 		icon_scrolled.Add (tray);
 		//icon_scrolled.Visible = false;
+		tray.DisplayTags = false;
 		tray.Show ();
 
 		photo_view = new FSpot.PhotoImageView (collection);
