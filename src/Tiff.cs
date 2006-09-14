@@ -928,7 +928,7 @@ namespace FSpot.Tiff {
 				case TagId.ExifCFAPattern:
 					CFAPattern pattern = new CFAPattern (e.RawData, e.IsLittle);
 					Entity empty = new BNode ();
-					Statement top = new Statement ("", 
+					Statement top = new Statement (new BNode (), 
 								       (Entity)MetadataStore.Namespaces.Resolve ("exif:" + e.Id.ToString ()),
 								       empty);
 					

@@ -1,3 +1,11 @@
+2006-09-14  Larry Ewing  <lewing@novell.com>
+
+	* src/Tiff.cs: add CFA array with a proper BNode.
+
+2006-09-13  Larry Ewing  <lewing@novell.com>
+
+	* src/FolderExport.cs: Silence a stupid warning.
+
 2006-08-23  Stephane Delcroix <stephane@delcroix.org>
  
  	* src/Global.cs:
