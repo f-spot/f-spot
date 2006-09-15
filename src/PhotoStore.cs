@@ -603,8 +603,14 @@ public class PhotoStore : DbStore {
 
 	public static Pixbuf GenerateThumbnail (Uri uri)
 	{
-		Pixbuf thumbnail = null;
 		FSpot.ImageFile img = FSpot.ImageFile.Create (uri);
+		
+		return GenerateThumbnail (uri, img);
+	}
+
+	public static Pixbuf GenerateThumbnail (Uri uri, ImageFile img)
+	{
+		Pixbuf thumbnail = null;
 
 		if (img is FSpot.IThumbnailContainer) {
 			try {
@@ -730,7 +736,7 @@ public class PhotoStore : DbStore {
 		AddToCache (photo);
 		photo.Loaded = true;
 
-		thumbnail = GenerateThumbnail (UriList.PathToFileUri (newPath));		
+		thumbnail = GenerateThumbnail (UriList.PathToFileUri (newPath), img);		
 		EmitAdded (photo);
 
 		return photo;
