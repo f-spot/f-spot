@@ -1,6 +1,7 @@
 using SemWeb;
 using SemWeb.Util;
 using Mono.Posix;
+using FSpot.Xmp;
 
 namespace FSpot {
         internal class Description {
@@ -206,9 +207,9 @@ namespace FSpot {
 
 		public void Dump ()
 		{
-			foreach (SemWeb.Statement stmt in this) {
-				System.Console.WriteLine(stmt);
-			}
+			XmpFile xmp = new XmpFile ();
+			xmp.Store = this;
+			xmp.Save (System.Console.OpenStandardOutput ());
 		}
 
 		public static void AddLiteral (StatementSink sink, string predicate, string type, Literal value)
