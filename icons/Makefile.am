@@ -9,6 +9,7 @@ noinst_DATA =					\
 	f-spot-favorite.png			\
 	f-spot-fullscreen.png			\
 	f-spot-hidden.png			\
+	f-spot-imported-xmp-tags.png		\
 	f-spot-loading.png			\
 	f-spot-new-tag.png			\
 	f-spot-other.png			\
