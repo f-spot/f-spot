@@ -22,12 +22,7 @@ namespace FSpot.Xmp {
 		private TagStore tag_store;
 		private Stack tags_created;
 
-		static private string LastImportStr = "Imported Tags";
 		static private string LastImportIcon = "f-spot-imported-xmp-tags.png";
-		static private string CityStr = "City";
-		static private string CountryStr = "Country";
-		static private string LocationStr = "Location";
-		static private string StateStr = "State";
 		static private string PlacesIcon = "f-spot-places.png";
 
 	        const string UserComment = MetadataStore.ExifNS + "UserComment";
@@ -242,7 +237,9 @@ namespace FSpot.Xmp {
 			}
 
 			ProcessStore (xmp.Store, photo);
-			
+#if enable_debug
+			xmp.Save (Console.OpenStandardOutput ());
+#endif			
 			return true;
 		}
 
