@@ -150,28 +150,42 @@ namespace FSpot {
 			return result;
 		}
 	}
-
+	
 	public class MetadataStore : MemoryStore
 	{
 		public static NamespaceManager Namespaces;
 		private static MetadataStore descriptions;
+		
+		public const string PhotoshopNS = "http://ns.adobe.com/photoshop/1.0/";
+		public const string Iptc4xmpCoreNS = "http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/";
+		public const string DcNS = "http://purl.org/dc/elements/1.1/";
+		public const string XmpNS = "http://ns.adobe.com/xap/1.0/";
+		public const string XmpidqNS = "http://ns.adobe.com/xmp/Identifier/qual/1.0";
+		public const string XmpRightsNS = "http://ns.adobe.com/xap/1.0/rights/";
+		public const string XmpBJNS = "http://ns.adobe.com/xap/1.0/bj/";
+		public const string XmpMMNS = "http://ns.adobe.com/xap/1.0/mm/";
+		public const string ExifNS = "http://ns.adobe.com/exif/1.0/";
+		public const string TiffNS = "http://ns.adobe.com/tiff/1.0/";
+		public const string RdfNS = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
+		public const string RdfsNS = "http://www.w3.org/2000/01/rdf-schema#";
+		public const string IViewNS = "http://ns.iview-multimedia.com/mediapro/1.0";
 
 		static MetadataStore ()
 		{
 			Namespaces = new NamespaceManager ();
 			
-			Namespaces.AddNamespace ("http://ns.adobe.com/photoshop/1.0/", "photoshop");
-			Namespaces.AddNamespace ("http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/", "Iptc4xmpCore");
-			Namespaces.AddNamespace ("http://purl.org/dc/elements/1.1/", "dc");
-			Namespaces.AddNamespace ("http://ns.adobe.com/xap/1.0/", "xmp");
-			Namespaces.AddNamespace ("http://ns.adobe.com/xmp/Identifier/qual/1.0", "xmpidq");
-			Namespaces.AddNamespace ("http://ns.adobe.com/xap/1.0/rights/", "xmpRights");
-			Namespaces.AddNamespace ("http://ns.adobe.com/xap/1.0/bj/", "xmpBJ");
-			Namespaces.AddNamespace ("http://ns.adobe.com/xap/1.0/mm/", "xmpMM");
-			Namespaces.AddNamespace ("http://ns.adobe.com/exif/1.0/", "exif");
-			Namespaces.AddNamespace ("http://ns.adobe.com/tiff/1.0/", "tiff");
-			Namespaces.AddNamespace ("http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdf");
-			Namespaces.AddNamespace ("http://www.w3.org/2000/01/rdf-schema#", "rdfs");
+			Namespaces.AddNamespace (PhotoshopNS, "photoshop");
+			Namespaces.AddNamespace (Iptc4xmpCoreNS, "Iptc4xmpCore");
+			Namespaces.AddNamespace (DcNS, "dc");
+			Namespaces.AddNamespace (XmpNS, "xmp");
+			Namespaces.AddNamespace (XmpidqNS, "xmpidq");
+			Namespaces.AddNamespace (XmpRightsNS, "xmpRights");
+			Namespaces.AddNamespace (XmpBJNS, "xmpBJ");
+			Namespaces.AddNamespace (XmpMMNS, "xmpMM");
+			Namespaces.AddNamespace (ExifNS, "exif");
+			Namespaces.AddNamespace (TiffNS, "tiff");
+			Namespaces.AddNamespace (RdfNS, "rdf");
+			Namespaces.AddNamespace (RdfsNS, "rdfs");
 		}
 
 		public static MetadataStore Descriptions {
@@ -195,21 +209,6 @@ namespace FSpot {
 			foreach (SemWeb.Statement stmt in this) {
 				System.Console.WriteLine(stmt);
 			}
-
-			/*
-			XPathSemWebNavigator navi = new XPathSemWebNavigator (this, Namespaces);
-			navi.MoveToRoot ();
-			navi.MoveToFirstChild ();
-			navi.MoveToFirstChild ();
-			DumpNode (navi, 0);
-			*/
-
-			/* Use the statement writer to filter the messages */
-			/*
-			foreach (string nspace in Namespaces.GetNamespaces ()) {
-				this.Select (new StatementWriter (nspace));
-			}
-			*/
 		}
 
 		public static void AddLiteral (StatementSink sink, string predicate, string type, Literal value)

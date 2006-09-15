@@ -1,5 +1,7 @@
 2006-09-14  Larry Ewing  <lewing@novell.com>
 
+	* src/MetadataStore.cs: refactor the namespace bits
+
 	* src/PhotoStore.cs: reuse the ImageFile when generating the
 	thumbnail.
 
