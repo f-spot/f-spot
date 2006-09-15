@@ -366,8 +366,8 @@ namespace FSpot.Iptc {
 					break;
 				case DataSetID.Keywords:
 					if (keywords == null) {
-						keywords = new Entity (null);
-						sink.Add (new Statement ((Entity)"", MetadataStore.Namespaces.Resolve ("dc:subject"), keywords)); 
+						keywords = new BNode ();
+						sink.Add (new Statement (new BNode (), MetadataStore.Namespaces.Resolve ("dc:subject"), keywords)); 
 						sink.Add (new Statement (keywords, 
 									 (Entity)MetadataStore.Namespaces.Resolve ("rdf:type"),
 									 (Entity)MetadataStore.Namespaces.Resolve ("rdf:Bag")));
@@ -378,7 +378,7 @@ namespace FSpot.Iptc {
 					break;
 				default:
 					if (data.XmpPredicate != null) {
-						sink.Add (new Statement ((Entity)"", 
+						sink.Add (new Statement (new BNode (), 
 									 (Entity)data.XmpPredicate, 
 									 new Literal (data.XmpObject)));
 					}
@@ -395,11 +395,11 @@ namespace FSpot.Iptc {
 				try {
 					data.Load (stream);
 				} catch (System.Exception e) {
-					System.Console.WriteLine (e.ToString ());
+					//System.Console.WriteLine (e.ToString ());
 				}
 				DataSetInfo info = DataSetInfo.FindInfo (data.ID);
-				System.Console.WriteLine ("{0}:{1} - {2} {3}", data.RecordNumber, data.DataSetNumber, 
-							  data.ID.ToString (), info.Description);
+				//System.Console.WriteLine ("{0}:{1} - {2} {3}", data.RecordNumber, data.DataSetNumber, 
+				//			  data.ID.ToString (), info.Description);
 				sets.Add (data);
 			}
 		}

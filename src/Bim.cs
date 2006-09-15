@@ -189,7 +189,7 @@ namespace FSpot.Bim {
 			{
 				Entry current = new Entry ();
 				current.Load (stream);
-				System.Console.WriteLine ("read {0} - {1}", ((EntryType)current.Type).ToString (), current.Name);
+				//System.Console.WriteLine ("read {0} - {1}", ((EntryType)current.Type).ToString (), current.Name);
 				try {
 					//System.Console.WriteLine (System.Text.Encoding.ASCII.GetString (current.Data));
 				} catch (System.Exception e) {

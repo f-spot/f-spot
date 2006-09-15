@@ -122,6 +122,8 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/TagSelectionDialog.cs		\
 	$(srcdir)/X3fFile.cs			\
 	$(srcdir)/XmpFile.cs			\
+	$(srcdir)/XmpTagsImporter.cs		\
+	$(srcdir)/XmpTagsMetadata.cs		\
 	$(srcdir)/main.cs
 
 ASSEMBLIES =					\
@@ -153,6 +155,7 @@ RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-events.png,f-spot-events.png		\
 	-resource:$(top_srcdir)/icons/f-spot-favorite.png,f-spot-favorite.png 		\
 	-resource:$(top_srcdir)/icons/f-spot-hidden.png,f-spot-hidden.png 		\
+	-resource:$(top_srcdir)/icons/f-spot-imported-xmp-tags.png,f-spot-imported-xmp-tags.png	\
 	-resource:$(top_srcdir)/icons/f-spot-loading.png,f-spot-loading.png		\
 	-resource:$(top_srcdir)/icons/f-spot-logo.png,f-spot-logo.png			\
 	-resource:$(top_srcdir)/icons/f-spot-new-tag.png,f-spot-new-tag.png		\

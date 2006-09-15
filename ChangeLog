@@ -1,3 +1,39 @@
+2006-09-15  Larry Ewing  <lewing@novell.com>
+
+	* src/Bim.cs:
+	* src/IptcFile.cs: Remove debug spew, fix to work properly with
+	the new semweb.
+
+	* src/SvgFile.cs: disable SemWeb source until it works again.
+	
+	* src/XmpTagsImporter.cs: refactor to reduce code size, and remove
+	XmpTagMetadata use. Disable the Description setting for the time
+	being. 
+	
+	* Makefile.am: remove XmpTagsMetadata.cs.
+
+	* src/XmpTagsMetadata.cs: remove from repository.
+
+2006-08-07  Bengt Thuree <bengt@thuree.com> 
+   
+ 	* : The below changes fixes bug #342137
+ 	* src/XmpTagsMetadata.cs: Reads the XMP tags from a photo during import
+   	
+ 	* src/XmpTagsImporter.cs: Creates XMP tags during import
+  	
+ 	* src/FileImportBackend.cs: Calls XmpTagsImporter during import.
+   	
+ 	* src/Makefile.am: Added XmpTagsMetadata.cs and XmpTagsImporter.cs
+ 	
+ 	* src/ImportCommand.cs: disable DisplayTags since otherwise we get a crash. 
+ 	Cancel do not seem to remove all...
+	
+2006-09-15  Larry Ewing  <lewing@novell.com>
+
+	* src/FileImportBackend.cs: use the xmp importer (From
+
+	* src/IptcFile.cs: use BNodes not empty uris.
+
 2006-09-14  Larry Ewing  <lewing@novell.com>
 
 	* src/MetadataStore.cs: refactor the namespace bits

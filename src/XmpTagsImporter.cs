@@ -12,13 +12,16 @@ using System.Collections;
 using System.IO;
 using System.Xml;
 using FSpot.Xmp;
+using SemWeb;
+using SemWeb.Util;
+using Mono.Unix;
 
 namespace FSpot.Xmp {
-	public class XmpTagsImporter {
+        internal class XmpTagsImporter {
 		private PhotoStore photo_store;
 		private TagStore tag_store;
 		private Stack tags_created;
-		private Gtk.Window parent;
+
 		static private string LastImportStr = "Imported Tags";
 		static private string LastImportIcon = "f-spot-imported-xmp-tags.png";
 		static private string CityStr = "City";
@@ -26,8 +29,25 @@ namespace FSpot.Xmp {
 		static private string LocationStr = "Location";
 		static private string StateStr = "State";
 		static private string PlacesIcon = "f-spot-places.png";
-		static private string XMPSidecarStr = "Tags in a XMP Sidecar";
 
+	        const string UserComment = MetadataStore.ExifNS + "UserComment";
+		const string Headline = MetadataStore.PhotoshopNS + "Headline";
+		const string Caption = MetadataStore.PhotoshopNS + "Caption";
+		const string CaptionWriter = MetadataStore.PhotoshopNS + "CaptionWriter";
+		const string Credit = MetadataStore.PhotoshopNS + "Credit";
+		const string Category = MetadataStore.PhotoshopNS + "Category";
+		const string Source = MetadataStore.PhotoshopNS + "Source";
+		const string State = MetadataStore.PhotoshopNS + "State";
+		const string Country = MetadataStore.PhotoshopNS + "Country";
+		const string City = MetadataStore.PhotoshopNS + "City";
+		const string SupplementalCategories = MetadataStore.PhotoshopNS + "SupplementalCategories";
+		const string Location = MetadataStore.Iptc4xmpCoreNS + "Location";
+		const string Title = MetadataStore.XmpNS + "title";
+		const string Description = MetadataStore.DcNS + "description";
+		const string People = MetadataStore.IViewNS + "People";
+		const string Subject = MetadataStore.DcNS + "subject";
+		const string RdfType = MetadataStore.RdfNS + "type";
+		
 		private class TagInfo {
 			// This class contains the Root tag name, and its Icon name (if any)
 			string tag_name;
@@ -59,112 +79,120 @@ namespace FSpot.Xmp {
 		} // TagInfo
 		
 		TagInfo li_root_tag; // This is the Last Import root tag
-		// The following are the various sub tags under Last Import.
-		TagInfo li_subroot_country, li_subroot_city, li_subroot_state, li_subroot_loc;
-					
+		Hashtable taginfo_table = new Hashtable ();
+		
 		public XmpTagsImporter (PhotoStore photo_store, TagStore tag_store)
 		{
 			this.photo_store = photo_store;
 			this.tag_store = tag_store;
 			tags_created = new Stack ();
 			// Prepare the Last Import root tag
-			li_root_tag = new TagInfo (LastImportStr, LastImportIcon);
-			// Prepare possible sub root's under the Last Import root tag
-			li_subroot_loc = new TagInfo (LocationStr, PlacesIcon);
-			li_subroot_country = new TagInfo (CountryStr, PlacesIcon);
-			li_subroot_city = new TagInfo (CityStr, PlacesIcon);
-			li_subroot_state = new TagInfo (StateStr, PlacesIcon);
+			
+			li_root_tag = new TagInfo (Catalog.GetString ("Import Tags"), LastImportIcon);
+			taginfo_table [(Entity)Location] = new TagInfo (Catalog.GetString ("Location"), PlacesIcon);
+			taginfo_table [(Entity)Country] = new TagInfo (Catalog.GetString ("Country"), PlacesIcon);
+			taginfo_table [(Entity)City] = new TagInfo (Catalog.GetString ("City"), PlacesIcon);
+			taginfo_table [(Entity)State] = new TagInfo (Catalog.GetString ("State"), PlacesIcon);
+		}
+		
+		private Tag EnsureTag (TagInfo info, Category parent)
+		{
+			Tag tag = tag_store.GetTagByName (info.TagName);
+			
+			if (tag != null)
+				return tag;
+			
+			tag = tag_store.CreateCategory (parent,
+							info.TagName);
+			
+			if (info.HasIcon)
+				tag.StockIconName = info.IconName;
+			
+			tags_created.Push (tag);
+			return tag;
+		}
+		
+		private void AddTagToPhoto (Photo photo, Resource value, TagInfo sub_tag)
+		{
+			Literal l = value as Literal;
+			if (l != null && l.Value != null && l.Value.Length > 0)
+				AddTagToPhoto (photo, l.Value, sub_tag);
 		}
 
-		private Tag AddImportRootTagIfNotExist (TagInfo new_tag, Category parent)
+		private void AddTagToPhoto (Photo photo, string new_tag_name, TagInfo sub_tag)
 		{
-			Tag root_tag = tag_store.GetTagByName (Mono.Posix.Catalog.GetString (new_tag.TagName));
-			if (root_tag == null) {
-				root_tag = tag_store.GetTagByName (new_tag.TagName);
+			if (new_tag_name == null)
+				return;
 
-				if (root_tag == null) {
-					root_tag = tag_store.CreateCategory (
-						parent, 
-						Mono.Posix.Catalog.GetString (new_tag.TagName));
-						if (new_tag.HasIcon)
-							root_tag.StockIconName = new_tag.IconName;
-					tags_created.Push (root_tag);
+			Tag parent = EnsureTag (li_root_tag, tag_store.RootCategory);
+			
+			// If we should have a sub root make sure it exists
+			if (sub_tag != null)
+				parent = EnsureTag (sub_tag, parent as Category);
+			
+			Tag tag = EnsureTag (new TagInfo (new_tag_name), parent as Category);
+			
+			// Now we have the tag for this place, add the photo to it
+			photo.AddTag (tag);
+		}
+
+		public void ProcessStore (MetadataStore store, Photo photo)
+		{
+			Hashtable desc = new Hashtable ();
+
+			foreach (Statement stmt in store) {
+				StatementList list = null;
+				
+				switch (stmt.Predicate.Uri) {
+				case Description:
+				case Headline:
+				case Caption:
+				case Title:
+				case UserComment:
+					list = (StatementList) desc [stmt.Predicate];
+
+					if (list == null)
+						desc [stmt.Predicate] = list = new StatementList ();
+						
+					list.Add (stmt);
+					break;
+
+				case State:
+				case City:
+				case Country:
+				case Location:
+				case Source:
+					AddTagToPhoto (photo, stmt.Object as Literal, taginfo_table [stmt.Predicate] as TagInfo);
+					break;
+					
+				case Subject:
+				case SupplementalCategories:
+				case People:
+					if (!(stmt.Object is Entity))
+						break;
+
+					foreach (Statement tag in store.Select (new Statement (stmt.Object as Entity, null, null))) {
+						
+						if (tag.Predicate != RdfType)
+							AddTagToPhoto (photo, tag.Object as Literal, null);
+
+					}
+					break;
 				}
 			}
-			return root_tag;
-		}
 
-		private void AddTagToPhoto (Photo photo, string new_tag_name, TagInfo sub_tag_root)
-		{
-			if (new_tag_name != null) {
-				// Check if a tag exists for this new_tag_name
-				Tag tag = tag_store.GetTagByName (new_tag_name);
-
-				// If not, make sure the rootstr tag exists and add this new_tag_name under it
-				if (tag == null) {
-					Tag root_tag = AddImportRootTagIfNotExist (li_root_tag, tag_store.RootCategory);
-
-					// If we should have a sub root, add it now.
-					if (sub_tag_root != null)	{
-						Tag subroot_tag = AddImportRootTagIfNotExist (sub_tag_root, root_tag as Category);
-						root_tag = subroot_tag; // Ensure we attach to subroot_tag 
-					} // end adding subroot
-					
-					// add the new tag, and put it under the root/subroot
-					// but only if it does not exist (same name as root tag)
-					tag = tag_store.GetTagByName (new_tag_name);
-					if (tag == null) {
-						tag = tag_store.CreateCategory (root_tag as Category, new_tag_name);
-						tags_created.Push (tag);
-					}
-				}
-				
-				// Now we have the tag for this place, add the photo to it
-				photo.AddTag (tag);
-			} // if new_tag_name != null
-		}
-
-		private void AddTagToPhoto (Photo photo, string [] new_tag_names, TagInfo sub_tag_root)
-		{
-			if (new_tag_names != null)
-				foreach (string tag in new_tag_names)
-					AddTagToPhoto (photo, tag, sub_tag_root);
-		}
-		
-
-		
-		public bool Import (Photo photo, string path, string orig_path)
-		{
-			bool needs_commit = false; // Default to no XMP data embedded in picture
-
-			XmpTagsMetadata xmd = new XmpTagsMetadata (path, orig_path);
+#if false
+			/* 
+			 * FIXME I need to think through what bengt was doing here before I put it in 
+			 * it looks like we are doing some questionable repurposing of tags here and above
+			 */
 			
-			// Read the XMP tags (embedded tags takes priority)
-			xmd.Read_Sidecar_tags();	// first read xmp tags from a possible sidecar file
-			xmd.Read_Embedded_tags();	// second read the tags embedded in the photo (exif/xmp etc)
-			
-			// If no tags (EXIF/XMP etc) were found, return false
-			if (xmd.EmptyTags())
-				return needs_commit;
 
-			// Ok, we have XMP data embeeded in the photo. 
-			needs_commit = true;
-
-			// F-Spot do not keep Headline/Caption but only a description field, 
-			// so we need to combine the two headline/caption to one field (with a " : " between)
-			// Also, there are at least two different options here. So we assume that if
-			// something is set, we should use it. Start to check for the title, then description.
-
-			// Since F-Spot do not handle the EXIF description to good yet, we leave this one out.
-			// photo.Description = xmd.GetXmpTag ("exif_description");
-
-			// F-Spot only stores the description into XMP User Comment, so if this one is set, we use it.
-			
 			if (xmd.GetXmpBag_0 ("UserComment") != null)
 				photo.Description = xmd.GetXmpBag_0 ("UserComment");
-
+			
 			// We want to construct the following : Description = <Headline> :: <Caption>         
-
+			
 			// only check for more title/comment if you still do not have one.
 			if ((photo.Description == null) || (photo.Description.Length == 0)) {
 				if (xmd.GetXmpTag ("Headline") != null) 
@@ -182,49 +210,40 @@ namespace FSpot.Xmp {
 				if (xmd.GetXmpTag ("description") != null)
 					photo.Description += (( (photo.Description == null) ? "" : " :: ") + xmd.GetXmpTag ("description"));
 			}
+#endif
+		}
+		
+		public bool Import (Photo photo, string path, string orig_path)
+		{
+			XmpFile xmp;
 			
-			// F-Spot uses exif time for the time beeing.
-//			if (xmd.GetXmpTag ("DateTimeOriginal) != null)
-//				photo.Time = xmd.GetXmpTag ("DateTimeOriginal);
-
-			if (xmd.GetXmpTag ("State") != null)
-				AddTagToPhoto (photo, xmd.GetXmpTag ("State"), li_subroot_state);
-			if (xmd.GetXmpTag ("City") != null)
-				AddTagToPhoto (photo, xmd.GetXmpTag ("City"), li_subroot_city);
-			if (xmd.GetXmpTag ("Country") != null)
-				AddTagToPhoto (photo, xmd.GetXmpTag ("Country"), li_subroot_country);
-			if (xmd.GetXmpTag ("Location") != null)
-				AddTagToPhoto (photo, xmd.GetXmpTag ("Location"), li_subroot_loc);
-
-			if (xmd.GetXmpTag ("Source") != null)
-				AddTagToPhoto (photo, xmd.GetXmpTag ("Source"), null);
-
-			if (xmd.GetXmpBag ("subject") != null)
-				if (xmd.GetXmpBag ("subject") is string [])
-					AddTagToPhoto (photo, xmd.GetXmpBag ("subject") as string [], null);
-				else
-					AddTagToPhoto (photo, xmd.GetXmpBag ("subject") as string, null);
-
-			if (xmd.GetXmpBag ("SupplementalCategories") != null)
-				if (xmd.GetXmpBag ("SupplementalCategories") is string [])
-					AddTagToPhoto (photo, xmd.GetXmpBag ("SupplementalCategories") as string [], null);
-				else
-					AddTagToPhoto (photo, xmd.GetXmpBag ("SupplementalCategories") as string, null);	
-
-			if (xmd.GetXmpBag ("People") != null)
-				if (xmd.GetXmpBag ("People") is string [])
-					AddTagToPhoto (photo, xmd.GetXmpBag ("People") as string [], null);
-				else
-					AddTagToPhoto (photo, xmd.GetXmpBag ("People") as string, null);	
-
-
+			string source_sidecar = String.Format ("{0}{1}{2}.xmp",
+							       Path.GetDirectoryName (orig_path),
+							       Path.DirectorySeparatorChar,
+							       Path.GetFileName (orig_path));
 			
-			// Ok, not good. But at least one indication which photo has tags in a sidecar.
-			// FIXME : Should be changed to possible an internal representation later.
-			//if (xmd.AnySidecarTags())
-			//	AddTagToPhoto (photo, Mono.Posix.Catalog.GetString (XMPSidecarStr), null);
+			string dest_sidecar = String.Format ("{0}{1}{2}.xmp",
+							       Path.GetDirectoryName (path),
+							       Path.DirectorySeparatorChar,
+							       Path.GetFileName (path));
 			
-			return needs_commit;
+			if (File.Exists (source_sidecar)) {
+				xmp = new XmpFile (File.OpenRead (source_sidecar));
+			} else if (File.Exists (dest_sidecar)) {
+				xmp = new XmpFile (File.OpenRead (dest_sidecar));
+			} else {
+				xmp = new XmpFile ();
+			}
+			
+			ImageFile img = ImageFile.Create (path);
+			StatementSource source = img as StatementSource;
+			if (source != null) {
+				source.Select (xmp);
+			}
+
+			ProcessStore (xmp.Store, photo);
+			
+			return true;
 		}
 
 		public void Cancel()
@@ -243,8 +262,5 @@ namespace FSpot.Xmp {
 			// Clear the tags_created array, since we do not need it anymore.
 			tags_created.Clear();		
 		}
-
-
 	}
-
 } // namespace

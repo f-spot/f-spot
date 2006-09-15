@@ -1,7 +1,7 @@
 using System;
 
 namespace FSpot.Svg {
-	public class SvgFile : ImageFile, SemWeb.StatementSource 
+	public class SvgFile : ImageFile // SemWeb.StatementSource 
 	{
 		MetadataStore store;
 

@@ -3,6 +3,8 @@ using Gtk;
 using Gnome;
 using System.Collections;
 using System;
+using FSpot;
+using FSpot.Xmp;
 using System.IO;
 
 public class ImportException : System.Exception {
@@ -13,12 +15,14 @@ public class ImportException : System.Exception {
 
 public class FileImportBackend : ImportBackend {
 	PhotoStore store;
+	TagStore tag_store = FSpot.Core.Database.Tags;
 	bool recurse;
 	bool copy;
 	string [] base_paths;
 	Tag [] tags;
 
 	int count;
+	XmpTagsImporter xmptags;
 
 	ArrayList import_info;
 	Stack directories;
@@ -39,8 +43,7 @@ public class FileImportBackend : ImportBackend {
 		
 		public ImportInfo (string original)
 		{
-			original_path
- = original;
+			original_path = original;
 		        destination_path= null;
 			Photo = null;
 		}
@@ -114,6 +117,8 @@ public class FileImportBackend : ImportBackend {
 		}	
 
 		directories = new Stack ();
+		xmptags = new XmpTagsImporter (store, tag_store);
+
 		return import_info.Count;
 	}
 
@@ -195,6 +200,7 @@ public class FileImportBackend : ImportBackend {
 
 		// FIXME Need to get the EXIF info etc.
 		ImportInfo info = (ImportInfo)import_info [this.count];
+		bool needs_commit = false;
 
 		try {
 			string destination = info.OriginalPath;
@@ -226,8 +232,13 @@ public class FileImportBackend : ImportBackend {
 				foreach (Tag t in tags) {
 					photo.AddTag (t);
 				}
-				store.Commit(photo);
+				needs_commit = true;
 			}
+
+			needs_commit |= xmptags.Import (photo, info.DestinationPath, info.OriginalPath);
+
+			if (needs_commit)
+				store.Commit(photo);
 			
 			info.Photo = photo;
 		} catch (System.Exception e) {
@@ -273,6 +284,8 @@ public class FileImportBackend : ImportBackend {
 					info.Delete ();
 			}
 		}
+		// Clean up just created tags
+		xmptags.Cancel();
 	}
 
 	public override void Finish ()
@@ -286,6 +299,7 @@ public class FileImportBackend : ImportBackend {
 		}
 
 		import_info = null;
+		xmptags.Finish();
 		count = 0;
 	}
 
