@@ -123,7 +123,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/X3fFile.cs			\
 	$(srcdir)/XmpFile.cs			\
 	$(srcdir)/XmpTagsImporter.cs		\
-	$(srcdir)/XmpTagsMetadata.cs		\
 	$(srcdir)/main.cs
 
 ASSEMBLIES =					\
