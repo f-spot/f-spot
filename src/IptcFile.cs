@@ -1,4 +1,5 @@
 using SemWeb;
+using Mono.Unix;
 
 namespace FSpot.Iptc {
 	public enum Format
@@ -136,85 +137,90 @@ namespace FSpot.Iptc {
 
 		private static DataSetInfo [] datasets = {
 			new DataSetInfo (DataSetID.ModelVersion, Format.Short, "Model Version", true, false, 2, 2, 
-					 Mono.Posix.Catalog.GetString ("IPTC Information Interchange Model (IIM) Version number")),
+					 Catalog.GetString ("IPTC Information Interchange Model (IIM) Version number")),
 			new DataSetInfo (DataSetID.Destination, Format.String, "Destination", false, true, 0, 1024, 
-					 Mono.Posix.Catalog.GetString ("OSI Destination routing information")),
+					 Catalog.GetString ("OSI Destination routing information")),
 			new DataSetInfo (DataSetID.FileFormat, Format.Short, "File Format", true, false, 2, 2, 
-					 Mono.Posix.Catalog.GetString ("IPTC file format")),
+					 Catalog.GetString ("IPTC file format")),
 			new DataSetInfo (DataSetID.ServiceIdentifier, Format.String, "Service Identifier", true, false, 0, 10, 
-					 Mono.Posix.Catalog.GetString ("Identifies the provider and product")),
+					 Catalog.GetString ("Identifies the provider and product")),
 			new DataSetInfo (DataSetID.EnvelopeNumber, Format.Numeric, "Envelope Number", true, false, 8, 8, 
-					 Mono.Posix.Catalog.GetString ("A unique number identifying the envelope")), // FIXME
+					 Catalog.GetString ("A unique number identifying the envelope")), // FIXME
 			new DataSetInfo (DataSetID.ProductID, Format.Numeric, "Product I.D.", false, true, 0, 32, 
-					 Mono.Posix.Catalog.GetString ("A unique number")), // FIXME
+					 Catalog.GetString ("A unique number")), // FIXME
 			new DataSetInfo (DataSetID.EnvelopePriority, Format.Numeric, "Envelope Priority", false, false, 1, 1, 
-					 Mono.Posix.Catalog.GetString ("The envelope handling priority between 1 (most urgent) and 9 (least urgent)")),
+					 Catalog.GetString ("The envelope handling priority between 1 (most urgent) and 9 (least urgent)")),
 			new DataSetInfo (DataSetID.DateSent, Format.Date, "Date Sent", true, false, 8, 8, 
-					 Mono.Posix.Catalog.GetString ("The year month and day (CCYYMMDD) the service sent the material")),
+					 Catalog.GetString ("The year month and day (CCYYMMDD) the service sent the material")),
 			new DataSetInfo (DataSetID.TimeSent, Format.Date, "Time Sent", false, false, 11, 11, 
-					 Mono.Posix.Catalog.GetString ("The hour minute and second the (HHMMSS+HHMM) the service sent the material")),
+					 Catalog.GetString ("The hour minute and second the (HHMMSS+HHMM) the service sent the material")),
 			new DataSetInfo (DataSetID.CodedCharacterSet, Format.Time, "Coded Character Set", false, false, 0, 32, 
-					 Mono.Posix.Catalog.GetString ("The character set designation")), // FIXME
+					 Catalog.GetString ("The character set designation")), // FIXME
 			new DataSetInfo (DataSetID.UNO, Format.String, "Unique Name of Object", false, false, 14, 80,
-					 Mono.Posix.Catalog.GetString ("External globally unique object identifier")),
+					 Catalog.GetString ("External globally unique object identifier")),
 			// UCD : IPR  : ODE            : OVI
 			//   8 :[1-32]:[61 - IPR count]:[1-9]
 
 			new DataSetInfo (DataSetID.ARMIdentifier, Format.Short, "ARM Identifier", false, false, 2, 2,
-					 Mono.Posix.Catalog.GetString ("Abstract Relationship Method (ARM) identifier")),
+					 Catalog.GetString ("Abstract Relationship Method (ARM) identifier")),
 			new DataSetInfo (DataSetID.ARMVersion, Format.Short, "ARM Version", false, false, 2, 2,
-					 Mono.Posix.Catalog.GetString ("Abstract Relationship Method (ARM) version number.")),
+					 Catalog.GetString ("Abstract Relationship Method (ARM) version number.")),
 			
 			new DataSetInfo (DataSetID.RecordVersion, Format.Short, "Record Version", false, false, 2, 2,
-					 Mono.Posix.Catalog.GetString ("Number identifying the IIM version this application record uses")),
+					 Catalog.GetString ("Number identifying the IIM version this application record uses")),
 			new DataSetInfo (DataSetID.ObjectTypeReference, Format.String, "Object Type Reference", false, false, 3, 64,
-					 Mono.Posix.Catalog.GetString ("Object type reference")), // FIXME
+					 Catalog.GetString ("Object type reference")), // FIXME
 			// Object Type Number : Object Type Name
 			//                  2 : [0-64]
 
 			new DataSetInfo (DataSetID.ObjectAttributeReference, Format.String, "Object Attribute Reference", false, true, 4, 68,
-					 Mono.Posix.Catalog.GetString ("Object attribute reference")), // FIXME
-
+					 Catalog.GetString ("Object attribute reference")), // FIXME
+			
 			// Object Attribute number : Object Attribute Name
 			//                       3 : [0-64]
 			
 			new DataSetInfo (DataSetID.ObjectName, Format.String, "Object Name", false, false, 4, 68,
-					 Mono.Posix.Catalog.GetString ("Object name"), "dc:title"), // FIXME
+					 Catalog.GetString ("Object name"), "dc:title"), // FIXME
 			new DataSetInfo (DataSetID.EditStatus, Format.String, "Edit Status", false, false, 0, 64,
-					 Mono.Posix.Catalog.GetString ("Status of the objectdata according to the provider")),
+					 Catalog.GetString ("Status of the objectdata according to the provider")),
 			new DataSetInfo (DataSetID.EditorialUpdate, Format.String, "Object Name", false, false, 4, 68,
-					 Mono.Posix.Catalog.GetString ("Object name")), // FIXME
-
+					 Catalog.GetString ("Object name")), // FIXME
+			new DataSetInfo (DataSetID.Sublocation, Format.String, "Location", false, false, 0, 32,
+					 Catalog.GetString ("Location within a city or area where the object originates"),
+					 "Iptc4xmpCore:Location"),
 			new DataSetInfo (DataSetID.City, Format.String, "City", false, false, 0, 32,
-					 Mono.Posix.Catalog.GetString ("Name of the city the content is focussing on"),
+					 Catalog.GetString ("Name of the city the content is focussing on"),
 					 "photoshop:City"),
 			new DataSetInfo (DataSetID.CopyrightNotice, Format.String, "Copyright Notice", false, false, 0, 128,
-					 Mono.Posix.Catalog.GetString ("Copyright information for"),
+					 Catalog.GetString ("Copyright information for"),
 					 "dc:rights"),
 			new DataSetInfo (DataSetID.PrimaryLocationName, Format.String, "Country", false, false, 0, 64,
-					 Mono.Posix.Catalog.GetString ("Full name of the country of the focus of the content"),
+					 Catalog.GetString ("Full name of the country of the focus of the content"),
 					 "photoshop:Country"),
 			new DataSetInfo (DataSetID.PrimaryLocationCode, Format.String, "ISO Country Code", false, false, 0, 3,
-					 Mono.Posix.Catalog.GetString ("Two or three letter ISO3166 code of the country of the focus of the content"),
+					 Catalog.GetString ("Two or three letter ISO3166 code of the country of the focus of the content"),
 					 "Iptc4xmpCore:CountryCode"),
 			new DataSetInfo (DataSetID.ByLine, Format.String, "Creator", false, false, 0, 32,
-					 Mono.Posix.Catalog.GetString ("Creator of the content"),  // FIXME
+					 Catalog.GetString ("Creator of the content"),  // FIXME
 					 "dc:creator"),
+			new DataSetInfo (DataSetID.Credit, Format.String, "Provider", false, false, 0, 32,
+					 Catalog.GetString ("Provider of the object"),
+					 "photoshop:Credit"),
 			new DataSetInfo (DataSetID.ByLineTitle, Format.String, "Creator's Jobtitle", false, true, 0, 32,
-					 Mono.Posix.Catalog.GetString ("The title of the author or creator"),
+					 Catalog.GetString ("The title of the author or creator"),
 					 "photoshop:AuthorsPosition"),
 			new DataSetInfo (DataSetID.WriterEditor, Format.String, "Caption/Description writer", false, true, 0, 32,
-					 Mono.Posix.Catalog.GetString ("The person involved in writing, editing or " +
+					 Catalog.GetString ("The person involved in writing, editing or " +
 								       "correcting the object data or caption/abstract"),
 					 "photoshop:CaptionWriter"),
 			new DataSetInfo (DataSetID.Headline, Format.String, "Headline", false, false, 0, 256,
-					 Mono.Posix.Catalog.GetString ("Headline of the content"),
+					 Catalog.GetString ("Headline of the content"),
 					 "photoshop:Headline"),
 			new DataSetInfo (DataSetID.SpecialInstructions, Format.String, "Instructions", false, false, 0, 256,
-					 Mono.Posix.Catalog.GetString ("Instructions from the creator to the receiver not covered by other fields"),
+					 Catalog.GetString ("Instructions from the creator to the receiver not covered by other fields"),
 					 "photoshop:Instructions"),
 			new DataSetInfo (DataSetID.ObjectAttributeReference, Format.String, "Intellectual genre", false, true, 4, 68,
-					 Mono.Posix.Catalog.GetString ("Intellectual genre of the object"),
+					 Catalog.GetString ("Intellectual genre of the object"),
 					 "Iptc4xmpCore:IntellectualGenre"),
 			// Object Attribute number : Object Attribute Name
 			//                       3 : [0-64]
@@ -227,7 +233,7 @@ namespace FSpot.Iptc {
 					return info;
 						
 			return new DataSetInfo (id, Format.Unknown, "Unknown", false, false, 3, 64,
-						Mono.Posix.Catalog.GetString ("Unknown IIM DataSet"));
+						Catalog.GetString ("Unknown IIM DataSet"));
 		}
 
 		protected DataSetInfo (DataSetID id, Format format, string name, bool mandatory, bool repeatable, uint min, uint max, string description) : this (id, format, name, mandatory, repeatable, min, max, description, null)
