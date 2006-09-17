@@ -120,7 +120,7 @@ namespace FSpot
             
             msg.Append("\nPlatform Information: " + BuildPlatformString());
             
-            msg.Append("\n\nDisribution Information:\n\n");
+            msg.Append("\n\nDistribution Information:\n\n");
             
             Hashtable lsb = LsbVersionInfo.Harvest;
             
