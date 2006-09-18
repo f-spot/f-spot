@@ -161,7 +161,7 @@ namespace FSpot {
 		public const string Iptc4xmpCoreNS = "http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/";
 		public const string DcNS = "http://purl.org/dc/elements/1.1/";
 		public const string XmpNS = "http://ns.adobe.com/xap/1.0/";
-		public const string XmpidqNS = "http://ns.adobe.com/xmp/Identifier/qual/1.0";
+		public const string XmpidqNS = "http://ns.adobe.com/xmp/Identifier/qual/1.0/";
 		public const string XmpRightsNS = "http://ns.adobe.com/xap/1.0/rights/";
 		public const string XmpBJNS = "http://ns.adobe.com/xap/1.0/bj/";
 		public const string XmpMMNS = "http://ns.adobe.com/xap/1.0/mm/";
@@ -169,7 +169,7 @@ namespace FSpot {
 		public const string TiffNS = "http://ns.adobe.com/tiff/1.0/";
 		public const string RdfNS = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 		public const string RdfsNS = "http://www.w3.org/2000/01/rdf-schema#";
-		public const string IViewNS = "http://ns.iview-multimedia.com/mediapro/1.0";
+		public const string IViewNS = "http://ns.iview-multimedia.com/mediapro/1.0/";
 
 		static MetadataStore ()
 		{
@@ -187,6 +187,7 @@ namespace FSpot {
 			Namespaces.AddNamespace (TiffNS, "tiff");
 			Namespaces.AddNamespace (RdfNS, "rdf");
 			Namespaces.AddNamespace (RdfsNS, "rdfs");
+			Namespaces.AddNamespace (IViewNS, "mediapro");
 		}
 
 		public static MetadataStore Descriptions {

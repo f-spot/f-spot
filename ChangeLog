@@ -1,10 +1,15 @@
+2006-09-18  Larry Ewing  <lewing@novell.com>
+
+	* src/MetadataStore.cs: fix namespace strings, based on the patch
+	from bengt for 356330.
+
 2006-09-18  Stephane Delcroix  <stephane@delcroix.org>
  
  	* src/PicasaWebExport.cs: fix b.g.o. 356543
  
 2006-09-18  Larry Ewing  <lewing@novell.com>
 
-	* src/IptcFile.cs: silence some wanrings.
+	* src/IptcFile.cs: silence some warnings.
 
 	* src/PicasaWebExport.cs: clean up the scaling code a little.
 
