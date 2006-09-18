@@ -504,64 +504,57 @@ namespace FSpot {
 
 				System.Console.WriteLine ("Starting Upload to Picasa");
 
-				if (!scale)
+				if (!scale) {
 					foreach (Photo photo in photos) {
-						System.IO.FileInfo file_info = new System.IO.FileInfo(photo.GetVersionPath(photo.DefaultVersionId));
+						FileInfo file_info = new FileInfo (photo.GetVersionPath (photo.DefaultVersionId));
 						exported_size += file_info.Length;
 					}
-					
+				}
 
 				while (photo_index < photos.Length) {
 					Photo photo = photos [photo_index];
 
-					System.IO.FileInfo file_info;
-					System.Console.WriteLine ("uploading {0}", photo_index);
+					FileInfo file_info;
+					Console.WriteLine ("uploading {0}", photo_index);
 
-					progress_dialog.Message = System.String.Format (Mono.Posix.Catalog.GetString ("Uploading picture \"{0}\" ({1} of {2})"), photo.Name, photo_index+1, photos.Length);
+					progress_dialog.Message = String.Format (Catalog.GetString ("Uploading picture \"{0}\" ({1} of {2})"), 
+										 photo.Name, photo_index+1, photos.Length);
 					photo_index++;
 
-					
 					string orig = photo.DefaultVersionUri.LocalPath;
-					string path = PixbufUtils.Resize (orig, size, true);
-					string final = path + System.IO.Path.GetExtension (orig);
+					string final = ImageFile.TempPath (orig);
 					if (scale) {
-						orig = photo.DefaultVersionUri.LocalPath;
-						path = PixbufUtils.Resize (orig, size, true);
-						final = path + System.IO.Path.GetExtension (orig);
-						System.IO.File.Move (path, final);
+						PixbufUtils.Resize (orig, final, size, true);
+
 						if (photo_index == 1) {
-							file_info = new System.IO.FileInfo(final);
+							file_info = FileInfo (final);
 							exported_size = photos.Length * file_info.Length;
 							Console.WriteLine ("total size: {0}", exported_size);
 						}
 
-						file_info = new System.IO.FileInfo(final);
+						file_info = FileInfo (final);
 						sent_bytes += file_info.Length;
-						album.UploadPicture (final);
-						System.IO.File.Delete (final);
-					} else if (rotate){
-						orig = photo.DefaultVersionUri.LocalPath;
-						path = ImageFile.TempPath (orig);
 
-						if (OrientationFilter.Convert (orig, path))
+						album.UploadPicture (final);
+					} else if (rotate) {
+						if (OrientationFilter.Convert (orig, final))
 							album.UploadPicture (final, photo.Description);
 						else 
-							album.UploadPicture (photo.DefaultVersionUri.LocalPath, photo.Description);
-							
-						System.IO.File.Delete (final);
+							album.UploadPicture (orig, photo.Description);
 					} else {
-						album.UploadPicture (photo.DefaultVersionUri.LocalPath, photo.Description);
+						album.UploadPicture (orig, photo.Description);
 					}
 
+					File.Delete (final);
 
 					if (!scale) {
-						file_info = new System.IO.FileInfo(photo.GetVersionPath(photo.DefaultVersionId));
+						file_info = new FileInfo (orig));
 						sent_bytes += file_info.Length;
 					}
 						
 				}
 
-				progress_dialog.Message = Mono.Posix.Catalog.GetString ("Done Sending Photos");
+				progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
 				progress_dialog.Fraction = 1.0;
 				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Upload Complete");
 				progress_dialog.ButtonLabel = Gtk.Stock.Ok;
