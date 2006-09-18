@@ -1,0 +1,2941 @@
+# translation of f-spot.HEAD.po to Hindi
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+# G Karunakar <karunakar@freedomink.org>, 2006.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: f-spot.HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-09-19 00:48+0530\n"
+"PO-Revision-Date: 2006-07-15 16:37+0530\n"
+"Last-Translator: G Karunakar <karunakar@freedomink.org>\n"
+"Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n!=1;\n"
+"X-Generator: KBabel 1.10.2\n"
+
+#: ../f-spot.desktop.in.in.h:1
+#, fuzzy
+msgid "F-Spot Photo Manager"
+msgstr "एफ़ स्पॉट फोटो प्रबंधक"
+
+#: ../f-spot.desktop.in.in.h:2
+#, fuzzy
+msgid "Organize, enjoy, and share your photos"
+msgstr "और"
+
+#: ../f-spot.desktop.in.in.h:3
+#, fuzzy
+msgid "Photo Manager"
+msgstr "फोटो प्रबंधक"
+
+#: ../f-spot-view.desktop.in.h:1 ../src/f-spot.glade.h:111
+#, fuzzy
+msgid "F-Spot Photo Viewer"
+msgstr "एफ़ स्पॉट फोटो प्रदर्शक"
+
+#: ../f-spot-view.desktop.in.h:2
+#, fuzzy
+msgid "Photo Viewer"
+msgstr "फोटो प्रदर्शक"
+
+#: ../libeog/eog-file-selection.c:29 ../libeog/eog-file-selection.c:46
+#, fuzzy
+msgid "By Extension"
+msgstr "एक्सटेंशन"
+
+#: ../libeog/eog-file-selection.c:30
+msgid "BMP"
+msgstr "बिएमपी"
+
+#: ../libeog/eog-file-selection.c:31
+msgid "GIF"
+msgstr "जिफ"
+
+#: ../libeog/eog-file-selection.c:32
+#, fuzzy
+msgid "ICO"
+msgstr "चिह्न"
+
+#: ../libeog/eog-file-selection.c:33 ../libeog/eog-file-selection.c:48
+#, fuzzy
+msgid "JPEG"
+msgstr "जेपीजी"
+
+#: ../libeog/eog-file-selection.c:34 ../libeog/eog-file-selection.c:51
+msgid "PNG"
+msgstr "पिनजी"
+
+#: ../libeog/eog-file-selection.c:35
+msgid "PNM"
+msgstr "पीनम"
+
+#: ../libeog/eog-file-selection.c:36
+msgid "RAS"
+msgstr "रास"
+
+#: ../libeog/eog-file-selection.c:37
+msgid "SVG"
+msgstr "एसवीजी"
+
+#: ../libeog/eog-file-selection.c:38
+msgid "TGA"
+msgstr "टिजिए"
+
+#: ../libeog/eog-file-selection.c:39
+msgid "TIFF"
+msgstr "टिफ"
+
+#: ../libeog/eog-file-selection.c:40
+msgid "XBM"
+msgstr "एक्सबिएम"
+
+#: ../libeog/eog-file-selection.c:41 ../libeog/eog-file-selection.c:54
+msgid "XPM"
+msgstr ""
+
+#: ../libeog/eog-file-selection.c:207
+#, fuzzy
+msgid "Unsupported file format."
+msgstr "फाइल."
+
+#: ../libeog/eog-file-selection.c:225
+#, fuzzy
+msgid "Determine File Type:"
+msgstr "फ़ाइल क़िस्म:"
+
+#: ../libeog/eog-file-selection.c:268
+msgid "Load Image"
+msgstr "छवि लोड करें"
+
+#: ../libeog/eog-file-selection.c:274
+msgid "Save Image"
+msgstr "छवि सहेजें"
+
+#: ../libeog/eog-image.c:773
+msgid "No image loaded."
+msgstr "कोई छवि लोडेड नहीं."
+
+#: ../libeog/eog-image.c:780
+#, fuzzy
+msgid "Can't save non local files."
+msgstr "सहेजें स्थानीय."
+
+#: ../libeog/eog-image.c:803
+#, fuzzy
+msgid "Unsupported image type for saving."
+msgstr "छवि क़िस्म के लिये."
+
+#: ../libeog/image-view.c:2116
+#, fuzzy
+msgid "interpolation type"
+msgstr "क़िस्म"
+
+#: ../libeog/image-view.c:2117
+#, fuzzy
+msgid "the type of interpolation to use"
+msgstr "क़िस्म का को"
+
+#: ../libeog/image-view.c:2123 ../libeog/image-view.c:2130
+#, fuzzy
+msgid "check type"
+msgstr "क़िस्म"
+
+#: ../libeog/image-view.c:2124
+#, fuzzy
+msgid "the type of chequering to use"
+msgstr "क़िस्म का को"
+
+#: ../libeog/image-view.c:2131
+#, fuzzy
+msgid "the size of chequers to use"
+msgstr "आकार  का को"
+
+#: ../libeog/image-view.c:2137
+msgid "dither"
+msgstr ""
+
+#: ../libeog/image-view.c:2138
+#, fuzzy
+msgid "dither type"
+msgstr "क़िस्म"
+
+#: ../libfspot/f-jpeg-utils.c:445
+msgid "File not found"
+msgstr "फ़ाइल नहीं मिली"
+
+#: ../libfspot/f-jpeg-utils.c:468
+#, fuzzy, c-format
+msgid "Unknown transform type %d"
+msgstr "अज्ञात क़िस्म d"
+
+#: ../libfspot/f-jpeg-utils.c:476
+#, fuzzy
+msgid "Operation failed"
+msgstr "ऑपरेशन"
+
+#: ../src/CameraFileSelectionDialog.cs:65
+#, fuzzy
+msgid "Preview"
+msgstr "पूर्वावलोकन"
+
+#: ../src/CameraFileSelectionDialog.cs:67
+msgid "Path"
+msgstr "पथ"
+
+#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:114
+msgid "File"
+msgstr "फ़ाइल"
+
+#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:758
+msgid "Index"
+msgstr "निर्देशिका"
+
+#: ../src/CameraFileSelectionDialog.cs:87
+#, fuzzy
+msgid "Downloading Previews"
+msgstr "डाउनलोड किया जा रहा है"
+
+#: ../src/CameraFileSelectionDialog.cs:95
+#, fuzzy, csharp-format
+msgid "Downloading Preview of {0}"
+msgstr "डाउनलोड किया जा रहा है पूर्वावलोकन का"
+
+#: ../src/CameraFileSelectionDialog.cs:147
+#, fuzzy
+msgid "Unknown destination."
+msgstr "अज्ञात."
+
+#: ../src/CameraFileSelectionDialog.cs:148
+#, fuzzy
+msgid ""
+"When copying files from a camera you must select a valid destination on the "
+"local filesystem"
+msgstr "ए कैमरा आप ए पर स्थानीय"
+
+#: ../src/CameraFileSelectionDialog.cs:166
+#, fuzzy
+msgid "Unable to create directory."
+msgstr "को."
+
+#: ../src/CameraFileSelectionDialog.cs:167
+#, fuzzy, csharp-format
+msgid ""
+"Error \"{0}\" while creating directory \"{1}\".  Check that the path and "
+"permissions are correct and try again"
+msgstr "त्रुटि बनाया जा रहा है जांच और और"
+
+#: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:200
+#: ../src/FolderExport.cs:278
+#, fuzzy
+msgid "Transferring Pictures"
+msgstr "छवियाँ"
+
+#: ../src/CameraFileSelectionDialog.cs:211
+#, fuzzy, csharp-format
+msgid "Copying file {0} of {1}"
+msgstr "नक़ल किया जा रहा है फाइल का"
+
+#: ../src/CameraFileSelectionDialog.cs:221
+#, fuzzy
+msgid "Done Copying Files"
+msgstr "सम्पन्न नक़ल किया जा रहा है फ़ाइलें"
+
+#: ../src/CameraFileSelectionDialog.cs:223
+#, fuzzy
+msgid "Download Complete"
+msgstr "डाउनलोड, उतारिए,उतारना पूर्ण"
+
+#: ../src/CameraFileSelectionDialog.cs:228
+#, fuzzy
+msgid "Error transferring file"
+msgstr "त्रुटि फाइल"
+
+#: ../src/CameraFileSelectionDialog.cs:249
+#, fuzzy, csharp-format
+msgid "Transferring \"{0}\" from camera"
+msgstr "कैमरा"
+
+#: ../src/CameraFileSelectionDialog.cs:275
+msgid "Select Destination"
+msgstr "गंतव्य चुनें"
+
+#: ../src/CameraSelectionDialog.cs:27 ../src/StockIcons.cs:28
+msgid "Camera"
+msgstr "कैमरा"
+
+#: ../src/CameraSelectionDialog.cs:28
+msgid "Port"
+msgstr "पोर्ट"
+
+#: ../src/CDExport.cs:105
+#, fuzzy, csharp-format
+msgid "Transferring picture \"{0}\" To CD"
+msgstr "को सीडी"
+
+#. This indicates the current photo is photo {0} of {1} out of photos
+#: ../src/CDExport.cs:107 ../src/FlickrExport.cs:245
+#: ../src/GalleryExport.cs:659 ../src/ProgressDialog.cs:82
+#: ../src/TimeDialog.cs:141
+#, fuzzy, csharp-format
+msgid "{0} of {1}"
+msgstr "का"
+
+#: ../src/CDExport.cs:122 ../src/FlickrExport.cs:251
+#: ../src/FolderExport.cs:185 ../src/GalleryExport.cs:685
+#, fuzzy
+msgid "Done Sending Photos"
+msgstr "सम्पन्न भेजा जा रहा है"
+
+#: ../src/CDExport.cs:124 ../src/FolderExport.cs:187
+msgid "Transfer Complete"
+msgstr "हस्तांतरण पूर्ण"
+
+#: ../src/CDExport.cs:131 ../src/FolderExport.cs:192
+#, fuzzy
+msgid "Error While Transferring"
+msgstr "त्रुटि"
+
+#: ../src/CDExport.cs:137 ../src/FolderExport.cs:200
+#, fuzzy
+msgid "Error Transferring"
+msgstr "त्रुटि"
+
+#: ../src/CDExport.cs:158 ../src/FolderExport.cs:221
+#, fuzzy
+msgid "Error: Error while transferring; Aborting"
+msgstr "त्रुटि त्रुटि"
+
+#: ../src/CDExport.cs:161 ../src/FolderExport.cs:224
+#, fuzzy
+msgid "Error: File Already Exists; Aborting"
+msgstr "त्रुटि फ़ाइल"
+
+#: ../src/ColorDialog.cs:308
+#, fuzzy
+msgid "Error saving adjusted photo"
+msgstr "त्रुटि"
+
+#: ../src/ColorDialog.cs:309 ../src/Loupe.cs:57 ../src/MainWindow.cs:1836
+#: ../src/PhotoView.cs:269
+#, fuzzy, csharp-format
+msgid "Received exception \"{0}\". Unable to save photo {1}"
+msgstr "हस्तगत को सहेजें"
+
+#: ../src/Core.cs:212
+#, fuzzy, csharp-format
+msgid "No photos matching {0} found"
+msgstr "नहीं संगति जांच, संगति मिलान"
+
+#: ../src/Core.cs:213
+#, fuzzy, csharp-format
+msgid ""
+"The tag \"{0}\" is not applied to any photos. Try adding\n"
+"the tag to some photos or selecting a different tag in the\n"
+"F-Spot preference dialog."
+msgstr "टैग,पुछल्ला है नहीं को कोशिश करें टैग,पुछल्ला को कुछ या ए टैग,पुछल्ला इंच स्पॉट संवाद."
+
+#: ../src/Core.cs:217
+#, fuzzy
+msgid "Search returned no results"
+msgstr "ढूंढें नहीं"
+
+#: ../src/Core.cs:218
+#, fuzzy
+msgid ""
+"The tag F-Spot is looking for does not exist. Try\n"
+"selecting a different tag in the F-Spot preference\n"
+"dialog."
+msgstr "टैग,पुछल्ला एफ़ स्पॉट है के लिये नहीं कोशिश करें ए टैग,पुछल्ला इंच एफ़ स्पॉट."
+
+#: ../src/ExceptionDialog.cs:24
+#, fuzzy
+msgid "F-Spot Encountered a Fatal Error"
+msgstr "एफ़ स्पॉट ए गंभीर त्रुटि"
+
+#: ../src/ExceptionDialog.cs:60
+msgid "Error Details"
+msgstr ""
+
+#: ../src/ExceptionDialog.cs:104
+msgid "An unhandled exception was thrown: "
+msgstr ""
+
+#: ../src/Exif.cs:226
+msgid "Image Directory"
+msgstr "छवि डिरेक्ट्री"
+
+#: ../src/Exif.cs:228
+msgid "Thumbnail Directory"
+msgstr "लघु छवि डिरेक्ट्री"
+
+#: ../src/Exif.cs:230
+#, fuzzy
+msgid "Exif Directory"
+msgstr "डिरेक्ट्री"
+
+#: ../src/Exif.cs:232
+#, fuzzy
+msgid "GPS Directory"
+msgstr "डिरेक्ट्री"
+
+#: ../src/Exif.cs:234
+#, fuzzy
+msgid "InterOperability Directory"
+msgstr "डिरेक्ट्री"
+
+#: ../src/Exif.cs:236
+msgid "Unknown Directory"
+msgstr "अज्ञात डिरेक्ट्री"
+
+#: ../src/FlickrExport.cs:63 ../src/f-spot.glade.h:68
+#, fuzzy
+msgid "Authorize"
+msgstr "अधिकृत"
+
+#: ../src/FlickrExport.cs:68
+#, fuzzy
+msgid ""
+"Return to this window after you have finished the authorization process on "
+"Flickr.com and click the \"Complete Authorization\" button below"
+msgstr "रिटर्न,वापस को विंडो पश्चात आप पूर्ण पर और क्लिक पूर्ण"
+
+#: ../src/FlickrExport.cs:69
+#, fuzzy
+msgid "Complete Authorization"
+msgstr "पूर्ण"
+
+#: ../src/FlickrExport.cs:73
+#, fuzzy
+msgid "Logging into Flickr.Com"
+msgstr "लॉग किया जा रहा है"
+
+#: ../src/FlickrExport.cs:74
+#, fuzzy
+msgid "Checking credentials..."
+msgstr "जांच."
+
+#: ../src/FlickrExport.cs:80
+#, fuzzy, csharp-format
+msgid "Welcome {0} you are connected to Flickr.Com"
+msgstr "सुस्वागतम आप कनेक्टेड को"
+
+#: ../src/FlickrExport.cs:82
+#, fuzzy, csharp-format
+msgid "Sign in as a different user"
+msgstr "हस्ताक्षर इंच ए"
+
+#: ../src/FlickrExport.cs:207
+#, fuzzy
+msgid "Unable to log on"
+msgstr "को पर"
+
+#: ../src/FlickrExport.cs:225
+#, fuzzy, csharp-format
+msgid "Waiting for response {0} of {1}"
+msgstr "प्रतीक्षारत के लिये का"
+
+#: ../src/FlickrExport.cs:240 ../src/GalleryExport.cs:655
+#, fuzzy, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr "अपलोडिंग"
+
+#: ../src/FlickrExport.cs:253 ../src/GalleryExport.cs:687
+#, fuzzy
+msgid "Upload Complete"
+msgstr "पूर्ण"
+
+#: ../src/FlickrExport.cs:257
+#, fuzzy, csharp-format
+msgid "Error Uploading To Flickr: {0}"
+msgstr "त्रुटि अपलोडिंग को"
+
+#: ../src/FlickrExport.cs:259 ../src/GalleryExport.cs:692
+msgid "Error"
+msgstr "त्रुटि"
+
+#: ../src/FlickrExport.cs:318
+#, fuzzy
+msgid "Unable to log on."
+msgstr "को पर."
+
+#: ../src/FlickrExport.cs:319
+#, fuzzy
+msgid ""
+"F-Spot was unable to log on to Flickr.  Make sure you have given the "
+"authentication using Flickr web browser interface."
+msgstr "एफ़ स्पॉट को पर को मेक आप प्रामाणीकरण इंटरफेस."
+
+#: ../src/FlickrExport.cs:336 ../src/GalleryExport.cs:618
+#, fuzzy
+msgid "Uploading Pictures"
+msgstr "अपलोडिंग छवियाँ"
+
+#: ../src/FolderExport.cs:109
+msgid "Select Export Folder"
+msgstr "निर्यात फ़ोल्डर चुनें"
+
+#: ../src/FolderExport.cs:142
+#, fuzzy
+msgid "Building Gallery"
+msgstr "गलियारा"
+
+#: ../src/FolderExport.cs:615
+msgid "Light"
+msgstr ""
+
+#: ../src/FolderExport.cs:616
+msgid "Dark"
+msgstr ""
+
+#. Abbreviation of previous
+#: ../src/FolderExport.cs:756
+msgid "Prev"
+msgstr "पिछला"
+
+#: ../src/FolderExport.cs:761 ../src/f-spot.glade.h:140
+msgid "Next"
+msgstr "अगला"
+
+#: ../src/FolderExport.cs:814 ../src/FolderExport.cs:987
+msgid "Show Styles"
+msgstr ""
+
+#: ../src/FolderExport.cs:815 ../src/FolderExport.cs:988
+msgid "Hide Styles"
+msgstr ""
+
+#: ../src/FolderExport.cs:872
+#, fuzzy
+msgid "Gallery generated by"
+msgstr "गलियारा"
+
+#: ../src/FolderExport.cs:917
+msgid "Page:"
+msgstr "पृष्ठः"
+
+#: ../src/FullScreenView.cs:102
+#, fuzzy
+msgid "Exit fullscreen"
+msgstr "बाहर"
+
+#: ../src/f-spot.glade.h:1
+msgid "\n"
+msgstr "\n"
+
+#: ../src/f-spot.glade.h:3
+msgid " "
+msgstr " "
+
+#: ../src/f-spot.glade.h:4
+msgid "..."
+msgstr "..."
+
+#: ../src/f-spot.glade.h:5
+msgid "0000:00:00 00:00:00"
+msgstr "0000:00:00 00:00:00"
+
+#: ../src/f-spot.glade.h:6
+msgid "00:00:00"
+msgstr "00:00:00"
+
+#: ../src/f-spot.glade.h:7
+msgid "1 of 1"
+msgstr "1 का 1"
+
+#: ../src/f-spot.glade.h:8
+msgid "1024 px"
+msgstr ""
+
+#: ../src/f-spot.glade.h:9
+msgid "320 px"
+msgstr ""
+
+#: ../src/f-spot.glade.h:10
+msgid "480 px"
+msgstr ""
+
+#: ../src/f-spot.glade.h:11
+msgid "5"
+msgstr "5"
+
+#: ../src/f-spot.glade.h:12
+msgid "640 px"
+msgstr ""
+
+#: ../src/f-spot.glade.h:13
+msgid "800 px"
+msgstr ""
+
+#: ../src/f-spot.glade.h:14
+msgid "<b></b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:15
+msgid "<b>Account</b>"
+msgstr "<b>खाता</b>"
+
+#: ../src/f-spot.glade.h:16
+msgid "<b>Action</b>"
+msgstr "<b>क्रिया</b>"
+
+#: ../src/f-spot.glade.h:17
+msgid "<b>Album</b>"
+msgstr "<b>एल्बम</b>"
+
+#: ../src/f-spot.glade.h:18
+msgid "<b>Co_rrections</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:19
+msgid "<b>Color Management</b>"
+msgstr "<b>रंग प्रबंधन</b>"
+
+#: ../src/f-spot.glade.h:20
+msgid "<b>Color Temperature</b>"
+msgstr "<b>रंग तापमान</b>"
+
+#: ../src/f-spot.glade.h:21
+msgid "<b>Destination</b>"
+msgstr "<b>गंतव्य</b>"
+
+#: ../src/f-spot.glade.h:22
+msgid "<b>End Date</b>"
+msgstr "<b>अंत तारीख़</b>"
+
+#: ../src/f-spot.glade.h:23
+msgid "<b>Export Method</b>"
+msgstr "<b>निर्यात विधि</b>"
+
+#: ../src/f-spot.glade.h:24
+msgid "<b>Exposure</b>"
+msgstr "<b>एक्सपोज़र</b>"
+
+#: ../src/f-spot.glade.h:25
+msgid "<b>From Photo</b>"
+msgstr "<b>से फोटो</b>"
+
+#: ../src/f-spot.glade.h:26
+msgid "<b>Gallery</b>"
+msgstr "<b>गलियारा</b>"
+
+#: ../src/f-spot.glade.h:27
+msgid "<b>Histo_gram</b>"
+msgstr "<b>हिस्टोग्राम (_g)</b>"
+
+#: ../src/f-spot.glade.h:28
+msgid "<b>Histogram</b>"
+msgstr "<b>हिस्टोग्राम</b>"
+
+#: ../src/f-spot.glade.h:29
+#, fuzzy
+msgid "<b>Import Settings</b>"
+msgstr "<b>निर्यात विधि</b>"
+
+#: ../src/f-spot.glade.h:30
+msgid "<b>Mail attachment summary</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:31
+msgid "<b>Metadata</b>"
+msgstr "<b>पराडेटा<ायक</b>"
+
+#: ../src/f-spot.glade.h:32
+#, fuzzy
+msgid "<b>Photo size</b>"
+msgstr "<b>से फोटो</b>"
+
+#: ../src/f-spot.glade.h:33
+#, fuzzy
+msgid "<b>Photograph Layout</b>"
+msgstr "<b> फोटोग्राफ ले-आउट</b>"
+
+#: ../src/f-spot.glade.h:34
+#, fuzzy
+msgid "<b>Photos to Burn</b>"
+msgstr "<b> को बर्न</b>"
+
+#: ../src/f-spot.glade.h:35
+msgid "<b>Photos</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:36
+#, fuzzy
+msgid "<b>PicasaWeb Export</b>"
+msgstr "<b>एक्सपोज़र</b>"
+
+#: ../src/f-spot.glade.h:37
+msgid "<b>Predefined</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:38
+msgid "<b>Preview</b>"
+msgstr "<b>पूर्वावलोकन</b>"
+
+#: ../src/f-spot.glade.h:39
+msgid "<b>Printer Details</b>"
+msgstr "<b>प्रिंटर विवरण</b>"
+
+#: ../src/f-spot.glade.h:40
+msgid "<b>Reference Photo</b>"
+msgstr "<b>संदर्भ फोटो</b>"
+
+#: ../src/f-spot.glade.h:41
+msgid "<b>Screensaver</b>"
+msgstr "<b>स्क्रीनसेवर</b>"
+
+#: ../src/f-spot.glade.h:42
+msgid "<b>Start Date</b>"
+msgstr "<b>प्रारंभ तारीख़</b>"
+
+#: ../src/f-spot.glade.h:43
+msgid "<b>Style</b>"
+msgstr "<b>शैली</b>"
+
+#: ../src/f-spot.glade.h:44
+msgid "<b>Viewing permissions</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:45
+#, fuzzy
+msgid "<b>_White Balance</b>"
+msgstr "<b> सफेद संतुलन</b>"
+
+#: ../src/f-spot.glade.h:46
+msgid "<small> </small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:47
+msgid "<small></small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:48
+msgid ""
+"<small><i>Choose the folder where F-Spot should store newly imported photos</"
+"i></small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:49
+#, fuzzy
+msgid ""
+"<small><i>Enable this option to store tags and descriptions inside \n"
+"supported image formats.</i></small>"
+msgstr "<small><i> सक्षम करें को और छवि</i></small>"
+
+#: ../src/f-spot.glade.h:51
+#, fuzzy
+msgid ""
+"<small><i>Select the tag you like F-Spot to display images from while acting "
+"as the screensaver</i></small>"
+msgstr "<small><i> चुनें टैग,पुछल्ला आप एफ़ स्पॉट को छवियाँ</i></small>"
+
+#: ../src/f-spot.glade.h:52
+msgid "<small>C_ontrast:</small>"
+msgstr "<small>कंट्रास्ट (_o):</small>"
+
+#: ../src/f-spot.glade.h:53
+msgid "<small>Te_mp:</small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:54
+msgid "<small>_Brightness:</small>"
+msgstr "<small>चमकीलापन (_B):</small>"
+
+#: ../src/f-spot.glade.h:55
+msgid "<small>_Exposure:</small>"
+msgstr "<small>एक्सपोज़र (_E):</small>"
+
+#: ../src/f-spot.glade.h:56
+#, fuzzy
+msgid "<small>_Hue:</small>"
+msgstr "<small> हुए</small>"
+
+#: ../src/f-spot.glade.h:57
+#, fuzzy
+msgid "<small>_Saturation:</small>"
+msgstr "<_small> संतृप्ति</small>"
+
+#: ../src/f-spot.glade.h:58
+msgid "<small>_Tint:</small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:59
+#, fuzzy
+msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
+msgstr ""
+"<span weight='bold' size='larger'> त्रुटि कनेक्शन हो रहा है को गलियारा</span> n"
+
+#: ../src/f-spot.glade.h:61
+#, fuzzy
+msgid "Ad_just Color..."
+msgstr "अनुकूल बनाना रंग."
+
+#: ../src/f-spot.glade.h:62
+#, fuzzy
+msgid "Adjust Color"
+msgstr "अनुकूल बनाना रंग"
+
+#: ../src/f-spot.glade.h:63
+#, fuzzy
+msgid "Adjust Time"
+msgstr "अनुकूल बनाना समय"
+
+#: ../src/f-spot.glade.h:64
+#, fuzzy
+msgid "Adjust _Time"
+msgstr "अनुकूल बनाना समय"
+
+#: ../src/f-spot.glade.h:65
+#, fuzzy
+msgid "Adjusted date: "
+msgstr "तारीख़ "
+
+#: ../src/f-spot.glade.h:66
+msgid "Arrange _by"
+msgstr ""
+
+#: ../src/f-spot.glade.h:67
+#, fuzzy
+msgid "Attach tag:"
+msgstr "जोड़ें टैग,पुछल्ला:"
+
+#: ../src/f-spot.glade.h:69
+#, fuzzy
+msgid "Autorotate"
+msgstr "अधिकृत"
+
+#: ../src/f-spot.glade.h:70 ../src/StockIcons.cs:27
+msgid "Browse"
+msgstr "ब्राउज़"
+
+#: ../src/f-spot.glade.h:71
+msgid "CD"
+msgstr "सीडी"
+
+#: ../src/f-spot.glade.h:72
+msgid "C_aption:"
+msgstr "शीर्षक (_a):"
+
+#: ../src/f-spot.glade.h:73
+msgid "C_ontrast:"
+msgstr "कंट्रास्ट (_o):"
+
+#: ../src/f-spot.glade.h:74
+msgid "Camera Selection"
+msgstr "कैमरा चयन"
+
+#: ../src/f-spot.glade.h:75
+msgid "Co_nfigure"
+msgstr "कॉन्फ़िगर (_n)"
+
+#: ../src/f-spot.glade.h:76
+msgid "Copy Locat_ion"
+msgstr "प्रतिलिपि स्थान (_i)"
+
+#: ../src/f-spot.glade.h:77
+#, fuzzy
+msgid "Copy _Files to: "
+msgstr "प्रतिलिपि फ़ाइलें को "
+
+#: ../src/f-spot.glade.h:78
+#, fuzzy
+msgid "Copy file to the Photos folder"
+msgstr "प्रतिलिपि फाइल को फ़ोल्डर"
+
+#: ../src/f-spot.glade.h:79
+msgid "Create CD"
+msgstr "सीडी बनाएँ"
+
+#: ../src/f-spot.glade.h:80
+msgid "Create New _Tag..."
+msgstr "नया टैग.बनाएँ (_T)..."
+
+#: ../src/f-spot.glade.h:81
+msgid "Create _New Version..."
+msgstr "नया संस्करण बनाएँ (_N)..."
+
+#: ../src/f-spot.glade.h:82
+#, fuzzy
+msgid "Create _gallery using \"Original\""
+msgstr "बनाएँ असली"
+
+#: ../src/f-spot.glade.h:83
+msgid "Create a mail with the selected photos (possible resized) attached"
+msgstr ""
+
+#: ../src/f-spot.glade.h:84
+#, fuzzy
+msgid "Create mail..."
+msgstr "नया टैग.बनाएँ (_T)..."
+
+#: ../src/f-spot.glade.h:85
+#, fuzzy
+msgid "Create standalone _web gallery"
+msgstr "बनाएँ"
+
+#: ../src/f-spot.glade.h:86
+#, fuzzy
+msgid "Crop photo to _fit"
+msgstr "क्रॉप को"
+
+#: ../src/f-spot.glade.h:87
+msgid "Current date:"
+msgstr "मौज़ूदा तारीख़:"
+
+#: ../src/f-spot.glade.h:88
+msgid "D_escription:"
+msgstr "विवरण (_e):"
+
+#: ../src/f-spot.glade.h:89
+msgid "Directory"
+msgstr "डिरेक्ट्री"
+
+#: ../src/f-spot.glade.h:90
+msgid "Display Side_bar"
+msgstr "बाजू पट्टी दिखाएँ (_b)"
+
+#: ../src/f-spot.glade.h:91
+msgid "Display T_ags"
+msgstr "टेग दिखाएँ (_a)क टैग्स"
+
+#: ../src/f-spot.glade.h:92
+msgid "Display Too_lbar"
+msgstr "्शक औज़ार प दिखाएँ (_l)ट्टी"
+
+#: ../src/f-spot.glade.h:93
+msgid "Display _Dates"
+msgstr "तारीखें दिखाएँ (_D)ियाँ"
+
+#: ../src/f-spot.glade.h:94
+#, fuzzy
+msgid "Display _Timeline"
+msgstr "प्रदर्शक टाइम-लाइन"
+
+#: ../src/f-spot.glade.h:95
+msgid "Do not send a mail"
+msgstr ""
+
+#: ../src/f-spot.glade.h:96
+#, fuzzy
+msgid "E-_Mail:"
+msgstr "ई डाक:"
+
+#: ../src/f-spot.glade.h:97
+#, fuzzy
+msgid "E_xport titles and comments"
+msgstr "निर्यात और"
+
+#: ../src/f-spot.glade.h:98
+#, fuzzy
+msgid "E_xport to CD..."
+msgstr "निर्यात को सीडी."
+
+#: ../src/f-spot.glade.h:99
+#, fuzzy
+msgid "Edit Tag Icon"
+msgstr "संपादन टैग प्रतीक"
+
+#: ../src/f-spot.glade.h:100
+#, fuzzy
+msgid "Edit icon"
+msgstr "संपादन चिह्न"
+
+#: ../src/f-spot.glade.h:101
+msgid "Estimated new size"
+msgstr ""
+
+#: ../src/f-spot.glade.h:102
+#, fuzzy
+msgid "Export"
+msgstr "निर्यात"
+
+#: ../src/f-spot.glade.h:103
+#, fuzzy
+msgid "Export _titles and comments"
+msgstr "निर्यात और"
+
+#: ../src/f-spot.glade.h:104
+#, fuzzy
+msgid "Export to _Flickr..."
+msgstr "निर्यात को."
+
+#: ../src/f-spot.glade.h:105
+#, fuzzy
+msgid "Export to _Folder..."
+msgstr "निर्यात को फ़ोल्डर."
+
+#: ../src/f-spot.glade.h:106
+#, fuzzy
+msgid "Export to _Picasaweb..."
+msgstr "निर्यात को."
+
+#: ../src/f-spot.glade.h:107
+#, fuzzy
+msgid "Export to _Web Gallery..."
+msgstr "निर्यात को वेब गलियारा."
+
+#: ../src/f-spot.glade.h:108
+msgid "Extra large"
+msgstr ""
+
+#: ../src/f-spot.glade.h:109
+#, fuzzy
+msgid "F-Spot"
+msgstr "एफ़ स्पॉट"
+
+#: ../src/f-spot.glade.h:110
+#, fuzzy
+msgid "F-Spot Photo Album"
+msgstr "एफ़ स्पॉट फोटो एल्बम"
+
+#: ../src/f-spot.glade.h:112
+#, fuzzy
+msgid "F-Spot View"
+msgstr "एफ़ स्पॉट दृश्य"
+
+#: ../src/f-spot.glade.h:113
+#, fuzzy
+msgid ""
+"F-Spot needs your authorization in order to upload photos to your Flickr "
+"account. Press the \"Authorize\" button to open a web browser and give F-"
+"Spot the authorization. "
+msgstr "एफ़ स्पॉट इंच को को खाता दबाएँ अधिकृत को खोलें ए और एफ़ स्पॉट "
+
+#: ../src/f-spot.glade.h:115
+#, fuzzy
+msgid "Fin_d"
+msgstr "ढूंढें"
+
+#: ../src/f-spot.glade.h:116
+#, fuzzy
+msgid "Find by _Tag"
+msgstr "ढूंढें टैग"
+
+#: ../src/f-spot.glade.h:117
+#, fuzzy
+msgid "Folder"
+msgstr "फ़ोल्डर (_F)"
+
+#: ../src/f-spot.glade.h:118
+#, fuzzy
+msgid "Folder Export"
+msgstr "फ़ोल्डर निर्यात"
+
+#: ../src/f-spot.glade.h:119
+#, fuzzy
+msgid ""
+"From Screen\n"
+"Standard RGB"
+msgstr "से स्क्रीन आरजीबी"
+
+#: ../src/f-spot.glade.h:121
+#, fuzzy
+msgid ""
+"Full Page\n"
+"Standard - 4x6"
+msgstr "पूरा पृष्ठ 4x6"
+
+#: ../src/f-spot.glade.h:123
+#, fuzzy
+msgid "G_allery Name:"
+msgstr "गलियारा नाम:"
+
+#: ../src/f-spot.glade.h:124
+#, fuzzy
+msgid "G_allery:"
+msgstr "गलियारा:"
+
+#: ../src/f-spot.glade.h:125
+#, fuzzy
+msgid "Gallery"
+msgstr "गलियारा"
+
+#: ../src/f-spot.glade.h:126
+#, fuzzy
+msgid ""
+"Hairline\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
+msgstr "n"
+
+#: ../src/f-spot.glade.h:131
+msgid "Import"
+msgstr "आयात"
+
+#: ../src/f-spot.glade.h:132
+msgid "Import Source:"
+msgstr "आयात स्रोत:"
+
+#: ../src/f-spot.glade.h:133
+#, fuzzy
+msgid "Import photos"
+msgstr "आयात"
+
+#: ../src/f-spot.glade.h:134
+#, fuzzy
+msgid "Include subdirectories"
+msgstr "इनक्लूड"
+
+#: ../src/f-spot.glade.h:135
+#, fuzzy
+msgid "Large"
+msgstr "पृष्ठः"
+
+#: ../src/f-spot.glade.h:136
+#, fuzzy
+msgid "Make F-Spot your screensaver"
+msgstr "मेक एफ़ स्पॉट"
+
+#: ../src/f-spot.glade.h:137
+msgid "Medium"
+msgstr ""
+
+#: ../src/f-spot.glade.h:138 ../src/InfoDisplay.cs:12
+#, fuzzy
+msgid "Metadata Browser"
+msgstr "फ़ाइल विवरण,पराडेटा,डेटा परिचायक ब्राउज़र"
+
+#: ../src/f-spot.glade.h:139
+#, fuzzy
+msgid "N_umber of Copies:"
+msgstr "संख्या का प्रतियाँ:"
+
+#: ../src/f-spot.glade.h:141
+#, fuzzy
+msgid ""
+"None\n"
+"Title\n"
+"Filename\n"
+"Date\n"
+"Photo Details"
+msgstr "कुछ नहीं विवरण"
+
+#: ../src/f-spot.glade.h:146
+#, fuzzy
+msgid "Number of pictures"
+msgstr "संख्या का प्रतियाँ:"
+
+#: ../src/f-spot.glade.h:147
+#, fuzzy
+msgid "Open _Folder..."
+msgstr "खोलें फ़ोल्डर."
+
+#: ../src/f-spot.glade.h:148
+#, fuzzy
+msgid "Open _album in browser when done uploading"
+msgstr "खोलें इंच सम्पन्न"
+
+#: ../src/f-spot.glade.h:149
+#, fuzzy
+msgid "Open _destination when done exporting"
+msgstr "खोलें सम्पन्न"
+
+#. Note that the original version is never stored in the photo_versions table in the
+#. database.
+#: ../src/f-spot.glade.h:150 ../src/PhotoStore.cs:570
+#, fuzzy
+msgid "Original"
+msgstr "असली"
+
+#: ../src/f-spot.glade.h:151
+msgid "Original size (possible very large file size)"
+msgstr ""
+
+#: ../src/f-spot.glade.h:152
+#, fuzzy
+msgid "P_arent Tag:"
+msgstr "पितृ टैग:"
+
+#: ../src/f-spot.glade.h:153
+#, fuzzy
+msgid "P_hoto Source:"
+msgstr "फोटो स्रोत:"
+
+#: ../src/f-spot.glade.h:154
+#, fuzzy
+msgid "Page 1 of 3"
+msgstr "पृष्ठ का 3"
+
+#: ../src/f-spot.glade.h:155
+#, fuzzy
+msgid "Pause"
+msgstr "ठहरें"
+
+#: ../src/f-spot.glade.h:156
+#, fuzzy
+msgid "Photo 0 of 0"
+msgstr "फोटो का 0"
+
+#: ../src/f-spot.glade.h:157
+#, fuzzy
+msgid "Photo _Size:"
+msgstr "फोटो आकार:"
+
+#: ../src/f-spot.glade.h:158
+#, fuzzy
+msgid "Please verify that the settings for this gallery are correct."
+msgstr "के लिये."
+
+#: ../src/f-spot.glade.h:159
+msgid "Preferences"
+msgstr "प्राथमिकताएँ"
+
+#: ../src/f-spot.glade.h:160
+msgid "Prepare for mail"
+msgstr ""
+
+#: ../src/f-spot.glade.h:161
+msgid "Previous"
+msgstr "पिछला"
+
+#: ../src/f-spot.glade.h:162
+msgid "Print"
+msgstr "छापें"
+
+#: ../src/f-spot.glade.h:163
+#, fuzzy
+msgid "Print crop _marks"
+msgstr "छापें"
+
+#: ../src/f-spot.glade.h:164
+msgid "Private"
+msgstr "निजी"
+
+#: ../src/f-spot.glade.h:165
+msgid "Public"
+msgstr "सार्वजनिक"
+
+#: ../src/f-spot.glade.h:166
+#, fuzzy
+msgid "Public Album"
+msgstr "सार्वजनिक"
+
+#: ../src/f-spot.glade.h:167
+msgid "Re_fresh Thumbnail"
+msgstr "लघु छवि ताज़ा करें (_f)"
+
+#: ../src/f-spot.glade.h:168
+msgid "Rem_ove Tag"
+msgstr "टैग हटाओ (_o)"
+
+#: ../src/f-spot.glade.h:169
+msgid "Reset"
+msgstr ""
+
+#: ../src/f-spot.glade.h:170 ../src/StockIcons.cs:38
+msgid "Rotate _Left"
+msgstr "बायाँ घुमाएँ (_L)"
+
+#: ../src/f-spot.glade.h:171 ../src/StockIcons.cs:39
+msgid "Rotate _Right"
+msgstr "दाएँ ा घुमाएँ (_R)"
+
+#: ../src/f-spot.glade.h:172
+#, fuzzy
+msgid "Select A Folder"
+msgstr "फ़ोल्डर चुनें"
+
+#: ../src/f-spot.glade.h:173
+#, fuzzy
+msgid "Select Photos to Copy From Camera..."
+msgstr "चुनें को प्रतिलिपि से कैमरा."
+
+#: ../src/f-spot.glade.h:174
+msgid "Select _All"
+msgstr "सभी चुनें (_A)"
+
+#: ../src/f-spot.glade.h:175
+msgid "Select _None"
+msgstr "कुछ नहीं चुनें (_N)"
+
+#: ../src/f-spot.glade.h:176
+msgid "Select a Tag..."
+msgstr "टैग.चुनें..."
+
+#: ../src/f-spot.glade.h:177
+#, fuzzy
+msgid "Select the camera from which you want to transfer files"
+msgstr "चुनें कैमरा आप को"
+
+#: ../src/f-spot.glade.h:178
+msgid "Selected Camera: "
+msgstr "चयनित कैमरा "
+
+#: ../src/f-spot.glade.h:179
+#, fuzzy
+msgid ""
+"Selection\n"
+"Gallery\n"
+"Viewport"
+msgstr "चयन"
+
+#: ../src/f-spot.glade.h:182
+msgid "Send _Mail..."
+msgstr "डाक.भेजें (_M)..."
+
+#: ../src/f-spot.glade.h:183
+#, fuzzy
+msgid "Set Date Range"
+msgstr "सेट तारीख़ सीमा"
+
+#: ../src/f-spot.glade.h:184
+#, fuzzy
+msgid "Set _Date Range..."
+msgstr "सेट तारीख़ सीमा."
+
+#: ../src/f-spot.glade.h:185
+#, fuzzy
+msgid "Set as _Background"
+msgstr "पृष्ठभूमि के रूप में नियत करें (_B)"
+
+#: ../src/f-spot.glade.h:186 ../src/TimeDialog.cs:124
+#, fuzzy, csharp-format
+msgid "Shift all photos by {0}"
+msgstr "शिफ्ट सभी"
+
+#: ../src/f-spot.glade.h:187
+#, fuzzy
+msgid "Show or hide the side pane"
+msgstr "किनारे की पट्टी को दिखायें व छुपायें"
+
+#: ../src/f-spot.glade.h:188
+#, fuzzy
+msgid "Show or hide the toolbar"
+msgstr "उपकरण-पट्टी छुपाएँ या दिखाएँ"
+
+#: ../src/f-spot.glade.h:189
+msgid "Side _pane"
+msgstr ""
+
+#: ../src/f-spot.glade.h:190
+#, fuzzy
+msgid "Size"
+msgstr "आकारः"
+
+#: ../src/f-spot.glade.h:191
+msgid "Size of the exported selection :"
+msgstr ""
+
+#: ../src/f-spot.glade.h:192
+msgid "Small"
+msgstr ""
+
+#: ../src/f-spot.glade.h:193
+#, fuzzy
+msgid "So_urce Temp"
+msgstr "स्रोत"
+
+#: ../src/f-spot.glade.h:194
+#, fuzzy
+msgid "Space all photos by"
+msgstr "खाली जगह सभी"
+
+#: ../src/f-spot.glade.h:195
+msgid ""
+"Specify if an original size picture should be rotated or not. Smaller sizes "
+"are automatically rotated."
+msgstr ""
+
+#: ../src/f-spot.glade.h:196
+#, fuzzy
+msgid ""
+"Standard RGB\n"
+"Image Profile\n"
+"Custom\n"
+msgstr "मानक आरजीबी n"
+
+#: ../src/f-spot.glade.h:200
+#, fuzzy
+msgid "Strip _metadata"
+msgstr "स्ट्रिप"
+
+#: ../src/f-spot.glade.h:201
+#, fuzzy
+msgid "Strip image _metadata"
+msgstr "स्ट्रिप छवि"
+
+#: ../src/f-spot.glade.h:202
+#, fuzzy
+msgid "Tags: "
+msgstr "टैग्स "
+
+#: ../src/f-spot.glade.h:203
+msgid "Tiny"
+msgstr ""
+
+#: ../src/f-spot.glade.h:204
+msgid "Toolbar"
+msgstr "औज़ार पट्टी"
+
+#: ../src/f-spot.glade.h:205
+msgid "Total original size"
+msgstr ""
+
+#: ../src/f-spot.glade.h:206
+msgid "U_RL:"
+msgstr "यूआरएल (_R):"
+
+#: ../src/f-spot.glade.h:207
+msgid "View"
+msgstr "दृश्य"
+
+#: ../src/f-spot.glade.h:208
+#, fuzzy
+msgid "Visible to Family"
+msgstr "दृष्टिगोचर को परिवार"
+
+#: ../src/f-spot.glade.h:209
+#, fuzzy
+msgid "Visible to Friends"
+msgstr "दृष्टिगोचर को"
+
+#: ../src/f-spot.glade.h:210
+#, fuzzy
+msgid "Will print using: US Letter size on Generic Postscript"
+msgstr "मुद्रण पत्र आकार  पर ज़ेनेरिक पोस्टस्क्रिप्ट"
+
+#: ../src/f-spot.glade.h:211
+#, fuzzy
+msgid "Write _metadata to file"
+msgstr "लिखें को फाइल"
+
+#: ../src/f-spot.glade.h:212
+msgid "Zoom _in"
+msgstr ""
+
+#: ../src/f-spot.glade.h:213
+msgid "Zoom _out"
+msgstr ""
+
+#: ../src/f-spot.glade.h:214
+msgid "Zoom in"
+msgstr "बडे रूप में दिखाएँ"
+
+#: ../src/f-spot.glade.h:215
+msgid "Zoom out"
+msgstr "छोटे रूप में दिखाएँ"
+
+#: ../src/f-spot.glade.h:216
+msgid "_Album Name:"
+msgstr "एल्बम नाम (_A):"
+
+#: ../src/f-spot.glade.h:217
+#, fuzzy
+msgid "_Album Title:"
+msgstr "एल्बम नाम (_A):"
+
+#: ../src/f-spot.glade.h:218
+msgid "_Attach Tag"
+msgstr "टैग जोड़ें (_A)"
+
+#: ../src/f-spot.glade.h:219
+msgid "_Attach Tag to Selection"
+msgstr "चयन में  टैग जोड़े (_A)ं"
+
+#: ../src/f-spot.glade.h:220
+msgid "_Border:"
+msgstr "किनारा (_B):"
+
+#: ../src/f-spot.glade.h:221
+msgid "_Brightness:"
+msgstr "चमकीलापन (_B):"
+
+#: ../src/f-spot.glade.h:222
+#, fuzzy
+msgid "_Browse Previously Scheduled Files"
+msgstr "ब्राउज़ फ़ाइलें"
+
+#: ../src/f-spot.glade.h:223 ../src/GroupSelector.cs:527
+#, fuzzy
+msgid "_Clear Date Range"
+msgstr "खाली तारीख़ सीमा"
+
+#: ../src/f-spot.glade.h:224
+msgid "_Close"
+msgstr "बंद करें (_C)"
+
+#: ../src/f-spot.glade.h:225
+msgid "_Delete From Drive"
+msgstr ""
+
+#: ../src/f-spot.glade.h:226
+msgid "_Delete Selected Tag"
+msgstr "चयनित टैग मिटाएँ (_D)"
+
+#: ../src/f-spot.glade.h:227
+msgid "_Delete Version"
+msgstr "संस्करण मिटाएँ (_D)"
+
+#: ../src/f-spot.glade.h:228
+msgid "_Description:"
+msgstr "वर्णन (_D):"
+
+#: ../src/f-spot.glade.h:229
+#, fuzzy
+msgid "_Destination Temp"
+msgstr "गंतव्य"
+
+#: ../src/f-spot.glade.h:230
+msgid "_Display:"
+msgstr "दिखाएँ (_D):"
+
+#: ../src/f-spot.glade.h:231
+msgid "_Edit Selected Tag..."
+msgstr "चयनित टैग संपादित करें (_E)..."
+
+#: ../src/f-spot.glade.h:232
+msgid "_Export"
+msgstr "निर्यात (_E)"
+
+#: ../src/f-spot.glade.h:233
+msgid "_Export tags"
+msgstr "टैग निर्यात (_E)"
+
+#: ../src/f-spot.glade.h:234
+msgid "_Export to Album:"
+msgstr "एल्बम को निर्यात (_E):"
+
+#: ../src/f-spot.glade.h:235
+msgid "_Flickr"
+msgstr "फ्लिकर (_F)"
+
+#: ../src/f-spot.glade.h:236
+msgid "_Folder"
+msgstr "फ़ोल्डर (_F)"
+
+#: ../src/f-spot.glade.h:237
+msgid "_Folder:"
+msgstr "फ़ोल्डर (_F):"
+
+#: ../src/f-spot.glade.h:238
+msgid "_Fullscreen"
+msgstr "पूर्ण स्क्रीन (_F)"
+
+#: ../src/f-spot.glade.h:239
+msgid "_Gallery"
+msgstr "गलियारा (_G)"
+
+#: ../src/f-spot.glade.h:240
+msgid "_Gallery Name:"
+msgstr "गलियारा नाम (_G):"
+
+#: ../src/f-spot.glade.h:241
+msgid "_Gallery:"
+msgstr "गलियारा (_G):"
+
+#: ../src/f-spot.glade.h:242
+msgid "_Hue:"
+msgstr "रंगशेड (_H):"
+
+#: ../src/f-spot.glade.h:243
+msgid "_Icon:"
+msgstr "चिह्न (_I):"
+
+#: ../src/f-spot.glade.h:244
+#, fuzzy
+msgid "_Import files after copy"
+msgstr "आयात पश्चात नक़ल"
+
+#: ../src/f-spot.glade.h:245
+msgid "_Import..."
+msgstr "आयात (_I)..."
+
+#: ../src/f-spot.glade.h:246
+#, fuzzy
+msgid "_Metadata Browser"
+msgstr "फ़ाइल विवरण,पराडेटा,डेटा परिचायक ब्राउज़र"
+
+#: ../src/f-spot.glade.h:247
+msgid "_Month"
+msgstr "माह (_M)"
+
+#: ../src/f-spot.glade.h:248
+msgid "_New Window"
+msgstr "नया विंडो (_N)"
+
+#: ../src/f-spot.glade.h:249
+#, fuzzy
+msgid "_Open album in browser when done uploading"
+msgstr "खोलें इंच सम्पन्न"
+
+#: ../src/f-spot.glade.h:250
+#, fuzzy
+msgid "_Open destination when done exporting"
+msgstr "खोलें सम्पन्न"
+
+#: ../src/f-spot.glade.h:251
+#, fuzzy
+msgid "_Output:"
+msgstr "आउटपुट (_O):"
+
+#: ../src/f-spot.glade.h:252
+#, fuzzy
+msgid "_Parent Album:"
+msgstr "पितृ एल्बम:"
+
+#: ../src/f-spot.glade.h:253
+msgid "_Password:"
+msgstr "पासवर्ड (_P):"
+
+#: ../src/f-spot.glade.h:254
+msgid "_Prefix: "
+msgstr "उपसर्ग (_P):"
+
+#: ../src/f-spot.glade.h:255
+msgid "_Print..."
+msgstr "प्रिन्ट (_P)..."
+
+#: ../src/f-spot.glade.h:256
+#, fuzzy
+msgid "_Remove From Catalog"
+msgstr "हटाओ से"
+
+#: ../src/f-spot.glade.h:257
+#, fuzzy
+msgid "_Remove Tag From Selection"
+msgstr "हटाओ टैग से चयन"
+
+#: ../src/f-spot.glade.h:258
+#, fuzzy
+msgid "_Rename Version"
+msgstr "नाम बदलें  संस्करण"
+
+#: ../src/f-spot.glade.h:259
+#, fuzzy
+msgid "_Resize to: "
+msgstr "आकार बदलें को "
+
+#: ../src/f-spot.glade.h:260 ../src/GroupSelector.cs:521
+#, fuzzy
+msgid "_Reverse Order"
+msgstr "विपरीत अनुक्रम"
+
+#: ../src/f-spot.glade.h:261
+#, fuzzy
+msgid "_Saturation:"
+msgstr "संतृप्तिः (_S)"
+
+#: ../src/f-spot.glade.h:262
+#, fuzzy
+msgid "_Save the files only"
+msgstr "सहेजें"
+
+#: ../src/f-spot.glade.h:263
+#, fuzzy
+msgid "_Scale photos to no larger than: "
+msgstr "स्केल को नहीं "
+
+#: ../src/f-spot.glade.h:264
+#, fuzzy
+msgid "_Select Tags..."
+msgstr "चुनें टैग्स."
+
+#: ../src/f-spot.glade.h:265
+#, fuzzy
+msgid "_Sharpen..."
+msgstr "तेज किया हुआ."
+
+#: ../src/f-spot.glade.h:266
+#, fuzzy
+msgid "_Slideshow"
+msgstr "स्लाइड शो (_S)"
+
+#: ../src/f-spot.glade.h:267
+#, fuzzy
+msgid "_Strip metadata"
+msgstr "स्ट्रिप"
+
+#: ../src/f-spot.glade.h:268
+#, fuzzy
+msgid "_Tag Name:"
+msgstr "टैग नाम:"
+
+#: ../src/f-spot.glade.h:269
+#, fuzzy
+msgid "_Tags"
+msgstr "टैग्स"
+
+#: ../src/f-spot.glade.h:270
+#, fuzzy
+msgid "_Title:"
+msgstr "शीर्षक (_T):"
+
+#: ../src/f-spot.glade.h:271
+#, fuzzy
+msgid "_URI:"
+msgstr "यूआरआई:"
+
+#: ../src/f-spot.glade.h:272
+msgid "_Untagged Photos"
+msgstr ""
+
+#: ../src/f-spot.glade.h:273
+#, fuzzy
+msgid "_Username:"
+msgstr "उपभोक्ता नाम (_U):"
+
+#: ../src/f-spot.glade.h:274
+#, fuzzy
+msgid "_Version"
+msgstr "संस्करण"
+
+#: ../src/f-spot.glade.h:275
+#, fuzzy
+msgid "_View"
+msgstr "देखें (_V)"
+
+#: ../src/f-spot.glade.h:276
+#, fuzzy
+msgid "_View photos in browser when done uploading"
+msgstr "दृश्य इंच सम्पन्न"
+
+#: ../src/f-spot.glade.h:277
+#, fuzzy
+msgid "_Virtual Filesystem"
+msgstr "वर्च्युएल, आभासी,मायावी फ़ाइलसिस्टम,फ़ाइलतंत्र"
+
+#: ../src/f-spot.glade.h:278
+#, fuzzy
+msgid "_Write only these photos to CD"
+msgstr "लिखें को सीडी"
+
+#: ../src/f-spot.glade.h:279
+#, fuzzy
+msgid "dialog1"
+msgstr "डायलाग 1"
+
+#: ../src/f-spot.glade.h:280
+#, fuzzy
+msgid "difference:"
+msgstr "भिन्नता:"
+
+#: ../src/f-spot.glade.h:281
+msgid "img_000.jpg"
+msgstr ""
+
+#. The preceding text here is the second checkbutton in the Time dialog
+#. that says "Space all photos by []"
+#: ../src/f-spot.glade.h:282 ../src/TimeDialog.cs:119
+#, fuzzy, csharp-format
+msgid "min. Starting at {0}"
+msgstr "मि. प्रारंभिक पर"
+
+#: ../src/f-spot.glade.h:283
+#, fuzzy
+msgid "pixels"
+msgstr "पिक्सेल्स"
+
+#: ../src/f-spot.glade.h:284
+#, fuzzy
+msgid "x"
+msgstr "एक्स"
+
+#: ../src/GalleryExport.cs:366
+#, fuzzy
+msgid "Invalid URL"
+msgstr "यूआरएल (URL) अवैध है"
+
+#: ../src/GalleryExport.cs:367
+#, fuzzy
+msgid "The gallery URL entry does not appear to be a valid URL"
+msgstr "यूआरएल प्रविष्टि नहीं को ए यूआरएल"
+
+#: ../src/GalleryExport.cs:451
+msgid "(TopLevel)"
+msgstr ""
+
+#: ../src/GalleryExport.cs:690
+#, fuzzy, csharp-format
+msgid "Error Uploading To Gallery: {0}"
+msgstr "त्रुटि अपलोडिंग को गलियारा"
+
+#: ../src/GalleryExport.cs:709
+#, fuzzy
+msgid "(No Gallery)"
+msgstr "नहीं गलियारा"
+
+#: ../src/GalleryExport.cs:801
+#, fuzzy
+msgid "(Not Connected)"
+msgstr "Not कनेक्टेड"
+
+#: ../src/GalleryExport.cs:802
+#, fuzzy
+msgid "(No Albums)"
+msgstr "नहीं एल्बम"
+
+#: ../src/GalleryExport.cs:854
+#, fuzzy
+msgid "No account selected"
+msgstr "नहीं खाता चयनित"
+
+#: ../src/GroupSelector.cs:55 ../src/GroupSelector.cs:56
+#, fuzzy
+msgid "More dates"
+msgstr "अधिक"
+
+#: ../src/GroupSelector.cs:58 ../src/GroupSelector.cs:59
+#, fuzzy
+msgid "More directories"
+msgstr "अधिक"
+
+#: ../src/GroupSelector.cs:61 ../src/GroupSelector.cs:62
+#, fuzzy
+msgid "More"
+msgstr "अधिक"
+
+#: ../src/GroupSelector.cs:513
+#, fuzzy
+msgid "Arrange by _Month"
+msgstr "माह"
+
+#: ../src/GroupSelector.cs:516
+#, fuzzy
+msgid "Arrange by _Folder"
+msgstr "फ़ोल्डर"
+
+#: ../src/ImportCommand.cs:28 ../src/SingleView.cs:235
+#, fuzzy
+msgid "Select Folder"
+msgstr "फ़ोल्डर चुनें"
+
+#: ../src/ImportCommand.cs:235
+#, fuzzy
+msgid "(No Cameras Detected)"
+msgstr "नहीं कैमरा"
+
+#: ../src/ImportCommand.cs:377
+#, fuzzy, csharp-format
+msgid "Loading {0} of {1}"
+msgstr "लोड किया जा रहा है का"
+
+#: ../src/ImportCommand.cs:442
+#, fuzzy
+msgid "Done Loading"
+msgstr "सम्पन्न लोड किया जा रहा है"
+
+#: ../src/ImportCommand.cs:639
+#, fuzzy
+msgid "Directory does not exist."
+msgstr "डिरेक्ट्री अस्तित्व में नहीं है."
+
+#: ../src/ImportCommand.cs:640
+#, fuzzy, csharp-format
+msgid ""
+"The directory you selected \"{0}\" does not exist.  Please choose a "
+"different directory"
+msgstr "आप चयनित नहीं ए"
+
+#: ../src/ImportCommand.cs:678
+#, fuzzy
+msgid "Select Tag"
+msgstr "चुनें टैग"
+
+#: ../src/InfoBox.cs:72 ../src/PhotoVersionCommands.cs:55
+#, fuzzy
+msgid "Name:"
+msgstr "नाम:"
+
+#: ../src/InfoBox.cs:74
+#, fuzzy
+msgid "Version:"
+msgstr "संस्करणः"
+
+#: ../src/InfoBox.cs:76
+#, fuzzy
+msgid "Date:"
+msgstr "तारीख़ः"
+
+#: ../src/InfoBox.cs:78
+#, fuzzy
+msgid "Size:"
+msgstr "आकारः"
+
+#: ../src/InfoBox.cs:80
+#, fuzzy
+msgid "Exposure:"
+msgstr "एक्सपोज़रः"
+
+#. The label for the root category is used in new and edit tag dialogs
+#: ../src/InfoBox.cs:216 ../src/TagStore.cs:422
+#, fuzzy
+msgid "(None)"
+msgstr "(कुछ नहीं)"
+
+#: ../src/InfoBox.cs:227 ../src/InfoBox.cs:236
+#, fuzzy
+msgid "(Unknown)"
+msgstr "अज्ञात"
+
+#: ../src/InfoDisplay.cs:178
+#, fuzzy
+msgid "Extended Metadata"
+msgstr "विस्तारित फ़ाइल विवरण,पराडेटा,डेटा परिचायक"
+
+#: ../src/InfoDisplay.cs:217
+#, fuzzy
+msgid "No active photo"
+msgstr "नहीं सक्रिय"
+
+#: ../src/InfoDisplay.cs:219
+#, fuzzy, csharp-format
+msgid "The photo \"{0}\" does not exist"
+msgstr "नहीं"
+
+#: ../src/InfoDisplay.cs:225
+#, fuzzy
+msgid "No metadata available"
+msgstr "नहीं उपलब्ध"
+
+#: ../src/IptcFile.cs:140
+#, fuzzy
+msgid "IPTC Information Interchange Model (IIM) Version number"
+msgstr "IPTC जानकारी मॉडल संस्करण अंक"
+
+#: ../src/IptcFile.cs:142
+#, fuzzy
+msgid "OSI Destination routing information"
+msgstr "गंतव्य"
+
+#: ../src/IptcFile.cs:144
+#, fuzzy
+msgid "IPTC file format"
+msgstr "IPTC फाइल"
+
+#: ../src/IptcFile.cs:146
+#, fuzzy
+msgid "Identifies the provider and product"
+msgstr "और"
+
+#: ../src/IptcFile.cs:148
+#, fuzzy
+msgid "A unique number identifying the envelope"
+msgstr "ए अंक"
+
+#: ../src/IptcFile.cs:150
+#, fuzzy
+msgid "A unique number"
+msgstr "ए अंक"
+
+#: ../src/IptcFile.cs:152
+#, fuzzy
+msgid ""
+"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgstr "प्राथमिकता और"
+
+#: ../src/IptcFile.cs:154
+#, fuzzy
+msgid "The year month and day (CCYYMMDD) the service sent the material"
+msgstr "वर्ष माह और दिन वस्तु"
+
+#: ../src/IptcFile.cs:156
+#, fuzzy
+msgid ""
+"The hour minute and second the (HHMMSS+HHMM) the service sent the material"
+msgstr "घंटा मिनट और दूसरा वस्तु"
+
+#: ../src/IptcFile.cs:158
+#, fuzzy
+msgid "The character set designation"
+msgstr "सेट"
+
+#: ../src/IptcFile.cs:160
+#, fuzzy
+msgid "External globally unique object identifier"
+msgstr "बाहरी वस्तु पहचानकर्ता"
+
+#: ../src/IptcFile.cs:165
+#, fuzzy
+msgid "Abstract Relationship Method (ARM) identifier"
+msgstr "सार संबन्ध, रिश्ता विधि पहचानकर्ता"
+
+#: ../src/IptcFile.cs:167
+#, fuzzy
+msgid "Abstract Relationship Method (ARM) version number."
+msgstr "सार संबन्ध, रिश्ता विधि संस्करण अंक."
+
+#: ../src/IptcFile.cs:170
+#, fuzzy
+msgid "Number identifying the IIM version this application record uses"
+msgstr "संख्या संस्करण अनुप्रयोग रेकॉर्ड"
+
+#: ../src/IptcFile.cs:172
+#, fuzzy
+msgid "Object type reference"
+msgstr "वस्तु क़िस्म"
+
+#: ../src/IptcFile.cs:177
+#, fuzzy
+msgid "Object attribute reference"
+msgstr "वस्तु गुण"
+
+#: ../src/IptcFile.cs:183 ../src/IptcFile.cs:187
+#, fuzzy
+msgid "Object name"
+msgstr "वस्तु नाम"
+
+#: ../src/IptcFile.cs:185
+#, fuzzy
+msgid "Status of the objectdata according to the provider"
+msgstr "स्थिति का को"
+
+#: ../src/IptcFile.cs:189
+msgid "Location within a city or area where the object originates"
+msgstr ""
+
+#: ../src/IptcFile.cs:192
+#, fuzzy
+msgid "Name of the city the content is focussing on"
+msgstr "नाम का है पर"
+
+#: ../src/IptcFile.cs:195
+#, fuzzy
+msgid "Copyright information for"
+msgstr "सर्वाधिकार सुरक्षित के लिये"
+
+#: ../src/IptcFile.cs:198
+#, fuzzy
+msgid "Full name of the country of the focus of the content"
+msgstr "पूरा नाम का का का"
+
+#: ../src/IptcFile.cs:201
+#, fuzzy
+msgid ""
+"Two or three letter ISO3166 code of the country of the focus of the content"
+msgstr "दो या तीन कोड,कूट का का का"
+
+#: ../src/IptcFile.cs:204
+#, fuzzy
+msgid "Creator of the content"
+msgstr "हेडलाइन का"
+
+#: ../src/IptcFile.cs:207
+msgid "Provider of the object"
+msgstr ""
+
+#: ../src/IptcFile.cs:210
+#, fuzzy
+msgid "The title of the author or creator"
+msgstr "शीर्षक का या"
+
+#: ../src/IptcFile.cs:213
+#, fuzzy
+msgid ""
+"The person involved in writing, editing or correcting the object data or "
+"caption/abstract"
+msgstr "व्यक्ति इंच या वस्तु या कैप्शन"
+
+#: ../src/IptcFile.cs:217
+#, fuzzy
+msgid "Headline of the content"
+msgstr "हेडलाइन का"
+
+#: ../src/IptcFile.cs:220
+#, fuzzy
+msgid ""
+"Instructions from the creator to the receiver not covered by other fields"
+msgstr "निर्देश को नहीं अन्य"
+
+#: ../src/IptcFile.cs:223
+#, fuzzy
+msgid "Intellectual genre of the object"
+msgstr "का वस्तु"
+
+#: ../src/IptcFile.cs:236
+#, fuzzy
+msgid "Unknown IIM DataSet"
+msgstr "अज्ञात"
+
+#: ../src/Loupe.cs:56 ../src/MainWindow.cs:1835
+#, fuzzy
+msgid "Error saving sharpened photo"
+msgstr "त्रुटि"
+
+#: ../src/Loupe.cs:86
+#, fuzzy
+msgid "Sharpen"
+msgstr "तेज किया हुआ"
+
+#: ../src/Loupe.cs:96 ../src/MainWindow.cs:1802
+#, fuzzy
+msgid "Amount:"
+msgstr "मात्राः"
+
+#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1803
+#, fuzzy
+msgid "Radius:"
+msgstr "त्रिज्याः"
+
+#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1804
+#, fuzzy
+msgid "Threshold:"
+msgstr "देहलीज (थ्रेशोल्ड) :"
+
+#: ../src/MainWindow.cs:213
+#, fuzzy
+msgid "Browse many photos simultaneously"
+msgstr "ब्राउज़"
+
+#: ../src/MainWindow.cs:216
+#, fuzzy
+msgid "View and edit a photo"
+msgstr "दृश्य और संपादन  ए"
+
+#: ../src/MainWindow.cs:221
+#, fuzzy
+msgid "View photos fullscreen"
+msgstr "दृश्य"
+
+#: ../src/MainWindow.cs:224
+#, fuzzy
+msgid "View photos in a slideshow"
+msgstr "दृश्य इंच ए"
+
+#: ../src/MainWindow.cs:748
+#, fuzzy
+msgid "Error loading database."
+msgstr "त्रुटि डेटाबेस, डेटाधार, आंकड़ाधार, आंकड़ाकोष."
+
+#: ../src/MainWindow.cs:749
+#, fuzzy, csharp-format
+msgid ""
+"F-Spot encountered an error while loading the photo database. The old "
+"database has be moved to {0} and a new database has been created."
+msgstr ""
+"एफ़ स्पॉट त्रुटि डेटाबेस, डेटाधार, आंकड़ाधार, आंकड़ाकोष डेटाबेस, डेटाधार, आंकड़ाधार, आंकड़ाकोष "
+"को और ए नया डेटाबेस, डेटाधार, आंकड़ाधार, आंकड़ाकोष."
+
+#: ../src/MainWindow.cs:1290
+#, fuzzy
+msgid "No cameras detected."
+msgstr "नहीं."
+
+#: ../src/MainWindow.cs:1291
+#, fuzzy
+msgid ""
+"F-Spot was unable to find any cameras attached to this system.  Double check "
+"that the camera is connected and has power"
+msgstr "एफ़ स्पॉट को ढूंढें संलग्न है को दोगुना कैमरा है कनेक्टेड और"
+
+#: ../src/MainWindow.cs:1331
+#, fuzzy
+msgid "Error connecting to camera"
+msgstr "त्रुटि जुड़ रहा है को कैमरा"
+
+#: ../src/MainWindow.cs:1332
+#, fuzzy, csharp-format
+msgid "Received error \"{0}\" while connecting to camera"
+msgstr "हस्तगत त्रुटि जुड़ रहा है को कैमरा"
+
+#. Translators should localize the following string
+#. * which will give them credit in the About box.
+#. * E.g. "Martin Willemoes Hansen"
+#: ../src/MainWindow.cs:1478
+#, fuzzy
+msgid "translator-credits"
+msgstr ""
+"रविशंकर श्रीवास्तव (raviratlami@yahoo.com)\n"
+"राजेश रंजन (rajeshkajha@yahoo.com)"
+
+#: ../src/MainWindow.cs:1485
+#, fuzzy
+msgid "Copyright © 2003-2006 Novell Inc."
+msgstr "सर्वाधिकार सुरक्षित."
+
+#. Translators, The singular case will never happen here.
+#: ../src/MainWindow.cs:1715
+#, fuzzy, csharp-format
+msgid "Merge the selected tag"
+msgid_plural "Merge the {0} selected tags?"
+msgstr[0] "मिलाएँ चयनित टैग,पुछल्ला"
+msgstr[1] "मिलाएँ चयनित टैग,पुछल्ला"
+
+#: ../src/MainWindow.cs:1742
+#, fuzzy
+msgid ""
+"This operation will merge the selected tags and any sub-tags into a single "
+"tag."
+msgstr "मिलाएं चयनित और ए एकल टैग,पुछल्ला."
+
+#: ../src/MainWindow.cs:1744
+#, fuzzy
+msgid "_Merge Tags"
+msgstr "मिलाएँ टैग्स"
+
+#: ../src/MainWindow.cs:1793
+#, fuzzy
+msgid "Unsharp Mask"
+msgstr "मास्क"
+
+#: ../src/MainWindow.cs:2073
+#, fuzzy
+msgid "_Ok"
+msgstr "ठीक"
+
+#: ../src/MainWindow.cs:2074
+#, fuzzy
+msgid "Error Deleting Picture"
+msgstr "त्रुटि मिटा रहे छवि"
+
+#: ../src/MainWindow.cs:2079
+#, fuzzy, csharp-format
+msgid ""
+"No permission to delete the file:\n"
+"{0}"
+msgstr "नहीं को मिटाएँ फाइल n"
+
+#: ../src/MainWindow.cs:2083
+#, fuzzy, csharp-format
+msgid ""
+"An error of type {0} occurred while deleting the file:\n"
+"{1}"
+msgstr "त्रुटि का क़िस्म फाइल n"
+
+#: ../src/MainWindow.cs:2109
+#, fuzzy, csharp-format
+msgid "Delete the selected photo permanently?"
+msgid_plural "Delete the {0} selected photos permanently?"
+msgstr[0] "मिटाएँ चयनित?"
+msgstr[1] "मिटाएँ चयनित?"
+
+#: ../src/MainWindow.cs:2113
+#, fuzzy
+msgid "This deletes all versions of the selected photo from your drive."
+msgid_plural ""
+"This deletes all versions of the selected photos from your drive."
+msgstr[0] "सभी का चयनित."
+msgstr[1] "सभी का चयनित."
+
+#: ../src/MainWindow.cs:2116
+#, fuzzy
+msgid "_Delete photo"
+msgid_plural "_Delete photos"
+msgstr[0] "मिटाएँ"
+msgstr[1] "मिटाएँ"
+
+#: ../src/MainWindow.cs:2144
+#, fuzzy, csharp-format
+msgid "Remove the selected photo from F-Spot?"
+msgid_plural "Remove the {0} selected photos from F-Spot?"
+msgstr[0] "हटाओ चयनित एफ़ स्पॉट?"
+msgstr[1] "हटाओ चयनित एफ़ स्पॉट?"
+
+#: ../src/MainWindow.cs:2149
+#, fuzzy
+msgid ""
+"If you remove photos from the F-Spot catalog all tag information will be "
+"lost. The photos remain on your computer and can be imported into F-Spot "
+"again."
+msgstr "आप मिटाएँ एफ़ स्पॉट सभी टैग,पुछल्ला पर और एफ़ स्पॉट."
+
+#: ../src/MainWindow.cs:2150
+#, fuzzy
+msgid "_Remove from Catalog"
+msgstr "हटाओ"
+
+#: ../src/MainWindow.cs:2205
+#, fuzzy, csharp-format
+msgid "Delete tag \"{0}\"?"
+msgstr "मिटाएँ टैग,पुछल्ला?"
+
+#: ../src/MainWindow.cs:2207
+#, fuzzy, csharp-format
+msgid "Delete the {0} selected tags?"
+msgstr "मिटाएँ चयनित?"
+
+#: ../src/MainWindow.cs:2210
+#, fuzzy
+msgid "If you delete a tag, all associations with photos are lost."
+msgstr "आप मिटाएँ ए टैग,पुछल्ला सभी के साथ."
+
+#: ../src/MainWindow.cs:2211
+#, fuzzy
+msgid "_Delete tag"
+msgid_plural "_Delete tags"
+msgstr[0] "मिटाएँ टैग,पुछल्ला"
+msgstr[1] "मिटाएँ टैग,पुछल्ला"
+
+#. A Category is not empty. Can not delete it.
+#: ../src/MainWindow.cs:2225
+#, fuzzy
+msgid "Tag is not empty"
+msgstr "टैग है नहीं खाली"
+
+#: ../src/MainWindow.cs:2226
+#, fuzzy, csharp-format
+msgid ""
+"Can not delete tags that have tags within them.  Please delete tags under "
+"\"{0}\" first"
+msgstr "नहीं मिटाएँ मिटाएँ पहला"
+
+#: ../src/MainWindow.cs:2554
+#, fuzzy
+msgid "Rotate selected photo left"
+msgid_plural "Rotate selected photos left"
+msgstr[0] "घुमाएँ चयनित बायाँ"
+msgstr[1] "घुमाएँ चयनित बायाँ"
+
+#: ../src/MainWindow.cs:2567
+#, fuzzy
+msgid "Rotate selected photo right"
+msgid_plural "Rotate selected photos right"
+msgstr[0] "घुमाएँ चयनित दायाँ"
+msgstr[1] "घुमाएँ चयनित दायाँ"
+
+#: ../src/MainWindow.cs:2581
+#, fuzzy
+msgid "Create New Version?"
+msgid_plural "Create New Versions?"
+msgstr[0] "बनाएँ नया संस्करण?"
+msgstr[1] "बनाएँ नया संस्करण?"
+
+#: ../src/MainWindow.cs:2583
+#, fuzzy, csharp-format
+msgid ""
+"Before launching {1}, should F-Spot create a new version of the selected "
+"photo to preserve the original?"
+msgid_plural ""
+"Before launching {1}, should F-Spot create new versions of the selected "
+"photos to preserve the originals?"
+msgstr[0] "पहले एफ़ स्पॉट ए नया संस्करण का चयनित को असली?"
+msgstr[1] "पहले एफ़ स्पॉट ए नया संस्करण का चयनित को असली?"
+
+#: ../src/MetadataStore.cs:18
+#, fuzzy
+msgid "Creator"
+msgstr "निर्माता"
+
+#: ../src/MetadataStore.cs:19
+#, fuzzy
+msgid "Title"
+msgstr "शीर्षक"
+
+#: ../src/MetadataStore.cs:20
+#, fuzzy
+msgid "Copyright"
+msgstr "सर्वाधिकार सुरक्षित"
+
+#: ../src/MetadataStore.cs:21
+#, fuzzy
+msgid "Subject and Keywords"
+msgstr "विषय और की-वर्डस"
+
+#: ../src/MetadataStore.cs:22
+#, fuzzy
+msgid "Compression"
+msgstr "संपीडन"
+
+#: ../src/MetadataStore.cs:24
+#, fuzzy
+msgid "Planar Configuration"
+msgstr "समतल कॉन्फ़िगरेशन"
+
+#: ../src/MetadataStore.cs:26
+#, fuzzy
+msgid "Orientation"
+msgstr "दिशा"
+
+#: ../src/MetadataStore.cs:28
+msgid "Photometric Interpretation"
+msgstr ""
+
+#: ../src/MetadataStore.cs:30
+#, fuzzy
+msgid "Resolution Unit"
+msgstr "रिसॉल्यूशन इकाई"
+
+#: ../src/MetadataStore.cs:32
+#, fuzzy
+msgid "Exposure Program"
+msgstr "एक्सपोज़र प्रोग्राम"
+
+#: ../src/MetadataStore.cs:34
+#, fuzzy
+msgid "Metering Mode"
+msgstr "मीटरिंग मोड"
+
+#: ../src/MetadataStore.cs:36
+#, fuzzy
+msgid "Exposure Mode"
+msgstr "एक्सपोज़र मोड"
+
+#: ../src/MetadataStore.cs:38
+#, fuzzy
+msgid "Custom Rendered"
+msgstr "मनपसंद"
+
+#: ../src/MetadataStore.cs:40
+#, fuzzy
+msgid "Components Configuration"
+msgstr "कॉन्फ़िगरेशन"
+
+#: ../src/MetadataStore.cs:42
+#, fuzzy
+msgid "Light Source"
+msgstr "हल्का स्रोत"
+
+#: ../src/MetadataStore.cs:44
+#, fuzzy
+msgid "Sensing Method"
+msgstr "विधि"
+
+#: ../src/MetadataStore.cs:46
+#, fuzzy
+msgid "Color Space"
+msgstr "रंग खाली जगह"
+
+#: ../src/MetadataStore.cs:48
+#, fuzzy
+msgid "White Balance"
+msgstr "सफेद संतुलन"
+
+#: ../src/MetadataStore.cs:50
+#, fuzzy
+msgid "Focal Plane Resolution Unit"
+msgstr "समतल रिसॉल्यूशन इकाई"
+
+#: ../src/MetadataStore.cs:52
+#, fuzzy
+msgid "File Source Type"
+msgstr "फ़ाइल स्रोत क़िस्म"
+
+#: ../src/MetadataStore.cs:54
+#, fuzzy
+msgid "Scene Capture Type"
+msgstr "कैप्चर क़िस्म"
+
+#: ../src/MetadataStore.cs:56
+#, fuzzy
+msgid "Gain Control"
+msgstr "गेन नियंत्रण"
+
+#: ../src/MetadataStore.cs:58
+#, fuzzy
+msgid "Contrast"
+msgstr "कंट्रास्ट"
+
+#: ../src/MetadataStore.cs:60
+#, fuzzy
+msgid "Saturation"
+msgstr "संतृप्ति"
+
+#: ../src/MetadataStore.cs:62
+msgid "Sharpness"
+msgstr ""
+
+#: ../src/MetadataStore.cs:64
+#, fuzzy
+msgid "Scene Type"
+msgstr "क़िस्म"
+
+#: ../src/OpenWithMenu.cs:80
+#, fuzzy
+msgid "No applications available"
+msgstr "नहीं उपलब्ध"
+
+#: ../src/OpenWithMenu.cs:92
+#, fuzzy
+msgid "Open With"
+msgstr "के साथ खोलें"
+
+#: ../src/PhotoPopup.cs:46
+#, fuzzy
+msgid "Copy Photo Location"
+msgstr "प्रतिलिपि फोटो स्थान"
+
+#: ../src/PhotoPopup.cs:62
+#, fuzzy
+msgid "Remove From Catalog"
+msgstr "हटाओ से"
+
+#: ../src/PhotoPopup.cs:64
+#, fuzzy
+msgid "Delete From Drive"
+msgstr "मिटाएँ से चालन"
+
+#.
+#. FIXME TagMenu is ugly.
+#.
+#: ../src/PhotoPopup.cs:72
+#, fuzzy
+msgid "Attach Tag"
+msgstr "जोड़ें टैग"
+
+#.
+#. FIXME finish the IPhotoSelection stuff and move the activate handler into the class
+#. this current method is way too complicated.
+#.
+#: ../src/PhotoPopup.cs:83
+#, fuzzy
+msgid "Remove Tag"
+msgstr "हटाओ टैग"
+
+#: ../src/PhotoStore.cs:367
+#, fuzzy, csharp-format
+msgid "Modified"
+msgid_plural "Modified ({0})"
+msgstr[0] "परिवर्तित"
+msgstr[1] "परिवर्तित"
+
+#: ../src/PhotoStore.cs:386
+#, fuzzy, csharp-format
+msgid "Modified in {1}"
+msgid_plural "Modified in {1} ({0})"
+msgstr[0] "परिवर्तित इंच"
+msgstr[1] "परिवर्तित इंच"
+
+#. Fixme this should really set parent menu
+#. items insensitve
+#: ../src/PhotoTagMenu.cs:72
+#, fuzzy
+msgid "(No Tags)"
+msgstr "नहीं टैग्स"
+
+#: ../src/PhotoVersionCommands.cs:54
+#, fuzzy
+msgid "Create New Version"
+msgstr "बनाएँ नया संस्करण"
+
+#: ../src/PhotoVersionCommands.cs:59
+#, fuzzy
+msgid "Rename Version"
+msgstr "नाम बदलें  संस्करण"
+
+#: ../src/PhotoVersionCommands.cs:60
+#, fuzzy
+msgid "New name:"
+msgstr "नया नाम"
+
+#: ../src/PhotoVersionCommands.cs:106
+#, fuzzy
+msgid "Could not create a new version"
+msgstr "नहीं ए नया संस्करण"
+
+#: ../src/PhotoVersionCommands.cs:107
+#, fuzzy, csharp-format
+msgid "Received exception \"{0}\". Unable to create version \"{1}\""
+msgstr "हस्तगत को संस्करण"
+
+#: ../src/PhotoVersionCommands.cs:134
+#, fuzzy
+msgid "Really Delete?"
+msgstr "मिटाएँ?"
+
+#: ../src/PhotoVersionCommands.cs:140
+#, fuzzy, csharp-format
+msgid "Really delete version \"{0}\"?"
+msgstr "मिटाएँ संस्करण?"
+
+#. FIXME show error dialog.
+#: ../src/PhotoVersionCommands.cs:150
+#, fuzzy
+msgid "Could not delete a version"
+msgstr "नहीं मिटाएँ ए संस्करण"
+
+#: ../src/PhotoVersionCommands.cs:151
+#, fuzzy, csharp-format
+msgid "Received exception \"{0}\". Unable to delete version \"{1}\""
+msgstr "हस्तगत को मिटाएँ संस्करण"
+
+#: ../src/PhotoVersionCommands.cs:192
+#, fuzzy
+msgid "Could not rename a version"
+msgstr "नहीं ए संस्करण"
+
+#: ../src/PhotoVersionCommands.cs:193
+#, fuzzy, csharp-format
+msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
+msgstr "हस्तगत को संस्करण को"
+
+#: ../src/PhotoVersionMenu.cs:66
+#, fuzzy
+msgid "(No Edits)"
+msgstr "नहीं"
+
+#: ../src/PhotoView.cs:66
+#, fuzzy
+msgid "No Constraint"
+msgstr "नहीं हद,मर्यादा,सीमा , बंधन"
+
+#: ../src/PhotoView.cs:67
+#, fuzzy
+msgid "4 x 3 (Book)"
+msgstr "एक्स पुस्तक"
+
+#: ../src/PhotoView.cs:68
+#, fuzzy
+msgid "4 x 6 (Postcard)"
+msgstr "एक्स पोस्टकार्ड"
+
+#: ../src/PhotoView.cs:69
+#, fuzzy
+msgid "5 x 7 (L, 2L)"
+msgstr "एक्स एल"
+
+#: ../src/PhotoView.cs:70
+#, fuzzy
+msgid "8 x 10"
+msgstr "एक्स 10"
+
+#: ../src/PhotoView.cs:71
+#, fuzzy
+msgid "4 x 3 Portrait (Book)"
+msgstr "एक्स खड़ा  पुस्तक"
+
+#: ../src/PhotoView.cs:72
+#, fuzzy
+msgid "4 x 6 Portrait (Postcard)"
+msgstr "एक्स खड़ा  पोस्टकार्ड"
+
+#: ../src/PhotoView.cs:73
+#, fuzzy
+msgid "5 x 7 Portrait (L, 2L)"
+msgstr "एक्स खड़ा  एल"
+
+#: ../src/PhotoView.cs:74
+#, fuzzy
+msgid "8 x 10 Portrait"
+msgstr "एक्स खड़ा "
+
+#: ../src/PhotoView.cs:75
+#, fuzzy
+msgid "Square"
+msgstr "वर्ग"
+
+#: ../src/PhotoView.cs:155
+#, fuzzy
+msgid "Crop photo to selected area"
+msgstr "क्रॉप को चयनित"
+
+#: ../src/PhotoView.cs:156
+#, fuzzy
+msgid "Remove redeye from selected area"
+msgstr "हटाओ चयनित"
+
+#: ../src/PhotoView.cs:158
+#, fuzzy
+msgid "Select an area to crop"
+msgstr "चुनें को"
+
+#: ../src/PhotoView.cs:159
+#, fuzzy
+msgid "Select an area to remove redeye"
+msgstr "चुनें को मिटाएँ"
+
+#: ../src/PhotoView.cs:268
+#, fuzzy
+msgid "Error editing photo"
+msgstr "त्रुटि"
+
+#: ../src/PhotoView.cs:320
+#, fuzzy
+msgid "No selection available"
+msgstr "नहीं उपलब्ध"
+
+#: ../src/PhotoView.cs:321
+#, fuzzy
+msgid ""
+"This tool requires an active selection. Please select a region of the photo "
+"and try the operation again"
+msgstr "सक्रिय ए का और"
+
+#: ../src/PhotoView.cs:490
+#, fuzzy
+msgid "Comment:"
+msgstr "टिप्पणीः"
+
+#: ../src/PhotoView.cs:555
+#, fuzzy
+msgid "Adjust the photo colors"
+msgstr "अनुकूल बनाना"
+
+#: ../src/PhotoView.cs:556
+#, fuzzy
+msgid "Constrain the aspect ratio of the selection"
+msgstr "अनुपात का"
+
+#: ../src/PhotoView.cs:557
+#, fuzzy
+msgid "Next photo"
+msgstr "अगला"
+
+#: ../src/PhotoView.cs:558
+#, fuzzy
+msgid "Previous photo"
+msgstr "पिछला"
+
+#: ../src/PhotoView.cs:559
+#, fuzzy
+msgid "Convert the photo to black and white"
+msgstr "बदलें को काला और सफेद"
+
+#: ../src/PhotoView.cs:560
+#, fuzzy
+msgid "Convert the photo to sepia tones"
+msgstr "बदलें को"
+
+#: ../src/RotateCommand.cs:154
+msgid "Rotating photos"
+msgstr ""
+
+#: ../src/RotateCommand.cs:165
+#, csharp-format
+msgid "Rotating photo \"{0}\""
+msgstr ""
+
+#: ../src/RotateCommand.cs:190
+#, fuzzy, csharp-format
+msgid "Unable to rotate photo"
+msgid_plural "Unable to rotate {0} photos"
+msgstr[0] "को घुमाएँ"
+msgstr[1] "को घुमाएँ"
+
+#: ../src/RotateCommand.cs:194
+#, fuzzy, csharp-format
+msgid ""
+"The photo could not be rotated because it is on a read only file system or "
+"media such as a CDROM.  Please check the permissions and try again"
+msgid_plural ""
+"{0} photos could not be rotated because they are on a read only file system "
+"or media such as a CDROM.  Please check the permissions and try again"
+msgstr[0] "नहीं है पर ए पढ़ें फाइल या मीडिया ए और"
+msgstr[1] "नहीं है पर ए पढ़ें फाइल या मीडिया ए और"
+
+#: ../src/RotateCommand.cs:216
+#, fuzzy, csharp-format
+msgid "Received error \"{0}\" while attempting to rotate {1}"
+msgstr "हस्तगत त्रुटि को घुमाएँ"
+
+#: ../src/RotateCommand.cs:221
+#, fuzzy
+msgid "Error while rotating photo."
+msgstr "त्रुटि."
+
+#: ../src/SingleView.cs:232
+#, fuzzy
+msgid "Open"
+msgstr "खोलें"
+
+#: ../src/StockIcons.cs:26
+#, fuzzy
+msgid "Adjust Colors"
+msgstr "अनुकूल बनाना रंग"
+
+#: ../src/StockIcons.cs:29
+#, fuzzy
+msgid "Crop"
+msgstr "क्रॉप"
+
+#: ../src/StockIcons.cs:30
+#, fuzzy
+msgid "Desaturate"
+msgstr "डि-सेचुरेट"
+
+#: ../src/StockIcons.cs:31
+#, fuzzy
+msgid "Edit Photo"
+msgstr "संपादन फोटो"
+
+#: ../src/StockIcons.cs:32
+#, fuzzy
+msgid "Fullscreen"
+msgstr "पूर्ण स्क्रीन"
+
+#: ../src/StockIcons.cs:33
+#, fuzzy
+msgid "Loading"
+msgstr "लोड किया जा रहा है"
+
+#: ../src/StockIcons.cs:34
+#, fuzzy
+msgid "Logo"
+msgstr "लोगो"
+
+#: ../src/StockIcons.cs:35 ../src/TagCommands.cs:122 ../src/TagMenu.cs:89
+#: ../src/TagPopup.cs:22
+#, fuzzy
+msgid "Create New Tag"
+msgstr "बनाएँ नया टैग"
+
+#: ../src/StockIcons.cs:36
+#, fuzzy
+msgid "Question"
+msgstr "प्रश्न"
+
+#: ../src/StockIcons.cs:37
+#, fuzzy
+msgid "Reduce Red-Eye"
+msgstr "लाल"
+
+#: ../src/StockIcons.cs:40
+msgid "Sepia Tone"
+msgstr ""
+
+#: ../src/StockIcons.cs:41
+msgid "Slideshow"
+msgstr ""
+
+#: ../src/StockIcons.cs:42
+#, fuzzy
+msgid "Near"
+msgstr "पास"
+
+#: ../src/StockIcons.cs:43
+#, fuzzy
+msgid "Far"
+msgstr "Far"
+
+#: ../src/TagCommands.cs:75 ../src/TagCommands.cs:203
+#: ../src/TagSelectionWidget.cs:612
+#, fuzzy
+msgid "This name is already in use"
+msgstr "नाम है इंच"
+
+#: ../src/TagCommands.cs:123
+#, fuzzy
+msgid "Name of New Tag:"
+msgstr "नाम का नया टैग:"
+
+#: ../src/TagCommands.cs:273 ../src/TagPopup.cs:28
+#, fuzzy
+msgid "Edit Tag"
+msgstr "संपादन टैग"
+
+#: ../src/TagCommands.cs:274
+#, fuzzy
+msgid "Tag Name:"
+msgstr "टैग नाम:"
+
+#: ../src/TagCommands.cs:367
+#, fuzzy, csharp-format
+msgid "Photo {0} of {1}"
+msgstr "फोटो का"
+
+#: ../src/TagCommands.cs:394
+#, fuzzy, csharp-format
+msgid "Edit Icon for Tag {0}"
+msgstr "संपादन प्रतीक के लिये टैग"
+
+#: ../src/TagPopup.cs:32
+#, fuzzy
+msgid "Delete Tag"
+msgid_plural "Delete Tags"
+msgstr[0] "मिटाएँ टैग"
+msgstr[1] "मिटाएँ टैग"
+
+#: ../src/TagPopup.cs:38
+#, fuzzy
+msgid "Attach Tag to Selection"
+msgid_plural "Attach Tags to Selection"
+msgstr[0] "जोड़ें टैग को चयन"
+msgstr[1] "जोड़ें टैग को चयन"
+
+#: ../src/TagPopup.cs:42
+#, fuzzy
+msgid "Remove Tag From Selection"
+msgid_plural "Remove Tags From Selection"
+msgstr[0] "हटाओ टैग से चयन"
+msgstr[1] "हटाओ टैग से चयन"
+
+#: ../src/TagPopup.cs:48
+#, fuzzy
+msgid "Merge Tags"
+msgstr "मिलाएँ टैग्स"
+
+#: ../src/TagSelectionWidget.cs:611
+#, fuzzy
+msgid "Error renaming tag"
+msgstr "त्रुटि टैग,पुछल्ला"
+
+#: ../src/TagStore.cs:386
+#, fuzzy
+msgid "Favorites"
+msgstr "प्रिय"
+
+#: ../src/TagStore.cs:391
+msgid "Hidden"
+msgstr ""
+
+#: ../src/TagStore.cs:399
+#, fuzzy
+msgid "People"
+msgstr "जनता"
+
+#: ../src/TagStore.cs:404
+#, fuzzy
+msgid "Places"
+msgstr "स्थान"
+
+#: ../src/TagStore.cs:409
+#, fuzzy
+msgid "Events"
+msgstr "घटनाएँ"
+
+#. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
+#: ../src/Unix.cs:25
+#, fuzzy
+msgid "Unable to create temporary file"
+msgstr "अस्थाई फ़ाइल बनाने में अक्षम."
+
+#: ../src/Updater.cs:106
+#, fuzzy
+msgid "Updating F-Spot Database"
+msgstr "एफ़ स्पॉट डाटाबेस"
+
+#: ../src/Updater.cs:107
+#, fuzzy
+msgid ""
+"Please wait while your F-Spot gallery's database is updated. This may take "
+"some time."
+msgstr "एफ़ स्पॉट से. डेटाबेस, डेटाधार, आंकड़ाधार, आंकड़ाकोष है कुछ."
+
+#: ../src/Util.cs:420
+#, fuzzy
+msgid "There was an error invoking the external handler"
+msgstr "त्रुटि"
+
+#: ../src/Util.cs:421
+#, fuzzy, csharp-format
+msgid ""
+"Received error:\n"
+"\"{0}\"\n"
+msgstr "हस्तगत त्रुटि n n"
+
+#: ../src/QueryDisplay.cs:35
+#, fuzzy
+msgid "Find: "
+msgstr "ढूंढें "
+
+#: ../src/QueryDisplay.cs:39
+msgid "Untagged photos"
+msgstr ""
+
+#: ../src/QueryDisplay.cs:56
+#, fuzzy
+msgid "No matching photos found "
+msgstr "नहीं संगति जांच, संगति मिलान "
+
+#: ../src/QueryDisplay.cs:64
+#, fuzzy
+msgid "Clear search"
+msgstr "खाली"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:1
+#, fuzzy
+msgid "Display a slideshow from F-Spot"
+msgstr "प्रदर्शक ए एफ़ स्पॉट"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:2
+#, fuzzy
+msgid "F-Spot photos"
+msgstr "एफ़ स्पॉट"
+
+#, fuzzy
+#~ msgid ""
+#~ "This may be due to a programming error. Please help us make F-Spot better "
+#~ "by reporting this error. Thank you in advance!"
+#~ msgstr "को ए त्रुटि मदद एफ़ स्पॉट त्रुटि आप इंच!"
