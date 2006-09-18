@@ -370,9 +370,33 @@ class GtkUtil {
 		}
 		return null;
 	}
+}
 
-	
-			
+public class SizeUtil {
+	public static string ToHumanReadable (long size)
+	{
+		string tmp_str = "";
+		float tmp_size = size;
+		int k = 0;
+		string[] size_abr = {"bytes", "kB", "MB", "GB", "TB" };
+		
+		while (tmp_size > 700) { //it's easier to read 0.9MB than 932kB
+			tmp_size = tmp_size / 1024;
+				k++;
+		}
+		
+		if (tmp_size < 7)
+			tmp_str = tmp_size.ToString ("0.##");
+		else if (tmp_size < 70)
+			tmp_str = tmp_size.ToString ("##.#");
+		else
+			tmp_str = tmp_size.ToString ("#,###");
+		
+		if (k < size_abr.Length)
+			return tmp_str + " " + size_abr[k];
+		else
+				return size.ToString();
+	}
 }
 
 class GnomeUtil {

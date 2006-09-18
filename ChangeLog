@@ -1,5 +1,12 @@
 2006-09-18  Larry Ewing  <lewing@novell.com>
 
+	* src/Util.cs: Move cut&paste HumanReadable method here update
+	exporters to use it.
+
+	* CDExport.cs:
+	* SendEmail.cs:
+	* PicasaWebExport.cs: use SizeUtils.ToHumanReadable.
+
 	* src/MetadataStore.cs: fix namespace strings, based on the patch
 	from bengt for 356330.
 

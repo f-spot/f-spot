@@ -485,14 +485,14 @@ namespace FSpot {
 		private void HandleUploadProgress(object o, UploadProgressEventArgs args)
 		{
 			if (!scale) {
-				progress_dialog.ProgressText = System.String.Format ("{0} of {1}",ToHumanReadableSize(sent_bytes + args.BytesSent), ToHumanReadableSize(exported_size));	
+				progress_dialog.ProgressText = System.String.Format ("{0} of {1}", SizeUtil.ToHumanReadable (sent_bytes + args.BytesSent), SizeUtil.ToHumanReadable (exported_size));	
 				progress_dialog.Fraction = (sent_bytes + args.BytesSent) / (double)exported_size;
 
 			} else {
 				if (exported_size == 0)
-					progress_dialog.ProgressText = System.String.Format ("{0} Sent",ToHumanReadableSize(args.BytesSent));	
+					progress_dialog.ProgressText = System.String.Format ("{0} Sent",SizeUtil.ToHumanReadable(args.BytesSent));	
 				else
-					progress_dialog.ProgressText = System.String.Format ("{0} of approx. {1}", ToHumanReadableSize(sent_bytes + args.BytesSent), ToHumanReadableSize(exported_size));
+					progress_dialog.ProgressText = System.String.Format ("{0} of approx. {1}", SizeUtil.ToHumanReadable(sent_bytes + args.BytesSent), SizeUtil.ToHumanReadable(exported_size));
 				progress_dialog.Fraction = ((photo_index - 1) / (double) photos.Length) + (args.BytesSent / (args.BytesTotal * (double) photos.Length));
 			}
 		}
@@ -525,16 +525,16 @@ namespace FSpot {
 					string final = ImageFile.TempPath (orig);
 					if (scale) {
 						PixbufUtils.Resize (orig, final, size, true);
-
+						
 						if (photo_index == 1) {
-							file_info = FileInfo (final);
+							file_info = new FileInfo (final);
 							exported_size = photos.Length * file_info.Length;
 							Console.WriteLine ("total size: {0}", exported_size);
 						}
-
-						file_info = FileInfo (final);
+						
+						file_info = new FileInfo (final);
 						sent_bytes += file_info.Length;
-
+						
 						album.UploadPicture (final);
 					} else if (rotate) {
 						if (OrientationFilter.Convert (orig, final))
@@ -544,16 +544,16 @@ namespace FSpot {
 					} else {
 						album.UploadPicture (orig, photo.Description);
 					}
-
+					
 					File.Delete (final);
-
+					
 					if (!scale) {
-						file_info = new FileInfo (orig));
+						file_info = new FileInfo (orig);
 						sent_bytes += file_info.Length;
 					}
-						
+					
 				}
-
+				
 				progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
 				progress_dialog.Fraction = 1.0;
 				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Upload Complete");
@@ -606,31 +606,6 @@ namespace FSpot {
 			gallery_optionmenu.SetHistory ((uint)pos);
 		}
 
-		private static string ToHumanReadableSize (long in_size)
-		{
-			string tmp_str = "";
-			float tmp_size = in_size;
-			int k = 0;
-			string[] size_abr = {"bytes", "kB", "MB", "GB", "TB" };
-			
-			while (tmp_size > 700) { //it's easier to read 0.9MB than 932kB
-				tmp_size = tmp_size / 1024;
-				k++;
-			}
-			
-			if (tmp_size < 7)
-				tmp_str = tmp_size.ToString ("0.##");
-			else if (tmp_size < 70)
-				tmp_str = tmp_size.ToString ("##.#");
-			else
-				tmp_str = tmp_size.ToString ("#,###");
-			
-			if (k < size_abr.Length)
-				return tmp_str + " " + size_abr[k];
-			else
-				return in_size.ToString();
-		}
-	
 		private void Connect ()
 		{
 			Connect (null);
@@ -655,11 +630,11 @@ namespace FSpot {
 
 					StringBuilder sb = new StringBuilder("<small>");
 					sb.Append(Catalog.GetString("Available space :"));
-					sb.Append(ToHumanReadableSize(ql - qu));
+					sb.Append(SizeUtil.ToHumanReadable (ql - qu));
 					sb.Append(" (");
 					sb.Append(100 * qu / ql);
 					sb.Append("% used out of ");
-					sb.Append(ToHumanReadableSize(ql));
+					sb.Append(SizeUtil.ToHumanReadable (ql));
 					sb.Append(")");
 					sb.Append("</small>");
 

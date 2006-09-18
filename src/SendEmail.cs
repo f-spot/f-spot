@@ -129,7 +129,7 @@ namespace FSpot {
 			}
 
 			NumberOfPictures.Text 	= selection.Count.ToString();
-			TotalOriginalSize.Text 	= ToHumanReadableSize (Orig_Photo_Size);
+			TotalOriginalSize.Text 	= SizeUtil.ToHumanReadable (Orig_Photo_Size);
 			
 			UpdateEstimatedSize();
 
@@ -141,31 +141,6 @@ namespace FSpot {
 			Dialog.Response += HandleResponse;
 		}
 
-		private static string ToHumanReadableSize (long in_size)
-		{
-			string tmp_str = "";
-			float tmp_size = in_size;
-			int k = 0;
-			string[] size_abr = {"bytes", "kB", "MB", "GB", "TB" };
-
-			while (tmp_size > 700) { //it's easier to read 0.9MB than 932kB
-				tmp_size = tmp_size / 1024;
-				k++;
-			}
-
-			if (tmp_size < 7)
-				tmp_str = tmp_size.ToString ("0.##");
-			else if (tmp_size < 70)
-				tmp_str = tmp_size.ToString ("##.#");
-			else
-				tmp_str = tmp_size.ToString ("#,###");
-
-			if (k < size_abr.Length)
-				return tmp_str + " " + size_abr[k];
-			else
-				return in_size.ToString();
-                }
-		
 		private int GetScaleSize()
 		{
 			// not only convert dialog size to pixel size, but also set preferences se we use same size next time
@@ -206,7 +181,7 @@ namespace FSpot {
 				else
 					new_approx_total_size = System.Convert.ToInt64(Orig_Photo_Size * avg_scale [new_size_index]);
 
-				approxresult = ToHumanReadableSize (new_approx_total_size);
+				approxresult = SizeUtil.ToHumanReadable (new_approx_total_size);
 				ApproxNewSize.Text 	= approxresult;	
 
 		}
@@ -342,7 +317,7 @@ namespace FSpot {
 
 					// Update dialog to indicate Actual size!
 					// This is currently disabled, since the dialog box is not visible at this stage.
-					// string approxresult = ToHumanReadableSize (actual_total_size);
+					// string approxresult = SizeUtil.ToHumanReadable (actual_total_size);
 					// ActualMailSize.Text = approxresult;	
 
 

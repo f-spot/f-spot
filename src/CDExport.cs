@@ -44,7 +44,7 @@ namespace FSpot {
 			Dialog.Modal = false;
 			Dialog.TransientFor = null;
 			
-			size_label.Text = ToHumanReadableSize(total_size);
+			size_label.Text = SizeUtil.ToHumanReadable (total_size);
 
 			thumb_scrolledwindow.Add (view);
 			Dialog.ShowAll ();
@@ -201,31 +201,6 @@ namespace FSpot {
 
 			progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Count);
 			progress_dialog.Start ();
-		}
-
-		private static string ToHumanReadableSize (long in_size)
-		{
-			string tmp_str = "";
-			float tmp_size = in_size;
-			int k = 0;
-			string[] size_abr = {"bytes", "kB", "MB", "GB", "TB" };
-
-			while (tmp_size > 700) { //it's easier to read 0.9MB than 932kB
-				tmp_size = tmp_size / 1024;
-				k++;
-			}
-
-			if (tmp_size < 7)
-				tmp_str = tmp_size.ToString ("#.##");
-			else if (tmp_size < 70)
-				tmp_str = tmp_size.ToString ("##.#");
-			else
-				tmp_str = tmp_size.ToString ("#,###");
-
-			if (k < size_abr.Length)
-				return tmp_str + " " + size_abr[k];
-			else
-				return in_size.ToString();
 		}
 	}
 }
