@@ -400,10 +400,10 @@ namespace FSpot.Iptc {
 				
 				try {
 					data.Load (stream);
-				} catch (System.Exception e) {
+				} catch (System.Exception) {
 					//System.Console.WriteLine (e.ToString ());
 				}
-				DataSetInfo info = DataSetInfo.FindInfo (data.ID);
+				//DataSetInfo info = DataSetInfo.FindInfo (data.ID);
 				//System.Console.WriteLine ("{0}:{1} - {2} {3}", data.RecordNumber, data.DataSetNumber, 
 				//			  data.ID.ToString (), info.Description);
 				sets.Add (data);
