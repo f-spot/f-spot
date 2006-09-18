@@ -852,6 +852,9 @@ public class MainWindow {
 			InvalidateViews ();
 			break;
 		case (uint)TargetType.TagList:
+			if (tag_selection_widget.TagHighlight.Length < 1)
+				return;
+
 			Tag child = tag_selection_widget.TagHighlight [0];
 			Tag parent = tags[0];
 

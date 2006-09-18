@@ -1,5 +1,7 @@
 2006-09-18  Larry Ewing  <lewing@novell.com>
 
+	* src/MainWindow.cs: simple fix for #353801.
+	
 	* src/Util.cs: Move cut&paste HumanReadable method here update
 	exporters to use it.
 
