@@ -26,7 +26,7 @@ libgooglesharplib_DATA =		\
 
 
 google-sharp.dll: $(LIBGOOGLESHARP_CSFILES)
-	$(CSC) -out:$@ /target:library $(LIBGOOGLESHARP_CSFILES)
+	$(CSC) -out:$@ -target:library -r:System.Web $(LIBGOOGLESHARP_CSFILES)
 
 all: google-sharp.dll
 

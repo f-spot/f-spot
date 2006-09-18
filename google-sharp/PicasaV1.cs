@@ -43,7 +43,11 @@ namespace Mono.Google.Picasa {
 
 		internal PicasaV1 (GoogleConnection conn)
 		{
-			string received = conn.DownloadString (url);
+			string req_url = url;
+			if (conn.AuthToken != null && conn.AuthToken != "") {
+				req_url += "&auth=" + conn.AuthToken;
+			}
+			string received = conn.DownloadString (req_url);
 			// photoPage, albumPage, post, gallery and galleryPage
 			XmlDocument doc = new XmlDocument ();
 			doc.LoadXml (received);

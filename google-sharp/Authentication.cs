@@ -35,37 +35,41 @@ using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web;
 using System.Xml;
 
 namespace Mono.Google {
 	class Authentication {
-		static string picasa_login_url ="https://www.google.com/accounts/ServiceLoginAuth?service=lh2&passive=true&continue=http://picasaweb.google.com/";
+		static string picasa_login_url = "https://www.google.com/accounts/ClientAuth";
+		static string picasa_login_url2 = "https://www.google.com/accounts/IssueAuthToken";
 		CookieContainer cookies = new CookieContainer ();
 
 		private Authentication ()
 		{
 		}
 
-		public static CookieContainer GetAuthCookies (string user, string password, GoogleService service)
+		public static CookieContainer GetAuthCookies (GoogleConnection conn, string user, string password, GoogleService service, out string auth)
 		{
-			// No auth performed if no useror no password
+			// No auth performed if no user or no password
+			auth = null;
 			if (user == null || password == null)
 				return new CookieContainer ();
 
 			// service == Picasa by now
-			Authentication auth = new Authentication ();
-			return auth.GetCookieContainer (user, password);
+			Authentication authentication = new Authentication ();
+			return authentication.GetCookieContainer (conn, user, password, out auth);
 		}
 
-		CookieContainer GetCookieContainer (string user, string password)
+		CookieContainer GetCookieContainer (GoogleConnection conn, string user, string password, out string auth)
 		{
+			user = HttpUtility.UrlEncode (user);
+			password = HttpUtility.UrlEncode (password);
 			StringBuilder content = new StringBuilder ();
-			content.AppendFormat ("null=Sign%20in&Email={0}&Passwd={1}&", user, password);
-			content.Append ("service=lh2&passive=true&continue=http%3A%2F%2Fpicasaweb.google.com%2F");
+			string appname = HttpUtility.UrlEncode (conn.ApplicationName);
+			content.AppendFormat ("Email={0}&Passwd={1}&source={2}&PersistentCookie=0&accountType=HOSTED%5FOR%5FGOOGLE", user, password, appname);
 			byte [] bytes = Encoding.UTF8.GetBytes (content.ToString ());
 
 			HttpWebRequest request = (HttpWebRequest) WebRequest.Create (picasa_login_url);
-			request.CookieContainer = cookies;
 			request.Method = "POST";
 			request.ContentType = "application/x-www-form-urlencoded";
 			request.ContentLength = bytes.Length;
@@ -76,50 +80,49 @@ namespace Mono.Google {
 
 			HttpWebResponse response = (HttpWebResponse) request.GetResponse ();
 			string received = "";
+			string sid = null;
+			string lsid = null;
+			using (Stream stream = response.GetResponseStream ()) {
+				StreamReader sr = new StreamReader (stream, Encoding.UTF8);
+				string s;
+				while ((s = sr.ReadLine ()) != null) {
+					if (s.StartsWith ("LSID=")) {
+						lsid = s.Substring (5);
+					} else if (s.StartsWith ("SID=")) {
+						sid = s.Substring (4);
+					}
+				}
+			}
+			response.Close ();
+
+			string req_input = String.Format ("SID={0}&LSID={1}&service=lh2&Session=true", sid, lsid);
+			bytes = Encoding.UTF8.GetBytes (req_input);
+			request = (HttpWebRequest) WebRequest.Create (picasa_login_url2);
+			request.Method = "POST";
+			request.ContentType = "application/x-www-form-urlencoded";
+			request.ContentLength = bytes.Length;
+
+			output = request.GetRequestStream ();
+			output.Write (bytes, 0, bytes.Length);
+			output.Close ();
+
+			response = (HttpWebResponse) request.GetResponse ();
 			using (Stream stream = response.GetResponseStream ()) {
 				StreamReader sr = new StreamReader (stream, Encoding.UTF8);
 				received = sr.ReadToEnd ();
 			}
 			response.Close ();
 
-			Regex regex = new Regex ("location\\.replace\\(\"(?<location>.*)\"\\)");
-			Match match = regex.Match (received);
-			if (!match.Success)
-				return null;
-
-			string redirect = match.Result ("${location}");
-			cookies = RemoveExpiredCookies (cookies);
-			request = (HttpWebRequest) WebRequest.Create (redirect);
-			request.CookieContainer = cookies;
-			response = (HttpWebResponse) request.GetResponse ();
-			using (Stream stream = response.GetResponseStream ()) {
-				StreamReader sr = new StreamReader (stream, Encoding.UTF8);
-				received = sr.ReadToEnd (); // ignored. Just for the cookies.
-			}
-			response.Close ();
+			Cookie cookie = new Cookie ("SID", sid);
+			cookie.Domain = ".google.com";
+			cookies.Add (cookie);
+			cookie = new Cookie ("LSID", lsid);
+			cookie.Secure = true;
+			cookie.Domain = "www.google.com";
+			cookie.Path = "/accounts";
+			cookies.Add (cookie);
+			auth = received.Trim ();
 			return cookies;
-		}
-
-		static CookieContainer RemoveExpiredCookies (CookieContainer all)
-		{
-			CookieContainer container = new CookieContainer ();
-			Uri secure = new Uri ("https://www.google.com/accounts/");
-			CookieCollection c1 = all.GetCookies (secure);
-			foreach (Cookie cookie in c1) {
-				if (cookie.Expired)
-					continue;
-				container.Add (secure, cookie);
-			}
-
-			Uri pweb = new Uri ("http://picasaweb.google.com/");
-			CookieCollection c2 = all.GetCookies (pweb);
-			foreach (Cookie cookie in c2) {
-				if (cookie.Expired)
-					continue;
-				container.Add (pweb, cookie);
-			}
-			
-			return container;
 		}
 	}
 }
