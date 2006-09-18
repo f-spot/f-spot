@@ -619,7 +619,7 @@ namespace FSpot {
 			}
 			
 			if (tmp_size < 7)
-				tmp_str = tmp_size.ToString ("#.##");
+				tmp_str = tmp_size.ToString ("0.##");
 			else if (tmp_size < 70)
 				tmp_str = tmp_size.ToString ("##.#");
 			else
