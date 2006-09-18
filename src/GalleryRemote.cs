@@ -253,7 +253,7 @@ namespace GalleryRemote {
 		protected CookieContainer cookies = null;
 		public FSpot.ProgressItem Progress = null;
 
-		public abstract bool Login (string username, string passwd);
+		public abstract void Login (string username, string passwd);
 		public abstract ArrayList FetchAlbums ();
 		public abstract ArrayList FetchAlbumsPrune ();
 		public abstract bool MoveAlbum (Album album, string end_name);
@@ -639,24 +639,17 @@ namespace GalleryRemote {
 			version = GalleryVersion.Version1;
 		}
 
-		public override bool Login (string username, string passwd)
+		public override void Login (string username, string passwd)
 		{
-			try {
-				//Console.WriteLine ("Gallery1: Attempting to login");
-				FormClient client = new FormClient (cookies);
-				
-				client.Add ("cmd", "login");
-				client.Add ("protocol_version", "2.3");
-				client.Add ("uname", username);
-				client.Add ("password", passwd);
-				
-				bool success = ParseLogin (client.Submit (uri));
-
-				return success;
-			} catch (Exception e) {
-				Console.WriteLine ("Exception: " + e);
-				return false;
-			}
+			//Console.WriteLine ("Gallery1: Attempting to login");
+			FormClient client = new FormClient (cookies);
+			
+			client.Add ("cmd", "login");
+			client.Add ("protocol_version", "2.3");
+			client.Add ("uname", username);
+			client.Add ("password", passwd);
+			
+			ParseLogin (client.Submit (uri));
 		}
 		
 		public override ArrayList FetchAlbums ()
@@ -867,25 +860,18 @@ namespace GalleryRemote {
 			version = GalleryVersion.Version2;
 		}
 
-		public override bool Login (string username, string passwd)
+		public override void Login (string username, string passwd)
 		{
-			try {
-				//Console.WriteLine ("Gallery2: Attempting to login");
-				FormClient client = new FormClient (cookies);
-				
-				client.Add ("g2_form[cmd]", "login");
-				client.Add ("g2_form[protocol_version]", "2.3");
-				client.Add ("g2_form[uname]", username);
-				client.Add ("g2_form[password]", passwd);
-				AddG2Specific (client);
-				
-				bool success = ParseLogin (client.Submit (uri));
-
-				return success;
-			} catch (Exception e) {
-				Console.WriteLine ("Exception: " + e);
-				return false;
-			}
+			//Console.WriteLine ("Gallery2: Attempting to login");
+			FormClient client = new FormClient (cookies);
+			
+			client.Add ("g2_form[cmd]", "login");
+			client.Add ("g2_form[protocol_version]", "2.3");
+			client.Add ("g2_form[uname]", username);
+			client.Add ("g2_form[password]", passwd);
+			AddG2Specific (client);
+			
+			ParseLogin (client.Submit (uri));
 		}
 		
 		public override ArrayList FetchAlbums ()

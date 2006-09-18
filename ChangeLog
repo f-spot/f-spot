@@ -1,3 +1,11 @@
+2006-09-18  Larry Ewing  <lewing@novell.com>
+
+	* src/GalleryRemote.cs: throw login before adding the account to
+	catch failures.  Fixes #354288 although, there seem to be some
+	strange timing issues left.
+
+	* src/GalleryExport.cs: handle exceptions in login.
+
 2006-09-19  Guntupalli Karunakar  <karunakar@indlinux.org>
 
 	* configure.in: Added 'hi' for Hindi in LINGUAS.

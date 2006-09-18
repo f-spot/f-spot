@@ -45,11 +45,10 @@ namespace FSpot {
 
 			System.Console.WriteLine ("Gallery created: " + gal);
 
-			if (gal.Login (username, password)) {
-				//System.Console.WriteLine ("Login successful");
-				gallery = gal;
-				connected = true;
-			}
+			gal.Login (username, password);
+
+			gallery = gal;
+			connected = true;
 
 			return gallery;
 		}
@@ -356,8 +355,17 @@ namespace FSpot {
 					if (uri.Scheme != Uri.UriSchemeHttp &&
 					    uri.Scheme != Uri.UriSchemeHttps)
 						throw new System.UriFormatException ();
-
+					
+					GalleryAccount created = new GalleryAccount (name, 
+										     url, 
+										     username,
+										     password);
+					
+					created.Connect ();
+					GalleryAccountManager.GetInstance ().AddAccount (created);
+					account = created;
 				} catch (System.UriFormatException) {
+					
 					HigMessageDialog md = 
 						new HigMessageDialog (Dialog, 
 								      Gtk.DialogFlags.Modal |
@@ -368,13 +376,29 @@ namespace FSpot {
 					md.Run ();
 					md.Destroy ();
 					return;
+				} catch (GalleryRemote.GalleryCommandException e) {
+					HigMessageDialog md = 
+						new HigMessageDialog (Dialog, 
+								      Gtk.DialogFlags.Modal |
+								      Gtk.DialogFlags.DestroyWithParent,
+								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+								      Catalog.GetString ("Error while connecting to Gallery"),
+								      String.Format (Catalog.GetString ("The following error was encountered while attempting to log in: {0}"), e.Message));
+					md.Run ();
+					md.Destroy ();
+					return;
+				} catch (System.Net.WebException we) {
+					HigMessageDialog md = 
+						new HigMessageDialog (Dialog, 
+								      Gtk.DialogFlags.Modal |
+								      Gtk.DialogFlags.DestroyWithParent,
+								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+								      Catalog.GetString ("Error while connecting to Gallery"),
+								      String.Format (Catalog.GetString ("The following error was encountered while attempting to log in: {0}"), we.Message));
+					md.Run ();
+					md.Destroy ();
+					return;
 				}
-
-				GalleryAccount account = new GalleryAccount (name, 
-									     url, 
-									     username,
-									     password);
-				GalleryAccountManager.GetInstance ().AddAccount (account);
 			}
 			Dialog.Destroy ();
 		}
