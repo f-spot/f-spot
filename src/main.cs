@@ -126,7 +126,12 @@ public class Driver {
 			for (int i = 0; i < args.Length; i++) {
 				switch (args [i]) {
 				case "--shutdown":
-					control.Shutdown ();
+					try {
+						control.Shutdown ();
+					} catch (System.Exception) {
+						// trap errors
+					}
+					System.Environment.Exit (0);
 					break;
 				case "--import":
 					if (++i < args.Length)

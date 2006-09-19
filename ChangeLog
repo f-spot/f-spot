@@ -1,5 +1,8 @@
 2006-09-19  Larry Ewing  <lewing@novell.com>
 
+	* src/main.cs: make sure we just exit when running --shutdown.
+	Fixes #349660;
+	
 	* src/main.cs: add a hack to avoid dbus# problems until we can
 	move to the new bindings. Fixes #356103.
 
