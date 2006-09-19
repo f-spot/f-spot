@@ -5,6 +5,7 @@ INCLUDES =							\
 	-DG_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED		\
 	-DGDK_DISABLE_DEPRECATED -DGNOME_DISABLE_DEPRECATED	\
 	$(F_CFLAGS)						\
+	$(EXIF_CFLAGS)						\
 	$(LCMS_CFLAGS)						\
 	$(WERROR)
 
@@ -27,6 +28,7 @@ libfspot_la_SOURCES =				\
 	f-utils.h
 
 libfspot_la_LIBADD = 					\
+	$(EXIF_LIBS)					\
 	$(top_builddir)/libjpegtran/libfspotjpegtran.la	\
 	$(top_builddir)/libeog/libfspoteog.la
 

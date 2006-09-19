@@ -106,6 +106,7 @@ class PixbufUtils {
 		int max_width;
 		int max_height;
 		PixbufOrientation orientation;
+		int orig_width;
 
 		public AspectLoader (int max_width, int max_height) 
 		{
@@ -204,6 +205,33 @@ class PixbufUtils {
 		return result;
 	}
 		
+	static public void GetSize (string path, out int width, out int height)
+	{
+		Gdk.PixbufLoader loader = new Gdk.PixbufLoader ();
+		int orig_width = 0;
+		int orig_height = 0;
+		bool done = false;
+
+		loader.SizePrepared += delegate (object obj, SizePreparedArgs args) {
+			orig_width = args.Width;
+			orig_height = args.Height;
+			done = true;
+		};
+		
+		using (Stream stream = File.OpenRead (path)) {
+			byte [] data = new byte [4096];
+			int count;
+
+			while (((count = stream.Read (data, 0, data.Length)) > 0) && loader.Write (data, (ulong)count)) {
+				if (done)
+					break;
+			}
+		}
+		
+		width = orig_width;
+		height = orig_height;
+	}
+
 	static public Pixbuf LoadAtMaxSize (string path, int max_width, int max_height)
 	{
 #if true

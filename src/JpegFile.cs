@@ -147,12 +147,49 @@ namespace FSpot {
 
 			if (FSpot.Unix.Rename (temp_path, path) < 0) {
 				System.IO.File.Delete (temp_path);
-				throw new System.Exception (System.String.Format ("Unable to rename {0} to {1}", temp_path, path));
+				throw new System.Exception (System.String.Format ("Unable to rename {0} to {1}",
+										  temp_path, path));
 
 			}
-
 		}
-		
+
+		public void SetThumbnail (Gdk.Pixbuf source)
+		{
+			// Then create the thumbnail
+			// The DCF spec says thumbnails should be 160x120 always
+			Gdk.Pixbuf thumbnail = PixbufUtils.ScaleToAspect (source, 160, 120);
+			byte [] thumb_data = PixbufUtils.Save (thumbnail, "jpeg", null, null);
+			
+			System.Console.WriteLine ("saving thumbnail");				
+
+			// now update the exif data
+			ExifData.Data = thumb_data;
+		}
+
+		public void SetDimensions (int width, int height)
+		{
+			Exif.ExifEntry e;
+			Exif.ExifContent thumb_content;
+			
+			// update the thumbnail related image fields if they exist.
+			thumb_content = this.ExifData.GetContents (Exif.Ifd.One);
+			e = thumb_content.Lookup (Exif.Tag.RelatedImageWidth);
+			if (e != null)
+				e.SetData ((uint)width);
+
+			e = thumb_content.Lookup (Exif.Tag.RelatedImageHeight);
+			if (e != null)
+				e.SetData ((uint)height);
+			
+			Exif.ExifContent image_content;
+			image_content = this.ExifData.GetContents (Exif.Ifd.Zero);
+			image_content.GetEntry (Exif.Tag.Orientation).SetData ((ushort)PixbufOrientation.TopLeft);
+			//image_content.GetEntry (Exif.Tag.ImageWidth).SetData ((uint)pixbuf.Width);
+			//image_content.GetEntry (Exif.Tag.ImageHeight).SetData ((uint)pixbuf.Height);
+			image_content.GetEntry (Exif.Tag.PixelXDimension).SetData ((uint)width);
+			image_content.GetEntry (Exif.Tag.PixelYDimension).SetData ((uint)height);
+		}
+
 		public override void Save (Gdk.Pixbuf pixbuf, System.IO.Stream stream)
 		{
 			// First save the imagedata
@@ -161,35 +198,12 @@ namespace FSpot {
 			buffer.Write (image_data, 0, image_data.Length);
 			buffer.Position = 0;
 			
-			// Then create the thumbnail
-			// The DCF spec says thumbnails should be 160x120 always
-			Gdk.Pixbuf thumbnail = PixbufUtils.ScaleToAspect (pixbuf, 160, 120);
-			byte [] thumb_data = PixbufUtils.Save (thumbnail, "jpeg", null, null);
-
-			// now update the exif data
-			ExifData.Data = thumb_data;
-			thumbnail.Dispose ();
-
-			Exif.ExifEntry e;
-			Exif.ExifContent thumb_content;
-			Exif.ExifContent image_content;
-			
-			// update the thumbnail related image fields if they exist.
-			thumb_content = this.ExifData.GetContents (Exif.Ifd.One);
-			e = thumb_content.Lookup (Exif.Tag.RelatedImageWidth);
-			if (e != null)
-				e.SetData ((uint)pixbuf.Width);
-
-			e = thumb_content.Lookup (Exif.Tag.RelatedImageHeight);
-			if (e != null)
-				e.SetData ((uint)pixbuf.Height);
-			
-			image_content = this.ExifData.GetContents (Exif.Ifd.Zero);
-			image_content.GetEntry (Exif.Tag.Orientation).SetData ((ushort)PixbufOrientation.TopLeft);
-			image_content.GetEntry (Exif.Tag.ImageWidth).SetData ((uint)pixbuf.Width);
-			image_content.GetEntry (Exif.Tag.ImageHeight).SetData ((uint)pixbuf.Height);
+			SetThumbnail (pixbuf);
+			SetDimensions (pixbuf.Width, pixbuf.Height);
+			pixbuf.Dispose ();
 
 			SaveMetaData (buffer, stream);
+
 			buffer.Close ();
 		}
 		
@@ -254,6 +268,10 @@ namespace FSpot {
 			Exif.ExifEntry e = this.ExifData.GetContents (Exif.Ifd.Zero).GetEntry (Exif.Tag.Orientation);
 			System.Console.WriteLine ("Saving orientation as {0}", orientation);
 			e.SetData ((ushort)orientation);
+		       
+			e = this.ExifData.GetContents (Exif.Ifd.One).Lookup (Exif.Tag.Orientation);
+			if (e != null)
+				e.SetData ((ushort)orientation);
 		}
 		
 		public void SetDateTimeOriginal (DateTime time)
@@ -294,6 +312,7 @@ namespace FSpot {
 					time = Exif.ExifUtil.DateTimeFromString (time_str).ToUniversalTime (); 
 #endif
 				} catch (System.Exception e) {
+					Console.WriteLine (e);
 					time = base.Date;
 				}
 				return time;

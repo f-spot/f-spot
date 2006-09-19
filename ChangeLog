@@ -1,5 +1,14 @@
 2006-09-19  Larry Ewing  <lewing@novell.com>
 
+	* configure.in: define libexif variables.
+
+	* libfspot/Makefile.am: link against libexif.
+
+	* src/OrientationFilter.cs: update the thumbnail when rotating.
+	Fixes #356363.
+
+	* src/JpegFile.cs: expose SetThumbnail and SetDimension methods.
+	
 	* src/JpegFile.cs: make sure we preserve the file permissions when
 	writing new metadata to the file.  Fixes 356698.
 

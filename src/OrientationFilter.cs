@@ -25,7 +25,19 @@ namespace FSpot {
 					changed = true;
 				}
 				
+				int width, height;
+
+				jimg = ImageFile.Create (dest) as JpegFile;
+				
+				PixbufUtils.GetSize (dest, out width, out height);
+
 				jimg.SetOrientation (PixbufOrientation.TopLeft);
+				jimg.SetDimensions (width, height);
+
+				Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (dest, 160, 120, true);
+				jimg.SetThumbnail (pixbuf);
+				pixbuf.Dispose ();
+
 				jimg.SaveMetaData (dest);
 			}
 
