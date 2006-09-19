@@ -69,6 +69,8 @@ public class Driver {
 					control = Core.FindInstance ();
 					System.Console.WriteLine ("Found active FSpot server: {0}", control);
 					program = null;
+					// Work around bug in dus bindings.
+					System.GC.SuppressFinalize (control);
 				} catch (System.Exception e) { 
 					Core.AssertOwnership ();
 					System.Console.WriteLine ("Starting new FSpot server");
