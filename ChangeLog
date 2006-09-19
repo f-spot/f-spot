@@ -1,5 +1,8 @@
 2006-09-19  Larry Ewing  <lewing@novell.com>
 
+	* src/JpegFile.cs: make sure we preserve the file permissions when
+	writing new metadata to the file.  Fixes 356698.
+
 	* src/main.cs: make sure we just exit when running --shutdown.
 	Fixes #349660;
 	

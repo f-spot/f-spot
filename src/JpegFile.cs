@@ -142,10 +142,15 @@ namespace FSpot {
 					SaveMetaData (stream, output);
 				}
 			}
+
+			File.SetAttributes (temp_path, File.GetAttributes (path));
+
 			if (FSpot.Unix.Rename (temp_path, path) < 0) {
 				System.IO.File.Delete (temp_path);
 				throw new System.Exception (System.String.Format ("Unable to rename {0} to {1}", temp_path, path));
+
 			}
+
 		}
 		
 		public override void Save (Gdk.Pixbuf pixbuf, System.IO.Stream stream)
