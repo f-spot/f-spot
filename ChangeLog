@@ -1,5 +1,8 @@
 2006-09-19  Larry Ewing  <lewing@novell.com>
 
+	* src/PicasaWebExport.cs: make the password and username entries
+	activate the default action. Fixes #355653.
+
 	* libgphoto2-sharp/libgphoto2-sharp.dll.config: Patch from ajmitch
 	to add dllmap for _port lib.  Fixes #354573.
 

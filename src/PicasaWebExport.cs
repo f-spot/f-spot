@@ -220,6 +220,8 @@ namespace FSpot {
 			this.account = account;
 
 			status_area.Visible = show_error;
+			password_entry.ActivatesDefault = true;
+			username_entry.ActivatesDefault = true;
 
 			if (account != null) {
 				password_entry.Text = account.Password;
@@ -243,11 +245,7 @@ namespace FSpot {
 			password = password_entry.Text;
 			username = username_entry.Text;
 
-			if (password == "" || username == "")
-				add_button.Sensitive = false;
-			else
-				add_button.Sensitive = true;
-
+			add_button.Sensitive = !(password == "" || username == "");
 		}
 		
 		[GLib.ConnectBefore]
