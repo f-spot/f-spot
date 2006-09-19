@@ -1,3 +1,8 @@
+2006-09-19  Larry Ewing  <lewing@novell.com>
+
+	* libgphoto2-sharp/libgphoto2-sharp.dll.config: Patch from ajmitch
+	to add dllmap for _port lib.  Fixes #354573.
+
 2006-09-18  Larry Ewing  <lewing@novell.com>
 
 	* src/GalleryRemote.cs: throw login before adding the account to
