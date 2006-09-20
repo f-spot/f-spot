@@ -212,9 +212,11 @@ namespace FSpot {
 
 		public void Dump ()
 		{
+#if enable_debug
 			XmpFile xmp = new XmpFile ();
-			xmp.Store = this;
+			xmp.Store this;
 			xmp.Save (System.Console.OpenStandardOutput ());
+#endif
 		}
 
 		public static void AddLiteral (StatementSink sink, string predicate, string type, Literal value)
