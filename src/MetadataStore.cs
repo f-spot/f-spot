@@ -170,6 +170,10 @@ namespace FSpot {
 		public const string RdfNS = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 		public const string RdfsNS = "http://www.w3.org/2000/01/rdf-schema#";
 		public const string IViewNS = "http://ns.iview-multimedia.com/mediapro/1.0/";
+		public const string XmlNS = "http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/";
+
+		// FIXME this needs to be parsable by System.Uri
+		public const string FSpotXMPBase = "http://fakebase.f-spot.org/internal/";
 
 		static MetadataStore ()
 		{
@@ -216,7 +220,7 @@ namespace FSpot {
 		public static void AddLiteral (StatementSink sink, string predicate, string type, Literal value)
 		{
 			Entity empty = new BNode ();
-			Statement top = new Statement (new BNode (), (Entity)MetadataStore.Namespaces.Resolve (predicate), empty);
+			Statement top = new Statement (FSpotXMPBase, (Entity)MetadataStore.Namespaces.Resolve (predicate), empty);
 			Statement desc = new Statement (empty, 
 							(Entity)MetadataStore.Namespaces.Resolve ("rdf:type"), 
 							(Entity)MetadataStore.Namespaces.Resolve (type));
@@ -230,7 +234,7 @@ namespace FSpot {
 
 		public static void AddLiteral (StatementSink sink, string predicate, string value)
 		{
-			Statement stmt = new Statement (new BNode (), 
+			Statement stmt = new Statement (FSpotXMPBase,
 							(Entity)MetadataStore.Namespaces.Resolve (predicate), 
 							new Literal (value));
 			sink.Add (stmt);
@@ -238,7 +242,7 @@ namespace FSpot {
 
 		public static void Add (StatementSink sink, string predicate, string type, string [] values)
 		{
-			Add (sink, new BNode(), predicate, type, values);
+			Add (sink, FSpotXMPBase, predicate, type, values);
 		}
 
 		public void Update (string predicate, string type, string [] values)

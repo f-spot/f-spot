@@ -1,3 +1,14 @@
+2006-09-20  Larry Ewing  <lewing@novell.com>
+
+	* semweb/RdfXmlWriter.cs: don't use ever try to use xmlns as an xmlns.
+
+	* src/MetadataStore.cs: 
+	* src/IptcFile.cs: 
+	* src/Tiff.cs: create nodes with the fake base uri rather than a
+	blind node.
+
+	* src/XmpFile.cs: try to clean up the namespace and About attributes.
+
 2006-09-19  Larry Ewing  <lewing@novell.com>
 
 	* configure.in: define libexif variables.

@@ -104,13 +104,16 @@ namespace SemWeb {
 			
 			// TODO: Make sure the local name (here and anywhere in this
 			// class) is a valid XML name.
-			
 			if (Namespaces.GetPrefix(n) != null) {
 				prefix = Namespaces.GetPrefix(n);
 				return;
 			}
 			
 			prefix = uri.Substring(prev+1, last-prev-1);
+
+			if (prefix == "xmlns")
+				prefix = "";
+
 			
 			// Remove all non-xmlable (letter) characters.
 			StringBuilder newprefix = new StringBuilder();

@@ -373,7 +373,9 @@ namespace FSpot.Iptc {
 				case DataSetID.Keywords:
 					if (keywords == null) {
 						keywords = new BNode ();
-						sink.Add (new Statement (new BNode (), MetadataStore.Namespaces.Resolve ("dc:subject"), keywords)); 
+						sink.Add (new Statement (MetadataStore.FSpotXMPBase, 
+									 MetadataStore.Namespaces.Resolve ("dc:subject"),
+									 keywords)); 
 						sink.Add (new Statement (keywords, 
 									 (Entity)MetadataStore.Namespaces.Resolve ("rdf:type"),
 									 (Entity)MetadataStore.Namespaces.Resolve ("rdf:Bag")));
@@ -384,7 +386,7 @@ namespace FSpot.Iptc {
 					break;
 				default:
 					if (data.XmpPredicate != null) {
-						sink.Add (new Statement (new BNode (), 
+						sink.Add (new Statement (MetadataStore.FSpotXMPBase, 
 									 (Entity)data.XmpPredicate, 
 									 new Literal (data.XmpObject)));
 					}
