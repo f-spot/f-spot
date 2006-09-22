@@ -2,6 +2,7 @@ CSC = mcs
 
 LIBGNOMEKEYRING_CSFILES =				\
 	$(srcdir)/AccessRights.cs  \
+	$(srcdir)/AssemblyInfo.cs \
 	$(srcdir)/AttributeType.cs  \
 	$(srcdir)/GenericItemData.cs  \
 	$(srcdir)/ItemACL.cs  \
