@@ -2,6 +2,7 @@ CSC = mcs
 
 LIBGOOGLESHARP_CSFILES =				\
 	$(srcdir)/AlbumAccess.cs  \
+	$(srcdir)/AssemblyInfo.cs \
 	$(srcdir)/Authentication.cs  \
 	$(srcdir)/CreateAlbumException.cs  \
 	$(srcdir)/DeleteAlbumException.cs  \
