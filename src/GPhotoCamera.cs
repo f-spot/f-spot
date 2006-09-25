@@ -178,8 +178,15 @@ public class GPhotoCamera
 			byte[] bytedata = cfile.GetDataAndSize ();
 			if (bytedata.Length > 0) {
 				MemoryStream dataStream = new MemoryStream (bytedata);
-				
-				return new Pixbuf (dataStream);
+				try {
+					return new Pixbuf (dataStream);
+				} catch (Exception e) {
+					// Actual errors with the data libgphoto gives us have been
+					// observed here see b.g.o #357569. 
+					Console.WriteLine ("Error retrieving preview image");
+					Console.WriteLine (e);
+				}
+					
 			}
 		}
 		return null;
