@@ -1,3 +1,7 @@
+2006-09-25  Larry Ewing  <lewing@novell.com>
+
+	* src/XmpTagsImporter.cs: Patch from Bengt to fix #357268.
+
 2006-09-23  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/MainWindow.cs: autoscroll on drag event in TagWidget. Should fix

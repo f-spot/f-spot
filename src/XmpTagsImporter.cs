@@ -37,7 +37,7 @@ namespace FSpot.Xmp {
 		const string City = MetadataStore.PhotoshopNS + "City";
 		const string SupplementalCategories = MetadataStore.PhotoshopNS + "SupplementalCategories";
 		const string Location = MetadataStore.Iptc4xmpCoreNS + "Location";
-		const string Title = MetadataStore.XmpNS + "title";
+		const string Title = MetadataStore.DcNS + "title";
 		const string Description = MetadataStore.DcNS + "description";
 		const string People = MetadataStore.IViewNS + "People";
 		const string Subject = MetadataStore.DcNS + "subject";
