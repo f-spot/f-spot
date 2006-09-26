@@ -37,6 +37,8 @@ public class MainWindow {
 	[Glade.Widget] Notebook view_notebook;
 	[Glade.Widget] ScrolledWindow tag_selection_scrolled;
 
+	[Glade.Widget] Label status_label;
+
 	// File
 	[Glade.Widget] MenuItem version_menu_item;
 	[Glade.Widget] MenuItem create_version_menu_item;
@@ -255,6 +257,7 @@ public class MainWindow {
 			query = new FSpot.PhotoQuery (db.Photos);
 		}
 
+        UpdateStatusLabel ();
 		query.Changed += HandleQueryChanged;
 
 		db.Photos.ItemsChanged += HandleDbItemsChanged;
@@ -1992,7 +1995,14 @@ public class MainWindow {
 	{
 		if (find_untagged.Active != query.Untagged)
 			find_untagged.Active = query.Untagged;
+
+        UpdateStatusLabel ();
 	}
+
+    private void UpdateStatusLabel ()
+    {
+        status_label.Text = String.Format (Catalog.GetPluralString ("{0} Photo", "{0} Photos", query.Count), query.Count);
+    }
 	
 	void HandleZoomChanged (object sender, System.EventArgs args)
 	{

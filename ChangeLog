@@ -1,3 +1,11 @@
+2006-09-26  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/f-spot.glade: Remove "F-Spot Photo Album" text since no longer used.
+	Fixes BGO #356974.
+
+	* src/MainWindow.cs: Put the number of photos currently displayed at the
+	bottom of the window, where the above text used to be.
+
 2006-09-26  Larry Ewing  <lewing@novell.com>
 
 	* src/f-spot.glade: change Directory to Folder in f-spot.glade.
