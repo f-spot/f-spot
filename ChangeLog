@@ -1,3 +1,8 @@
+2006-09-26  Larry Ewing  <lewing@novell.com>
+
+	* src/main.cs: patch from Stephane and Bengt to make argument
+	parsing slightly more robust.  Fixes #357286.
+
 2006-09-25  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* icons/f-spot-not.png:

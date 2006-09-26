@@ -140,8 +140,11 @@ public class Driver {
 					import = true;
 					break;
 				case "--view":
-					while (++i < args.Length)
+					while (++i < args.Length) {
+						if (args[i].StartsWith ("--"))
+							break;
 						list.AddUnknown (args [i]);
+					}
 					
 					if (list.Count > 0)
 						control.View (list.ToString ());
