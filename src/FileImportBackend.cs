@@ -263,6 +263,8 @@ public class FileImportBackend : ImportBackend {
 			if (info.OriginalPath != info.DestinationPath) {
 				try {
 					System.IO.File.Delete (info.DestinationPath);
+				} catch (System.ArgumentNullException) {
+					// Do nothing, since if DestinationPath == null, we do not have to remove it
 				} catch (System.Exception e) {
 					System.Console.WriteLine (e);
 				}
