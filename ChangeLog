@@ -1,3 +1,12 @@
+2006-09-27  Larry Ewing  <lewing@novell.com>
+
+	* src/Widgets/ScrolledView.cs: Move this into its own file.
+
+	* src/Widgets/CairoUtils.cs: Helper class for some cairo functions.
+
+	* src/Widgets/CompositeUtils.cs: Helper methods for some missing X
+	composite functionality.
+
 2006-09-26  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/f-spot.glade: Remove "F-Spot Photo Album" text since no longer used.
