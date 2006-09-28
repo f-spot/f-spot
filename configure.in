@@ -19,7 +19,7 @@ AM_PATH_GLIB_2_0
 dnl --- Check for mono and mcs
 
 AC_PATH_PROG(MONO, mono)
-AC_PATH_PROG(MCS, mcs)
+AC_PATH_PROG(MCS, gmcs)
 
 dnl -- Check for mono pc file
 
