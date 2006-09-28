@@ -343,10 +343,10 @@ namespace Cairo {
 			Color = new Color (r, g, b, a);
 		}
 
-				public void SetSourceSurface (Surface source, int x, int y)
-				{
-					CairoAPI.cairo_set_source_surface (state, source.Handle, x, y);
-				}
+		public void SetSourceSurface (Surface source, double x, double y)
+		{
+			CairoAPI.cairo_set_source_surface (state, source.Handle, x, y);
+		}
 
 #region Path methods
                 
@@ -442,16 +442,16 @@ namespace Cairo {
 #endregion
 
 #region Painting Methods
-				public void Paint ()
-				{
-					CairoAPI.cairo_paint (state);
-				}
+		public void Paint ()
+		{
+			CairoAPI.cairo_paint (state);
+		}
 
-				public void PaintWithAlpha (double alpha)
-				{
-					CairoAPI.cairo_paint_with_alpha (state, alpha);
-				}
-
+		public void PaintWithAlpha (double alpha)
+		{
+			CairoAPI.cairo_paint_with_alpha (state, alpha);
+		}
+		
 				public void Mask (Pattern pattern)
 				{
 					CairoAPI.cairo_mask (state, pattern.Pointer);

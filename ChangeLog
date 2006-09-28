@@ -1,3 +1,19 @@
+2006-09-28  Larry Ewing  <lewing@novell.com>
+
+	* src/Widgets/CompositeUtils.cs: add some new methods.
+
+	* src/Cairo/Cairo.cs: fix up bindings.
+
+	* src/Cairo/Graphics.cs: fix up methods.
+
+	* src/Cairo/Surface.cs: fix up ctor.
+
+	* src/Widgets/CairoUtils.cs: add from drawable helper.  Work
+	around old gtk versions.
+
+	* src/Widgets/GdkUtils.cs: new utils for poking into platform
+	specific gdk bits.
+
 2006-09-27  Larry Ewing  <lewing@novell.com>
 
 	* src/Widgets/ScrolledView.cs: Move this into its own file.

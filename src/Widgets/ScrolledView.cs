@@ -3,7 +3,7 @@ using Gtk;
 
 namespace FSpot.Widgets {
 	public class ScrolledView : Fixed {
-		private BlendBox ebox;
+		private EventBox ebox;
 		private ScrolledWindow scroll;
 		private Delay hide;
 
@@ -41,7 +41,7 @@ namespace FSpot.Widgets {
 			hide.Stop ();
 		}
 
-		public BlendBox ControlBox {
+		public EventBox ControlBox {
 			get {
 				return ebox;
 			}

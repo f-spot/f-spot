@@ -307,12 +307,12 @@ namespace Cairo {
                 // Image
                 //
 		[DllImport (CairoImp)]
-                public static extern void cairo_set_source_surface (IntPtr cr, IntPtr surface, int width, int height);
+                public static extern void cairo_set_source_surface (IntPtr cr, IntPtr surface, double width, double height);
 		
                 [DllImport (CairoImp)]
                 internal static extern void cairo_mask (IntPtr cr, IntPtr pattern);
                 
-				[DllImport (CairoImp)]
+		[DllImport (CairoImp)]
                 internal static extern void cairo_mask_surface (IntPtr cr, IntPtr surface, double x, double y);
 				
                 [DllImport (CairoImp)]
@@ -382,7 +382,7 @@ namespace Cairo {
                 
 		[DllImport (CairoImp)]
                 public static extern IntPtr cairo_xlib_surface_create (IntPtr dpi,
-			IntPtr win, IntPtr visual, int w, int h);
+			uint win, IntPtr visual, int w, int h);
 
 		[DllImport (CairoImp)]
                 public static extern void cairo_xlib_surface_set_drawable (IntPtr surface, IntPtr drawable, int width, int height);

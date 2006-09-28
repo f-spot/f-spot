@@ -120,7 +120,7 @@ namespace Cairo {
 
 	public class XlibSurface : Surface
 	{
-		public XlibSurface (IntPtr display, IntPtr drawable, IntPtr visual, int width, int height)
+		public XlibSurface (IntPtr display, uint drawable, IntPtr visual, int width, int height)
 		{
 			surface = CairoAPI.cairo_xlib_surface_create (display, drawable, visual, width, height);
 			lock (surfaces.SyncRoot){

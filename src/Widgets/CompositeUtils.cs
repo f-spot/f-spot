@@ -14,11 +14,8 @@ namespace FSpot.Widgets {
 		[DllImport("libgdk-2.0-0.dll")]
 		static extern IntPtr gdk_screen_get_rgba_visual (IntPtr screen);
 
-
 		[DllImport ("libgtk-win32-2.0-0.dll")]
 		static extern void gtk_widget_input_shape_combine_mask (IntPtr raw, IntPtr shape_mask, int offset_x, int offset_y);
-
-
 
 		public static Colormap GetRgbaColormap (Screen screen)
 		{
@@ -84,15 +81,8 @@ namespace FSpot.Widgets {
 			gtk_widget_input_shape_combine_mask (w.Handle, shape_mask == null ? IntPtr.Zero : shape_mask.Handle, offset_x, offset_y);
 		}
 
-		[DllImport("libgdk-2.0-0.dll")]
-		static extern uint gdk_x11_drawable_get_xid (IntPtr d);
-
-		[DllImport("libgdk-2.0-0.dll")]
-		static extern IntPtr gdk_x11_display_get_xdisplay (IntPtr d);
-
 		[DllImport("libXcomposite.dll")]
 		static extern void XCompositeRedirectWindow (IntPtr display, uint window, CompositeRedirect update);
-
 
 		public enum CompositeRedirect {
 			Automatic = 0,
@@ -101,9 +91,9 @@ namespace FSpot.Widgets {
 
 		public static void RedirectDrawable (Drawable d)
 		{
-			uint xid = gdk_x11_drawable_get_xid (d.Handle);
+			uint xid = GdkUtils.GetXid (d);
 			Console.WriteLine ("xid = {0} d.handle = {1}, d.Display.Handle = {2}", xid, d.Handle, d.Display.Handle);
-			XCompositeRedirectWindow (gdk_x11_display_get_xdisplay (d.Display.Handle), xid, CompositeRedirect.Manual);
+			XCompositeRedirectWindow (GdkUtils.GetXDisplay (d.Display), GdkUtils.GetXid (d), CompositeRedirect.Manual);
 		}
 	}
 }
