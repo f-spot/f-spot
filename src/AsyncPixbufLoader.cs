@@ -179,7 +179,7 @@ namespace FSpot {
 					// this can throw exceptions
 					loader.Close ();
 				}
-			} catch (System.Exception e) {
+			} catch (System.Exception) {
 				//System.Console.WriteLine (e.ToString ());
 				if (pixbuf != null)
 					pixbuf.Dispose ();
@@ -351,7 +351,7 @@ namespace FSpot {
 				try {
 					len = stream.Read (buffer, 0, buffer.Length);
 					loader.Write (buffer, (ulong)len);
-				} catch (Exception e) {
+				} catch (Exception) {
 					len = -1;
 				}
 
