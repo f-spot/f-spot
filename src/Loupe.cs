@@ -3,6 +3,7 @@ using System;
 using System.Runtime.InteropServices;
 using Cairo;
 using Mono.Unix;
+using FSpot.Widgets;
 
 namespace FSpot {
 	public class Sharpener : Loupe {
@@ -158,27 +159,9 @@ namespace FSpot {
 		[DllImport("libgdk-2.0-0.dll")]
 	        static extern bool gdk_screen_is_composited (IntPtr screen);
 		
-		[DllImport("libgdk-2.0-0.dll")]
-		static extern IntPtr gdk_screen_get_rgba_colormap (IntPtr screen);
-
 		[DllImport ("libgtk-win32-2.0-0.dll")]
 		static extern void gtk_widget_input_shape_combine_mask (IntPtr raw, IntPtr shape_mask, int offset_x, int offset_y);
 
-		public Gdk.Colormap GetRgbaColormap ()
-		{
-			try {
-				IntPtr raw_ret = gdk_screen_get_rgba_colormap(Screen.Handle);
-				Gdk.Colormap ret = GLib.Object.GetObject(raw_ret) as Gdk.Colormap;
-				return ret;
-			} catch {
-				Gdk.Visual visual = Gdk.Visual.GetBestWithDepth (32);
-				if (visual != null) {
-					Gdk.Colormap cmap = GetRgbaColormap ();
-					return cmap;
-				}
-			}
-			return null;
-		}
 
 		public bool IsComposited 
 		{
@@ -258,12 +241,7 @@ namespace FSpot {
 
 		protected override void OnRealized ()
 		{
-			Gdk.Colormap cmap = GetRgbaColormap ();
-
-			if (cmap != null)
-				Colormap = cmap;
-			else
-				use_shape_ext = true;
+			use_shape_ext = ! CompositeUtils.SetRgbaColormap (this);
 			
 			base.OnRealized ();
 			ShapeWindow ();

@@ -1,62 +1,8 @@
 using Gtk;
+using FSpot.Widgets;
+using Cairo;
+
 namespace FSpot {
-	public class ScrolledView : Gtk.Fixed {
-		private Gtk.EventBox ebox;
-		private Gtk.ScrolledWindow scroll;
-		private Delay hide;
-
-		public ScrolledView (System.IntPtr raw) : base (raw) {}
-
-		public ScrolledView () : base () {
-			scroll = new Gtk.ScrolledWindow  (null, null);
-			this.Put (scroll, 0, 0);
-			scroll.Show ();
-			
-			ebox = new Gtk.EventBox ();
-			this.Put (ebox, 0, 0);
-			ebox.ShowAll ();
-			
-			hide = new Delay (2000, new GLib.IdleHandler (HideControls));
-			this.Destroyed += HandleDestroyed;
-		}
-
-		public bool HideControls ()
-		{
-			hide.Stop ();
-			ebox.Hide ();
-			return false;
-		}
-		
-		public void ShowControls ()
-		{
-			hide.Stop ();
-			hide.Start ();
-			ebox.Show ();
-		}
-
-		private void HandleDestroyed (object sender, System.EventArgs args)
-		{
-			hide.Stop ();
-		}
-
-		public Gtk.EventBox ControlBox {
-			get {
-				return ebox;
-			}
-		}
-		public Gtk.ScrolledWindow ScrolledWindow {
-			get {
-				return scroll;
-			}
-		}
-
-		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
-		{
-			scroll.SetSizeRequest (allocation.Width, allocation.Height);
-			base.OnSizeAllocated (allocation);
-		}
-	}
-
 	public class FullScreenView : Gtk.Window {
 		private ScrolledView scroll;
 		private PhotoImageView view;
@@ -77,9 +23,12 @@ namespace FSpot {
 				view.MotionNotifyEvent += HandleViewMotion;
 
 				scroll.ScrolledWindow.Add (view);
-
+				HBox hhbox = new HBox ();
 				Gtk.Button close = ExitButton ();
-				scroll.ControlBox.Add (close);
+				hhbox.PackStart (close);
+				//hhbox.PackStart (new Gtk.Label ("This is a test"));
+				scroll.ControlBox.Add (hhbox);
+				hhbox.ShowAll ();
 				close.Clicked += HandleExitClicked;
 				close.Show ();
 				scroll.ShowControls ();
@@ -94,6 +43,27 @@ namespace FSpot {
 				System.Console.WriteLine (e);
 			}		      
 		}
+
+#if false
+		protected override void OnRealized ()
+		{
+			CompositeUtils.SetRgbaColormap (this);
+			base.OnRealized ();
+		}
+
+		protected override bool OnExposeEvent (Gdk.EventExpose args)
+		{
+			bool ret = base.OnExposeEvent (args);
+			Graphics g = CairoUtils.CreateDrawable (GdkWindow);
+
+			g.Color = new Cairo.Color (0, 0, 0, .5);
+			g.Operator = Operator.DestOut;
+			g.Rectangle (0, 0, Allocation.Width  * .5, Allocation.Height);
+			g.Paint ();
+
+			return ret;
+		}
+#endif
 
 		private Gtk.Button ExitButton ()
 		{

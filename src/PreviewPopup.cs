@@ -1,10 +1,14 @@
 using System;
+using Cairo;
+using Gdk;
+using FSpot.Widgets;
 
 namespace FSpot {
 	public class PreviewPopup : Gtk.Window {
 		private IconView view;
 		private Gtk.Image image;
 		private Gtk.Label label;
+		private bool composited;
 
 		private bool show_histogram;
 		public bool ShowHistogram {
@@ -59,6 +63,39 @@ namespace FSpot {
 			}
 		}
 
+		protected override void OnRealized ()
+		{
+			bool composited = CompositeUtils.SetRgbaColormap (this);
+			AppPaintable = composited;
+			base.OnRealized ();
+		}
+
+
+		protected override bool OnExposeEvent (Gdk.EventExpose args)
+		{
+			int round = 12;
+			Graphics g = CairoUtils.CreateDrawable (GdkWindow);
+			g.Operator = Operator.Source;
+			g.Color = new Cairo.Color (0, 0, 0, 0);
+			g.Paint ();
+			g.Operator = Operator.Over;
+#if true
+			g.Color = new Cairo.Color (0, 0, 0, .7);
+			g.MoveTo (round, 0);
+			//g.LineTo (Allocation.Width - round, 0);
+			g.Arc (Allocation.Width - round, round, round, - Math.PI * 0.5, 0);
+			//g.LineTo (Allocation.Width, Allocation.Height - round);
+			g.Arc (Allocation.Width - round, Allocation.Height - round, round, 0, Math.PI * 0.5);
+			//g.LineTo (round, Allocation.Height);
+			g.Arc (round, Allocation.Height - round, round, Math.PI * 0.5, Math.PI);
+			g.Arc (round, round, round, Math.PI, Math.PI * 1.5);
+			g.ClosePath ();
+			g.Fill ();
+#endif
+			((IDisposable)g).Dispose ();
+			return base.OnExposeEvent (args);
+		}
+
 		private void UpdateImage ()
 		{
 			FSpot.IBrowsableItem item = view.Collection.Items [Item];
@@ -74,7 +111,7 @@ namespace FSpot {
 						pixbuf = FSpot.PhotoLoader.LoadAtMaxSize ((Photo)item, preview_size, preview_size);
 					else
 						pixbuf = PixbufUtils.LoadAtMaxSize (orig_path, preview_size, preview_size);
-				} catch (Exception e) {
+				} catch (Exception) {
 					pixbuf = null;
 				}
 

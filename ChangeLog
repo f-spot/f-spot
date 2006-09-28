@@ -1,5 +1,16 @@
 2006-09-28  Larry Ewing  <lewing@novell.com>
 
+	* src/PreviewPopup.cs: play with the rendering a little.
+
+	* src/Widgets/ScrolledView.cs: disable the blendbox for now.
+
+	* src/FullScreenView.cs: move the ScrolledView out to its own
+	file.
+
+	* src/Loupe.cs: use the util classes.
+
+	* configure.in: look for gmcs.
+
 	* src/Widgets/CompositeUtils.cs: add some new methods.
 
 	* src/Cairo/Cairo.cs: fix up bindings.
@@ -25,11 +36,11 @@
 
 2006-09-26  Gabriel Burt  <gabriel.burt@gmail.com>
 
-	* src/f-spot.glade: Remove "F-Spot Photo Album" text since no longer used.
-	Fixes BGO #356974.
+	* src/f-spot.glade: Remove "F-Spot Photo Album" text since no
+	longer used. Fixes BGO #356974.
 
-	* src/MainWindow.cs: Put the number of photos currently displayed at the
-	bottom of the window, where the above text used to be.
+	* src/MainWindow.cs: Put the number of photos currently displayed
+	at the bottom of the window, where the above text used to be.
 
 2006-09-26  Larry Ewing  <lewing@novell.com>
 

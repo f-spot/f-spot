@@ -14,7 +14,8 @@ namespace FSpot.Widgets {
 			this.Put (scroll, 0, 0);
 			scroll.Show ();
 			
-			ebox = new BlendBox ();
+			//ebox = new BlendBox ();
+			ebox = new EventBox ();
 			this.Put (ebox, 0, 0);
 			ebox.ShowAll ();
 			
