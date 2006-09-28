@@ -403,11 +403,15 @@ namespace FSpot.Ciff {
 				throw new ImageFormatException ("Invalid Ciff Header Block");
 			
 			version =  BitConverter.ToUInt32 (header, 14, little);
-			
+
 			//
 			
 			long end = stream.Length;
 			return new ImageDirectory (stream, start, end, little);
+		}
+
+		public uint Version {
+			get { return version; }
 		}
 
 		public override PixbufOrientation GetOrientation ()

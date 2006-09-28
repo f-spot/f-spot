@@ -29,7 +29,8 @@ public class DateCommands {
 				end_dateedit.Time = query.Range.End;
 			}
 
-			this.Dialog.DefaultResponse = ResponseType.Ok;
+			Dialog.TransientFor = parent_window;
+			Dialog.DefaultResponse = ResponseType.Ok;
 			ResponseType response = (ResponseType) this.Dialog.Run ();
 
 			bool success = false;

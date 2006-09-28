@@ -1,5 +1,11 @@
 2006-09-28  Larry Ewing  <lewing@novell.com>
 
+	* src/DateCommands.cs: set the transient.
+
+	* src/Ciff.cs: expose version.
+
+	* src/AsyncPixbufLoader.cs: silence some warnings.
+
 	* src/PreviewPopup.cs: play with the rendering a little.
 
 	* src/Widgets/ScrolledView.cs: disable the blendbox for now.
