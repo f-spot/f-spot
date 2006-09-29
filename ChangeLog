@@ -1,5 +1,7 @@
 2006-09-28  Larry Ewing  <lewing@novell.com>
 
+	* src/PnmFile.cs: handle comments.  Fixes #358214.
+
 	* src/DateCommands.cs: set the transient.
 
 	* src/Ciff.cs: expose version.

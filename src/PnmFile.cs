@@ -1,6 +1,7 @@
 using FSpot.Imaging;
 using SemWeb;
 using System;
+using System.IO;
 
 namespace FSpot.Pnm {
 	public class PnmFile : ImageFile, StatementSource {
@@ -24,7 +25,7 @@ namespace FSpot.Pnm {
 			public int Height;
 			public ushort Max;
 			
-			public Header (System.IO.Stream stream)
+			public Header (Stream stream)
 			{
 				Magic = GetString (stream);
 				Width = int.Parse (GetString (stream));
@@ -47,7 +48,7 @@ namespace FSpot.Pnm {
 
 		public void Select (StatementSink sink)
 		{
-			using (System.IO.Stream stream = Open ()) {
+			using (Stream stream = Open ()) {
 				Header header = new Header (stream);
 				MetadataStore.AddLiteral (sink, "tiff:ImageWidth", header.Width.ToString ());
 				MetadataStore.AddLiteral (sink, "tiff:ImageLength", header.Height.ToString ());
@@ -56,9 +57,9 @@ namespace FSpot.Pnm {
 			}
 		}
 		
-		public override System.IO.Stream PixbufStream ()
+		public override Stream PixbufStream ()
 		{
-			System.IO.Stream stream = Open ();
+			Stream stream = Open ();
 			Header header = new Header (stream);
 			if (header.IsDeep)
 				return null;
@@ -67,16 +68,30 @@ namespace FSpot.Pnm {
 			return stream;
 		}
 
-		static string GetString (System.IO.Stream stream)
+		static char EatComment (Stream stream)
+		{
+			char c;
+			do {
+				c = (char)stream.ReadByte ();
+				
+			} while (c != '\n' && c != '\n');
+			
+			return c;
+		}
+
+		static string GetString (Stream stream)
 		{
 			System.Text.StringBuilder builder = new System.Text.StringBuilder ();
 
 			char c;
 			do {
 				c = (char)stream.ReadByte ();
-			} while (char.IsWhiteSpace (c));
+				if (c == '#')
+					c = EatComment (stream);
 
-			while (!char.IsWhiteSpace (c)) {
+			} while (char.IsWhiteSpace (c));
+			
+			while (! char.IsWhiteSpace (c)) {
 				builder.Append (c);
 				c = (char)stream.ReadByte ();				
 			}
@@ -84,7 +99,7 @@ namespace FSpot.Pnm {
 			return builder.ToString ();
 		}
 
-		public static ushort [] ReadShort (System.IO.Stream stream, int width, int height, int channels)
+		public static ushort [] ReadShort (Stream stream, int width, int height, int channels)
 		{
 			int length = width * height * channels;
 			ushort [] data = new ushort [length];
@@ -98,7 +113,7 @@ namespace FSpot.Pnm {
 			return data;
 		}
 
-		static Gdk.Pixbuf LoadRGB16 (System.IO.Stream stream, int width, int height)
+		static Gdk.Pixbuf LoadRGB16 (Stream stream, int width, int height)
 		{
 			Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, false, 8, width, height);
 			unsafe {
@@ -117,7 +132,7 @@ namespace FSpot.Pnm {
 			return pixbuf;
 		}
 
-		static Gdk.Pixbuf LoadRGB8 (System.IO.Stream stream, int width, int height)
+		static Gdk.Pixbuf LoadRGB8 (Stream stream, int width, int height)
 		{
 			Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, false, 8, width, height);
 			unsafe {
@@ -136,7 +151,7 @@ namespace FSpot.Pnm {
 			return pixbuf;
 		}
 
-		static PixelBuffer LoadBufferRGB16 (System.IO.Stream stream, int width, int height)
+		static PixelBuffer LoadBufferRGB16 (Stream stream, int width, int height)
 		{
 			PixelBuffer pix = new UInt16Buffer (width, height);
 			int count = width * 3;
@@ -157,7 +172,7 @@ namespace FSpot.Pnm {
 			return pix;
 		}
 
-		static PixelBuffer LoadBufferRGB8 (System.IO.Stream stream, int width, int height)
+		static PixelBuffer LoadBufferRGB8 (Stream stream, int width, int height)
 		{
 			PixelBuffer pix = new UInt16Buffer (width, height);
 			int length = width * 3;
@@ -171,7 +186,7 @@ namespace FSpot.Pnm {
 			return pix;
 		}
 
-		public static FSpot.Imaging.PixelBuffer LoadBuffer (System.IO.Stream stream)
+		public static FSpot.Imaging.PixelBuffer LoadBuffer (Stream stream)
 		{
 
 			Header header = new Header (stream);
@@ -191,7 +206,7 @@ namespace FSpot.Pnm {
 		public override Gdk.Pixbuf Load ()
 		{
 			try {
-				using (System.IO.Stream stream = Open ()) {
+				using (Stream stream = Open ()) {
 					Gdk.Pixbuf pixbuf = PnmFile.Load (stream);
 					return pixbuf;
 				}
@@ -206,7 +221,7 @@ namespace FSpot.Pnm {
 			return PixbufUtils.ScaleToMaxSize (this.Load (), width, height);
 		}
 
-		public static Gdk.Pixbuf Load (System.IO.Stream stream)
+		public static Gdk.Pixbuf Load (Stream stream)
 		{
 			Header header = new Header (stream);
 			header.Dump ();
