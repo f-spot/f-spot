@@ -1,3 +1,9 @@
+2006-09-29  Bengt Thuree  <bengt@thuree.com>
+
+	* configure.in: Added handling of f-spot-view.desktop.in
+	* f-spot-view.desktop.in.in: New file, with @VERSION@ - Closes #352844
+	* f-spot-view.desktop.in: Delete this file. Been replaced by above
+
 2006-09-28  Larry Ewing  <lewing@novell.com>
 
 	* src/PnmFile.cs: handle comments.  Fixes #358214.
