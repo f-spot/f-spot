@@ -110,6 +110,8 @@ namespace FSpot {
 
 
 	public class ColorDialog : GladeDialog {
+        protected static ColorDialog instance = null;
+
 		Gdk.Pixbuf ScaledPixbuf;
 		Gdk.Pixbuf AdjustedPixbuf;
 
@@ -202,6 +204,10 @@ namespace FSpot {
 #endif
 			}
 		}
+
+        public static ColorDialog Instance {
+            get { return instance; }
+        }
 
 		public bool UseWhiteSettings {
 			get {
@@ -328,6 +334,7 @@ namespace FSpot {
 			view.QueueDraw ();
 			System.Console.WriteLine ("clearing window");
 			this.Dialog.Destroy ();
+            instance = null;
 		}
 		
 		private void HandleOkClicked (object sender, EventArgs args)
@@ -491,7 +498,33 @@ namespace FSpot {
 			Cancel ();
 		}
 		
-		public ColorDialog (FSpot.PhotoQuery query, int item)
+        public static void Close ()
+        {
+            if (instance != null) {
+                instance.Cancel ();
+            }
+        }
+
+        public static void CreateForView (FSpot.PhotoImageView view)
+        {
+            Close ();
+
+            instance = new ColorDialog (view);
+        }
+
+        public static void SwitchViews (FSpot.PhotoImageView view) {
+            if (instance != null) {
+                if (instance.view.Item.Current == view.Item.Current) {
+                    instance.view.Transform = null;
+                    instance.SetView (view);
+                    instance.Adjust ();
+                } else {
+                    CreateForView (view);
+                }
+            }
+        }
+
+		protected ColorDialog (FSpot.PhotoQuery query, int item)
 		{
 			view = new FSpot.PhotoImageView (query);
 			view_scrolled.Add (view);
@@ -502,7 +535,7 @@ namespace FSpot {
 			AttachInterface ();
 		}
 
-		public ColorDialog (FSpot.PhotoImageView view)       
+		protected ColorDialog (FSpot.PhotoImageView view)       
 		{
 			this.view = view;
 			this.CreateDialog ("inline_color_dialog");
@@ -555,5 +588,13 @@ namespace FSpot {
 
 			HandlePhotoChanged (view);
 		}
+
+		private void SetView (FSpot.PhotoImageView view)
+        {
+			this.view.PhotoChanged -= HandlePhotoChanged;
+            this.view = view;
+			this.view.PhotoChanged += HandlePhotoChanged;
+        }
+
 	}
 }

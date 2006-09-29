@@ -1,7 +1,19 @@
-2006-09-29  Bengt Thuree  <bengt@thuree.com>
+2006-09-28  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/ColorDialog.cs: Ensure only one dialog is created at a time.  Add
+	static helper functions for switching views.
+
+	* src/MainWindow.cs
+	* src/PhotoView.cs: Close the color dialog if the user switches back to
+	browse mode.  Seamlessly switch between fullscreen and edit modes with
+	the same color dialog.  Based on patch from Bengt Thuree. Fix BGO #340901
+
+2006-09-28  Bengt Thuree  <bengt@thuree.com>
 
 	* configure.in: Added handling of f-spot-view.desktop.in
+
 	* f-spot-view.desktop.in.in: New file, with @VERSION@ - Closes #352844
+
 	* f-spot-view.desktop.in: Delete this file. Been replaced by above
 
 2006-09-28  Larry Ewing  <lewing@novell.com>

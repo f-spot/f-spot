@@ -420,6 +420,7 @@ public class MainWindow {
 			if (view_notebook.CurrentPage != 0)
 				view_notebook.CurrentPage = 0;
 				
+            ColorDialog.Close ();
 			JumpTo (photo_view.Item.Index);
 			zoom_scale.Value = icon_view.Zoom;
 			break;
@@ -1787,7 +1788,7 @@ public class MainWindow {
 	{
 		if (ActiveIndex () >= 0) {
 			SetViewMode (ModeType.PhotoView);
-			new FSpot.ColorDialog (photo_view.View);
+			ColorDialog.CreateForView (photo_view.View);
 		}
 	}
 
@@ -1959,9 +1960,12 @@ public class MainWindow {
 		if (fsview == null) {
 			fsview = new FSpot.FullScreenView (query);
 			fsview.Destroyed += HandleFullScreenViewDestroy;
-		}
-		// FIXME this needs to be another mode like PhotoView and IconView mode.
-		fsview.View.Item.Index = active;
+            fsview.View.Item.Index = active;
+            ColorDialog.SwitchViews (fsview.View);
+		} else {
+            // FIXME this needs to be another mode like PhotoView and IconView mode.
+            fsview.View.Item.Index = active;
+        }
 
 		fsview.Show ();
 	}
@@ -1970,6 +1974,10 @@ public class MainWindow {
 	{
 		JumpTo (fsview.View.Item.Index);
 		fsview = null;
+
+        if (ViewMode == ModeType.PhotoView) {
+            ColorDialog.SwitchViews (photo_view.View);
+        }
 	}
 	
 	void HandleZoomScaleValueChanged (object sender, System.EventArgs args)

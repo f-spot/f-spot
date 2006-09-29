@@ -370,7 +370,7 @@ public class PhotoView : EventBox {
 
 	private void HandleColorButtonClicked (object sender, EventArgs args) 
 	{
-		new FSpot.ColorDialog (photo_view);
+		ColorDialog.CreateForView (photo_view);
 	}	
 
 	int description_photo;
