@@ -369,6 +369,9 @@ constrain_selection (FImageView *image_view)
 
 	if (F_DOUBLE_EQUAL (priv->selection_xy_ratio, 0.0))
 		return;
+	if ((ABS (priv->selection.x2 - priv->selection.x1) > ABS (priv->selection.y2 - priv->selection.y1) && priv->selection_xy_ratio < 1) ||
+		(ABS (priv->selection.x2 - priv->selection.x1) < ABS (priv->selection.y2 - priv->selection.y1) && priv->selection_xy_ratio > 1)) 
+		priv->selection_xy_ratio = (double)1.0 / priv->selection_xy_ratio;
 
 	switch (priv->mode) {
 	case MODE_DRAG_X1:

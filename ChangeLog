@@ -1,3 +1,9 @@
+2006-10-03  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/PhotoView.cs:
+	* libfspot/f-image-view.c: automatically switch the selection
+	orientation between portrait and landscape. Fix bgo #329299.
+
 2006-10-01  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/f-spot.glade: In the import dialog, change "Copy file" to "Copy

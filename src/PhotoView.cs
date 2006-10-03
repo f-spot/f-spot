@@ -68,10 +68,10 @@ public class PhotoView : EventBox {
 		new SelectionConstraint (Catalog.GetString ("4 x 6 (Postcard)"), 6.0 / 4.0),
 		new SelectionConstraint (Catalog.GetString ("5 x 7 (L, 2L)"), 7.0 / 5.0),
 		new SelectionConstraint (Catalog.GetString ("8 x 10"), 10.0 / 8.0),
-		new SelectionConstraint (Catalog.GetString ("4 x 3 Portrait (Book)"), 3.0 / 4.0),
-		new SelectionConstraint (Catalog.GetString ("4 x 6 Portrait (Postcard)"), 4.0 / 6.0),
-		new SelectionConstraint (Catalog.GetString ("5 x 7 Portrait (L, 2L)"), 5.0 / 7.0),
-		new SelectionConstraint (Catalog.GetString ("8 x 10 Portrait"), 8.0 / 10.0),
+//		new SelectionConstraint (Catalog.GetString ("4 x 3 Portrait (Book)"), 3.0 / 4.0),
+//		new SelectionConstraint (Catalog.GetString ("4 x 6 Portrait (Postcard)"), 4.0 / 6.0),
+//		new SelectionConstraint (Catalog.GetString ("5 x 7 Portrait (L, 2L)"), 5.0 / 7.0),
+//		new SelectionConstraint (Catalog.GetString ("8 x 10 Portrait"), 8.0 / 10.0),
 		new SelectionConstraint (Catalog.GetString ("Square"), 1.0)
 	};
 
