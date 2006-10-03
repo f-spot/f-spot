@@ -30,6 +30,31 @@ namespace FSpot.Raf {
 		{
 		}
 
+		private Exif.ExifData exif_data;
+		public Exif.ExifData ExifData {
+			get {
+				if (exif_data == null)
+					exif_data = new Exif.ExifData(uri.LocalPath);
+				System.Console.WriteLine ("loading exif data");
+				return exif_data;
+			}
+		}
+		
+		public override PixbufOrientation GetOrientation (){
+			PixbufOrientation orientation = PixbufOrientation.TopLeft;
+
+			Exif.ExifEntry e = this.ExifData.GetContents (Exif.Ifd.Zero).Lookup (Exif.Tag.Orientation);
+			if (e != null) {
+				ushort [] value = e.GetDataUShort ();
+				orientation = (PixbufOrientation) value [0];
+			}
+
+			if (orientation < PixbufOrientation.TopLeft || orientation > PixbufOrientation.LeftBottom)
+				orientation = PixbufOrientation.TopLeft;
+
+			return orientation;
+		}
+
 		public RafFile (string path) : base (path)
 		{
 		}
@@ -62,7 +87,8 @@ namespace FSpot.Raf {
 		public override Gdk.Pixbuf Load (int width, int height)
 		{
 			Gdk.Pixbuf full = this.Load ();
-			Gdk.Pixbuf scaled  = PixbufUtils.ScaleToMaxSize (full, width, height);
+			Gdk.Pixbuf rotated = PixbufUtils.TransformOrientation (full, this.GetOrientation(), true);
+			Gdk.Pixbuf scaled  = PixbufUtils.ScaleToMaxSize (rotated, width, height);
 			full.Dispose ();
 			return scaled;
 		}

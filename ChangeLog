@@ -1,5 +1,10 @@
 2006-10-03  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/RafFile.cs: Read orientation field from raf (fuji raw) files.
+	Fix bgo #356881
+
+2006-10-03  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/PhotoView.cs:
 	* libfspot/f-image-view.c: automatically switch the selection
 	orientation between portrait and landscape. Fix bgo #329299.
