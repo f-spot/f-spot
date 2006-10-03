@@ -1,5 +1,10 @@
 2006-10-03  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/main.cs: get the absolute path from the --photodir option.
+	Fix bgo #358113.
+
+2006-10-03  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/RafFile.cs: Read orientation field from raf (fuji raw) files.
 	Fix bgo #356881
 

@@ -87,8 +87,8 @@ public class Driver {
 						break;
 					case "--photodir":
 							if (++i < args.Length) {
-								FSpot.Global.PhotoDirectory = args [i];
-								System.Console.WriteLine("PhotoDirectory is now {0}", args[i]);
+								FSpot.Global.PhotoDirectory = System.IO.Path.GetFullPath(args [i]);
+								System.Console.WriteLine("PhotoDirectory is now {0}", System.IO.Path.GetFullPath(args[i]));
 							}
 						break;
 					}
