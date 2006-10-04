@@ -818,6 +818,12 @@ public class MainWindow {
 			return;
 
 		tag_selection_widget.SetDragDestRow (path, Gtk.TreeViewDropPosition.IntoOrAfter);
+
+		//Scroll if required
+		if (args.Y < 20)
+			tag_selection_scrolled.Vadjustment.Value -= 30;
+		if (((o as Gtk.Widget).Allocation.Height - args.Y) < 20)
+			tag_selection_scrolled.Vadjustment.Value += 30;
 	}
 
 	public void HandleTagSelectionDragDataReceived (object o, DragDataReceivedArgs args)
