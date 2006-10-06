@@ -1,3 +1,27 @@
+2006-09-25  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/TimeAdaptor.cs:
+	* src/DirectoryAdaptor.cs: Use new Query methods.
+
+	* src/MainWindow.cs: Many changes, allow dragging tags from the tags list
+	onto the tag query bar, handle menu events and items for the tag
+	searching.  At long last, fixes BGO #139796 (and #138065 and #301169).
+
+	* src/Makefile.am: Add new files.
+
+	* src/PhotoQuery.cs: Add the ExtraCondition property, used by the new
+	search functionality.
+
+	* src/PhotoStore.cs: Change the Query method to use the ExtraCondition.
+
+	* src/TagPopup.cs: Add items for searching.
+
+	* src/TagSelectionWidget.cs: New helper methods, get rid of the checkbox,
+
+	* src/Util.cs: Return the menu item created by the utility methods.
+
+	* src/f-spot.glade: Change Find menu all around.
+
 2006-10-03  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/main.cs: get the absolute path from the --photodir option.

@@ -18,7 +18,7 @@ using LibGPhoto2;
 
 public class MainWindow {
 
-        public static MainWindow Toplevel;
+    public static MainWindow Toplevel;
 
 	Db db;
 
@@ -84,7 +84,13 @@ public class MainWindow {
 	[Glade.Widget] CheckMenuItem reverse_order;
 
 	// Find
-	[Glade.Widget] MenuItem find_tag;
+	[Glade.Widget] MenuItem find_by_tag;
+	[Glade.Widget] MenuItem find_add_tag;
+	[Glade.Widget] MenuItem find_add_tag_with;
+	[Glade.Widget] MenuItem clear_tag_query;
+	
+	[Glade.Widget] MenuItem clear_date_range;
+
 	[Glade.Widget] CheckMenuItem find_untagged;
 	
 	// Tags
@@ -107,6 +113,8 @@ public class MainWindow {
 
 	Gtk.Toolbar toolbar;
 
+	FindBar find_bar;
+
 	PhotoVersionMenu versions_submenu;
 
 	Gtk.ToggleButton browse_button;
@@ -119,6 +127,7 @@ public class MainWindow {
 	FSpot.FullScreenView fsview;
 	FSpot.PhotoQuery query;
 	FSpot.GroupSelector group_selector;
+	FSpot.QueryWidget query_widget;
 	MainSelection selection;
 	
 	FSpot.Delay slide_delay;
@@ -131,15 +140,17 @@ public class MainWindow {
 	bool write_metadata = false;
 
 	// Drag and Drop
-	enum TargetType {
+	public enum TargetType {
 		UriList,
 		TagList,
+		TagQueryItem,
 		PhotoList,
 		RootWindow
 	};
 
 	private static TargetEntry [] icon_source_target_table = new TargetEntry [] {
 		new TargetEntry ("application/x-fspot-photos", 0, (uint) TargetType.PhotoList),
+		new TargetEntry ("application/x-fspot-tag-query-item", 0, (uint) TargetType.TagQueryItem),
 		new TargetEntry ("text/uri-list", 0, (uint) TargetType.UriList),
 		new TargetEntry ("application/x-root-window-drop", 0, (uint) TargetType.RootWindow)
 	};
@@ -183,12 +194,19 @@ public class MainWindow {
 		get { return selection; }
 	}
 
+	public MenuItem ClearFindByTag {
+		get { return clear_tag_query; }
+	}
+
 	//
 	// Constructor
 	//
 	public MainWindow (Db db)
 	{
 		this.db = db;
+
+		if (Toplevel == null)
+			Toplevel = this;
 
 		Glade.XML gui = Glade.XML.FromAssembly ("f-spot.glade", "main_window", "f-spot");
 		gui.Autoconnect (this);
@@ -244,6 +262,7 @@ public class MainWindow {
 
 		tag_selection_widget.ButtonPressEvent += HandleTagSelectionButtonPressEvent;
 		tag_selection_widget.PopupMenu += HandleTagSelectionPopupMenu;
+		tag_selection_widget.RowActivated += HandleTagSelectionRowActivated;
 		
 		info_box = new InfoBox ();
 		info_box.VersionIdChanged += HandleInfoBoxVersionIdChange;
@@ -282,9 +301,14 @@ public class MainWindow {
 		view_vbox.PackStart (group_selector, false, false, 0);
 		view_vbox.ReorderChild (group_selector, 0);
 
-		FSpot.QueryDisplay query_display = new FSpot.QueryDisplay (query, tag_selection_widget);
-		view_vbox.PackStart (query_display, false, false, 0);
-		view_vbox.ReorderChild (query_display, 1);
+		find_bar = new FindBar (query, tag_selection_widget.Model);
+		view_vbox.PackStart (find_bar, false, false, 0);
+		main_window.KeyPressEvent += HandleKeyPressEvent;
+		
+		query_widget = new FSpot.QueryWidget (query, db, tag_selection_widget);
+		query_widget.Logic.Changed += HandleQueryLogicChanged;
+		view_vbox.PackStart (query_widget, false, false, 0);
+		view_vbox.ReorderChild (query_widget, 1);
 
 		icon_view = new QueryView (query);
 		icon_view.ZoomChanged += HandleZoomChanged;
@@ -304,15 +328,8 @@ public class MainWindow {
 		icon_view.DragBegin += HandleIconViewDragBegin;
 		icon_view.DragDataGet += HandleIconViewDragDataGet;
 
-		TagMenu menu = new TagMenu (attach_tag, db.Tags);
-		menu.NewTagHandler += delegate { HandleCreateTagAndAttach (main_window, null); };
-		menu.TagSelected += HandleAttachTagMenuSelected;
-
 		near_image.SetFromStock ("f-spot-stock_near", IconSize.SmallToolbar);
 		far_image.SetFromStock ("f-spot-stock_far", IconSize.SmallToolbar);
-
-		menu = new TagMenu (find_tag, db.Tags);
-		menu.TagSelected += HandleFindTagMenuSelected;
 
 		PhotoTagMenu pmenu = new PhotoTagMenu ();
 		pmenu.TagSelected += HandleRemoveTagMenuSelected;
@@ -364,6 +381,7 @@ public class MainWindow {
 		main_window.ShowAll ();
 
 		tagbar.Hide ();
+		find_bar.Hide ();
 
 		LoadPreference (Preferences.SHOW_TOOLBAR);
 		LoadPreference (Preferences.SHOW_SIDEBAR);
@@ -373,10 +391,8 @@ public class MainWindow {
 
 		main_window.DeleteEvent += HandleDeleteEvent;
 		
-		query_display.HandleChanged (query);
-
-		if (Toplevel == null)
-			Toplevel = this;
+		query_widget.HandleChanged (query);
+		query_widget.Hide ();
 
 		// When the icon_view is loaded, set it's initial scroll position
 		icon_view.SizeAllocated += HandleIconViewReady;
@@ -728,6 +744,13 @@ public class MainWindow {
 		}
 	}
 
+	void HandleTagSelectionRowActivated (object sender, RowActivatedArgs args)
+	{
+        ShowQueryWidget ();
+		//query_widget.Require (new Tag [] {tag_selection_widget.TagByPath (args.Path)});
+		query_widget.Include (new Tag [] {tag_selection_widget.TagByPath (args.Path)});
+	}
+
 	void HandleTagSelectionButtonPressEvent (object sender, ButtonPressEventArgs args)
 	{
 		if (args.Event.Button == 3)
@@ -843,6 +866,7 @@ public class MainWindow {
 				AddTagExtended (num, tags);
 			}
 			db.CommitTransaction ();
+			query_widget.PhotoTagsChanged (tags);
 			break;
 		case (uint)TargetType.UriList:
 			UriList list = new UriList (args.SelectionData);
@@ -1244,12 +1268,19 @@ public class MainWindow {
 			AddTagExtended (num, new Tag [] {t});
 		}
 		db.CommitTransaction ();
+		query_widget.PhotoTagsChanged (new Tag[] {t});
 	}
 	
-	void HandleFindTagMenuSelected (Tag t)
+	public void HandleRequireTag (object sender, EventArgs args)
+ 	{
+        ShowQueryWidget ();
+		query_widget.Require (tag_selection_widget.TagHighlight);
+ 	}
+ 
+	public void HandleUnRequireTag (object sender, EventArgs args)
 	{
-		tag_selection_widget.TagSelection = new Tag [] {t};
-	}
+		query_widget.UnRequire (tag_selection_widget.TagHighlight);
+ 	}
 
 	public void HandleRemoveTagMenuSelected (Tag t)
 	{
@@ -1259,6 +1290,7 @@ public class MainWindow {
 			query.Commit (num);
 		}
 		db.CommitTransaction ();
+		query_widget.PhotoTagsChanged (new Tag [] {t});
 	}
 
 	//
@@ -1680,6 +1712,7 @@ public class MainWindow {
 			AddTagExtended (num, tags);
 		}
 		db.CommitTransaction ();
+		query_widget.PhotoTagsChanged (tags);
 	}
 
 	public void HandleRemoveTagCommand (object obj, EventArgs args)
@@ -1695,6 +1728,7 @@ public class MainWindow {
 			query.Commit (num);
 		}
 		db.CommitTransaction ();
+		query_widget.PhotoTagsChanged (tags);
 	}
 
 	public void HandleEditSelectedTag (object sender, EventArgs ea)
@@ -2010,13 +2044,15 @@ public class MainWindow {
 		if (find_untagged.Active != query.Untagged)
 			find_untagged.Active = query.Untagged;
 
-        UpdateStatusLabel ();
+		
+		clear_date_range.Sensitive = (query.Range != null);
+		UpdateStatusLabel ();
 	}
 
-    private void UpdateStatusLabel ()
-    {
-        status_label.Text = String.Format (Catalog.GetPluralString ("{0} Photo", "{0} Photos", query.Count), query.Count);
-    }
+	private void UpdateStatusLabel ()
+	{
+		status_label.Text = String.Format (Catalog.GetPluralString ("{0} Photo", "{0} Photos", query.Count), query.Count);
+	}
 	
 	void HandleZoomChanged (object sender, System.EventArgs args)
 	{
@@ -2505,13 +2541,99 @@ public class MainWindow {
 	{
 		UpdateMenus ();
 	}
+
+	public bool TagIncluded (Tag tag)
+	{
+		return query_widget.TagIncluded (tag);
+	}
+	
+	public bool TagRequired (Tag tag)
+	{
+		return query_widget.TagRequired (tag);
+	}
+
+    private void HandleQueryLogicChanged (object sender, EventArgs args)
+    {
+        HandleFindAddTagWith (null, null);
+    }
+
+	public void HandleIncludeTag (object sender, EventArgs args)
+	{
+        ShowQueryWidget ();
+		query_widget.Include (tag_selection_widget.TagHighlight);
+	}
+	
+	public void HandleUnIncludeTag (object sender, EventArgs args)
+	{
+		query_widget.UnInclude (tag_selection_widget.TagHighlight);
+ 	}
+
+    void HandleFindByTag (object sender, EventArgs args)
+    {
+        ShowQueryWidget ();
+    }
+
+    void HandleFindAddTagWith (object sender, EventArgs args)
+    {
+        if (find_add_tag_with.Submenu != null)
+           find_add_tag_with.Submenu.Dispose ();
+
+        Gtk.Menu submenu = FSpot.Query.TermMenuItem.GetSubmenu (tag_selection_widget.TagHighlight);
+        if (submenu == null)
+            find_add_tag_with.RemoveSubmenu();
+        else
+            find_add_tag_with.Submenu = submenu;
+
+        find_add_tag_with.Sensitive = (submenu != null);
+    }
+
+    public void HandleAddTagToTerm (object sender, EventArgs args)
+    {
+        MenuItem item = sender as MenuItem;
+
+        int item_pos = 0;
+        foreach (MenuItem i in (item.Parent as Menu).Children) {
+            if (item == i) {
+                break;
+            }
+
+            item_pos++;
+        }
+        // account for All and separator menu items
+        item_pos -= 2;
+
+        FSpot.Query.LogicTerm parent_term = (FSpot.Query.LogicTerm) FSpot.Query.LogicWidget.Root.SubTerms [item_pos];
+
+        if (FSpot.Query.LogicWidget.Box != null) {
+            FSpot.Query.Literal after = parent_term.Last as FSpot.Query.Literal;
+            FSpot.Query.LogicWidget.Box.InsertTerm (tag_selection_widget.TagHighlight, parent_term, after);
+        }
+    }
+
+	void HandleFindTagIncluded (Tag t)
+	{
+        ShowQueryWidget ();
+		query_widget.Include (new Tag [] {t});
+ 	}
+	
+	void HandleFindTagRequired (Tag t)
+	{
+        ShowQueryWidget ();
+		query_widget.Require (new Tag [] {t});
+    }
+
+	void HandleClearTagSearch (object sender, EventArgs args)
+	{
+		query_widget.ClearTags ();
+	}
 	
 	//
 	// Handle Main Menu 
 
 	void UpdateMenus ()
 	{
-		bool tag_sensitive = tag_selection_widget.Selection.CountSelectedRows () > 0;
+		int tags_selected = tag_selection_widget.Selection.CountSelectedRows ();
+		bool tag_sensitive = tags_selected > 0;
 		bool active_selection = selection.Count > 0;
 		bool single_active = CurrentPhoto != null;
 		
@@ -2593,6 +2715,21 @@ public class MainWindow {
 				SetTip (rr_button, String.Format (msg, selection.Count));
 			}
 		}
+
+        //if (last_tags_selected_count != tags_selected) {
+            ((Gtk.Label)find_add_tag.Child).Text = String.Format (
+                Catalog.GetPluralString ("Find Selected Tag", "Find Selected Tags", tags_selected), tags_selected
+            );
+
+            ((Gtk.Label)find_add_tag_with.Child).Text = String.Format (
+                Catalog.GetPluralString ("Find Selected Tag With", "Find Selected Tags With", tags_selected), tags_selected
+            );
+
+            find_add_tag.Sensitive = tag_sensitive;
+            find_add_tag_with.Sensitive = tag_sensitive && find_add_tag_with.Submenu != null;
+
+            //last_tags_selected_count = tags_selected;
+        //}
 	}
 
 	public void HandleOpenWith (object sender, Gnome.Vfs.MimeApplication mime_application)
@@ -2659,6 +2796,14 @@ public class MainWindow {
 
 		mime_application.Launch (uri_list);
 	}
+
+	public void GetWidgetPosition(Widget widget, out int x, out int y)
+    {
+		main_window.GdkWindow.GetOrigin(out x, out y);
+		
+		x += widget.Allocation.X;
+		y += widget.Allocation.Y;
+ 	}
 
 	// Tag typing
 
@@ -2945,6 +3090,37 @@ public class MainWindow {
 
 		return mimes.ToArray (typeof (string)) as string [];
 	}
+
+    private void ShowQueryWidget () {
+        if (find_bar.Visible) {
+            find_bar.Entry.Text = "";
+            find_bar.Hide ();
+        }
+
+        query_widget.Show ();
+        return;
+    }
+
+	public void HandleKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
+    {
+		bool ctrl = ModifierType.ControlMask == (args.Event.State & ModifierType.ControlMask);
+
+        if ((ctrl && args.Event.Key == Gdk.Key.F) || args.Event.Key == Gdk.Key.slash) {
+            if (!find_bar.Visible) {
+                if (query_widget.Visible) {
+                    query_widget.ClearTags ();
+                    query_widget.Hide ();
+                }
+
+                find_bar.Show ();
+                find_bar.Entry.GrabFocus ();
+                args.RetVal = true;
+                return;
+            }
+        }
+
+        args.RetVal = false;
+    }
 
 	public static void SetTip (Widget widget, string tip)
 	{

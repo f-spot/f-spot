@@ -1159,11 +1159,11 @@ public class PhotoStore : DbStore {
 	// Queries.
 	public Photo [] Query (Tag [] tags, DateTime start, DateTime end)
 	{
-		return Query (tags, new DateRange (start, end));
+		return Query (tags, null, new DateRange (start, end));
 	}
 	
 	public Photo [] Query (Tag [] tags) {
-		return Query (tags, null);
+		return Query (tags, null, null);
 	}
 
 	public Photo [] Query (string query)
@@ -1247,7 +1247,7 @@ public class PhotoStore : DbStore {
 		return Query (query_builder.ToString ());
 	}
 
-	public Photo [] Query (Tag [] tags, DateRange range)
+	public Photo [] Query (Tag [] tags, string extra_condition, DateRange range)
 	{
 		string query;
 
@@ -1270,9 +1270,10 @@ public class PhotoStore : DbStore {
 		//        photos.default_version_id
 		//                  FROM photos, photo_tags
 		//                  WHERE photos.id = photo_tags.photo_id
-		// 		          AND (photo_tags.tag_id = tag1
-		//			       OR photo_tags.tag_id = tag2
-		//                             OR photo_tags.tag_id = tag3 ...)
+		// 		                AND (photo_tags.tag_id = cat1tag1
+		//			            OR photo_tags.tag_id = cat1tag2 ) 
+		// 		                AND (photo_tags.tag_id = cat2tag1
+		//			            OR photo_tags.tag_id = cat2tag2 )
 		//                  GROUP BY photos.id
 		
 		StringBuilder query_builder = new StringBuilder ();
@@ -1316,6 +1317,16 @@ public class PhotoStore : DbStore {
 			
 			if (!first)
 				query_builder.Append (")) ");
+		}
+
+		if (extra_condition != null) {
+			query_builder.Append (
+				String.Format (
+					"{0} {1} ",
+					(hide || range != null || (tags != null && tags.Length > 0)) ? " AND " : " WHERE ",
+					extra_condition
+				)
+			);
 		}
 		
 		query_builder.Append ("ORDER BY photos.time");

@@ -257,12 +257,12 @@ public class UriList : ArrayList {
 }
 
 class GtkUtil {
-	public static void MakeMenuItem (Gtk.Menu menu, string l, EventHandler e)
+	public static Gtk.MenuItem MakeMenuItem (Gtk.Menu menu, string l, EventHandler e)
 	{
-		MakeMenuItem (menu, l, e, true);
+		return MakeMenuItem (menu, l, e, true);
 	}
 	
-	public static void MakeMenuItem (Gtk.Menu menu, string l, EventHandler e, bool enabled)
+	public static Gtk.MenuItem MakeMenuItem (Gtk.Menu menu, string l, EventHandler e, bool enabled)
 	{
 		Gtk.MenuItem i;
 		Gtk.StockItem item = Gtk.StockItem.Zero;
@@ -280,9 +280,11 @@ class GtkUtil {
 		
 		menu.Append (i);
 		i.Show ();
+
+        return i;
 	}
 	
-	public static void MakeMenuItem (Gtk.Menu menu, string label, string image_name, EventHandler e, bool enabled)
+	public static Gtk.MenuItem MakeMenuItem (Gtk.Menu menu, string label, string image_name, EventHandler e, bool enabled)
 	{
 		Gtk.ImageMenuItem i = new Gtk.ImageMenuItem (label);
 		i.Activated += e;
@@ -291,9 +293,11 @@ class GtkUtil {
 		
 		menu.Append (i);
 		i.Show ();
+
+        return i;
 	}
 
-	public static void MakeCheckMenuItem (Gtk.Menu menu, string label, EventHandler e, bool enabled, bool active, bool as_radio)
+	public static Gtk.MenuItem MakeCheckMenuItem (Gtk.Menu menu, string label, EventHandler e, bool enabled, bool active, bool as_radio)
 	{
 		Gtk.CheckMenuItem i = new Gtk.CheckMenuItem (label);
 		i.Activated += e;
@@ -303,6 +307,8 @@ class GtkUtil {
 
 		menu.Append(i);
 		i.Show ();
+
+        return i;
 	}
 
 	public static void MakeMenuSeparator (Gtk.Menu menu)

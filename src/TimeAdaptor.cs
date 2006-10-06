@@ -222,7 +222,7 @@ namespace FSpot {
 		{
 			years.Clear ();
 
-			Photo [] photos = query.Store.Query (null, null);
+			Photo [] photos = query.Store.Query (null, null, null);
 			Array.Sort (query.Photos);
 			Array.Sort (photos);
 

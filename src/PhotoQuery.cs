@@ -7,13 +7,14 @@ namespace FSpot {
 		private Photo [] photos;
 		private PhotoStore store;
 		private Tag [] tags;
+		private string extra_condition;
 		private PhotoStore.DateRange range = null;
 		
 		// Constructor
 		public PhotoQuery (PhotoStore store)
 		{
 			this.store = store;
-			photos = store.Query (null, range);
+			photos = store.Query (null, null, range);
 		}
 
 		public int Count {
@@ -61,23 +62,42 @@ namespace FSpot {
 			
 			set {
 				tags = value;
-				photos = store.Query (tags, range);
 				untagged = false;
+				photos = store.Query (tags, extra_condition, range);
 				RequestReload ();
 			}
 		}
+
+		public string ExtraCondition {
+			get {
+				return extra_condition;
+			}
+			
+			set {
+				extra_condition = value;
+
+				if (value != null)
+					untagged = false;
+
+				photos = store.Query (tags, extra_condition, range);
+ 				RequestReload ();
+ 			}
+ 		}
 		
 		public PhotoStore.DateRange Range {
 			get {
 				return range;
 			}
 			set {
+				if (value == range)
+					return;
+
 				range = value;
 				
 				if (untagged)
 					photos = store.QueryUntagged (range);
 				else
-					photos = store.Query (tags, range);
+					photos = store.Query (tags, extra_condition, range);
 
 				RequestReload ();
 			}
@@ -94,9 +114,10 @@ namespace FSpot {
 
 					if (untagged) {
 						tags = null;
+						extra_condition = null;
 						photos = store.QueryUntagged (range);
 					} else
-						photos = store.Query (tags, range);
+						photos = store.Query (tags, extra_condition, range);
 					
 					RequestReload ();
 				}

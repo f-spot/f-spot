@@ -8847,6 +8847,74 @@ Photo Details</property>
 	      <child>
 		<widget class="GtkMenu" id="find_menu">
 
+		  
+		  <child>
+		    <widget class="GtkImageMenuItem" id="find_by_tag">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">Show _Find Bar</property>
+		      <property name="use_underline">True</property>
+		      <signal name="activate" handler="HandleFindByTag" last_modification_time="Tue, 10 Aug 2004 07:08:24 GMT"/>
+		      <accelerator key="f" modifiers="GDK_CONTROL_MASK" signal="activate"/>
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image35">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-find</property>
+			  <property name="icon_size">1</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
+		    </widget>
+		  </child>
+
+		  <child>
+		    <widget class="GtkImageMenuItem" id="find_add_tag">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes"></property>
+		      <property name="use_underline">True</property>
+		      <signal name="activate" handler="HandleIncludeTag" last_modification_time="Tue, 10 Aug 2004 07:08:24 GMT"/>
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image35">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-add</property>
+			  <property name="icon_size">1</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
+		    </widget>
+		  </child>
+
+		  <child>
+		    <widget class="GtkMenuItem" id="find_add_tag_with">
+		      <property name="visible">True</property>
+		      <property name="sensitive">False</property>
+		      <property name="label" translatable="yes"></property>
+		      <property name="use_underline">True</property>
+		      <signal name="activate" handler="HandleFindAddTagWith" last_modification_time="Tue, 10 Aug 2004 07:08:24 GMT"/>
+		    </widget>
+		  </child>
+
+		  <child>
+		    <widget class="GtkMenuItem" id="clear_tag_query">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">_Clear Tag Search</property>
+		      <property name="use_underline">True</property>
+		      <property name="sensitive">False</property>
+		      <signal name="activate" handler="HandleClearTagSearch" last_modification_time="Tue, 10 Aug 2004 07:08:24 GMT"/>
+		    </widget>
+		  </child>
+		  
+		  <child>
+		    <widget class="GtkSeparatorMenuItem" id="separator225">
+		      <property name="visible">True</property>
+		    </widget>
+		  </child>
+
 		  <child>
 		    <widget class="GtkMenuItem" id="set_date_range1">
 		      <property name="visible">True</property>
@@ -8857,10 +8925,11 @@ Photo Details</property>
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="clear_date_range1">
+		    <widget class="GtkMenuItem" id="clear_date_range">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">_Clear Date Range</property>
+		      <property name="label" translatable="yes">Clea_r Date Range</property>
 		      <property name="use_underline">True</property>
+		      <property name="sensitive">False</property>
 		      <signal name="activate" handler="HandleClearDateRange" last_modification_time="Tue, 10 Aug 2004 07:08:24 GMT"/>
 		    </widget>
 		  </child>
@@ -8881,19 +8950,6 @@ Photo Details</property>
 		    </widget>
 		  </child>
 
-		  <child>
-		    <widget class="GtkSeparatorMenuItem" id="separator115">
-		      <property name="visible">True</property>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkMenuItem" id="find_tag">
-		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Find by _Tag</property>
-		      <property name="use_underline">True</property>
-		    </widget>
-		  </child>
 		</widget>
 	      </child>
 	    </widget>

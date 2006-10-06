@@ -28,6 +28,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/FlickrExport.cs		\
 	$(srcdir)/FlickrRemote.cs		\
 	$(srcdir)/FileImportBackend.cs		\
+	$(srcdir)/FindBar.cs			\
 	$(srcdir)/FolderExport.cs		\
 	$(srcdir)/FotkiRemote.cs		\
 	$(srcdir)/FormClient.cs			\
@@ -98,6 +99,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/TagCommands.cs		\
 	$(srcdir)/TagMenu.cs			\
 	$(srcdir)/TagPopup.cs			\
+	$(srcdir)/TagQueryWidget.cs		\
 	$(srcdir)/TagSelectionWidget.cs		\
 	$(srcdir)/TagStore.cs			\
 	$(srcdir)/TagView.cs			\
@@ -115,6 +117,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ThumbnailCommand.cs		\
 	$(srcdir)/QueryDisplay.cs		\
 	$(srcdir)/QueryView.cs			\
+	$(srcdir)/QueryWidget.cs			\
 	$(srcdir)/ZoomUtils.cs			\
 	$(srcdir)/GPhotoCamera.cs		\
 	$(srcdir)/CameraSelectionDialog.cs	\
@@ -162,6 +165,7 @@ RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-loading.png,f-spot-loading.png		\
 	-resource:$(top_srcdir)/icons/f-spot-logo.png,f-spot-logo.png			\
 	-resource:$(top_srcdir)/icons/f-spot-new-tag.png,f-spot-new-tag.png		\
+	-resource:$(top_srcdir)/icons/f-spot-not.png,f-spot-not.png		\
 	-resource:$(top_srcdir)/icons/f-spot-other.png,f-spot-other.png			\
 	-resource:$(top_srcdir)/icons/f-spot-people.png,f-spot-people.png 		\
 	-resource:$(top_srcdir)/icons/f-spot-places.png,f-spot-places.png 		\

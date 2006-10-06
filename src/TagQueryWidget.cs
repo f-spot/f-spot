@@ -953,7 +953,7 @@ namespace FSpot.Query
 
 		private ArrayList widgets = new ArrayList ();
 
-        public event EventHandler Changed;
+		public event EventHandler Changed;
 		
 		public static LogicTerm Root
 		{
@@ -961,18 +961,18 @@ namespace FSpot.Query
 				return rootTerm;
 			}
 		}
-
+		
 		private static LogicWidget logic_widget = null;
 		public static LogicWidget Box {
 			get { return logic_widget; }
 		}
-
+		
 		// Drag and Drop
 		private static TargetEntry [] tag_dest_target_table = new TargetEntry [] {
 			new TargetEntry ("application/x-fspot-tags", 0, (uint) MainWindow.TargetType.TagList),
 			new TargetEntry ("application/x-fspot-tag-query-item", 0, (uint) MainWindow.TargetType.TagQueryItem),
 		};
-
+		
 		public LogicWidget (PhotoQuery query, TagStore tag_store, TagSelectionWidget selector) : base ()
 		{
 			//SetFlag (WidgetFlags.NoWindow);
@@ -1010,22 +1010,22 @@ namespace FSpot.Query
 			help = new Gtk.Label ("<i>" + Catalog.GetString ("Drag tags here to search for them") + "</i>");
 			help.UseMarkup = true;
 			help.Visible = true;
-
-            rootBox = new HBox();
+			
+			rootBox = new HBox();
 			rootBox.Add (help);
-            rootBox.Show ();
+			rootBox.Show ();
 
-            rootAdd.Child = rootBox;
+			rootAdd.Child = rootBox;
 			rootAdd.Show ();
 			
 			Gtk.Drag.DestSet (rootAdd, DestDefaults.All, tag_dest_target_table, 
 					  DragAction.Copy | DragAction.Move ); 
-
+			
 			PackEnd (rootAdd, true, true, 0);
-
+			
 			rootTerm = new OrTerm (null, null);
 		}
-
+		
 		private void Preview ()
 		{
 			if (sepBox == null) {
@@ -1035,15 +1035,15 @@ namespace FSpot.Query
 					sep.Show ();
 					sepBox.PackStart (sep, false, false, 0);
 				}
-                rootBox.Add (sepBox);
+				rootBox.Add (sepBox);
 			}
-
-            help.Hide ();
+			
+			help.Hide ();
 			sepBox.Show ();
 		}
-
+		
 		/** Handlers **/
-
+		
 		// When the user edits a tag (it's icon, name, etc) we get called
 		// and update the images/text in the query as needed to reflect the changes.
 		private void HandleTagChanged (object sender, DbItemEventArgs args)
@@ -1060,7 +1060,7 @@ namespace FSpot.Query
 				foreach (Literal term in rootTerm.FindByTag (item as Tag))
 					term.RemoveSelf ();
 		}
-
+		
 		private void HandleDragMotion (object o, DragMotionArgs args)
 		{
 			if (!preview && rootTerm.Count > 0 && (Literal.FocusedLiterals.Count == 0 || Children.Length > 2)) {
@@ -1072,11 +1072,11 @@ namespace FSpot.Query
 		private void HandleLeave (object o, EventArgs args)
 		{
 			if (preview && Children.Length > 1) {
-                sepBox.Hide ();
+				sepBox.Hide ();
 				preview = false;
 			} else if (preview && Children.Length == 1) {
-                help.Show ();
-            }
+				help.Show ();
+			}
 		}
 		
 		private void HandleLiteralsMoved (ArrayList literals, LogicTerm parent, Literal after)
@@ -1084,7 +1084,7 @@ namespace FSpot.Query
 			preventUpdate = true;
 			foreach (Literal term in literals) {
 				Tag tag = term.Tag;
-
+				
 				// Don't listen for it to be removed since we are
 				// moving it. We will update when we're done.
 				term.Removed -= HandleRemoved;
@@ -1400,24 +1400,24 @@ namespace FSpot.Query
 		{
 			if (preventUpdate)
 				return;
-
-            if (sepBox != null)
-                sepBox.Hide ();
-
+			
+			if (sepBox != null)
+				sepBox.Hide ();
+			
 			if (rootTerm.Count == 0) {
-                help.Show ();
+				help.Show ();
 				query.ExtraCondition = null;
 			} else {
-                help.Hide ();
+				help.Hide ();
 				query.ExtraCondition = rootTerm.ConditionString ();
 				//Console.WriteLine ("extra_condition = {0}", query.ExtraCondition);
 			}
-
-            EventHandler handler = Changed;
-            if (handler != null)
-                handler (this, new EventArgs ());
+			
+			EventHandler handler = Changed;
+			if (handler != null)
+				handler (this, new EventArgs ());
 		}
-
+		
 		public bool Clear
 		{
 			get {
