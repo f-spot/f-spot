@@ -11,6 +11,65 @@ namespace FSpot
 {
 
 public class Driver {
+	
+	private static void HelpMsg(string [] args)
+	{
+		Program program = null;
+		Catalog.Init ("f-spot", Defines.LOCALE_DIR);
+
+		System.Console.WriteLine ("Usage: f-spot [--basedir <directory>] | [--photodir <directory>] | [--debug]");
+		System.Console.WriteLine ("\t\t [ --import <uri> | --view <file[ file]|directory[ directory]> |");
+		System.Console.WriteLine ("\t\t\t--shutdown | --slideshow | --help ]");
+		System.Console.WriteLine ("");
+
+		System.Console.WriteLine ("  --import [uri]\t\t\timport from the given uri");
+		System.Console.WriteLine ("  --view <file|directory>\t\tview some files or directories (one or more)");
+		System.Console.WriteLine ("  --basedir <directory>\t\t\t<dir> where the photo database is located ");
+		System.Console.WriteLine ("  --photodir <directory>\t\timport (copy) photos to <dir> ");
+		System.Console.WriteLine ("  --shutdown\t\t\t\tshutdown a running f-spot server");
+		System.Console.WriteLine ("  --slideshow\t\t\t\tdisplay a slideshow");
+		System.Console.WriteLine ("  --debug\t\t\t\trun f-spot with mono in debug mode");
+		System.Console.WriteLine ("  --help\t\t\t\tview this message");
+
+	}
+	
+	private static bool ValidateCmds(string [] args)
+	{
+		string [] restricted_cmds = new string [] {"--slideshow", "--import", "--shutdown", "--view"};
+		string [] valid_cmds = new string [] {"--import", "--view", "--basedir", "--photodir", 
+			"--shutdown", "--slideshow", "--debug", "--help", "--uninstalled"};
+		string [] single_cmds = new string [] {"--shutdown", "--help"};
+		string [] parameter_cmds = new string [] {"--import", "--view", "--basedir", "--photodir"};
+
+
+		bool valid_cmd = true;
+		int number_of_restricted_cmds = 0;
+		for (int k=0; k< args.Length; k++) {
+			string arg = args[k];
+			// Only check commands
+			if (!arg.StartsWith("--"))
+				continue;
+			// Only one restricted cmd is allowed
+			if (System.Array.IndexOf (restricted_cmds, arg) > 0)
+				number_of_restricted_cmds++;  
+			// These commands has to be by itself
+			if ( (System.Array.IndexOf (single_cmds, arg) > 0) && (args.Length != 1) )
+				valid_cmd = false; 
+			// Unknow command is not allowed
+			if (System.Array.IndexOf (valid_cmds, arg) < 0)			
+				valid_cmd = false; 
+			// Command with a parameter has to have a parameter
+			if (System.Array.IndexOf (parameter_cmds, arg) > 0) {
+				if ( (k+1 == args.Length) || (args[k+1].StartsWith ("--"))  )
+					valid_cmd = false;
+			}
+
+		}
+		valid_cmd = valid_cmd && (number_of_restricted_cmds < 2);
+		
+		return valid_cmd;		
+	}
+	
 	public static void Main (string [] args)
 	{
 		bool view_only = false;
@@ -22,24 +81,16 @@ public class Driver {
 		SetProcessName (Defines.PACKAGE);
 		
 		try {
+			if (!ValidateCmds(args)) {
+				System.Console.WriteLine ("Invalid argument list. Please review the arguments and try again.");
+				System.Console.WriteLine ("");
+				HelpMsg(args);
+				return;
+			}
+			
 			foreach (string arg in args) {
 				if (arg == "--help") {
-					Catalog.Init ("f-spot", Defines.LOCALE_DIR);
-
-					System.Console.WriteLine ("Usage f-spot [OPTION. ..]\n");
-					System.Console.WriteLine ("  --import [uri]\t\t\timport from the given uri");
-					System.Console.WriteLine ("  --view <file>\t\t\t\tview a file or directory ");
-					System.Console.WriteLine ("  --basedir <dir>\t\t\t<dir> where the photo database is located ");
-					System.Console.WriteLine ("  --photodir <dir>\t\t\timport photos in <dir> ");
-					System.Console.WriteLine ("  --shutdown\t\t\t\tshutdown a running f-spot server");
-					System.Console.WriteLine ("  --slideshow\t\t\t\tdisplay a slideshow");
-					System.Console.WriteLine ("  --debug\t\t\t\trun f-spot with mono in debug mode");
-					System.Console.WriteLine ("  --help\t\t\t\tview this message");
-					
-					System.Console.WriteLine ("");
-					program = new Program (Defines.PACKAGE, 
-							       Defines.VERSION, 
-							       Modules.UI, args);
+					HelpMsg(args);
 					return;
 				} else if (arg == "--slideshow") {
 					Catalog.Init ("f-spot", Defines.LOCALE_DIR);
@@ -73,7 +124,8 @@ public class Driver {
 					System.GC.SuppressFinalize (control);
 				} catch (System.Exception e) { 
 					Core.AssertOwnership ();
-					System.Console.WriteLine ("Starting new FSpot server");
+					if (System.Array.IndexOf (args, "--shutdown") == 0)
+						System.Console.WriteLine ("Starting new FSpot server");
 				}
 				
 				// Process this before creating the Core

@@ -1,6 +1,8 @@
 2006-10-06  Larry Ewing  <lewing@novell.com>
 
-	* src/PhotoImageView.cs: fix the check that short circuits the
+	* src/main.cs: Fixes from Bengt for #332429 and #332417.
+
+	* src/PhotoImageView.cs: Fix the check that short circuits the
 	change notification.  Fixes #360133 and #358323.
 
 	* src/main.cs: make an error calling prctl to set the name non
