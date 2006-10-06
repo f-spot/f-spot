@@ -1,3 +1,10 @@
+2006-10-06  Larry Ewing  <lewing@novell.com>
+
+	* src/main.cs: make an error calling prctl to set the name non
+	fatal.
+
+	* src/Widgets/CairoUtils.cs: add some more utility functions.
+
 2006-09-25  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/TimeAdaptor.cs:

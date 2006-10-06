@@ -185,8 +185,8 @@ public class Driver {
 		try {
 			if(prctl(15 /* PR_SET_NAME */, name,
 				 0, 0, 0) != 0) {
-				throw new ApplicationException("Error setting process name: " +
-							       Mono.Unix.Native.Stdlib.GetLastError());
+				Console.WriteLine ("Error setting process name: " +
+						   Mono.Unix.Native.Stdlib.GetLastError());
 			}
 		} catch (DllNotFoundException de) {
 			/* noop */
