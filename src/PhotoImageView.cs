@@ -221,11 +221,13 @@ namespace FSpot {
 
 		private void PhotoItemChanged (BrowsablePointer item, BrowsablePointerChangedArgs args) 
 		{
+			System.Console.WriteLine ("item changed");
 			// If it is just the position that changed fall out
 			if (args != null && 
 			    args.PreviousItem != null &&
-			    Item.IsValid && 
-			    this.Item.Current.DefaultVersionUri == args.PreviousItem.DefaultVersionUri)
+			    Item.IsValid &&
+			    (args.PreviousIndex != item.Index) &&
+			    (this.Item.Current.DefaultVersionUri == args.PreviousItem.DefaultVersionUri))
 				return;
 
 			if (load_async) {
