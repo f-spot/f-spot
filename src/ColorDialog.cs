@@ -108,13 +108,12 @@ namespace FSpot {
 		}
 	}
 
-
 	public class ColorDialog : GladeDialog {
-        protected static ColorDialog instance = null;
-
+		protected static ColorDialog instance = null;
+		
 		Gdk.Pixbuf ScaledPixbuf;
 		Gdk.Pixbuf AdjustedPixbuf;
-
+		
 #if USE_THREAD		
 		Delay expose_timeout;
 #endif
@@ -136,10 +135,10 @@ namespace FSpot {
 		
 		[Glade.Widget] private Gtk.ScrolledWindow view_scrolled;
 		[Glade.Widget] private Gtk.Image histogram_image;
-
+		
 		[Glade.Widget] private Gtk.CheckButton white_check;
 		[Glade.Widget] private Gtk.CheckButton exposure_check;
-
+		
 		[Glade.Widget] Gtk.Button ok_button;
 		[Glade.Widget] Gtk.VBox   control_vbox;
 		
@@ -205,10 +204,10 @@ namespace FSpot {
 			}
 		}
 
-        public static ColorDialog Instance {
-            get { return instance; }
-        }
-
+		public static ColorDialog Instance {
+			get { return instance; }
+		}
+		
 		public bool UseWhiteSettings {
 			get {
 				if (white_check != null)
@@ -498,50 +497,59 @@ namespace FSpot {
 			Cancel ();
 		}
 		
-        public static void Close ()
-        {
-            if (instance != null) {
-                instance.Cancel ();
-            }
-        }
-
-        public static void CreateForView (FSpot.PhotoImageView view)
-        {
-            Close ();
-
-            instance = new ColorDialog (view);
-        }
-
-        public static void SwitchViews (FSpot.PhotoImageView view) {
-            if (instance != null) {
-                if (instance.view.Item.Current == view.Item.Current) {
-                    instance.view.Transform = null;
-                    instance.SetView (view);
-                    instance.Adjust ();
-                } else {
-                    CreateForView (view);
-                }
-            }
-        }
-
+		public static void Close ()
+		{
+			if (instance != null) {
+				instance.Cancel ();
+			}
+		}
+		
+		public static void CreateForView (FSpot.PhotoImageView view)
+		{
+			Close ();
+			
+			instance = new ColorDialog (view);
+		}
+		
+		// FIXME is this the riht place for this, shouldn't mainwindow
+		// treat fullscreen as a mode and handle this part itself?
+		public static void SwitchViews (FSpot.PhotoImageView view) {
+			if (instance != null) {
+				if (instance.view.Item.Current == view.Item.Current) {
+					instance.view.Transform = null;
+					instance.SetView (view);
+					instance.Adjust ();
+				} else {
+					CreateForView (view);
+				}
+			}
+		}
+		
 		protected ColorDialog (FSpot.PhotoQuery query, int item)
 		{
 			view = new FSpot.PhotoImageView (query);
 			view_scrolled.Add (view);
 			view.Show ();
 			view.Item.Index = item;
-
+			
 			this.CreateDialog ("external_color_dialog");
 			AttachInterface ();
 		}
-
+		
 		protected ColorDialog (FSpot.PhotoImageView view)       
 		{
 			this.view = view;
-			this.CreateDialog ("inline_color_dialog");
-			AttachInterface ();
-		}
 
+			Window parent = view.Toplevel as Window;
+
+			this.CreateDialog ("inline_color_dialog");
+
+			AttachInterface ();
+			if (parent != null)
+				this.Dialog.TransientFor = parent;
+
+		}
+		
 		private void AttachInterface ()
 		{
 			view.PhotoChanged += HandlePhotoChanged;
