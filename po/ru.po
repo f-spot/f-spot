@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-09 00:37+0400\n"
-"PO-Revision-Date: 2006-08-08 12:15+0400\n"
+"POT-Creation-Date: 2006-10-07 17:24+0400\n"
+"PO-Revision-Date: 2006-10-06 11:15+0400\n"
 "Last-Translator: Alexandre Prokoudine <alexandre.prokoudine@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,11 +30,11 @@ msgstr "Разложите фотографии по альбомам и под�
 msgid "Photo Manager"
 msgstr "Управление фотографиями"
 
-#: ../f-spot-view.desktop.in.h:1 ../src/f-spot.glade.h:94
+#: ../f-spot-view.desktop.in.in.h:1 ../src/f-spot.glade.h:110
 msgid "F-Spot Photo Viewer"
 msgstr "Просмотр снимков в F-Spot"
 
-#: ../f-spot-view.desktop.in.h:2
+#: ../f-spot-view.desktop.in.in.h:2
 msgid "Photo Viewer"
 msgstr "Просмотр снимков"
 
@@ -167,11 +167,11 @@ msgstr "Предпросмотр"
 msgid "Path"
 msgstr "Путь"
 
-#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:97
+#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:113
 msgid "File"
 msgstr "Файл"
 
-#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:708
+#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:758
 msgid "Index"
 msgstr "Индекс"
 
@@ -209,8 +209,8 @@ msgstr ""
 "Ошибка \"{0}\" при создании каталога \"{1}\".  Проверьте правильность пути и "
 "прав, затем попробуйте снова"
 
-#: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:149
-#: ../src/FolderExport.cs:267
+#: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:200
+#: ../src/FolderExport.cs:278
 msgid "Transferring Pictures"
 msgstr "Идёт копирование снимков"
 
@@ -248,49 +248,49 @@ msgstr "Камера"
 msgid "Port"
 msgstr "Порт"
 
-#: ../src/CDExport.cs:57
+#: ../src/CDExport.cs:105
 #, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "Передаётся изображение \"{0}\" на CD"
 
 #. This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/CDExport.cs:59 ../src/FlickrExport.cs:245
-#: ../src/GalleryExport.cs:654 ../src/ProgressDialog.cs:82
+#: ../src/CDExport.cs:107 ../src/FlickrExport.cs:245
+#: ../src/GalleryExport.cs:683 ../src/ProgressDialog.cs:82
 #: ../src/TimeDialog.cs:141
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} из {1}"
 
-#: ../src/CDExport.cs:72 ../src/FlickrExport.cs:251 ../src/FolderExport.cs:176
-#: ../src/GalleryExport.cs:669
+#: ../src/CDExport.cs:122 ../src/FlickrExport.cs:251
+#: ../src/FolderExport.cs:185 ../src/GalleryExport.cs:709
 msgid "Done Sending Photos"
 msgstr "Пересылка снимков завершена"
 
-#: ../src/CDExport.cs:74 ../src/FolderExport.cs:178
+#: ../src/CDExport.cs:124 ../src/FolderExport.cs:187
 msgid "Transfer Complete"
 msgstr "Передача завершена"
 
-#: ../src/CDExport.cs:81 ../src/FolderExport.cs:183
+#: ../src/CDExport.cs:131 ../src/FolderExport.cs:192
 msgid "Error While Transferring"
 msgstr "Ошибка при передаче файлов"
 
-#: ../src/CDExport.cs:87 ../src/FolderExport.cs:191
+#: ../src/CDExport.cs:137 ../src/FolderExport.cs:200
 msgid "Error Transferring"
 msgstr "Ошибка при передаче"
 
-#: ../src/CDExport.cs:108 ../src/FolderExport.cs:212
+#: ../src/CDExport.cs:158 ../src/FolderExport.cs:221
 msgid "Error: Error while transferring; Aborting"
 msgstr "Ошибка: Ошибка при передаче; Прерывание"
 
-#: ../src/CDExport.cs:111 ../src/FolderExport.cs:215
+#: ../src/CDExport.cs:161 ../src/FolderExport.cs:224
 msgid "Error: File Already Exists; Aborting"
 msgstr "Ошибка: Файл с таким именем уже существует; Прерывание"
 
-#: ../src/ColorDialog.cs:308
+#: ../src/ColorDialog.cs:313
 msgid "Error saving adjusted photo"
 msgstr "Ошибка при сохранении изменённого снимка"
 
-#: ../src/ColorDialog.cs:309 ../src/Loupe.cs:57 ../src/MainWindow.cs:1834
+#: ../src/ColorDialog.cs:314 ../src/Loupe.cs:58 ../src/MainWindow.cs:1880
 #: ../src/PhotoView.cs:269
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
@@ -330,15 +330,11 @@ msgstr ""
 msgid "F-Spot Encountered a Fatal Error"
 msgstr "Критическая ошибка в работе F-Spot"
 
-#: ../src/ExceptionDialog.cs:52
-msgid ""
-"This may be due to a programming error. Please help us make F-Spot better by "
-"reporting this error. Thank you in advance!"
-msgstr ""
-"Возможно, это ошибка в коде программы. Помогите нам улучшить F-Spot, сообщив "
-"о ней. Заранее спасибо!"
+#: ../src/ExceptionDialog.cs:60
+msgid "Error Details"
+msgstr "Подробности об ошибке"
 
-#: ../src/ExceptionDialog.cs:99
+#: ../src/ExceptionDialog.cs:104
 msgid "An unhandled exception was thrown: "
 msgstr "Было получено необработанное прерывание: "
 
@@ -366,7 +362,7 @@ msgstr "Раздел о взаимодействии"
 msgid "Unknown Directory"
 msgstr "Неизвестный каталог"
 
-#: ../src/FlickrExport.cs:63 ../src/f-spot.glade.h:58
+#: ../src/FlickrExport.cs:63 ../src/f-spot.glade.h:68
 msgid "Authorize"
 msgstr "Авторизоваться"
 
@@ -409,12 +405,12 @@ msgstr "Невозможно авторизоваться"
 msgid "Waiting for response {0} of {1}"
 msgstr "Ожидание отклика {0} из {1}"
 
-#: ../src/FlickrExport.cs:240 ../src/GalleryExport.cs:650
+#: ../src/FlickrExport.cs:240 ../src/GalleryExport.cs:679
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Закачивается снимок \"{0}\""
 
-#: ../src/FlickrExport.cs:253 ../src/GalleryExport.cs:671
+#: ../src/FlickrExport.cs:253 ../src/GalleryExport.cs:711
 msgid "Upload Complete"
 msgstr "Закачка завершена"
 
@@ -423,7 +419,7 @@ msgstr "Закачка завершена"
 msgid "Error Uploading To Flickr: {0}"
 msgstr "Ошибка при закачивании на Flickr: {0}"
 
-#: ../src/FlickrExport.cs:259 ../src/GalleryExport.cs:676
+#: ../src/FlickrExport.cs:259 ../src/GalleryExport.cs:716
 msgid "Error"
 msgstr "Ошибка"
 
@@ -439,36 +435,52 @@ msgstr ""
 "F-Spot не удалось авторизоваться на Flickr.  Убедитесь, что включена "
 "аутентификация через веб-интерфейс."
 
-#: ../src/FlickrExport.cs:336 ../src/GalleryExport.cs:614
+#: ../src/FlickrExport.cs:336 ../src/GalleryExport.cs:642
 msgid "Uploading Pictures"
 msgstr "Закачиваются изображения"
 
-#: ../src/FolderExport.cs:105
+#: ../src/FolderExport.cs:109
 msgid "Select Export Folder"
 msgstr "Выберите папку для экспорта"
 
-#: ../src/FolderExport.cs:138
+#: ../src/FolderExport.cs:142
 msgid "Building Gallery"
 msgstr "Создаётся галерея"
 
+#: ../src/FolderExport.cs:615
+msgid "Light"
+msgstr "Светлый"
+
+#: ../src/FolderExport.cs:616
+msgid "Dark"
+msgstr "Тёмный"
+
 #. Abbreviation of previous
-#: ../src/FolderExport.cs:706
+#: ../src/FolderExport.cs:756
 msgid "Prev"
 msgstr "Пред."
 
-#: ../src/FolderExport.cs:711 ../src/f-spot.glade.h:120
+#: ../src/FolderExport.cs:761 ../src/f-spot.glade.h:138
 msgid "Next"
 msgstr "След."
 
-#: ../src/FolderExport.cs:819
+#: ../src/FolderExport.cs:814 ../src/FolderExport.cs:987
+msgid "Show Styles"
+msgstr "Показать стили"
+
+#: ../src/FolderExport.cs:815 ../src/FolderExport.cs:988
+msgid "Hide Styles"
+msgstr "Спрятать стили"
+
+#: ../src/FolderExport.cs:872
 msgid "Gallery generated by"
 msgstr "Галерею создал(а)"
 
-#: ../src/FolderExport.cs:862
+#: ../src/FolderExport.cs:917
 msgid "Page:"
 msgstr "Страница:"
 
-#: ../src/FullScreenView.cs:102
+#: ../src/FullScreenView.cs:72
 msgid "Exit fullscreen"
 msgstr "Вернуться"
 
@@ -497,130 +509,174 @@ msgid "1 of 1"
 msgstr "1 из 1"
 
 #: ../src/f-spot.glade.h:8
+msgid "1024 px"
+msgstr "1024 px"
+
+#: ../src/f-spot.glade.h:9
+msgid "320 px"
+msgstr "320 px"
+
+#: ../src/f-spot.glade.h:10
+msgid "480 px"
+msgstr "480 px"
+
+#: ../src/f-spot.glade.h:11
 msgid "5"
 msgstr "5"
 
-#: ../src/f-spot.glade.h:9
+#: ../src/f-spot.glade.h:12
+msgid "640 px"
+msgstr "640 px"
+
+#: ../src/f-spot.glade.h:13
+msgid "800 px"
+msgstr "800 px"
+
+#: ../src/f-spot.glade.h:14
 msgid "<b></b>"
 msgstr "<b></b>"
 
-#: ../src/f-spot.glade.h:10
+#: ../src/f-spot.glade.h:15
 msgid "<b>Account</b>"
 msgstr "<b>Учётная запись</b>"
 
-#: ../src/f-spot.glade.h:11
+#: ../src/f-spot.glade.h:16
 msgid "<b>Action</b>"
 msgstr "<b>Действие</b>"
 
-#: ../src/f-spot.glade.h:12
+#: ../src/f-spot.glade.h:17
 msgid "<b>Album</b>"
 msgstr "<b>Альбом</b>"
 
-#: ../src/f-spot.glade.h:13
+#: ../src/f-spot.glade.h:18
 msgid "<b>Co_rrections</b>"
 msgstr "<b>_Изменения</b>"
 
-#: ../src/f-spot.glade.h:14
+#: ../src/f-spot.glade.h:19
 msgid "<b>Color Management</b>"
 msgstr "<b>Управление цветом</b>"
 
-#: ../src/f-spot.glade.h:15
+#: ../src/f-spot.glade.h:20
 msgid "<b>Color Temperature</b>"
 msgstr "<b>Температура цвета</b>"
 
-#: ../src/f-spot.glade.h:16
+#: ../src/f-spot.glade.h:21
 msgid "<b>Destination</b>"
 msgstr "<b>Место назначения</b>"
 
-#: ../src/f-spot.glade.h:17
+#: ../src/f-spot.glade.h:22
 msgid "<b>End Date</b>"
 msgstr "<b>Конечная дата</b>"
 
-#: ../src/f-spot.glade.h:18
+#: ../src/f-spot.glade.h:23
 msgid "<b>Export Method</b>"
 msgstr "<b>Способ экспорта</b>"
 
-#: ../src/f-spot.glade.h:19
+#: ../src/f-spot.glade.h:24
 msgid "<b>Exposure</b>"
 msgstr "<b>Экспозиция</b>"
 
-#: ../src/f-spot.glade.h:20
+#: ../src/f-spot.glade.h:25
 msgid "<b>From Photo</b>"
 msgstr "<b>Из снимка</b>"
 
-#: ../src/f-spot.glade.h:21
+#: ../src/f-spot.glade.h:26
 msgid "<b>Gallery</b>"
 msgstr "<b>Галерея</b>"
 
-#: ../src/f-spot.glade.h:22
+#: ../src/f-spot.glade.h:27
 msgid "<b>Histo_gram</b>"
 msgstr "<b>_Гистограмма</b>"
 
-#: ../src/f-spot.glade.h:23
+#: ../src/f-spot.glade.h:28
 msgid "<b>Histogram</b>"
 msgstr "<b>Гистограмма</b>"
 
-#: ../src/f-spot.glade.h:24
+#: ../src/f-spot.glade.h:29
+msgid "<b>Import Settings</b>"
+msgstr "<b>Параметры импорта</b>"
+
+#: ../src/f-spot.glade.h:30
+msgid "<b>Mail attachment summary</b>"
+msgstr "<b>Сводка по вложению к письму</b>"
+
+#: ../src/f-spot.glade.h:31
 msgid "<b>Metadata</b>"
 msgstr "<b>Метаданные</b>"
 
-#: ../src/f-spot.glade.h:25
+#: ../src/f-spot.glade.h:32
+msgid "<b>Photo size</b>"
+msgstr "<b>Размер снимка</b>"
+
+#: ../src/f-spot.glade.h:33
 msgid "<b>Photograph Layout</b>"
 msgstr "<b>Вид фотографии</b>"
 
-#: ../src/f-spot.glade.h:26
+#: ../src/f-spot.glade.h:34
 msgid "<b>Photos to Burn</b>"
 msgstr "<b>Что записать</b>"
 
-#: ../src/f-spot.glade.h:27
+#: ../src/f-spot.glade.h:35
 msgid "<b>Photos</b>"
 msgstr "<b>Снимки</b>"
 
-#: ../src/f-spot.glade.h:28
+#: ../src/f-spot.glade.h:36
+msgid "<b>PicasaWeb Export</b>"
+msgstr "<b>Экспорт в PicasaWeb</b>"
+
+#: ../src/f-spot.glade.h:37
 msgid "<b>Predefined</b>"
 msgstr "<b>Предустановлено</b>"
 
-#: ../src/f-spot.glade.h:29
+#: ../src/f-spot.glade.h:38
 msgid "<b>Preview</b>"
 msgstr "<b>Предпросмотр</b>"
 
-#: ../src/f-spot.glade.h:30
+#: ../src/f-spot.glade.h:39
 msgid "<b>Printer Details</b>"
 msgstr "<b>Подробнее о принтере</b>"
 
-#: ../src/f-spot.glade.h:31
+#: ../src/f-spot.glade.h:40
 msgid "<b>Reference Photo</b>"
 msgstr "<b>Исходный снимок</b>"
 
-#: ../src/f-spot.glade.h:32
+#: ../src/f-spot.glade.h:41
 msgid "<b>Screensaver</b>"
 msgstr "<b>Хранитель экрана</b>"
 
-#: ../src/f-spot.glade.h:33
+#: ../src/f-spot.glade.h:42
 msgid "<b>Start Date</b>"
 msgstr "<b>Начальная дата</b>"
 
-#: ../src/f-spot.glade.h:34
+#: ../src/f-spot.glade.h:43
 msgid "<b>Style</b>"
 msgstr "<b>Стиль</b>"
 
-#: ../src/f-spot.glade.h:35
+#: ../src/f-spot.glade.h:44
 msgid "<b>Viewing permissions</b>"
 msgstr "<b>Просмотр разрешений</b>"
 
-#: ../src/f-spot.glade.h:36
+#: ../src/f-spot.glade.h:45
 msgid "<b>_White Balance</b>"
 msgstr "<b>_Баланс белого</b>"
 
-#: ../src/f-spot.glade.h:37
+#: ../src/f-spot.glade.h:46
 msgid "<small> </small>"
 msgstr "<small> </small>"
 
-#: ../src/f-spot.glade.h:38
+#: ../src/f-spot.glade.h:47
 msgid "<small></small>"
 msgstr "<small></small>"
 
-#: ../src/f-spot.glade.h:39
+#: ../src/f-spot.glade.h:48
+msgid ""
+"<small><i>Choose the folder where F-Spot should store newly imported photos</"
+"i></small>"
+msgstr ""
+"<small><i>Выберите папку, в которой F-Spot будет хранить импортируемые "
+"снимки</i></small>"
+
+#: ../src/f-spot.glade.h:49
 msgid ""
 "<small><i>Enable this option to store tags and descriptions inside \n"
 "supported image formats.</i></small>"
@@ -628,7 +684,7 @@ msgstr ""
 "<small><i>Включите этот параметр, чтобы хранить метки и описания\n"
 "внутри файлов поддерживаемых форматов.</i></small>"
 
-#: ../src/f-spot.glade.h:41
+#: ../src/f-spot.glade.h:51
 msgid ""
 "<small><i>Select the tag you like F-Spot to display images from while acting "
 "as the screensaver</i></small>"
@@ -636,211 +692,235 @@ msgstr ""
 "<small><i>Выберите тэг, изображения с которым F-Spot будет показывать в "
 "качестве хранителя экрана</i></small>"
 
-#: ../src/f-spot.glade.h:42
+#: ../src/f-spot.glade.h:52
 msgid "<small>C_ontrast:</small>"
 msgstr "<small>_Контрастность:</small>"
 
-#: ../src/f-spot.glade.h:43
+#: ../src/f-spot.glade.h:53
 msgid "<small>Te_mp:</small>"
 msgstr "<small>Те_мпература:</small>"
 
-#: ../src/f-spot.glade.h:44
+#: ../src/f-spot.glade.h:54
 msgid "<small>_Brightness:</small>"
 msgstr "<small>_Яркость:</small>"
 
-#: ../src/f-spot.glade.h:45
+#: ../src/f-spot.glade.h:55
 msgid "<small>_Exposure:</small>"
 msgstr "<small>_Экспозиция:</small>"
 
-#: ../src/f-spot.glade.h:46
+#: ../src/f-spot.glade.h:56
 msgid "<small>_Hue:</small>"
 msgstr "<small>_Тон:</small>"
 
-#: ../src/f-spot.glade.h:47
+#: ../src/f-spot.glade.h:57
 msgid "<small>_Saturation:</small>"
 msgstr "<small>_Насыщенность:</small>"
 
-#: ../src/f-spot.glade.h:48
+#: ../src/f-spot.glade.h:58
 msgid "<small>_Tint:</small>"
 msgstr "<small>_Интенсивность:</small>"
 
-#: ../src/f-spot.glade.h:49
+#: ../src/f-spot.glade.h:59
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
 msgstr "<span weight='bold' size='larger'>Ошибка соединения с Gallery</span>\n"
 
-#: ../src/f-spot.glade.h:51
+#: ../src/f-spot.glade.h:61
 msgid "Ad_just Color..."
 msgstr "Скорректировать _цвет..."
 
-#: ../src/f-spot.glade.h:52
+#: ../src/f-spot.glade.h:62
 msgid "Adjust Color"
 msgstr "Коррекция цвета"
 
-#: ../src/f-spot.glade.h:53
+#: ../src/f-spot.glade.h:63
 msgid "Adjust Time"
 msgstr "Коррекция времени"
 
-#: ../src/f-spot.glade.h:54
+#: ../src/f-spot.glade.h:64
 msgid "Adjust _Time"
 msgstr "Скорректировать _время"
 
-#: ../src/f-spot.glade.h:55
+#: ../src/f-spot.glade.h:65
 msgid "Adjusted date: "
 msgstr "Новое время: "
 
-#: ../src/f-spot.glade.h:56
+#: ../src/f-spot.glade.h:66
 msgid "Arrange _by"
 msgstr "О_тсортировать по"
 
-#: ../src/f-spot.glade.h:57
+#: ../src/f-spot.glade.h:67
 msgid "Attach tag:"
 msgstr "Добавить метку:"
 
-#: ../src/f-spot.glade.h:59 ../src/StockIcons.cs:27
+#: ../src/f-spot.glade.h:69
+msgid "Autorotate"
+msgstr "Автоматически повернуть"
+
+#: ../src/f-spot.glade.h:70 ../src/StockIcons.cs:27
 msgid "Browse"
 msgstr "Просмотреть"
 
-#: ../src/f-spot.glade.h:60
+#: ../src/f-spot.glade.h:71
 msgid "CD"
 msgstr "CD"
 
-#: ../src/f-spot.glade.h:61
+#: ../src/f-spot.glade.h:72
 msgid "C_aption:"
 msgstr "По_дпись:"
 
-#: ../src/f-spot.glade.h:62
+#: ../src/f-spot.glade.h:73
 msgid "C_ontrast:"
 msgstr "Ко_нтрастность:"
 
-#: ../src/f-spot.glade.h:63
+#: ../src/f-spot.glade.h:74
 msgid "Camera Selection"
 msgstr "Выбор камеры"
 
-#: ../src/f-spot.glade.h:64
+#: ../src/f-spot.glade.h:75
+msgid "Clea_r Date Range"
+msgstr "О_чистить диапазон дат"
+
+#: ../src/f-spot.glade.h:76
 msgid "Co_nfigure"
 msgstr "Н_астроить"
 
-#: ../src/f-spot.glade.h:65
+#: ../src/f-spot.glade.h:77
 msgid "Copy Locat_ion"
 msgstr "Копировать _местоположение"
 
-#: ../src/f-spot.glade.h:66
+#: ../src/f-spot.glade.h:78
 msgid "Copy _Files to: "
 msgstr "Копировать _файлы в:"
 
-#: ../src/f-spot.glade.h:67
-msgid "Copy file to the Photos folder"
-msgstr "Копировать файл в папку Photos"
+#: ../src/f-spot.glade.h:79
+msgid "Copy files to the Photos folder"
+msgstr "Копировать файлы в папку Photos"
 
-#: ../src/f-spot.glade.h:68
+#: ../src/f-spot.glade.h:80
 msgid "Create CD"
 msgstr "Создать CD"
 
-#: ../src/f-spot.glade.h:69
+#: ../src/f-spot.glade.h:81
 msgid "Create New _Tag..."
 msgstr "Создать _новую метку..."
 
-#: ../src/f-spot.glade.h:70
+#: ../src/f-spot.glade.h:82
 msgid "Create _New Version..."
 msgstr "_Создать новую версию..."
 
-#: ../src/f-spot.glade.h:71
+#: ../src/f-spot.glade.h:83
 msgid "Create _gallery using \"Original\""
 msgstr "Создать гале_рею при помощи \"Original\""
 
-#: ../src/f-spot.glade.h:72
+#: ../src/f-spot.glade.h:84
+msgid "Create a mail with the selected photos (possible resized) attached"
+msgstr "Создать письмо с вложенными в него выбранными снимками"
+
+#: ../src/f-spot.glade.h:85
+msgid "Create mail..."
+msgstr "Создать письмо..."
+
+#: ../src/f-spot.glade.h:86
 msgid "Create standalone _web gallery"
 msgstr "Создать от_дельную веб-галерею"
 
-#: ../src/f-spot.glade.h:73
+#: ../src/f-spot.glade.h:87
 msgid "Crop photo to _fit"
 msgstr "Обрезать, _чтобы поместилось"
 
-#: ../src/f-spot.glade.h:74
+#: ../src/f-spot.glade.h:88
 msgid "Current date:"
 msgstr "Текущая дата:"
 
-#: ../src/f-spot.glade.h:75
+#: ../src/f-spot.glade.h:89
 msgid "D_escription:"
 msgstr "Оп_исание:"
 
-#: ../src/f-spot.glade.h:76
-msgid "Directory"
-msgstr "Каталог"
-
-#: ../src/f-spot.glade.h:77
+#: ../src/f-spot.glade.h:90
 msgid "Display Side_bar"
 msgstr "Показать _боковую панель"
 
-#: ../src/f-spot.glade.h:78
+#: ../src/f-spot.glade.h:91
 msgid "Display T_ags"
 msgstr "Показать _метки"
 
-#: ../src/f-spot.glade.h:79
+#: ../src/f-spot.glade.h:92
 msgid "Display Too_lbar"
 msgstr "Показать панель _инструментов"
 
-#: ../src/f-spot.glade.h:80
+#: ../src/f-spot.glade.h:93
 msgid "Display _Dates"
 msgstr "Показать _даты"
 
-#: ../src/f-spot.glade.h:81
+#: ../src/f-spot.glade.h:94
 msgid "Display _Timeline"
 msgstr "Показать _шкалу времени"
 
-#: ../src/f-spot.glade.h:82
+#: ../src/f-spot.glade.h:95
+msgid "Do not send a mail"
+msgstr "Не посылать письмо"
+
+#: ../src/f-spot.glade.h:96
 msgid "E-_Mail:"
 msgstr "E-_Mail:"
 
-#: ../src/f-spot.glade.h:83
+#: ../src/f-spot.glade.h:97
 msgid "E_xport titles and comments"
 msgstr "Э_кспортировать названия и комментарии"
 
-#: ../src/f-spot.glade.h:84
+#: ../src/f-spot.glade.h:98
 msgid "E_xport to CD..."
 msgstr "На компакт-_диск..."
 
-#: ../src/f-spot.glade.h:85
+#: ../src/f-spot.glade.h:99
 msgid "Edit Tag Icon"
-msgstr "Изменить пиктограмму метки"
+msgstr "Изменить значок метки"
 
-#: ../src/f-spot.glade.h:86
+#: ../src/f-spot.glade.h:100
 msgid "Edit icon"
-msgstr "Изменить пиктограмму"
+msgstr "Изменить значок"
 
-#: ../src/f-spot.glade.h:87
+#: ../src/f-spot.glade.h:101
+msgid "Estimated new size"
+msgstr "Вычисленный новый размер"
+
+#: ../src/f-spot.glade.h:102
 msgid "Export"
 msgstr "Экспорт"
 
-#: ../src/f-spot.glade.h:88
+#: ../src/f-spot.glade.h:103
 msgid "Export _titles and comments"
 msgstr "Экспортировать _названия и комментарии"
 
-#: ../src/f-spot.glade.h:89
+#: ../src/f-spot.glade.h:104
 msgid "Export to _Flickr..."
 msgstr "Н_а Flickr..."
 
-#: ../src/f-spot.glade.h:90
+#: ../src/f-spot.glade.h:105
 msgid "Export to _Folder..."
 msgstr "В _папку..."
 
-#: ../src/f-spot.glade.h:91
+#: ../src/f-spot.glade.h:106
+msgid "Export to _Picasaweb..."
+msgstr "В _Picasaweb..."
+
+#: ../src/f-spot.glade.h:107
 msgid "Export to _Web Gallery..."
 msgstr "В _веб-галерею..."
 
-#: ../src/f-spot.glade.h:92
+#: ../src/f-spot.glade.h:108
+msgid "Extra large"
+msgstr "Очень большой"
+
+#: ../src/f-spot.glade.h:109
 msgid "F-Spot"
 msgstr "F-Spot"
 
-#: ../src/f-spot.glade.h:93
-msgid "F-Spot Photo Album"
-msgstr "Фотоальбом F-Spot"
-
-#: ../src/f-spot.glade.h:95
+#: ../src/f-spot.glade.h:111
 msgid "F-Spot View"
 msgstr "Просмотр в F-Spot"
 
-#: ../src/f-spot.glade.h:96
+#: ../src/f-spot.glade.h:112
 msgid ""
 "F-Spot needs your authorization in order to upload photos to your Flickr "
 "account. Press the \"Authorize\" button to open a web browser and give F-"
@@ -850,19 +930,19 @@ msgstr ""
 "«Авторизоваться», чтобы открыть окно или вкладку браузера и авторизовать F-"
 "Spot."
 
-#: ../src/f-spot.glade.h:98
+#: ../src/f-spot.glade.h:114
 msgid "Fin_d"
 msgstr "П_оиск"
 
-#: ../src/f-spot.glade.h:99
-msgid "Find by _Tag"
-msgstr "Н_айти по метке"
+#: ../src/f-spot.glade.h:115
+msgid "Folder"
+msgstr "Папка"
 
-#: ../src/f-spot.glade.h:100
+#: ../src/f-spot.glade.h:116
 msgid "Folder Export"
 msgstr "Экспорт в папку"
 
-#: ../src/f-spot.glade.h:101
+#: ../src/f-spot.glade.h:117
 msgid ""
 "From Screen\n"
 "Standard RGB"
@@ -870,7 +950,7 @@ msgstr ""
 "С экрана\n"
 "Standard RGB"
 
-#: ../src/f-spot.glade.h:103
+#: ../src/f-spot.glade.h:119
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
@@ -878,19 +958,19 @@ msgstr ""
 "Целая страница\n"
 "Стандарт - 4x6"
 
-#: ../src/f-spot.glade.h:105
+#: ../src/f-spot.glade.h:121
 msgid "G_allery Name:"
 msgstr "_Имя галереи:"
 
-#: ../src/f-spot.glade.h:106
+#: ../src/f-spot.glade.h:122
 msgid "G_allery:"
 msgstr "G_allery:"
 
-#: ../src/f-spot.glade.h:107
+#: ../src/f-spot.glade.h:123
 msgid "Gallery"
 msgstr "Галерея"
 
-#: ../src/f-spot.glade.h:108
+#: ../src/f-spot.glade.h:124
 msgid ""
 "Hairline\n"
 "0.25\"\n"
@@ -902,35 +982,43 @@ msgstr ""
 "0.5\"\n"
 "1\"\n"
 
-#: ../src/f-spot.glade.h:113
+#: ../src/f-spot.glade.h:129
 msgid "Import"
 msgstr "Импорт"
 
-#: ../src/f-spot.glade.h:114
+#: ../src/f-spot.glade.h:130
 msgid "Import Source:"
 msgstr "Откуда добавить:"
 
-#: ../src/f-spot.glade.h:115
+#: ../src/f-spot.glade.h:131
 msgid "Import photos"
 msgstr "Импорт снимков"
 
-#: ../src/f-spot.glade.h:116
-msgid "Include subdirectories"
-msgstr "Включая подкаталоги"
+#: ../src/f-spot.glade.h:132
+msgid "Include subfolders"
+msgstr "Включая вложенные папки"
 
-#: ../src/f-spot.glade.h:117
+#: ../src/f-spot.glade.h:133
+msgid "Large"
+msgstr "Большой"
+
+#: ../src/f-spot.glade.h:134
 msgid "Make F-Spot your screensaver"
 msgstr "Сделайте F-Spot своим хранителем экрана"
 
-#: ../src/f-spot.glade.h:118 ../src/InfoDisplay.cs:12
+#: ../src/f-spot.glade.h:135
+msgid "Medium"
+msgstr "Средний"
+
+#: ../src/f-spot.glade.h:136 ../src/InfoDisplay.cs:12
 msgid "Metadata Browser"
 msgstr "Просмотр метаданных"
 
-#: ../src/f-spot.glade.h:119
+#: ../src/f-spot.glade.h:137
 msgid "N_umber of Copies:"
 msgstr "Коли_чество копий:"
 
-#: ../src/f-spot.glade.h:121
+#: ../src/f-spot.glade.h:139
 msgid ""
 "None\n"
 "Title\n"
@@ -944,111 +1032,141 @@ msgstr ""
 "Дата\n"
 "Подробности о снимке"
 
-#: ../src/f-spot.glade.h:126
+#: ../src/f-spot.glade.h:144
+msgid "Number of pictures"
+msgstr "Количество снимков"
+
+#: ../src/f-spot.glade.h:145
 msgid "Open _Folder..."
 msgstr "Открыть _папку..."
 
-#: ../src/f-spot.glade.h:127
+#: ../src/f-spot.glade.h:146
 msgid "Open _album in browser when done uploading"
 msgstr "Открыть альбом в браузере по _завершении закачки"
 
-#: ../src/f-spot.glade.h:128
+#: ../src/f-spot.glade.h:147
 msgid "Open _destination when done exporting"
 msgstr "Открыть _каталог по завершении экспорта"
 
-#: ../src/f-spot.glade.h:129
+#. Note that the original version is never stored in the photo_versions table in the
+#. database.
+#: ../src/f-spot.glade.h:148 ../src/PhotoStore.cs:570
+msgid "Original"
+msgstr "Исходная"
+
+#: ../src/f-spot.glade.h:149
+msgid "Original size (possible very large file size)"
+msgstr "Исходный размер (размер файла может быть очень большим)"
+
+#: ../src/f-spot.glade.h:150
 msgid "P_arent Tag:"
 msgstr "_Родительская метка:"
 
-#: ../src/f-spot.glade.h:130
+#: ../src/f-spot.glade.h:151
 msgid "P_hoto Source:"
 msgstr "_Источник снимков:"
 
-#: ../src/f-spot.glade.h:131
+#: ../src/f-spot.glade.h:152
 msgid "Page 1 of 3"
 msgstr "Страница 1 из 3"
 
-#: ../src/f-spot.glade.h:132
+#: ../src/f-spot.glade.h:153
 msgid "Pause"
 msgstr "Пауза"
 
-#: ../src/f-spot.glade.h:133
+#: ../src/f-spot.glade.h:154
 msgid "Photo 0 of 0"
 msgstr "Снимок 0 из 0"
 
-#: ../src/f-spot.glade.h:134
+#: ../src/f-spot.glade.h:155
 msgid "Photo _Size:"
 msgstr "_Размер снимка:"
 
-#: ../src/f-spot.glade.h:135
+#: ../src/f-spot.glade.h:156
 msgid "Please verify that the settings for this gallery are correct."
 msgstr "Проверьте, все ли настройки этой галереи верны"
 
-#: ../src/f-spot.glade.h:136
+#: ../src/f-spot.glade.h:157
 msgid "Preferences"
-msgstr "Настройки"
+msgstr "Параметры"
 
-#: ../src/f-spot.glade.h:137
+#: ../src/f-spot.glade.h:158
+msgid "Prepare for mail"
+msgstr "Подготовка письма"
+
+#: ../src/f-spot.glade.h:159
 msgid "Previous"
 msgstr "Предыдущий"
 
-#: ../src/f-spot.glade.h:138
+#: ../src/f-spot.glade.h:160
 msgid "Print"
 msgstr "Напечатать"
 
-#: ../src/f-spot.glade.h:139
+#: ../src/f-spot.glade.h:161
 msgid "Print crop _marks"
 msgstr "Напечатать метки под о_брез"
 
-#: ../src/f-spot.glade.h:140
+#: ../src/f-spot.glade.h:162
 msgid "Private"
 msgstr "Личные"
 
-#: ../src/f-spot.glade.h:141
+#: ../src/f-spot.glade.h:163
 msgid "Public"
 msgstr "Общедоступные"
 
-#: ../src/f-spot.glade.h:142
+#: ../src/f-spot.glade.h:164
+msgid "Public Album"
+msgstr "Общедоступный альбом"
+
+#: ../src/f-spot.glade.h:165
 msgid "Re_fresh Thumbnail"
 msgstr "_Обновить миниатюру"
 
-#: ../src/f-spot.glade.h:143
+#: ../src/f-spot.glade.h:166
 msgid "Rem_ove Tag"
 msgstr "У_брать метку"
 
-#: ../src/f-spot.glade.h:144 ../src/StockIcons.cs:38
+#: ../src/f-spot.glade.h:167
+msgid "Reset"
+msgstr "Сбросить"
+
+#: ../src/f-spot.glade.h:168 ../src/StockIcons.cs:38
 msgid "Rotate _Left"
 msgstr "Повернуть в_лево"
 
-#: ../src/f-spot.glade.h:145 ../src/StockIcons.cs:39
+#: ../src/f-spot.glade.h:169 ../src/StockIcons.cs:39
 msgid "Rotate _Right"
 msgstr "Повернуть в_право"
 
-#: ../src/f-spot.glade.h:146
+#: ../src/f-spot.glade.h:170
+msgid "Select A Folder"
+msgstr "Выберите папку"
+
+#: ../src/f-spot.glade.h:171
 msgid "Select Photos to Copy From Camera..."
 msgstr "Выберите снимки для копирования с камеры..."
 
-#: ../src/f-spot.glade.h:147
+#: ../src/f-spot.glade.h:172
 msgid "Select _All"
 msgstr "_Выделить все"
 
-#: ../src/f-spot.glade.h:148
+#: ../src/f-spot.glade.h:173
 msgid "Select _None"
 msgstr "_Снять выделение"
 
-#: ../src/f-spot.glade.h:149
+#: ../src/f-spot.glade.h:174
 msgid "Select a Tag..."
 msgstr "Выберите метку..."
 
-#: ../src/f-spot.glade.h:150
+#: ../src/f-spot.glade.h:175
 msgid "Select the camera from which you want to transfer files"
 msgstr "Выберите камеру, с которой хотите забрать снимки"
 
-#: ../src/f-spot.glade.h:151
+#: ../src/f-spot.glade.h:176
 msgid "Selected Camera: "
 msgstr "Выбранная камера: "
 
-#: ../src/f-spot.glade.h:152
+#: ../src/f-spot.glade.h:177
 msgid ""
 "Selection\n"
 "Gallery\n"
@@ -1058,48 +1176,72 @@ msgstr ""
 "Галерея\n"
 "Область просмотра"
 
-#: ../src/f-spot.glade.h:155
+#: ../src/f-spot.glade.h:180
 msgid "Send _Mail..."
 msgstr "Послать по_чтой..."
 
-#: ../src/f-spot.glade.h:156
+#: ../src/f-spot.glade.h:181
 msgid "Set Date Range"
 msgstr "Установите диапазон дат"
 
-#: ../src/f-spot.glade.h:157
+#: ../src/f-spot.glade.h:182
 msgid "Set _Date Range..."
 msgstr "_Установить диапазон дат"
 
-#: ../src/f-spot.glade.h:158
+#: ../src/f-spot.glade.h:183
 msgid "Set as _Background"
 msgstr "Поместить на _рабочий стол"
 
-#: ../src/f-spot.glade.h:159 ../src/TimeDialog.cs:124
+#: ../src/f-spot.glade.h:184 ../src/TimeDialog.cs:124
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Сдвинуть все снимки на {0}"
 
-#: ../src/f-spot.glade.h:160
+#: ../src/f-spot.glade.h:185
+msgid "Show _Find Bar"
+msgstr "_Показать панель поиска"
+
+#: ../src/f-spot.glade.h:186
 msgid "Show or hide the side pane"
 msgstr "Показать или спрятать боковую панель"
 
-#: ../src/f-spot.glade.h:161
+#: ../src/f-spot.glade.h:187
 msgid "Show or hide the toolbar"
 msgstr "Показать или спрятать панель инструментов"
 
-#: ../src/f-spot.glade.h:162
+#: ../src/f-spot.glade.h:188
 msgid "Side _pane"
 msgstr "_Боковая панель"
 
-#: ../src/f-spot.glade.h:163
+#: ../src/f-spot.glade.h:189
+msgid "Size"
+msgstr "Размер"
+
+#: ../src/f-spot.glade.h:190
+msgid "Size of the exported selection :"
+msgstr "Размер экспортируемого выделения :"
+
+#: ../src/f-spot.glade.h:191
+msgid "Small"
+msgstr "Маленький"
+
+#: ../src/f-spot.glade.h:192
 msgid "So_urce Temp"
 msgstr "_Исходная температура"
 
-#: ../src/f-spot.glade.h:164
+#: ../src/f-spot.glade.h:193
 msgid "Space all photos by"
 msgstr "Установить временной интервал между снимками в"
 
-#: ../src/f-spot.glade.h:165
+#: ../src/f-spot.glade.h:194
+msgid ""
+"Specify if an original size picture should be rotated or not. Smaller sizes "
+"are automatically rotated."
+msgstr ""
+"Укажите, поворачивать ли снимок исходного размера. Снимки меньшего размера "
+"поворачиваются автоматически."
+
+#: ../src/f-spot.glade.h:195
 msgid ""
 "Standard RGB\n"
 "Image Profile\n"
@@ -1109,367 +1251,388 @@ msgstr ""
 "Профиль изображения\n"
 "Свой профиль\n"
 
-#: ../src/f-spot.glade.h:169
+#: ../src/f-spot.glade.h:199
 msgid "Strip _metadata"
 msgstr "Убрать _метаданные"
 
-#: ../src/f-spot.glade.h:170
+#: ../src/f-spot.glade.h:200
 msgid "Strip image _metadata"
 msgstr "У_брать метаданные снимка"
 
-#: ../src/f-spot.glade.h:171
+#: ../src/f-spot.glade.h:201
 msgid "Tags: "
 msgstr "Метки: "
 
-#: ../src/f-spot.glade.h:172
+#: ../src/f-spot.glade.h:202
+msgid "Tiny"
+msgstr "Крошечный"
+
+#: ../src/f-spot.glade.h:203
 msgid "Toolbar"
 msgstr "Панель инструментов"
 
-#: ../src/f-spot.glade.h:173
+#: ../src/f-spot.glade.h:204
+msgid "Total original size"
+msgstr "Общий размер оригиналов"
+
+#: ../src/f-spot.glade.h:205
 msgid "U_RL:"
 msgstr "U_RL:"
 
-#: ../src/f-spot.glade.h:174
+#: ../src/f-spot.glade.h:206
 msgid "View"
 msgstr "Вид"
 
-#: ../src/f-spot.glade.h:175
+#: ../src/f-spot.glade.h:207
 msgid "Visible to Family"
 msgstr "Видны для членов семьи"
 
-#: ../src/f-spot.glade.h:176
+#: ../src/f-spot.glade.h:208
 msgid "Visible to Friends"
 msgstr "Видны для друзей"
 
-#: ../src/f-spot.glade.h:177
+#: ../src/f-spot.glade.h:209
 msgid "Will print using: US Letter size on Generic Postscript"
 msgstr "Напечатает: на бумаге US Letter в Generic Postscript"
 
-#: ../src/f-spot.glade.h:178
+#: ../src/f-spot.glade.h:210
 msgid "Write _metadata to file"
 msgstr "Записать _метаданные в файл"
 
-#: ../src/f-spot.glade.h:179
+#: ../src/f-spot.glade.h:211
 msgid "Zoom _in"
 msgstr "_Приблизить"
 
-#: ../src/f-spot.glade.h:180
+#: ../src/f-spot.glade.h:212
 msgid "Zoom _out"
 msgstr "_Отдалить"
 
-#: ../src/f-spot.glade.h:181
+#: ../src/f-spot.glade.h:213
 msgid "Zoom in"
 msgstr "Приблизить"
 
-#: ../src/f-spot.glade.h:182
+#: ../src/f-spot.glade.h:214
 msgid "Zoom out"
 msgstr "Отдалить"
 
-#: ../src/f-spot.glade.h:183
+#: ../src/f-spot.glade.h:215
 msgid "_Album Name:"
 msgstr "_Имя альбома:"
 
-#: ../src/f-spot.glade.h:184
+#: ../src/f-spot.glade.h:216
+msgid "_Album Title:"
+msgstr "_Название альбома:"
+
+#: ../src/f-spot.glade.h:217
 msgid "_Attach Tag"
 msgstr "_Добавить метку"
 
-#: ../src/f-spot.glade.h:185
+#: ../src/f-spot.glade.h:218
 msgid "_Attach Tag to Selection"
 msgstr "_Добавить метку к выбранному"
 
-#: ../src/f-spot.glade.h:186
+#: ../src/f-spot.glade.h:219
 msgid "_Border:"
 msgstr "_Граница:"
 
-#: ../src/f-spot.glade.h:187
+#: ../src/f-spot.glade.h:220
 msgid "_Brightness:"
 msgstr "_Яркость:"
 
-#: ../src/f-spot.glade.h:188
+#: ../src/f-spot.glade.h:221
 msgid "_Browse Previously Scheduled Files"
 msgstr "_Просмотреть ранее отложенные файлы"
 
-#: ../src/f-spot.glade.h:189 ../src/GroupSelector.cs:527
-msgid "_Clear Date Range"
-msgstr "О_чистить диапазон дат"
+#: ../src/f-spot.glade.h:222
+msgid "_Clear Tag Search"
+msgstr "Очи_стить результаты поиска"
 
-#: ../src/f-spot.glade.h:190
+#: ../src/f-spot.glade.h:223
 msgid "_Close"
 msgstr "_Закрыть"
 
-#: ../src/f-spot.glade.h:191
+#: ../src/f-spot.glade.h:224
 msgid "_Delete From Drive"
 msgstr "Уд_алить с диска"
 
-#: ../src/f-spot.glade.h:192
+#: ../src/f-spot.glade.h:225
 msgid "_Delete Selected Tag"
 msgstr "_Удалить выбранную метку"
 
-#: ../src/f-spot.glade.h:193
+#: ../src/f-spot.glade.h:226
 msgid "_Delete Version"
 msgstr "_Удалить версию"
 
-#: ../src/f-spot.glade.h:194
+#: ../src/f-spot.glade.h:227
 msgid "_Description:"
 msgstr "_Описание:"
 
-#: ../src/f-spot.glade.h:195
+#: ../src/f-spot.glade.h:228
 msgid "_Destination Temp"
 msgstr "Н_овая температура"
 
-#: ../src/f-spot.glade.h:196
+#: ../src/f-spot.glade.h:229
 msgid "_Display:"
 msgstr "_Отображение:"
 
-#: ../src/f-spot.glade.h:197
+#: ../src/f-spot.glade.h:230
 msgid "_Edit Selected Tag..."
 msgstr "_Изменить выбранную метку"
 
-#: ../src/f-spot.glade.h:198
+#: ../src/f-spot.glade.h:231
 msgid "_Export"
 msgstr "_Экспортировать"
 
-#: ../src/f-spot.glade.h:199
+#: ../src/f-spot.glade.h:232
 msgid "_Export tags"
 msgstr "Э_кспортировать метки"
 
-#: ../src/f-spot.glade.h:200
+#: ../src/f-spot.glade.h:233
 msgid "_Export to Album:"
 msgstr "Экспортировать в _альбом:"
 
-#: ../src/f-spot.glade.h:201
+#: ../src/f-spot.glade.h:234
 msgid "_Flickr"
 msgstr "_Flickr"
 
-#: ../src/f-spot.glade.h:202
+#: ../src/f-spot.glade.h:235
 msgid "_Folder"
 msgstr "_Папка"
 
-#: ../src/f-spot.glade.h:203
+#: ../src/f-spot.glade.h:236
 msgid "_Folder:"
 msgstr "_Папка:"
 
-#: ../src/f-spot.glade.h:204
+#: ../src/f-spot.glade.h:237
 msgid "_Fullscreen"
 msgstr "_Во весь экран"
 
-#: ../src/f-spot.glade.h:205
+#: ../src/f-spot.glade.h:238
 msgid "_Gallery"
 msgstr "_Галерея"
 
-#: ../src/f-spot.glade.h:206
+#: ../src/f-spot.glade.h:239
 msgid "_Gallery Name:"
 msgstr "_Имя галереи:"
 
-#: ../src/f-spot.glade.h:207
+#: ../src/f-spot.glade.h:240
 msgid "_Gallery:"
 msgstr "_Галерея:"
 
-#: ../src/f-spot.glade.h:208
+#: ../src/f-spot.glade.h:241
 msgid "_Hue:"
 msgstr "_Тон:"
 
-#: ../src/f-spot.glade.h:209
+#: ../src/f-spot.glade.h:242
 msgid "_Icon:"
 msgstr "_Значок:"
 
-#: ../src/f-spot.glade.h:210
+#: ../src/f-spot.glade.h:243
 msgid "_Import files after copy"
 msgstr "_Добавить файлы после копирования"
 
-#: ../src/f-spot.glade.h:211
+#: ../src/f-spot.glade.h:244
 msgid "_Import..."
 msgstr "_Добавить..."
 
-#: ../src/f-spot.glade.h:212
+#: ../src/f-spot.glade.h:245
 msgid "_Metadata Browser"
 msgstr "Посмотреть _метаданные"
 
-#: ../src/f-spot.glade.h:213
+#: ../src/f-spot.glade.h:246
 msgid "_Month"
 msgstr "_Месяц"
 
-#: ../src/f-spot.glade.h:214
+#: ../src/f-spot.glade.h:247
 msgid "_New Window"
 msgstr "_Новое окно"
 
-#: ../src/f-spot.glade.h:215
+#: ../src/f-spot.glade.h:248
 msgid "_Open album in browser when done uploading"
 msgstr "Открыть _альбом в браузере по завершении закачки"
 
-#: ../src/f-spot.glade.h:216
+#: ../src/f-spot.glade.h:249
 msgid "_Open destination when done exporting"
 msgstr "Открыть _каталог по завершении экспорта"
 
-#: ../src/f-spot.glade.h:217
+#: ../src/f-spot.glade.h:250
 msgid "_Output:"
 msgstr "На _выходе:"
 
-#: ../src/f-spot.glade.h:218
+#: ../src/f-spot.glade.h:251
 msgid "_Parent Album:"
 msgstr "_Родительская метка:"
 
-#: ../src/f-spot.glade.h:219
+#: ../src/f-spot.glade.h:252
 msgid "_Password:"
 msgstr "_Пароль:"
 
-#: ../src/f-spot.glade.h:220
+#: ../src/f-spot.glade.h:253
 msgid "_Prefix: "
 msgstr "Пр_ефикс: "
 
-#: ../src/f-spot.glade.h:221
+#: ../src/f-spot.glade.h:254
 msgid "_Print..."
 msgstr "На_печатать..."
 
-#: ../src/f-spot.glade.h:222
+#: ../src/f-spot.glade.h:255
 msgid "_Remove From Catalog"
 msgstr "Удалить из _каталога"
 
-#: ../src/f-spot.glade.h:223
+#: ../src/f-spot.glade.h:256
 msgid "_Remove Tag From Selection"
 msgstr "Снять _метку с выбранного"
 
-#: ../src/f-spot.glade.h:224
+#: ../src/f-spot.glade.h:257
 msgid "_Rename Version"
 msgstr "Пере_именовать версию"
 
-#: ../src/f-spot.glade.h:225
+#: ../src/f-spot.glade.h:258
 msgid "_Resize to: "
 msgstr "_Масштабировать до: "
 
-#: ../src/f-spot.glade.h:226 ../src/GroupSelector.cs:521
+#: ../src/f-spot.glade.h:259 ../src/GroupSelector.cs:521
 msgid "_Reverse Order"
 msgstr "В _обратном порядке"
 
-#: ../src/f-spot.glade.h:227
+#: ../src/f-spot.glade.h:260
 msgid "_Saturation:"
 msgstr "_Насыщенность:"
 
-#: ../src/f-spot.glade.h:228
+#: ../src/f-spot.glade.h:261
 msgid "_Save the files only"
 msgstr "_Сохранить только файлы"
 
-#: ../src/f-spot.glade.h:229
+#: ../src/f-spot.glade.h:262
 msgid "_Scale photos to no larger than: "
 msgstr "_Масштабировать снимки до не более чем: "
 
-#: ../src/f-spot.glade.h:230
+#: ../src/f-spot.glade.h:263
 msgid "_Select Tags..."
 msgstr "_Выберите метки..."
 
-#: ../src/f-spot.glade.h:231
+#: ../src/f-spot.glade.h:264
 msgid "_Sharpen..."
 msgstr "_Увеличить резкость..."
 
-#: ../src/f-spot.glade.h:232
+#: ../src/f-spot.glade.h:265
 msgid "_Slideshow"
 msgstr "_Слайдшоу"
 
-#: ../src/f-spot.glade.h:233
+#: ../src/f-spot.glade.h:266
 msgid "_Strip metadata"
 msgstr "_Убрать метаданные"
 
-#: ../src/f-spot.glade.h:234
+#: ../src/f-spot.glade.h:267
 msgid "_Tag Name:"
 msgstr "_Имя метки:"
 
-#: ../src/f-spot.glade.h:235
+#: ../src/f-spot.glade.h:268
 msgid "_Tags"
 msgstr "_Метки"
 
-#: ../src/f-spot.glade.h:236
+#: ../src/f-spot.glade.h:269
 msgid "_Title:"
 msgstr "_Название:"
 
-#: ../src/f-spot.glade.h:237
+#: ../src/f-spot.glade.h:270
 msgid "_URI:"
 msgstr "_URI:"
 
-#: ../src/f-spot.glade.h:238
+#: ../src/f-spot.glade.h:271
 msgid "_Untagged Photos"
 msgstr "_Некатегоризованные снимки"
 
-#: ../src/f-spot.glade.h:239
+#: ../src/f-spot.glade.h:272
 msgid "_Username:"
 msgstr "И_мя пользователя:"
 
-#: ../src/f-spot.glade.h:240
+#: ../src/f-spot.glade.h:273
 msgid "_Version"
 msgstr "_Версия"
 
-#: ../src/f-spot.glade.h:241
+#: ../src/f-spot.glade.h:274
 msgid "_View"
 msgstr "_Вид"
 
-#: ../src/f-spot.glade.h:242
+#: ../src/f-spot.glade.h:275
 msgid "_View photos in browser when done uploading"
 msgstr "Просмотреть в _браузере по завершении загрузки"
 
-#: ../src/f-spot.glade.h:243
+#: ../src/f-spot.glade.h:276
 msgid "_Virtual Filesystem"
 msgstr "_Виртуальная файловая система"
 
-#: ../src/f-spot.glade.h:244
+#: ../src/f-spot.glade.h:277
 msgid "_Write only these photos to CD"
 msgstr "З_аписать на CD только эти снимки"
 
-#: ../src/f-spot.glade.h:245
+#: ../src/f-spot.glade.h:278
 msgid "dialog1"
 msgstr "dialog1"
 
-#: ../src/f-spot.glade.h:246
+#: ../src/f-spot.glade.h:279
 msgid "difference:"
 msgstr "с разницей в:"
 
-#: ../src/f-spot.glade.h:247
+#: ../src/f-spot.glade.h:280
 msgid "img_000.jpg"
 msgstr "img_000.jpg"
 
 #. The preceding text here is the second checkbutton in the Time dialog
 #. that says "Space all photos by []"
-#: ../src/f-spot.glade.h:248 ../src/TimeDialog.cs:119
+#: ../src/f-spot.glade.h:281 ../src/TimeDialog.cs:119
 #, csharp-format
 msgid "min. Starting at {0}"
 msgstr "мин. Начиная с {0}"
 
-#: ../src/f-spot.glade.h:249
+#: ../src/f-spot.glade.h:282
 msgid "pixels"
 msgstr "пикселов"
 
-#: ../src/f-spot.glade.h:250
+#: ../src/f-spot.glade.h:283
 msgid "x"
 msgstr "x"
 
-#: ../src/GalleryExport.cs:366
+#: ../src/GalleryExport.cs:374
 msgid "Invalid URL"
 msgstr "Неверный URL"
 
-#: ../src/GalleryExport.cs:367
+#: ../src/GalleryExport.cs:375
 msgid "The gallery URL entry does not appear to be a valid URL"
 msgstr "Введённый URL галереи неверен"
 
-#: ../src/GalleryExport.cs:451
+#: ../src/GalleryExport.cs:385 ../src/GalleryExport.cs:396
+msgid "Error while connecting to Gallery"
+msgstr "Ошибки при соединении с Gallery"
+
+#: ../src/GalleryExport.cs:386 ../src/GalleryExport.cs:397
+#, csharp-format
+msgid "The following error was encountered while attempting to log in: {0}"
+msgstr "При попытке авторизоваться произошла следующая ошибка: {0}"
+
+#: ../src/GalleryExport.cs:475
 msgid "(TopLevel)"
 msgstr "(Верхний уровень)"
 
-#: ../src/GalleryExport.cs:674
+#: ../src/GalleryExport.cs:714
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Ошибка при закачке в галерею: {0}"
 
-#: ../src/GalleryExport.cs:693
+#: ../src/GalleryExport.cs:733
 msgid "(No Gallery)"
 msgstr "(нет галерей)"
 
-#: ../src/GalleryExport.cs:785
+#: ../src/GalleryExport.cs:825
 msgid "(Not Connected)"
 msgstr "(нет соединения)"
 
-#: ../src/GalleryExport.cs:786
+#: ../src/GalleryExport.cs:826
 msgid "(No Albums)"
 msgstr "(нет альбомов)"
 
-#: ../src/GalleryExport.cs:838
+#: ../src/GalleryExport.cs:878
 msgid "No account selected"
 msgstr "Учётная запись не выбрана"
 
@@ -1493,6 +1656,10 @@ msgstr "Отсортировать по _месяцам"
 msgid "Arrange by _Folder"
 msgstr "Отсортировать по _папкам"
 
+#: ../src/GroupSelector.cs:527
+msgid "_Clear Date Range"
+msgstr "О_чистить диапазон дат"
+
 #: ../src/ImportCommand.cs:28 ../src/SingleView.cs:235
 msgid "Select Folder"
 msgstr "Выберите папку"
@@ -1510,11 +1677,11 @@ msgstr "Копируется файл {0} из {1}"
 msgid "Done Loading"
 msgstr "Загрузка завершена"
 
-#: ../src/ImportCommand.cs:638
+#: ../src/ImportCommand.cs:639
 msgid "Directory does not exist."
 msgstr "Каталог не существует"
 
-#: ../src/ImportCommand.cs:639
+#: ../src/ImportCommand.cs:640
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
@@ -1522,7 +1689,7 @@ msgid ""
 msgstr ""
 "Выбранный вами каталог \"{0}\" не существует. Выберите какой-нибудь другой"
 
-#: ../src/ImportCommand.cs:677
+#: ../src/ImportCommand.cs:678
 msgid "Select Tag"
 msgstr "Выберите метку"
 
@@ -1572,108 +1739,116 @@ msgstr "Снимок \"{0}\" не существует"
 msgid "No metadata available"
 msgstr "Метаданные недоступны"
 
-#: ../src/IptcFile.cs:139
+#: ../src/IptcFile.cs:140
 msgid "IPTC Information Interchange Model (IIM) Version number"
 msgstr "Номер версии IPTC Information Interchange Model (IIM)"
 
-#: ../src/IptcFile.cs:141
+#: ../src/IptcFile.cs:142
 msgid "OSI Destination routing information"
 msgstr "Информация о маршруте к месту назначения OSI"
 
-#: ../src/IptcFile.cs:143
+#: ../src/IptcFile.cs:144
 msgid "IPTC file format"
 msgstr "Формат файлов IPTC"
 
-#: ../src/IptcFile.cs:145
+#: ../src/IptcFile.cs:146
 msgid "Identifies the provider and product"
 msgstr "Идентифицирует поставщика и продукт"
 
-#: ../src/IptcFile.cs:147
+#: ../src/IptcFile.cs:148
 msgid "A unique number identifying the envelope"
 msgstr "Уникальное число, идентифицирующее огибающую"
 
-#: ../src/IptcFile.cs:149
+#: ../src/IptcFile.cs:150
 msgid "A unique number"
 msgstr "Уникальное число"
 
-#: ../src/IptcFile.cs:151
+#: ../src/IptcFile.cs:152
 msgid ""
 "The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
 msgstr "Приоритет обработки между 1 (самый срочный) и 9 (наименее срочный)"
 
-#: ../src/IptcFile.cs:153
+#: ../src/IptcFile.cs:154
 msgid "The year month and day (CCYYMMDD) the service sent the material"
 msgstr "Год, месяц и день (CCYYMMDD), когда служба переслала этот материал"
 
-#: ../src/IptcFile.cs:155
+#: ../src/IptcFile.cs:156
 msgid ""
 "The hour minute and second the (HHMMSS+HHMM) the service sent the material"
 msgstr ""
 "Час, минута и секунда (HHMMSS+HHMM), когда служба переслала этот материал"
 
-#: ../src/IptcFile.cs:157
+#: ../src/IptcFile.cs:158
 msgid "The character set designation"
 msgstr "Обозначение кодировки"
 
-#: ../src/IptcFile.cs:159
+#: ../src/IptcFile.cs:160
 msgid "External globally unique object identifier"
 msgstr "Внешний, глобально уникальный идентификатор объекта"
 
-#: ../src/IptcFile.cs:164
+#: ../src/IptcFile.cs:165
 msgid "Abstract Relationship Method (ARM) identifier"
 msgstr "Идентификатор метода абстрактного родства (ARM)"
 
-#: ../src/IptcFile.cs:166
+#: ../src/IptcFile.cs:167
 msgid "Abstract Relationship Method (ARM) version number."
 msgstr "Номер версии метода абстрактного родства (ARM)"
 
-#: ../src/IptcFile.cs:169
+#: ../src/IptcFile.cs:170
 msgid "Number identifying the IIM version this application record uses"
 msgstr ""
 "Номер, идентифицирующий версию IIMV, используемую в записи этого приложения"
 
-#: ../src/IptcFile.cs:171
+#: ../src/IptcFile.cs:172
 msgid "Object type reference"
 msgstr "Ссылка на тип объекта"
 
-#: ../src/IptcFile.cs:176
+#: ../src/IptcFile.cs:177
 msgid "Object attribute reference"
 msgstr "Ссылка на атрибут объекта"
 
-#: ../src/IptcFile.cs:182 ../src/IptcFile.cs:186
+#: ../src/IptcFile.cs:183 ../src/IptcFile.cs:187
 msgid "Object name"
 msgstr "Имя объекта"
 
-#: ../src/IptcFile.cs:184
+#: ../src/IptcFile.cs:185
 msgid "Status of the objectdata according to the provider"
 msgstr "Статус данных объекта согласно информации предоставившего их"
 
 #: ../src/IptcFile.cs:189
+msgid "Location within a city or area where the object originates"
+msgstr "Место, откуда происходит предмет съёмки"
+
+#: ../src/IptcFile.cs:192
 msgid "Name of the city the content is focussing on"
 msgstr "Название города, где происходят описываемые действия"
 
-#: ../src/IptcFile.cs:192
+#: ../src/IptcFile.cs:195
 msgid "Copyright information for"
 msgstr "Информация о копирайте для"
 
-#: ../src/IptcFile.cs:195
+#: ../src/IptcFile.cs:198
 msgid "Full name of the country of the focus of the content"
 msgstr "Полное название страны, где происходят описываемые действия"
 
-#: ../src/IptcFile.cs:198
+#: ../src/IptcFile.cs:201
 msgid ""
 "Two or three letter ISO3166 code of the country of the focus of the content"
 msgstr "Двух- или трёхзначный код ISO3166 страны, где сделан снимок"
 
-#: ../src/IptcFile.cs:201
+#: ../src/IptcFile.cs:204
 msgid "Creator of the content"
 msgstr "Создатель содержимого"
 
-#: ../src/IptcFile.cs:204
+#: ../src/IptcFile.cs:207
+msgid "Provider of the object"
+msgstr "Предоставивший документ"
+
+#: ../src/IptcFile.cs:210
 msgid "The title of the author or creator"
 msgstr "Имя автора или создателя"
 
-#: ../src/IptcFile.cs:207
+#: ../src/IptcFile.cs:213
 msgid ""
 "The person involved in writing, editing or correcting the object data or "
 "caption/abstract"
@@ -1681,64 +1856,64 @@ msgstr ""
 "Личность, участвующая в написании, редактировании или изменении данных "
 "объекта, его заголовка или введения"
 
-#: ../src/IptcFile.cs:211
+#: ../src/IptcFile.cs:217
 msgid "Headline of the content"
 msgstr "Заголовок содержимого"
 
-#: ../src/IptcFile.cs:214
+#: ../src/IptcFile.cs:220
 msgid ""
 "Instructions from the creator to the receiver not covered by other fields"
 msgstr "Инструкции для получателя от создателя, не переданные в других полях "
 
-#: ../src/IptcFile.cs:217
+#: ../src/IptcFile.cs:223
 msgid "Intellectual genre of the object"
 msgstr "Интеллектуальный жанр объекта"
 
-#: ../src/IptcFile.cs:230
+#: ../src/IptcFile.cs:236
 msgid "Unknown IIM DataSet"
 msgstr "Неизвестный IIM DataSet"
 
-#: ../src/Loupe.cs:56 ../src/MainWindow.cs:1833
+#: ../src/Loupe.cs:57 ../src/MainWindow.cs:1879
 msgid "Error saving sharpened photo"
 msgstr "Ошибка при сохранения снимка с увеличенной резкостью"
 
-#: ../src/Loupe.cs:86
+#: ../src/Loupe.cs:87
 msgid "Sharpen"
 msgstr "Увеличение резкости"
 
-#: ../src/Loupe.cs:96 ../src/MainWindow.cs:1800
+#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1846
 msgid "Amount:"
 msgstr "Величина:"
 
-#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1801
+#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1847
 msgid "Radius:"
 msgstr "Радиус:"
 
-#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1802
+#: ../src/Loupe.cs:99 ../src/MainWindow.cs:1848
 msgid "Threshold:"
 msgstr "Порог:"
 
-#: ../src/MainWindow.cs:213
+#: ../src/MainWindow.cs:233
 msgid "Browse many photos simultaneously"
 msgstr "Просмотреть несколько снимков одновременно"
 
-#: ../src/MainWindow.cs:216
+#: ../src/MainWindow.cs:236
 msgid "View and edit a photo"
 msgstr "Просмотреть и изменить один снимок"
 
-#: ../src/MainWindow.cs:221
+#: ../src/MainWindow.cs:241
 msgid "View photos fullscreen"
 msgstr "Развернуть на весь экран"
 
-#: ../src/MainWindow.cs:224
+#: ../src/MainWindow.cs:244
 msgid "View photos in a slideshow"
 msgstr "Просмотреть в режиме слайдшоу"
 
-#: ../src/MainWindow.cs:748
+#: ../src/MainWindow.cs:775
 msgid "Error loading database."
 msgstr "Ошибка при загрузки базы данных."
 
-#: ../src/MainWindow.cs:749
+#: ../src/MainWindow.cs:776
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
@@ -1747,11 +1922,11 @@ msgstr ""
 "В работе F-Spot произошла ошибка при загрузке базы данных снимков. Старая "
 "база данных перемещена в {0} и вместо неё создана новая."
 
-#: ../src/MainWindow.cs:1287
+#: ../src/MainWindow.cs:1332
 msgid "No cameras detected."
 msgstr "Камера не обнаружена."
 
-#: ../src/MainWindow.cs:1288
+#: ../src/MainWindow.cs:1333
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1759,11 +1934,11 @@ msgstr ""
 "Не удалось обнаружить подключённую к компьютеру камеру. Проверьте, включена "
 "ли она и подключена ли к компьютеру."
 
-#: ../src/MainWindow.cs:1328
+#: ../src/MainWindow.cs:1373
 msgid "Error connecting to camera"
 msgstr "Ошибки при соединении с камерой"
 
-#: ../src/MainWindow.cs:1329
+#: ../src/MainWindow.cs:1374
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Получена ошибка \"{0}\" при соединении с камерой"
@@ -1771,16 +1946,16 @@ msgstr "Получена ошибка \"{0}\" при соединении с к�
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1476
+#: ../src/MainWindow.cs:1520
 msgid "translator-credits"
 msgstr "Alexandre Prokoudine (alexandre.prokoudine@gmail.com)"
 
-#: ../src/MainWindow.cs:1483
+#: ../src/MainWindow.cs:1527
 msgid "Copyright © 2003-2006 Novell Inc."
 msgstr "Копирайт © 2003-2006 Novell Inc."
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1713
+#: ../src/MainWindow.cs:1759
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
@@ -1788,29 +1963,37 @@ msgstr[0] "_Удалить {0} выбранную метку"
 msgstr[1] "_Удалить {0} выбранных метки"
 msgstr[2] "_Удалить {0} выбранных меток"
 
-#: ../src/MainWindow.cs:1740
+#: ../src/MainWindow.cs:1786
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
 msgstr "Это приведёт к объединению всех выбранных меток кроме в одну."
 
-#: ../src/MainWindow.cs:1742
+#: ../src/MainWindow.cs:1788
 msgid "_Merge Tags"
 msgstr "О_бъединить метки"
 
-#: ../src/MainWindow.cs:1791
+#: ../src/MainWindow.cs:1837
 msgid "Unsharp Mask"
 msgstr "Нерезкая маска"
 
-#: ../src/MainWindow.cs:2071
+#: ../src/MainWindow.cs:2054
+#, csharp-format
+msgid "{0} Photo"
+msgid_plural "{0} Photos"
+msgstr[0] "{0} снимок"
+msgstr[1] "{0} снимка"
+msgstr[2] "{0} снимков"
+
+#: ../src/MainWindow.cs:2133
 msgid "_Ok"
 msgstr "_ОК"
 
-#: ../src/MainWindow.cs:2072
+#: ../src/MainWindow.cs:2134
 msgid "Error Deleting Picture"
 msgstr "Ошибка при удалении снимка"
 
-#: ../src/MainWindow.cs:2077
+#: ../src/MainWindow.cs:2139
 #, csharp-format
 msgid ""
 "No permission to delete the file:\n"
@@ -1819,7 +2002,7 @@ msgstr ""
 "Нет прав на удаление файла:\n"
 "{0}"
 
-#: ../src/MainWindow.cs:2081
+#: ../src/MainWindow.cs:2143
 #, csharp-format
 msgid ""
 "An error of type {0} occurred while deleting the file:\n"
@@ -1828,7 +2011,7 @@ msgstr ""
 "Произошла ошибка типа {0} при удалении файла:\n"
 "{1}"
 
-#: ../src/MainWindow.cs:2107
+#: ../src/MainWindow.cs:2169
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
@@ -1836,7 +2019,7 @@ msgstr[0] "Удалить выбранный снимок насовсем?"
 msgstr[1] "Удалить {0} выбранных снимка насовсем?"
 msgstr[2] "Удалить {0} выбранных снимков насовсем?"
 
-#: ../src/MainWindow.cs:2111
+#: ../src/MainWindow.cs:2173
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
@@ -1844,14 +2027,14 @@ msgstr[0] "Это приведёт к удалению выбранного сн
 msgstr[1] "Это приведёт к удалению всех выбранных снимков с жёсткого диска"
 msgstr[2] "Это приведёт к удалению всех выбранных снимков с жёсткого диска"
 
-#: ../src/MainWindow.cs:2114
+#: ../src/MainWindow.cs:2176
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "Удалить снимок"
 msgstr[1] "_Удалить снимки"
 msgstr[2] "_Удалить снимки"
 
-#: ../src/MainWindow.cs:2142
+#: ../src/MainWindow.cs:2204
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
@@ -1859,7 +2042,7 @@ msgstr[0] "Удалить выбранный снимок из F-Spot?"
 msgstr[1] "Удалить {0} выбранных снимка из F-Spot?"
 msgstr[2] "Удалить {0} выбранных снимков из F-Spot?"
 
-#: ../src/MainWindow.cs:2147
+#: ../src/MainWindow.cs:2209
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1869,25 +2052,25 @@ msgstr ""
 "потеряна. Снимки останутся на вашем компьютере; их можно будет импортировать "
 "снова."
 
-#: ../src/MainWindow.cs:2148
+#: ../src/MainWindow.cs:2210
 msgid "_Remove from Catalog"
 msgstr "_Удалить из каталога"
 
-#: ../src/MainWindow.cs:2203
+#: ../src/MainWindow.cs:2265
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Удалить метку \"{0}\"?"
 
-#: ../src/MainWindow.cs:2205
+#: ../src/MainWindow.cs:2267
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Удалить выбранные метки ({0})?"
 
-#: ../src/MainWindow.cs:2208
+#: ../src/MainWindow.cs:2270
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr "Если удалить метку, все связи со снимками будут потеряны."
 
-#: ../src/MainWindow.cs:2209
+#: ../src/MainWindow.cs:2271
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Удалить метку"
@@ -1895,11 +2078,11 @@ msgstr[1] "_Удалить метки"
 msgstr[2] "_Удалить метки"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2223
+#: ../src/MainWindow.cs:2285
 msgid "Tag is not empty"
 msgstr "Метка не пуста"
 
-#: ../src/MainWindow.cs:2224
+#: ../src/MainWindow.cs:2286
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1908,28 +2091,44 @@ msgstr ""
 "Невозможно удалить метки со вложенными в них метками. Сначала удалите метки "
 "уровнем ниже \"{0}\"."
 
-#: ../src/MainWindow.cs:2540
+#: ../src/MainWindow.cs:2700
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Повернуть {0} выбранный снимок влево"
 msgstr[1] "Повернуть {0} выбранных снимка влево"
 msgstr[2] "Повернуть {0} выбранных снимков влево"
 
-#: ../src/MainWindow.cs:2553
+#: ../src/MainWindow.cs:2713
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Повернуть {0} выбранный снимок вправо"
 msgstr[1] "Повернуть {0} выбранных снимка вправо"
 msgstr[2] "Повернуть {0} выбранных снимков вправо"
 
-#: ../src/MainWindow.cs:2567
+#: ../src/MainWindow.cs:2721
+#, csharp-format
+msgid "Find Selected Tag"
+msgid_plural "Find Selected Tags"
+msgstr[0] "Найти выбранную метку"
+msgstr[1] "Найти выбранные метки"
+msgstr[2] "Найти выбранные метки"
+
+#: ../src/MainWindow.cs:2725
+#, csharp-format
+msgid "Find Selected Tag With"
+msgid_plural "Find Selected Tags With"
+msgstr[0] "Найти выбранную метку с"
+msgstr[1] "Найти выбранные метки с"
+msgstr[2] "Найти выбранные метки с"
+
+#: ../src/MainWindow.cs:2742
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Создать новую версию?"
 msgstr[1] "Создать новые версии?"
 msgstr[2] "Создать новые версии?"
 
-#: ../src/MainWindow.cs:2569
+#: ../src/MainWindow.cs:2744
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1947,107 +2146,107 @@ msgstr[2] ""
 "Должен ли создать F-Spot новую версию выбранных снимков перед открытием его "
 "в {1}, чтобы оригинал сохранился в первозданном виде?"
 
-#: ../src/MetadataStore.cs:17
+#: ../src/MetadataStore.cs:18
 msgid "Creator"
 msgstr "Создатель"
 
-#: ../src/MetadataStore.cs:18
+#: ../src/MetadataStore.cs:19
 msgid "Title"
 msgstr "Название"
 
-#: ../src/MetadataStore.cs:19
+#: ../src/MetadataStore.cs:20
 msgid "Copyright"
 msgstr "Авторские и смежные права"
 
-#: ../src/MetadataStore.cs:20
+#: ../src/MetadataStore.cs:21
 msgid "Subject and Keywords"
 msgstr "Тема и ключевые слова"
 
-#: ../src/MetadataStore.cs:21
+#: ../src/MetadataStore.cs:22
 msgid "Compression"
 msgstr "Сжатие"
 
-#: ../src/MetadataStore.cs:23
+#: ../src/MetadataStore.cs:24
 msgid "Planar Configuration"
 msgstr "Принцип организации данных"
 
-#: ../src/MetadataStore.cs:25
+#: ../src/MetadataStore.cs:26
 msgid "Orientation"
 msgstr "Ориентация"
 
-#: ../src/MetadataStore.cs:27
+#: ../src/MetadataStore.cs:28
 msgid "Photometric Interpretation"
 msgstr "Цветовая модель"
 
-#: ../src/MetadataStore.cs:29
+#: ../src/MetadataStore.cs:30
 msgid "Resolution Unit"
 msgstr "Единица разрешения"
 
-#: ../src/MetadataStore.cs:31
+#: ../src/MetadataStore.cs:32
 msgid "Exposure Program"
 msgstr "Программа экспозиции"
 
-#: ../src/MetadataStore.cs:33
+#: ../src/MetadataStore.cs:34
 msgid "Metering Mode"
 msgstr "Режим замера экспозиции"
 
-#: ../src/MetadataStore.cs:35
+#: ../src/MetadataStore.cs:36
 msgid "Exposure Mode"
 msgstr "Режим выбора экспозиции"
 
-#: ../src/MetadataStore.cs:37
+#: ../src/MetadataStore.cs:38
 msgid "Custom Rendered"
 msgstr "Дополнительная обработка"
 
-#: ../src/MetadataStore.cs:39
+#: ../src/MetadataStore.cs:40
 msgid "Components Configuration"
 msgstr "Конфигурация цветовых компонентов"
 
-#: ../src/MetadataStore.cs:41
+#: ../src/MetadataStore.cs:42
 msgid "Light Source"
 msgstr "Источник света"
 
-#: ../src/MetadataStore.cs:43
+#: ../src/MetadataStore.cs:44
 msgid "Sensing Method"
 msgstr "Тип сенсора"
 
-#: ../src/MetadataStore.cs:45
+#: ../src/MetadataStore.cs:46
 msgid "Color Space"
 msgstr "Цветовая модель"
 
-#: ../src/MetadataStore.cs:47
+#: ../src/MetadataStore.cs:48
 msgid "White Balance"
 msgstr "Баланс белого"
 
-#: ../src/MetadataStore.cs:49
+#: ../src/MetadataStore.cs:50
 msgid "Focal Plane Resolution Unit"
 msgstr "Единица измерения разрешения в фокальной плоскости"
 
-#: ../src/MetadataStore.cs:51
+#: ../src/MetadataStore.cs:52
 msgid "File Source Type"
 msgstr "Тип источника файла"
 
-#: ../src/MetadataStore.cs:53
+#: ../src/MetadataStore.cs:54
 msgid "Scene Capture Type"
 msgstr "Тип сцены при съёмке"
 
-#: ../src/MetadataStore.cs:55
+#: ../src/MetadataStore.cs:56
 msgid "Gain Control"
 msgstr "Повышение яркости"
 
-#: ../src/MetadataStore.cs:57
+#: ../src/MetadataStore.cs:58
 msgid "Contrast"
 msgstr "Контрастность"
 
-#: ../src/MetadataStore.cs:59
+#: ../src/MetadataStore.cs:60
 msgid "Saturation"
 msgstr "Насыщенность"
 
-#: ../src/MetadataStore.cs:61
+#: ../src/MetadataStore.cs:62
 msgid "Sharpness"
 msgstr "Резкость"
 
-#: ../src/MetadataStore.cs:63
+#: ../src/MetadataStore.cs:64
 msgid "Scene Type"
 msgstr "Тип сцены"
 
@@ -2101,12 +2300,6 @@ msgid_plural "Modified in {1} ({0})"
 msgstr[0] "Изменён в {1} ({0})"
 msgstr[1] "Изменены в {1} ({0})"
 msgstr[2] "Изменено в {1} ({0})"
-
-#. Note that the original version is never stored in the photo_versions table in the
-#. database.
-#: ../src/PhotoStore.cs:570
-msgid "Original"
-msgstr "Исходная"
 
 #. Fixme this should really set parent menu
 #. items insensitve
@@ -2188,22 +2381,10 @@ msgstr "5 x 7 (L, 2L)"
 msgid "8 x 10"
 msgstr "8 x 10"
 
-#: ../src/PhotoView.cs:71
-msgid "4 x 3 Portrait (Book)"
-msgstr "4 x 3, портрет (книга)"
-
-#: ../src/PhotoView.cs:72
-msgid "4 x 6 Portrait (Postcard)"
-msgstr "4 x 6, портрет (открытка)"
-
-#: ../src/PhotoView.cs:73
-msgid "5 x 7 Portrait (L, 2L)"
-msgstr "5 x 7, портрет (L, 2L)"
-
-#: ../src/PhotoView.cs:74
-msgid "8 x 10 Portrait"
-msgstr "8 x 10, портрет"
-
+#. new SelectionConstraint (Catalog.GetString ("4 x 3 Portrait (Book)"), 3.0 / 4.0),
+#. new SelectionConstraint (Catalog.GetString ("4 x 6 Portrait (Postcard)"), 4.0 / 6.0),
+#. new SelectionConstraint (Catalog.GetString ("5 x 7 Portrait (L, 2L)"), 5.0 / 7.0),
+#. new SelectionConstraint (Catalog.GetString ("8 x 10 Portrait"), 8.0 / 10.0),
 #: ../src/PhotoView.cs:75
 msgid "Square"
 msgstr "Квадрат"
@@ -2348,7 +2529,7 @@ msgid "Logo"
 msgstr "Логотип"
 
 #: ../src/StockIcons.cs:35 ../src/TagCommands.cs:122 ../src/TagMenu.cs:89
-#: ../src/TagPopup.cs:22
+#: ../src/TagPopup.cs:34
 msgid "Create New Tag"
 msgstr "Создать новую метку"
 
@@ -2377,7 +2558,7 @@ msgid "Far"
 msgstr "Далеко"
 
 #: ../src/TagCommands.cs:75 ../src/TagCommands.cs:203
-#: ../src/TagSelectionWidget.cs:612
+#: ../src/TagSelectionWidget.cs:626
 msgid "This name is already in use"
 msgstr "Это имя уже используется"
 
@@ -2385,7 +2566,7 @@ msgstr "Это имя уже используется"
 msgid "Name of New Tag:"
 msgstr "Имя новой метки:"
 
-#: ../src/TagCommands.cs:273 ../src/TagPopup.cs:28
+#: ../src/TagCommands.cs:273 ../src/TagPopup.cs:40
 msgid "Edit Tag"
 msgstr "Изменить метку"
 
@@ -2401,34 +2582,42 @@ msgstr "Снимок {0} из {1}"
 #: ../src/TagCommands.cs:394
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
-msgstr "Изменить пиктограмму метки {0}"
+msgstr "Изменить значок метки {0}"
 
-#: ../src/TagPopup.cs:32
+#: ../src/TagPopup.cs:24
+#, csharp-format
+msgid "Find"
+msgid_plural "Find"
+msgstr[0] "Искать"
+msgstr[1] "Искать"
+msgstr[2] "Искать"
+
+#: ../src/TagPopup.cs:44
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
 msgstr[0] "Удалить метку"
 msgstr[1] "Удалить метки"
 msgstr[2] "Удалить метки"
 
-#: ../src/TagPopup.cs:38
+#: ../src/TagPopup.cs:50
 msgid "Attach Tag to Selection"
 msgid_plural "Attach Tags to Selection"
 msgstr[0] "Добавить метку к выбранному"
 msgstr[1] "Добавить метки к выбранному"
 msgstr[2] "Добавить метки к выбранному"
 
-#: ../src/TagPopup.cs:42
+#: ../src/TagPopup.cs:54
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
 msgstr[0] "Убрать метку из выбранного"
 msgstr[1] "Убрать метки из выбранного"
 msgstr[2] "Убрать метки из выбранного"
 
-#: ../src/TagPopup.cs:48
+#: ../src/TagPopup.cs:60
 msgid "Merge Tags"
 msgstr "Объединить метки"
 
-#: ../src/TagSelectionWidget.cs:611
+#: ../src/TagSelectionWidget.cs:625
 msgid "Error renaming tag"
 msgstr "Ошибка при переименовании снимка"
 
@@ -2469,11 +2658,11 @@ msgstr ""
 "Подождите, пока обновится база данных галереи F-Spot. Это может занять "
 "некоторое время."
 
-#: ../src/Util.cs:396
+#: ../src/Util.cs:426
 msgid "There was an error invoking the external handler"
 msgstr "Произошла ошибка при вызове внешнего обработчика"
 
-#: ../src/Util.cs:397
+#: ../src/Util.cs:427
 #, csharp-format
 msgid ""
 "Received error:\n"
