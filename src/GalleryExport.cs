@@ -7,6 +7,8 @@ using System.Collections.Specialized;
 using System.Web;
 using Mono.Unix;
 
+using FSpot.Filters;
+
 using GalleryRemote;
 
 namespace FSpot {
@@ -671,6 +673,14 @@ namespace FSpot {
 				account.Gallery.Progress.Changed += HandleProgressChanged;
 
 				System.Console.WriteLine ("Starting upload");
+				
+				FilterSet filters = new FilterSet ();
+				if (scale)
+					filters.Add (new ResizeFilter ((uint)size));
+				else if (rotate)
+					filters.Add (new OrientationFilter ());
+				
+
 				while (photo_index < photos.Length) {
 					Photo photo = photos [photo_index];
 
@@ -682,28 +692,22 @@ namespace FSpot {
 
 					progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"), photo_index, photos.Length);
 					
-					if (scale) {
-						string orig = photo.DefaultVersionUri.LocalPath;
-						string final = ImageFile.TempPath (orig, "jpg");
-						
-						PixbufUtils.Resize (orig, final, size, true);
+					
+					string orig = photo.DefaultVersionUri.LocalPath;
 
-						album.Add (photo, final);
+					// FIXME the filters need to be able to handle entension
+					// changes directly themselves.
+					string final = orig;
+					if (scale)
+						final = ImageFile.TempPath (orig, "jpg");
+					else if (rotate)
+						final = ImageFile.TempPath (orig);
+					
+					bool changed = filters.Convert (orig, final);
+					album.Add (photo, final);
+					
+					if ((final != orig) && changed)
 						System.IO.File.Delete (final);
-					} else if (rotate) {
-						string orig = photo.DefaultVersionUri.LocalPath;
-						string final = ImageFile.TempPath (orig);
-
-						if (new Filters.OrientationFilter ().Convert (orig, final)) {
-							album.Add (photo, final);
-							System.IO.File.Delete (final);
-						} else
-							album.Add (photo);
-
-						System.IO.File.Delete (final);
-					} else {
-						album.Add (photo);
-					}
 				}
 
 				progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
