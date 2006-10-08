@@ -706,7 +706,7 @@ namespace FSpot {
 					bool changed = filters.Convert (orig, final);
 					album.Add (photo, final);
 					
-					if ((final != orig) && changed)
+					if (final != orig)
 						System.IO.File.Delete (final);
 				}
 
