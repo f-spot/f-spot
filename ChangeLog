@@ -1,5 +1,7 @@
 2006-10-07  Larry Ewing  <lewing@novell.com>
 
+	* src/GalleryExport.cs: try using the filterset, mixed success.
+
 	* src/ImageFile.cs: share the code between hacks.
 
 	* src/Filters/IFilter.cs: simplify the interface down to a single
