@@ -366,9 +366,10 @@ namespace FSpot {
 			
 			if (scale) {
 				PixbufUtils.Resize (photo_path, path, size, true); 	
-			} else if (rotate && OrientationFilter.Convert (photo_path, path)) {
+			} else if (rotate && (new Filters.OrientationFilter ().Convert (photo_path, path))) {
+				// do nothing, all is well the filter did the copying
 			} else {
-				File.Copy(photo_path, path, true);
+				File.Copy (photo_path, path, true);
 			}
 
 			Gdk.Pixbuf img = null;

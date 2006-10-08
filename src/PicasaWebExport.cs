@@ -16,6 +16,8 @@ using System.Collections.Specialized;
 using System.Web;
 using Mono.Unix;
 
+using FSpot.Filters;
+
 using Gnome.Keyring;
 
 using Mono.Google;
@@ -391,7 +393,7 @@ namespace FSpot {
 //		private bool meta;
 		private bool connect = false;
 
-		private long exported_size = 0;
+		private long approx_size = 0;
 		private long sent_bytes = 0;
 
 		Photo [] photos;
@@ -482,32 +484,30 @@ namespace FSpot {
 
 		private void HandleUploadProgress(object o, UploadProgressEventArgs args)
 		{
-			if (!scale) {
-				progress_dialog.ProgressText = System.String.Format ("{0} of {1}", SizeUtil.ToHumanReadable (sent_bytes + args.BytesSent), SizeUtil.ToHumanReadable (exported_size));	
-				progress_dialog.Fraction = (sent_bytes + args.BytesSent) / (double)exported_size;
-
-			} else {
-				if (exported_size == 0)
-					progress_dialog.ProgressText = System.String.Format ("{0} Sent",SizeUtil.ToHumanReadable(args.BytesSent));	
+				if (approx_size == 0)
+					progress_dialog.ProgressText = System.String.Format ("{0} Sent",SizeUtil.ToHumanReadable(args.BytesSent));
 				else
-					progress_dialog.ProgressText = System.String.Format ("{0} of approx. {1}", SizeUtil.ToHumanReadable(sent_bytes + args.BytesSent), SizeUtil.ToHumanReadable(exported_size));
+					progress_dialog.ProgressText = System.String.Format ("{0} of approx. {1}", SizeUtil.ToHumanReadable(sent_bytes + args.BytesSent), SizeUtil.ToHumanReadable(approx_size));
 				progress_dialog.Fraction = ((photo_index - 1) / (double) photos.Length) + (args.BytesSent / (args.BytesTotal * (double) photos.Length));
-			}
 		}
 
 		private void Upload ()
 		{
 			try {
 				album.UploadProgress += HandleUploadProgress;
+				sent_bytes = 0;
+				approx_size = 0;
 
 				System.Console.WriteLine ("Starting Upload to Picasa");
 
-				if (!scale) {
-					foreach (Photo photo in photos) {
-						FileInfo file_info = new FileInfo (photo.GetVersionPath (photo.DefaultVersionId));
-						exported_size += file_info.Length;
-					}
-				}
+				FilterSet filters = new FilterSet ();
+				filters.Add (new JpegFilter ());
+
+				if (scale)
+					filters.Add (new ResizeFilter ((uint)size));
+
+				if (rotate)
+					filters.Add (new OrientationFilter ());
 
 				while (photo_index < photos.Length) {
 					Photo photo = photos [photo_index];
@@ -518,38 +518,26 @@ namespace FSpot {
 					progress_dialog.Message = String.Format (Catalog.GetString ("Uploading picture \"{0}\" ({1} of {2})"), 
 										 photo.Name, photo_index+1, photos.Length);
 					photo_index++;
-
+					
 					string orig = photo.DefaultVersionUri.LocalPath;
-					string final = ImageFile.TempPath (orig);
-					if (scale) {
-						PixbufUtils.Resize (orig, final, size, true);
-						
-						if (photo_index == 1) {
-							file_info = new FileInfo (final);
-							exported_size = photos.Length * file_info.Length;
-							Console.WriteLine ("total size: {0}", exported_size);
-						}
-						
-						file_info = new FileInfo (final);
-						sent_bytes += file_info.Length;
-						
-						album.UploadPicture (final);
-					} else if (rotate) {
-						if (OrientationFilter.Convert (orig, final))
-							album.UploadPicture (final, photo.Description);
-						else 
-							album.UploadPicture (orig, photo.Description);
-					} else {
-						album.UploadPicture (orig, photo.Description);
-					}
-					
-					File.Delete (final);
-					
-					if (!scale) {
-						file_info = new FileInfo (orig);
-						sent_bytes += file_info.Length;
-					}
-					
+					string final = ImageFile.TempPath(orig, "jpg");
+
+					if (!filters.Convert (orig, final))
+						final = orig;
+
+					file_info = new FileInfo (final);
+
+					if (approx_size == 0) //first image
+						approx_size = file_info.Length * photos.Length;
+					else
+						approx_size = sent_bytes * photos.Length / (photo_index - 1);
+
+					album.UploadPicture (final, photo.Description);
+
+					sent_bytes += file_info.Length;
+
+					if (final != orig)
+						File.Delete (final);
 				}
 				
 				progress_dialog.Message = Catalog.GetString ("Done Sending Photos");

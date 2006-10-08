@@ -1,3 +1,45 @@
+2006-10-07  Larry Ewing  <lewing@novell.com>
+
+	* src/ImageFile.cs: share the code between hacks.
+
+	* src/Filters/IFilter.cs: simplify the interface down to a single
+	method.
+
+	* src/CDExport.cs:
+	* src/FolderExport.cs:
+	* src/GalleryExport.cs:
+	* src/Filters/ResizeFilter.cs: 
+	* src/Filters/JpegFilter.cs:
+	* src/Filters/OperationFilter.cs: use the new IFilter interface.
+
+	* src/Filters/FilterSet.cs: new Filter that contains a filter stack.  
+	
+	* src/PicasaWebExport.cs: use FilterSet rather than calling
+	FilterUtils.cs, use the simpler apis.
+
+
+2006-10-07  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Makefile.am:
+	* src/Filters/IFilter.cs:
+	* src/Filters/ResizeFilter.cs:
+	* src/Filters/FilterException.cs:
+	* src/FilterS/FilterUtils.cs:
+	* src/Filters/OperationFilter.cs: new IFilter interface, move the
+	existing code to the filters. 
+
+	* src/CDExport.cs:
+	* src/FolderExport.cs:
+	* src/GalleryExport.cs: Changes to use the modified OrientationFilter.
+
+	* src/PicasaWebExport.cs: Adapt to use the only Filters. Change the
+	computing of fraction and exported size.
+
+	* src/ImageFile.cs: new TempPath(file, extension) static method.
+
+	* src/Filters/JpegFilter.cs: new JpegFilter as requested in bgo
+	#359770.
+
 2006-10-06  Larry Ewing  <lewing@novell.com>
 
 	* src/main.cs: Fixes from Bengt for #332429 and #332417.

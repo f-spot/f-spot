@@ -28,6 +28,11 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/FlickrExport.cs		\
 	$(srcdir)/FlickrRemote.cs		\
 	$(srcdir)/FileImportBackend.cs		\
+	$(srcdir)/Filters/FilterSet.cs		\
+	$(srcdir)/Filters/IFilter.cs		\
+	$(srcdir)/Filters/JpegFilter.cs		\
+	$(srcdir)/Filters/OrientationFilter.cs	\
+	$(srcdir)/Filters/ResizeFilter.cs	\
 	$(srcdir)/FindBar.cs			\
 	$(srcdir)/FolderExport.cs		\
 	$(srcdir)/FotkiRemote.cs		\
@@ -65,7 +70,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/MrwFile.cs			\
 	$(srcdir)/OpenWithMenu.cs		\
 	$(srcdir)/Operation.cs			\
-	$(srcdir)/OrientationFilter.cs		\
 	$(srcdir)/PhotoImageView.cs		\
 	$(srcdir)/PhotoLoader.cs		\
 	$(srcdir)/PhotoPopup.cs			\

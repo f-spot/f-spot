@@ -684,7 +684,7 @@ namespace FSpot {
 					
 					if (scale) {
 						string orig = photo.DefaultVersionUri.LocalPath;
-						string final = ImageFile.TempPath (orig);
+						string final = ImageFile.TempPath (orig, "jpg");
 						
 						PixbufUtils.Resize (orig, final, size, true);
 
@@ -694,7 +694,7 @@ namespace FSpot {
 						string orig = photo.DefaultVersionUri.LocalPath;
 						string final = ImageFile.TempPath (orig);
 
-						if (OrientationFilter.Convert (orig, final)) {
+						if (new Filters.OrientationFilter ().Convert (orig, final)) {
 							album.Add (photo, final);
 							System.IO.File.Delete (final);
 						} else

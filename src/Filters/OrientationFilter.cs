@@ -1,6 +1,16 @@
-namespace FSpot {
-	public class OrientationFilter {
-		public static bool Convert (string source, string dest)
+/*
+ * OrientationFilter.cs
+ *
+ * Author(s)
+ *   Larry Ewing
+ *   Stephane Delcroix <stephane@delcroix.org>
+ *
+ * This is free software, see COPYING fro details
+ *
+ */
+namespace FSpot.Filters {
+	public class OrientationFilter : IFilter {
+		public bool Convert (string source, string dest)
 		{
 			ImageFile img = ImageFile.Create (source);
 			bool changed = false;
