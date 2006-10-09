@@ -188,7 +188,7 @@ public class JpegHeader : SemWeb.StatementSource {
 			// FIXME there is a potential loop here.
 			
 			int read = Read (stream, raw, 0, 2);
-			if (read < 2 && raw [0] != 0xff)
+			if (read < 2 || raw [0] != 0xff)
 				throw new System.Exception (System.String.Format ("Invalid marker found {0}", raw [0]));
 			
 			JpegMarker id = (JpegMarker) raw [1];

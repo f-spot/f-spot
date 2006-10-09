@@ -1,3 +1,8 @@
+2006-10-09  Larry Ewing  <lewing@novell.com>
+
+	* src/JpegHeader.cs: fix the test condition for a valid jpeg.
+	Fixes #360726.
+	
 2006-10-07  Larry Ewing  <lewing@novell.com>
 
 	* src/GalleryExport.cs: try using the filterset, mixed success.
@@ -43,6 +48,10 @@
 	#359770.
 
 2006-10-06  Larry Ewing  <lewing@novell.com>
+
+	* src/ColorDialog.cs: set the transient when creating the interface.
+
+	* src/MainWindow.cs: formating changes (they were driving me nuts).
 
 	* src/main.cs: Fixes from Bengt for #332429 and #332417.
 
