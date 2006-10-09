@@ -458,9 +458,26 @@ class PixbufUtils {
 			exif_data = new Exif.ExifData ();
 
 		Gdk.Pixbuf image = PixbufUtils.LoadAtMaxSize (orig_path, size, size);
+
 		PixbufUtils.SaveJpeg (image, dest_path, 95, exif_data);
+		image.Dispose ();
 	}
 	
+
+	public static Pixbuf Flatten (Pixbuf pixbuf)
+	{
+		if (!pixbuf.HasAlpha)
+			return null;
+
+		Pixbuf flattened = new Pixbuf (Colorspace.Rgb, false, 8, pixbuf.Width, pixbuf.Height);
+		pixbuf.CompositeColor (flattened, 0, 0, 
+				       pixbuf.Width, pixbuf.Height, 
+				       0, 0, 1, 1, 
+				       InterpType.Bilinear,
+				       255, 0, 0, 2000, 0xffffff, 0xffffff);
+
+		return flattened;
+	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct FPixbufJpegMarker {
@@ -474,6 +491,12 @@ class PixbufUtils {
 
 	public static void SaveJpeg (Pixbuf pixbuf, string path, int quality, Exif.ExifData exif_data)
 	{
+		Pixbuf temp = null;
+		if (pixbuf.HasAlpha) {
+			temp = Flatten (pixbuf);
+			pixbuf = temp;
+		}
+
 		// The DCF spec says thumbnails should be 160x120 always
 		Pixbuf thumbnail = ScaleToAspect (pixbuf, 160, 120);
 		byte [] thumb_data = Save (thumbnail, "jpeg", null, null);
@@ -512,6 +535,9 @@ class PixbufUtils {
 			
 		}
 
+		if (temp != null)
+			temp.Dispose ();
+		
 		if (result == false)
 			throw new System.Exception ("Error Saving File");
 	}
