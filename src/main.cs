@@ -76,10 +76,11 @@ public class Driver {
 		bool import = false;
 		bool empty = false;
 		Program program = null;
-		CoreControl control = null;
+		ICore control = null;
 
 		SetProcessName (Defines.PACKAGE);
 		
+		NDesk.DBus.BusG.Init();
 		try {
 			if (!ValidateCmds(args)) {
 				System.Console.WriteLine ("Invalid argument list. Please review the arguments and try again.");
@@ -120,10 +121,7 @@ public class Driver {
 					control = Core.FindInstance ();
 					System.Console.WriteLine ("Found active FSpot server: {0}", control);
 					program = null;
-					// Work around bug in dus bindings.
-					System.GC.SuppressFinalize (control);
 				} catch (System.Exception e) { 
-					Core.AssertOwnership ();
 					if (System.Array.IndexOf (args, "--shutdown") == 0)
 						System.Console.WriteLine ("Starting new FSpot server");
 				}

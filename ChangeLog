@@ -1,3 +1,15 @@
+2006-10-10  Stephane Delcroix  <stephane@delcroix.org>
+
+	* configure.in:
+	* Makefile.am:
+	* src/Makefile.am:
+	* dbus-sharp/*:
+	* dbus-sharp-glib/*: Add dbus-sharp and dbus-sharp-glib 0.1 in the
+	buildchain. Remove the dependency on the old dbus implementation.
+
+	* src/Core.cs;
+	* src/main.cs: use the new bindings.
+
 2006-10-10  Larry Ewing  <lewing@novell.com>
 
 	* src/PhotoStore.cs: use Path.Combine.

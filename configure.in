@@ -51,13 +51,12 @@ LIBEXIF_REQUIRED_MAX=0.7.0
 GTKSHARP_REQUIRED=2.7
 MONO_REQUIRED=1.1.7
 GTK_REQUIRED=2.6
-DBUS_SHARP=0.23
 
 dnl -- this check is 	
 LCMS_REQUIRED=1.12
 dnl -- LIBGPHOTO2_REQUIRED=2.1.4
 
-PKG_CHECK_MODULES(F, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED libexif >= $LIBEXIF_REQUIRED_MIN libexif < $LIBEXIF_REQUIRED_MAX gtkhtml-sharp-2.0 >= $GTKSHARP_REQUIRED gconf-sharp-2.0 >= $GTKSHARP_REQUIRED glade-sharp-2.0 >= $GTKSHARP_REQUIRED gnome-vfs-sharp-2.0 >= $GTKSHARP_REQUIRED gtk+-2.0 >= $GTK_REQUIRED mono >= $MONO_REQUIRED dbus-sharp >= $DBUS_SHARP)
+PKG_CHECK_MODULES(F, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED libexif >= $LIBEXIF_REQUIRED_MIN libexif < $LIBEXIF_REQUIRED_MAX gtkhtml-sharp-2.0 >= $GTKSHARP_REQUIRED gconf-sharp-2.0 >= $GTKSHARP_REQUIRED glade-sharp-2.0 >= $GTKSHARP_REQUIRED gnome-vfs-sharp-2.0 >= $GTKSHARP_REQUIRED gtk+-2.0 >= $GTK_REQUIRED mono >= $MONO_REQUIRED)
 AC_SUBST(F_CFLAGS)
 AC_SUBST(F_LIBS)
 
@@ -176,6 +175,8 @@ AC_SUBST(GNOME_ICON_THEME_PREFIX)
 
 AC_OUTPUT([
 Makefile
+dbus-sharp/Makefile
+dbus-sharp-glib/Makefile
 FlickrNet/Makefile
 google-sharp/Makefile
 gnome-keyring-sharp/Makefile

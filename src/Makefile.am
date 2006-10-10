@@ -137,6 +137,8 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/main.cs
 
 ASSEMBLIES =					\
+	-r:$(top_builddir)/dbus-sharp/NDesk.DBus.dll   \
+	-r:$(top_builddir)/dbus-sharp-glib/NDesk.DBus.GLib.dll   \
 	-r:$(top_builddir)/libgphoto2-sharp/libgphoto2-sharp.dll   \
 	-r:$(top_builddir)/semweb/SemWeb.dll	\
 	-r:$(top_builddir)/FlickrNet/FlickrNet.dll	\
@@ -148,7 +150,6 @@ ASSEMBLIES =					\
 	-r:Mono.Posix				\
 	-r:Mono.Security			\
 	-r:ICSharpCode.SharpZipLib		\
-	-pkg:dbus-sharp				\
 	-pkg:gtkhtml-sharp-2.0			\
 	-pkg:glade-sharp-2.0			\
 	-pkg:gnome-vfs-sharp-2.0		\

@@ -1,31 +1,28 @@
 using System.IO;
 using System;
 using Mono.Posix;
+using NDesk.DBus;
+using org.freedesktop.DBus;
 
 namespace FSpot {
-	[DBus.Interface ("org.gnome.FSpot.Core")]
-	public abstract class CoreControl {
-		[DBus.Method]
-		public abstract void Import (string path);
+	[Interface ("org.gnome.FSpot.Core")]
+	public interface ICore {
+		void Import (string path);
 
-		[DBus.Method]
-		public abstract void Organize ();
+		void Organize ();
 		
-		[DBus.Method]
-		public abstract void View (string list);
+		void View (string list);
 
-		[DBus.Method]
-		public abstract void Shutdown ();
+		void Shutdown ();
 	}
 
-	public class Core : CoreControl
+	public class Core : ICore
 	{
 		MainWindow organizer;
 		private static Db db;
-		static DBus.Connection connection;
 		System.Collections.ArrayList toplevels;
 		const string ServicePath = "org.gnome.FSpot";
-		const string CorePath = "/org/gnome/FSpot/Core";
+		static ObjectPath CorePath = new ObjectPath ("/org/gnome/FSpot/Core");
 
 		public Core ()
 		{
@@ -40,63 +37,31 @@ namespace FSpot {
 			db.Init (Path.Combine (base_directory, "photos.db"), true);
 		}
 
-		public static DBus.Connection Connection {
-			get {
-				if (connection == null)
-					connection = DBus.Bus.GetSessionBus ();
-
-				return connection;
-			}
-		}
-
 		public static Db Database {
 			get { return db; }
 		}
 
-		public static Core FindInstance ()
+		public static ICore FindInstance ()
 		{
-			DBus.Service service = DBus.Service.Get (Connection, ServicePath);
-			return (Core)service.GetObject (typeof (Core), CorePath);
+			if (Bus.Session.NameHasOwner (ServicePath)) {
+				return Bus.Session.GetObject<ICore> (ServicePath, CorePath);
+			} else {
+				throw new Exception("No Instance Found");
+			}
 		}
 		
 		public void UnregisterServer ()
 		{
-			try { 
-				connection = null;
-				DBus.Service serv = DBus.Service.Get (Connection, ServicePath);
-				serv.UnregisterObject (this);
-			} catch (System.Exception e) {
-				// noop
-				System.Console.WriteLine ("unregister\n{0}\nunregister", e);
-			}
+			Bus.Session.ReleaseName(ServicePath);
 		}
 
 		public void RegisterServer ()
 		{
-			Service.RegisterObject (this, CorePath);
+			NameReply nameReply = Bus.Session.RequestName (ServicePath);
+			//Console.WriteLine("NameReply {0}", nameReply);
+			Bus.Session.Register (ServicePath, CorePath, this);
 		}
 		
-		public static void AssertOwnership () {
-			if (Service == null)
-				System.Console.WriteLine ("problems getting service");
-		}
-		
-		private static DBus.Service Service {
-			get {
-				DBus.Service service = null;
-
-				if (service == null) {
-					try {
-						service = DBus.Service.Get (Connection, ServicePath);
-					} catch (System.Exception e) {
-						//stem.Console.WriteLine (e);
-						service = new DBus.Service (Connection, ServicePath);
-					}
-				}				
-				return service;
-			}
-		}
-
 		private class ImportCommand 
 		{
 			string path;
@@ -119,11 +84,10 @@ namespace FSpot {
 			}
 		}
 
-		public override void Import (string path) 
+		public void Import (string path) 
 		{
 			ImportCommand cmd = new ImportCommand (MainWindow, path);
-			//cmd.Execute ();
-			GLib.Idle.Add (new GLib.IdleHandler (cmd.Execute));
+			cmd.Execute ();
 		}
 
 		public MainWindow MainWindow {
@@ -137,12 +101,12 @@ namespace FSpot {
 			}
 		}
 			
-		public override void Organize ()
+		public void Organize ()
 		{
 			MainWindow.Window.Present ();
 		}
 		
-		public override void View (string list)
+		public void View (string list)
 		{
 			Viewbla (new UriList (list));
 		}
@@ -259,7 +223,7 @@ namespace FSpot {
 		}
 
 
-		public override void Shutdown ()
+		public void Shutdown ()
 		{
 			System.Environment.Exit (0);
 		}
