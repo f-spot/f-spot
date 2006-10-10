@@ -43,6 +43,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <errno.h>
+#include <gdk/gdkcairo.h>
 
 
 /* Helper functions.  */
@@ -207,10 +208,94 @@ f_pixbuf_copy_apply_brightness_and_contrast (GdkPixbuf *src,
 	return result_pixbuf;
 }
 
+cairo_surface_t *
+f_pixbuf_to_cairo_surface (GdkPixbuf *pixbuf)
+{
+  gint width = gdk_pixbuf_get_width (pixbuf);
+  gint height = gdk_pixbuf_get_height (pixbuf);
+  guchar *gdk_pixels = gdk_pixbuf_get_pixels (pixbuf);
+  int gdk_rowstride = gdk_pixbuf_get_rowstride (pixbuf);
+  int n_channels = gdk_pixbuf_get_n_channels (pixbuf);
+  guchar *cairo_pixels;
+  cairo_format_t format;
+  cairo_surface_t *surface;
+  static const cairo_user_data_key_t key;
+  int j;
+
+  if (n_channels == 3)
+    format = CAIRO_FORMAT_RGB24;
+  else
+    format = CAIRO_FORMAT_ARGB32;
+
+  cairo_pixels = g_malloc (4 * width * height);
+  surface = cairo_image_surface_create_for_data ((unsigned char *)cairo_pixels,
+						 format,
+						 width, height, 4 * width);
+  cairo_surface_set_user_data (surface, &key,
+			       cairo_pixels, (cairo_destroy_func_t)g_free);
+
+  for (j = height; j; j--)
+    {
+      guchar *p = gdk_pixels;
+      guchar *q = cairo_pixels;
+
+      if (n_channels == 3)
+	{
+	  guchar *end = p + 3 * width;
+	  
+	  while (p < end)
+	    {
+#if G_BYTE_ORDER == G_LITTLE_ENDIAN
+	      q[0] = p[2];
+	      q[1] = p[1];
+	      q[2] = p[0];
+#else	  
+	      q[1] = p[0];
+	      q[2] = p[1];
+	      q[3] = p[2];
+#endif
+	      p += 3;
+	      q += 4;
+	    }
+	}
+      else
+	{
+	  guchar *end = p + 4 * width;
+	  guint t1,t2,t3;
+	    
+#define MULT(d,c,a,t) G_STMT_START { t = c * a + 0x7f; d = ((t >> 8) + t) >> 8; } G_STMT_END
+
+	  while (p < end)
+	    {
+#if G_BYTE_ORDER == G_LITTLE_ENDIAN
+	      MULT(q[0], p[2], p[3], t1);
+	      MULT(q[1], p[1], p[3], t2);
+	      MULT(q[2], p[0], p[3], t3);
+	      q[3] = p[3];
+#else	  
+	      q[0] = p[3];
+	      MULT(q[1], p[0], p[3], t1);
+	      MULT(q[2], p[1], p[3], t2);
+	      MULT(q[3], p[2], p[3], t3);
+#endif
+	      
+	      p += 4;
+	      q += 4;
+	    }
+	  
+#undef MULT
+	}
+
+      gdk_pixels += gdk_rowstride;
+      cairo_pixels += 4 * width;
+    }
+
+  return surface;
+}
 
 /**
  *  This alorithm is based on the redeye algorithm in flphoto 
- *  Copyright 2002-2003 by Michael 
+ *  Copyright 2002-2003 by Michael Sweet
  *
  *  FIXME this is a very simplist algorithm, something more intelligent needs to be used.
  */

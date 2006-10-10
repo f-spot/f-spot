@@ -1,3 +1,10 @@
+2006-10-10  Larry Ewing  <lewing@novell.com>
+
+	* src/RotateCommand.cs: add support for 8 bit png rotation.
+
+	* libfspot/f-pixbuf-utils.c: add method to make cairo surface from
+	pixbuf.
+
 2006-10-09  Larry Ewing  <lewing@novell.com>
 
 	* src/Filters/ResizeFilter.cs: make resize filter a little bit
