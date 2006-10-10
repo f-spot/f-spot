@@ -37,13 +37,7 @@ LIBDBUSSHARP_CSFILES =				\
 
 NDesk.DBus.dll: REFS=Mono.Posix
 
-NDesk.DBus.dll: CSFLAGS=-d:PROTO_REPLY_SIGNATURE -d:PROTO_TYPE_SINGLE
-
 NDesk.DBus.dll: $(LIBDBUSSHARP_CSFILES)
-
-NDesk.DBus.Ssl.dll: REFS = Mono.Security
-
-NDesk.DBus.Ssl.dll: NDesk.DBus.dll SslTransport.cs
 
 all: NDesk.DBus.dll
 
@@ -51,6 +45,9 @@ libdbussharplibdir = $(libdir)/f-spot
 libdbussharplib_DATA =		\
 	NDesk.DBus.dll
 
-CLEANFILES =							\
-	NDesk.DBus.dll
+CLEANFILES =			\
+	NDesk.DBus.dll		\
+	NDesk.DBus.dll.mdb
 
+DISTCLEANFILES = 		\
+	makefile
