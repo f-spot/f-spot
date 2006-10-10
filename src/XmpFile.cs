@@ -14,6 +14,7 @@ namespace FSpot.Xmp {
 
 		public MetadataStore Store {
 			get { return store; }
+			set { store = value; }
 		}
 
 		public XmpFile (System.IO.Stream stream) : this ()
