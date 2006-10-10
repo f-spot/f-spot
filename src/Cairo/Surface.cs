@@ -168,7 +168,7 @@ namespace Cairo {
 				CairoAPI.cairo_surface_reference (ptr);
                 }
 
-		static internal Surface LookupExternalSurface (IntPtr p)
+		static public Surface LookupExternalSurface (IntPtr p)
 		{
 			lock (surfaces.SyncRoot){
 				object o = surfaces [p];

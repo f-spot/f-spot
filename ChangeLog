@@ -1,17 +1,20 @@
 2006-10-10  Larry Ewing  <lewing@novell.com>
 
-	* src/Widgets/CairoUtils.cs: add utility method to create surface
-	from drawable.  Rename some old methods.
-
-	* src/RotateCommand.cs: add support for 8 bit png rotation.
-
-	* libfspot/f-pixbuf-utils.c: add method to make cairo surface from
-	pixbuf.
+	* src/Cairo/Surface.cs: make the IntPtr constructor public, we
+	need it elsewhere.
 
 	* src/SvgFile.cs: work around bug somewhere in librsvg or gtk
 	until a proper fix is ready.
 
 	* src/PreviewPopup.cs: use the renamed methods.
+
+	* src/Widgets/CairoUtils.cs: add utility method to create surface
+	from drawable.  Rename some old methods.
+
+	* src/RotateCommand.cs: add support for 8 bit png rotation.
+	
+	* libfspot/f-pixbuf-utils.c: add method to make cairo surface from
+	pixbuf.
 
 2006-10-09  Larry Ewing  <lewing@novell.com>
 
