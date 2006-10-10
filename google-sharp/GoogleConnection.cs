@@ -80,7 +80,29 @@ namespace Mono.Google {
 				throw new InvalidOperationException (String.Format ("Already authenticated for {0}", this.user));
 
 			this.user = user;
-			this.cookies = Authentication.GetAuthCookies (this, user, password, service, out auth);
+			this.cookies = Authentication.GetAuthCookies (this, user, password, service, null, null, out auth);
+			if (this.cookies == null) {
+				this.user = null;
+				throw new Exception (String.Format ("Authentication failed for user {0}", user));
+			}
+		}
+
+		public void Authenticate (string user, string password, string token, string captcha)
+		{
+			if (user == null)
+				throw new ArgumentNullException ("user");
+
+			if (token == null)
+				throw new ArgumentNullException ("token");
+
+			if (captcha == null)
+				throw new ArgumentNullException ("captcha");
+
+			if (this.user != null)
+				throw new InvalidOperationException (String.Format ("Already authenticated for {0}", this.user));
+
+			this.user = user;
+			this.cookies = Authentication.GetAuthCookies (this, user, password, service, token, captcha, out auth);
 			if (this.cookies == null) {
 				this.user = null;
 				throw new Exception (String.Format ("Authentication failed for user {0}", user));

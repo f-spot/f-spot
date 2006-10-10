@@ -4,6 +4,7 @@ LIBGOOGLESHARP_CSFILES =				\
 	$(srcdir)/AlbumAccess.cs  \
 	$(srcdir)/AssemblyInfo.cs \
 	$(srcdir)/Authentication.cs  \
+	$(srcdir)/CaptchaException.cs  \
 	$(srcdir)/CreateAlbumException.cs  \
 	$(srcdir)/DeleteAlbumException.cs  \
 	$(srcdir)/GoogleConnection.cs  \

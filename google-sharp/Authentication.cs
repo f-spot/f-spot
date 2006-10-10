@@ -48,7 +48,8 @@ namespace Mono.Google {
 		{
 		}
 
-		public static CookieContainer GetAuthCookies (GoogleConnection conn, string user, string password, GoogleService service, out string auth)
+		public static CookieContainer GetAuthCookies (GoogleConnection conn, string user, string password, GoogleService service,
+								string token, string captcha, out string auth)
 		{
 			// No auth performed if no user or no password
 			auth = null;
@@ -57,16 +58,19 @@ namespace Mono.Google {
 
 			// service == Picasa by now
 			Authentication authentication = new Authentication ();
-			return authentication.GetCookieContainer (conn, user, password, out auth);
+			return authentication.GetCookieContainer (conn, user, password, token, captcha, out auth);
 		}
 
-		CookieContainer GetCookieContainer (GoogleConnection conn, string user, string password, out string auth)
+		CookieContainer GetCookieContainer (GoogleConnection conn, string user, string password, string token, string captcha, out string auth)
 		{
 			user = HttpUtility.UrlEncode (user);
 			password = HttpUtility.UrlEncode (password);
 			StringBuilder content = new StringBuilder ();
 			string appname = HttpUtility.UrlEncode (conn.ApplicationName);
 			content.AppendFormat ("Email={0}&Passwd={1}&source={2}&PersistentCookie=0&accountType=HOSTED%5FOR%5FGOOGLE", user, password, appname);
+			if (token != null) {
+				content.AppendFormat ("&logintoken={0}&logincaptcha={1}", token, captcha);
+			}
 			byte [] bytes = Encoding.UTF8.GetBytes (content.ToString ());
 
 			HttpWebRequest request = (HttpWebRequest) WebRequest.Create (picasa_login_url);
@@ -78,7 +82,17 @@ namespace Mono.Google {
 			output.Write (bytes, 0, bytes.Length);
 			output.Close ();
 
-			HttpWebResponse response = (HttpWebResponse) request.GetResponse ();
+			HttpWebResponse response = null;
+			try {
+				response = (HttpWebResponse) request.GetResponse ();
+			} catch (WebException wexc) {
+				response = wexc.Response as HttpWebResponse;
+				if (response == null)
+					throw;
+				ThrowOnError (response);
+				throw; // if the method above does not throw, we do
+			}
+
 			string received = "";
 			string sid = null;
 			string lsid = null;
@@ -123,6 +137,54 @@ namespace Mono.Google {
 			cookies.Add (cookie);
 			auth = received.Trim ();
 			return cookies;
+		}
+
+		void ThrowOnError (HttpWebResponse response)
+		{
+			if (response.StatusCode != HttpStatusCode.Forbidden)
+				return;
+
+			string url = null;
+			string token = null;
+			string captcha_url = null;
+			string code = null;
+			using (StreamReader reader = new StreamReader (response.GetResponseStream ())) {
+				string str;
+				while ((str = reader.ReadLine ()) != null) {
+					if (str.StartsWith ("Url=")) {
+						url = str.Substring (4);
+					} else if (str.StartsWith ("Error=")) {
+						/* Supposedly, these are the values for Error
+							None,
+							BadAuthentication,
+							NotVerified,
+							TermsNotAgreed,
+							CaptchaRequired,
+							Unknown,
+							AccountDeleted,
+							AccountDisabled,
+							ServiceUnavailable
+						  but CaptchaRequired is reported as 'cr'. Don't know about the others.
+						*/
+						code = str.Substring (6);
+					} else if (str.StartsWith ("CaptchaToken=")) {
+						token = str.Substring (13);
+					} else if (str.StartsWith ("CaptchaUrl=")) {
+						captcha_url = str.Substring (11);
+					}
+				}
+			}
+			if (code == "cr" && token != null && captcha_url != null) {
+				if (url != null) {
+					Uri uri = new Uri (url);
+					captcha_url = new Uri (uri, captcha_url).ToString ();
+				} else if (!captcha_url.StartsWith ("https://")) {
+					captcha_url = "https://www.google.com/accounts/" + captcha_url;
+				}
+				throw new CaptchaException (url, token, captcha_url);
+			}
+
+			throw new UnauthorizedAccessException (String.Format ("Access to '{0}' is denied ({1})", url, code));
 		}
 	}
 }

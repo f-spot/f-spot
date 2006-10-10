@@ -1,3 +1,14 @@
+2006-10-06  Stephane Delcroix  <stephane@delcroix.org>
+
+	* google-sharp/GoogleConnection.cs:
+	* google-sharp/Authentication.cs:
+	* google-sharp/CaptchaException.cs:
+	* google-sharp/Makefile.am: Update with latest changes from Gonzalo.
+	In sync with google-sharp svn r66288.
+
+	* src/PicasaWebExport.cs:
+	* src/f-spot.glade: Display a captcha when google blocks your account.
+
 2006-10-10  Stephane Delcroix  <stephane@delcroix.org>
 
 	* configure.in:

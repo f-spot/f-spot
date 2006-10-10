@@ -28,14 +28,24 @@ namespace FSpot {
 
 		private string username;
 		private string password;
+		private string token;
+		private string unlock_captcha;
 		private bool connected;
 		private GoogleConnection connection;
 		private PicasaWeb picasa;
 
-		public GoogleAccount (string username, string password)
+		public GoogleAccount (string username, string password) 
 		{
 			this.username = username;
 			this.password = password;
+		}
+
+		public GoogleAccount (string username, string password, string token, string unlock_captcha)
+		{
+			this.username = username;
+			this.password = password;
+			this.token = token;
+			this.unlock_captcha = unlock_captcha;
 		}
 
 		public PicasaWeb Connect ()
@@ -43,7 +53,13 @@ namespace FSpot {
 			System.Console.WriteLine ("GoogleAccount.Connect()");
 			GoogleConnection conn = new GoogleConnection (GoogleService.Picasa);
 			ServicePointManager.CertificatePolicy = new NoCheckCertificatePolicy ();
-			conn.Authenticate(username, password);
+			if (unlock_captcha == null || token == null)
+				conn.Authenticate(username, password);
+			else {
+				conn.Authenticate(username, password, token, unlock_captcha);
+				token = null; 
+				unlock_captcha = null;
+			}
 			connection = conn;
 			PicasaWeb picasa = new PicasaWeb(conn);
 			this.picasa = picasa;
@@ -83,6 +99,24 @@ namespace FSpot {
 					password = value;
 					MarkChanged ();
 				}
+			}
+		}
+
+		public string Token {
+			get {
+				return token;
+			}
+			set {
+				token = value;
+			}
+		}
+
+		public string UnlockCaptcha {
+			get {
+				return unlock_captcha;
+			}
+			set {
+				unlock_captcha = value;
 			}
 		}
 
@@ -208,12 +242,12 @@ namespace FSpot {
 	}
 	
 	public class GoogleAccountDialog : GladeDialog {
-		public GoogleAccountDialog (Gtk.Window parent) : this (parent, null, false) { 
+		public GoogleAccountDialog (Gtk.Window parent) : this (parent, null, false, null) { 
 			Dialog.Response += HandleAddResponse;
 			add_button.Sensitive = false;
 		}
 		
-		public GoogleAccountDialog (Gtk.Window parent, GoogleAccount account, bool show_error) :  base ("google_add_dialog")
+		public GoogleAccountDialog (Gtk.Window parent, GoogleAccount account, bool show_error, CaptchaException captcha_exception) :  base ("google_add_dialog")
 		{
 			this.Dialog.Modal = false;
 			this.Dialog.TransientFor = parent;
@@ -221,9 +255,23 @@ namespace FSpot {
 			
 			this.account = account;
 
+			bool show_captcha = (captcha_exception != null);
 			status_area.Visible = show_error;
+			locked_area.Visible = show_captcha;
+			captcha_label.Visible = show_captcha;
+			captcha_entry.Visible = show_captcha;
+			captcha_image.Visible = show_captcha;
+			
 			password_entry.ActivatesDefault = true;
 			username_entry.ActivatesDefault = true;
+
+			if (show_captcha) {
+				try {
+					ImageFile img = ImageFile.Create(new Uri(captcha_exception.CaptchaUrl));
+					captcha_image.Pixbuf = img.Load();
+					token = captcha_exception.Token;
+				} catch (Exception) {}
+			}
 
 			if (account != null) {
 				password_entry.Text = account.Password;
@@ -265,6 +313,8 @@ namespace FSpot {
 			if (args.ResponseId == Gtk.ResponseType.Ok) {
 				account.Username = username;
 				account.Password = password;
+				account.Token = token;
+				account.UnlockCaptcha = captcha_entry.Text;
 				GoogleAccountManager.GetInstance ().MarkChanged (true, account);
 			} else if (args.ResponseId == Gtk.ResponseType.Reject) {
 				// NOTE we are using Reject to signal the remove action.
@@ -276,16 +326,24 @@ namespace FSpot {
 		private GoogleAccount account;
 		private string password;
 		private string username;
+		private string token;
+
 
 		// widgets 
 		[Glade.Widget] Gtk.Entry password_entry;
 		[Glade.Widget] Gtk.Entry username_entry;
+		[Glade.Widget] Gtk.Entry captcha_entry;
 
 		[Glade.Widget] Gtk.Button add_button;
 		[Glade.Widget] Gtk.Button remove_button;
 		[Glade.Widget] Gtk.Button cancel_button;
 
 		[Glade.Widget] Gtk.HBox status_area;
+		[Glade.Widget] Gtk.HBox locked_area;
+
+		[Glade.Widget] Gtk.Image captcha_image;
+		[Glade.Widget] Gtk.Label captcha_label;
+
 	}
 
 	public class GoogleAddAlbum : GladeDialog {
@@ -599,6 +657,11 @@ namespace FSpot {
 
 		private void Connect (GoogleAccount selected)
 		{
+			Connect (selected, null, null);
+		}
+
+		private void Connect (GoogleAccount selected, string token, string text)
+		{
 			try {
 				if (accounts.Count != 0 && connect) {
 					if (selected == null)
@@ -629,23 +692,37 @@ namespace FSpot {
 
 					album_button.Sensitive = true;
 				}
-			} catch (System.Exception ex) {
+			} catch (CaptchaException exc){
+				System.Console.WriteLine("Your google account is locked");
 				if (selected != null)
 					account = selected;
 
-				System.Console.WriteLine("Can not connect to Picasa. Bad username ? password ? network connection ?");
+				PopulateAlbumOptionMenu (account.Picasa);
+				album_button.Sensitive = false;
+
+				GoogleAccountDialog dialog = new GoogleAccountDialog (this.Dialog, account, false, exc);
+
+				Gtk.ResponseType response = (Gtk.ResponseType) dialog.Dialog.Run ();
+				
+				System.Console.WriteLine ("Your google account is locked, you can unlock it by visiting: {0}", CaptchaException.UnlockCaptchaURL);
+
+			} catch (System.Exception ex) {
+				System.Console.WriteLine ("Can not connect to Picasa. Bad username ? password ? network connection ?");
 				//System.Console.WriteLine ("{0}",ex);
+				if (selected != null)
+					account = selected;
+
 				PopulateAlbumOptionMenu (account.Picasa);
 
 				status_label.Text = "";
 				album_button.Sensitive = false;
 				
-				GoogleAccountDialog dialog = new GoogleAccountDialog (this.Dialog, account, true);
+				GoogleAccountDialog dialog = new GoogleAccountDialog (this.Dialog, account, true, null);
 				Gtk.ResponseType response = (Gtk.ResponseType) dialog.Dialog.Run ();
 
-				if (response == Gtk.ResponseType.Ok) {
-					Connect (account);					
-				}
+//				if (response == Gtk.ResponseType.Ok) {
+//					Connect (account);					
+//				}
 			} 
 		}
 
@@ -727,7 +804,7 @@ namespace FSpot {
 		
 		public void HandleEditGallery (object sender, System.EventArgs args)
 		{
-			gallery_add = new GoogleAccountDialog (this.Dialog, account, false);
+			gallery_add = new GoogleAccountDialog (this.Dialog, account, false, null);
 		}
 
 		public void HandleAddAlbum (object sender, System.EventArgs args)
