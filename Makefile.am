@@ -21,6 +21,9 @@ desktop_in_files=	\
 desktop_files=$(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = f-spot.pc
+
 Applicationsdir = $(datadir)/applications
 Applications_DATA = $(desktop_files)
 
@@ -34,6 +37,7 @@ EXTRA_DIST =			\
 	intltool-extract.in	\
 	intltool-merge.in	\
 	intltool-update.in	\
+	f-spot.pc.in		\
 	f-spot.spec		\
         $(desktop_in_files)     \
         $(desktop_files)

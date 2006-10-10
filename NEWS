@@ -1,10 +1,20 @@
-f-spot 0.2.1 - Sept 12 2005 - 1-Wire
+f-spot 0.2.2 - Oct 10 2006 - Bundle
+-----------------------------------
+- New query interface from (Gabriel Burt).
+- Switch to Alp Toker's new managed dbus-sharp (Stephane Delcroix) 
+- Lots of Picasa Web updates (Stephane Delcroix).
+- Support for importing images with existing tag metadata (Bengt Thuree)
+- Improved XMP reading and writing (Karl Palsson, Bengt).
+- Update to a more recent version of semweb.
+- Tons of bug fixes, see ChangeLog and bugzilla.
+
+f-spot 0.2.1 - Sept 12 2006 - 1-Wire
 ------------------------------------
 - Picasa Web album export.
 - Fixes for recent mono versions.
 - Support for scaling when sending mail.
 - Support for exporting the images in correct orientation.
-- Improved generation.
+- Improved XMP generation.
 - Many more bug fixes.
 
 f-spot 0.2.0 - August 28 2006 - Steller

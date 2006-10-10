@@ -28,5 +28,14 @@ libdbussharpgliblib_DATA =		\
 	NDesk.DBus.GLib.dll		\
 	NDesk.DBus.GLib.dll.config
 
-CLEANFILES =							\
-	NDesk.DBus.GLib.dll
+EXTRA_DIST = 				\
+	NDesk.DBus.GLib.dll.config	\
+	COPYING 			\
+	README
+
+CLEANFILES =				\
+	NDesk.DBus.GLib.dll		\
+	NDesk.DBus.GLib.dll.mdb
+
+DISTCLEANFILES =			\
+	makefile

@@ -2,7 +2,7 @@ AC_INIT(src/main.cs)
 
 AM_CONFIG_HEADER(config.h)
 
-AM_INIT_AUTOMAKE(f-spot, 0.2.1)
+AM_INIT_AUTOMAKE(f-spot, 0.2.2)
 
 AM_MAINTAINER_MODE
 
@@ -193,6 +193,7 @@ src/Defines.cs
 src/AssemblyInfo.cs
 src/f-spot.exe.config
 src/Makefile
+f-spot.pc
 f-spot.spec
 f-spot.desktop.in
 f-spot-view.desktop.in

@@ -12,6 +12,7 @@ noinst_DATA =					\
 	f-spot-imported-xmp-tags.png		\
 	f-spot-loading.png			\
 	f-spot-new-tag.png			\
+	f-spot-not.png				\
 	f-spot-other.png			\
 	f-spot-people.png			\
 	f-spot-places.png			\

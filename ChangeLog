@@ -1,9 +1,25 @@
+2006-10-10  Larry Ewing  <lewing@novell.com>
+
+	* icons/Makefile.am (noinst_DATA): add f-spot-not.png to the
+	build.
+
+	* dbus-sharp/Makefile.am: make Makefile.am pass distcheck.
+
+	* dbus-sharp-glib/Makefile.am: make Makefile.am pass distcheck.
+
+2006-09-04  Thomas Van Machelen <thomas.vanmachelen@gmail.com>
+
+	* configure.in:
+	* Makefile.am:
+	* f-spot.pc.in: Include a pkg-config file to the buildchain. 
+	Fix b.g.o #344534.
+
 2006-09-29  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/XmpTagsImporter: commit the icon for 'Import Tags' in the db.
 	Fix bgo #358261.  (and a small modification from larry).
 
-2006-10-10  Larry Ewing  <lewing@novell.com>
+2006-10-10 Larry Ewing  <lewing@novell.com>
 
 	* src/XmpFile.cs:
 	* src/MetadataStore.cs: patch from Bengt for #357146.
