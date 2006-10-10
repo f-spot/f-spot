@@ -1,5 +1,7 @@
 2006-10-10  Larry Ewing  <lewing@novell.com>
 
+	* src/RotateCommand.cs: actually delete the temporary file.
+
 	* src/Cairo/Surface.cs: make the IntPtr constructor public, we
 	need it elsewhere.
 

@@ -90,12 +90,12 @@ namespace FSpot {
 					using (Pixbuf pixbuf = img.Load ()) {
 						PixbufOrientation fake = (direction == RotateDirection.Clockwise) ? PixbufOrientation.RightTop : PixbufOrientation.LeftBottom;
 						using (Pixbuf rotated = PixbufUtils.TransformOrientation (pixbuf, fake)) {
-							Console.WriteLine ("fake = {0}", fake);
 							img.Save (rotated, stream);
 						}
 					}
 				}
 				File.Copy (backup, original_path, true);
+				File.Delete (backup);
 			} else {
 				throw new RotateException ("Unable to rotate photo type", original_path);
 			}
