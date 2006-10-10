@@ -1,3 +1,13 @@
+/*
+ *
+ * Author(s)
+ *
+ *   Larry Ewing <lewing@novell.com>
+ *
+ * This is free software. See COPYING for details
+ *
+ */
+
 using System;
 using Cairo;
 using Gdk;
@@ -74,7 +84,7 @@ namespace FSpot {
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
 			int round = 12;
-			Graphics g = CairoUtils.CreateDrawable (GdkWindow);
+			Graphics g = CairoUtils.CreateContext (GdkWindow);
 			g.Operator = Operator.Source;
 			g.Color = new Cairo.Color (0, 0, 0, 0);
 			g.Paint ();

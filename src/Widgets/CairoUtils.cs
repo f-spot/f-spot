@@ -1,3 +1,13 @@
+/*
+ *
+ * Author(s)
+ *
+ *   Larry Ewing <lewing@novell.com>
+ *
+ * This is free software. See COPYING for details
+ *
+ */
+
 using System;
 using Cairo;
 using System.Runtime.InteropServices;
@@ -47,13 +57,22 @@ namespace FSpot.Widgets {
 		[DllImport("libgdk-2.0-0.dll")]
 		static extern IntPtr gdk_cairo_create (IntPtr raw);
 		
-		public static Cairo.Graphics CreateDrawable (Gdk.Drawable drawable)
+		public static Cairo.Graphics CreateContext (Gdk.Drawable drawable)
 		{
 			Cairo.Graphics g = new Cairo.Graphics (gdk_cairo_create (drawable.Handle));
 			if (g == null) 
 				throw new Exception ("Couldn't create Cairo Graphics!");
 			
 			return g;
+		}
+
+		[DllImport("libfspot")]
+		static extern IntPtr f_pixbuf_to_cairo_surface (IntPtr handle);
+
+		public static Surface CreateSurface (Gdk.Pixbuf pixbuf)
+		{
+			IntPtr surface = f_pixbuf_to_cairo_surface (pixbuf.Handle);
+			return Surface.LookupExternalSurface (surface);
 		}
 	}
 }
