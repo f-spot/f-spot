@@ -156,7 +156,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 	private string Path {
 		get {
-			return directory_path + "/" + name;
+			return Path.Combine (directory_path, name);
 		}
 	}
 
