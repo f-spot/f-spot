@@ -1,9 +1,11 @@
 // XmpTagsImporter.cs: Creates tags based on embedded XMP tags in the photo/sidecar.
 //
-// Author:
+// Author(s):
 //   Bengt Thuree (bengt@thuree.com)
+//   Larry Ewing <lewing@novell.com>
 //
-// (C) 2006 Bengt Thuree
+// (C) 2006 Bengt Thuree, 
+//     2006 Novell Inc.
 // 
 
 using Gtk;
@@ -100,8 +102,10 @@ namespace FSpot.Xmp {
 			tag = tag_store.CreateCategory (parent,
 							info.TagName);
 			
-			if (info.HasIcon)
+			if (info.HasIcon) {
 				tag.StockIconName = info.IconName;
+				tag_store.Commit(tag);
+			}
 			
 			tags_created.Push (tag);
 			return tag;
