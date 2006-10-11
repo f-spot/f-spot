@@ -1,5 +1,5 @@
 CSC = gmcs
-CSFLAGS = -unsafe -debug -nowarn:0618 -nowarn:0169 -nowarn:0612 -d:TEST_METADATA 
+CSFLAGS = -unsafe -debug -nowarn:0618 -nowarn:0169 -nowarn:0612 -d:TEST_METADATA -d:BROKEN_RSVG
 
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Cairo/Cairo.cs		\

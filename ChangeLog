@@ -1,5 +1,10 @@
 2006-10-11  Larry Ewing  <lewing@novell.com>
 
+	* src/Makefile.am (CSC): add BROKEN_RSVG flag to the build.
+
+	* src/f-spot.in (EXE_TO_RUN): add the dbus directories to the
+	MONO_PATH when running uninstalled.
+
 	* src/Ciff.cs: patch from artis for #326356.
 
 2006-10-11  Stephane Delcroix  <stephane@delcroix.org>
