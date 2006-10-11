@@ -91,7 +91,7 @@ namespace FSpot.Ciff {
 		public uint ImageWidth;  // Number of horizontal pixels
 		public uint ImageHeight; // Number of vertical pixels
 		public float PixelAspectRatio;
-		public int RotationAngle;  // degreess clockwise to rotate (orientation)
+		public int RotationAngle;  // degrees counter clockwise to rotate (orientation)
 		public uint ComponentBitDepth; // bits per component
 		public uint ColorBitDepth; // bits per component * channels
 		public uint ColorBW; //  byte wise:  0 gray - 1 color ; byte 2 use aspect ratio ; 3 and 4 reserved
@@ -115,11 +115,11 @@ namespace FSpot.Ciff {
 				if (angle < 45)
 					return PixbufOrientation.TopLeft;
 				else if (angle < 135)
-					return PixbufOrientation.LeftBottom;
+					return PixbufOrientation.RightTop;
 				else if (angle < 225)
 					return PixbufOrientation.BottomRight;
 				else if (angle < 315)
-					return PixbufOrientation.RightTop;
+					return PixbufOrientation.LeftBottom;
 				else
 					return PixbufOrientation.TopLeft;
 			}
