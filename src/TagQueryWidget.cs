@@ -620,6 +620,8 @@ namespace FSpot.Query
 		public void Update ()
 		{
 			// Clear out the old icons
+			normal_icon = null;
+			negated_icon = null;
 			if (IsNegated) {
 				tips.SetTip (widget, String.Format (Catalog.GetString ("Not {0}"), tag.Name), null);
 				label.Text = "<s>" + tag.Name + "</s>";
