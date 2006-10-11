@@ -503,10 +503,10 @@ namespace FSpot {
 		
 		private void HandleChanged (object sender, EventArgs args)
 		{
-			if (gallery.Albums.Count == 0 || album_optionmenu.History <= 0) {
+			if (gallery.Albums.Count == 0 || album_optionmenu.History < 0) {
 				parent = "";
 			} else {
-				parent = ((Album) gallery.Albums [album_optionmenu.History-1]).Name;
+				parent = ((Album) gallery.Albums [album_optionmenu.History]).Name;
 			}
 			name = name_entry.Text;
 			description = description_entry.Text;
