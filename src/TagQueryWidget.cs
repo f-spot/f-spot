@@ -357,7 +357,6 @@ namespace FSpot.Query
 		// term represents.
 		public virtual string ConditionString ()
 		{
-			
 			StringBuilder condition = new StringBuilder ("(");
 
 			for (int i = 0; i < SubTerms.Count; i++) {
@@ -425,6 +424,26 @@ namespace FSpot.Query
 			return sep;
 			//return null;
 		}
+
+		public override string ConditionString ()
+		{
+			StringBuilder condition = new StringBuilder ("(");
+
+            condition.Append (base.ConditionString());
+
+            Tag hidden = Core.Database.Tags.Hidden;
+            if (hidden != null) {
+                if (FindByTag (hidden, false).Count == 0) {
+                    condition.Append (String.Format (
+                        " AND id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})", hidden.Id
+                    ));
+                }
+            }
+
+            condition.Append (")");
+
+			return condition.ToString ();
+        }
 		
 		public override string SQLOperator ()
 		{

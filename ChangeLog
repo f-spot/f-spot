@@ -1,5 +1,13 @@
 2006-10-11  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/PhotoStore.cs: Ensure hidden photos not selected only if the
+	extra_condition (used by the new query functionality) is null.
+
+	* src/TagQueryWidget.cs: Add an implicit 'Not Hidden' to every And term
+	unless it already includes the Hidden tag explicitly. 
+
+2006-10-11  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* po/POTFILES.in: Add FindBar.cs
 
 2006-10-11  Gabriel Burt  <gabriel.burt@gmail.com>

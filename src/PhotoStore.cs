@@ -1251,14 +1251,7 @@ public class PhotoStore : DbStore {
 	{
 		string query;
 
-		bool hide = true;
-		if (tags != null) {
-			foreach (Tag t in tags) {
-				if (tag_store.Hidden == null || t.Id == tag_store.Hidden.Id) 
-					hide = false;
-			}
-		} else
-			hide = tag_store.Hidden != null;
+		bool hide = (extra_condition == null);
 
 		// The SQL query that we want to construct is:
 		//
