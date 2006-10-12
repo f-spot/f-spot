@@ -45,9 +45,11 @@ libdbussharplibdir = $(libdir)/f-spot
 libdbussharplib_DATA =		\
 	NDesk.DBus.dll
 
+EXTRA_DIST =				\
+	$(LIBDBUSSHARP_CSFILES)		\
+	README				\
+	COPYING
+
 CLEANFILES =			\
 	NDesk.DBus.dll		\
 	NDesk.DBus.dll.mdb
-
-DISTCLEANFILES = 		\
-	makefile
