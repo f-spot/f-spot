@@ -1,3 +1,10 @@
+2006-10-13  Jakub Steiner <jimmac@ximian.com>
+
+	* icons/f-spot-not.png: make it 9x9px so it doesn't get scaled.
+	* icons/f-spot-rotate-90.png:
+	* icons/f-spot-rotate-270.png: update rotate icons to look like
+		gnome-icon-theme. Once 2.18 is out, we can ditch these.
+
 2006-10-12  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/POTFILES.in: add PicasaWebExport.cs for translation.
