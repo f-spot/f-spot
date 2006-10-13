@@ -557,6 +557,7 @@ namespace FSpot.Query
 					return widget;
 
 				container = new EventBox ();
+				box = new HBox ();
 
 				label = new Label ("<u>" + tag.Name + "</u>");
 				label.UseMarkup = true;
@@ -583,6 +584,8 @@ namespace FSpot.Query
 				
 				// Setup this widget as a drag destination (so tags can be added to our parent's LogicTerm)
 				container.DragDataReceived	+= HandleDragDataReceived;
+                container.DragMotion += HandleDragMotion;
+                container.DragLeave += HandleDragLeave;
 
 				Gtk.Drag.DestSet (container, DestDefaults.All, tag_dest_target_table, 
 						  DragAction.Copy | DragAction.Move ); 
@@ -593,12 +596,14 @@ namespace FSpot.Query
 				image.Show ();
 
 				if (tag.Icon == null) {
-					container.Add (label);
+					box.Add (label);
 				} else {
-					container.Add (image);
+					box.Add (image);
 				}
 
-				container.Show ();
+				box.Show ();
+
+                container.Add (box);
 
 				widget = container;
 
@@ -876,6 +881,27 @@ namespace FSpot.Query
 			}
 		}
 
+        private bool preview = false;
+        private Gtk.Widget preview_widget;
+        private bool preview_left = false;
+		private void HandleDragMotion (object o, DragMotionArgs args)
+        {
+            if (!preview) {
+                if (preview_widget == null) {
+                    preview_widget = new Gtk.Label (" | ");
+                    box.Add (preview_widget);
+                }
+
+                preview_widget.Show ();
+            }
+        }
+
+		private void HandleDragLeave (object o, EventArgs args)
+        {
+            preview = false;
+            preview_widget.Hide ();
+        }
+
 		public void HandleToggleNegatedCommand (object o, EventArgs args)
 		{
 			IsNegated = !IsNegated;
@@ -920,6 +946,7 @@ namespace FSpot.Query
 		private static ArrayList focusedLiterals = new ArrayList();
 		private static ArrayList hiddenWidgets = new ArrayList();
 		private Gtk.EventBox container;
+		private Gtk.Box box;
 		private Gtk.Image image;
 		private Gtk.Label label;
 		
@@ -1026,7 +1053,7 @@ namespace FSpot.Query
 			rootAdd.CanFocus = true;
 			rootAdd.DragMotion		+= HandleDragMotion;
 			rootAdd.DragDataReceived	+= HandleDragDataReceived;
-			rootAdd.DragLeave		+= HandleLeave;
+			rootAdd.DragLeave		+= HandleDragLeave;
 
 			help = new Gtk.Label ("<i>" + Catalog.GetString ("Drag tags here to search for them") + "</i>");
 			help.UseMarkup = true;
@@ -1090,7 +1117,7 @@ namespace FSpot.Query
 			}
 		}
 		
-		private void HandleLeave (object o, EventArgs args)
+		private void HandleDragLeave (object o, EventArgs args)
 		{
 			if (preview && Children.Length > 1) {
 				sepBox.Hide ();

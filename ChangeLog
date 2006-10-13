@@ -1,3 +1,8 @@
+2006-10-12  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/TagQueryWidget.cs: When you drag a tag onto another tag in the find
+	bar, show an indicator of where the tag will be placed if is dropped.
+
 2006-10-13  Jakub Steiner <jimmac@ximian.com>
 
 	* icons/f-spot-not.png: make it 9x9px so it doesn't get scaled.
