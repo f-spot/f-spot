@@ -1495,6 +1495,7 @@ public class MainWindow {
 			"Alex Graveley",
 			"Todd Berman",
 			"Ben Monnahan",
+			"Stephane Delcroix",
 			"Vladimir Vukicevic",
 			"Aaron Bockover",
 			"Bengt Thuree",
