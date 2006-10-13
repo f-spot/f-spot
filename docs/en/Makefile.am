@@ -1,5 +1,10 @@
 docdir = $(prefix)/share/gnome/help/$(PACKAGE)/en
-doc_DATA = $(srcdir)/index.xml
+
+DOC_XMLFILES = $(srcdir)/index.xml
+
+doc_DATA = $(DOC_XMLFILES)
+
+EXTRA_DIST= $(DOC_XMLFILES)
 
 MAINTAINERCLEANFILES = \
 	Makefile.in
