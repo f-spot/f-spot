@@ -50,6 +50,16 @@ namespace FSpot {
 			}
 		}
 
+		public static string HelpDirectory {
+			get { 
+				return System.IO.Path.Combine(Defines.PREFIX,
+					System.IO.Path.Combine("share",
+					System.IO.Path.Combine("gnome",
+					System.IO.Path.Combine("help",
+					System.IO.Path.Combine("f-spot", "en")))));
+			}	
+		}
+
 		private static Cms.Profile display_profile;
 		public static Cms.Profile DisplayProfile {
 			set { display_profile = value; }

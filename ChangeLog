@@ -1,3 +1,24 @@
+2006-10-13  Larry Ewing  <lewing@novell.com>
+
+	* docs/Makefile.am:
+	* docs/en/Makfile.am: adjust the makefiles so that they pass distcheck.
+
+	* src/f-spot.glade: rename help menu item to Contents.
+
+2006-10-12  Stephane Delcroix  <stephane@delcroix.org>
+
+	* Makefile.am:
+	* configure.in:
+	* docs/Makefile.am:
+	* docs/en/Makefile.am:
+	* docs/en/index.xml: Add the the first user guide to the buildchain.
+
+	* src/Defines.cs.in:
+	* src/Global.cs: New Global.HelpDirectory
+
+	* src/MainWindow.cs:
+	* src/f-spot.glade: new MenuEntry and F1 shortcut.
+
 2006-10-12  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/TagQueryWidget.cs: Add hot new grab handles to tags in the find bar.

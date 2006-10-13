@@ -1,6 +1,7 @@
 SUBDIRS = 		\
 	dbus-sharp	\
 	dbus-sharp-glib	\
+	docs		\
 	FlickrNet	\
 	google-sharp	\
 	gnome-keyring-sharp \

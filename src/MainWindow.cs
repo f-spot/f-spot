@@ -1478,6 +1478,14 @@ public class MainWindow {
 		new FSpot.SendEmail (new FSpot.PhotoArray (SelectedPhotos ()));
 	}
 
+	public static void HandleHelp (object sender, EventArgs args)
+	{
+		Gnome.Vfs.Url.Show("ghelp:" + 
+				FSpot.Global.HelpDirectory +
+				System.IO.Path.DirectorySeparatorChar +
+				"index.xml");
+	}
+
 	public static void HandleAbout (object sender, EventArgs args)
 	{
 		string [] authors = new string [] {
