@@ -1,0 +1,637 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML 4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<book id="f-spot" lang="C">
+	<bookinfo>
+		<title>The F-Spot Manual</title>
+		<subtitle>This is the user manual for F-Spot, a GNOME personal photo manager.</subtitle>
+		<copyright>
+			<year>2006</year>
+			<holder>Aaron Bockover, Gabriel Burt, Miguel de Icaza, Bengt Thuree</holder>
+		</copyright>
+		<publisher>
+			<publishername>GNOME Documentation Project</publishername>
+		</publisher>
+		<authorgroup>
+			<author>
+				<firstname>Miguel</firstname>
+				<surname>de Icaza</surname>
+			</author>
+			<author>
+				<firstname>Aaron</firstname>
+				<surname>Bockover</surname>
+			</author>
+			<author>
+				<firstname>Bengt</firstname>
+				<surname>Thuree</surname>
+			</author>
+			<author>
+				<firstname>Gabriel</firstname>
+				<surname>Burt</surname>
+			</author>
+		</authorgroup>
+		<!--<include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>-->
+		<revhistory>
+			<revision>
+				<revnumber>0.1</revnumber>
+				<date>2006-09-13</date>
+			</revision>
+		 </revhistory>
+	</bookinfo>
+
+	<chapter id="organizing">
+		<title>Organizing your photos</title>
+		
+		<sect1 id="import">
+			<title>Import</title>
+
+			<para>
+				You can import photos from your hard drive or your camera. When you 
+				import your photos into F-Spot from your camera, it will always make a 
+				copy of them, leaving you free to clear your camera's memory. By default, 
+				F-Spot will make a copy of photos imported from your hard drive. Uncheck 
+				the <guilabel>Copy</guilabel> option on the import dialog or hold 
+				<keycap>Shift</keycap> when dragging photos into F-Spot if you do not 
+				wish to copy them from your hard drive.
+			</para>
+
+			<para>
+				If all the photos you are importing at one time are from a particular event, 
+				or have some other characteristic in common, you can create a tag for them 
+				so you can later find them with ease. To do this, follow the instructions below 
+				to <ulink url="tag">create a new tag</ulink>, then when you are importing 
+				them, check the button for <guilabel>Attach Tag</guilabel> and choose the 
+				tag you created. 
+			</para>
+		</sect1>
+		
+		<sect1 id="edit">
+			<title>Edit</title>
+			
+			<para>
+				If you double click or press enter on an image, you enter Edit mode, where 
+				you can remove red-eye, crop, and adjust brightness and colors.
+			</para>
+			
+			<sect2 id="edit-versions">
+				<title>Versions</title>
+				
+				<para>
+					When you edit your photos, a new copy (called a version) is created, 
+					so your original is never altered. After your first edit to a photo, subsequent 
+					edits will modify the same version. If you want to create mulitple versions 
+					of your photo, perhaps with different cropping or coloring, you can do so 
+					via the <menuchoice><guimenu>File</guimenu>
+					<guimenuitem>Create new version</guimenuitem></menuchoice> option.
+				</para>
+			</sect2>
+
+			<sect2 id="edit-adjust-colors">
+				<title>Adjust Colors</title>
+				
+				<para>
+					To adjust the brightness, contrast, and colors of a photo, first click the 
+					<guibutton>Adjust Photos</guibutton> icon to open the adjustment dialog. 
+				</para>
+			</sect2>
+
+			<sect2 id="edit-remove-red-eye">
+				<title>Remove Red-Eye</title>
+				
+				<para>
+					To remove redeye from a photo, you need to select each individual eye. 
+					You may want to zoom in on the image to accurately select the eyes in 
+					the photo.
+				</para>
+				<para>
+					To make your selection, click one corner of the rectangle that will be your 
+					selection, and drag your mouse to the diagonal corner and release it. You 
+					can resize your selection by dragging its edges, and you can move it by 
+					clicking in the middle of it and dragging it to where you want it.
+				</para>
+				<para>
+					Once you have selected an eye, you can remove the red from it by clicking 
+					the red-eye button beneath the photo. 
+				</para>
+			</sect2>
+
+			<sect2 id="edit-crop">
+				<title>Crop</title>
+				
+				<para>
+					Cropping an image is a great way to improve the quality of a photograph by 
+					improving how it is framed. You crop a photo by selecting the part of the photo 
+					you want to keep. If you want your photo to be the exact dimensions necessary 
+					for a certain print size, you can constrain the kind of selection F-Spot will allow 
+					you to draw by choosing the appropriate size from the constraint drop down. 
+					See the <xref linkend="edit-remove-red-eye"/> above for details on making 
+					a selection on your photo.
+				</para>
+				<para>
+					Once you have made your crop selection, you must click the crop button beneath 
+					the image to finalize the crop. If you are working with the original photo, cropping 
+					creates a new version your photo.
+				</para>
+			</sect2>
+
+			<sect2 id="edit-describe">
+				<title>Describe</title>
+				
+				<para>
+					You can also enter a description of the image by clicking on the text entry box 
+					below the image and typing. 
+				</para>
+				<para>
+					Once you have made your crop selection, you must click the crop button beneath 
+					the image to finalize the crop. If you are working with the original photo, cropping 
+					creates a new version your photo.
+				</para>
+			</sect2>
+		</sect1>
+		
+		<sect1 id="tag">
+			<title>Tag</title>
+			<para>
+				F-Spot enables you to organize and enjoy your photos by associating them 
+				with various user-customizable tags. A tag is a merely a label. F-Spot comes 
+				with default tags to get you started &mdash; you are free to change them and 
+				add new ones. For example, if you want to create a tag for specific event, you 
+				can create a new tag named after that event under the Events tag.
+			</para>
+			<para>
+				There are many ways to tag photos:
+			</para>
+			<itemizedlist>
+				<listitem>
+					<para>
+						drag and drop the photo(s) onto the tag
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						drag and drop the tag onto the photo(s)
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						via the photo's right-click menu
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						via the Tags and Edit menus
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						by typing them in (press <keycap>t</keycap> to pop up the tag entry bar, 
+						enter comma-separated tags) &mdash; with tab completion!
+					</para>
+				</listitem>
+			</itemizedlist>
+			<para>
+				The first photo you associate with a tag will be used for that tag's icon. 
+				You can always edit a tag's name, parent tag, and icon by right clicking 
+				on it and choosing <guilabel>Edit tag</guilabel>.
+			</para>
+			<para>
+				You can change a tag's parent by dragging and dropping it where you like. 
+				Also, you can edit the name of a tag by selecting it and pressing 
+				<keycap>F2</keycap>. Lastly, if you have the tag tree widget focused 
+				(e.g. you just clicked on a tag), you can start typing the name of a tag, and 
+				all the expanded tags in the list will be searched and you'll jump to any 
+				matching ones. 
+			</para>
+		</sect1>
+	</chapter>
+
+	<chapter id="enjoying">
+		<title>Enjoying your photos</title>
+		<sect1 id="enjoying-browse">
+			<title>Browse</title>
+			<para>
+				You can use the slider widget to browse your photos by month or by 
+				directory. To change this setting, go to <menuchoice>
+				<guimenu>View</guimenu><guimenuitem>Arranged By</guimenuitem>
+				</menuchoice>.
+			</para>
+		</sect1>
+		<sect1 id="enjoying-search">
+			<title>Search</title>
+			<para>
+				You can choose to view only photos from a particular tag by checking 
+				the box next to a tag. Selecting multiple tags shows you photos having at 
+				least one of the tags.
+			</para>
+		</sect1>
+		<sect1 id="enjoying-fullscreen-mode-and-slideshows">
+			<title>Fullscreen Mode and Slideshows</title>
+			<para>
+				For fewer distractions and larger display, you can view your photos in full 
+				screen mode. You control when to show the next photo or to return to the 
+				previous. Enter fullscreen mode by pressing <keycap>F11</keycap> at 
+				any time or by pressing the button in the toolbar.
+			</para>
+			<para>
+				In slideshow mode, you can sit back and view your photos as they are 
+				presented to you. You can start a slideshow by pressing the button on the 
+				toolbar. 
+			</para>
+		</sect1>
+	</chapter>
+	
+	<chapter id="sharing">
+		<title>Sharing your photos</title>
+		
+		<abstract>
+			<para>
+				There are many ways to share your photos using F-Spot. All of the following 
+				methods will only share the photos you have selected when you run them.
+			</para>
+		</abstract>
+		
+		<sect1 id="sharing-e-mail">
+			<title>E-mail</title>
+			<para>
+				E-mail your photos directly from F-Spot with the <menuchoice>
+				<guimenu>File</guimenu><guimenuitem>Send Mail</guimenuitem>
+				</menuchoice> menu. 
+			</para>
+		</sect1>
+
+		<sect1 id="sharing-print">
+			<title>Print</title>
+			<para>
+				Print your photos with the <menuchoice><guimenu>File</guimenu>
+				<guimenuitem>Print</guimenuitem></menuchoice> menu.
+			</para>
+		</sect1>
+
+		<sect1 id="sharing-burn-to-cd">
+			<title>Burn to CD</title>
+			<para>
+				
+			</para>
+		</sect1>
+
+		<sect1 id="website-gallery-folder">
+			<title>Generate a Website Gallery or Folder</title>
+			<para>
+				The 
+				<menuchoice><guimenu>File</guimenu><guimenuitem>Export</guimenuitem>
+				<guimenuitem>Export to Folder</guimenuitem></menuchoice> feature 
+				gives you three ways to export your images.
+			</para>
+			<itemizedlist>
+				<listitem>
+					<para>
+						<guilabel>Use Original</guilabel> exports your photos ready for use with 
+						Jakub Steiner's free <ulink url="http://jimmac.musichall.cz/original.php">
+						Original Photo Gallery</ulink> software. If you are unsure about this option, 
+						it is probably not the right one for you.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						<guilabel>Use static HTML files</guilabel> exports your photos to an 
+						interactive website, ready for you to upload.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						<guilabel>Plain Files</guilabel> exports your images as files within directories, 
+						without putting them into a gallery. 
+					</para>
+				</listitem>
+			</itemizedlist>
+		</sect1>
+
+		<sect1 id="sharing-flickr-or-php-gallery">
+			<title>Post to your Flickr or PHP Gallery</title>
+			<para>
+				If you use Flickr, you can post your files directly from F-Spot with the 
+				<menuchoice><guimenu>File</guimenu><guimenuitem>Export</guimenuitem>
+				<guimenuitem>Export to Flickr</guimenuitem></menuchoice> menu.
+			</para>
+			<para>
+				If you use the PHP software known as <ulink url="http://gallery.sourceforge.net/">
+				Gallery</ulink>, you can post your photos to your existing album with the 
+				<menuchoice><guimenu>File</guimenu><guimenuitem>Export</guimenuitem>
+				<guimenuitem>Export to Web Gallery</guimenuitem></menuchoice> menu. 
+				You must first enable the Remote module within your Gallery installation.
+			</para>
+		</sect1>
+	</chapter>
+	
+	<chapter id="shortcuts">
+		<title>Shortcuts</title>
+		
+		<sect1 id="Global-Shortcuts">
+			<title>Global Shortcuts</title>
+			<informaltable frame="all">
+				<tgroup cols="2">
+					<thead>
+						<row>
+							<entry>
+								Key
+							</entry>
+							<entry>
+								Action
+							</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>
+								<keycap>[</keycap>
+							</entry>
+							<entry>
+								Rotate the selected photos to the left
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycap>]</keycap>
+							</entry>
+							<entry>
+									Rotate the selected photos to the right
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycap>t</keycap>
+							</entry>
+							<entry>
+								View or edit tags for selected photos
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycap>F11</keycap>
+							</entry>
+							<entry>
+								Full screen view
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycombo><keycap>Ctrl</keycap><keycap>I</keycap></keycombo>
+							</entry>
+							<entry>
+								Displays information about the photo
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycombo><keycap>Ctrl</keycap><keycap>Equals</keycap></keycombo>
+							</entry>
+							<entry>
+								Zoom-in
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycombo><keycap>Ctrl</keycap><keycap>Minus</keycap></keycombo>
+							</entry>
+							<entry>
+								Zoom-out
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycombo><keycap>Ctrl</keycap><keycap>N</keycap></keycombo>
+							</entry>
+							<entry>
+								Import photos
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</informaltable>
+		</sect1>
+		
+		<sect1 id="shortcuts-browse-mode">
+			<title>Browse Mode Shortcuts</title>
+			<informaltable frame="all">
+				<tgroup cols="2">
+					<thead>
+						<row>
+							<entry>
+								Key
+							</entry>
+							<entry>
+								Action
+							</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>
+								<keycombo><keycap>Ctrl</keycap><keycap>A</keycap></keycombo>
+							</entry>
+							<entry>
+								Select all
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap>
+								<keycap>A</keycap></keycombo>
+							</entry>
+							<entry>
+								Unselect all
+							</entry>
+						</row>
+						<row>
+							<entry>
+								Arrow keys (up, down, left, right)
+							</entry>
+							<entry>
+								Move focus
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycap>Ctrl</keycap>-arrow key
+							</entry>
+							<entry>
+								Move the focus without changing the selection
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycap>Spacebar</keycap>
+							</entry>
+							<entry>
+								Select or unselect the focused photo
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycombo><keycap>Shift</keycap>
+								<keycap>arrow key</keycap></keycombo>
+							</entry>
+							<entry>
+								Change the photo selection
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap>
+								<keycap>left arrow or right arrow</keycap></keycombo>
+							</entry>
+							<entry>
+								Add/Remove all photos in the row, in the direction pressed, to the selection
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycap>v</keycap>
+							</entry>
+							<entry>
+								Pops up a larger preview of the picture pointed by the mouse
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycap>V</keycap>
+							</entry>
+							<entry>
+								Pops up a larger preview and a color histogram of the picture pointed by the mouse
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</informaltable>
+		</sect1>
+		
+		<sect1 id="shortcuts-tag">
+			<title>Tag Shortcuts</title>
+			<informaltable frame="all">
+				<tgroup cols="2">
+					<thead>
+						<row>
+							<entry>
+								Key
+							</entry>
+							<entry>
+								Action
+							</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>
+								<keycap>F2</keycap>
+							</entry>
+							<entry>
+								Rename selected tag
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycombo><keycap>Ctrl</keycap><keycap>T</keycap></keycombo>
+							</entry>
+							<entry>
+								Add tags to selected photos
+							</entry>
+						</row>
+						<row>
+							<entry>
+								n/a
+							</entry>
+							<entry>
+								Drag and drop tags to move them
+							</entry>
+						</row>
+						<row>
+							<entry>
+								n/a
+							</entry>
+							<entry>
+								Type a tag's name to jump to it (only works if tag is shown/expanded)
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</informaltable>
+		</sect1>
+		
+		<sect1 id="shortcuts-edit-mode">
+			<title>Edit Mode Shortcuts</title>
+			<informaltable frame="all">
+				<tgroup cols="2">
+					<thead>
+						<row>
+							<entry>
+								Key
+							</entry>
+							<entry>
+								Action
+							</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>
+								<keycap>Page Up</keycap>
+							</entry>
+							<entry>
+								Go to Previous Photo
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycap>Page Down</keycap>, <keycap>Spacebar</keycap>
+							</entry>
+							<entry>
+								Go to Next Photo
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycap>0</keycap>
+							</entry>
+							<entry>
+								Fit the image to the screen
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycap>1</keycap>
+							</entry>
+							<entry>
+								Zoom Factor to 1.0 (1 screen pixel per image pixel)
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycap>2</keycap>
+							</entry>
+							<entry>
+								Zoom Factor to 2.0 (4 screen pixels per image pixel)
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycap>Escape</keycap>
+							</entry>
+							<entry>
+								Returns to Browser mode
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycap>v</keycap>
+							</entry>
+							<entry>
+								Examine photo with magnifying glass (Loupe)
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</informaltable>
+		</sect1>
+	</chapter>
+
+</book>
+
