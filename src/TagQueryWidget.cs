@@ -557,9 +557,13 @@ namespace FSpot.Query
 					return widget;
 
 				container = new EventBox ();
+
 				box = new HBox ();
 
-				label = new Label ("<u>" + tag.Name + "</u>");
+                handle_box = new LiteralBox ();
+                handle_box.BorderWidth = 1;
+
+				label = new Label (tag.Name);
 				label.UseMarkup = true;
 
 				image = new Gtk.Image (NormalIcon);
@@ -596,12 +600,15 @@ namespace FSpot.Query
 				image.Show ();
 
 				if (tag.Icon == null) {
-					box.Add (label);
+					handle_box.Add (label);
 				} else {
-					box.Add (image);
+					handle_box.Add (image);
 				}
 
-				box.Show ();
+				handle_box.Show ();
+
+                box.Add (handle_box);
+                box.Show ();
 
                 container.Add (box);
 
@@ -652,7 +659,7 @@ namespace FSpot.Query
 				image.Pixbuf = NegatedIcon;
 			} else {
 				tips.SetTip (widget, tag.Name, null);
-				label.Text = "<u>" + tag.Name + "</u>";
+				label.Text = tag.Name;
 				image.Pixbuf = NormalIcon;
 			}
 
@@ -945,7 +952,8 @@ namespace FSpot.Query
 
 		private static ArrayList focusedLiterals = new ArrayList();
 		private static ArrayList hiddenWidgets = new ArrayList();
-		private Gtk.EventBox container;
+		private Gtk.Container container;
+		private LiteralBox handle_box;
 		private Gtk.Box box;
 		private Gtk.Image image;
 		private Gtk.Label label;
@@ -983,6 +991,52 @@ namespace FSpot.Query
 		public delegate void LiteralsMovedHandler (ArrayList literals, LogicTerm parent, Literal after); 
 		public event LiteralsMovedHandler LiteralsMoved;
 	}
+
+    public class LiteralBox : VBox {
+        private GrabHandle handle;
+
+        public LiteralBox () : base ()
+        {
+            handle = new GrabHandle (24, 8);
+
+            PackEnd (handle, false, false, 0);
+
+            Show ();
+        }
+    }
+
+    public class GrabHandle : DrawingArea {
+        public GrabHandle (int w, int h) : base ()
+        {
+            Size (w, h);
+            Orientation = Gtk.Orientation.Horizontal;
+            Show ();
+        }
+
+        private Gtk.Orientation orientation;
+        public Gtk.Orientation Orientation {
+            get { return orientation; }
+            set { orientation = value; }
+        }
+
+        protected override bool OnExposeEvent (Gdk.EventExpose evnt)
+        {
+            bool ret = base.OnExposeEvent(evnt);
+
+            if (evnt.Window != GdkWindow) {
+                return ret;
+            }
+
+            Gtk.Style.PaintHandle(Style, GdkWindow, State, ShadowType.In,
+                evnt.Area, this, "entry", 0, 0, Allocation.Width, Allocation.Height, Orientation);
+
+            //(Style, GdkWindow, StateType.Normal, ShadowType.In,
+            //evnt.Area, this, "entry", 0, y_mid - y_offset, Allocation.Width, 
+            //Height + (y_offset * 2));
+
+            return ret;
+        }
+    }
 
 	public class LogicWidget : HBox {
 		private PhotoQuery query;

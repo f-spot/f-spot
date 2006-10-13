@@ -1,5 +1,11 @@
 2006-10-12  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/TagQueryWidget.cs: Add hot new grab handles to tags in the find bar.
+	Take away the underlining of icon-less tags in the find bar since the
+	gripper handle makes it clear what's going on.
+
+2006-10-12  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/TagQueryWidget.cs: When you drag a tag onto another tag in the find
 	bar, show an indicator of where the tag will be placed if is dropped.
 
