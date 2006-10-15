@@ -199,15 +199,21 @@ namespace FSpot {
 				fr.TryWebLogin();
 				CurrentState = State.Connected;
 			} catch (FlickrException e) {
-				HigMessageDialog md = 
-					new HigMessageDialog (Dialog, 
-							      Gtk.DialogFlags.Modal |
-							      Gtk.DialogFlags.DestroyWithParent,
-							      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
-							      Catalog.GetString ("Unable to log on"), e.Message);
-				md.Run ();
-				md.Destroy ();
-				CurrentState = State.Disconnected;
+				if (e.Code == 98) {
+					Logout ();
+					Login ();
+				} else {
+					HigMessageDialog md = 
+						new HigMessageDialog (Dialog, 
+								      Gtk.DialogFlags.Modal |
+								      Gtk.DialogFlags.DestroyWithParent,
+								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+								      Catalog.GetString ("Unable to log on"), e.Message);
+
+					md.Run ();
+					md.Destroy ();
+					CurrentState = State.Disconnected;
+				}
 			}
 		}
 
