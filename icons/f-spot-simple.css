@@ -57,18 +57,6 @@ div.navi a {
 	padding-top: 3px;
 }
 
-div#index a {
-	background: transparent url("index.png") top left no-repeat;
-}
-
-div#prev a {
-	background: transparent url("prev.png") top left no-repeat;
-}
-
-div#next a {
-	background: transparent url("next.png") top left no-repeat;
-}
-
 div#index a:hover, div#prev a:hover, div#next a:hover {
 	text-decoration: none;
   background-color: #c49200;
