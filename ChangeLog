@@ -1,3 +1,8 @@
+2006-10-16  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/FlickrExport.cs: Fix the issue with strip metadata. Fixes 362438
+	and 352117.
+
 2006-10-15  Larry Ewing  <lewing@novell.com>
 
 	* src/FlickrExport.cs: Handle invalid auth tokens in the exception

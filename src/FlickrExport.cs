@@ -331,7 +331,7 @@ namespace FSpot {
 			fr.ExportTags = tag_check.Active;
 			open = open_check.Active;
 			scale = scale_check.Active;
-			copy_metadata = open_check.Active;
+			copy_metadata = !meta_check.Active;
 			is_public = public_radio.Active;
 			is_family = family_check.Active;
 			is_friend = friend_check.Active;
