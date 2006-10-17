@@ -11,8 +11,21 @@ using System;
 
 namespace FSpot.Filters {
 	public class JpegFilter : IFilter {
-		const int quality = 95;
+		private uint quality = 95;
+		public uint Quality {
+			get { return quality; }
+			set { quality = value; }
+		}
 		
+		public JpegFilter (uint quality)
+		{
+			this.quality = quality;
+		}
+
+		public JpegFilter()
+		{
+		}
+			
 		public bool Convert (string source, string dest)
 		{
 			// FIXME this should copy metadata from the original
@@ -28,7 +41,7 @@ namespace FSpot.Filters {
 				exif_data = new Exif.ExifData();
 			}
 
-			PixbufUtils.SaveJpeg (img.Load(), dest, quality, exif_data);
+			PixbufUtils.SaveJpeg (img.Load(), dest, (int) quality, exif_data);
 
 			return true;
 		}
