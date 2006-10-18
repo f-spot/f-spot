@@ -711,8 +711,10 @@ namespace FSpot {
 					else if (rotate)
 						final = ImageFile.TempPath (orig);
 					
-					bool changed = filters.Convert (orig, final);
-					album.Add (photo, final);
+					if (filters.Convert (orig, final))
+						album.Add (photo, final);
+					else
+						album.Add (photo, orig);
 					
 					if (final != orig)
 						System.IO.File.Delete (final);
