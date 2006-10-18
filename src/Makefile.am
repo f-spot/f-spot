@@ -3,11 +3,11 @@ CSFLAGS = -unsafe -debug -nowarn:0618 -nowarn:0169 -nowarn:0612 -d:TEST_METADATA
 
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Cairo/Cairo.cs		\
-	$(srcdir)/Cairo/Surface.cs		\
 	$(srcdir)/Cairo/FontOptions.cs		\
+	$(srcdir)/Cairo/Graphics.cs		\
 	$(srcdir)/Cairo/Matrix.cs		\
 	$(srcdir)/Cairo/Pattern.cs		\
-	$(srcdir)/Cairo/Graphics.cs		\
+	$(srcdir)/Cairo/Surface.cs		\
 	$(srcdir)/AsyncPixbufLoader.cs		\
 	$(srcdir)/Bim.cs			\
 	$(srcdir)/BitConverter.cs		\
@@ -130,6 +130,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/CairoUtils.cs		\
 	$(srcdir)/Widgets/CompositeUtils.cs	\
 	$(srcdir)/Widgets/GdkUtils.cs		\
+	$(srcdir)/Widgets/ImageDisplay.cs	\
 	$(srcdir)/Widgets/ScrolledView.cs	\
 	$(srcdir)/X3fFile.cs			\
 	$(srcdir)/XmpFile.cs			\

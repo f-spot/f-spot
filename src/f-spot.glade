@@ -8453,13 +8453,10 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 </widget>
 
 <widget class="GtkWindow" id="main_window">
-  <property name="visible">True</property>
   <property name="title" translatable="yes">F-Spot</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
-  <property name="window_position">GTK_WIN_POS_NONE</property>
+  <property name="window_position">GTK_WIN_POS_CENTER</property>
   <property name="modal">False</property>
-  <property name="default_width">800</property>
-  <property name="default_height">600</property>
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
   <property name="decorated">True</property>

@@ -1,3 +1,12 @@
+2006-10-18  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/f-spot.glade:
+	* src/MainWindow.cs: Fix BGO #356978, the window would change
+	size/position after being shown.
+
+	* src/Widgets/ImageDisplay.cs:
+	* src/Makefile.am: fix the build
+
 2006-10-18  Larry Ewing  <lewing@novell.com>
 
 	* src/Cairo/Pattern.cs: remove strange constructor mess.  I really

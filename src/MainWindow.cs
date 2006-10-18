@@ -208,13 +208,15 @@ public class MainWindow {
 		if (Toplevel == null)
 			Toplevel = this;
 
-		Glade.XML gui = Glade.XML.FromAssembly ("f-spot.glade", "main_window", "f-spot");
+		Glade.XML gui = new Glade.XML (null, "f-spot.glade", "main_window", null);
 		gui.Autoconnect (this);
 
 		LoadPreference (Preferences.MAIN_WINDOW_WIDTH);
 		LoadPreference (Preferences.MAIN_WINDOW_X);
 		LoadPreference (Preferences.MAIN_WINDOW_MAXIMIZED);
-		LoadPreference (Preferences.SIDEBAR_POSITION);
+        main_window.ShowAll ();
+
+        LoadPreference (Preferences.SIDEBAR_POSITION);
 		LoadPreference (Preferences.METADATA_EMBED_IN_IMAGE);
 
 		slide_delay = new FSpot.Delay (new GLib.IdleHandler (SlideShow));
@@ -2451,10 +2453,9 @@ public class MainWindow {
 		
 		case Preferences.MAIN_WINDOW_WIDTH:
 		case Preferences.MAIN_WINDOW_HEIGHT:
-			main_window.SetDefaultSize((int) Preferences.Get(Preferences.MAIN_WINDOW_WIDTH),
+			main_window.Resize((int) Preferences.Get(Preferences.MAIN_WINDOW_WIDTH),
 					(int) Preferences.Get(Preferences.MAIN_WINDOW_HEIGHT));
 
-			main_window.ReshowWithInitialSize();
 			break;
 		
 		case Preferences.SHOW_TOOLBAR:

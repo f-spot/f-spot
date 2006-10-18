@@ -288,7 +288,7 @@ namespace FSpot.Widgets {
 				ctx.Matrix = end.Fill (allocation);
 				SurfacePattern sur = new SurfacePattern (end.Surface);
 				//sur.Filter = Filter.Fast;
-				Pattern black = new SolidPattern (new Cairo.Color (0.0, 0.0, 0.0, fraction));
+				Pattern black = new SolidPattern (new Cairo.Color (0.0, 0.0, 0.0, fraction), false);
 				ctx.Pattern = sur;
 				ctx.Mask (black);
 
@@ -339,8 +339,7 @@ namespace FSpot.Widgets {
 				ctx.Operator = Operator.Source;
 				
 				SurfacePattern p = new SurfacePattern (begin_buffer.Surface);
-				ctx.Matrix = begin_buffer.Fill
- (allocation);
+				ctx.Matrix = begin_buffer.Fill (allocation);
 				p.Filter = Filter.Fast;
 				ctx.Pattern = p;
 				ctx.Paint ();
@@ -349,7 +348,7 @@ namespace FSpot.Widgets {
 				ctx.Operator = Operator.Over;
 				ctx.Matrix = end_buffer.Fill (allocation);
 				SurfacePattern sur = new SurfacePattern (end_buffer.Surface);
-				Pattern black = new SolidPattern (new Cairo.Color (0.0, 0.0, 0.0, opacity));
+				Pattern black = new SolidPattern (new Cairo.Color (0.0, 0.0, 0.0, opacity), false);
 				//ctx.Pattern = black;
 				//ctx.Fill ();
 				sur.Filter = Filter.Fast;
