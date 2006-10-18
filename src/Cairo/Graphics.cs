@@ -452,15 +452,15 @@ namespace Cairo {
 			CairoAPI.cairo_paint_with_alpha (state, alpha);
 		}
 		
-				public void Mask (Pattern pattern)
-				{
-					CairoAPI.cairo_mask (state, pattern.Pointer);
-				}
-
-				public void MaskSurface (Surface surface, double x, double y)
-				{
-					CairoAPI.cairo_mask_surface (state, surface.Handle, x, y);
-				}
+		public void Mask (Pattern pattern)
+		{
+			CairoAPI.cairo_mask (state, pattern.Pointer);
+		}
+		
+		public void MaskSurface (Surface surface, double x, double y)
+		{
+			CairoAPI.cairo_mask_surface (state, surface.Handle, x, y);
+		}
 
                 public void Stroke ()
                 {

@@ -1,7 +1,8 @@
 using System;
 using Gtk;
-using System.Threading;
 using Cms;
+using Mono.Unix;
+using System.Threading;
 
 namespace FSpot {
 	public class SepiaTone : ColorAdjustment {
@@ -310,11 +311,12 @@ namespace FSpot {
 				photo.SaveVersion (final, create_version);
 				((PhotoQuery)view.Query).Commit (view.Item.Index);
 			} catch (System.Exception e) {
-				string msg = Mono.Posix.Catalog.GetString ("Error saving adjusted photo");
-				string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
+				string msg = Catalog.GetString ("Error saving adjusted photo");
+				string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
 							     e.Message, photo.Name);
 				
-				HigMessageDialog md = new HigMessageDialog ((Gtk.Window)Dialog.Toplevel, DialogFlags.DestroyWithParent, 
+				HigMessageDialog md = new HigMessageDialog ((Gtk.Window)Dialog.Toplevel,
+									    DialogFlags.DestroyWithParent, 
 									    Gtk.MessageType.Error, ButtonsType.Ok, 
 									    msg,
 									    desc);
@@ -333,7 +335,7 @@ namespace FSpot {
 			view.QueueDraw ();
 			System.Console.WriteLine ("clearing window");
 			this.Dialog.Destroy ();
-            instance = null;
+			instance = null;
 		}
 		
 		private void HandleOkClicked (object sender, EventArgs args)
@@ -539,15 +541,9 @@ namespace FSpot {
 		protected ColorDialog (FSpot.PhotoImageView view)       
 		{
 			this.view = view;
-
-			Window parent = view.Toplevel as Window;
-
 			this.CreateDialog ("inline_color_dialog");
 
 			AttachInterface ();
-			if (parent != null)
-				this.Dialog.TransientFor = parent;
-
 		}
 		
 		private void AttachInterface ()
@@ -598,11 +594,10 @@ namespace FSpot {
 		}
 
 		private void SetView (FSpot.PhotoImageView view)
-        {
+		{
 			this.view.PhotoChanged -= HandlePhotoChanged;
-            this.view = view;
+			this.view = view;
 			this.view.PhotoChanged += HandlePhotoChanged;
-        }
-
+		}
 	}
 }

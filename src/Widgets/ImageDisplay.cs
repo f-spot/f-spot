@@ -14,9 +14,25 @@ namespace FSpot.Widgets {
 		ImageInfo next;
 		IBrowsableCollection collection;
 		ITransition transition;
+		IEffect effect;
 		double opacity = 0.5;
 		Delay delay;
 		int index = 0;
+
+		ITransition Transition {
+			get { return transition; }
+			set { 
+				if (transition != null) 
+					transition.Dispose ();
+
+				transition = value;
+
+				if (transition != null)
+					delay.Start ();
+				else 
+					delay.Stop ();
+			}
+		}
 
 		public ImageDisplay (IBrowsableCollection collection) 
 		{
@@ -32,38 +48,37 @@ namespace FSpot.Widgets {
 		public bool Up ()
 		{
 			Console.WriteLine ("Up");
-			transition = new CrossFade (current, next);
-			delay.Start ();
+			Transition = new CrossFade (current, next);
 			return true;
 		}
 
 		public bool Down ()
 		{
 			Console.WriteLine ("down");
-			transition = new CrossFade (next, current);
-			delay.Start ();
+			Transition = new CrossFade (next, current);
 			return true;
 		}
 		
 		public bool Previous ()
 		{
-			Console.WriteLine ("previous");
-			if (index > 0)
-				index --;
-			next = current;
-			current = new ImageInfo (collection [index].DefaultVersionUri);
+			Tilt t = effect as Tilt;
+
+			if (t != null)
+				t.Angle += 0.05;
+			else 
+				effect = new Tilt (current);
+
 			QueueDraw ();
 			return true;
 		}
 
 		public bool Next ()
 		{
-			Console.WriteLine ("next");
-			if (index < collection.Count - 1)
-				index ++;
-			
-			current = next;
-			next = new ImageInfo (collection [index].DefaultVersionUri);
+			Tilt t = effect as Tilt;
+
+			if (t != null)
+				t.Angle -= 0.05;
+
 			QueueDraw ();
 			return true;
 		}
@@ -96,22 +111,24 @@ namespace FSpot.Widgets {
 			}
 			ctx.Clip ();
 		}
-		
+
 		private void OnExpose (Graphics ctx, Region region)
 		{
-			if (transition != null) {
+			if (Transition != null) {
 				SetClip (ctx, region);
 				
-				if (! transition.OnExpose (ctx, Allocation, region.Clipbox)) {
+				if (! Transition.OnExpose (ctx, Allocation, region.Clipbox)) {
 					Console.WriteLine ("Frames = {0}", transition.Frames);
-					transition = null;
-					delay.Stop ();
+					Transition = null;
 				}
+			} else if (effect != null) {
+				SetClip (ctx, region);
+				
+				effect.OnExpose (ctx, Allocation, region.Clipbox);
 			} else {
 				ctx.Operator = Operator.Source;
 				SurfacePattern p = new SurfacePattern (current.Surface);
 				p.Filter = Filter.Fast;
-				Console.WriteLine (p.Filter);
 				SetClip (ctx, region);
 				ctx.Matrix = current.Fill (Allocation);
 
@@ -153,13 +170,84 @@ namespace FSpot.Widgets {
 			return true;
 		}
 
-		private interface ITransition {
+		~ImageDisplay () 
+		{
+			Transition = null;
+			current.Dispose ();
+			next.Dispose ();
+		}
+
+		private interface ITransition : IDisposable {
 			bool OnExpose (Graphics ctx, Rectangle allocation, Rectangle area);
 			int Frames { get; }
 		}
 
-		private interface IEffect {
+		private interface IEffect : IDisposable {
 			bool OnExpose (Graphics ctx, Rectangle allocation, Rectangle area);
+		}
+
+		private class Tilt : IEffect {
+			ImageInfo info;
+			double angle;
+			bool horizon;
+			bool plumb;
+			ImageInfo cache;
+
+			public Tilt (ImageInfo info)
+			{
+				this.info = info;
+			}
+
+			public double Angle {
+				get { return angle; }
+				set { angle = Math.Max (Math.Min (value, Math.PI * .25), Math.PI * -0.25); }
+			}
+
+			public bool OnExpose (Graphics ctx, Rectangle allocation, Rectangle area)
+			{
+				Rectangle bounds = allocation;
+
+				ctx.Operator = Operator.Source;
+
+				SurfacePattern p = new SurfacePattern (info.Surface);
+
+				p.Filter = Filter.Fast;
+				Console.WriteLine (p.Filter);
+				
+				Matrix m = info.Fill (allocation, angle);
+				
+				ctx.Matrix = m;
+				ctx.Pattern = p;
+				ctx.Paint ();
+				p.Destroy ();
+				
+				return true;
+			}
+
+			public void Dispose ()
+			{
+				
+			}
+		}
+
+		private class PanZoom : IEffect {
+			ImageInfo info;
+
+			public PanZoom (ImageInfo info)
+			{
+				this.info = info;
+			}
+
+			public bool OnExpose (Graphics ctx, Rectangle allocation, Rectangle area)
+			{
+				
+				return true;
+			}
+
+			public void Dispose ()
+			{
+
+			}
 		}
 
 		private class Slide : ITransition {
@@ -206,6 +294,11 @@ namespace FSpot.Widgets {
 
 				return fraction < 1.0;
 			}
+
+			public void Dispose ()
+			{
+				
+			}
 		}
 
 		private class CrossFade : ITransition {
@@ -242,16 +335,17 @@ namespace FSpot.Widgets {
 				TimeSpan elapsed = DateTime.Now - start;
 				double fraction = elapsed.Ticks / (double) duration.Ticks; 
 				double opacity = Math.Sin (Math.Min (fraction, 1.0) * Math.PI * 0.5);
-				
-				ctx.Matrix.InitIdentity ();
+
 				ctx.Operator = Operator.Source;
 				
 				SurfacePattern p = new SurfacePattern (begin_buffer.Surface);
-				ctx.Matrix = begin_buffer.Fill (allocation);
+				ctx.Matrix = begin_buffer.Fill
+ (allocation);
 				p.Filter = Filter.Fast;
 				ctx.Pattern = p;
 				ctx.Paint ();
-
+				p.Destroy ();
+				
 				ctx.Operator = Operator.Over;
 				ctx.Matrix = end_buffer.Fill (allocation);
 				SurfacePattern sur = new SurfacePattern (end_buffer.Surface);
@@ -261,17 +355,26 @@ namespace FSpot.Widgets {
 				sur.Filter = Filter.Fast;
 				ctx.Pattern = sur;
 				ctx.Mask (black);
-
-				if (fraction >= 1.0) {
-					((IDisposable)end_buffer.Surface).Dispose ();
-					((IDisposable)begin_buffer.Surface).Dispose ();
-				}
+				sur.Destroy ();
 
 				return fraction < 1.0;
 			}
+			
+			public void Dispose ()
+			{
+				if (begin_buffer != null) {
+					begin_buffer.Dispose ();
+					begin_buffer = null;
+				}
+				
+				if (end_buffer != null) {
+					end_buffer.Dispose ();
+					end_buffer = null;
+				}
+			}
 		}
 
-		private class ImageInfo {
+		private class ImageInfo : IDisposable {
 			public Surface Surface;
 			public Rectangle Bounds;
 
@@ -291,7 +394,9 @@ namespace FSpot.Widgets {
 
 			public ImageInfo (ImageInfo info, Rectangle allocation)
 			{
-				Surface = new ImageSurface (Format.RGB24, allocation.Width, allocation.Height);
+				Surface = new ImageSurface (Format.RGB24,
+							    allocation.Width,
+							    allocation.Height);
 				Graphics ctx = new Graphics (Surface);
 				Bounds = allocation;
 				ctx.Matrix = info.Fill (allocation);
@@ -309,36 +414,84 @@ namespace FSpot.Widgets {
 				Bounds.Height = pixbuf.Height;
 			}
 
-			public Matrix Fill (Gdk.Rectangle allocation)
+			public Matrix Fill (Gdk.Rectangle viewport) 
 			{
 				Matrix m = new Matrix ();
 				m.InitIdentity ();
 				
-				double scale = Math.Max (allocation.Width / (double) Bounds.Width,
-							 allocation.Height / (double) Bounds.Height);
+				double scale = Math.Max (viewport.Width / (double) Bounds.Width,
+							 viewport.Height / (double) Bounds.Height);
 				
-				double x_offset = (allocation.Width  - Bounds.Width * scale) / 2.0;
-				double y_offset = (allocation.Height  - Bounds.Height * scale) / 2.0;
+				double x_offset = (viewport.Width  - Bounds.Width * scale) / 2.0;
+				double y_offset = (viewport.Height  - Bounds.Height * scale) / 2.0;
 				
 				m.Translate (x_offset, y_offset);
 				m.Scale (scale, scale);
 				return m;
 			}
 
-			public Matrix Fit (Gdk.Rectangle allocation)
+			//
+			// this functions calculates the transformation needed to center and completely fill the
+			// viewport with the Surface at the given tilt
+			//
+			public Matrix Fill (Gdk.Rectangle viewport, double tilt)
+			{
+				if (tilt == 0.0)
+					return Fill (viewport);
+
+				Matrix m = new Matrix ();
+				m.InitIdentity ();
+
+				double len;
+				double orig_len;
+				if (Bounds.Width > Bounds.Height) {
+					len = viewport.Height;
+					orig_len = Bounds.Height;
+				} else {
+					len = viewport.Width;
+					orig_len = Bounds.Width;
+				}
+
+				double a = Math.Sqrt (viewport.Width * viewport.Width + viewport.Height * viewport.Height);
+				double alpha = Math.Acos (len / a);
+				double theta = alpha - Math.Abs (tilt);
+				
+				double slen = a * Math.Cos (theta);
+				
+				double scale = slen / orig_len;
+				
+				double x_offset = (viewport.Width  - Bounds.Width * scale) / 2.0;
+				double y_offset = (viewport.Height  - Bounds.Height * scale) / 2.0;
+
+				m.Translate (x_offset, y_offset);
+				m.Scale (scale, scale);
+				m.Invert ();
+				m.Translate (viewport.Width * 0.5, viewport.Height * 0.5);
+				m.Rotate (tilt);
+				m.Translate (viewport.Width * -0.5, viewport.Height * -0.5);
+				m.Invert ();
+				return m;
+			}
+
+			public Matrix Fit (Gdk.Rectangle viewport)
 			{
 				Matrix m = new Matrix ();
 				m.InitIdentity ();
 				
-				double scale = Math.Min (allocation.Width / (double) Bounds.Width,
-							 allocation.Height / (double) Bounds.Height);
+				double scale = Math.Min (viewport.Width / (double) Bounds.Width,
+							 viewport.Height / (double) Bounds.Height);
 				
-				double x_offset = (allocation.Width  - Bounds.Width * scale) / 2.0;
-				double y_offset = (allocation.Height  - Bounds.Height * scale) / 2.0;
+				double x_offset = (viewport.Width  - Bounds.Width * scale) / 2.0;
+				double y_offset = (viewport.Height  - Bounds.Height * scale) / 2.0;
 				
 				m.Translate (x_offset, y_offset);
 				m.Scale (scale, scale);
 				return m;
+			}
+
+			public void Dispose ()
+			{
+				((IDisposable)Surface).Dispose ();
 			}
 		}
 	}

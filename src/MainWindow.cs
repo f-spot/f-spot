@@ -3,7 +3,7 @@ using Gtk;
 using GtkSharp;
 using Glade;
 using Gnome;
-using Mono.Posix;
+using Mono.Unix;
 using System;
 using System.Text;
 
@@ -276,7 +276,7 @@ public class MainWindow {
 			query = new FSpot.PhotoQuery (db.Photos);
 		}
 
-        UpdateStatusLabel ();
+		UpdateStatusLabel ();
 		query.Changed += HandleQueryChanged;
 
 		db.Photos.ItemsChanged += HandleDbItemsChanged;
@@ -436,7 +436,7 @@ public class MainWindow {
 			if (view_notebook.CurrentPage != 0)
 				view_notebook.CurrentPage = 0;
 				
-            ColorDialog.Close ();
+			ColorDialog.Close ();
 			JumpTo (photo_view.Item.Index);
 			zoom_scale.Value = icon_view.Zoom;
 			break;
@@ -493,6 +493,7 @@ public class MainWindow {
 	{
 		icon_view.QueueDraw ();
 		UpdateTagEntryFromSelection ();
+		
 	}
 
 	void HandleViewNotebookSwitchPage (object sender, SwitchPageArgs args)
@@ -746,7 +747,7 @@ public class MainWindow {
 
 	void HandleTagSelectionRowActivated (object sender, RowActivatedArgs args)
 	{
-        ShowQueryWidget ();
+		ShowQueryWidget ();
 		//query_widget.Require (new Tag [] {tag_selection_widget.TagByPath (args.Path)});
 		query_widget.Include (new Tag [] {tag_selection_widget.TagByPath (args.Path)});
 	}
@@ -772,8 +773,8 @@ public class MainWindow {
 	void RestoreDb (System.Exception e)
 	{
 		string backup = db.Repair ();
-		string short_msg = Mono.Posix.Catalog.GetString ("Error loading database.");
-		string long_msg = Mono.Posix.Catalog.GetString ("F-Spot encountered an error while loading the photo database. " + 
+		string short_msg = Catalog.GetString ("Error loading database.");
+		string long_msg = Catalog.GetString ("F-Spot encountered an error while loading the photo database. " + 
 								"The old database has be moved to {0} and a new database has been created.");
 
 		HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
@@ -822,10 +823,10 @@ public class MainWindow {
 		case (uint) TargetType.TagList:
 			Byte [] data = Encoding.UTF8.GetBytes (list.ToString ());
 			Atom [] targets = args.Context.Targets;
-		
+			
 			args.SelectionData.Set (targets[0], 8, data, data.Length);
 			break;
-		} 
+		}
 	}
 
 	void HandleTagSelectionDragDrop (object sender, DragDropArgs args)
@@ -1329,8 +1330,8 @@ public class MainWindow {
 			if (num_cameras < 1) {
 				HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
 					MessageType.Warning, ButtonsType.Ok, 
-					Mono.Posix.Catalog.GetString ("No cameras detected."),
-					Mono.Posix.Catalog.GetString ("F-Spot was unable to find any cameras attached to this system." + 
+					Catalog.GetString ("No cameras detected."),
+					Catalog.GetString ("F-Spot was unable to find any cameras attached to this system." + 
 								      "  Double check that the camera is connected and has power")); 
 
 				md.Run ();
@@ -1370,8 +1371,8 @@ public class MainWindow {
 			System.Console.WriteLine (ge.ToString ());
 			HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
 				MessageType.Error, ButtonsType.Ok, 
-				Mono.Posix.Catalog.GetString ("Error connecting to camera"),
-				String.Format (Mono.Posix.Catalog.GetString ("Received error \"{0}\" while connecting to camera"), 
+				Catalog.GetString ("Error connecting to camera"),
+				String.Format (Catalog.GetString ("Received error \"{0}\" while connecting to camera"), 
 				ge.Message));
 
 			md.Run ();
@@ -1475,7 +1476,18 @@ public class MainWindow {
 
 	void HandleSendMailCommand (object sender, EventArgs args)
 	{
-		new FSpot.SendEmail (new FSpot.PhotoArray (SelectedPhotos ()));
+		//new FSpot.SendEmail (new FSpot.PhotoArray (SelectedPhotos ()));
+		Gtk.Window win = new Gtk.Window ("hello");
+		VBox box = new VBox ();
+		//CellView view = new CellView ("testing");
+		//CellRendererText text = new CellRendererText ();
+		//text.Editable = true;
+		//view.PackStart (text, true);
+		//box.PackStart (view);
+		box.PackStart (new FSpot.Widgets.ImageDisplay (new FSpot.PhotoArray (SelectedPhotos ())));
+		win.Add (box);
+
+		win.ShowAll ();
 	}
 
 	public static void HandleHelp (object sender, EventArgs args)
@@ -1526,14 +1538,14 @@ public class MainWindow {
                 // Translators should localize the following string
                 // * which will give them credit in the About box.
                 // * E.g. "Martin Willemoes Hansen"
-                string translators = Mono.Posix.Catalog.GetString ("translator-credits");
+                string translators = Catalog.GetString ("translator-credits");
                 if(System.String.Compare(translators,"translator-credits") == 0) {
                     translators = null;
                 }
 
                 new About ("F-Spot", 
 			   FSpot.Defines.VERSION, 
-			   Mono.Posix.Catalog.GetString ("Copyright \x00a9 2003-2006 Novell Inc."),
+			   Catalog.GetString ("Copyright \x00a9 2003-2006 Novell Inc."),
                            null, authors, new string [0], translators, null).Show();
 	}
 
@@ -1765,7 +1777,7 @@ public class MainWindow {
 			return;
 		
 		// Translators, The singular case will never happen here.
-		string header = Mono.Posix.Catalog.GetPluralString ("Merge the selected tag",
+		string header = Catalog.GetPluralString ("Merge the selected tag",
 								    "Merge the {0} selected tags?", tags.Length);
 		header = String.Format (header, tags.Length);
 
@@ -1792,9 +1804,9 @@ public class MainWindow {
 			System.Console.WriteLine ("tag: {0}", tag.Name);
 		}
 
-		string msg = Mono.Posix.Catalog.GetString("This operation will merge the selected tags and any sub-tags into a single tag.");
+		string msg = Catalog.GetString("This operation will merge the selected tags and any sub-tags into a single tag.");
 
-		string ok_caption = Mono.Posix.Catalog.GetString ("_Merge Tags");
+		string ok_caption = Catalog.GetString ("_Merge Tags");
 		
 		if (ResponseType.Ok != HigMessageDialog.RunHigConfirmation(main_window, 
 									   DialogFlags.DestroyWithParent, 
@@ -1843,7 +1855,7 @@ public class MainWindow {
 
 	void HandleSharpen (object sender, EventArgs args)
 	{
-		Gtk.Dialog dialog = new Gtk.Dialog (Mono.Posix.Catalog.GetString ("Unsharp Mask"), main_window, Gtk.DialogFlags.Modal);
+		Gtk.Dialog dialog = new Gtk.Dialog (Catalog.GetString ("Unsharp Mask"), main_window, Gtk.DialogFlags.Modal);
 
 		dialog.VBox.Spacing = 6;
 		dialog.VBox.BorderWidth = 12;
@@ -1852,9 +1864,9 @@ public class MainWindow {
 		table.ColumnSpacing = 6;
 		table.RowSpacing = 6;
 		
-		table.Attach (new Gtk.Label (Mono.Posix.Catalog.GetString ("Amount:")), 0, 1, 0, 1);
-		table.Attach (new Gtk.Label (Mono.Posix.Catalog.GetString ("Radius:")), 0, 1, 1, 2);
-		table.Attach (new Gtk.Label (Mono.Posix.Catalog.GetString ("Threshold:")), 0, 1, 2, 3);
+		table.Attach (new Gtk.Label (Catalog.GetString ("Amount:")), 0, 1, 0, 1);
+		table.Attach (new Gtk.Label (Catalog.GetString ("Radius:")), 0, 1, 1, 2);
+		table.Attach (new Gtk.Label (Catalog.GetString ("Threshold:")), 0, 1, 2, 3);
 
 		Gtk.SpinButton amount_spin = new Gtk.SpinButton (0.5, 100.0, .01);
 		Gtk.SpinButton radius_spin = new Gtk.SpinButton (5.0, 50.0, .01);
@@ -1885,8 +1897,8 @@ public class MainWindow {
 					photo.SaveVersion (final, create_version);
 					query.Commit (id);
 				} catch (System.Exception e) {
-					string msg = Mono.Posix.Catalog.GetString ("Error saving sharpened photo");
-					string desc = String.Format (Mono.Posix.Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
+					string msg = Catalog.GetString ("Error saving sharpened photo");
+					string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
 								     e.Message, photo.Name.Replace ("_", "__"));
 					
 					HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
@@ -2009,13 +2021,13 @@ public class MainWindow {
 		if (fsview == null) {
 			fsview = new FSpot.FullScreenView (query);
 			fsview.Destroyed += HandleFullScreenViewDestroy;
-            fsview.View.Item.Index = active;
-            ColorDialog.SwitchViews (fsview.View);
+			fsview.View.Item.Index = active;
+			ColorDialog.SwitchViews (fsview.View);
 		} else {
-            // FIXME this needs to be another mode like PhotoView and IconView mode.
-            fsview.View.Item.Index = active;
-        }
-
+			// FIXME this needs to be another mode like PhotoView and IconView mode.
+			fsview.View.Item.Index = active;
+		}
+		
 		fsview.Show ();
 	}
 
@@ -2023,10 +2035,10 @@ public class MainWindow {
 	{
 		JumpTo (fsview.View.Item.Index);
 		fsview = null;
-
-        if (ViewMode == ModeType.PhotoView) {
-            ColorDialog.SwitchViews (photo_view.View);
-        }
+		
+		if (ViewMode == ModeType.PhotoView) {
+			ColorDialog.SwitchViews (photo_view.View);
+		}
 	}
 	
 	void HandleZoomScaleValueChanged (object sender, System.EventArgs args)
@@ -2139,17 +2151,17 @@ public class MainWindow {
 
 	public void DeleteException (Exception e, string fname)
 	{
-		string ok_caption = Mono.Posix.Catalog.GetString ("_Ok");
-		string error = Mono.Posix.Catalog.GetString ("Error Deleting Picture");
+		string ok_caption = Catalog.GetString ("_Ok");
+		string error = Catalog.GetString ("Error Deleting Picture");
 		string msg;
 
 		if (e is UnauthorizedAccessException)
 			msg = String.Format (
-				Mono.Posix.Catalog.GetString ("No permission to delete the file:\n{0}"), 
+				Catalog.GetString ("No permission to delete the file:\n{0}"), 
 				fname).Replace ("_", "__");
 		else
 			msg = String.Format (
-				Mono.Posix.Catalog.GetString ("An error of type {0} occurred while deleting the file:\n{1}"),
+				Catalog.GetString ("An error of type {0} occurred while deleting the file:\n{1}"),
 				e.GetType (), fname.Replace ("_", "__"));
 		
 		HigMessageDialog.RunHigConfirmation (
@@ -2175,14 +2187,14 @@ public class MainWindow {
 	public void HandleDeleteCommand (object sender, EventArgs args)
 	{
    		Photo[] photos = SelectedPhotos();
-   		string header = Mono.Posix.Catalog.GetPluralString ("Delete the selected photo permanently?", 
+   		string header = Catalog.GetPluralString ("Delete the selected photo permanently?", 
 								    "Delete the {0} selected photos permanently?", 
 								    photos.Length);
 		header = String.Format (header, photos.Length);
-		string msg = Mono.Posix.Catalog.GetPluralString ("This deletes all versions of the selected photo from your drive.", 
+		string msg = Catalog.GetPluralString ("This deletes all versions of the selected photo from your drive.", 
 								 "This deletes all versions of the selected photos from your drive.", 
 								 photos.Length);
-		string ok_caption = Mono.Posix.Catalog.GetPluralString ("_Delete photo", "_Delete photos", photos.Length);
+		string ok_caption = Catalog.GetPluralString ("_Delete photo", "_Delete photos", photos.Length);
 		
 
 
@@ -2210,13 +2222,13 @@ public class MainWindow {
 	public void HandleRemoveCommand (object sender, EventArgs args)
 	{
    		Photo[] photos = SelectedPhotos();
-   		string header = Mono.Posix.Catalog.GetPluralString ("Remove the selected photo from F-Spot?",
+   		string header = Catalog.GetPluralString ("Remove the selected photo from F-Spot?",
 								    "Remove the {0} selected photos from F-Spot?", 
 								    photos.Length);
 
 		header = String.Format (header, photos.Length);
-		string msg = Mono.Posix.Catalog.GetString("If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again.");
-		string ok_caption = Mono.Posix.Catalog.GetString("_Remove from Catalog");
+		string msg = Catalog.GetString("If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again.");
+		string ok_caption = Catalog.GetString("_Remove from Catalog");
 		if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(GetToplevel (sender), DialogFlags.DestroyWithParent, 
 									   MessageType.Warning, header, msg, ok_caption)) {                              
 			db.Photos.Remove (photos);
@@ -2271,13 +2283,13 @@ public class MainWindow {
 
 		string header;
 		if (tags.Length == 1)
-			header = String.Format (Mono.Posix.Catalog.GetString ("Delete tag \"{0}\"?"), tags [0].Name.Replace ("_", "__"));
+			header = String.Format (Catalog.GetString ("Delete tag \"{0}\"?"), tags [0].Name.Replace ("_", "__"));
 		else
-			header = String.Format (Mono.Posix.Catalog.GetString ("Delete the {0} selected tags?"), tags.Length);
+			header = String.Format (Catalog.GetString ("Delete the {0} selected tags?"), tags.Length);
 		
 		header = String.Format (header, tags.Length);
-		string msg = Mono.Posix.Catalog.GetString("If you delete a tag, all associations with photos are lost.");
-		string ok_caption = Mono.Posix.Catalog.GetPluralString ("_Delete tag", "_Delete tags", tags.Length);
+		string msg = Catalog.GetString("If you delete a tag, all associations with photos are lost.");
+		string ok_caption = Catalog.GetPluralString ("_Delete tag", "_Delete tags", tags.Length);
 		
 		if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(main_window, 
 									   DialogFlags.DestroyWithParent, 
@@ -2291,8 +2303,8 @@ public class MainWindow {
 				System.Console.WriteLine ("this is something or another");
 
 				// A Category is not empty. Can not delete it.
-				string error_msg = Mono.Posix.Catalog.GetString ("Tag is not empty");
-				string error_desc = String.Format (Mono.Posix.Catalog.GetString ("Can not delete tags that have tags within them.  " + 
+				string error_msg = Catalog.GetString ("Tag is not empty");
+				string error_desc = String.Format (Catalog.GetString ("Can not delete tags that have tags within them.  " + 
 												 "Please delete tags under \"{0}\" first"),
 								   e.Tag.Name.Replace ("_", "__"));
 				
@@ -3100,37 +3112,37 @@ public class MainWindow {
 		return mimes.ToArray (typeof (string)) as string [];
 	}
 
-    private void ShowQueryWidget () {
-        if (find_bar.Visible) {
-            find_bar.Entry.Text = "";
-            find_bar.Hide ();
-        }
-
-        query_widget.Show ();
-        return;
-    }
-
+	private void ShowQueryWidget () {
+		if (find_bar.Visible) {
+			find_bar.Entry.Text = "";
+			find_bar.Hide ();
+		}
+		
+		query_widget.Show ();
+		return;
+	}
+	
 	public void HandleKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
-    {
+	{
 		bool ctrl = ModifierType.ControlMask == (args.Event.State & ModifierType.ControlMask);
 
-        if ((ctrl && args.Event.Key == Gdk.Key.F) || args.Event.Key == Gdk.Key.slash) {
-            if (!find_bar.Visible) {
-                if (query_widget.Visible) {
-                    query_widget.ClearTags ();
-                    query_widget.Hide ();
-                }
-
-                find_bar.Show ();
-                find_bar.Entry.GrabFocus ();
-                args.RetVal = true;
-                return;
-            }
-        }
-
-        args.RetVal = false;
-    }
-
+		if ((ctrl && args.Event.Key == Gdk.Key.F) || args.Event.Key == Gdk.Key.slash) {
+			if (!find_bar.Visible) {
+				if (query_widget.Visible) {
+					query_widget.ClearTags ();
+					query_widget.Hide ();
+				}
+				
+				find_bar.Show ();
+				find_bar.Entry.GrabFocus ();
+				args.RetVal = true;
+				return;
+			}
+		}
+		
+		args.RetVal = false;
+	}
+	
 	public static void SetTip (Widget widget, string tip)
 	{
 		toolTips.SetTip (widget, tip, null);

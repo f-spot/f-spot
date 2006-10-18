@@ -1,5 +1,11 @@
 2006-10-18  Larry Ewing  <lewing@novell.com>
 
+	* src/Cairo/Pattern.cs: remove strange constructor mess.  I really
+	need to import the modern bindings.
+	
+	* src/Cairo/Graphics.cs: 
+	* src/ColorDialog.cs: Clean up indentation and old references.
+
 	* src/DCRawFile.cs: remove do cleanup in close.
 
 	* src/Cms.cs: make a couple of methods virtual.
