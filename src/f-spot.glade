@@ -8903,6 +8903,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		      <property name="use_underline">True</property>
 		      <property name="active">True</property>
 		      <signal name="activate" handler="HandleDisplayInfoSidebar" last_modification_time="Fri, 04 Mar 2005 17:19:12 GMT"/>
+		      <accelerator key="F9" modifiers="" signal="activate"/>
 		    </widget>
 		  </child>
 
