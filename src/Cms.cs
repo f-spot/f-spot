@@ -309,7 +309,7 @@ namespace Cms {
 		[DllImport("liblcms-1.0.0.dll")]
 		static extern void cmsFreeGamma (HandleRef handle);
 		
-		private void Cleanup ()
+		protected virtual void Cleanup ()
 		{
 			cmsFreeGamma (handle);
 		}
@@ -393,7 +393,7 @@ namespace Cms {
 			System.GC.SuppressFinalize (this);
 		}
 		
-		private void Cleanup ()
+		protected virtual void Cleanup ()
 		{
 			cmsDeleteTransform (this.handle);
 		}
@@ -753,7 +753,7 @@ namespace Cms {
 			System.GC.SuppressFinalize (this);
 		}
 
-		private void Cleanup ()
+		protected virtual void Cleanup ()
 		{
 			if (cmsCloseProfile (this.Handle) == 0)
 				throw new Exception ("Error closing Handle");

@@ -1,3 +1,12 @@
+2006-10-18  Larry Ewing  <lewing@novell.com>
+
+	* src/DCRawFile.cs: remove do cleanup in close.
+
+	* src/Cms.cs: make a couple of methods virtual.
+
+	* src/Widgets/ImageDisplay.cs: Calculate the proper crop for a
+	given viewport and tilt.
+
 2006-10-18  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/GalleryExport.cs: Export the original image if filters don't
@@ -20,7 +29,11 @@
 	* src/FlickrExport.cs: Fix the issue with strip metadata. Fixes 362438
 	and 352117.
 
+>>>>>>> 1.1640
 2006-10-15  Larry Ewing  <lewing@novell.com>
+
+	* src/Widgets/ImageDisplay.cs: try to clean up the memory
+	management slightly.
 
 	* src/FlickrExport.cs: Handle invalid auth tokens in the exception
 	handler.  Fixes 362295.

@@ -3,7 +3,7 @@ using System.IO;
 using System;
 
 namespace FSpot {
-	public class Pipe : System.IO.Stream, IDisposable {
+	public class Pipe : System.IO.Stream {
 		// This class is a hack to make sure mono doesn't dispose the process
 		// and by extension the stream from the pipe when we are still using the
 		// the stream.
@@ -61,12 +61,12 @@ namespace FSpot {
 		{
 			stream.Write (b, s, l);
 		}
-
-		public void Dispose ()
+		
+		public override void Close ()
 		{
 			stream.Close ();
 			stream = null;
-			//process.Dispose ();
+			process.Dispose ();
 			process = null;
 		}
 	}
