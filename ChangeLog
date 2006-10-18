@@ -3,6 +3,9 @@
 	* src/GalleryExport.cs: Export the original image if filters don't
 	change the image. Fixes #362859
 
+	* docs/.cvsignore:
+	* docs/en/.cvsignore: adding missing .cvsignore
+
 2006-10-17  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/Filters/JpegFilter.cs: Add the quality as an optional parameter.
