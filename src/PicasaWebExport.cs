@@ -702,8 +702,6 @@ namespace FSpot {
 				album_button.Sensitive = false;
 
 				GoogleAccountDialog dialog = new GoogleAccountDialog (this.Dialog, account, false, exc);
-
-				Gtk.ResponseType response = (Gtk.ResponseType) dialog.Dialog.Run ();
 				
 				System.Console.WriteLine ("Your google account is locked, you can unlock it by visiting: {0}", CaptchaException.UnlockCaptchaURL);
 
@@ -719,11 +717,6 @@ namespace FSpot {
 				album_button.Sensitive = false;
 				
 				GoogleAccountDialog dialog = new GoogleAccountDialog (this.Dialog, account, true, null);
-				Gtk.ResponseType response = (Gtk.ResponseType) dialog.Dialog.Run ();
-
-//				if (response == Gtk.ResponseType.Ok) {
-//					Connect (account);					
-//				}
 			} 
 		}
 

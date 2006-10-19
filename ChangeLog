@@ -3,6 +3,10 @@
 	* src/PicasaWebEwport.cs: Only opening a browser window if everything
 	was fine during upload. Fixes bgo #360877.
 
+	* src/PicasaWebExport.cs:
+	* src/GalleryExport.cs: Only one login dialog at a time. Fixes bgo
+	#360142.
+
 2006-10-18  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/OpenWithMenu.cs:

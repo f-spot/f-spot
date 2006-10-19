@@ -796,11 +796,6 @@ namespace FSpot {
 				album_button.Sensitive = false;
 				
 				AccountDialog dialog = new AccountDialog (this.Dialog, account, true);
-				Gtk.ResponseType response = (Gtk.ResponseType) dialog.Dialog.Run ();
-
-				if (response == Gtk.ResponseType.Ok) {
-					Connect (account);					
-				}
 			} 
 		}
 
