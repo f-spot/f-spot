@@ -130,7 +130,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/CairoUtils.cs		\
 	$(srcdir)/Widgets/CompositeUtils.cs	\
 	$(srcdir)/Widgets/GdkUtils.cs		\
-	$(srcdir)/Widgets/ImageDisplay.cs	\
 	$(srcdir)/Widgets/ScrolledView.cs	\
 	$(srcdir)/X3fFile.cs			\
 	$(srcdir)/XmpFile.cs			\

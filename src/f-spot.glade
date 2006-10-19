@@ -9273,10 +9273,10 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 	      <property name="position">200</property>
 
 	      <child>
-		<widget class="GtkVPaned" id="info_vpaned">
+		<widget class="GtkVBox" id="info_vbox">
 		  <property name="visible">True</property>
-		  <property name="can_focus">True</property>
-		  <property name="position">320</property>
+		  <property name="homogeneous">False</property>
+		  <property name="spacing">0</property>
 
 		  <child>
 		    <widget class="GtkVBox" id="tag_vbox">
@@ -9309,47 +9309,31 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		      </child>
 		    </widget>
 		    <packing>
-		      <property name="shrink">True</property>
-		      <property name="resize">True</property>
+		      <property name="padding">0</property>
+		      <property name="expand">True</property>
+		      <property name="fill">True</property>
 		    </packing>
 		  </child>
 
 		  <child>
-		    <widget class="GtkScrolledWindow" id="scrolledwindow4">
+		    <widget class="GtkVBox" id="left_vbox">
 		      <property name="visible">True</property>
-		      <property name="can_focus">True</property>
-		      <property name="hscrollbar_policy">GTK_POLICY_NEVER</property>
-		      <property name="vscrollbar_policy">GTK_POLICY_NEVER</property>
-		      <property name="shadow_type">GTK_SHADOW_NONE</property>
-		      <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
+		      <property name="homogeneous">False</property>
+		      <property name="spacing">0</property>
 
 		      <child>
-			<widget class="GtkViewport" id="viewport">
-			  <property name="visible">True</property>
-			  <property name="shadow_type">GTK_SHADOW_NONE</property>
-
-			  <child>
-			    <widget class="GtkVBox" id="left_vbox">
-			      <property name="visible">True</property>
-			      <property name="homogeneous">False</property>
-			      <property name="spacing">0</property>
-
-			      <child>
-				<placeholder/>
-			      </child>
-			    </widget>
-			  </child>
-			</widget>
+			<placeholder/>
 		      </child>
 		    </widget>
 		    <packing>
-		      <property name="shrink">False</property>
-		      <property name="resize">False</property>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">True</property>
 		    </packing>
 		  </child>
 		</widget>
 		<packing>
-		  <property name="shrink">False</property>
+		  <property name="shrink">True</property>
 		  <property name="resize">False</property>
 		</packing>
 	      </child>

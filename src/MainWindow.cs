@@ -103,7 +103,7 @@ public class MainWindow {
 	// Other Widgets
 	[Glade.Widget] Scale zoom_scale;
 
-	[Glade.Widget] VPaned info_vpaned;
+	[Glade.Widget] VBox info_vbox;
 
 	[Glade.Widget] Gtk.Image near_image;
 	[Glade.Widget] Gtk.Image far_image;
@@ -268,6 +268,7 @@ public class MainWindow {
 		
 		info_box = new InfoBox ();
 		info_box.VersionIdChanged += HandleInfoBoxVersionIdChange;
+        info_box.HeightRequest = 165;
 		left_vbox.PackStart (info_box, false, true, 0);
 		
 		try {
@@ -1629,7 +1630,7 @@ public class MainWindow {
 		}
 
 		Preferences.Set (Preferences.SHOW_TOOLBAR,		toolbar.Visible);
-		Preferences.Set (Preferences.SHOW_SIDEBAR,		info_vpaned.Visible);
+		Preferences.Set (Preferences.SHOW_SIDEBAR,		info_vbox.Visible);
 		Preferences.Set (Preferences.SHOW_TIMELINE,		group_selector.Visible);
 		Preferences.Set (Preferences.SHOW_TAGS,			icon_view.DisplayTags);
 		Preferences.Set (Preferences.SHOW_DATES,		icon_view.DisplayDates);
@@ -1937,10 +1938,10 @@ public class MainWindow {
 
 	void HandleDisplayInfoSidebar (object sender, EventArgs args)
 	{
-		if (info_vpaned.Visible)
-			info_vpaned.Hide ();
+		if (info_vbox.Visible)
+			info_vbox.Hide ();
 		else
-			info_vpaned.Show ();
+			info_vbox.Show ();
 	}
 
 	void HandleViewSlideShow (object sender, EventArgs args)

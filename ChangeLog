@@ -1,5 +1,15 @@
 2006-10-18  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/Makefile.am: remove Widgets/ImageDisplay.cs from the build.
+
+2006-10-18  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/MainWindow.cs:
+	* src/f-spot.glade: Transform VPaned on the left to a VBox. Fixes
+	BGO #356971
+
+2006-10-18  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/MainWindow.cs: Revert the Send Mail handler.
 
 2006-10-18  Gabriel Burt  <gabriel.burt@gmail.com>
