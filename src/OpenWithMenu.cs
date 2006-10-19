@@ -27,7 +27,7 @@ public class OpenWithMenu: Gtk.Menu {
 		get { return show_icons; }
 		set { show_icons = value; }
 	}
-	
+
 	private bool hide_invalid = true;
 	public bool HideInvalid {
 		get { return hide_invalid; }
@@ -88,8 +88,22 @@ public class OpenWithMenu: Gtk.Menu {
 	}
 
 	public static OpenWithMenu AppendMenuTo (Gtk.Menu menu, MimeFetcher mime_fetcher)
+    {
+        return AppendMenuTo (menu, mime_fetcher, false);
+    }
+
+    private static string menu_text = Catalog.GetString ("Open With");
+	public static OpenWithMenu AppendMenuTo (Gtk.Menu menu, MimeFetcher mime_fetcher, bool with_icon)
 	{
-		Gtk.MenuItem open_with = new Gtk.MenuItem (Catalog.GetString ("Open With"));
+		Gtk.MenuItem open_with;
+        
+        if (with_icon) {
+            Gtk.ImageMenuItem img_item = new Gtk.ImageMenuItem (menu_text);
+            img_item.Image = new Gtk.Image ("gtk-open", Gtk.IconSize.Menu);
+            open_with = img_item;
+        } else {
+            open_with = new Gtk.MenuItem (menu_text);
+        }
 
 		OpenWithMenu app_menu = new OpenWithMenu (mime_fetcher);
 		open_with.Submenu = app_menu;

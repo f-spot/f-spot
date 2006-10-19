@@ -8603,11 +8603,23 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="print">
+		    <widget class="GtkImageMenuItem" id="print">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">_Print...</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandlePrintCommand" last_modification_time="Thu, 05 Feb 2004 00:40:09 GMT"/>
+
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image46">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-print</property>
+			  <property name="icon_size">1</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		  </child>
 
@@ -8619,7 +8631,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		      <signal name="activate" handler="HandleSendMailCommand" last_modification_time="Mon, 07 Jun 2004 22:31:01 GMT"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image44">
+			<widget class="GtkImage" id="image47">
 			  <property name="visible">True</property>
 			  <property name="stock">gnome-stock-mail-fwd</property>
 			  <property name="icon_size">1</property>
@@ -8639,13 +8651,25 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="close1">
+		    <widget class="GtkImageMenuItem" id="close1">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">_Close</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleCloseCommand" last_modification_time="Tue, 09 Dec 2003 20:59:54 GMT"/>
-		      <accelerator key="w" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 		      <accelerator key="q" modifiers="GDK_CONTROL_MASK" signal="activate"/>
+		      <accelerator key="w" modifiers="GDK_CONTROL_MASK" signal="activate"/>
+
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image48">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-quit</property>
+			  <property name="icon_size">1</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		  </child>
 		</widget>
@@ -8697,22 +8721,46 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="rotate_left">
+		    <widget class="GtkImageMenuItem" id="rotate_left">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Rotate _Left</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleRotate270Command" last_modification_time="Sat, 07 Feb 2004 02:25:23 GMT"/>
 		      <accelerator key="bracketleft" modifiers="0" signal="activate"/>
+
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image556">
+			  <property name="visible">True</property>
+			  <property name="stock">f-spot-rotate-270</property>
+			  <property name="icon_size">1</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="rotate_right">
+		    <widget class="GtkImageMenuItem" id="rotate_right">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Rotate _Right</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleRotate90Command" last_modification_time="Sat, 07 Feb 2004 02:26:31 GMT"/>
 		      <accelerator key="bracketright" modifiers="0" signal="activate"/>
+
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image557">
+			  <property name="visible">True</property>
+			  <property name="stock">f-spot-rotate-90</property>
+			  <property name="icon_size">1</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		  </child>
 
@@ -8723,11 +8771,23 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="adjust_color">
+		    <widget class="GtkImageMenuItem" id="adjust_color">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Ad_just Color...</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleAdjustColor" last_modification_time="Thu, 23 Dec 2004 12:00:46 GMT"/>
+
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image558">
+			  <property name="visible">True</property>
+			  <property name="stock">f-spot-adjust-colors</property>
+			  <property name="icon_size">1</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		  </child>
 
@@ -8798,19 +8858,43 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="attach_tag">
+		    <widget class="GtkImageMenuItem" id="attach_tag">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">_Attach Tag</property>
 		      <property name="use_underline">True</property>
+
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image559">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-add</property>
+			  <property name="icon_size">1</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="remove_tag">
+		    <widget class="GtkImageMenuItem" id="remove_tag">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Rem_ove Tag</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleTagMenuActivate" last_modification_time="Thu, 17 Jun 2004 16:52:18 GMT"/>
+
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image560">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-remove</property>
+			  <property name="icon_size">1</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		  </child>
 
@@ -8842,21 +8926,45 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		<widget class="GtkMenu" id="view1_menu">
 
 		  <child>
-		    <widget class="GtkMenuItem" id="slide_show">
+		    <widget class="GtkImageMenuItem" id="slide_show">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">_Slideshow</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleViewSlideShow" last_modification_time="Thu, 29 Jan 2004 04:47:18 GMT"/>
+
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image49">
+			  <property name="visible">True</property>
+			  <property name="stock">f-spot-slideshow</property>
+			  <property name="icon_size">1</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="fullscreen1">
+		    <widget class="GtkImageMenuItem" id="fullscreen1">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">_Fullscreen</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleViewFullscreen" last_modification_time="Thu, 10 Jun 2004 02:58:42 GMT"/>
 		      <accelerator key="F11" modifiers="0" signal="activate"/>
+
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image50">
+			  <property name="visible">True</property>
+			  <property name="stock">f-spot-fullscreen</property>
+			  <property name="icon_size">1</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		  </child>
 
@@ -8903,7 +9011,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		      <property name="use_underline">True</property>
 		      <property name="active">True</property>
 		      <signal name="activate" handler="HandleDisplayInfoSidebar" last_modification_time="Fri, 04 Mar 2005 17:19:12 GMT"/>
-		      <accelerator key="F9" modifiers="" signal="activate"/>
+		      <accelerator key="F9" modifiers="0" signal="activate"/>
 		    </widget>
 		  </child>
 
@@ -8934,22 +9042,46 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="zoom_in">
+		    <widget class="GtkImageMenuItem" id="zoom_in">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Zoom _in</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleZoomIn" last_modification_time="Sat, 21 Aug 2004 16:37:10 GMT"/>
 		      <accelerator key="equal" modifiers="GDK_CONTROL_MASK" signal="activate"/>
+
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image51">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-zoom-in</property>
+			  <property name="icon_size">1</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="zoom_out">
+		    <widget class="GtkImageMenuItem" id="zoom_out">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Zoom _out</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleZoomOut" last_modification_time="Sat, 21 Aug 2004 16:37:10 GMT"/>
 		      <accelerator key="minus" modifiers="GDK_CONTROL_MASK" signal="activate"/>
+
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image52">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-zoom-out</property>
+			  <property name="icon_size">1</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		  </child>
 
@@ -8973,7 +9105,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">_Month</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">False</property>
+			      <property name="active">True</property>
 			      <signal name="activate" handler="HandleArrangeByTime" last_modification_time="Fri, 20 Aug 2004 22:26:32 GMT"/>
 			    </widget>
 			  </child>
@@ -9124,11 +9256,23 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		<widget class="GtkMenu" id="tags1_menu">
 
 		  <child>
-		    <widget class="GtkMenuItem" id="create_new_category1">
+		    <widget class="GtkImageMenuItem" id="create_new_category1">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Create New _Tag...</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleCreateNewCategoryCommand" last_modification_time="Tue, 09 Dec 2003 20:42:48 GMT"/>
+
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image53">
+			  <property name="visible">True</property>
+			  <property name="stock">f-spot-new-tag</property>
+			  <property name="icon_size">1</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		  </child>
 
@@ -9139,20 +9283,44 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="edit_selected_tag">
+		    <widget class="GtkImageMenuItem" id="edit_selected_tag">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">_Edit Selected Tag...</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleEditSelectedTag" last_modification_time="Wed, 11 Aug 2004 06:33:14 GMT"/>
+
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image554">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-edit</property>
+			  <property name="icon_size">1</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="delete_selected_tag">
+		    <widget class="GtkImageMenuItem" id="delete_selected_tag">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">_Delete Selected Tag</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleDeleteSelectedTagCommand" last_modification_time="Sat, 07 Feb 2004 01:26:54 GMT"/>
+
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image555">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-delete</property>
+			  <property name="icon_size">1</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		  </child>
 
@@ -9163,21 +9331,45 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="attach_tag_to_selection">
+		    <widget class="GtkImageMenuItem" id="attach_tag_to_selection">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">_Attach Tag to Selection</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleAttachTagCommand" last_modification_time="Wed, 21 Jan 2004 05:44:42 GMT"/>
 		      <accelerator key="t" modifiers="GDK_CONTROL_MASK" signal="activate"/>
+
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image561">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-add</property>
+			  <property name="icon_size">1</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		  </child>
 
 		  <child>
-		    <widget class="GtkMenuItem" id="remove_tag_from_selection">
+		    <widget class="GtkImageMenuItem" id="remove_tag_from_selection">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">_Remove Tag From Selection</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleRemoveTagCommand" last_modification_time="Wed, 21 Jan 2004 05:48:21 GMT"/>
+
+		      <child internal-child="image">
+			<widget class="GtkImage" id="image562">
+			  <property name="visible">True</property>
+			  <property name="stock">gtk-remove</property>
+			  <property name="icon_size">1</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
 		    </widget>
 		  </child>
 		</widget>
@@ -9199,10 +9391,10 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		      <property name="label" translatable="yes">_Contents</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleHelp" last_modification_time="Tue, 14 Feb 2006 00:10:33 GMT"/>
-		      <accelerator key="F1" signal="activate"/>
+		      <accelerator key="F1" modifiers="0" signal="activate"/>
 
 		      <child internal-child="image">
-			<widget class="GtkImage" id="image41">
+			<widget class="GtkImage" id="image54">
 			  <property name="visible">True</property>
 			  <property name="stock">gtk-help</property>
 			  <property name="icon_size">1</property>
@@ -9214,6 +9406,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		      </child>
 		    </widget>
 		  </child>
+
 		  <child>
 		    <widget class="GtkImageMenuItem" id="about1">
 		      <property name="visible">True</property>

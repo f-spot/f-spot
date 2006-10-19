@@ -55,7 +55,7 @@ public class PhotoPopup : Gtk.Menu {
 
 		GtkUtil.MakeMenuSeparator (popup_menu);
 
-		OpenWithMenu owm = OpenWithMenu.AppendMenuTo (popup_menu, MainWindow.Toplevel.SelectedMimeTypes);
+		OpenWithMenu owm = OpenWithMenu.AppendMenuTo (popup_menu, MainWindow.Toplevel.SelectedMimeTypes, true);
 		owm.IgnoreApp = "f-spot";
 		owm.ApplicationActivated += delegate (Gnome.Vfs.MimeApplication app) { MainWindow.Toplevel.HandleOpenWith (creator, app); };
 
@@ -69,7 +69,8 @@ public class PhotoPopup : Gtk.Menu {
 		//
 		// FIXME TagMenu is ugly.
 		//
-		MenuItem attach_item = new MenuItem (Mono.Posix.Catalog.GetString ("Attach Tag"));
+		ImageMenuItem attach_item = new ImageMenuItem (Mono.Posix.Catalog.GetString ("Attach Tag"));
+        attach_item.Image = new Gtk.Image ("gtk-add", IconSize.Menu);
 		TagMenu attach_menu = new TagMenu (attach_item, MainWindow.Toplevel.Database.Tags);
 		attach_menu.NewTagHandler += delegate { MainWindow.Toplevel.HandleCreateTagAndAttach (creator, null); };
 		attach_menu.TagSelected += MainWindow.Toplevel.HandleAttachTagMenuSelected;
@@ -80,7 +81,8 @@ public class PhotoPopup : Gtk.Menu {
 		// FIXME finish the IPhotoSelection stuff and move the activate handler into the class
 		// this current method is way too complicated.
 		//
-		MenuItem remove_item = new MenuItem (Mono.Posix.Catalog.GetString ("Remove Tag"));
+		ImageMenuItem remove_item = new ImageMenuItem (Mono.Posix.Catalog.GetString ("Remove Tag"));
+        remove_item.Image = new Gtk.Image ("gtk-remove", IconSize.Menu);
 		PhotoTagMenu remove_menu = new PhotoTagMenu ();
 		remove_menu.TagSelected += MainWindow.Toplevel.HandleRemoveTagMenuSelected;
 		remove_item.Submenu = remove_menu;

@@ -1,5 +1,12 @@
 2006-10-18  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/OpenWithMenu.cs:
+	* src/PhotoPopup.cs: 
+	* src/TagPopup.cs:
+	* src/f-spot.glade: Use icons for menu items.  Fixes BGO #329049.
+
+2006-10-18  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/MainWindow.cs: Remove clear_tag_query handler, change Show Find Bar
 	item into Hide Find Bar when appropriate.  Fixes BGO #360140.
 

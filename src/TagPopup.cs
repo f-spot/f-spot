@@ -31,27 +31,27 @@ public class TagPopup {
 
 		GtkUtil.MakeMenuSeparator (popup_menu);
 		
-		GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Create New Tag"),
-				      new EventHandler (MainWindow.Toplevel.HandleCreateNewCategoryCommand), true);
-		
-		GtkUtil.MakeMenuSeparator (popup_menu);
+		GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Create New Tag"), "f-spot-new-tag",
+				      MainWindow.Toplevel.HandleCreateNewCategoryCommand, true);
 
+        GtkUtil.MakeMenuSeparator (popup_menu);
+		
 		GtkUtil.MakeMenuItem (popup_menu,
-			Catalog.GetString ("Edit Tag"),
+			Catalog.GetString ("Edit Tag"), "gtk-edit",
 			delegate { MainWindow.Toplevel.HandleEditSelectedTagWithTag (tag); }, tag != null && tags_count == 1);
 
 		GtkUtil.MakeMenuItem (popup_menu,
-			Catalog.GetPluralString ("Delete Tag", "Delete Tags", tags_count),
+			Catalog.GetPluralString ("Delete Tag", "Delete Tags", tags_count), "gtk-delete",
 			new EventHandler (MainWindow.Toplevel.HandleDeleteSelectedTagCommand), tag != null);
 		
 		GtkUtil.MakeMenuSeparator (popup_menu);
 
 		GtkUtil.MakeMenuItem (popup_menu,
-				      Catalog.GetPluralString ("Attach Tag to Selection", "Attach Tags to Selection", tags_count),
+				      Catalog.GetPluralString ("Attach Tag to Selection", "Attach Tags to Selection", tags_count), "gtk-add",
 				      new EventHandler (MainWindow.Toplevel.HandleAttachTagCommand), tag != null && photo_count > 0);
 
 		GtkUtil.MakeMenuItem (popup_menu,
-				      Catalog.GetPluralString ("Remove Tag From Selection", "Remove Tags From Selection", tags_count),
+				      Catalog.GetPluralString ("Remove Tag From Selection", "Remove Tags From Selection", tags_count), "gtk-remove",
 				      new EventHandler (MainWindow.Toplevel.HandleRemoveTagCommand), tag != null && photo_count > 0);
 
 		if (tags_count > 1 && tag != null) {
