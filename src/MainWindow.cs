@@ -1478,18 +1478,7 @@ public class MainWindow {
 
 	void HandleSendMailCommand (object sender, EventArgs args)
 	{
-		//new FSpot.SendEmail (new FSpot.PhotoArray (SelectedPhotos ()));
-		Gtk.Window win = new Gtk.Window ("hello");
-		VBox box = new VBox ();
-		//CellView view = new CellView ("testing");
-		//CellRendererText text = new CellRendererText ();
-		//text.Editable = true;
-		//view.PackStart (text, true);
-		//box.PackStart (view);
-		box.PackStart (new FSpot.Widgets.ImageDisplay (new FSpot.PhotoArray (SelectedPhotos ())));
-		win.Add (box);
-
-		win.ShowAll ();
+        new FSpot.SendEmail (new FSpot.PhotoArray (SelectedPhotos ()));
 	}
 
 	public static void HandleHelp (object sender, EventArgs args)
