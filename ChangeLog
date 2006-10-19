@@ -1,3 +1,9 @@
+2006-10-19  Thomas Van Machelen  <thomas.vanmachelen@gmail.com>
+
+	* src/Preferences.cs:
+	* src/FolderExport.cs: Store the export setting in GConf. Fixes bgo
+	#353539.
+
 2006-10-19  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/PicasaWebEwport.cs: Only opening a browser window if everything

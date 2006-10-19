@@ -116,6 +116,12 @@ namespace FSpot {
 
 			//LoadHistory ();
 			Dialog.Response += HandleResponse;
+
+			LoadPreference (Preferences.EXPORT_FOLDER_SCALE);
+			LoadPreference (Preferences.EXPORT_FOLDER_SIZE);
+			LoadPreference (Preferences.EXPORT_FOLDER_OPEN);
+			LoadPreference (Preferences.EXPORT_FOLDER_ROTATE);
+			LoadPreference (Preferences.EXPORT_FOLDER_METHOD);
 		}
 
 		public void HandleSizeActive (object sender, System.EventArgs args)
@@ -195,6 +201,14 @@ namespace FSpot {
 				if (open) {
 					GnomeUtil.UrlShow (null, target.ToString ());
 				}
+
+				// Save these settings for next time
+				Preferences.Set (Preferences.EXPORT_FOLDER_SCALE, scale);
+				Preferences.Set (Preferences.EXPORT_FOLDER_SIZE, size);
+				Preferences.Set (Preferences.EXPORT_FOLDER_OPEN, open);
+				Preferences.Set (Preferences.EXPORT_FOLDER_ROTATE, rotate);
+				Preferences.Set (Preferences.EXPORT_FOLDER_METHOD, static_radio.Active ? "static" : original_radio.Active ? "original" : "folder" );
+
 			} catch (System.Exception e) {
 				progress_dialog.Message = e.ToString ();
 				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error Transferring");
@@ -205,6 +219,7 @@ namespace FSpot {
 					System.IO.Directory.Delete (gallery_path, true);
 				
 				Gtk.Application.Invoke (delegate { Dialog.Destroy(); });
+
 			}
 		}
 
@@ -284,6 +299,42 @@ namespace FSpot {
 			// this should actually be 1 anyway, because we transfer just one dir 
 			progress_dialog = new FSpot.ThreadProgressDialog (command_thread, 1);
 			progress_dialog.Start ();
+		}
+
+		void LoadPreference (string key)
+		{
+			object val = Preferences.Get (key);
+
+			if (val == null)
+				return;
+			
+			//System.Console.WriteLine ("Setting {0} to {1}", key, val);
+
+			switch (key) {
+			case Preferences.EXPORT_FOLDER_SCALE:
+				if (scale_check.Active != (bool) val)
+					scale_check.Active = (bool) val;
+				break;
+
+			case Preferences.EXPORT_FOLDER_SIZE:
+				size_spin.Value = (double) (int) val;
+				break;
+			
+			case Preferences.EXPORT_FOLDER_OPEN:
+				if (open_check.Active != (bool) val)
+					open_check.Active = (bool) val;
+				break;
+			
+			case Preferences.EXPORT_FOLDER_ROTATE:
+				if (rotate_check.Active != (bool) val)
+					rotate_check.Active = (bool) val;
+				break;
+			case Preferences.EXPORT_FOLDER_METHOD:
+				static_radio.Active = (string) val == "static";
+				original_radio.Active = (string) val == "original";
+				plain_radio.Active = (string) val == "folder";
+				break;
+			}
 		}
 	}
 

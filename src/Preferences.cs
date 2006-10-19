@@ -77,6 +77,12 @@ namespace FSpot
 		public const string EXPORT_PICASAWEB_ROTATE = "/apps/f-spot/export/picasaweb/rotate";
 		public const string EXPORT_PICASAWEB_BROWSER = "/apps/f-spot/export/picasaweb/browser";
 
+		public const string EXPORT_FOLDER_SCALE = "/apps/f-spot/export/folder/scale";
+		public const string EXPORT_FOLDER_SIZE = "/apps/f-spot/export/folder/size";
+		public const string EXPORT_FOLDER_OPEN = "/apps/f-spot/export/folder/browser";
+		public const string EXPORT_FOLDER_ROTATE = "/apps/f-spot/export/folder/rotate";
+		public const string EXPORT_FOLDER_METHOD = "/apps/f-spot/export/folder/method";
+		
  		public const string EXPORT_EMAIL_SIZE = "/apps/f-spot/export/email/size";
  		public const string EXPORT_EMAIL_ROTATE = "/apps/f-spot/export/email/auto_rotate";
  		public const string EXPORT_EMAIL_DELETE_TIMEOUT_SEC = "/apps/f-spot/export/email/delete_timeout_seconds";
@@ -135,9 +141,11 @@ namespace FSpot
 			case EXPORT_PICASAWEB_SCALE:
 			case EXPORT_PICASAWEB_ROTATE:
 			case EXPORT_PICASAWEB_BROWSER:
+			case EXPORT_FOLDER_SCALE:
 				return true;
 			
 			case EXPORT_PICASAWEB_SIZE:
+			case EXPORT_FOLDER_SIZE:
 				return 800;
 		
 			case SIDEBAR_POSITION:
@@ -151,9 +159,13 @@ namespace FSpot
 			case EXPORT_EMAIL_SIZE:
 				return 3;	// medium size 640px
 			case EXPORT_EMAIL_ROTATE:
-				return true;	// auto rotate original photos
+			case EXPORT_FOLDER_OPEN:
+			case EXPORT_FOLDER_ROTATE:
+				return true;
 			case EXPORT_EMAIL_DELETE_TIMEOUT_SEC:
 				return 30;	// delete temporary email pictures after 30 seconds
+			case EXPORT_FOLDER_METHOD:
+				return "static";
 			}
 
 			return null;
