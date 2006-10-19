@@ -602,6 +602,10 @@ namespace FSpot {
 				progress_dialog.Fraction = 1.0;
 				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Upload Complete");
 				progress_dialog.ButtonLabel = Gtk.Stock.Ok;
+
+				if (browser) {
+					GnomeUtil.UrlShow (null, album.Link);
+				}
 			} catch (System.Exception e) {
 				progress_dialog.Message = String.Format (Mono.Posix.Catalog.GetString ("Error Uploading To Gallery: {0}"),
 									 e.Message);
@@ -609,9 +613,6 @@ namespace FSpot {
 				System.Console.WriteLine (e);
 			}
 			
-			if (browser) {
-				GnomeUtil.UrlShow (null, album.Link);
-			}
 		}
 
 		private void HandleScaleCheckToggled (object o, EventArgs e)

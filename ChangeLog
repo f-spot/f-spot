@@ -1,3 +1,8 @@
+2006-10-19  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/PicasaWebEwport.cs: Only opening a browser window if everything
+	was fine during upload. Fixes bgo #360877.
+
 2006-10-18  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/OpenWithMenu.cs:
