@@ -87,7 +87,6 @@ public class MainWindow {
 	[Glade.Widget] MenuItem find_by_tag;
 	[Glade.Widget] MenuItem find_add_tag;
 	[Glade.Widget] MenuItem find_add_tag_with;
-	[Glade.Widget] MenuItem clear_tag_query;
 	
 	[Glade.Widget] MenuItem clear_date_range;
 
@@ -192,10 +191,6 @@ public class MainWindow {
 
 	public MainSelection Selection {
 		get { return selection; }
-	}
-
-	public MenuItem ClearFindByTag {
-		get { return clear_tag_query; }
 	}
 
 	//
@@ -381,10 +376,13 @@ public class MainWindow {
 		this.selection.ItemsChanged += HandleSelectionItemsChanged;
 
 		UpdateMenus ();
+
 		main_window.ShowAll ();
 
 		tagbar.Hide ();
 		find_bar.Hide ();
+
+        UpdateFindByTagMenu ();
 
 		LoadPreference (Preferences.SHOW_TOOLBAR);
 		LoadPreference (Preferences.SHOW_SIDEBAR);
@@ -2582,7 +2580,18 @@ public class MainWindow {
 
     void HandleFindByTag (object sender, EventArgs args)
     {
-        ShowQueryWidget ();
+        UpdateFindByTagMenu ();
+    }
+
+    private void UpdateFindByTagMenu ()
+    {
+        if (query_widget.Visible) {
+            query_widget.ClearTags ();
+            query_widget.Visible = false;
+            ((Gtk.Label)find_by_tag.Child).Text = Catalog.GetString ("Show Find Bar");
+        } else {
+            ShowQueryWidget ();
+        }
     }
 
     void HandleFindAddTagWith (object sender, EventArgs args)
@@ -2634,11 +2643,6 @@ public class MainWindow {
 		query_widget.Require (new Tag [] {t});
     }
 
-	void HandleClearTagSearch (object sender, EventArgs args)
-	{
-		query_widget.ClearTags ();
-	}
-	
 	//
 	// Handle Main Menu 
 
@@ -3110,6 +3114,7 @@ public class MainWindow {
 		}
 		
 		query_widget.Show ();
+        ((Gtk.Label)find_by_tag.Child).Text = Catalog.GetString ("Hide Find Bar");
 		return;
 	}
 	

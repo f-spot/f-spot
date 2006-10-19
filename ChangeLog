@@ -1,5 +1,13 @@
 2006-10-18  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/MainWindow.cs: Remove clear_tag_query handler, change Show Find Bar
+	item into Hide Find Bar when appropriate.  Fixes BGO #360140.
+
+	* src/f-spot.glade:
+	* src/QueryWidget.cs: Remove clear_tag_query.
+
+2006-10-18  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/Makefile.am: remove Widgets/ImageDisplay.cs from the build.
 
 2006-10-18  Stephane Delcroix  <stephane@delcroix.org>

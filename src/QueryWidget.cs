@@ -101,8 +101,6 @@ namespace FSpot {
 				Hide ();
 			}
 
-			MainWindow.Toplevel.ClearFindByTag.Sensitive = !logic_widget.Clear;
-
 			untagged.Visible = query.Untagged;
 			warning_box.Visible = (query.Count < 1);
 		}
