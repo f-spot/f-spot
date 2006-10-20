@@ -6,8 +6,8 @@ using Cairo;
 namespace FSpot.Widgets {
 	[Binding(Gdk.Key.Up, "Up")]
 	[Binding(Gdk.Key.Down, "Down")]
-	[Binding(Gdk.Key.Left, "Previous")]
-	[Binding(Gdk.Key.Right, "Next")] 
+	[Binding(Gdk.Key.Left, "TiltImage", 0.05)]
+	[Binding(Gdk.Key.Right, "TiltImage", -0.05)] 
 	[Binding(Gdk.Key.F, "ToggleFullscreen")]
 	public class ImageDisplay : Gtk.EventBox {
 		ImageInfo current;
@@ -58,28 +58,20 @@ namespace FSpot.Widgets {
 			Transition = new CrossFade (next, current);
 			return true;
 		}
-		
-		public bool Previous ()
+
+		public bool TiltImage (double radians)
 		{
 			Tilt t = effect as Tilt;
 
-			if (t != null)
-				t.Angle += 0.05;
-			else 
-				effect = new Tilt (current);
+			if (t == null) {
+				t = new Tilt (current);
+				effect = t;
+			}
+
+			t.Angle += radians;
 
 			QueueDraw ();
-			return true;
-		}
 
-		public bool Next ()
-		{
-			Tilt t = effect as Tilt;
-
-			if (t != null)
-				t.Angle -= 0.05;
-
-			QueueDraw ();
 			return true;
 		}
 
@@ -232,15 +224,23 @@ namespace FSpot.Widgets {
 
 		private class PanZoom : IEffect {
 			ImageInfo info;
+			TimeSpan duration = new TimeSpan (0, 0, 2);
+			Matrix start;
+			double pan_x;
+			double pan_y;
 
 			public PanZoom (ImageInfo info)
 			{
 				this.info = info;
+				
+
 			}
 
 			public bool OnExpose (Graphics ctx, Rectangle allocation, Rectangle area)
 			{
-				
+				if (start == null)
+					start = info.Fit (allocation);
+
 				return true;
 			}
 
@@ -288,7 +288,7 @@ namespace FSpot.Widgets {
 				ctx.Matrix = end.Fill (allocation);
 				SurfacePattern sur = new SurfacePattern (end.Surface);
 				//sur.Filter = Filter.Fast;
-				Pattern black = new SolidPattern (new Cairo.Color (0.0, 0.0, 0.0, fraction), false);
+				Pattern black = new SolidPattern (new Cairo.Color (0.0, 0.0, 0.0, fraction));
 				ctx.Pattern = sur;
 				ctx.Mask (black);
 
@@ -348,7 +348,7 @@ namespace FSpot.Widgets {
 				ctx.Operator = Operator.Over;
 				ctx.Matrix = end_buffer.Fill (allocation);
 				SurfacePattern sur = new SurfacePattern (end_buffer.Surface);
-				Pattern black = new SolidPattern (new Cairo.Color (0.0, 0.0, 0.0, opacity), false);
+				Pattern black = new SolidPattern (new Cairo.Color (0.0, 0.0, 0.0, opacity));
 				//ctx.Pattern = black;
 				//ctx.Fill ();
 				sur.Filter = Filter.Fast;

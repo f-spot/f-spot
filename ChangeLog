@@ -1,5 +1,7 @@
 2006-10-20  Larry Ewing  <lewing@novell.com>
 
+	* src/Widgets/ImageDisplay.cs: use arguments in the keybindings.
+
 	* src/PixbufLoader.cs: synchronize the hashtable.
 
 	* src/IconView.cs: fix the bounds check so that the first image in
