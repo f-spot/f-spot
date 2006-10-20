@@ -30,7 +30,11 @@ namespace FSpot {
 		public void HandleThumbnailLoaded (PixbufLoader loader, string path, int order, Gdk.Pixbuf result)
 		{
 			string thumb_path = ThumbnailGenerator.ThumbnailPath (new System.Uri (path));
-			Reload (thumb_path);
+
+			// Only reload thumbnail if the generator managed
+			// to successfully load it.
+			if (result != null)
+				Reload (thumb_path);
 
 		}
 

@@ -1,3 +1,8 @@
+2006-10-20  Larry Ewing  <lewing@novell.com>
+
+	* src/PixbufCache.cs: only reload the thumbnail if the generator
+	managed to generate a thumbnail.
+
 2006-10-20  Bengt Thuree <bengt@thuree.com>
 
 	* src/Util.cs: Hack to convert file:/ to file:/// due to bug 362016,
