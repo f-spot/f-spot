@@ -30,14 +30,11 @@ namespace FSpot {
 		public void HandleThumbnailLoaded (PixbufLoader loader, string path, int order, Gdk.Pixbuf result)
 		{
 			string thumb_path = ThumbnailGenerator.ThumbnailPath (new System.Uri (path));
-
-			// Only reload thumbnail if the generator managed
-			// to successfully load it.
+			
 			if (result != null)
 				Reload (thumb_path);
-
 		}
-
+			
 		public void Request (string path, object closure, int width, int height)
 		{
 			lock (items) {
@@ -55,16 +52,20 @@ namespace FSpot {
 			}
 		}
 
+		public void Update (string path, Gdk.Pixbuf pixbuf)
+		{
+			lock (items) {
+				CacheEntry entry = (CacheEntry) items [path];
+				if (entry != null) {
+					entry.SetPixbufExtended (pixbuf, true);
+				}
+			}
+		}
+
 		public void Update (CacheEntry entry, Gdk.Pixbuf pixbuf)
 		{
 			lock (items) {
-				lock (entry) {
-					if (entry.Path == null) {
-						pixbuf.Dispose ();
-						return;
-					}
-					entry.Pixbuf = pixbuf;
-				}
+				entry.SetPixbufExtended (pixbuf, true);
 			}
 		}
 		
@@ -149,16 +150,16 @@ namespace FSpot {
 		private void WorkerTask ()
 		{
 			CacheEntry current = null;
-			ThumbnailGenerator.Default.PushBlock ();
+			//ThumbnailGenerator.Default.PushBlock ();
 			while (true) {
 				try {
 					lock (items) {
 						/* find the next item */
 						while ((current = FindNext ()) == null) {
 							if (!ShrinkIfNeeded ()){
-								ThumbnailGenerator.Default.PopBlock ();
+								//ThumbnailGenerator.Default.PopBlock ();
 								Monitor.Wait (items);
-								ThumbnailGenerator.Default.PushBlock ();
+								//ThumbnailGenerator.Default.PushBlock ();
 							}
 						}
 					}
@@ -312,38 +313,48 @@ namespace FSpot {
 				}
 			}
 			
+			public bool IsDisposed {
+				get { return path == null; }
+			}
+			
+			public void SetPixbufExtended (Gdk.Pixbuf value, bool ignore_undead)
+			{
+				lock (this) {
+					if (IsDisposed) {
+						if (ignore_undead) {
+							return;
+						} else {
+							throw new System.Exception ("I don't want to be undead");
+						}
+					}							
+
+					Gdk.Pixbuf old = this.Pixbuf;
+					cache.total_size -= this.Size;
+					this.pixbuf = value;
+					if (pixbuf != null) {
+						this.width = pixbuf.Width;
+						this.height = pixbuf.Height;
+					}
+					cache.total_size += this.Size;
+					this.Reload = false;
+					
+					if (old != null)
+						old.Dispose ();
+				}
+			}
+
 			public Gdk.Pixbuf Pixbuf {
 				get {
 					lock (this) {
 						return pixbuf;
 					}
 				}
-				set {
-					lock (this) {
-						if (path == null)
-							throw new System.Exception ("I don't want to be undead");
-
-						Gdk.Pixbuf old = this.Pixbuf;
-						cache.total_size -= this.Size;
-						this.pixbuf = value;
-						if (pixbuf != null) {
-							this.width = pixbuf.Width;
-							this.height = pixbuf.Height;
-						}
-						cache.total_size += this.Size;
-						this.Reload = false;
-
-						if (old != null)
-							old.Dispose ();
-					}
-					
-				}
 			}
 			
 			public Gdk.Pixbuf ShallowCopyPixbuf ()
 			{
 				lock (this) {
-					if (path == null)
+					if (IsDisposed)
 						throw new System.Exception ("I'm dead");
 
 					if (pixbuf == null)
@@ -355,13 +366,16 @@ namespace FSpot {
 			
 			~CacheEntry ()
 			{
-				this.Dispose ();
+				if (!IsDisposed)
+					this.Dispose ();
 			}
 			
 			public void Dispose ()
 			{
 				lock (this) {
-					cache.total_size -= this.Size;
+					if (! IsDisposed)
+						cache.total_size -= this.Size;
+
 					if (this.pixbuf != null) {
 						this.pixbuf.Dispose ();
 						
@@ -370,6 +384,7 @@ namespace FSpot {
 					this.cache = null;
 					this.path = null;
 				}
+				System.GC.SuppressFinalize (this);
 			}
 			
 			public int Size {

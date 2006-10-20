@@ -788,11 +788,9 @@ public class IconView : Gtk.Layout {
 									      
 					
 					lock (entry) {
-						if (entry.Reload && expansion == 0) {
-							if (entry.Path != null) {
-								entry.Pixbuf = PixbufUtils.ShallowCopy (temp_thumbnail);
-								entry.Reload = true;
-							}
+						if (entry.Reload && expansion == 0 && !entry.IsDisposed) {
+							entry.SetPixbufExtended (PixbufUtils.ShallowCopy (temp_thumbnail), false);
+							entry.Reload = true;
 						}
 					}
 				} else {
