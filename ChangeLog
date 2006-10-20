@@ -1,5 +1,7 @@
 2006-10-20  Larry Ewing  <lewing@novell.com>
 
+	* src/ColorDialog.cs: adjust the scale of exposure correction.
+
 	* src/Widgets/CompositeUtils.cs: new methods to work around a bug
 	in gtk# and to wrap a gdk_xll_method.
 

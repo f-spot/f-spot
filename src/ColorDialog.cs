@@ -433,7 +433,7 @@ namespace FSpot {
 			}
 
 			profile = Cms.Profile.CreateAbstract (20, 
-							      Math.Pow (2.0, exposure),
+							      Math.Pow (Math.Sqrt (2.0), exposure),
 							      brightness,
 							      contrast,
 							      hue,
