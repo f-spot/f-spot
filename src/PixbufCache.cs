@@ -29,21 +29,9 @@ namespace FSpot {
 		
 		public void HandleThumbnailLoaded (PixbufLoader loader, string path, int order, Gdk.Pixbuf result)
 		{
-			string thumb_path = ThumbnailGenerator.ThumbnailPath (path);
-			CacheEntry entry;
-			lock (items) {
-				entry = (CacheEntry) items [thumb_path];
-			}
+			string thumb_path = ThumbnailGenerator.ThumbnailPath (new System.Uri (path));
+			Reload (thumb_path);
 
-			if (entry != null && result != null) {
-				int width, height;
-				PixbufUtils.Fit (result, entry.Width, entry.Height, false, out width, out height);
-				Gdk.Pixbuf down = PixbufUtils.ScaleDown (result, width, height);
-				PixbufUtils.CopyThumbnailOptions (result, down);
-				Update (entry, down);
-			}
-
-			//System.Console.WriteLine ("removing {0}", thumb_path);
 		}
 
 		public void Request (string path, object closure, int width, int height)
@@ -86,6 +74,21 @@ namespace FSpot {
 					entry.Data = data;
 				}
 				Monitor.Pulse (items);
+			}
+		}
+
+		public void Reload (string path)
+		{
+			CacheEntry entry;
+
+			lock (items) {
+				entry = (CacheEntry) items [path];
+				if (entry != null) {
+					lock (entry) {
+						entry.Reload = true;
+					}
+					Monitor.Pulse (items);
+				}
 			}
 		}
 

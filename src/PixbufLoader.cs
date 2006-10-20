@@ -72,9 +72,9 @@ public class PixbufLoader {
 	public PixbufLoader ()
 	{
 		queue = new ArrayList ();
-		requests_by_path = new Hashtable ();
+		requests_by_path = Hashtable.Synchronized (new Hashtable ());
 		processed_requests = new Queue ();
-
+		
 		pending_notify = new ThreadNotify (new Gtk.ReadyEvent (HandleProcessedRequests));
 
 		worker_thread = new Thread (new ThreadStart (WorkerThread));
@@ -212,9 +212,9 @@ public class PixbufLoader {
 						pending_notify.WakeupMain ();
 						pending_notify_notified = true;
 					}
-						
+					
 					current_request = null;
-					}
+				}
 			}
 
 			lock (queue) {
@@ -244,7 +244,8 @@ public class PixbufLoader {
 	private void HandleProcessedRequests ()
 	{
 		Queue results;
-
+		
+		
 		lock (processed_requests) {
 			/* Copy the queued items out of the shared queue so we hold the lock for
 			   as little time as possible.  */

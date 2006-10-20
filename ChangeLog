@@ -1,3 +1,13 @@
+2006-10-20  Larry Ewing  <lewing@novell.com>
+
+	* src/PixbufLoader.cs: synchronize the hashtable.
+
+	* src/IconView.cs: fix the bounds check so that the first image in
+	the icon view will generate thumbnails.
+
+	* src/PixbufCache.cs: fixup the thumbnail generator listener that
+	was broken when gnome-vfs support was added.
+
 2006-10-19  Larry Ewing  <lewing@novell.com>
 
 	* src/PixbufCache.cs: change the way updates are queued, avoids

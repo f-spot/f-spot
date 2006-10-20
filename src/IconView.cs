@@ -1192,7 +1192,7 @@ public class IconView : Gtk.Layout {
 		Gdk.Pixbuf result = entry.ShallowCopyPixbuf ();
 		int order = (int) entry.Data;
 
-		if (order > 0 && order < collection.Count) {
+		if (order >= 0 && order < collection.Count) {
 			System.Uri uri = collection [order].DefaultVersionUri;
 
 			if (result == null && !System.IO.File.Exists (FSpot.ThumbnailGenerator.ThumbnailPath (uri)))
