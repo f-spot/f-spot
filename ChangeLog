@@ -1,3 +1,9 @@
+2006-10-19  Larry Ewing  <lewing@novell.com>
+
+	* src/PixbufCache.cs: change the way updates are queued, avoids
+	the pending queue and the old style wakeup main.  Hoping this will
+	have an effect on #333071.
+
 2006-10-19  Thomas Van Machelen  <thomas.vanmachelen@gmail.com>
 
 	* src/Preferences.cs:

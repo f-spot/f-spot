@@ -8,8 +8,6 @@ namespace FSpot {
 		int total_size;
 		int max_size = 256 * 256 * 4 * 30;
 
-		Gtk.ThreadNotify notify;
-		bool  notify_pending;
 		Queue pending;
 
 		private Thread worker;
@@ -22,8 +20,6 @@ namespace FSpot {
 			pending = new Queue ();
 			items = new Hashtable ();
 			items_mru = new ArrayList ();
-			
-			notify = new Gtk.ThreadNotify (new Gtk.ReadyEvent (HandleProcessedRequests));
 			
 			worker = new Thread (new ThreadStart (WorkerTask));
 			worker.Start ();
@@ -183,32 +179,12 @@ namespace FSpot {
 		
 		private void QueueLast (CacheEntry entry)
 		{
-			lock (pending) {
-				pending.Enqueue (entry);
-				if (!notify_pending) {
-					notify_pending = true;
-					notify.WakeupMain ();
-				}
-			}
+			Gtk.Application.Invoke (delegate (object obj, System.EventArgs args) {
+				if (entry.Path != null && OnPixbufLoaded != null)
+					OnPixbufLoaded (this, entry);
+			});
 		}
-
-		private void HandleProcessedRequests ()
-		{
-			Queue entries;
-			lock (pending) {
-				entries = pending.Clone () as Queue;
-				pending.Clear ();
-				notify_pending = false;
-			}
-			
-			if (OnPixbufLoaded != null) {
-				foreach (CacheEntry entry in entries) {
-					if (entry.Path != null)
-						OnPixbufLoaded (this, entry);
-				}
-			}
-		}
-
+		
 		private void MoveForward (CacheEntry entry)
 		{
 #if true
