@@ -1,3 +1,8 @@
+2006-10-20  Stephane Delcroix  <stephane@delcroix.org>
+
+	* configure.in: makes autogen and configure stop if no C# compiler.
+	Fixes bgo #363591
+
 2006-10-20  Larry Ewing  <lewing@novell.com>
 
 	* src/Widgets/ImageDisplay.cs: use arguments in the keybindings.

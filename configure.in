@@ -21,6 +21,11 @@ dnl --- Check for mono and mcs
 AC_PATH_PROG(MONO, mono)
 AC_PATH_PROG(MCS, gmcs)
 
+CS="C#"
+if test ! -x "$MCS"; then
+	AC_MSG_ERROR([No $CS compiler found])
+fi
+
 dnl -- Check for mono pc file
 
 AC_MSG_CHECKING([for mono.pc])
