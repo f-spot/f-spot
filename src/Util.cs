@@ -99,7 +99,20 @@ public class UriList : ArrayList {
 				try {
 					uri = new Uri (s);
 				} catch {
+#if true //Workaround to bgo 362016 in gnome-screenshot. Remove this hack when gnome 2.6.18 is widely distributed.
+					if (System.Text.RegularExpressions.Regex.IsMatch (s, "^file:/[^/]")) {
+						try {
+							s = "file:///" + s.Substring(6);
+							uri = new Uri (s);
+							Console.WriteLine ("Converted uri from file:/ to >>{0}<<", s);
+						} catch {
+							continue;
+						}
+					} else
+						continue;
+#else					
 					continue;
+#endif
 				}
 				Add (uri);
 			}
