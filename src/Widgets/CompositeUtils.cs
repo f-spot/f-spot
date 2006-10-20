@@ -9,6 +9,13 @@ namespace FSpot.Widgets {
 	        static extern bool gdk_screen_is_composited (IntPtr screen);
 		
 		[DllImport("libgdk-2.0-0.dll")]
+		static extern bool gdk_x11_screen_supports_net_wm_hint (IntPtr screen,
+									IntPtr property);
+
+		[DllImport("libgdk-2.0-0.dll")]
+		static extern IntPtr gdk_x11_get_xatom_by_name_for_display (IntPtr display, string name);
+
+		[DllImport("libgdk-2.0-0.dll")]
 		static extern IntPtr gdk_screen_get_rgba_colormap (IntPtr screen);
 
 		[DllImport("libgdk-2.0-0.dll")]
@@ -17,6 +24,9 @@ namespace FSpot.Widgets {
 		[DllImport ("libgtk-win32-2.0-0.dll")]
 		static extern void gtk_widget_input_shape_combine_mask (IntPtr raw, IntPtr shape_mask, int offset_x, int offset_y);
 
+		[DllImport("libgdk-2.0-0.dll")]
+		static extern void gdk_property_change(IntPtr window, IntPtr property, IntPtr type, int format, int mode, uint [] data, int nelements);
+		
 		public static Colormap GetRgbaColormap (Screen screen)
 		{
 			try {
@@ -32,6 +42,22 @@ namespace FSpot.Widgets {
 				}
 			}
 			return null;
+		}
+
+		public static void  ChangeProperty (Gdk.Window win, Atom property, Atom type, PropMode mode, uint [] data)
+		{
+			gdk_property_change (win.Handle, property.Handle, type.Handle, 32, (int)mode,  data, data.Length * 4);
+		}
+
+		public static bool SupportsHint (Screen screen, string name)
+		{
+			try {
+				Atom atom = Atom.Intern (name, false);
+				return gdk_x11_screen_supports_net_wm_hint (screen.Handle, atom.Handle);
+			} catch {
+				
+				return false;
+			}
 		}
 
 		public static bool SetRgbaColormap (Widget w)

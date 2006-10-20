@@ -1,18 +1,98 @@
+using System;
 using Gtk;
+using Gdk;
 using FSpot.Widgets;
 using Cairo;
+using Mono.Unix;
 
 namespace FSpot {
+	[Binding(Gdk.Key.Escape, "Quit")]
 	public class FullScreenView : Gtk.Window {
 		private ScrolledView scroll;
 		private PhotoImageView view;
 		private Gtk.Button forward_button;
 		private Gtk.Button back_button;
-		
+		ActionGroup actions;
+
+		private class FadeIn {
+			bool composited;
+			Delay fade_delay;
+			TimeSpan duration;
+			DateTime start;
+			Gtk.Window win;
+			
+			public FadeIn (Gtk.Window win, int sec)
+			{
+				this.win = win;
+				win.Mapped += HandleMapped;
+				win.Unmapped += HandleUnmapped;
+				win.ExposeEvent += HandleExposeEvent;
+				duration = new TimeSpan (0, 0, sec);
+			}
+			
+			[GLib.ConnectBefore]
+			public void HandleMapped (object sender, EventArgs args)
+			{
+				composited = CompositeUtils.SupportsHint (win.Screen, "_NET_WM_WINDOW_OPACITY");
+				if (!composited)
+					return;
+
+				SetWinOpacity (0.0);
+			}
+			
+			public void HandleExposeEvent (object sender, ExposeEventArgs args)
+			{
+				if (fade_delay == null) {
+					fade_delay = new Delay (50, new GLib.IdleHandler (Update));
+					start = DateTime.Now;
+					fade_delay.Start ();
+				}
+			}
+
+			public void HandleUnmapped (object sender, EventArgs args)
+			{
+				fade_delay.Stop ();
+			}
+
+			private void SetWinOpacity (double opacity)
+			{
+				CompositeUtils.ChangeProperty (win.GdkWindow, 
+							       Atom.Intern ("_NET_WM_WINDOW_OPACITY", false),
+							       Atom.Intern ("CARDINAL", false),
+							       PropMode.Replace,
+							       new uint [] { (uint) (0xffffffff * opacity) });
+			}
+
+			public bool Update ()
+			{
+				double percent = Math.Min ((DateTime.Now - start).Ticks / (double) duration.Ticks, 1.0);
+				double opacity = Math.Sin (percent * Math.PI * 0.2);
+				SetWinOpacity (percent);
+
+				bool stop = percent >= 1.0;
+
+				if (stop)
+					fade_delay.Stop ();
+
+				return !stop;
+			}
+		}			
+			
+			
+					
 		public FullScreenView (IBrowsableCollection collection) : base ("Full Screen Mode")
 		{
 			try {
 				//scroll = new Gtk.ScrolledWindow (null, null);
+				actions = new ActionGroup ("joe");
+				
+				actions.Add (new ActionEntry [] {
+					new ActionEntry ("ExitFullScreen", Stock.Quit, Catalog.GetString ("Exit fullscreen"), null, null, new System.EventHandler (ExitAction)),
+					new ActionEntry ("NextPicture", Stock.GoForward, Catalog.GetString ("Next"), null, Catalog.GetString ("Next Picture"), new System.EventHandler (NextAction)),
+					new ActionEntry ("PreviousPicture", Stock.GoBack, Catalog.GetString ("Back"), null, Catalog.GetString ("Previous Picture"), new System.EventHandler (PreviousAction))
+				});
+
+				new FadeIn (this, 3);
 				
 				scroll = new ScrolledView ();
 				view = new PhotoImageView (collection);
@@ -26,10 +106,13 @@ namespace FSpot {
 				HBox hhbox = new HBox ();
 				Gtk.Button close = ExitButton ();
 				hhbox.PackStart (close);
+				hhbox.PackStart (GetButton ("PreviousPicture"));
+				hhbox.PackStart (GetButton ("NextPicture"));
+
 				//hhbox.PackStart (new Gtk.Label ("This is a test"));
 				scroll.ControlBox.Add (hhbox);
 				hhbox.ShowAll ();
-				close.Clicked += HandleExitClicked;
+				close.Clicked += ExitAction;
 				close.Show ();
 				scroll.ShowControls ();
 				
@@ -45,12 +128,6 @@ namespace FSpot {
 		}
 
 #if false
-		protected override void OnRealized ()
-		{
-			CompositeUtils.SetRgbaColormap (this);
-			base.OnRealized ();
-		}
-
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
 			bool ret = base.OnExposeEvent (args);
@@ -64,7 +141,6 @@ namespace FSpot {
 			return ret;
 		}
 #endif
-
 		private Gtk.Button ExitButton ()
 		{
 			Gtk.HBox hbox = new Gtk.HBox ();
@@ -74,9 +150,31 @@ namespace FSpot {
 			return new Gtk.Button (hbox);
 		}
 
-		private void HandleExitClicked (object sender, System.EventArgs args)
+		private Button GetButton (string name)
+		{
+			Action action = actions [name];
+			Widget w = action.CreateIcon (IconSize.Button);
+			Button button = new Button ();
+			button.Add (w);
+			w.Show ();
+
+			action.ConnectProxy (button);
+			return button;
+		}
+			
+		private void ExitAction (object sender, System.EventArgs args)
 		{
 			this.Destroy ();
+		}
+
+		private void NextAction (object sender, System.EventArgs args)
+		{
+			view.Item.MoveNext ();
+		}
+
+		private void PreviousAction (object sender, System.EventArgs args)
+		{
+			view.Item.MovePrevious ();
 		}
 
 		[GLib.ConnectBefore]
@@ -103,7 +201,11 @@ namespace FSpot {
 			}
 		}
 
-		
+		public void Quit ()
+		{
+			this.Destroy ();
+		}
+
 		protected override bool OnKeyPressEvent (Gdk.EventKey key)
 		{
 			if (key == null) {
@@ -118,7 +220,7 @@ namespace FSpot {
 
 			bool retval = base.OnKeyPressEvent (key);
 			if (!retval)
-				this.Destroy ();
+				Quit ();
 			else 
 				view.Fit = false;
 			return retval;

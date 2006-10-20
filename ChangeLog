@@ -1,5 +1,11 @@
 2006-10-20  Larry Ewing  <lewing@novell.com>
 
+	* src/Widgets/CompositeUtils.cs: new methods to work around a bug
+	in gtk# and to wrap a gdk_xll_method.
+
+	* src/FullScreenView.cs: add a generic FadeIn effect that uses the
+	_NET_WM_WINDOW_OPACITY property to do the dirty work.
+	
 	* src/PixbufCache.cs: abstract a bit more of the logic that was
 	growing around the entry.
 	
