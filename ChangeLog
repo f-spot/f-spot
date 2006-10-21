@@ -1,3 +1,11 @@
+2006-10-21  Larry Ewing  <lewing@novell.com>
+
+	* src/TagView.cs: make TagView an invisible EventBox so that
+	it can manange it's own tooltips and work properly in any container.
+
+	* src/PhotoView.cs:
+	* src/QueryDisplay.cs: use the new TagView interface.
+
 2006-10-20  Larry Ewing  <lewing@novell.com>
 
 	* src/ColorDialog.cs: adjust the scale of exposure correction.

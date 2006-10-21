@@ -3,22 +3,17 @@ using Gtk;
 using Gdk;
 
 namespace FSpot {
-public class TagView : Gtk.Widget {
+public class TagView : EventBox {
 	private int thumbnail_size = 20;
 	private IBrowsableItem photo;
 	private Tag [] tags;
 	private static int TAG_ICON_VSPACING = 5;
+	bool parent_tip;
 
-	private EventBox parent;
-
-	public TagView (EventBox parent)
+	public TagView ()
 	{
-		this.parent = parent;
-
-		SetFlag (WidgetFlags.NoWindow);
+		VisibleWindow = false;
 	}
-
-	protected TagView (IntPtr raw) : base (raw) {}
 
 	public IBrowsableItem Current {
 		set {
@@ -87,7 +82,7 @@ public class TagView : Gtk.Widget {
 						      RgbDither.None, tag_x, tag_y);
 			tag_x += thumbnail_size + TAG_ICON_VSPACING;
 		}
-		MainWindow.SetTip (parent, String.Join (", ", names));
+		MainWindow.SetTip (this, String.Join (", ", names));
 
 		return base.OnExposeEvent (args);
 	}

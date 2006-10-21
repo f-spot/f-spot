@@ -16,7 +16,6 @@ public class PhotoView : EventBox {
 	private EventBox background;
 
 	private TagView tag_view;
-	private EventBox tag_view_box;
 	
 	private Button display_next_button, display_previous_button;
 	private Label count_label;
@@ -481,10 +480,8 @@ public class PhotoView : EventBox {
 		HBox inner_hbox = new HBox (false, 2);
 		//inner_hbox.BorderWidth = 6;
 
-		tag_view_box = new EventBox ();
-		tag_view = new TagView (tag_view_box);
-		tag_view_box.Add (tag_view);
-		inner_hbox.PackStart (tag_view_box, false, true, 0);
+		tag_view = new TagView ();
+		inner_hbox.PackStart (tag_view, false, true, 0);
 		SetColors ();
 
 		Label comment = new Label (Catalog.GetString ("Comment:"));
@@ -562,7 +559,7 @@ public class PhotoView : EventBox {
 	
 	private void SetColors ()
 	{
-		FSpot.Global.ModifyColors (tag_view_box);
+		FSpot.Global.ModifyColors (tag_view);
 		FSpot.Global.ModifyColors (photo_view);
 		FSpot.Global.ModifyColors (background);
 		FSpot.Global.ModifyColors (photo_view_scrolled);

@@ -5,13 +5,12 @@ using Gtk;
 namespace FSpot {
 public class QueryDisplay : Gtk.VBox {
 	PhotoQuery query;
-	TagView tag_view;
-	Gtk.EventBox tag_view_box;
 	Gtk.Label label;
 	Gtk.Label untagged;
 	Gtk.HBox warning_box;
 	Gtk.Button clear_button;
 	TagSelectionWidget selector;
+	TagView tag_view;
 
 	public QueryDisplay (PhotoQuery query, TagSelectionWidget selector) {
 		this.query = query;
@@ -40,11 +39,9 @@ public class QueryDisplay : Gtk.VBox {
 		untagged.Visible = false;
 		hbox.PackStart (untagged, false, false, 0);
 
-		tag_view_box = new EventBox ();
-		tag_view = new TagView (tag_view_box);
+		tag_view = new TagView ();
 		tag_view.Show ();
-		tag_view_box.Add (tag_view);
-		hbox.PackStart (tag_view_box, false, false, 0);
+		hbox.PackStart (tag_view, false, false, 0);
 		
 		warning_box = new Gtk.HBox ();
 		warning_box.PackStart (new Gtk.Label (""));
