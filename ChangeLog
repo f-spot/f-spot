@@ -1,5 +1,11 @@
 2006-10-21  Larry Ewing  <lewing@novell.com>
 
+	* src/Widgets/ScrolledView.cs: don't hide the control box if we
+	are over it.
+
+	* src/FullScreenView.cs: start adding some more widgets to the
+	full screen view.
+
 	* src/TagView.cs: make TagView an invisible EventBox so that
 	it can manange it's own tooltips and work properly in any container.
 
