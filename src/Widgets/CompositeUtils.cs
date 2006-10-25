@@ -121,5 +121,14 @@ namespace FSpot.Widgets {
 			Console.WriteLine ("xid = {0} d.handle = {1}, d.Display.Handle = {2}", xid, d.Handle, d.Display.Handle);
 			XCompositeRedirectWindow (GdkUtils.GetXDisplay (d.Display), GdkUtils.GetXid (d), CompositeRedirect.Manual);
 		}
+
+		public static void SetWinOpacity (Gtk.Window win, double opacity)
+		{
+			CompositeUtils.ChangeProperty (win.GdkWindow, 
+						       Atom.Intern ("_NET_WM_WINDOW_OPACITY", false),
+						       Atom.Intern ("CARDINAL", false),
+						       PropMode.Replace,
+						       new uint [] { (uint) (0xffffffff * opacity) });
+		}
 	}
 }

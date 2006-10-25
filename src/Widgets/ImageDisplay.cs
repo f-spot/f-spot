@@ -8,11 +8,11 @@ namespace FSpot.Widgets {
 	[Binding(Gdk.Key.Down, "Down")]
 	[Binding(Gdk.Key.Left, "TiltImage", 0.05)]
 	[Binding(Gdk.Key.Right, "TiltImage", -0.05)] 
-	[Binding(Gdk.Key.F, "ToggleFullscreen")]
+	[Binding(Gdk.Key.space, "Pan")]
 	public class ImageDisplay : Gtk.EventBox {
 		ImageInfo current;
 		ImageInfo next;
-		IBrowsableCollection collection;
+		BrowsablePointer item;
 		ITransition transition;
 		IEffect effect;
 		double opacity = 0.5;
@@ -34,17 +34,36 @@ namespace FSpot.Widgets {
 			}
 		}
 
-		public ImageDisplay (IBrowsableCollection collection) 
+		public ImageDisplay (BrowsablePointer item) 
 		{
+			this.item = item;
 			CanFocus = true;
-			current = new ImageInfo (collection [index].DefaultVersionUri);
-			this.collection = collection;
-			if (collection.Count > index + 1) {
-				next = new ImageInfo (collection [index + 1].DefaultVersionUri);
+			current = new ImageInfo (item.Current.DefaultVersionUri);
+			if (item.Collection.Count > item.Index + 1) {
+				next = new ImageInfo (item.Collection [item.Index + 1].DefaultVersionUri);
 			}
 			delay = new Delay (new GLib.IdleHandler (DrawFrame));
 		}
 
+		protected override void OnDestroyed ()
+		{
+			if (current != null) {
+				current.Dispose ();
+				current = null;
+			}
+
+		        if (next != null) {
+				next.Dispose ();
+				next = null;
+			}
+			Transition = null;
+			
+			if (effect != null)
+				effect.Dispose ();
+			
+			base.OnDestroyed ();
+		}
+	
 		public bool Up ()
 		{
 			Console.WriteLine ("Up");
@@ -75,9 +94,10 @@ namespace FSpot.Widgets {
 			return true;
 		}
 
-		public bool ToggleFullscreen ()
+		public bool Pan ()
 		{
-			
+			Console.WriteLine ("space");
+			Transition = new PanZoom (next);
 			return true;
 		}
 
@@ -91,7 +111,7 @@ namespace FSpot.Widgets {
 			return true;
 		}
 		
-		private void SetClip (Graphics ctx, Region region)
+		private static void SetClip (Graphics ctx, Region region)
 		{
 			foreach (Rectangle area in region.GetRectangles ()) {
 				ctx.MoveTo (area.Left, area.Top);
@@ -222,12 +242,14 @@ namespace FSpot.Widgets {
 			}
 		}
 
-		private class PanZoom : IEffect {
+		private class PanZoom : ITransition {
 			ImageInfo info;
-			TimeSpan duration = new TimeSpan (0, 0, 2);
-			Matrix start;
+			TimeSpan duration = new TimeSpan (0, 0, 8);
+			bool started = false;
 			double pan_x;
 			double pan_y;
+			DateTime start;
+			int frames = 0;
 
 			public PanZoom (ImageInfo info)
 			{
@@ -236,17 +258,82 @@ namespace FSpot.Widgets {
 
 			}
 
-			public bool OnExpose (Graphics ctx, Rectangle allocation, Rectangle area)
+			public int Frames {
+				get { return frames; }
+			}
+			
+			public double ScaleTo (Rectangle viewport)
 			{
-				if (start == null)
-					start = info.Fit (allocation);
+				double scale = Math.Min (viewport.Width / (double) info.Bounds.Width,
+							 viewport.Height / (double) info.Bounds.Height);
+				
+				scale *= 1.2;
+				return scale;
+			}
 
-				return true;
+			public bool OnExpose (Graphics ctx, Rectangle viewport, Rectangle area)
+			{
+				if (frames == 0) {
+					start = DateTime.Now;
+					info = new ImageInfo (info, viewport);
+				}
+
+				frames ++;
+
+				//Matrix m = info.Fill (allocation);
+				Matrix m = new Matrix ();
+				m.InitIdentity ();
+				
+				double scale = Math.Min (viewport.Width / (double) info.Bounds.Width,
+							 viewport.Height / (double) info.Bounds.Height);
+				
+				scale *= 1.2;
+
+				double percent = Math.Min ((DateTime.Now - start).Ticks / (double) duration.Ticks, 1.0;
+
+				double x_offset = (viewport.Width  - info.Bounds.Width * scale);
+				double y_offset = (viewport.Height  - info.Bounds.Height * scale);
+
+				x_offset *= percent;
+				y_offset *= percent;
+
+				m.Translate (x_offset, y_offset);
+				m.Scale (scale, scale);
+
+				double x = 0;
+				double y = 0;
+
+				m.TransformPoint (ref x, ref y);
+				System.Console.WriteLine ("point = ({0}, {1})", x, y);
+				x = info.Bounds.Left;
+				y = info.Bounds.Bottom;
+				m.TransformPoint (ref x, ref y);
+				System.Console.WriteLine ("point = ({0}, {1})", x, y);
+				x = info.Bounds.Right;
+				y = info.Bounds.Bottom;
+				m.TransformPoint (ref x, ref y);
+				System.Console.WriteLine ("point = ({0}, {1})", x, y);
+				x = info.Bounds.Right;
+				y = info.Bounds.Top;
+				m.TransformPoint (ref x, ref y);
+				System.Console.WriteLine ("point = ({0}, {1})", x, y);
+
+				ctx.Operator = Operator.Source;
+				SurfacePattern p = new SurfacePattern (info.Surface);
+				//p.Filter = Filter.Fast;
+				//ImageDisplay.SetClip (ctx, area);
+				ctx.Matrix = m;
+				
+				ctx.Pattern = p;
+				ctx.Paint ();
+				p.Destroy ();
+
+				return percent <= 1.0;
 			}
 
 			public void Dispose ()
 			{
-
+				info.Dispose ();
 			}
 		}
 
