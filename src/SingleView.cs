@@ -84,6 +84,7 @@ namespace FSpot {
 			FSpot.Global.ModifyColors (image_view);
 			FSpot.Global.ModifyColors (image_scrolled);
 			image_view.ZoomChanged += HandleZoomChanged;
+			image_view.Item.Changed += HandleItemChanged;
 			image_scrolled.Add (image_view);
 			
 			Window.ShowAll ();
@@ -110,7 +111,6 @@ namespace FSpot {
 
 		public void HandleCollectionChanged (IBrowsableCollection collection)
 		{
-			Console.WriteLine ("changed");
 			if (collection.Count > 0) {
 				Console.WriteLine ("Added selection");
 				directory_view.Selection.Add (0);
@@ -142,6 +142,18 @@ namespace FSpot {
 			}
 		}
 
+		private Uri CurrentUri
+		{
+			get { 
+			 	return this.uri; 
+			}
+			set {
+			 	this.uri = value;
+				collection.Clear ();
+				collection.LoadItems (new Uri[] { this.uri });
+			}
+		}
+
 		void HandleRotate90Command (object sender, System.EventArgs args) 
 		{
 			RotateCommand command = new RotateCommand (this.Window);
@@ -160,14 +172,23 @@ namespace FSpot {
 		
 		private void HandleSelectionChanged (FSpot.IBrowsableCollection selection) 
 		{
-			System.Console.WriteLine ("selection changed");
 			if (selection.Count > 0) {
 				image_view.Item.Index = ((IconView.SelectionCollection)selection).Ids[0];
+				image_view.Reload ();
 				zoom_scale.Value = image_view.NormalizedZoom;
 				if (metadata_dialog != null)
 					metadata_dialog.InfoDisplay.Photo = image_view.Item.Current;
 			}
-			System.Console.WriteLine ("selection changed");
+		}
+
+		private void HandleItemChanged (BrowsablePointer pointer, BrowsablePointerChangedArgs old)
+		{
+			directory_view.FocusCell = pointer.Index;
+			directory_view.Selection.Clear ();
+			if (collection.Count > 0) {
+				directory_view.Selection.Add (directory_view.FocusCell);
+				directory_view.ScrollTo (directory_view.FocusCell);
+			}
 		}
 
 		private void HandleViewToolbar (object sender, System.EventArgs args)
@@ -244,10 +265,9 @@ namespace FSpot {
 			chooser.SetUri (uri.ToString ());
 			int response = chooser.Run ();
 
-			if ((ResponseType) response == ResponseType.Ok) {
-				uri = new System.Uri (chooser.Uri);
-				//collection. = uri.LocalPath;
-			}
+			if ((ResponseType) response == ResponseType.Ok)
+				CurrentUri = new System.Uri (chooser.Uri);
+			
 
 			chooser.Destroy ();
 		}

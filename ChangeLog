@@ -3,6 +3,10 @@
 	* src/Filters/ResizeFilter.cs: Better handling of extensions. Fixes
 	bgo #364973
 
+	* src/SingleView.cs: Patch from Thomas Van Machelen that (re-)enable
+	the File>Open option and fix the focus in the side panel. Fixes bgo
+	#353874.
+
 2006-10-21  Larry Ewing  <lewing@novell.com>
 
 	* src/Widgets/ScrolledView.cs: don't hide the control box if we
