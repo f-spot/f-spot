@@ -1,3 +1,8 @@
+2006-10-25  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Filters/ResizeFilter.cs: Better handling of extensions. Fixes
+	bgo #364973
+
 2006-10-21  Larry Ewing  <lewing@novell.com>
 
 	* src/Widgets/ScrolledView.cs: don't hide the control box if we

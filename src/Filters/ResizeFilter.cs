@@ -46,12 +46,12 @@ namespace FSpot.Filters {
 					return false;
 				
 				string destination_extension = Path.GetExtension (dest);
-				
-				if (Path.GetExtension (source) == Path.GetExtension (dest)) {
+
+				if (Path.GetExtension (source).ToLower () == Path.GetExtension (dest).ToLower ()) {
 					using (Stream output = File.OpenWrite (dest)) {
 						img.Save (pixbuf, output);
 					}
-				} else if (destination_extension == "jpg") {
+				} else if (destination_extension == ".jpg") {
 					// FIXME this is a bit of a nasty hack to work around
 					// the lack of being able to change the path in this filter
 					// and the lack of proper metadata copying yuck
