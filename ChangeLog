@@ -1,3 +1,17 @@
+2006-10-26  Larry Ewing  <lewing@novell.com>
+
+	* src/Widgets/ScrolledView.cs: only read the pointer if the window
+	is realized.
+
+2006-10-25  Larry Ewing  <lewing@novell.com>
+
+	* src/ColorDialog.cs: make the color dialog semi-transparent in
+	fullscreen mode.
+
+	* src/Widgets/ImageDisplay.cs: More transitions and effects.
+
+	* src/Widgets/CompositeUtils.cs: add a SetWinOpacity method.
+
 2006-10-25  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/Filters/ResizeFilter.cs: Better handling of extensions. Fixes
