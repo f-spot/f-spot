@@ -3,6 +3,7 @@ using Gtk;
 using Cms;
 using Mono.Unix;
 using System.Threading;
+using FSpot.Widgets;
 
 namespace FSpot {
 	public class SepiaTone : ColorAdjustment {
@@ -598,6 +599,13 @@ namespace FSpot {
 			this.view.PhotoChanged -= HandlePhotoChanged;
 			this.view = view;
 			this.view.PhotoChanged += HandlePhotoChanged;
+
+			
+			if (view.Toplevel is FullScreenView && Dialog.IsRealized)
+				CompositeUtils.SetWinOpacity (Dialog, 0.5);
+			else 
+				CompositeUtils.SetWinOpacity (Dialog, 1.0);
+
 		}
 	}
 }
