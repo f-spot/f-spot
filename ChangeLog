@@ -3,6 +3,9 @@
 	* f-spot-view.desktop.in.in: allow opening multiple uris. Fixes bgo
 	#364998.
 
+	* src/TagSelectionDialog.cs: Use a new selection method. Fixes bgo
+	#364456.
+
 2006-10-26  Larry Ewing  <lewing@novell.com>
 
 	* src/Widgets/ScrolledView.cs: only read the pointer if the window

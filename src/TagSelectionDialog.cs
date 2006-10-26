@@ -24,7 +24,7 @@ namespace FSpot {
 		{
 			int response = this.Dialog.Run ();
 			if ((ResponseType) response == ResponseType.Ok)
-				return tag_selection_widget.TagSelection;
+				return tag_selection_widget.TagHighlight;
 			
 			return null;
 		}
