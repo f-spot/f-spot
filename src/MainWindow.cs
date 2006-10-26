@@ -209,20 +209,20 @@ public class MainWindow {
 		LoadPreference (Preferences.MAIN_WINDOW_WIDTH);
 		LoadPreference (Preferences.MAIN_WINDOW_X);
 		LoadPreference (Preferences.MAIN_WINDOW_MAXIMIZED);
-        main_window.ShowAll ();
+		main_window.ShowAll ();
 
-        LoadPreference (Preferences.SIDEBAR_POSITION);
+		LoadPreference (Preferences.SIDEBAR_POSITION);
 		LoadPreference (Preferences.METADATA_EMBED_IN_IMAGE);
-
+		
 		slide_delay = new FSpot.Delay (new GLib.IdleHandler (SlideShow));
-
+		
 		toolbar = new Gtk.Toolbar ();
 		toolbar_vbox.PackStart (toolbar);
-
+		
 		rl_button = GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-270", new System.EventHandler (HandleRotate270Command));
 		rr_button = GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-90", new System.EventHandler (HandleRotate90Command));
 		toolbar.AppendSpace ();
-
+		
 		// FIXME putting these two toggle buttons in a radio group would prevent
 		// the two toggle sounds from being emitted every time you switch modes
 		browse_button = GtkUtil.MakeToolbarToggleButton (toolbar, "f-spot-browse", 
@@ -1475,9 +1475,21 @@ public class MainWindow {
 		new FSpot.CDExport (new FSpot.PhotoArray (SelectedPhotos ()));
 	}
 
+#if false
+	void TestDisplay ()
+	{
+		Gtk.Window win = new Gtk.Window ("hello");
+		VBox box = new VBox ();
+		box.PackStart (new FSpot.Widgets.ImageDisplay (new BrowsablePointer (new FSpot.PhotoArray (SelectedPhotos ()), 0)));
+		win.Add (box);
+		win.ShowAll ();
+	}
+#endif
+
 	void HandleSendMailCommand (object sender, EventArgs args)
 	{
-        new FSpot.SendEmail (new FSpot.PhotoArray (SelectedPhotos ()));
+		//TestDisplay ();
+		new FSpot.SendEmail (new FSpot.PhotoArray (SelectedPhotos ()));
 	}
 
 	public static void HandleHelp (object sender, EventArgs args)
@@ -2374,7 +2386,7 @@ public class MainWindow {
 
 		client.Set ("/desktop/gnome/background/color_shading_type", "solid");
 		client.Set ("/desktop/gnome/background/primary_color", "#000000");
-		client.Set ("/desktop/gnome/background/picture_options", "scaled");
+		client.Set ("/desktop/gnome/background/picture_options", "stretched");
 		client.Set ("/desktop/gnome/background/picture_opacity", 100);
 		client.Set ("/desktop/gnome/background/picture_filename", current.DefaultVersionUri.LocalPath);
 		client.Set ("/desktop/gnome/background/draw_background", true);
