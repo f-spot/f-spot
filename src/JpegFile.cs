@@ -228,7 +228,7 @@ namespace FSpot {
 				if (exif_data == null) {
 					exif_data = Header.Exif;
 
-					if (exif_data.Handle.Handle == System.IntPtr.Zero)
+					if (exif_data == null || exif_data.Handle.Handle == System.IntPtr.Zero)
 						exif_data = new Exif.ExifData ();
 				}
 				System.Console.WriteLine ("loading exif data");
