@@ -881,17 +881,17 @@ public class IconView : Gtk.Layout {
 				if (t == null)
 					continue;
 
-				Pixbuf icon = null;
-				if (t.Category.Icon == null) {
-					if (t.Icon == null)
-						continue;
-					icon = t.Icon;
-				} else {
-					Category category = t.Category;
-					while (category.Category.Icon != null)
-						category = category.Category;
-					icon = category.Icon;
-				}
+
+				Pixbuf icon = t.Icon;
+
+                Tag tag_iter = t.Category;
+                while (icon == null && tag_iter != Core.Database.Tags.RootCategory && tag_iter != null) {
+                    icon = tag_iter.Icon;
+                    tag_iter = tag_iter.Category;
+                }
+
+                if (icon == null)
+                    continue;
 
 				if (tag_bounds.Intersect (area, out region)) {
 					Pixbuf scaled_icon;
