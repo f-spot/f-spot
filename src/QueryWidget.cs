@@ -74,13 +74,13 @@ namespace FSpot {
 		
 		public void HandleClearButtonClicked (object sender, System.EventArgs args)
 		{
-			query.Untagged = false;
-			logic_widget.Clear = true;
-			logic_widget.UpdateQuery ();
+            Close ();
 		}
 
-		public void ClearTags ()
+		public void Close ()
 		{
+			query.Untagged = false;
+
 			if (query.Untagged)
 				return;
 
@@ -88,17 +88,27 @@ namespace FSpot {
 			logic_widget.UpdateQuery ();
 		}
 
+        public void ShowBar ()
+        {
+            Show ();
+            ((Gtk.Label)MainWindow.Toplevel.FindByTag.Child).Text = Catalog.GetString ("Hide Find Bar");
+        }
+
+        public void HideBar ()
+        {
+            Hide ();
+            ((Gtk.Label)MainWindow.Toplevel.FindByTag.Child).Text = Catalog.GetString ("Show Find Bar");
+        }
+
 		public void HandleChanged (IBrowsableCollection collection) 
 		{
 			if (query.ExtraCondition == null)
 				logic_widget.Clear = true;
 
 			if (!logic_widget.Clear || query.Untagged) {
-				this.Visible = true;
-				Show ();
+                ShowBar ();
 			} else {
-				this.Visible = false;
-				Hide ();
+				HideBar ();
 			}
 
 			untagged.Visible = query.Untagged;

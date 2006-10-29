@@ -1,5 +1,11 @@
 2006-10-29  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/MainWindow.cs: 
+	* src/QueryWidget.cs: Fix small bug where the Find -> [Show|Hide] Find Bar
+	item would be out of sync with the query bar's status.
+
+2006-10-29  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/IconView.cs: Use the tag's icon in the IconView, or the first parent
 	category that has an icon.  Fixes BGO #332584.  Based on ideas/snippets
 	from Stephane Delcroix, Jean-Christophe Dubacq, and Thomas Paris.

@@ -193,6 +193,10 @@ public class MainWindow {
 		get { return selection; }
 	}
 
+    public MenuItem FindByTag {
+        get { return find_by_tag; }
+    }
+
 	//
 	// Constructor
 	//
@@ -2595,12 +2599,10 @@ public class MainWindow {
         UpdateFindByTagMenu ();
     }
 
-    private void UpdateFindByTagMenu ()
+    public void UpdateFindByTagMenu ()
     {
         if (query_widget.Visible) {
-            query_widget.ClearTags ();
-            query_widget.Visible = false;
-            ((Gtk.Label)find_by_tag.Child).Text = Catalog.GetString ("Show Find Bar");
+            query_widget.Close ();
         } else {
             ShowQueryWidget ();
         }
@@ -3125,8 +3127,7 @@ public class MainWindow {
 			find_bar.Hide ();
 		}
 		
-		query_widget.Show ();
-        ((Gtk.Label)find_by_tag.Child).Text = Catalog.GetString ("Hide Find Bar");
+		query_widget.ShowBar ();
 		return;
 	}
 	
@@ -3137,8 +3138,7 @@ public class MainWindow {
 		if ((ctrl && args.Event.Key == Gdk.Key.F) || args.Event.Key == Gdk.Key.slash) {
 			if (!find_bar.Visible) {
 				if (query_widget.Visible) {
-					query_widget.ClearTags ();
-					query_widget.Hide ();
+					query_widget.Close ();
 				}
 				
 				find_bar.Show ();
