@@ -248,7 +248,6 @@ public class MainWindow {
 		tag_selection_scrolled.Add (tag_selection_widget);
 		
 		tag_selection_widget.Selection.Changed += HandleTagSelectionChanged;
-		tag_selection_widget.SelectionChanged += OnTagSelectionChanged;
 		tag_selection_widget.DragDataGet += HandleTagSelectionDragDataGet;
 		tag_selection_widget.DragDrop += HandleTagSelectionDragDrop;
 		tag_selection_widget.DragBegin += HandleTagSelectionDragBegin;
@@ -2415,16 +2414,7 @@ public class MainWindow {
 		if (query.Untagged == find_untagged.Active)
 			return;
 
-		if (query.Untagged)
-			query.Untagged = false;
-		else {
-			// Having tags selected wouldn't make sense
-			tag_selection_widget.SelectionChanged -= OnTagSelectionChanged;
-			tag_selection_widget.TagSelection = new Tag [] {};
-			tag_selection_widget.SelectionChanged += OnTagSelectionChanged;
-
-			query.Untagged = true;
-		}
+		query.Untagged = !query.Untagged;
 	}
 	
 	void OnPreferencesChanged (object sender, GConf.NotifyEventArgs args)
@@ -2553,16 +2543,9 @@ public class MainWindow {
 	{
 		main_window.GdkWindow.Cursor = new Gdk.Cursor (Gdk.CursorType.Watch);
 		main_window.GdkWindow.Display.Sync ();
-		query.Tags = tag_selection_widget.TagSelection;
 		main_window.GdkWindow.Cursor = null;
 	}
 
-	void OnTagSelectionChanged (object obj)
-	{
-		UpdateQuery ();
-		SetViewMode (ModeType.IconView);
-	}
-	
 	void HandleTagSelectionChanged (object obj, EventArgs args)
 	{
 		UpdateMenus ();

@@ -45,9 +45,6 @@ public class TagSelectionWidget : TreeView {
 
 	// Selection management.
 
-	// Hash of the IDs of the selected tags.
-	private Hashtable selection;
-
 	public Tag TagAtPosition (int x, int y) 
 	{
 		TreePath path;
@@ -78,77 +75,6 @@ public class TagSelectionWidget : TreeView {
  
 		return tag_store.Get (tag_id) as Tag;
  	}
-
-	public void Select (Tag tag)
-	{
-		if (! selection.Contains (tag.Id))
-			selection.Add (tag.Id, tag);
-	}
-
-	public void Unselect (Tag tag)
-	{
-		selection.Remove (tag.Id);
-	}
-
-	public void UnselectTagsForCategory (Category category)
-	{
-		foreach (Tag t in category.Children) {
-			Unselect (t);
-			if (t is Category)
-				UnselectTagsForCategory (t as Category);
-		}
-	}
-
-	public bool IsSelected (Tag tag)
-	{
-		if (tag == tag_store.RootCategory)
-			return false;
-		else if (selection.ContainsKey (tag.Id))
-			return true;
-		else if (tag.Category != tag_store.RootCategory && IsSelected (tag.Category))
-			return true;
-		else
-			return false;
-	}
-
-	private void GetSelectionForCategory (ArrayList selection, Category category)
-	{
-		foreach (Tag t in category.Children) {
-			if (IsSelected (t))
-				selection.Add (t);
-			if (t is Category)
-				GetSelectionForCategory (selection, t as Category);
-		}
-	}
-
-	public delegate void SelectionChangedHandler (object me);
-	public event SelectionChangedHandler SelectionChanged;
-
-	public Tag [] TagSelection {
-		get {
-			ArrayList selection = new ArrayList ();
-			GetSelectionForCategory (selection, tag_store.RootCategory);
-
-			// For some reason an empty Tag [] causes crasher problems
-			if (selection.Count == 0)
-				return null;
-			else
-				return (Tag []) selection.ToArray (typeof (Tag));
-		}
-
-		set {
-			UnselectTagsForCategory (tag_store.RootCategory);
-
-			foreach (Tag t in value)
-				Select (t);
-
-			QueueDraw ();
-
-			if (SelectionChanged != null)
-				SelectionChanged (this);
-		}
-	}
-
 
 	// Loading up the store.
 
@@ -223,41 +149,6 @@ public class TagSelectionWidget : TreeView {
 		}
 	}
 
-
-	// Event handlers.
-
-	private void OnCellToggled (object renderer, ToggledArgs args)
-	{
-		TreePath path = new TreePath (args.Path);
-
-		TreeIter iter;
-		Model.GetIter (out iter, path);
-
-		GLib.Value value = new GLib.Value ();
-		Model.GetValue (iter, IdColumn, ref value);
-		uint tag_id = (uint) value;
-		Tag tag = tag_store.Get (tag_id) as Tag;
-
-		// Tags under an unselected category are always conceptually unselected.
-		// They appear as selected just in virtue of being children of a selected category.
-		if (! IsSelected (tag.Category)) {
-			if (IsSelected (tag))
-				Unselect (tag);
-			else
-				Select (tag);
-
-			(Model as TreeStore).EmitRowChanged (path, iter);
-
-			// Make sure that if you unselect the category the tags are unselected as well.
-			if (tag is Category)
-				UnselectTagsForCategory (tag as Category);
-		}
-
-		if (SelectionChanged != null)
-			SelectionChanged (this);
-	}
-
-
 	// Data functions.
 	private static string ToHashColor (Gdk.Color color)
 	{
@@ -277,20 +168,6 @@ public class TagSelectionWidget : TreeView {
 		else
 			renderer.CellBackground = ToHashColor (this.Style.LightColors [(int) Gtk.StateType.Normal]);
 		*/
-	}
-
-	private void CheckBoxDataFunc (TreeViewColumn column,
-				       CellRenderer renderer,
-				       TreeModel model,
-				       TreeIter iter)
-	{
-		GLib.Value value = new GLib.Value ();
-		Model.GetValue (iter, IdColumn, ref value);
-		uint tag_id = (uint) value;
-		Tag tag = tag_store.Get (tag_id) as Tag;
-
-		SetBackground (renderer, tag);
-		(renderer as CellRendererToggle).Active = IsSelected (tag);
 	}
 
 	private void IconDataFunc (TreeViewColumn column, 
@@ -672,7 +549,6 @@ public class TagSelectionWidget : TreeView {
 		AppendColumn (complete_column);
 
 		this.tag_store = tag_store;
-		selection = new Hashtable ();
 
 		Update ();
 

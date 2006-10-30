@@ -119,7 +119,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Util.cs			\
 	$(srcdir)/Vector.cs			\
 	$(srcdir)/ThumbnailCommand.cs		\
-	$(srcdir)/QueryDisplay.cs		\
 	$(srcdir)/QueryView.cs			\
 	$(srcdir)/QueryWidget.cs			\
 	$(srcdir)/ZoomUtils.cs			\

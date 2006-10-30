@@ -6,6 +6,12 @@
 	* src/PhotoStore.cs: no longer crash if the user removes the Hidden
 	tag. Fixes bgo #367166.
 
+	* src/Makefile.am: removing the unused QueryDisplay widget from the
+	build.
+
+	* src/TagSelectionWidget.cs:
+	* src/MainWindow.cs: Remove the old checkbox-based selection code.
+
 2006-10-29  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/f-spot.glade: Change 'Close' to 'Quit' in the file menu.  Fixes BGO
