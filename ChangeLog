@@ -3,6 +3,9 @@
 	* src/PicasaWebExport.cs: Catching possible (but improbable) exception
 	while GetAlbums. Hope it helps to fix bgo #365373.
 
+	* src/PhotoStore.cs: no longer crash if the user removes the Hidden
+	tag. Fixes bgo #367166.
+
 2006-10-29  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/f-spot.glade: Change 'Close' to 'Quit' in the file menu.  Fixes BGO

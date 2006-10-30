@@ -1284,7 +1284,7 @@ public class PhotoStore : DbStore {
 							     DbUtils.UnixTimeFromDateTime (range.End)));
 		}
 		
-		if (hide) {
+		if (hide && tag_store.Hidden != null) {
 			query_builder.Append (String.Format ("{0} photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {1})", 
 							     range != null ? " AND " : " WHERE ", tag_store.Hidden.Id));
 		}
