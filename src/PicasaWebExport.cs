@@ -742,8 +742,12 @@ namespace FSpot {
 		{
 			PicasaAlbumCollection albums = null;
 			if (picasa != null) {
-				//gallery.FetchAlbumsPrune ();
-				albums = picasa.GetAlbums();
+				try {
+					albums = picasa.GetAlbums();
+				} catch {
+					Console.WriteLine("Can't get the albums");
+					picasa = null;
+				}
 			}
 
 			Gtk.Menu menu = new Gtk.Menu ();
@@ -767,19 +771,11 @@ namespace FSpot {
 				foreach (PicasaAlbum album in albums.AllValues) {
 					System.Text.StringBuilder label_builder = new System.Text.StringBuilder ();
 					
-//					for (int i=0; i < album.Parents.Count; i++) {
-//						label_builder.Append ("  ");
-//					}
 					label_builder.Append (album.Title);
 
 					Gtk.MenuItem item = new Gtk.MenuItem (label_builder.ToString ());
 					((Gtk.Label)item.Child).UseUnderline = false;
 					menu.Append (item);
-			
-				        //AlbumPermission add_permission = album.Perms & AlbumPermission.Add;
-
-//					if (add_permission == 0)
-//						item.Sensitive = false;
 				}
 
 				ok_button.Sensitive = photos.Length > 0;
