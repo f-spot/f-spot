@@ -8653,7 +8653,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		  <child>
 		    <widget class="GtkImageMenuItem" id="close1">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">_Close</property>
+		      <property name="label" translatable="yes">_Quit</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleCloseCommand" last_modification_time="Tue, 09 Dec 2003 20:59:54 GMT"/>
 		      <accelerator key="q" modifiers="GDK_CONTROL_MASK" signal="activate"/>

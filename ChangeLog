@@ -1,5 +1,10 @@
 2006-10-29  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/f-spot.glade: Change 'Close' to 'Quit' in the file menu.  Fixes BGO
+	#363373.
+
+2006-10-29  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/MainWindow.cs: 
 	* src/QueryWidget.cs: Fix small bug where the Find -> [Show|Hide] Find Bar
 	item would be out of sync with the query bar's status.
