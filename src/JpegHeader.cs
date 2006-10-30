@@ -489,7 +489,7 @@ public class JpegHeader : SemWeb.StatementSource {
 		121, 112, 100, 120,  92, 101, 103,  99
 	};
 
-	static int [] StandardChromninaceQuantization = new int [] {
+	static int [] StandardChrominanceQuantization = new int [] {
 		17,  18,  18,  24,  21,  24,  47,  26,
 		26,  47,  99,  66,  56,  66,  99,  99,
 		99,  99,  99,  99,  99,  99,  99,  99,
@@ -523,11 +523,11 @@ public class JpegHeader : SemWeb.StatementSource {
 			tableindex = dqt.Data [position ++];
 
 			switch (tableindex & 0x0f) {
-			case 1:
+			case 0:
 				table = StandardLuminanceQuantization;
 				break;
-			case 2:
-				table = StandardChromninaceQuantization;
+			case 1:
+				table = StandardChrominanceQuantization;
 				break;
 			default:
 				table = null;

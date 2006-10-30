@@ -12,6 +12,8 @@
 	* src/TagSelectionWidget.cs:
 	* src/MainWindow.cs: Remove the old checkbox-based selection code.
 
+	* src/JpegHeader.cs: Fixing the quality code, bgo #346452.
+
 2006-10-29  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/f-spot.glade: Change 'Close' to 'Quit' in the file menu.  Fixes BGO
