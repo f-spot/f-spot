@@ -1,4 +1,4 @@
-CSC = mcs --unsafe -g
+CSC = gmcs --unsafe -g
 
 LIBGPHOTO2_SHARP_CSFILES =				\
 	$(srcdir)/AssemblyInfo.cs			\

@@ -1,4 +1,4 @@
-CSC = mcs
+CSC = gmcs
 
 LIBGNOMEKEYRING_CSFILES =				\
 	$(srcdir)/AccessRights.cs  \

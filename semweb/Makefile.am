@@ -1,4 +1,4 @@
-CSC = mcs -g
+CSC = gmcs -g
 
 SEMWEB_CSFILES =            			\
                 $(srcdir)/AssemblyInfo.cs       \

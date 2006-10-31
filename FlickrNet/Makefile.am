@@ -1,4 +1,4 @@
-CSC = mcs
+CSC = gmcs
 
 LIBFLICKRNET_CSFILES =				\
 	$(srcdir)/AssemblyInfo.cs \

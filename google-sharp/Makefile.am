@@ -1,4 +1,4 @@
-CSC = mcs
+CSC = gmcs
 
 LIBGOOGLESHARP_CSFILES =				\
 	$(srcdir)/AlbumAccess.cs  \

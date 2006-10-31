@@ -1,3 +1,14 @@
+2006-10-31  Stephane Delcroix  <stephane@delcroix.org>
+
+	* FlickerNet/Makefile.am:
+	* configure.in:
+	* libgphoto2-sharp/Makefile.am:
+	* semweb/Makefile.am:
+	* google-sharp/Makefile.am:
+	* gnome-keyring-sharp/Makfile.am: Switch the buildsystem from mcs to
+	gmcs/2.0. Updated version of the patch from Ruben Vermeersch. Fixes
+	b.g.o #346977 and #358247.
+
 2006-10-30  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/PicasaWebExport.cs: Catching possible (but improbable) exception

@@ -16,7 +16,7 @@ AM_PROG_LIBTOOL
 GNOME_COMPILE_WARNINGS
 AM_PATH_GLIB_2_0
 
-dnl --- Check for mono and mcs
+dnl --- Check for mono and gmcs
 
 AC_PATH_PROG(MONO, mono)
 AC_PATH_PROG(MCS, gmcs)
