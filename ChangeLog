@@ -9,6 +9,9 @@
 	gmcs/2.0. Updated version of the patch from Ruben Vermeersch. Fixes
 	b.g.o #346977 and #358247.
 
+	* src/MainWindow.cs: re-adding a line I removed yesterday in
+	MainWindow.UpdateQuery ().
+
 2006-10-30  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/PicasaWebExport.cs: Catching possible (but improbable) exception
