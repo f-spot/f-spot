@@ -1,5 +1,5 @@
 //
-// Mono.Cairo.CairoSurfaceObject.cs
+// Mono.Cairo.Surface.cs
 //
 // Authors:
 //    Duncan Mak
@@ -35,120 +35,9 @@
 using System;
 using System.Collections;
 
+
 namespace Cairo {
 
-        public class ImageSurface : Surface
-        {
-		public ImageSurface (Format format, int width, int height)
-		{
-			surface = CairoAPI.cairo_image_surface_create (format, width, height);
-			lock (surfaces.SyncRoot){
-				surfaces [surface] = this;
-			}
-		}
-
-		public ImageSurface (string data, Cairo.Format format, int width, int height, int stride)
-		{
-			surface = CairoAPI.cairo_image_surface_create_for_data (data, format, width, height, stride);
-			lock (surfaces.SyncRoot){
-				surfaces [surface] = this;
-			}
-		}
-		
-		public ImageSurface (string filename)
-		{
-			surface = CairoAPI.cairo_image_surface_create_from_png (filename);
-			lock (surfaces.SyncRoot){
-				surfaces [surface] = this;
-			}
-		}
-		
-		public int Width {
-			get { return CairoAPI.cairo_image_surface_get_width (surface); }
-		}
-		
-		public int Height {
-			get { return CairoAPI.cairo_image_surface_get_height (surface); }
-		}
-		
-	}
-
-	#if UNSTABLE
-	public class PdfSurface : Surface
-	{
-		public PdfSurface (string filename, double width, double height)
-		{
-			surface = CairoAPI.cairo_pdf_surface_create (filename, width, height);
-			lock (surfaces.SyncRoot){
-				surfaces [surface] = this;
-			}
-		}
-
-		public void SetDPI (double x_dpi, double y_dpi)
-		{
-			CairoAPI.cairo_pdf_surface_set_dpi (surface, x_dpi, y_dpi);
-		}
-	}
-
-	public class PostscriptSurface : Surface
-	{
-		public PostscriptSurface (string filename, double width, double height)
-		{
-			surface = CairoAPI.cairo_ps_surface_create (filename, width, height);
-			lock (surfaces.SyncRoot){
-				surfaces [surface] = this;
-			}
-		}
-
-		public void SetDPI (double x_dpi, double y_dpi)
-		{
-			CairoAPI.cairo_ps_surface_set_dpi (surface, x_dpi, y_dpi);
-		}
-	}
-	#endif
-
-	public class Win32Surface : Surface
-	{
-		public Win32Surface (IntPtr hdc)
-		{
-			surface = CairoAPI.cairo_win32_surface_create (hdc);
-			lock (surfaces.SyncRoot){
-				surfaces [surface] = this;
-			}
-		}
-	}
-
-	public class XlibSurface : Surface
-	{
-		public XlibSurface (IntPtr display, uint drawable, IntPtr visual, int width, int height)
-		{
-			surface = CairoAPI.cairo_xlib_surface_create (display, drawable, visual, width, height);
-			lock (surfaces.SyncRoot){
-				surfaces [surface] = this;
-			}
-		}
-
-		/* FIXME: has the same parameters as above
-		public XlibSurface (IntPtr display, IntPtr bitmap, IntPtr screen, int width, int height)
-		{
-			surface = CairoAPI.cairo_xlib_surface_create_for_bitmap (display, bitmap, screen, width, height);
-			lock (surfaces.SyncRoot){
-				surfaces [surface] = this;
-			}
-		}
-		*/
-
-		public void SetDrawable (IntPtr drawable, int width, int height)
-		{
-			CairoAPI.cairo_xlib_surface_set_drawable (surface, drawable, width, height);
-		}
-
-		public void SetSize (int width, int height)
-		{
-			CairoAPI.cairo_xlib_surface_set_size (surface, width, height);
-		}
-	}
-   
 	public class Surface : IDisposable 
         {						
 		protected static Hashtable surfaces = new Hashtable ();
@@ -158,7 +47,7 @@ namespace Cairo {
 		{
 		}
 		
-                private Surface (IntPtr ptr, bool owns)
+                protected Surface (IntPtr ptr, bool owns)
                 {
                         surface = ptr;
 			lock (surfaces.SyncRoot){
@@ -168,20 +57,40 @@ namespace Cairo {
 				CairoAPI.cairo_surface_reference (ptr);
                 }
 
-		static public Surface LookupExternalSurface (IntPtr p)
+		static internal Surface LookupExternalSurface (IntPtr p)
 		{
 			lock (surfaces.SyncRoot){
 				object o = surfaces [p];
 				if (o == null){
+#if CAIRO_1_2
+					SurfaceType st = CairoAPI.cairo_surface_get_type (p);
+
+					switch (st) {
+					case SurfaceType.Image:
+						return new ImageSurface (p, false);
+					case SurfaceType.Pdf:
+						return new PdfSurface (p, false);
+					case SurfaceType.XLib:
+						return new XlibSurface (p, false);
+					case SurfaceType.Xcb:
+						return new XcbSurface (p, false);
+					}
+#else
 					return new Surface (p, false);
+#endif					
 				}
 				return (Surface) o;
 			}
 		}		
 		
+		public Surface GetObject (IntPtr handle)
+		{
+			return LookupExternalSurface (handle);
+		}
+
 		[Obsolete ("Use an ImageSurface constructor instead.")]
                 public static Cairo.Surface CreateForImage (
-                        string data, Cairo.Format format, int width, int height, int stride)
+                        ref byte[] data, Cairo.Format format, int width, int height, int stride)
                 {
                         IntPtr p = CairoAPI.cairo_image_surface_create_for_data (
                                 data, format, width, height, stride);
@@ -214,9 +123,9 @@ namespace Cairo {
 			Dispose (false);
 		}
 
-		public void Show (Graphics gr, int width, int height) 
+		public void Show (Context gr, double x, double y) 
 		{
-			CairoAPI.cairo_set_source_surface (gr.Handle, surface, width, height);
+			CairoAPI.cairo_set_source_surface (gr.Handle, surface, x, y);
 			CairoAPI.cairo_paint (gr.Handle);
 		}
 
@@ -238,9 +147,25 @@ namespace Cairo {
 			surface = (IntPtr) 0;
 		}
 		
-		public Cairo.Status Finish ()
+		public Status Finish ()
 		{
-			return CairoAPI.cairo_surface_finish (surface);
+			CairoAPI.cairo_surface_finish (surface);
+			return Status;
+		}
+		
+		public void Flush ()
+		{
+			CairoAPI.cairo_surface_flush (surface);
+		}
+		
+		public void MarkDirty ()
+		{
+			CairoAPI.cairo_surface_mark_dirty (Handle);
+		}
+		
+		public void MarkDirty (Rectangle rectangle)
+		{
+			CairoAPI.cairo_surface_mark_dirty_rectangle (Handle, (int)rectangle.X, (int)rectangle.Y, (int)rectangle.Width, (int)rectangle.Height);
 		}
 		
                 public IntPtr Handle {
@@ -250,6 +175,13 @@ namespace Cairo {
                 }
 
 		public PointD DeviceOffset {
+#if CAIRO_1_2
+			get {
+				double x, y;
+				CairoAPI.cairo_surface_get_device_offset (surface, out x, out y);
+				return new PointD (x, y);
+			}
+#endif
 			set {
 				CairoAPI.cairo_surface_set_device_offset (surface, value.X, value.Y);
 			}
@@ -257,14 +189,22 @@ namespace Cairo {
 		
 		public void Destroy()
 		{
-			CairoAPI.cairo_surface_destroy (surface);
+			Dispose (true);
 		}
+
+#if CAIRO_1_2
+		public void SetFallbackResolution (double x, double y)
+		{
+			CairoAPI.cairo_surface_set_fallback_resolution (surface, x, y);
+		}
+#endif
 
 		public void WriteToPng (string filename)
 		{
 			CairoAPI.cairo_surface_write_to_png (surface, filename);
 		}
 		
+		[Obsolete ("Use Handle instead.")]
                 public IntPtr Pointer {
                         get {
 				return surface;
@@ -275,5 +215,14 @@ namespace Cairo {
 			get { return CairoAPI.cairo_surface_status (surface); }
 		}
 
+#if CAIRO_1_2
+		public Content Content {
+			get { return CairoAPI.cairo_surface_get_content (surface); }
+		}
+
+		public SurfaceType SurfaceType {
+			get { return CairoAPI.cairo_surface_get_type (surface); }
+		}
+#endif
         }
 }

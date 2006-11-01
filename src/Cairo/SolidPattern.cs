@@ -31,60 +31,34 @@ using System;
 
 namespace Cairo {
    
-        public class Pattern
-        {
-                protected IntPtr pattern = IntPtr.Zero;
-		
-                protected Pattern ()
-                {
-                }
-
-		internal Pattern (IntPtr ptr)
-		{			
-			pattern = ptr;
-		}		
-		
-                public Pattern (Surface surface)
-                {
-                        pattern = CairoAPI.cairo_pattern_create_for_surface (surface.Handle);
-                }
-		
-                protected void Reference ()
-                {
-                        CairoAPI.cairo_pattern_reference (pattern);
-                }
-
-                public void Destroy ()
-                {
-                        CairoAPI.cairo_pattern_destroy (pattern);
-                }
-		
-		public Status Status
+	public class SolidPattern : Pattern
+	{
+		internal SolidPattern (IntPtr handle) : base (handle)
 		{
-			get { return CairoAPI.cairo_pattern_status (pattern); }
 		}
-		
-                public Matrix Matrix {
-                        set { 
-				CairoAPI.cairo_pattern_set_matrix (pattern, value);
-			}
 
-                        get {
-				Matrix m = new Matrix ();
-				CairoAPI.cairo_pattern_get_matrix (pattern, m);
-				return m;
-                        }
-                }
-
-                public IntPtr Pointer {
-                        get { return pattern; }
-                }		
-
-#if CAIRO_1_2
-		public PatternType PatternType {
-			get { return CairoAPI.cairo_pattern_get_type (pattern); }
+		public SolidPattern (Color color)
+		{
+			pattern = CairoAPI.cairo_pattern_create_rgba (color.R, color.G, color.B, color.A);
 		}
-#endif
-        }
+
+		public SolidPattern (double r, double g, double b)
+		{
+			pattern = CairoAPI.cairo_pattern_create_rgb (r, g, b);
+		}
+
+		public SolidPattern (double r, double g, double b, double a)
+		{
+			CairoAPI.cairo_pattern_create_rgba (r, g, b, a);
+		}
+
+		public SolidPattern (Color color, bool solid)
+		{
+			if (solid)
+				pattern = CairoAPI.cairo_pattern_create_rgb (color.R, color.G, color.B);
+			else
+				pattern = CairoAPI.cairo_pattern_create_rgba (color.R, color.G, color.B, color.A);
+		}
+	}
 }
 

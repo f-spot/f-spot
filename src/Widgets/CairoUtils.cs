@@ -47,10 +47,15 @@ namespace FSpot.Widgets {
 				int width, height;
 				d.GetSize (out width, out height);
 				XlibSurface surface = new XlibSurface (GdkUtils.GetXDisplay (d.Display), 
-								       GdkUtils.GetXid (d),
+								       (IntPtr)GdkUtils.GetXid (d),
 								       GdkUtils.GetXVisual (d.Visual),
 								       width, height);
-				g.SetSourceSurface (surface, x, y);
+				
+				SurfacePattern p = new SurfacePattern (surface);
+				Matrix m = new Matrix ();
+				m.Translate (-x, -y);
+				p.Matrix = m;
+				g.Source = p;
 			}
 		}		
 

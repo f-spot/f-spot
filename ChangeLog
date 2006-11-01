@@ -1,3 +1,13 @@
+2006-11-01  Larry Ewing  <lewing@novell.com>
+
+	* src/Loupe.cs:
+	* src/Makefile.am:
+	* src/PreviewPopup.cs:
+	* src/Cairo/*.cs:
+	* src/Widgets/CairoUtils.cs
+	* src/Makefile.am (F_SPOT_CSDISTFILES): update the Cairo tree to
+	the newer code in mcs plus some changes.
+
 2006-10-31  Stephane Delcroix  <stephane@delcroix.org>
 
 	* FlickerNet/Makefile.am:

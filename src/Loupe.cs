@@ -355,7 +355,7 @@ namespace FSpot {
 			int cy = Center.Y;
 			
 			g.Operator = Operator.Source;
-			g.Color = new Cairo.Color (0,0,0,0);
+			g.Source = new SolidPattern (new Cairo.Color (0,0,0,0));
 			g.Rectangle (0, 0, width, height);
 			g.Paint ();
 
@@ -363,14 +363,14 @@ namespace FSpot {
 			g.Translate (cx, cy);
 			g.Rotate (angle);
 			
-			g.Color = new Cairo.Color (0.2, 0.2, 0.2, .6);
+			g.Source = new SolidPattern (new Cairo.Color (0.2, 0.2, 0.2, .6));
 			g.Operator = Operator.Over;
 			g.Rectangle (0, - (border + inner), inner_x, 2 * (border + inner));
 			g.Arc (inner_x, 0, inner + border, 0, 2 * Math.PI);
 			g.Arc (0, 0, radius + border, 0, 2 * Math.PI);
 			g.Fill ();
 
-			g.Color = new Cairo.Color (0, 0, 0, 1.0);
+			g.Source = new SolidPattern (new Cairo.Color (0, 0, 0, 1.0));
 			g.Operator = Operator.DestOut;
 			g.Arc (inner_x, 0, inner, 0, 2 * Math.PI);
 #if true
@@ -401,7 +401,7 @@ namespace FSpot {
 				g.Arc (0, 0, radius, angle, angle + Math.PI);
 				g.ClosePath ();
 				g.FillPreserve ();
-				g.Color = new Cairo.Color (1.0, 1.0, 1.0, 1.0);
+				g.Source = new SolidPattern (new Cairo.Color (1.0, 1.0, 1.0, 1.0));
 				g.Stroke ();
 			}
 		}
