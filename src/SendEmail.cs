@@ -17,11 +17,14 @@ using Gtk;
 using Gnome;
 using System;
 
+using FSpot.Filters;
+
 namespace FSpot {
 	public class SendEmail : FSpot.GladeDialog {
 		PhotoQuery query;
 		Gtk.Window parent_window;
 
+		[Glade.Widget] private ScrolledWindow   tray_scrolled;
 		[Glade.Widget] private Button 		ok_button;
 		[Glade.Widget] private Label 		NumberOfPictures, TotalOriginalSize, ApproxNewSize;	
 		[Glade.Widget] private RadioButton 	tiny_size, small_size, medium_size, 
@@ -66,12 +69,9 @@ namespace FSpot {
 			}
 			rotate_check.Active = (bool) Preferences.Get (Preferences.EXPORT_EMAIL_ROTATE);
 			
-			IconView view = new IconView (selection);
-			view.DisplayDates = false;
-			view.DisplayTags = false;
+			tray_scrolled.Add (new TrayView (selection));
 
 			Dialog.Modal = false;
-			Dialog.TransientFor = null;
 
 			string path;
 			System.IO.FileInfo file_info;
@@ -133,7 +133,6 @@ namespace FSpot {
 			
 			UpdateEstimatedSize();
 
-			//thumb_scrolledwindow.Add (view);
 			Dialog.ShowAll ();
 
 			//LoadHistory ();
@@ -217,8 +216,6 @@ namespace FSpot {
 
 		private void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
-			string tmp_path;
-
 			long new_size = 0;
 //			long orig_size = 0;
 			long actual_total_size = 0;
@@ -257,6 +254,14 @@ namespace FSpot {
 			
 			System.Text.StringBuilder url = new System.Text.StringBuilder ("mailto:?subject=my%20photos");
 
+			FilterSet filters = new FilterSet ();
+
+			if (size != 0)
+				filters.Add (new ResizeFilter ((uint)size));
+			else if (rotate)
+				filters.Add (new OrientationFilter ());
+
+
 			foreach (Photo photo in selection.Items) {
 			
 				if ( (photo != null) && (!UserCancelled) ) {
@@ -272,46 +277,17 @@ namespace FSpot {
 //					orig_size = file_info.Length;
 
 					// Prepare a tmp_mail file name
-					tmp_path =  FileImportBackend.UniqueName (
-						tmp_mail_dir,
-						System.IO.Path.GetFileName(photo.GetVersionPath(photo.DefaultVersionId))
-						);
+					string orig = photo.DefaultVersionUri.LocalPath;
+					string final = FileImportBackend.UniqueName (tmp_mail_dir,
+							System.IO.Path.GetFileName(photo.GetVersionPath(photo.DefaultVersionId))) + ".jpg";
 
-					if (size == 0) {
-						// User wants to send original photos, no resizing required.
-						if (rotate) {
-							Exif.ExifData exif_data = new Exif.ExifData (photo.GetVersionPath(photo.DefaultVersionId));
-							PixbufOrientation orientation = PixbufUtils.GetOrientation (exif_data);
-							if (orientation == PixbufOrientation.RightTop) {
-								JpegUtils.Transform (photo.GetVersionPath(photo.DefaultVersionId), tmp_path, JpegUtils.TransformType.Rotate90);
-								tmp_paths.Add (tmp_path);
-							} else if (orientation == PixbufOrientation.LeftBottom) {
-								JpegUtils.Transform (photo.GetVersionPath(photo.DefaultVersionId), tmp_path, JpegUtils.TransformType.Rotate270);
-								tmp_paths.Add (tmp_path);
-							} else
-								tmp_path = photo.GetVersionPath(photo.DefaultVersionId);
-						} else {
-							// No need to rotate
-							tmp_path = photo.GetVersionPath(photo.DefaultVersionId);
-						}
-					} else {
-						// resize (including rotate) original photo, and put result in tmp_photo file
-						PixbufUtils.Resize (
-							photo.GetVersionPath(photo.DefaultVersionId),
-							tmp_path, 
-							size, 
-							keep_exif);
+					if (!filters.Convert (orig, final))
+						final = orig;
 
-						// tmp_path = PixbufUtils.Resize (photo.GetVersionPath(photo.DefaultVersionId), size, keep_exif);
-						tmp_paths.Add (tmp_path); // Keep the new tmp_path, so we can delete it later
-					}
-
-					System.Console.WriteLine ("Scaling photo {0}", tmp_path);				
-
-					url.Append ("&attach=" + tmp_path);
+					url.Append ("&attach=" + final);
 					
 					// Update the running total of the actual file sizes.
-					file_info = new System.IO.FileInfo (tmp_path);
+					file_info = new System.IO.FileInfo (final);
 					new_size = file_info.Length;
 					actual_total_size += new_size;
 

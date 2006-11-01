@@ -1,5 +1,8 @@
 2006-11-01  Larry Ewing  <lewing@novell.com>
 
+	* src/f-spot.glade:
+	* src/SendEmail.cs: Update the send mail UI slightly.
+
 	* src/Loupe.cs:
 	* src/Makefile.am:
 	* src/PreviewPopup.cs:
@@ -68,6 +71,9 @@
 	#364456.
 
 2006-10-26  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: Set the the desktop background to stretched
+	by default.
 
 	* src/Widgets/ScrolledView.cs: only read the pointer if the window
 	is realized.
