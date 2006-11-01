@@ -10,6 +10,11 @@ namespace FSpot {
 			list = new System.Collections.ArrayList (photos);
 		}
 
+		public PhotoList () 
+		{
+			list = new System.Collections.ArrayList ();
+		}
+
 		public int Count {
 			get {
 				return list.Count;
