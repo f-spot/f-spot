@@ -838,12 +838,9 @@ namespace GalleryRemote {
 			url = url.Remove (url.Length - script_name.Length, script_name.Length); 
 
 			string path = album.Name;
-			while (album.Parent != null) {
-				album = album.Parent;
-				path = album.Name + "/" + path;
-			}	
+
 			url = url + path;
-			url = url.Replace (" ", "%20");
+			url = url.Replace (" ", "+");
 			return url;
 		}
 
