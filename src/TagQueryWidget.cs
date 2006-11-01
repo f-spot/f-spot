@@ -555,14 +555,14 @@ namespace FSpot.Query
 			get {
 				if (widget != null)
 					return widget;
-
+				
 				container = new EventBox ();
-
+				((EventBox)container).VisibleWindow = false;
 				box = new HBox ();
-
-                handle_box = new LiteralBox ();
-                handle_box.BorderWidth = 1;
-
+				
+				handle_box = new LiteralBox ();
+				handle_box.BorderWidth = 1;
+				
 				label = new Label (tag.Name);
 				label.UseMarkup = true;
 
@@ -1104,6 +1104,7 @@ namespace FSpot.Query
 			preview = false;
 
 			rootAdd = new Gtk.EventBox ();
+			rootAdd.VisibleWindow = false;
 			rootAdd.CanFocus = true;
 			rootAdd.DragMotion		+= HandleDragMotion;
 			rootAdd.DragDataReceived	+= HandleDragDataReceived;

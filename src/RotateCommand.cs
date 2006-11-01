@@ -75,6 +75,10 @@ namespace FSpot {
 				PngFile png = img as PngFile;
 				bool supported = false;
 
+				//FIXME there isn't much png specific here except the check
+				//the pixbuf is an accurate representation of the real file
+				//by checking the depth.  The check should be abstracted and
+				//this code made generic.
 				foreach (PngFile.Chunk c in png.Chunks) {
 					PngFile.IhdrChunk ihdr = c as PngFile.IhdrChunk;
 					
