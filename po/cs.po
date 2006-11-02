@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-30 14:47+0100\n"
-"PO-Revision-Date: 2006-10-30 14:47+0100\n"
+"POT-Creation-Date: 2006-11-02 21:22+0100\n"
+"PO-Revision-Date: 2006-11-02 21:22+0100\n"
 "Last-Translator: Jakub Friedl <jfriedl@suse.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "Organizovat, prohlížet a sdílet vaše fotografie"
 msgid "Photo Manager"
 msgstr "Správce fotografií"
 
-#: ../f-spot-view.desktop.in.in.h:1 ../src/f-spot.glade.h:112
+#: ../f-spot-view.desktop.in.in.h:1 ../src/f-spot.glade.h:113
 msgid "F-Spot Photo Viewer"
 msgstr "Prohlížeč fotografií F-Spot"
 
@@ -171,7 +171,7 @@ msgstr "Náhled"
 msgid "Path"
 msgstr "Cesta"
 
-#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:115
+#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:116
 msgid "File"
 msgstr "Soubor"
 
@@ -295,7 +295,7 @@ msgstr "Chyba: Soubor již existuje; končím"
 msgid "Error saving adjusted photo"
 msgstr "Chyba při ukládání upravené fotografie"
 
-#: ../src/ColorDialog.cs:316 ../src/Loupe.cs:58 ../src/MainWindow.cs:1907
+#: ../src/ColorDialog.cs:316 ../src/Loupe.cs:58 ../src/MainWindow.cs:1906
 #: ../src/PhotoView.cs:268
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
@@ -480,7 +480,7 @@ msgid "Prev"
 msgstr "Předchozí"
 
 #: ../src/FolderExport.cs:813 ../src/FullScreenView.cs:94
-#: ../src/f-spot.glade.h:140
+#: ../src/f-spot.glade.h:141
 msgid "Next"
 msgstr "Následující"
 
@@ -629,60 +629,60 @@ msgid "<b>Import Settings</b>"
 msgstr "<b>Importovat nastavení</b>"
 
 #: ../src/f-spot.glade.h:30
-msgid "<b>Mail attachment summary</b>"
-msgstr "<b>Shrnutí poštovní přílohy</b>"
-
-#: ../src/f-spot.glade.h:31
 msgid "<b>Metadata</b>"
 msgstr "<b>Metadata</b>"
 
-#: ../src/f-spot.glade.h:32
-msgid "<b>Photo size</b>"
-msgstr "<b>Velikost fotografie</b>"
-
-#: ../src/f-spot.glade.h:33
+#: ../src/f-spot.glade.h:31
 msgid "<b>Photograph Layout</b>"
 msgstr "<b>Rozložení fotografie</b>"
 
-#: ../src/f-spot.glade.h:34
+#: ../src/f-spot.glade.h:32
 msgid "<b>Photos to Burn</b>"
 msgstr "<b>Fotografie, které vypálit</b>"
 
-#: ../src/f-spot.glade.h:35
+#: ../src/f-spot.glade.h:33
 msgid "<b>Photos</b>"
 msgstr "<b>Fotografie</b>"
 
-#: ../src/f-spot.glade.h:36
+#: ../src/f-spot.glade.h:34
 msgid "<b>PicasaWeb Export</b>"
 msgstr "<b>Export do PicasaWeb</b>"
 
-#: ../src/f-spot.glade.h:37
+#: ../src/f-spot.glade.h:35
 msgid "<b>Predefined</b>"
 msgstr "<b>Předdefinované</b>"
 
-#: ../src/f-spot.glade.h:38
+#: ../src/f-spot.glade.h:36
 msgid "<b>Preview</b>"
 msgstr "<b>Náhled</b>"
 
-#: ../src/f-spot.glade.h:39
+#: ../src/f-spot.glade.h:37
 msgid "<b>Printer Details</b>"
 msgstr "<b>Podrobnosti o tiskárně</b>"
 
-#: ../src/f-spot.glade.h:40
+#: ../src/f-spot.glade.h:38
 msgid "<b>Reference Photo</b>"
 msgstr "<b>Referenční fotografie</b>"
 
-#: ../src/f-spot.glade.h:41
+#: ../src/f-spot.glade.h:39
 msgid "<b>Screensaver</b>"
 msgstr "<b>Šetřič obrazovky</b>"
 
-#: ../src/f-spot.glade.h:42
+#: ../src/f-spot.glade.h:40
+msgid "<b>Size</b>"
+msgstr "<b>Velikost</b>"
+
+#: ../src/f-spot.glade.h:41
 msgid "<b>Start Date</b>"
 msgstr "<b>Datum začátku</b>"
 
-#: ../src/f-spot.glade.h:43
+#: ../src/f-spot.glade.h:42
 msgid "<b>Style</b>"
 msgstr "<b>Styl</b>"
+
+#: ../src/f-spot.glade.h:43
+msgid "<b>Summary</b>"
+msgstr "<b>Souhrn</b>"
 
 #: ../src/f-spot.glade.h:44
 msgid "<b>Viewing permissions</b>"
@@ -840,128 +840,132 @@ msgid "Create CD"
 msgstr "Vytvořit CD"
 
 #: ../src/f-spot.glade.h:83
+msgid "Create Mail"
+msgstr "Vytvořit e-mail"
+
+#: ../src/f-spot.glade.h:84
 msgid "Create New _Tag..."
 msgstr "Vytvořit nový _tag..."
 
-#: ../src/f-spot.glade.h:84
+#: ../src/f-spot.glade.h:85
 msgid "Create _New Version..."
 msgstr "Vytvořit _novou verzi..."
 
-#: ../src/f-spot.glade.h:85
+#: ../src/f-spot.glade.h:86
 msgid "Create _gallery using \"Original\""
 msgstr "Vytvořit _galerii pomocí \"Original\""
 
-#: ../src/f-spot.glade.h:86
+#: ../src/f-spot.glade.h:87
 msgid "Create a mail with the selected photos (possible resized) attached"
 msgstr ""
 "Vytvořit e-mail s přiloženými vybranými fotografiemi (s možností změny "
 "velikosti)"
 
-#: ../src/f-spot.glade.h:87
+#: ../src/f-spot.glade.h:88
 msgid "Create mail..."
 msgstr "Vytvořit e-mail..."
 
-#: ../src/f-spot.glade.h:88
+#: ../src/f-spot.glade.h:89
 msgid "Create standalone _web gallery"
 msgstr "Vytvořit samostatnou galerii na _WWW"
 
-#: ../src/f-spot.glade.h:89
+#: ../src/f-spot.glade.h:90
 msgid "Crop photo to _fit"
 msgstr "Oříznout fotografii, aby se _vešla"
 
-#: ../src/f-spot.glade.h:90
+#: ../src/f-spot.glade.h:91
 msgid "Current date:"
 msgstr "Aktuální datum:"
 
-#: ../src/f-spot.glade.h:91
+#: ../src/f-spot.glade.h:92
 msgid "D_escription:"
 msgstr "_Popis:"
 
-#: ../src/f-spot.glade.h:92
+#: ../src/f-spot.glade.h:93
 msgid "Display Side_bar"
 msgstr "Zobrazovat _boční panel"
 
-#: ../src/f-spot.glade.h:93
+#: ../src/f-spot.glade.h:94
 msgid "Display T_ags"
 msgstr "Zobrazovat _tagy"
 
-#: ../src/f-spot.glade.h:94
+#: ../src/f-spot.glade.h:95
 msgid "Display Too_lbar"
 msgstr "Zobrazovat _lištu nástrojů"
 
-#: ../src/f-spot.glade.h:95
+#: ../src/f-spot.glade.h:96
 msgid "Display _Dates"
 msgstr "Zobrazovat _data"
 
-#: ../src/f-spot.glade.h:96
+#: ../src/f-spot.glade.h:97
 msgid "Display _Timeline"
 msgstr "Zobrazovat _časovou osu"
 
-#: ../src/f-spot.glade.h:97
+#: ../src/f-spot.glade.h:98
 msgid "Do not send a mail"
 msgstr "Neodesílat e-mail"
 
-#: ../src/f-spot.glade.h:98
+#: ../src/f-spot.glade.h:99
 msgid "E-_Mail:"
 msgstr "_E-mail:"
 
-#: ../src/f-spot.glade.h:99
+#: ../src/f-spot.glade.h:100
 msgid "E_xport titles and comments"
 msgstr "E_xportovat popisky a poznámky"
 
-#: ../src/f-spot.glade.h:100
+#: ../src/f-spot.glade.h:101
 msgid "E_xport to CD..."
 msgstr "_Exportovat na CD..."
 
-#: ../src/f-spot.glade.h:101
+#: ../src/f-spot.glade.h:102
 msgid "Edit Tag Icon"
 msgstr "Upravit ikonu tagu"
 
-#: ../src/f-spot.glade.h:102
+#: ../src/f-spot.glade.h:103
 msgid "Edit icon"
 msgstr "Upravit ikonu"
 
-#: ../src/f-spot.glade.h:103
+#: ../src/f-spot.glade.h:104
 msgid "Estimated new size"
 msgstr "Odhad nové velikosti"
 
-#: ../src/f-spot.glade.h:104
+#: ../src/f-spot.glade.h:105
 msgid "Export"
 msgstr "Exportovat"
 
-#: ../src/f-spot.glade.h:105
+#: ../src/f-spot.glade.h:106
 msgid "Export _titles and comments"
 msgstr "Exportovat _popisky a poznámky"
 
-#: ../src/f-spot.glade.h:106
+#: ../src/f-spot.glade.h:107
 msgid "Export to _Flickr..."
 msgstr "Exportovat do _Flickr..."
 
-#: ../src/f-spot.glade.h:107
+#: ../src/f-spot.glade.h:108
 msgid "Export to _Folder..."
 msgstr "Exportovat do _adresáře..."
 
-#: ../src/f-spot.glade.h:108
+#: ../src/f-spot.glade.h:109
 msgid "Export to _Picasaweb..."
 msgstr "Exportovat do _Picasaweb..."
 
-#: ../src/f-spot.glade.h:109
+#: ../src/f-spot.glade.h:110
 msgid "Export to _Web Gallery..."
 msgstr "Exportovat do _galerie na WWW..."
 
-#: ../src/f-spot.glade.h:110
+#: ../src/f-spot.glade.h:111
 msgid "Extra large"
 msgstr "Extra velký"
 
-#: ../src/f-spot.glade.h:111
+#: ../src/f-spot.glade.h:112
 msgid "F-Spot"
 msgstr "F-Spot"
 
-#: ../src/f-spot.glade.h:113
+#: ../src/f-spot.glade.h:114
 msgid "F-Spot View"
 msgstr "Pohled F-Spot"
 
-#: ../src/f-spot.glade.h:114
+#: ../src/f-spot.glade.h:115
 msgid ""
 "F-Spot needs your authorization in order to upload photos to your Flickr "
 "account. Press the \"Authorize\" button to open a web browser and give F-"
@@ -971,19 +975,19 @@ msgstr ""
 "účtu Flickr. Otevřete prohlížeč WWW stisknutím tlačítka \"Autorizovat\" a "
 "dejte F-Spotu autorizaci. "
 
-#: ../src/f-spot.glade.h:116
+#: ../src/f-spot.glade.h:117
 msgid "Fin_d"
 msgstr "_Hledat"
 
-#: ../src/f-spot.glade.h:117
+#: ../src/f-spot.glade.h:118
 msgid "Folder"
 msgstr "Složka"
 
-#: ../src/f-spot.glade.h:118
+#: ../src/f-spot.glade.h:119
 msgid "Folder Export"
 msgstr "Export adresáře"
 
-#: ../src/f-spot.glade.h:119
+#: ../src/f-spot.glade.h:120
 msgid ""
 "From Screen\n"
 "Standard RGB"
@@ -991,7 +995,7 @@ msgstr ""
 "Z obrazovky\n"
 "Standardní RGB"
 
-#: ../src/f-spot.glade.h:121
+#: ../src/f-spot.glade.h:122
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
@@ -999,19 +1003,19 @@ msgstr ""
 "Celá stránka\n"
 "Standardní - 4×6"
 
-#: ../src/f-spot.glade.h:123
+#: ../src/f-spot.glade.h:124
 msgid "G_allery Name:"
 msgstr "_Název galerie:"
 
-#: ../src/f-spot.glade.h:124
+#: ../src/f-spot.glade.h:125
 msgid "G_allery:"
 msgstr "_Galerie:"
 
-#: ../src/f-spot.glade.h:125
+#: ../src/f-spot.glade.h:126
 msgid "Gallery"
 msgstr "Galerie"
 
-#: ../src/f-spot.glade.h:126
+#: ../src/f-spot.glade.h:127
 msgid ""
 "Hairline\n"
 "0.25\"\n"
@@ -1023,43 +1027,43 @@ msgstr ""
 "0,5\"\n"
 "1\"\n"
 
-#: ../src/f-spot.glade.h:131
+#: ../src/f-spot.glade.h:132
 msgid "Import"
 msgstr "Import"
 
-#: ../src/f-spot.glade.h:132
+#: ../src/f-spot.glade.h:133
 msgid "Import Source:"
 msgstr "Zdroj importu:"
 
-#: ../src/f-spot.glade.h:133
+#: ../src/f-spot.glade.h:134
 msgid "Import photos"
 msgstr "Importovat fotografie"
 
-#: ../src/f-spot.glade.h:134
+#: ../src/f-spot.glade.h:135
 msgid "Include subfolders"
 msgstr "Včetně podadresářů"
 
-#: ../src/f-spot.glade.h:135
+#: ../src/f-spot.glade.h:136
 msgid "Large"
 msgstr "Velký"
 
-#: ../src/f-spot.glade.h:136
+#: ../src/f-spot.glade.h:137
 msgid "Make F-Spot your screensaver"
 msgstr "Používat F-Spot jako šetřič obrazovky"
 
-#: ../src/f-spot.glade.h:137
+#: ../src/f-spot.glade.h:138
 msgid "Medium"
 msgstr "Střední"
 
-#: ../src/f-spot.glade.h:138 ../src/InfoDisplay.cs:12
+#: ../src/f-spot.glade.h:139 ../src/InfoDisplay.cs:12
 msgid "Metadata Browser"
 msgstr "Prohlížeč metadat"
 
-#: ../src/f-spot.glade.h:139
+#: ../src/f-spot.glade.h:140
 msgid "N_umber of Copies:"
 msgstr "Počet _kopií:"
 
-#: ../src/f-spot.glade.h:141
+#: ../src/f-spot.glade.h:142
 msgid ""
 "None\n"
 "Title\n"
@@ -1073,74 +1077,70 @@ msgstr ""
 "Datum\n"
 "Podrobnosti o fotografii"
 
-#: ../src/f-spot.glade.h:146
+#: ../src/f-spot.glade.h:147
 msgid "Number of pictures"
 msgstr "Počet obrázků"
 
-#: ../src/f-spot.glade.h:147
+#: ../src/f-spot.glade.h:148
 msgid "Open _Folder..."
 msgstr "Otevřít _adresář..."
 
-#: ../src/f-spot.glade.h:148
+#: ../src/f-spot.glade.h:149
 msgid "Open _album in browser when done uploading"
 msgstr "Po uploadu otevřít _album v prohlížeči"
 
-#: ../src/f-spot.glade.h:149
+#: ../src/f-spot.glade.h:150
 msgid "Open _destination when done exporting"
 msgstr "Po dokončení exportu otevřít _cíl"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/f-spot.glade.h:150 ../src/PhotoStore.cs:570
+#: ../src/f-spot.glade.h:151 ../src/PhotoStore.cs:570
 msgid "Original"
 msgstr "Původní"
 
-#: ../src/f-spot.glade.h:151
+#: ../src/f-spot.glade.h:152
 msgid "Original size (possible very large file size)"
 msgstr "Originální velikost (možná velmi velký soubor)"
 
-#: ../src/f-spot.glade.h:152
+#: ../src/f-spot.glade.h:153
 msgid "P_arent Tag:"
 msgstr "_Rodičovský tag:"
 
-#: ../src/f-spot.glade.h:153
+#: ../src/f-spot.glade.h:154
 msgid "P_hoto Source:"
 msgstr "_Zdroj fotografií:"
 
-#: ../src/f-spot.glade.h:154
+#: ../src/f-spot.glade.h:155
 msgid "Page 1 of 3"
 msgstr "Stránka 1 ze 3"
 
-#: ../src/f-spot.glade.h:155
+#: ../src/f-spot.glade.h:156
 msgid "Pause"
 msgstr "Pozastavit"
 
-#: ../src/f-spot.glade.h:156
+#: ../src/f-spot.glade.h:157
 msgid "Photo 0 of 0"
 msgstr "Fotografie 0 z 0"
 
-#: ../src/f-spot.glade.h:157
+#: ../src/f-spot.glade.h:158
 msgid "Photo _Size:"
 msgstr "_Velikost fotografie:"
 
-#: ../src/f-spot.glade.h:158
+#: ../src/f-spot.glade.h:159
 msgid "Please verify that the settings for this gallery are correct."
 msgstr "Ověřte prosím, že nastavení této galerie jsou správná."
 
-#: ../src/f-spot.glade.h:159
+#: ../src/f-spot.glade.h:160
 msgid ""
 "Please verify that the settings for this gallery are correct.\n"
 "Enter the letters as they are shown in the image in\n"
 "the 'Captcha' field. <i>Letters are not case-sensitive</i>"
 msgstr ""
 
-#: ../src/f-spot.glade.h:162
+#: ../src/f-spot.glade.h:163
 msgid "Preferences"
 msgstr "Nastavení"
-
-#: ../src/f-spot.glade.h:163
-msgid "Prepare for mail"
-msgstr "Připravit k odeslání"
 
 #: ../src/f-spot.glade.h:164
 msgid "Previous"
@@ -1175,46 +1175,50 @@ msgid "Rem_ove Tag"
 msgstr "_Odstranit tag"
 
 #: ../src/f-spot.glade.h:172
+msgid "Repair"
+msgstr "Opravit"
+
+#: ../src/f-spot.glade.h:173
 msgid "Reset"
 msgstr "Obnovit"
 
-#: ../src/f-spot.glade.h:173 ../src/StockIcons.cs:38
+#: ../src/f-spot.glade.h:174 ../src/StockIcons.cs:38
 msgid "Rotate _Left"
 msgstr "Rotovat do_leva"
 
-#: ../src/f-spot.glade.h:174 ../src/StockIcons.cs:39
+#: ../src/f-spot.glade.h:175 ../src/StockIcons.cs:39
 msgid "Rotate _Right"
 msgstr "Rotovat do_prava"
 
-#: ../src/f-spot.glade.h:175
+#: ../src/f-spot.glade.h:176
 msgid "Select A Folder"
 msgstr "Vybrat složku"
 
-#: ../src/f-spot.glade.h:176
+#: ../src/f-spot.glade.h:177
 msgid "Select Photos to Copy From Camera..."
 msgstr "Zvolte fotografie, které kopírovat z fotoaparátu..."
 
-#: ../src/f-spot.glade.h:177
+#: ../src/f-spot.glade.h:178
 msgid "Select _All"
 msgstr "Vybrat vš_e"
 
-#: ../src/f-spot.glade.h:178
+#: ../src/f-spot.glade.h:179
 msgid "Select _None"
 msgstr "Nevybrat _nic"
 
-#: ../src/f-spot.glade.h:179
+#: ../src/f-spot.glade.h:180
 msgid "Select a Tag..."
 msgstr "Vyberte tag..."
 
-#: ../src/f-spot.glade.h:180
+#: ../src/f-spot.glade.h:181
 msgid "Select the camera from which you want to transfer files"
 msgstr "Vyberte fotoaparát, ze kterého chcete přenést soubory"
 
-#: ../src/f-spot.glade.h:181
+#: ../src/f-spot.glade.h:182
 msgid "Selected Camera: "
 msgstr "Zvolený fotoaparát: "
 
-#: ../src/f-spot.glade.h:182
+#: ../src/f-spot.glade.h:183
 msgid ""
 "Selection\n"
 "Gallery\n"
@@ -1224,60 +1228,60 @@ msgstr ""
 "Galerie\n"
 "Pohled"
 
-#: ../src/f-spot.glade.h:185
+#: ../src/f-spot.glade.h:186
 msgid "Send _Mail..."
 msgstr "Poslat _poštou..."
 
-#: ../src/f-spot.glade.h:186
+#: ../src/f-spot.glade.h:187
 msgid "Set Date Range"
 msgstr "Nastavit rozsah data"
 
-#: ../src/f-spot.glade.h:187
+#: ../src/f-spot.glade.h:188
 msgid "Set _Date Range..."
 msgstr "Nastavit rozsah _data..."
 
-#: ../src/f-spot.glade.h:188
+#: ../src/f-spot.glade.h:189
 msgid "Set as _Background"
 msgstr "Nastavit jako _pozadí"
 
-#: ../src/f-spot.glade.h:189 ../src/TimeDialog.cs:124
+#: ../src/f-spot.glade.h:190 ../src/TimeDialog.cs:124
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Posunout všechny fotografie o {0}"
 
-#: ../src/f-spot.glade.h:190
+#: ../src/f-spot.glade.h:191
 msgid "Show or hide the side pane"
 msgstr "Zobrazit nebo skrýt boční panel"
 
-#: ../src/f-spot.glade.h:191
+#: ../src/f-spot.glade.h:192
 msgid "Show or hide the toolbar"
 msgstr "Zobrazit nebo skrýt lištu nástrojů"
 
-#: ../src/f-spot.glade.h:192
+#: ../src/f-spot.glade.h:193
 msgid "Side _pane"
 msgstr "Boční _panel"
 
-#: ../src/f-spot.glade.h:193
+#: ../src/f-spot.glade.h:194
 msgid "Size"
 msgstr "Velikost"
 
-#: ../src/f-spot.glade.h:194
+#: ../src/f-spot.glade.h:195
 msgid "Size of the exported selection :"
 msgstr "Velikost exportovaného výběru:"
 
-#: ../src/f-spot.glade.h:195
+#: ../src/f-spot.glade.h:196
 msgid "Small"
 msgstr "Malý"
 
-#: ../src/f-spot.glade.h:196
+#: ../src/f-spot.glade.h:197
 msgid "So_urce Temp"
 msgstr "_Teplota zdroje"
 
-#: ../src/f-spot.glade.h:197
+#: ../src/f-spot.glade.h:198
 msgid "Space all photos by"
 msgstr "Oddálit všechny fotografie o"
 
-#: ../src/f-spot.glade.h:198
+#: ../src/f-spot.glade.h:199
 msgid ""
 "Specify if an original size picture should be rotated or not. Smaller sizes "
 "are automatically rotated."
@@ -1285,7 +1289,7 @@ msgstr ""
 "Zvolte, zda má být obrázek v původní velikosti otočen či nikoliv. Menší "
 "velikosti jsou otočeny automaticky."
 
-#: ../src/f-spot.glade.h:199
+#: ../src/f-spot.glade.h:200
 msgid ""
 "Standard RGB\n"
 "Image Profile\n"
@@ -1295,350 +1299,350 @@ msgstr ""
 "Profil obrázku\n"
 "Vlastní\n"
 
-#: ../src/f-spot.glade.h:203
+#: ../src/f-spot.glade.h:204
 msgid "Strip _metadata"
 msgstr "Odstranit _metadata"
 
-#: ../src/f-spot.glade.h:204
+#: ../src/f-spot.glade.h:205
 msgid "Strip image _metadata"
 msgstr "Odstranit _metadata obrázku"
 
-#: ../src/f-spot.glade.h:205
+#: ../src/f-spot.glade.h:206
 msgid "Tags: "
 msgstr "Tagy: "
 
-#: ../src/f-spot.glade.h:206
+#: ../src/f-spot.glade.h:207
 msgid "Tiny"
 msgstr "Drobný"
 
-#: ../src/f-spot.glade.h:207
+#: ../src/f-spot.glade.h:208
 msgid "Toolbar"
 msgstr "Lišta nástrojů"
 
-#: ../src/f-spot.glade.h:208
+#: ../src/f-spot.glade.h:209
 msgid "Total original size"
 msgstr "Celková originální velikost"
 
-#: ../src/f-spot.glade.h:209
+#: ../src/f-spot.glade.h:210
 msgid "U_RL:"
 msgstr "_URL:"
 
-#: ../src/f-spot.glade.h:210
+#: ../src/f-spot.glade.h:211
 msgid "View"
 msgstr "Zobrazit"
 
-#: ../src/f-spot.glade.h:211
+#: ../src/f-spot.glade.h:212
 msgid "Visible to Family"
 msgstr "Viditelné rodinou"
 
-#: ../src/f-spot.glade.h:212
+#: ../src/f-spot.glade.h:213
 msgid "Visible to Friends"
 msgstr "Viditelné přáteli"
 
-#: ../src/f-spot.glade.h:213
+#: ../src/f-spot.glade.h:214
 msgid "Will print using: US Letter size on Generic Postscript"
 msgstr "Budu tisknout s velikostí: US Letter na Generic Postscript"
 
-#: ../src/f-spot.glade.h:214
+#: ../src/f-spot.glade.h:215
 msgid "Write _metadata to file"
 msgstr "Zapsat _metadata do souboru"
 
-#: ../src/f-spot.glade.h:215
+#: ../src/f-spot.glade.h:216
 msgid "Zoom _in"
 msgstr "Z_většit"
 
-#: ../src/f-spot.glade.h:216
+#: ../src/f-spot.glade.h:217
 msgid "Zoom _out"
 msgstr "Z_menšit"
 
-#: ../src/f-spot.glade.h:217
+#: ../src/f-spot.glade.h:218
 msgid "Zoom in"
 msgstr "Zvětšit"
 
-#: ../src/f-spot.glade.h:218
+#: ../src/f-spot.glade.h:219
 msgid "Zoom out"
 msgstr "Zmenšit"
 
-#: ../src/f-spot.glade.h:219
+#: ../src/f-spot.glade.h:220
 msgid "_Album Name:"
 msgstr "Název _alba:"
 
-#: ../src/f-spot.glade.h:220
+#: ../src/f-spot.glade.h:221
 msgid "_Album Title:"
 msgstr "Název _alba:"
 
-#: ../src/f-spot.glade.h:221
+#: ../src/f-spot.glade.h:222
 msgid "_Attach Tag"
 msgstr "_Připojit tag"
 
-#: ../src/f-spot.glade.h:222
+#: ../src/f-spot.glade.h:223
 msgid "_Attach Tag to Selection"
 msgstr "_Připojit k výběru tag"
 
-#: ../src/f-spot.glade.h:223
+#: ../src/f-spot.glade.h:224
 msgid "_Border:"
 msgstr "_Okraj:"
 
-#: ../src/f-spot.glade.h:224
+#: ../src/f-spot.glade.h:225
 msgid "_Brightness:"
 msgstr "_Jas:"
 
-#: ../src/f-spot.glade.h:225
+#: ../src/f-spot.glade.h:226
 msgid "_Browse Previously Scheduled Files"
 msgstr "_Procházed dříve naplánované soubory"
 
-#: ../src/f-spot.glade.h:226
-msgid "_Captcha:"
-msgstr ""
-
 #: ../src/f-spot.glade.h:227
-msgid "_Contents"
-msgstr ""
+msgid "_Captcha:"
+msgstr "_Captcha:"
 
 #: ../src/f-spot.glade.h:228
+msgid "_Contents"
+msgstr "_Obsah"
+
+#: ../src/f-spot.glade.h:229
 msgid "_Delete From Drive"
 msgstr "_Odstranit z jednotky"
 
-#: ../src/f-spot.glade.h:229
+#: ../src/f-spot.glade.h:230
 msgid "_Delete Selected Tag"
 msgstr "_Odstranit vybraný tag"
 
-#: ../src/f-spot.glade.h:230
+#: ../src/f-spot.glade.h:231
 msgid "_Delete Version"
 msgstr "_Odstranit verzi"
 
-#: ../src/f-spot.glade.h:231
+#: ../src/f-spot.glade.h:232
 msgid "_Description:"
 msgstr "_Popis:"
 
-#: ../src/f-spot.glade.h:232
+#: ../src/f-spot.glade.h:233
 msgid "_Destination Temp"
 msgstr "_Teplota cíle"
 
-#: ../src/f-spot.glade.h:233
+#: ../src/f-spot.glade.h:234
 msgid "_Display:"
 msgstr "_Zobrazovat:"
 
-#: ../src/f-spot.glade.h:234
+#: ../src/f-spot.glade.h:235
 msgid "_Edit Selected Tag..."
 msgstr "_Upravit vybraný tag..."
 
-#: ../src/f-spot.glade.h:235
+#: ../src/f-spot.glade.h:236
 msgid "_Export"
 msgstr "_Exportovat"
 
-#: ../src/f-spot.glade.h:236
+#: ../src/f-spot.glade.h:237
 msgid "_Export tags"
 msgstr "_Exportovat tagy"
 
-#: ../src/f-spot.glade.h:237
+#: ../src/f-spot.glade.h:238
 msgid "_Export to Album:"
 msgstr "_Exportovat do alba:"
 
-#: ../src/f-spot.glade.h:238
+#: ../src/f-spot.glade.h:239
 msgid "_Flickr"
 msgstr "_Flickr"
 
-#: ../src/f-spot.glade.h:239
+#: ../src/f-spot.glade.h:240
 msgid "_Folder"
 msgstr "_Adresář"
 
-#: ../src/f-spot.glade.h:240
+#: ../src/f-spot.glade.h:241
 msgid "_Folder:"
 msgstr "_Adresář:"
 
-#: ../src/f-spot.glade.h:241
+#: ../src/f-spot.glade.h:242
 msgid "_Fullscreen"
 msgstr "_Celá obrazovka"
 
-#: ../src/f-spot.glade.h:242
+#: ../src/f-spot.glade.h:243
 msgid "_Gallery"
 msgstr "_Galerie"
 
-#: ../src/f-spot.glade.h:243
+#: ../src/f-spot.glade.h:244
 msgid "_Gallery Name:"
 msgstr "_Název galerie:"
 
-#: ../src/f-spot.glade.h:244
+#: ../src/f-spot.glade.h:245
 msgid "_Gallery:"
 msgstr "_Galerie:"
 
-#: ../src/f-spot.glade.h:245
+#: ../src/f-spot.glade.h:246
 msgid "_Hue:"
 msgstr "_Odstín:"
 
-#: ../src/f-spot.glade.h:246
+#: ../src/f-spot.glade.h:247
 msgid "_Icon:"
 msgstr "_Ikona:"
 
-#: ../src/f-spot.glade.h:247
+#: ../src/f-spot.glade.h:248
 msgid "_Import files after copy"
 msgstr "_Importovat soubory po kopírování"
 
-#: ../src/f-spot.glade.h:248
+#: ../src/f-spot.glade.h:249
 msgid "_Import..."
 msgstr "_Importovat..."
 
-#: ../src/f-spot.glade.h:249
+#: ../src/f-spot.glade.h:250
 msgid "_Metadata Browser"
 msgstr "Prohlížeč _metadat"
 
-#: ../src/f-spot.glade.h:250
+#: ../src/f-spot.glade.h:251
 msgid "_Month"
 msgstr "_Měsíců"
 
-#: ../src/f-spot.glade.h:251
+#: ../src/f-spot.glade.h:252
 msgid "_New Window"
 msgstr "_Nové okno"
 
-#: ../src/f-spot.glade.h:252
+#: ../src/f-spot.glade.h:253
 msgid "_Open album in browser when done uploading"
 msgstr "Po uploadu _otevřít album v prohlížeči"
 
-#: ../src/f-spot.glade.h:253
+#: ../src/f-spot.glade.h:254
 msgid "_Open destination when done exporting"
 msgstr "Po dokončení exportu _otevřít cíl"
 
-#: ../src/f-spot.glade.h:254
+#: ../src/f-spot.glade.h:255
 msgid "_Output:"
 msgstr "_Výstup:"
 
-#: ../src/f-spot.glade.h:255
+#: ../src/f-spot.glade.h:256
 msgid "_Parent Album:"
 msgstr "_Rodičovské Album:"
 
-#: ../src/f-spot.glade.h:256
+#: ../src/f-spot.glade.h:257
 msgid "_Password:"
 msgstr "_Heslo:"
 
-#: ../src/f-spot.glade.h:257
+#: ../src/f-spot.glade.h:258
 msgid "_Prefix: "
 msgstr "_Předpona: "
 
-#: ../src/f-spot.glade.h:258
+#: ../src/f-spot.glade.h:259
 msgid "_Print..."
 msgstr "Vy_tisknout..."
 
-#: ../src/f-spot.glade.h:259
-msgid "_Quit"
-msgstr ""
-
 #: ../src/f-spot.glade.h:260
+msgid "_Quit"
+msgstr "_Ukončit"
+
+#: ../src/f-spot.glade.h:261
 msgid "_Remove From Catalog"
 msgstr "_Odstranit z katalogu"
 
-#: ../src/f-spot.glade.h:261
+#: ../src/f-spot.glade.h:262
 msgid "_Remove Tag From Selection"
 msgstr "_Odstranit tag z výběru"
 
-#: ../src/f-spot.glade.h:262
+#: ../src/f-spot.glade.h:263
 msgid "_Rename Version"
 msgstr "_Přejmenovat verzi"
 
-#: ../src/f-spot.glade.h:263
+#: ../src/f-spot.glade.h:264
 msgid "_Resize to: "
 msgstr "Změnit _velikost na: "
 
-#: ../src/f-spot.glade.h:264 ../src/GroupSelector.cs:521
+#: ../src/f-spot.glade.h:265 ../src/GroupSelector.cs:521
 msgid "_Reverse Order"
 msgstr "_Obrátit pořadí"
 
-#: ../src/f-spot.glade.h:265
+#: ../src/f-spot.glade.h:266
 msgid "_Saturation:"
 msgstr "_Sytost:"
 
-#: ../src/f-spot.glade.h:266
+#: ../src/f-spot.glade.h:267
 msgid "_Save the files only"
 msgstr "_Uložit jen soubory"
 
-#: ../src/f-spot.glade.h:267
+#: ../src/f-spot.glade.h:268
 msgid "_Scale photos to no larger than: "
 msgstr "Změnit _měřítko fotografií, aby nebyly větší než: "
 
-#: ../src/f-spot.glade.h:268
+#: ../src/f-spot.glade.h:269
 msgid "_Select Tags..."
 msgstr "_Vybrat tagy..."
 
-#: ../src/f-spot.glade.h:269
+#: ../src/f-spot.glade.h:270
 msgid "_Sharpen..."
 msgstr "_Zaostřit..."
 
-#: ../src/f-spot.glade.h:270
+#: ../src/f-spot.glade.h:271
 msgid "_Slideshow"
 msgstr "_Promítání snímků"
 
-#: ../src/f-spot.glade.h:271
+#: ../src/f-spot.glade.h:272
 msgid "_Strip metadata"
 msgstr "_Odstranit metadata"
 
-#: ../src/f-spot.glade.h:272
+#: ../src/f-spot.glade.h:273
 msgid "_Tag Name:"
 msgstr "Název _tagu:"
 
-#: ../src/f-spot.glade.h:273
+#: ../src/f-spot.glade.h:274
 msgid "_Tags"
 msgstr "_Tagy"
 
-#: ../src/f-spot.glade.h:274
+#: ../src/f-spot.glade.h:275
 msgid "_Title:"
 msgstr "_Popisek:"
 
-#: ../src/f-spot.glade.h:275
+#: ../src/f-spot.glade.h:276
 msgid "_URI:"
 msgstr "_URI:"
 
-#: ../src/f-spot.glade.h:276
+#: ../src/f-spot.glade.h:277
 msgid "_Untagged Photos"
 msgstr "_Neoznačené fotografie"
 
-#: ../src/f-spot.glade.h:277
+#: ../src/f-spot.glade.h:278
 msgid "_Username:"
 msgstr "Jméno _uživatele:"
 
-#: ../src/f-spot.glade.h:278
+#: ../src/f-spot.glade.h:279
 msgid "_Version"
 msgstr "_Verze"
 
-#: ../src/f-spot.glade.h:279
+#: ../src/f-spot.glade.h:280
 msgid "_View"
 msgstr "_Zobrazit"
 
-#: ../src/f-spot.glade.h:280
+#: ../src/f-spot.glade.h:281
 msgid "_View photos in browser when done uploading"
 msgstr "Po uploadu _zobrazit fotografie v prohlížeči"
 
-#: ../src/f-spot.glade.h:281
+#: ../src/f-spot.glade.h:282
 msgid "_Virtual Filesystem"
 msgstr "_Virtuální systém souborů"
 
-#: ../src/f-spot.glade.h:282
+#: ../src/f-spot.glade.h:283
 msgid "_Write only these photos to CD"
 msgstr "_Zapsat jen tyto fotografie na CD"
 
-#: ../src/f-spot.glade.h:283
+#: ../src/f-spot.glade.h:284
 msgid "dialog1"
 msgstr "dialog1"
 
-#: ../src/f-spot.glade.h:284
+#: ../src/f-spot.glade.h:285
 msgid "difference:"
 msgstr "rozdíl:"
 
-#: ../src/f-spot.glade.h:285
+#: ../src/f-spot.glade.h:286
 msgid "img_000.jpg"
 msgstr "obr_000.jpg"
 
 #. The preceding text here is the second checkbutton in the Time dialog
 #. that says "Space all photos by []"
-#: ../src/f-spot.glade.h:286 ../src/TimeDialog.cs:119
+#: ../src/f-spot.glade.h:287 ../src/TimeDialog.cs:119
 #, csharp-format
 msgid "min. Starting at {0}"
 msgstr "min. zač. na {0}"
 
-#: ../src/f-spot.glade.h:287
+#: ../src/f-spot.glade.h:288
 msgid "pixels"
 msgstr "pixelů"
 
-#: ../src/f-spot.glade.h:288
+#: ../src/f-spot.glade.h:289
 msgid "x"
 msgstr "x"
 
@@ -1920,7 +1924,7 @@ msgstr "Intelektuální žánr objektu"
 msgid "Unknown IIM DataSet"
 msgstr "Neznámý DataSet IIMF"
 
-#: ../src/Loupe.cs:57 ../src/MainWindow.cs:1906
+#: ../src/Loupe.cs:57 ../src/MainWindow.cs:1905
 msgid "Error saving sharpened photo"
 msgstr "Chyba při ukládání zaostřené fotografie"
 
@@ -1928,15 +1932,15 @@ msgstr "Chyba při ukládání zaostřené fotografie"
 msgid "Sharpen"
 msgstr "Zaostřit"
 
-#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1873
+#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1872
 msgid "Amount:"
 msgstr "Úroveň:"
 
-#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1874
+#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1873
 msgid "Radius:"
 msgstr "Poloměr:"
 
-#: ../src/Loupe.cs:99 ../src/MainWindow.cs:1875
+#: ../src/Loupe.cs:99 ../src/MainWindow.cs:1874
 msgid "Threshold:"
 msgstr "Práh:"
 
@@ -1956,11 +1960,11 @@ msgstr "Zobrazit fotografie na celé obrazovce"
 msgid "View photos in a slideshow"
 msgstr "Zobrazovat fotografie jako prezentaci"
 
-#: ../src/MainWindow.cs:781
+#: ../src/MainWindow.cs:780
 msgid "Error loading database."
 msgstr "Chyba při načítání databáze."
 
-#: ../src/MainWindow.cs:782
+#: ../src/MainWindow.cs:781
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
@@ -1969,11 +1973,11 @@ msgstr ""
 "F-Spot narazil na chybu při načítání databáze fotografií. Stará databáze "
 "byla přesunuta do {0} a byla vytvořena nová databáze."
 
-#: ../src/MainWindow.cs:1338
+#: ../src/MainWindow.cs:1337
 msgid "No cameras detected."
 msgstr "Nedetekován žádný fotoaparát."
 
-#: ../src/MainWindow.cs:1339
+#: ../src/MainWindow.cs:1338
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1981,11 +1985,11 @@ msgstr ""
 "F-Spot nemohl najít žádný fotoaparát připojený k tomuto systému. "
 "Zkontrolujte, že fotoaparát je připojen a má napájení"
 
-#: ../src/MainWindow.cs:1379
+#: ../src/MainWindow.cs:1378
 msgid "Error connecting to camera"
 msgstr "Chyba při připojování k fotoaparátu"
 
-#: ../src/MainWindow.cs:1380
+#: ../src/MainWindow.cs:1379
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Přijata chyba \"{0}\" při připojování k fotoaparátu"
@@ -1993,18 +1997,18 @@ msgstr "Přijata chyba \"{0}\" při připojování k fotoaparátu"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1547
+#: ../src/MainWindow.cs:1546
 msgid "translator-credits"
 msgstr ""
 "Miloslav Trmač,\n"
 "Jakub Friedl <jfriedl@suse.cz>"
 
-#: ../src/MainWindow.cs:1554
+#: ../src/MainWindow.cs:1553
 msgid "Copyright © 2003-2006 Novell Inc."
 msgstr "Copyright © 2003-2006 Novell Inc."
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1786
+#: ../src/MainWindow.cs:1785
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
@@ -2012,37 +2016,37 @@ msgstr[0] "Sloučit vybraný tag"
 msgstr[1] "Sloučit vybrané {0} tagy"
 msgstr[2] "Sloučit vybraných {0} tagů"
 
-#: ../src/MainWindow.cs:1813
+#: ../src/MainWindow.cs:1812
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
 msgstr "Tato operace sloučí vybrané tagy a všechny podtagy do jednoho tagu."
 
-#: ../src/MainWindow.cs:1815
+#: ../src/MainWindow.cs:1814
 msgid "_Merge Tags"
 msgstr "_Sloučit tagy"
 
-#: ../src/MainWindow.cs:1864
+#: ../src/MainWindow.cs:1863
 msgid "Unsharp Mask"
 msgstr "Maska rozostření"
 
-#: ../src/MainWindow.cs:2081
-#, fuzzy, csharp-format
+#: ../src/MainWindow.cs:2080
+#, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
-msgstr[0] "Upravit fotografii"
-msgstr[1] "Upravit fotografii"
-msgstr[2] "Upravit fotografii"
+msgstr[0] "{0} fotografie"
+msgstr[1] "{0} fotografie"
+msgstr[2] "{0} fotografií"
 
-#: ../src/MainWindow.cs:2160
+#: ../src/MainWindow.cs:2159
 msgid "_Ok"
 msgstr "_Budiž"
 
-#: ../src/MainWindow.cs:2161
+#: ../src/MainWindow.cs:2160
 msgid "Error Deleting Picture"
 msgstr "Chyba při odstraňování obrázků"
 
-#: ../src/MainWindow.cs:2166
+#: ../src/MainWindow.cs:2165
 #, csharp-format
 msgid ""
 "No permission to delete the file:\n"
@@ -2051,7 +2055,7 @@ msgstr ""
 "Chybí oprávnění odstranit soubor:\n"
 "{0}"
 
-#: ../src/MainWindow.cs:2170
+#: ../src/MainWindow.cs:2169
 #, csharp-format
 msgid ""
 "An error of type {0} occurred while deleting the file:\n"
@@ -2060,7 +2064,7 @@ msgstr ""
 "Pri odstraňování souboru došlo k chybě typu {0}:\n"
 "{1}"
 
-#: ../src/MainWindow.cs:2196
+#: ../src/MainWindow.cs:2195
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
@@ -2068,7 +2072,7 @@ msgstr[0] "Natrvalo odstranit vybranou fotografii?"
 msgstr[1] "Natrvalo odstranit vybrané {0} fotografie?"
 msgstr[2] "Natrvalo odstranit vybraných {0} fotografií?"
 
-#: ../src/MainWindow.cs:2200
+#: ../src/MainWindow.cs:2199
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
@@ -2077,14 +2081,14 @@ msgstr[1] "To odstraní všechny verze vybraných fotografií z vašeho disku."
 msgstr[2] "To odstraní všechny verze vybraných fotografií z vašeho disku."
 
 #
-#: ../src/MainWindow.cs:2203
+#: ../src/MainWindow.cs:2202
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Odstranit fotografii"
 msgstr[1] "_Odstranit fotografie"
 msgstr[2] "_Odstranit fotografie"
 
-#: ../src/MainWindow.cs:2231
+#: ../src/MainWindow.cs:2230
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
@@ -2092,7 +2096,7 @@ msgstr[0] "Odstranit vybranou fotografii z F-Spotu?"
 msgstr[1] "Odstranit vybrané {0} fotografie z F-Spotu?"
 msgstr[2] "Odstranit vybraných {0} fotografií z F-Spotu?"
 
-#: ../src/MainWindow.cs:2236
+#: ../src/MainWindow.cs:2235
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -2102,25 +2106,25 @@ msgstr ""
 "budou ztraceny. Fotografie zůstávají ve vašem počítači a lze je do F-Spot "
 "znovu importovat."
 
-#: ../src/MainWindow.cs:2237
+#: ../src/MainWindow.cs:2236
 msgid "_Remove from Catalog"
 msgstr "_Odstranit z katalogu"
 
-#: ../src/MainWindow.cs:2292
+#: ../src/MainWindow.cs:2291
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Odstranit tag \"{0}\"?"
 
-#: ../src/MainWindow.cs:2294
+#: ../src/MainWindow.cs:2293
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Odstranit {0} vybraných tagů?"
 
-#: ../src/MainWindow.cs:2297
+#: ../src/MainWindow.cs:2296
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr "Pokud odstraníte tag, všechny asociace s fotografiemi budou ztraceny."
 
-#: ../src/MainWindow.cs:2298
+#: ../src/MainWindow.cs:2297
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "Odstranit tag"
@@ -2128,11 +2132,11 @@ msgstr[1] "Odstranit tagy"
 msgstr[2] "Odstranit tagy"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2312
+#: ../src/MainWindow.cs:2311
 msgid "Tag is not empty"
 msgstr "Tag není prázdný"
 
-#: ../src/MainWindow.cs:2313
+#: ../src/MainWindow.cs:2312
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -2141,21 +2145,21 @@ msgstr ""
 "Nemohu odstranit tagy, které obsahují tagy. Nejdříve prosím odstraňte tagy "
 "pod \"{0}\""
 
-#: ../src/MainWindow.cs:2730
+#: ../src/MainWindow.cs:2715
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Rotovat vybranou fotografii doleva"
 msgstr[1] "Rotovat vybrané fotografie doleva"
 msgstr[2] "Rotovat vybrané fotografie doleva"
 
-#: ../src/MainWindow.cs:2743
+#: ../src/MainWindow.cs:2728
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Rotovat vybranou fotografii doprava"
 msgstr[1] "Rotovat vybrané fotografie doprava"
 msgstr[2] "Rotovat vybrané fotografie doprava"
 
-#: ../src/MainWindow.cs:2751
+#: ../src/MainWindow.cs:2736
 #, fuzzy, csharp-format
 msgid "Find Selected Tag"
 msgid_plural "Find Selected Tags"
@@ -2163,7 +2167,7 @@ msgstr[0] "Vybrat tag"
 msgstr[1] "Vybrat tag"
 msgstr[2] "Vybrat tag"
 
-#: ../src/MainWindow.cs:2755
+#: ../src/MainWindow.cs:2740
 #, fuzzy, csharp-format
 msgid "Find Selected Tag With"
 msgid_plural "Find Selected Tags With"
@@ -2171,14 +2175,14 @@ msgstr[0] "_Upravit vybraný tag..."
 msgstr[1] "_Upravit vybraný tag..."
 msgstr[2] "_Upravit vybraný tag..."
 
-#: ../src/MainWindow.cs:2772
+#: ../src/MainWindow.cs:2757
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Vytvořit novou verzi?"
 msgstr[1] "Vytvořit nové verze?"
 msgstr[2] "Vytvořit nove verze?"
 
-#: ../src/MainWindow.cs:2774
+#: ../src/MainWindow.cs:2759
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -2506,18 +2510,18 @@ msgstr "Uploaduji obrázek \"{0}\""
 
 #: ../src/PicasaWebExport.cs:682
 msgid "Available space :"
-msgstr ""
+msgstr "Dostupné místo:"
 
-#: ../src/RotateCommand.cs:193
+#: ../src/RotateCommand.cs:197
 msgid "Rotating photos"
 msgstr "Rotuji fotografie"
 
-#: ../src/RotateCommand.cs:204
+#: ../src/RotateCommand.cs:208
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "Rotuji fotografii \"{0}\""
 
-#: ../src/RotateCommand.cs:229
+#: ../src/RotateCommand.cs:233
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
@@ -2525,7 +2529,7 @@ msgstr[0] "Nemohu rotovat fotografii"
 msgstr[1] "Nemohu rotovat {0} fotografie"
 msgstr[2] "Nemohu rotovat {0} fotografií"
 
-#: ../src/RotateCommand.cs:233
+#: ../src/RotateCommand.cs:237
 #, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
@@ -2546,12 +2550,12 @@ msgstr[2] ""
 "médiu jen pro čtení, například CDROM. Zkontrolujte prosím oprávnění a zkuste "
 "to znovu."
 
-#: ../src/RotateCommand.cs:255
+#: ../src/RotateCommand.cs:259
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "Přijata chyba \"{0}\" při pokusu rotovat {1}"
 
-#: ../src/RotateCommand.cs:260
+#: ../src/RotateCommand.cs:264
 msgid "Error while rotating photo."
 msgstr "Chyba při rotování fotografie."
 
@@ -2617,7 +2621,7 @@ msgid "Far"
 msgstr "Daleko"
 
 #: ../src/TagCommands.cs:75 ../src/TagCommands.cs:203
-#: ../src/TagSelectionWidget.cs:626
+#: ../src/TagSelectionWidget.cs:503
 msgid "This name is already in use"
 msgstr "Tento název se již používá"
 
@@ -2686,9 +2690,8 @@ msgid "Exclude"
 msgstr ""
 
 #: ../src/TagQueryWidget.cs:43
-#, fuzzy
 msgid "Remove"
-msgstr "Odstranit tag"
+msgstr "Odstranit"
 
 #: ../src/TagQueryWidget.cs:87
 #, fuzzy, csharp-format
@@ -2700,7 +2703,7 @@ msgstr[2] "Otevřít s"
 
 #: ../src/TagQueryWidget.cs:113
 msgid "All"
-msgstr ""
+msgstr "Vše"
 
 #: ../src/TagQueryWidget.cs:148 ../src/TagQueryWidget.cs:657
 #, csharp-format
@@ -2709,29 +2712,26 @@ msgstr ""
 
 #: ../src/TagQueryWidget.cs:408
 msgid " and "
-msgstr ""
+msgstr " a "
 
 #. operators.Add (Catalog.GetString (" && "));
 #: ../src/TagQueryWidget.cs:410
-#, fuzzy
 msgid ", "
-msgstr " "
+msgstr ", "
 
 #: ../src/TagQueryWidget.cs:457
-#, fuzzy
 msgid " or "
-msgstr "1 z 1"
+msgstr " nebo "
 
 #: ../src/TagQueryWidget.cs:467
-#, fuzzy
 msgid "or"
-msgstr "Více"
+msgstr "nebo"
 
-#: ../src/TagQueryWidget.cs:1112
+#: ../src/TagQueryWidget.cs:1113
 msgid "Drag tags here to search for them"
 msgstr ""
 
-#: ../src/TagSelectionWidget.cs:625
+#: ../src/TagSelectionWidget.cs:502
 msgid "Error renaming tag"
 msgstr "Chyba při přejmenovávání tagu"
 
