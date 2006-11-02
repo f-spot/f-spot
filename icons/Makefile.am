@@ -28,7 +28,28 @@ noinst_DATA =					\
 	f-spot-simple.css			\
 	f-spot-simple-white.css
 
-pixmapdir = $(datadir)/pixmaps
-pixmap_DATA = f-spot-logo.png
+16x16dir = $(datadir)/icons/hicolor/16x16/apps
+22x22dir = $(datadir)/icons/hicolor/22x22/apps
+24x24dir = $(datadir)/icons/hicolor/24x24/apps
+32x32dir = $(datadir)/icons/hicolor/32x32/apps
+48x48dir = $(datadir)/icons/hicolor/48x48/apps
 
-EXTRA_DIST = $(noinst_DATA) $(pixmap_DATA)
+16x16_DATA = 					\
+	16x16/f-spot.png			\
+	16x16/f-spot.svg
+
+22x22_DATA = 					\
+	22x22/f-spot.png			\
+	22x22/f-spot.svg
+
+24x24_DATA = 					\
+	24x24/f-spot.png
+
+32x32_DATA = 					\
+	32x32/f-spot.png			\
+	32x32/f-spot.svg
+
+48x48_DATA = 				\
+	48x48/f-spot.svg
+
+EXTRA_DIST = $(noinst_DATA) $(16x16_DATA) $(22x22_DATA) $(32x32_DATA) $(48x48_DATA) $(48x48_DATA)

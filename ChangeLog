@@ -1,3 +1,18 @@
+2006-11-02  Stephane Delcroix  <stephane@delcroix.org>
+
+	* icons/16x16/f-spot.png:
+	* icons/16x16/f-spot.svg:
+	* icons/22x22/f-spot.png:
+	* icons/22x22/f-spot.svg:
+	* icons/24x24/f-spot.png:
+	* icons/32x32/f-spot.png:
+	* icons/32x32/f-spot.svg:
+	* icons/48x48/f-spot.svg:
+	* icons/Makefile.am: new Tango icons from jimmac
+
+	* f-spot.desktop.in.in
+	* f-spot-view.desktop.in.in: use the new icon
+
 2006-11-01  Larry Ewing  <lewing@novell.com>
 
 	* src/Widgets/ImageDisplay.cs: work on a new zoom interface.
