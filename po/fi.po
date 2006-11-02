@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-31 07:05+0300\n"
-"PO-Revision-Date: 2006-10-31 07:05+0300\n"
+"POT-Creation-Date: 2006-11-02 16:42+0300\n"
+"PO-Revision-Date: 2006-11-02 16:42+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "Järjestele ja jaa valokuviasi"
 msgid "Photo Manager"
 msgstr "Valokuvien hallinta"
 
-#: ../f-spot-view.desktop.in.in.h:1 ../src/f-spot.glade.h:112
+#: ../f-spot-view.desktop.in.in.h:1 ../src/f-spot.glade.h:113
 msgid "F-Spot Photo Viewer"
 msgstr "F-Spot valokuvien katselin"
 
@@ -165,7 +165,7 @@ msgstr "Esikatselu"
 msgid "Path"
 msgstr "Polku"
 
-#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:115
+#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:116
 msgid "File"
 msgstr "Tiedosto"
 
@@ -474,7 +474,7 @@ msgid "Prev"
 msgstr "Edellinen"
 
 #: ../src/FolderExport.cs:813 ../src/FullScreenView.cs:94
-#: ../src/f-spot.glade.h:140
+#: ../src/f-spot.glade.h:141
 msgid "Next"
 msgstr "Seuraava"
 
@@ -623,60 +623,60 @@ msgid "<b>Import Settings</b>"
 msgstr "<b>Tuo asetukset</b>"
 
 #: ../src/f-spot.glade.h:30
-msgid "<b>Mail attachment summary</b>"
-msgstr "<b>Sähköpostiliitteen yhteenveto</b>"
-
-#: ../src/f-spot.glade.h:31
 msgid "<b>Metadata</b>"
 msgstr "<b>Metatiedot</b>"
 
-#: ../src/f-spot.glade.h:32
-msgid "<b>Photo size</b>"
-msgstr "<b>Valokuvan koko</b>"
-
-#: ../src/f-spot.glade.h:33
+#: ../src/f-spot.glade.h:31
 msgid "<b>Photograph Layout</b>"
 msgstr "<b>Valokuvan asettelu</b>"
 
-#: ../src/f-spot.glade.h:34
+#: ../src/f-spot.glade.h:32
 msgid "<b>Photos to Burn</b>"
 msgstr "<b>Poltettavat kuvat</b>"
 
-#: ../src/f-spot.glade.h:35
+#: ../src/f-spot.glade.h:33
 msgid "<b>Photos</b>"
 msgstr "<b>Valokuvat</b>"
 
-#: ../src/f-spot.glade.h:36
+#: ../src/f-spot.glade.h:34
 msgid "<b>PicasaWeb Export</b>"
 msgstr "<b>PicasWeb-vienti</b>"
 
-#: ../src/f-spot.glade.h:37
+#: ../src/f-spot.glade.h:35
 msgid "<b>Predefined</b>"
 msgstr "<b>Esimääritelty</b>"
 
-#: ../src/f-spot.glade.h:38
+#: ../src/f-spot.glade.h:36
 msgid "<b>Preview</b>"
 msgstr "<b>Esikatselu</b>"
 
-#: ../src/f-spot.glade.h:39
+#: ../src/f-spot.glade.h:37
 msgid "<b>Printer Details</b>"
 msgstr "<b>Tulostimen yksityiskohdat</b>"
 
-#: ../src/f-spot.glade.h:40
+#: ../src/f-spot.glade.h:38
 msgid "<b>Reference Photo</b>"
 msgstr "<b>Referenssikuva</b>"
 
-#: ../src/f-spot.glade.h:41
+#: ../src/f-spot.glade.h:39
 msgid "<b>Screensaver</b>"
 msgstr "<b>Näytönsäästäjä</b>"
 
-#: ../src/f-spot.glade.h:42
+#: ../src/f-spot.glade.h:40
+msgid "<b>Size</b>"
+msgstr "<b>Koko</b>"
+
+#: ../src/f-spot.glade.h:41
 msgid "<b>Start Date</b>"
 msgstr "<b>Aloituspäivä</b>"
 
-#: ../src/f-spot.glade.h:43
+#: ../src/f-spot.glade.h:42
 msgid "<b>Style</b>"
 msgstr "<b>Tyyli</b>"
+
+#: ../src/f-spot.glade.h:43
+msgid "<b>Summary</b>"
+msgstr "<b>Yhteenveto</b>"
 
 #: ../src/f-spot.glade.h:44
 msgid "<b>Viewing permissions</b>"
@@ -832,128 +832,132 @@ msgid "Create CD"
 msgstr "Luo CD"
 
 #: ../src/f-spot.glade.h:83
+msgid "Create Mail"
+msgstr "Luo sähköposti"
+
+#: ../src/f-spot.glade.h:84
 msgid "Create New _Tag..."
 msgstr "Luo uusi _merkintä..."
 
-#: ../src/f-spot.glade.h:84
+#: ../src/f-spot.glade.h:85
 msgid "Create _New Version..."
 msgstr "Luo _uusi versio..."
 
-#: ../src/f-spot.glade.h:85
+#: ../src/f-spot.glade.h:86
 msgid "Create _gallery using \"Original\""
 msgstr "Luo _galleria käyttäen \"alkuperäistä\""
 
-#: ../src/f-spot.glade.h:86
+#: ../src/f-spot.glade.h:87
 msgid "Create a mail with the selected photos (possible resized) attached"
 msgstr ""
 "Luo sähköpostiviesti, johon valitut kuvat on liitetty (koko voi olla "
 "muutettu)"
 
-#: ../src/f-spot.glade.h:87
+#: ../src/f-spot.glade.h:88
 msgid "Create mail..."
 msgstr "Luo sähköposti..."
 
-#: ../src/f-spot.glade.h:88
+#: ../src/f-spot.glade.h:89
 msgid "Create standalone _web gallery"
 msgstr "Käytä erillinen _web-galleria"
 
-#: ../src/f-spot.glade.h:89
+#: ../src/f-spot.glade.h:90
 msgid "Crop photo to _fit"
 msgstr "Rajaa kuva _mahtumaan"
 
-#: ../src/f-spot.glade.h:90
+#: ../src/f-spot.glade.h:91
 msgid "Current date:"
 msgstr "Tämänhetkinen päiväys."
 
-#: ../src/f-spot.glade.h:91
+#: ../src/f-spot.glade.h:92
 msgid "D_escription:"
 msgstr "_Kuvaus:"
 
-#: ../src/f-spot.glade.h:92
+#: ../src/f-spot.glade.h:93
 msgid "Display Side_bar"
 msgstr "Näytä _sivupalkki"
 
-#: ../src/f-spot.glade.h:93
+#: ../src/f-spot.glade.h:94
 msgid "Display T_ags"
 msgstr "Näytä _merkinnät"
 
-#: ../src/f-spot.glade.h:94
+#: ../src/f-spot.glade.h:95
 msgid "Display Too_lbar"
 msgstr "Näytä _työkalupalkki"
 
-#: ../src/f-spot.glade.h:95
+#: ../src/f-spot.glade.h:96
 msgid "Display _Dates"
 msgstr "Näytä _päiväykset"
 
-#: ../src/f-spot.glade.h:96
+#: ../src/f-spot.glade.h:97
 msgid "Display _Timeline"
 msgstr "Näytä _aikajana"
 
-#: ../src/f-spot.glade.h:97
+#: ../src/f-spot.glade.h:98
 msgid "Do not send a mail"
 msgstr "Älä lähetä sähköpostia"
 
-#: ../src/f-spot.glade.h:98
+#: ../src/f-spot.glade.h:99
 msgid "E-_Mail:"
 msgstr "_Sähköposti:"
 
-#: ../src/f-spot.glade.h:99
+#: ../src/f-spot.glade.h:100
 msgid "E_xport titles and comments"
 msgstr "Vi_e otsikot ja kommentit"
 
-#: ../src/f-spot.glade.h:100
+#: ../src/f-spot.glade.h:101
 msgid "E_xport to CD..."
 msgstr "Vi_e CD-levylle..."
 
-#: ../src/f-spot.glade.h:101
+#: ../src/f-spot.glade.h:102
 msgid "Edit Tag Icon"
 msgstr "Muokkaa merkinnän kuvaketta"
 
-#: ../src/f-spot.glade.h:102
+#: ../src/f-spot.glade.h:103
 msgid "Edit icon"
 msgstr "Muokkaa kuvaketta"
 
-#: ../src/f-spot.glade.h:103
+#: ../src/f-spot.glade.h:104
 msgid "Estimated new size"
 msgstr "Arvioitu uusi koko"
 
-#: ../src/f-spot.glade.h:104
+#: ../src/f-spot.glade.h:105
 msgid "Export"
 msgstr "Vie"
 
-#: ../src/f-spot.glade.h:105
+#: ../src/f-spot.glade.h:106
 msgid "Export _titles and comments"
 msgstr "Vie _otsikot ja kommentit"
 
-#: ../src/f-spot.glade.h:106
+#: ../src/f-spot.glade.h:107
 msgid "Export to _Flickr..."
 msgstr "Vie _Flickriin..."
 
-#: ../src/f-spot.glade.h:107
+#: ../src/f-spot.glade.h:108
 msgid "Export to _Folder..."
 msgstr "Vie _kansioon..."
 
-#: ../src/f-spot.glade.h:108
+#: ../src/f-spot.glade.h:109
 msgid "Export to _Picasaweb..."
 msgstr "Vie _Picasawebiin..."
 
-#: ../src/f-spot.glade.h:109
+#: ../src/f-spot.glade.h:110
 msgid "Export to _Web Gallery..."
 msgstr "Vie _WWW-galleriaan..."
 
-#: ../src/f-spot.glade.h:110
+#: ../src/f-spot.glade.h:111
 msgid "Extra large"
 msgstr "Hyvin suuri"
 
-#: ../src/f-spot.glade.h:111
+#: ../src/f-spot.glade.h:112
 msgid "F-Spot"
 msgstr "F-Spot"
 
-#: ../src/f-spot.glade.h:113
+#: ../src/f-spot.glade.h:114
 msgid "F-Spot View"
 msgstr "F-Spot näkymä"
 
-#: ../src/f-spot.glade.h:114
+#: ../src/f-spot.glade.h:115
 msgid ""
 "F-Spot needs your authorization in order to upload photos to your Flickr "
 "account. Press the \"Authorize\" button to open a web browser and give F-"
@@ -963,19 +967,19 @@ msgstr ""
 "Napsauta \"Valtuuta\"-painiketta avataksesi selaimen ja anna F-Spotille "
 "valtuudet."
 
-#: ../src/f-spot.glade.h:116
+#: ../src/f-spot.glade.h:117
 msgid "Fin_d"
 msgstr "_Etsi"
 
-#: ../src/f-spot.glade.h:117
+#: ../src/f-spot.glade.h:118
 msgid "Folder"
 msgstr "Kansio"
 
-#: ../src/f-spot.glade.h:118
+#: ../src/f-spot.glade.h:119
 msgid "Folder Export"
 msgstr "Kansion vienti"
 
-#: ../src/f-spot.glade.h:119
+#: ../src/f-spot.glade.h:120
 msgid ""
 "From Screen\n"
 "Standard RGB"
@@ -983,7 +987,7 @@ msgstr ""
 "Näytöstä\n"
 "Normaali RGB"
 
-#: ../src/f-spot.glade.h:121
+#: ../src/f-spot.glade.h:122
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
@@ -991,19 +995,19 @@ msgstr ""
 "Koko sivu\n"
 "Normaali - 4x6"
 
-#: ../src/f-spot.glade.h:123
+#: ../src/f-spot.glade.h:124
 msgid "G_allery Name:"
 msgstr "G_allerian nimi:"
 
-#: ../src/f-spot.glade.h:124
+#: ../src/f-spot.glade.h:125
 msgid "G_allery:"
 msgstr "G_alleria:"
 
-#: ../src/f-spot.glade.h:125
+#: ../src/f-spot.glade.h:126
 msgid "Gallery"
 msgstr "Galleria"
 
-#: ../src/f-spot.glade.h:126
+#: ../src/f-spot.glade.h:127
 msgid ""
 "Hairline\n"
 "0.25\"\n"
@@ -1015,43 +1019,43 @@ msgstr ""
 "0.5\"\n"
 "1\"\n"
 
-#: ../src/f-spot.glade.h:131
+#: ../src/f-spot.glade.h:132
 msgid "Import"
 msgstr "Tuo"
 
-#: ../src/f-spot.glade.h:132
+#: ../src/f-spot.glade.h:133
 msgid "Import Source:"
 msgstr "Tuonnin lähde:"
 
-#: ../src/f-spot.glade.h:133
+#: ../src/f-spot.glade.h:134
 msgid "Import photos"
 msgstr "Tuo valokuvia"
 
-#: ../src/f-spot.glade.h:134
+#: ../src/f-spot.glade.h:135
 msgid "Include subfolders"
 msgstr "Tuo myös alikansiot"
 
-#: ../src/f-spot.glade.h:135
+#: ../src/f-spot.glade.h:136
 msgid "Large"
 msgstr "Suuri"
 
-#: ../src/f-spot.glade.h:136
+#: ../src/f-spot.glade.h:137
 msgid "Make F-Spot your screensaver"
 msgstr "Käytä F-Spotin näytönsäästäjänä"
 
-#: ../src/f-spot.glade.h:137
+#: ../src/f-spot.glade.h:138
 msgid "Medium"
 msgstr "Keskikoko"
 
-#: ../src/f-spot.glade.h:138 ../src/InfoDisplay.cs:12
+#: ../src/f-spot.glade.h:139 ../src/InfoDisplay.cs:12
 msgid "Metadata Browser"
 msgstr "Metatiedon selain"
 
-#: ../src/f-spot.glade.h:139
+#: ../src/f-spot.glade.h:140
 msgid "N_umber of Copies:"
 msgstr "Kopioiden _lukumäärä:"
 
-#: ../src/f-spot.glade.h:141
+#: ../src/f-spot.glade.h:142
 msgid ""
 "None\n"
 "Title\n"
@@ -1065,61 +1069,61 @@ msgstr ""
 "Päiväys\n"
 "Valokuvan yksityiskohdat"
 
-#: ../src/f-spot.glade.h:146
+#: ../src/f-spot.glade.h:147
 msgid "Number of pictures"
 msgstr "Kuvien lukumäärä"
 
-#: ../src/f-spot.glade.h:147
+#: ../src/f-spot.glade.h:148
 msgid "Open _Folder..."
 msgstr "Avaa _kansio..."
 
-#: ../src/f-spot.glade.h:148
+#: ../src/f-spot.glade.h:149
 msgid "Open _album in browser when done uploading"
 msgstr "Avaa _albumi selaimessa, kun kuvien vienti on valmistunut"
 
-#: ../src/f-spot.glade.h:149
+#: ../src/f-spot.glade.h:150
 msgid "Open _destination when done exporting"
 msgstr "Avaa _kohde, kun vienti on valmis"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/f-spot.glade.h:150 ../src/PhotoStore.cs:570
+#: ../src/f-spot.glade.h:151 ../src/PhotoStore.cs:570
 msgid "Original"
 msgstr "Alkuperäinen"
 
-#: ../src/f-spot.glade.h:151
+#: ../src/f-spot.glade.h:152
 msgid "Original size (possible very large file size)"
 msgstr "Alkuperäinen koko (mahdollisesti hyvin suuri tiedosto)"
 
-#: ../src/f-spot.glade.h:152
+#: ../src/f-spot.glade.h:153
 msgid "P_arent Tag:"
 msgstr "Y_lemmän tason merkintä:"
 
-#: ../src/f-spot.glade.h:153
+#: ../src/f-spot.glade.h:154
 msgid "P_hoto Source:"
 msgstr "_Valokuvan lähde:"
 
-#: ../src/f-spot.glade.h:154
+#: ../src/f-spot.glade.h:155
 msgid "Page 1 of 3"
 msgstr "Sivu 1/3"
 
-#: ../src/f-spot.glade.h:155
+#: ../src/f-spot.glade.h:156
 msgid "Pause"
 msgstr "Pysäytä"
 
-#: ../src/f-spot.glade.h:156
+#: ../src/f-spot.glade.h:157
 msgid "Photo 0 of 0"
 msgstr "Valokuva 0/0"
 
-#: ../src/f-spot.glade.h:157
+#: ../src/f-spot.glade.h:158
 msgid "Photo _Size:"
 msgstr "Valokuvan _koko:"
 
-#: ../src/f-spot.glade.h:158
+#: ../src/f-spot.glade.h:159
 msgid "Please verify that the settings for this gallery are correct."
 msgstr "Tarkista että tämän gallerian asetukset ovat oikein."
 
-#: ../src/f-spot.glade.h:159
+#: ../src/f-spot.glade.h:160
 msgid ""
 "Please verify that the settings for this gallery are correct.\n"
 "Enter the letters as they are shown in the image in\n"
@@ -1129,13 +1133,9 @@ msgstr ""
 "Syötä \"Captcha\"-kentässä näytettävät kirjaimet\n"
 "<i>Kirjainkoolla ei ole merkitystä</i>"
 
-#: ../src/f-spot.glade.h:162
+#: ../src/f-spot.glade.h:163
 msgid "Preferences"
 msgstr "Asetukset"
-
-#: ../src/f-spot.glade.h:163
-msgid "Prepare for mail"
-msgstr "Valmistele sähköpostia varten"
 
 #: ../src/f-spot.glade.h:164
 msgid "Previous"
@@ -1170,46 +1170,50 @@ msgid "Rem_ove Tag"
 msgstr "Poista _merkintä"
 
 #: ../src/f-spot.glade.h:172
+msgid "Repair"
+msgstr "Korjaa"
+
+#: ../src/f-spot.glade.h:173
 msgid "Reset"
 msgstr "Nollaa"
 
-#: ../src/f-spot.glade.h:173 ../src/StockIcons.cs:38
+#: ../src/f-spot.glade.h:174 ../src/StockIcons.cs:38
 msgid "Rotate _Left"
 msgstr "Kierrä _vasemmalle"
 
-#: ../src/f-spot.glade.h:174 ../src/StockIcons.cs:39
+#: ../src/f-spot.glade.h:175 ../src/StockIcons.cs:39
 msgid "Rotate _Right"
 msgstr "Kierrä _oikealle"
 
-#: ../src/f-spot.glade.h:175
+#: ../src/f-spot.glade.h:176
 msgid "Select A Folder"
 msgstr "Valitse kansio"
 
-#: ../src/f-spot.glade.h:176
+#: ../src/f-spot.glade.h:177
 msgid "Select Photos to Copy From Camera..."
 msgstr "Valitse kamerasta kopioitavat valokuvat..."
 
-#: ../src/f-spot.glade.h:177
+#: ../src/f-spot.glade.h:178
 msgid "Select _All"
 msgstr "Valitse k_aikki"
 
-#: ../src/f-spot.glade.h:178
+#: ../src/f-spot.glade.h:179
 msgid "Select _None"
 msgstr "Älä valitse _mitään"
 
-#: ../src/f-spot.glade.h:179
+#: ../src/f-spot.glade.h:180
 msgid "Select a Tag..."
 msgstr "Valitse merkintä..."
 
-#: ../src/f-spot.glade.h:180
+#: ../src/f-spot.glade.h:181
 msgid "Select the camera from which you want to transfer files"
 msgstr "Valitse kamera, josta haluat tuoda kuvia"
 
-#: ../src/f-spot.glade.h:181
+#: ../src/f-spot.glade.h:182
 msgid "Selected Camera: "
 msgstr "Valittu kamera: "
 
-#: ../src/f-spot.glade.h:182
+#: ../src/f-spot.glade.h:183
 msgid ""
 "Selection\n"
 "Gallery\n"
@@ -1219,60 +1223,60 @@ msgstr ""
 "Galleria\n"
 "Näkymä"
 
-#: ../src/f-spot.glade.h:185
+#: ../src/f-spot.glade.h:186
 msgid "Send _Mail..."
 msgstr "Lähetä _sähköpostia..."
 
-#: ../src/f-spot.glade.h:186
+#: ../src/f-spot.glade.h:187
 msgid "Set Date Range"
 msgstr "Rajaa _päiväykset"
 
-#: ../src/f-spot.glade.h:187
+#: ../src/f-spot.glade.h:188
 msgid "Set _Date Range..."
 msgstr "Aseta _päivämääräväli"
 
-#: ../src/f-spot.glade.h:188
+#: ../src/f-spot.glade.h:189
 msgid "Set as _Background"
 msgstr "Aseta _taustakuvaksi"
 
-#: ../src/f-spot.glade.h:189 ../src/TimeDialog.cs:124
+#: ../src/f-spot.glade.h:190 ../src/TimeDialog.cs:124
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Siirrä kaikkia kuvia {0} verran"
 
-#: ../src/f-spot.glade.h:190
+#: ../src/f-spot.glade.h:191
 msgid "Show or hide the side pane"
 msgstr "Näytä tai piilota sivupaneeli"
 
-#: ../src/f-spot.glade.h:191
+#: ../src/f-spot.glade.h:192
 msgid "Show or hide the toolbar"
 msgstr "Näytä tai piilota työkalupalkki"
 
-#: ../src/f-spot.glade.h:192
+#: ../src/f-spot.glade.h:193
 msgid "Side _pane"
 msgstr "Sivu_paneeli"
 
-#: ../src/f-spot.glade.h:193
+#: ../src/f-spot.glade.h:194
 msgid "Size"
 msgstr "Koko"
 
-#: ../src/f-spot.glade.h:194
+#: ../src/f-spot.glade.h:195
 msgid "Size of the exported selection :"
 msgstr "Viedyn valinnan koko: "
 
-#: ../src/f-spot.glade.h:195
+#: ../src/f-spot.glade.h:196
 msgid "Small"
 msgstr "Pieni"
 
-#: ../src/f-spot.glade.h:196
+#: ../src/f-spot.glade.h:197
 msgid "So_urce Temp"
 msgstr "_Lähteen väliaikaiskansio"
 
-#: ../src/f-spot.glade.h:197
+#: ../src/f-spot.glade.h:198
 msgid "Space all photos by"
 msgstr "Aseta kaikkien kuvien väliksi"
 
-#: ../src/f-spot.glade.h:198
+#: ../src/f-spot.glade.h:199
 msgid ""
 "Specify if an original size picture should be rotated or not. Smaller sizes "
 "are automatically rotated."
@@ -1280,7 +1284,7 @@ msgstr ""
 "Käännetäänkö alkuperäisen koon kuva vai ei. Pienemmät koot käännetään "
 "automaattisesti."
 
-#: ../src/f-spot.glade.h:199
+#: ../src/f-spot.glade.h:200
 msgid ""
 "Standard RGB\n"
 "Image Profile\n"
@@ -1290,350 +1294,350 @@ msgstr ""
 "Kuvan profiili\n"
 "Oma määrittely\n"
 
-#: ../src/f-spot.glade.h:203
+#: ../src/f-spot.glade.h:204
 msgid "Strip _metadata"
 msgstr "Poista _metadata"
 
-#: ../src/f-spot.glade.h:204
+#: ../src/f-spot.glade.h:205
 msgid "Strip image _metadata"
 msgstr "Poista _metadata valokuvasta"
 
-#: ../src/f-spot.glade.h:205
+#: ../src/f-spot.glade.h:206
 msgid "Tags: "
 msgstr "Merkinnät: "
 
-#: ../src/f-spot.glade.h:206
+#: ../src/f-spot.glade.h:207
 msgid "Tiny"
 msgstr "Hyvin pieni"
 
-#: ../src/f-spot.glade.h:207
+#: ../src/f-spot.glade.h:208
 msgid "Toolbar"
 msgstr "Työkalupalkki"
 
-#: ../src/f-spot.glade.h:208
+#: ../src/f-spot.glade.h:209
 msgid "Total original size"
 msgstr "Alkuperäinen koko kaikkiaan"
 
-#: ../src/f-spot.glade.h:209
+#: ../src/f-spot.glade.h:210
 msgid "U_RL:"
 msgstr "U_RL:"
 
-#: ../src/f-spot.glade.h:210
+#: ../src/f-spot.glade.h:211
 msgid "View"
 msgstr "Näytä"
 
-#: ../src/f-spot.glade.h:211
+#: ../src/f-spot.glade.h:212
 msgid "Visible to Family"
 msgstr "Näkyvissä perheelle"
 
-#: ../src/f-spot.glade.h:212
+#: ../src/f-spot.glade.h:213
 msgid "Visible to Friends"
 msgstr "Näkyvissä ystäville"
 
-#: ../src/f-spot.glade.h:213
+#: ../src/f-spot.glade.h:214
 msgid "Will print using: US Letter size on Generic Postscript"
 msgstr "Tulostetaan käyttäen: US-letter tai yleinen Postscript"
 
-#: ../src/f-spot.glade.h:214
+#: ../src/f-spot.glade.h:215
 msgid "Write _metadata to file"
 msgstr "Kirjoita _metatiedot tiedostoon"
 
-#: ../src/f-spot.glade.h:215
+#: ../src/f-spot.glade.h:216
 msgid "Zoom _in"
 msgstr "Lä_hennä"
 
-#: ../src/f-spot.glade.h:216
+#: ../src/f-spot.glade.h:217
 msgid "Zoom _out"
 msgstr "L_oitonna"
 
-#: ../src/f-spot.glade.h:217
+#: ../src/f-spot.glade.h:218
 msgid "Zoom in"
 msgstr "Lähennä"
 
-#: ../src/f-spot.glade.h:218
+#: ../src/f-spot.glade.h:219
 msgid "Zoom out"
 msgstr "Loitonna"
 
-#: ../src/f-spot.glade.h:219
+#: ../src/f-spot.glade.h:220
 msgid "_Album Name:"
 msgstr "_Albumin nimi:"
 
-#: ../src/f-spot.glade.h:220
+#: ../src/f-spot.glade.h:221
 msgid "_Album Title:"
 msgstr "_Albumin nimi:"
 
-#: ../src/f-spot.glade.h:221
+#: ../src/f-spot.glade.h:222
 msgid "_Attach Tag"
 msgstr "_Liitä merkintä"
 
-#: ../src/f-spot.glade.h:222
+#: ../src/f-spot.glade.h:223
 msgid "_Attach Tag to Selection"
 msgstr "_Liitä merkintä valintaan"
 
-#: ../src/f-spot.glade.h:223
+#: ../src/f-spot.glade.h:224
 msgid "_Border:"
 msgstr "_Reuna:"
 
-#: ../src/f-spot.glade.h:224
+#: ../src/f-spot.glade.h:225
 msgid "_Brightness:"
 msgstr "_Kirkkaus:"
 
-#: ../src/f-spot.glade.h:225
+#: ../src/f-spot.glade.h:226
 msgid "_Browse Previously Scheduled Files"
 msgstr "S_elaa aiemmin ajastettuja tiedostoja"
 
-#: ../src/f-spot.glade.h:226
+#: ../src/f-spot.glade.h:227
 msgid "_Captcha:"
 msgstr "_Captcha:"
 
-#: ../src/f-spot.glade.h:227
+#: ../src/f-spot.glade.h:228
 msgid "_Contents"
 msgstr "_Sisältö"
 
-#: ../src/f-spot.glade.h:228
+#: ../src/f-spot.glade.h:229
 msgid "_Delete From Drive"
 msgstr "_Poista asemalta"
 
-#: ../src/f-spot.glade.h:229
+#: ../src/f-spot.glade.h:230
 msgid "_Delete Selected Tag"
 msgstr "_Poista valittu merkintä"
 
-#: ../src/f-spot.glade.h:230
+#: ../src/f-spot.glade.h:231
 msgid "_Delete Version"
 msgstr "_Poista versio"
 
-#: ../src/f-spot.glade.h:231
+#: ../src/f-spot.glade.h:232
 msgid "_Description:"
 msgstr "_Kuvaus:"
 
-#: ../src/f-spot.glade.h:232
+#: ../src/f-spot.glade.h:233
 msgid "_Destination Temp"
 msgstr "Kohteen _väliaikaiskansio"
 
-#: ../src/f-spot.glade.h:233
+#: ../src/f-spot.glade.h:234
 msgid "_Display:"
 msgstr "_Näytä:"
 
-#: ../src/f-spot.glade.h:234
+#: ../src/f-spot.glade.h:235
 msgid "_Edit Selected Tag..."
 msgstr "_Muokkaa valittua merkintää..."
 
-#: ../src/f-spot.glade.h:235
+#: ../src/f-spot.glade.h:236
 msgid "_Export"
 msgstr "_Vie"
 
-#: ../src/f-spot.glade.h:236
+#: ../src/f-spot.glade.h:237
 msgid "_Export tags"
 msgstr "Vi_e merkinnät"
 
-#: ../src/f-spot.glade.h:237
+#: ../src/f-spot.glade.h:238
 msgid "_Export to Album:"
 msgstr "Vi_e albumiiin:"
 
-#: ../src/f-spot.glade.h:238
+#: ../src/f-spot.glade.h:239
 msgid "_Flickr"
 msgstr "_Flickr"
 
-#: ../src/f-spot.glade.h:239
+#: ../src/f-spot.glade.h:240
 msgid "_Folder"
 msgstr "_Kansio"
 
-#: ../src/f-spot.glade.h:240
+#: ../src/f-spot.glade.h:241
 msgid "_Folder:"
 msgstr "_Kansio:"
 
-#: ../src/f-spot.glade.h:241
+#: ../src/f-spot.glade.h:242
 msgid "_Fullscreen"
 msgstr "_Kokoruutu"
 
-#: ../src/f-spot.glade.h:242
+#: ../src/f-spot.glade.h:243
 msgid "_Gallery"
 msgstr "_Galleria"
 
-#: ../src/f-spot.glade.h:243
+#: ../src/f-spot.glade.h:244
 msgid "_Gallery Name:"
 msgstr "_Gallerian nimi:"
 
-#: ../src/f-spot.glade.h:244
+#: ../src/f-spot.glade.h:245
 msgid "_Gallery:"
 msgstr "_Galleria:"
 
-#: ../src/f-spot.glade.h:245
+#: ../src/f-spot.glade.h:246
 msgid "_Hue:"
 msgstr "_Värisävy:"
 
-#: ../src/f-spot.glade.h:246
+#: ../src/f-spot.glade.h:247
 msgid "_Icon:"
 msgstr "_Kuvake:"
 
-#: ../src/f-spot.glade.h:247
+#: ../src/f-spot.glade.h:248
 msgid "_Import files after copy"
 msgstr "_Tuo tiedostot kopioinnin jälkeen"
 
-#: ../src/f-spot.glade.h:248
+#: ../src/f-spot.glade.h:249
 msgid "_Import..."
 msgstr "_Tuo..."
 
-#: ../src/f-spot.glade.h:249
+#: ../src/f-spot.glade.h:250
 msgid "_Metadata Browser"
 msgstr "_Metatiedon selain"
 
-#: ../src/f-spot.glade.h:250
+#: ../src/f-spot.glade.h:251
 msgid "_Month"
 msgstr "_Kuukausi"
 
-#: ../src/f-spot.glade.h:251
+#: ../src/f-spot.glade.h:252
 msgid "_New Window"
 msgstr "_Uusi ikkuna"
 
-#: ../src/f-spot.glade.h:252
+#: ../src/f-spot.glade.h:253
 msgid "_Open album in browser when done uploading"
 msgstr "_Avaa albumi selaimessa, kun kuvien vienti on valmis"
 
-#: ../src/f-spot.glade.h:253
+#: ../src/f-spot.glade.h:254
 msgid "_Open destination when done exporting"
 msgstr "_Avaa kohde, kun vienti on valmis"
 
-#: ../src/f-spot.glade.h:254
+#: ../src/f-spot.glade.h:255
 msgid "_Output:"
 msgstr "_Tulos:"
 
-#: ../src/f-spot.glade.h:255
+#: ../src/f-spot.glade.h:256
 msgid "_Parent Album:"
 msgstr "_Ylemmän tason album:"
 
-#: ../src/f-spot.glade.h:256
+#: ../src/f-spot.glade.h:257
 msgid "_Password:"
 msgstr "_Salasana:"
 
-#: ../src/f-spot.glade.h:257
+#: ../src/f-spot.glade.h:258
 msgid "_Prefix: "
 msgstr "_Etuliite: "
 
-#: ../src/f-spot.glade.h:258
+#: ../src/f-spot.glade.h:259
 msgid "_Print..."
 msgstr "_Tulosta..."
 
-#: ../src/f-spot.glade.h:259
+#: ../src/f-spot.glade.h:260
 msgid "_Quit"
 msgstr "_Lopeta"
 
-#: ../src/f-spot.glade.h:260
+#: ../src/f-spot.glade.h:261
 msgid "_Remove From Catalog"
 msgstr "Poista sisällysluettelosta"
 
-#: ../src/f-spot.glade.h:261
+#: ../src/f-spot.glade.h:262
 msgid "_Remove Tag From Selection"
 msgstr "_Poista merkintä valinnasta"
 
-#: ../src/f-spot.glade.h:262
+#: ../src/f-spot.glade.h:263
 msgid "_Rename Version"
 msgstr "Nimeä versio uudelleen"
 
-#: ../src/f-spot.glade.h:263
+#: ../src/f-spot.glade.h:264
 msgid "_Resize to: "
 msgstr "_Muuta kokoon: "
 
-#: ../src/f-spot.glade.h:264 ../src/GroupSelector.cs:521
+#: ../src/f-spot.glade.h:265 ../src/GroupSelector.cs:521
 msgid "_Reverse Order"
 msgstr "_Käänteinen järjestys"
 
-#: ../src/f-spot.glade.h:265
+#: ../src/f-spot.glade.h:266
 msgid "_Saturation:"
 msgstr "_Värikylläisyys:"
 
-#: ../src/f-spot.glade.h:266
+#: ../src/f-spot.glade.h:267
 msgid "_Save the files only"
 msgstr "_Tallenna vain tiedostot"
 
-#: ../src/f-spot.glade.h:267
+#: ../src/f-spot.glade.h:268
 msgid "_Scale photos to no larger than: "
 msgstr "_Rajaa kuvien koko pienemmäksi kuin: "
 
-#: ../src/f-spot.glade.h:268
+#: ../src/f-spot.glade.h:269
 msgid "_Select Tags..."
 msgstr "Valit_se merkinnät..."
 
-#: ../src/f-spot.glade.h:269
+#: ../src/f-spot.glade.h:270
 msgid "_Sharpen..."
 msgstr "_Terävöitä..."
 
-#: ../src/f-spot.glade.h:270
+#: ../src/f-spot.glade.h:271
 msgid "_Slideshow"
 msgstr "_Diaesitys"
 
-#: ../src/f-spot.glade.h:271
+#: ../src/f-spot.glade.h:272
 msgid "_Strip metadata"
 msgstr "P_oista metadata"
 
-#: ../src/f-spot.glade.h:272
+#: ../src/f-spot.glade.h:273
 msgid "_Tag Name:"
 msgstr "_Merkinnän nimi:"
 
-#: ../src/f-spot.glade.h:273
+#: ../src/f-spot.glade.h:274
 msgid "_Tags"
 msgstr "_Merkinnät"
 
-#: ../src/f-spot.glade.h:274
+#: ../src/f-spot.glade.h:275
 msgid "_Title:"
 msgstr "_Otsikko"
 
-#: ../src/f-spot.glade.h:275
+#: ../src/f-spot.glade.h:276
 msgid "_URI:"
 msgstr "_URI:"
 
-#: ../src/f-spot.glade.h:276
+#: ../src/f-spot.glade.h:277
 msgid "_Untagged Photos"
 msgstr "Merkitsemättömät kuvat"
 
-#: ../src/f-spot.glade.h:277
+#: ../src/f-spot.glade.h:278
 msgid "_Username:"
 msgstr "_Käyttäjätunnus:"
 
-#: ../src/f-spot.glade.h:278
+#: ../src/f-spot.glade.h:279
 msgid "_Version"
 msgstr "_Versio"
 
-#: ../src/f-spot.glade.h:279
+#: ../src/f-spot.glade.h:280
 msgid "_View"
 msgstr "_Näytä"
 
-#: ../src/f-spot.glade.h:280
+#: ../src/f-spot.glade.h:281
 msgid "_View photos in browser when done uploading"
 msgstr "_Näytä valokuvat selaimessa, kun vienti on valmis"
 
-#: ../src/f-spot.glade.h:281
+#: ../src/f-spot.glade.h:282
 msgid "_Virtual Filesystem"
 msgstr "_Virtuaalinen tiedostojärjestelmä"
 
-#: ../src/f-spot.glade.h:282
+#: ../src/f-spot.glade.h:283
 msgid "_Write only these photos to CD"
 msgstr "_Kirjoita vain nämä valokuvat CD:lle"
 
-#: ../src/f-spot.glade.h:283
+#: ../src/f-spot.glade.h:284
 msgid "dialog1"
 msgstr "dialogi1"
 
-#: ../src/f-spot.glade.h:284
+#: ../src/f-spot.glade.h:285
 msgid "difference:"
 msgstr "ero:"
 
-#: ../src/f-spot.glade.h:285
+#: ../src/f-spot.glade.h:286
 msgid "img_000.jpg"
 msgstr "kuva_000.jpg"
 
 #. The preceding text here is the second checkbutton in the Time dialog
 #. that says "Space all photos by []"
-#: ../src/f-spot.glade.h:286 ../src/TimeDialog.cs:119
+#: ../src/f-spot.glade.h:287 ../src/TimeDialog.cs:119
 #, csharp-format
 msgid "min. Starting at {0}"
 msgstr "min. alkaen {0}"
 
-#: ../src/f-spot.glade.h:287
+#: ../src/f-spot.glade.h:288
 msgid "pixels"
 msgstr "pikseliä"
 
-#: ../src/f-spot.glade.h:288
+#: ../src/f-spot.glade.h:289
 msgid "x"
 msgstr "x"
 
@@ -2136,39 +2140,39 @@ msgstr ""
 "Merkintöjä ei voi poistaa, jos ne sisältävät muita merkintöjä. Poista "
 "kohteen \"{0}\" sisällä olevat merkinnät ensin"
 
-#: ../src/MainWindow.cs:2713
+#: ../src/MainWindow.cs:2715
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Kierrä valittua kuvaa vasemmalle"
 msgstr[1] "Kierrä valittuja kuvia vasemmalle"
 
-#: ../src/MainWindow.cs:2726
+#: ../src/MainWindow.cs:2728
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Kierrä valittua kuvaa oikealle"
 msgstr[1] "Kierrä valittuja kuvia oikealle"
 
-#: ../src/MainWindow.cs:2734
+#: ../src/MainWindow.cs:2736
 #, csharp-format
 msgid "Find Selected Tag"
 msgid_plural "Find Selected Tags"
 msgstr[0] "Etsi valittu merkintä"
 msgstr[1] "Etsi valitut merkinnät"
 
-#: ../src/MainWindow.cs:2738
+#: ../src/MainWindow.cs:2740
 #, csharp-format
 msgid "Find Selected Tag With"
 msgid_plural "Find Selected Tags With"
 msgstr[0] "Etsi valittu merkintä käyttäen"
 msgstr[1] "Etsi valitut merkinnät käyttäen"
 
-#: ../src/MainWindow.cs:2755
+#: ../src/MainWindow.cs:2757
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Luo uusi versio?"
 msgstr[1] "Luo uudet versiot?"
 
-#: ../src/MainWindow.cs:2757
+#: ../src/MainWindow.cs:2759
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -2492,23 +2496,23 @@ msgstr "Viedään kuvaa \"{0}\" ({1}/{2})"
 msgid "Available space :"
 msgstr "Vapaa tila: "
 
-#: ../src/RotateCommand.cs:193
+#: ../src/RotateCommand.cs:197
 msgid "Rotating photos"
 msgstr "Valokuvien kiertäminen"
 
-#: ../src/RotateCommand.cs:204
+#: ../src/RotateCommand.cs:208
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "Kierretään valokuvaa \"{0}\""
 
-#: ../src/RotateCommand.cs:229
+#: ../src/RotateCommand.cs:233
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
 msgstr[0] "Valokuvaa ei voi kiertää"
 msgstr[1] "Valokuvia ({0} kpl) ei voi kiertää"
 
-#: ../src/RotateCommand.cs:233
+#: ../src/RotateCommand.cs:237
 #, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
@@ -2525,12 +2529,12 @@ msgstr[1] ""
 "tiedostojärjestelmällä tai esimerkiksi CD-ROM:illa. Tarkista tiedostojen "
 "kirjoitusoikeudet ja yritä uudestaan"
 
-#: ../src/RotateCommand.cs:255
+#: ../src/RotateCommand.cs:259
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "Saatiin virhe \"{0}\" yritettäessä kääntää kuvaa {1}"
 
-#: ../src/RotateCommand.cs:260
+#: ../src/RotateCommand.cs:264
 msgid "Error while rotating photo."
 msgstr "Virhe kierrettäessä kuvaa."
 
@@ -2696,7 +2700,7 @@ msgstr " tai "
 msgid "or"
 msgstr "tai"
 
-#: ../src/TagQueryWidget.cs:1112
+#: ../src/TagQueryWidget.cs:1113
 msgid "Drag tags here to search for them"
 msgstr "Raahaa tähän merkintöjä etsiäksesi niitä kuvista"
 
@@ -2789,6 +2793,15 @@ msgstr "Näytä diaesitys F-Spotista"
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr "F-Spot-valokuvat"
+
+#~ msgid "<b>Mail attachment summary</b>"
+#~ msgstr "<b>Sähköpostiliitteen yhteenveto</b>"
+
+#~ msgid "<b>Photo size</b>"
+#~ msgstr "<b>Valokuvan koko</b>"
+
+#~ msgid "Prepare for mail"
+#~ msgstr "Valmistele sähköpostia varten"
 
 #~ msgid "_Close"
 #~ msgstr "_Sulje"
