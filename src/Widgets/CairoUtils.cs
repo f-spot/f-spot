@@ -79,5 +79,16 @@ namespace FSpot.Widgets {
 			IntPtr surface = f_pixbuf_to_cairo_surface (pixbuf.Handle);
 			return Surface.LookupExternalSurface (surface);
 		}
+
+		public static Surface CreateSurface (Gdk.Drawable d)
+		{
+			int width, height;
+			d.GetSize (out width, out height);
+			XlibSurface surface = new XlibSurface (GdkUtils.GetXDisplay (d.Display), 
+							       (IntPtr)GdkUtils.GetXid (d),
+							       GdkUtils.GetXVisual (d.Visual),
+							       width, height);
+			return surface;
+		}
 	}
 }

@@ -1,5 +1,13 @@
 2006-11-01  Larry Ewing  <lewing@novell.com>
 
+	* src/Widgets/ImageDisplay.cs: work on a new zoom interface.
+
+	* src/Widgets/CairoUtils.cs: add a helper method to create a
+	surface from a drawable.
+
+	* src/Widgets/ImageDisplay.cs: use xlib surfaces as buffers for
+	the crossfade case.
+
 	* src/GalleryRemote.cs: Fix for b.g.o #367588.
 
 	* src/TagQueryWidget.cs: make the event boxes non-visible.

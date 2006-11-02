@@ -42,7 +42,7 @@ namespace FSpot.Widgets {
 			if (item.Collection.Count > item.Index + 1) {
 				next = new ImageInfo (item.Collection [item.Index + 1].DefaultVersionUri);
 			}
-			delay = new Delay (30, new GLib.IdleHandler (DrawFrame));
+			delay = new Delay (40, new GLib.IdleHandler (DrawFrame));
 		}
 
 		protected override void OnDestroyed ()
@@ -241,7 +241,7 @@ namespace FSpot.Widgets {
 			}
 		}
 		
-		private class PanZoom : ITransition {
+		private class PanZoomOld : ITransition {
 			ImageInfo info;
 			ImageInfo buffer;
 			TimeSpan duration = new TimeSpan (0, 0, 7);
@@ -254,7 +254,7 @@ namespace FSpot.Widgets {
 			int frames = 0;
 			double zoom;
 
-			public PanZoom (ImageInfo info)
+			public PanZoomOld (ImageInfo info)
 			{
 				this.info = info;
 			}
@@ -319,6 +319,79 @@ namespace FSpot.Widgets {
 			public void Dispose ()
 			{
 				//info.Dispose ();
+			}
+		}
+
+		private class PanZoom : ITransition {
+			ImageInfo info;
+			ImageInfo buffer;
+			TimeSpan duration = new TimeSpan (0, 0, 7);
+			int pan_x;
+			int pan_y;
+			DateTime start;
+			int frames = 0;
+			double zoom;
+
+			public PanZoom (ImageInfo info)
+			{
+				this.info = info;
+			}
+
+			public int Frames {
+				get { return frames; }
+			}
+			
+			public bool OnEvent (Widget w)
+			{
+				Gdk.Rectangle viewport = w.Allocation;
+				if (buffer == null) {
+					zoom = Math.Max (viewport.Width / (double) info.Bounds.Width,
+							 viewport.Height / (double) info.Bounds.Height);
+					
+					zoom *= 1.2;		     
+					buffer = new ImageInfo (info, w, new Gdk.Rectangle (0, 0, (int) (info.Bounds.Width * zoom), (int) (info.Bounds.Height * zoom)));
+					start = DateTime.Now;
+					//w.QueueDraw ();
+				}
+
+				double percent = Math.Min ((DateTime.Now - start).Ticks / (double) duration.Ticks, 1.0);
+
+				int n_x = (int) Math.Floor ((buffer.Bounds.Width - viewport.Width) * percent);
+				int n_y = (int) Math.Floor ((buffer.Bounds.Height - viewport.Height) * percent);
+				
+				if (n_x != pan_x || n_y != pan_y) {
+					//w.GdkWindow.Scroll (- (n_x - pan_x), - (n_y - pan_y));
+					w.QueueDraw ();
+					//w.GdkWindow.ProcessUpdates (false);
+					Console.WriteLine ("{0} {1} elapsed", DateTime.Now, DateTime.Now - start);
+				}
+				pan_x = n_x;
+				pan_y = n_y;
+
+				return percent < 1.0;
+			}
+
+			public bool OnExpose (Graphics ctx, Gdk.Rectangle viewport)
+			{
+				double percent = Math.Min ((DateTime.Now - start).Ticks / (double) duration.Ticks, 1.0);
+				frames ++;
+
+				//ctx.Matrix = m;
+				
+				SurfacePattern p = new SurfacePattern (buffer.Surface);
+				Matrix m = new Matrix ();
+				m.Translate (pan_x, pan_y);
+				p.Matrix = m;
+				ctx.Source = p;
+				ctx.Paint ();
+				p.Destroy ();
+
+				return percent < 1.0;
+			}
+
+			public void Dispose ()
+			{
+				buffer.Dispose ();
 			}
 		}
 
@@ -496,10 +569,14 @@ namespace FSpot.Widgets {
 				SetPixbuf (pixbuf);
 			}
 
-			public ImageInfo (ImageInfo info, Widget w)
+			public ImageInfo (ImageInfo info, Widget w) : this (info, w, w.Allocation)
+			{
+			}
+
+			public ImageInfo (ImageInfo info, Widget w, Gdk.Rectangle bounds)
 			{
 				Cairo.Surface similar = CairoUtils.CreateSurface (w.GdkWindow);
-				Bounds = w.Allocation;
+				Bounds = bounds;
 				Surface = similar.CreateSimilar (Content.ColorAlpha, Bounds.Width, Bounds.Height);
 				Graphics ctx = new Graphics (Surface);
 				
