@@ -42,7 +42,7 @@ namespace FSpot.Widgets {
 			if (item.Collection.Count > item.Index + 1) {
 				next = new ImageInfo (item.Collection [item.Index + 1].DefaultVersionUri);
 			}
-			delay = new Delay (new GLib.IdleHandler (DrawFrame));
+			delay = new Delay (30, new GLib.IdleHandler (DrawFrame));
 		}
 
 		protected override void OnDestroyed ()
@@ -97,23 +97,21 @@ namespace FSpot.Widgets {
 		public bool Pan ()
 		{
 			Console.WriteLine ("space");
-			Transition = new PanZoom (next);
+			Transition = new PanZoom (current);
 			return true;
 		}
 
 		public bool DrawFrame ()
 		{
-			QueueDraw ();
-		        //using (new Timer ("frame time")) {
-			if (IsRealized)
-				GdkWindow.ProcessUpdates (false);
-			//}
+			if (Transition != null)
+				Transition.OnEvent (this);
+
 			return true;
 		}
 		
 		private static void SetClip (Graphics ctx, Region region)
 		{
-			foreach (Rectangle area in region.GetRectangles ()) {
+			foreach (Gdk.Rectangle area in region.GetRectangles ()) {
 				ctx.MoveTo (area.Left, area.Top);
 				ctx.LineTo (area.Right, area.Top);
 				ctx.LineTo (area.Right, area.Bottom);
@@ -129,14 +127,14 @@ namespace FSpot.Widgets {
 			if (Transition != null) {
 				SetClip (ctx, region);
 				
-				if (! Transition.OnExpose (ctx, Allocation, region.Clipbox)) {
+				if (! Transition.OnExpose (ctx, Allocation)) {
 					Console.WriteLine ("Frames = {0}", transition.Frames);
 					Transition = null;
 				}
 			} else if (effect != null) {
 				SetClip (ctx, region);
 				
-				effect.OnExpose (ctx, Allocation, region.Clipbox);
+				effect.OnExpose (ctx, Allocation);
 			} else {
 				ctx.Operator = Operator.Source;
 				SurfacePattern p = new SurfacePattern (current.Surface);
@@ -144,7 +142,7 @@ namespace FSpot.Widgets {
 				SetClip (ctx, region);
 				ctx.Matrix = current.Fill (Allocation);
 
-				ctx.Pattern = p;
+				ctx.Source = p;
 				ctx.Paint ();
 				p.Destroy ();
 			}
@@ -166,7 +164,7 @@ namespace FSpot.Widgets {
 
 				SurfacePattern sur = new SurfacePattern (cim);
 				sur.Filter = Filter.Fast;
-				ctx.Pattern = sur;
+				ctx.Source = sur;
 				SetClip (ctx, args.Region);
 
 				ctx.Paint ();
@@ -190,12 +188,13 @@ namespace FSpot.Widgets {
 		}
 
 		private interface ITransition : IDisposable {
-			bool OnExpose (Graphics ctx, Rectangle allocation, Rectangle area);
+			bool OnExpose (Graphics ctx, Gdk.Rectangle allocation);
+			bool OnEvent (Widget w);
 			int Frames { get; }
 		}
 
 		private interface IEffect : IDisposable {
-			bool OnExpose (Graphics ctx, Rectangle allocation, Rectangle area);
+			bool OnExpose (Graphics ctx, Gdk.Rectangle allocation);
 		}
 
 		private class Tilt : IEffect {
@@ -214,10 +213,10 @@ namespace FSpot.Widgets {
 				get { return angle; }
 				set { angle = Math.Max (Math.Min (value, Math.PI * .25), Math.PI * -0.25); }
 			}
-
-			public bool OnExpose (Graphics ctx, Rectangle allocation, Rectangle area)
+			
+			public bool OnExpose (Graphics ctx, Gdk.Rectangle allocation)
 			{
-				Rectangle bounds = allocation;
+				Gdk.Rectangle bounds = allocation;
 
 				ctx.Operator = Operator.Source;
 
@@ -229,7 +228,7 @@ namespace FSpot.Widgets {
 				Matrix m = info.Fill (allocation, angle);
 				
 				ctx.Matrix = m;
-				ctx.Pattern = p;
+				ctx.Source = p;
 				ctx.Paint ();
 				p.Destroy ();
 				
@@ -241,99 +240,85 @@ namespace FSpot.Widgets {
 				
 			}
 		}
-
+		
 		private class PanZoom : ITransition {
 			ImageInfo info;
-			TimeSpan duration = new TimeSpan (0, 0, 8);
+			ImageInfo buffer;
+			TimeSpan duration = new TimeSpan (0, 0, 7);
 			bool started = false;
 			double pan_x;
 			double pan_y;
+			double x_offset;
+			double y_offset;
 			DateTime start;
 			int frames = 0;
+			double zoom;
 
 			public PanZoom (ImageInfo info)
 			{
 				this.info = info;
-				
-
 			}
 
 			public int Frames {
 				get { return frames; }
 			}
 			
-			public double ScaleTo (Rectangle viewport)
-			{
-				double scale = Math.Min (viewport.Width / (double) info.Bounds.Width,
-							 viewport.Height / (double) info.Bounds.Height);
-				
-				scale *= 1.2;
-				return scale;
-			}
-
-			public bool OnExpose (Graphics ctx, Rectangle viewport, Rectangle area)
+			public bool OnEvent (Widget w)
 			{
 				if (frames == 0) {
 					start = DateTime.Now;
-					info = new ImageInfo (info, viewport);
+					Gdk.Rectangle viewport = w.Allocation;
+
+					zoom = Math.Max (viewport.Width / (double) info.Bounds.Width,
+							 viewport.Height / (double) info.Bounds.Height);
+					
+					zoom *= 1.2;		     
+					
+					x_offset = (viewport.Width - info.Bounds.Width * zoom);
+					y_offset = (viewport.Height - info.Bounds.Height * zoom);
+
+					pan_x = 0;
+					pan_y = 0;
+					w.QueueDraw ();
+				}
+				frames ++;
+
+				double percent = Math.Min ((DateTime.Now - start).Ticks / (double) duration.Ticks, 1.0);
+
+				double x = x_offset * percent;
+				double y = y_offset * percent;
+				
+				if (w.IsRealized){
+					w.GdkWindow.Scroll ((int)(x - pan_x), (int)(y - pan_y));
+					pan_x = x;
+					pan_y = y;
+					//w.GdkWindow.ProcessUpdates (false);
 				}
 
-				frames ++;
+				return percent < 1.0;
+			}
+
+			public bool OnExpose (Graphics ctx, Gdk.Rectangle viewport)
+			{
+				double percent = Math.Min ((DateTime.Now - start).Ticks / (double) duration.Ticks, 1.0);
 
 				//Matrix m = info.Fill (allocation);
 				Matrix m = new Matrix ();
-				m.InitIdentity ();
-				
-				double scale = Math.Min (viewport.Width / (double) info.Bounds.Width,
-							 viewport.Height / (double) info.Bounds.Height);
-				
-				scale *= 1.2;
-
-				double percent = Math.Min ((DateTime.Now - start).Ticks / (double) duration.Ticks, 1.0;
-
-				double x_offset = (viewport.Width  - info.Bounds.Width * scale);
-				double y_offset = (viewport.Height  - info.Bounds.Height * scale);
-
-				x_offset *= percent;
-				y_offset *= percent;
-
-				m.Translate (x_offset, y_offset);
-				m.Scale (scale, scale);
-
-				double x = 0;
-				double y = 0;
-
-				m.TransformPoint (ref x, ref y);
-				System.Console.WriteLine ("point = ({0}, {1})", x, y);
-				x = info.Bounds.Left;
-				y = info.Bounds.Bottom;
-				m.TransformPoint (ref x, ref y);
-				System.Console.WriteLine ("point = ({0}, {1})", x, y);
-				x = info.Bounds.Right;
-				y = info.Bounds.Bottom;
-				m.TransformPoint (ref x, ref y);
-				System.Console.WriteLine ("point = ({0}, {1})", x, y);
-				x = info.Bounds.Right;
-				y = info.Bounds.Top;
-				m.TransformPoint (ref x, ref y);
-				System.Console.WriteLine ("point = ({0}, {1})", x, y);
-
-				ctx.Operator = Operator.Source;
-				SurfacePattern p = new SurfacePattern (info.Surface);
-				//p.Filter = Filter.Fast;
-				//ImageDisplay.SetClip (ctx, area);
+				m.Translate (pan_x, pan_y);
+				m.Scale (zoom, zoom);
 				ctx.Matrix = m;
 				
-				ctx.Pattern = p;
+				SurfacePattern p = new SurfacePattern (info.Surface);
+				ctx.Source = p;
 				ctx.Paint ();
 				p.Destroy ();
 
-				return percent <= 1.0;
+				return percent < 1.0;
 			}
 
 			public void Dispose ()
 			{
-				info.Dispose ();
+				//info.Dispose ();
 			}
 		}
 
@@ -355,7 +340,15 @@ namespace FSpot.Widgets {
 				get { return frames; }
 			}
 
-			public bool OnExpose (Graphics ctx, Rectangle allocation, Rectangle area)
+			public bool OnEvent (Widget w)
+			{
+				TimeSpan elapsed = DateTime.Now - start;
+				double fraction = elapsed.Ticks / (double) duration.Ticks; 
+				
+				return fraction <= 1.0;
+			}
+
+			public bool OnExpose (Graphics ctx, Gdk.Rectangle allocation)
 			{
 				TimeSpan elapsed = DateTime.Now - start;
 				double fraction = elapsed.Ticks / (double) duration.Ticks; 
@@ -368,7 +361,7 @@ namespace FSpot.Widgets {
 				SurfacePattern p = new SurfacePattern (begin.Surface);
 				//p.Filter = Filter.Fast;
 				ctx.Matrix = begin.Fill (allocation);
-				ctx.Pattern = p;
+				ctx.Source = p;
 				ctx.Paint ();
 
 				ctx.Operator = Operator.Over;
@@ -376,7 +369,7 @@ namespace FSpot.Widgets {
 				SurfacePattern sur = new SurfacePattern (end.Surface);
 				//sur.Filter = Filter.Fast;
 				Pattern black = new SolidPattern (new Cairo.Color (0.0, 0.0, 0.0, fraction));
-				ctx.Pattern = sur;
+				ctx.Source = sur;
 				ctx.Mask (black);
 
 				return fraction < 1.0;
@@ -390,7 +383,7 @@ namespace FSpot.Widgets {
 
 		private class CrossFade : ITransition {
 			DateTime start;
-			TimeSpan duration = new TimeSpan (0, 0, 2);
+			TimeSpan duration = new TimeSpan (0, 0, 1);
 			ImageInfo begin;
 			ImageInfo end;
 			ImageInfo begin_buffer;
@@ -399,7 +392,6 @@ namespace FSpot.Widgets {
 
 			public CrossFade (ImageInfo begin, ImageInfo end)
 			{
-				start = DateTime.Now;
 				this.begin = begin;
 				this.end = end;
 			}
@@ -408,15 +400,29 @@ namespace FSpot.Widgets {
 				get { return frames; }
 			}
 
-			public bool OnExpose (Graphics ctx, Rectangle allocation, Rectangle area)
+			public bool OnEvent (Widget w)
 			{
 				if (begin_buffer == null) {
-					start = DateTime.Now;
-					begin_buffer = new ImageInfo (begin, allocation);
+					begin_buffer = new ImageInfo (begin, w); //.Allocation);
 				}
 
-				if (end_buffer == null)
-					end_buffer = new ImageInfo (end, allocation);
+				if (end_buffer == null) {
+					end_buffer = new ImageInfo (end, w); //.Allocation);
+				}
+
+				w.QueueDraw ();
+				w.GdkWindow.ProcessUpdates (false);
+
+				TimeSpan elapsed = DateTime.Now - start;
+				double fraction = elapsed.Ticks / (double) duration.Ticks; 
+
+				return fraction < 1.0;
+			}
+
+			public bool OnExpose (Graphics ctx, Gdk.Rectangle allocation)
+			{
+				if (frames == 0)
+					start = DateTime.Now;
 
 				frames ++;
 				TimeSpan elapsed = DateTime.Now - start;
@@ -428,21 +434,33 @@ namespace FSpot.Widgets {
 				SurfacePattern p = new SurfacePattern (begin_buffer.Surface);
 				ctx.Matrix = begin_buffer.Fill (allocation);
 				p.Filter = Filter.Fast;
-				ctx.Pattern = p;
+				ctx.Source = p;
 				ctx.Paint ();
-				p.Destroy ();
 				
 				ctx.Operator = Operator.Over;
 				ctx.Matrix = end_buffer.Fill (allocation);
 				SurfacePattern sur = new SurfacePattern (end_buffer.Surface);
 				Pattern black = new SolidPattern (new Cairo.Color (0.0, 0.0, 0.0, opacity));
-				//ctx.Pattern = black;
+				//ctx.Source = black;
 				//ctx.Fill ();
 				sur.Filter = Filter.Fast;
-				ctx.Pattern = sur;
+				ctx.Source = sur;
 				ctx.Mask (black);
-				sur.Destroy ();
+				//ctx.Paint ();
 
+				ctx.Matrix = new Matrix ();
+				
+				ctx.MoveTo (allocation.Width / 2.0, allocation.Height / 2.0);
+				ctx.Source = new SolidPattern (1.0, 0, 0);	
+#if debug
+				ctx.ShowText (String.Format ("{0} {1} {2} {3} {4} {5} {6} {7}", 
+							     frames,
+							     sur.Status,
+							     p.Status,
+							     opacity, fraction, elapsed, start, DateTime.Now));
+#endif
+				sur.Destroy ();
+				p.Destroy ();
 				return fraction < 1.0;
 			}
 			
@@ -462,7 +480,7 @@ namespace FSpot.Widgets {
 
 		private class ImageInfo : IDisposable {
 			public Surface Surface;
-			public Rectangle Bounds;
+			public Gdk.Rectangle Bounds;
 
 			public ImageInfo (Uri uri)
 			{
@@ -478,16 +496,42 @@ namespace FSpot.Widgets {
 				SetPixbuf (pixbuf);
 			}
 
-			public ImageInfo (ImageInfo info, Rectangle allocation)
+			public ImageInfo (ImageInfo info, Widget w)
 			{
+				Cairo.Surface similar = CairoUtils.CreateSurface (w.GdkWindow);
+				Bounds = w.Allocation;
+				Surface = similar.CreateSimilar (Content.ColorAlpha, Bounds.Width, Bounds.Height);
+				Graphics ctx = new Graphics (Surface);
+				
+				ctx.Matrix = info.Fill (Bounds);
+				Pattern p = new SurfacePattern (info.Surface);
+				ctx.Source = p;
+				ctx.Paint ();
+				((IDisposable)ctx).Dispose ();
+				p.Destroy ();
+			}
+
+			public ImageInfo (ImageInfo info, Gdk.Rectangle allocation)
+			{
+#if false
 				Surface = new ImageSurface (Format.RGB24,
 							    allocation.Width,
 							    allocation.Height);
 				Graphics ctx = new Graphics (Surface);
+#else
+				Console.WriteLine ("source status = {0}", info.Surface.Status);
+				Surface = info.Surface.CreateSimilar (Content.Color,
+								      allocation.Width,
+								      allocation.Height);
+				
+				System.Console.WriteLine ("status = {1} pointer = {0}", Surface.Pointer.ToString (), Surface.Status);
+				Graphics ctx = new Graphics (Surface);
+#endif
 				Bounds = allocation;
+				
 				ctx.Matrix = info.Fill (allocation);
 				Pattern p = new SurfacePattern (info.Surface);
-				ctx.Pattern = p;
+				ctx.Source = p;
 				ctx.Paint ();
 				((IDisposable)ctx).Dispose ();
 				p.Destroy ();
