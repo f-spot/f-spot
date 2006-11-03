@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-02 21:22+0100\n"
-"PO-Revision-Date: 2006-11-02 21:22+0100\n"
+"POT-Creation-Date: 2006-11-03 21:25+0100\n"
+"PO-Revision-Date: 2006-11-03 21:46+0100\n"
 "Last-Translator: Jakub Friedl <jfriedl@suse.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -755,12 +755,10 @@ msgstr "<small>_Odstín:</small>"
 
 #: ../src/f-spot.glade.h:59
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
-msgstr ""
-"<span weight='bold' size='larger'>Chyba při připojování ke galerii</span>\n"
+msgstr "<span weight='bold' size='larger'>Chyba při připojování ke galerii</span>\n"
 
 #: ../src/f-spot.glade.h:61
-msgid ""
-"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
 msgstr "<span weight='bold' size='larger'>Váš účet Google je uzamčen</span>\n"
 
 #: ../src/f-spot.glade.h:63
@@ -1137,6 +1135,9 @@ msgid ""
 "Enter the letters as they are shown in the image in\n"
 "the 'Captcha' field. <i>Letters are not case-sensitive</i>"
 msgstr ""
+"Prosím ověřte správnost nastavení pro tuto galérii.\n"
+"Vložte písmena z obrázku v poli 'Captcha'.\n"
+"<i>Nezáleží na velikosti písmen.</i>"
 
 #: ../src/f-spot.glade.h:163
 msgid "Preferences"
@@ -1738,8 +1739,7 @@ msgstr "Adresář neexistuje."
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
 "different directory"
-msgstr ""
-"Adresář {0}, který jste vybrali, neexistuje. Zvolte prosím jiný adresář"
+msgstr "Adresář {0}, který jste vybrali, neexistuje. Zvolte prosím jiný adresář"
 
 #: ../src/ImportCommand.cs:678
 msgid "Select Tag"
@@ -1816,18 +1816,15 @@ msgid "A unique number"
 msgstr "Jedinečné číslo"
 
 #: ../src/IptcFile.cs:152
-msgid ""
-"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
-msgstr ""
-"Priorita obsluhování obálky mezi 1 (nejurgentnější) a 9 (nejméně urgentní)"
+msgid "The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgstr "Priorita obsluhování obálky mezi 1 (nejurgentnější) a 9 (nejméně urgentní)"
 
 #: ../src/IptcFile.cs:154
 msgid "The year month and day (CCYYMMDD) the service sent the material"
 msgstr "Rok, měsíc a den (SSRRMMDD), kdy služba odeslala materiál"
 
 #: ../src/IptcFile.cs:156
-msgid ""
-"The hour minute and second the (HHMMSS+HHMM) the service sent the material"
+msgid "The hour minute and second the (HHMMSS+HHMM) the service sent the material"
 msgstr "Hodina, minuta a sekunda (HHMMSS+HHMM), kdy služba odeslala materiál"
 
 #: ../src/IptcFile.cs:158
@@ -1883,8 +1880,7 @@ msgid "Full name of the country of the focus of the content"
 msgstr "Plný název země, na kterou se obsah zaměřuje"
 
 #: ../src/IptcFile.cs:201
-msgid ""
-"Two or three letter ISO3166 code of the country of the focus of the content"
+msgid "Two or three letter ISO3166 code of the country of the focus of the content"
 msgstr "Dvou nebo třípísmenný kód ISO3166 země, na kterou se obsah zaměřuje"
 
 #: ../src/IptcFile.cs:204
@@ -1912,8 +1908,7 @@ msgid "Headline of the content"
 msgstr "Nadpis obsahu"
 
 #: ../src/IptcFile.cs:220
-msgid ""
-"Instructions from the creator to the receiver not covered by other fields"
+msgid "Instructions from the creator to the receiver not covered by other fields"
 msgstr "Instrukce od tvůrce příjemci, nepokryté jinými poli"
 
 #: ../src/IptcFile.cs:223
@@ -2074,8 +2069,7 @@ msgstr[2] "Natrvalo odstranit vybraných {0} fotografií?"
 
 #: ../src/MainWindow.cs:2199
 msgid "This deletes all versions of the selected photo from your drive."
-msgid_plural ""
-"This deletes all versions of the selected photos from your drive."
+msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] "To odstraní všechny verze vybrané fotografie z vašeho disku."
 msgstr[1] "To odstraní všechny verze vybraných fotografií z vašeho disku."
 msgstr[2] "To odstraní všechny verze vybraných fotografií z vašeho disku."
@@ -2160,20 +2154,20 @@ msgstr[1] "Rotovat vybrané fotografie doprava"
 msgstr[2] "Rotovat vybrané fotografie doprava"
 
 #: ../src/MainWindow.cs:2736
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Find Selected Tag"
 msgid_plural "Find Selected Tags"
-msgstr[0] "Vybrat tag"
-msgstr[1] "Vybrat tag"
-msgstr[2] "Vybrat tag"
+msgstr[0] "Najít vybraný tag"
+msgstr[1] "Najít vybrané tagy"
+msgstr[2] "Najít vybrané tagy"
 
 #: ../src/MainWindow.cs:2740
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Find Selected Tag With"
 msgid_plural "Find Selected Tags With"
-msgstr[0] "_Upravit vybraný tag..."
-msgstr[1] "_Upravit vybraný tag..."
-msgstr[2] "_Upravit vybraný tag..."
+msgstr[0] "Najít vybraný tag s"
+msgstr[1] "Najít vybrané tagy s"
+msgstr[2] "Najít vybrané tagy s"
 
 #: ../src/MainWindow.cs:2757
 msgid "Create New Version?"
@@ -2504,9 +2498,9 @@ msgid "Convert the photo to sepia tones"
 msgstr "Převést fotografii do sépie"
 
 #: ../src/PicasaWebExport.cs:576
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
-msgstr "Uploaduji obrázek \"{0}\""
+msgstr "Uploaduji obrázek \"{0}\" ({1} z {2})"
 
 #: ../src/PicasaWebExport.cs:682
 msgid "Available space :"
@@ -2648,12 +2642,12 @@ msgid "Edit Icon for Tag {0}"
 msgstr "Upravit ikonu pro tag {0}"
 
 #: ../src/TagPopup.cs:24
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Find"
 msgid_plural "Find"
-msgstr[0] "_Hledat"
-msgstr[1] "_Hledat"
-msgstr[2] "_Hledat"
+msgstr[0] "Najít"
+msgstr[1] "Najít"
+msgstr[2] "Najít"
 
 #: ../src/TagPopup.cs:44
 msgid "Delete Tag"
@@ -2681,25 +2675,24 @@ msgid "Merge Tags"
 msgstr "Sloučit tagy"
 
 #: ../src/TagQueryWidget.cs:31
-#, fuzzy
 msgid "Include"
-msgstr "Index"
+msgstr "Zahrnout"
 
 #: ../src/TagQueryWidget.cs:37
 msgid "Exclude"
-msgstr ""
+msgstr "Vyřadit"
 
 #: ../src/TagQueryWidget.cs:43
 msgid "Remove"
 msgstr "Odstranit"
 
 #: ../src/TagQueryWidget.cs:87
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
-msgstr[0] "Otevřít s"
-msgstr[1] "Otevřít s"
-msgstr[2] "Otevřít s"
+msgstr[0] "Najít _s"
+msgstr[1] "Najít _s"
+msgstr[2] "Najít _s"
 
 #: ../src/TagQueryWidget.cs:113
 msgid "All"
@@ -2708,7 +2701,7 @@ msgstr "Vše"
 #: ../src/TagQueryWidget.cs:148 ../src/TagQueryWidget.cs:657
 #, csharp-format
 msgid "Not {0}"
-msgstr ""
+msgstr "Ne {0}"
 
 #: ../src/TagQueryWidget.cs:408
 msgid " and "
@@ -2729,7 +2722,7 @@ msgstr "nebo"
 
 #: ../src/TagQueryWidget.cs:1113
 msgid "Drag tags here to search for them"
-msgstr ""
+msgstr "Sem přetáhněte tagy, které chcete hledat"
 
 #: ../src/TagSelectionWidget.cs:502
 msgid "Error renaming tag"
@@ -2802,17 +2795,16 @@ msgid "Clear search"
 msgstr "Vymazat hledání"
 
 #: ../src/QueryWidget.cs:64
-#, fuzzy
 msgid "No matching photos found"
-msgstr "Nenalezena žádná odpovídající fotografie "
+msgstr "Nenalezeny žádné odpovídající fotografie"
 
 #: ../src/QueryWidget.cs:94
 msgid "Hide Find Bar"
-msgstr ""
+msgstr "Skrýt lištu hledání"
 
 #: ../src/QueryWidget.cs:100
 msgid "Show Find Bar"
-msgstr ""
+msgstr "Zobrazit lištu hledání"
 
 #: ../tools/f-spot-screensaver.desktop.in.h:1
 msgid "Display a slideshow from F-Spot"
@@ -2821,3 +2813,4 @@ msgstr "Promítat snímky z F-Spotu"
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr "Fotografie F-Spotu"
+
