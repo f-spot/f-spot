@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-14 02:20+0200\n"
-"PO-Revision-Date: 2006-10-14 08:00+0100\n"
+"POT-Creation-Date: 2006-11-04 10:30+0100\n"
+"PO-Revision-Date: 2006-11-04 14:44+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgid "Photo Manager"
 msgstr "Fotohanterare"
 
 #: ../f-spot-view.desktop.in.in.h:1
-#: ../src/f-spot.glade.h:112
+#: ../src/f-spot.glade.h:113
 msgid "F-Spot Photo Viewer"
 msgstr "Fotovisaren F-Spot"
 
@@ -175,13 +175,13 @@ msgid "Path"
 msgstr "Sökväg"
 
 #: ../src/CameraFileSelectionDialog.cs:69
-#: ../src/f-spot.glade.h:115
+#: ../src/f-spot.glade.h:116
 msgid "File"
 msgstr "Fil"
 
 # hoppas att detta är substantivet
 #: ../src/CameraFileSelectionDialog.cs:71
-#: ../src/FolderExport.cs:759
+#: ../src/FolderExport.cs:810
 msgid "Index"
 msgstr "Index"
 
@@ -213,7 +213,7 @@ msgstr "Fel \"{0}\" vid skapande av katalog \"{1}\".  Kontrollera att sökvägen
 
 #: ../src/CameraFileSelectionDialog.cs:188
 #: ../src/CDExport.cs:200
-#: ../src/FolderExport.cs:278
+#: ../src/FolderExport.cs:293
 msgid "Transferring Pictures"
 msgstr "Överför bilder"
 
@@ -259,7 +259,7 @@ msgstr "Överför bild \"{0}\" till cd"
 
 #. This indicates the current photo is photo {0} of {1} out of photos
 #: ../src/CDExport.cs:107
-#: ../src/FlickrExport.cs:245
+#: ../src/FlickrExport.cs:251
 #: ../src/GalleryExport.cs:701
 #: ../src/ProgressDialog.cs:82
 #: ../src/TimeDialog.cs:141
@@ -268,46 +268,46 @@ msgid "{0} of {1}"
 msgstr "{0} av {1}"
 
 #: ../src/CDExport.cs:122
-#: ../src/FlickrExport.cs:251
-#: ../src/FolderExport.cs:185
-#: ../src/GalleryExport.cs:721
+#: ../src/FlickrExport.cs:257
+#: ../src/FolderExport.cs:191
+#: ../src/GalleryExport.cs:723
 #: ../src/PicasaWebExport.cs:601
 msgid "Done Sending Photos"
 msgstr "Klar med att skicka foton"
 
 #: ../src/CDExport.cs:124
-#: ../src/FolderExport.cs:187
+#: ../src/FolderExport.cs:193
 msgid "Transfer Complete"
 msgstr "Överföringen är färdig"
 
 #: ../src/CDExport.cs:131
-#: ../src/FolderExport.cs:192
+#: ../src/FolderExport.cs:198
 msgid "Error While Transferring"
 msgstr "Fel under överföring"
 
 #: ../src/CDExport.cs:137
-#: ../src/FolderExport.cs:200
+#: ../src/FolderExport.cs:214
 msgid "Error Transferring"
 msgstr "Fel vid överföring"
 
 #: ../src/CDExport.cs:158
-#: ../src/FolderExport.cs:221
+#: ../src/FolderExport.cs:236
 msgid "Error: Error while transferring; Aborting"
 msgstr "Fel: Fel vid överföring; Avbryter"
 
 #: ../src/CDExport.cs:161
-#: ../src/FolderExport.cs:224
+#: ../src/FolderExport.cs:239
 msgid "Error: File Already Exists; Aborting"
 msgstr "Fel: Filen finns redan; Avbryter"
 
-#: ../src/ColorDialog.cs:313
+#: ../src/ColorDialog.cs:315
 msgid "Error saving adjusted photo"
 msgstr "Fel vid sparande av justerat foto"
 
-#: ../src/ColorDialog.cs:314
+#: ../src/ColorDialog.cs:316
 #: ../src/Loupe.cs:58
-#: ../src/MainWindow.cs:1889
-#: ../src/PhotoView.cs:269
+#: ../src/MainWindow.cs:1906
+#: ../src/PhotoView.cs:268
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Mottog undantaget \"{0}\". Kunde inte spara fotot {1}"
@@ -420,47 +420,47 @@ msgstr "Välkommen {0}, du är ansluten till Flickr.com"
 msgid "Sign in as a different user"
 msgstr "Logga in som annan användare"
 
-#: ../src/FlickrExport.cs:207
+#: ../src/FlickrExport.cs:211
 msgid "Unable to log on"
 msgstr "Kunde inte logga in"
 
-#: ../src/FlickrExport.cs:225
+#: ../src/FlickrExport.cs:231
 #, csharp-format
 msgid "Waiting for response {0} of {1}"
 msgstr "Väntar på svar {0} av {1}"
 
-#: ../src/FlickrExport.cs:240
+#: ../src/FlickrExport.cs:246
 #: ../src/GalleryExport.cs:697
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Skickar upp bild \"{0}\""
 
-#: ../src/FlickrExport.cs:253
-#: ../src/GalleryExport.cs:723
+#: ../src/FlickrExport.cs:259
+#: ../src/GalleryExport.cs:725
 #: ../src/PicasaWebExport.cs:603
 msgid "Upload Complete"
 msgstr "Sändning färdig"
 
-#: ../src/FlickrExport.cs:257
+#: ../src/FlickrExport.cs:263
 #, csharp-format
 msgid "Error Uploading To Flickr: {0}"
 msgstr "Fel vid sändning till Flickr: {0}"
 
-#: ../src/FlickrExport.cs:259
-#: ../src/GalleryExport.cs:728
-#: ../src/PicasaWebExport.cs:608
+#: ../src/FlickrExport.cs:265
+#: ../src/GalleryExport.cs:730
+#: ../src/PicasaWebExport.cs:612
 msgid "Error"
 msgstr "Fel"
 
-#: ../src/FlickrExport.cs:318
+#: ../src/FlickrExport.cs:324
 msgid "Unable to log on."
 msgstr "Kunde inte logga in."
 
-#: ../src/FlickrExport.cs:319
+#: ../src/FlickrExport.cs:325
 msgid "F-Spot was unable to log on to Flickr.  Make sure you have given the authentication using Flickr web browser interface."
 msgstr "F-Spot kunde inte logga in på Flickr. Kontrollera att du har gjort inloggningen med hjälp av Flickrs webbläsargränssnitt."
 
-#: ../src/FlickrExport.cs:336
+#: ../src/FlickrExport.cs:342
 #: ../src/GalleryExport.cs:652
 #: ../src/PicasaWebExport.cs:524
 msgid "Uploading Pictures"
@@ -470,49 +470,63 @@ msgstr "Skickar upp bilder"
 msgid "Select Export Folder"
 msgstr "Välj exportmapp"
 
-#: ../src/FolderExport.cs:142
+#: ../src/FolderExport.cs:148
 msgid "Building Gallery"
 msgstr "Bygger bildgalleri"
 
-#: ../src/FolderExport.cs:616
+#: ../src/FolderExport.cs:667
 msgid "Light"
 msgstr "Ljus"
 
-#: ../src/FolderExport.cs:617
+#: ../src/FolderExport.cs:668
 msgid "Dark"
 msgstr "Mörk"
 
 #. Abbreviation of previous
-#: ../src/FolderExport.cs:757
+#: ../src/FolderExport.cs:808
 msgid "Prev"
 msgstr "Föregående"
 
-#: ../src/FolderExport.cs:762
-#: ../src/f-spot.glade.h:140
+#: ../src/FolderExport.cs:813
+#: ../src/FullScreenView.cs:94
+#: ../src/f-spot.glade.h:141
 msgid "Next"
 msgstr "Nästa"
 
-#: ../src/FolderExport.cs:815
-#: ../src/FolderExport.cs:988
+#: ../src/FolderExport.cs:866
+#: ../src/FolderExport.cs:1039
 msgid "Show Styles"
 msgstr "Visa stilar"
 
-#: ../src/FolderExport.cs:816
-#: ../src/FolderExport.cs:989
+#: ../src/FolderExport.cs:867
+#: ../src/FolderExport.cs:1040
 msgid "Hide Styles"
 msgstr "Dölj stilar"
 
-#: ../src/FolderExport.cs:873
+#: ../src/FolderExport.cs:924
 msgid "Gallery generated by"
 msgstr "Bildgalleri genererat av"
 
-#: ../src/FolderExport.cs:918
+#: ../src/FolderExport.cs:969
 msgid "Page:"
 msgstr "Sida:"
 
-#: ../src/FullScreenView.cs:72
+#: ../src/FullScreenView.cs:93
+#: ../src/FullScreenView.cs:163
 msgid "Exit fullscreen"
 msgstr "Lämna helskärmsläge"
+
+#: ../src/FullScreenView.cs:94
+msgid "Next Picture"
+msgstr "Nästa bild"
+
+#: ../src/FullScreenView.cs:95
+msgid "Back"
+msgstr "Tillbaka"
+
+#: ../src/FullScreenView.cs:95
+msgid "Previous Picture"
+msgstr "Föregående bild"
 
 #: ../src/f-spot.glade.h:1
 msgid "\n"
@@ -627,61 +641,61 @@ msgid "<b>Import Settings</b>"
 msgstr "<b>Importinställningar</b>"
 
 #: ../src/f-spot.glade.h:30
-msgid "<b>Mail attachment summary</b>"
-msgstr "<b>Sammandrag av e-postbilagor</b>"
-
-#: ../src/f-spot.glade.h:31
 msgid "<b>Metadata</b>"
 msgstr "<b>Metadata</b>"
 
-#: ../src/f-spot.glade.h:32
-msgid "<b>Photo size</b>"
-msgstr "<b>Fotostorlek</b>"
-
-#: ../src/f-spot.glade.h:33
+#: ../src/f-spot.glade.h:31
 msgid "<b>Photograph Layout</b>"
 msgstr "<b>Fotografilayout</b>"
 
-#: ../src/f-spot.glade.h:34
+#: ../src/f-spot.glade.h:32
 msgid "<b>Photos to Burn</b>"
 msgstr "<b>Foton att bränna</b>"
 
-#: ../src/f-spot.glade.h:35
+#: ../src/f-spot.glade.h:33
 msgid "<b>Photos</b>"
 msgstr "<b>Foton</b>"
 
-#: ../src/f-spot.glade.h:36
+#: ../src/f-spot.glade.h:34
 msgid "<b>PicasaWeb Export</b>"
 msgstr "<b>Exportera till PicasaWeb</b>"
 
-#: ../src/f-spot.glade.h:37
+#: ../src/f-spot.glade.h:35
 msgid "<b>Predefined</b>"
 msgstr "<b>Fördefinierad</b>"
 
 # hoppas att detta är ett verb
-#: ../src/f-spot.glade.h:38
+#: ../src/f-spot.glade.h:36
 msgid "<b>Preview</b>"
 msgstr "<b>Förhandsgranska</b>"
 
-#: ../src/f-spot.glade.h:39
+#: ../src/f-spot.glade.h:37
 msgid "<b>Printer Details</b>"
 msgstr "<b>Skrivarinställningar</b>"
 
-#: ../src/f-spot.glade.h:40
+#: ../src/f-spot.glade.h:38
 msgid "<b>Reference Photo</b>"
 msgstr "<b>Referensfoto</b>"
 
-#: ../src/f-spot.glade.h:41
+#: ../src/f-spot.glade.h:39
 msgid "<b>Screensaver</b>"
 msgstr "<b>Skärmsläckare</b>"
 
-#: ../src/f-spot.glade.h:42
+#: ../src/f-spot.glade.h:40
+msgid "<b>Size</b>"
+msgstr "<b>Storlek</b>"
+
+#: ../src/f-spot.glade.h:41
 msgid "<b>Start Date</b>"
 msgstr "<b>Startdatum</b>"
 
-#: ../src/f-spot.glade.h:43
+#: ../src/f-spot.glade.h:42
 msgid "<b>Style</b>"
 msgstr "<b>Stil</b>"
+
+#: ../src/f-spot.glade.h:43
+msgid "<b>Summary</b>"
+msgstr "<b>Sammandrag</b>"
 
 #: ../src/f-spot.glade.h:44
 msgid "<b>Viewing permissions</b>"
@@ -827,143 +841,147 @@ msgid "Create CD"
 msgstr "Skapa cd"
 
 #: ../src/f-spot.glade.h:83
+msgid "Create Mail"
+msgstr "Skapa e-post"
+
+#: ../src/f-spot.glade.h:84
 msgid "Create New _Tag..."
 msgstr "Skapa ny _tagg..."
 
-#: ../src/f-spot.glade.h:84
+#: ../src/f-spot.glade.h:85
 msgid "Create _New Version..."
 msgstr "Skapa _ny version..."
 
 # vet inte vad Original är.
-#: ../src/f-spot.glade.h:85
+#: ../src/f-spot.glade.h:86
 msgid "Create _gallery using \"Original\""
 msgstr "Skapa bildgalleri med \"Original\""
 
-#: ../src/f-spot.glade.h:86
+#: ../src/f-spot.glade.h:87
 msgid "Create a mail with the selected photos (possible resized) attached"
 msgstr "Skapa ett e-postmeddelande med markerade foton bifogade (möjligen storleksändrade)"
 
-#: ../src/f-spot.glade.h:87
+#: ../src/f-spot.glade.h:88
 msgid "Create mail..."
 msgstr "Skapa e-post..."
 
-#: ../src/f-spot.glade.h:88
+#: ../src/f-spot.glade.h:89
 msgid "Create standalone _web gallery"
 msgstr "Skapa fristående _webbgalleri"
 
-#: ../src/f-spot.glade.h:89
+#: ../src/f-spot.glade.h:90
 msgid "Crop photo to _fit"
 msgstr "Beskär fotot för att _passa"
 
-#: ../src/f-spot.glade.h:90
+#: ../src/f-spot.glade.h:91
 msgid "Current date:"
 msgstr "Aktuellt datum:"
 
-#: ../src/f-spot.glade.h:91
+#: ../src/f-spot.glade.h:92
 msgid "D_escription:"
 msgstr "B_eskrivning:"
 
-#: ../src/f-spot.glade.h:92
+#: ../src/f-spot.glade.h:93
 msgid "Display Side_bar"
 msgstr "Visa sido_panel"
 
-#: ../src/f-spot.glade.h:93
+#: ../src/f-spot.glade.h:94
 msgid "Display T_ags"
 msgstr "Visa t_aggar"
 
-#: ../src/f-spot.glade.h:94
+#: ../src/f-spot.glade.h:95
 msgid "Display Too_lbar"
 msgstr "Visa verktygs_rad"
 
-#: ../src/f-spot.glade.h:95
+#: ../src/f-spot.glade.h:96
 msgid "Display _Dates"
 msgstr "Visa _datum"
 
-#: ../src/f-spot.glade.h:96
+#: ../src/f-spot.glade.h:97
 msgid "Display _Timeline"
 msgstr "Visa _tidslinje"
 
-#: ../src/f-spot.glade.h:97
+#: ../src/f-spot.glade.h:98
 msgid "Do not send a mail"
 msgstr "Skicka inte e-post"
 
-#: ../src/f-spot.glade.h:98
+#: ../src/f-spot.glade.h:99
 msgid "E-_Mail:"
 msgstr "E-_post:"
 
-#: ../src/f-spot.glade.h:99
+#: ../src/f-spot.glade.h:100
 msgid "E_xport titles and comments"
 msgstr "E_xportera titlar och kommentarer"
 
-#: ../src/f-spot.glade.h:100
+#: ../src/f-spot.glade.h:101
 msgid "E_xport to CD..."
 msgstr "E_xportera till cd..."
 
-#: ../src/f-spot.glade.h:101
+#: ../src/f-spot.glade.h:102
 msgid "Edit Tag Icon"
 msgstr "Redigera taggikon"
 
-#: ../src/f-spot.glade.h:102
+#: ../src/f-spot.glade.h:103
 msgid "Edit icon"
 msgstr "Redigera ikon"
 
-#: ../src/f-spot.glade.h:103
+#: ../src/f-spot.glade.h:104
 msgid "Estimated new size"
 msgstr "Uppskattad ny storlek"
 
-#: ../src/f-spot.glade.h:104
+#: ../src/f-spot.glade.h:105
 msgid "Export"
 msgstr "Exportera"
 
-#: ../src/f-spot.glade.h:105
+#: ../src/f-spot.glade.h:106
 msgid "Export _titles and comments"
 msgstr "Exportera _titlar och kommentarer"
 
-#: ../src/f-spot.glade.h:106
+#: ../src/f-spot.glade.h:107
 msgid "Export to _Flickr..."
 msgstr "Exportera till _Flickr..."
 
-#: ../src/f-spot.glade.h:107
+#: ../src/f-spot.glade.h:108
 msgid "Export to _Folder..."
 msgstr "Exportera till _mapp..."
 
-#: ../src/f-spot.glade.h:108
+#: ../src/f-spot.glade.h:109
 msgid "Export to _Picasaweb..."
 msgstr "Exportera till _Picasaweb..."
 
-#: ../src/f-spot.glade.h:109
+#: ../src/f-spot.glade.h:110
 msgid "Export to _Web Gallery..."
 msgstr "Exportera till _webbgalleri..."
 
-#: ../src/f-spot.glade.h:110
+#: ../src/f-spot.glade.h:111
 msgid "Extra large"
 msgstr "Extra stor"
 
-#: ../src/f-spot.glade.h:111
+#: ../src/f-spot.glade.h:112
 msgid "F-Spot"
 msgstr "F-Spot"
 
-#: ../src/f-spot.glade.h:113
+#: ../src/f-spot.glade.h:114
 msgid "F-Spot View"
 msgstr "F-Spot Bildvisning"
 
-#: ../src/f-spot.glade.h:114
+#: ../src/f-spot.glade.h:115
 msgid "F-Spot needs your authorization in order to upload photos to your Flickr account. Press the \"Authorize\" button to open a web browser and give F-Spot the authorization. "
 msgstr "F-Spot behöver logga in för att skicka upp foton till ditt Flickr-konto. Tryck på \"Logga in\"-knappen för att öppna ett webbläsarfönster och ge F-Spot godkännandet."
 
-#: ../src/f-spot.glade.h:116
+#: ../src/f-spot.glade.h:117
 msgid "Fin_d"
 msgstr "_Sök"
 
-#: ../src/f-spot.glade.h:117
+#: ../src/f-spot.glade.h:118
 msgid "Folder"
 msgstr "Mapp"
 
-#: ../src/f-spot.glade.h:118
+#: ../src/f-spot.glade.h:119
 msgid "Folder Export"
 msgstr "Exportera till mapp"
 
-#: ../src/f-spot.glade.h:119
+#: ../src/f-spot.glade.h:120
 msgid ""
 "From Screen\n"
 "Standard RGB"
@@ -971,7 +989,7 @@ msgstr ""
 "Från skärm\n"
 "Vanlig RGB"
 
-#: ../src/f-spot.glade.h:121
+#: ../src/f-spot.glade.h:122
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
@@ -979,19 +997,19 @@ msgstr ""
 "Helsida\n"
 "Standard - 4x6"
 
-#: ../src/f-spot.glade.h:123
+#: ../src/f-spot.glade.h:124
 msgid "G_allery Name:"
 msgstr "_Galleriets namn:"
 
-#: ../src/f-spot.glade.h:124
+#: ../src/f-spot.glade.h:125
 msgid "G_allery:"
 msgstr "G_alleri:"
 
-#: ../src/f-spot.glade.h:125
+#: ../src/f-spot.glade.h:126
 msgid "Gallery"
 msgstr "Galleri"
 
-#: ../src/f-spot.glade.h:126
+#: ../src/f-spot.glade.h:127
 msgid ""
 "Hairline\n"
 "0.25\"\n"
@@ -1003,44 +1021,44 @@ msgstr ""
 "0.5\"\n"
 "1\"\n"
 
-#: ../src/f-spot.glade.h:131
+#: ../src/f-spot.glade.h:132
 msgid "Import"
 msgstr "Importera"
 
-#: ../src/f-spot.glade.h:132
+#: ../src/f-spot.glade.h:133
 msgid "Import Source:"
 msgstr "Importera från:"
 
-#: ../src/f-spot.glade.h:133
+#: ../src/f-spot.glade.h:134
 msgid "Import photos"
 msgstr "Importera foton"
 
-#: ../src/f-spot.glade.h:134
+#: ../src/f-spot.glade.h:135
 msgid "Include subfolders"
 msgstr "Inkludera underkataloger"
 
-#: ../src/f-spot.glade.h:135
+#: ../src/f-spot.glade.h:136
 msgid "Large"
 msgstr "Stor"
 
-#: ../src/f-spot.glade.h:136
+#: ../src/f-spot.glade.h:137
 msgid "Make F-Spot your screensaver"
 msgstr "Använd F-Spot som skärmsläckare"
 
-#: ../src/f-spot.glade.h:137
+#: ../src/f-spot.glade.h:138
 msgid "Medium"
 msgstr "Mellan"
 
-#: ../src/f-spot.glade.h:138
+#: ../src/f-spot.glade.h:139
 #: ../src/InfoDisplay.cs:12
 msgid "Metadata Browser"
 msgstr "Metadatabläddrare"
 
-#: ../src/f-spot.glade.h:139
+#: ../src/f-spot.glade.h:140
 msgid "N_umber of Copies:"
 msgstr "A_ntal kopior:"
 
-#: ../src/f-spot.glade.h:141
+#: ../src/f-spot.glade.h:142
 msgid ""
 "None\n"
 "Title\n"
@@ -1054,62 +1072,62 @@ msgstr ""
 "Datum\n"
 "Fotodetaljer"
 
-#: ../src/f-spot.glade.h:146
+#: ../src/f-spot.glade.h:147
 msgid "Number of pictures"
 msgstr "Antal bilder"
 
-#: ../src/f-spot.glade.h:147
+#: ../src/f-spot.glade.h:148
 msgid "Open _Folder..."
 msgstr "Öppna _mapp..."
 
-#: ../src/f-spot.glade.h:148
+#: ../src/f-spot.glade.h:149
 msgid "Open _album in browser when done uploading"
 msgstr "Öppna _album i webbläsaren när sändningen är färdig"
 
-#: ../src/f-spot.glade.h:149
+#: ../src/f-spot.glade.h:150
 msgid "Open _destination when done exporting"
 msgstr "Öppna _målmapp när exporten är färdig"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/f-spot.glade.h:150
+#: ../src/f-spot.glade.h:151
 #: ../src/PhotoStore.cs:570
 msgid "Original"
 msgstr "Original"
 
-#: ../src/f-spot.glade.h:151
+#: ../src/f-spot.glade.h:152
 msgid "Original size (possible very large file size)"
 msgstr "Ursprunglig storlek (möjligen mycket stor filstorlek)"
 
-#: ../src/f-spot.glade.h:152
+#: ../src/f-spot.glade.h:153
 msgid "P_arent Tag:"
 msgstr "_Föräldertagg:"
 
-#: ../src/f-spot.glade.h:153
+#: ../src/f-spot.glade.h:154
 msgid "P_hoto Source:"
 msgstr "_Fotokälla:"
 
-#: ../src/f-spot.glade.h:154
+#: ../src/f-spot.glade.h:155
 msgid "Page 1 of 3"
 msgstr "Sida 1 av 3"
 
-#: ../src/f-spot.glade.h:155
+#: ../src/f-spot.glade.h:156
 msgid "Pause"
 msgstr "Paus"
 
-#: ../src/f-spot.glade.h:156
+#: ../src/f-spot.glade.h:157
 msgid "Photo 0 of 0"
 msgstr "Foto 0 av 0"
 
-#: ../src/f-spot.glade.h:157
+#: ../src/f-spot.glade.h:158
 msgid "Photo _Size:"
 msgstr "Bild_storlek:"
 
-#: ../src/f-spot.glade.h:158
+#: ../src/f-spot.glade.h:159
 msgid "Please verify that the settings for this gallery are correct."
 msgstr "Vänligen kontrollera att inställningarna för detta bildgalleri är korrekta."
 
-#: ../src/f-spot.glade.h:159
+#: ../src/f-spot.glade.h:160
 msgid ""
 "Please verify that the settings for this gallery are correct.\n"
 "Enter the letters as they are shown in the image in\n"
@@ -1119,13 +1137,9 @@ msgstr ""
 "Ange bokstäverna som de visas i bilden i fältet \"Robotfälla\".\n"
 "<i>Bokstäverna är inte skiftlägeskänsliga</i>"
 
-#: ../src/f-spot.glade.h:162
+#: ../src/f-spot.glade.h:163
 msgid "Preferences"
 msgstr "Inställningar"
-
-#: ../src/f-spot.glade.h:163
-msgid "Prepare for mail"
-msgstr "Förbered för e-post"
 
 #: ../src/f-spot.glade.h:164
 msgid "Previous"
@@ -1160,48 +1174,52 @@ msgid "Rem_ove Tag"
 msgstr "Ta b_ort tagg"
 
 #: ../src/f-spot.glade.h:172
+msgid "Repair"
+msgstr "Reparera"
+
+#: ../src/f-spot.glade.h:173
 msgid "Reset"
 msgstr "Återställ"
 
-#: ../src/f-spot.glade.h:173
+#: ../src/f-spot.glade.h:174
 #: ../src/StockIcons.cs:38
 msgid "Rotate _Left"
 msgstr "Rotera åt _vänster"
 
-#: ../src/f-spot.glade.h:174
+#: ../src/f-spot.glade.h:175
 #: ../src/StockIcons.cs:39
 msgid "Rotate _Right"
 msgstr "Rotera åt _höger"
 
-#: ../src/f-spot.glade.h:175
+#: ../src/f-spot.glade.h:176
 msgid "Select A Folder"
 msgstr "Välj en mapp"
 
-#: ../src/f-spot.glade.h:176
+#: ../src/f-spot.glade.h:177
 msgid "Select Photos to Copy From Camera..."
 msgstr "Välj foton att kopiera från kameran"
 
-#: ../src/f-spot.glade.h:177
+#: ../src/f-spot.glade.h:178
 msgid "Select _All"
 msgstr "Markera _alla"
 
-#: ../src/f-spot.glade.h:178
+#: ../src/f-spot.glade.h:179
 msgid "Select _None"
 msgstr "A_vmarkera alla"
 
-#: ../src/f-spot.glade.h:179
+#: ../src/f-spot.glade.h:180
 msgid "Select a Tag..."
 msgstr "Markera en tagg..."
 
-#: ../src/f-spot.glade.h:180
+#: ../src/f-spot.glade.h:181
 msgid "Select the camera from which you want to transfer files"
 msgstr "Välj kameran som du vill överföra bilder från"
 
-#: ../src/f-spot.glade.h:181
+#: ../src/f-spot.glade.h:182
 msgid "Selected Camera: "
 msgstr "Vald kamera: "
 
-#: ../src/f-spot.glade.h:182
+#: ../src/f-spot.glade.h:183
 msgid ""
 "Selection\n"
 "Gallery\n"
@@ -1211,31 +1229,27 @@ msgstr ""
 "Galleri\n"
 "Viewport"
 
-#: ../src/f-spot.glade.h:185
+#: ../src/f-spot.glade.h:186
 msgid "Send _Mail..."
 msgstr "_E-posta..."
 
-#: ../src/f-spot.glade.h:186
+#: ../src/f-spot.glade.h:187
 msgid "Set Date Range"
 msgstr "Sätt datumintervall"
 
-#: ../src/f-spot.glade.h:187
+#: ../src/f-spot.glade.h:188
 msgid "Set _Date Range..."
 msgstr "Sätt _datumintervall..."
 
-#: ../src/f-spot.glade.h:188
+#: ../src/f-spot.glade.h:189
 msgid "Set as _Background"
 msgstr "Sätt som _bakgrund"
 
-#: ../src/f-spot.glade.h:189
+#: ../src/f-spot.glade.h:190
 #: ../src/TimeDialog.cs:124
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Förskjut alla foton med {0}"
-
-#: ../src/f-spot.glade.h:190
-msgid "Show _Find Bar"
-msgstr "Visa _sökrad"
 
 #: ../src/f-spot.glade.h:191
 msgid "Show or hide the side pane"
@@ -1380,260 +1394,256 @@ msgid "_Captcha:"
 msgstr "_Robotfälla:"
 
 #: ../src/f-spot.glade.h:228
-msgid "_Clear Tag Search"
-msgstr "_Töm taggsökning"
-
-#: ../src/f-spot.glade.h:229
-msgid "_Close"
-msgstr "_Stäng"
-
-#: ../src/f-spot.glade.h:230
 msgid "_Contents"
 msgstr "_Innehåll"
 
-#: ../src/f-spot.glade.h:231
+#: ../src/f-spot.glade.h:229
 msgid "_Delete From Drive"
 msgstr "_Ta bort från disk"
 
-#: ../src/f-spot.glade.h:232
+#: ../src/f-spot.glade.h:230
 msgid "_Delete Selected Tag"
 msgstr "_Ta bort markerad tagg"
 
-#: ../src/f-spot.glade.h:233
+#: ../src/f-spot.glade.h:231
 msgid "_Delete Version"
 msgstr "_Ta bort version"
 
-#: ../src/f-spot.glade.h:234
+#: ../src/f-spot.glade.h:232
 msgid "_Description:"
 msgstr "_Beskrivning:"
 
-#: ../src/f-spot.glade.h:235
+#: ../src/f-spot.glade.h:233
 msgid "_Destination Temp"
 msgstr "_Måltemperatur"
 
-#: ../src/f-spot.glade.h:236
+#: ../src/f-spot.glade.h:234
 msgid "_Display:"
 msgstr "_Visa:"
 
-#: ../src/f-spot.glade.h:237
+#: ../src/f-spot.glade.h:235
 msgid "_Edit Selected Tag..."
 msgstr "_Redigera markerad tagg..."
 
-#: ../src/f-spot.glade.h:238
+#: ../src/f-spot.glade.h:236
 msgid "_Export"
 msgstr "_Exportera"
 
-#: ../src/f-spot.glade.h:239
+#: ../src/f-spot.glade.h:237
 msgid "_Export tags"
 msgstr "_Exportera taggar"
 
-#: ../src/f-spot.glade.h:240
+#: ../src/f-spot.glade.h:238
 msgid "_Export to Album:"
 msgstr "_Exportera till album:"
 
-#: ../src/f-spot.glade.h:241
+#: ../src/f-spot.glade.h:239
 msgid "_Flickr"
 msgstr "_Flickr"
 
-#: ../src/f-spot.glade.h:242
+#: ../src/f-spot.glade.h:240
 msgid "_Folder"
 msgstr "_Mapp"
 
-#: ../src/f-spot.glade.h:243
+#: ../src/f-spot.glade.h:241
 msgid "_Folder:"
 msgstr "_Mapp:"
 
-#: ../src/f-spot.glade.h:244
+#: ../src/f-spot.glade.h:242
 msgid "_Fullscreen"
 msgstr "_Helskärm"
 
-#: ../src/f-spot.glade.h:245
+#: ../src/f-spot.glade.h:243
 msgid "_Gallery"
 msgstr "Bild_galleri"
 
-#: ../src/f-spot.glade.h:246
+#: ../src/f-spot.glade.h:244
 msgid "_Gallery Name:"
 msgstr "_Gallerinamn:"
 
-#: ../src/f-spot.glade.h:247
+#: ../src/f-spot.glade.h:245
 msgid "_Gallery:"
 msgstr "_Bildgalleri:"
 
-#: ../src/f-spot.glade.h:248
+#: ../src/f-spot.glade.h:246
 msgid "_Hue:"
 msgstr "_Nyans:"
 
-#: ../src/f-spot.glade.h:249
+#: ../src/f-spot.glade.h:247
 msgid "_Icon:"
 msgstr "_Ikon:"
 
-#: ../src/f-spot.glade.h:250
+#: ../src/f-spot.glade.h:248
 msgid "_Import files after copy"
 msgstr "_Importera filer efter kopiering"
 
-#: ../src/f-spot.glade.h:251
+#: ../src/f-spot.glade.h:249
 msgid "_Import..."
 msgstr "_Importera..."
 
-#: ../src/f-spot.glade.h:252
+#: ../src/f-spot.glade.h:250
 msgid "_Metadata Browser"
 msgstr "_Metadatabläddrare"
 
-#: ../src/f-spot.glade.h:253
+#: ../src/f-spot.glade.h:251
 msgid "_Month"
 msgstr "_Månad"
 
-#: ../src/f-spot.glade.h:254
+#: ../src/f-spot.glade.h:252
 msgid "_New Window"
 msgstr "_Nytt fönster"
 
-#: ../src/f-spot.glade.h:255
+#: ../src/f-spot.glade.h:253
 msgid "_Open album in browser when done uploading"
 msgstr "_Öppna album i webbläsaren när sändningen är färdig"
 
-#: ../src/f-spot.glade.h:256
+#: ../src/f-spot.glade.h:254
 msgid "_Open destination when done exporting"
 msgstr "_Öppna mål när exporteringen är färdig"
 
-#: ../src/f-spot.glade.h:257
+#: ../src/f-spot.glade.h:255
 msgid "_Output:"
 msgstr "_Utdata:"
 
-#: ../src/f-spot.glade.h:258
+#: ../src/f-spot.glade.h:256
 msgid "_Parent Album:"
 msgstr "_Förälderalbum:"
 
-#: ../src/f-spot.glade.h:259
+#: ../src/f-spot.glade.h:257
 msgid "_Password:"
 msgstr "_Lösenord:"
 
-#: ../src/f-spot.glade.h:260
+#: ../src/f-spot.glade.h:258
 msgid "_Prefix: "
 msgstr "_Prefix: "
 
-#: ../src/f-spot.glade.h:261
+#: ../src/f-spot.glade.h:259
 msgid "_Print..."
 msgstr "_Skriv ut..."
 
+#: ../src/f-spot.glade.h:260
+msgid "_Quit"
+msgstr "_Avsluta"
+
 # SUN CHANGED MESSAGE
-#: ../src/f-spot.glade.h:262
+#: ../src/f-spot.glade.h:261
 msgid "_Remove From Catalog"
 msgstr "_Ta bort från katalog"
 
-#: ../src/f-spot.glade.h:263
+#: ../src/f-spot.glade.h:262
 msgid "_Remove Tag From Selection"
 msgstr "_Ta bort tagg från markering"
 
-#: ../src/f-spot.glade.h:264
+#: ../src/f-spot.glade.h:263
 msgid "_Rename Version"
 msgstr "_Byt namn på versionen"
 
-#: ../src/f-spot.glade.h:265
+#: ../src/f-spot.glade.h:264
 msgid "_Resize to: "
 msgstr "_Skala om bilder till: "
 
-#: ../src/f-spot.glade.h:266
+#: ../src/f-spot.glade.h:265
 #: ../src/GroupSelector.cs:521
 msgid "_Reverse Order"
 msgstr "_Omvänd ordning"
 
-#: ../src/f-spot.glade.h:267
+#: ../src/f-spot.glade.h:266
 msgid "_Saturation:"
 msgstr "_Mättnad:"
 
-#: ../src/f-spot.glade.h:268
+#: ../src/f-spot.glade.h:267
 msgid "_Save the files only"
 msgstr "Spara _endast filer"
 
-#: ../src/f-spot.glade.h:269
+#: ../src/f-spot.glade.h:268
 msgid "_Scale photos to no larger than: "
 msgstr "_Skala foton till högst: "
 
-#: ../src/f-spot.glade.h:270
+#: ../src/f-spot.glade.h:269
 msgid "_Select Tags..."
 msgstr "_Markera taggar..."
 
-#: ../src/f-spot.glade.h:271
+#: ../src/f-spot.glade.h:270
 msgid "_Sharpen..."
 msgstr "_Gör skarpare..."
 
-#: ../src/f-spot.glade.h:272
+#: ../src/f-spot.glade.h:271
 msgid "_Slideshow"
 msgstr "_Bildspel"
 
-#: ../src/f-spot.glade.h:273
+#: ../src/f-spot.glade.h:272
 msgid "_Strip metadata"
 msgstr "_Ta bort metadata"
 
-#: ../src/f-spot.glade.h:274
+#: ../src/f-spot.glade.h:273
 msgid "_Tag Name:"
 msgstr "_Taggnamn:"
 
-#: ../src/f-spot.glade.h:275
+#: ../src/f-spot.glade.h:274
 msgid "_Tags"
 msgstr "_Taggar"
 
-#: ../src/f-spot.glade.h:276
+#: ../src/f-spot.glade.h:275
 msgid "_Title:"
 msgstr "_Titel:"
 
-#: ../src/f-spot.glade.h:277
+#: ../src/f-spot.glade.h:276
 msgid "_URI:"
 msgstr "_URI:"
 
-#: ../src/f-spot.glade.h:278
+#: ../src/f-spot.glade.h:277
 msgid "_Untagged Photos"
 msgstr "_Otaggade foton"
 
-#: ../src/f-spot.glade.h:279
+#: ../src/f-spot.glade.h:278
 msgid "_Username:"
 msgstr "_Användarnamn:"
 
-#: ../src/f-spot.glade.h:280
+#: ../src/f-spot.glade.h:279
 msgid "_Version"
 msgstr "_Version"
 
-#: ../src/f-spot.glade.h:281
+#: ../src/f-spot.glade.h:280
 msgid "_View"
 msgstr "_Visa"
 
-#: ../src/f-spot.glade.h:282
+#: ../src/f-spot.glade.h:281
 msgid "_View photos in browser when done uploading"
 msgstr "_Öppna foton i webbläsaren när sändningen är färdig"
 
-#: ../src/f-spot.glade.h:283
+#: ../src/f-spot.glade.h:282
 msgid "_Virtual Filesystem"
 msgstr "_Virtuellt filsystem"
 
-#: ../src/f-spot.glade.h:284
+#: ../src/f-spot.glade.h:283
 msgid "_Write only these photos to CD"
 msgstr "_Skriv endast dessa foton till cd"
 
-#: ../src/f-spot.glade.h:285
+#: ../src/f-spot.glade.h:284
 msgid "dialog1"
 msgstr "dialog1"
 
-#: ../src/f-spot.glade.h:286
+#: ../src/f-spot.glade.h:285
 msgid "difference:"
 msgstr "skillnad:"
 
-#: ../src/f-spot.glade.h:287
+#: ../src/f-spot.glade.h:286
 msgid "img_000.jpg"
 msgstr "bild_000.jpg"
 
 #. The preceding text here is the second checkbutton in the Time dialog
 #. that says "Space all photos by []"
-#: ../src/f-spot.glade.h:288
+#: ../src/f-spot.glade.h:287
 #: ../src/TimeDialog.cs:119
 #, csharp-format
 msgid "min. Starting at {0}"
 msgstr "min. Början vid {0}"
 
-#: ../src/f-spot.glade.h:289
+#: ../src/f-spot.glade.h:288
 msgid "pixels"
 msgstr "bildpunkter"
 
-#: ../src/f-spot.glade.h:290
+#: ../src/f-spot.glade.h:289
 msgid "x"
 msgstr "x"
 
@@ -1660,29 +1670,29 @@ msgstr "Följande fel inträffade vid försök att logga in: {0}"
 msgid "(TopLevel)"
 msgstr "(Toppnivå)"
 
-#: ../src/GalleryExport.cs:726
-#: ../src/PicasaWebExport.cs:606
+#: ../src/GalleryExport.cs:728
+#: ../src/PicasaWebExport.cs:610
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Fel vid sändning till galleri: {0}"
 
-#: ../src/GalleryExport.cs:745
-#: ../src/PicasaWebExport.cs:630
+#: ../src/GalleryExport.cs:747
+#: ../src/PicasaWebExport.cs:631
 msgid "(No Gallery)"
 msgstr "(Inget galleri)"
 
-#: ../src/GalleryExport.cs:837
-#: ../src/PicasaWebExport.cs:760
+#: ../src/GalleryExport.cs:834
+#: ../src/PicasaWebExport.cs:758
 msgid "(Not Connected)"
 msgstr "(Inte ansluten)"
 
-#: ../src/GalleryExport.cs:838
-#: ../src/PicasaWebExport.cs:761
+#: ../src/GalleryExport.cs:835
+#: ../src/PicasaWebExport.cs:759
 msgid "(No Albums)"
 msgstr "(Inga album)"
 
-#: ../src/GalleryExport.cs:890
-#: ../src/PicasaWebExport.cs:813
+#: ../src/GalleryExport.cs:887
+#: ../src/PicasaWebExport.cs:803
 msgid "No account selected"
 msgstr "Inget konto valt"
 
@@ -1714,7 +1724,7 @@ msgid "_Clear Date Range"
 msgstr "_Rensa datumintervall"
 
 #: ../src/ImportCommand.cs:28
-#: ../src/SingleView.cs:235
+#: ../src/SingleView.cs:256
 msgid "Select Folder"
 msgstr "Välj mapp"
 
@@ -1919,7 +1929,7 @@ msgid "Unknown IIM DataSet"
 msgstr "Okänt IIM DataSet"
 
 #: ../src/Loupe.cs:57
-#: ../src/MainWindow.cs:1888
+#: ../src/MainWindow.cs:1905
 msgid "Error saving sharpened photo"
 msgstr "Fel vid sparande av foto med ökad skärpa"
 
@@ -1928,58 +1938,58 @@ msgid "Sharpen"
 msgstr "Gör skarpare"
 
 #: ../src/Loupe.cs:97
-#: ../src/MainWindow.cs:1855
+#: ../src/MainWindow.cs:1872
 msgid "Amount:"
 msgstr "Mängd:"
 
 #: ../src/Loupe.cs:98
-#: ../src/MainWindow.cs:1856
+#: ../src/MainWindow.cs:1873
 msgid "Radius:"
 msgstr "Radie:"
 
 #: ../src/Loupe.cs:99
-#: ../src/MainWindow.cs:1857
+#: ../src/MainWindow.cs:1874
 msgid "Threshold:"
 msgstr "Tröskelvärde:"
 
-#: ../src/MainWindow.cs:233
+#: ../src/MainWindow.cs:234
 msgid "Browse many photos simultaneously"
 msgstr "Bläddra bland många foton samtidigt"
 
-#: ../src/MainWindow.cs:236
+#: ../src/MainWindow.cs:237
 msgid "View and edit a photo"
 msgstr "Visa och redigera ett foto"
 
-#: ../src/MainWindow.cs:241
+#: ../src/MainWindow.cs:242
 msgid "View photos fullscreen"
 msgstr "Visa foton i helskärmsläge"
 
-#: ../src/MainWindow.cs:244
+#: ../src/MainWindow.cs:245
 msgid "View photos in a slideshow"
 msgstr "Visa foton i ett bildspel"
 
-#: ../src/MainWindow.cs:775
+#: ../src/MainWindow.cs:780
 msgid "Error loading database."
 msgstr "Fel vid inläsning av databas."
 
-#: ../src/MainWindow.cs:776
+#: ../src/MainWindow.cs:781
 #, csharp-format
 msgid "F-Spot encountered an error while loading the photo database. The old database has be moved to {0} and a new database has been created."
 msgstr "F-Spot påträffade ett fel vid inläsning av fotodatabasen. Den gamla databasen måste flyttas till {0} och en ny databas måste skapas."
 
-#: ../src/MainWindow.cs:1332
+#: ../src/MainWindow.cs:1337
 msgid "No cameras detected."
 msgstr "Inga kameror hittades"
 
-#: ../src/MainWindow.cs:1333
+#: ../src/MainWindow.cs:1338
 msgid "F-Spot was unable to find any cameras attached to this system.  Double check that the camera is connected and has power"
 msgstr "F-Spot kunde inte hitta några kameror anslutna till detta system.  Kontrollera att kameran är ansluten och att den har ström"
 
-#: ../src/MainWindow.cs:1373
+#: ../src/MainWindow.cs:1378
 msgid "Error connecting to camera"
 msgstr "Fel vid anslutning till kamera"
 
-#: ../src/MainWindow.cs:1374
+#: ../src/MainWindow.cs:1379
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Tog emot fel \"{0}\" vid anslutning till kamera"
@@ -1987,7 +1997,7 @@ msgstr "Tog emot fel \"{0}\" vid anslutning till kamera"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1529
+#: ../src/MainWindow.cs:1546
 msgid "translator-credits"
 msgstr ""
 "Daniel Nylander\n"
@@ -1997,46 +2007,46 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "tp-sv@listor.tp-sv.se"
 
-#: ../src/MainWindow.cs:1536
+#: ../src/MainWindow.cs:1553
 msgid "Copyright © 2003-2006 Novell Inc."
 msgstr "Copyright © 2003-2006 Novell Inc."
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1768
+#: ../src/MainWindow.cs:1785
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Sammanfoga den markerade taggen"
 msgstr[1] "Sammanfoga de {0} markerade taggarna"
 
-#: ../src/MainWindow.cs:1795
+#: ../src/MainWindow.cs:1812
 msgid "This operation will merge the selected tags and any sub-tags into a single tag."
 msgstr "Denna operation kommer att slå ihop de markerade taggarna och deras undertaggar till en enda tagg."
 
-#: ../src/MainWindow.cs:1797
+#: ../src/MainWindow.cs:1814
 msgid "_Merge Tags"
 msgstr "_Slå ihop taggar"
 
-#: ../src/MainWindow.cs:1846
+#: ../src/MainWindow.cs:1863
 msgid "Unsharp Mask"
 msgstr "Oskarp mask"
 
-#: ../src/MainWindow.cs:2063
+#: ../src/MainWindow.cs:2080
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} foto"
 msgstr[1] "{0} foton"
 
-#: ../src/MainWindow.cs:2142
+#: ../src/MainWindow.cs:2159
 msgid "_Ok"
 msgstr "_OK"
 
-#: ../src/MainWindow.cs:2143
+#: ../src/MainWindow.cs:2160
 msgid "Error Deleting Picture"
 msgstr "Fel vid borttagning av foto"
 
-#: ../src/MainWindow.cs:2148
+#: ../src/MainWindow.cs:2165
 #, csharp-format
 msgid ""
 "No permission to delete the file:\n"
@@ -2045,7 +2055,7 @@ msgstr ""
 "Har inte rättighet att ta bort filen: \n"
 "{0}"
 
-#: ../src/MainWindow.cs:2152
+#: ../src/MainWindow.cs:2169
 #, csharp-format
 msgid ""
 "An error of type {0} occurred while deleting the file:\n"
@@ -2054,104 +2064,104 @@ msgstr ""
 "Ett fel av typen {0} inträffade under borttagning av filen:\n"
 "{1}"
 
-#: ../src/MainWindow.cs:2178
+#: ../src/MainWindow.cs:2195
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Ta bort det markerade fotot permanent?"
 msgstr[1] "Ta bort de {0} markerade fotona permanent?"
 
-#: ../src/MainWindow.cs:2182
+#: ../src/MainWindow.cs:2199
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Detta tar bort alla versioner av det markerade fotot från din disk."
 msgstr[1] "Detta tar bort alla versioner av de markerade foton från din disk."
 
-#: ../src/MainWindow.cs:2185
+#: ../src/MainWindow.cs:2202
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Ta bort foto"
 msgstr[1] "_Ta bort foton"
 
-#: ../src/MainWindow.cs:2213
+#: ../src/MainWindow.cs:2230
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Ta bort det markerade fotot från F-Spot?"
 msgstr[1] "Ta bort de {0} markerade fotona från F-Spot?"
 
-#: ../src/MainWindow.cs:2218
+#: ../src/MainWindow.cs:2235
 msgid "If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again."
 msgstr "Om du tar bort foton från F-Spot-katalogen kommer all tagginformation för dem att gå förlorad. Fotona finns dock kvar på din dator och kan importeras in till F-Spot på nytt."
 
 # SUN CHANGED MESSAGE
-#: ../src/MainWindow.cs:2219
+#: ../src/MainWindow.cs:2236
 msgid "_Remove from Catalog"
 msgstr "_Ta bort från katalog"
 
-#: ../src/MainWindow.cs:2274
+#: ../src/MainWindow.cs:2291
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Ta bort taggen \"{0}\"?"
 
-#: ../src/MainWindow.cs:2276
+#: ../src/MainWindow.cs:2293
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Ta bort de {0} markerade taggarna?"
 
-#: ../src/MainWindow.cs:2279
+#: ../src/MainWindow.cs:2296
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr "Om du tar bort en tagg så försvinner alla dess associationer med foton."
 
-#: ../src/MainWindow.cs:2280
+#: ../src/MainWindow.cs:2297
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Ta bort tagg"
 msgstr[1] "_Ta bort taggar"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2294
+#: ../src/MainWindow.cs:2311
 msgid "Tag is not empty"
 msgstr "Taggen är inte tom"
 
-#: ../src/MainWindow.cs:2295
+#: ../src/MainWindow.cs:2312
 #, csharp-format
 msgid "Can not delete tags that have tags within them.  Please delete tags under \"{0}\" first"
 msgstr "Kan inte ta bort taggar som har andra taggar under sig.  Vänligen ta bort alla taggar under \"{0}\" först"
 
-#: ../src/MainWindow.cs:2709
+#: ../src/MainWindow.cs:2715
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Rotera det markerade fotot åt vänster"
 msgstr[1] "Rotera de markerade fotona åt vänster"
 
-#: ../src/MainWindow.cs:2722
+#: ../src/MainWindow.cs:2728
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Rotera det markerade fotot åt höger"
 msgstr[1] "Rotera de markerade fotona åt höger"
 
-#: ../src/MainWindow.cs:2730
+#: ../src/MainWindow.cs:2736
 #, csharp-format
 msgid "Find Selected Tag"
 msgid_plural "Find Selected Tags"
 msgstr[0] "Sök efter vald tagg"
 msgstr[1] "Sök efter valda taggar"
 
-#: ../src/MainWindow.cs:2734
+#: ../src/MainWindow.cs:2740
 #, csharp-format
 msgid "Find Selected Tag With"
 msgid_plural "Find Selected Tags With"
 msgstr[0] "Sök efter vald tagg med"
 msgstr[1] "Sök efter valda taggar med"
 
-#: ../src/MainWindow.cs:2751
+#: ../src/MainWindow.cs:2757
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Skapa en ny version?"
 msgstr[1] "Skapa nya versioner?"
 
-#: ../src/MainWindow.cs:2753
+#: ../src/MainWindow.cs:2759
 #, csharp-format
 msgid "Before launching {1}, should F-Spot create a new version of the selected photo to preserve the original?"
 msgid_plural "Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?"
@@ -2268,7 +2278,7 @@ msgstr "Scentyp"
 msgid "No applications available"
 msgstr "Inga applikationer tillgängliga"
 
-#: ../src/OpenWithMenu.cs:92
+#: ../src/OpenWithMenu.cs:95
 msgid "Open With"
 msgstr "Öppna med"
 
@@ -2296,7 +2306,7 @@ msgstr "Sätt tagg"
 #. FIXME finish the IPhotoSelection stuff and move the activate handler into the class
 #. this current method is way too complicated.
 #.
-#: ../src/PhotoPopup.cs:83
+#: ../src/PhotoPopup.cs:84
 msgid "Remove Tag"
 msgstr "Ta bort tagg"
 
@@ -2373,23 +2383,23 @@ msgstr "Tog emot undantag \"{0}\". Kunde inte byta namn på version \"{1}\""
 msgid "(No Edits)"
 msgstr "(Inga ändringar)"
 
-#: ../src/PhotoView.cs:66
+#: ../src/PhotoView.cs:65
 msgid "No Constraint"
 msgstr "Ingen begränsning"
 
-#: ../src/PhotoView.cs:67
+#: ../src/PhotoView.cs:66
 msgid "4 x 3 (Book)"
 msgstr "4 x 3 (Bok)"
 
-#: ../src/PhotoView.cs:68
+#: ../src/PhotoView.cs:67
 msgid "4 x 6 (Postcard)"
 msgstr "4 x 6 (Vykort)"
 
-#: ../src/PhotoView.cs:69
+#: ../src/PhotoView.cs:68
 msgid "5 x 7 (L, 2L)"
 msgstr "5 x 7 (L, 2L)"
 
-#: ../src/PhotoView.cs:70
+#: ../src/PhotoView.cs:69
 msgid "8 x 10"
 msgstr "8 x 10"
 
@@ -2397,63 +2407,63 @@ msgstr "8 x 10"
 #. new SelectionConstraint (Catalog.GetString ("4 x 6 Portrait (Postcard)"), 4.0 / 6.0),
 #. new SelectionConstraint (Catalog.GetString ("5 x 7 Portrait (L, 2L)"), 5.0 / 7.0),
 #. new SelectionConstraint (Catalog.GetString ("8 x 10 Portrait"), 8.0 / 10.0),
-#: ../src/PhotoView.cs:75
+#: ../src/PhotoView.cs:74
 msgid "Square"
 msgstr "Ruta"
 
-#: ../src/PhotoView.cs:155
+#: ../src/PhotoView.cs:154
 msgid "Crop photo to selected area"
 msgstr "Beskär fotot till det markerade området"
 
-#: ../src/PhotoView.cs:156
+#: ../src/PhotoView.cs:155
 msgid "Remove redeye from selected area"
 msgstr "Ta bort röda ögon från det markerade området"
 
-#: ../src/PhotoView.cs:158
+#: ../src/PhotoView.cs:157
 msgid "Select an area to crop"
 msgstr "Välj ett område att beskära"
 
-#: ../src/PhotoView.cs:159
+#: ../src/PhotoView.cs:158
 msgid "Select an area to remove redeye"
 msgstr "Välj ett område att ta bort röda ögon från"
 
-#: ../src/PhotoView.cs:268
+#: ../src/PhotoView.cs:267
 msgid "Error editing photo"
 msgstr "Fel vid redigering av foto"
 
-#: ../src/PhotoView.cs:320
+#: ../src/PhotoView.cs:319
 msgid "No selection available"
 msgstr "Ingen markering tillgänglig"
 
-#: ../src/PhotoView.cs:321
+#: ../src/PhotoView.cs:320
 msgid "This tool requires an active selection. Please select a region of the photo and try the operation again"
 msgstr "Detta verktyg kräver en aktiv markering. Vänligen markera ett område i fotot och försök göra samma operation igen"
 
-#: ../src/PhotoView.cs:490
+#: ../src/PhotoView.cs:487
 msgid "Comment:"
 msgstr "Kommentar:"
 
-#: ../src/PhotoView.cs:555
+#: ../src/PhotoView.cs:552
 msgid "Adjust the photo colors"
 msgstr "Justera fotots färger"
 
-#: ../src/PhotoView.cs:556
+#: ../src/PhotoView.cs:553
 msgid "Constrain the aspect ratio of the selection"
 msgstr "Begränsa storleksförhållandet på markeringen"
 
-#: ../src/PhotoView.cs:557
+#: ../src/PhotoView.cs:554
 msgid "Next photo"
 msgstr "Nästa foto"
 
-#: ../src/PhotoView.cs:558
+#: ../src/PhotoView.cs:555
 msgid "Previous photo"
 msgstr "Föregående foto"
 
-#: ../src/PhotoView.cs:559
+#: ../src/PhotoView.cs:556
 msgid "Convert the photo to black and white"
 msgstr "Konvertera fotot till svart/vitt"
 
-#: ../src/PhotoView.cs:560
+#: ../src/PhotoView.cs:557
 msgid "Convert the photo to sepia tones"
 msgstr "Konvertera fotot till sepiatoner"
 
@@ -2462,43 +2472,43 @@ msgstr "Konvertera fotot till sepiatoner"
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "Skickar upp bilden \"{0}\" ({1} av {2})"
 
-#: ../src/PicasaWebExport.cs:681
+#: ../src/PicasaWebExport.cs:682
 msgid "Available space :"
 msgstr "Tillgängligt utrymme :"
 
-#: ../src/RotateCommand.cs:193
+#: ../src/RotateCommand.cs:197
 msgid "Rotating photos"
 msgstr "Roterar foton"
 
-#: ../src/RotateCommand.cs:204
+#: ../src/RotateCommand.cs:208
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "Roterar foto \"{0}\""
 
-#: ../src/RotateCommand.cs:229
+#: ../src/RotateCommand.cs:233
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
 msgstr[0] "Kunde inte rotera foto"
 msgstr[1] "Kunde inte rotera {0} foton"
 
-#: ../src/RotateCommand.cs:233
+#: ../src/RotateCommand.cs:237
 #, csharp-format
 msgid "The photo could not be rotated because it is on a read only file system or media such as a CDROM.  Please check the permissions and try again"
 msgid_plural "{0} photos could not be rotated because they are on a read only file system or media such as a CDROM.  Please check the permissions and try again"
 msgstr[0] "Fotot kunde inte roteras eftersom det ligger på ett skrivskyddat filsystem eller medium, till exempel en CD-ROM. Vänligen kontrollera rättigheterna och försök igen.{0} foton kunde inte roteras eftersom de ligger på ett skrivskyddat filsystem eller medium, till exempel en CD-ROM. Vänligen kontrollera rättigheterna och försök igen."
 msgstr[1] "{0} foton kunde inte roteras eftersom de ligger på ett skrivskyddat filsystem eller medium, till exempel en CD-ROM. Vänligen kontrollera rättigheterna och försök igen."
 
-#: ../src/RotateCommand.cs:255
+#: ../src/RotateCommand.cs:259
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "Tog emot felet \"{0}\" under försöket att rotera {1}"
 
-#: ../src/RotateCommand.cs:260
+#: ../src/RotateCommand.cs:264
 msgid "Error while rotating photo."
 msgstr "Fel vid rotation av foto"
 
-#: ../src/SingleView.cs:232
+#: ../src/SingleView.cs:253
 msgid "Open"
 msgstr "Öppna"
 
@@ -2563,7 +2573,7 @@ msgstr "Långt borta"
 
 #: ../src/TagCommands.cs:75
 #: ../src/TagCommands.cs:203
-#: ../src/TagSelectionWidget.cs:626
+#: ../src/TagSelectionWidget.cs:503
 msgid "This name is already in use"
 msgstr "Detta namn används redan"
 
@@ -2666,11 +2676,11 @@ msgstr " eller "
 msgid "or"
 msgstr "eller"
 
-#: ../src/TagQueryWidget.cs:1112
+#: ../src/TagQueryWidget.cs:1113
 msgid "Drag tags here to search for them"
 msgstr "Dra taggar hit för att söka efter dem"
 
-#: ../src/TagSelectionWidget.cs:625
+#: ../src/TagSelectionWidget.cs:502
 msgid "Error renaming tag"
 msgstr "Fel vid namnbyte av tagg"
 
@@ -2707,11 +2717,11 @@ msgstr "Uppdaterar F-Spot-databasen"
 msgid "Please wait while your F-Spot gallery's database is updated. This may take some time."
 msgstr "Var god vänta medan databasen för ditt F-Spot-galleri uppdateras. Detta kan ta lite tid."
 
-#: ../src/Util.cs:426
+#: ../src/Util.cs:439
 msgid "There was an error invoking the external handler"
 msgstr "Ett fel inträffade när den externa hanteraren kördes"
 
-#: ../src/Util.cs:427
+#: ../src/Util.cs:440
 #, csharp-format
 msgid ""
 "Received error:\n"
@@ -2720,21 +2730,21 @@ msgstr ""
 "Tog emot fel:\n"
 "\"{0}\"\n"
 
-#: ../src/QueryDisplay.cs:35
+#: ../src/QueryDisplay.cs:34
 #: ../src/QueryWidget.cs:37
 msgid "Find: "
 msgstr "Sök: "
 
-#: ../src/QueryDisplay.cs:39
+#: ../src/QueryDisplay.cs:38
 #: ../src/QueryWidget.cs:42
 msgid "Untagged photos"
 msgstr "Otaggade foton"
 
-#: ../src/QueryDisplay.cs:56
+#: ../src/QueryDisplay.cs:53
 msgid "No matching photos found "
 msgstr "Inga matchande foton hittades"
 
-#: ../src/QueryDisplay.cs:64
+#: ../src/QueryDisplay.cs:61
 #: ../src/QueryWidget.cs:62
 msgid "Clear search"
 msgstr "Rensa sökning"
@@ -2742,6 +2752,14 @@ msgstr "Rensa sökning"
 #: ../src/QueryWidget.cs:64
 msgid "No matching photos found"
 msgstr "Inga matchande foton hittades"
+
+#: ../src/QueryWidget.cs:94
+msgid "Hide Find Bar"
+msgstr "Dölj sökrad"
+
+#: ../src/QueryWidget.cs:100
+msgid "Show Find Bar"
+msgstr "Visa sökrad"
 
 #: ../tools/f-spot-screensaver.desktop.in.h:1
 msgid "Display a slideshow from F-Spot"
@@ -2751,6 +2769,16 @@ msgstr "Visa ett bildspel från F-Spot"
 msgid "F-Spot photos"
 msgstr "Foton från F-Spot"
 
+#~ msgid "<b>Mail attachment summary</b>"
+#~ msgstr "<b>Sammandrag av e-postbilagor</b>"
+#~ msgid "<b>Photo size</b>"
+#~ msgstr "<b>Fotostorlek</b>"
+#~ msgid "Prepare for mail"
+#~ msgstr "Förbered för e-post"
+#~ msgid "_Clear Tag Search"
+#~ msgstr "_Töm taggsökning"
+#~ msgid "_Close"
+#~ msgstr "_Stäng"
 #~ msgid "Directory"
 #~ msgstr "Katalog"
 #~ msgid "F-Spot Photo Album"
