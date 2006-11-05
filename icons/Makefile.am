@@ -26,7 +26,8 @@ noinst_DATA =					\
 	f-spot-question-mark.png		\
 	f-spot.js				\
 	f-spot-simple.css			\
-	f-spot-simple-white.css
+	f-spot-simple-white.css			\
+	f-spot-logo-tango.svg
 
 16x16dir = $(datadir)/icons/hicolor/16x16/apps
 22x22dir = $(datadir)/icons/hicolor/22x22/apps

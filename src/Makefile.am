@@ -222,6 +222,7 @@ RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-simple-white.css,f-spot-simple-white.css	\
 	-resource:$(top_srcdir)/icons/f-spot-simple.css,f-spot-simple.css	\
 	-resource:$(top_srcdir)/icons/f-spot.js,f-spot.js	\
+	-resource:$(top_srcdir)/icons/f-spot-logo-tango.svg,f-spot-logo-tango.svg	\
 	-resource:$(srcdir)/dces.rdf,dces.rdf			\
 	-resource:$(srcdir)/f-spot.glade,f-spot.glade
 
