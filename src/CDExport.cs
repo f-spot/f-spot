@@ -97,7 +97,7 @@ namespace FSpot {
  					
 					// if we are rotating the image and the filter changed something
 					// use the new path as the source
-					if (new Filters.OrientationFilter ().Convert (photo.DefaultVersionUri.LocalPath, path))
+					if (rotate && new Filters.OrientationFilter ().Convert (photo.DefaultVersionUri.LocalPath, path))
 						source = new Gnome.Vfs.Uri (path);
 
 					Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
