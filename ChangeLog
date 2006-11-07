@@ -1,5 +1,11 @@
 2006-11-06  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/Preferences.cs: embed Client.Set in a try/catch. No longer crash
+	if gconf is read-only. This patch, based on a Thomas Van Machelen one,
+	fixes bgo #368121.
+
+2006-11-06  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/CDExport.cs: re-enable the Autorotate checkbox. Fixes bgo
 	#371548.
 

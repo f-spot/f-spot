@@ -177,7 +177,7 @@ namespace FSpot
 				return Client.Get (key);
 			} catch (GConf.NoSuchKeyException) {
 				if (default_val != null)
-					Client.Set (key, default_val);
+					Set (key, default_val);
 				
 				return default_val;
 			}
@@ -191,7 +191,7 @@ namespace FSpot
 				object default_val = GetDefault (key);
 
 				if (default_val != null)
-					Client.Set (key, default_val);
+					Set (key, default_val);
 
 				return default_val;
 			}
@@ -199,7 +199,11 @@ namespace FSpot
 
 		public static void Set (string key, object value)
 		{
-			Client.Set (key, value);
+			try {
+				Client.Set (key, value);
+			} catch {
+				Console.WriteLine ("Unable to write this gconf key :"+key);
+			}
 		}
 
 		public static event GConf.NotifyEventHandler SettingChanged;
