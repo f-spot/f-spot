@@ -1,3 +1,9 @@
+2006-11-07  Stephane Delcroix  <stephane@delcroix.org>
+
+	* icons/Makefile.am:
+	* icons/* : Re-flatten the icons directory, moving the hierarchy in
+	the Makefile.
+
 2006-11-06  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/Preferences.cs: embed Client.Set in a try/catch. No longer crash
