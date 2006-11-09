@@ -22,6 +22,8 @@ namespace FSpot {
 
 		[Glade.Widget] Gtk.Scale zoom_scale;
 
+		[Glade.Widget] Label status_label;
+
 		protected Glade.XML xml;
 		private Gtk.Window window;
 		PhotoImageView image_view;
@@ -113,6 +115,7 @@ namespace FSpot {
 			window.DeleteEvent += HandleDeleteEvent;
 			
 			collection.Changed += HandleCollectionChanged;
+			UpdateStatusLabel ();
 			
 			if (collection.Count > 0)
 				directory_view.Selection.Add (0);
@@ -127,6 +130,8 @@ namespace FSpot {
 
 			if (collection.Count > 1)
 				ShowSidebar = true;
+
+			UpdateStatusLabel ();
 		}
 
 		public bool ShowSidebar {
@@ -403,6 +408,11 @@ namespace FSpot {
 		}
 
 		Gtk.Drag.Finish (args.Context, true, false, args.Time);
+		}
+
+		private void UpdateStatusLabel ()
+		{
+			status_label.Text = String.Format (Catalog.GetPluralString ("{0} Photo", "{0} Photos", collection.Count), collection.Count);
 		}
 
 		private void HandleFileClose (object sender, System.EventArgs args)

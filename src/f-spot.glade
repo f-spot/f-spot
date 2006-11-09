@@ -12566,9 +12566,9 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 	  </child>
 
 	  <child>
-	    <widget class="GtkLabel" id="label159">
+	    <widget class="GtkLabel" id="status_label">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">F-Spot Photo Viewer</property>
+	      <property name="label" translatable="yes"></property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>

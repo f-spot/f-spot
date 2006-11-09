@@ -1,5 +1,9 @@
 2006-11-09  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/f-spot.glade:
+	* src/SingleView.cs: Adding a photo count in the UI. Fixes bgo
+	#357896.
+
 	* src/SingleView.cs: Adding support for dropping images. Fixes bgo
 	#372881.
 
