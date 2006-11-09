@@ -1,5 +1,10 @@
 2006-11-09  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/MainWindow.cs: Enhanced the status label
+	* src/PhotoStore.cs: New static property to keep the number of photos.
+	Slightly modified patch originally written by Bengt. Fixes bgo
+	#361874.
+
 	* src/f-spot.glade:
 	* src/SingleView.cs: Adding a photo count in the UI. Fixes bgo
 	#357896.

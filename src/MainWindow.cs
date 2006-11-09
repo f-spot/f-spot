@@ -662,6 +662,7 @@ public class MainWindow {
 
 		UpdateMenus ();
 		UpdateTagEntryFromSelection ();
+		UpdateStatusLabel();		
 	}
 
 	private void HandleSelectionItemsChanged (IBrowsableCollection collection, BrowsableArgs args)
@@ -1089,6 +1090,7 @@ public class MainWindow {
 		if (args.Event.Key == Gdk.Key.Delete) {
 			HandleRemoveCommand (sender, (EventArgs) args);
 		}
+		UpdateStatusLabel();		
 	}
 
 	public void ImportUriList (UriList list, bool copy) 
@@ -2078,7 +2080,24 @@ public class MainWindow {
 
 	private void UpdateStatusLabel ()
 	{
-		status_label.Text = String.Format (Catalog.GetPluralString ("{0} Photo", "{0} Photos", query.Count), query.Count);
+		StringBuilder label_str = new StringBuilder();
+		
+		switch (view_mode) {
+		case ModeType.PhotoView:
+			break;
+		case ModeType.IconView:		
+			label_str.Append (String.Format (Catalog.GetPluralString ("{0} Photo", "{0} Photos", query.Count), query.Count));
+
+			if (PhotoStore.TotalPhotos != query.Count)
+				label_str.Append (String.Format (Catalog.GetString (" out of {0}"), PhotoStore.TotalPhotos));
+
+			if ((selection != null) && (selection.Count > 0))
+				label_str.Append (String.Format (Catalog.GetPluralString (" ({0} selected)", " ({0} selected)", selection.Count), selection.Count));
+			break;
+		}
+		
+		status_label.Text = label_str.ToString();
+		status_label.UseMarkup = true;
 	}
 	
 	void HandleZoomChanged (object sender, System.EventArgs args)
@@ -2245,11 +2264,13 @@ public class MainWindow {
 	void HandleSelectAllCommand (object sender, EventArgs args)
 	{
 		icon_view.SelectAllCells ();
+		UpdateStatusLabel();
 	}
 
 	void HandleSelectNoneCommand (object sender, EventArgs args)
 	{
 		icon_view.Selection.Clear ();
+		UpdateStatusLabel();
 	}
 
 	// This ConnectBefore is needed because otherwise the editability of the name

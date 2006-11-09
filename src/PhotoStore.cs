@@ -8,6 +8,7 @@ using System.Text;
 using System;
 using FSpot;
 
+
 public class PhotoVersion : FSpot.IBrowsableItem {
 	Photo photo;
 	uint version_id;
@@ -582,7 +583,13 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 public class PhotoStore : DbStore {
 	TagStore tag_store;
-	
+
+	static int total_photos = 0;
+	public static int TotalPhotos {
+		get { return total_photos; }
+		set { total_photos = value; }
+	}
+
 	public static ThumbnailFactory ThumbnailFactory = new ThumbnailFactory (ThumbnailSize.Large);
 
 	// FIXME this is a hack.  Since we don't have Gnome.ThumbnailFactory.SaveThumbnail() in
@@ -656,10 +663,23 @@ public class PhotoStore : DbStore {
 		this.tag_store = tag_store;
 		EnsureThumbnailDirectory ();
 
-		if (! is_new)
-			return;
+		SqliteCommand command;
+
+		if (! is_new) {
+			command = new SqliteCommand ();
+			command.Connection = Connection;
+			command.CommandText = String.Format ("SELECT count(*) from photos");
+			SqliteDataReader reader = command.ExecuteReader ();
+	
+			while (reader.Read ()) {
+				TotalPhotos = Convert.ToInt32 (reader [0]);
+			}
+			command.Dispose ();
 		
-		SqliteCommand command = new SqliteCommand ();
+			return;
+		}
+		
+		command = new SqliteCommand ();
 		command.Connection = Connection;
 
 		command.CommandText =
@@ -703,6 +723,8 @@ public class PhotoStore : DbStore {
 
 		command.ExecuteNonQuery ();
 		command.Dispose ();
+		
+		TotalPhotos = 0;
 	}
 
 
@@ -739,6 +761,8 @@ public class PhotoStore : DbStore {
 		thumbnail = GenerateThumbnail (UriList.PathToFileUri (newPath), img);		
 		EmitAdded (photo);
 
+		TotalPhotos++;
+		
 		return photo;
 	}
 
@@ -1023,6 +1047,7 @@ public class PhotoStore : DbStore {
 			query_builder.Append (String.Format ("id = {0}", items[i].Id));
 			tv_query_builder.Append (String.Format ("photo_id = {0}", items[i].Id));
 			RemoveFromCache (items[i]);
+			TotalPhotos--;			
 		}
 
 		SqliteCommand command = new SqliteCommand ();
