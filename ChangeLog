@@ -1,5 +1,15 @@
 2006-11-09  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/SingleView.cs: Adding support for dropping images. Fixes bgo
+	#372881.
+
+	* f-spot-view.desktop.in.in: adding handler to open SVG files. Fixes
+	bgo #372882.
+
+	* src/f-spot.glade: bind F9 to HandleViewSidePane. Fixes bgo #373017.
+
+2006-11-09  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/CDExport.cs: Simplification of Thomas' code.
 
 2006-11-09  Thomas Van Machelen <thomas.vanmachelen@gmail.com>

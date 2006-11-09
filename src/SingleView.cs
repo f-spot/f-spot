@@ -1,4 +1,5 @@
 using Gtk;
+using Gdk;
 using System;
 using Mono.Posix;
 
@@ -71,9 +72,14 @@ namespace FSpot {
 			toolbar.AppendSpace ();
 
 			collection = new UriCollection (uris);
+
+			TargetEntry [] dest_table = { new TargetEntry ("text/uri-list", 0, 0) };
 			
 			directory_view = new IconView (collection);
 			directory_view.Selection.Changed += HandleSelectionChanged;
+			directory_view.DragDataReceived += HandleDragDataReceived;
+			Gtk.Drag.DestSet (directory_view, DestDefaults.All, dest_table, 
+					DragAction.Copy | DragAction.Move); 
 			directory_view.DisplayTags = false;
 			directory_view.DisplayDates = false;
 			directory_scrolled.Add (directory_view);
@@ -85,6 +91,9 @@ namespace FSpot {
 			FSpot.Global.ModifyColors (image_scrolled);
 			image_view.ZoomChanged += HandleZoomChanged;
 			image_view.Item.Changed += HandleItemChanged;
+			image_view.DragDataReceived += HandleDragDataReceived;
+			Gtk.Drag.DestSet (image_view, DestDefaults.All, dest_table,
+					DragAction.Copy | DragAction.Move); 
 			image_scrolled.Add (image_view);
 			
 			Window.ShowAll ();
@@ -374,6 +383,26 @@ namespace FSpot {
 			SavePreferences ();
 			this.Window.Destroy ();
 			args.RetVal = true;
+		}
+
+		void HandleDragDataReceived (object sender, DragDataReceivedArgs args) 
+		{
+		
+		switch (args.Info) {
+		case 0:
+			/* 
+			 * If the drop is coming from inside f-spot then we don't want to import 
+			 */
+			if (Gtk.Drag.GetSourceWidget (args.Context) != null)
+				return;
+
+			UriList list = new UriList (args.SelectionData);
+			collection.LoadItems (list.ToArray());
+
+			break;
+		}
+
+		Gtk.Drag.Finish (args.Context, true, false, args.Time);
 		}
 
 		private void HandleFileClose (object sender, System.EventArgs args)
