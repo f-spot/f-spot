@@ -406,7 +406,7 @@ namespace FSpot {
 	public class GoogleExport : GladeDialog {
 		public GoogleExport (IBrowsableCollection selection) : base ("google_export_dialog")
 		{
-			this.photos = (Photo []) selection.Items;
+			this.items = selection.Items;
 			album_button.Sensitive = false;
 			IconView view = new IconView (selection);
 			view.DisplayDates = false;
@@ -454,7 +454,7 @@ namespace FSpot {
 		private long approx_size = 0;
 		private long sent_bytes = 0;
 
-		Photo [] photos;
+		IBrowsableItem [] items;
 		int photo_index;
 		FSpot.ThreadProgressDialog progress_dialog;
 		
@@ -523,7 +523,7 @@ namespace FSpot {
 				command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
 				command_thread.Name = Mono.Posix.Catalog.GetString ("Uploading Pictures");
 				
-				progress_dialog = new FSpot.ThreadProgressDialog (command_thread, photos.Length);
+				progress_dialog = new FSpot.ThreadProgressDialog (command_thread, items.Length);
 				progress_dialog.Start ();
 
 				// Save these settings for next time
@@ -546,7 +546,7 @@ namespace FSpot {
 					progress_dialog.ProgressText = System.String.Format ("{0} Sent",SizeUtil.ToHumanReadable(args.BytesSent));
 				else
 					progress_dialog.ProgressText = System.String.Format ("{0} of approx. {1}", SizeUtil.ToHumanReadable(sent_bytes + args.BytesSent), SizeUtil.ToHumanReadable(approx_size));
-				progress_dialog.Fraction = ((photo_index - 1) / (double) photos.Length) + (args.BytesSent / (args.BytesTotal * (double) photos.Length));
+				progress_dialog.Fraction = ((photo_index - 1) / (double) items.Length) + (args.BytesSent / (args.BytesTotal * (double) items.Length));
 		}
 
 		private void Upload ()
@@ -567,17 +567,17 @@ namespace FSpot {
 				if (rotate)
 					filters.Add (new OrientationFilter ());
 
-				while (photo_index < photos.Length) {
-					Photo photo = photos [photo_index];
+				while (photo_index < items.Length) {
+					IBrowsableItem item = items[photo_index];
 
 					FileInfo file_info;
 					Console.WriteLine ("uploading {0}", photo_index);
 
 					progress_dialog.Message = String.Format (Catalog.GetString ("Uploading picture \"{0}\" ({1} of {2})"), 
-										 photo.Name, photo_index+1, photos.Length);
+										 item.Name, photo_index+1, items.Length);
 					photo_index++;
 					
-					string orig = photo.DefaultVersionUri.LocalPath;
+					string orig = item.DefaultVersionUri.LocalPath;
 					string final = ImageFile.TempPath(orig, "jpg");
 
 					if (!filters.Convert (orig, final))
@@ -586,11 +586,11 @@ namespace FSpot {
 					file_info = new FileInfo (final);
 
 					if (approx_size == 0) //first image
-						approx_size = file_info.Length * photos.Length;
+						approx_size = file_info.Length * items.Length;
 					else
-						approx_size = sent_bytes * photos.Length / (photo_index - 1);
+						approx_size = sent_bytes * items.Length / (photo_index - 1);
 
-					album.UploadPicture (final, photo.Description);
+					album.UploadPicture (final, item.Description);
 
 					sent_bytes += file_info.Length;
 
@@ -778,7 +778,7 @@ namespace FSpot {
 					menu.Append (item);
 				}
 
-				ok_button.Sensitive = photos.Length > 0;
+				ok_button.Sensitive = items.Length > 0;
 				album_optionmenu.Sensitive = true;
 				album_button.Sensitive = true;
 			}

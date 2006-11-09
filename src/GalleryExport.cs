@@ -541,7 +541,7 @@ namespace FSpot {
 	public class GalleryExport : GladeDialog {
 		public GalleryExport (IBrowsableCollection selection) : base ("gallery_export_dialog")
 		{
-			this.photos = (Photo []) selection.Items;
+			this.items = selection.Items;
 			album_button.Sensitive = false;
 			IconView view = new IconView (selection);
 			view.DisplayDates = false;
@@ -584,7 +584,7 @@ namespace FSpot {
 		private bool meta;
 		private bool connect = false;
 
-		Photo [] photos;
+		IBrowsableItem[] items;
 		int photo_index;
 		FSpot.ThreadProgressDialog progress_dialog;
 		
@@ -651,7 +651,7 @@ namespace FSpot {
 				command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
 				command_thread.Name = Catalog.GetString ("Uploading Pictures");
 				
-				progress_dialog = new FSpot.ThreadProgressDialog (command_thread, photos.Length);
+				progress_dialog = new FSpot.ThreadProgressDialog (command_thread, items.Length);
 				progress_dialog.Start ();
 
 				// Save these settings for next time
@@ -666,7 +666,7 @@ namespace FSpot {
 		private void HandleProgressChanged (ProgressItem item)
 		{
 			//System.Console.WriteLine ("Changed value = {0}", item.Value);
-			progress_dialog.Fraction = (photo_index - 1.0 + item.Value) / (double) photos.Length;
+			progress_dialog.Fraction = (photo_index - 1.0 + item.Value) / (double) items.Length;
 		}
 
 		public void HandleSizeActive (object sender, EventArgs args)
@@ -689,19 +689,19 @@ namespace FSpot {
 					filters.Add (new OrientationFilter ());
 				
 
-				while (photo_index < photos.Length) {
-					Photo photo = photos [photo_index];
+				while (photo_index < items.Length) {
+					IBrowsableItem item = items [photo_index];
 
 					System.Console.WriteLine ("uploading {0}", photo_index);
 
-					progress_dialog.Message = System.String.Format (Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
-					progress_dialog.Fraction = photo_index / (double) photos.Length;
+					progress_dialog.Message = System.String.Format (Catalog.GetString ("Uploading picture \"{0}\""), item.Name);
+					progress_dialog.Fraction = photo_index / (double) items.Length;
 					photo_index++;
 
-					progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"), photo_index, photos.Length);
+					progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"), photo_index, items.Length);
 					
 					
-					string orig = photo.DefaultVersionUri.LocalPath;
+					string orig = item.DefaultVersionUri.LocalPath;
 
 					// FIXME the filters need to be able to handle entension
 					// changes directly themselves.
@@ -712,9 +712,9 @@ namespace FSpot {
 						final = ImageFile.TempPath (orig);
 					
 					if (filters.Convert (orig, final))
-						album.Add (photo, final);
+						album.Add (item, final);
 					else
-						album.Add (photo, orig);
+						album.Add (item, orig);
 					
 					if (final != orig)
 						System.IO.File.Delete (final);
@@ -862,7 +862,7 @@ namespace FSpot {
 						item.Sensitive = false;
 				}
 
-				ok_button.Sensitive = photos.Length > 0;
+				ok_button.Sensitive = items.Length > 0;
 				album_optionmenu.Sensitive = true;
 				album_button.Sensitive = true;
 			}

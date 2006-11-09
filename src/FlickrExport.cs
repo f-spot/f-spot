@@ -87,11 +87,12 @@ namespace FSpot {
 		}
 
 
-		public FlickrExport (IBrowsableCollection selection) : base ("flickr_export_dialog")
+		public FlickrExport (IBrowsableCollection selection, bool display_tags) : base ("flickr_export_dialog")
 		{
 			this.selection = selection;
 
 			IconView view = new IconView (selection);
+			view.DisplayTags = display_tags;
 			view.DisplayDates = false;
 
 			Dialog.Modal = false;
@@ -143,10 +144,10 @@ namespace FSpot {
 			} catch (FlickrException e) {
 				args.Exception = e;
 			}
-			
+
 			Gtk.Application.Invoke (this, args, delegate (object sender, EventArgs sargs) {
 				AuthorizationEventArgs wargs = (AuthorizationEventArgs) sargs;
-				
+
 				do_export_flickr.Sensitive = wargs.Auth != null;
 				if (wargs.Auth != null) {
 					token = wargs.Auth.Token;

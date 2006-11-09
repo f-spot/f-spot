@@ -29,8 +29,8 @@ namespace FSpot {
 			string path;
 			System.IO.FileInfo file_info;
 
-			foreach (Photo p in selection.Items) {
-				path = p.GetVersionPath(p.DefaultVersionId);
+			foreach (IBrowsableItem item in selection.Items) {
+				path = item.DefaultVersionUri.LocalPath;
 				if (System.IO.File.Exists (path)) {
 					file_info = new System.IO.FileInfo (path);
 					total_size += file_info.Length;

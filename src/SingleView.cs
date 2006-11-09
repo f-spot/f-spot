@@ -168,8 +168,33 @@ namespace FSpot {
 			if (command.Execute (RotateDirection.Counterclockwise, new IBrowsableItem [] { image_view.Item.Current })) {
 				collection.MarkChanged (image_view.Item.Index);
 			}
+		}		
+
+		void HandleExportToFlickr (object sender, System.EventArgs args)
+		{
+			new FSpot.FlickrExport (new PhotoArray (directory_view.Selection.Items), false);
 		}
-		
+
+		void HandleExportToPicasaweb (object sender, System.EventArgs args)
+		{
+			new FSpot.GoogleExport (new PhotoArray (directory_view.Selection.Items));
+		}
+
+		void HandleExportToGallery (object sender, System.EventArgs args)
+		{
+			new FSpot.GalleryExport (new PhotoArray (directory_view.Selection.Items)); 
+		}
+
+		void HandleExportToFolder (object sender, System.EventArgs args)
+		{
+			new FSpot.FolderExport (new PhotoArray (directory_view.Selection.Items));			
+		}
+
+		void HandleExportToCD (object sender, System.EventArgs args)
+		{
+			new FSpot.CDExport (new PhotoArray (directory_view.Selection.Items)); 
+		}
+
 		private void HandleSelectionChanged (FSpot.IBrowsableCollection selection) 
 		{
 			if (selection.Count > 0) {

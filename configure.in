@@ -79,19 +79,6 @@ AC_CHECK_LIB(jpeg, jpeg_start_decompress, [],
 AC_CHECK_HEADER(jpeglib.h, , [AC_MSG_ERROR([libjpeg not found])])
 LIBJPEG='-ljpeg'
 
-
-dnl --- Sqlite
-
-# Many distros don't have a dependency on sqlite for their
-# mono-data-sqlite packages, and the mono build process itself
-# doesn't require it.  But we do, so check for it here.
-PKG_CHECK_MODULES(SQLITE, sqlite, have_sqlite2="yes", have_sqlite2="no")
-PKG_CHECK_MODULES(SQLITE, sqlite3, have_sqlite3="yes", have_sqlite3="no")
-
-if test "x$have_sqlite2" = "xno" -a "x$have_sqlite3" = "xno"; then
-	AC_MSG_ERROR([You need to install either sqlite2 or sqlite3])
-fi
-
 dnl --- lcms
 
 PKG_CHECK_MODULES(LCMS, lcms >= $LCMS_REQUIRED, [], 

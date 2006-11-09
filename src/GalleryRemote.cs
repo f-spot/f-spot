@@ -77,20 +77,20 @@ namespace GalleryRemote {
 			gallery.MoveAlbum (this, name);
 		}
 
-		public void Add (Photo photo) 
+		public void Add (FSpot.IBrowsableItem item) 
 		{
-			Add (photo, photo.DefaultVersionUri.LocalPath);
+			Add (item, item.DefaultVersionUri.LocalPath);
 		}
 
-		public void Add (Photo photo, string path)		
+		public void Add (FSpot.IBrowsableItem item, string path)		
 		{
-			if (photo == null)
+			if (item == null)
 				Console.WriteLine ("NO PHOTO");
 			
 			gallery.AddItem (this, 
 					 path,
-					 Path.GetFileName (photo.DefaultVersionUri.LocalPath),
-					 photo.Description, 
+					 Path.GetFileName (item.DefaultVersionUri.LocalPath),
+					 item.Description, 
 					 true);
 		}
 		
