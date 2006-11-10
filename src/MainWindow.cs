@@ -2565,8 +2565,7 @@ public class MainWindow {
 	{
 		main_window.GdkWindow.Cursor = new Gdk.Cursor (Gdk.CursorType.Watch);
 		main_window.GdkWindow.Display.Sync ();
-		//query.Tags = tag_selection_widget.TagSelection; //always returns null with the new query widget
-		query.Tags = null;
+		query.RequestReload ();
 		main_window.GdkWindow.Cursor = null;
 	}
 

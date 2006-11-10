@@ -63,7 +63,6 @@ namespace FSpot {
 			set {
 				tags = value;
 				untagged = false;
-				photos = store.Query (tags, extra_condition, range);
 				RequestReload ();
 			}
 		}
@@ -79,7 +78,6 @@ namespace FSpot {
 				if (value != null)
 					untagged = false;
 
-				photos = store.Query (tags, extra_condition, range);
  				RequestReload ();
  			}
  		}
@@ -94,11 +92,6 @@ namespace FSpot {
 
 				range = value;
 				
-				if (untagged)
-					photos = store.QueryUntagged (range);
-				else
-					photos = store.Query (tags, extra_condition, range);
-
 				RequestReload ();
 			}
 		}
@@ -115,9 +108,7 @@ namespace FSpot {
 					if (untagged) {
 						tags = null;
 						extra_condition = null;
-						photos = store.QueryUntagged (range);
-					} else
-						photos = store.Query (tags, extra_condition, range);
+					}
 					
 					RequestReload ();
 				}
@@ -126,6 +117,11 @@ namespace FSpot {
 
 		public void RequestReload ()
 		{
+			if (untagged)
+				photos = store.QueryUntagged (range);
+			else
+				photos = store.Query (tags, extra_condition, range);
+
 			if (Changed != null)
 				Changed (this);
 		}
