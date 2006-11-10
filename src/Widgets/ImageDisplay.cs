@@ -42,7 +42,7 @@ namespace FSpot.Widgets {
 			if (item.Collection.Count > item.Index + 1) {
 				next = new ImageInfo (item.Collection [item.Index + 1].DefaultVersionUri);
 			}
-			delay = new Delay (40, new GLib.IdleHandler (DrawFrame));
+			delay = new Delay (20, new GLib.IdleHandler (DrawFrame));
 		}
 
 		protected override void OnDestroyed ()
@@ -109,6 +109,17 @@ namespace FSpot.Widgets {
 			return true;
 		}
 		
+		private static void SetClip (Graphics ctx, Gdk.Rectangle area) 
+		{
+			ctx.MoveTo (area.Left, area.Top);
+			ctx.LineTo (area.Right, area.Top);
+			ctx.LineTo (area.Right, area.Bottom);
+			ctx.LineTo (area.Left, area.Bottom);
+			
+			ctx.ClosePath ();
+			ctx.Clip ();
+		}
+		
 		private static void SetClip (Graphics ctx, Region region)
 		{
 			foreach (Gdk.Rectangle area in region.GetRectangles ()) {
@@ -125,16 +136,32 @@ namespace FSpot.Widgets {
 		private void OnExpose (Graphics ctx, Region region)
 		{
 			if (Transition != null) {
-				SetClip (ctx, region);
-				
-				if (! Transition.OnExpose (ctx, Allocation)) {
-					Console.WriteLine ("Frames = {0}", transition.Frames);
+				bool done = false;
+				foreach (Gdk.Rectangle area in region.GetRectangles ()) {
+					BlockProcessor proc = new BlockProcessor (area, 256);
+					Gdk.Rectangle subarea;
+					while (proc.Step (out subarea)) {
+						ctx.Save ();
+						SetClip (ctx, subarea);
+						done = ! Transition.OnExpose (ctx, Allocation);
+						ctx.Restore ();
+					}
+				}
+				if (done) {
+					System.Console.WriteLine ("frames = {0}", Transition.Frames);
 					Transition = null;
 				}
 			} else if (effect != null) {
-				SetClip (ctx, region);
-				
-				effect.OnExpose (ctx, Allocation);
+				foreach (Gdk.Rectangle area in region.GetRectangles ()) {
+					BlockProcessor proc = new BlockProcessor (area, 256);
+					Gdk.Rectangle subarea;
+					while (proc.Step (out subarea)) {
+						ctx.Save ();
+						SetClip (ctx, subarea);
+						effect.OnExpose (ctx, Allocation);
+						ctx.Restore ();
+					}
+				}
 			} else {
 				ctx.Operator = Operator.Source;
 				SurfacePattern p = new SurfacePattern (current.Surface);
@@ -266,7 +293,7 @@ namespace FSpot.Widgets {
 			public bool OnEvent (Widget w)
 			{
 				if (frames == 0) {
-					start = DateTime.Now;
+					start = DateTime.UtcNow;
 					Gdk.Rectangle viewport = w.Allocation;
 
 					zoom = Math.Max (viewport.Width / (double) info.Bounds.Width,
@@ -283,7 +310,7 @@ namespace FSpot.Widgets {
 				}
 				frames ++;
 
-				double percent = Math.Min ((DateTime.Now - start).Ticks / (double) duration.Ticks, 1.0);
+				double percent = Math.Min ((DateTime.UtcNow - start).Ticks / (double) duration.Ticks, 1.0);
 
 				double x = x_offset * percent;
 				double y = y_offset * percent;
@@ -300,7 +327,7 @@ namespace FSpot.Widgets {
 
 			public bool OnExpose (Graphics ctx, Gdk.Rectangle viewport)
 			{
-				double percent = Math.Min ((DateTime.Now - start).Ticks / (double) duration.Ticks, 1.0);
+				double percent = Math.Min ((DateTime.UtcNow - start).Ticks / (double) duration.Ticks, 1.0);
 
 				//Matrix m = info.Fill (allocation);
 				Matrix m = new Matrix ();
@@ -345,16 +372,17 @@ namespace FSpot.Widgets {
 			{
 				Gdk.Rectangle viewport = w.Allocation;
 				if (buffer == null) {
-					zoom = Math.Max (viewport.Width / (double) info.Bounds.Width,
+					double scale = Math.Max (viewport.Width / (double) info.Bounds.Width,
 							 viewport.Height / (double) info.Bounds.Height);
 					
-					zoom *= 1.2;		     
-					buffer = new ImageInfo (info, w, new Gdk.Rectangle (0, 0, (int) (info.Bounds.Width * zoom), (int) (info.Bounds.Height * zoom)));
-					start = DateTime.Now;
+					scale *= 1.2;		     
+					buffer = new ImageInfo (info, w, new Gdk.Rectangle (0, 0, (int) (info.Bounds.Width * scale), (int) (info.Bounds.Height * scale)));
+					start = DateTime.UtcNow;
 					//w.QueueDraw ();
+					zoom = 1.0;
 				}
 
-				double percent = Math.Min ((DateTime.Now - start).Ticks / (double) duration.Ticks, 1.0);
+				double percent = Math.Min ((DateTime.UtcNow - start).Ticks / (double) duration.Ticks, 1.0);
 
 				int n_x = (int) Math.Floor ((buffer.Bounds.Width - viewport.Width) * percent);
 				int n_y = (int) Math.Floor ((buffer.Bounds.Height - viewport.Height) * percent);
@@ -362,8 +390,8 @@ namespace FSpot.Widgets {
 				if (n_x != pan_x || n_y != pan_y) {
 					//w.GdkWindow.Scroll (- (n_x - pan_x), - (n_y - pan_y));
 					w.QueueDraw ();
-					//w.GdkWindow.ProcessUpdates (false);
-					Console.WriteLine ("{0} {1} elapsed", DateTime.Now, DateTime.Now - start);
+					w.GdkWindow.ProcessUpdates (false);
+					Console.WriteLine ("{0} {1} elapsed", DateTime.UtcNow, DateTime.UtcNow - start);
 				}
 				pan_x = n_x;
 				pan_y = n_y;
@@ -373,14 +401,17 @@ namespace FSpot.Widgets {
 
 			public bool OnExpose (Graphics ctx, Gdk.Rectangle viewport)
 			{
-				double percent = Math.Min ((DateTime.Now - start).Ticks / (double) duration.Ticks, 1.0);
+				double percent = Math.Min ((DateTime.UtcNow - start).Ticks / (double) duration.Ticks, 1.0);
 				frames ++;
 
 				//ctx.Matrix = m;
 				
 				SurfacePattern p = new SurfacePattern (buffer.Surface);
+				p.Filter = Filter.Fast;
 				Matrix m = new Matrix ();
-				m.Translate (pan_x, pan_y);
+				m.Translate (pan_x * zoom, pan_y * zoom);
+				m.Scale (zoom, zoom);
+				zoom *= .98;
 				p.Matrix = m;
 				ctx.Source = p;
 				ctx.Paint ();
@@ -404,7 +435,7 @@ namespace FSpot.Widgets {
 
 			public Slide (ImageInfo begin, ImageInfo end)
 			{
-				start = DateTime.Now;
+				start = DateTime.UtcNow;
 				this.begin = begin;
 				this.end = end;
 			}
@@ -415,7 +446,7 @@ namespace FSpot.Widgets {
 
 			public bool OnEvent (Widget w)
 			{
-				TimeSpan elapsed = DateTime.Now - start;
+				TimeSpan elapsed = DateTime.UtcNow - start;
 				double fraction = elapsed.Ticks / (double) duration.Ticks; 
 				
 				return fraction <= 1.0;
@@ -423,7 +454,7 @@ namespace FSpot.Widgets {
 
 			public bool OnExpose (Graphics ctx, Gdk.Rectangle allocation)
 			{
-				TimeSpan elapsed = DateTime.Now - start;
+				TimeSpan elapsed = DateTime.UtcNow - start;
 				double fraction = elapsed.Ticks / (double) duration.Ticks; 
 				
 				frames++;
@@ -486,7 +517,7 @@ namespace FSpot.Widgets {
 				w.QueueDraw ();
 				w.GdkWindow.ProcessUpdates (false);
 
-				TimeSpan elapsed = DateTime.Now - start;
+				TimeSpan elapsed = DateTime.UtcNow - start;
 				double fraction = elapsed.Ticks / (double) duration.Ticks; 
 
 				return fraction < 1.0;
@@ -495,10 +526,10 @@ namespace FSpot.Widgets {
 			public bool OnExpose (Graphics ctx, Gdk.Rectangle allocation)
 			{
 				if (frames == 0)
-					start = DateTime.Now;
+					start = DateTime.UtcNow;
 
 				frames ++;
-				TimeSpan elapsed = DateTime.Now - start;
+				TimeSpan elapsed = DateTime.UtcNow - start;
 				double fraction = elapsed.Ticks / (double) duration.Ticks; 
 				double opacity = Math.Sin (Math.Min (fraction, 1.0) * Math.PI * 0.5);
 
@@ -530,7 +561,7 @@ namespace FSpot.Widgets {
 							     frames,
 							     sur.Status,
 							     p.Status,
-							     opacity, fraction, elapsed, start, DateTime.Now));
+							     opacity, fraction, elapsed, start, DateTime.UtcNow));
 #endif
 				sur.Destroy ();
 				p.Destroy ();

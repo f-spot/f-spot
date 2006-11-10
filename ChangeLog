@@ -1,3 +1,11 @@
+2006-11-10  Larry Ewing  <lewing@novell.com>
+
+	* src/Widgets/ImageDisplay.cs: use the block processor to try to
+	break the operations into chunks.  Play with a couple of the other
+	effects.
+
+	* src/BlockProcessor.cs: simple class to split up Rectangles.
+
 2006-11-10  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/MainWindows.cs:
