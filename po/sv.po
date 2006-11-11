@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-04 10:30+0100\n"
-"PO-Revision-Date: 2006-11-04 14:44+0100\n"
+"POT-Creation-Date: 2006-11-11 10:29+0100\n"
+"PO-Revision-Date: 2006-11-11 13:41+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,6 @@ msgid "Photo Manager"
 msgstr "Fotohanterare"
 
 #: ../f-spot-view.desktop.in.in.h:1
-#: ../src/f-spot.glade.h:113
 msgid "F-Spot Photo Viewer"
 msgstr "Fotovisaren F-Spot"
 
@@ -259,7 +258,7 @@ msgstr "Överför bild \"{0}\" till cd"
 
 #. This indicates the current photo is photo {0} of {1} out of photos
 #: ../src/CDExport.cs:107
-#: ../src/FlickrExport.cs:251
+#: ../src/FlickrExport.cs:252
 #: ../src/GalleryExport.cs:701
 #: ../src/ProgressDialog.cs:82
 #: ../src/TimeDialog.cs:141
@@ -268,7 +267,7 @@ msgid "{0} of {1}"
 msgstr "{0} av {1}"
 
 #: ../src/CDExport.cs:122
-#: ../src/FlickrExport.cs:257
+#: ../src/FlickrExport.cs:258
 #: ../src/FolderExport.cs:191
 #: ../src/GalleryExport.cs:723
 #: ../src/PicasaWebExport.cs:601
@@ -306,7 +305,7 @@ msgstr "Fel vid sparande av justerat foto"
 
 #: ../src/ColorDialog.cs:316
 #: ../src/Loupe.cs:58
-#: ../src/MainWindow.cs:1906
+#: ../src/MainWindow.cs:1909
 #: ../src/PhotoView.cs:268
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
@@ -420,47 +419,47 @@ msgstr "Välkommen {0}, du är ansluten till Flickr.com"
 msgid "Sign in as a different user"
 msgstr "Logga in som annan användare"
 
-#: ../src/FlickrExport.cs:211
+#: ../src/FlickrExport.cs:212
 msgid "Unable to log on"
 msgstr "Kunde inte logga in"
 
-#: ../src/FlickrExport.cs:231
+#: ../src/FlickrExport.cs:232
 #, csharp-format
 msgid "Waiting for response {0} of {1}"
 msgstr "Väntar på svar {0} av {1}"
 
-#: ../src/FlickrExport.cs:246
+#: ../src/FlickrExport.cs:247
 #: ../src/GalleryExport.cs:697
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Skickar upp bild \"{0}\""
 
-#: ../src/FlickrExport.cs:259
+#: ../src/FlickrExport.cs:260
 #: ../src/GalleryExport.cs:725
 #: ../src/PicasaWebExport.cs:603
 msgid "Upload Complete"
 msgstr "Sändning färdig"
 
-#: ../src/FlickrExport.cs:263
+#: ../src/FlickrExport.cs:264
 #, csharp-format
 msgid "Error Uploading To Flickr: {0}"
 msgstr "Fel vid sändning till Flickr: {0}"
 
-#: ../src/FlickrExport.cs:265
+#: ../src/FlickrExport.cs:266
 #: ../src/GalleryExport.cs:730
 #: ../src/PicasaWebExport.cs:612
 msgid "Error"
 msgstr "Fel"
 
-#: ../src/FlickrExport.cs:324
+#: ../src/FlickrExport.cs:325
 msgid "Unable to log on."
 msgstr "Kunde inte logga in."
 
-#: ../src/FlickrExport.cs:325
+#: ../src/FlickrExport.cs:326
 msgid "F-Spot was unable to log on to Flickr.  Make sure you have given the authentication using Flickr web browser interface."
 msgstr "F-Spot kunde inte logga in på Flickr. Kontrollera att du har gjort inloggningen med hjälp av Flickrs webbläsargränssnitt."
 
-#: ../src/FlickrExport.cs:342
+#: ../src/FlickrExport.cs:343
 #: ../src/GalleryExport.cs:652
 #: ../src/PicasaWebExport.cs:524
 msgid "Uploading Pictures"
@@ -938,26 +937,30 @@ msgid "Export _titles and comments"
 msgstr "Exportera _titlar och kommentarer"
 
 #: ../src/f-spot.glade.h:107
+msgid "Export to CD..."
+msgstr "Exportera till cd..."
+
+#: ../src/f-spot.glade.h:108
 msgid "Export to _Flickr..."
 msgstr "Exportera till _Flickr..."
 
-#: ../src/f-spot.glade.h:108
+#: ../src/f-spot.glade.h:109
 msgid "Export to _Folder..."
 msgstr "Exportera till _mapp..."
 
-#: ../src/f-spot.glade.h:109
+#: ../src/f-spot.glade.h:110
 msgid "Export to _Picasaweb..."
 msgstr "Exportera till _Picasaweb..."
 
-#: ../src/f-spot.glade.h:110
+#: ../src/f-spot.glade.h:111
 msgid "Export to _Web Gallery..."
 msgstr "Exportera till _webbgalleri..."
 
-#: ../src/f-spot.glade.h:111
+#: ../src/f-spot.glade.h:112
 msgid "Extra large"
 msgstr "Extra stor"
 
-#: ../src/f-spot.glade.h:112
+#: ../src/f-spot.glade.h:113
 msgid "F-Spot"
 msgstr "F-Spot"
 
@@ -1091,7 +1094,7 @@ msgstr "Öppna _målmapp när exporten är färdig"
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
 #: ../src/f-spot.glade.h:151
-#: ../src/PhotoStore.cs:570
+#: ../src/PhotoStore.cs:571
 msgid "Original"
 msgstr "Original"
 
@@ -1724,7 +1727,7 @@ msgid "_Clear Date Range"
 msgstr "_Rensa datumintervall"
 
 #: ../src/ImportCommand.cs:28
-#: ../src/SingleView.cs:256
+#: ../src/SingleView.cs:295
 msgid "Select Folder"
 msgstr "Välj mapp"
 
@@ -1929,7 +1932,7 @@ msgid "Unknown IIM DataSet"
 msgstr "Okänt IIM DataSet"
 
 #: ../src/Loupe.cs:57
-#: ../src/MainWindow.cs:1905
+#: ../src/MainWindow.cs:1908
 msgid "Error saving sharpened photo"
 msgstr "Fel vid sparande av foto med ökad skärpa"
 
@@ -1938,17 +1941,17 @@ msgid "Sharpen"
 msgstr "Gör skarpare"
 
 #: ../src/Loupe.cs:97
-#: ../src/MainWindow.cs:1872
+#: ../src/MainWindow.cs:1875
 msgid "Amount:"
 msgstr "Mängd:"
 
 #: ../src/Loupe.cs:98
-#: ../src/MainWindow.cs:1873
+#: ../src/MainWindow.cs:1876
 msgid "Radius:"
 msgstr "Radie:"
 
 #: ../src/Loupe.cs:99
-#: ../src/MainWindow.cs:1874
+#: ../src/MainWindow.cs:1877
 msgid "Threshold:"
 msgstr "Tröskelvärde:"
 
@@ -1968,28 +1971,28 @@ msgstr "Visa foton i helskärmsläge"
 msgid "View photos in a slideshow"
 msgstr "Visa foton i ett bildspel"
 
-#: ../src/MainWindow.cs:780
+#: ../src/MainWindow.cs:781
 msgid "Error loading database."
 msgstr "Fel vid inläsning av databas."
 
-#: ../src/MainWindow.cs:781
+#: ../src/MainWindow.cs:782
 #, csharp-format
 msgid "F-Spot encountered an error while loading the photo database. The old database has be moved to {0} and a new database has been created."
 msgstr "F-Spot påträffade ett fel vid inläsning av fotodatabasen. Den gamla databasen måste flyttas till {0} och en ny databas måste skapas."
 
-#: ../src/MainWindow.cs:1337
+#: ../src/MainWindow.cs:1339
 msgid "No cameras detected."
 msgstr "Inga kameror hittades"
 
-#: ../src/MainWindow.cs:1338
+#: ../src/MainWindow.cs:1340
 msgid "F-Spot was unable to find any cameras attached to this system.  Double check that the camera is connected and has power"
 msgstr "F-Spot kunde inte hitta några kameror anslutna till detta system.  Kontrollera att kameran är ansluten och att den har ström"
 
-#: ../src/MainWindow.cs:1378
+#: ../src/MainWindow.cs:1380
 msgid "Error connecting to camera"
 msgstr "Fel vid anslutning till kamera"
 
-#: ../src/MainWindow.cs:1379
+#: ../src/MainWindow.cs:1381
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Tog emot fel \"{0}\" vid anslutning till kamera"
@@ -1997,7 +2000,7 @@ msgstr "Tog emot fel \"{0}\" vid anslutning till kamera"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1546
+#: ../src/MainWindow.cs:1548
 msgid "translator-credits"
 msgstr ""
 "Daniel Nylander\n"
@@ -2007,46 +2010,59 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "tp-sv@listor.tp-sv.se"
 
-#: ../src/MainWindow.cs:1553
+#: ../src/MainWindow.cs:1555
 msgid "Copyright © 2003-2006 Novell Inc."
 msgstr "Copyright © 2003-2006 Novell Inc."
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1785
+#: ../src/MainWindow.cs:1788
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Sammanfoga den markerade taggen"
 msgstr[1] "Sammanfoga de {0} markerade taggarna"
 
-#: ../src/MainWindow.cs:1812
+#: ../src/MainWindow.cs:1815
 msgid "This operation will merge the selected tags and any sub-tags into a single tag."
 msgstr "Denna operation kommer att slå ihop de markerade taggarna och deras undertaggar till en enda tagg."
 
-#: ../src/MainWindow.cs:1814
+#: ../src/MainWindow.cs:1817
 msgid "_Merge Tags"
 msgstr "_Slå ihop taggar"
 
-#: ../src/MainWindow.cs:1863
+#: ../src/MainWindow.cs:1866
 msgid "Unsharp Mask"
 msgstr "Oskarp mask"
 
-#: ../src/MainWindow.cs:2080
+#: ../src/MainWindow.cs:2089
+#: ../src/SingleView.cs:415
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} foto"
 msgstr[1] "{0} foton"
 
-#: ../src/MainWindow.cs:2159
+#: ../src/MainWindow.cs:2092
+#, csharp-format
+msgid " out of {0}"
+msgstr " av {0}"
+
+#: ../src/MainWindow.cs:2095
+#, csharp-format
+msgid " ({0} selected)"
+msgid_plural " ({0} selected)"
+msgstr[0] " ({0} markerad)"
+msgstr[1] " ({0} markerade)"
+
+#: ../src/MainWindow.cs:2179
 msgid "_Ok"
 msgstr "_OK"
 
-#: ../src/MainWindow.cs:2160
+#: ../src/MainWindow.cs:2180
 msgid "Error Deleting Picture"
 msgstr "Fel vid borttagning av foto"
 
-#: ../src/MainWindow.cs:2165
+#: ../src/MainWindow.cs:2185
 #, csharp-format
 msgid ""
 "No permission to delete the file:\n"
@@ -2055,7 +2071,7 @@ msgstr ""
 "Har inte rättighet att ta bort filen: \n"
 "{0}"
 
-#: ../src/MainWindow.cs:2169
+#: ../src/MainWindow.cs:2189
 #, csharp-format
 msgid ""
 "An error of type {0} occurred while deleting the file:\n"
@@ -2064,104 +2080,104 @@ msgstr ""
 "Ett fel av typen {0} inträffade under borttagning av filen:\n"
 "{1}"
 
-#: ../src/MainWindow.cs:2195
+#: ../src/MainWindow.cs:2215
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Ta bort det markerade fotot permanent?"
 msgstr[1] "Ta bort de {0} markerade fotona permanent?"
 
-#: ../src/MainWindow.cs:2199
+#: ../src/MainWindow.cs:2219
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Detta tar bort alla versioner av det markerade fotot från din disk."
 msgstr[1] "Detta tar bort alla versioner av de markerade foton från din disk."
 
-#: ../src/MainWindow.cs:2202
+#: ../src/MainWindow.cs:2222
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Ta bort foto"
 msgstr[1] "_Ta bort foton"
 
-#: ../src/MainWindow.cs:2230
+#: ../src/MainWindow.cs:2250
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Ta bort det markerade fotot från F-Spot?"
 msgstr[1] "Ta bort de {0} markerade fotona från F-Spot?"
 
-#: ../src/MainWindow.cs:2235
+#: ../src/MainWindow.cs:2255
 msgid "If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again."
 msgstr "Om du tar bort foton från F-Spot-katalogen kommer all tagginformation för dem att gå förlorad. Fotona finns dock kvar på din dator och kan importeras in till F-Spot på nytt."
 
 # SUN CHANGED MESSAGE
-#: ../src/MainWindow.cs:2236
+#: ../src/MainWindow.cs:2256
 msgid "_Remove from Catalog"
 msgstr "_Ta bort från katalog"
 
-#: ../src/MainWindow.cs:2291
+#: ../src/MainWindow.cs:2313
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Ta bort taggen \"{0}\"?"
 
-#: ../src/MainWindow.cs:2293
+#: ../src/MainWindow.cs:2315
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Ta bort de {0} markerade taggarna?"
 
-#: ../src/MainWindow.cs:2296
+#: ../src/MainWindow.cs:2318
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr "Om du tar bort en tagg så försvinner alla dess associationer med foton."
 
-#: ../src/MainWindow.cs:2297
+#: ../src/MainWindow.cs:2319
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Ta bort tagg"
 msgstr[1] "_Ta bort taggar"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2311
+#: ../src/MainWindow.cs:2333
 msgid "Tag is not empty"
 msgstr "Taggen är inte tom"
 
-#: ../src/MainWindow.cs:2312
+#: ../src/MainWindow.cs:2334
 #, csharp-format
 msgid "Can not delete tags that have tags within them.  Please delete tags under \"{0}\" first"
 msgstr "Kan inte ta bort taggar som har andra taggar under sig.  Vänligen ta bort alla taggar under \"{0}\" först"
 
-#: ../src/MainWindow.cs:2715
+#: ../src/MainWindow.cs:2736
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Rotera det markerade fotot åt vänster"
 msgstr[1] "Rotera de markerade fotona åt vänster"
 
-#: ../src/MainWindow.cs:2728
+#: ../src/MainWindow.cs:2749
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Rotera det markerade fotot åt höger"
 msgstr[1] "Rotera de markerade fotona åt höger"
 
-#: ../src/MainWindow.cs:2736
+#: ../src/MainWindow.cs:2757
 #, csharp-format
 msgid "Find Selected Tag"
 msgid_plural "Find Selected Tags"
 msgstr[0] "Sök efter vald tagg"
 msgstr[1] "Sök efter valda taggar"
 
-#: ../src/MainWindow.cs:2740
+#: ../src/MainWindow.cs:2761
 #, csharp-format
 msgid "Find Selected Tag With"
 msgid_plural "Find Selected Tags With"
 msgstr[0] "Sök efter vald tagg med"
 msgstr[1] "Sök efter valda taggar med"
 
-#: ../src/MainWindow.cs:2757
+#: ../src/MainWindow.cs:2778
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Skapa en ny version?"
 msgstr[1] "Skapa nya versioner?"
 
-#: ../src/MainWindow.cs:2759
+#: ../src/MainWindow.cs:2780
 #, csharp-format
 msgid "Before launching {1}, should F-Spot create a new version of the selected photo to preserve the original?"
 msgid_plural "Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?"
@@ -2310,14 +2326,14 @@ msgstr "Sätt tagg"
 msgid "Remove Tag"
 msgstr "Ta bort tagg"
 
-#: ../src/PhotoStore.cs:367
+#: ../src/PhotoStore.cs:368
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "Ändrad"
 msgstr[1] "Ändrad ({0})"
 
-#: ../src/PhotoStore.cs:386
+#: ../src/PhotoStore.cs:387
 #, csharp-format
 msgid "Modified in {1}"
 msgid_plural "Modified in {1} ({0})"
@@ -2508,7 +2524,7 @@ msgstr "Tog emot felet \"{0}\" under försöket att rotera {1}"
 msgid "Error while rotating photo."
 msgstr "Fel vid rotation av foto"
 
-#: ../src/SingleView.cs:253
+#: ../src/SingleView.cs:292
 msgid "Open"
 msgstr "Öppna"
 
