@@ -152,7 +152,10 @@ public class Driver {
 						StockIcons.Initialize ();
 						
 						Catalog.Init ("f-spot", Defines.LOCALE_DIR);
-						Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {PixbufUtils.LoadFromAssembly ("f-spot-logo.png")};
+						Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {PixbufUtils.LoadThemeIcon ("f-spot", 16),
+												PixbufUtils.LoadThemeIcon ("f-spot", 22),
+												PixbufUtils.LoadThemeIcon ("f-spot", 32),
+												PixbufUtils.LoadThemeIcon ("f-spot", 48)};
 						
 						core = new Core ();
 						core.RegisterServer ();
