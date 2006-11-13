@@ -29,7 +29,7 @@ namespace FSpot {
 			if (!composited)
 				return;
 			
-			SetWinOpacity (0.0);
+			CompositeUtils.SetWinOpacity (win, 0.0);
 		}
 		
 		public void HandleExposeEvent (object sender, ExposeEventArgs args)
@@ -43,23 +43,15 @@ namespace FSpot {
 		
 		public void HandleUnmapped (object sender, EventArgs args)
 		{
-			fade_delay.Stop ();
-		}
-		
-		private void SetWinOpacity (double opacity)
-		{
-			CompositeUtils.ChangeProperty (win.GdkWindow, 
-						       Atom.Intern ("_NET_WM_WINDOW_OPACITY", false),
-						       Atom.Intern ("CARDINAL", false),
-						       PropMode.Replace,
-						       new uint [] { (uint) (0xffffffff * opacity) });
+			if (fade_delay != null)
+				fade_delay.Stop ();
 		}
 		
 		public bool Update ()
 		{
 			double percent = Math.Min ((DateTime.Now - start).Ticks / (double) duration.Ticks, 1.0);
 			double opacity = Math.Sin (percent * Math.PI * 0.2);
-			SetWinOpacity (percent);
+			CompositeUtils.SetWinOpacity (win, percent);
 			
 			bool stop = percent >= 1.0;
 
@@ -71,13 +63,16 @@ namespace FSpot {
 	}			
 	
 	[Binding(Gdk.Key.Escape, "Quit")]
+#if ENABLE_CRACK
+	[Binding(Gdk.Key.D, "PlayPause")]
+#endif
 	public class FullScreenView : Gtk.Window {
 		private ScrolledView scroll;
 		private PhotoImageView view;
-		private Gtk.Button forward_button;
-		private Gtk.Button back_button;
 		private TagView tag_view;
-
+		private Notebook notebook;
+		private ImageDisplay display;
+		
 		ActionGroup actions;
 		const string ExitFullScreen = "ExitFullScreen";
 		const string NextPicture = "NextPicture";
@@ -96,12 +91,17 @@ namespace FSpot {
 				});
 
 				new FadeIn (this, 3);
-				
+				notebook = new Notebook ();
+				notebook.ShowBorder = false;
+				notebook.ShowTabs = false;
+				notebook.Show ();
+
 				scroll = new ScrolledView ();
 				view = new PhotoImageView (collection);
 				view.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
 				view.PointerMode = ImageView.PointerModeType.Scroll;
-				this.Add (scroll);
+				notebook.AppendPage (scroll, null);
+				this.Add (notebook);
 				view.Show ();
 				view.MotionNotifyEvent += HandleViewMotion;
 
@@ -120,7 +120,7 @@ namespace FSpot {
 				hhbox.ShowAll ();
 				close.Clicked += ExitAction;
 				close.Show ();
-				scroll.ShowControls ();
+				//scroll.ShowControls ();
 				
 				scroll.Show ();
 				this.Decorated = false;
@@ -214,6 +214,20 @@ namespace FSpot {
 				PhotoPopup popup = new PhotoPopup ();
 				popup.Activate (this.Toplevel, args.Event);
 			}
+		}
+
+		public bool PlayPause ()
+		{
+			if (display == null) {
+				display = new ImageDisplay (view.Item);
+				notebook.AppendPage (display, null);
+				display.Show ();
+			}
+			if (notebook.CurrentPage == 0)
+				notebook.CurrentPage = 1;
+			else
+				notebook.CurrentPage = 0;
+			return true;
 		}
 
 		public void Quit ()
