@@ -38,6 +38,8 @@ namespace FSpot {
 
 		FullScreenView fsview;
 
+		private static Gtk.Tooltips toolTips = new Gtk.Tooltips ();
+
 		public SingleView () : this (FSpot.Global.HomeDirectory) {}
 
 
@@ -71,7 +73,13 @@ namespace FSpot {
 			toolbar_hbox.PackStart (toolbar);
 			GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-270", new System.EventHandler (HandleRotate270Command));
 			GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-90", new System.EventHandler (HandleRotate90Command));
+
 			toolbar.AppendSpace ();
+
+			Widget fs_button = GtkUtil.MakeToolbarButton (toolbar, "f-spot-fullscreen", new System.EventHandler (HandleViewFullscreen));
+			SetTip (fs_button, Catalog.GetString ("View photos fullscreen"));
+			Widget ss_button = GtkUtil.MakeToolbarButton (toolbar, "f-spot-slideshow", new System.EventHandler (HandleViewSlideshow));
+			SetTip (ss_button, Catalog.GetString ("View photos in a slideshow"));
 
 			collection = new UriCollection (uris);
 
@@ -497,6 +505,12 @@ namespace FSpot {
 			get { 
 				return window;
 			}
+		}
+
+
+		public static void SetTip (Widget widget, string tip)
+		{
+			toolTips.SetTip (widget, tip, null);
 		}
 	}
 }
