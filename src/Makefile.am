@@ -46,6 +46,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Cairo/XcbSurface.cs		\
 	$(srcdir)/Cairo/XlibSurface.cs		\
 	$(srcdir)/AsyncPixbufLoader.cs		\
+	$(srcdir)/BlockProcessor.cs		\
 	$(srcdir)/Bim.cs			\
 	$(srcdir)/BitConverter.cs		\
 	$(srcdir)/PhotoArray.cs 		\
@@ -157,7 +158,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Vector.cs			\
 	$(srcdir)/ThumbnailCommand.cs		\
 	$(srcdir)/QueryView.cs			\
-	$(srcdir)/QueryWidget.cs			\
+	$(srcdir)/QueryWidget.cs		\
 	$(srcdir)/ZoomUtils.cs			\
 	$(srcdir)/GPhotoCamera.cs		\
 	$(srcdir)/CameraSelectionDialog.cs	\

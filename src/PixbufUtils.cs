@@ -3,6 +3,7 @@ using System.Collections;
 using System.Runtime.InteropServices;
 using System;
 using System.IO;
+using FSpot;
 
 /**
   1        2       3      4         5            6           7          8
@@ -801,26 +802,18 @@ class PixbufUtils {
 						 trect.Width, trect.Height);
 
 		Gdk.Rectangle subarea;
-		while (rect.Y < args.Y + args.Height) {
-			while (rect.X < args.X + args.Width) {
-				rect.Intersect (args, out subarea);
-				Gdk.Rectangle trans = TransformOrientation (src, subarea, orientation);
+		BlockProcessor proc = new BlockProcessor (args, 256);
+		while (proc.Step (out subarea)) {
+			Gdk.Rectangle trans = TransformOrientation (src, subarea, orientation);
+			Gdk.Pixbuf ssub = new Gdk.Pixbuf (src, subarea.X, subarea.Y,
+							  subarea.Width, subarea.Height);
 
-			        Gdk.Pixbuf ssub = new Gdk.Pixbuf (src, subarea.X, subarea.Y,
-								  subarea.Width, subarea.Height);
+			Gdk.Pixbuf tsub = new Gdk.Pixbuf (tmp, 0, 0, trans.Width, trans.Height);
+			CopyWithOrientation (ssub, tsub, orientation);
 
-				Gdk.Pixbuf tsub = new Gdk.Pixbuf (tmp, 0, 0, trans.Width, trans.Height);
-
-				CopyWithOrientation (ssub, tsub, orientation);
-
-				tsub.CopyArea (0, 0, trans.Width, trans.Height, dest, trans.X, trans.Y);
-				
-				ssub.Dispose ();
-				tsub.Dispose ();
-				rect.X += rect.Width;
-			}
-			rect.X = args.X;
-			rect.Y += rect.Height;
+			tsub.CopyArea (0, 0, trans.Width, trans.Height, dest, trans.X, trans.Y);
+			ssub.Dispose ();
+			tsub.Dispose ();
 		}
 
 		tmp.Dispose ();
