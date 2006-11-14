@@ -204,7 +204,6 @@ RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-hidden.png,f-spot-hidden.png 		\
 	-resource:$(top_srcdir)/icons/f-spot-imported-xmp-tags.png,f-spot-imported-xmp-tags.png	\
 	-resource:$(top_srcdir)/icons/f-spot-loading.png,f-spot-loading.png		\
-	-resource:$(top_srcdir)/icons/f-spot-logo.png,f-spot-logo.png			\
 	-resource:$(top_srcdir)/icons/f-spot-new-tag.png,f-spot-new-tag.png		\
 	-resource:$(top_srcdir)/icons/f-spot-not.png,f-spot-not.png		\
 	-resource:$(top_srcdir)/icons/f-spot-other.png,f-spot-other.png			\
@@ -223,6 +222,10 @@ RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-simple.css,f-spot-simple.css	\
 	-resource:$(top_srcdir)/icons/f-spot.js,f-spot.js	\
 	-resource:$(top_srcdir)/icons/f-spot-logo-tango.svg,f-spot-logo-tango.svg	\
+	-resource:$(top_srcdir)/icons/f-spot-16.png,f-spot-16.png			\
+	-resource:$(top_srcdir)/icons/f-spot-22.png,f-spot-22.png			\
+	-resource:$(top_srcdir)/icons/f-spot-32.png,f-spot-32.png			\
+	-resource:$(top_srcdir)/icons/f-spot-48.svg,f-spot-48.svg			\
 	-resource:$(srcdir)/dces.rdf,dces.rdf			\
 	-resource:$(srcdir)/f-spot.glade,f-spot.glade
 

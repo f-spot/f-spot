@@ -1,3 +1,10 @@
+2006-11-14  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Makefile.am:
+	* src/ImportCommand.cs:
+	* src/main.cs: Load F-Spot icons from assembly instead of from theme.
+	Enable installations on other prefixes than /usr/ or /usr/local/
+
 2006-11-14  Thomas Van Machelen  <thomas.vanmachelen@gmail.com>
 
 	* src/SingleView.cs: add fullscreen and slideshow buttons to toolbar.
