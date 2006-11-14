@@ -40,6 +40,7 @@ namespace FSpot
 		public const string VIEWER_HEIGHT = "/apps/f-spot/ui/viewer_height";
 		public const string VIEWER_MAXIMIZED = "/apps/f-spot/ui/viewer_maximized";
 		public const string VIEWER_SHOW_TOOLBAR = "/apps/f-spot/ui/viewer_show_toolbar";
+		public const string VIEWER_SHOW_FILENAMES = "/apps/f-spot/ui/viewer_show_filenames";
 		
 		public const string SHOW_TOOLBAR = "/apps/f-spot/ui/show_toolbar";
 		public const string SHOW_SIDEBAR = "/apps/f-spot/ui/show_sidebar";
@@ -138,6 +139,7 @@ namespace FSpot
 			case SHOW_TIMELINE:
 			case SHOW_TAGS:
 			case SHOW_DATES:
+			case VIEWER_SHOW_FILENAMES:
 			case EXPORT_PICASAWEB_SCALE:
 			case EXPORT_PICASAWEB_ROTATE:
 			case EXPORT_PICASAWEB_BROWSER:

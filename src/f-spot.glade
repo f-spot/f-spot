@@ -12349,6 +12349,16 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		    </widget>
 		  </child>
 
+                  <child>
+                    <widget class="GtkCheckMenuItem" id="filenames_item">
+                      <property name="visible">True</property>
+                      <property name="label" translatable="yes">Display File Names</property>
+                      <property name="use_underline">True</property>
+                      <property name="active">False</property>
+                      <signal name="activate" handler="HandleViewFilenames" last_modification_time="Tue, 14 Nov 2006 13:05:41 GMT"/>
+                    </widget>
+                  </child>
+
 		  <child>
 		    <widget class="GtkSeparatorMenuItem" id="separator25">
 		      <property name="visible">True</property>

@@ -13,6 +13,7 @@ namespace FSpot {
 
 		[Glade.Widget] Gtk.CheckMenuItem side_pane_item;
 		[Glade.Widget] Gtk.CheckMenuItem toolbar_item;
+		[Glade.Widget] Gtk.CheckMenuItem filenames_item;
 		
 		[Glade.Widget] Gtk.MenuItem zoom_in;
 		[Glade.Widget] Gtk.MenuItem zoom_out;
@@ -118,6 +119,8 @@ namespace FSpot {
 			far_image.SetFromStock ("f-spot-stock_far", Gtk.IconSize.SmallToolbar);
 
 			slide_delay = new FSpot.Delay (new GLib.IdleHandler (SlideShow));
+
+			LoadPreference (Preferences.VIEWER_SHOW_FILENAMES);
 
 			Preferences.SettingChanged += OnPreferencesChanged;
 			window.DeleteEvent += HandleDeleteEvent;
@@ -226,6 +229,7 @@ namespace FSpot {
 				if (metadata_dialog != null)
 					metadata_dialog.InfoDisplay.Photo = image_view.Item.Current;
 			}
+			UpdateStatusLabel ();
 		}
 
 		private void HandleItemChanged (BrowsablePointer pointer, BrowsablePointerChangedArgs old)
@@ -271,6 +275,12 @@ namespace FSpot {
 			
 			metadata_dialog.ShowAll ();
 			metadata_dialog.Destroyed += HandleMetadataDestroyed;
+		}
+
+		private void HandleViewFilenames (object sender, System.EventArgs args)
+		{
+			directory_view.DisplayFilenames = filenames_item.Active; 
+			UpdateStatusLabel ();
 		}
 
 		private void HandleAbout (object sender, System.EventArgs args)
@@ -420,7 +430,14 @@ namespace FSpot {
 
 		private void UpdateStatusLabel ()
 		{
-			status_label.Text = String.Format (Catalog.GetPluralString ("{0} Photo", "{0} Photos", collection.Count), collection.Count);
+			IBrowsableItem item = image_view.Item.Current;
+			System.Text.StringBuilder sb = new System.Text.StringBuilder();
+			if (filenames_item.Active && item != null)
+				sb.Append (item.Name + "  -  ");
+
+			sb.AppendFormat (Catalog.GetPluralString ("{0} Photo", "{0} Photos", collection.Count), collection.Count);
+			status_label.Text = sb.ToString ();
+
 		}
 
 		private void HandleFileClose (object sender, System.EventArgs args)
@@ -443,6 +460,7 @@ namespace FSpot {
 			}
 		
 			Preferences.Set (Preferences.VIEWER_SHOW_TOOLBAR,	toolbar_hbox.Visible);
+			Preferences.Set (Preferences.VIEWER_SHOW_FILENAMES, filenames_item.Active);
 		}
 
 		private void HandleFileOpen (object sender, System.EventArgs args)
@@ -497,6 +515,11 @@ namespace FSpot {
 					toolbar_item.Active = (bool) val;
 
 				toolbar_hbox.Visible = (bool) val;
+				break;
+
+			case Preferences.VIEWER_SHOW_FILENAMES:
+				if (filenames_item.Active != (bool) val)
+					filenames_item.Active = (bool) val;
 				break;
 			}
 		}

@@ -5,6 +5,15 @@
 	* src/main.cs: Load F-Spot icons from assembly instead of from theme.
 	Enable installations on other prefixes than /usr/ or /usr/local/
 
+	* src/IconView.cs: adding a DisplayFilenames property and an
+	implementation to do that.
+
+	* src/Preferences.cs: new VIEWER_SHOW_FILENAMES preference.
+
+	* src/f-spot.glade:
+	* src/SingleView.cs: Optionnaly displays filenames below icons and in
+	the 'status' bar. Fixes bgo #375038.
+
 2006-11-14  Thomas Van Machelen  <thomas.vanmachelen@gmail.com>
 
 	* src/SingleView.cs: add fullscreen and slideshow buttons to toolbar.

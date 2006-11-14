@@ -113,6 +113,17 @@ public class IconView : Gtk.Layout {
 		}
 	}
 
+	private bool display_filenames = false;
+	public bool DisplayFilenames {
+		get { return display_filenames; }
+		set {
+			if (value != display_filenames) {
+				display_filenames = value;
+				QueueResize ();
+			}
+		}
+	}
+
 	// Size of the frame around the thumbnail.
 	protected int cell_border_width = 10;
 
@@ -638,6 +649,12 @@ public class IconView : Gtk.Layout {
 			cell_height += PangoPixels (metrics.Ascent + metrics.Descent);
 		}
 
+		if (DisplayFilenames && this.Style != null) {
+			Pango.FontMetrics metrics = this.PangoContext.GetMetrics (this.Style.FontDescription,
+										Pango.Language.FromString ("en_US"));
+			cell_height += PangoPixels (metrics.Ascent + metrics.Descent);
+		}
+
 		int num_thumbnails;
 		if (collection != null)
 			num_thumbnails = collection.Count;
@@ -860,12 +877,41 @@ public class IconView : Gtk.Layout {
 			if (DisplayTags)
 				layout_bounds.Y -= tag_icon_size;
 
+			if (DisplayFilenames) {
+				Pango.FontMetrics metrics = this.PangoContext.GetMetrics (this.Style.FontDescription,
+						Pango.Language.FromString ("en_US"));
+				layout_bounds.Y -= PangoPixels (metrics.Ascent + metrics.Descent); 
+			}
+
 			if (layout_bounds.Intersect (area, out region)) {
 				Style.PaintLayout (Style, BinWindow, cell_state,
 						   true, area, this, "IconView", 
 						   layout_bounds.X, layout_bounds.Y, 
 						   layout);
 			}
+		}
+
+		if (DisplayFilenames) {
+
+			string filename = System.IO.Path.GetFileName (photo.DefaultVersionUri.LocalPath);
+			Pango.Layout layout = new Pango.Layout (this.PangoContext);
+			layout.SetText (filename);
+			
+			layout.GetPixelSize (out layout_bounds.Width, out layout_bounds.Height);
+
+			layout_bounds.Y = bounds.Y + bounds.Height - cell_border_width - layout_bounds.Height;
+			layout_bounds.X = bounds.X + (bounds.Width - layout_bounds.Width) / 2;
+			
+			if (DisplayTags)
+				layout_bounds.Y -= tag_icon_size;
+
+			if (layout_bounds.Intersect (area, out region)) {
+				Style.PaintLayout (Style, BinWindow, cell_state,
+						   true, area, this, "IconView", 
+						   layout_bounds.X, layout_bounds.Y, 
+						   layout);
+			}
+			
 		}
 
 		if (DisplayTags) {
@@ -881,18 +927,17 @@ public class IconView : Gtk.Layout {
 				if (t == null)
 					continue;
 
-
 				Pixbuf icon = t.Icon;
 
-                Tag tag_iter = t.Category;
-                while (icon == null && tag_iter != Core.Database.Tags.RootCategory && tag_iter != null) {
-                    icon = tag_iter.Icon;
-                    tag_iter = tag_iter.Category;
-                }
-
-                if (icon == null)
-                    continue;
-
+		                Tag tag_iter = t.Category;
+		                while (icon == null && tag_iter != Core.Database.Tags.RootCategory && tag_iter != null) {
+		                    icon = tag_iter.Icon;
+		                    tag_iter = tag_iter.Category;
+		                }
+		
+		                if (icon == null)
+		                    continue;
+		
 				if (tag_bounds.Intersect (area, out region)) {
 					Pixbuf scaled_icon;
 					if (icon.Width == tag_bounds.Width) {
@@ -916,6 +961,7 @@ public class IconView : Gtk.Layout {
 				tag_bounds.X += tag_bounds.Width + tag_icon_vspacing;
 			}
 		}
+
 	}
 
 	private void DrawAllCells (Gdk.Rectangle area)
