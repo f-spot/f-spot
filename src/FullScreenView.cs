@@ -71,8 +71,9 @@ namespace FSpot {
 		private PhotoImageView view;
 		private TagView tag_view;
 		private Notebook notebook;
+#if ENABLE_CRACK
 		private ImageDisplay display;
-		
+#endif		
 		ActionGroup actions;
 		const string ExitFullScreen = "ExitFullScreen";
 		const string NextPicture = "NextPicture";
@@ -216,6 +217,7 @@ namespace FSpot {
 			}
 		}
 
+#if ENABLE_CRACK
 		public bool PlayPause ()
 		{
 			if (display == null) {
@@ -229,7 +231,7 @@ namespace FSpot {
 				notebook.CurrentPage = 0;
 			return true;
 		}
-
+#endif
 		public void Quit ()
 		{
 			this.Destroy ();
