@@ -5,6 +5,7 @@ using GtkSharp;
 using System;
 using GLib;
 using System.Runtime.InteropServices;
+using FSpot;
 
 namespace FSpot {
 	public class XScreenSaverSlide : Gtk.Window {
@@ -282,22 +283,16 @@ namespace FSpot {
 		private Pixbuf CrossFade (Pixbuf current, Pixbuf prev, Pixbuf next, double percent)
 		{ 
 			Rectangle area = new Rectangle (0, 0, Allocation.Width, Allocation.Height);
-			Rectangle rect = new Rectangle (0, 0, 256, 256);
+			BlockProcessor proc = new BlockProcessor (area, 256);
 			Rectangle subarea;
 
-			while (rect.Y < area.Height) {
-				while (rect.X < area.Width) {
-					if (IsRealized)
-						GdkWindow.ProcessUpdates (false);
-
-					rect.Intersect (area, out subarea);
-					prev.CopyArea (subarea.X, subarea.Y, subarea.Width, subarea.Height, current, subarea.X, subarea.Y);
-					next.Composite (current, subarea.X, subarea.Y, subarea.Width, subarea.Height, 0, 0, 1, 1,
-					Gdk.InterpType.Nearest, (int) System.Math.Round (255 * percent));
-					rect.X += rect.Width;
-				}
-				rect.X = area.X;
-				rect.Y += rect.Height;
+			while (proc.Step (out subarea)) {
+				if (IsRealized)
+					GdkWindow.ProcessUpdates (false);
+				
+				prev.CopyArea (subarea.X, subarea.Y, subarea.Width, subarea.Height, current, subarea.X, subarea.Y);
+				next.Composite (current, subarea.X, subarea.Y, subarea.Width, subarea.Height, 0, 0, 1, 1,
+						Gdk.InterpType.Nearest, (int) System.Math.Round (255 * percent));
 			}
 			return current;
 		}

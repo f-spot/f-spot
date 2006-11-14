@@ -1,5 +1,11 @@
 2006-11-14  Larry Ewing  <lewing@novell.com>
 
+	* src/SlideView.cs: use block processor.
+
+	* src/PixbufUtils.cs: use block processor.
+
+	* src/Makefile.am (F_SPOT_CSDISTFILES): add BlockProcessor.cs.
+
 	* src/BlockProcessor.cs: clean up a little.
 
 	* src/Loupe.cs: move the loupe when you move the window.
