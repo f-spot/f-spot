@@ -29,7 +29,7 @@ noinst_DATA =					\
 	f-spot-simple-white.css			\
 	f-spot-logo-tango.svg
 
-hicolordir = $(datadir)/icons/hicolor
+hicolordir = $(DESTDIR)$(datadir)/icons/hicolor
 
 install-data-local:
 	$(mkinstalldirs) $(hicolordir)/16x16/apps

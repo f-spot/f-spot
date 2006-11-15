@@ -1,3 +1,8 @@
+2006-11-15  Stephane Delcroix  <stephane@delcroix.org>
+
+	* icons/Makefile.am: add missing $(DESTDIR). Thanks to Artur Flinta.
+	Fixes bgo #375341.
+
 2006-11-14  Larry Ewing  <lewing@novell.com>
 
 	* src/SlideView.cs: use block processor.
