@@ -436,8 +436,8 @@ class GnomeUtil {
 	       		System.Console.WriteLine (ge.ToString ());
 	       		HigMessageDialog md = new HigMessageDialog (window, Gtk.DialogFlags.DestroyWithParent, 
 	       			Gtk.MessageType.Error, Gtk.ButtonsType.Ok, 
-	       			Mono.Posix.Catalog.GetString ("There was an error invoking the external handler"),
-	       			String.Format (Mono.Posix.Catalog.GetString ("Received error:\n\"{0}\"\n"), 
+	       			Mono.Unix.Catalog.GetString ("There was an error invoking the external handler"),
+	       			String.Format (Mono.Unix.Catalog.GetString ("Received error:\n\"{0}\"\n"), 
 	       			ge.Message));
 
 	       		md.Run ();

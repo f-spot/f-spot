@@ -2,6 +2,8 @@ using System;
 using SemWeb;
 using System.IO;
 
+using Mono.Unix;
+
 namespace FSpot {
 	public class InfoDialog : Gtk.Dialog {
 		InfoDisplay info_display;
@@ -9,7 +11,7 @@ namespace FSpot {
 			get { return info_display; }
 		}
 
-		public InfoDialog (Gtk.Window parent) : base (Mono.Posix.Catalog.GetString ("Metadata Browser"),
+		public InfoDialog (Gtk.Window parent) : base (Catalog.GetString ("Metadata Browser"),
 											    parent,
 											    Gtk.DialogFlags.NoSeparator | Gtk.DialogFlags.DestroyWithParent)
 		{
@@ -175,7 +177,7 @@ namespace FSpot {
 #endif
 					empty = false;
 					stream.Write ("<tr><th align=left bgcolor=\"" + ig + "\" colspan=2>" 
-						      + Mono.Posix.Catalog.GetString ("Extended Metadata") + "</th><tr>");
+						      + Catalog.GetString ("Extended Metadata") + "</th><tr>");
 					
 					foreach (Statement stmt in store) {
 						// Skip anonymous subjects because they are
@@ -214,15 +216,15 @@ namespace FSpot {
 					// handle multiple items however it wants.
 					msg = String.Format ("<tr><td valign=top align=center bgcolor=\"{0}\">" 
 							     + "<b>{1}</b></td></tr>", ig,
-							     Mono.Posix.Catalog.GetString ("No active photo"));
+							     Catalog.GetString ("No active photo"));
 				} else if (missing) {
-					string text = String.Format (Mono.Posix.Catalog.GetString ("The photo \"{0}\" does not exist"), photo.DefaultVersionUri);
+					string text = String.Format (Catalog.GetString ("The photo \"{0}\" does not exist"), photo.DefaultVersionUri);
 					msg = String.Format ("<tr><td valign=top align=center bgcolor=\"{0}\">" 
 							     + "<b>{1}</b></td></tr>", ig, text);
 				} else {
 					msg = String.Format ("<tr><td valign=top align=center bgcolor=\"{0}\">" 
 							     + "<b>{1}</b></td></tr>", ig,
-							     Mono.Posix.Catalog.GetString ("No metadata available"));
+							     Catalog.GetString ("No metadata available"));
 
 					if (error != null) {
 						String.Format ("<pre>{0}</pre>", error);

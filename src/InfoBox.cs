@@ -3,6 +3,8 @@ using System;
 using System.IO;
 using FSpot;
 using SemWeb;
+using Mono.Unix;
+
 
 // FIXME TODO: We want to use something like EClippedLabel here throughout so it handles small sizes
 // gracefully using ellipsis.
@@ -69,20 +71,20 @@ public class InfoBox : VBox {
 	{
 		Table table = new Table (5, 2, false);
 
-		table.Attach (CreateRightAlignedLabel (Mono.Posix.Catalog.GetString ("Name:")), 0, 1, 0, 1,
+		table.Attach (CreateRightAlignedLabel (Catalog.GetString ("Name:")), 0, 1, 0, 1,
 			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
-		table.Attach (CreateRightAlignedLabel (Mono.Posix.Catalog.GetString ("Version:")), 0, 1, 1, 2,
+		table.Attach (CreateRightAlignedLabel (Catalog.GetString ("Version:")), 0, 1, 1, 2,
 			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
-		table.Attach (CreateRightAlignedLabel (Mono.Posix.Catalog.GetString ("Date:")), 0, 1, 2, 3,
+		table.Attach (CreateRightAlignedLabel (Catalog.GetString ("Date:")), 0, 1, 2, 3,
 			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
-		table.Attach (CreateRightAlignedLabel (Mono.Posix.Catalog.GetString ("Size:")), 0, 1, 3, 4,
+		table.Attach (CreateRightAlignedLabel (Catalog.GetString ("Size:")), 0, 1, 3, 4,
 			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
-		table.Attach (CreateRightAlignedLabel (Mono.Posix.Catalog.GetString ("Exposure:")), 0, 1, 4, 5,
+		table.Attach (CreateRightAlignedLabel (Catalog.GetString ("Exposure:")), 0, 1, 4, 5,
 			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
 
 		name_entry = new Entry ();
 		name_entry.WidthChars = 1;
-		name_entry.Editable = false;
+		name_entry.IsEditable = false;
 		table.Attach (name_entry, 1, 2, 0, 1,
 			      AttachOptions.Expand | AttachOptions.Fill, AttachOptions.Fill,
 			      3, 0);
@@ -213,7 +215,7 @@ public class InfoBox : VBox {
 					info += "\nISO " + iso_speed;
 				
 				if (info == "")
-					return Mono.Posix.Catalog.GetString ("(None)");
+					return Catalog.GetString ("(None)");
 				
 				return info;
 			}
@@ -224,7 +226,7 @@ public class InfoBox : VBox {
 				if (width != null && height != null)
 					return String.Format ("{0}x{1}", width, height);
 				else 
-					return Mono.Posix.Catalog.GetString ("(Unknown)");
+					return Catalog.GetString ("(Unknown)");
 			}
 		}
 #if USE_EXIF_DATE
@@ -233,7 +235,7 @@ public class InfoBox : VBox {
 				if (date > DateTime.MinValue && date < DateTime.MaxValue)
 					return date.ToShortDateString () + "\n" + date.ToShortTimeString ();
 				else 
-					return Mono.Posix.Catalog.GetString ("(Unknown)");
+					return Catalog.GetString ("(Unknown)");
 			}
 		}
 #endif

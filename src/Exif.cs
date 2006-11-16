@@ -13,6 +13,8 @@ using System;
 using System.Collections;
 using System.Runtime.InteropServices;
 
+using Mono.Unix;
+
 namespace Exif {
 	public enum Tag {
 		InteroperabilityIndex		= 0x0001,
@@ -223,17 +225,17 @@ namespace Exif {
 		{
 			switch (ifd) {
 			case Ifd.Zero:
-				return Mono.Posix.Catalog.GetString ("Image Directory");
+				return Catalog.GetString ("Image Directory");
 			case Ifd.One:
-				return Mono.Posix.Catalog.GetString ("Thumbnail Directory");
+				return Catalog.GetString ("Thumbnail Directory");
 			case Ifd.Exif:
-				return Mono.Posix.Catalog.GetString ("Exif Directory");
+				return Catalog.GetString ("Exif Directory");
 			case Ifd.Gps:
-				return Mono.Posix.Catalog.GetString ("GPS Directory");
+				return Catalog.GetString ("GPS Directory");
 			case Ifd.InterOperability:
-				return Mono.Posix.Catalog.GetString ("InterOperability Directory");
+				return Catalog.GetString ("InterOperability Directory");
 			default:
-				return Mono.Posix.Catalog.GetString ("Unknown Directory");
+				return Catalog.GetString ("Unknown Directory");
 			}
 		}
 		

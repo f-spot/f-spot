@@ -2,7 +2,7 @@ using System;
 using Gtk;
 using Gnome;
 using System.Collections;
-using Mono.Posix;
+using Mono.Unix;
 
 namespace FSpot {
 	public class TimeChangedEventArgs : DbItemEventArgs {

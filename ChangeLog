@@ -1,5 +1,47 @@
 2006-11-16  Larry Ewing  <lewing@novell.com>
 
+	* src/CameraFileSelectionDialog.cs:
+	* src/CameraSelectionDialog.cs:
+	* src/Core.cs:
+	* src/Exif.cs:
+	* src/FindBar.cs:
+	* src/FlickrExport.cs:
+	* src/FolderExport.cs:
+	* src/FullScreenView.cs:
+	* src/GroupSelector.cs:
+	* src/InfoBox.cs:
+	* src/InfoDisplay.cs:
+	* src/Makefile.am:
+	* src/MetadataStore.cs:
+	* src/PhotoPopup.cs:
+	* src/PhotoStore.cs:
+	* src/PhotoTagMenu.cs:
+	* src/PhotoVersionCommands.cs:
+	* src/PhotoVersionMenu.cs:
+	* src/PicasaWebExport.cs:
+	* src/Preferences.cs:
+	* src/ProgressDialog.cs:
+	* src/QueryWidget.cs:
+	* src/RotateCommand.cs:
+	* src/SendEmail.cs:
+	* src/SingleView.cs:
+	* src/StockIcons.cs:
+	* src/TagCommands.cs:
+	* src/TagMenu.cs:
+	* src/TagPopup.cs
+	* src/TagQueryWidget.cs:
+	* src/TagSelectionWidget.cs:
+	* src/TagStore.cs:
+	* src/TimeDialog.cs:
+	* src/Unix.cs:
+	* src/Updater.cs:
+	* src/Util.cs:
+	* src/Widgets/ImageDisplay.cs:
+	* src/CameraSelectionDialog.cs: remove refernces to obsolete
+	Mono.Posix, replace with Mono.Unix.
+
+	* src/QueryWidget.cs: remove unused variable.
+
 	* src/FullScreenView.cs: use sinusoidal rather than linear fade.
 
 	* src/*.cs: remove unused variables and silence warnings.

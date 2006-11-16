@@ -2,6 +2,7 @@ using System;
 using Gtk;
 using Glade;
 using LibGPhoto2;
+using Mono.Unix;
 
 namespace FSpot {
 	public class CameraSelectionDialog : GladeDialog
@@ -24,8 +25,8 @@ namespace FSpot {
 			
 			
 			cameraList.Selection.Mode = SelectionMode.Single;
-			cameraList.AppendColumn (Mono.Posix.Catalog.GetString ("Camera"), new CellRendererText (), "text", 0);
-			cameraList.AppendColumn (Mono.Posix.Catalog.GetString ("Port"), new CellRendererText (), "text", 1);
+			cameraList.AppendColumn (Catalog.GetString ("Camera"), new CellRendererText (), "text", 0);
+			cameraList.AppendColumn (Catalog.GetString ("Port"), new CellRendererText (), "text", 1);
 			
 			ListStore tstore = new ListStore (typeof (string), typeof (string));
 			for (int i = 0; i < camlist.Count (); i++) {

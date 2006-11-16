@@ -1,6 +1,6 @@
 using System.Net;
 using System;
-using Mono.Posix;
+using Mono.Unix;
 
 namespace FSpot
 {

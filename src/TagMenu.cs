@@ -86,7 +86,7 @@ public class TagMenu : Menu {
 
 		if (NewTagHandler != null) {
 			GtkUtil.MakeMenuSeparator (this);
-			GtkUtil.MakeMenuItem (this, Mono.Posix.Catalog.GetString ("Create New Tag"),
+			GtkUtil.MakeMenuItem (this, Mono.Unix.Catalog.GetString ("Create New Tag"),
 					"f-spot-new-tag", NewTagHandler, true);
 		}
 	}

@@ -4,6 +4,8 @@ using System;
 using System.Text;
 using System.Collections;
 
+using Mono.Unix;
+
 public class TagCommands {
 
 	public enum TagType {
@@ -13,7 +15,7 @@ public class TagCommands {
 
 	public class Create : FSpot.GladeDialog {
 		TagStore tag_store;
-		Gtk.Window parent_window;
+
 
 		[Glade.Widget] private Button ok_button;
 		[Glade.Widget] private Entry tag_name_entry;
@@ -22,6 +24,8 @@ public class TagCommands {
 
 		[Glade.Widget]
 		private OptionMenu category_option_menu;
+
+		Gtk.Widget parent_window;
 
 		private ArrayList categories;
 
@@ -72,7 +76,7 @@ public class TagCommands {
 				already_in_use_label.Markup = "";
 			} else if (TagNameExistsInCategory (tag_name_entry.Text, tag_store.RootCategory)) {
 				ok_button.Sensitive = false;
-				already_in_use_label.Markup = "<small>" + Mono.Posix.Catalog.GetString ("This name is already in use") + "</small>";
+				already_in_use_label.Markup = "<small>" + Catalog.GetString ("This name is already in use") + "</small>";
 			} else {
 				ok_button.Sensitive = true;
 				already_in_use_label.Markup = "";
@@ -119,8 +123,8 @@ public class TagCommands {
 
 			this.Dialog.DefaultResponse = ResponseType.Ok;
 
-			this.Dialog.Title = Mono.Posix.Catalog.GetString ("Create New Tag");
-			prompt_label.Text = Mono.Posix.Catalog.GetString ("Name of New Tag:");
+			this.Dialog.Title = Catalog.GetString ("Create New Tag");
+			prompt_label.Text = Catalog.GetString ("Name of New Tag:");
 
 			PopulateCategoryOptionMenu ();
 			this.Category = default_category;
@@ -200,7 +204,7 @@ public class TagCommands {
 			} else if (TagNameExistsInCategory (name, db.Tags.RootCategory)
 				   && String.Compare(name, orig_name, true) != 0) {
 				ok_button.Sensitive = false;
-				already_in_use_label.Markup = "<small>" + Mono.Posix.Catalog.GetString ("This name is already in use") + "</small>";
+				already_in_use_label.Markup = "<small>" + Catalog.GetString ("This name is already in use") + "</small>";
 			} else {
 				ok_button.Sensitive = true;
 				already_in_use_label.Markup = "";
@@ -270,8 +274,8 @@ public class TagCommands {
 			tag = t;
 			this.Dialog.DefaultResponse = ResponseType.Ok;
 
-			this.Dialog.Title = Mono.Posix.Catalog.GetString ("Edit Tag");
-			prompt_label.Text = Mono.Posix.Catalog.GetString ("Tag Name:");
+			this.Dialog.Title = Catalog.GetString ("Edit Tag");
+			prompt_label.Text = Catalog.GetString ("Tag Name:");
 
 			orig_name = last_valid_name = t.Name;
 			tag_name_entry.Text = t.Name;
@@ -364,7 +368,7 @@ public class TagCommands {
 		public void HandlePhotoChanged (FSpot.PhotoImageView sender)
 		{
 			int item = image_view.Item.Index;
-			photo_label.Text = String.Format (Mono.Posix.Catalog.GetString ("Photo {0} of {1}"), 
+			photo_label.Text = String.Format (Catalog.GetString ("Photo {0} of {1}"), 
 							  item + 1, query.Count);
 
 			photo_spin_button.Value = item + 1;
@@ -391,7 +395,7 @@ public class TagCommands {
 		{
 			this.CreateDialog ("edit_icon_dialog");
 
-			this.Dialog.Title = String.Format (Mono.Posix.Catalog.GetString ("Edit Icon for Tag {0}"), t.Name);
+			this.Dialog.Title = String.Format (Catalog.GetString ("Edit Icon for Tag {0}"), t.Name);
 
 			preview_image.Pixbuf = t.Icon;
 

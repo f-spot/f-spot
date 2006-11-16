@@ -1,6 +1,6 @@
 using SemWeb;
 using SemWeb.Util;
-using Mono.Posix;
+using Mono.Unix;
 using FSpot.Xmp;
 
 namespace FSpot {

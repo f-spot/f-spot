@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Text;
-using Mono.Posix;
+using Mono.Unix;
 using Gtk;
 using Gdk;
 

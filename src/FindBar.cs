@@ -3,7 +3,7 @@ using System.Collections;
 using System.Text.RegularExpressions;
 using Gtk;
 using Gdk;
-using Mono.Posix;
+using Mono.Unix;
 
 using FSpot.Query;
 

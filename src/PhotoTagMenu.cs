@@ -69,7 +69,7 @@ public class PhotoTagMenu : Menu {
 		if (hash.Count == 0) {
 			/* Fixme this should really set parent menu
 			   items insensitve */
-			MenuItem item = new MenuItem (Mono.Posix.Catalog.GetString ("(No Tags)"));
+			MenuItem item = new MenuItem (Mono.Unix.Catalog.GetString ("(No Tags)"));
 			this.Append (item);
 			item.Sensitive = false;
 			item.ShowAll ();

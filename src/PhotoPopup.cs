@@ -14,7 +14,7 @@
 using System;
 using Gtk;
 using Gdk;
-using Mono.Posix;
+using Mono.Unix;
 
 public class PhotoPopup : Gtk.Menu {
 	Widget creator;
@@ -43,7 +43,7 @@ public class PhotoPopup : Gtk.Menu {
 		Gtk.Menu popup_menu = this;
 		bool have_selection = count > 0;
 		
-		GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Copy Photo Location"), 
+		GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Copy Photo Location"), 
 				      delegate { MainWindow.Toplevel.HandleCopyLocation (creator, null); }, have_selection);
 		
 		GtkUtil.MakeMenuSeparator (popup_menu);
@@ -59,9 +59,9 @@ public class PhotoPopup : Gtk.Menu {
 		owm.IgnoreApp = "f-spot";
 		owm.ApplicationActivated += delegate (Gnome.Vfs.MimeApplication app) { MainWindow.Toplevel.HandleOpenWith (creator, app); };
 
-		GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Remove From Catalog"), 
+		GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Remove From Catalog"), 
 				      delegate { MainWindow.Toplevel.HandleRemoveCommand (creator, null); }, have_selection);
-		GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Delete From Drive"),
+		GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Delete From Drive"),
 				      delegate { MainWindow.Toplevel.HandleDeleteCommand (creator, null); }, have_selection);
 
 		GtkUtil.MakeMenuSeparator (popup_menu);
@@ -69,7 +69,7 @@ public class PhotoPopup : Gtk.Menu {
 		//
 		// FIXME TagMenu is ugly.
 		//
-		ImageMenuItem attach_item = new ImageMenuItem (Mono.Posix.Catalog.GetString ("Attach Tag"));
+		ImageMenuItem attach_item = new ImageMenuItem (Catalog.GetString ("Attach Tag"));
         attach_item.Image = new Gtk.Image ("gtk-add", IconSize.Menu);
 		TagMenu attach_menu = new TagMenu (attach_item, MainWindow.Toplevel.Database.Tags);
 		attach_menu.NewTagHandler += delegate { MainWindow.Toplevel.HandleCreateTagAndAttach (creator, null); };
@@ -81,7 +81,7 @@ public class PhotoPopup : Gtk.Menu {
 		// FIXME finish the IPhotoSelection stuff and move the activate handler into the class
 		// this current method is way too complicated.
 		//
-		ImageMenuItem remove_item = new ImageMenuItem (Mono.Posix.Catalog.GetString ("Remove Tag"));
+		ImageMenuItem remove_item = new ImageMenuItem (Catalog.GetString ("Remove Tag"));
         remove_item.Image = new Gtk.Image ("gtk-remove", IconSize.Menu);
 		PhotoTagMenu remove_menu = new PhotoTagMenu ();
 		remove_menu.TagSelected += MainWindow.Toplevel.HandleRemoveTagMenuSelected;

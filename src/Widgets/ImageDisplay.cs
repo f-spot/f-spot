@@ -628,7 +628,7 @@ namespace FSpot.Widgets {
 								      allocation.Width,
 								      allocation.Height);
 				
-				System.Console.WriteLine ("status = {1} pointer = {0}", Surface.Pointer.ToString (), Surface.Status);
+				System.Console.WriteLine ("status = {1} pointer = {0}", Surface.Handle.ToString (), Surface.Status);
 				Graphics ctx = new Graphics (Surface);
 #endif
 				Bounds = allocation;

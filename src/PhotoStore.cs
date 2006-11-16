@@ -1,7 +1,10 @@
 using Gnome;
 using Gdk;
 using Gtk;
+
 using Mono.Data.SqliteClient;
+using Mono.Unix;
+
 using System.Collections;
 using System.IO;
 using System.Text;
@@ -365,7 +368,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		int num = 1;
 
 		while (true) {
-			string name = Mono.Posix.Catalog.GetPluralString ("Modified", 
+			string name = Catalog.GetPluralString ("Modified", 
 								 "Modified ({0})", 
 								 num);
 			name = String.Format (name, num);
@@ -384,7 +387,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		string final_name;
 		while (true) {
 			final_name = String.Format (
-					Mono.Posix.Catalog.GetPluralString ("Modified in {1}", "Modified in {1} ({0})", num),
+					Catalog.GetPluralString ("Modified in {1}", "Modified in {1} ({0})", num),
 					num, name);
 
 			if (num > 1)
@@ -568,7 +571,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 		// Note that the original version is never stored in the photo_versions table in the
 		// database.
-		AddVersionUnsafely (OriginalVersionId, Mono.Posix.Catalog.GetString ("Original"));
+		AddVersionUnsafely (OriginalVersionId, Catalog.GetString ("Original"));
 	}
 
 	public Photo (uint id, long unix_time, string path)

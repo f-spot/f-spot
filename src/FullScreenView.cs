@@ -161,7 +161,7 @@ namespace FSpot {
 		{
 			Gtk.HBox hbox = new Gtk.HBox ();
 			hbox.PackStart (new Gtk.Image (Gtk.Stock.Quit, Gtk.IconSize.Button));
-			hbox.PackStart (new Gtk.Label (Mono.Posix.Catalog.GetString ("Exit fullscreen")));
+			hbox.PackStart (new Gtk.Label (Catalog.GetString ("Exit fullscreen")));
 			hbox.ShowAll ();
 			return new Gtk.Button (hbox);
 		}

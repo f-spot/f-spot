@@ -1,5 +1,5 @@
 using FSpot.Query;
-using Mono.Posix;
+using Mono.Unix;
 
 namespace FSpot {
 	public class QueryWidget : Gtk.VBox {
@@ -9,7 +9,6 @@ namespace FSpot {
 		Gtk.Label untagged;
 		Gtk.HBox warning_box;
 		Gtk.Button clear_button;
-		TagSelectionWidget selector;
 		Gtk.Tooltips tips = new Gtk.Tooltips ();
 
 		public LogicWidget Logic {
@@ -24,7 +23,6 @@ namespace FSpot {
 
 			this.query = query;
 			query.Changed += HandleChanged;
-			this.selector = selector;
 
 			Gtk.HSeparator sep = new Gtk.HSeparator ();
 			sep.Show ();

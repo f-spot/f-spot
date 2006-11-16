@@ -510,21 +510,21 @@ namespace FSpot {
 		{
 			Gtk.Menu order_menu = new Gtk.Menu();
 			
-			GtkUtil.MakeCheckMenuItem (order_menu, Mono.Posix.Catalog.GetString ("Arrange by _Month"),
+			GtkUtil.MakeCheckMenuItem (order_menu, Catalog.GetString ("Arrange by _Month"),
 					      MainWindow.Toplevel.HandleArrangeByTime, true, (adaptor is TimeAdaptor), true);
 			
-			GtkUtil.MakeCheckMenuItem (order_menu, Mono.Posix.Catalog.GetString ("Arrange by _Folder"),
+			GtkUtil.MakeCheckMenuItem (order_menu, Catalog.GetString ("Arrange by _Folder"),
 					      MainWindow.Toplevel.HandleArrangeByDirectory, true, (adaptor is DirectoryAdaptor), true);
 
 			GtkUtil.MakeMenuSeparator (order_menu);
 
-			GtkUtil.MakeCheckMenuItem (order_menu, Mono.Posix.Catalog.GetString ("_Reverse Order"),
+			GtkUtil.MakeCheckMenuItem (order_menu, Catalog.GetString ("_Reverse Order"),
 					      MainWindow.Toplevel.HandleReverseOrder, true, adaptor.OrderAscending, false);
 
 			if (adaptor is TimeAdaptor && adaptor.Query.Range != null) {
 				GtkUtil.MakeMenuSeparator (order_menu);
 
-				GtkUtil.MakeMenuItem (order_menu, Mono.Posix.Catalog.GetString ("_Clear Date Range"), 
+				GtkUtil.MakeMenuItem (order_menu, Catalog.GetString ("_Clear Date Range"), 
 						MainWindow.Toplevel.HandleClearDateRange);
 			}
 			

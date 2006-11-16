@@ -18,6 +18,7 @@ using Gnome;
 using System;
 
 using FSpot.Filters;
+using Mono.Unix;
 
 namespace FSpot {
 	public class SendEmail : FSpot.GladeDialog {
@@ -231,11 +232,10 @@ namespace FSpot {
 			ProgressDialog progress_dialog = null;
 			actual_total_size = 0;
 		
-			progress_dialog = new ProgressDialog (
-						Mono.Posix.Catalog.GetString ("Preparing email"),
-						ProgressDialog.CancelButtonType.Stop,
-						selection.Items.Length, 
-						parent_window);
+			progress_dialog = new ProgressDialog (Catalog.GetString ("Preparing email"),
+							      ProgressDialog.CancelButtonType.Stop,
+							      selection.Items.Length, 
+							      parent_window);
 			
 			size = GetScaleSize(); // Which size should we scale to. 0 --> Original
 			
@@ -266,7 +266,7 @@ namespace FSpot {
 
 					if (progress_dialog != null)
 						UserCancelled = progress_dialog.Update (String.Format 
-							(Mono.Posix.Catalog.GetString ("Exporting picture \"{0}\""), photo.Name));
+							(Catalog.GetString ("Exporting picture \"{0}\""), photo.Name));
 							
 					if (UserCancelled)
 					 	break;

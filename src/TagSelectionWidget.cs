@@ -32,6 +32,8 @@ using System.Collections;
 using System.IO;
 using System;
 
+using Mono.Unix;
+
 public class TagSelectionWidget : TreeView {
 	TagSelectionWidget widget;
 	private TagStore tag_store;
@@ -499,8 +501,8 @@ public class TagSelectionWidget : TreeView {
 			HigMessageDialog md = new HigMessageDialog (MainWindow.Toplevel.Window,
 				DialogFlags.DestroyWithParent, 
 				MessageType.Warning, ButtonsType.Ok, 
-				Mono.Posix.Catalog.GetString ("Error renaming tag"),
-				Mono.Posix.Catalog.GetString ("This name is already in use"));
+				Catalog.GetString ("Error renaming tag"),
+				Catalog.GetString ("This name is already in use"));
 
 			md.Run ();
 			md.Destroy ();

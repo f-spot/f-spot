@@ -22,7 +22,7 @@ namespace FSpot {
 
 			if (fd < 0) {
 				//Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
-				throw new System.ApplicationException (Mono.Posix.Catalog.GetString ("Unable to create temporary file"));
+				throw new System.ApplicationException (Mono.Unix.Catalog.GetString ("Unable to create temporary file"));
 			}
 
 			template = System.Text.Encoding.UTF8.GetString (template_bytes, 0, template_bytes.Length - 1);

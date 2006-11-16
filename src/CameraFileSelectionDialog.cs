@@ -4,6 +4,7 @@ using Gdk;
 using Gtk;
 using Glade;
 using LibGPhoto2;
+using Mono.Unix;
 
 namespace FSpot {
 	public class CameraFileSelectionDialog : GladeDialog
@@ -62,13 +63,13 @@ namespace FSpot {
 			this.CreateDialog ("camera_file_selection_dialog");
 			
 			file_tree.Selection.Mode = SelectionMode.Multiple;
-			file_tree.AppendColumn (Mono.Posix.Catalog.GetString ("Preview"), 
+			file_tree.AppendColumn (Catalog.GetString ("Preview"), 
 						new CellRendererPixbuf (), "pixbuf", PreviewColumn);
-			file_tree.AppendColumn (Mono.Posix.Catalog.GetString ("Path"), 
+			file_tree.AppendColumn (Catalog.GetString ("Path"), 
 						new CellRendererText (), "text", DirectoryColumn);
-			file_tree.AppendColumn (Mono.Posix.Catalog.GetString ("File"), 
+			file_tree.AppendColumn (Catalog.GetString ("File"), 
 						new CellRendererText (), "text", FileColumn);
-			file_tree.AppendColumn (Mono.Posix.Catalog.GetString ("Index"),
+			file_tree.AppendColumn (Catalog.GetString ("Index"),
 						new CellRendererText (), "text", IndexColumn).Visible = false;
 			
 			preview_list_store = new ListStore (typeof (string), typeof (string), 
@@ -84,7 +85,7 @@ namespace FSpot {
 		private void GetPreviews ()
 		{
 			lock (camera) {
-				ProgressDialog pdialog = new ProgressDialog (Mono.Posix.Catalog.GetString ("Downloading Previews"), 
+				ProgressDialog pdialog = new ProgressDialog (Catalog.GetString ("Downloading Previews"), 
 									     ProgressDialog.CancelButtonType.Cancel, 
 									     camera.FileList.Count, 
 									     this.Dialog);
@@ -92,7 +93,7 @@ namespace FSpot {
 				int index = 0;
 				bool load_thumb = true;
 				foreach (GPhotoCameraFile file in camera.FileList) {
-					string msg = String.Format (Mono.Posix.Catalog.GetString ("Downloading Preview of {0}"), 
+					string msg = String.Format (Catalog.GetString ("Downloading Preview of {0}"), 
 								    file.FileName);
 					
 					
@@ -144,8 +145,8 @@ namespace FSpot {
 									    DialogFlags.DestroyWithParent, 
 									    MessageType.Warning, 
 									    ButtonsType.Ok, 
-									    Mono.Posix.Catalog.GetString ("Unknown destination."),
-									    Mono.Posix.Catalog.GetString ("When copying files from a camera you must select a valid destination on the local filesystem"));
+									    Catalog.GetString ("Unknown destination."),
+									    Catalog.GetString ("When copying files from a camera you must select a valid destination on the local filesystem"));
 				md.Run ();
 				md.Destroy ();
 				
@@ -163,8 +164,8 @@ namespace FSpot {
 										    DialogFlags.DestroyWithParent,
 										    MessageType.Error,
 										    ButtonsType.Ok,
-										    Mono.Posix.Catalog.GetString ("Unable to create directory."),
-										    String.Format (Mono.Posix.Catalog.GetString ("Error \"{0}\" while creating directory \"{1}\".  Check that the path and permissions are correct and try again"), e.Message, destination));
+										    Catalog.GetString ("Unable to create directory."),
+										    String.Format (Catalog.GetString ("Error \"{0}\" while creating directory \"{1}\".  Check that the path and permissions are correct and try again"), e.Message, destination));
 					md.Run ();
 					md.Destroy ();
 					
@@ -185,7 +186,7 @@ namespace FSpot {
 			this.Dialog.Hide ();
 			
 			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (this.Download));
-			command_thread.Name = Mono.Posix.Catalog.GetString ("Transferring Pictures");
+			command_thread.Name = Catalog.GetString ("Transferring Pictures");
 			
 			progress_dialog = new FSpot.ThreadProgressDialog (command_thread, 1);
 			progress_dialog.Start ();
@@ -208,7 +209,7 @@ namespace FSpot {
 					int count = 0;
 					foreach (int index in index_list) {
 						count++;
-						string msg = String.Format (Mono.Posix.Catalog.GetString ("Copying file {0} of {1}"),
+						string msg = String.Format (Catalog.GetString ("Copying file {0} of {1}"),
 									    count, index_list.Count);
 						
 						progress_dialog.ProgressText = msg;
@@ -218,14 +219,14 @@ namespace FSpot {
 					
 					saved_files = (string []) saved.ToArray (typeof (string));
 					
-					progress_dialog.Message = Mono.Posix.Catalog.GetString ("Done Copying Files");
+					progress_dialog.Message = Catalog.GetString ("Done Copying Files");
 					progress_dialog.Fraction = 1.0;
-					progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Download Complete");
+					progress_dialog.ProgressText = Catalog.GetString ("Download Complete");
 					progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 				} catch (System.Exception e) {
 					System.Console.WriteLine (e.ToString ());
 					progress_dialog.Message = String.Format ("{0}\n{1}", e.Message, e.ToString ());
-					progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error transferring file");
+					progress_dialog.ProgressText = Catalog.GetString ("Error transferring file");
 				}
 			}
 		}
@@ -246,7 +247,7 @@ namespace FSpot {
 				i++;
 			}
 			
-			string msg = String.Format (Mono.Posix.Catalog.GetString ("Transferring \"{0}\" from camera"), 
+			string msg = String.Format (Catalog.GetString ("Transferring \"{0}\" from camera"), 
 						    System.IO.Path.GetFileName (path));
 			progress_dialog.Message = msg;
 			
@@ -272,7 +273,7 @@ namespace FSpot {
 		void HandleSelectSaveDirectory (object sender, EventArgs args)
 		{		
 			CompatFileChooserDialog file_selector =
-				new CompatFileChooserDialog (Mono.Posix.Catalog.GetString ("Select Destination"), 
+				new CompatFileChooserDialog (Catalog.GetString ("Select Destination"), 
 							     this.Dialog, CompatFileChooserDialog.Action.SelectFolder);
 			
 			file_selector.Filename = copied_file_destination.Text;

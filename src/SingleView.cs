@@ -1,7 +1,7 @@
 using Gtk;
 using Gdk;
 using System;
-using Mono.Posix;
+using Mono.Unix;
 
 namespace FSpot {
 	public class SingleView {
@@ -423,7 +423,7 @@ namespace FSpot {
 			GtkUtil.MakeMenuItem (popup_menu, "f-spot-rotate-270", delegate { HandleRotate270Command(window, null); }, has_item);
 			GtkUtil.MakeMenuItem (popup_menu, "f-spot-rotate-90", delegate { HandleRotate90Command (window, null); }, has_item);
 			GtkUtil.MakeMenuSeparator (popup_menu);
-			GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Set as Background"), HandleSetAsBackgroundCommand, has_item);
+			GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Set as Background"), HandleSetAsBackgroundCommand, has_item);
 
 			popup_menu.Popup (null, null, null, 0, Gtk.Global.CurrentEventTime);
 		}

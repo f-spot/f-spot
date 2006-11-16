@@ -2,7 +2,7 @@ using Gtk;
 using Gdk;
 using System;
 using System.Runtime.InteropServices;
-using Mono.Posix;
+using Mono.Unix;
 
 public class StockIcons {
 	static Gtk.StockItem FromDef (string id, 

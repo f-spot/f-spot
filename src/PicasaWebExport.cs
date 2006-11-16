@@ -512,7 +512,7 @@ namespace FSpot {
 				Dialog.Destroy ();
 
 				command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
-				command_thread.Name = Mono.Posix.Catalog.GetString ("Uploading Pictures");
+				command_thread.Name = Catalog.GetString ("Uploading Pictures");
 				
 				progress_dialog = new FSpot.ThreadProgressDialog (command_thread, items.Length);
 				progress_dialog.Start ();
@@ -591,16 +591,16 @@ namespace FSpot {
 				
 				progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
 				progress_dialog.Fraction = 1.0;
-				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Upload Complete");
+				progress_dialog.ProgressText = Catalog.GetString ("Upload Complete");
 				progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 
 				if (browser) {
 					GnomeUtil.UrlShow (null, album.Link);
 				}
 			} catch (System.Exception e) {
-				progress_dialog.Message = String.Format (Mono.Posix.Catalog.GetString ("Error Uploading To Gallery: {0}"),
+				progress_dialog.Message = String.Format (Catalog.GetString ("Error Uploading To Gallery: {0}"),
 									 e.Message);
-				progress_dialog.ProgressText = Mono.Posix.Catalog.GetString ("Error");
+				progress_dialog.ProgressText = Catalog.GetString ("Error");
 				System.Console.WriteLine (e);
 			}
 			
@@ -619,7 +619,7 @@ namespace FSpot {
 
 			accounts = manager.GetAccounts ();
 			if (accounts == null || accounts.Count == 0) {
-				Gtk.MenuItem item = new Gtk.MenuItem (Mono.Posix.Catalog.GetString ("(No Gallery)"));
+				Gtk.MenuItem item = new Gtk.MenuItem (Catalog.GetString ("(No Gallery)"));
 				menu.Append (item);
 				gallery_optionmenu.Sensitive = false;
 				edit_button.Sensitive = false;
@@ -746,8 +746,8 @@ namespace FSpot {
 			bool disconnected = picasa == null || !account.Connected || albums == null;
 
 			if (disconnected || albums.Count == 0) {
-				string msg = disconnected ? Mono.Posix.Catalog.GetString ("(Not Connected)") 
-					: Mono.Posix.Catalog.GetString ("(No Albums)");
+				string msg = disconnected ? Catalog.GetString ("(Not Connected)") 
+					: Catalog.GetString ("(No Albums)");
 
 				Gtk.MenuItem item = new Gtk.MenuItem (msg);
 				menu.Append (item);

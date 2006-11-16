@@ -3,6 +3,8 @@ using Gtk;
 using GtkSharp;
 using System;
 
+using Mono.Unix;
+
 public class ProgressDialog : Gtk.Dialog {
 
 	private bool cancelled;
@@ -77,7 +79,7 @@ public class ProgressDialog : Gtk.Dialog {
 		current_count ++;
 
 		message_label.Text = message;
-		progress_bar.Text = String.Format (Mono.Posix.Catalog.GetString ("{0} of {1}"), current_count, total_count);
+		progress_bar.Text = String.Format (Catalog.GetString ("{0} of {1}"), current_count, total_count);
 		progress_bar.Fraction = (double) current_count / total_count;
 
 		ShowAll ();

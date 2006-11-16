@@ -1,7 +1,7 @@
 using Gdk;
 using Gnome;
 using Gtk;
-using Mono.Posix;
+using Mono.Unix;
 using Mono.Data.SqliteClient;
 using System.Collections;
 using System.IO;
@@ -419,7 +419,7 @@ public class TagStore : DbStore {
 		: base (connection, true)
 	{
 		// The label for the root category is used in new and edit tag dialogs
-		root_category = new Category (null, 0, Mono.Posix.Catalog.GetString ("(None)"));
+		root_category = new Category (null, 0, Catalog.GetString ("(None)"));
 
 		if (! is_new) {
 			LoadAllTags ();

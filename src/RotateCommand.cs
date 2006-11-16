@@ -17,6 +17,8 @@ using Gdk;
 using FSpot;
 using FSpot.Png;
 
+using Mono.Unix;
+
 namespace FSpot {
 	public class RotateException : ApplicationException {
 		public string path;
@@ -193,7 +195,7 @@ public class RotateCommand {
 		ProgressDialog progress_dialog = null;
 		
 		if (items.Length > 1)
-			progress_dialog = new ProgressDialog (Mono.Posix.Catalog.GetString ("Rotating photos"),
+			progress_dialog = new ProgressDialog (Catalog.GetString ("Rotating photos"),
 							      ProgressDialog.CancelButtonType.Stop,
 							      items.Length, parent_window);
 		
@@ -204,7 +206,7 @@ public class RotateCommand {
 
 		while (!done) {
 			if (progress_dialog != null && index != op.Index) 
-				progress_dialog.Update (String.Format (Mono.Posix.Catalog.GetString ("Rotating photo \"{0}\""), op.Items [op.Index].Name));
+				progress_dialog.Update (String.Format (Catalog.GetString ("Rotating photo \"{0}\""), op.Items [op.Index].Name));
 
 			try {
 				done = !op.Step ();
@@ -229,11 +231,11 @@ public class RotateCommand {
 
 	private void RunReadonlyError (int readonly_count)
 	{
-		string notice = Mono.Posix.Catalog.GetPluralString ("Unable to rotate photo",  
+		string notice = Catalog.GetPluralString ("Unable to rotate photo",  
 								    "Unable to rotate {0} photos",  
 								    readonly_count);
 		
-		string desc = Mono.Posix.Catalog.GetPluralString ("The photo could not be rotated because it is on a read only file system or " + 
+		string desc = Catalog.GetPluralString ("The photo could not be rotated because it is on a read only file system or " + 
 								  "media such as a CDROM.  Please check the permissions and try again",  
 								  "{0} photos could not be rotated because they are on a read only file system " + 
 								  "or media such as a CDROM.  Please check the permissions and try again",  readonly_count);
@@ -255,12 +257,12 @@ public class RotateCommand {
 
 	private void RunGenericError (System.Exception e, string path)
 	{
-		string longmsg = String.Format (Mono.Posix.Catalog.GetString ("Received error \"{0}\" while attempting to rotate {1}"),
+		string longmsg = String.Format (Catalog.GetString ("Received error \"{0}\" while attempting to rotate {1}"),
 						e.Message, System.IO.Path.GetFileName (path));
 
 		HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent,
 							    MessageType.Warning, ButtonsType.Ok,
-							    Mono.Posix.Catalog.GetString ("Error while rotating photo."),
+							    Catalog.GetString ("Error while rotating photo."),
 							    longmsg);
 		md.Run ();
 		md.Destroy ();

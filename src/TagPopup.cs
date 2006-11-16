@@ -10,7 +10,7 @@
  */
 
 using System;
-using Mono.Posix;
+using Mono.Unix;
 
 public class TagPopup {
 	public void Activate (Gdk.EventButton eb, Tag tag, Tag [] tags)

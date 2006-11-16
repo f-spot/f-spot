@@ -2,7 +2,7 @@ using FlickrNet;
 using System;
 using System.IO;
 using System.Threading;
-using Mono.Posix;
+using Mono.Unix;
 
 namespace FSpot {
 	public class FlickrExport : GladeDialog {
