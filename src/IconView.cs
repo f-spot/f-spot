@@ -139,7 +139,7 @@ public class IconView : Gtk.Layout {
 	// Horizontal spacing between the tag icons
 	protected int tag_icon_hspacing = 2;
 
-	// Vertical spacing between the thumbnail and the row of tag icons.
+	// Vertical spacing between the thumbnail and additional infos (tags, dates, ...).
 	protected int tag_icon_vspacing = 3;
 
 	// Various other layout values.
@@ -640,8 +640,11 @@ public class IconView : Gtk.Layout {
 		cells_per_row = Math.Max ((int) (available_width / cell_width), 1);
 		cell_width += (available_width - cells_per_row * cell_width) / cells_per_row;
 		
+		if (DisplayTags || DisplayDates || DisplayFilenames)
+			cell_height += tag_icon_vspacing;
+
 		if (DisplayTags)
-			cell_height += tag_icon_size + tag_icon_vspacing;
+			cell_height += tag_icon_size;
 		
 		if (DisplayDates && this.Style != null) {
 			Pango.FontMetrics metrics = this.PangoContext.GetMetrics (this.Style.FontDescription, 
@@ -871,7 +874,7 @@ public class IconView : Gtk.Layout {
 			
 			layout.GetPixelSize (out layout_bounds.Width, out layout_bounds.Height);
 
-			layout_bounds.Y = bounds.Y + bounds.Height - cell_border_width - layout_bounds.Height;
+			layout_bounds.Y = bounds.Y + bounds.Height - cell_border_width - layout_bounds.Height + tag_icon_vspacing;
 			layout_bounds.X = bounds.X + (bounds.Width - layout_bounds.Width) / 2;
 			
 			if (DisplayTags)
@@ -899,7 +902,7 @@ public class IconView : Gtk.Layout {
 			
 			layout.GetPixelSize (out layout_bounds.Width, out layout_bounds.Height);
 
-			layout_bounds.Y = bounds.Y + bounds.Height - cell_border_width - layout_bounds.Height;
+			layout_bounds.Y = bounds.Y + bounds.Height - cell_border_width - layout_bounds.Height + tag_icon_vspacing;
 			layout_bounds.X = bounds.X + (bounds.Width - layout_bounds.Width) / 2;
 			
 			if (DisplayTags)
@@ -918,8 +921,8 @@ public class IconView : Gtk.Layout {
 			Tag [] tags = photo.Tags;
 			Gdk.Rectangle tag_bounds;
 
-			tag_bounds.X = bounds.X + (bounds.Width  + tag_icon_vspacing - tags.Length * (tag_icon_size + tag_icon_vspacing)) / 2;
-			tag_bounds.Y = bounds.Y + bounds.Height - cell_border_width - tag_icon_size;
+			tag_bounds.X = bounds.X + (bounds.Width  + tag_icon_hspacing - tags.Length * (tag_icon_size + tag_icon_hspacing)) / 2;
+			tag_bounds.Y = bounds.Y + bounds.Height - cell_border_width - tag_icon_size + tag_icon_vspacing;
 			tag_bounds.Width = tag_icon_size;
 			tag_bounds.Height = tag_icon_size;
 			
@@ -958,7 +961,7 @@ public class IconView : Gtk.Layout {
 						scaled_icon.Dispose ();
 					}
 				}
-				tag_bounds.X += tag_bounds.Width + tag_icon_vspacing;
+				tag_bounds.X += tag_bounds.Width + tag_icon_hspacing;
 			}
 		}
 
