@@ -329,12 +329,36 @@ namespace FSpot {
 
 	[TestFixture]
 	public class JpegTest {
+		public JpegTest ()
+		{
+			Gnome.Vfs.Vfs.Initialize ();
+			Gtk.Application.Init ();
+		}
+
+#if false
 		[Test]
 		public void TestLoad ()
 		{
 			JpegFile jimg = new JpegFile ("/home/lewing/start.swe.jpeg");
 			Assert.AreEqual (PixbufOrientation.TopLeft, jimg.Orientation);
 		}
+#endif
 
+		[Test]
+		public void TestSave ()
+		{
+			string desc = "this is an example description";
+			Gdk.Pixbuf test = new Gdk.Pixbuf (System.Reflection.Assembly.GetEntryAssembly (), "f-spot-32.png");
+			string path = ImageFile.TempPath ("joe.jpg");
+			
+			PixbufUtils.SaveJpeg (test, path, 75, new Exif.ExifData ());
+			JpegFile jimg = new JpegFile (path);
+			jimg.SetDescription (desc);
+			jimg.SetOrientation (PixbufOrientation.TopRight);
+			jimg.SaveMetaData (path);
+			JpegFile mod = new JpegFile (path);
+			Assert.AreEqual (mod.Orientation, PixbufOrientation.TopRight);
+			Assert.AreEqual (mod.Description, desc);
+		}
 	}
 }
