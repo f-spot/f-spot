@@ -89,17 +89,21 @@ namespace FSpot.Widgets {
 		}
 
 		public static bool IsComposited (Screen screen) {
-#if false
-				try {
-					return gdk_screen_is_composited (Screen.Handle);
-				} catch {
-					//System.Console.WriteLine ("unable to query composite manager");
-				}
-				return false;
-#else
-				return true;
+			bool composited;
+			try {
+				composited = gdk_screen_is_composited (screen.Handle);
+			} catch (EntryPointNotFoundException) {
+				System.Console.WriteLine ("query composite manager locally");
+				Atom atom = Atom.Intern (String.Format ("_NET_WM_CM_S{0}", screen.Number), false);
+				composited = Gdk.Selection.OwnerGetForDisplay (screen.Display, atom) != null;
+			}
 
-#endif
+			// FIXME check for WINDOW_OPACITY so that we support compositing on older composite manager
+			// versions before they started supporting the real check given above
+			if (!composited)
+				composited = CompositeUtils.SupportsHint (screen, "_NET_WM_WINDOW_OPACITY");
+
+			return composited;
 		}
 
 		public static void InputShapeCombineMask (Widget w, Pixmap shape_mask, int offset_x, int offset_y)

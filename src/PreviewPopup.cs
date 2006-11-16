@@ -75,7 +75,7 @@ namespace FSpot {
 
 		protected override void OnRealized ()
 		{
-			bool composited = CompositeUtils.SetRgbaColormap (this);
+			bool composited = CompositeUtils.IsComposited (Screen) && CompositeUtils.SetRgbaColormap (this);
 			AppPaintable = composited;
 			base.OnRealized ();
 		}

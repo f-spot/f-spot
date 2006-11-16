@@ -247,7 +247,7 @@ namespace FSpot {
 
 		protected override void OnRealized ()
 		{
-			use_shape_ext = ! CompositeUtils.SetRgbaColormap (this);
+			use_shape_ext = ! (CompositeUtils.IsComposited (Screen) && CompositeUtils.SetRgbaColormap (this));
 			
 			base.OnRealized ();
 			ShapeWindow ();
