@@ -813,10 +813,10 @@ namespace FSpot {
 						   bounds.Width, handle_height, Orientation.Horizontal);
 				
 				Style.PaintShadow (selector.Style, selector.GdkWindow, State, ShadowType.Out, 
-						   area, selector, "glass", bounds.X, bounds.Y, bounds.Width, bounds.Height);
+						   area, selector, "", bounds.X, bounds.Y, bounds.Width, bounds.Height);
 				
 				Style.PaintShadow (selector.Style, selector.GdkWindow, State, ShadowType.In, 
-						   area, selector, "glass", inner.X, inner.Y, inner.Width, inner.Height);
+						   area, selector, "", inner.X, inner.Y, inner.Width, inner.Height);
 				
 			}
 			

@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using FSpot.Xmp;
 using FSpot.Tiff;
+using NUnit.Framework;
 
 namespace FSpot {
 	public interface IThumbnailContainer {
@@ -124,12 +125,14 @@ namespace FSpot {
 			JpegHeader header = new JpegHeader (input);
 			UpdateMeta ();
 			
+			Console.WriteLine ("updated metadata");
 			header.SetExif (this.ExifData);
-
+			Console.WriteLine ("set exif");
 			if (xmp != null)
 				header.SetXmp (xmp);
-
+			Console.WriteLine ("set xmp");
 			header.Save (output);
+			Console.WriteLine ("saved");
 		}
 		
 		public void SaveMetaData (string path)
@@ -192,18 +195,22 @@ namespace FSpot {
 
 		public override void Save (Gdk.Pixbuf pixbuf, System.IO.Stream stream)
 		{
+
+			Console.WriteLine ("starting save");
 			// First save the imagedata
 			byte [] image_data = PixbufUtils.Save (pixbuf, "jpeg", null, null);
 			System.IO.MemoryStream buffer = new System.IO.MemoryStream ();
 			buffer.Write (image_data, 0, image_data.Length);
 			buffer.Position = 0;
 			
+			Console.WriteLine ("setting thumbnail");
 			SetThumbnail (pixbuf);
 			SetDimensions (pixbuf.Width, pixbuf.Height);
 			pixbuf.Dispose ();
-
+			
+			Console.WriteLine ("saving metatdata");
 			SaveMetaData (buffer, stream);
-
+			Console.WriteLine ("done");
 			buffer.Close ();
 		}
 		
@@ -318,6 +325,16 @@ namespace FSpot {
 				return time;
 			}
 		}
-		
+	}
+
+	[TestFixture]
+	public class JpegTest {
+		[Test]
+		public void TestLoad ()
+		{
+			JpegFile jimg = new JpegFile ("/home/lewing/start.swe.jpeg");
+			Assert.AreEqual (PixbufOrientation.TopLeft, jimg.Orientation);
+		}
+
 	}
 }

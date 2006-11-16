@@ -3,6 +3,7 @@
 [encoding: UTF-8]
 f-spot.desktop.in.in
 f-spot-view.desktop.in.in
+google-sharp/CaptchaException.cs
 libeog/eog-file-selection.c
 libeog/eog-image.c
 libeog/image-view.c
@@ -14,6 +15,7 @@ src/ColorDialog.cs
 src/Core.cs
 src/ExceptionDialog.cs
 src/Exif.cs
+src/Filters/ResizeFilter.cs
 src/FindBar.cs
 src/FlickrExport.cs
 src/FolderExport.cs
@@ -21,6 +23,7 @@ src/FullScreenView.cs
 src/f-spot.glade
 src/GalleryExport.cs
 src/GroupSelector.cs
+src/HigMessageDialog.cs
 src/ImportCommand.cs
 src/InfoBox.cs
 src/InfoDisplay.cs
@@ -36,8 +39,10 @@ src/PhotoVersionCommands.cs
 src/PhotoVersionMenu.cs
 src/PhotoView.cs
 src/PicasaWebExport.cs
+src/Preferences.cs
 src/ProgressDialog.cs
 src/RotateCommand.cs
+src/SendEmail.cs
 src/SingleView.cs
 src/StockIcons.cs
 src/TagCommands.cs
@@ -52,4 +57,5 @@ src/Updater.cs
 src/Util.cs
 src/QueryDisplay.cs
 src/QueryWidget.cs
+src/XmpTagsImporter.cs
 tools/f-spot-screensaver.desktop.in

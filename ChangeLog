@@ -1,3 +1,21 @@
+2006-11-16  Larry Ewing  <lewing@novell.com>
+
+	* src/MainWindow.cs: add handler for FindMissing.
+
+	* src/RepairDialog.cs: start the repair dialog work.
+
+	* src/Makefile.am: add the new files to the build.  Enable nunit.
+
+	* src/Loupe.cs: move the loupe when you move the window.
+
+	* src/BlockProcessor.cs: add unit tests.
+
+2006-11-16  Larry Ewing  <lewing@novell.com>
+
+	* po/POTFILES.in: add missing files.
+
+	* po/POTFILES.skip: remove file that no longer exists.
+
 2006-11-15  Thomas Van Machelen <thomas.vanmachelen@gmail.com>
 	* src/SingleView.cs: Add the possibility to set current image as
 	background from both menu bar and a context menu
@@ -16,8 +34,6 @@
 	* src/Makefile.am (F_SPOT_CSDISTFILES): add BlockProcessor.cs.
 
 	* src/BlockProcessor.cs: clean up a little.
-
-	* src/Loupe.cs: move the loupe when you move the window.
 
 2006-11-14  Stephane Delcroix  <stephane@delcroix.org>
 

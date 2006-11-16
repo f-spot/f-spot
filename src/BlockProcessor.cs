@@ -10,6 +10,7 @@
 
 using Gdk;
 using System;
+using NUnit.Framework;
 
 namespace FSpot {
 	public class BlockProcessor {
@@ -33,6 +34,24 @@ namespace FSpot {
 				rect.Y += rect.Height;
 			}
 			return !region.IsEmpty;
+		}
+
+	}
+
+	[TestFixture]
+	public class BlockProcessorTests 
+	{
+		[Test]
+		public void Step ()
+		{
+			BlockProcessor proc = new BlockProcessor (new Rectangle (10, 100, 25, 15), 20);
+			Rectangle step;
+
+			Assert.AreEqual (proc.Step (out step), true);
+			Assert.AreEqual (step, new Rectangle (10, 100, 20, 15));
+			Assert.AreEqual (proc.Step (out step), true);
+			Assert.AreEqual (step, new Rectangle (30, 100, 5, 15));
+			Assert.AreEqual (proc.Step (out step), false);
 		}
 	}
 }

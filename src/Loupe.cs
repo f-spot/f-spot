@@ -150,11 +150,18 @@ namespace FSpot {
 			this.view = view;
 			Decorated = false;
 			
-			TransientFor = (Gtk.Window) view.Toplevel;
+			Gtk.Window win = (Gtk.Window) view.Toplevel;
+
+			win.GetPosition (out old_win_pos.X, out old_win_pos.Y);
+			win.ConfigureEvent += HandleToplevelConfigure;
+
+			TransientFor = win;
 			DestroyWithParent = true;
 
 			BuildUI ();
 		}
+
+		
 
 		[DllImport("libgdk-2.0-0.dll")]
 	        static extern bool gdk_screen_is_composited (IntPtr screen);
@@ -162,24 +169,23 @@ namespace FSpot {
 		[DllImport ("libgtk-win32-2.0-0.dll")]
 		static extern void gtk_widget_input_shape_combine_mask (IntPtr raw, IntPtr shape_mask, int offset_x, int offset_y);
 
-
-		public bool IsComposited 
+		Gdk.Point old_win_pos;
+		[GLib.ConnectBefore]
+		public void HandleToplevelConfigure (object o, ConfigureEventArgs args)
 		{
-			get { 
-#if false
-				try {
-					return gdk_screen_is_composited (Screen.Handle);
-				} catch {
-					//System.Console.WriteLine ("unable to query composite manager");
-				}
-#endif
-				return use_shape_ext;
-			}
-			set {
-				use_shape_ext = ! value;
-			}
-		}
+			int x, y;
+			int loupe_x, loupe_y;
 
+			x = args.Event.X - old_win_pos.X;
+			y = args.Event.Y - old_win_pos.Y;
+			
+			GetPosition (out loupe_x, out loupe_y);
+			Move (loupe_x + x, loupe_y + y);
+
+			old_win_pos.X = args.Event.X;
+			old_win_pos.Y = args.Event.Y;
+		}
+		
 		public void InputShapeCombineMask(Gdk.Pixmap shape_mask, int offset_x, int offset_y)
 		{
 			gtk_widget_input_shape_combine_mask (Handle, shape_mask == null ? IntPtr.Zero : shape_mask.Handle, offset_x, offset_y);
@@ -321,8 +327,8 @@ namespace FSpot {
 				((IDisposable)rgba).Dispose ();
 				try {
 					InputShapeCombineMask (bitmap, 0,0);
-				} catch {
-					//System.Console.WriteLine ("no inut shaping");
+				} catch (EntryPointNotFoundException) {
+					System.Console.WriteLine ("Warning: gtk+ version doesn't support input shapping");
 				}
 			}
 			bitmap.Dispose ();

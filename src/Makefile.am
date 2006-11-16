@@ -130,6 +130,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PrintDialog.cs		\
 	$(srcdir)/ProgressDialog.cs		\
 	$(srcdir)/RafFile.cs			\
+	$(srcdir)/RepairDialog.cs		\
 	$(srcdir)/RotateCommand.cs		\
 	$(srcdir)/ScalingIconView.cs		\
 	$(srcdir)/SendEmail.cs                  \
@@ -167,6 +168,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/CairoUtils.cs		\
 	$(srcdir)/Widgets/CompositeUtils.cs	\
 	$(srcdir)/Widgets/GdkUtils.cs		\
+	$(srcdir)/Widgets/ImageDisplay.cs	\
 	$(srcdir)/Widgets/ScrolledView.cs	\
 	$(srcdir)/X3fFile.cs			\
 	$(srcdir)/XmpFile.cs			\
@@ -187,6 +189,7 @@ ASSEMBLIES =					\
 	-r:Mono.Posix				\
 	-r:Mono.Security			\
 	-r:ICSharpCode.SharpZipLib		\
+	-pkg:mono-nunit				\
 	-pkg:gtkhtml-sharp-2.0			\
 	-pkg:glade-sharp-2.0			\
 	-pkg:gnome-vfs-sharp-2.0		\
