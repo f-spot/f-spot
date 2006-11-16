@@ -51,7 +51,7 @@ namespace FSpot {
 		{
 			double percent = Math.Min ((DateTime.Now - start).Ticks / (double) duration.Ticks, 1.0);
 			double opacity = Math.Sin (percent * Math.PI * 0.2);
-			CompositeUtils.SetWinOpacity (win, percent);
+			CompositeUtils.SetWinOpacity (win, opacity);
 			
 			bool stop = percent >= 1.0;
 
