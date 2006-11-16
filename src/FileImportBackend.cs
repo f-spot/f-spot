@@ -59,7 +59,7 @@ public class FileImportBackend : ImportBackend {
 	{
 		try {
 			GetListing (info, info.GetFiles (), recurse);
-		} catch (System.UnauthorizedAccessException e) {
+		} catch (System.UnauthorizedAccessException) {
 			System.Console.WriteLine ("Unable to access directory {0}", info.FullName);
 		} catch (System.Exception e) {
 			System.Console.WriteLine ("{0}", e.ToString ());
@@ -223,7 +223,7 @@ public class FileImportBackend : ImportBackend {
 					File.SetCreationTime (info.DestinationPath, create);
 					DateTime mod = File.GetLastWriteTime (info.OriginalPath);
 					File.SetLastWriteTime (info.DestinationPath, mod);
-				} catch (System.Exception e) {
+				} catch (IOException) {
 					// we don't want an exception here to be fatal.
 				}
 			} 

@@ -87,8 +87,7 @@ namespace FSpot {
 				foreach (IBrowsableItem photo in selection.Items) {
 					Gnome.Vfs.Uri source;
 					Gnome.Vfs.Uri target = dest.Clone ();
-					bool changed = false;
-					
+
 					//FIXME workaround to have JpegFile loads the image
 					string path = ImageFile.TempPath (photo.DefaultVersionUri.LocalPath);
 					

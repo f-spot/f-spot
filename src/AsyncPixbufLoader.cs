@@ -217,7 +217,6 @@ namespace FSpot {
 		private class StreamWrapper {
 			private delegate int ReadDelegate (byte [] buffer, int offset, int count);
 			System.IO.Stream stream;
-			IAsyncResult iar;
 
 			public System.IO.Stream Stream {
 				get { return stream; }
@@ -236,7 +235,7 @@ namespace FSpot {
 			public IAsyncResult BeginRead (byte [] buffer, int offset, int count, AsyncCallback cb, object state)
 			{
 				ReadDelegate del = new ReadDelegate (Read);
-				return iar = del.BeginInvoke (buffer, offset, count, cb, state);
+				return del.BeginInvoke (buffer, offset, count, cb, state);
 			}
 			
 			public int EndRead (IAsyncResult result)

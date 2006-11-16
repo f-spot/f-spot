@@ -13,7 +13,6 @@ namespace FSpot {
         private Label valid_label;
         private string last_entry_text = String.Empty;
         private int open_parens = 0, close_parens = 0;
-        private bool query_valid = true;
         private PhotoQuery query;
         private LogicTerm root_term = null;
 
@@ -193,7 +192,7 @@ namespace FSpot {
             if (txt == null || txt.Length == 0)
                 return true;
 
-            string indent = String.Format ("{0," + depth*2 + "}", " ");
+            //string indent = String.Format ("{0," + depth*2 + "}", " ");
 
             //Console.WriteLine (indent + "Have text: {0}", txt);
             Match match = term_regex.Match (txt);

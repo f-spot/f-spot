@@ -12,6 +12,12 @@ namespace FSpot {
 		{
 			this.span = span;
 		}
+
+		public TimeSpan TimeSpan {
+			get {
+				return span;
+			}
+		}
 	}
 
 	public class TimeDialog : GladeDialog 
@@ -223,7 +229,7 @@ namespace FSpot {
 				TimeSpan span = TimeSpan.Parse (offset_entry.Text);
 				if (span != current)
 					Offset = span;
-			} catch (System.Exception e) {
+			} catch (System.Exception) {
 				System.Console.WriteLine ("unparsable span {0}", offset_entry.Text);
 			}
 		}

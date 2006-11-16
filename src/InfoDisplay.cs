@@ -150,7 +150,7 @@ namespace FSpot {
 						StatementSource source = (StatementSource)img;
 						source.Select (store);
 					}
-				} catch (System.IO.FileNotFoundException nf) {
+				} catch (System.IO.FileNotFoundException) {
 					missing = true;
 				} catch (System.Exception e){
 					// Sometimes we don't get the right exception, check for the file

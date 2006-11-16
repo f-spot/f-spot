@@ -18,7 +18,6 @@ public class ProgressDialog : Gtk.Dialog {
 		None
 	};
 
-	private CancelButtonType cancel_button_type;
 	private int total_count;
 
 	private ProgressBar progress_bar;
@@ -43,7 +42,6 @@ public class ProgressDialog : Gtk.Dialog {
 	public ProgressDialog (string title, CancelButtonType cancel_button_type, int total_count, Gtk.Window parent_window)
 	{
 		Title = title;
-		this.cancel_button_type = cancel_button_type;
 		this.total_count = total_count;
 
 		if (parent_window != null)

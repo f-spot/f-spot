@@ -199,7 +199,7 @@ namespace FSpot.Database {
 
 				reader.Close ();
 				command.Dispose ();
-			} catch (Exception e) {}
+			} catch (Exception) {}
 
 			return result;
 		}

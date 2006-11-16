@@ -33,10 +33,8 @@ namespace FSpot {
 
 		int photo_index;
 		bool clean;
-		static uint timer = 0;
 		long Orig_Photo_Size 	= 0;
 		double scale_percentage = 0.3;
-		bool keep_exif 		= true;
 		
 		// The different sizes we can shrink to foto to. See RadioButton above for labels.
 		static int[] sizes 		= { 0, 320, 	480, 	640, 	800, 	1024 };
@@ -320,7 +318,7 @@ namespace FSpot {
 					delete_timeout = delete_timeout * 1000; // to get milliseconds.
 
 					// Start a timer and when it occurs, delete the temp files.
-					timer = GLib.Timeout.Add (delete_timeout, new GLib.TimeoutHandler (DeleteTempFile));
+					GLib.Timeout.Add (delete_timeout, new GLib.TimeoutHandler (DeleteTempFile));
 				}
 			}
 		}

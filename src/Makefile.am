@@ -193,11 +193,11 @@ ASSEMBLIES =					\
 	-pkg:gtkhtml-sharp-2.0			\
 	-pkg:glade-sharp-2.0			\
 	-pkg:gnome-vfs-sharp-2.0		\
-	-pkg:gconf-sharp-2.0			
+	-pkg:gconf-sharp-2.0
 
 
 RESOURCES =										\
-	-resource:$(top_srcdir)/icons/f-spot-adjust-colors.png,f-spot-adjust-colors.png		\
+	-resource:$(top_srcdir)/icons/f-spot-adjust-colors.png,f-spot-adjust-colors.png	\
 	-resource:$(top_srcdir)/icons/f-spot-browse.png,f-spot-browse.png		\
 	-resource:$(top_srcdir)/icons/f-spot-crop.png,f-spot-crop.png			\
 	-resource:$(top_srcdir)/icons/f-spot-camera.png,f-spot-camera.png		\
@@ -209,7 +209,7 @@ RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-imported-xmp-tags.png,f-spot-imported-xmp-tags.png	\
 	-resource:$(top_srcdir)/icons/f-spot-loading.png,f-spot-loading.png		\
 	-resource:$(top_srcdir)/icons/f-spot-new-tag.png,f-spot-new-tag.png		\
-	-resource:$(top_srcdir)/icons/f-spot-not.png,f-spot-not.png		\
+	-resource:$(top_srcdir)/icons/f-spot-not.png,f-spot-not.png			\
 	-resource:$(top_srcdir)/icons/f-spot-other.png,f-spot-other.png			\
 	-resource:$(top_srcdir)/icons/f-spot-people.png,f-spot-people.png 		\
 	-resource:$(top_srcdir)/icons/f-spot-places.png,f-spot-places.png 		\
@@ -223,14 +223,14 @@ RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-stock_far.png,f-spot-stock_far.png		\
 	-resource:$(top_srcdir)/icons/f-spot-fullscreen.png,f-spot-fullscreen.png	\
 	-resource:$(top_srcdir)/icons/f-spot-simple-white.css,f-spot-simple-white.css	\
-	-resource:$(top_srcdir)/icons/f-spot-simple.css,f-spot-simple.css	\
-	-resource:$(top_srcdir)/icons/f-spot.js,f-spot.js	\
+	-resource:$(top_srcdir)/icons/f-spot-simple.css,f-spot-simple.css		\
+	-resource:$(top_srcdir)/icons/f-spot.js,f-spot.js				\
 	-resource:$(top_srcdir)/icons/f-spot-logo-tango.svg,f-spot-logo-tango.svg	\
 	-resource:$(top_srcdir)/icons/f-spot-16.png,f-spot-16.png			\
 	-resource:$(top_srcdir)/icons/f-spot-22.png,f-spot-22.png			\
 	-resource:$(top_srcdir)/icons/f-spot-32.png,f-spot-32.png			\
 	-resource:$(top_srcdir)/icons/f-spot-48.svg,f-spot-48.svg			\
-	-resource:$(srcdir)/dces.rdf,dces.rdf			\
+	-resource:$(srcdir)/dces.rdf,dces.rdf						\
 	-resource:$(srcdir)/f-spot.glade,f-spot.glade
 
 fspotlibdir = $(libdir)/f-spot

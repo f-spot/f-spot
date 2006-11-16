@@ -53,7 +53,6 @@ namespace FSpot.Xmp {
 
 				// Fill in the namespaces with nice prefixes
 				if (MetadataStore.Namespaces.Normalize (predicate, out prefix, out localname)) {
-					string name = MetadataStore.Namespaces.GetPrefix (prefix);
 					if (prefix != null)
 						Namespaces.AddNamespace (predicate.Remove (predicate.Length - localname.Length, localname.Length), prefix);
 				}

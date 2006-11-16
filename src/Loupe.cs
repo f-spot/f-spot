@@ -143,7 +143,6 @@ namespace FSpot {
 		Gdk.Point start_hot;
 		Gdk.Point pos_hot;
 		Gdk.Point hotspot;
-		double drag_angle;
 
 		public Loupe (PhotoImageView view) : base ("Loupe")
 		{ 
@@ -467,7 +466,6 @@ namespace FSpot {
 				Vector v2 = new Vector (now);
 
 				double angle = Vector.AngleBetween (v1, v2);
-				drag_angle = angle;
 				
 				Angle = start_angle + angle;
 				return false;	
@@ -521,7 +519,6 @@ namespace FSpot {
 					dragging = true;
 					rotate = (args.Event.State & Gdk.ModifierType.ShiftMask) > 0;
 					start_angle = Angle;
-					drag_angle = 0.0;
 				} else {
 					Angle += Math.PI /8;
 				}

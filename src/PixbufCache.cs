@@ -8,8 +8,6 @@ namespace FSpot {
 		int total_size;
 		int max_size = 256 * 256 * 4 * 30;
 
-		Queue pending;
-
 		private Thread worker;
 
 		public delegate void PixbufLoadedHandler (PixbufCache cache, CacheEntry entry);
@@ -17,7 +15,6 @@ namespace FSpot {
 		
 		public PixbufCache ()
 		{
-			pending = new Queue ();
 			items = new Hashtable ();
 			items_mru = new ArrayList ();
 			
@@ -178,7 +175,7 @@ namespace FSpot {
 			try {
 				loaded = new Gdk.Pixbuf (entry.Path);
 				this.Update (entry, loaded);
-			} catch (GLib.GException ex){
+			} catch (GLib.GException){
 				if (loaded != null)
 					loaded.Dispose ();
 				return;		

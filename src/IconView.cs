@@ -153,9 +153,6 @@ public class IconView : Gtk.Layout {
 	private int y_offset;
 	private int x_offset;
 
-	// Drag and drop bookkeeping. 
-	private int click_x, click_y;
-
 	// Focus Handling
 	private int real_focus_cell;
 	public int FocusCell {
@@ -1412,9 +1409,6 @@ public class IconView : Gtk.Layout {
 			
 			if (args.Event.Button != 1)
 				return;
-
-			click_x = (int) args.Event.X;
-			click_y = (int) args.Event.Y;
 
 			FocusCell = cell_num;
 			return;

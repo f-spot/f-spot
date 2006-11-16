@@ -30,7 +30,6 @@ namespace FSpot {
 		private string password;
 		private string token;
 		private string unlock_captcha;
-		private bool connected;
 		private GoogleConnection connection;
 		private PicasaWeb picasa;
 
@@ -69,7 +68,6 @@ namespace FSpot {
 		private void MarkChanged()
 		{
 			connection = null;
-			connected = false;
 		}
 
 		public bool Connected {
@@ -427,7 +425,6 @@ namespace FSpot {
 			if (edit_button != null)
 				edit_button.Clicked += HandleEditGallery;
 			
-			rh = new Gtk.ResponseHandler (HandleResponse);
 			Dialog.Response += HandleResponse;
 			connect = true;
 			HandleSizeActive (null, null);
@@ -441,8 +438,6 @@ namespace FSpot {
 			LoadPreference (Preferences.EXPORT_PICASAWEB_BROWSER);
 //			LoadPreference (Preferences.EXPORT_PICASAWEB_META);
 		}
-		
-		Gtk.ResponseHandler rh;
 		
 		private bool scale;
 		private int size;
@@ -463,10 +458,6 @@ namespace FSpot {
 		private PicasaAlbum album;
 
 		private string xml_path;
-
-		// Dialogs
-		private GoogleAccountDialog gallery_add;
-		private GoogleAddAlbum album_add;
 
 		// Widgets
 		[Glade.Widget] Gtk.OptionMenu gallery_optionmenu;
@@ -701,11 +692,11 @@ namespace FSpot {
 				PopulateAlbumOptionMenu (account.Picasa);
 				album_button.Sensitive = false;
 
-				GoogleAccountDialog dialog = new GoogleAccountDialog (this.Dialog, account, false, exc);
+				new GoogleAccountDialog (this.Dialog, account, false, exc);
 				
 				System.Console.WriteLine ("Your google account is locked, you can unlock it by visiting: {0}", CaptchaException.UnlockCaptchaURL);
 
-			} catch (System.Exception ex) {
+			} catch (System.Exception) {
 				System.Console.WriteLine ("Can not connect to Picasa. Bad username ? password ? network connection ?");
 				//System.Console.WriteLine ("{0}",ex);
 				if (selected != null)
@@ -716,7 +707,7 @@ namespace FSpot {
 				status_label.Text = "";
 				album_button.Sensitive = false;
 				
-				GoogleAccountDialog dialog = new GoogleAccountDialog (this.Dialog, account, true, null);
+				new GoogleAccountDialog (this.Dialog, account, true, null);
 			} 
 		}
 
@@ -789,12 +780,12 @@ namespace FSpot {
 		
 		public void HandleAddGallery (object sender, System.EventArgs args)
 		{
-			gallery_add = new GoogleAccountDialog (this.Dialog);
+			new GoogleAccountDialog (this.Dialog);
 		}
 		
 		public void HandleEditGallery (object sender, System.EventArgs args)
 		{
-			gallery_add = new GoogleAccountDialog (this.Dialog, account, false, null);
+			new GoogleAccountDialog (this.Dialog, account, false, null);
 		}
 
 		public void HandleAddAlbum (object sender, System.EventArgs args)
@@ -802,7 +793,7 @@ namespace FSpot {
 			if (account == null)
 				throw new Exception (Catalog.GetString ("No account selected"));
 				
-			album_add = new GoogleAddAlbum (this, account.Picasa);
+			new GoogleAddAlbum (this, account.Picasa);
 		}
 
 		void LoadPreference (string key)

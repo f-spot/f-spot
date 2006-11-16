@@ -1,7 +1,6 @@
 namespace FSpot {
 	public class PhotoLoader {
 		public PhotoQuery query;
-		static int THUMBNAIL_SIZE = 256;
 
 		public Gdk.Pixbuf Load (int index) {
 			return Load (query, index);

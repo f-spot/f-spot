@@ -134,6 +134,11 @@ namespace FSpot.Iptc {
 				IDTable [info.ID] = info;
 			}
 		}
+		
+		public override string ToString ()
+		{
+		        return System.String.Format ("{0}-({1},{2},{3},{4})", Name, Mandatory, Repeatable, MinSize, MaxSize);
+		}
 
 		private static DataSetInfo [] datasets = {
 			new DataSetInfo (DataSetID.ModelVersion, Format.Short, "Model Version", true, false, 2, 2, 

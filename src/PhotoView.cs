@@ -28,8 +28,6 @@ public class PhotoView : EventBox {
 	Gtk.Button desaturate_button;
 	Gtk.Button sepia_button;
 
-	FSpot.AsyncPixbufLoader loader = new FSpot.AsyncPixbufLoader ();
-
 	private OptionMenu constraints_option_menu;
 	private int selection_constraint_ratio_idx;
 	private uint restore_scrollbars_idle_id;

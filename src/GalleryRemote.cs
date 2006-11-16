@@ -36,7 +36,6 @@ namespace GalleryRemote {
 		Gallery gallery;
 		
 		public AlbumPermission Perms = AlbumPermission.None;
-		Hashtable extras = null;
 
 		public Album Parent {
 			get {
@@ -291,13 +290,12 @@ namespace GalleryRemote {
 					client.Submit (new Uri (Gallery.FixUrl (url, Gallery1.script_name)));
 					version =  GalleryVersion.Version1;
 
-				} catch (System.Net.WebException e) {
-
+				} catch (System.Net.WebException) {
 					try {
 						client.Submit (new Uri (Gallery.FixUrl (url, Gallery2.script_name)));
 						version =  GalleryVersion.Version2;
 
-					} catch (System.Net.WebException e2) {
+					} catch (System.Net.WebException) {
 						//Uh oh, neither version detected
 						version = GalleryVersion.VersionUnknown;
 					}
@@ -454,7 +452,7 @@ namespace GalleryRemote {
 						//G1 FetchAlbumsPrune returns album names (and 0 for root albums)
 						try {
 							current_album.ParentRefNum = int.Parse (data[1]);
-						} catch (System.FormatException e) {
+						} catch (System.FormatException) {
 							current_album.ParentRefNum = LookupAlbum (data[1]).RefNum;
 						}
 						//Console.WriteLine ("album.parent data[1]: " + data[1]);
@@ -798,7 +796,7 @@ namespace GalleryRemote {
 					} else if (data[0].StartsWith ("image.clicks")) {
 						try {
 							current_image.Clicks = int.Parse (data[1]);
-						} catch (System.FormatException e) {
+						} catch (System.FormatException) {
 							current_image.Clicks = 0;
 						}
 					} else if (data[0].StartsWith ("baseurl")) {
@@ -1031,7 +1029,7 @@ namespace GalleryRemote {
 					} else if (data[0].StartsWith ("image.clicks")) {
 						try {
 							current_image.Clicks = int.Parse (data[1]);
-						} catch (System.FormatException e) {
+						} catch (System.FormatException) {
 							current_image.Clicks = 0;
 						}
 					} else if (data[0].StartsWith ("baseurl")) {

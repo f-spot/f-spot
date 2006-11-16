@@ -562,7 +562,6 @@ namespace FSpot {
 			if (edit_button != null)
 				edit_button.Clicked += HandleEditGallery;
 			
-			rh = new Gtk.ResponseHandler (HandleResponse);
 			Dialog.Response += HandleResponse;
 			connect = true;
 			HandleSizeActive (null, null);
@@ -574,8 +573,6 @@ namespace FSpot {
 			LoadPreference (Preferences.EXPORT_GALLERY_META);
 			LoadPreference (Preferences.EXPORT_GALLERY_ROTATE);
 		}
-		
-		Gtk.ResponseHandler rh;
 		
 		private bool scale;
 		private bool rotate;
@@ -593,10 +590,6 @@ namespace FSpot {
 		private Album album;
 
 		private string xml_path;
-
-		// Dialogs
-		private AccountDialog gallery_add;
-		private GalleryAddAlbum album_add;
 
 		// Widgets
 		[Glade.Widget] Gtk.OptionMenu gallery_optionmenu;
@@ -795,7 +788,7 @@ namespace FSpot {
 				PopulateAlbumOptionMenu (account.Gallery);
 				album_button.Sensitive = false;
 				
-				AccountDialog dialog = new AccountDialog (this.Dialog, account, true);
+				new AccountDialog (this.Dialog, account, true);
 			} 
 		}
 
@@ -873,12 +866,12 @@ namespace FSpot {
 		
 		public void HandleAddGallery (object sender, System.EventArgs args)
 		{
-			gallery_add = new AccountDialog (this.Dialog);
+			new AccountDialog (this.Dialog);
 		}
 		
 		public void HandleEditGallery (object sender, System.EventArgs args)
 		{
-			gallery_add = new AccountDialog (this.Dialog, account, false);
+			new AccountDialog (this.Dialog, account, false);
 		}
 
 		public void HandleAddAlbum (object sender, System.EventArgs args)
@@ -886,7 +879,7 @@ namespace FSpot {
 			if (account == null)
 				throw new Exception (Catalog.GetString ("No account selected"));
 				
-			album_add = new GalleryAddAlbum (this, account.Gallery);
+			new GalleryAddAlbum (this, account.Gallery);
 		}
 
 		void LoadPreference (string key)

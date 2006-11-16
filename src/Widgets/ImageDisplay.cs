@@ -15,7 +15,6 @@ namespace FSpot.Widgets {
 		BrowsablePointer item;
 		ITransition transition;
 		IEffect effect;
-		double opacity = 0.5;
 		Delay delay;
 		int index = 0;
 
@@ -243,8 +242,6 @@ namespace FSpot.Widgets {
 			
 			public bool OnExpose (Graphics ctx, Gdk.Rectangle allocation)
 			{
-				Gdk.Rectangle bounds = allocation;
-
 				ctx.Operator = Operator.Source;
 
 				SurfacePattern p = new SurfacePattern (info.Surface);
@@ -272,7 +269,6 @@ namespace FSpot.Widgets {
 			ImageInfo info;
 			ImageInfo buffer;
 			TimeSpan duration = new TimeSpan (0, 0, 7);
-			bool started = false;
 			double pan_x;
 			double pan_y;
 			double x_offset;

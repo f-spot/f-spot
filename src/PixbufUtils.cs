@@ -170,7 +170,7 @@ class PixbufUtils {
 				using (fs = File.OpenRead (path)) {
 					return Load (fs, orientation);
 				}
-			} catch (Exception e) {
+			} catch (Exception) {
 				System.Console.WriteLine ("Error loading photo {0}", path);
 				return null;
 			} 

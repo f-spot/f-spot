@@ -430,6 +430,11 @@ namespace FSpot.Tiff {
 			System.Console.WriteLine ("old = \"{0}\" new = \"{1}\" heading = \"{2}\"", c.Value, description, heading);
 			return data;
 		}
+
+		public override string ToString ()
+		{
+			return String.Format ("({0},charset={1})", Value, Charset);
+		}
 	}
 
 	public struct CFAPattern {
@@ -1108,7 +1113,7 @@ namespace FSpot.Tiff {
 				if (next_directory_offset != 0 && next_directory_offset != orig_position)
 					next_directory = new ImageDirectory (stream, next_directory_offset, this.endian);
 				
-			} catch (System.Exception e) {
+			} catch (System.Exception) {
 				//System.Console.WriteLine ("Error loading directory {0}", e.ToString ());
 				next_directory = null;
 				next_directory_offset = 0;
@@ -2084,7 +2089,7 @@ namespace FSpot.Tiff {
 				SubdirectoryEntry sub = (SubdirectoryEntry) Header.Directory.Lookup (TagId.SubIFDs);
 				ImageDirectory jpeg_directory = sub.Directory [0];
 				return LookupJpegSubstream (jpeg_directory);
-			} catch (System.Exception e) {
+			} catch (System.Exception) {
 				return DCRawFile.RawPixbufStream (uri);
 			}
 		}

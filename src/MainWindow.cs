@@ -134,7 +134,6 @@ public class MainWindow {
 	Widget rl_button;
 	Widget rr_button;
 	
-	string last_import_path;
 	ModeType view_mode;
 	bool write_metadata = false;
 
@@ -511,8 +510,6 @@ public class MainWindow {
 			break;
 		}
 	}
-
-	private int lastTopLeftCell = -1;
 
 	public int [] SelectedIds () {
 		int [] ids = new int [0];
@@ -973,7 +970,6 @@ public class MainWindow {
 		if (cell_num == -1 /*|| cell_num == lastTopLeftCell*/)
 			return;
 
-		lastTopLeftCell = cell_num;
 		FSpot.IBrowsableItem photo = icon_view.Collection.Items [cell_num];
 #if false
 		group_selector.Adaptor.GlassSet -= HandleAdaptorGlassSet;
@@ -1314,7 +1310,6 @@ public class MainWindow {
 		db.Sync = false;
 		ImportCommand command = new ImportCommand (main_window);
 		if (command.ImportFromFile (db.Photos, null) > 0) {
-			this.last_import_path = command.ImportPath;
 			UpdateQuery ();
 		}
 		db.Sync = true;		
@@ -2514,7 +2509,7 @@ public class MainWindow {
 					
 					if (photo != null)
 						JumpTo (query.IndexOf (photo));
-				} catch (Exception e) {}
+				} catch (Exception) {}
 			}
 			break;
 		case Preferences.SIDEBAR_POSITION:

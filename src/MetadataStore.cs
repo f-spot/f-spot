@@ -87,7 +87,6 @@ namespace FSpot {
 		public Description (string predicate, string title, string description, ValueFormat formater)
 		{
 			this.predicate = predicate;
-			this.description = description;
 			this.title = title;
 			this.formater = formater;
 		}

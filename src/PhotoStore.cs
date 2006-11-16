@@ -317,7 +317,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		try {
 			string thumb_path = ThumbnailGenerator.ThumbnailPath (path);
 			File.Delete (thumb_path);
-		} catch (System.Exception e) {
+		} catch (System.Exception) {
 			//ignore an error here we don't really care.
 		}
 

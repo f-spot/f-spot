@@ -61,6 +61,14 @@ namespace FSpot.X3f {
 			stream.Read (buffer, 0, buffer.Length);
 			rotation = BitConverter.ToUInt32 (buffer, 0, true);
 		}
+
+		public override string ToString ()
+		{
+			return String.Format ("x3file ({0}.{1}, mark_bits={2}) ({3}, {4})",
+					      major_version, minor_version,
+					      mark_bits, Width, Height);
+		}
+
 	}
 
 	public class X3fFile : DCRawFile, SemWeb.StatementSource {

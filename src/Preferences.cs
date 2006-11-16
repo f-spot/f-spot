@@ -264,7 +264,7 @@ namespace FSpot
 				string password = (string) Preferences.Get (PaswordKey, "");
 
 				proxy.Credentials = new NetworkCredential (username, password);
-			} catch (Exception e) {
+			} catch (Exception) {
 				proxy = null;
 			}
 

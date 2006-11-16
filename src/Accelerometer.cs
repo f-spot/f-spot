@@ -115,7 +115,7 @@ namespace FSpot {
 
 					return;
 				}
-			} catch (Exception e) {
+			} catch (IOException) {
 				x = 0;
 				y = 0;
 			}

@@ -14,7 +14,6 @@ public class Driver {
 	
 	private static void HelpMsg(string [] args)
 	{
-		Program program = null;
 		Catalog.Init ("f-spot", Defines.LOCALE_DIR);
 
 		System.Console.WriteLine ("Usage: f-spot [--basedir <directory>] | [--photodir <directory>] | [--debug]");
@@ -30,7 +29,6 @@ public class Driver {
 		System.Console.WriteLine ("  --slideshow\t\t\t\tdisplay a slideshow");
 		System.Console.WriteLine ("  --debug\t\t\t\trun f-spot with mono in debug mode");
 		System.Console.WriteLine ("  --help\t\t\t\tview this message");
-
 	}
 	
 	private static bool ValidateCmds(string [] args)
@@ -121,7 +119,7 @@ public class Driver {
 					control = Core.FindInstance ();
 					System.Console.WriteLine ("Found active FSpot server: {0}", control);
 					program = null;
-				} catch (System.Exception e) { 
+				} catch (System.Exception) { 
 					if (System.Array.IndexOf (args, "--shutdown") == 0)
 						System.Console.WriteLine ("Starting new FSpot server");
 				}

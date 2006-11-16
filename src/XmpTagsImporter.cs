@@ -20,7 +20,6 @@ using Mono.Unix;
 
 namespace FSpot.Xmp {
         internal class XmpTagsImporter {
-		private PhotoStore photo_store;
 		private TagStore tag_store;
 		private Stack tags_created;
 
@@ -80,7 +79,6 @@ namespace FSpot.Xmp {
 		
 		public XmpTagsImporter (PhotoStore photo_store, TagStore tag_store)
 		{
-			this.photo_store = photo_store;
 			this.tag_store = tag_store;
 			tags_created = new Stack ();
 			// Prepare the Last Import root tag

@@ -1,3 +1,8 @@
+2006-11-16  Larry Ewing  <lewing@novell.com>
+
+	* src/*.cs: remove unused variables and silence warnings.
+	Occationally add a ToString method.
+
 2006-11-16  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/IconView.cs: Fixes minor display issue. bgo #375911.
@@ -44,6 +49,7 @@
 	* po/POTFILES.skip: remove file that no longer exists.
 
 2006-11-15  Thomas Van Machelen <thomas.vanmachelen@gmail.com>
+	
 	* src/SingleView.cs: Add the possibility to set current image as
 	background from both menu bar and a context menu
 

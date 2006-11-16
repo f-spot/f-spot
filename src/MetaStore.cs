@@ -91,7 +91,7 @@ public class MetaStore : DbStore {
 				Create (hidden, reader [0].ToString ());
 
 			reader.Close ();
-		} catch (Exception e) {}
+		} catch (Exception) {}
 	
 		command.Dispose ();
 	}
@@ -193,7 +193,7 @@ public class MetaStore : DbStore {
 			command.CommandText = "UPDATE meta SET id = 1 WHERE 1 = 2";
 			command.ExecuteScalar ();
 			command.Dispose ();
-		} catch (Exception e) {
+		} catch (Exception) {
 			// Table doesn't exist, so create it
 			exists = false;
 		}

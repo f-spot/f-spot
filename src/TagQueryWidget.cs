@@ -9,161 +9,161 @@ namespace FSpot.Query
 {
 	public class LiteralPopup
 	{
-		private Literal literal;
-
+		//private Literal literal;
+		
 		public void Activate (Gdk.EventButton eb, Literal literal)
-        {
-            Activate (eb, literal, new Gtk.Menu (), true);
-        }
-
+		{
+			Activate (eb, literal, new Gtk.Menu (), true);
+		}
+		
 		public void Activate (Gdk.EventButton eb, Literal literal, Gtk.Menu popup_menu, bool is_popup)
 		{
-			this.literal = literal;
-
+			//this.literal = literal;
+			
 			/*MenuItem attach_item = new MenuItem (Catalog.GetString ("Find With"));
 			TagMenu attach_menu = new TagMenu (attach_item, MainWindow.Toplevel.Database.Tags);
 			attach_menu.TagSelected += literal.HandleAttachTagCommand;
 			attach_item.ShowAll ();
 			popup_menu.Append (attach_item);*/
 			
-            if (literal.IsNegated) {
-                GtkUtil.MakeMenuItem (popup_menu,
-                    Catalog.GetString ("Include"),
-                    "gtk-cancel",
-                    new EventHandler (literal.HandleToggleNegatedCommand),
-                    true);
-            } else {
-                GtkUtil.MakeMenuItem (popup_menu,
-                    Catalog.GetString ("Exclude"),
-                    "gtk-delete",
-                    new EventHandler (literal.HandleToggleNegatedCommand),
-                    true);
-            }
+			if (literal.IsNegated) {
+				GtkUtil.MakeMenuItem (popup_menu,
+						      Catalog.GetString ("Include"),
+						      "gtk-cancel",
+						      new EventHandler (literal.HandleToggleNegatedCommand),
+						      true);
+			} else {
+				GtkUtil.MakeMenuItem (popup_menu,
+						      Catalog.GetString ("Exclude"),
+						      "gtk-delete",
+						      new EventHandler (literal.HandleToggleNegatedCommand),
+						      true);
+			}
 			
 			GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Remove"),
-                "gtk-remove",
-                new EventHandler (literal.HandleRemoveCommand),
-                true);
-
-            if (is_popup) {
-                if (eb != null)
-                    popup_menu.Popup (null, null, null, eb.Button, eb.Time);
-                else
-                    popup_menu.Popup (null, null, null, 0, Gtk.Global.CurrentEventTime);
-            }
+					      "gtk-remove",
+					      new EventHandler (literal.HandleRemoveCommand),
+					      true);
+			
+			if (is_popup) {
+				if (eb != null)
+					popup_menu.Popup (null, null, null, eb.Button, eb.Time);
+				else
+					popup_menu.Popup (null, null, null, 0, Gtk.Global.CurrentEventTime);
+			}
 		}
 	}
-
+	
 	public class LiteralMenu : Menu
 	{
 		private LiteralPopup popup;
-        private Literal literal;
-
+		private Literal literal;
+		
 		public LiteralMenu (MenuItem item, Literal literal)
 		{
 			popup = new LiteralPopup ();
-
-            this.literal = literal;
-
+			
+			this.literal = literal;
+			
 			item.Submenu = this;
 			item.Activated += HandlePopulate;
 		}
-
+		
 		private void HandlePopulate (object obj, EventArgs args)
 		{
 			foreach (Widget child in Children) {
 				Remove (child);
 				child.Destroy ();
 			}
-
+			
 			popup.Activate (null, literal, this, false);
 		}
 	}
-
-    public static class TermMenuItem
-    {
-        public static void Create (Tag [] tags, Gtk.Menu menu)
-        {
-            Gtk.MenuItem item = new Gtk.MenuItem (String.Format (Catalog.GetPluralString ("Find _With", "Find _With", tags.Length), tags.Length));
-
-            Gtk.Menu submenu = GetSubmenu (tags);
-            if (submenu == null)
+	
+	public static class TermMenuItem
+	{
+		public static void Create (Tag [] tags, Gtk.Menu menu)
+		{
+			Gtk.MenuItem item = new Gtk.MenuItem (String.Format (Catalog.GetPluralString ("Find _With", "Find _With", tags.Length), tags.Length));
+			
+			Gtk.Menu submenu = GetSubmenu (tags);
+			if (submenu == null)
                 item.Sensitive = false;
-            else
-                item.Submenu = submenu;
-
-            menu.Append (item);
-            item.Show ();
-        }
-
-        public static Gtk.Menu GetSubmenu (Tag [] tags)
-        {
-            Tag single_tag = null;
-            if (tags != null && tags.Length == 1)
-                single_tag = tags[0];
-
-            //Console.WriteLine ("creating find with menu item");
-            if (LogicWidget.Root == null || LogicWidget.Root.SubTerms.Count == 0) {
-                //Console.WriteLine ("root is null or has no terms");
-                return null;
-            } else {
-                //Console.WriteLine ("root is not null and has terms");
-                Gtk.Menu m = new Gtk.Menu ();
-
-                Gtk.MenuItem all_item = GtkUtil.MakeMenuItem (m, Catalog.GetString ("All"), new EventHandler (MainWindow.Toplevel.HandleRequireTag));
-                GtkUtil.MakeMenuSeparator (m);
-
-                int sensitive_items = 0;
-                foreach (LogicTerm term in LogicWidget.Root.SubTerms) {
-                    ArrayList term_parts = new ArrayList ();
-
-                    bool contains_tag = AppendTerm (term_parts, term, single_tag);
-
-                    string name = "_" + String.Join (", ", (string []) term_parts.ToArray (typeof(string)));
-
-                    Gtk.MenuItem item = GtkUtil.MakeMenuItem (m, name, new EventHandler (MainWindow.Toplevel.HandleAddTagToTerm));
-                    item.Sensitive = !contains_tag;
-
-                    if (!contains_tag)
-                        sensitive_items++;
-                }
-
-                if (sensitive_items == 0)
-                    all_item.Sensitive = false;
-
-                return m;
-            }
-        }
-
-        private static bool AppendTerm (ArrayList parts, LogicTerm term, Tag single_tag)
-        {
-            bool tag_matches = false;
-            if (term != null) {
-                Literal literal = term as Literal;
-                if (literal != null) {
-                    if (literal.Tag == single_tag)
-                        tag_matches = true;
-
-                    if (literal.IsNegated)
-                        parts.Add (String.Format (Catalog.GetString ("Not {0}"), literal.Tag.Name));
-                    else
-                        parts.Add (literal.Tag.Name);
-                } else {
-                    foreach (LogicTerm subterm in term.SubTerms) {
-                        tag_matches |= AppendTerm (parts, subterm, single_tag);
-                    }
-                }
-            }
-
-            return tag_matches;
-        }
-    }
+			else
+				item.Submenu = submenu;
+			
+			menu.Append (item);
+			item.Show ();
+		}
+		
+		public static Gtk.Menu GetSubmenu (Tag [] tags)
+		{
+			Tag single_tag = null;
+			if (tags != null && tags.Length == 1)
+				single_tag = tags[0];
+			
+			//Console.WriteLine ("creating find with menu item");
+			if (LogicWidget.Root == null || LogicWidget.Root.SubTerms.Count == 0) {
+				//Console.WriteLine ("root is null or has no terms");
+				return null;
+			} else {
+				//Console.WriteLine ("root is not null and has terms");
+				Gtk.Menu m = new Gtk.Menu ();
+				
+				Gtk.MenuItem all_item = GtkUtil.MakeMenuItem (m, Catalog.GetString ("All"), new EventHandler (MainWindow.Toplevel.HandleRequireTag));
+				GtkUtil.MakeMenuSeparator (m);
+				
+				int sensitive_items = 0;
+				foreach (LogicTerm term in LogicWidget.Root.SubTerms) {
+					ArrayList term_parts = new ArrayList ();
+					
+					bool contains_tag = AppendTerm (term_parts, term, single_tag);
+					
+					string name = "_" + String.Join (", ", (string []) term_parts.ToArray (typeof(string)));
+					
+					Gtk.MenuItem item = GtkUtil.MakeMenuItem (m, name, new EventHandler (MainWindow.Toplevel.HandleAddTagToTerm));
+					item.Sensitive = !contains_tag;
+					
+					if (!contains_tag)
+						sensitive_items++;
+				}
+				
+				if (sensitive_items == 0)
+					all_item.Sensitive = false;
+				
+				return m;
+			}
+		}
+		
+		private static bool AppendTerm (ArrayList parts, LogicTerm term, Tag single_tag)
+		{
+			bool tag_matches = false;
+			if (term != null) {
+				Literal literal = term as Literal;
+				if (literal != null) {
+					if (literal.Tag == single_tag)
+						tag_matches = true;
+					
+					if (literal.IsNegated)
+						parts.Add (String.Format (Catalog.GetString ("Not {0}"), literal.Tag.Name));
+					else
+						parts.Add (literal.Tag.Name);
+				} else {
+					foreach (LogicTerm subterm in term.SubTerms) {
+						tag_matches |= AppendTerm (parts, subterm, single_tag);
+					}
+				}
+			}
+			
+			return tag_matches;
+		}
+	}
 
 	public abstract class LogicTerm {
 		private ArrayList sub_terms = new ArrayList ();
 		private LogicTerm parent = null;
 		private string separator;
-
+		
 		protected Tag tag = null;
 
 		public ArrayList SubTerms {
@@ -171,7 +171,7 @@ namespace FSpot.Query
 				return sub_terms;
 			}
 		}
-
+		
 		public LogicTerm (LogicTerm parent, Literal after)
 		{
 			this.parent = parent;
@@ -183,7 +183,7 @@ namespace FSpot.Query
 					parent.SubTerms.Insert (parent.SubTerms.IndexOf (after) + 1, this);
 			}
 		}
-
+		
 		/** Properties **/
 		public bool HasMultiple {
 			get {
@@ -888,27 +888,26 @@ namespace FSpot.Query
 			}
 		}
 
-        private bool preview = false;
-        private Gtk.Widget preview_widget;
-        private bool preview_left = false;
+		private bool preview = false;
+		private Gtk.Widget preview_widget;
 		private void HandleDragMotion (object o, DragMotionArgs args)
-        {
-            if (!preview) {
-                if (preview_widget == null) {
-                    preview_widget = new Gtk.Label (" | ");
-                    box.Add (preview_widget);
-                }
-
-                preview_widget.Show ();
-            }
-        }
-
+		{
+			if (!preview) {
+				if (preview_widget == null) {
+					preview_widget = new Gtk.Label (" | ");
+					box.Add (preview_widget);
+				}
+				
+				preview_widget.Show ();
+			}
+		}
+		
 		private void HandleDragLeave (object o, EventArgs args)
-        {
-            preview = false;
-            preview_widget.Hide ();
-        }
-
+		{
+			preview = false;
+			preview_widget.Hide ();
+		}
+		
 		public void HandleToggleNegatedCommand (object o, EventArgs args)
 		{
 			IsNegated = !IsNegated;
@@ -1052,8 +1051,6 @@ namespace FSpot.Query
 
 		private bool preventUpdate = false;
 		private bool preview = false;
-
-		private ArrayList widgets = new ArrayList ();
 
 		public event EventHandler Changed;
 		

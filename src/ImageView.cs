@@ -27,6 +27,7 @@ public class ImageView : Layout {
 
 	SelectionChangedDelegate selection_holder;
 	SelectionChangedDelegate zoom_holder;
+
 	public ImageView () : base (null, null)
 	{
 		Raw = f_image_view_new ();
@@ -40,6 +41,14 @@ public class ImageView : Layout {
 				       IntPtr.Zero, 0);
 	}
 
+	protected override void OnDestroyed ()
+	{
+		if (selection_holder != null)
+			selection_holder = null;
+
+		if (zoom_holder != null)
+			zoom_holder = null;
+	}
 
 	public enum PointerModeType {
 		None,
@@ -147,7 +156,6 @@ public class ImageView : Layout {
 	{
 		image_view_set_zoom (Handle, zoom_x, zoom_y, true, anchor_x, anchor_y);
 	}
-
 
 	[DllImport ("libfspoteog")]
 	static extern void image_view_get_zoom (IntPtr view, out double zoomx, out double zoomy);

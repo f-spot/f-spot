@@ -383,7 +383,7 @@ namespace FSpot {
  				ok_button.Sensitive = true;
 
   				RangeChanged (null, null);
-  			} catch (System.Exception e) {
+  			} catch (System.Exception) {
  				control_vbox.Sensitive = false;
  				ok_button.Sensitive = false;
  				AdjustedPixbuf = null;

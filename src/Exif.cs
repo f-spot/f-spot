@@ -696,7 +696,7 @@ namespace Exif {
 					try {
 						exif_entry_get_value_brief (this.Handle);
 						fallback = 1;
-					} catch (System.Exception e) {
+					} catch (EntryPointNotFoundException) {
 						fallback = -1;
 					}
 				}

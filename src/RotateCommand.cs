@@ -142,7 +142,6 @@ namespace FSpot {
 	public class RotateMultiple : Operation {
 		RotateDirection direction;
 		IBrowsableItem [] items;
-		bool rotate_data = false;
 		int index;
 		RotateOperation op;
 

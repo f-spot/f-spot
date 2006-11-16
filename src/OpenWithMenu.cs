@@ -189,7 +189,7 @@ public class OpenWithMenu: Gtk.Menu {
 						else 
 							pixbuf = IconTheme.Default.LoadIcon (mime_application.Icon,
 											     16, (IconLookupFlags)0);
-					} catch (System.Exception e) {
+					} catch (System.Exception) {
 						pixbuf = null;
 					}
 
