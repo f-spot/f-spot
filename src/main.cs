@@ -156,7 +156,6 @@ public class Driver {
 												PixbufUtils.LoadFromAssembly ("f-spot-22.png"),
 												PixbufUtils.LoadFromAssembly ("f-spot-32.png"),
 												PixbufUtils.LoadFromAssembly ("f-spot-48.svg")};
-						
 						core = new Core ();
 						core.RegisterServer ();
 						
@@ -241,9 +240,9 @@ public class Driver {
 				Console.WriteLine ("Error setting process name: " +
 						   Mono.Unix.Native.Stdlib.GetLastError());
 			}
-		} catch (DllNotFoundException de) {
+		} catch (DllNotFoundException) {
 			/* noop */
-		} catch (EntryPointNotFoundException de) {
+		} catch (EntryPointNotFoundException) {
 		    	/* noop */
 		}
 	}

@@ -407,7 +407,7 @@ class PixbufUtils {
 	static public Pixbuf LoadFromAssembly (string resource)
 	{
 		try {
-			return new Pixbuf (System.Reflection.Assembly.GetCallingAssembly (), resource);
+			return new Pixbuf (System.Reflection.Assembly.GetEntryAssembly (), resource);
 		} catch {
 			return null;
 		}

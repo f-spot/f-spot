@@ -1,5 +1,12 @@
 2006-11-16  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufUtils.cs: load from the entry assembly not the calling assembly.
+	
+	* src/StockIcons.cs: remove the reference to f-spot-logo it no
+	longer exists.
+
+	* src/main.cs: clean up the exception catching.
+
 	* src/Widgets/CompositeUtils.cs: make the check for composite
 	managers work for all reasonable gdk and compiz versions.
 
