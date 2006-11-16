@@ -208,6 +208,16 @@ namespace FSpot
 			}
 		}
 
+		public static void SetAsBackground (string path)
+		{
+			Client.Set ("/desktop/gnome/background/color_shading_type", "solid");
+			Client.Set ("/desktop/gnome/background/primary_color", "#000000");
+			Client.Set ("/desktop/gnome/background/picture_options", "stretched");
+			Client.Set ("/desktop/gnome/background/picture_opacity", 100);
+			Client.Set ("/desktop/gnome/background/picture_filename", path);
+			Client.Set ("/desktop/gnome/background/draw_background", true);
+		}
+
 		public static event GConf.NotifyEventHandler SettingChanged;
 
 		static void OnSettingChanged (object sender, GConf.NotifyEventArgs args)

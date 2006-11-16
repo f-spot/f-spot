@@ -102,6 +102,7 @@ namespace FSpot {
 			FSpot.Global.ModifyColors (image_scrolled);
 			image_view.ZoomChanged += HandleZoomChanged;
 			image_view.Item.Changed += HandleItemChanged;
+			image_view.ButtonPressEvent += HandleImageViewButtonPressEvent;
 			image_view.DragDataReceived += HandleDragDataReceived;
 			Gtk.Drag.DestSet (image_view, DestDefaults.All, dest_table,
 					DragAction.Copy | DragAction.Move); 
@@ -112,7 +113,7 @@ namespace FSpot {
 			zoom_scale.ValueChanged += HandleZoomScaleValueChanged;
 		
 			LoadPreference (Preferences.VIEWER_SHOW_TOOLBAR);
-			
+
 			ShowSidebar = collection.Count > 1;
 
 			near_image.SetFromStock ("f-spot-stock_near", Gtk.IconSize.SmallToolbar);
@@ -240,6 +241,16 @@ namespace FSpot {
 				directory_view.Selection.Add (directory_view.FocusCell);
 				directory_view.ScrollTo (directory_view.FocusCell);
 			}
+		}
+
+		void HandleSetAsBackgroundCommand (object sender, EventArgs args)
+		{
+			IBrowsableItem current = image_view.Item.Current;
+
+			if (current == null)
+				return;
+
+			Preferences.SetAsBackground (current.DefaultVersionUri.LocalPath);
 		}
 
 		private void HandleViewToolbar (object sender, System.EventArgs args)
@@ -400,7 +411,23 @@ namespace FSpot {
 			//zoom_in.Sensitive = (zoom_scale.Value != 1.0);
 			//zoom_out.Sensitive = (zoom_scale.Value != 0.0);
 		}
-	
+
+		private void HandleImageViewButtonPressEvent (object sender, ButtonPressEventArgs args)
+		{
+			if (args.Event.Type != EventType.ButtonPress || args.Event.Button != 3)
+			 	return;
+
+			Gtk.Menu popup_menu = new Gtk.Menu ();
+			bool has_item = image_view.Item.Current != null;
+
+			GtkUtil.MakeMenuItem (popup_menu, "f-spot-rotate-270", delegate { HandleRotate270Command(window, null); }, has_item);
+			GtkUtil.MakeMenuItem (popup_menu, "f-spot-rotate-90", delegate { HandleRotate90Command (window, null); }, has_item);
+			GtkUtil.MakeMenuSeparator (popup_menu);
+			GtkUtil.MakeMenuItem (popup_menu, Mono.Posix.Catalog.GetString ("Set as Background"), HandleSetAsBackgroundCommand, has_item);
+
+			popup_menu.Popup (null, null, null, 0, Gtk.Global.CurrentEventTime);
+		}
+
 		void HandleDeleteEvent (object sender, DeleteEventArgs args)
 		{
 			SavePreferences ();
@@ -530,10 +557,10 @@ namespace FSpot {
 			}
 		}
 
-
 		public static void SetTip (Widget widget, string tip)
 		{
 			toolTips.SetTip (widget, tip, null);
 		}
 	}
+
 }

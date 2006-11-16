@@ -2404,17 +2404,11 @@ public class MainWindow {
 	void HandleSetAsBackgroundCommand (object sender, EventArgs args)
 	{
 		Photo current = CurrentPhoto;
-		GConf.Client client = new GConf.Client ();
-		
+
 		if (current == null)
 			return;
 
-		client.Set ("/desktop/gnome/background/color_shading_type", "solid");
-		client.Set ("/desktop/gnome/background/primary_color", "#000000");
-		client.Set ("/desktop/gnome/background/picture_options", "stretched");
-		client.Set ("/desktop/gnome/background/picture_opacity", 100);
-		client.Set ("/desktop/gnome/background/picture_filename", current.DefaultVersionUri.LocalPath);
-		client.Set ("/desktop/gnome/background/draw_background", true);
+		Preferences.SetAsBackground (current.DefaultVersionUri.LocalPath);
 	}
 
 	void HandleSetDateRange (object sender, EventArgs args) {
