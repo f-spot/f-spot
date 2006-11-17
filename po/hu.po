@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-15 10:32+0100\n"
-"PO-Revision-Date: 2006-11-16 09:12+0100\n"
-"Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
+"POT-Creation-Date: 2006-11-17 01:24+0100\n"
+"PO-Revision-Date: 2006-11-17 14:06+0100\n"
+"Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,6 +37,19 @@ msgstr "F-Spot fotómegjelenítő"
 #: ../f-spot-view.desktop.in.in.h:2
 msgid "Photo Viewer"
 msgstr "Fotómegjelenítő"
+
+#: ../google-sharp/CaptchaException.cs:58
+msgid "url"
+msgstr "url"
+
+#: ../google-sharp/CaptchaException.cs:59
+msgid "token"
+msgstr "jelsor"
+
+# ötletek welcome
+#: ../google-sharp/CaptchaException.cs:60
+msgid "captcha_url"
+msgstr "captcha_url"
 
 #: ../libeog/eog-file-selection.c:29 ../libeog/eog-file-selection.c:46
 msgid "By Extension"
@@ -159,36 +172,36 @@ msgstr "Ismeretlen átalakítási típus: %d"
 msgid "Operation failed"
 msgstr "A művelet sikertelen"
 
-#: ../src/CameraFileSelectionDialog.cs:65
+#: ../src/CameraFileSelectionDialog.cs:66
 msgid "Preview"
 msgstr "Előnézet"
 
-#: ../src/CameraFileSelectionDialog.cs:67
+#: ../src/CameraFileSelectionDialog.cs:68
 msgid "Path"
 msgstr "Elérési út"
 
-#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:118
+#: ../src/CameraFileSelectionDialog.cs:70 ../src/f-spot.glade.h:118
 msgid "File"
 msgstr "Fájl"
 
-#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:810
+#: ../src/CameraFileSelectionDialog.cs:72 ../src/FolderExport.cs:810
 msgid "Index"
 msgstr "Index"
 
-#: ../src/CameraFileSelectionDialog.cs:87
+#: ../src/CameraFileSelectionDialog.cs:88
 msgid "Downloading Previews"
 msgstr "Előnézetek letöltése"
 
-#: ../src/CameraFileSelectionDialog.cs:95
+#: ../src/CameraFileSelectionDialog.cs:96
 #, csharp-format
 msgid "Downloading Preview of {0}"
 msgstr "{0} előnézetének letöltése"
 
-#: ../src/CameraFileSelectionDialog.cs:147
+#: ../src/CameraFileSelectionDialog.cs:148
 msgid "Unknown destination."
 msgstr "Ismeretlen cél."
 
-#: ../src/CameraFileSelectionDialog.cs:148
+#: ../src/CameraFileSelectionDialog.cs:149
 msgid ""
 "When copying files from a camera you must select a valid destination on the "
 "local filesystem"
@@ -196,11 +209,11 @@ msgstr ""
 "A fájlok kameráról való másolásakor egy érvényes célt kell megadnia a helyi "
 "fájlrendszeren"
 
-#: ../src/CameraFileSelectionDialog.cs:166
+#: ../src/CameraFileSelectionDialog.cs:167
 msgid "Unable to create directory."
 msgstr "Nem lehet létrehozni a könyvtárat."
 
-#: ../src/CameraFileSelectionDialog.cs:167
+#: ../src/CameraFileSelectionDialog.cs:168
 #, csharp-format
 msgid ""
 "Error \"{0}\" while creating directory \"{1}\".  Check that the path and "
@@ -209,81 +222,81 @@ msgstr ""
 "\"{0}\" hiba lépett fel \"{1}\" könyvtár létrehozása közben. Ellenőrizze, "
 "hogy az elérési út és a jogosultságok megfelelőek-e és próbálja újra"
 
-#: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:200
+#: ../src/CameraFileSelectionDialog.cs:189 ../src/CDExport.cs:199
 #: ../src/FolderExport.cs:293
 msgid "Transferring Pictures"
 msgstr "Képek átvitele"
 
-#: ../src/CameraFileSelectionDialog.cs:211
+#: ../src/CameraFileSelectionDialog.cs:212
 #, csharp-format
 msgid "Copying file {0} of {1}"
 msgstr "{0}/{1} fájl másolása"
 
-#: ../src/CameraFileSelectionDialog.cs:221
+#: ../src/CameraFileSelectionDialog.cs:222
 msgid "Done Copying Files"
 msgstr "Fájlok másolása kész"
 
-#: ../src/CameraFileSelectionDialog.cs:223
+#: ../src/CameraFileSelectionDialog.cs:224
 msgid "Download Complete"
 msgstr "Letöltés befejezve"
 
-#: ../src/CameraFileSelectionDialog.cs:228
+#: ../src/CameraFileSelectionDialog.cs:229
 msgid "Error transferring file"
 msgstr "Hiba a fájl átvitele közben"
 
-#: ../src/CameraFileSelectionDialog.cs:249
+#: ../src/CameraFileSelectionDialog.cs:250
 #, csharp-format
 msgid "Transferring \"{0}\" from camera"
 msgstr "\"{0}\" átvitele a fényképezőgéptől"
 
-#: ../src/CameraFileSelectionDialog.cs:275
+#: ../src/CameraFileSelectionDialog.cs:276
 msgid "Select Destination"
 msgstr "Válassza ki a célt"
 
-#: ../src/CameraSelectionDialog.cs:27 ../src/StockIcons.cs:28
+#: ../src/CameraSelectionDialog.cs:28 ../src/StockIcons.cs:28
 msgid "Camera"
 msgstr "Fényképezőgép"
 
-#: ../src/CameraSelectionDialog.cs:28
+#: ../src/CameraSelectionDialog.cs:29
 msgid "Port"
 msgstr "Port"
 
-#: ../src/CDExport.cs:105
+#: ../src/CDExport.cs:104
 #, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "\"{0}\" kép átvitele CD-re"
 
 #. This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/CDExport.cs:107 ../src/FlickrExport.cs:252
-#: ../src/GalleryExport.cs:701 ../src/ProgressDialog.cs:82
-#: ../src/TimeDialog.cs:141
+#: ../src/CDExport.cs:106 ../src/FlickrExport.cs:252
+#: ../src/GalleryExport.cs:694 ../src/ProgressDialog.cs:82
+#: ../src/TimeDialog.cs:147
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0}/{1}"
 
-#: ../src/CDExport.cs:122 ../src/FlickrExport.cs:258
-#: ../src/FolderExport.cs:191 ../src/GalleryExport.cs:723
-#: ../src/PicasaWebExport.cs:601
+#: ../src/CDExport.cs:121 ../src/FlickrExport.cs:258
+#: ../src/FolderExport.cs:191 ../src/GalleryExport.cs:716
+#: ../src/PicasaWebExport.cs:592
 msgid "Done Sending Photos"
 msgstr "Fényképek küldése kész"
 
-#: ../src/CDExport.cs:124 ../src/FolderExport.cs:193
+#: ../src/CDExport.cs:123 ../src/FolderExport.cs:193
 msgid "Transfer Complete"
 msgstr "Átvitel befejezve"
 
-#: ../src/CDExport.cs:131 ../src/FolderExport.cs:198
+#: ../src/CDExport.cs:130 ../src/FolderExport.cs:198
 msgid "Error While Transferring"
 msgstr "Hiba az átvitel közben"
 
-#: ../src/CDExport.cs:137 ../src/FolderExport.cs:214
+#: ../src/CDExport.cs:136 ../src/FolderExport.cs:214
 msgid "Error Transferring"
 msgstr "Átviteli hiba"
 
-#: ../src/CDExport.cs:158 ../src/FolderExport.cs:236
+#: ../src/CDExport.cs:157 ../src/FolderExport.cs:236
 msgid "Error: Error while transferring; Aborting"
 msgstr "Hiba: átviteli hiba, megszakítás"
 
-#: ../src/CDExport.cs:161 ../src/FolderExport.cs:239
+#: ../src/CDExport.cs:160 ../src/FolderExport.cs:239
 msgid "Error: File Already Exists; Aborting"
 msgstr "Hiba: A fájl már létezik, megszakítás"
 
@@ -291,18 +304,18 @@ msgstr "Hiba: A fájl már létezik, megszakítás"
 msgid "Error saving adjusted photo"
 msgstr "Hiba a fénykép mentése közben"
 
-#: ../src/ColorDialog.cs:316 ../src/Loupe.cs:58 ../src/MainWindow.cs:1909
-#: ../src/PhotoView.cs:268
+#: ../src/ColorDialog.cs:316 ../src/HigMessageDialog.cs:15 ../src/Loupe.cs:58
+#: ../src/MainWindow.cs:1904 ../src/PhotoView.cs:266
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "\"{0}\" kivétel következett be. A(z) {1} kép nem menthető."
 
-#: ../src/Core.cs:176
+#: ../src/Core.cs:178
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Nem találhatóak a következőre illeszkedő fényképek: {0}"
 
-#: ../src/Core.cs:177
+#: ../src/Core.cs:179
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -313,11 +326,11 @@ msgstr ""
 "hozzáadni a címkét néhány fényképhez, vagy válasszon másik címkét az\n"
 "F-Spot beállításablakában."
 
-#: ../src/Core.cs:181
+#: ../src/Core.cs:183
 msgid "Search returned no results"
 msgstr "A keresés nem adott vissza eredményeket"
 
-#: ../src/Core.cs:182
+#: ../src/Core.cs:184
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -338,39 +351,44 @@ msgstr "Hiba részletei"
 msgid "An unhandled exception was thrown: "
 msgstr "Kezeletlen kivétel történt: "
 
-#: ../src/Exif.cs:226
+#: ../src/Exif.cs:228
 msgid "Image Directory"
 msgstr "Képek könyvtára"
 
-#: ../src/Exif.cs:228
+#: ../src/Exif.cs:230
 msgid "Thumbnail Directory"
 msgstr "Előnézetek könyvtára"
 
-#: ../src/Exif.cs:230
+#: ../src/Exif.cs:232
 msgid "Exif Directory"
 msgstr "Exif könyvtára"
 
-#: ../src/Exif.cs:232
+#: ../src/Exif.cs:234
 msgid "GPS Directory"
 msgstr "GPS könyvtár"
 
-#: ../src/Exif.cs:234
+#: ../src/Exif.cs:236
 msgid "InterOperability Directory"
 msgstr "Interoperabilitás könyvtár"
 
-#: ../src/Exif.cs:236
+#: ../src/Exif.cs:238
 msgid "Unknown Directory"
 msgstr "Ismeretlen könyvtár"
 
-#: ../src/FindBar.cs:46
+#: ../src/Filters/ResizeFilter.cs:64
+#, csharp-format
+msgid "No way to save files of type \"{0}\""
+msgstr "Nem lehet menteni a(z) \"{0}\" típusú fájlokat"
+
+#: ../src/FindBar.cs:45
 msgid "Find:"
 msgstr "Keresés:"
 
-#: ../src/FindBar.cs:276
+#: ../src/FindBar.cs:275
 msgid "Valid"
 msgstr "Érvényes"
 
-#: ../src/FindBar.cs:277
+#: ../src/FindBar.cs:276
 msgid "Invalid"
 msgstr "Érvénytelen"
 
@@ -418,13 +436,13 @@ msgstr "Nem lehet bejelentkezni"
 msgid "Waiting for response {0} of {1}"
 msgstr "{0}/{1} válaszra várakozás"
 
-#: ../src/FlickrExport.cs:247 ../src/GalleryExport.cs:697
+#: ../src/FlickrExport.cs:247 ../src/GalleryExport.cs:690
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "\"{0}\" kép feltöltése"
 
-#: ../src/FlickrExport.cs:260 ../src/GalleryExport.cs:725
-#: ../src/PicasaWebExport.cs:603
+#: ../src/FlickrExport.cs:260 ../src/GalleryExport.cs:718
+#: ../src/PicasaWebExport.cs:594
 msgid "Upload Complete"
 msgstr "Feltöltés befejezve"
 
@@ -433,8 +451,8 @@ msgstr "Feltöltés befejezve"
 msgid "Error Uploading To Flickr: {0}"
 msgstr "Hiba a Flickr-be való feltöltés közben: {0}"
 
-#: ../src/FlickrExport.cs:266 ../src/GalleryExport.cs:730
-#: ../src/PicasaWebExport.cs:612
+#: ../src/FlickrExport.cs:266 ../src/GalleryExport.cs:723
+#: ../src/PicasaWebExport.cs:603
 msgid "Error"
 msgstr "Hiba"
 
@@ -450,8 +468,8 @@ msgstr ""
 "Az F-Spot nem tudott bejelentkezni a Flickr-be. Győződjön meg, hogy megadta "
 "a felhatalmazást a Flickr webböngésző felületének használatával."
 
-#: ../src/FlickrExport.cs:343 ../src/GalleryExport.cs:652
-#: ../src/PicasaWebExport.cs:524
+#: ../src/FlickrExport.cs:343 ../src/GalleryExport.cs:645
+#: ../src/PicasaWebExport.cs:515
 msgid "Uploading Pictures"
 msgstr "Képek feltöltése"
 
@@ -1061,7 +1079,7 @@ msgstr "Az F-Spot legyen a képernyővédő"
 msgid "Medium"
 msgstr "Közepes"
 
-#: ../src/f-spot.glade.h:141 ../src/InfoDisplay.cs:12
+#: ../src/f-spot.glade.h:141 ../src/InfoDisplay.cs:14
 msgid "Metadata Browser"
 msgstr "Metaadat-böngésző"
 
@@ -1101,7 +1119,7 @@ msgstr "_Cél megnyitása az exportálás befejezésekor"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/f-spot.glade.h:153 ../src/PhotoStore.cs:571
+#: ../src/f-spot.glade.h:153 ../src/PhotoStore.cs:574
 msgid "Original"
 msgstr "Eredeti"
 
@@ -1191,11 +1209,11 @@ msgstr "Javítás"
 msgid "Reset"
 msgstr "Visszaállítás"
 
-#: ../src/f-spot.glade.h:176 ../src/StockIcons.cs:38
+#: ../src/f-spot.glade.h:176 ../src/StockIcons.cs:37
 msgid "Rotate _Left"
 msgstr "Forgatás b_alra"
 
-#: ../src/f-spot.glade.h:177 ../src/StockIcons.cs:39
+#: ../src/f-spot.glade.h:177 ../src/StockIcons.cs:38
 msgid "Rotate _Right"
 msgstr "Forgatás _jobbra"
 
@@ -1253,7 +1271,7 @@ msgstr "_Dátumtartomány beállítása..."
 msgid "Set as _Background"
 msgstr "Beállítás _háttérként"
 
-#: ../src/f-spot.glade.h:192 ../src/TimeDialog.cs:124
+#: ../src/f-spot.glade.h:192 ../src/TimeDialog.cs:130
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Minden fénykép eltolása ennyivel: {0}"
@@ -1350,7 +1368,9 @@ msgstr "Látható a barátok számára"
 
 #: ../src/f-spot.glade.h:216
 msgid "Will print using: US Letter size on Generic Postscript"
-msgstr "Nyomtatás a következő használatával: US Letter méret az Általános Postscript-en"
+msgstr ""
+"Nyomtatás a következő használatával: US Letter méret az Általános Postscript-"
+"en"
 
 #: ../src/f-spot.glade.h:217
 msgid "Write _metadata to file"
@@ -1643,7 +1663,7 @@ msgstr "kép_000.jpg"
 
 #. The preceding text here is the second checkbutton in the Time dialog
 #. that says "Space all photos by []"
-#: ../src/f-spot.glade.h:289 ../src/TimeDialog.cs:119
+#: ../src/f-spot.glade.h:289 ../src/TimeDialog.cs:125
 #, csharp-format
 msgid "min. Starting at {0}"
 msgstr "perc. Kezdve a következőnél: {0}"
@@ -1671,30 +1691,30 @@ msgstr "Hiba a galériához való kapcsolódás közben"
 #: ../src/GalleryExport.cs:388 ../src/GalleryExport.cs:399
 #, csharp-format
 msgid "The following error was encountered while attempting to log in: {0}"
-msgstr "A következő hiba történt a bejeletkezésre tett kísérlet közben: {0}"
+msgstr "A következő hiba történt a bejelentkezésre tett kísérlet közben: {0}"
 
 #: ../src/GalleryExport.cs:477
 msgid "(TopLevel)"
 msgstr "(Felsőszintű)"
 
-#: ../src/GalleryExport.cs:728 ../src/PicasaWebExport.cs:610
+#: ../src/GalleryExport.cs:721 ../src/PicasaWebExport.cs:601
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Hiba a galériába való feltöltés közben: {0}"
 
-#: ../src/GalleryExport.cs:747 ../src/PicasaWebExport.cs:631
+#: ../src/GalleryExport.cs:740 ../src/PicasaWebExport.cs:622
 msgid "(No Gallery)"
 msgstr "(Nincs galéria)"
 
-#: ../src/GalleryExport.cs:834 ../src/PicasaWebExport.cs:758
+#: ../src/GalleryExport.cs:827 ../src/PicasaWebExport.cs:749
 msgid "(Not Connected)"
 msgstr "(Nincs kapcsolat)"
 
-#: ../src/GalleryExport.cs:835 ../src/PicasaWebExport.cs:759
+#: ../src/GalleryExport.cs:828 ../src/PicasaWebExport.cs:750
 msgid "(No Albums)"
 msgstr "(Nincsenek albumok)"
 
-#: ../src/GalleryExport.cs:887 ../src/PicasaWebExport.cs:803
+#: ../src/GalleryExport.cs:880 ../src/PicasaWebExport.cs:794
 msgid "No account selected"
 msgstr "Nincs fiók kijelölve"
 
@@ -1722,7 +1742,11 @@ msgstr "_Mappa szerint"
 msgid "_Clear Date Range"
 msgstr "Dátumtartomány _törlése"
 
-#: ../src/ImportCommand.cs:28 ../src/SingleView.cs:313
+#: ../src/HigMessageDialog.cs:28 ../src/PhotoView.cs:265
+msgid "Error editing photo"
+msgstr "Hiba a fénykép szerkesztése közben"
+
+#: ../src/ImportCommand.cs:28 ../src/SingleView.cs:324
 msgid "Select Folder"
 msgstr "Mappa kiválasztása"
 
@@ -1756,161 +1780,161 @@ msgstr ""
 msgid "Select Tag"
 msgstr "Válasszon egy címkét"
 
-#: ../src/InfoBox.cs:72 ../src/PhotoVersionCommands.cs:55
+#: ../src/InfoBox.cs:74 ../src/PhotoVersionCommands.cs:56
 msgid "Name:"
 msgstr "Név:"
 
-#: ../src/InfoBox.cs:74
+#: ../src/InfoBox.cs:76
 msgid "Version:"
 msgstr "Verzió:"
 
-#: ../src/InfoBox.cs:76
+#: ../src/InfoBox.cs:78
 msgid "Date:"
 msgstr "Dátum:"
 
-#: ../src/InfoBox.cs:78
+#: ../src/InfoBox.cs:80
 msgid "Size:"
 msgstr "Méret:"
 
-#: ../src/InfoBox.cs:80
+#: ../src/InfoBox.cs:82
 msgid "Exposure:"
 msgstr "Megvilágítás:"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/InfoBox.cs:216 ../src/TagStore.cs:422
+#: ../src/InfoBox.cs:218 ../src/TagStore.cs:422
 msgid "(None)"
 msgstr "(Nincs)"
 
-#: ../src/InfoBox.cs:227 ../src/InfoBox.cs:236
+#: ../src/InfoBox.cs:229 ../src/InfoBox.cs:238
 msgid "(Unknown)"
 msgstr "(Ismeretlen)"
 
-#: ../src/InfoDisplay.cs:178
+#: ../src/InfoDisplay.cs:180
 msgid "Extended Metadata"
 msgstr "Kiterjesztett metaadatok"
 
-#: ../src/InfoDisplay.cs:217
+#: ../src/InfoDisplay.cs:219
 msgid "No active photo"
 msgstr "Nincs aktív fénykép"
 
-#: ../src/InfoDisplay.cs:219
+#: ../src/InfoDisplay.cs:221
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "A(z) \"{0}\" fénykép nem létezik"
 
-#: ../src/InfoDisplay.cs:225
+#: ../src/InfoDisplay.cs:227
 msgid "No metadata available"
 msgstr "Nem érhetőek el metaadatok"
 
-#: ../src/IptcFile.cs:140
+#: ../src/IptcFile.cs:145
 msgid "IPTC Information Interchange Model (IIM) Version number"
 msgstr "IPTC Információcsere modell (IIM) verziószáma"
 
-#: ../src/IptcFile.cs:142
+#: ../src/IptcFile.cs:147
 msgid "OSI Destination routing information"
 msgstr "OSI cél útválasztási információk"
 
-#: ../src/IptcFile.cs:144
+#: ../src/IptcFile.cs:149
 msgid "IPTC file format"
 msgstr "IPTC fájlformátum"
 
-#: ../src/IptcFile.cs:146
+#: ../src/IptcFile.cs:151
 msgid "Identifies the provider and product"
 msgstr "A szolgáltatót és a terméket azonosítja"
 
-#: ../src/IptcFile.cs:148
+#: ../src/IptcFile.cs:153
 msgid "A unique number identifying the envelope"
 msgstr "A borítékot azonosító egyedi szám"
 
-#: ../src/IptcFile.cs:150
+#: ../src/IptcFile.cs:155
 msgid "A unique number"
 msgstr "Egy egyedi szám"
 
-#: ../src/IptcFile.cs:152
+#: ../src/IptcFile.cs:157
 msgid "The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
 msgstr ""
 "A boríték kezelésének prioritása 1 (legsürgősebb) és 9 (legkevésbé sürgős) "
 "között"
 
-#: ../src/IptcFile.cs:154
+#: ../src/IptcFile.cs:159
 msgid "The year month and day (CCYYMMDD) the service sent the material"
 msgstr "Az év, hónap és nap (CCYYMMDD), amikor a szolgáltatás az anyagot küldte"
 
-#: ../src/IptcFile.cs:156
+#: ../src/IptcFile.cs:161
 msgid "The hour minute and second the (HHMMSS+HHMM) the service sent the material"
 msgstr ""
 "Az óra perce és másodperce (HHMMSS+HHMM), amikor a szolgáltatás az anyagot "
 "küldte"
 
-#: ../src/IptcFile.cs:158
+#: ../src/IptcFile.cs:163
 msgid "The character set designation"
 msgstr "A karakterkészlet-megjelölés"
 
-#: ../src/IptcFile.cs:160
+#: ../src/IptcFile.cs:165
 msgid "External globally unique object identifier"
 msgstr "Külső globálisan egyedi objektumazonosító"
 
-#: ../src/IptcFile.cs:165
+#: ../src/IptcFile.cs:170
 msgid "Abstract Relationship Method (ARM) identifier"
 msgstr "Absztrakt kapcsolatmodell (ARM) azonosító"
 
-#: ../src/IptcFile.cs:167
+#: ../src/IptcFile.cs:172
 msgid "Abstract Relationship Method (ARM) version number."
 msgstr "Absztrakt kapcsolatmodell (ARM) verziószám."
 
-#: ../src/IptcFile.cs:170
+#: ../src/IptcFile.cs:175
 msgid "Number identifying the IIM version this application record uses"
 msgstr "Az ezen alkalmazásrekord által használt IIM verziót azonosító szám"
 
-#: ../src/IptcFile.cs:172
+#: ../src/IptcFile.cs:177
 msgid "Object type reference"
 msgstr "Objektum típushivatkozás"
 
-#: ../src/IptcFile.cs:177
+#: ../src/IptcFile.cs:182
 msgid "Object attribute reference"
 msgstr "Objektum attribútumhivatkozás"
 
-#: ../src/IptcFile.cs:183 ../src/IptcFile.cs:187
+#: ../src/IptcFile.cs:188 ../src/IptcFile.cs:192
 msgid "Object name"
 msgstr "Objektum neve"
 
-#: ../src/IptcFile.cs:185
+#: ../src/IptcFile.cs:190
 msgid "Status of the objectdata according to the provider"
 msgstr "A szolgáltatónak megfelelő objektumadatok állapota"
 
-#: ../src/IptcFile.cs:189
+#: ../src/IptcFile.cs:194
 msgid "Location within a city or area where the object originates"
 msgstr "Városon vagy területen belüli hely, ahonnan az objektum származik"
 
-#: ../src/IptcFile.cs:192
+#: ../src/IptcFile.cs:197
 msgid "Name of the city the content is focussing on"
 msgstr "A város neve, amelyre a tartalom fókuszál"
 
-#: ../src/IptcFile.cs:195
+#: ../src/IptcFile.cs:200
 msgid "Copyright information for"
 msgstr "Szerzői jogi információk a következőhöz:"
 
-#: ../src/IptcFile.cs:198
+#: ../src/IptcFile.cs:203
 msgid "Full name of the country of the focus of the content"
 msgstr "Azon ország teljes neve, amelyre a tartalom fókuszál"
 
-#: ../src/IptcFile.cs:201
+#: ../src/IptcFile.cs:206
 msgid "Two or three letter ISO3166 code of the country of the focus of the content"
 msgstr "Azon ország két- vagy hárombetűs ISO3166 kódja, amelyre a tartalom fókuszál"
 
-#: ../src/IptcFile.cs:204
+#: ../src/IptcFile.cs:209
 msgid "Creator of the content"
 msgstr "A tartalom létrehozója"
 
-#: ../src/IptcFile.cs:207
+#: ../src/IptcFile.cs:212
 msgid "Provider of the object"
 msgstr "Az objektum létrehozója"
 
-#: ../src/IptcFile.cs:210
+#: ../src/IptcFile.cs:215
 msgid "The title of the author or creator"
 msgstr "A szerző vagy alkotó címe"
 
-#: ../src/IptcFile.cs:213
+#: ../src/IptcFile.cs:218
 msgid ""
 "The person involved in writing, editing or correcting the object data or "
 "caption/abstract"
@@ -1918,23 +1942,23 @@ msgstr ""
 "Az objektum adatainak vagy feliratának/összefoglalásának megírásában, "
 "szerkesztésében vagy javításában közreműködő személy"
 
-#: ../src/IptcFile.cs:217
+#: ../src/IptcFile.cs:222
 msgid "Headline of the content"
 msgstr "A tartalom főcíme"
 
-#: ../src/IptcFile.cs:220
+#: ../src/IptcFile.cs:225
 msgid "Instructions from the creator to the receiver not covered by other fields"
 msgstr "Az alkotó által a fogadóval más mezőkben nem közölt utasítások"
 
-#: ../src/IptcFile.cs:223
+#: ../src/IptcFile.cs:228
 msgid "Intellectual genre of the object"
 msgstr "Az objektum szellemi kategóriája"
 
-#: ../src/IptcFile.cs:236
+#: ../src/IptcFile.cs:241
 msgid "Unknown IIM DataSet"
 msgstr "Ismeretlen IIM adathalmaz"
 
-#: ../src/Loupe.cs:57 ../src/MainWindow.cs:1908
+#: ../src/Loupe.cs:57 ../src/MainWindow.cs:1903
 msgid "Error saving sharpened photo"
 msgstr "Hiba az élesített fénykép mentése közben"
 
@@ -1942,39 +1966,39 @@ msgstr "Hiba az élesített fénykép mentése közben"
 msgid "Sharpen"
 msgstr "Élesítés"
 
-#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1875
+#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1870
 msgid "Amount:"
 msgstr "Mennyiség:"
 
-#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1876
+#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1871
 msgid "Radius:"
 msgstr "Sugár:"
 
-#: ../src/Loupe.cs:99 ../src/MainWindow.cs:1877
+#: ../src/Loupe.cs:99 ../src/MainWindow.cs:1872
 msgid "Threshold:"
 msgstr "Küszöb:"
 
-#: ../src/MainWindow.cs:234
+#: ../src/MainWindow.cs:233
 msgid "Browse many photos simultaneously"
 msgstr "Több fénykép párhuzamos böngészése"
 
-#: ../src/MainWindow.cs:237
+#: ../src/MainWindow.cs:236
 msgid "View and edit a photo"
 msgstr "Fénykép megjelenítése és szerkesztése"
 
-#: ../src/MainWindow.cs:242 ../src/SingleView.cs:81
+#: ../src/MainWindow.cs:241 ../src/SingleView.cs:81
 msgid "View photos fullscreen"
 msgstr "Képek megjelenítése teljes képernyőn"
 
-#: ../src/MainWindow.cs:245 ../src/SingleView.cs:83
+#: ../src/MainWindow.cs:244 ../src/SingleView.cs:83
 msgid "View photos in a slideshow"
 msgstr "Fényképek megjelenítése diavetítésként"
 
-#: ../src/MainWindow.cs:781
+#: ../src/MainWindow.cs:778
 msgid "Error loading database."
 msgstr "Hiba az adatbázis betöltése közben."
 
-#: ../src/MainWindow.cs:782
+#: ../src/MainWindow.cs:779
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
@@ -1983,11 +2007,11 @@ msgstr ""
 "Az F-Spot hibát észlelt a fotóadatbázis betöltése közben. A régi adatbázis "
 "áthelyezésre került ide: {0} és egy új adatbázis került létrehozásra."
 
-#: ../src/MainWindow.cs:1339
+#: ../src/MainWindow.cs:1334
 msgid "No cameras detected."
 msgstr "Nem érzékeltem fényképezőgépet."
 
-#: ../src/MainWindow.cs:1340
+#: ../src/MainWindow.cs:1335
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1996,11 +2020,11 @@ msgstr ""
 "fényképezőgépet sem. Ellenőrizze, hogy a fényképezőgép csatlakoztatva van-e "
 "és be van-e kapcsolva."
 
-#: ../src/MainWindow.cs:1380
+#: ../src/MainWindow.cs:1375
 msgid "Error connecting to camera"
 msgstr "Hiba a fényképezőgéphez való kapcsolódás közben"
 
-#: ../src/MainWindow.cs:1381
+#: ../src/MainWindow.cs:1376
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "\"{0}\" hiba következett be a fényképezőgéphez való kapcsolódás közben"
@@ -2008,23 +2032,23 @@ msgstr "\"{0}\" hiba következett be a fényképezőgéphez való kapcsolódá
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1548
+#: ../src/MainWindow.cs:1543
 msgid "translator-credits"
 msgstr "Kelemen Gábor <kelemeng@gnome.hu>"
 
-#: ../src/MainWindow.cs:1555
+#: ../src/MainWindow.cs:1550
 msgid "Copyright © 2003-2006 Novell Inc."
 msgstr "Copyright © 2003-2006 Novell Inc."
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1788
+#: ../src/MainWindow.cs:1783
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Összefésüli a kijelölt címkét?"
 msgstr[1] "Összefésüli a(z) {0} kijelölt címkét?"
 
-#: ../src/MainWindow.cs:1815
+#: ../src/MainWindow.cs:1810
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -2032,42 +2056,42 @@ msgstr ""
 "Ez a művelet egy kivételével az összes kiválasztott címkét és alcímkét "
 "egyetlen címkébe fésüli össze."
 
-#: ../src/MainWindow.cs:1817
+#: ../src/MainWindow.cs:1812
 msgid "_Merge Tags"
 msgstr "_Címkék összefésülése"
 
-#: ../src/MainWindow.cs:1866
+#: ../src/MainWindow.cs:1861
 msgid "Unsharp Mask"
 msgstr "Maszk életlenítése"
 
-#: ../src/MainWindow.cs:2089 ../src/SingleView.cs:438
+#: ../src/MainWindow.cs:2084 ../src/SingleView.cs:465
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} fénykép"
 msgstr[1] "{0} fénykép"
 
-#: ../src/MainWindow.cs:2092
+#: ../src/MainWindow.cs:2087
 #, csharp-format
 msgid " out of {0}"
 msgstr " / {0}"
 
-#: ../src/MainWindow.cs:2095
+#: ../src/MainWindow.cs:2090
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} kiválasztva)"
 msgstr[1] " ({0} kiválasztva)"
 
-#: ../src/MainWindow.cs:2179
+#: ../src/MainWindow.cs:2174
 msgid "_Ok"
 msgstr "_Ok"
 
-#: ../src/MainWindow.cs:2180
+#: ../src/MainWindow.cs:2175
 msgid "Error Deleting Picture"
 msgstr "Hiba a kép törlése közben"
 
-#: ../src/MainWindow.cs:2185
+#: ../src/MainWindow.cs:2180
 #, csharp-format
 msgid ""
 "No permission to delete the file:\n"
@@ -2076,7 +2100,7 @@ msgstr ""
 "Nincs jogosultsága a következő fájl törléséhez:\n"
 "{0}"
 
-#: ../src/MainWindow.cs:2189
+#: ../src/MainWindow.cs:2184
 #, csharp-format
 msgid ""
 "An error of type {0} occurred while deleting the file:\n"
@@ -2085,33 +2109,33 @@ msgstr ""
 "{0} típusú hiba történt a következő fájl törlése közben:\n"
 "{1}"
 
-#: ../src/MainWindow.cs:2215
+#: ../src/MainWindow.cs:2210
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Véglegesen törli a kijelölt fényképet?"
 msgstr[1] "Véglegesen törli a kijelölt {0} fényképet?"
 
-#: ../src/MainWindow.cs:2219
+#: ../src/MainWindow.cs:2214
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Ez a kijelölt fénykép összes verzióját törli a merevlemezéről."
 msgstr[1] "Ez a kijelölt fényképek összes verzióját törli a merevlemezéről."
 
-#: ../src/MainWindow.cs:2222
+#: ../src/MainWindow.cs:2217
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Fénykép törlése"
 msgstr[1] "_Fénykép törlése"
 
-#: ../src/MainWindow.cs:2250
+#: ../src/MainWindow.cs:2245
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Eltávolítja a kijelölt fényképet az F-Spotból?"
 msgstr[1] "Eltávolítja a kijelölt {0} fényképet az F-Spotból?"
 
-#: ../src/MainWindow.cs:2255
+#: ../src/MainWindow.cs:2250
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -2121,36 +2145,36 @@ msgstr ""
 "elvész. A fényképek megmaradnak a számítógépén és később újra importálhatóak "
 "lesznek az F-Spotba."
 
-#: ../src/MainWindow.cs:2256
+#: ../src/MainWindow.cs:2251
 msgid "_Remove from Catalog"
 msgstr "_Eltávolítás a katalógusból"
 
-#: ../src/MainWindow.cs:2313
+#: ../src/MainWindow.cs:2308
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Törli a(z) \"{0}\" címkét?"
 
-#: ../src/MainWindow.cs:2315
+#: ../src/MainWindow.cs:2310
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Törli a(z) {0} kijelölt címkét?"
 
-#: ../src/MainWindow.cs:2318
+#: ../src/MainWindow.cs:2313
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr "Ha egy címkét töröl, annak minden fényképekkel való kapcsolata elvész."
 
-#: ../src/MainWindow.cs:2319
+#: ../src/MainWindow.cs:2314
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Címke törlése"
 msgstr[1] "_Címkék törlése"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2333
+#: ../src/MainWindow.cs:2328
 msgid "Tag is not empty"
 msgstr "A címke nem üres"
 
-#: ../src/MainWindow.cs:2334
+#: ../src/MainWindow.cs:2329
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -2159,39 +2183,39 @@ msgstr ""
 "Nem lehet címkéket tartalmazó címkéket törölni. Először törölje a(z) \"{0}\" "
 "alatti címkéket"
 
-#: ../src/MainWindow.cs:2736
+#: ../src/MainWindow.cs:2725
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "A kijelölt fénykép forgatása balra"
 msgstr[1] "A kijelölt fényképek forgatása balra"
 
-#: ../src/MainWindow.cs:2749
+#: ../src/MainWindow.cs:2738
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "A kijelölt fénykép forgatása jobbra"
 msgstr[1] "A kijelölt fénykép forgatása jobbra"
 
-#: ../src/MainWindow.cs:2757
+#: ../src/MainWindow.cs:2746
 #, csharp-format
 msgid "Find Selected Tag"
 msgid_plural "Find Selected Tags"
 msgstr[0] "Kijelölt címke keresése"
 msgstr[1] "Kijelölt címkék keresése"
 
-#: ../src/MainWindow.cs:2761
+#: ../src/MainWindow.cs:2750
 #, csharp-format
 msgid "Find Selected Tag With"
 msgid_plural "Find Selected Tags With"
 msgstr[0] "Kijelölt címke keresése ezzel"
 msgstr[1] "Kijelölt címkék keresése ezzel"
 
-#: ../src/MainWindow.cs:2778
+#: ../src/MainWindow.cs:2767
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Létrehoz egy új verziót?"
 msgstr[1] "Létrehoz új verziókat?"
 
-#: ../src/MainWindow.cs:2780
+#: ../src/MainWindow.cs:2769
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -2345,14 +2369,14 @@ msgstr "Címke csatolása"
 msgid "Remove Tag"
 msgstr "Címke eltávolítása"
 
-#: ../src/PhotoStore.cs:368
+#: ../src/PhotoStore.cs:371
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "Módosítva"
 msgstr[1] "Módosítva ({0})"
 
-#: ../src/PhotoStore.cs:387
+#: ../src/PhotoStore.cs:390
 #, csharp-format
 msgid "Modified in {1}"
 msgid_plural "Modified in {1} ({0})"
@@ -2365,51 +2389,51 @@ msgstr[1] "Módosítva ekkor: {1} ({0})"
 msgid "(No Tags)"
 msgstr "(nincsenek címkék)"
 
-#: ../src/PhotoVersionCommands.cs:54
+#: ../src/PhotoVersionCommands.cs:55
 msgid "Create New Version"
 msgstr "Új verzió létrehozása"
 
-#: ../src/PhotoVersionCommands.cs:59
+#: ../src/PhotoVersionCommands.cs:60
 msgid "Rename Version"
 msgstr "Verzió átnevezése"
 
-#: ../src/PhotoVersionCommands.cs:60
+#: ../src/PhotoVersionCommands.cs:61
 msgid "New name:"
 msgstr "Új név:"
 
-#: ../src/PhotoVersionCommands.cs:106
+#: ../src/PhotoVersionCommands.cs:107
 msgid "Could not create a new version"
 msgstr "Nem hozható létre új verzió"
 
-#: ../src/PhotoVersionCommands.cs:107
+#: ../src/PhotoVersionCommands.cs:108
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to create version \"{1}\""
 msgstr "\"{0}\" kivétel következett be. A(z) \"{1}\" verzió nem hozható létre"
 
-#: ../src/PhotoVersionCommands.cs:134
+#: ../src/PhotoVersionCommands.cs:135
 msgid "Really Delete?"
 msgstr "Valóban törli?"
 
-#: ../src/PhotoVersionCommands.cs:140
+#: ../src/PhotoVersionCommands.cs:141
 #, csharp-format
 msgid "Really delete version \"{0}\"?"
 msgstr "Valóban törli \"{0}\" verziót?"
 
 #. FIXME show error dialog.
-#: ../src/PhotoVersionCommands.cs:150
+#: ../src/PhotoVersionCommands.cs:151
 msgid "Could not delete a version"
 msgstr "Nem törölhető egy verzió"
 
-#: ../src/PhotoVersionCommands.cs:151
+#: ../src/PhotoVersionCommands.cs:152
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to delete version \"{1}\""
 msgstr "\"{0}\" kivétel következett be. A(z) \"{1}\" verzió nem törölhető"
 
-#: ../src/PhotoVersionCommands.cs:192
+#: ../src/PhotoVersionCommands.cs:193
 msgid "Could not rename a version"
 msgstr "Nem nevezhető át egy verzió"
 
-#: ../src/PhotoVersionCommands.cs:193
+#: ../src/PhotoVersionCommands.cs:194
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
 msgstr "\"{0}\" kivétel következett be. A verzió nem nevezhető át erre: \"{1}\""
@@ -2418,23 +2442,23 @@ msgstr "\"{0}\" kivétel következett be. A verzió nem nevezhető át erre: \"{
 msgid "(No Edits)"
 msgstr "(nincsenek szerkesztések)"
 
-#: ../src/PhotoView.cs:65
+#: ../src/PhotoView.cs:63
 msgid "No Constraint"
 msgstr "Nincs megszorítás"
 
-#: ../src/PhotoView.cs:66
+#: ../src/PhotoView.cs:64
 msgid "4 x 3 (Book)"
 msgstr "4 x 3 (könyv)"
 
-#: ../src/PhotoView.cs:67
+#: ../src/PhotoView.cs:65
 msgid "4 x 6 (Postcard)"
 msgstr "4 × 6 (képeslap)"
 
-#: ../src/PhotoView.cs:68
+#: ../src/PhotoView.cs:66
 msgid "5 x 7 (L, 2L)"
 msgstr "5 x 7 (L, 2L)"
 
-#: ../src/PhotoView.cs:69
+#: ../src/PhotoView.cs:67
 msgid "8 x 10"
 msgstr "8 × 10"
 
@@ -2442,35 +2466,31 @@ msgstr "8 × 10"
 #. new SelectionConstraint (Catalog.GetString ("4 x 6 Portrait (Postcard)"), 4.0 / 6.0),
 #. new SelectionConstraint (Catalog.GetString ("5 x 7 Portrait (L, 2L)"), 5.0 / 7.0),
 #. new SelectionConstraint (Catalog.GetString ("8 x 10 Portrait"), 8.0 / 10.0),
-#: ../src/PhotoView.cs:74
+#: ../src/PhotoView.cs:72
 msgid "Square"
 msgstr "Négyzet"
 
-#: ../src/PhotoView.cs:154
+#: ../src/PhotoView.cs:152
 msgid "Crop photo to selected area"
 msgstr "Fénykép vágása a kijelölt területre"
 
-#: ../src/PhotoView.cs:155
+#: ../src/PhotoView.cs:153
 msgid "Remove redeye from selected area"
 msgstr "Vörösszem eltávolítása a kijelölt területről"
 
-#: ../src/PhotoView.cs:157
+#: ../src/PhotoView.cs:155
 msgid "Select an area to crop"
 msgstr "Válasszon egy területet a levágáshoz"
 
-#: ../src/PhotoView.cs:158
+#: ../src/PhotoView.cs:156
 msgid "Select an area to remove redeye"
 msgstr "Válasszon ki egy területet a vörösszem eltüntetéséhez"
 
-#: ../src/PhotoView.cs:267
-msgid "Error editing photo"
-msgstr "Hiba a fénykép szerkesztése közben"
-
-#: ../src/PhotoView.cs:319
+#: ../src/PhotoView.cs:317
 msgid "No selection available"
 msgstr "Nem áll rendelkezésre kijelölés"
 
-#: ../src/PhotoView.cs:320
+#: ../src/PhotoView.cs:318
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -2478,60 +2498,64 @@ msgstr ""
 "Ez az eszköz aktív kijelölést igényel. Kérem jelölje ki a fénykép egy "
 "területét és próbálja újra a műveletet."
 
-#: ../src/PhotoView.cs:487
+#: ../src/PhotoView.cs:485
 msgid "Comment:"
 msgstr "Megjegyzés:"
 
-#: ../src/PhotoView.cs:552
+#: ../src/PhotoView.cs:550
 msgid "Adjust the photo colors"
 msgstr "Fénykép színeinek beállítása"
 
-#: ../src/PhotoView.cs:553
+#: ../src/PhotoView.cs:551
 msgid "Constrain the aspect ratio of the selection"
 msgstr "A kijelölés nagyítási arányának korlátozása"
 
-#: ../src/PhotoView.cs:554
+#: ../src/PhotoView.cs:552
 msgid "Next photo"
 msgstr "Következő fénykép"
 
-#: ../src/PhotoView.cs:555
+#: ../src/PhotoView.cs:553
 msgid "Previous photo"
 msgstr "Előző fénykép"
 
-#: ../src/PhotoView.cs:556
+#: ../src/PhotoView.cs:554
 msgid "Convert the photo to black and white"
 msgstr "A fénykép átalakítása fekete-fehérré"
 
-#: ../src/PhotoView.cs:557
+#: ../src/PhotoView.cs:555
 msgid "Convert the photo to sepia tones"
 msgstr "A fénykép átalakítása szépia tónusúvá"
 
-#: ../src/PicasaWebExport.cs:576
+#: ../src/PicasaWebExport.cs:567
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "\"{0}\" kép feltöltése ({1}. / {2})"
 
-#: ../src/PicasaWebExport.cs:682
+#: ../src/PicasaWebExport.cs:673
 msgid "Available space :"
 msgstr "Elérhető terület:"
 
-#: ../src/RotateCommand.cs:197
+#: ../src/Preferences.cs:160
+msgid "Photos"
+msgstr "Fényképek"
+
+#: ../src/RotateCommand.cs:198
 msgid "Rotating photos"
 msgstr "Fényképek forgatása"
 
-#: ../src/RotateCommand.cs:208
+#: ../src/RotateCommand.cs:209
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "\"{0}\" fénykép forgatása"
 
-#: ../src/RotateCommand.cs:233
+#: ../src/RotateCommand.cs:234
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
 msgstr[0] "Nem lehet forgatni a fényképet"
 msgstr[1] "Nem lehet forgatni {0} fényképet"
 
-#: ../src/RotateCommand.cs:237
+#: ../src/RotateCommand.cs:238
 #, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
@@ -2547,18 +2571,31 @@ msgstr[1] ""
 "médián vannak, például CD-ROM-on. Kérem ellenőrizze a jogosultságokat és "
 "próbálja újra."
 
-#: ../src/RotateCommand.cs:259
+#: ../src/RotateCommand.cs:260
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "\"{0}\" hiba következett be {1} forgatására tett kísérlet közben"
 
-#: ../src/RotateCommand.cs:264
+#: ../src/RotateCommand.cs:265
 msgid "Error while rotating photo."
 msgstr "Hiba a fénykép forgatása közben."
 
-#: ../src/SingleView.cs:310
+#: ../src/SendEmail.cs:235
+msgid "Preparing email"
+msgstr "E-mail előkészítése"
+
+#: ../src/SendEmail.cs:269
+#, csharp-format
+msgid "Exporting picture \"{0}\""
+msgstr "\"{0}\" kép exportálása"
+
+#: ../src/SingleView.cs:321
 msgid "Open"
 msgstr "Megnyitás"
+
+#: ../src/SingleView.cs:426
+msgid "Set as Background"
+msgstr "Beállítás háttérként"
 
 #: ../src/StockIcons.cs:26
 msgid "Adjust Colors"
@@ -2584,62 +2621,58 @@ msgstr "Teljes képernyő"
 msgid "Loading"
 msgstr "Betöltés"
 
-#: ../src/StockIcons.cs:34
-msgid "Logo"
-msgstr "Logó"
-
-#: ../src/StockIcons.cs:35 ../src/TagCommands.cs:122 ../src/TagMenu.cs:89
+#: ../src/StockIcons.cs:34 ../src/TagCommands.cs:126 ../src/TagMenu.cs:89
 #: ../src/TagPopup.cs:34
 msgid "Create New Tag"
 msgstr "Új címke létrehozása"
 
-#: ../src/StockIcons.cs:36
+#: ../src/StockIcons.cs:35
 msgid "Question"
 msgstr "Kérdés"
 
-#: ../src/StockIcons.cs:37
+#: ../src/StockIcons.cs:36
 msgid "Reduce Red-Eye"
 msgstr "Vörös szem csökkentése"
 
-#: ../src/StockIcons.cs:40
+#: ../src/StockIcons.cs:39
 msgid "Sepia Tone"
 msgstr "Tintaárnyalat"
 
-#: ../src/StockIcons.cs:41
+#: ../src/StockIcons.cs:40
 msgid "Slideshow"
 msgstr "Diavetítés"
 
-#: ../src/StockIcons.cs:42
+#: ../src/StockIcons.cs:41
 msgid "Near"
 msgstr "Közeli"
 
-#: ../src/StockIcons.cs:43
+#: ../src/StockIcons.cs:42
 msgid "Far"
 msgstr "Távoli"
 
-#: ../src/TagCommands.cs:75 ../src/TagCommands.cs:203
-#: ../src/TagSelectionWidget.cs:503
+#: ../src/TagCommands.cs:79 ../src/TagCommands.cs:207
+#: ../src/TagSelectionWidget.cs:505
 msgid "This name is already in use"
 msgstr "Ez a név már használatban van"
 
-#: ../src/TagCommands.cs:123
+#: ../src/TagCommands.cs:127
 msgid "Name of New Tag:"
 msgstr "Az új címke neve:"
 
-#: ../src/TagCommands.cs:273 ../src/TagPopup.cs:40
+#: ../src/TagCommands.cs:277 ../src/TagPopup.cs:40
 msgid "Edit Tag"
 msgstr "Címke szerkesztése"
 
-#: ../src/TagCommands.cs:274
+#: ../src/TagCommands.cs:278
 msgid "Tag Name:"
 msgstr "Címke neve:"
 
-#: ../src/TagCommands.cs:367
+#: ../src/TagCommands.cs:371
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "{0}/{1} fénykép"
 
-#: ../src/TagCommands.cs:394
+#: ../src/TagCommands.cs:398
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "{0} címke ikonjának szerkesztése"
@@ -2718,11 +2751,11 @@ msgstr " vagy "
 msgid "or"
 msgstr "vagy"
 
-#: ../src/TagQueryWidget.cs:1113
+#: ../src/TagQueryWidget.cs:1110
 msgid "Drag tags here to search for them"
 msgstr "Húzza ide a keresendő címkéket"
 
-#: ../src/TagSelectionWidget.cs:502
+#: ../src/TagSelectionWidget.cs:504
 msgid "Error renaming tag"
 msgstr "Hiba a címke átnevezése közben"
 
@@ -2776,11 +2809,11 @@ msgstr ""
 "Hiba érkezett:\n"
 "\"{0}\"\n"
 
-#: ../src/QueryDisplay.cs:34 ../src/QueryWidget.cs:37
+#: ../src/QueryDisplay.cs:34 ../src/QueryWidget.cs:35
 msgid "Find: "
 msgstr "Keresés: "
 
-#: ../src/QueryDisplay.cs:38 ../src/QueryWidget.cs:42
+#: ../src/QueryDisplay.cs:38 ../src/QueryWidget.cs:40
 msgid "Untagged photos"
 msgstr "Címkézetlen fényképek"
 
@@ -2788,22 +2821,44 @@ msgstr "Címkézetlen fényképek"
 msgid "No matching photos found "
 msgstr "Nem találhatóak illeszkedő fényképek "
 
-#: ../src/QueryDisplay.cs:61 ../src/QueryWidget.cs:62
+#: ../src/QueryDisplay.cs:61 ../src/QueryWidget.cs:60
 msgid "Clear search"
 msgstr "Tiszta keresés"
 
-#: ../src/QueryWidget.cs:64
+#: ../src/QueryWidget.cs:62
 msgid "No matching photos found"
 msgstr "Nem találhatók illeszkedő fényképek"
 
-#: ../src/QueryWidget.cs:94
+#: ../src/QueryWidget.cs:92
 msgid "Hide Find Bar"
 msgstr "_Keresősáv elrejtése"
 
-#: ../src/QueryWidget.cs:100
+#: ../src/QueryWidget.cs:98
 msgid "Show Find Bar"
 msgstr "_Keresősáv megjelenítése"
 
+#. Prepare the Last Import root tag
+#: ../src/XmpTagsImporter.cs:86
+msgid "Import Tags"
+msgstr "Címkék importálása"
+
+#: ../src/XmpTagsImporter.cs:87
+msgid "Location"
+msgstr "Hely"
+
+#: ../src/XmpTagsImporter.cs:88
+msgid "Country"
+msgstr "Ország"
+
+#: ../src/XmpTagsImporter.cs:89
+msgid "City"
+msgstr "Város"
+
+#: ../src/XmpTagsImporter.cs:90
+msgid "State"
+msgstr "Állam"
+
+#. namespace
 #: ../tools/f-spot-screensaver.desktop.in.h:1
 msgid "Display a slideshow from F-Spot"
 msgstr "Diavetítés megjelenítése az F-Spotból"
