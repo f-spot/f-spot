@@ -84,7 +84,7 @@ namespace FSpot {
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
 			int round = 12;
-			Graphics g = CairoUtils.CreateContext (GdkWindow);
+			Context g = CairoUtils.CreateContext (GdkWindow);
 			g.Operator = Operator.Source;
 			g.Source = new SolidPattern (new Cairo.Color (0, 0, 0, 0));
 			g.Paint ();

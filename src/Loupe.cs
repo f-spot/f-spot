@@ -314,14 +314,14 @@ namespace FSpot {
 							    Allocation.Width, 
 							    Allocation.Height, 1);
 			
-			Graphics g = CreateDrawable (bitmap);
+			Context g = CreateDrawable (bitmap);
 			DrawShape (g, Allocation.Width, Allocation.Height);
 			((IDisposable)g).Dispose ();
 
 			if (use_shape_ext)
 				ShapeCombineMask (bitmap, 0, 0);
 			else {
-				Graphics rgba = CreateDrawable (GdkWindow);
+				Context rgba = CreateDrawable (GdkWindow);
 				DrawShape (rgba, Allocation.Width, Allocation.Height);
 				((IDisposable)rgba).Dispose ();
 				try {
@@ -353,7 +353,7 @@ namespace FSpot {
 			hotspot.Y = (int) Math.Ceiling (Center.Y + y_proj);
 		}
 		
-		private void DrawShape (Cairo.Graphics g, int width, int height)
+		private void DrawShape (Cairo.Context g, int width, int height)
 		{
 			int inner_x = radius + border + inner;
 			int cx = Center.X;
@@ -413,7 +413,7 @@ namespace FSpot {
 
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
-			Graphics g = CreateDrawable (GdkWindow);
+			Context g = CreateDrawable (GdkWindow);
 			DrawShape (g, Allocation.Width, Allocation.Height);
 			//base.OnExposeEvent (args);
 			((IDisposable)g).Dispose ();
@@ -560,9 +560,9 @@ namespace FSpot {
                 [DllImport ("libcairo-2.dll")]
                 static extern void cairo_user_to_device (IntPtr cr, ref double x, ref double y);
 
-		static void UserToDevice (Graphics g, ref double x, ref double y)
+		static void UserToDevice (Context ctx, ref double x, ref double y)
 		{
-			cairo_user_to_device (g.Handle, ref x, ref y);
+			cairo_user_to_device (ctx.Handle, ref x, ref y);
 		}
 
 		[DllImport("libgdk-2.0-0.dll")]
@@ -571,19 +571,19 @@ namespace FSpot {
 								double        pixbuf_x,
 								double        pixbuf_y);
 
-		static void SetSourcePixbuf (Graphics g, Gdk.Pixbuf pixbuf, double x, double y)
+		static void SetSourcePixbuf (Context ctx, Gdk.Pixbuf pixbuf, double x, double y)
 		{
-			gdk_cairo_set_source_pixbuf (g.Handle, pixbuf.Handle, x, y);
+			gdk_cairo_set_source_pixbuf (ctx.Handle, pixbuf.Handle, x, y);
 		}
 
 		[DllImport("libgdk-2.0-0.dll")]
 		static extern IntPtr gdk_cairo_create (IntPtr raw);
 		
-		public static Cairo.Graphics CreateDrawable (Gdk.Drawable drawable)
+		public static Cairo.Context CreateDrawable (Gdk.Drawable drawable)
 		{
-			Cairo.Graphics g = new Cairo.Graphics (gdk_cairo_create (drawable.Handle));
+			Cairo.Context g = new Cairo.Context (gdk_cairo_create (drawable.Handle));
 			if (g == null) 
-				throw new Exception ("Couldn't create Cairo Graphics!");
+				throw new Exception ("Couldn't create Cairo Context!");
 			
 			return g;
 		}

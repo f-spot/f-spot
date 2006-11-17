@@ -1,5 +1,11 @@
 2006-11-16  Larry Ewing  <lewing@novell.com>
 
+	* src/PreviewPopup.cs:
+	* src/Loupe.cs:
+	* src/Widgets/ImageDisplay.cs:
+	* src/Widgets/CairoUtils.cs: replace all references to
+	Cairo.Graphics with Cairo.Context.
+
 	* src/CameraFileSelectionDialog.cs:
 	* src/CameraSelectionDialog.cs:
 	* src/Core.cs:

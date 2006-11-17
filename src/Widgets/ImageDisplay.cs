@@ -108,7 +108,7 @@ namespace FSpot.Widgets {
 			return true;
 		}
 		
-		private static void SetClip (Graphics ctx, Gdk.Rectangle area) 
+		private static void SetClip (Context ctx, Gdk.Rectangle area) 
 		{
 			ctx.MoveTo (area.Left, area.Top);
 			ctx.LineTo (area.Right, area.Top);
@@ -119,7 +119,7 @@ namespace FSpot.Widgets {
 			ctx.Clip ();
 		}
 		
-		private static void SetClip (Graphics ctx, Region region)
+		private static void SetClip (Context ctx, Region region)
 		{
 			foreach (Gdk.Rectangle area in region.GetRectangles ()) {
 				ctx.MoveTo (area.Left, area.Top);
@@ -132,7 +132,7 @@ namespace FSpot.Widgets {
 			ctx.Clip ();
 		}
 
-		private void OnExpose (Graphics ctx, Region region)
+		private void OnExpose (Context ctx, Region region)
 		{
 			if (Transition != null) {
 				bool done = false;
@@ -179,13 +179,13 @@ namespace FSpot.Widgets {
 			bool double_buffer = false;
 			base.OnExposeEvent (args);
 
-			Graphics ctx = CairoUtils.CreateContext (GdkWindow);
+			Context ctx = CairoUtils.CreateContext (GdkWindow);
 			if (double_buffer) {
 				ImageSurface cim = new ImageSurface (Format.RGB24, 
 								     Allocation.Width, 
 								     Allocation.Height);
 
-				Graphics buffer = new Graphics (cim);
+				Context buffer = new Context (cim);
 				OnExpose (buffer, args.Region);
 
 				SurfacePattern sur = new SurfacePattern (cim);
@@ -214,13 +214,13 @@ namespace FSpot.Widgets {
 		}
 
 		private interface ITransition : IDisposable {
-			bool OnExpose (Graphics ctx, Gdk.Rectangle allocation);
+			bool OnExpose (Context ctx, Gdk.Rectangle allocation);
 			bool OnEvent (Widget w);
 			int Frames { get; }
 		}
 
 		private interface IEffect : IDisposable {
-			bool OnExpose (Graphics ctx, Gdk.Rectangle allocation);
+			bool OnExpose (Context ctx, Gdk.Rectangle allocation);
 		}
 
 		private class Tilt : IEffect {
@@ -240,7 +240,7 @@ namespace FSpot.Widgets {
 				set { angle = Math.Max (Math.Min (value, Math.PI * .25), Math.PI * -0.25); }
 			}
 			
-			public bool OnExpose (Graphics ctx, Gdk.Rectangle allocation)
+			public bool OnExpose (Context ctx, Gdk.Rectangle allocation)
 			{
 				ctx.Operator = Operator.Source;
 
@@ -321,7 +321,7 @@ namespace FSpot.Widgets {
 				return percent < 1.0;
 			}
 
-			public bool OnExpose (Graphics ctx, Gdk.Rectangle viewport)
+			public bool OnExpose (Context ctx, Gdk.Rectangle viewport)
 			{
 				double percent = Math.Min ((DateTime.UtcNow - start).Ticks / (double) duration.Ticks, 1.0);
 
@@ -395,7 +395,7 @@ namespace FSpot.Widgets {
 				return percent < 1.0;
 			}
 
-			public bool OnExpose (Graphics ctx, Gdk.Rectangle viewport)
+			public bool OnExpose (Context ctx, Gdk.Rectangle viewport)
 			{
 				double percent = Math.Min ((DateTime.UtcNow - start).Ticks / (double) duration.Ticks, 1.0);
 				frames ++;
@@ -448,7 +448,7 @@ namespace FSpot.Widgets {
 				return fraction <= 1.0;
 			}
 
-			public bool OnExpose (Graphics ctx, Gdk.Rectangle allocation)
+			public bool OnExpose (Context ctx, Gdk.Rectangle allocation)
 			{
 				TimeSpan elapsed = DateTime.UtcNow - start;
 				double fraction = elapsed.Ticks / (double) duration.Ticks; 
@@ -519,7 +519,7 @@ namespace FSpot.Widgets {
 				return fraction < 1.0;
 			}
 
-			public bool OnExpose (Graphics ctx, Gdk.Rectangle allocation)
+			public bool OnExpose (Context ctx, Gdk.Rectangle allocation)
 			{
 				if (frames == 0)
 					start = DateTime.UtcNow;
@@ -605,7 +605,7 @@ namespace FSpot.Widgets {
 				Cairo.Surface similar = CairoUtils.CreateSurface (w.GdkWindow);
 				Bounds = bounds;
 				Surface = similar.CreateSimilar (Content.ColorAlpha, Bounds.Width, Bounds.Height);
-				Graphics ctx = new Graphics (Surface);
+				Context ctx = new Context (Surface);
 				
 				ctx.Matrix = info.Fill (Bounds);
 				Pattern p = new SurfacePattern (info.Surface);
@@ -621,7 +621,7 @@ namespace FSpot.Widgets {
 				Surface = new ImageSurface (Format.RGB24,
 							    allocation.Width,
 							    allocation.Height);
-				Graphics ctx = new Graphics (Surface);
+				Context ctx = new Context (Surface);
 #else
 				Console.WriteLine ("source status = {0}", info.Surface.Status);
 				Surface = info.Surface.CreateSimilar (Content.Color,
@@ -629,7 +629,7 @@ namespace FSpot.Widgets {
 								      allocation.Height);
 				
 				System.Console.WriteLine ("status = {1} pointer = {0}", Surface.Handle.ToString (), Surface.Status);
-				Graphics ctx = new Graphics (Surface);
+				Context ctx = new Context (Surface);
 #endif
 				Bounds = allocation;
 				

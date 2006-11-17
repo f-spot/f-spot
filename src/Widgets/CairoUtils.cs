@@ -17,9 +17,9 @@ namespace FSpot.Widgets {
                 [DllImport ("libcairo-2.dll")]
                 static extern void cairo_user_to_device (IntPtr cr, ref double x, ref double y);
 		
-		static void UserToDevice (Graphics g, ref double x, ref double y)
+		static void UserToDevice (Context ctx, ref double x, ref double y)
 		{
-			cairo_user_to_device (g.Handle, ref x, ref y);
+			cairo_user_to_device (ctx.Handle, ref x, ref y);
 		}
 		
 		[DllImport("libgdk-2.0-0.dll")]
@@ -28,9 +28,9 @@ namespace FSpot.Widgets {
 								double        pixbuf_x,
 								double        pixbuf_y);
 		
-		public static void SetSourcePixbuf (Graphics g, Gdk.Pixbuf pixbuf, double x, double y)
+		public static void SetSourcePixbuf (Context ctx, Gdk.Pixbuf pixbuf, double x, double y)
 		{
-			gdk_cairo_set_source_pixbuf (g.Handle, pixbuf.Handle, x, y);
+			gdk_cairo_set_source_pixbuf (ctx.Handle, pixbuf.Handle, x, y);
 		}
 
 		[DllImport("libgdk-2.0-0.dll")]
@@ -39,10 +39,10 @@ namespace FSpot.Widgets {
 								double x,
 								double y);
 
-		public static void SetSourceDrawable (Graphics g, Gdk.Drawable d, double x, double y)
+		public static void SetSourceDrawable (Context ctx, Gdk.Drawable d, double x, double y)
 		{
 			try {
-				gdk_cairo_set_source_pixmap (g.Handle, d.Handle, x, y);
+				gdk_cairo_set_source_pixmap (ctx.Handle, d.Handle, x, y);
 			} catch (EntryPointNotFoundException) {
 				int width, height;
 				d.GetSize (out width, out height);
@@ -55,20 +55,20 @@ namespace FSpot.Widgets {
 				Matrix m = new Matrix ();
 				m.Translate (-x, -y);
 				p.Matrix = m;
-				g.Source = p;
+				ctx.Source = p;
 			}
 		}		
 
 		[DllImport("libgdk-2.0-0.dll")]
 		static extern IntPtr gdk_cairo_create (IntPtr raw);
 		
-		public static Cairo.Graphics CreateContext (Gdk.Drawable drawable)
+		public static Cairo.Context CreateContext (Gdk.Drawable drawable)
 		{
-			Cairo.Graphics g = new Cairo.Graphics (gdk_cairo_create (drawable.Handle));
-			if (g == null) 
+			Cairo.Context ctx = new Cairo.Context (gdk_cairo_create (drawable.Handle));
+			if (ctx == null) 
 				throw new Exception ("Couldn't create Cairo Graphics!");
 			
-			return g;
+			return ctx;
 		}
 
 		[DllImport("libfspot")]
