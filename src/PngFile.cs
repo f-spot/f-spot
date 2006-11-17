@@ -4,6 +4,8 @@ using Cms;
 using System.IO;
 using FSpot.Xmp;
 using System.Collections;
+using NUnit.Framework;
+using System.Reflection;
 
 namespace FSpot.Png {
 	public class PngFile : ImageFile, SemWeb.StatementSource {
@@ -1416,6 +1418,60 @@ namespace FSpot.Png {
 						return time.Time.ToUniversalTime ();
 				}
 				return base.Date;
+			}
+		}
+		
+		[TestFixture]
+		public class Tests {
+			public Tests ()
+			{
+				Gnome.Vfs.Vfs.Initialize ();
+				Gtk.Application.Init ();
+			}
+
+			[Test]
+			public void Save ()
+			{
+				Gdk.Pixbuf test = new Gdk.Pixbuf (null, "f-spot-32.png");
+				string path = ImageFile.TempPath ("joe.png");
+				test.Save (path, "png");
+				PngFile pimg = new PngFile (path);
+
+				string desc = "this is a png test";
+				string desc2 = "\000xa9 Novell Inc.";
+				pimg.SetDescription (desc);
+				using (Stream stream = File.OpenWrite (path)) {
+					pimg.Save (stream);
+				}
+				PngFile mod = new PngFile (path);
+				Assert.AreEqual (mod.Orientation, PixbufOrientation.TopLeft);
+				Assert.AreEqual (mod.Description, desc);
+				pimg.SetDescription (desc2);
+
+				using (Stream stream = File.OpenWrite (path)) {
+					pimg.Save (stream);
+				}
+				mod = new PngFile (path);
+				Assert.AreEqual (mod.Description, desc2);
+			}
+
+			[Test]
+			public void Load ()
+			{
+				string desc = "(c) 2004 Jakub Steiner\n\nCreated with The GIMP";
+				Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly ();
+				string path  = ImageFile.TempPath ("maddy.png");
+				using (Stream output = File.OpenWrite (path)) {
+					using (Stream source = assembly.GetManifestResourceStream ("f-spot-adjust-colors.png")) {
+						int read;
+						byte [] buffer = new byte [256];
+						while (source.Read (buffer, 0, buffer.Length) > 0) {
+							output.Write (buffer, 0, buffer.Length);
+						}
+					}
+				}
+				PngFile pimg = new PngFile (path);
+				Assert.AreEqual (pimg.Description, desc);
 			}
 		}
 
