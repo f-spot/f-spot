@@ -99,10 +99,11 @@ namespace Mono.Google.Picasa {
 			return album;
 		}
 
-		public static PicasaPictureCollection GetPictures (string user, string aid)
+		public static PicasaPictureCollection GetPictures (string user, string aid, string authkey)
 		{
 			if (user == null || user == String.Empty)
 				throw new ArgumentNullException ("user");
+
 			if (aid == null || aid == String.Empty)
 				throw new ArgumentNullException ("aid");
 
@@ -110,6 +111,9 @@ namespace Mono.Google.Picasa {
 			conn.Authenticate (user, null);
 			PicasaAlbum album = new PicasaAlbum (conn);
 			string link = album.API.GetAlbumRSS (user, aid);
+			if (authkey != null && authkey != "")
+				link += "&authkey=" + authkey;
+
 			album.rsslink = link;
 			string received = conn.DownloadString (link);
 			XmlDocument doc = new XmlDocument ();
@@ -126,6 +130,11 @@ namespace Mono.Google.Picasa {
 			}
 			coll.SetReadOnly ();
 			return coll;
+		}
+
+		public static PicasaPictureCollection GetPictures (string user, string aid)
+		{
+			return GetPictures (user, aid, null);
 		}
 
 		public PicasaPictureCollection GetPictures ()

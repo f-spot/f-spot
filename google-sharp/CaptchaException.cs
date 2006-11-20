@@ -29,7 +29,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace System {
+namespace Mono.Google {
 	[Serializable]
 	public class CaptchaException : UnauthorizedAccessException, ISerializable
 	{
