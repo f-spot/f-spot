@@ -1,5 +1,10 @@
 2006-11-20  Stephane Delcroix  <stephane@delcroix.org>
 
+	* google-sharp/PicasaWeb.cs: quick fix for picasa (new|broken)
+	protocol. WARNING !!! we're no longer in sync with google-sharp !!!
+
+2006-11-20  Stephane Delcroix  <stephane@delcroix.org>
+
 	* google-sharp/PicasaAlbum.cs:
 	* google-sharp/CaptchaException.cs: upgrade to google-sharp svn
 	r67952.
