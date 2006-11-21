@@ -1,5 +1,9 @@
 2006-11-21  Larry Ewing  <lewing@novell.com>
 
+	* src/QueryDisplay.cs: switch to Mono.Unix.
+	* src/PngFile.cs: remove temp files at the end of the test.
+	* src/JpegHeader.cs: add saving test, check for safe roundtrip.
+
 	* po/POTFILES.in: remove QueryDisplay.cs as it is not part of the
 	build.
 

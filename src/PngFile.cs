@@ -1457,6 +1457,8 @@ namespace FSpot.Png {
 				}
 				mod = new PngFile (path);
 				Assert.AreEqual (mod.Description, desc2);
+				
+				File.Delete (path);
 			}
 
 			[Test]
@@ -1476,6 +1478,8 @@ namespace FSpot.Png {
 				}
 				PngFile pimg = new PngFile (path);
 				Assert.AreEqual (pimg.Description, desc);
+
+				File.Delete (path);
 			}
 		}
 #endif

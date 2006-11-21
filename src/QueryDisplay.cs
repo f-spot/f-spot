@@ -1,6 +1,6 @@
 using System;
-using Mono.Posix;
 using Gtk;
+using Mono.Unix;
 
 namespace FSpot {
 public class QueryDisplay : Gtk.VBox {
