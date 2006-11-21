@@ -130,19 +130,26 @@ namespace FSpot {
 #if ENABLE_NUNIT
 		[TestFixture]
 		public class Tests {
+			string [] Names = new string [] { 
+				"\x00a9F-SpotUnit\x00b5Test.png",
+				"img(\x00a9F-SpotUnit\x00b5Test).png",
+				"img(ο).png",
+				"img(τροποποιημένο).png",
+			};
+
 			public Tests ()
 			{
 				Gnome.Vfs.Vfs.Initialize ();
 			}
 
-			public string CreateFile (int size)
+			public string CreateFile (string name, int size)
 			{
 				using (Gdk.Pixbuf test = new Gdk.Pixbuf (null, "f-spot-32.png")) {
 					using (Gdk.Pixbuf tmp = test.ScaleSimple (size, size, Gdk.InterpType.Bilinear)) {
 						string path = System.IO.Path.GetTempPath ();
-						path = System.IO.Path.Combine (path, "\x00a9F-SpotUnit\x00b5Test.png");
+						path = System.IO.Path.Combine (path, name);
 						Console.WriteLine (path);
-						tmp.Save (path, "png");
+						tmp.Save (path, Path.GetExtension (path).TrimStart (new char [] { '.' }));
 						return path;
 					}
 				}
@@ -151,7 +158,14 @@ namespace FSpot {
 			[Test]
 			public void BadNames ()
 			{
-				string path = CreateFile (512);
+				foreach (string name in Names) {
+					BadNames (name);
+				}
+			}
+
+			public void BadNames (string name)
+			{
+				string path = CreateFile (name, 512);
 				System.Uri uri = UriList.PathToFileUri (path);
 	
 				Gnome.ThumbnailFactory factory = new Gnome.ThumbnailFactory (Gnome.ThumbnailSize.Large);
@@ -161,6 +175,7 @@ namespace FSpot {
 				using (Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (uri.LocalPath)) {
 					factory.SaveThumbnail (pixbuf, uri.ToString (), System.DateTime.Now);
 					
+					Assert.IsTrue (File.Exists (large_path), String.Format ("Missing: {0} created from {1}", large_path, path));
 					Gdk.Pixbuf thumb = new Gdk.Pixbuf (large_path);
 					Assert.IsNotNull (thumb);
 				}
@@ -172,11 +187,19 @@ namespace FSpot {
 			[Test]
 			public void StringNames ()
 			{
-				string path = CreateFile (1024);
+				foreach (string name in Names) {
+					StringNames (name);
+				}
+			}
+			
+			public void StringNames (string name)
+			{
+				string path = CreateFile (name, 1024);
 				string thumb_path = ThumbnailGenerator.ThumbnailPath (path);
-
+				
 				ThumbnailGenerator.Create (path);
 
+				Assert.IsTrue (File.Exists (thumb_path), String.Format ("Missing: {0} created from {1}", thumb_path, path));
 				using (Gdk.Pixbuf thumb = new Gdk.Pixbuf (thumb_path)) {
 					Assert.IsNotNull (thumb);
 					//Assert.AreEqual (thumb.GetOption (ThumbUri), UriList.PathToFileUri (path).ToString ());
@@ -190,7 +213,14 @@ namespace FSpot {
 			[Test]
 			public void UriNames ()
 			{
-				string path = CreateFile (768);
+				foreach (string name in Names) {
+					UriNames (name);
+				}
+			}
+
+			public void UriNames (string name)
+			{
+				string path = CreateFile (name, 768);
 				Uri uri = UriList.PathToFileUri (path);
 				string string_path = ThumbnailGenerator.ThumbnailPath (path);
 				string thumb_path = ThumbnailGenerator.ThumbnailPath (uri);
@@ -198,6 +228,7 @@ namespace FSpot {
 
 				ThumbnailGenerator.Create (uri);
 
+				Assert.IsTrue (File.Exists (thumb_path), String.Format ("Missing: {0} created from {1}", thumb_path, uri));
 				using (Gdk.Pixbuf thumb = new Gdk.Pixbuf (thumb_path)) {
 					Assert.IsNotNull (thumb);
 					//Assert.AreEqual (thumb.GetOption (ThumbUri), uri.ToString ());
