@@ -1,3 +1,10 @@
+2006-11-21  Stephane Delcroix  <stephane@delcroix.org>
+
+	* configure.in: check for Mono.GetOptions.dll
+	* src/Makefile.am: compile with -r:Mono.GetOptions
+	* src/AssemblyInfo.cs.in: add some attributes for Mono.GetOptions
+	* src/main.cs: use Mono.GetOptions to parse commandline arguments
+
 2006-11-20  Stephane Delcroix  <stephane@delcroix.org>
 
 	* google-sharp/PicasaWeb.cs: quick fix for picasa (new|broken)

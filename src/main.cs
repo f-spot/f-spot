@@ -6,72 +6,70 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Collections;
 using Mono.Unix;
+using Mono.GetOptions;
 
 namespace FSpot 
 {
-
-public class Driver {
-	
-	private static void HelpMsg(string [] args)
+	public class FSpotOptions : Options
 	{
-		Catalog.Init ("f-spot", Defines.LOCALE_DIR);
+		//--import, -i
+		[Option ("import from the given uri", 'i', "import")]
+		public string import;
 
-		System.Console.WriteLine ("Usage: f-spot [--basedir <directory>] | [--photodir <directory>] | [--debug]");
-		System.Console.WriteLine ("\t\t [ --import <uri> | --view <file[ file]|directory[ directory]> |");
-		System.Console.WriteLine ("\t\t\t--shutdown | --slideshow | --help ]");
-		System.Console.WriteLine ("");
+		//--view, -v
+		[Option ("view file(s) or directory(ies)", 'v', "view")]
+		public bool view;
 
-		System.Console.WriteLine ("  --import [uri]\t\t\timport from the given uri");
-		System.Console.WriteLine ("  --view <file|directory>\t\tview some files or directories (one or more)");
-		System.Console.WriteLine ("  --basedir <directory>\t\t\t<dir> where the photo database is located ");
-		System.Console.WriteLine ("  --photodir <directory>\t\timport (copy) photos to <dir> ");
-		System.Console.WriteLine ("  --shutdown\t\t\t\tshutdown a running f-spot server");
-		System.Console.WriteLine ("  --slideshow\t\t\t\tdisplay a slideshow");
-		System.Console.WriteLine ("  --debug\t\t\t\trun f-spot with mono in debug mode");
-		System.Console.WriteLine ("  --help\t\t\t\tview this message");
-	}
-	
-	private static bool ValidateCmds(string [] args)
-	{
-		string [] restricted_cmds = new string [] {"--slideshow", "--import", "--shutdown", "--view"};
-		string [] valid_cmds = new string [] {"--import", "--view", "--basedir", "--photodir", 
-			"--shutdown", "--slideshow", "--debug", "--help", "--uninstalled"};
-		string [] single_cmds = new string [] {"--shutdown", "--help"};
-		string [] parameter_cmds = new string [] {"--import", "--view", "--basedir", "--photodir"};
+		//--basedir, -b
+		[Option ("path to the photo database folder", 'b', "basedir")]
+		public string basedir;
 
+		//--photodir, -p
+		[Option ("default import folder", 'p', "photodir")]
+		public string photodir;
 
-		bool valid_cmd = true;
-		int number_of_restricted_cmds = 0;
-		for (int k=0; k< args.Length; k++) {
-			string arg = args[k];
-			// Only check commands
-			if (!arg.StartsWith("--"))
-				continue;
-			// Only one restricted cmd is allowed
-			if (System.Array.IndexOf (restricted_cmds, arg) > 0)
-				number_of_restricted_cmds++;  
-			// These commands has to be by itself
-			if ( (System.Array.IndexOf (single_cmds, arg) > 0) && (args.Length != 1) )
-				valid_cmd = false; 
-			// Unknow command is not allowed
-			if (System.Array.IndexOf (valid_cmds, arg) < 0)			
-				valid_cmd = false; 
-			// Command with a parameter has to have a parameter
-			if (System.Array.IndexOf (parameter_cmds, arg) > 0) {
-				if ( (k+1 == args.Length) || (args[k+1].StartsWith ("--"))  )
-					valid_cmd = false;
+		//--shutdown
+		[Option ("shutdown a running f-spot instance", "shutdown")]
+		public bool shutdown;
+
+		//--slideshow
+		[Option ("display a slideshow", "slideshow")]
+		public bool slideshow;
+
+		//--debug, -g
+		[Option ("run f-spot with mono on debug mode", 'g', "debug")]
+		public bool debug;
+
+		public FSpotOptions ()
+		{
+			base.ParsingMode = OptionsParsingMode.Both;
+		}
+
+		public bool Validate ()
+		{
+			if ( (import != null && (view || shutdown || slideshow)) || 
+			     (view && (shutdown || slideshow)) ||
+			     (shutdown && slideshow) ) {
+				Console.WriteLine ("Can't mix --import, --view, --shutdown or --slideshow");
+				return false;
+			}
+			if (view && RemainingArguments.Length == 0) {
+				Console.WriteLine ("Need to specify at least one uri for --view");
+				return false;
 			}
 
+			foreach (string s in RemainingArguments)
+				if (s.StartsWith("-")) {
+					Console.WriteLine ("Unknown option {0}", s);
+					return false;
+				}
+			return true;
 		}
-		valid_cmd = valid_cmd && (number_of_restricted_cmds < 2);
-		
-		return valid_cmd;		
 	}
-	
+
+public class Driver {
 	public static void Main (string [] args)
 	{
-		bool view_only = false;
-		bool import = false;
 		bool empty = false;
 		Program program = null;
 		ICore control = null;
@@ -80,31 +78,37 @@ public class Driver {
 		
 		NDesk.DBus.BusG.Init();
 		try {
-			if (!ValidateCmds(args)) {
-				System.Console.WriteLine ("Invalid argument list. Please review the arguments and try again.");
-				System.Console.WriteLine ("");
-				HelpMsg(args);
+			FSpotOptions options = new FSpotOptions ();
+			options.ProcessArgs (args);
+
+			if (!options.Validate ()) {
+				options.DoHelp ();
 				return;
 			}
-			
-			foreach (string arg in args) {
-				if (arg == "--help") {
-					HelpMsg(args);
-					return;
-				} else if (arg == "--slideshow") {
-					Catalog.Init ("f-spot", Defines.LOCALE_DIR);
-						
-					program = new Program (Defines.PACKAGE, 
-							       Defines.VERSION, 
-						       Modules.UI, args);
-					Core core = new Core ();
-					core.ShowSlides (null);
-					program.Run ();
-					System.Console.WriteLine ("done");
-					return;
-				}
+
+			if (options.basedir != null) {
+				FSpot.Global.BaseDirectory = options.basedir;
+				System.Console.WriteLine("BaseDirectory is now {0}", FSpot.Global.BaseDirectory);
+			} 
+
+			if (options.photodir != null) {
+				FSpot.Global.PhotoDirectory = System.IO.Path.GetFullPath(options.photodir);
+				System.Console.WriteLine("PhotoDirectory is now {0}", FSpot.Global.PhotoDirectory);
 			}
-			
+
+			if (options.slideshow) {
+				Catalog.Init ("f-spot", Defines.LOCALE_DIR);
+					
+				program = new Program (Defines.PACKAGE, 
+						       Defines.VERSION, 
+					       Modules.UI, args);
+				Core core = new Core ();
+				core.ShowSlides (null);
+				program.Run ();
+				System.Console.WriteLine ("done");
+				return;
+			}
+
 			/* 
 			 * FIXME we need to inialize gobject before making the dbus calls, we'll go 
 			 * ahead and do it like this for now.
@@ -120,28 +124,10 @@ public class Driver {
 					System.Console.WriteLine ("Found active FSpot server: {0}", control);
 					program = null;
 				} catch (System.Exception) { 
-					if (System.Array.IndexOf (args, "--shutdown") == 0)
+					if (!options.shutdown)
 						System.Console.WriteLine ("Starting new FSpot server");
 				}
 				
-				// Process this before creating the Core
-				for (int i = 0; i < args.Length; i++) {
-					switch (args[i]) {
-					case "--basedir":
-							if (++i < args.Length) {
-								FSpot.Global.BaseDirectory = args [i];
-								System.Console.WriteLine("BaseDirectory is now {0}", args[i]);
-							}
-						break;
-					case "--photodir":
-							if (++i < args.Length) {
-								FSpot.Global.PhotoDirectory = System.IO.Path.GetFullPath(args [i]);
-								System.Console.WriteLine("PhotoDirectory is now {0}", System.IO.Path.GetFullPath(args[i]));
-							}
-						break;
-					}
-				}
-
 				Core core = null;
 				try {
 					if (control == null && create) {
@@ -173,41 +159,31 @@ public class Driver {
 			
 			
 			UriList list = new UriList ();
-			for (int i = 0; i < args.Length; i++) {
-				switch (args [i]) {
-				case "--shutdown":
-					try {
-						control.Shutdown ();
-					} catch (System.Exception) {
-						// trap errors
-					}
-					System.Environment.Exit (0);
-					break;
-				case "--import":
-					if (++i < args.Length)
-						control.Import (args [i]);
-					
-					import = true;
-					break;
-				case "--view":
-					while (++i < args.Length) {
-						if (args[i].StartsWith ("--"))
-							break;
-						list.AddUnknown (args [i]);
-					}
-					
-					if (list.Count > 0)
-						control.View (list.ToString ());
 
-					view_only = true;
-					break;
+			if (options.shutdown) {
+				try {
+					control.Shutdown ();
+				} catch (System.Exception) {
+					// trap errors
 				}
+				System.Environment.Exit (0);
+			}
+
+			if (options.import != null) {
+				control.Import (options.import);
+			}
+
+			if (options.view) {
+				foreach (string s in options.RemainingArguments)
+					list.AddUnknown (s);
+				if (list.Count > 0)
+					control.View (list.ToString ());
 			}
 			
-			if (empty && !import)
+			if (empty && options.import == null)
 				control.Import (null);
 			
-			if (import || !view_only) {
+			if (options.import != null || !options.view) {
 				control.Organize ();
 				Gdk.Global.NotifyStartupComplete ();
 			}			
