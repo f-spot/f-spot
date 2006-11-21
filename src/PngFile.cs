@@ -1469,7 +1469,6 @@ namespace FSpot.Png {
 				string path  = ImageFile.TempPath ("maddy.png");
 				using (Stream output = File.OpenWrite (path)) {
 					using (Stream source = assembly.GetManifestResourceStream ("f-spot-adjust-colors.png")) {
-						int read;
 						byte [] buffer = new byte [256];
 						while (source.Read (buffer, 0, buffer.Length) > 0) {
 							output.Write (buffer, 0, buffer.Length);

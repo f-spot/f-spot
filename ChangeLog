@@ -1,5 +1,8 @@
 2006-11-21  Larry Ewing  <lewing@novell.com>
 
+	* src/ThumbnailGenerator.cs: add some tests for thumbnail
+	generation with strange paths.
+
 	* src/QueryDisplay.cs: switch to Mono.Unix.
 	* src/PngFile.cs: remove temp files at the end of the test.
 	* src/JpegHeader.cs: add saving test, check for safe roundtrip.
