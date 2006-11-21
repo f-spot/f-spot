@@ -1,5 +1,8 @@
 2006-11-21  Larry Ewing  <lewing@novell.com>
 
+	* po/POTFILES.in: remove QueryDisplay.cs as it is not part of the
+	build.
+
 	* configure.in: disable tests completely if nunit doesn't exist
 	* Makefile.am: use the NUNIT_DEFINES to check for nunit.
 	
