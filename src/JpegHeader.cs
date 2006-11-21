@@ -21,6 +21,7 @@ using System;
 using System.IO;
 using System.Collections;
 using FSpot.Xmp;
+using FSpot;
 
 #if ENABLE_NUNIT
 using NUnit.Framework;
@@ -598,15 +599,14 @@ public class JpegHeader : SemWeb.StatementSource {
 #if ENABLE_NUNIT
 	[TestFixture]
 	public class Tests {
-		[Test]
-		public void Load ()
+		int quality =  75;
+
+		public string CreateFile ()
 		{
 			Gdk.Pixbuf test = new Gdk.Pixbuf (System.Reflection.Assembly.GetEntryAssembly (), "f-spot-32.png");
 			string path = FSpot.ImageFile.TempPath ("joe.jpg");
-			string desc = "this is an example description";
-			string desc2 = "\x00a9 Novell Inc.";
+			string desc = "\x00a9 Novell Inc.";
 			PixbufOrientation orient = PixbufOrientation.TopRight;
-			int quality = 75;
 
 			PixbufUtils.SaveJpeg (test, path, quality, new Exif.ExifData ());
 			FSpot.JpegFile jimg = new FSpot.JpegFile (path);
@@ -614,6 +614,14 @@ public class JpegHeader : SemWeb.StatementSource {
 			jimg.SetOrientation (orient);
 			jimg.SaveMetaData (path);
 			
+			return path;
+		}
+
+		[Test]
+		public void Load ()
+		{
+			string path = CreateFile ();
+
 			using (Stream stream = File.OpenRead (path)) {
 				JpegHeader jhead = new JpegHeader (stream);
 
@@ -631,6 +639,53 @@ public class JpegHeader : SemWeb.StatementSource {
 
 				Assert.IsNotNull (jhead.GetExifHeader ());
 			}
+
+			File.Delete (path);
+		}
+
+		[Test]
+		public void Save ()
+		{
+			string in_path = CreateFile ();
+			string out_path = ImageFile.TempPath ("output.jpg");
+			JpegHeader source;
+			JpegHeader dest;
+
+			using (Stream orig = File.OpenRead (in_path)) {
+				source = new JpegHeader (orig);
+				
+				using (Stream output = File.OpenWrite (out_path)) {
+					source.Save (output);
+				}
+
+				using (Stream result = File.OpenRead (out_path)) {
+					dest = new JpegHeader (result);
+					
+					Assert.AreEqual (source.Markers.Count, dest.Markers.Count);
+					Assert.AreEqual (source.GuessQuality (), dest.GuessQuality ());
+					Assert.AreEqual (orig.Length, result.Length);
+					for (int i = 0; i < source.Markers.Count; i++) {
+						Marker d = (Marker) dest.Markers [i];
+						Marker s = (Marker) source.Markers [i];
+
+						Assert.AreEqual (d.Type, s.Type);
+						Assert.AreEqual (d.GetName (), s.GetName ());
+
+						if (d.Data != null) {
+							Assert.AreEqual (d.Data.Length, s.Data.Length);
+						
+							for (int j = 0; j < d.Data.Length; j++) {
+								Assert.AreEqual (d.Data [j], s.Data [j]);
+							}
+						} else {
+							Assert.AreEqual (d.Data, s.Data);
+						}
+					}
+				}
+			}
+
+			File.Delete (in_path);
+			File.Delete (out_path);
 		}
 	}
 #endif
