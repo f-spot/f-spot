@@ -329,10 +329,10 @@ namespace FSpot {
 			}
 		}
 
-#if EABLE_NUNIT
+#if ENABLE_NUNIT
 		[TestFixture]
-		public class Test {
-			public JpegTest ()
+		public class Tests {
+			public Tests ()
 			{
 				Gnome.Vfs.Vfs.Initialize ();
 				Gtk.Application.Init ();

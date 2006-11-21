@@ -10,7 +10,10 @@
 
 using Gdk;
 using System;
+
+#if ENABLE_NUNIT
 using NUnit.Framework;
+#endif
 
 namespace FSpot {
 	public class BlockProcessor {
@@ -38,6 +41,7 @@ namespace FSpot {
 
 	}
 
+#if ENABLE_NUNIT
 	[TestFixture]
 	public class BlockProcessorTests 
 	{
@@ -54,4 +58,5 @@ namespace FSpot {
 			Assert.AreEqual (proc.Step (out step), false);
 		}
 	}
+#endif
 }

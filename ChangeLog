@@ -1,5 +1,15 @@
 2006-11-21  Larry Ewing  <lewing@novell.com>
 
+	* configure.in: disable tests completely if nunit doesn't exist
+	* Makefile.am: use the NUNIT_DEFINES to check for nunit.
+	
+	* src/BlockProcessor.cs: 
+	* src/PngFile.cs: clean up the tests to follow the new guidelines.
+	* src/JpegFile.cs: fix the test fixes.
+
+	* configure.in: set the nunit package name.
+	* src/Makefile.am: use the NUNIT_PKG.
+
 	* src/JpegHeader.cs: add some JpegHeader tests.
 	* src/JpegFile.cs: clean up the tests slightly.
 

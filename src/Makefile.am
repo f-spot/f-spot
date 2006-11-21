@@ -1,5 +1,5 @@
 CSC = gmcs
-CSFLAGS = -unsafe -debug -nowarn:0169 -nowarn:0612 -d:TEST_METADATA -d:BROKEN_RSVG -d:ENABLE_NUNIT
+CSFLAGS = -unsafe -debug -nowarn:0169 -nowarn:0612 -d:TEST_METADATA -d:BROKEN_RSVG -d:ENABLE_CRACK $(NUNIT_DEFINES)
 
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Cairo/Antialias.cs		\
@@ -190,7 +190,7 @@ ASSEMBLIES =					\
 	-r:Mono.Posix				\
 	-r:Mono.Security			\
 	-r:ICSharpCode.SharpZipLib		\
-	-pkg:$(NUNIT_PKG)			\
+	$(NUNIT_PKG)				\
 	-pkg:gtkhtml-sharp-2.0			\
 	-pkg:glade-sharp-2.0			\
 	-pkg:gnome-vfs-sharp-2.0		\

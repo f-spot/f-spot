@@ -4,8 +4,11 @@ using Cms;
 using System.IO;
 using FSpot.Xmp;
 using System.Collections;
-using NUnit.Framework;
 using System.Reflection;
+
+#if ENABLE_NUNIT
+using NUnit.Framework;
+#endif
 
 namespace FSpot.Png {
 	public class PngFile : ImageFile, SemWeb.StatementSource {
@@ -1421,6 +1424,7 @@ namespace FSpot.Png {
 			}
 		}
 		
+#if ENABLE_NUNIT
 		[TestFixture]
 		public class Tests {
 			public Tests ()
@@ -1474,6 +1478,7 @@ namespace FSpot.Png {
 				Assert.AreEqual (pimg.Description, desc);
 			}
 		}
+#endif
 
 #if false
 		public class ImageFile {
