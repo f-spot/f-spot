@@ -1,5 +1,10 @@
 2006-11-21  Stephane Delcroix  <stephane@delcroix.org>
 
+	* configure.in: check for nunit.pc, nunit-2.2.pc or mono-nunit.pc.
+	Fixes bgo #376366.
+
+2006-11-21  Stephane Delcroix  <stephane@delcroix.org>
+
 	* configure.in: check for Mono.GetOptions.dll
 	* src/Makefile.am: compile with -r:Mono.GetOptions
 	* src/AssemblyInfo.cs.in: add some attributes for Mono.GetOptions

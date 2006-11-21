@@ -61,10 +61,25 @@ dnl -- this check is
 LCMS_REQUIRED=1.12
 dnl -- LIBGPHOTO2_REQUIRED=2.1.4
 
-PKG_CHECK_MODULES(F, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED libexif >= $LIBEXIF_REQUIRED_MIN libexif < $LIBEXIF_REQUIRED_MAX gtkhtml-sharp-2.0 >= $GTKSHARP_REQUIRED gconf-sharp-2.0 >= $GTKSHARP_REQUIRED glade-sharp-2.0 >= $GTKSHARP_REQUIRED gnome-vfs-sharp-2.0 >= $GTKSHARP_REQUIRED gtk+-2.0 >= $GTK_REQUIRED mono >= $MONO_REQUIRED mono-nunit >= $MONO_REQUIRED)
+PKG_CHECK_MODULES(F, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED libexif >= $LIBEXIF_REQUIRED_MIN libexif < $LIBEXIF_REQUIRED_MAX gtkhtml-sharp-2.0 >= $GTKSHARP_REQUIRED gconf-sharp-2.0 >= $GTKSHARP_REQUIRED glade-sharp-2.0 >= $GTKSHARP_REQUIRED gnome-vfs-sharp-2.0 >= $GTKSHARP_REQUIRED gtk+-2.0 >= $GTK_REQUIRED mono >= $MONO_REQUIRED)
 AC_SUBST(F_CFLAGS)
 AC_SUBST(F_LIBS)
 
+dnl -- nunit ... workaround for ubuntu
+PKG_CHECK_MODULES(MONO_NUNIT, mono-nunit >= $MONO_REQUIRED,
+[
+  NUNIT_LIBS=$MONO_NUNIT_LIBS
+],
+[
+  PKG_CHECK_MODULES(NUNIT22, nunit-2.2 >= $MONO_REQUIRED,
+  [
+    NUNIT_LIBS=$NUNIT22_LIBS
+  ],
+  [
+    PKG_CHECK_MODULES(NUNIT, nunit >= $MONO_REQUIRED)
+    NUNIT_LIBS=$NUNIT_LIBS
+  ])
+])
 
 dnl --- GConf
 
