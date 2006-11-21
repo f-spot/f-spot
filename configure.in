@@ -66,25 +66,33 @@ AC_SUBST(F_CFLAGS)
 AC_SUBST(F_LIBS)
 
 dnl -- nunit ... workaround for ubuntu
+NUNIT_DEFINES='-d:ENABLE_NUNIT'
 PKG_CHECK_MODULES(MONO_NUNIT, mono-nunit >= $MONO_REQUIRED,
 [
   NUNIT_LIBS=$MONO_NUNIT_LIBS
-  NUNIT_PKG='mono-nunit'
+  NUNIT_PKG='-pkg:mono-nunit'
 ],
 [
   PKG_CHECK_MODULES(NUNIT22, nunit-2.2 >= $MONO_REQUIRED,
   [
     NUNIT_LIBS=$NUNIT22_LIBS
-    NUNIT_PKG='nunit-2.2'
+    NUNIT_PKG='-pkg:nunit-2.2'
   ],
   [
-    PKG_CHECK_MODULES(NUNIT, nunit >= $MONO_REQUIRED)
-    NUNIT_LIBS=$NUNIT_LIBS
-    NUNIT_PKG='nunit'
+    PKG_CHECK_MODULES(NUNIT, nunit >= $MONO_REQUIRED,
+    [
+	NUNIT_LIBS=$NUNIT_LIBS
+	NUNIT_PKG='-pkg:nunit'
+    ],
+    [
+        NUNIT_DEFINES=''
+	NUNIT_PKG=''
+    ])
   ])
 ])
 
 AC_SUBST(NUNIT_PKG)
+AC_SUBST(NUNIT_DEFINES)
 
 dnl --- GConf
 
