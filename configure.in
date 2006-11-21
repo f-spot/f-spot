@@ -69,17 +69,22 @@ dnl -- nunit ... workaround for ubuntu
 PKG_CHECK_MODULES(MONO_NUNIT, mono-nunit >= $MONO_REQUIRED,
 [
   NUNIT_LIBS=$MONO_NUNIT_LIBS
+  NUNIT_PKG='mono-nunit'
 ],
 [
   PKG_CHECK_MODULES(NUNIT22, nunit-2.2 >= $MONO_REQUIRED,
   [
     NUNIT_LIBS=$NUNIT22_LIBS
+    NUNIT_PKG='nunit-2.2'
   ],
   [
     PKG_CHECK_MODULES(NUNIT, nunit >= $MONO_REQUIRED)
     NUNIT_LIBS=$NUNIT_LIBS
+    NUNIT_PKG='nunit'
   ])
 ])
+
+AC_SUBST(NUNIT_PKG)
 
 dnl --- GConf
 
