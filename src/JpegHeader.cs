@@ -19,7 +19,12 @@
 
 using System;
 using System.IO;
+using System.Collections;
 using FSpot.Xmp;
+
+#if ENABLE_NUNIT
+using NUnit.Framework;
+#endif
 
 public class JpegHeader : SemWeb.StatementSource {
 	public enum JpegMarker {
@@ -395,10 +400,13 @@ public class JpegHeader : SemWeb.StatementSource {
 
 	public void SetExif (Exif.ExifData value)
 	{
+		Console.WriteLine ("before save");
 		byte [] raw_data = value.Save ();
+		Console.WriteLine ("saved");
 		Marker exif = new Marker (ExifSignature.Id, raw_data);
-
+		Console.WriteLine ("new");
 		Replace (ExifSignature, exif);
+		Console.WriteLine ("replaced");
 	}	
 	
 	public void SetXmp (XmpFile xmp)
@@ -422,8 +430,8 @@ public class JpegHeader : SemWeb.StatementSource {
 	public void Save (System.IO.Stream stream)
 	{
 		foreach (Marker marker in marker_list) {
-			//System.Console.WriteLine ("saving marker {0} {1}", marker.Type, 
-			//			   (marker.Data != null) ? marker.Data.Length .ToString (): "(null)");
+			System.Console.WriteLine ("saving marker {0} {1}", marker.Type, 
+						  (marker.Data != null) ? marker.Data.Length .ToString (): "(null)");
 			marker.Save (stream);
 			if (marker.Type == JpegMarker.Sos)
 				stream.Write (ImageData, 0, ImageData.Length);
@@ -457,7 +465,7 @@ public class JpegHeader : SemWeb.StatementSource {
 			if (marker == null)
 				break;
 
-			//System.Console.WriteLine ("loaded marker {0} length {1}", marker.Type, marker.Data.Length);
+			System.Console.WriteLine ("loaded marker {0} length {1}", marker.Type, marker.Data.Length);
 
 			this.Markers.Add (marker);
 			
@@ -586,6 +594,47 @@ public class JpegHeader : SemWeb.StatementSource {
 			return image_data;
 		}
 	}
+
+#if ENABLE_NUNIT
+	[TestFixture]
+	public class Tests {
+		[Test]
+		public void Load ()
+		{
+			Gdk.Pixbuf test = new Gdk.Pixbuf (System.Reflection.Assembly.GetEntryAssembly (), "f-spot-32.png");
+			string path = FSpot.ImageFile.TempPath ("joe.jpg");
+			string desc = "this is an example description";
+			string desc2 = "\x00a9 Novell Inc.";
+			PixbufOrientation orient = PixbufOrientation.TopRight;
+			int quality = 75;
+
+			PixbufUtils.SaveJpeg (test, path, quality, new Exif.ExifData ());
+			FSpot.JpegFile jimg = new FSpot.JpegFile (path);
+			jimg.SetDescription (desc);
+			jimg.SetOrientation (orient);
+			jimg.SaveMetaData (path);
+			
+			using (Stream stream = File.OpenRead (path)) {
+				JpegHeader jhead = new JpegHeader (stream);
+
+				Assert.AreEqual (((Marker)jhead.Markers [0]).Type, JpegMarker.Soi);
+				Assert.AreEqual (((Marker)jhead.Markers [1]).GetName (), "JFIF");
+				Assert.AreEqual (((Marker)jhead.Markers [1]).Type, JpegMarker.App0);
+				Assert.AreEqual (((Marker)jhead.Markers [2]).GetName (), "Exif");
+				Assert.AreEqual (((Marker)jhead.Markers [2]).Type, JpegMarker.App1);
+
+				// NOTE the currently we don't store the Eoi as the last marker
+				Assert.AreEqual (((Marker)jhead.Markers [jhead.Markers.Count -1]).Type, JpegMarker.Sos);
+
+				// NOTE this is kind of sill but it might help
+				Assert.IsTrue (Math.Abs (jhead.GuessQuality () - quality) <= 1);
+
+				Assert.IsNotNull (jhead.GetExifHeader ());
+			}
+		}
+	}
+#endif
+
 #if false
 	public static int Main (string [] args)
 	{
