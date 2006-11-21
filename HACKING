@@ -202,3 +202,15 @@ in your .emacs file:
 (setq auto-mode-alist (append '(("\\.cs\\'" . poor-mans-csharp-mode))
 			      auto-mode-alist))
 
+
+
+
+Unit Tests
+----------
+
+Unit tests using Nunit should follow a very simple structure.  The
+class being tested should include an inner class (typically called
+Tests) that is marked with the [TestFixture] attribute and should
+include one or more methods marked with [Test] attributes.  The entire
+class should be surrounded by an #if ENABLE_NUNIT define so that
+f-spot can still build on systems without nunit installed.
