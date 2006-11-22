@@ -352,7 +352,7 @@ namespace FSpot {
 				string desc = "this is an example description";
 				string desc2 = "\x00a9 Novell Inc.";
 				PixbufOrientation orient = PixbufOrientation.TopRight;
-				Gdk.Pixbuf test = new Gdk.Pixbuf (System.Reflection.Assembly.GetEntryAssembly (), "f-spot-32.png");
+				Gdk.Pixbuf test = new Gdk.Pixbuf (null, "f-spot-32.png");
 				string path = ImageFile.TempPath ("joe.jpg");
 				
 				PixbufUtils.SaveJpeg (test, path, 75, new Exif.ExifData ());

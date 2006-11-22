@@ -603,7 +603,7 @@ public class JpegHeader : SemWeb.StatementSource {
 
 		public string CreateFile ()
 		{
-			Gdk.Pixbuf test = new Gdk.Pixbuf (System.Reflection.Assembly.GetEntryAssembly (), "f-spot-32.png");
+			Gdk.Pixbuf test = new Gdk.Pixbuf (null, "f-spot-32.png");
 			string path = FSpot.ImageFile.TempPath ("joe.jpg");
 			string desc = "\x00a9 Novell Inc.";
 			PixbufOrientation orient = PixbufOrientation.TopRight;

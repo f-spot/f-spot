@@ -3,6 +3,9 @@
 	* google-sharp/PicasaWeb.cs: upgrade to google-sharp-svn r68309. We're
 	in sync again with upstream.
 
+	* src/JpegHeader.cs:
+	* src/JpegFile.cs: makes the tests pass with gnunit2.
+
 2006-11-21  Larry Ewing  <lewing@novell.com>
 
 	* src/ThumbnailGenerator.cs: isolate the point of failure \u00ff
