@@ -113,6 +113,7 @@ namespace FSpot {
 			zoom_scale.ValueChanged += HandleZoomScaleValueChanged;
 		
 			LoadPreference (Preferences.VIEWER_SHOW_TOOLBAR);
+ 			LoadPreference (Preferences.VIEWER_INTERPOLATION);
 
 			ShowSidebar = collection.Count > 1;
 
@@ -305,6 +306,10 @@ namespace FSpot {
 			new SingleView (uri);
 		}
 
+		private void HandlePreferences (object sender, System.EventArgs args)
+		{
+			SingleView.PreferenceDialog.Show ();
+		}
 
 		private void HandleOpenFolder (object sender, System.EventArgs args)
 		{
@@ -544,6 +549,13 @@ namespace FSpot {
 				toolbar_hbox.Visible = (bool) val;
 				break;
 
+			case Preferences.VIEWER_INTERPOLATION:
+				if ((bool) val)
+					image_view.Interpolation = Gdk.InterpType.Bilinear;
+				else
+					image_view.Interpolation = Gdk.InterpType.Nearest;
+				break;
+
 			case Preferences.VIEWER_SHOW_FILENAMES:
 				if (filenames_item.Active != (bool) val)
 					filenames_item.Active = (bool) val;
@@ -561,6 +573,58 @@ namespace FSpot {
 		{
 			toolTips.SetTip (widget, tip, null);
 		}
-	}
 
+		public class PreferenceDialog : GladeDialog {
+			[Glade.Widget] private CheckButton interpolation_check;
+			public PreferenceDialog () : base ("viewer_preferences")
+			{
+				this.LoadPreference (Preferences.VIEWER_INTERPOLATION);
+				Preferences.SettingChanged += OnPreferencesChanged;
+				this.Dialog.Destroyed += HandleDestroyed;
+			}
+
+			void InterpolationToggled (object sender, System.EventArgs args)
+			{
+				Preferences.Set (Preferences.VIEWER_INTERPOLATION, interpolation_check.Active);
+			}
+			
+			static PreferenceDialog prefs;
+			public static void Show ()
+			{
+				if (prefs == null)
+					prefs = new PreferenceDialog ();
+				
+				prefs.Dialog.Present ();
+			}
+
+			void OnPreferencesChanged (object sender, GConf.NotifyEventArgs args)
+			{
+				LoadPreference (args.Key);
+			}
+
+			void HandleClose (object sender, EventArgs args)
+			{
+				this.Dialog.Destroy ();
+			}
+
+			private void HandleDestroyed (object sender, EventArgs args)
+			{
+				prefs = null;
+			}
+
+			void LoadPreference (string key)
+			{
+				object val = Preferences.Get (key);
+
+				if (val == null)
+					return;
+			
+				switch (key) {
+				case Preferences.VIEWER_INTERPOLATION:
+						interpolation_check.Active = (bool) val;
+					break;
+				}
+			}
+		}
+	}
 }

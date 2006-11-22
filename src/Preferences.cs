@@ -41,6 +41,7 @@ namespace FSpot
 		public const string VIEWER_MAXIMIZED = "/apps/f-spot/ui/viewer_maximized";
 		public const string VIEWER_SHOW_TOOLBAR = "/apps/f-spot/ui/viewer_show_toolbar";
 		public const string VIEWER_SHOW_FILENAMES = "/apps/f-spot/ui/viewer_show_filenames";
+ 		public const string VIEWER_INTERPOLATION = "/apps/f-spot/viewer/interpolation";
 		
 		public const string SHOW_TOOLBAR = "/apps/f-spot/ui/show_toolbar";
 		public const string SHOW_SIDEBAR = "/apps/f-spot/ui/show_sidebar";
@@ -163,6 +164,7 @@ namespace FSpot
 			case EXPORT_EMAIL_ROTATE:
 			case EXPORT_FOLDER_OPEN:
 			case EXPORT_FOLDER_ROTATE:
+			case VIEWER_INTERPOLATION:
 				return true;
 			case EXPORT_EMAIL_DELETE_TIMEOUT_SEC:
 				return 30;	// delete temporary email pictures after 30 seconds

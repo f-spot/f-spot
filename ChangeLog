@@ -1,3 +1,12 @@
+2006-11-22  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Preferences.cs:
+	* src/SingleView.cs: Handling the interpolation type for view mode as
+	a gconf key.
+
+	* src/f-spot.glade:
+	* src/SingleView.cs: new preference dialog. Fixes bgo #373423.
+
 2006-11-22  Larry Ewing  <lewing@novell.com>
 
 	* src/FullScreenView.cs: Fix the opacity setting.
