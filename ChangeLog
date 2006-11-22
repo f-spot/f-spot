@@ -1,3 +1,11 @@
+2006-11-22  Larry Ewing  <lewing@novell.com>
+
+	* src/ThumbnailGenerator.cs: Jump through some hoops to pass fully
+	escaped strings to the thumbnail saving code.  Passes most tests
+	now.
+
+	* src/Utils.cs: add more methods to make up for System.Uri crappiness.
+
 2006-11-22  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/Preferences.cs:

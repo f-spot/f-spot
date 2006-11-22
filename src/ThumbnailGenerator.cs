@@ -10,14 +10,14 @@ namespace FSpot {
 		private static Gnome.ThumbnailFactory factory = new Gnome.ThumbnailFactory (Gnome.ThumbnailSize.Large);
 		static public ThumbnailGenerator Default = new ThumbnailGenerator ();
 		
-		public const string ThumbMTime = "tEXt::Thumb::URI";
-		public const string ThumbUri = "tEXt::Thumb::MTime";
+		public const string ThumbMTime = "tEXt::Thumb::MTime";
+		public const string ThumbUri = "tEXt::Thumb::URI";
 		public const string ThumbImageWidth = "tEXt::Thumb::Image::Width";
 		public const string ThumbImageHeight = "tEXt::Thumb::Image::Height"; 
 
 		public static Gdk.Pixbuf Create (string path)
 		{
-			return Create (new Uri (Gnome.Vfs.Uri.GetUriFromLocalPath (path)));
+			return Create (UriList.PathToFileUri (path));
 		}
 		
 		public static Gdk.Pixbuf Create (Uri uri)
@@ -41,7 +41,7 @@ namespace FSpot {
 			try {	
 				Gnome.Vfs.FileInfo vfs = new Gnome.Vfs.FileInfo (uri.ToString ());
 				DateTime mtime = vfs.Mtime;
-				valid  = Gnome.Thumbnail.IsValid (thumbnail, uri.ToString (), mtime);
+				valid  = Gnome.Thumbnail.IsValid (thumbnail, UriList.UriToStringEscaped (uri), mtime);
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e);
 				valid = false;
@@ -52,7 +52,7 @@ namespace FSpot {
 
 		public static string ThumbnailPath (System.Uri uri)
 		{
-			string large_path = Gnome.Thumbnail.PathForUri (uri.ToString (), Gnome.ThumbnailSize.Large);
+			string large_path = Gnome.Thumbnail.PathForUri (UriList.UriToStringEscaped (uri), Gnome.ThumbnailSize.Large);
 			return large_path;
 		}
 
@@ -63,8 +63,7 @@ namespace FSpot {
 
 		public static void Save (Gdk.Pixbuf image, Uri dest)
 		{			
-			Gnome.Vfs.Uri vfs_uri = new Gnome.Vfs.Uri (dest.ToString ());
-			string uri = vfs_uri.ToString ();
+			string uri = UriList.UriToStringEscaped (dest);
 			System.DateTime mtime = DateTime.Now;
 
 			// Use Gnome.Vfs
@@ -169,13 +168,14 @@ namespace FSpot {
 				System.Uri uri = UriList.PathToFileUri (path);
 	
 				Gnome.ThumbnailFactory factory = new Gnome.ThumbnailFactory (Gnome.ThumbnailSize.Large);
-				string large_path = Gnome.Thumbnail.PathForUri (uri.ToString (),
+				string escaped = UriList.PathToFileUriEscaped (path);
+				string large_path = Gnome.Thumbnail.PathForUri (escaped,
 										Gnome.ThumbnailSize.Large);
 
 				using (Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (uri.LocalPath)) {
-					factory.SaveThumbnail (pixbuf, uri.ToString (), System.DateTime.Now);
+					factory.SaveThumbnail (pixbuf, escaped, System.DateTime.Now);
 					
-					Assert.IsTrue (File.Exists (large_path), String.Format ("Missing: {0} created from {1}", large_path, path));
+					Assert.IsTrue (File.Exists (large_path), String.Format ("Missing: {0} created from {1} as {2}", large_path, path, escaped));
 					Gdk.Pixbuf thumb = new Gdk.Pixbuf (large_path);
 					Assert.IsNotNull (thumb);
 				}
@@ -202,7 +202,8 @@ namespace FSpot {
 				Assert.IsTrue (File.Exists (thumb_path), String.Format ("Missing: {0} created from {1}", thumb_path, path));
 				using (Gdk.Pixbuf thumb = new Gdk.Pixbuf (thumb_path)) {
 					Assert.IsNotNull (thumb);
-					//Assert.AreEqual (thumb.GetOption (ThumbUri), UriList.PathToFileUri (path).ToString ());
+					Assert.AreEqual (thumb.GetOption (ThumbUri), UriList.PathToFileUriEscaped (path));
+					Assert.AreEqual (new Uri (thumb.GetOption (ThumbUri)), UriList.PathToFileUri (path));
 					Assert.IsTrue (ThumbnailGenerator.ThumbnailIsValid (thumb, UriList.PathToFileUri (path)));
 				}
 				
@@ -232,7 +233,8 @@ namespace FSpot {
 				Assert.IsTrue (File.Exists (thumb_path), String.Format ("Missing: {0} created from {1}", thumb_path, uri));
 				using (Gdk.Pixbuf thumb = new Gdk.Pixbuf (thumb_path)) {
 					Assert.IsNotNull (thumb);
-					//Assert.AreEqual (thumb.GetOption (ThumbUri), uri.ToString ());
+					Assert.AreEqual (thumb.GetOption (ThumbUri), UriList.UriToStringEscaped (uri));
+					Assert.AreEqual (new Uri (thumb.GetOption (ThumbUri)), uri);
 					Assert.IsTrue (ThumbnailGenerator.ThumbnailIsValid (thumb, uri));
 				}
 

@@ -168,6 +168,16 @@ public class UriList : ArrayList {
 
 	static char[] CharsToQuote = { ';', '?', ':', '@', '&', '=', '$', ',', '#' };
 
+	public static string UriToStringEscaped (Uri uri)
+	{
+		return EscapeString (uri.ToString (), false, true, false);
+	}
+
+	public static string PathToFileUriEscaped (string path)
+	{
+		return UriToStringEscaped (PathToFileUri (path));
+	}
+
 	public static Uri PathToFileUri (string path)
 	{
 		path = Path.GetFullPath (path);

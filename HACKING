@@ -212,5 +212,6 @@ Unit tests using Nunit should follow a very simple structure.  The
 class being tested should include an inner class (typically called
 Tests) that is marked with the [TestFixture] attribute and should
 include one or more methods marked with [Test] attributes.  The entire
-class should be surrounded by an #if ENABLE_NUNIT define so that
-f-spot can still build on systems without nunit installed.
+test class and any using statements should be surrounded by an #if
+ENABLE_NUNIT directive so that f-spot can still build on systems without
+nunit installed.
