@@ -123,6 +123,8 @@ namespace Mono.Google.Picasa {
 
 			// Check if pubDate can be in the past
 			string url = api.GetPostURL ();
+			if (url == null)
+				throw new UnauthorizedAccessException ("You are not authorized to create albums.");
 			string op_string = GetXmlForCreate (title, description, pubDate, access, conn.User);
 			byte [] op_bytes = Encoding.UTF8.GetBytes (op_string);
 			MultipartRequest request = new MultipartRequest (url);
@@ -215,6 +217,8 @@ namespace Mono.Google.Picasa {
 				throw new ArgumentNullException ("unique_id");
 
 			string url = api.GetPostURL ();
+			if (url == null)
+				throw new UnauthorizedAccessException ("You are not authorized to delete this album.");
 			string op_string = GetXmlForDelete (conn.User, unique_id);
 			byte [] op_bytes = Encoding.UTF8.GetBytes (op_string);
 			MultipartRequest request = new MultipartRequest (url);
