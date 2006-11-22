@@ -145,7 +145,7 @@ namespace FSpot {
 			public string CreateFile (string name, int size)
 			{
 				using (Gdk.Pixbuf test = new Gdk.Pixbuf (null, "f-spot-32.png")) {
-					using (Gdk.Pixbuf tmp = test.ScaleSimple (size, size, Gdk.InterpType.Bilinear)) {
+					using (Gdk.Pixbuf tmp = test.ScaleSimple (size, size, Gdk.InterpType.Nearest)) {
 						string path = System.IO.Path.GetTempPath ();
 						path = System.IO.Path.Combine (path, name);
 						Console.WriteLine (path);

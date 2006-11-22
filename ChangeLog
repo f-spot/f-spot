@@ -6,6 +6,8 @@
 	* src/JpegHeader.cs:
 	* src/JpegFile.cs: makes the tests pass with gnunit2.
 
+	* src/ThumbnailGenerator.cs: speed up the tests by a 3 factor.
+
 2006-11-21  Larry Ewing  <lewing@novell.com>
 
 	* src/ThumbnailGenerator.cs: isolate the point of failure \u00ff
