@@ -3,6 +3,10 @@ using SemWeb;
 using System;
 using System.IO;
 
+#if ENABLE_NUNIT
+using NUnit.Framework;
+#endif
+
 namespace FSpot.Pnm {
 	public class PnmFile : ImageFile, StatementSource {
 
@@ -221,6 +225,39 @@ namespace FSpot.Pnm {
 			return PixbufUtils.ScaleToMaxSize (this.Load (), width, height);
 		}
 
+		public override void Save (Gdk.Pixbuf pixbuf, System.IO.Stream stream)
+		{
+			if (pixbuf.HasAlpha)
+				throw new NotImplementedException ();
+
+			// FIXME this should be part of the header class
+			string header = String.Format ("P6\n"
+						       + "#Software: {0} {1}\n"
+						       + "{2} {3}\n"
+						       + "255\n", 
+						       FSpot.Defines.PACKAGE,
+						       FSpot.Defines.VERSION,
+						       pixbuf.Width, 
+						       pixbuf.Height);
+						       
+			byte [] header_bytes = System.Text.Encoding.UTF8.GetBytes (header);
+			stream.Write (header_bytes, 0, header.Length);
+										 
+			unsafe {
+				byte * src_pixels = (byte *) pixbuf.Pixels;
+				int src_stride = pixbuf.Rowstride;
+				int count = pixbuf.Width * pixbuf.NChannels;
+				int height = pixbuf.Height;
+
+				for (int y = 0; y < height; y++) {
+					for (int x = 0; x < count; x++) {
+						stream.WriteByte (* (src_pixels + x));
+					}
+					src_pixels += src_stride;
+				}
+			}
+		}
+
 		public static Gdk.Pixbuf Load (Stream stream)
 		{
 			Header header = new Header (stream);
@@ -244,4 +281,38 @@ namespace FSpot.Pnm {
 			}			
 		}
 	}
+
+#if ENABLE_NUNIT
+	[TestFixture]
+	public class Tests {
+		[Test]
+		public void SaveLoad ()
+		{
+			using (Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (null, "f-spot-32.png")) {
+				Gdk.Pixbuf source = pixbuf;
+				if (pixbuf.HasAlpha)
+					source = PixbufUtils.Flatten (pixbuf);
+
+				string path = ImageFile.TempPath ("test.ppm");
+				PnmFile pnm = new PnmFile (path);
+				using (Stream stream = File.OpenWrite (path)) {
+					pnm.Save (source, stream);
+				}
+
+				pnm = new PnmFile (path);
+
+				using (Gdk.Pixbuf saved = pnm.Load ()) {
+					Assert.IsNotNull (saved);
+					Assert.AreEqual (saved.Width, source.Width);
+					Assert.AreEqual (saved.Height, source.Height);
+				}
+				
+				if (source != pixbuf)
+					source.Dispose ();
+
+				File.Delete (path);
+			}
+		}
+	}	
+#endif
 }

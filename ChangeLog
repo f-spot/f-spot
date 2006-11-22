@@ -1,5 +1,7 @@
 2006-11-22  Larry Ewing  <lewing@novell.com>
 
+	* src/PnmFile.cs: add basic load/save test including comments.
+
 	* src/ThumbnailGenerator.cs: Jump through some hoops to pass fully
 	escaped strings to the thumbnail saving code.  Passes most tests
 	now.
