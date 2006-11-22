@@ -17,10 +17,7 @@ namespace FSpot {
 
 		public static Gdk.Pixbuf Create (string path)
 		{
-			if (File.Exists (path))
-				return Create (UriList.PathToFileUri (path));
-			
-			return Create (new Uri (path));
+			return Create (new Uri (Gnome.Vfs.Uri.GetUriFromLocalPath (path)));
 		}
 		
 		public static Gdk.Pixbuf Create (Uri uri)
@@ -133,6 +130,9 @@ namespace FSpot {
 			string [] Names = new string [] { 
 				"\x00a9F-SpotUnit\x00b5Test.png",
 				"img(\x00a9F-SpotUnit\x00b5Test).png",
+				"img\u00ff.png",
+				"img\u0100.png",
+				"imgο.png",
 				"img(ο).png",
 				"img(τροποποιημένο).png",
 			};
@@ -221,7 +221,8 @@ namespace FSpot {
 			public void UriNames (string name)
 			{
 				string path = CreateFile (name, 768);
-				Uri uri = UriList.PathToFileUri (path);
+				Uri uri = new Uri (Gnome.Vfs.Uri.GetUriFromLocalPath (path));
+
 				string string_path = ThumbnailGenerator.ThumbnailPath (path);
 				string thumb_path = ThumbnailGenerator.ThumbnailPath (uri);
 				Assert.AreEqual (thumb_path, string_path);

@@ -1,5 +1,10 @@
 2006-11-21  Larry Ewing  <lewing@novell.com>
 
+	* src/ThumbnailGenerator.cs: isolate the point of failure \u00ff
+	-> \u0100.
+
+2006-11-21  Larry Ewing  <lewing@novell.com>
+
 	* src/ThumbnailGenerator.cs: add some tests for thumbnail
 	generation with strange paths.  Add some tests that fail.
 
