@@ -59,7 +59,7 @@ namespace FSpot
 			}
 
 			foreach (string s in RemainingArguments)
-				if (s.StartsWith("-")) {
+				if (s.StartsWith("-") && s != "--uninstalled") {
 					Console.WriteLine ("Unknown option {0}", s);
 					return false;
 				}
