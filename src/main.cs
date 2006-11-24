@@ -36,6 +36,16 @@ namespace FSpot
 		[Option ("display a slideshow", "slideshow")]
 		public bool slideshow;
 
+		public string [] Uris {
+			get {
+				ArrayList uris = new ArrayList ();
+				foreach (string s in RemainingArguments)
+					if (!s.StartsWith("-"))
+						uris.Add (s);
+				return (string []) uris.ToArray (typeof (string));
+			}
+		}
+
 		public FSpotOptions ()
 		{
 			base.ParsingMode = OptionsParsingMode.Both;
@@ -170,7 +180,7 @@ public class Driver {
 			}
 
 			if (options.view) {
-				foreach (string s in options.RemainingArguments)
+				foreach (string s in options.Uris)
 					list.AddUnknown (s);
 				if (list.Count > 0)
 					control.View (list.ToString ());
