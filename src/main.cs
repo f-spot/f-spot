@@ -36,10 +36,6 @@ namespace FSpot
 		[Option ("display a slideshow", "slideshow")]
 		public bool slideshow;
 
-		//--debug, -g
-		[Option ("run f-spot with mono on debug mode", 'g', "debug")]
-		public bool debug;
-
 		public FSpotOptions ()
 		{
 			base.ParsingMode = OptionsParsingMode.Both;
@@ -59,7 +55,7 @@ namespace FSpot
 			}
 
 			foreach (string s in RemainingArguments)
-				if (s.StartsWith("-") && s != "--uninstalled") {
+				if (s.StartsWith("-") && s != "--uninstalled" && s != "--debug") {
 					Console.WriteLine ("Unknown option {0}", s);
 					return false;
 				}
