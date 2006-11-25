@@ -57,8 +57,8 @@ namespace FSpot {
 
 		public void RegisterServer ()
 		{
-#if DEBUG_DBUS
 			NameReply nameReply = Bus.Session.RequestName (ServicePath);
+#if DEBUG_DBUS
 			Console.WriteLine("NameReply {0}", nameReply);
 #endif
 			Bus.Session.Register (ServicePath, CorePath, this);
