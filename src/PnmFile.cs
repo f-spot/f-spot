@@ -233,7 +233,7 @@ namespace FSpot.Pnm {
 			// FIXME this should be part of the header class
 			string header = String.Format ("P6\n"
 						       + "#Software: {0} {1}\n"
-						       + "{2} {3}\n"
+						       + "{2} {3}  #Width and Height\n"
 						       + "255\n", 
 						       FSpot.Defines.PACKAGE,
 						       FSpot.Defines.VERSION,
