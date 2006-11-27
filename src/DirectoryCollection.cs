@@ -40,7 +40,7 @@ namespace FSpot {
 	}
 
 	public class UriCollection : PhotoList {
-		protected UriCollection () : base (new IBrowsableItem [0])
+		public UriCollection () : base (new IBrowsableItem [0])
 		{
 		}
 
@@ -53,30 +53,34 @@ namespace FSpot {
 		{
 			LoadItems (uri);
 		}
+		
+		public void Add (Uri uri)
+		{
+			if (FSpot.ImageFile.HasLoader (uri)) {
+				Console.WriteLine (uri.ToString ());
+				Add (new FileBrowsableItem (uri));
+			} else {
+				Gnome.Vfs.FileInfo info = new Gnome.Vfs.FileInfo (uri.ToString (), 
+										  Gnome.Vfs.FileInfoOptions.GetMimeType);
+				
+				if (info.Type == Gnome.Vfs.FileType.Directory)
+					new DirectoryLoader (this, uri);
+				else {
+					// FIXME ugh...
+					if (info.MimeType == "text/xml"
+					    || info.MimeType == "application/xml"
+					    || info.MimeType == "application/rss+xml"
+					    || info.MimeType == "text/plain") {
+						new RssLoader (this, uri);
+					}
+				}
+			} 
+		}
 
 		public void LoadItems (Uri [] uris)
 		{
 			foreach (Uri uri in uris) {
-
-				if (FSpot.ImageFile.HasLoader (uri)) {
-					Console.WriteLine (uri.ToString ());
-					Add (new FileBrowsableItem (uri));
-				} else {
-					Gnome.Vfs.FileInfo info = new Gnome.Vfs.FileInfo (uri.ToString (), 
-											  Gnome.Vfs.FileInfoOptions.GetMimeType);
-					
-					if (info.Type == Gnome.Vfs.FileType.Directory)
-						new DirectoryLoader (this, uri);
-					else {
-						// FIXME ugh...
-						if (info.MimeType == "text/xml"
-						    || info.MimeType == "application/xml"
-						    || info.MimeType == "application/rss+xml"
-						    || info.MimeType == "text/plain") {
-							new RssLoader (this, uri);
-						}
-					}
-				} 
+				Add (uri);
 			}
 		}
 

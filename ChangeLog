@@ -1,3 +1,10 @@
+2006-11-27  Larry Ewing  <lewing@novell.com>
+
+	* src/DirectoryCollection.cs: add an Add method and make the
+	empty contructor public.
+
+	* src/IBrowsableItem.cs: add tests for IBrowsablePointer.
+
 2006-11-27  Stephane Delcroix  <stephane@delcroix.org>
 
 	* icons/f-spot-48.png:

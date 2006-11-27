@@ -1,3 +1,7 @@
+#if ENABLE_NUNIT
+using NUnit.Framework;
+#endif
+
 namespace FSpot {
 	public delegate void IBrowsableCollectionChangedHandler (IBrowsableCollection collection);
 	public delegate void IBrowsableCollectionItemsChangedHandler (IBrowsableCollection collection, BrowsableArgs args);
@@ -7,7 +11,7 @@ namespace FSpot {
 		int [] ParentPositions ();
 		public void Clear ();
 		public void SelectAll ();
-	}
+	}.
 	*/
 
 	public class BrowsableArgs : System.EventArgs {
@@ -228,5 +232,79 @@ namespace FSpot {
 			else
 				SetIndex (0);
 		}
+
+#if ENABLE_NUNIT
+		[TestFixture]
+		public class Tests
+		{
+			BrowsablePointer item;
+			UriCollection collection;
+			bool changed;
+
+			public Tests ()
+			{
+				Gnome.Vfs.Vfs.Initialize ();
+
+				collection = new FSpot.UriCollection ();
+				item = new BrowsablePointer (collection, 0);
+				item.Changed += delegate {
+					changed = true;
+				};
+			}
+			
+			[Test]
+		        public void ChangeNotification ()
+			{
+				collection.Clear ();
+				item.Index = 0;
+
+				bool changed = false;
+				
+				Assert.IsFalse (item.IsValid);
+				item.Changed += delegate {
+					changed = true;
+				};
+				
+				collection.Add (new System.Uri ("file:///blah.jpg"));
+				Assert.IsTrue (item.IsValid);
+				Assert.IsTrue (changed);
+				
+				changed = false;
+				collection.Add (new System.Uri ("file:///test.png"));
+				Assert.IsFalse (changed);
+			}
+
+			[Test]
+			public void Motion ()
+			{
+				collection.Clear ();
+				item.Index = 0;
+
+				collection.Add (new System.Uri ("file:///fake.png"));
+				collection.Add (new System.Uri ("file:///mynameisedd.jpg"));
+				Assert.AreEqual (item.Index, 0);
+
+				changed = false;
+				item.MoveNext ();
+				Assert.IsTrue (changed);
+
+				Assert.AreEqual (item.Index, 1);
+				item.MoveNext ();
+				Assert.AreEqual (item.Index, 1);
+				item.MoveNext (true);
+				Assert.AreEqual (item.Index, 0);
+
+				changed = false;
+				item.MovePrevious (true);
+				Assert.IsTrue (changed);
+
+				Assert.AreEqual (item.Index, 1);
+				item.MovePrevious ();
+				Assert.AreEqual (item.Index, 0);
+				item.MovePrevious ();
+				Assert.AreEqual (item.Index, 0);
+			}
+		}
+#endif
 	}
 }	
