@@ -594,7 +594,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		FSpot.Global.ModifyColors (photo_scrolled);
 		FSpot.Global.ModifyColors (photo_view);
 
-		photo_view.Pixbuf = PixbufUtils.LoadFromAssembly ("f-spot-48.svg");
+		photo_view.Pixbuf = PixbufUtils.LoadFromAssembly ("f-spot-48.png");
 		photo_view.Fit = true;
 			
 		tag_selected = null;

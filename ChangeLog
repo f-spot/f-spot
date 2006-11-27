@@ -1,3 +1,13 @@
+2006-11-27  Stephane Delcroix  <stephane@delcroix.org>
+
+	* icons/f-spot-48.png:
+	* icons/Makefile.am: new f-spot-48.png icon (thx again jimmac).
+
+	* src/Makfile.am:
+	* src/main.cs:
+	* src/ImportCommand.cs: use f-spot-48.png instead of f-spot-48.svg.
+	Fixes issue on some systems with missing/bad svg support.
+
 2006-11-25  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/Core.cs: Fixes #379188.

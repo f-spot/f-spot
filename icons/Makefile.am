@@ -44,6 +44,7 @@ install-data-local:
 	$(INSTALL_DATA) $(srcdir)/f-spot-32.png $(hicolordir)/32x32/apps/f-spot.png
 	$(INSTALL_DATA) $(srcdir)/f-spot-32.svg $(hicolordir)/32x32/apps/f-spot.svg
 	$(mkinstalldirs) $(hicolordir)/48x48/apps
+	$(INSTALL_DATA) $(srcdir)/f-spot-48.png $(hicolordir)/48x48/apps/f-spot.png
 	$(INSTALL_DATA) $(srcdir)/f-spot-48.svg $(hicolordir)/48x48/apps/f-spot.svg
 
 uninstall-hook:
@@ -54,6 +55,7 @@ uninstall-hook:
 	rm -f $(hicolordir)/24x24/apps/f-spot.png
 	rm -f $(hicolordir)/32x32/apps/f-spot.png
 	rm -f $(hicolordir)/32x32/apps/f-spot.svg
+	rm -f $(hicolordir)/48x48/apps/f-spot.png
 	rm -f $(hicolordir)/48x48/apps/f-spot.svg
 
 EXTRA_DIST = 			\
@@ -65,4 +67,5 @@ EXTRA_DIST = 			\
 	f-spot-24.png		\
 	f-spot-32.png		\
 	f-spot-32.svg		\
+	f-spot-48.png		\
 	f-spot-48.svg	

@@ -145,7 +145,7 @@ public class Driver {
 						Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {PixbufUtils.LoadFromAssembly ("f-spot-16.png"),
 												PixbufUtils.LoadFromAssembly ("f-spot-22.png"),
 												PixbufUtils.LoadFromAssembly ("f-spot-32.png"),
-												PixbufUtils.LoadFromAssembly ("f-spot-48.svg")};
+												PixbufUtils.LoadFromAssembly ("f-spot-48.png")};
 						core = new Core ();
 						core.RegisterServer ();
 						

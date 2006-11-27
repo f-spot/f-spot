@@ -230,7 +230,7 @@ RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-16.png,f-spot-16.png			\
 	-resource:$(top_srcdir)/icons/f-spot-22.png,f-spot-22.png			\
 	-resource:$(top_srcdir)/icons/f-spot-32.png,f-spot-32.png			\
-	-resource:$(top_srcdir)/icons/f-spot-48.svg,f-spot-48.svg			\
+	-resource:$(top_srcdir)/icons/f-spot-48.png,f-spot-48.png			\
 	-resource:$(srcdir)/dces.rdf,dces.rdf						\
 	-resource:$(srcdir)/f-spot.glade,f-spot.glade
 
