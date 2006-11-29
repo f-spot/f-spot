@@ -30,6 +30,8 @@ class FormClient {
 	public bool Buffer = false;
 	public bool SuppressCookiePath = false;
 
+	public bool expect_continue = true;
+
 	public HttpWebRequest Request;
 	public CookieContainer Cookies;
 
@@ -210,7 +212,7 @@ class FormClient {
 			Request.Credentials = credcache;	
 		}
 
-		//System.Net.ServicePointManager.Expect100Continue = false;
+		Request.ServicePoint.Expect100Continue = expect_continue;
 
 		Request.CookieContainer = new CookieContainer ();
 		foreach (Cookie c in cookie_collection) {
@@ -249,9 +251,9 @@ class FormClient {
 		} else {
 			Request.ContentType = "application/x-www-form-urlencoded";
 		}
-
+		
 		stream_writer = new StreamWriter (Request.GetRequestStream ());
-
+		
 		first_item = true;
 		for (int i = 0; i < Items.Count; i++) {
 			FormItem item = (FormItem)Items[i];
@@ -261,18 +263,31 @@ class FormClient {
 		
 		if (multipart)
 			stream_writer.Write (end_boundary + "\r\n");
-
+		
 		stream_writer.Flush ();
 		stream_writer.Close ();
-		
-		
-		HttpWebResponse response = (HttpWebResponse) Request.GetResponse ();
 
-		//Console.WriteLine ("found {0} cookies", response.Cookies.Count);
+		HttpWebResponse response; 
 
-		foreach (Cookie c in response.Cookies) {
-			Cookies.Add (c);
+		try {
+			response = (HttpWebResponse) Request.GetResponse ();
+			
+			//Console.WriteLine ("found {0} cookies", response.Cookies.Count);
+			
+			foreach (Cookie c in response.Cookies) {
+				Cookies.Add (c);
+			}
+		} catch (WebException e) {
+			if (e.Status == WebExceptionStatus.ProtocolError 
+			    && ((HttpWebResponse)e.Response).StatusCode == HttpStatusCode.ExpectationFailed && expect_continue) {
+				e.Response.Close ();
+				expect_continue = false;
+				return Submit (uri, progress_item);
+			}
+			
+			throw new Exception (Mono.Unix.Catalog.GetString ("Unhandled exception"), e);
 		}
+
 		return response;
 	}
 }
