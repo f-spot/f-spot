@@ -4,7 +4,6 @@
 
 using System;
 using System.Text;
-using System.IO;
 
 using System.Collections.Generic;
 //TODO: Reflection should be done at a higher level than this class
@@ -22,25 +21,28 @@ namespace NDesk.DBus
 
 		public static bool operator == (Signature a, Signature b)
 		{
-			//FIXME: hack to handle bad case when Data is null
-			return a.Value == b.Value;
+			/*
+			//TODO: remove this hack to handle bad case when Data is null
+			if (a.data == null || b.data == null)
+				throw new Exception ("Encountered Signature with null buffer");
+			*/
 
 			/*
-			if (a.Data == null && b.Data == null)
+			if (a.data == null && b.data == null)
 				return true;
 
-			if (a.Data == null || b.Data == null)
+			if (a.data == null || b.data == null)
+				return false;
+			*/
+
+			if (a.data.Length != b.data.Length)
 				return false;
 
-			if (a.Data.Length != b.Data.Length)
-				return false;
-
-			for (int i = 0 ; i != a.Data.Length ; i++)
-				if (a.Data[i] != b.Data[i])
+			for (int i = 0 ; i != a.data.Length ; i++)
+				if (a.data[i] != b.data[i])
 					return false;
 
 			return true;
-			*/
 		}
 
 		public static bool operator != (Signature a, Signature b)
@@ -142,22 +144,18 @@ namespace NDesk.DBus
 		public string Value
 		{
 			get {
+				/*
 				//FIXME: hack to handle bad case when Data is null
 				if (data == null)
 					return String.Empty;
+				*/
 
 				return Encoding.ASCII.GetString (data);
-			} set {
-				data = Encoding.ASCII.GetBytes (value);
 			}
 		}
 
 		public override string ToString ()
 		{
-			//FIXME: hack to handle bad case when Data is null
-			if (data == null)
-				return String.Empty;
-
 			StringBuilder sb = new StringBuilder ();
 
 			foreach (DType t in data) {
@@ -176,6 +174,112 @@ namespace NDesk.DBus
 			}
 
 			return sb.ToString ();
+		}
+
+		public Signature MakeArraySignature ()
+		{
+			return new Signature (DType.Array) + this;
+		}
+
+		public static Signature MakeStruct (params Signature[] elems)
+		{
+			Signature sig = Signature.Empty;
+
+			sig += new Signature (DType.StructBegin);
+
+			foreach (Signature elem in elems)
+				sig += elem;
+
+			sig += new Signature (DType.StructEnd);
+
+			return sig;
+		}
+
+		public static Signature MakeDictEntry (Signature keyType, Signature valueType)
+		{
+			Signature sig = Signature.Empty;
+
+			sig += new Signature (DType.DictEntryBegin);
+
+			sig += keyType;
+			sig += valueType;
+
+			sig += new Signature (DType.DictEntryEnd);
+
+			return sig;
+		}
+
+		public static Signature MakeDict (Signature keyType, Signature valueType)
+		{
+			return MakeDictEntry (keyType, valueType).MakeArraySignature ();
+		}
+
+		/*
+		//TODO: complete this
+		public bool IsPrimitive
+		{
+			get {
+				if (this == Signature.Empty)
+					return true;
+
+				return false;
+			}
+		}
+		*/
+
+		public bool IsDict
+		{
+			get {
+				if (Length < 3)
+					return false;
+
+				if (!IsArray)
+					return false;
+
+				if (this[2] != DType.DictEntryBegin)
+					return false;
+
+				return true;
+			}
+		}
+
+		public bool IsArray
+		{
+			get {
+				if (Length < 2)
+					return false;
+
+				if (this[0] != DType.Array)
+					return false;
+
+				return true;
+			}
+		}
+
+		public Signature GetElementSignature ()
+		{
+			if (!IsArray)
+				throw new Exception ("Cannot get the element signature of a non-array (signature was '" + this + "')");
+
+			//TODO: improve this
+			if (Length != 2)
+				throw new NotSupportedException ("Parsing signatures with more than one primitive value is not supported (signature was '" + this + "')");
+
+			return new Signature (this[1]);
+		}
+
+		public Type ToType ()
+		{
+			if (this == Signature.Empty)
+				return typeof (void);
+
+			if (IsArray)
+				return GetElementSignature ().ToType ().MakeArrayType ();
+
+			if (Length == 1)
+				return DTypeToType (this[0]);
+
+			throw new NotSupportedException ("Parsing or converting this signature is not yet supported (signature was '" + this + "')");
 		}
 
 		public static DType TypeCodeToDType (TypeCode typeCode)
@@ -347,115 +451,61 @@ namespace NDesk.DBus
 
 		public static Signature GetSig (Type[] types)
 		{
-			if (types.Length == 0)
-				return Signature.Empty;
+			if (types == null)
+				throw new ArgumentNullException ("types");
 
-			MemoryStream ms = new MemoryStream ();
+			Signature sig = Signature.Empty;
 
-			foreach (Type type in types) {
-				{
-					byte[] data = GetSig (type).data;
-					ms.Write (data, 0, data.Length);
-				}
-			}
+			foreach (Type type in types)
+					sig += GetSig (type);
 
-			Signature sig = new Signature (ms.ToArray ());
 			return sig;
 		}
 
 		public static Signature GetSig (Type type)
 		{
 			if (type == null)
-				return Signature.Empty;
+				throw new ArgumentNullException ("type");
 
 			//this is inelegant, but works for now
 			if (type == typeof (Signature))
 				return new Signature (DType.Signature);
+
 			if (type == typeof (ObjectPath))
 				return new Signature (DType.ObjectPath);
+
 			if (type == typeof (void))
 				return Signature.Empty;
 
-			MemoryStream ms = new MemoryStream ();
+			if (type.IsArray)
+				return GetSig (type.GetElementType ()).MakeArraySignature ();
 
-			if (type.IsArray) {
-				ms.WriteByte ((byte)DType.Array);
-
-				Type elem_type = type.GetElementType ();
-				{
-					byte[] data = GetSig (elem_type).data;
-					ms.Write (data, 0, data.Length);
-				}
-			} else if (type.IsMarshalByRef) {
+			if (type.IsMarshalByRef) {
 				//TODO: consider further what to do for remote object reference marshaling
-				ms.WriteByte ((byte)DType.ObjectPath);
-			} else if (type.IsGenericType && (type.GetGenericTypeDefinition () == typeof (IDictionary<,>) || type.GetGenericTypeDefinition () == typeof (Dictionary<,>))) {
+				return new Signature (DType.ObjectPath);
+			}
+			
+			if (type.IsGenericType && (type.GetGenericTypeDefinition () == typeof (IDictionary<,>) || type.GetGenericTypeDefinition () == typeof (Dictionary<,>))) {
+
 				Type[] genArgs = type.GetGenericArguments ();
-
-				ms.WriteByte ((byte)'a');
-				ms.WriteByte ((byte)'{');
-
-				{
-					byte[] data = GetSig (genArgs[0]).data;
-					ms.Write (data, 0, data.Length);
-				}
-
-				{
-					byte[] data = GetSig (genArgs[1]).data;
-					ms.Write (data, 0, data.Length);
-				}
-
-				ms.WriteByte ((byte)'}');
-			} else if (!type.IsPrimitive && type.IsValueType && !type.IsEnum) {
-				if (type.IsGenericType && type.GetGenericTypeDefinition () == typeof (KeyValuePair<,>))
-					ms.WriteByte ((byte)'{');
-				else
-					ms.WriteByte ((byte)'(');
-				foreach (FieldInfo fi in type.GetFields ()) {
-					{
-						//there didn't seem to be a way to do this with BindingFlags at time of writing
-						if (fi.IsStatic)
-							continue;
-						byte[] data = GetSig (fi.FieldType).data;
-						ms.Write (data, 0, data.Length);
-					}
-				}
-				//FIXME: the constructor hack is disabled here but still used in object mapping. the behaviour should be unified
-				/*
-				ConstructorInfo[] cis = type.GetConstructors (BindingFlags.Public);
-				if (cis.Length != 0) {
-					System.Reflection.ConstructorInfo ci = cis[0];
-					System.Reflection.ParameterInfo[]  parms = ci.GetParameters ();
-
-					foreach (ParameterInfo parm in parms) {
-						{
-							byte[] data = GetSig (parm.ParameterType).data;
-							ms.Write (data, 0, data.Length);
-						}
-					}
-				} else {
-					foreach (FieldInfo fi in type.GetFields ()) {
-						{
-							//there didn't seem to be a way to do this with BindingFlags at time of writing
-							if (fi.IsStatic)
-								continue;
-							byte[] data = GetSig (fi.FieldType).data;
-							ms.Write (data, 0, data.Length);
-						}
-					}
-				}
-				*/
-				if (type.IsGenericType && type.GetGenericTypeDefinition () == typeof (KeyValuePair<,>))
-					ms.WriteByte ((byte)'}');
-				else
-					ms.WriteByte ((byte)')');
-			} else {
-				DType dtype = Signature.TypeToDType (type);
-				ms.WriteByte ((byte)dtype);
+				return Signature.MakeDict (GetSig (genArgs[0]), GetSig (genArgs[1]));
 			}
 
-			Signature sig = new Signature (ms.ToArray ());
-			return sig;
+			if (!type.IsPrimitive && type.IsValueType && !type.IsEnum) {
+				Signature sig = Signature.Empty;
+
+				foreach (FieldInfo fi in type.GetFields ()) {
+					//there didn't seem to be a way to do this with BindingFlags at time of writing
+					if (fi.IsStatic)
+						continue;
+					sig += GetSig (fi.FieldType);
+				}
+
+				return Signature.MakeStruct (sig);
+			}
+
+			DType dtype = Signature.TypeToDType (type);
+			return new Signature (dtype);
 		}
 	}
 
@@ -486,6 +536,11 @@ namespace NDesk.DBus
 		Array = (byte)'a',
 		Struct = (byte)'r',
 		DictEntry = (byte)'e',
-		Variant = (byte)'v'
+		Variant = (byte)'v',
+
+		StructBegin = (byte)'(',
+		StructEnd = (byte)')',
+		DictEntryBegin = (byte)'{',
+		DictEntryEnd = (byte)'}',
 	}
 }

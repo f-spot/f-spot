@@ -57,7 +57,7 @@ namespace FSpot {
 
 		public void RegisterServer ()
 		{
-			NameReply nameReply = Bus.Session.RequestName (ServicePath);
+			NameReply nameReply = Bus.Session.RequestName (ServicePath, NameFlag.DoNotQueue);
 #if DEBUG_DBUS
 			Console.WriteLine("NameReply {0}", nameReply);
 #endif

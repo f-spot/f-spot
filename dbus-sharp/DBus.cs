@@ -94,6 +94,7 @@ namespace org.freedesktop.DBus
 		ReleaseNameReply ReleaseName (string name);
 		string Hello ();
 		string[] ListNames ();
+		string[] ListActivatableNames ();
 		bool NameHasOwner (string name);
 		event NameOwnerChangedHandler NameOwnerChanged;
 		event NameLostHandler NameLost;
@@ -104,10 +105,14 @@ namespace org.freedesktop.DBus
 		void AddMatch (string rule);
 		void RemoveMatch (string rule);
 
-#if UNDOCUMENTED_IN_SPEC
 		//undocumented in spec
-		//there are more of these
+		[Obsolete ("Undocumented in spec")]
+		string[] ListQueuedOwners (string name);
+		[Obsolete ("Undocumented in spec")]
+		uint GetConnectionUnixProcessID (string connection_name);
+		[Obsolete ("Undocumented in spec")]
+		byte[] GetConnectionSELinuxSecurityContext (string connection_name);
+		[Obsolete ("Undocumented in spec")]
 		void ReloadConfig ();
-#endif
 	}
 }

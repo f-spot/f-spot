@@ -1,3 +1,17 @@
+2006-11-29  Stephane Delcroix  <stephane@delcroix.org>
+
+	* dbus-sharp/Bus.cs:
+	* dbus-sharp/Connection.cs:
+	* dbus-sharp/DBus.cs:
+	* dbus-sharp/Introspection.cs:
+	* dbus-sharp/Mapper.cs:
+	* dbus-sharp/MessageReader.cs:
+	* dbus-sharp/Protocol.cs:
+	* dbus-sharp/Signature.cs:
+	* dbus-sharp/UnixNativeTransport.cs: Upgrade to dbus-sharp 0.2.
+
+	* src/Core.cs: Use DoNotQueue flag in Bus.Session.RequestName.
+
 2006-11-28  Larry Ewing  <lewing@novell.com>
 
 	* src/JpegHeader.cs:
