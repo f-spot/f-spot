@@ -14,6 +14,7 @@ using System.Web;
 using System.Web.Mail;
 
 using FSpot;
+using FSpot.Widgets;
 using LibGPhoto2;
 
 public class MainWindow {
@@ -108,7 +109,8 @@ public class MainWindow {
 	[Glade.Widget] Gtk.Image far_image;
 
 	[Glade.Widget] Gtk.HBox tagbar;
-	[Glade.Widget] Gtk.Entry tag_entry;
+	[Glade.Widget] Gtk.VBox tag_entry_container;
+	TagEntry tag_entry;
 
 	Gtk.Toolbar toolbar;
 
@@ -356,9 +358,12 @@ public class MainWindow {
 		// Tag typing: focus the tag entry if the user starts typing a tag
 		icon_view.KeyPressEvent += HandlePossibleTagTyping;
 		photo_view.KeyPressEvent += HandlePossibleTagTyping;
+		tag_entry = new TagEntry (db.Tags);
 		tag_entry.KeyPressEvent += HandleTagEntryKeyPressEvent;
-		tag_entry.FocusOutEvent += HandleTagEntryFocusOutEvent;
-		tag_entry.Changed += HandleTagEntryChanged;
+		tag_entry.TagsAttached += HandleTagEntryTagsAttached;
+		tag_entry.TagsRemoved += HandleTagEntryRemoveTags;
+		tag_entry.Activated += HandleTagEntryActivate;
+		tag_entry_container.Add (tag_entry);
 
 		Gtk.Drag.DestSet (photo_view, DestDefaults.All, tag_target_table, 
 				  DragAction.Copy | DragAction.Move); 
@@ -2830,52 +2835,13 @@ public class MainWindow {
 		y += widget.Allocation.Y;
  	}
 
-	// Tag typing
-
-	private ArrayList selected_photos_tagnames;
+	// Tag typing ...
 
 	private void UpdateTagEntryFromSelection ()
 	{
 		if (!tagbar.Visible)
 			return;
-
-		Hashtable taghash = new Hashtable ();
-
-		Photo [] sel = SelectedPhotos ();
-		for (int i = 0; i < sel.Length; i++) {
-			foreach (Tag tag in sel [i].Tags) {
-				int count = 1;
-
-				if (taghash.Contains (tag))
-					count = ((int) taghash [tag]) + 1;
-
-				if (count <= i)
-					taghash.Remove (tag);
-				else 
-					taghash [tag] = count;
-			}
-			
-			if (taghash.Count == 0)
-				break;
-		}
-
-		selected_photos_tagnames = new ArrayList ();
-		foreach (Tag tag in taghash.Keys)
-			if ((int) (taghash [tag]) == sel.Length)
-				selected_photos_tagnames.Add (tag.Name);
-
-		selected_photos_tagnames.Sort ();
-
-		StringBuilder sb = new StringBuilder ();
-		foreach (string tagname in selected_photos_tagnames) {
-			if (sb.Length > 0)
-				sb.Append (", ");
-
-			sb.Append (tagname);
-		}
-
-		tag_entry.Text = sb.ToString ();
-		ClearTagCompletions ();
+		tag_entry.UpdateFromSelection (SelectedPhotos ());
 	}
 
 	public void HandlePossibleTagTyping (object sender, Gtk.KeyPressEventArgs args)
@@ -2909,73 +2875,58 @@ public class MainWindow {
 	// "Activate" means the user pressed the enter key
 	public void HandleTagEntryActivate (object sender, EventArgs args)
 	{
-		string [] tagnames = GetTypedTagNames ();
-		int [] selected_photos = SelectedIds ();
-
-		if (selected_photos == null || tagnames == null)
-			return;
-
-               int sel_start, sel_end;
-               if (tag_entry.GetSelectionBounds (out sel_start, out sel_end) && tag_completion_index != -1) {
-                       tag_entry.InsertText (", ", ref sel_end);
-                       tag_entry.SelectRegion (-1, -1);
-                       tag_entry.Position = sel_end + 2;
-                       ClearTagCompletions ();
-                       return;
-               }
-
-	       // Add any new tags to the selected photos
-	       Category default_category = null;
-	       Tag [] selection = tag_selection_widget.TagHighlight;
-	       if (selection.Length > 0) {
-		       if (selection [0] is Category)
-			       default_category = (Category) selection [0];
-		       else
-			       default_category = selection [0].Category;
-	       }
-
-		db.BeginTransaction ();
-	       for (int i = 0; i < tagnames.Length; i ++) {
-		       if (tagnames [i].Length == 0)
-			       continue;
-
-		       Tag t = db.Tags.GetTagByName (tagnames [i]);
-
-		       if (t == null) {
-			       t = db.Tags.CreateCategory (default_category, tagnames [i]) as Tag;
-			       db.Tags.Commit (t);
-		       }
-
-		       // Correct for capitalization differences
-		       tagnames [i] = t.Name;
-
-		       Tag [] tags = new Tag [1];
-		       tags [0] = t;
-
-		       foreach (int num in selected_photos)
-			       AddTagExtended (num, tags);
-	       }
-		db.CommitTransaction ();
-	       
-	       // Remove any removed tags from the selected photos
-	       foreach (string tagname in selected_photos_tagnames) {
-		       if (! IsTagInList (tagnames, tagname)) {
-				
-			       Tag tag = db.Tags.GetTagByName (tagname);
-
-			       foreach (int num in selected_photos) {
-				       query.Photos [num].RemoveTag (tag);
-				       query.Commit (num);
-			       }
-		       }
-	       }
-
 	       if (view_mode == ModeType.IconView) {
 		       icon_view.GrabFocus ();
 	       } else {
 		       photo_view.QueueDraw ();
 		       photo_view.View.GrabFocus ();
 	       }
+	}
+
+	private void HandleTagEntryTagsAttached (object o, string [] new_tags)
+	{
+		int [] selected_photos = SelectedIds ();
+		if (selected_photos == null || new_tags == null || new_tags.Length == 0)
+			return;
+
+		Category default_category = null;
+		Tag [] selection = tag_selection_widget.TagHighlight;
+		if (selection.Length > 0) {
+			if (selection [0] is Category)
+				default_category = (Category) selection [0];
+			else
+				default_category = selection [0].Category;
+		}
+
+		db.BeginTransaction ();
+		foreach (string tagname in new_tags) {
+			Tag t = db.Tags.GetTagByName (tagname);
+			if (t == null) {
+				t = db.Tags.CreateCategory (default_category, tagname) as Tag;
+				db.Tags.Commit (t);
+			}
+
+			Tag [] tags = new Tag [1];
+			tags [0] = t;
+
+			foreach (int num in selected_photos)
+				AddTagExtended (num, tags);
+		}
+		db.CommitTransaction ();
+	}
+
+	private void HandleTagEntryRemoveTags (object o, Tag [] remove_tags)
+	{
+		int [] selected_photos = SelectedIds ();
+		if (selected_photos == null || remove_tags == null || remove_tags.Length == 0)
+			return;
+
+		foreach (Tag t in remove_tags) {
+			foreach (int num in selected_photos) {
+				query.Photos [num].RemoveTag (t);
+				query.Commit (num);
+			}
+		}
 	}
 
 	private void HideTagbar ()
@@ -2993,7 +2944,7 @@ public class MainWindow {
 		else
 			photo_view.View.GrabFocus ();
 
-		ClearTagCompletions ();
+		tag_entry.ClearTagCompletions ();
 	}
 
 	public void HandleTagBarCloseButtonPressed (object sender, EventArgs args)
@@ -3008,98 +2959,7 @@ public class MainWindow {
 		if (args.Event.Key == Gdk.Key.Escape) { 
 			HideTagbar ();
 			args.RetVal = true;
-		} else if (args.Event.Key == Gdk.Key.Tab) {
-			DoTagCompletion ();
-			args.RetVal = true;
-		} else
-			ClearTagCompletions ();
-	}
-
-	bool tag_ignore_changes = false;
-	public void HandleTagEntryChanged (object sender, EventArgs args)
-	{
-		if (tag_ignore_changes)
-			return;
-
-		ClearTagCompletions ();
-	}
-
-	int tag_completion_index = -1;
-	Tag [] tag_completions;
-	string tag_completion_typed_so_far;
-	int tag_completion_typed_position;
-	private void DoTagCompletion ()
-	{
-		string completion;
-		
-		if (tag_completion_index != -1) {
-			tag_completion_index = (tag_completion_index + 1) % tag_completions.Length;
-		} else {
-
-			tag_completion_typed_position = tag_entry.Position;
-		    
-			string right_of_cursor = tag_entry.Text.Substring (tag_completion_typed_position);
-			if (right_of_cursor.Length > 1)
-				return;
-
-			int last_comma = tag_entry.Text.LastIndexOf (',');
-			if (last_comma > tag_completion_typed_position)
-				return;
-
-			tag_completion_typed_so_far = tag_entry.Text.Substring (last_comma + 1).TrimStart (new char [] {' '});
-			if (tag_completion_typed_so_far == null || tag_completion_typed_so_far.Length == 0)
-				return;
-
-			tag_completions = db.Tags.GetTagsByNameStart (tag_completion_typed_so_far);
-			if (tag_completions == null)
-				return;
-
-			tag_completion_index = 0;
 		}
-
-		tag_ignore_changes = true;
-		completion = tag_completions [tag_completion_index].Name.Substring (tag_completion_typed_so_far.Length);
-		tag_entry.Text = tag_entry.Text.Substring (0, tag_completion_typed_position) + completion;
-		tag_ignore_changes = false;
-
-		tag_entry.Position = tag_entry.Text.Length;
-		tag_entry.SelectRegion (tag_completion_typed_position, tag_entry.Text.Length);
-	}
-
-	private void ClearTagCompletions ()
-	{
-		tag_completion_index = -1;
-		tag_completions = null;
-	}
-
-
-	public void HandleTagEntryFocusOutEvent (object sender, EventArgs args)
-	{
-		UpdateTagEntryFromSelection ();
-		//		HideTagbar ();
-	}
-
-	private string [] GetTypedTagNames ()
-	{
-		string [] tagnames = tag_entry.Text.Split (new char [] {','});
-
-		ArrayList list = new ArrayList ();
-		for (int i = 0; i < tagnames.Length; i ++) {
-			string s = tagnames [i].Trim ();
-
-			if (s.Length > 0)
-				list.Add (s);
-		}
-
-		return (string []) (list.ToArray (typeof (string)));
-	}
-
-	private bool IsTagInList (string [] tags, string tag)
-	{
-		foreach (string t in tags)
-			if (t == tag)
-				return true;
-		return false;
 	}
 
 	public string [] SelectedMimeTypes ()

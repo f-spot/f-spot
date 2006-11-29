@@ -1,5 +1,13 @@
 2006-11-29  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/Makefile.am:
+	* src/f-spot.glade:
+	* src/MainWindow.cs:
+	* src/Widgets/TagEntry.cs: Move the tag typing entry in it's own file
+	as a self-contained widget.
+
+2006-11-29  Stephane Delcroix  <stephane@delcroix.org>
+
 	* dbus-sharp/Bus.cs:
 	* dbus-sharp/Connection.cs:
 	* dbus-sharp/DBus.cs:

@@ -170,6 +170,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/GdkUtils.cs		\
 	$(srcdir)/Widgets/ImageDisplay.cs	\
 	$(srcdir)/Widgets/ScrolledView.cs	\
+	$(srcdir)/Widgets/TagEntry.cs		\
 	$(srcdir)/X3fFile.cs			\
 	$(srcdir)/XmpFile.cs			\
 	$(srcdir)/XmpTagsImporter.cs		\
