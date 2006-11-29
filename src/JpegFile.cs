@@ -27,7 +27,7 @@ namespace FSpot {
 		public JpegFile (Uri uri) : base (uri)
 		{
 			try {
-				System.Console.WriteLine ("approximate quality = {0}", Header.GuessQuality ());
+				// Console.WriteLine ("approximate quality = {0}", Header.GuessQuality ());
 			} catch (Exception e) {
 				System.Console.WriteLine (e);
 			}
@@ -128,14 +128,14 @@ namespace FSpot {
 			JpegHeader header = new JpegHeader (input);
 			UpdateMeta ();
 			
-			Console.WriteLine ("updated metadata");
+			// Console.WriteLine ("updated metadata");
 			header.SetExif (this.ExifData);
-			Console.WriteLine ("set exif");
+			// Console.WriteLine ("set exif");
 			if (xmp != null)
 				header.SetXmp (xmp);
-			Console.WriteLine ("set xmp");
+			// Console.WriteLine ("set xmp");
 			header.Save (output);
-			Console.WriteLine ("saved");
+			// Console.WriteLine ("saved");
 		}
 		
 		public void SaveMetaData (string path)
@@ -166,7 +166,7 @@ namespace FSpot {
 			Gdk.Pixbuf thumbnail = PixbufUtils.ScaleToAspect (source, 160, 120);
 			byte [] thumb_data = PixbufUtils.Save (thumbnail, "jpeg", null, null);
 			
-			System.Console.WriteLine ("saving thumbnail");				
+			// System.Console.WriteLine ("saving thumbnail");				
 
 			// now update the exif data
 			ExifData.Data = thumb_data;
@@ -199,21 +199,21 @@ namespace FSpot {
 		public override void Save (Gdk.Pixbuf pixbuf, System.IO.Stream stream)
 		{
 
-			Console.WriteLine ("starting save");
+			// Console.WriteLine ("starting save");
 			// First save the imagedata
 			byte [] image_data = PixbufUtils.Save (pixbuf, "jpeg", null, null);
 			System.IO.MemoryStream buffer = new System.IO.MemoryStream ();
 			buffer.Write (image_data, 0, image_data.Length);
 			buffer.Position = 0;
 			
-			Console.WriteLine ("setting thumbnail");
+			// Console.WriteLine ("setting thumbnail");
 			SetThumbnail (pixbuf);
 			SetDimensions (pixbuf.Width, pixbuf.Height);
 			pixbuf.Dispose ();
 			
-			Console.WriteLine ("saving metatdata");
+			// Console.WriteLine ("saving metatdata");
 			SaveMetaData (buffer, stream);
-			Console.WriteLine ("done");
+			// Console.WriteLine ("done");
 			buffer.Close ();
 		}
 		
@@ -241,7 +241,7 @@ namespace FSpot {
 					if (exif_data == null || exif_data.Handle.Handle == System.IntPtr.Zero)
 						exif_data = new Exif.ExifData ();
 				}
-				System.Console.WriteLine ("loading exif data");
+				// System.Console.WriteLine ("loading exif data");
 				return exif_data;
 			}
 			set {
@@ -276,7 +276,7 @@ namespace FSpot {
 		public void SetOrientation (PixbufOrientation orientation)
 		{
 			Exif.ExifEntry e = this.ExifData.GetContents (Exif.Ifd.Zero).GetEntry (Exif.Tag.Orientation);
-			System.Console.WriteLine ("Saving orientation as {0}", orientation);
+			// System.Console.WriteLine ("Saving orientation as {0}", orientation);
 			e.SetData ((ushort)orientation);
 		       
 			e = this.ExifData.GetContents (Exif.Ifd.One).Lookup (Exif.Tag.Orientation);

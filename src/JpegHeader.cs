@@ -401,13 +401,13 @@ public class JpegHeader : SemWeb.StatementSource {
 
 	public void SetExif (Exif.ExifData value)
 	{
-		Console.WriteLine ("before save");
+		// Console.WriteLine ("before save");
 		byte [] raw_data = value.Save ();
-		Console.WriteLine ("saved");
+		// Console.WriteLine ("saved");
 		Marker exif = new Marker (ExifSignature.Id, raw_data);
-		Console.WriteLine ("new");
+		// Console.WriteLine ("new");
 		Replace (ExifSignature, exif);
-		Console.WriteLine ("replaced");
+		// Console.WriteLine ("replaced");
 	}	
 	
 	public void SetXmp (XmpFile xmp)
@@ -431,8 +431,8 @@ public class JpegHeader : SemWeb.StatementSource {
 	public void Save (System.IO.Stream stream)
 	{
 		foreach (Marker marker in marker_list) {
-			System.Console.WriteLine ("saving marker {0} {1}", marker.Type, 
-						  (marker.Data != null) ? marker.Data.Length .ToString (): "(null)");
+			// System.Console.WriteLine ("saving marker {0} {1}", marker.Type, 
+			//			  (marker.Data != null) ? marker.Data.Length .ToString (): "(null)");
 			marker.Save (stream);
 			if (marker.Type == JpegMarker.Sos)
 				stream.Write (ImageData, 0, ImageData.Length);
@@ -466,7 +466,7 @@ public class JpegHeader : SemWeb.StatementSource {
 			if (marker == null)
 				break;
 
-			System.Console.WriteLine ("loaded marker {0} length {1}", marker.Type, marker.Data.Length);
+			// System.Console.WriteLine ("loaded marker {0} length {1}", marker.Type, marker.Data.Length);
 
 			this.Markers.Add (marker);
 			
@@ -474,7 +474,7 @@ public class JpegHeader : SemWeb.StatementSource {
 				at_image = true;
 
 				if (metadata_only) {
-					System.Console.WriteLine ("read = {0}", stream.Position);
+					// System.Console.WriteLine ("read = {0}", stream.Position);
 					return;
 				}
 			}
