@@ -108,7 +108,11 @@ namespace FSpot.Widgets {
 			if (args.Event.Key == Gdk.Key.Escape) { 
 				args.RetVal = false;
 			} else if (args.Event.Key == Gdk.Key.Return) { 
-				args.RetVal = false;
+				if (tag_completion_index != -1) {
+					OnActivated ();
+					args.RetVal = true;
+				} else
+					args.RetVal = false;
 			} else if (args.Event.Key == Gdk.Key.Tab) {
 				DoTagCompletion ();
 				args.RetVal = true;
