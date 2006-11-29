@@ -1,5 +1,10 @@
 2006-11-28  Larry Ewing  <lewing@novell.com>
 
+	* src/GroupSelector.cs: set the decoration strings to null to
+	avoid new theme issues.
+
+2006-11-28  Larry Ewing  <lewing@novell.com>
+
 	* src/QueryDisplay.cs: remove unused file.
 
 2006-11-27  Larry Ewing  <lewing@novell.com>

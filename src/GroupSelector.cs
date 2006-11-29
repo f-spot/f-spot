@@ -813,10 +813,10 @@ namespace FSpot {
 						   bounds.Width, handle_height, Orientation.Horizontal);
 				
 				Style.PaintShadow (selector.Style, selector.GdkWindow, State, ShadowType.Out, 
-						   area, selector, "", bounds.X, bounds.Y, bounds.Width, bounds.Height);
+						   area, selector, null, bounds.X, bounds.Y, bounds.Width, bounds.Height);
 				
 				Style.PaintShadow (selector.Style, selector.GdkWindow, State, ShadowType.In, 
-						   area, selector, "", inner.X, inner.Y, inner.Width, inner.Height);
+						   area, selector, null, inner.X, inner.Y, inner.Width, inner.Height);
 				
 			}
 			
@@ -884,10 +884,10 @@ namespace FSpot {
 						    selector, "IconView:Selector", bottom_points, true);
 #else
 				Style.PaintBox (selector.Style, selector.GdkWindow, State, ShadowType.Out, area,
-						selector, "limit", top.X, top.Y, top.Width, top.Height);
+						selector, null, top.X, top.Y, top.Width, top.Height);
 
 				Style.PaintBox (selector.Style, selector.GdkWindow, State, ShadowType.Out, area,
-						selector, "limit", bottom.X, bottom.Y, bottom.Width, bottom.Height);
+						selector, null, bottom.X, bottom.Y, bottom.Width, bottom.Height);
 #endif
 			}
 
