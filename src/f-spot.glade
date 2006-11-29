@@ -9115,7 +9115,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">_Folder</property>
 			      <property name="use_underline">True</property>
-			      <property name="active">True</property>
+			      <property name="active">False</property>
 			      <property name="group">month</property>
 			      <signal name="activate" handler="HandleArrangeByDirectory" last_modification_time="Fri, 20 Aug 2004 22:26:32 GMT"/>
 			    </widget>
