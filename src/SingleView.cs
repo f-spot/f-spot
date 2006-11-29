@@ -114,6 +114,8 @@ namespace FSpot {
 		
 			LoadPreference (Preferences.VIEWER_SHOW_TOOLBAR);
  			LoadPreference (Preferences.VIEWER_INTERPOLATION);
+			LoadPreference (Preferences.VIEWER_TRANSPARENCY);
+			LoadPreference (Preferences.VIEWER_TRANS_COLOR);
 
 			ShowSidebar = collection.Count > 1;
 
@@ -132,6 +134,7 @@ namespace FSpot {
 			
 			if (collection.Count > 0)
 				directory_view.Selection.Add (0);
+
 		}
 
 		public void HandleCollectionChanged (IBrowsableCollection collection)
@@ -560,6 +563,20 @@ namespace FSpot {
 				if (filenames_item.Active != (bool) val)
 					filenames_item.Active = (bool) val;
 				break;
+
+			case Preferences.VIEWER_TRANSPARENCY:
+				if (val as string == "CHECK_PATTERN")
+					image_view.SetCheckSize (2);
+				else if (val as string == "COLOR")
+					image_view.SetTransparentColor (Preferences.Get(Preferences.VIEWER_TRANS_COLOR) as string);
+				else // NONE
+					image_view.SetTransparentColor (image_view.Style.BaseColors [(int)Gtk.StateType.Normal]);
+				break;
+
+			case Preferences.VIEWER_TRANS_COLOR:
+				if (Preferences.Get(Preferences.VIEWER_TRANSPARENCY) as string == "COLOR")
+					image_view.SetTransparentColor (val as string);
+				break;
 			}
 		}
 
@@ -576,9 +593,16 @@ namespace FSpot {
 
 		public class PreferenceDialog : GladeDialog {
 			[Glade.Widget] private CheckButton interpolation_check;
+			[Glade.Widget] private ColorButton color_button;
+			[Glade.Widget] private RadioButton as_background_radio;
+			[Glade.Widget] private RadioButton as_check_radio;
+			[Glade.Widget] private RadioButton as_color_radio;
+
 			public PreferenceDialog () : base ("viewer_preferences")
 			{
 				this.LoadPreference (Preferences.VIEWER_INTERPOLATION);
+				this.LoadPreference (Preferences.VIEWER_TRANSPARENCY);
+				this.LoadPreference (Preferences.VIEWER_TRANS_COLOR);
 				Preferences.SettingChanged += OnPreferencesChanged;
 				this.Dialog.Destroyed += HandleDestroyed;
 			}
@@ -586,6 +610,25 @@ namespace FSpot {
 			void InterpolationToggled (object sender, System.EventArgs args)
 			{
 				Preferences.Set (Preferences.VIEWER_INTERPOLATION, interpolation_check.Active);
+			}
+
+			void HandleTransparentColorSet (object sender, System.EventArgs args)
+			{
+				Preferences.Set (Preferences.VIEWER_TRANS_COLOR, 
+						"#" + 
+						(color_button.Color.Red / 256 ).ToString("x").PadLeft (2, '0') +
+						(color_button.Color.Green / 256 ).ToString("x").PadLeft (2, '0') +
+						(color_button.Color.Blue / 256 ).ToString("x").PadLeft (2, '0'));
+			}
+
+			void HandleTransparencyToggled (object sender, System.EventArgs args)
+			{
+				if (as_background_radio.Active)
+					Preferences.Set (Preferences.VIEWER_TRANSPARENCY, "NONE");
+				else if (as_check_radio.Active)
+					Preferences.Set (Preferences.VIEWER_TRANSPARENCY, "CHECK_PATTERN");
+				else if (as_color_radio.Active)
+					Preferences.Set (Preferences.VIEWER_TRANSPARENCY, "COLOR");
 			}
 			
 			static PreferenceDialog prefs;
@@ -621,7 +664,26 @@ namespace FSpot {
 			
 				switch (key) {
 				case Preferences.VIEWER_INTERPOLATION:
-						interpolation_check.Active = (bool) val;
+					interpolation_check.Active = (bool) val;
+					break;
+				case Preferences.VIEWER_TRANSPARENCY:
+					switch ((string) val) {
+					case "COLOR":
+						as_color_radio.Active = true;
+						break;
+					case "CHECK_PATTERN":
+						as_check_radio.Active = true;
+						break;
+					default: //NONE
+						as_background_radio.Active = true;
+						break;
+					}
+					break;
+				case Preferences.VIEWER_TRANS_COLOR:
+					color_button.Color = new Gdk.Color (
+						Byte.Parse ((val as string).Substring (1,2), System.Globalization.NumberStyles.AllowHexSpecifier),
+						Byte.Parse ((val as string).Substring (3,2), System.Globalization.NumberStyles.AllowHexSpecifier),
+						Byte.Parse ((val as string).Substring (5,2), System.Globalization.NumberStyles.AllowHexSpecifier));
 					break;
 				}
 			}

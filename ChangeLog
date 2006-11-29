@@ -1,5 +1,19 @@
 2006-11-29  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/Preferences.cs: Add VIEWER_TRANSPARENCY and VIEWER_TRANS_COLOR
+	preferences.
+
+	* src/ImageView.cs: new SetTransparentColor (string) and 
+	SetCheckSize(int) methods.
+
+	* src/SingleView.cs: Set the background according to Preferences.
+
+	* src/SingleView.cs: 
+	* src/f-spot.glade: complete UI for background color. Fixes bgo
+	#373426
+
+2006-11-29  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/f-spot.glade: Fixes bgo #380423
 
 	* src/SingleView.cs: Fixes bgo #380649

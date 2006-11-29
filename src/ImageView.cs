@@ -114,6 +114,23 @@ public class ImageView : Layout {
 		image_view_set_transparent_color (Handle, out color);
 	} 
 
+	public void SetTransparentColor (string color) //format "#000000"
+	{
+		SetTransparentColor (new Gdk.Color (
+				Byte.Parse (color.Substring (1,2), System.Globalization.NumberStyles.AllowHexSpecifier),
+				Byte.Parse (color.Substring (3,2), System.Globalization.NumberStyles.AllowHexSpecifier),
+				Byte.Parse (color.Substring (5,2), System.Globalization.NumberStyles.AllowHexSpecifier)
+		));
+	}
+
+	[DllImport ("libfspoteog")]
+	static extern void image_view_set_check_size (IntPtr view, int size);
+
+	public void SetCheckSize (int size)
+	{
+		image_view_set_check_size (Handle, size);
+	}
+
 	[DllImport ("libfspoteog")]
 	static extern void image_view_set_pixbuf (IntPtr view, IntPtr pixbuf);
 	[DllImport ("libfspoteog")]

@@ -42,6 +42,8 @@ namespace FSpot
 		public const string VIEWER_SHOW_TOOLBAR = "/apps/f-spot/ui/viewer_show_toolbar";
 		public const string VIEWER_SHOW_FILENAMES = "/apps/f-spot/ui/viewer_show_filenames";
  		public const string VIEWER_INTERPOLATION = "/apps/f-spot/viewer/interpolation";
+ 		public const string VIEWER_TRANS_COLOR = "/apps/f-spot/viewer/trans_color";
+ 		public const string VIEWER_TRANSPARENCY = "/apps/f-spot/viewer/transparency";
 		
 		public const string SHOW_TOOLBAR = "/apps/f-spot/ui/show_toolbar";
 		public const string SHOW_SIDEBAR = "/apps/f-spot/ui/show_sidebar";
@@ -170,6 +172,10 @@ namespace FSpot
 				return 30;	// delete temporary email pictures after 30 seconds
 			case EXPORT_FOLDER_METHOD:
 				return "static";
+			case VIEWER_TRANSPARENCY:
+				return "NONE";
+			case VIEWER_TRANS_COLOR:
+				return "#000000";
 			}
 
 			return null;
