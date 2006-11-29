@@ -465,7 +465,7 @@ namespace FSpot {
 			IBrowsableItem item = image_view.Item.Current;
 			System.Text.StringBuilder sb = new System.Text.StringBuilder();
 			if (filenames_item.Active && item != null)
-				sb.Append (item.Name + "  -  ");
+				sb.Append (System.IO.Path.GetFileName (item.DefaultVersionUri.LocalPath) + "  -  ");
 
 			sb.AppendFormat (Catalog.GetPluralString ("{0} Photo", "{0} Photos", collection.Count), collection.Count);
 			status_label.Text = sb.ToString ();
