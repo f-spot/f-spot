@@ -33,7 +33,7 @@ namespace FlickrNet
 	{
 		private string _token;
 		private AuthLevel _permissions;
-		private User _user = new User();
+		private FoundUser _user;
 
 		/// <summary>
 		/// The authentication token returned by the <see cref="Flickr.AuthGetToken"/> or <see cref="Flickr.AuthCheckToken"/> methods.
@@ -56,7 +56,7 @@ namespace FlickrNet
 		/// <summary>
 		/// The <see cref="User"/> object associated with the token. Readonly.
 		/// </summary>
-		public User User
+		public FoundUser User
 		{
 			get { return _user; }
 		}
@@ -73,8 +73,7 @@ namespace FlickrNet
 			Token = element.SelectSingleNode("token").InnerText;
 			Permissions = (AuthLevel)Enum.Parse(typeof(AuthLevel), element.SelectSingleNode("perms").InnerText, true);
 			System.Xml.XmlNode node = element.SelectSingleNode("user");
-			this.User.UserId = node.Attributes["nsid", ""].Value;
-			this.User.UserName = node.Attributes["username", ""].Value;
+			_user = new FoundUser(node);
 		}
 	}
 }

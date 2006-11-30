@@ -5,7 +5,8 @@ namespace FlickrNet
 	/// <summary>
 	/// A FlickrException, thrown when a connection to Flickr fails.
 	/// </summary>
-	public class FlickrException : ApplicationException
+	[Serializable]
+	public class FlickrException : Exception
 	{
 		private int code;
 		private string msg = "";

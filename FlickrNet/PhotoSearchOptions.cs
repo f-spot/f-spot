@@ -9,17 +9,71 @@ namespace FlickrNet
 	{
 		private string _userId;
 		private string _tags;
-		private TagMode _tagMode = TagMode.AllTags;
+		private TagMode _tagMode = TagMode.None;
 		private string _text;
 		private DateTime _minUploadDate = DateTime.MinValue;
 		private DateTime _maxUploadDate = DateTime.MinValue;
 		private DateTime _minTakenDate = DateTime.MinValue;
 		private DateTime _maxTakenDate = DateTime.MinValue;
-		private int _license;
-		private PhotoSearchExtras _extras = PhotoSearchExtras.All;
-		private int _perPage = 100;
-		private int _page = 1;
+		private System.Collections.ArrayList _licenses = new System.Collections.ArrayList();
+		private PhotoSearchExtras _extras = PhotoSearchExtras.None;
+		private int _perPage = 0;
+		private int _page = 0;
 		private PhotoSearchSortOrder _sort = PhotoSearchSortOrder.None;
+		private PrivacyFilter _privacyFilter = PrivacyFilter.None;
+		private BoundaryBox _boundaryBox = new BoundaryBox();
+
+		/// <summary>
+		/// Creates a new instance of the search options.
+		/// </summary>
+		public PhotoSearchOptions()
+		{
+		}
+
+		/// <summary>
+		/// Creates a new instance of the search options, setting the UserId property to the parameter 
+		/// passed in.
+		/// </summary>
+		/// <param name="userId">The ID of the User to search for.</param>
+		public PhotoSearchOptions(string userId) : this(userId, null, TagMode.AllTags, null)
+		{
+		}
+
+		/// <summary>
+		/// Create an instance of the <see cref="PhotoSearchOptions"/> for a given user ID and tag list.
+		/// </summary>
+		/// <param name="userId">The ID of the User to search for.</param>
+		/// <param name="tags">The tags (comma delimited) to search for. Will match all tags.</param>
+		public PhotoSearchOptions(string userId, string tags) : this( userId, tags, TagMode.AllTags, null)
+		{
+		}
+
+		/// <summary>
+		/// Create an instance of the <see cref="PhotoSearchOptions"/> for a given user ID and tag list,
+		/// with the selected tag mode.
+		/// </summary>
+		/// <param name="userId">The ID of the User to search for.</param>
+		/// <param name="tags">The tags (comma delimited) to search for.</param>
+		/// <param name="tagMode">The <see cref="TagMode"/> to use to search.</param>
+		public PhotoSearchOptions(string userId, string tags, TagMode tagMode) : this( userId, tags, tagMode, null)
+		{
+		}
+
+		/// <summary>
+		/// Create an instance of the <see cref="PhotoSearchOptions"/> for a given user ID and tag list,
+		/// with the selected tag mode, and containing the selected text.
+		/// </summary>
+		/// <param name="userId">The ID of the User to search for.</param>
+		/// <param name="tags">The tags (comma delimited) to search for.</param>
+		/// <param name="tagMode">The <see cref="TagMode"/> to use to search.</param>
+		/// <param name="text">The text to search for in photo title and descriptions.</param>
+		public PhotoSearchOptions(string userId, string tags, TagMode tagMode, string text)
+		{
+			this.UserId = userId;
+			this.Tags = tags;
+			this.TagMode = tagMode;
+			this.Text = text;
+		}
 
 		/// <summary>
 		/// The user Id of the user to search on. Defaults to null for no specific user.
@@ -46,6 +100,26 @@ namespace FlickrNet
 		{
 			get { return _tagMode; }
 			set { _tagMode = value; }
+		}
+
+		internal string TagModeString
+		{
+			get
+			{
+				switch(_tagMode)
+				{
+					case TagMode.None:
+						return "";
+					case TagMode.AllTags:
+						return "all";
+					case TagMode.AnyTag:
+						return "any";
+					case TagMode.Boolean:
+						return "bool";
+					default:
+						return "all";
+				}
+			}
 		}
 	
 		/// <summary>
@@ -102,10 +176,52 @@ namespace FlickrNet
 		/// See http://www.flickr.com/services/api/flickr.photos.licenses.getInfo.html
 		/// for more details on the numbers to use.
 		/// </summary>
+		[Obsolete("Use AddLicense/RemoveLicense to add/remove licenses")]
 		public int License
 		{
-			get { return _license; }
-			set { _license = value; }
+			get 
+			{
+				if( _licenses.Count == 0 )
+					return 0;
+				else
+					return (int)_licenses[0];
+			}
+			set 
+			{
+				if( _licenses.Count == 0 )
+					_licenses.Add(value);
+				else
+					_licenses[0] = value;
+			}
+		}
+
+		/// <summary>
+		/// Returns a copy of the licenses to be searched for.
+		/// </summary>
+		public int[] Licenses
+		{
+			get 
+			{
+				return (int[])_licenses.ToArray(typeof(int));
+			}
+		}
+
+		/// <summary>
+		/// Adds a new license to the list of licenses to be searched for.
+		/// </summary>
+		/// <param name="license">The number of the license to search for.</param>
+		public void AddLicense(int license)
+		{
+			if( !_licenses.Contains(license) ) _licenses.Add(license);
+		}
+
+		/// <summary>
+		/// Removes a license from the list of licenses to be searched for.
+		/// </summary>
+		/// <param name="license">The number of the license to remove.</param>
+		public void RemoveLicense(int license)
+		{
+			if( _licenses.Contains(license) ) _licenses.Remove(license);
 		}
 
 		/// <summary>
@@ -134,7 +250,7 @@ namespace FlickrNet
 			get { return _page; }
 			set 
 			{
-				if( value < 1 ) throw new ArgumentOutOfRangeException("Page", value, "Must be greater than 0");
+				if( value < 0 ) throw new ArgumentOutOfRangeException("Page", value, "Must be greater than 0");
 				_page = value; 
 			}
 		}
@@ -148,63 +264,56 @@ namespace FlickrNet
 			set { _sort = value; }
 		}
 
+		/// <summary>
+		/// The privacy fitler to filter the search on.
+		/// </summary>
+		public PrivacyFilter PrivacyFilter
+		{
+			get { return _privacyFilter; }
+			set { _privacyFilter = value; }
+		}
+
+		/// <summary>
+		/// The boundary box for which to search for geo location photos.
+		/// </summary>
+		public BoundaryBox BoundaryBox
+		{
+			get { return _boundaryBox; }
+			set 
+			{
+				if( value == null )
+					  _boundaryBox = new BoundaryBox();
+				  else 
+					  _boundaryBox = value; 
+			}
+		}
+
+		/// <summary>
+		/// The accuracy of the search for geo location photos.
+		/// </summary>
+		/// <remarks>
+		/// Can also be set as a property of the <see cref="BoundaryBox"/> property.
+		/// </remarks>
+		public GeoAccuracy Accuracy
+		{
+			get { return _boundaryBox==null?GeoAccuracy.None:_boundaryBox.Accuracy; }
+			set 
+			{ 
+				if (_boundaryBox==null) { _boundaryBox = new BoundaryBox(); }
+				_boundaryBox.Accuracy = value;
+			}
+		
+		}
+
+		internal string ExtrasString
+		{
+			get { return Utils.ExtrasToString(Extras); }
+		}
+
 		internal string SortOrderString
 		{
-			get
-			{
-				switch(_sort)
-				{
-					case PhotoSearchSortOrder.DatePostedAsc:
-						return "date-posted-asc";
-					case PhotoSearchSortOrder.DatePostedDesc:
-						return "date-posted-desc";
-					case PhotoSearchSortOrder.DateTakenAsc:
-						return "date-taken-asc";
-					case PhotoSearchSortOrder.DateTakenDesc:
-						return "date-taken-desc";
-					case PhotoSearchSortOrder.InterestingnessAsc:
-						return "interestingness-asc";
-					case PhotoSearchSortOrder.InterestingnessDesc:
-						return "interestingness-desc";
-					default:
-						return null;
-				}
-			}
+			get	{ return Utils.SortOrderToString(_sort); }
 		}
 	}
 
-	/// <summary>
-	/// The sort order for the PhotoSearch method.
-	/// </summary>
-	public enum PhotoSearchSortOrder
-	{
-		/// <summary>
-		/// No sort order.
-		/// </summary>
-		None,
-		/// <summary>
-		/// Sort by date uploaded (posted).
-		/// </summary>
-		DatePostedAsc,
-		/// <summary>
-		/// Sort by date uploaded (posted) in descending order.
-		/// </summary>
-		DatePostedDesc,
-		/// <summary>
-		/// Sort by date taken.
-		/// </summary>
-		DateTakenAsc,
-		/// <summary>
-		/// Sort by date taken in descending order.
-		/// </summary>
-		DateTakenDesc,
-		/// <summary>
-		/// Sort by interestingness.
-		/// </summary>
-		InterestingnessAsc,
-		/// <summary>
-		/// Sort by interestingness in descending order.
-		/// </summary>
-		InterestingnessDesc
-	}
 }

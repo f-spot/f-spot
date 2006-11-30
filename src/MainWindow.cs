@@ -1467,9 +1467,14 @@ public class MainWindow {
 
 	void HandleExportToFlickr (object sender, EventArgs args)
 	{
-		new FSpot.FlickrExport (new FSpot.PhotoArray (SelectedPhotos ()), true);
+		new FSpot.FlickrExport (FlickrNet.SupportedService.Flickr, new FSpot.PhotoArray (SelectedPhotos ()), true);
 	}
 	
+	void HandleExportTo23hq (object sender, EventArgs args)
+	{
+		new FSpot.FlickrExport (FlickrNet.SupportedService.TwentyThreeHQ, new FSpot.PhotoArray (SelectedPhotos ()), true);
+	}
+
 	void HandleExportToFotki (object sender, EventArgs args)
 	{
 		

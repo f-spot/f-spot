@@ -7,9 +7,9 @@ namespace FlickrNet
 	/// </summary>
 	public class UploadProgressEventArgs : EventArgs
 	{
-		private bool _uploadComplete = false;
+		private bool _uploadComplete;
 
-		private int _bytes = 0;
+		private int _bytes;
 
 		/// <summary>
 		/// Number of bytes transfered so far.

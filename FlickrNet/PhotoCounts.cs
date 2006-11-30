@@ -34,7 +34,7 @@ namespace FlickrNet
 		{
 			get 
 			{
-				return Utils.UnixTimestampToDate(fromdate);
+				return Utils.UnixTimestampToDate(fromdate_raw);
 			}
 		}
 
@@ -44,19 +44,19 @@ namespace FlickrNet
 		{
 			get 
 			{
-				return Utils.UnixTimestampToDate(todate);
+				return Utils.UnixTimestampToDate(todate_raw);
 			}
 		}
 
 		/// <summary>The original from date in unix timestamp format.</summary>
 		/// <remarks/>
 		[XmlAttribute("fromdate", Form=XmlSchemaForm.Unqualified)]
-		public string fromdate;
+		public string fromdate_raw;
     
 		/// <summary>The original to date in unix timestamp format.</summary>
 		/// <remarks/>
 		[XmlAttribute("todate", Form=XmlSchemaForm.Unqualified)]
-		public string todate;
+		public string todate_raw;
 
 	}
 }

@@ -32,7 +32,7 @@ public class FlickrRemote {
 	public bool               ExportTags;
 	public FSpot.ProgressItem Progress;
 	
-	public FlickrRemote (string token)
+	public FlickrRemote (string token, SupportedService service)
 	{
 		if (token == null || token.Length == 0) {
 			this.flickr = new Flickr (_apikey, _sharedsecret);
@@ -41,6 +41,8 @@ public class FlickrRemote {
 			this.flickr = new Flickr (_apikey, _sharedsecret, token);
 			this.token = token;
 		}
+
+		this.flickr.CurrentService = service;
 	}
 
 	public string Token {

@@ -31,18 +31,6 @@ namespace FlickrNet
 		public Category Category;
 
 		/// <remarks/>
-		[XmlElement("activegroups", Form=XmlSchemaForm.Unqualified)]
-		public ActiveGroups ActiveGroups;
-
-		/// <remarks/>
-		[XmlElement("groups", Form=XmlSchemaForm.Unqualified)]
-		public PoolGroups PoolGroups;
-
-		/// <remarks/>
-		[XmlElement("group", Form=XmlSchemaForm.Unqualified)]
-		public GroupInfo GroupInfo;
-
-		/// <remarks/>
 		[XmlElement("photocounts", Form=XmlSchemaForm.Unqualified)]
 		public PhotoCounts PhotoCounts;
 
@@ -50,22 +38,6 @@ namespace FlickrNet
 		[XmlElement("photo", Form=XmlSchemaForm.Unqualified)]
 		public PhotoInfo PhotoInfo;
 
-		/// <remarks/>
-		[XmlElement("who", Form=XmlSchemaForm.Unqualified)]
-		public WhoInfo Who;
-
-		/// <remarks/>
-		[XmlElement("tags", Form=XmlSchemaForm.Unqualified)]
-		public PhotoInfoTags Tags;
-
-		/// <remarks/>
-		[XmlElement("perms", Form=XmlSchemaForm.Unqualified)]
-		public PhotoPermissions PhotoPermissions;
-
-		/// <remarks/>
-		[XmlElement("user", Form=XmlSchemaForm.Unqualified)]
-		public User User;
-    
 		/// <remarks/>
 		[XmlElement("person", Form=XmlSchemaForm.Unqualified)]
 		public Person Person;
@@ -78,10 +50,6 @@ namespace FlickrNet
 		[XmlElement("photosets", Form=XmlSchemaForm.Unqualified)]
 		public Photosets Photosets;
 
-		/// <remarks/>
-		[XmlElement("online", Form=XmlSchemaForm.Unqualified)]
-		public Online OnlineUsers;
-    
 		/// <remarks/>
 		[XmlElement("sizes", Form=XmlSchemaForm.Unqualified)]
 		public Sizes Sizes;
@@ -114,13 +82,19 @@ namespace FlickrNet
 		public ResponseError Error;
 
 		/// <summary>
+		/// A <see cref="Method"/> instance.
+		/// </summary>
+		[XmlElement("method", Form=XmlSchemaForm.Unqualified)]
+		public Method Method;
+
+		/// <summary>
 		/// If using flickr.test.echo this contains all the other elements not covered above.
 		/// </summary>
 		/// <remarks>
 		/// t is an array of <see cref="XmlElement"/> objects. Use the XmlElement Name and InnerXml properties
 		/// to get the name and value of the returned property.
 		/// </remarks>
-		[XmlAnyElement()]
+		[XmlAnyElement(), NonSerialized()]
 		public XmlElement[] AllElements;
 	}
 

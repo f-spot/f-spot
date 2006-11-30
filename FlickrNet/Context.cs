@@ -109,24 +109,28 @@ namespace FlickrNet
 			get { return _groups; }
 		}
 
-		internal AllContexts(XmlElement element)
+		internal AllContexts(XmlElement[] elements)
 		{
 			ArrayList sets = new ArrayList();
-			foreach(XmlNode node in element.SelectNodes("set"))
-			{
-				ContextSet aset = new ContextSet();
-				aset.PhotosetId = node.Attributes["id"].Value;
-				aset.Title = node.Attributes["title"].Value;
-				sets.Add(aset);
-			}
-
 			ArrayList groups = new ArrayList();
-			foreach(XmlNode node in element.SelectNodes("pool"))
+
+			foreach(XmlElement element in elements)
 			{
-				ContextGroup agroup = new ContextGroup();
-				agroup.GroupId = node.Attributes["id"].Value;
-				agroup.Title = node.Attributes["title"].Value;
-				groups.Add(agroup);
+				if( element.Name == "set" )
+				{
+					ContextSet aset = new ContextSet();
+					aset.PhotosetId = element.Attributes["id"].Value;
+					aset.Title = element.Attributes["title"].Value;
+					sets.Add(aset);
+				}
+
+				if( element.Name == "pool" )
+				{
+					ContextGroup agroup = new ContextGroup();
+					agroup.GroupId = element.Attributes["id"].Value;
+					agroup.Title = element.Attributes["title"].Value;
+					groups.Add(agroup);
+				}
 			}
 
 			_sets = new ContextSet[sets.Count];

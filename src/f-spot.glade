@@ -7900,7 +7900,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 			  <child>
 			    <widget class="GtkLabel" id="auth_label">
 			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">F-Spot needs your authorization in order to upload photos to your Flickr account. Press the &quot;Authorize&quot; button to open a web browser and give F-Spot the authorization. </property>
+			      <property name="label" translatable="yes">F-Spot needs your authorization in order to upload photos to your {0} account. Press the &quot;Authorize&quot; button to open a web browser and give F-Spot the authorization. </property>
 			      <property name="use_underline">False</property>
 			      <property name="use_markup">False</property>
 			      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -8568,6 +8568,15 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 			      <property name="label" translatable="yes">Export to _Picasaweb...</property>
 			      <property name="use_underline">True</property>
 			      <signal name="activate" handler="HandleExportToPicasa" last_modification_time="Fri, 28 Jul 2006 09:03:16 GMT"/>
+			    </widget>
+			  </child>
+
+			  <child>
+			    <widget class="GtkMenuItem" id="export_to_23hq">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">Export to 23h_q...</property>
+			      <property name="use_underline">True</property>
+			      <signal name="activate" handler="HandleExportTo23hq" last_modification_time="Fri, 17 Dec 2004 19:43:27 GMT"/>
 			    </widget>
 			  </child>
 
@@ -12165,6 +12174,15 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 			      <property name="label" translatable="yes">Export to _Picasaweb...</property>
 			      <property name="use_underline">True</property>
 			      <signal name="activate" handler="HandleExportToPicasaweb" last_modification_time="Sat, 28 Oct 2006 15:46:01 GMT"/>
+			    </widget>
+			  </child>
+
+			  <child>
+			    <widget class="GtkMenuItem" id="export_to_23hq">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">Export to 23h_q...</property>
+			      <property name="use_underline">True</property>
+			      <signal name="activate" handler="HandleExportTo23hq" last_modification_time="Fri, 17 Dec 2004 19:43:27 GMT"/>
 			    </widget>
 			  </child>
 

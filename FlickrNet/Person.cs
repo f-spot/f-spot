@@ -64,6 +64,21 @@ namespace FlickrNet
 		/// </summary>
 		[XmlElement("profileurl",Form=XmlSchemaForm.Unqualified)]
 		public string ProfileUrl;
+
+		/// <summary>
+		/// Returns the <see cref="Uri"/> for the users Buddy Icon.
+		/// </summary>
+		[XmlIgnore()]
+		public Uri BuddyIconUrl
+		{
+			get
+			{
+				if( IconServer == 0 )
+					return new Uri("http://www.flickr.com/images/buddyicon.jpg");
+				else
+					return new Uri(String.Format("http://static.flickr.com/{0}/buddyicons/{1}.jpg", IconServer, UserId));
+			}
+		}
 	}
 
 	/// <summary>
@@ -76,14 +91,14 @@ namespace FlickrNet
 		[XmlIgnore()]
 		public DateTime FirstDate
 		{
-			get { return Utils.UnixTimestampToDate(firstdate); }
+			get { return Utils.UnixTimestampToDate(firstdate_raw); }
 		}
 
 		/// <summary>The first date the user took a picture, converted into <see cref="DateTime"/> format.</summary>
 		[XmlIgnore()]
 		public DateTime FirstTakenDate
 		{
-			get { return Utils.UnixTimestampToDate(firstdate); }
+			get { return Utils.UnixTimestampToDate(firsttakendate_raw); }
 		}
 
 		/// <summary>The total number of photos for the user.</summary>
@@ -93,11 +108,11 @@ namespace FlickrNet
 
 		/// <remarks>The unix timestamp of the date the first photo was uploaded.</remarks>
 		[XmlElement("firstdate", Form=XmlSchemaForm.Unqualified)]
-		public string firstdate;
+		public string firstdate_raw;
 
 		/// <remarks>The unix timestamp of the date the first photo was uploaded.</remarks>
 		[XmlElement("firsttakendate", Form=XmlSchemaForm.Unqualified)]
-		public string firsttakendate;
+		public string firsttakendate_raw;
 
 	}
 }

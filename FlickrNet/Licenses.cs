@@ -24,7 +24,10 @@ namespace FlickrNet
 	[System.Serializable]
 	public class License
 	{
-		/// <summary>The ID of the license. Used by <see cref="Flickr.PhotosGetInfo"/>.</summary>
+		/// <summary>
+        ///     The ID of the license. Used by <see cref="Flickr.PhotosGetInfo(string)"/> and 
+        ///     <see cref="Flickr.PhotosGetInfo(string, string)"/>.
+        /// </summary>
 		/// <remarks/>
 		[XmlAttribute("id", Form=XmlSchemaForm.Unqualified)]
 		public int LicenseId;

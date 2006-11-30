@@ -202,7 +202,12 @@ namespace FSpot {
 
 		void HandleExportToFlickr (object sender, System.EventArgs args)
 		{
-			new FSpot.FlickrExport (new PhotoArray (directory_view.Selection.Items), false);
+			new FSpot.FlickrExport (FlickrNet.SupportedService.Flickr, new PhotoArray (directory_view.Selection.Items), false);
+		}
+
+		void HandleExportTo23hq (object sender, System.EventArgs args)
+		{
+			new FSpot.FlickrExport (FlickrNet.SupportedService.TwentyThreeHQ, new PhotoArray (directory_view.Selection.Items), false);
 		}
 
 		void HandleExportToPicasaweb (object sender, System.EventArgs args)

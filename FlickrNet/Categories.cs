@@ -46,7 +46,7 @@ namespace FlickrNet
 		public SubCategory[] SubCategories;
 
 		/// <summary>
-		/// An array of <see cref="GroupInfo"/> items, listing the groups within this category.
+		/// An array of <see cref="Group"/> items, listing the groups within this category.
 		/// </summary>
 		[XmlElement("group", Form=XmlSchemaForm.Unqualified)]
 		public Group[] Groups;

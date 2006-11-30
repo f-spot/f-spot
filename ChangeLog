@@ -1,3 +1,16 @@
+2006-11-30  Thomas Van Machelen  <thomas.vanmachelen@gmail.com>
+
+	* FlickrNet: updated to version 104922 of FlickrNet library
+	
+	* src/FlickrExport.cs: 
+	* src/FlickrRemote.cs: 
+	* src/Preferences.cs: add support for 23hq.com as service. Make a distinction between 
+	tokens from flickr and tokens from 23hq.com
+
+	* src/SingleView.cs:
+	* src/MainWindow.cs:
+	* src/f-spot.glade: Add menu items for export to 23hq, fixes bgo #331014
+
 2006-11-29  Larry Ewing  <lewing@novell.com>
 
 	* src/FormClient.cs: add a fallback for lighttpd servers that
