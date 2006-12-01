@@ -258,19 +258,24 @@ namespace FSpot {
 				collection.Clear ();
 				item.Index = 0;
 
-				bool changed = false;
-				
-				Assert.IsFalse (item.IsValid);
-				item.Changed += delegate {
-					changed = true;
-				};
-				
 				collection.Add (new System.Uri ("file:///blah.jpg"));
 				Assert.IsTrue (item.IsValid);
 				Assert.IsTrue (changed);
 				
 				changed = false;
 				collection.Add (new System.Uri ("file:///test.png"));
+				Assert.IsFalse (changed);
+
+				collection.MarkChanged (0);
+				Assert.IsTrue (changed);
+			       
+				changed = false;
+				item.MoveNext ();
+				Assert.IsTrue (changed);
+				Assert.AreEqual (item.Index, 1);
+
+				changed = false;
+				collection.Add (new System.Uri ("file:///bill.png"));
 				Assert.IsFalse (changed);
 			}
 
