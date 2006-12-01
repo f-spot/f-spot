@@ -1,5 +1,8 @@
 2006-11-30  Larry Ewing  <lewing@novell.com>
 
+	* libgphoto2-sharp/Makefile.am: add AUTHORS and COPYING to the
+	dist.
+
 	* src/FlickrExport.cs: 
 	* src/FlickrRemote.cs: refactor the multi service support
 	slightly, move all the service specific items into a single class.

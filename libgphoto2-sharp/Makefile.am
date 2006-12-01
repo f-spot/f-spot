@@ -27,6 +27,8 @@ libgphoto2-sharp.dll: $(LIBGPHOTO2_SHARP_CSFILES)
 all: libgphoto2-sharp.dll
 
 EXTRA_DIST =							\
+	AUTHORS							\
+	COPYING							\
 	libgphoto2-sharp.dll.config				\
 	$(LIBGPHOTO2_SHARP_CSFILES)
 
