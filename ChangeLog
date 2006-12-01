@@ -1,3 +1,9 @@
+2006-11-30  Larry Ewing  <lewing@novell.com>
+
+	* src/FlickrExport.cs: 
+	* src/FlickrRemote.cs: refactor the multi service support
+	slightly, move all the service specific items into a single class.
+
 2006-11-30  Thomas Van Machelen  <thomas.vanmachelen@gmail.com>
 
 	* FlickrNet: updated to version 104922 of FlickrNet library
@@ -75,6 +81,8 @@
 	* src/QueryDisplay.cs: remove unused file.
 
 2006-11-27  Larry Ewing  <lewing@novell.com>
+
+	* src/PnmFile.cs: complicate the comments slightly.
 
 	* src/DirectoryCollection.cs: add an Add method and make the
 	empty contructor public.

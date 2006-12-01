@@ -17,12 +17,6 @@ using FlickrNet;
 using FSpot;
 
 public class FlickrRemote {
-    
-	// This should be private but you know, this is Free Software ;-)
-	// Keys from acs
-	private static string     _apikey = "c6b39ee183385d9ce4ea188f85945016";
-	private static string     _sharedsecret = "0a951ac44a423a04";
-	
 	public static Licenses    licenses;
 	private string            frob;
 	private string            token;
@@ -32,17 +26,17 @@ public class FlickrRemote {
 	public bool               ExportTags;
 	public FSpot.ProgressItem Progress;
 	
-	public FlickrRemote (string token, SupportedService service)
+	public FlickrRemote (string token, Service service)
 	{
 		if (token == null || token.Length == 0) {
-			this.flickr = new Flickr (_apikey, _sharedsecret);
+			this.flickr = new Flickr (service.ApiKey, service.Secret);
 			this.token = null;
 		} else {
-			this.flickr = new Flickr (_apikey, _sharedsecret, token);
+			this.flickr = new Flickr (service.ApiKey, service.Secret, token);
 			this.token = token;
 		}
 
-		this.flickr.CurrentService = service;
+		this.flickr.CurrentService = service.Id;
 	}
 
 	public string Token {
@@ -183,5 +177,38 @@ public class FlickrRemote {
 		string login_url = flickr.AuthCalcUrl (frob, FlickrNet.AuthLevel.Write);
 
 		GnomeUtil.UrlShow (null, login_url);
+	}
+
+	public class Service {
+		public string ApiKey;
+		public string Secret;
+		public SupportedService Id;
+		public string Name;
+		public string PreferencePath;
+		
+		public static Service [] Supported = {
+			new Service (SupportedService.Flickr, "Flickr.com", "c6b39ee183385d9ce4ea188f85945016", "0a951ac44a423a04", Preferences.EXPORT_TOKEN_FLICKR),
+			new Service (SupportedService.TwentyThreeHQ, "23hq.com", "c6b39ee183385d9ce4ea188f85945016", "0a951ac44a423a04", Preferences.EXPORT_TOKEN_23HQ),
+			new Service (SupportedService.Zooomr, "Zooomr.com", "unknown", "unknown", Preferences.EXPORT_TOKEN_ZOOOMR)
+		};
+		
+		public Service (SupportedService id, string name, string api_key, string secret, string pref)
+		{
+			Id = id;
+			ApiKey = api_key;
+			Secret = secret;
+			Name = name;
+			PreferencePath = pref;
+		}
+			
+		public static Service FromSupported (SupportedService id)
+		{
+			foreach (Service s in Supported) {
+				if (s.Id == id)
+					return s;
+			}
+			
+			throw new System.ArgumentException ("Unknown service type");
+		}
 	}
 }

@@ -41,7 +41,7 @@ namespace FSpot {
 		Auth auth;
 
 		FlickrRemote fr;
-		private SupportedService current_service;
+		private FlickrRemote.Service current_service;
 
 		string auth_text;
 		private State state;
@@ -51,19 +51,6 @@ namespace FSpot {
 			Connected,
 			InAuth,
 			Authorized
-		}
-
-		private string ServiceName {
-			get {
-			 	switch (current_service) {
-			 	case SupportedService.TwentyThreeHQ:
-					return "23hq.com";
-
-				case SupportedService.Flickr:
-				default:
-					return "flickr.com";
-				}
-			} 
 		}
 
 		private State CurrentState {
@@ -79,12 +66,12 @@ namespace FSpot {
 				case State.Connected:
 					auth_flickr.Sensitive = true;
 					do_export_flickr.Sensitive = false;
-					auth_label.Text = string.Format (Catalog.GetString ("Return to this window after you have finished the authorization process on {0} and click the \"Complete Authorization\" button below"), ServiceName);
+					auth_label.Text = string.Format (Catalog.GetString ("Return to this window after you have finished the authorization process on {0} and click the \"Complete Authorization\" button below"), current_service.Name);
 					auth_flickr.Label = Catalog.GetString ("Complete Authorization");
 					break;
 				case State.InAuth:
 					auth_flickr.Sensitive = false;
-					auth_label.Text = string.Format (Catalog.GetString ("Logging into {0}"), ServiceName);
+					auth_label.Text = string.Format (Catalog.GetString ("Logging into {0}"), current_service.Name);
 					auth_flickr.Label = Catalog.GetString ("Checking credentials...");
 					do_export_flickr.Sensitive = false;
 					break;
@@ -93,7 +80,7 @@ namespace FSpot {
 					auth_flickr.Sensitive = true;
 					auth_label.Text = System.String.Format (Catalog.GetString ("Welcome {0} you are connected to {1}"),
 										auth.User.Username,
-										ServiceName);
+										current_service.Name);
 					auth_flickr.Label = String.Format (Catalog.GetString ("Sign in as a different user"), auth.User.Username);
 					break;
 				}
@@ -109,7 +96,7 @@ namespace FSpot {
 		public FlickrExport (SupportedService service, IBrowsableCollection selection, bool display_tags) : base ("flickr_export_dialog")
 		{
 			this.selection = selection;
-			this.current_service = service;
+			this.current_service = FlickrRemote.Service.FromSupported (service);
 
 			IconView view = new IconView (selection);
 			view.DisplayTags = display_tags;
@@ -126,7 +113,7 @@ namespace FSpot {
 			Dialog.ShowAll ();
 			Dialog.Response += HandleResponse;
 			auth_flickr.Clicked += HandleClicked;
-			auth_text = string.Format (auth_label.Text, ServiceName);
+			auth_text = string.Format (auth_label.Text, current_service.Name);
 			auth_label.Text = auth_text;
 
 			LoadPreference (Preferences.EXPORT_FLICKR_SCALE);
@@ -137,7 +124,7 @@ namespace FSpot {
 			LoadPreference (Preferences.EXPORT_FLICKR_PUBLIC);
 			LoadPreference (Preferences.EXPORT_FLICKR_FAMILY);
 			LoadPreference (Preferences.EXPORT_FLICKR_FRIENDS);
-			LoadTokenFromPreferences ();
+			LoadPreference (current_service.PreferencePath);
 
 			do_export_flickr.Sensitive = false;
 			fr = new FlickrRemote (token, current_service);
@@ -174,7 +161,7 @@ namespace FSpot {
 					token = wargs.Auth.Token;
 					auth = wargs.Auth;
 					CurrentState = State.Authorized;
-					StoreTokenInPreferences (token);
+					Preferences.Set (current_service.PreferencePath, token);
 				} else {
 					CurrentState = State.Disconnected;
 				}
@@ -210,7 +197,7 @@ namespace FSpot {
 			token = null;
 			auth = null;
 			fr = new FlickrRemote (token, current_service);
-			StoreTokenInPreferences ("");
+			Preferences.Set (current_service.PreferencePath, "");
 			CurrentState = State.Disconnected;
 		}
 
@@ -283,14 +270,14 @@ namespace FSpot {
 				}
 			} catch (System.Exception e) {
 				progress_dialog.Message = String.Format (Catalog.GetString ("Error Uploading To {0}: {1}"),
-									 ServiceName,
+									 current_service.Name,
 									 e.Message);
 				progress_dialog.ProgressText = Catalog.GetString ("Error");
 				System.Console.WriteLine (e);
 			}
 
 			if (open && ids.Count != 0) {
-				string view_url = string.Format ("http://www.{0}/tools/uploader_edit.gne?ids", ServiceName);
+				string view_url = string.Format ("http://www.{0}/tools/uploader_edit.gne?ids", current_service.Name);
 				bool first = true;
 
 				foreach (string id in ids) {
@@ -346,7 +333,7 @@ namespace FSpot {
 							      Gtk.MessageType.Error, Gtk.ButtonsType.Ok, 
 							      Catalog.GetString ("Unable to log on."),
 							      string.Format (Catalog.GetString ("F-Spot was unable to log on to {0}.  Make sure you have given the authentication using {0} web browser interface."),
-							      		     ServiceName));
+							      		     current_service.Name));
 				md.Run ();
 				md.Destroy ();
 				return;
@@ -378,7 +365,7 @@ namespace FSpot {
 			Preferences.Set (Preferences.EXPORT_FLICKR_PUBLIC, public_radio.Active);
 			Preferences.Set (Preferences.EXPORT_FLICKR_FAMILY, family_check.Active);
 			Preferences.Set (Preferences.EXPORT_FLICKR_FRIENDS, friend_check.Active);
-			StoreTokenInPreferences (fr.Token);
+			Preferences.Set (current_service.PreferencePath, fr.Token);
 		}
 
 		void LoadPreference (string key)
@@ -413,6 +400,7 @@ namespace FSpot {
 				break;
 			case Preferences.EXPORT_TOKEN_FLICKR:
 			case Preferences.EXPORT_TOKEN_23HQ:
+			case Preferences.EXPORT_TOKEN_ZOOOMR:
 				token = (string) val;
 			        break;
 			case Preferences.EXPORT_FLICKR_PUBLIC:
@@ -441,24 +429,5 @@ namespace FSpot {
 			}
 		}
 
-		void StoreTokenInPreferences (string value) 
-		{
-		 	string key = Preferences.EXPORT_TOKEN_FLICKR;
-
-			if (current_service == SupportedService.TwentyThreeHQ)
-			 	key = Preferences.EXPORT_TOKEN_23HQ;
-
-			Preferences.Set (key, value);
-		}
-
-		void LoadTokenFromPreferences () 
-		{
-			string key = Preferences.EXPORT_TOKEN_FLICKR;
-
-			if (current_service == SupportedService.TwentyThreeHQ)
-			 	key = Preferences.EXPORT_TOKEN_23HQ;
-
-			LoadPreference (key);
-		}
 	}
 }
