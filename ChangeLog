@@ -1,6 +1,11 @@
 2006-12-01  Larry Ewing  <lewing@novell.com>
 
-	* src/Preferences.cs: add Zoomr preference.
+	* src/Cms.cs: pass colors by reference.  Fixes #336758.
+	
+	* libfspot/f-screen-utils.c (f_cmsCreateBCHSWabstractProfile):
+	pass the structures as references.
+
+	* src/Preferences.cs: add Zooomr preference.
 
 	* src/IBrowsableItem.cs: make the tests cover a bit more api.
 

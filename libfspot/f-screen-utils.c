@@ -118,8 +118,8 @@ cmsHPROFILE LCMSEXPORT f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
 						       double Contrast,
 						       double Hue,
 						       double Saturation,
-						       cmsCIExyY current_wp,
-						       cmsCIExyY destination_wp,
+						       LPcmsCIExyY current_wp,
+						       LPcmsCIExyY destination_wp,
 						       LPGAMMATABLE Tables [])
 {
      cmsHPROFILE hICC;
@@ -133,8 +133,8 @@ cmsHPROFILE LCMSEXPORT f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
      bchsw.Hue        = Hue;
      bchsw.Saturation = Saturation;
      
-     cmsxyY2XYZ(&bchsw.WPsrc, &current_wp);
-     cmsxyY2XYZ(&bchsw.WPdest, &destination_wp);
+     cmsxyY2XYZ(&bchsw.WPsrc, current_wp);
+     cmsxyY2XYZ(&bchsw.WPdest, destination_wp);
     
       hICC = _cmsCreateProfilePlaceholder();
        if (!hICC)                          // can't allocate

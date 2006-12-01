@@ -351,13 +351,13 @@ namespace Cms {
 			for (int i = 0; i < profiles.Length; i++) {
 				handles [i] = profiles [i].Handle;
 			}
-
+			
 			this.handle = new HandleRef (this, cmsCreateMultiprofileTransform (handles, handles.Length, 
 											   input_format,
 											   output_format, 
 											   (int)intent, flags));
 		}
-
+		
 		[DllImport("liblcms-1.0.0.dll")]
 		static extern IntPtr cmsCreateTransform(HandleRef Input,
 							Format InputFormat,
@@ -517,8 +517,8 @@ namespace Cms {
 								     double Contrast,
 								     double Hue,
 								     double Saturation,
-								     ColorCIExyY src_wp, 
-								     ColorCIExyY dest_wp,
+								     ref ColorCIExyY src_wp, 
+								     ref ColorCIExyY dest_wp,
 								     HandleRef [] tables);
 		
 		public static Profile CreateAbstract (int nLUTPoints,
@@ -574,8 +574,8 @@ namespace Cms {
 									     Contrast,
 									     Hue,
 									     Saturation,
-									     src_wp,
-									     dest_wp,
+									     ref src_wp,
+									     ref dest_wp,
 									     CopyHandles (tables)));
 		}
 
