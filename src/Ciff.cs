@@ -264,7 +264,7 @@ namespace FSpot.Ciff {
 				entry_list.Add (entry);
 			}
 		}			
-	      
+
 		public void Dump ()
 		{
 			System.Console.WriteLine ("Dumping directory with {0} entries", entry_list.Count);
@@ -315,6 +315,7 @@ namespace FSpot.Ciff {
 		public ImageDirectory root;
 		private uint version;
 		bool little;
+		System.IO.Stream stream;
 
                 // False seems a safe default
                 public bool Distinct {
@@ -324,7 +325,8 @@ namespace FSpot.Ciff {
 		public ImageDirectory Root {
 			get {
 				if (root == null) {
-					root = Load (Open ());
+					stream = Open ();
+					root = Load (stream);
 				}
 				
 			        return root;
@@ -333,6 +335,11 @@ namespace FSpot.Ciff {
 
 		public CiffFile (Uri uri) : base (uri)
 		{
+		}
+
+		~CiffFile ()
+		{
+			stream.Close ();
 		}
 
 		public void Select (SemWeb.StatementSink sink)
