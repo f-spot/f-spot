@@ -71,6 +71,7 @@ namespace FSpot
 
 		public const string EXPORT_TOKEN_FLICKR ="/apps/f-spot/export/tokens/flickr"; 
 		public const string EXPORT_TOKEN_23HQ ="/apps/f-spot/export/tokens/23hq"; 
+		public const string EXPORT_TOKEN_ZOOOMR ="/apps/f-spot/export/tokens/zooomr"; 
 
 		public const string EXPORT_GALLERY_SCALE = "/apps/f-spot/export/gallery/scale";
 		public const string EXPORT_GALLERY_SIZE = "/apps/f-spot/export/gallery/size";
