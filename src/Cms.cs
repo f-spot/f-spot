@@ -76,37 +76,11 @@ namespace Cms {
 			this.Y = Y;
 		}
 
-#if false
-		public static ColorCIExyY WhitePointFromTemperatureBroked (int temp)
-		{
-			ColorCIExyY wp;
-			const int line_size = 0x1e;
-
-			using (Stream stream = Assembly.GetExecutingAssembly ().GetManifestResourceStream ("color_table.txt")) {
-				stream.Position = (temp - 1000) * line_size;
-				byte [] buffer = new byte [line_size];
-				stream.Read (buffer, 0, buffer.Length);
-				System.Console.WriteLine (System.Text.Encoding.UTF8.GetString (buffer));
-
-				int ptemp = int.Parse (System.Text.Encoding.UTF8.GetString (buffer, 0, 5));
-				if (ptemp != temp)
-					throw new System.Exception (String.Format ("{0} != {1}", ptemp, temp));
-
-				double x = double.Parse (System.Text.Encoding.UTF8.GetString (buffer, 6, 10));
-				double y = double.Parse (System.Text.Encoding.UTF8.GetString (buffer, 18, 10));
-				wp = new ColorCIExyY (x, y, 1.0);
-				return wp;
-			}			
-		}
-#endif
-
 		public static ColorCIExyY WhitePointFromTemperature (int temp)
 		{
-			try {
-				return WhitePointFromTemperatureResource (temp, "color_table.txt");
-			} catch {
-				return WhitePointFromTemperatureCIE (temp);
-			}
+			double x, y;
+			CctTable.GetXY (temp, out x, out y);
+			return new ColorCIExyY (x, y, 1.0);
 		}
 
 		[DllImport("liblcms-1.0.0.dll")]

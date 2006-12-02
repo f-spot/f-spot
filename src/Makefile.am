@@ -50,6 +50,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Bim.cs			\
 	$(srcdir)/BitConverter.cs		\
 	$(srcdir)/PhotoArray.cs 		\
+	$(srcdir)/CctTable.cs			\
 	$(srcdir)/CDExport.cs			\
 	$(srcdir)/Ciff.cs			\
 	$(srcdir)/ColorDialog.cs		\
