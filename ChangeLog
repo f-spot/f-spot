@@ -1,5 +1,7 @@
 2006-12-01  Larry Ewing  <lewing@novell.com>
 
+	* src/Cms.cs: add method to read color temp from text resource.
+
 	* src/Ciff.cs: try to reduce the likelyhood of #375365.
 
 	* src/Cms.cs: pass colors by reference.  Fixes #336758.

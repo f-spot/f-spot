@@ -76,6 +76,7 @@ namespace Cms {
 			this.Y = Y;
 		}
 
+#if false
 		public static ColorCIExyY WhitePointFromTemperatureBroked (int temp)
 		{
 			ColorCIExyY wp;
@@ -97,6 +98,7 @@ namespace Cms {
 				return wp;
 			}			
 		}
+#endif
 
 		public static ColorCIExyY WhitePointFromTemperature (int temp)
 		{
