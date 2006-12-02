@@ -3,8 +3,14 @@
 //
 
 using System;
+using System.IO;
 using System.Collections;
+using System.Reflection;
 using System.Runtime.InteropServices;
+
+#if ENABLE_NUNIT
+using NUnit.Framework;
+#endif
 
 namespace Cms {
 	public enum Format : uint {
@@ -70,14 +76,70 @@ namespace Cms {
 			this.Y = Y;
 		}
 
+		public static ColorCIExyY WhitePointFromTemperatureBroked (int temp)
+		{
+			ColorCIExyY wp;
+			const int line_size = 0x1e;
+
+			using (Stream stream = Assembly.GetExecutingAssembly ().GetManifestResourceStream ("color_table.txt")) {
+				stream.Position = (temp - 1000) * line_size;
+				byte [] buffer = new byte [line_size];
+				stream.Read (buffer, 0, buffer.Length);
+				System.Console.WriteLine (System.Text.Encoding.UTF8.GetString (buffer));
+
+				int ptemp = int.Parse (System.Text.Encoding.UTF8.GetString (buffer, 0, 5));
+				if (ptemp != temp)
+					throw new System.Exception (String.Format ("{0} != {1}", ptemp, temp));
+
+				double x = double.Parse (System.Text.Encoding.UTF8.GetString (buffer, 6, 10));
+				double y = double.Parse (System.Text.Encoding.UTF8.GetString (buffer, 18, 10));
+				wp = new ColorCIExyY (x, y, 1.0);
+				return wp;
+			}			
+		}
+
+		public static ColorCIExyY WhitePointFromTemperature (int temp)
+		{
+			try {
+				return WhitePointFromTemperatureResource (temp, "color_table.txt");
+			} catch {
+				return WhitePointFromTemperatureCIE (temp);
+			}
+		}
+
 		[DllImport("liblcms-1.0.0.dll")]
 		static extern bool cmsWhitePointFromTemp(int TempSrc,  out ColorCIExyY white_point);
 
-		public static ColorCIExyY WhitePointFromTemperature (int temp)
+		public static ColorCIExyY WhitePointFromTemperatureCIE (int temp)
 		{
 			ColorCIExyY wp;
 			cmsWhitePointFromTemp (temp, out wp);
 			return wp;
+		}
+
+		public static ColorCIExyY WhitePointFromTemperatureResource (int temp, string name)
+		{
+			ColorCIExyY wp;
+			const int line_size = 0x1e;
+
+			using (Stream stream = Assembly.GetExecutingAssembly ().GetManifestResourceStream (name)) {
+				StreamReader reader = new StreamReader (stream, System.Text.Encoding.ASCII);
+				string line = null;
+				for (int i = 0; i <= temp - 1000; i++) {
+					line = reader.ReadLine ();
+				}
+				
+				//System.Console.WriteLine (line);
+				string [] subs = line.Split ('\t');
+				int ptemp = int.Parse (subs [0]);
+				if (ptemp != temp)
+					throw new System.Exception (String.Format ("{0} != {1}", ptemp, temp));
+				
+				double x = double.Parse (subs [1]);
+				double y = double.Parse (subs [2]);
+				wp = new ColorCIExyY (x, y, 1.0);
+				return wp;
+			}			
 		}
 
 		[DllImport("liblcms-1.0.0.dll")]
@@ -105,6 +167,34 @@ namespace Cms {
 		{
 			return String.Format ("(x={0}, y={1}, Y={2})", x, y, Y);
 		}
+		
+#if ENABLE_NUNIT
+		[TestFixture]
+		public class Tests {
+			[Test]
+			public void TestTempTable1000 ()
+			{
+				ColorCIExyY wp = WhitePointFromTemperature (1000);
+				Assert.AreEqual (0.652756059, wp.x);
+				Assert.AreEqual (0.344456906, wp.y);
+			}
+
+			[Test]
+			public void TestTempReader ()
+			{
+				for (int i = 1000; i <= 25000; i += 10000)
+					WhitePointFromTemperature (i);
+			}
+			
+			[Test]
+			public void TestTempTable10000 ()
+			{
+				ColorCIExyY wp = WhitePointFromTemperature (10000);
+				Assert.AreEqual (0.280635904, wp.x);
+				Assert.AreEqual (0.288290916, wp.y);
+			}
+		}
+#endif
 	}
 
 	public struct ColorCIEXYZ {
