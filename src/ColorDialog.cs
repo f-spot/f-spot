@@ -245,9 +245,8 @@ namespace FSpot {
 		
 		public void HandleDestroyed (object sender, EventArgs arg)
 		{
-			view.Transform = null;
-			view.PhotoChanged -= HandlePhotoChanged;
-			view.QueueDraw ();
+			
+			Cancel ();
 #if USE_THREAD
 			expose_timeout.Stop ();
 #endif
@@ -331,11 +330,11 @@ namespace FSpot {
 		
 		public void Cancel ()
 		{
+			this.Dialog.Destroy ();
 			view.Transform = null;
 			view.PhotoChanged -= HandlePhotoChanged;
 			view.QueueDraw ();
 			System.Console.WriteLine ("clearing window");
-			this.Dialog.Destroy ();
 			instance = null;
 		}
 		
