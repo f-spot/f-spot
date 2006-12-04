@@ -1,5 +1,4 @@
 # translation of es.po to
-# translation of es.po to Spanish
 # Traducción de f-spot al español
 # Spanish translation for f-spot
 # Copyright (C) 2004 f-spot's COPYRIGHT HOLDER
@@ -12,12 +11,12 @@
 # Jorge González <jorge.gonzalez.gonzalez@hispalinux.es>, 2004, 2005, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: pan2\n"
+"Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-02 16:30+0100\n"
-"PO-Revision-Date: 2006-12-02 16:39+0100\n"
-"Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
-"Language-Team: Spanish <traductores@es.gnome.org>\n"
+"POT-Creation-Date: 2006-12-04 13:21+0100\n"
+"PO-Revision-Date: 2006-12-04 13:24+0100\n"
+"Last-Translator: \n"
+"Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -407,7 +406,9 @@ msgstr "Autorizar"
 msgid ""
 "Return to this window after you have finished the authorization process on "
 "{0} and click the \"Complete Authorization\" button below"
-msgstr "Vuelva a esta ventana tras haber terminado el proceso de autorización en Flickr.com y pulse en el botón «Completar autorización» de abajo"
+msgstr ""
+"Vuelva a esta ventana tras haber terminado el proceso de autorización en "
+"{0} y pulse en el botón «Completar autorización» de abajo"
 
 #: ../src/FlickrExport.cs:70
 msgid "Complete Authorization"
@@ -470,7 +471,9 @@ msgstr "No se pudo iniciar la sesión."
 msgid ""
 "F-Spot was unable to log on to {0}.  Make sure you have given the "
 "authentication using {0} web browser interface."
-msgstr "F-Spot no pudo iniciar una sesión en {0}.  Compruebe que ha dado la autorización usando el interfaz web de {0}."
+msgstr ""
+"F-Spot no pudo iniciar una sesión en {0}.  Compruebe que ha dado la "
+"autorización usando el interfaz web de {0}."
 
 #: ../src/FlickrExport.cs:353 ../src/GalleryExport.cs:645
 #: ../src/PicasaWebExport.cs:515
@@ -748,7 +751,7 @@ msgid ""
 "<small><i>Enable this to allow interpolation on zoomed images. You should'nt "
 "disable this for viewing photos, but disabling the interpolation could be "
 "usefull in icon design.</i></small>"
-msgstr ""
+msgstr "<small><i>Activar esto para permitir interpolación en las imágenes ampliadas. No debería desactivar esto para ver fotos, pero desactivar la interpolación podría ser útil en el diseño de iconos.</i></small>"
 
 #: ../src/f-spot.glade.h:54
 msgid ""
@@ -764,7 +767,11 @@ msgid ""
 "option has no effect on photos, but setting this as check pattern or custom "
 "color could be usefull when viewing icons or other artworks with transparent "
 "parts.</i></small>"
-msgstr "<small><i>Puede elegir cómo mostrar partes transparentes en las imágenes. Esta opción no tiene efecto en las fotos, pero establecer esto como un patrón de cuadros o color personalizado puede ser útil al ver iconos u otro trabajos artísticos con partes transparentes.</i></small>"
+msgstr ""
+"<small><i>Puede elegir cómo mostrar partes transparentes en las imágenes. "
+"Esta opción no tiene efecto en las fotos, pero establecer esto como un "
+"patrón de cuadros o color personalizado puede ser útil al ver iconos u otro "
+"trabajos artísticos con partes transparentes.</i></small>"
 
 #: ../src/f-spot.glade.h:56
 msgid "<small>C_ontrast:</small>"
@@ -796,14 +803,11 @@ msgstr "<small>_Tinte:</small>"
 
 #: ../src/f-spot.glade.h:63
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
-msgstr ""
-"<span weight='bold' size='larger'>Error al conectar con Gallery</span>\n"
+msgstr "<span weight='bold' size='larger'>Error al conectar con Gallery</span>\n"
 
 #: ../src/f-spot.glade.h:65
-msgid ""
-"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
-msgstr ""
-"<span weight='bold' size='larger'>Su cuenta de Google está bloqueda</span>\n"
+msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgstr "<span weight='bold' size='larger'>Su cuenta de Google está bloqueda</span>\n"
 
 #: ../src/f-spot.glade.h:67
 msgid "Ad_just Color..."
@@ -1040,7 +1044,10 @@ msgid ""
 "F-Spot needs your authorization in order to upload photos to your {0} "
 "account. Press the \"Authorize\" button to open a web browser and give F-"
 "Spot the authorization. "
-msgstr "F-Spot necesita su autorización para poder subir fotografías a su cuenta de {0}. Pulse el botón «Autorizar» para abrir un navegador y dar la autorización a F-Spot."
+msgstr ""
+"F-Spot necesita su autorización para poder subir fotografías a su cuenta de "
+"{0}. Pulse el botón «Autorizar» para abrir un navegador y dar la "
+"autorización a F-Spot."
 
 #: ../src/f-spot.glade.h:127
 msgid "Fin_d"
@@ -1895,8 +1902,7 @@ msgid "A unique number"
 msgstr "Un único número"
 
 #: ../src/IptcFile.cs:157
-msgid ""
-"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgid "The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
 msgstr "La urgencia del sobre, entre 1 (muy urgente) y 9 (poco urgente)"
 
 #: ../src/IptcFile.cs:159
@@ -1904,8 +1910,7 @@ msgid "The year month and day (CCYYMMDD) the service sent the material"
 msgstr "El año, mes y día (CCAAMMDD) en la que el servicio envió el material"
 
 #: ../src/IptcFile.cs:161
-msgid ""
-"The hour minute and second the (HHMMSS+HHMM) the service sent the material"
+msgid "The hour minute and second the (HHMMSS+HHMM) the service sent the material"
 msgstr ""
 "La hora, minuto y segundo (HHMMSS+HHMM) en la que el servicio envió el "
 "material"
@@ -1928,8 +1933,7 @@ msgstr "Número de versión del método de relación abstracto (ARM)"
 
 #: ../src/IptcFile.cs:175
 msgid "Number identifying the IIM version this application record uses"
-msgstr ""
-"Número identificando la versión IIM que usa el registro de esta aplicación"
+msgstr "Número identificando la versión IIM que usa el registro de esta aplicación"
 
 #: ../src/IptcFile.cs:177
 msgid "Object type reference"
@@ -1964,8 +1968,7 @@ msgid "Full name of the country of the focus of the content"
 msgstr "Nombre completo del país donde está el foco del contenido"
 
 #: ../src/IptcFile.cs:206
-msgid ""
-"Two or three letter ISO3166 code of the country of the focus of the content"
+msgid "Two or three letter ISO3166 code of the country of the focus of the content"
 msgstr "Código ISO3166 de dos o tres letras del país del foco del contenido"
 
 #: ../src/IptcFile.cs:209
@@ -1993,8 +1996,7 @@ msgid "Headline of the content"
 msgstr "Cabecera del contenido"
 
 #: ../src/IptcFile.cs:225
-msgid ""
-"Instructions from the creator to the receiver not covered by other fields"
+msgid "Instructions from the creator to the receiver not covered by other fields"
 msgstr ""
 "Instrucciones del creador para el receptor que no están cubiertas por otros "
 "campos"
@@ -2082,8 +2084,7 @@ msgstr "Se recibió el error «{0}» al conectar con la cámara"
 #. * E.g. "Martin Willemoes Hansen"
 #: ../src/MainWindow.cs:1553
 msgid "translator-credits"
-msgstr ""
-"Jorge González <jorge.gonzalez.gonzalez@hispalinux.es>, 2004, 2005, 2006."
+msgstr "Jorge González <jorge.gonzalez.gonzalez@hispalinux.es>, 2004, 2005, 2006."
 
 #: ../src/MainWindow.cs:1560
 msgid "Copyright © 2003-2006 Novell Inc."
@@ -2129,8 +2130,8 @@ msgstr "fuera de {0}"
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " ({0} seleccionado)"
+msgstr[1] " ({0} seleccionados)"
 
 #: ../src/MainWindow.cs:2184
 msgid "_Ok"
@@ -2167,10 +2168,8 @@ msgstr[1] "¿Borrar permanentemente las {0} fotografías seleccionadas?"
 
 #: ../src/MainWindow.cs:2224
 msgid "This deletes all versions of the selected photo from your drive."
-msgid_plural ""
-"This deletes all versions of the selected photos from your drive."
-msgstr[0] ""
-"Esto borrará de su unidad todas las versiones de la fotografía seleccionada."
+msgid_plural "This deletes all versions of the selected photos from your drive."
+msgstr[0] "Esto borrará de su unidad todas las versiones de la fotografía seleccionada."
 msgstr[1] ""
 "Esto borrará de su unidad todas las versiones de las fotografías "
 "seleccionadas."
@@ -2214,8 +2213,7 @@ msgstr "¿Borrar las {0} etiquetas seleccionadas?"
 
 #: ../src/MainWindow.cs:2323
 msgid "If you delete a tag, all associations with photos are lost."
-msgstr ""
-"Si borra una etiqueta, todas las asociaciones con las fotos se perderán."
+msgstr "Si borra una etiqueta, todas las asociaciones con las fotos se perderán."
 
 #: ../src/MainWindow.cs:2324
 msgid "_Delete tag"
@@ -2490,8 +2488,7 @@ msgstr "No se pudo renombrar una versión"
 #: ../src/PhotoVersionCommands.cs:194
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
-msgstr ""
-"Se recibió la excepción «{0}». No es posible renombrar la versión a «{1}»"
+msgstr "Se recibió la excepción «{0}». No es posible renombrar la versión a «{1}»"
 
 #: ../src/PhotoVersionMenu.cs:66
 msgid "(No Edits)"
@@ -2917,20 +2914,3 @@ msgstr "Mostrar una exhibición de fotos desde F-Spot"
 msgid "F-Spot photos"
 msgstr "Fotos de F-Spot"
 
-#~ msgid "<b>Mail attachment summary</b>"
-#~ msgstr "<b>Resumen del adjunto de correo</b>"
-
-#~ msgid "<b>Photo size</b>"
-#~ msgstr "<b>Tamaño de la foto</b>"
-
-#~ msgid "_Clear Tag Search"
-#~ msgstr "_Vaciar búsqueda de etiquetas"
-
-#~ msgid "_Close"
-#~ msgstr "_Cerrar"
-
-#~ msgid "Logo"
-#~ msgstr "Logo"
-
-#~ msgid "No matching photos found "
-#~ msgstr "No se encontraron imágenes coincidentes con el criterio "
