@@ -1,3 +1,10 @@
+2006-12-05  Larry Ewing  <lewing@novell.com>
+
+	* src/FullScreenView.cs: add a hide button to the toolbar.
+	
+	* src/Widgets/ScrolledView.cs: add a force option to the
+	HideControls method.
+
 2006-12-04  Larry Ewing  <lewing@novell.com>
 
 	* libfspot/f-screen-utils.c: make the whitebalance adjustment the

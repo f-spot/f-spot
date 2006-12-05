@@ -25,10 +25,15 @@ namespace FSpot.Widgets {
 
 		public bool HideControls ()
 		{
+			return HideControls (false);
+		}
+
+		public bool HideControls (bool force)
+		{
 			int x, y;
 			Gdk.ModifierType type;
 
-			if (IsRealized) {
+			if (!force && IsRealized) {
 				ebox.GdkWindow.GetPointer (out x, out y, out type);
 				if (x < ebox.Allocation.Width && y < ebox.Allocation.Height) {
 					hide.Start ();

@@ -78,6 +78,7 @@ namespace FSpot {
 		const string ExitFullScreen = "ExitFullScreen";
 		const string NextPicture = "NextPicture";
 		const string PreviousPicture = "PreviousPicture";
+		const string HideToolbar = "HideToolbar";
 
 		public FullScreenView (IBrowsableCollection collection) : base ("Full Screen Mode")
 		{
@@ -86,9 +87,10 @@ namespace FSpot {
 				actions = new ActionGroup ("joe");
 				
 				actions.Add (new ActionEntry [] {
+					new ActionEntry (HideToolbar, Stock.Close, Catalog.GetString ("Hide"), null, Catalog.GetString ("Hide Toolbar"), new System.EventHandler (HideToolbarAction)),
 					new ActionEntry (ExitFullScreen, Stock.Quit, Catalog.GetString ("Exit fullscreen"), null, null, new System.EventHandler (ExitAction)),
 					new ActionEntry (NextPicture, Stock.GoForward, Catalog.GetString ("Next"), null, Catalog.GetString ("Next Picture"), new System.EventHandler (NextAction)),
-					new ActionEntry (PreviousPicture, Stock.GoBack, Catalog.GetString ("Back"), null, Catalog.GetString ("Previous Picture"), new System.EventHandler (PreviousAction))
+					new ActionEntry (PreviousPicture, Stock.GoBack, Catalog.GetString ("Back"), null, Catalog.GetString ("Previous Picture"), new System.EventHandler (PreviousAction)),
 				});
 
 				new FadeIn (this, 3);
@@ -108,6 +110,7 @@ namespace FSpot {
 
 				scroll.ScrolledWindow.Add (view);
 				HBox hhbox = new HBox ();
+				hhbox.PackEnd (GetButton ("HideToolbar"), false, true, 0);
 				Gtk.Button close = ExitButton ();
 				hhbox.PackStart (close);
 				hhbox.PackStart (GetButton ("PreviousPicture"));
@@ -171,6 +174,7 @@ namespace FSpot {
 			Action action = actions [name];
 			Widget w = action.CreateIcon (IconSize.Button);
 			Button button = new Button ();
+			button.Relief = ReliefStyle.None;
 			button.Add (w);
 			w.Show ();
 
@@ -191,6 +195,11 @@ namespace FSpot {
 		private void PreviousAction (object sender, System.EventArgs args)
 		{
 			view.Item.MovePrevious ();
+		}
+
+	        private void HideToolbarAction (object sender, System.EventArgs args)
+		{
+			scroll.HideControls (true);
 		}
 
 		[GLib.ConnectBefore]
