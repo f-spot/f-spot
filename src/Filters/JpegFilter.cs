@@ -9,6 +9,10 @@
  */
 using System;
 
+#if ENABLE_NUNIT
+using NUnit.Framework;
+#endif
+
 namespace FSpot.Filters {
 	public class JpegFilter : IFilter {
 		private uint quality = 95;
@@ -26,13 +30,18 @@ namespace FSpot.Filters {
 		{
 		}
 			
-		public bool Convert (string source, string dest)
+		public bool Convert (FilterRequest req)
 		{
 			// FIXME this should copy metadata from the original
 			// even when the source is not a jpeg
+			string source = req.Current.LocalPath;
+
 			ImageFile img = ImageFile.Create (source);
 			if (img is JpegFile)
 				return false;
+
+			req.Current = req.TempUri ("jpg");
+			string dest = req.Current.LocalPath;
 
 			Exif.ExifData exif_data;
 			try {
@@ -45,5 +54,98 @@ namespace FSpot.Filters {
 
 			return true;
 		}
+#if ENABLE_NUNIT
+		[TestFixture]
+		public class Tests 
+		{
+			string [] Names = {
+				"fspot-jpegfilter-test.png",
+				"fspot-jpegfilter-test.jpeg",
+				"fspot-jpegfilter-test.jpg",
+				"fspot-jpegfilter-test.JPG",
+			};
+
+			public string CreateFile (string name, int size)
+			{
+				using (Gdk.Pixbuf test = new Gdk.Pixbuf (null, "f-spot-32.png")) {
+					using (Gdk.Pixbuf tmp = test.ScaleSimple (size, size, Gdk.InterpType.Bilinear)) {
+						string path = System.IO.Path.GetTempPath ();
+						path = System.IO.Path.Combine (path, name);
+						Console.WriteLine (path);
+						string extension = System.IO.Path.GetExtension (path);
+						string type = "null";
+						switch (extension) {
+						case ".jpg":
+						case ".JPG":
+						case ".jpeg":
+							type = "jpeg";
+							break;
+						case ".png":
+							type = "png";
+							break;
+						}
+						tmp.Save (path, type);
+						return path;
+					}
+				}
+			}
+			
+			[Test]
+			public void ResultIsJpeg ()
+			{
+				foreach (string name in Names)
+					ResultIsJpeg (name);
+			}
+
+			public void ResultIsJpeg (string name)
+			{
+				string path = CreateFile (name, 48);
+				IFilter filter = new JpegFilter ();
+				FilterRequest req = new FilterRequest (path);
+				filter.Convert (req);
+				ImageFile img = new JpegFile (req.Current) ;
+				Assert.IsTrue (img != null, "result is null");
+				Assert.IsTrue (img is JpegFile, "result is not a jpg");
+				System.IO.File.Delete (path);
+			}
+
+			[Test]
+			public void ExtensionIsJPG ()
+			{
+				foreach (string name in Names)
+					ExtensionIsJPG (name);
+			}
+
+			public void ExtensionIsJPG (string name)
+			{
+				string path = CreateFile (name, 48);
+				IFilter filter = new JpegFilter ();
+				FilterRequest req = new FilterRequest (path);
+				filter.Convert (req);
+				string extension = System.IO.Path.GetExtension (req.Current.LocalPath).ToLower ();
+				Assert.IsTrue (extension == ".jpg" || extension == ".jpeg", String.Format ("{0} is not a valid extension for Jpeg", extension));
+				System.IO.File.Delete (path);
+			}
+
+			[Test]
+			public void OriginalUntouched ()
+			{
+				foreach (string name in Names)
+					OriginalUntouched (name);
+			}
+
+			public void OriginalUntouched (string name)
+			{
+				string path = CreateFile (name, 48);
+				IFilter filter = new JpegFilter ();
+				FilterRequest req = new FilterRequest (path);
+				long original_size = new System.IO.FileInfo (path).Length;
+				filter.Convert (req);
+				long final_size = new System.IO.FileInfo (req.Source.LocalPath).Length;
+				Assert.IsTrue (original_size == final_size, "original is modified !!!");
+				System.IO.File.Delete (path);
+			}
+		}
+#endif
 	}
 }

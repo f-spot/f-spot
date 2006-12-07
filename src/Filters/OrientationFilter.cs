@@ -10,8 +10,12 @@
  */
 namespace FSpot.Filters {
 	public class OrientationFilter : IFilter {
-		public bool Convert (string source, string dest)
+		public bool Convert (FilterRequest req)
 		{
+			string source = req.Current.LocalPath;
+			System.Uri dest_uri = req.TempUri (System.IO.Path.GetExtension (source));
+			string dest = dest_uri.LocalPath;
+
 			ImageFile img = ImageFile.Create (source);
 			bool changed = false;
 			
@@ -50,6 +54,9 @@ namespace FSpot.Filters {
 
 				jimg.SaveMetaData (dest);
 			}
+
+			if (changed)
+				req.Current = dest_uri;
 
 			return changed;
 		}

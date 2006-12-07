@@ -255,9 +255,10 @@ namespace FSpot {
 			FilterSet filters = new FilterSet ();
 
 			if (size != 0)
-				filters.Add (new ResizeFilter ((uint)size));
+				filters.Add (new ResizeFilter ((uint) size));
 			else if (rotate)
 				filters.Add (new OrientationFilter ());
+			filters.Add (new UniqueNameFilter (tmp_mail_dir));
 
 
 			foreach (Photo photo in selection.Items) {
@@ -275,12 +276,11 @@ namespace FSpot {
 //					orig_size = file_info.Length;
 
 					// Prepare a tmp_mail file name
-					string orig = photo.DefaultVersionUri.LocalPath;
-					string final = FileImportBackend.UniqueName (tmp_mail_dir,
-							System.IO.Path.GetFileName(photo.GetVersionPath(photo.DefaultVersionId))) + ".jpg";
+					FilterRequest request = new FilterRequest (photo.DefaultVersionUri);
 
-					if (!filters.Convert (orig, final))
-						final = orig;
+					filters.Convert (request);
+					string final = System.IO.Path.Combine (tmp_mail_dir, System.IO.Path.GetFileName(request.Current.LocalPath)); 
+					System.IO.File.Copy (request.Current.LocalPath, final);
 
 					url.Append ("&attach=" + final);
 					

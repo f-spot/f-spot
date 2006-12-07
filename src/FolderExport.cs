@@ -210,6 +210,7 @@ namespace FSpot {
 				Preferences.Set (Preferences.EXPORT_FOLDER_METHOD, static_radio.Active ? "static" : original_radio.Active ? "original" : "folder" );
 
 			} catch (System.Exception e) {
+Console.WriteLine (e);
 				progress_dialog.Message = e.ToString ();
 				progress_dialog.ProgressText = Catalog.GetString ("Error Transferring");
 			} finally {
@@ -394,68 +395,83 @@ namespace FSpot {
 
 			for (int i = 0; i < collection.Count; i++)
 			{
-				ProcessImage (i);
+				Filters.FilterSet filter_set = new Filters.FilterSet ();
+				if (scale)
+					filter_set.Add (new Filters.ResizeFilter ((uint) size));
+				else if (rotate)
+					filter_set.Add (new Filters.OrientationFilter ());
+				filter_set.Add (new Filters.UniqueNameFilter (gallery_path));
+
+				ProcessImage (i, filter_set);
 			}
 		}
-
 		protected virtual string ImageName (int image_num)
 		{
 			return System.IO.Path.GetFileName(FileImportBackend.UniqueName(gallery_path, System.IO.Path.GetFileName (collection [image_num].DefaultVersionUri.LocalPath))); 
 		}
 
-		public void ProcessImage (int image_num)
+		public void ProcessImage (int image_num, Filters.FilterSet filter_set)
 		{
 			IBrowsableItem photo = collection [image_num];
 			string photo_path = photo.DefaultVersionUri.LocalPath;
-			string path;
+//			string path;
 			ScaleRequest req;
 
 			req = requests [0];
 			
 			MakeDir (SubdirPath (req.Name));
-			path = SubdirPath (req.Name, ImageName (image_num));
+//			path = SubdirPath (req.Name, ImageName (image_num));
 			
-			if (scale) {
-				PixbufUtils.Resize (photo_path, path, size, true); 	
-			} else if (rotate && (new Filters.OrientationFilter ().Convert (photo_path, path))) {
-				// do nothing, all is well the filter did the copying
-			} else {
-				File.Copy (photo_path, path, true);
-			}
+//			if (scale) {
+//				//FIXME we have filters for that !
+//				PixbufUtils.Resize (photo_path, path, size, true); 	
+//			} else if (rotate && (new Filters.OrientationFilter ().Convert (photo_path, path))) {
+//				// do nothing, all is well the filter did the copying
+//			} else {
+//				File.Copy (photo_path, path, true);
+//			}
 
-			Gdk.Pixbuf img = null;
-			Gdk.Pixbuf scaled = null;
-
-			Exif.ExifData data = new Exif.ExifData (photo_path);
-			if (data != null && data.Handle.Handle == System.IntPtr.Zero)
-				data = null;
-
-			for (int i = 1; i < requests.Length; i++) {
-				req = requests [i];
-				if (scale && req.AvoidScale (size))
-					continue;
-
-				if (img == null) 
-					scaled = PixbufUtils.LoadAtMaxSize (photo_path, req.Width, req.Height);
-				else
-					scaled = PixbufUtils.ScaleToMaxSize (img, req.Width, req.Height, false);
+			using (Filters.FilterRequest request = new Filters.FilterRequest (photo.DefaultVersionUri)) {
+				filter_set.Convert (request);
+				request.Preserve (request.Current);
+				//			File.Copy (request.Current.LocalPath, System.IO.Path.Combine(SubdirPath (req.Name), System.IO.Path.GetFileName (request.Current.LocalPath)), false);
 				
-				MakeDir (SubdirPath (req.Name));
-				path = SubdirPath (req.Name, ImageName (image_num));
-
-				if (req.CopyExif && data != null) {
-					PixbufUtils.SaveJpeg (scaled, path, 90, data);
-				} else 
-					scaled.Savev (path, "jpeg", pixbuf_keys, pixbuf_values);
+				Gdk.Pixbuf img = null;
+				Gdk.Pixbuf scaled = null;
 				
-				if (img != null)
-					img.Dispose ();
+				Exif.ExifData data = new Exif.ExifData (photo_path);
+				if (data != null && data.Handle.Handle == System.IntPtr.Zero)
+					data = null;
+				
+				for (int i = 1; i < requests.Length; i++) {
+					string path;
+					
+					req = requests [i];
+					if (scale && req.AvoidScale (size))
+						continue;
+					
+					if (img == null) 
+						scaled = PixbufUtils.LoadAtMaxSize (photo_path, req.Width, req.Height);
+					else
+						scaled = PixbufUtils.ScaleToMaxSize (img, req.Width, req.Height, false);
+					
+					MakeDir (SubdirPath (req.Name));
+					path = SubdirPath (req.Name, ImageName (image_num));
+					
+					if (req.CopyExif && data != null) {
+						PixbufUtils.SaveJpeg (scaled, path, 90, data);
+					} else 
+						scaled.Savev (path, "jpeg", pixbuf_keys, pixbuf_values);
+					
+					if (img != null)
+						img.Dispose ();
+				}
+				
+				if (scaled != null)
+					scaled.Dispose ();
 			}
-
-			if (scaled != null)
-				scaled.Dispose ();
 		}
-
+		
 		protected string MakeDir (string path)
 		{
 			try {

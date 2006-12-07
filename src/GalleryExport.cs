@@ -677,7 +677,7 @@ namespace FSpot {
 				
 				FilterSet filters = new FilterSet ();
 				if (scale)
-					filters.Add (new ResizeFilter ((uint)size));
+					filters.Add (new ResizeFilter ((uint) size));
 				else if (rotate)
 					filters.Add (new OrientationFilter ());
 				
@@ -694,23 +694,28 @@ namespace FSpot {
 					progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"), photo_index, items.Length);
 					
 					
-					string orig = item.DefaultVersionUri.LocalPath;
+					Filters.FilterRequest req = new Filters.FilterRequest (item.DefaultVersionUri);
 
-					// FIXME the filters need to be able to handle entension
-					// changes directly themselves.
-					string final = orig;
-					if (scale)
-						final = ImageFile.TempPath (orig, "jpg");
-					else if (rotate)
-						final = ImageFile.TempPath (orig);
-					
-					if (filters.Convert (orig, final))
-						album.Add (item, final);
-					else
-						album.Add (item, orig);
-					
-					if (final != orig)
-						System.IO.File.Delete (final);
+					filters.Convert (req);
+					album.Add (item, req.Current.LocalPath);
+
+//					string orig = item.DefaultVersionUri.LocalPath;
+//
+//					// FIXME the filters need to be able to handle entension
+//					// changes directly themselves.
+//					string final = orig;
+//					if (scale)
+//						final = ImageFile.TempPath (orig, "jpg");
+//					else if (rotate)
+//						final = ImageFile.TempPath (orig);
+//					
+//					if (filters.Convert (orig, final))
+//						album.Add (item, final);
+//					else
+//						album.Add (item, orig);
+//					
+//					if (final != orig)
+//						System.IO.File.Delete (final);
 				}
 
 				progress_dialog.Message = Catalog.GetString ("Done Sending Photos");

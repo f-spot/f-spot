@@ -568,25 +568,22 @@ namespace FSpot {
 										 item.Name, photo_index+1, items.Length);
 					photo_index++;
 					
-					string orig = item.DefaultVersionUri.LocalPath;
-					string final = ImageFile.TempPath(orig, "jpg");
+					FilterRequest request = new FilterRequest (item.DefaultVersionUri);
 
-					if (!filters.Convert (orig, final))
-						final = orig;
+					filters.Convert (request);
 
-					file_info = new FileInfo (final);
+					file_info = new FileInfo (request.Current.LocalPath);
 
 					if (approx_size == 0) //first image
 						approx_size = file_info.Length * items.Length;
 					else
 						approx_size = sent_bytes * items.Length / (photo_index - 1);
 
-					album.UploadPicture (final, item.Description);
+					album.UploadPicture (request.Current.LocalPath, item.Description);
 
 					sent_bytes += file_info.Length;
 
-					if (final != orig)
-						File.Delete (final);
+					request.Dispose ();
 				}
 				
 				progress_dialog.Message = Catalog.GetString ("Done Sending Photos");

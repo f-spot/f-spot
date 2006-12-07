@@ -11,6 +11,6 @@
 namespace FSpot.Filters {
 	public interface IFilter
 	{
-		bool Convert (string source, string dest);
+		bool Convert (FilterRequest request);
 	}
 }

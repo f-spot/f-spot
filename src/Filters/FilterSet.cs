@@ -1,10 +1,13 @@
 /* 
- *  Authors: 
- *    Larry Ewing <lewing@novell.com>
- *    Stephane Delcroix <stephane@delcroix.org>
+ * Filters/FilterSet.cs
+ *
+ * Authors: 
+ *   Larry Ewing <lewing@novell.com>
+ *   Stephane Delcroix <stephane@delcroix.org>
  * 
- *  I don't like per file copyright notices.
+ * I don't like per file copyright notices.
  */
+
 using System.Collections;
 
 namespace FSpot.Filters {
@@ -20,11 +23,11 @@ namespace FSpot.Filters {
 			list.Add (filter);
 		}
 		
-		public bool Convert (string source, string dest)
+		public bool Convert (FilterRequest req)
 		{
 			bool changed = false;
 			foreach (IFilter filter in list) {
-				changed |= filter.Convert (changed ? dest : source, dest);
+				changed |= filter.Convert (req);
 			}
 			return changed;
 		}

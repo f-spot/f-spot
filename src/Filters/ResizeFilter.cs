@@ -37,14 +37,18 @@ namespace FSpot.Filters {
 			set { size = value; }
 		}
 
-		public bool Convert (string source, string dest)
+		public bool Convert (FilterRequest req)
 		{
+			string source = req.Current.LocalPath;
+			System.Uri dest_uri = req.TempUri (System.IO.Path.GetExtension (source));
+			string dest = dest_uri.LocalPath;
+
 			ImageFile img = ImageFile.Create (source);
 			using (Pixbuf pixbuf = img.Load ((int)size, (int)size)) {
 
 				if (pixbuf.Width < size && pixbuf.Height < size)
 					return false;
-				
+
 				string destination_extension = Path.GetExtension (dest);
 
 				if (Path.GetExtension (source).ToLower () == Path.GetExtension (dest).ToLower ()) {
@@ -63,6 +67,8 @@ namespace FSpot.Filters {
 				} else 
 					throw new NotImplementedException (String.Format (Catalog.GetString ("No way to save files of type \"{0}\""), destination_extension));
 			}
+
+			req.Current = dest_uri;
 			return true;
 		}
 	}

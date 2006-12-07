@@ -62,6 +62,7 @@ namespace FSpot {
 		[DllImport ("libc")] 
 		extern static int system (string program);
 
+		//FIXME: rewrite this as a Filter
 	        public static Gnome.Vfs.Uri UniqueName (Gnome.Vfs.Uri path, string shortname)
 	        {
 	                int i = 1;
@@ -85,34 +86,28 @@ namespace FSpot {
 				Gnome.Vfs.Result result = Gnome.Vfs.Result.Ok;
 
 				foreach (IBrowsableItem photo in selection.Items) {
-					Gnome.Vfs.Uri source;
-					Gnome.Vfs.Uri target = dest.Clone ();
 
-					//FIXME workaround to have JpegFile loads the image
-					string path = ImageFile.TempPath (photo.DefaultVersionUri.LocalPath);
-					
-					source = new Gnome.Vfs.Uri (photo.DefaultVersionUri.ToString ());
-					target = UniqueName (target, source.ExtractShortName ());
- 					
-					// if we are rotating the image and the filter changed something
-					// use the new path as the source
-					if (rotate && new Filters.OrientationFilter ().Convert (photo.DefaultVersionUri.LocalPath, path))
-						source = new Gnome.Vfs.Uri (path);
-
-					Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
-					
-					progress_dialog.Message = System.String.Format (Catalog.GetString ("Transferring picture \"{0}\" To CD"), photo.Name);
-					progress_dialog.Fraction = photo_index / (double) selection.Count;
-					progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"), 
-											     photo_index, selection.Count);
-					result = Gnome.Vfs.Xfer.XferUri (source, target, 
-									 Gnome.Vfs.XferOptions.Default, 
-									 Gnome.Vfs.XferErrorMode.Abort, 
-									 Gnome.Vfs.XferOverwriteMode.Replace, 
-									 cb);
-
-					// cleanup any temp files
-					File.Delete (path);
+ 				//FIXME need to implement the uniquename as a filter	
+					using (Filters.FilterRequest request = new Filters.FilterRequest (photo.DefaultVersionUri)) {
+						if (rotate)
+							new Filters.OrientationFilter ().Convert (request);
+						
+						Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (request.Current.ToString ());
+						Gnome.Vfs.Uri target = dest.Clone ();
+						target = UniqueName (target, source.ExtractShortName ());
+						
+						Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
+						
+						progress_dialog.Message = System.String.Format (Catalog.GetString ("Transferring picture \"{0}\" To CD"), photo.Name);
+						progress_dialog.Fraction = photo_index / (double) selection.Count;
+						progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"), 
+												     photo_index, selection.Count);
+						result = Gnome.Vfs.Xfer.XferUri (source, target, 
+										 Gnome.Vfs.XferOptions.Default, 
+										 Gnome.Vfs.XferErrorMode.Abort, 
+										 Gnome.Vfs.XferOverwriteMode.Replace, 
+										 cb);
+					}
 					photo_index++;
 				}
 
