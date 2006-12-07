@@ -1,6 +1,12 @@
 using System;
 
 namespace FSpot {
+	public enum ProgressType {
+		None,
+		Async,
+		Full
+	}
+
 	public class PhotoImageView : ImageView {
 		public delegate void PhotoChangedHandler (PhotoImageView view);
 		public event PhotoChangedHandler PhotoChanged;
@@ -8,6 +14,8 @@ namespace FSpot {
 		protected BrowsablePointer item;
 		protected FSpot.Loupe loupe;
 		protected FSpot.Loupe sharpener;
+		ProgressType load_async = ProgressType.Full;
+		bool progressive_display;
 
 		public PhotoImageView (IBrowsableCollection query)
 		{
@@ -79,12 +87,18 @@ namespace FSpot {
 		// Display.
 		private void HandlePixbufAreaUpdated (object sender, AreaUpdatedArgs args)
 		{
+			if (!ShowProgress)
+				return;
+
 			Gdk.Rectangle area = this.ImageCoordsToWindow (args.Area);
 			this.QueueDrawArea (area.X, area.Y, area.Width, area.Height);
 		}
 		
 		private void HandlePixbufPrepared (object sender, AreaPreparedArgs args)
 		{
+			if (!ShowProgress)
+				return;
+
 			Gdk.Pixbuf prev = this.Pixbuf;
 			Gdk.Pixbuf next = loader.Pixbuf;
 
@@ -131,16 +145,24 @@ namespace FSpot {
 			} else {
 				this.Pixbuf = loader.Pixbuf;
 
-				if (!loader.Prepared) {
+				if (!loader.Prepared || !ShowProgress) {
 					UpdateMinZoom ();
 					this.ZoomFit ();
 				}
 			}
 
+			progressive_display = true;
+
 			if (prev != this.Pixbuf && prev != null)
 				prev.Dispose ();
 		}
 		
+		private bool ShowProgress {
+			get {
+				return !(load_async != ProgressType.Full || !progressive_display);
+			}
+		}
+
 		private bool fit = true;
 		public bool Fit {
 			get {
@@ -199,7 +221,6 @@ namespace FSpot {
 				ZoomFit ();
 		}
 
-		bool load_async = true;
 		FSpot.AsyncPixbufLoader loader;
 
 		private void LoadErrorImage (System.Exception e)
@@ -230,7 +251,14 @@ namespace FSpot {
 			    (this.Item.Current.DefaultVersionUri == args.PreviousItem.DefaultVersionUri))
 				return;
 
-			if (load_async) {
+			if (args != null &&
+			    args.PreviousItem != null && 
+			    Item.IsValid && 
+			    Item.Current.DefaultVersionUri == args.PreviousItem.DefaultVersionUri &&
+			    load_async == ProgressType.Full)
+				progressive_display = false;
+
+			if (load_async != ProgressType.None) {
 				Gdk.Pixbuf old = this.Pixbuf;
 				try {
 					if (Item.IsValid) {

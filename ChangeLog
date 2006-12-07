@@ -1,3 +1,9 @@
+2006-12-06  Larry Ewing  <lewing@novell.com>
+
+	* src/PhotoImageView.cs: test for the case we are reloading the
+	same image and turn off most of the progressive display in that
+	case.  Partial fix for #382839.
+
 2006-12-05  Larry Ewing  <lewing@novell.com>
 
 	* src/FullScreenView.cs: add a hide button to the toolbar.
