@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Threading;
 using Mono.Unix;
+using FSpot.Filters;
 
 namespace FSpot {
 	public class FlickrExport : GladeDialog {
@@ -261,7 +262,11 @@ namespace FSpot {
 						selection.Count);
 					
 					info = new FileInfo (photo.DefaultVersionUri.LocalPath);
-					string id = fr.Upload (photo, scale, size, copy_metadata, is_public, is_family, is_friend);
+					FilterSet stack = new Filters.FilterSet ();
+					if (scale)
+						stack.Add (new ResizeFilter ((uint)size));
+					
+					string id = fr.Upload (photo, stack, is_public, is_family, is_friend);
 					ids.Add (id);
 					progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
 					progress_dialog.Fraction = 1.0;

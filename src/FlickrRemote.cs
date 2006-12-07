@@ -15,6 +15,7 @@ using System.Text;
 using System.Collections;
 using FlickrNet;
 using FSpot;
+using FSpot.Filters;
 
 public class FlickrRemote {
 	public static Licenses    licenses;
@@ -121,54 +122,50 @@ public class FlickrRemote {
 		return auth;
 	}
 	
-	public string Upload (IBrowsableItem photo, bool scale, int size, bool copy_metadata, bool is_public, bool is_family, bool is_friend)
+	public string Upload (IBrowsableItem photo, IFilter filter, bool is_public, bool is_family, bool is_friend)
 	{
 		if (token == null) {            
 			throw new Exception ("Must Login First");
 		}
 		// FIXME flickr needs rotation
+		string  error_verbose;
 		
-		string path = photo.DefaultVersionUri.LocalPath; 
-		FileInfo file = new FileInfo (path);
-		string   error_verbose;
-		
-		try {            
-			string tags = null;
+		using (FilterRequest request = new FilterRequest (photo.DefaultVersionUri)) {
 			
-			if (scale) {
-				path = PixbufUtils.Resize (path, size, copy_metadata);
-				file = new FileInfo (path);
-			}
-			
-			if (ExportTags && photo.Tags != null) {
-				StringBuilder taglist = new StringBuilder ();
-				Tag [] t = photo.Tags;
+			try {            
+				string tags = null;
 				
-				for (int i = 0; i < t.Length; i++) {
-					if (i > 0)
-						taglist.Append (",");
+
+				filter.Convert (request);
+				string path = request.Current.LocalPath;
+				
+				if (ExportTags && photo.Tags != null) {
+					StringBuilder taglist = new StringBuilder ();
+					Tag [] t = photo.Tags;
 					
-					taglist.Append (String.Format ("\"{0}\"", t[i].Name));
+					for (int i = 0; i < t.Length; i++) {
+						if (i > 0)
+							taglist.Append (",");
+						
+						taglist.Append (String.Format ("\"{0}\"", t[i].Name));
+					}
+					
+					tags = taglist.ToString ();
 				}
-				
-				tags = taglist.ToString ();
+				try {
+					string photoid = 
+						flickr.UploadPicture (path, photo.Name, photo.Description, tags, is_public, is_family, is_friend);
+					return photoid;
+				} catch (FlickrNet.FlickrException ex) {
+					Console.WriteLine ("Problems uploading picture: " + ex.ToString());
+					error_verbose = ex.ToString();
+				}
+			} catch (Exception e) {
+				// FIXME we need to distinguish between file IO errors and xml errors here
+				throw new System.Exception ("Error while uploading", e);
 			}
-			try {
-				string photoid = 
-					flickr.UploadPicture (path, photo.Name, photo.Description, tags, is_public, is_family, is_friend);
-				return photoid;
-			} catch (FlickrNet.FlickrException ex) {
-				Console.WriteLine ("Problems uploading picture: " + ex.ToString());
-				error_verbose = ex.ToString();
-			}
-		} catch (Exception e) {
-			// FIXME we need to distinguish between file IO errors and xml errors here
-			throw new System.Exception ("Error while uploading", e);
-		} finally {
-			if (file != null && scale)
-				file.Delete ();
 		}
-		
+			
 		throw new System.Exception (error_verbose);
 	}
 	
