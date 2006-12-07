@@ -3,6 +3,7 @@
  *
  * Author(s)
  *   Stephane Delcroix <stephane@delcroix.org>
+ *   Larry Ewing <lewing@novell.com>
  *
  * This is free software. See COPYING for details
  *
@@ -31,6 +32,11 @@ namespace FSpot.Filters {
 		{
 		}
 
+		~FilterRequest ()
+		{
+			Close ();
+		}
+
 		public Uri Source {
 			get { return source; }
 		}
@@ -44,13 +50,24 @@ namespace FSpot.Filters {
 			}
 		}
 
-		public void Dispose ()
+		public virtual void Close ()
 		{
 			foreach (Uri uri in temp_uris) {
-				System.IO.File.Delete (uri.LocalPath);
+				try {
+					System.IO.File.Delete (uri.LocalPath);
+				} catch (System.IO.IOException e) {
+					System.Console.WriteLine (e);
+				}
 			}
+			temp_uris.Clear ();
 		}
 
+		public void Dispose ()
+		{
+			Close ();
+			System.GC.SuppressFinalize (this);
+		}
+		
 		public Uri TempUri ()
 		{
 			return TempUri (null);
