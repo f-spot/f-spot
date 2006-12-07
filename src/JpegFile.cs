@@ -201,7 +201,9 @@ namespace FSpot {
 
 			// Console.WriteLine ("starting save");
 			// First save the imagedata
-			byte [] image_data = PixbufUtils.Save (pixbuf, "jpeg", null, null);
+			int quality = Header.GuessQuality ();
+			quality = quality == 0 ? 75 : quality;
+			byte [] image_data = PixbufUtils.Save (pixbuf, "jpeg", new string [] {"quality" }, new string [] { quality.ToString () });
 			System.IO.MemoryStream buffer = new System.IO.MemoryStream ();
 			buffer.Write (image_data, 0, image_data.Length);
 			buffer.Position = 0;
