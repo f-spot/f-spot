@@ -2,14 +2,14 @@
 # Copyright (C) 2004-2006 Jordi Mas i Hernàndez, jmas@softcatala.org
 # This file is distributed under the same license as the PACKAGE package.
 # 
-# Correccions i suggeriments: Francesc Dorca, David Gil, Anna Grau
+# Correccions i suggeriments: Francesc Dorca, David Gil, Anna Grau, Josep Puigdemont
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: F-Spot\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-12-04 18:22+0100\n"
-"PO-Revision-Date: 2006-12-04 18:35+0200\n"
+"PO-Revision-Date: 2006-12-07 13:31+0200\n"
 "Last-Translator: Jordi Mas <jmas@softcatala.org>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -335,8 +335,8 @@ msgid ""
 "selecting a different tag in the F-Spot preference\n"
 "dialog."
 msgstr ""
-"L'equiqueta que el F-Spot està cercant no existeix. Proveu\n"
-"de seleccionar una etiqueta diferent al diàleg de preferènciesde l'F-Spot."
+"L'equiqueta que l'F-Spot està cercant no existeix. Proveu\n"
+"de seleccionar una etiqueta diferent al diàleg de preferències de l'F-Spot."
 
 #: ../src/ExceptionDialog.cs:24
 msgid "F-Spot Encountered a Fatal Error"
@@ -1197,11 +1197,11 @@ msgstr "Obre una _carpeta..."
 
 #: ../src/f-spot.glade.h:160
 msgid "Open _album in browser when done uploading"
-msgstr "Obre l'àlbum en el n_avegador quan finalitzis la pujada"
+msgstr "Obre l'àlbum en el n_avegador quan es finalitzi la pujada"
 
 #: ../src/f-spot.glade.h:161
 msgid "Open _destination when done exporting"
-msgstr "Obre la _destinació quan finalitzis l'exportació"
+msgstr "Obre la _destinació quan es finalitzi l'exportació"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
@@ -2120,7 +2120,7 @@ msgid ""
 "that the camera is connected and has power"
 msgstr ""
 "L'F-Spot no ha pogut trobar cap càmera connectada a aquest sistema. "
-"Comproveu que la càmera està connectada i encesa"
+"Comproveu que la càmera estigui connectada i encesa"
 
 #: ../src/MainWindow.cs:1380
 msgid "Error connecting to camera"
@@ -2590,7 +2590,7 @@ msgstr "Treu els ulls vermells de la zona seleccionada"
 
 #: ../src/PhotoView.cs:155
 msgid "Select an area to crop"
-msgstr "Seleccioneu l'àrea que vulgueu escapaçar"
+msgstr "Seleccioneu l'àrea que vulgueu escapçar"
 
 #: ../src/PhotoView.cs:156
 msgid "Select an area to remove redeye"
@@ -2663,8 +2663,8 @@ msgstr "S'està girant la fotografia «{0}»"
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
-msgstr[0] "No es pot girar la fotografia"
-msgstr[1] "No es poden girar les {0} fotografies"
+msgstr[0] "No s'ha pogut girar la fotografia"
+msgstr[1] "No s'han pogut girar les {0} fotografies"
 
 #: ../src/RotateCommand.cs:238
 #, csharp-format
@@ -2882,7 +2882,7 @@ msgstr "Preferides"
 
 #: ../src/TagStore.cs:391
 msgid "Hidden"
-msgstr "Privades"
+msgstr "Ocultes"
 
 #: ../src/TagStore.cs:399
 msgid "People"
