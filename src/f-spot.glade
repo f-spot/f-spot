@@ -9057,6 +9057,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleZoomIn" last_modification_time="Sat, 21 Aug 2004 16:37:10 GMT"/>
 		      <accelerator key="equal" modifiers="GDK_CONTROL_MASK" signal="activate"/>
+		      <accelerator key="plus" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 		      <child internal-child="image">
 			<widget class="GtkImage" id="image51">
@@ -12411,6 +12412,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleZoomIn" last_modification_time="Sat, 21 Aug 2004 16:37:10 GMT"/>
 		      <accelerator key="equal" modifiers="GDK_CONTROL_MASK" signal="activate"/>
+		      <accelerator key="plus" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 		    </widget>
 		  </child>
 
