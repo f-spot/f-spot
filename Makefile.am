@@ -3,6 +3,7 @@ SUBDIRS = 		\
 	dbus-sharp-glib	\
 	docs		\
 	FlickrNet	\
+	SmugMugNet	\
 	google-sharp	\
 	gnome-keyring-sharp \
 	icons		\

@@ -142,6 +142,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/SingleView.cs			\
 	$(srcdir)/StockIcons.cs			\
 	$(srcdir)/SimpleCalendar.cs		\
+	$(srcdir)/SmugMugExport.cs		\
 	$(srcdir)/SvgFile.cs			\
 	$(srcdir)/TagCommands.cs		\
 	$(srcdir)/TagMenu.cs			\
@@ -186,6 +187,7 @@ ASSEMBLIES =					\
 	-r:$(top_builddir)/libgphoto2-sharp/libgphoto2-sharp.dll   \
 	-r:$(top_builddir)/semweb/SemWeb.dll	\
 	-r:$(top_builddir)/FlickrNet/FlickrNet.dll	\
+	-r:$(top_builddir)/SmugMugNet/SmugMugNet.dll	\
 	-r:$(top_builddir)/google-sharp/google-sharp.dll	\
 	-r:$(top_builddir)/gnome-keyring-sharp/gnome-keyring-sharp.dll	\
 	-r:System.Data				\

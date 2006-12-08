@@ -215,6 +215,11 @@ namespace FSpot {
 			new FSpot.GoogleExport (new PhotoArray (directory_view.Selection.Items));
 		}
 
+		void HandleExportToSmugMug (object sender, System.EventArgs args)
+		{
+			new FSpot.SmugMugExport (new PhotoArray (directory_view.Selection.Items)); 	
+		}
+
 		void HandleExportToGallery (object sender, System.EventArgs args)
 		{
 			new FSpot.GalleryExport (new PhotoArray (directory_view.Selection.Items)); 

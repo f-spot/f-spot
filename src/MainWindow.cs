@@ -1470,6 +1470,11 @@ public class MainWindow {
 		new FSpot.FlickrExport (FlickrNet.SupportedService.Flickr, new FSpot.PhotoArray (SelectedPhotos ()), true);
 	}
 	
+	void HandleExportToSmugMug (object sender, System.EventArgs args)
+	{
+		new FSpot.SmugMugExport (new PhotoArray (SelectedPhotos ())); 	
+	}
+
 	void HandleExportTo23hq (object sender, EventArgs args)
 	{
 		new FSpot.FlickrExport (FlickrNet.SupportedService.TwentyThreeHQ, new FSpot.PhotoArray (SelectedPhotos ()), true);
