@@ -38,9 +38,6 @@ namespace FSpot.Filters {
 				dest = System.IO.Path.Combine (path, numbered_name);
 			}
 			
-			if (i == 1)
-				return false;
-
 			System.IO.File.Copy (request.Current.LocalPath, dest);
 			request.Current = UriList.PathToFileUri (dest); 
 			return true;
