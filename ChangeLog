@@ -3,6 +3,8 @@
 	* src/Filters/UniqueNameFilter.cs: always copy the file and return
 	true. Fixes bgo #384595.
 
+	* SmugMugNet/.cvsignore: new file.
+
 2006-12-08  Thomas Van Machelen  <thomas.vanmachelen@gmail.com>
 
 	* Makefile.am:
