@@ -22,8 +22,10 @@ LIBDBUSSHARP_CSFILES =				\
 	$(srcdir)/Protocol.cs \
 	$(srcdir)/Server.cs \
 	$(srcdir)/Signature.cs \
+	$(srcdir)/SocketTransport.cs \
 	$(srcdir)/Transport.cs \
 	$(srcdir)/UnixNativeTransport.cs \
+	$(srcdir)/UnixTransport.cs \
 	$(srcdir)/Wrapper.cs
 
 %.exe %.dll %.module:

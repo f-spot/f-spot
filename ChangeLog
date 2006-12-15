@@ -1,3 +1,9 @@
+2006-12-15  Stephane Delcroix  <stephane@delcroix.org>
+
+	* dbus-sharp/*: upgrade to dbus-sharp 0.3
+	* dbus-sharp-glib/*: upgrade to dbus-sharp-glib 0.2
+	* src/Core.cs: use the dbus-sharp 0.3 API
+
 2006-12-11  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/Filters/UniqueNameFilter.cs: always copy the file and return

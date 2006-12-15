@@ -12,11 +12,11 @@ using Mono.Unix.Native;
 
 namespace NDesk.DBus.Transports
 {
-	public class UnixMonoTransport : Transport, IAuthenticator
+	public class UnixMonoTransport : UnixTransport
 	{
 		protected Socket socket;
 
-		public UnixMonoTransport (string path, bool @abstract)
+		public override void Open (string path, bool @abstract)
 		{
 			if (@abstract)
 				socket = OpenAbstractUnix (path);
@@ -29,11 +29,11 @@ namespace NDesk.DBus.Transports
 			Stream = new NetworkStream (socket);
 		}
 
-		public override string AuthString ()
+		//send peer credentials null byte. note that this might not be portable
+		//there are also selinux, BSD etc. considerations
+		public override void WriteCred ()
 		{
-			long uid = UnixUserInfo.GetRealUserId ();
-
-			return uid.ToString ();
+			Stream.WriteByte (0);
 		}
 
 		protected Socket OpenAbstractUnix (string path)
