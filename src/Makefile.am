@@ -94,6 +94,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/IconView.cs			\
 	$(srcdir)/ImageFile.cs			\
 	$(srcdir)/ImageView.cs			\
+	$(srcdir)/ImageTest.cs			\
 	$(srcdir)/ImportBackend.cs		\
 	$(srcdir)/ImportCommand.cs		\
 	$(srcdir)/ImportStore.cs		\

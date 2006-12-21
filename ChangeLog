@@ -1,5 +1,12 @@
 2006-12-21  Larry Ewing  <lewing@novell.com>
 
+	* src/ImageTest.cs: a simple base class for a bunch of the image
+	tests.
+
+	* src/JpegFile.cs:
+	* src/Filters/TiltFilter.cs: derive tests from ImageTest.
+
+	* src/Filters/OrientationFilter.cs: add a noop test.
 	* src/Filters/TiltFilter.cs: add missing endif.
 
 	* src/Tiff.cs: try not to blow up on invalid values, this is
