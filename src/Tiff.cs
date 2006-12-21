@@ -396,6 +396,8 @@ namespace FSpot.Tiff {
 			}
 
 			Charset = charset;
+			// for (int i = 0; i < raw_data.Length; i++)
+			//	System.Console.WriteLine ("{0} - \"{1}\"", raw_data [i].ToString ("x"), raw_data [i]);
 			Value = enc.GetString (raw_data, 8, raw_data.Length - 8);
 		}
 
@@ -448,7 +450,11 @@ namespace FSpot.Tiff {
 			Rows = BitConverter.ToUInt16 (raw_data, 2, little);
 
 			Values = new byte [Rows * Columns];
-			System.Array.Copy (raw_data, 4, Values, 0, Values.Length);
+			// FIXME the contents here may differ from what we
+			// expect, but for now we won't throw an exception
+			// since the entry still may be a valid structure.
+			if (raw_data.Length -4 < Values.Length)
+				System.Array.Copy (raw_data, 4, Values, 0, Values.Length);
 		}
 
 		/* 
@@ -1020,7 +1026,6 @@ namespace FSpot.Tiff {
 				}
 			}
 		}
-
 		public void Dump (string name)
 		{
 			ImageDirectory ifd = Directory;

@@ -46,6 +46,17 @@ namespace FSpot {
 	public class BlockProcessorTests 
 	{
 		[Test]
+		public void Contained ()
+		{
+			BlockProcessor proc = new BlockProcessor (new Rectangle (0, 0, 10, 10), 1000);
+			Rectangle step;
+
+			Assert.IsTrue (proc.Step (out step));
+			Assert.AreEqual (step, new Rectangle (0, 0, 10, 10));
+			Assert.IsFalse (proc.Step (out step));
+		}
+
+		[Test]
 		public void Step ()
 		{
 			BlockProcessor proc = new BlockProcessor (new Rectangle (10, 100, 25, 15), 20);
