@@ -87,10 +87,29 @@ namespace FSpot {
 				actions = new ActionGroup ("joe");
 				
 				actions.Add (new ActionEntry [] {
-					new ActionEntry (HideToolbar, Stock.Close, Catalog.GetString ("Hide"), null, Catalog.GetString ("Hide Toolbar"), new System.EventHandler (HideToolbarAction)),
-					new ActionEntry (ExitFullScreen, Stock.Quit, Catalog.GetString ("Exit fullscreen"), null, null, new System.EventHandler (ExitAction)),
-					new ActionEntry (NextPicture, Stock.GoForward, Catalog.GetString ("Next"), null, Catalog.GetString ("Next Picture"), new System.EventHandler (NextAction)),
-					new ActionEntry (PreviousPicture, Stock.GoBack, Catalog.GetString ("Back"), null, Catalog.GetString ("Previous Picture"), new System.EventHandler (PreviousAction)),
+					new ActionEntry (HideToolbar, Stock.Close, 
+							 Catalog.GetString ("Hide"), 
+							 null, 
+							 Catalog.GetString ("Hide Toolbar"), 
+							 HideToolbarAction),
+					new ActionEntry (ExitFullScreen, 
+							 Stock.Quit, 
+							 Catalog.GetString ("Exit fullscreen"), 
+							 null, 
+							 null, 
+							 ExitAction),
+					new ActionEntry (NextPicture,
+							 Stock.GoForward,
+							 Catalog.GetString ("Next"),
+							 null,
+							 Catalog.GetString ("Next Picture"),
+							 NextAction),
+					new ActionEntry (PreviousPicture,
+							 Stock.GoBack,
+							 Catalog.GetString ("Back"),
+							 null,
+							 Catalog.GetString ("Previous Picture"),
+							 PreviousAction),
 				});
 
 				new FadeIn (this, 3);

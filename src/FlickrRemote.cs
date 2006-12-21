@@ -44,7 +44,7 @@ public class FlickrRemote {
 		get { return token; }
 		set {
 			token = value;
-			flickr.ApiToken = value;
+			flickr.AuthToken = value;
 		}
 	}
 
@@ -108,7 +108,7 @@ public class FlickrRemote {
 			try {
 				auth = flickr.AuthGetToken(frob);
 				token = auth.Token;
-				flickr.ApiToken = token;
+				flickr.AuthToken = token;
 
 				return auth;
 			} catch (FlickrNet.FlickrException ex) {

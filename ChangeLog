@@ -1,5 +1,12 @@
 2006-12-20  Larry Ewing  <lewing@novell.com>
 
+	* src/Widgets/CompositeUtils.cs: add a getter and setter for
+	screen profiles.
+
+	* src/FullScreenView.cs: clean up the Action creations.
+
+	* src/FlickrRemote.cs: use the new api names.
+
 	* src/Cms.cs: add saving code and a couple of unit tests of the
 	load/save logic.
 
