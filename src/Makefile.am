@@ -73,6 +73,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Filters/JpegFilter.cs		\
 	$(srcdir)/Filters/OrientationFilter.cs	\
 	$(srcdir)/Filters/ResizeFilter.cs	\
+	$(srcdir)/Filters/TiltFilter.cs		\
 	$(srcdir)/Filters/UniqueNameFilter.cs	\
 	$(srcdir)/Filters/WhiteListFilter.cs	\
 	$(srcdir)/FindBar.cs			\

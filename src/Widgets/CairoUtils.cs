@@ -90,5 +90,14 @@ namespace FSpot.Widgets {
 							       width, height);
 			return surface;
 		}
+
+		[DllImport("libfspot")]
+		static extern IntPtr f_pixbuf_from_cairo_surface (IntPtr handle);
+		
+		public static Gdk.Pixbuf CreatePixbuf (Surface s)
+		{
+			IntPtr result = f_pixbuf_from_cairo_surface (s.Handle);
+			return (Gdk.Pixbuf) GLib.Object.GetObject (result, true);
+		}
 	}
 }

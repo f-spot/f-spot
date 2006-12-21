@@ -293,6 +293,68 @@ f_pixbuf_to_cairo_surface (GdkPixbuf *pixbuf)
   return surface;
 }
 
+GdkPixbuf *
+f_pixbuf_from_cairo_surface (cairo_surface_t *source)
+{
+  gint width = cairo_image_surface_get_width (source);
+  gint height = cairo_image_surface_get_height (source);
+  GdkPixbuf *pixbuf = gdk_pixbuf_new (GDK_COLORSPACE_RGB,
+				      TRUE,
+				      8,
+				      width,
+				      height);
+
+  guchar *gdk_pixels = gdk_pixbuf_get_pixels (pixbuf);
+  int gdk_rowstride = gdk_pixbuf_get_rowstride (pixbuf);
+  int n_channels = gdk_pixbuf_get_n_channels (pixbuf);
+  cairo_format_t format;
+  cairo_surface_t *surface;
+  cairo_t *ctx;
+  static const cairo_user_data_key_t key;
+  int j;
+
+  format = cairo_image_surface_get_format (source);
+  surface = cairo_image_surface_create_for_data (gdk_pixels,
+						 format,
+						 width, height, gdk_rowstride);
+  ctx = cairo_create (surface);
+  cairo_set_source_surface (ctx, source, 0, 0);
+  if (format == CAIRO_FORMAT_ARGB32)
+	  cairo_mask_surface (ctx, source, 0, 0);
+  else
+	  cairo_paint (ctx);
+
+  for (j = height; j; j--)
+    {
+      guchar *p = gdk_pixels;
+      guchar *end = p + 4 * width;
+      guchar tmp;
+
+      while (p < end)
+	{
+#if G_BYTE_ORDER == G_LITTLE_ENDIAN
+	  tmp = p[0];
+	  p[0] = p[2];
+	  p[2] = tmp;
+#else	  
+	  tmp = p[0];
+	  p[0] = p[3];
+	  p[3] = p[2];
+	  p[2] = p[1];
+	  p[1] = temp;
+#endif
+	  p += 4;
+	}
+
+      gdk_pixels += gdk_rowstride;
+    }
+
+  cairo_destroy (ctx);
+  cairo_surface_destroy (surface);
+  return pixbuf;
+}
+
+
 /**
  *  This alorithm is based on the redeye algorithm in flphoto 
  *  Copyright 2002-2003 by Michael Sweet

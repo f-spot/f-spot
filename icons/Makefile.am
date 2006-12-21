@@ -26,8 +26,7 @@ noinst_DATA =					\
 	f-spot-question-mark.png		\
 	f-spot.js				\
 	f-spot-simple.css			\
-	f-spot-simple-white.css			\
-	f-spot-logo-tango.svg
+	f-spot-simple-white.css
 
 hicolordir = $(DESTDIR)$(datadir)/icons/hicolor
 
@@ -47,6 +46,9 @@ install-data-local:
 	$(INSTALL_DATA) $(srcdir)/f-spot-48.png $(hicolordir)/48x48/apps/f-spot.png
 	$(INSTALL_DATA) $(srcdir)/f-spot-48.svg $(hicolordir)/48x48/apps/f-spot.svg
 
+	$(mkinstalldirs) $(hicolordir)/scalable/apps
+	$(INSTALL_DATA) $(srcdir)/f-spot-logo-tango.svg $(hicolordir)/scalable/apps/f-spot.svg
+
 uninstall-hook:
 	rm -f $(hicolordir)/16x16/apps/f-spot.png
 	rm -f $(hicolordir)/16x16/apps/f-spot.svg
@@ -57,6 +59,7 @@ uninstall-hook:
 	rm -f $(hicolordir)/32x32/apps/f-spot.svg
 	rm -f $(hicolordir)/48x48/apps/f-spot.png
 	rm -f $(hicolordir)/48x48/apps/f-spot.svg
+	rm -f $(hicolordir)/scalable/apps/f-spot.svg
 
 EXTRA_DIST = 			\
 	$(noinst_DATA)		\
@@ -68,4 +71,5 @@ EXTRA_DIST = 			\
 	f-spot-32.png		\
 	f-spot-32.svg		\
 	f-spot-48.png		\
-	f-spot-48.svg	
+	f-spot-48.svg		\
+	f-spot-logo-tango.svg

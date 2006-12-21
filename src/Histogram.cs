@@ -1,3 +1,7 @@
+/* 
+ *  
+ */
+
 using System;
 
 namespace FSpot {
@@ -15,7 +19,7 @@ namespace FSpot {
 		public void FillValues (Gdk.Pixbuf src)
 
 		{
-			values = new int [265, 3];
+			values = new int [256, 3];
 
 			if (src.BitsPerSample != 8)
 				throw new System.Exception ("Invalid bits per sample");
@@ -46,11 +50,52 @@ namespace FSpot {
 				}
 			}
 			if (pixbuf != null) {
-				FillPixbuf (pixbuf);
+				Draw (pixbuf);
 			}
 		}
 		
-		private void FillPixbuf (Gdk.Pixbuf image) 
+		public int Count (int channel)
+		{
+			int count = 0;
+			for (int i = 0; i < values.GetLength (0); i++) {
+				count += values [i, channel];
+			}
+
+			return count;
+		}
+
+		public void GetHighLow (int channel, out int high, out int low)
+		{
+			double total = Count (channel);
+			double current = 0.0;
+			double percentage;
+			double next_percentage;
+			
+			low = 0;
+			high = 0;
+			
+			for (int i = 0; i < values.GetLength (0); i++) {
+				current += values [i, channel];
+				percentage = total / current;
+				next_percentage = (current + values [i + 1, channel]) / total;
+				if (Math.Abs (percentage - 0.006) < Math.Abs (next_percentage - 0.006)) {
+					low = i + 1;
+					break;
+				}
+			}
+
+			for (int i = values.GetLength (0) - 1; i > 0; i--) {
+				current += values [i, channel];
+				percentage = total / current;
+				next_percentage = (current + values [i - 1, channel]) / total;
+				if (Math.Abs (percentage - 0.006) < Math.Abs (next_percentage - 0.006)) {
+					high = i - 1;
+					break;
+				}
+			}
+		}
+
+		private void Draw (Gdk.Pixbuf image) 
 		{
 			int max = 0;
 			for (int i = 0; i < values.GetLength (0); i++) {
@@ -101,7 +146,7 @@ namespace FSpot {
 		{
 			int height = 128;
 			pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, values.GetLength (0), height);
-			this.FillPixbuf (pixbuf);
+			this.Draw (pixbuf);
 			return pixbuf;
 		}
 						     

@@ -121,62 +121,59 @@ cmsHPROFILE LCMSEXPORT f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
 						       LPcmsCIExyY destination_wp,
 						       LPGAMMATABLE Tables [])
 {
-     cmsHPROFILE hICC;
-     LPLUT Lut;
-     BCHSWADJUSTS bchsw;
-     cmsCIExyY WhitePnt;
-
-     bchsw.Exposure   = Exposure;
-     bchsw.Brightness = Bright;
-     bchsw.Contrast   = Contrast;
-     bchsw.Hue        = Hue;
-     bchsw.Saturation = Saturation;
-     
-     cmsxyY2XYZ(&bchsw.WPsrc, current_wp);
-     cmsxyY2XYZ(&bchsw.WPdest, destination_wp);
-    
-      hICC = _cmsCreateProfilePlaceholder();
-       if (!hICC)                          // can't allocate
-            return NULL;
-              
-
-       cmsSetDeviceClass(hICC,      icSigAbstractClass);
-       cmsSetColorSpace(hICC,       icSigLabData);
-       cmsSetPCS(hICC,              icSigLabData);
-
-       cmsSetRenderingIntent(hICC,  INTENT_PERCEPTUAL); 
-
-      
-       // Creates a LUT with 3D grid only
-       Lut = cmsAllocLUT();
-
-
-       cmsAlloc3DGrid(Lut, nLUTPoints, 3, 3);
-
-       if (Tables != NULL)
+	cmsHPROFILE hICC;
+	LPLUT Lut;
+	BCHSWADJUSTS bchsw;
+	cmsCIExyY WhitePnt;
+	
+	bchsw.Exposure   = Exposure;
+	bchsw.Brightness = Bright;
+	bchsw.Contrast   = Contrast;
+	bchsw.Hue        = Hue;
+	bchsw.Saturation = Saturation;
+	
+	cmsxyY2XYZ(&bchsw.WPsrc, current_wp);
+	cmsxyY2XYZ(&bchsw.WPdest, destination_wp);
+	
+	hICC = _cmsCreateProfilePlaceholder();
+	if (!hICC)                          // can't allocate
+		return NULL;
+	
+	cmsSetDeviceClass(hICC,      icSigAbstractClass);
+	cmsSetColorSpace(hICC,       icSigLabData);
+	cmsSetPCS(hICC,              icSigLabData);
+	
+	cmsSetRenderingIntent(hICC,  INTENT_PERCEPTUAL); 
+	
+	// Creates a LUT with 3D grid only
+	Lut = cmsAllocLUT();
+	
+	cmsAlloc3DGrid(Lut, nLUTPoints, 3, 3);
+	
+	if (Tables != NULL)
 	       cmsAllocLinearTable (Lut, Tables, 1);
-
+	
        if (!cmsSample3DGrid(Lut, bchswSampler, (LPVOID) &bchsw, 0)) {
-
-                // Shouldn't reach here
-                cmsFreeLUT(Lut);
-                cmsCloseProfile(hICC);
-                return NULL;
+	       
+	       // Shouldn't reach here
+	       cmsFreeLUT(Lut);
+	       cmsCloseProfile(hICC);
+	       return NULL;
        }    
        
        // Create tags
-        
-       cmsAddTag(hICC, icSigDeviceMfgDescTag,      (LPVOID) "(lcms internal)"); 
-       cmsAddTag(hICC, icSigProfileDescriptionTag, (LPVOID) "lcms BCHSW abstract profile");  
+       
+       cmsAddTag(hICC, icSigDeviceMfgDescTag,      (LPVOID) "(f-spot internal)"); 
+       cmsAddTag(hICC, icSigProfileDescriptionTag, (LPVOID) "f-spot BCHSW abstract profile");  
        cmsAddTag(hICC, icSigDeviceModelDescTag,    (LPVOID) "BCHSW built-in");      
        
        cmsAddTag(hICC, icSigMediaWhitePointTag, (LPVOID) cmsD50_XYZ());
-
+       
        cmsAddTag(hICC, icSigAToB0Tag, (LPVOID) Lut);
        
        // LUT is already on virtual profile
        cmsFreeLUT(Lut);
-
+       
        // Ok, done
        return hICC;
 }

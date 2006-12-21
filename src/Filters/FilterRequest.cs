@@ -44,7 +44,7 @@ namespace FSpot.Filters {
 		public Uri Current {
 			get { return current; }
 			set { 
-				if (value != source && !temp_uris.Contains (value))
+				if (!value.Equals (source) && !temp_uris.Contains (value))
 					temp_uris.Add (value);
 				current = value; 
 			}

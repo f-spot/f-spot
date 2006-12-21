@@ -58,6 +58,12 @@ namespace FSpot.Filters {
 		[TestFixture]
 		public class Tests 
 		{
+			public Tests ()
+			{
+				Gnome.Vfs.Vfs.Initialize ();
+				Gtk.Application.Init ();
+			}
+
 			string [] Names = {
 				"fspot-jpegfilter-test.png",
 				"fspot-jpegfilter-test.jpeg",
@@ -65,7 +71,7 @@ namespace FSpot.Filters {
 				"fspot-jpegfilter-test.JPG",
 			};
 
-			public string CreateFile (string name, int size)
+			public static string CreateFile (string name, int size)
 			{
 				using (Gdk.Pixbuf test = new Gdk.Pixbuf (null, "f-spot-32.png")) {
 					using (Gdk.Pixbuf tmp = test.ScaleSimple (size, size, Gdk.InterpType.Bilinear)) {
@@ -74,14 +80,16 @@ namespace FSpot.Filters {
 						Console.WriteLine (path);
 						string extension = System.IO.Path.GetExtension (path);
 						string type = "null";
-						switch (extension) {
+						switch (extension.ToLower ()) {
 						case ".jpg":
-						case ".JPG":
 						case ".jpeg":
 							type = "jpeg";
 							break;
 						case ".png":
 							type = "png";
+							break;
+					        case ".tiff":
+							type = "tiff";
 							break;
 						}
 						tmp.Save (path, type);

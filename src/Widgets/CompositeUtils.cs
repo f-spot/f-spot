@@ -26,6 +26,9 @@ namespace FSpot.Widgets {
 
 		[DllImport("libgdk-2.0-0.dll")]
 		static extern void gdk_property_change(IntPtr window, IntPtr property, IntPtr type, int format, int mode, uint [] data, int nelements);
+
+		[DllImport("libgdk-2.0-0.dll")]
+		static extern void gdk_property_change(IntPtr window, IntPtr property, IntPtr type, int format, int mode, byte [] data, int nelements);
 		
 		public static Colormap GetRgbaColormap (Screen screen)
 		{
@@ -47,6 +50,11 @@ namespace FSpot.Widgets {
 		public static void  ChangeProperty (Gdk.Window win, Atom property, Atom type, PropMode mode, uint [] data)
 		{
 			gdk_property_change (win.Handle, property.Handle, type.Handle, 32, (int)mode,  data, data.Length * 4);
+		}
+
+		public static void  ChangeProperty (Gdk.Window win, Atom property, Atom type, PropMode mode, byte [] data)
+		{
+			gdk_property_change (win.Handle, property.Handle, type.Handle, 8, (int)mode,  data, data.Length);
 		}
 
 		public static bool SupportsHint (Screen screen, string name)
@@ -133,6 +141,39 @@ namespace FSpot.Widgets {
 						       Atom.Intern ("CARDINAL", false),
 						       PropMode.Replace,
 						       new uint [] { (uint) (0xffffffff * opacity) });
+		}
+
+		public static Cms.Profile GetScreenProfile (Screen screen)
+		{
+			Atom atype;
+			int  aformat;
+			int  alength;
+			byte [] data;
+
+			if (Gdk.Property.Get (screen.RootWindow,
+					      Atom.Intern ("_ICC_PROFILE", false),
+					      Atom.Intern ("CARDINAL", false),
+					      0,
+					      Int32.MaxValue,
+					      0, // FIXME in gtk# should be a bool
+					      out atype,
+					      out aformat,
+					      out alength,
+					      out data)) {
+				return new Cms.Profile (data);
+			}
+			
+			return null;
+		}
+
+		public static void SetScreenProfile (Screen screen, Cms.Profile profile)
+		{
+			byte [] data = profile.Save ();
+			ChangeProperty (screen.RootWindow,
+					Atom.Intern ("_ICC_PROFILE", false),
+					Atom.Intern ("CARDINAL", false),
+					PropMode.Replace,
+					data);
 		}
 	}
 }

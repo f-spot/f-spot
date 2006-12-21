@@ -578,7 +578,7 @@ namespace FSpot.Widgets {
 			}
 		}
 
-		private class ImageInfo : IDisposable {
+		public class ImageInfo : IDisposable {
 			public Surface Surface;
 			public Gdk.Rectangle Bounds;
 
@@ -586,7 +586,6 @@ namespace FSpot.Widgets {
 			{
 				ImageFile img = ImageFile.Create (uri);
 				Pixbuf pixbuf = img.Load ();
-				Surface = CairoUtils.CreateSurface (pixbuf);
 				SetPixbuf (pixbuf);
 				pixbuf.Dispose ();
 			}
