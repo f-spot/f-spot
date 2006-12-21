@@ -688,7 +688,27 @@ namespace Cms {
 			if (handle.Handle == IntPtr.Zero)
 				throw new Exception ("Error opening ICC profile in file " + path);
 		}
-		
+
+
+		[DllImport("liblcms-1.0.0.dll")]
+		static extern unsafe bool _cmsSaveProfileToMem (HandleRef profile, byte *mem, ref uint length);
+
+		public byte [] Save ()
+		{
+			unsafe {
+				uint length = 0;
+				if (_cmsSaveProfileToMem (this.Handle, null, ref length)) {
+					byte [] data = new byte [length];
+					fixed (byte * data_p = &data [0]) {
+						if (_cmsSaveProfileToMem (this.Handle, data_p, ref length)) {
+							return data;
+						}
+					}
+				}
+			}
+			throw new SaveException ("Error Saving Profile");
+		}
+
 		[DllImport("liblcms-1.0.0.dll")]
 		static extern unsafe IntPtr cmsOpenProfileFromMem (byte *data, uint length);
 
@@ -829,6 +849,29 @@ namespace Cms {
 		~Profile ()
 		{
 			Cleanup ();
+		}
+
+#if ENABLE_NUNIT
+		[TestFixture]
+		public class Tests {
+			[Test]
+			public void LoadSave ()
+			{
+				Profile srgb = CreateStandardRgb ();
+				byte [] data = srgb.Save ();
+				Assert.IsNotNull (data);
+				Profile result = new Profile (data);
+				Assert.AreEqual (result.ProductName, srgb.ProductName);
+				Assert.AreEqual (result.ProductDescription, srgb.ProductDescription);
+				Assert.AreEqual (result.Model, srgb.Model);
+			}
+		}
+#endif 		
+	}
+
+	public class SaveException : System.Exception {
+		public SaveException (string message) : base (message)
+		{
 		}
 	}
 }
