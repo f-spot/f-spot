@@ -1,5 +1,7 @@
 2006-12-21  Larry Ewing  <lewing@novell.com>
 
+	* src/Filters/TiltFilter.cs: add missing endif.
+
 	* src/Tiff.cs: try not to blow up on invalid values, this is
 	probably the wrong way to handle this but we'll do it anyway for
 	the time being.

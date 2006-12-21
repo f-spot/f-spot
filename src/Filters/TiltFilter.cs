@@ -99,6 +99,6 @@ namespace FSpot.Filters {
 				Assert.IsTrue (new FileInfo (req.Current.LocalPath).Length > 0);
 			}
 		}
-		
+#endif
 	}
 }
