@@ -83,13 +83,14 @@ namespace FSpot.Filters {
 			public void Basic (string name)
 			{
 				string path = CreateFile (name, 120);
-				FilterRequest req = new FilterRequest (path);
-				IFilter filter = new TiltFilter (Math.PI / 4);
-				filter.Convert (req);
-				Assert.IsTrue (System.IO.File.Exists (req.Current.LocalPath),
-					       "Error: Did not create " + req.Current.LocalPath);
-				Assert.IsTrue (new FileInfo (req.Current.LocalPath).Length > 0,
-					       "Error: " + req.Current.LocalPath + "is Zero length");
+				using (FilterRequest req = new FilterRequest (path)) {
+					IFilter filter = new TiltFilter (Math.PI / 4);
+					filter.Convert (req);
+					Assert.IsTrue (System.IO.File.Exists (req.Current.LocalPath),
+						       "Error: Did not create " + req.Current.LocalPath);
+					Assert.IsTrue (new FileInfo (req.Current.LocalPath).Length > 0,
+						       "Error: " + req.Current.LocalPath + "is Zero length");
+				}
 			}
 		}
 #endif

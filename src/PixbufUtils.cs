@@ -646,6 +646,32 @@ class PixbufUtils {
 		
 	}
 
+	public static unsafe bool IsGray (Gdk.Pixbuf pixbuf, int max_difference)
+	{
+		int chan = pixbuf.NChannels;
+
+		byte *pix = (byte *)pixbuf.Pixels;
+		int h = pixbuf.Height;
+		int w = pixbuf.Width;
+		int stride = pixbuf.Rowstride;
+
+		for (int j = 0; j < h; j++) {
+			byte *p = pix;
+			for (int i = 0; i < w; i++) {
+				if (Math.Abs (p[0] - p[1]) > max_difference || Math.Abs (p[0] - p [2]) > max_difference) {
+					goto Found;
+				}
+				p += chan;
+			}
+			pix += stride;
+		}
+
+		return true;
+
+	Found:
+		return false;
+	}
+
 	public static unsafe void ReplaceColor (Gdk.Pixbuf src, Gdk.Pixbuf dest)
 	{
 		if (src.HasAlpha || !dest.HasAlpha || (src.Width != dest.Width) || (src.Height != dest.Height))
@@ -653,11 +679,12 @@ class PixbufUtils {
 
 		byte *dpix = (byte *)dest.Pixels;
 		byte *spix = (byte *)src.Pixels;
-		for (int j = 0; j < src.Height; j++) {
+		int h = src.Height;
+		int w = src.Width;
+		for (int j = 0; j < h; j++) {
 			byte *d = dpix;
 			byte *s = spix;
-			for (int i = 0; i < src.Width; i++) {
-				
+			for (int i = 0; i < w; i++) {
 				d[0] = s[0];
 				d[1] = s[1];
 				d[2] = s[2];

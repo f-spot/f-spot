@@ -11,6 +11,7 @@
 using System;
 using System.IO;
 using Gdk;
+using Cms;
 
 #if ENABLE_NUNIT
 using NUnit.Framework;
@@ -18,11 +19,11 @@ using NUnit.Framework;
 
 namespace FSpot.Filters {
 	public class ColorFilter : IFilter {
-		Cms.Profile adjustment;
-		Cms.Profile destination;
-		Cms.Intent rendering_intent;
+		Profile adjustment;
+		Profile destination;
+		Intent rendering_intent = Intent.Perceptual;
 
-		public ColorFilter (Cms.Profile adjustment)
+		public ColorFilter (Profile adjustment)
 		{
 			this.adjustment = adjustment;
 		}
@@ -31,17 +32,17 @@ namespace FSpot.Filters {
                 // TODO FIXME until we support saving a new profile to the image we can't
 	        // really allow people to set the destination profile.  Remember to remove
 		// all the extra metadata that might confuse the profile.
-		public Cms.Profile Output {
+		public Profile Output {
 			set { destination = value; }
 		}
 #endif
 
-		public Cms.Profile Adjustment {
+		public Profile Adjustment {
 			get { return adjustment; }
 			set { adjustment = value; }
 		}
 
-		public Cms.Intent RenderingIntent {
+		public Intent RenderingIntent {
 			set { rendering_intent = value; }
 			get { return rendering_intent; }
 		}
@@ -52,11 +53,11 @@ namespace FSpot.Filters {
 			ImageFile img = ImageFile.Create (source);
 			Gdk.Pixbuf pixbuf = img.Load ();
 			
-			Cms.Profile profile = img.GetProfile ();
+			Profile profile = img.GetProfile ();
 
 			// If the image doesn't have an embedded profile assume it is sRGB
 			if (profile == null)
-				profile = Cms.Profile.CreateStandardRgb ();
+				profile = Profile.CreateStandardRgb ();
 
 			if (destination == null)
 				destination = profile;
@@ -65,53 +66,104 @@ namespace FSpot.Filters {
 							   false, 8,
 							   pixbuf.Width, 
 							   pixbuf.Height);
-			Cms.Profile [] list;
+			Profile [] list;
 			if (adjustment != null)
-				list = new Cms.Profile [] { profile, adjustment, destination };
+				list = new Profile [] { profile, adjustment, destination };
 			else
-				list = new Cms.Profile [] { profile, destination };
+				list = new Profile [] { profile, destination };
 
-			Cms.Transform transform = new Cms.Transform (list,
-								     PixbufUtils.PixbufCmsFormat (pixbuf),
+			if (pixbuf.HasAlpha) {
+				Gdk.Pixbuf alpha = PixbufUtils.Flatten (pixbuf);
+				Transform transform = new Transform (list,
+								     PixbufUtils.PixbufCmsFormat (alpha),
 								     PixbufUtils.PixbufCmsFormat (final),
 								     rendering_intent, 0x0000);
-			
-			PixbufUtils.ColorAdjust (pixbuf, final, transform);
-			if (pixbuf.HasAlpha) {
-				// FIXME this is a hack to deal with the alpha channel since
-				// lcms has issues with it.
+				PixbufUtils.ColorAdjust (alpha, final, transform);
 				PixbufUtils.ReplaceColor (final, pixbuf);
+				alpha.Dispose ();
 				final.Dispose ();
 				final = pixbuf;
 			} else {
+				Transform transform = new Transform (list,
+								     PixbufUtils.PixbufCmsFormat (pixbuf),
+								     PixbufUtils.PixbufCmsFormat (final),
+								     rendering_intent, 0x0000);
+				PixbufUtils.ColorAdjust (pixbuf, final, transform);
 				pixbuf.Dispose ();
 			}
-
-			req.TempUri (Path.GetExtension (source.LocalPath));
-			using (Stream output = File.OpenWrite (req.Current.LocalPath)) {
+			
+			Uri dest_uri = req.TempUri (Path.GetExtension (source.LocalPath));
+			using (Stream output = File.OpenWrite (dest_uri.LocalPath)) {
 				img.Save (final, output);
 			}
-
 			final.Dispose ();
-
+			req.Current = dest_uri;
+			
 			return true;
 		}
-
+		
 #if ENABLE_NUNIT
 		[TestFixture]
 		public class Tests : ImageTest {
 			[Test]
-			public void PngPass ()
+			public void AlphaPassthrough ()
 			{
-				PassThrough ("passthrough.png");
+				Process ("passthrough.png", null);
 			}
-			
-			public void PassThrough (string name)
+
+			[Test]
+			public void OpaquePassthrough ()
+			{
+				Process ("passthrough.jpg", null);
+			}
+
+			[Test]
+			public void OpaqueDesaturate ()
+			{
+				Desaturate ("desaturate.jpg");
+			}
+
+			[Test]
+			public void AlphaDesaturate ()
+			{
+				Desaturate ("desaturate.png");
+			}
+
+			public void Desaturate (string name)
+			{
+				Profile adjustment = Profile.CreateAbstract (10,
+									     1.0,
+									     0.0,
+									     0.0,
+									     0.0,
+									     -100.0,
+									     null,
+									     ColorCIExyY.WhitePointFromTemperature (5000),
+									     ColorCIExyY.WhitePointFromTemperature (5000));
+
+				string path = CreateFile (name, 32);
+				using (FilterRequest req = new FilterRequest (path)) {
+					IFilter filter = new ColorFilter (adjustment);
+					Assert.IsTrue (filter.Convert (req), "Filter failed to operate");
+					req.Preserve (req.Current);
+					Assert.IsTrue (System.IO.File.Exists (req.Current.LocalPath),
+						       "Error: Did not create " + req.Current);
+					Assert.IsTrue (new FileInfo (req.Current.LocalPath).Length > 0,
+						       "Error: " + req.Current + "is Zero length");
+					ImageFile img = ImageFile.Create (req.Current);
+					Pixbuf pixbuf = img.Load ();
+					Assert.IsNotNull (pixbuf);
+					Assert.IsTrue (PixbufUtils.IsGray (pixbuf, 1), "failed to desaturate " + req.Current);
+				}
+
+			}
+	
+			public void Process (string name, Profile profile)
 			{
 				string path = CreateFile (name, 120);
 				using (FilterRequest req = new FilterRequest (path)) {
-					IFilter filter = new ColorFilter (null);
-					filter.Convert (req);
+					IFilter filter = new ColorFilter (profile);
+					Assert.IsTrue (filter.Convert (req), "Filter failed to operate");
 					Assert.IsTrue (System.IO.File.Exists (req.Current.LocalPath),
 						       "Error: Did not create " + req.Current.LocalPath);
 					Assert.IsTrue (new FileInfo (req.Current.LocalPath).Length > 0,
