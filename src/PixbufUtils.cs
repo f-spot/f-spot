@@ -646,6 +646,26 @@ class PixbufUtils {
 		
 	}
 
+	public static unsafe void ReplaceColor (Gdk.Pixbuf src, Gdk.Pixbuf dest)
+	{
+		if (src.HasAlpha || !dest.HasAlpha)
+			throw new ApplicationException ("invalid pixbufs");
+
+		byte *d = (byte *)dest.Pixels;
+		byte *s = (byte *)src.Pixels;
+		for (int j = 0; j < src.Height; j++) {
+			for (int i = 0; i < src.Width; i++) {
+				d[0] = s[0];
+				d[1] = s[1];
+				d[2] = s[2];
+				d += 4;
+				s += 3;
+			}
+			d += dest.Rowstride;
+			s += src.Rowstride;
+		}
+	}
+
 	public static Gdk.Pixbuf GetThumbnail (Exif.ExifData data)
 	{
 		byte [] thumb_data = data.Data;

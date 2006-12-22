@@ -86,7 +86,6 @@ namespace FSpot.Filters {
 				FilterRequest req = new FilterRequest (path);
 				IFilter filter = new TiltFilter (Math.PI / 4);
 				filter.Convert (req);
-				req.Preserve (req.Current);
 				Assert.IsTrue (System.IO.File.Exists (req.Current.LocalPath),
 					       "Error: Did not create " + req.Current.LocalPath);
 				Assert.IsTrue (new FileInfo (req.Current.LocalPath).Length > 0,

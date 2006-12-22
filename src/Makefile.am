@@ -67,6 +67,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/FlickrExport.cs		\
 	$(srcdir)/FlickrRemote.cs		\
 	$(srcdir)/FileImportBackend.cs		\
+	$(srcdir)/Filters/ColorFilter.cs	\
 	$(srcdir)/Filters/FilterRequest.cs	\
 	$(srcdir)/Filters/FilterSet.cs		\
 	$(srcdir)/Filters/IFilter.cs		\

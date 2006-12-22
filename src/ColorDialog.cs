@@ -107,6 +107,8 @@ namespace FSpot {
 			
 			PixbufUtils.ColorAdjust (image, final, transform);
 			photo.SaveVersion (final, create_version);
+			final.Dispose ();
+			image.Dispose ();
 		}
 	}
 
@@ -310,6 +312,7 @@ namespace FSpot {
 				
 				photo.SaveVersion (final, create_version);
 				((PhotoQuery)view.Query).Commit (view.Item.Index);
+				final.Dispose ();
 			} catch (System.Exception e) {
 				string msg = Catalog.GetString ("Error saving adjusted photo");
 				string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
