@@ -1,5 +1,7 @@
 2006-12-22  Larry Ewing  <lewing@novell.com>
 
+	* src/PixbufUtils.cs: Fix the ReplaceColor method.
+
 	* src/Filters/ColorFilter.cs: new filter to do colorspace filtering.
 
 	* src/PixbufUtils.cs: new method to help with color filtering.

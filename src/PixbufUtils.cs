@@ -648,21 +648,24 @@ class PixbufUtils {
 
 	public static unsafe void ReplaceColor (Gdk.Pixbuf src, Gdk.Pixbuf dest)
 	{
-		if (src.HasAlpha || !dest.HasAlpha)
+		if (src.HasAlpha || !dest.HasAlpha || (src.Width != dest.Width) || (src.Height != dest.Height))
 			throw new ApplicationException ("invalid pixbufs");
 
-		byte *d = (byte *)dest.Pixels;
-		byte *s = (byte *)src.Pixels;
+		byte *dpix = (byte *)dest.Pixels;
+		byte *spix = (byte *)src.Pixels;
 		for (int j = 0; j < src.Height; j++) {
+			byte *d = dpix;
+			byte *s = spix;
 			for (int i = 0; i < src.Width; i++) {
+				
 				d[0] = s[0];
 				d[1] = s[1];
 				d[2] = s[2];
 				d += 4;
 				s += 3;
 			}
-			d += dest.Rowstride;
-			s += src.Rowstride;
+			dpix += dest.Rowstride;
+			spix += src.Rowstride;
 		}
 	}
 
