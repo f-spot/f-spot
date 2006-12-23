@@ -786,13 +786,27 @@ namespace FSpot.Tiff {
 		Little
 	}
 
+	public class ParseException : System.Exception 
+	{
+		public ParseException (string msg) : base (msg)
+		{
+		}
+	}
+
+	public class ShortReadException : ParseException 
+	{
+		public ShortReadException () : base ("Short Read")
+		{
+		}
+	}
+
 	public class Converter {
 		public static uint ReadUInt (System.IO.Stream stream, Endian endian)
 		{
 			byte [] tmp = new byte [4];
 
 		        if (stream.Read (tmp, 0, tmp.Length) < 4)
-				throw new System.Exception ("Short Read");
+				throw new ShortReadException ();
 
 			return BitConverter.ToUInt32 (tmp, 0, endian == Endian.Little);
 		}
@@ -802,7 +816,7 @@ namespace FSpot.Tiff {
 			byte [] tmp = new byte [2];
 
 		        if (stream.Read (tmp, 0, tmp.Length) < 2)
-				throw new System.Exception ("Short Read");
+				throw new ShortReadException ();
 
 			return BitConverter.ToUInt16 (tmp, 0, endian == Endian.Little);
 		}
@@ -849,7 +863,7 @@ namespace FSpot.Tiff {
 			directory_offset = BitConverter.ToUInt32 (data, 4, endian == Endian.Little);
 			
 			if (directory_offset < 8)
-				throw new System.Exception ("Invalid IFD0 Offset [" + directory_offset.ToString () + "]"); 
+				throw new ParseException ("Invalid IFD0 Offset [" + directory_offset.ToString () + "]"); 
 			
 #if DEBUG_LOADER
 			System.Console.WriteLine ("Reading First IFD");
@@ -1082,7 +1096,7 @@ namespace FSpot.Tiff {
 			byte [] content = new byte [entry_length];
 			
 			if (stream.Read (content, 0, content.Length) < content.Length)
-				throw new System.Exception ("Short Read");
+				throw new ShortReadException ();
 			
 			for (int pos = 0; pos < entry_length; pos += 12) {
 				DirectoryEntry entry = EntryFactory.CreateEntry (this, content, pos, this.endian);
@@ -1394,7 +1408,7 @@ namespace FSpot.Tiff {
 		public LongEntry (byte [] data, int offset, Endian endian) : base (data, offset, endian)
 		{
 			if (type != EntryType.Long)
-				throw new System.Exception (System.String.Format ("Invalid Settings At Birth {0}", tagid));
+				throw new ParseException (System.String.Format ("Invalid Settings At Birth {0}", tagid));
 		}
 	}
 
@@ -1402,7 +1416,7 @@ namespace FSpot.Tiff {
 		public ByteEntry (byte [] data, int offset, Endian endian) : base (data, offset, endian)
 		{
 			if (type != EntryType.Byte)
-				throw new System.Exception ("Invalid Settings At Birth");
+				throw new ParseException ("Invalid Settings At Birth");
 		}
 	}
 	
@@ -1547,7 +1561,7 @@ namespace FSpot.Tiff {
 				stream.Seek ((long)Position, System.IO.SeekOrigin.Begin);
 				byte [] data = new byte [count * GetTypeSize ()];
 				if (stream.Read (data, 0, data.Length) < data.Length)
-					throw new System.Exception ("Short Read");
+					throw new ShortReadException ();
 				raw_data = data;
 			}
 
@@ -1764,7 +1778,7 @@ namespace FSpot.Tiff {
 						data [i] = raw_data [i];
 						break;
 					default:
-						throw new System.Exception ("Invalid conversion");
+						throw new ParseException ("Invalid conversion");
 					}
 				}
 				return data;

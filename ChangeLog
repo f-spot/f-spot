@@ -1,5 +1,7 @@
 2006-12-23  Larry Ewing  <lewing@novell.com>
 
+	* src/Tiff.cs: use custom exception classes.
+
 	* src/Cms.cs: use the new GammaTable function.
 
 	* libfspot/f-screen-utils.c: add helper function for GammaTable
