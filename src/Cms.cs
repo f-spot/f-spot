@@ -324,7 +324,7 @@ namespace Cms {
 			}
 		}
 		
-		internal struct GammaTableStruct {
+		internal unsafe struct GammaTableStruct {
 			public int Count;
 			public ushort StartOfData;  // ushort array Count entries long
 		}
@@ -376,22 +376,32 @@ namespace Cms {
 			handle = new HandleRef (this, cmsBuildParametricGamma (entry_count, type, values));
 		}
 		
+
 		[DllImport("liblcms-1.0.0.dll")]
 		static extern IntPtr cmsAllocGamma (int entry_count);
 
-		public GammaTable (ushort [] values) : this (values, 0, values.Length) {}
+		[DllImport ("libfspot")]
+		static extern IntPtr f_cms_gamma_table (ushort [] values, int start, int length);
+
+		public GammaTable (ushort [] values) : this (values, 0, values.Length)
+		{
+		}
 
 		public GammaTable (ushort [] values, int start_offset, int length)
 		{
+#if true
+			f_cms_gamma_table (values, start_offset, length);
+#else
 			handle = new HandleRef (this, cmsAllocGamma (length));
 			unsafe {
 				GammaTableStruct *gt = (GammaTableStruct *)handle.Handle;
 
-				ushort *data = & (gt->StartOfData);
+				ushort *data = (ushort *)&(gt->StartOfData);
 				for (int i = 0; i < length; i++) {
 					data [i] = values [start_offset + i];
 				}
 			}
+#endif
 		}
 
 		[DllImport("liblcms-1.0.0.dll")]
