@@ -177,3 +177,19 @@ cmsHPROFILE LCMSEXPORT f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
        // Ok, done
        return hICC;
 }
+
+LPGAMMATABLE
+f_cms_gamma_table (unsigned short *data, int start, int length)
+{
+	LPGAMMATABLE table = cmsAllocGamma (length);
+	int i;
+	if (!table)
+		return NULL;
+
+	data += start;
+
+	for (i = 0; i < length; i++)
+		table->GammaTable [i] = data [i];
+
+	return table;
+}
