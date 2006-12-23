@@ -319,11 +319,13 @@ class PixbufUtils {
 			terminated_values = new string [values.Length + 1];
 			Array.Copy (values, terminated_values, values.Length);
 		}
-		
+
+#if false		
 		if (terminated_options != null)
 			System.Console.WriteLine ("options = {0}, values = {1}", terminated_options [0], terminated_values [0]);
 		else
 			Console.WriteLine ("no options");
+#else
 
 		bool success = gdk_pixbuf_save_to_bufferv (pixbuf.Handle, 
 							     out data, 

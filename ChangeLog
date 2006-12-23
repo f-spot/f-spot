@@ -1,5 +1,13 @@
 2006-12-22  Larry Ewing  <lewing@novell.com>
 
+	* src/PngFile.cs: 
+	* src/PixbufUtils.cs: silence some debug output.
+
+	* src/Cms.cs: add D50 constants.
+	* src/ColorDialog.cs: use D50 constants.
+	
+	* src/Filters/ColorFilter.cs: add Linearization option to filter.
+	
 	* src/Filters/ColorFilter.cs: Make the filter work properly add
 	more tests.
 

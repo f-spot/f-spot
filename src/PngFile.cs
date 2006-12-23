@@ -1310,7 +1310,7 @@ namespace FSpot.Png {
 			ColorCIExyY whitepoint = new ColorCIExyY (0.3127, 0.329, 1.0);
 			ColorCIExyYTriple chroma = new ColorCIExyYTriple (red, green, blue);
 
-			System.Console.WriteLine ("Trying to get profile");
+			//System.Console.WriteLine ("Trying to get profile");
 
 			foreach (Chunk chunk in Chunks) {
 				if (color == null) 
@@ -1323,7 +1323,7 @@ namespace FSpot.Png {
 					gamma = chunk as GammaChunk;
 			}
 			
-			System.Console.WriteLine ("color: {0} icc: {1} srgb: {2} gamma: {3}", color, icc, srgb, gamma);
+			//System.Console.WriteLine ("color: {0} icc: {1} srgb: {2} gamma: {3}", color, icc, srgb, gamma);
 
 			if (icc != null) {
 				try {

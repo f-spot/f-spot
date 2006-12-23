@@ -96,7 +96,7 @@ namespace Cms {
 		public static ColorCIExyY WhitePointFromTemperatureResource (int temp, string name)
 		{
 			ColorCIExyY wp;
-			const int line_size = 0x1e;
+			//const int line_size = 0x1e;
 
 			using (Stream stream = Assembly.GetExecutingAssembly ().GetManifestResourceStream (name)) {
 				StreamReader reader = new StreamReader (stream, System.Text.Encoding.ASCII);
@@ -127,6 +127,16 @@ namespace Cms {
 			cmsxyY2XYZ (out dest, ref this);
 			
 			return dest;
+		}
+
+		[DllImport("liblcms-1.0.0.dll")]
+		static extern IntPtr cmsD50_xyY();
+
+		public static ColorCIExyY D50 {
+			get {
+				IntPtr ptr = cmsD50_xyY ();
+				return (ColorCIExyY) Marshal.PtrToStructure (ptr, typeof (ColorCIExyY));
+			}
 		}
 
 		public ColorCIELab ToLab (ColorCIExyY wp)
@@ -207,6 +217,16 @@ namespace Cms {
 			return lab;
 		}
 
+		[DllImport("liblcms-1.0.0.dll")]
+		static extern IntPtr cmsD50_XYZ();
+
+		public static ColorCIEXYZ D50 {
+			get {
+				IntPtr ptr = cmsD50_XYZ ();
+				return (ColorCIEXYZ) Marshal.PtrToStructure (ptr, typeof (ColorCIEXYZ));
+			}
+		}
+
 		public ColorCIELab ToLab (ColorCIExyY wp)
 		{
 			return ToLab (wp.ToXYZ ());
@@ -216,6 +236,8 @@ namespace Cms {
 		{
 			return String.Format ("(x={0}, y={1}, z={2})", x, y, z);
 		}
+
+
 	}
 
 	public struct ColorCIELab {

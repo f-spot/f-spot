@@ -20,7 +20,7 @@ namespace FSpot {
 							   0.0,
 							   -100.0,
 							   null,
-							   ColorCIExyY.WhitePointFromTemperature (5000),
+							   ColorCIExyY.D50,
 							   ColorCIExyY.WhitePointFromTemperature (9934));
 		}
 	}
@@ -39,8 +39,8 @@ namespace FSpot {
 							   0.0,
 							   -100.0,
 							   null,
-							   ColorCIExyY.WhitePointFromTemperature (5000),
-							   ColorCIExyY.WhitePointFromTemperature (5000));
+							   ColorCIExyY.D50,
+							   ColorCIExyY.D50);
 	
 		}
 	}

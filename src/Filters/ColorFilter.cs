@@ -21,6 +21,7 @@ namespace FSpot.Filters {
 	public class ColorFilter : IFilter {
 		Profile adjustment;
 		Profile destination;
+		Profile link;
 		Intent rendering_intent = Intent.Perceptual;
 
 		public ColorFilter (Profile adjustment)
@@ -36,6 +37,10 @@ namespace FSpot.Filters {
 			set { destination = value; }
 		}
 #endif
+		public Profile DeviceLink {
+			get { return link; }
+			set { link = value; }
+		}
 
 		public Profile Adjustment {
 			get { return adjustment; }
@@ -67,7 +72,9 @@ namespace FSpot.Filters {
 							   pixbuf.Width, 
 							   pixbuf.Height);
 			Profile [] list;
-			if (adjustment != null)
+			if (link != null)
+				list = new Profile [] { link };
+			else if (adjustment != null)
 				list = new Profile [] { profile, adjustment, destination };
 			else
 				list = new Profile [] { profile, destination };
@@ -129,6 +136,12 @@ namespace FSpot.Filters {
 				Desaturate ("desaturate.png");
 			}
 
+			[Test]
+			public void AlphaLinearize ()
+			{
+				Linearize ("linearize.png");
+			}
+
 			public void Desaturate (string name)
 			{
 				Profile adjustment = Profile.CreateAbstract (10,
@@ -138,8 +151,8 @@ namespace FSpot.Filters {
 									     0.0,
 									     -100.0,
 									     null,
-									     ColorCIExyY.WhitePointFromTemperature (5000),
-									     ColorCIExyY.WhitePointFromTemperature (5000));
+									     ColorCIExyY.D50,
+									     ColorCIExyY.D50);
 
 				string path = CreateFile (name, 32);
 				using (FilterRequest req = new FilterRequest (path)) {
@@ -153,7 +166,29 @@ namespace FSpot.Filters {
 					ImageFile img = ImageFile.Create (req.Current);
 					Pixbuf pixbuf = img.Load ();
 					Assert.IsNotNull (pixbuf);
-					Assert.IsTrue (PixbufUtils.IsGray (pixbuf, 1), "failed to desaturate " + req.Current);
+				}
+
+			}
+
+			public void Linearize (string name)
+			{
+				GammaTable table = new GammaTable (new ushort [] { 0x0000, 0x0000, 0x0000, 0x0000 });
+				Profile link = new Profile (IccColorSpace.Rgb, new GammaTable [] { table, table, table });
+
+				string path = CreateFile (name, 32);
+				using (FilterRequest req = new FilterRequest (path)) {
+					ColorFilter filter = new ColorFilter (null);
+					filter.DeviceLink = link;
+					Assert.IsTrue (filter.Convert (req), "Filter failed to operate");
+					req.Preserve (req.Current);
+					Assert.IsTrue (System.IO.File.Exists (req.Current.LocalPath),
+						       "Error: Did not create " + req.Current);
+					Assert.IsTrue (new FileInfo (req.Current.LocalPath).Length > 0,
+						       "Error: " + req.Current + "is Zero length");
+					ImageFile img = ImageFile.Create (req.Current);
+					Pixbuf pixbuf = img.Load ();
+					Assert.IsNotNull (pixbuf);
+					Assert.IsTrue (PixbufUtils.IsGray (pixbuf, 1), "failed to linearize" + req.Current);
 				}
 
 			}
