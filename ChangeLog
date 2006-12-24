@@ -1,3 +1,10 @@
+2006-12-25  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/PixbufUtils.cs: Closes an unclosed #if.
+
+	* src/PixbufUtils.cs: New red-eye removal algorithm. The THRESHOLD
+	should be user defined and/or stored in gconf.
+
 2006-12-23  Larry Ewing  <lewing@novell.com>
 
 	* src/Tiff.cs: use custom exception classes.

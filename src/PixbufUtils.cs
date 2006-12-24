@@ -345,6 +345,7 @@ class PixbufUtils {
 		Marshal.Copy (data, content, 0, (int)length);
 
 		return content;
+#endif
 	}
 	
 	public static Pixbuf TagIconFromPixbuf (Pixbuf source)
@@ -576,17 +577,47 @@ class PixbufUtils {
 		return ret;
 	}	
 	
+#if OLDREDEYE
 	[DllImport ("libfspot")]
 	static extern void f_pixbuf_remove_redeye (IntPtr src);
-	
+
 	public static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area)
+#else
+	public unsafe static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area)
+#endif
 	{
 		Gdk.Pixbuf copy = src.Copy ();
 		Gdk.Pixbuf selection = new Gdk.Pixbuf (copy, area.X, area.Y, area.Width, area.Height);
-
+#if OLREDEYE
 		f_pixbuf_remove_redeye (selection.Handle);
 		selection.Dispose ();
+#else
+		byte *spix = (byte *)selection.Pixels;
+		int h = selection.Height;
+		int w = selection.Width;
+		int channels = src.NChannels;
 
+		double RED_FACTOR = 0.5133333;
+		double GREEN_FACTOR = 1;
+		double BLUE_FACTOR = 0.1933333;
+		int THRESHOLD = -15;
+
+		for (int j = 0; j < h; j++) {
+			byte *s = spix;
+			for (int i = 0; i < w; i++) {
+				int adjusted_red = (int)(s[0] * RED_FACTOR);
+				int adjusted_green = (int)(s[1] * GREEN_FACTOR);
+				int adjusted_blue = (int)(s[2] * BLUE_FACTOR);
+
+				if (adjusted_red >= adjusted_green - THRESHOLD
+				    && adjusted_red >= adjusted_blue - THRESHOLD)
+					s[0] = (byte)(((double)(adjusted_green + adjusted_blue)) / (2.0 * RED_FACTOR));
+				s += channels;
+			}
+			spix += selection.Rowstride;
+		}
+
+#endif
 		return copy;
 	}
 
