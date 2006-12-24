@@ -584,6 +584,7 @@ class PixbufUtils {
 	public static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area)
 #else
 	public unsafe static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area)
+	//threshold, factors and comparisons borrowed from the gimp plugin 'redeye.c' by Robert Merkel
 #endif
 	{
 		Gdk.Pixbuf copy = src.Copy ();
