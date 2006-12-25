@@ -584,6 +584,11 @@ class PixbufUtils {
 	public static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area)
 #else
 	public unsafe static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area)
+	{
+		return RemoveRedeye (src, area, -15);
+	}
+
+	public unsafe static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area, int threshold)
 	//threshold, factors and comparisons borrowed from the gimp plugin 'redeye.c' by Robert Merkel
 #endif
 	{
@@ -601,7 +606,6 @@ class PixbufUtils {
 		double RED_FACTOR = 0.5133333;
 		double GREEN_FACTOR = 1;
 		double BLUE_FACTOR = 0.1933333;
-		int THRESHOLD = -15;
 
 		for (int j = 0; j < h; j++) {
 			byte *s = spix;
@@ -610,8 +614,8 @@ class PixbufUtils {
 				int adjusted_green = (int)(s[1] * GREEN_FACTOR);
 				int adjusted_blue = (int)(s[2] * BLUE_FACTOR);
 
-				if (adjusted_red >= adjusted_green - THRESHOLD
-				    && adjusted_red >= adjusted_blue - THRESHOLD)
+				if (adjusted_red >= adjusted_green - threshold
+				    && adjusted_red >= adjusted_blue - threshold)
 					s[0] = (byte)(((double)(adjusted_green + adjusted_blue)) / (2.0 * RED_FACTOR));
 				s += channels;
 			}

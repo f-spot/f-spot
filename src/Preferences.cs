@@ -105,6 +105,8 @@ namespace FSpot
 
 		public const string METADATA_EMBED_IN_IMAGE = "/apps/f-spot/metadata/embed_in_image";
 
+		public const string EDIT_REDEYE_THRESHOLD = "/apps/f-spot/edit/redeye_threshold";
+
 		public const string GNOME_SCREENSAVER_THEME = "/apps/gnome-screensaver/themes";
 		public const string GNOME_SCREENSAVER_MODE = "/apps/gnome-screensaver/mode";
 
@@ -188,6 +190,8 @@ namespace FSpot
 				return "NONE";
 			case VIEWER_TRANS_COLOR:
 				return "#000000";
+			case EDIT_REDEYE_THRESHOLD:
+				return -15;
 			}
 
 			return null;

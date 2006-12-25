@@ -1,5 +1,12 @@
 2006-12-25  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/PixbufUtils.cs:
+	* src/Preferences.cs:
+	* src/PhotoView.cs: Read the threshold for redeye removal from gconf.
+	Default set to -15.
+
+2006-12-25  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/PixbufUtils.cs: Closes an unclosed #if.
 
 	* src/PixbufUtils.cs: New red-eye removal algorithm. The THRESHOLD

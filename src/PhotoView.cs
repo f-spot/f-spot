@@ -338,7 +338,8 @@ public class PhotoView : EventBox {
 			if (redeye) {
 				Gdk.Rectangle area = new Gdk.Rectangle (x, y, width, height);
 				edited = PixbufUtils.RemoveRedeye (original_pixbuf, 
-								   area);
+								   area,
+								   (int) Preferences.Get (Preferences.EDIT_REDEYE_THRESHOLD));
 			} else { // Crop (I told you it was ugly)
 				edited = new Pixbuf (original_pixbuf.Colorspace, 
 						     original_pixbuf.HasAlpha, original_pixbuf.BitsPerSample,
