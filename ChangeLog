@@ -1,3 +1,11 @@
+2006-12-27  Larry Ewing  <lewing@novell.com>
+
+	* libfspot/f-screen-utils.c: add some new accessors since the
+	casts were failing.
+
+	* src/Cms.cs: Use the new accessors to allow reading and writing
+	the gamma table values.  Add tests to GammaTable.
+
 2006-12-25  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/PixbufUtils.cs:

@@ -173,13 +173,13 @@ cmsHPROFILE LCMSEXPORT f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
        
        // LUT is already on virtual profile
        cmsFreeLUT(Lut);
-       
+
        // Ok, done
        return hICC;
 }
 
 LPGAMMATABLE
-f_cms_gamma_table (unsigned short *data, int start, int length)
+f_cms_gamma_table_new (unsigned short data[], int start, int length)
 {
 	LPGAMMATABLE table = cmsAllocGamma (length);
 	int i;
@@ -191,5 +191,19 @@ f_cms_gamma_table (unsigned short *data, int start, int length)
 	for (i = 0; i < length; i++)
 		table->GammaTable [i] = data [i];
 
+	g_warning ("table %p, count = %d v[0] = %d", table, table->nEntries, table->GammaTable [0]);
+	
 	return table;
+}
+
+ushort *
+f_cms_gamma_table_get_values (LPGAMMATABLE table)
+{
+	return &(table->GammaTable [0]);
+}
+
+int
+f_cms_gamma_table_get_count (LPGAMMATABLE table)
+{
+	return table->nEntries;
 }

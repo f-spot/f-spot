@@ -324,7 +324,7 @@ namespace Cms {
 			}
 		}
 		
-		internal unsafe struct GammaTableStruct {
+		internal struct GammaTableStruct {
 			public int Count;
 			public ushort StartOfData;  // ushort array Count entries long
 		}
@@ -381,26 +381,68 @@ namespace Cms {
 		static extern IntPtr cmsAllocGamma (int entry_count);
 
 		[DllImport ("libfspot")]
-		static extern IntPtr f_cms_gamma_table (ushort [] values, int start, int length);
+		static extern IntPtr f_cms_gamma_table_new (ushort [] values, int start, int length);
+
+		[DllImport ("libfspot")]
+		static extern IntPtr f_cms_gamma_table_get_values (HandleRef table);
+
+		[DllImport ("libfspot")]
+		static extern int f_cms_gamma_table_get_count (HandleRef table);
 
 		public GammaTable (ushort [] values) : this (values, 0, values.Length)
 		{
 		}
 
+		public int Count {
+			get {
+				return f_cms_gamma_table_get_count (handle);
+			}
+		}
+
+		public IntPtr Values {
+			get {
+				return f_cms_gamma_table_get_values (handle);
+			}
+		}
+
+		public ushort this [int index] {
+			get {
+				unsafe {
+					if (handle.Handle == (IntPtr)0)
+						throw new ArgumentException ();
+					
+					if (index < 0 || index >= Count)
+						throw new ArgumentOutOfRangeException (String.Format ("index {0} outside of count {1} for {2}", index, Count, handle.Handle));
+
+					ushort *data = (ushort *)Values;
+					return data [index];
+				}
+			}
+			set {
+				unsafe {
+					if (handle.Handle == (IntPtr)0)
+						throw new ArgumentException ();
+					
+					if (index < 0 || index >= Count)
+						throw new ArgumentOutOfRangeException (String.Format ("index {0} outside of count {1} for handle {2}", index, Count, handle.Handle));
+
+
+					ushort *data = (ushort *)Values;
+					data [index] = value;
+				}
+			}
+		}
+		
 		public GammaTable (ushort [] values, int start_offset, int length)
 		{
 #if true
-			f_cms_gamma_table (values, start_offset, length);
+			handle = new HandleRef (this, f_cms_gamma_table_new (values, start_offset, length));
+			//System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXhandle = {0}", handle.Handle);
 #else
 			handle = new HandleRef (this, cmsAllocGamma (length));
-			unsafe {
-				GammaTableStruct *gt = (GammaTableStruct *)handle.Handle;
-
-				ushort *data = (ushort *)&(gt->StartOfData);
-				for (int i = 0; i < length; i++) {
-					data [i] = values [start_offset + i];
-				}
-			}
+			//System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXhandle = {0}", handle.Handle);
+			for (int i = 0; i < length; i++)
+				this [i] = values [start_offset + i];
 #endif
 		}
 
@@ -422,6 +464,23 @@ namespace Cms {
 		{
 			Cleanup ();
 		}
+
+
+#if ENABLE_NUNIT
+		[TestFixture]
+		public class Tests {
+			[Test]
+			public void TestAlloc ()
+			{
+				ushort [] values = new ushort [] { 0, 0x00ff, 0xffff };
+				GammaTable t = new GammaTable (values);
+				for (int i = 0; i < values.Length; i++) {
+					Assert.AreEqual (t[i], values [i]);
+				}
+			} 
+		}
+#endif 
+
 	}
 	
 	public class Transform : IDisposable {
