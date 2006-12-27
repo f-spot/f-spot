@@ -1,5 +1,7 @@
 2006-12-27  Larry Ewing  <lewing@novell.com>
 
+	* libfspot/Makefile.am (libfspot_la_SOURCES): add LCMS_LIBS to the link.
+
 	* libfspot/f-screen-utils.c: add some new accessors since the
 	casts were failing.
 

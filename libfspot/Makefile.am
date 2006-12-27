@@ -28,6 +28,7 @@ libfspot_la_SOURCES =				\
 	f-utils.h
 
 libfspot_la_LIBADD = 					\
+	$(LCMS_LIBS)					\
 	$(EXIF_LIBS)					\
 	$(top_builddir)/libjpegtran/libfspotjpegtran.la	\
 	$(top_builddir)/libeog/libfspoteog.la
