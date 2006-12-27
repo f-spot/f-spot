@@ -35,7 +35,8 @@ namespace FSpot.Filters {
 					val = Math.Max ((val - low), 0);
 				}
 
-				entries [i] = (ushort) (ushort.MaxValue * val);
+				entries [i] = (ushort) Math.Min (Math.Round (ushort.MaxValue * val), ushort.MaxValue);
+				//System.Console.WriteLine ("val {0}, result {1}", Math.Round (val * ushort.MaxValue), entries [i]);
 			}
 			return new GammaTable (entries);
 		}
@@ -50,7 +51,7 @@ namespace FSpot.Filters {
 				int high, low;
 				hist.GetHighLow (channel, out high, out low);
 				System.Console.WriteLine ("high = {0}, low = {1}", high, low);
-				tables [channel] = StretchChannel (103, low / 255.0, high / 255.0); 
+				tables [channel] = StretchChannel (255, low / 255.0, high / 255.0); 
 			}
 
 			return new Profile [] { new Profile (IccColorSpace.Rgb, tables) };
@@ -65,6 +66,20 @@ namespace FSpot.Filters {
 			{
 				Process ("autostretch.png");
 			}
+
+#if false
+			[Test]
+			public void StretchRealFile ()
+			{
+				string path = "/home/lewing/Desktop/img_0081.jpg";
+				FilterRequest req = new FilterRequest (path);
+				FilterSet set = new FilterSet ();
+				set.Add (new AutoStretch ());
+				set.Add (new UniqueNameFilter (Path.GetDirectoryName (path)));
+				set.Convert (req);
+				req.Preserve (req.Current);
+			}
+#endif
 
 			public void Process (string name)
 			{

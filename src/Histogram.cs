@@ -76,7 +76,7 @@ namespace FSpot {
 			
 			for (int i = 0; i < values.GetLength (0) - 1; i++) {
 				current += values [i, channel];
-				percentage = total / current;
+				percentage = current / total;
 				next_percentage = (current + values [i + 1, channel]) / total;
 				if (Math.Abs (percentage - 0.006) < Math.Abs (next_percentage - 0.006)) {
 					low = i + 1;
@@ -86,7 +86,7 @@ namespace FSpot {
 
 			for (int i = values.GetLength (0) - 1; i > 0; i--) {
 				current += values [i, channel];
-				percentage = total / current;
+				percentage = current / total;
 				next_percentage = (current + values [i - 1, channel]) / total;
 				if (Math.Abs (percentage - 0.006) < Math.Abs (next_percentage - 0.006)) {
 					high = i - 1;
