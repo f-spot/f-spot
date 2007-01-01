@@ -1,6 +1,6 @@
-docdir = $(prefix)/share/gnome/help/$(PACKAGE)/en
+docdir = $(prefix)/share/gnome/help/$(PACKAGE)/C
 
-DOC_XMLFILES = $(srcdir)/index.xml
+DOC_XMLFILES = $(srcdir)/f-spot.xml
 
 doc_DATA = $(DOC_XMLFILES)
 

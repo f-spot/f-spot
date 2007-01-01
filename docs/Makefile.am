@@ -1,5 +1,5 @@
 SUBDIRS = 	\
-	en	
+	C	
 
 MAINTAINERCLEANFILES = \
 	Makefile.in
