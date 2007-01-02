@@ -650,11 +650,8 @@ public class PhotoStore : DbStore {
 
 	public static void MoveThumbnail (string old_path, string new_path)
 	{
-		string old_uri = UriList.PathToFileUri (old_path).ToString ();
-		string new_uri = UriList.PathToFileUri (new_path).ToString ();
-
-		File.Move (Thumbnail.PathForUri (old_uri, ThumbnailSize.Large),
-			   Thumbnail.PathForUri (new_uri, ThumbnailSize.Large));
+		File.Move (ThumbnailGenerator.ThumbnailPath (UriList.PathToFileUri (old_path)),
+			   ThumbnailGenerator.ThumbnailPath(UriList.PathToFileUri (new_path)));
 	}
 
 

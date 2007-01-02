@@ -1,3 +1,8 @@
+2007-12-02  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/PhotoStore.cs: fix the uri handling in MoveThumbnail. Fixes bgo
+	391442.
+
 2007-12-01  Stephane Delcroix  <stephane@delcroix.org>
 
 	* docs/*: renaming docs/en/index.xml to docs/C/f-spot.xml. Fixes bgo
