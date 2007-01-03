@@ -393,10 +393,7 @@ GdkPixbuf * f_pixbuf_unsharp_l_mask (GdkPixbuf *src_buf,
 }
 
 GdkPixbuf *
-f_pixbuf_unsharp_mask (GdkPixbuf *src_buf, 
-		       double radius, 
-		       double amount, 
-		       double threshold)
+f_pixbuf_blur (GdkPixbuf *src_buf, double radius)
 {
   GdkPixbuf *dest_buf;
   int width = gdk_pixbuf_get_width (src_buf);
@@ -410,8 +407,6 @@ f_pixbuf_unsharp_mask (GdkPixbuf *src_buf,
   guchar *src;
   guchar *dest;
   int span = channels * width;
-  int diff;
-  int value;
 
   dest_buf = gdk_pixbuf_new (GDK_COLORSPACE_RGB,
 			     gdk_pixbuf_get_has_alpha (src_buf),
@@ -443,6 +438,29 @@ f_pixbuf_unsharp_mask (GdkPixbuf *src_buf,
   }
   g_free (src);
   g_free (dest);
+
+  return dest_buf;
+}
+
+GdkPixbuf *
+f_pixbuf_unsharp_mask (GdkPixbuf *src_buf, 
+		       double radius, 
+		       double amount, 
+		       double threshold)
+{
+  GdkPixbuf *dest_buf;
+  int width = gdk_pixbuf_get_width (src_buf);
+  int height = gdk_pixbuf_get_height (src_buf);
+  int channels = gdk_pixbuf_get_n_channels (src_buf);
+  guchar *src;
+  guchar *dest;
+  int i;
+  int row;
+  int span = channels * width;
+  int diff;
+  int value;
+
+  dest_buf = f_pixbuf_blur (src_buf, radius);
   
   /* threshold the values */
   for (row = 0; row < height; row++) {

@@ -577,6 +577,16 @@ class PixbufUtils {
 		return ret;
 	}	
 	
+	[DllImport ("libfspot")]
+	static extern IntPtr f_pixbuf_blur (IntPtr src, double radius);
+
+	public static Pixbuf Blur (Pixbuf src, double radius)
+	{
+		IntPtr raw_ret = f_pixbuf_blur (src.Handle, radius);
+ 		Gdk.Pixbuf ret = (Gdk.Pixbuf) GLib.Object.GetObject(raw_ret, true);
+		return ret;
+	}	
+
 #if OLDREDEYE
 	[DllImport ("libfspot")]
 	static extern void f_pixbuf_remove_redeye (IntPtr src);
