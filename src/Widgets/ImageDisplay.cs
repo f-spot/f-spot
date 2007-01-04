@@ -10,6 +10,7 @@ namespace FSpot.Widgets {
 	[Binding(Gdk.Key.Right, "TiltImage", -0.05)] 
 	[Binding(Gdk.Key.space, "Pan")]
 	[Binding(Gdk.Key.Q, "Vingette")]
+	[Binding(Gdk.Key.R, "RevealImage")]
 	public class ImageDisplay : Gtk.EventBox {
 		ImageInfo current;
 		ImageInfo next;
@@ -113,6 +114,14 @@ namespace FSpot.Widgets {
 			Transition = new Wipe (current, next);
 			return true;
 		}
+		
+		public bool RevealImage ()
+		{
+			Console.WriteLine ("r");
+			Transition = new Reveal (current, next);
+			return true;
+		}
+
 
 		public bool DrawFrame ()
 		{
@@ -657,6 +666,76 @@ namespace FSpot.Widgets {
 				mask.Destroy ();
 				p.Destroy ();
 				sur.Destroy ();
+				
+				return fraction < 1.0;
+			}
+			
+			public void Dispose ()
+			{
+			}
+		}
+
+		private class Reveal : ITransition {
+			DateTime start;
+			TimeSpan duration = new TimeSpan (0, 0, 2);
+			ImageInfo end;
+			ImageInfo begin;
+			ImageInfo end_buffer;
+			ImageInfo begin_buffer;
+			int frames;
+
+			public int Frames {
+				get { return frames; }
+			}
+
+			public Reveal (ImageInfo begin, ImageInfo end)
+			{
+				this.begin = begin;
+				this.end = end;
+				start = DateTime.UtcNow;
+			}
+
+			public bool OnEvent (Widget w)
+			{
+				if (begin_buffer == null) {
+					begin_buffer = new ImageInfo (begin, w); //.Allocation);
+				}
+
+				if (end_buffer == null) {
+					end_buffer = new ImageInfo (end, w); //.Allocation);
+				}
+
+				w.QueueDraw ();
+
+				TimeSpan elapsed = DateTime.UtcNow - start;
+				double fraction = elapsed.Ticks / (double) duration.Ticks; 
+
+				frames++;
+				
+				return fraction < 1.0;
+			}
+
+			public bool OnExpose (Context ctx, Gdk.Rectangle allocation)
+			{
+				TimeSpan elapsed = DateTime.UtcNow - start;
+				double fraction = elapsed.Ticks /(double) duration.Ticks;
+
+				ctx.Operator = Operator.Source;
+				ctx.Matrix = end_buffer.Fill (allocation);
+				SurfacePattern sur = new SurfacePattern (end_buffer.Surface);
+				ctx.Source = sur;
+				ctx.Paint ();
+				sur.Destroy ();
+
+				ctx.Operator = Operator.Over;
+				SurfacePattern p = new SurfacePattern (begin_buffer.Surface);
+				Matrix m = begin_buffer.Fill (allocation);
+				m.Translate (- allocation.Width * fraction, 0);
+				ctx.Matrix = m;
+				p.Filter = Filter.Fast;
+				ctx.Source = p;
+				ctx.Paint ();
+				p.Destroy ();
 				
 				return fraction < 1.0;
 			}
