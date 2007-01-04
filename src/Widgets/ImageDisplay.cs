@@ -11,6 +11,7 @@ namespace FSpot.Widgets {
 	[Binding(Gdk.Key.space, "Pan")]
 	[Binding(Gdk.Key.Q, "Vingette")]
 	[Binding(Gdk.Key.R, "RevealImage")]
+	[Binding(Gdk.Key.P, "PushImage")]
 	public class ImageDisplay : Gtk.EventBox {
 		ImageInfo current;
 		ImageInfo next;
@@ -119,6 +120,13 @@ namespace FSpot.Widgets {
 		{
 			Console.WriteLine ("r");
 			Transition = new Reveal (current, next);
+			return true;
+		}
+
+		public bool PushImage ()
+		{
+			Console.WriteLine ("p");
+			Transition = new Push (current, next);
 			return true;
 		}
 
@@ -532,65 +540,6 @@ namespace FSpot.Widgets {
 			}
 		}
 
-		private class Slide : ITransition {
-			ImageInfo begin;
-			ImageInfo end;
-			DateTime start;
-			TimeSpan duration = new TimeSpan (0, 0, 2);
-			int frames;
-
-			public Slide (ImageInfo begin, ImageInfo end)
-			{
-				start = DateTime.UtcNow;
-				this.begin = begin;
-				this.end = end;
-			}
-			
-			public int Frames {
-				get { return frames; }
-			}
-
-			public bool OnEvent (Widget w)
-			{
-				TimeSpan elapsed = DateTime.UtcNow - start;
-				double fraction = elapsed.Ticks / (double) duration.Ticks; 
-				
-				return fraction <= 1.0;
-			}
-
-			public bool OnExpose (Context ctx, Gdk.Rectangle allocation)
-			{
-				TimeSpan elapsed = DateTime.UtcNow - start;
-				double fraction = elapsed.Ticks / (double) duration.Ticks; 
-				
-				frames++;
-
-				ctx.Matrix.InitIdentity ();
-				ctx.Operator = Operator.Source;
-				
-				SurfacePattern p = new SurfacePattern (begin.Surface);
-				//p.Filter = Filter.Fast;
-				ctx.Matrix = begin.Fill (allocation);
-				ctx.Source = p;
-				ctx.Paint ();
-
-				ctx.Operator = Operator.Over;
-				ctx.Matrix = end.Fill (allocation);
-				SurfacePattern sur = new SurfacePattern (end.Surface);
-				//sur.Filter = Filter.Fast;
-				Pattern black = new SolidPattern (new Cairo.Color (0.0, 0.0, 0.0, fraction));
-				ctx.Source = sur;
-				ctx.Mask (black);
-
-				return fraction < 1.0;
-			}
-
-			public void Dispose ()
-			{
-				
-			}
-		}
-
 		private class Wipe : ITransition {
 			DateTime start;
 			TimeSpan duration = new TimeSpan (0, 0, 2);
@@ -645,10 +594,6 @@ namespace FSpot.Widgets {
 			{
 				TimeSpan elapsed = DateTime.UtcNow - start;
 				double fraction = elapsed.Ticks /(double) duration.Ticks;
-				Gdk.Rectangle coverage = new Gdk.Rectangle (0, 
-									    0, 
-									    (int) (allocation.Width * fraction), 
-									    allocation.Height);
 
 				ctx.Operator = Operator.Source;
 				SurfacePattern p = new SurfacePattern (begin_buffer.Surface);
@@ -730,7 +675,82 @@ namespace FSpot.Widgets {
 				ctx.Operator = Operator.Over;
 				SurfacePattern p = new SurfacePattern (begin_buffer.Surface);
 				Matrix m = begin_buffer.Fill (allocation);
-				m.Translate (- allocation.Width * fraction, 0);
+				m.Translate (Math.Round (- allocation.Width * fraction), 0);
+				ctx.Matrix = m;
+				p.Filter = Filter.Fast;
+				ctx.Source = p;
+				ctx.Paint ();
+				p.Destroy ();
+				
+				return fraction < 1.0;
+			}
+			
+			public void Dispose ()
+			{
+			}
+		}
+
+
+		private class Push : ITransition {
+			DateTime start;
+			TimeSpan duration = new TimeSpan (0, 0, 2);
+			ImageInfo end;
+			ImageInfo begin;
+			ImageInfo end_buffer;
+			ImageInfo begin_buffer;
+			int frames;
+
+			public int Frames {
+				get { return frames; }
+			}
+
+			public Push (ImageInfo begin, ImageInfo end)
+			{
+				this.begin = begin;
+				this.end = end;
+				start = DateTime.UtcNow;
+			}
+
+			public bool OnEvent (Widget w)
+			{
+				if (begin_buffer == null) {
+					begin_buffer = new ImageInfo (begin, w); //.Allocation);
+				}
+
+				if (end_buffer == null) {
+					end_buffer = new ImageInfo (end, w); //.Allocation);
+				}
+
+				w.QueueDraw ();
+
+				TimeSpan elapsed = DateTime.UtcNow - start;
+				double fraction = elapsed.Ticks / (double) duration.Ticks; 
+
+				frames++;
+				
+				return fraction < 1.0;
+			}
+
+			public bool OnExpose (Context ctx, Gdk.Rectangle allocation)
+			{
+				TimeSpan elapsed = DateTime.UtcNow - start;
+				double fraction = elapsed.Ticks /(double) duration.Ticks;
+				fraction = Math.Min (fraction, 1.0);
+
+				ctx.Operator = Operator.Source;
+				Matrix em = end_buffer.Fill (allocation);
+				em.Translate (Math.Round (allocation.Width - allocation.Width * fraction), 0);
+				ctx.Matrix = em;
+				SurfacePattern sur = new SurfacePattern (end_buffer.Surface);
+				sur.Filter = Filter.Fast;
+				ctx.Source = sur;
+				ctx.Paint ();
+				sur.Destroy ();
+
+				ctx.Operator = Operator.Over;
+				SurfacePattern p = new SurfacePattern (begin_buffer.Surface);
+				Matrix m = begin_buffer.Fill (allocation);
+				m.Translate (Math.Round (- allocation.Width * fraction), 0);
 				ctx.Matrix = m;
 				p.Filter = Filter.Fast;
 				ctx.Source = p;
