@@ -11,17 +11,37 @@ if test "x$turtledir" != "x"; then
     export MONO_PATH=$turtledir/lib:$turtledir/gui:$MONO_PATH
 fi
 
-case "x--uninstalled" in ("x$1" | "x$2")
-	echo "*** Running uninstalled f-spot ***"
-	EXE_TO_RUN="./f-spot.exe"
-	export MONO_PATH=../dbus-sharp:../dbus-sharp-glib:../google-sharp:../gnome-keyring-sharp:../FlickrNet:../SmugMugNet:../libgphoto2-sharp:../semweb:$MONO_PATH
+[ -n "$FSPOT_DEBUG" ] && FSPOT_DEBUG="--debug"
+[ -n "$FSPOT_TRACE" ] && FSPOT_TRACE="--trace=$FSPOT_TRACE"
+[ -n "$FSPOT_PROFILE" ] && FSPOT_PROFILE="--profile=$FSPOT_PROFILE"
 
+for arg in $*; do
+    case "x--debug" in ("x$arg")
+        FSPOT_DEBUG=$arg
+    esac
 
-esac
+    case "x--trace=" in ("x${arg:0:8}")
+        FSPOT_TRACE=$arg
+    esac
 
-case "x--debug" in ("x$1" | "x$2")
-	MONO_OPTIONS="--debug"
-	echo "*** Running F-Spot in Debug Mode ***"
-esac
+    case "x--profile=" in ("x${arg:0:10}")
+        FSPOT_PROFILE=$arg
+    esac
+
+    case "x--uninstalled" in ("x$arg")
+        echo "*** Running uninstalled f-spot ***"
+        EXE_TO_RUN="./f-spot.exe"
+        export MONO_PATH=../dbus-sharp:../dbus-sharp-glib:../google-sharp:../gnome-keyring-sharp:../FlickrNet:../SmugMugNet:../libgphoto2-sharp:../semweb:$MONO_PATH
+    esac
+done
+
+if [ -n "$FSPOT_DEBUG" ]; then
+    echo "** Running f-spot in Debug Mode **"
+fi
+
+if [ -n "$FSPOT_DEBUG" -o -n "$FSPOT_TRACE" -o -n "$FSPOT_PROFILE" ]; then
+    MONO_OPTIONS="$FSPOT_DEBUG $FSPOT_TRACE $FSPOT_PROFILE"
+    echo "** Running Mono with $MONO_OPTIONS **"
+fi
 
 exec -a @PACKAGE@ mono $MONO_OPTIONS $EXE_TO_RUN "$@"

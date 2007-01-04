@@ -65,7 +65,7 @@ namespace FSpot
 			}
 
 			foreach (string s in RemainingArguments)
-				if (s.StartsWith("-") && s != "--uninstalled" && s != "--debug") {
+				if (s.StartsWith("-") && s != "--uninstalled" && s != "--debug" && s != "--trace" && s != "--profile") {
 					Console.WriteLine ("Unknown option {0}", s);
 					return false;
 				}

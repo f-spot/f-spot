@@ -1,3 +1,14 @@
+2007-01-03  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/f-spot.in: Add support for profiling and tracing. Also allow this to
+	be toggled by using environment variables. You can start f-spot with the
+	FSPOT_DEBUG, FSPOT_PROFILE and FSPOT_TRACE environment variables. For
+	instance, if you want to use the heap-shot profiler, either start f-spot
+	by passing --profile=heap-spot or by setting the FSPOT_PROFILE environment
+	variable: FSPOT_PROFILE=heap-shot f-spot.
+
+	* src/main.cs: Recognize --trace and --profile.
+
 2007-12-02  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/PhotoStore.cs: fix the uri handling in MoveThumbnail. Fixes bgo
