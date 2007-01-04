@@ -9,6 +9,7 @@ namespace FSpot.Widgets {
 	[Binding(Gdk.Key.Left, "TiltImage", 0.05)]
 	[Binding(Gdk.Key.Right, "TiltImage", -0.05)] 
 	[Binding(Gdk.Key.space, "Pan")]
+	[Binding(Gdk.Key.Q, "Vingette")]
 	public class ImageDisplay : Gtk.EventBox {
 		ImageInfo current;
 		ImageInfo next;
@@ -77,6 +78,19 @@ namespace FSpot.Widgets {
 			return true;
 		}
 
+		public bool Vingette ()
+		{
+			SoftFocus f = effect as SoftFocus;
+			
+			if (f == null) {
+				f = new SoftFocus (current);
+				effect = f;
+			}
+
+			QueueDraw ();
+			return true;
+		}
+
 		public bool TiltImage (double radians)
 		{
 			Tilt t = effect as Tilt;
@@ -96,7 +110,7 @@ namespace FSpot.Widgets {
 		public bool Pan ()
 		{
 			Console.WriteLine ("space");
-			Transition = new PanZoom (current);
+			Transition = new Wipe (current, next);
 			return true;
 		}
 
@@ -152,7 +166,7 @@ namespace FSpot.Widgets {
 				}
 			} else if (effect != null) {
 				foreach (Gdk.Rectangle area in region.GetRectangles ()) {
-					BlockProcessor proc = new BlockProcessor (area, 256);
+					BlockProcessor proc = new BlockProcessor (area, 30000);
 					Gdk.Rectangle subarea;
 					while (proc.Step (out subarea)) {
 						ctx.Save ();
@@ -221,6 +235,93 @@ namespace FSpot.Widgets {
 
 		private interface IEffect : IDisposable {
 			bool OnExpose (Context ctx, Gdk.Rectangle allocation);
+		}
+
+		private class SoftFocus : IEffect {
+			ImageInfo info;
+			double radius;
+			double amount = 30;
+			ImageInfo cache;
+			Gdk.Point center;
+
+			public SoftFocus (ImageInfo info)
+			{
+				this.info = info;
+				center.X = info.Bounds.Width / 2;
+				center.Y = info.Bounds.Height / 2;
+				radius = Math.Min (info.Bounds.Width, info.Bounds.Height) / 4.0;
+			}
+
+			public Gdk.Point Center {
+				get { return center; }
+				set { center = value; }
+			}
+
+			public double Amount {
+				get { return amount; }
+				set { amount = value; }
+			}
+
+			public double Radius {
+				get { return radius; }
+				set { radius = value; }
+			}
+
+			private ImageInfo CreateBlur (ImageInfo source)
+			{
+				ImageSurface image = new ImageSurface (Format.Argb32, 
+								       source.Bounds.Width,
+								       source.Bounds.Height);
+				Context ctx = new Context (image);
+				ctx.Source = new SurfacePattern (source.Surface);
+				ctx.Matrix = source.Fill (source.Bounds);
+				ctx.Paint ();
+				Gdk.Pixbuf normal = CairoUtils.CreatePixbuf (image);
+				Gdk.Pixbuf blur = PixbufUtils.Blur (normal, amount);
+				ImageInfo overlay = new ImageInfo (blur);
+				blur.Dispose ();
+				normal.Dispose ();
+				return overlay;
+			}
+
+			private Pattern CreateMask ()
+			{
+				RadialGradient circle = new RadialGradient (center.X, center.Y, radius *.7,
+									    center.X, center.Y, radius);
+				circle.AddColorStop (0, new Cairo.Color (0.0, 0.0, 0.0, 0.0));
+				circle.AddColorStop (1.0, new Cairo.Color (1.0, 1.0, 1.0, 1.0));
+				return circle;
+			}
+
+			public bool OnExpose (Context ctx, Gdk.Rectangle allocation)
+			{
+				SurfacePattern p = new SurfacePattern (info.Surface);
+				Matrix m = info.Fill (allocation);
+				ctx.Operator = Operator.Source;
+				ctx.Matrix = m;
+				ctx.Source = p;
+				//ctx.Source = new SolidPattern (0.0, 0.0, 0.0, 0.0);
+				ctx.Paint ();
+				
+				Console.WriteLine ("we started here");
+				ImageInfo blur = CreateBlur (info);
+				SurfacePattern overlay = new SurfacePattern (blur.Surface);
+				ctx.Matrix = blur.Fill (allocation);
+				ctx.Operator = Operator.Over;
+				ctx.Source = overlay;
+				Console.WriteLine ("did we make it here");
+
+				ctx.Mask (CreateMask ());
+				//ctx.Paint ();
+				blur.Dispose ();
+				//circle.Dispose ();
+				p.Destroy ();
+				return true;
+			}
+
+			public void Dispose ()
+			{
+			}
 		}
 
 		private class Tilt : IEffect {
@@ -478,6 +579,90 @@ namespace FSpot.Widgets {
 			public void Dispose ()
 			{
 				
+			}
+		}
+
+		private class Wipe : ITransition {
+			DateTime start;
+			TimeSpan duration = new TimeSpan (0, 0, 2);
+			ImageInfo end;
+			ImageInfo begin;
+			ImageInfo end_buffer;
+			ImageInfo begin_buffer;
+			int frames;
+
+			public int Frames {
+				get { return frames; }
+			}
+
+			public Wipe (ImageInfo begin, ImageInfo end)
+			{
+				this.begin = begin;
+				this.end = end;
+				start = DateTime.UtcNow;
+			}
+
+			public bool OnEvent (Widget w)
+			{
+				if (begin_buffer == null) {
+					begin_buffer = new ImageInfo (begin, w); //.Allocation);
+				}
+
+				if (end_buffer == null) {
+					end_buffer = new ImageInfo (end, w); //.Allocation);
+				}
+
+				w.QueueDraw ();
+
+				TimeSpan elapsed = DateTime.UtcNow - start;
+				double fraction = elapsed.Ticks / (double) duration.Ticks; 
+
+				frames++;
+				
+				return fraction < 1.0;
+			}
+
+			Pattern CreateMask (Gdk.Rectangle coverage, double fraction)
+			{
+				LinearGradient fade = new LinearGradient (0, 0,
+									  coverage.Width, 0);
+				fade.AddColorStop (Math.Max (fraction - .1, 0.0), new Cairo.Color (1.0, 1.0, 1.0, 1.0));
+				fade.AddColorStop (Math.Min (fraction + .1, 1.0), new Cairo.Color (0.0, 0.0, 0.0, 0.0));
+
+				return fade;
+			}
+
+			public bool OnExpose (Context ctx, Gdk.Rectangle allocation)
+			{
+				TimeSpan elapsed = DateTime.UtcNow - start;
+				double fraction = elapsed.Ticks /(double) duration.Ticks;
+				Gdk.Rectangle coverage = new Gdk.Rectangle (0, 
+									    0, 
+									    (int) (allocation.Width * fraction), 
+									    allocation.Height);
+
+				ctx.Operator = Operator.Source;
+				SurfacePattern p = new SurfacePattern (begin_buffer.Surface);
+				ctx.Matrix = begin_buffer.Fill (allocation);
+				p.Filter = Filter.Fast;
+				ctx.Source = p;
+				ctx.Paint ();
+
+				ctx.Operator = Operator.Over;
+				ctx.Matrix = end_buffer.Fill (allocation);
+				SurfacePattern sur = new SurfacePattern (end_buffer.Surface);
+				ctx.Source = sur;
+				Pattern mask = CreateMask (allocation, fraction);
+				ctx.Mask (mask);
+				mask.Destroy ();
+				p.Destroy ();
+				sur.Destroy ();
+				
+				return fraction < 1.0;
+			}
+			
+			public void Dispose ()
+			{
 			}
 		}
 
