@@ -44,7 +44,7 @@ namespace FSpot.Widgets {
 			if (item.Collection.Count > item.Index + 1) {
 				next = new ImageInfo (item.Collection [item.Index + 1].DefaultVersionUri);
 			}
-			delay = new Delay (20, new GLib.IdleHandler (DrawFrame));
+			delay = new Delay (30, new GLib.IdleHandler (DrawFrame));
 		}
 
 		protected override void OnDestroyed ()
@@ -365,7 +365,7 @@ namespace FSpot.Widgets {
 				SurfacePattern p = new SurfacePattern (info.Surface);
 
 				p.Filter = Filter.Fast;
-				Console.WriteLine (p.Filter);
+
 				
 				Matrix m = info.Fill (allocation, angle);
 				
@@ -542,13 +542,14 @@ namespace FSpot.Widgets {
 
 		private class Wipe : ITransition {
 			DateTime start;
-			TimeSpan duration = new TimeSpan (0, 0, 2);
+			TimeSpan duration = new TimeSpan (0, 0, 3);
 			ImageInfo end;
 			ImageInfo begin;
 			ImageInfo end_buffer;
 			ImageInfo begin_buffer;
 			int frames;
-
+			double fraction;
+			
 			public int Frames {
 				get { return frames; }
 			}
@@ -557,7 +558,6 @@ namespace FSpot.Widgets {
 			{
 				this.begin = begin;
 				this.end = end;
-				start = DateTime.UtcNow;
 			}
 
 			public bool OnEvent (Widget w)
@@ -568,12 +568,13 @@ namespace FSpot.Widgets {
 
 				if (end_buffer == null) {
 					end_buffer = new ImageInfo (end, w); //.Allocation);
+					start = DateTime.UtcNow;
 				}
 
 				w.QueueDraw ();
 
 				TimeSpan elapsed = DateTime.UtcNow - start;
-				double fraction = elapsed.Ticks / (double) duration.Ticks; 
+				fraction = elapsed.Ticks / (double) duration.Ticks; 
 
 				frames++;
 				
@@ -592,9 +593,6 @@ namespace FSpot.Widgets {
 
 			public bool OnExpose (Context ctx, Gdk.Rectangle allocation)
 			{
-				TimeSpan elapsed = DateTime.UtcNow - start;
-				double fraction = elapsed.Ticks /(double) duration.Ticks;
-
 				ctx.Operator = Operator.Source;
 				SurfacePattern p = new SurfacePattern (begin_buffer.Surface);
 				ctx.Matrix = begin_buffer.Fill (allocation);
@@ -605,6 +603,7 @@ namespace FSpot.Widgets {
 				ctx.Operator = Operator.Over;
 				ctx.Matrix = end_buffer.Fill (allocation);
 				SurfacePattern sur = new SurfacePattern (end_buffer.Surface);
+				sur.Filter = Filter.Fast;
 				ctx.Source = sur;
 				Pattern mask = CreateMask (allocation, fraction);
 				ctx.Mask (mask);
@@ -617,6 +616,8 @@ namespace FSpot.Widgets {
 			
 			public void Dispose ()
 			{
+				begin_buffer.Dispose ();
+				end_buffer.Dispose ();
 			}
 		}
 
@@ -627,6 +628,7 @@ namespace FSpot.Widgets {
 			ImageInfo begin;
 			ImageInfo end_buffer;
 			ImageInfo begin_buffer;
+			double fraction;
 			int frames;
 
 			public int Frames {
@@ -637,7 +639,6 @@ namespace FSpot.Widgets {
 			{
 				this.begin = begin;
 				this.end = end;
-				start = DateTime.UtcNow;
 			}
 
 			public bool OnEvent (Widget w)
@@ -648,12 +649,13 @@ namespace FSpot.Widgets {
 
 				if (end_buffer == null) {
 					end_buffer = new ImageInfo (end, w); //.Allocation);
-				}
+					start = DateTime.UtcNow;
+				}		
 
 				w.QueueDraw ();
 
 				TimeSpan elapsed = DateTime.UtcNow - start;
-				double fraction = elapsed.Ticks / (double) duration.Ticks; 
+				fraction = elapsed.Ticks / (double) duration.Ticks; 
 
 				frames++;
 				
@@ -662,9 +664,6 @@ namespace FSpot.Widgets {
 
 			public bool OnExpose (Context ctx, Gdk.Rectangle allocation)
 			{
-				TimeSpan elapsed = DateTime.UtcNow - start;
-				double fraction = elapsed.Ticks /(double) duration.Ticks;
-
 				ctx.Operator = Operator.Source;
 				ctx.Matrix = end_buffer.Fill (allocation);
 				SurfacePattern sur = new SurfacePattern (end_buffer.Surface);
@@ -687,6 +686,8 @@ namespace FSpot.Widgets {
 			
 			public void Dispose ()
 			{
+				begin_buffer.Dispose ();
+				end_buffer.Dispose ();
 			}
 		}
 
@@ -698,6 +699,7 @@ namespace FSpot.Widgets {
 			ImageInfo begin;
 			ImageInfo end_buffer;
 			ImageInfo begin_buffer;
+			double fraction;
 			int frames;
 
 			public int Frames {
@@ -708,7 +710,6 @@ namespace FSpot.Widgets {
 			{
 				this.begin = begin;
 				this.end = end;
-				start = DateTime.UtcNow;
 			}
 
 			public bool OnEvent (Widget w)
@@ -719,12 +720,13 @@ namespace FSpot.Widgets {
 
 				if (end_buffer == null) {
 					end_buffer = new ImageInfo (end, w); //.Allocation);
+					start = DateTime.UtcNow;
 				}
 
 				w.QueueDraw ();
 
 				TimeSpan elapsed = DateTime.UtcNow - start;
-				double fraction = elapsed.Ticks / (double) duration.Ticks; 
+				fraction = elapsed.Ticks / (double) duration.Ticks; 
 
 				frames++;
 				
@@ -733,8 +735,6 @@ namespace FSpot.Widgets {
 
 			public bool OnExpose (Context ctx, Gdk.Rectangle allocation)
 			{
-				TimeSpan elapsed = DateTime.UtcNow - start;
-				double fraction = elapsed.Ticks /(double) duration.Ticks;
 				fraction = Math.Min (fraction, 1.0);
 
 				ctx.Operator = Operator.Source;
@@ -762,6 +762,8 @@ namespace FSpot.Widgets {
 			
 			public void Dispose ()
 			{
+				end_buffer.Dispose ();
+				begin_buffer.Dispose ();
 			}
 		}
 
@@ -995,11 +997,11 @@ namespace FSpot.Widgets {
 				Matrix m = new Matrix ();
 				m.InitIdentity ();
 				
-				double scale = Math.Min (viewport.Width / (double) Bounds.Width,
-							 viewport.Height / (double) Bounds.Height);
+				double scale = Math.Round (Math.Min (viewport.Width / (double) Bounds.Width,
+							 viewport.Height / (double) Bounds.Height));
 				
-				double x_offset = (viewport.Width  - Bounds.Width * scale) / 2.0;
-				double y_offset = (viewport.Height  - Bounds.Height * scale) / 2.0;
+				double x_offset = Math.Round ((viewport.Width  - Bounds.Width * scale) / 2.0);
+				double y_offset = Math.Round ((viewport.Height  - Bounds.Height * scale) / 2.0);
 				
 				m.Translate (x_offset, y_offset);
 				m.Scale (scale, scale);

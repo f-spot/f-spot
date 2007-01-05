@@ -1,6 +1,12 @@
 2007-01-04  Larry Ewing  <lewing@novell.com>
 
-	* src/Widgets/ImageDisplay.cs: add slow Push speed up reveal slightly.
+	* src/Widgets/ImageDisplay.cs: calculate the fraction during the
+	event not during the expose so that we can get more uniform
+	results.  Round the scaling and translation values so that we have
+	a better chance of hitting the fastpath.
+
+	* src/Widgets/ImageDisplay.cs: add slow Push speed up reveal
+	slightly.
 
 	* src/Widgets/ImageDisplay.cs: add partially functioning reveal.
 
