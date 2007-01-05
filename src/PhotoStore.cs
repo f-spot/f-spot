@@ -587,6 +587,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 public class PhotoStore : DbStore {
 	TagStore tag_store;
 
+
 	static int total_photos = 0;
 	public static int TotalPhotos {
 		get { return total_photos; }
@@ -679,10 +680,7 @@ public class PhotoStore : DbStore {
 			return;
 		}
 		
-		command = new SqliteCommand ();
-		command.Connection = Connection;
-
-		command.CommandText =
+		ExecuteSqlCommand ( 
 			"CREATE TABLE photos (                                     " +
 			"	id                 INTEGER PRIMARY KEY NOT NULL,   " +
 			"       time               INTEGER NOT NULL,	   	   " +
@@ -690,40 +688,23 @@ public class PhotoStore : DbStore {
 			"       name               STRING NOT NULL,		   " +
 			"       description        TEXT NOT NULL,	           " +
 			"       default_version_id INTEGER NOT NULL		   " +
-			")";
+			")");
 
-		command.ExecuteNonQuery ();
-		command.Dispose ();
 
-		// FIXME: No need to do Dispose here?
-
-		command = new SqliteCommand ();
-		command.Connection = Connection;
-
-		command.CommandText =
+		ExecuteSqlCommand (
 			"CREATE TABLE photo_tags (     " +
 			"	photo_id      INTEGER, " +
 			"       tag_id        INTEGER  " +
-			")";
+			")");
 
-		command.ExecuteNonQuery ();
-		command.Dispose ();
 
-		// FIXME: No need to do Dispose here?
-
-		command = new SqliteCommand ();
-		command.Connection = Connection;
-
-		command.CommandText =
+		ExecuteSqlCommand (
 			"CREATE TABLE photo_versions (    " +
 			"       photo_id        INTEGER,  " +
 			"       version_id      INTEGER,  " +
 			"       name            STRING    " +
-			")";
+			")");
 
-		command.ExecuteNonQuery ();
-		command.Dispose ();
-		
 		TotalPhotos = 0;
 	}
 
@@ -1050,29 +1031,12 @@ public class PhotoStore : DbStore {
 			TotalPhotos--;			
 		}
 
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
+		ExecuteSqlCommand (String.Format ("DELETE FROM photos WHERE {0}", query_builder.ToString ()));
+//
+		ExecuteSqlCommand (String.Format ("DELETE FROM photo_tags WHERE {0}", tv_query_builder.ToString ()));
+//
+		ExecuteSqlCommand (String.Format ("DELETE FROM photo_versions WHERE {0}", tv_query_builder.ToString ()));
 
-		command.CommandText = String.Format ("DELETE FROM photos WHERE {0}", query_builder.ToString ());
-		command.ExecuteNonQuery ();
-
-		command.Dispose ();
-
-		command = new SqliteCommand ();
-		command.Connection = Connection;
-
-		command.CommandText = String.Format ("DELETE FROM photo_tags WHERE {0}", tv_query_builder.ToString ());
-		command.ExecuteNonQuery ();
-
-		command.Dispose ();
-
-		command = new SqliteCommand ();
-		command.Connection = Connection;
-
-		command.CommandText = String.Format ("DELETE FROM photo_versions WHERE {0}", tv_query_builder.ToString ());
-		command.ExecuteNonQuery ();
-
-		command.Dispose ();
 	}
 
 	public override void Remove (DbItem item)
@@ -1103,44 +1067,28 @@ public class PhotoStore : DbStore {
         private void Update (Photo photo) {
 		// Update photo.
 
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-		command.CommandText = String.Format ("UPDATE photos SET description = '{0}',     " +
+		ExecuteSqlCommand (String.Format ("UPDATE photos SET description = '{0}',     " +
 						     "                  default_version_id = {1}, " +
 						     "                  time = {2} " +
 						     "              WHERE id = {3}",
 						     SqlString (photo.Description),
 						     photo.DefaultVersionId,
 						     DbUtils.UnixTimeFromDateTime (photo.Time),
-						     photo.Id);
-		command.ExecuteNonQuery ();
-		command.Dispose ();
+						     photo.Id));
 
 		// Update tags.
 
-		command = new SqliteCommand ();
-		command.Connection = Connection;
-		command.CommandText = String.Format ("DELETE FROM photo_tags WHERE photo_id = {0}", photo.Id);
-		command.ExecuteNonQuery ();
-		command.Dispose ();
+		ExecuteSqlCommand (String.Format ("DELETE FROM photo_tags WHERE photo_id = {0}", photo.Id));
 
 		foreach (Tag tag in photo.Tags) {
-			command = new SqliteCommand ();
-			command.Connection = Connection;
-			command.CommandText = String.Format ("INSERT INTO photo_tags (photo_id, tag_id) " +
+			ExecuteSqlCommand (String.Format ("INSERT INTO photo_tags (photo_id, tag_id) " +
 							     "       VALUES ({0}, {1})",
-							     photo.Id, tag.Id);
-			command.ExecuteNonQuery ();
-			command.Dispose ();
+							     photo.Id, tag.Id));
 		}
 
 		// Update versions.
 
-		command = new SqliteCommand ();
-		command.Connection = Connection;
-		command.CommandText = String.Format ("DELETE FROM photo_versions WHERE photo_id = {0}", photo.Id);
-		command.ExecuteNonQuery ();
-		command.Dispose ();
+		ExecuteSqlCommand (String.Format ("DELETE FROM photo_versions WHERE photo_id = {0}", photo.Id));
 
 		foreach (uint version_id in photo.VersionIds) {
 			if (version_id == Photo.OriginalVersionId)
@@ -1148,13 +1096,9 @@ public class PhotoStore : DbStore {
 
 			string version_name = photo.GetVersionName (version_id);
 
-			command = new SqliteCommand ();
-			command.Connection = Connection;
-			command.CommandText = String.Format ("INSERT INTO photo_versions (photo_id, version_id, name) " +
+			ExecuteSqlCommand (String.Format ("INSERT INTO photo_versions (photo_id, version_id, name) " +
 							     "       VALUES ({0}, {1}, '{2}')",
-							     photo.Id, version_id, SqlString (version_name));
-			command.ExecuteNonQuery ();
-			command.Dispose ();
+							     photo.Id, version_id, SqlString (version_name)));
 		}
 	}
 	

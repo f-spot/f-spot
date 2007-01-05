@@ -36,30 +36,20 @@ public class ImportStore : DbStore {
 		if (! is_new)
 			return;
 		
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-
-		command.CommandText =
+		ExecuteSqlCommand (
 			"CREATE TABLE imports (                            " +
 			"	id          INTEGER PRIMARY KEY NOT NULL,  " +
 			"       time        INTEGER			   " +
-			")";
+			")");
 
-		command.ExecuteNonQuery ();
-		command.Dispose ();
 	}
 
 	public Import Create (DateTime time_in_utc)
 	{
 		long unix_time = DbUtils.UnixTimeFromDateTime (time_in_utc);
 
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-
-		command.CommandText = String.Format ("INSERT INTO import (time) VALUES ({0})  ",
-						     unix_time);
-		command.ExecuteScalar ();
-		command.Dispose ();
+		ExecuteSqlCommand (String.Format ("INSERT INTO import (time) VALUES ({0})  ",
+						     unix_time));
 
 		uint id = (uint) Connection.LastInsertRowId;
 		Import import = new Import (id, unix_time);
@@ -94,13 +84,7 @@ public class ImportStore : DbStore {
 	{
 		RemoveFromCache (item);
 
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-
-		command.CommandText = String.Format ("DELETE FROM imports WHERE id = {0}", item.Id);
-		command.ExecuteNonQuery ();
-
-		command.Dispose ();
+		ExecuteSqlCommand (String.Format ("DELETE FROM imports WHERE id = {0}", item.Id));
 	}
 
 	public override void Commit (DbItem item)

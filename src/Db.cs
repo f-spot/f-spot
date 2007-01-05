@@ -1,4 +1,5 @@
 using Mono.Data.SqliteClient;
+using System.Threading;
 using System.Collections;
 using System.IO;
 using System;
@@ -44,6 +45,9 @@ public delegate void ItemsChangedHandler (object sender, DbItemEventArgs args);
 
 public abstract class DbStore {
 	// DbItem cache.
+
+	protected const int MAX_RETRIES = 4;
+	protected const int SLEEP_TIME = 1000; // 1 sec
 
 	public event ItemsAddedHandler   ItemsAdded;
 	public event ItemsRemovedHandler ItemsRemoved;
@@ -156,6 +160,43 @@ public abstract class DbStore {
 
 
 	// Utility methods.
+	
+	protected void ExecuteSqlCommand (String command_text) 
+
+	{
+
+		int retries = 0;
+		TrySqliteCommand (command_text, ref retries);
+
+	}
+
+	private void TrySqliteCommand (String command_text, ref int retries)
+	{
+
+
+		SqliteCommand command = new SqliteCommand ();
+		command.Connection = Connection;
+		command.CommandText = command_text;
+
+		try {
+			retries++;
+			command.ExecuteNonQuery ();
+		} catch (SqliteBusyException) {
+			if ( retries > MAX_RETRIES )
+			{
+				//FIXME: show a dialog explaining things to the user
+				throw;
+			}
+			// DB is locked. Sleep a while and try again
+			Thread.Sleep (SLEEP_TIME);
+			TrySqliteCommand (command_text, ref retries);
+		} finally {
+			command.Dispose ();
+		}
+
+	}
+
+
 
 	// Subclasses use this to generate valid SQL commands.
 	protected static string SqlString (string s) {

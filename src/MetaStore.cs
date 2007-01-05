@@ -60,18 +60,14 @@ public class MetaStore : DbStore {
 
 	private void CreateTable ()
 	{
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
 
-		command.CommandText =
-			@"CREATE TABLE meta (
-				id		INTEGER PRIMARY KEY NOT NULL,
-				name		TEXT UNIQUE NOT NULL,
-				data		TEXT
-			)";
+		ExecuteSqlCommand(     
+			"CREATE TABLE meta (					" +
+			"	id		INTEGER PRIMARY KEY NOT NULL,	" +
+			"	name		TEXT UNIQUE NOT NULL,		" +
+			"	data		TEXT				" +
+			")");
 
-		command.ExecuteNonQuery ();
-		command.Dispose ();
 	}
 
 	private void CreateDefaultItems (bool is_new)
@@ -129,16 +125,16 @@ public class MetaStore : DbStore {
 
 	private MetaItem Create (string name, string data)
 	{
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
 
-		command.CommandText = String.Format ("INSERT INTO meta (name, data) VALUES ('{0}', {1})",
-				name, (data == null) ? "NULL" : "'" + data + "'");
+		ExecuteSqlCommand (String.Format ("INSERT INTO meta (name, data) VALUES ('{0}', {1})",
+				name, (data == null) ? "NULL" : "'" + data + "'"));
 		
+		//FIXME This smells bad. This line used to be *before* the
+		//Command.executeNonQuery. It smells of a bug, but there might
+		//have been a reason for this
+
 		MetaItem item = new MetaItem ((uint) Connection.LastInsertRowId, name, data);
 
-		command.ExecuteScalar ();
-		command.Dispose ();
 		
 		AddToCache (item);
 		EmitAdded (item);
@@ -150,13 +146,9 @@ public class MetaStore : DbStore {
 	{
 		MetaItem item = dbitem as MetaItem;
 
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
 
-		command.CommandText = String.Format ("UPDATE meta SET data = '{1}' WHERE name = '{0}'", item.Name, item.Value);
+		ExecuteSqlCommand (String.Format ("UPDATE meta SET data = '{1}' WHERE name = '{0}'", item.Name, item.Value));
 
-		command.ExecuteNonQuery ();
-		command.Dispose ();
 		
 		EmitChanged (item);
 	}
@@ -170,13 +162,8 @@ public class MetaStore : DbStore {
 	{
 		RemoveFromCache (item);
 		
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
+		ExecuteSqlCommand (String.Format ("DELETE FROM meta WHERE id = {0}", item.Id));
 
-		command.CommandText = String.Format ("DELETE FROM meta WHERE id = {0}", item.Id);
-		command.ExecuteNonQuery ();
-
-		command.Dispose ();
 		EmitRemoved (item);
 	}
 

@@ -363,21 +363,16 @@ public class TagStore : DbStore {
 
 	private void CreateTable ()
 	{
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
 
-		command.CommandText =
-			"CREATE TABLE tags (                               " +
-			"	id            INTEGER PRIMARY KEY NOT NULL," +
-			"       name          TEXT UNIQUE,                 " +
-			"       category_id   INTEGER,			   " +
-			"       is_category   BOOLEAN,			   " +
-			"       sort_priority INTEGER,			   " +
-			"       icon          TEXT			   " +
-			")";
+		ExecuteSqlCommand ("CREATE TABLE tags (                            " +
+				   "	id            INTEGER PRIMARY KEY NOT NULL," +
+				   "       name          TEXT UNIQUE,                 " +
+				   "       category_id   INTEGER,			   " +
+				   "       is_category   BOOLEAN,			   " +
+				   "       sort_priority INTEGER,			   " +
+				   "       icon          TEXT			   " +
+				   ")");
 
-		command.ExecuteNonQuery ();
-		command.Dispose ();
 	}
 
 
@@ -431,20 +426,19 @@ public class TagStore : DbStore {
 
 	private uint InsertTagIntoTable (Category parent_category, string name, bool is_category)
 	{
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
 
 		uint parent_category_id = parent_category.Id;
 
-		command.CommandText = String.Format
-			("INSERT INTO tags (name, category_id, is_category, sort_priority) " +
-			 "            VALUES ('{0}', {1}, {2}, 0)                          ",
-			 SqlString (name),
-			 parent_category_id,
-			 is_category ? 1 : 0);
+		ExecuteSqlCommand (String.Format ("INSERT INTO tags           " + 
+						  "(    name,                 " +
+						  "    category_id,           " + 
+						  "    is_category,           " + 
+						  "    sort_priority         )" +
+			 			  "VALUES ('{0}', {1}, {2}, 0)",
+						  SqlString (name),
+						  parent_category_id,
+						  is_category ? 1 : 0));
 
-		command.ExecuteScalar ();
-		command.Dispose ();
 
 		return (uint) Connection.LastInsertRowId;
 	}
@@ -499,13 +493,9 @@ public class TagStore : DbStore {
 		
 		((Tag)item).Category = null;
 		
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
 
-		command.CommandText = String.Format ("DELETE FROM tags WHERE id = {0}", item.Id);
-		command.ExecuteNonQuery ();
+		ExecuteSqlCommand (String.Format ("DELETE FROM tags WHERE id = {0}", item.Id));
 
-		command.Dispose ();
 		EmitRemoved (item);
 	}
 
@@ -525,25 +515,21 @@ public class TagStore : DbStore {
 	{
 		Tag tag = item as Tag;
 
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
 
-		command.CommandText = String.Format ("UPDATE tags SET          " +
-						     "    name = '{0}',        " +
-						     "    category_id = {1},   " +
-						     "    is_category = {2},   " +
-						     "    sort_priority = {3}, " +
-						     "    icon = '{4}'	       " +
-						     "WHERE id = {5}           ",
-						     SqlString (tag.Name),
-						     tag.Category.Id,
-						     tag is Category ? 1 : 0,
-						     tag.SortPriority,
-						     SqlString (GetIconString (tag)),
-						     tag.Id);
-		command.ExecuteNonQuery ();
+		ExecuteSqlCommand (String.Format ("UPDATE tags SET          " +
+						  "    name = '{0}',        " +
+						  "    category_id = {1},   " +
+						  "    is_category = {2},   " +
+						  "    sort_priority = {3}, " +
+						  "    icon = '{4}'	       " +
+						  "WHERE id = {5}           ",
+						  SqlString (tag.Name),
+						  tag.Category.Id,
+						  tag is Category ? 1 : 0,
+						  tag.SortPriority,
+						  SqlString (GetIconString (tag)),
+						  tag.Id));
 
-		command.Dispose ();
 		
 		EmitChanged (tag);
 	}
