@@ -14,7 +14,6 @@ src/CDExport.cs
 src/ColorDialog.cs
 src/Core.cs
 src/ExceptionDialog.cs
-src/Exif.cs
 src/Filters/ResizeFilter.cs
 src/FindBar.cs
 src/FlickrExport.cs
@@ -27,7 +26,8 @@ src/HigMessageDialog.cs
 src/ImportCommand.cs
 src/InfoBox.cs
 src/InfoDisplay.cs
-src/IptcFile.cs
+src/Imaging/Exif.cs
+src/Imaging/IptcFile.cs
 src/Loupe.cs
 src/MainWindow.cs
 src/MetadataStore.cs
