@@ -1,5 +1,8 @@
 2007-01-08  Larry Ewing  <lewing@novell.com>
 
+	* src/FormClient.cs: throw new WebException not just exception so
+	that that handlers can be more specific.  Fixes #393649.
+
 	* po/POTFILES.in: fix the path to a couple of files.
 
 	* src/Cairo: add a glitz surface.

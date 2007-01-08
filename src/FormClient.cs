@@ -285,7 +285,7 @@ class FormClient {
 				return Submit (uri, progress_item);
 			}
 			
-			throw new Exception (Mono.Unix.Catalog.GetString ("Unhandled exception"), e);
+			throw new WebException (Mono.Unix.Catalog.GetString ("Unhandled exception"), e);
 		}
 
 		return response;
