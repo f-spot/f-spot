@@ -2,6 +2,7 @@ CSC = gmcs
 CSFLAGS = -unsafe -debug -nowarn:0169 -nowarn:0612 -d:TEST_METADATA -d:BROKEN_RSVG -d:ENABLE_CRACK $(NUNIT_DEFINES)
 
 F_SPOT_CSDISTFILES =				\
+	$(srcdir)/Demo.cs			\
 	$(srcdir)/Cairo/Antialias.cs		\
 	$(srcdir)/Cairo/Cairo.cs		\
 	$(srcdir)/Cairo/Content.cs		\
@@ -17,6 +18,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Cairo/FontType.cs		\
 	$(srcdir)/Cairo/FontWeight.cs		\
 	$(srcdir)/Cairo/Format.cs		\
+	$(srcdir)/Cairo/GlitzSurface.cs		\
 	$(srcdir)/Cairo/Glyph.cs		\
 	$(srcdir)/Cairo/Gradient.cs		\
 	$(srcdir)/Cairo/HintMetrics.cs		\
@@ -45,25 +47,22 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Cairo/Win32Surface.cs		\
 	$(srcdir)/Cairo/XcbSurface.cs		\
 	$(srcdir)/Cairo/XlibSurface.cs		\
+	$(srcdir)/Cms/Cms.cs			\
+	$(srcdir)/Cms/CctTable.cs		\
 	$(srcdir)/AsyncPixbufLoader.cs		\
 	$(srcdir)/BlockProcessor.cs		\
-	$(srcdir)/Bim.cs			\
 	$(srcdir)/BitConverter.cs		\
 	$(srcdir)/PhotoArray.cs 		\
-	$(srcdir)/CctTable.cs			\
 	$(srcdir)/CDExport.cs			\
-	$(srcdir)/Ciff.cs			\
 	$(srcdir)/ColorDialog.cs		\
 	$(srcdir)/CompatFileChooser.cs		\
 	$(srcdir)/Core.cs			\
 	$(srcdir)/DateCommands.cs		\
 	$(srcdir)/Db.cs				\
-	$(srcdir)/DCRawFile.cs			\
 	$(srcdir)/Delay.cs			\
 	$(srcdir)/DirectoryAdaptor.cs		\
 	$(srcdir)/DirectoryCollection.cs	\
 	$(srcdir)/ExceptionDialog.cs		\
-	$(srcdir)/Exif.cs			\
 	$(srcdir)/FlickrExport.cs		\
 	$(srcdir)/FlickrRemote.cs		\
 	$(srcdir)/FileImportBackend.cs		\
@@ -93,7 +92,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Histogram.cs			\
 	$(srcdir)/IBrowsableItem.cs		\
 	$(srcdir)/IconView.cs			\
-	$(srcdir)/ImageFile.cs			\
 	$(srcdir)/ImageView.cs			\
 	$(srcdir)/ImageTest.cs			\
 	$(srcdir)/ImportBackend.cs		\
@@ -103,16 +101,27 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/InfoDisplay.cs		\
 	$(srcdir)/InternalProcess.cs		\
 	$(srcdir)/IOChannel.cs			\
-	$(srcdir)/IptcFile.cs			\
-	$(srcdir)/JpegFile.cs			\
-	$(srcdir)/JpegHeader.cs			\
-	$(srcdir)/JpegUtils.cs			\
-	$(srcdir)/Cms.cs			\
+	$(srcdir)/Ciff.cs			\
+	$(srcdir)/Imaging/DCRawFile.cs		\
+	$(srcdir)/Imaging/Bim.cs		\
+	$(srcdir)/Imaging/Exif.cs		\
+	$(srcdir)/Imaging/ImageFile.cs		\
+	$(srcdir)/Imaging/IptcFile.cs		\
+	$(srcdir)/Imaging/JpegFile.cs		\
+	$(srcdir)/Imaging/JpegHeader.cs		\
+	$(srcdir)/Imaging/JpegUtils.cs		\
+	$(srcdir)/Imaging/MrwFile.cs		\
+	$(srcdir)/Imaging/PngFile.cs		\
+	$(srcdir)/Imaging/PnmFile.cs		\
+	$(srcdir)/Imaging/RafFile.cs		\
+	$(srcdir)/Imaging/SvgFile.cs		\
+	$(srcdir)/Imaging/X3fFile.cs		\
+	$(srcdir)/Imaging/XmpFile.cs		\
+	$(srcdir)/Imaging/Tiff.cs		\
 	$(srcdir)/Loupe.cs			\
 	$(srcdir)/MainWindow.cs			\
 	$(srcdir)/MetaStore.cs			\
 	$(srcdir)/MetadataStore.cs		\
-	$(srcdir)/MrwFile.cs			\
 	$(srcdir)/OpenWithMenu.cs		\
 	$(srcdir)/Operation.cs			\
 	$(srcdir)/PhotoImageView.cs		\
@@ -124,8 +133,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PhotoVersionCommands.cs	\
 	$(srcdir)/PhotoVersionMenu.cs		\
 	$(srcdir)/PhotoView.cs			\
-	$(srcdir)/PngFile.cs			\
-	$(srcdir)/PnmFile.cs			\
 	$(srcdir)/PicasaWebExport.cs		\
 	$(srcdir)/PixbufLoader.cs		\
 	$(srcdir)/PixbufUtils.cs		\
@@ -136,7 +143,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PreviewPopup.cs 		\
 	$(srcdir)/PrintDialog.cs		\
 	$(srcdir)/ProgressDialog.cs		\
-	$(srcdir)/RafFile.cs			\
 	$(srcdir)/RepairDialog.cs		\
 	$(srcdir)/RotateCommand.cs		\
 	$(srcdir)/ScalingIconView.cs		\
@@ -146,7 +152,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/StockIcons.cs			\
 	$(srcdir)/SimpleCalendar.cs		\
 	$(srcdir)/SmugMugExport.cs		\
-	$(srcdir)/SvgFile.cs			\
 	$(srcdir)/TagCommands.cs		\
 	$(srcdir)/TagMenu.cs			\
 	$(srcdir)/TagPopup.cs			\
@@ -157,7 +162,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ThreadProgressDialog.cs	\
 	$(srcdir)/ThumbnailCache.cs		\
 	$(srcdir)/ThumbnailGenerator.cs		\
-	$(srcdir)/Tiff.cs			\
 	$(srcdir)/TimeAdaptor.cs		\
 	$(srcdir)/TimeDialog.cs			\
 	$(srcdir)/TipWindow.cs			\
@@ -179,8 +183,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/ImageDisplay.cs	\
 	$(srcdir)/Widgets/ScrolledView.cs	\
 	$(srcdir)/Widgets/TagEntry.cs		\
-	$(srcdir)/X3fFile.cs			\
-	$(srcdir)/XmpFile.cs			\
 	$(srcdir)/XmpTagsImporter.cs		\
 	$(srcdir)/main.cs
 
@@ -191,6 +193,7 @@ ASSEMBLIES =					\
 	-r:$(top_builddir)/semweb/SemWeb.dll	\
 	-r:$(top_builddir)/FlickrNet/FlickrNet.dll	\
 	-r:$(top_builddir)/SmugMugNet/SmugMugNet.dll	\
+	-r:$(top_builddir)/glitz-sharp/src/NDesk.Glitz.dll	\
 	-r:$(top_builddir)/google-sharp/google-sharp.dll	\
 	-r:$(top_builddir)/gnome-keyring-sharp/gnome-keyring-sharp.dll	\
 	-r:System.Data				\

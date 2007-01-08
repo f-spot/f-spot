@@ -1504,7 +1504,8 @@ public class MainWindow {
 	void HandleSendMailCommand (object sender, EventArgs args)
 	{
 		//TestDisplay ();
-		new FSpot.SendEmail (new FSpot.PhotoArray (SelectedPhotos ()));
+		//new FSpot.SendEmail (new FSpot.PhotoArray (SelectedPhotos ()));
+		Demo.Run ();
 	}
 
 	public static void HandleHelp (object sender, EventArgs args)

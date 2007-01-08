@@ -4,6 +4,7 @@ SUBDIRS = 		\
 	docs		\
 	FlickrNet	\
 	SmugMugNet	\
+	glitz-sharp	\
 	google-sharp	\
 	gnome-keyring-sharp \
 	icons		\
