@@ -2,7 +2,6 @@ CSC = gmcs
 CSFLAGS = -unsafe -debug -nowarn:0169 -nowarn:0612 -d:TEST_METADATA -d:BROKEN_RSVG -d:ENABLE_CRACK $(NUNIT_DEFINES)
 
 F_SPOT_CSDISTFILES =				\
-	$(srcdir)/Demo.cs			\
 	$(srcdir)/Cairo/Antialias.cs		\
 	$(srcdir)/Cairo/Cairo.cs		\
 	$(srcdir)/Cairo/Content.cs		\
@@ -63,6 +62,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/DirectoryAdaptor.cs		\
 	$(srcdir)/DirectoryCollection.cs	\
 	$(srcdir)/ExceptionDialog.cs		\
+	$(srcdir)/ExportStore.cs		\
 	$(srcdir)/FlickrExport.cs		\
 	$(srcdir)/FlickrRemote.cs		\
 	$(srcdir)/FileImportBackend.cs		\
