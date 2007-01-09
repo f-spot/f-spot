@@ -1,5 +1,11 @@
 2007-01-09  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/FileImportBackend.cs: zero-pad month and days while creating
+	files and directories. Patch from Bradford Powell and Bengt Thuree.
+	Should fix bgo #329841.
+
+2007-01-09  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/PhotoStore.cs: allow tag editing/removing even if the user
 	removes the 'Hidden' tag. Should fix bgo #390176
 	
