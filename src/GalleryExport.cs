@@ -378,7 +378,7 @@ namespace FSpot {
 					md.Run ();
 					md.Destroy ();
 					return;
-				} catch (GalleryRemote.GalleryCommandException e) {
+				} catch (GalleryRemote.GalleryException e) {
 					HigMessageDialog md = 
 						new HigMessageDialog (Dialog, 
 								      Gtk.DialogFlags.Modal |
@@ -386,6 +386,10 @@ namespace FSpot {
 								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
 								      Catalog.GetString ("Error while connecting to Gallery"),
 								      String.Format (Catalog.GetString ("The following error was encountered while attempting to log in: {0}"), e.Message));
+					if (e.ResponseText != null) {
+						System.Console.WriteLine (e.Message);
+						System.Console.WriteLine (e.ResponseText);
+					}
 					md.Run ();
 					md.Destroy ();
 					return;

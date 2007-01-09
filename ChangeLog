@@ -1,5 +1,12 @@
 2007-01-08  Larry Ewing  <lewing@novell.com>
 
+
+	* src/GalleryExport.cs: catch GalleryException not just
+	GalleryCommandException.  Dump response text to the console for now.
+
+	* src/GalleryRemote.cs: Include the actual response text in the
+	exception so that we can do something smart with it later.  Fixes #393644.
+
 	* src/FormClient.cs: throw new WebException not just exception so
 	that that handlers can be more specific.  Fixes #393649.
 

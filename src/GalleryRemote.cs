@@ -5,6 +5,7 @@ using System.Text;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Web;
+using Mono.Unix;
 
 /* These classes are based off the documentation at 
  *
@@ -196,7 +197,19 @@ namespace GalleryRemote {
 	}
 
 	public class GalleryException : System.Exception {
-		public GalleryException (string text) : base (text) {
+		string response_text;
+		
+		public string ResponseText {
+			get { return response_text; }
+		}
+
+		public GalleryException (string text) : base (text) 
+		{
+		}
+
+		public GalleryException (string text, string full_response) : base (text)
+		{
+			response_text = full_response;
 		}
 	}
 	
@@ -326,17 +339,19 @@ namespace GalleryRemote {
 		{
 			StreamReader reader = new StreamReader (response.GetResponseStream (), Encoding.UTF8);
 			if (reader == null)
-				throw new GalleryException ("Failed to initialize reader");
+				throw new GalleryException (Catalog.GetString ("Error reading server response"));
 
 			string line;
+			string full_response = null;
 			while ((line = reader.ReadLine ()) != null) {
+				full_response += line;
 				if (line.IndexOf ("#__GR2PROTO__", 0) > -1)
 					break;
 			}
 
 			if (line == null) {
 				// failed to find the response
-				throw new GalleryException ("Failed to find start of response");
+				throw new GalleryException (Catalog.GetString ("Server returned response without Gallery content"), full_response);
 			}
 
 			return reader;
