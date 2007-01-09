@@ -1,3 +1,10 @@
+2007-01-09  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/MainWindow.cs: don't call HeightRequest for info_box.
+
+	* src/InfoBox.cs: use newlines instead of empty strings. Thanks to
+	Mike Gemunde for this bug report and patch. Fixes bgo #394559.
+
 2007-01-08  Larry Ewing  <lewing@novell.com>
 
 

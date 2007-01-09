@@ -267,7 +267,6 @@ public class MainWindow {
 		
 		info_box = new InfoBox ();
 		info_box.VersionIdChanged += HandleInfoBoxVersionIdChange;
-        info_box.HeightRequest = 165;
 		left_vbox.PackStart (info_box, false, true, 0);
 		
 		try {

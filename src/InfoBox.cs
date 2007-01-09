@@ -96,6 +96,9 @@ public class InfoBox : VBox {
 		version_option_menu = new OptionMenu ();
 		table.Attach (version_option_menu, 1, 2, 1, 2, AttachOptions.Fill, AttachOptions.Fill, 3, 3);
 
+		date_label.Text = "\n";
+		exposure_info_label.Text = "\n";
+
 		table.ShowAll ();
 
 		Add (table);
@@ -109,9 +112,9 @@ public class InfoBox : VBox {
 		version_option_menu.Menu = new Menu ();	// GTK doesn't like NULL here although that's what we want.
 
 		name_entry.Text = "";
-		date_label.Text = "";
+		date_label.Text = "\n";
 		size_label.Text = "";
-		exposure_info_label.Text = "";
+		exposure_info_label.Text = "\n";
 	}
 
 	private class ImageInfo : StatementSink {
