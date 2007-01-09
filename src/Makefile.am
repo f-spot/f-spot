@@ -62,6 +62,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/DirectoryAdaptor.cs		\
 	$(srcdir)/DirectoryCollection.cs	\
 	$(srcdir)/ExceptionDialog.cs		\
+	$(srcdir)/ExportStore.cs		\
 	$(srcdir)/FlickrExport.cs		\
 	$(srcdir)/FlickrRemote.cs		\
 	$(srcdir)/FileImportBackend.cs		\

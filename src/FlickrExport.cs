@@ -268,6 +268,11 @@ namespace FSpot {
 					
 					string id = fr.Upload (photo, stack, is_public, is_family, is_friend);
 					ids.Add (id);
+
+                                        Core.Database.Exports.Create ((photo as Photo).Id,
+                                                                      (photo as Photo).DefaultVersionId,
+                                                                      "flickr", id);
+                                        
 					progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
 					progress_dialog.Fraction = 1.0;
 					progress_dialog.ProgressText = Catalog.GetString ("Upload Complete");

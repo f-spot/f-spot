@@ -60,7 +60,6 @@ public class MetaStore : DbStore {
 
 	private void CreateTable ()
 	{
-
 		ExecuteSqlCommand(     
 			"CREATE TABLE meta (					" +
 			"	id		INTEGER PRIMARY KEY NOT NULL,	" +

@@ -237,6 +237,7 @@ public class Db : IDisposable {
 	TagStore tag_store;
 	PhotoStore photo_store;
  	ImportStore import_store;
+    ExportStore export_store;
  	MetaStore meta_store;
 	bool empty;
 	string path;
@@ -248,6 +249,10 @@ public class Db : IDisposable {
 	public ImportStore Imports {
 		get { return import_store; }
 	}
+
+    public ExportStore Exports {
+        get { return export_store; }
+    }
 
 	public PhotoStore Photos {
 		get { return photo_store; }
@@ -376,6 +381,7 @@ public class Db : IDisposable {
 
 		tag_store = new TagStore (sqlite_connection, new_db);
 		import_store = new ImportStore (sqlite_connection, new_db);
+                export_store = new ExportStore (sqlite_connection, new_db);
  		photo_store = new PhotoStore (sqlite_connection, new_db, tag_store);
 		
 		CommitTransaction ();
