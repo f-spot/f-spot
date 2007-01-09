@@ -1269,7 +1269,7 @@ public class PhotoStore : DbStore {
 				
 				if (first) {
 					query_builder.Append (String.Format ("{0} photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN (",
-									     hide || range != null ? " AND " : " WHERE "));
+									     (hide && tag_store.Hidden != null) || range != null ? " AND " : " WHERE "));
 				}
 				
 				query_builder.Append (String.Format ("{0}{1} ", first ? "" : ", ", t.Id));

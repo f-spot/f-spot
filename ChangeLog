@@ -1,5 +1,10 @@
 2007-01-09  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/PhotoStore.cs: allow tag editing/removing even if the user
+	removes the 'Hidden' tag. Should fix bgo #390176
+	
+2007-01-09  Stephane Delcroix  <stephane@delcroix.org>
+
 	* dbus-sharp/*: upgraded to 0.3.1
 
 2007-01-09  Thomas Van Machelen  <thomas.vanmachelen@gmail.com>
