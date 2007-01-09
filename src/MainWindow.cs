@@ -1613,7 +1613,7 @@ public class MainWindow {
 			return;
 		
 		group_selector.Adaptor.OrderAscending = item.Active;
-		icon_view.QueueDraw ();
+		query.RequestReload ();
 
 		// FIXME this is blah...we need UIManager love here
 		if (item != reverse_order)
