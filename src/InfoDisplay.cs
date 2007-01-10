@@ -52,6 +52,11 @@ namespace FSpot {
 				this.Update ();
 			}
 		}
+
+		protected override void OnLinkClicked (string url)
+		{
+                        GnomeUtil.UrlShow (null, url);
+		}
 		
 		protected override void OnStyleSet (Gtk.Style previous)
 		{
@@ -90,6 +95,28 @@ namespace FSpot {
 			value = value.Replace ("<", "&lt;");
 			value = value.Replace ("\n", "<br>");
 			return value;
+		}
+
+		private string GetExportUrl (ExportItem export)
+		{
+			switch (export.ExportType) {
+			case ExportStore.FlickrExportType:
+				string[] split_token = export.ExportToken.Split (':');
+				return String.Format ("http://www.flickr.com/photos/{0}/{1}/", split_token[0], split_token[1]);
+			default:
+				return null;
+			}
+		}
+
+		private string GetExportLabel (ExportItem export)
+		{
+			switch (export.ExportType) {
+			case ExportStore.FlickrExportType:
+				string[] split_token = export.ExportToken.Split (':');
+				return String.Format ("Flickr ({0})", split_token[0]);
+			default:
+				return null;
+			}
 		}
 
 		private void Update ()
@@ -177,7 +204,7 @@ namespace FSpot {
 #endif
 					empty = false;
 					stream.Write ("<tr><th align=left bgcolor=\"" + ig + "\" colspan=2>" 
-						      + Catalog.GetString ("Extended Metadata") + "</th><tr>");
+						      + Catalog.GetString ("Extended Metadata") + "</th></tr>");
 					
 					foreach (Statement stmt in store) {
 						// Skip anonymous subjects because they are
@@ -204,8 +231,23 @@ namespace FSpot {
 						if (value != null && value != "")
 							stream.Write (value);
 						
-						stream.Write ("</td><tr>");
+						stream.Write ("</td></tr>");
 					}
+				}
+
+				stream.Write ("<tr><th align=left bgcolor=\"" + ig + "\" colspan=2>" + Catalog.GetString ("Exported Locations") + "</th></tr>");
+
+				Photo p = photo as Photo;
+				foreach (ExportItem export in Core.Database.Exports.GetByImageId (p.Id, p.DefaultVersionId)) {
+					string url = GetExportUrl (export);
+					string label = GetExportLabel (export);
+
+					if (url == null || label == null)
+						continue;
+                                        
+					stream.Write ("<tr colspan=2><td width=100%>");
+					stream.Write (String.Format ("<a href=\"{0}\">{1}</a>", url, label));
+					stream.Write ("</font></small></td></tr>");
 				}
 			}
 			

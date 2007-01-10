@@ -108,7 +108,27 @@ public class ExportStore : DbStore {
 	
 	public override DbItem Get (uint id)
 	{
-		return LookupInCache (id);
+            // we never use this
+            return null;
+	}
+
+	public ArrayList GetByImageId (uint image_id, uint image_version_id)
+	{
+		SqliteCommand command = new SqliteCommand ();
+		command.Connection = Connection;
+        
+		command.CommandText = String.Format ("SELECT id, image_id, image_version_id, export_type, export_token FROM exports WHERE image_id = {0} AND image_version_id = {1}", image_id, image_version_id);
+		SqliteDataReader reader = command.ExecuteReader ();
+
+		ArrayList list = new ArrayList ();
+		while (reader.Read ()) {
+			list.Add (LoadItem (reader));
+		}
+        
+		reader.Close ();
+		command.Dispose ();
+
+		return list;
 	}
 	
 	public override void Remove (DbItem item)
