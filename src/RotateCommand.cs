@@ -109,7 +109,7 @@ namespace FSpot {
 		       
 		private void Rotate (string original_path, RotateDirection dir)
 		{
-			RotateOrientation (original_path, direction);
+			RotateOrientation (original_path, dir);
 		}
 		
 		public override bool Step () {

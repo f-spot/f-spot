@@ -1,3 +1,12 @@
+2007-01-10  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/RotateCommand.cs: fixing a typo in code
+
+2007-01-10  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/MainWindow.cs: expose Close () in the public interface
+	* src/Core.cs: try to Close () f-spot on --shutdown
+
 2007-01-09  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/FileImportBackend.cs: zero-pad month and days while creating
