@@ -84,7 +84,8 @@ namespace FSpot {
 
 			collection = new UriCollection (uris);
 
-			TargetEntry [] dest_table = { new TargetEntry ("text/uri-list", 0, 0) };
+			TargetEntry [] dest_table = {   new TargetEntry ("text/uri-list", 0, 0),
+							new TargetEntry ("text/plain", 0, 1)};
 			
 			directory_view = new IconView (collection);
 			directory_view.Selection.Changed += HandleSelectionChanged;
@@ -458,6 +459,7 @@ namespace FSpot {
 		
 		switch (args.Info) {
 		case 0:
+		case 1:
 			/* 
 			 * If the drop is coming from inside f-spot then we don't want to import 
 			 */
