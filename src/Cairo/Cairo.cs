@@ -264,6 +264,9 @@ namespace Cairo
 		internal static extern IntPtr cairo_image_surface_create_for_data (byte[] data, Cairo.Format format, int width, int height, int stride);
 		
 		[DllImport (cairo)]
+		internal static extern IntPtr cairo_image_surface_create_for_data (IntPtr data, Cairo.Format format, int width, int height, int stride);
+		
+		[DllImport (cairo)]
 		internal static extern IntPtr cairo_image_surface_create_from_png  (string filename);
 		
 		//[DllImport (cairo)]
