@@ -44,6 +44,7 @@ public class ExportItem : DbItem {
 public class ExportStore : DbStore {
 	
 	public const string FlickrExportType = "fspot:Flickr";
+	public const string FolderExportType = "fspot:Folder";
 	
 	private void CreateTable ()
 	{

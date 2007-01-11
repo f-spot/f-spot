@@ -403,8 +403,16 @@ Console.WriteLine (e);
 				filter_set.Add (new Filters.UniqueNameFilter (gallery_path));
 
 				ProcessImage (i, filter_set);
+
+				Photo p = collection[i] as Photo;
+				if (p != null) {
+					Core.Database.Exports.Create (p.Id, p.DefaultVersionId,
+								      ExportStore.FolderExportType,
+								      gallery_path);
+				}
 			}
 		}
+
 		protected virtual string ImageName (int image_num)
 		{
 			return System.IO.Path.GetFileName(FileImportBackend.UniqueName(gallery_path, System.IO.Path.GetFileName (collection [image_num].DefaultVersionUri.LocalPath))); 

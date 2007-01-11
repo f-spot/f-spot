@@ -55,6 +55,11 @@ namespace FSpot {
 
 		protected override void OnLinkClicked (string url)
 		{
+                        if (url.StartsWith ("/")) {
+                                // do a lame job of creating a URI out of local paths
+                                url = "file://" + url;
+                        }
+                        
                         GnomeUtil.UrlShow (null, url);
 		}
 		
@@ -103,6 +108,8 @@ namespace FSpot {
 			case ExportStore.FlickrExportType:
 				string[] split_token = export.ExportToken.Split (':');
 				return String.Format ("http://www.flickr.com/photos/{0}/{1}/", split_token[0], split_token[2]);
+			case ExportStore.FolderExportType:
+				return export.ExportToken;
 			default:
 				return null;
 			}
@@ -114,6 +121,8 @@ namespace FSpot {
 			case ExportStore.FlickrExportType:
 				string[] split_token = export.ExportToken.Split (':');
 				return String.Format ("Flickr ({0})", split_token[1]);
+			case ExportStore.FolderExportType:
+				return Catalog.GetString ("Folder");
 			default:
 				return null;
 			}
