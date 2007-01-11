@@ -1462,21 +1462,29 @@ public class IconView : Gtk.Layout {
 		focus_old = FocusCell;
 		switch (args.Event.Key) {
 		case Gdk.Key.Down:
+		case Gdk.Key.J:
+		case Gdk.Key.j:
 			FocusCell += cells_per_row;
 			break;
 		case Gdk.Key.Left:
+		case Gdk.Key.H:
+		case Gdk.Key.h:
 			if (control && shift)
 				FocusCell -= FocusCell % cells_per_row;
 			else
 				FocusCell--;
 			break;
 		case Gdk.Key.Right:
+		case Gdk.Key.L:
+		case Gdk.Key.l:
 			if (control && shift)
 				FocusCell += cells_per_row - (FocusCell % cells_per_row) - 1;
 			else
 				FocusCell++;
 			break;
 		case Gdk.Key.Up:
+		case Gdk.Key.K:
+		case Gdk.Key.k:
 			FocusCell -= cells_per_row;
 			break;
 		case Gdk.Key.Home:

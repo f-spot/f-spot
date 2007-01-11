@@ -1,3 +1,9 @@
+2007-01-10  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/IconView.cs: In browse mode have hjkl behave just like left, down,
+	up, right arrow keys do, allowing fast, home-row-based navigation and
+	selection, and tagging.
+
 2007-01-10  James Willcox  <snorp@novell.com>
 
 	* src/InfoDialog.cs: show the exported locations
