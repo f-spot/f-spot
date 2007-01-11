@@ -1,3 +1,9 @@
+2007-01-11  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/FlickrExport.cs:
+	* src/InfoDisplay.cs: Store both username and userid, fixes broken links
+	to flickr.com when a user has set his username different from his URL.
+
 2007-01-11  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/SingleView.cs: Accepts dropped uris from firefox. Just drag an
