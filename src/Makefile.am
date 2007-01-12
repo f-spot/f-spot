@@ -83,6 +83,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/FullScreenView.cs		\
 	$(srcdir)/GalleryRemote.cs		\
 	$(srcdir)/GalleryExport.cs		\
+	$(srcdir)/GdkGlx.cs			\
 	$(srcdir)/GladeDialog.cs		\
 	$(srcdir)/Global.cs			\
 	$(srcdir)/GroupAdaptor.cs		\
@@ -179,22 +180,32 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/TagSelectionDialog.cs		\
 	$(srcdir)/Widgets/CairoUtils.cs		\
 	$(srcdir)/Widgets/CompositeUtils.cs	\
+	$(srcdir)/Widgets/Dissolve.cs		\
 	$(srcdir)/Widgets/GdkUtils.cs		\
+	$(srcdir)/Widgets/IEffect.cs		\
+	$(srcdir)/Widgets/ITransition.cs	\
 	$(srcdir)/Widgets/ImageDisplay.cs	\
+	$(srcdir)/Widgets/ImageInfo.cs		\
+	$(srcdir)/Widgets/PanZoom.cs		\
+	$(srcdir)/Widgets/Push.cs		\
+	$(srcdir)/Widgets/Reveal.cs		\
 	$(srcdir)/Widgets/ScrolledView.cs	\
+	$(srcdir)/Widgets/SoftFocus.cs		\
 	$(srcdir)/Widgets/TagEntry.cs		\
+	$(srcdir)/Widgets/Tilt.cs		\
+	$(srcdir)/Widgets/Wipe.cs		\
 	$(srcdir)/XmpTagsImporter.cs		\
 	$(srcdir)/main.cs
 
 ASSEMBLIES =					\
-	-r:$(top_builddir)/dbus-sharp/NDesk.DBus.dll   \
-	-r:$(top_builddir)/dbus-sharp-glib/NDesk.DBus.GLib.dll   \
-	-r:$(top_builddir)/libgphoto2-sharp/libgphoto2-sharp.dll   \
-	-r:$(top_builddir)/semweb/SemWeb.dll	\
-	-r:$(top_builddir)/FlickrNet/FlickrNet.dll	\
-	-r:$(top_builddir)/SmugMugNet/SmugMugNet.dll	\
-	-r:$(top_builddir)/glitz-sharp/src/NDesk.Glitz.dll	\
-	-r:$(top_builddir)/google-sharp/google-sharp.dll	\
+	-r:$(top_builddir)/dbus-sharp/NDesk.DBus.dll   			\
+	-r:$(top_builddir)/dbus-sharp-glib/NDesk.DBus.GLib.dll		\
+	-r:$(top_builddir)/libgphoto2-sharp/libgphoto2-sharp.dll	\
+	-r:$(top_builddir)/semweb/SemWeb.dll				\
+	-r:$(top_builddir)/FlickrNet/FlickrNet.dll			\
+	-r:$(top_builddir)/SmugMugNet/SmugMugNet.dll			\
+	-r:$(top_builddir)/glitz-sharp/src/NDesk.Glitz.dll		\
+	-r:$(top_builddir)/google-sharp/google-sharp.dll		\
 	-r:$(top_builddir)/gnome-keyring-sharp/gnome-keyring-sharp.dll	\
 	-r:System.Data				\
 	-r:System.Web				\

@@ -10,6 +10,7 @@
  */
 using System;
 using System.IO;
+using FSpot;
 using FSpot.Widgets;
 
 using Cairo;
@@ -35,7 +36,7 @@ namespace FSpot.Filters {
 			
 			ImageFile img = ImageFile.Create (source);
 			using (Pixbuf pixbuf = img.Load ()) {
-				using (ImageDisplay.ImageInfo info = new ImageDisplay.ImageInfo (pixbuf)) {
+				using (ImageInfo info = new ImageInfo (pixbuf)) {
 					Surface surface = info.Surface.CreateSimilar (Content.Color,
 										      pixbuf.Width, pixbuf.Height);
 					Context ctx = new Context (surface);

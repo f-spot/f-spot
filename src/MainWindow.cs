@@ -1498,13 +1498,22 @@ public class MainWindow {
 		win.Add (box);
 		win.ShowAll ();
 	}
+
+	private TestGL ()
+	{
+		Gtk.Widget w = new GlDemo (CurrentPhoto);
+		Gtk.Window win = new Gtk.Window ("GL Demo");
+		win.Add (w);
+		win.ShowAll ();
+	}
 #endif
 
+	
 	void HandleSendMailCommand (object sender, EventArgs args)
 	{
 		//TestDisplay ();
+		//TestGL ();
 		new FSpot.SendEmail (new FSpot.PhotoArray (SelectedPhotos ()));
-		//Demo.Run ();
 	}
 
 	public static void HandleHelp (object sender, EventArgs args)
