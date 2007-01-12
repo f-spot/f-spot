@@ -1,3 +1,8 @@
+2007-01-12  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Makefile.am: Removes GdkGlx.cs from the built, since it doesn't
+	exists and Glx.cs does not compile.
+
 2007-01-11  James Willcox  <snorp@novell.com>
 
 	* src/FolderExport.cs: add export items for the photos
