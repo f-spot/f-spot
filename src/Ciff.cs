@@ -337,11 +337,6 @@ namespace FSpot.Ciff {
 		{
 		}
 
-		~CiffFile ()
-		{
-			stream.Close ();
-		}
-
 		public void Select (SemWeb.StatementSink sink)
 		{
 			byte [] data = null;
