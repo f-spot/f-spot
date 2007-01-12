@@ -1,4 +1,8 @@
-namespace FSpot.GdkGlx {
+using System;
+using System.Runtime.InteropServices;
+using FSpot.Widgets;
+
+namespace GdkGlx {
 	public enum GlxAttribute {
 		None = 0,
 		UseGL = 1,
@@ -25,7 +29,7 @@ namespace FSpot.GdkGlx {
 		{
 		}
 	}
-	
+
 	public class Context {
 		private HandleRef handle;
 		private Gdk.Drawable drawable;
@@ -34,24 +38,24 @@ namespace FSpot.GdkGlx {
 		static extern void XFree (IntPtr handle);
 		
 		[DllImport("GL")]
-		static extern Context glXCreateContext (IntPtr display,
-							IntPtr visual_info,
-							IntPtr share_list,
-							bool direct);
+		static extern IntPtr glXCreateContext (IntPtr display,
+						       IntPtr visual_info,
+						       HandleRef share_list,
+						       bool direct);
 		
 		[DllImport("GL")]
-		static extern IntPtr glxChooseVisual (IntPtr display,
+		static extern IntPtr glXChooseVisual (IntPtr display,
 						      int screen,
 						      int [] attr);
 		
 		[DllImport("GL")]
 		static extern void glXDestroyContext (IntPtr display, 
-						      IntPtr ctx);
+						      HandleRef ctx);
 		
 		[DllImport("GL")]
 		static extern bool glXMakeCurrent (IntPtr display,
 						   uint xdrawable,
-						   IntPtr ctx);
+						   HandleRef ctx);
 
 		[DllImport("GL")]
 		static extern void glXSwapBuffers (IntPtr display, uint drawable);
@@ -68,40 +72,44 @@ namespace FSpot.GdkGlx {
 				Context share_list,
 				int [] attr)
 		{
-			drawable = drawable;
+			this.drawable = drawable;
+
+			if (drawable == null)
+				throw new GlxException ("Invalid drawable");
+
 			IntPtr xdisplay = GdkUtils.GetXDisplay (drawable.Display);
 			IntPtr visual_info = glXChooseVisual (xdisplay,
 							      drawable.Screen.Number,
-							      int [] attr_list);
+							      attr);
 			if (visual_info == IntPtr.Zero)
 				throw new GlxException ("Unable to find matching visual");
 			
-			IntPtr share = share_list == null ? share_list.handle : IntPtr.Zero;
-			IntPtr tmp = new glXCreateContext (xdisplay, visual_info, share, true);
+			HandleRef share = share_list != null ? share_list.Handle : new HandleRef (null, IntPtr.Zero);
+			IntPtr tmp = glXCreateContext (xdisplay, visual_info, share, true);
 			
 			if (tmp == IntPtr.Zero)
 				throw new GlxException ("Unable to create context");
 			
 			handle = new HandleRef (this, tmp);
 			
-			if (visual_info != null)
+			if (visual_info != IntPtr.Zero)
 				XFree (visual_info);
 		}
 		
-		public Destroy ()
+		public void Destroy ()
 		{
-			glXDestroyContext (Handle);
+			glXDestroyContext (GdkUtils.GetXDisplay (drawable.Display),
+					   Handle);
 		}
 		
-		public MakeCurrent ()
+		public bool MakeCurrent ()
 		{
-			glXMakeContextCurrent (GdkUtils.GetXDisplay (drawable.Display),
+			return glXMakeCurrent (GdkUtils.GetXDisplay (drawable.Display),
 					       GdkUtils.GetXid (drawable),
 					       Handle);
-					       
 		}
 
-		public SwapBuffers ()
+		public void SwapBuffers ()
 		{
 			glXSwapBuffers (GdkUtils.GetXDisplay (drawable.Display),
 					GdkUtils.GetXid (drawable));
