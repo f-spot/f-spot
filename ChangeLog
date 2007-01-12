@@ -1,3 +1,23 @@
+2007-01-12  Larry Ewing  <lewing@novell.com>
+
+	* libeog/image-view.c: add option to enable/disable progressive
+	scaling.
+
+2007-01-11  Larry Ewing  <lewing@novell.com>
+
+	* src/Widgets: Split the effects and transitions out of
+	ImageDisplay and move them into their own files.
+
+	* src/Filters/TiltFilter.cs: fixup the namespaces.
+
+	* src/Cairo/Cairo.cs: add method needed for the new ImageSurface
+	constructor.
+
+	* src/Cairo/ImageSurface.cs: add a constructor that takes the
+	actual data pointer.
+
+	* src/Glx.cs: add a very limited glx binding.
+
 2007-01-12  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/Makefile.am: Removes GdkGlx.cs from the built, since it doesn't

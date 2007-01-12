@@ -115,6 +115,8 @@ struct _ImageViewPrivate {
 
 	/* Whether we need to change the zoom factor */
 	guint need_zoom_change : 1;
+	
+	guint enable_late_drawing : 1;
 
 #ifdef LIBEOG_ETTORE_CHANGES
 	float display_brightness;
@@ -263,6 +265,7 @@ image_view_instance_init (ImageView *view)
 	priv->use_check_pattern = TRUE;
 	priv->transparency_color = CHECK_BLACK;
 
+	priv->enable_late_drawing = FALSE;
 #ifdef LIBEOG_ETTORE_CHANGES
 	priv->display_brightness = 0.0;
 	priv->display_contrast = 0.0;
@@ -555,6 +558,26 @@ apply_transform_to_pixbuf (ImageView *view, GdkPixbuf *pixbuf, int x, int y, int
 #endif
 
 /* Paints a rectangle of the dirty region */
+#ifdef LIBEOG_ETTORE_CHANGES
+static void
+paint_extra (ImageView *view,
+	     ArtIRect *rect)
+{
+	ImageViewClass *class = G_TYPE_INSTANCE_GET_CLASS (view, TYPE_IMAGE_VIEW, ImageViewClass);
+	GdkRectangle area;
+
+	g_assert (rect->x0 < rect->x1);
+	g_assert (rect->y0 < rect->y1);
+
+	area.x = rect->x0;
+	area.y = rect->y0;
+
+	area.width = rect->x1 - rect->x0;
+	area.height = rect->y1 - rect->y0;
+
+	(* class->paint_extra) (view, &area);
+}
+#endif
 
 #ifdef LIBEOG_ETTORE_CHANGES
 static void
@@ -797,18 +820,30 @@ paint_rectangle (ImageView *view, ArtIRect *rect, GdkInterpType interp_type)
 				      gdk_pixbuf_get_rowstride (tmp),
 				      d.x0 - xofs, d.y0 - yofs);
 #else
-	if (gdk_pixbuf_get_has_alpha (priv->pixbuf))
+	/*
+	  if (gdk_pixbuf_get_has_alpha (priv->pixbuf))
 		paint_background (view, &d, rect);
 
-	gdk_pixbuf_render_to_drawable_alpha (tmp,
-					     GTK_WIDGET (view)->window,
-					     0, 0,
-					     d.x0, d.y0,
-					     d.x1 - d.x0, d.y1 - d.y0,
-					     priv->dither,
-					     GDK_PIXBUF_ALPHA_FULL,
-					     0,
-					     d.x0 - xofs, d.y0 - yofs);
+	  gdk_pixbuf_render_to_drawable_alpha (tmp,
+		GTK_WIDGET (view)->window,
+		0, 0,
+		d.x0, d.y0,
+		d.x1 - d.x0, d.y1 - d.y0,
+		priv->dither,
+		GDK_PIXBUF_ALPHA_FULL,
+		0,
+		d.x0 - xofs, d.y0 - yofs);
+	*/
+
+	gdk_pixbuf_render_to_drawable (tmp,
+				       GTK_WIDGET (view)->window,
+				       GTK_WIDGET (view)->style->black_gc,
+				       0, 0,
+				       d.x0, d.y0,
+				       d.x1 - d.x0, d.y1 - d.y0,
+				       priv->dither,
+				       d.x0 - xofs, d.y0 - yofs);
+	
 #endif
 
 	g_object_unref (tmp);
@@ -823,28 +858,8 @@ paint_rectangle (ImageView *view, ArtIRect *rect, GdkInterpType interp_type)
 		       d.x1 - 1, d.y0,
 		       d.x0, d.y1 - 1);
 #endif
+	paint_extra (view, &r);
 }
-
-#ifdef LIBEOG_ETTORE_CHANGES
-static void
-paint_extra (ImageView *view,
-	     ArtIRect *rect)
-{
-	ImageViewClass *class = G_TYPE_INSTANCE_GET_CLASS (view, TYPE_IMAGE_VIEW, ImageViewClass);
-	GdkRectangle area;
-
-	g_assert (rect->x0 < rect->x1);
-	g_assert (rect->y0 < rect->y1);
-
-	area.x = rect->x0;
-	area.y = rect->y0;
-
-	area.width = rect->x1 - rect->x0;
-	area.height = rect->y1 - rect->y0;
-
-	(* class->paint_extra) (view, &area);
-}
-#endif
 
 #include <stdio.h>
 
@@ -872,7 +887,6 @@ paint_iteration_idle (gpointer data)
 	} else {
 #ifdef LIBEOG_ETTORE_CHANGES
 		paint_rectangle (view, &rect, priv->interp_type, TRUE);
-		paint_extra (view, &rect);
 #else
 		paint_rectangle (view, &rect, priv->interp_type);
 #endif
@@ -911,10 +925,9 @@ request_paint_area (ImageView *view, GdkRectangle *area)
 
 	/* Do nearest neighbor or 1:1 zoom synchronously for speed.  */
 
-	if (priv->interp_type == GDK_INTERP_NEAREST || unity_zoom (priv)) {
+	if (!priv->enable_late_drawing || priv->interp_type == GDK_INTERP_NEAREST || unity_zoom (priv)) {
 #ifdef LIBEOG_ETTORE_CHANGES
 		paint_rectangle (view, &r, priv->interp_type, TRUE);
-		paint_extra (view, &r);
 #else
 		paint_rectangle (view, &r, priv->interp_type);
 #endif
@@ -932,7 +945,6 @@ request_paint_area (ImageView *view, GdkRectangle *area)
 
 #ifdef LIBEOG_ETTORE_CHANGES
 	paint_rectangle (view, &r, GDK_INTERP_NEAREST, FALSE);
-	paint_extra (view, &r);
 #else
 	paint_rectangle (view, &r, GDK_INTERP_NEAREST);
 #endif
@@ -2276,6 +2288,12 @@ void
 image_view_set_display_transform (ImageView *view, cmsHTRANSFORM transform)
 {
 	view->priv->transform = transform;
+}
+
+void
+image_view_set_delay_scaling (ImageView *view, gboolean enable)
+{
+	view->priv->enable_late_drawing = enable;
 }
 
 #endif
