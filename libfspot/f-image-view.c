@@ -27,7 +27,7 @@
 
 #include "f-marshal.h"
 #include "f-utils.h"
-
+#include "cairo.h"
 #include "libeog/cursors.h"
 
 
@@ -164,6 +164,14 @@ image_coords_to_window (FImageView *image_view,
 	g_object_unref (pixbuf);
 }
 
+static void 
+draw_union (GtkWidget *widget, GdkRectangle *previous, GdkRectangle *current)
+{
+	gdk_rectangle_union (current, previous, current);
+	gtk_widget_queue_draw_area (widget, current->x, current->y, current->width, current->height);
+	//gtk_widget_queue_draw (widget);
+}
+
 static GdkCursor *
 get_cursor_for_mode (FImageView *image_view, Mode mode)
 {
@@ -232,6 +240,8 @@ set_cursor (FImageView *image_view)
 }
 
 
+
+
 /* Utilty functions for selection handling.  */
 
 /* This uses GDK_INVERT so if called a second time without the selection
@@ -242,7 +252,7 @@ draw_selection (FImageView *image_view,
 {
 	FImageViewPrivate *priv = image_view->priv;
 	int x1, y1, x2, y2;
-	int x, y, width, height;
+	GdkRectangle zone;
 
 	if (! priv->selection_active
 	    || (area != NULL && (area->width == 0 || area->height == 0)))
@@ -251,20 +261,41 @@ draw_selection (FImageView *image_view,
 	image_coords_to_window (image_view, priv->selection.x1, priv->selection.y1, &x1, &y1);
 	image_coords_to_window (image_view, priv->selection.x2, priv->selection.y2, &x2, &y2);
 
-	x = MIN (x1, x2);
-	y = MIN (y1, y2);
+	zone.x = MIN (x1, x2);
+	zone.y = MIN (y1, y2);
 
-	width = ABS (x1 - x2);
-	height = ABS (y1 - y2);
+	zone.width = ABS (x1 - x2);
+	zone.height = ABS (y1 - y2);
 
-	if (area == NULL)
-		gdk_gc_set_clip_rectangle (priv->selection_gc, NULL);
-	else
-		gdk_gc_set_clip_rectangle (priv->selection_gc, area);
+	gtk_widget_queue_draw_area (GTK_WIDGET (image_view), zone.x, zone.y, zone.width, zone.height);
+}
 
-	gdk_draw_rectangle (GTK_WIDGET (image_view)->window,
-			    priv->selection_gc, FALSE,
-			    x, y, width, height);
+static GdkRectangle
+get_selection_box (FImageView *image_view)
+{
+	FImageViewPrivate *priv = image_view->priv;
+	int x1, y1, x2, y2;
+	GdkRectangle zone;
+
+	if (! priv->selection_active) {
+		//zone = (GdkRectangle) GTK_WIDGET (image_view)->allocation;
+		zone.x = 0;
+		zone.y = 0;
+		zone.width = GTK_WIDGET (image_view)->allocation.width;
+		zone.height = GTK_WIDGET (image_view)->allocation.height;
+		return zone;
+	}
+
+	image_coords_to_window (image_view, priv->selection.x1, priv->selection.y1, &x1, &y1);
+	image_coords_to_window (image_view, priv->selection.x2, priv->selection.y2, &x2, &y2);
+
+	zone.x = MIN (x1, x2);
+	zone.y = MIN (y1, y2);
+
+	zone.width = ABS (x1 - x2);
+	zone.height = ABS (y1 - y2);
+
+	return zone;
 }
 
 static gboolean
@@ -497,12 +528,82 @@ emit_selection_changed (FImageView *image_view)
 /* ImageView methods.  */
 
 static void
-impl_paint_extra (ImageView *image_view,
+impl_paint_extra (FImageView *image_view,
 		  GdkRectangle *area)
 {
-	draw_selection (F_IMAGE_VIEW (image_view), area);
+#if FALSE
+	FImageViewPrivate *priv = image_view->priv;
+	int x1, y1, x2, y2;
+	cairo_t *ctx;
+	GdkRegion *selection;
+	GdkRegion *other;
+	GdkRectangle rect;
+
+	if (! priv->selection_active)
+		return; 
+
+	image_coords_to_window (image_view, priv->selection.x1, priv->selection.y1, &x1, &y1);
+	image_coords_to_window (image_view, priv->selection.x2, priv->selection.y2, &x2, &y2);
+
+	rect.x = MIN (x1, x2);
+	rect.y = MIN (y1, y2);
+
+	rect.width = ABS (x1 - x2);
+	rect.height = ABS (y1 - y2);
+	
+	other = gdk_region_new ();
+	gdk_region_union_with_rect (other, area);
+	selection = gdk_region_new ();
+	gdk_region_union_with_rect (selection, &rect);
+	gdk_region_subtract (other, selection);
+	gdk_region_destroy (selection);
+
+	ctx = gdk_cairo_create (GTK_WIDGET (image_view)->window);
+	cairo_set_source_rgba (ctx, 1.0, 1.0, 1.0, .7);
+	gdk_cairo_region (ctx, other);
+	cairo_fill (ctx);
+	cairo_destroy (ctx);
+	gdk_region_destroy (other);
+#endif
 }
 
+
+static gboolean
+impl_expose_event (GtkWidget *widget, GdkEventExpose *event)
+{
+	FImageView *image_view = F_IMAGE_VIEW (widget);
+	FImageViewPrivate *priv = image_view->priv;
+	int x1, y1, x2, y2;
+	cairo_t *ctx;
+	GdkRegion *selection;
+	GdkRectangle rect;
+
+	(* GTK_WIDGET_CLASS (parent_class)->expose_event) (widget, event);
+
+	if (! priv->selection_active)
+		return FALSE; 
+
+	image_coords_to_window (image_view, priv->selection.x1, priv->selection.y1, &x1, &y1);
+	image_coords_to_window (image_view, priv->selection.x2, priv->selection.y2, &x2, &y2);
+
+	rect.x = MIN (x1, x2);
+	rect.y = MIN (y1, y2);
+
+	rect.width = ABS (x1 - x2);
+	rect.height = ABS (y1 - y2);
+	
+	selection = gdk_region_new ();
+	gdk_region_union_with_rect (selection, &rect);
+	gdk_region_subtract (event->region, selection);
+	gdk_region_destroy (selection);
+
+	ctx = gdk_cairo_create (GTK_WIDGET (widget)->window);
+	cairo_set_source_rgba (ctx, 1.0, 1.0, 1.0, .7);
+	gdk_cairo_region (ctx, event->region);
+	cairo_fill (ctx);
+	cairo_destroy (ctx);
+	return TRUE;
+}
 
 /* GtkWidget methods.  */
 
@@ -574,7 +675,7 @@ impl_button_press_event (GtkWidget *widget,
 
 	if (priv->is_new_selection) {
 		/* Erase existing selection rectangle.  */
-		draw_selection (image_view, NULL);
+		gtk_widget_queue_draw (widget);
 
 		f_image_view_window_coords_to_image (image_view,
 						     button_event->x, button_event->y,
@@ -600,7 +701,9 @@ impl_motion_notify_event (GtkWidget *widget,
 	GdkModifierType mods;
 	int x, y;
 	int image_x, image_y;
-
+	GdkRectangle previous;
+	GdkRectangle current;
+	
 	if (priv->pointer_mode == F_IMAGE_VIEW_POINTER_MODE_SCROLL)
 		return (* GTK_WIDGET_CLASS (parent_class)->motion_notify_event) (widget, motion_event);
 
@@ -627,16 +730,14 @@ impl_motion_notify_event (GtkWidget *widget,
 		return TRUE;
 	}
 
-	if (priv->selection_active) {
-		/* Erase previous selection rectangle.  */
-		draw_selection (image_view, NULL);
-	} else {
+	previous = get_selection_box (image_view);
+	if (! priv->selection_active) {
 		/* Start the drag selection if the pointer has moved enough from the
 		   initial clicking position.  */
 		if (ABS (x - priv->button_press_x) < SELECTION_THRESHOLD
 		    && ABS (y - priv->button_press_y) < SELECTION_THRESHOLD)
 			return TRUE;
-
+	
 		priv->selection_active = TRUE;
 	}
 
@@ -712,8 +813,9 @@ impl_motion_notify_event (GtkWidget *widget,
 	}
 
 	constrain_selection (image_view);
+	current = get_selection_box (image_view);
 
-	draw_selection (image_view, NULL);
+	draw_union (widget, &current, &previous);
 
 	emit_selection_changed (image_view);
 	return TRUE;
@@ -766,6 +868,7 @@ class_init (FImageViewClass *class)
 	widget_class->button_press_event   = impl_button_press_event;
 	widget_class->motion_notify_event  = impl_motion_notify_event;
 	widget_class->button_release_event = impl_button_release_event;
+	widget_class->expose_event         = impl_expose_event;
 
 	object_class->finalize = impl_finalize;
 
@@ -817,18 +920,20 @@ f_image_view_get_pointer_mode (FImageView *image_view)
 	return image_view->priv->pointer_mode;
 }
 
-
 void
 f_image_view_set_selection_xy_ratio (FImageView *image_view,
 				     gdouble selection_xy_ratio)
 {
 	FImageViewPrivate *priv = image_view->priv;
+	GdkRectangle previous;
+	GdkRectangle current;
 
 	priv->selection_xy_ratio = selection_xy_ratio;
 
-	draw_selection (image_view, NULL);
+	previous = get_selection_box (image_view);
 	constrain_selection (image_view);
-	draw_selection (image_view, NULL);
+	current = get_selection_box (image_view);
+	draw_union (GTK_WIDGET (image_view), &current, &previous);
 
 	emit_selection_changed (image_view);
 }
