@@ -276,18 +276,19 @@ get_selection_box (FImageView *image_view)
 	FImageViewPrivate *priv = image_view->priv;
 	int x1, y1, x2, y2;
 	GdkRectangle zone;
+	GdkPixbuf *pixbuf = image_view_get_pixbuf (IMAGE_VIEW (image_view));
 
 	if (! priv->selection_active) {
 		//zone = (GdkRectangle) GTK_WIDGET (image_view)->allocation;
-		zone.x = 0;
-		zone.y = 0;
-		zone.width = GTK_WIDGET (image_view)->allocation.width;
-		zone.height = GTK_WIDGET (image_view)->allocation.height;
-		return zone;
+		image_coords_to_window (image_view, 0, 0, &x1, &y1);
+		if (pixbuf != NULL)
+			image_coords_to_window (image_view, gdk_pixbuf_get_width (pixbuf), gdk_pixbuf_get_height (pixbuf), &x2, &y2);
+		else 
+			image_coords_to_window (image_view, 0, 0, &x2, &y2);
+	} else {
+		image_coords_to_window (image_view, priv->selection.x1, priv->selection.y1, &x1, &y1);
+		image_coords_to_window (image_view, priv->selection.x2, priv->selection.y2, &x2, &y2);
 	}
-
-	image_coords_to_window (image_view, priv->selection.x1, priv->selection.y1, &x1, &y1);
-	image_coords_to_window (image_view, priv->selection.x2, priv->selection.y2, &x2, &y2);
 
 	zone.x = MIN (x1, x2);
 	zone.y = MIN (y1, y2);
@@ -559,7 +560,7 @@ impl_paint_extra (FImageView *image_view,
 	gdk_region_destroy (selection);
 
 	ctx = gdk_cairo_create (GTK_WIDGET (image_view)->window);
-	cairo_set_source_rgba (ctx, 1.0, 1.0, 1.0, .7);
+	cairo_set_source_rgba (ctx, .5, .5, .5, .7);
 	gdk_cairo_region (ctx, other);
 	cairo_fill (ctx);
 	cairo_destroy (ctx);
@@ -598,7 +599,7 @@ impl_expose_event (GtkWidget *widget, GdkEventExpose *event)
 	gdk_region_destroy (selection);
 
 	ctx = gdk_cairo_create (GTK_WIDGET (widget)->window);
-	cairo_set_source_rgba (ctx, 1.0, 1.0, 1.0, .7);
+	cairo_set_source_rgba (ctx, .5, .5, .5, .7);
 	gdk_cairo_region (ctx, event->region);
 	cairo_fill (ctx);
 	cairo_destroy (ctx);

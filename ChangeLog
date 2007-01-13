@@ -1,5 +1,8 @@
 2007-01-12  Larry Ewing  <lewing@novell.com>
 
+	* libfspot/f-image-view.c: constrain the selection drawing to the
+	image bounds.
+
 	* libfspot/f-image-view.c: draw the selection differently.
 
 	* libeog/image-view.c: add option to enable/disable progressive
