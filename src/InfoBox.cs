@@ -11,8 +11,8 @@ using Mono.Unix;
 
 public class InfoBox : VBox {
 	Delay update_delay;
-	private Photo photo;
-	public Photo Photo {
+	private IBrowsableItem photo;
+	public IBrowsableItem Photo {
 		set {
 			photo = value;
 			update_delay.Start ();
@@ -90,7 +90,7 @@ public class InfoBox : VBox {
 			      3, 0);
 
 		date_label = AttachLabel (table, 2, name_entry);
-		size_label = AttachLabel (table, 3, name_entry);
+	size_label = AttachLabel (table, 3, name_entry);
 		exposure_info_label = AttachLabel (table, 4, name_entry);
 
 		version_option_menu = new OptionMenu ();
@@ -277,21 +277,32 @@ public class InfoBox : VBox {
 						 photo.Time.ToLocalTime ().ToShortDateString (),
 						 photo.Time.ToLocalTime ().ToShortTimeString ());
 #endif
-		version_option_menu.Sensitive = true;
-		PhotoVersionMenu menu = new PhotoVersionMenu (photo);
-		menu.VersionIdChanged += new PhotoVersionMenu.VersionIdChangedHandler (HandleVersionIdChanged);
-		menu.WidthRequest = version_option_menu.Allocation.Width;
-		version_option_menu.Menu = menu;
+		
 
-		uint i = 0;
-		foreach (uint version_id in photo.VersionIds) {
-			if (version_id == photo.DefaultVersionId) {
-				// FIXME GTK# why not just .History = i ?
-				version_option_menu.SetHistory (i);
-				break;
+		Photo p = photo as Photo;
+		if (p != null) {
+			version_option_menu.Visible = true;
+			version_option_menu.Sensitive = true;
+			PhotoVersionMenu menu = new PhotoVersionMenu (p);
+			menu.VersionIdChanged += new PhotoVersionMenu.VersionIdChangedHandler (HandleVersionIdChanged);
+			menu.WidthRequest = version_option_menu.Allocation.Width;
+			version_option_menu.Menu = menu;
+			
+			uint i = 0;
+			foreach (uint version_id in p.VersionIds) {
+				if (version_id == p.DefaultVersionId) {
+					// FIXME GTK# why not just .History = i ?
+					version_option_menu.SetHistory (i);
+					break;
+				}
+				i++;
 			}
-			i++;
+		} else {
+			version_option_menu.Visible = false;
+			version_option_menu.Sensitive = false;
+			version_option_menu.Menu = null;
 		}
+
 
 		return false;
 	}

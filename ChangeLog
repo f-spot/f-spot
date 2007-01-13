@@ -1,5 +1,7 @@
 2007-01-13  Larry Ewing  <lewing@novell.com>
 
+	* src/InfoBox.cs: make InfoBox work with IBrowsableItem.
+
 	* src/Loupe.cs: remove DllImports, use CompositeUtils.
 
 	* src/ControlOverlay.cs: new class to hold controls on top of
