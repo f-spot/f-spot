@@ -219,6 +219,8 @@ namespace FSpot {
 
 		protected override bool OnKeyPressEvent (Gdk.EventKey key)
 		{
+			controls.Visibility = ControlOverlay.VisibilityType.Partial;
+
 			if (key == null) {
 				System.Console.WriteLine ("Key == null", key);
 				return false;
