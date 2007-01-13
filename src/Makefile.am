@@ -87,7 +87,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/GalleryExport.cs		\
 	$(srcdir)/GdkGlx.cs			\
 	$(srcdir)/GladeDialog.cs		\
-	$(srcdir)/GlDemo.cs			\
 	$(srcdir)/Global.cs			\
 	$(srcdir)/GroupAdaptor.cs		\
 	$(srcdir)/GroupSelector.cs		\
