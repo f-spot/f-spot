@@ -55,6 +55,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/CDExport.cs			\
 	$(srcdir)/ColorDialog.cs		\
 	$(srcdir)/CompatFileChooser.cs		\
+	$(srcdir)/ControlOverlay.cs		\
 	$(srcdir)/Core.cs			\
 	$(srcdir)/DateCommands.cs		\
 	$(srcdir)/Db.cs				\
@@ -63,6 +64,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/DirectoryCollection.cs	\
 	$(srcdir)/ExceptionDialog.cs		\
 	$(srcdir)/ExportStore.cs		\
+	$(srcdir)/Fader.cs			\
 	$(srcdir)/FlickrExport.cs		\
 	$(srcdir)/FlickrRemote.cs		\
 	$(srcdir)/FileImportBackend.cs		\
@@ -83,7 +85,9 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/FullScreenView.cs		\
 	$(srcdir)/GalleryRemote.cs		\
 	$(srcdir)/GalleryExport.cs		\
+	$(srcdir)/GdkGlx.cs			\
 	$(srcdir)/GladeDialog.cs		\
+	$(srcdir)/GlDemo.cs			\
 	$(srcdir)/Global.cs			\
 	$(srcdir)/GroupAdaptor.cs		\
 	$(srcdir)/GroupSelector.cs		\

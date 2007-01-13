@@ -6,62 +6,6 @@ using Cairo;
 using Mono.Unix;
 
 namespace FSpot {
-	public class FadeIn {
-		bool composited;
-		Delay fade_delay;
-		TimeSpan duration;
-		DateTime start;
-		Gtk.Window win;
-		
-		public FadeIn (Gtk.Window win, int sec)
-		{
-			this.win = win;
-			win.Mapped += HandleMapped;
-			win.Unmapped += HandleUnmapped;
-			win.ExposeEvent += HandleExposeEvent;
-			duration = new TimeSpan (0, 0, sec);
-		}
-		
-		[GLib.ConnectBefore]
-		public void HandleMapped (object sender, EventArgs args)
-		{
-			composited = CompositeUtils.SupportsHint (win.Screen, "_NET_WM_WINDOW_OPACITY");
-			if (!composited)
-				return;
-			
-			CompositeUtils.SetWinOpacity (win, 0.0);
-		}
-		
-		public void HandleExposeEvent (object sender, ExposeEventArgs args)
-		{
-			if (fade_delay == null) {
-				fade_delay = new Delay (50, new GLib.IdleHandler (Update));
-					start = DateTime.Now;
-					fade_delay.Start ();
-			}
-		}
-		
-		public void HandleUnmapped (object sender, EventArgs args)
-		{
-			if (fade_delay != null)
-				fade_delay.Stop ();
-		}
-		
-		public bool Update ()
-		{
-			double percent = Math.Min ((DateTime.Now - start).Ticks / (double) duration.Ticks, 1.0);
-			double opacity = Math.Sin (percent * Math.PI * 0.5);
-			CompositeUtils.SetWinOpacity (win, opacity);
-			
-			bool stop = opacity >= 1.0;
-
-			if (stop)
-				fade_delay.Stop ();
-			
-			return !stop;
-		}
-	}			
-	
 	[Binding(Gdk.Key.Escape, "Quit")]
 #if ENABLE_CRACK
 	[Binding(Gdk.Key.D, "PlayPause")]
@@ -71,6 +15,8 @@ namespace FSpot {
 		private PhotoImageView view;
 		private TagView tag_view;
 		private Notebook notebook;
+		private ControlOverlay controls;
+		
 #if ENABLE_CRACK
 		private ImageDisplay display;
 #endif		
@@ -112,7 +58,7 @@ namespace FSpot {
 							 PreviousAction),
 				});
 
-				new FadeIn (this, 3);
+				new Fader (this, 1.0, 3);
 				notebook = new Notebook ();
 				notebook.ShowBorder = false;
 				notebook.ShowTabs = false;
@@ -134,12 +80,11 @@ namespace FSpot {
 				hhbox.PackStart (close);
 				hhbox.PackStart (GetButton ("PreviousPicture"));
 				hhbox.PackStart (GetButton ("NextPicture"));
+				hhbox.BorderWidth = 15;
 
 				tag_view = new TagView ();
 				tag_view.Show ();
 				hhbox.PackStart (tag_view);
-				//hhbox.PackStart (new Gtk.Label ("This is a test"));
-				scroll.ControlBox.Add (hhbox);
 				hhbox.ShowAll ();
 				close.Clicked += ExitAction;
 				close.Show ();
@@ -152,9 +97,17 @@ namespace FSpot {
 				
 				view.Item.Changed += HandleItemChanged;
 				view.GrabFocus ();
+				
+				controls = new ControlOverlay (this);
+				Gtk.Button button = new Button ("gtk-stock-close");
+				button.Show ();
+				controls.Add (hhbox);
+
+
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e);
-			}		      
+			}	
+
 		}
 
 		private void HandleItemChanged (object sender, BrowsablePointerChangedArgs args)
@@ -227,6 +180,7 @@ namespace FSpot {
 			int x, y;
 			Gdk.ModifierType type;
 			view.GdkWindow.GetPointer (out x, out y, out type);
+			controls.Visibility = ControlOverlay.VisibilityType.Partial;
 			scroll.ShowControls ();
 		}
 

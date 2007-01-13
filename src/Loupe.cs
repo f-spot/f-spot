@@ -301,14 +301,14 @@ namespace FSpot {
 							    Allocation.Width, 
 							    Allocation.Height, 1);
 			
-			Context g = CreateDrawable (bitmap);
+			Context g = CairoUtils.CreateContext (bitmap);
 			DrawShape (g, Allocation.Width, Allocation.Height);
 			((IDisposable)g).Dispose ();
 
 			if (use_shape_ext)
 				ShapeCombineMask (bitmap, 0, 0);
 			else {
-				Context rgba = CreateDrawable (GdkWindow);
+				Context rgba = CairoUtils.CreateContext (GdkWindow);
 				DrawShape (rgba, Allocation.Width, Allocation.Height);
 				((IDisposable)rgba).Dispose ();
 				try {
@@ -400,7 +400,7 @@ namespace FSpot {
 
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
-			Context g = CreateDrawable (GdkWindow);
+			Context g = CairoUtils.CreateContext (GdkWindow);
 			DrawShape (g, Allocation.Width, Allocation.Height);
 			//base.OnExposeEvent (args);
 			((IDisposable)g).Dispose ();
@@ -563,18 +563,6 @@ namespace FSpot {
 			gdk_cairo_set_source_pixbuf (ctx.Handle, pixbuf.Handle, x, y);
 		}
 
-		[DllImport("libgdk-2.0-0.dll")]
-		static extern IntPtr gdk_cairo_create (IntPtr raw);
-		
-		public static Cairo.Context CreateDrawable (Gdk.Drawable drawable)
-		{
-			Cairo.Context g = new Cairo.Context (gdk_cairo_create (drawable.Handle));
-			if (g == null) 
-				throw new Exception ("Couldn't create Cairo Context!");
-			
-			return g;
-		}
-		
 		protected override void OnSizeRequested (ref Requisition requisition) 
 		{
 			Layout ();
