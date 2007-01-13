@@ -47,7 +47,7 @@ namespace FSpot {
 					FadeToTarget (0.4);
 					break;
 				case VisibilityType.Full:
-					FadeToTarget (0.7);
+					FadeToTarget (0.8);
 					break;
 				}
 			}
@@ -84,13 +84,10 @@ namespace FSpot {
 			this.host = host;
 			Decorated = false;
 			DestroyWithParent = true;
-			
+
 			host_toplevel = (Gtk.Window) host.Toplevel;
 			
 			TransientFor = host_toplevel;
-
-			this.ModifyFg (Gtk.StateType.Normal, new Gdk.Color (127, 127, 127));
-			this.ModifyBg (Gtk.StateType.Normal, new Gdk.Color (0, 0, 0));
 
 			host_toplevel.ConfigureEvent += HandleHostConfigure;
 			host_toplevel.SizeAllocated += HandleHostSizeAllocated;
@@ -103,11 +100,15 @@ namespace FSpot {
 		protected virtual void ShapeSurface (Context cr, Cairo.Color color)
 		{
 			cr.Operator = Operator.Source;
-			cr.Source = new SolidPattern (new Cairo.Color (0, 0, 0, 0));
+			Pattern p = new SolidPattern (new Cairo.Color (0, 0, 0, 0));
+			cr.Source = p;
+			p.Destroy ();
 			cr.Paint ();
 			cr.Operator = Operator.Over;
 
-			cr.Source = new SolidPattern (color);
+			Pattern r = new SolidPattern (color);
+			cr.Source = r;
+			r.Destroy ();
 			cr.MoveTo (round, 0);
 			cr.Arc (Allocation.Width - round, round, round, - Math.PI * 0.5, 0);
 			cr.Arc (Allocation.Width - round, Allocation.Height - round, round, 0, Math.PI * 0.5);
@@ -135,10 +136,12 @@ namespace FSpot {
 			Gdk.Color c = Style.Background (State);
 			Context cr = CairoUtils.CreateContext (GdkWindow);
 			
-			ShapeSurface (cr, new Cairo.Color (c.Red / ushort.MaxValue,
-							   c.Blue / ushort.MaxValue, 
-							   c.Green / ushort.MaxValue,
-							   0.5));
+			Console.WriteLine ("color = {0}", c);
+			
+			ShapeSurface (cr, new Cairo.Color (c.Red / (double) ushort.MaxValue,
+							   c.Blue / (double) ushort.MaxValue, 
+							   c.Green / (double) ushort.MaxValue,
+							   0.9));
 
 			((IDisposable)cr).Dispose ();
 			return base.OnExposeEvent (args);

@@ -1,5 +1,9 @@
 2007-01-13  Larry Ewing  <lewing@novell.com>
 
+	* src/ControlOverlay.cs: fix the style color code.
+
+	* src/FullScreenView.cs: add a name display and work on packing a bit.
+	
 	* src/FullScreenView.cs: show the controls on key press events.
 
 	* src/ControlOverlay.cs: add a dismiss method to hide controls for

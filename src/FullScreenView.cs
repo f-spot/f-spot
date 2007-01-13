@@ -14,6 +14,7 @@ namespace FSpot {
 		private ScrolledView scroll;
 		private PhotoImageView view;
 		private TagView tag_view;
+		private Label name_label;
 		private Notebook notebook;
 		private ControlOverlay controls;
 		
@@ -77,17 +78,25 @@ namespace FSpot {
 				HBox hhbox = new HBox ();
 				hhbox.PackEnd (GetButton ("HideToolbar"), false, true, 0);
 				Gtk.Button close = ExitButton ();
-				hhbox.PackStart (close);
-				hhbox.PackStart (GetButton ("PreviousPicture"));
-				hhbox.PackStart (GetButton ("NextPicture"));
+				hhbox.PackStart (close, false, false, 0);
+				hhbox.PackStart (GetButton ("PreviousPicture"), false, false, 0);
+				hhbox.PackStart (GetButton ("NextPicture"), false, false, 0);
 				hhbox.BorderWidth = 15;
-
+				
+				VBox vbox = new VBox ();
+				name_label = new Label ();
+				name_label.UseMarkup = true;
+				vbox.PackStart (name_label);
+				HBox center = new HBox ();
 				tag_view = new TagView ();
-				tag_view.Show ();
-				hhbox.PackStart (tag_view);
+				center.PackStart (tag_view, false, false, 0);
+				vbox.PackStart (center);
+				vbox.Spacing = 10;
+
+				hhbox.PackStart (vbox);
+
 				hhbox.ShowAll ();
 				close.Clicked += ExitAction;
-				close.Show ();
 				//scroll.ShowControls ();
 				
 				scroll.Show ();
@@ -100,7 +109,7 @@ namespace FSpot {
 				
 				controls = new ControlOverlay (this);
 				controls.Add (hhbox);
-
+				controls.Dismiss ();
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e);
 			}	
@@ -110,6 +119,9 @@ namespace FSpot {
 		private void HandleItemChanged (object sender, BrowsablePointerChangedArgs args)
 		{
 			tag_view.Current = view.Item.Current;
+			name_label.Markup = String.Format ("<small>{0}</small>",
+							   view.Item.Current != null ? view.Item.Current.Name : "");
+
 			actions [NextPicture].Sensitive = view.Item.Index < view.Item.Collection.Count -1;
 			actions [PreviousPicture].Sensitive = view.Item.Index > 0;
 			if (scroll.ControlBox.Visible)
