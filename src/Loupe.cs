@@ -160,14 +160,6 @@ namespace FSpot {
 			BuildUI ();
 		}
 
-		
-
-		[DllImport("libgdk-2.0-0.dll")]
-	        static extern bool gdk_screen_is_composited (IntPtr screen);
-		
-		[DllImport ("libgtk-win32-2.0-0.dll")]
-		static extern void gtk_widget_input_shape_combine_mask (IntPtr raw, IntPtr shape_mask, int offset_x, int offset_y);
-
 		Gdk.Point old_win_pos;
 		[GLib.ConnectBefore]
 		public void HandleToplevelConfigure (object o, ConfigureEventArgs args)
@@ -183,11 +175,6 @@ namespace FSpot {
 
 			old_win_pos.X = args.Event.X;
 			old_win_pos.Y = args.Event.Y;
-		}
-		
-		public void InputShapeCombineMask(Gdk.Pixmap shape_mask, int offset_x, int offset_y)
-		{
-			gtk_widget_input_shape_combine_mask (Handle, shape_mask == null ? IntPtr.Zero : shape_mask.Handle, offset_x, offset_y);
 		}
 		
 		// FIXME
@@ -325,7 +312,7 @@ namespace FSpot {
 				DrawShape (rgba, Allocation.Width, Allocation.Height);
 				((IDisposable)rgba).Dispose ();
 				try {
-					InputShapeCombineMask (bitmap, 0,0);
+					CompositeUtils.InputShapeCombineMask (this, bitmap, 0,0);
 				} catch (EntryPointNotFoundException) {
 					System.Console.WriteLine ("Warning: gtk+ version doesn't support input shapping");
 				}
