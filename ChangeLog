@@ -1,5 +1,16 @@
 2007-01-13  Larry Ewing  <lewing@novell.com>
 
+	* src/FullScreenView.cs:
+	* src/ControlOverlay.cs: add a dismiss method to hide controls for
+	2 seconds before allowing them to come back.
+
+	* src/Fader.cs: helper class for window fades.
+
+	* src/Loupe.cs: more cleanups.
+
+	* src/ControlOverlay.cs: clean up the display code and the hiding
+	code.
+
 	* src/InfoBox.cs: make InfoBox work with IBrowsableItem.
 
 	* src/Loupe.cs: remove DllImports, use CompositeUtils.

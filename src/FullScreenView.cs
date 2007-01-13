@@ -99,10 +99,7 @@ namespace FSpot {
 				view.GrabFocus ();
 				
 				controls = new ControlOverlay (this);
-				Gtk.Button button = new Button ("gtk-stock-close");
-				button.Show ();
 				controls.Add (hhbox);
-
 
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e);
@@ -172,6 +169,7 @@ namespace FSpot {
 	        private void HideToolbarAction (object sender, System.EventArgs args)
 		{
 			scroll.HideControls (true);
+			controls.Dismiss ();
 		}
 
 		[GLib.ConnectBefore]

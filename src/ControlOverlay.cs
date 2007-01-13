@@ -23,6 +23,7 @@ namespace FSpot {
 		double target_opacity;
 		int round = 12;
 		Delay hide; 
+		Delay dismiss;
 
 		public enum VisibilityType
 		{
@@ -34,13 +35,16 @@ namespace FSpot {
 		public VisibilityType Visibility {
 			get { return visibility; }
 			set {
+				if (dismiss.IsPending && value != VisibilityType.None)
+					return;
+
 				visibility = value;
 				switch (visibility) {
 				case VisibilityType.None:
 					FadeToTarget (0.0);
 					break;
 				case VisibilityType.Partial:
-					FadeToTarget (0.3);
+					FadeToTarget (0.4);
 					break;
 				case VisibilityType.Full:
 					FadeToTarget (0.7);
@@ -92,7 +96,8 @@ namespace FSpot {
 			host_toplevel.SizeAllocated += HandleHostSizeAllocated;
 			
 			AddEvents ((int) (Gdk.EventMask.PointerMotionMask));
-			hide = new Delay (2000, new GLib.IdleHandler (HideControls));
+			hide = new Delay (2000, HideControls);
+			dismiss = new Delay (2000, delegate { /* do nothing */ return false; });
 		}
 
 		protected virtual void ShapeSurface (Context cr, Cairo.Color color)
@@ -200,9 +205,11 @@ namespace FSpot {
 			Visibility = VisibilityType.Full;
 		}
 
-		public void Dissmiss ()
+		public void Dismiss ()
 		{
-			
+			Visibility = VisibilityType.None;
+			Hide ();
+			dismiss.Start ();
 		}
 		
 		protected override void OnMapped ()
