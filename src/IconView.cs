@@ -304,6 +304,13 @@ public class IconView : Gtk.Layout {
 				DetailedChanged (this, null);
 
 		}
+		
+		public void MarkChanged (int item)
+		{
+			// Forward the change event up to our parent
+			// we'll fire the event when the parent calls us back
+			parent.MarkChanged ((int) selected_cells [item]);
+		}
 
 		private void HandleParentItemsChanged (IBrowsableCollection collection, BrowsableArgs args)
 		{			
@@ -518,7 +525,7 @@ public class IconView : Gtk.Layout {
 			selection = null;
 			items = null;
 		}
-
+		
 		private void SignalChange (int [] ids) 
 		{
 			ClearCached ();

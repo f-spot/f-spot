@@ -347,6 +347,7 @@ public class MainWindow {
 
 		photo_view = new PhotoView (query);
 		photo_box.Add (photo_view);
+
 		photo_view.ButtonPressEvent += HandlePhotoViewButtonPressEvent;
 		photo_view.KeyPressEvent += HandlePhotoViewKeyPressEvent;
 		photo_view.UpdateStarted += HandlePhotoViewUpdateStarted;
@@ -388,7 +389,7 @@ public class MainWindow {
 		tagbar.Hide ();
 		find_bar.Hide ();
 
-        UpdateFindByTagMenu ();
+		UpdateFindByTagMenu ();
 
 		LoadPreference (Preferences.SHOW_TOOLBAR);
 		LoadPreference (Preferences.SHOW_SIDEBAR);
@@ -405,6 +406,7 @@ public class MainWindow {
 		icon_view.SizeAllocated += HandleIconViewReady;
 
 		UpdateToolbar ();
+
 	}
 
 	private Photo CurrentPhoto {
@@ -587,6 +589,11 @@ public class MainWindow {
 			if (Changed != null)
 				Changed (this);
 		}
+
+		public void MarkChanged (int index)
+		{
+			throw new System.NotImplementedException ("I didn't think you'd find me");
+		}
 		
 		public IBrowsableItem this [int index] {
 			get {
@@ -643,6 +650,8 @@ public class MainWindow {
 		{
 			if (win.view_mode == ModeType.IconView && Changed != null)
 				Changed (this);
+
+
 		}
 
 		private void HandleSelectionItemsChanged (IBrowsableCollection collection,  BrowsableArgs args)
@@ -663,7 +672,7 @@ public class MainWindow {
 
 		UpdateMenus ();
 		UpdateTagEntryFromSelection ();
-		UpdateStatusLabel();		
+		UpdateStatusLabel();	
 	}
 
 	private void HandleSelectionItemsChanged (IBrowsableCollection collection, BrowsableArgs args)
@@ -1489,8 +1498,7 @@ public class MainWindow {
 		new FSpot.CDExport (new FSpot.PhotoArray (SelectedPhotos ()));
 	}
 
-#if false
-	void TestDisplay ()
+	private void TestDisplay ()
 	{
 		Gtk.Window win = new Gtk.Window ("hello");
 		VBox box = new VBox ();
@@ -1499,7 +1507,8 @@ public class MainWindow {
 		win.ShowAll ();
 	}
 
-	private TestGL ()
+#if TEST_GL
+	private void TestGL ()
 	{
 		Gtk.Widget w = new GlDemo (CurrentPhoto);
 		Gtk.Window win = new Gtk.Window ("GL Demo");
@@ -1507,13 +1516,15 @@ public class MainWindow {
 		win.ShowAll ();
 	}
 #endif
-
 	
 	void HandleSendMailCommand (object sender, EventArgs args)
 	{
 		//TestDisplay ();
-		//TestGL ();
+#if TEST_GL
+		TestGL ();
+#else
 		new FSpot.SendEmail (new FSpot.PhotoArray (SelectedPhotos ()));
+#endif
 	}
 
 	public static void HandleHelp (object sender, EventArgs args)
@@ -2105,13 +2116,20 @@ public class MainWindow {
 		case ModeType.PhotoView:
 			break;
 		case ModeType.IconView:		
-			label_str.Append (String.Format (Catalog.GetPluralString ("{0} Photo", "{0} Photos", query.Count), query.Count));
+			label_str.Append (String.Format (Catalog.GetPluralString ("{0} Photo", 
+										  "{0} Photos", 
+										  query.Count), 
+							 query.Count));
 
 			if (PhotoStore.TotalPhotos != query.Count)
-				label_str.Append (String.Format (Catalog.GetString (" out of {0}"), PhotoStore.TotalPhotos));
+				label_str.Append (String.Format (Catalog.GetString (" out of {0}"), 
+								 PhotoStore.TotalPhotos));
 
 			if ((selection != null) && (selection.Count > 0))
-				label_str.Append (String.Format (Catalog.GetPluralString (" ({0} selected)", " ({0} selected)", selection.Count), selection.Count));
+				label_str.Append (String.Format (Catalog.GetPluralString (" ({0} selected)", 
+											  " ({0} selected)", 
+											  selection.Count), 
+								 selection.Count));
 			break;
 		}
 		
@@ -2377,22 +2395,22 @@ public class MainWindow {
 
 	public void HandleRotate90Command (object sender, EventArgs args)
 	{
-        // Don't steal characters from any text entries
-        if (Window.Focus is Gtk.Entry && Gtk.Global.CurrentEvent is Gdk.EventKey) {
-            Window.Focus.ProcessEvent (Gtk.Global.CurrentEvent);
-            return;
-        }
-
+		// Don't steal characters from any text entries
+		if (Window.Focus is Gtk.Entry && Gtk.Global.CurrentEvent is Gdk.EventKey) {
+			Window.Focus.ProcessEvent (Gtk.Global.CurrentEvent);
+			return;
+		}
+		
 		RotateSelectedPictures (GetToplevel (sender), RotateDirection.Clockwise);
 	}
 
 	public void HandleRotate270Command (object sender, EventArgs args)
 	{
-        // Don't steal characters from any text entries
-        if (Window.Focus is Gtk.Entry && Gtk.Global.CurrentEvent is Gdk.EventKey) {
-            Window.Focus.ProcessEvent (Gtk.Global.CurrentEvent);
-            return;
-        }
+		// Don't steal characters from any text entries
+		if (Window.Focus is Gtk.Entry && Gtk.Global.CurrentEvent is Gdk.EventKey) {
+			Window.Focus.ProcessEvent (Gtk.Global.CurrentEvent);
+			return;
+		}
 
 		RotateSelectedPictures (GetToplevel (sender), RotateDirection.Counterclockwise);
 	}
@@ -2597,14 +2615,14 @@ public class MainWindow {
 		return query_widget.TagRequired (tag);
 	}
 
-    private void HandleQueryLogicChanged (object sender, EventArgs args)
-    {
-        HandleFindAddTagWith (null, null);
-    }
-
+	private void HandleQueryLogicChanged (object sender, EventArgs args)
+	{
+		HandleFindAddTagWith (null, null);
+	}
+	
 	public void HandleIncludeTag (object sender, EventArgs args)
 	{
-        ShowQueryWidget ();
+		ShowQueryWidget ();
 		query_widget.Include (tag_selection_widget.TagHighlight);
 	}
 	
@@ -2612,69 +2630,69 @@ public class MainWindow {
 	{
 		query_widget.UnInclude (tag_selection_widget.TagHighlight);
  	}
-
-    void HandleFindByTag (object sender, EventArgs args)
-    {
-        UpdateFindByTagMenu ();
-    }
-
-    public void UpdateFindByTagMenu ()
-    {
-        if (query_widget.Visible) {
-            query_widget.Close ();
-        } else {
-            ShowQueryWidget ();
-        }
-    }
-
-    void HandleFindAddTagWith (object sender, EventArgs args)
-    {
-        if (find_add_tag_with.Submenu != null)
-           find_add_tag_with.Submenu.Dispose ();
-
-        Gtk.Menu submenu = FSpot.Query.TermMenuItem.GetSubmenu (tag_selection_widget.TagHighlight);
-        if (submenu == null)
-            find_add_tag_with.RemoveSubmenu();
-        else
-            find_add_tag_with.Submenu = submenu;
-
-        find_add_tag_with.Sensitive = (submenu != null);
-    }
-
-    public void HandleAddTagToTerm (object sender, EventArgs args)
-    {
-        MenuItem item = sender as MenuItem;
-
-        int item_pos = 0;
-        foreach (MenuItem i in (item.Parent as Menu).Children) {
-            if (item == i) {
-                break;
-            }
-
-            item_pos++;
-        }
-        // account for All and separator menu items
-        item_pos -= 2;
-
-        FSpot.Query.LogicTerm parent_term = (FSpot.Query.LogicTerm) FSpot.Query.LogicWidget.Root.SubTerms [item_pos];
-
-        if (FSpot.Query.LogicWidget.Box != null) {
-            FSpot.Query.Literal after = parent_term.Last as FSpot.Query.Literal;
-            FSpot.Query.LogicWidget.Box.InsertTerm (tag_selection_widget.TagHighlight, parent_term, after);
-        }
-    }
-
+	
+	void HandleFindByTag (object sender, EventArgs args)
+	{
+		UpdateFindByTagMenu ();
+	}
+	
+	public void UpdateFindByTagMenu ()
+	{
+		if (query_widget.Visible) {
+			query_widget.Close ();
+		} else {
+			ShowQueryWidget ();
+		}
+	}
+	
+	void HandleFindAddTagWith (object sender, EventArgs args)
+	{
+		if (find_add_tag_with.Submenu != null)
+			find_add_tag_with.Submenu.Dispose ();
+		
+		Gtk.Menu submenu = FSpot.Query.TermMenuItem.GetSubmenu (tag_selection_widget.TagHighlight);
+		if (submenu == null)
+			find_add_tag_with.RemoveSubmenu();
+		else
+			find_add_tag_with.Submenu = submenu;
+		
+		find_add_tag_with.Sensitive = (submenu != null);
+	}
+	
+	public void HandleAddTagToTerm (object sender, EventArgs args)
+	{
+		MenuItem item = sender as MenuItem;
+		
+		int item_pos = 0;
+		foreach (MenuItem i in (item.Parent as Menu).Children) {
+			if (item == i) {
+				break;
+			}
+			
+			item_pos++;
+		}
+		// account for All and separator menu items
+		item_pos -= 2;
+		
+		FSpot.Query.LogicTerm parent_term = (FSpot.Query.LogicTerm) FSpot.Query.LogicWidget.Root.SubTerms [item_pos];
+		
+		if (FSpot.Query.LogicWidget.Box != null) {
+			FSpot.Query.Literal after = parent_term.Last as FSpot.Query.Literal;
+			FSpot.Query.LogicWidget.Box.InsertTerm (tag_selection_widget.TagHighlight, parent_term, after);
+		}
+	}
+	
 	void HandleFindTagIncluded (Tag t)
 	{
-        ShowQueryWidget ();
+		ShowQueryWidget ();
 		query_widget.Include (new Tag [] {t});
  	}
 	
 	void HandleFindTagRequired (Tag t)
 	{
-        ShowQueryWidget ();
+		ShowQueryWidget ();
 		query_widget.Require (new Tag [] {t});
-    }
+	}
 
 	//
 	// Handle Main Menu 
@@ -2747,7 +2765,7 @@ public class MainWindow {
 				rl_button.Sensitive = true;
 
 				string msg = Catalog.GetPluralString ("Rotate selected photo left",
-				    "Rotate selected photos left", selection.Count);
+								      "Rotate selected photos left", selection.Count);
 				SetTip (rl_button, String.Format (msg, selection.Count));
 			}
 		}

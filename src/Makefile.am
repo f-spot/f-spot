@@ -1,5 +1,5 @@
 CSC = gmcs
-CSFLAGS = -unsafe -debug -nowarn:0169 -nowarn:0612 -d:TEST_METADATA -d:BROKEN_RSVG -d:ENABLE_CRACK $(NUNIT_DEFINES)
+CSFLAGS = -unsafe -debug -nowarn:0169 -nowarn:0612 -d:TEST_METADATA -d:BROKEN_RSVG $(NUNIT_DEFINES)
 
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Cairo/Antialias.cs		\
@@ -105,6 +105,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/InfoOverlay.cs		\
 	$(srcdir)/InternalProcess.cs		\
 	$(srcdir)/IOChannel.cs			\
+	$(srcdir)/ItemAction.cs			\
 	$(srcdir)/Ciff.cs			\
 	$(srcdir)/Imaging/DCRawFile.cs		\
 	$(srcdir)/Imaging/Bim.cs		\

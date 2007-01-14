@@ -1,3 +1,15 @@
+/* 
+ * ImageDisplay.cs
+ *
+ * Copyright 2007 Novell Inc.
+ *
+ * Author
+ *   Larry Ewing <lewing@novell.com>
+ *
+ * See COPYING for license information.
+ *
+ */
+
 using Gtk;
 using Gdk;
 using System;

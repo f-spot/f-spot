@@ -18,8 +18,6 @@ namespace FSpot {
 
 		ActionGroup actions;
 		const string ExitFullScreen = "ExitFullScreen";
-		const string NextPicture = "NextPicture";
-		const string PreviousPicture = "PreviousPicture";
 		const string HideToolbar = "HideToolbar";
 		const string SlideShow = "SlideShow";
 		const string Info = "Info";
@@ -42,18 +40,6 @@ namespace FSpot {
 							 null, 
 							 null, 
 							 ExitAction),
-					new ActionEntry (NextPicture,
-							 Stock.GoForward,
-							 Catalog.GetString ("Next"),
-							 null,
-							 Catalog.GetString ("Next Picture"),
-							 NextAction),
-					new ActionEntry (PreviousPicture,
-							 Stock.GoBack,
-							 Catalog.GetString ("Back"),
-							 null,
-							 Catalog.GetString ("Previous Picture"),
-							 PreviousAction),
 						new ActionEntry (SlideShow,
 								 "f-spot-slideshow",
 								 Catalog.GetString ("Slideshow"),
@@ -77,6 +63,7 @@ namespace FSpot {
 				notebook.ShowBorder = false;
 				notebook.ShowTabs = false;
 				notebook.Show ();
+				
 
 				scroll = new ScrolledView ();
 				view = new PhotoImageView (collection);
@@ -86,6 +73,12 @@ namespace FSpot {
 				this.Add (notebook);
 				view.Show ();
 				view.MotionNotifyEvent += HandleViewMotion;
+				
+				Action rotate_left = new RotateLeftAction (view.Item);
+				actions.Add (rotate_left);
+				
+				Action rotate_right = new RotateRightAction (view.Item);
+				actions.Add (rotate_right);
 
 				scroll.ScrolledWindow.Add (view);
 				HBox hhbox = new HBox ();
@@ -93,8 +86,10 @@ namespace FSpot {
 				hhbox.PackEnd (GetButton (Info), false, true, 0);
 				hhbox.PackEnd (GetButton (SlideShow), false, true, 0);
 				hhbox.PackStart (GetButton (ExitFullScreen), false, false, 0);
-				hhbox.PackStart (GetButton (PreviousPicture), false, false, 0);
-				hhbox.PackStart (GetButton (NextPicture), false, false, 0);
+				hhbox.PackStart (Add (new PreviousPictureAction (view.Item)), false, false, 0);
+				hhbox.PackStart (Add (new NextPictureAction (view.Item)), false, false, 0);
+				hhbox.PackStart (Add (new RotateLeftAction (view.Item)), false, false, 0);
+				hhbox.PackStart (Add (new RotateRightAction (view.Item)), false, false, 0);
 				hhbox.BorderWidth = 15;
 				
 				VBox vbox = new VBox ();
@@ -129,14 +124,18 @@ namespace FSpot {
 
 		}
 
+		private Widget Add (Action action)
+		{
+			actions.Add (action);
+			return GetButton (action.Name);
+		}
+
 		private void HandleItemChanged (object sender, BrowsablePointerChangedArgs args)
 		{
 			tag_view.Current = view.Item.Current;
 			name_label.Markup = String.Format ("<small>{0}</small>",
 							   view.Item.Current != null ? view.Item.Current.Name : "");
 
-			actions [NextPicture].Sensitive = view.Item.Index < view.Item.Collection.Count -1;
-			actions [PreviousPicture].Sensitive = view.Item.Index > 0;
 			if (scroll.ControlBox.Visible)
 				scroll.ShowControls ();
 		}
@@ -188,16 +187,6 @@ namespace FSpot {
 			this.Destroy ();
 		}
 
-		private void NextAction (object sender, System.EventArgs args)
-		{
-			view.Item.MoveNext ();
-		}
-
-		private void PreviousAction (object sender, System.EventArgs args)
-		{
-			view.Item.MovePrevious ();
-		}
-
 	        private void HideToolbarAction (object sender, System.EventArgs args)
 		{
 			scroll.HideControls (true);
@@ -220,7 +209,7 @@ namespace FSpot {
 
 			System.Console.WriteLine ("sender = {0}", sender);
 			info.Visibility = action.Active ? 
-				ControlOverlay.VisibilityType.Full : 
+				ControlOverlay.VisibilityType.Partial : 
 				ControlOverlay.VisibilityType.None;
 		}
 

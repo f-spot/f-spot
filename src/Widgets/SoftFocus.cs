@@ -13,7 +13,7 @@ namespace FSpot.Widgets {
 	public class SoftFocus : IEffect {
 		ImageInfo info;
 		double radius;
-		double amount = 30;
+		double amount = 8;
 		Gdk.Point center;
 
 		public SoftFocus (ImageInfo info)

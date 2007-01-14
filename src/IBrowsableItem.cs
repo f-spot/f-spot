@@ -57,6 +57,8 @@ namespace FSpot {
 		// overhead.
 		event IBrowsableCollectionChangedHandler Changed;
 		event IBrowsableCollectionItemsChangedHandler ItemsChanged;
+
+		void MarkChanged (int index);
 	}
 
 	public interface IBrowsableItem {
