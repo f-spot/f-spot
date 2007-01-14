@@ -27,7 +27,7 @@ libglitzsharplib_DATA =		\
 	NDesk.Glitz.dll
 
 EXTRA_DIST =				\
-	$(LIBDBUSSHARP_CSFILES)
+	$(LIBGLITZSHARP_CSFILES)
 
 CLEANFILES =			\
 	NDesk.Glitz.dll		\
