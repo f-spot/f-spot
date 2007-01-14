@@ -167,6 +167,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ThreadProgressDialog.cs	\
 	$(srcdir)/ThumbnailCache.cs		\
 	$(srcdir)/ThumbnailGenerator.cs		\
+	$(srcdir)/Texture.cs			\
 	$(srcdir)/TimeAdaptor.cs		\
 	$(srcdir)/TimeDialog.cs			\
 	$(srcdir)/TipWindow.cs			\
