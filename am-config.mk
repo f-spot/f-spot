@@ -6,6 +6,7 @@ ASSEMBLY_WINEXE	= $(PROGRAM_WIN).exe
 ASSEMBLY_NAME	= $(LIBRARY)
 SYMBOLS		= 
 CSFLAGS		= /unsafe
+SNKFILE = $(LIBRARY).snk
 
 # If ASSEMBLY_DLL has been set, and thus, is not ".dll", assume we're a 
 # library, and not an executable
