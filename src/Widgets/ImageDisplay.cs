@@ -33,6 +33,7 @@ namespace FSpot.Widgets {
 		IEffect effect;
 		Delay delay;
 		int index = 0;
+		int block_size = 256;
 
 		ITransition Transition {
 			get { return transition; }
@@ -41,6 +42,7 @@ namespace FSpot.Widgets {
 					transition.Dispose ();
 
 				transition = value;
+				
 
 				if (transition != null)
 					delay.Start ();
@@ -71,6 +73,7 @@ namespace FSpot.Widgets {
 				next.Dispose ();
 				next = null;
 			}
+
 			Transition = null;
 			
 			if (effect != null)
@@ -178,10 +181,11 @@ namespace FSpot.Widgets {
 
 		private void OnExpose (Context ctx, Region region)
 		{
+			SetClip (ctx, region);
 			if (Transition != null) {
 				bool done = false;
-				foreach (Gdk.Rectangle area in region.GetRectangles ()) {
-					BlockProcessor proc = new BlockProcessor (area, 256);
+				foreach (Gdk.Rectangle area in GetRectangles (region)) {
+					BlockProcessor proc = new BlockProcessor (area, block_size);
 					Gdk.Rectangle subarea;
 					while (proc.Step (out subarea)) {
 						ctx.Save ();
@@ -195,8 +199,8 @@ namespace FSpot.Widgets {
 					Transition = null;
 				}
 			} else if (effect != null) {
-				foreach (Gdk.Rectangle area in region.GetRectangles ()) {
-					BlockProcessor proc = new BlockProcessor (area, 30000);
+				foreach (Gdk.Rectangle area in GetRectangles (region)) {
+					BlockProcessor proc = new BlockProcessor (area, block_size);
 					Gdk.Rectangle subarea;
 					while (proc.Step (out subarea)) {
 						ctx.Save ();
@@ -216,6 +220,15 @@ namespace FSpot.Widgets {
 				ctx.Paint ();
 				p.Destroy ();
 			}
+		}
+
+		private static Gdk.Rectangle [] GetRectangles (Gdk.Region region)
+		{
+#if true
+			return new Gdk.Rectangle [] { region.Clipbox };
+#else
+			return region.GetRectangles ();
+#endif
 		}
 
 		protected override bool OnExposeEvent (EventExpose args)
@@ -251,13 +264,6 @@ namespace FSpot.Widgets {
 			//glitz.Flush ();
 			((IDisposable)ctx).Dispose ();
 			return true;
-		}
-
-		~ImageDisplay () 
-		{
-			Transition = null;
-			current.Dispose ();
-			next.Dispose ();
 		}
 	}
 }

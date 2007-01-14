@@ -10,8 +10,7 @@
 using System;
 
 namespace FSpot {
-	public interface ITransition : IDisposable {
-		bool OnExpose (Cairo.Context ctx, Gdk.Rectangle allocation);
+	public interface ITransition : IEffect {
 		bool OnEvent (Gtk.Widget w);
 		int Frames { get; }
 	}
