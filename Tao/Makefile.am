@@ -3,3 +3,5 @@ SUBDIRS = \
 	Tao.GlPostProcess		\
 	Tao.OpenGl 			\
 	Tao.OpenGl.Glu
+
+EXTRA_DIST = COPYING
