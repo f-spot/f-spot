@@ -168,6 +168,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ThumbnailCache.cs		\
 	$(srcdir)/ThumbnailGenerator.cs		\
 	$(srcdir)/Texture.cs			\
+	$(srcdir)/TextureDisplay.cs             \
 	$(srcdir)/TimeAdaptor.cs		\
 	$(srcdir)/TimeDialog.cs			\
 	$(srcdir)/TipWindow.cs			\
@@ -200,8 +201,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/Tilt.cs		\
 	$(srcdir)/Widgets/Wipe.cs		\
 	$(srcdir)/XmpTagsImporter.cs		\
-	$(srcdir)/main.cs			\
-	$(GL_CSFILES)
+	$(srcdir)/main.cs
 
 ASSEMBLIES = \
 	-r:$(top_builddir)/dbus-sharp/NDesk.DBus.dll   				\

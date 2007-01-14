@@ -1,3 +1,15 @@
+/* 
+ * Texture.cs
+ *
+ * Copyright 2007 Novell Inc.
+ *
+ * Author
+ *   Larry Ewing <lewing@novell.com>
+ *
+ * See COPYING for license information.
+ *
+ */
+
 using System;
 using Gtk;
 using Tao.OpenGl;
