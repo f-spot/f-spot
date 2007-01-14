@@ -13,6 +13,7 @@ SUBDIRS = 		\
 	libfspot	\
 	libgphoto2-sharp \
 	semweb		\
+	Tao		\
 	tools		\
 	po		\
 	src	
@@ -42,6 +43,7 @@ EXTRA_DIST =			\
 	intltool-update.in	\
 	f-spot.pc.in		\
 	f-spot.spec		\
+	am-config.mk		\
         $(desktop_in_files)     \
         $(desktop_files)
 

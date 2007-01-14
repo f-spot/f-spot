@@ -1,5 +1,10 @@
 2007-01-14  Larry Ewing  <lewing@novell.com>
 
+	* Tao: add a horribly hacked up Tao build to the repo.  So many
+	wrappers..
+
+	* src/InfoOverlay.cs: handle version menu changes.
+
 	* src/IBrowsableItem.cs: add MarkChanged to IBrowsableCollection.
 
 	* src/MainWindow.cs: set MarkChanged as not implemented for now.
