@@ -133,7 +133,7 @@ namespace FSpot {
 			
 			float aspect = texture.Width / texture.Height;
 
-			Gl.glBindTexture (Gl.GL_TEXTURE_RECTANGLE_ARB, texture.Flush ());
+			texture.Bind ();
 			Gl.glBegin (Gl.GL_QUADS);
 			Gl.glTexCoord2f (0, 0);
 			Gl.glVertex3f (-1, 1, 1);
@@ -175,7 +175,7 @@ namespace FSpot {
 			if (texture == null)
 				texture = CreateTexture ();
 
-			Gl.glBindTexture (Gl.GL_TEXTURE_RECTANGLE_ARB, texture.Flush ());
+			texture.Bind ();
 			Gl.glBegin (Gl.GL_QUADS);
 			Gl.glTexCoord2f (0, 0);
 			Gl.glVertex3f (-2, -1, 0);

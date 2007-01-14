@@ -54,23 +54,30 @@ namespace FSpot {
 			p.Destroy ();
 			image.Destroy ();
 			((IDisposable)ctx).Dispose ();
+			CopyFromSurface ();
 		}
 
 		public Texture (int width, int height)
 		{
 			this.width = width;
 			this.height = height;
+
 			pixels = Marshal.AllocHGlobal (4 * width * height);
 			
 			surface = new ImageSurface (pixels, Format.Argb32, width, height, width * 4);
 		
 			Gl.glClear (Gl.GL_COLOR_BUFFER_BIT | Gl.GL_DEPTH_BUFFER_BIT);
 			Gl.glGenTextures (1, out texture_id);
+		}
+
+		public void Bind ()
+		{
 			Gl.glBindTexture (Gl.GL_TEXTURE_RECTANGLE_ARB, texture_id);
 		}
-		
-		public int Flush ()
+
+		public int CopyFromSurface ()
 		{
+			Bind ();
 			Gl.glTexImage2D (Gl.GL_TEXTURE_RECTANGLE_ARB,
 					 0,
 					 Gl.GL_RGBA,
@@ -80,6 +87,7 @@ namespace FSpot {
 					 Gl.GL_BGRA,
 					 Gl.GL_UNSIGNED_BYTE,
 					 pixels);
+
 			return texture_id;
 		}
 
