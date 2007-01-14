@@ -102,6 +102,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ImportStore.cs		\
 	$(srcdir)/InfoBox.cs			\
 	$(srcdir)/InfoDisplay.cs		\
+	$(srcdir)/InfoOverlay.cs		\
 	$(srcdir)/InternalProcess.cs		\
 	$(srcdir)/IOChannel.cs			\
 	$(srcdir)/Ciff.cs			\
