@@ -94,6 +94,7 @@ PKG_CHECK_MODULES(MONO_NUNIT, mono-nunit >= $MONO_REQUIRED,
 AC_SUBST(NUNIT_PKG)
 AC_SUBST(NUNIT_DEFINES)
 
+
 dnl --- GConf
 
 AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
@@ -183,6 +184,9 @@ AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
+CSC=gmcs
+AC_SUBST(CSC)
+
 expanded_libdir=`( case $prefix in NONE) prefix=$ac_default_prefix ;; *) ;; esac
 		   case $exec_prefix in NONE) exec_prefix=$prefix ;; *) ;; esac
 		   eval echo $libdir )`
@@ -218,6 +222,11 @@ src/f-spot.exe.config
 src/Makefile
 glitz-sharp/Makefile
 glitz-sharp/src/Makefile
+Tao/Makefile
+Tao/Tao.OpenGl/Makefile
+Tao/Tao.OpenGl.Glu/Makefile
+Tao/Tao.GlPostProcess/Makefile
+Tao/Tao.OpenGl.ExtensionLoader/Makefile
 f-spot.pc
 f-spot.spec
 f-spot.desktop.in
