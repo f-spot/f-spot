@@ -24,12 +24,39 @@ namespace FSpot {
 		int round = 12;
 		Delay hide; 
 		Delay dismiss;
-
+		bool auto_hide = true;
+		double x_align = 0.5;
+		double y_align = 0.8;
+		
 		public enum VisibilityType
 		{
 			None,
 			Partial,
 			Full
+		}
+		
+		public double XAlign {
+			get { return x_align; }
+			set {
+				x_align = value;
+				Relocate ();
+			}
+		}
+
+		public double YAlign {
+			get { return  y_align; }
+			set {
+				y_align = value;
+				Relocate ();
+			}
+		}
+			      
+		
+		public bool AutoHide {
+			get { return auto_hide; }
+			set { 
+				auto_hide = false;
+			}
 		}
 
 		public VisibilityType Visibility {
@@ -65,6 +92,9 @@ namespace FSpot {
 			int x, y;
 			Gdk.ModifierType type;
 			
+			if (!auto_hide)
+				return false;
+
 			if (IsRealized) {
 				GdkWindow.GetPointer (out x, out y, out type);
 				if (Allocation.Contains (x, y)) {
@@ -120,6 +150,7 @@ namespace FSpot {
 
 		bool FadeToTarget (double target)
 		{
+			Realize ();
 			CompositeUtils.SetWinOpacity (this, target);
 			Visible = target > 0.0;
 
@@ -135,8 +166,6 @@ namespace FSpot {
 		{
 			Gdk.Color c = Style.Background (State);
 			Context cr = CairoUtils.CreateContext (GdkWindow);
-			
-			Console.WriteLine ("color = {0}", c);
 			
 			ShapeSurface (cr, new Cairo.Color (c.Red / (double) ushort.MaxValue,
 							   c.Blue / (double) ushort.MaxValue, 
@@ -157,6 +186,7 @@ namespace FSpot {
 		protected override void OnSizeAllocated (Gdk.Rectangle rec)
 		{
 			base.OnSizeAllocated (rec);
+			Relocate ();
 			QueueDraw ();
 		}
 
@@ -173,51 +203,51 @@ namespace FSpot {
 		private void Relocate ()
 		{
 			int x, y;
-			if (!host_toplevel.IsMapped)
+			if (!IsRealized || !host_toplevel.IsRealized)
 				return;
 
-			Realize ();
-			host_toplevel.GdkWindow.GetOrigin (out x, out y);
+			host.GdkWindow.GetOrigin (out x, out y);
 
-			x += (int) (host_toplevel.Allocation.Width * 0.5);
-			y += (int) (host_toplevel.Allocation.Height * 0.8);
+			x += (int) (host.Allocation.Width * x_align);
+			y += (int) (host.Allocation.Height * y_align);
 			
 			x -= (int) (Allocation.Width * 0.5);
+			y -= (int) (Allocation.Height * 0.5);
 			Move (x, y);
 		}
 		
-		protected override void OnRealized ()
-		{
-			bool composited = CompositeUtils.IsComposited (Screen) && CompositeUtils.SetRgbaColormap (this);
-			AppPaintable = composited;
-			
-			base.OnRealized ();
+		 protected override void OnRealized ()
+		 {
+			 bool composited = CompositeUtils.IsComposited (Screen) && CompositeUtils.SetRgbaColormap (this);
+			 AppPaintable = composited;
 
-			if (!composited) {
-				Gdk.Pixmap bitmap = new Gdk.Pixmap (GdkWindow, 
-								    Allocation.Width, 
-								    Allocation.Height, 1);
-				
-				Context cr = CairoUtils.CreateContext (bitmap);
-				ShapeSurface (cr, new Cairo.Color (1, 1, 1));
-				((IDisposable)cr).Dispose ();
-				ShapeCombineMask (bitmap, 0, 0);
-				bitmap.Dispose ();
-			}
-			
-			Visibility = VisibilityType.Full;
-		}
+			 base.OnRealized ();
 
-		public void Dismiss ()
-		{
-			Visibility = VisibilityType.None;
-			Hide ();
-			dismiss.Start ();
-		}
-		
-		protected override void OnMapped ()
-		{
-			base.OnMapped ();
+			 if (!composited) {
+				 Gdk.Pixmap bitmap = new Gdk.Pixmap (GdkWindow, 
+								     Allocation.Width, 
+								     Allocation.Height, 1);
+
+				 Context cr = CairoUtils.CreateContext (bitmap);
+				 ShapeSurface (cr, new Cairo.Color (1, 1, 1));
+				 ((IDisposable)cr).Dispose ();
+				 ShapeCombineMask (bitmap, 0, 0);
+				 bitmap.Dispose ();
+			 }
+
+			 Visibility = VisibilityType.Full;
+		 }
+
+		 public void Dismiss ()
+		 {
+			 Visibility = VisibilityType.None;
+			 Hide ();
+			 dismiss.Start ();
+		 }
+
+		 protected override void OnMapped ()
+		 {
+			 base.OnMapped ();
 			Relocate ();
 		}
 	}

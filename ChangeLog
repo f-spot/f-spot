@@ -1,5 +1,13 @@
 2007-01-13  Larry Ewing  <lewing@novell.com>
 
+	* src/ControlOverlay.cs: add aligment contraints.  Fix up some of
+	the realization logic.
+	
+	* src/FullScreenView.cs: use the new InfoOverlay to display more
+	detailed information.  Handle ToggleActions in the gui code.
+
+	* src/InfoOverlay.cs: new overlay class for image info.
+	
 	* src/ControlOverlay.cs: fix the style color code.
 
 	* src/FullScreenView.cs: add a name display and work on packing a bit.

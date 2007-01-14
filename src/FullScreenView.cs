@@ -7,9 +7,6 @@ using Mono.Unix;
 
 namespace FSpot {
 	[Binding(Gdk.Key.Escape, "Quit")]
-#if ENABLE_CRACK
-	[Binding(Gdk.Key.D, "PlayPause")]
-#endif
 	public class FullScreenView : Gtk.Window {
 		private ScrolledView scroll;
 		private PhotoImageView view;
@@ -17,16 +14,16 @@ namespace FSpot {
 		private Label name_label;
 		private Notebook notebook;
 		private ControlOverlay controls;
-		
-#if ENABLE_CRACK
 		private ImageDisplay display;
-#endif		
+
 		ActionGroup actions;
 		const string ExitFullScreen = "ExitFullScreen";
 		const string NextPicture = "NextPicture";
 		const string PreviousPicture = "PreviousPicture";
 		const string HideToolbar = "HideToolbar";
-
+		const string SlideShow = "SlideShow";
+		const string Info = "Info";
+		
 		public FullScreenView (IBrowsableCollection collection) : base ("Full Screen Mode")
 		{
 			try {
@@ -57,8 +54,24 @@ namespace FSpot {
 							 null,
 							 Catalog.GetString ("Previous Picture"),
 							 PreviousAction),
+						new ActionEntry (SlideShow,
+								 "f-spot-slideshow",
+								 Catalog.GetString ("Slideshow"),
+								 null,
+								 Catalog.GetString ("Start slideshow"),
+								 SlideShowAction),
 				});
 
+				actions.Add (new ToggleActionEntry [] {
+					new ToggleActionEntry (Info,
+							       Stock.Info,
+							       Catalog.GetString ("Info"),
+							       null,
+							       Catalog.GetString ("Image Information"),
+							       InfoAction,
+							       false)
+						});
+				
 				new Fader (this, 1.0, 3);
 				notebook = new Notebook ();
 				notebook.ShowBorder = false;
@@ -76,27 +89,27 @@ namespace FSpot {
 
 				scroll.ScrolledWindow.Add (view);
 				HBox hhbox = new HBox ();
-				hhbox.PackEnd (GetButton ("HideToolbar"), false, true, 0);
-				Gtk.Button close = ExitButton ();
-				hhbox.PackStart (close, false, false, 0);
-				hhbox.PackStart (GetButton ("PreviousPicture"), false, false, 0);
-				hhbox.PackStart (GetButton ("NextPicture"), false, false, 0);
+				hhbox.PackEnd (GetButton (HideToolbar), false, true, 0);
+				hhbox.PackEnd (GetButton (Info), false, true, 0);
+				hhbox.PackEnd (GetButton (SlideShow), false, true, 0);
+				hhbox.PackStart (GetButton (ExitFullScreen), false, false, 0);
+				hhbox.PackStart (GetButton (PreviousPicture), false, false, 0);
+				hhbox.PackStart (GetButton (NextPicture), false, false, 0);
 				hhbox.BorderWidth = 15;
 				
 				VBox vbox = new VBox ();
 				name_label = new Label ();
 				name_label.UseMarkup = true;
 				vbox.PackStart (name_label);
-				HBox center = new HBox ();
+				Alignment center = new Alignment (.5f, .5f, 1f, 1f);
 				tag_view = new TagView ();
-				center.PackStart (tag_view, false, false, 0);
+				center.Add (tag_view);
 				vbox.PackStart (center);
 				vbox.Spacing = 10;
 
-				hhbox.PackStart (vbox);
+				hhbox.PackStart (vbox, true, true, 5);
 
 				hhbox.ShowAll ();
-				close.Clicked += ExitAction;
 				//scroll.ShowControls ();
 				
 				scroll.Show ();
@@ -154,7 +167,14 @@ namespace FSpot {
 		{
 			Action action = actions [name];
 			Widget w = action.CreateIcon (IconSize.Button);
-			Button button = new Button ();
+			Button button;
+			if (action is ToggleAction) {
+				ToggleButton toggle = new ToggleButton ();
+				toggle.Active = ((ToggleAction)action).Active;
+				button = toggle;
+			} else {
+				button = new Button ();
+			}
 			button.Relief = ReliefStyle.None;
 			button.Add (w);
 			w.Show ();
@@ -184,12 +204,32 @@ namespace FSpot {
 			controls.Dismiss ();
 		}
 
+		private void SlideShowAction (object sender, System.EventArgs args)
+		{
+			PlayPause ();
+		}
+
+		InfoOverlay info;
+		private void InfoAction (object sender, System.EventArgs args)
+		{
+			ToggleAction action = sender as ToggleAction;
+
+			if (info == null) {
+				info = new InfoOverlay (this, view.Item);
+			}
+
+			System.Console.WriteLine ("sender = {0}", sender);
+			info.Visibility = action.Active ? 
+				ControlOverlay.VisibilityType.Full : 
+				ControlOverlay.VisibilityType.None;
+		}
+
 		[GLib.ConnectBefore]
 		private void HandleViewMotion (object sender, Gtk.MotionNotifyEventArgs args)
 		{
 			int x, y;
 			Gdk.ModifierType type;
-			view.GdkWindow.GetPointer (out x, out y, out type);
+			((Gtk.Widget)sender).GdkWindow.GetPointer (out x, out y, out type);
 			controls.Visibility = ControlOverlay.VisibilityType.Partial;
 			scroll.ShowControls ();
 		}
@@ -209,21 +249,23 @@ namespace FSpot {
 			}
 		}
 
-#if ENABLE_CRACK
 		public bool PlayPause ()
 		{
 			if (display == null) {
 				display = new ImageDisplay (view.Item);
+				display.AddEvents ((int) (Gdk.EventMask.PointerMotionMask));
+				display.MotionNotifyEvent += HandleViewMotion;
 				notebook.AppendPage (display, null);
 				display.Show ();
 			}
+
 			if (notebook.CurrentPage == 0)
 				notebook.CurrentPage = 1;
 			else
 				notebook.CurrentPage = 0;
 			return true;
 		}
-#endif
+
 		public void Quit ()
 		{
 			this.Destroy ();

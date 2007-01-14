@@ -11,6 +11,7 @@ using Mono.Unix;
 
 public class InfoBox : VBox {
 	Delay update_delay;
+
 	private IBrowsableItem photo;
 	public IBrowsableItem Photo {
 		set {
@@ -90,7 +91,7 @@ public class InfoBox : VBox {
 			      3, 0);
 
 		date_label = AttachLabel (table, 2, name_entry);
-	size_label = AttachLabel (table, 3, name_entry);
+		size_label = AttachLabel (table, 3, name_entry);
 		exposure_info_label = AttachLabel (table, 4, name_entry);
 
 		version_option_menu = new OptionMenu ();
