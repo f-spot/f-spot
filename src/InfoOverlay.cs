@@ -18,11 +18,23 @@ namespace FSpot {
 			this.item = item;
 			item.Changed += HandleItemChanged;
 			HandleItemChanged (item, null);
+			VersionIdChanged += HandleVersionIdChanged;
 		}
 
 		private void HandleItemChanged (BrowsablePointer sender, BrowsablePointerChangedArgs args)
 		{
 			Photo = item.Current;
+		}
+
+		private void HandleVersionIdChanged (InfoBox box, uint version_id)
+		{
+			Photo p = item.Current as Photo;
+			PhotoQuery q = item.Collection as PhotoQuery;
+
+			if (p !=  null && q != null) {
+				p.DefaultVersionId  = version_id;
+				q.Commit (item.Index);
+			}
 		}
 	}
 
