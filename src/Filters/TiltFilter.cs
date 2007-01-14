@@ -1,5 +1,5 @@
 /*
- * Filters/RotateFilter.cs
+ * Filters/TiltFilter.cs
  *
  * Author(s)
  *

@@ -1,5 +1,4 @@
-CSC = gmcs
-CSFLAGS = -unsafe -debug -nowarn:0169 -nowarn:0612 -d:TEST_METADATA -d:BROKEN_RSVG $(NUNIT_DEFINES)
+CSFLAGS = -unsafe -debug -nowarn:0169 -nowarn:0612 -nowarn:0414 -d:TEST_METADATA -d:BROKEN_RSVG $(NUNIT_DEFINES)
 
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Cairo/Antialias.cs		\
@@ -54,6 +53,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PhotoArray.cs 		\
 	$(srcdir)/CDExport.cs			\
 	$(srcdir)/ColorDialog.cs		\
+	$(srcdir)/ColorAdjustment.cs		\
 	$(srcdir)/CompatFileChooser.cs		\
 	$(srcdir)/ControlOverlay.cs		\
 	$(srcdir)/Core.cs			\
@@ -199,18 +199,23 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/Tilt.cs		\
 	$(srcdir)/Widgets/Wipe.cs		\
 	$(srcdir)/XmpTagsImporter.cs		\
-	$(srcdir)/main.cs
+	$(srcdir)/main.cs			\
+	$(GL_CSFILES)
 
-ASSEMBLIES =					\
-	-r:$(top_builddir)/dbus-sharp/NDesk.DBus.dll   			\
-	-r:$(top_builddir)/dbus-sharp-glib/NDesk.DBus.GLib.dll		\
-	-r:$(top_builddir)/libgphoto2-sharp/libgphoto2-sharp.dll	\
-	-r:$(top_builddir)/semweb/SemWeb.dll				\
-	-r:$(top_builddir)/FlickrNet/FlickrNet.dll			\
-	-r:$(top_builddir)/SmugMugNet/SmugMugNet.dll			\
-	-r:$(top_builddir)/glitz-sharp/src/NDesk.Glitz.dll		\
-	-r:$(top_builddir)/google-sharp/google-sharp.dll		\
-	-r:$(top_builddir)/gnome-keyring-sharp/gnome-keyring-sharp.dll	\
+ASSEMBLIES = \
+	-r:$(top_builddir)/dbus-sharp/NDesk.DBus.dll   				\
+	-r:$(top_builddir)/dbus-sharp-glib/NDesk.DBus.GLib.dll			\
+	-r:$(top_builddir)/libgphoto2-sharp/libgphoto2-sharp.dll		\
+	-r:$(top_builddir)/semweb/SemWeb.dll					\
+	-r:$(top_builddir)/FlickrNet/FlickrNet.dll				\
+	-r:$(top_builddir)/SmugMugNet/SmugMugNet.dll				\
+	-r:$(top_builddir)/glitz-sharp/src/NDesk.Glitz.dll			\
+	-r:$(top_builddir)/google-sharp/google-sharp.dll			\
+	-r:$(top_builddir)/gnome-keyring-sharp/gnome-keyring-sharp.dll		\
+	-r:$(top_builddir)/gnome-keyring-sharp/gnome-keyring-sharp.dll		\
+	-r:$(top_builddir)/Tao/Tao.OpenGl/Tao.OpenGl.dll			\
+	-r:$(top_builddir)/Tao/Tao.OpenGl.Glu/Tao.OpenGl.Glu.dll			\
+	-r:$(top_builddir)/Tao/Tao.OpenGl.ExtensionLoader/Tao.OpenGl.ExtensionLoader.dll	\
 	-r:System.Data				\
 	-r:System.Web				\
 	-r:Mono.Data.SqliteClient		\
