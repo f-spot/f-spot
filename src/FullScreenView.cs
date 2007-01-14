@@ -14,7 +14,8 @@ namespace FSpot {
 		private Label name_label;
 		private Notebook notebook;
 		private ControlOverlay controls;
-		private ImageDisplay display;
+		//		private ImageDisplay display;
+		private Widget display;
 
 		ActionGroup actions;
 		const string ExitFullScreen = "ExitFullScreen";
@@ -241,7 +242,8 @@ namespace FSpot {
 		public bool PlayPause ()
 		{
 			if (display == null) {
-				display = new ImageDisplay (view.Item);
+				//display = new ImageDisplay (view.Item);
+				display = new TextureDisplay (view.Item);
 				display.AddEvents ((int) (Gdk.EventMask.PointerMotionMask));
 				display.MotionNotifyEvent += HandleViewMotion;
 				notebook.AppendPage (display, null);

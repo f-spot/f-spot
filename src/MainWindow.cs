@@ -1507,24 +1507,10 @@ public class MainWindow {
 		win.ShowAll ();
 	}
 
-#if TEST_GL
-	private void TestGL ()
-	{
-		Gtk.Widget w = new GlDemo (CurrentPhoto);
-		Gtk.Window win = new Gtk.Window ("GL Demo");
-		win.Add (w);
-		win.ShowAll ();
-	}
-#endif
-	
 	void HandleSendMailCommand (object sender, EventArgs args)
 	{
 		//TestDisplay ();
-#if TEST_GL
-		TestGL ();
-#else
 		new FSpot.SendEmail (new FSpot.PhotoArray (SelectedPhotos ()));
-#endif
 	}
 
 	public static void HandleHelp (object sender, EventArgs args)

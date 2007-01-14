@@ -32,6 +32,8 @@ namespace FSpot {
 				QueueDraw (); 
 				return true;
 			});
+
+			item.Changed += HandleItemChanged;
 		}
 
 		public bool Spin (int amount)
@@ -57,6 +59,15 @@ namespace FSpot {
 			Texture tex = new Texture (pixbuf);
 			pixbuf.Dispose ();
 			return tex;
+		}
+
+		private void HandleItemChanged (BrowsablePointer p, BrowsablePointerChangedArgs args)
+		{
+			if (texture != null)
+				texture.Dispose ();
+			
+			texture = null;
+			QueueDraw ();
 		}
 
 		protected override void OnRealized ()
