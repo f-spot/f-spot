@@ -54,8 +54,13 @@ namespace FSpot {
 		}
 	}
 
+	public class TextureException : System.Exception {
+		public TextureException (string msg) : base (msg)
+		{
+		}
+	}
+
 	public sealed class Texture : IDisposable {
-		MemorySurface surface;
 		int texture_id;
 		int width;
 		int height;
@@ -79,8 +84,9 @@ namespace FSpot {
 		
 		public Texture (Gdk.Pixbuf pixbuf) : this (pixbuf.Width, pixbuf.Height)
 		{
-			surface = CairoUtils.CreateSurface (pixbuf);
+			MemorySurface surface = CairoUtils.CreateSurface (pixbuf);
 			CopyFromSurface (surface);
+			surface.Destroy ();
 		}
 
 		private Texture (int width, int height)
@@ -89,14 +95,16 @@ namespace FSpot {
 			this.height = height;
 		
 			Gl.glGenTextures (1, out texture_id);
-			System.Console.WriteLine ("generated texture.{0} ({1}, {2})", texture_id, width, height); 
+			//System.Console.WriteLine ("generated texture.{0} ({1}, {2})", texture_id, width, height); 
 		}
 
 		public void Bind ()
 		{
+			/*
 			Console.WriteLine ("binding texture {0} is it a texture {1}", 
 					   texture_id, 
 					   Gl.glIsTexture (texture_id));
+			*/
 			Gl.glBindTexture (Gl.GL_TEXTURE_RECTANGLE_ARB, texture_id);
 		}
 
@@ -105,10 +113,10 @@ namespace FSpot {
 			Bind ();
 
 			if (surface.Width != width || surface.Height != height)
-				throw new ApplicationException ("Bad Surface Match");
+				throw new TextureException ("Bad Surface Match");
 
 			if (surface.Pixels == IntPtr.Zero)
-				throw new ApplicationException ("Surface has no data");
+				throw new TextureException ("Surface has no data");
 
 			Gl.glTexImage2D (Gl.GL_TEXTURE_RECTANGLE_ARB,
 					 0,
@@ -120,6 +128,9 @@ namespace FSpot {
 					 Gl.GL_UNSIGNED_BYTE,
 					 surface.Pixels);
 			
+			//			if (Gl.glGetError () != Gl.GL_NO_ERROR)
+			//	throw new TextureException ("Unable to allocate texture resources");
+
 			return texture_id;
 		}
 

@@ -14,7 +14,6 @@ namespace FSpot {
 
 	public class TextureDisplay : Gtk.DrawingArea {
 		Delay delay;
-		Texture texture;
 		BrowsablePointer item;
 		GdkGlx.Context glx;
 		float scale = 0.0f;
@@ -36,12 +35,21 @@ namespace FSpot {
 			item.Changed += HandleItemChanged;
 		}
 
+
 		GlTransition [] transitions = new GlTransition []
 			{
+				new Flip (),
+				new Split (),
 				new TexturePush (),
-				new Flip ()
+				new Dissolve (),
 			};
-		int current_transition = 0;		
+		int current_transition = 0;
+
+		public GlTransition Transition {
+			get { return transitions [current_transition]; }
+		}
+				
+		
 		public bool Spin (int amount)
 		{
 			current_transition += amount;
@@ -72,23 +80,40 @@ namespace FSpot {
 			return tex;
 		}
 
+		Animator animator;
 		private void HandleItemChanged (BrowsablePointer p, BrowsablePointerChangedArgs args)
 		{
 			Console.WriteLine ("Begin previous = {0} texture = {1}", 
-					   current != null ? current.Id.ToString () : "null", 
-					   texture != null ? texture.Id.ToString () : "null");
+					   previous != null ? previous.Id.ToString () : "null", 
+					   next != null ? next.Id.ToString () : "null");
 
-			if (texture != null)
-				Previous = texture;
+			Next = null;
 
-			Texture = null;
 			Console.WriteLine ("End previous = {0} texture = {1}", 
-					   current != null ? current.Id.ToString () : "null", 
-					   texture != null ? texture.Id.ToString () : "null");
+					   previous != null ? previous.Id.ToString () : "null", 
+					   next != null ? next.Id.ToString () : "null");
 
-			QueueDraw ();
+			animator = new Animator (2000, 20, HandleTick);
+			animator.Start ();
 		}
 
+		public void HandleTick (object sender, EventArgs args)
+		{
+			if (animator.Percent >= 1.0) {
+				Transition.Percent = 1.0f;
+				animator.Stop ();
+				animator = null;
+			} else {
+				Transition.Percent = animator.Percent;
+			}
+			QueueDraw (); 
+			GdkWindow.ProcessUpdates (false);
+		}
+
+		protected override void OnDestroyed ()
+		{
+		}
+		
 		protected override void OnRealized ()
 		{
 #if FALSE
@@ -113,6 +138,9 @@ namespace FSpot {
 		
 		protected override void OnUnrealized ()
 		{
+			if (animator != null)
+				animator.Stop ();
+
 			delay.Stop ();
 			base.OnUnrealized ();
 
@@ -122,51 +150,49 @@ namespace FSpot {
 			glx = null;
 		}
 
-		private void DrawZoom ()
-		{
-			Ortho ();
-			
-			
-			
-		}
-		
 		public class GlTransition {
-			protected DateTime start_mark;
-			protected DateTime current_mark;
-			protected TimeSpan duration;
-			bool first = true;
 			protected float percent;
 
-			public GlTransition (TimeSpan duration)
+			public GlTransition ()
 			{
-				this.duration = duration;
-			}
-			
-			public GlTransition () : this (new TimeSpan (0, 0, 2))
-			{
-
 			}
 
 			public float Percent {
 				get { return percent; }
 				set { percent = value; }
 			}
-			
-			public void Mark ()
-			{
-				if (first)
-					start_mark = DateTime.Now;
-				
-				first = false;
-				current_mark = DateTime.Now;
-
-				TimeSpan elapsed = current_mark - start_mark;
-				percent = elapsed.Ticks / (float) duration.Ticks;
-			}
 
 			public virtual void Draw (Gdk.Rectangle viewport, Texture start, Texture end)
 			{
 				throw new ApplicationException ("the world has come undone");
+			}
+		}
+
+		public class Dissolve : GlTransition
+		{
+			public override void Draw (Gdk.Rectangle viewport, Texture next, Texture previous)
+			{
+				Gl.glViewport (0, 0, viewport.Width, viewport.Height);
+				Gl.glMatrixMode (Gl.GL_PROJECTION);
+				Gl.glLoadIdentity ();
+				Glu.gluOrtho2D (0, viewport.Width, 0, viewport.Height);
+				Gl.glMatrixMode (Gl.GL_MODELVIEW);
+				Gl.glLoadIdentity ();
+
+				
+				next.Bind ();
+
+				Gl.glBegin (Gl.GL_QUADS);
+				Gl.glTexCoord2f (0, 0);
+				Gl.glVertex3f (0, viewport.Height, 0);
+				Gl.glTexCoord2f (next.Width, 0);
+				Gl.glVertex3f (viewport.Width, viewport.Height, 0);
+				Gl.glTexCoord2f (next.Width, next.Height);
+				Gl.glVertex3f (viewport.Width, 0, 0);
+				Gl.glTexCoord2f (0, next.Height);
+				Gl.glVertex3f (0, 0, 1);
+				Gl.glEnd ();
+
 			}
 		}
 
@@ -185,24 +211,13 @@ namespace FSpot {
 					       0, 0, 0,
 					       0, 1, 1);
 				
-				Gl.glRotatef (180 * percent, 0, 1, 0);
+				Gl.glRotatef (90 * -percent, 0, 1, 0);
 
 				Gl.glViewport (0, 0, viewport.Width, viewport.Height);
 				
 				Gl.glMatrixMode (Gl.GL_PROJECTION);
 				Gl.glLoadIdentity ();
 				Glu.gluPerspective (60, viewport.Width / (float) viewport.Height, .5, 15);
-				previous.Bind ();				
-				Gl.glBegin (Gl.GL_QUADS);
-				Gl.glTexCoord2f (0, 0);
-				Gl.glVertex3f (1, 1, 1);
-				Gl.glTexCoord2f (previous.Width, 0);
-				Gl.glVertex3f (1, 1, -1);
-				Gl.glTexCoord2f (previous.Width, previous.Height);
-				Gl.glVertex3f (1, -1, -1);
-				Gl.glTexCoord2f (0, previous.Height);
-				Gl.glVertex3f (1, -1, 1);
-				Gl.glEnd ();
 
 				next.Bind ();
 				Gl.glBegin (Gl.GL_QUADS);
@@ -215,16 +230,91 @@ namespace FSpot {
 				Gl.glTexCoord2f (0, next.Height);
 				Gl.glVertex3f (-1, -1, 1);
 				Gl.glEnd ();
+
+				previous.Bind ();				
+				Gl.glBegin (Gl.GL_QUADS);
+				Gl.glTexCoord2f (0, 0);
+				Gl.glVertex3f (1, 1, 1);
+				Gl.glTexCoord2f (previous.Width, 0);
+				Gl.glVertex3f (1, 1, -1);
+				Gl.glTexCoord2f (previous.Width, previous.Height);
+				Gl.glVertex3f (1, -1, -1);
+				Gl.glTexCoord2f (0, previous.Height);
+				Gl.glVertex3f (1, -1, 1);
+				Gl.glEnd ();
+			}
+		}
+
+		public class Reveal : TexturePush
+		{
+			public override void Draw (Gdk.Rectangle viewport, Texture previous, Texture next)
+			{
+
 			}
 		}
 			
+		public class Wipe : GlTransition
+		{
+			public override void Draw (Gdk.Rectangle viewport, Texture previous, Texture next)
+			{
+
+			}
+		}
+
+		public class Split : GlTransition
+		{
+			public override void Draw (Gdk.Rectangle viewport, Texture previous, Texture next)
+			{
+				Gl.glMatrixMode (Gl.GL_MODELVIEW);
+				Gl.glLoadIdentity ();
+				
+				Glu.gluLookAt (0.0, 0.0, 3.0,
+					       0.0, 0.0, 0.0,
+					       0.0, 1.0, 0.0);
+				
+				Gl.glTranslatef (0, 0, -3);
+				Gl.glViewport (0, 0, viewport.Width, viewport.Height);
+				Gl.glMatrixMode (Gl.GL_PROJECTION);
+				Gl.glLoadIdentity ();
+				Glu.gluPerspective (40, viewport.Width / (float) viewport.Height, 0.1, 50.0);
+				Gl.glPushMatrix ();
+				Gl.glTranslatef (0, 0, 0.5f);
+
+				Texture t = previous;
+				
+				t.Bind ();
+				Gl.glBegin (Gl.GL_QUADS);
+				Gl.glTexCoord2f (0, 0);
+				Gl.glVertex3f (-2, -1, 0);
+				Gl.glTexCoord2f (t.Width, 0);
+				Gl.glVertex3f (-2, 1, 0);
+				Gl.glTexCoord2f (t.Width, t.Height);
+				Gl.glVertex3f (0, 1, 0);
+				Gl.glTexCoord2f (0, t.Height);
+				Gl.glVertex3f (0, -1, 0);
+				Gl.glEnd ();
+				
+				next.Bind ();
+				Gl.glBegin (Gl.GL_QUADS);
+				Gl.glTexCoord2f (0, 0);
+				Gl.glVertex3f (1, -1, 0);
+				Gl.glTexCoord2f (next.Width, 0);
+				Gl.glVertex3f (1, 1, 0);
+				Gl.glTexCoord2f (next.Width, next.Height);
+				Gl.glVertex3f (2.41421f, 1, -1.41421f);
+				Gl.glTexCoord2f (0, next.Height);
+				Gl.glVertex3f (2.41421f, -1, -1.41421f);
+				Gl.glEnd ();
+			}
+		}
+		
 		public class TexturePush : GlTransition
 		{
 			public TexturePush ()
 			{
 
-			}
-
+			} 
+			
 			public override void Draw (Gdk.Rectangle viewport, Texture current, Texture next)
 			{
 				Gl.glViewport (0, 0, viewport.Width, viewport.Height);
@@ -281,32 +371,35 @@ namespace FSpot {
 				Gl.glPopMatrix ();
 				Gl.glEnd ();
 			}
-
 		}
 
-		Texture current;
+		Texture previous;
 		public Texture Previous {
 			get {
-				if (current == null)
-					current = Texture;
+				if (previous == null)
+					previous = Next;
 				
-				return current;
+				return previous;
 			}
 			set {
-				current = value;
+				if (previous != next)
+					previous.Dispose ();
+
+				previous = value;
 			}
 		}
 
-		public Texture Texture {
+		Texture next;
+		public Texture Next {
 			get {
-				if (texture == null)
-					texture = CreateTexture ();
+				if (next == null)
+					next = CreateTexture ();
 
-				return texture;
+				return next;
 			}
 			set {
-				Texture tmp = texture;
-				texture = value;
+				Texture tmp = next;
+				next = value;
 				Previous = tmp;
 			}
 		}
@@ -314,73 +407,21 @@ namespace FSpot {
 		GlTransition transition;
 		private void DrawTransition ()
 		{
-#if true
 			GlTransition transition = transitions [current_transition];
 
-			transition.Percent = scale;
-			transition.Draw (Allocation, Previous, Texture);
-#else
-			DrawTextureSplit ();
-#endif
-		}
+			if (animator == null)
+				transition.Percent = scale;
 
-
-		private void DrawTextureSplit ()
-		{
-			Gl.glMatrixMode (Gl.GL_MODELVIEW);
-			Gl.glLoadIdentity ();
-			
-			Glu.gluLookAt (0.0, 0.0, 3.0,
-				       0.0, 0.0, 0.0,
-				       0.0, 1.0, 0.0);
-		       
-			Gl.glTranslatef (0, 0, -3);
-			Gl.glViewport (0, 0, Allocation.Width, Allocation.Height);
-			Gl.glMatrixMode (Gl.GL_PROJECTION);
-			Gl.glLoadIdentity ();
-			Glu.gluPerspective (40, Allocation.Width / (float) Allocation.Height, 0.1, 50.0);
-			Gl.glPushMatrix ();
-			Gl.glTranslatef (0, 0, 0.5f);
-
-			Texture t = Previous;
-
-			t.Bind ();
-			Gl.glBegin (Gl.GL_QUADS);
-			Gl.glTexCoord2f (0, 0);
-			Gl.glVertex3f (-2, -1, 0);
-			Gl.glTexCoord2f (t.Width, 0);
-			Gl.glVertex3f (-2, 1, 0);
-			Gl.glTexCoord2f (t.Width, t.Height);
-			Gl.glVertex3f (0, 1, 0);
-			Gl.glTexCoord2f (0, t.Height);
-			Gl.glVertex3f (0, -1, 0);
-			Gl.glEnd ();
-
-			System.Console.WriteLine ("equal? {0}", Texture == Previous);
-			
-			Gl.glBegin (Gl.GL_QUADS);
-			Texture.Bind ();
-			Gl.glTexCoord2f (0, 0);
-			Gl.glVertex3f (1, -1, 0);
-			Gl.glTexCoord2f (Texture.Width, 0);
-			Gl.glVertex3f (1, 1, 0);
-			Gl.glTexCoord2f (Texture.Width, Texture.Height);
-			Gl.glVertex3f (2.41421f, 1, -1.41421f);
-			Gl.glTexCoord2f (0, Texture.Height);
-			Gl.glVertex3f (2.41421f, -1, -1.41421f);
-			Gl.glEnd ();
+			transition.Draw (Allocation, Previous, Next);
 		}
 
 		private void DrawPixels ()
 		{
-			if (texture == null)
-				texture = CreateTexture ();
-
 			Gl.glClear (Gl.GL_COLOR_BUFFER_BIT);
 			Gl.glPixelStorei (Gl.GL_UNPACK_ALIGNMENT, 1);
 			Gl.glRasterPos2i (0, Allocation.Height);
-			Gl.glPixelZoom (Allocation.Width / (float) texture.Width, 
-					- Allocation.Height / (float) texture.Height);
+			Gl.glPixelZoom (Allocation.Width / (float) next.Width, 
+					- Allocation.Height / (float) next.Height);
 			/*
 			Gl.glDrawPixels (texture.Width, texture.Height, 
 					 Gl.GL_BGRA, Gl.GL_UNSIGNED_BYTE, 
@@ -394,7 +435,7 @@ namespace FSpot {
 			base.OnSizeAllocated (allocation);
 			QueueDraw ();
 		}
-#if true
+
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
 			glx.MakeCurrent ();
