@@ -43,7 +43,6 @@ namespace FSpot {
 		public GlTransition Transition {
 			get { return transitions [current_transition]; }
 		}
-				
 		
 		public bool Spin (int amount)
 		{
@@ -61,7 +60,9 @@ namespace FSpot {
 
 		public bool Scale (float amount)
 		{
-			scale += amount;
+			if (Transition != null)
+				Transition.Percent += amount;
+
 			QueueDraw ();
 			return true;
 		}
@@ -417,12 +418,7 @@ namespace FSpot {
 		GlTransition transition;
 		private void DrawTransition ()
 		{
-			GlTransition transition = transitions [current_transition];
-
-			if (Animator == null)
-				transition.Percent = scale;
-
-			transition.Draw (Allocation, Next, Previous);
+			Transition.Draw (Allocation, Next, Previous);
 		}
 
 		private void DrawPixels ()
