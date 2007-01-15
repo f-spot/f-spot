@@ -207,9 +207,11 @@ namespace FSpot {
 			Gl.glRasterPos2i (0, Allocation.Height);
 			Gl.glPixelZoom (Allocation.Width / (float) texture.Width, 
 					- Allocation.Height / (float) texture.Height);
+			/*
 			Gl.glDrawPixels (texture.Width, texture.Height, 
 					 Gl.GL_BGRA, Gl.GL_UNSIGNED_BYTE, 
 					 texture.Pixels);
+			*/
 		}
 
 

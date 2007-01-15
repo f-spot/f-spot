@@ -74,10 +74,10 @@ namespace FSpot.Widgets {
 		[DllImport("libfspot")]
 		static extern IntPtr f_pixbuf_to_cairo_surface (IntPtr handle);
 
-		public static Surface CreateSurface (Gdk.Pixbuf pixbuf)
+		public static MemorySurface CreateSurface (Gdk.Pixbuf pixbuf)
 		{
 			IntPtr surface = f_pixbuf_to_cairo_surface (pixbuf.Handle);
-			return Surface.LookupExternalSurface (surface);
+			return new MemorySurface (surface);
 		}
 
 		public static Surface CreateSurface (Gdk.Drawable d)

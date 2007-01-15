@@ -13,6 +13,8 @@ fspotlibdir = $(libdir)/f-spot
 fspotlib_LTLIBRARIES = libfspot.la
 
 libfspot_la_SOURCES =				\
+	f-image-surface.c			\
+	f-image-surface.h			\
 	f-image-view.c				\
 	f-image-view.h				\
 	f-jpeg-utils.c				\

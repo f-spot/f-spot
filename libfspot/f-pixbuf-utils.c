@@ -36,7 +36,6 @@
 #include <config.h>
 
 #include "f-pixbuf-utils.h"
-
 #include "f-utils.h"
 
 #include <string.h>
@@ -44,6 +43,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <gdk/gdkcairo.h>
+#include "f-image-surface.h"
 
 
 /* Helper functions.  */
@@ -219,7 +219,6 @@ f_pixbuf_to_cairo_surface (GdkPixbuf *pixbuf)
   guchar *cairo_pixels;
   cairo_format_t format;
   cairo_surface_t *surface;
-  static const cairo_user_data_key_t key;
   int j;
 
   if (n_channels == 3)
@@ -227,12 +226,8 @@ f_pixbuf_to_cairo_surface (GdkPixbuf *pixbuf)
   else
     format = CAIRO_FORMAT_ARGB32;
 
-  cairo_pixels = g_malloc (4 * width * height);
-  surface = cairo_image_surface_create_for_data ((unsigned char *)cairo_pixels,
-						 format,
-						 width, height, 4 * width);
-  cairo_surface_set_user_data (surface, &key,
-			       cairo_pixels, (cairo_destroy_func_t)g_free);
+  surface = f_image_surface_create (format, width, height);
+  cairo_pixels = (guchar *)f_image_surface_get_data (surface);
 
   for (j = height; j; j--)
     {
