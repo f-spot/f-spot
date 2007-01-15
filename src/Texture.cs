@@ -55,6 +55,7 @@ namespace FSpot {
 	}
 
 	public sealed class Texture : IDisposable {
+		MemorySurface surface;
 		int texture_id;
 		int width;
 		int height;
@@ -67,6 +68,10 @@ namespace FSpot {
 			get { return height; }
 		}
 		
+		public int Id {
+			get { return texture_id; }
+		}
+
 		public MemorySurface CreateMatchingSurface ()
 		{
 			return new MemorySurface (Format.Argb32, width, height);
@@ -74,27 +79,31 @@ namespace FSpot {
 		
 		public Texture (Gdk.Pixbuf pixbuf) : this (pixbuf.Width, pixbuf.Height)
 		{
-			MemorySurface image = CairoUtils.CreateSurface (pixbuf);
-			CopyFromSurface (image);
+			surface = CairoUtils.CreateSurface (pixbuf);
+			CopyFromSurface (surface);
 		}
 
-		public Texture (int width, int height)
+		private Texture (int width, int height)
 		{
 			this.width = width;
 			this.height = height;
 		
-			Gl.glClear (Gl.GL_COLOR_BUFFER_BIT | Gl.GL_DEPTH_BUFFER_BIT);
 			Gl.glGenTextures (1, out texture_id);
+			System.Console.WriteLine ("generated texture.{0} ({1}, {2})", texture_id, width, height); 
 		}
 
 		public void Bind ()
 		{
+			Console.WriteLine ("binding texture {0} is it a texture {1}", 
+					   texture_id, 
+					   Gl.glIsTexture (texture_id));
 			Gl.glBindTexture (Gl.GL_TEXTURE_RECTANGLE_ARB, texture_id);
 		}
 
 		public int CopyFromSurface (MemorySurface surface)
 		{
 			Bind ();
+
 			if (surface.Width != width || surface.Height != height)
 				throw new ApplicationException ("Bad Surface Match");
 
@@ -114,16 +123,25 @@ namespace FSpot {
 			return texture_id;
 		}
 
-		public void Dispose ()
+		protected void Close ()
 		{
-			Gl.glDeleteTextures (1, new int [] { texture_id });
-			GC.SuppressFinalize (this);
+			System.Console.WriteLine ("Disposing {0} IsTexture {1}", texture_id, Gl.glIsTexture (texture_id));
+			int [] ids = new int [] { texture_id };
+			Gl.glDeleteTextures (1, ids);
+			System.Console.WriteLine ("Done Disposing {0}", ids [0]);
 		}
 
+		public void Dispose ()
+		{
+			Close ();
+			GC.SuppressFinalize (this);
+		}
+		/*
 		~Texture ()
 		{
-			Dispose ();
+			Close ();
 		}
+		*/
 
 	}
 }
