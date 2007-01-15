@@ -93,18 +93,27 @@ namespace FSpot {
 					   previous != null ? previous.Id.ToString () : "null", 
 					   next != null ? next.Id.ToString () : "null");
 
-			animator = new Animator (2000, 20, HandleTick);
-			animator.Start ();
+			Animator = new Animator (2000, 20, HandleTick);
+			Animator.Start ();
+		}
+
+		private Animator Animator {
+			get { return animator; }
+			set {
+				if (animator != null)
+					animator.Stop ();
+
+				animator = value;
+			}
 		}
 
 		public void HandleTick (object sender, EventArgs args)
 		{
-			if (animator.Percent >= 1.0) {
+			if (Animator.Percent >= 1.0) {
 				Transition.Percent = 1.0f;
-				animator.Stop ();
-				animator = null;
+				Animator = null;
 			} else {
-				Transition.Percent = animator.Percent;
+				Transition.Percent = Animator.Percent;
 			}
 			QueueDraw (); 
 			GdkWindow.ProcessUpdates (false);
@@ -138,8 +147,7 @@ namespace FSpot {
 		
 		protected override void OnUnrealized ()
 		{
-			if (animator != null)
-				animator.Stop ();
+			Animator = null;
 
 			delay.Stop ();
 			base.OnUnrealized ();
@@ -170,7 +178,7 @@ namespace FSpot {
 
 		public class Dissolve : GlTransition
 		{
-			public override void Draw (Gdk.Rectangle viewport, Texture next, Texture previous)
+			public override void Draw (Gdk.Rectangle viewport, Texture previous, Texture next)
 			{
 				Gl.glViewport (0, 0, viewport.Width, viewport.Height);
 				Gl.glMatrixMode (Gl.GL_PROJECTION);
@@ -315,7 +323,7 @@ namespace FSpot {
 
 			} 
 			
-			public override void Draw (Gdk.Rectangle viewport, Texture current, Texture next)
+			public override void Draw (Gdk.Rectangle viewport, Texture previous, Texture next)
 			{
 				Gl.glViewport (0, 0, viewport.Width, viewport.Height);
 				Gl.glMatrixMode (Gl.GL_PROJECTION);
@@ -324,26 +332,26 @@ namespace FSpot {
 				Gl.glMatrixMode (Gl.GL_MODELVIEW);
 				Gl.glLoadIdentity ();
 
-				float scale = Math.Max (viewport.Width / (float) current.Width,
-							 viewport.Height / (float) current.Height);
+				float scale = Math.Max (viewport.Width / (float) previous.Width,
+							 viewport.Height / (float) previous.Height);
 			
-				float x_offset = (viewport.Width  - current.Width * scale) / 2.0f;
-				float y_offset = (viewport.Height - current.Height * scale) / 2.0f;
+				float x_offset = (viewport.Width  - previous.Width * scale) / 2.0f;
+				float y_offset = (viewport.Height - previous.Height * scale) / 2.0f;
 
 				Gl.glPushMatrix ();
 				Gl.glTranslatef (-viewport.Width * percent, 0, 0);
 				Gl.glScalef (scale, scale, scale);
 
-				current.Bind ();
+				previous.Bind ();
 				Gl.glBegin (Gl.GL_QUADS);
 				Gl.glTexCoord2f (0, 0);
 				Gl.glVertex3f (x_offset, y_offset, 0);
-				Gl.glTexCoord2f (current.Width, 0);
-				Gl.glVertex3f (x_offset + current.Width, y_offset, 0);
-				Gl.glTexCoord2f (current.Width, current.Height);
-				Gl.glVertex3f (x_offset + current.Width, y_offset + current.Height, 0);
-				Gl.glTexCoord2f (0, current.Height);
-				Gl.glVertex3f (x_offset, y_offset + current.Height, 0);
+				Gl.glTexCoord2f (previous.Width, 0);
+				Gl.glVertex3f (x_offset + previous.Width, y_offset, 0);
+				Gl.glTexCoord2f (previous.Width, previous.Height);
+				Gl.glVertex3f (x_offset + previous.Width, y_offset + previous.Height, 0);
+				Gl.glTexCoord2f (0, previous.Height);
+				Gl.glVertex3f (x_offset, y_offset + previous.Height, 0);
 				Gl.glEnd ();
 				Gl.glPopMatrix ();
 
@@ -409,10 +417,10 @@ namespace FSpot {
 		{
 			GlTransition transition = transitions [current_transition];
 
-			if (animator == null)
+			if (Animator == null)
 				transition.Percent = scale;
 
-			transition.Draw (Allocation, Previous, Next);
+			transition.Draw (Allocation, Next, Previous);
 		}
 
 		private void DrawPixels ()
