@@ -15,7 +15,6 @@ namespace FSpot {
 	public class TextureDisplay : Gtk.DrawingArea {
 		BrowsablePointer item;
 		GdkGlx.Context glx;
-		float scale = 0.0f;
 		float angle = 0.0f;
 		Animator flip;
 
@@ -33,17 +32,18 @@ namespace FSpot {
 
 		GlTransition [] transitions = new GlTransition []
 			{
-				new GlTransition.Flip (),
-				new GlTransition.Split (),
-				new GlTransition.Push (),
 				new GlTransition.Dissolve (),
+				new GlTransition.Flip (),
+				new GlTransition.Push (),
+				new GlTransition.Reveal (),
+				new GlTransition.Cover ()
 			};
 		int current_transition = 0;
 
 		public GlTransition Transition {
 			get { return transitions [current_transition]; }
 		}
-		
+
 		public bool Spin (int amount)
 		{
 			current_transition += amount;
@@ -121,10 +121,6 @@ namespace FSpot {
 			GdkWindow.ProcessUpdates (false);
 		}
 
-		protected override void OnDestroyed ()
-		{
-		}
-		
 		protected override void OnRealized ()
 		{
 #if FALSE
