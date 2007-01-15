@@ -82,7 +82,14 @@ namespace FSpot {
 			return new MemorySurface (Format.Argb32, width, height);
 		}
 		
-		public Texture (Gdk.Pixbuf pixbuf) : this (pixbuf.Width, pixbuf.Height)
+		public Texture (MemorySurface surface) 
+			: this (surface.Width, surface.Height)
+		{
+			CopyFromSurface (surface);
+		}
+
+		public Texture (Gdk.Pixbuf pixbuf) 
+			: this (pixbuf.Width, pixbuf.Height)
 		{
 			MemorySurface surface = CairoUtils.CreateSurface (pixbuf);
 			CopyFromSurface (surface);
@@ -118,6 +125,9 @@ namespace FSpot {
 			if (surface.Pixels == IntPtr.Zero)
 				throw new TextureException ("Surface has no data");
 
+			if (surface.Format != Format.Rgb24 && surface.Format != Format.Argb32)
+				throw new TextureException ("Unsupported format type");
+			
 			Gl.glTexImage2D (Gl.GL_TEXTURE_RECTANGLE_ARB,
 					 0,
 					 Gl.GL_RGBA,
