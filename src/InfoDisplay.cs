@@ -21,6 +21,11 @@ namespace FSpot {
 			VBox.PackStart (scrolled);
 			scrolled.Add (info_display);
 		}
+
+		public InfoDialog (Gtk.Window parent, bool show_exported_locations) : this (parent)
+		{
+			info_display.ShowExportedLocations = false;
+		}
 	}
 
 
@@ -51,6 +56,11 @@ namespace FSpot {
 				}
 				this.Update ();
 			}
+		}
+
+		private bool show_exported_locations = true;
+		public bool ShowExportedLocations {
+			set { show_exported_locations = value; }
 		}
 
 		protected override void OnLinkClicked (string url)
@@ -243,20 +253,22 @@ namespace FSpot {
 						stream.Write ("</td></tr>");
 					}
 				}
-
-				stream.Write ("<tr><th align=left bgcolor=\"" + ig + "\" colspan=2>" + Catalog.GetString ("Exported Locations") + "</th></tr>");
-
-				Photo p = photo as Photo;
-				foreach (ExportItem export in Core.Database.Exports.GetByImageId (p.Id, p.DefaultVersionId)) {
-					string url = GetExportUrl (export);
-					string label = GetExportLabel (export);
-
-					if (url == null || label == null)
-						continue;
-                                        
-					stream.Write ("<tr colspan=2><td width=100%>");
-					stream.Write (String.Format ("<a href=\"{0}\">{1}</a>", url, label));
-					stream.Write ("</font></small></td></tr>");
+				
+				if (show_exported_locations) {
+					stream.Write ("<tr><th align=left bgcolor=\"" + ig + "\" colspan=2>" + Catalog.GetString ("Exported Locations") + "</th></tr>");
+	
+					Photo p = photo as Photo;
+					foreach (ExportItem export in Core.Database.Exports.GetByImageId (p.Id, p.DefaultVersionId)) {
+						string url = GetExportUrl (export);
+						string label = GetExportLabel (export);
+	
+						if (url == null || label == null)
+							continue;
+                        	                
+						stream.Write ("<tr colspan=2><td width=100%>");
+						stream.Write (String.Format ("<a href=\"{0}\">{1}</a>", url, label));
+						stream.Write ("</font></small></td></tr>");
+					}
 				}
 			}
 			
