@@ -13,11 +13,11 @@ namespace FSpot {
 	[Binding(Gdk.Key.Right, "Scale", -.05f)]
 
 	public class TextureDisplay : Gtk.DrawingArea {
-		Delay delay;
 		BrowsablePointer item;
 		GdkGlx.Context glx;
 		float scale = 0.0f;
 		float angle = 0.0f;
+		Animator flip;
 
 		public TextureDisplay (BrowsablePointer item)
 		{
@@ -26,15 +26,10 @@ namespace FSpot {
 			//AppPaintable = true;
 			CanFocus = true;
 
-			delay = new Delay (50, delegate { 
-				scale *= .95f;
-				QueueDraw (); 
-				return true;
-			});
-
 			item.Changed += HandleItemChanged;
+			flip = new Animator (4000, 4000, delegate { flip.Start (); item.MoveNext (true); }); 
+			flip.RunWhenStarted = false;
 		}
-
 
 		GlTransition [] transitions = new GlTransition []
 			{
@@ -103,6 +98,11 @@ namespace FSpot {
 				if (animator != null)
 					animator.Stop ();
 
+				if (value == null)
+					flip.Start ();
+				else 
+					flip.Stop ();
+
 				animator = value;
 			}
 		}
@@ -115,6 +115,7 @@ namespace FSpot {
 			} else {
 				Transition.Percent = Animator.Percent;
 			}
+
 			QueueDraw (); 
 			GdkWindow.ProcessUpdates (false);
 		}
@@ -143,13 +144,14 @@ namespace FSpot {
 			};
 			
 			glx = new GdkGlx.Context (GdkWindow, attr);
+			flip.Start ();
 		}
 		
 		protected override void OnUnrealized ()
 		{
 			Animator = null;
+			flip.Stop ();
 
-			delay.Stop ();
 			base.OnUnrealized ();
 
 			if (glx != null)

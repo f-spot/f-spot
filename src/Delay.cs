@@ -19,9 +19,15 @@ namespace FSpot {
 		TimeSpan duration;
 		float percent;
 		EventHandler tick;
+		bool run_first;
 
 		public float Percent {
 			get { return percent; }
+		}
+
+		public bool RunWhenStarted {
+			get { return run_first; }
+			set { run_first = value; }
 		}
 
 		public Animator (TimeSpan duration, TimeSpan interval, EventHandler tick)
@@ -49,8 +55,16 @@ namespace FSpot {
 
 		public void Start ()
 		{
+			Start (run_first);
+		}
+
+		public void Start (bool run_now)
+		{
 			start = DateTime.Now;
-			HandleTimeout ();
+
+			if (run_now)
+				HandleTimeout ();
+
 			delay.Start ();
 		}
 		
