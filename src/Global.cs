@@ -56,7 +56,7 @@ namespace FSpot {
 					System.IO.Path.Combine("share",
 					System.IO.Path.Combine("gnome",
 					System.IO.Path.Combine("help",
-					System.IO.Path.Combine("f-spot", "en")))));
+					System.IO.Path.Combine("f-spot", "C")))));
 			}	
 		}
 

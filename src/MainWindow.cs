@@ -1518,7 +1518,7 @@ public class MainWindow {
 		Gnome.Vfs.Url.Show("ghelp:" + 
 				FSpot.Global.HelpDirectory +
 				System.IO.Path.DirectorySeparatorChar +
-				"index.xml");
+				"f-spot.xml");
 	}
 
 	public static void HandleAbout (object sender, EventArgs args)
