@@ -1,6 +1,7 @@
 using System;
 using Tao.OpenGl;
 using Cairo;
+using System.Runtime.InteropServices;
 
 namespace FSpot {
 	public abstract class GlTransition {
@@ -22,8 +23,18 @@ namespace FSpot {
 	
 		public class Dissolve : GlTransition
 		{
+			float [] color = new float [] { 0, 0, 0, 0};
+
 			public override void Draw (Gdk.Rectangle viewport, Texture previous, Texture next)
 			{
+				int units;
+
+				for (int i = 0; i < color.Length; i++)
+					color [i] = percent;
+
+				next.Bind ();
+				previous.Bind ();
+
 				Gl.glViewport (0, 0, viewport.Width, viewport.Height);
 				Gl.glMatrixMode (Gl.GL_PROJECTION);
 				Gl.glLoadIdentity ();
@@ -31,20 +42,44 @@ namespace FSpot {
 				Gl.glMatrixMode (Gl.GL_MODELVIEW);
 				Gl.glLoadIdentity ();
 
-				
-				next.Bind ();
+				Gl.glActiveTextureARB (Gl.GL_TEXTURE0);
+				Gl.glEnable (Gl.GL_TEXTURE_RECTANGLE_ARB);
 
+				next.Bind ();
+				Gl.glTexEnvi(Gl.GL_TEXTURE_ENV, Gl.GL_TEXTURE_ENV_MODE, Gl.GL_REPLACE);
+				Fit (viewport, next);
+   
+				Gl.glActiveTextureARB (Gl.GL_TEXTURE1);
+				Gl.glEnable (Gl.GL_TEXTURE_RECTANGLE_ARB);
+
+				previous.Bind ();
+				Fit (viewport, previous);
+				Gl.glTexEnvfv (Gl.GL_TEXTURE_ENV, 
+					       Gl.GL_TEXTURE_ENV_COLOR, 
+					       color);
+
+				Gl.glTexEnvi (Gl.GL_TEXTURE_ENV, Gl.GL_TEXTURE_ENV_MODE, Gl.GL_COMBINE);
+				Gl.glTexEnvf (Gl.GL_TEXTURE_ENV, Gl.GL_COMBINE_RGB, Gl.GL_INTERPOLATE);
+
+				Gl.glMatrixMode (Gl.GL_MODELVIEW);
+				
 				Gl.glBegin (Gl.GL_QUADS);
-				Gl.glTexCoord2f (0, 0);
+				Gl.glMultiTexCoord2fARB (Gl.GL_TEXTURE0, 0, 0);
+				Gl.glMultiTexCoord2fARB (Gl.GL_TEXTURE1, 0, 0);
 				Gl.glVertex3f (0, viewport.Height, 0);
-				Gl.glTexCoord2f (next.Width, 0);
+				Gl.glMultiTexCoord2fARB (Gl.GL_TEXTURE0, next.Width, 0);
+				Gl.glMultiTexCoord2fARB (Gl.GL_TEXTURE1, previous.Width, 0);
 				Gl.glVertex3f (viewport.Width, viewport.Height, 0);
-				Gl.glTexCoord2f (next.Width, next.Height);
+				Gl.glMultiTexCoord2fARB (Gl.GL_TEXTURE0, next.Width, next.Height);
+				Gl.glMultiTexCoord2fARB (Gl.GL_TEXTURE1, previous.Width, previous.Height);
 				Gl.glVertex3f (viewport.Width, 0, 0);
-				Gl.glTexCoord2f (0, next.Height);
-				Gl.glVertex3f (0, 0, 1);
+				Gl.glMultiTexCoord2fARB (Gl.GL_TEXTURE0, 0, next.Height);
+				Gl.glMultiTexCoord2fARB (Gl.GL_TEXTURE1, 0, previous.Height);
+				Gl.glVertex3f (0, 0, 0);
 				Gl.glEnd ();
 
+				Gl.glDisable (Gl.GL_TEXTURE_RECTANGLE_ARB);
+				Gl.glActiveTextureARB (Gl.GL_TEXTURE0);
 			}
 		}
 

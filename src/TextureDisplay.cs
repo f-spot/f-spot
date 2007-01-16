@@ -216,9 +216,22 @@ namespace FSpot {
 			QueueDraw ();
 		}
 
+		public void PrintVersions ()
+		{
+			IntPtr version = Gl.glGetString (Gl.GL_VERSION);
+			System.Console.WriteLine ("Version = {0}", Marshal.PtrToStringAnsi (version));
+			
+			IntPtr vendor = Gl.glGetString (Gl.GL_VENDOR);
+			System.Console.WriteLine ("Vendor = {0}", Marshal.PtrToStringAnsi (vendor));
+			
+			IntPtr ext = Gl.glGetString (Gl.GL_EXTENSIONS);
+			System.Console.WriteLine ("Extensions = {0}", Marshal.PtrToStringAnsi (ext));
+		}
+
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
 			glx.MakeCurrent ();
+
 			Gl.glShadeModel(Gl.GL_FLAT);
 			
 			//Gl.glMatrixMode(Gl.GL_MODELVIEW);

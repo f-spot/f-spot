@@ -1,5 +1,10 @@
 2007-01-16  Larry Ewing  <lewing@novell.com>
 
+	* src/GlTransition.cs: fix Dissolve so that it properly
+	initializes the texture.
+
+2007-01-16  Larry Ewing  <lewing@novell.com>
+
 	* src/f-spot.glade: added translator comment.  Fixes #331123.
 
 	* src/PhotoVersionCommands.cs: mark button labels for translation.
