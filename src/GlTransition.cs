@@ -32,6 +32,13 @@ namespace FSpot {
 				for (int i = 0; i < color.Length; i++)
 					color [i] = percent;
 
+				bool supported = GlExtensionLoader.LoadExtension ("GL_ARB_multitexture");
+				System.Console.WriteLine ("MultiTexture supported = {0}", supported);
+				if (!supported) {
+					System.Console.WriteLine ("GL_ARB_multitexture not supported");
+					return;
+				}
+
 				next.Bind ();
 				previous.Bind ();
 
