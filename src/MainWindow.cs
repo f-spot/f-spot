@@ -1645,7 +1645,7 @@ public class MainWindow {
 		Close();
 	}
 	
-	void Close ()
+	public void Close ()
 	{
 		int x, y, width, height;
 		main_window.GetPosition (out x, out y);

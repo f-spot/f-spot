@@ -1,3 +1,8 @@
+2007-01-16  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/MainWindow.cs: expose Close () in the public interface
+	* src/Core.cs: try to Close () f-spot on --shutdown
+
 2007-01-16  Pema Geyleg  <pema.geyleg@gmail.com>
 
 	* configure.in: Added 'dz' to ALL_LINGUAS.

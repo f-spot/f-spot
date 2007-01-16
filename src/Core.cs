@@ -227,7 +227,11 @@ namespace FSpot {
 
 		public void Shutdown ()
 		{
-			System.Environment.Exit (0);
+			try {
+				MainWindow.Toplevel.Close ();
+			} catch {
+				System.Environment.Exit (0);
+			}
 		}
 
 		public void Register (Gtk.Window window)
