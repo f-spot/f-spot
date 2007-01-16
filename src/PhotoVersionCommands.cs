@@ -133,8 +133,8 @@ public class PhotoVersionCommands {
 			dialog.TransientFor = parent_window;
 			dialog.HasSeparator = false;
 			dialog.Title = Catalog.GetString ("Really Delete?");
-			dialog.AddButton ("Cancel", (int) ResponseType.Cancel);
-			dialog.AddButton ("Delete", (int) ResponseType.Ok);
+			dialog.AddButton (Catalog.GetString ("Cancel"), (int) ResponseType.Cancel);
+			dialog.AddButton (Catalog.GetString ("Delete"), (int) ResponseType.Ok);
 			dialog.DefaultResponse = ResponseType.Ok;
 
 			string version_name = photo.GetVersionName (photo.DefaultVersionId);
