@@ -336,7 +336,7 @@ f_pixbuf_from_cairo_surface (cairo_surface_t *source)
 	  p[0] = p[3];
 	  p[3] = p[2];
 	  p[2] = p[1];
-	  p[1] = temp;
+	  p[1] = tmp;
 #endif
 	  p += 4;
 	}
@@ -355,37 +355,39 @@ f_pixbuf_from_cairo_surface (cairo_surface_t *source)
  *  Copyright 2002-2003 by Michael Sweet
  *
  *  FIXME this is a very simplist algorithm, something more intelligent needs to be used.
+ *
+ *  Note: this is no longer used. A better implementation was written in C# in PixbufUtils.cs
  */
 
-void
-f_pixbuf_remove_redeye (GdkPixbuf *src)
-{
-	int width = gdk_pixbuf_get_width (src);
-	int height = gdk_pixbuf_get_height (src);
-	int i, j;
-
-	int r, g, b;
-	int channels = gdk_pixbuf_get_n_channels (src);
-
-	guchar *row = gdk_pixbuf_get_pixels (src);
-
-	for (i = 0; i < height; i++) {
-		guchar *col = row;
-
-		for (j = 0; j < width; j++) {
-			r = *col;
-			g = *(col + 1);
-			b = *(col + 2);
-			
-			if ((r > (3 * g / 2) && r > (3 * b / 2)) || (g > r && b > r)) {
-				memset(col, (r * 31 + g * 61 + b * 8) / 100, 3);
-			}
-			
-			col += channels;
-		}
-		row += gdk_pixbuf_get_rowstride (src);
-	}
-}
+//void
+//f_pixbuf_remove_redeye (GdkPixbuf *src)
+//{
+//	int width = gdk_pixbuf_get_width (src);
+//	int height = gdk_pixbuf_get_height (src);
+//	int i, j;
+//
+//	int r, g, b;
+//	int channels = gdk_pixbuf_get_n_channels (src);
+//
+//	guchar *row = gdk_pixbuf_get_pixels (src);
+//
+//	for (i = 0; i < height; i++) {
+//		guchar *col = row;
+//
+//		for (j = 0; j < width; j++) {
+//			r = *col;
+//			g = *(col + 1);
+//			b = *(col + 2);
+//			
+//			if ((r > (3 * g / 2) && r > (3 * b / 2)) || (g > r && b > r)) {
+//				memset(col, (r * 31 + g * 61 + b * 8) / 100, 3);
+//			}
+//			
+//			col += channels;
+//		}
+//		row += gdk_pixbuf_get_rowstride (src);
+//	}
+//}
 
 gboolean
 f_pixbuf_save_jpeg_atomic  (GdkPixbuf   *pixbuf,
