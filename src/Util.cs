@@ -460,4 +460,30 @@ class GnomeUtil {
 		GnomeUtil disp = new GnomeUtil (owner_window, url);
 		Gtk.Application.Invoke (disp, null, delegate (object sender, EventArgs args) { ((GnomeUtil) disp).Show (); });
 	}
+
+	public static void ShowHelp (string filename, string link_id, Gdk.Screen screen, Gtk.Window parent)
+	{
+		try {
+			Gnome.Help.DisplayDesktopOnScreen (
+			Gnome.Program.Get (),
+			FSpot.Global.HelpDirectory,
+			filename,
+			link_id,
+			screen);
+		} catch {
+			string message = Mono.Unix.Catalog.GetString ("The \"F-Spot Manual\" could " +
+					"not be found.  Please verify " +
+					"that your installation has been " +
+					"completed successfully.");
+			HigMessageDialog dialog = new HigMessageDialog (parent,
+					Gtk.DialogFlags.DestroyWithParent,
+					Gtk.MessageType.Error,
+					Gtk.ButtonsType.Ok,
+					Mono.Unix.Catalog.GetString ("Help not found"),
+					message);
+			dialog.Run ();
+			dialog.Destroy ();
+		}
+	}
+
 }

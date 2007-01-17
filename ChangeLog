@@ -1,3 +1,11 @@
+2007-01-17  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Util.cs: new GnomeUtil.ShowHelp method, borrowed from Tomboy.
+
+	* src/Global.cs:
+	* src/MainWindow.cs: use ShowHelp to call the help window, enabling
+	multilingual help files.
+
 2007-01-17  Larry Ewing  <lewing@novell.com>
 
 	* src/Delay.cs: don't return true if we've been stopped inside the

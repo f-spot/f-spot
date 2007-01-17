@@ -1515,10 +1515,11 @@ public class MainWindow {
 
 	public static void HandleHelp (object sender, EventArgs args)
 	{
-		Gnome.Vfs.Url.Show("ghelp:" + 
-				FSpot.Global.HelpDirectory +
-				System.IO.Path.DirectorySeparatorChar +
-				"f-spot.xml");
+		GnomeUtil.ShowHelp ("f-spot.xml", null, Toplevel.Window.Screen, null);
+//		Gnome.Vfs.Url.Show("ghelp:" + 
+//				FSpot.Global.HelpDirectory +
+//				System.IO.Path.DirectorySeparatorChar +
+//				"f-spot.xml");
 	}
 
 	public static void HandleAbout (object sender, EventArgs args)
