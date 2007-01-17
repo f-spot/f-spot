@@ -26,7 +26,7 @@ namespace FSpot {
 			CanFocus = true;
 
 			item.Changed += HandleItemChanged;
-			flip = new Animator (4000, 4000, delegate { flip.Start (); item.MoveNext (true); }); 
+			flip = new Animator (6000, 6000, delegate { flip.Start (); item.MoveNext (true); }); 
 			flip.RunWhenStarted = false;
 		}
 
@@ -79,17 +79,18 @@ namespace FSpot {
 		Animator animator;
 		private void HandleItemChanged (BrowsablePointer p, BrowsablePointerChangedArgs args)
 		{
-			Console.WriteLine ("Begin previous = {0} texture = {1}", 
-					   previous != null ? previous.Id.ToString () : "null", 
-					   next != null ? next.Id.ToString () : "null");
+			//Console.WriteLine ("Begin previous = {0} texture = {1}", 
+			//		   previous != null ? previous.Id.ToString () : "null", 
+			//		   next != null ? next.Id.ToString () : "null");
 
 			Next = null;
+			PreloadNext ();
 
-			Console.WriteLine ("End previous = {0} texture = {1}", 
-					   previous != null ? previous.Id.ToString () : "null", 
-					   next != null ? next.Id.ToString () : "null");
+			//Console.WriteLine ("End previous = {0} texture = {1}", 
+			//		   previous != null ? previous.Id.ToString () : "null", 
+			//		   next != null ? next.Id.ToString () : "null");
 
-			Animator = new Animator (2000, 20, HandleTick);
+			Animator = new Animator (3000, 20, HandleTick);
 			Animator.Start ();
 		}
 
@@ -177,9 +178,7 @@ namespace FSpot {
 		Texture next;
 		public Texture Next {
 			get {
-				if (next == null)
-					next = CreateTexture ();
-
+				PreloadNext ();
 				return next;
 			}
 			set {
@@ -187,6 +186,13 @@ namespace FSpot {
 				next = value;
 				Previous = tmp;
 			}
+		}
+
+		private void PreloadNext ()
+		{
+			if (next == null)
+				next = CreateTexture ();
+
 		}
 
 		GlTransition transition;
