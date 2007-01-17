@@ -1,10 +1,7 @@
-docdir = $(prefix)/share/gnome/help/$(PACKAGE)/C
-
-DOC_XMLFILES = $(srcdir)/f-spot.xml
-
-doc_DATA = $(DOC_XMLFILES)
-
-EXTRA_DIST= $(DOC_XMLFILES)
-
-MAINTAINERCLEANFILES = \
-	Makefile.in
+figdir = figures
+docname = f-spot
+lang = C
+omffile = f-spot-C.omf
+entities = f-spot.xml
+include $(top_srcdir)/xmldocs.make
+dist-hook: app-dist-hook

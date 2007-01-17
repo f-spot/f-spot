@@ -5,7 +5,7 @@
 		<title>The F-Spot Manual</title>
 		<subtitle>This is the user manual for F-Spot, a GNOME personal photo manager.</subtitle>
 		<copyright>
-			<year>2006</year>
+			<year>2007</year>
 			<holder>Aaron Bockover, Gabriel Burt, Miguel de Icaza, Bengt Thuree</holder>
 		</copyright>
 		<publisher>
@@ -32,8 +32,8 @@
 		<!--<include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>-->
 		<revhistory>
 			<revision>
-				<revnumber>0.1</revnumber>
-				<date>2006-09-13</date>
+				<revnumber>0.2</revnumber>
+				<date>2007-01-17</date>
 			</revision>
 		 </revhistory>
 	</bookinfo>
@@ -218,10 +218,44 @@
 		<sect1 id="enjoying-search">
 			<title>Search</title>
 			<para>
-				You can choose to view only photos from a particular tag by checking 
-				the box next to a tag. Selecting multiple tags shows you photos having at 
-				least one of the tags.
+				You can start a search by double clicking or activating a tag from the tag 
+				list. Alternatively, you can show the find bar with <menuchoice>
+				<guimenu>Find</guimenu><guimenuitem>Show Find Bar</guimenuitem></menuchoice>. 
+				With the find bar shown, you can drag tags from the tag view to the find bar.
 			</para>
+			<para>
+				To find photos that are tagged with both of two tags, activate the first in 
+				the tag view or drag it onto the find bar, then drag the second tag and drop 
+				it on top of the first. You can also right click on the second tag in the tag 
+				view, or use the <guimenu>Find</guimenu> menu, and choose <guimenuitem>Find 
+				With...</guimenuitem> and select the first tag (or group of tags).
+			</para>
+			<para>
+				You can drag a tag icon around on the find bar to change from finding it and 
+				another tag to finding it or another tag.
+			</para>
+			<para>
+				You can search for photos that do not have a particular tag by double-clicking 
+				on a tag in the find bar. Alternatively, you can right-click a tag in the find 
+				bar and select <guimenuitem>Exclude</guimenuitem>.
+			</para>
+			<para>
+				To remove a tag from the search, drag it away from the find bar, or right click 
+				and select <guimenuitem>Remove</guimenuitem>.
+			</para>
+			<para>
+				By default, photos tagged <emphasis>Hidden</emphasis> will not be shown. You must 
+				explicitly include the <emphasis>Hidden</emphasis> tag in your search to show 
+				such photos.
+			</para>
+			<para>
+				There is also a type-to-find entry. Press <keycap>/</keycap> to open it. It cannot 
+				be used at the same time as the find bar. You can type queries such as "TagA and 
+				(TagB or (TagC and TagD))". At any point, if F-Spot recognizes what you've typed as 
+				a valid query, it will update your search. The <emphasis>not</emphasis> operator 
+				is not yet supported. 
+			</para>
+
 		</sect1>
 		<sect1 id="enjoying-fullscreen-mode-and-slideshows">
 			<title>Fullscreen Mode and Slideshows</title>
@@ -231,11 +265,25 @@
 				previous. Enter fullscreen mode by pressing <keycap>F11</keycap> at 
 				any time or by pressing the button in the toolbar.
 			</para>
+			<figure>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="figures/f-spot-fullscreen.png"/>
+					</imageobject>
+				</mediaobject>
+			</figure>
 			<para>
 				In slideshow mode, you can sit back and view your photos as they are 
 				presented to you. You can start a slideshow by pressing the button on the 
 				toolbar. 
 			</para>
+			<figure>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="figures/f-spot-slideshow.png"/>
+					</imageobject>
+				</mediaobject>
+			</figure>
 		</sect1>
 	</chapter>
 	
@@ -353,7 +401,7 @@
 								<keycap>]</keycap>
 							</entry>
 							<entry>
-									Rotate the selected photos to the right
+								Rotate the selected photos to the right
 							</entry>
 						</row>
 						<row>
@@ -443,7 +491,7 @@
 						</row>
 						<row>
 							<entry>
-								Arrow keys (up, down, left, right)
+								Arrow keys (up, down, left, right) or k, j, h, l keys
 							</entry>
 							<entry>
 								Move focus
