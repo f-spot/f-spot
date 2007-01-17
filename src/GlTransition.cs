@@ -97,18 +97,37 @@ namespace FSpot {
 				Gl.glMatrixMode (Gl.GL_MODELVIEW);
 				Gl.glLoadIdentity ();
 
-				Glu.gluLookAt (0, 0, 3,
+				Gl.glViewport (0, 0, viewport.Width, viewport.Height);
+				
+				Glu.gluLookAt (0, 0, 2,
 					       0, 0, 0,
 					       0, 1, 1);
 				
 				Gl.glRotatef (90 * -percent, 0, 1, 0);
 
-				Gl.glViewport (0, 0, viewport.Width, viewport.Height);
-				
 				Gl.glMatrixMode (Gl.GL_PROJECTION);
 				Gl.glLoadIdentity ();
-				Glu.gluPerspective (60, viewport.Width / (float) viewport.Height, .5, 15);
+
+				double fov = 360 * Math.Atan2 (viewport.Height * .5 / (double) viewport.Width, 1.5) / Math.PI;
+				Glu.gluPerspective (fov, viewport.Width / (double) viewport.Height, 1.1, 15);
+
+				Gl.glMatrixMode (Gl.GL_MODELVIEW);
+
+#if true				
+				float scale  = 1f/viewport.Width;
+				Gl.glScalef (scale, scale, scale);
+					  
+				Gl.glPushMatrix ();
+				Gl.glTranslatef (-viewport.Width *.5f, -viewport.Height * .5f, viewport.Width *.5f);
+				RenderPlane (viewport, next);
+
+
+				Gl.glRotatef (90, 0, 1, 0);
+				Gl.glTranslatef (0, 0, viewport.Width);
+				RenderPlane (viewport, previous);
 				
+				Gl.glPopMatrix ();
+#else
 				next.Bind ();
 				Fit (new Gdk.Rectangle (0, 0, 1, 1), next);
 				Gl.glBegin (Gl.GL_QUADS);
@@ -135,6 +154,7 @@ namespace FSpot {
 				Gl.glTexCoord2f (0, previous.Height);
 				Gl.glVertex3f (1, -1, 1);
 				Gl.glEnd ();
+#endif
 			}
 		}
 

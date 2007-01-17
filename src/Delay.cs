@@ -50,7 +50,7 @@ namespace FSpot {
 			if (tick != null)
 				tick (this, EventArgs.Empty);
 
-			return true;
+			return delay.IsPending;
 		}
 
 		public void Start ()
