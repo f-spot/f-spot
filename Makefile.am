@@ -53,3 +53,4 @@ DISTCLEANFILES = \
         intltool-update         \
         $(desktop_files)
 
+DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper

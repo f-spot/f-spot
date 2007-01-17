@@ -44,7 +44,7 @@ xml_files = $(entities) $(docname).xml
 EXTRA_DIST = $(xml_files) $(omffile)
 CLEANFILES = omf_timestamp
 
-include $(top_srcdir)/omf.make
+include $(top_srcdir)/docs/omf.make
 
 all: omf
 

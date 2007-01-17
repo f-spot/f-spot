@@ -26,6 +26,13 @@
 # 	Version: 0.1.3 (last updated: March 20, 2002)
 #
 
+if ENABLE_SK
+_ENABLE_SK = true
+else
+_ENABLE_SK = false
+endif
+
+
 omf_dest_dir=$(datadir)/omf/@PACKAGE@
 scrollkeeper_localstate_dir = $(localstatedir)/scrollkeeper
 
@@ -45,7 +52,9 @@ install-data-hook-omf:
 	for file in $(omffile); do \
 		$(INSTALL_DATA) $$file.out $(DESTDIR)$(omf_dest_dir)/$$file; \
 	done
-	-scrollkeeper-update -p $(DESTDIR)$(scrollkeeper_localstate_dir) -o $(DESTDIR)$(omf_dest_dir)
+	@if test "x$(_ENABLE_SK)" == "xtrue"; then \
+	scrollkeeper-update -p $(DESTDIR)$(scrollkeeper_localstate_dir) -o $(DESTDIR)$(omf_dest_dir); \
+	fi;
 
 uninstall-local-omf:
 	-for file in $(srcdir)/*.omf; do \
@@ -53,7 +62,10 @@ uninstall-local-omf:
 		rm -f $(DESTDIR)$(omf_dest_dir)/$$basefile; \
 	done
 	-rmdir $(DESTDIR)$(omf_dest_dir)
-	-scrollkeeper-update -p $(DESTDIR)$(scrollkeeper_localstate_dir)
+	
+	@if test "x$(_ENABLE_SK)" == "xtrue"; then \
+	scrollkeeper-update -p $(DESTDIR)$(scrollkeeper_localstate_dir); \
+	fi;
 
 clean-local-omf:
 	-for file in $(omffile); do \
