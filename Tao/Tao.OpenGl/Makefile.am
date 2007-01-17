@@ -18,7 +18,7 @@ all: $(ASSEMBLY)
 
 $(ASSEMBLY): Tao.OpenGl-pre.dll
 	MONO_PATH=$(MONO_PATH):$(top_builddir)/Tao/Tao.OpenGl.ExtensionLoader:. $(RUN_EXE) $(top_builddir)/Tao/Tao.GlPostProcess/Tao.GlPostProcess.exe \
-		$< $@ "$(SNKFILE)" \
+		$< $@ "$(srcdir)/$(SNKFILE)" \
 		Tao.OpenGl.Gl Tao.OpenGl.ContextGl
 
 libtaogldir = $(libdir)/f-spot
