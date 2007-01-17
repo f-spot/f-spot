@@ -10,7 +10,6 @@ namespace FSpot.Svg {
                         get { return false; }
                 }
 
-		
 		public SvgFile (Uri uri) : base (uri)
 		{
 		}
@@ -47,9 +46,11 @@ namespace FSpot.Svg {
 		{
 			// FIXME this is a hack to work around a crash in the scaled
 			// gdk pixbuf rsvg loader.  We load it without scaling it then scale the image
-			using (Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (Open ())) {
-				Gdk.Pixbuf scaled = PixbufUtils.ScaleToMaxSize (pixbuf, max_width, max_height);
-				return scaled;
+			using (Stream stream = Open ()) {
+				using (Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (stream)) {
+					Gdk.Pixbuf scaled = PixbufUtils.ScaleToMaxSize (pixbuf, max_width, max_height);
+					return scaled;
+				}
 			}
 		}
 #endif

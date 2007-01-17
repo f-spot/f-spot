@@ -1,5 +1,7 @@
 2007-01-17  Larry Ewing  <lewing@novell.com>
 
+	* src/Imaging/SvgFile.cs: explicitly close the stream.
+
 	* src/Texture.cs: first pass at fixing the texture allocation
 	issues.
 
