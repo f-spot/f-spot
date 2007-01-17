@@ -26,6 +26,14 @@ if test ! -x "$MCS"; then
 	AC_MSG_ERROR([No $CS compiler found])
 fi
 
+dnl -- Check for scrollkeeper
+
+AC_PATH_PROG(SKU, scrollkeeper-update)
+if test ! -x "$SKU"; then
+	AC_MSG_ERROR([scrollkeeper missing])
+fi
+
+
 dnl -- Check for mono pc file
 
 AC_MSG_CHECKING([for mono.pc])
