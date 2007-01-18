@@ -406,9 +406,10 @@ Console.WriteLine (e);
 
 				Photo p = collection[i] as Photo;
 				if (p != null) {
-					Core.Database.Exports.Create (p.Id, p.DefaultVersionId,
-								      ExportStore.FolderExportType,
-								      gallery_path);
+					if (Core.Database != null)
+						Core.Database.Exports.Create (p.Id, p.DefaultVersionId,
+									      ExportStore.FolderExportType,
+									      gallery_path);
 				}
 			}
 		}

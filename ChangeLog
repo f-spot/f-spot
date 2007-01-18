@@ -1,5 +1,13 @@
 2007-01-18  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/FlickExport.cs:
+	* src/FolderExport.cs:
+	* src/PicasaWebExport.cs:
+	* src/SmugMugExport.cs: Don't try to write anything in the ExportStore
+	if Core.Database == null. Fixes bgo #397915.
+
+2007-01-18  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/SingleView.cs:
 	* src/InfoDisplay.cs: reverting the changes made in r2757. Using
 	Core.Database != null to achieve the same goal. 

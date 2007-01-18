@@ -551,10 +551,11 @@ namespace FSpot {
 						approx_size = sent_bytes * items.Length / (photo_index - 1);
 
 					int image_id = account.SmugMug.Upload (request.Current.LocalPath, album.AlbumID);
-					Core.Database.Exports.Create ((item as Photo).Id,
-								      (item as Photo).DefaultVersionId,
-								      ExportStore.SmugMugExportType,
-								      account.SmugMug.GetAlbumUrl (image_id).ToString ());
+					if (Core.Database != null)
+						Core.Database.Exports.Create ((item as Photo).Id,
+									      (item as Photo).DefaultVersionId,
+									      ExportStore.SmugMugExportType,
+									      account.SmugMug.GetAlbumUrl (image_id).ToString ());
 
 					sent_bytes += file_info.Length;
 
