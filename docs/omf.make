@@ -72,7 +72,12 @@ uninstall-local-omf:
 	scrollkeeper-update -p $(DESTDIR)$(scrollkeeper_localstate_dir); \
 	fi;
 
+if ENABLE_SK
 clean-local-omf:
 	-for file in $(omffile); do \
 		rm -f $$file.out; \
 	done
+else
+clean-local-omf:
+	echo "nothing to be done";
+endif
