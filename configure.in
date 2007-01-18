@@ -29,9 +29,6 @@ fi
 dnl -- Check for scrollkeeper
 
 AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config,no)
-if test x$SCROLLKEEPER_CONFIG = xno; then
-  AC_MSG_ERROR(Couldn't find scrollkeeper-config. Please install the scrollkeeper package: http://scrollkeeper.sourceforge.net)
-fi
 
 AC_ARG_ENABLE([scrollkeeper],
         [AC_HELP_STRING([--disable-scrollkeeper],
