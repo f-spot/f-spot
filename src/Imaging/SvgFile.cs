@@ -46,7 +46,7 @@ namespace FSpot.Svg {
 		{
 			// FIXME this is a hack to work around a crash in the scaled
 			// gdk pixbuf rsvg loader.  We load it without scaling it then scale the image
-			using (Stream stream = Open ()) {
+			using (System.IO.Stream stream = Open ()) {
 				using (Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (stream)) {
 					Gdk.Pixbuf scaled = PixbufUtils.ScaleToMaxSize (pixbuf, max_width, max_height);
 					return scaled;
