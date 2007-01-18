@@ -24,17 +24,23 @@ namespace FSpot {
 		const string ServicePath = "org.gnome.FSpot";
 		static ObjectPath CorePath = new ObjectPath ("/org/gnome/FSpot/Core");
 
-		public Core ()
+		public Core () : this (false)
+		{
+		}
+
+		public Core (bool nodb)
 		{
 			toplevels = new System.Collections.ArrayList ();
 			
-			// Load the database, upgrading/creating it as needed
-			string base_directory = FSpot.Global.BaseDirectory;
-			if (! File.Exists (base_directory))
-				Directory.CreateDirectory (base_directory);
-			
-			db = new Db ();
-			db.Init (Path.Combine (base_directory, "photos.db"), true);
+			if (!nodb) {
+				// Load the database, upgrading/creating it as needed
+				string base_directory = FSpot.Global.BaseDirectory;
+				if (! File.Exists (base_directory))
+					Directory.CreateDirectory (base_directory);
+				
+				db = new Db ();
+				db.Init (Path.Combine (base_directory, "photos.db"), true);
+			}
 		}
 
 		public static Db Database {

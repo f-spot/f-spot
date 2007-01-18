@@ -146,12 +146,12 @@ public class Driver {
 												PixbufUtils.LoadFromAssembly ("f-spot-22.png"),
 												PixbufUtils.LoadFromAssembly ("f-spot-32.png"),
 												PixbufUtils.LoadFromAssembly ("f-spot-48.png")};
-						core = new Core ();
+						core = new Core (options.view);
 						core.RegisterServer ();
 						
 						// FIXME: Error checking is non-existant here...
 						
-						empty = Core.Database.Empty;
+						empty = options.view || Core.Database.Empty;
 						control = core;
 					}
 				} catch (System.Exception e) {
@@ -186,7 +186,7 @@ public class Driver {
 					control.View (list.ToString ());
 			}
 			
-			if (empty && options.import == null)
+			if (empty && options.import == null && !options.view)
 				control.Import (null);
 			
 			if (options.import != null || !options.view) {
