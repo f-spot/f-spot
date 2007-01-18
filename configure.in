@@ -33,7 +33,7 @@ AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config,no)
 AC_ARG_ENABLE([scrollkeeper],
         [AC_HELP_STRING([--disable-scrollkeeper],
                         [do not make updates to the scrollkeeper database])],,
-        enable_scrollkeeper=yes)
+        enable_scrollkeeper="$SCROLLKEEPER_CONFIG")
 AM_CONDITIONAL(ENABLE_SK, test "x$enable_scrollkeeper" = "xyes")
 
 dnl -- Check for mono pc file
