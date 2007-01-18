@@ -296,7 +296,7 @@ namespace FSpot {
 				return;
 			}
 			
-			metadata_dialog = new InfoDialog (window, false);
+			metadata_dialog = new InfoDialog (window);
 			metadata_dialog.InfoDisplay.Photo = image_view.Item.Current;
 			
 			metadata_dialog.ShowAll ();

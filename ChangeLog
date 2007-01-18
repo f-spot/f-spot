@@ -1,5 +1,11 @@
 2007-01-18  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/SingleView.cs:
+	* src/InfoDisplay.cs: reverting the changes made in r2757. Using
+	Core.Database != null to achieve the same goal. 
+
+2007-01-18  Stephane Delcroix  <stephane@delcroix.org>
+
 	* Tao/Tao.OpenGl/Makefile.am: removing "$(MONO_PATH):", which trigger
 	a ug with mono 1.1.17 and previous.
 
