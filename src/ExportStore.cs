@@ -45,6 +45,8 @@ public class ExportStore : DbStore {
 	
 	public const string FlickrExportType = "fspot:Flickr";
 	public const string FolderExportType = "fspot:Folder";
+	public const string PicasaExportType = "fspot:Picasa";
+	public const string SmugMugExportType = "fspot:SmugMug";
 	
 	private void CreateTable ()
 	{

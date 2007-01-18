@@ -117,8 +117,11 @@ namespace FSpot {
 			switch (export.ExportType) {
 			case ExportStore.FlickrExportType:
 				string[] split_token = export.ExportToken.Split (':');
-				return String.Format ("http://www.flickr.com/photos/{0}/{1}/", split_token[0], split_token[2]);
+				return String.Format ("http://www.{0}/photos/{1}/{2}/", split_token[2],
+                                                      split_token[0], split_token[3]);
 			case ExportStore.FolderExportType:
+			case ExportStore.PicasaExportType:
+			case ExportStore.SmugMugExportType:
 				return export.ExportToken;
 			default:
 				return null;
@@ -133,6 +136,10 @@ namespace FSpot {
 				return String.Format ("Flickr ({0})", split_token[1]);
 			case ExportStore.FolderExportType:
 				return Catalog.GetString ("Folder");
+			case ExportStore.PicasaExportType:
+				return Catalog.GetString ("Picasaweb");
+			case ExportStore.SmugMugExportType:
+				return Catalog.GetString ("SmugMug");
 			default:
 				return null;
 			}
