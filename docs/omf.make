@@ -52,6 +52,7 @@ omf_timestamp: $(omffile)
 	touch omf_timestamp
 endif	
 
+if ENABLE_SK
 install-data-hook-omf:
 	$(mkinstalldirs) $(DESTDIR)$(omf_dest_dir)
 	for file in $(omffile); do \
@@ -60,7 +61,12 @@ install-data-hook-omf:
 	@if test "x$(_ENABLE_SK)" == "xtrue"; then \
 	scrollkeeper-update -p $(DESTDIR)$(scrollkeeper_localstate_dir) -o $(DESTDIR)$(omf_dest_dir); \
 	fi;
+else
+install-data-hook-omf:
+	echo "nothing to do"
+endif
 
+if ENABLE_SK
 uninstall-local-omf:
 	-for file in $(srcdir)/*.omf; do \
 		basefile=`basename $$file`; \
@@ -71,6 +77,10 @@ uninstall-local-omf:
 	@if test "x$(_ENABLE_SK)" == "xtrue"; then \
 	scrollkeeper-update -p $(DESTDIR)$(scrollkeeper_localstate_dir); \
 	fi;
+else
+uninstall-local-omf:
+	echo "nothing to do"
+endif
 
 if ENABLE_SK
 clean-local-omf:
