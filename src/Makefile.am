@@ -258,6 +258,7 @@ RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-stock_near.png,f-spot-stock_near.png	\
 	-resource:$(top_srcdir)/icons/f-spot-stock_far.png,f-spot-stock_far.png		\
 	-resource:$(top_srcdir)/icons/f-spot-fullscreen.png,f-spot-fullscreen.png	\
+	-resource:$(top_srcdir)/icons/f-spot-view-restore.png,f-spot-view-restore.png	\
 	-resource:$(top_srcdir)/icons/f-spot-simple-white.css,f-spot-simple-white.css	\
 	-resource:$(top_srcdir)/icons/f-spot-simple.css,f-spot-simple.css		\
 	-resource:$(top_srcdir)/icons/f-spot.js,f-spot.js				\

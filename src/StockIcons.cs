@@ -39,7 +39,8 @@ public class StockIcons {
 			FromDef ("f-spot-sepia", Catalog.GetString ("Sepia Tone"), 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-slideshow", Catalog.GetString ("Slideshow"), 0, Gdk.ModifierType.ShiftMask, null),
 			FromDef ("f-spot-stock_near", Catalog.GetString ("Near"), 0, Gdk.ModifierType.ShiftMask, null),
-			FromDef ("f-spot-stock_far", Catalog.GetString ("Far"), 0, Gdk.ModifierType.ShiftMask, null)
+			FromDef ("f-spot-stock_far", Catalog.GetString ("Far"), 0, Gdk.ModifierType.ShiftMask, null),
+			FromDef ("f-spot-view-restore", Catalog.GetString ("Restore View"), 0, Gdk.ModifierType.ShiftMask, null),
 		};
 
 		IconFactory icon_factory = new IconFactory ();
