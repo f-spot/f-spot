@@ -114,6 +114,7 @@ namespace FSpot {
 			this.host = host;
 			Decorated = false;
 			DestroyWithParent = true;
+			Name = "FullscreenContainer";
 
 			host_toplevel = (Gtk.Window) host.Toplevel;
 			
@@ -166,11 +167,11 @@ namespace FSpot {
 		{
 			Gdk.Color c = Style.Background (State);
 			Context cr = CairoUtils.CreateContext (GdkWindow);
-			
+
 			ShapeSurface (cr, new Cairo.Color (c.Red / (double) ushort.MaxValue,
 							   c.Blue / (double) ushort.MaxValue, 
 							   c.Green / (double) ushort.MaxValue,
-							   0.9));
+							   0.8));
 
 			((IDisposable)cr).Dispose ();
 			return base.OnExposeEvent (args);
@@ -248,7 +249,7 @@ namespace FSpot {
 		 protected override void OnMapped ()
 		 {
 			 base.OnMapped ();
-			Relocate ();
+			 Relocate ();
 		}
 	}
 }

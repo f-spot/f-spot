@@ -448,7 +448,7 @@ public class PhotoView : EventBox {
 		description_delay = new FSpot.Delay (1000, new GLib.IdleHandler (CommitPendingChanges));
 		this.Destroyed += HandleDestroy;
 
-
+		Name = "ImageContainer";
 		Box vbox = new VBox (false, 6);
 		Add (vbox);
 

@@ -25,6 +25,7 @@ namespace FSpot {
 		
 		public FullScreenView (IBrowsableCollection collection) : base ("Full Screen Mode")
 		{
+			Name = "FullscreenContainer";
 			try {
 				//scroll = new Gtk.ScrolledWindow (null, null);
 				actions = new ActionGroup ("joe");
@@ -36,7 +37,7 @@ namespace FSpot {
 							 Catalog.GetString ("Hide Toolbar"), 
 							 HideToolbarAction),
 					new ActionEntry (ExitFullScreen, 
-							 Stock.Quit, 
+							 "f-spot-view-restore", 
 							 Catalog.GetString ("Exit fullscreen"), 
 							 null, 
 							 null, 
@@ -64,10 +65,10 @@ namespace FSpot {
 				notebook.ShowBorder = false;
 				notebook.ShowTabs = false;
 				notebook.Show ();
-				
 
 				scroll = new ScrolledView ();
 				view = new PhotoImageView (collection);
+				// FIXME this should be handled by the new style setting code
 				view.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
 				view.PointerMode = ImageView.PointerModeType.Scroll;
 				notebook.AppendPage (scroll, null);
@@ -86,7 +87,7 @@ namespace FSpot {
 				hhbox.PackEnd (GetButton (HideToolbar), false, true, 0);
 				hhbox.PackEnd (GetButton (Info), false, true, 0);
 				hhbox.PackEnd (GetButton (SlideShow), false, true, 0);
-				hhbox.PackStart (GetButton (ExitFullScreen), false, false, 0);
+				hhbox.PackStart (GetButton (ExitFullScreen, true), false, false, 0);
 				hhbox.PackStart (Add (new PreviousPictureAction (view.Item)), false, false, 0);
 				hhbox.PackStart (Add (new NextPictureAction (view.Item)), false, false, 0);
 				hhbox.PackStart (Add (new RotateLeftAction (view.Item)), false, false, 0);
@@ -154,19 +155,23 @@ namespace FSpot {
 			return ret;
 		}
 #endif
-		private Gtk.Button ExitButton ()
+		private Button GetButton (string name)
 		{
-			Gtk.HBox hbox = new Gtk.HBox ();
-			hbox.PackStart (new Gtk.Image (Gtk.Stock.Quit, Gtk.IconSize.Button));
-			hbox.PackStart (new Gtk.Label (Catalog.GetString ("Exit fullscreen")));
-			hbox.ShowAll ();
-			return new Gtk.Button (hbox);
+			return GetButton (name, false);
 		}
 
-		private Button GetButton (string name)
+		private Button GetButton (string name, bool label)
 		{
 			Action action = actions [name];
 			Widget w = action.CreateIcon (IconSize.Button);
+			if (label) {
+				HBox box = new HBox ();
+				box.PackStart (w, false, false, 0);
+				Label l = new Label ();
+				l.Markup = "<small>" + action.Label + "</small>";
+				box.PackStart (l);
+				w = box;
+			}
 			Button button;
 			if (action is ToggleAction) {
 				ToggleButton toggle = new ToggleButton ();
@@ -177,7 +182,7 @@ namespace FSpot {
 			}
 			button.Relief = ReliefStyle.None;
 			button.Add (w);
-			w.Show ();
+			w.ShowAll ();
 
 			action.ConnectProxy (button);
 			return button;

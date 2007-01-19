@@ -212,6 +212,7 @@ public class IconView : Gtk.Layout {
 		this.collection = collection;
 		this.selection = new SelectionCollection (collection);
 		
+		Name = "ImageContainer";
 		collection.Changed += HandleChanged;
 		collection.ItemsChanged += HandleItemsChanged;
 
