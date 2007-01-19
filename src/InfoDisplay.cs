@@ -102,7 +102,7 @@ namespace FSpot {
 			return value;
 		}
 
-		private string GetExportUrl (ExportItem export)
+		private static string GetExportUrl (ExportItem export)
 		{
 			switch (export.ExportType) {
 			case ExportStore.FlickrExportType:
@@ -110,6 +110,9 @@ namespace FSpot {
 				return String.Format ("http://www.{0}/photos/{1}/{2}/", split_token[2],
                                                       split_token[0], split_token[3]);
 			case ExportStore.FolderExportType:
+				Gnome.Vfs.Uri uri = new Gnome.Vfs.Uri (export.ExportToken);
+				return (uri.HasParent) ? uri.Parent.ToString () : export.ExportToken;
+			case ExportStore.OldFolderExportType:	//This is obsolete and meant to be removed once db reach rev4
 			case ExportStore.PicasaExportType:
 			case ExportStore.SmugMugExportType:
 				return export.ExportToken;
@@ -118,12 +121,14 @@ namespace FSpot {
 			}
 		}
 
-		private string GetExportLabel (ExportItem export)
+		private static string GetExportLabel (ExportItem export)
 		{
 			switch (export.ExportType) {
 			case ExportStore.FlickrExportType:
 				string[] split_token = export.ExportToken.Split (':');
 				return String.Format ("Flickr ({0})", split_token[1]);
+			case ExportStore.OldFolderExportType:	//Obsolete, remove after db rev4
+				return Catalog.GetString ("Folder");
 			case ExportStore.FolderExportType:
 				return Catalog.GetString ("Folder");
 			case ExportStore.PicasaExportType:
@@ -258,7 +263,6 @@ namespace FSpot {
 					foreach (ExportItem export in Core.Database.Exports.GetByImageId (p.Id, p.DefaultVersionId)) {
 						string url = GetExportUrl (export);
 						string label = GetExportLabel (export);
-	
 						if (url == null || label == null)
 							continue;
 	                                        

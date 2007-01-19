@@ -44,7 +44,8 @@ public class ExportItem : DbItem {
 public class ExportStore : DbStore {
 	
 	public const string FlickrExportType = "fspot:Flickr";
-	public const string FolderExportType = "fspot:Folder";
+	public const string OldFolderExportType = "fspot:Folder"; //This is obsolete and meant to be remove once db reach rev4
+	public const string FolderExportType = "fspot:FolderUri";
 	public const string PicasaExportType = "fspot:Picasa";
 	public const string SmugMugExportType = "fspot:SmugMug";
 	

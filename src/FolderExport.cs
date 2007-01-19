@@ -404,13 +404,6 @@ Console.WriteLine (e);
 
 				ProcessImage (i, filter_set);
 
-				Photo p = collection[i] as Photo;
-				if (p != null) {
-					if (Core.Database != null)
-						Core.Database.Exports.Create (p.Id, p.DefaultVersionId,
-									      ExportStore.FolderExportType,
-									      gallery_path);
-				}
 			}
 		}
 
@@ -444,6 +437,13 @@ Console.WriteLine (e);
 				filter_set.Convert (request);
 				request.Preserve (request.Current);
 				//			File.Copy (request.Current.LocalPath, System.IO.Path.Combine(SubdirPath (req.Name), System.IO.Path.GetFileName (request.Current.LocalPath)), false);
+
+				if (photo != null && photo is Photo && Core.Database != null) {
+					Core.Database.Exports.Create ((photo as Photo).Id, (photo as Photo).DefaultVersionId,
+								      ExportStore.FolderExportType,
+								      request.Current.ToString ());
+				}
+
 				
 				Gdk.Pixbuf img = null;
 				Gdk.Pixbuf scaled = null;

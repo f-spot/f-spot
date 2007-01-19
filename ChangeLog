@@ -1,3 +1,18 @@
+2007-01-19  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Updater.cs: Add a reminder.
+
+	* src/InfoDisplay.cs: Generate a folder uri to open from a file uri.
+
+	* src/FolderExport.cs: keep the full uri for exported items in the
+	ExportStore. Fixes bgo #398002. Store the uri to the file, not only
+	the folder. Fixes bgo #398003.
+
+2007-01-19  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/PicasaWebExport.cs: store the correct image uri in the
+	ExportStore. Fixes bgo #398000.
+
 2007-01-19  stephane delcroix  <stephane@delcroix.org>
 
 	* src/picasawebexport.cs: store the correct image uri in the
