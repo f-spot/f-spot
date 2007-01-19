@@ -1,14 +1,18 @@
 f-spot 0.3.1 - Jan 15 2007 - Sleep
 ----------------------------------
-- More view mode improvments
 - Export to 23hq.com and SmugMug (Thomas Van Machelen)
-- Color management and image parsing improvments
-- Brand new fullscreen view and slideshow mode with overlay widgets (Larry Ewing)
-- Bindings for Glitz and Tao
-- New red-eye removal algorithm (Stephane Delcroix)
-- Keep trace of the exported locations (Jame Willcox)
-- Fixes for: #380423, #380649, #380943, #336758, #335113, #382846, #384595, 
-  #390641, #391442, #393644, #393649, #394559, #392210, #390176  and lot more
+- Background color for transparent regions of images can be chosen in --view mode (Stephane Delcroix)
+- New red-eye removal algorithm. Threshold value for redeye removal is read from gconf. Default is set to -15 (Stephane Delcroix)
+- Zero-pad month and days while creating files and directories (Stephane Delcroix)
+- In browse mode hjkl now behave just like left, down, up, right arrow keys do (Gabriel Burt)
+- Accepts dropped URIs from Firefox. Drag an image from Firefox and drop it in f-spot --view (Stephane Delcroix)
+- Fullscreen mode uses overlayed controls, powered by compiz (Larry Ewing)
+- Fixes to histogram (Larry Ewing)
+- Initial work on color management (Larry Ewing)
+- Refactored multi service support (Larry Ewing)
+- More work on unit tests (Larry Ewing)
+- Other fixes and improvements
+- Bugs closed: #380423, #380649, #373426, #375365, #336758, #382839 (partial), #382846, #394559, #392210, #390176, #329841 and some more
 
 f-spot 0.3.0 - Nov 28 2006 - Lapse
 ----------------------------------
@@ -25,7 +29,7 @@ f-spot 0.3.0 - Nov 28 2006 - Lapse
   #333071 #360877 #360142 #360877 #360142 #329049 #360140 #356971 #363226
   #356978 #362859 #361963 #362438 #352117 #362295 (incomplete list) 
 
-f-spot 0.2.2 - Oct 10 2006 - Bundle
+f-spo t0.2.2 - Oct 10 2006 - Bundle
 -----------------------------------
 - New query interface from (Gabriel Burt).
 - Switch to Alp Toker's new managed dbus-sharp (Stephane Delcroix) 
