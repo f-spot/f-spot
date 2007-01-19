@@ -1,0 +1,717 @@
+<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML 4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<book id="f-spot" lang="C">
+	<bookinfo>
+		<title
+>Handbok för F-Spot</title>
+		<subtitle
+>Det här är användarhandboken för F-Spot, en GNOME-hanterare för personliga foton</subtitle>
+		<copyright>
+			<year
+>2007</year>
+			<holder
+>Aaron Bockover, Gabriel Burt, Miguel de Icaza, Bengt Thuree</holder>
+		</copyright>
+		<publisher>
+			<publishername
+>GNOME Documentation Project</publishername>
+		</publisher>
+		<authorgroup>
+			<author
+><firstname
+>Miguel</firstname
+> <surname
+>de Icaza</surname
+> </author>
+			<author
+><firstname
+>Aaron</firstname
+> <surname
+>Bockover</surname
+> </author>
+			<author
+><firstname
+>Bengt</firstname
+> <surname
+>Thuree</surname
+> </author>
+			<author
+><firstname
+>Gabriel</firstname
+> <surname
+>Burt</surname
+> </author>
+		</authorgroup>
+		<!--<include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"
+></include
+>-->
+		<revhistory>
+			<revision>
+				<revnumber
+>0.2</revnumber>
+				<date
+>2007-01-17</date>
+			</revision>
+		 </revhistory>
+	</bookinfo>
+
+	<chapter id="organizing">
+		<title
+>Organisera dina foton</title>
+		
+		<sect1 id="import">
+			<title
+>Importera</title>
+
+			<para
+>Du kan importera foton från din hårddisk eller din kamera. När du importera dina foton till F-Spot från din kamera kommer de alltid att bli kopierade, vilket innebär att du måste själv tömma ditt kameraminne. Som standard kommer F-Spot att göra en kopia av importerade foton från din hårddisk. Avmarkera alternativet <guilabel
+>Kopiera</guilabel
+> på importeringsdialogrutan eller håll nere <keycap
+>Skift</keycap
+> när du drar in foton till F-Spot om du inte vill att de ska kopieras från din hårddisk. </para>
+
+			<para
+>Om alla foton som du importerar samtidigt är från en speciell händelse, eller har några andra gemensamma egenskaper, kan du skapa ett tagg för dem så att du enkelt kan hitta dem senare. För att göra det här, följ instruktionerna nedan för <ulink url="tag"
+>skapa en ny tagg</ulink
+>. Sedan när du importerar dem ska du kryssa i rutan för <guilabel
+>Sätt tagg</guilabel
+> och välja taggen som du skapat. </para>
+		</sect1>
+		
+		<sect1 id="edit">
+			<title
+>Redigera</title>
+			
+			<para
+>Om du dubbelklickar eller trycker på Enter på en bild, kommer du att gå in i redigeringsläget, där du kan ta bort röda ögon, beskära bilden och justera ljusstyrkan och färger. </para>
+			
+			<sect2 id="edit-versions">
+				<title
+>Versioner</title>
+				
+				<para
+>When you edit your photos, a new copy (called a version) is created, so your original is never altered. After your first edit to a photo, subsequent edits will modify the same version. If you want to create mulitple versions of your photo, perhaps with different cropping or coloring, you can do so via the <menuchoice
+><guimenu
+>File</guimenu
+> <guimenuitem
+>Create new version</guimenuitem
+></menuchoice
+> option. </para>
+			</sect2>
+
+			<sect2 id="edit-adjust-colors">
+				<title
+>Justera färger</title>
+				
+				<para
+>För att justera ljusstyrka, kontrast och färger i ett foto, klicka först på ikonen <guibutton
+>Justera foton</guibutton
+> för att öppna justeringsdialogrutan. </para>
+			</sect2>
+
+			<sect2 id="edit-remove-red-eye">
+				<title
+>Ta bort röda ögon</title>
+				
+				<para
+>För att ta bort röda ögon från ett foto behöver du markera varje individuellt öga. Du kan zooma in i bilden för att lättare kunna markera ögonen i fotot. </para>
+				<para
+>För att markera, klicka för att skapa en rektangel som kommer att bli din markering och dra din mus diagonalt och släpp den sedan. Du kan ändra storleken genom att dra i rektangelns kanter och du kan flytta den genom att klicka i mitten av den och dra den till den plats du önskar. </para>
+				<para
+>När du har markerat ett öga kan du ta bort det röda från det genom att klicka på knappen för röda ögon under fotot. </para>
+			</sect2>
+
+			<sect2 id="edit-crop">
+				<title
+>Beskär</title>
+				
+				<para
+>Beskära en bild är ett bra sätt att förbättra kvaliteten på ett fotografi. Du kan beskära ett foto genom att markera den del av fotot som du vill behålla. Om du vill att ditt foto ska ha de exakta dimensionerna som behövs för en specifik utskriftsstorlek kan du behålla den markering som F-Spot tillåter dig att rita ut genom att välja den lämpliga storleken från rullgardinslistan för begränsningar. Se <xref linkend="edit-remove-red-eye"/> ovan för detaljer om hur man gör en markering i ditt foto. </para>
+				<para
+>När du har gjort din markering för beskäring måste du klicka på beskäringsknappen under bilden för att färdigställa beskäringen. Om du arbetar med originalfotot kommer beskäringen att skapa en ny version av ditt foto. </para>
+			</sect2>
+
+			<sect2 id="edit-describe">
+				<title
+>Beskriv</title>
+				
+				<para
+>Du kan även ange en beskrivning av bilden genom att klicka på textinmatningsrutan under bilden. </para>
+				<para
+>När du har gjort din markering för beskäring måste du klicka på beskäringsknappen under bilden för att färdigställa beskäringen. Om du arbetar med originalfotot kommer beskäringen att skapa en ny version av ditt foto. </para>
+			</sect2>
+		</sect1>
+		
+		<sect1 id="tag">
+			<title
+>Tag</title>
+			<para
+>F-Spot låter dig organisera och njuta av dina foton genom att associera dem med olika användaranpassade taggar. En tagg är helt enkelt en etikett. F-Spot har standardtaggar som du kan börja använda direkt &mdash; du får fritt ändra dem och lägga till nya. Till exempel om du vill skapa en tagg för en specifik händelse, kan du skapa en ny tagg med händelsens namn under Händelser-taggen. </para>
+			<para
+>Det finns många sätt att sätta taggar på foton: </para>
+			<itemizedlist>
+				<listitem>
+					<para
+>dra och släpp foton på taggen </para>
+				</listitem>
+				<listitem>
+					<para
+>dra och släpp taggen på foton </para>
+				</listitem>
+				<listitem>
+					<para
+>via fotots högerklicksmeny </para>
+				</listitem>
+				<listitem>
+					<para
+>via menyerna Taggar och Redigera </para>
+				</listitem>
+				<listitem>
+					<para
+>genom att ange dem i (tryck <keycap
+>t</keycap
+> för att visa tagginmatningsraden, ange taggarna kommaseparerade) &mdash; med tabulatorkomplettering! </para>
+				</listitem>
+			</itemizedlist>
+			<para
+>Det första fotot som du associerar med en tagg kommer att användas som ikon för den taggen. Du kan alltid redigera namnet för en tagg, föräldratagg och ikon genom att högerklicka på den och välja <guilabel
+>Redigera tagg</guilabel
+>. </para>
+			<para
+>Du kan ändra en taggs förälder genom att dra och släppa den där du vill. Du kan även redigera namnet för en tagg genom att välja den och trycka på <keycap
+>F2</keycap
+>. Till sist, om du har taggträdswidgetn fokuserad (t.ex. du har precis klickat på en tagg), kan du börja skriva in namnet på en tagg, och alla utfällda taggar i listan kommer att sökas igenom och du kommer att hoppa fram till de som matchas. </para>
+		</sect1>
+	</chapter>
+
+	<chapter id="enjoying">
+		<title
+>Njut av dina foton</title>
+		<sect1 id="enjoying-browse">
+			<title
+>Bläddra</title>
+			<para
+>You can use the slider widget to browse your photos by month or by directory. To change this setting, go to <menuchoice
+> <guimenu
+>View</guimenu
+><guimenuitem
+>Arranged By</guimenuitem
+> </menuchoice
+>. </para>
+		</sect1>
+		<sect1 id="enjoying-search">
+			<title
+>Sök</title>
+			<para
+>You can start a search by double clicking or activating a tag from the tag list. Alternatively, you can show the find bar with <menuchoice
+> <guimenu
+>Find</guimenu
+><guimenuitem
+>Show Find Bar</guimenuitem
+></menuchoice
+>. With the find bar shown, you can drag tags from the tag view to the find bar. </para>
+			<para
+>För att hitta foton som är taggade med två olika taggar, aktivera den första i taggvyn eller dra den till sökraden, dra sedan den andra taggen och släpp den ovanpå den första taggen. Du kan också högerklicka på den andra taggen i taggvyn, eller använda menyn <guimenu
+>Sök</guimenu
+> och välja <guimenuitem
+>Sök med...</guimenuitem
+> och välja den första taggen (eller grupp av taggar). </para>
+			<para
+>Du kan dra en taggikon runt på sökraden för att ändra från att hitta den och en annan tagg för att hitta den eller en annan tag. </para>
+			<para
+>Du kan söka efter foton som inte har en specifik tagg genom att dubbelklicka på en tagg i sökraden. Alternativt kan du högerklicka på ett tagg i sökraden och välja <guimenuitem
+>Undanta</guimenuitem
+>. </para>
+			<para
+>För att ta bort en tagg från sökningen, dra bort den från sökraden, eller högerklicka och välj <guimenuitem
+>Ta bort</guimenuitem
+>. </para>
+			<para
+>Som standard kommer inte foton taggade som <emphasis
+>Dolda</emphasis
+> att visas. Du måste uttryckligen inkludera taggen <emphasis
+>Dold</emphasis
+> i din sökning för att visa sådan foton. </para>
+			<para
+>Det finns även en skriv-in-för-att-söka-funktion. Tryck på <keycap
+>/</keycap
+> för att öppna den. Den kan inte användas samtidigt som sökraden. Du kan skriva in sökfrågor som "TaggA and (TaggB or (TaggC and TaggD))". F-Spot kommer när som helst att uppdatera din sökning om det känner igen det som du har skrivit som en giltig sökfråga. Operatorn <emphasis
+>not</emphasis
+> stöds ännu inte. </para>
+
+		</sect1>
+		<sect1 id="enjoying-fullscreen-mode-and-slideshows">
+			<title
+>Helskärmsläge och bildspel</title>
+			<para
+>Du kan visa dina foton i helskärmsläget, för att inte bli störd av andra saker på skärmen samt få en större visningsyta. Du kontrollerar när nästa foto ska visas eller om du vill gå tillbaka till den föregående. Gå in i helskärmsläget genom att trycka på <keycap
+>F11</keycap
+> när som helst eller genom att trycka på knappn i verktygsraden. </para>
+			<figure>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="figures/f-spot-fullscreen.png"/>
+					</imageobject>
+				</mediaobject>
+			</figure>
+			<para
+>I bildspelsläget kan du sitta lugnt och visa dina foton automatiskt. Du kan starta ett bildspel genom att trycka på knappen i verktygsraden. </para>
+			<figure>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="figures/f-spot-slideshow.png"/>
+					</imageobject>
+				</mediaobject>
+			</figure>
+		</sect1>
+	</chapter>
+	
+	<chapter id="sharing">
+		<title
+>Dela dina foton</title>
+		
+		<abstract>
+			<para
+>Det finns flera sätt att dela dina foton med hjälp av F-Spot. Alla av de följande metoderna kommer endast att dela ut de foton som du har markerat. </para>
+		</abstract>
+		
+		<sect1 id="sharing-e-mail">
+			<title
+>E-post</title>
+			<para
+>E-mail your photos directly from F-Spot with the <menuchoice
+> <guimenu
+>File</guimenu
+><guimenuitem
+>Send Mail</guimenuitem
+> </menuchoice
+> menu. </para>
+		</sect1>
+
+		<sect1 id="sharing-print">
+			<title
+>Skriv ut</title>
+			<para
+>Print your photos with the <menuchoice
+><guimenu
+>File</guimenu
+> <guimenuitem
+>Print</guimenuitem
+></menuchoice
+> menu. </para>
+		</sect1>
+
+		<sect1 id="sharing-burn-to-cd">
+			<title
+>Bränn till cd-skiva</title>
+			 
+		</sect1>
+
+		<sect1 id="website-gallery-folder">
+			<title
+>Generera ett webbplatsgalleri eller -mapp</title>
+			<para
+>The <menuchoice
+><guimenu
+>File</guimenu
+><guimenuitem
+>Export</guimenuitem
+> <guimenuitem
+>Export to Folder</guimenuitem
+></menuchoice
+> feature gives you three ways to export your images. </para>
+			<itemizedlist>
+				<listitem>
+					<para
+><guilabel
+>Använd original</guilabel
+> exporterar dina foton till att användas med Jakub Steiners fria programvara <ulink url="http://jimmac.musichall.cz/original.php"
+> Original Photo Gallery</ulink
+>. Om du är osäker på det här alternativet är det kanske inte något för dig. </para>
+				</listitem>
+				<listitem>
+					<para
+><guilabel
+>Använd statiska HTML-filer</guilabel
+> exporterar dina foton till en interaktiv webbplats, färdiga för dig att skicka upp. </para>
+				</listitem>
+				<listitem>
+					<para
+><guilabel
+>Vanliga filer</guilabel
+> exporterar dina bilder som filer inne i kataloger, utan att lägga dem i ett galleri. </para>
+				</listitem>
+			</itemizedlist>
+		</sect1>
+
+		<sect1 id="sharing-flickr-or-php-gallery">
+			<title
+>Posta till Flickr eller PHP Gallery</title>
+			<para
+>If you use Flickr, you can post your files directly from F-Spot with the <menuchoice
+><guimenu
+>File</guimenu
+><guimenuitem
+>Export</guimenuitem
+> <guimenuitem
+>Export to Flickr</guimenuitem
+></menuchoice
+> menu. </para>
+			<para
+>If you use the PHP software known as <ulink url="http://gallery.sourceforge.net/"
+> Gallery</ulink
+>, you can post your photos to your existing album with the <menuchoice
+><guimenu
+>File</guimenu
+><guimenuitem
+>Export</guimenuitem
+> <guimenuitem
+>Export to Web Gallery</guimenuitem
+></menuchoice
+> menu. You must first enable the Remote module within your Gallery installation. </para>
+		</sect1>
+	</chapter>
+	
+	<chapter id="shortcuts">
+		<title
+>Genvägar</title>
+		
+		<sect1 id="Global-Shortcuts">
+			<title
+>Globala genvägar</title>
+			<informaltable frame="all">
+				<tgroup cols="2">
+					<thead>
+						<row>
+							<entry
+>Key </entry>
+							<entry
+>Åtgärd </entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>
+								<keycap
+>[</keycap>
+							</entry>
+							<entry
+>Rotera markerade foton åt vänster </entry>
+						</row>
+						<row>
+							<entry>
+								<keycap
+>]</keycap>
+							</entry>
+							<entry
+>Rotera markerade foton åt höger </entry>
+						</row>
+						<row>
+							<entry>
+								<keycap
+>t</keycap>
+							</entry>
+							<entry
+>Visa eller redigera taggar för markerade foton </entry>
+						</row>
+						<row>
+							<entry>
+								<keycap
+>F11</keycap>
+							</entry>
+							<entry
+>Helskärmsvy </entry>
+						</row>
+						<row>
+							<entry>
+								<keycombo
+><keycap
+>Ctrl</keycap
+><keycap
+>I</keycap
+></keycombo>
+							</entry>
+							<entry
+>Visar information om fotot </entry>
+						</row>
+						<row>
+							<entry>
+								<keycombo
+><keycap
+>Ctrl</keycap
+><keycap
+>Equals</keycap
+></keycombo>
+							</entry>
+							<entry
+>Zooma in </entry>
+						</row>
+						<row>
+							<entry>
+								<keycombo
+><keycap
+>Ctrl</keycap
+><keycap
+>Minus</keycap
+></keycombo>
+							</entry>
+							<entry
+>Zooma ut </entry>
+						</row>
+						<row>
+							<entry>
+								<keycombo
+><keycap
+>Ctrl</keycap
+><keycap
+>N</keycap
+></keycombo>
+							</entry>
+							<entry
+>Importera foton </entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</informaltable>
+		</sect1>
+		
+		<sect1 id="shortcuts-browse-mode">
+			<title
+>Genvägar i bläddringsläget</title>
+			<informaltable frame="all">
+				<tgroup cols="2">
+					<thead>
+						<row>
+							<entry
+>Key </entry>
+							<entry
+>Åtgärd </entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>
+								<keycombo
+><keycap
+>Ctrl</keycap
+><keycap
+>A</keycap
+></keycombo>
+							</entry>
+							<entry
+>Markera alla </entry>
+						</row>
+						<row>
+							<entry>
+								<keycombo
+><keycap
+>Ctrl</keycap
+><keycap
+>Shift</keycap
+> <keycap
+>A</keycap
+></keycombo>
+							</entry>
+							<entry
+>Avmarkera alla </entry>
+						</row>
+						<row>
+							<entry
+>Piltangenterna (upp, ned, vänster, höger) eller tangenterna k, j, h, l </entry>
+							<entry
+>Flytta fokus </entry>
+						</row>
+						<row>
+							<entry
+><keycap
+>Ctrl</keycap
+>-arrow key </entry>
+							<entry
+>Flytta fokus utan att ändra markeringen </entry>
+						</row>
+						<row>
+							<entry>
+								<keycap
+>Blanksteg</keycap>
+							</entry>
+							<entry
+>Markera eller avmarkera det fokuserade fotot </entry>
+						</row>
+						<row>
+							<entry>
+								<keycombo
+><keycap
+>Shift</keycap
+> <keycap
+>arrow key</keycap
+></keycombo>
+							</entry>
+							<entry
+>Ändra fotomarkeringen </entry>
+						</row>
+						<row>
+							<entry>
+								<keycombo
+><keycap
+>Ctrl</keycap
+><keycap
+>Shift</keycap
+> <keycap
+>left arrow or right arrow</keycap
+></keycombo>
+							</entry>
+							<entry
+>Lägg till/Ta bort alla foton i raden, i angiven riktning, till markeringen </entry>
+						</row>
+						<row>
+							<entry>
+								<keycap
+>v</keycap>
+							</entry>
+							<entry
+>Visar en större förhandsvisning av bilden som muspekaren pekar på </entry>
+						</row>
+						<row>
+							<entry>
+								<keycap
+>V</keycap>
+							</entry>
+							<entry
+>Visar en större förhandsvisning och ett färghistorgram av bilden som muspekaren pekar på </entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</informaltable>
+		</sect1>
+		
+		<sect1 id="shortcuts-tag">
+			<title
+>Taggenvägar</title>
+			<informaltable frame="all">
+				<tgroup cols="2">
+					<thead>
+						<row>
+							<entry
+>Key </entry>
+							<entry
+>Åtgärd </entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>
+								<keycap
+>F2</keycap>
+							</entry>
+							<entry
+>Byt namn på markerad tagg </entry>
+						</row>
+						<row>
+							<entry>
+								<keycombo
+><keycap
+>Ctrl</keycap
+><keycap
+>T</keycap
+></keycombo>
+							</entry>
+							<entry
+>Lägg till taggar till markerade foton </entry>
+						</row>
+						<row>
+							<entry
+>n/a </entry>
+							<entry
+>Dra och släpp taggar för att flytta dem </entry>
+						</row>
+						<row>
+							<entry
+>n/a </entry>
+							<entry
+>Skriv in taggens namn för att hoppa till den (fungerar endast om taggen visas eller är utfälld) </entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</informaltable>
+		</sect1>
+		
+		<sect1 id="shortcuts-edit-mode">
+			<title
+>Genvägar i redigeringsläget</title>
+			<informaltable frame="all">
+				<tgroup cols="2">
+					<thead>
+						<row>
+							<entry
+>Key </entry>
+							<entry
+>Åtgärd </entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>
+								<keycap
+>PageUp</keycap>
+							</entry>
+							<entry
+>Gå till föregående foto </entry>
+						</row>
+						<row>
+							<entry
+><keycap
+>Page Down</keycap
+>, <keycap
+>Spacebar</keycap
+> </entry>
+							<entry
+>Gå till nästa foto </entry>
+						</row>
+						<row>
+							<entry>
+								<keycap
+>0</keycap>
+							</entry>
+							<entry
+>Anpassa bilden till skärmen </entry>
+						</row>
+						<row>
+							<entry>
+								<keycap
+>1</keycap>
+							</entry>
+							<entry
+>Zoomfaktor till 1.0 (1 bildpunkt på skärmen per bildpunkt i bilden) </entry>
+						</row>
+						<row>
+							<entry>
+								<keycap
+>2</keycap>
+							</entry>
+							<entry
+>Zoomfaktor till 2.0 (4 bildpunkter på skärmen per bildpunkt i bilden) </entry>
+						</row>
+						<row>
+							<entry>
+								<keycap
+>Esc</keycap>
+							</entry>
+							<entry
+>Återvänder till bläddringsläget </entry>
+						</row>
+						<row>
+							<entry>
+								<keycap
+>v</keycap>
+							</entry>
+							<entry
+>Undersök fotot med förstoringsglas (lupp) </entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</informaltable>
+		</sect1>
+	</chapter>
+
+</book>
+

@@ -1,0 +1,593 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: f-spot doc\n"
+"POT-Creation-Date: 2007-01-19 00:36+0100\n"
+"PO-Revision-Date: 2007-01-19 23:29+0100\n"
+"Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
+"Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/f-spot.xml:271(None)
+msgid "@@image: 'figures/f-spot-fullscreen.png'; md5=09f09d717428f52309dc73c68b6ccd09"
+msgstr "@@image: 'figures/f-spot-fullscreen.png'; md5=09f09d717428f52309dc73c68b6ccd09"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/f-spot.xml:283(None)
+msgid "@@image: 'figures/f-spot-slideshow.png'; md5=43ff510a9aa8d183eba70792066ca36b"
+msgstr "@@image: 'figures/f-spot-slideshow.png'; md5=43ff510a9aa8d183eba70792066ca36b"
+
+#: C/f-spot.xml:5(title)
+msgid "The F-Spot Manual"
+msgstr "Handbok för F-Spot"
+
+#: C/f-spot.xml:6(subtitle)
+msgid "This is the user manual for F-Spot, a GNOME personal photo manager."
+msgstr "Det här är användarhandboken för F-Spot, en GNOME-hanterare för personliga foton"
+
+#: C/f-spot.xml:8(year)
+msgid "2007"
+msgstr "2007"
+
+#: C/f-spot.xml:9(holder)
+msgid "Aaron Bockover, Gabriel Burt, Miguel de Icaza, Bengt Thuree"
+msgstr "Aaron Bockover, Gabriel Burt, Miguel de Icaza, Bengt Thuree"
+
+#: C/f-spot.xml:12(publishername)
+msgid "GNOME Documentation Project"
+msgstr "Dokumentationsprojekt för GNOME"
+
+#: C/f-spot.xml:16(firstname)
+msgid "Miguel"
+msgstr "Miguel"
+
+#: C/f-spot.xml:17(surname)
+msgid "de Icaza"
+msgstr "de Icaza"
+
+#: C/f-spot.xml:20(firstname)
+msgid "Aaron"
+msgstr "Aaron"
+
+#: C/f-spot.xml:21(surname)
+msgid "Bockover"
+msgstr "Bockover"
+
+#: C/f-spot.xml:24(firstname)
+msgid "Bengt"
+msgstr "Bengt"
+
+#: C/f-spot.xml:25(surname)
+msgid "Thuree"
+msgstr "Thuree"
+
+#: C/f-spot.xml:28(firstname)
+msgid "Gabriel"
+msgstr "Gabriel"
+
+#: C/f-spot.xml:29(surname)
+msgid "Burt"
+msgstr "Burt"
+
+#: C/f-spot.xml:35(revnumber)
+msgid "0.2"
+msgstr "0.2"
+
+#: C/f-spot.xml:36(date)
+msgid "2007-01-17"
+msgstr "2007-01-17"
+
+#: C/f-spot.xml:42(title)
+msgid "Organizing your photos"
+msgstr "Organisera dina foton"
+
+#: C/f-spot.xml:45(title)
+msgid "Import"
+msgstr "Importera"
+
+#: C/f-spot.xml:47(para)
+msgid "You can import photos from your hard drive or your camera. When you import your photos into F-Spot from your camera, it will always make a copy of them, leaving you free to clear your camera's memory. By default, F-Spot will make a copy of photos imported from your hard drive. Uncheck the <guilabel>Copy</guilabel> option on the import dialog or hold <keycap>Shift</keycap> when dragging photos into F-Spot if you do not wish to copy them from your hard drive."
+msgstr "Du kan importera foton från din hårddisk eller din kamera. När du importera dina foton till F-Spot från din kamera kommer de alltid att bli kopierade, vilket innebär att du måste själv tömma ditt kameraminne. Som standard kommer F-Spot att göra en kopia av importerade foton från din hårddisk. Avmarkera alternativet <guilabel>Kopiera</guilabel> på importeringsdialogrutan eller håll nere <keycap>Skift</keycap> när du drar in foton till F-Spot om du inte vill att de ska kopieras från din hårddisk."
+
+#: C/f-spot.xml:57(para)
+msgid "If all the photos you are importing at one time are from a particular event, or have some other characteristic in common, you can create a tag for them so you can later find them with ease. To do this, follow the instructions below to <ulink url=\"tag\">create a new tag</ulink>, then when you are importing them, check the button for <guilabel>Attach Tag</guilabel> and choose the tag you created."
+msgstr "Om alla foton som du importerar samtidigt är från en speciell händelse, eller har några andra gemensamma egenskaper, kan du skapa ett tagg för dem så att du enkelt kan hitta dem senare. För att göra det här, följ instruktionerna nedan för <ulink url=\"tag\">skapa en ny tagg</ulink>. Sedan när du importerar dem ska du kryssa i rutan för <guilabel>Sätt tagg</guilabel> och välja taggen som du skapat."
+
+#: C/f-spot.xml:68(title)
+msgid "Edit"
+msgstr "Redigera"
+
+#: C/f-spot.xml:70(para)
+msgid "If you double click or press enter on an image, you enter Edit mode, where you can remove red-eye, crop, and adjust brightness and colors."
+msgstr "Om du dubbelklickar eller trycker på Enter på en bild, kommer du att gå in i redigeringsläget, där du kan ta bort röda ögon, beskära bilden och justera ljusstyrkan och färger."
+
+#: C/f-spot.xml:76(title)
+msgid "Versions"
+msgstr "Versioner"
+
+#: C/f-spot.xml:78(para)
+msgid "When you edit your photos, a new copy (called a version) is created, so your original is never altered. After your first edit to a photo, subsequent edits will modify the same version. If you want to create mulitple versions of your photo, perhaps with different cropping or coloring, you can do so via the <menuchoice><guimenu>File</guimenu><guimenuitem>Create new version</guimenuitem></menuchoice> option."
+msgstr "När du redigerar dina foton kommer en ny kopia (kallas en version) skapas, så att ditt originalfoto förblir orört. Efter din första redigering av ett foto kommer efterföljande redigeringar att ändra samma version av fotot. Om du vill skapa flera versioner av ditt foto, kanske med olika beskäringar eller färgsättning, kan du göra det via alternativet <menuchoice><guimenu>Arkiv</guimenu><guimenuitem>Skapa ny version</guimenuitem></menuchoice>."
+
+#: C/f-spot.xml:89(title)
+msgid "Adjust Colors"
+msgstr "Justera färger"
+
+#: C/f-spot.xml:91(para)
+msgid "To adjust the brightness, contrast, and colors of a photo, first click the <guibutton>Adjust Photos</guibutton> icon to open the adjustment dialog."
+msgstr "För att justera ljusstyrka, kontrast och färger i ett foto, klicka först på ikonen <guibutton>Justera foton</guibutton> för att öppna justeringsdialogrutan."
+
+#: C/f-spot.xml:98(title)
+msgid "Remove Red-Eye"
+msgstr "Ta bort röda ögon"
+
+#: C/f-spot.xml:100(para)
+msgid "To remove redeye from a photo, you need to select each individual eye. You may want to zoom in on the image to accurately select the eyes in the photo."
+msgstr "För att ta bort röda ögon från ett foto behöver du markera varje individuellt öga. Du kan zooma in i bilden för att lättare kunna markera ögonen i fotot."
+
+#: C/f-spot.xml:105(para)
+msgid "To make your selection, click one corner of the rectangle that will be your selection, and drag your mouse to the diagonal corner and release it. You can resize your selection by dragging its edges, and you can move it by clicking in the middle of it and dragging it to where you want it."
+msgstr "För att markera, klicka för att skapa en rektangel som kommer att bli din markering och dra din mus diagonalt och släpp den sedan. Du kan ändra storleken genom att dra i rektangelns kanter och du kan flytta den genom att klicka i mitten av den och dra den till den plats du önskar."
+
+#: C/f-spot.xml:111(para)
+msgid "Once you have selected an eye, you can remove the red from it by clicking the red-eye button beneath the photo."
+msgstr "När du har markerat ett öga kan du ta bort det röda från det genom att klicka på knappen för röda ögon under fotot."
+
+#: C/f-spot.xml:118(title)
+msgid "Crop"
+msgstr "Beskär"
+
+#: C/f-spot.xml:120(para)
+msgid "Cropping an image is a great way to improve the quality of a photograph by improving how it is framed. You crop a photo by selecting the part of the photo you want to keep. If you want your photo to be the exact dimensions necessary for a certain print size, you can constrain the kind of selection F-Spot will allow you to draw by choosing the appropriate size from the constraint drop down. See the <xref linkend=\"edit-remove-red-eye\"/> above for details on making a selection on your photo."
+msgstr "Beskära en bild är ett bra sätt att förbättra kvaliteten på ett fotografi. Du kan beskära ett foto genom att markera den del av fotot som du vill behålla. Om du vill att ditt foto ska ha de exakta dimensionerna som behövs för en specifik utskriftsstorlek kan du behålla den markering som F-Spot tillåter dig att rita ut genom att välja den lämpliga storleken från rullgardinslistan för begränsningar. Se <xref linkend=\"edit-remove-red-eye\"/> ovan för detaljer om hur man gör en markering i ditt foto."
+
+#: C/f-spot.xml:129(para)
+#: C/f-spot.xml:143(para)
+msgid "Once you have made your crop selection, you must click the crop button beneath the image to finalize the crop. If you are working with the original photo, cropping creates a new version your photo."
+msgstr "När du har gjort din markering för beskäring måste du klicka på beskäringsknappen under bilden för att färdigställa beskäringen. Om du arbetar med originalfotot kommer beskäringen att skapa en ny version av ditt foto."
+
+#: C/f-spot.xml:137(title)
+msgid "Describe"
+msgstr "Beskriv"
+
+#: C/f-spot.xml:139(para)
+msgid "You can also enter a description of the image by clicking on the text entry box below the image and typing."
+msgstr "Du kan även ange en beskrivning av bilden genom att klicka på textinmatningsrutan under bilden."
+
+#: C/f-spot.xml:152(title)
+msgid "Tag"
+msgstr "Tagga"
+
+#: C/f-spot.xml:153(para)
+msgid "F-Spot enables you to organize and enjoy your photos by associating them with various user-customizable tags. A tag is a merely a label. F-Spot comes with default tags to get you started &mdash; you are free to change them and add new ones. For example, if you want to create a tag for specific event, you can create a new tag named after that event under the Events tag."
+msgstr "F-Spot låter dig organisera och njuta av dina foton genom att associera dem med olika användaranpassade taggar. En tagg är helt enkelt en etikett. F-Spot har standardtaggar som du kan börja använda direkt &mdash; du får fritt ändra dem och lägga till nya. Till exempel om du vill skapa en tagg för en specifik händelse, kan du skapa en ny tagg med händelsens namn under Händelser-taggen."
+
+#: C/f-spot.xml:160(para)
+msgid "There are many ways to tag photos:"
+msgstr "Det finns många sätt att sätta taggar på foton:"
+
+#: C/f-spot.xml:165(para)
+msgid "drag and drop the photo(s) onto the tag"
+msgstr "dra och släpp foton på taggen"
+
+#: C/f-spot.xml:170(para)
+msgid "drag and drop the tag onto the photo(s)"
+msgstr "dra och släpp taggen på foton"
+
+#: C/f-spot.xml:175(para)
+msgid "via the photo's right-click menu"
+msgstr "via fotots högerklicksmeny"
+
+#: C/f-spot.xml:180(para)
+msgid "via the Tags and Edit menus"
+msgstr "via menyerna Taggar och Redigera"
+
+#: C/f-spot.xml:185(para)
+msgid "by typing them in (press <keycap>t</keycap> to pop up the tag entry bar, enter comma-separated tags) &mdash; with tab completion!"
+msgstr "genom att ange dem i (tryck <keycap>t</keycap> för att visa tagginmatningsraden, ange taggarna kommaseparerade) &mdash; med tabulatorkomplettering!"
+
+#: C/f-spot.xml:191(para)
+msgid "The first photo you associate with a tag will be used for that tag's icon. You can always edit a tag's name, parent tag, and icon by right clicking on it and choosing <guilabel>Edit tag</guilabel>."
+msgstr "Det första fotot som du associerar med en tagg kommer att användas som ikon för den taggen. Du kan alltid redigera namnet för en tagg, föräldratagg och ikon genom att högerklicka på den och välja <guilabel>Redigera tagg</guilabel>."
+
+#: C/f-spot.xml:196(para)
+msgid "You can change a tag's parent by dragging and dropping it where you like. Also, you can edit the name of a tag by selecting it and pressing <keycap>F2</keycap>. Lastly, if you have the tag tree widget focused (e.g. you just clicked on a tag), you can start typing the name of a tag, and all the expanded tags in the list will be searched and you'll jump to any matching ones."
+msgstr "Du kan ändra en taggs förälder genom att dra och släppa den där du vill. Du kan även redigera namnet för en tagg genom att välja den och trycka på <keycap>F2</keycap>. Till sist, om du har taggträdswidgetn fokuserad (t.ex. du har precis klickat på en tagg), kan du börja skriva in namnet på en tagg, och alla utfällda taggar i listan kommer att sökas igenom och du kommer att hoppa fram till de som matchas."
+
+#: C/f-spot.xml:208(title)
+msgid "Enjoying your photos"
+msgstr "Njut av dina foton"
+
+#: C/f-spot.xml:210(title)
+msgid "Browse"
+msgstr "Bläddra"
+
+#: C/f-spot.xml:211(para)
+msgid "You can use the slider widget to browse your photos by month or by directory. To change this setting, go to <menuchoice><guimenu>View</guimenu><guimenuitem>Arranged By</guimenuitem></menuchoice>."
+msgstr "Du kan använda draglistwidgeten för att bläddra bland dina foton efter månad eller efter katalog. För att ändra den här inställningen, gå till <menuchoice><guimenu>Visa</guimenu><guimenuitem>Ordna efter</guimenuitem></menuchoice>."
+
+#: C/f-spot.xml:219(title)
+msgid "Search"
+msgstr "Sök"
+
+#: C/f-spot.xml:220(para)
+msgid "You can start a search by double clicking or activating a tag from the tag list. Alternatively, you can show the find bar with <menuchoice><guimenu>Find</guimenu><guimenuitem>Show Find Bar</guimenuitem></menuchoice>. With the find bar shown, you can drag tags from the tag view to the find bar."
+msgstr "Du kan starta en sökning genom att dubbelklicka eller aktivera en tagg från tagglistan. Alternativt kan du visa sökraden med <menuchoice><guimenu>Sök</guimenu><guimenuitem>Visa sökrad</guimenuitem></menuchoice>. När sökraden visas kan du dra taggar från taggvyn till sökraden."
+
+#: C/f-spot.xml:226(para)
+msgid "To find photos that are tagged with both of two tags, activate the first in the tag view or drag it onto the find bar, then drag the second tag and drop it on top of the first. You can also right click on the second tag in the tag view, or use the <guimenu>Find</guimenu> menu, and choose <guimenuitem>Find With...</guimenuitem> and select the first tag (or group of tags)."
+msgstr "För att hitta foton som är taggade med två olika taggar, aktivera den första i taggvyn eller dra den till sökraden, dra sedan den andra taggen och släpp den ovanpå den första taggen. Du kan också högerklicka på den andra taggen i taggvyn, eller använda menyn <guimenu>Sök</guimenu> och välja <guimenuitem>Sök med...</guimenuitem> och välja den första taggen (eller grupp av taggar)."
+
+#: C/f-spot.xml:233(para)
+msgid "You can drag a tag icon around on the find bar to change from finding it and another tag to finding it or another tag."
+msgstr "Du kan dra en taggikon runt på sökraden för att ändra från att hitta den och en annan tagg för att hitta den eller en annan tag."
+
+#: C/f-spot.xml:237(para)
+msgid "You can search for photos that do not have a particular tag by double-clicking on a tag in the find bar. Alternatively, you can right-click a tag in the find bar and select <guimenuitem>Exclude</guimenuitem>."
+msgstr "Du kan söka efter foton som inte har en specifik tagg genom att dubbelklicka på en tagg i sökraden. Alternativt kan du högerklicka på ett tagg i sökraden och välja <guimenuitem>Undanta</guimenuitem>."
+
+#: C/f-spot.xml:242(para)
+msgid "To remove a tag from the search, drag it away from the find bar, or right click and select <guimenuitem>Remove</guimenuitem>."
+msgstr "För att ta bort en tagg från sökningen, dra bort den från sökraden, eller högerklicka och välj <guimenuitem>Ta bort</guimenuitem>."
+
+#: C/f-spot.xml:246(para)
+msgid "By default, photos tagged <emphasis>Hidden</emphasis> will not be shown. You must explicitly include the <emphasis>Hidden</emphasis> tag in your search to show such photos."
+msgstr "Som standard kommer inte foton taggade som <emphasis>Dolda</emphasis> att visas. Du måste uttryckligen inkludera taggen <emphasis>Dold</emphasis> i din sökning för att visa sådan foton."
+
+#: C/f-spot.xml:251(para)
+msgid "There is also a type-to-find entry. Press <keycap>/</keycap> to open it. It cannot be used at the same time as the find bar. You can type queries such as \"TagA and (TagB or (TagC and TagD))\". At any point, if F-Spot recognizes what you've typed as a valid query, it will update your search. The <emphasis>not</emphasis> operator is not yet supported."
+msgstr "Det finns även en skriv-in-för-att-söka-funktion. Tryck på <keycap>/</keycap> för att öppna den. Den kan inte användas samtidigt som sökraden. Du kan skriva in sökfrågor som \"TaggA and (TaggB or (TaggC and TaggD))\". F-Spot kommer när som helst att uppdatera din sökning om det känner igen det som du har skrivit som en giltig sökfråga. Operatorn <emphasis>not</emphasis> stöds ännu inte."
+
+#: C/f-spot.xml:261(title)
+msgid "Fullscreen Mode and Slideshows"
+msgstr "Helskärmsläge och bildspel"
+
+#: C/f-spot.xml:262(para)
+msgid "For fewer distractions and larger display, you can view your photos in full screen mode. You control when to show the next photo or to return to the previous. Enter fullscreen mode by pressing <keycap>F11</keycap> at any time or by pressing the button in the toolbar."
+msgstr "Du kan visa dina foton i helskärmsläget, för att inte bli störd av andra saker på skärmen samt få en större visningsyta. Du kontrollerar när nästa foto ska visas eller om du vill gå tillbaka till den föregående. Gå in i helskärmsläget genom att trycka på <keycap>F11</keycap> när som helst eller genom att trycka på knappn i verktygsraden."
+
+#: C/f-spot.xml:275(para)
+msgid "In slideshow mode, you can sit back and view your photos as they are presented to you. You can start a slideshow by pressing the button on the toolbar."
+msgstr "I bildspelsläget kan du sitta lugnt och visa dina foton automatiskt. Du kan starta ett bildspel genom att trycka på knappen i verktygsraden."
+
+#: C/f-spot.xml:291(title)
+msgid "Sharing your photos"
+msgstr "Dela dina foton"
+
+#: C/f-spot.xml:294(para)
+msgid "There are many ways to share your photos using F-Spot. All of the following methods will only share the photos you have selected when you run them."
+msgstr "Det finns flera sätt att dela dina foton med hjälp av F-Spot. Alla av de följande metoderna kommer endast att dela ut de foton som du har markerat."
+
+#: C/f-spot.xml:301(title)
+msgid "E-mail"
+msgstr "E-post"
+
+#: C/f-spot.xml:302(para)
+msgid "E-mail your photos directly from F-Spot with the <menuchoice><guimenu>File</guimenu><guimenuitem>Send Mail</guimenuitem></menuchoice> menu."
+msgstr "Skicka din foton via e-post direkt från F-Spot med menyn <menuchoice><guimenu>Arkiv</guimenu><guimenuitem>Skicka e-post</guimenuitem></menuchoice>."
+
+#: C/f-spot.xml:310(title)
+msgid "Print"
+msgstr "Skriv ut"
+
+#: C/f-spot.xml:311(para)
+msgid "Print your photos with the <menuchoice><guimenu>File</guimenu><guimenuitem>Print</guimenuitem></menuchoice> menu."
+msgstr "Skriv ut din foton med menyn <menuchoice><guimenu>Arkiv</guimenu><guimenuitem>Skriv ut</guimenuitem></menuchoice>."
+
+#: C/f-spot.xml:318(title)
+msgid "Burn to CD"
+msgstr "Bränn till cd-skiva"
+
+#: C/f-spot.xml:325(title)
+msgid "Generate a Website Gallery or Folder"
+msgstr "Generera ett webbplatsgalleri eller -mapp"
+
+#: C/f-spot.xml:326(para)
+msgid "The <menuchoice><guimenu>File</guimenu><guimenuitem>Export</guimenuitem><guimenuitem>Export to Folder</guimenuitem></menuchoice> feature gives you three ways to export your images."
+msgstr "Funktionen <menuchoice><guimenu>Arkiv</guimenu><guimenuitem>Exportera</guimenuitem><guimenuitem>Exportera till mapp</guimenuitem></menuchoice> erbjuder dig tre sätt att exportera dina bilder på."
+
+#: C/f-spot.xml:334(para)
+msgid "<guilabel>Use Original</guilabel> exports your photos ready for use with Jakub Steiner's free <ulink url=\"http://jimmac.musichall.cz/original.php\"> Original Photo Gallery</ulink> software. If you are unsure about this option, it is probably not the right one for you."
+msgstr "<guilabel>Använd original</guilabel> exporterar dina foton till att användas med Jakub Steiners fria programvara <ulink url=\"http://jimmac.musichall.cz/original.php\"> Original Photo Gallery</ulink>. Om du är osäker på det här alternativet är det kanske inte något för dig."
+
+#: C/f-spot.xml:342(para)
+msgid "<guilabel>Use static HTML files</guilabel> exports your photos to an interactive website, ready for you to upload."
+msgstr "<guilabel>Använd statiska HTML-filer</guilabel> exporterar dina foton till en interaktiv webbplats, färdiga för dig att skicka upp."
+
+#: C/f-spot.xml:348(para)
+msgid "<guilabel>Plain Files</guilabel> exports your images as files within directories, without putting them into a gallery."
+msgstr "<guilabel>Vanliga filer</guilabel> exporterar dina bilder som filer inne i kataloger, utan att lägga dem i ett galleri."
+
+#: C/f-spot.xml:357(title)
+msgid "Post to your Flickr or PHP Gallery"
+msgstr "Posta till Flickr eller PHP Gallery"
+
+#: C/f-spot.xml:358(para)
+msgid "If you use Flickr, you can post your files directly from F-Spot with the <menuchoice><guimenu>File</guimenu><guimenuitem>Export</guimenuitem><guimenuitem>Export to Flickr</guimenuitem></menuchoice> menu."
+msgstr "Om du använder Flickr kan du posta dina filer direkt från F-Spot med menyn <menuchoice><guimenu>Arkiv</guimenu><guimenuitem>Exportera</guimenuitem><guimenuitem>Exportera till Flickr</guimenuitem></menuchoice>."
+
+#: C/f-spot.xml:363(para)
+msgid "If you use the PHP software known as <ulink url=\"http://gallery.sourceforge.net/\"> Gallery</ulink>, you can post your photos to your existing album with the <menuchoice><guimenu>File</guimenu><guimenuitem>Export</guimenuitem><guimenuitem>Export to Web Gallery</guimenuitem></menuchoice> menu. You must first enable the Remote module within your Gallery installation."
+msgstr "Om du använder PHP-programvaran känd som <ulink url=\"http://gallery.sourceforge.net/\"> Gallery</ulink>, kan du posta dina foton till ditt befintliga album med menyn <menuchoice><guimenu>Arkiv</guimenu><guimenuitem>Exportera</guimenuitem><guimenuitem>Exportera till webbgalleri</guimenuitem></menuchoice>. Du måste först aktivera fjärrmodulen i din installation av Gallery."
+
+#: C/f-spot.xml:374(title)
+msgid "Shortcuts"
+msgstr "Genvägar"
+
+#: C/f-spot.xml:377(title)
+msgid "Global Shortcuts"
+msgstr "Globala genvägar"
+
+#: C/f-spot.xml:382(entry)
+#: C/f-spot.xml:466(entry)
+#: C/f-spot.xml:561(entry)
+#: C/f-spot.xml:613(entry)
+msgid "Key"
+msgstr "Tangent"
+
+#: C/f-spot.xml:385(entry)
+#: C/f-spot.xml:469(entry)
+#: C/f-spot.xml:564(entry)
+#: C/f-spot.xml:616(entry)
+msgid "Action"
+msgstr "Åtgärd"
+
+#: C/f-spot.xml:393(keycap)
+msgid "["
+msgstr "["
+
+#: C/f-spot.xml:395(entry)
+msgid "Rotate the selected photos to the left"
+msgstr "Rotera markerade foton åt vänster"
+
+#: C/f-spot.xml:401(keycap)
+msgid "]"
+msgstr "]"
+
+#: C/f-spot.xml:403(entry)
+msgid "Rotate the selected photos to the right"
+msgstr "Rotera markerade foton åt höger"
+
+#: C/f-spot.xml:409(keycap)
+msgid "t"
+msgstr "t"
+
+#: C/f-spot.xml:411(entry)
+msgid "View or edit tags for selected photos"
+msgstr "Visa eller redigera taggar för markerade foton"
+
+#: C/f-spot.xml:417(keycap)
+msgid "F11"
+msgstr "F11"
+
+#: C/f-spot.xml:419(entry)
+msgid "Full screen view"
+msgstr "Helskärmsvy"
+
+#: C/f-spot.xml:425(keycap)
+#: C/f-spot.xml:433(keycap)
+#: C/f-spot.xml:441(keycap)
+#: C/f-spot.xml:449(keycap)
+#: C/f-spot.xml:477(keycap)
+#: C/f-spot.xml:485(keycap)
+#: C/f-spot.xml:502(keycap)
+#: C/f-spot.xml:527(keycap)
+#: C/f-spot.xml:580(keycap)
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#: C/f-spot.xml:425(keycap)
+msgid "I"
+msgstr "I"
+
+#: C/f-spot.xml:427(entry)
+msgid "Displays information about the photo"
+msgstr "Visar information om fotot"
+
+#: C/f-spot.xml:433(keycap)
+msgid "Equals"
+msgstr "Lika med"
+
+#: C/f-spot.xml:435(entry)
+msgid "Zoom-in"
+msgstr "Zooma in"
+
+#: C/f-spot.xml:441(keycap)
+msgid "Minus"
+msgstr "Minus"
+
+#: C/f-spot.xml:443(entry)
+msgid "Zoom-out"
+msgstr "Zooma ut"
+
+#: C/f-spot.xml:449(keycap)
+msgid "N"
+msgstr "N"
+
+#: C/f-spot.xml:451(entry)
+msgid "Import photos"
+msgstr "Importera foton"
+
+#: C/f-spot.xml:461(title)
+msgid "Browse Mode Shortcuts"
+msgstr "Genvägar i bläddringsläget"
+
+#: C/f-spot.xml:477(keycap)
+#: C/f-spot.xml:486(keycap)
+msgid "A"
+msgstr "A"
+
+#: C/f-spot.xml:479(entry)
+msgid "Select all"
+msgstr "Markera alla"
+
+#: C/f-spot.xml:485(keycap)
+#: C/f-spot.xml:518(keycap)
+#: C/f-spot.xml:527(keycap)
+msgid "Shift"
+msgstr "Skift"
+
+#: C/f-spot.xml:488(entry)
+msgid "Unselect all"
+msgstr "Avmarkera alla"
+
+#: C/f-spot.xml:493(entry)
+msgid "Arrow keys (up, down, left, right) or k, j, h, l keys"
+msgstr "Piltangenterna (upp, ned, vänster, höger) eller tangenterna k, j, h, l"
+
+#: C/f-spot.xml:496(entry)
+msgid "Move focus"
+msgstr "Flytta fokus"
+
+#: C/f-spot.xml:501(entry)
+msgid "<placeholder-1/>-arrow key"
+msgstr "<placeholder-1/>-piltangent"
+
+#: C/f-spot.xml:504(entry)
+msgid "Move the focus without changing the selection"
+msgstr "Flytta fokus utan att ändra markeringen"
+
+#: C/f-spot.xml:510(keycap)
+#: C/f-spot.xml:632(keycap)
+msgid "Spacebar"
+msgstr "Blanksteg"
+
+#: C/f-spot.xml:512(entry)
+msgid "Select or unselect the focused photo"
+msgstr "Markera eller avmarkera det fokuserade fotot"
+
+#: C/f-spot.xml:519(keycap)
+msgid "arrow key"
+msgstr "piltangent"
+
+#: C/f-spot.xml:521(entry)
+msgid "Change the photo selection"
+msgstr "Ändra fotomarkeringen"
+
+#: C/f-spot.xml:528(keycap)
+msgid "left arrow or right arrow"
+msgstr "vänster- eller högerpil"
+
+#: C/f-spot.xml:530(entry)
+msgid "Add/Remove all photos in the row, in the direction pressed, to the selection"
+msgstr "Lägg till/Ta bort alla foton i raden, i angiven riktning, till markeringen"
+
+#: C/f-spot.xml:536(keycap)
+#: C/f-spot.xml:672(keycap)
+msgid "v"
+msgstr "v"
+
+#: C/f-spot.xml:538(entry)
+msgid "Pops up a larger preview of the picture pointed by the mouse"
+msgstr "Visar en större förhandsvisning av bilden som muspekaren pekar på"
+
+#: C/f-spot.xml:544(keycap)
+msgid "V"
+msgstr "V"
+
+#: C/f-spot.xml:546(entry)
+msgid "Pops up a larger preview and a color histogram of the picture pointed by the mouse"
+msgstr "Visar en större förhandsvisning och ett färghistorgram av bilden som muspekaren pekar på"
+
+#: C/f-spot.xml:556(title)
+msgid "Tag Shortcuts"
+msgstr "Taggenvägar"
+
+#: C/f-spot.xml:572(keycap)
+msgid "F2"
+msgstr "F2"
+
+#: C/f-spot.xml:574(entry)
+msgid "Rename selected tag"
+msgstr "Byt namn på markerad tagg"
+
+#: C/f-spot.xml:580(keycap)
+msgid "T"
+msgstr "T"
+
+#: C/f-spot.xml:582(entry)
+msgid "Add tags to selected photos"
+msgstr "Lägg till taggar till markerade foton"
+
+#: C/f-spot.xml:587(entry)
+#: C/f-spot.xml:595(entry)
+msgid "n/a"
+msgstr "-"
+
+#: C/f-spot.xml:590(entry)
+msgid "Drag and drop tags to move them"
+msgstr "Dra och släpp taggar för att flytta dem"
+
+#: C/f-spot.xml:598(entry)
+msgid "Type a tag's name to jump to it (only works if tag is shown/expanded)"
+msgstr "Skriv in taggens namn för att hoppa till den (fungerar endast om taggen visas eller är utfälld)"
+
+#: C/f-spot.xml:608(title)
+msgid "Edit Mode Shortcuts"
+msgstr "Genvägar i redigeringsläget"
+
+#: C/f-spot.xml:624(keycap)
+msgid "Page Up"
+msgstr "PageUp"
+
+#: C/f-spot.xml:626(entry)
+msgid "Go to Previous Photo"
+msgstr "Gå till föregående foto"
+
+#: C/f-spot.xml:632(keycap)
+msgid "Page Down"
+msgstr "PageDown"
+
+#: C/f-spot.xml:631(entry)
+msgid "<placeholder-1/>, <placeholder-2/>"
+msgstr "<placeholder-1/>, <placeholder-2/>"
+
+#: C/f-spot.xml:634(entry)
+msgid "Go to Next Photo"
+msgstr "Gå till nästa foto"
+
+#: C/f-spot.xml:640(keycap)
+msgid "0"
+msgstr "0"
+
+#: C/f-spot.xml:642(entry)
+msgid "Fit the image to the screen"
+msgstr "Anpassa bilden till skärmen"
+
+#: C/f-spot.xml:648(keycap)
+msgid "1"
+msgstr "1"
+
+#: C/f-spot.xml:650(entry)
+msgid "Zoom Factor to 1.0 (1 screen pixel per image pixel)"
+msgstr "Zoomfaktor till 1.0 (1 bildpunkt på skärmen per bildpunkt i bilden)"
+
+#: C/f-spot.xml:656(keycap)
+msgid "2"
+msgstr "2"
+
+#: C/f-spot.xml:658(entry)
+msgid "Zoom Factor to 2.0 (4 screen pixels per image pixel)"
+msgstr "Zoomfaktor till 2.0 (4 bildpunkter på skärmen per bildpunkt i bilden)"
+
+#: C/f-spot.xml:664(keycap)
+msgid "Escape"
+msgstr "Esc"
+
+#: C/f-spot.xml:666(entry)
+msgid "Returns to Browser mode"
+msgstr "Återvänder till bläddringsläget"
+
+#: C/f-spot.xml:674(entry)
+msgid "Examine photo with magnifying glass (Loupe)"
+msgstr "Undersök fotot med förstoringsglas (lupp)"
+
+#. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2.
+#: C/f-spot.xml:0(None)
+msgid "translator-credits"
+msgstr "Daniel Nylander <po@danielnylander.se>, 2007"
+
