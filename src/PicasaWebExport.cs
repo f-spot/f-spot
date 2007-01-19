@@ -580,11 +580,23 @@ namespace FSpot {
 						approx_size = sent_bytes * items.Length / (photo_index - 1);
 
 					string id = album.UploadPicture (request.Current.LocalPath, item.Description);
-					if (Core.Database != null)
+					if (Core.Database != null) {
+						System.UriBuilder uri = new System.UriBuilder (album.Link);
+						uri.Path = uri.Path + "/photo";
+						//Setting the Fragment doesn't display it :( workaround follows
+						string photouri;
+						if (uri.Query == null || uri.Query == String.Empty) {
+							uri.Fragment = id;
+							photouri = uri.ToString () + uri.Fragment;
+						} else {
+							uri.Query = uri.Query.Substring (1) + "#" + id;
+							photouri = uri.ToString ();
+						}
 						Core.Database.Exports.Create ((item as Photo).Id,
 									      (item as Photo).DefaultVersionId,
 									      ExportStore.PicasaExportType,
-									      album.Link + "/photo#" + id);
+									      photouri);
+					}
 
 					sent_bytes += file_info.Length;
 

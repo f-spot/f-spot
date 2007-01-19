@@ -1,3 +1,8 @@
+2007-01-19  stephane delcroix  <stephane@delcroix.org>
+
+	* src/picasawebexport.cs: store the correct image uri in the
+	exportstore. fixes bgo #398000.
+
 2007-01-18  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/FlickExport.cs:
