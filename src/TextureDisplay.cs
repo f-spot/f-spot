@@ -22,7 +22,7 @@ namespace FSpot {
 		{
 			this.item = item;
 			DoubleBuffered = false;
-			//AppPaintable = true;
+			AppPaintable = true;
 			CanFocus = true;
 
 			item.Changed += HandleItemChanged;
@@ -129,11 +129,9 @@ namespace FSpot {
 				Console.WriteLine ("Set Rba");
 #endif
 
-			base.OnRealized ();
-
 			if (glx != null)
 				glx.Destroy ();
-			
+
 			int [] attr = new int [] {
 				(int) GdkGlx.GlxAttribute.Rgba,
 				(int) GdkGlx.GlxAttribute.DepthSize, 16,
@@ -141,7 +139,11 @@ namespace FSpot {
 				(int) GdkGlx.GlxAttribute.None
 			};
 			
-			glx = new GdkGlx.Context (GdkWindow, attr);
+			glx = new GdkGlx.Context (Screen, attr);
+			Colormap = glx.GetColormap ();
+
+			base.OnRealized ();
+			
 			flip.Start ();
 		}
 		
@@ -236,7 +238,7 @@ namespace FSpot {
 
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
-			glx.MakeCurrent ();
+			glx.MakeCurrent (GdkWindow);
 
 			Gl.glShadeModel(Gl.GL_FLAT);
 			
@@ -272,7 +274,7 @@ namespace FSpot {
 			//DrawTextureSplit ();
 			
 			Gl.glFlush ();
-			glx.SwapBuffers ();
+			glx.SwapBuffers (GdkWindow);
 			
 			return true;
 		}

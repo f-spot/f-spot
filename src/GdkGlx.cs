@@ -32,7 +32,7 @@ namespace GdkGlx {
 
 	public class Context {
 		private HandleRef handle;
-		private Gdk.Drawable drawable;
+		private Gdk.Visual visual;
 		
 		[DllImport("X11")]
 		static extern void XFree (IntPtr handle);
@@ -59,31 +59,71 @@ namespace GdkGlx {
 
 		[DllImport("GL")]
 		static extern void glXSwapBuffers (IntPtr display, uint drawable);
+		
 
 		public HandleRef Handle {
 			get { return handle; }
 		}
 		
-		public Context (Gdk.Drawable drawable, int [] attr) : this (drawable, null, attr)
+		public Context (Gdk.Screen screen, int [] attr) : this (screen, null, attr)
 		{
 		}
-		
-		public Context (Gdk.Drawable drawable,
+
+		[StructLayout(LayoutKind.Sequential)]
+		private struct XVisualInfo {
+			public IntPtr visual;
+			public uint visualid;
+			public int screen;
+			public int depth;
+			public int c_class;
+			public uint red_mask;
+			public uint blue_mask;
+			public uint green_mask;
+			public int colormap_size;
+			public int bits_per_rgb;
+		}
+
+#if false
+		public Gdk.Colormap GetColormap (Gdk.Screen screen, )
+		{
+			DrawableFormat template = new DrawableFormat ();
+			template.Color = new ColorFormat ();
+			FormatMask mask = FormatMask.None;
+			int num = screen.Number;
+			
+			IntPtr dformat = GlitzAPI.glitz_glx_find_window_format (GdkUtils.GetXDisplay (screen.Display), 
+										num, 
+										mask, 
+										ref template,
+										0);
+			
+			visual_info = GlitzAPI.glitz_glx_get_visual_info_from_format (dpy, scr, dformat);
+			Gdk.Visual visual = new Gdk.Visual (gdkx_visual_get (XVisualIDFromVisual (vinfo)));					
+			new Gdk.Colormap (visual, true);
+			*/
+		}
+#endif
+
+		public Gdk.Colormap GetColormap ()
+		{
+			return new Gdk.Colormap (visual, false);
+		}
+
+		public Context (Gdk.Screen screen,
 				Context share_list,
 				int [] attr)
 		{
-			this.drawable = drawable;
-
-			if (drawable == null)
-				throw new GlxException ("Invalid drawable");
-
-			IntPtr xdisplay = GdkUtils.GetXDisplay (drawable.Display);
+			IntPtr xdisplay = GdkUtils.GetXDisplay (screen.Display);
 			IntPtr visual_info = glXChooseVisual (xdisplay,
-							      drawable.Screen.Number,
+							      screen.Number,
 							      attr);
+		       
 			if (visual_info == IntPtr.Zero)
 				throw new GlxException ("Unable to find matching visual");
 			
+			XVisualInfo xinfo = (XVisualInfo) Marshal.PtrToStructure (visual_info, typeof (XVisualInfo));
+
+
 			HandleRef share = share_list != null ? share_list.Handle : new HandleRef (null, IntPtr.Zero);
 			IntPtr tmp = glXCreateContext (xdisplay, visual_info, share, true);
 			
@@ -92,24 +132,26 @@ namespace GdkGlx {
 			
 			handle = new HandleRef (this, tmp);
 			
+			visual = GdkUtils.LookupVisual (screen, xinfo.visualid);
+
 			if (visual_info != IntPtr.Zero)
 				XFree (visual_info);
 		}
 		
 		public void Destroy ()
 		{
-			glXDestroyContext (GdkUtils.GetXDisplay (drawable.Display),
+			glXDestroyContext (GdkUtils.GetXDisplay (visual.Screen.Display),
 					   Handle);
 		}
 		
-		public bool MakeCurrent ()
+		public bool MakeCurrent (Gdk.Drawable drawable)
 		{
 			return glXMakeCurrent (GdkUtils.GetXDisplay (drawable.Display),
 					       GdkUtils.GetXid (drawable),
 					       Handle);
 		}
 
-		public void SwapBuffers ()
+		public void SwapBuffers (Gdk.Drawable drawable)
 		{
 			glXSwapBuffers (GdkUtils.GetXDisplay (drawable.Display),
 					GdkUtils.GetXid (drawable));
