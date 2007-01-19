@@ -57,12 +57,15 @@ namespace FSpot {
 		public void Add (Uri uri)
 		{
 			if (FSpot.ImageFile.HasLoader (uri)) {
-				Console.WriteLine (uri.ToString ());
+				//Console.WriteLine ("using image loader {0}", uri.ToString ());
 				Add (new FileBrowsableItem (uri));
 			} else {
 				Gnome.Vfs.FileInfo info = new Gnome.Vfs.FileInfo (uri.ToString (), 
 										  Gnome.Vfs.FileInfoOptions.GetMimeType);
 				
+				
+				//Console.WriteLine ("url {0} MimeType {1}", uri, info.MimeType);
+
 				if (info.Type == Gnome.Vfs.FileType.Directory)
 					new DirectoryLoader (this, uri);
 				else {
@@ -91,7 +94,7 @@ namespace FSpot {
 				XmlDocument doc = new XmlDocument ();
 				doc.Load (uri.ToString ());
 				XmlNamespaceManager ns = new XmlNamespaceManager (doc.NameTable);
-				ns.AddNamespace ("media", "http://search.yahoo.com/mrss");
+				ns.AddNamespace ("media", "http://search.yahoo.com/mrss/");
 				ns.AddNamespace ("pheed", "http://www.pheed.com/pheed/");
 				ns.AddNamespace ("apple", "http://www.apple.com/ilife/wallpapers");
 				
