@@ -11,12 +11,16 @@ namespace FSpot.Widgets {
 		[DllImport("libgdk-2.0-0.dll")]
 		static extern IntPtr gdk_x11_display_get_xdisplay (IntPtr d);
 
-
 		[DllImport("libgdk-2.0-0.dll")]
 		static extern IntPtr gdk_x11_visual_get_xvisual (IntPtr d);
 
 		[DllImport("X11")]
 		internal static extern uint XVisualIDFromVisual(IntPtr visual);
+
+		[DllImport("libgdk-2.0-0.dll")]
+		static extern IntPtr gdk_x11_screen_lookup_visual (IntPtr screen,
+								   uint   xvisualid);
+
 
 		public static uint GetXid (Drawable d)
 		{
@@ -32,10 +36,15 @@ namespace FSpot.Widgets {
 		{
 			return gdk_x11_display_get_xdisplay (display.Handle);
 		}
-
+		
 		public static IntPtr GetXVisual (Visual v)
 		{
 			return gdk_x11_visual_get_xvisual (v.Handle);
+		}
+
+		public static Visual LookupVisual (Screen screen, uint visualid)
+		{
+			return (Gdk.Visual) GLib.Object.GetObject (gdk_x11_screen_lookup_visual (screen.Handle, visualid));
 		}
 	}
 }
