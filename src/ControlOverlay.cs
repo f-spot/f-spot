@@ -115,7 +115,10 @@ namespace FSpot {
 			Decorated = false;
 			DestroyWithParent = true;
 			Name = "FullscreenContainer";
-
+			AllowGrow = true;
+			//AllowShrink = true;
+			KeepAbove = true;
+			
 			host_toplevel = (Gtk.Window) host.Toplevel;
 			
 			TransientFor = host_toplevel;
@@ -163,6 +166,24 @@ namespace FSpot {
 			return false;
 		}
 
+		private void ShapeWindow ()
+		{
+			if (composited)
+				return;
+
+			Gdk.Pixmap bitmap = new Gdk.Pixmap (GdkWindow, 
+							    Allocation.Width, 
+							    Allocation.Height, 1);
+			
+			Context cr = CairoUtils.CreateContext (bitmap);
+			ShapeCombineMask (bitmap, 0, 0);
+			ShapeSurface (cr, new Cairo.Color (1, 1, 1));
+			ShapeCombineMask (bitmap, 0, 0);
+			((IDisposable)cr).Dispose ();
+			bitmap.Dispose ();
+
+		}
+
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
 			Gdk.Color c = Style.Background (State);
@@ -188,6 +209,7 @@ namespace FSpot {
 		{
 			base.OnSizeAllocated (rec);
 			Relocate ();
+			ShapeWindow ();
 			QueueDraw ();
 		}
 
@@ -195,18 +217,18 @@ namespace FSpot {
 		{
 			Relocate ();
 		}
-
+		
 		private void HandleHostConfigure (object o, ConfigureEventArgs args)
 		{
 			Relocate ();
 		}
-
+		
 		private void Relocate ()
 		{
 			int x, y;
 			if (!IsRealized || !host_toplevel.IsRealized)
 				return;
-
+			
 			host.GdkWindow.GetOrigin (out x, out y);
 
 			x += (int) (host.Allocation.Width * x_align);
@@ -220,40 +242,29 @@ namespace FSpot {
 			
 			Move (x, y);
 		}
+
+		protected override void OnRealized ()
+		{
+			composited = CompositeUtils.IsComposited (Screen) && CompositeUtils.SetRgbaColormap (this);
+			AppPaintable = composited;
+
+			base.OnRealized ();
+			
+			ShapeWindow ();
+			Relocate ();
+		}
 		
-		 protected override void OnRealized ()
-		 {
-			 bool composited = CompositeUtils.IsComposited (Screen) && CompositeUtils.SetRgbaColormap (this);
-			 AppPaintable = composited;
+		public void Dismiss ()
+		{
+			Visibility = VisibilityType.None;
+			Hide ();
+			dismiss.Start ();
+		}
 
-			 base.OnRealized ();
-
-			 if (!composited) {
-				 Gdk.Pixmap bitmap = new Gdk.Pixmap (GdkWindow, 
-								     Allocation.Width, 
-								     Allocation.Height, 1);
-
-				 Context cr = CairoUtils.CreateContext (bitmap);
-				 ShapeSurface (cr, new Cairo.Color (1, 1, 1));
-				 ((IDisposable)cr).Dispose ();
-				 ShapeCombineMask (bitmap, 0, 0);
-				 bitmap.Dispose ();
-			 }
-
-			 Visibility = VisibilityType.Full;
-		 }
-
-		 public void Dismiss ()
-		 {
-			 Visibility = VisibilityType.None;
-			 Hide ();
-			 dismiss.Start ();
-		 }
-
-		 protected override void OnMapped ()
-		 {
-			 base.OnMapped ();
-			 Relocate ();
+		protected override void OnMapped ()
+		{
+			base.OnMapped ();
+			Relocate ();
 		}
 	}
 }
