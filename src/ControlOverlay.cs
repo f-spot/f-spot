@@ -214,6 +214,10 @@ namespace FSpot {
 			
 			x -= (int) (Allocation.Width * 0.5);
 			y -= (int) (Allocation.Height * 0.5);
+
+			x = Math.Max (0, Math.Min (x, host.Allocation.Width - Allocation.Width));
+			y = Math.Max (0, Math.Min (y, host.Allocation.Height - Allocation.Height));
+			
 			Move (x, y);
 		}
 		
