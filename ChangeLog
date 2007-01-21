@@ -1,3 +1,8 @@
+2007-01-21  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/WmpTagsImporter: Check for control characters at the end of
+	imported tags. Fixes bgo #398671.
+
 2007-01-19  Larry Ewing  <lewing@novell.com>
 
 	* src/ControlOverlay.cs: 
