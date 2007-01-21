@@ -114,7 +114,7 @@ namespace FSpot.Xmp {
 			Literal l = value as Literal;
 			if (l != null && l.Value != null && l.Value.Length > 0) {
 				string tag_name = l.Value;
-				if (System.Char.IsControl (l.Value.get_Chars (l.Value.Length - 1))) {
+				if (System.Char.IsControl (l.Value [l.Value.Length - 1])) {
 					Console.WriteLine ("BEFORE: " + tag_name.Length);
 					tag_name = l.Value.Substring (0,l.Value.Length - 1);
 					Console.WriteLine ("AFTER: " + tag_name.Length);
