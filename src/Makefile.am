@@ -62,6 +62,8 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Delay.cs			\
 	$(srcdir)/DirectoryAdaptor.cs		\
 	$(srcdir)/DirectoryCollection.cs	\
+	$(srcdir)/Editors/Editor.cs		\
+	$(srcdir)/Editors/Tilt.cs		\
 	$(srcdir)/ExceptionDialog.cs		\
 	$(srcdir)/ExportStore.cs		\
 	$(srcdir)/Fader.cs			\
