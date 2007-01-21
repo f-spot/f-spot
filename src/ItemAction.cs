@@ -244,4 +244,35 @@ namespace FSpot {
 			return new AutoStretch ();
 		}
 	}
+
+	public class TiltAction : FilterAction {
+		double angle;
+		public TiltAction (BrowsablePointer p, double angle)
+			: base (p, "ApplyStraighten", 
+				Catalog.GetString ("Apply straightening"),
+				Catalog.GetString ("Apply straightening to image"),
+				"f-spot-sepia")
+		{
+			this.angle = angle;
+		}
+
+		protected override IFilter BuildFilter ()
+		{
+			return new TiltFilter (angle);
+		}
+	}
+
+	public class ViewAction : ItemAction {
+		PhotoImageView view;
+
+ 		public ViewAction (PhotoImageView view,
+				   string name,
+				   string label,
+				   string tooltip,
+				   string stock_id) : base (view.Item, name, label, tooltip, stock_id)
+		{
+			
+		}
+	}
+
 }

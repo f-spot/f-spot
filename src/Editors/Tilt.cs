@@ -15,7 +15,7 @@ using FSpot;
 using Cairo;
 
 namespace FSpot.Editors {
-	public class Tilt : EffectEditor {
+	public sealed class Tilt : EffectEditor {
 		Scale scale;
 
 		public Tilt (PhotoImageView view) : base (view)
@@ -30,11 +30,34 @@ namespace FSpot.Editors {
 
 		protected override Widget CreateControls ()
 		{
+			VBox box = new VBox ();
 			scale = new HScale (-45, 45, 1);
+			scale.Value = 0.0;
 			scale.ValueChanged += HandleValueChanged;
 			scale.WidthRequest = 250;
+			box.PackStart (scale);
+			HBox actions = new HBox ();
+			Button apply = new Button ("Apply");
+			apply.Clicked += HandleApply;
+			actions.PackStart (apply);
+			Button cancel = new Button ("Cancel");
+			cancel.Activated += HandleCancel;
+			actions.PackStart (cancel);
+			box.PackStart (actions);
+			return box;
+		}
 
-			return scale;
+		private void HandleApply (object sender, EventArgs args)
+		{
+			System.Console.WriteLine ("Clicked");
+			TiltAction action = new TiltAction (view.Item, ((Widgets.Tilt)effect).Angle);
+			action.Activate ();
+			Close ();
+		}
+
+		private void HandleCancel (object sender, EventArgs args)
+		{
+			Close ();
 		}
 
 		private void HandleValueChanged (object sender, System.EventArgs args)

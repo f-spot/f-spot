@@ -32,6 +32,7 @@ namespace FSpot {
 
 		GlTransition [] transitions = new GlTransition []
 			{
+				new GlTransition.Wipe (),
 				new GlTransition.Dissolve (),
 				new GlTransition.Flip (),
 				new GlTransition.Push (),

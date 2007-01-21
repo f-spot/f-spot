@@ -16,6 +16,8 @@ namespace FSpot {
 		protected FSpot.Loupe sharpener;
 		ProgressType load_async = ProgressType.Full;
 		bool progressive_display;
+		public GdkGlx.Context Glx;
+		protected Editors.Editor editor;
 
 		public PhotoImageView (IBrowsableCollection query)
 		{
@@ -28,6 +30,8 @@ namespace FSpot {
 
 			this.SizeAllocated += HandleSizeAllocated;
 			this.KeyPressEvent += HandleKeyPressEvent;
+			this.Realized += HandleRealized;
+			this.Unrealized += HandleUnrealized;
 			this.ScrollEvent += HandleScrollEvent;
 			this.item = new BrowsablePointer (query, -1);
 			item.Changed += PhotoItemChanged;
@@ -84,6 +88,26 @@ namespace FSpot {
 			PhotoItemChanged (Item, null);
 		}
 
+		[GLib.ConnectBefore]
+		private void HandleRealized (object sender, EventArgs args)
+		{
+			int [] attr = new int [] {
+				(int) GdkGlx.GlxAttribute.Rgba,
+				(int) GdkGlx.GlxAttribute.DepthSize, 16,
+				(int) GdkGlx.GlxAttribute.DoubleBuffer,
+				(int) GdkGlx.GlxAttribute.None
+			};
+
+			Glx = new GdkGlx.Context (Screen, attr);
+		        Colormap = Glx.GetColormap ();
+		}
+
+		private void HandleUnrealized (object sender, EventArgs args)
+		{
+			Glx.Destroy ();
+		}
+
+
 		// Display.
 		private void HandlePixbufAreaUpdated (object sender, AreaUpdatedArgs args)
 		{
@@ -94,6 +118,7 @@ namespace FSpot {
 			this.QueueDrawArea (area.X, area.Y, area.Width, area.Height);
 		}
 		
+
 		private void HandlePixbufPrepared (object sender, AreaPreparedArgs args)
 		{
 			if (!ShowProgress)
@@ -424,8 +449,15 @@ namespace FSpot {
 					loupe = new Loupe (this);
 					loupe.Destroyed += HandleLoupeDestroy;
 				}
-
 				loupe.Show ();
+				break;
+			case Gdk.Key.e:
+				if (editor != null) {
+					editor.Close ();
+					editor = null;
+				} else {
+					editor = new FSpot.Editors.Tilt (this);
+				}
 				break;
 			case Gdk.Key.equal:
 			case Gdk.Key.plus:
