@@ -86,10 +86,11 @@ namespace FSpot {
 				HBox hhbox = new HBox ();
 				hhbox.PackEnd (GetButton (HideToolbar), false, true, 0);
 				hhbox.PackEnd (GetButton (Info), false, true, 0);
-				hhbox.PackEnd (GetButton (SlideShow), false, true, 0);
 				hhbox.PackStart (GetButton (ExitFullScreen, true), false, false, 0);
 				hhbox.PackStart (Add (new PreviousPictureAction (view.Item)), false, false, 0);
+				hhbox.PackStart (GetButton (SlideShow), false, true, 0);
 				hhbox.PackStart (Add (new NextPictureAction (view.Item)), false, false, 0);
+				//hhbox.PackStart (Add (new AutoColor (view.Item)), false, false, 0);
 				hhbox.PackStart (Add (new RotateLeftAction (view.Item)), false, false, 0);
 				hhbox.PackStart (Add (new RotateRightAction (view.Item)), false, false, 0);
 				hhbox.BorderWidth = 15;
@@ -250,6 +251,7 @@ namespace FSpot {
 				//display = new ImageDisplay (view.Item);
 				display = new TextureDisplay (view.Item);
 				display.AddEvents ((int) (Gdk.EventMask.PointerMotionMask));
+				display.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
 				display.MotionNotifyEvent += HandleViewMotion;
 				notebook.AppendPage (display, null);
 				display.Show ();
