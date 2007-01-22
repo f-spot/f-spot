@@ -65,7 +65,7 @@ namespace FSpot
 			}
 
 			foreach (string s in RemainingArguments)
-				if (s.StartsWith("-") && s != "--uninstalled" && s != "--debug" && s != "--trace" && s != "--profile") {
+				if (s.StartsWith("-") && s != "--uninstalled" && s != "--debug" && s != "--trace" && s != "--profile" && s != "--sync") {
 					Console.WriteLine ("Unknown option {0}", s);
 					return false;
 				}
@@ -107,7 +107,7 @@ public class Driver {
 					
 				program = new Program (Defines.PACKAGE, 
 						       Defines.VERSION, 
-					       Modules.UI, args);
+						       Modules.UI, args);
 				Core core = new Core ();
 				core.ShowSlides (null);
 				program.Run ();
