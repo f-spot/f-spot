@@ -29,7 +29,6 @@ namespace FSpot.Editors {
 
 			if (view != null)
 				view.DoubleBuffered = double_buffer;
-
 		
 			base.SetView (value);
 			
@@ -116,7 +115,7 @@ namespace FSpot.Editors {
 				d.Show ();
 				d.Run ();
 			}
-			Close ();
+			Destroy ();
 		}
 
 		private void HandleValueChanged (object sender, EventArgs args)

@@ -55,12 +55,12 @@ namespace FSpot.Editors {
 			System.Console.WriteLine ("Clicked");
 			TiltAction action = new TiltAction (view.Item, ((Widgets.Tilt)effect).Angle);
 			action.Activate ();
-			Close ();
+			Destroy ();
 		}
 
 		private void HandleCancel (object sender, EventArgs args)
 		{
-			Close ();
+			Destroy ();
 		}
 
 		private void HandleValueChanged (object sender, System.EventArgs args)

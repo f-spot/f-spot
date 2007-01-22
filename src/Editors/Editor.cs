@@ -40,7 +40,7 @@ namespace FSpot.Editors {
 				win.TransientFor = (Gtk.Window) view.Toplevel;
 				win.Add (w);
 				win.ShowAll ();
-				win.DeleteEvent += delegate { Close (); };
+				win.DeleteEvent += delegate { Destroy (); };
 				controls = win;
 #endif
 			}

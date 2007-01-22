@@ -24,8 +24,8 @@ namespace FSpot.Widgets {
 			this.info = info;
 			center.X = info.Bounds.Width / 2;
 			center.Y = info.Bounds.Height / 2;
-			Radius = .5;
 			Amount = 3;
+			Radius = .5;
 		}
 		
 		public Gdk.Point Center {
@@ -37,6 +37,7 @@ namespace FSpot.Widgets {
 			get { return amount; }
 			set { 
 				amount = value; 
+
 				if (blur != null)
 					blur.Dispose ();
 
@@ -64,25 +65,31 @@ namespace FSpot.Widgets {
 			double scale = Math.Max (200 / (double) source.Bounds.Width,
 						 200 / (double) source.Bounds.Height);
 
+			Gdk.Rectangle small = new Gdk.Rectangle (0, 0,
+								(int) Math.Round (source.Bounds.Width * scale),
+								(int) Math.Round (source.Bounds.Height * scale));
+			
 			MemorySurface image = new MemorySurface (Format.Argb32, 
-								 (int) Math.Round (source.Bounds.Width * scale),
-								 (int) Math.Round (source.Bounds.Height * scale));
+								 small.Width,
+								 small.Height);
+			
 			Context ctx = new Context (image);
+			ctx.Matrix = source.Fill (small);
 			ctx.Source = new SurfacePattern (source.Surface);
-			ctx.Matrix = source.Fit (source.Bounds);
+			Console.WriteLine (small);
 			ctx.Paint ();
+			((IDisposable)ctx).Dispose ();
 			Gdk.Pixbuf normal = CairoUtils.CreatePixbuf (image);
 			Gdk.Pixbuf blur = PixbufUtils.Blur (normal, 3);
 			ImageInfo overlay = new ImageInfo (blur);
 			blur.Dispose ();
 			normal.Dispose ();
-			
 			return overlay;
 		}
 		
 		private Pattern CreateMask ()
 		{
-			double max = Math.Max (blur.Bounds.Width, blur.Bounds.Height) * .5;
+			double max = Math.Max (blur.Bounds.Width, blur.Bounds.Height) * .25;
 			double scale = blur.Bounds.Width / (double) info.Bounds.Width;
 
 			RadialGradient circle = new RadialGradient (center.X * scale, center.Y * scale, radius * max,
@@ -99,19 +106,19 @@ namespace FSpot.Widgets {
 			ctx.Operator = Operator.Source;
 			ctx.Matrix = m;
 			ctx.Source = p;
-			//ctx.Source = new SolidPattern (0.0, 0.0, 0.0, 0.0);
 			ctx.Paint ();
-			
+
 			SurfacePattern overlay = new SurfacePattern (blur.Surface);
+			ctx.Matrix = new Matrix ();
 			ctx.Matrix = blur.Fill (allocation);
 			ctx.Operator = Operator.Over;
 			ctx.Source = overlay;
-			Console.WriteLine ("did we make it here");
 			
 			// FIXME ouch this is ugly.
 			if (mask == null)
 				Radius = Radius;
 
+			//ctx.Paint ();
 			ctx.Mask (mask);
 			overlay.Destroy ();
 			p.Destroy ();

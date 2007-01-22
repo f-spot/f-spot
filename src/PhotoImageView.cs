@@ -122,7 +122,6 @@ namespace FSpot {
 			Glx.Destroy ();
 		}
 
-
 		// Display.
 		private void HandlePixbufAreaUpdated (object sender, AreaUpdatedArgs args)
 		{
