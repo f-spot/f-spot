@@ -328,8 +328,8 @@ namespace FSpot.Tiff {
 
 		public override string ToString ()
 		{
-			if (Numerator == 0)
-				return "0";
+			if (Numerator == 0 || Denominator == 0)
+				return String.Format ("{0}/{1}", Numerator, Denominator);
 			else if (Numerator % Denominator == 0)
 				return String.Format ("{0}", Numerator / Denominator);
 			else if (Denominator % Numerator == 0)
