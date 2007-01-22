@@ -218,7 +218,8 @@ namespace FSpot {
 				Gl.glColor4f (1, 1, 1, 1);
 				Gl.glVertex3f (0, 0, .5f);
 				Gl.glPopMatrix ();
-
+				
+				Gl.glEnd ();
 
 			}
 		}
