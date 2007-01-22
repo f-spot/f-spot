@@ -525,13 +525,13 @@ public class PhotoView : EventBox {
 		sepia_button.Clicked += HandleSepiaButtonClicked;
 
 		ItemAction straighten = new TiltEditorAction (photo_view);
-		toolbar_hbox.PackStart (straighten.GetToolButton (true));
+		toolbar_hbox.PackStart (straighten.GetToolButton (false), false, true, 0);
 		
 		ItemAction softfocus = new SoftFocusEditorAction (photo_view);
-		toolbar_hbox.PackStart (softfocus.GetToolButton (true));
+		toolbar_hbox.PackStart (softfocus.GetToolButton (false), false, true, 0);
 
 		ItemAction autocolor = new AutoColor (photo_view.Item);
-		toolbar_hbox.PackStart (autocolor.GetToolButton (false));
+		toolbar_hbox.PackStart (autocolor.GetToolButton (false), false, true, 0);
 
 		/* Spacer Label */
 		toolbar_hbox.PackStart (new Label (""), true, true, 0);

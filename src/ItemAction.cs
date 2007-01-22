@@ -17,13 +17,15 @@ using System;
 namespace FSpot {
 	public abstract class ItemAction : Action {
 		protected BrowsablePointer item;
-		
+		static Gtk.Tooltips tips = new Gtk.Tooltips ();
+
 		public ItemAction (BrowsablePointer pointer,
 				   string name,
 				   string label,
 				   string tooltip,
 				   string stock_id) : base (name, label, tooltip, stock_id)
 		{
+			tips.Enable ();
 			item = pointer;
 			item.Changed += ItemChanged;
 		}
@@ -63,6 +65,7 @@ namespace FSpot {
 			w.ShowAll ();
 
 			action.ConnectProxy (button);
+			tips.SetTip (button, action.Tooltip, "");
 			return button;
 		}
 	}
@@ -267,7 +270,7 @@ namespace FSpot {
 			: base (p, "Color", 
 				Catalog.GetString ("Auto Color"),
 				Catalog.GetString ("Automatically adjust the colors"),
-				"f-spot-sepia")
+				Stock.SelectColor)
 		{
 		}
 
@@ -336,7 +339,7 @@ namespace FSpot {
 				"TiltEdit", 
 				Catalog.GetString ("Straighten"),
 				Catalog.GetString ("Adjust the angle of the image to straighten the horizon"),
-				"f-spot-straighten")
+				Stock.Execute)
 		{
 		}
 
@@ -352,7 +355,7 @@ namespace FSpot {
 				"SoftFocusEdit",
 				Catalog.GetString ("Soft Focus"),
 				Catalog.GetString ("Create a soft focus visual effect"),
-				"f-spot-softfocus")
+				Stock.Convert)
 		{
 		}
 
