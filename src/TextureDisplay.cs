@@ -241,6 +241,12 @@ namespace FSpot {
 		{
 			glx.MakeCurrent (GdkWindow);
 
+			Gdk.Color c = Style.Background (State);
+			Gl.glClearColor (c.Red / (float) ushort.MaxValue,
+					 c.Blue / (float) ushort.MaxValue, 
+					 c.Green / (float) ushort.MaxValue, 
+					 1.0f);
+
 			Gl.glShadeModel(Gl.GL_FLAT);
 			
 			//Gl.glMatrixMode(Gl.GL_MODELVIEW);
