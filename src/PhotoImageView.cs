@@ -458,7 +458,7 @@ namespace FSpot {
 					editor = null;
 				}
 					
-				editor = new FSpot.Editors.TiltEditor (this);
+				editor = new FSpot.Editors.Tilt (this);
 				break;
 			case Gdk.Key.equal:
 			case Gdk.Key.plus:
