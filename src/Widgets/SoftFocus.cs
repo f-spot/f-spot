@@ -13,15 +13,19 @@ namespace FSpot.Widgets {
 	public class SoftFocus : IEffect {
 		ImageInfo info;
 		double radius;
-		double amount = 8;
+		double amount;
 		Gdk.Point center;
+		ImageInfo blur;
+		Pattern mask;
+		bool double_buffer;
 
 		public SoftFocus (ImageInfo info)
 		{
 			this.info = info;
 			center.X = info.Bounds.Width / 2;
 			center.Y = info.Bounds.Height / 2;
-			radius = Math.Min (info.Bounds.Width, info.Bounds.Height) / 4.0;
+			Radius = Math.Min (info.Bounds.Width, info.Bounds.Height) / 4.0;
+			Amount = 3;
 		}
 		
 		public Gdk.Point Center {
@@ -31,25 +35,37 @@ namespace FSpot.Widgets {
 		
 		public double Amount {
 			get { return amount; }
-			set { amount = value; }
+			set { 
+				amount = value; 
+				if (blur != null)
+					blur.Dispose ();
+
+				blur = CreateBlur (info);
+			}
 		}
 		
 		public double Radius {
 			get { return radius; }
-			set { radius = value; }
+			set { 
+				radius = value; 
+				if (mask != null)
+					mask.Destroy ();
+
+				mask = CreateMask ();
+			}
 		}
-		
+
 		private ImageInfo CreateBlur (ImageInfo source)
 		{
-			ImageSurface image = new ImageSurface (Format.Argb32, 
-							       source.Bounds.Width,
-							       source.Bounds.Height);
+			MemorySurface image = new MemorySurface (Format.Argb32, 
+								source.Bounds.Width,
+								source.Bounds.Height);
 			Context ctx = new Context (image);
 			ctx.Source = new SurfacePattern (source.Surface);
-			ctx.Matrix = source.Fill (source.Bounds);
+			ctx.Matrix = source.Fit (source.Bounds);
 			ctx.Paint ();
 			Gdk.Pixbuf normal = CairoUtils.CreatePixbuf (image);
-			Gdk.Pixbuf blur = PixbufUtils.Blur (normal, amount);
+			Gdk.Pixbuf blur = PixbufUtils.Blur (normal, 3);
 			ImageInfo overlay = new ImageInfo (blur);
 			blur.Dispose ();
 			normal.Dispose ();
@@ -75,24 +91,26 @@ namespace FSpot.Widgets {
 			//ctx.Source = new SolidPattern (0.0, 0.0, 0.0, 0.0);
 			ctx.Paint ();
 			
-			Console.WriteLine ("we started here");
-			ImageInfo blur = CreateBlur (info);
 			SurfacePattern overlay = new SurfacePattern (blur.Surface);
 			ctx.Matrix = blur.Fill (allocation);
 			ctx.Operator = Operator.Over;
 			ctx.Source = overlay;
 			Console.WriteLine ("did we make it here");
 			
-			ctx.Mask (CreateMask ());
-			//ctx.Paint ();
-			blur.Dispose ();
-			//circle.Dispose ();
+
+			ctx.Mask (mask);
+			overlay.Destroy ();
 			p.Destroy ();
 			return true;
 		}
 		
 		public void Dispose ()
 		{
+			if (mask != null)
+				mask.Destroy ();
+
+			if (blur != null)
+				blur.Dispose ();
 		}
 	}
 }

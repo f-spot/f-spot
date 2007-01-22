@@ -41,7 +41,7 @@ namespace FSpot.Editors {
 			apply.Clicked += HandleApply;
 			actions.PackStart (apply);
 			Button cancel = new Button ("Cancel");
-			cancel.Activated += HandleCancel;
+			cancel.Clicked += HandleCancel;
 			actions.PackStart (cancel);
 			box.PackStart (actions);
 			return box;

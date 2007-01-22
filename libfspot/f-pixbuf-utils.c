@@ -308,7 +308,7 @@ f_pixbuf_from_cairo_surface (cairo_surface_t *source)
   static const cairo_user_data_key_t key;
   int j;
 
-  format = cairo_image_surface_get_format (source);
+  format = f_image_surface_get_format (source);
   surface = cairo_image_surface_create_for_data (gdk_pixels,
 						 format,
 						 width, height, gdk_rowstride);

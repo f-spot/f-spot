@@ -63,6 +63,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/DirectoryAdaptor.cs		\
 	$(srcdir)/DirectoryCollection.cs	\
 	$(srcdir)/Editors/Editor.cs		\
+	$(srcdir)/Editors/SoftFocus.cs		\
 	$(srcdir)/Editors/Tilt.cs		\
 	$(srcdir)/ExceptionDialog.cs		\
 	$(srcdir)/ExportStore.cs		\

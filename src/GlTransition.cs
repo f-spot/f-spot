@@ -39,34 +39,33 @@ namespace FSpot {
 					return;
 				}
 
-				next.Bind ();
-				previous.Bind ();
-
 				Gl.glViewport (0, 0, viewport.Width, viewport.Height);
 				Gl.glMatrixMode (Gl.GL_PROJECTION);
 				Gl.glLoadIdentity ();
 				Glu.gluOrtho2D (0, viewport.Width, 0, viewport.Height);
 				Gl.glMatrixMode (Gl.GL_MODELVIEW);
 				Gl.glLoadIdentity ();
-
+				
+				Gl.glDisable (Gl.GL_TEXTURE_RECTANGLE_ARB);
 				Gl.glActiveTextureARB (Gl.GL_TEXTURE0);
 				Gl.glEnable (Gl.GL_TEXTURE_RECTANGLE_ARB);
 
+				//Gl.glTexEnvi(Gl.GL_TEXTURE_ENV, Gl.GL_TEXTURE_ENV_MODE, Gl.GL_REPLACE);
 				next.Bind ();
-				Gl.glTexEnvi(Gl.GL_TEXTURE_ENV, Gl.GL_TEXTURE_ENV_MODE, Gl.GL_REPLACE);
 				Fit (viewport, next);
    
 				Gl.glActiveTextureARB (Gl.GL_TEXTURE1);
+				//Gl.glDisable (Gl.GL_TEXTURE_RECTANGLE_ARB);
 				Gl.glEnable (Gl.GL_TEXTURE_RECTANGLE_ARB);
 
 				previous.Bind ();
 				Fit (viewport, previous);
-				Gl.glTexEnvfv (Gl.GL_TEXTURE_ENV, 
-					       Gl.GL_TEXTURE_ENV_COLOR, 
-					       color);
 
 				Gl.glTexEnvi (Gl.GL_TEXTURE_ENV, Gl.GL_TEXTURE_ENV_MODE, Gl.GL_COMBINE);
 				Gl.glTexEnvf (Gl.GL_TEXTURE_ENV, Gl.GL_COMBINE_RGB, Gl.GL_INTERPOLATE);
+				Gl.glTexEnvfv (Gl.GL_TEXTURE_ENV, 
+					       Gl.GL_TEXTURE_ENV_COLOR, 
+					       color);
 
 				Gl.glMatrixMode (Gl.GL_MODELVIEW);
 				
@@ -113,7 +112,6 @@ namespace FSpot {
 
 				Gl.glMatrixMode (Gl.GL_MODELVIEW);
 
-#if true				
 				float scale  = 1f/viewport.Width;
 				Gl.glScalef (scale, scale, scale);
 					  
@@ -127,34 +125,6 @@ namespace FSpot {
 				RenderPlane (viewport, previous);
 				
 				Gl.glPopMatrix ();
-#else
-				next.Bind ();
-				Fit (new Gdk.Rectangle (0, 0, 1, 1), next);
-				Gl.glBegin (Gl.GL_QUADS);
-				Gl.glTexCoord2f (0, 0);
-				Gl.glVertex3f (-1, 1, 1);
-				Gl.glTexCoord2f (next.Width, 0);
-				Gl.glVertex3f (1, 1, 1);
-				Gl.glTexCoord2f (next.Width, next.Height);
-				Gl.glVertex3f (1, -1, 1);
-				Gl.glTexCoord2f (0, next.Height);
-				Gl.glVertex3f (-1, -1, 1);
-				Gl.glEnd ();
-
-				previous.Bind ();
-				Fit (new Gdk.Rectangle (0, 0, 1, 1), previous);
-				Gl.glBegin (Gl.GL_QUADS);
-
-				Gl.glTexCoord2f (0, 0);
-				Gl.glVertex3f (1, 1, 1);
-				Gl.glTexCoord2f (previous.Width, 0);
-				Gl.glVertex3f (1, 1, -1);
-				Gl.glTexCoord2f (previous.Width, previous.Height);
-				Gl.glVertex3f (1, -1, -1);
-				Gl.glTexCoord2f (0, previous.Height);
-				Gl.glVertex3f (1, -1, 1);
-				Gl.glEnd ();
-#endif
 			}
 		}
 
@@ -189,7 +159,7 @@ namespace FSpot {
 				Gl.glLoadIdentity ();
 				Glu.gluOrtho2D (0, viewport.Width, 0, viewport.Height);
 				Gl.glMatrixMode (Gl.GL_MODELVIEW);
-				Gl.glLoadIdentity ();
+// 				Gl.glLoadIdentity ();
 
 				Gl.glPushMatrix ();				
 				Gl.glTranslatef (- viewport.Width * percent, 0, 0);
@@ -206,6 +176,50 @@ namespace FSpot {
 		{
 			public override void Draw (Gdk.Rectangle viewport, Texture previous, Texture next)
 			{
+				Gl.glViewport (0, 0, viewport.Width, viewport.Height);
+				Gl.glMatrixMode (Gl.GL_PROJECTION);
+				Gl.glLoadIdentity ();
+				Glu.gluOrtho2D (0, viewport.Width, 0, viewport.Height);
+				Gl.glMatrixMode (Gl.GL_MODELVIEW);
+				Gl.glLoadIdentity ();
+
+				//Gl.glPushMatrix ();
+				//RenderPlane (viewport, next);				
+				//Gl.glPopMatrix ();
+
+				Gl.glPushMatrix ();				
+				//RenderPlane (viewport, next);
+				//previous.Bind ();
+				//Fit (viewport, previous);
+
+				//Gl.glTexEnvi (Gl.GL_TEXTURE_ENV, Gl.GL_TEXTURE_ENV_MODE, Gl.GL_COMBINE);
+				//Gl.glTexEnvf (Gl.GL_TEXTURE_ENV, Gl.GL_COMBINE_RGB, Gl.GL_INTERPOLATE);
+				//float [] color = new float [] { 0, 0, 0, percent};
+			
+				//Gl.glTexEnvfv (Gl.GL_TEXTURE_ENV, 
+				//	       Gl.GL_TEXTURE_ENV_COLOR, 
+				//	       color);
+
+				Gl.glMatrixMode (Gl.GL_MODELVIEW);
+				Gl.glDisable (Gl.GL_TEXTURE_RECTANGLE_ARB);
+
+				Gl.glBegin (Gl.GL_QUADS);
+				Gl.glShadeModel (Gl.GL_SMOOTH);
+
+				//Gl.glTexCoord2f (0, 0);
+				Gl.glColor4f (1, 1, 1, 0);
+				Gl.glVertex3f (0, viewport.Height, .5f);
+				//Gl.glTexCoord2f (previous.Width, 0);
+				Gl.glColor4f (1, 1, 1, .5f);
+				Gl.glVertex3f (viewport.Width, viewport.Height, .5f);
+				//Gl.glTexCoord2f (previous.Width, previous.Height);
+				Gl.glColor4f (1, 0, 1, .5f);
+				Gl.glVertex3f (viewport.Width, 0, .5f);
+				//Gl.glTexCoord2f (0, previous.Height);
+				Gl.glColor4f (1, 1, 1, 1);
+				Gl.glVertex3f (0, 0, .5f);
+				Gl.glPopMatrix ();
+
 
 			}
 		}
@@ -280,6 +294,7 @@ namespace FSpot {
 			Gl.glMatrixMode (Gl.GL_MODELVIEW);
 			
 			Gl.glBegin (Gl.GL_QUADS);
+
 			Gl.glTexCoord2f (0, 0);
 			Gl.glVertex3f (0, viewport.Height, 0);
 			Gl.glTexCoord2f (previous.Width, 0);

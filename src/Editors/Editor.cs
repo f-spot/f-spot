@@ -40,6 +40,7 @@ namespace FSpot.Editors {
 				win.TransientFor = (Gtk.Window) view.Toplevel;
 				win.Add (w);
 				win.ShowAll ();
+				win.DeleteEvent += delegate { Close (); };
 				controls = win;
 #endif
 			}
@@ -81,10 +82,14 @@ namespace FSpot.Editors {
 
 		protected override void SetView (PhotoImageView value)
 		{
-			if (view != null)
+			if (view != null) {
 				view.ExposeEvent -= ExposeEvent;
-
+				view.QueueDraw ();
+			}
 			base.SetView (value);
+
+			if (value == null)
+				return;
 
 			view.ExposeEvent += ExposeEvent;
 			view.QueueDraw ();
@@ -94,9 +99,41 @@ namespace FSpot.Editors {
 		public virtual void ExposeEvent (object sender, ExposeEventArgs args)
 		{
 			view.Glx.MakeCurrent (view.GdkWindow);
+			Gl.glEnable (Gl.GL_CONVOLUTION_2D);
+			Gdk.Color c = view.Style.Background (view.State);
+			Gl.glClearColor (c.Red / (float) ushort.MaxValue,
+					 c.Blue / (float) ushort.MaxValue, 
+					 c.Green / (float) ushort.MaxValue, 
+					 1.0f);
 
-			if (texture == null)
+			if (texture == null) {
+				float [] kernel = new float [] { .25f, .5f, .25f,
+								 .5f, 1f, .5f,
+								 .25f, .5f, .25f};
+
+				/*				
+				bool supported = GlExtensionLoader.LoadExtension ("GL_ARB_imaging");
+				if (!supported) {
+					System.Console.WriteLine ("GL_ARB_imaging not supported");
+					return;
+				}	
+				*/
+				GlExtensionLoader.LoadAllExtensions ();
+				
+				Gl.glConvolutionParameteri (Gl.GL_CONVOLUTION_2D,
+							    Gl.GL_CONVOLUTION_BORDER_MODE,
+							    Gl.GL_REPLICATE_BORDER);
+
+				Gl.glConvolutionFilter2D (Gl.GL_CONVOLUTION_2D,
+							  Gl.GL_INTENSITY, 
+							  3, 
+							  3,
+							  Gl.GL_INTENSITY,
+							  Gl.GL_FLOAT, 
+							  kernel);
+
 				texture = new Texture (view.CompletePixbuf ());
+			}
 
 			Gl.glShadeModel(Gl.GL_FLAT);
 
@@ -114,6 +151,7 @@ namespace FSpot.Editors {
 			
 			view.Glx.SwapBuffers (view.GdkWindow);
 			args.RetVal = true;
+			Gl.glDisable (Gl.GL_CONVOLUTION_2D);
 		}
 
 		private void HandleValueChanged (object sender, System.EventArgs args)
