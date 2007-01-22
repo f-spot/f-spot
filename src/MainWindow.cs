@@ -1569,7 +1569,7 @@ public class MainWindow {
 
                 new About ("F-Spot", 
 			   FSpot.Defines.VERSION, 
-			   Catalog.GetString ("Copyright \x00a9 2003-2006 Novell Inc."),
+			   Catalog.GetString ("Copyright \x00a9 2003-2007 Novell Inc."),
                            null, authors, new string [0], translators, 
 			   PixbufUtils.LoadFromAssembly("f-spot-logo-tango.svg")).Show();
 	}
