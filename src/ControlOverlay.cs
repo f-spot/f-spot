@@ -81,6 +81,28 @@ namespace FSpot {
 
 		}
 
+		public ControlOverlay (Gtk.Widget host) : base (WindowType.Popup)
+		{
+			this.host = host;
+			Decorated = false;
+			DestroyWithParent = true;
+			Name = "FullscreenContainer";
+			AllowGrow = true;
+			//AllowShrink = true;
+			KeepAbove = true;
+			
+			host_toplevel = (Gtk.Window) host.Toplevel;
+			
+			TransientFor = host_toplevel;
+
+			host_toplevel.ConfigureEvent += HandleHostConfigure;
+			host_toplevel.SizeAllocated += HandleHostSizeAllocated;
+			
+			AddEvents ((int) (Gdk.EventMask.PointerMotionMask));
+			hide = new Delay (2000, HideControls);
+			dismiss = new Delay (2000, delegate { /* do nothing */ return false; });
+		}
+
 		protected override void OnDestroyed ()
 		{
 			hide.Stop ();
@@ -109,28 +131,6 @@ namespace FSpot {
 			return false;
 		}
 		
-		public ControlOverlay (Gtk.Widget host) : base (WindowType.Popup)
-		{
-			this.host = host;
-			Decorated = false;
-			DestroyWithParent = true;
-			Name = "FullscreenContainer";
-			AllowGrow = true;
-			//AllowShrink = true;
-			KeepAbove = true;
-			
-			host_toplevel = (Gtk.Window) host.Toplevel;
-			
-			TransientFor = host_toplevel;
-
-			host_toplevel.ConfigureEvent += HandleHostConfigure;
-			host_toplevel.SizeAllocated += HandleHostSizeAllocated;
-			
-			AddEvents ((int) (Gdk.EventMask.PointerMotionMask));
-			hide = new Delay (2000, HideControls);
-			dismiss = new Delay (2000, delegate { /* do nothing */ return false; });
-		}
-
 		protected virtual void ShapeSurface (Context cr, Cairo.Color color)
 		{
 			cr.Operator = Operator.Source;
