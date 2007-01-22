@@ -33,6 +33,38 @@ namespace FSpot {
 		{
 			Sensitive = item.IsValid;
 		}
+
+		public Widget GetToolButton (bool label)
+		{
+			return GetButton (this, label);
+		}
+
+		public static Widget GetButton (Action action, bool label)
+		{
+			Widget w = action.CreateIcon (IconSize.Button);
+			if (label) {
+				HBox box = new HBox ();
+				box.PackStart (w, false, false, 0);
+				Label l = new Label ();
+				l.Markup = "<small>" + action.Label + "</small>";
+				box.PackStart (l);
+				w = box;
+			}
+			Button button;
+			if (action is ToggleAction) {
+				ToggleButton toggle = new ToggleButton ();
+				toggle.Active = ((ToggleAction)action).Active;
+				button = toggle;
+			} else {
+				button = new Button ();
+			}
+			button.Relief = ReliefStyle.None;
+			button.Add (w);
+			w.ShowAll ();
+
+			action.ConnectProxy (button);
+			return button;
+		}
 	}
 
 	public class RotateAction : ItemAction {
@@ -159,7 +191,7 @@ namespace FSpot {
 					return item.Current.DefaultVersionUri;
 			}
 		}
-		
+
 		public void Commit ()
 		{
 			PhotoQuery q = item.Collection as PhotoQuery;
@@ -263,7 +295,7 @@ namespace FSpot {
 	}
 
 	public class ViewAction : ItemAction {
-		PhotoImageView view;
+		protected PhotoImageView view;
 
  		public ViewAction (PhotoImageView view,
 				   string name,
@@ -271,8 +303,62 @@ namespace FSpot {
 				   string tooltip,
 				   string stock_id) : base (view.Item, name, label, tooltip, stock_id)
 		{
-			
+			this.view = view;
+			view.Destroyed += HandleDestroyed;
+		}
+
+		private void HandleDestroyed (object sender, EventArgs args)
+		{
+			view = null;
+			Sensitive = false;
 		}
 	}
 
+	public class ViewEditorAction : ViewAction {
+ 		public ViewEditorAction (PhotoImageView view,
+					 string name,
+					 string label,
+					 string tooltip,
+					 string stock_id) : base (view, name, label, tooltip, stock_id)
+		{
+		}
+
+		protected override void ItemChanged (BrowsablePointer p,
+						     BrowsablePointerChangedArgs args)
+		{
+			Sensitive = item.IsValid && view.Editor == null;
+		}
+	}
+
+	public class TiltEditorAction : ViewEditorAction {
+		public TiltEditorAction (PhotoImageView view)
+			: base (view, 
+				"TiltEdit", 
+				Catalog.GetString ("Straighten"),
+				Catalog.GetString ("Adjust the angle of the image to straighten the horizon"),
+				"f-spot-straighten")
+		{
+		}
+
+		protected override void OnActivated ()
+		{
+			view.Editor = new Editors.Tilt (view);
+		}
+	}
+
+	public class SoftFocusEditorAction : ViewEditorAction {
+		public SoftFocusEditorAction (PhotoImageView view)
+			: base (view,
+				"SoftFocusEdit",
+				Catalog.GetString ("Soft Focus"),
+				Catalog.GetString ("Create a soft focus visual effect"),
+				"f-spot-softfocus")
+		{
+		}
+
+		protected override void OnActivated ()
+		{
+			view.Editor = new Editors.SoftFocus (view);
+		}
+	}
 }

@@ -1,4 +1,5 @@
 using System;
+using FSpot.Editors;
 
 namespace FSpot {
 	public enum ProgressType {
@@ -17,7 +18,7 @@ namespace FSpot {
 		ProgressType load_async = ProgressType.Full;
 		bool progressive_display;
 		public GdkGlx.Context Glx;
-		protected Editors.Editor editor;
+		private Editor editor;
 
 		public PhotoImageView (IBrowsableCollection query)
 		{
@@ -68,6 +69,16 @@ namespace FSpot {
 				query.ItemsChanged += HandleQueryItemsChanged;
 			}
 #endif
+		}
+
+		public Editor Editor {
+			get { return editor; }
+			set {
+				if (editor != null)
+					editor.Close ();
+				
+				editor = value;
+			}
 		}
 
 		public Gdk.Pixbuf CompletePixbuf ()
@@ -458,7 +469,7 @@ namespace FSpot {
 					editor = null;
 				}
 					
-				editor = new FSpot.Editors.Tilt (this);
+				Editor = new FSpot.Editors.SoftFocus (this);
 				break;
 			case Gdk.Key.equal:
 			case Gdk.Key.plus:
