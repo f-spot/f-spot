@@ -24,7 +24,7 @@ namespace FSpot.Widgets {
 			this.info = info;
 			center.X = info.Bounds.Width / 2;
 			center.Y = info.Bounds.Height / 2;
-			Radius = Math.Min (info.Bounds.Width, info.Bounds.Height) / 4.0;
+			Radius = .5;
 			Amount = 3;
 		}
 		
@@ -48,6 +48,10 @@ namespace FSpot.Widgets {
 			get { return radius; }
 			set { 
 				radius = value; 
+
+				if (blur == null)
+					return;
+				
 				if (mask != null)
 					mask.Destroy ();
 
@@ -57,9 +61,12 @@ namespace FSpot.Widgets {
 
 		private ImageInfo CreateBlur (ImageInfo source)
 		{
+			double scale = Math.Max (200 / (double) source.Bounds.Width,
+						 200 / (double) source.Bounds.Height);
+
 			MemorySurface image = new MemorySurface (Format.Argb32, 
-								source.Bounds.Width,
-								source.Bounds.Height);
+								 (int) Math.Round (source.Bounds.Width * scale),
+								 (int) Math.Round (source.Bounds.Height * scale));
 			Context ctx = new Context (image);
 			ctx.Source = new SurfacePattern (source.Surface);
 			ctx.Matrix = source.Fit (source.Bounds);
@@ -69,13 +76,17 @@ namespace FSpot.Widgets {
 			ImageInfo overlay = new ImageInfo (blur);
 			blur.Dispose ();
 			normal.Dispose ();
+			
 			return overlay;
 		}
 		
 		private Pattern CreateMask ()
 		{
-			RadialGradient circle = new RadialGradient (center.X, center.Y, radius *.7,
-								    center.X, center.Y, radius);
+			double max = Math.Max (blur.Bounds.Width, blur.Bounds.Height) * .5;
+			double scale = blur.Bounds.Width / (double) info.Bounds.Width;
+
+			RadialGradient circle = new RadialGradient (center.X * scale, center.Y * scale, radius * max,
+								    center.X * scale, center.Y * scale, radius * max * .7);
 			circle.AddColorStop (0, new Cairo.Color (0.0, 0.0, 0.0, 0.0));
 			circle.AddColorStop (1.0, new Cairo.Color (1.0, 1.0, 1.0, 1.0));
 			return circle;
@@ -97,6 +108,9 @@ namespace FSpot.Widgets {
 			ctx.Source = overlay;
 			Console.WriteLine ("did we make it here");
 			
+			// FIXME ouch this is ugly.
+			if (mask == null)
+				Radius = Radius;
 
 			ctx.Mask (mask);
 			overlay.Destroy ();

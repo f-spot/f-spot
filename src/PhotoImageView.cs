@@ -74,10 +74,13 @@ namespace FSpot {
 		public Editor Editor {
 			get { return editor; }
 			set {
-				if (editor != null)
-					editor.Close ();
-				
+				Editor tmp = editor;
+
 				editor = value;
+
+				if (tmp != null)
+					tmp.Destroy ();
+				
 			}
 		}
 
@@ -464,11 +467,6 @@ namespace FSpot {
 				loupe.Show ();
 				break;
 			case Gdk.Key.e:
-				if (editor != null) {
-					editor.Close ();
-					editor = null;
-				}
-					
 				Editor = new FSpot.Editors.SoftFocus (this);
 				break;
 			case Gdk.Key.equal:

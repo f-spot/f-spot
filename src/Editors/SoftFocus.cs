@@ -45,8 +45,10 @@ namespace FSpot.Editors {
 		protected override Widget CreateControls ()
 		{
 			VBox box = new VBox ();
-			scale = new HScale (0, 45, 1);
-			scale.Value = 0.0;
+			box.Spacing = 12;
+			box.BorderWidth = 12;
+			scale = new HScale (0, 1, .01);
+			scale.Value = 0.5;
 			scale.ValueChanged += HandleValueChanged;
 			scale.WidthRequest = 250;
 			box.PackStart (scale);

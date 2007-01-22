@@ -52,8 +52,17 @@ namespace FSpot.Editors {
 			return null;
 		}
 
-		public virtual void Close ()
+		public void Destroy ()
 		{
+			if (view != null && view.Editor == this)
+				view.Editor = null;
+			else
+				Close ();
+		}
+
+		protected virtual void Close ()
+		{
+			
 			if (controls != null)
 				controls.Destroy ();
 
@@ -161,7 +170,7 @@ namespace FSpot.Editors {
 			view.QueueDraw ();
 		}
 
-		public override void Close ()
+		protected override void Close ()
 		{
 			if (texture != null && view != null && view.Glx != null && view.GdkWindow != null) {
 				view.Glx.MakeCurrent (view.GdkWindow);
@@ -206,7 +215,7 @@ namespace FSpot.Editors {
 			args.RetVal = true;
 		}
 
-		public override void Close ()
+		protected override void Close ()
 		{
 			base.Close ();
 
