@@ -11,6 +11,7 @@
  */
 using Gtk;
 using System;
+using Cairo;
 
 namespace FSpot.Editors {
 	public class SoftFocus : EffectEditor {
@@ -68,7 +69,51 @@ namespace FSpot.Editors {
 
 		private void HandleApply (object sender, EventArgs args)
 		{
-			Console.WriteLine ("wake up man, this is never going to work ;)");
+			BrowsablePointer item = view.Item;
+			EditTarget target = new EditTarget (item);
+			try { 
+				ImageFile img = ImageFile.Create (item.Current.DefaultVersionUri);
+
+				Cairo.Format format = view.CompletePixbuf ().HasAlpha ? Cairo.Format.Argb32 : Cairo.Format.Rgb24;
+
+				MemorySurface dest = new MemorySurface (format,
+									info.Bounds.Width,
+									info.Bounds.Height);
+
+				Context ctx = new Context (dest);
+				effect.OnExpose (ctx, info.Bounds);
+				((IDisposable)ctx).Dispose ();
+
+				string tmp = ImageFile.TempPath (item.Current.DefaultVersionUri.LocalPath);
+				using (Gdk.Pixbuf output = Widgets.CairoUtils.CreatePixbuf (dest)) {
+					using (System.IO.Stream stream = System.IO.File.OpenWrite (tmp)) {
+						img.Save (output, stream);
+						
+					}
+				}
+
+				// FIXME Not this again. I need to imlplement a real version of the transfer
+				// function that shows progress in the main window and allows for all the
+				// goodies we'll need.
+				Gnome.Vfs.Result result = Gnome.Vfs.Result.Ok;
+				result = Gnome.Vfs.Xfer.XferUri (new Gnome.Vfs.Uri (UriList.PathToFileUri (tmp).ToString ()),
+								 new Gnome.Vfs.Uri (target.Uri.ToString ()),
+								 Gnome.Vfs.XferOptions.Default,
+								 Gnome.Vfs.XferErrorMode.Abort, 
+								 Gnome.Vfs.XferOverwriteMode.Replace, 
+								 delegate {
+									 System.Console.Write (".");
+									 return 1;
+								 });
+
+				target.Commit ();
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e);
+				target.Delete ();
+				Dialog d = new EditExceptionDialog ((Gtk.Window) view.Toplevel, e, view.Item.Current);
+				d.Show ();
+				d.Run ();
+			}
 			Close ();
 		}
 

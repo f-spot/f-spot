@@ -111,14 +111,15 @@ namespace FSpot.Editors {
 								 .5f, 1f, .5f,
 								 .25f, .5f, .25f};
 
-				/*				
+#if false
 				bool supported = GlExtensionLoader.LoadExtension ("GL_ARB_imaging");
 				if (!supported) {
 					System.Console.WriteLine ("GL_ARB_imaging not supported");
 					return;
 				}	
-				*/
+#else
 				GlExtensionLoader.LoadAllExtensions ();
+#endif
 				
 				Gl.glConvolutionParameteri (Gl.GL_CONVOLUTION_2D,
 							    Gl.GL_CONVOLUTION_BORDER_MODE,
