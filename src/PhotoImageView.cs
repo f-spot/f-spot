@@ -27,10 +27,11 @@ namespace FSpot {
 			loader.Done += HandleDone;
 
 			Accelerometer.OrientationChanged += HandleOrientationChanged;
+			HandleRealized (null, null);
 
 			this.SizeAllocated += HandleSizeAllocated;
 			this.KeyPressEvent += HandleKeyPressEvent;
-			this.Realized += HandleRealized;
+			//this.Realized += HandleRealized;
 			this.Unrealized += HandleUnrealized;
 			this.ScrollEvent += HandleScrollEvent;
 			this.item = new BrowsablePointer (query, -1);
@@ -455,9 +456,9 @@ namespace FSpot {
 				if (editor != null) {
 					editor.Close ();
 					editor = null;
-				} else {
-					editor = new FSpot.Editors.Tilt (this);
 				}
+					
+				editor = new FSpot.Editors.TiltEditor (this);
 				break;
 			case Gdk.Key.equal:
 			case Gdk.Key.plus:
