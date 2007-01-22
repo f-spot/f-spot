@@ -112,6 +112,7 @@ namespace FSpot {
 					   texture_id, 
 					   Gl.glIsTexture (texture_id));
 			*/
+			Gl.glEnable (Gl.GL_TEXTURE_RECTANGLE_ARB);
 			Gl.glBindTexture (Gl.GL_TEXTURE_RECTANGLE_ARB, texture_id);
 		}
 
