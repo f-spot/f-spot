@@ -28,6 +28,7 @@ namespace FSpot {
 			loader.Done += HandleDone;
 
 			Accelerometer.OrientationChanged += HandleOrientationChanged;
+
 			HandleRealized (null, null);
 
 			this.SizeAllocated += HandleSizeAllocated;
@@ -113,13 +114,18 @@ namespace FSpot {
 				(int) GdkGlx.GlxAttribute.None
 			};
 
-			Glx = new GdkGlx.Context (Screen, attr);
-		        Colormap = Glx.GetColormap ();
+			try {
+				Glx = new GdkGlx.Context (Screen, attr);
+				Colormap = Glx.GetColormap ();
+			} catch (GdkGlx.GlxException e) {
+				Console.WriteLine ("Error initializing the OpenGL context:\n {0}", e);
+			}
 		}
 
 		private void HandleUnrealized (object sender, EventArgs args)
 		{
-			Glx.Destroy ();
+			if (Glx != null)
+				Glx.Destroy ();
 		}
 
 		// Display.

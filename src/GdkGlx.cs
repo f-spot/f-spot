@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using FSpot.Widgets;
+using Tao.OpenGl;
 
 namespace GdkGlx {
 	public enum GlxAttribute {
@@ -28,6 +29,10 @@ namespace GdkGlx {
 		public GlxException (string text) : base (text) 
 		{
 		}
+
+		public GlxException (string text, Exception e) : base (text, e)
+		{
+		}
 	}
 
 	public class Context {
@@ -47,7 +52,7 @@ namespace GdkGlx {
 		static extern IntPtr glXChooseVisual (IntPtr display,
 						      int screen,
 						      int [] attr);
-		
+
 		[DllImport("GL")]
 		static extern void glXDestroyContext (IntPtr display, 
 						      HandleRef ctx);
@@ -103,7 +108,6 @@ namespace GdkGlx {
 			*/
 		}
 #endif
-
 		public Gdk.Colormap GetColormap ()
 		{
 			return new Gdk.Colormap (visual, false);
@@ -114,10 +118,21 @@ namespace GdkGlx {
 				int [] attr)
 		{
 			IntPtr xdisplay = GdkUtils.GetXDisplay (screen.Display);
-			IntPtr visual_info = glXChooseVisual (xdisplay,
-							      screen.Number,
-							      attr);
-		       
+			IntPtr visual_info = IntPtr.Zero;
+
+			
+			// Be careful about the first glx call and handle the exception
+			// with more grace.
+			try {
+				visual_info = glXChooseVisual (xdisplay,
+							       screen.Number,
+							       attr);
+			} catch (DllNotFoundException e) {
+				throw new GlxException ("Unable to find OpenGL libarary", e);
+			} catch (EntryPointNotFoundException enf) {
+				throw new GlxException ("Unable to find Glx entry point", enf); 
+			}
+
 			if (visual_info == IntPtr.Zero)
 				throw new GlxException ("Unable to find matching visual");
 			
