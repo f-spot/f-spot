@@ -3,6 +3,9 @@
 <book id="f-spot" lang="C">
 	<bookinfo>
 		<title>The F-Spot Manual</title>
+		<abstract role="description">
+			<para>This is the user manual for F-Spot, a GNOME personal photo manager.</para>
+		</abstract>
 		<subtitle>This is the user manual for F-Spot, a GNOME personal photo manager.</subtitle>
 		<copyright>
 			<year>2007</year>
@@ -27,6 +30,10 @@
 			<author>
 				<firstname>Gabriel</firstname>
 				<surname>Burt</surname>
+			</author>
+			<author role="maintainer">
+				<firstname>Stephane</firstname>
+				<surname>Delcroix</surname>
 			</author>
 		</authorgroup>
 		<!--<include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>-->
@@ -153,7 +160,7 @@
 			<para>
 				F-Spot enables you to organize and enjoy your photos by associating them 
 				with various user-customizable tags. A tag is a merely a label. F-Spot comes 
-				with default tags to get you started &mdash; you are free to change them and 
+				with default tags to get you started; you are free to change them and 
 				add new ones. For example, if you want to create a tag for specific event, you 
 				can create a new tag named after that event under the Events tag.
 			</para>
@@ -184,7 +191,7 @@
 				<listitem>
 					<para>
 						by typing them in (press <keycap>t</keycap> to pop up the tag entry bar, 
-						enter comma-separated tags) &mdash; with tab completion!
+						enter comma-separated tags) - with tab completion!
 					</para>
 				</listitem>
 			</itemizedlist>
@@ -266,6 +273,7 @@
 				any time or by pressing the button in the toolbar.
 			</para>
 			<figure>
+				<title>FullScreen</title>
 				<mediaobject>
 					<imageobject>
 						<imagedata fileref="figures/f-spot-fullscreen.png"/>
@@ -278,6 +286,7 @@
 				toolbar. 
 			</para>
 			<figure>
+				<title>SlideShow</title>
 				<mediaobject>
 					<imageobject>
 						<imagedata fileref="figures/f-spot-slideshow.png"/>

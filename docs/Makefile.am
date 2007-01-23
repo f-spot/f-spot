@@ -1,10 +1,10 @@
-SUBDIRS = 	\
-	C sv
+include $(top_srcdir)/gnome-doc-utils.make
+dist-hook: doc-dist-hook
 
-MAINTAINERCLEANFILES = \
-	Makefile.in
+DOC_MODULE = f-spot
+DOC_ENTITIES = 
+DOC_INCLUDES = 
+DOC_FIGURES = figures/f-spot-fullscreen.png	\
+              figures/f-spot-slideshow.png
 
-EXTRA_DIST =			\
-	xmldocs.make		\
-	omf.make
-
+DOC_LINGUAS =

@@ -44,6 +44,7 @@ EXTRA_DIST =			\
 	f-spot.pc.in		\
 	f-spot.spec		\
 	am-config.mk		\
+	gnome-doc-utils.make	\
         $(desktop_in_files)     \
         $(desktop_files)
 
