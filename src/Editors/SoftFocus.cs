@@ -52,12 +52,13 @@ namespace FSpot.Editors {
 			scale.WidthRequest = 250;
 			box.PackStart (scale);
 			HBox actions = new HBox ();
-			Button apply = new Button ("Apply");
-			apply.Clicked += HandleApply;
-			actions.PackStart (apply);
+			actions.Spacing = 12;
 			Button cancel = new Button ("Cancel");
 			cancel.Clicked += HandleCancel;
 			actions.PackStart (cancel);
+			Button apply = new Button ("Apply");
+			apply.Clicked += HandleApply;
+			actions.PackStart (apply);
 			box.PackStart (actions);
 
 			return box;	
