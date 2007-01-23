@@ -1,5 +1,6 @@
 noinst_DATA =					\
 	f-spot-adjust-colors.png		\
+	f-spot-autocolor.png	\
 	f-spot-browse.png			\
 	f-spot-camera.png			\
 	f-spot-crop.png				\
@@ -9,6 +10,7 @@ noinst_DATA =					\
 	f-spot-favorite.png			\
 	f-spot-fullscreen.png			\
 	f-spot-hidden.png			\
+	f-spot-horizon.png		\
 	f-spot-imported-xmp-tags.png		\
 	f-spot-info.png			\
 	f-spot-loading.png			\
@@ -22,6 +24,7 @@ noinst_DATA =					\
 	f-spot-rotate-270.png			\
 	f-spot-sepia.png			\
 	f-spot-slideshow.png			\
+	f-spot-soft-focus.png		\
 	f-spot-stock_near.png			\
 	f-spot-stock_far.png			\
 	f-spot-question-mark.png		\

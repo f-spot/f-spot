@@ -1,3 +1,18 @@
+2007-01-23  Jakub Steiner <jimmac@ximian.com>
+
+	* icons/f-spot-autocolor.png:
+	* icons/f-spot-horizon.png:
+	* icons/f-spot-soft-focus.png: new edit icons
+	* src/Makefile.am:
+	* icons/Makefile.am:
+	* src/StockIcons.cs:
+	* src/ItemActions.cs: hook them up
+
+	* icons/f-spot-desaturate.png:
+	* icons/f-spot-sepia.png: remove unnecessary arrows. make
+		distinguishape from the horizon tool.
+	* icons/f-spot-info.xcf.bz2: 'source' file
+
 2007-01-21  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/WmpTagsImporter: Check for control characters at the end of

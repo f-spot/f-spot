@@ -270,7 +270,7 @@ namespace FSpot {
 			: base (p, "Color", 
 				Catalog.GetString ("Auto Color"),
 				Catalog.GetString ("Automatically adjust the colors"),
-				Stock.SelectColor)
+				"f-spot-autocolor")
 		{
 		}
 
@@ -339,7 +339,7 @@ namespace FSpot {
 				"TiltEdit", 
 				Catalog.GetString ("Straighten"),
 				Catalog.GetString ("Adjust the angle of the image to straighten the horizon"),
-				Stock.Execute)
+				"f-spot-horizon")
 		{
 		}
 
@@ -355,7 +355,7 @@ namespace FSpot {
 				"SoftFocusEdit",
 				Catalog.GetString ("Soft Focus"),
 				Catalog.GetString ("Create a soft focus visual effect"),
-				Stock.Convert)
+				"f-spot-soft-focus")
 		{
 		}
 

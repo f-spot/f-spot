@@ -237,6 +237,7 @@ ASSEMBLIES = \
 
 RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-adjust-colors.png,f-spot-adjust-colors.png	\
+	-resource:$(top_srcdir)/icons/f-spot-autocolor.png,f-spot-autocolor.png	\
 	-resource:$(top_srcdir)/icons/f-spot-browse.png,f-spot-browse.png		\
 	-resource:$(top_srcdir)/icons/f-spot-crop.png,f-spot-crop.png			\
 	-resource:$(top_srcdir)/icons/f-spot-camera.png,f-spot-camera.png		\
@@ -245,6 +246,7 @@ RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-events.png,f-spot-events.png		\
 	-resource:$(top_srcdir)/icons/f-spot-favorite.png,f-spot-favorite.png 		\
 	-resource:$(top_srcdir)/icons/f-spot-hidden.png,f-spot-hidden.png 		\
+	-resource:$(top_srcdir)/icons/f-spot-horizon.png,f-spot-horizon.png 		\
 	-resource:$(top_srcdir)/icons/f-spot-imported-xmp-tags.png,f-spot-imported-xmp-tags.png	\
 	-resource:$(top_srcdir)/icons/f-spot-loading.png,f-spot-loading.png		\
 	-resource:$(top_srcdir)/icons/f-spot-new-tag.png,f-spot-new-tag.png		\
@@ -258,6 +260,7 @@ RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-rotate-270.png,f-spot-rotate-270.png	\
 	-resource:$(top_srcdir)/icons/f-spot-sepia.png,f-spot-sepia.png			\
 	-resource:$(top_srcdir)/icons/f-spot-slideshow.png,f-spot-slideshow.png		\
+	-resource:$(top_srcdir)/icons/f-spot-soft-focus.png,f-spot-soft-focus.png		\
 	-resource:$(top_srcdir)/icons/f-spot-stock_near.png,f-spot-stock_near.png	\
 	-resource:$(top_srcdir)/icons/f-spot-stock_far.png,f-spot-stock_far.png		\
 	-resource:$(top_srcdir)/icons/f-spot-fullscreen.png,f-spot-fullscreen.png	\
