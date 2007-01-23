@@ -7,4 +7,4 @@ DOC_INCLUDES =
 DOC_FIGURES = figures/f-spot-fullscreen.png	\
               figures/f-spot-slideshow.png
 
-DOC_LINGUAS =
+DOC_LINGUAS = sv
