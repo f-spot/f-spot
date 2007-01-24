@@ -118,8 +118,8 @@ namespace FSpot.Widgets {
 			if (mask == null)
 				Radius = Radius;
 
-			ctx.Paint ();
-			//ctx.Mask (mask);
+			//ctx.Paint ();
+			ctx.Mask (mask);
 			overlay.Destroy ();
 			p.Destroy ();
 			return true;
