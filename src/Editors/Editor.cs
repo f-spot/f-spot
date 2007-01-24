@@ -95,6 +95,7 @@ namespace FSpot.Editors {
 				view.ExposeEvent -= ExposeEvent;
 				view.QueueDraw ();
 			}
+
 			base.SetView (value);
 
 			if (value == null)
@@ -184,6 +185,7 @@ namespace FSpot.Editors {
 	public class EffectEditor : Editor {
 		protected IEffect effect;
 		protected Widgets.ImageInfo info;
+		bool double_buffer;
 
 		public EffectEditor (PhotoImageView view) : base (view)
 		{
@@ -194,6 +196,7 @@ namespace FSpot.Editors {
 			if (view != null) {
 				view.ExposeEvent -= ExposeEvent;
 				view.QueueDraw ();
+				view.DoubleBuffered = double_buffer;
 			}
 
 			base.SetView (value);
@@ -202,6 +205,9 @@ namespace FSpot.Editors {
 				return;
 
 			info = new Widgets.ImageInfo (view.CompletePixbuf ());
+
+			double_buffer = (view.WidgetFlags & WidgetFlags.DoubleBuffered) == WidgetFlags.DoubleBuffered;
+			view.DoubleBuffered = true;
 			view.ExposeEvent += ExposeEvent;
 			view.QueueDraw ();
 		}
@@ -210,6 +216,13 @@ namespace FSpot.Editors {
 		public virtual void ExposeEvent (object sender, ExposeEventArgs args)
 		{
 			Context ctx = Widgets.CairoUtils.CreateContext (view.GdkWindow);
+			Gdk.Color c = view.Style.Background (view.State);
+			ctx.Source = new SolidPattern (c.Red / (float) ushort.MaxValue,
+						       c.Blue / (float) ushort.MaxValue, 
+						       c.Green / (float) ushort.MaxValue);
+
+			ctx.Paint ();
+
 			effect.OnExpose (ctx, view.Allocation);
 			
 			args.RetVal = true;

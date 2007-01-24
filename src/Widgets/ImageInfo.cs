@@ -89,8 +89,8 @@ namespace FSpot.Widgets {
 			double scale = Math.Max (viewport.Width / (double) Bounds.Width,
 						 viewport.Height / (double) Bounds.Height);
 			
-			double x_offset = (viewport.Width  - Bounds.Width * scale) / 2.0;
-			double y_offset = (viewport.Height  - Bounds.Height * scale) / 2.0;
+			double x_offset = Math.Round (((viewport.Width  - Bounds.Width * scale) / 2.0));
+			double y_offset = Math.Round (((viewport.Height  - Bounds.Height * scale) / 2.0));
 			
 			m.Translate (x_offset, y_offset);
 			m.Scale (scale, scale);
@@ -145,11 +145,11 @@ namespace FSpot.Widgets {
 			Matrix m = new Matrix ();
 			m.InitIdentity ();
 			
-			double scale = Math.Round (Math.Min (viewport.Width / (double) Bounds.Width,
-							     viewport.Height / (double) Bounds.Height));
+			double scale = Math.Min (viewport.Width / (double) Bounds.Width,
+						 viewport.Height / (double) Bounds.Height);
 			
-			double x_offset = Math.Round ((viewport.Width  - Bounds.Width * scale) / 2.0);
-			double y_offset = Math.Round ((viewport.Height  - Bounds.Height * scale) / 2.0);
+			double x_offset = (viewport.Width  - Bounds.Width * scale) / 2.0;
+			double y_offset = (viewport.Height  - Bounds.Height * scale) / 2.0;
 			
 			m.Translate (x_offset, y_offset);
 			m.Scale (scale, scale);

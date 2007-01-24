@@ -17,7 +17,6 @@ namespace FSpot.Widgets {
 		Gdk.Point center;
 		ImageInfo blur;
 		Pattern mask;
-		bool double_buffer;
 
 		public SoftFocus (ImageInfo info)
 		{
@@ -62,19 +61,19 @@ namespace FSpot.Widgets {
 
 		private ImageInfo CreateBlur (ImageInfo source)
 		{
-			double scale = Math.Max (200 / (double) source.Bounds.Width,
-						 200 / (double) source.Bounds.Height);
+			double scale = Math.Max (256 / (double) source.Bounds.Width,
+						 256 / (double) source.Bounds.Height);
 
 			Gdk.Rectangle small = new Gdk.Rectangle (0, 0,
-								(int) Math.Round (source.Bounds.Width * scale),
-								(int) Math.Round (source.Bounds.Height * scale));
+								(int) Math.Ceiling (source.Bounds.Width * scale),
+								(int) Math.Ceiling (source.Bounds.Height * scale));
 			
 			MemorySurface image = new MemorySurface (Format.Argb32, 
 								 small.Width,
 								 small.Height);
 			
 			Context ctx = new Context (image);
-			ctx.Matrix = source.Fill (small);
+			ctx.Matrix = source.Fit (small);
 			ctx.Source = new SurfacePattern (source.Surface);
 			Console.WriteLine (small);
 			ctx.Paint ();
@@ -102,15 +101,16 @@ namespace FSpot.Widgets {
 		public bool OnExpose (Context ctx, Gdk.Rectangle allocation)
 		{
 			SurfacePattern p = new SurfacePattern (info.Surface);
-			Matrix m = info.Fill (allocation);
-			ctx.Operator = Operator.Source;
+			ctx.Matrix = new Matrix ();
+			Matrix m = info.Fit (allocation);
+			ctx.Operator = Operator.Over;
 			ctx.Matrix = m;
 			ctx.Source = p;
 			ctx.Paint ();
 
 			SurfacePattern overlay = new SurfacePattern (blur.Surface);
 			ctx.Matrix = new Matrix ();
-			ctx.Matrix = blur.Fill (allocation);
+			ctx.Matrix = blur.Fit (allocation);
 			ctx.Operator = Operator.Over;
 			ctx.Source = overlay;
 			
@@ -118,8 +118,8 @@ namespace FSpot.Widgets {
 			if (mask == null)
 				Radius = Radius;
 
-			//ctx.Paint ();
-			ctx.Mask (mask);
+			ctx.Paint ();
+			//ctx.Mask (mask);
 			overlay.Destroy ();
 			p.Destroy ();
 			return true;

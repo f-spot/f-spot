@@ -26,10 +26,6 @@ namespace FSpot.Editors {
 
 		protected override void SetView (PhotoImageView value)
 		{
-
-			if (view != null)
-				view.DoubleBuffered = double_buffer;
-		
 			base.SetView (value);
 			
 			if (value == null)
@@ -37,8 +33,6 @@ namespace FSpot.Editors {
 
 			soft = new Widgets.SoftFocus (info);
 			effect = (IEffect) soft;
-			double_buffer = (view.WidgetFlags & WidgetFlags.DoubleBuffered) == WidgetFlags.DoubleBuffered;
-			view.DoubleBuffered = true;
 		}
 
 		protected override Widget CreateControls ()
