@@ -37,8 +37,10 @@ namespace FSpot.Filters {
 			ImageFile img = ImageFile.Create (source);
 			using (Pixbuf pixbuf = img.Load ()) {
 				using (ImageInfo info = new ImageInfo (pixbuf)) {
-					Surface surface = info.Surface.CreateSimilar (Content.Color,
-										      pixbuf.Width, pixbuf.Height);
+					MemorySurface surface = new MemorySurface (Format.Argb32, 
+										   pixbuf.Width,
+										   pixbuf.Height);
+
 					Context ctx = new Context (surface);
 					ctx.Matrix = info.Fill (info.Bounds, angle);
 					Pattern p = new SurfacePattern (info.Surface);
@@ -46,7 +48,7 @@ namespace FSpot.Filters {
 					ctx.Paint ();
 					((IDisposable)ctx).Dispose ();
 					p.Destroy ();
-					using (Pixbuf result = CairoUtils.CreatePixbuf ((MemorySurface)surface)) {
+					using (Pixbuf result = CairoUtils.CreatePixbuf (surface)) {
 						using (Stream output = File.OpenWrite (dest.LocalPath)) {
 							img.Save (result, output);
 						}
