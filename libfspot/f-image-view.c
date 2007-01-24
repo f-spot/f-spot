@@ -529,10 +529,11 @@ emit_selection_changed (FImageView *image_view)
 /* ImageView methods.  */
 
 static void
-impl_paint_extra (FImageView *image_view,
+impl_paint_extra (ImageView *iv,
 		  GdkRectangle *area)
 {
 #if FALSE
+	FImageView *image_view = (FImageView *) iv;
 	FImageViewPrivate *priv = image_view->priv;
 	int x1, y1, x2, y2;
 	cairo_t *ctx;

@@ -1,3 +1,8 @@
+2007-01-24  Robert Love  <rml@novell.com>
+
+	* libfspot/f-image-view.c: Trivial function prototype change to avoid
+	  compiler warning.
+
 2007-01-23  Jakub Steiner <jimmac@ximian.com>
 
 	* icons/f-spot-autocolor.png:
