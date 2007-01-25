@@ -67,6 +67,7 @@ namespace FSpot {
 				default: break;
 			}
 			rotate_check.Active = (bool) Preferences.Get (Preferences.EXPORT_EMAIL_ROTATE);
+			rotate_check.Sensitive = original_size.Active;
 			
 			tray_scrolled.Add (new TrayView (selection));
 
