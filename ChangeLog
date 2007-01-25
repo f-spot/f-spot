@@ -1,3 +1,10 @@
+2007-01-25  Stephane Delcroix <stephane@delcroix.org>
+
+	* src/Preferences: access to gnome_mailto_uri_handler
+	* src/SendEmail.cs: Workaround for some mailers which doesn't
+	respect the mailto urls correctly. Fixes bgo #168585 (and
+	probably some others). Patch from Sascha Umlang
+
 2007-01-24  Robert Love  <rml@novell.com>
 
 	* libfspot/f-image-view.c: Trivial function prototype change to avoid
