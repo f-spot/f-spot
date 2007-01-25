@@ -177,13 +177,12 @@ namespace FSpot {
 				// otherwise we xfer 
 				if (!dest.IsLocal) {
 					Console.WriteLine(target);
-					Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
 					System.Console.WriteLine ("Xfering {0} to {1}", source.ToString (), target.ToString ());
 					result = Gnome.Vfs.Xfer.XferUri (source, target, 
 									 Gnome.Vfs.XferOptions.Default, 
 									 Gnome.Vfs.XferErrorMode.Abort, 
 									 Gnome.Vfs.XferOverwriteMode.Replace, 
-									 cb);
+									 Progress);
 				}
 
 				if (result == Gnome.Vfs.Result.Ok) {
@@ -416,13 +415,13 @@ Console.WriteLine (e);
 		{
 			IBrowsableItem photo = collection [image_num];
 			string photo_path = photo.DefaultVersionUri.LocalPath;
-//			string path;
+			string path;
 			ScaleRequest req;
 
 			req = requests [0];
 			
 			MakeDir (SubdirPath (req.Name));
-//			path = SubdirPath (req.Name, ImageName (image_num));
+			path = SubdirPath (req.Name, ImageName (image_num));
 			
 //			if (scale) {
 //				//FIXME we have filters for that !
@@ -435,13 +434,14 @@ Console.WriteLine (e);
 
 			using (Filters.FilterRequest request = new Filters.FilterRequest (photo.DefaultVersionUri)) {
 				filter_set.Convert (request);
-				request.Preserve (request.Current);
-				//			File.Copy (request.Current.LocalPath, System.IO.Path.Combine(SubdirPath (req.Name), System.IO.Path.GetFileName (request.Current.LocalPath)), false);
+				File.Copy (request.Current.LocalPath, path, true); 
 
 				if (photo != null && photo is Photo && Core.Database != null) {
 					Core.Database.Exports.Create ((photo as Photo).Id, (photo as Photo).DefaultVersionId,
 								      ExportStore.FolderExportType,
-								      request.Current.ToString ());
+								      // FIXME this is wrong, the final path is the one
+								      // after the Xfer.
+								      UriList.PathToFileUri (path).ToString ());
 				}
 
 				
@@ -453,15 +453,15 @@ Console.WriteLine (e);
 					data = null;
 				
 				for (int i = 1; i < requests.Length; i++) {
-					string path;
 					
 					req = requests [i];
 					if (scale && req.AvoidScale (size))
 						continue;
 					
-					if (img == null) 
-						scaled = PixbufUtils.LoadAtMaxSize (photo_path, req.Width, req.Height);
-					else
+					if (img == null) {
+						ImageFile imgf = ImageFile.Create (photo.DefaultVersionUri);
+						scaled = imgf.Load (req.Width, req.Height);
+					} else
 						scaled = PixbufUtils.ScaleToMaxSize (img, req.Width, req.Height, false);
 					
 					MakeDir (SubdirPath (req.Name));
@@ -474,6 +474,8 @@ Console.WriteLine (e);
 					
 					if (img != null)
 						img.Dispose ();
+					
+					img = scaled;
 				}
 				
 				if (scaled != null)
@@ -689,8 +691,8 @@ Console.WriteLine (e);
 		string altstylesheet = "f-spot-simple-white.css";
 		string javascript = "f-spot.js";
 
-        static string light = Catalog.GetString("Light");
-        static string dark = Catalog.GetString("Dark");
+		static string light = Catalog.GetString("Light");
+		static string dark = Catalog.GetString("Dark");
 		
 		public HtmlGallery (IBrowsableCollection selection, string path, string name) : base (selection, path, name) 
 		{ 
