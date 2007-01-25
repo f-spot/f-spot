@@ -641,12 +641,10 @@ msgid "<b>Histogram</b>"
 msgstr "<b>Histogramme</b>"
 
 #: ../src/f-spot.glade.h:29
-#, fuzzy
 msgid "<b>Image Interpolation</b>"
 msgstr "<b>Interpolation</b>"
 
 #: ../src/f-spot.glade.h:30
-#, fuzzy
 msgid "<b>Import Settings</b>"
 msgstr "<b>Paramètres d'import</b>"
 
@@ -830,7 +828,6 @@ msgid "Adjust Time"
 msgstr "Régle la date"
 
 #: ../src/f-spot.glade.h:71
-#, fuzzy
 msgid "Adjust _Time..."
 msgstr "Régler la _date"
 
@@ -2125,7 +2122,6 @@ msgid "Apply straightening to image"
 msgstr "Redresse l'image"
 
 #: ../src/ItemAction.cs:340 ../src/StockIcons.cs:34
-#, fuzzy
 msgid "Straighten"
 msgstr "Redressement"
 
@@ -2135,11 +2131,11 @@ msgstr "Ajuste l'angle de l'image pour redresser l'horizon"
 
 #: ../src/ItemAction.cs:356 ../src/StockIcons.cs:43
 msgid "Soft Focus"
-msgstr ""
+msgstr "Flou artistique"
 
 #: ../src/ItemAction.cs:357
 msgid "Create a soft focus visual effect"
-msgstr ""
+msgstr "Créer un effet de flou artistique"
 
 #: ../src/Loupe.cs:57 ../src/MainWindow.cs:1926
 msgid "Error saving sharpened photo"
@@ -3021,6 +3017,8 @@ msgid ""
 "The \"F-Spot Manual\" could not be found.  Please verify that your "
 "installation has been completed successfully."
 msgstr ""
+"Le «Manuel F-Spot» est introuvable. Veuillez vérifier que votre installation "
+"s'est déroulée correctement."
 
 #: ../src/Util.cs:482
 msgid "Help not found"
@@ -3039,7 +3037,6 @@ msgid "Clear search"
 msgstr "Effacer la recherche"
 
 #: ../src/QueryWidget.cs:62
-#, fuzzy
 msgid "No matching photos found"
 msgstr "Aucune photo correspondante n'a été trouvée "
 
