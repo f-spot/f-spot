@@ -434,7 +434,10 @@ Console.WriteLine (e);
 
 			using (Filters.FilterRequest request = new Filters.FilterRequest (photo.DefaultVersionUri)) {
 				filter_set.Convert (request);
-				File.Copy (request.Current.LocalPath, path, true); 
+				if (request.Current.LocalPath == path)
+					request.Preserve(request.Current);
+				else
+					File.Copy (request.Current.LocalPath, path, true); 
 
 				if (photo != null && photo is Photo && Core.Database != null) {
 					Core.Database.Exports.Create ((photo as Photo).Id, (photo as Photo).DefaultVersionId,
