@@ -256,7 +256,7 @@ public class InfoBox : VBox {
 			return false;
 		}
 		
-		name_entry.Text = photo.Name;
+		name_entry.Text = photo.Name != null ? photo.Name : String.Empty;
 		try {
 			//using (new Timer ("building info")) {
 				img = ImageFile.Create (photo.DefaultVersionUri);
