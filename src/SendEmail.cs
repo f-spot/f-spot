@@ -279,13 +279,12 @@ namespace FSpot {
 					FilterRequest request = new FilterRequest (photo.DefaultVersionUri);
 
 					filters.Convert (request);
-					string final = System.IO.Path.Combine (tmp_mail_dir, System.IO.Path.GetFileName(request.Current.LocalPath)); 
-					System.IO.File.Copy (request.Current.LocalPath, final);
+					request.Preserve(request.Current);
 
-					url.Append ("&attach=" + final);
+					url.Append ("&attach=" + request.Current);
 					
 					// Update the running total of the actual file sizes.
-					file_info = new System.IO.FileInfo (final);
+					file_info = new System.IO.FileInfo (request.Current.LocalPath);
 					new_size = file_info.Length;
 					actual_total_size += new_size;
 
