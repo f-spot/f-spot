@@ -110,6 +110,8 @@ namespace FSpot
 		public const string GNOME_SCREENSAVER_THEME = "/apps/gnome-screensaver/themes";
 		public const string GNOME_SCREENSAVER_MODE = "/apps/gnome-screensaver/mode";
 
+		public const string GNOME_MAILTO_COMMAND = "/desktop/gnome/url-handlers/mailto/command";
+
 
 		static GConf.Client client;
 		static GConf.NotifyEventHandler changed_handler;

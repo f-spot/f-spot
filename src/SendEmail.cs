@@ -240,6 +240,23 @@ namespace FSpot {
 			
 			size = GetScaleSize(); // Which size should we scale to. 0 --> Original
 			
+			// evaluate mailto command and define attachment args for cli
+			System.Text.StringBuilder attach_arg = new System.Text.StringBuilder ();
+			switch (Preferences.Get (Preferences.GNOME_MAILTO_COMMAND) as string) {
+				case "thunderbird %s":
+				case "mozilla-thunderbird %s":
+				case "seamonkey -mail -compose %s":
+				case "icedove %s":
+					attach_arg.Append(",");
+				break;
+				case "kmail %s":
+					attach_arg.Append(" --attach ");
+				break;
+				default:  //evolution falls into default, since it supports mailto uri correctly
+					attach_arg.Append("&attach=");
+				break;
+			}
+
 			rotate = rotate_check.Active;  // Should we automatically rotate original photos.
 			Preferences.Set (Preferences.EXPORT_EMAIL_ROTATE, rotate);
 
@@ -251,7 +268,7 @@ namespace FSpot {
 			System.IO.File.Delete (tmp_mail_dir);			// Delete above tmp file
 			System.IO.Directory.CreateDirectory (tmp_mail_dir);	// Create a directory with above tmp name
 			
-			System.Text.StringBuilder url = new System.Text.StringBuilder ("mailto:?subject=my%20photos");
+			System.Text.StringBuilder mail_attach = new System.Text.StringBuilder ();
 
 			FilterSet filters = new FilterSet ();
 
@@ -282,7 +299,7 @@ namespace FSpot {
 					filters.Convert (request);
 					request.Preserve(request.Current);
 
-					url.Append ("&attach=" + request.Current);
+ 					mail_attach.Append(attach_arg.ToString() + request.Current.ToString());
 					
 					// Mark the path for deletion
 					tmp_paths.Add (request.Current.LocalPath);
@@ -310,9 +327,28 @@ namespace FSpot {
 				DeleteTempFile();
 			else {		
 				// Send the mail :)
-				//System.Console.WriteLine ("Mail command {0}", url.ToString()); 
-				GnomeUtil.UrlShow (parent_window, url.ToString ());
-
+				switch (Preferences.Get (Preferences.GNOME_MAILTO_COMMAND) as string) {
+					// openSuSE
+					case "thunderbird %s":
+						System.Diagnostics.Process.Start("thunderbird", " -compose \"subject=my photos,attachment='" + mail_attach + "'\"");
+					break;
+					case "icedove %s":
+						System.Diagnostics.Process.Start("thunderbird", " -compose \"subject=my photos,attachment='" + mail_attach + "'\"");
+					break;
+					case "mozilla-thunderbird %s":
+						System.Diagnostics.Process.Start("mozilla-thunderbird", " -compose \"subject=my photos,attachment='" + mail_attach + "'\"");
+					break;
+					case "seamonkey -mail -compose %s":
+						System.Diagnostics.Process.Start("seamonkey", " -mail -compose \"subject=my photos,attachment='" + mail_attach + "'\"");
+					break;
+					case "kmail %s":
+						System.Diagnostics.Process.Start("kmail", "  --composer --subject \"my photos\"" + mail_attach);
+					break;
+					default: 
+						GnomeUtil.UrlShow (parent_window,"mailto:?subject=my%20photos" + mail_attach);
+					break;
+				}
+				                
 				// Check if we have any temporary files to be deleted
 				if (tmp_paths.Count > 0) {
 					// Fetch timeout value from preferences. In seconds. Needs to be multiplied with 1000 to get msec
