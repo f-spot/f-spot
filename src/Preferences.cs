@@ -94,6 +94,7 @@ namespace FSpot
 		public const string EXPORT_FOLDER_OPEN = "/apps/f-spot/export/folder/browser";
 		public const string EXPORT_FOLDER_ROTATE = "/apps/f-spot/export/folder/rotate";
 		public const string EXPORT_FOLDER_METHOD = "/apps/f-spot/export/folder/method";
+		public const string EXPORT_FOLDER_URI = "/apps/f-spot/export/folder/uri";
 		
  		public const string EXPORT_EMAIL_SIZE = "/apps/f-spot/export/email/size";
  		public const string EXPORT_EMAIL_ROTATE = "/apps/f-spot/export/email/auto_rotate";

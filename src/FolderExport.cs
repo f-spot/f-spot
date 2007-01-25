@@ -108,8 +108,14 @@ namespace FSpot {
 
 			uri_chooser = new Gtk.FileChooserButton (Catalog.GetString ("Select Export Folder"),
 								 Gtk.FileChooserAction.SelectFolder);
-			uri_chooser.SetFilename (uri_path);
+			
 			uri_chooser.LocalOnly = false;
+
+			if (Preferences.Get (Preferences.EXPORT_FOLDER_URI) != null && Preferences.Get (Preferences.EXPORT_FOLDER_URI) as string != String.Empty)
+				uri_chooser.SetUri (Preferences.Get (Preferences.EXPORT_FOLDER_URI) as string);
+			else
+				uri_chooser.SetFilename (uri_path);
+
 			chooser_hbox.PackStart (uri_chooser);
 
 			Dialog.ShowAll ();
@@ -207,7 +213,7 @@ namespace FSpot {
 				Preferences.Set (Preferences.EXPORT_FOLDER_OPEN, open);
 				Preferences.Set (Preferences.EXPORT_FOLDER_ROTATE, rotate);
 				Preferences.Set (Preferences.EXPORT_FOLDER_METHOD, static_radio.Active ? "static" : original_radio.Active ? "original" : "folder" );
-
+				Preferences.Set (Preferences.EXPORT_FOLDER_URI, uri_chooser.Uri);
 			} catch (System.Exception e) {
 Console.WriteLine (e);
 				progress_dialog.Message = e.ToString ();
