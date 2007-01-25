@@ -283,6 +283,9 @@ namespace FSpot {
 
 					url.Append ("&attach=" + request.Current);
 					
+					// Mark the path for deletion
+					tmp_paths.Add (request.Current.LocalPath);
+
 					// Update the running total of the actual file sizes.
 					file_info = new System.IO.FileInfo (request.Current.LocalPath);
 					new_size = file_info.Length;
