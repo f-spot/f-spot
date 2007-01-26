@@ -733,7 +733,8 @@ public class ImportCommand : FSpot.GladeDialog {
 		if (recurse_check != null)
 			recurse = recurse_check.Active;
 		
-		importer = new FileImportBackend (store, pathimport, copy, recurse, null);
+//		importer = new FileImportBackend (store, pathimport, copy, recurse, null);
+		importer = new FileImportBackend (store, pathimport, copy, recurse, null, Dialog);
 		AllowFinish = false;
 		
 		total = importer.Prepare ();
@@ -763,7 +764,7 @@ public class ImportCommand : FSpot.GladeDialog {
 	public int ImportFromPaths (PhotoStore store, string [] paths, Tag [] tags, bool copy)
 	{
 		collection = new FSpot.PhotoList (new Photo [0]);
-		int count = DoImport (new FileImportBackend (store, paths, copy, true, tags));
+		int count = DoImport (new FileImportBackend (store, paths, copy, true, tags, main_window ));
 
 		Finish ();
 

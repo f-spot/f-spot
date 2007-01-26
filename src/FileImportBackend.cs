@@ -6,6 +6,7 @@ using System;
 using FSpot;
 using FSpot.Xmp;
 using System.IO;
+using Mono.Unix;
 
 public class ImportException : System.Exception {
 	public ImportException (string msg) : base (msg)
@@ -20,6 +21,7 @@ public class FileImportBackend : ImportBackend {
 	bool copy;
 	string [] base_paths;
 	Tag [] tags;
+	Gtk.Window parent;
 
 	int count;
 	XmpTagsImporter xmptags;
@@ -201,7 +203,7 @@ public class FileImportBackend : ImportBackend {
 		// FIXME Need to get the EXIF info etc.
 		ImportInfo info = (ImportInfo)import_info [this.count];
 		bool needs_commit = false;
-
+		bool abort = false;
 		try {
 			string destination = info.OriginalPath;
 			if (copy)
@@ -245,12 +247,24 @@ public class FileImportBackend : ImportBackend {
 			System.Console.WriteLine ("Error importing {0}\n{1}", info.OriginalPath, e.ToString ());
 			thumbnail = null;
 			photo = null;
+
+			HigMessageDialog errordialog = new HigMessageDialog (parent,
+									     Gtk.DialogFlags.Modal | Gtk.DialogFlags.DestroyWithParent,
+									     Gtk.MessageType.Error,
+									     Gtk.ButtonsType.Cancel,
+									     Catalog.GetString ("Import error"),
+									     String.Format(Catalog.GetString ("Error importing {0}\n\n{1}"), info.OriginalPath, e.Message ));
+			errordialog.AddButton ("Skip", Gtk.ResponseType.Reject, false);
+			ResponseType response = (ResponseType) errordialog.Run ();
+			errordialog.Destroy ();
+			if (response == ResponseType.Cancel)
+				abort = true;
 		}
 
 		this.count ++;
 		count = this.count;
 
-		return count != import_info.Count;
+		return (!abort && count != import_info.Count);
 	}
 
 	public override void Cancel ()
@@ -305,15 +319,16 @@ public class FileImportBackend : ImportBackend {
 		count = 0;
 	}
 
-	public FileImportBackend (PhotoStore store, string [] base_paths, bool recurse) : this (store, base_paths, false, recurse, null) {}
+	public FileImportBackend (PhotoStore store, string [] base_paths, bool recurse, Gtk.Window parent) : this (store, base_paths, false, recurse, null, parent) {}
 
-	public FileImportBackend (PhotoStore store, string [] base_paths, bool copy, bool recurse, Tag [] tags)
+	public FileImportBackend (PhotoStore store, string [] base_paths, bool copy, bool recurse, Tag [] tags, Gtk.Window parent)
 	{
 		this.store = store;
 		this.copy = copy;
 		this.base_paths = base_paths;
 		this.recurse = recurse;
 		this.tags = tags;
+		this.parent = parent;
 	}
 
 #if TEST_FILE_IMPORT_BACKEND
