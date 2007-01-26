@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot doc\n"
 "POT-Creation-Date: 2007-01-26 15:27+0100\n"
-"PO-Revision-Date: 2007-01-26 15:29+0100\n"
+"PO-Revision-Date: 2007-01-26 18:29+0100\n"
 "Last-Translator: Stephane Delcroix <stephane@delcroix.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr "Manuel de l'utilisateur F-Spot"
 
 #: ../C/f-spot.xml:7(para) ../C/f-spot.xml:9(subtitle) 
 msgid "This is the user manual for F-Spot, a GNOME personal photo manager."
-msgstr "Ceci est le manuel de l'utiliisateur F-Spot, un gestionnaire de photos pour GNOME"
+msgstr "Ceci est le manuel de l'utilisateur F-Spot, un gestionnaire de photos pour GNOME"
 
 #: ../C/f-spot.xml:11(year) 
 msgid "2007"
@@ -39,7 +39,7 @@ msgstr "Aaron Bockover, Gabriel Burt, Miguel de Icaza, Bengt Thuree"
 
 #: ../C/f-spot.xml:15(publishername) 
 msgid "GNOME Documentation Project"
-msgstr "Projedt de documentation GNOME"
+msgstr "Projet de documentation GNOME"
 
 #: ../C/f-spot.xml:19(firstname) 
 msgid "Miguel"
@@ -99,11 +99,11 @@ msgstr "Importer"
 
 #: ../C/f-spot.xml:54(para) 
 msgid "You can import photos from your hard drive or your camera. When you import your photos into F-Spot from your camera, it will always make a copy of them, leaving you free to clear your camera's memory. By default, F-Spot will make a copy of photos imported from your hard drive. Uncheck the <guilabel>Copy</guilabel> option on the import dialog or hold <keycap>Shift</keycap> when dragging photos into F-Spot if you do not wish to copy them from your hard drive."
-msgstr "Vous pouvez importer des photos depuis votre disuqe dur ou depuis votre appareil photos. Lorsque vous importez dans F-Spot des photos depuis votre appareil photo, une copie sera toujours effectuée, vous laissant libre de vider la mémoire de votre appareil photo. Par défaut, F-Spot fera une copie aussi des photos importées depuis votre disuqe dur. Décochez l'option <guilabel>Copy</guilabel> du dialogue d'import ou maintenez la touche <keycap>Shift<keycap> lorsque vous déposez des photos dans F-Spot si vous ne voulez pas en faire une copie."
+msgstr "Vous pouvez importer des photos depuis votre disque dur ou depuis votre appareil photo. Lorsque vous importez dans F-Spot des photos depuis votre appareil photo, une copie sera toujours effectuée, vous laissant libre de vider la mémoire de votre appareil photo. Par défaut, F-Spot fera une copie aussi des photos importées depuis votre disuqe dur. Décochez l'option <guilabel>Copy</guilabel> du dialogue d'import ou maintenez la touche <keycap>Shift<keycap> lorsque vous déposez des photos dans F-Spot si vous ne voulez pas en faire une copie."
 
 #: ../C/f-spot.xml:64(para) 
 msgid "If all the photos you are importing at one time are from a particular event, or have some other characteristic in common, you can create a tag for them so you can later find them with ease. To do this, follow the instructions below to <ulink url=\"tag\">create a new tag</ulink>, then when you are importing them, check the button for <guilabel>Attach Tag</guilabel> and choose the tag you created."
-msgstr "Si toutes les photos que vous importez ensemble sont prise lors d'un évenement particulier, ou qu'elles ont d'autres charactéristiques en commun, vous pouvez créer un étiquette afin de les retrouver facilement ensuite. Pour faire cela, suivez les instructions ci-dessous pour <ulink url=\"tag\">créer une nouvelle étiquette</ulink>. Ensuite, lorsque de l'import, cochez <guilabel>Attacher une étiquette</guilabel> et choisissez l'étiquette dans la liste."
+msgstr "Si toutes les photos que vous importez ensemble ont été prises lors d'un événement particulier, ou qu'elles ont d'autres caractéristiques en commun, vous pouvez créer une étiquette afin de les retrouver facilement par la suite. Pour cela, suivez les instructions ci-dessous pour <ulink url=\"tag\">créer une nouvelle étiquette</ulink>. Ensuite, lors de l'import, cochez <guilabel>Attacher une étiquette</guilabel> et choisissez l'étiquette dans la liste."
 
 #: ../C/f-spot.xml:75(title) 
 msgid "Edit"
@@ -111,7 +111,7 @@ msgstr "Retoucher"
 
 #: ../C/f-spot.xml:77(para) 
 msgid "If you double click or press enter on an image, you enter Edit mode, where you can remove red-eye, crop, and adjust brightness and colors."
-msgstr "Si vous double-cliquez ou pressez Enter sur une image, vous entrez dans le mode Retouches, où vous pouvez retirer les yeux rouges, recadrer vos photos, ajuster la luminosité ou les couleurs, ..."
+msgstr "Si vous double-cliquez ou pressez Entrée sur une image, vous entrez dans le mode Retouches, où vous pouvez retirer les yeux rouges, recadrer vos photos, ajuster la luminosité ou les couleurs, ..."
 
 #: ../C/f-spot.xml:83(title) 
 msgid "Versions"
@@ -119,7 +119,7 @@ msgstr "Versions"
 
 #: ../C/f-spot.xml:85(para) 
 msgid "When you edit your photos, a new copy (called a version) is created, so your original is never altered. After your first edit to a photo, subsequent edits will modify the same version. If you want to create mulitple versions of your photo, perhaps with different cropping or coloring, you can do so via the <menuchoice><guimenu>File</guimenu><guimenuitem>Create new version</guimenuitem></menuchoice> option."
-msgstr "Lorsque vous retouchez vos photos, une nouvelle copie (appelée version) est crée de sorte que votre original ne soit pas altéré. Après votre première retouche sur une image, toutes les retouche suivantes vont modifier la même version. Si vous voulez créez différentes versions de votre photo, recadrées différemment ou avec d'autres couleurs, vous pouvez le faire via l'option <menuchoice><guimenu>Fichier</guimenu><guimenuitem>Créer une nouvelle version</guimenuitem></menuchoice>."
+msgstr "Lorsque vous retouchez vos photos, une nouvelle copie (appelée version) est créée de sorte que votre original ne soit pas altéré. Après votre première retouche sur une image, toutes les retouches suivantes vont modifier la même version. Si vous voulez créer différentes versions de votre photo, recadrées différemment ou avec d'autres couleurs, vous pouvez le faire via l'option <menuchoice><guimenu>Fichier</guimenu><guimenuitem>Créer une nouvelle version</guimenuitem></menuchoice>."
 
 #: ../C/f-spot.xml:96(title) 
 msgid "Adjust Colors"
@@ -127,7 +127,7 @@ msgstr "Ajuster les couleurs"
 
 #: ../C/f-spot.xml:98(para) 
 msgid "To adjust the brightness, contrast, and colors of a photo, first click the <guibutton>Adjust Photos</guibutton> icon to open the adjustment dialog."
-msgstr "Pour ajuster la luminosité, le contraste et les couleurs d'une photo, clicquez sur l'icône <guibutton>Ajuster les couleurs de la photo</guibutton> pour ouvrir le dialogue d'ajustement."
+msgstr "Pour ajuster la luminosité, le contraste et les couleurs d'une photo, cliquez sur l'icône <guibutton>Ajuster les couleurs de la photo</guibutton> pour ouvrir le dialogue d'ajustement."
 
 #: ../C/f-spot.xml:105(title) 
 msgid "Remove Red-Eye"
@@ -135,15 +135,15 @@ msgstr "Correction des yeux rouges"
 
 #: ../C/f-spot.xml:107(para) 
 msgid "To remove redeye from a photo, you need to select each individual eye. You may want to zoom in on the image to accurately select the eyes in the photo."
-msgstr "Pour retirer les yeux rouges d'une photo, sélectionnez chaque oeil individuellement. Vous pourriez avoir besoin de zoomer pour faire une sélection précise."
+msgstr "Pour retirer les yeux rouges d'une photo, sélectionnez chaque œil individuellement. Vous pourriez avoir besoin de zoomer pour faire une sélection précise."
 
 #: ../C/f-spot.xml:112(para) 
 msgid "To make your selection, click one corner of the rectangle that will be your selection, and drag your mouse to the diagonal corner and release it. You can resize your selection by dragging its edges, and you can move it by clicking in the middle of it and dragging it to where you want it."
-msgstr "Pour faire une sélection, clicquez un point qui sera un coin de votre rectangle, glisser votre souris le long de la diagonale de votre sélection et relachez le bouton. Vous pouvez redimensionner votre sélection and faisant glisser ses bords, et vous pouvez la déplacer ou vous le voulez."
+msgstr "Pour faire une sélection, cliquez un point qui sera un coin de votre rectangle, glissez votre souris le long de la diagonale de votre sélection et relâchez le bouton. Vous pouvez redimensionner votre sélection en faisant glisser ses bords, et vous pouvez la déplacer où vous le voulez."
 
 #: ../C/f-spot.xml:118(para) 
 msgid "Once you have selected an eye, you can remove the red from it by clicking the red-eye button beneath the photo."
-msgstr "Lorsque vous avez sélectionné un oeil, cliquez sur le bouton correction yeux rouges pour effectuer la correction."
+msgstr "Lorsque vous avez sélectionné un œil, cliquez sur le bouton <guibutton>Correction yeux rouges</guibutton> pour effectuer la correction."
 
 #: ../C/f-spot.xml:125(title) 
 msgid "Crop"
@@ -167,7 +167,7 @@ msgstr "Vous pouvez aussi ajouter une description à l'image en tapant un texte 
 
 #: ../C/f-spot.xml:159(title) 
 msgid "Tag"
-msgstr "Etiquettes"
+msgstr "Étiquettes"
 
 #: ../C/f-spot.xml:160(para) 
 msgid "F-Spot enables you to organize and enjoy your photos by associating them with various user-customizable tags. A tag is a merely a label. F-Spot comes with default tags to get you started; you are free to change them and add new ones. For example, if you want to create a tag for specific event, you can create a new tag named after that event under the Events tag."
@@ -331,19 +331,19 @@ msgstr ""
 
 #: ../C/f-spot.xml:383(title) 
 msgid "Shortcuts"
-msgstr ""
+msgstr "Raccourcis"
 
 #: ../C/f-spot.xml:386(title) 
 msgid "Global Shortcuts"
-msgstr ""
+msgstr "Raccourcis globaux"
 
 #: ../C/f-spot.xml:391(entry) ../C/f-spot.xml:475(entry) ../C/f-spot.xml:570(entry) ../C/f-spot.xml:622(entry) 
 msgid "Key"
-msgstr ""
+msgstr "Touche"
 
 #: ../C/f-spot.xml:394(entry) ../C/f-spot.xml:478(entry) ../C/f-spot.xml:573(entry) ../C/f-spot.xml:625(entry) 
 msgid "Action"
-msgstr ""
+msgstr "Action"
 
 #: ../C/f-spot.xml:402(keycap) 
 msgid "["
@@ -351,7 +351,7 @@ msgstr ""
 
 #: ../C/f-spot.xml:404(entry) 
 msgid "Rotate the selected photos to the left"
-msgstr ""
+msgstr "Tourner les photos sélectionnées vers la gauche"
 
 #: ../C/f-spot.xml:410(keycap) 
 msgid "]"
@@ -359,7 +359,7 @@ msgstr ""
 
 #: ../C/f-spot.xml:412(entry) 
 msgid "Rotate the selected photos to the right"
-msgstr ""
+msgstr "Tourner les photos sélectionnées vers la droite"
 
 #: ../C/f-spot.xml:418(keycap) 
 msgid "t"
@@ -367,7 +367,7 @@ msgstr ""
 
 #: ../C/f-spot.xml:420(entry) 
 msgid "View or edit tags for selected photos"
-msgstr ""
+msgstr "Éditer les étiquettes des photos sélectionnées"
 
 #: ../C/f-spot.xml:426(keycap) 
 msgid "F11"
@@ -375,7 +375,7 @@ msgstr ""
 
 #: ../C/f-spot.xml:428(entry) 
 msgid "Full screen view"
-msgstr ""
+msgstr "Vue en plein écran"
 
 #: ../C/f-spot.xml:434(keycap) ../C/f-spot.xml:442(keycap) ../C/f-spot.xml:450(keycap) ../C/f-spot.xml:458(keycap) ../C/f-spot.xml:486(keycap) ../C/f-spot.xml:494(keycap) ../C/f-spot.xml:511(keycap) ../C/f-spot.xml:536(keycap) ../C/f-spot.xml:589(keycap) 
 msgid "Ctrl"
@@ -387,23 +387,23 @@ msgstr ""
 
 #: ../C/f-spot.xml:436(entry) 
 msgid "Displays information about the photo"
-msgstr ""
+msgstr "Affiche des informations sur la photo"
 
 #: ../C/f-spot.xml:442(keycap) 
 msgid "Equals"
-msgstr ""
+msgstr "="
 
 #: ../C/f-spot.xml:444(entry) 
 msgid "Zoom-in"
-msgstr ""
+msgstr "Agrandir"
 
 #: ../C/f-spot.xml:450(keycap) 
 msgid "Minus"
-msgstr ""
+msgstr "-"
 
 #: ../C/f-spot.xml:452(entry) 
 msgid "Zoom-out"
-msgstr ""
+msgstr "Réduire"
 
 #: ../C/f-spot.xml:458(keycap) 
 msgid "N"
@@ -411,11 +411,11 @@ msgstr ""
 
 #: ../C/f-spot.xml:460(entry) 
 msgid "Import photos"
-msgstr ""
+msgstr "Importer des photos"
 
 #: ../C/f-spot.xml:470(title) 
 msgid "Browse Mode Shortcuts"
-msgstr ""
+msgstr "Raccourcis du mode Navigation"
 
 #: ../C/f-spot.xml:486(keycap) ../C/f-spot.xml:495(keycap) 
 msgid "A"
@@ -423,7 +423,7 @@ msgstr ""
 
 #: ../C/f-spot.xml:488(entry) 
 msgid "Select all"
-msgstr ""
+msgstr "Tout sélectionner"
 
 #: ../C/f-spot.xml:494(keycap) ../C/f-spot.xml:527(keycap) ../C/f-spot.xml:536(keycap) 
 msgid "Shift"
@@ -431,15 +431,15 @@ msgstr ""
 
 #: ../C/f-spot.xml:497(entry) 
 msgid "Unselect all"
-msgstr ""
+msgstr "Tout désélectionner"
 
 #: ../C/f-spot.xml:502(entry) 
 msgid "Arrow keys (up, down, left, right) or k, j, h, l keys"
-msgstr ""
+msgstr "Touches fléchées (haut, bas, gauche, droite) ou k, j, h, l"
 
 #: ../C/f-spot.xml:505(entry) 
 msgid "Move focus"
-msgstr ""
+msgstr "Déplacer le sélecteur"
 
 #: ../C/f-spot.xml:510(entry) 
 msgid "<placeholder-1/>-arrow key"
@@ -451,27 +451,27 @@ msgstr ""
 
 #: ../C/f-spot.xml:519(keycap) ../C/f-spot.xml:641(keycap) 
 msgid "Spacebar"
-msgstr ""
+msgstr "Espace"
 
 #: ../C/f-spot.xml:521(entry) 
 msgid "Select or unselect the focused photo"
-msgstr ""
+msgstr "Sélectionner ou désélectionner la photo sous le sélecteur"
 
 #: ../C/f-spot.xml:528(keycap) 
 msgid "arrow key"
-msgstr ""
+msgstr "touche fléchée"
 
 #: ../C/f-spot.xml:530(entry) 
 msgid "Change the photo selection"
-msgstr ""
+msgstr "Changer la photo sélectionnée"
 
 #: ../C/f-spot.xml:537(keycap) 
 msgid "left arrow or right arrow"
-msgstr ""
+msgstr "flèche gauche ou flèche droite"
 
 #: ../C/f-spot.xml:539(entry) 
 msgid "Add/Remove all photos in the row, in the direction pressed, to the selection"
-msgstr ""
+msgstr "Ajouter ou enlever à la sélection toutes les photos de la rangée, dans la direction correspondante"
 
 #: ../C/f-spot.xml:545(keycap) ../C/f-spot.xml:681(keycap) 
 msgid "v"
@@ -479,7 +479,7 @@ msgstr ""
 
 #: ../C/f-spot.xml:547(entry) 
 msgid "Pops up a larger preview of the picture pointed by the mouse"
-msgstr ""
+msgstr "Affiche une prévisualisation plus grande de l'image sous le curseur de la souris"
 
 #: ../C/f-spot.xml:553(keycap) 
 msgid "V"
@@ -487,11 +487,11 @@ msgstr ""
 
 #: ../C/f-spot.xml:555(entry) 
 msgid "Pops up a larger preview and a color histogram of the picture pointed by the mouse"
-msgstr ""
+msgstr "Affiche une prévisualisation plus grande de l'image sous le curseur de la souris, avec un histogramme des couleurs"
 
 #: ../C/f-spot.xml:565(title) 
 msgid "Tag Shortcuts"
-msgstr ""
+msgstr "Raccourcis portant sur les étiquettes"
 
 #: ../C/f-spot.xml:581(keycap) 
 msgid "F2"
@@ -499,7 +499,7 @@ msgstr ""
 
 #: ../C/f-spot.xml:583(entry) 
 msgid "Rename selected tag"
-msgstr ""
+msgstr "Renommer l'étiquette sélectionnée"
 
 #: ../C/f-spot.xml:589(keycap) 
 msgid "T"
@@ -507,7 +507,7 @@ msgstr ""
 
 #: ../C/f-spot.xml:591(entry) 
 msgid "Add tags to selected photos"
-msgstr ""
+msgstr "Ajouter les étiquettes aux photos sélectionnées"
 
 #: ../C/f-spot.xml:596(entry) ../C/f-spot.xml:604(entry) 
 msgid "n/a"
@@ -515,15 +515,15 @@ msgstr ""
 
 #: ../C/f-spot.xml:599(entry) 
 msgid "Drag and drop tags to move them"
-msgstr ""
+msgstr "Glisser-déplacer les étiquettes pour les réorganiser"
 
 #: ../C/f-spot.xml:607(entry) 
 msgid "Type a tag's name to jump to it (only works if tag is shown/expanded)"
-msgstr ""
+msgstr "Taper le nom d'une étiquette pour ysauter directement (uniquement si cette étiquette est visible)"
 
 #: ../C/f-spot.xml:617(title) 
 msgid "Edit Mode Shortcuts"
-msgstr ""
+msgstr "Raccourcis du mode Retouches"
 
 #: ../C/f-spot.xml:633(keycap) 
 msgid "Page Up"
@@ -531,7 +531,7 @@ msgstr ""
 
 #: ../C/f-spot.xml:635(entry) 
 msgid "Go to Previous Photo"
-msgstr ""
+msgstr "Aller à la photo précédente"
 
 #: ../C/f-spot.xml:641(keycap) 
 msgid "Page Down"
@@ -543,7 +543,7 @@ msgstr ""
 
 #: ../C/f-spot.xml:643(entry) 
 msgid "Go to Next Photo"
-msgstr ""
+msgstr "Aller à la photo suivante"
 
 #: ../C/f-spot.xml:649(keycap) 
 msgid "0"
@@ -551,7 +551,7 @@ msgstr ""
 
 #: ../C/f-spot.xml:651(entry) 
 msgid "Fit the image to the screen"
-msgstr ""
+msgstr "Adapter la taille de l'image à celle de l'écran"
 
 #: ../C/f-spot.xml:657(keycap) 
 msgid "1"
@@ -559,7 +559,7 @@ msgstr ""
 
 #: ../C/f-spot.xml:659(entry) 
 msgid "Zoom Factor to 1.0 (1 screen pixel per image pixel)"
-msgstr ""
+msgstr "Afficher l'image en taille réelle (un pixel d'écran par pixel d'image)"
 
 #: ../C/f-spot.xml:665(keycap) 
 msgid "2"
@@ -567,19 +567,19 @@ msgstr ""
 
 #: ../C/f-spot.xml:667(entry) 
 msgid "Zoom Factor to 2.0 (4 screen pixels per image pixel)"
-msgstr ""
+msgstr "Afficher l'image en taille double (4 pixels d'écran par pixel d'image)"
 
 #: ../C/f-spot.xml:673(keycap) 
 msgid "Escape"
-msgstr ""
+msgstr "Échap"
 
 #: ../C/f-spot.xml:675(entry) 
 msgid "Returns to Browser mode"
-msgstr ""
+msgstr "Retourner au mode Navigation"
 
 #: ../C/f-spot.xml:683(entry) 
 msgid "Examine photo with magnifying glass (Loupe)"
-msgstr ""
+msgstr "Examiner la photo avec la loupe"
 
 #. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2.
 #: ../C/f-spot.xml:0(None) 
