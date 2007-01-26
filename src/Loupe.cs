@@ -527,6 +527,19 @@ namespace FSpot {
 			dragging = false;
 		}
 
+		private void HandleKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
+		{
+			switch (args.Event.Key) {
+			case Gdk.Key.v:
+				Destroy ();
+				args.RetVal = true;
+				break;
+			default:
+				break;
+			}
+			return;
+		}
+
 		protected override void OnDestroyed ()
 		{
 			view.MotionNotifyEvent -= HandleImageViewMotion;
@@ -591,6 +604,8 @@ namespace FSpot {
 			ButtonPressEvent += HandleButtonPressEvent;
 			ButtonReleaseEvent += HandleButtonReleaseEvent;
 			MotionNotifyEvent += HandleMotionNotifyEvent;
+
+			KeyPressEvent += HandleKeyPressEvent;
 
 			drag = new Delay (20, new GLib.IdleHandler (DragUpdate));
 		}

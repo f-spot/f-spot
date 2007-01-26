@@ -468,8 +468,10 @@ namespace FSpot {
 				if (loupe == null) {
 					loupe = new Loupe (this);
 					loupe.Destroyed += HandleLoupeDestroy;
+					loupe.Show ();
+				} else {
+					loupe.Destroy ();	
 				}
-				loupe.Show ();
 				break;
 			case Gdk.Key.e:
 				Editor = new FSpot.Editors.SoftFocus (this);
