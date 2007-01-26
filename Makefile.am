@@ -52,6 +52,7 @@ DISTCLEANFILES = \
         intltool-extract        \
         intltool-merge          \
         intltool-update         \
+	gnome-doc-utils.make	\
         $(desktop_files)
 
 DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper
