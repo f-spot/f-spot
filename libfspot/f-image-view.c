@@ -474,19 +474,19 @@ get_drag_mode_for_mouse_position (FImageView *view,
 	image_coords_to_window (view, priv->selection.x1, priv->selection.y1, &x1, &y1);
 	image_coords_to_window (view, priv->selection.x2, priv->selection.y2, &x2, &y2);
 
-	if (check_corner_for_drag (x1, y1, mouse_x, mouse_y,
+	if (check_corner_for_drag (x1<x2?x1:x2, y1<y2?y1:y2, mouse_x, mouse_y,
 				   drag_x_offset_return, drag_y_offset_return))
 		return MODE_DRAG_X1Y1;
 
-	if (check_corner_for_drag (x1, y2, mouse_x, mouse_y,
+	if (check_corner_for_drag (x1<x2?x1:x2, y2>y1?y2:y1, mouse_x, mouse_y,
 				   drag_x_offset_return, drag_y_offset_return))
 		return MODE_DRAG_X1Y2;
 
-	if (check_corner_for_drag (x2, y2, mouse_x, mouse_y,
+	if (check_corner_for_drag (x2>x1?x2:x1, y2>y1?y2:y1, mouse_x, mouse_y,
 				   drag_x_offset_return, drag_y_offset_return))
 		return MODE_DRAG_X2Y2;
 
-	if (check_corner_for_drag (x2, y1, mouse_x, mouse_y,
+	if (check_corner_for_drag (x2>x1?x2:x1, y1<y2?y1:y2, mouse_x, mouse_y,
 				   drag_x_offset_return, drag_y_offset_return))
 		return MODE_DRAG_X2Y1;
 
