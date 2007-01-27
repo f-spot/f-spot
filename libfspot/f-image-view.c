@@ -466,7 +466,7 @@ get_drag_mode_for_mouse_position (FImageView *view,
 				  int *drag_x_offset_return, int *drag_y_offset_return)
 {
 	FImageViewPrivate *priv = view->priv;
-	int x1, y1, x2, y2;
+	int x1, y1, x2, y2, swap;
 
 	if (! priv->selection_active)
 		return MODE_IDLE;
@@ -474,19 +474,31 @@ get_drag_mode_for_mouse_position (FImageView *view,
 	image_coords_to_window (view, priv->selection.x1, priv->selection.y1, &x1, &y1);
 	image_coords_to_window (view, priv->selection.x2, priv->selection.y2, &x2, &y2);
 
-	if (check_corner_for_drag (x1<x2?x1:x2, y1<y2?y1:y2, mouse_x, mouse_y,
+	//Swap coords so x1<x2 and y1<y2
+	if (priv->selection.x1 > priv->selection.x2) {
+		swap = priv->selection.x1 ;
+		priv->selection.x1 = priv->selection.x2 ;
+		priv->selection.x2 = swap ;
+	}
+	if (priv->selection.y1 > priv->selection.y2) {
+		swap = priv->selection.y1 ;
+		priv->selection.y1 = priv->selection.y2 ;
+		priv->selection.y2 = swap ;
+	}
+
+	if (check_corner_for_drag (x1, y1, mouse_x, mouse_y,
 				   drag_x_offset_return, drag_y_offset_return))
 		return MODE_DRAG_X1Y1;
 
-	if (check_corner_for_drag (x1<x2?x1:x2, y2>y1?y2:y1, mouse_x, mouse_y,
+	if (check_corner_for_drag (x1, y2, mouse_x, mouse_y,
 				   drag_x_offset_return, drag_y_offset_return))
 		return MODE_DRAG_X1Y2;
 
-	if (check_corner_for_drag (x2>x1?x2:x1, y2>y1?y2:y1, mouse_x, mouse_y,
+	if (check_corner_for_drag (x2, y2, mouse_x, mouse_y,
 				   drag_x_offset_return, drag_y_offset_return))
 		return MODE_DRAG_X2Y2;
 
-	if (check_corner_for_drag (x2>x1?x2:x1, y1<y2?y1:y2, mouse_x, mouse_y,
+	if (check_corner_for_drag (x2, y1, mouse_x, mouse_y,
 				   drag_x_offset_return, drag_y_offset_return))
 		return MODE_DRAG_X2Y1;
 
