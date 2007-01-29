@@ -171,55 +171,55 @@ msgstr "Étiquettes"
 
 #: ../C/f-spot.xml:160(para) 
 msgid "F-Spot enables you to organize and enjoy your photos by associating them with various user-customizable tags. A tag is a merely a label. F-Spot comes with default tags to get you started; you are free to change them and add new ones. For example, if you want to create a tag for specific event, you can create a new tag named after that event under the Events tag."
-msgstr ""
+msgstr "F-Spot vous permet d'organiser et de voir vos photos en leur associant diverse étiquettes personalisables. F-Spot vous propse quelques étiquettes par défaut; vous êtes libre de les changer, les supprimer ou ajouter de nouvelles. Par exemple, si vous voulez créer une étiquette pour un évènement spécifique, vous pouvez créer une étiquette pour cet évènement sous l'étiquette Evenements."
 
 #: ../C/f-spot.xml:167(para) 
 msgid "There are many ways to tag photos:"
-msgstr ""
+msgstr "Il y a plusieurs façons d'étiquetter vos photos:"
 
 #: ../C/f-spot.xml:172(para) 
 msgid "drag and drop the photo(s) onto the tag"
-msgstr ""
+msgstr "glisser-déposer la (sélection de) photo(s) sur l'étiquette"
 
 #: ../C/f-spot.xml:177(para) 
 msgid "drag and drop the tag onto the photo(s)"
-msgstr ""
+msgstr "glisser-déposer le tag sur la (sélection de) photo(s)"
 
 #: ../C/f-spot.xml:182(para) 
 msgid "via the photo's right-click menu"
-msgstr ""
+msgstr "par le menu contextuel (click-droit)"
 
 #: ../C/f-spot.xml:187(para) 
 msgid "via the Tags and Edit menus"
-msgstr ""
+msgstr "par les menus Etiquettes et Editer"
 
 #: ../C/f-spot.xml:192(para) 
 msgid "by typing them in (press <keycap>t</keycap> to pop up the tag entry bar, enter comma-separated tags) - with tab completion!"
-msgstr ""
+msgstr "en les tapant directement (pressez <keycap>t<keycap> pour afficher la barre d'entrée d'étiquettes, vous pouvez taper les noms des étiquettes, séparées par des virgules)- avec complétion automatique"
 
 #: ../C/f-spot.xml:198(para) 
 msgid "The first photo you associate with a tag will be used for that tag's icon. You can always edit a tag's name, parent tag, and icon by right clicking on it and choosing <guilabel>Edit tag</guilabel>."
-msgstr ""
+msgstr "La première photo que vous associez a une étiquette sera utilisée comme vignette d'étiquette. Vous pouvez toujours éditer le nom, l'étiquette parente ou la vignette par le menu contextuel (click droit) de l'étiquette et en choisissant <guilabel>Editer l'étiquette</guilabel>."
 
 #: ../C/f-spot.xml:203(para) 
 msgid "You can change a tag's parent by dragging and dropping it where you like. Also, you can edit the name of a tag by selecting it and pressing <keycap>F2</keycap>. Lastly, if you have the tag tree widget focused (e.g. you just clicked on a tag), you can start typing the name of a tag, and all the expanded tags in the list will be searched and you'll jump to any matching ones."
-msgstr ""
+msgstr "Vous pouvez réapparenter une étiquette en la glissant-déposant ou vous voulez. De même, vous pouvez directement éditer le nom d'une étiquette en la sélectionnant et pressant <keycap>F2</keycap>. Enfin, si l'arbre des étiquettes a le focus de la souris (par exemple, si vous venez de clicquer sur une étiquette), vous pouvez commencer à taper le nom d'un étiquette, et vous arriverez automatiquement à l'étiquette de votre choix."
 
 #: ../C/f-spot.xml:215(title) 
 msgid "Enjoying your photos"
-msgstr ""
+msgstr "Profitez de vos photos"
 
 #: ../C/f-spot.xml:217(title) 
 msgid "Browse"
-msgstr ""
+msgstr "Parcourir"
 
 #: ../C/f-spot.xml:218(para) 
 msgid "You can use the slider widget to browse your photos by month or by directory. To change this setting, go to <menuchoice><guimenu>View</guimenu><guimenuitem>Arranged By</guimenuitem></menuchoice>."
-msgstr ""
+msgstr "Vous pouvez utiliser l'outil de défilement pour parcourri vos photos par mois ou par répertoire. Pour changer ce comportment, <menuchoice><guimenu>View</guimenu><guimenuitem>Arrangé par</guimenuitem></menuchoice>."
 
 #: ../C/f-spot.xml:226(title) 
 msgid "Search"
-msgstr ""
+msgstr "Chercher"
 
 #: ../C/f-spot.xml:227(para) 
 msgid "You can start a search by double clicking or activating a tag from the tag list. Alternatively, you can show the find bar with <menuchoice><guimenu>Find</guimenu><guimenuitem>Show Find Bar</guimenuitem></menuchoice>. With the find bar shown, you can drag tags from the tag view to the find bar."
@@ -347,7 +347,7 @@ msgstr "Action"
 
 #: ../C/f-spot.xml:402(keycap) 
 msgid "["
-msgstr ""
+msgstr "["
 
 #: ../C/f-spot.xml:404(entry) 
 msgid "Rotate the selected photos to the left"
@@ -355,7 +355,7 @@ msgstr "Tourner les photos sélectionnées vers la gauche"
 
 #: ../C/f-spot.xml:410(keycap) 
 msgid "]"
-msgstr ""
+msgstr "]"
 
 #: ../C/f-spot.xml:412(entry) 
 msgid "Rotate the selected photos to the right"
@@ -363,7 +363,7 @@ msgstr "Tourner les photos sélectionnées vers la droite"
 
 #: ../C/f-spot.xml:418(keycap) 
 msgid "t"
-msgstr ""
+msgstr "t"
 
 #: ../C/f-spot.xml:420(entry) 
 msgid "View or edit tags for selected photos"
@@ -371,7 +371,7 @@ msgstr "Éditer les étiquettes des photos sélectionnées"
 
 #: ../C/f-spot.xml:426(keycap) 
 msgid "F11"
-msgstr ""
+msgstr "F11"
 
 #: ../C/f-spot.xml:428(entry) 
 msgid "Full screen view"
@@ -379,11 +379,11 @@ msgstr "Vue en plein écran"
 
 #: ../C/f-spot.xml:434(keycap) ../C/f-spot.xml:442(keycap) ../C/f-spot.xml:450(keycap) ../C/f-spot.xml:458(keycap) ../C/f-spot.xml:486(keycap) ../C/f-spot.xml:494(keycap) ../C/f-spot.xml:511(keycap) ../C/f-spot.xml:536(keycap) ../C/f-spot.xml:589(keycap) 
 msgid "Ctrl"
-msgstr ""
+msgstr "Control"
 
 #: ../C/f-spot.xml:434(keycap) 
 msgid "I"
-msgstr ""
+msgstr "I"
 
 #: ../C/f-spot.xml:436(entry) 
 msgid "Displays information about the photo"
@@ -407,7 +407,7 @@ msgstr "Réduire"
 
 #: ../C/f-spot.xml:458(keycap) 
 msgid "N"
-msgstr ""
+msgstr "N"
 
 #: ../C/f-spot.xml:460(entry) 
 msgid "Import photos"
@@ -419,7 +419,7 @@ msgstr "Raccourcis du mode Navigation"
 
 #: ../C/f-spot.xml:486(keycap) ../C/f-spot.xml:495(keycap) 
 msgid "A"
-msgstr ""
+msgstr "A"
 
 #: ../C/f-spot.xml:488(entry) 
 msgid "Select all"
@@ -427,7 +427,7 @@ msgstr "Tout sélectionner"
 
 #: ../C/f-spot.xml:494(keycap) ../C/f-spot.xml:527(keycap) ../C/f-spot.xml:536(keycap) 
 msgid "Shift"
-msgstr ""
+msgstr "Maj."
 
 #: ../C/f-spot.xml:497(entry) 
 msgid "Unselect all"
@@ -443,7 +443,7 @@ msgstr "Déplacer le sélecteur"
 
 #: ../C/f-spot.xml:510(entry) 
 msgid "<placeholder-1/>-arrow key"
-msgstr ""
+msgstr "<placeholder-1/>-touche flechée"
 
 #: ../C/f-spot.xml:513(entry) 
 msgid "Move the focus without changing the selection"
@@ -475,7 +475,7 @@ msgstr "Ajouter ou enlever à la sélection toutes les photos de la rangée, dan
 
 #: ../C/f-spot.xml:545(keycap) ../C/f-spot.xml:681(keycap) 
 msgid "v"
-msgstr ""
+msgstr "v"
 
 #: ../C/f-spot.xml:547(entry) 
 msgid "Pops up a larger preview of the picture pointed by the mouse"
@@ -483,7 +483,7 @@ msgstr "Affiche une prévisualisation plus grande de l'image sous le curseur de 
 
 #: ../C/f-spot.xml:553(keycap) 
 msgid "V"
-msgstr ""
+msgstr "V"
 
 #: ../C/f-spot.xml:555(entry) 
 msgid "Pops up a larger preview and a color histogram of the picture pointed by the mouse"
@@ -495,7 +495,7 @@ msgstr "Raccourcis portant sur les étiquettes"
 
 #: ../C/f-spot.xml:581(keycap) 
 msgid "F2"
-msgstr ""
+msgstr "F2"
 
 #: ../C/f-spot.xml:583(entry) 
 msgid "Rename selected tag"
@@ -503,7 +503,7 @@ msgstr "Renommer l'étiquette sélectionnée"
 
 #: ../C/f-spot.xml:589(keycap) 
 msgid "T"
-msgstr ""
+msgstr "T"
 
 #: ../C/f-spot.xml:591(entry) 
 msgid "Add tags to selected photos"
@@ -527,7 +527,7 @@ msgstr "Raccourcis du mode Retouches"
 
 #: ../C/f-spot.xml:633(keycap) 
 msgid "Page Up"
-msgstr ""
+msgstr "Pg Préc"
 
 #: ../C/f-spot.xml:635(entry) 
 msgid "Go to Previous Photo"
@@ -535,11 +535,11 @@ msgstr "Aller à la photo précédente"
 
 #: ../C/f-spot.xml:641(keycap) 
 msgid "Page Down"
-msgstr ""
+msgstr "Pg Suiv"
 
 #: ../C/f-spot.xml:640(entry) 
 msgid "<placeholder-1/>, <placeholder-2/>"
-msgstr ""
+msgstr "<placeholder-1/>, <placeholder-2/>"
 
 #: ../C/f-spot.xml:643(entry) 
 msgid "Go to Next Photo"
@@ -547,7 +547,7 @@ msgstr "Aller à la photo suivante"
 
 #: ../C/f-spot.xml:649(keycap) 
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: ../C/f-spot.xml:651(entry) 
 msgid "Fit the image to the screen"
@@ -555,7 +555,7 @@ msgstr "Adapter la taille de l'image à celle de l'écran"
 
 #: ../C/f-spot.xml:657(keycap) 
 msgid "1"
-msgstr ""
+msgstr "1"
 
 #: ../C/f-spot.xml:659(entry) 
 msgid "Zoom Factor to 1.0 (1 screen pixel per image pixel)"
@@ -563,7 +563,7 @@ msgstr "Afficher l'image en taille réelle (un pixel d'écran par pixel d'image)
 
 #: ../C/f-spot.xml:665(keycap) 
 msgid "2"
-msgstr ""
+msgstr "2"
 
 #: ../C/f-spot.xml:667(entry) 
 msgid "Zoom Factor to 2.0 (4 screen pixels per image pixel)"
@@ -584,5 +584,5 @@ msgstr "Examiner la photo avec la loupe"
 #. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2.
 #: ../C/f-spot.xml:0(None) 
 msgid "translator-credits"
-msgstr ""
+msgstr "Stephane Delcroix <stephane@delcroix.org>, 2007"
 
