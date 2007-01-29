@@ -247,6 +247,16 @@ namespace GalleryRemote {
 			}
 		}
 
+		string auth_token;
+		public string AuthToken {
+			get {
+				return auth_token;
+			}
+			set {
+				auth_token = value;
+			}
+		}
+
 		protected GalleryVersion version;
 		
 		public GalleryVersion Version {
@@ -407,6 +417,8 @@ namespace GalleryRemote {
 						Console.WriteLine ("StatusText : {0}", data[1]);
 					} else if (data[0].StartsWith ("server_version")) {
 						//FIXME we should use the to determine what capabilities the server has
+					} else if (data[0].StartsWith ("auth_token")) {
+						AuthToken = data[1];
 					} else {
 						Console.WriteLine ("Unparsed Line in ParseLogin(): {0}={1}", data[0], data[1]);
 					}
@@ -495,6 +507,8 @@ namespace GalleryRemote {
 					} else if (data[0].StartsWith ("album_count")) {
 						if (Albums.Count != int.Parse (data[1]))
 							Console.WriteLine ("Parsed album count does not match album_count.  Something is amiss");
+					} else if (data[0].StartsWith ("auth_token")) {
+						AuthToken = data [1];
 					} else {
 						Console.WriteLine ("Unparsed Line in ParseFetchAlbums(): {0}={1}", data[0], data[1]);
 					}
@@ -582,6 +596,8 @@ namespace GalleryRemote {
 					} else if (data[0].StartsWith ("status_text")) {
 						status_text = data[1];
 						Console.WriteLine ("StatusText : {0}", data[1]);
+					} else if (data[0].StartsWith ("auth_token")) {
+						AuthToken = data[1];
 					} else {
 						Console.WriteLine ("Unparsed Line in ParseBasic(): {0}={1}", data[0], data[1]);
 					}
@@ -754,7 +770,6 @@ namespace GalleryRemote {
 			client.Add ("cmd", "fetch-albums-prune");
 			client.Add ("protocol_version", "2.3");
 			client.Add ("check_writable", "no");
-
 			ArrayList a = ParseFetchAlbums (client.Submit (uri));
 			a.Sort();
 			return a;
@@ -872,11 +887,11 @@ namespace GalleryRemote {
 
 		public override void Login (string username, string passwd)
 		{
-			//Console.WriteLine ("Gallery2: Attempting to login");
+			Console.WriteLine ("Gallery2: Attempting to login");
 			FormClient client = new FormClient (cookies);
 			
 			client.Add ("g2_form[cmd]", "login");
-			client.Add ("g2_form[protocol_version]", "2.3");
+			client.Add ("g2_form[protocol_version]", "2.10");
 			client.Add ("g2_form[uname]", username);
 			client.Add ("g2_form[password]", passwd);
 			AddG2Specific (client);
@@ -896,7 +911,7 @@ namespace GalleryRemote {
 			FormClient client = new FormClient (cookies);
 			
 			client.Add ("g2_form[cmd]", "move-album");
-			client.Add ("g2_form[protocol_version]", "2.7");
+			client.Add ("g2_form[protocol_version]", "2.10");
 			client.Add ("g2_form[set_albumName]", album.Name);
 			client.Add ("g2_form[set_destalbumName]", end_name);
 			AddG2Specific (client);
@@ -913,7 +928,7 @@ namespace GalleryRemote {
 			FormClient client = new FormClient (cookies);
 			
 			client.Add ("g2_form[cmd]", "add-item");
-			client.Add ("g2_form[protocol_version]", "2.9");
+			client.Add ("g2_form[protocol_version]", "2.10");
 			client.Add ("g2_form[set_albumName]", album.Name);
 			client.Add ("g2_form[caption]", caption);
 			client.Add ("g2_form[userfile_name]", filename);
@@ -944,7 +959,7 @@ namespace GalleryRemote {
 		{
 			FormClient client = new FormClient (cookies);
 			client.Add ("g2_form[cmd]", "new-album");
-			client.Add ("g2_form[protocol_version]", "2.8");
+			client.Add ("g2_form[protocol_version]", "2.10");
 			client.Add ("g2_form[set_albumName]", parent_name);
 			client.Add ("g2_form[newAlbumName]", name);
 			client.Add ("g2_form[newAlbumTitle]", title);
@@ -958,7 +973,7 @@ namespace GalleryRemote {
 		{
 			FormClient client = new FormClient (cookies);
 			client.Add ("g2_form[cmd]", "fetch-album-images");
-			client.Add ("g2_form[protocol_version]","2.3");
+			client.Add ("g2_form[protocol_version]","2.10");
 			client.Add ("g2_form[set_albumName]", album.Name);
 			client.Add ("g2_form[albums_too]", include_ablums ? "yes" : "no");
 			AddG2Specific (client);
@@ -971,7 +986,7 @@ namespace GalleryRemote {
 		{
 			FormClient client = new FormClient (cookies);
 			client.Add ("g2_form[cmd]", "fetch-albums-prune");
-			client.Add ("g2_form[protocol_version]", "2.3");
+			client.Add ("g2_form[protocol_version]", "2.10");
 			client.Add ("g2_form[check_writable]", "no");
 			AddG2Specific (client);
 			
@@ -982,6 +997,8 @@ namespace GalleryRemote {
 
 		private void AddG2Specific (FormClient client)
 		{
+			if (AuthToken != null && AuthToken != String.Empty)
+				client.Add("g2_authToken", AuthToken);
 			client.Add("g2_controller", "remote.GalleryRemote");
 		}
 
