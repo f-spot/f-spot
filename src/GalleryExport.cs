@@ -588,6 +588,11 @@ namespace FSpot {
 		IBrowsableItem[] items;
 		int photo_index;
 		FSpot.ThreadProgressDialog progress_dialog;
+		Gtk.ResponseType error_response;
+		System.Threading.AutoResetEvent error_response_event;
+		System.Threading.AutoResetEvent error_response_ack_event;
+		Gtk.Button retry_button;
+		Gtk.Button skip_button;
 		
 		ArrayList accounts;
 		private GalleryAccount account;
@@ -649,6 +654,18 @@ namespace FSpot {
 				command_thread.Name = Catalog.GetString ("Uploading Pictures");
 				
 				progress_dialog = new FSpot.ThreadProgressDialog (command_thread, items.Length);
+				retry_button = new Gtk.Button ();
+				retry_button.Label = Catalog.GetString ("Re-upload picture");
+				retry_button.Clicked += new EventHandler (HandleRetryClicked);
+				retry_button.Show ();
+				retry_button.Sensitive = false;
+				skip_button = new Gtk.Button ();
+				skip_button.Label = Catalog.GetString ("Skip picture");
+				skip_button.Clicked += new EventHandler (HandleSkipClicked);
+				skip_button.Show ();
+				skip_button.Sensitive = false;
+				progress_dialog.ActionArea.Add (retry_button);
+				progress_dialog.ActionArea.Add (skip_button);
 				progress_dialog.Start ();
 
 				// Save these settings for next time
@@ -671,9 +688,22 @@ namespace FSpot {
 			size_spin.Sensitive = scale_check.Active;
 		}
 
+		private void HandleRetryClicked (object obj, EventArgs args)
+		{
+			error_response = Gtk.ResponseType.Yes;
+			error_response_event.Set ();
+			error_response_ack_event.WaitOne ();
+		}
+
+		private void HandleSkipClicked (object obj, EventArgs args)
+		{
+			error_response = Gtk.ResponseType.No;
+			error_response_event.Set ();
+			error_response_ack_event.WaitOne ();
+		}
+
 		private void Upload ()
 		{
-			try {
 				account.Gallery.Progress = new ProgressItem ();
 				account.Gallery.Progress.Changed += HandleProgressChanged;
 
@@ -701,6 +731,7 @@ namespace FSpot {
 					Filters.FilterRequest req = new Filters.FilterRequest (item.DefaultVersionUri);
 
 					filters.Convert (req);
+				try {
 					album.Add (item, req.Current.LocalPath);
 
 //					string orig = item.DefaultVersionUri.LocalPath;
@@ -720,18 +751,31 @@ namespace FSpot {
 //					
 //					if (final != orig)
 //						System.IO.File.Delete (final);
-				}
+				} catch (System.Exception e) {
+					progress_dialog.Message = String.Format (Catalog.GetString ("Error uploading picture \"{0}\" to Gallery: {1}"), item.Name, e.Message);
+					progress_dialog.ProgressText = Catalog.GetString ("Error");
+					System.Console.WriteLine (e);
 
-				progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
-				progress_dialog.Fraction = 1.0;
-				progress_dialog.ProgressText = Catalog.GetString ("Upload Complete");
-				progress_dialog.ButtonLabel = Gtk.Stock.Ok;
-			} catch (System.Exception e) {
-				progress_dialog.Message = String.Format (Catalog.GetString ("Error Uploading To Gallery: {0}"),
-									 e.Message);
-				progress_dialog.ProgressText = Catalog.GetString ("Error");
-				System.Console.WriteLine (e);
+					error_response = Gtk.ResponseType.None;
+					error_response_event = new System.Threading.AutoResetEvent (false);
+					error_response_ack_event = new System.Threading.AutoResetEvent (false);
+					retry_button.Sensitive = true;
+					skip_button.Sensitive = true;
+					error_response_event.WaitOne ();
+					retry_button.Sensitive = false;
+					skip_button.Sensitive = false;
+					error_response_ack_event.Set ();
+
+					if (error_response == Gtk.ResponseType.Yes) {
+						photo_index--;
+					}
+				}
 			}
+
+			progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
+			progress_dialog.Fraction = 1.0;
+			progress_dialog.ProgressText = Catalog.GetString ("Upload Complete");
+			progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 			
 			if (browser) {
 				GnomeUtil.UrlShow (null, album.GetUrl());
