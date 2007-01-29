@@ -72,6 +72,7 @@ namespace FSpot.Database {
 //the handling of 'fspot:Folder' items. They're obsolete and replaced by fspot:FolderUri
 //ExecuteNonQuery ("DELETE FROM exports WHERE export_type='fspot:Folder'");
 
+//TODO: please consider fixing bgo 324425 on the next major update of the db.
 			// Update from version 3 to 4
 			//AddUpdate (delegate (SqliteConnection connection) {
 			//	do update here
