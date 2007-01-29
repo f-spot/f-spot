@@ -754,7 +754,6 @@ namespace FSpot {
 				} catch (System.Exception e) {
 					progress_dialog.Message = String.Format (Catalog.GetString ("Error uploading picture \"{0}\" to Gallery: {1}"), item.Name, e.Message);
 					progress_dialog.ProgressText = Catalog.GetString ("Error");
-					System.Console.WriteLine (e);
 
 					error_response = Gtk.ResponseType.None;
 					error_response_event = new System.Threading.AutoResetEvent (false);
