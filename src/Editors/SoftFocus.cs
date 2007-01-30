@@ -79,6 +79,7 @@ namespace FSpot.Editors {
 				Context ctx = new Context (dest);
 				effect.OnExpose (ctx, info.Bounds);
 				((IDisposable)ctx).Dispose ();
+				dest.Destroy ();
 
 				string tmp = ImageFile.TempPath (item.Current.DefaultVersionUri.LocalPath);
 				using (Gdk.Pixbuf output = Widgets.CairoUtils.CreatePixbuf (dest)) {
