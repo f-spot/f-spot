@@ -194,6 +194,8 @@ public class FileImportBackend : ImportBackend {
 
 	public override bool Step (out Photo photo, out Pixbuf thumbnail, out int count)
 	{
+		thumbnail = null;
+
 		if (import_info == null)
 			throw new ImportException ("Prepare() was not called");
 
@@ -245,6 +247,9 @@ public class FileImportBackend : ImportBackend {
 			info.Photo = photo;
 		} catch (System.Exception e) {
 			System.Console.WriteLine ("Error importing {0}\n{1}", info.OriginalPath, e.ToString ());
+			if (thumbnail != null)
+				thumbnail.Dispose ();
+
 			thumbnail = null;
 			photo = null;
 
@@ -364,6 +369,9 @@ public class FileImportBackend : ImportBackend {
 			ongoing = import.Step (out photo, out thumbnail, out count);
 
 			Console.WriteLine ("{0}/{1} - {2}", count, total_count, photo.Path);
+
+			if (thumbnail != null)
+				thumbnail.Dispose ();
 		} while (ongoing);
 
 		import.Finish ();

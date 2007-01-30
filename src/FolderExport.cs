@@ -734,39 +734,42 @@ namespace FSpot {
 			
 			MakeDir (SubdirPath ("style"));
 			System.Reflection.Assembly assembly = System.Reflection.Assembly.GetCallingAssembly ();
-			System.IO.Stream s = assembly.GetManifestResourceStream (stylesheet);
-			System.IO.Stream fs = System.IO.File.Open (SubdirPath ("style", stylesheet), System.IO.FileMode.Create);
+			using (Stream s = assembly.GetManifestResourceStream (stylesheet)) {
+				using (Stream fs = System.IO.File.Open (SubdirPath ("style", stylesheet), System.IO.FileMode.Create)) {
 
-			byte [] buffer = new byte [8192];
-			int n;
-			while ((n = s.Read (buffer, 0, buffer.Length)) != 0)
-				fs.Write (buffer, 0,  n);						    
-			
-			fs.Close ();
+					byte [] buffer = new byte [8192];
+					int n;
+					while ((n = s.Read (buffer, 0, buffer.Length)) != 0)
+						fs.Write (buffer, 0,  n);						    
+					
+				}
+			}
 			/* quick and stupid solution
 			   this should have been iterated over an array of stylesheets, really
 			*/
-			s = assembly.GetManifestResourceStream (altstylesheet);
-			fs = System.IO.File.Open (SubdirPath ("style", altstylesheet), System.IO.FileMode.Create);
+			using (Stream s = assembly.GetManifestResourceStream (altstylesheet)) {
+				using (Stream fs = System.IO.File.Open (SubdirPath ("style", altstylesheet), System.IO.FileMode.Create)) {
+					
+					byte [] buffer = new byte [8192];
+					int n = 0;
+					while ((n = s.Read (buffer, 0, buffer.Length)) != 0)
+						fs.Write (buffer, 0,  n);						    
+					
+				}
+			}
 
-			buffer = new byte [8192];
-			n = 0;
-			while ((n = s.Read (buffer, 0, buffer.Length)) != 0)
-				fs.Write (buffer, 0,  n);						    
-			
-			fs.Close ();
 			/* Javascript for persistant style change */
 			MakeDir (SubdirPath ("script"));
-			s = assembly.GetManifestResourceStream (javascript);
-			fs = System.IO.File.Open (SubdirPath ("script", javascript), System.IO.FileMode.Create);
+			using (Stream s = assembly.GetManifestResourceStream (javascript)) {
+				using (Stream fs = System.IO.File.Open (SubdirPath ("script", javascript), System.IO.FileMode.Create)) {
 
-			buffer = new byte [8192];
-			n = 0;
-			while ((n = s.Read (buffer, 0, buffer.Length)) != 0)
-				fs.Write (buffer, 0,  n);						    
-			
-			fs.Close ();
-	
+					byte [] buffer = new byte [8192];
+					int n = 0;
+					while ((n = s.Read (buffer, 0, buffer.Length)) != 0)
+						fs.Write (buffer, 0,  n);						    
+					
+				}
+			}
 		}
 		
 		public int PageCount {

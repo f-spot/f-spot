@@ -429,8 +429,11 @@ public class ImportCommand : FSpot.GladeDialog {
 		
 			//grid.AddThumbnail (thumbnail);
 
-			thumbnail.Dispose ();
 		}
+
+		if (thumbnail != null)
+			thumbnail.Dispose ();
+		
 		if (count < total)
 			UpdateProgressBar (count + 1, total);
 
