@@ -184,14 +184,14 @@ public class PhotoView : EventBox {
 
 			string desc = Item.Current.Description;
 			if (description_entry.Text != desc) {
-				description_entry.Text = desc == null ? "" : desc;
+				description_entry.Text = desc == null ? String.Empty : desc;
 			}
 		} else {
 			description_entry.Sensitive = false;
-			description_entry.Text = "";
+			description_entry.Text = String.Empty;
 		}
 
-		if (description_entry.Text != "")
+		if (description_entry.Text != String.Empty)
 			tips.SetTip (description_entry, description_entry.Text, description_entry.Text);
 		else
 			tips.SetTip (description_entry, null, null);
