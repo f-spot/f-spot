@@ -203,31 +203,35 @@ namespace FSpot {
 		private void Download ()
 		{
 			lock (camera) {
-				try {
-					System.Collections.ArrayList saved = new System.Collections.ArrayList ();
+				System.Collections.ArrayList saved = new System.Collections.ArrayList ();
 					
-					int count = 0;
-					foreach (int index in index_list) {
+				int count = 0;
+				for (int i = 0; i < index_list.Count; i++) {
+					try {
 						count++;
 						string msg = String.Format (Catalog.GetString ("Copying file {0} of {1}"),
-									    count, index_list.Count);
+									    i, index_list.Count);
 						
 						progress_dialog.ProgressText = msg;
-						saved.Add (SaveFile (index));
+						saved.Add (SaveFile ((int)(index_list [i])));
 						progress_dialog.Fraction = count/(double)index_list.Count;
 					}
-					
-					saved_files = (string []) saved.ToArray (typeof (string));
-					
-					progress_dialog.Message = Catalog.GetString ("Done Copying Files");
-					progress_dialog.Fraction = 1.0;
-					progress_dialog.ProgressText = Catalog.GetString ("Download Complete");
-					progress_dialog.ButtonLabel = Gtk.Stock.Ok;
-				} catch (System.Exception e) {
-					System.Console.WriteLine (e.ToString ());
-					progress_dialog.Message = String.Format ("{0}\n{1}", e.Message, e.ToString ());
-					progress_dialog.ProgressText = Catalog.GetString ("Error transferring file");
+					catch (System.Exception e) {
+						System.Console.WriteLine (e.ToString ());
+						progress_dialog.Message = String.Format ("{0}\n{1}", e.Message, e.ToString ());
+						progress_dialog.ProgressText = Catalog.GetString ("Error transferring file");
+
+						if (progress_dialog.PerformRetrySkip ())
+						 	i--;
+					}
 				}
+					
+				saved_files = (string []) saved.ToArray (typeof (string));
+					
+				progress_dialog.Message = Catalog.GetString ("Done Copying Files");
+				progress_dialog.Fraction = 1.0;
+				progress_dialog.ProgressText = Catalog.GetString ("Download Complete");
+				progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 			}
 		}
 		

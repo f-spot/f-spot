@@ -542,23 +542,23 @@ namespace FSpot {
 
 		private void Upload ()
 		{
-			try {
-				album.UploadProgress += HandleUploadProgress;
-				sent_bytes = 0;
-				approx_size = 0;
+			album.UploadProgress += HandleUploadProgress;
+			sent_bytes = 0;
+			approx_size = 0;
 
-				System.Console.WriteLine ("Starting Upload to Picasa");
+			System.Console.WriteLine ("Starting Upload to Picasa");
 
-				FilterSet filters = new FilterSet ();
-				filters.Add (new JpegFilter ());
+			FilterSet filters = new FilterSet ();
+			filters.Add (new JpegFilter ());
 
-				if (scale)
-					filters.Add (new ResizeFilter ((uint)size));
+			if (scale)
+				filters.Add (new ResizeFilter ((uint)size));
 
-				if (rotate)
-					filters.Add (new OrientationFilter ());
+			if (rotate)
+				filters.Add (new OrientationFilter ());
 
-				while (photo_index < items.Length) {
+			while (photo_index < items.Length) {
+				try {
 					IBrowsableItem item = items[photo_index];
 
 					FileInfo file_info;
@@ -601,23 +601,25 @@ namespace FSpot {
 					sent_bytes += file_info.Length;
 
 					request.Dispose ();
-				}
-				
-				progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
-				progress_dialog.Fraction = 1.0;
-				progress_dialog.ProgressText = Catalog.GetString ("Upload Complete");
-				progress_dialog.ButtonLabel = Gtk.Stock.Ok;
+				} catch (System.Exception e) {
+					progress_dialog.Message = String.Format (Catalog.GetString ("Error Uploading To Gallery: {0}"),
+										 e.Message);
+					progress_dialog.ProgressText = Catalog.GetString ("Error");
+					System.Console.WriteLine (e);
 
-				if (browser) {
-					GnomeUtil.UrlShow (null, album.Link);
+					if (progress_dialog.PerformRetrySkip ())
+					 	photo_index--;
 				}
-			} catch (System.Exception e) {
-				progress_dialog.Message = String.Format (Catalog.GetString ("Error Uploading To Gallery: {0}"),
-									 e.Message);
-				progress_dialog.ProgressText = Catalog.GetString ("Error");
-				System.Console.WriteLine (e);
 			}
-			
+				
+			progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
+			progress_dialog.Fraction = 1.0;
+			progress_dialog.ProgressText = Catalog.GetString ("Upload Complete");
+			progress_dialog.ButtonLabel = Gtk.Stock.Ok;
+
+			if (browser) {
+				GnomeUtil.UrlShow (null, album.Link);
+			}
 		}
 
 		private void HandleScaleCheckToggled (object o, EventArgs e)

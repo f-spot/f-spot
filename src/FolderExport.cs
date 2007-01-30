@@ -215,7 +215,7 @@ namespace FSpot {
 				Preferences.Set (Preferences.EXPORT_FOLDER_METHOD, static_radio.Active ? "static" : original_radio.Active ? "original" : "folder" );
 				Preferences.Set (Preferences.EXPORT_FOLDER_URI, uri_chooser.Uri);
 			} catch (System.Exception e) {
-Console.WriteLine (e);
+				// Console.WriteLine (e);
 				progress_dialog.Message = e.ToString ();
 				progress_dialog.ProgressText = Catalog.GetString ("Error Transferring");
 			} finally {

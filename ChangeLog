@@ -1,3 +1,14 @@
+2007-01-30  Thomas Van Machelen  <thomas.vanmachelen@gmail.com>
+
+	* src/ThreadProgressDialog: Add skip and retry button
+
+	* src/CDExport.cs:
+	* src/CameraFileSelectionDialog.cs:
+	* src/FlickrExport.cs:
+	* src/GallerExport.cs:
+	* src/SmugMugExport.cs:
+		Use the new skip retry buttons on the progress dialog
+
 2007-01-25  Stephane Delcroix <stephane@delcroix.org>
 
 	* src/Preferences: access to gnome_mailto_uri_handler

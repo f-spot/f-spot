@@ -250,8 +250,9 @@ namespace FSpot {
 			fr.Connection.OnUploadProgress += HandleFlickrProgress;
 
 			System.Collections.ArrayList ids = new System.Collections.ArrayList ();
-			try {
-				foreach (IBrowsableItem photo in selection.Items) {
+			for (int index = 0; index < selection.Items.Length; index++) {
+				try {
+				 	IBrowsableItem photo = selection.Items [index];
 					progress_dialog.Message = System.String.Format (
                                                 Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
 
@@ -279,13 +280,16 @@ namespace FSpot {
 					progress_dialog.Fraction = 1.0;
 					progress_dialog.ProgressText = Catalog.GetString ("Upload Complete");
 					progress_dialog.ButtonLabel = Gtk.Stock.Ok;
+				} catch (System.Exception e) {
+					progress_dialog.Message = String.Format (Catalog.GetString ("Error Uploading To {0}: {1}"),
+										 current_service.Name,
+										 e.Message);
+					progress_dialog.ProgressText = Catalog.GetString ("Error");
+					System.Console.WriteLine (e);
+
+					if (progress_dialog.PerformRetrySkip ())
+					 	index--;
 				}
-			} catch (System.Exception e) {
-				progress_dialog.Message = String.Format (Catalog.GetString ("Error Uploading To {0}: {1}"),
-									 current_service.Name,
-									 e.Message);
-				progress_dialog.ProgressText = Catalog.GetString ("Error");
-				System.Console.WriteLine (e);
 			}
 
 			if (open && ids.Count != 0) {

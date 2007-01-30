@@ -511,24 +511,24 @@ namespace FSpot {
 
 		private void Upload ()
 		{
-			try {
-				sent_bytes = 0;
-				approx_size = 0;
+			sent_bytes = 0;
+			approx_size = 0;
 
-				Uri album_uri = null;
+			Uri album_uri = null;
 
-				System.Console.WriteLine ("Starting Upload to Smugmug, album {0} - {1}", album.Title, album.AlbumID);
+			System.Console.WriteLine ("Starting Upload to Smugmug, album {0} - {1}", album.Title, album.AlbumID);
 
-				FilterSet filters = new FilterSet ();
-				filters.Add (new JpegFilter ());
+			FilterSet filters = new FilterSet ();
+			filters.Add (new JpegFilter ());
 
-				if (scale)
-					filters.Add (new ResizeFilter ((uint)size));
+			if (scale)
+				filters.Add (new ResizeFilter ((uint)size));
 
-				if (rotate)
-					filters.Add (new OrientationFilter ());
+			if (rotate)
+				filters.Add (new OrientationFilter ());
 
-				while (photo_index < items.Length) {
+			while (photo_index < items.Length) {
+				try {
 					IBrowsableItem item = items[photo_index];
 
 					FileInfo file_info;
@@ -561,23 +561,25 @@ namespace FSpot {
 
 					if (album_uri == null)
 					 	album_uri = account.SmugMug.GetAlbumUrl (image_id);
-				}
-				
-				progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
-				progress_dialog.Fraction = 1.0;
-				progress_dialog.ProgressText = Mono.Unix.Catalog.GetString ("Upload Complete");
-				progress_dialog.ButtonLabel = Gtk.Stock.Ok;
+				} catch (System.Exception e) {
+					progress_dialog.Message = String.Format (Mono.Unix.Catalog.GetString ("Error Uploading To Gallery: {0}"),
+										 e.Message);
+					progress_dialog.ProgressText = Mono.Unix.Catalog.GetString ("Error");
+					System.Console.WriteLine (e);
 
-				if (browser && album_uri != null) {
-					GnomeUtil.UrlShow (null, album_uri.ToString ());
+					if (progress_dialog.PerformRetrySkip ())
+					 	photo_index--;
 				}
-			} catch (System.Exception e) {
-				progress_dialog.Message = String.Format (Mono.Unix.Catalog.GetString ("Error Uploading To Gallery: {0}"),
-									 e.Message);
-				progress_dialog.ProgressText = Mono.Unix.Catalog.GetString ("Error");
-				System.Console.WriteLine (e);
 			}
-			
+				
+			progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
+			progress_dialog.Fraction = 1.0;
+			progress_dialog.ProgressText = Mono.Unix.Catalog.GetString ("Upload Complete");
+			progress_dialog.ButtonLabel = Gtk.Stock.Ok;
+
+			if (browser && album_uri != null) {
+				GnomeUtil.UrlShow (null, album_uri.ToString ());
+			}
 		}
 
 		private void HandleScaleCheckToggled (object o, EventArgs e)

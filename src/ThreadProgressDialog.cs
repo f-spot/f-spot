@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 
 namespace FSpot {
 
@@ -34,9 +35,29 @@ namespace FSpot {
 		private Gtk.ProgressBar progress_bar;
 		private Gtk.Label message_label;
 		private Gtk.Button button;
-		private System.Threading.Thread thread;
 
-		public ThreadProgressDialog (System.Threading.Thread thread, int total) {
+		private Gtk.Button retry_button;
+		private Gtk.Button skip_button;
+		private Gtk.ResponseType error_response;
+		private AutoResetEvent error_response_event;
+		private AutoResetEvent error_response_ack_event;
+
+		private Thread thread;
+
+		public Gtk.Button RetryButton {
+			get { 
+			 	return retry_button; 
+			} 
+		}
+
+		public Gtk.Button SkipButton {
+			get {
+				return skip_button; 
+			} 
+		}
+
+
+		public ThreadProgressDialog (Thread thread, int total) {
 			/*
 			if (parent_window)
 				this.TransientFor = parent_window;
@@ -54,6 +75,15 @@ namespace FSpot {
 			
 			progress_bar = new Gtk.ProgressBar ();
 			VBox.PackStart (progress_bar, true, true, 6);
+
+			retry_button = new Gtk.Button (Mono.Unix.Catalog.GetString ("Retry"));
+			retry_button.Clicked += new EventHandler (HandleRetryClicked);
+			skip_button = new Gtk.Button (Mono.Unix.Catalog.GetString ("Skip"));
+			skip_button.Clicked += new EventHandler (HandleSkipClicked);
+
+			skip_button.Sensitive = retry_button.Sensitive = false;
+			ActionArea.Add (retry_button);
+			ActionArea.Add (skip_button);
 
 			button_label = Gtk.Stock.Cancel;
 			button = (Gtk.Button) AddButton (button_label, (int)Gtk.ResponseType.Cancel);
@@ -116,6 +146,19 @@ namespace FSpot {
 			}
 		}
 
+		public bool PerformRetrySkip ()
+		{
+			error_response = Gtk.ResponseType.None;
+			error_response_event = new AutoResetEvent (false);
+			error_response_ack_event = new AutoResetEvent (false);
+			retry_button.Sensitive = skip_button.Sensitive = true;
+			error_response_event.WaitOne ();
+			retry_button.Sensitive = skip_button.Sensitive = false;
+			error_response_ack_event.Set ();
+
+			return error_response == Gtk.ResponseType.Yes ? true : false;
+		}
+
 		private void HandleResponse (object obj, Gtk.ResponseArgs args) {
 			this.Destroy ();
 		}
@@ -136,6 +179,20 @@ namespace FSpot {
 			if (thread.IsAlive) {
 				thread.Abort ();
 			}
+		}
+
+		private void HandleRetryClicked (object obj, EventArgs args)
+		{
+			error_response = Gtk.ResponseType.Yes;
+			error_response_event.Set ();
+			error_response_ack_event.WaitOne ();
+		}
+
+		private void HandleSkipClicked (object obj, EventArgs args)
+		{
+			error_response = Gtk.ResponseType.No;
+			error_response_event.Set ();
+			error_response_ack_event.WaitOne ();
 		}
 		
 		public void Start () {
