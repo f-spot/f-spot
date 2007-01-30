@@ -163,11 +163,9 @@ class PixbufUtils {
 		
 		public Pixbuf LoadFromFile (string path)
 		{
-			FileStream fs = null;
-			
 			try {
 				orientation = GetOrientation (path);
-				using (fs = File.OpenRead (path)) {
+				using (FileStream fs = File.OpenRead (path)) {
 					return Load (fs, orientation);
 				}
 			} catch (Exception) {
@@ -749,14 +747,16 @@ class PixbufUtils {
 		byte [] thumb_data = data.Data;
 		if (thumb_data.Length > 0) {
 			PixbufOrientation orientation = GetOrientation (data);
-			MemoryStream mem = new MemoryStream (thumb_data);
-			Gdk.Pixbuf thumb = new Gdk.Pixbuf (mem);
-			Gdk.Pixbuf rotated = PixbufUtils.TransformOrientation (thumb, orientation);
 			
-			if (rotated != thumb)
-				thumb.Dispose ();
-			
-			return rotated;
+			using (MemoryStream mem = new MemoryStream (thumb_data)) {
+				Gdk.Pixbuf thumb = new Gdk.Pixbuf (mem);
+
+				Gdk.Pixbuf rotated = PixbufUtils.TransformOrientation (thumb, orientation);
+				
+				if (rotated != thumb)
+					thumb.Dispose ();
+				return rotated;
+			}			
 		}
 		return null;
 	}
