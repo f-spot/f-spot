@@ -405,6 +405,7 @@ Console.WriteLine (e);
 					filter_set.Add (new Filters.ResizeFilter ((uint) size));
 				else if (rotate)
 					filter_set.Add (new Filters.OrientationFilter ());
+				filter_set.Add (new Filters.ChmodFilter ());
 				filter_set.Add (new Filters.UniqueNameFilter (gallery_path));
 
 				ProcessImage (i, filter_set);
