@@ -294,6 +294,18 @@ class PixbufUtils {
 		stream.Write (data, 0, data.Length);
 	}
 
+	static string [] NullTerminateArray (string [] options)
+	{
+		string [] terminated_options = options;
+
+		if (options != null && options [ options.Length - 1 ] != null) {
+			terminated_options = new string [options.Length + 1];
+			Array.Copy (options, terminated_options, options.Length);
+		}
+		
+		return terminated_options;
+	}
+
 	[DllImport("libgdk_pixbuf-2.0-0.dll")]
 	static extern bool gdk_pixbuf_save_to_bufferv (IntPtr raw, out IntPtr data, out IntPtr length, 
 						       string type, 
@@ -305,33 +317,14 @@ class PixbufUtils {
 		IntPtr error = IntPtr.Zero;
 		IntPtr data;
 		IntPtr length;
-		string [] terminated_options = options;
-		string [] terminated_values = values;
-
-		if (options != null && options [ options.Length - 1 ] != null) {
-			terminated_options = new string [options.Length + 1];
-			Array.Copy (options, terminated_options, options.Length);
-		}
-
-		if (values != null && values [ values.Length - 1] != null) {
-			terminated_values = new string [values.Length + 1];
-			Array.Copy (values, terminated_values, values.Length);
-		}
-
-#if false		
-		if (terminated_options != null)
-			System.Console.WriteLine ("options = {0}, values = {1}", terminated_options [0], terminated_values [0]);
-		else
-			Console.WriteLine ("no options");
-#else
 
 		bool success = gdk_pixbuf_save_to_bufferv (pixbuf.Handle, 
-							     out data, 
-							     out length, 
-							     type,
-							     terminated_options,
-							     terminated_values,
-							     out error);
+							   out data, 
+							   out length, 
+							   type,
+							   NullTerminateArray (options),
+							   NullTerminateArray (values),
+							   out error);
 		
 		if (error != IntPtr.Zero) 
 			throw new GLib.GException (error);
@@ -342,8 +335,9 @@ class PixbufUtils {
 		byte [] content = new byte [(int)length];
 		Marshal.Copy (data, content, 0, (int)length);
 
+		GLib.Marshaller.Free (data);
+
 		return content;
-#endif
 	}
 	
 	public static Pixbuf TagIconFromPixbuf (Pixbuf source)
@@ -420,7 +414,7 @@ class PixbufUtils {
 	public static void SaveAtomic (Gdk.Pixbuf src, string filename, string type, string [] keys, string [] values)
 	{
 			string tmpname = filename + ".tmp";
-			src.Savev (tmpname, type, keys, values);
+			src.Savev (tmpname, type, NullTerminateArray (keys), NullTerminateArray (values));
 			if (rename (tmpname, filename) < 0)
 				throw new Exception ("Error renaming file");
 	}

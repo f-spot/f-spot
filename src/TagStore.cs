@@ -27,9 +27,6 @@ public class PixbufSerializer {
 	[DllImport("libgdk_pixbuf-2.0-0.dll")]
 	static extern IntPtr gdk_pixdata_serialize(ref Gdk.Pixdata raw, out uint stream_length_p);
 
-	[DllImport("libglib-2.0-0.dll")]
-	static extern void g_free(IntPtr ptr);
-
 	public static byte [] Serialize (Pixbuf pixbuf)
 	{
 		Pixdata pixdata = new Pixdata ();
@@ -41,7 +38,7 @@ public class PixbufSerializer {
 		byte [] data = new byte [data_length];
 		Marshal.Copy (raw_data, data, 0, (int) data_length);
 		
-		g_free (raw_data);
+		GLib.Marshaller.Free (raw_data);
 
 		return data;
 	}
