@@ -223,35 +223,35 @@ msgstr "Chercher"
 
 #: ../C/f-spot.xml:227(para) 
 msgid "You can start a search by double clicking or activating a tag from the tag list. Alternatively, you can show the find bar with <menuchoice><guimenu>Find</guimenu><guimenuitem>Show Find Bar</guimenuitem></menuchoice>. With the find bar shown, you can drag tags from the tag view to the find bar."
-msgstr ""
+msgstr "Vous pouvez commencer une recherche en double cliquant, ou en activant une étiquette de la liste. Vous pouvez aussi afficher la barre de recherche via <menuchoice><guimenu>Recherche</guimenu><guimenuitem>Afficher la barre de recherche</guimenuitem></menuchoice>. Lorsque la barre de recherche est affichée, vous pouvez y glisser-déposer des étiquettes depuis la liste."
 
 #: ../C/f-spot.xml:233(para) 
 msgid "To find photos that are tagged with both of two tags, activate the first in the tag view or drag it onto the find bar, then drag the second tag and drop it on top of the first. You can also right click on the second tag in the tag view, or use the <guimenu>Find</guimenu> menu, and choose <guimenuitem>Find With...</guimenuitem> and select the first tag (or group of tags)."
-msgstr ""
+msgstr "Pour trouver les photos qui ont deux étiquettes particulières, activer la première dans la liste ou déposer la dans la barre de recherche, ensuite déposez la seconde étiquette sur la première (toujours dans la barre de recherche). Vous pouvez aussi ouvrir le menu contextuel (clic droit) de la seconde étiquette dans la liste, et choisir <guimenu>Rechercher</guimenu><guimenuitem>Chercher avec...</guimenuitem> et sélectionner la première étiquette (ou un groupe d'étiquettes)."
 
 #: ../C/f-spot.xml:240(para) 
 msgid "You can drag a tag icon around on the find bar to change from finding it and another tag to finding it or another tag."
-msgstr ""
+msgstr "vous pouvez déplacer une étiquette dans la barre de recherche pour changer son association (chercher les images contenant les 2 étiquettes / chercher les images contenant l'une ou l'autre étiquette)."
 
 #: ../C/f-spot.xml:244(para) 
 msgid "You can search for photos that do not have a particular tag by double-clicking on a tag in the find bar. Alternatively, you can right-click a tag in the find bar and select <guimenuitem>Exclude</guimenuitem>."
-msgstr ""
+msgstr "Vous pouvez rechercher les images qui ne possède pas une certaine étiquette en double cliquant sur une étiquette dans la liste. Vous pouvez aussi choisisir <guimenuitem>Exclure</guimenuitem> dans le menu contextuel de l'étiquette dans la barre de recherche."
 
 #: ../C/f-spot.xml:249(para) 
 msgid "To remove a tag from the search, drag it away from the find bar, or right click and select <guimenuitem>Remove</guimenuitem>."
-msgstr ""
+msgstr "Pour enlever une étiquette de la recherche, glissez là hors de la barre ou choisissez <guimenuitem>Enlever</guimenuitem> dans le menu contextuel."
 
 #: ../C/f-spot.xml:253(para) 
 msgid "By default, photos tagged <emphasis>Hidden</emphasis> will not be shown. You must explicitly include the <emphasis>Hidden</emphasis> tag in your search to show such photos."
-msgstr ""
+msgstr "Par défaut, les photos étiquetées avec l'étiquette  <emphasis>Caché</emphasis> ne seront pas affichées. Choisisser explicitement cette étiquette lors de votre recherche pour voir ces photos."
 
 #: ../C/f-spot.xml:258(para) 
 msgid "There is also a type-to-find entry. Press <keycap>/</keycap> to open it. It cannot be used at the same time as the find bar. You can type queries such as \"TagA and (TagB or (TagC and TagD))\". At any point, if F-Spot recognizes what you've typed as a valid query, it will update your search. The <emphasis>not</emphasis> operator is not yet supported."
-msgstr ""
+msgstr "Il existe aussi un fonction de recherche avec le clavier. Pressez <keycap>/</keycap> pour l'activer. Ce mode ne peut être utiliser en même temps que la barre de recherche. Vous pouvez taper des requêtes telles que «Etiquette1 and (EtiquetteB or (EtiquetteC and EtiquetteD))». A tout moment, si votre requête est valide, F-Spot va mettre votre sélection à jour. L'opérateur <emphasis>not</emphasis> n'est pas encore supporté."
 
 #: ../C/f-spot.xml:268(title) 
 msgid "Fullscreen Mode and Slideshows"
-msgstr ""
+msgstr "Mode Plein Ecran et Diaporamas"
 
 #: ../C/f-spot.xml:269(para) 
 msgid "For fewer distractions and larger display, you can view your photos in full screen mode. You control when to show the next photo or to return to the previous. Enter fullscreen mode by pressing <keycap>F11</keycap> at any time or by pressing the button in the toolbar."
