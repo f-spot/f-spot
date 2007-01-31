@@ -358,8 +358,8 @@ namespace FSpot {
 
 		protected ScaleRequest [] requests;
 		
-		protected string [] pixbuf_keys = {"quality"};
-		protected string [] pixbuf_values = {"95"};
+		protected string [] pixbuf_keys = { "quality", null };
+		protected string [] pixbuf_values = { "95", null };
 
 		protected struct ScaleRequest {
 			public string Name;
@@ -458,38 +458,40 @@ namespace FSpot {
 				Gdk.Pixbuf img = null;
 				Gdk.Pixbuf scaled = null;
 				
-				Exif.ExifData data = new Exif.ExifData (photo_path);
-				if (data != null && data.Handle.Handle == System.IntPtr.Zero)
-					data = null;
-				
-				for (int i = 1; i < requests.Length; i++) {
+				using (Exif.ExifData data = new Exif.ExifData (photo_path)) {
+					if (data != null && data.Handle.Handle == System.IntPtr.Zero)
+						data = null;
 					
-					req = requests [i];
-					if (scale && req.AvoidScale (size))
-						continue;
+					for (int i = 1; i < requests.Length; i++) {
+						
+						req = requests [i];
+						if (scale && req.AvoidScale (size))
+							continue;
 					
-					if (img == null) {
-						ImageFile imgf = ImageFile.Create (photo.DefaultVersionUri);
-						scaled = imgf.Load (req.Width, req.Height);
-					} else
-						scaled = PixbufUtils.ScaleToMaxSize (img, req.Width, req.Height, false);
+						if (img == null) {
+							ImageFile imgf = ImageFile.Create (photo.DefaultVersionUri);
+							scaled = imgf.Load (req.Width, req.Height);
+						} else
+							scaled = PixbufUtils.ScaleToMaxSize (img, req.Width, req.Height, false);
+						
+						MakeDir (SubdirPath (req.Name));
+						path = SubdirPath (req.Name, ImageName (image_num));
+						
+						if (req.CopyExif && data != null) {
+							PixbufUtils.SaveJpeg (scaled, path, 90, data);
+						} else 
+							scaled.Savev (path, "jpeg", pixbuf_keys, pixbuf_values);
+						
+						if (img != null)
+							img.Dispose ();
+						
+						img = scaled;
+					}
 					
-					MakeDir (SubdirPath (req.Name));
-					path = SubdirPath (req.Name, ImageName (image_num));
-					
-					if (req.CopyExif && data != null) {
-						PixbufUtils.SaveJpeg (scaled, path, 90, data);
-					} else 
-						scaled.Savev (path, "jpeg", pixbuf_keys, pixbuf_values);
-					
-					if (img != null)
-						img.Dispose ();
-					
-					img = scaled;
+					if (scaled != null)
+						scaled.Dispose ();
+
 				}
-				
-				if (scaled != null)
-					scaled.Dispose ();
 			}
 		}
 		
