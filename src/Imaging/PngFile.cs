@@ -77,9 +77,10 @@ namespace FSpot.Png {
 					switch (text.Keyword) {
 					case "XMP":
 					case "XML:com.adobe.xmp":
-						System.IO.Stream xmpstream = new System.IO.MemoryStream (text.TextData);
-						FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);
-						xmp.Select (sink);
+						using (System.IO.Stream xmpstream = new System.IO.MemoryStream (text.TextData)) {
+							FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);
+							xmp.Select (sink);
+						}
 						break;
 					case "Comment":
 						MetadataStore.AddLiteral (sink, "exif:UserComment", text.Text);
@@ -344,37 +345,38 @@ namespace FSpot.Png {
 
 			public void SetText (byte [] raw)
 			{
-				MemoryStream stream = new MemoryStream ();
-				byte [] tmp;
+				using (MemoryStream stream = new MemoryStream ()) {
+					byte [] tmp;
+					
+					text_data = raw;
 
-				text_data = raw;
-
-				tmp = Latin1.GetBytes (keyword);
-				stream.Write (tmp, 0, tmp.Length);
-				stream.WriteByte (0);
-
-				stream.WriteByte ((byte)(compressed ? 1 : 0));
-				stream.WriteByte (Compression);
-
-				if (Language != null && Language != "") {
-					tmp = Latin1.GetBytes (Language);
+					tmp = Latin1.GetBytes (keyword);
 					stream.Write (tmp, 0, tmp.Length);
-				}
-				stream.WriteByte (0);
-
-				if (LocalizedKeyword != null && LocalizedKeyword != "") {
-					tmp = System.Text.Encoding.UTF8.GetBytes (LocalizedKeyword);
-					stream.Write (tmp, 0, tmp.Length);
-				}
-				stream.WriteByte (0);
+					stream.WriteByte (0);
+					
+					stream.WriteByte ((byte)(compressed ? 1 : 0));
+					stream.WriteByte (Compression);
+					
+					if (Language != null && Language != "") {
+						tmp = Latin1.GetBytes (Language);
+						stream.Write (tmp, 0, tmp.Length);
+					}
+					stream.WriteByte (0);
+					
+					if (LocalizedKeyword != null && LocalizedKeyword != "") {
+						tmp = System.Text.Encoding.UTF8.GetBytes (LocalizedKeyword);
+						stream.Write (tmp, 0, tmp.Length);
+					}
+					stream.WriteByte (0);
 				
-				if (compressed) {
-					tmp = Deflate (text_data, 0, text_data.Length);
-					stream.Write (tmp, 0, tmp.Length);
-				} else {
-					stream.Write (text_data, 0, text_data.Length);
+					if (compressed) {
+						tmp = Deflate (text_data, 0, text_data.Length);
+						stream.Write (tmp, 0, tmp.Length);
+					} else {
+						stream.Write (text_data, 0, text_data.Length);
+					}
+					this.data = stream.ToArray ();
 				}
-				this.data = stream.ToArray ();
 			}
 
 			public ItxtChunk (string name, byte [] data) : base (name, data) 
@@ -1284,17 +1286,18 @@ namespace FSpot.Png {
 		public override void Save (Gdk.Pixbuf pixbuf, System.IO.Stream stream)
 		{
 			byte [] buffer = PixbufUtils.Save (pixbuf, "png", null, null);
-			MemoryStream mem = new MemoryStream (buffer);
-			PngHeader converted = new PngHeader (mem);
-
-			/* FIXME we need to update the XMP metadata here */
-			foreach (Chunk c in Chunks) {
-				if (c is TextChunk) {
-					converted.Insert (c);
+			using (MemoryStream mem = new MemoryStream (buffer)) {
+				PngHeader converted = new PngHeader (mem);
+				
+				/* FIXME we need to update the XMP metadata here */
+				foreach (Chunk c in Chunks) {
+					if (c is TextChunk) {
+						converted.Insert (c);
+					}
 				}
+				
+				converted.Save (stream);
 			}
-
-			converted.Save (stream);
 		}
 
 		public override Cms.Profile GetProfile ()
@@ -1404,9 +1407,10 @@ namespace FSpot.Png {
 				Chunks.Remove (text);
 
 			ItxtChunk itext = new ItxtChunk ("XML:com.adobe.xmp", "en", false);
-			MemoryStream stream = new MemoryStream ();
-			xmp.Save (stream);
-			itext.SetText (stream.ToArray ());
+			using (MemoryStream stream = new MemoryStream ()) {
+				xmp.Save (stream);
+				itext.SetText (stream.ToArray ());
+			}
 			Header.Insert (itext);
 		}
 
