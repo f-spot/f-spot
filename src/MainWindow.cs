@@ -446,6 +446,8 @@ public class MainWindow {
 				view_notebook.CurrentPage = 0;
 				
 			ColorDialog.Close ();
+			if (photo_view.View.Loupe != null)
+				photo_view.View.Loupe.Destroy ();
 			JumpTo (photo_view.Item.Index);
 			zoom_scale.Value = icon_view.Zoom;
 			break;

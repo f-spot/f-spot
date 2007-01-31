@@ -85,6 +85,10 @@ namespace FSpot {
 			}
 		}
 
+		public Loupe Loupe {
+			get { return loupe; }
+		}
+
 		public Gdk.Pixbuf CompletePixbuf ()
 		{
 			loader.LoadToDone ();
