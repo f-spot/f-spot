@@ -1,4 +1,4 @@
-/* FSpot -- a photo manament program
+/* FSpot -- a photo management program
  *
  * f-pixbuf-save.c based on code from gimp and the GdkPixbuf jpeg save
  * routines.
@@ -107,6 +107,7 @@ f_pixbuf_save_jpeg (GdkPixbuf *pixbuf,
 	if ((outfile = fopen (path, "wb")) == NULL) {
 		g_message ("Could not open '%s' for writing: %s",
 			   path, g_strerror (errno));
+		g_object_unref (pixbuf);
 		return FALSE;
 	}
 
@@ -140,6 +141,8 @@ f_pixbuf_save_jpeg (GdkPixbuf *pixbuf,
 
 	if (gdk_pixbuf_get_has_alpha (pixbuf)) {
 		// FIXME handle alpha case.
+		gdk_object_unref (pixbuf);
+		fclose (outfile);
 		return FALSE;
 	}
 
@@ -150,8 +153,9 @@ f_pixbuf_save_jpeg (GdkPixbuf *pixbuf,
 	
 	jpeg_finish_compress (&cinfo);
 	jpeg_destroy_compress (&cinfo);
+
 	fclose (outfile);
-	
 	gdk_pixbuf_unref (pixbuf);
+
 	return TRUE;
 }
