@@ -358,17 +358,18 @@ msgid "An unhandled exception was thrown: "
 msgstr "Une exception non traitée a été levée : "
 
 #: ../src/FileImportBackend.cs:260
-#, fuzzy
 msgid "Import error"
-msgstr "Importer la source :"
+msgstr "Erreur d'import"
 
 #: ../src/FileImportBackend.cs:261
-#, fuzzy, csharp-format
+#, csharp-format
 msgid ""
 "Error importing {0}\n"
 "\n"
 "{1}"
-msgstr "Erreur lors de l'envoi vers {0} : {1}"
+msgstr "Erreur lors de l'import de {0}\n"
+"\n"
+"{1}"
 
 #: ../src/Filters/ResizeFilter.cs:68
 #, csharp-format
@@ -1780,9 +1781,9 @@ msgid "(TopLevel)"
 msgstr "(Principal)"
 
 #: ../src/GalleryExport.cs:725
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery: {1}"
-msgstr "Une erreur est survenue lors de l'envoi vers Gallery: {0}"
+msgstr "Une erreur est survenue lors de l'envoi de «{0}» vers Gallery: {1}"
 
 #: ../src/GalleryExport.cs:752 ../src/PicasaWebExport.cs:638
 #: ../src/SmugMugExport.cs:598
@@ -3000,9 +3001,8 @@ msgid "Events"
 msgstr "Événements"
 
 #: ../src/ThreadProgressDialog.cs:79
-#, fuzzy
 msgid "Retry"
-msgstr "Réinitialiser"
+msgstr "Réessayer"
 
 #: ../src/ThreadProgressDialog.cs:81
 msgid "Skip"
