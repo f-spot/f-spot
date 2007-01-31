@@ -459,9 +459,6 @@ namespace FSpot {
 				Gdk.Pixbuf scaled = null;
 				
 				using (Exif.ExifData data = new Exif.ExifData (photo_path)) {
-					if (data != null && data.Handle.Handle == System.IntPtr.Zero)
-						data = null;
-					
 					for (int i = 1; i < requests.Length; i++) {
 						
 						req = requests [i];
@@ -477,7 +474,7 @@ namespace FSpot {
 						MakeDir (SubdirPath (req.Name));
 						path = SubdirPath (req.Name, ImageName (image_num));
 						
-						if (req.CopyExif && data != null) {
+						if (req.CopyExif && data != null && data.Handle.Handle == System.IntPtr.Zero) {
 							PixbufUtils.SaveJpeg (scaled, path, 90, data);
 						} else 
 							scaled.Savev (path, "jpeg", pixbuf_keys, pixbuf_values);
