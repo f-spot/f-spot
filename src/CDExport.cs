@@ -80,10 +80,21 @@ namespace FSpot {
 	
 	                return dest;
 	        }
-	
+
+		void Clean ()
+		{
+			Gnome.Vfs.Uri target = dest.Clone ();
+			Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
+			Gnome.Vfs.Xfer.XferDeleteList (new Gnome.Vfs.Uri [] {target}, Gnome.Vfs.XferErrorMode.Query, Gnome.Vfs.XferOptions.Recursive, cb);
+			
+		}
+
 		public void Transfer () {
 			try {
 				Gnome.Vfs.Result result = Gnome.Vfs.Result.Ok;
+
+				if (clean)
+					Clean ();
 
 				foreach (IBrowsableItem photo in selection.Items) {
 
