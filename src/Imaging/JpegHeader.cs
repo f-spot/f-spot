@@ -446,7 +446,12 @@ public class JpegHeader : SemWeb.StatementSource {
 
 	public JpegHeader (System.IO.Stream stream, bool metadata_only)
 	{
-		Load (stream, metadata_only);
+		try {
+			Load (stream, metadata_only);
+		} catch (System.Exception e) {
+			Console.WriteLine ("Exeption while reading jpeg headers");
+			Console.WriteLine(e);
+		}
 	}
 
 	private void Load (System.IO.Stream stream, bool metadata_only) 
