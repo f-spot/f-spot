@@ -44,19 +44,6 @@ namespace FSpot {
 
 		private Thread thread;
 
-		public Gtk.Button RetryButton {
-			get { 
-			 	return retry_button; 
-			} 
-		}
-
-		public Gtk.Button SkipButton {
-			get {
-				return skip_button; 
-			} 
-		}
-
-
 		public ThreadProgressDialog (Thread thread, int total) {
 			/*
 			if (parent_window)
@@ -81,7 +68,6 @@ namespace FSpot {
 			skip_button = new Gtk.Button (Mono.Unix.Catalog.GetString ("Skip"));
 			skip_button.Clicked += new EventHandler (HandleSkipClicked);
 
-			skip_button.Sensitive = retry_button.Sensitive = false;
 			ActionArea.Add (retry_button);
 			ActionArea.Add (skip_button);
 
@@ -146,15 +132,22 @@ namespace FSpot {
 			}
 		}
 
+		private bool RetrySkipVisible {
+			set { 
+				retry_button.Visible = skip_button.Visible = value;
+			} 
+		}
+
 		public bool PerformRetrySkip ()
 		{
 			error_response = Gtk.ResponseType.None;
+			RetrySkipVisible = true;
+
 			error_response_event = new AutoResetEvent (false);
 			error_response_ack_event = new AutoResetEvent (false);
-			retry_button.Sensitive = skip_button.Sensitive = true;
 			error_response_event.WaitOne ();
-			retry_button.Sensitive = skip_button.Sensitive = false;
-			error_response_ack_event.Set ();
+
+			RetrySkipVisible = false;
 
 			return error_response == Gtk.ResponseType.Yes ? true : false;
 		}
@@ -163,14 +156,14 @@ namespace FSpot {
 			this.Destroy ();
 		}
 
-		private bool HandleUpdate () 
+		private bool HandleUpdate ()
 		{
 			message_label.Text = message;
 			progress_bar.Text = progress_text;
 			progress_bar.Fraction = System.Math.Min (1.0, System.Math.Max (0.0, fraction));
 			button.Label = button_label;
 
-			return false;
+			return true;
 		}
 
 		private void HandleDestroy (object sender, EventArgs args)
@@ -185,18 +178,17 @@ namespace FSpot {
 		{
 			error_response = Gtk.ResponseType.Yes;
 			error_response_event.Set ();
-			error_response_ack_event.WaitOne ();
 		}
 
 		private void HandleSkipClicked (object obj, EventArgs args)
 		{
 			error_response = Gtk.ResponseType.No;
 			error_response_event.Set ();
-			error_response_ack_event.WaitOne ();
 		}
-		
+
 		public void Start () {
 			ShowAll ();
+			RetrySkipVisible = false;
 			thread.Start ();
 		}
 	}

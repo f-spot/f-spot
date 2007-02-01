@@ -152,7 +152,7 @@ namespace FSpot {
 					gallery_path = Gnome.Vfs.Uri.GetLocalPathFromUri (dest.ToString ());
 
 				progress_dialog.Message = Catalog.GetString ("Building Gallery");
-				progress_dialog.Fraction = 1.0;
+				progress_dialog.Fraction = 0.0;
 
 				FolderGallery gallery;
 				if (static_radio.Active) {
@@ -177,7 +177,33 @@ namespace FSpot {
 
 				gallery.Description = description;
 
-				gallery.Generate ();
+				gallery.GenerateLayout ();
+				Filters.FilterSet filter_set = new Filters.FilterSet ();
+				if (scale)
+					filter_set.Add (new Filters.ResizeFilter ((uint) size));
+				else if (rotate)
+					filter_set.Add (new Filters.OrientationFilter ());
+				filter_set.Add (new Filters.ChmodFilter ());
+				filter_set.Add (new Filters.UniqueNameFilter (gallery_path));
+
+				for (int photo_index = 0; photo_index < selection.Count; photo_index++)
+				{
+					try {	
+						progress_dialog.Message = System.String.Format (Catalog.GetString ("Uploading picture \"{0}\""), selection[photo_index].Name);
+						progress_dialog.Fraction = photo_index / (double) selection.Count;
+						gallery.ProcessImage (photo_index, filter_set);
+						progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"), photo_index, selection.Count);
+					}
+					catch (Exception e) {
+						progress_dialog.Message = String.Format (Catalog.GetString ("Error uploading picture \"{0}\" to Gallery:\n{1}"), 
+							selection[photo_index].Name, e.Message);
+						progress_dialog.ProgressText = Catalog.GetString ("Error");
+
+						if (progress_dialog.PerformRetrySkip ())
+							photo_index--;
+					}
+		
+				}
 
 				// we've created the structure, now if the destination was local we are done
 				// otherwise we xfer 
@@ -394,23 +420,10 @@ namespace FSpot {
 			this.requests = new ScaleRequest [] { ScaleRequest.Default };
 		}
 
-		public virtual void Generate ()
+		public virtual void GenerateLayout ()
 		{
 			MakeDir (gallery_path);
 
-			for (int i = 0; i < collection.Count; i++)
-			{
-				Filters.FilterSet filter_set = new Filters.FilterSet ();
-				if (scale)
-					filter_set.Add (new Filters.ResizeFilter ((uint) size));
-				else if (rotate)
-					filter_set.Add (new Filters.OrientationFilter ());
-				filter_set.Add (new Filters.ChmodFilter ());
-				filter_set.Add (new Filters.UniqueNameFilter (gallery_path));
-
-				ProcessImage (i, filter_set);
-
-			}
 		}
 
 		protected virtual string ImageName (int image_num)
@@ -588,9 +601,9 @@ namespace FSpot {
 							 new ScaleRequest ("thumbs", 120, 120, false) };
 		}
 
-		public override void Generate ()
+		public override void GenerateLayout ()
 		{
-			base.Generate ();
+			base.GenerateLayout ();
 			MakeDir (SubdirPath ("comments"));
 			MakeDir (SubdirPath ("zip"));
 			CreateHtaccess();
@@ -715,12 +728,12 @@ namespace FSpot {
 			return String.Format ("img-{0}.jpg", photo_index + 1);
 		}
 
-		public override void Generate ()
+		public override void GenerateLayout ()
 		{
 			if (collection.Count == 0)
 				return;
 			
-			base.Generate ();
+			base.GenerateLayout ();
 			
 			IBrowsableItem [] photos = collection.Items;
 			

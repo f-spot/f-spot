@@ -536,6 +536,7 @@ namespace FSpot {
 
 					progress_dialog.Message = String.Format (Catalog.GetString ("Uploading picture \"{0}\" ({1} of {2})"), 
 										 item.Name, photo_index+1, items.Length);
+					progress_dialog.ProgressText = string.Empty;
 					progress_dialog.Fraction = ((photo_index) / (double) items.Length);
 					photo_index++;
 					
