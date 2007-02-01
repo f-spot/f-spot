@@ -112,6 +112,9 @@ namespace FSpot {
 			case ExportStore.FolderExportType:
 				Gnome.Vfs.Uri uri = new Gnome.Vfs.Uri (export.ExportToken);
 				return (uri.HasParent) ? uri.Parent.ToString () : export.ExportToken;
+			case ExportStore.Gallery2ExportType:
+				string[] split_item = export.ExportToken.Split (':');
+				return String.Format ("{0}:{1}?g2_itemId={2}",split_item[0], split_item[1], split_item[2]);
 			case ExportStore.OldFolderExportType:	//This is obsolete and meant to be removed once db reach rev4
 			case ExportStore.PicasaExportType:
 			case ExportStore.SmugMugExportType:
@@ -135,6 +138,8 @@ namespace FSpot {
 				return Catalog.GetString ("Picasaweb");
 			case ExportStore.SmugMugExportType:
 				return Catalog.GetString ("SmugMug");
+			case ExportStore.Gallery2ExportType:
+				return Catalog.GetString ("Gallery2");
 			default:
 				return null;
 			}

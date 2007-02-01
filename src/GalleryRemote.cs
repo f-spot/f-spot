@@ -63,7 +63,11 @@ namespace GalleryRemote {
 				return parents;
 			}
 		}
-		
+	
+		public Gallery Gallery {
+			get { return gallery; }
+		}
+
 		public Album (Gallery gallery, string name, int ref_num) 
 		{
 			Name = name;
@@ -82,12 +86,12 @@ namespace GalleryRemote {
 			Add (item, item.DefaultVersionUri.LocalPath);
 		}
 
-		public void Add (FSpot.IBrowsableItem item, string path)		
+		public int Add (FSpot.IBrowsableItem item, string path)		
 		{
 			if (item == null)
 				Console.WriteLine ("NO PHOTO");
 			
-			gallery.AddItem (this, 
+			return gallery.AddItem (this, 
 					 path,
 					 Path.GetFileName (item.DefaultVersionUri.LocalPath),
 					 item.Description, 
@@ -279,7 +283,7 @@ namespace GalleryRemote {
 		public abstract ArrayList FetchAlbums ();
 		public abstract ArrayList FetchAlbumsPrune ();
 		public abstract bool MoveAlbum (Album album, string end_name);
-		public abstract bool AddItem (Album album, string path, string filename, string caption, bool autorotate);
+		public abstract int AddItem (Album album, string path, string filename, string caption, bool autorotate);
 		//public abstract Album AlbumProperties (string album);
 		public abstract bool NewAlbum (string parent_name, string name, string title, string description);
 		public abstract ArrayList FetchAlbumImages (Album album, bool include_ablums);
@@ -529,9 +533,43 @@ namespace GalleryRemote {
 			}
 		}
 
-		public bool ParseAddItem (HttpWebResponse response)
+		public int ParseAddItem (HttpWebResponse response)
 		{
-			return ParseBasic (response);
+			string [] data;
+			StreamReader reader = null;
+			ResultCode status = ResultCode.UnknownResponse;
+			string status_text = "Error: Unable to parse server response";
+			int item_id = 0;
+			try {
+
+				reader = findResponse (response);
+				while ((data = GetNextLine (reader)) != null) {
+					if (data[0] == "status") {
+						status = (ResultCode) int.Parse (data [1]);
+					} else if (data[0].StartsWith ("status_text")) {
+						status_text = data[1];
+						Console.WriteLine ("StatusText : {0}", data[1]);
+					} else if (data[0].StartsWith ("auth_token")) {
+						AuthToken = data[1];
+					} else if (data[0].StartsWith ("item_name")) {
+						item_id = int.Parse (data [1]);
+					} else {
+						Console.WriteLine ("Unparsed Line in ParseAddItem(): {0}={1}", data[0], data[1]);
+					}
+				}
+				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
+				if (status != ResultCode.Success) {
+					Console.WriteLine (status_text);
+					throw new GalleryCommandException (status_text, status);
+				}
+
+				return item_id;
+			} finally {
+				if (reader != null)
+					reader.Close ();
+				
+				response.Close ();
+			}
 		}
 
 		public bool ParseNewAlbum (HttpWebResponse response)
@@ -704,7 +742,7 @@ namespace GalleryRemote {
 			return ParseMoveAlbum (client.Submit (uri));
 		}
 		
-		public override bool AddItem (Album album,
+		public override int AddItem (Album album,
 				     string path, 
 				     string filename,
 				     string caption, 
@@ -919,7 +957,7 @@ namespace GalleryRemote {
 			return ParseMoveAlbum (client.Submit (uri));
 		}
 		
-		public override bool AddItem (Album album,
+		public override int AddItem (Album album,
 				     string path, 
 				     string filename,
 				     string caption, 

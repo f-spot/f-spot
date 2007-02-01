@@ -702,25 +702,13 @@ namespace FSpot {
 
 					filters.Convert (req);
 				try {
-					album.Add (item, req.Current.LocalPath);
+					int id = album.Add (item, req.Current.LocalPath);
 
-//					string orig = item.DefaultVersionUri.LocalPath;
-//
-//					// FIXME the filters need to be able to handle entension
-//					// changes directly themselves.
-//					string final = orig;
-//					if (scale)
-//						final = ImageFile.TempPath (orig, "jpg");
-//					else if (rotate)
-//						final = ImageFile.TempPath (orig);
-//					
-//					if (filters.Convert (orig, final))
-//						album.Add (item, final);
-//					else
-//						album.Add (item, orig);
-//					
-//					if (final != orig)
-//						System.IO.File.Delete (final);
+					if (item != null && item is Photo && Core.Database != null && id != 0) {
+						Core.Database.Exports.Create ((item as Photo).Id, (item as Photo).DefaultVersionId,
+									      ExportStore.Gallery2ExportType,
+									      String.Format("{0}:{1}",album.Gallery.Uri.ToString (), id.ToString ()));
+					}
 				} catch (System.Exception e) {
 					progress_dialog.Message = String.Format (Catalog.GetString ("Error uploading picture \"{0}\" to Gallery: {1}"), item.Name, e.Message);
 					progress_dialog.ProgressText = Catalog.GetString ("Error");
