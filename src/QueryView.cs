@@ -11,7 +11,7 @@ public class TrayView : IconView {
 	{
 		DisplayDates = false;
 		DisplayTags = false;
-		cell_border_width = 4;
+		cell_border_width = 10;
 		tag_icon_vspacing = 0;
 		tag_icon_size = 0;
 	}
