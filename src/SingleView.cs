@@ -72,8 +72,10 @@ namespace FSpot {
 
 			Gtk.Toolbar toolbar = new Gtk.Toolbar ();
 			toolbar_hbox.PackStart (toolbar);
-			GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-270", new System.EventHandler (HandleRotate270Command));
-			GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-90", new System.EventHandler (HandleRotate90Command));
+			Widget rl_button = GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-270", new System.EventHandler (HandleRotate270Command));
+			SetTip (rl_button, Catalog.GetString ("Rotate photo left"));
+			Widget rr_button = GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-90", new System.EventHandler (HandleRotate90Command));
+			SetTip (rr_button, Catalog.GetString ("Rotate photo right"));
 
 			toolbar.AppendSpace ();
 
