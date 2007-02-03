@@ -464,7 +464,7 @@ namespace FSpot {
 								      ExportStore.FolderExportType,
 								      // FIXME this is wrong, the final path is the one
 								      // after the Xfer.
-								      UriList.PathToFileUri (path).ToString ());
+								      UriList.PathToFileUriEscaped (path).ToString ());
 				}
 
 				

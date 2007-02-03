@@ -89,7 +89,7 @@ public class ExportStore : DbStore {
 
 	public ExportItem Create (uint image_id, uint image_version_id, string export_type, string export_token)
 	{
-		ExecuteSqlCommand (String.Format ("INSERT INTO exports (image_id, image_version_id, export_type, export_token) VALUES ({0}, {1}, '{2}', '{3}')",
+		ExecuteSqlCommand (String.Format ("INSERT INTO exports (image_id, image_version_id, export_type, export_token) VALUES ({0}, {1}, '{2}', \"{3}\")",
 						  image_id, image_version_id, export_type, export_token));
 		
                 ExportItem item = new ExportItem ((uint) Connection.LastInsertRowId, 
