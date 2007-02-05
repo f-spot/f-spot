@@ -19,8 +19,6 @@ LIBDBUSSHARPGLIB_CSFILES =				\
 
 all: NDesk.DBus.GLib.dll
 
-NDesk.DBus.GLib.dll: PKGS = glib-sharp-2.0
-
 NDesk.DBus.GLib.dll: ../dbus-sharp/NDesk.DBus.dll $(LIBDBUSSHARPGLIB_CSFILES)
 
 libdbussharpgliblibdir = $(libdir)/f-spot
