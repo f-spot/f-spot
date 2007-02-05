@@ -12,6 +12,7 @@
 using Gtk;
 using System;
 using Cairo;
+using Mono.Unix;
 
 namespace FSpot.Editors {
 	public class SoftFocus : EffectEditor {
@@ -21,8 +22,8 @@ namespace FSpot.Editors {
 
 		public SoftFocus (PhotoImageView view) : base (view)
 		{
+			name = Catalog.GetString ("Soft Focus");
 		}
-
 
 		protected override void SetView (PhotoImageView value)
 		{

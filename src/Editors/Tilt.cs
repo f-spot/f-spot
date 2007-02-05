@@ -13,6 +13,7 @@ using System;
 using Gtk;
 using FSpot;
 using Cairo;
+using Mono.Unix;
 
 namespace FSpot.Editors {
 	public sealed class Tilt : EffectEditor {
@@ -20,6 +21,7 @@ namespace FSpot.Editors {
 
 		public Tilt (PhotoImageView view) : base (view)
 		{
+			name = Catalog.GetString ("Adjust horizon angle");
 		}
 
 		protected override void SetView (PhotoImageView view)
