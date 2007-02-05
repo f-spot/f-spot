@@ -79,7 +79,6 @@ namespace FSpot.Editors {
 				Context ctx = new Context (dest);
 				effect.OnExpose (ctx, info.Bounds);
 				((IDisposable)ctx).Dispose ();
-				dest.Destroy ();
 
 				string tmp = ImageFile.TempPath (item.Current.DefaultVersionUri.LocalPath);
 				using (Gdk.Pixbuf output = Widgets.CairoUtils.CreatePixbuf (dest)) {
@@ -88,6 +87,8 @@ namespace FSpot.Editors {
 						
 					}
 				}
+
+				dest.Destroy ();
 
 				// FIXME Not this again. I need to imlplement a real version of the transfer
 				// function that shows progress in the main window and allows for all the
