@@ -21,7 +21,7 @@ namespace FSpot.Editors {
 
 		public Tilt (PhotoImageView view) : base (view)
 		{
-			name = Catalog.GetString ("Adjust horizon angle");
+			name = Catalog.GetString ("Straighten");
 		}
 
 		protected override void SetView (PhotoImageView view)
