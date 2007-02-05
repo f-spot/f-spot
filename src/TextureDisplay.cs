@@ -7,8 +7,8 @@ using FSpot;
 using FSpot.Widgets;
 
 namespace FSpot {
-	[Binding(Gdk.Key.Up, "Spin", 1)]
-	[Binding(Gdk.Key.Down, "Spin", -1)]
+	//[Binding(Gdk.Key.Up, "Spin", 1)]
+	//[Binding(Gdk.Key.Down, "Spin", -1)]
 	[Binding(Gdk.Key.Left, "Scale", .05f)]
 	[Binding(Gdk.Key.Right, "Scale", -.05f)]
 
@@ -42,6 +42,37 @@ namespace FSpot {
 
 		public GlTransition Transition {
 			get { return transitions [current_transition]; }
+		}
+
+		public ComboBox GetCombo ()
+		{
+			ComboBox combo = ComboBox.NewText ();
+			foreach (GlTransition t in transitions)
+				combo.AppendText (t.Name);
+		       
+			combo.Changed += HandleComboChanged;
+			combo.Show ();
+			return combo;
+		}
+		
+		private void HandleComboChanged (object sender, EventArgs args)
+		{
+			ComboBox combo = sender as ComboBox;
+			string name = null;
+
+			if (combo == null)
+				return;
+
+			TreeIter iter;
+
+			if (combo.GetActiveIter (out iter))
+				name = (string) combo.Model.GetValue (iter, 0);
+			
+			for (int i = 0; i < transitions.Length; i++)
+				if (name == transitions[i].Name)
+					current_transition = i;
+
+			QueueDraw ();
 		}
 
 		public bool Spin (int amount)
