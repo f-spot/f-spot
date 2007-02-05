@@ -15,7 +15,7 @@ namespace FSpot {
 		private Notebook notebook;
 		private ControlOverlay controls;
 		//		private ImageDisplay display;
-		private Widget display;
+		private TextureDisplay display;
 
 		ActionGroup actions;
 		const string ExitFullScreen = "ExitFullScreen";
@@ -42,13 +42,13 @@ namespace FSpot {
 							 null, 
 							 null, 
 							 ExitAction),
-						new ActionEntry (SlideShow,
-								 "f-spot-slideshow",
-								 Catalog.GetString ("Slideshow"),
-								 null,
-								 Catalog.GetString ("Start slideshow"),
-								 SlideShowAction),
-				});
+					new ActionEntry (SlideShow,
+							 "f-spot-slideshow",
+							 Catalog.GetString ("Slideshow"),
+							 null,
+							 Catalog.GetString ("Start slideshow"),
+							 SlideShowAction),
+						});
 
 				actions.Add (new ToggleActionEntry [] {
 					new ToggleActionEntry (Info,
@@ -71,7 +71,6 @@ namespace FSpot {
 				// FIXME this should be handled by the new style setting code
 				view.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
 				view.PointerMode = ImageView.PointerModeType.Scroll;
-				notebook.AppendPage (scroll, null);
 				this.Add (notebook);
 				view.Show ();
 				view.MotionNotifyEvent += HandleViewMotion;
@@ -91,6 +90,16 @@ namespace FSpot {
 				hhbox.PackStart (GetButton (SlideShow), false, true, 0);
 				hhbox.PackStart (Add (new NextPictureAction (view.Item)), false, false, 0);
 				//hhbox.PackStart (Add (new AutoColor (view.Item)), false, false, 0);
+
+				display = new TextureDisplay (view.Item);
+				display.AddEvents ((int) (Gdk.EventMask.PointerMotionMask));
+				display.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
+				display.MotionNotifyEvent += HandleViewMotion;
+				Label effect = new Label (Catalog.GetString ("Slide transition: "));
+				hhbox.PackStart (effect, false, false, 10);
+				hhbox.PackStart (display.GetCombo ());
+				display.Show ();
+
 				hhbox.PackStart (Add (new RotateLeftAction (view.Item)), false, false, 0);
 				hhbox.PackStart (Add (new RotateRightAction (view.Item)), false, false, 0);
 				hhbox.BorderWidth = 15;
@@ -107,6 +116,11 @@ namespace FSpot {
 
 				hhbox.PackStart (vbox, true, true, 5);
 
+				//display = new ImageDisplay (view.Item);
+
+				notebook.AppendPage (scroll, null);
+				notebook.AppendPage (display, null);
+
 				hhbox.ShowAll ();
 				//scroll.ShowControls ();
 				
@@ -121,6 +135,8 @@ namespace FSpot {
 				controls = new ControlOverlay (this);
 				controls.Add (hhbox);
 				controls.Dismiss ();
+
+				notebook.CurrentPage = 0;
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e);
 			}	
@@ -214,7 +230,6 @@ namespace FSpot {
 				info = new InfoOverlay (this, view.Item);
 			}
 
-			System.Console.WriteLine ("sender = {0}", sender);
 			info.Visibility = action.Active ? 
 				ControlOverlay.VisibilityType.Partial : 
 				ControlOverlay.VisibilityType.None;
@@ -247,16 +262,6 @@ namespace FSpot {
 
 		public bool PlayPause ()
 		{
-			if (display == null) {
-				//display = new ImageDisplay (view.Item);
-				display = new TextureDisplay (view.Item);
-				display.AddEvents ((int) (Gdk.EventMask.PointerMotionMask));
-				display.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
-				display.MotionNotifyEvent += HandleViewMotion;
-				notebook.AppendPage (display, null);
-				display.Show ();
-			}
-
 			if (notebook.CurrentPage == 0)
 				notebook.CurrentPage = 1;
 			else

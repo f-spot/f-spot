@@ -7,6 +7,73 @@ using FSpot;
 using FSpot.Widgets;
 
 namespace FSpot {
+	public class TransitionList {
+		GlTransition [] transitions = new GlTransition []
+			{
+				new GlTransition.Dissolve (),
+				new GlTransition.Flip (),
+				new GlTransition.Push (),
+				new GlTransition.Reveal (),
+				new GlTransition.Cover ()
+			};
+		int current_transition = 0;
+
+		public TransitionList ()
+		{
+
+		}
+
+		public event EventHandler Changed;
+
+		public GlTransition Transition {
+			get { return transitions [current_transition]; }
+		}
+
+		public int Index {
+			get { return current_transition; }
+			set { 
+				current_transition = value;
+				if (Changed != null)
+					Changed (this, EventArgs.Empty);
+			}
+		}
+
+		public ComboBox GetCombo ()
+		{
+			ComboBox combo = ComboBox.NewText ();
+			combo.HasFrame = false;
+
+			foreach (GlTransition t in transitions) {
+				combo.AppendText (t.Name);
+				
+			}
+
+			combo.Active = current_transition;
+
+			combo.Changed += HandleComboChanged;
+			combo.Show ();
+			return combo;
+		}
+		
+		private void HandleComboChanged (object sender, EventArgs args)
+		{
+			ComboBox combo = sender as ComboBox;
+			string name = null;
+
+			if (combo == null)
+				return;
+
+			TreeIter iter;
+
+			if (combo.GetActiveIter (out iter))
+				name = (string) combo.Model.GetValue (iter, 0);
+			
+			for (int i = 0; i < transitions.Length; i++)
+				if (name == transitions[i].Name)
+					Index = i;
+		}
+	}
+
 	//[Binding(Gdk.Key.Up, "Spin", 1)]
 	//[Binding(Gdk.Key.Down, "Spin", -1)]
 	[Binding(Gdk.Key.Left, "Scale", .05f)]
@@ -42,37 +109,6 @@ namespace FSpot {
 
 		public GlTransition Transition {
 			get { return transitions [current_transition]; }
-		}
-
-		public ComboBox GetCombo ()
-		{
-			ComboBox combo = ComboBox.NewText ();
-			foreach (GlTransition t in transitions)
-				combo.AppendText (t.Name);
-		       
-			combo.Changed += HandleComboChanged;
-			combo.Show ();
-			return combo;
-		}
-		
-		private void HandleComboChanged (object sender, EventArgs args)
-		{
-			ComboBox combo = sender as ComboBox;
-			string name = null;
-
-			if (combo == null)
-				return;
-
-			TreeIter iter;
-
-			if (combo.GetActiveIter (out iter))
-				name = (string) combo.Model.GetValue (iter, 0);
-			
-			for (int i = 0; i < transitions.Length; i++)
-				if (name == transitions[i].Name)
-					current_transition = i;
-
-			QueueDraw ();
 		}
 
 		public bool Spin (int amount)
@@ -122,7 +158,9 @@ namespace FSpot {
 			//		   next != null ? next.Id.ToString () : "null");
 
 			Animator = new Animator (3000, 20, HandleTick);
-			Animator.Start ();
+
+			if (IsRealized)
+				Animator.Start ();
 		}
 
 		private Animator Animator {
@@ -140,8 +178,47 @@ namespace FSpot {
 			}
 		}
 
+		public ComboBox GetCombo ()
+		{
+			ComboBox combo = ComboBox.NewText ();
+			combo.HasFrame = false;
+
+			foreach (GlTransition t in transitions)
+				combo.AppendText (t.Name);
+		       
+			combo.Active = current_transition;
+			combo.Changed += HandleComboChanged;
+			combo.Show ();
+			return combo;
+		}
+		
+		private void HandleComboChanged (object sender, EventArgs args)
+		{
+			ComboBox combo = sender as ComboBox;
+			string name = null;
+
+			if (combo == null)
+				return;
+
+			TreeIter iter;
+
+			if (combo.GetActiveIter (out iter))
+				name = (string) combo.Model.GetValue (iter, 0);
+			
+			for (int i = 0; i < transitions.Length; i++)
+				if (name == transitions[i].Name)
+					current_transition = i;
+
+			QueueDraw ();
+		}
+
 		public void HandleTick (object sender, EventArgs args)
 		{
+			if (!IsRealized) {
+				System.Console.WriteLine ("animation running without active window");
+				return;
+			}
+
 			if (Animator.Percent >= 1.0) {
 				Transition.Percent = 1.0f;
 				Animator = null;
@@ -174,10 +251,16 @@ namespace FSpot {
 			Colormap = glx.GetColormap ();
 
 			base.OnRealized ();
-			
-			flip.Start ();
 		}
-		
+
+		protected override void OnMapped ()
+		{
+			base.OnMapped ();
+
+			if (Animator != null)
+				Animator.Start ();
+		}
+
 		protected override void OnUnrealized ()
 		{
 			Animator = null;
@@ -190,7 +273,6 @@ namespace FSpot {
 			
 			glx = null;
 		}
-
 
 		Texture previous;
 		public Texture Previous {

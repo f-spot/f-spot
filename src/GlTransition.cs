@@ -38,8 +38,6 @@ namespace FSpot {
 
 			public override void Draw (Gdk.Rectangle viewport, Texture previous, Texture next)
 			{
-				int units;
-
 				for (int i = 0; i < color.Length; i++)
 					color [i] = percent;
 
