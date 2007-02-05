@@ -2,11 +2,13 @@ using System;
 using Tao.OpenGl;
 using Cairo;
 using System.Runtime.InteropServices;
+using Mono.Unix;
 
 namespace FSpot {
 	public abstract class GlTransition {
 		protected float percent;
-		
+		protected string name;
+
 		public GlTransition ()
 		{
 		}
@@ -16,6 +18,10 @@ namespace FSpot {
 			set { percent = value; }
 		}
 		
+		public string Name {
+			get { return name; }
+		}
+
 		public virtual void Draw (Gdk.Rectangle viewport, Texture start, Texture end)
 		{
 			throw new ApplicationException ("the world has come undone");
@@ -24,6 +30,11 @@ namespace FSpot {
 		public class Dissolve : GlTransition
 		{
 			float [] color = new float [] { 0, 0, 0, 0};
+
+			public Dissolve ()
+			{
+				name = Catalog.GetString ("Dissolve");
+			}
 
 			public override void Draw (Gdk.Rectangle viewport, Texture previous, Texture next)
 			{
@@ -90,6 +101,11 @@ namespace FSpot {
 
 		public class Flip : GlTransition
 		{
+			public Flip ()
+			{
+				name = Catalog.GetString ("Flip");
+			}
+
 			public override void Draw (Gdk.Rectangle viewport, Texture previous, Texture next)
 			{
 				Gl.glMatrixMode (Gl.GL_MODELVIEW);
@@ -129,6 +145,11 @@ namespace FSpot {
 
 		public class Cover : Push
 		{
+			public Cover ()
+			{
+				name = Catalog.GetString ("Cover");
+			}
+
 			public override void Draw (Gdk.Rectangle viewport, Texture previous, Texture next)
 			{
 				Gl.glViewport (0, 0, viewport.Width, viewport.Height);
@@ -151,6 +172,11 @@ namespace FSpot {
 
 		public class Reveal : Push
 		{
+			public Reveal ()
+			{
+				name = Catalog.GetString ("Reveal");
+			}
+
 			public override void Draw (Gdk.Rectangle viewport, Texture previous, Texture next)
 			{
 				Gl.glViewport (0, 0, viewport.Width, viewport.Height);
@@ -173,6 +199,11 @@ namespace FSpot {
 			
 		public class Wipe : GlTransition
 		{
+			public Wipe ()
+			{
+				name = Catalog.GetString ("Wipe");
+			}
+
 			public override void Draw (Gdk.Rectangle viewport, Texture previous, Texture next)
 			{
 				Gl.glViewport (0, 0, viewport.Width, viewport.Height);
@@ -226,6 +257,11 @@ namespace FSpot {
 
 		public class Split : GlTransition
 		{
+			public Split ()
+			{
+				name = Catalog.GetString ("Split");
+			}
+
 			public override void Draw (Gdk.Rectangle viewport, Texture previous, Texture next)
 			{
 				Gl.glViewport (0, 0, viewport.Width, viewport.Height);
@@ -308,6 +344,11 @@ namespace FSpot {
 		
 		public class Push : GlTransition
 		{
+			public Push ()
+			{
+				name = Catalog.GetString ("Push");
+			}
+
 			public override void Draw (Gdk.Rectangle viewport, Texture previous, Texture next)
 			{
 				Gl.glViewport (0, 0, viewport.Width, viewport.Height);
