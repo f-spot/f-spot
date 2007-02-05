@@ -141,7 +141,7 @@ f_pixbuf_save_jpeg (GdkPixbuf *pixbuf,
 
 	if (gdk_pixbuf_get_has_alpha (pixbuf)) {
 		// FIXME handle alpha case.
-		gdk_object_unref (pixbuf);
+		g_object_unref (pixbuf);
 		fclose (outfile);
 		return FALSE;
 	}
