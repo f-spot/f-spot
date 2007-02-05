@@ -9,6 +9,8 @@ namespace FSpot.Editors {
 		protected PhotoImageView view;
 		protected Gtk.Window controls;
 		protected string name;
+		
+		public event EventHandler Done;
 
 		public Editor (PhotoImageView view)
 		{
@@ -60,10 +62,7 @@ namespace FSpot.Editors {
 
 		public void Destroy ()
 		{
-			if (view != null && view.Editor == this)
-				view.Editor = null;
-			else
-				Close ();
+			Close ();
 		}
 
 		protected virtual void Close ()
@@ -71,6 +70,9 @@ namespace FSpot.Editors {
 			
 			if (controls != null)
 				controls.Destroy ();
+
+			if (Done != null)
+				Done (this, EventArgs.Empty);
 
 			SetView (null);
 		}

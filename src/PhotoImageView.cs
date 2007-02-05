@@ -75,15 +75,25 @@ namespace FSpot {
 		public Editor Editor {
 			get { return editor; }
 			set {
-				Editor tmp = editor;
+				value.Done += HandleEditorDone;
 
-				editor = value;
-
-				if (tmp != null)
-					tmp.Destroy ();
+				if (editor != null)
+					editor.Destroy ();
 				
+				editor = value;
 			}
 		}
+
+		private void HandleEditorDone (object sender, EventArgs args)
+		{
+			Editor old = sender as Editor;
+
+			old.Done -= HandleEditorDone;
+				
+			if (old == editor)
+				editor = null;
+		}
+
 
 		public Loupe Loupe {
 			get { return loupe; }
