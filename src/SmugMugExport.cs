@@ -514,7 +514,7 @@ namespace FSpot {
 			sent_bytes = 0;
 			approx_size = 0;
 
-			Uri album_uri = null;
+			System.Uri album_uri = null;
 
 			System.Console.WriteLine ("Starting Upload to Smugmug, album {0} - {1}", album.Title, album.AlbumID);
 
