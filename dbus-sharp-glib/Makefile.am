@@ -1,37 +1,34 @@
-CSC_DEBUGFLAGS=-debug
-CSC=gmcs $(CSC_DEBUGFLAGS)
-MONO_DEBUGFLAGS=--debug
-RUNTIME=mono $(MONO_DEBUGFLAGS)
+include $(top_srcdir)/Makefile.include
 
-LIBDBUSSHARPGLIB_CSFILES =				\
-	$(srcdir)/AssemblyInfo.cs \
-	$(srcdir)/GLib.IO.cs \
+ASSEMBLY_NAME = NDesk.DBus.GLib
+
+ASSEMBLY_SOURCES =			\
+	$(srcdir)/AssemblyInfo.cs 	\
+	$(srcdir)/GLib.IO.cs 		\
 	$(srcdir)/GLib.cs
 
-%.exe %.dll %.module:
-	$(CSC) $(CSFLAGS) -out:$@ -t:$(TARGET) $(addprefix -pkg:,$(PKGS)) $(addprefix -r:,$(REFS)) $(addprefix -r:,$(filter %.dll,$^)) $(addprefix -addmodule:,$(filter %.module,$^)) $(filter %.cs,$^)
+REFS = -r:$(DIR_DBUS)/NDesk.DBus.dll
 
-%.exe: TARGET = exe
+PKGS =
 
-%.dll: TARGET = library
+ASSEMBLY = $(ASSEMBLY_NAME).dll
 
-%.module: TARGET = module
+all: $(ASSEMBLY)
 
-all: NDesk.DBus.GLib.dll
+$(ASSEMBLY): $(ASSEMBLY_SOURCES)
+	$(CSC_LIB) -out:$@ $(PKGS) $(REFS) $(ASSEMBLY_SOURCES)
 
-NDesk.DBus.GLib.dll: ../dbus-sharp/NDesk.DBus.dll $(LIBDBUSSHARPGLIB_CSFILES)
+assemblydir = $(pkglibdir)
+assembly_DATA =		\
+	$(ASSEMBLY)	\
+	$(ASSEMBLY).config
 
-libdbussharpgliblibdir = $(libdir)/f-spot
-libdbussharpgliblib_DATA =		\
-	NDesk.DBus.GLib.dll		\
-	NDesk.DBus.GLib.dll.config
+EXTRA_DIST =				\
+	$(ASSEMBLY_SOURCES)		\
+	$(ASSEMBLY).config		\
+	README				\
+	COPYING
 
-EXTRA_DIST = 				\
-	$(LIBDBUSSHARPGLIB_CSFILES)	\
-	NDesk.DBus.GLib.dll.config	\
-	COPYING 			\
-	README
-
-CLEANFILES =				\
-	NDesk.DBus.GLib.dll		\
-	NDesk.DBus.GLib.dll.mdb
+CLEANFILES =			\
+	$(ASSEMBLY)		\
+	$(ASSEMBLY).mdb

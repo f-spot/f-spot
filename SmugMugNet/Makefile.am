@@ -1,24 +1,27 @@
-CSC = gmcs
+include $(top_srcdir)/Makefile.include
 
-LIBSMUGMUGNET_CSFILES =				\
+ASSEMBLY_NAME = SmugMugNet
+
+ASSEMBLY_SOURCES =				\
 	$(srcdir)/SmugMugApi.cs 		\
 	$(srcdir)/NoCheckCertificatePolicy.cs 		
 
-	
+REFS =
 
-LIBSMUGMUGNETlibdir = $(libdir)/f-spot
-LIBSMUGMUGNETlib_DATA =		\
-	SmugMugNet.dll
+PKGS =
 
+ASSEMBLY = $(ASSEMBLY_NAME).dll
 
-SmugMugNet.dll: $(LIBSMUGMUGNET_CSFILES)
-	$(CSC) -r:System.Web.dll -out:$@ /target:library $(LIBSMUGMUGNET_CSFILES)
+all: $(ASSEMBLY)
 
-all: SmugMugNet.dll
+$(ASSEMBLY): $(ASSEMBLY_SOURCES)
+	$(CSC_LIB) -out:$@ $(PKGS) $(REFS) $(ASSEMBLY_SOURCES)
 
-EXTRA_DIST =							\
-	$(LIBSMUGMUGNET_CSFILES)	
+assemblydir = $(pkglibdir)
+assembly_DATA =	$(ASSEMBLY)
 
-CLEANFILES =							\
-	SmugMugNet.dll 
+EXTRA_DIST = $(ASSEMBLY_SOURCES)
 
+CLEANFILES =			\
+	$(ASSEMBLY)		\
+	$(ASSEMBLY).mdb

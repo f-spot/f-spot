@@ -1,6 +1,8 @@
-CSC = gmcs -g
+include $(top_srcdir)/Makefile.include
 
-SEMWEB_CSFILES =            			\
+ASSEMBLY_NAME = SemWeb
+
+ASSEMBLY_SOURCES =				\
                 $(srcdir)/AssemblyInfo.cs       \
                 $(srcdir)/NamespaceManager.cs   \
                 $(srcdir)/Util.cs               \
@@ -25,22 +27,25 @@ SEMWEB_CSFILES =            			\
                 $(srcdir)/Remote.cs             \
                 $(srcdir)/XPathSemWebNavigator.cs             
 
-ASSEMBLIES = 					\
-	-r:System.Data				\
+REFS =			\
+	-r:System.Data	\
 	-r:System.Web
 
-SemWeblibdir = $(libdir)/f-spot
-SemWeblib_DATA = \
-	SemWeb.dll
+PKGS =
 
-SemWeb.dll: $(SEMWEB_CSFILES)
-	$(CSC) -out:$@ -t:library $(SEMWEB_CSFILES) $(ASSEMBLIES)
+ASSEMBLY = $(ASSEMBLY_NAME).dll
 
-all: SemWeb.dll
+all: $(ASSEMBLY)
 
-EXTRA_DIST =					\
-	$(SEMWEB_CSFILES)
+$(ASSEMBLY): $(ASSEMBLY_SOURCES)
+	$(CSC_LIB) -out:$@ $(PKGS) $(REFS) $(ASSEMBLY_SOURCES)
 
-CLEANFILES =					\
-	SemWeb.dll.mdb				\
-	SemWeb.dll
+assemblydir = $(pkglibdir)
+assembly_DATA =	$(ASSEMBLY)
+
+EXTRA_DIST =				\
+	$(ASSEMBLY_SOURCES)
+
+CLEANFILES =			\
+	$(ASSEMBLY)		\
+	$(ASSEMBLY).mdb

@@ -1,30 +1,35 @@
-LIBRARY		= Tao.OpenGl.ExtensionLoader
+include $(top_srcdir)/Makefile.include
 
-include $(top_srcdir)/am-config.mk
+ASSEMBLY_NAME = Tao.OpenGl.ExtensionLoader
 
-FILES = \
-	AssemblyInfo.cs \
-	GlExtensionLoader.cs
+ASSEMBLY_SOURCES =			\
+	$(srcdir)/AssemblyInfo.cs 	\
+	$(srcdir)/GlExtensionLoader.cs
 
-REFERENCES =
+REFS =
 
-BUILD_FILES = $(addprefix $(srcdir)/, $(FILES))
+PKGS =
+
+ASSEMBLY = $(ASSEMBLY_NAME).dll
+
+EXTRAFLAGS =
 
 all: $(ASSEMBLY)
 
-$(ASSEMBLY): $(FILES)
-	mkdir -p $(top_builddir)/
-	$(CSC) -debug -out:$@ \
-		-target:$(TARGET) \
-		$(REFERENCES) \
-		$(CSFLAGS) \
-		$(BUILD_FILES)
+$(ASSEMBLY): $(ASSEMBLY_SOURCES)
+	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(PKGS) $(REFS) $(ASSEMBLY_SOURCES)
 
-libtaogldir = $(libdir)/f-spot
-libtaogl_DATA = $(ASSEMBLY) Tao.OpenGl.ExtensionLoader.dll.config
+assemblydir = $(pkglibdir)
+assembly_DATA =			\
+	$(ASSEMBLY)		\
+	$(ASSEMBLY).config
+	
 
-CLEANFILES = $(ASSEMBLY) $(ASSEMBLY).mdb
-EXTRA_DIST = \
-	$(FILES) \
-	Tao.OpenGl.ExtensionLoader.snk \
-	Tao.OpenGl.ExtensionLoader.dll.config
+EXTRA_DIST =				\
+	$(ASSEMBLY_SOURCES)		\
+	$(ASSEMBLY_NAME).snk		\
+	$(ASSEMBLY).config
+
+CLEANFILES =			\
+	$(ASSEMBLY)		\
+	$(ASSEMBLY).mdb

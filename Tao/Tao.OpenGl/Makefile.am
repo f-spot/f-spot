@@ -1,39 +1,46 @@
-LIBRARY		= Tao.OpenGl
+include $(top_srcdir)/Makefile.include
 
-include $(top_srcdir)/am-config.mk
+ASSEMBLY_NAME = Tao.OpenGl
 
-FILES = \
-	AssemblyInfo.cs \
-	Gl.cs \
-	ContextGl.cs
+ASSEMBLY_SOURCES =			\
+	$(srcdir)/AssemblyInfo.cs 	\
+	$(srcdir)/Gl.cs			\
+	$(srcdir)/ContextGl.cs
 
-REFERENCES = \
-	-r:$(top_builddir)/Tao/Tao.OpenGl.ExtensionLoader/Tao.OpenGl.ExtensionLoader.dll
+REFS =									\
+	-r:$(DIR_TAO_EXTENSIONLOADER)/Tao.OpenGl.ExtensionLoader.dll
 
-BUILD_FILES = $(addprefix $(srcdir)/, $(FILES))
+PKGS =
+
+ASSEMBLY = $(ASSEMBLY_NAME).dll
+
+EXTRAFLAGS =
 
 build: gl_build
 
 all: $(ASSEMBLY)
 
-$(ASSEMBLY): Tao.OpenGl-pre.dll
-	MONO_PATH=$(top_builddir)/Tao/Tao.OpenGl.ExtensionLoader:. $(RUN_EXE) $(top_builddir)/Tao/Tao.GlPostProcess/Tao.GlPostProcess.exe \
-		$< $@ "$(srcdir)/$(SNKFILE)" \
+$(ASSEMBLY): $(ASSEMBLY_NAME)-pre.dll
+	MONO_PATH=$(DIR_TAO_EXTENSIONLOADER):. $(RUNTIME) $(DIR_TAO_GLPOSTPROCESS)/Tao.GlPostProcess.exe \
+		$< $@ "$(srcdir)/$(ASSEMBLY_NAME).snk" \
 		Tao.OpenGl.Gl Tao.OpenGl.ContextGl
 
-libtaogldir = $(libdir)/f-spot
-libtaogl_DATA = $(ASSEMBLY) Tao.OpenGl.dll.config
+$(ASSEMBLY_NAME)-pre.dll: $(ASSEMBLY_SOURCES)
+	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(PKGS) $(REFS) $(ASSEMBLY_SOURCES)
 
-Tao.OpenGl-pre.dll: $(FILES)
-	mkdir -p $(top_builddir)/
-	$(CSC) -debug -out:$@ \
-		-target:$(TARGET) \
-		$(REFERENCES) \
-		$(CSFLAGS) \
-		$(BUILD_FILES)
+assemblydir = $(pkglibdir)
+assembly_DATA =			\
+	$(ASSEMBLY)		\
+	$(ASSEMBLY).config
+	
 
-CLEANFILES = $(ASSEMBLY) $(ASSEMBLY).mdb Tao.OpenGl-pre.dll Tao.OpenGl-pre.dll.mdb
-EXTRA_DIST = \
-	$(FILES) \
-	Tao.OpenGl.snk \
-	Tao.OpenGl.dll.config
+EXTRA_DIST =				\
+	$(ASSEMBLY_SOURCES)		\
+	$(ASSEMBLY_NAME).snk		\
+	$(ASSEMBLY).config
+
+CLEANFILES =				\
+	$(ASSEMBLY)			\
+	$(ASSEMBLY).mdb			\
+	$(ASSEMBLY_NAME)-pre.dll	\
+	$(ASSEMBLY_NAME)-pre.dll.mdb

@@ -1,34 +1,31 @@
-CSC=gmcs
-CSFLAGS=-debug
+include $(top_srcdir)/Makefile.include
 
-LIBGLITZSHARP_CSFILES = \
-	$(srcdir)/Buffer.cs	\
-	$(srcdir)/Context.cs	\
-	$(srcdir)/Glitz.cs	\
-	$(srcdir)/Drawable.cs	\
-	$(srcdir)/Surface.cs	\
+ASSEMBLY_NAME = NDesk.Glitz
+
+ASSEMBLY_SOURCES =			\
+	$(srcdir)/Buffer.cs		\
+	$(srcdir)/Context.cs		\
+	$(srcdir)/Glitz.cs		\
+	$(srcdir)/Drawable.cs		\
+	$(srcdir)/Surface.cs		\
 	$(srcdir)/TextureObject.cs
 
-%.exe %.dll %.module:
-	$(CSC) $(CSFLAGS) -out:$@ -t:$(TARGET) $(addprefix -pkg:,$(PKGS)) $(addprefix -r:,$(REFS)) $(addprefix -r:,$(filter %.dll,$^)) $(addprefix -addmodule:,$(filter %.module,$^)) $(filter %.cs,$^)
+REFS =
 
-%.exe: TARGET = exe
+PKGS =
 
-%.dll: TARGET = library
+ASSEMBLY = $(ASSEMBLY_NAME).dll
 
-%.module: TARGET = module
+all: $(ASSEMBLY)
 
-NDesk.Glitz.dll: $(LIBGLITZSHARP_CSFILES)
+$(ASSEMBLY): $(ASSEMBLY_SOURCES)
+	$(CSC_LIB) -out:$@ $(PKGS) $(REFS) $(ASSEMBLY_SOURCES)
 
-all: NDesk.Glitz.dll
+assemblydir = $(pkglibdir)
+assembly_DATA =	$(ASSEMBLY)
 
-libglitzsharplibdir = $(libdir)/f-spot
-libglitzsharplib_DATA =		\
-	NDesk.Glitz.dll
-
-EXTRA_DIST =				\
-	$(LIBGLITZSHARP_CSFILES)
+EXTRA_DIST = $(ASSEMBLY_SOURCES)
 
 CLEANFILES =			\
-	NDesk.Glitz.dll		\
-	NDesk.Glitz.dll.mdb
+	$(ASSEMBLY)		\
+	$(ASSEMBLY).mdb

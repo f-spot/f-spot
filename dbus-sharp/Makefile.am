@@ -1,57 +1,53 @@
-CSC_DEBUGFLAGS=-debug
-CSC=gmcs -unsafe $(CSC_DEBUGFLAGS)
-MONO_DEBUGFLAGS=--debug
-RUNTIME=mono $(MONO_DEBUGFLAGS)
+include $(top_srcdir)/Makefile.include
 
-LIBDBUSSHARP_CSFILES =				\
-	$(srcdir)/Address.cs \
-	$(srcdir)/AssemblyInfo.cs \
-	$(srcdir)/Authentication.cs \
-	$(srcdir)/Bus.cs \
-	$(srcdir)/BusObject.cs \
-	$(srcdir)/Connection.cs \
-	$(srcdir)/DBus.cs \
-	$(srcdir)/DProxy.cs \
-	$(srcdir)/ExportObject.cs \
-	$(srcdir)/Introspection.cs \
-	$(srcdir)/Mapper.cs \
-	$(srcdir)/Message.cs \
-	$(srcdir)/MessageFilter.cs \
-	$(srcdir)/MessageReader.cs \
-	$(srcdir)/MessageWriter.cs \
-	$(srcdir)/Protocol.cs \
-	$(srcdir)/Server.cs \
-	$(srcdir)/Signature.cs \
-	$(srcdir)/SocketTransport.cs \
-	$(srcdir)/Transport.cs \
-	$(srcdir)/UnixNativeTransport.cs \
-	$(srcdir)/UnixTransport.cs \
+ASSEMBLY_NAME = NDesk.DBus
+
+ASSEMBLY_SOURCES =			\
+	$(srcdir)/Address.cs 		\
+	$(srcdir)/AssemblyInfo.cs 	\
+	$(srcdir)/Authentication.cs 	\
+	$(srcdir)/Bus.cs 		\
+	$(srcdir)/BusObject.cs 		\
+	$(srcdir)/Connection.cs 	\
+	$(srcdir)/DBus.cs 		\
+	$(srcdir)/DProxy.cs 		\
+	$(srcdir)/ExportObject.cs 	\
+	$(srcdir)/Introspection.cs 	\
+	$(srcdir)/Mapper.cs 		\
+	$(srcdir)/Message.cs 		\
+	$(srcdir)/MessageFilter.cs 	\
+	$(srcdir)/MessageReader.cs 	\
+	$(srcdir)/MessageWriter.cs 	\
+	$(srcdir)/Protocol.cs 		\
+	$(srcdir)/Server.cs 		\
+	$(srcdir)/Signature.cs 		\
+	$(srcdir)/SocketTransport.cs 	\
+	$(srcdir)/Transport.cs 		\
+	$(srcdir)/UnixNativeTransport.cs\
+	$(srcdir)/UnixTransport.cs 	\
 	$(srcdir)/Wrapper.cs
 
-%.exe %.dll %.module:
-	$(CSC) $(CSFLAGS) -out:$@ -t:$(TARGET) $(addprefix -pkg:,$(PKGS)) $(addprefix -r:,$(REFS)) $(addprefix -r:,$(filter %.dll,$^)) $(addprefix -addmodule:,$(filter %.module,$^)) $(filter %.cs,$^)
+REFS = -r:Mono.Posix
 
-%.exe: TARGET = exe
+PKGS =
 
-%.dll: TARGET = library
+ASSEMBLY = $(ASSEMBLY_NAME).dll
 
-%.module: TARGET = module
+EXTRAFLAGS = -unsafe
 
-NDesk.DBus.dll: REFS=Mono.Posix
+all: $(ASSEMBLY)
 
-NDesk.DBus.dll: $(LIBDBUSSHARP_CSFILES)
+$(ASSEMBLY): $(ASSEMBLY_SOURCES)
+	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(PKGS) $(REFS) $(ASSEMBLY_SOURCES)
 
-all: NDesk.DBus.dll
-
-libdbussharplibdir = $(libdir)/f-spot
-libdbussharplib_DATA =		\
-	NDesk.DBus.dll
+assemblydir = $(pkglibdir)
+assembly_DATA =	$(ASSEMBLY)
 
 EXTRA_DIST =				\
-	$(LIBDBUSSHARP_CSFILES)		\
+	$(ASSEMBLY_SOURCES)		\
 	README				\
 	COPYING
 
 CLEANFILES =			\
-	NDesk.DBus.dll		\
-	NDesk.DBus.dll.mdb
+	$(ASSEMBLY)		\
+	$(ASSEMBLY).mdb

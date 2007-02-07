@@ -43,7 +43,7 @@ EXTRA_DIST =			\
 	intltool-update.in	\
 	f-spot.pc.in		\
 	f-spot.spec		\
-	am-config.mk		\
+	Makefile.include	\
 	gnome-doc-utils.make	\
         $(desktop_in_files)     \
         $(desktop_files)

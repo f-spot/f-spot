@@ -1,4 +1,5 @@
-CSFLAGS = -unsafe -debug -nowarn:0169 -nowarn:0612 -nowarn:0414 -d:TEST_METADATA -d:BROKEN_RSVG $(NUNIT_DEFINES)
+include $(top_srcdir)/Makefile.include
+EXTRAFLAGS = -unsafe -nowarn:0169 -nowarn:0612 -nowarn:0414 -d:TEST_METADATA -d:BROKEN_RSVG $(NUNIT_DEFINES)
 
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Cairo/Antialias.cs		\
@@ -209,19 +210,15 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/main.cs
 
 ASSEMBLIES = \
-	-r:$(top_builddir)/dbus-sharp/NDesk.DBus.dll   				\
-	-r:$(top_builddir)/dbus-sharp-glib/NDesk.DBus.GLib.dll			\
-	-r:$(top_builddir)/libgphoto2-sharp/libgphoto2-sharp.dll		\
-	-r:$(top_builddir)/semweb/SemWeb.dll					\
-	-r:$(top_builddir)/FlickrNet/FlickrNet.dll				\
-	-r:$(top_builddir)/SmugMugNet/SmugMugNet.dll				\
-	-r:$(top_builddir)/glitz-sharp/src/NDesk.Glitz.dll			\
-	-r:$(top_builddir)/google-sharp/google-sharp.dll			\
-	-r:$(top_builddir)/gnome-keyring-sharp/gnome-keyring-sharp.dll		\
-	-r:$(top_builddir)/gnome-keyring-sharp/gnome-keyring-sharp.dll		\
-	-r:$(top_builddir)/Tao/Tao.OpenGl/Tao.OpenGl.dll			\
-	-r:$(top_builddir)/Tao/Tao.OpenGl.Glu/Tao.OpenGl.Glu.dll			\
-	-r:$(top_builddir)/Tao/Tao.OpenGl.ExtensionLoader/Tao.OpenGl.ExtensionLoader.dll	\
+	$(LINK_DBUS)				\
+	$(LINK_GPHOTO2)				\
+	$(LINK_SEMWEB)				\
+	$(LINK_FLICKR)				\
+	$(LINK_GLITZ)				\
+	$(LINK_GOOGLE)				\
+	$(LINK_KEYRING)				\
+	$(LINK_SMUGMUG)				\
+	$(LINK_TAO)				\
 	-r:System.Data				\
 	-r:System.Web				\
 	-r:Mono.Data.SqliteClient		\
@@ -288,7 +285,7 @@ F_SPOT_CSFILES = $(F_SPOT_CSDISTFILES)	\
 	AssemblyInfo.cs
 
 f-spot.exe: $(F_SPOT_CSFILES) f-spot.glade dces.rdf
-	$(CSC) -out:$@ $(CSFLAGS) $(F_SPOT_CSFILES) $(ASSEMBLIES) $(RESOURCES)
+	$(CSC) -out:$@ $(EXTRAFLAGS) $(F_SPOT_CSFILES) $(ASSEMBLIES) $(RESOURCES)
 
 all: f-spot.exe
 

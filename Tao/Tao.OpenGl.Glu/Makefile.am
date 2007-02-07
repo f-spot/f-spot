@@ -1,35 +1,36 @@
-LIBRARY		= Tao.OpenGl.Glu
+include $(top_srcdir)/Makefile.include
 
-DOCS = 1
-UNSAFE = 1
+ASSEMBLY_NAME = Tao.OpenGl.Glu
 
-include $(top_srcdir)/am-config.mk
+ASSEMBLY_SOURCES =			\
+	$(srcdir)/AssemblyInfo.cs 	\
+	$(srcdir)/Glu.cs
 
-FILES = \
-	AssemblyInfo.cs \
-	Glu.cs
+REFS =								\
+	-r:$(DIR_TAO_OPENGL)/Tao.OpenGl.dll
 
-REFERENCES = \
-	-r:$(top_builddir)/Tao/Tao.OpenGl/Tao.OpenGl.dll
+PKGS =
 
-BUILD_FILES = $(addprefix $(srcdir)/, $(FILES))
+ASSEMBLY = $(ASSEMBLY_NAME).dll
+
+EXTRAFLAGS = -unsafe
 
 all: $(ASSEMBLY)
 
-libtaoopengldir = $(libdir)/f-spot
-libtaoopengl_DATA = $(ASSEMBLY) Tao.OpenGl.Glu.dll.config
+$(ASSEMBLY): $(ASSEMBLY_SOURCES)
+	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(PKGS) $(REFS) $(ASSEMBLY_SOURCES)
 
-$(ASSEMBLY): $(FILES)
-	mkdir -p $(top_builddir)/
-	$(CSC) -debug -out:$@ \
-		-target:$(TARGET) \
-		$(REFERENCES) \
-		$(CSFLAGS) \
-		$(BUILD_FILES)
+assemblydir = $(pkglibdir)
+assembly_DATA =			\
+	$(ASSEMBLY)		\
+	$(ASSEMBLY).config
+	
 
-CLEANFILES = $(ASSEMBLY) $(ASSEMBLY).mdb
-EXTRA_DIST = \
-	$(FILES) \
-	Tao.OpenGl.Glu.snk \
-	Tao.OpenGl.Glu.dll.config
+EXTRA_DIST =				\
+	$(ASSEMBLY_SOURCES)		\
+	$(ASSEMBLY_NAME).snk		\
+	$(ASSEMBLY).config
 
+CLEANFILES =			\
+	$(ASSEMBLY)		\
+	$(ASSEMBLY).mdb

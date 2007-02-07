@@ -1,38 +1,44 @@
-CSC = gmcs --unsafe -g
+include $(top_srcdir)/Makefile.include
 
-LIBGPHOTO2_SHARP_CSFILES =				\
-	$(srcdir)/AssemblyInfo.cs			\
-	$(srcdir)/Camera.cs				\
-	$(srcdir)/CameraAbilitiesList.cs		\
-	$(srcdir)/CameraFile.cs				\
-	$(srcdir)/CameraFilesystem.cs			\
-	$(srcdir)/CameraList.cs				\
-	$(srcdir)/CameraWidget.cs			\
-	$(srcdir)/Context.cs				\
-	$(srcdir)/ErrorCodes.cs				\
-	$(srcdir)/Object.cs				\
-	$(srcdir)/Port.cs				\
-	$(srcdir)/PortInfo.cs				\
+ASSEMBLY_NAME = libgphoto2-sharp
+
+ASSEMBLY_SOURCES =			\
+	$(srcdir)/AssemblyInfo.cs	\
+	$(srcdir)/Camera.cs		\
+	$(srcdir)/CameraAbilitiesList.cs\
+	$(srcdir)/CameraFile.cs		\
+	$(srcdir)/CameraFilesystem.cs	\
+	$(srcdir)/CameraList.cs		\
+	$(srcdir)/CameraWidget.cs	\
+	$(srcdir)/Context.cs		\
+	$(srcdir)/ErrorCodes.cs		\
+	$(srcdir)/Object.cs		\
+	$(srcdir)/Port.cs		\
+	$(srcdir)/PortInfo.cs		\
 	$(srcdir)/PortInfoList.cs
 
-libgphoto2sharplibdir = $(libdir)/f-spot
-libgphoto2sharplib_DATA =		\
-	libgphoto2-sharp.dll		\
-	libgphoto2-sharp.dll.config
+REFS =
 
+PKGS =
 
-libgphoto2-sharp.dll: $(LIBGPHOTO2_SHARP_CSFILES)
-	$(CSC) -o $@ /target:library $(LIBGPHOTO2_SHARP_CSFILES)
+ASSEMBLY = $(ASSEMBLY_NAME).dll
 
-all: libgphoto2-sharp.dll
+all: $(ASSEMBLY)
 
-EXTRA_DIST =							\
-	AUTHORS							\
-	COPYING							\
-	libgphoto2-sharp.dll.config				\
-	$(LIBGPHOTO2_SHARP_CSFILES)
+$(ASSEMBLY): $(ASSEMBLY_SOURCES)
+	$(CSC_LIB) -unsafe -out:$@ $(PKGS) $(REFS) $(ASSEMBLY_SOURCES)
 
-CLEANFILES =							\
-	libgphoto2-sharp.dll.mdb				\
-	libgphoto2-sharp.dll
+assemblydir = $(pkglibdir)
+assembly_DATA =			\
+	$(ASSEMBLY)		\
+	$(ASSEMBLY).config
 
+EXTRA_DIST =				\
+	$(ASSEMBLY_SOURCES)		\
+	$(ASSEMBLY).config		\
+	AUTHORS				\
+	COPYING
+
+CLEANFILES =			\
+	$(ASSEMBLY)		\
+	$(ASSEMBLY).mdb

@@ -1,30 +1,29 @@
-PROGRAM		= Tao.GlPostProcess
-TARGET        = exe
-ASSEMBLY_EXE    = $(PROGRAM).exe
-ASSEMBLY      = $(ASSEMBLY_EXE)
-ASSEMBLY_NAME   = $(LIBRARY)
+include $(top_srcdir)/Makefile.include
 
+ASSEMBLY_NAME = Tao.GlPostProcess
 
-FILES = \
-	AssemblyInfo.cs \
-	GlPostProcess.cs
+ASSEMBLY_SOURCES =			\
+	$(srcdir)/AssemblyInfo.cs 	\
+	$(srcdir)/GlPostProcess.cs
 
-REFERENCES = \
-	-r:$(top_builddir)/Tao/Tao.OpenGl.ExtensionLoader/Tao.OpenGl.ExtensionLoader.dll
+REFS =									\
+	-r:$(DIR_TAO_EXTENSIONLOADER)/Tao.OpenGl.ExtensionLoader.dll
 
-BUILD_FILES = $(addprefix $(srcdir)/, $(FILES))
+PKGS =
+
+ASSEMBLY = $(ASSEMBLY_NAME).exe
+
+EXTRAFLAGS =
 
 all: $(ASSEMBLY)
 
-$(ASSEMBLY): $(FILES)
-	mkdir -p $(top_builddir)/
-	$(CSC) -debug -out:$@ \
-		-target:$(TARGET) \
-		$(REFERENCES) \
-		$(CSFLAGS) \
-		$(BUILD_FILES)
+$(ASSEMBLY): $(ASSEMBLY_SOURCES)
+	$(CSC) -out:$@ $(EXTRAFLAGS) $(PKGS) $(REFS) $(ASSEMBLY_SOURCES)
 
-CLEANFILES = $(ASSEMBLY) $(ASSEMBLY).mdb
-EXTRA_DIST = \
-	$(FILES) \
-	Tao.GlPostProcess.snk
+EXTRA_DIST =				\
+	$(ASSEMBLY_SOURCES)		\
+	$(ASSEMBLY_NAME).snk
+
+CLEANFILES =			\
+	$(ASSEMBLY)		\
+	$(ASSEMBLY).mdb
