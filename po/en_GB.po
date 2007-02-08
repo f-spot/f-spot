@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-24 07:19+0000\n"
-"PO-Revision-Date: 2007-01-24 07:21-0000\n"
+"POT-Creation-Date: 2007-02-08 20:18+0000\n"
+"PO-Revision-Date: 2007-02-08 20:18-0000\n"
 "Last-Translator: David Lodge <dave@cirt.net>\n"
 "Language-Team: British English <l10n-en_GB-maint@gnome.bugs>\n"
 "MIME-Version: 1.0\n"
@@ -189,7 +189,7 @@ msgid "File"
 msgstr "File"
 
 #: ../src/CameraFileSelectionDialog.cs:72
-#: ../src/FolderExport.cs:835
+#: ../src/FolderExport.cs:862
 msgid "Index"
 msgstr "Index"
 
@@ -220,8 +220,8 @@ msgid "Error \"{0}\" while creating directory \"{1}\".  Check that the path and 
 msgstr "Error \"{0}\" while creating directory \"{1}\".  Check that the path and permissions are correct and try again"
 
 #: ../src/CameraFileSelectionDialog.cs:189
-#: ../src/CDExport.cs:194
-#: ../src/FolderExport.cs:294
+#: ../src/CDExport.cs:205
+#: ../src/FolderExport.cs:325
 msgid "Transferring Pictures"
 msgstr "Transferring Pictures"
 
@@ -231,23 +231,23 @@ msgid "Copying file {0} of {1}"
 msgstr "Copying file {0} of {1}"
 
 #: ../src/CameraFileSelectionDialog.cs:222
-msgid "Done Copying Files"
-msgstr "Done Copying Files"
-
-#: ../src/CameraFileSelectionDialog.cs:224
-msgid "Download Complete"
-msgstr "Download Complete"
-
-#: ../src/CameraFileSelectionDialog.cs:229
 msgid "Error transferring file"
 msgstr "Error transferring file"
 
-#: ../src/CameraFileSelectionDialog.cs:250
+#: ../src/CameraFileSelectionDialog.cs:231
+msgid "Done Copying Files"
+msgstr "Done Copying Files"
+
+#: ../src/CameraFileSelectionDialog.cs:233
+msgid "Download Complete"
+msgstr "Download Complete"
+
+#: ../src/CameraFileSelectionDialog.cs:254
 #, csharp-format
 msgid "Transferring \"{0}\" from camera"
 msgstr "Transferring \"{0}\" from camera"
 
-#: ../src/CameraFileSelectionDialog.cs:276
+#: ../src/CameraFileSelectionDialog.cs:280
 msgid "Select Destination"
 msgstr "Select Destination"
 
@@ -260,14 +260,15 @@ msgstr "Camera"
 msgid "Port"
 msgstr "Port"
 
-#: ../src/CDExport.cs:101
+#: ../src/CDExport.cs:112
 #, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "Transferring picture \"{0}\" To CD"
 
 #. This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/CDExport.cs:103
-#: ../src/FlickrExport.cs:261
+#: ../src/CDExport.cs:114
+#: ../src/FlickrExport.cs:262
+#: ../src/FolderExport.cs:195
 #: ../src/GalleryExport.cs:698
 #: ../src/ProgressDialog.cs:82
 #: ../src/TimeDialog.cs:147
@@ -275,37 +276,37 @@ msgstr "Transferring picture \"{0}\" To CD"
 msgid "{0} of {1}"
 msgstr "{0} of {1}"
 
-#: ../src/CDExport.cs:116
-#: ../src/FlickrExport.cs:278
-#: ../src/FolderExport.cs:191
-#: ../src/GalleryExport.cs:725
-#: ../src/PicasaWebExport.cs:606
-#: ../src/SmugMugExport.cs:566
+#: ../src/CDExport.cs:127
+#: ../src/FlickrExport.cs:279
+#: ../src/FolderExport.cs:222
+#: ../src/GalleryExport.cs:722
+#: ../src/PicasaWebExport.cs:615
+#: ../src/SmugMugExport.cs:576
 msgid "Done Sending Photos"
 msgstr "Done Sending Photos"
 
-#: ../src/CDExport.cs:118
-#: ../src/FolderExport.cs:193
+#: ../src/CDExport.cs:129
+#: ../src/FolderExport.cs:224
 msgid "Transfer Complete"
 msgstr "Transfer Complete"
 
-#: ../src/CDExport.cs:125
-#: ../src/FolderExport.cs:198
+#: ../src/CDExport.cs:136
+#: ../src/FolderExport.cs:229
 msgid "Error While Transferring"
 msgstr "Error While Transferring"
 
-#: ../src/CDExport.cs:131
-#: ../src/FolderExport.cs:215
+#: ../src/CDExport.cs:142
+#: ../src/FolderExport.cs:246
 msgid "Error Transferring"
 msgstr "Error Transferring"
 
-#: ../src/CDExport.cs:152
-#: ../src/FolderExport.cs:237
+#: ../src/CDExport.cs:163
+#: ../src/FolderExport.cs:268
 msgid "Error: Error while transferring; Aborting"
 msgstr "Error: Error while transferring; Aborting"
 
-#: ../src/CDExport.cs:155
-#: ../src/FolderExport.cs:240
+#: ../src/CDExport.cs:166
+#: ../src/FolderExport.cs:271
 msgid "Error: File Already Exists; Aborting"
 msgstr "Error: File Already Exists; Aborting"
 
@@ -316,7 +317,7 @@ msgstr "Error saving adjusted photo"
 #: ../src/ColorDialog.cs:212
 #: ../src/HigMessageDialog.cs:15
 #: ../src/Loupe.cs:58
-#: ../src/MainWindow.cs:1926
+#: ../src/MainWindow.cs:1929
 #: ../src/PhotoView.cs:266
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
@@ -352,6 +353,18 @@ msgstr ""
 "selecting a different tag in the F-Spot preference\n"
 "dialogue."
 
+#: ../src/Editors/Tilt.cs:24
+#: ../src/ItemAction.cs:340
+#: ../src/StockIcons.cs:34
+msgid "Straighten"
+msgstr "Straighten"
+
+#: ../src/Editors/SoftFocus.cs:25
+#: ../src/ItemAction.cs:356
+#: ../src/StockIcons.cs:43
+msgid "Soft Focus"
+msgstr "Soft Focus"
+
 #: ../src/ExceptionDialog.cs:24
 msgid "F-Spot Encountered a Fatal Error"
 msgstr "F-Spot Encountered a Fatal Error"
@@ -363,6 +376,21 @@ msgstr "Error Details"
 #: ../src/ExceptionDialog.cs:104
 msgid "An unhandled exception was thrown: "
 msgstr "An unhandled exception was thrown: "
+
+#: ../src/FileImportBackend.cs:260
+msgid "Import error"
+msgstr "Import error"
+
+#: ../src/FileImportBackend.cs:261
+#, csharp-format
+msgid ""
+"Error importing {0}\n"
+"\n"
+"{1}"
+msgstr ""
+"Error importing {0}\n"
+"\n"
+"{1}"
 
 #: ../src/Filters/ResizeFilter.cs:68
 #, csharp-format
@@ -423,16 +451,17 @@ msgstr "Unable to log on"
 msgid "Waiting for response {0} of {1}"
 msgstr "Waiting for response {0} of {1}"
 
-#: ../src/FlickrExport.cs:256
+#: ../src/FlickrExport.cs:257
+#: ../src/FolderExport.cs:192
 #: ../src/GalleryExport.cs:694
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Uploading picture \"{0}\""
 
-#: ../src/FlickrExport.cs:280
-#: ../src/GalleryExport.cs:727
-#: ../src/PicasaWebExport.cs:608
-#: ../src/SmugMugExport.cs:568
+#: ../src/FlickrExport.cs:281
+#: ../src/GalleryExport.cs:724
+#: ../src/PicasaWebExport.cs:617
+#: ../src/SmugMugExport.cs:578
 msgid "Upload Complete"
 msgstr "Upload Complete"
 
@@ -442,22 +471,23 @@ msgid "Error Uploading To {0}: {1}"
 msgstr "Error Uploading To {0}: {1}"
 
 #: ../src/FlickrExport.cs:287
-#: ../src/GalleryExport.cs:732
-#: ../src/PicasaWebExport.cs:617
-#: ../src/SmugMugExport.cs:577
+#: ../src/FolderExport.cs:200
+#: ../src/GalleryExport.cs:714
+#: ../src/PicasaWebExport.cs:607
+#: ../src/SmugMugExport.cs:568
 msgid "Error"
 msgstr "Error"
 
-#: ../src/FlickrExport.cs:346
+#: ../src/FlickrExport.cs:350
 msgid "Unable to log on."
 msgstr "Unable to log on."
 
-#: ../src/FlickrExport.cs:347
+#: ../src/FlickrExport.cs:351
 #, csharp-format
 msgid "F-Spot was unable to log on to {0}.  Make sure you have given the authentication using {0} web browser interface."
 msgstr "F-Spot was unable to log on to {0}.  Make sure you have given the authentication using {0} web browser interface."
 
-#: ../src/FlickrExport.cs:365
+#: ../src/FlickrExport.cs:369
 #: ../src/GalleryExport.cs:649
 #: ../src/PicasaWebExport.cs:515
 #: ../src/SmugMugExport.cs:494
@@ -468,44 +498,53 @@ msgstr "Uploading Pictures"
 msgid "Select Export Folder"
 msgstr "Select Export Folder"
 
-#: ../src/FolderExport.cs:148
+#: ../src/FolderExport.cs:154
 msgid "Building Gallery"
 msgstr "Building Gallery"
 
-#: ../src/FolderExport.cs:692
+#: ../src/FolderExport.cs:198
+#, csharp-format
+msgid ""
+"Error uploading picture \"{0}\" to Gallery:\n"
+"{1}"
+msgstr ""
+"Error uploading picture \"{0}\" to Gallery:\n"
+"{1}"
+
+#: ../src/FolderExport.cs:716
 msgid "Light"
 msgstr "Light"
 
-#: ../src/FolderExport.cs:693
+#: ../src/FolderExport.cs:717
 msgid "Dark"
 msgstr "Dark"
 
 #. Abbreviation of previous
-#: ../src/FolderExport.cs:833
+#: ../src/FolderExport.cs:860
 msgid "Prev"
 msgstr "Prev"
 
-#: ../src/FolderExport.cs:838
+#: ../src/FolderExport.cs:865
 #: ../src/f-spot.glade.h:154
 #: ../src/ItemAction.cs:125
 msgid "Next"
 msgstr "Next"
 
-#: ../src/FolderExport.cs:891
-#: ../src/FolderExport.cs:1064
+#: ../src/FolderExport.cs:918
+#: ../src/FolderExport.cs:1091
 msgid "Show Styles"
 msgstr "Show Styles"
 
-#: ../src/FolderExport.cs:892
-#: ../src/FolderExport.cs:1065
+#: ../src/FolderExport.cs:919
+#: ../src/FolderExport.cs:1092
 msgid "Hide Styles"
 msgstr "Hide Styles"
 
-#: ../src/FolderExport.cs:949
+#: ../src/FolderExport.cs:976
 msgid "Gallery generated by"
 msgstr "Gallery generated by"
 
-#: ../src/FolderExport.cs:994
+#: ../src/FolderExport.cs:1021
 msgid "Page:"
 msgstr "Page:"
 
@@ -541,6 +580,10 @@ msgstr "Info"
 #: ../src/FullScreenView.cs:58
 msgid "Image Information"
 msgstr "Image Information"
+
+#: ../src/FullScreenView.cs:98
+msgid "Slide transition: "
+msgstr "Slide transition: "
 
 #: ../src/f-spot.glade.h:1
 msgid "\n"
@@ -1041,8 +1084,8 @@ msgstr "Fin_d"
 
 #. Obsolete, remove after db rev4
 #: ../src/f-spot.glade.h:130
-#: ../src/InfoDisplay.cs:131
-#: ../src/InfoDisplay.cs:133
+#: ../src/InfoDisplay.cs:134
+#: ../src/InfoDisplay.cs:136
 msgid "Folder"
 msgstr "Folder"
 
@@ -1124,6 +1167,7 @@ msgstr "Medium"
 
 #: ../src/f-spot.glade.h:152
 #: ../src/InfoDisplay.cs:14
+#: ../src/MainWindow.cs:1426
 msgid "Metadata Browser"
 msgstr "Metadata Browser"
 
@@ -1747,45 +1791,71 @@ msgstr "The following error was encountered while attempting to log in: {0}"
 msgid "(TopLevel)"
 msgstr "(TopLevel)"
 
-#: ../src/GalleryExport.cs:730
-#: ../src/PicasaWebExport.cs:615
-#: ../src/SmugMugExport.cs:575
+#: ../src/GalleryExport.cs:713
 #, csharp-format
-msgid "Error Uploading To Gallery: {0}"
-msgstr "Error Uploading To Gallery: {0}"
+msgid "Error uploading picture \"{0}\" to Gallery: {1}"
+msgstr "Error uploading picture \"{0}\" to Gallery: {1}"
 
-#: ../src/GalleryExport.cs:749
-#: ../src/PicasaWebExport.cs:636
-#: ../src/SmugMugExport.cs:596
+#: ../src/GalleryExport.cs:740
+#: ../src/PicasaWebExport.cs:638
+#: ../src/SmugMugExport.cs:599
 msgid "(No Gallery)"
 msgstr "(No Gallery)"
 
-#: ../src/GalleryExport.cs:836
-#: ../src/PicasaWebExport.cs:763
-#: ../src/SmugMugExport.cs:694
+#: ../src/GalleryExport.cs:827
+#: ../src/PicasaWebExport.cs:765
+#: ../src/SmugMugExport.cs:697
 msgid "(Not Connected)"
 msgstr "(Not Connected)"
 
-#: ../src/GalleryExport.cs:837
-#: ../src/PicasaWebExport.cs:764
-#: ../src/SmugMugExport.cs:695
+#: ../src/GalleryExport.cs:828
+#: ../src/PicasaWebExport.cs:766
+#: ../src/SmugMugExport.cs:698
 msgid "(No Albums)"
 msgstr "(No Albums)"
 
-#: ../src/GalleryExport.cs:889
-#: ../src/PicasaWebExport.cs:808
-#: ../src/SmugMugExport.cs:739
+#: ../src/GalleryExport.cs:880
+#: ../src/PicasaWebExport.cs:810
+#: ../src/SmugMugExport.cs:742
 msgid "No account selected"
 msgstr "No account selected"
 
-#: ../src/GalleryRemote.cs:342
+#: ../src/GalleryRemote.cs:356
 msgid "Error reading server response"
 msgstr "Error reading server response"
 
 #. failed to find the response
-#: ../src/GalleryRemote.cs:354
+#: ../src/GalleryRemote.cs:368
 msgid "Server returned response without Gallery content"
 msgstr "Server returned response without Gallery content"
+
+#: ../src/GlTransition.cs:36
+msgid "Dissolve"
+msgstr "Dissolve"
+
+#: ../src/GlTransition.cs:104
+msgid "Flip"
+msgstr "Flip"
+
+#: ../src/GlTransition.cs:148
+msgid "Cover"
+msgstr "Cover"
+
+#: ../src/GlTransition.cs:175
+msgid "Reveal"
+msgstr "Reveal"
+
+#: ../src/GlTransition.cs:202
+msgid "Wipe"
+msgstr "Wipe"
+
+#: ../src/GlTransition.cs:260
+msgid "Split"
+msgstr "Split"
+
+#: ../src/GlTransition.cs:347
+msgid "Push"
+msgstr "Push"
 
 #: ../src/GroupSelector.cs:55
 #: ../src/GroupSelector.cs:56
@@ -1820,7 +1890,7 @@ msgid "Error editing photo"
 msgstr "Error editing photo"
 
 #: ../src/ImportCommand.cs:28
-#: ../src/SingleView.cs:343
+#: ../src/SingleView.cs:345
 msgid "Select Folder"
 msgstr "Select Folder"
 
@@ -1833,20 +1903,20 @@ msgstr "(No Cameras Detected)"
 msgid "Loading {0} of {1}"
 msgstr "Loading {0} of {1}"
 
-#: ../src/ImportCommand.cs:442
+#: ../src/ImportCommand.cs:445
 msgid "Done Loading"
 msgstr "Done Loading"
 
-#: ../src/ImportCommand.cs:639
+#: ../src/ImportCommand.cs:642
 msgid "Directory does not exist."
 msgstr "Directory does not exist."
 
-#: ../src/ImportCommand.cs:640
+#: ../src/ImportCommand.cs:643
 #, csharp-format
 msgid "The directory you selected \"{0}\" does not exist.  Please choose a different directory"
 msgstr "The directory you selected \"{0}\" does not exist.  Please choose a different directory"
 
-#: ../src/ImportCommand.cs:678
+#: ../src/ImportCommand.cs:681
 msgid "Select Tag"
 msgstr "Select Tag"
 
@@ -1873,7 +1943,7 @@ msgstr "Exposure:"
 
 #. The label for the root category is used in new and edit tag dialogs
 #: ../src/InfoBox.cs:222
-#: ../src/TagStore.cs:417
+#: ../src/TagStore.cs:414
 msgid "(None)"
 msgstr "(None)"
 
@@ -1882,32 +1952,36 @@ msgstr "(None)"
 msgid "(Unknown)"
 msgstr "(Unknown)"
 
-#: ../src/InfoDisplay.cs:135
+#: ../src/InfoDisplay.cs:138
 msgid "Picasaweb"
 msgstr "Picasaweb"
 
-#: ../src/InfoDisplay.cs:137
+#: ../src/InfoDisplay.cs:140
 msgid "SmugMug"
 msgstr "SmugMug"
 
-#: ../src/InfoDisplay.cs:228
+#: ../src/InfoDisplay.cs:142
+msgid "Gallery2"
+msgstr "Gallery2"
+
+#: ../src/InfoDisplay.cs:233
 msgid "Extended Metadata"
 msgstr "Extended Metadata"
 
-#: ../src/InfoDisplay.cs:260
+#: ../src/InfoDisplay.cs:265
 msgid "Exported Locations"
 msgstr "Exported Locations"
 
-#: ../src/InfoDisplay.cs:283
+#: ../src/InfoDisplay.cs:288
 msgid "No active photo"
 msgstr "No active photo"
 
-#: ../src/InfoDisplay.cs:285
+#: ../src/InfoDisplay.cs:290
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "The photo \"{0}\" does not exist"
 
-#: ../src/InfoDisplay.cs:291
+#: ../src/InfoDisplay.cs:296
 msgid "No metadata available"
 msgstr "No metadata available"
 
@@ -2098,26 +2172,16 @@ msgstr "Apply straightening"
 msgid "Apply straightening to image"
 msgstr "Apply straightening to image"
 
-#: ../src/ItemAction.cs:340
-#: ../src/StockIcons.cs:34
-msgid "Straighten"
-msgstr "Straighten"
-
 #: ../src/ItemAction.cs:341
 msgid "Adjust the angle of the image to straighten the horizon"
 msgstr "Adjust the angle of the image to straighten the horizon"
-
-#: ../src/ItemAction.cs:356
-#: ../src/StockIcons.cs:43
-msgid "Soft Focus"
-msgstr "Soft Focus"
 
 #: ../src/ItemAction.cs:357
 msgid "Create a soft focus visual effect"
 msgstr "Create a soft focus visual effect"
 
 #: ../src/Loupe.cs:57
-#: ../src/MainWindow.cs:1925
+#: ../src/MainWindow.cs:1928
 msgid "Error saving sharpened photo"
 msgstr "Error saving sharpened photo"
 
@@ -2126,17 +2190,17 @@ msgid "Sharpen"
 msgstr "Sharpen"
 
 #: ../src/Loupe.cs:97
-#: ../src/MainWindow.cs:1892
+#: ../src/MainWindow.cs:1895
 msgid "Amount:"
 msgstr "Amount:"
 
 #: ../src/Loupe.cs:98
-#: ../src/MainWindow.cs:1893
+#: ../src/MainWindow.cs:1896
 msgid "Radius:"
 msgstr "Radius:"
 
 #: ../src/Loupe.cs:99
-#: ../src/MainWindow.cs:1894
+#: ../src/MainWindow.cs:1897
 msgid "Threshold:"
 msgstr "Threshold:"
 
@@ -2149,37 +2213,37 @@ msgid "View and edit a photo"
 msgstr "View and edit a photo"
 
 #: ../src/MainWindow.cs:243
-#: ../src/SingleView.cs:81
+#: ../src/SingleView.cs:83
 msgid "View photos fullscreen"
 msgstr "View photos fullscreen"
 
 #: ../src/MainWindow.cs:246
-#: ../src/SingleView.cs:83
+#: ../src/SingleView.cs:85
 msgid "View photos in a slideshow"
 msgstr "View photos in a slideshow"
 
-#: ../src/MainWindow.cs:791
+#: ../src/MainWindow.cs:793
 msgid "Error loading database."
 msgstr "Error loading database."
 
-#: ../src/MainWindow.cs:792
+#: ../src/MainWindow.cs:794
 #, csharp-format
 msgid "F-Spot encountered an error while loading the photo database. The old database has be moved to {0} and a new database has been created."
 msgstr "F-Spot encountered an error while loading the photo database. The old database has be moved to {0} and a new database has been created."
 
-#: ../src/MainWindow.cs:1347
+#: ../src/MainWindow.cs:1349
 msgid "No cameras detected."
 msgstr "No cameras detected."
 
-#: ../src/MainWindow.cs:1348
+#: ../src/MainWindow.cs:1350
 msgid "F-Spot was unable to find any cameras attached to this system.  Double check that the camera is connected and has power"
 msgstr "F-Spot was unable to find any cameras attached to this system.  Double check that the camera is connected and has power"
 
-#: ../src/MainWindow.cs:1388
+#: ../src/MainWindow.cs:1390
 msgid "Error connecting to camera"
 msgstr "Error connecting to camera"
 
-#: ../src/MainWindow.cs:1389
+#: ../src/MainWindow.cs:1391
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Received error \"{0}\" while connecting to camera"
@@ -2187,65 +2251,65 @@ msgstr "Received error \"{0}\" while connecting to camera"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1565
+#: ../src/MainWindow.cs:1568
 msgid "translator-credits"
 msgstr ""
 "Dean Sas <dean@deansas.org>\n"
 "James Ogley <james@usr-local-bin.org>"
 
-#: ../src/MainWindow.cs:1572
+#: ../src/MainWindow.cs:1575
 msgid "Copyright © 2003-2007 Novell Inc."
 msgstr "Copyright © 2003-2007 Novell Inc."
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1805
+#: ../src/MainWindow.cs:1808
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Merge the selected tag"
 msgstr[1] "Merge the {0} selected tags?"
 
-#: ../src/MainWindow.cs:1832
+#: ../src/MainWindow.cs:1835
 msgid "This operation will merge the selected tags and any sub-tags into a single tag."
 msgstr "This operation will merge the selected tags and any sub-tags into a single tag."
 
-#: ../src/MainWindow.cs:1834
+#: ../src/MainWindow.cs:1837
 msgid "_Merge Tags"
 msgstr "_Merge Tags"
 
-#: ../src/MainWindow.cs:1883
+#: ../src/MainWindow.cs:1886
 msgid "Unsharp Mask"
 msgstr "Unsharp Mask"
 
-#: ../src/MainWindow.cs:2106
-#: ../src/SingleView.cs:485
+#: ../src/MainWindow.cs:2109
+#: ../src/SingleView.cs:487
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} Photo"
 msgstr[1] "{0} Photos"
 
-#: ../src/MainWindow.cs:2112
+#: ../src/MainWindow.cs:2115
 #, csharp-format
 msgid " out of {0}"
 msgstr " out of {0}"
 
-#: ../src/MainWindow.cs:2116
+#: ../src/MainWindow.cs:2119
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} selected)"
 msgstr[1] " ({0} selected)"
 
-#: ../src/MainWindow.cs:2203
+#: ../src/MainWindow.cs:2206
 msgid "_Ok"
 msgstr "_Ok"
 
-#: ../src/MainWindow.cs:2204
+#: ../src/MainWindow.cs:2207
 msgid "Error Deleting Picture"
 msgstr "Error Deleting Picture"
 
-#: ../src/MainWindow.cs:2209
+#: ../src/MainWindow.cs:2212
 #, csharp-format
 msgid ""
 "No permission to delete the file:\n"
@@ -2254,7 +2318,7 @@ msgstr ""
 "No permission to delete the file:\n"
 "{0}"
 
-#: ../src/MainWindow.cs:2213
+#: ../src/MainWindow.cs:2216
 #, csharp-format
 msgid ""
 "An error of type {0} occurred while deleting the file:\n"
@@ -2263,103 +2327,103 @@ msgstr ""
 "An error of type {0} occurred while deleting the file:\n"
 "{1}"
 
-#: ../src/MainWindow.cs:2239
+#: ../src/MainWindow.cs:2242
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Delete the selected photo permanently?"
 msgstr[1] "Delete the {0} selected photos permanently?"
 
-#: ../src/MainWindow.cs:2243
+#: ../src/MainWindow.cs:2246
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] "This deletes all versions of the selected photo from your drive."
 msgstr[1] "This deletes all versions of the selected photos from your drive."
 
-#: ../src/MainWindow.cs:2246
+#: ../src/MainWindow.cs:2249
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Delete photo"
 msgstr[1] "_Delete photos"
 
-#: ../src/MainWindow.cs:2274
+#: ../src/MainWindow.cs:2277
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Remove the selected photo from F-Spot?"
 msgstr[1] "Remove the {0} selected photos from F-Spot?"
 
-#: ../src/MainWindow.cs:2279
+#: ../src/MainWindow.cs:2282
 msgid "If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again."
 msgstr "If you remove photos from the F-Spot catalogue, all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again."
 
-#: ../src/MainWindow.cs:2280
+#: ../src/MainWindow.cs:2283
 msgid "_Remove from Catalog"
 msgstr "_Remove from Catalogue"
 
-#: ../src/MainWindow.cs:2337
+#: ../src/MainWindow.cs:2340
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Delete tag \"{0}\"?"
 
-#: ../src/MainWindow.cs:2339
+#: ../src/MainWindow.cs:2342
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Delete the {0} selected tags?"
 
-#: ../src/MainWindow.cs:2342
+#: ../src/MainWindow.cs:2345
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr "If you delete a tag, all associations with photos are lost."
 
-#: ../src/MainWindow.cs:2343
+#: ../src/MainWindow.cs:2346
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Delete tag"
 msgstr[1] "_Delete tags"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2357
+#: ../src/MainWindow.cs:2360
 msgid "Tag is not empty"
 msgstr "Tag is not empty"
 
-#: ../src/MainWindow.cs:2358
+#: ../src/MainWindow.cs:2361
 #, csharp-format
 msgid "Can not delete tags that have tags within them.  Please delete tags under \"{0}\" first"
 msgstr "Can not delete tags that have tags within them.  Please delete tags under \"{0}\" first"
 
-#: ../src/MainWindow.cs:2754
+#: ../src/MainWindow.cs:2757
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Rotate selected photo left"
 msgstr[1] "Rotate selected photos left"
 
-#: ../src/MainWindow.cs:2767
+#: ../src/MainWindow.cs:2770
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Rotate selected photo right"
 msgstr[1] "Rotate selected photos right"
 
-#: ../src/MainWindow.cs:2775
+#: ../src/MainWindow.cs:2778
 #, csharp-format
 msgid "Find Selected Tag"
 msgid_plural "Find Selected Tags"
 msgstr[0] "Find Selected Tag"
 msgstr[1] "Find Selected Tags"
 
-#: ../src/MainWindow.cs:2779
+#: ../src/MainWindow.cs:2782
 #, csharp-format
 msgid "Find Selected Tag With"
 msgid_plural "Find Selected Tags With"
 msgstr[0] "Find Selected Tag With"
 msgstr[1] "Find Selected Tags With"
 
-#: ../src/MainWindow.cs:2796
+#: ../src/MainWindow.cs:2799
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Create New Version?"
 msgstr[1] "Create New Versions?"
 
-#: ../src/MainWindow.cs:2798
+#: ../src/MainWindow.cs:2801
 #, csharp-format
 msgid "Before launching {1}, should F-Spot create a new version of the selected photo to preserve the original?"
 msgid_plural "Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?"
@@ -2672,11 +2736,17 @@ msgstr "Convert the photo to sepia tones"
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "Uploading picture \"{0}\" ({1} of {2})"
 
-#: ../src/PicasaWebExport.cs:687
+#: ../src/PicasaWebExport.cs:605
+#: ../src/SmugMugExport.cs:566
+#, csharp-format
+msgid "Error Uploading To Gallery: {0}"
+msgstr "Error Uploading To Gallery: {0}"
+
+#: ../src/PicasaWebExport.cs:689
 msgid "Available space :"
 msgstr "Available space :"
 
-#: ../src/Preferences.cs:177
+#: ../src/Preferences.cs:180
 msgid "Photos"
 msgstr "Photos"
 
@@ -2712,20 +2782,28 @@ msgstr "Received error \"{0}\" while attempting to rotate {1}"
 msgid "Error while rotating photo."
 msgstr "Error while rotating photo."
 
-#: ../src/SendEmail.cs:235
+#: ../src/SendEmail.cs:236
 msgid "Preparing email"
 msgstr "Preparing email"
 
-#: ../src/SendEmail.cs:270
+#: ../src/SendEmail.cs:288
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "Exporting picture \"{0}\""
 
-#: ../src/SingleView.cs:340
+#: ../src/SingleView.cs:76
+msgid "Rotate photo left"
+msgstr "Rotate photo left"
+
+#: ../src/SingleView.cs:78
+msgid "Rotate photo right"
+msgstr "Rotate photo right"
+
+#: ../src/SingleView.cs:342
 msgid "Open"
 msgstr "Open"
 
-#: ../src/SingleView.cs:445
+#: ../src/SingleView.cs:447
 msgid "Set as Background"
 msgstr "Set as Background"
 
@@ -2896,36 +2974,44 @@ msgstr "Drag tags here to search for them"
 msgid "Error renaming tag"
 msgstr "Error renaming tag"
 
-#: ../src/TagStore.cs:381
+#: ../src/TagStore.cs:378
 msgid "Favorites"
 msgstr "Favourites"
 
-#: ../src/TagStore.cs:386
+#: ../src/TagStore.cs:383
 msgid "Hidden"
 msgstr "Hidden"
 
-#: ../src/TagStore.cs:394
+#: ../src/TagStore.cs:391
 msgid "People"
 msgstr "People"
 
-#: ../src/TagStore.cs:399
+#: ../src/TagStore.cs:396
 msgid "Places"
 msgstr "Places"
 
-#: ../src/TagStore.cs:404
+#: ../src/TagStore.cs:401
 msgid "Events"
 msgstr "Events"
+
+#: ../src/ThreadProgressDialog.cs:66
+msgid "Retry"
+msgstr "Retry"
+
+#: ../src/ThreadProgressDialog.cs:68
+msgid "Skip"
+msgstr "Skip"
 
 #. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
 #: ../src/Unix.cs:25
 msgid "Unable to create temporary file"
 msgstr "Unable to create temporary file"
 
-#: ../src/Updater.cs:113
+#: ../src/Updater.cs:114
 msgid "Updating F-Spot Database"
 msgstr "Updating F-Spot Database"
 
-#: ../src/Updater.cs:114
+#: ../src/Updater.cs:115
 msgid "Please wait while your F-Spot gallery's database is updated. This may take some time."
 msgstr "Please wait while your F-Spot gallery's database is updated. This may take some time."
 
