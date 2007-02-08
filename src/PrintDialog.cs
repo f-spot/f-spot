@@ -1,3 +1,7 @@
+using System;
+using System.Collections;
+using Gtk;
+
 namespace FSpot {
 	public class PrintDialog {
 		[Glade.Widget] private Gtk.Dialog print_dialog;
@@ -76,10 +80,22 @@ namespace FSpot {
 			print_job.GetPageSize (out page_width, out page_height);
 			Gnome.PrintContext ctx = print_job.Context;
 
-			foreach (Photo photo in photos) {
-				Gnome.Print.Beginpage (ctx, "F-Spot" + photo.DefaultVersionUri.ToString ());				
+			ArrayList exceptions = new ArrayList ();
 
-				Gdk.Pixbuf image = FSpot.PhotoLoader.Load (photo);
+			foreach (Photo photo in photos) {
+				Gdk.Pixbuf image =  null;
+				try {
+					image = FSpot.PhotoLoader.Load (photo);
+
+					if (image == null)
+						throw new System.Exception ("Error loading picture");
+
+				} catch (GLib.GException  e) {
+					exceptions.Add (e);
+					continue;
+				}
+
+				Gnome.Print.Beginpage (ctx, "F-Spot" + photo.DefaultVersionUri.ToString ());				
 
 				bool rotate = false;
 				double width = page_width;
@@ -113,6 +129,16 @@ namespace FSpot {
 			}
 			
 			print_job.Close ();
+
+			if (exceptions.Count != 0) {
+				//FIXME string freeze the message here is not
+				//really appropriate to the problem.
+				Dialog md = new EditExceptionDialog (print_dialog, 
+								     (Exception [])exceptions.ToArray (typeof (Exception)));
+				md.Run ();
+				md.Destroy ();
+			}
+				
 		}
 
 		private void HandleConfigureClicked (object sender, System.EventArgs args)

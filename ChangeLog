@@ -1,3 +1,23 @@
+2007-02-07  Larry Ewing  <lewing@novell.com>
+
+	* src/PrintDialog.cs: don't crash if we can't load the image.
+	Fixes b.n.c #240024.
+
+2007-02-05  Larry Ewing  <lewing@novell.com>
+
+	* libfspot/f-pixbuf-save.c: use g_object_unref.
+
+	* src/TextureDisplay.cs: expose a combo box of the possible
+	effects.
+
+	* po/POTFILES.in: add TextureDisplay.cs to the translations.
+
+	* src/Widgets/SoftFocus.cs: work around a change in the cairo
+	rendering in 1.0.2.
+
+	* src/Editors/SoftFocus.cs: destroy the surface after we are done
+	using it.
+
 2007-02-05  Alp Toker  <alp@atoker.com>
 
 	* dbus-sharp-glib/*: Update to 0.3.0. Fixes #401103
