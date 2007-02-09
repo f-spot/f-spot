@@ -239,37 +239,44 @@ namespace FSpot {
 
 		protected override void OnActivated ()
 		{
-			if (!item.IsValid)
-				throw new ApplicationException ("attempt to filter invalid item");
-			
-		        using (FilterRequest req = new FilterRequest (item.Current.DefaultVersionUri)) {
-				IFilter filter = BuildFilter ();
-				if (filter.Convert (req)) {
-					// The filter did something so lets ve
-					EditTarget target = new EditTarget (item);
+			try {
+				if (!item.IsValid)
+					throw new ApplicationException ("attempt to filter invalid item");
+				
+				using (FilterRequest req = new FilterRequest (item.Current.DefaultVersionUri)) {
+					IFilter filter = BuildFilter ();
+					if (filter.Convert (req)) {
+						// The filter did something so lets ve
+						EditTarget target = new EditTarget (item);
 					
-					Gnome.Vfs.Result result = Gnome.Vfs.Result.Ok;
-					result = Gnome.Vfs.Xfer.XferUri (new Gnome.Vfs.Uri (req.Current.ToString ()),
-									 new Gnome.Vfs.Uri (target.Uri.ToString ()),
-									 Gnome.Vfs.XferOptions.Default,
-									 Gnome.Vfs.XferErrorMode.Abort, 
-									 Gnome.Vfs.XferOverwriteMode.Replace, 
-									 delegate {
-										 System.Console.WriteLine ("progress");
-										 return 1;
-									 });
-					
-					if (result == Gnome.Vfs.Result.Ok) {
-						System.Console.WriteLine ("Done modifying image");
-						target.Commit ();
-					} else {
-						target.Delete ();
-						throw new ApplicationException (String.Format (
-											       "{0}: error moving to destination {1}",
-											       this, target.ToString ()));
+						Gnome.Vfs.Result result = Gnome.Vfs.Result.Ok;
+						result = Gnome.Vfs.Xfer.XferUri (new Gnome.Vfs.Uri (req.Current.ToString ()),
+										 new Gnome.Vfs.Uri (target.Uri.ToString ()),
+										 Gnome.Vfs.XferOptions.Default,
+										 Gnome.Vfs.XferErrorMode.Abort, 
+										 Gnome.Vfs.XferOverwriteMode.Replace, 
+										 delegate {
+											 System.Console.WriteLine ("progress");
+											 return 1;
+										 });
+						
+						if (result == Gnome.Vfs.Result.Ok) {
+							System.Console.WriteLine ("Done modifying image");
+							target.Commit ();
+						} else {
+							target.Delete ();
+							throw new ApplicationException (String.Format (
+												       "{0}: error moving to destination {1}",
+												       this, target.ToString ()));
+						}
 					}
 				}
-			}
+			} catch (Exception e) {
+				Dialog d = new EditExceptionDialog (null, e, item.Current);
+				d.Show ();
+				d.Run ();
+				d.Destroy ();
+			} 
 		}
 	}
 

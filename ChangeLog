@@ -1,5 +1,8 @@
 2007-02-09  Larry Ewing  <lewing@novell.com>
 
+	* src/ItemAction.cs: handle errors in FilterActions. Fixes b.n.c
+	#240548.
+	
 	* src/ItemAction.cs: handle errors while rotating.  Fixes bug
 	#240548.
 
