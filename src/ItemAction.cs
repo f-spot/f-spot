@@ -86,11 +86,19 @@ namespace FSpot {
 
 		protected override void OnActivated ()
 		{
-			RotateOperation op = new RotateOperation (item.Current, direction);
-
-			while (op.Step ());
-
-			item.Collection.MarkChanged (item.Index);
+			try {
+				RotateOperation op = new RotateOperation (item.Current, direction);
+				
+				while (op.Step ());
+				
+				item.Collection.MarkChanged (item.Index);
+			} catch (Exception e) {
+				Dialog d = new EditExceptionDialog (null, e, item.Current);
+				d.Show ();
+				d.Run ();
+				d.Destroy ();
+			}
+			   
 		}
 	}
 
