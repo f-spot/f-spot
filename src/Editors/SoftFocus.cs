@@ -112,6 +112,7 @@ namespace FSpot.Editors {
 				Dialog d = new EditExceptionDialog ((Gtk.Window) view.Toplevel, e, view.Item.Current);
 				d.Show ();
 				d.Run ();
+				d.Destroy ();
 			}
 			Destroy ();
 		}
