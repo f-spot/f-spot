@@ -95,6 +95,12 @@ namespace FSpot {
 					continue;
 				}
 
+				Gdk.Pixbuf flat = PixbufUtils.Flatten (image);
+				if (flat != null) {
+					image.Dispose ();
+					image = flat;
+				}
+
 				Gnome.Print.Beginpage (ctx, "F-Spot" + photo.DefaultVersionUri.ToString ());				
 
 				bool rotate = false;
