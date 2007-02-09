@@ -15,7 +15,6 @@ namespace FSpot.Editors {
 		public Editor (PhotoImageView view)
 		{
 			SetView (view);
-			name = this.ToString ();
 		}
 
 		public string Name {
@@ -44,7 +43,7 @@ namespace FSpot.Editors {
 				c.Visibility = ControlOverlay.VisibilityType.Full;
 				controls = c;
 #else
-				Window win = new Window (String.Format ("{0}", name));
+				Window win = new Window (String.Format ("{0}", Name));
 				win.TransientFor = (Gtk.Window) view.Toplevel;
 				win.Add (w);
 				win.ShowAll ();

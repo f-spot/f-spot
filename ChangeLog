@@ -1,3 +1,8 @@
+2007-02-09  Larry Ewing  <lewing@novell.com>
+
+	* src/Editors/SoftFocus.cs: destroy the error dialog once it is
+	confirmed.  Fixes b.n.c #243952.
+
 2007-02-07  Larry Ewing  <lewing@novell.com>
 
 	* src/PrintDialog.cs: don't crash if we can't load the image.
