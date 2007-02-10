@@ -1,5 +1,8 @@
 2007-02-09  Larry Ewing  <lewing@novell.com>
 
+	* src/Imaging/JpegHeader.cs: break out of the loop if we read zero
+	bytes.  Fixes #405736.
+
 	* src/ItemAction.cs: handle errors in FilterActions. Fixes b.n.c
 	#240548.
 	
