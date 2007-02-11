@@ -132,9 +132,11 @@ namespace FSpot {
 			}
 		}
 
+		private bool retry_skip;
 		private bool RetrySkipVisible {
 			set { 
-				retry_button.Visible = skip_button.Visible = value;
+				retry_skip = value;
+				delay.Start ();
 			} 
 		}
 
@@ -149,7 +151,7 @@ namespace FSpot {
 
 			RetrySkipVisible = false;
 
-			return error_response == Gtk.ResponseType.Yes ? true : false;
+			return (error_response == Gtk.ResponseType.Yes);
 		}
 
 		private void HandleResponse (object obj, Gtk.ResponseArgs args) {
@@ -162,8 +164,9 @@ namespace FSpot {
 			progress_bar.Text = progress_text;
 			progress_bar.Fraction = System.Math.Min (1.0, System.Math.Max (0.0, fraction));
 			button.Label = button_label;
+			retry_button.Visible = skip_button.Visible = retry_skip;
 
-			return true;
+			return false;
 		}
 
 		private void HandleDestroy (object sender, EventArgs args)
