@@ -142,6 +142,10 @@ namespace FSpot {
 		{
 			UpdateMeta ();
 
+			//Get file permissions... (mkstemp does not keep permissions or ownership)
+			Mono.Unix.Native.Stat stat;
+			int stat_err = Mono.Unix.Native.Syscall.stat (path, out stat);
+
 			string  temp_path = path;
 			using (System.IO.FileStream stream = System.IO.File.OpenRead (path)) {
 				using (System.IO.Stream output = FSpot.Unix.MakeSafeTemp (ref temp_path)) {
@@ -155,8 +159,16 @@ namespace FSpot {
 				System.IO.File.Delete (temp_path);
 				throw new System.Exception (System.String.Format ("Unable to rename {0} to {1}",
 										  temp_path, path));
-
 			}
+
+			//Set file permissions and gid...
+			if (stat_err == 0) 
+				try {
+					Mono.Unix.Native.Syscall.chmod (path, stat.st_mode |
+									      Mono.Unix.Native.FilePermissions.S_IRUSR | 
+									      Mono.Unix.Native.FilePermissions.S_IWUSR);
+					Mono.Unix.Native.Syscall.chown(path, Mono.Unix.Native.Syscall.getuid (), stat.st_gid);
+				} catch (Exception) {}
 		}
 
 		public void SetThumbnail (Gdk.Pixbuf source)

@@ -350,10 +350,16 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 							    System.IO.Path.GetFileName (new_path)));
 
 		if (create_file) {
+			Mono.Unix.Native.Stat stat;
+			int stat_err = Mono.Unix.Native.Syscall.stat (original_path, out stat);
 			File.Copy (original_path, new_path);
 			FSpot.ThumbnailGenerator.Create (new_path).Dispose ();
+			
+			if (stat_err == 0) 
+				try {
+					Mono.Unix.Native.Syscall.chown(new_path, Mono.Unix.Native.Syscall.getuid (), stat.st_gid);
+				} catch (Exception) {}
 		}
-
 		if (version_names == null)
 			version_names = new Hashtable ();
 
