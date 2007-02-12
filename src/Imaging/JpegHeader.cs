@@ -181,7 +181,6 @@ public class JpegHeader : SemWeb.StatementSource {
 					break;
 
 				pos += read;
-				System.Console.Write (".");
 			}
 			return pos;
 		}
