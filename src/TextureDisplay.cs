@@ -136,10 +136,15 @@ namespace FSpot {
 		
 		private Texture CreateTexture ()
 		{
-			ImageFile img = ImageFile.Create (item.Current.DefaultVersionUri);
-			Gdk.Pixbuf pixbuf = img.Load ();
-			Texture tex = new Texture (pixbuf);
-			pixbuf.Dispose ();
+			Texture tex;
+			try {
+				ImageFile img = ImageFile.Create (item.Current.DefaultVersionUri);
+				using (Gdk.Pixbuf pixbuf = img.Load ()) {
+				        tex = new Texture (pixbuf);
+				}
+			} catch (Exception) {
+				tex = new Texture (PixbufUtils.ErrorPixbuf);
+			}
 			return tex;
 		}
 
@@ -149,6 +154,9 @@ namespace FSpot {
 			//Console.WriteLine ("Begin previous = {0} texture = {1}", 
 			//		   previous != null ? previous.Id.ToString () : "null", 
 			//		   next != null ? next.Id.ToString () : "null");
+
+			if (!item.IsValid || item.Collection.Count < 0)
+				return;
 
 			Next = null;
 			PreloadNext ();
@@ -272,6 +280,12 @@ namespace FSpot {
 				glx.Destroy ();
 			
 			glx = null;
+		}
+
+		protected override void OnDestroyed ()
+		{
+			item.Changed -= HandleItemChanged;
+			base.OnDestroyed ();
 		}
 
 		Texture previous;
