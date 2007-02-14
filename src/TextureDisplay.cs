@@ -154,6 +154,8 @@ namespace FSpot {
 		Animator animator;
 		private void HandleItemChanged (BrowsablePointer p, BrowsablePointerChangedArgs args)
 		{
+			Animator = new Animator (3000, 20, HandleTick);
+
 			if (glx == null)
 				return;
 
@@ -170,8 +172,6 @@ namespace FSpot {
 			//Console.WriteLine ("End previous = {0} texture = {1}", 
 			//		   previous != null ? previous.Id.ToString () : "null", 
 			//		   next != null ? next.Id.ToString () : "null");
-
-			Animator = new Animator (3000, 20, HandleTick);
 
 			if (IsRealized)
 				Animator.Start ();
