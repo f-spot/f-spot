@@ -142,7 +142,7 @@ public class PhotoView : EventBox {
 
 		if (valid) {
 			Gnome.Vfs.Uri vfs = new Gnome.Vfs.Uri (photo_view.Item.Current.DefaultVersionUri.ToString ());
-			valid = vfs.IsLocal;
+			valid = vfs.Scheme == "file";
 		}
 
 		display_previous_button.Sensitive = prev;

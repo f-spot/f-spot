@@ -1,3 +1,7 @@
+2007-02-14  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/PhotoView.cs: allow edits on nfs mounted images. Fixes 344403.
+
 2007-02-14  Larry Ewing  <lewing@novell.com>
 
 	* src/TextureDisplay.cs: Make sure we don't try to load a texture
