@@ -1,5 +1,11 @@
 2007-02-14  Larry Ewing  <lewing@novell.com>
 
+	* src/TextureDisplay.cs: Make sure we don't try to load a texture
+	when we have no gl context.  This is probably the source of
+	several bugs but definitely b.n.c #243303.
+
+2007-02-14  Larry Ewing  <lewing@novell.com>
+
 	* src/ColorAdjustment.cs: make color adjustments work properly on
 	images with alpha.  Fixes #243916.
 

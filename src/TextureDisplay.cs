@@ -136,6 +136,9 @@ namespace FSpot {
 		
 		private Texture CreateTexture ()
 		{
+			if (glx == null)
+			   return null;
+		
 			Texture tex;
 			try {
 				ImageFile img = ImageFile.Create (item.Current.DefaultVersionUri);
@@ -151,6 +154,9 @@ namespace FSpot {
 		Animator animator;
 		private void HandleItemChanged (BrowsablePointer p, BrowsablePointerChangedArgs args)
 		{
+			if (glx == null)
+				return;
+
 			//Console.WriteLine ("Begin previous = {0} texture = {1}", 
 			//		   previous != null ? previous.Id.ToString () : "null", 
 			//		   next != null ? next.Id.ToString () : "null");
