@@ -10,6 +10,7 @@
  *
  */
 using Cms;
+using Gdk;
 
 namespace FSpot {
 	public abstract class ColorAdjustment {
@@ -66,16 +67,30 @@ namespace FSpot {
 				list = new Cms.Profile [] { image_profile, adjustment_profile, destination_profile };
 			else
 				list = new Cms.Profile [] { image_profile, destination_profile };
-
-			Cms.Transform transform = new Cms.Transform (list,
-								     PixbufUtils.PixbufCmsFormat (image),
+			
+			if (image.HasAlpha) {
+				Pixbuf alpha = PixbufUtils.Flatten (image);
+				Transform transform = new Transform (list,
+								     PixbufUtils.PixbufCmsFormat (alpha),
 								     PixbufUtils.PixbufCmsFormat (final),
 								     intent, 0x0000);
-			
-			PixbufUtils.ColorAdjust (image, final, transform);
+				PixbufUtils.ColorAdjust (alpha, final, transform);
+				PixbufUtils.ReplaceColor (final, image);
+				alpha.Dispose ();
+				final.Dispose ();
+				final = image;
+			} else {
+				Cms.Transform transform = new Cms.Transform (list,
+									     PixbufUtils.PixbufCmsFormat (image),
+									     PixbufUtils.PixbufCmsFormat (final),
+									     intent, 0x0000);
+				
+				PixbufUtils.ColorAdjust (image, final, transform);
+				image.Dispose ();
+			}
+				
 			photo.SaveVersion (final, create_version);
 			final.Dispose ();
-			image.Dispose ();
 		}
 	}
 
