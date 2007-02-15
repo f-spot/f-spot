@@ -8626,6 +8626,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		      <property name="label" translatable="yes">_Print...</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandlePrintCommand" last_modification_time="Thu, 05 Feb 2004 00:40:09 GMT"/>
+		      <accelerator key="p" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 		      <child internal-child="image">
 			<widget class="GtkImage" id="image46">
@@ -8949,6 +8950,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		      <property name="label" translatable="yes">_Slideshow</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleViewSlideShow" last_modification_time="Thu, 29 Jan 2004 04:47:18 GMT"/>
+		      <accelerator key="F5" signal="activate"/>
 
 		      <child internal-child="image">
 			<widget class="GtkImage" id="image49">
@@ -12354,6 +12356,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		      <property name="label" translatable="yes">_Slideshow</property>
 		      <property name="use_underline">True</property>
 		      <signal name="activate" handler="HandleViewSlideshow" last_modification_time="Sat, 25 Jun 2005 16:58:10 GMT"/>
+		      <accelerator key="F5" signal="activate"/>
 		    </widget>
 		  </child>
 
