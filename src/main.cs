@@ -82,7 +82,6 @@ public class Driver {
 
 		SetProcessName (Defines.PACKAGE);
 		
-		NDesk.DBus.BusG.Init();
 		try {
 			FSpotOptions options = new FSpotOptions ();
 			options.ProcessArgs (args);
@@ -115,6 +114,7 @@ public class Driver {
 				return;
 			}
 
+			NDesk.DBus.BusG.Init();
 			/* 
 			 * FIXME we need to inialize gobject before making the dbus calls, we'll go 
 			 * ahead and do it like this for now.
