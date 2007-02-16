@@ -2274,6 +2274,9 @@ public class MainWindow {
 	public void HandleRemoveCommand (object sender, EventArgs args)
 	{
    		Photo[] photos = SelectedPhotos();
+		if (photos.Length == 0) 
+			return;
+
    		string header = Catalog.GetPluralString ("Remove the selected photo from F-Spot?",
 								    "Remove the {0} selected photos from F-Spot?", 
 								    photos.Length);
