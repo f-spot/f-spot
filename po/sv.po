@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-30 03:20+0000\n"
-"PO-Revision-Date: 2007-02-03 00:27+0100\n"
+"POT-Creation-Date: 2007-02-06 03:22+0000\n"
+"PO-Revision-Date: 2007-02-17 11:40+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -192,7 +192,7 @@ msgstr "Fil"
 
 # hoppas att detta är substantivet
 #: ../src/CameraFileSelectionDialog.cs:72
-#: ../src/FolderExport.cs:846
+#: ../src/FolderExport.cs:862
 msgid "Index"
 msgstr "Index"
 
@@ -223,8 +223,8 @@ msgid "Error \"{0}\" while creating directory \"{1}\".  Check that the path and 
 msgstr "Fel \"{0}\" vid skapande av katalog \"{1}\".  Kontrollera att sökvägen och rättigheterna är korrekta och försök igen"
 
 #: ../src/CameraFileSelectionDialog.cs:189
-#: ../src/CDExport.cs:194
-#: ../src/FolderExport.cs:299
+#: ../src/CDExport.cs:205
+#: ../src/FolderExport.cs:325
 msgid "Transferring Pictures"
 msgstr "Överför bilder"
 
@@ -234,23 +234,23 @@ msgid "Copying file {0} of {1}"
 msgstr "Kopierar fil {0} av {1}"
 
 #: ../src/CameraFileSelectionDialog.cs:222
-msgid "Done Copying Files"
-msgstr "Kopieringen färdig"
-
-#: ../src/CameraFileSelectionDialog.cs:224
-msgid "Download Complete"
-msgstr "Hämtningen färdig"
-
-#: ../src/CameraFileSelectionDialog.cs:229
 msgid "Error transferring file"
 msgstr "Fel vid filöverföring"
 
-#: ../src/CameraFileSelectionDialog.cs:250
+#: ../src/CameraFileSelectionDialog.cs:231
+msgid "Done Copying Files"
+msgstr "Kopieringen färdig"
+
+#: ../src/CameraFileSelectionDialog.cs:233
+msgid "Download Complete"
+msgstr "Hämtningen färdig"
+
+#: ../src/CameraFileSelectionDialog.cs:254
 #, csharp-format
 msgid "Transferring \"{0}\" from camera"
 msgstr "Överför \"{0}\" från kamera"
 
-#: ../src/CameraFileSelectionDialog.cs:276
+#: ../src/CameraFileSelectionDialog.cs:280
 msgid "Select Destination"
 msgstr "Välj mål"
 
@@ -263,52 +263,53 @@ msgstr "Kamera"
 msgid "Port"
 msgstr "Port"
 
-#: ../src/CDExport.cs:101
+#: ../src/CDExport.cs:112
 #, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "Överför bild \"{0}\" till cd"
 
 #. This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/CDExport.cs:103
-#: ../src/FlickrExport.cs:261
-#: ../src/GalleryExport.cs:728
+#: ../src/CDExport.cs:114
+#: ../src/FlickrExport.cs:262
+#: ../src/FolderExport.cs:195
+#: ../src/GalleryExport.cs:698
 #: ../src/ProgressDialog.cs:82
 #: ../src/TimeDialog.cs:147
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} av {1}"
 
-#: ../src/CDExport.cs:116
-#: ../src/FlickrExport.cs:278
-#: ../src/FolderExport.cs:196
-#: ../src/GalleryExport.cs:774
-#: ../src/PicasaWebExport.cs:606
-#: ../src/SmugMugExport.cs:566
+#: ../src/CDExport.cs:127
+#: ../src/FlickrExport.cs:279
+#: ../src/FolderExport.cs:222
+#: ../src/GalleryExport.cs:722
+#: ../src/PicasaWebExport.cs:615
+#: ../src/SmugMugExport.cs:576
 msgid "Done Sending Photos"
 msgstr "Klar med att skicka foton"
 
-#: ../src/CDExport.cs:118
-#: ../src/FolderExport.cs:198
+#: ../src/CDExport.cs:129
+#: ../src/FolderExport.cs:224
 msgid "Transfer Complete"
 msgstr "Överföringen är färdig"
 
-#: ../src/CDExport.cs:125
-#: ../src/FolderExport.cs:203
+#: ../src/CDExport.cs:136
+#: ../src/FolderExport.cs:229
 msgid "Error While Transferring"
 msgstr "Fel under överföring"
 
-#: ../src/CDExport.cs:131
-#: ../src/FolderExport.cs:220
+#: ../src/CDExport.cs:142
+#: ../src/FolderExport.cs:246
 msgid "Error Transferring"
 msgstr "Fel vid överföring"
 
-#: ../src/CDExport.cs:152
-#: ../src/FolderExport.cs:242
+#: ../src/CDExport.cs:163
+#: ../src/FolderExport.cs:268
 msgid "Error: Error while transferring; Aborting"
 msgstr "Fel: Fel vid överföring; Avbryter"
 
-#: ../src/CDExport.cs:155
-#: ../src/FolderExport.cs:245
+#: ../src/CDExport.cs:166
+#: ../src/FolderExport.cs:271
 msgid "Error: File Already Exists; Aborting"
 msgstr "Fel: Filen finns redan; Avbryter"
 
@@ -319,7 +320,7 @@ msgstr "Fel vid sparande av justerat foto"
 #: ../src/ColorDialog.cs:212
 #: ../src/HigMessageDialog.cs:15
 #: ../src/Loupe.cs:58
-#: ../src/MainWindow.cs:1927
+#: ../src/MainWindow.cs:1929
 #: ../src/PhotoView.cs:266
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
@@ -354,6 +355,18 @@ msgstr ""
 "Taggen som F-Spot letar efter finns inte. Prova\n"
 "att välja en annan tagg i F-Spots inställningar."
 
+#: ../src/Editors/Tilt.cs:24
+#: ../src/ItemAction.cs:340
+#: ../src/StockIcons.cs:34
+msgid "Straighten"
+msgstr "Räta ut"
+
+#: ../src/Editors/SoftFocus.cs:25
+#: ../src/ItemAction.cs:356
+#: ../src/StockIcons.cs:43
+msgid "Soft Focus"
+msgstr "Mjuk fokus"
+
 #: ../src/ExceptionDialog.cs:24
 msgid "F-Spot Encountered a Fatal Error"
 msgstr "F-Spot påträffade ett ödesdigert fel"
@@ -365,6 +378,21 @@ msgstr "Felinformation"
 #: ../src/ExceptionDialog.cs:104
 msgid "An unhandled exception was thrown: "
 msgstr "Ett ohanterat undantag kastades: "
+
+#: ../src/FileImportBackend.cs:260
+msgid "Import error"
+msgstr "Importeringsfel"
+
+#: ../src/FileImportBackend.cs:261
+#, csharp-format
+msgid ""
+"Error importing {0}\n"
+"\n"
+"{1}"
+msgstr ""
+"Fel vid import av {0}\n"
+"\n"
+"{1}"
 
 #: ../src/Filters/ResizeFilter.cs:68
 #, csharp-format
@@ -425,16 +453,17 @@ msgstr "Kunde inte logga in"
 msgid "Waiting for response {0} of {1}"
 msgstr "Väntar på svar {0} av {1}"
 
-#: ../src/FlickrExport.cs:256
-#: ../src/GalleryExport.cs:724
+#: ../src/FlickrExport.cs:257
+#: ../src/FolderExport.cs:192
+#: ../src/GalleryExport.cs:694
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Skickar upp bild \"{0}\""
 
-#: ../src/FlickrExport.cs:280
-#: ../src/GalleryExport.cs:776
-#: ../src/PicasaWebExport.cs:608
-#: ../src/SmugMugExport.cs:568
+#: ../src/FlickrExport.cs:281
+#: ../src/GalleryExport.cs:724
+#: ../src/PicasaWebExport.cs:617
+#: ../src/SmugMugExport.cs:578
 msgid "Upload Complete"
 msgstr "Sändning färdig"
 
@@ -444,23 +473,24 @@ msgid "Error Uploading To {0}: {1}"
 msgstr "Fel vid sändning till {0}: {1}"
 
 #: ../src/FlickrExport.cs:287
-#: ../src/GalleryExport.cs:756
-#: ../src/PicasaWebExport.cs:617
-#: ../src/SmugMugExport.cs:577
+#: ../src/FolderExport.cs:200
+#: ../src/GalleryExport.cs:714
+#: ../src/PicasaWebExport.cs:607
+#: ../src/SmugMugExport.cs:568
 msgid "Error"
 msgstr "Fel"
 
-#: ../src/FlickrExport.cs:346
+#: ../src/FlickrExport.cs:350
 msgid "Unable to log on."
 msgstr "Kunde inte logga in."
 
-#: ../src/FlickrExport.cs:347
+#: ../src/FlickrExport.cs:351
 #, csharp-format
 msgid "F-Spot was unable to log on to {0}.  Make sure you have given the authentication using {0} web browser interface."
 msgstr "F-Spot kunde inte logga in på {0}. Kontrollera att du har angivit rätt inloggningsuppgifter med hjälp av webbläsargränssnittet."
 
-#: ../src/FlickrExport.cs:365
-#: ../src/GalleryExport.cs:654
+#: ../src/FlickrExport.cs:369
+#: ../src/GalleryExport.cs:649
 #: ../src/PicasaWebExport.cs:515
 #: ../src/SmugMugExport.cs:494
 msgid "Uploading Pictures"
@@ -474,40 +504,49 @@ msgstr "Välj exportmapp"
 msgid "Building Gallery"
 msgstr "Bygger bildgalleri"
 
-#: ../src/FolderExport.cs:703
+#: ../src/FolderExport.cs:198
+#, csharp-format
+msgid ""
+"Error uploading picture \"{0}\" to Gallery:\n"
+"{1}"
+msgstr ""
+"Fel vid sändning av bilden \"{0}\" till Gallery:\n"
+"{1}"
+
+#: ../src/FolderExport.cs:716
 msgid "Light"
 msgstr "Ljus"
 
-#: ../src/FolderExport.cs:704
+#: ../src/FolderExport.cs:717
 msgid "Dark"
 msgstr "Mörk"
 
 #. Abbreviation of previous
-#: ../src/FolderExport.cs:844
+#: ../src/FolderExport.cs:860
 msgid "Prev"
 msgstr "Föregående"
 
-#: ../src/FolderExport.cs:849
+#: ../src/FolderExport.cs:865
 #: ../src/f-spot.glade.h:154
 #: ../src/ItemAction.cs:125
 msgid "Next"
 msgstr "Nästa"
 
-#: ../src/FolderExport.cs:902
-#: ../src/FolderExport.cs:1075
+#: ../src/FolderExport.cs:918
+#: ../src/FolderExport.cs:1091
 msgid "Show Styles"
 msgstr "Visa stilar"
 
-#: ../src/FolderExport.cs:903
-#: ../src/FolderExport.cs:1076
+#: ../src/FolderExport.cs:919
+#: ../src/FolderExport.cs:1092
 msgid "Hide Styles"
 msgstr "Dölj stilar"
 
-#: ../src/FolderExport.cs:960
+#: ../src/FolderExport.cs:976
 msgid "Gallery generated by"
 msgstr "Bildgalleri genererat av"
 
-#: ../src/FolderExport.cs:1005
+#: ../src/FolderExport.cs:1021
 msgid "Page:"
 msgstr "Sida:"
 
@@ -543,6 +582,10 @@ msgstr "Info"
 #: ../src/FullScreenView.cs:58
 msgid "Image Information"
 msgstr "Bildinformation"
+
+#: ../src/FullScreenView.cs:98
+msgid "Slide transition: "
+msgstr "Bildövergång: "
 
 #: ../src/f-spot.glade.h:1
 msgid "\n"
@@ -1043,8 +1086,8 @@ msgstr "_Sök"
 
 #. Obsolete, remove after db rev4
 #: ../src/f-spot.glade.h:130
-#: ../src/InfoDisplay.cs:131
-#: ../src/InfoDisplay.cs:133
+#: ../src/InfoDisplay.cs:134
+#: ../src/InfoDisplay.cs:136
 msgid "Folder"
 msgstr "Mapp"
 
@@ -1126,7 +1169,7 @@ msgstr "Mellan"
 
 #: ../src/f-spot.glade.h:152
 #: ../src/InfoDisplay.cs:14
-#: ../src/MainWindow.cs:1424
+#: ../src/MainWindow.cs:1426
 msgid "Metadata Browser"
 msgstr "Metadatabläddrare"
 
@@ -1751,51 +1794,71 @@ msgstr "Följande fel inträffade vid försök att logga in: {0}"
 msgid "(TopLevel)"
 msgstr "(Toppnivå)"
 
-#: ../src/GalleryExport.cs:658
-msgid "Re-upload picture"
-msgstr "Skicka upp bilden igen"
-
-#: ../src/GalleryExport.cs:663
-msgid "Skip picture"
-msgstr "Hoppa över bild"
-
-#: ../src/GalleryExport.cs:755
+#: ../src/GalleryExport.cs:713
 #, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery: {1}"
 msgstr "Fel vid sändning av bilden \"{0}\" till Gallery: {1}"
 
-#: ../src/GalleryExport.cs:792
-#: ../src/PicasaWebExport.cs:636
-#: ../src/SmugMugExport.cs:596
+#: ../src/GalleryExport.cs:740
+#: ../src/PicasaWebExport.cs:638
+#: ../src/SmugMugExport.cs:599
 msgid "(No Gallery)"
 msgstr "(Inget galleri)"
 
-#: ../src/GalleryExport.cs:879
-#: ../src/PicasaWebExport.cs:763
-#: ../src/SmugMugExport.cs:694
+#: ../src/GalleryExport.cs:827
+#: ../src/PicasaWebExport.cs:765
+#: ../src/SmugMugExport.cs:697
 msgid "(Not Connected)"
 msgstr "(Inte ansluten)"
 
-#: ../src/GalleryExport.cs:880
-#: ../src/PicasaWebExport.cs:764
-#: ../src/SmugMugExport.cs:695
+#: ../src/GalleryExport.cs:828
+#: ../src/PicasaWebExport.cs:766
+#: ../src/SmugMugExport.cs:698
 msgid "(No Albums)"
 msgstr "(Inga album)"
 
-#: ../src/GalleryExport.cs:932
-#: ../src/PicasaWebExport.cs:808
-#: ../src/SmugMugExport.cs:739
+#: ../src/GalleryExport.cs:880
+#: ../src/PicasaWebExport.cs:810
+#: ../src/SmugMugExport.cs:742
 msgid "No account selected"
 msgstr "Inget konto valt"
 
-#: ../src/GalleryRemote.cs:352
+#: ../src/GalleryRemote.cs:356
 msgid "Error reading server response"
 msgstr "Fel vid läsning av serversvar"
 
 #. failed to find the response
-#: ../src/GalleryRemote.cs:364
+#: ../src/GalleryRemote.cs:368
 msgid "Server returned response without Gallery content"
 msgstr "Servern returnerade svar utan Gallery-innehåll"
+
+#: ../src/GlTransition.cs:36
+msgid "Dissolve"
+msgstr "Lös upp"
+
+#: ../src/GlTransition.cs:104
+msgid "Flip"
+msgstr "Vänd"
+
+#: ../src/GlTransition.cs:148
+msgid "Cover"
+msgstr "Täck"
+
+#: ../src/GlTransition.cs:175
+msgid "Reveal"
+msgstr "Avtäck"
+
+#: ../src/GlTransition.cs:202
+msgid "Wipe"
+msgstr "Töm"
+
+#: ../src/GlTransition.cs:260
+msgid "Split"
+msgstr "Dela"
+
+#: ../src/GlTransition.cs:347
+msgid "Push"
+msgstr "Tryck ut"
 
 #: ../src/GroupSelector.cs:55
 #: ../src/GroupSelector.cs:56
@@ -1830,7 +1893,7 @@ msgid "Error editing photo"
 msgstr "Fel vid redigering av foto"
 
 #: ../src/ImportCommand.cs:28
-#: ../src/SingleView.cs:343
+#: ../src/SingleView.cs:345
 msgid "Select Folder"
 msgstr "Välj mapp"
 
@@ -1843,20 +1906,20 @@ msgstr "(Inga kameror identifierades)"
 msgid "Loading {0} of {1}"
 msgstr "Läser in {0} av {1}"
 
-#: ../src/ImportCommand.cs:442
+#: ../src/ImportCommand.cs:445
 msgid "Done Loading"
 msgstr "Inläsningen är färdig"
 
-#: ../src/ImportCommand.cs:639
+#: ../src/ImportCommand.cs:642
 msgid "Directory does not exist."
 msgstr "Katalogen finns inte."
 
-#: ../src/ImportCommand.cs:640
+#: ../src/ImportCommand.cs:643
 #, csharp-format
 msgid "The directory you selected \"{0}\" does not exist.  Please choose a different directory"
 msgstr "Katalogen du valde \"{0}\" finns inte. Vänligen välj en annan katalog"
 
-#: ../src/ImportCommand.cs:678
+#: ../src/ImportCommand.cs:681
 msgid "Select Tag"
 msgstr "Välj tagg"
 
@@ -1883,7 +1946,7 @@ msgstr "Exponering:"
 
 #. The label for the root category is used in new and edit tag dialogs
 #: ../src/InfoBox.cs:222
-#: ../src/TagStore.cs:417
+#: ../src/TagStore.cs:414
 msgid "(None)"
 msgstr "(Inget)"
 
@@ -1892,32 +1955,36 @@ msgstr "(Inget)"
 msgid "(Unknown)"
 msgstr "(Okänt)"
 
-#: ../src/InfoDisplay.cs:135
+#: ../src/InfoDisplay.cs:138
 msgid "Picasaweb"
 msgstr "Picasaweb"
 
-#: ../src/InfoDisplay.cs:137
+#: ../src/InfoDisplay.cs:140
 msgid "SmugMug"
 msgstr "SmugMug"
 
-#: ../src/InfoDisplay.cs:228
+#: ../src/InfoDisplay.cs:142
+msgid "Gallery2"
+msgstr "Gallery2"
+
+#: ../src/InfoDisplay.cs:233
 msgid "Extended Metadata"
 msgstr "Utökad metadata"
 
-#: ../src/InfoDisplay.cs:260
+#: ../src/InfoDisplay.cs:265
 msgid "Exported Locations"
 msgstr "Exporterade platser"
 
-#: ../src/InfoDisplay.cs:283
+#: ../src/InfoDisplay.cs:288
 msgid "No active photo"
 msgstr "Inget aktivt foto"
 
-#: ../src/InfoDisplay.cs:285
+#: ../src/InfoDisplay.cs:290
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "Fotot \"{0}\" finns inte"
 
-#: ../src/InfoDisplay.cs:291
+#: ../src/InfoDisplay.cs:296
 msgid "No metadata available"
 msgstr "Ingen metadata tillgänglig"
 
@@ -2108,26 +2175,16 @@ msgstr "Tillämpa uträtning"
 msgid "Apply straightening to image"
 msgstr "Tillämpa uträtning på bild"
 
-#: ../src/ItemAction.cs:340
-#: ../src/StockIcons.cs:34
-msgid "Straighten"
-msgstr "Räta ut"
-
 #: ../src/ItemAction.cs:341
 msgid "Adjust the angle of the image to straighten the horizon"
 msgstr "Justera vinkeln på bilden för att räta ut horisonten"
-
-#: ../src/ItemAction.cs:356
-#: ../src/StockIcons.cs:43
-msgid "Soft Focus"
-msgstr "Mjuk fokus"
 
 #: ../src/ItemAction.cs:357
 msgid "Create a soft focus visual effect"
 msgstr "Skapa en visuell mjuk fokus-effekt"
 
 #: ../src/Loupe.cs:57
-#: ../src/MainWindow.cs:1926
+#: ../src/MainWindow.cs:1928
 msgid "Error saving sharpened photo"
 msgstr "Fel vid sparande av foto med ökad skärpa"
 
@@ -2136,17 +2193,17 @@ msgid "Sharpen"
 msgstr "Gör skarpare"
 
 #: ../src/Loupe.cs:97
-#: ../src/MainWindow.cs:1893
+#: ../src/MainWindow.cs:1895
 msgid "Amount:"
 msgstr "Mängd:"
 
 #: ../src/Loupe.cs:98
-#: ../src/MainWindow.cs:1894
+#: ../src/MainWindow.cs:1896
 msgid "Radius:"
 msgstr "Radie:"
 
 #: ../src/Loupe.cs:99
-#: ../src/MainWindow.cs:1895
+#: ../src/MainWindow.cs:1897
 msgid "Threshold:"
 msgstr "Tröskelvärde:"
 
@@ -2159,37 +2216,37 @@ msgid "View and edit a photo"
 msgstr "Visa och redigera ett foto"
 
 #: ../src/MainWindow.cs:243
-#: ../src/SingleView.cs:81
+#: ../src/SingleView.cs:83
 msgid "View photos fullscreen"
 msgstr "Visa foton i helskärmsläge"
 
 #: ../src/MainWindow.cs:246
-#: ../src/SingleView.cs:83
+#: ../src/SingleView.cs:85
 msgid "View photos in a slideshow"
 msgstr "Visa foton i ett bildspel"
 
-#: ../src/MainWindow.cs:791
+#: ../src/MainWindow.cs:793
 msgid "Error loading database."
 msgstr "Fel vid inläsning av databas."
 
-#: ../src/MainWindow.cs:792
+#: ../src/MainWindow.cs:794
 #, csharp-format
 msgid "F-Spot encountered an error while loading the photo database. The old database has be moved to {0} and a new database has been created."
 msgstr "F-Spot påträffade ett fel vid inläsning av fotodatabasen. Den gamla databasen måste flyttas till {0} och en ny databas måste skapas."
 
-#: ../src/MainWindow.cs:1347
+#: ../src/MainWindow.cs:1349
 msgid "No cameras detected."
 msgstr "Inga kameror hittades"
 
-#: ../src/MainWindow.cs:1348
+#: ../src/MainWindow.cs:1350
 msgid "F-Spot was unable to find any cameras attached to this system.  Double check that the camera is connected and has power"
 msgstr "F-Spot kunde inte hitta några kameror anslutna till detta system.  Kontrollera att kameran är ansluten och att den har ström"
 
-#: ../src/MainWindow.cs:1388
+#: ../src/MainWindow.cs:1390
 msgid "Error connecting to camera"
 msgstr "Fel vid anslutning till kamera"
 
-#: ../src/MainWindow.cs:1389
+#: ../src/MainWindow.cs:1391
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Tog emot fel \"{0}\" vid anslutning till kamera"
@@ -2197,7 +2254,7 @@ msgstr "Tog emot fel \"{0}\" vid anslutning till kamera"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1566
+#: ../src/MainWindow.cs:1568
 msgid "translator-credits"
 msgstr ""
 "Daniel Nylander\n"
@@ -2207,59 +2264,59 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "tp-sv@listor.tp-sv.se"
 
-#: ../src/MainWindow.cs:1573
+#: ../src/MainWindow.cs:1575
 msgid "Copyright © 2003-2007 Novell Inc."
 msgstr "Copyright © 2003-2007 Novell Inc."
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1806
+#: ../src/MainWindow.cs:1808
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Sammanfoga den markerade taggen"
 msgstr[1] "Sammanfoga de {0} markerade taggarna"
 
-#: ../src/MainWindow.cs:1833
+#: ../src/MainWindow.cs:1835
 msgid "This operation will merge the selected tags and any sub-tags into a single tag."
 msgstr "Denna operation kommer att slå ihop de markerade taggarna och deras undertaggar till en enda tagg."
 
-#: ../src/MainWindow.cs:1835
+#: ../src/MainWindow.cs:1837
 msgid "_Merge Tags"
 msgstr "_Slå ihop taggar"
 
-#: ../src/MainWindow.cs:1884
+#: ../src/MainWindow.cs:1886
 msgid "Unsharp Mask"
 msgstr "Oskarp mask"
 
-#: ../src/MainWindow.cs:2107
-#: ../src/SingleView.cs:485
+#: ../src/MainWindow.cs:2109
+#: ../src/SingleView.cs:487
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} foto"
 msgstr[1] "{0} foton"
 
-#: ../src/MainWindow.cs:2113
+#: ../src/MainWindow.cs:2115
 #, csharp-format
 msgid " out of {0}"
 msgstr " av {0}"
 
-#: ../src/MainWindow.cs:2117
+#: ../src/MainWindow.cs:2119
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} markerad)"
 msgstr[1] " ({0} markerade)"
 
-#: ../src/MainWindow.cs:2204
+#: ../src/MainWindow.cs:2206
 msgid "_Ok"
 msgstr "_OK"
 
-#: ../src/MainWindow.cs:2205
+#: ../src/MainWindow.cs:2207
 msgid "Error Deleting Picture"
 msgstr "Fel vid borttagning av foto"
 
-#: ../src/MainWindow.cs:2210
+#: ../src/MainWindow.cs:2212
 #, csharp-format
 msgid ""
 "No permission to delete the file:\n"
@@ -2268,7 +2325,7 @@ msgstr ""
 "Har inte rättighet att ta bort filen: \n"
 "{0}"
 
-#: ../src/MainWindow.cs:2214
+#: ../src/MainWindow.cs:2216
 #, csharp-format
 msgid ""
 "An error of type {0} occurred while deleting the file:\n"
@@ -2277,104 +2334,104 @@ msgstr ""
 "Ett fel av typen {0} inträffade under borttagning av filen:\n"
 "{1}"
 
-#: ../src/MainWindow.cs:2240
+#: ../src/MainWindow.cs:2242
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Ta bort det markerade fotot permanent?"
 msgstr[1] "Ta bort de {0} markerade fotona permanent?"
 
-#: ../src/MainWindow.cs:2244
+#: ../src/MainWindow.cs:2246
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Detta tar bort alla versioner av det markerade fotot från din disk."
 msgstr[1] "Detta tar bort alla versioner av de markerade foton från din disk."
 
-#: ../src/MainWindow.cs:2247
+#: ../src/MainWindow.cs:2249
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Ta bort foto"
 msgstr[1] "_Ta bort foton"
 
-#: ../src/MainWindow.cs:2275
+#: ../src/MainWindow.cs:2277
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Ta bort det markerade fotot från F-Spot?"
 msgstr[1] "Ta bort de {0} markerade fotona från F-Spot?"
 
-#: ../src/MainWindow.cs:2280
+#: ../src/MainWindow.cs:2282
 msgid "If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again."
 msgstr "Om du tar bort foton från F-Spot-katalogen kommer all tagginformation för dem att gå förlorad. Fotona finns dock kvar på din dator och kan importeras in till F-Spot på nytt."
 
 # SUN CHANGED MESSAGE
-#: ../src/MainWindow.cs:2281
+#: ../src/MainWindow.cs:2283
 msgid "_Remove from Catalog"
 msgstr "_Ta bort från katalog"
 
-#: ../src/MainWindow.cs:2338
+#: ../src/MainWindow.cs:2340
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Ta bort taggen \"{0}\"?"
 
-#: ../src/MainWindow.cs:2340
+#: ../src/MainWindow.cs:2342
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Ta bort de {0} markerade taggarna?"
 
-#: ../src/MainWindow.cs:2343
+#: ../src/MainWindow.cs:2345
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr "Om du tar bort en tagg så försvinner alla dess associationer med foton."
 
-#: ../src/MainWindow.cs:2344
+#: ../src/MainWindow.cs:2346
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Ta bort tagg"
 msgstr[1] "_Ta bort taggar"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2358
+#: ../src/MainWindow.cs:2360
 msgid "Tag is not empty"
 msgstr "Taggen är inte tom"
 
-#: ../src/MainWindow.cs:2359
+#: ../src/MainWindow.cs:2361
 #, csharp-format
 msgid "Can not delete tags that have tags within them.  Please delete tags under \"{0}\" first"
 msgstr "Kan inte ta bort taggar som har andra taggar under sig.  Vänligen ta bort alla taggar under \"{0}\" först"
 
-#: ../src/MainWindow.cs:2755
+#: ../src/MainWindow.cs:2757
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Rotera det markerade fotot åt vänster"
 msgstr[1] "Rotera de markerade fotona åt vänster"
 
-#: ../src/MainWindow.cs:2768
+#: ../src/MainWindow.cs:2770
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Rotera det markerade fotot åt höger"
 msgstr[1] "Rotera de markerade fotona åt höger"
 
-#: ../src/MainWindow.cs:2776
+#: ../src/MainWindow.cs:2778
 #, csharp-format
 msgid "Find Selected Tag"
 msgid_plural "Find Selected Tags"
 msgstr[0] "Sök efter vald tagg"
 msgstr[1] "Sök efter valda taggar"
 
-#: ../src/MainWindow.cs:2780
+#: ../src/MainWindow.cs:2782
 #, csharp-format
 msgid "Find Selected Tag With"
 msgid_plural "Find Selected Tags With"
 msgstr[0] "Sök efter vald tagg med"
 msgstr[1] "Sök efter valda taggar med"
 
-#: ../src/MainWindow.cs:2797
+#: ../src/MainWindow.cs:2799
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Skapa en ny version?"
 msgstr[1] "Skapa nya versioner?"
 
-#: ../src/MainWindow.cs:2799
+#: ../src/MainWindow.cs:2801
 #, csharp-format
 msgid "Before launching {1}, should F-Spot create a new version of the selected photo to preserve the original?"
 msgid_plural "Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?"
@@ -2690,13 +2747,13 @@ msgstr "Konvertera fotot till sepiatoner"
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "Skickar upp bilden \"{0}\" ({1} av {2})"
 
-#: ../src/PicasaWebExport.cs:615
-#: ../src/SmugMugExport.cs:575
+#: ../src/PicasaWebExport.cs:605
+#: ../src/SmugMugExport.cs:566
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Fel vid sändning till galleri: {0}"
 
-#: ../src/PicasaWebExport.cs:687
+#: ../src/PicasaWebExport.cs:689
 msgid "Available space :"
 msgstr "Tillgängligt utrymme :"
 
@@ -2745,11 +2802,19 @@ msgstr "Förbereder e-post"
 msgid "Exporting picture \"{0}\""
 msgstr "Exporterar bilden \"{0}\""
 
-#: ../src/SingleView.cs:340
+#: ../src/SingleView.cs:76
+msgid "Rotate photo left"
+msgstr "Rotera fotot åt vänster"
+
+#: ../src/SingleView.cs:78
+msgid "Rotate photo right"
+msgstr "Rotera fotot åt höger"
+
+#: ../src/SingleView.cs:342
 msgid "Open"
 msgstr "Öppna"
 
-#: ../src/SingleView.cs:445
+#: ../src/SingleView.cs:447
 msgid "Set as Background"
 msgstr "Ställ in som bakgrund"
 
@@ -2921,25 +2986,33 @@ msgstr "Dra taggar hit för att söka efter dem"
 msgid "Error renaming tag"
 msgstr "Fel vid namnbyte av tagg"
 
-#: ../src/TagStore.cs:381
+#: ../src/TagStore.cs:378
 msgid "Favorites"
 msgstr "Favoriter"
 
-#: ../src/TagStore.cs:386
+#: ../src/TagStore.cs:383
 msgid "Hidden"
 msgstr "Dolda"
 
-#: ../src/TagStore.cs:394
+#: ../src/TagStore.cs:391
 msgid "People"
 msgstr "Människor"
 
-#: ../src/TagStore.cs:399
+#: ../src/TagStore.cs:396
 msgid "Places"
 msgstr "Platser"
 
-#: ../src/TagStore.cs:404
+#: ../src/TagStore.cs:401
 msgid "Events"
 msgstr "Händelser"
+
+#: ../src/ThreadProgressDialog.cs:66
+msgid "Retry"
+msgstr "Försök igen"
+
+#: ../src/ThreadProgressDialog.cs:68
+msgid "Skip"
+msgstr "Hoppa över"
 
 #. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
 #: ../src/Unix.cs:25
@@ -3029,6 +3102,10 @@ msgstr "Visa ett bildspel från F-Spot"
 msgid "F-Spot photos"
 msgstr "Foton från F-Spot"
 
+#~ msgid "Re-upload picture"
+#~ msgstr "Skicka upp bilden igen"
+#~ msgid "Skip picture"
+#~ msgstr "Hoppa över bild"
 #~ msgid "Back"
 #~ msgstr "Tillbaka"
 #~ msgid "No matching photos found "
