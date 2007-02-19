@@ -45,13 +45,13 @@ namespace FSpot {
 
 			foreach (GlTransition t in transitions) {
 				combo.AppendText (t.Name);
-				
 			}
 
 			combo.Active = current_transition;
 
 			combo.Changed += HandleComboChanged;
 			combo.Show ();
+
 			return combo;
 		}
 		
@@ -136,9 +136,11 @@ namespace FSpot {
 		
 		private Texture CreateTexture ()
 		{
-			if (glx == null)
+			if (glx == null || GdkWindow == null)
 			   return null;
 		
+			glx.MakeCurrent (GdkWindow);
+
 			Texture tex;
 			try {
 				ImageFile img = ImageFile.Create (item.Current.DefaultVersionUri);
@@ -369,9 +371,18 @@ namespace FSpot {
 			System.Console.WriteLine ("Extensions = {0}", Marshal.PtrToStringAnsi (ext));
 		}
 
+		void CheckError (string msg)
+		{
+			int error = Gl.glGetError ();
+			if (error != Gl.GL_NO_ERROR)
+				Console.WriteLine ("OpenGL error {0}: {1}", msg, Glu.gluErrorString (error));
+		}
+
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
 			glx.MakeCurrent (GdkWindow);
+
+			CheckError ("entering expose");
 
 			Gdk.Color c = Style.Background (State);
 			Gl.glClearColor (c.Red / (float) ushort.MaxValue,
@@ -415,6 +426,8 @@ namespace FSpot {
 			Gl.glFlush ();
 			glx.SwapBuffers (GdkWindow);
 			
+			CheckError ("leaving expose");
+
 			return true;
 		}
 	}
