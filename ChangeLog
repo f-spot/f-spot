@@ -1,3 +1,10 @@
+2007-02-23  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/FormClient.cs: expose the multipart property.
+	* src/GalleryRemote.cs: Use multipart messages on ablum creation to
+	avoid url encoding of album names. Based on a patch of Aidan Skinner.
+	Fixes bgo #385267.
+
 2007-02-16  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/MainWindow.cs: do not try to remove 0 images. Fixes bgo #408559.

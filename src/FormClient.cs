@@ -25,6 +25,10 @@ class FormClient {
 	private string end_boundary;
 
 	private bool multipart = false;
+	public bool Multipart {
+		set { multipart = value; }
+	}
+
 	private bool first_item;
 
 	public bool Buffer = false;

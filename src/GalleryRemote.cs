@@ -9,7 +9,7 @@ using Mono.Unix;
 
 /* These classes are based off the documentation at 
  *
- * http://gallery.menalto.com/modules.php?op=modload&name=GalleryDocs&file=index&page=gallery-remote.protocol.php
+ * http://codex.gallery2.org/index.php/Gallery_Remote:Protocol
  */
 
 namespace GalleryRemote {
@@ -780,6 +780,7 @@ namespace GalleryRemote {
 				      string description)
 		{
 			FormClient client = new FormClient (cookies);
+			client.Multipart = true;
 			client.Add ("cmd", "new-album");
 			client.Add ("protocol_version", "2.8");
 			client.Add ("set_albumName", parent_name);
@@ -996,6 +997,7 @@ namespace GalleryRemote {
 				      string description)
 		{
 			FormClient client = new FormClient (cookies);
+			client.Multipart = true;
 			client.Add ("g2_form[cmd]", "new-album");
 			client.Add ("g2_form[protocol_version]", "2.10");
 			client.Add ("g2_form[set_albumName]", parent_name);
