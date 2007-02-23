@@ -202,6 +202,7 @@ namespace FSpot.Widgets
 
 			date_entry = new Gtk.Entry ();
 			date_entry.WidthChars = 10;
+			date_entry.Changed += HandleDateEntryChanged;
 			PackStart (date_entry, true, true, 0);
 		
 			Gtk.HBox b_box = new Gtk.HBox ();
@@ -364,18 +365,31 @@ namespace FSpot.Widgets
 		private void HandleTimeEntryChanged (object o, EventArgs e)
 		{
 			datetime.Changed -= HandleDateTimeZoneChanged;
-//			string entry = time_entry.Text;
-//			string [] parts = entry.Split (new char [] {':', ' '}, 5);
-//			if ((flags & DateEditFlags.Two4hr) == DateEditFlags.Two4Hr) {
-//				if (parts.Length != 2)
-//					return;
-//				datetime.Hour		
-//			} else {
-//				if (parts.Length != 3)
-//					return;
-//				
-//			}
+			try {
+				System.DateTime newtime = System.DateTime.Parse (time_entry.Text);
+				datetime.Hour = newtime.Hour;
+				datetime.Minute = newtime.Minute;
+			} catch (FormatException)
+			{}
 			datetime.Changed += HandleDateTimeZoneChanged;
+			if (Changed != null)
+				Changed (this, null);
+		}
+
+		private void HandleDateEntryChanged (object o, EventArgs e)
+		{
+			datetime.Changed -= HandleDateTimeZoneChanged;
+			try {
+				System.DateTime newtime = System.DateTime.Parse (date_entry.Text);
+				datetime.Year = newtime.Year;
+				datetime.Month = newtime.Month;
+				datetime.Day = newtime.Day;
+			} catch (FormatException)
+			{}
+			datetime.Changed += HandleDateTimeZoneChanged;
+			if (Changed != null)
+				Changed (this, null);
+
 		}
 
 		private void HandleTimeComboChanged (object o, EventArgs e)
