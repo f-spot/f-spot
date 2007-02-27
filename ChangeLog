@@ -1,3 +1,9 @@
+2007-02-27  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/TagQueryWidget.cs
+	* src/FindBar.cs: Avoid showing Hidden photos unless explicitly told to do
+	so.  Fixes BGO #411973.
+
 2007-02-23  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/FormClient.cs: expose the multipart property.

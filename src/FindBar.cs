@@ -282,6 +282,14 @@ namespace FSpot {
 
             if (ParensValid () && ConstructQuery (null, 0, entry.Text)) {
                 if (RootTerm != null) {
+                    //Console.WriteLine("rootTerm = {0}", RootTerm);
+                    if (!(RootTerm is AndTerm)) {
+                        // A little hacky, here to make sure the root term is a AndTerm which will
+                        // ensure we handle the Hidden tag properly
+                        AndTerm root_parent = new AndTerm(null, null);
+                        RootTerm.Parent = root_parent;
+                        root_term = root_parent;
+                    }
                     //Console.WriteLine ("condition = {0}", RootTerm.ConditionString ());
                     query.ExtraCondition = RootTerm.ConditionString ();
                 } else {

@@ -208,9 +208,19 @@ namespace FSpot.Query
 		}
 
 		public LogicTerm Parent {
-			get {
-				return parent;
-			}
+			get { return parent; }
+            set {
+                if (parent == value)
+                    return;
+
+                // If our parent was already set, remove ourself from it
+                if (parent != null)
+                    parent.Remove(this);
+
+                // Add ourself to our new parent
+                parent = value;
+                parent.Add(this);
+            }
 		}
 
 		/** Methods **/
@@ -433,7 +443,7 @@ namespace FSpot.Query
 
             Tag hidden = Core.Database.Tags.Hidden;
             if (hidden != null) {
-                if (FindByTag (hidden, false).Count == 0) {
+                if (FindByTag (hidden, true).Count == 0) {
                     condition.Append (String.Format (
                         " AND id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})", hidden.Id
                     ));
