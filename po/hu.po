@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-06 03:22+0000\n"
-"PO-Revision-Date: 2007-02-14 23:22+0100\n"
+"POT-Creation-Date: 2007-02-14 22:29+0000\n"
+"PO-Revision-Date: 2007-02-28 13:20+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
@@ -339,11 +339,11 @@ msgstr ""
 "Az F-Spot által keresett címke nem létezik. Próbáljon\n"
 "másik címkét választani az F-Spot beállításablakában."
 
-#: ../src/Editors/Tilt.cs:24 ../src/ItemAction.cs:340 ../src/StockIcons.cs:34
+#: ../src/Editors/Tilt.cs:24 ../src/ItemAction.cs:355 ../src/StockIcons.cs:34
 msgid "Straighten"
 msgstr "Kiegyenesítés"
 
-#: ../src/Editors/SoftFocus.cs:25 ../src/ItemAction.cs:356
+#: ../src/Editors/SoftFocus.cs:25 ../src/ItemAction.cs:371
 #: ../src/StockIcons.cs:43
 msgid "Soft Focus"
 msgstr "Lágy fókusz"
@@ -509,7 +509,7 @@ msgid "Prev"
 msgstr "Előző"
 
 #: ../src/FolderExport.cs:865 ../src/f-spot.glade.h:154
-#: ../src/ItemAction.cs:125
+#: ../src/ItemAction.cs:133
 msgid "Next"
 msgstr "Következő"
 
@@ -655,7 +655,7 @@ msgstr "<b>Exportálási módszer</b>"
 
 #: ../src/f-spot.glade.h:24
 msgid "<b>Exposure</b>"
-msgstr "<b>Megvilágítás</b>"
+msgstr "<b>Expozíció</b>"
 
 #: ../src/f-spot.glade.h:25
 msgid "<b>From Photo</b>"
@@ -821,7 +821,7 @@ msgstr "<small>_Fényesség:</small>"
 
 #: ../src/f-spot.glade.h:60
 msgid "<small>_Exposure:</small>"
-msgstr "<small>_Megvilágítás:</small>"
+msgstr "<small>_Expozíció:</small>"
 
 #: ../src/f-spot.glade.h:61
 msgid "<small>_Hue:</small>"
@@ -1214,7 +1214,7 @@ msgstr "_Cél megnyitása az exportálás befejezésekor"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/f-spot.glade.h:164 ../src/PhotoStore.cs:574
+#: ../src/f-spot.glade.h:164 ../src/PhotoStore.cs:580
 msgid "Original"
 msgstr "Eredeti"
 
@@ -1264,7 +1264,7 @@ msgstr ""
 msgid "Preferences"
 msgstr "Beállítások"
 
-#: ../src/f-spot.glade.h:177 ../src/ItemAction.cs:147
+#: ../src/f-spot.glade.h:177 ../src/ItemAction.cs:155
 msgid "Previous"
 msgstr "Előző"
 
@@ -1897,7 +1897,7 @@ msgstr "(Nem érzékeltem fényképezőgépet)"
 #: ../src/ImportCommand.cs:377
 #, csharp-format
 msgid "Loading {0} of {1}"
-msgstr "{0}/{1} betöltése"
+msgstr "{0}. betöltése, összesen {1}"
 
 #: ../src/ImportCommand.cs:445
 msgid "Done Loading"
@@ -1938,7 +1938,7 @@ msgstr "Méret:"
 
 #: ../src/InfoBox.cs:83
 msgid "Exposure:"
-msgstr "Megvilágítás:"
+msgstr "Expozíció:"
 
 #. The label for the root category is used in new and edit tag dialogs
 #: ../src/InfoBox.cs:222 ../src/TagStore.cs:414
@@ -2138,47 +2138,47 @@ msgstr "Az objektum szellemi kategóriája"
 msgid "Unknown IIM DataSet"
 msgstr "Ismeretlen IIM adathalmaz"
 
-#: ../src/ItemAction.cs:102
+#: ../src/ItemAction.cs:110
 msgid "Rotate Left"
 msgstr "Forgatás balra"
 
-#: ../src/ItemAction.cs:103 ../src/ItemAction.cs:115
+#: ../src/ItemAction.cs:111 ../src/ItemAction.cs:123
 msgid "Rotate picture left"
 msgstr "Kép forgatása balra"
 
-#: ../src/ItemAction.cs:114
+#: ../src/ItemAction.cs:122
 msgid "Rotate Right"
 msgstr "Forgatás jobbra"
 
-#: ../src/ItemAction.cs:126
+#: ../src/ItemAction.cs:134
 msgid "Next picture"
 msgstr "Következő kép"
 
-#: ../src/ItemAction.cs:148
+#: ../src/ItemAction.cs:156
 msgid "Previous picture"
 msgstr "Előző kép"
 
-#: ../src/ItemAction.cs:271 ../src/StockIcons.cs:27
+#: ../src/ItemAction.cs:286 ../src/StockIcons.cs:27
 msgid "Auto Color"
 msgstr "Automatikus szín"
 
-#: ../src/ItemAction.cs:272
+#: ../src/ItemAction.cs:287
 msgid "Automatically adjust the colors"
 msgstr "A színek beállítása automatikusan"
 
-#: ../src/ItemAction.cs:287
+#: ../src/ItemAction.cs:302
 msgid "Apply straightening"
 msgstr "Kiegyenesítés alkalmazása"
 
-#: ../src/ItemAction.cs:288
+#: ../src/ItemAction.cs:303
 msgid "Apply straightening to image"
 msgstr "Kiegyenesítés alkalmazása a képre"
 
-#: ../src/ItemAction.cs:341
+#: ../src/ItemAction.cs:356
 msgid "Adjust the angle of the image to straighten the horizon"
 msgstr "Kép szögének módosítása a horizontra kiegyenesítéshez"
 
-#: ../src/ItemAction.cs:357
+#: ../src/ItemAction.cs:372
 msgid "Create a soft focus visual effect"
 msgstr "Lágy fókusz vizuális hatás létrehozása"
 
@@ -2241,7 +2241,8 @@ msgid ""
 "that the camera is connected and has power"
 msgstr ""
 "Az F-Spot nem talált egyetlen, ehhez a rendszerhez csatlakoztatott "
-"fényképezőgépet sem. Ellenőrizze, hogy a fényképezőgép csatlakoztatva van-e és be van-e kapcsolva"
+"fényképezőgépet sem. Ellenőrizze, hogy a fényképezőgép csatlakoztatva van-e "
+"és be van-e kapcsolva"
 
 #: ../src/MainWindow.cs:1390
 msgid "Error connecting to camera"
@@ -2491,7 +2492,7 @@ msgstr "Felbontási egység"
 
 #: ../src/MetadataStore.cs:32
 msgid "Exposure Program"
-msgstr "Megvilágítási program"
+msgstr "Expozíciós program"
 
 #: ../src/MetadataStore.cs:34
 msgid "Metering Mode"
@@ -2499,7 +2500,7 @@ msgstr "Mérési mód"
 
 #: ../src/MetadataStore.cs:36
 msgid "Exposure Mode"
-msgstr "Megvilágítási mód"
+msgstr "Expozíció módja"
 
 #: ../src/MetadataStore.cs:38
 msgid "Custom Rendered"
@@ -2592,14 +2593,14 @@ msgstr "Címke csatolása"
 msgid "Remove Tag"
 msgstr "Címke eltávolítása"
 
-#: ../src/PhotoStore.cs:371
+#: ../src/PhotoStore.cs:377
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
-msgstr[0] "Módosítva"
-msgstr[1] "Módosítva ({0})"
+msgstr[0] "Módosított"
+msgstr[1] "Módosított ({0})"
 
-#: ../src/PhotoStore.cs:390
+#: ../src/PhotoStore.cs:396
 #, csharp-format
 msgid "Modified in {1}"
 msgid_plural "Modified in {1} ({0})"
@@ -2671,7 +2672,7 @@ msgstr "\"{0}\" kivétel következett be. A verzió nem nevezhető át erre: \"{
 
 #: ../src/PhotoVersionMenu.cs:66
 msgid "(No Edits)"
-msgstr "(nincsenek szerkesztések)"
+msgstr "(nincs módosítás)"
 
 #: ../src/PhotoView.cs:63
 msgid "No Constraint"
@@ -3065,7 +3066,9 @@ msgstr ""
 msgid ""
 "The \"F-Spot Manual\" could not be found.  Please verify that your "
 "installation has been completed successfully."
-msgstr "Az \"F-Spot kézikönyv\" nem található.  Ellenőrizze, hogy a telepítés sikeresen befejeződött-e."
+msgstr ""
+"Az \"F-Spot kézikönyv\" nem található.  Ellenőrizze, hogy a telepítés "
+"sikeresen befejeződött-e."
 
 #: ../src/Util.cs:482
 msgid "Help not found"
