@@ -260,8 +260,8 @@ namespace FSpot {
 						stream.Write ("</td></tr>");
 					}
 				}
-				
-				if (Core.Database != null) {
+	
+				if (Core.Database != null && photo is Photo) {
 					stream.Write ("<tr><th align=left bgcolor=\"" + ig + "\" colspan=2>" + Catalog.GetString ("Exported Locations") + "</th></tr>");
 	
 					Photo p = photo as Photo;

@@ -1,5 +1,10 @@
 2007-02-28  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/InfoDisplay.cs: another check before looking into the
+	ExportStore. Fixes bgo #413041.
+
+2007-02-28  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/Imaging/JpegFile.cs: write a DateTimeOriginal exif if missing.
 	Fixes bgo #413001.
 
