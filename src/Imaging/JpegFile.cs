@@ -303,6 +303,11 @@ namespace FSpot {
 			Exif.ExifEntry e = ExifData.LookupFirst (Exif.Tag.DateTimeOriginal);
 			if (e != null)
 				e.SetData (time);
+			else {
+				Exif.ExifContent exif_content = this.ExifData.GetContents (Exif.Ifd.Exif);
+				Exif.ExifEntry entry = exif_content.GetEntry (Exif.Tag.DateTimeOriginal);
+				entry.SetData (time);
+			}		
 		}
 
 		public override System.DateTime Date {
