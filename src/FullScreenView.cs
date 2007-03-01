@@ -11,7 +11,6 @@ namespace FSpot {
 		private ScrolledView scroll;
 		private PhotoImageView view;
 		private TagView tag_view;
-		private Label name_label;
 		private Notebook notebook;
 		private ControlOverlay controls;
 		//		private ImageDisplay display;
@@ -96,25 +95,16 @@ namespace FSpot {
 				display.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
 				display.MotionNotifyEvent += HandleViewMotion;
 				Label effect = new Label (Catalog.GetString ("Slide transition: "));
-				hhbox.PackStart (effect, false, false, 10);
-				hhbox.PackStart (display.GetCombo ());
+				hhbox.PackStart (effect, false, false, 5);
+				hhbox.PackStart (display.GetCombo (), false, false, 0);
 				display.Show ();
 
 				hhbox.PackStart (Add (new RotateLeftAction (view.Item)), false, false, 0);
 				hhbox.PackStart (Add (new RotateRightAction (view.Item)), false, false, 0);
 				hhbox.BorderWidth = 15;
-				
-				VBox vbox = new VBox ();
-				name_label = new Label ();
-				name_label.UseMarkup = true;
-				vbox.PackStart (name_label);
-				Alignment center = new Alignment (.5f, .5f, 1f, 1f);
-				tag_view = new TagView ();
-				center.Add (tag_view);
-				vbox.PackStart (center);
-				vbox.Spacing = 10;
 
-				hhbox.PackStart (vbox, true, true, 5);
+				tag_view = new TagView ();
+				hhbox.PackStart (tag_view, false, false, 0);
 
 				//display = new ImageDisplay (view.Item);
 
@@ -152,9 +142,6 @@ namespace FSpot {
 		private void HandleItemChanged (object sender, BrowsablePointerChangedArgs args)
 		{
 			tag_view.Current = view.Item.Current;
-			name_label.Markup = String.Format ("<small>{0}</small>",
-							   view.Item.Current != null ? view.Item.Current.Name : "");
-
 			if (scroll.ControlBox.Visible)
 				scroll.ShowControls ();
 		}
