@@ -1,3 +1,8 @@
+2007-03-01  Larry Ewing  <lewing@novell.com>
+
+	* src/FullScreenView.cs: use IconSize.LargeToolbar, as that seems
+	to get back an image without scaling.  bnc #247491.
+
 2007-02-28  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/InfoDisplay.cs: another check before looking into the

@@ -167,7 +167,7 @@ namespace FSpot {
 		private Button GetButton (string name, bool label)
 		{
 			Action action = actions [name];
-			Widget w = action.CreateIcon (IconSize.Button);
+			Widget w = action.CreateIcon (IconSize.LargeToolbar);
 			if (label) {
 				HBox box = new HBox ();
 				box.PackStart (w, false, false, 0);
