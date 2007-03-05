@@ -73,10 +73,10 @@ namespace FSpot.Widgets {
 								 small.Height);
 			
 			Context ctx = new Context (image);
-			Pattern solid = new SolidPattern (0, 0, 0, 0);
-			ctx.Source = solid;
-			ctx.Paint ();
-			solid.Destroy ();
+			//Pattern solid = new SolidPattern (0, 0, 0, 1.0);
+			//ctx.Source = solid;
+			//ctx.Paint ();
+			//solid.Destroy ();
 			ctx.Matrix = source.Fit (small);
 			ctx.Source = new SurfacePattern (source.Surface);
 			Console.WriteLine (small);
@@ -95,7 +95,7 @@ namespace FSpot.Widgets {
 			double max = Math.Max (blur.Bounds.Width, blur.Bounds.Height) * .25;
 			double scale = blur.Bounds.Width / (double) info.Bounds.Width;
 
-			RadialGradient circle = new RadialGradient (center.X * scale, center.Y * scale, radius * max,
+			RadialGradient circle = new RadialGradient (center.X * scale, center.Y * scale, radius * max + max * .2,
 								    center.X * scale, center.Y * scale, radius * max * .7);
 
 

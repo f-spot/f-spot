@@ -1,5 +1,8 @@
 2007-03-05  Larry Ewing  <lewing@novell.com>
 
+	* src/Widgets/SoftFocus.cs: Make sure the blur zone is never less
+	than .2 of the max dimension.  Fixes bnc 247507.
+
 	* src/main.cs: add a more descriptive error when the session bus
 	is missing.  Fixes bnc 247772.
 
