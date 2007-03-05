@@ -73,6 +73,10 @@ namespace FSpot.Widgets {
 								 small.Height);
 			
 			Context ctx = new Context (image);
+			Pattern solid = new SolidPattern (0, 0, 0, 0);
+			ctx.Source = solid;
+			ctx.Paint ();
+			solid.Destroy ();
 			ctx.Matrix = source.Fit (small);
 			ctx.Source = new SurfacePattern (source.Surface);
 			Console.WriteLine (small);
