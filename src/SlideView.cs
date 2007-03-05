@@ -268,6 +268,8 @@ namespace FSpot {
 						next.Dispose ();
 
 					next = GetScaled (photos [0]);
+					if (next == null)
+						next = GetScaled (PixbufUtils.ShallowCopy (PixbufUtils.ErrorPixbuf));
 					next_idx = 0;
 					StartTweenIdle ();
 					
