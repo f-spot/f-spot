@@ -39,7 +39,7 @@ public class PhotoTagMenu : Menu {
 		public TagMenuItem (Tag t) : base (t.Name) {
 			Value = t;
 			if (t.Icon != null)
-				this.Image = new Gtk.Image (t.Icon);
+				this.Image = new Gtk.Image (t.SizedIcon);
 		}
 
 		protected TagMenuItem (IntPtr raw) : base (raw) {}

@@ -186,7 +186,7 @@ public class TagSelectionWidget : TreeView {
 
 		// FIXME I can't set the Pixbuf to null, not sure if it's a GTK# bug...
 		if (tag.Icon != null)
-			(renderer as CellRendererPixbuf).Pixbuf = tag.Icon;
+			(renderer as CellRendererPixbuf).Pixbuf = tag.SizedIcon;
 		else
 			(renderer as CellRendererPixbuf).Pixbuf = empty_pixbuf;
 	}

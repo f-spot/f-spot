@@ -51,6 +51,7 @@ namespace FSpot
 		public const string SHOW_TAGS = "/apps/f-spot/ui/show_tags";
 		public const string SHOW_DATES = "/apps/f-spot/ui/show_dates";
 		public const string EXPANDED_TAGS = "/apps/f-spot/ui/expanded_tags";
+		public const string TAG_ICON_SIZE = "/apps/f-spot/ui/tag_icon_size";
 		
 		public const string GLASS_POSITION = "/apps/f-spot/ui/glass_position";
 		public const string GROUP_ADAPTOR = "/apps/f-spot/ui/group_adaptor";
@@ -169,6 +170,9 @@ namespace FSpot
 			case EXPORT_SMUGMUG_SIZE:
 			case EXPORT_FOLDER_SIZE:
 				return 800;
+				
+			case TAG_ICON_SIZE:
+				return (int) Tag.IconSize.Large;
 		
 			case SIDEBAR_POSITION:
 			case ZOOM:

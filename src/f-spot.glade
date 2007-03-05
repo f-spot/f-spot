@@ -9111,6 +9111,65 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		      <property name="visible">True</property>
 		    </widget>
 		  </child>
+		  
+		  <child>
+		    <widget class="GtkMenuItem" id="tag_icon_size">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">Tag Icons</property>
+		      <property name="use_underline">True</property>
+
+		      <child>
+			<widget class="GtkMenu" id="tag_icon_size_menu">
+
+			  <child>
+			    <widget class="GtkRadioMenuItem" id="tag_icon_hidden">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">_Hidden</property>
+			      <property name="active">False</property>
+			      <property name="use_underline">True</property>
+			      <signal name="activate" handler="HandleTagSizeChange" last_modification_time="Fri, 20 Aug 2004 22:26:32 GMT"/>
+			    </widget>
+			  </child>
+			  <child>
+			    <widget class="GtkRadioMenuItem" id="tag_icon_small">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">_Small</property>
+			      <property name="active">False</property>
+			      <property name="use_underline">True</property>
+			      <property name="group">tag_icon_hidden</property>
+			      <signal name="activate" handler="HandleTagSizeChange" last_modification_time="Fri, 20 Aug 2004 22:26:32 GMT"/>
+			    </widget>
+			  </child>
+			  <child>
+			    <widget class="GtkRadioMenuItem" id="tag_icon_medium">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">_Medium</property>
+			      <property name="active">False</property>
+			      <property name="use_underline">True</property>
+			      <property name="group">tag_icon_hidden</property>
+			      <signal name="activate" handler="HandleTagSizeChange" last_modification_time="Fri, 20 Aug 2004 22:26:32 GMT"/>
+			    </widget>
+			  </child>
+			  <child>
+			    <widget class="GtkRadioMenuItem" id="tag_icon_large">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">_Large</property>
+			      <property name="active">False</property>
+			      <property name="use_underline">True</property>
+			      <property name="group">tag_icon_hidden</property>
+			      <signal name="activate" handler="HandleTagSizeChange" last_modification_time="Fri, 20 Aug 2004 22:26:32 GMT"/>
+			    </widget>
+			  </child>
+			</widget>
+		      </child>
+		    </widget>
+		  </child>
+
+		  <child>
+		    <widget class="GtkSeparatorMenuItem" id="separator16">
+		      <property name="visible">True</property>
+		    </widget>
+		  </child>
 
 		  <child>
 		    <widget class="GtkMenuItem" id="arranged_by">

@@ -23,7 +23,7 @@ public class TagMenu : Menu {
 		{
 			Value = t;
 			if (t.Icon != null)
-				this.Image = new Gtk.Image (t.Icon);
+				this.Image = new Gtk.Image (t.SizedIcon);
 		}
 
 		public static TagMenuItem IndentedItem (Tag t)

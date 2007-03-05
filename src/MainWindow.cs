@@ -80,6 +80,11 @@ public class MainWindow {
 	[Glade.Widget] MenuItem zoom_in;
 	[Glade.Widget] MenuItem zoom_out;
 
+	[Glade.Widget] RadioMenuItem tag_icon_hidden;
+	[Glade.Widget] RadioMenuItem tag_icon_small;
+	[Glade.Widget] RadioMenuItem tag_icon_medium;
+	[Glade.Widget] RadioMenuItem tag_icon_large;
+
 	[Glade.Widget] RadioMenuItem month;
 	[Glade.Widget] RadioMenuItem directory;
 	[Glade.Widget] CheckMenuItem reverse_order;
@@ -138,6 +143,12 @@ public class MainWindow {
 	
 	ModeType view_mode;
 	bool write_metadata = false;
+
+	// Tag Icon Sizes
+	public int TagsIconSize {
+		get { return (int) Tag.TagIconSize; }
+		set { Tag.TagIconSize = (Tag.IconSize) value; }
+	}
 
 	// Drag and Drop
 	public enum TargetType {
@@ -265,6 +276,8 @@ public class MainWindow {
 		tag_selection_widget.PopupMenu += HandleTagSelectionPopupMenu;
 		tag_selection_widget.RowActivated += HandleTagSelectionRowActivated;
 		
+		LoadPreference (Preferences.TAG_ICON_SIZE);
+
 		info_box = new InfoBox ();
 		info_box.VersionIdChanged += HandleInfoBoxVersionIdChange;
 		left_vbox.PackStart (info_box, false, true, 0);
@@ -1577,6 +1590,35 @@ public class MainWindow {
 			   PixbufUtils.LoadFromAssembly("f-spot-logo-tango.svg")).Show();
 	}
 
+	void HandleTagSizeChange (object sender, EventArgs args)
+	{
+		RadioMenuItem choice = sender as RadioMenuItem;
+	
+		//Get this callback twice. Once for the active going menuitem,
+		//once for the inactive leaving one. Ignore the inactive.
+		if (!choice.Active)
+			return;
+
+		int old_size = TagsIconSize;
+		
+		if (choice == tag_icon_hidden) {
+			TagsIconSize = (int) Tag.IconSize.Hidden;
+		} else if (choice == tag_icon_small) {
+			TagsIconSize = (int) Tag.IconSize.Small;
+		} else if (choice == tag_icon_medium) {
+			TagsIconSize = (int) Tag.IconSize.Medium;
+		} else if (choice == tag_icon_large) {
+			TagsIconSize = (int) Tag.IconSize.Large;
+		} else {
+			return;
+		}
+		
+		if (old_size != TagsIconSize) {
+			tag_selection_widget.ColumnsAutosize();
+			Preferences.Set (Preferences.TAG_ICON_SIZE, TagsIconSize);
+		}
+	}
+
 	public void HandleArrangeByTime (object sender, EventArgs args)
 	{
 		if (group_selector.Adaptor is TimeAdaptor)
@@ -1677,7 +1719,7 @@ public class MainWindow {
 		
 		Preferences.Set (Preferences.SIDEBAR_POSITION,		main_hpaned.Position);
 		Preferences.Set (Preferences.ZOOM,			icon_view.Zoom);
-		
+
 		tag_selection_widget.SaveExpandDefaults ();
 
 		this.Window.Destroy ();
@@ -2550,6 +2592,15 @@ public class MainWindow {
 		case Preferences.SIDEBAR_POSITION:
 			if (main_hpaned.Position != (int) val)
 				main_hpaned.Position = (int) val;
+			break;
+
+		case Preferences.TAG_ICON_SIZE:
+			int s = (int) val;
+			tag_icon_hidden.Active = (s == (int) Tag.IconSize.Hidden);
+			tag_icon_small.Active = (s == (int) Tag.IconSize.Small);
+			tag_icon_medium.Active = (s == (int) Tag.IconSize.Medium);
+			tag_icon_large.Active = (s == (int) Tag.IconSize.Large);
+
 			break;
 
 		case Preferences.ZOOM:

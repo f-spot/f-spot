@@ -81,7 +81,6 @@ public class Tag : DbItem, IComparable {
 		}
 	}
 
-
 	// Icon.  If stock_icon_name is not null, then we save the name of the icon instead
 	// of the actual icon data.
 
@@ -104,11 +103,46 @@ public class Tag : DbItem, IComparable {
 			// icon.
 			stock_icon_name = null;
 			icon = value;
+			cached_icon_size = 0;
 		}
 		get {
 			return icon;
 		}
 	}
+
+	public enum IconSize {
+		Hidden = 0,
+		Small = 16,
+		Medium = 24,
+		Large = 48
+	};
+
+	private static IconSize tag_icon_size = IconSize.Large;
+	public static IconSize TagIconSize {
+		get { return tag_icon_size; }
+		set { tag_icon_size = value; }
+	}
+
+	private Pixbuf cached_icon;
+	private int cached_icon_size=0;
+	// We can use a SizedIcon everywhere we were using an Icon
+	public Pixbuf SizedIcon {
+		get {
+			//Do not resize Stock Icons or not displayed icons
+			if ((int) tag_icon_size == 0)
+				return null;
+			if ((int) tag_icon_size == cached_icon_size)
+				return cached_icon;
+			if (Math.Max (icon.Width, icon.Height) >= (int) tag_icon_size) {
+				cached_icon = icon.ScaleSimple ((int) tag_icon_size, (int) tag_icon_size, InterpType.Bilinear);
+				cached_icon_size = (int) tag_icon_size;
+				return cached_icon;
+			}
+			else
+				return icon;
+		}	
+	}
+
 
 	// You are not supposed to invoke these constructors outside of the TagStore class.
 	public Tag (Category category, uint id, string name)
