@@ -30,7 +30,7 @@ public class InfoBox : VBox {
 
 	// Widgetry.
 
-	private Entry name_entry;
+	private Label name_label;
 	private Label date_label;
 	private Label size_label;
 	private Label exposure_info_label;
@@ -45,23 +45,20 @@ public class InfoBox : VBox {
 	private Widget CreateRightAlignedLabel (string text)
 	{
 		Label label = new Label (text);
+		label.Xalign = 1;
 
-		Alignment alignment = new Alignment ((float) 1.0, (float) 0.5, (float) 0.0, (float) 0.0);
-		alignment.Add (label);
-		alignment.ShowAll ();
-
-		return alignment;
+		return label;
 	}
 
 	static private Label AttachLabel (Table table, int row_num, Widget entry)
 	{
 		Label label = new Label ("");
-		Alignment alignment = new Alignment ((float) 0.0, (float) 0.5, (float) 0.0, (float) 0.0);
+		label.Xalign = 0;
+		label.Selectable = true;
+		label.Ellipsize = Pango.EllipsizeMode.End;
+		label.Show ();
 
-		alignment.Add (label);
-		alignment.ShowAll ();
-
-		table.Attach (alignment, 1, 2, (uint) row_num, (uint) row_num + 1,
+		table.Attach (label, 1, 2, (uint) row_num, (uint) row_num + 1,
 			      AttachOptions.Expand | AttachOptions.Fill, AttachOptions.Expand | AttachOptions.Fill,
 			      (uint) entry.Style.XThickness + 3, (uint) entry.Style.YThickness);
 
@@ -83,16 +80,18 @@ public class InfoBox : VBox {
 		table.Attach (CreateRightAlignedLabel (Catalog.GetString ("Exposure:")), 0, 1, 4, 5,
 			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
 
-		name_entry = new Entry ();
-		name_entry.WidthChars = 1;
-		name_entry.IsEditable = false;
-		table.Attach (name_entry, 1, 2, 0, 1,
-			      AttachOptions.Expand | AttachOptions.Fill, AttachOptions.Fill,
+		name_label = new Label ();
+		name_label.Ellipsize = Pango.EllipsizeMode.Middle;
+		name_label.Justify = Gtk.Justification.Left;
+		name_label.Selectable = true;
+		name_label.Xalign = 0;
+		table.Attach (name_label, 1, 2, 0, 1,
+			      AttachOptions.Fill | AttachOptions.Expand, AttachOptions.Fill,
 			      3, 0);
-
-		date_label = AttachLabel (table, 2, name_entry);
-		size_label = AttachLabel (table, 3, name_entry);
-		exposure_info_label = AttachLabel (table, 4, name_entry);
+		
+		date_label = AttachLabel (table, 2, name_label);
+		size_label = AttachLabel (table, 3, name_label);
+		exposure_info_label = AttachLabel (table, 4, name_label);
 
 		version_option_menu = new OptionMenu ();
 		table.Attach (version_option_menu, 1, 2, 1, 2, AttachOptions.Fill, AttachOptions.Fill, 3, 3);
@@ -107,12 +106,12 @@ public class InfoBox : VBox {
 
 	private void Clear ()
 	{
-		name_entry.Sensitive = false;
+		name_label.Sensitive = false;
 
 		version_option_menu.Sensitive = false;
 		version_option_menu.Menu = new Menu ();	// GTK doesn't like NULL here although that's what we want.
 
-		name_entry.Text = "";
+		name_label.Text = "";
 		date_label.Text = "\n";
 		size_label.Text = "";
 		exposure_info_label.Text = "\n";
@@ -256,7 +255,7 @@ public class InfoBox : VBox {
 			return false;
 		}
 		
-		name_entry.Text = photo.Name != null ? photo.Name : String.Empty;
+		name_label.Text = photo.Name != null ? photo.Name : String.Empty;
 		try {
 			//using (new Timer ("building info")) {
 				img = ImageFile.Create (photo.DefaultVersionUri);
@@ -268,7 +267,7 @@ public class InfoBox : VBox {
 		}
 
 
-		name_entry.Sensitive = true;
+		name_label.Sensitive = true;
 		exposure_info_label.Text = info.ExposureInfo;
 		size_label.Text = info.Dimensions;
 #if USE_EXIF_DATE

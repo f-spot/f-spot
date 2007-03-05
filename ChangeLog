@@ -1,3 +1,9 @@
+2007-03-04  Larry Ewing  <lewing@novell.com>
+
+	* src/InfoBox.cs: removed the wierd entry that wasn't editable,
+	replaced it with a ellipsizing label.  Removed some old strange
+	uses of Gtk.Aligment.  Fixes a walkthrough bug Jared mentioned,
+
 2007-03-01  Larry Ewing  <lewing@novell.com>
 
 	* src/FullScreenView.cs: use IconSize.LargeToolbar, as that seems
