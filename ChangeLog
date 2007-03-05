@@ -1,5 +1,7 @@
 2007-03-05  Larry Ewing  <lewing@novell.com>
 
+	* src/Widgets/SoftFocus.cs: attempt a better fix for bnc 248341.
+
 	* src/Widgets/SoftFocus.cs: Make sure the blur zone is never less
 	than .2 of the max dimension.  Fixes bnc 247507.
 

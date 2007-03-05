@@ -73,20 +73,24 @@ namespace FSpot.Widgets {
 								 small.Height);
 			
 			Context ctx = new Context (image);
-			//Pattern solid = new SolidPattern (0, 0, 0, 1.0);
+			//Pattern solid = new SolidPattern (0, 0, 0, 0);
 			//ctx.Source = solid;
 			//ctx.Paint ();
 			//solid.Destroy ();
 			ctx.Matrix = source.Fit (small);
-			ctx.Source = new SurfacePattern (source.Surface);
+			ctx.Operator = Operator.Source;
+			Pattern p = new SurfacePattern (source.Surface);
+			ctx.Source = p;
 			Console.WriteLine (small);
 			ctx.Paint ();
+			p.Destroy ();
 			((IDisposable)ctx).Dispose ();
 			Gdk.Pixbuf normal = CairoUtils.CreatePixbuf (image);
 			Gdk.Pixbuf blur = PixbufUtils.Blur (normal, 3);
 			ImageInfo overlay = new ImageInfo (blur);
 			blur.Dispose ();
 			normal.Dispose ();
+			image.Destroy ();
 			return overlay;
 		}
 		
