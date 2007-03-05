@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-03-05 17:23+0300\n"
-"PO-Revision-Date: 2007-03-05 17:38+0300\n"
+"PO-Revision-Date: 2007-03-05 19:55+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgstr "url"
 
 #: ../google-sharp/CaptchaException.cs:59
 msgid "token"
-msgstr ""
+msgstr "merkki"
 
 #: ../google-sharp/CaptchaException.cs:60
 msgid "captcha_url"
@@ -343,7 +343,7 @@ msgstr "Suorista"
 #: ../src/Editors/SoftFocus.cs:25 ../src/ItemAction.cs:371
 #: ../src/StockIcons.cs:43
 msgid "Soft Focus"
-msgstr ""
+msgstr "Pehmytpiirto"
 
 #: ../src/ExceptionDialog.cs:24
 msgid "F-Spot Encountered a Fatal Error"
@@ -394,12 +394,12 @@ msgid "Authorize"
 msgstr "Valtuuta"
 
 #: ../src/FlickrExport.cs:70
-#, fuzzy, csharp-format
+#, csharp-format
 msgid ""
 "Return to this window after you have finished the authorization process on "
 "{0} and click the \"Complete Authorization\" button below"
 msgstr ""
-"Palaa tähän ikkunaan, kun olet päättänyt valtuutusprosessin flickr.com:issa "
+"Palaa tähän ikkunaan, kun olet päättänyt valtuutusprosessin palvelussa {0} "
 "ja napsauta allaolevaa \"Viimeistele valtuutus\"-painiketta."
 
 #: ../src/FlickrExport.cs:71
@@ -461,13 +461,13 @@ msgid "Unable to log on."
 msgstr "Kirjautuminen epäonnistui."
 
 #: ../src/FlickrExport.cs:351
-#, fuzzy, csharp-format
+#, csharp-format
 msgid ""
 "F-Spot was unable to log on to {0}.  Make sure you have given the "
 "authentication using {0} web browser interface."
 msgstr ""
-"F-Spot ei voinut kirjautua Flickriin. Tarkista että olet valtuuttanut "
-"yhteydenoton käyttäen Flickrin selainliittymää."
+"F-Spot ei voinut kirjautua {0}-palveluun. Tarkista, että olet "
+"valtuuttanut yhteydenoton käyttäen {0}-palvelun selainliittymää."
 
 #: ../src/FlickrExport.cs:369 ../src/GalleryExport.cs:649
 #: ../src/PicasaWebExport.cs:515 ../src/SmugMugExport.cs:494
@@ -483,11 +483,13 @@ msgid "Building Gallery"
 msgstr "Luodaan galleriaa"
 
 #: ../src/FolderExport.cs:198
-#, fuzzy, csharp-format
+#, csharp-format
 msgid ""
 "Error uploading picture \"{0}\" to Gallery:\n"
 "{1}"
-msgstr "Virhe vietäessä galleriaan: {0}"
+msgstr ""
+"Virhe vietäessä kuvaa \"{0}\" galleriaan:\n"
+"{1}"
 
 #: ../src/FolderExport.cs:716
 msgid "Light"
@@ -776,6 +778,9 @@ msgid ""
 "disable this for viewing photos, but disabling the interpolation could be "
 "usefull in icon design.</i></small>"
 msgstr ""
+"<small><i>Ota tämä käyttöön, jos haluat interpoloida lähennetyt kuvat. "
+"Tätä ei pidä ottaa käyttöön kuvien katselussa, mutta interpolointi voi "
+"olla hyvä kytkeä käytöstä suunniteltaessa kuvakkeita.</i></small>"
 
 #: ../src/f-spot.glade.h:55
 msgid ""
@@ -792,6 +797,10 @@ msgid ""
 "color could be usefull when viewing icons or other artworks with transparent "
 "parts.</i></small>"
 msgstr ""
+"<small><i>Voit valita, kuinka kuvan läpinäkyvät osat näytetään. Tämä "
+"valinta ei vaikuta valokuviin, mutta tämän asettaminen ruutukuvioksi "
+"tai itse määritellyksi väriksi voi olla hyödyllistä katsottaessa "
+"kuvakkeita tai muita grafiikoita, joissa on läpinäkyviä osia.</i></small>"
 
 #: ../src/f-spot.glade.h:57
 msgid "<small>C_ontrast:</small>"
@@ -857,15 +866,15 @@ msgstr "Kokoa _kentän mukaan"
 
 #: ../src/f-spot.glade.h:74
 msgid "As _background"
-msgstr ""
+msgstr "Taustakuvana"
 
 #: ../src/f-spot.glade.h:75
 msgid "As check pattern"
-msgstr ""
+msgstr "Ruutukuviona"
 
 #: ../src/f-spot.glade.h:76
 msgid "As custom color: "
-msgstr ""
+msgstr "Itse määriteltynä värinä:"
 
 #: ../src/f-spot.glade.h:77
 msgid "Attach tag:"
@@ -1027,7 +1036,7 @@ msgstr "Vie _otsikot ja kommentit"
 
 #: ../src/f-spot.glade.h:117
 msgid "Export to 23h_q..."
-msgstr ""
+msgstr "Vie 23h_q-palveluun..."
 
 #: ../src/f-spot.glade.h:118
 msgid "Export to CD..."
@@ -1066,15 +1075,14 @@ msgid "F-Spot View"
 msgstr "F-Spot näkymä"
 
 #: ../src/f-spot.glade.h:127
-#, fuzzy
 msgid ""
 "F-Spot needs your authorization in order to upload photos to your {0} "
 "account. Press the \"Authorize\" button to open a web browser and give F-"
 "Spot the authorization. "
 msgstr ""
-"F-Spot vaatii valtuutuksesi, jotta voit viedä kuviasi Flickr-tilillesi. "
-"Napsauta \"Valtuuta\"-painiketta avataksesi selaimen ja anna F-Spotille "
-"valtuudet."
+"F-Spot vaatii valtuutuksesi, jotta voit viedä kuviasi {0}-tilillesi. "
+"Avaa selain napsauttamalla \"Valtuuta\"-painiketta ja valtuuta F-Spot "
+"palvelussa."
 
 #: ../src/f-spot.glade.h:129
 msgid "Fin_d"
@@ -1809,20 +1817,20 @@ msgstr "Tiliä ei ole valittu"
 
 #: ../src/GalleryRemote.cs:356
 msgid "Error reading server response"
-msgstr ""
+msgstr "Virhe luettaessa palvelimen vastausta"
 
 #. failed to find the response
 #: ../src/GalleryRemote.cs:368
 msgid "Server returned response without Gallery content"
-msgstr ""
+msgstr "Palvelin palautti vastauksen ilman galleriasisältöä"
 
 #: ../src/GlTransition.cs:36
 msgid "Dissolve"
-msgstr ""
+msgstr "Ristikuva"
 
 #: ../src/GlTransition.cs:104
 msgid "Flip"
-msgstr ""
+msgstr "Käännä ympäri"
 
 #: ../src/GlTransition.cs:148
 msgid "Cover"
@@ -2159,19 +2167,19 @@ msgstr "Säädä valokuvan värejä automaattisesti"
 
 #: ../src/ItemAction.cs:302
 msgid "Apply straightening"
-msgstr ""
+msgstr "Suorista"
 
 #: ../src/ItemAction.cs:303
 msgid "Apply straightening to image"
-msgstr ""
+msgstr "Suorista kuva"
 
 #: ../src/ItemAction.cs:356
 msgid "Adjust the angle of the image to straighten the horizon"
-msgstr ""
+msgstr "Säädä kuvan kulmaa suoristaaksesi horisontin"
 
 #: ../src/ItemAction.cs:372
 msgid "Create a soft focus visual effect"
-msgstr ""
+msgstr "Luo pehmytpiirtoefekti"
 
 #: ../src/Loupe.cs:57 ../src/MainWindow.cs:1928
 msgid "Error saving sharpened photo"
@@ -3062,6 +3070,7 @@ msgid ""
 "The \"F-Spot Manual\" could not be found.  Please verify that your "
 "installation has been completed successfully."
 msgstr ""
+"F-Spotin ohjetta ei löydy. Tarkista että ohjelma on asennettu kokonaan."
 
 #: ../src/Util.cs:482
 msgid "Help not found"
