@@ -7,19 +7,24 @@ using System.Collections;
 namespace FSpot.Database {
 	public static class Updater {
 		private static ProgressDialog dialog;
-		private static ArrayList updates = new ArrayList ();
+		private static Hashtable updates = new Hashtable ();
 		private static MetaItem db_version;
 		private static Db db;
 
-		public static int LatestVersion {
-			get { return updates.Count; }
+
+		public static Version LatestVersion {
+			get {
+				if (updates == null || updates.Count == 0)
+					return new Version (0, 0);
+				ArrayList keys = new ArrayList (updates.Keys);
+				keys.Sort ();
+				return keys[keys.Count - 1] as Version;
+			}
 		}
 		
 		static Updater () {
-			// The order these are added is important as they will be run sequentially
-			
 			// Update from version 0 to 1: Remove empty Other tags
-			AddUpdate (delegate (SqliteConnection connection) {
+			AddUpdate (new Version ("1"), delegate (SqliteConnection connection) {
 				string other_id = SelectSingleString ("SELECT id FROM tags WHERE name = 'Other'");
 
 				if (other_id == null)
@@ -44,7 +49,7 @@ namespace FSpot.Database {
 			});
 
 			// Update from version 1 to 2: Restore Other tags that were removed leaving dangling child tags
-			AddUpdate (delegate (SqliteConnection connection) {
+			AddUpdate (new Version ("2"), delegate (SqliteConnection connection) {
 				string tag_count = SelectSingleString ("SELECT COUNT(*) FROM tags WHERE category_id != 0 AND category_id NOT IN (SELECT id FROM tags)");
 
 				// If there are no dangling tags, then don't do anything
@@ -63,7 +68,7 @@ namespace FSpot.Database {
 			});
 			
 			// Update from version 2 to 3: ensure that Hidden is the only tag left which is a real tag (not category)
-			AddUpdate (delegate (SqliteConnection connection) {
+			AddUpdate (new Version ("3"), delegate (SqliteConnection connection) {
 				ExecuteNonQuery ("UPDATE tags SET is_category = 1 WHERE name != 'Hidden'");
 			});
 
@@ -71,10 +76,10 @@ namespace FSpot.Database {
 //At that time, remove all the code (in FolderExport and InfoDisplay) related to 
 //the handling of 'fspot:Folder' items. They're obsolete and replaced by fspot:FolderUri
 //ExecuteNonQuery ("DELETE FROM exports WHERE export_type='fspot:Folder'");
-
+//
 //TODO: please consider fixing bgo 324425 on the next major update of the db.
 			// Update from version 3 to 4
-			//AddUpdate (delegate (SqliteConnection connection) {
+			//AddUpdate (new Version (4,0),delegate (SqliteConnection connection) {
 			//	do update here
 			//});
 
@@ -89,11 +94,11 @@ namespace FSpot.Database {
 			if (updates.Count == 0)
 				return;
 
-			int current_version = db_version.ValueAsInt;
+			Version current_version = new Version (db_version.Value);
 
-			if (current_version == (updates [updates.Count - 1] as Update).Version)
+			if (current_version == LatestVersion)
 				return;
-			else if (current_version > (updates [updates.Count - 1] as Update).Version) {
+			else if (current_version > LatestVersion) {
 				Console.WriteLine ("The existing database version is more recent than this version of F-Spot expects.");
 				return;
 			}
@@ -103,11 +108,10 @@ namespace FSpot.Database {
 			// Only create and show the dialog if one or more of the updates to be done is
 			// marked as being slow
 			bool slow = false;
-			foreach (Update update in updates) {
-				if (current_version < update.Version && update.IsSlow) {
+			foreach (Version version in updates.Keys) {
+				if (version > current_version && (updates[version] as Update).IsSlow)
 					slow = true;
 					break;
-				}
 			}
 
 			if (slow) {
@@ -124,12 +128,14 @@ namespace FSpot.Database {
 
 			db.BeginTransaction ();
 			try {
-				foreach (Update update in updates) {
-					if (current_version >= update.Version)
+				ArrayList keys = new ArrayList (updates.Keys);
+				keys.Sort ();
+				foreach (Version version in keys) {
+					if (version <= current_version)
 						continue;
 
 					Pulse ();
-					update.Execute (db, db_version);
+					(updates[version] as Update).Execute (db, db_version);
 				}
 
 				db.CommitTransaction ();
@@ -145,19 +151,18 @@ namespace FSpot.Database {
 			if (dialog != null)
 				dialog.Destroy ();
 			
-			if (db_version.ValueAsInt == (updates [updates.Count - 1] as Update).Version)
+			if (new Version(db_version.Value) == LatestVersion)
 				Console.WriteLine ("Database updates completed successfully.");
 		}
 		
-		private static int version_counter = 1;
-		private static void AddUpdate (UpdateCode code)
+		private static void AddUpdate (Version version, UpdateCode code)
 		{
-			AddUpdate (code, false);
+			AddUpdate (version, code, false);
 		}
 		
-		private static void AddUpdate (UpdateCode code, bool is_slow)
+		private static void AddUpdate (Version version, UpdateCode code, bool is_slow)
 		{
-			updates.Add (new Update (version_counter++, code, is_slow));
+			updates[version] = new Update (version, code, is_slow);
 		}
 
 		public static void Pulse ()
@@ -234,18 +239,18 @@ namespace FSpot.Database {
 		private delegate void UpdateCode (SqliteConnection connection);
 
 		private class Update {
-			public int Version;
+			public Version Version;
 			private UpdateCode code;
 			public bool IsSlow = false;
 			
-			public Update (int to_version, UpdateCode code, bool slow)
+			public Update (Version to_version, UpdateCode code, bool slow)
 			{
 				this.Version = to_version;
 				this.code = code;
 				IsSlow = slow;
 			}
 
-			public Update (int to_version, UpdateCode code)
+			public Update (Version to_version, UpdateCode code)
 			{
 				this.Version = to_version;
 				this.code = code;
@@ -256,13 +261,106 @@ namespace FSpot.Database {
 				code (db.Connection);
 				
 				Console.WriteLine ("Updated database from version {0} to {1}",
-						db_version.ValueAsInt,
-						Version);
+						db_version.Value,
+						Version.ToString ());
 
 
-				db_version.ValueAsInt++;
+				db_version.Value = Version.ToString ();
 				db.Meta.Commit (db_version);
 			}
 		}
-	}
+
+		public class Version : IComparable {
+			int maj = 0;
+			int min = 0;
+
+			public Version (int maj, int min)
+			{
+				this.maj = maj;
+				this.min = min;
+			}
+
+			public Version (string version)
+			{
+				string [] parts = version.Split (new char [] {'.'}, 2);
+				try {
+					this.maj = Convert.ToInt32 (parts [0]);
+				}
+				catch (Exception) {
+					this.maj = 0;
+				}
+				try {
+					this.min = Convert.ToInt32 (parts [1]);
+				}
+				catch (Exception) {
+					this.min = 0;
+				}
+			}
+
+			//IComparable
+			public int CompareTo (object obj) {
+				if (this.GetType () == obj.GetType ())
+					return Compare (this, (Version)obj);
+				else
+					throw new Exception ("Object must be of type Version");
+			}
+
+			public int CompareTo (Version version)
+			{
+				return Compare (this, version);
+			}
+	
+			public static int Compare (Version v1, Version v2)
+			{
+				if (v1.maj == v2.maj)
+					return v1.min.CompareTo (v2.min);
+				return v1.maj.CompareTo (v2.maj);
+			}
+
+			public override string ToString ()
+			{
+				return maj + "." + min;
+			}
+
+			public override bool Equals (object obj)
+			{
+				return obj is Version && this == (Version)obj;
+			}
+
+			public override int GetHashCode ()
+			{
+				return maj ^ min;
+			}
+
+			public static bool operator == (Version v1, Version v2)
+			{
+				return v1.maj == v2.maj && v1.min == v2.min;
+			}
+
+			public static bool operator != (Version v1, Version v2)
+			{
+				return !(v1 == v2);
+			}
+
+			public static bool operator < (Version v1, Version v2)
+			{
+				return Compare (v1,v2) < 0;
+			}
+
+			public static bool operator > (Version v1, Version v2)
+			{
+				return Compare (v1,v2) > 0;
+			}
+
+			public static bool operator <= (Version v1, Version v2)
+			{
+				return !(v1 > v2);
+			}
+
+			public static bool operator >= (Version v1, Version v2)
+			{
+				return !(v1 < v2);
+			}
+		}
+	} 
 }

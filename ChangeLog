@@ -1,3 +1,8 @@
+2007-03-05  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Updater.cs: Use major/minor revision numbers, make the order of
+	updates definition meaningless (sort the updates). Fixes bgo #398435.
+
 2007-03-05  Larry Ewing  <lewing@novell.com>
 
 	* src/Widgets/SoftFocus.cs: attempt a better fix for bnc 248341.
