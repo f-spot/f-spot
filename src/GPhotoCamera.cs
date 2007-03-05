@@ -201,12 +201,11 @@ public class GPhotoCamera
 		if (!Directory.Exists (Path.GetDirectoryName (filename))) 
 			throw new Exception (String.Format ("Directory \"{0}\"does not exist", filename)); //FIXME
 		
-		CameraFile camfile = GetFile (index);
-		
-		if (camfile == null) 
-			throw new Exception ("Unable to claim file"); //FIXME
-		
-		camfile.Save (filename);
+		using (CameraFile camfile = GetFile (index)) {
+			if (camfile == null) 
+				throw new Exception ("Unable to claim file"); //FIXME
+			camfile.Save (filename);
+		}
 	}
 		
 	public void SaveAllFiles (string prefix, int start_number)
