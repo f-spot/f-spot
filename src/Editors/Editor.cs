@@ -8,7 +8,6 @@ namespace FSpot.Editors {
 	public abstract class Editor {
 		protected PhotoImageView view;
 		protected Gtk.Window controls;
-		protected string name;
 		
 		public event EventHandler Done;
 
@@ -17,8 +16,9 @@ namespace FSpot.Editors {
 			SetView (view);
 		}
 
-		public string Name {
-			get { return name; }
+		protected virtual string GetTitle ()
+		{
+			return String.Empty;
 		}
 
 		protected virtual void SetView (PhotoImageView view)
@@ -43,7 +43,7 @@ namespace FSpot.Editors {
 				c.Visibility = ControlOverlay.VisibilityType.Full;
 				controls = c;
 #else
-				Window win = new Window (String.Format ("{0}", Name));
+				Window win = new Window (String.Format ("{0}", GetTitle ()));
 				win.TransientFor = (Gtk.Window) view.Toplevel;
 				win.Add (w);
 				win.ShowAll ();

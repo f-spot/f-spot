@@ -19,10 +19,14 @@ namespace FSpot.Editors {
 		Widgets.SoftFocus soft; 
 		Scale scale;
 		bool double_buffer;
+		
+		protected override string GetTitle ()
+		{
+			return Catalog.GetString ("Soft Focus");
+		}
 
 		public SoftFocus (PhotoImageView view) : base (view)
 		{
-			name = Catalog.GetString ("Soft Focus");
 		}
 
 		protected override void SetView (PhotoImageView value)

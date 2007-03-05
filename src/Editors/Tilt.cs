@@ -21,7 +21,11 @@ namespace FSpot.Editors {
 
 		public Tilt (PhotoImageView view) : base (view)
 		{
-			name = Catalog.GetString ("Straighten");
+		}
+
+		protected override string GetTitle ()
+		{
+			return Catalog.GetString ("Straighten");
 		}
 
 		protected override void SetView (PhotoImageView view)

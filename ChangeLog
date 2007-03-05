@@ -1,5 +1,10 @@
 2007-03-04  Larry Ewing  <lewing@novell.com>
 
+	* src/Editors/Tilt.cs:
+	* src/Editors/SoftFocus.cs:
+	* src/Editors/Editor.cs: give the windows proper titles, fixes bnc
+	247504.
+
 	* src/FullScreenView.cs: Remove the <small> markup from the
 	label.  Fixes bnc 247502.
 
