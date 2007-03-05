@@ -1,3 +1,12 @@
+2007-03-05  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Widgets/TagEntry.cs: New UpdateFromTagNAmes method.
+
+	* src/f-spot.glade:
+	* src/ImportCommand.cs: use the tag entry (with search) instead of the
+	dropdown for attaching tags at import time. Thanks Thomas for help and
+	comments. Fixes bgo #407181.
+
 2007-03-05  Stephane Delcroix <stephane@delcroix.org>
 
 	* src/MainWindow.cs:

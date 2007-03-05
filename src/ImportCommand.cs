@@ -291,11 +291,10 @@ public class ImportCommand : FSpot.GladeDialog {
 		}
 	}		
 	
-	[Glade.Widget] Gtk.OptionMenu tag_option_menu;
+	[Glade.Widget] Gtk.HBox tagentry_box;
 	[Glade.Widget] Gtk.OptionMenu source_option_menu;
 	[Glade.Widget] Gtk.ScrolledWindow icon_scrolled;
 	[Glade.Widget] Gtk.ScrolledWindow photo_scrolled;
-	[Glade.Widget] Gtk.CheckButton attach_check;
 	[Glade.Widget] Gtk.CheckButton recurse_check;
 	[Glade.Widget] Gtk.CheckButton copy_check;
 	[Glade.Widget] Gtk.Button ok_button;
@@ -304,7 +303,9 @@ public class ImportCommand : FSpot.GladeDialog {
 	[Glade.Widget] Gtk.EventBox frame_eventbox;
 	[Glade.Widget] ProgressBar progress_bar;
 	
-	Tag tag_selected;
+	ArrayList tags_selected;
+
+	FSpot.Widgets.TagEntry tag_entry;
 
 	Gtk.Window main_window;
 	FSpot.PhotoList collection;
@@ -499,11 +500,6 @@ public class ImportCommand : FSpot.GladeDialog {
 		importer = null;
 	}
 	
-	public void HandleTagToggled (object o, EventArgs args) 
-	{
-		tag_option_menu.Sensitive = attach_check.Active;
-	}
-
 	public void HandleImportBrowse (object o, EventArgs args) 
 	{
 		string path = ChoosePath ();
@@ -542,12 +538,12 @@ public class ImportCommand : FSpot.GladeDialog {
 		import_path = path;
 	}
 
-	private void HandleTagMenuSelected (Tag t) 
-	{
-		tag_selected = t;
-		//tag_image.Pixbuf = t.Icon;
-		//tag_label.Text = t.Name;
-	}
+//	private void HandleTagMenuSelected (Tag t) 
+//	{
+//		tag_selected = t;
+//		//tag_image.Pixbuf = t.Icon;
+//		//tag_label.Text = t.Name;
+//	}
 
 	private void HandleRecurseToggled (object sender, System.EventArgs args)
 	{
@@ -566,8 +562,6 @@ public class ImportCommand : FSpot.GladeDialog {
 		this.Dialog.WindowPosition = Gtk.WindowPosition.CenterOnParent;
 		this.Dialog.Response += HandleDialogResponse;
 
-		CreateTagMenu ();
-		
 	        AllowFinish = false;
 		
 		this.Dialog.DefaultResponse = ResponseType.Ok;
@@ -600,11 +594,11 @@ public class ImportCommand : FSpot.GladeDialog {
 		photo_view.Pixbuf = PixbufUtils.LoadFromAssembly ("f-spot-48.png");
 		photo_view.Fit = true;
 			
-		tag_selected = null;
-		if (attach_check != null) {
-			attach_check.Toggled += HandleTagToggled;
-			HandleTagToggled (null, null);
-		}				
+		tag_entry = new FSpot.Widgets.TagEntry (MainWindow.Toplevel.Database.Tags, false);
+		tag_entry.UpdateFromTagNames (new string []{});
+		tagentry_box.Add (tag_entry);
+
+		tag_entry.Show ();
 
 		this.Dialog.Show ();
 		//source_option_menu.Changed += HandleSourceChanged;
@@ -650,16 +644,17 @@ public class ImportCommand : FSpot.GladeDialog {
 		}
 
 		if (response == ResponseType.Ok) {
+			this.UpdateTagStore (tag_entry.GetTypedTagNames ());
 			this.Finish ();
 
-			if (attach_check.Active && tag_selected != null) {
+			if (tags_selected != null && tags_selected.Count > 0) {
 				for (int i = 0; i < collection.Count; i++) {
 					Photo p = collection [i] as Photo;
 					
 					if (p == null)
 						continue;
 					
-					p.AddTag (tag_selected);
+					p.AddTag ((Tag [])tags_selected.ToArray(typeof(Tag)));
 					store.Commit (p);
 				}
 			}
@@ -673,30 +668,34 @@ public class ImportCommand : FSpot.GladeDialog {
 		}
 	}
 
-	private void CreateTagMenu ()
+	private void UpdateTagStore (string [] new_tags)
 	{
-		TagMenu tagmenu = new TagMenu (null, MainWindow.Toplevel.Database.Tags);
-		tagmenu.NewTagHandler = HandleNewTagSelected;
+		if (new_tags == null || new_tags.Length == 0)
+			return;
 
-		tagmenu.Append (new MenuItem (Catalog.GetString ("Select Tag")));
-		
-		tagmenu.Populate (true);
-		
-		tagmenu.TagSelected += HandleTagMenuSelected;
-		
-		tagmenu.ShowAll ();
-		tag_option_menu.Menu = tagmenu;
-	}
+		tags_selected = new ArrayList ();
+		Db db = MainWindow.Toplevel.Database;	
+		db.BeginTransaction ();
+		foreach (string tagname in new_tags) {
+			Tag t = db.Tags.GetTagByName (tagname);
+			if (t == null) {
+				Category default_category = db.Tags.GetTagByName (Catalog.GetString ("Import Tags")) as Category;
+				if (default_category == null) {
+					default_category = db.Tags.CreateCategory (null, Catalog.GetString ("Import Tags"));
+					default_category.StockIconName = "f-spot-imported-xmp-tags.png"; 
+				}
+				t = db.Tags.CreateCategory (default_category, tagname) as Tag;
+				db.Tags.Commit (t);
+			}
 
-	private void HandleNewTagSelected (object sender, EventArgs args)
-	{
-		Tag new_tag = MainWindow.Toplevel.CreateTag (Dialog, null);
-
-		if (new_tag != null) {
-			CreateTagMenu ();
-			tag_option_menu.SetHistory ((uint) (tag_option_menu.Menu as TagMenu).GetPosition (new_tag));
-			tag_selected = new_tag;
+			tags_selected.Add (t);
 		}
+		db.CommitTransaction ();
+		
+		ArrayList tagnames = new ArrayList ();
+		foreach (Tag t in tags_selected)
+			tagnames.Add (t.Name);
+		tag_entry.UpdateFromTagNames ((string [])tagnames.ToArray(typeof(string)));
 	}
 
 	public void Cancel ()

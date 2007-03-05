@@ -24,11 +24,16 @@ namespace FSpot.Widgets {
 
 		TagStore tag_store;
 
-		public TagEntry (TagStore tag_store) : base ()
+		public TagEntry (TagStore tag_store) : this (tag_store, true)
+		{
+		}
+
+		public TagEntry (TagStore tag_store, bool update_on_focus_out) : base ()
 		{
 			this.tag_store = tag_store;
 			this.KeyPressEvent += HandleKeyPressEvent;
-			this.FocusOutEvent += HandleFocusOutEvent;
+			if (update_on_focus_out)
+				this.FocusOutEvent += HandleFocusOutEvent;
 		}
 
 		ArrayList selected_photos_tagnames;
@@ -61,10 +66,19 @@ namespace FSpot.Widgets {
 			Update ();
 		}
 
+		public void UpdateFromTagNames (string [] tagnames)
+		{
+			selected_photos_tagnames = new ArrayList ();
+			foreach (string tagname in tagnames)
+				selected_photos_tagnames.Add (tagname);
+
+			Update ();
+		}
+
 		private void Update ()
 		{
 			selected_photos_tagnames.Sort ();
-	
+
 			StringBuilder sb = new StringBuilder ();
 			foreach (string tagname in selected_photos_tagnames) {
 				if (sb.Length > 0)
