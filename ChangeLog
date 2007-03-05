@@ -1,5 +1,8 @@
 2007-03-05  Larry Ewing  <lewing@novell.com>
 
+	* src/main.cs: add a more descriptive error when the session bus
+	is missing.  Fixes bnc 247772.
+
 	* src/Widgets/SoftFocus.cs: clear the memory buffer completely.
 	Fixes bnc 248341.
 

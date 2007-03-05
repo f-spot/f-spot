@@ -114,7 +114,11 @@ public class Driver {
 				return;
 			}
 
-			NDesk.DBus.BusG.Init();
+			try {
+				NDesk.DBus.BusG.Init();
+			} catch (Exception e) {
+				throw new ApplicationException ("F-Spot cannot find the Dbus session bus.  Make sure dbus is configured properly or start a new session for f-spot using \"dbus-launch f-spot\"", e);
+			}
 			/* 
 			 * FIXME we need to inialize gobject before making the dbus calls, we'll go 
 			 * ahead and do it like this for now.
