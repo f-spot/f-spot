@@ -172,7 +172,8 @@ namespace FSpot {
 				HBox box = new HBox ();
 				box.PackStart (w, false, false, 0);
 				Label l = new Label ();
-				l.Markup = "<small>" + action.Label + "</small>";
+				//l.Markup = "<small>" + action.Label + "</small>";
+				l.Text = action.Label;
 				box.PackStart (l);
 				w = box;
 			}
