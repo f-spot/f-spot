@@ -72,13 +72,13 @@ namespace FSpot.Database {
 				ExecuteNonQuery ("UPDATE tags SET is_category = 1 WHERE name != 'Hidden'");
 			});
 
-//WARNING and FIXME: please add this update to the next major update of the db !!! 
-//At that time, remove all the code (in FolderExport and InfoDisplay) related to 
-//the handling of 'fspot:Folder' items. They're obsolete and replaced by fspot:FolderUri
-//ExecuteNonQuery ("DELETE FROM exports WHERE export_type='fspot:Folder'");
-//
-//TODO: please consider fixing bgo 324425 on the next major update of the db.
-			// Update from version 3 to 4
+			//Version 3.1, clean old (and unused) items in Export
+			AddUpdate (new Version (3, 1), delegate (SqliteConnection connection) {
+				ExecuteNonQuery ("DELETE FROM exports WHERE export_type='fspot:Folder'");
+			});
+
+//TODO: please consider fixing bgo 324425 on the next update of the db.
+			// Update to version 4.0
 			//AddUpdate (new Version (4,0),delegate (SqliteConnection connection) {
 			//	do update here
 			//});
