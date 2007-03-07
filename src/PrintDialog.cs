@@ -90,7 +90,7 @@ namespace FSpot {
 					if (image == null)
 						throw new System.Exception ("Error loading picture");
 
-				} catch (GLib.GException  e) {
+				} catch (Exception  e) {
 					exceptions.Add (e);
 					continue;
 				}

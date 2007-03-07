@@ -1,3 +1,13 @@
+2007-03-07  Larry Ewing  <lewing@novell.com>
+
+	* src/f-spot.glade:
+	* src/CameraFileSelectionDialog.cs: Remove the unconnected widgets
+	and make the tag selector look like the import dialog selector.
+	Fixes bgo 331525.
+
+	* src/PrintDialog.cs: catch any exception it's difficult to know
+	what will be thrown.  Fixes bnc 173606 (again).
+
 2007-03-07  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/FolderExport: sharpen thumbs and lq images on export to Original

@@ -18,12 +18,9 @@ namespace FSpot {
 		[Widget] Gtk.Button cancelButton;
 		[Widget] Gtk.Label selected_camera_name;
 		[Widget] Gtk.TreeView file_tree;
-		[Widget] Gtk.Entry copied_file_destination;
-		[Widget] Gtk.Button save_directory_selection_button;
-		[Widget] Gtk.Entry prefix_entry;
-		[Widget] Gtk.CheckButton import_files_checkbox;
-		[Widget] Gtk.Button select_tag_button;
-		
+		[Widget] Gtk.OptionMenu tag_option_menu;
+		[Widget] Gtk.CheckButton attach_check;
+
 		GPhotoCamera camera;
 		ListStore preview_list_store;
 		Db db;
@@ -76,12 +73,52 @@ namespace FSpot {
 							    typeof (Pixbuf), typeof (int));
 			
 			file_tree.Model = preview_list_store;
-			
-			copied_file_destination.Text = FSpot.Global.PhotoDirectory;
+
+			CreateTagMenu ();
+			attach_check.Toggled += HandleTagToggled;
+			HandleTagToggled (null, null);
 			
 			GetPreviews ();
 		}
 		
+		private void CreateTagMenu ()
+		{
+			TagMenu tagmenu = new TagMenu (null, MainWindow.Toplevel.Database.Tags);
+			tagmenu.NewTagHandler = HandleNewTagSelected;
+			
+			tagmenu.Append (new MenuItem (Catalog.GetString ("Select Tag")));
+			
+			tagmenu.Populate (true);
+			
+			tagmenu.TagSelected += HandleTagMenuSelected;
+			
+			tagmenu.ShowAll ();
+			tag_option_menu.Menu = tagmenu;
+		}
+
+		private void HandleTagMenuSelected (Tag t) 
+		{
+			selected_tags = new Tag [] { t };
+		}
+
+		private void HandleNewTagSelected (object sender, EventArgs args)
+		{
+			Tag new_tag = MainWindow.Toplevel.CreateTag (Dialog, null);
+			
+			if (new_tag != null) {
+				CreateTagMenu ();
+				tag_option_menu.SetHistory ((uint) (tag_option_menu.Menu as TagMenu).GetPosition (new_tag));
+				selected_tags = new Tag [] { new_tag };
+			}
+		}
+		
+		public void HandleTagToggled (object o, EventArgs args)
+		{
+			tag_option_menu.Sensitive = attach_check.Active;
+			if (!attach_check.Active)
+				selected_tags = null;
+		}
+
 		private void GetPreviews ()
 		{
 			lock (camera) {
@@ -138,50 +175,8 @@ namespace FSpot {
 			return list;
 		}
 		
-		private bool PrepareDestination ()
-		{
-			if (copied_file_destination.Text.Length == 0) {
-				HigMessageDialog md = new HigMessageDialog (this.Dialog, 
-									    DialogFlags.DestroyWithParent, 
-									    MessageType.Warning, 
-									    ButtonsType.Ok, 
-									    Catalog.GetString ("Unknown destination."),
-									    Catalog.GetString ("When copying files from a camera you must select a valid destination on the local filesystem"));
-				md.Run ();
-				md.Destroy ();
-				
-				return true;
-			}
-			
-			destination = copied_file_destination.Text;
-			
-			if (!System.IO.Directory.Exists (destination)) {
-				// FIXME ask for confimation
-				try {
-					System.IO.Directory.CreateDirectory (destination);
-				} catch (System.Exception e) {
-					HigMessageDialog md = new HigMessageDialog (this.Dialog,
-										    DialogFlags.DestroyWithParent,
-										    MessageType.Error,
-										    ButtonsType.Ok,
-										    Catalog.GetString ("Unable to create directory."),
-										    String.Format (Catalog.GetString ("Error \"{0}\" while creating directory \"{1}\".  Check that the path and permissions are correct and try again"), e.Message, destination));
-					md.Run ();
-					md.Destroy ();
-					
-					return true;
-				}
-			}
-			
-			return false;
-		}
-		
-		
 		private bool SaveFiles ()
 		{
-			if (PrepareDestination ())
-				return false;
-			
 			index_list = GetSelectedItems ();
 			this.Dialog.Hide ();
 			
@@ -266,40 +261,8 @@ namespace FSpot {
 		
 		private void ImportFiles ()
 		{
-			System.Console.WriteLine ("Calling Import");
-			
-			if (saved_files != null && import_files_checkbox.Active) {
-				ImportCommand command = new ImportCommand (null);
-				command.ImportFromPaths (db.Photos, saved_files, selected_tags);
-			}
-		}
-		
-		void HandleSelectSaveDirectory (object sender, EventArgs args)
-		{		
-			CompatFileChooserDialog file_selector =
-				new CompatFileChooserDialog (Catalog.GetString ("Select Destination"), 
-							     this.Dialog, CompatFileChooserDialog.Action.SelectFolder);
-			
-			file_selector.Filename = copied_file_destination.Text;
-			int result = file_selector.Run ();
-			
-			if ((ResponseType)result == ResponseType.Ok)
-				copied_file_destination.Text = file_selector.Filename;
-			
-			file_selector.Destroy ();
-		}
-		
-		void HandleSelectTags (object sender, EventArgs args)
-		{
-			TagSelectionDialog tag_selection = new TagSelectionDialog (db.Tags);
-			selected_tags = tag_selection.Run ();
-			tag_selection.Hide (); 
-		}
-		
-		void HandleImportToggled (object sender, EventArgs args)
-		{
-			if (sender is Gtk.CheckButton)
-				select_tag_button.Sensitive = (sender as Gtk.CheckButton).Active;
+			ImportCommand command = new ImportCommand (null);
+			command.ImportFromPaths (db.Photos, saved_files, selected_tags);
 		}
 		
 		public Tag[] Tags {
