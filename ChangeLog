@@ -1,5 +1,12 @@
 2007-03-07  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/FolderExport: sharpen thumbs and lq images on export to Original
+	or HtmlGallery. Fixes bgo #415732.
+
+	* src/Preferences.cs: enable the sharpening with a gconf key.
+
+2007-03-07  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/Makefile.am
 	* src/Filters/SharpFilter.cs: new filter.
 

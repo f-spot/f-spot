@@ -96,6 +96,7 @@ namespace FSpot
 		public const string EXPORT_FOLDER_ROTATE = "/apps/f-spot/export/folder/rotate";
 		public const string EXPORT_FOLDER_METHOD = "/apps/f-spot/export/folder/method";
 		public const string EXPORT_FOLDER_URI = "/apps/f-spot/export/folder/uri";
+		public const string EXPORT_FOLDER_SHARPEN = "/apps/f-spot/export/folder/sharpen";
 		
  		public const string EXPORT_EMAIL_SIZE = "/apps/f-spot/export/email/size";
  		public const string EXPORT_EMAIL_ROTATE = "/apps/f-spot/export/email/auto_rotate";
@@ -164,6 +165,7 @@ namespace FSpot
 			case EXPORT_SMUGMUG_ROTATE:
 			case EXPORT_SMUGMUG_BROWSER:
 			case EXPORT_FOLDER_SCALE:
+			case EXPORT_FOLDER_SHARPEN:
 				return true;
 			
 			case EXPORT_PICASAWEB_SIZE:

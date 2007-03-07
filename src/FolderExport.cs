@@ -443,15 +443,6 @@ namespace FSpot {
 			MakeDir (SubdirPath (req.Name));
 			path = SubdirPath (req.Name, ImageName (image_num));
 			
-//			if (scale) {
-//				//FIXME we have filters for that !
-//				PixbufUtils.Resize (photo_path, path, size, true); 	
-//			} else if (rotate && (new Filters.OrientationFilter ().Convert (photo_path, path))) {
-//				// do nothing, all is well the filter did the copying
-//			} else {
-//				File.Copy (photo_path, path, true);
-//			}
-
 			using (Filters.FilterRequest request = new Filters.FilterRequest (photo.DefaultVersionUri)) {
 				filter_set.Convert (request);
 				if (request.Current.LocalPath == path)
@@ -477,25 +468,22 @@ namespace FSpot {
 						req = requests [i];
 						if (scale && req.AvoidScale (size))
 							continue;
-					
-						if (img == null) {
-							ImageFile imgf = ImageFile.Create (photo.DefaultVersionUri);
-							scaled = imgf.Load (req.Width, req.Height);
-						} else
-							scaled = PixbufUtils.ScaleToMaxSize (img, req.Width, req.Height, false);
+				
+						Filters.FilterSet req_set = new Filters.FilterSet ();
+						req_set.Add (new Filters.ResizeFilter ((uint)Math.Max (req.Width, req.Height)));
+						if ((bool)Preferences.Get (Preferences.EXPORT_FOLDER_SHARPEN)) {
+							if (req.Name == "lq")
+								req_set.Add (new Filters.SharpFilter (0.1, 2, 4));
+							if (req.Name == "thumbs")
+								req_set.Add (new Filters.SharpFilter (0.1, 2, 5));
+						}
+						using (Filters.FilterRequest tmp_req = new Filters.FilterRequest (photo.DefaultVersionUri)) {
+							req_set.Convert (tmp_req);
+							MakeDir (SubdirPath (req.Name));
+							path = SubdirPath (req.Name, ImageName (image_num));
+							System.IO.File.Copy (tmp_req.Current.LocalPath, path, true);
+						}
 						
-						MakeDir (SubdirPath (req.Name));
-						path = SubdirPath (req.Name, ImageName (image_num));
-						
-						if (req.CopyExif && data != null && data.Handle.Handle == System.IntPtr.Zero) {
-							PixbufUtils.SaveJpeg (scaled, path, 90, data);
-						} else 
-							scaled.Savev (path, "jpeg", pixbuf_keys, pixbuf_values);
-						
-						if (img != null)
-							img.Dispose ();
-						
-						img = scaled;
 					}
 					
 					if (scaled != null)
