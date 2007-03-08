@@ -205,6 +205,10 @@ namespace FSpot {
 		
 				}
 
+				//create the zip tarballs for original
+				if (gallery is OriginalGallery && (bool)Preferences.Get(Preferences.EXPORT_FOLDER_INCLUDE_TARBALLS))
+					(gallery as OriginalGallery).CreateZip ();
+
 				// we've created the structure, now if the destination was local we are done
 				// otherwise we xfer 
 				if (!dest.IsLocal) {
@@ -458,10 +462,6 @@ namespace FSpot {
 								      UriList.PathToFileUriEscaped (path).ToString ());
 				}
 
-				
-				Gdk.Pixbuf img = null;
-				Gdk.Pixbuf scaled = null;
-				
 				using (Exif.ExifData data = new Exif.ExifData (photo_path)) {
 					for (int i = 1; i < requests.Length; i++) {
 						
@@ -485,10 +485,6 @@ namespace FSpot {
 						}
 						
 					}
-					
-					if (scaled != null)
-						scaled.Dispose ();
-
 				}
 			}
 		}
@@ -593,7 +589,6 @@ namespace FSpot {
 		{
 			base.GenerateLayout ();
 			MakeDir (SubdirPath ("comments"));
-			MakeDir (SubdirPath ("zip"));
 			CreateHtaccess();
 			CreateInfo();
 			SetTime ();
@@ -616,7 +611,15 @@ namespace FSpot {
 					CreateComments (collection [i].DefaultVersionUri.LocalPath, i);
 
 				Directory.SetLastWriteTimeUtc(gallery_path, collection [0].Time);
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e.ToString ());
+			} 
+		}
 
+		internal void CreateZip () 
+		{
+			MakeDir (SubdirPath ("zip"));
+			try {
 				if (System.IO.Directory.Exists (SubdirPath ("mq")))
 				    CreateZipFile("mq");
 

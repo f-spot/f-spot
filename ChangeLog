@@ -1,3 +1,9 @@
+2007-03-08  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Preferences.cs:
+	* src.FolderExport.cs: reconnect the creation of ZipFiles for Original
+	and add a gconf option to disable their creation. Fixes bgo #415997.
+
 2007-03-07  Larry Ewing  <lewing@novell.com>
 
 	* src/f-spot.glade:
