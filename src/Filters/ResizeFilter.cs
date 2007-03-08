@@ -44,11 +44,13 @@ namespace FSpot.Filters {
 			string dest = dest_uri.LocalPath;
 
 			ImageFile img = ImageFile.Create (source);
-			using (Pixbuf pixbuf = img.Load ((int)size, (int)size)) {
 
+			using (Pixbuf pixbuf = img.Load ()) {
 				if (pixbuf.Width < size && pixbuf.Height < size)
 					return false;
+			}
 
+			using (Pixbuf pixbuf = img.Load ((int)size, (int)size)) {
 				string destination_extension = Path.GetExtension (dest);
 
 				if (Path.GetExtension (source).ToLower () == Path.GetExtension (dest).ToLower ()) {

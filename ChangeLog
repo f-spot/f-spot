@@ -1,8 +1,14 @@
 2007-03-08  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/Filters/ResizeFilter.cs: Check for image size before loading a
+	resized pixbuf. Avoid a bug when Load (int, int) return a slightly
+	smaller pixbuf than expected.
+
+2007-03-08  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/Updater.cs: bump the db version to an integer only version with
 	no subversion, so you still can open your db with old f-spot version.
-	We'll only be able to use subversion after one or 2 major releases of
+	We'll only be able to use subversion after one or 2 major release of
 	f-spot (6-9 months) when everybody run the new code.
 
 2007-03-08  Stephane Delcroix  <stephane@delcroix.org>
