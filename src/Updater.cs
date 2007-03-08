@@ -77,9 +77,12 @@ namespace FSpot.Database {
 				ExecuteNonQuery ("DELETE FROM exports WHERE export_type='fspot:Folder'");
 			});
 
+			//Version 4.0, bump the version number to a integer, for backward compatibility
+			AddUpdate (new Version (4, 0), delegate (SqliteConnection connection) {});
+
 //TODO: please consider fixing bgo 324425 on the next update of the db.
-			// Update to version 4.0
-			//AddUpdate (new Version (4,0),delegate (SqliteConnection connection) {
+			// Update to version 5.0
+			//AddUpdate (new Version (5,0),delegate (SqliteConnection connection) {
 			//	do update here
 			//});
 
@@ -319,6 +322,8 @@ namespace FSpot.Database {
 
 			public override string ToString ()
 			{
+				if (min == 0)
+					return maj.ToString ();
 				return maj + "." + min;
 			}
 
