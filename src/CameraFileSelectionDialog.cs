@@ -31,7 +31,6 @@ namespace FSpot {
 		string[] saved_files;
 		Tag[] selected_tags;
 		
-		string destination;
 		System.Threading.Thread command_thread;
 		
 		public CameraFileSelectionDialog (GPhotoCamera cam, Db datab)
@@ -234,7 +233,10 @@ namespace FSpot {
 		{
 			GPhotoCameraFile camfile = (GPhotoCameraFile) camera.FileList [index];
 			string tempdir = FSpot.Global.PhotoDirectory;
-			string orig = System.IO.Path.Combine (tempdir, camfile.FileName.ToLower ());
+			if (! Directory.Exists (tempdir))
+				Directory.CreateDirectory (tempdir);
+
+			string orig = Path.Combine (tempdir, camfile.FileName.ToLower ());
 			string path = orig;
 		
 			int i = 0;
