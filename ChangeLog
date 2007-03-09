@@ -1,3 +1,24 @@
+2007-03-09  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Makefile.am:
+	* src/Term.cs: new logic class, capable of building complex queries
+	about tags and generating the sql code.
+
+	* src/PhotoStore.cs:
+	* src/TagStore.cs:
+	* src/TimeAdaptor.cs:
+	* src/PhotoQuery.cs:
+	* src/SimpleCalendar.cs:
+	* src/TagCommands.cs:
+	* src/DirectoryAdaptor.cs: 
+	* src/MainWindow.cs: use the Terms to build queries.
+
+	* src/Widgets/FindBar.cs: moved from src/FindBar.cs, refactored a lot.
+	New parser handling Not conditions (Gabriel Burt), use a delay to
+	prevent updates while typing (Gabriel Burt), new completion code to
+	mimic the behavior of the TagEntry widget, no longer use the tag
+	widget to get tagnames, use the TagStore and a lot more...
+
 2007-03-09  Larry Ewing  <lewing@novell.com>
 
 	* src/CameraFileSelectionDialog.cs: Create directory if it isn't

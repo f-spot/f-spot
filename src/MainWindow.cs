@@ -315,7 +315,8 @@ public class MainWindow {
 		view_vbox.PackStart (group_selector, false, false, 0);
 		view_vbox.ReorderChild (group_selector, 0);
 
-		find_bar = new FindBar (query, tag_selection_widget.Model);
+		//find_bar = new FindBar (query, tag_selection_widget.Model);
+		find_bar = new FindBar (query, db.Tags);
 		view_vbox.PackStart (find_bar, false, false, 0);
 		main_window.KeyPressEvent += HandleKeyPressEvent;
 		
@@ -3059,7 +3060,7 @@ public class MainWindow {
 
 	private void ShowQueryWidget () {
 		if (find_bar.Visible) {
-			find_bar.Entry.Text = "";
+			find_bar.Text = "";
 			find_bar.Hide ();
 		}
 		
@@ -3078,7 +3079,7 @@ public class MainWindow {
 				}
 				
 				find_bar.Show ();
-				find_bar.Entry.GrabFocus ();
+				find_bar.GrabFocus ();
 				args.RetVal = true;
 				return;
 			}

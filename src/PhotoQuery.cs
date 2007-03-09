@@ -6,6 +6,7 @@ namespace FSpot {
 	public class PhotoQuery : FSpot.IBrowsableCollection {
 		private Photo [] photos;
 		private PhotoStore store;
+		private Term terms;
 		private Tag [] tags;
 		private string extra_condition;
 		private PhotoStore.DateRange range = null;
@@ -14,7 +15,7 @@ namespace FSpot {
 		public PhotoQuery (PhotoStore store)
 		{
 			this.store = store;
-			photos = store.Query (null, null, range);
+			photos = store.Query ((Tag [])null, null, range);
 		}
 
 		public int Count {
@@ -55,13 +56,19 @@ namespace FSpot {
 			}
 		}
 		
+		[Obsolete ("use a Term expression instead")]
 		public Tag [] Tags {
-			get {
-				return tags;
-			}
-			
 			set {
-				tags = value;
+				Terms = Term.OrTerm (value);
+			}
+		}
+
+		public Term Terms {
+			get {
+				return terms;
+			}
+			set {
+				terms = value;
 				untagged = false;
 				RequestReload ();
 			}
@@ -120,7 +127,7 @@ namespace FSpot {
 			if (untagged)
 				photos = store.QueryUntagged (range);
 			else
-				photos = store.Query (tags, extra_condition, range);
+				photos = store.Query (terms, extra_condition, range);
 
 			if (Changed != null)
 				Changed (this);

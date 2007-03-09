@@ -1224,8 +1224,11 @@ public class PhotoStore : DbStore {
 
 	public Photo [] Query (Tag [] tags, string extra_condition, DateRange range)
 	{
-		string query;
+		return Query (FSpot.Term.OrTerm(tags), extra_condition, range);
+	}
 
+	public Photo [] Query (FSpot.Term searchexpression, string extra_condition, DateRange range)
+	{
 		bool hide = (extra_condition == null);
 
 		// The SQL query that we want to construct is:
@@ -1245,62 +1248,45 @@ public class PhotoStore : DbStore {
 		//                  GROUP BY photos.id
 		
 		StringBuilder query_builder = new StringBuilder ();
-		query_builder.Append ("SELECT photos.id,                          " +
-				      "       photos.time,                        " +
-				      "       photos.directory_path,              " +
-				      "       photos.name,                        " +
-				      "       photos.description,                 " +
-				      "       photos.default_version_id           " +
-				      "     FROM photos                      ");
+		query_builder.Append ("SELECT photos.id, " 			+
+					     "photos.time, "			+
+					     "photos.directory_path, " 		+
+					     "photos.name, "			+
+					     "photos.description, "		+
+					     "photos.default_version_id "	+
+				      "FROM photos ");
 		
+		bool where_statement_added = false;
+
 		if (range != null) {
 			query_builder.Append (String.Format ("WHERE photos.time >= {0} AND photos.time <= {1} ",
 							     DbUtils.UnixTimeFromDateTime (range.Start), 
 							     DbUtils.UnixTimeFromDateTime (range.End)));
+			where_statement_added = true;
 		}
 		
 		if (hide && tag_store.Hidden != null) {
-			query_builder.Append (String.Format ("{0} photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {1})", 
-							     range != null ? " AND " : " WHERE ", tag_store.Hidden.Id));
+			query_builder.Append (String.Format ("{0} photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {1}) ", 
+							     where_statement_added ? " AND " : " WHERE ", tag_store.Hidden.Id));
+			where_statement_added = true;
 		}
 		
-		if (tags != null && tags.Length > 0) {
-			bool first = true;
-			foreach (Tag t in tags) {
-				if (t == null)
-					continue;
-				
-				if (tag_store.Hidden != null && t.Id == tag_store.Hidden.Id)
-					continue;
-				
-				if (first) {
-					query_builder.Append (String.Format ("{0} photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN (",
-									     (hide && tag_store.Hidden != null) || range != null ? " AND " : " WHERE "));
-				}
-				
-				query_builder.Append (String.Format ("{0}{1} ", first ? "" : ", ", t.Id));
-				
-					first = false;
-			}
-			
-			if (!first)
-				query_builder.Append (")) ");
+		if (searchexpression != null && !searchexpression.IsEmpty) {
+			query_builder.Append (String.Format ("{0} {1}", 
+							     where_statement_added ? " AND " : " WHERE ",
+							     searchexpression.SqlStatement));
+			where_statement_added = true;
 		}
 
-		if (extra_condition != null) {
-			query_builder.Append (
-				String.Format (
-					"{0} {1} ",
-					(hide || range != null || (tags != null && tags.Length > 0)) ? " AND " : " WHERE ",
-					extra_condition
-				)
-			);
+		if (extra_condition != null && extra_condition.Length != 0) {
+			query_builder.Append (String.Format ("{0} {1} ",
+							     where_statement_added ? " AND " : " WHERE ",
+							     extra_condition));
+			where_statement_added = true;
 		}
 		
 		query_builder.Append ("ORDER BY photos.time");
-		query = query_builder.ToString ();
-		
-		return Query (query);
+		return Query (query_builder.ToString ());
 	}
 
 #if TEST_PHOTO_STORE

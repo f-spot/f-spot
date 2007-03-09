@@ -18,7 +18,7 @@ namespace FSpot {
 
 		private void ParentChanged (IBrowsableCollection query)
 		{
-			this.query.Tags = ((PhotoQuery)query).Tags;
+			this.query.Terms = ((PhotoQuery)query).Terms;
 		}
 
 		private void Changed (IBrowsableCollection query)

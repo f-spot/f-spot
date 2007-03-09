@@ -84,7 +84,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Filters/TiltFilter.cs		\
 	$(srcdir)/Filters/UniqueNameFilter.cs	\
 	$(srcdir)/Filters/WhiteListFilter.cs	\
-	$(srcdir)/FindBar.cs			\
 	$(srcdir)/FolderExport.cs		\
 	$(srcdir)/FotkiRemote.cs		\
 	$(srcdir)/FormClient.cs			\
@@ -176,6 +175,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ThumbnailGenerator.cs		\
 	$(srcdir)/Texture.cs			\
 	$(srcdir)/TextureDisplay.cs             \
+	$(srcdir)/Term.cs			\
 	$(srcdir)/TimeAdaptor.cs		\
 	$(srcdir)/TimeDialog.cs			\
 	$(srcdir)/TipWindow.cs			\
@@ -194,6 +194,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/CairoUtils.cs		\
 	$(srcdir)/Widgets/CompositeUtils.cs	\
 	$(srcdir)/Widgets/Dissolve.cs		\
+	$(srcdir)/Widgets/FindBar.cs		\
 	$(srcdir)/Widgets/GdkUtils.cs		\
 	$(srcdir)/Widgets/IEffect.cs		\
 	$(srcdir)/Widgets/ITransition.cs	\

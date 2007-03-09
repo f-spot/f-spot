@@ -177,6 +177,12 @@ public class Tag : DbItem, IComparable {
 
 		return false;
 	}
+
+	public static implicit operator FSpot.Term (Tag tag)
+	{
+		return new FSpot.TagTerm (tag);
+	}
+
 }
 
 
