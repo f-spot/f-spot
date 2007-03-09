@@ -1,3 +1,9 @@
+2007-03-09  Larry Ewing  <lewing@novell.com>
+
+	* src/CameraFileSelectionDialog.cs: Fix the destination to start
+	out in the toplevel photos directory then move to the correct
+	place.
+
 2007-03-08  Stephane Delcroix  <stephane@delcroix.org>
 
 	* google-sharp/PicasaWeb.cs: small change to adapt to the protocol

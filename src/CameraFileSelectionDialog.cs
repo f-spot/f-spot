@@ -233,21 +233,22 @@ namespace FSpot {
 		private string SaveFile (int index) 
 		{
 			GPhotoCameraFile camfile = (GPhotoCameraFile) camera.FileList [index];
-			string orig = System.IO.Path.Combine (destination, camfile.FileName.ToLower ());
+			string tempdir = FSpot.Global.PhotoDirectory;
+			string orig = System.IO.Path.Combine (tempdir, camfile.FileName.ToLower ());
 			string path = orig;
 		
 			int i = 0;
 			while (File.Exists (path)) {
 				string name = String.Format ("{0}-{1}{2}", 
-							     System.IO.Path.GetFileNameWithoutExtension (orig), 
-							     i, System.IO.Path.GetExtension (orig));
+							     Path.GetFileNameWithoutExtension (orig), 
+							     i, Path.GetExtension (orig));
 				
-				path = System.IO.Path.Combine (System.IO.Path.GetDirectoryName (orig), name);
+				path = System.IO.Path.Combine (Path.GetDirectoryName (orig), name);
 				i++;
 			}
 			
 			string msg = String.Format (Catalog.GetString ("Transferring \"{0}\" from camera"), 
-						    System.IO.Path.GetFileName (path));
+						    Path.GetFileName (path));
 			progress_dialog.Message = msg;
 			
 			camera.SaveFile (index, path);
