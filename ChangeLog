@@ -1,5 +1,10 @@
 2007-03-08  Stephane Delcroix  <stephane@delcroix.org>
 
+	* google-sharp/PicasaWeb.cs: small change to adapt to the protocol
+	change
+
+2007-03-08  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/Filters/ResizeFilter.cs: Check for image size before loading a
 	resized pixbuf. Avoid a bug when Load (int, int) return a slightly
 	smaller pixbuf than expected.

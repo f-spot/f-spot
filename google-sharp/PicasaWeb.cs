@@ -260,7 +260,8 @@ namespace Mono.Google.Picasa {
 			XmlNamespaceManager nsmgr = new XmlNamespaceManager (doc.NameTable);
 			nsmgr.AddNamespace ("photo", "http://www.pheed.com/pheed/");
 			nsmgr.AddNamespace ("media", "http://search.yahoo.com/mrss/");
-			nsmgr.AddNamespace ("gphoto", "http://picasaweb.google.com/lh/picasaweb");
+			nsmgr.AddNamespace ("gphoto", "http://schemas.google.com/photos/2007");
+			nsmgr.AddNamespace ("batch", "http://schemas.google.com/gdata/batch");
 			node = channel.SelectSingleNode ("gphoto:user", nsmgr);
 			user = node.InnerText;
 			node = channel.SelectSingleNode ("gphoto:nickname", nsmgr);
