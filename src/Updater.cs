@@ -24,7 +24,7 @@ namespace FSpot.Database {
 		
 		static Updater () {
 			// Update from version 0 to 1: Remove empty Other tags
-			AddUpdate (new Version ("1"), delegate (SqliteConnection connection) {
+			AddUpdate (new Version ("1"), delegate () {
 				string other_id = SelectSingleString ("SELECT id FROM tags WHERE name = 'Other'");
 
 				if (other_id == null)
@@ -49,40 +49,40 @@ namespace FSpot.Database {
 			});
 
 			// Update from version 1 to 2: Restore Other tags that were removed leaving dangling child tags
-			AddUpdate (new Version ("2"), delegate (SqliteConnection connection) {
+			AddUpdate (new Version ("2"), delegate () {
 				string tag_count = SelectSingleString ("SELECT COUNT(*) FROM tags WHERE category_id != 0 AND category_id NOT IN (SELECT id FROM tags)");
 
 				// If there are no dangling tags, then don't do anything
 				if (tag_count == null || System.Int32.Parse (tag_count) == 0)
 					return;
 
-				ExecuteScalar ("INSERT INTO tags (name, category_id, is_category, icon) VALUES ('Other', 0, 1, 'stock_icon:f-spot-other.png')");
+ 				int id = ExecuteScalar ("INSERT INTO tags (name, category_id, is_category, icon) VALUES ('Other', 0, 1, 'stock_icon:f-spot-other.png')");
 
 				ExecuteNonQuery (String.Format (
 					"UPDATE tags SET category_id = {0} WHERE id IN "		+
 					"(SELECT id FROM tags WHERE category_id != 0 AND category_id "	+
 					"NOT IN (SELECT id FROM tags))",
-					connection.LastInsertRowId));
+					id));
 
 				System.Console.WriteLine ("Other tag restored.  Sorry about that!");
 			});
 			
 			// Update from version 2 to 3: ensure that Hidden is the only tag left which is a real tag (not category)
-			AddUpdate (new Version ("3"), delegate (SqliteConnection connection) {
+			AddUpdate (new Version ("3"), delegate () {
 				ExecuteNonQuery ("UPDATE tags SET is_category = 1 WHERE name != 'Hidden'");
 			});
 
 			//Version 3.1, clean old (and unused) items in Export
-			AddUpdate (new Version (3, 1), delegate (SqliteConnection connection) {
+			AddUpdate (new Version (3, 1), delegate () {
 				ExecuteNonQuery ("DELETE FROM exports WHERE export_type='fspot:Folder'");
 			});
 
 			//Version 4.0, bump the version number to a integer, for backward compatibility
-			AddUpdate (new Version (4, 0), delegate (SqliteConnection connection) {});
+			AddUpdate (new Version (4, 0), delegate () {});
 
 //TODO: please consider fixing bgo 324425 on the next update of the db.
 			// Update to version 5.0
-			//AddUpdate (new Version (5,0),delegate (SqliteConnection connection) {
+			//AddUpdate (new Version (5,0),delegate () {
 			//	do update here
 			//});
 
@@ -178,24 +178,12 @@ namespace FSpot.Database {
 
 		private static void ExecuteNonQuery (string statement)
 		{
-			SqliteCommand command = new SqliteCommand ();
-			command.Connection = db.Connection;
-
-			command.CommandText = statement;
-
-			command.ExecuteNonQuery ();
-			command.Dispose ();
+			db.Database.ExecuteNonQuery(statement);
 		}
 		
-		private static void ExecuteScalar (string statement)
+		private static int ExecuteScalar (string statement)
 		{
-			SqliteCommand command = new SqliteCommand ();
-			command.Connection = db.Connection;
-
-			command.CommandText = statement;
-
-			command.ExecuteScalar ();
-			command.Dispose ();
+			return db.Database.Execute(statement);
 		}
 		
 		private static string SelectSingleString (string statement)
@@ -203,18 +191,7 @@ namespace FSpot.Database {
 			string result = null;
 
 			try {
-				SqliteCommand command = new SqliteCommand ();
-				command.Connection = db.Connection;
-
-				command.CommandText = statement;
-
-				SqliteDataReader reader = command.ExecuteReader ();
-				
-				if (reader.Read ())
-					result = reader [0].ToString ();
-
-				reader.Close ();
-				command.Dispose ();
+				result = (string)db.Database.QuerySingle(statement);
 			} catch (Exception) {}
 
 			return result;
@@ -239,7 +216,7 @@ namespace FSpot.Database {
 			return temp_name;
 		}
 
-		private delegate void UpdateCode (SqliteConnection connection);
+		private delegate void UpdateCode ();
 
 		private class Update {
 			public Version Version;
@@ -261,7 +238,7 @@ namespace FSpot.Database {
 
 			public void Execute (Db db, MetaItem db_version)
 			{
-				code (db.Connection);
+				code ();
 				
 				Console.WriteLine ("Updated database from version {0} to {1}",
 						db_version.Value,

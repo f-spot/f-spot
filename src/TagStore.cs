@@ -6,6 +6,7 @@ using Mono.Data.SqliteClient;
 using System.Collections;
 using System.IO;
 using System;
+using Banshee.Database;
 
 
 // FIXME: This is to workaround the currently busted GTK# bindings.
@@ -340,13 +341,10 @@ public class TagStore : DbStore {
 	// base class.
 	private void LoadAllTags ()
 	{
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
 
 		// Pass 1, get all the tags.
 
-		command.CommandText = "SELECT id, name, is_category, sort_priority, icon FROM tags";
-		SqliteDataReader reader = command.ExecuteReader ();
+		SqliteDataReader reader = Database.Query("SELECT id, name, is_category, sort_priority, icon FROM tags");
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader [0]);
@@ -367,12 +365,10 @@ public class TagStore : DbStore {
 		}
 
 		reader.Close ();
-		command.Dispose ();
 
 		// Pass 2, set the parents.
 
-		command.CommandText = "SELECT id, category_id FROM tags";
-		reader = command.ExecuteReader ();
+		reader = Database.Query("SELECT id, category_id FROM tags");
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader [0]);
@@ -391,7 +387,6 @@ public class TagStore : DbStore {
 
 		}
 		reader.Close ();
-		command.Dispose ();
 
 		if (FSpot.Core.Database.Meta.HiddenTagId.Value != null)
 			hidden = LookupInCache ((uint) FSpot.Core.Database.Meta.HiddenTagId.ValueAsInt) as Tag;
@@ -401,7 +396,7 @@ public class TagStore : DbStore {
 	private void CreateTable ()
 	{
 
-		ExecuteSqlCommand ("CREATE TABLE tags (                            " +
+		Database.ExecuteNonQuery ("CREATE TABLE tags (                            " +
 				   "	id            INTEGER PRIMARY KEY NOT NULL," +
 				   "       name          TEXT UNIQUE,                 " +
 				   "       category_id   INTEGER,			   " +
@@ -447,8 +442,8 @@ public class TagStore : DbStore {
 
 	// Constructor
 
-	public TagStore (SqliteConnection connection, bool is_new)
-		: base (connection, true)
+	public TagStore (QueuedSqliteDatabase database, bool is_new)
+		: base (database, true)
 	{
 		// The label for the root category is used in new and edit tag dialogs
 		root_category = new Category (null, 0, Catalog.GetString ("(None)"));
@@ -466,18 +461,14 @@ public class TagStore : DbStore {
 
 		uint parent_category_id = parent_category.Id;
 
-		ExecuteSqlCommand (String.Format ("INSERT INTO tags           " + 
-						  "(    name,                 " +
-						  "    category_id,           " + 
-						  "    is_category,           " + 
-						  "    sort_priority         )" +
-			 			  "VALUES ('{0}', {1}, {2}, 0)",
-						  SqlString (name),
-						  parent_category_id,
-						  is_category ? 1 : 0));
+		int id = Database.Execute (new DbCommand ("INSERT INTO tags (name, category_id, is_category, sort_priority)"
+                          + "VALUES (:name, :category_id, :is_category, 0)",
+						  "name", name,
+						  "category_id", parent_category_id,
+						  "is_category", is_category ? 1 : 0));
 
 
-		return (uint) Connection.LastInsertRowId;
+		return (uint) id;
 	}
 
 	public Tag CreateTag (Category category, string name)
@@ -531,7 +522,7 @@ public class TagStore : DbStore {
 		((Tag)item).Category = null;
 		
 
-		ExecuteSqlCommand (String.Format ("DELETE FROM tags WHERE id = {0}", item.Id));
+		Database.ExecuteNonQuery (new DbCommand ("DELETE FROM tags WHERE id = :id", "id", item.Id));
 
 		EmitRemoved (item);
 	}
@@ -553,19 +544,14 @@ public class TagStore : DbStore {
 		Tag tag = item as Tag;
 
 
-		ExecuteSqlCommand (String.Format ("UPDATE tags SET          " +
-						  "    name = '{0}',        " +
-						  "    category_id = {1},   " +
-						  "    is_category = {2},   " +
-						  "    sort_priority = {3}, " +
-						  "    icon = '{4}'	       " +
-						  "WHERE id = {5}           ",
-						  SqlString (tag.Name),
-						  tag.Category.Id,
-						  tag is Category ? 1 : 0,
-						  tag.SortPriority,
-						  SqlString (GetIconString (tag)),
-						  tag.Id));
+		Database.ExecuteNonQuery (new DbCommand ("UPDATE tags SET name = :name, category_id = :category_id, "
+                    + "is_category = :is_category, sort_priority = :sort_priority, icon = :icon WHERE id = :id",
+						  "name", tag.Name,
+						  "category_id", tag.Category.Id,
+						  "is_category", tag is Category ? 1 : 0,
+						  "sort_priority", tag.SortPriority,
+						  "icon", GetIconString (tag),
+						  "id", tag.Id));
 
 		
 		EmitChanged (tag);

@@ -5,6 +5,7 @@ using Mono.Data.SqliteClient;
 using System.Collections;
 using System.IO;
 using System;
+using Banshee.Database;
 
 public class ExportItem : DbItem {
 
@@ -52,7 +53,7 @@ public class ExportStore : DbStore {
 
 	private void CreateTable ()
 	{
-		ExecuteSqlCommand (
+ 		Database.ExecuteNonQuery (
 			"CREATE TABLE exports ("					+
 				"id		 INTEGER PRIMARY KEY NOT NULL, "	+
                                 "image_id         INTEGER NOT NULL, "			+
@@ -72,28 +73,21 @@ public class ExportStore : DbStore {
 	
 	private void LoadAllItems ()
 	{
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-
-		command.CommandText = "SELECT id, image_id, image_version_id, export_type, export_token FROM exports";
-		SqliteDataReader reader = command.ExecuteReader ();
+		SqliteDataReader reader = Database.Query("SELECT id, image_id, image_version_id, export_type, export_token FROM exports");
 
 		while (reader.Read ()) {
                     AddToCache (LoadItem (reader));
 		}
 
 		reader.Close ();
-		command.Dispose ();
 	}
 
 	public ExportItem Create (uint image_id, uint image_version_id, string export_type, string export_token)
 	{
-		ExecuteSqlCommand (String.Format ("INSERT INTO exports (image_id, image_version_id, export_type, export_token) VALUES ({0}, {1}, '{2}', \"{3}\")",
-						  image_id, image_version_id, export_type, export_token));
+		int id = Database.Execute(new DbCommand("INSERT INTO exports (image_id, image_version_id, export_type, export_token) VALUES (:image_id, :image_version_id, :export_type, :export_token)",
+		"image_id", image_id, "image_version_id", image_version_id, "export_type", export_type, "export_token", export_token));
 		
-                ExportItem item = new ExportItem ((uint) Connection.LastInsertRowId, 
-						  image_id, image_version_id,
-                                                  export_type, export_token);
+		ExportItem item = new ExportItem ((uint)id, image_id, image_version_id, export_type, export_token);
 
 		AddToCache (item);
 		EmitAdded (item);
@@ -105,7 +99,8 @@ public class ExportStore : DbStore {
 	{
 		ExportItem item = dbitem as ExportItem;
 
-		ExecuteSqlCommand (String.Format ("UPDATE exports SET image_id = {1} SET image_version_id = {2} SET export_type = '{3}' SET export_token = '{4}' WHERE id = {0}", item.Id, item.ImageId, item.ImageVersionId, item.ExportType, item.ExportToken));
+		Database.ExecuteNonQuery(new DbCommand("UPDATE exports SET image_id = :image_id, image_version_id = :image_version_id, export_type = :export_type SET export_token = :export_token WHERE id = :item_id", 
+                    "item_id", item.Id, "image_id", item.ImageId, "image_version_id", item.ImageVersionId, "export_type", item.ExportType, "export_token", item.ExportToken));
 		
 		EmitChanged (item);
 	}
@@ -118,19 +113,14 @@ public class ExportStore : DbStore {
 
 	public ArrayList GetByImageId (uint image_id, uint image_version_id)
 	{
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
         
-		command.CommandText = String.Format ("SELECT id, image_id, image_version_id, export_type, export_token FROM exports WHERE image_id = {0} AND image_version_id = {1}", image_id, image_version_id);
-		SqliteDataReader reader = command.ExecuteReader ();
-
+		SqliteDataReader reader = Database.Query(new DbCommand("SELECT id, image_id, image_version_id, export_type, export_token FROM exports WHERE image_id = :image_id AND image_version_id = :image_version_id", 
+                    "image_id", image_id, "image_version_id", image_version_id));
 		ArrayList list = new ArrayList ();
 		while (reader.Read ()) {
 			list.Add (LoadItem (reader));
 		}
-        
 		reader.Close ();
-		command.Dispose ();
 
 		return list;
 	}
@@ -139,24 +129,20 @@ public class ExportStore : DbStore {
 	{
 		RemoveFromCache (item);
 
-		ExecuteSqlCommand (String.Format ("DELETE FROM exports WHERE id = {0}", item.Id));
+		Database.ExecuteNonQuery(new DbCommand("DELETE FROM exports WHERE id = :item_id", "item_id", item.Id));
 
 		EmitRemoved (item);
 	}
 
 	// Constructor
 
-	public ExportStore (SqliteConnection connection, bool is_new)
-		: base (connection, true)
+	public ExportStore (QueuedSqliteDatabase database, bool is_new)
+		: base (database, true)
 	{
 		// Ensure the table exists
 		bool exists = true;
 		try {
-			SqliteCommand command = new SqliteCommand ();
-			command.Connection = connection;
-			command.CommandText = "UPDATE exports SET id = 1 WHERE 1 = 2";
-			command.ExecuteScalar ();
-			command.Dispose ();
+			Database.Execute("UPDATE exports SET id = 1 WHERE 1 = 2");
 		} catch (Exception) {
 			// Table doesn't exist, so create it
 			exists = false;
@@ -166,6 +152,6 @@ public class ExportStore : DbStore {
 			CreateTable ();
 		} else {
 			LoadAllItems ();
-                }
+		}
 	}
 }

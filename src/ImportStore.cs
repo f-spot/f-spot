@@ -2,6 +2,7 @@ using Mono.Data.SqliteClient;
 using System.Collections;
 using System.IO;
 using System;
+using Banshee.Database;
 
 
 public class ImportStore : DbStore {
@@ -30,13 +31,13 @@ public class ImportStore : DbStore {
 
 	// Constructor
 
-	public ImportStore (SqliteConnection connection, bool is_new)
-		: base (connection, false)
+	public ImportStore (QueuedSqliteDatabase database, bool is_new)
+		: base (database, false)
 	{
 		if (! is_new)
 			return;
 		
-		ExecuteSqlCommand (
+		Database.ExecuteNonQuery (
 			"CREATE TABLE imports (                            " +
 			"	id          INTEGER PRIMARY KEY NOT NULL,  " +
 			"       time        INTEGER			   " +
@@ -48,10 +49,8 @@ public class ImportStore : DbStore {
 	{
 		long unix_time = DbUtils.UnixTimeFromDateTime (time_in_utc);
 
-		ExecuteSqlCommand (String.Format ("INSERT INTO import (time) VALUES ({0})  ",
-						     unix_time));
+		uint id = (uint)Database.Execute (new DbCommand ("INSERT INTO import (time) VALUES (:time)", "time", unix_time));
 
-		uint id = (uint) Connection.LastInsertRowId;
 		Import import = new Import (id, unix_time);
 		AddToCache (import);
 
@@ -64,18 +63,13 @@ public class ImportStore : DbStore {
 		if (import != null)
 			return import;
 
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-
-		command.CommandText = String.Format ("SELECT time FROM imports WHERE id = {0}", id);
-		SqliteDataReader reader = command.ExecuteReader ();
+		
+		SqliteDataReader reader = Database.Query(new DbCommand ("SELECT time FROM imports WHERE id = :id", "id", id));
 
 		if (reader.Read ()) {
 			import = new Import (id, Convert.ToUInt32 (reader [0]));
 			AddToCache (import);
 		}
-
-		command.Dispose ();
 
 		return import;
 	}
@@ -84,7 +78,7 @@ public class ImportStore : DbStore {
 	{
 		RemoveFromCache (item);
 
-		ExecuteSqlCommand (String.Format ("DELETE FROM imports WHERE id = {0}", item.Id));
+		Database.ExecuteNonQuery (new DbCommand ("DELETE FROM imports WHERE id = :id", "id", item.Id));
 	}
 
 	public override void Commit (DbItem item)
@@ -97,11 +91,7 @@ public class ImportStore : DbStore {
 	{
 		ArrayList list = new ArrayList ();
 
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-
-		command.CommandText = "SELECT id, time FROM imports";
-		SqliteDataReader reader = command.ExecuteReader ();
+		SqliteDataReader reader = Database.Query("SELECT id, time FROM imports"); 
 
 		while (reader.Read ()) {
 			// Note that we get both time and ID from the database, but we have to see
@@ -118,8 +108,6 @@ public class ImportStore : DbStore {
 
 			list.Add (import);
 		}
-
-		command.Dispose ();
 
 		list.Sort (new ImportComparerByDate ());
 		return list;

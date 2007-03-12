@@ -5,6 +5,7 @@ using Mono.Data.SqliteClient;
 using System.Collections;
 using System.IO;
 using System;
+using Banshee.Database;
 
 public class MetaItem : DbItem {
 	private string name;
@@ -60,7 +61,7 @@ public class MetaStore : DbStore {
 
 	private void CreateTable ()
 	{
-		ExecuteSqlCommand(     
+		Database.ExecuteNonQuery(     
 			"CREATE TABLE meta (					" +
 			"	id		INTEGER PRIMARY KEY NOT NULL,	" +
 			"	name		TEXT UNIQUE NOT NULL,		" +
@@ -75,29 +76,15 @@ public class MetaStore : DbStore {
 		Create (db_version, (is_new) ? FSpot.Database.Updater.LatestVersion.ToString () : "0");
 		
 		// Get the hidden tag id, if it exists
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-		command.CommandText = "SELECT id FROM tags WHERE name = 'Hidden'";
-		
 		try {
-			SqliteDataReader reader = command.ExecuteReader ();
-		
-			if (reader.Read ())
-				Create (hidden, reader [0].ToString ());
-
-			reader.Close ();
+			string id = (string)Database.QuerySingle("SELECT id FROM tags WHERE name = 'Hidden'");
+			Create (hidden, id);
 		} catch (Exception) {}
-	
-		command.Dispose ();
 	}
 	
 	private void LoadAllItems ()
 	{
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-
-		command.CommandText = "SELECT id, name, data FROM meta";
-		SqliteDataReader reader = command.ExecuteReader ();
+		SqliteDataReader reader = Database.Query("SELECT id, name, data FROM meta");
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader [0]);
@@ -114,7 +101,6 @@ public class MetaStore : DbStore {
 		}
 
 		reader.Close ();
-		command.Dispose ();
 
 		if (FSpotVersion.Value != FSpot.Defines.VERSION) {
 			FSpotVersion.Value = FSpot.Defines.VERSION;
@@ -125,14 +111,14 @@ public class MetaStore : DbStore {
 	private MetaItem Create (string name, string data)
 	{
 
-		ExecuteSqlCommand (String.Format ("INSERT INTO meta (name, data) VALUES ('{0}', {1})",
-				name, (data == null) ? "NULL" : "'" + data + "'"));
+		uint id = (uint)Database.Execute(new DbCommand("INSERT INTO meta (name, data) VALUES (:name, :data)",
+				"name", name, "data", (data == null) ? "NULL" : data ));
 		
 		//FIXME This smells bad. This line used to be *before* the
 		//Command.executeNonQuery. It smells of a bug, but there might
 		//have been a reason for this
 
-		MetaItem item = new MetaItem ((uint) Connection.LastInsertRowId, name, data);
+		MetaItem item = new MetaItem (id, name, data);
 
 		
 		AddToCache (item);
@@ -145,9 +131,7 @@ public class MetaStore : DbStore {
 	{
 		MetaItem item = dbitem as MetaItem;
 
-
-		ExecuteSqlCommand (String.Format ("UPDATE meta SET data = '{1}' WHERE name = '{0}'", item.Name, item.Value));
-
+		Database.ExecuteNonQuery(new DbCommand("UPDATE meta SET data = :data WHERE name = :name", "name", item.Name, "data", item.Value));
 		
 		EmitChanged (item);
 	}
@@ -161,24 +145,20 @@ public class MetaStore : DbStore {
 	{
 		RemoveFromCache (item);
 		
-		ExecuteSqlCommand (String.Format ("DELETE FROM meta WHERE id = {0}", item.Id));
+		Database.ExecuteNonQuery (new DbCommand ("DELETE FROM meta WHERE id = :id", "id", item.Id));
 
 		EmitRemoved (item);
 	}
 
 	// Constructor
 
-	public MetaStore (SqliteConnection connection, bool is_new)
-		: base (connection, true)
+	public MetaStore (QueuedSqliteDatabase database, bool is_new)
+		: base (database, true)
 	{
 		// Ensure the table exists
 		bool exists = true;
 		try {
-			SqliteCommand command = new SqliteCommand ();
-			command.Connection = connection;
-			command.CommandText = "UPDATE meta SET id = 1 WHERE 1 = 2";
-			command.ExecuteScalar ();
-			command.Dispose ();
+			Database.Execute("UPDATE meta SET id = 1 WHERE 1 = 2");
 		} catch (Exception) {
 			// Table doesn't exist, so create it
 			exists = false;

@@ -154,6 +154,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PreviewPopup.cs 		\
 	$(srcdir)/PrintDialog.cs		\
 	$(srcdir)/ProgressDialog.cs		\
+	$(srcdir)/QueuedSqliteDatabase.cs	\
 	$(srcdir)/RepairDialog.cs		\
 	$(srcdir)/RotateCommand.cs		\
 	$(srcdir)/ScalingIconView.cs		\

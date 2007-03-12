@@ -1,8 +1,8 @@
-using Mono.Data.SqliteClient;
 using System.Threading;
 using System.Collections;
 using System.IO;
 using System;
+using Banshee.Database;
 
 
 // All kinds of database items subclass from this.
@@ -45,9 +45,6 @@ public delegate void ItemsChangedHandler (object sender, DbItemEventArgs args);
 
 public abstract class DbStore {
 	// DbItem cache.
-
-	protected const int MAX_RETRIES = 4;
-	protected const int SLEEP_TIME = 1000; // 1 sec
 
 	public event ItemsAddedHandler   ItemsAdded;
 	public event ItemsRemovedHandler ItemsRemoved;
@@ -128,22 +125,21 @@ public abstract class DbStore {
 		}
 	}
 
-	// Sqlite stuff.
 
-	SqliteConnection connection;
-	protected SqliteConnection Connection {
+	QueuedSqliteDatabase database;
+	protected QueuedSqliteDatabase Database {
 		get {
-			return connection;
+			return database;
 		}
 	}
 
 
 	// Constructor.
 
-	public DbStore (SqliteConnection connection,
+	public DbStore (QueuedSqliteDatabase database,
 			bool cache_is_immortal)
 	{
-		this.connection = connection;
+		this.database = database;
 		this.cache_is_immortal = cache_is_immortal;
 
 		item_cache = new Hashtable ();
@@ -157,76 +153,6 @@ public abstract class DbStore {
 	// If you have made changes to "obj", you have to invoke Commit() to have the changes
 	// saved into the database.
 	public abstract void Commit (DbItem item);
-
-
-	// Utility methods.
-	
-	protected void ExecuteSqlCommand (String command_text) 
-
-	{
-
-		int retries = 0;
-		TrySqliteCommand (command_text, ref retries);
-
-	}
-
-	private void TrySqliteCommand (String command_text, ref int retries)
-	{
-
-
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-		command.CommandText = command_text;
-
-		try {
-			retries++;
-			command.ExecuteNonQuery ();
-		} catch (SqliteBusyException) {
-			if ( retries > MAX_RETRIES )
-			{
-				//FIXME: show a dialog explaining things to the user
-				throw;
-			}
-			// DB is locked. Sleep a while and try again
-			Thread.Sleep (SLEEP_TIME);
-			TrySqliteCommand (command_text, ref retries);
-		} finally {
-			command.Dispose ();
-		}
-
-	}
-
-
-
-	// Subclasses use this to generate valid SQL commands.
-	protected static string SqlString (string s) {
-		return s.Replace ("'", "''");
-	}
-
-	public void BeginTransaction () {
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-		command.CommandText = "BEGIN TRANSACTION";
-		command.ExecuteScalar ();
-		command.Dispose ();
-	}
-	
-	public void CommitTransaction () {
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-		command.CommandText = "COMMIT TRANSACTION";
-		command.ExecuteScalar ();
-		command.Dispose ();
-	}
-	
-	public void RollbackTransaction () {
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-		command.CommandText = "ROLLBACK";
-		command.ExecuteScalar ();
-		command.Dispose ();
-	}
-
 }
 
 
@@ -266,61 +192,16 @@ public class Db : IDisposable {
 	// therefore how likely corruption is in the event of power loss.
 	public bool Sync {
 		set {
-			SqliteCommand command = new SqliteCommand ();
-			command.Connection = sqlite_connection;
-			command.CommandText = "PRAGMA synchronous = " + (value ? "ON" : "OFF");
-			command.ExecuteScalar ();
-			command.Dispose ();
+			string query = "PRAGMA synchronous = " + (value ? "ON" : "OFF");
+			Database.ExecuteNonQuery(query);
 		}
 	}
 
-	public void BeginTransaction () {
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = sqlite_connection;
-		command.CommandText = "BEGIN TRANSACTION";
-		command.ExecuteScalar ();
-		command.Dispose ();
-	}
-	
-	public void CommitTransaction () {
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = sqlite_connection;
-		command.CommandText = "COMMIT TRANSACTION";
-		command.ExecuteScalar ();
-		command.Dispose ();
-	}
-	
-	public void RollbackTransaction () {
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = sqlite_connection;
-		command.CommandText = "ROLLBACK";
-		command.ExecuteScalar ();
-		command.Dispose ();
+	QueuedSqliteDatabase database;
+	public QueuedSqliteDatabase Database {
+		get { return database; }
 	}
 
-	SqliteConnection sqlite_connection;
-	public SqliteConnection Connection {
-		get { return sqlite_connection; }
-	}
-
-	private static int GetFileVersion (string path)
-	{
-		using (Stream stream = File.OpenRead (path)) {
-			byte [] data = new byte [15];
-			stream.Read (data, 0, data.Length);
-
-			string magic = System.Text.Encoding.ASCII.GetString (data, 0, data.Length);
-
-			switch (magic) {
-			case "SQLite format 3":
-				return 3;
-			case "** This file co":
-				return 2;
-			default:
-				return -1;
-			}
-		}
-	}
 
 	public string Repair ()
 	{
@@ -344,47 +225,27 @@ public class Db : IDisposable {
 	public void Init (string path, bool create_if_missing)
 	{
 		bool new_db = ! File.Exists (path);
-		string version_string = ",version=3";
 		this.path = path;
 
 		if (new_db && ! create_if_missing)
 			throw new Exception (path + ": File not found");
 
-		if (! new_db) {
-			int version = Db.GetFileVersion (path);
-			// FIXME: we should probably display and error dialog if the version
-			// is anything other than the one we were built with, but for now at least
-			// use the right version.
-
-			if (version < 2)
-				throw new Exception ("Unsupported database version");
-			
-			version_string = String.Format (",version={0}", version);
-
-			if (version == 2)
-				version_string += ",encoding=UTF-8";
-		}
-		
-		sqlite_connection = new SqliteConnection ();
-		sqlite_connection.ConnectionString = "URI=file:" + path + version_string;
-
-		sqlite_connection.Open ();
-		
+		database = new QueuedSqliteDatabase(path);	
 
 		// Load or create the meta table
- 		meta_store = new MetaStore (sqlite_connection, new_db);
+ 		meta_store = new MetaStore (Database, new_db);
 
 		// Update the database schema if necessary
 		FSpot.Database.Updater.Run (this);
 
-		BeginTransaction ();
+		Database.BeginTransaction ();
 
-		tag_store = new TagStore (sqlite_connection, new_db);
-		import_store = new ImportStore (sqlite_connection, new_db);
-                export_store = new ExportStore (sqlite_connection, new_db);
- 		photo_store = new PhotoStore (sqlite_connection, new_db, tag_store);
+		tag_store = new TagStore (Database, new_db);
+		import_store = new ImportStore (Database, new_db);
+		export_store = new ExportStore (Database, new_db);
+ 		photo_store = new PhotoStore (Database, new_db, tag_store);
 		
-		CommitTransaction ();
+		Database.CommitTransaction ();
 
 		empty = new_db;
 	}
@@ -395,7 +256,26 @@ public class Db : IDisposable {
 		}
 	}
 
-	public void Dispose () {}
+	public void Dispose ()
+	{
+		Database.Dispose ();
+	}
+
+	public void BeginTransaction()
+	{
+		Database.BeginTransaction ();
+	}
+
+	public void CommitTransaction()
+	{
+		Database.CommitTransaction ();
+	}
+
+	public void RollbackTransaction()
+	{
+		Database.RollbackTransaction ();
+	}
+
 }
 
 

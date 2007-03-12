@@ -1,3 +1,16 @@
+2007-03-12  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/TagStore.cs:
+	* src/PhotoStore.cs:
+	* src/Db.cs:
+	* src/Updater.cs:
+	* src/ImportStore.cs:
+	* src/ExportStore.cs:
+	* src/Makefile.am:
+	* src/MetaStore.cs:
+	* src/QueuedSqliteDatabase.cs: Patch from Ruben Vermeersch to use the
+	QueuedSqliteDatabase from Banshee into F-Spot.
+
 2007-03-12  Alp Toker  <alp@atoker.com>
 
 	* gnome-keyring-sharp/Ring.cs:

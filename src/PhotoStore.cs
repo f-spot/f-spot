@@ -11,6 +11,7 @@ using System.Text;
 using System;
 using FSpot;
 
+using Banshee.Database;
 
 public class PhotoVersion : FSpot.IBrowsableItem {
 	Photo photo;
@@ -664,29 +665,18 @@ public class PhotoStore : DbStore {
 
 	// Constructor
 
-	public PhotoStore (SqliteConnection connection, bool is_new, TagStore tag_store)
-		: base (connection, false)
+	public PhotoStore (QueuedSqliteDatabase database, bool is_new, TagStore tag_store)
+		: base (database, false)
 	{
 		this.tag_store = tag_store;
 		EnsureThumbnailDirectory ();
 
-		SqliteCommand command;
-
 		if (! is_new) {
-			command = new SqliteCommand ();
-			command.Connection = Connection;
-			command.CommandText = String.Format ("SELECT count(*) from photos");
-			SqliteDataReader reader = command.ExecuteReader ();
-	
-			while (reader.Read ()) {
-				TotalPhotos = Convert.ToInt32 (reader [0]);
-			}
-			command.Dispose ();
-		
+			TotalPhotos = Convert.ToInt32(Database.QuerySingle("SELECT count(*) from photos"));
 			return;
 		}
 		
-		ExecuteSqlCommand ( 
+		Database.ExecuteNonQuery ( 
 			"CREATE TABLE photos (                                     " +
 			"	id                 INTEGER PRIMARY KEY NOT NULL,   " +
 			"       time               INTEGER NOT NULL,	   	   " +
@@ -697,14 +687,14 @@ public class PhotoStore : DbStore {
 			")");
 
 
-		ExecuteSqlCommand (
+		Database.ExecuteNonQuery (
 			"CREATE TABLE photo_tags (     " +
 			"	photo_id      INTEGER, " +
 			"       tag_id        INTEGER  " +
 			")");
 
 
-		ExecuteSqlCommand (
+		Database.ExecuteNonQuery (
 			"CREATE TABLE photo_versions (    " +
 			"       photo_id        INTEGER,  " +
 			"       version_id      INTEGER,  " +
@@ -725,22 +715,17 @@ public class PhotoStore : DbStore {
 		FSpot.ImageFile img = FSpot.ImageFile.Create (origPath);
 		long unix_time = DbUtils.UnixTimeFromDateTime (img.Date);
 		string description = img.Description != null  ? img.Description.Split ('\0') [0] : String.Empty;
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
 
-		command.CommandText = String.Format ("INSERT INTO photos (time, " +
-						     "directory_path, name, description, default_version_id) " +
-						     "       VALUES ({0}, '{1}', '{2}', '{3}', {4})",
-						     unix_time,
-						     SqlString (System.IO.Path.GetDirectoryName (newPath)),
-						     SqlString (System.IO.Path.GetFileName (newPath)),
-						     SqlString (description),
-						     Photo.OriginalVersionId);
+ 		uint id = (uint) Database.Execute (new DbCommand ("INSERT INTO photos (time, "	+
+				"directory_path, name, description, default_version_id) "	+
+ 				"VALUES (:time, :directory_path, :name, :description, "		+
+				":default_version_id)",
+ 				"time", unix_time,
+ 				"directory_path", System.IO.Path.GetDirectoryName (newPath),
+ 				"name", System.IO.Path.GetFileName (newPath),
+ 				"description", description,
+ 				"default_version_id", Photo.OriginalVersionId));
 
-		command.ExecuteScalar ();
-		command.Dispose ();
-
-		uint id = (uint) Connection.LastInsertRowId;
 		Photo photo = new Photo (id, unix_time, newPath);
 		AddToCache (photo);
 		photo.Loaded = true;
@@ -755,44 +740,30 @@ public class PhotoStore : DbStore {
 
 	private void GetVersions (Photo photo)
 	{
-
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-		command.CommandText = String.Format ("SELECT version_id, name FROM photo_versions WHERE photo_id = {0}", photo.Id);
-		SqliteDataReader reader = command.ExecuteReader ();
+		SqliteDataReader reader = Database.Query(new DbCommand("SELECT version_id, name FROM photo_versions WHERE photo_id = :id", photo.Id));
 
 		while (reader.Read ()) {
 			uint version_id = Convert.ToUInt32 (reader [0]);
 			string name = reader[1].ToString ();
 			photo.AddVersionUnsafely (version_id, name);
 		}
-
-		command.Dispose ();
+		reader.Close();
 	}
 
 	private void GetTags (Photo photo)
 	{
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-		command.CommandText = String.Format ("SELECT tag_id FROM photo_tags WHERE photo_id = {0}", photo.Id);
-		SqliteDataReader reader = command.ExecuteReader ();
+		SqliteDataReader reader = Database.Query(new DbCommand("SELECT tag_id FROM photo_tags WHERE photo_id = :id", photo.Id));
 
 		while (reader.Read ()) {
 			uint tag_id = Convert.ToUInt32 (reader [0]);
 			Tag tag = tag_store.Get (tag_id) as Tag;
 			photo.AddTagUnsafely (tag);
 		}
-
-		command.Dispose ();
+		reader.Close();
 	}		
 	
 	private void GetAllVersions  () {
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-		command.CommandText = String.Format ("SELECT photo_id, version_id, name " +
-						     "FROM photo_versions ");
-		
-		SqliteDataReader reader = command.ExecuteReader ();
+		SqliteDataReader reader = Database.Query("SELECT photo_id, version_id, name FROM photo_versions");
 		
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader [0]);
@@ -821,18 +792,12 @@ public class PhotoStore : DbStore {
 				directory_path = reader [3].ToString ();
 			System.Console.WriteLine ("directory_path = {0}", directory_path);
 			*/
-
-
 		}
+		reader.Close();
 	}
 
 	private void GetAllTags () {
-			SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-		command.CommandText = String.Format ("SELECT photo_id, tag_id " +
-						     "FROM photo_tags ");
-		
-		SqliteDataReader reader = command.ExecuteReader ();
+		SqliteDataReader reader = Database.Query("SELECT photo_id, tag_id FROM photo_tags");
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader [0]);
@@ -854,16 +819,13 @@ public class PhotoStore : DbStore {
 				photo.AddTagUnsafely (tag);
 			}
 		}
+		reader.Close();
 	}
 
 	private void GetAllData () {
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-		command.CommandText = String.Format ("SELECT photo_tags.photo_id, tag_id, version_id, name " +
-						     "FROM photo_tags, photo_versions " +
-						     "WHERE photo_tags.photo_id = photo_versions.photo_id");
-		
-		SqliteDataReader reader = command.ExecuteReader ();
+		SqliteDataReader reader = Database.Query("SELECT photo_tags.photo_id, tag_id, version_id, name "
+                                               + "FROM photo_tags, photo_versions "
+                                               + "WHERE photo_tags.photo_id = photo_versions.photo_id");
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader [0]);
@@ -891,18 +853,15 @@ public class PhotoStore : DbStore {
 				photo.AddVersionUnsafely (version_id, name);
 			}
 		}
+		reader.Close();
 	}
 
 	private void GetData (Photo photo)
 	{
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-		command.CommandText = String.Format ("SELECT tag_id, version_id, name " +
-						     "  FROM photo_tags, photo_versions " +
-						     " WHERE photo_tags.photo_id = photo_versions.photo_id " +
-						     "   AND photo_tags.photo_id = {0}", photo.Id);
-
-		SqliteDataReader reader = command.ExecuteReader ();
+		SqliteDataReader reader = Database.Query(new DbCommand("SELECT tag_id, version_id, name "
+                                                             + "FROM photo_tags, photo_versions "
+                                                             + "WHERE photo_tags.photo_id = photo_versions.photo_id "
+                                                             + "AND photo_tags.photo_id = :id", "id", photo.Id));
 
 		while (reader.Read ()) {
 		        if (reader [0] != null) {
@@ -917,6 +876,7 @@ public class PhotoStore : DbStore {
 				photo.AddVersionUnsafely (version_id, name);
 			}
 		}
+		reader.Close();
 	}
 
 	public override DbItem Get (uint id)
@@ -925,17 +885,8 @@ public class PhotoStore : DbStore {
 		if (photo != null)
 			return photo;
 
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-		command.CommandText = String.Format ("SELECT time,                                 " +
-						     "       directory_path,                       " +
-						     "       name,                                 " +
-						     "       description,                          " +
-						     "       default_version_id                    " +
-						     "     FROM photos                             " +
-						     "     WHERE id = {0}                          ",
-						     id);
-		SqliteDataReader reader = command.ExecuteReader ();
+		SqliteDataReader reader = Database.Query(new DbCommand("SELECT time, directory_path, name, description, "
+                                                     + "default_version_id FROM photos WHERE id = :id", "id", id));
 
 		if (reader.Read ()) {
 			photo = new Photo (id,
@@ -947,8 +898,7 @@ public class PhotoStore : DbStore {
 			photo.DefaultVersionId = Convert.ToUInt32 (reader[4]);
 			AddToCache (photo);
 		}
-
-		command.Dispose ();
+		reader.Close();
 
 		if (photo == null)
 			return null;
@@ -965,23 +915,12 @@ public class PhotoStore : DbStore {
 		//        this is only used for DND
 
 		Photo photo = null;
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
 
 		string directory_path = System.IO.Path.GetDirectoryName (path);
 		string filename = System.IO.Path.GetFileName (path);
 
-		command.CommandText = String.Format ("SELECT id,                                   " +
-				                     "       time,                                 " +
-						     "       description,                          " +
-						     "       default_version_id                    " +
-						     "  FROM photos                                " +
-						     " WHERE directory_path = \"{0}\"              " +
-						     "   AND name = \"{1}\"                        ",
-						     directory_path,
-						     filename);
-
-		SqliteDataReader reader = command.ExecuteReader ();
+		SqliteDataReader reader = Database.Query(new DbCommand("SELECT id, time, description, default_version_id FROM photos "
+                + "WHERE directory_path = :directory_path AND name = :name", "directory_path", directory_path, "name", filename));
 
 		if (reader.Read ()) {
 			photo = new Photo (Convert.ToUInt32 (reader [0]),
@@ -993,8 +932,7 @@ public class PhotoStore : DbStore {
 			photo.DefaultVersionId = Convert.ToUInt32 (reader[3]);
 			AddToCache (photo);
 		}
-
-		command.Dispose ();
+        reader.Close();
 
 		if (photo == null)
 			return null;
@@ -1037,11 +975,9 @@ public class PhotoStore : DbStore {
 			TotalPhotos--;			
 		}
 
-		ExecuteSqlCommand (String.Format ("DELETE FROM photos WHERE {0}", query_builder.ToString ()));
-//
-		ExecuteSqlCommand (String.Format ("DELETE FROM photo_tags WHERE {0}", tv_query_builder.ToString ()));
-//
-		ExecuteSqlCommand (String.Format ("DELETE FROM photo_versions WHERE {0}", tv_query_builder.ToString ()));
+		Database.ExecuteNonQuery (String.Format ("DELETE FROM photos WHERE {0}", query_builder.ToString ()));
+		Database.ExecuteNonQuery (String.Format ("DELETE FROM photo_tags WHERE {0}", tv_query_builder.ToString ()));
+		Database.ExecuteNonQuery (String.Format ("DELETE FROM photo_versions WHERE {0}", tv_query_builder.ToString ()));
 
 	}
 
@@ -1059,7 +995,7 @@ public class PhotoStore : DbStore {
 	public void Commit (DbItem [] items, DbItemEventArgs args)
 	{
 		if (items.Length > 1)
-			BeginTransaction ();
+			Database.BeginTransaction ();
 
 		foreach (DbItem item in items) {
 			Update ((Photo)item);
@@ -1067,34 +1003,32 @@ public class PhotoStore : DbStore {
 		EmitChanged (items, args);
 
 		if (items.Length > 1)
-			CommitTransaction ();
+			Database.CommitTransaction ();
 	}
 	
-        private void Update (Photo photo) {
+	private void Update (Photo photo) {
 		// Update photo.
 
-		ExecuteSqlCommand (String.Format ("UPDATE photos SET description = '{0}',     " +
-						     "                  default_version_id = {1}, " +
-						     "                  time = {2} " +
-						     "              WHERE id = {3}",
-						     SqlString (photo.Description),
-						     photo.DefaultVersionId,
-						     DbUtils.UnixTimeFromDateTime (photo.Time),
-						     photo.Id));
+		Database.ExecuteNonQuery (new DbCommand ("UPDATE photos SET description = :description, " +
+						     "default_version_id = :default_version_id, time = :time WHERE id = :id ",
+						     "description", photo.Description,
+						     "default_version_id", photo.DefaultVersionId,
+						     "time", DbUtils.UnixTimeFromDateTime (photo.Time),
+						     "id", photo.Id));
 
 		// Update tags.
 
-		ExecuteSqlCommand (String.Format ("DELETE FROM photo_tags WHERE photo_id = {0}", photo.Id));
+		Database.ExecuteNonQuery (new DbCommand ("DELETE FROM photo_tags WHERE photo_id = :id", "id", photo.Id));
 
 		foreach (Tag tag in photo.Tags) {
-			ExecuteSqlCommand (String.Format ("INSERT INTO photo_tags (photo_id, tag_id) " +
-							     "       VALUES ({0}, {1})",
-							     photo.Id, tag.Id));
+			Database.ExecuteNonQuery (String.Format ("INSERT INTO photo_tags (photo_id, tag_id) " +
+                                         " VALUES (:photo_id, :tag_id)",
+                                         "photo_id", photo.Id, "tag_id", tag.Id));
 		}
 
 		// Update versions.
 
-		ExecuteSqlCommand (String.Format ("DELETE FROM photo_versions WHERE photo_id = {0}", photo.Id));
+		Database.ExecuteNonQuery (new DbCommand ("DELETE FROM photo_versions WHERE photo_id = :id", "id", photo.Id));
 
 		foreach (uint version_id in photo.VersionIds) {
 			if (version_id == Photo.OriginalVersionId)
@@ -1102,9 +1036,9 @@ public class PhotoStore : DbStore {
 
 			string version_name = photo.GetVersionName (version_id);
 
-			ExecuteSqlCommand (String.Format ("INSERT INTO photo_versions (photo_id, version_id, name) " +
-							     "       VALUES ({0}, {1}, '{2}')",
-							     photo.Id, version_id, SqlString (version_name)));
+			Database.ExecuteNonQuery(new DbCommand ("INSERT INTO photo_versions (photo_id, version_id, name) " +
+							     "       VALUES (:photo_id, :version_id, :name)",
+							     "photo_id", photo.Id, "version_id", version_id, "name", version_name));
 		}
 	}
 	
@@ -1143,10 +1077,7 @@ public class PhotoStore : DbStore {
 
 	public Photo [] Query (string query)
 	{
-		SqliteCommand command = new SqliteCommand ();
-		command.Connection = Connection;
-		command.CommandText = query;
-		SqliteDataReader reader = command.ExecuteReader ();
+		SqliteDataReader reader = Database.Query(query);
 		
 		ArrayList version_list = new ArrayList ();
 		ArrayList id_list = new ArrayList ();
@@ -1168,6 +1099,7 @@ public class PhotoStore : DbStore {
 
 			id_list.Add (photo);
 		}
+		reader.Close();
 
 		bool need_load = false;
 		foreach (Photo photo in version_list) {
@@ -1184,8 +1116,6 @@ public class PhotoStore : DbStore {
 		} else {
 			//Console.WriteLine ("Skipped Loading Data");
 		}
-
-		command.Dispose ();
 
 		return id_list.ToArray (typeof (Photo)) as Photo [];
 	}
