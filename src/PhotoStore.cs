@@ -1021,7 +1021,7 @@ public class PhotoStore : DbStore {
 		Database.ExecuteNonQuery (new DbCommand ("DELETE FROM photo_tags WHERE photo_id = :id", "id", photo.Id));
 
 		foreach (Tag tag in photo.Tags) {
-			Database.ExecuteNonQuery (String.Format ("INSERT INTO photo_tags (photo_id, tag_id) " +
+			Database.ExecuteNonQuery (new DbCommand ("INSERT INTO photo_tags (photo_id, tag_id) " +
                                          " VALUES (:photo_id, :tag_id)",
                                          "photo_id", photo.Id, "tag_id", tag.Id));
 		}

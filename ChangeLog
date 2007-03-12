@@ -1,3 +1,7 @@
+2007-03-12  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/PhotoStore.cs: Fix a stray String.Format that breaks tagging.
+
 2007-03-12  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/TagStore.cs:
