@@ -389,7 +389,7 @@ namespace FSpot.Query
 		
 		public virtual string SQLOperator ()
 		{
-			return "";
+			return String.Empty;
 		}
 
         protected static Hashtable op_term_lookup = new Hashtable();
@@ -428,7 +428,7 @@ namespace FSpot.Query
 		
 		public override Widget SeparatorWidget ()
 		{
-			Widget sep = new Label ("");
+			Widget sep = new Label (String.Empty);
 			sep.SetSizeRequest (3, 1);
 			sep.Show ();
 			return sep;
@@ -721,7 +721,7 @@ namespace FSpot.Query
 
 			return String.Format (
 					"id {0}IN (SELECT photo_id FROM photo_tags WHERE tag_id IN ({1}))",
-					(IsNegated ? "NOT " : ""), ids.ToString ());
+					(IsNegated ? "NOT " : String.Empty), ids.ToString ());
 		}
 
 		public override Gtk.Widget SeparatorWidget ()
@@ -836,7 +836,7 @@ namespace FSpot.Query
 			switch (args.Info) {
 			case (uint) MainWindow.TargetType.TagList:
 			case (uint) MainWindow.TargetType.TagQueryItem:
-				Byte [] data = Encoding.UTF8.GetBytes ("");
+				Byte [] data = Encoding.UTF8.GetBytes (String.Empty);
 				Atom [] targets = args.Context.Targets;
 			
 				args.SelectionData.Set (targets[0], 8, data, data.Length);

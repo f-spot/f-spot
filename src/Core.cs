@@ -169,26 +169,26 @@ namespace FSpot {
 					Gtk.HBox hbox = new Gtk.HBox ();
 					Gtk.VBox vbox = new Gtk.VBox ();
 
-					outer.PackStart (new Gtk.Label (""));
+					outer.PackStart (new Gtk.Label (String.Empty));
 					outer.PackStart (vbox, false, false, 0);
-					vbox.PackStart (new Gtk.Label (""));
+					vbox.PackStart (new Gtk.Label (String.Empty));
 					vbox.PackStart (hbox, false, false, 0);
 					hbox.PackStart (new Gtk.Image (Gtk.Stock.DialogWarning, Gtk.IconSize.Dialog),
 							false, false, 0);
-					outer.PackStart (new Gtk.Label (""));
+					outer.PackStart (new Gtk.Label (String.Empty));
 
 					string msg;
 					string long_msg;
 
 					if (tag != null) {
 						msg = String.Format (Catalog.GetString ("No photos matching {0} found"), tag.Name);
-						long_msg = String.Format (Catalog.GetString ("The tag \"{0}\" is not applied to any photos. Try adding\n" +
-											     "the tag to some photos or selecting a different tag in the\n" +
+						long_msg = String.Format (Catalog.GetString ("The tag \"{0}\" is not applied to any photos. Try adding" + Environment.NewLine +
+											     "the tag to some photos or selecting a different tag in the" + Environment.NewLine +
 											     "F-Spot preference dialog."), tag.Name);
 					} else {
 						msg = Catalog.GetString ("Search returned no results");
-						long_msg = Catalog.GetString ("The tag F-Spot is looking for does not exist. Try\n" +
-									      "selecting a different tag in the F-Spot preference\n" +
+						long_msg = Catalog.GetString ("The tag F-Spot is looking for does not exist. Try" + Environment.NewLine +
+									      "selecting a different tag in the F-Spot preference" + Environment.NewLine +
 									      "dialog.");
 					}
 
@@ -199,7 +199,7 @@ namespace FSpot {
 					long_label.Markup  = String.Format ("<small>{0}</small>", long_msg);
 
 					vbox.PackStart (long_label, false, false, 0);
-					vbox.PackStart (new Gtk.Label (""));
+					vbox.PackStart (new Gtk.Label (String.Empty));
 
 					window.Add (outer);
 					SetStyle (label);

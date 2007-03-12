@@ -165,7 +165,7 @@ public class FileImportBackend : ImportBackend {
 			// event of a cancel.
 			if (created_directories != null) {
 				string [] parts = dest_dir.Split (new char [] {'/'});
-				string nextPath = "";
+				string nextPath = String.Empty;
 				for (int i = 0; i < parts.Length; i++) {
 					if (i == 0)
 						nextPath += parts [i];
@@ -246,7 +246,7 @@ public class FileImportBackend : ImportBackend {
 			
 			info.Photo = photo;
 		} catch (System.Exception e) {
-			System.Console.WriteLine ("Error importing {0}\n{1}", info.OriginalPath, e.ToString ());
+			System.Console.WriteLine ("Error importing {0}{2}{1}", info.OriginalPath, e.ToString (), Environment.NewLine);
 			if (thumbnail != null)
 				thumbnail.Dispose ();
 
@@ -258,7 +258,7 @@ public class FileImportBackend : ImportBackend {
 									     Gtk.MessageType.Error,
 									     Gtk.ButtonsType.Cancel,
 									     Catalog.GetString ("Import error"),
-									     String.Format(Catalog.GetString ("Error importing {0}\n\n{1}"), info.OriginalPath, e.Message ));
+									     String.Format(Catalog.GetString ("Error importing {0}{2}{2}{1}"), info.OriginalPath, e.Message, Environment.NewLine ));
 			errordialog.AddButton ("Skip", Gtk.ResponseType.Reject, false);
 			ResponseType response = (ResponseType) errordialog.Run ();
 			errordialog.Destroy ();

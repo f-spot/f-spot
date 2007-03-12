@@ -132,7 +132,7 @@ namespace FSpot {
 				Glx = new GdkGlx.Context (Screen, attr);
 				Colormap = Glx.GetColormap ();
 			} catch (GdkGlx.GlxException e) {
-				Console.WriteLine ("Error initializing the OpenGL context:\n {0}", e);
+				Console.WriteLine ("Error initializing the OpenGL context:{1} {0}", e, Environment.NewLine);
 			}
 		}
 

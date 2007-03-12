@@ -505,7 +505,7 @@ public class MainWindow {
 				try {
 					p.WriteMetadataToImage ();
 				} catch (System.Exception e) {
-					Console.WriteLine ("Error syncing metadata to file\n{0}", e);
+					Console.WriteLine ("Error syncing metadata to file{1}{0}", e, Environment.NewLine);
 				}
 			}
 		}
@@ -2252,12 +2252,12 @@ public class MainWindow {
 
 		if (e is UnauthorizedAccessException)
 			msg = String.Format (
-				Catalog.GetString ("No permission to delete the file:\n{0}"), 
-				fname).Replace ("_", "__");
+				Catalog.GetString ("No permission to delete the file:{1}{0}"), 
+				fname, Environment.NewLine).Replace ("_", "__");
 		else
 			msg = String.Format (
-				Catalog.GetString ("An error of type {0} occurred while deleting the file:\n{1}"),
-				e.GetType (), fname.Replace ("_", "__"));
+				Catalog.GetString ("An error of type {0} occurred while deleting the file:{2}{1}"),
+				e.GetType (), fname.Replace ("_", "__"), Environment.NewLine);
 		
 		HigMessageDialog.RunHigConfirmation (
 			main_window, DialogFlags.DestroyWithParent, MessageType.Error,
@@ -2805,7 +2805,7 @@ public class MainWindow {
 		if (rl_button != null) {
 			if (selection.Count == 0) {
 				rl_button.Sensitive = false;
-				SetTip (rl_button, "");
+				SetTip (rl_button, String.Empty);
 			} else {
 				rl_button.Sensitive = true;
 
@@ -2818,7 +2818,7 @@ public class MainWindow {
 		if (rr_button != null) {
 			if (selection.Count == 0) {
 				rr_button.Sensitive = false;
-				SetTip (rr_button, "");
+				SetTip (rr_button, String.Empty);
 			} else {
 				rr_button.Sensitive = true;
 
@@ -3060,7 +3060,7 @@ public class MainWindow {
 
 	private void ShowQueryWidget () {
 		if (find_bar.Visible) {
-			find_bar.Text = "";
+			find_bar.Text = String.Empty;
 			find_bar.Hide ();
 		}
 		

@@ -104,29 +104,29 @@ namespace FSpot
             msg.Append(Catalog.GetString("An unhandled exception was thrown: "));
             msg.Append(e.Message);
             
-            msg.Append("\n\n");
+            msg.Append(String.Format("{0}{0}", Environment.NewLine));
             msg.Append(e.StackTrace);
             
-            msg.Append("\n");
+            msg.Append(Environment.NewLine);
             
             msg.Append(".NET Version: " + Environment.Version.ToString());
             
-            msg.Append("\n\nAssembly Version Information:\n\n");
+            msg.Append(String.Format("{0}{0}Assembly Version Information:{0}{0}", Environment.NewLine));
             
             foreach(Assembly asm in AppDomain.CurrentDomain.GetAssemblies()) {
-				AssemblyName name = asm.GetName();
-                msg.Append(name.Name + " (" + name.Version.ToString() + ")\n");
-			}
+		    AssemblyName name = asm.GetName();
+                    msg.Append(name.Name + " (" + name.Version.ToString () + ")" + Environment.NewLine);
+		}
             
-            msg.Append("\nPlatform Information: " + BuildPlatformString());
+            msg.Append(Environment.NewLine + "Platform Information: " + BuildPlatformString());
             
-            msg.Append("\n\nDistribution Information:\n\n");
+            msg.Append(String.Format("{0}{0}Distribution Information:{0}{0}", Environment.NewLine));
             
             Hashtable lsb = LsbVersionInfo.Harvest;
             
             foreach(string lsbfile in lsb.Keys) {
-                msg.Append("[" + lsbfile + "]\n");
-                msg.Append(lsb[lsbfile] + "\n");
+                msg.Append("[" + lsbfile + "]" + Environment.NewLine);
+                msg.Append(lsb[lsbfile] + Environment.NewLine);
             }
             
             return msg.ToString();

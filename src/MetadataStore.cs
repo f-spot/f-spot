@@ -139,7 +139,7 @@ namespace FSpot {
 					object o = System.Enum.Parse (type, obj.Value);
 					result = o.ToString ();
 				} catch (System.Exception e) {
-					System.Console.WriteLine ("Value \"{2}\" not found in {0}\n{1}", type, e, result);
+					System.Console.WriteLine ("Value \"{2}\" not found in {0}{3}{1}", type, e, result, System.Environment.NewLine);
 				}
 			}
 			/*

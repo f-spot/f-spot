@@ -1,5 +1,6 @@
 /*
- * Widgets/DateEdit.cs
+ * Widgets/DateEdit.cs: A Date/Time widget with zone support.
+ *   The DateTime part is merely a port of gnome-dateedit.c
  *
  * Author(s)
  *   Stephane Delcroix  <stephane@delcroix.org>
@@ -220,6 +221,7 @@ namespace FSpot.Widgets
 			cal_popup.DestroyWithParent = true;
 			cal_popup.Add (frame);
 			cal_popup.Shown += HandleCalendarPopupShown;
+			cal_popup.GrabNotify += HandlePopupGrabNotify;
 			frame.Show ();
 			calendar.Show ();
 
@@ -319,6 +321,12 @@ namespace FSpot.Widgets
 			datetime.Year = calendar.Date.Year;
 			datetime.Month = calendar.Date.Month;
 			datetime.Day = calendar.Date.Day;
+		}
+
+		private void HandlePopupGrabNotify (object o, GrabNotifyArgs args)
+		{
+			if (args.WasGrabbed)
+				HideCalendarPopup ();
 		}
 
 		void TimeCellFunc (CellLayout cell_layout, CellRenderer cell, TreeModel tree_model, TreeIter iter)

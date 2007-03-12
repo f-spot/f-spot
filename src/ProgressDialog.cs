@@ -53,7 +53,7 @@ public class ProgressDialog : Gtk.Dialog {
 		BorderWidth = 6;
 		SetDefaultSize (300, -1);
 
-		message_label = new Label ("");
+		message_label = new Label (String.Empty);
 		VBox.PackStart (message_label, true, true, 12);
 
 		progress_bar = new ProgressBar ();

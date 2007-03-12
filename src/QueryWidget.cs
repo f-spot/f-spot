@@ -46,7 +46,7 @@ namespace FSpot {
 			hbox.PackStart (logic_widget, true, true, 0);
 
 			warning_box = new Gtk.HBox ();
-			warning_box.PackStart (new Gtk.Label (""));
+			warning_box.PackStart (new Gtk.Label (System.String.Empty));
 			
 			Gtk.Image warning_image = new Gtk.Image ("gtk-info", Gtk.IconSize.Button);
 			warning_image.Show ();

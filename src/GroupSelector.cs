@@ -693,7 +693,7 @@ namespace FSpot {
 			public Glass (GroupSelector selector) : base (selector) 
 			{
 				popup_window = new TipWindow ();
-				popup_label = new Gtk.Label ("");
+				popup_label = new Gtk.Label (String.Empty);
 				popup_label.Show ();
 				popup_window.Add (popup_label);
 			}

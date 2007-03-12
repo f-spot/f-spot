@@ -23,7 +23,7 @@ public class CompatFileChooserDialog {
     public CompatFileChooserDialog (string title, Gtk.Window parent, Action action) {
 	string check = Gtk.Global.CheckVersion (2, 4, 0);
 	 
-	use_file_chooser = (check == "" || check == null);
+	use_file_chooser = (check == String.Empty || check == null);
 		 
 	if (use_file_chooser)
 	    create_with_file_chooser (title, parent, action);

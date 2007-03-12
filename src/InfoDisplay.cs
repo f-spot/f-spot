@@ -98,6 +98,7 @@ namespace FSpot {
 			value = value.Replace ("&", "&amp;");
 			value = value.Replace (">", "&gt;");
 			value = value.Replace ("<", "&lt;");
+			value = value.Replace ("\r\n", "<br>");
 			value = value.Replace ("\n", "<br>");
 			return value;
 		}
@@ -190,7 +191,7 @@ namespace FSpot {
 							stream.Write ("&lt;Unknown Tag ID=" + entry.Tag.ToString () + "&gt;");
 						stream.Write ("</font></small></td><td>");
 						string s = entry.Value;
-						if (s != null && s != "")
+						if (s != null && s != String.Empty)
 							stream.Write (s);
 						stream.Write ("</td><tr>");
 					}
@@ -254,7 +255,7 @@ namespace FSpot {
 							WriteCollection (substore, stream);
 						}
 						
-						if (value != null && value != "")
+						if (value != null && value != String.Empty)
 							stream.Write (value);
 						
 						stream.Write ("</td></tr>");
@@ -322,7 +323,7 @@ namespace FSpot {
 				if (sub.Object is Literal) {
 					string title;
 					string value = ((Literal)(sub.Object)).Value;
-					string vc = "";
+					string vc = String.Empty;
 					
 					Description.GetDescription (substore, sub, out title, out value);
 
@@ -388,7 +389,7 @@ namespace FSpot {
 						}
 					}
 					*/
-					if (s != null && s != "")
+					if (s != null && s != String.Empty)
 						stream.Write (s);
 					stream.Write ("</td><tr>");
 				}

@@ -71,15 +71,15 @@ public class TagCommands {
 
 		private void Update ()
 		{
-			if (tag_name_entry.Text == "") {
+			if (tag_name_entry.Text == String.Empty) {
 				ok_button.Sensitive = false;
-				already_in_use_label.Markup = "";
+				already_in_use_label.Markup = String.Empty;
 			} else if (TagNameExistsInCategory (tag_name_entry.Text, tag_store.RootCategory)) {
 				ok_button.Sensitive = false;
 				already_in_use_label.Markup = "<small>" + Catalog.GetString ("This name is already in use") + "</small>";
 			} else {
 				ok_button.Sensitive = true;
-				already_in_use_label.Markup = "";
+				already_in_use_label.Markup = String.Empty;
 			}
 		}
 
@@ -198,16 +198,16 @@ public class TagCommands {
 		{
 			string name = tag_name_entry.Text;
 
-			if (name == "") {
+			if (name == String.Empty) {
 				ok_button.Sensitive = false;
-				already_in_use_label.Markup = "";
+				already_in_use_label.Markup = String.Empty;
 			} else if (TagNameExistsInCategory (name, db.Tags.RootCategory)
 				   && String.Compare(name, orig_name, true) != 0) {
 				ok_button.Sensitive = false;
 				already_in_use_label.Markup = "<small>" + Catalog.GetString ("This name is already in use") + "</small>";
 			} else {
 				ok_button.Sensitive = true;
-				already_in_use_label.Markup = "";
+				already_in_use_label.Markup = String.Empty;
 				last_valid_name = tag_name_entry.Text;
 			}
 		}

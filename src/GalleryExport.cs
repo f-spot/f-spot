@@ -341,7 +341,7 @@ namespace FSpot {
 			password = password_entry.Text;
 			username = username_entry.Text;
 
-			if (name == "" || url == "" || password == "" || username == "")
+			if (name == String.Empty || url == String.Empty || password == String.Empty || username == String.Empty)
 				add_button.Sensitive = false;
 			else
 				add_button.Sensitive = true;
@@ -509,13 +509,13 @@ namespace FSpot {
 		{
 			if (gallery.Version == GalleryVersion.Version1) {
 				if (gallery.Albums.Count == 0 || album_optionmenu.History <= 0) {
-					parent = "";
+					parent = String.Empty;
 				} else {
 					parent = ((Album) gallery.Albums [album_optionmenu.History-1]).Name;
 				}
 			} else {
 				if (gallery.Albums.Count == 0 || album_optionmenu.History < 0) {
-					parent = "";
+					parent = String.Empty;
 				} else {
 					parent = ((Album) gallery.Albums [album_optionmenu.History]).Name;
 				}
@@ -524,7 +524,7 @@ namespace FSpot {
 			description = description_entry.Text;
 			title = title_entry.Text;
 
-			if (name == "" || title == "")
+			if (name == String.Empty || title == String.Empty)
 				add_button.Sensitive = false;
 			else
 				add_button.Sensitive = true;

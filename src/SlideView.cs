@@ -11,7 +11,7 @@ namespace FSpot {
 	public class XScreenSaverSlide : Gtk.Window {
 		public const string ScreenSaverEnviroment = "XSCREENSAVER_WINDOW";
 
-		public XScreenSaverSlide () : base ("")
+		public XScreenSaverSlide () : base (String.Empty)
 		{
 		}
 	       

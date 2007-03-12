@@ -65,7 +65,7 @@ namespace FSpot {
 			w.ShowAll ();
 
 			action.ConnectProxy (button);
-			tips.SetTip (button, action.Tooltip, "");
+			tips.SetTip (button, action.Tooltip, String.Empty);
 			return button;
 		}
 	}

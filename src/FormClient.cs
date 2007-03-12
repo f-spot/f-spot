@@ -206,7 +206,7 @@ class FormClient {
 		Request = (HttpWebRequest) WebRequest.Create (uri);
 		CookieCollection cookie_collection = Cookies.GetCookies (uri);
 
-		if (uri.UserInfo != null && uri.UserInfo != "") {
+		if (uri.UserInfo != null && uri.UserInfo != String.Empty) {
 			NetworkCredential cred = new NetworkCredential ();
 			cred.GetCredential (uri, "basic");
 			CredentialCache credcache = new CredentialCache();

@@ -573,7 +573,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		this.directory_path = directory_path;
 		this.name = name;
 
-		description = "";
+		description = String.Empty;
 
 		// Note that the original version is never stored in the photo_versions table in the
 		// database.
@@ -724,7 +724,7 @@ public class PhotoStore : DbStore {
 	{
 		FSpot.ImageFile img = FSpot.ImageFile.Create (origPath);
 		long unix_time = DbUtils.UnixTimeFromDateTime (img.Date);
-		string description = img.Description != null  ? img.Description.Split ('\0') [0] : "";
+		string description = img.Description != null  ? img.Description.Split ('\0') [0] : String.Empty;
 		SqliteCommand command = new SqliteCommand ();
 		command.Connection = Connection;
 
@@ -1295,7 +1295,7 @@ public class PhotoStore : DbStore {
 		Console.WriteLine ("\t[{0}] {1}", photo.Id, photo.Path);
 		Console.WriteLine ("\t{0}", photo.Time.ToLocalTime ());
 
-		if (photo.Description != "")
+		if (photo.Description != String.Empty)
 			Console.WriteLine ("\t{0}", photo.Description);
 		else
 			Console.WriteLine ("\t(no description)");

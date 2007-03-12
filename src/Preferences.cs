@@ -295,8 +295,8 @@ namespace FSpot
 					proxy.BypassList = bypass_list;
 				}
 
-				string username = (string) Preferences.Get (UserKey, "");
-				string password = (string) Preferences.Get (PaswordKey, "");
+				string username = (string) Preferences.Get (UserKey, String.Empty);
+				string password = (string) Preferences.Get (PaswordKey, String.Empty);
 
 				proxy.Credentials = new NetworkCredential (username, password);
 			} catch (Exception) {

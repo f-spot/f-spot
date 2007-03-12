@@ -293,7 +293,7 @@ namespace FSpot {
 			password = password_entry.Text;
 			username = username_entry.Text;
 
-			add_button.Sensitive = !(password == "" || username == "");
+			add_button.Sensitive = !(password == String.Empty || username == String.Empty);
 		}
 		
 		[GLib.ConnectBefore]
@@ -378,7 +378,7 @@ namespace FSpot {
 			title = title_entry.Text;
 			public_album = public_check.Active;
 
-			if (title == "")
+			if (title == String.Empty)
 				add_button.Sensitive = false;
 			else
 				add_button.Sensitive = true;
@@ -720,7 +720,7 @@ namespace FSpot {
 
 				PopulateAlbumOptionMenu (account.Picasa);
 
-				status_label.Text = "";
+				status_label.Text = String.Empty;
 				album_button.Sensitive = false;
 				
 				new GoogleAccountDialog (this.Dialog, account, true, null);

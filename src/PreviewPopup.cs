@@ -137,9 +137,9 @@ namespace FSpot {
 				pixbuf.Dispose ();
 			}
 
-			string desc = "";
+			string desc = String.Empty;
 			if (item.Description != null && item.Description.Length > 0)
-				desc = item.Description + "\n";
+				desc = item.Description + Environment.NewLine;
 
 			desc += item.Time.ToString () + "   " + item.Name;			
 			label.Text = desc;
@@ -304,7 +304,7 @@ namespace FSpot {
 			image.CanFocus = false;
 
 
-			label = new Gtk.Label ("");
+			label = new Gtk.Label (String.Empty);
 			label.CanFocus = false;
 			label.ModifyFg (Gtk.StateType.Normal, new Gdk.Color (127, 127, 127));
 			label.ModifyBg (Gtk.StateType.Normal, new Gdk.Color (0, 0, 0));

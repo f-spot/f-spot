@@ -32,7 +32,7 @@ public class PhotoVersionCommands {
 				return;
 			}
 
-			already_in_use_label.Text = "";
+			already_in_use_label.Text = String.Empty;
 			
 			if (new_name.Length == 0)
 				ok_button.Sensitive = false;

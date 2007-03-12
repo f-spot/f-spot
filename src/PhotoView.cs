@@ -149,8 +149,8 @@ public class PhotoView : EventBox {
 		display_next_button.Sensitive = next;
 
 		if (valid && has_selection) {
-			tips.SetTip (crop_button, Catalog.GetString ("Crop photo to selected area"), "");
-			tips.SetTip (redeye_button, Catalog.GetString ("Remove redeye from selected area"), "");
+			tips.SetTip (crop_button, Catalog.GetString ("Crop photo to selected area"), String.Empty);
+			tips.SetTip (redeye_button, Catalog.GetString ("Remove redeye from selected area"), String.Empty);
 		} else {
 			tips.SetTip (crop_button, Catalog.GetString ("Select an area to crop"), null);
 			tips.SetTip (redeye_button, Catalog.GetString ("Select an area to remove redeye"), null);
@@ -166,7 +166,7 @@ public class PhotoView : EventBox {
 	private void UpdateCountLabel ()
 	{
 		if (query == null)
-			count_label.Text = "";
+			count_label.Text = String.Empty;
 		else {
 			if (query.Count == 0)
 				count_label.Text = String.Format ("{0} of {1}", 0, 0);
@@ -534,9 +534,9 @@ public class PhotoView : EventBox {
 		toolbar_hbox.PackStart (autocolor.GetToolButton (false), false, true, 0);
 
 		/* Spacer Label */
-		toolbar_hbox.PackStart (new Label (""), true, true, 0);
+		toolbar_hbox.PackStart (new Label (String.Empty), true, true, 0);
 
-		count_label = new Label ("");
+		count_label = new Label (String.Empty);
 		toolbar_hbox.PackStart (count_label, false, true, 0);
 
 		display_previous_button = new ToolbarButton ();
@@ -557,12 +557,12 @@ public class PhotoView : EventBox {
 		UpdateButtonSensitivity ();
 
 		vbox.ShowAll ();
-		tips.SetTip (color_button, Catalog.GetString ("Adjust the photo colors"), "");
-		tips.SetTip (constraints_option_menu, Catalog.GetString ("Constrain the aspect ratio of the selection"), "");
-		tips.SetTip (display_next_button, Catalog.GetString ("Next photo"), "");
-		tips.SetTip (display_previous_button, Catalog.GetString ("Previous photo"), "");
-		tips.SetTip (desaturate_button, Catalog.GetString ("Convert the photo to black and white"), "");
-		tips.SetTip (sepia_button, Catalog.GetString ("Convert the photo to sepia tones"), "");
+		tips.SetTip (color_button, Catalog.GetString ("Adjust the photo colors"), String.Empty);
+		tips.SetTip (constraints_option_menu, Catalog.GetString ("Constrain the aspect ratio of the selection"), String.Empty);
+		tips.SetTip (display_next_button, Catalog.GetString ("Next photo"), String.Empty);
+		tips.SetTip (display_previous_button, Catalog.GetString ("Previous photo"), String.Empty);
+		tips.SetTip (desaturate_button, Catalog.GetString ("Convert the photo to black and white"), String.Empty);
+		tips.SetTip (sepia_button, Catalog.GetString ("Convert the photo to sepia tones"), String.Empty);
 	}
 	
 	private void SetColors ()

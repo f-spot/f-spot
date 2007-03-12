@@ -195,8 +195,8 @@ namespace FSpot {
 						progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"), photo_index, selection.Count);
 					}
 					catch (Exception e) {
-						progress_dialog.Message = String.Format (Catalog.GetString ("Error uploading picture \"{0}\" to Gallery:\n{1}"), 
-							selection[photo_index].Name, e.Message);
+						progress_dialog.Message = String.Format (Catalog.GetString ("Error uploading picture \"{0}\" to Gallery:{2}{1}"), 
+							selection[photo_index].Name, e.Message, Environment.NewLine);
 						progress_dialog.ProgressText = Catalog.GetString ("Error");
 
 						if (progress_dialog.PerformRetrySkip ())
@@ -402,14 +402,14 @@ namespace FSpot {
 
 			public ScaleRequest (string name, int width, int height, bool skip, bool exif)
 			{
-				this.Name = name != null ? name : "";
+				this.Name = name != null ? name : String.Empty;
 				this.Width = width;
 				this.Height = height;
 				this.Skip = skip;
 				this.CopyExif = exif;
 			}
 
-			public static ScaleRequest Default = new ScaleRequest ("", 0, 0, false);
+			public static ScaleRequest Default = new ScaleRequest (String.Empty, 0, 0, false);
 
 			public bool AvoidScale (int size) { 
 				return (size < this.Width && size < this.Height && this.Skip);
@@ -635,7 +635,7 @@ namespace FSpot {
 		{
 			StreamWriter comment = File.CreateText(SubdirPath  ("comments", photo_index + 1 + ".txt"));
 			comment.Write("<span>photo " + (photo_index + 1) + "</span> ");
-			comment.Write (collection [photo_index].Description + "\n");
+			comment.Write (collection [photo_index].Description + Environment.NewLine);
 			comment.Close();
 		}
 
@@ -682,7 +682,7 @@ namespace FSpot {
 		private void CreateHtaccess()
 		{
 			StreamWriter htaccess = File.CreateText(Path.Combine (gallery_path,".htaccess"));
-			htaccess.Write("<Files info.txt>\n\tdeny from all\n</Files>\n");
+			htaccess.Write("<Files info.txt>" + Environment.NewLine + "\tdeny from all" + Environment.NewLine+ "</Files>" + Environment.NewLine);
 			htaccess.Close();
 		}
 
@@ -907,7 +907,7 @@ namespace FSpot {
 			writer.Write ("<span class=\"style_toggle\">"); 
 			writer.Write ("<a href=\"javascript:toggle_stylebox()\">");
 			writer.Write ("<span id=\"showlink\">" + Catalog.GetString ("Show Styles") + "</span><span id=\"hidelink\" ");
-			writer.Write ("style=\"display:none;\">" + Catalog.GetString ("Hide Styles") + "</span></a></span>\n");
+			writer.Write ("style=\"display:none;\">" + Catalog.GetString ("Hide Styles") + "</span></a></span>" + Environment.NewLine);
 			writer.RenderEndTag (); //div toggle
 			writer.RenderEndTag (); //div styleboxcontainer
 			writer.RenderEndTag (); //container1	
@@ -946,15 +946,15 @@ namespace FSpot {
 
 			writer.Write ("<link type=\"text/css\" rel=\"stylesheet\" href=\"");
 			writer.Write (String.Format ("{0}", "style/" + stylesheet));
-			writer.Write ("\" title=\"" + dark + "\" media=\"screen\" />\n");
+			writer.Write ("\" title=\"" + dark + "\" media=\"screen\" />" + Environment.NewLine);
 
 			writer.Write ("<link type=\"text/css\" rel=\"prefetch ") ;
 			writer.Write ("alternate stylesheet\" href=\"");
 			writer.Write (String.Format ("{0}", "style/" + altstylesheet));
-			writer.Write ("\" title=\"" + light + "\" media=\"screen\" />\n");
+			writer.Write ("\" title=\"" + light + "\" media=\"screen\" />" + Environment.NewLine);
 
 			writer.Write ("<script src=\"script/" + javascript + "\"");
-			writer.Write (" type=\"text/javascript\"></script>\n");
+			writer.Write (" type=\"text/javascript\"></script>" + Environment.NewLine);
 
 			writer.RenderEndTag ();
 		}
@@ -1080,7 +1080,7 @@ namespace FSpot {
 			writer.Write ("<span class=\"style_toggle\">"); 
 			writer.Write ("<a href=\"javascript:toggle_stylebox()\">");
 			writer.Write ("<span id=\"showlink\">" + Catalog.GetString("Show Styles") + "</span><span id=\"hidelink\" ");
-			writer.Write ("style=\"display:none;\">" + Catalog.GetString("Hide Styles") + "</span></a></span>\n");
+			writer.Write ("style=\"display:none;\">" + Catalog.GetString("Hide Styles") + "</span></a></span>" + Environment.NewLine);
 			writer.RenderEndTag (); //div toggle
 			writer.RenderEndTag (); //div styleboxcontainer
 			writer.RenderEndTag (); //container1

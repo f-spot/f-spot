@@ -198,7 +198,7 @@ namespace FSpot {
 			token = null;
 			auth = null;
 			fr = new FlickrRemote (token, current_service);
-			Preferences.Set (current_service.PreferencePath, "");
+			Preferences.Set (current_service.PreferencePath, String.Empty);
 			CurrentState = State.Disconnected;
 		}
 

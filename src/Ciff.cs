@@ -165,7 +165,7 @@ namespace FSpot.Ciff {
 
 		public override string ToString ()
 		{
-			string tz = "";
+			string tz = String.Empty;
 			
 			if (HasTimezone)
 				if (tz_offset != 0)

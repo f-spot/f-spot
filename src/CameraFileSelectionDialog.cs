@@ -212,7 +212,7 @@ namespace FSpot {
 					}
 					catch (System.Exception e) {
 						System.Console.WriteLine (e.ToString ());
-						progress_dialog.Message = String.Format ("{0}\n{1}", e.Message, e.ToString ());
+						progress_dialog.Message = String.Format ("{0}{2}{1}", e.Message, e.ToString (), Environment.NewLine);
 						progress_dialog.ProgressText = Catalog.GetString ("Error transferring file");
 
 						if (progress_dialog.PerformRetrySkip ())

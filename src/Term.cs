@@ -204,7 +204,7 @@ namespace FSpot {
 		public override string SqlStatement {
 			get {
 				if (IsEmpty)
-					return "";
+					return System.String.Empty;
 	
 				System.Text.StringBuilder sb = new System.Text.StringBuilder ("(");
 				for (int i = 0; i < subterms.Count; i++) {
@@ -221,7 +221,7 @@ namespace FSpot {
 		public override string ToString ()
 		{
 			if (IsEmpty)
-				return "";
+				return System.String.Empty;
 
 			System.Text.StringBuilder sb = new System.Text.StringBuilder ("(");
 			for (int i = 0; i < subterms.Count; i++) {
@@ -297,7 +297,7 @@ namespace FSpot {
 		public override string SqlStatement {
 			get {
 				if (IsEmpty)
-					return "";
+					return System.String.Empty;
 				return OperatorName + "(" + term.SqlStatement + ")";
 			}
 		}
@@ -305,7 +305,7 @@ namespace FSpot {
 		public override string ToString ()
 		{
 			if (IsEmpty)
-				return "";
+				return System.String.Empty;
 			return OperatorName + "(" + term.ToString () + ")";
 		}
 

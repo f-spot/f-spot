@@ -159,7 +159,7 @@ public class Driver {
 						control = core;
 					}
 				} catch (System.Exception e) {
-					System.Console.WriteLine ("XXXXX\n{0}\nXXXXX", e);
+					System.Console.WriteLine ("XXXXX{1}{0}{1}XXXXX", e, Environment.NewLine);
 					control = null;
 
 					if (core != null)

@@ -359,7 +359,7 @@ namespace FSpot.Tiff {
 		{
 			if (raw_data.Length == 8 || raw_data.Length == 0) { 
 				Charset = null;
-				Value = "";
+				Value = String.Empty;
 				return;
 			} else if (raw_data.Length < 8) {
 				throw new Exception ("Invalid UserComment value, no charset found");
@@ -934,7 +934,7 @@ namespace FSpot.Tiff {
 					MetadataStore.AddLiteral (sink, "xmp:ModifyDate", 
 								  e.ValueAsDate.ToString ("yyyy-MM-ddThh:mm:ss"));
 					} catch (System.Exception ex) {
-						System.Console.WriteLine (String.Format ("error parsing {0}\n{1}", e.ValueAsString[0], ex));
+						System.Console.WriteLine (String.Format ("error parsing {0}{2}{1}", e.ValueAsString[0], ex, Environment.NewLine));
 					}
 
 					break;
@@ -946,7 +946,7 @@ namespace FSpot.Tiff {
 						MetadataStore.AddLiteral (sink, "exif:" + e.Id.ToString (), 
 									  e.ValueAsDate.ToString ("yyyy-MM-ddThh:mm:ss"));
 					} catch (System.Exception ex) {
-						System.Console.WriteLine (String.Format ("error parsing {0}\n{1}", e.ValueAsString[0], ex));
+						System.Console.WriteLine (String.Format ("error parsing {0}{2}{1}", e.ValueAsString[0], ex, Environment.NewLine));
 					}
 					break;
 					//case TagId.SpatialFrequencyResponse
@@ -1271,10 +1271,10 @@ namespace FSpot.Tiff {
 			System.Text.StringBuilder builder = new System.Text.StringBuilder ();
 			builder.Append ("Dummping IFD");
 			foreach (DirectoryEntry entry in entries) {
-				builder.Append (entry.ToString ()+ "\n");
+				builder.Append (entry.ToString ()+ Environment.NewLine);
 
 				if (entry is SubdirectoryEntry)
-					builder.Append ("Found SUBDIRECTORYENTRY\n");
+					builder.Append ("Found SUBDIRECTORYENTRY" + Environment.NewLine);
 			}
 			
 			if (next_directory != null) {
@@ -1376,8 +1376,8 @@ namespace FSpot.Tiff {
 					directory_offset = BitConverter.ToUInt32 (raw_data, i * 4, endian == Endian.Little);
 					Directory [i] = new ImageDirectory (stream, directory_offset, endian);
 				} catch (System.Exception e) {
-					System.Console.WriteLine ("Error loading Subdirectory {0} at {2} of {3}bytes:\n{1}", 
-								  this.Id, e, directory_offset, stream.Length);
+					System.Console.WriteLine ("Error loading Subdirectory {0} at {2} of {3}bytes:{4}{1}", 
+								  this.Id, e, directory_offset, stream.Length, Environment.NewLine);
 				}
 					
 			}
@@ -1607,7 +1607,7 @@ namespace FSpot.Tiff {
 						System.Console.Write (" {0}", val);
 					break;
 				}
-				System.Console.WriteLine ("");
+				System.Console.WriteLine (String.Empty);
 				break;
 			}
 #endif

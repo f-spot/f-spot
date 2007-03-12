@@ -287,7 +287,7 @@ public class TagStore : DbStore {
 
 	private void SetIconFromString (Tag tag, string icon_string)
 	{
-		if (icon_string == null || icon_string == "")
+		if (icon_string == null || icon_string == String.Empty)
 			tag.Icon = null;
 		else if (icon_string.StartsWith (STOCK_ICON_DB_PREFIX))
 			tag.StockIconName = icon_string.Substring (STOCK_ICON_DB_PREFIX.Length);
@@ -542,7 +542,7 @@ public class TagStore : DbStore {
 		if (tag.StockIconName != null)
 			return STOCK_ICON_DB_PREFIX + tag.StockIconName;
 		if (tag.Icon == null)
-			return "";
+			return String.Empty;
 
 		byte [] data = PixbufSerializer.Serialize (tag.Icon);
 		return Convert.ToBase64String (data);

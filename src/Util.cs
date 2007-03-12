@@ -256,7 +256,7 @@ public class UriList : ArrayList {
 			if (uri == null)
 				break;
 
-			list.Append (uri.ToString () + "\r\n");
+			list.Append (uri.ToString () + Environment.NewLine);
 		}
 
 		return list.ToString ();
@@ -404,7 +404,7 @@ class GtkUtil {
 public class SizeUtil {
 	public static string ToHumanReadable (long size)
 	{
-		string tmp_str = "";
+		string tmp_str = String.Empty;
 		float tmp_size = size;
 		int k = 0;
 		string[] size_abr = {"bytes", "kB", "MB", "GB", "TB" };
@@ -447,8 +447,8 @@ class GnomeUtil {
 	       		HigMessageDialog md = new HigMessageDialog (window, Gtk.DialogFlags.DestroyWithParent, 
 	       			Gtk.MessageType.Error, Gtk.ButtonsType.Ok, 
 	       			Mono.Unix.Catalog.GetString ("There was an error invoking the external handler"),
-	       			String.Format (Mono.Unix.Catalog.GetString ("Received error:\n\"{0}\"\n"), 
-	       			ge.Message));
+	       			String.Format (Mono.Unix.Catalog.GetString ("Received error:{1}\"{0}\"{1}"), 
+	       			ge.Message, Environment.NewLine));
 
 	       		md.Run ();
 	       		md.Destroy ();

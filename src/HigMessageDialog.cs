@@ -40,10 +40,10 @@ namespace FSpot {
 
 		private static string GenerateMessage (Exception [] errors)
 		{
-			string desc = "";
+			string desc = String.Empty;
 			for (int i = 0; i < errors.Length && i < MaxErrors; i++) {
 				Exception e = errors [i];
-				desc += e.Message + "\n";
+				desc += e.Message + Environment.NewLine;
 			}
 			return desc;
 		}
@@ -67,7 +67,7 @@ public class HigMessageDialog : Gtk.Dialog
 		HasSeparator = false;
 		BorderWidth = 5;
 		Resizable = false;
-		Title = "";
+		Title = String.Empty;
 
 		VBox.Spacing = 12;
 		ActionArea.Layout = Gtk.ButtonBoxStyle.End;
@@ -105,8 +105,8 @@ public class HigMessageDialog : Gtk.Dialog
 		hbox.PackStart (label_vbox, true, true, 0);
 
 		string title = String.Format ("<span weight='bold' size='larger'>{0}" +
-					      "</span>\n",
-					      header);
+					      "</span>{1}",
+					      header, Environment.NewLine);
 
 		Gtk.Label label;
 

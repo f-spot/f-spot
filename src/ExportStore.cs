@@ -53,13 +53,12 @@ public class ExportStore : DbStore {
 	private void CreateTable ()
 	{
 		ExecuteSqlCommand (
-			@"CREATE TABLE exports (
-				id		 INTEGER PRIMARY KEY NOT NULL,
-                                image_id         INTEGER NOT NULL,
-                                image_version_id INTEGER NOT NULL,
-                                export_type      TEXT NOT NULL,
-                                export_token     TEXT NOT NULL
-			)");
+			"CREATE TABLE exports ("					+
+				"id		 INTEGER PRIMARY KEY NOT NULL, "	+
+                                "image_id         INTEGER NOT NULL, "			+
+                                "image_version_id INTEGER NOT NULL, "			+
+                                "export_type      TEXT NOT NULL, "			+
+                                "export_token     TEXT NOT NULL)");
 	}
 
 	private ExportItem LoadItem (SqliteDataReader reader)

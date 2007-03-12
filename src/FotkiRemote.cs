@@ -54,8 +54,8 @@ public class FotkiRemote {
 	{
 		FormClient client = new FormClient (cookies);
 		client.SuppressCookiePath = true;
-		client.Add ("finish", "");
-		client.Add ("check_cookies", "");
+		client.Add ("finish", String.Empty);
+		client.Add ("check_cookies", String.Empty);
 		client.Add ("login", login);
 		client.Add ("password", passwd);
 

@@ -43,7 +43,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		{ 
 			string [] components = uri.Split (new char [] { '/' });
 			this.Name = components [components.Length - 1];
-			if (this.Name == "")
+			if (this.Name == String.Empty)
 				this.Name = components [components.Length - 2];
 
 			this.uri = uri;

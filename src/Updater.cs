@@ -59,9 +59,9 @@ namespace FSpot.Database {
 				ExecuteScalar ("INSERT INTO tags (name, category_id, is_category, icon) VALUES ('Other', 0, 1, 'stock_icon:f-spot-other.png')");
 
 				ExecuteNonQuery (String.Format (
-					@"UPDATE tags SET category_id = {0} WHERE id IN 
-					(SELECT id FROM tags WHERE category_id != 0 AND category_id 
-					NOT IN (SELECT id FROM tags))",
+					"UPDATE tags SET category_id = {0} WHERE id IN "		+
+					"(SELECT id FROM tags WHERE category_id != 0 AND category_id "	+
+					"NOT IN (SELECT id FROM tags))",
 					connection.LastInsertRowId));
 
 				System.Console.WriteLine ("Other tag restored.  Sorry about that!");

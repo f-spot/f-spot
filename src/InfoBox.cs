@@ -52,7 +52,7 @@ public class InfoBox : VBox {
 
 	static private Label AttachLabel (Table table, int row_num, Widget entry)
 	{
-		Label label = new Label ("");
+		Label label = new Label (String.Empty);
 		label.Xalign = 0;
 		label.Selectable = true;
 		label.Ellipsize = Pango.EllipsizeMode.End;
@@ -96,8 +96,8 @@ public class InfoBox : VBox {
 		version_option_menu = new OptionMenu ();
 		table.Attach (version_option_menu, 1, 2, 1, 2, AttachOptions.Fill, AttachOptions.Fill, 3, 3);
 
-		date_label.Text = "\n";
-		exposure_info_label.Text = "\n";
+		date_label.Text = Environment.NewLine;
+		exposure_info_label.Text = Environment.NewLine;
 
 		table.ShowAll ();
 
@@ -111,10 +111,10 @@ public class InfoBox : VBox {
 		version_option_menu.Sensitive = false;
 		version_option_menu.Menu = new Menu ();	// GTK doesn't like NULL here although that's what we want.
 
-		name_label.Text = "";
-		date_label.Text = "\n";
-		size_label.Text = "";
-		exposure_info_label.Text = "\n";
+		name_label.Text = String.Empty;
+		date_label.Text = Environment.NewLine;
+		size_label.Text = String.Empty;
+		exposure_info_label.Text = Environment.NewLine;
 	}
 
 	private class ImageInfo : StatementSink {
@@ -200,24 +200,24 @@ public class InfoBox : VBox {
 
 		public string ExposureInfo {
 			get {
-				string info = "";
+				string info = String.Empty;
 
-				if  (fnumber != null && fnumber != "") {
+				if  (fnumber != null && fnumber != String.Empty) {
 					FSpot.Tiff.Rational rat = new FSpot.Tiff.Rational (fnumber);
 					info += String.Format ("f/{0:.0} ", rat.Value);
-				} else if (aperture != null && aperture != "") {
+				} else if (aperture != null && aperture != String.Empty) {
 					// Convert from APEX to fnumber
 					FSpot.Tiff.Rational rat = new FSpot.Tiff.Rational (aperture);
 					info += String.Format ("f/{0:.0} ", Math.Pow (2, rat.Value / 2));
 				}
 
-				if (exposure != null && exposure != "")
+				if (exposure != null && exposure != String.Empty)
 					info += exposure + " sec ";
 
-				if (iso_speed != null && iso_speed != "")
-					info += "\nISO " + iso_speed;
+				if (iso_speed != null && iso_speed != String.Empty)
+					info += Environment.NewLine + "ISO " + iso_speed;
 				
-				if (info == "")
+				if (info == String.Empty)
 					return Catalog.GetString ("(None)");
 				
 				return info;
@@ -236,7 +236,7 @@ public class InfoBox : VBox {
 		public string Date {
 			get {
 				if (date > DateTime.MinValue && date < DateTime.MaxValue)
-					return date.ToShortDateString () + "\n" + date.ToShortTimeString ();
+					return date.ToShortDateString () + Environment.NewLine + date.ToShortTimeString ();
 				else 
 					return Catalog.GetString ("(Unknown)");
 			}
@@ -273,9 +273,10 @@ public class InfoBox : VBox {
 #if USE_EXIF_DATE
 		date_label.Text = info.Date;
 #else
-		date_label.Text = String.Format ("{0}\n{1}",
+		date_label.Text = String.Format ("{0}{2}{1}",
 						 photo.Time.ToLocalTime ().ToShortDateString (),
-						 photo.Time.ToLocalTime ().ToShortTimeString ());
+						 photo.Time.ToLocalTime ().ToShortTimeString (),
+						 Environment.NewLine);
 #endif
 		
 

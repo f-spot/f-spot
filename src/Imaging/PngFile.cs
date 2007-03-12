@@ -357,13 +357,13 @@ namespace FSpot.Png {
 					stream.WriteByte ((byte)(compressed ? 1 : 0));
 					stream.WriteByte (Compression);
 					
-					if (Language != null && Language != "") {
+					if (Language != null && Language != System.String.Empty) {
 						tmp = Latin1.GetBytes (Language);
 						stream.Write (tmp, 0, tmp.Length);
 					}
 					stream.WriteByte (0);
 					
-					if (LocalizedKeyword != null && LocalizedKeyword != "") {
+					if (LocalizedKeyword != null && LocalizedKeyword != System.String.Empty) {
 						tmp = System.Text.Encoding.UTF8.GetBytes (LocalizedKeyword);
 						stream.Write (tmp, 0, tmp.Length);
 					}
@@ -391,7 +391,7 @@ namespace FSpot.Png {
 				this.Name = "iTXt";
 				this.keyword = keyword;
 				this.Language = language;
-				this.LocalizedKeyword = "";
+				this.LocalizedKeyword = System.String.Empty;
 				this.compressed = compressed;
 				this.Compression = 0;
 			}
@@ -1210,14 +1210,14 @@ namespace FSpot.Png {
 					if (chunk is TextChunk) {
 						TextChunk text = (TextChunk) chunk;
 						System.Console.Write (" Text Chunk {0} {1}", 
-								      text.Keyword, "", "");
+								      text.Keyword, System.String.Empty, System.String.Empty);
 					}
 					
 					TimeChunk time = chunk as TimeChunk;
 					if (time != null)
 						System.Console.Write(" Time {0}", time.Time);
 
-					System.Console.WriteLine ("");
+					System.Console.WriteLine (System.String.Empty);
 #endif
 					
 					if (chunk.Name == "IEND")

@@ -131,10 +131,11 @@ namespace FSpot {
 					progress_dialog.Hide ();
 					system ("nautilus-cd-burner");
 				} else {
-					throw new System.Exception (System.String.Format ("{0}\n{1}\n{2}", 
+					throw new System.Exception (System.String.Format ("{0}{3}{1}{3}{2}", 
 											  progress_dialog.Message,
 											  Catalog.GetString ("Error While Transferring"), 
-											  result.ToString ()));
+											  result.ToString (),
+											  System.Environment.NewLine));
 				}
 
 			} catch (System.Exception e) {
