@@ -14,6 +14,7 @@ ASSEMBLY_SOURCES =			\
 	$(srcdir)/ExportObject.cs 	\
 	$(srcdir)/Introspection.cs 	\
 	$(srcdir)/Mapper.cs 		\
+	$(srcdir)/MatchRule.cs 		\
 	$(srcdir)/Message.cs 		\
 	$(srcdir)/MessageFilter.cs 	\
 	$(srcdir)/MessageReader.cs 	\
