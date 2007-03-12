@@ -20,7 +20,7 @@ ASSEMBLY_SOURCES =			\
 	$(srcdir)/ResultCode.cs  	\
 	$(srcdir)/Ring.cs  
 
-REFS = -r:Mono.Posix
+REFS = -r:Mono.Posix $(LINK_DBUS)
 
 PKGS =
 
@@ -29,7 +29,7 @@ ASSEMBLY = $(ASSEMBLY_NAME).dll
 all: $(ASSEMBLY)
 
 $(ASSEMBLY): $(ASSEMBLY_SOURCES)
-	$(CSC_LIB) -out:$@ $(PKGS) $(REFS) $(ASSEMBLY_SOURCES)
+	$(CSC_LIB) -out:$@ -d:WITH_DBUS $(PKGS) $(REFS) $(ASSEMBLY_SOURCES)
 
 assemblydir = $(pkglibdir)
 assembly_DATA =	$(ASSEMBLY)

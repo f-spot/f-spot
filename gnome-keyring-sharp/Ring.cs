@@ -3,8 +3,10 @@
 //
 // Authors:
 //	Gonzalo Paniagua Javier (gonzalo@ximian.com)
+//	Alp Toker (alp@atoker.com)
 //
 // (C) Copyright 2006 Novell, Inc. (http://www.novell.com)
+// (C) Copyright 2007 Alp Toker
 //
 
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -35,6 +37,10 @@ using System.Net.Sockets;
 using System.Reflection;
 
 using Mono.Unix;
+
+#if WITH_DBUS
+using NDesk.DBus;
+#endif
 
 namespace Gnome.Keyring {
 	public class Ring {
@@ -78,6 +84,17 @@ namespace Gnome.Keyring {
 		static Socket Connect ()
 		{
 			string filename = Environment.GetEnvironmentVariable ("GNOME_KEYRING_SOCKET");
+
+#if WITH_DBUS
+			if (filename == null || filename == "") {
+				try {
+					filename = Bus.Session.GetObject<IDaemon> ("org.gnome.keyring", new ObjectPath ("/org/gnome/keyring/daemon")).GetSocketPath ();
+				} catch (Exception) {
+					return null;
+				}
+			}
+#endif
+
 			if (filename == null || filename == "")
 				return null;
 
@@ -500,5 +517,13 @@ namespace Gnome.Keyring {
 			SendRequest (req.Stream);
 		}
 	}
+
+#if WITH_DBUS
+	[Interface ("org.gnome.keyring.Daemon")]
+	interface IDaemon
+	{
+		string GetSocketPath ();
+	}
+#endif
 }
 

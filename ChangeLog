@@ -1,3 +1,9 @@
+2007-03-12  Alp Toker  <alp@atoker.com>
+
+	* gnome-keyring-sharp/Ring.cs:
+	* gnome-keyring-sharp/Makefile.am: Add support for getting the keyring
+	socket address via D-Bus as a fallback.
+
 2007-03-12  Stephane Delcroix  <stephane@delcroix.org>
 
 	* dbus-sharp/*: upgrading to dbus-sharp-0.4.2
