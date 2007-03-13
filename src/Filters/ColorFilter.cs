@@ -275,8 +275,8 @@ namespace FSpot.Filters {
 						       "Error: " + req.Current + "is Zero length");
 					using (ImageFile img = ImageFile.Create (req.Current)) {
 						Pixbuf pixbuf = img.Load ();
+						Assert.IsNotNull (pixbuf);
 					}
-					Assert.IsNotNull (pixbuf);
 				}
 
 			}
@@ -298,10 +298,10 @@ namespace FSpot.Filters {
 						       "Error: " + req.Current + "is Zero length");
 					using (ImageFile img = ImageFile.Create (req.Current)) {
 						Pixbuf pixbuf = img.Load ();
+						Assert.IsNotNull (pixbuf);
+						// We linearized to all black so this should pass the gray test
+						Assert.IsTrue (PixbufUtils.IsGray (pixbuf, 1), "failed to linearize" + req.Current);
 					}
-					Assert.IsNotNull (pixbuf);
-					// We linearized to all black so this should pass the gray test
-					Assert.IsTrue (PixbufUtils.IsGray (pixbuf, 1), "failed to linearize" + req.Current);
 				}
 
 			}

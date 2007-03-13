@@ -713,6 +713,7 @@ public class PhotoStore : DbStore {
 
 	public Photo Create (string newPath, string origPath, out Pixbuf thumbnail)
 	{
+		Photo photo;
 		using (FSpot.ImageFile img = FSpot.ImageFile.Create (origPath)) {
 			long unix_time = DbUtils.UnixTimeFromDateTime (img.Date);
 			string description = img.Description != null  ? img.Description.Split ('\0') [0] : String.Empty;
@@ -727,7 +728,7 @@ public class PhotoStore : DbStore {
 	 				"description", description,
 	 				"default_version_id", Photo.OriginalVersionId));
 	
-			Photo photo = new Photo (id, unix_time, newPath);
+			photo = new Photo (id, unix_time, newPath);
 			AddToCache (photo);
 			photo.Loaded = true;
 	
