@@ -181,7 +181,7 @@ namespace FSpot {
 		}
 	}
 
-	public class FileBrowsableItem : IBrowsableItem {
+	public class FileBrowsableItem : IBrowsableItem, IDisposable {
 		ImageFile img;
 		Uri uri;
 		bool attempted;
@@ -243,6 +243,12 @@ namespace FSpot {
 			get {
 				return Path.GetFileName (Image.Uri.AbsolutePath);
 			}
+		}
+
+		public void Dispose ()
+		{
+			img.Dispose ();
+			GC.SuppressFinalize (this);
 		}
 	}
 }

@@ -770,8 +770,9 @@ class PixbufUtils {
 	
 	public static PixbufOrientation GetOrientation (string path)
 	{
-		FSpot.ImageFile img = FSpot.ImageFile.Create (path);
-		return img.Orientation;
+		using (FSpot.ImageFile img = FSpot.ImageFile.Create (path)) {
+			return img.Orientation;
+		}
 	}
 
 	[DllImport("libgnomeui-2-0.dll")]

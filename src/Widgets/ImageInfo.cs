@@ -18,10 +18,11 @@ namespace FSpot.Widgets {
 		
 		public ImageInfo (Uri uri)
 		{
-			ImageFile img = ImageFile.Create (uri);
-				Pixbuf pixbuf = img.Load ();
-				SetPixbuf (pixbuf);
-				pixbuf.Dispose ();
+				using (ImageFile img = ImageFile.Create (uri)) {
+					Pixbuf pixbuf = img.Load ();
+					SetPixbuf (pixbuf);
+					pixbuf.Dispose ();
+				}
 		}
 		
 		public ImageInfo (Pixbuf pixbuf)

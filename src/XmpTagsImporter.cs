@@ -236,10 +236,11 @@ namespace FSpot.Xmp {
 				xmp = new XmpFile ();
 			}
 			
-			ImageFile img = ImageFile.Create (path);
-			StatementSource source = img as StatementSource;
-			if (source != null) {
-				source.Select (xmp);
+			using (ImageFile img = ImageFile.Create (path)) {
+				StatementSource source = img as StatementSource;
+				if (source != null) {
+					source.Select (xmp);
+				}
 			}
 
 			ProcessStore (xmp.Store, photo);

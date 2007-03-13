@@ -256,21 +256,21 @@ namespace FSpot {
 				if (!view.Item.IsValid)
  					throw new Exception ("Invalid Image");
 				
-				FSpot.ImageFile img = FSpot.ImageFile.Create (((Photo)view.Item.Current).DefaultVersionUri);
-			
- 				try {
- 					image_profile = img.GetProfile ();
- 				} catch (System.Exception e) {
- 					image_profile = null;
- 					System.Console.WriteLine (e);
- 				}
+				using (FSpot.ImageFile img = FSpot.ImageFile.Create (((Photo)view.Item.Current).DefaultVersionUri)) {
+ 					try {
+ 						image_profile = img.GetProfile ();
+ 					} catch (System.Exception e) {
+ 						image_profile = null;
+ 						System.Console.WriteLine (e);
+ 					}
 
-				// FIXME fall back to rgb for now
-				if (image_profile == null)
-					image_profile = Cms.Profile.CreateStandardRgb ();
+					// FIXME fall back to rgb for now
+					if (image_profile == null)
+						image_profile = Cms.Profile.CreateStandardRgb ();
 				
-				AdjustedPixbuf = img.Load (256, 256);
-				ScaledPixbuf = AdjustedPixbuf.Copy ();			
+					AdjustedPixbuf = img.Load (256, 256);
+					ScaledPixbuf = AdjustedPixbuf.Copy ();			
+				}
 
 				if (AdjustedPixbuf.HasAlpha)
 					throw new Exception ("Unsupported Alpha Channel");

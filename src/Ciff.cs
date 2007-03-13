@@ -496,5 +496,10 @@ namespace FSpot.Ciff {
 			ciff.Dump ();
 		}
 		*/
+
+		protected override void Close ()
+		{
+			stream.Close ();
+		}
 	}
 }

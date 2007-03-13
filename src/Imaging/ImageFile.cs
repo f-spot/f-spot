@@ -8,7 +8,7 @@ namespace FSpot {
 		}
 	}
 
-	public class ImageFile {
+	public class ImageFile : IDisposable {
 		protected Uri uri;
 
 		static System.Collections.Hashtable name_table;
@@ -199,6 +199,16 @@ namespace FSpot {
 			System.IO.File.Move (temp, imgtemp);
 
 			return imgtemp;
+		}
+
+		public void Dispose ()
+		{
+			Close ();
+			GC.SuppressFinalize (this);
+		}
+
+		protected virtual void Close ()
+		{
 		}
 	} 
 }

@@ -265,9 +265,10 @@ namespace FSpot {
 
 			if (show_captcha) {
 				try {
-					ImageFile img = ImageFile.Create(new Uri(captcha_exception.CaptchaUrl));
-					captcha_image.Pixbuf = img.Load();
-					token = captcha_exception.Token;
+					using  (ImageFile img = ImageFile.Create(new Uri(captcha_exception.CaptchaUrl))) {
+						captcha_image.Pixbuf = img.Load();
+						token = captcha_exception.Token;
+					}
 				} catch (Exception) {}
 			}
 

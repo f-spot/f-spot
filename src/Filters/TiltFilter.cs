@@ -34,29 +34,30 @@ namespace FSpot.Filters {
 			string source = req.Current.LocalPath;
 			Uri dest = req.TempUri (Path.GetExtension (source));
 			
-			ImageFile img = ImageFile.Create (source);
-			using (Pixbuf pixbuf = img.Load ()) {
-				using (ImageInfo info = new ImageInfo (pixbuf)) {
-					MemorySurface surface = new MemorySurface (Format.Argb32, 
-										   pixbuf.Width,
-										   pixbuf.Height);
-
-					Context ctx = new Context (surface);
-					ctx.Matrix = info.Fill (info.Bounds, angle);
-					Pattern p = new SurfacePattern (info.Surface);
-					ctx.Source = p;
-					ctx.Paint ();
-					((IDisposable)ctx).Dispose ();
-					p.Destroy ();
-					using (Pixbuf result = CairoUtils.CreatePixbuf (surface)) {
-						using (Stream output = File.OpenWrite (dest.LocalPath)) {
-							img.Save (result, output);
+			using (ImageFile img = ImageFile.Create (source)) {
+				using (Pixbuf pixbuf = img.Load ()) {
+					using (ImageInfo info = new ImageInfo (pixbuf)) {
+						MemorySurface surface = new MemorySurface (Format.Argb32, 
+											   pixbuf.Width,
+											   pixbuf.Height);
+	
+						Context ctx = new Context (surface);
+						ctx.Matrix = info.Fill (info.Bounds, angle);
+						Pattern p = new SurfacePattern (info.Surface);
+						ctx.Source = p;
+						ctx.Paint ();
+						((IDisposable)ctx).Dispose ();
+						p.Destroy ();
+						using (Pixbuf result = CairoUtils.CreatePixbuf (surface)) {
+							using (Stream output = File.OpenWrite (dest.LocalPath)) {
+								img.Save (result, output);
+							}
 						}
+						surface.Flush ();
+						info.Dispose ();
+						req.Current = dest;
+						return true;
 					}
-					surface.Flush ();
-					info.Dispose ();
-					req.Current = dest;
-					return true;
 				}
 			}
 		}

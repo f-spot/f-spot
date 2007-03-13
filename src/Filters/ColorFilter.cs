@@ -92,9 +92,10 @@ namespace FSpot.Filters {
 					Assert.IsTrue (new FileInfo (req.Current.LocalPath).Length > 0,
 						       "Error: " + req.Current.LocalPath + "is Zero length");
 					//req.Preserve (req.Current);
-					ImageFile img = ImageFile.Create (req.Current);
-					Pixbuf pixbuf = img.Load ();
-					Assert.IsNotNull (pixbuf);
+					using (ImageFile img = ImageFile.Create (req.Current)) {
+						Pixbuf pixbuf = img.Load ();
+						Assert.IsNotNull (pixbuf);
+					}
 				}
 			}
 		}
@@ -163,52 +164,53 @@ namespace FSpot.Filters {
 		public bool Convert (FilterRequest req)
 		{
 			Uri source = req.Current;
-			ImageFile img = ImageFile.Create (source);
-			pixbuf = img.Load ();
-			profile = img.GetProfile ();
-
-			// If the image doesn't have an embedded profile assume it is sRGB
-			if (profile == null)
-				profile = Profile.CreateStandardRgb ();
-
-			if (destination == null)
-				destination = profile;
-
-			Gdk.Pixbuf final = new Gdk.Pixbuf (Gdk.Colorspace.Rgb,
-							   false, 8,
-							   pixbuf.Width, 
-							   pixbuf.Height);
-
-			Profile [] list = Prepare (pixbuf);
-
-			if (pixbuf.HasAlpha) {
-				Gdk.Pixbuf alpha = PixbufUtils.Flatten (pixbuf);
-				Transform transform = new Transform (list,
-								     PixbufUtils.PixbufCmsFormat (alpha),
-								     PixbufUtils.PixbufCmsFormat (final),
-								     rendering_intent, 0x0000);
-				PixbufUtils.ColorAdjust (alpha, final, transform);
-				PixbufUtils.ReplaceColor (final, pixbuf);
-				alpha.Dispose ();
+			using (ImageFile img = ImageFile.Create (source)) {
+				pixbuf = img.Load ();
+				profile = img.GetProfile ();
+	
+				// If the image doesn't have an embedded profile assume it is sRGB
+				if (profile == null)
+					profile = Profile.CreateStandardRgb ();
+	
+				if (destination == null)
+					destination = profile;
+	
+				Gdk.Pixbuf final = new Gdk.Pixbuf (Gdk.Colorspace.Rgb,
+								   false, 8,
+								   pixbuf.Width, 
+								   pixbuf.Height);
+	
+				Profile [] list = Prepare (pixbuf);
+	
+				if (pixbuf.HasAlpha) {
+					Gdk.Pixbuf alpha = PixbufUtils.Flatten (pixbuf);
+					Transform transform = new Transform (list,
+									     PixbufUtils.PixbufCmsFormat (alpha),
+									     PixbufUtils.PixbufCmsFormat (final),
+									     rendering_intent, 0x0000);
+					PixbufUtils.ColorAdjust (alpha, final, transform);
+					PixbufUtils.ReplaceColor (final, pixbuf);
+					alpha.Dispose ();
+					final.Dispose ();
+					final = pixbuf;
+				} else {
+					Transform transform = new Transform (list,
+									     PixbufUtils.PixbufCmsFormat (pixbuf),
+									     PixbufUtils.PixbufCmsFormat (final),
+									     rendering_intent, 0x0000);
+					PixbufUtils.ColorAdjust (pixbuf, final, transform);
+					pixbuf.Dispose ();
+				}
+				
+				Uri dest_uri = req.TempUri (Path.GetExtension (source.LocalPath));
+				using (Stream output = File.OpenWrite (dest_uri.LocalPath)) {
+					img.Save (final, output);
+				}
 				final.Dispose ();
-				final = pixbuf;
-			} else {
-				Transform transform = new Transform (list,
-								     PixbufUtils.PixbufCmsFormat (pixbuf),
-								     PixbufUtils.PixbufCmsFormat (final),
-								     rendering_intent, 0x0000);
-				PixbufUtils.ColorAdjust (pixbuf, final, transform);
-				pixbuf.Dispose ();
+				req.Current = dest_uri;
+				
+				return true;
 			}
-			
-			Uri dest_uri = req.TempUri (Path.GetExtension (source.LocalPath));
-			using (Stream output = File.OpenWrite (dest_uri.LocalPath)) {
-				img.Save (final, output);
-			}
-			final.Dispose ();
-			req.Current = dest_uri;
-			
-			return true;
 		}
 		
 #if ENABLE_NUNIT
@@ -271,8 +273,9 @@ namespace FSpot.Filters {
 						       "Error: Did not create " + req.Current);
 					Assert.IsTrue (new FileInfo (req.Current.LocalPath).Length > 0,
 						       "Error: " + req.Current + "is Zero length");
-					ImageFile img = ImageFile.Create (req.Current);
-					Pixbuf pixbuf = img.Load ();
+					using (ImageFile img = ImageFile.Create (req.Current)) {
+						Pixbuf pixbuf = img.Load ();
+					}
 					Assert.IsNotNull (pixbuf);
 				}
 
@@ -293,8 +296,9 @@ namespace FSpot.Filters {
 						       "Error: Did not create " + req.Current);
 					Assert.IsTrue (new FileInfo (req.Current.LocalPath).Length > 0,
 						       "Error: " + req.Current + "is Zero length");
-					ImageFile img = ImageFile.Create (req.Current);
-					Pixbuf pixbuf = img.Load ();
+					using (ImageFile img = ImageFile.Create (req.Current)) {
+						Pixbuf pixbuf = img.Load ();
+					}
 					Assert.IsNotNull (pixbuf);
 					// We linearized to all black so this should pass the gray test
 					Assert.IsTrue (PixbufUtils.IsGray (pixbuf, 1), "failed to linearize" + req.Current);

@@ -511,55 +511,56 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 	{
 		string path = this.DefaultVersionUri.LocalPath;
 
-		FSpot.ImageFile img = FSpot.ImageFile.Create (DefaultVersionUri);
-		if (img is FSpot.JpegFile) {
-			FSpot.JpegFile jimg = img as FSpot.JpegFile;
+		using (FSpot.ImageFile img = FSpot.ImageFile.Create (DefaultVersionUri)) {
+			if (img is FSpot.JpegFile) {
+				FSpot.JpegFile jimg = img as FSpot.JpegFile;
 			
-			jimg.SetDescription (this.Description);
-			jimg.SetDateTimeOriginal (this.Time.ToLocalTime ());
-			jimg.SetXmp (UpdateXmp (this, jimg.Header.GetXmp ()));
+				jimg.SetDescription (this.Description);
+				jimg.SetDateTimeOriginal (this.Time.ToLocalTime ());
+				jimg.SetXmp (UpdateXmp (this, jimg.Header.GetXmp ()));
 
-			jimg.SaveMetaData (path);
-		} else if (img is FSpot.Png.PngFile) {
-			FSpot.Png.PngFile png = img as FSpot.Png.PngFile;
+				jimg.SaveMetaData (path);
+			} else if (img is FSpot.Png.PngFile) {
+				FSpot.Png.PngFile png = img as FSpot.Png.PngFile;
 			
-			if (img.Description != this.Description)
-				png.SetDescription (this.Description);
+				if (img.Description != this.Description)
+					png.SetDescription (this.Description);
 			
-			png.SetXmp (UpdateXmp (this, png.GetXmp ()));
+				png.SetXmp (UpdateXmp (this, png.GetXmp ()));
 
-			png.Save (path);
+				png.Save (path);
+			}
 		}
 	}
 
 	public uint SaveVersion (Gdk.Pixbuf buffer, bool create_version)
 	{
 		uint version = DefaultVersionId;
-		ImageFile img = ImageFile.Create (DefaultVersionUri);
+		using (ImageFile img = ImageFile.Create (DefaultVersionUri)) {
+			// Always create a version if the source is not a jpeg for now.
+			create_version = create_version || !(img is FSpot.JpegFile);
 
-		// Always create a version if the source is not a jpeg for now.
-		create_version = create_version || !(img is FSpot.JpegFile);
+			if (buffer == null)
+				throw new ApplicationException ("invalid (null) image");
 
-		if (buffer == null)
-			throw new ApplicationException ("invalid (null) image");
-
-		if (create_version)
-			version = CreateDefaultModifiedVersion (DefaultVersionId, false);
-
-		try {
-			string version_path = GetVersionPath (version);
-			
-			using (Stream stream = File.OpenWrite (version_path)) {
-				img.Save (buffer, stream);
-			}
-			FSpot.ThumbnailGenerator.Create (version_path).Dispose ();
-			DefaultVersionId = version;
-		} catch (System.Exception e) {
-			System.Console.WriteLine (e);
 			if (create_version)
-				DeleteVersion (version);
+				version = CreateDefaultModifiedVersion (DefaultVersionId, false);
+
+			try {
+				string version_path = GetVersionPath (version);
 			
-			throw e;
+				using (Stream stream = File.OpenWrite (version_path)) {
+					img.Save (buffer, stream);
+				}
+				FSpot.ThumbnailGenerator.Create (version_path).Dispose ();
+				DefaultVersionId = version;
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e);
+				if (create_version)
+					DeleteVersion (version);
+			
+				throw e;
+			}
 		}
 		
 		return version;
@@ -621,9 +622,9 @@ public class PhotoStore : DbStore {
 
 	public static Pixbuf GenerateThumbnail (Uri uri)
 	{
-		FSpot.ImageFile img = FSpot.ImageFile.Create (uri);
-		
-		return GenerateThumbnail (uri, img);
+		using (FSpot.ImageFile img = FSpot.ImageFile.Create (uri)) {
+			return GenerateThumbnail (uri, img);
+		}
 	}
 
 	public static Pixbuf GenerateThumbnail (Uri uri, ImageFile img)
@@ -712,27 +713,27 @@ public class PhotoStore : DbStore {
 
 	public Photo Create (string newPath, string origPath, out Pixbuf thumbnail)
 	{
-		FSpot.ImageFile img = FSpot.ImageFile.Create (origPath);
-		long unix_time = DbUtils.UnixTimeFromDateTime (img.Date);
-		string description = img.Description != null  ? img.Description.Split ('\0') [0] : String.Empty;
-
- 		uint id = (uint) Database.Execute (new DbCommand ("INSERT INTO photos (time, "	+
-				"directory_path, name, description, default_version_id) "	+
- 				"VALUES (:time, :directory_path, :name, :description, "		+
-				":default_version_id)",
- 				"time", unix_time,
- 				"directory_path", System.IO.Path.GetDirectoryName (newPath),
- 				"name", System.IO.Path.GetFileName (newPath),
- 				"description", description,
- 				"default_version_id", Photo.OriginalVersionId));
-
-		Photo photo = new Photo (id, unix_time, newPath);
-		AddToCache (photo);
-		photo.Loaded = true;
-
-		thumbnail = GenerateThumbnail (UriList.PathToFileUri (newPath), img);		
-		EmitAdded (photo);
-
+		using (FSpot.ImageFile img = FSpot.ImageFile.Create (origPath)) {
+			long unix_time = DbUtils.UnixTimeFromDateTime (img.Date);
+			string description = img.Description != null  ? img.Description.Split ('\0') [0] : String.Empty;
+	
+	 		uint id = (uint) Database.Execute (new DbCommand ("INSERT INTO photos (time, "	+
+					"directory_path, name, description, default_version_id) "	+
+	 				"VALUES (:time, :directory_path, :name, :description, "		+
+					":default_version_id)",
+	 				"time", unix_time,
+	 				"directory_path", System.IO.Path.GetDirectoryName (newPath),
+	 				"name", System.IO.Path.GetFileName (newPath),
+	 				"description", description,
+	 				"default_version_id", Photo.OriginalVersionId));
+	
+			Photo photo = new Photo (id, unix_time, newPath);
+			AddToCache (photo);
+			photo.Loaded = true;
+	
+			thumbnail = GenerateThumbnail (UriList.PathToFileUri (newPath), img);		
+			EmitAdded (photo);
+		}
 		TotalPhotos++;
 		
 		return photo;

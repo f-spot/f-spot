@@ -247,7 +247,6 @@ public class InfoBox : VBox {
 
 	public bool Update ()
 	{
-		ImageFile img;
 		ImageInfo info;
 
 		if (photo == null) {
@@ -258,8 +257,10 @@ public class InfoBox : VBox {
 		name_label.Text = photo.Name != null ? photo.Name : String.Empty;
 		try {
 			//using (new Timer ("building info")) {
-				img = ImageFile.Create (photo.DefaultVersionUri);
-				info = new ImageInfo (img);
+				using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri))
+				{
+					info = new ImageInfo (img);
+				}
 				//}
 		} catch (System.Exception e) {
 			System.Console.WriteLine (e);

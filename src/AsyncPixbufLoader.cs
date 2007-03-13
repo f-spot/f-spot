@@ -113,42 +113,43 @@ namespace FSpot {
 			area_prepared = false;
 			damage = Gdk.Rectangle.Zero;
 
-			ImageFile img = ImageFile.Create (uri);
-			orientation = Accelerometer.GetViewOrientation (img.Orientation);
+			using (ImageFile img = ImageFile.Create (uri)) {
+				orientation = Accelerometer.GetViewOrientation (img.Orientation);
 			
-			try {
-				PixbufOrientation thumb_orientation = Accelerometer.GetViewOrientation (PixbufOrientation.TopLeft);
-				thumb = new Gdk.Pixbuf (ThumbnailGenerator.ThumbnailPath (uri));
-				thumb = PixbufUtils.TransformOrientation (thumb, thumb_orientation);
-			} catch (System.Exception e) {
-				//FSpot.ThumbnailGenerator.Default.Request (uri.ToString (), 0, 256, 256);	
-				if (!(e is GLib.GException)) 
-					System.Console.WriteLine (e.ToString ());
+				try {
+					PixbufOrientation thumb_orientation = Accelerometer.GetViewOrientation (PixbufOrientation.TopLeft);
+					thumb = new Gdk.Pixbuf (ThumbnailGenerator.ThumbnailPath (uri));
+					thumb = PixbufUtils.TransformOrientation (thumb, thumb_orientation);
+				} catch (System.Exception e) {
+					//FSpot.ThumbnailGenerator.Default.Request (uri.ToString (), 0, 256, 256);	
+					if (!(e is GLib.GException)) 
+						System.Console.WriteLine (e.ToString ());
+				}
+
+				System.IO.Stream nstream = img.PixbufStream ();
+				if (nstream == null) {
+					FileLoad (img);
+					return;
+				} else
+					stream = new StreamWrapper (nstream);
+
+				loader = new Gdk.PixbufLoader ();
+				loader.AreaPrepared += ap;
+				loader.AreaUpdated += au;
+				loader.Closed += ev;
+
+				if (AreaPrepared != null && thumb != null) {
+					pixbuf = thumb;
+					AreaPrepared (this, new AreaPreparedArgs (true));
+				}
+
+				ThumbnailGenerator.Default.PushBlock ();
+				//AsyncIORead (null);
+				if (nstream is IOChannel) {
+					((IOChannel)nstream).DataReady += IOChannelRead;
+				} else
+					delay.Start ();
 			}
-
-			System.IO.Stream nstream = img.PixbufStream ();
-			if (nstream == null) {
-				FileLoad (img);
-				return;
-			} else
-				stream = new StreamWrapper (nstream);
-
-			loader = new Gdk.PixbufLoader ();
-			loader.AreaPrepared += ap;
-			loader.AreaUpdated += au;
-			loader.Closed += ev;
-
-			if (AreaPrepared != null && thumb != null) {
-				pixbuf = thumb;
-				AreaPrepared (this, new AreaPreparedArgs (true));
-			}
-
-			ThumbnailGenerator.Default.PushBlock ();
-			//AsyncIORead (null);
-			if (nstream is IOChannel) {
-				((IOChannel)nstream).DataReady += IOChannelRead;
-			} else
-				delay.Start ();
 
 		}			
 

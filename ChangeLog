@@ -1,4 +1,37 @@
-2007-03-13  Ruben Vermeersch  <ruben@savanne.be>
+2007-03-13  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Imaging/ImageFile.cs:
+	* src/DirectoryCollection.cs: make ImageFile and FileBrowsableItem as
+	IDisposable.
+
+	* src/Ciff.cs: implements the Close () method.
+
+	* src/Widgets/ImageInfo.cs:
+	* src/Editors/SoftFocus.cs:
+	* src/PhotoStore.cs:
+	* src/PixbufUtils.cs:
+	* src/FileImportBackend.cs:
+	* src/ColorDialog.cs:
+	* src/ColorAdjustment.cs:
+	* src/PhotoLoader.cs:
+	* src/InfoDisplay.cs:
+	* src/RotateCommand.cs:
+	* src/XmpTagsImporter.cs:
+	* src/AsyncPixbufLoader.cs:
+	* src/TextureDisplay.cs:
+	* src/ThumbnailGenerator.cs:
+	* src/PicasaWebExport.cs:
+	* src/PixbufLoader.cs:
+	* src/Filters/JpegFilter.cs:
+	* src/Filters/OrientationFilter.cs:
+	* src/Filters/TiltFilter.cs:
+	* src/Filters/SharpFilter.cs:
+	* src/Filters/ColorFilter.cs:
+	* src/Filters/ResizeFilter.cs:
+	* src/InfoBox.cs: Patch from George Talusan (with some additions) to
+	Dispose () the ImageFile instances.
+
+o007-03-13  Ruben Vermeersch  <ruben@savanne.be>
 
 	* src/Core/Banshee.Base/QueuedSqliteDatabase.cs: Convert the inheritance
 	of SqliteCommand to an instance field. As Alp Toker pointed out,

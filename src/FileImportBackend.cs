@@ -149,9 +149,11 @@ public class FileImportBackend : ImportBackend {
 	public static string ChooseLocation (string path, Stack created_directories)
 	{
 		string name = System.IO.Path.GetFileName (path);
-		FSpot.ImageFile img = FSpot.ImageFile.Create (path);
-		DateTime time = img.Date;
-		
+		DateTime time;
+		using (FSpot.ImageFile img = FSpot.ImageFile.Create (path)) {
+			time = img.Date;
+		}
+
 		string dest_dir = String.Format ("{0}{1}{2}{1}{3:D2}{1}{4:D2}",
 						 FSpot.Global.PhotoDirectory,
 						 System.IO.Path.DirectorySeparatorChar,

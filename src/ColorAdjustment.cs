@@ -42,14 +42,14 @@ namespace FSpot {
 		public void Adjust ()
 		{
 			bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
-			ImageFile img = ImageFile.Create (photo.DefaultVersionUri);
+			using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri)) {
+				if (image == null)
+					image = img.Load ();
+			
+				if (image_profile == null)
+					image_profile = img.GetProfile ();
+			}
 
-			if (image == null)
-				image = img.Load ();
-			
-			if (image_profile == null)
-				image_profile = img.GetProfile ();
-			
 			if (image_profile == null)
 				image_profile = Cms.Profile.CreateStandardRgb ();
 

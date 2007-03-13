@@ -36,21 +36,22 @@ namespace FSpot.Filters {
 			// even when the source is not a jpeg
 			string source = req.Current.LocalPath;
 
-			ImageFile img = ImageFile.Create (source);
-			if (img is JpegFile)
-				return false;
+			using (ImageFile img = ImageFile.Create (source)) {
+				if (img is JpegFile)
+					return false;
 
-			req.Current = req.TempUri ("jpg");
-			string dest = req.Current.LocalPath;
+				req.Current = req.TempUri ("jpg");
+				string dest = req.Current.LocalPath;
 
-			Exif.ExifData exif_data;
-			try {
-				exif_data = new Exif.ExifData (source);
-			} catch (Exception) {
-				exif_data = new Exif.ExifData();
+				Exif.ExifData exif_data;
+				try {
+					exif_data = new Exif.ExifData (source);
+				} catch (Exception) {
+					exif_data = new Exif.ExifData();
+				}
+
+				PixbufUtils.SaveJpeg (img.Load(), dest, (int) quality, exif_data);
 			}
-
-			PixbufUtils.SaveJpeg (img.Load(), dest, (int) quality, exif_data);
 
 			return true;
 		}
@@ -78,9 +79,10 @@ namespace FSpot.Filters {
 				IFilter filter = new JpegFilter ();
 				FilterRequest req = new FilterRequest (path);
 				filter.Convert (req);
-				ImageFile img = new JpegFile (req.Current) ;
-				Assert.IsTrue (img != null, "result is null");
-				Assert.IsTrue (img is JpegFile, "result is not a jpg");
+				using (ImageFile img = new JpegFile (req.Current)) {
+					Assert.IsTrue (img != null, "result is null");
+					Assert.IsTrue (img is JpegFile, "result is not a jpg");
+				}
 				System.IO.File.Delete (path);
 			}
 

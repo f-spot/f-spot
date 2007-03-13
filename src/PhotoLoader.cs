@@ -14,18 +14,20 @@ namespace FSpot {
 
 		static public Gdk.Pixbuf Load (IBrowsableItem item) 
 		{
-			ImageFile img = ImageFile.Create (item.DefaultVersionUri);
-			Gdk.Pixbuf pixbuf = img.Load ();
-			ValidateThumbnail (item, pixbuf);
-			return pixbuf;
+			using (ImageFile img = ImageFile.Create (item.DefaultVersionUri)) {
+				Gdk.Pixbuf pixbuf = img.Load ();
+				ValidateThumbnail (item, pixbuf);
+				return pixbuf;
+			}
 		}
 
 		static public Gdk.Pixbuf LoadAtMaxSize (IBrowsableItem item, int width, int height) 
 		{
-			ImageFile img = ImageFile.Create (item.DefaultVersionUri);
-			Gdk.Pixbuf pixbuf = img.Load (width, height);
-			ValidateThumbnail (item.DefaultVersionUri, pixbuf);
-			return pixbuf;
+			using (ImageFile img = ImageFile.Create (item.DefaultVersionUri)) {
+				Gdk.Pixbuf pixbuf = img.Load (width, height);
+				ValidateThumbnail (item.DefaultVersionUri, pixbuf);
+				return pixbuf;
+			}
 		}
 
 		static public Gdk.Pixbuf ValidateThumbnail (IBrowsableItem item, Gdk.Pixbuf pixbuf)

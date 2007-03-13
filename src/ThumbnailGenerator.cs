@@ -23,12 +23,13 @@ namespace FSpot {
 		public static Gdk.Pixbuf Create (Uri uri)
 		{
 			try {
-				ImageFile img = ImageFile.Create (uri);
-				Gdk.Pixbuf thumb = img.Load (256, 256);
+				using (ImageFile img = ImageFile.Create (uri)) {
+					Gdk.Pixbuf thumb = img.Load (256, 256);
 
-				if (thumb != null)
-					Save (thumb, uri);
-				return thumb;
+					if (thumb != null)
+						Save (thumb, uri);
+					return thumb;
+				}
 			} catch {
 				return null;
 			}
