@@ -122,7 +122,6 @@ namespace FSpot {
 			this.t = t;
 		}
 
-		//FIXME: should handle categories !
 		public override string SqlStatement {
 			get {
 				System.Text.StringBuilder ids = new System.Text.StringBuilder (t.Id.ToString ());
