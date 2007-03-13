@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-03-11 23:11+0000\n"
-"PO-Revision-Date: 2007-03-11 23:11-0000\n"
+"POT-Creation-Date: 2007-03-13 06:48+0000\n"
+"PO-Revision-Date: 2007-03-13 06:48-0000\n"
 "Last-Translator: David Lodge <dave@cirt.net>\n"
 "Language-Team: British English <l10n-en_GB-maint@gnome.bugs>\n"
 "MIME-Version: 1.0\n"
@@ -207,7 +207,7 @@ msgid "Downloading Preview of {0}"
 msgstr "Downloading Preview of {0}"
 
 #: ../src/CameraFileSelectionDialog.cs:183
-#: ../src/CDExport.cs:205
+#: ../src/CDExport.cs:206
 #: ../src/FolderExport.cs:329
 msgid "Transferring Pictures"
 msgstr "Transferring Pictures"
@@ -278,17 +278,17 @@ msgstr "Transfer Complete"
 msgid "Error While Transferring"
 msgstr "Error While Transferring"
 
-#: ../src/CDExport.cs:142
+#: ../src/CDExport.cs:143
 #: ../src/FolderExport.cs:250
 msgid "Error Transferring"
 msgstr "Error Transferring"
 
-#: ../src/CDExport.cs:163
+#: ../src/CDExport.cs:164
 #: ../src/FolderExport.cs:272
 msgid "Error: Error while transferring; Aborting"
 msgstr "Error: Error while transferring; Aborting"
 
-#: ../src/CDExport.cs:166
+#: ../src/CDExport.cs:167
 #: ../src/FolderExport.cs:275
 msgid "Error: File Already Exists; Aborting"
 msgstr "Error: File Already Exists; Aborting"
@@ -313,28 +313,34 @@ msgstr "No photos matching {0} found"
 
 #: ../src/Core.cs:185
 #, csharp-format
-msgid ""
-"The tag \"{0}\" is not applied to any photos. Try adding\n"
-"the tag to some photos or selecting a different tag in the\n"
-"F-Spot preference dialog."
-msgstr ""
-"The tag \"{0}\" is not applied to any photos. Try adding\n"
-"the tag to some photos or selecting a different tag in the\n"
-"F-Spot preference dialogue."
+msgid "The tag \"{0}\" is not applied to any photos. Try adding"
+msgstr "The tag \"{0}\" is not applied to any photos. Try adding"
+
+#: ../src/Core.cs:186
+#, csharp-format
+msgid "the tag to some photos or selecting a different tag in the"
+msgstr "the tag to some photos or selecting a different tag in the"
+
+#: ../src/Core.cs:187
+#, csharp-format
+msgid "F-Spot preference dialog."
+msgstr "F-Spot preferences dialogue."
 
 #: ../src/Core.cs:189
 msgid "Search returned no results"
 msgstr "Search returned no results"
 
 #: ../src/Core.cs:190
-msgid ""
-"The tag F-Spot is looking for does not exist. Try\n"
-"selecting a different tag in the F-Spot preference\n"
-"dialog."
-msgstr ""
-"The tag F-Spot is looking for does not exist. Try\n"
-"selecting a different tag in the F-Spot preference\n"
-"dialogue."
+msgid "The tag F-Spot is looking for does not exist. Try"
+msgstr "The tag F-Spot is looking for does not exist. Try"
+
+#: ../src/Core.cs:191
+msgid "selecting a different tag in the F-Spot preference"
+msgstr "selecting a different tag in the F-Spot preferences"
+
+#: ../src/Core.cs:192
+msgid "dialog."
+msgstr "dialogue."
 
 #: ../src/Editors/Tilt.cs:28
 #: ../src/ItemAction.cs:355
@@ -366,14 +372,8 @@ msgstr "Import error"
 
 #: ../src/FileImportBackend.cs:261
 #, csharp-format
-msgid ""
-"Error importing {0}\n"
-"\n"
-"{1}"
-msgstr ""
-"Error importing {0}\n"
-"\n"
-"{1}"
+msgid "Error importing {0}{2}{2}{1}"
+msgstr "Error importing {0}{2}{2}{1}"
 
 #: ../src/Filters/ResizeFilter.cs:70
 #, csharp-format
@@ -487,12 +487,8 @@ msgstr "Building Gallery"
 
 #: ../src/FolderExport.cs:198
 #, csharp-format
-msgid ""
-"Error uploading picture \"{0}\" to Gallery:\n"
-"{1}"
-msgstr ""
-"Error uploading picture \"{0}\" to Gallery:\n"
-"{1}"
+msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
+msgstr "Error uploading picture \"{0}\" to Gallery:{2}{1}"
 
 #: ../src/FolderExport.cs:707
 msgid "Light"
@@ -1063,8 +1059,8 @@ msgstr "Fin_d"
 
 #. Obsolete, remove after db rev4
 #: ../src/f-spot.glade.h:129
-#: ../src/InfoDisplay.cs:134
-#: ../src/InfoDisplay.cs:136
+#: ../src/InfoDisplay.cs:135
+#: ../src/InfoDisplay.cs:137
 msgid "Folder"
 msgstr "Folder"
 
@@ -1187,7 +1183,7 @@ msgstr "Open _destination when done exporting"
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
 #: ../src/f-spot.glade.h:163
-#: ../src/PhotoStore.cs:580
+#: ../src/PhotoStore.cs:581
 msgid "Original"
 msgstr "Original"
 
@@ -1933,7 +1929,7 @@ msgstr "Exposure:"
 
 #. The label for the root category is used in new and edit tag dialogs
 #: ../src/InfoBox.cs:221
-#: ../src/TagStore.cs:454
+#: ../src/TagStore.cs:449
 msgid "(None)"
 msgstr "(None)"
 
@@ -1942,36 +1938,36 @@ msgstr "(None)"
 msgid "(Unknown)"
 msgstr "(Unknown)"
 
-#: ../src/InfoDisplay.cs:138
+#: ../src/InfoDisplay.cs:139
 msgid "Picasaweb"
 msgstr "Picasaweb"
 
-#: ../src/InfoDisplay.cs:140
+#: ../src/InfoDisplay.cs:141
 msgid "SmugMug"
 msgstr "SmugMug"
 
-#: ../src/InfoDisplay.cs:142
+#: ../src/InfoDisplay.cs:143
 msgid "Gallery2"
 msgstr "Gallery2"
 
-#: ../src/InfoDisplay.cs:233
+#: ../src/InfoDisplay.cs:234
 msgid "Extended Metadata"
 msgstr "Extended Metadata"
 
-#: ../src/InfoDisplay.cs:265
+#: ../src/InfoDisplay.cs:266
 msgid "Exported Locations"
 msgstr "Exported Locations"
 
-#: ../src/InfoDisplay.cs:288
+#: ../src/InfoDisplay.cs:289
 msgid "No active photo"
 msgstr "No active photo"
 
-#: ../src/InfoDisplay.cs:290
+#: ../src/InfoDisplay.cs:291
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "The photo \"{0}\" does not exist"
 
-#: ../src/InfoDisplay.cs:296
+#: ../src/InfoDisplay.cs:297
 msgid "No metadata available"
 msgstr "No metadata available"
 
@@ -2301,21 +2297,13 @@ msgstr "Error Deleting Picture"
 
 #: ../src/MainWindow.cs:2255
 #, csharp-format
-msgid ""
-"No permission to delete the file:\n"
-"{0}"
-msgstr ""
-"No permission to delete the file:\n"
-"{0}"
+msgid "No permission to delete the file:{1}{0}"
+msgstr "No permission to delete the file:{1}{0}"
 
 #: ../src/MainWindow.cs:2259
 #, csharp-format
-msgid ""
-"An error of type {0} occurred while deleting the file:\n"
-"{1}"
-msgstr ""
-"An error of type {0} occurred while deleting the file:\n"
-"{1}"
+msgid "An error of type {0} occurred while deleting the file:{2}{1}"
+msgstr "An error of type {0} occurred while deleting the file:{2}{1}"
 
 #: ../src/MainWindow.cs:2285
 #, csharp-format
@@ -2559,14 +2547,14 @@ msgstr "Attach Tag"
 msgid "Remove Tag"
 msgstr "Remove Tag"
 
-#: ../src/PhotoStore.cs:377
+#: ../src/PhotoStore.cs:378
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "Modified"
 msgstr[1] "Modified ({0})"
 
-#: ../src/PhotoStore.cs:396
+#: ../src/PhotoStore.cs:397
 #, csharp-format
 msgid "Modified in {1}"
 msgid_plural "Modified in {1} ({0})"
@@ -2964,23 +2952,23 @@ msgstr "Drag tags here to search for them"
 msgid "Error renaming tag"
 msgstr "Error renaming tag"
 
-#: ../src/TagStore.cs:418
+#: ../src/TagStore.cs:413
 msgid "Favorites"
 msgstr "Favourites"
 
-#: ../src/TagStore.cs:423
+#: ../src/TagStore.cs:418
 msgid "Hidden"
 msgstr "Hidden"
 
-#: ../src/TagStore.cs:431
+#: ../src/TagStore.cs:426
 msgid "People"
 msgstr "People"
 
-#: ../src/TagStore.cs:436
+#: ../src/TagStore.cs:431
 msgid "Places"
 msgstr "Places"
 
-#: ../src/TagStore.cs:441
+#: ../src/TagStore.cs:436
 msgid "Events"
 msgstr "Events"
 
@@ -3011,12 +2999,8 @@ msgstr "There was an error invoking the external handler"
 
 #: ../src/Util.cs:450
 #, csharp-format
-msgid ""
-"Received error:\n"
-"\"{0}\"\n"
-msgstr ""
-"Received error:\n"
-"\"{0}\"\n"
+msgid "Received error:{1}\"{0}\"{1}"
+msgstr "Received error:{1}\"{0}\"{1}"
 
 #: ../src/Util.cs:474
 msgid "The \"F-Spot Manual\" could not be found.  Please verify that your installation has been completed successfully."
@@ -3050,7 +3034,7 @@ msgstr "Hide Find Bar"
 msgid "Show Find Bar"
 msgstr "Show Find Bar"
 
-#: ../src/Widgets/DateEdit.cs:209
+#: ../src/Widgets/DateEdit.cs:210
 msgid "Calendar"
 msgstr "Calendar"
 
@@ -3079,6 +3063,14 @@ msgstr "Display a slideshow from F-Spot"
 msgid "F-Spot photos"
 msgstr "F-Spot photos"
 
+#~ msgid ""
+#~ "The tag \"{0}\" is not applied to any photos. Try adding\n"
+#~ "the tag to some photos or selecting a different tag in the\n"
+#~ "F-Spot preference dialog."
+#~ msgstr ""
+#~ "The tag \"{0}\" is not applied to any photos. Try adding\n"
+#~ "the tag to some photos or selecting a different tag in the\n"
+#~ "F-Spot preference dialogue."
 #~ msgid "Unknown destination."
 #~ msgstr "Unknown destination."
 #~ msgid ""
