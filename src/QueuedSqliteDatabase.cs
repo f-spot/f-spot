@@ -283,7 +283,7 @@ namespace Banshee.Database
         ExecuteNonQuery
     }
 
-    public class QueuedSqliteCommand : SqliteCommand
+    public class QueuedSqliteCommand
     {
         private CommandType command_type;
         private object result;
@@ -291,18 +291,21 @@ namespace Banshee.Database
         private Exception execution_exception;
         private bool finished = false;
 
+        private SqliteCommand command;
+
         private const int MAX_RETRIES = 4;
         private const int SLEEP_TIME = 1000; // 1 sec
         private int attempt = 0;
         
-        public QueuedSqliteCommand(string command) : base(command)
+        public QueuedSqliteCommand(string query)
         {
+            this.command = new SqliteCommand(query);
         }
         
-        public QueuedSqliteCommand(SqliteConnection connection, string command, CommandType commandType) 
-            : base(command, connection)
+        public QueuedSqliteCommand(SqliteConnection connection, string query, CommandType commandType) 
         {
             this.command_type = commandType;
+            this.command = new SqliteCommand(query, connection);
         }
         
         public void Execute()
@@ -314,15 +317,15 @@ namespace Banshee.Database
             try {
                 switch(command_type) {
                     case Banshee.Database.CommandType.Reader:
-                        result = ExecuteReader();
+                        result = command.ExecuteReader();
                         break;
                     case Banshee.Database.CommandType.Scalar:
-                        result = ExecuteScalar();
+                        result = command.ExecuteScalar();
                         break;
                     case Banshee.Database.CommandType.Execute:
                     default:
-                        result = ExecuteNonQuery();
-                        insert_id = LastInsertRowID();
+                        result = command.ExecuteNonQuery();
+                        insert_id = command.LastInsertRowID();
                         break;
                 }
             } catch (SqliteBusyException) {
@@ -339,6 +342,7 @@ namespace Banshee.Database
                     throw execution_exception;
                 }
             }
+            command.Dispose();
             
             finished = true;
         }
@@ -366,6 +370,18 @@ namespace Banshee.Database
         public new CommandType CommandType {
             get { return command_type; }
             set { command_type = value; }
+        }
+
+        public SqliteConnection Connection {
+            set { command.Connection = value; }
+        }
+
+        protected SqliteParameterCollection Parameters {
+            get { return command.Parameters; }
+        }
+
+        public string CommandText {
+            get { return command.CommandText; }
         }
     }
     

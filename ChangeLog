@@ -1,3 +1,10 @@
+2007-03-13  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/Core/Banshee.Base/QueuedSqliteDatabase.cs: Convert the inheritance
+	of SqliteCommand to an instance field. As Alp Toker pointed out,
+	SqliteCommand will be a sealed class in newer versions of mono. Thanks
+	Alp!
+
 2007-03-12  Ruben Vermeersch  <ruben@savanne.be>
 
 	* src/PhotoStore.cs: Fix a stray String.Format that breaks tagging.
