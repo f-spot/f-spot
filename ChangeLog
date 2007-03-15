@@ -1,3 +1,9 @@
+2007-03-15  Alp Toker  <alp@atoker.com>
+
+	* gnome-keyring-sharp/Ring.cs: Fall back to D-Bus even if the
+	environment variable is set but the connection to that address fails.
+	This matches gnome-keyring behaviour precisely.
+
 2007-03-13  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/Imaging/ImageFile.cs:

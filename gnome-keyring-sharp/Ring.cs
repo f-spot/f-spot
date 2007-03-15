@@ -83,18 +83,28 @@ namespace Gnome.Keyring {
 
 		static Socket Connect ()
 		{
-			string filename = Environment.GetEnvironmentVariable ("GNOME_KEYRING_SOCKET");
+			string filename;
+			Socket sock;
+		 
+			filename = Environment.GetEnvironmentVariable ("GNOME_KEYRING_SOCKET");
+			sock = Connect (filename);
 
 #if WITH_DBUS
-			if (filename == null || filename == "") {
+			if (sock == null) {
 				try {
 					filename = Bus.Session.GetObject<IDaemon> ("org.gnome.keyring", new ObjectPath ("/org/gnome/keyring/daemon")).GetSocketPath ();
 				} catch (Exception) {
-					return null;
+					filename = null;
 				}
+				sock = Connect (filename);
 			}
 #endif
 
+			return sock;
+		}
+
+		static Socket Connect (string filename)
+		{
 			if (filename == null || filename == "")
 				return null;
 
