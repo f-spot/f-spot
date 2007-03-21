@@ -166,7 +166,7 @@ public class Driver {
 						core.UnregisterServer ();
 				}
 				if (control == null)
-					System.Console.WriteLine ("Cant' get a connection to the dbus. Trying again...");
+					System.Console.WriteLine ("Can't get a connection to the dbus. Trying again...");
 			}
 			
 			

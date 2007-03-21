@@ -1,3 +1,10 @@
+2007-03-21  Stephane Delcroix  <stephane@delcroix>
+
+	* src/Imaging/ImageFile.cs: patch from Andrew Mitchell to support .kdc
+	files. May require dcraw... Fixes bgo #421217 and launchpad #91488.
+
+	* src/main.cs: fixing a typo.
+
 2007-03-15  Alp Toker  <alp@atoker.com>
 
 	* gnome-keyring-sharp/Ring.cs: Fall back to D-Bus even if the

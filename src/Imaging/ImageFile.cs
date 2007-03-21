@@ -53,6 +53,7 @@ namespace FSpot {
 			name_table [".nef"] = typeof (FSpot.Tiff.NefFile);
 			name_table [".pef"] = typeof (FSpot.Tiff.NefFile);
 			name_table [".raw"] = typeof (FSpot.Tiff.NefFile);
+			name_table [".kdc"] = typeof (FSpot.Tiff.NefFile);
 			name_table [".tiff"] = typeof (FSpot.Tiff.TiffFile);
 			name_table [".tif"] = typeof (FSpot.Tiff.TiffFile);
 			name_table [".orf"] =  typeof (FSpot.Tiff.NefFile);
