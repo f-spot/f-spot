@@ -3,8 +3,10 @@
 //
 // Authors:
 //	Gonzalo Paniagua Javier (gonzalo@ximian.com)
+//	Stephane Delcroix  (stephane@delcroix.org)
 //
 // (C) Copyright 2006 Novell, Inc. (http://www.novell.com)
+// (C) Copyright 2007 S. Delcroix
 //
 
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -26,6 +28,8 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
+// Check Picasa Web Albums Data Api at http://code.google.com/apis/picasaweb/gdata.html
+//
 
 using System;
 using System.Collections;
@@ -38,32 +42,38 @@ using System.Xml;
 namespace Mono.Google.Picasa {
 	public class PicasaWeb {
 		GoogleConnection conn;
-		PicasaV1 api;
 		string title;
-		string link;
 		string user;
 		string nickname;
 		long quota_used;
 		long quota_limit;
 
-		public PicasaWeb (GoogleConnection conn)
+		public PicasaWeb (GoogleConnection conn) : this (conn, null)
+		{
+		}
+
+		public PicasaWeb (GoogleConnection conn, string username)
 		{
 			if (conn == null)
 				throw new ArgumentNullException ("conn");
 
-			if (conn.User == null)
-				throw new ArgumentException ("Need authentication before being used.", "conn");
+			if (conn.User == null && username == null)
+				throw new ArgumentException ("The connection should be authenticated OR you should call this constructor with a non-null username argument");
 
 			this.conn = conn;
-			api = new PicasaV1 (conn);
+			this.user = username ?? conn.User;
+
+			string received = conn.DownloadString (GDataApi.GetGalleryEntry (user));
+			XmlDocument doc = new XmlDocument ();
+			doc.LoadXml (received);
+			XmlNamespaceManager nsmgr = new XmlNamespaceManager (doc.NameTable);
+			XmlUtil.AddDefaultNamespaces (nsmgr);
+			XmlNode entry = doc.SelectSingleNode ("atom:entry", nsmgr);
+			ParseGallery (entry, nsmgr);
 		}
 
 		public string Title {
 			get { return title; }
-		}
-
-		public string Link {
-			get { return link; }
 		}
 
 		public string User {
@@ -82,35 +92,31 @@ namespace Mono.Google.Picasa {
 			get { return quota_limit; }
 		}
 
-		internal PicasaV1 API {
-			get { return api; }
-		}
-
 		internal GoogleConnection Connection {
 			get { return conn; }
 		}
 
-		public string CreateAlbum (string title)
+		public PicasaAlbum CreateAlbum (string title)
 		{
 			return CreateAlbum (title, null);
 		}
 
-		public string CreateAlbum (string title, AlbumAccess access)
+		public PicasaAlbum CreateAlbum (string title, AlbumAccess access)
 		{
 			return CreateAlbum (title, null, access, DateTime.Now);
 		}
 
-		public string CreateAlbum (string title, string description)
+		public PicasaAlbum CreateAlbum (string title, string description)
 		{
 			return CreateAlbum (title, description, AlbumAccess.Public);
 		}
 
-		public string CreateAlbum (string title, string description, AlbumAccess access)
+		public PicasaAlbum CreateAlbum (string title, string description, AlbumAccess access)
 		{
 			return CreateAlbum (title, description, access, DateTime.Now);
 		}
 
-		public string CreateAlbum (string title, string description, AlbumAccess access, DateTime pubDate)
+		public PicasaAlbum CreateAlbum (string title, string description, AlbumAccess access, DateTime pubDate)
 		{
 			if (title == null)
 				throw new ArgumentNullException ("title");
@@ -122,64 +128,66 @@ namespace Mono.Google.Picasa {
 				throw new ArgumentException ("Invalid value.", "access");
 
 			// Check if pubDate can be in the past
-			string url = api.GetPostURL ();
+			string url = GDataApi.GetPostURL (conn.User);
 			if (url == null)
 				throw new UnauthorizedAccessException ("You are not authorized to create albums.");
-			string op_string = GetXmlForCreate (title, description, pubDate, access, conn.User);
+			string op_string = GetXmlForCreate (title, description, pubDate, access);
 			byte [] op_bytes = Encoding.UTF8.GetBytes (op_string);
-			MultipartRequest request = new MultipartRequest (url);
-			request.Request.CookieContainer = conn.Cookies;
-			request.BeginPart ();
-			request.AddHeader ("Content-Disposition: form-data; name=\"xml\"\r\n");
-			request.AddHeader ("Content-Type: text/plain; charset=utf8\r\n", true);
-			request.WriteContent (op_bytes);
-			request.EndPart (true);
-			string received = request.GetResponseAsString ();
+			HttpWebRequest request = conn.AuthenticatedRequest (url);
+			request.ContentType = "application/atom+xml; charset=UTF-8";
+			request.Method = "POST";
+			Stream output_stream = request.GetRequestStream ();
+			output_stream.Write (op_bytes, 0, op_bytes.Length);
+			output_stream.Close ();
+
+			HttpWebResponse response = (HttpWebResponse) request.GetResponse ();
+			string received = "";
+			using (Stream stream = response.GetResponseStream ()) {
+				StreamReader sr = new StreamReader (stream, Encoding.UTF8);
+				received = sr.ReadToEnd ();
+			}
+			response.Close ();
 
 			XmlDocument doc = new XmlDocument ();
 			doc.LoadXml (received);
-			XmlNode node = doc.SelectSingleNode ("/response/result");
-			if (node == null)
-				throw new CreateAlbumException ("Invalid response from server");
-
-			if (node.InnerText != "success") {
-				node = doc.SelectSingleNode ("/response/reason");
-				if (node == null)
-					throw new CreateAlbumException ("Unknown reason");
-					
-				throw new CreateAlbumException (node.InnerText);
-			}
-			return doc.SelectSingleNode ("/response/id").InnerText;
+			XmlNamespaceManager nsmgr = new XmlNamespaceManager (doc.NameTable);
+			XmlUtil.AddDefaultNamespaces (nsmgr);
+			XmlNode entry = doc.SelectSingleNode ("atom:entry", nsmgr);
+			return new PicasaAlbum (conn, null, entry, nsmgr);
 		}
 
-		/*
-			"<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n" +
-			"<rss version=\"2.0\" xmlns:gphoto=\"http://www.temp.com/\">\n" +
-			" <channel>\n" +
-			"  <title>{0}</title>\n" +
-			"  <description/>\n" +
-			"  <pubDate>{1:d' 'MMM' 'yyyy' 'H':'mm':'ss' 'zzz}</pubDate>\n" +
-			"  <gphoto:access>{2}</gphoto:access>\n" +
-			"  <gphoto:user>{3}</gphoto:user>\n" +
-			"  <gphoto:location/>\n" +
-			"  <gphoto:op>createAlbum</gphoto:op>\n" +
-			" </channel>\n" +
-			"</rss>";
+		/* (from gdata documentation...)
+		<entry xmlns='http://www.w3.org/2005/Atom'
+		    xmlns:media='http://search.yahoo.com/mrss/'
+		    xmlns:gphoto='http://schemas.google.com/photos/2007'>
+		  <title type='text'>Trip To Italy</title>
+		  <summary type='text'>This was the recent trip I took to Italy.</summary>
+		  <gphoto:location>Italy</gphoto:location>
+		  <gphoto:access>public</gphoto:access>
+		  <gphoto:commentingEnabled>true</gphoto:commentingEnabled>
+		  <gphoto:timestamp>1152255600000</gphoto:timestamp>
+		  <media:group>
+		    <media:keywords>italy, vacation</media:keywords>
+		  </media:group>
+		  <category scheme='http://schemas.google.com/g/2005#kind'
+		    term='http://schemas.google.com/photos/2007#album'></category>
+		</entry>
 		*/
 
-		static string GetXmlForCreate (string title, string desc, DateTime date, AlbumAccess access, string username)
+		private static string GetXmlForCreate (string title, string desc, DateTime date, AlbumAccess access)
 		{
 			XmlUtil xml = new XmlUtil ();
-			xml.WriteElementString ("title", title);
-			xml.WriteElementString ("description", desc);
-			CultureInfo info = CultureInfo.InvariantCulture;
-			string pubdate = date.ToString ("d' 'MMM' 'yyyy' 'H':'mm':'ss' 'zzz", info);
-			pubdate = pubdate.Substring (0, pubdate.Length - 3) + "00"; // Replaces ':00' with '00'
-			xml.WriteElementString ("pubDate", pubdate);
+			xml.WriteElementStringWithAttributes ("title", title, "type", "text");
+			xml.WriteElementStringWithAttributes ("summary", desc, "type", "text");
+			// location ?
 			xml.WriteElementString ("access", access.ToString ().ToLower (CultureInfo.InvariantCulture), PicasaNamespaces.GPhoto);
-			xml.WriteElementString ("user", username, PicasaNamespaces.GPhoto);
-			xml.WriteElementString ("op", "createAlbum", PicasaNamespaces.GPhoto);
-			// location?
+			// commentingEnabled ?
+			xml.WriteElementString ("timestamp", ((long)(date - new DateTime (1970, 1, 1)).TotalSeconds * 1000).ToString (), PicasaNamespaces.GPhoto);
+			//keywords ?
+			xml.WriteElementStringWithAttributes ("category", null,
+					"scheme", "http://schemas.google.com/g/2005#kind",
+					"term", "http://schemas.google.com/photos/2007#album");
+
 			return xml.GetDocumentString ();
 		}
 
@@ -194,14 +202,14 @@ namespace Mono.Google.Picasa {
 			"</rss>";
 		*/
 
-		static string GetXmlForDelete (string user, string aid)
-		{
-			XmlUtil xml = new XmlUtil ();
-			xml.WriteElementString ("user", user, PicasaNamespaces.GPhoto);
-			xml.WriteElementString ("id", aid, PicasaNamespaces.GPhoto);
-			xml.WriteElementString ("op", "deleteAlbum", PicasaNamespaces.GPhoto);
-			return xml.GetDocumentString ();
-		}
+//		static string GetXmlForDelete (string user, string aid)
+//		{
+//			XmlUtil xml = new XmlUtil ();
+//			xml.WriteElementString ("user", user, PicasaNamespaces.GPhoto);
+//			xml.WriteElementString ("id", aid, PicasaNamespaces.GPhoto);
+//			xml.WriteElementString ("op", "deleteAlbum", PicasaNamespaces.GPhoto);
+//			return xml.GetDocumentString ();
+//		}
 
 		public void DeleteAlbum (PicasaAlbum album)
 		{
@@ -213,69 +221,70 @@ namespace Mono.Google.Picasa {
 
 		public void DeleteAlbum (string unique_id)
 		{
-			if (unique_id == null)
-				throw new ArgumentNullException ("unique_id");
-
-			string url = api.GetPostURL ();
-			if (url == null)
-				throw new UnauthorizedAccessException ("You are not authorized to delete this album.");
-			string op_string = GetXmlForDelete (conn.User, unique_id);
-			byte [] op_bytes = Encoding.UTF8.GetBytes (op_string);
-			MultipartRequest request = new MultipartRequest (url);
-			request.Request.CookieContainer = conn.Cookies;
-			request.BeginPart ();
-			request.AddHeader ("Content-Disposition: form-data; name=\"xml\"\r\n");
-			request.AddHeader ("Content-Type: text/plain; charset=utf8\r\n", true);
-			request.WriteContent (op_bytes);
-			request.EndPart (true);
-			string received = request.GetResponseAsString ();
-
-			XmlDocument doc = new XmlDocument ();
-			doc.LoadXml (received);
-			XmlNode node = doc.SelectSingleNode ("/response/result");
-			if (node == null)
-				throw new DeleteAlbumException ("Invalid response from server");
-
-			if (node.InnerText != "success") {
-				node = doc.SelectSingleNode ("/response/reason");
-				if (node == null)
-					throw new DeleteAlbumException ("Unknown reason");
-					
-				throw new DeleteAlbumException (node.InnerText);
-			}
+	//FIXME: implement this
+			throw new System.NotImplementedException ("but I'll implemented if you say please...");
+//			if (unique_id == null)
+//				throw new ArgumentNullException ("unique_id");
+//
+//			string url = GDataApi.GetPostURL (conn.User);
+//			if (url == null)
+//				throw new UnauthorizedAccessException ("You are not authorized to delete this album.");
+//			string op_string = GetXmlForDelete (conn.User, unique_id);
+//			byte [] op_bytes = Encoding.UTF8.GetBytes (op_string);
+//			MultipartRequest request = new MultipartRequest (conn, url);
+////			request.Request.CookieContainer = conn.Cookies;
+//			request.BeginPart ();
+//			request.AddHeader ("Content-Disposition: form-data; name=\"xml\"\r\n");
+//			request.AddHeader ("Content-Type: text/plain; charset=utf8\r\n", true);
+//			request.WriteContent (op_bytes);
+//			request.EndPart (true);
+//			string received = request.GetResponseAsString ();
+//
+//			XmlDocument doc = new XmlDocument ();
+//			doc.LoadXml (received);
+//			XmlNode node = doc.SelectSingleNode ("/response/result");
+//			if (node == null)
+//				throw new DeleteAlbumException ("Invalid response from server");
+//
+//			if (node.InnerText != "success") {
+//				node = doc.SelectSingleNode ("/response/reason");
+//				if (node == null)
+//					throw new DeleteAlbumException ("Unknown reason");
+//					
+//				throw new DeleteAlbumException (node.InnerText);
+//			}
 		}
 
 		public PicasaAlbumCollection GetAlbums ()
 		{
-			string gallery_link = api.GetGalleryLink (conn.User);
+			string gallery_link = GDataApi.GetGalleryFeed (user);
 			string received = conn.DownloadString (gallery_link);
 
 			XmlDocument doc = new XmlDocument ();
 			doc.LoadXml (received);
-			XmlNode channel = doc.SelectSingleNode ("/rss/channel");
-			XmlNode node = channel.SelectSingleNode ("title");
-			title = node.InnerText;
-			node = channel.SelectSingleNode ("link");
-			link = node.InnerText;
 			XmlNamespaceManager nsmgr = new XmlNamespaceManager (doc.NameTable);
-			nsmgr.AddNamespace ("photo", "http://www.pheed.com/pheed/");
-			nsmgr.AddNamespace ("media", "http://search.yahoo.com/mrss/");
-			nsmgr.AddNamespace ("gphoto", "http://schemas.google.com/photos/2007");
-			nsmgr.AddNamespace ("batch", "http://schemas.google.com/gdata/batch");
-			node = channel.SelectSingleNode ("gphoto:user", nsmgr);
-			user = node.InnerText;
-			node = channel.SelectSingleNode ("gphoto:nickname", nsmgr);
-			nickname = node.InnerText;
-			node = channel.SelectSingleNode ("gphoto:quotacurrent", nsmgr);
-			quota_used = (node != null) ? (long) UInt64.Parse (node.InnerText) : -1;
-			node = channel.SelectSingleNode ("gphoto:quotalimit", nsmgr);
-			quota_limit = (node != null) ? (long) UInt64.Parse (node.InnerText) : -1;
+			XmlUtil.AddDefaultNamespaces (nsmgr);
+			XmlNode feed = doc.SelectSingleNode ("atom:feed", nsmgr);
 			PicasaAlbumCollection coll = new PicasaAlbumCollection ();
-			foreach (XmlNode item in channel.SelectNodes ("item")) {
-				coll.Add (PicasaAlbum.ParseAlbumInfo (this, item, nsmgr));
+			foreach (XmlNode item in feed.SelectNodes ("atom:entry", nsmgr)) {
+				coll.Add (new PicasaAlbum (conn, user, item, nsmgr));
 			}
 			coll.SetReadOnly ();
 			return coll;
+		}
+
+		private void ParseGallery (XmlNode nodeitem, XmlNamespaceManager nsmgr)
+		{
+			XmlNode node = nodeitem.SelectSingleNode ("atom:title", nsmgr);
+			title = node.InnerText;
+			node = nodeitem.SelectSingleNode ("gphoto:user", nsmgr);
+			user = node.InnerText;
+			node = nodeitem.SelectSingleNode ("gphoto:nickname", nsmgr);
+			nickname = node.InnerText;
+			node = nodeitem.SelectSingleNode ("gphoto:quotacurrent", nsmgr);
+			quota_used = (node != null) ? (long) UInt64.Parse (node.InnerText) : -1;
+			node = nodeitem.SelectSingleNode ("gphoto:quotalimit", nsmgr);
+			quota_limit = (node != null) ? (long) UInt64.Parse (node.InnerText) : -1;
 		}
 	}
 }

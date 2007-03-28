@@ -3,8 +3,10 @@
 //
 // Authors:
 //	Gonzalo Paniagua Javier (gonzalo@ximian.com)
+//	Stephane Delcroix (stephane@delcroix.org)
 //
 // (C) Copyright 2006 Novell, Inc. (http://www.novell.com)
+// (C) Copyright 2007 S. Delcroix
 //
 
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -26,54 +28,45 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
+// Check the Google Authentication Page at http://code.google.com/apis/accounts/AuthForInstalledApps.html
+//
 
 using System;
-using System.Collections;
-using System.Globalization;
 using System.IO;
 using System.Net;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Web;
-using System.Xml;
 
 namespace Mono.Google {
 	class Authentication {
-		static string picasa_login_url = "https://www.google.com/accounts/ClientAuth";
-		static string picasa_login_url2 = "https://www.google.com/accounts/IssueAuthToken";
-		CookieContainer cookies = new CookieContainer ();
+		static string client_login_url = "https://www.google.com/accounts/ClientLogin";
 
-		private Authentication ()
+		public static string GetAuthorization (GoogleConnection conn, string email, string password,
+				GoogleService service, string token, string captcha)
 		{
-		}
+			if (email == null || email == String.Empty || password == null || password == String.Empty)
+				return null;
 
-		public static CookieContainer GetAuthCookies (GoogleConnection conn, string user, string password, GoogleService service,
-								string token, string captcha, out string auth)
-		{
-			// No auth performed if no user or no password
-			auth = null;
-			if (user == null || password == null)
-				return new CookieContainer ();
-
-			// service == Picasa by now
-			Authentication authentication = new Authentication ();
-			return authentication.GetCookieContainer (conn, user, password, token, captcha, out auth);
-		}
-
-		CookieContainer GetCookieContainer (GoogleConnection conn, string user, string password, string token, string captcha, out string auth)
-		{
-			user = HttpUtility.UrlEncode (user);
+			email = HttpUtility.UrlEncode (email);
 			password = HttpUtility.UrlEncode (password);
-			StringBuilder content = new StringBuilder ();
 			string appname = HttpUtility.UrlEncode (conn.ApplicationName);
-			content.AppendFormat ("Email={0}&Passwd={1}&source={2}&PersistentCookie=0&accountType=HOSTED%5FOR%5FGOOGLE", user, password, appname);
+			string service_code = service.ServiceCode;
+
+			StringBuilder content = new StringBuilder ();
+			content.Append ("accountType=HOSTED_OR_GOOGLE");
+			content.AppendFormat ("&Email={0}", email);
+			content.AppendFormat ("&Passwd={0}", password);
+			content.AppendFormat ("&email={0}", email);
+			content.AppendFormat ("&service={0}", service_code);
+			content.AppendFormat ("&source={0}", appname);
+
 			if (token != null) {
-				content.AppendFormat ("&logintoken={0}&logincaptcha={1}", token, captcha);
+				content.AppendFormat ("&logintoken={0}", token);
+				content.AppendFormat ("&logincaptcha={0}", captcha);
 			}
 			byte [] bytes = Encoding.UTF8.GetBytes (content.ToString ());
 
-			HttpWebRequest request = (HttpWebRequest) WebRequest.Create (picasa_login_url);
+			HttpWebRequest request = (HttpWebRequest) WebRequest.Create (client_login_url);
 			request.Method = "POST";
 			request.ContentType = "application/x-www-form-urlencoded";
 			request.ContentLength = bytes.Length;
@@ -93,53 +86,28 @@ namespace Mono.Google {
 				throw; // if the method above does not throw, we do
 			}
 
-			string received = "";
-			string sid = null;
-			string lsid = null;
+			//string sid = null;
+			//string lsid = null;
+			string auth = null;
+
 			using (Stream stream = response.GetResponseStream ()) {
 				StreamReader sr = new StreamReader (stream, Encoding.UTF8);
 				string s;
 				while ((s = sr.ReadLine ()) != null) {
-					if (s.StartsWith ("LSID=")) {
-						lsid = s.Substring (5);
-					} else if (s.StartsWith ("SID=")) {
-						sid = s.Substring (4);
-					}
+					if (s.StartsWith ("Auth="))
+						auth = s.Substring (5);	
+					//else if (s.StartsWith ("LSID="))
+					//	lsid = s.Substring (5);
+					//else if (s.StartsWith ("SID="))
+					//	sid = s.Substring (4);
 				}
 			}
 			response.Close ();
 
-			string req_input = String.Format ("SID={0}&LSID={1}&service=lh2&Session=true", sid, lsid);
-			bytes = Encoding.UTF8.GetBytes (req_input);
-			request = (HttpWebRequest) WebRequest.Create (picasa_login_url2);
-			request.Method = "POST";
-			request.ContentType = "application/x-www-form-urlencoded";
-			request.ContentLength = bytes.Length;
-
-			output = request.GetRequestStream ();
-			output.Write (bytes, 0, bytes.Length);
-			output.Close ();
-
-			response = (HttpWebResponse) request.GetResponse ();
-			using (Stream stream = response.GetResponseStream ()) {
-				StreamReader sr = new StreamReader (stream, Encoding.UTF8);
-				received = sr.ReadToEnd ();
-			}
-			response.Close ();
-
-			Cookie cookie = new Cookie ("SID", sid);
-			cookie.Domain = ".google.com";
-			cookies.Add (cookie);
-			cookie = new Cookie ("LSID", lsid);
-			cookie.Secure = true;
-			cookie.Domain = "www.google.com";
-			cookie.Path = "/accounts";
-			cookies.Add (cookie);
-			auth = received.Trim ();
-			return cookies;
+			return auth;
 		}
 
-		void ThrowOnError (HttpWebResponse response)
+		static void ThrowOnError (HttpWebResponse response)
 		{
 			if (response.StatusCode != HttpStatusCode.Forbidden)
 				return;
@@ -154,7 +122,7 @@ namespace Mono.Google {
 					if (str.StartsWith ("Url=")) {
 						url = str.Substring (4);
 					} else if (str.StartsWith ("Error=")) {
-						/* Supposedly, these are the values for Error
+						/* These are the values for Error
 							None,
 							BadAuthentication,
 							NotVerified,
@@ -164,7 +132,6 @@ namespace Mono.Google {
 							AccountDeleted,
 							AccountDisabled,
 							ServiceUnavailable
-						  but CaptchaRequired is reported as 'cr'. Don't know about the others.
 						*/
 						code = str.Substring (6);
 					} else if (str.StartsWith ("CaptchaToken=")) {
@@ -174,7 +141,7 @@ namespace Mono.Google {
 					}
 				}
 			}
-			if (code == "cr" && token != null && captcha_url != null) {
+			if (code == "CaptchaRequired" && token != null && captcha_url != null) {
 				if (url != null) {
 					Uri uri = new Uri (url);
 					captcha_url = new Uri (uri, captcha_url).ToString ();

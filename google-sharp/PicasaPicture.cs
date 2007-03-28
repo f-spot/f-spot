@@ -3,8 +3,10 @@
 //
 // Authors:
 //	Gonzalo Paniagua Javier (gonzalo@ximian.com)
+//	Stephane Delcroix (stephane@delcroix.org)
 //
 // (C) Copyright 2006 Novell, Inc. (http://www.novell.com)
+// (C) Copyright 2007 S. Delcroix
 //
 
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -32,6 +34,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Xml;
+using System.Globalization;
 
 namespace Mono.Google.Picasa {
 	public class PicasaPicture {
@@ -46,28 +49,38 @@ namespace Mono.Google.Picasa {
 		int height;
 		int index;
 		string id;
+		string link;
+		string tags;
 
-		internal PicasaPicture (GoogleConnection conn, PicasaAlbum album)
+		internal PicasaPicture (GoogleConnection conn, PicasaAlbum album, XmlNode nodeitem, XmlNamespaceManager nsmgr)
 		{
 			this.conn = conn;
 			this.album = album;
+			ParsePicture (nodeitem, nsmgr);
 		}
 
-		internal static PicasaPicture ParsePictureInfo (GoogleConnection conn, PicasaAlbum album, XmlNode nodeitem, XmlNamespaceManager nsmgr)
+		private void ParsePicture (XmlNode nodeitem, XmlNamespaceManager nsmgr)
 		{
-			PicasaPicture picture = new PicasaPicture (conn, album);
-			picture.title = nodeitem.SelectSingleNode ("title").InnerText;
-			picture.description = nodeitem.SelectSingleNode ("description").InnerText;
-			picture.pub_date = DateTime.ParseExact (nodeitem.SelectSingleNode ("pubDate").InnerText, "d' 'MMM' 'yyyy' 'H':'mm':'ss' 'zzz", null);
-			picture.thumbnail_url = nodeitem.SelectSingleNode ("photo:thumbnail", nsmgr).InnerText;
-			picture.image_url = nodeitem.SelectSingleNode ("photo:imgsrc", nsmgr).InnerText;
-			picture.width = (int) UInt32.Parse (nodeitem.SelectSingleNode ("gphoto:width", nsmgr).InnerText);
-			picture.height = (int) UInt32.Parse (nodeitem.SelectSingleNode ("gphoto:height", nsmgr).InnerText);
+			title = nodeitem.SelectSingleNode ("atom:title", nsmgr).InnerText;
+			foreach (XmlNode xlink in nodeitem.SelectNodes ("atom:link", nsmgr)) {
+				if (xlink.Attributes.GetNamedItem ("rel").Value == "alternate") {
+					link = xlink.Attributes.GetNamedItem ("href").Value;
+					break;
+				}
+			}
+			description = nodeitem.SelectSingleNode ("media:group/media:description", nsmgr).InnerText;
+			CultureInfo info = CultureInfo.InvariantCulture;
+			pub_date = DateTime.ParseExact (nodeitem.SelectSingleNode ("atom:published", nsmgr).InnerText, GDataApi.DateFormat, info);
+			thumbnail_url = nodeitem.SelectSingleNode ("media:group/media:thumbnail", nsmgr).Attributes.GetNamedItem ("url").Value;
+			image_url = nodeitem.SelectSingleNode ("media:group/media:content", nsmgr).Attributes.GetNamedItem ("url").Value;
+			width = (int) UInt32.Parse (nodeitem.SelectSingleNode ("gphoto:width", nsmgr).InnerText);
+			height = (int) UInt32.Parse (nodeitem.SelectSingleNode ("gphoto:height", nsmgr).InnerText);
+
 			XmlNode node = nodeitem.SelectSingleNode ("gphoto:index", nsmgr);
-			picture.index = (node != null) ? (int) UInt32.Parse (node.InnerText) : -1;
+			index = (node != null) ? (int) UInt32.Parse (node.InnerText) : -1;
 			node = nodeitem.SelectSingleNode ("gphoto:id", nsmgr);
-			picture.id = (node != null) ? node.InnerText : "auto" + picture.title.GetHashCode ().ToString ();
-			return picture;
+			id = (node != null) ? node.InnerText : "auto" + title.GetHashCode ().ToString ();
+			tags = nodeitem.SelectSingleNode ("media:group/media:keywords", nsmgr).InnerText;
 		}
 
 		public void DownloadToStream (Stream stream)
@@ -118,6 +131,14 @@ namespace Mono.Google.Picasa {
 
 		public string UniqueID {
 			get { return id; }
+		}
+
+		public string Link {
+			get { return link; }
+		}
+
+		public string Tags {
+			get { return tags; }
 		}
 	}
 }

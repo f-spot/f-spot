@@ -1,6 +1,6 @@
 include $(top_srcdir)/Makefile.include
 
-ASSEMBLY_NAME = google-sharp
+ASSEMBLY_NAME = Mono.Google
 
 ASSEMBLY_SOURCES =				\
 	$(srcdir)/AlbumAccess.cs  		\
@@ -9,6 +9,7 @@ ASSEMBLY_SOURCES =				\
 	$(srcdir)/CaptchaException.cs  		\
 	$(srcdir)/CreateAlbumException.cs  	\
 	$(srcdir)/DeleteAlbumException.cs  	\
+	$(srcdir)/GDataApi.cs  			\
 	$(srcdir)/GoogleConnection.cs  		\
 	$(srcdir)/GoogleService.cs  		\
 	$(srcdir)/MultipartRequest.cs  		\
@@ -17,7 +18,6 @@ ASSEMBLY_SOURCES =				\
 	$(srcdir)/PicasaAlbumCollection.cs  	\
 	$(srcdir)/PicasaPicture.cs  		\
 	$(srcdir)/PicasaPictureCollection.cs  	\
-	$(srcdir)/PicasaV1.cs  			\
 	$(srcdir)/PicasaWeb.cs  		\
 	$(srcdir)/UploadPictureException.cs 	\
 	$(srcdir)/UploadProgressEventArgs.cs  	\

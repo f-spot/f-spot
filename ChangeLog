@@ -1,3 +1,10 @@
+2007-03-28  Stephane Delcroix  <stephane@delcroix.org>
+
+	* Makefile.include:
+	* google-sharp/*: Update to google-sharp r75081.
+
+	* src/PicasaWebExport.cs: Small changes to follow th eAPI change.
+
 2007-03-21  Stephane Delcroix  <stephane@delcroix>
 
 	* src/Imaging/ImageFile.cs: patch from Andrew Mitchell to support .kdc

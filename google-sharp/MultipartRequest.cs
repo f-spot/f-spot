@@ -3,8 +3,10 @@
 //
 // Authors:
 //	Gonzalo Paniagua Javier (gonzalo@ximian.com)
+//	Stephane Delcroix (stephane@delcroix.org)
 //
 // (C) Copyright 2006 Novell, Inc. (http://www.novell.com)
+// (C) Copyright 2007 S. Delcroix
 //
 
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -40,21 +42,19 @@ namespace Mono.Google {
 		static byte [] crlf = new byte [] { 13, 10 };
 		HttpWebRequest request;
 		Stream output_stream;
-		byte [] bound_bytes;
-		byte [] bound_end_bytes;
+		const string separator_string = "PART_SEPARATOR";
+		const string separator = "--" + separator_string + "\r\n";
+		const string separator_end = "--" + separator_string + "--\r\n";
+		byte [] separator_bytes = Encoding.ASCII.GetBytes (separator);
+		byte [] separator_end_bytes = Encoding.ASCII.GetBytes (separator_end);
 		bool output_set;
 
-		public MultipartRequest (string url)
+		public MultipartRequest (GoogleConnection conn, string url)
 		{
-			string hash = (((long) url.GetHashCode () << 32) + GetHashCode ()).ToString ("X");
-			string bound_str1 = "---------------------" + hash;
-			string bound_head = "--" + bound_str1 + "\r\n";
-			string bound_end = "--" + bound_str1 + "--\r\n";
-			bound_bytes = Encoding.ASCII.GetBytes (bound_head);
-			bound_end_bytes = Encoding.ASCII.GetBytes (bound_end);
-			request = (HttpWebRequest) WebRequest.Create (url);
+			request = conn.AuthenticatedRequest (url);
 			request.Method = "POST";
-			request.ContentType = "multipart/form-data; boundary=" + bound_str1;
+			request.ContentType = "multipart/related; boundary=\"" + separator_string + "\"";
+			request.Headers.Add ("MIME-version", "1.0");
 		}
 
 		public HttpWebRequest Request {
@@ -71,10 +71,20 @@ namespace Mono.Google {
 
 		public void BeginPart ()
 		{
+			BeginPart (false);
+		}
+
+		public void BeginPart (bool first)
+		{
+			if (!first)
+				return;
 			if (output_stream == null)
 				output_stream = request.GetRequestStream ();
 
-			output_stream.Write (bound_bytes, 0, bound_bytes.Length);
+			string multipart = "Media multipart posting\r\n";
+			byte [] multipart_bytes = Encoding.ASCII.GetBytes (multipart);
+			output_stream.Write (multipart_bytes, 0, multipart_bytes.Length);
+			output_stream.Write (separator_bytes, 0, separator_bytes.Length);
 		}
 
 		public void AddHeader (string name, string val)
@@ -127,11 +137,11 @@ namespace Mono.Google {
 		public void EndPart (bool last)
 		{
 			if (last) {
-				output_stream.Write (bound_end_bytes, 0, bound_end_bytes.Length);
+				output_stream.Write (separator_end_bytes, 0, separator_end_bytes.Length);
 				if (!output_set)
 					output_stream.Close ();
 			} else {
-				output_stream.Write (bound_bytes, 0, bound_bytes.Length);
+				output_stream.Write (separator_bytes, 0, separator_bytes.Length);
 			}
 		}
 
