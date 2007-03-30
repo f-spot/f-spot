@@ -35,6 +35,7 @@ namespace Mono.Google.Picasa {
 		const string gallery = "user/{userid}?kind=album";
 		const string album_by_id = "user/{userid}/albumid/{aid}?kind=photo";
 		//const string album_by_name = entry + "user/{userid}/album/{aname}?kind=photo";
+		const string picture_by_id = "user/{userid}/albumid/{aid}/photoid/{pid}";
 		const string post_url = feed + "user/{userid}";
 		const string post_picture = feed + "user/{userid}/albumid/{aid}";
 		const string date_format = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.000Z'";
@@ -63,6 +64,16 @@ namespace Mono.Google.Picasa {
 		//{
 		//	return album_by_name.Replace ("{userid}", user).Replace ("{aname}", aname);
 		//}
+
+		public static string GetPictureEntry (string user, string aid, string pid)
+		{
+			return entry + picture_by_id.Replace ("{userid}", user).Replace ("{aid}", aid).Replace ("{pid}", pid);
+		}
+
+		public static string GetPictureFeed (string user, string aid, string pid)
+		{
+			return feed + picture_by_id.Replace ("{userid}", user).Replace ("{aid}", aid).Replace ("{pid}", pid);
+		}
 
 		public static string GetPostURL (string user)
 		{
