@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-03-12 17:23+0100\n"
-"PO-Revision-Date: 2007-03-12 17:23+0100\n"
-"Last-Translator: Jakub Friedl <jfriedl@suse.cz>\n"
+"POT-Creation-Date: 2007-03-30 16:48+0200\n"
+"PO-Revision-Date: 2007-03-30 16:48+0200\n"
+"Last-Translator: \n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -254,7 +254,7 @@ msgstr "{0} z {1}"
 
 #: ../src/CDExport.cs:127 ../src/FlickrExport.cs:279
 #: ../src/FolderExport.cs:226 ../src/GalleryExport.cs:722
-#: ../src/PicasaWebExport.cs:615 ../src/SmugMugExport.cs:576
+#: ../src/PicasaWebExport.cs:604 ../src/SmugMugExport.cs:576
 msgid "Done Sending Photos"
 msgstr "Fotografie odeslány"
 
@@ -331,16 +331,16 @@ msgstr "Podrobnosti o chybě"
 msgid "An unhandled exception was thrown: "
 msgstr "Nastala neobsloužená výjimka: "
 
-#: ../src/FileImportBackend.cs:260
+#: ../src/FileImportBackend.cs:262
 msgid "Import error"
 msgstr "Chyba importu"
 
-#: ../src/FileImportBackend.cs:261
+#: ../src/FileImportBackend.cs:263
 #, csharp-format
 msgid "Error importing {0}{2}{2}{1}"
 msgstr "Chyba importu {0}{2}{2}{1}"
 
-#: ../src/Filters/ResizeFilter.cs:70
+#: ../src/Filters/ResizeFilter.cs:70 ../src/Filters/SharpFilter.cs:52
 #, csharp-format
 msgid "No way to save files of type \"{0}\""
 msgstr "Neexistuje možnost uložení souborů typu \"{0}\""
@@ -409,7 +409,7 @@ msgid "Uploading picture \"{0}\""
 msgstr "Uploaduji obrázek \"{0}\""
 
 #: ../src/FlickrExport.cs:281 ../src/GalleryExport.cs:724
-#: ../src/PicasaWebExport.cs:617 ../src/SmugMugExport.cs:578
+#: ../src/PicasaWebExport.cs:606 ../src/SmugMugExport.cs:578
 msgid "Upload Complete"
 msgstr "Upload hotov"
 
@@ -419,7 +419,7 @@ msgid "Error Uploading To {0}: {1}"
 msgstr "Chyba při uploadu na {0}: {1}"
 
 #: ../src/FlickrExport.cs:287 ../src/FolderExport.cs:200
-#: ../src/GalleryExport.cs:714 ../src/PicasaWebExport.cs:607
+#: ../src/GalleryExport.cs:714 ../src/PicasaWebExport.cs:596
 #: ../src/SmugMugExport.cs:568
 msgid "Error"
 msgstr "Chyba"
@@ -438,7 +438,7 @@ msgstr ""
 "pomocí webového rozhraní {0}."
 
 #: ../src/FlickrExport.cs:369 ../src/GalleryExport.cs:649
-#: ../src/PicasaWebExport.cs:515 ../src/SmugMugExport.cs:494
+#: ../src/PicasaWebExport.cs:516 ../src/SmugMugExport.cs:494
 msgid "Uploading Pictures"
 msgstr "Uploaduji obrázky"
 
@@ -522,9 +522,8 @@ msgid "Image Information"
 msgstr "Informace o obrázku"
 
 #: ../src/FullScreenView.cs:97
-#, fuzzy
 msgid "Slide transition: "
-msgstr "_Sytost:"
+msgstr "Přechod snímku: "
 
 #: ../src/f-spot.glade.h:1
 msgid "\n"
@@ -1175,7 +1174,7 @@ msgstr "Po dokončení exportu otevřít _cíl"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/f-spot.glade.h:163 ../src/PhotoStore.cs:580
+#: ../src/f-spot.glade.h:163 ../src/PhotoStore.cs:582
 msgid "Original"
 msgstr "Původní"
 
@@ -1763,26 +1762,26 @@ msgid "(TopLevel)"
 msgstr "(TopLevel)"
 
 #: ../src/GalleryExport.cs:713
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery: {1}"
-msgstr "Chyba při uploadu do galerie: {0}"
+msgstr "Chyba při uploadu do obrázku \"{0}\" do galerie: {1}"
 
-#: ../src/GalleryExport.cs:740 ../src/PicasaWebExport.cs:638
+#: ../src/GalleryExport.cs:740 ../src/PicasaWebExport.cs:627
 #: ../src/SmugMugExport.cs:599
 msgid "(No Gallery)"
 msgstr "(Žádná galerie)"
 
-#: ../src/GalleryExport.cs:827 ../src/PicasaWebExport.cs:765
+#: ../src/GalleryExport.cs:827 ../src/PicasaWebExport.cs:754
 #: ../src/SmugMugExport.cs:697
 msgid "(Not Connected)"
 msgstr "(Nepřipojeno)"
 
-#: ../src/GalleryExport.cs:828 ../src/PicasaWebExport.cs:766
+#: ../src/GalleryExport.cs:828 ../src/PicasaWebExport.cs:755
 #: ../src/SmugMugExport.cs:698
 msgid "(No Albums)"
 msgstr "(Žádná alba)"
 
-#: ../src/GalleryExport.cs:880 ../src/PicasaWebExport.cs:810
+#: ../src/GalleryExport.cs:880 ../src/PicasaWebExport.cs:799
 #: ../src/SmugMugExport.cs:742
 msgid "No account selected"
 msgstr "Není vybrán žádný účet"
@@ -1910,7 +1909,7 @@ msgid "Exposure:"
 msgstr "Expozice:"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/InfoBox.cs:221 ../src/TagStore.cs:454
+#: ../src/InfoBox.cs:221 ../src/TagStore.cs:449
 msgid "(None)"
 msgstr "(Žádné)"
 
@@ -1924,32 +1923,31 @@ msgstr "Picasaweb"
 
 #: ../src/InfoDisplay.cs:141
 msgid "SmugMug"
-msgstr ""
+msgstr "SmugMug"
 
 #: ../src/InfoDisplay.cs:143
-#, fuzzy
 msgid "Gallery2"
-msgstr "Galerie"
+msgstr "Galerie2"
 
-#: ../src/InfoDisplay.cs:234
+#: ../src/InfoDisplay.cs:235
 msgid "Extended Metadata"
 msgstr "Rozšířená metadata"
 
-#: ../src/InfoDisplay.cs:266
+#: ../src/InfoDisplay.cs:267
 #, fuzzy
 msgid "Exported Locations"
 msgstr "Kopírovat umístění fotografie"
 
-#: ../src/InfoDisplay.cs:289
+#: ../src/InfoDisplay.cs:290
 msgid "No active photo"
 msgstr "Žádná aktivní fotografie"
 
-#: ../src/InfoDisplay.cs:291
+#: ../src/InfoDisplay.cs:292
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "Fotografie \"{0}\" neexistuje"
 
-#: ../src/InfoDisplay.cs:297
+#: ../src/InfoDisplay.cs:298
 msgid "No metadata available"
 msgstr "Žádná metadata nejsou k dispozici"
 
@@ -2111,27 +2109,22 @@ msgid "Unknown IIM DataSet"
 msgstr "Neznámý DataSet IIMF"
 
 #: ../src/ItemAction.cs:110
-#, fuzzy
 msgid "Rotate Left"
-msgstr "Rotovat do_leva"
+msgstr "Rotovat doleva"
 
 #: ../src/ItemAction.cs:111 ../src/ItemAction.cs:123
-#, fuzzy
 msgid "Rotate picture left"
-msgstr "Rotovat vybranou fotografii doleva"
+msgstr "Rotovat obrázek doleva"
 
 #: ../src/ItemAction.cs:122
-#, fuzzy
 msgid "Rotate Right"
-msgstr "Rotovat do_prava"
+msgstr "Rotovat doprava"
 
 #: ../src/ItemAction.cs:134
-#, fuzzy
 msgid "Next picture"
 msgstr "Další obrázek"
 
 #: ../src/ItemAction.cs:156
-#, fuzzy
 msgid "Previous picture"
 msgstr "Předchozí obrázek"
 
@@ -2586,7 +2579,7 @@ msgstr "Připojit tag"
 msgid "Remove Tag"
 msgstr "Odstranit tag"
 
-#: ../src/PhotoStore.cs:377
+#: ../src/PhotoStore.cs:378
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
@@ -2594,7 +2587,7 @@ msgstr[0] "Změněno"
 msgstr[1] "Změněno ({0})"
 msgstr[2] "Změněno ({0})"
 
-#: ../src/PhotoStore.cs:396
+#: ../src/PhotoStore.cs:397
 #, csharp-format
 msgid "Modified in {1}"
 msgid_plural "Modified in {1} ({0})"
@@ -2635,7 +2628,7 @@ msgstr "Opravdu odstranit?"
 
 #: ../src/PhotoVersionCommands.cs:136
 msgid "Cancel"
-msgstr ""
+msgstr "Zrušit"
 
 #: ../src/PhotoVersionCommands.cs:137
 #, fuzzy
@@ -2755,17 +2748,17 @@ msgstr "Převést fotografii na černobílou"
 msgid "Convert the photo to sepia tones"
 msgstr "Převést fotografii do sépie"
 
-#: ../src/PicasaWebExport.cs:567 ../src/SmugMugExport.cs:537
+#: ../src/PicasaWebExport.cs:568 ../src/SmugMugExport.cs:537
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "Uploaduji obrázek \"{0}\" ({1} z {2})"
 
-#: ../src/PicasaWebExport.cs:605 ../src/SmugMugExport.cs:566
+#: ../src/PicasaWebExport.cs:594 ../src/SmugMugExport.cs:566
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Chyba při uploadu do galerie: {0}"
 
-#: ../src/PicasaWebExport.cs:689
+#: ../src/PicasaWebExport.cs:678
 msgid "Available space :"
 msgstr "Dostupné místo:"
 
@@ -2773,16 +2766,16 @@ msgstr "Dostupné místo:"
 msgid "Photos"
 msgstr "Fotografie"
 
-#: ../src/RotateCommand.cs:198
+#: ../src/RotateCommand.cs:200
 msgid "Rotating photos"
 msgstr "Rotuji fotografie"
 
-#: ../src/RotateCommand.cs:209
+#: ../src/RotateCommand.cs:211
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "Rotuji fotografii \"{0}\""
 
-#: ../src/RotateCommand.cs:234
+#: ../src/RotateCommand.cs:236
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
@@ -2790,7 +2783,7 @@ msgstr[0] "Nemohu rotovat fotografii"
 msgstr[1] "Nemohu rotovat {0} fotografie"
 msgstr[2] "Nemohu rotovat {0} fotografií"
 
-#: ../src/RotateCommand.cs:238
+#: ../src/RotateCommand.cs:240
 #, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
@@ -2811,12 +2804,12 @@ msgstr[2] ""
 "médiu jen pro čtení, například CDROM. Zkontrolujte prosím oprávnění a zkuste "
 "to znovu."
 
-#: ../src/RotateCommand.cs:260
+#: ../src/RotateCommand.cs:262
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "Přijata chyba \"{0}\" při pokusu rotovat {1}"
 
-#: ../src/RotateCommand.cs:265
+#: ../src/RotateCommand.cs:267
 msgid "Error while rotating photo."
 msgstr "Chyba při rotování fotografie."
 
@@ -3014,23 +3007,23 @@ msgstr "Sem přetáhněte tagy, které chcete hledat"
 msgid "Error renaming tag"
 msgstr "Chyba při přejmenovávání tagu"
 
-#: ../src/TagStore.cs:418
+#: ../src/TagStore.cs:413
 msgid "Favorites"
 msgstr "Oblíbené"
 
-#: ../src/TagStore.cs:423
+#: ../src/TagStore.cs:418
 msgid "Hidden"
 msgstr "Skryté"
 
-#: ../src/TagStore.cs:431
+#: ../src/TagStore.cs:426
 msgid "People"
 msgstr "Lidé"
 
-#: ../src/TagStore.cs:436
+#: ../src/TagStore.cs:431
 msgid "Places"
 msgstr "Místa"
 
-#: ../src/TagStore.cs:441
+#: ../src/TagStore.cs:436
 msgid "Events"
 msgstr "Události"
 
