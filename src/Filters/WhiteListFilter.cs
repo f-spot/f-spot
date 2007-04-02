@@ -13,7 +13,7 @@ namespace FSpot.Filters {
 	{	
 		System.Collections.ArrayList valid_extensions;
 
-		public WhiteListFilter (System.Collections.ArrayList valid_extensions)
+		public WhiteListFilter (string [] valid_extensions)
 		{
 			this.valid_extensions = new System.Collections.ArrayList ();
 			foreach (string extension in valid_extensions)

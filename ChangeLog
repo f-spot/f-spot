@@ -1,3 +1,9 @@
+2007-04-02  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Filters/WhieListFilter.cs: change the signature of th ector.
+
+	* src/GalleryExport.cs: Add a WhiteListFilter while exporting to G1.
+
 2007-03-30  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/SendMail.cs: urlencode filenames. Fixes bgo #424609.

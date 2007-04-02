@@ -680,6 +680,8 @@ namespace FSpot {
 				System.Console.WriteLine ("Starting upload");
 				
 				FilterSet filters = new FilterSet ();
+				if (account.Version == GalleryVersion.Version1)
+					filters.Add (new WhiteListFilter (new string []{".jpg", ".jpeg", ".png", ".gif"}));
 				if (scale)
 					filters.Add (new ResizeFilter ((uint) size));
 				else if (rotate)
