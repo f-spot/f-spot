@@ -74,7 +74,8 @@ namespace FSpot.Database {
 
 			//Version 3.1, clean old (and unused) items in Export
 			AddUpdate (new Version (3, 1), delegate () {
-				ExecuteNonQuery ("DELETE FROM exports WHERE export_type='fspot:Folder'");
+				if (TableExists ("exports"))
+					Execute ("DELETE FROM exports WHERE export_type='fspot:Folder'");
 			});
 
 			//Version 4.0, bump the version number to a integer, for backward compatibility

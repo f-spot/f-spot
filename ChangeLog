@@ -1,3 +1,8 @@
+2007-04-03  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Updater.cs: Uses TableExists in upgrade 3.1, uses Execute to
+	catch exception. Should fix a bug reported on the mailing-list.
+
 2007-04-03  Ruben Vermeersch  <ruben@savanne.be>
 
 	* src/QueuedSqliteDatabase.cs: Fix TableExists for Sqlite2.
