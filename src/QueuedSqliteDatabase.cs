@@ -49,6 +49,7 @@ namespace Banshee.Database
         private Queue<QueuedSqliteCommand> command_queue = new Queue<QueuedSqliteCommand>();
 
         private SqliteConnection connection;
+        private int version;
         private Thread queue_thread;
         private volatile bool dispose_requested = false;
         private string dbpath;
@@ -212,18 +213,31 @@ namespace Banshee.Database
 
         public bool TableExists(string table)
         {
-            return Convert.ToInt32(QuerySingle(String.Format(@"
-                SELECT COUNT(*) 
-                    FROM sqlite_master
-                    WHERE Type='table' AND Name='{0}'", 
-                    table))) > 0;
+            bool result;
+            if (version == 2) {
+                // Old SQLite doesn't support selecting from sqlite_master
+                try {
+                    Execute("SELECT * FROM "+table+" LIMIT 0");
+                    result = true;
+                } catch (Exception) {
+                    result = false;
+                }
+            } else {
+                result = Convert.ToInt32(QuerySingle(String.Format(@"
+                    SELECT COUNT(*) 
+                        FROM sqlite_master
+                        WHERE Type='table' AND Name='{0}'", 
+                        table))) > 0;
+            }
+
+            return result;
         }
 
         private void ProcessQueue()
         {         
             // Connect
             if(connection == null) {
-                int version = GetFileVersion(dbpath);
+                version = GetFileVersion(dbpath);
                 if (version == 3) {
                     connection = new SqliteConnection("Version=3,URI=file:" + dbpath);
                 } else if (version == 2) {

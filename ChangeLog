@@ -1,3 +1,7 @@
+2007-04-03  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/QueuedSqliteDatabase.cs: Fix TableExists for Sqlite2.
+
 2007-04-02  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/Filters/WhieListFilter.cs: change the signature of th ector.
