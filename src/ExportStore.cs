@@ -139,19 +139,9 @@ public class ExportStore : DbStore {
 	public ExportStore (QueuedSqliteDatabase database, bool is_new)
 		: base (database, true)
 	{
-		// Ensure the table exists
-		bool exists = true;
-		try {
-			Database.Execute("UPDATE exports SET id = 1 WHERE 1 = 2");
-		} catch (Exception) {
-			// Table doesn't exist, so create it
-			exists = false;
-		}
-			
-		if (is_new || !exists) {
+		if (is_new || !Database.TableExists ("exports"))
 			CreateTable ();
-		} else {
+		else
 			LoadAllItems ();
-		}
 	}
 }

@@ -1,3 +1,10 @@
+2007-04-04  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Updater.cs: Fixing the build I broke yesterday.
+
+	* src/MetaStore.cs:
+	* src/ExportStore.cs: Use TableExists instead of a fake sql statement.
+
 2007-04-03  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/Updater.cs: Uses TableExists in upgrade 3.1, uses Execute to

@@ -75,7 +75,7 @@ namespace FSpot.Database {
 			//Version 3.1, clean old (and unused) items in Export
 			AddUpdate (new Version (3, 1), delegate () {
 				if (TableExists ("exports"))
-					Execute ("DELETE FROM exports WHERE export_type='fspot:Folder'");
+					ExecuteScalar ("DELETE FROM exports WHERE export_type='fspot:Folder'");
 			});
 
 			//Version 4.0, bump the version number to a integer, for backward compatibility
@@ -187,6 +187,11 @@ namespace FSpot.Database {
 			return db.Database.Execute(statement);
 		}
 		
+		private static bool TableExists (string table)
+		{
+			return db.Database.TableExists (table);
+		}
+
 		private static string SelectSingleString (string statement)
 		{
 			string result = null;

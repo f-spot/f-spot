@@ -155,16 +155,7 @@ public class MetaStore : DbStore {
 	public MetaStore (QueuedSqliteDatabase database, bool is_new)
 		: base (database, true)
 	{
-		// Ensure the table exists
-		bool exists = true;
-		try {
-			Database.Execute("UPDATE meta SET id = 1 WHERE 1 = 2");
-		} catch (Exception) {
-			// Table doesn't exist, so create it
-			exists = false;
-		}
-			
-		if (is_new || !exists) {
+		if (is_new || !Database.TableExists ("meta")) {
 			CreateTable ();
 			CreateDefaultItems (is_new);
 		} else
