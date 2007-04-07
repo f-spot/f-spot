@@ -216,6 +216,8 @@ libeog/cursors/Makefile
 libjpegtran/Makefile
 libfspot/Makefile
 libgphoto2-sharp/Makefile
+Mono.Addins/Makefile
+Mono.Addins/Mono.Addins/Makefile
 semweb/Makefile
 tools/Makefile
 po/Makefile.in
@@ -230,6 +232,8 @@ Tao/Tao.OpenGl/Makefile
 Tao/Tao.OpenGl.Glu/Makefile
 Tao/Tao.GlPostProcess/Makefile
 Tao/Tao.OpenGl.ExtensionLoader/Makefile
+extensions/Makefile
+extensions/DefaultExporters/Makefile
 f-spot.pc
 f-spot.spec
 f-spot.desktop.in

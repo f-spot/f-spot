@@ -14,9 +14,11 @@ SUBDIRS = 		\
 	libgphoto2-sharp \
 	semweb		\
 	Tao		\
+	Mono.Addins	\
 	tools		\
 	po		\
-	src	
+	src		\
+	extensions
 
 desktop_in_files=	\
 	f-spot.desktop.in	\

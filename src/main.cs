@@ -127,6 +127,10 @@ public class Driver {
 					       Defines.VERSION, 
 					       Modules.UI, args);		
 			
+			Console.WriteLine ("Initializing Mono.Addins");
+			Mono.Addins.AddinManager.Initialize (FSpot.Global.BaseDirectory);
+			Mono.Addins.AddinManager.Registry.Update (null);
+
 			bool create = true;
 			while (control == null) {
 				try {

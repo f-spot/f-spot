@@ -1,3 +1,20 @@
+2007-04-07  Stephane Delcroix  <stephane@delcroix.org>
+
+	* po/POTFILES.in: remove DateEdit.cs to pass dist-check
+
+	* Mono.Addins/* : 
+	* configure.in:
+	* Makefile.include:
+	* Makefile.am:
+	* src/Makefile.am:
+	* src/f-spot.in: Adding Mono.Addins 0.1 to the build.
+
+	* src/main.cs: initialize Mono.Addins
+
+	* src/FSpot.addin.xml: Manifest for Addins host
+
+	* extensions/*: placeholder to build extensions.
+
 2007-04-04  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/Updater.cs: Fixing the build I broke yesterday.

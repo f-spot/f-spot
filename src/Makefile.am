@@ -215,6 +215,7 @@ F_SPOT_CSDISTFILES =				\
 ASSEMBLIES = \
 	$(LINK_DBUS)				\
 	$(LINK_GPHOTO2)				\
+	$(LINK_MONO_ADDINS)			\
 	$(LINK_SEMWEB)				\
 	$(LINK_FLICKR)				\
 	$(LINK_GLITZ)				\
@@ -261,7 +262,7 @@ RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-rotate-270.png,f-spot-rotate-270.png	\
 	-resource:$(top_srcdir)/icons/f-spot-sepia.png,f-spot-sepia.png			\
 	-resource:$(top_srcdir)/icons/f-spot-slideshow.png,f-spot-slideshow.png		\
-	-resource:$(top_srcdir)/icons/f-spot-soft-focus.png,f-spot-soft-focus.png		\
+	-resource:$(top_srcdir)/icons/f-spot-soft-focus.png,f-spot-soft-focus.png	\
 	-resource:$(top_srcdir)/icons/f-spot-stock_near.png,f-spot-stock_near.png	\
 	-resource:$(top_srcdir)/icons/f-spot-stock_far.png,f-spot-stock_far.png		\
 	-resource:$(top_srcdir)/icons/f-spot-fullscreen.png,f-spot-fullscreen.png	\
@@ -275,11 +276,12 @@ RESOURCES =										\
 	-resource:$(top_srcdir)/icons/f-spot-32.png,f-spot-32.png			\
 	-resource:$(top_srcdir)/icons/f-spot-48.png,f-spot-48.png			\
 	-resource:$(srcdir)/dces.rdf,dces.rdf						\
-	-resource:$(srcdir)/f-spot.glade,f-spot.glade
+	-resource:$(srcdir)/f-spot.glade,f-spot.glade					\
+	-resource:$(srcdir)/FSpot.addin.xml,FSpot.addin.xml
 
 fspotlibdir = $(libdir)/f-spot
 fspotlib_DATA = f-spot.exe.config	\
-		f-spot.exe
+		f-spot.exe		
 
 bin_SCRIPTS = f-spot
 
@@ -297,7 +299,9 @@ EXTRA_DIST =					\
 	dces.rdf				\
 	f-spot.exe.config.in			\
 	f-spot.glade				\
-	f-spot.in
+	f-spot.in				\
+	FSpot.addin.xml
+
 
 CLEANFILES =					\
 	f-spot.exe.config			\

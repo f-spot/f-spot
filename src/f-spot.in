@@ -29,7 +29,7 @@ for arg in $*; do
 	x--uninstalled)
 	    echo "*** Running uninstalled f-spot ***"
 	    EXE_TO_RUN="./f-spot.exe"
-	    export MONO_PATH=../Tao/Tao.OpenGl:../Tao/Tao.OpenGl.Glu:../Tao/Tao.OpenGl.ExtensionLoader:../dbus-sharp:../dbus-sharp-glib:../google-sharp:../gnome-keyring-sharp:../FlickrNet:../SmugMugNet:../libgphoto2-sharp:../semweb:../glitz-sharp/src/:$MONO_PATH
+	    export MONO_PATH=../Tao/Tao.OpenGl:../Tao/Tao.OpenGl.Glu:../Tao/Tao.OpenGl.ExtensionLoader:../dbus-sharp:../dbus-sharp-glib:../google-sharp:../gnome-keyring-sharp:../FlickrNet:../SmugMugNet:../libgphoto2-sharp:../semweb:../glitz-sharp/src/:../Mono.Addins/Mono.Addins/:$MONO_PATH
 	    ;;
     esac
 done
