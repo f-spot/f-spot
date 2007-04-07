@@ -1,0 +1,13 @@
+#!/bin/sh
+# This only upgrades the default database location
+# if you have specified a different location 
+DB_LOCATION=~/.gnome2/f-spot/photos.db
+BACKUP_LOCATION=$DB_LOCATION.backup
+
+if grep "^...This file contains an SQLite 2.1 database" $DB_LOCATION &> /dev/null; then
+	echo "Upgrading from SQLite 2.1 to SQLite3"
+	mv $DB_LOCATION $BACKUP_LOCATION
+	sqlite $BACKUP_LOCATION .dump | sqlite3 $DB_LOCATION
+else
+	echo "Database is already upgraded"
+fi

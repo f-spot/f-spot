@@ -19,4 +19,5 @@ DISTCLEANFILES = 	\
 saverdir = @GNOME_SCREENSAVER_SAVERDIR@
 saver_SCRIPTS = f-spot-screensaver
 
-bin_SCRIPTS = f-spot-import
+bin_SCRIPTS = f-spot-import	\
+	f-spot-sqlite-upgrade
