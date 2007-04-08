@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-03-17 21:57+0100\n"
+"POT-Creation-Date: 2007-04-08 21:21+0200\n"
 "PO-Revision-Date: 2007-03-17 22:09+0100\n"
 "Last-Translator: Ignacio Casal Quinteiro <icq@cvs.gnome.org>\n"
 "Language-Team: Galego <trasno@ceu.fi.udc.es>\n"
@@ -242,15 +242,15 @@ msgstr "Transferindo imaxe \"{0}\" ao CD"
 
 #. This indicates the current photo is photo {0} of {1} out of photos
 #: ../src/CDExport.cs:114 ../src/FlickrExport.cs:262
-#: ../src/FolderExport.cs:195 ../src/GalleryExport.cs:698
+#: ../src/FolderExport.cs:195 ../src/GalleryExport.cs:700
 #: ../src/ProgressDialog.cs:82 ../src/TimeDialog.cs:147
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} de {1}"
 
 #: ../src/CDExport.cs:127 ../src/FlickrExport.cs:279
-#: ../src/FolderExport.cs:226 ../src/GalleryExport.cs:722
-#: ../src/PicasaWebExport.cs:616 ../src/SmugMugExport.cs:576
+#: ../src/FolderExport.cs:226 ../src/GalleryExport.cs:724
+#: ../src/PicasaWebExport.cs:608 ../src/SmugMugExport.cs:576
 msgid "Done Sending Photos"
 msgstr "Envío de fotografías rematado"
 
@@ -359,8 +359,8 @@ msgid ""
 "Return to this window after you have finished the authorization process on "
 "{0} and click the \"Complete Authorization\" button below"
 msgstr ""
-"Voltar a esta fiestra despois de que remate o proceso de autorización de {0}"
-"e prema no botón de embaixo \"Autorización completa\""
+"Voltar a esta ventá despois de que remate o proceso de autorización de {0}e "
+"prema no botón de embaixo \"Autorización completa\""
 
 #: ../src/FlickrExport.cs:71
 msgid "Complete Authorization"
@@ -395,13 +395,13 @@ msgid "Waiting for response {0} of {1}"
 msgstr "Agardando resposta {0} de {1}"
 
 #: ../src/FlickrExport.cs:257 ../src/FolderExport.cs:192
-#: ../src/GalleryExport.cs:694
+#: ../src/GalleryExport.cs:696
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Subindo imaxe \"{0}\""
 
-#: ../src/FlickrExport.cs:281 ../src/GalleryExport.cs:724
-#: ../src/PicasaWebExport.cs:618 ../src/SmugMugExport.cs:578
+#: ../src/FlickrExport.cs:281 ../src/GalleryExport.cs:726
+#: ../src/PicasaWebExport.cs:610 ../src/SmugMugExport.cs:578
 msgid "Upload Complete"
 msgstr "Subida completada"
 
@@ -411,7 +411,7 @@ msgid "Error Uploading To {0}: {1}"
 msgstr "Erro subindo a {0}: {1}"
 
 #: ../src/FlickrExport.cs:287 ../src/FolderExport.cs:200
-#: ../src/GalleryExport.cs:714 ../src/PicasaWebExport.cs:608
+#: ../src/GalleryExport.cs:716 ../src/PicasaWebExport.cs:600
 #: ../src/SmugMugExport.cs:568
 msgid "Error"
 msgstr "Erro"
@@ -778,10 +778,12 @@ msgstr "<small>_Tinte:</small>"
 
 #: ../src/f-spot.glade.h:63
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
-msgstr "<span weight='bold' size='larger'>Erro ao conectar con Gallery</span>\n"
+msgstr ""
+"<span weight='bold' size='larger'>Erro ao conectar con Gallery</span>\n"
 
 #: ../src/f-spot.glade.h:65
-msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgid ""
+"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
 msgstr ""
 "<span weight='bold' size='larger'>A súa conta de Google está bloqueada</"
 "span>\n"
@@ -1576,7 +1578,7 @@ msgstr "_Mes"
 
 #: ../src/f-spot.glade.h:268
 msgid "_New Window"
-msgstr "_Nova fiestra"
+msgstr "_Nova ventá"
 
 #: ../src/f-spot.glade.h:269
 msgid "_Open album in browser when done uploading"
@@ -1746,27 +1748,27 @@ msgstr "O seguinte erro atopouse mentras se tentaba acceder a: {0}"
 msgid "(TopLevel)"
 msgstr "(Nivel superior)"
 
-#: ../src/GalleryExport.cs:713
+#: ../src/GalleryExport.cs:715
 #, fuzzy, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery: {1}"
 msgstr "Erro subindo á galería: {0}"
 
-#: ../src/GalleryExport.cs:740 ../src/PicasaWebExport.cs:639
+#: ../src/GalleryExport.cs:742 ../src/PicasaWebExport.cs:631
 #: ../src/SmugMugExport.cs:599
 msgid "(No Gallery)"
 msgstr "(Non hai galería)"
 
-#: ../src/GalleryExport.cs:827 ../src/PicasaWebExport.cs:766
+#: ../src/GalleryExport.cs:829 ../src/PicasaWebExport.cs:758
 #: ../src/SmugMugExport.cs:697
 msgid "(Not Connected)"
 msgstr "(Non conectado)"
 
-#: ../src/GalleryExport.cs:828 ../src/PicasaWebExport.cs:767
+#: ../src/GalleryExport.cs:830 ../src/PicasaWebExport.cs:759
 #: ../src/SmugMugExport.cs:698
 msgid "(No Albums)"
-msgstr "(Non hai álbumes)"
+msgstr "(Non hai álbums)"
 
-#: ../src/GalleryExport.cs:880 ../src/PicasaWebExport.cs:811
+#: ../src/GalleryExport.cs:882 ../src/PicasaWebExport.cs:803
 #: ../src/SmugMugExport.cs:742
 msgid "No account selected"
 msgstr "Ningunha conta seleccionada"
@@ -1863,7 +1865,8 @@ msgstr "O directorio non existe."
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
 "different directory"
-msgstr "O directorio seleccionado \"{0}\" non existe. Escolla un directorio diferente"
+msgstr ""
+"O directorio seleccionado \"{0}\" non existe. Escolla un directorio diferente"
 
 #. Prepare the Last Import root tag
 #: ../src/ImportCommand.cs:682 ../src/ImportCommand.cs:684
@@ -1982,7 +1985,8 @@ msgid "A unique number"
 msgstr "Un único número"
 
 #: ../src/Imaging/IptcFile.cs:157
-msgid "The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgid ""
+"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
 msgstr "A urxencia do sobre, entre 1 (moi urxente) e 9 (pouco urxente)"
 
 #: ../src/Imaging/IptcFile.cs:159
@@ -1990,8 +1994,10 @@ msgid "The year month and day (CCYYMMDD) the service sent the material"
 msgstr "O ano, mes e día (CCYYMMDD) na que o servizo enviou o material"
 
 #: ../src/Imaging/IptcFile.cs:161
-msgid "The hour minute and second the (HHMMSS+HHMM) the service sent the material"
-msgstr "A hora, minuto e segundo (HHMMSS+HHMM) na que o servizo enviou o material"
+msgid ""
+"The hour minute and second the (HHMMSS+HHMM) the service sent the material"
+msgstr ""
+"A hora, minuto e segundo (HHMMSS+HHMM) na que o servizo enviou o material"
 
 #: ../src/Imaging/IptcFile.cs:163
 msgid "The character set designation"
@@ -2046,7 +2052,8 @@ msgid "Full name of the country of the focus of the content"
 msgstr "Nome completo do país onde está o foco do contido"
 
 #: ../src/Imaging/IptcFile.cs:206
-msgid "Two or three letter ISO3166 code of the country of the focus of the content"
+msgid ""
+"Two or three letter ISO3166 code of the country of the focus of the content"
 msgstr "Código ISO3166 de dous ou tres letras do país do foco do contido"
 
 #: ../src/Imaging/IptcFile.cs:209
@@ -2074,7 +2081,8 @@ msgid "Headline of the content"
 msgstr "Cabeceira do contido"
 
 #: ../src/Imaging/IptcFile.cs:225
-msgid "Instructions from the creator to the receiver not covered by other fields"
+msgid ""
+"Instructions from the creator to the receiver not covered by other fields"
 msgstr ""
 "Instruccións do creador para o receptor que non están cubertas por outros "
 "campos"
@@ -2284,9 +2292,12 @@ msgstr[1] "Borrar permanentemente as {0} fotografías seleccionadas?"
 
 #: ../src/MainWindow.cs:2289
 msgid "This deletes all versions of the selected photo from your drive."
-msgid_plural "This deletes all versions of the selected photos from your drive."
-msgstr[0] "Isto borrará da súa unidade todas as versións da fotografía seleccionada."
-msgstr[1] "Isto borrará da súa unidade todas as versións das fotografías seleccionadas."
+msgid_plural ""
+"This deletes all versions of the selected photos from your drive."
+msgstr[0] ""
+"Isto borrará da súa unidade todas as versións da fotografía seleccionada."
+msgstr[1] ""
+"Isto borrará da súa unidade todas as versións das fotografías seleccionadas."
 
 #: ../src/MainWindow.cs:2292
 msgid "_Delete photo"
@@ -2705,12 +2716,12 @@ msgstr "Converter a foto a tons sepia"
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "Subindo imaxe \"{0}\" ({1} de {2})"
 
-#: ../src/PicasaWebExport.cs:606 ../src/SmugMugExport.cs:566
+#: ../src/PicasaWebExport.cs:598 ../src/SmugMugExport.cs:566
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Erro subindo á galería: {0}"
 
-#: ../src/PicasaWebExport.cs:690
+#: ../src/PicasaWebExport.cs:682
 msgid "Available space :"
 msgstr "Espazo dispoñible: "
 
@@ -2978,11 +2989,11 @@ msgstr "Saltar"
 msgid "Unable to create temporary file"
 msgstr "Imposible crear o ficheiro temporal"
 
-#: ../src/Updater.cs:121
+#: ../src/Updater.cs:122
 msgid "Updating F-Spot Database"
 msgstr "Actualizando a base de datos de F-Spot"
 
-#: ../src/Updater.cs:122
+#: ../src/Updater.cs:123
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -3003,7 +3014,9 @@ msgstr "Erro recibido: {1}\"{0}\"{1}"
 msgid ""
 "The \"F-Spot Manual\" could not be found.  Please verify that your "
 "installation has been completed successfully."
-msgstr "Non se puido atopar o \"Manual de F-Spot\". Por favor, comprobe que se completou existosamenta a instalación."
+msgstr ""
+"Non se puido atopar o \"Manual de F-Spot\". Por favor, comprobe que se "
+"completou existosamenta a instalación."
 
 #: ../src/Util.cs:482
 msgid "Help not found"
@@ -3033,10 +3046,6 @@ msgstr "Agochar a barra de busca"
 msgid "Show Find Bar"
 msgstr "Amosar barra de busca"
 
-#: ../src/Widgets/DateEdit.cs:210
-msgid "Calendar"
-msgstr "Axenda"
-
 #: ../src/XmpTagsImporter.cs:87
 msgid "Location"
 msgstr "Ubicación"
@@ -3062,3 +3071,5 @@ msgstr "Amosar unha exhibición de fotos desde F-Spot"
 msgid "F-Spot photos"
 msgstr "Fotos de F-Spot"
 
+#~ msgid "Calendar"
+#~ msgstr "Axenda"
