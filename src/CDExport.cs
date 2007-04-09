@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using Mono.Unix;
 
 namespace FSpot {
-	public class CDExport : GladeDialog {
+	public class CDExport : GladeDialog, FSpot.Extensions.IExporter {
 		IBrowsableCollection selection;
 
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
@@ -20,7 +20,11 @@ namespace FSpot {
 		FSpot.ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
 
-		public CDExport (IBrowsableCollection selection) : base ("cd_export_dialog")
+		public CDExport () : base ("cd_export_dialog")
+		{
+		}
+
+		public void Run (IBrowsableCollection selection)
 		{
 			this.selection = selection;
 

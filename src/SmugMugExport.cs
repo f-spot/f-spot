@@ -375,8 +375,11 @@ namespace FSpot {
 	}
 
 	
-	public class SmugMugExport : GladeDialog {
-		public SmugMugExport (IBrowsableCollection selection) : base ("smugmug_export_dialog")
+	public class SmugMugExport : GladeDialog, FSpot.Extensions.IExporter{
+		public SmugMugExport () : base ("smugmug_export_dialog")
+		{
+		}
+		public void Run (IBrowsableCollection selection)
 		{
 			this.items = selection.Items;
 			album_button.Sensitive = false;

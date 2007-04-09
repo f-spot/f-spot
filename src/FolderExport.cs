@@ -30,7 +30,7 @@ using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.GZip;
 
 namespace FSpot {
-	public class FolderExport : GladeDialog {
+	public class FolderExport : GladeDialog, FSpot.Extensions.IExporter {
 		IBrowsableCollection selection;
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
 		[Glade.Widget] Gtk.Entry name_entry;
@@ -66,7 +66,9 @@ namespace FSpot {
 		FSpot.ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
 		
-		public FolderExport (IBrowsableCollection selection) : base ("folder_export_dialog")
+		public FolderExport () : base ("folder_export_dialog")
+		{}
+		public void Run (IBrowsableCollection selection)
 		{
 			/*
 			Gnome.Vfs.ModuleCallbackFullAuthentication auth = new Gnome.Vfs.ModuleCallbackFullAuthentication ();

@@ -542,8 +542,12 @@ namespace FSpot {
 	}
 
 	
-	public class GalleryExport : GladeDialog {
-		public GalleryExport (IBrowsableCollection selection) : base ("gallery_export_dialog")
+	public class GalleryExport : GladeDialog, FSpot.Extensions.IExporter {
+		public GalleryExport () : base ("gallery_export_dialog")
+		{
+		}
+
+		public void Run (IBrowsableCollection selection)
 		{
 			this.items = selection.Items;
 			album_button.Sensitive = false;

@@ -6,7 +6,15 @@ using Mono.Unix;
 using FSpot.Filters;
 
 namespace FSpot {
-	public class FlickrExport : GladeDialog {
+	public class TwentyThreeHQExport : FlickrExport
+	{
+		public override void Run (IBrowsableCollection selection)
+		{
+			Run (SupportedService.TwentyThreeHQ, selection, true);
+		}
+	}
+
+	public class FlickrExport : GladeDialog, FSpot.Extensions.IExporter {
 		IBrowsableCollection selection;
 
 		[Glade.Widget] Gtk.CheckButton    scale_check;
@@ -94,7 +102,22 @@ namespace FSpot {
 		{ }
 
 
-		public FlickrExport (SupportedService service, IBrowsableCollection selection, bool display_tags) : base ("flickr_export_dialog")
+		public FlickrExport (SupportedService service, IBrowsableCollection selection, bool display_tags) : this ()
+		{
+			Run (service, selection, display_tags);
+		}
+
+		public FlickrExport () : base ("flickr_export_dialog")
+		{
+			
+		}
+
+		public virtual void Run (IBrowsableCollection selection)
+		{
+			Run (SupportedService.Flickr, selection, true);
+		}
+
+		public void Run (SupportedService service, IBrowsableCollection selection, bool display_tags)
 		{
 			this.selection = selection;
 			this.current_service = FlickrRemote.Service.FromSupported (service);

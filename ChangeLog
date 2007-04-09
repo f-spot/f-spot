@@ -1,3 +1,28 @@
+2007-04-09  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Makefile.am:
+	* src/Extensions/MenuNode.cs: ExtensionsNode to create extendable
+	menus.
+
+	* src/Extensions/IExporter.cs: interface and ExtensionNode to create
+	export extensions.
+
+	* src/f-spot.glade:
+	* src/MainWindow.cs:
+	* src/SingleView.cs: Create the Export submenu from available
+	extensions.
+
+	* src/SmugMugExport.cs:
+	* src/CDExport.cs:
+	* src/FlickrExport.cs:
+	* src/FolderExport.cs:
+	* src/PicasaWebExport.cs:
+	* src/GalleryExport.cs: make the existing exporters inherit from
+	IExporter.
+
+	* extensions/DefaultExporters/*: declare the existing exporters as
+	extensions.
+
 2007-04-07  Stephane Delcroix  <stephane@delcroix.org>
 
 	* po/POTFILES.in: remove DateEdit.cs to pass dist-check

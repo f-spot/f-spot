@@ -8355,74 +8355,6 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">_Export</property>
 		      <property name="use_underline">True</property>
-
-		      <child>
-			<widget class="GtkMenu" id="export_menu">
-
-			  <child>
-			    <widget class="GtkMenuItem" id="export_to_flickr">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Export to _Flickr...</property>
-			      <property name="use_underline">True</property>
-			      <signal name="activate" handler="HandleExportToFlickr" last_modification_time="Fri, 17 Dec 2004 19:43:27 GMT"/>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="export_to_picasa1">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Export to _Picasaweb...</property>
-			      <property name="use_underline">True</property>
-			      <signal name="activate" handler="HandleExportToPicasa" last_modification_time="Fri, 28 Jul 2006 09:03:16 GMT"/>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="export_to_smugmug">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Export to _SmugMug...</property>
-			      <property name="use_underline">True</property>
-			      <signal name="activate" handler="HandleExportToSmugMug" last_modification_time="Fri, 28 Jul 2006 09:03:16 GMT"/>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="export_to_23hq">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Export to 23h_q...</property>
-			      <property name="use_underline">True</property>
-			      <signal name="activate" handler="HandleExportTo23hq" last_modification_time="Fri, 17 Dec 2004 19:43:27 GMT"/>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="export_to_gallery">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Export to _Web Gallery...</property>
-			      <property name="use_underline">True</property>
-			      <signal name="activate" handler="HandleExportToGallery" last_modification_time="Thu, 16 Dec 2004 07:44:48 GMT"/>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="export_to_original">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Export to _Folder...</property>
-			      <property name="use_underline">True</property>
-			      <signal name="activate" handler="HandleExportToOriginal" last_modification_time="Tue, 18 Jan 2005 14:38:36 GMT"/>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="export_to_cd1">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">E_xport to CD...</property>
-			      <property name="use_underline">True</property>
-			      <signal name="activate" handler="HandleExportToCD" last_modification_time="Wed, 12 Jan 2005 22:49:52 GMT"/>
-			    </widget>
-			  </child>
-			</widget>
-		      </child>
 		    </widget>
 		  </child>
 
@@ -12036,76 +11968,8 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		  <child>
 		    <widget class="GtkMenuItem" id="export">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Export</property>
+		      <property name="label" translatable="yes">_Export</property>
 		      <property name="use_underline">True</property>
-
-		      <child>
-			<widget class="GtkMenu" id="export_menu">
-
-			  <child>
-			    <widget class="GtkMenuItem" id="export_to_flickr">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Export to _Flickr...</property>
-			      <property name="use_underline">True</property>
-			      <signal name="activate" handler="HandleExportToFlickr" last_modification_time="Sat, 28 Oct 2006 15:46:01 GMT"/>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="export_to_picasaweb1">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Export to _Picasaweb...</property>
-			      <property name="use_underline">True</property>
-			      <signal name="activate" handler="HandleExportToPicasaweb" last_modification_time="Sat, 28 Oct 2006 15:46:01 GMT"/>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="export_to_smugmug">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Export to _SmugMug...</property>
-			      <property name="use_underline">True</property>
-			      <signal name="activate" handler="HandleExportToSmugMug" last_modification_time="Fri, 28 Jul 2006 09:03:16 GMT"/>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="export_to_23hq">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Export to 23h_q...</property>
-			      <property name="use_underline">True</property>
-			      <signal name="activate" handler="HandleExportTo23hq" last_modification_time="Fri, 17 Dec 2004 19:43:27 GMT"/>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="export_to_gallery">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Export to _Web Gallery...</property>
-			      <property name="use_underline">True</property>
-			      <signal name="activate" handler="HandleExportToGallery" last_modification_time="Sat, 04 Nov 2006 09:15:28 GMT"/>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="export_to_folder">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Export to _Folder...</property>
-			      <property name="use_underline">True</property>
-			      <signal name="activate" handler="HandleExportToFolder" last_modification_time="Sat, 28 Oct 2006 15:46:01 GMT"/>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="export_to_cd">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Export to CD...</property>
-			      <property name="use_underline">True</property>
-			      <signal name="activate" handler="HandleExportToCD" last_modification_time="Sat, 04 Nov 2006 09:15:28 GMT"/>
-			    </widget>
-			  </child>
-			</widget>
-		      </child>
 		    </widget>
 		  </child>
 

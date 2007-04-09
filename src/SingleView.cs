@@ -18,6 +18,8 @@ namespace FSpot {
 		[Glade.Widget] Gtk.MenuItem zoom_in;
 		[Glade.Widget] Gtk.MenuItem zoom_out;
 
+		[Glade.Widget] Gtk.MenuItem export;
+
 		[Glade.Widget] Gtk.Image near_image;
 		[Glade.Widget] Gtk.Image far_image;
 
@@ -138,6 +140,14 @@ namespace FSpot {
 			if (collection.Count > 0)
 				directory_view.Selection.Add (0);
 
+			export.Submenu = (Mono.Addins.AddinManager.GetExtensionNode ("/FSpot/Menus/Exports") as FSpot.Extensions.SubmenuNode).GetMenuItem ().Submenu;
+			export.Submenu.ShowAll ();
+			export.Activated += HandleExportActivated ;
+		}
+
+		void HandleExportActivated (object o, EventArgs e)
+		{
+			FSpot.Extensions.ExportMenuItemNode.SelectedImages = delegate () {return new FSpot.PhotoArray (directory_view.Selection.Items); };
 		}
 
 		public void HandleCollectionChanged (IBrowsableCollection collection)
@@ -202,41 +212,6 @@ namespace FSpot {
 				collection.MarkChanged (image_view.Item.Index);
 			}
 		}		
-
-		void HandleExportToFlickr (object sender, System.EventArgs args)
-		{
-			new FSpot.FlickrExport (FlickrNet.SupportedService.Flickr, new PhotoArray (directory_view.Selection.Items), false);
-		}
-
-		void HandleExportTo23hq (object sender, System.EventArgs args)
-		{
-			new FSpot.FlickrExport (FlickrNet.SupportedService.TwentyThreeHQ, new PhotoArray (directory_view.Selection.Items), false);
-		}
-
-		void HandleExportToPicasaweb (object sender, System.EventArgs args)
-		{
-			new FSpot.GoogleExport (new PhotoArray (directory_view.Selection.Items));
-		}
-
-		void HandleExportToSmugMug (object sender, System.EventArgs args)
-		{
-			new FSpot.SmugMugExport (new PhotoArray (directory_view.Selection.Items)); 	
-		}
-
-		void HandleExportToGallery (object sender, System.EventArgs args)
-		{
-			new FSpot.GalleryExport (new PhotoArray (directory_view.Selection.Items)); 
-		}
-
-		void HandleExportToFolder (object sender, System.EventArgs args)
-		{
-			new FSpot.FolderExport (new PhotoArray (directory_view.Selection.Items));			
-		}
-
-		void HandleExportToCD (object sender, System.EventArgs args)
-		{
-			new FSpot.CDExport (new PhotoArray (directory_view.Selection.Items)); 
-		}
 
 		private void HandleSelectionChanged (FSpot.IBrowsableCollection selection) 
 		{
@@ -486,6 +461,7 @@ namespace FSpot {
 
 			sb.AppendFormat (Catalog.GetPluralString ("{0} Photo", "{0} Photos", collection.Count), collection.Count);
 			status_label.Text = sb.ToString ();
+
 
 		}
 

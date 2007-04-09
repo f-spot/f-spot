@@ -402,8 +402,12 @@ namespace FSpot {
 	}
 
 	
-	public class GoogleExport : GladeDialog {
-		public GoogleExport (IBrowsableCollection selection) : base ("google_export_dialog")
+	public class GoogleExport : GladeDialog, FSpot.Extensions.IExporter{
+		public GoogleExport () : base ("google_export_dialog")
+		{
+		}
+
+		public void Run (IBrowsableCollection selection)
 		{
 			this.items = selection.Items;
 			album_button.Sensitive = false;

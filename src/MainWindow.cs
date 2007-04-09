@@ -419,6 +419,7 @@ public class MainWindow {
 		// When the icon_view is loaded, set it's initial scroll position
 		icon_view.SizeAllocated += HandleIconViewReady;
 
+		export.Activated += HandleExportActivated;
 		UpdateToolbar ();
 
 	}
@@ -492,6 +493,11 @@ public class MainWindow {
 			if (edit_button.Active != state)
 				edit_button.Active = state;
 		}
+	}
+
+	private void HandleExportActivated (object o, EventArgs e)
+	{
+		FSpot.Extensions.ExportMenuItemNode.SelectedImages = delegate () {return new FSpot.PhotoArray (SelectedPhotos ()); };
 	}
 
 	private void HandleDbItemsChanged (object sender, DbItemEventArgs args)
@@ -1451,21 +1457,6 @@ public class MainWindow {
 		info_display_window.Destroyed += HandleInfoDisplayDestroy;
 	}
 
-	void HandleExportToPicasa (object sender, EventArgs args)
-	{
-		new FSpot.GoogleExport (new FSpot.PhotoArray (SelectedPhotos ()));
-	}
-
-	void HandleExportToGallery (object sender, EventArgs args)
-	{
-		new FSpot.GalleryExport (new FSpot.PhotoArray (SelectedPhotos ()));
-	}
-
-	void HandleExportToOriginal (object sender, EventArgs args)
-	{
-		new FSpot.FolderExport (new FSpot.PhotoArray (SelectedPhotos ()));
-	}
-
 	void HandleViewDirectory (object sender, EventArgs args)
 	{
 		Gtk.Window win = new Gtk.Window ("Directory View");
@@ -1488,31 +1479,6 @@ public class MainWindow {
 		win.Add (scroll);
 		scroll.Add (new TrayView (icon_view.Selection));
 		win.ShowAll ();
-	}
-
-	void HandleExportToFlickr (object sender, EventArgs args)
-	{
-		new FSpot.FlickrExport (FlickrNet.SupportedService.Flickr, new FSpot.PhotoArray (SelectedPhotos ()), true);
-	}
-	
-	void HandleExportToSmugMug (object sender, System.EventArgs args)
-	{
-		new FSpot.SmugMugExport (new PhotoArray (SelectedPhotos ())); 	
-	}
-
-	void HandleExportTo23hq (object sender, EventArgs args)
-	{
-		new FSpot.FlickrExport (FlickrNet.SupportedService.TwentyThreeHQ, new FSpot.PhotoArray (SelectedPhotos ()), true);
-	}
-
-	void HandleExportToFotki (object sender, EventArgs args)
-	{
-		
-	}
-	
-	void HandleExportToCD (object sender, EventArgs args)
-	{
-		new FSpot.CDExport (new FSpot.PhotoArray (SelectedPhotos ()));
 	}
 
 	private void TestDisplay ()
@@ -2788,7 +2754,6 @@ public class MainWindow {
 		
 		send_mail.Sensitive = active_selection;
 		print.Sensitive = active_selection;
-		export.Sensitive = active_selection;
 		select_none.Sensitive = active_selection;
 		copy_location.Sensitive = active_selection;
 		exif_data.Sensitive = active_selection;
@@ -2801,7 +2766,10 @@ public class MainWindow {
 
 		attach_tag_to_selection.Sensitive = tag_sensitive && active_selection;
 		remove_tag_from_selection.Sensitive = tag_sensitive && active_selection;
-		
+	
+		export.Submenu = (Mono.Addins.AddinManager.GetExtensionNode ("/FSpot/Menus/Exports") as FSpot.Extensions.SubmenuNode).GetMenuItem ().Submenu;
+		export.Sensitive = active_selection;
+
 		if (rl_button != null) {
 			if (selection.Count == 0) {
 				rl_button.Sensitive = false;
