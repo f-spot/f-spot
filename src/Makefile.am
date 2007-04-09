@@ -1,5 +1,5 @@
 include $(top_srcdir)/Makefile.include
-EXTRAFLAGS = -unsafe -nowarn:0169 -nowarn:0612 -nowarn:0414 -d:TEST_METADATA -d:BROKEN_RSVG $(NUNIT_DEFINES)
+EXTRAFLAGS = -unsafe -nowarn:0169 -nowarn:0612 -nowarn:0414 -d:TEST_METADATA -d:BROKEN_RSVG $(NUNIT_DEFINES) $(BEAGLE_DEFINES)
 
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Cairo/Antialias.cs		\
@@ -49,6 +49,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Cms/Cms.cs			\
 	$(srcdir)/Cms/CctTable.cs		\
 	$(srcdir)/AsyncPixbufLoader.cs		\
+	$(srcdir)/BeagleNotifier.cs		\
 	$(srcdir)/BlockProcessor.cs		\
 	$(srcdir)/BitConverter.cs		\
 	$(srcdir)/PhotoArray.cs 		\
@@ -218,13 +219,14 @@ ASSEMBLIES = \
 	$(LINK_DBUS)				\
 	$(LINK_GPHOTO2)				\
 	$(LINK_MONO_ADDINS)			\
-	$(LINK_SEMWEB)				\
 	$(LINK_FLICKR)				\
 	$(LINK_GLITZ)				\
 	$(LINK_GOOGLE)				\
 	$(LINK_KEYRING)				\
 	$(LINK_SMUGMUG)				\
 	$(LINK_TAO)				\
+	$(LINK_SEMWEB)				\
+	$(LINK_BEAGLE)				\
 	-r:System.Data				\
 	-r:System.Web				\
 	-r:Mono.Data.SqliteClient		\

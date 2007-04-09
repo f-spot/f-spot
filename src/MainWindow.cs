@@ -506,7 +506,9 @@ public class MainWindow {
 			Photo p = item as Photo;
 			if (p == null)
 				continue;
-
+#if ENABLE_BEAGLE
+			BeagleNotifier.SendUpdate (p);
+#endif
 			if (write_metadata) {
 				try {
 					p.WriteMetadataToImage ();

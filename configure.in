@@ -60,6 +60,7 @@ LIBEXIF_REQUIRED_MAX=0.7.0
 GTKSHARP_REQUIRED=2.7
 MONO_REQUIRED=1.1.7
 GTK_REQUIRED=2.6
+BEAGLE_REQUIRED=0.3.0
 
 dnl -- this check is 	
 LCMS_REQUIRED=1.12
@@ -68,6 +69,20 @@ dnl -- LIBGPHOTO2_REQUIRED=2.1.4
 PKG_CHECK_MODULES(F, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED libexif >= $LIBEXIF_REQUIRED_MIN libexif < $LIBEXIF_REQUIRED_MAX gtkhtml-sharp-2.0 >= $GTKSHARP_REQUIRED gconf-sharp-2.0 >= $GTKSHARP_REQUIRED glade-sharp-2.0 >= $GTKSHARP_REQUIRED gnome-vfs-sharp-2.0 >= $GTKSHARP_REQUIRED gtk+-2.0 >= $GTK_REQUIRED mono >= $MONO_REQUIRED)
 AC_SUBST(F_CFLAGS)
 AC_SUBST(F_LIBS)
+
+PKG_CHECK_MODULES(BEAGLE, beagle-0.0 >= $BEAGLE_REQUIRED,
+[
+	dnl this is a work around to avoid linking against beagles Util.dll
+	BEAGLE_DIR=`$PKG_CONFIG --variable=dlldir beagle-0.0`	
+	LINK_BEAGLE="-r:$BEAGLE_DIR/Beagle"
+	BEAGLE_DEFINES='-d:ENABLE_BEAGLE'
+],
+[
+	AC_MSG_RESULT([beagle not found])
+])
+AC_SUBST(BEAGLE_DIR)
+AC_SUBST(BEAGLE_DEFINES)
+AC_SUBST(LINK_BEAGLE)
 
 dnl -- nunit ... workaround for ubuntu
 NUNIT_DEFINES='-d:ENABLE_NUNIT'

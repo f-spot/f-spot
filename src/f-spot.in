@@ -2,13 +2,18 @@
 
 prefix=@prefix@
 exec_prefix=@exec_prefix@
-libdir=@libdir@
+libdir=@libdir@ 
 turtledir=@TURTLEDIR@
+beagledir=@BEAGLE_DIR@
 
 EXE_TO_RUN="$libdir/f-spot/f-spot.exe"
 
 if test "x$turtledir" != "x"; then
     export MONO_PATH=$turtledir/lib:$turtledir/gui:$MONO_PATH
+fi
+
+if test "x$beagledir" != "x"; then
+    export MONO_PATH=$beagledir:$MONO_PATH
 fi
 
 [ -n "$FSPOT_DEBUG" ] && FSPOT_DEBUG="--debug"
