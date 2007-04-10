@@ -8,6 +8,17 @@ namespace FSpot {
 			Indexable indexable = new Indexable (item.DefaultVersionUri);
 			indexable.Type = IndexableType.PropertyChange;
 			Beagle.Property prop;
+
+			// Clear the existing tags
+			prop = Beagle.Property.NewKeyword ("fspot:Tag", "");
+			prop.IsMutable = true;
+			prop.IsPersistent = true;
+			indexable.AddProperty (prop);
+			prop = Beagle.Property.NewKeyword ("image:Tag", "");
+			prop.IsMutable = true;
+			prop.IsPersistent = true;
+			indexable.AddProperty (prop);
+
 			foreach (Tag t in item.Tags) {
 				prop = Beagle.Property.NewKeyword ("fspot:Tag", t.Name);
 				prop.IsMutable = true;
@@ -34,5 +45,6 @@ namespace FSpot {
 			req.SendAsync ();
 		}
 	}
+
 }
 #endif
