@@ -38,6 +38,10 @@ namespace Mono.Addins.Database
 {
 	internal class Util
 	{
+		public static bool IsWindows {
+			get { return Path.DirectorySeparatorChar == '\\'; }
+		}
+			
 		public static void CheckWrittableFloder (string path)
 		{
 			string testFile = null;
@@ -108,6 +112,19 @@ namespace Mono.Addins.Database
 				}
 			}
 			return root + string.Join (new string (Path.DirectorySeparatorChar, 1), newParts, 0, i);
+		}
+		
+		public static int GetStringHashCode (string s)
+		{
+			int h = 0;
+			int n = 0;
+			for (; n < s.Length - 1; n+=2) {
+				h = (h << 5) - h + s[n];
+				h = (h << 5) - h + s[n+1];
+			}
+			if (n < s.Length)
+				h = (h << 5) - h + s[n];
+			return h;
 		}
 	}
 }

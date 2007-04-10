@@ -100,8 +100,9 @@ namespace Mono.Addins.Database
 				// The folder has been deleted. All add-ins defined in that folder should also be deleted.
 				scanResult.RegenerateRelationData = true;
 				scanResult.ChangesFound = true;
+				if (scanResult.CheckOnly)
+					return;
 				database.DeleteFolderInfo (monitor, folderInfo);
-				return;
 			}
 			
 			if (scanResult.LocateAssembliesOnly)
@@ -109,9 +110,15 @@ namespace Mono.Addins.Database
 			
 			// Look for deleted add-ins.
 			
+			UpdateDeletedAddins (monitor, folderInfo, scanResult);
+		}
+		
+		public void UpdateDeletedAddins (IProgressStatus monitor, AddinScanFolderInfo folderInfo, AddinScanResult scanResult)
+		{
 			ArrayList missing = folderInfo.GetMissingAddins ();
 			if (missing.Count > 0) {
-				scanResult.ModifiedFolderInfos.Add (folderInfo);
+				if (Directory.Exists (folderInfo.Folder))
+					scanResult.ModifiedFolderInfos.Add (folderInfo);
 				scanResult.ChangesFound = true;
 				if (scanResult.CheckOnly)
 					return;
@@ -308,7 +315,7 @@ namespace Mono.Addins.Database
 			StringCollection directories = new StringCollection ();
 			StringCollection directoriesWithSubdirs = new StringCollection ();
 			try {
-				r = new XmlTextReader (file);
+				r = new XmlTextReader (new StreamReader (file));
 				r.MoveToContent ();
 				if (r.IsEmptyElement)
 					return;
@@ -400,7 +407,8 @@ namespace Mono.Addins.Database
 				
 				if (configFile != null) {
 					using (Stream s = asm.GetManifestResourceStream (configFile)) {
-						config = AddinDescription.Read (s, Path.GetDirectoryName (asm.Location));
+						string asmFile = new Uri (asm.CodeBase).LocalPath;
+						config = AddinDescription.Read (s, Path.GetDirectoryName (asmFile));
 					}
 				}
 				else {
@@ -416,9 +424,9 @@ namespace Mono.Addins.Database
 				config.BasePath = Path.GetDirectoryName (filePath);
 				config.AddinFile = filePath;
 				
-				string asmFile = Path.GetFileName (filePath);
-				if (!config.MainModule.Assemblies.Contains (asmFile))
-					config.MainModule.Assemblies.Add (asmFile);
+				string rasmFile = Path.GetFileName (filePath);
+				if (!config.MainModule.Assemblies.Contains (rasmFile))
+					config.MainModule.Assemblies.Add (rasmFile);
 				
 				return ScanDescription (monitor, config, asm, scanResult);
 			}
@@ -457,8 +465,10 @@ namespace Mono.Addins.Database
 				
 				if (config.IsRoot && scanResult.HostIndex != null) {
 					// If the add-in is a root, register its assemblies
-					foreach (Assembly asm in assemblies)
-						scanResult.HostIndex.RegisterAssembly (asm.Location, config.AddinId, config.AddinFile);
+					foreach (Assembly asm in assemblies) {
+						string asmFile = new Uri (asm.CodeBase).LocalPath;
+						scanResult.HostIndex.RegisterAssembly (asmFile, config.AddinId, config.AddinFile);
+					}
 				}
 				
 			} catch (Exception ex) {
@@ -495,8 +505,10 @@ namespace Mono.Addins.Database
 				
 						if (config.IsRoot && scanResult.HostIndex != null) {
 							// If the add-in is a root, register its assemblies
-							foreach (Assembly asm in assemblies)
-								scanResult.HostIndex.RegisterAssembly (asm.Location, config.AddinId, config.AddinFile);
+							foreach (Assembly asm in assemblies) {
+								string asmFile = new Uri (asm.CodeBase).LocalPath;
+								scanResult.HostIndex.RegisterAssembly (asmFile, config.AddinId, config.AddinFile);
+							}
 						}
 						
 					} catch (Exception ex) {

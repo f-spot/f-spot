@@ -4,12 +4,12 @@
 	</Dependencies>
 
 	<Extension path = "/FSpot/Menus/Exports">
-		<ExportMenuItem id="Flickr" label = "Export to Flickr..." command_type = "FSpot.FlickrExport" />
-		<ExportMenuItem id="PicasaWeb" label = "Export to PicasaWeb..." command_type = "FSpot.GoogleExport" />
-		<ExportMenuItem id="SmugMug" label = "Export to SmugMug......" command_type = "FSpot.SmugMugExport" />
-		<ExportMenuItem id="23hq" label = "Export to 23hq..." command_type = "FSpot.TwentyThreeHQExport" />
-		<ExportMenuItem id="Gallery" label = "Export to Web Gallery..." command_type = "FSpot.GalleryExport" />
-		<ExportMenuItem id="Folder" label = "Export to Folder..." command_type = "FSpot.FolderExport" />
-		<ExportMenuItem id="CD" label = "Export to CD..." command_type = "FSpot.CDExport" />
+		<ExportMenuItem id="Flickr" _label = "Export to Flickr..." command_type = "FSpot.FlickrExport" />
+		<ExportMenuItem id="PicasaWeb" _label = "Export to PicasaWeb..." command_type = "FSpot.GoogleExport" />
+		<ExportMenuItem id="SmugMug" _label = "Export to SmugMug......" command_type = "FSpot.SmugMugExport" />
+		<ExportMenuItem id="23hq" _label = "Export to 23hq..." command_type = "FSpot.TwentyThreeHQExport" />
+		<ExportMenuItem id="Gallery" _label = "Export to Web Gallery..." command_type = "FSpot.GalleryExport" />
+		<ExportMenuItem id="Folder" _label = "Export to Folder..." command_type = "FSpot.FolderExport" />
+		<ExportMenuItem id="CD" _label = "Export to CD..." command_type = "FSpot.CDExport" />
 	</Extension>
 </Addin>

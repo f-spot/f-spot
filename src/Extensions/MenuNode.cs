@@ -21,7 +21,7 @@ namespace FSpot.Extensions
 	public class SubmenuNode : MenuNode
 	{
 		[NodeAttribute]
-		string label;
+		string _label;
 
 		bool changed;
 
@@ -30,7 +30,7 @@ namespace FSpot.Extensions
 			lock (this) {
 				if (item == null || changed) {
 					changed = false;
-					item = new Gtk.MenuItem (label ?? Id);
+					item = new Gtk.MenuItem (_label ?? Id);
 					Gtk.Menu submenu = new Gtk.Menu ();
 
 					foreach (MenuNode node in ChildNodes)
@@ -53,12 +53,12 @@ namespace FSpot.Extensions
 	public class MenuItemNode : MenuNode
 	{
 		[NodeAttribute]
-		string label;
+		string _label;
 
 		public override Gtk.MenuItem GetMenuItem ()
 		{
 			if (item == null) {
-				item = new Gtk.MenuItem (label ?? Id);
+				item = new Gtk.MenuItem (_label ?? Id);
 				item.Activated += OnActivated;
 			}
 			return item;

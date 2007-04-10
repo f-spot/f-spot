@@ -86,9 +86,9 @@ namespace Mono.Addins
 			ConditionInfo info = CreateConditionInfo (id);
 			ConditionType ot = info.CondType as ConditionType;
 			if (ot != null)
-				ot.Changed -= OnConditionChanged;
+				ot.Changed -= new EventHandler (OnConditionChanged);
 			info.CondType = type;
-			type.Changed += OnConditionChanged;
+			type.Changed += new EventHandler (OnConditionChanged);
 		}
 		
 		public void RegisterCondition (string id, Type type)
@@ -97,7 +97,7 @@ namespace Mono.Addins
 			ConditionInfo info = CreateConditionInfo (id);
 			ConditionType ot = info.CondType as ConditionType;
 			if (ot != null)
-				ot.Changed -= OnConditionChanged;
+				ot.Changed -= new EventHandler (OnConditionChanged);
 			info.CondType = type;
 		}
 		
@@ -125,7 +125,7 @@ namespace Mono.Addins
 					// The condition was registered as a type, create an instance now
 					ct = (ConditionType) Activator.CreateInstance ((Type)info.CondType);
 					ct.Id = id;
-					ct.Changed += OnConditionChanged;
+					ct.Changed += new EventHandler (OnConditionChanged);
 					info.CondType = ct;
 				}
 				else
@@ -367,25 +367,43 @@ namespace Mono.Addins
 			try {
 				fireEvents = true;
 				
-				ArrayList list = new ArrayList ();
-				tree.GetExtendedLoadedNodes (id, list);
+				Addin addin = AddinManager.Registry.GetAddin (id);
+				if (addin == null) {
+					AddinManager.ReportError ("Required add-in not found", id, null, false);
+					return;
+				}
 				
-				foreach (TreeNode nod in list) {
-					ExtensionPoint ep = nod.ExtensionPoint;
+				// Look for loaded extension points
+				Hashtable eps = new Hashtable ();
+				foreach (ModuleDescription mod in addin.Description.AllModules) {
+					foreach (Extension ext in mod.Extensions) {
+						ExtensionPoint ep = tree.FindExtensionPoint (ext.Path);
+						if (ep != null && !eps.Contains (ep))
+							eps.Add (ep, ep);
+					}
+				}
+				
+				// Add the new nodes
+				ArrayList loadedNodes = new ArrayList ();
+				foreach (ExtensionPoint ep in eps.Keys) {
 					ExtensionLoadData data = GetAddinExtensions (id, ep);
 					if (data != null) {
 						foreach (Extension ext in data.Extensions) {
 							TreeNode node = GetNode (ext.Path);
 							if (node != null && node.ExtensionNodeSet != null)
-								LoadModuleExtensionNodes (ext, data.AddinId, node.ExtensionNodeSet);
+								LoadModuleExtensionNodes (ext, data.AddinId, node.ExtensionNodeSet, loadedNodes);
 							else
 								AddinManager.ReportError ("Extension node not found or not extensible: " + ext.Path, id, null, false);
 						}
 						
 						// Global extension change event. Other events are fired by LoadModuleExtensionNodes.
-						NotifyExtensionsChanged (new ExtensionEventArgs (nod.GetPath ()));
+						NotifyExtensionsChanged (new ExtensionEventArgs (ep.Path));
 					}
 				}
+				
+				// Call the OnAddinLoaded method on nodes, if the add-in is already loaded
+				foreach (TreeNode nod in loadedNodes)
+					nod.ExtensionNode.OnAddinLoaded ();
 			}
 			finally {
 				fireEvents = false;
@@ -478,15 +496,19 @@ namespace Mono.Addins
 				
 				// Now load the extensions
 				
+				ArrayList loadedNodes = new ArrayList ();
 				foreach (ExtensionLoadData data in loadData) {
 					foreach (Extension ext in data.Extensions) {
 						TreeNode cnode = GetNode (ext.Path);
 						if (cnode != null && cnode.ExtensionNodeSet != null)
-							LoadModuleExtensionNodes (ext, data.AddinId, cnode.ExtensionNodeSet);
+							LoadModuleExtensionNodes (ext, data.AddinId, cnode.ExtensionNodeSet, loadedNodes);
 						else
 							AddinManager.ReportError ("Extension node not found or not extensible: " + ext.Path, data.AddinId, null, false);
 					}
 				}
+				// Call the OnAddinLoaded method on nodes, if the add-in is already loaded
+				foreach (TreeNode nod in loadedNodes)
+					nod.ExtensionNode.OnAddinLoaded ();
 
 				NotifyExtensionsChanged (new ExtensionEventArgs (requestedExtensionPath));
 			}
@@ -542,17 +564,19 @@ namespace Mono.Addins
 			}
 		}
 		
-		void LoadModuleExtensionNodes (Extension extension, string addinId, ExtensionNodeSet nset)
+		void LoadModuleExtensionNodes (Extension extension, string addinId, ExtensionNodeSet nset, ArrayList loadedNodes)
 		{
 			// Now load the extensions
 			ArrayList addedNodes = new ArrayList ();
 			tree.LoadExtension (addinId, extension, addedNodes);
 			
 			RuntimeAddin ad = AddinManager.SessionService.GetAddin (addinId);
-			foreach (TreeNode nod in addedNodes) {
-				// Call the OnAddinLoaded method on nodes, if the add-in is already loaded
-				if (ad != null)
-					nod.NotifyAddinLoaded (ad, false);
+			if (ad != null) {
+				foreach (TreeNode nod in addedNodes) {
+					// Don't call OnAddinLoaded here. Do it when the entire extension point has been loaded.
+					if (nod.ExtensionNode != null)
+						loadedNodes.Add (nod);
+				}
 			}
 		}
 		

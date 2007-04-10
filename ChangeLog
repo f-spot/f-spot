@@ -1,12 +1,22 @@
 2007-04-10  Stephane Delcroix  <stephane@delcroix.org>
 
-	* src/PicasaWebExport.cs: do not try to export Tags if it's null. 
-	It's always the case while exportign from --view mode). Fixes bgo
-	#428185.
+	* src/Mono.Addins: update to Mono.Addins svn r75567.
 
 2007-04-10  Stephane Delcroix  <stephane@delcroix.org>
 
-	* src/Mono.Addins: update to Mono.Addins svn r75567.
+	* src/Extensions/MenuNode.cs: rename label to _label so it's
+	translatable by gettext.
+
+	* src/FSpot.addin.xml:
+	* extensions/DefaultExporters/DefaultExporters.addin.xml: use _label.
+
+	* po/POTFILES.in: add the 2 xml files for translation.
+
+2007-04-10  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/PicasaWebExport.cs: do not try to export Tags if it's null. 
+	It's always the case while exportign from --view mode). Fixes bgo
+	#428185.
 
 2007-04-10  Stephane Delcroix  <stephane@delcroix.org>
 
