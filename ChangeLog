@@ -1,3 +1,8 @@
+2007-04-10  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/BeagleNotifier.cs: wrap the whole content of the file in #if
+	ENABLE_BEAGLE / #endif. Fixes bgo #428181.
+
 2007-04-09  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/Makefile.am:

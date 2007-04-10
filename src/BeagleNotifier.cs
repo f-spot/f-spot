@@ -1,3 +1,4 @@
+#if ENABLE_BEAGLE
 using Beagle;
 
 namespace FSpot {
@@ -34,3 +35,4 @@ namespace FSpot {
 		}
 	}
 }
+#endif
