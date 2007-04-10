@@ -1,5 +1,15 @@
 2007-04-10  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/PicasaWebExport.cs: do not try to export Tags if it's null. 
+	It's always the case while exportign from --view mode). Fixes bgo
+	#428185.
+
+2007-04-10  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Mono.Addins: update to Mono.Addins svn r75567.
+
+2007-04-10  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/BeagleNotifier.cs: wrap the whole content of the file in #if
 	ENABLE_BEAGLE / #endif. Fixes bgo #428181.
 

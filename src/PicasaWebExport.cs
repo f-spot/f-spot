@@ -595,8 +595,9 @@ namespace FSpot {
 
 					request.Dispose ();
 					//tagging
-					foreach (Tag tag in item.Tags)
-						picture.AddTag (tag.Name);
+					if (item.Tags != null)
+						foreach (Tag tag in item.Tags)
+							picture.AddTag (tag.Name);
 
 				} catch (System.Exception e) {
 					progress_dialog.Message = String.Format (Catalog.GetString ("Error Uploading To Gallery: {0}"),
