@@ -10,6 +10,7 @@
 
 using System;
 using Mono.Addins;
+using Mono.Unix;
 
 namespace FSpot.Extensions
 {
@@ -30,7 +31,7 @@ namespace FSpot.Extensions
 			lock (this) {
 				if (item == null || changed) {
 					changed = false;
-					item = new Gtk.MenuItem (_label ?? Id);
+					item = new Gtk.MenuItem (_label != null ? Catalog.GetString (_label) : Id);
 					Gtk.Menu submenu = new Gtk.Menu ();
 
 					foreach (MenuNode node in ChildNodes)
@@ -58,7 +59,7 @@ namespace FSpot.Extensions
 		public override Gtk.MenuItem GetMenuItem ()
 		{
 			if (item == null) {
-				item = new Gtk.MenuItem (_label ?? Id);
+				item = new Gtk.MenuItem (_label != null ? Catalog.GetString (_label) : Id);
 				item.Activated += OnActivated;
 			}
 			return item;
