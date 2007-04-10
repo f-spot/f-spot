@@ -115,9 +115,9 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/InternalProcess.cs		\
 	$(srcdir)/IOChannel.cs			\
 	$(srcdir)/ItemAction.cs			\
-	$(srcdir)/Ciff.cs			\
 	$(srcdir)/Imaging/DCRawFile.cs		\
 	$(srcdir)/Imaging/Bim.cs		\
+	$(srcdir)/Imaging/Ciff.cs			\
 	$(srcdir)/Imaging/Exif.cs		\
 	$(srcdir)/Imaging/ImageFile.cs		\
 	$(srcdir)/Imaging/IptcFile.cs		\
