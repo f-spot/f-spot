@@ -29,6 +29,7 @@ ASSEMBLY_SOURCES =								\
 	$(srcdir)/Mono.Addins.Description/ExtensionNodeSet.cs 			\
 	$(srcdir)/Mono.Addins.Description/ExtensionNodeSetCollection.cs 	\
 	$(srcdir)/Mono.Addins.Description/ExtensionNodeType.cs 			\
+	$(srcdir)/Mono.Addins.Description/ExtensionNodeTypeCollection.cs 	\
 	$(srcdir)/Mono.Addins.Description/ExtensionPoint.cs 			\
 	$(srcdir)/Mono.Addins.Description/ExtensionPointCollection.cs 		\
 	$(srcdir)/Mono.Addins.Description/ModuleDescription.cs 			\
