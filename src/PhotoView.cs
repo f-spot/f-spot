@@ -355,6 +355,7 @@ public class PhotoView : EventBox {
 			// FIXME the fact that the selection doesn't go away is a bug in ImageView, it should
 			// be fixed there.
 			photo_view.Pixbuf = edited;
+			original_pixbuf.Dispose ();
 			photo_view.UnsetSelection ();
 
 			photo_view.Fit = true;
