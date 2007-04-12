@@ -152,7 +152,7 @@ namespace FSpot {
 
 		public void HandleCollectionChanged (IBrowsableCollection collection)
 		{
-			if (collection.Count > 0) {
+			if (collection.Count > 0 && directory_view.Selection.Count == 0) {
 				Console.WriteLine ("Added selection");
 				directory_view.Selection.Add (0);
 			}
@@ -215,9 +215,10 @@ namespace FSpot {
 
 		private void HandleSelectionChanged (FSpot.IBrowsableCollection selection) 
 		{
+			
 			if (selection.Count > 0) {
 				image_view.Item.Index = ((IconView.SelectionCollection)selection).Ids[0];
-				image_view.Reload ();
+
 				zoom_scale.Value = image_view.NormalizedZoom;
 				if (metadata_dialog != null)
 					metadata_dialog.InfoDisplay.Photo = image_view.Item.Current;
