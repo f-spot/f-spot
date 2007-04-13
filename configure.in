@@ -44,7 +44,7 @@ dnl -- check for various mono DLLs that we need.
 needed_dlls="Mono.Data.SqliteClient Mono.Posix System.Runtime.Remoting System.Web System.Web.Services Mono.GetOptions"
 for i in $needed_dlls; do
   AC_MSG_CHECKING([for $i.dll])
-  if test ! -e `$PKG_CONFIG --variable=prefix mono`/lib/mono/2.0/$i.dll; then
+  if test ! \( -e `$PKG_CONFIG --variable=prefix mono`/lib/mono/2.0/$i.dll -o -e `$PKG_CONFIG --variable=prefix mono`/lib64/mono/2.0//$i.dll \); then
     AC_MSG_ERROR([missing required mono 2.0 DLL: $i.dll])
   else
     AC_MSG_RESULT([found])
