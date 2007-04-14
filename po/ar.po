@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-05 19:03+0100\n"
+"POT-Creation-Date: 2007-04-14 18:21+0100\n"
 "PO-Revision-Date: 2006-11-18 00:59+0100\n"
 "Last-Translator: Djihed Afifi <djihed@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -212,12 +212,12 @@ msgstr "لمحة"
 msgid "Path"
 msgstr "المسار"
 
-#: ../src/CameraFileSelectionDialog.cs:66 ../src/f-spot.glade.h:127
+#: ../src/CameraFileSelectionDialog.cs:66 ../src/f-spot.glade.h:119
 #, fuzzy
 msgid "File"
 msgstr "الملف"
 
-#: ../src/CameraFileSelectionDialog.cs:68 ../src/FolderExport.cs:853
+#: ../src/CameraFileSelectionDialog.cs:68 ../src/FolderExport.cs:855
 #, fuzzy
 msgid "Index"
 msgstr "فهرس"
@@ -236,8 +236,8 @@ msgstr ""
 msgid "Downloading Preview of {0}"
 msgstr "استعراض الفيديو"
 
-#: ../src/CameraFileSelectionDialog.cs:183 ../src/CDExport.cs:206
-#: ../src/FolderExport.cs:329
+#: ../src/CameraFileSelectionDialog.cs:183 ../src/CDExport.cs:210
+#: ../src/FolderExport.cs:331
 #, fuzzy
 msgid "Transferring Pictures"
 msgstr "مجلّد الصور"
@@ -277,49 +277,49 @@ msgstr "كاميرا"
 msgid "Port"
 msgstr "المَنْفذ"
 
-#: ../src/CDExport.cs:112
+#: ../src/CDExport.cs:116
 #, fuzzy, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "جهاز القرص المدمج للاستعمال"
 
 #. This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/CDExport.cs:114 ../src/FlickrExport.cs:262
-#: ../src/FolderExport.cs:195 ../src/GalleryExport.cs:700
+#: ../src/CDExport.cs:118 ../src/FlickrExport.cs:285
+#: ../src/FolderExport.cs:197 ../src/GalleryExport.cs:704
 #: ../src/ProgressDialog.cs:82 ../src/TimeDialog.cs:147
 #, csharp-format
 msgid "{0} of {1}"
 msgstr ""
 
-#: ../src/CDExport.cs:127 ../src/FlickrExport.cs:279
-#: ../src/FolderExport.cs:226 ../src/GalleryExport.cs:724
-#: ../src/PicasaWebExport.cs:608 ../src/SmugMugExport.cs:576
+#: ../src/CDExport.cs:131 ../src/FlickrExport.cs:302
+#: ../src/FolderExport.cs:228 ../src/GalleryExport.cs:728
+#: ../src/PicasaWebExport.cs:613 ../src/SmugMugExport.cs:579
 #, fuzzy
 msgid "Done Sending Photos"
 msgstr "صور و موسيقى"
 
-#: ../src/CDExport.cs:129 ../src/FolderExport.cs:228
+#: ../src/CDExport.cs:133 ../src/FolderExport.cs:230
 #, fuzzy
 msgid "Transfer Complete"
 msgstr "تمَّ التّحديث\n"
 
-#: ../src/CDExport.cs:136 ../src/FolderExport.cs:233
+#: ../src/CDExport.cs:140 ../src/FolderExport.cs:235
 #, fuzzy
 msgid "Error While Transferring"
 msgstr "حدث خطأ خلال فتح %s."
 
-#: ../src/CDExport.cs:143 ../src/FolderExport.cs:250
+#: ../src/CDExport.cs:147 ../src/FolderExport.cs:252
 #, fuzzy
 msgid "Error Transferring"
 msgstr ""
 "خطأ GConf:\n"
 "  %s"
 
-#: ../src/CDExport.cs:164 ../src/FolderExport.cs:272
+#: ../src/CDExport.cs:168 ../src/FolderExport.cs:274
 #, fuzzy
 msgid "Error: Error while transferring; Aborting"
 msgstr "خطأ عند القراءة... إلغاء"
 
-#: ../src/CDExport.cs:167 ../src/FolderExport.cs:275
+#: ../src/CDExport.cs:171 ../src/FolderExport.cs:277
 #, fuzzy
 msgid "Error: File Already Exists; Aborting"
 msgstr "تأكيد إختيار الملف إذا كان موجودا"
@@ -330,7 +330,7 @@ msgid "Error saving adjusted photo"
 msgstr "خطأ عند حفظ الصّور."
 
 #: ../src/ColorDialog.cs:212 ../src/HigMessageDialog.cs:15 ../src/Loupe.cs:58
-#: ../src/MainWindow.cs:1972 ../src/PhotoView.cs:266
+#: ../src/MainWindow.cs:1940 ../src/PhotoView.cs:266
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr ""
@@ -394,161 +394,151 @@ msgstr "%s: خطأ في ضبط الإشارة %d لـ %s"
 msgid "No way to save files of type \"{0}\""
 msgstr ""
 
-#: ../src/Widgets/FindBar.cs:40
+#: ../src/Widgets/FindBar.cs:54
 #, fuzzy
 msgid "Find:"
 msgstr "بحث:"
 
-#: ../src/Widgets/FindBar.cs:100
-#, fuzzy
-msgid "Valid"
-msgstr "توقيع سليم"
-
-#: ../src/Widgets/FindBar.cs:101
-#, fuzzy
-msgid "Invalid"
-msgstr "غير صحيح"
-
-#: ../src/FlickrExport.cs:65 ../src/f-spot.glade.h:78
+#: ../src/FlickrExport.cs:73 ../src/f-spot.glade.h:78
 msgid "Authorize"
 msgstr ""
 
-#: ../src/FlickrExport.cs:70
+#: ../src/FlickrExport.cs:78
 #, csharp-format
 msgid ""
 "Return to this window after you have finished the authorization process on "
 "{0} and click the \"Complete Authorization\" button below"
 msgstr ""
 
-#: ../src/FlickrExport.cs:71
+#: ../src/FlickrExport.cs:79
 #, fuzzy
 msgid "Complete Authorization"
 msgstr "تمَّ التّحديث\n"
 
-#: ../src/FlickrExport.cs:75
+#: ../src/FlickrExport.cs:83
 #, fuzzy, csharp-format
 msgid "Logging into {0}"
 msgstr "صورة تسجيل الدخول"
 
-#: ../src/FlickrExport.cs:76
+#: ../src/FlickrExport.cs:84
 #, fuzzy
 msgid "Checking credentials..."
 msgstr "جاري فحص الخدمة"
 
-#: ../src/FlickrExport.cs:82
+#: ../src/FlickrExport.cs:90
 #, csharp-format
 msgid "Welcome {0} you are connected to {1}"
 msgstr ""
 
-#: ../src/FlickrExport.cs:85
+#: ../src/FlickrExport.cs:93
 #, csharp-format
 msgid "Sign in as a different user"
 msgstr ""
 
-#: ../src/FlickrExport.cs:221
+#: ../src/FlickrExport.cs:244
 #, fuzzy
 msgid "Unable to log on"
 msgstr "لا يمكن تشغيل الأصوات\n"
 
-#: ../src/FlickrExport.cs:241
+#: ../src/FlickrExport.cs:264
 #, fuzzy, csharp-format
 msgid "Waiting for response {0} of {1}"
 msgstr "انتظار التفويض من “%s”..."
 
-#: ../src/FlickrExport.cs:257 ../src/FolderExport.cs:192
-#: ../src/GalleryExport.cs:696
+#: ../src/FlickrExport.cs:280 ../src/FolderExport.cs:194
+#: ../src/GalleryExport.cs:700
 #, fuzzy, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "إختر صورة"
 
-#: ../src/FlickrExport.cs:281 ../src/GalleryExport.cs:726
-#: ../src/PicasaWebExport.cs:610 ../src/SmugMugExport.cs:578
+#: ../src/FlickrExport.cs:304 ../src/GalleryExport.cs:730
+#: ../src/PicasaWebExport.cs:615 ../src/SmugMugExport.cs:581
 #, fuzzy
 msgid "Upload Complete"
 msgstr "تمَّ التّحديث\n"
 
-#: ../src/FlickrExport.cs:284
+#: ../src/FlickrExport.cs:307
 #, fuzzy, csharp-format
 msgid "Error Uploading To {0}: {1}"
 msgstr "%s: خطأ في ضبط الإشارة %d لـ %s"
 
-#: ../src/FlickrExport.cs:287 ../src/FolderExport.cs:200
-#: ../src/GalleryExport.cs:716 ../src/PicasaWebExport.cs:600
-#: ../src/SmugMugExport.cs:568
+#: ../src/FlickrExport.cs:310 ../src/FolderExport.cs:202
+#: ../src/GalleryExport.cs:720 ../src/PicasaWebExport.cs:605
+#: ../src/SmugMugExport.cs:571
 #, fuzzy
 msgid "Error"
 msgstr "خطأ"
 
-#: ../src/FlickrExport.cs:350
+#: ../src/FlickrExport.cs:373
 #, fuzzy
 msgid "Unable to log on."
 msgstr "لا يمكن تشغيل الأصوات\n"
 
-#: ../src/FlickrExport.cs:351
+#: ../src/FlickrExport.cs:374
 #, csharp-format
 msgid ""
 "F-Spot was unable to log on to {0}.  Make sure you have given the "
 "authentication using {0} web browser interface."
 msgstr ""
 
-#: ../src/FlickrExport.cs:369 ../src/GalleryExport.cs:649
-#: ../src/PicasaWebExport.cs:516 ../src/SmugMugExport.cs:494
+#: ../src/FlickrExport.cs:392 ../src/GalleryExport.cs:653
+#: ../src/PicasaWebExport.cs:520 ../src/SmugMugExport.cs:497
 #, fuzzy
 msgid "Uploading Pictures"
 msgstr "مجلّد الصور"
 
-#: ../src/FolderExport.cs:109
+#: ../src/FolderExport.cs:111
 #, fuzzy
 msgid "Select Export Folder"
 msgstr "<أُنقر هنا لإنتقاء مجلّد>"
 
-#: ../src/FolderExport.cs:154
+#: ../src/FolderExport.cs:156
 #, fuzzy
 msgid "Building Gallery"
 msgstr "تعذر بناء القوائم %s"
 
-#: ../src/FolderExport.cs:198
+#: ../src/FolderExport.cs:200
 #, fuzzy, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
 msgstr "%s: خطأ في ضبط الإشارة %d لـ %s"
 
-#: ../src/FolderExport.cs:707
+#: ../src/FolderExport.cs:709
 #, fuzzy
 msgid "Light"
 msgstr "نور"
 
-#: ../src/FolderExport.cs:708
+#: ../src/FolderExport.cs:710
 #, fuzzy
 msgid "Dark"
 msgstr "غامق"
 
 #. Abbreviation of previous
-#: ../src/FolderExport.cs:851
+#: ../src/FolderExport.cs:853
 msgid "Prev"
 msgstr ""
 
-#: ../src/FolderExport.cs:856 ../src/f-spot.glade.h:153
+#: ../src/FolderExport.cs:858 ../src/f-spot.glade.h:145
 #: ../src/ItemAction.cs:133
 #, fuzzy
 msgid "Next"
 msgstr "التّالية"
 
-#: ../src/FolderExport.cs:909 ../src/FolderExport.cs:1082
+#: ../src/FolderExport.cs:911 ../src/FolderExport.cs:1084
 #, fuzzy
 msgid "Show Styles"
 msgstr "اظهار التفاصيل"
 
-#: ../src/FolderExport.cs:910 ../src/FolderExport.cs:1083
+#: ../src/FolderExport.cs:912 ../src/FolderExport.cs:1085
 #, fuzzy
 msgid "Hide Styles"
 msgstr "إ_خفاء أعمدة الأدوات"
 
-#: ../src/FolderExport.cs:967
+#: ../src/FolderExport.cs:969
 #, fuzzy
 msgid "Gallery generated by"
 msgstr "الاثنان(جنبا بجنب)"
 
-#: ../src/FolderExport.cs:1012
+#: ../src/FolderExport.cs:1014
 #, fuzzy
 msgid "Page:"
 msgstr "الصّفحة %d من %d"
@@ -1102,137 +1092,97 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:109
 #, fuzzy
-msgid "E_xport to CD..."
-msgstr "جهاز القرص المدمج للاستعمال"
-
-#: ../src/f-spot.glade.h:110
-#, fuzzy
 msgid "Edit"
 msgstr "تحرير"
 
-#: ../src/f-spot.glade.h:111
+#: ../src/f-spot.glade.h:110
 #, fuzzy
 msgid "Edit Tag Icon"
 msgstr "لم يعثر على الأيقونة"
 
-#: ../src/f-spot.glade.h:112
+#: ../src/f-spot.glade.h:111
 #, fuzzy
 msgid "Edit icon"
 msgstr "حجم الأيقونة"
 
-#: ../src/f-spot.glade.h:113
+#: ../src/f-spot.glade.h:112
 #, fuzzy
 msgid "Estimated new size"
 msgstr "_حجم خط داشر"
 
-#: ../src/f-spot.glade.h:114
+#: ../src/f-spot.glade.h:113
 #, fuzzy
 msgid "Export"
 msgstr "تصدير علامات المواقع"
 
-#: ../src/f-spot.glade.h:115
+#: ../src/f-spot.glade.h:114
 msgid "Export _titles and comments"
 msgstr ""
 
-#: ../src/f-spot.glade.h:116
-#, fuzzy
-msgid "Export to 23h_q..."
-msgstr "تصدير بصيغة HTML"
-
-#: ../src/f-spot.glade.h:117
-#, fuzzy
-msgid "Export to CD..."
-msgstr "تصدير بصيغة HTML"
-
-#: ../src/f-spot.glade.h:118
-#, fuzzy
-msgid "Export to _Flickr..."
-msgstr "تصدير بصيغة HTML"
-
-#: ../src/f-spot.glade.h:119
-#, fuzzy
-msgid "Export to _Folder..."
-msgstr "إعادة تسمية المجلّد \"%s\" إلى:"
-
-#: ../src/f-spot.glade.h:120
-#, fuzzy
-msgid "Export to _Picasaweb..."
-msgstr "تصدير بصيغة HTML"
-
-#: ../src/f-spot.glade.h:121
-#, fuzzy
-msgid "Export to _SmugMug..."
-msgstr "تصدير بصيغة HTML"
-
-#: ../src/f-spot.glade.h:122
-#, fuzzy
-msgid "Export to _Web Gallery..."
-msgstr "_تصدير علامات المواقع إلى ملف"
-
-#: ../src/f-spot.glade.h:123
+#: ../src/f-spot.glade.h:115
 #, fuzzy
 msgid "Extra large"
 msgstr "خط عريض"
 
-#: ../src/f-spot.glade.h:124
+#: ../src/f-spot.glade.h:116
 msgid "F-Spot"
 msgstr ""
 
-#: ../src/f-spot.glade.h:125
+#: ../src/f-spot.glade.h:117
 #, fuzzy
 msgid "F-Spot View"
 msgstr "وضعية _ العرض"
 
-#: ../src/f-spot.glade.h:126
+#: ../src/f-spot.glade.h:118
 msgid ""
 "F-Spot needs your authorization in order to upload photos to your {0} "
 "account. Press the \"Authorize\" button to open a web browser and give F-"
 "Spot the authorization. "
 msgstr ""
 
-#: ../src/f-spot.glade.h:128
+#: ../src/f-spot.glade.h:120
 #, fuzzy
 msgid "Fin_d"
 msgstr "بح_ث:"
 
 #. Obsolete, remove after db rev4
-#: ../src/f-spot.glade.h:129 ../src/InfoDisplay.cs:135
+#: ../src/f-spot.glade.h:121 ../src/InfoDisplay.cs:135
 #: ../src/InfoDisplay.cs:137
 #, fuzzy
 msgid "Folder"
 msgstr "مجلّد"
 
-#: ../src/f-spot.glade.h:130
+#: ../src/f-spot.glade.h:122
 #, fuzzy
 msgid "Folder Export"
 msgstr "تصدير علامات المواقع"
 
-#: ../src/f-spot.glade.h:131
+#: ../src/f-spot.glade.h:123
 msgid ""
 "From Screen\n"
 "Standard RGB"
 msgstr ""
 
-#: ../src/f-spot.glade.h:133
+#: ../src/f-spot.glade.h:125
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
 msgstr ""
 
-#: ../src/f-spot.glade.h:135
+#: ../src/f-spot.glade.h:127
 #, fuzzy
 msgid "G_allery Name:"
 msgstr "اسم الموصول"
 
-#: ../src/f-spot.glade.h:136
+#: ../src/f-spot.glade.h:128
 msgid "G_allery:"
 msgstr ""
 
-#: ../src/f-spot.glade.h:137
+#: ../src/f-spot.glade.h:129
 msgid "Gallery"
 msgstr ""
 
-#: ../src/f-spot.glade.h:138
+#: ../src/f-spot.glade.h:130
 msgid ""
 "Hairline\n"
 "0.25\"\n"
@@ -1240,58 +1190,58 @@ msgid ""
 "1\"\n"
 msgstr ""
 
-#: ../src/f-spot.glade.h:143
+#: ../src/f-spot.glade.h:135
 #, fuzzy
 msgid "Import"
 msgstr "استيراد"
 
-#: ../src/f-spot.glade.h:144
+#: ../src/f-spot.glade.h:136
 #, fuzzy
 msgid "Import Source:"
 msgstr "_مصدر الصفحة"
 
-#: ../src/f-spot.glade.h:145
+#: ../src/f-spot.glade.h:137
 #, fuzzy
 msgid "Import photos"
 msgstr "استيراد _صور"
 
-#: ../src/f-spot.glade.h:146
+#: ../src/f-spot.glade.h:138
 #, fuzzy
 msgid "Include subfolders"
 msgstr "_تضمين الدلائل المحوية"
 
-#: ../src/f-spot.glade.h:147
+#: ../src/f-spot.glade.h:139
 #, fuzzy
 msgid "Interpolate image on zoom"
 msgstr "نوع التّنبيه"
 
-#: ../src/f-spot.glade.h:148
+#: ../src/f-spot.glade.h:140
 #, fuzzy
 msgid "Large"
 msgstr "عريض"
 
-#: ../src/f-spot.glade.h:149
+#: ../src/f-spot.glade.h:141
 #, fuzzy
 msgid "Make F-Spot your screensaver"
 msgstr "اضبط خصائص حافظ الشاشة"
 
-#: ../src/f-spot.glade.h:150
+#: ../src/f-spot.glade.h:142
 #, fuzzy
 msgid "Medium"
 msgstr "متوسط"
 
-#: ../src/f-spot.glade.h:151 ../src/InfoDisplay.cs:14
-#: ../src/MainWindow.cs:1440
+#: ../src/f-spot.glade.h:143 ../src/InfoDisplay.cs:14
+#: ../src/MainWindow.cs:1448
 #, fuzzy
 msgid "Metadata Browser"
 msgstr "متصفّح الانترنت"
 
-#: ../src/f-spot.glade.h:152
+#: ../src/f-spot.glade.h:144
 #, fuzzy
 msgid "N_umber of Copies:"
 msgstr "_عدد النُّسخ:"
 
-#: ../src/f-spot.glade.h:154
+#: ../src/f-spot.glade.h:146
 msgid ""
 "None\n"
 "Title\n"
@@ -1300,174 +1250,174 @@ msgid ""
 "Photo Details"
 msgstr ""
 
-#: ../src/f-spot.glade.h:159
+#: ../src/f-spot.glade.h:151
 #, fuzzy
 msgid "Number of pictures"
 msgstr "مجلّد الصور"
 
-#: ../src/f-spot.glade.h:160
+#: ../src/f-spot.glade.h:152
 #, fuzzy
 msgid "Open _Folder..."
 msgstr "افتح مجلد %s"
 
-#: ../src/f-spot.glade.h:161
+#: ../src/f-spot.glade.h:153
 msgid "Open _album in browser when done uploading"
 msgstr ""
 
-#: ../src/f-spot.glade.h:162
+#: ../src/f-spot.glade.h:154
 msgid "Open _destination when done exporting"
 msgstr ""
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/f-spot.glade.h:163 ../src/PhotoStore.cs:582
+#: ../src/f-spot.glade.h:155 ../src/PhotoStore.cs:583
 #, fuzzy
 msgid "Original"
 msgstr "المراسَل الأصلي:"
 
-#: ../src/f-spot.glade.h:164
+#: ../src/f-spot.glade.h:156
 msgid "Original size (possible very large file size)"
 msgstr ""
 
-#: ../src/f-spot.glade.h:165
+#: ../src/f-spot.glade.h:157
 #, fuzzy
 msgid "P_arent Tag:"
 msgstr "قائمة"
 
-#: ../src/f-spot.glade.h:166
+#: ../src/f-spot.glade.h:158
 #, fuzzy
 msgid "P_hoto Source:"
 msgstr "_مصدر الصفحة"
 
-#: ../src/f-spot.glade.h:167
+#: ../src/f-spot.glade.h:159
 #, fuzzy
 msgid "Page 1 of 3"
 msgstr "الصّفحة %d من %d"
 
-#: ../src/f-spot.glade.h:168
+#: ../src/f-spot.glade.h:160
 #, fuzzy
 msgid "Pause"
 msgstr "ايقاف مؤقّت"
 
-#: ../src/f-spot.glade.h:169
+#: ../src/f-spot.glade.h:161
 #, fuzzy
 msgid "Photo 0 of 0"
 msgstr "صورة تسجيل الدخول"
 
-#: ../src/f-spot.glade.h:170
+#: ../src/f-spot.glade.h:162
 #, fuzzy
 msgid "Photo _Size:"
 msgstr "<b>حجم الشاشة:</b>"
 
-#: ../src/f-spot.glade.h:171
+#: ../src/f-spot.glade.h:163
 msgid "Please verify that the settings for this gallery are correct."
 msgstr ""
 
-#: ../src/f-spot.glade.h:172
+#: ../src/f-spot.glade.h:164
 msgid ""
 "Please verify that the settings for this gallery are correct.\n"
 "Enter the letters as they are shown in the image in\n"
 "the 'Captcha' field. <i>Letters are not case-sensitive</i>"
 msgstr ""
 
-#: ../src/f-spot.glade.h:175
+#: ../src/f-spot.glade.h:167
 #, fuzzy
 msgid "Preferences"
 msgstr "تفضيلات"
 
-#: ../src/f-spot.glade.h:176 ../src/ItemAction.cs:155
+#: ../src/f-spot.glade.h:168 ../src/ItemAction.cs:155
 #, fuzzy
 msgid "Previous"
 msgstr "السّابقة"
 
-#: ../src/f-spot.glade.h:177
+#: ../src/f-spot.glade.h:169
 #, fuzzy
 msgid "Print"
 msgstr "طباعة"
 
-#: ../src/f-spot.glade.h:178
+#: ../src/f-spot.glade.h:170
 #, fuzzy
 msgid "Print crop _marks"
 msgstr "علامات تشكيل موحدة"
 
-#: ../src/f-spot.glade.h:179
+#: ../src/f-spot.glade.h:171
 #, fuzzy
 msgid "Private"
 msgstr "خاص"
 
-#: ../src/f-spot.glade.h:180
+#: ../src/f-spot.glade.h:172
 #, fuzzy
 msgid "Public"
 msgstr "عام"
 
-#: ../src/f-spot.glade.h:181
+#: ../src/f-spot.glade.h:173
 #, fuzzy
 msgid "Public Album"
 msgstr "ألبوم مجهول"
 
-#: ../src/f-spot.glade.h:182
+#: ../src/f-spot.glade.h:174
 #, fuzzy
 msgid "Re_fresh Thumbnail"
 msgstr "ج_دّد المظهر"
 
-#: ../src/f-spot.glade.h:183
+#: ../src/f-spot.glade.h:175
 #, fuzzy
 msgid "Rem_ove Tag"
 msgstr "قوائم العلامة المتوفرة"
 
-#: ../src/f-spot.glade.h:184
+#: ../src/f-spot.glade.h:176
 msgid "Repair"
 msgstr ""
 
-#: ../src/f-spot.glade.h:185
+#: ../src/f-spot.glade.h:177
 #, fuzzy
 msgid "Reset"
 msgstr "إعادة ضبط"
 
-#: ../src/f-spot.glade.h:186 ../src/StockIcons.cs:39
+#: ../src/f-spot.glade.h:178 ../src/StockIcons.cs:39
 #, fuzzy
 msgid "Rotate _Left"
 msgstr "الإلتفاف إلى جهة اليسار"
 
-#: ../src/f-spot.glade.h:187 ../src/StockIcons.cs:40
+#: ../src/f-spot.glade.h:179 ../src/StockIcons.cs:40
 #, fuzzy
 msgid "Rotate _Right"
 msgstr "الإلتفاف إلى جهة اليمين"
 
-#: ../src/f-spot.glade.h:188
+#: ../src/f-spot.glade.h:180
 #, fuzzy
 msgid "Select A Folder"
 msgstr "إنتقي مجلّد"
 
-#: ../src/f-spot.glade.h:189
+#: ../src/f-spot.glade.h:181
 msgid "Select Photos to Copy From Camera..."
 msgstr ""
 
-#: ../src/f-spot.glade.h:190
+#: ../src/f-spot.glade.h:182
 #, fuzzy
 msgid "Select _All"
 msgstr "اختيا_ر الكل"
 
-#: ../src/f-spot.glade.h:191
+#: ../src/f-spot.glade.h:183
 #, fuzzy
 msgid "Select _None"
 msgstr "<small><i>لا شيء</i></small>"
 
-#: ../src/f-spot.glade.h:192
+#: ../src/f-spot.glade.h:184
 #, fuzzy
 msgid "Select a Tag..."
 msgstr "قائمة"
 
-#: ../src/f-spot.glade.h:193
+#: ../src/f-spot.glade.h:185
 msgid "Select the camera from which you want to transfer files"
 msgstr ""
 
-#: ../src/f-spot.glade.h:194
+#: ../src/f-spot.glade.h:186
 #, fuzzy
 msgid "Selected Camera: "
 msgstr "<b>آلة تصوير رقميّة</b>"
 
-#: ../src/f-spot.glade.h:195
+#: ../src/f-spot.glade.h:187
 #, fuzzy
 msgid ""
 "Selection\n"
@@ -1475,510 +1425,510 @@ msgid ""
 "Viewport"
 msgstr "اختيار لون المنتقى"
 
-#: ../src/f-spot.glade.h:198
+#: ../src/f-spot.glade.h:190
 #, fuzzy
 msgid "Send _Mail..."
 msgstr "ارسل البريد"
 
-#: ../src/f-spot.glade.h:199
+#: ../src/f-spot.glade.h:191
 #, fuzzy
 msgid "Set Date Range"
 msgstr "حدد الصيغة للتاريخ العائد"
 
-#: ../src/f-spot.glade.h:200
+#: ../src/f-spot.glade.h:192
 #, fuzzy
 msgid "Set _Date Range..."
 msgstr "حدد الصيغة للتاريخ العائد"
 
-#: ../src/f-spot.glade.h:201
+#: ../src/f-spot.glade.h:193
 #, fuzzy
 msgid "Set as _Background"
 msgstr "ضبط ك_خلفية"
 
-#: ../src/f-spot.glade.h:202 ../src/TimeDialog.cs:130
+#: ../src/f-spot.glade.h:194 ../src/TimeDialog.cs:130
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr ""
 
-#: ../src/f-spot.glade.h:203
+#: ../src/f-spot.glade.h:195
 #, fuzzy
 msgid "Show or hide the side pane"
 msgstr "عرض أو إخفاء اللوحة الجانبية"
 
-#: ../src/f-spot.glade.h:204
+#: ../src/f-spot.glade.h:196
 #, fuzzy
 msgid "Show or hide the toolbar"
 msgstr "عرض أو إخفاء شريط الأدوات"
 
-#: ../src/f-spot.glade.h:205
+#: ../src/f-spot.glade.h:197
 #, fuzzy
 msgid "Side _pane"
 msgstr "ال_لوحة الجانبية"
 
-#: ../src/f-spot.glade.h:206
+#: ../src/f-spot.glade.h:198
 #, fuzzy
 msgid "Size"
 msgstr "الحجم"
 
-#: ../src/f-spot.glade.h:207
+#: ../src/f-spot.glade.h:199
 #, fuzzy
 msgid "Size of the exported selection :"
 msgstr "اختيار لون المنتقى"
 
-#: ../src/f-spot.glade.h:208
+#: ../src/f-spot.glade.h:200
 #, fuzzy
 msgid "Small"
 msgstr "صغير"
 
-#: ../src/f-spot.glade.h:209
+#: ../src/f-spot.glade.h:201
 #, fuzzy
 msgid "So_urce Temp"
 msgstr "C"
 
-#: ../src/f-spot.glade.h:210
+#: ../src/f-spot.glade.h:202
 #, fuzzy
 msgid "Space all photos by"
 msgstr "استعمل _كل الحيز المتوفر"
 
-#: ../src/f-spot.glade.h:211
+#: ../src/f-spot.glade.h:203
 msgid ""
 "Specify if an original size picture should be rotated or not. Smaller sizes "
 "are automatically rotated."
 msgstr ""
 
-#: ../src/f-spot.glade.h:212
+#: ../src/f-spot.glade.h:204
 msgid ""
 "Standard RGB\n"
 "Image Profile\n"
 "Custom\n"
 msgstr ""
 
-#: ../src/f-spot.glade.h:216
+#: ../src/f-spot.glade.h:208
 #, fuzzy
 msgid "Strip _metadata"
 msgstr "_خلع الرموز الخاصة"
 
-#: ../src/f-spot.glade.h:217
+#: ../src/f-spot.glade.h:209
 #, fuzzy
 msgid "Strip image _metadata"
 msgstr "حدود الصّورة/العلامة"
 
-#: ../src/f-spot.glade.h:218
+#: ../src/f-spot.glade.h:210
 #, fuzzy
 msgid "Tag Icons"
 msgstr "لم يعثر على الأيقونة"
 
-#: ../src/f-spot.glade.h:219
+#: ../src/f-spot.glade.h:211
 #, fuzzy
 msgid "Tags: "
 msgstr "علامات"
 
-#: ../src/f-spot.glade.h:220
+#: ../src/f-spot.glade.h:212
 msgid "Tiny"
 msgstr ""
 
-#: ../src/f-spot.glade.h:221
+#: ../src/f-spot.glade.h:213
 #, fuzzy
 msgid "Toolbar"
 msgstr "شريط الأ_دوات"
 
-#: ../src/f-spot.glade.h:222
+#: ../src/f-spot.glade.h:214
 #, fuzzy
 msgid "Total original size"
 msgstr "_حجم خط داشر"
 
-#: ../src/f-spot.glade.h:223
+#: ../src/f-spot.glade.h:215
 msgid "U_RL:"
 msgstr ""
 
-#: ../src/f-spot.glade.h:224
+#: ../src/f-spot.glade.h:216
 #, fuzzy
 msgid "View"
 msgstr "عرض"
 
-#: ../src/f-spot.glade.h:225
+#: ../src/f-spot.glade.h:217
 #, fuzzy
 msgid "Visible to Family"
 msgstr "ا_ختر القطع المرئية:"
 
-#: ../src/f-spot.glade.h:226
+#: ../src/f-spot.glade.h:218
 #, fuzzy
 msgid "Visible to Friends"
 msgstr "ا_ختر القطع المرئية:"
 
-#: ../src/f-spot.glade.h:227
+#: ../src/f-spot.glade.h:219
 msgid "Will print using: US Letter size on Generic Postscript"
 msgstr ""
 
-#: ../src/f-spot.glade.h:228
+#: ../src/f-spot.glade.h:220
 #, fuzzy
 msgid "Write _metadata to file"
 msgstr "فشلت كتابة الملف `%s': %s"
 
-#: ../src/f-spot.glade.h:229
+#: ../src/f-spot.glade.h:221
 #, fuzzy
 msgid "Zoom _in"
 msgstr "تكبير"
 
-#: ../src/f-spot.glade.h:230
+#: ../src/f-spot.glade.h:222
 #, fuzzy
 msgid "Zoom _out"
 msgstr "تصغير"
 
-#: ../src/f-spot.glade.h:231
+#: ../src/f-spot.glade.h:223
 #, fuzzy
 msgid "Zoom in"
 msgstr "تكبير"
 
-#: ../src/f-spot.glade.h:232
+#: ../src/f-spot.glade.h:224
 #, fuzzy
 msgid "Zoom out"
 msgstr "تصغير"
 
-#: ../src/f-spot.glade.h:233
+#: ../src/f-spot.glade.h:225
 #, fuzzy
 msgid "_Account:"
 msgstr "الأيق_ونة:"
 
-#: ../src/f-spot.glade.h:234
+#: ../src/f-spot.glade.h:226
 #, fuzzy
 msgid "_Album Name:"
 msgstr "اسم الموصول"
 
-#: ../src/f-spot.glade.h:235
+#: ../src/f-spot.glade.h:227
 #, fuzzy
 msgid "_Album Title:"
 msgstr "عنوان الألبوم"
 
-#: ../src/f-spot.glade.h:236
+#: ../src/f-spot.glade.h:228
 #, fuzzy
 msgid "_Attach Tag"
 msgstr "قائمة"
 
-#: ../src/f-spot.glade.h:237
+#: ../src/f-spot.glade.h:229
 #, fuzzy
 msgid "_Attach Tag to Selection"
 msgstr "انسخ المختار إلى الحافظة"
 
-#: ../src/f-spot.glade.h:238
+#: ../src/f-spot.glade.h:230
 #, fuzzy
 msgid "_Border:"
 msgstr "_حد:"
 
-#: ../src/f-spot.glade.h:239
+#: ../src/f-spot.glade.h:231
 #, fuzzy
 msgid "_Brightness:"
 msgstr "_سطوع:"
 
-#: ../src/f-spot.glade.h:240
+#: ../src/f-spot.glade.h:232
 msgid "_Browse Previously Scheduled Files"
 msgstr ""
 
-#: ../src/f-spot.glade.h:241
+#: ../src/f-spot.glade.h:233
 msgid "_Captcha:"
 msgstr ""
 
-#: ../src/f-spot.glade.h:242
+#: ../src/f-spot.glade.h:234
 #, fuzzy
 msgid "_Contents"
 msgstr "_المحتويات"
 
-#: ../src/f-spot.glade.h:243
+#: ../src/f-spot.glade.h:235
 #, fuzzy
 msgid "_Delete From Drive"
 msgstr "ا_حذف من المهملات"
 
-#: ../src/f-spot.glade.h:244
+#: ../src/f-spot.glade.h:236
 #, fuzzy
 msgid "_Delete Selected Tag"
 msgstr "_حذف المهام المنتقاة"
 
-#: ../src/f-spot.glade.h:245
+#: ../src/f-spot.glade.h:237
 #, fuzzy
 msgid "_Delete Version"
 msgstr "اصدارة الرزمة"
 
-#: ../src/f-spot.glade.h:246
+#: ../src/f-spot.glade.h:238
 #, fuzzy
 msgid "_Description:"
 msgstr "ال_وصف:"
 
-#: ../src/f-spot.glade.h:247
+#: ../src/f-spot.glade.h:239
 #, fuzzy
 msgid "_Destination Temp"
 msgstr "المجلّد المقصود:"
 
-#: ../src/f-spot.glade.h:248
+#: ../src/f-spot.glade.h:240
 #, fuzzy
 msgid "_Display:"
 msgstr "\t-a عرض\n"
 
-#: ../src/f-spot.glade.h:249
+#: ../src/f-spot.glade.h:241
 #, fuzzy
 msgid "_Edit Selected Tag..."
 msgstr "تحرير المفتاح المنتقى"
 
-#: ../src/f-spot.glade.h:250
+#: ../src/f-spot.glade.h:242
 #, fuzzy
 msgid "_Export"
 msgstr "تصدير علامات المواقع"
 
-#: ../src/f-spot.glade.h:251
+#: ../src/f-spot.glade.h:243
 #, fuzzy
 msgid "_Export tags"
 msgstr "HTML - إمارات"
 
-#: ../src/f-spot.glade.h:252
+#: ../src/f-spot.glade.h:244
 #, fuzzy
 msgid "_Export to Album:"
 msgstr "تصدير بصيغة HTML"
 
-#: ../src/f-spot.glade.h:253
+#: ../src/f-spot.glade.h:245
 msgid "_Flickr"
 msgstr ""
 
-#: ../src/f-spot.glade.h:254
+#: ../src/f-spot.glade.h:246
 #, fuzzy
 msgid "_Folder"
 msgstr "مجلّد"
 
-#: ../src/f-spot.glade.h:255
+#: ../src/f-spot.glade.h:247
 #, fuzzy
 msgid "_Folder:"
 msgstr "ال_مجلد:"
 
-#: ../src/f-spot.glade.h:256
+#: ../src/f-spot.glade.h:248
 #, fuzzy
 msgid "_Fullscreen"
 msgstr "_كامل الشاشة"
 
-#: ../src/f-spot.glade.h:257
+#: ../src/f-spot.glade.h:249
 msgid "_Gallery"
 msgstr ""
 
-#: ../src/f-spot.glade.h:258
+#: ../src/f-spot.glade.h:250
 #, fuzzy
 msgid "_Gallery Name:"
 msgstr "اسم الموصول"
 
-#: ../src/f-spot.glade.h:259
+#: ../src/f-spot.glade.h:251
 msgid "_Gallery:"
 msgstr ""
 
-#: ../src/f-spot.glade.h:260
+#: ../src/f-spot.glade.h:252
 #, fuzzy
 msgid "_Hidden"
 msgstr "إبدأ مخفياً"
 
-#: ../src/f-spot.glade.h:261
+#: ../src/f-spot.glade.h:253
 #, fuzzy
 msgid "_Hue:"
 msgstr "ال_فارق بين الألوان:"
 
-#: ../src/f-spot.glade.h:262
+#: ../src/f-spot.glade.h:254
 #, fuzzy
 msgid "_Icon:"
 msgstr "الأيق_ونة:"
 
-#: ../src/f-spot.glade.h:263
+#: ../src/f-spot.glade.h:255
 #, fuzzy
 msgid "_Import..."
 msgstr "إ_ستيراد"
 
-#: ../src/f-spot.glade.h:264
+#: ../src/f-spot.glade.h:256
 #, fuzzy
 msgid "_Large"
 msgstr "عريض"
 
-#: ../src/f-spot.glade.h:265
+#: ../src/f-spot.glade.h:257
 #, fuzzy
 msgid "_Medium"
 msgstr "متوسط"
 
-#: ../src/f-spot.glade.h:266
+#: ../src/f-spot.glade.h:258
 #, fuzzy
 msgid "_Metadata Browser"
 msgstr "متصفّح الانترنت"
 
-#: ../src/f-spot.glade.h:267
+#: ../src/f-spot.glade.h:259
 #, fuzzy
 msgid "_Month"
 msgstr "الشّهر"
 
-#: ../src/f-spot.glade.h:268
+#: ../src/f-spot.glade.h:260
 #, fuzzy
 msgid "_New Window"
 msgstr "نافذة _جديدة"
 
-#: ../src/f-spot.glade.h:269
+#: ../src/f-spot.glade.h:261
 msgid "_Open album in browser when done uploading"
 msgstr ""
 
-#: ../src/f-spot.glade.h:270
+#: ../src/f-spot.glade.h:262
 msgid "_Open destination when done exporting"
 msgstr ""
 
-#: ../src/f-spot.glade.h:271
+#: ../src/f-spot.glade.h:263
 #, fuzzy
 msgid "_Output:"
 msgstr "الإخ_راج:"
 
-#: ../src/f-spot.glade.h:272
+#: ../src/f-spot.glade.h:264
 #, fuzzy
 msgid "_Parent Album:"
 msgstr "ألبوم مجهول"
 
-#: ../src/f-spot.glade.h:273
+#: ../src/f-spot.glade.h:265
 #, fuzzy
 msgid "_Password:"
 msgstr "_كلمة السر:"
 
-#: ../src/f-spot.glade.h:274
+#: ../src/f-spot.glade.h:266
 #, fuzzy
 msgid "_Print..."
 msgstr "_طبع..."
 
-#: ../src/f-spot.glade.h:275
+#: ../src/f-spot.glade.h:267
 #, fuzzy
 msgid "_Quit"
 msgstr "إ_نهي"
 
-#: ../src/f-spot.glade.h:276
+#: ../src/f-spot.glade.h:268
 #, fuzzy
 msgid "_Remove From Catalog"
 msgstr "_حذف من شريط الأدوات"
 
-#: ../src/f-spot.glade.h:277
+#: ../src/f-spot.glade.h:269
 #, fuzzy
 msgid "_Remove Tag From Selection"
 msgstr "حذف المنتقى من المحفوظة"
 
-#: ../src/f-spot.glade.h:278
+#: ../src/f-spot.glade.h:270
 #, fuzzy
 msgid "_Rename Version"
 msgstr "اصدارة الرزمة"
 
-#: ../src/f-spot.glade.h:279
+#: ../src/f-spot.glade.h:271
 #, fuzzy
 msgid "_Resize to: "
 msgstr "تغيير الأبعاد لحجم الفيديو"
 
-#: ../src/f-spot.glade.h:280 ../src/GroupSelector.cs:521
+#: ../src/f-spot.glade.h:272 ../src/GroupSelector.cs:521
 #, fuzzy
 msgid "_Reverse Order"
 msgstr "ق_لب الترتيب"
 
-#: ../src/f-spot.glade.h:281
+#: ../src/f-spot.glade.h:273
 #, fuzzy
 msgid "_Saturation:"
 msgstr "الت_شبع:"
 
-#: ../src/f-spot.glade.h:282
+#: ../src/f-spot.glade.h:274
 #, fuzzy
 msgid "_Save the files only"
 msgstr "ملفات محلية فقط"
 
-#: ../src/f-spot.glade.h:283
+#: ../src/f-spot.glade.h:275
 msgid "_Scale photos to no larger than: "
 msgstr ""
 
-#: ../src/f-spot.glade.h:284
+#: ../src/f-spot.glade.h:276
 msgid "_Sharpen..."
 msgstr ""
 
-#: ../src/f-spot.glade.h:285
+#: ../src/f-spot.glade.h:277
 #, fuzzy
 msgid "_Slideshow"
 msgstr "عرض _شرائح"
 
-#: ../src/f-spot.glade.h:286
+#: ../src/f-spot.glade.h:278
 #, fuzzy
 msgid "_Small"
 msgstr "صغير"
 
-#: ../src/f-spot.glade.h:287
+#: ../src/f-spot.glade.h:279
 #, fuzzy
 msgid "_Strip metadata"
 msgstr "_خلع الرموز الخاصة"
 
-#: ../src/f-spot.glade.h:288
+#: ../src/f-spot.glade.h:280
 #, fuzzy
 msgid "_Tag Name:"
 msgstr "اسم الشارة"
 
-#: ../src/f-spot.glade.h:289
+#: ../src/f-spot.glade.h:281
 #, fuzzy
 msgid "_Tags"
 msgstr "علامات"
 
-#: ../src/f-spot.glade.h:290
+#: ../src/f-spot.glade.h:282
 #, fuzzy
 msgid "_Title:"
 msgstr "ال_عنوان:"
 
-#: ../src/f-spot.glade.h:291
+#: ../src/f-spot.glade.h:283
 #, fuzzy
 msgid "_URI:"
 msgstr "[URI]"
 
-#: ../src/f-spot.glade.h:292
+#: ../src/f-spot.glade.h:284
 #, fuzzy
 msgid "_Untagged Photos"
 msgstr "استيراد _صور"
 
-#: ../src/f-spot.glade.h:293
+#: ../src/f-spot.glade.h:285
 #, fuzzy
 msgid "_Username:"
 msgstr "إ_سم المستخدم:"
 
-#: ../src/f-spot.glade.h:294
+#: ../src/f-spot.glade.h:286
 #, fuzzy
 msgid "_Version"
 msgstr "اﻻصدارة"
 
-#: ../src/f-spot.glade.h:295
+#: ../src/f-spot.glade.h:287
 #, fuzzy
 msgid "_View"
 msgstr "_اعرض"
 
-#: ../src/f-spot.glade.h:296
+#: ../src/f-spot.glade.h:288
 msgid "_View photos in browser when done uploading"
 msgstr ""
 
-#: ../src/f-spot.glade.h:297
+#: ../src/f-spot.glade.h:289
 #, fuzzy
 msgid "_Virtual Filesystem"
 msgstr "نظام الملفات التقديري لجنوم"
 
-#: ../src/f-spot.glade.h:298
+#: ../src/f-spot.glade.h:290
 msgid "_Write only these photos to CD"
 msgstr ""
 
-#: ../src/f-spot.glade.h:299
+#: ../src/f-spot.glade.h:291
 msgid "dialog1"
 msgstr ""
 
-#: ../src/f-spot.glade.h:300
+#: ../src/f-spot.glade.h:292
 msgid "difference:"
 msgstr ""
 
-#: ../src/f-spot.glade.h:301
+#: ../src/f-spot.glade.h:293
 msgid "img_000.jpg"
 msgstr ""
 
 #. The preceding text here is the second checkbutton in the Time dialog
 #. that says "Space all photos by []"
-#: ../src/f-spot.glade.h:302 ../src/TimeDialog.cs:125
+#: ../src/f-spot.glade.h:294 ../src/TimeDialog.cs:125
 #, fuzzy, csharp-format
 msgid "min. Starting at {0}"
 msgstr "بدء العدّاد عند:"
 
-#: ../src/f-spot.glade.h:303
+#: ../src/f-spot.glade.h:295
 #, fuzzy
 msgid "pixels"
 msgstr "بكسلات"
 
-#: ../src/f-spot.glade.h:304
+#: ../src/f-spot.glade.h:296
 msgid "x"
 msgstr ""
 
@@ -2006,31 +1956,31 @@ msgstr ""
 msgid "(TopLevel)"
 msgstr "تركيز في المستوى الأعلى"
 
-#: ../src/GalleryExport.cs:715
+#: ../src/GalleryExport.cs:719
 #, fuzzy, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery: {1}"
 msgstr "%s: خطأ في ضبط الإشارة %d لـ %s"
 
-#: ../src/GalleryExport.cs:742 ../src/PicasaWebExport.cs:631
-#: ../src/SmugMugExport.cs:599
+#: ../src/GalleryExport.cs:746 ../src/PicasaWebExport.cs:636
+#: ../src/SmugMugExport.cs:602
 #, fuzzy
 msgid "(No Gallery)"
 msgstr "لا تاريخ"
 
-#: ../src/GalleryExport.cs:829 ../src/PicasaWebExport.cs:758
-#: ../src/SmugMugExport.cs:697
+#: ../src/GalleryExport.cs:833 ../src/PicasaWebExport.cs:763
+#: ../src/SmugMugExport.cs:700
 #, fuzzy
 msgid "(Not Connected)"
 msgstr "غير متّصل"
 
-#: ../src/GalleryExport.cs:830 ../src/PicasaWebExport.cs:759
-#: ../src/SmugMugExport.cs:698
+#: ../src/GalleryExport.cs:834 ../src/PicasaWebExport.cs:764
+#: ../src/SmugMugExport.cs:701
 #, fuzzy
 msgid "(No Albums)"
 msgstr "لا تاريخ"
 
-#: ../src/GalleryExport.cs:882 ../src/PicasaWebExport.cs:803
-#: ../src/SmugMugExport.cs:742
+#: ../src/GalleryExport.cs:886 ../src/PicasaWebExport.cs:808
+#: ../src/SmugMugExport.cs:745
 #, fuzzy
 msgid "No account selected"
 msgstr "لم يتم انتقاء أيّة تطبيقات"
@@ -2109,7 +2059,7 @@ msgstr "مدى منافذ TCP"
 msgid "Error editing photo"
 msgstr "تفضيلات صورة تسجيل الدخول"
 
-#: ../src/ImportCommand.cs:28 ../src/SingleView.cs:345
+#: ../src/ImportCommand.cs:28 ../src/SingleView.cs:321
 #, fuzzy
 msgid "Select Folder"
 msgstr "انتقاء المجلّد"
@@ -2174,7 +2124,7 @@ msgid "Exposure:"
 msgstr "زمن التعرض"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/InfoBox.cs:221 ../src/TagStore.cs:449
+#: ../src/InfoBox.cs:221 ../src/TagStore.cs:443
 #, fuzzy
 msgid "(None)"
 msgstr "(لا شيء)"
@@ -2445,7 +2395,7 @@ msgstr ""
 msgid "Create a soft focus visual effect"
 msgstr ""
 
-#: ../src/Loupe.cs:57 ../src/MainWindow.cs:1971
+#: ../src/Loupe.cs:57 ../src/MainWindow.cs:1939
 #, fuzzy
 msgid "Error saving sharpened photo"
 msgstr "خطأ عند حفظ الصّور."
@@ -2454,15 +2404,15 @@ msgstr "خطأ عند حفظ الصّور."
 msgid "Sharpen"
 msgstr ""
 
-#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1938
+#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1906
 msgid "Amount:"
 msgstr ""
 
-#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1939
+#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1907
 msgid "Radius:"
 msgstr ""
 
-#: ../src/Loupe.cs:99 ../src/MainWindow.cs:1940
+#: ../src/Loupe.cs:99 ../src/MainWindow.cs:1908
 #, fuzzy
 msgid "Threshold:"
 msgstr "ال_عتبة:"
@@ -2476,45 +2426,45 @@ msgstr ""
 msgid "View and edit a photo"
 msgstr "_تحرير المستخدمين و المجموعات"
 
-#: ../src/MainWindow.cs:254 ../src/SingleView.cs:83
+#: ../src/MainWindow.cs:254 ../src/SingleView.cs:85
 #, fuzzy
 msgid "View photos fullscreen"
 msgstr "بدّل إلى ملء الشاشة"
 
-#: ../src/MainWindow.cs:257 ../src/SingleView.cs:85
+#: ../src/MainWindow.cs:257 ../src/SingleView.cs:87
 #, fuzzy
 msgid "View photos in a slideshow"
 msgstr "_ضغط نهايات الأسابيع في مشهد الشّهر"
 
-#: ../src/MainWindow.cs:807
+#: ../src/MainWindow.cs:815
 #, fuzzy
 msgid "Error loading database."
 msgstr "خطأ عند تحميل الرزنامة"
 
-#: ../src/MainWindow.cs:808
+#: ../src/MainWindow.cs:816
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
 "database has be moved to {0} and a new database has been created."
 msgstr ""
 
-#: ../src/MainWindow.cs:1363
+#: ../src/MainWindow.cs:1371
 #, fuzzy
 msgid "No cameras detected."
 msgstr "لم يتم العثور على مدير صوت قابل للاستخدام"
 
-#: ../src/MainWindow.cs:1364
+#: ../src/MainWindow.cs:1372
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
 msgstr ""
 
-#: ../src/MainWindow.cs:1404
+#: ../src/MainWindow.cs:1412
 #, fuzzy
 msgid "Error connecting to camera"
 msgstr "%s: خطأ في ضبط الإشارة %d لـ %s"
 
-#: ../src/MainWindow.cs:1405
+#: ../src/MainWindow.cs:1413
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr ""
@@ -2522,133 +2472,133 @@ msgstr ""
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1582
+#: ../src/MainWindow.cs:1550
 #, fuzzy
 msgid "translator-credits"
 msgstr "Yousef Raffah يوسف رفه (yousef@raffah.com)"
 
-#: ../src/MainWindow.cs:1589
+#: ../src/MainWindow.cs:1557
 msgid "Copyright © 2003-2007 Novell Inc."
 msgstr ""
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1851
+#: ../src/MainWindow.cs:1819
 #, fuzzy, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "قوائم العلامة المتوفرة"
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:1878
+#: ../src/MainWindow.cs:1846
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
 msgstr ""
 
-#: ../src/MainWindow.cs:1880
+#: ../src/MainWindow.cs:1848
 #, fuzzy
 msgid "_Merge Tags"
 msgstr "HTML - إمارات"
 
-#: ../src/MainWindow.cs:1929
+#: ../src/MainWindow.cs:1897
 #, fuzzy
 msgid "Unsharp Mask"
 msgstr "العنوان العددي:"
 
-#: ../src/MainWindow.cs:2152 ../src/SingleView.cs:487
+#: ../src/MainWindow.cs:2120 ../src/SingleView.cs:463
 #, fuzzy, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "صورة تسجيل الدخول"
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:2158
+#: ../src/MainWindow.cs:2126
 #, fuzzy, csharp-format
 msgid " out of {0}"
 msgstr "خارج:"
 
-#: ../src/MainWindow.cs:2162
+#: ../src/MainWindow.cs:2130
 #, fuzzy, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] "مُنتقى"
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:2249
+#: ../src/MainWindow.cs:2217
 #, fuzzy
 msgid "_Ok"
 msgstr "موافق"
 
-#: ../src/MainWindow.cs:2250
+#: ../src/MainWindow.cs:2218
 #, fuzzy
 msgid "Error Deleting Picture"
 msgstr "خطأ أثناء الحذف."
 
-#: ../src/MainWindow.cs:2255
+#: ../src/MainWindow.cs:2223
 #, fuzzy, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "فشل مسح الملف القديم `%s': %s"
 
-#: ../src/MainWindow.cs:2259
+#: ../src/MainWindow.cs:2227
 #, fuzzy, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "حدث خطأ عند حذف دليل أو ملف"
 
-#: ../src/MainWindow.cs:2285
+#: ../src/MainWindow.cs:2253
 #, fuzzy, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "احذف كل العناصر المنتقاة نهائيا"
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:2289
+#: ../src/MainWindow.cs:2257
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:2292
+#: ../src/MainWindow.cs:2260
 #, fuzzy
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "صورة تسجيل الدخول"
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:2323
+#: ../src/MainWindow.cs:2291
 #, fuzzy, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "احذف العنصر المحدد من شريط الأدوات"
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:2328
+#: ../src/MainWindow.cs:2296
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
 "again."
 msgstr ""
 
-#: ../src/MainWindow.cs:2329
+#: ../src/MainWindow.cs:2297
 #, fuzzy
 msgid "_Remove from Catalog"
 msgstr "_حذف من شريط الأدوات"
 
-#: ../src/MainWindow.cs:2386
+#: ../src/MainWindow.cs:2354
 #, fuzzy, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "قائمة"
 
-#: ../src/MainWindow.cs:2388
+#: ../src/MainWindow.cs:2356
 #, fuzzy, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "_حذف المهام المنتقاة"
 
-#: ../src/MainWindow.cs:2391
+#: ../src/MainWindow.cs:2359
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr ""
 
-#: ../src/MainWindow.cs:2392
+#: ../src/MainWindow.cs:2360
 #, fuzzy
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
@@ -2656,52 +2606,52 @@ msgstr[0] "قائمة"
 msgstr[1] ""
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2406
+#: ../src/MainWindow.cs:2374
 #, fuzzy
 msgid "Tag is not empty"
 msgstr "المخزن غير خال"
 
-#: ../src/MainWindow.cs:2407
+#: ../src/MainWindow.cs:2375
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
 "\"{0}\" first"
 msgstr ""
 
-#: ../src/MainWindow.cs:2812
+#: ../src/MainWindow.cs:2782
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:2825
+#: ../src/MainWindow.cs:2795
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:2833
+#: ../src/MainWindow.cs:2803
 #, fuzzy, csharp-format
 msgid "Find Selected Tag"
 msgid_plural "Find Selected Tags"
 msgstr[0] "قوائم العلامة المتوفرة"
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:2837
+#: ../src/MainWindow.cs:2807
 #, fuzzy, csharp-format
 msgid "Find Selected Tag With"
 msgid_plural "Find Selected Tags With"
 msgstr[0] "الأسلوب المترابط مع شارة المصدر"
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:2854
+#: ../src/MainWindow.cs:2824
 #, fuzzy
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "انشاء موضوع جديد"
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:2856
+#: ../src/MainWindow.cs:2826
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -2882,14 +2832,14 @@ msgstr "قائمة"
 msgid "Remove Tag"
 msgstr "قائمة"
 
-#: ../src/PhotoStore.cs:378
+#: ../src/PhotoStore.cs:379
 #, fuzzy, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "معدّل"
 msgstr[1] ""
 
-#: ../src/PhotoStore.cs:397
+#: ../src/PhotoStore.cs:398
 #, fuzzy, csharp-format
 msgid "Modified in {1}"
 msgid_plural "Modified in {1} ({0})"
@@ -3034,50 +2984,50 @@ msgid ""
 "and try the operation again"
 msgstr ""
 
-#: ../src/PhotoView.cs:486
+#: ../src/PhotoView.cs:487
 #, fuzzy
 msgid "Comment:"
 msgstr "تعليق:"
 
-#: ../src/PhotoView.cs:560
+#: ../src/PhotoView.cs:561
 #, fuzzy
 msgid "Adjust the photo colors"
 msgstr "استخدام الألوان الخاصة"
 
-#: ../src/PhotoView.cs:561
+#: ../src/PhotoView.cs:562
 #, fuzzy
 msgid "Constrain the aspect ratio of the selection"
 msgstr "نسبة الجانب \"%s\" مجهولة"
 
-#: ../src/PhotoView.cs:562
+#: ../src/PhotoView.cs:563
 #, fuzzy
 msgid "Next photo"
 msgstr "صورة تسجيل الدخول"
 
-#: ../src/PhotoView.cs:563
+#: ../src/PhotoView.cs:564
 #, fuzzy
 msgid "Previous photo"
 msgstr "صورة تسجيل الدخول"
 
-#: ../src/PhotoView.cs:564
+#: ../src/PhotoView.cs:565
 msgid "Convert the photo to black and white"
 msgstr ""
 
-#: ../src/PhotoView.cs:565
+#: ../src/PhotoView.cs:566
 msgid "Convert the photo to sepia tones"
 msgstr ""
 
-#: ../src/PicasaWebExport.cs:568 ../src/SmugMugExport.cs:537
+#: ../src/PicasaWebExport.cs:572 ../src/SmugMugExport.cs:540
 #, fuzzy, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "إختر صورة"
 
-#: ../src/PicasaWebExport.cs:598 ../src/SmugMugExport.cs:566
+#: ../src/PicasaWebExport.cs:603 ../src/SmugMugExport.cs:569
 #, fuzzy, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "%s: خطأ في ضبط الإشارة %d لـ %s"
 
-#: ../src/PicasaWebExport.cs:682
+#: ../src/PicasaWebExport.cs:687
 #, fuzzy
 msgid "Available space :"
 msgstr "استعمل _كل الحيز المتوفر"
@@ -3135,22 +3085,22 @@ msgstr "عنوان البريد الإلكتروني"
 msgid "Exporting picture \"{0}\""
 msgstr "إختر صورة"
 
-#: ../src/SingleView.cs:76
+#: ../src/SingleView.cs:78
 #, fuzzy
 msgid "Rotate photo left"
 msgstr "الإلتفاف إلى جهة اليسار"
 
-#: ../src/SingleView.cs:78
+#: ../src/SingleView.cs:80
 #, fuzzy
 msgid "Rotate photo right"
 msgstr "الإلتفاف إلى جهة اليمين"
 
-#: ../src/SingleView.cs:342
+#: ../src/SingleView.cs:318
 #, fuzzy
 msgid "Open"
 msgstr "فتح"
 
-#: ../src/SingleView.cs:447
+#: ../src/SingleView.cs:423
 #, fuzzy
 msgid "Set as Background"
 msgstr "ضبط ك_خلفية"
@@ -3308,33 +3258,12 @@ msgstr[1] ""
 msgid "All"
 msgstr "الكل"
 
-#: ../src/TagQueryWidget.cs:148 ../src/TagQueryWidget.cs:667
+#: ../src/TagQueryWidget.cs:148
 #, fuzzy, csharp-format
 msgid "Not {0}"
 msgstr "لا"
 
-#: ../src/TagQueryWidget.cs:418
-#, fuzzy
-msgid " and "
-msgstr " و "
-
-#. operators.Add (Catalog.GetString (" && "));
-#: ../src/TagQueryWidget.cs:420
-#, fuzzy
-msgid ", "
-msgstr ","
-
-#: ../src/TagQueryWidget.cs:467
-#, fuzzy
-msgid " or "
-msgstr "أو"
-
-#: ../src/TagQueryWidget.cs:477
-#, fuzzy
-msgid "or"
-msgstr "أو"
-
-#: ../src/TagQueryWidget.cs:1120
+#: ../src/TagQueryWidget.cs:278
 msgid "Drag tags here to search for them"
 msgstr ""
 
@@ -3343,26 +3272,26 @@ msgstr ""
 msgid "Error renaming tag"
 msgstr "خطأ عند إعادة تسمية الملف \"%s\": %s"
 
-#: ../src/TagStore.cs:413
+#: ../src/TagStore.cs:407
 msgid "Favorites"
 msgstr ""
 
-#: ../src/TagStore.cs:418
+#: ../src/TagStore.cs:412
 #, fuzzy
 msgid "Hidden"
 msgstr "إبدأ مخفياً"
 
-#: ../src/TagStore.cs:426
+#: ../src/TagStore.cs:420
 #, fuzzy
 msgid "People"
 msgstr "أناس"
 
-#: ../src/TagStore.cs:431
+#: ../src/TagStore.cs:425
 #, fuzzy
 msgid "Places"
 msgstr "أماكن"
 
-#: ../src/TagStore.cs:436
+#: ../src/TagStore.cs:430
 #, fuzzy
 msgid "Events"
 msgstr "أحداث"
@@ -3445,10 +3374,6 @@ msgstr "شريط قوائم مخصّص"
 msgid "Show Find Bar"
 msgstr "عرض عمود ال_قوائم"
 
-#: ../src/Widgets/DateEdit.cs:210
-msgid "Calendar"
-msgstr ""
-
 #: ../src/XmpTagsImporter.cs:87
 #, fuzzy
 msgid "Location"
@@ -3479,6 +3404,74 @@ msgstr "أظهر عرض شرائح من مجلد الصور الخاص بك"
 #, fuzzy
 msgid "F-Spot photos"
 msgstr "استيراد _صور"
+
+#: ../src/FSpot.addin.xml.h:1
+#, fuzzy
+msgid "Export to"
+msgstr "تصدير علامات المواقع"
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:1
+#, fuzzy
+msgid "Export to 23hq..."
+msgstr "تصدير بصيغة HTML"
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:2
+#, fuzzy
+msgid "Export to CD..."
+msgstr "تصدير بصيغة HTML"
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:3
+#, fuzzy
+msgid "Export to Flickr..."
+msgstr "تصدير بصيغة HTML"
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:4
+#, fuzzy
+msgid "Export to Folder..."
+msgstr "إعادة تسمية المجلّد \"%s\" إلى:"
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:5
+#, fuzzy
+msgid "Export to PicasaWeb..."
+msgstr "تصدير بصيغة HTML"
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:6
+#, fuzzy
+msgid "Export to SmugMug......"
+msgstr "تصدير بصيغة HTML"
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:7
+#, fuzzy
+msgid "Export to Web Gallery..."
+msgstr "_تصدير علامات المواقع إلى ملف"
+
+#, fuzzy
+#~ msgid "Valid"
+#~ msgstr "توقيع سليم"
+
+#, fuzzy
+#~ msgid "Invalid"
+#~ msgstr "غير صحيح"
+
+#, fuzzy
+#~ msgid "E_xport to CD..."
+#~ msgstr "جهاز القرص المدمج للاستعمال"
+
+#, fuzzy
+#~ msgid " and "
+#~ msgstr " و "
+
+#, fuzzy
+#~ msgid ", "
+#~ msgstr ","
+
+#, fuzzy
+#~ msgid " or "
+#~ msgstr "أو"
+
+#, fuzzy
+#~ msgid "or"
+#~ msgstr "أو"
 
 #, fuzzy
 #~ msgid "Unknown destination."
