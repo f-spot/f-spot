@@ -1,3 +1,26 @@
+2007-04-13  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/Makefile.am:
+	* src/DependentListStore.cs: New ListStore class that follows the state of
+	a TreeStore.  Useful for producing a ListStore for tab-completion from the
+	tag TreeStore.
+
+	* src/Term.cs: Remove duplicate class for generating logical queries, and
+	move the old code here from TagQueryWidget.cs as the first step in
+	refactoring it and cleaning it up.
+
+	* src/MainWindow.cs:
+	* src/PhotoQuery.cs:
+	* src/PhotoStore.cs:
+	* src/TagCommands.cs:
+	* src/TagQueryWidget.cs:
+	* src/TagStore.cs: Small changes to use the old logic code that is now in
+	Term.cs.
+
+	* src/Widgets/FindBar.cs: Tab-complete all tags now, not just toplevel
+	ones.  Search comments and file paths if text doesn't match a tag exactly.
+	If / or ctrl-f is pressed, focus the search bar even if it's already open.
+
 2007-04-11  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/Mono.Addins: update to Mono.Addins svn r75575.

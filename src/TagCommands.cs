@@ -402,9 +402,9 @@ public class TagCommands {
 			query = new FSpot.PhotoQuery (db.Photos);
 			
 			if (db.Tags.Hidden != null)
-				query.Terms = FSpot.Term.OrTerm (new Tag []{ t, db.Tags.Hidden });
+				query.Terms = FSpot.Query.OrTerm.FromTags (new Tag []{ t, db.Tags.Hidden });
 			else 
-				query.Terms = FSpot.Term.TagTerm (t);
+				query.Terms = new FSpot.Query.Literal (t);
 
 			image_view = new FSpot.PhotoImageView (query);
 			image_view.SelectionXyRatio = 1.0;

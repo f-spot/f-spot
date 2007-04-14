@@ -1,315 +1,949 @@
 /*
  * Term.cs
  *
- * Author(s)
- *   Stephane Delcroix  <stephane@delcroix.org>
- *
  * This is free software. See COPYING for details.
  */
 
-//FIXME: ths SqlStatement for OrTerm could be optimized if all the subterms are 
-//TagTerm by using an 'id IN ()' ...
+using System;
+using System.Collections;
+using System.Text;
+using Mono.Unix;
+using Gtk;
+using Gdk;
 
-namespace FSpot {
-	public abstract class Term
-	{
-		public abstract string SqlStatement {
-			get;
-		}
+namespace FSpot.Query {
+	public abstract class Term {
+		private ArrayList sub_terms = new ArrayList ();
+		private Term parent = null;
+		private string separator;
 
-		public abstract bool IsEmpty {
-			get;
-		}
+		protected bool is_negated = false;
+		protected Tag tag = null;
 
-		//AND Operator
-		public static Term operator & (Term left, Term right)
+		public Term (Term parent, Literal after)
 		{
-			return AndTerm (left, right);
+			this.parent = parent;
+
+			if (parent != null) {
+				if (after == null)
+					parent.Add (this);
+				else
+					parent.SubTerms.Insert (parent.SubTerms.IndexOf (after) + 1, this);
+			}
 		}
 
-		//OR Operator
-		public static Term operator | (Term left, Term right)
-		{
-			return OrTerm (left, right);
-		}
-
-		//NOT Operator
-		public static Term operator ! (Term term)
-		{
-			return NotTerm (term);
-		}
-
-		//XOR Operator
-		public static Term operator ^ (Term left, Term right)
-		{
-			return (left & !right) | (!left & right);
-		}
-
-		//some static helpers
-		public static Term AndTerm (Term left, Term right)
-		{
-			if (left == null)
-				return right;
-			if (right == null)
-				return left;
-			return new _AndTerm (left, right);
-		}
-
-		public static Term AndTerm (Term [] subterms)
-		{
-			if (subterms == null || subterms.Length == 0)
-				return null;
-			return new _AndTerm (subterms);
-		}
-
-		public static Term AndTerm (Tag [] tags)
-		{
-			if (tags == null || tags.Length == 0)
-				return null;
-			return new _AndTerm (tags);
-		}
-
-		public static Term OrTerm (Term left, Term right)
-		{
-			if (left == null)
-				return right;
-			if (right == null)
-				return left;
-			return new _OrTerm (left, right);
-		}
-
-		public static Term OrTerm (Term [] subterms)
-		{
-			if (subterms == null || subterms.Length == 0)
-				return null;
-			return new _OrTerm (subterms);
-		}
-
-		public static Term OrTerm (Tag [] tags)
-		{
-			if (tags == null || tags.Length == 0)
-				return null;
-			return new _OrTerm (tags);
-		}
-
-		public static Term NotTerm (Term term)
-		{
-			if (term == null)
-				return null;
-			if (term is NotTerm)
-				return (term as NotTerm).Term;
-			return new NotTerm (term);
-		}
-
-		public static Term TagTerm (Tag tag)
-		{
-			if (tag == null)
-				return null;
-			return new TagTerm (tag);
-		}
-	}
-
-	public class TagTerm : Term
-	{
-		Tag t;
-		public Tag Tag {
-			get { return t; }
-			set { t = value; }
-		}
-
-		public TagTerm (Tag t)
-		{
-			this.t = t;
-		}
-
-		public override string SqlStatement {
+		/** Properties **/
+		public bool HasMultiple {
 			get {
-				System.Text.StringBuilder ids = new System.Text.StringBuilder (t.Id.ToString ());
-
-				if (t is Category) {
-					System.Collections.ArrayList tags = new System.Collections.ArrayList ();
-					(t as Category).AddDescendentsTo (tags);
-	
-					for (int i = 0; i < tags.Count; i++)
-						ids.Append (", " + (tags [i] as Tag).Id.ToString ());
-				}
-
-				return System.String.Format (" photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN ({0}))", ids);
+				return (SubTerms.Count > 1);
 			}
 		}
 
-		public override string ToString ()
-		{
-			return t.Name + "(" + t.Id + ")";
-		}
-
-		public override bool IsEmpty {
-			get { return (t == null); }
-		}
-	}
-
-	public abstract class OperatorTerm : Term
-	{
-		public abstract string OperatorName
-		{
-			get;
-		}
-	}
-
-	public abstract class NAryOperatorTerm : OperatorTerm
-	{
-		protected System.Collections.ArrayList subterms;
-		public Term [] SubTerms
-		{
-			get { return (Term []) subterms.ToArray (typeof (Term)); }
-		}
-	
-		public NAryOperatorTerm (Term left, Term right) : this (new Term [] {left, right}) 
-		{
-		}
-
-		public NAryOperatorTerm (Tag [] tags)
-		{
-			this.subterms = new System.Collections.ArrayList ();
-			if (tags == null)
-				return;
-
-			foreach (Tag tag in tags)
-				AddTerm (tag);
-		}
-
-		public NAryOperatorTerm (Term [] subterms)
-		{
-			this.subterms = new System.Collections.ArrayList ();
-			if (subterms == null) {
-				return;
-			}
-			foreach (Term term in subterms) {
-				AddTerm (term);
+		public ArrayList SubTerms {
+			get {
+				return sub_terms;
 			}
 		}
 
-		private void AddTerm (Term term)
+		public Term Last {
+			get {
+				// Return the last Literal in this term
+				if (SubTerms.Count > 0)
+					return SubTerms[SubTerms.Count - 1] as Term;
+				else
+					return null;
+			}
+		}
+
+		public int Count {
+			get {
+				return SubTerms.Count;
+			}
+		}
+
+		public Term Parent {
+			get { return parent; }
+			set {
+				if (parent == value)
+					return;
+
+				// If our parent was already set, remove ourself from it
+				if (parent != null)
+					parent.Remove(this);
+
+				// Add ourself to our new parent
+				parent = value;
+				parent.Add(this);
+			}
+		}
+
+		public virtual bool IsNegated {
+			get { return is_negated; }
+			set {
+				if (is_negated != value)
+					Invert(false);
+
+				is_negated = value;
+			}
+		}
+
+
+		/** Methods **/
+
+		public void Add (Term term)
 		{
-			if (term == null)
-				return;
-			if (this.GetType () == term.GetType ()) 
-				foreach (Term t in (term as NAryOperatorTerm).SubTerms)
-					AddTerm (t);
+			SubTerms.Add (term);
+		}
+
+		public void Remove (Term term)
+		{
+			SubTerms.Remove (term);
+
+			// Remove ourselves if we're now empty
+			if (SubTerms.Count == 0)
+				if (Parent != null)
+					Parent.Remove (this);
+		}
+
+		public void CopyAndInvertSubTermsFrom (Term term, bool recurse)
+		{
+			is_negated = true;
+			ArrayList termsToMove = new ArrayList(term.SubTerms);
+			foreach (Term subterm in termsToMove) {
+				if (recurse)
+					subterm.Invert(true).Parent = this;
+				else
+					subterm.Parent = this;
+			}
+		}
+
+		public ArrayList FindByTag (Tag t)
+		{
+			return FindByTag (t, true);
+		}
+
+		public ArrayList FindByTag (Tag t, bool recursive)
+		{
+			ArrayList results = new ArrayList ();
+
+			if (tag != null && tag == t)
+				results.Add (this);
+
+			if (recursive)
+				foreach (Term term in SubTerms)
+				results.AddRange (term.FindByTag (t, true));
 			else
-				subterms.Add (term);
-		}
-
-		public override string SqlStatement {
-			get {
-				if (IsEmpty)
-					return System.String.Empty;
-	
-				System.Text.StringBuilder sb = new System.Text.StringBuilder ("(");
-				for (int i = 0; i < subterms.Count; i++) {
-					sb.Append ((subterms [i] as Term).SqlStatement);
-					if (i != subterms.Count - 1)
-						sb.Append (OperatorName);
+				foreach (Term term in SubTerms) {
+				foreach (Term literal in SubTerms) {
+					if (literal.tag != null && literal.tag == t) {
+						results.Add (literal);
+					}
 				}
-				sb.Append (")");
-				return sb.ToString ();
-				
+
+				if (term.tag != null && term.tag == t) {
+					results.Add (term);
+				}
 			}
+
+			return results;
 		}
 
-		public override string ToString ()
+		public ArrayList LiteralParents ()
 		{
-			if (IsEmpty)
-				return System.String.Empty;
+			ArrayList results = new ArrayList ();
 
-			System.Text.StringBuilder sb = new System.Text.StringBuilder ("(");
-			for (int i = 0; i < subterms.Count; i++) {
-				sb.Append ((subterms [i] as Term).ToString ());
-				if (i != subterms.Count - 1)
-					sb.Append (OperatorName);
+			bool meme = false;
+			foreach (Term term in SubTerms) {
+				if (term is Literal)
+					meme = true;
+
+				results.AddRange (term.LiteralParents ());
 			}
-			sb.Append (")");
-			return sb.ToString ();
+
+			if (meme)
+				results.Add (this);
+
+			return results;
 		}
 
-		public override bool IsEmpty {
-			get { return (subterms.Count == 0); }
+		public bool TagIncluded(Tag t)
+		{
+			ArrayList parents = LiteralParents ();
+
+			if (parents.Count == 0)
+				return false;
+
+			foreach (Term term in parents) {
+				bool termHasTag = false;
+				bool onlyTerm = true;
+				foreach (Term literal in term.SubTerms) {
+					if (literal.tag != null) {
+						if (literal.tag == t) {
+							termHasTag = true;
+						} else {
+							onlyTerm = false;
+						}
+					}
+				}
+
+				if (termHasTag && onlyTerm)
+					return true;
+			}
+
+			return false;
+		}
+
+		public bool TagRequired(Tag t)
+		{
+			int count, grouped_with;
+			return TagRequired(t, out count, out grouped_with);
+		}
+
+		public bool TagRequired(Tag t, out int num_terms, out int grouped_with)
+		{
+			ArrayList parents = LiteralParents ();
+
+			num_terms = 0;
+			grouped_with = 100;
+			int min_grouped_with = 100;
+
+			if (parents.Count == 0)
+				return false;
+
+			foreach (Term term in parents) {
+				bool termHasTag = false;
+
+				// Don't count it as required if it's the only subterm..though it is..
+				// it is more clearly identified as Included at that point.
+				if (term.Count > 1) {
+					foreach (Term literal in term.SubTerms) {
+						if (literal.tag != null) {
+							if (literal.tag == t) {
+								num_terms++;
+								termHasTag = true;
+								grouped_with = term.SubTerms.Count;
+								break;
+							}
+						}
+					}
+				}
+
+				if (grouped_with < min_grouped_with)
+					min_grouped_with = grouped_with;
+
+				if (!termHasTag)
+					return false;
+			}
+
+			grouped_with = min_grouped_with;
+
+			return true;
+		}
+
+		public abstract Term Invert(bool recurse);
+
+		// Recursively generate the SQL condition clause that this
+		// term represents.
+		public virtual string SqlCondition ()
+		{
+			StringBuilder condition = new StringBuilder ("(");
+
+			for (int i = 0; i < SubTerms.Count; i++) {
+				Term term = SubTerms[i] as Term;
+				condition.Append (term.SqlCondition ());
+
+				if (i != SubTerms.Count - 1)
+					condition.Append (SQLOperator ());
+			}
+
+			condition.Append(")");
+
+			return condition.ToString ();
+		}
+
+		public virtual Gtk.Widget SeparatorWidget ()
+		{
+			return null;
+		}
+
+		public virtual string SQLOperator ()
+		{
+			return String.Empty;
+		}
+
+		protected static Hashtable op_term_lookup = new Hashtable();
+		public static Term TermFromOperator (string op, Term parent, Literal after)
+		{
+			//Console.WriteLine ("finding type for operator {0}", op);
+			//op = op.Trim ();
+			op = op.ToLower ();
+
+			if (AndTerm.Operators.Contains (op)) {
+				//Console.WriteLine ("AND!");
+				return new AndTerm (parent, after);
+			} else if (OrTerm.Operators.Contains (op)) {
+				//Console.WriteLine ("OR!");
+				return new OrTerm (parent, after);
+			}
+
+			Console.WriteLine ("Do not have Term for operator {0}", op);
+			return null;
 		}
 	}
 
-	//FIXME: rename this AndTerm once the old AndTerm definition is removed
-	public class _AndTerm : NAryOperatorTerm
-	{
-		public _AndTerm (Term left, Term right) : base (left, right)
-		{	
+	public class AndTerm : Term {
+		static ArrayList operators = new ArrayList ();
+		static AndTerm () {
+			operators.Add (Catalog.GetString (" and "));
+			//operators.Add (Catalog.GetString (" && "));
+			operators.Add (Catalog.GetString (", "));
 		}
 
-		public _AndTerm (Term [] subterms) : base (subterms)
+		public static ArrayList Operators {
+			get { return operators; }
+		}
+
+		public AndTerm (Term parent, Literal after) : base (parent, after) {}
+
+		public override Term Invert (bool recurse)
 		{
+			OrTerm newme = new OrTerm(Parent, null);
+			newme.CopyAndInvertSubTermsFrom(this, recurse);
+			if (Parent != null)
+				Parent.Remove(this);
+			return newme;
 		}
 
-		public _AndTerm (Tag [] tags) : base (tags)
+		public override Widget SeparatorWidget ()
 		{
+			Widget sep = new Label (String.Empty);
+			sep.SetSizeRequest (3, 1);
+			sep.Show ();
+			return sep;
+			//return null;
 		}
 
-		public override string OperatorName {
-			get { return " AND ";}
+		public override string SqlCondition ()
+		{
+			StringBuilder condition = new StringBuilder ("(");
+
+			condition.Append (base.SqlCondition());
+
+			Tag hidden = Core.Database.Tags.Hidden;
+			if (hidden != null) {
+				if (FindByTag (hidden, true).Count == 0) {
+					condition.Append (String.Format (
+								  " AND id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})", hidden.Id
+							  ));
+				}
+			}
+
+			condition.Append (")");
+
+			return condition.ToString ();
+		}
+
+		public override string SQLOperator ()
+		{
+			return " AND ";
 		}
 	}
 
-	//FIXME: rename this OrTerm once the old OrTerm definition is removed
-	public class _OrTerm : NAryOperatorTerm
-	{
-		public _OrTerm (Term left, Term right) : base (left, right)
-		{	
+	public class OrTerm : Term {
+		static ArrayList operators = new ArrayList ();
+		static OrTerm () {
+			operators.Add (Catalog.GetString (" or "));
+			//operators.Add (Catalog.GetString (" || "));
 		}
 
-		public override string OperatorName {
-			get { return " OR ";}
-		}
-
-		public _OrTerm (Term [] subterms) : base (subterms)
+		public static OrTerm FromTags(Tag [] from_tags)
 		{
+			if (from_tags == null || from_tags.Length == 0)
+				return null;
+
+			OrTerm or = new OrTerm(null, null);
+			foreach (Tag t in from_tags) {
+				Literal l = new Literal(t);
+				l.Parent = or;
+			}
+			return or;
 		}
 
-		public _OrTerm (Tag [] tags) : base (tags)
+
+		public static ArrayList Operators {
+			get { return operators; }
+		}
+
+		public OrTerm (Term parent, Literal after) : base (parent, after) {}
+
+		private static string OR = Catalog.GetString ("or");
+
+		public override Term Invert (bool recurse)
 		{
+			AndTerm newme = new AndTerm(Parent, null);
+			newme.CopyAndInvertSubTermsFrom(this, recurse);
+			if (Parent != null)
+				Parent.Remove(this);
+			return newme;
+		}
+
+		public override Gtk.Widget SeparatorWidget ()
+		{
+			Widget label = new Label (" " + OR + " ");
+			label.Show ();
+			return label;
+		}
+
+		public override string SQLOperator ()
+		{
+			return " OR ";
 		}
 	}
 
-	public class NotTerm : OperatorTerm
-	{
-		Term term;
-		public Term Term {
-			get { return term; }
-		}
+	public abstract class AbstractLiteral : Term {
+		public AbstractLiteral(Term parent, Literal after) : base (parent, after) {}
 
-		public NotTerm (Term term)
+		public override Term Invert (bool recurse)
 		{
-			this.term = term;
+			is_negated = !is_negated;
+			return this;
+		}
+	}
+
+	// TODO rename to TagLiteral?
+	public class Literal : AbstractLiteral {
+		public Literal (Tag tag) : this (null, tag, null)
+		{
 		}
 
-		public override string OperatorName {
-			get { return " NOT "; }
+		public Literal (Term parent, Tag tag, Literal after) : base (parent, after) {
+			this.tag = tag;
 		}
 
-		public override string SqlStatement {
+		/** Properties **/
+
+		public static ArrayList FocusedLiterals
+		{
 			get {
-				if (IsEmpty)
-					return System.String.Empty;
-				return OperatorName + "(" + term.SqlStatement + ")";
+				return focusedLiterals;
+			}
+			set {
+				focusedLiterals = value;
 			}
 		}
 
-		public override string ToString ()
-		{
-			if (IsEmpty)
-				return System.String.Empty;
-			return OperatorName + "(" + term.ToString () + ")";
+		public static Tooltips Tips {
+			set {
+				tips = value;
+			}
 		}
 
-		public override bool IsEmpty {
-			get { return (term == null); }
+		public Tag Tag {
+			get {
+				return tag;
+			}
+		}
+
+		public override bool IsNegated {
+			get {
+				return is_negated;
+			}
+
+			set {
+				if (is_negated == value)
+					return;
+
+				is_negated = value;
+
+				NormalIcon = null;
+				NegatedIcon = null;
+				Update ();
+
+				if (NegatedToggled != null)
+					NegatedToggled (this);
+			}
+		}
+
+		private Pixbuf NegatedIcon
+		{
+			get {
+				if (negated_icon != null)
+					return negated_icon;
+
+				if (NormalIcon == null)
+					return null;
+
+				negated_icon = NormalIcon.Copy ();
+
+				int offset = ICON_SIZE - overlay_size;
+				NegatedOverlay.Composite (negated_icon, offset, 0, overlay_size, overlay_size, offset, 0, 1.0, 1.0, InterpType.Bilinear, 200);
+
+				return negated_icon;
+			}
+
+			set {
+				negated_icon = null;
+			}
+		}
+
+		public Widget Widget {
+			get {
+				if (widget != null)
+					return widget;
+
+				container = new EventBox ();
+				((EventBox)container).VisibleWindow = false;
+				box = new HBox ();
+
+				handle_box = new LiteralBox ();
+				handle_box.BorderWidth = 1;
+
+				label = new Label (tag.Name);
+				label.UseMarkup = true;
+
+				image = new Gtk.Image (NormalIcon);
+
+				container.CanFocus = true;
+
+				container.KeyPressEvent  += KeyHandler;
+				container.ButtonPressEvent += HandleButtonPress;
+				container.ButtonReleaseEvent += HandleButtonRelease;
+				container.EnterNotifyEvent += HandleMouseIn;
+				container.LeaveNotifyEvent += HandleMouseOut;
+
+				//new PopupManager (new LiteralPopup (container, this));
+
+				// Setup this widget as a drag source (so tags can be moved after being placed)
+				container.DragDataGet += HandleDragDataGet;
+				container.DragBegin += HandleDragBegin;
+				container.DragEnd += HandleDragEnd;
+
+				Gtk.Drag.SourceSet (container, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
+						    tag_target_table, DragAction.Copy | DragAction.Move);
+
+				// Setup this widget as a drag destination (so tags can be added to our parent's Term)
+				container.DragDataReceived += HandleDragDataReceived;
+				container.DragMotion += HandleDragMotion;
+				container.DragLeave += HandleDragLeave;
+
+				Gtk.Drag.DestSet (container, DestDefaults.All, tag_dest_target_table,
+						  DragAction.Copy | DragAction.Move );
+
+				tips.SetTip (container, tag.Name, null);
+
+				label.Show ();
+				image.Show ();
+
+				if (tag.Icon == null) {
+					handle_box.Add (label);
+				} else {
+					handle_box.Add (image);
+				}
+
+				handle_box.Show ();
+
+				box.Add (handle_box);
+				box.Show ();
+
+				container.Add (box);
+
+				widget = container;
+
+				return widget;
+			}
+		}
+
+		private Pixbuf NormalIcon
+		{
+			get {
+				if (normal_icon != null)
+					return normal_icon;
+
+				Pixbuf scaled = null;
+				scaled = tag.Icon;
+
+				for (Category category = tag.Category; category != null && scaled == null; category = category.Category)
+					scaled = category.Icon;
+
+				if (scaled == null)
+					return null;
+
+				if (scaled.Width != ICON_SIZE) {
+					scaled = scaled.ScaleSimple (ICON_SIZE, ICON_SIZE, InterpType.Bilinear);
+				}
+
+				normal_icon = scaled;
+
+				return normal_icon;
+			}
+
+			set {
+				normal_icon = null;
+			}
+		}
+
+		/** Methods **/
+		public void Update ()
+		{
+			// Clear out the old icons
+			normal_icon = null;
+			negated_icon = null;
+			if (IsNegated) {
+				tips.SetTip (widget, String.Format (Catalog.GetString ("Not {0}"), tag.Name), null);
+				label.Text = "<s>" + tag.Name + "</s>";
+				image.Pixbuf = NegatedIcon;
+			} else {
+				tips.SetTip (widget, tag.Name, null);
+				label.Text = tag.Name;
+				image.Pixbuf = NormalIcon;
+			}
+
+			label.UseMarkup = true;
+
+			// Show the icon unless it's null
+			if (tag.Icon == null && container.Children [0] == image) {
+				container.Remove (image);
+				container.Add (label);
+			} else if (tag.Icon != null && container.Children [0] == label) {
+				container.Remove (label);
+				container.Add (image);
+			}
+
+
+			if (isHoveredOver && image.Pixbuf != null ) {
+				// Brighten the image slightly
+				Pixbuf brightened = image.Pixbuf.Copy ();
+				image.Pixbuf.SaturateAndPixelate (brightened, 1.85f, false);
+				//Pixbuf brightened = PixbufUtils.Glow (image.Pixbuf, .6f);
+
+				image.Pixbuf = brightened;
+			}
+		}
+
+		public void RemoveSelf ()
+		{
+			if (Removing != null)
+				Removing (this);
+
+			if (Parent != null)
+				Parent.Remove (this);
+
+			if (Removed != null)
+				Removed (this);
+		}
+
+		public override string SqlCondition ()
+		{
+			StringBuilder ids = new StringBuilder (tag.Id.ToString ());
+
+			if (tag is Category) {
+				ArrayList tags = new ArrayList ();
+				(tag as Category).AddDescendentsTo (tags);
+
+				for (int i = 0; i < tags.Count; i++)
+					ids.Append (", " + (tags [i] as Tag).Id.ToString ());
+			}
+
+			return String.Format (
+				       "id {0}IN (SELECT photo_id FROM photo_tags WHERE tag_id IN ({1}))",
+				       (IsNegated ? "NOT " : String.Empty), ids.ToString ());
+		}
+
+		public override Gtk.Widget SeparatorWidget ()
+		{
+			return new Label ("ERR");
+		}
+
+		private static Pixbuf NegatedOverlay
+		{
+			get {
+				if (negated_overlay == null) {
+					System.Reflection.Assembly assembly = System.Reflection.Assembly.GetCallingAssembly ();
+					negated_overlay = new Pixbuf (assembly.GetManifestResourceStream ("f-spot-not.png"));
+					negated_overlay = negated_overlay.ScaleSimple (overlay_size, overlay_size, InterpType.Bilinear);
+				}
+
+				return negated_overlay;
+			}
+		}
+
+		public static void RemoveFocusedLiterals ()
+		{
+			if (focusedLiterals != null)
+				foreach (Literal literal in focusedLiterals)
+				literal.RemoveSelf ();
+		}
+
+		/** Handlers **/
+
+		private void KeyHandler (object o, KeyPressEventArgs args)
+		{
+			args.RetVal = false;
+
+			switch (args.Event.Key) {
+			case Gdk.Key.Delete:
+				RemoveFocusedLiterals ();
+				args.RetVal = true;
+				return;
+			}
+		}
+
+		private void HandleButtonPress (object o, ButtonPressEventArgs args)
+		{
+			args.RetVal = true;
+
+			switch (args.Event.Type) {
+			case EventType.TwoButtonPress:
+				if (args.Event.Button == 1)
+					IsNegated = !IsNegated;
+				else
+					args.RetVal = false;
+				return;
+
+			case EventType.ButtonPress:
+				Widget.GrabFocus ();
+
+				if (args.Event.Button == 1) {
+					// TODO allow multiple selection of literals so they can be deleted, modified all at once
+					//if ((args.Event.State & ModifierType.ControlMask) != 0) {
+					//}
+
+				}
+				else if (args.Event.Button == 3)
+				{
+					LiteralPopup popup = new LiteralPopup ();
+					popup.Activate (args.Event, this);
+				}
+
+				return;
+
+			default:
+				args.RetVal = false;
+				return;
+			}
+		}
+
+		private void HandleButtonRelease (object o, ButtonReleaseEventArgs args)
+		{
+			args.RetVal = true;
+
+			switch (args.Event.Type) {
+			case EventType.TwoButtonPress:
+				args.RetVal = false;
+				return;
+
+			case EventType.ButtonPress:
+				if (args.Event.Button == 1) {
+				}
+				return;
+
+			default:
+				args.RetVal = false;
+				return;
+			}
+		}
+
+		private void HandleMouseIn (object o, EnterNotifyEventArgs args)
+		{
+			isHoveredOver = true;
+			Update ();
+		}
+
+		private void HandleMouseOut (object o, LeaveNotifyEventArgs args)
+		{
+			isHoveredOver = false;
+			Update ();
+		}
+
+		void HandleDragDataGet (object sender, DragDataGetArgs args)
+		{
+			args.RetVal = true;
+			switch (args.Info) {
+			case (uint) MainWindow.TargetType.TagList:
+			case (uint) MainWindow.TargetType.TagQueryItem:
+				Byte [] data = Encoding.UTF8.GetBytes (String.Empty);
+				Atom [] targets = args.Context.Targets;
+
+				args.SelectionData.Set (targets[0], 8, data, data.Length);
+
+				return;
+			default:
+				// Drop cancelled
+				args.RetVal = false;
+
+				foreach (Widget w in hiddenWidgets)
+				w.Visible = true;
+
+				focusedLiterals = null;
+				break;
+			}
+		}
+
+		void HandleDragBegin (object sender, DragBeginArgs args)
+		{
+			Gtk.Drag.SetIconPixbuf (args.Context, image.Pixbuf, 0, 0);
+
+			focusedLiterals.Add (this);
+
+			// Hide the tag and any separators that only exist because of it
+			container.Visible = false;
+			hiddenWidgets.Add (container);
+			foreach (Widget w in LogicWidget.Box.HangersOn (this)) {
+				hiddenWidgets.Add (w);
+				w.Visible = false;
+			}
+		}
+
+		void HandleDragEnd (object sender, DragEndArgs args)
+		{
+			// Remove any literals still marked as focused, because
+			// the user is throwing them away.
+			RemoveFocusedLiterals ();
+
+			focusedLiterals = new ArrayList();
+			args.RetVal = true;
+		}
+
+		private void HandleDragDataReceived (object o, EventArgs args)
+		{
+			// If focusedLiterals is not null, this is a drag of a tag that's already been placed
+			if (focusedLiterals.Count == 0)
+			{
+				if (TermAdded != null)
+					TermAdded (Parent, this);
+			}
+			else
+			{
+				if (! focusedLiterals.Contains(this))
+					if (LiteralsMoved != null)
+						LiteralsMoved (focusedLiterals, Parent, this);
+
+				// Unmark the literals as focused so they don't get nixed
+				focusedLiterals = null;
+			}
+		}
+
+		private bool preview = false;
+		private Gtk.Widget preview_widget;
+		private void HandleDragMotion (object o, DragMotionArgs args)
+		{
+			if (!preview) {
+				if (preview_widget == null) {
+					preview_widget = new Gtk.Label (" | ");
+					box.Add (preview_widget);
+				}
+
+				preview_widget.Show ();
+			}
+		}
+
+		private void HandleDragLeave (object o, EventArgs args)
+		{
+			preview = false;
+			preview_widget.Hide ();
+		}
+
+		public void HandleToggleNegatedCommand (object o, EventArgs args)
+		{
+			IsNegated = !IsNegated;
+		}
+
+		public void HandleRemoveCommand (object o, EventArgs args)
+		{
+			RemoveSelf ();
+		}
+
+		public void HandleAttachTagCommand (Tag t)
+		{
+			if (AttachTag != null)
+				AttachTag (t, Parent, this);
+		}
+
+		public void HandleRequireTag (object sender, EventArgs args)
+		{
+			if (RequireTag != null)
+				RequireTag (new Tag [] {this.Tag});
+		}
+
+		public void HandleUnRequireTag (object sender, EventArgs args)
+		{
+			if (UnRequireTag != null)
+				UnRequireTag (new Tag [] {this.Tag});
+		}
+
+		private const int ICON_SIZE = 24;
+
+		private const int overlay_size = (int) (.40 * ICON_SIZE);
+
+		private static TargetEntry [] tag_target_table = new TargetEntry [] {
+					new TargetEntry ("application/x-fspot-tag-query-item", 0, (uint) MainWindow.TargetType.TagQueryItem),
+				};
+
+		private static TargetEntry [] tag_dest_target_table = new TargetEntry [] {
+					new TargetEntry ("application/x-fspot-tags", 0, (uint) MainWindow.TargetType.TagList),
+					new TargetEntry ("application/x-fspot-tag-query-item", 0, (uint) MainWindow.TargetType.TagQueryItem),
+				};
+
+		private static ArrayList focusedLiterals = new ArrayList();
+		private static ArrayList hiddenWidgets = new ArrayList();
+		private Gtk.Container container;
+		private LiteralBox handle_box;
+		private Gtk.Box box;
+		private Gtk.Image image;
+		private Gtk.Label label;
+
+		private Pixbuf normal_icon;
+		//private EventBox widget;
+		private Widget widget;
+		private Pixbuf negated_icon;
+		private static Pixbuf negated_overlay;
+		private static Tooltips tips;
+		private bool isHoveredOver = false;
+
+		public delegate void NegatedToggleHandler (Literal group);
+		public event NegatedToggleHandler NegatedToggled;
+
+		public delegate void RemovingHandler (Literal group);
+		public event RemovingHandler Removing;
+
+		public delegate void RemovedHandler (Literal group);
+		public event RemovedHandler Removed;
+
+		public delegate void TermAddedHandler (Term parent, Literal after);
+		public event TermAddedHandler TermAdded;
+
+		public delegate void AttachTagHandler (Tag tag, Term parent, Literal after);
+		public event AttachTagHandler AttachTag;
+
+		public delegate void TagRequiredHandler (Tag [] tags);
+		public event TagRequiredHandler RequireTag;
+
+		public delegate void TagUnRequiredHandler (Tag [] tags);
+		public event TagUnRequiredHandler UnRequireTag;
+
+		public delegate void LiteralsMovedHandler (ArrayList literals, Term parent, Literal after);
+		public event LiteralsMovedHandler LiteralsMoved;
+	}
+
+	public class TextLiteral : AbstractLiteral {
+		private string text;
+
+		public TextLiteral (Term parent, string text) : base (parent, null)
+		{
+			this.text = text;
+		}
+
+		public override string SqlCondition ()
+		{
+			return String.Format (
+				       "id {0}IN (SELECT id FROM photos WHERE name LIKE '%{1}%' OR directory_path LIKE '%{1}%' OR description LIKE '%{1}%')",
+				       (IsNegated ? "NOT " : ""), EscapeQuotes(text)
+			       );
+		}
+
+		protected static string EscapeQuotes (string v)
+		{
+			return v == null ? String.Empty : v.Replace("'", "''");
 		}
 	}
 }

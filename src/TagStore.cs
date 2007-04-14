@@ -7,7 +7,7 @@ using System.Collections;
 using System.IO;
 using System;
 using Banshee.Database;
-
+using FSpot.Query;
 
 // FIXME: This is to workaround the currently busted GTK# bindings.
 using System.Runtime.InteropServices;
@@ -178,12 +178,6 @@ public class Tag : DbItem, IComparable {
 
 		return false;
 	}
-
-	public static implicit operator FSpot.Term (Tag tag)
-	{
-		return new FSpot.TagTerm (tag);
-	}
-
 }
 
 

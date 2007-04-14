@@ -10,6 +10,7 @@ using System.IO;
 using System.Text;
 using System;
 using FSpot;
+using FSpot.Query;
 
 using Banshee.Database;
 
@@ -1156,10 +1157,10 @@ public class PhotoStore : DbStore {
 
 	public Photo [] Query (Tag [] tags, string extra_condition, DateRange range)
 	{
-		return Query (FSpot.Term.OrTerm(tags), extra_condition, range);
+		return Query (OrTerm.FromTags(tags), extra_condition, range);
 	}
 
-	public Photo [] Query (FSpot.Term searchexpression, string extra_condition, DateRange range)
+	public Photo [] Query (Term searchexpression, string extra_condition, DateRange range)
 	{
 		bool hide = (extra_condition == null);
 
@@ -1203,10 +1204,10 @@ public class PhotoStore : DbStore {
 			where_statement_added = true;
 		}
 		
-		if (searchexpression != null && !searchexpression.IsEmpty) {
+		if (searchexpression != null) {
 			query_builder.Append (String.Format ("{0} {1}", 
 							     where_statement_added ? " AND " : " WHERE ",
-							     searchexpression.SqlStatement));
+							     searchexpression.SqlCondition()));
 			where_statement_added = true;
 		}
 
@@ -1218,6 +1219,7 @@ public class PhotoStore : DbStore {
 		}
 		
 		query_builder.Append ("ORDER BY photos.time");
+		Console.WriteLine("Query: {0}", query_builder.ToString());
 		return Query (query_builder.ToString ());
 	}
 

@@ -1,6 +1,7 @@
 using Gnome;
 using System;
 using System.Collections;
+using FSpot.Query;
 
 namespace FSpot {
 	public class PhotoQuery : FSpot.IBrowsableCollection {
@@ -56,13 +57,6 @@ namespace FSpot {
 			}
 		}
 		
-		[Obsolete ("use a Term expression instead")]
-		public Tag [] Tags {
-			set {
-				Terms = Term.OrTerm (value);
-			}
-		}
-
 		public Term Terms {
 			get {
 				return terms;

@@ -315,8 +315,8 @@ public class MainWindow {
 		view_vbox.PackStart (group_selector, false, false, 0);
 		view_vbox.ReorderChild (group_selector, 0);
 
-		//find_bar = new FindBar (query, tag_selection_widget.Model);
-		find_bar = new FindBar (query, db.Tags);
+		find_bar = new FindBar (query, tag_selection_widget.Model);
+		//find_bar = new FindBar (query, db.Tags);
 		view_vbox.PackStart (find_bar, false, false, 0);
 		main_window.KeyPressEvent += HandleKeyPressEvent;
 		
@@ -2687,7 +2687,7 @@ public class MainWindow {
 		// account for All and separator menu items
 		item_pos -= 2;
 		
-		FSpot.Query.LogicTerm parent_term = (FSpot.Query.LogicTerm) FSpot.Query.LogicWidget.Root.SubTerms [item_pos];
+		FSpot.Query.Term parent_term = (FSpot.Query.Term) FSpot.Query.LogicWidget.Root.SubTerms [item_pos];
 		
 		if (FSpot.Query.LogicWidget.Box != null) {
 			FSpot.Query.Literal after = parent_term.Last as FSpot.Query.Literal;
@@ -3030,7 +3030,7 @@ public class MainWindow {
 
 	private void ShowQueryWidget () {
 		if (find_bar.Visible) {
-			find_bar.Text = String.Empty;
+			find_bar.Entry.Text = String.Empty;
 			find_bar.Hide ();
 		}
 		
@@ -3049,10 +3049,12 @@ public class MainWindow {
 				}
 				
 				find_bar.Show ();
-				find_bar.GrabFocus ();
-				args.RetVal = true;
-				return;
 			}
+
+			// Grab the focus even if it's already shown
+			find_bar.Entry.GrabFocus ();
+			args.RetVal = true;
+			return;
 		}
 		
 		args.RetVal = false;

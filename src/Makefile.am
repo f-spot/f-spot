@@ -62,6 +62,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/DateCommands.cs		\
 	$(srcdir)/Db.cs				\
 	$(srcdir)/Delay.cs			\
+	$(srcdir)/DependentListStore.cs			\
 	$(srcdir)/DirectoryAdaptor.cs		\
 	$(srcdir)/DirectoryCollection.cs	\
 	$(srcdir)/Editors/Editor.cs		\
