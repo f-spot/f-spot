@@ -182,13 +182,13 @@ namespace FSpot {
 
 					if (tag != null) {
 						msg = String.Format (Catalog.GetString ("No photos matching {0} found"), tag.Name);
-						long_msg = String.Format (Catalog.GetString ("The tag \"{0}\" is not applied to any photos. Try adding" + Environment.NewLine +
-											     "the tag to some photos or selecting a different tag in the" + Environment.NewLine +
+						long_msg = String.Format (Catalog.GetString ("The tag \"{0}\" is not applied to any photos. Try adding\n" +
+											     "the tag to some photos or selecting a different tag in the\n" +
 											     "F-Spot preference dialog."), tag.Name);
 					} else {
 						msg = Catalog.GetString ("Search returned no results");
-						long_msg = Catalog.GetString ("The tag F-Spot is looking for does not exist. Try" + Environment.NewLine +
-									      "selecting a different tag in the F-Spot preference" + Environment.NewLine +
+						long_msg = Catalog.GetString ("The tag F-Spot is looking for does not exist. Try\n" + 
+									      "selecting a different tag in the F-Spot preference\n" + 
 									      "dialog.");
 					}
 
