@@ -70,6 +70,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Editors/Tilt.cs		\
 	$(srcdir)/ExceptionDialog.cs		\
 	$(srcdir)/ExportStore.cs		\
+	$(srcdir)/Extensions/ExportMenuItemNode.cs	\
 	$(srcdir)/Extensions/IExporter.cs	\
 	$(srcdir)/Extensions/MenuNode.cs	\
 	$(srcdir)/Fader.cs			\

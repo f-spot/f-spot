@@ -1,3 +1,10 @@
+2007-04-17  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Makefile.am:
+	* src/Extensions.cs:
+	* src/ExportMenuItemNode.cs: move ExportMenuItemNode class in its own
+	file, so IExporter can be linked as is from the documentation.
+
 2007-04-13  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/Makefile.am:
