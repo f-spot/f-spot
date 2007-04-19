@@ -127,6 +127,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Imaging/JpegHeader.cs		\
 	$(srcdir)/Imaging/JpegUtils.cs		\
 	$(srcdir)/Imaging/MrwFile.cs		\
+	$(srcdir)/Imaging/OrderedWriter.cs	\
 	$(srcdir)/Imaging/PngFile.cs		\
 	$(srcdir)/Imaging/PnmFile.cs		\
 	$(srcdir)/Imaging/RafFile.cs		\
