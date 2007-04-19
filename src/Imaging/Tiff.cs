@@ -1,4 +1,4 @@
-// #define DEBUG_LOADER
+//#define DEBUG_LOADER
 using FSpot;
 using SemWeb;
 using System;
@@ -1150,7 +1150,8 @@ namespace FSpot.Tiff {
 				writer.Stream.Position = position + (12 * i);
 				value_position = (uint)((DirectoryEntry)entries[i]).Save (writer, value_position);
 			}
-			
+							
+			writer.Stream.Position = position + (12 * entries.Count);
 			if (next_directory != null)
 				value_position = next_directory.Save (writer, value_position);
 			else 
@@ -1458,17 +1459,22 @@ namespace FSpot.Tiff {
 
 		public override uint Save (OrderedWriter writer, uint position)
 		{
+#if DEBUG_LOADER			
+			Console.WriteLine ("writing entry {0} {1} {2} - value offset = {3}", Id, Type, Count, position);
+#endif
 
 			writer.Write ((ushort)Id);
 			writer.Write ((ushort)Type);
 			writer.Write ((uint)Count);
 
-			if (Directory.Length > 0) {
+			if (Directory.Length == 1) {
+				writer.Write ((uint)position);
+				position = Directory [0].Save (writer, position);
+			} else if (Directory.Length > 1) {
 				writer.Write ((uint)position);
 				uint value_position = (uint) (position + Directory.Length * 4);
 				for (int i = 0; i < Directory.Length; i++) {
 					writer.Stream.Position = position + i * 4;
-					writer.Write ((uint)value_position);
 					value_position = Directory [i].Save (writer, value_position);
 				}
 				return value_position;
@@ -2335,6 +2341,7 @@ namespace FSpot.Tiff {
 			Stream stream = File.Open (tmp, FileMode.Create, FileAccess.ReadWrite);
 			Console.WriteLine ("XXXX saving tiff {0}", tmp);
 			header.Save (stream);
+			header.Dump ("source");
 			stream.Position = 0;
 			System.Console.WriteLine ("----------------------------------------------LOADING TIFF");
 			Header loader = new Header (stream);
