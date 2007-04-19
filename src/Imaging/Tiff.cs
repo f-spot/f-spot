@@ -1,8 +1,9 @@
-//#define DEBUG_LOADER
+#define DEBUG_LOADER
 using FSpot;
 using SemWeb;
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 #if ENABLE_NUNIT
 using NUnit.Framework;
@@ -1104,7 +1105,6 @@ namespace FSpot.Tiff {
 			
 			/* First IFD */
 			Directory.Save (writer, 8);
-			
 		}
 
 		public void Dump (string name)
@@ -1120,7 +1120,7 @@ namespace FSpot.Tiff {
 	public class ImageDirectory {
 		protected Endian endian;
 		protected ushort num_entries;
-		protected System.Collections.ArrayList entries;
+		protected List<DirectoryEntry> entries;
 		protected uint orig_position;
 
 		protected uint next_directory_offset;
@@ -1148,7 +1148,7 @@ namespace FSpot.Tiff {
 
 			for (int i = 0; i < entries.Count; i++) {
 				writer.Stream.Position = position + (12 * i);
-				value_position = (uint)((DirectoryEntry)entries[i]).Save (writer, value_position);
+				value_position = (uint)Entries[i].Save (writer, value_position);
 			}
 							
 			writer.Stream.Position = position + (12 * entries.Count);
@@ -1170,7 +1170,6 @@ namespace FSpot.Tiff {
 			LoadNextDirectory (stream);
 		}
 
-
 		public virtual bool ReadHeader (System.IO.Stream stream)
 		{
 			stream.Seek ((long)orig_position, System.IO.SeekOrigin.Begin);
@@ -1183,7 +1182,7 @@ namespace FSpot.Tiff {
 #if DEBUG_LOADER
 			System.Console.WriteLine ("reading {0} entries", num_entries);
 #endif			
-			entries = new System.Collections.ArrayList (num_entries);
+			entries = new List<DirectoryEntry> (num_entries);
 			int entry_length = num_entries * 12;
 			byte [] content = new byte [entry_length];
 			
@@ -1242,7 +1241,7 @@ namespace FSpot.Tiff {
 			}
 		}
 
-		public System.Collections.ArrayList Entries {
+		public List<DirectoryEntry> Entries {
 			get { 
 				return entries;
 			}
@@ -1258,6 +1257,13 @@ namespace FSpot.Tiff {
 			return null;
 		}
 
+		private DirectoryEntry GetEntry (int i)
+		{
+			if (i < Entries.Count)
+				return Entries [i];
+			else
+				return null;
+		}
 
 		public DirectoryEntry Lookup (uint id) 
 		{
@@ -1466,6 +1472,7 @@ namespace FSpot.Tiff {
 			writer.Write ((ushort)Id);
 			writer.Write ((ushort)Type);
 			writer.Write ((uint)Count);
+
 
 			if (Directory.Length == 1) {
 				writer.Write ((uint)position);
@@ -2334,19 +2341,44 @@ namespace FSpot.Tiff {
 			Assert.AreEqual (mod.Description, desc2);
 			
 			Header header = mod.ExifHeader;
-			//System.IO.MemoryStream stream = new System.IO.MemoryStream ();
+#if USE_TEST_FILE
 			string tmp = "/home/lewing/test.tiff";
 			if (File.Exists (tmp))
 				File.Delete (tmp);
 			Stream stream = File.Open (tmp, FileMode.Create, FileAccess.ReadWrite);
 			Console.WriteLine ("XXXX saving tiff {0}", tmp);
-			header.Save (stream);
+#else
+			System.IO.MemoryStream stream = new System.IO.MemoryStream ();
+#endif
+
 			header.Dump ("source");
+			header.Save (stream);
 			stream.Position = 0;
 			System.Console.WriteLine ("----------------------------------------------LOADING TIFF");
 			Header loader = new Header (stream);
 			loader.Dump ("loader");
+			
+			CompareDirectories (header.Directory, loader.Directory);
+
 			System.IO.File.Delete (path);	
+		}
+
+		private void CompareDirectories (ImageDirectory olddir, ImageDirectory newdir)
+		{
+			Assert.AreEqual (olddir.Entries.Count, newdir.Entries.Count);
+			for (int i = 0; i < olddir.Entries.Count; i++) {
+				Assert.AreEqual (olddir.Entries [i].Id, newdir.Entries [i].Id);
+				Assert.AreEqual (olddir.Entries [i].Type, newdir.Entries [i].Type);
+				Assert.AreEqual (olddir.Entries [i].Count, newdir.Entries [i].Count);
+				Assert.AreEqual (olddir.Entries [i].Length, newdir.Entries [i].Length);
+				if (olddir.Entries [i] is SubdirectoryEntry) {
+					SubdirectoryEntry oldsub = olddir.Entries [i] as SubdirectoryEntry;
+					SubdirectoryEntry newsub = newdir.Entries [i] as SubdirectoryEntry;
+					
+					for (int j = 0; j < oldsub.Directory.Length; j++)
+						CompareDirectories (oldsub.Directory [j], newsub.Directory [j]);
+				}
+			}
 		}
 	}
 #endif
