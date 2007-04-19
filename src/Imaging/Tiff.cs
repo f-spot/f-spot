@@ -1,7 +1,8 @@
-//#define DEBUG_LOADER
+// #define DEBUG_LOADER
 using FSpot;
 using SemWeb;
 using System;
+using System.IO;
 
 #if ENABLE_NUNIT
 using NUnit.Framework;
@@ -843,9 +844,12 @@ namespace FSpot.Tiff {
 		{
 			byte [] tmp = new byte [4];
 
-		        if (stream.Read (tmp, 0, tmp.Length) < 4)
+		        if (stream.Read (tmp, 0, tmp.Length) < 4) {
+#if DEBUG_LOADER
+				System.Console.WriteLine ("short read XXXXXXXXXXXXXXXXXXXXXXx");
+#endif
 				throw new ShortReadException ();
-
+			}
 			return BitConverter.ToUInt32 (tmp, 0, endian == Endian.Little);
 		}
 
@@ -853,8 +857,12 @@ namespace FSpot.Tiff {
 		{
 			byte [] tmp = new byte [2];
 
-		        if (stream.Read (tmp, 0, tmp.Length) < 2)
+		        if (stream.Read (tmp, 0, tmp.Length) < 2) {
+#if DEBUG_LOADER
+				System.Console.WriteLine ("Short read");
+#endif
 				throw new ShortReadException ();
+			}
 
 			return BitConverter.ToUInt16 (tmp, 0, endian == Endian.Little);
 		}
@@ -1085,11 +1093,11 @@ namespace FSpot.Tiff {
 			
 			/* Header */
 			if (endian == Endian.Little) {
-				writer.Write ('I');
-				writer.Write ('I');
+				writer.Write ((byte)'I');
+				writer.Write ((byte)'I');
 			} else {
-				writer.Write ('M');
-				writer.Write ('M');
+				writer.Write ((byte)'M');
+				writer.Write ((byte)'M');
 			}
 			
 			writer.Write ((ushort)42);
@@ -1134,8 +1142,10 @@ namespace FSpot.Tiff {
 			writer.Stream.Position = position;
 
 			writer.Write ((ushort)entries.Count);
-			
+
+			position += 2;
 			uint  value_position = (uint) (position + 12 * entries.Count + 4);
+
 			for (int i = 0; i < entries.Count; i++) {
 				writer.Stream.Position = position + (12 * i);
 				value_position = (uint)((DirectoryEntry)entries[i]).Save (writer, value_position);
@@ -1159,6 +1169,7 @@ namespace FSpot.Tiff {
 			LoadNextDirectory (stream);
 		}
 
+
 		public virtual bool ReadHeader (System.IO.Stream stream)
 		{
 			stream.Seek ((long)orig_position, System.IO.SeekOrigin.Begin);
@@ -1175,9 +1186,14 @@ namespace FSpot.Tiff {
 			int entry_length = num_entries * 12;
 			byte [] content = new byte [entry_length];
 			
-			if (stream.Read (content, 0, content.Length) < content.Length)
+			if (stream.Read (content, 0, content.Length) < content.Length) {
+#if DEBUG_LOADER
+				System.Console.WriteLine ("short read XXXXXXXXXXXXXXXXXXXXXXx");
+#endif
 				throw new ShortReadException ();
-			
+			}
+
+
 			for (int pos = 0; pos < entry_length; pos += 12) {
 				DirectoryEntry entry = EntryFactory.CreateEntry (this, content, pos, this.endian);
 				entries.Add (entry);		
@@ -1442,20 +1458,24 @@ namespace FSpot.Tiff {
 
 		public override uint Save (OrderedWriter writer, uint position)
 		{
+
 			writer.Write ((ushort)Id);
 			writer.Write ((ushort)Type);
-			writer.Write ((ushort)Count);
-			
-			uint value_position = (uint) (position + Directory.Length * 4);
-			if (Directory.Length > 0)
+			writer.Write ((uint)Count);
+
+			if (Directory.Length > 0) {
+				writer.Write ((uint)position);
+				uint value_position = (uint) (position + Directory.Length * 4);
 				for (int i = 0; i < Directory.Length; i++) {
 					writer.Stream.Position = position + i * 4;
+					writer.Write ((uint)value_position);
 					value_position = Directory [i].Save (writer, value_position);
 				}
-			else
+				return value_position;
+			} else
 				writer.Write ((uint) 0);
 
-			return value_position;
+			return position;
 		}
 
 		public virtual uint GetEntryCount ()
@@ -1595,16 +1615,21 @@ namespace FSpot.Tiff {
 
 		public virtual uint Save (OrderedWriter writer, uint position)
 		{
+#if DEBUG_LOADER			
+			Console.WriteLine ("writing entry {0} {1} {2}", Id, Type, Count);
+#endif
 			writer.Write ((ushort)Id);
 			writer.Write ((ushort)Type);
-			writer.Write ((ushort)Count);
-			if (RawData.Length > 4) {
+			writer.Write ((uint)Count);
+			if (Length > 4) {
 				writer.Write ((uint)position);
 				writer.Stream.Position = position;
 				writer.Stream.Write (RawData, 0, RawData.Length);
 				return (uint) (position + RawData.Length);
 			} else {
 				writer.Stream.Write (RawData, 0, RawData.Length);
+				for (int i = 0; i < 4 - RawData.Length; i++)
+					writer.Write ((byte)0);
 			}
 			return position;
 		}
@@ -1618,6 +1643,10 @@ namespace FSpot.Tiff {
 			get {
 				return offset_origin + data_offset;
 			}
+		}
+
+		public uint Length {
+			get { return (uint)(Count * GetTypeSize ()); }
 		}
 
 		public virtual int GetTypeSize ()
@@ -1675,12 +1704,16 @@ namespace FSpot.Tiff {
 			if (data_offset != 0) {
 				stream.Seek ((long)Position, System.IO.SeekOrigin.Begin);
 				byte [] data = new byte [count * GetTypeSize ()];
-				if (stream.Read (data, 0, data.Length) < data.Length)
+				if (stream.Read (data, 0, data.Length) < data.Length) {
+#if DEBUG_LOADER
+					System.Console.WriteLine ("Short read");
+#endif
 					throw new ShortReadException ();
+				}
 				raw_data = data;
 			}
 
-#if false
+#if DEBUG_LOADER
 			switch ((int)this.Id) {
 			case (int)TagId.NewSubfileType:
 				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new NewSubFileType {0}", (NewSubfileType) this.ValueAsLong [0]);
@@ -2295,9 +2328,15 @@ namespace FSpot.Tiff {
 			Assert.AreEqual (mod.Description, desc2);
 			
 			Header header = mod.ExifHeader;
-			System.IO.MemoryStream stream = new System.IO.MemoryStream ();
+			//System.IO.MemoryStream stream = new System.IO.MemoryStream ();
+			string tmp = "/home/lewing/test.tiff";
+			if (File.Exists (tmp))
+				File.Delete (tmp);
+			Stream stream = File.Open (tmp, FileMode.Create, FileAccess.ReadWrite);
+			Console.WriteLine ("XXXX saving tiff {0}", tmp);
 			header.Save (stream);
 			stream.Position = 0;
+			System.Console.WriteLine ("----------------------------------------------LOADING TIFF");
 			Header loader = new Header (stream);
 			loader.Dump ("loader");
 			System.IO.File.Delete (path);	
