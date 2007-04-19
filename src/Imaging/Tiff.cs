@@ -3,6 +3,10 @@ using FSpot;
 using SemWeb;
 using System;
 
+#if ENABLE_NUNIT
+using NUnit.Framework;
+#endif
+
 namespace FSpot.Tiff {
 
 	// This is primarily to preserve the names from the specification
@@ -24,6 +28,40 @@ namespace FSpot.Tiff {
 	        Rotation                        = 33465,
 	        NavyCompression                 = 33466,
 		TileIndex                       = 33467
+	}
+
+	public enum TagGPS : ushort {
+		GPSVersionID                    = 0x0000,
+		GPSLatitudeRef                  = 0x0001,
+		GPSLatitude                     = 0x0002,
+			GPSLongitudeRef                    = 0x0003,
+			GPSLongitue                        = 0x0004,
+			GPSAltitudeRef                     = 0x0005,
+			GPSAltitude                        = 0x0006,
+			GPSTimeStamp                       = 0x0007,
+			GPSSatellites                      = 0x0008,
+			GPSStatus                          = 0x0009,
+			GPSMeasureMode                     = 0x000a,
+			GPSDOP                             = 0x000b,
+			GPSSpeedRef                        = 0x000c,
+			GPSSpeed                           = 0x000d,
+			GPSTrackRef                        = 0x000e,
+			GPSTrack                           = 0x000f,
+			GPSImgDirectionRef                 = 0x0010,
+			GPSImgDirection                    = 0x0011,
+			GPSMapDatum                        = 0x0012,
+			GPSDestLatitudeRef                 = 0x0013,
+			GPSDestLatitude                    = 0x0014,
+			GPSDestLongitudeRef                = 0x0015,
+			GPSDestLongitude                   = 0x0016,
+			GPSDestBearingRef                  = 0x0017,
+			GPSDestBearing                     = 0x0018,
+			GPSDestDistanceRef                 = 0x0019,
+			GPSDestDistance                    = 0x001a,
+			GPSProcessingMethod                = 0x001b,
+			GPSAreaInformation                 = 0x001c,
+			GPSDateStamp                       = 0x001d,
+			GPSDifferential                    = 0x001e
 	}
 
 	public enum TagId : ushort {
@@ -1040,6 +1078,27 @@ namespace FSpot.Tiff {
 				}
 			}
 		}
+
+		public void Save (System.IO.Stream out_stream)
+		{
+			OrderedWriter writer = new OrderedWriter (out_stream, endian == Endian.Little);
+			
+			/* Header */
+			if (endian == Endian.Little) {
+				writer.Write ('I');
+				writer.Write ('I');
+			} else {
+				writer.Write ('M');
+				writer.Write ('M');
+			}
+			
+			writer.Write ((ushort)42);
+			
+			/* First IFD */
+			Directory.Save (writer, 8);
+			
+		}
+
 		public void Dump (string name)
 		{
 			ImageDirectory ifd = Directory;
@@ -1069,6 +1128,27 @@ namespace FSpot.Tiff {
 			Load (stream);
 		}
 		
+		public uint Save (OrderedWriter writer, uint position)
+		{
+			writer.Write (position);
+			writer.Stream.Position = position;
+
+			writer.Write ((ushort)entries.Count);
+			
+			uint  value_position = (uint) (position + 12 * entries.Count + 4);
+			for (int i = 0; i < entries.Count; i++) {
+				writer.Stream.Position = position + (12 * i);
+				value_position = (uint)((DirectoryEntry)entries[i]).Save (writer, value_position);
+			}
+			
+			if (next_directory != null)
+				value_position = next_directory.Save (writer, value_position);
+			else 
+				writer.Write ((uint) 0);
+
+			return value_position;
+		}
+
 		protected void Load (System.IO.Stream stream)
 		{
 			ReadHeader (stream);			
@@ -1156,6 +1236,7 @@ namespace FSpot.Tiff {
 			foreach (DirectoryEntry entry in entries)
 				if (entry.Id == id)
 					return entry;
+			
 
 			return null;
 		}
@@ -1359,6 +1440,24 @@ namespace FSpot.Tiff {
 			}
 		}
 
+		public override uint Save (OrderedWriter writer, uint position)
+		{
+			writer.Write ((ushort)Id);
+			writer.Write ((ushort)Type);
+			writer.Write ((ushort)Count);
+			
+			uint value_position = (uint) (position + Directory.Length * 4);
+			if (Directory.Length > 0)
+				for (int i = 0; i < Directory.Length; i++) {
+					writer.Stream.Position = position + i * 4;
+					value_position = Directory [i].Save (writer, value_position);
+				}
+			else
+				writer.Write ((uint) 0);
+
+			return value_position;
+		}
+
 		public virtual uint GetEntryCount ()
 		{
 			return count;
@@ -1492,6 +1591,22 @@ namespace FSpot.Tiff {
 			get {
 				return count;
 			}
+		}
+
+		public virtual uint Save (OrderedWriter writer, uint position)
+		{
+			writer.Write ((ushort)Id);
+			writer.Write ((ushort)Type);
+			writer.Write ((ushort)Count);
+			if (RawData.Length > 4) {
+				writer.Write ((uint)position);
+				writer.Stream.Position = position;
+				writer.Stream.Write (RawData, 0, RawData.Length);
+				return (uint) (position + RawData.Length);
+			} else {
+				writer.Stream.Write (RawData, 0, RawData.Length);
+			}
+			return position;
 		}
 
 		public void SetOrigin (uint pos)
@@ -2147,5 +2262,47 @@ namespace FSpot.Tiff {
 			return file;
 		}
 	}
+
+#if ENABLE_NUNIT
+	[TestFixture]
+	public class Tests {
+		public Tests ()
+		{
+			Gnome.Vfs.Vfs.Initialize ();
+			Gtk.Application.Init ();
+		}
+		
+		[Test]
+		public void Save ()
+		{
+			string desc = "this is an example description";
+			string desc2 = "\x00a9 Novell Inc.";
+			PixbufOrientation orient = PixbufOrientation.TopRight;
+			Gdk.Pixbuf test = new Gdk.Pixbuf (null, "f-spot-32.png");
+			string path = ImageFile.TempPath ("joe.jpg");
+			
+			PixbufUtils.SaveJpeg (test, path, 75, new Exif.ExifData ());
+			JpegFile jimg = new JpegFile (path);
+			jimg.SetDescription (desc);
+			jimg.SetOrientation (orient);
+			jimg.SaveMetaData (path);
+			JpegFile mod = new JpegFile (path);
+			Assert.AreEqual (mod.Orientation, orient);
+			Assert.AreEqual (mod.Description, desc);
+			jimg.SetDescription (desc2);
+			jimg.SaveMetaData (path);
+			mod = new JpegFile (path);
+			Assert.AreEqual (mod.Description, desc2);
+			
+			Header header = mod.ExifHeader;
+			System.IO.MemoryStream stream = new System.IO.MemoryStream ();
+			header.Save (stream);
+			stream.Position = 0;
+			Header loader = new Header (stream);
+			loader.Dump ("loader");
+			System.IO.File.Delete (path);	
+		}
+	}
+#endif
 }
 
