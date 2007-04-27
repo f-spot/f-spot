@@ -2122,9 +2122,9 @@ public class MainWindow {
 										  query.Count), 
 							 query.Count));
 
-			if (PhotoStore.TotalPhotos != query.Count)
-				label_str.Append (String.Format (Catalog.GetString (" out of {0}"), 
-								 PhotoStore.TotalPhotos));
+			int total_photos = Database.Photos.TotalPhotos;
+			if (total_photos != query.Count)
+				label_str.Append (String.Format (Catalog.GetString (" out of {0}"), total_photos));
 
 			if ((selection != null) && (selection.Count > 0))
 				label_str.Append (String.Format (Catalog.GetPluralString (" ({0} selected)", 

@@ -597,10 +597,14 @@ public class PhotoStore : DbStore {
 	TagStore tag_store;
 
 
-	static int total_photos = 0;
-	public static int TotalPhotos {
-		get { return total_photos; }
-		set { total_photos = value; }
+	public int TotalPhotos {
+		get {
+			SqliteDataReader reader = Database.Query("SELECT COUNT(*) FROM photos");
+			reader.Read ();
+			int total = Convert.ToInt32 (reader [0]);
+			reader.Close ();
+			return total;
+		}
 	}
 
 	public static ThumbnailFactory ThumbnailFactory = new ThumbnailFactory (ThumbnailSize.Large);
@@ -673,10 +677,8 @@ public class PhotoStore : DbStore {
 		this.tag_store = tag_store;
 		EnsureThumbnailDirectory ();
 
-		if (! is_new) {
-			TotalPhotos = Convert.ToInt32(Database.QuerySingle("SELECT count(*) from photos"));
+		if (! is_new)
 			return;
-		}
 		
 		Database.ExecuteNonQuery ( 
 			"CREATE TABLE photos (                                     " +
@@ -702,8 +704,6 @@ public class PhotoStore : DbStore {
 			"       version_id      INTEGER,  " +
 			"       name            STRING    " +
 			")");
-
-		TotalPhotos = 0;
 	}
 
 
@@ -736,8 +736,6 @@ public class PhotoStore : DbStore {
 			thumbnail = GenerateThumbnail (UriList.PathToFileUri (newPath), img);		
 			EmitAdded (photo);
 		}
-		TotalPhotos++;
-		
 		return photo;
 	}
 
@@ -975,7 +973,6 @@ public class PhotoStore : DbStore {
 			query_builder.Append (String.Format ("id = {0}", items[i].Id));
 			tv_query_builder.Append (String.Format ("photo_id = {0}", items[i].Id));
 			RemoveFromCache (items[i]);
-			TotalPhotos--;			
 		}
 
 		Database.ExecuteNonQuery (String.Format ("DELETE FROM photos WHERE {0}", query_builder.ToString ()));

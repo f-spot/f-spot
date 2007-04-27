@@ -1,3 +1,10 @@
+2007-04-27  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/PhotoStore.cs:
+	* src/MainWindow.cs: No longer try to guess TotalPhotos from adds and
+	removes of the store, get that number directly from the db. Fixes bgo
+	#431189.
+
 2007-04-19  Larry Ewing  <lewing@novell.com>
 
 	* src/Imaging/Tiff.cs: start implementing save logic.
