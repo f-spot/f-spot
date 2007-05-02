@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Arabic\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-21 09:27+0100\n"
-"PO-Revision-Date: 2007-04-14 18:49+0100\n"
-"Last-Translator: Djihed Afifi <djihed@gmail.com>\n"
+"POT-Creation-Date: 2007-05-02 16:43+0100\n"
+"PO-Revision-Date: 2007-05-01 15:29+0300\n"
+"Last-Translator: ehab <ehabgassem@yahoo.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,7 +18,7 @@ msgstr ""
 #: ../Mono.Addins/Mono.Addins/Mono.Addins.Description/AssemblyDependency.cs:79
 #, csharp-format
 msgid "(provided by {0})"
-msgstr ""
+msgstr "(شريطة ان {0})"
 
 #: ../Mono.Addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:108
 #, fuzzy
@@ -33,7 +33,7 @@ msgstr "جاري تحميل {0} من {1}"
 #: ../Mono.Addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:216
 #, csharp-format
 msgid "The required addin '{0}' is disabled."
-msgstr ""
+msgstr "الاضافة المطلوبة '{0}' معطلة."
 
 #: ../Mono.Addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:218
 #, fuzzy, csharp-format
@@ -67,7 +67,7 @@ msgstr "_صدِّر المفتاح العام..."
 
 #: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:6
 msgid "Export to SmugMug......"
-msgstr ""
+msgstr "التصدير الى SmugMug"
 
 #: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:7
 #, fuzzy
@@ -91,7 +91,7 @@ msgstr "كتيّب آف سبوت"
 
 #: ../f-spot.desktop.in.in.h:2
 msgid "Organize, enjoy, and share your photos"
-msgstr ""
+msgstr "نظم, تمتع, وقم بمشاركة الصور"
 
 #: ../f-spot.desktop.in.in.h:3
 #, fuzzy
@@ -119,7 +119,7 @@ msgstr "بالامتداد"
 
 #: ../libeog/eog-file-selection.c:30
 msgid "BMP"
-msgstr ""
+msgstr "BMP"
 
 #: ../libeog/eog-file-selection.c:31
 #, fuzzy
@@ -162,7 +162,7 @@ msgstr "TAP"
 
 #: ../libeog/eog-file-selection.c:39
 msgid "TIFF"
-msgstr ""
+msgstr "TIFF"
 
 #: ../libeog/eog-file-selection.c:40
 #, fuzzy
@@ -383,7 +383,7 @@ msgstr "خطأ أثناء حفظ الملف %s"
 #: ../src/MainWindow.cs:1940 ../src/PhotoView.cs:266
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
-msgstr ""
+msgstr "تم إستلام الخطأ \"{0}\". لايمكن حفظ الصورة {1}"
 
 #: ../src/Core.cs:184
 #, fuzzy, csharp-format
@@ -432,7 +432,7 @@ msgstr "تفاصيل الخطأ"
 
 #: ../src/ExceptionDialog.cs:104
 msgid "An unhandled exception was thrown: "
-msgstr ""
+msgstr "لم تتم السيطرة على الإستثناء "
 
 #: ../src/FSpot.addin.xml.h:1
 #, fuzzy
@@ -465,6 +465,8 @@ msgid ""
 "Return to this window after you have finished the authorization process on "
 "{0} and click the \"Complete Authorization\" button below"
 msgstr ""
+"العودة الى هذه النافذة بعد الانتهاء من عملية المصادقة على {0} قم بالضعط على "
+"زر \"الإنتهاء من المصادقة\"  بالاسفل"
 
 #: ../src/FlickrExport.cs:79
 #, fuzzy
@@ -748,7 +750,7 @@ msgstr "مونرو"
 
 #: ../src/GroupSelector.cs:513
 msgid "Arrange by _Month"
-msgstr ""
+msgstr "الترتيب حسب الاشهر"
 
 #: ../src/GroupSelector.cs:516
 #, fuzzy
@@ -1010,7 +1012,7 @@ msgstr "ال_مجلّد"
 
 #: ../src/InfoDisplay.cs:139
 msgid "Picasaweb"
-msgstr ""
+msgstr "موقع بيكاسا"
 
 #: ../src/InfoDisplay.cs:141
 #, fuzzy
@@ -1135,7 +1137,7 @@ msgstr "لا يمكن الضبط و الضبط/إلغاء الضبط متزام�
 
 #: ../src/MainWindow.cs:249
 msgid "View and edit a photo"
-msgstr ""
+msgstr "عرض وتعديل الصورة"
 
 #: ../src/MainWindow.cs:254 ../src/SingleView.cs:85
 #, fuzzy
@@ -1144,7 +1146,7 @@ msgstr "تصفح بملأ الشاشة"
 
 #: ../src/MainWindow.cs:257 ../src/SingleView.cs:87
 msgid "View photos in a slideshow"
-msgstr ""
+msgstr "عرض الصور كشرائح جانبية"
 
 #: ../src/MainWindow.cs:815
 #, fuzzy
@@ -1177,7 +1179,7 @@ msgstr "خطأ في الاتصال بالخادم: %s"
 #: ../src/MainWindow.cs:1413
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
-msgstr ""
+msgstr "تم إستلام الخطأ \"{0}\" عند الاتصال بالكاميرا"
 
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
@@ -1223,7 +1225,7 @@ msgid_plural "{0} Photos"
 msgstr[0] "صورة"
 msgstr[1] "صورة"
 
-#: ../src/MainWindow.cs:2126
+#: ../src/MainWindow.cs:2127
 #, fuzzy, csharp-format
 msgid " out of {0}"
 msgstr "أوقف {0}"
@@ -1553,7 +1555,7 @@ msgstr "هامشي"
 #. items insensitve
 #: ../src/PhotoTagMenu.cs:72
 msgid "(No Tags)"
-msgstr ""
+msgstr "(بدون تذكرة)"
 
 #: ../src/PhotoVersionCommands.cs:55
 #, fuzzy
@@ -1578,7 +1580,7 @@ msgstr "لا يمكن انشاء مشروع جديد"
 #: ../src/PhotoVersionCommands.cs:108
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to create version \"{1}\""
-msgstr ""
+msgstr "إستلام الاستثناء \"{0}\". لا يمكن إنشاء الاصدارة \"{1}\""
 
 #: ../src/PhotoVersionCommands.cs:135
 #, fuzzy
@@ -1607,7 +1609,7 @@ msgstr "لم يمكن حذف \"%s\"."
 #: ../src/PhotoVersionCommands.cs:152
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to delete version \"{1}\""
-msgstr ""
+msgstr "إستلام الاستثناء \"{0}\". لا يمكن حذف الاصدارة \"{1}\""
 
 #: ../src/PhotoVersionCommands.cs:193
 #, fuzzy
@@ -1617,7 +1619,7 @@ msgstr "لم يمكن اعادة تسمية المجلّد"
 #: ../src/PhotoVersionCommands.cs:194
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
-msgstr ""
+msgstr "إستلام الاستثناء \"{0}\". لا يمكن إعادة تسمية الاصدارة \"{1}\""
 
 #: ../src/PhotoVersionMenu.cs:66
 #, fuzzy
@@ -1631,15 +1633,15 @@ msgstr "ثابت"
 
 #: ../src/PhotoView.cs:64
 msgid "4 x 3 (Book)"
-msgstr ""
+msgstr "4 x 3 (كتاب)"
 
 #: ../src/PhotoView.cs:65
 msgid "4 x 6 (Postcard)"
-msgstr ""
+msgstr "4 x 6 (بطاقة بريدية)"
 
 #: ../src/PhotoView.cs:66
 msgid "5 x 7 (L, 2L)"
-msgstr ""
+msgstr "5 x 7 (L, 2L)"
 
 #: ../src/PhotoView.cs:67
 #, fuzzy
@@ -1684,6 +1686,8 @@ msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
 msgstr ""
+"هذه الاداة تتطلب تحديد المنطقة. رجاء قم بتحديد منطقة من الصورة واعادة "
+"العملية مرة اخرى"
 
 #: ../src/PhotoView.cs:487
 #, fuzzy
@@ -1712,7 +1716,7 @@ msgstr "الموقع السابق"
 
 #: ../src/PhotoView.cs:565
 msgid "Convert the photo to black and white"
-msgstr ""
+msgstr "تحويل الصورة الى ابيض واسود"
 
 #: ../src/PhotoView.cs:566
 #, fuzzy
@@ -1800,7 +1804,7 @@ msgstr[1] ""
 #: ../src/RotateCommand.cs:262
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
-msgstr ""
+msgstr "تم إستلام الخطأ \"{0}\" عند محاولتك تدوير الصورة {1}"
 
 #: ../src/RotateCommand.cs:267
 #, fuzzy
@@ -1815,7 +1819,7 @@ msgstr "يجري التحضير"
 #: ../src/SendEmail.cs:288
 #, csharp-format
 msgid "Exporting picture \"{0}\""
-msgstr ""
+msgstr "تصدير الصورة \"{0}\""
 
 #: ../src/SingleView.cs:78
 #, fuzzy
@@ -1881,7 +1885,7 @@ msgstr "سؤال"
 
 #: ../src/StockIcons.cs:38
 msgid "Reduce Red-Eye"
-msgstr ""
+msgstr "تخفيف حرارة اللون الاحمر"
 
 #: ../src/StockIcons.cs:39 ../src/f-spot.glade.h:178
 msgid "Rotate _Left"
@@ -2075,7 +2079,7 @@ msgstr ""
 #: ../src/TimeDialog.cs:130 ../src/f-spot.glade.h:194
 #, csharp-format
 msgid "Shift all photos by {0}"
-msgstr ""
+msgstr "تبديل جميع الصور بواسطة {0}"
 
 #. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
 #: ../src/Unix.cs:25
@@ -2095,6 +2099,8 @@ msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
 msgstr ""
+"الرجاء الانتظار حتى يتم تحديث قاعدة بيانات معرض الF-spot قد تستغرق العملية "
+"زمنا اطول"
 
 #: ../src/Util.cs:449
 #, fuzzy
@@ -2104,7 +2110,7 @@ msgstr "حدث خطأ عند حفظ لقطة الشّاشة"
 #: ../src/Util.cs:450
 #, csharp-format
 msgid "Received error:{1}\"{0}\"{1}"
-msgstr ""
+msgstr "تم إستلام الخطأr:{1}\"{0}\"{1}"
 
 #: ../src/Util.cs:474
 #, fuzzy
@@ -2173,15 +2179,15 @@ msgstr "من %d"
 
 #: ../src/f-spot.glade.h:7
 msgid "1024 px"
-msgstr ""
+msgstr "1024 بيكسل"
 
 #: ../src/f-spot.glade.h:8
 msgid "320 px"
-msgstr ""
+msgstr "320 بيكسل"
 
 #: ../src/f-spot.glade.h:9
 msgid "480 px"
-msgstr ""
+msgstr "480 بيكسل"
 
 #: ../src/f-spot.glade.h:10
 msgid "5"
@@ -2189,11 +2195,11 @@ msgstr "5"
 
 #: ../src/f-spot.glade.h:11
 msgid "640 px"
-msgstr ""
+msgstr "640 بيكسل"
 
 #: ../src/f-spot.glade.h:12
 msgid "800 px"
-msgstr ""
+msgstr "800 بيكسل"
 
 #: ../src/f-spot.glade.h:13
 #, fuzzy
@@ -2383,6 +2389,7 @@ msgid ""
 "<small><i>Choose the folder where F-Spot should store newly imported photos</"
 "i></small>"
 msgstr ""
+"<small><i>قم بإختيار الملف حيث سيتم تحزين الصور المستوردة الجديدة</i></small>"
 
 #: ../src/f-spot.glade.h:51
 msgid ""
@@ -2578,7 +2585,7 @@ msgstr "ان_شئ مفتاحاً جديداً..."
 
 #: ../src/f-spot.glade.h:93
 msgid "Create _gallery using \"Original\""
-msgstr ""
+msgstr "إنشاء معرض بإسخدام \"الطبيعي\""
 
 #: ../src/f-spot.glade.h:94
 #, fuzzy
@@ -2726,6 +2733,8 @@ msgid ""
 "Full Page\n"
 "Standard - 4x6"
 msgstr ""
+"كامل الصفحة\n"
+"الاعتيادي- 4x6"
 
 #: ../src/f-spot.glade.h:127
 #, fuzzy
@@ -2749,6 +2758,10 @@ msgid ""
 "0.5\"\n"
 "1\"\n"
 msgstr ""
+"خط دقيق\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
 
 #: ../src/f-spot.glade.h:135
 #, fuzzy
@@ -2824,7 +2837,7 @@ msgstr "ا_فتح المجلد المَقْصِد بعد الإستخراج"
 
 #: ../src/f-spot.glade.h:156
 msgid "Original size (possible very large file size)"
-msgstr ""
+msgstr "المقاس الحقيقي (قد يكون حجم الملف كبير جداً)"
 
 #: ../src/f-spot.glade.h:157
 #, fuzzy
@@ -2848,7 +2861,7 @@ msgstr "_توقّف مؤقّت"
 
 #: ../src/f-spot.glade.h:161
 msgid "Photo 0 of 0"
-msgstr ""
+msgstr "الصورة 0 من 0"
 
 #: ../src/f-spot.glade.h:162
 #, fuzzy
@@ -2857,7 +2870,7 @@ msgstr "حجم الخط"
 
 #: ../src/f-spot.glade.h:163
 msgid "Please verify that the settings for this gallery are correct."
-msgstr ""
+msgstr "الرجاء تاكيد صحة إعدادات هذا المعرض "
 
 #: ../src/f-spot.glade.h:164
 msgid ""
@@ -2865,6 +2878,9 @@ msgid ""
 "Enter the letters as they are shown in the image in\n"
 "the 'Captcha' field. <i>Letters are not case-sensitive</i>"
 msgstr ""
+"الرجاء تاكيد صحة إعدادات هذا المعرض. \n"
+"قم بإدخال الحروف كما هي معروضة في الصورة\n"
+"بداخل حقل  'Captcha' . <i> حساسية حالة الحروف غير مطلوبة</i>"
 
 #: ../src/f-spot.glade.h:167
 #, fuzzy
@@ -3023,6 +3039,9 @@ msgid ""
 "Image Profile\n"
 "Custom\n"
 msgstr ""
+"الإفتراضي RGB\n"
+"خصائص الصورة\n"
+"مخصص\n"
 
 #: ../src/f-spot.glade.h:208
 #, fuzzy
@@ -3078,7 +3097,7 @@ msgstr "النافذة المرئية"
 
 #: ../src/f-spot.glade.h:219
 msgid "Will print using: US Letter size on Generic Postscript"
-msgstr ""
+msgstr "سيتم طباعة الصورة مقاس US Letter size  على Generic Postscript"
 
 #: ../src/f-spot.glade.h:220
 #, fuzzy
@@ -3338,7 +3357,7 @@ msgstr "ملفات عن بعد فقط"
 
 #: ../src/f-spot.glade.h:275
 msgid "_Scale photos to no larger than: "
-msgstr ""
+msgstr "لا تقم بتكبير الصورة اكبر من "
 
 #: ../src/f-spot.glade.h:276
 #, fuzzy
@@ -3380,7 +3399,7 @@ msgstr "_عنوان:"
 
 #: ../src/f-spot.glade.h:284
 msgid "_Untagged Photos"
-msgstr ""
+msgstr "صور بدون تذكرة"
 
 #: ../src/f-spot.glade.h:285
 #, fuzzy
@@ -3399,7 +3418,7 @@ msgstr "_عرض/"
 
 #: ../src/f-spot.glade.h:288
 msgid "_View photos in browser when done uploading"
-msgstr ""
+msgstr "عرض الصورة في المتصفح بعد الإنتهاء من التحميل"
 
 #: ../src/f-spot.glade.h:289
 #, fuzzy
@@ -3423,7 +3442,7 @@ msgstr "فرق"
 
 #: ../src/f-spot.glade.h:293
 msgid "img_000.jpg"
-msgstr ""
+msgstr "الصورة_000.jpg"
 
 #: ../src/f-spot.glade.h:295
 msgid "pixels"
@@ -3443,4 +3462,3 @@ msgstr "أظهر عرض شرائح من مجلد الصور الخاص بك"
 #, fuzzy
 msgid "F-Spot photos"
 msgstr "استورد ال_صور"
-
