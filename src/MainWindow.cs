@@ -46,6 +46,7 @@ public class MainWindow {
 	[Glade.Widget] MenuItem delete_version_menu_item;
 	[Glade.Widget] MenuItem rename_version_menu_item;
 	
+	[Glade.Widget] MenuItem tools;
 	[Glade.Widget] MenuItem export;
 	[Glade.Widget] MenuItem print;
 	[Glade.Widget] MenuItem send_mail;
@@ -2771,6 +2772,9 @@ public class MainWindow {
 	
 		export.Submenu = (Mono.Addins.AddinManager.GetExtensionNode ("/FSpot/Menus/Exports") as FSpot.Extensions.SubmenuNode).GetMenuItem ().Submenu;
 		export.Sensitive = active_selection;
+
+		tools.Submenu = (Mono.Addins.AddinManager.GetExtensionNode ("/FSpot/Menus/Tools") as FSpot.Extensions.SubmenuNode).GetMenuItem ().Submenu;
+		tools.Visible = (tools.Submenu as Menu).Children.Length > 0;
 
 		if (rl_button != null) {
 			if (selection.Count == 0) {

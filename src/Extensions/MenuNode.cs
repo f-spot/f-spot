@@ -17,6 +17,7 @@ namespace FSpot.Extensions
 	[ExtensionNode ("Menu")]
 	[ExtensionNodeChild (typeof (MenuItemNode))]
 	[ExtensionNodeChild (typeof (ExportMenuItemNode))]
+	[ExtensionNodeChild (typeof (ToolMenuItemNode))]
 	[ExtensionNodeChild (typeof (MenuSeparatorNode))]
 	[ExtensionNodeChild (typeof (SubmenuNode))]
 	public class SubmenuNode : MenuNode

@@ -1,4 +1,4 @@
-<Addin namespace="FSpot" id="Core" version="1.0" isroot="true">
+<Addin namespace="FSpot" id="Core" version="1.1" isroot="true">
 	<Runtime>
 		<Import assembly="f-spot.exe" />
 	</Runtime>
@@ -9,5 +9,9 @@
 
 	<Extension path = "/FSpot/Menus">
 		<Menu id="Exports" _label="Export to" />
+	</Extension>
+
+	<Extension path = "/FSpot/Menus">
+		<Menu id="Tools" _label="Tools" />
 	</Extension>
 </Addin>

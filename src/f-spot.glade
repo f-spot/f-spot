@@ -9194,7 +9194,13 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 	      </child>
 	    </widget>
 	  </child>
-
+          <child>
+	    <widget class="GtkMenuItem" id="tools">
+              <property name="visible">True</property>
+              <property name="label" translatable="yes">_Tools</property>
+	      <property name="use_underline">True</property>
+	    </widget>
+	  </child>
 	  <child>
 	    <widget class="GtkMenuItem" id="help1">
 	      <property name="visible">True</property>
