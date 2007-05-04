@@ -3,6 +3,9 @@
 
 ## Directories
 
+DIR_ADDINS_ADDINS = $(top_builddir)/Mono.Addins/Mono.Addins/
+DIR_ADDINS_GUI = $(top_builddir)/Mono.Addins/Mono.Addins.Gui/
+DIR_ADDINS_SETUP = $(top_builddir)/Mono.Addins/Mono.Addins.Setup/
 DIR_DBUS = $(top_builddir)/dbus-sharp
 DIR_DBUS_GLIB = $(top_builddir)/dbus-sharp-glib
 DIR_DOCS = $(top_builddir)/docs
@@ -16,7 +19,6 @@ DIR_JPEGTRAN = $(top_builddir)/libjpegtran
 DIR_KEYRING = $(top_builddir)/gnome-keyring-sharp
 DIR_LIBEOG = $(top_builddir)/libeog
 DIR_LIBFSPOT = $(top_builddir)/libfspot
-DIR_ADDINS_ADDINS = $(top_builddir)/Mono.Addins/Mono.Addins/
 DIR_SEMWEB = $(top_builddir)/semweb
 DIR_SMUGMUG = $(top_builddir)/SmugMugNet
 DIR_SRC = $(top_builddir)/src
@@ -36,7 +38,9 @@ LINK_GLITZ = -r:$(DIR_GLITZ)/NDesk.Glitz.dll
 LINK_GOOGLE = -r:$(DIR_GOOGLE)/Mono.Google.dll
 LINK_GPHOTO2 = -r:$(DIR_GPHOTO2)/libgphoto2-sharp.dll
 LINK_MONO_ADDINS =					\
-	-r:$(DIR_ADDINS_ADDINS)/Mono.Addins.dll
+	-r:$(DIR_ADDINS_ADDINS)/Mono.Addins.dll		\
+	-r:$(DIR_ADDINS_SETUP)/Mono.Addins.Setup.dll	\
+	-r:$(DIR_ADDINS_GUI)/Mono.Addins.Gui.dll
 LINK_SEMWEB = -r:$(DIR_SEMWEB)/SemWeb.dll
 LINK_SMUGMUG = -r:$(DIR_SMUGMUG)/SmugMugNet.dll
 LINK_TAO = 								\
