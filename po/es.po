@@ -1,4 +1,3 @@
-# translation of es.po to
 # Traducción de f-spot al español
 # Spanish translation for f-spot
 # Copyright (C) 2004 f-spot's COPYRIGHT HOLDER
@@ -7,21 +6,80 @@
 # Sergio Rubio <sergio.rubio@hispalinux.es>, 2004.
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2004, 2005, 2006.
 # Antonio Ognio <gnrfan@gnrfan.orf>, 2004.
-# Francisco Javier F. Serrador <serrador@tecknolabs.com>, 2005.
-# Jorge González <jorge.gonzalez.gonzalez@hispalinux.es>, 2004, 2005, 2006, 2007.
+# Jorge González <jorgegonz@svn.gnome.org>, 2004, 2005, 2006, 2007, .
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-21 09:39+0100\n"
-"PO-Revision-Date: 2007-02-14 11:43+0100\n"
-"Last-Translator: Jorge González <jorge.gonzalez.gonzalez@hispalinux.es>\n"
-"Language-Team: Español <traductores@es.gnome.org>\n"
+"POT-Creation-Date: 2007-05-04 03:22+0100\n"
+"PO-Revision-Date: 2007-05-05 16:08+0200\n"
+"Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
+"Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+
+#: ../Mono.Addins/Mono.Addins/Mono.Addins.Description/AssemblyDependency.cs:79
+#, csharp-format
+msgid "(provided by {0})"
+msgstr "(proporcionado por {0})"
+
+#: ../Mono.Addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:108
+msgid "Disabled add-ins can't be loaded."
+msgstr "Los complementos deshabilitados no se pueden cargar."
+
+#: ../Mono.Addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:133
+#, csharp-format
+msgid "Loading {0} add-in"
+msgstr "Cargando el complemento {0}"
+
+#: ../Mono.Addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:216
+#, csharp-format
+msgid "The required addin '{0}' is disabled."
+msgstr "El complemento requerido «{0}» está deshabilitado."
+
+#: ../Mono.Addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:218
+#, csharp-format
+msgid "The required addin '{0}' is not installed."
+msgstr "El complemento requerido «{0}» no está instalado."
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:1
+msgid "Export to 23hq..."
+msgstr "Exportar a 23h_q…"
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:2
+msgid "Export to CD..."
+msgstr "Exportar a CD…"
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:3
+msgid "Export to Flickr..."
+msgstr "Exportar a Flickr…"
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:4
+msgid "Export to Folder..."
+msgstr "Exportar a una carpeta…"
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:5
+msgid "Export to PicasaWeb..."
+msgstr "Exportar a Picasaweb…"
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:6
+msgid "Export to SmugMug......"
+msgstr "Exportar a SmugMug…"
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:7
+msgid "Export to Web Gallery..."
+msgstr "Exportar a Web Gallery…"
+
+#: ../f-spot-view.desktop.in.in.h:1
+msgid "F-Spot Photo Viewer"
+msgstr "Visor de fotos F-Spot"
+
+#: ../f-spot-view.desktop.in.in.h:2
+msgid "Photo Viewer"
+msgstr "Visor de fotos"
 
 #: ../f-spot.desktop.in.in.h:1
 msgid "F-Spot Photo Manager"
@@ -34,14 +92,6 @@ msgstr "Organice, diviértase y comparta sus fotografías"
 #: ../f-spot.desktop.in.in.h:3
 msgid "Photo Manager"
 msgstr "Gestor de fotografías"
-
-#: ../f-spot-view.desktop.in.in.h:1
-msgid "F-Spot Photo Viewer"
-msgstr "Visor de fotos F-Spot"
-
-#: ../f-spot-view.desktop.in.in.h:2
-msgid "Photo Viewer"
-msgstr "Visor de fotos"
 
 #: ../google-sharp/CaptchaException.cs:58
 msgid "url"
@@ -176,86 +226,100 @@ msgstr "Tipo de transformación desconocida %d"
 msgid "Operation failed"
 msgstr "Falló la operación"
 
-#: ../src/CameraFileSelectionDialog.cs:66
+#: ../src/CDExport.cs:116
+#, csharp-format
+msgid "Transferring picture \"{0}\" To CD"
+msgstr "Transfiriendo imagen «{0}» al CD"
+
+#. This indicates the current photo is photo {0} of {1} out of photos
+#: ../src/CDExport.cs:118 ../src/FlickrExport.cs:285
+#: ../src/FolderExport.cs:197 ../src/GalleryExport.cs:704
+#: ../src/ProgressDialog.cs:82 ../src/TimeDialog.cs:147
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} de {1}"
+
+#: ../src/CDExport.cs:131 ../src/FlickrExport.cs:302
+#: ../src/FolderExport.cs:228 ../src/GalleryExport.cs:728
+#: ../src/PicasaWebExport.cs:613 ../src/SmugMugExport.cs:579
+msgid "Done Sending Photos"
+msgstr "Envío de fotografías terminado"
+
+#: ../src/CDExport.cs:133 ../src/FolderExport.cs:230
+msgid "Transfer Complete"
+msgstr "Transferencia completada"
+
+#: ../src/CDExport.cs:140 ../src/FolderExport.cs:235
+msgid "Error While Transferring"
+msgstr "Error al transferir"
+
+#: ../src/CDExport.cs:147 ../src/FolderExport.cs:252
+msgid "Error Transferring"
+msgstr "Error al transferir"
+
+#: ../src/CDExport.cs:168 ../src/FolderExport.cs:274
+msgid "Error: Error while transferring; Aborting"
+msgstr "Error: error al transferir; abortando"
+
+#: ../src/CDExport.cs:171 ../src/FolderExport.cs:277
+msgid "Error: File Already Exists; Aborting"
+msgstr "Error: el archivo ya existe; abortando"
+
+#: ../src/CDExport.cs:210 ../src/CameraFileSelectionDialog.cs:183
+#: ../src/FolderExport.cs:331
+msgid "Transferring Pictures"
+msgstr "Transfiriendo las fotografías"
+
+#: ../src/CameraFileSelectionDialog.cs:62
 msgid "Preview"
 msgstr "Previsualizar"
 
-#: ../src/CameraFileSelectionDialog.cs:68
+#: ../src/CameraFileSelectionDialog.cs:64
 msgid "Path"
 msgstr "Ruta"
 
-#: ../src/CameraFileSelectionDialog.cs:70 ../src/f-spot.glade.h:128
+#: ../src/CameraFileSelectionDialog.cs:66 ../src/f-spot.glade.h:119
 msgid "File"
 msgstr "Archivo"
 
-#: ../src/CameraFileSelectionDialog.cs:72 ../src/FolderExport.cs:862
+#: ../src/CameraFileSelectionDialog.cs:68 ../src/FolderExport.cs:855
 msgid "Index"
 msgstr "Índice"
 
 #: ../src/CameraFileSelectionDialog.cs:88
+msgid "Select Tag"
+msgstr "Seleccionar etiqueta"
+
+#: ../src/CameraFileSelectionDialog.cs:124
 msgid "Downloading Previews"
 msgstr "Descargando las previsualizaciones"
 
-#: ../src/CameraFileSelectionDialog.cs:96
+#: ../src/CameraFileSelectionDialog.cs:132
 #, csharp-format
 msgid "Downloading Preview of {0}"
 msgstr "Descargando la previsualización de «{0}»"
 
-#: ../src/CameraFileSelectionDialog.cs:148
-msgid "Unknown destination."
-msgstr "Destino desconocido."
-
-#: ../src/CameraFileSelectionDialog.cs:149
-msgid ""
-"When copying files from a camera you must select a valid destination on the "
-"local filesystem"
-msgstr ""
-"Cuando copie fotografías desde una cámara debe seleccionar un destino válido "
-"en el sistema de archivos local"
-
-#: ../src/CameraFileSelectionDialog.cs:167
-msgid "Unable to create directory."
-msgstr "Imposible crear la carpeta."
-
-#: ../src/CameraFileSelectionDialog.cs:168
-#, csharp-format
-msgid ""
-"Error \"{0}\" while creating directory \"{1}\".  Check that the path and "
-"permissions are correct and try again"
-msgstr ""
-"Error «{0}» al crear la carpeta «{1}».  Compruebe que la ruta y los permisos "
-"sean correctos e inténtelo de nuevo"
-
-#: ../src/CameraFileSelectionDialog.cs:189 ../src/CDExport.cs:205
-#: ../src/FolderExport.cs:325
-msgid "Transferring Pictures"
-msgstr "Transfiriendo las fotografías"
-
-#: ../src/CameraFileSelectionDialog.cs:212
+#: ../src/CameraFileSelectionDialog.cs:206
 #, csharp-format
 msgid "Copying file {0} of {1}"
 msgstr "Copiando fotografía {0} de {1}"
 
-#: ../src/CameraFileSelectionDialog.cs:222
+#: ../src/CameraFileSelectionDialog.cs:216
 msgid "Error transferring file"
 msgstr "Error al transferir el archivo"
 
-#: ../src/CameraFileSelectionDialog.cs:231
+#: ../src/CameraFileSelectionDialog.cs:225
 msgid "Done Copying Files"
 msgstr "Finalizó la copia de los archivos"
 
-#: ../src/CameraFileSelectionDialog.cs:233
+#: ../src/CameraFileSelectionDialog.cs:227
 msgid "Download Complete"
 msgstr "Descarga completada"
 
-#: ../src/CameraFileSelectionDialog.cs:254
+#: ../src/CameraFileSelectionDialog.cs:252
 #, csharp-format
 msgid "Transferring \"{0}\" from camera"
 msgstr "Transfiriendo «{0}» desde la cámara"
-
-#: ../src/CameraFileSelectionDialog.cs:280
-msgid "Select Destination"
-msgstr "Seleccionar el destino"
 
 #: ../src/CameraSelectionDialog.cs:28 ../src/StockIcons.cs:29
 msgid "Camera"
@@ -265,51 +329,12 @@ msgstr "Cámara"
 msgid "Port"
 msgstr "Puerto"
 
-#: ../src/CDExport.cs:112
-#, csharp-format
-msgid "Transferring picture \"{0}\" To CD"
-msgstr "Transfiriendo imagen «{0}» al CD"
-
-#. This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/CDExport.cs:114 ../src/FlickrExport.cs:262
-#: ../src/FolderExport.cs:195 ../src/GalleryExport.cs:698
-#: ../src/ProgressDialog.cs:82 ../src/TimeDialog.cs:147
-#, csharp-format
-msgid "{0} of {1}"
-msgstr "{0} de {1}"
-
-#: ../src/CDExport.cs:127 ../src/FlickrExport.cs:279
-#: ../src/FolderExport.cs:222 ../src/GalleryExport.cs:722
-#: ../src/PicasaWebExport.cs:615 ../src/SmugMugExport.cs:576
-msgid "Done Sending Photos"
-msgstr "Envío de fotografías terminado"
-
-#: ../src/CDExport.cs:129 ../src/FolderExport.cs:224
-msgid "Transfer Complete"
-msgstr "Transferencia completada"
-
-#: ../src/CDExport.cs:136 ../src/FolderExport.cs:229
-msgid "Error While Transferring"
-msgstr "Error al transferir"
-
-#: ../src/CDExport.cs:142 ../src/FolderExport.cs:246
-msgid "Error Transferring"
-msgstr "Error al transferir"
-
-#: ../src/CDExport.cs:163 ../src/FolderExport.cs:268
-msgid "Error: Error while transferring; Aborting"
-msgstr "Error: error al transferir; abortando"
-
-#: ../src/CDExport.cs:166 ../src/FolderExport.cs:271
-msgid "Error: File Already Exists; Aborting"
-msgstr "Error: el archivo ya existe; abortando"
-
 #: ../src/ColorDialog.cs:211
 msgid "Error saving adjusted photo"
 msgstr "Error al guardar la foto ajustada"
 
 #: ../src/ColorDialog.cs:212 ../src/HigMessageDialog.cs:15 ../src/Loupe.cs:58
-#: ../src/MainWindow.cs:1929 ../src/PhotoView.cs:266
+#: ../src/MainWindow.cs:1941 ../src/PhotoView.cs:266
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Se recibió la excepción «{0}». No es posible guardar la imagen {1}"
@@ -344,14 +369,14 @@ msgstr ""
 "seleccionar una etiqueta diferente en el diálogo de\n"
 "preferencias de F-Spot."
 
-#: ../src/Editors/Tilt.cs:24 ../src/ItemAction.cs:355 ../src/StockIcons.cs:34
-msgid "Straighten"
-msgstr "Enderezar"
-
 #: ../src/Editors/SoftFocus.cs:25 ../src/ItemAction.cs:371
 #: ../src/StockIcons.cs:43
 msgid "Soft Focus"
 msgstr "Foco suave"
+
+#: ../src/Editors/Tilt.cs:28 ../src/ItemAction.cs:355 ../src/StockIcons.cs:34
+msgid "Straighten"
+msgstr "Enderezar"
 
 #: ../src/ExceptionDialog.cs:24
 msgid "F-Spot Encountered a Fatal Error"
@@ -365,43 +390,33 @@ msgstr "Detalles del error"
 msgid "An unhandled exception was thrown: "
 msgstr "Se produjo una excepción no tratada: "
 
-#: ../src/FileImportBackend.cs:260
+#: ../src/FSpot.addin.xml.h:1
+msgid "Export to"
+msgstr "Exportar a"
+
+#: ../src/FSpot.addin.xml.h:2
+msgid "Tools"
+msgstr "Herramientas"
+
+#: ../src/FileImportBackend.cs:262
 msgid "Import error"
 msgstr "Error al importar"
 
-#: ../src/FileImportBackend.cs:261
+#: ../src/FileImportBackend.cs:263
 #, csharp-format
-msgid ""
-"Error importing {0}\n"
-"\n"
-"{1}"
-msgstr ""
-"Error al importar {0}\n"
-"\n"
-"{1}"
+msgid "Error importing {0}{2}{2}{1}"
+msgstr "Error al importar {0}{2}{2}{1}"
 
-#: ../src/Filters/ResizeFilter.cs:68
+#: ../src/Filters/ResizeFilter.cs:70 ../src/Filters/SharpFilter.cs:52
 #, csharp-format
 msgid "No way to save files of type \"{0}\""
 msgstr "No hay forma de guardar los archivos de tipo «{0}»"
 
-#: ../src/FindBar.cs:45
-msgid "Find:"
-msgstr "Buscar:"
-
-#: ../src/FindBar.cs:275
-msgid "Valid"
-msgstr "Válido"
-
-#: ../src/FindBar.cs:276
-msgid "Invalid"
-msgstr "Inválida"
-
-#: ../src/FlickrExport.cs:65 ../src/f-spot.glade.h:78
+#: ../src/FlickrExport.cs:73 ../src/f-spot.glade.h:78
 msgid "Authorize"
 msgstr "Autorizar"
 
-#: ../src/FlickrExport.cs:70
+#: ../src/FlickrExport.cs:78
 #, csharp-format
 msgid ""
 "Return to this window after you have finished the authorization process on "
@@ -410,65 +425,65 @@ msgstr ""
 "Vuelva a esta ventana tras haber terminado el proceso de autorización en {0} "
 "y pulse en el botón «Completar autorización» de abajo"
 
-#: ../src/FlickrExport.cs:71
+#: ../src/FlickrExport.cs:79
 msgid "Complete Authorization"
 msgstr "Completar autorización"
 
-#: ../src/FlickrExport.cs:75
+#: ../src/FlickrExport.cs:83
 #, csharp-format
 msgid "Logging into {0}"
 msgstr "Iniciando sesión en {0}"
 
-#: ../src/FlickrExport.cs:76
+#: ../src/FlickrExport.cs:84
 msgid "Checking credentials..."
 msgstr "Comprobando credenciales…"
 
-#: ../src/FlickrExport.cs:82
+#: ../src/FlickrExport.cs:90
 #, csharp-format
 msgid "Welcome {0} you are connected to {1}"
 msgstr "Bienvenido {0}. Estás conectado a {1}"
 
-#: ../src/FlickrExport.cs:85
+#: ../src/FlickrExport.cs:93
 #, csharp-format
 msgid "Sign in as a different user"
 msgstr "Iniciar sesión como un usuario distinto"
 
-#: ../src/FlickrExport.cs:221
+#: ../src/FlickrExport.cs:244
 msgid "Unable to log on"
 msgstr "No es posible iniciar la sesión"
 
-#: ../src/FlickrExport.cs:241
+#: ../src/FlickrExport.cs:264
 #, csharp-format
 msgid "Waiting for response {0} of {1}"
 msgstr "Esperando respuesta {0} de {1}"
 
-#: ../src/FlickrExport.cs:257 ../src/FolderExport.cs:192
-#: ../src/GalleryExport.cs:694
+#: ../src/FlickrExport.cs:280 ../src/FolderExport.cs:194
+#: ../src/GalleryExport.cs:700
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Subiendo imagen «{0}»"
 
-#: ../src/FlickrExport.cs:281 ../src/GalleryExport.cs:724
-#: ../src/PicasaWebExport.cs:617 ../src/SmugMugExport.cs:578
+#: ../src/FlickrExport.cs:304 ../src/GalleryExport.cs:730
+#: ../src/PicasaWebExport.cs:615 ../src/SmugMugExport.cs:581
 msgid "Upload Complete"
 msgstr "Carga completada"
 
-#: ../src/FlickrExport.cs:284
+#: ../src/FlickrExport.cs:307
 #, csharp-format
 msgid "Error Uploading To {0}: {1}"
 msgstr "Error al subir {0}: {1}"
 
-#: ../src/FlickrExport.cs:287 ../src/FolderExport.cs:200
-#: ../src/GalleryExport.cs:714 ../src/PicasaWebExport.cs:607
-#: ../src/SmugMugExport.cs:568
+#: ../src/FlickrExport.cs:310 ../src/FolderExport.cs:202
+#: ../src/GalleryExport.cs:720 ../src/PicasaWebExport.cs:605
+#: ../src/SmugMugExport.cs:571
 msgid "Error"
 msgstr "Error"
 
-#: ../src/FlickrExport.cs:350
+#: ../src/FlickrExport.cs:373
 msgid "Unable to log on."
 msgstr "No se pudo iniciar la sesión."
 
-#: ../src/FlickrExport.cs:351
+#: ../src/FlickrExport.cs:374
 #, csharp-format
 msgid ""
 "F-Spot was unable to log on to {0}.  Make sure you have given the "
@@ -477,1307 +492,93 @@ msgstr ""
 "F-Spot no pudo iniciar una sesión en {0}.  Compruebe que ha dado la "
 "autorización usando el interfaz web de {0}."
 
-#: ../src/FlickrExport.cs:369 ../src/GalleryExport.cs:649
-#: ../src/PicasaWebExport.cs:515 ../src/SmugMugExport.cs:494
+#: ../src/FlickrExport.cs:392 ../src/GalleryExport.cs:653
+#: ../src/PicasaWebExport.cs:520 ../src/SmugMugExport.cs:497
 msgid "Uploading Pictures"
 msgstr "Subiendo las fotografías"
 
-#: ../src/FolderExport.cs:109
+#: ../src/FolderExport.cs:111
 msgid "Select Export Folder"
 msgstr "Seleccionar la carpeta para exportar"
 
-#: ../src/FolderExport.cs:154
+#: ../src/FolderExport.cs:156
 msgid "Building Gallery"
 msgstr "Construyendo la galería"
 
-#: ../src/FolderExport.cs:198
+#: ../src/FolderExport.cs:200
 #, csharp-format
-msgid ""
-"Error uploading picture \"{0}\" to Gallery:\n"
-"{1}"
-msgstr ""
-"Error al subir a la imagen «{0}» a la galería:\n"
-"{1}"
+msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
+msgstr "Error al subir a la imagen «{0}» a la galería: {2}{1}"
 
-#: ../src/FolderExport.cs:716
+#: ../src/FolderExport.cs:709
 msgid "Light"
 msgstr "Claro"
 
-#: ../src/FolderExport.cs:717
+#: ../src/FolderExport.cs:710
 msgid "Dark"
 msgstr "Oscuro"
 
 #. Abbreviation of previous
-#: ../src/FolderExport.cs:860
+#: ../src/FolderExport.cs:853
 msgid "Prev"
 msgstr "Anterior"
 
-#: ../src/FolderExport.cs:865 ../src/f-spot.glade.h:154
-#: ../src/ItemAction.cs:133
+#: ../src/FolderExport.cs:858 ../src/ItemAction.cs:133
+#: ../src/f-spot.glade.h:145
 msgid "Next"
 msgstr "Siguiente"
 
-#: ../src/FolderExport.cs:918 ../src/FolderExport.cs:1091
+#: ../src/FolderExport.cs:911 ../src/FolderExport.cs:1084
 msgid "Show Styles"
 msgstr "Mostrar estilo"
 
-#: ../src/FolderExport.cs:919 ../src/FolderExport.cs:1092
+#: ../src/FolderExport.cs:912 ../src/FolderExport.cs:1085
 msgid "Hide Styles"
 msgstr "Ocultar estilos"
 
-#: ../src/FolderExport.cs:976
+#: ../src/FolderExport.cs:969
 msgid "Gallery generated by"
 msgstr "Galería generada por "
 
-#: ../src/FolderExport.cs:1021
+#: ../src/FolderExport.cs:1014
 msgid "Page:"
 msgstr "Página:"
 
-#: ../src/FormClient.cs:288
+#: ../src/FormClient.cs:292
 msgid "Unhandled exception"
 msgstr "Excepción no manipulada"
 
-#: ../src/FullScreenView.cs:35
+#: ../src/FullScreenView.cs:34
 msgid "Hide"
 msgstr "Ocultar"
 
-#: ../src/FullScreenView.cs:37
+#: ../src/FullScreenView.cs:36
 msgid "Hide Toolbar"
 msgstr "Ocultar barra de herramientas"
 
-#: ../src/FullScreenView.cs:41
+#: ../src/FullScreenView.cs:40
 msgid "Exit fullscreen"
 msgstr "Salir de pantalla completa"
 
-#: ../src/FullScreenView.cs:47 ../src/StockIcons.cs:42
+#: ../src/FullScreenView.cs:46 ../src/StockIcons.cs:42
 msgid "Slideshow"
 msgstr "Diapositivas"
 
-#: ../src/FullScreenView.cs:49
+#: ../src/FullScreenView.cs:48
 msgid "Start slideshow"
 msgstr "Comenzar a mostrar las diapositivas"
 
-#: ../src/FullScreenView.cs:56
+#: ../src/FullScreenView.cs:55
 msgid "Info"
 msgstr "Información"
 
-#: ../src/FullScreenView.cs:58
+#: ../src/FullScreenView.cs:57
 msgid "Image Information"
 msgstr "Información de la imagen"
 
-#: ../src/FullScreenView.cs:98
+#: ../src/FullScreenView.cs:97
 msgid "Slide transition: "
 msgstr "Transición de la diapositiva: "
-
-#: ../src/f-spot.glade.h:1
-msgid "\n"
-msgstr "\n"
-
-#: ../src/f-spot.glade.h:3
-msgid " "
-msgstr " "
-
-#: ../src/f-spot.glade.h:4
-msgid "..."
-msgstr "…"
-
-#: ../src/f-spot.glade.h:5
-msgid "0000:00:00 00:00:00"
-msgstr "0000:00:00 00:00:00"
-
-#: ../src/f-spot.glade.h:6
-msgid "00:00:00"
-msgstr "00:00:00"
-
-#: ../src/f-spot.glade.h:7
-msgid "1 of 1"
-msgstr "1 de 1"
-
-#: ../src/f-spot.glade.h:8
-msgid "1024 px"
-msgstr "1024 px"
-
-#: ../src/f-spot.glade.h:9
-msgid "320 px"
-msgstr "320 px"
-
-#: ../src/f-spot.glade.h:10
-msgid "480 px"
-msgstr "480 px"
-
-#: ../src/f-spot.glade.h:11
-msgid "5"
-msgstr "5"
-
-#: ../src/f-spot.glade.h:12
-msgid "640 px"
-msgstr "640 px"
-
-#: ../src/f-spot.glade.h:13
-msgid "800 px"
-msgstr "800 px"
-
-#: ../src/f-spot.glade.h:14
-msgid "<b></b>"
-msgstr "<b></b>"
-
-#: ../src/f-spot.glade.h:15
-msgid "<b>Account</b>"
-msgstr "<b>Cuenta</b>"
-
-#: ../src/f-spot.glade.h:16
-msgid "<b>Action</b>"
-msgstr "<b>Acción</b>"
-
-#: ../src/f-spot.glade.h:17
-msgid "<b>Album</b>"
-msgstr "<b>Álbum</b>"
-
-#: ../src/f-spot.glade.h:18
-msgid "<b>Co_rrections</b>"
-msgstr "<b>Cor_recciones</b>"
-
-#: ../src/f-spot.glade.h:19
-msgid "<b>Color Management</b>"
-msgstr "<b>Gestión de color</b>"
-
-#: ../src/f-spot.glade.h:20
-msgid "<b>Color Temperature</b>"
-msgstr "<b>Temperatura del color</b>"
-
-#: ../src/f-spot.glade.h:21
-msgid "<b>Destination</b>"
-msgstr "<b>Destino</b>"
-
-#: ../src/f-spot.glade.h:22
-msgid "<b>End Date</b>"
-msgstr "<b>Fecha de finalización</b>"
-
-#: ../src/f-spot.glade.h:23
-msgid "<b>Export Method</b>"
-msgstr "<b>Método de exportación</b>"
-
-#: ../src/f-spot.glade.h:24
-msgid "<b>Exposure</b>"
-msgstr "<b>Exposición</b>"
-
-#: ../src/f-spot.glade.h:25
-msgid "<b>From Photo</b>"
-msgstr "<b>Desde la fotografía</b>"
-
-#: ../src/f-spot.glade.h:26
-msgid "<b>Gallery</b>"
-msgstr "<b>Galería</b>"
-
-#: ../src/f-spot.glade.h:27
-msgid "<b>Histo_gram</b>"
-msgstr "<b>Histo_grama</b>"
-
-#: ../src/f-spot.glade.h:28
-msgid "<b>Histogram</b>"
-msgstr "<b>Histograma</b>"
-
-#: ../src/f-spot.glade.h:29
-msgid "<b>Image Interpolation</b>"
-msgstr "<b>Interpolación de imagen</b>"
-
-#: ../src/f-spot.glade.h:30
-msgid "<b>Import Settings</b>"
-msgstr "<b>Ajustes de importación</b>"
-
-#: ../src/f-spot.glade.h:31
-msgid "<b>Metadata</b>"
-msgstr "<b>Metadatos</b>"
-
-#: ../src/f-spot.glade.h:32
-msgid "<b>Photograph Layout</b>"
-msgstr "<b>Composición de la fotografía</b>"
-
-#: ../src/f-spot.glade.h:33
-msgid "<b>Photos to Burn</b>"
-msgstr "<b>Fotografías a grabar</b>"
-
-#: ../src/f-spot.glade.h:34
-msgid "<b>Photos</b>"
-msgstr "<b>Fotografías</b>"
-
-#: ../src/f-spot.glade.h:35
-msgid "<b>PicasaWeb Export</b>"
-msgstr "<b>Exportación a Picasaweb</b>"
-
-#: ../src/f-spot.glade.h:36
-msgid "<b>Predefined</b>"
-msgstr "<b>Predefinido</b>"
-
-#: ../src/f-spot.glade.h:37
-msgid "<b>Preview</b>"
-msgstr "<b>Previsualizar</b>"
-
-#: ../src/f-spot.glade.h:38
-msgid "<b>Printer Details</b>"
-msgstr "<b>Detalles de la impresora</b>"
-
-#: ../src/f-spot.glade.h:39
-msgid "<b>Reference Photo</b>"
-msgstr "<b>Fotografía de referencia</b>"
-
-#: ../src/f-spot.glade.h:40
-msgid "<b>Screensaver</b>"
-msgstr "<b>Salvapantallas</b>"
-
-#: ../src/f-spot.glade.h:41
-msgid "<b>Size</b>"
-msgstr "<b>Tamaño</b>"
-
-#: ../src/f-spot.glade.h:42
-msgid "<b>SmugMug Export</b>"
-msgstr "<b>Exportar a SmugMug</b>"
-
-#: ../src/f-spot.glade.h:43
-msgid "<b>Start Date</b>"
-msgstr "<b>Fecha de comienzo</b>"
-
-#: ../src/f-spot.glade.h:44
-msgid "<b>Style</b>"
-msgstr "<b>Estilo</b>"
-
-#: ../src/f-spot.glade.h:45
-msgid "<b>Summary</b>"
-msgstr "<b>Resumen</b>"
-
-#: ../src/f-spot.glade.h:46
-msgid "<b>Transparent Parts</b>"
-msgstr "<b>Partes transparentes</b>"
-
-#: ../src/f-spot.glade.h:47
-msgid "<b>Viewing permissions</b>"
-msgstr "<b>Permisos de visualización</b>"
-
-#: ../src/f-spot.glade.h:48
-msgid "<b>_White Balance</b>"
-msgstr "<b>Balance de _blancos</b>"
-
-#: ../src/f-spot.glade.h:49
-msgid "<small> </small>"
-msgstr "<small> </small>"
-
-#: ../src/f-spot.glade.h:50
-msgid "<small></small>"
-msgstr "<small></small>"
-
-#: ../src/f-spot.glade.h:51
-msgid ""
-"<small><i>Choose the folder where F-Spot should store newly imported photos</"
-"i></small>"
-msgstr ""
-"<small><i>Elija la carpeta donde F-Spot debería almacenar las fotos "
-"importadas nuevas</i></small>"
-
-#: ../src/f-spot.glade.h:52
-msgid ""
-"<small><i>Enable this option to store tags and descriptions inside \n"
-"supported image formats.</i></small>"
-msgstr ""
-"<small><i>Active esta opción para almacenar las etiquetas y las \n"
-"descripciones dentro de los formatos de imagen soportados.</i></small>"
-
-#: ../src/f-spot.glade.h:54
-msgid ""
-"<small><i>Enable this to allow interpolation on zoomed images. You should'nt "
-"disable this for viewing photos, but disabling the interpolation could be "
-"usefull in icon design.</i></small>"
-msgstr ""
-"<small><i>Activar esto para permitir interpolación en las imágenes "
-"ampliadas. No debería desactivar esto para ver fotos, pero desactivar la "
-"interpolación podría ser útil en el diseño de iconos.</i></small>"
-
-#: ../src/f-spot.glade.h:55
-msgid ""
-"<small><i>Select the tag you like F-Spot to display images from while acting "
-"as the screensaver</i></small>"
-msgstr ""
-"<small><i>Seleccione la etiqueta de las que quiera que F-Spot muestre "
-"imágenes cuando actúe como salvapantallas</i></small>"
-
-#: ../src/f-spot.glade.h:56
-msgid ""
-"<small><i>You can choose how to display transparent parts in images. This "
-"option has no effect on photos, but setting this as check pattern or custom "
-"color could be usefull when viewing icons or other artworks with transparent "
-"parts.</i></small>"
-msgstr ""
-"<small><i>Puede elegir cómo mostrar partes transparentes en las imágenes. "
-"Esta opción no tiene efecto en las fotos, pero establecer esto como un "
-"patrón de cuadros o color personalizado puede ser útil al ver iconos u otro "
-"trabajos artísticos con partes transparentes.</i></small>"
-
-#: ../src/f-spot.glade.h:57
-msgid "<small>C_ontrast:</small>"
-msgstr "<small>C_ontraste:</small>"
-
-#: ../src/f-spot.glade.h:58
-msgid "<small>Te_mp:</small>"
-msgstr "<small>Te_mperatura:</small>"
-
-#: ../src/f-spot.glade.h:59
-msgid "<small>_Brightness:</small>"
-msgstr "<small>_Brillo:</small>"
-
-#: ../src/f-spot.glade.h:60
-msgid "<small>_Exposure:</small>"
-msgstr "<small>_Exposición:</small>"
-
-#: ../src/f-spot.glade.h:61
-msgid "<small>_Hue:</small>"
-msgstr "<small>_Tono:</small>"
-
-#: ../src/f-spot.glade.h:62
-msgid "<small>_Saturation:</small>"
-msgstr "<small>_Saturación:</small>"
-
-#: ../src/f-spot.glade.h:63
-msgid "<small>_Tint:</small>"
-msgstr "<small>_Tinte:</small>"
-
-#: ../src/f-spot.glade.h:64
-msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
-msgstr ""
-"<span weight='bold' size='larger'>Error al conectar con Gallery</span>\n"
-
-#: ../src/f-spot.glade.h:66
-msgid ""
-"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
-msgstr ""
-"<span weight='bold' size='larger'>Su cuenta de Google está bloqueada</span>\n"
-
-#: ../src/f-spot.glade.h:68
-msgid "Ad_just Color..."
-msgstr "A_justar el color…"
-
-#: ../src/f-spot.glade.h:69
-msgid "Adjust Color"
-msgstr "Ajustar el color"
-
-#: ../src/f-spot.glade.h:70
-msgid "Adjust Time"
-msgstr "Ajustar la hora"
-
-#: ../src/f-spot.glade.h:71
-msgid "Adjust _Time..."
-msgstr "Ajustar la _hora..."
-
-#: ../src/f-spot.glade.h:72
-msgid "Adjusted date: "
-msgstr "Fecha ajustada:"
-
-#: ../src/f-spot.glade.h:73
-msgid "Arrange _by"
-msgstr "Ordenar _por"
-
-#: ../src/f-spot.glade.h:74
-msgid "As _background"
-msgstr "Como _fondo de pantalla"
-
-#: ../src/f-spot.glade.h:75
-msgid "As check pattern"
-msgstr "Como patrón de cuadros"
-
-#: ../src/f-spot.glade.h:76
-msgid "As custom color: "
-msgstr "Como color personalizado:"
-
-#: ../src/f-spot.glade.h:77
-msgid "Attach tag:"
-msgstr "Adjuntar etiqueta:"
-
-#: ../src/f-spot.glade.h:79
-msgid "Autorotate"
-msgstr "Autorotar"
-
-#: ../src/f-spot.glade.h:80 ../src/StockIcons.cs:28
-msgid "Browse"
-msgstr "Examinar"
-
-#: ../src/f-spot.glade.h:81
-msgid "CD"
-msgstr "CD"
-
-#: ../src/f-spot.glade.h:82
-msgid "C_aption:"
-msgstr "_Membrete:"
-
-#: ../src/f-spot.glade.h:83
-msgid "C_ontrast:"
-msgstr "C_ontraste:"
-
-#: ../src/f-spot.glade.h:84
-msgid "Camera Selection"
-msgstr "Seleccionar la cámara"
-
-#: ../src/f-spot.glade.h:85
-msgid "Clea_r Date Range"
-msgstr "_Limpiar el rango de fechas"
-
-#: ../src/f-spot.glade.h:86
-msgid "Co_nfigure"
-msgstr "Co_nfigurar"
-
-#: ../src/f-spot.glade.h:87
-msgid "Copy Locat_ion"
-msgstr "Copiar _lugar"
-
-#: ../src/f-spot.glade.h:88
-msgid "Copy _Files to: "
-msgstr "Copiar _archivos a: "
-
-#: ../src/f-spot.glade.h:89
-msgid "Copy files to the Photos folder"
-msgstr "Copiar archivos a la carpeta Photos"
-
-#: ../src/f-spot.glade.h:90
-msgid "Create CD"
-msgstr "Crear CD"
-
-#: ../src/f-spot.glade.h:91
-msgid "Create Mail"
-msgstr "Crear correo"
-
-#: ../src/f-spot.glade.h:92
-msgid "Create New _Tag..."
-msgstr "Crear una e_tiqueta…"
-
-#: ../src/f-spot.glade.h:93
-msgid "Create _New Version..."
-msgstr "Crear una _nueva versión…"
-
-#: ../src/f-spot.glade.h:94
-msgid "Create _gallery using \"Original\""
-msgstr "Crear una _galería usando «Original»"
-
-#: ../src/f-spot.glade.h:95
-msgid "Create a mail with the selected photos (possible resized) attached"
-msgstr ""
-"Crea un correo con las fotos seleccionadas (posiblemente redimensionadas) "
-"adjuntas"
-
-#: ../src/f-spot.glade.h:96
-msgid "Create mail..."
-msgstr "Crear correo…"
-
-#: ../src/f-spot.glade.h:97
-msgid "Create standalone _web gallery"
-msgstr "Crear una galería _web independiente"
-
-#: ../src/f-spot.glade.h:98
-msgid "Crop photo to _fit"
-msgstr "Recortar la foto para _ajustarla"
-
-#: ../src/f-spot.glade.h:99
-msgid "Current date:"
-msgstr "Fecha actual:"
-
-#: ../src/f-spot.glade.h:100
-msgid "D_escription:"
-msgstr "_Descripción:"
-
-#: ../src/f-spot.glade.h:101
-msgid "Display File Names"
-msgstr "Mostrar nombres de archivo"
-
-#: ../src/f-spot.glade.h:102
-msgid "Display Side_bar"
-msgstr "Mostrar la barra lateral"
-
-#: ../src/f-spot.glade.h:103
-msgid "Display T_ags"
-msgstr "Mostrar etiquet_as"
-
-#: ../src/f-spot.glade.h:104
-msgid "Display Too_lbar"
-msgstr "Mostrar barra de _herramientas"
-
-#: ../src/f-spot.glade.h:105
-msgid "Display _Dates"
-msgstr "Mostrar _fechas"
-
-#: ../src/f-spot.glade.h:106
-msgid "Display _Timeline"
-msgstr "Mostrar línea de _tiempo"
-
-#: ../src/f-spot.glade.h:107
-msgid "Do not send a mail"
-msgstr "No enviar un correo"
-
-#: ../src/f-spot.glade.h:108
-msgid "E-_Mail:"
-msgstr "_Correo-e:"
-
-#: ../src/f-spot.glade.h:109
-msgid "E_xport titles and comments"
-msgstr "_Exportar títulos y comentarios"
-
-#: ../src/f-spot.glade.h:110
-msgid "E_xport to CD..."
-msgstr "E_xportar a CD…"
-
-#: ../src/f-spot.glade.h:111
-msgid "Edit"
-msgstr "Editar"
-
-#: ../src/f-spot.glade.h:112
-msgid "Edit Tag Icon"
-msgstr "Editar la etiqueta del icono"
-
-#: ../src/f-spot.glade.h:113
-msgid "Edit icon"
-msgstr "Editar el icono"
-
-#: ../src/f-spot.glade.h:114
-msgid "Estimated new size"
-msgstr "Tamaño nuevo estimado"
-
-#: ../src/f-spot.glade.h:115
-msgid "Export"
-msgstr "Exportar"
-
-#: ../src/f-spot.glade.h:116
-msgid "Export _titles and comments"
-msgstr "Exportar _títulos y comentarios"
-
-#: ../src/f-spot.glade.h:117
-msgid "Export to 23h_q..."
-msgstr "E_xportar a 23h_q…"
-
-#: ../src/f-spot.glade.h:118
-msgid "Export to CD..."
-msgstr "Exportar a CD…"
-
-#: ../src/f-spot.glade.h:119
-msgid "Export to _Flickr..."
-msgstr "Exportar a _Flickr…"
-
-#: ../src/f-spot.glade.h:120
-msgid "Export to _Folder..."
-msgstr "Exportar a una _carpeta…"
-
-#: ../src/f-spot.glade.h:121
-msgid "Export to _Picasaweb..."
-msgstr "Exportar a _Picasaweb…"
-
-#: ../src/f-spot.glade.h:122
-msgid "Export to _SmugMug..."
-msgstr "Exportar a _SmugMug…"
-
-#: ../src/f-spot.glade.h:123
-msgid "Export to _Web Gallery..."
-msgstr "Exportar a _Web Gallery…"
-
-#: ../src/f-spot.glade.h:124
-msgid "Extra large"
-msgstr "Enorme"
-
-#: ../src/f-spot.glade.h:125
-msgid "F-Spot"
-msgstr "F-Spot"
-
-#: ../src/f-spot.glade.h:126
-msgid "F-Spot View"
-msgstr "Vista F-Spot"
-
-#: ../src/f-spot.glade.h:127
-msgid ""
-"F-Spot needs your authorization in order to upload photos to your {0} "
-"account. Press the \"Authorize\" button to open a web browser and give F-"
-"Spot the authorization. "
-msgstr ""
-"F-Spot necesita su autorización para poder subir fotografías a su cuenta de "
-"{0}. Pulse el botón «Autorizar» para abrir un navegador y dar la "
-"autorización a F-Spot."
-
-#: ../src/f-spot.glade.h:129
-msgid "Fin_d"
-msgstr "_Buscar"
-
-#. Obsolete, remove after db rev4
-#: ../src/f-spot.glade.h:130 ../src/InfoDisplay.cs:134
-#: ../src/InfoDisplay.cs:136
-msgid "Folder"
-msgstr "Carpeta"
-
-#: ../src/f-spot.glade.h:131
-msgid "Folder Export"
-msgstr "Carpeta para exportar"
-
-#: ../src/f-spot.glade.h:132
-msgid ""
-"From Screen\n"
-"Standard RGB"
-msgstr ""
-"Desde la pantalla\n"
-"RGB estándar"
-
-#: ../src/f-spot.glade.h:134
-msgid ""
-"Full Page\n"
-"Standard - 4x6"
-msgstr ""
-"Página completa\n"
-"Estándar - 4x6"
-
-#: ../src/f-spot.glade.h:136
-msgid "G_allery Name:"
-msgstr "Nombre de la _galería:"
-
-#: ../src/f-spot.glade.h:137
-msgid "G_allery:"
-msgstr "_Galería:"
-
-#: ../src/f-spot.glade.h:138
-msgid "Gallery"
-msgstr "Galería"
-
-#: ../src/f-spot.glade.h:139
-msgid ""
-"Hairline\n"
-"0.25\"\n"
-"0.5\"\n"
-"1\"\n"
-msgstr ""
-"Línea extrafina\n"
-"0.25\"\n"
-"0.5\"\n"
-"1\"\n"
-
-#: ../src/f-spot.glade.h:144
-msgid "Import"
-msgstr "Importar"
-
-#: ../src/f-spot.glade.h:145
-msgid "Import Source:"
-msgstr "Origen de la importación:"
-
-#: ../src/f-spot.glade.h:146
-msgid "Import photos"
-msgstr "Importar fotos"
-
-#: ../src/f-spot.glade.h:147
-msgid "Include subfolders"
-msgstr "Incluir subcarpetas"
-
-#: ../src/f-spot.glade.h:148
-msgid "Interpolate image on zoom"
-msgstr "Interpolar imagen al ampliar"
-
-#: ../src/f-spot.glade.h:149
-msgid "Large"
-msgstr "Grande"
-
-#: ../src/f-spot.glade.h:150
-msgid "Make F-Spot your screensaver"
-msgstr "Hacer de F-Spot su salvapantallas"
-
-#: ../src/f-spot.glade.h:151
-msgid "Medium"
-msgstr "Medio"
-
-#: ../src/f-spot.glade.h:152 ../src/InfoDisplay.cs:14
-#: ../src/MainWindow.cs:1426
-msgid "Metadata Browser"
-msgstr "Examinador de metadatos"
-
-#: ../src/f-spot.glade.h:153
-msgid "N_umber of Copies:"
-msgstr "_Número de copias:"
-
-#: ../src/f-spot.glade.h:155
-msgid ""
-"None\n"
-"Title\n"
-"Filename\n"
-"Date\n"
-"Photo Details"
-msgstr ""
-"Ninguna\n"
-"Título\n"
-"Nombre del archivo\n"
-"Fecha\n"
-"Detalles de la foto"
-
-#: ../src/f-spot.glade.h:160
-msgid "Number of pictures"
-msgstr "Número de imágenes"
-
-#: ../src/f-spot.glade.h:161
-msgid "Open _Folder..."
-msgstr "Abrir _carpeta…"
-
-#: ../src/f-spot.glade.h:162
-msgid "Open _album in browser when done uploading"
-msgstr "Abrir el á_lbum en el navegador cuando se termine de subir"
-
-#: ../src/f-spot.glade.h:163
-msgid "Open _destination when done exporting"
-msgstr "Abrir el _destino cuando se termine de exportar"
-
-#. Note that the original version is never stored in the photo_versions table in the
-#. database.
-#: ../src/f-spot.glade.h:164 ../src/PhotoStore.cs:580
-msgid "Original"
-msgstr "Original"
-
-#: ../src/f-spot.glade.h:165
-msgid "Original size (possible very large file size)"
-msgstr "Tamaño original (tamaño de archivo posiblemente muy grande)"
-
-#: ../src/f-spot.glade.h:166
-msgid "P_arent Tag:"
-msgstr "Etiqueta _madre:"
-
-#: ../src/f-spot.glade.h:167
-msgid "P_hoto Source:"
-msgstr "Origen de la _foto:"
-
-#: ../src/f-spot.glade.h:168
-msgid "Page 1 of 3"
-msgstr "Página 1 de 3"
-
-#: ../src/f-spot.glade.h:169
-msgid "Pause"
-msgstr "Pausar"
-
-#: ../src/f-spot.glade.h:170
-msgid "Photo 0 of 0"
-msgstr "Fotografía 0 de 0"
-
-#: ../src/f-spot.glade.h:171
-msgid "Photo _Size:"
-msgstr "_Tamaño de la foto:"
-
-#: ../src/f-spot.glade.h:172
-msgid "Please verify that the settings for this gallery are correct."
-msgstr "Compruebe que las preferencias para esta galería son correctas."
-
-#: ../src/f-spot.glade.h:173
-msgid ""
-"Please verify that the settings for this gallery are correct.\n"
-"Enter the letters as they are shown in the image in\n"
-"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
-msgstr ""
-"Verifique que sus ajustes para esta galería son correctos.\n"
-"Introduzca las letras tal como se muestran en la imagen en\n"
-"el campo 'Captcha'. <i>Las letras no son sensibles a capitalización</i>"
-
-#: ../src/f-spot.glade.h:176
-msgid "Preferences"
-msgstr "Preferencias"
-
-#: ../src/f-spot.glade.h:177 ../src/ItemAction.cs:155
-msgid "Previous"
-msgstr "Anterior"
-
-#: ../src/f-spot.glade.h:178
-msgid "Print"
-msgstr "Imprimir"
-
-#: ../src/f-spot.glade.h:179
-msgid "Print crop _marks"
-msgstr "Imprimir _marcas de recorte"
-
-#: ../src/f-spot.glade.h:180
-msgid "Private"
-msgstr "Privado"
-
-#: ../src/f-spot.glade.h:181
-msgid "Public"
-msgstr "Público"
-
-#: ../src/f-spot.glade.h:182
-msgid "Public Album"
-msgstr "Álbum público"
-
-#: ../src/f-spot.glade.h:183
-msgid "Re_fresh Thumbnail"
-msgstr "Act_ualizar miniaturas"
-
-#: ../src/f-spot.glade.h:184
-msgid "Rem_ove Tag"
-msgstr "_Eliminar etiqueta"
-
-#: ../src/f-spot.glade.h:185
-msgid "Repair"
-msgstr "Reparar"
-
-#: ../src/f-spot.glade.h:186
-msgid "Reset"
-msgstr "Restablecer"
-
-#: ../src/f-spot.glade.h:187 ../src/StockIcons.cs:39
-msgid "Rotate _Left"
-msgstr "Rotar a la _izquierda"
-
-#: ../src/f-spot.glade.h:188 ../src/StockIcons.cs:40
-msgid "Rotate _Right"
-msgstr "Rotar a la _derecha"
-
-#: ../src/f-spot.glade.h:189
-msgid "Select A Folder"
-msgstr "Seleccione una carpeta"
-
-#: ../src/f-spot.glade.h:190
-msgid "Select Photos to Copy From Camera..."
-msgstr "Seleccionar las fotos para copiar desde la cámara…"
-
-#: ../src/f-spot.glade.h:191
-msgid "Select _All"
-msgstr "Seleccionar _todo"
-
-#: ../src/f-spot.glade.h:192
-msgid "Select _None"
-msgstr "Seleccionar _nada"
-
-#: ../src/f-spot.glade.h:193
-msgid "Select a Tag..."
-msgstr "Seleccionar una etiqueta…"
-
-#: ../src/f-spot.glade.h:194
-msgid "Select the camera from which you want to transfer files"
-msgstr "Seleccione la cámara desde la que desea transferir archivos"
-
-#: ../src/f-spot.glade.h:195
-msgid "Selected Camera: "
-msgstr "Cámara seleccionada: "
-
-#: ../src/f-spot.glade.h:196
-msgid ""
-"Selection\n"
-"Gallery\n"
-"Viewport"
-msgstr ""
-"Selección\n"
-"Galería\n"
-"Previsualización"
-
-#: ../src/f-spot.glade.h:199
-msgid "Send _Mail..."
-msgstr "Enviar al correo _electrónico…"
-
-#: ../src/f-spot.glade.h:200
-msgid "Set Date Range"
-msgstr "Establecer rango de fechas"
-
-#: ../src/f-spot.glade.h:201
-msgid "Set _Date Range..."
-msgstr "Establecer rango de _fechas…"
-
-#: ../src/f-spot.glade.h:202
-msgid "Set as _Background"
-msgstr "Establecer como _fondo de pantalla"
-
-#: ../src/f-spot.glade.h:203 ../src/TimeDialog.cs:130
-#, csharp-format
-msgid "Shift all photos by {0}"
-msgstr "Desplazar todas las fotos {0}"
-
-#: ../src/f-spot.glade.h:204
-msgid "Show or hide the side pane"
-msgstr "Mostrar u ocultar el panel lateral"
-
-#: ../src/f-spot.glade.h:205
-msgid "Show or hide the toolbar"
-msgstr "Mostrar u ocultar la barra de herramientas"
-
-#: ../src/f-spot.glade.h:206
-msgid "Side _pane"
-msgstr "_Panel lateral"
-
-#: ../src/f-spot.glade.h:207
-msgid "Size"
-msgstr "Tamaño"
-
-#: ../src/f-spot.glade.h:208
-msgid "Size of the exported selection :"
-msgstr "Tamaño de la selección exportada:"
-
-#: ../src/f-spot.glade.h:209
-msgid "Small"
-msgstr "Pequeño"
-
-#: ../src/f-spot.glade.h:210
-msgid "So_urce Temp"
-msgstr "_Origen temporal"
-
-#: ../src/f-spot.glade.h:211
-msgid "Space all photos by"
-msgstr "Espaciar todas las fotos"
-
-#: ../src/f-spot.glade.h:212
-msgid ""
-"Specify if an original size picture should be rotated or not. Smaller sizes "
-"are automatically rotated."
-msgstr ""
-"Especifique su un tamaño original de imagen debe rotarse o no. Los tamaños "
-"pequeños se rotan automáticamente."
-
-#: ../src/f-spot.glade.h:213
-msgid ""
-"Standard RGB\n"
-"Image Profile\n"
-"Custom\n"
-msgstr ""
-"RGB estándar\n"
-"Perfil de la imagen\n"
-"Personalizada\n"
-
-#: ../src/f-spot.glade.h:217
-msgid "Strip _metadata"
-msgstr "Recortar _metadatos"
-
-#: ../src/f-spot.glade.h:218
-msgid "Strip image _metadata"
-msgstr "Recorta los _metadatos de la imagen"
-
-#: ../src/f-spot.glade.h:219
-msgid "Tags: "
-msgstr "Etiquetas:"
-
-#: ../src/f-spot.glade.h:220
-msgid "Tiny"
-msgstr "Diminuto"
-
-#: ../src/f-spot.glade.h:221
-msgid "Toolbar"
-msgstr "Barra de herramientas"
-
-#: ../src/f-spot.glade.h:222
-msgid "Total original size"
-msgstr "Tamaño total original"
-
-#: ../src/f-spot.glade.h:223
-msgid "U_RL:"
-msgstr "_URL:"
-
-#: ../src/f-spot.glade.h:224
-msgid "View"
-msgstr "Ver"
-
-#: ../src/f-spot.glade.h:225
-msgid "Visible to Family"
-msgstr "Visible para la familia"
-
-#: ../src/f-spot.glade.h:226
-msgid "Visible to Friends"
-msgstr "Visible para los amigos"
-
-#: ../src/f-spot.glade.h:227
-msgid "Will print using: US Letter size on Generic Postscript"
-msgstr "Se imprimirá usando: tamaño carta de EE.UU. sobre Postscript genérico"
-
-#: ../src/f-spot.glade.h:228
-msgid "Write _metadata to file"
-msgstr "Escribir los _metadatos en el archivo"
-
-#: ../src/f-spot.glade.h:229
-msgid "Zoom _in"
-msgstr "_Ampliar"
-
-#: ../src/f-spot.glade.h:230
-msgid "Zoom _out"
-msgstr "_Reducir"
-
-#: ../src/f-spot.glade.h:231
-msgid "Zoom in"
-msgstr "Ampliar"
-
-#: ../src/f-spot.glade.h:232
-msgid "Zoom out"
-msgstr "Reducir"
-
-#: ../src/f-spot.glade.h:233
-msgid "_Account:"
-msgstr "_Cuenta:"
-
-#: ../src/f-spot.glade.h:234
-msgid "_Album Name:"
-msgstr "Nombre del á_lbum:"
-
-#: ../src/f-spot.glade.h:235
-msgid "_Album Title:"
-msgstr "Título del á_lbum:"
-
-#: ../src/f-spot.glade.h:236
-msgid "_Attach Tag"
-msgstr "_Adjuntar etiqueta"
-
-#: ../src/f-spot.glade.h:237
-msgid "_Attach Tag to Selection"
-msgstr "_Adjuntar etiqueta a la selección"
-
-#: ../src/f-spot.glade.h:238
-msgid "_Border:"
-msgstr "_Borde:"
-
-#: ../src/f-spot.glade.h:239
-msgid "_Brightness:"
-msgstr "_Brillo:"
-
-#: ../src/f-spot.glade.h:240
-msgid "_Browse Previously Scheduled Files"
-msgstr "_Examinar los archivos previamente programados"
-
-#: ../src/f-spot.glade.h:241
-msgid "_Captcha:"
-msgstr "_Captcha:"
-
-#: ../src/f-spot.glade.h:242
-msgid "_Contents"
-msgstr "_Contenido"
-
-#: ../src/f-spot.glade.h:243
-msgid "_Delete From Drive"
-msgstr "_Borrar de la unidad"
-
-#: ../src/f-spot.glade.h:244
-msgid "_Delete Selected Tag"
-msgstr "_Borrar la etiqueta seleccionada"
-
-#: ../src/f-spot.glade.h:245
-msgid "_Delete Version"
-msgstr "_Borrar la versión"
-
-#: ../src/f-spot.glade.h:246
-msgid "_Description:"
-msgstr "_Descripción:"
-
-#: ../src/f-spot.glade.h:247
-msgid "_Destination Temp"
-msgstr "_Destino temporal"
-
-#: ../src/f-spot.glade.h:248
-msgid "_Display:"
-msgstr "_Mostrar:"
-
-#: ../src/f-spot.glade.h:249
-msgid "_Edit Selected Tag..."
-msgstr "_Editar la etiqueta seleccionada…"
-
-#: ../src/f-spot.glade.h:250
-msgid "_Export"
-msgstr "_Exportar"
-
-#: ../src/f-spot.glade.h:251
-msgid "_Export tags"
-msgstr "_Exportar etiquetas"
-
-#: ../src/f-spot.glade.h:252
-msgid "_Export to Album:"
-msgstr "_Exportar a un álbum:"
-
-#: ../src/f-spot.glade.h:253
-msgid "_Flickr"
-msgstr "_Flickr"
-
-#: ../src/f-spot.glade.h:254
-msgid "_Folder"
-msgstr "_Carpeta"
-
-#: ../src/f-spot.glade.h:255
-msgid "_Folder:"
-msgstr "_Carpeta:"
-
-#: ../src/f-spot.glade.h:256
-msgid "_Fullscreen"
-msgstr "_Pantalla completa"
-
-#: ../src/f-spot.glade.h:257
-msgid "_Gallery"
-msgstr "_Galería"
-
-#: ../src/f-spot.glade.h:258
-msgid "_Gallery Name:"
-msgstr "Nombre de la _galería:"
-
-#: ../src/f-spot.glade.h:259
-msgid "_Gallery:"
-msgstr "_Galería:"
-
-#: ../src/f-spot.glade.h:260
-msgid "_Hue:"
-msgstr "_Tono:"
-
-#: ../src/f-spot.glade.h:261
-msgid "_Icon:"
-msgstr "_Icono:"
-
-#: ../src/f-spot.glade.h:262
-msgid "_Import files after copy"
-msgstr "_Importar los archivos después de copiarlos"
-
-#: ../src/f-spot.glade.h:263
-msgid "_Import..."
-msgstr "_Importar…"
-
-#: ../src/f-spot.glade.h:264
-msgid "_Metadata Browser"
-msgstr "Examinador de _metadatos"
-
-#: ../src/f-spot.glade.h:265
-msgid "_Month"
-msgstr "_Mes"
-
-#: ../src/f-spot.glade.h:266
-msgid "_New Window"
-msgstr "Ventana _nueva"
-
-#: ../src/f-spot.glade.h:267
-msgid "_Open album in browser when done uploading"
-msgstr "_Abrir el álbum en el navegador cuando se termine de subir"
-
-#: ../src/f-spot.glade.h:268
-msgid "_Open destination when done exporting"
-msgstr "_Abrir el destino cuando se termine de exportar"
-
-#: ../src/f-spot.glade.h:269
-msgid "_Output:"
-msgstr "_Salida:"
-
-#: ../src/f-spot.glade.h:270
-msgid "_Parent Album:"
-msgstr "Álbum _padre:"
-
-#: ../src/f-spot.glade.h:271
-msgid "_Password:"
-msgstr "_Contraseña:"
-
-#: ../src/f-spot.glade.h:272
-msgid "_Prefix: "
-msgstr "_Prefijo: "
-
-#: ../src/f-spot.glade.h:273
-msgid "_Print..."
-msgstr "_Imprimir…"
-
-#: ../src/f-spot.glade.h:274
-msgid "_Quit"
-msgstr "_Salir"
-
-#: ../src/f-spot.glade.h:275
-msgid "_Remove From Catalog"
-msgstr "_Eliminar del catálogo"
-
-#: ../src/f-spot.glade.h:276
-msgid "_Remove Tag From Selection"
-msgstr "_Borrar la etiqueta de las seleccionadas"
-
-#: ../src/f-spot.glade.h:277
-msgid "_Rename Version"
-msgstr "_Renombrar la versión"
-
-#: ../src/f-spot.glade.h:278
-msgid "_Resize to: "
-msgstr "_Redimensionar a: "
-
-#: ../src/f-spot.glade.h:279 ../src/GroupSelector.cs:521
-msgid "_Reverse Order"
-msgstr "_Invertir el orden"
-
-#: ../src/f-spot.glade.h:280
-msgid "_Saturation:"
-msgstr "_Saturación:"
-
-#: ../src/f-spot.glade.h:281
-msgid "_Save the files only"
-msgstr "_Guardar sólo los archivos"
-
-#: ../src/f-spot.glade.h:282
-msgid "_Scale photos to no larger than: "
-msgstr "_Escalar las fotos para que no sean más grandes de: "
-
-#: ../src/f-spot.glade.h:283
-msgid "_Select Tags..."
-msgstr "_Seleccionar etiquetas…"
-
-#: ../src/f-spot.glade.h:284
-msgid "_Sharpen..."
-msgstr "_Enfoque…"
-
-#: ../src/f-spot.glade.h:285
-msgid "_Slideshow"
-msgstr "_Diapositivas"
-
-#: ../src/f-spot.glade.h:286
-msgid "_Strip metadata"
-msgstr "_Recortar metadatos"
-
-#: ../src/f-spot.glade.h:287
-msgid "_Tag Name:"
-msgstr "Nombre de la _etiqueta:"
-
-#: ../src/f-spot.glade.h:288
-msgid "_Tags"
-msgstr "E_tiquetas"
-
-#: ../src/f-spot.glade.h:289
-msgid "_Title:"
-msgstr "_Título:"
-
-#: ../src/f-spot.glade.h:290
-msgid "_URI:"
-msgstr "_URI:"
-
-#: ../src/f-spot.glade.h:291
-msgid "_Untagged Photos"
-msgstr "Fotos _sin etiqueta"
-
-#: ../src/f-spot.glade.h:292
-msgid "_Username:"
-msgstr "_Usuario:"
-
-#: ../src/f-spot.glade.h:293
-msgid "_Version"
-msgstr "_Versión"
-
-#: ../src/f-spot.glade.h:294
-msgid "_View"
-msgstr "_Ver"
-
-#: ../src/f-spot.glade.h:295
-msgid "_View photos in browser when done uploading"
-msgstr "_Ver fotos en el navegador cuando se termine de subir"
-
-#: ../src/f-spot.glade.h:296
-msgid "_Virtual Filesystem"
-msgstr "Sistema de archivos _virtual"
-
-#: ../src/f-spot.glade.h:297
-msgid "_Write only these photos to CD"
-msgstr "_Grabar sólo estas fotos al CD"
-
-#: ../src/f-spot.glade.h:298
-msgid "dialog1"
-msgstr "diálogo1"
-
-#: ../src/f-spot.glade.h:299
-msgid "difference:"
-msgstr "diferencia:"
-
-#: ../src/f-spot.glade.h:300
-msgid "img_000.jpg"
-msgstr "img_000.jpg"
-
-#. The preceding text here is the second checkbutton in the Time dialog
-#. that says "Space all photos by []"
-#: ../src/f-spot.glade.h:301 ../src/TimeDialog.cs:125
-#, csharp-format
-msgid "min. Starting at {0}"
-msgstr "min. Iniciando en {0}"
-
-#: ../src/f-spot.glade.h:302
-msgid "pixels"
-msgstr "píxeles"
-
-#: ../src/f-spot.glade.h:303
-msgid "x"
-msgstr "x"
 
 #: ../src/GalleryExport.cs:376
 msgid "Invalid URL"
@@ -1800,28 +601,28 @@ msgstr "El siguiente error se encontró mientras se intentaba acceder: {0}"
 msgid "(TopLevel)"
 msgstr "(Nivel superior)"
 
-#: ../src/GalleryExport.cs:713
+#: ../src/GalleryExport.cs:719
 #, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery: {1}"
 msgstr "Error al subir a la imagen «{0} a la galería: {1}"
 
-#: ../src/GalleryExport.cs:740 ../src/PicasaWebExport.cs:638
-#: ../src/SmugMugExport.cs:599
+#: ../src/GalleryExport.cs:746 ../src/PicasaWebExport.cs:636
+#: ../src/SmugMugExport.cs:602
 msgid "(No Gallery)"
 msgstr "(No hay galería)"
 
-#: ../src/GalleryExport.cs:827 ../src/PicasaWebExport.cs:765
-#: ../src/SmugMugExport.cs:697
+#: ../src/GalleryExport.cs:833 ../src/PicasaWebExport.cs:763
+#: ../src/SmugMugExport.cs:700
 msgid "(Not Connected)"
 msgstr "(No conectado)"
 
-#: ../src/GalleryExport.cs:828 ../src/PicasaWebExport.cs:766
-#: ../src/SmugMugExport.cs:698
+#: ../src/GalleryExport.cs:834 ../src/PicasaWebExport.cs:764
+#: ../src/SmugMugExport.cs:701
 msgid "(No Albums)"
 msgstr "(No hay álbumes)"
 
-#: ../src/GalleryExport.cs:880 ../src/PicasaWebExport.cs:810
-#: ../src/SmugMugExport.cs:742
+#: ../src/GalleryExport.cs:886 ../src/PicasaWebExport.cs:808
+#: ../src/SmugMugExport.cs:745
 msgid "No account selected"
 msgstr "No hay ninguna cuenta seleccionada"
 
@@ -1832,8 +633,7 @@ msgstr "Errar al leer la respuesta del servidor"
 #. failed to find the response
 #: ../src/GalleryRemote.cs:368
 msgid "Server returned response without Gallery content"
-msgstr ""
-"La respuesta del servidor no ha devuelto ningún contenido sobre Gallery"
+msgstr "La respuesta del servidor no ha devuelto ningún contenido sobre Gallery"
 
 #: ../src/GlTransition.cs:36
 msgid "Dissolve"
@@ -1853,7 +653,7 @@ msgstr "Revelar"
 
 #: ../src/GlTransition.cs:202
 msgid "Wipe"
-msgstr ""
+msgstr "Limpiar"
 
 #: ../src/GlTransition.cs:260
 msgid "Split"
@@ -1883,6 +683,10 @@ msgstr "Ordenadas por _mes"
 msgid "Arrange by _Folder"
 msgstr "Ordenadas por _carpeta"
 
+#: ../src/GroupSelector.cs:521 ../src/f-spot.glade.h:272
+msgid "_Reverse Order"
+msgstr "_Invertir el orden"
+
 #: ../src/GroupSelector.cs:527
 msgid "_Clear Date Range"
 msgstr "_Limpiar el rango de fechas"
@@ -1890,102 +694,6 @@ msgstr "_Limpiar el rango de fechas"
 #: ../src/HigMessageDialog.cs:28 ../src/PhotoView.cs:265
 msgid "Error editing photo"
 msgstr "Error al editar la foto"
-
-#: ../src/ImportCommand.cs:28 ../src/SingleView.cs:345
-msgid "Select Folder"
-msgstr "Seleccionar la carpeta"
-
-#: ../src/ImportCommand.cs:235
-msgid "(No Cameras Detected)"
-msgstr "(No se detectó ninguna cámara)"
-
-#: ../src/ImportCommand.cs:377
-#, csharp-format
-msgid "Loading {0} of {1}"
-msgstr "Cargando {0} de {1}"
-
-#: ../src/ImportCommand.cs:445
-msgid "Done Loading"
-msgstr "Finalizó la carga"
-
-#: ../src/ImportCommand.cs:642
-msgid "Directory does not exist."
-msgstr "La carpeta no existe."
-
-#: ../src/ImportCommand.cs:643
-#, csharp-format
-msgid ""
-"The directory you selected \"{0}\" does not exist.  Please choose a "
-"different directory"
-msgstr ""
-"La carpeta seleccionada «{0}» no existe.  Por favor, elija una carpeta "
-"distinta"
-
-#: ../src/ImportCommand.cs:681
-msgid "Select Tag"
-msgstr "Seleccionar etiqueta"
-
-#: ../src/InfoBox.cs:75 ../src/PhotoVersionCommands.cs:56
-msgid "Name:"
-msgstr "Nombre:"
-
-#: ../src/InfoBox.cs:77
-msgid "Version:"
-msgstr "Versión:"
-
-#: ../src/InfoBox.cs:79
-msgid "Date:"
-msgstr "Fecha:"
-
-#: ../src/InfoBox.cs:81
-msgid "Size:"
-msgstr "Tamaño:"
-
-#: ../src/InfoBox.cs:83
-msgid "Exposure:"
-msgstr "Exposición:"
-
-#. The label for the root category is used in new and edit tag dialogs
-#: ../src/InfoBox.cs:222 ../src/TagStore.cs:414
-msgid "(None)"
-msgstr "(Ninguno)"
-
-#: ../src/InfoBox.cs:233 ../src/InfoBox.cs:242
-msgid "(Unknown)"
-msgstr "(Desconocido)"
-
-#: ../src/InfoDisplay.cs:138
-msgid "Picasaweb"
-msgstr "Picasaweb"
-
-#: ../src/InfoDisplay.cs:140
-msgid "SmugMug"
-msgstr "SmugMug"
-
-#: ../src/InfoDisplay.cs:142
-msgid "Gallery2"
-msgstr "Galería2"
-
-#: ../src/InfoDisplay.cs:233
-msgid "Extended Metadata"
-msgstr "Metadatos extendidos"
-
-#: ../src/InfoDisplay.cs:265
-msgid "Exported Locations"
-msgstr "Lugares exportados"
-
-#: ../src/InfoDisplay.cs:288
-msgid "No active photo"
-msgstr "No hay una foto activa"
-
-#: ../src/InfoDisplay.cs:290
-#, csharp-format
-msgid "The photo \"{0}\" does not exist"
-msgstr "La fotografía «{0}» no existe"
-
-#: ../src/InfoDisplay.cs:296
-msgid "No metadata available"
-msgstr "No hay metadatos disponibles"
 
 #: ../src/Imaging/Exif.cs:228
 msgid "Image Directory"
@@ -2036,8 +744,7 @@ msgid "A unique number"
 msgstr "Un único número"
 
 #: ../src/Imaging/IptcFile.cs:157
-msgid ""
-"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgid "The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
 msgstr "La urgencia del sobre, entre 1 (muy urgente) y 9 (poco urgente)"
 
 #: ../src/Imaging/IptcFile.cs:159
@@ -2045,8 +752,7 @@ msgid "The year month and day (CCYYMMDD) the service sent the material"
 msgstr "El año, mes y día (CCAAMMDD) en la que el servicio envió el material"
 
 #: ../src/Imaging/IptcFile.cs:161
-msgid ""
-"The hour minute and second the (HHMMSS+HHMM) the service sent the material"
+msgid "The hour minute and second the (HHMMSS+HHMM) the service sent the material"
 msgstr ""
 "La hora, minuto y segundo (HHMMSS+HHMM) en la que el servicio envió el "
 "material"
@@ -2069,8 +775,7 @@ msgstr "Número de versión del método de relación abstracto (ARM)"
 
 #: ../src/Imaging/IptcFile.cs:175
 msgid "Number identifying the IIM version this application record uses"
-msgstr ""
-"Número identificando la versión IIM que usa el registro de esta aplicación"
+msgstr "Número identificando la versión IIM que usa el registro de esta aplicación"
 
 #: ../src/Imaging/IptcFile.cs:177
 msgid "Object type reference"
@@ -2105,8 +810,7 @@ msgid "Full name of the country of the focus of the content"
 msgstr "Nombre completo del país donde está el foco del contenido"
 
 #: ../src/Imaging/IptcFile.cs:206
-msgid ""
-"Two or three letter ISO3166 code of the country of the focus of the content"
+msgid "Two or three letter ISO3166 code of the country of the focus of the content"
 msgstr "Código ISO3166 de dos o tres letras del país del foco del contenido"
 
 #: ../src/Imaging/IptcFile.cs:209
@@ -2134,8 +838,7 @@ msgid "Headline of the content"
 msgstr "Cabecera del contenido"
 
 #: ../src/Imaging/IptcFile.cs:225
-msgid ""
-"Instructions from the creator to the receiver not covered by other fields"
+msgid "Instructions from the creator to the receiver not covered by other fields"
 msgstr ""
 "Instrucciones del creador para el receptor que no están cubiertas por otros "
 "campos"
@@ -2147,6 +850,115 @@ msgstr "Género intelectual del objeto"
 #: ../src/Imaging/IptcFile.cs:241
 msgid "Unknown IIM DataSet"
 msgstr "Conjunto de datos IIM desconocido"
+
+#: ../src/ImportCommand.cs:28 ../src/SingleView.cs:321
+msgid "Select Folder"
+msgstr "Seleccionar la carpeta"
+
+#: ../src/ImportCommand.cs:235
+msgid "(No Cameras Detected)"
+msgstr "(No se detectó ninguna cámara)"
+
+#: ../src/ImportCommand.cs:378
+#, csharp-format
+msgid "Loading {0} of {1}"
+msgstr "Cargando {0} de {1}"
+
+#: ../src/ImportCommand.cs:446
+msgid "Done Loading"
+msgstr "Finalizó la carga"
+
+#: ../src/ImportCommand.cs:636
+msgid "Directory does not exist."
+msgstr "La carpeta no existe."
+
+#: ../src/ImportCommand.cs:637
+#, csharp-format
+msgid ""
+"The directory you selected \"{0}\" does not exist.  Please choose a "
+"different directory"
+msgstr ""
+"La carpeta seleccionada «{0}» no existe.  Por favor, elija una carpeta "
+"distinta"
+
+#. Prepare the Last Import root tag
+#: ../src/ImportCommand.cs:682 ../src/ImportCommand.cs:684
+#: ../src/XmpTagsImporter.cs:86
+msgid "Import Tags"
+msgstr "Importar etiquetas"
+
+#: ../src/InfoBox.cs:72 ../src/PhotoVersionCommands.cs:56
+msgid "Name:"
+msgstr "Nombre:"
+
+#: ../src/InfoBox.cs:74
+msgid "Version:"
+msgstr "Versión:"
+
+#: ../src/InfoBox.cs:76
+msgid "Date:"
+msgstr "Fecha:"
+
+#: ../src/InfoBox.cs:78
+msgid "Size:"
+msgstr "Tamaño:"
+
+#: ../src/InfoBox.cs:80
+msgid "Exposure:"
+msgstr "Exposición:"
+
+#. The label for the root category is used in new and edit tag dialogs
+#: ../src/InfoBox.cs:221 ../src/TagStore.cs:443
+msgid "(None)"
+msgstr "(Ninguno)"
+
+#: ../src/InfoBox.cs:232 ../src/InfoBox.cs:241
+msgid "(Unknown)"
+msgstr "(Desconocido)"
+
+#: ../src/InfoDisplay.cs:14 ../src/MainWindow.cs:1449
+#: ../src/f-spot.glade.h:143
+msgid "Metadata Browser"
+msgstr "Examinador de metadatos"
+
+#. Obsolete, remove after db rev4
+#: ../src/InfoDisplay.cs:135 ../src/InfoDisplay.cs:137
+#: ../src/f-spot.glade.h:121
+msgid "Folder"
+msgstr "Carpeta"
+
+#: ../src/InfoDisplay.cs:139
+msgid "Picasaweb"
+msgstr "Picasaweb"
+
+#: ../src/InfoDisplay.cs:141
+msgid "SmugMug"
+msgstr "SmugMug"
+
+#: ../src/InfoDisplay.cs:143
+msgid "Gallery2"
+msgstr "Galería2"
+
+#: ../src/InfoDisplay.cs:235
+msgid "Extended Metadata"
+msgstr "Metadatos extendidos"
+
+#: ../src/InfoDisplay.cs:267
+msgid "Exported Locations"
+msgstr "Lugares exportados"
+
+#: ../src/InfoDisplay.cs:290
+msgid "No active photo"
+msgstr "No hay una foto activa"
+
+#: ../src/InfoDisplay.cs:292
+#, csharp-format
+msgid "The photo \"{0}\" does not exist"
+msgstr "La fotografía «{0}» no existe"
+
+#: ../src/InfoDisplay.cs:298
+msgid "No metadata available"
+msgstr "No hay metadatos disponibles"
 
 #: ../src/ItemAction.cs:110
 msgid "Rotate Left"
@@ -2163,6 +975,10 @@ msgstr "Rotar a la derecha"
 #: ../src/ItemAction.cs:134
 msgid "Next picture"
 msgstr "Siguiente fotografía"
+
+#: ../src/ItemAction.cs:155 ../src/f-spot.glade.h:168
+msgid "Previous"
+msgstr "Anterior"
 
 #: ../src/ItemAction.cs:156
 msgid "Previous picture"
@@ -2192,7 +1008,7 @@ msgstr "Ajustar el ángulo de la imagen para enderezar el horizonte"
 msgid "Create a soft focus visual effect"
 msgstr "Crear un efecto visual de foco suave"
 
-#: ../src/Loupe.cs:57 ../src/MainWindow.cs:1928
+#: ../src/Loupe.cs:57 ../src/MainWindow.cs:1940
 msgid "Error saving sharpened photo"
 msgstr "Error al guardar la foto enfocada"
 
@@ -2200,39 +1016,39 @@ msgstr "Error al guardar la foto enfocada"
 msgid "Sharpen"
 msgstr "Enfoque"
 
-#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1895
+#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1907
 msgid "Amount:"
 msgstr "Cantidad:"
 
-#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1896
+#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1908
 msgid "Radius:"
 msgstr "Radio:"
 
-#: ../src/Loupe.cs:99 ../src/MainWindow.cs:1897
+#: ../src/Loupe.cs:99 ../src/MainWindow.cs:1909
 msgid "Threshold:"
 msgstr "Umbral:"
 
-#: ../src/MainWindow.cs:235
+#: ../src/MainWindow.cs:247
 msgid "Browse many photos simultaneously"
 msgstr "Examinar varias fotos simultáneamente"
 
-#: ../src/MainWindow.cs:238
+#: ../src/MainWindow.cs:250
 msgid "View and edit a photo"
 msgstr "Ver y editar una foto"
 
-#: ../src/MainWindow.cs:243 ../src/SingleView.cs:83
+#: ../src/MainWindow.cs:255 ../src/SingleView.cs:85
 msgid "View photos fullscreen"
 msgstr "Ver fotos en pantalla completa"
 
-#: ../src/MainWindow.cs:246 ../src/SingleView.cs:85
+#: ../src/MainWindow.cs:258 ../src/SingleView.cs:87
 msgid "View photos in a slideshow"
 msgstr "Ver fotos como diapositivas"
 
-#: ../src/MainWindow.cs:793
+#: ../src/MainWindow.cs:816
 msgid "Error loading database."
 msgstr "Error al cargar la base de datos."
 
-#: ../src/MainWindow.cs:794
+#: ../src/MainWindow.cs:817
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
@@ -2241,11 +1057,11 @@ msgstr ""
 "F-Spot encontró un error al cargar la base de datos de foros. La base de "
 "datos antigua se ha movido a {0} y se ha creado una base de datos nueva."
 
-#: ../src/MainWindow.cs:1349
+#: ../src/MainWindow.cs:1372
 msgid "No cameras detected."
 msgstr "No se detectó ninguna cámara."
 
-#: ../src/MainWindow.cs:1350
+#: ../src/MainWindow.cs:1373
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -2253,11 +1069,11 @@ msgstr ""
 "F-Spot fue incapaz de detectar ninguna cámara conectada en este equipo.  "
 "Compruebe que la cámara está conectada y tiene alimentación"
 
-#: ../src/MainWindow.cs:1390
+#: ../src/MainWindow.cs:1413
 msgid "Error connecting to camera"
 msgstr "Error al conectar con la cámara"
 
-#: ../src/MainWindow.cs:1391
+#: ../src/MainWindow.cs:1414
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Se recibió el error «{0}» al conectar con la cámara"
@@ -2265,25 +1081,23 @@ msgstr "Se recibió el error «{0}» al conectar con la cámara"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1568
+#: ../src/MainWindow.cs:1551
 msgid "translator-credits"
-msgstr ""
-"Jorge González <jorge.gonzalez.gonzalez@hispalinux.es>, 2004, 2005, 2006, "
-"2007."
+msgstr "Jorge González <jorgegonz@svn.gnome.org>, 2004, 2005, 2006, 2007."
 
-#: ../src/MainWindow.cs:1575
+#: ../src/MainWindow.cs:1558
 msgid "Copyright © 2003-2007 Novell Inc."
 msgstr "Copyright © 2003-2007 Novell Inc."
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1808
+#: ../src/MainWindow.cs:1820
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "¿Combinar la etiqueta seleccionada?"
 msgstr[1] "¿Combinar las {0} etiquetas seleccionadas?"
 
-#: ../src/MainWindow.cs:1835
+#: ../src/MainWindow.cs:1847
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -2291,90 +1105,80 @@ msgstr ""
 "Esta operación combinará las etiquetas seleccionadas y cualquier subetiqueta "
 "en una sola etiqueta."
 
-#: ../src/MainWindow.cs:1837
+#: ../src/MainWindow.cs:1849
 msgid "_Merge Tags"
 msgstr "_Combinar etiquetas"
 
-#: ../src/MainWindow.cs:1886
+#: ../src/MainWindow.cs:1898
 msgid "Unsharp Mask"
 msgstr "Máscara de definición"
 
-#: ../src/MainWindow.cs:2109 ../src/SingleView.cs:487
+#: ../src/MainWindow.cs:2121 ../src/SingleView.cs:463
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} foto"
 msgstr[1] "{0} fotos"
 
-#: ../src/MainWindow.cs:2115
+#: ../src/MainWindow.cs:2128
 #, csharp-format
 msgid " out of {0}"
 msgstr "fuera de {0}"
 
-#: ../src/MainWindow.cs:2119
+#: ../src/MainWindow.cs:2131
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} seleccionado)"
 msgstr[1] " ({0} seleccionados)"
 
-#: ../src/MainWindow.cs:2206
+#: ../src/MainWindow.cs:2218
 msgid "_Ok"
 msgstr "_Aceptar"
 
-#: ../src/MainWindow.cs:2207
+#: ../src/MainWindow.cs:2219
 msgid "Error Deleting Picture"
 msgstr "Error al borrar la fotografía"
 
-#: ../src/MainWindow.cs:2212
+#: ../src/MainWindow.cs:2224
 #, csharp-format
-msgid ""
-"No permission to delete the file:\n"
-"{0}"
-msgstr ""
-"No tiene permisos para borrar el archivo:\n"
-"{0}"
+msgid "No permission to delete the file:{1}{0}"
+msgstr "No tiene permisos para borrar el archivo: {1}{0}"
 
-#: ../src/MainWindow.cs:2216
+#: ../src/MainWindow.cs:2228
 #, csharp-format
-msgid ""
-"An error of type {0} occurred while deleting the file:\n"
-"{1}"
-msgstr ""
-"Ocurrió un error del tipo {0} al borrar el archivo:\n"
-"{1}"
+msgid "An error of type {0} occurred while deleting the file:{2}{1}"
+msgstr "Ocurrió un error del tipo {0} al borrar el archivo: {2}{1}"
 
-#: ../src/MainWindow.cs:2242
+#: ../src/MainWindow.cs:2254
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "¿Borrar permanentemente la fotografía seleccionada?"
 msgstr[1] "¿Borrar permanentemente las {0} fotografías seleccionadas?"
 
-#: ../src/MainWindow.cs:2246
+#: ../src/MainWindow.cs:2258
 msgid "This deletes all versions of the selected photo from your drive."
-msgid_plural ""
-"This deletes all versions of the selected photos from your drive."
-msgstr[0] ""
-"Esto borrará de su unidad todas las versiones de la fotografía seleccionada."
+msgid_plural "This deletes all versions of the selected photos from your drive."
+msgstr[0] "Esto borrará de su unidad todas las versiones de la fotografía seleccionada."
 msgstr[1] ""
 "Esto borrará de su unidad todas las versiones de las fotografías "
 "seleccionadas."
 
-#: ../src/MainWindow.cs:2249
+#: ../src/MainWindow.cs:2261
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Borrar la fotografía"
 msgstr[1] "_Borrar las fotografías"
 
-#: ../src/MainWindow.cs:2280
+#: ../src/MainWindow.cs:2292
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "¿Eliminar la fotografía seleccionada de F-Spot?"
 msgstr[1] "¿Eliminar las {0} fotografías seleccionadas de F-Spot?"
 
-#: ../src/MainWindow.cs:2285
+#: ../src/MainWindow.cs:2297
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -2384,37 +1188,36 @@ msgstr ""
 "etiquetas se perderá. Las fotos seguirán en su equipo y podrá volverlas a "
 "importar de nuevo en F-Spot."
 
-#: ../src/MainWindow.cs:2286
+#: ../src/MainWindow.cs:2298
 msgid "_Remove from Catalog"
 msgstr "_Borrar del catálogo"
 
-#: ../src/MainWindow.cs:2343
+#: ../src/MainWindow.cs:2355
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "¿Borrar etiqueta {0}?"
 
-#: ../src/MainWindow.cs:2345
+#: ../src/MainWindow.cs:2357
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "¿Borrar las {0} etiquetas seleccionadas?"
 
-#: ../src/MainWindow.cs:2348
+#: ../src/MainWindow.cs:2360
 msgid "If you delete a tag, all associations with photos are lost."
-msgstr ""
-"Si borra una etiqueta, todas las asociaciones con las fotos se perderán."
+msgstr "Si borra una etiqueta, todas las asociaciones con las fotos se perderán."
 
-#: ../src/MainWindow.cs:2349
+#: ../src/MainWindow.cs:2361
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Borrar etiqueta"
 msgstr[1] "_Borrar etiquetas"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2363
+#: ../src/MainWindow.cs:2375
 msgid "Tag is not empty"
 msgstr "La etiqueta no está vacía"
 
-#: ../src/MainWindow.cs:2364
+#: ../src/MainWindow.cs:2376
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -2423,39 +1226,39 @@ msgstr ""
 "No se pueden borrar etiquetas que tengan etiquetas dentro de ellas. Borre "
 "antes las etiquetas de «{0}»"
 
-#: ../src/MainWindow.cs:2760
+#: ../src/MainWindow.cs:2786
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Rotar la fotografía seleccionada a la izquierda"
 msgstr[1] "Rotar las fotografías seleccionadas a la izquierda"
 
-#: ../src/MainWindow.cs:2773
+#: ../src/MainWindow.cs:2799
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Rotar la fotografía seleccionada a la derecha"
 msgstr[1] "Rotar las fotografías seleccionadas a la derecha"
 
-#: ../src/MainWindow.cs:2781
+#: ../src/MainWindow.cs:2807
 #, csharp-format
 msgid "Find Selected Tag"
 msgid_plural "Find Selected Tags"
 msgstr[0] "Encontrar la etiqueta seleccionada"
 msgstr[1] "Encontrar las etiquetas seleccionadas"
 
-#: ../src/MainWindow.cs:2785
+#: ../src/MainWindow.cs:2811
 #, csharp-format
 msgid "Find Selected Tag With"
 msgid_plural "Find Selected Tags With"
 msgstr[0] "Encontrar la etiqueta seleccionada con"
 msgstr[1] "Encontrar las etiquetas seleccionadas con"
 
-#: ../src/MainWindow.cs:2802
+#: ../src/MainWindow.cs:2828
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "¿Crear una nueva versión?"
 msgstr[1] "¿Crear nuevas versiones?"
 
-#: ../src/MainWindow.cs:2804
+#: ../src/MainWindow.cs:2830
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -2609,19 +1412,25 @@ msgstr "Adjuntar etiqueta"
 msgid "Remove Tag"
 msgstr "Eliminar etiqueta"
 
-#: ../src/PhotoStore.cs:377
+#: ../src/PhotoStore.cs:379
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "Modificada"
 msgstr[1] "Modificada ({0})"
 
-#: ../src/PhotoStore.cs:396
+#: ../src/PhotoStore.cs:398
 #, csharp-format
 msgid "Modified in {1}"
 msgid_plural "Modified in {1} ({0})"
 msgstr[0] "Modificada en {1}"
 msgstr[1] "Modificada en {1} ({0})"
+
+#. Note that the original version is never stored in the photo_versions table in the
+#. database.
+#: ../src/PhotoStore.cs:583 ../src/f-spot.glade.h:155
+msgid "Original"
+msgstr "Original"
 
 #. Fixme this should really set parent menu
 #. items insensitve
@@ -2684,8 +1493,7 @@ msgstr "No se pudo renombrar una versión"
 #: ../src/PhotoVersionCommands.cs:194
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
-msgstr ""
-"Se recibió la excepción «{0}». No es posible renombrar la versión a «{1}»"
+msgstr "Se recibió la excepción «{0}». No es posible renombrar la versión a «{1}»"
 
 #: ../src/PhotoVersionMenu.cs:66
 msgid "(No Edits)"
@@ -2747,69 +1555,93 @@ msgstr ""
 "Esta herramienta necesita una selección activa. Seleccione una región de la "
 "foto y reintente esta operación"
 
-#: ../src/PhotoView.cs:486
+#: ../src/PhotoView.cs:487
 msgid "Comment:"
 msgstr "Comentario:"
 
-#: ../src/PhotoView.cs:560
+#: ../src/PhotoView.cs:561
 msgid "Adjust the photo colors"
 msgstr "Ajustar los colores de la foto"
 
-#: ../src/PhotoView.cs:561
+#: ../src/PhotoView.cs:562
 msgid "Constrain the aspect ratio of the selection"
 msgstr "Limitar la proporción de la selección"
 
-#: ../src/PhotoView.cs:562
+#: ../src/PhotoView.cs:563
 msgid "Next photo"
 msgstr "Siguiente foto"
 
-#: ../src/PhotoView.cs:563
+#: ../src/PhotoView.cs:564
 msgid "Previous photo"
 msgstr "Foto anterior"
 
-#: ../src/PhotoView.cs:564
+#: ../src/PhotoView.cs:565
 msgid "Convert the photo to black and white"
 msgstr "Convertir la foto a blanco y negro"
 
-#: ../src/PhotoView.cs:565
+#: ../src/PhotoView.cs:566
 msgid "Convert the photo to sepia tones"
 msgstr "Convertir la foto a tonos sepia"
 
-#: ../src/PicasaWebExport.cs:567 ../src/SmugMugExport.cs:537
+#: ../src/PicasaWebExport.cs:572 ../src/SmugMugExport.cs:540
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "Subiendo imagen «{0}» ({1} de {2})"
 
-#: ../src/PicasaWebExport.cs:605 ../src/SmugMugExport.cs:566
+#: ../src/PicasaWebExport.cs:603 ../src/SmugMugExport.cs:569
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Error al subir a la galería: {0}"
 
-#: ../src/PicasaWebExport.cs:689
+#: ../src/PicasaWebExport.cs:687
 msgid "Available space :"
 msgstr "Espacio disponible:"
 
-#: ../src/Preferences.cs:180
+#: ../src/Preferences.cs:188
 msgid "Photos"
 msgstr "Fotos"
 
-#: ../src/RotateCommand.cs:198
+#: ../src/QueryWidget.cs:35
+msgid "Find: "
+msgstr "Buscar: "
+
+#: ../src/QueryWidget.cs:40
+msgid "Untagged photos"
+msgstr "Fotos sin etiquetas"
+
+#: ../src/QueryWidget.cs:60
+msgid "Clear search"
+msgstr "Vaciar búsqueda"
+
+#: ../src/QueryWidget.cs:62
+msgid "No matching photos found"
+msgstr "No se encontraron fotos coincidentes"
+
+#: ../src/QueryWidget.cs:92
+msgid "Hide Find Bar"
+msgstr "Ocultar barra de búsqueda"
+
+#: ../src/QueryWidget.cs:98
+msgid "Show Find Bar"
+msgstr "Mostrar barra de búsqueda"
+
+#: ../src/RotateCommand.cs:200
 msgid "Rotating photos"
 msgstr "Rotando fotos"
 
-#: ../src/RotateCommand.cs:209
+#: ../src/RotateCommand.cs:211
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "Rotando la foto «{0}»"
 
-#: ../src/RotateCommand.cs:234
+#: ../src/RotateCommand.cs:236
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
 msgstr[0] "No se pudo rotar la foto"
 msgstr[1] "No se pudieron rotar las {0} fotos"
 
-#: ../src/RotateCommand.cs:238
+#: ../src/RotateCommand.cs:240
 #, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
@@ -2824,12 +1656,12 @@ msgstr[1] ""
 "Las {0} fotos no se pudieron rotar porque están en un sistema de archivos de "
 "sólo lectura como un CDROM.  Compruebe los permisos y vuelva a intentarlo"
 
-#: ../src/RotateCommand.cs:260
+#: ../src/RotateCommand.cs:262
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "Se recibió el error «{0}» al intentar rotar {1}"
 
-#: ../src/RotateCommand.cs:265
+#: ../src/RotateCommand.cs:267
 msgid "Error while rotating photo."
 msgstr "Error al rotar la foto."
 
@@ -2842,25 +1674,29 @@ msgstr "Preparando correo"
 msgid "Exporting picture \"{0}\""
 msgstr "Exportando imagen «{0}»"
 
-#: ../src/SingleView.cs:76
+#: ../src/SingleView.cs:78
 msgid "Rotate photo left"
 msgstr "Rotar la fotografía a la izquierda"
 
-#: ../src/SingleView.cs:78
+#: ../src/SingleView.cs:80
 msgid "Rotate photo right"
 msgstr "Rotar la fotografía a la derecha"
 
-#: ../src/SingleView.cs:342
+#: ../src/SingleView.cs:318
 msgid "Open"
 msgstr "Abrir"
 
-#: ../src/SingleView.cs:447
+#: ../src/SingleView.cs:423
 msgid "Set as Background"
 msgstr "Establecer como fondo"
 
 #: ../src/StockIcons.cs:26
 msgid "Adjust Colors"
 msgstr "Ajustar colores"
+
+#: ../src/StockIcons.cs:28 ../src/f-spot.glade.h:80
+msgid "Browse"
+msgstr "Examinar"
 
 #: ../src/StockIcons.cs:30
 msgid "Crop"
@@ -2894,6 +1730,14 @@ msgstr "Pregunta"
 #: ../src/StockIcons.cs:38
 msgid "Reduce Red-Eye"
 msgstr "Reducir ojos-rojos"
+
+#: ../src/StockIcons.cs:39 ../src/f-spot.glade.h:178
+msgid "Rotate _Left"
+msgstr "Rotar a la _izquierda"
+
+#: ../src/StockIcons.cs:40 ../src/f-spot.glade.h:179
+msgid "Rotate _Right"
+msgstr "Rotar a la _derecha"
 
 #: ../src/StockIcons.cs:41
 msgid "Sepia Tone"
@@ -2990,29 +1834,12 @@ msgstr[1] "Buscar _con"
 msgid "All"
 msgstr "Todas"
 
-#: ../src/TagQueryWidget.cs:148 ../src/TagQueryWidget.cs:657
+#: ../src/TagQueryWidget.cs:148 ../src/Term.cs:592
 #, csharp-format
 msgid "Not {0}"
 msgstr "Sin {0}"
 
-#: ../src/TagQueryWidget.cs:408
-msgid " and "
-msgstr " y "
-
-#. operators.Add (Catalog.GetString (" && "));
-#: ../src/TagQueryWidget.cs:410
-msgid ", "
-msgstr ", "
-
-#: ../src/TagQueryWidget.cs:457
-msgid " or "
-msgstr " o "
-
-#: ../src/TagQueryWidget.cs:467
-msgid "or"
-msgstr "o"
-
-#: ../src/TagQueryWidget.cs:1110
+#: ../src/TagQueryWidget.cs:278
 msgid "Drag tags here to search for them"
 msgstr "Arrastre etiquetas aquí para buscarlas"
 
@@ -3020,25 +1847,42 @@ msgstr "Arrastre etiquetas aquí para buscarlas"
 msgid "Error renaming tag"
 msgstr "Error al renombrar la etiqueta"
 
-#: ../src/TagStore.cs:378
+#: ../src/TagStore.cs:407
 msgid "Favorites"
 msgstr "Favoritos"
 
-#: ../src/TagStore.cs:383
+#: ../src/TagStore.cs:412
 msgid "Hidden"
 msgstr "Oculto"
 
-#: ../src/TagStore.cs:391
+#: ../src/TagStore.cs:420
 msgid "People"
 msgstr "Gente"
 
-#: ../src/TagStore.cs:396
+#: ../src/TagStore.cs:425
 msgid "Places"
 msgstr "Lugares"
 
-#: ../src/TagStore.cs:401
+#: ../src/TagStore.cs:430
 msgid "Events"
 msgstr "Acontecimientos"
+
+#: ../src/Term.cs:297
+msgid " and "
+msgstr " y "
+
+#. operators.Add (Catalog.GetString (" && "));
+#: ../src/Term.cs:299
+msgid ", "
+msgstr ", "
+
+#: ../src/Term.cs:355
+msgid " or "
+msgstr " o "
+
+#: ../src/Term.cs:379
+msgid "or"
+msgstr "o"
 
 #: ../src/ThreadProgressDialog.cs:66
 msgid "Retry"
@@ -3048,16 +1892,28 @@ msgstr "Reintentar"
 msgid "Skip"
 msgstr "Saltar"
 
+#. The preceding text here is the second checkbutton in the Time dialog
+#. that says "Space all photos by []"
+#: ../src/TimeDialog.cs:125 ../src/f-spot.glade.h:295
+#, csharp-format
+msgid "min. Starting at {0}"
+msgstr "min. Iniciando en {0}"
+
+#: ../src/TimeDialog.cs:130 ../src/f-spot.glade.h:194
+#, csharp-format
+msgid "Shift all photos by {0}"
+msgstr "Desplazar todas las fotos {0}"
+
 #. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
 #: ../src/Unix.cs:25
 msgid "Unable to create temporary file"
 msgstr "Imposible crear el archivo temporal"
 
-#: ../src/Updater.cs:114
+#: ../src/Updater.cs:122
 msgid "Updating F-Spot Database"
 msgstr "Actualizando base de datos F-Spot"
 
-#: ../src/Updater.cs:115
+#: ../src/Updater.cs:123
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -3071,12 +1927,8 @@ msgstr "Ocurrió un error al invocar al manejador externo"
 
 #: ../src/Util.cs:450
 #, csharp-format
-msgid ""
-"Received error:\n"
-"\"{0}\"\n"
-msgstr ""
-"Error obtenido:\n"
-"«{0}»\n"
+msgid "Received error:{1}\"{0}\"{1}"
+msgstr "Error obtenido: {1}«{0}»{1}"
 
 #: ../src/Util.cs:474
 msgid ""
@@ -3090,34 +1942,13 @@ msgstr ""
 msgid "Help not found"
 msgstr "No se encontró la ayuda"
 
-#: ../src/QueryWidget.cs:35
-msgid "Find: "
-msgstr "Buscar: "
+#: ../src/Widgets/DateEdit.cs:210
+msgid "Calendar"
+msgstr "Calendario"
 
-#: ../src/QueryWidget.cs:40
-msgid "Untagged photos"
-msgstr "Fotos sin etiquetas"
-
-#: ../src/QueryWidget.cs:60
-msgid "Clear search"
-msgstr "Vaciar búsqueda"
-
-#: ../src/QueryWidget.cs:62
-msgid "No matching photos found"
-msgstr "No se encontraron fotos coincidentes"
-
-#: ../src/QueryWidget.cs:92
-msgid "Hide Find Bar"
-msgstr "Ocultar barra de búsqueda"
-
-#: ../src/QueryWidget.cs:98
-msgid "Show Find Bar"
-msgstr "Mostrar barra de búsqueda"
-
-#. Prepare the Last Import root tag
-#: ../src/XmpTagsImporter.cs:86
-msgid "Import Tags"
-msgstr "Importar etiquetas"
+#: ../src/Widgets/FindBar.cs:54
+msgid "Find:"
+msgstr "Buscar:"
 
 #: ../src/XmpTagsImporter.cs:87
 msgid "Location"
@@ -3136,6 +1967,1140 @@ msgid "State"
 msgstr "Estado"
 
 #. namespace
+#: ../src/f-spot.glade.h:1
+msgid "\n"
+msgstr "\n"
+
+#: ../src/f-spot.glade.h:3
+msgid " "
+msgstr " "
+
+#: ../src/f-spot.glade.h:4
+msgid "0000:00:00 00:00:00"
+msgstr "0000:00:00 00:00:00"
+
+#: ../src/f-spot.glade.h:5
+msgid "00:00:00"
+msgstr "00:00:00"
+
+#: ../src/f-spot.glade.h:6
+msgid "1 of 1"
+msgstr "1 de 1"
+
+#: ../src/f-spot.glade.h:7
+msgid "1024 px"
+msgstr "1024 px"
+
+#: ../src/f-spot.glade.h:8
+msgid "320 px"
+msgstr "320 px"
+
+#: ../src/f-spot.glade.h:9
+msgid "480 px"
+msgstr "480 px"
+
+#: ../src/f-spot.glade.h:10
+msgid "5"
+msgstr "5"
+
+#: ../src/f-spot.glade.h:11
+msgid "640 px"
+msgstr "640 px"
+
+#: ../src/f-spot.glade.h:12
+msgid "800 px"
+msgstr "800 px"
+
+#: ../src/f-spot.glade.h:13
+msgid "<b></b>"
+msgstr "<b></b>"
+
+#: ../src/f-spot.glade.h:14
+msgid "<b>Account</b>"
+msgstr "<b>Cuenta</b>"
+
+#: ../src/f-spot.glade.h:15
+msgid "<b>Action</b>"
+msgstr "<b>Acción</b>"
+
+#: ../src/f-spot.glade.h:16
+msgid "<b>Album</b>"
+msgstr "<b>Álbum</b>"
+
+#: ../src/f-spot.glade.h:17
+msgid "<b>Co_rrections</b>"
+msgstr "<b>Cor_recciones</b>"
+
+#: ../src/f-spot.glade.h:18
+msgid "<b>Color Management</b>"
+msgstr "<b>Gestión de color</b>"
+
+#: ../src/f-spot.glade.h:19
+msgid "<b>Color Temperature</b>"
+msgstr "<b>Temperatura del color</b>"
+
+#: ../src/f-spot.glade.h:20
+msgid "<b>Destination</b>"
+msgstr "<b>Destino</b>"
+
+#: ../src/f-spot.glade.h:21
+msgid "<b>End Date</b>"
+msgstr "<b>Fecha de finalización</b>"
+
+#: ../src/f-spot.glade.h:22
+msgid "<b>Export Method</b>"
+msgstr "<b>Método de exportación</b>"
+
+#: ../src/f-spot.glade.h:23
+msgid "<b>Exposure</b>"
+msgstr "<b>Exposición</b>"
+
+#: ../src/f-spot.glade.h:24
+msgid "<b>From Photo</b>"
+msgstr "<b>Desde la fotografía</b>"
+
+#: ../src/f-spot.glade.h:25
+msgid "<b>Gallery</b>"
+msgstr "<b>Galería</b>"
+
+#: ../src/f-spot.glade.h:26
+msgid "<b>Histo_gram</b>"
+msgstr "<b>Histo_grama</b>"
+
+#: ../src/f-spot.glade.h:27
+msgid "<b>Histogram</b>"
+msgstr "<b>Histograma</b>"
+
+#: ../src/f-spot.glade.h:28
+msgid "<b>Image Interpolation</b>"
+msgstr "<b>Interpolación de imagen</b>"
+
+#: ../src/f-spot.glade.h:29
+msgid "<b>Import Settings</b>"
+msgstr "<b>Ajustes de importación</b>"
+
+#: ../src/f-spot.glade.h:30
+msgid "<b>Metadata</b>"
+msgstr "<b>Metadatos</b>"
+
+#: ../src/f-spot.glade.h:31
+msgid "<b>Photograph Layout</b>"
+msgstr "<b>Composición de la fotografía</b>"
+
+#: ../src/f-spot.glade.h:32
+msgid "<b>Photos to Burn</b>"
+msgstr "<b>Fotografías a grabar</b>"
+
+#: ../src/f-spot.glade.h:33
+msgid "<b>Photos</b>"
+msgstr "<b>Fotografías</b>"
+
+#: ../src/f-spot.glade.h:34
+msgid "<b>PicasaWeb Export</b>"
+msgstr "<b>Exportación a Picasaweb</b>"
+
+#: ../src/f-spot.glade.h:35
+msgid "<b>Predefined</b>"
+msgstr "<b>Predefinido</b>"
+
+#: ../src/f-spot.glade.h:36
+msgid "<b>Preview</b>"
+msgstr "<b>Previsualizar</b>"
+
+#: ../src/f-spot.glade.h:37
+msgid "<b>Printer Details</b>"
+msgstr "<b>Detalles de la impresora</b>"
+
+#: ../src/f-spot.glade.h:38
+msgid "<b>Reference Photo</b>"
+msgstr "<b>Fotografía de referencia</b>"
+
+#: ../src/f-spot.glade.h:39
+msgid "<b>Screensaver</b>"
+msgstr "<b>Salvapantallas</b>"
+
+#: ../src/f-spot.glade.h:40
+msgid "<b>Size</b>"
+msgstr "<b>Tamaño</b>"
+
+#: ../src/f-spot.glade.h:41
+msgid "<b>SmugMug Export</b>"
+msgstr "<b>Exportar a SmugMug</b>"
+
+#: ../src/f-spot.glade.h:42
+msgid "<b>Start Date</b>"
+msgstr "<b>Fecha de comienzo</b>"
+
+#: ../src/f-spot.glade.h:43
+msgid "<b>Style</b>"
+msgstr "<b>Estilo</b>"
+
+#: ../src/f-spot.glade.h:44
+msgid "<b>Summary</b>"
+msgstr "<b>Resumen</b>"
+
+#: ../src/f-spot.glade.h:45
+msgid "<b>Transparent Parts</b>"
+msgstr "<b>Partes transparentes</b>"
+
+#: ../src/f-spot.glade.h:46
+msgid "<b>Viewing permissions</b>"
+msgstr "<b>Permisos de visualización</b>"
+
+#: ../src/f-spot.glade.h:47
+msgid "<b>_White Balance</b>"
+msgstr "<b>Balance de _blancos</b>"
+
+#: ../src/f-spot.glade.h:48
+msgid "<small> </small>"
+msgstr "<small> </small>"
+
+#: ../src/f-spot.glade.h:49
+msgid "<small></small>"
+msgstr "<small></small>"
+
+#: ../src/f-spot.glade.h:50
+msgid ""
+"<small><i>Choose the folder where F-Spot should store newly imported photos</"
+"i></small>"
+msgstr ""
+"<small><i>Elija la carpeta donde F-Spot debería almacenar las fotos "
+"importadas nuevas</i></small>"
+
+#: ../src/f-spot.glade.h:51
+msgid ""
+"<small><i>Enable this option to store tags and descriptions inside \n"
+"supported image formats.</i></small>"
+msgstr ""
+"<small><i>Active esta opción para almacenar las etiquetas y las \n"
+"descripciones dentro de los formatos de imagen soportados.</i></small>"
+
+#: ../src/f-spot.glade.h:53
+msgid ""
+"<small><i>Enable this to allow interpolation on zoomed images. You should'nt "
+"disable this for viewing photos, but disabling the interpolation could be "
+"usefull in icon design.</i></small>"
+msgstr ""
+"<small><i>Activar esto para permitir interpolación en las imágenes "
+"ampliadas. No debería desactivar esto para ver fotos, pero desactivar la "
+"interpolación podría ser útil en el diseño de iconos.</i></small>"
+
+#: ../src/f-spot.glade.h:54
+msgid ""
+"<small><i>Select the tag you like F-Spot to display images from while acting "
+"as the screensaver</i></small>"
+msgstr ""
+"<small><i>Seleccione la etiqueta de las que quiera que F-Spot muestre "
+"imágenes cuando actúe como salvapantallas</i></small>"
+
+#: ../src/f-spot.glade.h:55
+msgid ""
+"<small><i>You can choose how to display transparent parts in images. This "
+"option has no effect on photos, but setting this as check pattern or custom "
+"color could be usefull when viewing icons or other artworks with transparent "
+"parts.</i></small>"
+msgstr ""
+"<small><i>Puede elegir cómo mostrar partes transparentes en las imágenes. "
+"Esta opción no tiene efecto en las fotos, pero establecer esto como un "
+"patrón de cuadros o color personalizado puede ser útil al ver iconos u otro "
+"trabajos artísticos con partes transparentes.</i></small>"
+
+#: ../src/f-spot.glade.h:56
+msgid "<small>C_ontrast:</small>"
+msgstr "<small>C_ontraste:</small>"
+
+#: ../src/f-spot.glade.h:57
+msgid "<small>Te_mp:</small>"
+msgstr "<small>Te_mperatura:</small>"
+
+#: ../src/f-spot.glade.h:58
+msgid "<small>_Brightness:</small>"
+msgstr "<small>_Brillo:</small>"
+
+#: ../src/f-spot.glade.h:59
+msgid "<small>_Exposure:</small>"
+msgstr "<small>_Exposición:</small>"
+
+#: ../src/f-spot.glade.h:60
+msgid "<small>_Hue:</small>"
+msgstr "<small>_Tono:</small>"
+
+#: ../src/f-spot.glade.h:61
+msgid "<small>_Saturation:</small>"
+msgstr "<small>_Saturación:</small>"
+
+#: ../src/f-spot.glade.h:62
+msgid "<small>_Tint:</small>"
+msgstr "<small>_Tinte:</small>"
+
+#: ../src/f-spot.glade.h:63
+msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
+msgstr "<span weight='bold' size='larger'>Error al conectar con Gallery</span>\n"
+
+#: ../src/f-spot.glade.h:65
+msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgstr "<span weight='bold' size='larger'>Su cuenta de Google está bloqueada</span>\n"
+
+#: ../src/f-spot.glade.h:67
+msgid "Ad_just Color..."
+msgstr "A_justar el color…"
+
+#: ../src/f-spot.glade.h:68
+msgid "Adjust Color"
+msgstr "Ajustar el color"
+
+#: ../src/f-spot.glade.h:69
+msgid "Adjust Time"
+msgstr "Ajustar la hora"
+
+#: ../src/f-spot.glade.h:70
+msgid "Adjust _Time..."
+msgstr "Ajustar la _hora..."
+
+#: ../src/f-spot.glade.h:71
+msgid "Adjusted date: "
+msgstr "Fecha ajustada:"
+
+#: ../src/f-spot.glade.h:72
+msgid "Arrange _by"
+msgstr "Ordenar _por"
+
+#: ../src/f-spot.glade.h:73
+msgid "As _background"
+msgstr "Como _fondo de pantalla"
+
+#: ../src/f-spot.glade.h:74
+msgid "As check pattern"
+msgstr "Como patrón de cuadros"
+
+#: ../src/f-spot.glade.h:75
+msgid "As custom color: "
+msgstr "Como color personalizado:"
+
+#: ../src/f-spot.glade.h:76
+msgid "Attach Tags:"
+msgstr "Adjuntar etiquetas:"
+
+#: ../src/f-spot.glade.h:77
+msgid "Attach tag:"
+msgstr "Adjuntar etiqueta:"
+
+#: ../src/f-spot.glade.h:79
+msgid "Autorotate"
+msgstr "Autorotar"
+
+#: ../src/f-spot.glade.h:81
+msgid "CD"
+msgstr "CD"
+
+#: ../src/f-spot.glade.h:82
+msgid "C_aption:"
+msgstr "_Membrete:"
+
+#: ../src/f-spot.glade.h:83
+msgid "C_ontrast:"
+msgstr "C_ontraste:"
+
+#: ../src/f-spot.glade.h:84
+msgid "Camera Selection"
+msgstr "Seleccionar la cámara"
+
+#: ../src/f-spot.glade.h:85
+msgid "Clea_r Date Range"
+msgstr "_Limpiar el rango de fechas"
+
+#: ../src/f-spot.glade.h:86
+msgid "Co_nfigure"
+msgstr "Co_nfigurar"
+
+#: ../src/f-spot.glade.h:87
+msgid "Copy Locat_ion"
+msgstr "Copiar _lugar"
+
+#: ../src/f-spot.glade.h:88
+msgid "Copy files to the Photos folder"
+msgstr "Copiar archivos a la carpeta Photos"
+
+#: ../src/f-spot.glade.h:89
+msgid "Create CD"
+msgstr "Crear CD"
+
+#: ../src/f-spot.glade.h:90
+msgid "Create Mail"
+msgstr "Crear correo"
+
+#: ../src/f-spot.glade.h:91
+msgid "Create New _Tag..."
+msgstr "Crear una e_tiqueta…"
+
+#: ../src/f-spot.glade.h:92
+msgid "Create _New Version..."
+msgstr "Crear una _nueva versión…"
+
+#: ../src/f-spot.glade.h:93
+msgid "Create _gallery using \"Original\""
+msgstr "Crear una _galería usando «Original»"
+
+#: ../src/f-spot.glade.h:94
+msgid "Create a mail with the selected photos (possible resized) attached"
+msgstr ""
+"Crea un correo con las fotos seleccionadas (posiblemente redimensionadas) "
+"adjuntas"
+
+#: ../src/f-spot.glade.h:95
+msgid "Create mail..."
+msgstr "Crear correo…"
+
+#: ../src/f-spot.glade.h:96
+msgid "Create standalone _web gallery"
+msgstr "Crear una galería _web independiente"
+
+#: ../src/f-spot.glade.h:97
+msgid "Crop photo to _fit"
+msgstr "Recortar la foto para _ajustarla"
+
+#: ../src/f-spot.glade.h:98
+msgid "Current date:"
+msgstr "Fecha actual:"
+
+#: ../src/f-spot.glade.h:99
+msgid "D_escription:"
+msgstr "_Descripción:"
+
+#: ../src/f-spot.glade.h:100
+msgid "Display File Names"
+msgstr "Mostrar nombres de archivo"
+
+#: ../src/f-spot.glade.h:101
+msgid "Display Side_bar"
+msgstr "Mostrar la barra lateral"
+
+#: ../src/f-spot.glade.h:102
+msgid "Display T_ags"
+msgstr "Mostrar etiquet_as"
+
+#: ../src/f-spot.glade.h:103
+msgid "Display Too_lbar"
+msgstr "Mostrar barra de _herramientas"
+
+#: ../src/f-spot.glade.h:104
+msgid "Display _Dates"
+msgstr "Mostrar _fechas"
+
+#: ../src/f-spot.glade.h:105
+msgid "Display _Timeline"
+msgstr "Mostrar línea de _tiempo"
+
+#: ../src/f-spot.glade.h:106
+msgid "Do not send a mail"
+msgstr "No enviar un correo"
+
+#: ../src/f-spot.glade.h:107
+msgid "E-_Mail:"
+msgstr "_Correo-e:"
+
+#: ../src/f-spot.glade.h:108
+msgid "E_xport titles and comments"
+msgstr "_Exportar títulos y comentarios"
+
+#: ../src/f-spot.glade.h:109
+msgid "Edit"
+msgstr "Editar"
+
+#: ../src/f-spot.glade.h:110
+msgid "Edit Tag Icon"
+msgstr "Editar la etiqueta del icono"
+
+#: ../src/f-spot.glade.h:111
+msgid "Edit icon"
+msgstr "Editar el icono"
+
+#: ../src/f-spot.glade.h:112
+msgid "Estimated new size"
+msgstr "Tamaño nuevo estimado"
+
+#: ../src/f-spot.glade.h:113
+msgid "Export"
+msgstr "Exportar"
+
+#: ../src/f-spot.glade.h:114
+msgid "Export _titles and comments"
+msgstr "Exportar _títulos y comentarios"
+
+#: ../src/f-spot.glade.h:115
+msgid "Extra large"
+msgstr "Enorme"
+
+#: ../src/f-spot.glade.h:116
+msgid "F-Spot"
+msgstr "F-Spot"
+
+#: ../src/f-spot.glade.h:117
+msgid "F-Spot View"
+msgstr "Vista F-Spot"
+
+#: ../src/f-spot.glade.h:118
+msgid ""
+"F-Spot needs your authorization in order to upload photos to your {0} "
+"account. Press the \"Authorize\" button to open a web browser and give F-"
+"Spot the authorization. "
+msgstr ""
+"F-Spot necesita su autorización para poder subir fotografías a su cuenta de "
+"{0}. Pulse el botón «Autorizar» para abrir un navegador y dar la "
+"autorización a F-Spot."
+
+#: ../src/f-spot.glade.h:120
+msgid "Fin_d"
+msgstr "_Buscar"
+
+#: ../src/f-spot.glade.h:122
+msgid "Folder Export"
+msgstr "Carpeta para exportar"
+
+#: ../src/f-spot.glade.h:123
+msgid ""
+"From Screen\n"
+"Standard RGB"
+msgstr ""
+"Desde la pantalla\n"
+"RGB estándar"
+
+#: ../src/f-spot.glade.h:125
+msgid ""
+"Full Page\n"
+"Standard - 4x6"
+msgstr ""
+"Página completa\n"
+"Estándar - 4x6"
+
+#: ../src/f-spot.glade.h:127
+msgid "G_allery Name:"
+msgstr "Nombre de la _galería:"
+
+#: ../src/f-spot.glade.h:128
+msgid "G_allery:"
+msgstr "_Galería:"
+
+#: ../src/f-spot.glade.h:129
+msgid "Gallery"
+msgstr "Galería"
+
+#: ../src/f-spot.glade.h:130
+msgid ""
+"Hairline\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
+msgstr ""
+"Línea extrafina\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
+
+#: ../src/f-spot.glade.h:135
+msgid "Import"
+msgstr "Importar"
+
+#: ../src/f-spot.glade.h:136
+msgid "Import Source:"
+msgstr "Origen de la importación:"
+
+#: ../src/f-spot.glade.h:137
+msgid "Import photos"
+msgstr "Importar fotos"
+
+#: ../src/f-spot.glade.h:138
+msgid "Include subfolders"
+msgstr "Incluir subcarpetas"
+
+#: ../src/f-spot.glade.h:139
+msgid "Interpolate image on zoom"
+msgstr "Interpolar imagen al ampliar"
+
+#: ../src/f-spot.glade.h:140
+msgid "Large"
+msgstr "Grande"
+
+#: ../src/f-spot.glade.h:141
+msgid "Make F-Spot your screensaver"
+msgstr "Hacer de F-Spot su salvapantallas"
+
+#: ../src/f-spot.glade.h:142
+msgid "Medium"
+msgstr "Medio"
+
+#: ../src/f-spot.glade.h:144
+msgid "N_umber of Copies:"
+msgstr "_Número de copias:"
+
+#: ../src/f-spot.glade.h:146
+msgid ""
+"None\n"
+"Title\n"
+"Filename\n"
+"Date\n"
+"Photo Details"
+msgstr ""
+"Ninguna\n"
+"Título\n"
+"Nombre del archivo\n"
+"Fecha\n"
+"Detalles de la foto"
+
+#: ../src/f-spot.glade.h:151
+msgid "Number of pictures"
+msgstr "Número de imágenes"
+
+#: ../src/f-spot.glade.h:152
+msgid "Open _Folder..."
+msgstr "Abrir _carpeta…"
+
+#: ../src/f-spot.glade.h:153
+msgid "Open _album in browser when done uploading"
+msgstr "Abrir el á_lbum en el navegador cuando se termine de subir"
+
+#: ../src/f-spot.glade.h:154
+msgid "Open _destination when done exporting"
+msgstr "Abrir el _destino cuando se termine de exportar"
+
+#: ../src/f-spot.glade.h:156
+msgid "Original size (possible very large file size)"
+msgstr "Tamaño original (tamaño de archivo posiblemente muy grande)"
+
+#: ../src/f-spot.glade.h:157
+msgid "P_arent Tag:"
+msgstr "Etiqueta _madre:"
+
+#: ../src/f-spot.glade.h:158
+msgid "P_hoto Source:"
+msgstr "Origen de la _foto:"
+
+#: ../src/f-spot.glade.h:159
+msgid "Page 1 of 3"
+msgstr "Página 1 de 3"
+
+#: ../src/f-spot.glade.h:160
+msgid "Pause"
+msgstr "Pausar"
+
+#: ../src/f-spot.glade.h:161
+msgid "Photo 0 of 0"
+msgstr "Fotografía 0 de 0"
+
+#: ../src/f-spot.glade.h:162
+msgid "Photo _Size:"
+msgstr "_Tamaño de la foto:"
+
+#: ../src/f-spot.glade.h:163
+msgid "Please verify that the settings for this gallery are correct."
+msgstr "Compruebe que las preferencias para esta galería son correctas."
+
+#: ../src/f-spot.glade.h:164
+msgid ""
+"Please verify that the settings for this gallery are correct.\n"
+"Enter the letters as they are shown in the image in\n"
+"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
+msgstr ""
+"Verifique que sus ajustes para esta galería son correctos.\n"
+"Introduzca las letras tal como se muestran en la imagen en\n"
+"el campo 'Captcha'. <i>Las letras no son sensibles a capitalización</i>"
+
+#: ../src/f-spot.glade.h:167
+msgid "Preferences"
+msgstr "Preferencias"
+
+#: ../src/f-spot.glade.h:169
+msgid "Print"
+msgstr "Imprimir"
+
+#: ../src/f-spot.glade.h:170
+msgid "Print crop _marks"
+msgstr "Imprimir _marcas de recorte"
+
+#: ../src/f-spot.glade.h:171
+msgid "Private"
+msgstr "Privado"
+
+#: ../src/f-spot.glade.h:172
+msgid "Public"
+msgstr "Público"
+
+#: ../src/f-spot.glade.h:173
+msgid "Public Album"
+msgstr "Álbum público"
+
+#: ../src/f-spot.glade.h:174
+msgid "Re_fresh Thumbnail"
+msgstr "Act_ualizar miniaturas"
+
+#: ../src/f-spot.glade.h:175
+msgid "Rem_ove Tag"
+msgstr "_Eliminar etiqueta"
+
+#: ../src/f-spot.glade.h:176
+msgid "Repair"
+msgstr "Reparar"
+
+#: ../src/f-spot.glade.h:177
+msgid "Reset"
+msgstr "Restablecer"
+
+#: ../src/f-spot.glade.h:180
+msgid "Select A Folder"
+msgstr "Seleccione una carpeta"
+
+#: ../src/f-spot.glade.h:181
+msgid "Select Photos to Copy From Camera..."
+msgstr "Seleccionar las fotos para copiar desde la cámara…"
+
+#: ../src/f-spot.glade.h:182
+msgid "Select _All"
+msgstr "Seleccionar _todo"
+
+#: ../src/f-spot.glade.h:183
+msgid "Select _None"
+msgstr "Seleccionar _nada"
+
+#: ../src/f-spot.glade.h:184
+msgid "Select a Tag..."
+msgstr "Seleccionar una etiqueta…"
+
+#: ../src/f-spot.glade.h:185
+msgid "Select the camera from which you want to transfer files"
+msgstr "Seleccione la cámara desde la que desea transferir archivos"
+
+#: ../src/f-spot.glade.h:186
+msgid "Selected Camera: "
+msgstr "Cámara seleccionada: "
+
+#: ../src/f-spot.glade.h:187
+msgid ""
+"Selection\n"
+"Gallery\n"
+"Viewport"
+msgstr ""
+"Selección\n"
+"Galería\n"
+"Previsualización"
+
+#: ../src/f-spot.glade.h:190
+msgid "Send _Mail..."
+msgstr "Enviar al correo _electrónico…"
+
+#: ../src/f-spot.glade.h:191
+msgid "Set Date Range"
+msgstr "Establecer rango de fechas"
+
+#: ../src/f-spot.glade.h:192
+msgid "Set _Date Range..."
+msgstr "Establecer rango de _fechas…"
+
+#: ../src/f-spot.glade.h:193
+msgid "Set as _Background"
+msgstr "Establecer como _fondo de pantalla"
+
+#: ../src/f-spot.glade.h:195
+msgid "Show or hide the side pane"
+msgstr "Mostrar u ocultar el panel lateral"
+
+#: ../src/f-spot.glade.h:196
+msgid "Show or hide the toolbar"
+msgstr "Mostrar u ocultar la barra de herramientas"
+
+#: ../src/f-spot.glade.h:197
+msgid "Side _pane"
+msgstr "_Panel lateral"
+
+#: ../src/f-spot.glade.h:198
+msgid "Size"
+msgstr "Tamaño"
+
+#: ../src/f-spot.glade.h:199
+msgid "Size of the exported selection :"
+msgstr "Tamaño de la selección exportada:"
+
+#: ../src/f-spot.glade.h:200
+msgid "Small"
+msgstr "Pequeño"
+
+#: ../src/f-spot.glade.h:201
+msgid "So_urce Temp"
+msgstr "_Origen temporal"
+
+#: ../src/f-spot.glade.h:202
+msgid "Space all photos by"
+msgstr "Espaciar todas las fotos"
+
+#: ../src/f-spot.glade.h:203
+msgid ""
+"Specify if an original size picture should be rotated or not. Smaller sizes "
+"are automatically rotated."
+msgstr ""
+"Especifique su un tamaño original de imagen debe rotarse o no. Los tamaños "
+"pequeños se rotan automáticamente."
+
+#: ../src/f-spot.glade.h:204
+msgid ""
+"Standard RGB\n"
+"Image Profile\n"
+"Custom\n"
+msgstr ""
+"RGB estándar\n"
+"Perfil de la imagen\n"
+"Personalizada\n"
+
+#: ../src/f-spot.glade.h:208
+msgid "Strip _metadata"
+msgstr "Recortar _metadatos"
+
+#: ../src/f-spot.glade.h:209
+msgid "Strip image _metadata"
+msgstr "Recorta los _metadatos de la imagen"
+
+#: ../src/f-spot.glade.h:210
+msgid "Tag Icons"
+msgstr "Etiquetar iconos"
+
+#: ../src/f-spot.glade.h:211
+msgid "Tags: "
+msgstr "Etiquetas:"
+
+#: ../src/f-spot.glade.h:212
+msgid "Tiny"
+msgstr "Diminuto"
+
+#: ../src/f-spot.glade.h:213
+msgid "Toolbar"
+msgstr "Barra de herramientas"
+
+#: ../src/f-spot.glade.h:214
+msgid "Total original size"
+msgstr "Tamaño total original"
+
+#: ../src/f-spot.glade.h:215
+msgid "U_RL:"
+msgstr "_URL:"
+
+#: ../src/f-spot.glade.h:216
+msgid "View"
+msgstr "Ver"
+
+#: ../src/f-spot.glade.h:217
+msgid "Visible to Family"
+msgstr "Visible para la familia"
+
+#: ../src/f-spot.glade.h:218
+msgid "Visible to Friends"
+msgstr "Visible para los amigos"
+
+#: ../src/f-spot.glade.h:219
+msgid "Will print using: US Letter size on Generic Postscript"
+msgstr "Se imprimirá usando: tamaño carta de EE.UU. sobre Postscript genérico"
+
+#: ../src/f-spot.glade.h:220
+msgid "Write _metadata to file"
+msgstr "Escribir los _metadatos en el archivo"
+
+#: ../src/f-spot.glade.h:221
+msgid "Zoom _in"
+msgstr "_Ampliar"
+
+#: ../src/f-spot.glade.h:222
+msgid "Zoom _out"
+msgstr "_Reducir"
+
+#: ../src/f-spot.glade.h:223
+msgid "Zoom in"
+msgstr "Ampliar"
+
+#: ../src/f-spot.glade.h:224
+msgid "Zoom out"
+msgstr "Reducir"
+
+#: ../src/f-spot.glade.h:225
+msgid "_Account:"
+msgstr "_Cuenta:"
+
+#: ../src/f-spot.glade.h:226
+msgid "_Album Name:"
+msgstr "Nombre del á_lbum:"
+
+#: ../src/f-spot.glade.h:227
+msgid "_Album Title:"
+msgstr "Título del á_lbum:"
+
+#: ../src/f-spot.glade.h:228
+msgid "_Attach Tag"
+msgstr "_Adjuntar etiqueta"
+
+#: ../src/f-spot.glade.h:229
+msgid "_Attach Tag to Selection"
+msgstr "_Adjuntar etiqueta a la selección"
+
+#: ../src/f-spot.glade.h:230
+msgid "_Border:"
+msgstr "_Borde:"
+
+#: ../src/f-spot.glade.h:231
+msgid "_Brightness:"
+msgstr "_Brillo:"
+
+#: ../src/f-spot.glade.h:232
+msgid "_Browse Previously Scheduled Files"
+msgstr "_Examinar los archivos previamente programados"
+
+#: ../src/f-spot.glade.h:233
+msgid "_Captcha:"
+msgstr "_Captcha:"
+
+#: ../src/f-spot.glade.h:234
+msgid "_Contents"
+msgstr "_Contenido"
+
+#: ../src/f-spot.glade.h:235
+msgid "_Delete From Drive"
+msgstr "_Borrar de la unidad"
+
+#: ../src/f-spot.glade.h:236
+msgid "_Delete Selected Tag"
+msgstr "_Borrar la etiqueta seleccionada"
+
+#: ../src/f-spot.glade.h:237
+msgid "_Delete Version"
+msgstr "_Borrar la versión"
+
+#: ../src/f-spot.glade.h:238
+msgid "_Description:"
+msgstr "_Descripción:"
+
+#: ../src/f-spot.glade.h:239
+msgid "_Destination Temp"
+msgstr "_Destino temporal"
+
+#: ../src/f-spot.glade.h:240
+msgid "_Display:"
+msgstr "_Mostrar:"
+
+#: ../src/f-spot.glade.h:241
+msgid "_Edit Selected Tag..."
+msgstr "_Editar la etiqueta seleccionada…"
+
+#: ../src/f-spot.glade.h:242
+msgid "_Export"
+msgstr "_Exportar"
+
+#: ../src/f-spot.glade.h:243
+msgid "_Export tags"
+msgstr "_Exportar etiquetas"
+
+#: ../src/f-spot.glade.h:244
+msgid "_Export to Album:"
+msgstr "_Exportar a un álbum:"
+
+#: ../src/f-spot.glade.h:245
+msgid "_Flickr"
+msgstr "_Flickr"
+
+#: ../src/f-spot.glade.h:246
+msgid "_Folder"
+msgstr "_Carpeta"
+
+#: ../src/f-spot.glade.h:247
+msgid "_Folder:"
+msgstr "_Carpeta:"
+
+#: ../src/f-spot.glade.h:248
+msgid "_Fullscreen"
+msgstr "_Pantalla completa"
+
+#: ../src/f-spot.glade.h:249
+msgid "_Gallery"
+msgstr "_Galería"
+
+#: ../src/f-spot.glade.h:250
+msgid "_Gallery Name:"
+msgstr "Nombre de la _galería:"
+
+#: ../src/f-spot.glade.h:251
+msgid "_Gallery:"
+msgstr "_Galería:"
+
+#: ../src/f-spot.glade.h:252
+msgid "_Hidden"
+msgstr "_Oculto"
+
+#: ../src/f-spot.glade.h:253
+msgid "_Hue:"
+msgstr "_Tono:"
+
+#: ../src/f-spot.glade.h:254
+msgid "_Icon:"
+msgstr "_Icono:"
+
+#: ../src/f-spot.glade.h:255
+msgid "_Import..."
+msgstr "_Importar…"
+
+#: ../src/f-spot.glade.h:256
+msgid "_Large"
+msgstr "_Grande"
+
+#: ../src/f-spot.glade.h:257
+msgid "_Medium"
+msgstr "_Medio"
+
+#: ../src/f-spot.glade.h:258
+msgid "_Metadata Browser"
+msgstr "Examinador de _metadatos"
+
+#: ../src/f-spot.glade.h:259
+msgid "_Month"
+msgstr "_Mes"
+
+#: ../src/f-spot.glade.h:260
+msgid "_New Window"
+msgstr "Ventana _nueva"
+
+#: ../src/f-spot.glade.h:261
+msgid "_Open album in browser when done uploading"
+msgstr "_Abrir el álbum en el navegador cuando se termine de subir"
+
+#: ../src/f-spot.glade.h:262
+msgid "_Open destination when done exporting"
+msgstr "_Abrir el destino cuando se termine de exportar"
+
+#: ../src/f-spot.glade.h:263
+msgid "_Output:"
+msgstr "_Salida:"
+
+#: ../src/f-spot.glade.h:264
+msgid "_Parent Album:"
+msgstr "Álbum _padre:"
+
+#: ../src/f-spot.glade.h:265
+msgid "_Password:"
+msgstr "_Contraseña:"
+
+#: ../src/f-spot.glade.h:266
+msgid "_Print..."
+msgstr "_Imprimir…"
+
+#: ../src/f-spot.glade.h:267
+msgid "_Quit"
+msgstr "_Salir"
+
+#: ../src/f-spot.glade.h:268
+msgid "_Remove From Catalog"
+msgstr "_Eliminar del catálogo"
+
+#: ../src/f-spot.glade.h:269
+msgid "_Remove Tag From Selection"
+msgstr "_Borrar la etiqueta de las seleccionadas"
+
+#: ../src/f-spot.glade.h:270
+msgid "_Rename Version"
+msgstr "_Renombrar la versión"
+
+#: ../src/f-spot.glade.h:271
+msgid "_Resize to: "
+msgstr "_Redimensionar a: "
+
+#: ../src/f-spot.glade.h:273
+msgid "_Saturation:"
+msgstr "_Saturación:"
+
+#: ../src/f-spot.glade.h:274
+msgid "_Save the files only"
+msgstr "_Guardar sólo los archivos"
+
+#: ../src/f-spot.glade.h:275
+msgid "_Scale photos to no larger than: "
+msgstr "_Escalar las fotos para que no sean más grandes de: "
+
+#: ../src/f-spot.glade.h:276
+msgid "_Sharpen..."
+msgstr "_Enfoque…"
+
+#: ../src/f-spot.glade.h:277
+msgid "_Slideshow"
+msgstr "_Diapositivas"
+
+#: ../src/f-spot.glade.h:278
+msgid "_Small"
+msgstr "_Pequeño"
+
+#: ../src/f-spot.glade.h:279
+msgid "_Strip metadata"
+msgstr "_Recortar metadatos"
+
+#: ../src/f-spot.glade.h:280
+msgid "_Tag Name:"
+msgstr "Nombre de la _etiqueta:"
+
+#: ../src/f-spot.glade.h:281
+msgid "_Tags"
+msgstr "E_tiquetas"
+
+#: ../src/f-spot.glade.h:282
+msgid "_Title:"
+msgstr "_Título:"
+
+#: ../src/f-spot.glade.h:283
+msgid "_Tools"
+msgstr "_Herramientas"
+
+#: ../src/f-spot.glade.h:284
+msgid "_URI:"
+msgstr "_URI:"
+
+#: ../src/f-spot.glade.h:285
+msgid "_Untagged Photos"
+msgstr "Fotos _sin etiqueta"
+
+#: ../src/f-spot.glade.h:286
+msgid "_Username:"
+msgstr "_Usuario:"
+
+#: ../src/f-spot.glade.h:287
+msgid "_Version"
+msgstr "_Versión"
+
+#: ../src/f-spot.glade.h:288
+msgid "_View"
+msgstr "_Ver"
+
+#: ../src/f-spot.glade.h:289
+msgid "_View photos in browser when done uploading"
+msgstr "_Ver fotos en el navegador cuando se termine de subir"
+
+#: ../src/f-spot.glade.h:290
+msgid "_Virtual Filesystem"
+msgstr "Sistema de archivos _virtual"
+
+#: ../src/f-spot.glade.h:291
+msgid "_Write only these photos to CD"
+msgstr "_Grabar sólo estas fotos al CD"
+
+#: ../src/f-spot.glade.h:292
+msgid "dialog1"
+msgstr "diálogo1"
+
+#: ../src/f-spot.glade.h:293
+msgid "difference:"
+msgstr "diferencia:"
+
+#: ../src/f-spot.glade.h:294
+msgid "img_000.jpg"
+msgstr "img_000.jpg"
+
+#: ../src/f-spot.glade.h:296
+msgid "pixels"
+msgstr "píxeles"
+
+#: ../src/f-spot.glade.h:297
+msgid "x"
+msgstr "x"
+
 #: ../tools/f-spot-screensaver.desktop.in.h:1
 msgid "Display a slideshow from F-Spot"
 msgstr "Mostrar una exhibición de fotos desde F-Spot"
@@ -3143,3 +3108,4 @@ msgstr "Mostrar una exhibición de fotos desde F-Spot"
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr "Fotos de F-Spot"
+
