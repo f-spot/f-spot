@@ -99,15 +99,19 @@ namespace FSpot.Widgets {
 			double max = Math.Max (blur.Bounds.Width, blur.Bounds.Height) * .25;
 			double scale = blur.Bounds.Width / (double) info.Bounds.Width;
 
-			RadialGradient circle = new RadialGradient (center.X * scale, center.Y * scale, radius * max + max * .2,
-								    center.X * scale, center.Y * scale, radius * max * .7);
-
+			RadialGradient circle;
 
 			// FIXME ugh cairo 1.0.2 is so broken why are we still shipping it.
 			if (CairoAPI.cairo_version () > (1 * 10000 + 2 * 100 + 0)) {
+				circle = new RadialGradient (center.X * scale, center.Y * scale, radius * max * .7,
+							     center.X * scale, center.Y * scale, radius * max + max * .2);
+
 				circle.AddColorStop (0, new Cairo.Color (0.0, 0.0, 0.0, 0.0));
 				circle.AddColorStop (1.0, new Cairo.Color (1.0, 1.0, 1.0, 1.0));
-			} else {
+		        } else {
+				circle = new RadialGradient (center.X * scale, center.Y * scale, radius * max + max * .2,
+							     center.X * scale, center.Y * scale, radius * max * .7);
+
 				circle.AddColorStop (1.0, new Cairo.Color (0.0, 0.0, 0.0, 0.0));
 				circle.AddColorStop (0, new Cairo.Color (1.0, 1.0, 1.0, 1.0));
 			}
