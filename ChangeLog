@@ -1,3 +1,8 @@
+2007-05-08  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/MainWindow.cs: wrap the update-menus-from-extensions part in a
+	try/catch to avoid bugs like bgo #436726.
+
 2007-05-04  Stephane Delcroix  <stephane@delcroix.org>
 
 	* Makefile.include:

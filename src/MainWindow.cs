@@ -2770,11 +2770,20 @@ public class MainWindow {
 		attach_tag_to_selection.Sensitive = tag_sensitive && active_selection;
 		remove_tag_from_selection.Sensitive = tag_sensitive && active_selection;
 	
-		export.Submenu = (Mono.Addins.AddinManager.GetExtensionNode ("/FSpot/Menus/Exports") as FSpot.Extensions.SubmenuNode).GetMenuItem ().Submenu;
+		try {
+			export.Submenu = (Mono.Addins.AddinManager.GetExtensionNode ("/FSpot/Menus/Exports") as FSpot.Extensions.SubmenuNode).GetMenuItem ().Submenu;
+		} catch {
+			Console.WriteLine ("There's something wrong with some of the installed extensions. You can try removing the directory addin-db-000 from ~/.gnome2/f-spot/");
+		}
 		export.Sensitive = active_selection;
 
-		tools.Submenu = (Mono.Addins.AddinManager.GetExtensionNode ("/FSpot/Menus/Tools") as FSpot.Extensions.SubmenuNode).GetMenuItem ().Submenu;
-		tools.Visible = (tools.Submenu as Menu).Children.Length > 0;
+		try {
+			tools.Submenu = (Mono.Addins.AddinManager.GetExtensionNode ("/FSpot/Menus/Tools") as FSpot.Extensions.SubmenuNode).GetMenuItem ().Submenu;
+			tools.Visible = (tools.Submenu as Menu).Children.Length > 0;
+		} catch {
+			Console.WriteLine ("There's something wrong with some of the installed extensions. You can try removing the directory addin-db-000 from ~/.gnome2/f-spot/");
+			tools.Visible = false;
+		}
 
 		if (rl_button != null) {
 			if (selection.Count == 0) {
