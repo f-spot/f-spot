@@ -269,10 +269,17 @@ namespace Mono.Google.Picasa {
 
 		public PicasaPicture UploadPicture (string filename, string description)
 		{
+			return UploadPicture (filename, Path.GetFileName (filename), description);
+		}
+
+		public PicasaPicture UploadPicture (string filename, string title, string description)
+		{
 			if (filename == null)
 				throw new ArgumentNullException ("filename");
 
-			string title = Path.GetFileName (filename);
+			if (title == null)
+				throw new ArgumentNullException ("title");
+
 			using (Stream stream = File.OpenRead (filename)) {
 				return UploadPicture (title, description, stream);
 			}
