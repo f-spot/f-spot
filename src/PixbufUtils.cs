@@ -29,7 +29,7 @@ public enum PixbufOrientation {
 	LeftBottom = 8
 }
 
-class PixbufUtils {
+public class PixbufUtils {
 		
 	static public PixbufOrientation Rotate270 (PixbufOrientation orientation)
 	{

@@ -428,7 +428,7 @@ public class SizeUtil {
 	}
 }
 
-class GnomeUtil {
+public class GnomeUtil {
 	Gtk.Window window;
 	string url;
 	
