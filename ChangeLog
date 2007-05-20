@@ -1,3 +1,9 @@
+2007-05-20  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/PicasaWebExport.cs: set the correct photo title at upload time.
+	Thanks to Martin Hradil for the first version of this patch. Fixes bgo
+	#437044.
+
 2007-05-15  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/PixbuUtils.cs:
