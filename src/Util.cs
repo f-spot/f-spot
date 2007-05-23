@@ -358,10 +358,15 @@ class GtkUtil {
 
 	public static Gtk.Widget MakeToolbarButton (Gtk.Toolbar toolbar, string stock_id, System.EventHandler e)
 	{
+		return MakeToolbarButton (toolbar, stock_id, null, e);
+	}
+	
+	public static Gtk.Widget MakeToolbarButton (Gtk.Toolbar toolbar, string stock_id, string label, System.EventHandler e)
+	{
 		Gtk.StockItem item = Gtk.StockItem.Zero;
 		if (Gtk.StockManager.Lookup (stock_id, ref item)) {
 			SignalFuncHelper helper = new SignalFuncHelper (e);
-			Gtk.Widget w =  toolbar.AppendItem (item.Label.Replace ("_", null),
+			Gtk.Widget w =  toolbar.AppendItem (label ?? item.Label.Replace ("_", null),
 							    null, null, 
 							    new Gtk.Image (item.StockId, Gtk.IconSize.LargeToolbar), 
 							    new Gtk.SignalFunc (helper.Func));

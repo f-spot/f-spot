@@ -1,3 +1,11 @@
+2007-05-23  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Utils.cs: new MakeToolbarButton with label method
+
+	* src/f-spot.glade:
+	* src/MainWindow.cs: move the import button from bottom left to top
+	left. Fixes bgo #357445
+
 2007-05-20  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/PicasaWebExport.cs: set the correct photo title at upload time.

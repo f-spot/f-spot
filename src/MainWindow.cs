@@ -235,7 +235,11 @@ public class MainWindow {
 		
 		toolbar = new Gtk.Toolbar ();
 		toolbar_vbox.PackStart (toolbar);
-		
+	
+		Widget import_button = GtkUtil.MakeToolbarButton (toolbar, "gtk-add", "Import", new System.EventHandler (HandleImportCommand));
+		SetTip (import_button, Catalog.GetString ("Import photos"));
+		toolbar.AppendSpace ();
+
 		rl_button = GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-270", new System.EventHandler (HandleRotate270Command));
 		rr_button = GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-90", new System.EventHandler (HandleRotate90Command));
 		toolbar.AppendSpace ();
