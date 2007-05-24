@@ -390,11 +390,24 @@ namespace FSpot {
 		{
 			if (args.ResponseId == Gtk.ResponseType.Ok) {
 				public_album = public_check.Active;
-
-				if (public_album)
-					picasa.CreateAlbum (title, description, AlbumAccess.Public);
-				else	
-					picasa.CreateAlbum (title, description, AlbumAccess.Private);
+				
+				try {
+					if (public_album)
+						picasa.CreateAlbum (title, description, AlbumAccess.Public);
+					else	
+						picasa.CreateAlbum (title, description, AlbumAccess.Private);
+				} catch (System.Exception e) {
+					HigMessageDialog md =
+					new HigMessageDialog (Dialog, 
+							      Gtk.DialogFlags.Modal |
+							      Gtk.DialogFlags.DestroyWithParent,
+								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+							      Catalog.GetString ("Error while creating Album"),
+							      String.Format (Catalog.GetString ("The following error was encountered while attempting to create an album: {0}"), e.Message));
+					md.Run ();
+					md.Destroy ();
+					return;
+				}
 				export.HandleAlbumAdded (title);
 			}
 			Dialog.Destroy ();

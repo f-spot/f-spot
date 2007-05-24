@@ -1,3 +1,8 @@
+2007-05-24  Larry Ewing  <lewing@novell.com>
+
+	* src/PicasaWebExport.cs: add an Exception dialog for errors
+	encountered when creating albums.  Fixes #438564
+
 2007-05-23  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/Utils.cs: new MakeToolbarButton with label method
