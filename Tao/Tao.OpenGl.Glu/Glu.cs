@@ -32493,7 +32493,7 @@ namespace Tao.OpenGl {
         /// <seealso cref="gluTessCallback(Tao.OpenGl.Glu.GLUtesselator, int, Tao.OpenGl.Glu.TessBeginCallback)" />
         // const GLubyte* APIENTRY gluErrorString(GLenum errCode);
         [DllImport("glu32.dll", CallingConvention=CALLING_CONVENTION), SuppressUnmanagedCodeSecurity]
-        public static extern string gluErrorString(int errorCode);
+        public static extern IntPtr gluErrorString(int errorCode);
         #endregion string gluErrorString(int errorCode)
 
         #region string gluErrorStringWIN(int errorCode)
