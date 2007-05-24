@@ -118,10 +118,11 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/InfoOverlay.cs		\
 	$(srcdir)/InternalProcess.cs		\
 	$(srcdir)/IOChannel.cs			\
+	$(srcdir)/IQueryCondition.cs		\
 	$(srcdir)/ItemAction.cs			\
 	$(srcdir)/Imaging/DCRawFile.cs		\
 	$(srcdir)/Imaging/Bim.cs		\
-	$(srcdir)/Imaging/Ciff.cs			\
+	$(srcdir)/Imaging/Ciff.cs		\
 	$(srcdir)/Imaging/Exif.cs		\
 	$(srcdir)/Imaging/ImageFile.cs		\
 	$(srcdir)/Imaging/IptcFile.cs		\
@@ -137,6 +138,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Imaging/X3fFile.cs		\
 	$(srcdir)/Imaging/XmpFile.cs		\
 	$(srcdir)/Imaging/Tiff.cs		\
+	$(srcdir)/LastRollDialog.cs		\
 	$(srcdir)/Loupe.cs			\
 	$(srcdir)/MainWindow.cs			\
 	$(srcdir)/MetaStore.cs			\
@@ -165,6 +167,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/QueuedSqliteDatabase.cs	\
 	$(srcdir)/RepairDialog.cs		\
 	$(srcdir)/RotateCommand.cs		\
+	$(srcdir)/RollSet.cs			\
 	$(srcdir)/ScalingIconView.cs		\
 	$(srcdir)/SendEmail.cs                  \
 	$(srcdir)/SlideView.cs			\

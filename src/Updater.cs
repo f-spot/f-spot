@@ -81,9 +81,40 @@ namespace FSpot.Database {
 			//Version 4.0, bump the version number to a integer, for backward compatibility
 			AddUpdate (new Version (4, 0), delegate () {});
 
-//TODO: please consider fixing bgo 324425 on the next update of the db.
-			// Update to version 5.0
-			//AddUpdate (new Version (5,0),delegate () {
+
+			//Version 5.0, add a roll_id field to photos, rename table 'imports' to 'rolls' 
+			//and fix bgo 324425.
+			AddUpdate (new Version (5, 0), delegate () {
+				System.Console.WriteLine ("Will add a roll_id field to photos!");
+				string tmp_photos = MoveTableToTemp ("photos");
+				ExecuteNonQuery (
+					"CREATE TABLE photos (                                     " +
+					"	id                 INTEGER PRIMARY KEY NOT NULL,   " +
+					"       time               INTEGER NOT NULL,	   	   " +
+					"       directory_path     STRING NOT NULL,		   " +
+					"       name               STRING NOT NULL,		   " +
+					"       description        TEXT NOT NULL,	           " +
+					"       roll_id            INTEGER NOT NULL,		   " +
+					"       default_version_id INTEGER NOT NULL		   " +
+					")");
+				ExecuteScalar (String.Format("INSERT INTO photos SELECT id, time, directory_path, name, description, 0, default_version_id FROM {0}", tmp_photos));
+
+				System.Console.WriteLine ("Will rename imports to rolls!");
+				string tmp_rolls = MoveTableToTemp ("imports");
+				ExecuteNonQuery (
+					"CREATE TABLE rolls (                                     " +
+					"	id                 INTEGER PRIMARY KEY NOT NULL,   " +
+					"       time               INTEGER NOT NULL	   	   " +
+					")");
+				ExecuteScalar (String.Format("INSERT INTO rolls SELECT id, time FROM {0}", tmp_rolls));
+
+				System.Console.WriteLine ("Cleaning weird descriptions, fixes bug #324425.");
+				ExecuteNonQuery ("UPDATE photos SET description = \"\" WHERE description LIKE \"Invalid size of entry%\"");
+			});				
+
+
+			// Update to version 6.0
+			//AddUpdate (new Version (6,0),delegate () {
 			//	do update here
 			//});
 

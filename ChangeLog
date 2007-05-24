@@ -1,3 +1,45 @@
+2007-05-24  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/PhotoStore.cs: new roll_id field to Photos, make queries works
+	with RollSets.
+
+	* src/ImportBackend.cs:
+	* src/FileImportBackend.cs: create a new Roll at Prepare () time, and
+	add pass the reference to the created photos.
+
+	* src/QueryWidget.cs: display the roll filters in the Query Widget
+
+	* src/IQueryCondition.cs: interface meant to be used by all Query
+	conditions, now only used by RollSet.
+
+	* src/RollSet.cs: this new class represent a set of rolls and contains
+	it's own sql generation routines.
+
+	* src/Updater.cs: update the db to version 5, rename imports to rolls,
+	update photos, and fix bgo #324425
+
+	* src/f-spot.glade:
+	* src/LastRollDialog.cs: new dialog to create a RollSet
+
+	* src/RollStore.cs: (was ImportStore.cs) abstraction layer for the
+	rolls db table.
+
+	* src/MainWindow.cs: hook up some menu entries
+
+	* src/Preferences.cs: gui_roll_history preference. This preference
+	says how much imports rolls will be displayed in the Dialog (all the
+	imports rolls are kept in the db though)
+
+	* src/Db.cs:
+	* src/PhotoQuery.cs:
+	* src/Makefile.am:
+	* src/DirectoryAdaptor.cs:
+	* src/TimeAdaptor.cs: minor changes to follow some API changes
+		
+	This big commit is based on patch by Bengt Thuree and fix bgo #321770
+	(original patch attached to the bug). I reworked it to makes things a
+	little more generic and reusable.
+
 2007-05-24  Larry Ewing  <lewing@novell.com>
 
 	* src/PicasaWebExport.cs: add an Exception dialog for errors

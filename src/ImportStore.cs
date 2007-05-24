@@ -1,115 +1,129 @@
+/*
+ * RollStore.cs
+ *
+ * Author(s)
+ *	Ettore Perazzoli <ettore@perazzoli.org>
+ *	Bengt Thuree
+ *	Stephane Delcroix <stephane@delcroix.org>
+ *
+ * This is free software. See COPYING for details.
+ */
+
 using Mono.Data.SqliteClient;
 using System.Collections;
 using System.IO;
 using System;
 using Banshee.Database;
 
-
-public class ImportStore : DbStore {
-
-	public class Import : DbItem {
-		// The time is always in UTC.
-		private DateTime time;
-		public DateTime Time {
-			get {
-				return time;
-			}
-		}
-
-		public Import (uint id, long unix_time)
-			: base (id)
-		{
-			time = DbUtils.DateTimeFromUnixTime (unix_time);
-		}
+public class Roll : DbItem
+{
+	// The time is always in UTC.
+	private DateTime time;
+	public DateTime Time {
+		get { return time; }
 	}
 
-	private class ImportComparerByDate : IComparer {
-		public int Compare (Object a, Object b) {
-			return DateTime.Compare ((a as Import).Time, (b as Import).Time);
-		}
-	}
-
-	// Constructor
-
-	public ImportStore (QueuedSqliteDatabase database, bool is_new)
-		: base (database, false)
+	public Roll (uint id, long unix_time) : base (id)
 	{
-		if (! is_new)
-			return;
-		
-		Database.ExecuteNonQuery (
-			"CREATE TABLE imports (                            " +
-			"	id          INTEGER PRIMARY KEY NOT NULL,  " +
-			"       time        INTEGER			   " +
-			")");
+		time = DbUtils.DateTimeFromUnixTime (unix_time);
+	}
+}
 
+public class RollStore : DbStore
+{
+	public RollStore (QueuedSqliteDatabase database, bool is_new) : base (database, false)
+	{
+		if (!is_new && Database.TableExists("rolls"))
+			return;
+
+		Database.ExecuteNonQuery (
+			"CREATE TABLE rolls (                            " +
+			"	id          INTEGER PRIMARY KEY NOT NULL,  " +
+			"       time        INTEGER NOT NULL		   " +
+			")");
 	}
 
-	public Import Create (DateTime time_in_utc)
+	public Roll Create (DateTime time_in_utc)
 	{
 		long unix_time = DbUtils.UnixTimeFromDateTime (time_in_utc);
+		uint id = (uint) Database.Execute (new DbCommand ("INSERT INTO rolls (time) VALUES (:time)", "time", unix_time));
 
-		uint id = (uint)Database.Execute (new DbCommand ("INSERT INTO import (time) VALUES (:time)", "time", unix_time));
+		Roll roll = new Roll (id, unix_time);
+		AddToCache (roll);
 
-		Import import = new Import (id, unix_time);
-		AddToCache (import);
+		return roll;
+	}
 
-		return import;
+	public Roll Create ()
+	{
+		return Create (System.DateTime.UtcNow);
 	}
 
 	public override DbItem Get (uint id)
 	{
-		Import import = LookupInCache (id) as Import;
-		if (import != null)
-			return import;
+		Roll roll = LookupInCache (id) as Roll;
+		if (roll != null)
+			return roll;
 
-		
-		SqliteDataReader reader = Database.Query(new DbCommand ("SELECT time FROM imports WHERE id = :id", "id", id));
+		SqliteDataReader reader = Database.Query(new DbCommand ("SELECT time FROM rolls WHERE id = :id", "id", id));
 
 		if (reader.Read ()) {
-			import = new Import (id, Convert.ToUInt32 (reader [0]));
-			AddToCache (import);
+			roll = new Roll (id, Convert.ToUInt32 (reader [0]));
+			AddToCache (roll);
 		}
 
-		return import;
+		return roll;
 	}
 
 	public override void Remove (DbItem item)
 	{
 		RemoveFromCache (item);
-
-		Database.ExecuteNonQuery (new DbCommand ("DELETE FROM imports WHERE id = :id", "id", item.Id));
+		Database.ExecuteNonQuery (new DbCommand ("DELETE FROM rolls WHERE id = :id", "id", item.Id));
 	}
 
 	public override void Commit (DbItem item)
 	{
-		// Nothing to do here, since all the properties of an import are immutable.
+		// Nothing to do here, since all the properties of a roll are immutable.
 	}
 
-	// FIXME: Maybe this should be an abstract method in the base class?
-	public ArrayList GetAll ()
+	public uint PhotosInRoll (Roll roll)
+	{
+		uint number_of_photos = 0;
+		using (SqliteDataReader reader = Database.Query (new DbCommand ("SELECT count(*) FROM photos WHERE roll_id = :id", "id", roll.Id))) {
+			if (reader.Read ())
+				number_of_photos = Convert.ToUInt32 (reader [0]);
+               
+			reader.Close ();
+		}
+                return number_of_photos;
+	}
+
+	public Roll [] GetRolls ()
+	{
+		return GetRolls (-1);
+	}
+
+	public Roll [] GetRolls (int limit)
 	{
 		ArrayList list = new ArrayList ();
 
-		SqliteDataReader reader = Database.Query("SELECT id, time FROM imports"); 
+		string query = "SELECT DISTINCT rolls.id, rolls.time FROM rolls, photos WHERE photos.roll_id = rolls.id";
+		if (limit <= 0)
+			query += " LIMIT " + limit + " ORDER BY time DESC";
 
-		while (reader.Read ()) {
-			// Note that we get both time and ID from the database, but we have to see
-			// if the item is already in the cache first to make sure we return always
-			// the same object for a given ID.
-			
-			uint id = Convert.ToUInt32 (reader[0]);
+		using (SqliteDataReader reader = Database.Query(query)) {
+			while (reader.Read ()) {
+				uint id = Convert.ToUInt32 (reader[0]);
 
-			Import import = LookupInCache (id) as Import;
-			if (import == null) {
-				import = new Import (id, Convert.ToUInt32 (reader[1]));
-				AddToCache (import);
+				Roll roll = LookupInCache (id) as Roll;
+				if (roll == null) {
+					roll = new Roll (id, Convert.ToUInt32 (reader[1]));
+					AddToCache (roll);
+				}
+				list.Add (roll);
 			}
-
-			list.Add (import);
+			reader.Close ();
 		}
-
-		list.Sort (new ImportComparerByDate ());
-		return list;
+		return (Roll []) list.ToArray (typeof (Roll));
 	}
 }

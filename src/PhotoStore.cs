@@ -208,6 +208,12 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		}
 	}
 
+	private uint roll_id = 0;
+	public uint RollId {
+		get { return roll_id; }
+		set { roll_id = value; }
+	}
+
 	// Version management
 	public const int OriginalVersionId = 1;
 	private uint highest_version_id;
@@ -687,6 +693,7 @@ public class PhotoStore : DbStore {
 			"       directory_path     STRING NOT NULL,		   " +
 			"       name               STRING NOT NULL,		   " +
 			"       description        TEXT NOT NULL,	           " +
+			"       roll_id            INTEGER NOT NULL,		   " +
 			"       default_version_id INTEGER NOT NULL		   " +
 			")");
 
@@ -707,12 +714,13 @@ public class PhotoStore : DbStore {
 	}
 
 
-	public Photo Create (string path, out Pixbuf thumbnail)
+	public Photo Create (string path, uint roll_id, out Pixbuf thumbnail)
 	{
-		return Create (path, path, out thumbnail);
+		return Create (path, path, roll_id, out thumbnail);
+
 	}
 
-	public Photo Create (string newPath, string origPath, out Pixbuf thumbnail)
+	public Photo Create (string newPath, string origPath, uint roll_id, out Pixbuf thumbnail)
 	{
 		Photo photo;
 		using (FSpot.ImageFile img = FSpot.ImageFile.Create (origPath)) {
@@ -720,13 +728,14 @@ public class PhotoStore : DbStore {
 			string description = img.Description != null  ? img.Description.Split ('\0') [0] : String.Empty;
 	
 	 		uint id = (uint) Database.Execute (new DbCommand ("INSERT INTO photos (time, "	+
-					"directory_path, name, description, default_version_id) "	+
+					"directory_path, name, description, roll_id, default_version_id) "	+
 	 				"VALUES (:time, :directory_path, :name, :description, "		+
-					":default_version_id)",
+					":roll_id, :default_version_id)",
 	 				"time", unix_time,
 	 				"directory_path", System.IO.Path.GetDirectoryName (newPath),
 	 				"name", System.IO.Path.GetFileName (newPath),
 	 				"description", description,
+					"roll_id", roll_id,
 	 				"default_version_id", Photo.OriginalVersionId));
 	
 			photo = new Photo (id, unix_time, newPath);
@@ -887,7 +896,7 @@ public class PhotoStore : DbStore {
 			return photo;
 
 		SqliteDataReader reader = Database.Query(new DbCommand("SELECT time, directory_path, name, description, "
-                                                     + "default_version_id FROM photos WHERE id = :id", "id", id));
+                                                     + "roll_id, default_version_id FROM photos WHERE id = :id", "id", id));
 
 		if (reader.Read ()) {
 			photo = new Photo (id,
@@ -896,7 +905,8 @@ public class PhotoStore : DbStore {
 					   reader [2].ToString ());
 
 			photo.Description = reader[3].ToString ();
-			photo.DefaultVersionId = Convert.ToUInt32 (reader[4]);
+			photo.RollId = Convert.ToUInt32 (reader[4]);
+			photo.DefaultVersionId = Convert.ToUInt32 (reader[5]);
 			AddToCache (photo);
 		}
 		reader.Close();
@@ -920,7 +930,7 @@ public class PhotoStore : DbStore {
 		string directory_path = System.IO.Path.GetDirectoryName (path);
 		string filename = System.IO.Path.GetFileName (path);
 
-		SqliteDataReader reader = Database.Query(new DbCommand("SELECT id, time, description, default_version_id FROM photos "
+		SqliteDataReader reader = Database.Query(new DbCommand("SELECT id, time, description, roll_id, default_version_id FROM photos "
                 + "WHERE directory_path = :directory_path AND name = :name", "directory_path", directory_path, "name", filename));
 
 		if (reader.Read ()) {
@@ -930,7 +940,8 @@ public class PhotoStore : DbStore {
 					   filename);
 
 			photo.Description = reader[2].ToString ();
-			photo.DefaultVersionId = Convert.ToUInt32 (reader[3]);
+			photo.RollId = Convert.ToUInt32 (reader[3]);
+			photo.DefaultVersionId = Convert.ToUInt32 (reader[4]);
 			AddToCache (photo);
 		}
         reader.Close();
@@ -1065,20 +1076,43 @@ public class PhotoStore : DbStore {
 		}
 	}
 
+
 	// Queries.
+
+	[Obsolete ("drop this, use IQueryCondition correctly instead")]
+	private string AddLastImportFilter (RollSet roll_set, bool added_where)
+	{
+		if (roll_set == null)
+			return null;
+
+		return  String.Format (" {0}{1}", added_where ? " AND " : " WHERE ", roll_set.SqlClause () );
+	}
+
+	
+	
+	public Photo [] Query (Tag [] tags, DateTime start, DateTime end, Roll [] rolls)
+	{
+		return Query (tags, null, new DateRange (start, end), new RollSet (rolls));
+	}
+
+	public Photo [] Query (Tag [] tags, Roll [] rolls)
+	{
+		return Query (tags, null, null, rolls == null ? null : new RollSet (rolls));
+	}
+
 	public Photo [] Query (Tag [] tags, DateTime start, DateTime end)
 	{
-		return Query (tags, null, new DateRange (start, end));
+		return Query (tags, null, new DateRange (start, end), null);
 	}
 	
 	public Photo [] Query (Tag [] tags) {
-		return Query (tags, null, null);
+		return Query (tags, null, null, null);
 	}
 
 	public Photo [] Query (string query)
 	{
 		SqliteDataReader reader = Database.Query(query);
-		
+
 		ArrayList version_list = new ArrayList ();
 		ArrayList id_list = new ArrayList ();
 		while (reader.Read ()) {
@@ -1092,7 +1126,8 @@ public class PhotoStore : DbStore {
 						   reader [3].ToString ());
 				
 				photo.Description = reader[4].ToString ();
-				photo.DefaultVersionId = Convert.ToUInt32 (reader[5]);		 
+				photo.RollId = Convert.ToUInt32 (reader[5]);
+				photo.DefaultVersionId = Convert.ToUInt32 (reader[6]);
 				
 				version_list.Add (photo);
 			}
@@ -1127,6 +1162,7 @@ public class PhotoStore : DbStore {
 						     "       photos.directory_path,              " +
 						     "       photos.name,                        " +
 						     "       photos.description,                 " +
+						     "       photos.roll_id,                     " +
 						     "       photos.default_version_id           " +
 						     "     FROM photos                           " +
 						     "     WHERE directory_path = \"{0}\"", dir.FullName);
@@ -1134,30 +1170,37 @@ public class PhotoStore : DbStore {
 		return Query (query_string);
 	}
 
-	public Photo [] QueryUntagged (DateRange range)
+	public Photo [] QueryUntagged (DateRange range, RollSet importidrange)
 	{
 		StringBuilder query_builder = new StringBuilder ();
 
 		query_builder.Append ("SELECT * FROM photos WHERE id NOT IN " +
 					"(SELECT DISTINCT photo_id FROM photo_tags) ");
 		
+		bool added_where = true;
 		if (range != null) {
 			query_builder.Append (String.Format ("AND photos.time >= {0} AND photos.time <= {1} ",
 							     DbUtils.UnixTimeFromDateTime (range.Start), 
 							     DbUtils.UnixTimeFromDateTime (range.End)));
+			added_where = true;
 		}
+
+		if (importidrange != null) {
+			query_builder.Append (AddLastImportFilter (importidrange, added_where));
+			added_where = true;
+ 		}
 
 		query_builder.Append("ORDER BY time");
 
 		return Query (query_builder.ToString ());
 	}
 
-	public Photo [] Query (Tag [] tags, string extra_condition, DateRange range)
+	public Photo [] Query (Tag [] tags, string extra_condition, DateRange range, RollSet importidrange)
 	{
-		return Query (OrTerm.FromTags(tags), extra_condition, range);
+		return Query (OrTerm.FromTags(tags), extra_condition, range, importidrange);
 	}
 
-	public Photo [] Query (Term searchexpression, string extra_condition, DateRange range)
+	public Photo [] Query (Term searchexpression, string extra_condition, DateRange range, RollSet importidrange)
 	{
 		bool hide = (extra_condition == null);
 
@@ -1168,6 +1211,7 @@ public class PhotoStore : DbStore {
 		//        photos.directory_path,
 		//        photos.name,
 		//        photos.description,
+		//	  photos.roll_id,
 		//        photos.default_version_id
 		//                  FROM photos, photo_tags
 		//                  WHERE photos.id = photo_tags.photo_id
@@ -1175,6 +1219,8 @@ public class PhotoStore : DbStore {
 		//			            OR photo_tags.tag_id = cat1tag2 ) 
 		// 		                AND (photo_tags.tag_id = cat2tag1
 		//			            OR photo_tags.tag_id = cat2tag2 )
+		//			  	AND (photos.roll_id = roll_id1
+		//			   	    OR photos.roll_id = roll_id2 ...)
 		//                  GROUP BY photos.id
 		
 		StringBuilder query_builder = new StringBuilder ();
@@ -1183,6 +1229,7 @@ public class PhotoStore : DbStore {
 					     "photos.directory_path, " 		+
 					     "photos.name, "			+
 					     "photos.description, "		+
+				      	     "photos.roll_id, "   		+
 					     "photos.default_version_id "	+
 				      "FROM photos ");
 		
@@ -1194,6 +1241,11 @@ public class PhotoStore : DbStore {
 							     DbUtils.UnixTimeFromDateTime (range.End)));
 			where_statement_added = true;
 		}
+
+		if (importidrange != null) {
+			query_builder.Append (AddLastImportFilter (importidrange, where_statement_added));
+			where_statement_added = true;
+		}		
 		
 		if (hide && tag_store.Hidden != null) {
 			query_builder.Append (String.Format ("{0} photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {1}) ", 
@@ -1290,14 +1342,14 @@ public class PhotoStore : DbStore {
 
 		Pixbuf unused_thumbnail;
 
-		Photo ny_landscape = db.Photos.Create (DateTime.Now.ToUniversalTime (), "/home/ettore/Photos/ny_landscape.jpg",
+		Photo ny_landscape = db.Photos.Create (DateTime.Now.ToUniversalTime (), 1, "/home/ettore/Photos/ny_landscape.jpg",
 						       out unused_thumbnail);
 		ny_landscape.Description = "Pretty NY skyline";
 		ny_landscape.AddTag (landscapes_tag);
 		ny_landscape.AddTag (favorites_tag);
 		db.Photos.Commit (ny_landscape);
 
-		Photo me_in_sf = db.Photos.Create (DateTime.Now.ToUniversalTime (), "/home/ettore/Photos/me_in_sf.jpg",
+		Photo me_in_sf = db.Photos.Create (DateTime.Now.ToUniversalTime (), 2, "/home/ettore/Photos/me_in_sf.jpg",
 						   out unused_thumbnail);
 		me_in_sf.AddTag (landscapes_tag);
 		me_in_sf.AddTag (portraits_tag);
@@ -1310,7 +1362,7 @@ public class PhotoStore : DbStore {
 		me_in_sf.CreateVersion ("UM-ed", Photo.OriginalVersionId);
 		db.Photos.Commit (me_in_sf);
 
-		Photo macro_shot = db.Photos.Create (DateTime.Now.ToUniversalTime (), "/home/ettore/Photos/macro_shot.jpg",
+		Photo macro_shot = db.Photos.Create (DateTime.Now.ToUniversalTime (), 2, "/home/ettore/Photos/macro_shot.jpg",
 						     out unused_thumbnail);
 		db.Dispose ();
 

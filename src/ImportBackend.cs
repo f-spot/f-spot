@@ -13,4 +13,7 @@ public abstract class ImportBackend {
 
 	// Complete importing (needs to be called).
 	public abstract void Finish ();
+
+	// The import roll. Should be set at Prepare () and removed at Cancel ()
+	protected Roll roll;
 }

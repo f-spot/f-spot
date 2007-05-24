@@ -99,6 +99,10 @@ public class MainWindow {
 
 	[Glade.Widget] CheckMenuItem find_untagged;
 	
+	[Glade.Widget] MenuItem last_roll;
+	[Glade.Widget] MenuItem select_rolls;
+	[Glade.Widget] MenuItem clear_roll_filter;	
+	
 	// Tags
 	[Glade.Widget] MenuItem edit_selected_tag;
 	[Glade.Widget] MenuItem delete_selected_tag;
@@ -2471,6 +2475,19 @@ public class MainWindow {
 		}
 		query.Range = null;
 	}
+
+	void HandleSelectLastRoll (object sender, EventArgs args) {
+		query.RollSet = new RollSet (db.Rolls.GetRolls (1)[0]);
+	}
+
+	void HandleSelectRolls (object sender, EventArgs args) {
+		new LastRolls (query, db.Rolls, main_window);
+	}
+
+	void HandleClearRollFilter (object sender, EventArgs args) {
+		query.RollSet = null;
+	}
+
 	
 	void HandleFindUntagged (object sender, EventArgs args) {
 		if (query.Untagged == find_untagged.Active)
@@ -2766,7 +2783,11 @@ public class MainWindow {
 		exif_data.Sensitive = active_selection;
 		sharpen.Sensitive = active_selection;
 		remove_from_catalog.Sensitive = active_selection;
-
+		
+		last_roll.Sensitive = (db.Rolls.GetRolls (1).Length > 0);
+		select_rolls.Sensitive = (db.Rolls.GetRolls (2).Length > 1);
+		clear_roll_filter.Sensitive = (query.RollSet != null);
+		
 		delete_selected_tag.Sensitive = tag_sensitive;
 		edit_selected_tag.Sensitive = tag_sensitive;
 

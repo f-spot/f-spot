@@ -11,12 +11,13 @@ namespace FSpot {
 		private Tag [] tags;
 		private string extra_condition;
 		private PhotoStore.DateRange range = null;
+		private RollSet roll_set = null;
 		
 		// Constructor
 		public PhotoQuery (PhotoStore store)
 		{
 			this.store = store;
-			photos = store.Query ((Tag [])null, null, range);
+			photos = store.Query ((Tag [])null, null, range, roll_set);
 		}
 
 		public int Count {
@@ -116,12 +117,23 @@ namespace FSpot {
 			}
 		}
 
+		public RollSet RollSet {
+			get { return roll_set; }
+			set {
+				if (value == roll_set)
+					return;
+
+				roll_set = value;	
+ 				RequestReload ();
+ 			}
+		}
+
 		public void RequestReload ()
 		{
 			if (untagged)
-				photos = store.QueryUntagged (range);
+				photos = store.QueryUntagged (range, roll_set);
 			else
-				photos = store.Query (terms, extra_condition, range);
+				photos = store.Query (terms, extra_condition, range, roll_set);
 
 			if (Changed != null)
 				Changed (this);

@@ -92,7 +92,7 @@ namespace FSpot {
 		public override void Reload () 
 		{
 			System.Collections.Hashtable ht = new System.Collections.Hashtable ();
-			Photo [] photos = query.Store.Query ((Tag [])null, null, null);
+			Photo [] photos = query.Store.Query ((Tag [])null, null, null, null);
 			
 			foreach (Photo p in photos) {
 				if (ht.Contains (p.DirectoryPath)) {

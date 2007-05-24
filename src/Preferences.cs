@@ -103,6 +103,8 @@ namespace FSpot
  		public const string EXPORT_EMAIL_ROTATE = "/apps/f-spot/export/email/auto_rotate";
  		public const string EXPORT_EMAIL_DELETE_TIMEOUT_SEC = "/apps/f-spot/export/email/delete_timeout_seconds";
 
+		public const string IMPORT_GUI_ROLL_HISTORY = "/apps/f-spot/import/gui_roll_history";
+
 		public const string SCREENSAVER_TAG = "/apps/f-spot/screensaver/tag_id";
 
 		public const string STORAGE_PATH = "/apps/f-spot/import/storage_path";

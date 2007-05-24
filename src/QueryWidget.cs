@@ -7,6 +7,8 @@ namespace FSpot {
 		LogicWidget logic_widget;
 		Gtk.Label label;
 		Gtk.Label untagged;
+		Gtk.Label comma_label;
+		Gtk.Label rollfilter;
 		Gtk.HBox warning_box;
 		Gtk.Button clear_button;
 		Gtk.Tooltips tips = new Gtk.Tooltips ();
@@ -40,7 +42,15 @@ namespace FSpot {
 			untagged = new Gtk.Label (Catalog.GetString ("Untagged photos"));
 			untagged.Visible = false;
 			hbox.PackStart (untagged, false, false, 0);
-			
+
+			comma_label = new Gtk.Label (", ");
+			comma_label.Visible = false;
+			hbox.PackStart (comma_label, false, false, 0);
+
+			rollfilter = new Gtk.Label (Catalog.GetString ("Import roll"));	
+			rollfilter.Visible = false;
+			hbox.PackStart (rollfilter, false, false, 0);
+
 			logic_widget = new LogicWidget (query, db.Tags, selector);
 			logic_widget.Show ();
 			hbox.PackStart (logic_widget, true, true, 0);
@@ -78,6 +88,7 @@ namespace FSpot {
 		public void Close ()
 		{
 			query.Untagged = false;
+			query.RollSet = null;
 
 			if (query.Untagged)
 				return;
@@ -103,7 +114,7 @@ namespace FSpot {
 			if (query.ExtraCondition == null)
 				logic_widget.Clear = true;
 
-			if (!logic_widget.Clear || query.Untagged) {
+			if (!logic_widget.Clear || query.Untagged || (query.RollSet != null)) {
                 ShowBar ();
 			} else {
 				HideBar ();
@@ -111,6 +122,9 @@ namespace FSpot {
 
 			untagged.Visible = query.Untagged;
 			warning_box.Visible = (query.Count < 1);
+			comma_label.Visible = query.Untagged && (query.RollSet != null);
+			rollfilter.Visible = (query.RollSet != null);
+
 		}
 
 		public void PhotoTagsChanged (Tag[] tags)

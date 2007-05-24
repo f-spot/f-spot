@@ -16,6 +16,7 @@ public class ImportException : System.Exception {
 
 public class FileImportBackend : ImportBackend {
 	PhotoStore store;
+ 	RollStore rolls = FSpot.Core.Database.Rolls;
 	TagStore tag_store = FSpot.Core.Database.Tags;
 	bool recurse;
 	bool copy;
@@ -121,6 +122,8 @@ public class FileImportBackend : ImportBackend {
 		directories = new Stack ();
 		xmptags = new XmpTagsImporter (store, tag_store);
 
+		roll = rolls.Create ();
+
 		return import_info.Count;
 	}
 
@@ -216,12 +219,12 @@ public class FileImportBackend : ImportBackend {
 			// Don't copy if we are already home
 			if (info.OriginalPath == destination) {
 				info.DestinationPath = destination;
-				photo = store.Create (info.DestinationPath, out thumbnail);
+				photo = store.Create (info.DestinationPath, roll.Id, out thumbnail);
 			} else {
 				System.IO.File.Copy (info.OriginalPath, destination);
 				info.DestinationPath = destination;
 
-				photo = store.Create (info.DestinationPath, info.OriginalPath, out thumbnail);
+				photo = store.Create (info.DestinationPath, info.OriginalPath, roll.Id, out thumbnail);
 
 				try {
 					File.SetAttributes (destination, File.GetAttributes (info.DestinationPath) & ~FileAttributes.ReadOnly);
@@ -309,6 +312,8 @@ public class FileImportBackend : ImportBackend {
 		}
 		// Clean up just created tags
 		xmptags.Cancel();
+
+		rolls.Remove (roll);
 	}
 
 	public override void Finish ()
@@ -324,6 +329,7 @@ public class FileImportBackend : ImportBackend {
 		import_info = null;
 		xmptags.Finish();
 		count = 0;
+	//rolls.EndImport();    // Clean up the imported session.
 	}
 
 	public FileImportBackend (PhotoStore store, string [] base_paths, bool recurse, Gtk.Window parent) : this (store, base_paths, false, recurse, null, parent) {}
@@ -352,7 +358,7 @@ public class FileImportBackend : ImportBackend {
 
 		Db db = new Db (path, true);
 
-		FileImportBackend import = new FileImportBackend (db.Photos, args [0],true);
+		FileImportBackend import = new FileImportBackend (db.Photos, args [0],true, this);
 
 		Console.WriteLine ("Preparing...");
 
