@@ -1139,6 +1139,7 @@ public class MainWindow {
 	{
 		ImportCommand command = new ImportCommand (main_window);
 		if (command.ImportFromPaths (db.Photos, list.ToLocalPaths (), copy) > 0) {
+			query.RollSet = new RollSet (db.Rolls.GetRolls (1)[0]);
 			UpdateQuery ();
 		}
 	}
@@ -1147,6 +1148,7 @@ public class MainWindow {
 	{
 		ImportCommand command = new ImportCommand (main_window);
 		if (command.ImportFromFile (db.Photos, path) > 0) {
+			query.RollSet = new RollSet (db.Rolls.GetRolls (1)[0]);
 			UpdateQuery ();
 		}
 	}
@@ -1356,6 +1358,7 @@ public class MainWindow {
 		db.Sync = false;
 		ImportCommand command = new ImportCommand (main_window);
 		if (command.ImportFromFile (db.Photos, null) > 0) {
+			query.RollSet = new RollSet (db.Rolls.GetRolls (1)[0]);
 			UpdateQuery ();
 		}
 		db.Sync = true;		

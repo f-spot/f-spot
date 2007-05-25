@@ -107,9 +107,9 @@ public class RollStore : DbStore
 	{
 		ArrayList list = new ArrayList ();
 
-		string query = "SELECT DISTINCT rolls.id, rolls.time FROM rolls, photos WHERE photos.roll_id = rolls.id";
-		if (limit <= 0)
-			query += " LIMIT " + limit + " ORDER BY time DESC";
+		string query = "SELECT DISTINCT rolls.id, rolls.time FROM rolls, photos WHERE photos.roll_id = rolls.id ORDER BY rolls.time DESC";
+		if (limit >= 0)
+			query += " LIMIT " + limit;
 
 		using (SqliteDataReader reader = Database.Query(query)) {
 			while (reader.Read ()) {

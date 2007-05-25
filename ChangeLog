@@ -1,3 +1,10 @@
+2007-05-25  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/RollStore.cs: fixing query ordering
+
+	* src/MainWindow.cs:  display the latest import roll after a
+	successful import
+
 2007-05-24  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/PhotoStore.cs: new roll_id field to Photos, make queries works
