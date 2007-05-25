@@ -112,7 +112,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ImageTest.cs			\
 	$(srcdir)/ImportBackend.cs		\
 	$(srcdir)/ImportCommand.cs		\
-	$(srcdir)/ImportStore.cs		\
 	$(srcdir)/InfoBox.cs			\
 	$(srcdir)/InfoDisplay.cs		\
 	$(srcdir)/InfoOverlay.cs		\
@@ -168,6 +167,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/RepairDialog.cs		\
 	$(srcdir)/RotateCommand.cs		\
 	$(srcdir)/RollSet.cs			\
+	$(srcdir)/RollStore.cs			\
 	$(srcdir)/ScalingIconView.cs		\
 	$(srcdir)/SendEmail.cs                  \
 	$(srcdir)/SlideView.cs			\
