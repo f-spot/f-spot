@@ -501,7 +501,7 @@ namespace FSpot.Ciff {
 		{
 			if (stream != null) {
 				stream.Close ();
-				stream == null;
+				stream = null;
 			}
 		}
 	}
