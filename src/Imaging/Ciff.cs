@@ -499,7 +499,10 @@ namespace FSpot.Ciff {
 
 		protected override void Close ()
 		{
-			stream.Close ();
+			if (stream != null) {
+				stream.Close ();
+				stream == null;
+			}
 		}
 	}
 }

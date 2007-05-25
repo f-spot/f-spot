@@ -1,3 +1,8 @@
+2007-05-25  Larry Ewing  <lewing@novell.com>
+
+	* src/Imaging/Ciff.cs: Don't close the stream if it isn't open.
+	Fixes part of #439213.
+
 2007-05-25  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/RollStore.cs: fixing query ordering
