@@ -32,19 +32,21 @@ namespace FSpot {
 		{
 			toplevels = new System.Collections.ArrayList ();
 			
-			if (!nodb) {
-				// Load the database, upgrading/creating it as needed
-				string base_directory = FSpot.Global.BaseDirectory;
-				if (! File.Exists (base_directory))
-					Directory.CreateDirectory (base_directory);
-				
-				db = new Db ();
-				db.Init (Path.Combine (base_directory, "photos.db"), true);
-			}
 		}
 
 		public static Db Database {
-			get { return db; }
+			get { 
+				if (db == null) {
+					// Load the database, upgrading/creating it as needed
+					string base_directory = FSpot.Global.BaseDirectory;
+					if (! File.Exists (base_directory))
+						Directory.CreateDirectory (base_directory);
+					
+					db = new Db ();
+					db.Init (Path.Combine (base_directory, "photos.db"), true);
+				}
+				return db; 
+			}
 		}
 
 		public static ICore FindInstance ()
@@ -101,7 +103,7 @@ namespace FSpot {
 		public MainWindow MainWindow {
 			get {
 				if (organizer == null) {
-					organizer = new MainWindow (db);
+					organizer = new MainWindow (Database);
 					Register (organizer.Window);
 				}
 				
@@ -143,15 +145,15 @@ namespace FSpot {
 				Tag tag;
 				
 				if (name != null)
-					tag = db.Tags.GetTagByName (name);
+					tag = Database.Tags.GetTagByName (name);
 				else {
 					int id = (int) Preferences.Get (Preferences.SCREENSAVER_TAG);
-					tag = db.Tags.GetTagById (id);
+					tag = Database.Tags.GetTagById (id);
 				}
 				
 				Photo [] photos;
 				if (tag != null)
-					photos = db.Photos.Query (new Tag [] { tag } );
+					photos = Database.Photos.Query (new Tag [] { tag } );
 				else
 					photos = new Photo [0];
 

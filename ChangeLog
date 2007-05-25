@@ -1,5 +1,9 @@
 2007-05-25  Larry Ewing  <lewing@novell.com>
 
+	* src/Core.cs: initialize the Database when it is first requested
+	otherwise if --view is active when the first normal session starts
+	there will be no database.
+
 	* src/Imaging/Ciff.cs: Don't close the stream if it isn't open.
 	Fixes part of #439213.
 
