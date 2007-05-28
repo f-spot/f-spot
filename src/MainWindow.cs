@@ -2689,12 +2689,9 @@ public class MainWindow {
 			find_add_tag_with.Submenu.Dispose ();
 		
 		Gtk.Menu submenu = FSpot.Query.TermMenuItem.GetSubmenu (tag_selection_widget.TagHighlight);
-		if (submenu == null)
-			find_add_tag_with.RemoveSubmenu();
-		else
-			find_add_tag_with.Submenu = submenu;
-		
 		find_add_tag_with.Sensitive = (submenu != null);
+		if (submenu != null) 
+			find_add_tag_with.Submenu = submenu;	
 	}
 	
 	public void HandleAddTagToTerm (object sender, EventArgs args)
