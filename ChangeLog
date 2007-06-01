@@ -1,3 +1,8 @@
+2007-06-01  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/Accelerometer.cs: Prevent HDAPS polling if there's no hdaps sysfs
+	device node. Fixes bgo #441847.
+
 2007-06-01  Stephane Delcroix  <stephane@delcroix.org>
 
 	* f-spot.desktop.in.in:

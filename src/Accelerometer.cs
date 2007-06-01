@@ -10,6 +10,7 @@ namespace FSpot {
 	public delegate void OrientationChangedHandler (object sender);
 
 	public class Accelerometer {
+		public const string SYSFS_FILE = "/sys/devices/platform/hdaps/position";
 
 		public static event OrientationChangedHandler OrientationChanged;
 
@@ -33,7 +34,7 @@ namespace FSpot {
 
 		public static PixbufOrientation GetViewOrientation (PixbufOrientation po)
 		{
-			if (timer == 0)
+			if (timer == 0 && available)
 				SetupAccelerometer ();
 				
 			if (current_orientation == Orient.TiltCounterclockwise)
@@ -46,9 +47,15 @@ namespace FSpot {
 		}
 		
 		static uint timer = 0;
+		static bool available = true;
 
 		public static void SetupAccelerometer ()
 		{
+			if (!File.Exists(SYSFS_FILE)) {
+				available = false;
+				return;
+			}
+
 			int x, y;
 
 			// Call once to set a baseline value.
@@ -96,7 +103,7 @@ namespace FSpot {
 		private static void GetHDAPSCoords (out int x, out int y)
 		{
 			try {
-				using (Stream file = File.OpenRead ("/sys/devices/platform/hdaps/position")) {
+				using (Stream file = File.OpenRead (SYSFS_FILE)) {
 					StreamReader sr = new StreamReader (file);
 
 					string s = sr.ReadLine ();
