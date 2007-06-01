@@ -1,3 +1,9 @@
+2007-06-01  Stephane Delcroix  <stephane@delcroix.org>
+
+	* f-spot.desktop.in.in:
+	* f-spot-view.desktop.in.in: changes to pass the desktop-file-validate
+	tests. Thanks to Christopher Aillon for this. Fixes bgo #429463.
+
 2007-05-28  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/MainWindow.cs: workaround to avoid firing a (possible) gtk bug.
