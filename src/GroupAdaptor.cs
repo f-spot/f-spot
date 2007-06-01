@@ -6,15 +6,32 @@ namespace FSpot {
 	}
 	
 	public abstract class GroupAdaptor {
-		public abstract bool OrderAscending {get; set;}
-		public abstract PhotoQuery Query {get;}
+		protected PhotoQuery query;
+		public PhotoQuery Query {
+			get {
+				return query;
+			}
+		}
+
+		protected bool order_ascending = true;
+		public bool OrderAscending {
+			get {
+				return order_ascending;
+			}
+			set {
+				if (order_ascending != value) {
+					order_ascending = value;
+					Reload();
+				}
+			}
+		}
 		
 		public abstract int Value (int item) ;
 		public abstract int Count ();
 		public abstract string TickLabel (int item);
 		public abstract string GlassLabel (int item);
 
-		public abstract void Reload ();
+		protected abstract void Reload ();
 
 		public abstract void SetGlass (int item);
 		public abstract int IndexFromPhoto (FSpot.IBrowsableItem photo);
@@ -25,5 +42,24 @@ namespace FSpot {
 
 		public delegate void ChangedHandler (GroupAdaptor adaptor);
 		public virtual event ChangedHandler Changed;
+
+		protected void HandleQueryChanged (IBrowsableCollection sender)
+		{
+			System.Console.WriteLine ("Reloading" );
+			Reload ();
+		}
+
+		public void Dispose ()
+		{
+			this.query.Changed -= HandleQueryChanged; 
+		}
+
+		protected GroupAdaptor (PhotoQuery query)
+		{
+			this.query = query;
+			this.query.Changed += HandleQueryChanged;
+
+			Reload (); 
+		}
 	}
 }

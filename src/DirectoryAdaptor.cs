@@ -3,27 +3,7 @@ using System.Collections;
 
 namespace FSpot {
 	public class DirectoryAdaptor : GroupAdaptor {
-		public PhotoQuery query;
 		System.Collections.DictionaryEntry [] dirs;
-
-		private bool order_ascending = true;
-		public override bool OrderAscending {
-			get {
-				return order_ascending;
-			}
-			set {
-				if (order_ascending != value) {
-					order_ascending = value;
-					Reload();
-				}
-			}
-		}
-
-		public override PhotoQuery Query {
-			get {
-				return query;
-			}
-		}
 
 		// FIXME store the Photo.Id list here not just the count
 		private class Group : IComparer {
@@ -82,14 +62,8 @@ namespace FSpot {
 			return ((DirectoryAdaptor.Group)dirs [item].Value).Count;
 		}	
 
-		private void HandleChanged (FSpot.IBrowsableCollection query)
-		{
-			Console.WriteLine ("Reloading directory");
-			Reload ();
-		}
-		
 		public override event ChangedHandler Changed;
-		public override void Reload () 
+		protected override void Reload () 
 		{
 			System.Collections.Hashtable ht = new System.Collections.Hashtable ();
 			Photo [] photos = query.Store.Query ((Tag [])null, null, null, null);
@@ -150,11 +124,8 @@ namespace FSpot {
 			return 0;
 		}
 
-		public DirectoryAdaptor (PhotoQuery query) {
-			this.query = query;
-			this.query.Changed += HandleChanged;
-
-			Reload ();
-		}
+		public DirectoryAdaptor (PhotoQuery query)
+			: base (query)
+		{ }
 	}
 }

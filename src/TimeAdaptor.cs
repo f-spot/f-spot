@@ -3,27 +3,6 @@ using System.Collections;
 
 namespace FSpot {
 	public class TimeAdaptor : GroupAdaptor, FSpot.ILimitable {
-		public PhotoQuery query;
-		public override PhotoQuery Query {
-			get {
-				return query;
-			}
-		}
-		
-		private bool order_ascending = false;
-		public override bool OrderAscending {
-			get {
-				return order_ascending;
-			}
-			set {
-				if (value != order_ascending) {
-					order_ascending = value;
-					Reload();
-				}
-			}
-		
-		}
-
 		ArrayList years = new ArrayList ();
 		struct YearData {
 			public int Year;
@@ -210,15 +189,9 @@ namespace FSpot {
 		
 		}
 
-		private void HandleChanged (IBrowsableCollection sender)
-		{
-			Console.WriteLine ("Reloading");
-			Reload ();
-		}
-		
 		public override event ChangedHandler Changed;
 		
-		public override void Reload () 
+		protected override void Reload () 
 		{
 			years.Clear ();
 
@@ -261,11 +234,8 @@ namespace FSpot {
 		}
 
 
-		public TimeAdaptor (PhotoQuery query) {
-			this.query = query;
-			this.query.Changed += HandleChanged;
-			
-			Reload ();
-		}
+		public TimeAdaptor (PhotoQuery query) 
+			: base (query)
+		{ }
 	}
 }

@@ -1,3 +1,13 @@
+2007-06-01  Thomas Van Machelen  <thomas.vanmachelen@gmail.com>
+
+	* src/GroupSelector.cs: call dispose when changing adaptor,
+	fixes bgo #407753
+	
+	* src/GroupAdaptor.cs:
+	* src/DirectoryAdaptor.cs:
+	* src/TimeAdaptor: implement Dispose to release the query 
+	reference & move generic parts into the abstract class
+
 2007-06-01  Ruben Vermeersch  <ruben@savanne.be>
 
 	* src/Accelerometer.cs: Prevent HDAPS polling if there's no hdaps sysfs

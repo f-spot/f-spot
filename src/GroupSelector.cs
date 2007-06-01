@@ -39,8 +39,10 @@ namespace FSpot {
 		protected FSpot.GroupAdaptor adaptor;
 		public FSpot.GroupAdaptor Adaptor {
 			set {
-				if (adaptor != null)
+				if (adaptor != null) {
 					adaptor.Changed -= HandleAdaptorChanged;
+					adaptor.Dispose ();
+				}
 
 				adaptor = value;
 				HandleAdaptorChanged (adaptor);
