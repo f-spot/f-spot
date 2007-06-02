@@ -240,7 +240,7 @@ public class MainWindow {
 		toolbar = new Gtk.Toolbar ();
 		toolbar_vbox.PackStart (toolbar);
 	
-		Widget import_button = GtkUtil.MakeToolbarButton (toolbar, "gtk-add", "Import", new System.EventHandler (HandleImportCommand));
+		Widget import_button = GtkUtil.MakeToolbarButton (toolbar, "gtk-add", Catalog.GetString ("Import"), new System.EventHandler (HandleImportCommand));
 		SetTip (import_button, Catalog.GetString ("Import photos"));
 		toolbar.AppendSpace ();
 
