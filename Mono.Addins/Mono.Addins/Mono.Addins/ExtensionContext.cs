@@ -250,7 +250,7 @@ namespace Mono.Addins
 		
 		public object[] GetExtensionObjects (string path, bool reuseCachedInstance)
 		{
-			return GetExtensionObjects (path, typeof(object), true);
+			return GetExtensionObjects (path, typeof(object), reuseCachedInstance);
 		}
 		
 		public object[] GetExtensionObjects (string path, Type arrayElementType)
@@ -715,9 +715,9 @@ namespace Mono.Addins
 		
 		public object ExtensionObject {
 			get {
-				TypeExtensionNode tnode = node as TypeExtensionNode;
+				InstanceExtensionNode tnode = node as InstanceExtensionNode;
 				if (tnode == null)
-					throw new InvalidOperationException ("Node is not a TypeExtensionNode");
+					throw new InvalidOperationException ("Node is not an InstanceExtensionNode");
 				return tnode.GetInstance (); 
 			}
 		}

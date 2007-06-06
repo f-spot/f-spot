@@ -1,5 +1,5 @@
 //
-// AddinManagerWindow.cs
+// InstanceExtensionNode.cs
 //
 // Author:
 //   Lluis Sanchez Gual
@@ -29,29 +29,35 @@
 
 using System;
 
-namespace Mono.Addins.Gui
+namespace Mono.Addins
 {
-	public class AddinManagerWindow
+	public abstract class InstanceExtensionNode: ExtensionNode
 	{
-		private AddinManagerWindow()
+		object cachedInstance;
+		
+		public object GetInstance (Type expectedType)
 		{
+			object ob = GetInstance ();
+			if (!expectedType.IsInstanceOfType (ob))
+				throw new InvalidOperationException (string.Format ("Expected subclass of type '{0}'. Found '{1}'.", expectedType, ob.GetType ()));
+			return ob;
 		}
 		
-		public static Gtk.Window Show (Gtk.Window parent)
+		public object GetInstance ()
 		{
-			AddinManagerDialog dlg = new AddinManagerDialog (parent);
-			dlg.Show ();
-			return dlg;
+			if (cachedInstance == null)
+				cachedInstance = CreateInstance ();
+			return cachedInstance;
 		}
 		
-		public static void Run (Gtk.Window parent)
+		public object CreateInstance (Type expectedType)
 		{
-			AddinManagerDialog dlg = new AddinManagerDialog (parent);
-			try {
-				dlg.Run ();
-			} finally {
-				dlg.Destroy ();
-			}
+			object ob = CreateInstance ();
+			if (!expectedType.IsInstanceOfType (ob))
+				throw new InvalidOperationException (string.Format ("Expected subclass of type '{0}'. Found '{1}'.", expectedType, ob.GetType ()));
+			return ob;
 		}
+		
+		public abstract object CreateInstance ();
 	}
 }

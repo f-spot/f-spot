@@ -199,14 +199,21 @@ namespace Mono.Addins.Database
 		
 		public Addin GetInstalledAddin (string id, bool exactVersionMatch, bool enabledOnly)
 		{
-			Addin sinfo = (Addin) cachedAddinSetupInfos [id];
-			if (sinfo != null) {
-				if (!enabledOnly || sinfo.Enabled)
-					return sinfo;
-				if (exactVersionMatch)
+			Addin sinfo = null;
+			object ob = cachedAddinSetupInfos [id];
+			if (ob != null) {
+				sinfo = ob as Addin;
+				if (sinfo != null) {
+					if (!enabledOnly || sinfo.Enabled)
+						return sinfo;
+					if (exactVersionMatch)
+						return null;
+				}
+				else if (enabledOnly)
+					// Ignore the 'not installed' flag when disabled add-ins are allowed
 					return null;
 			}
-				
+		
 			InternalCheck ();
 			
 			using (fileDatabase.LockRead ())
@@ -217,8 +224,11 @@ namespace Mono.Addins.Database
 					cachedAddinSetupInfos [id] = sinfo;
 					if (!enabledOnly || sinfo.Enabled)
 						return sinfo;
-					if (exactVersionMatch)
+					if (exactVersionMatch) {
+						// Cache lookups with negative result
+						cachedAddinSetupInfos [id] = this;
 						return null;
+					}
 				}
 				
 				// Exact version not found. Look for a compatible version
@@ -244,6 +254,11 @@ namespace Mono.Addins.Database
 						return sinfo;
 					}
 				}
+				
+				// Cache lookups with negative result
+				// Ignore the 'not installed' flag when disabled add-ins are allowed
+				if (enabledOnly)
+					cachedAddinSetupInfos [id] = this;
 				return null;
 			}
 		}
@@ -265,10 +280,16 @@ namespace Mono.Addins.Database
 		public Addin GetAddinForHostAssembly (string assemblyLocation)
 		{
 			InternalCheck ();
+			Addin ainfo = null;
 			
-			Addin ainfo = (Addin) cachedAddinSetupInfos [assemblyLocation];
-			if (ainfo != null)
-				return ainfo;
+			object ob = cachedAddinSetupInfos [assemblyLocation];
+			if (ob != null) {
+				ainfo = ob as Addin;
+				if (ainfo != null)
+					return ainfo;
+				else
+					return null;
+			}
 
 			AddinHostIndex index = GetAddinHostIndex ();
 			string addin, addinFile;
@@ -284,7 +305,10 @@ namespace Mono.Addins.Database
 		public bool IsAddinEnabled (string id)
 		{
 			Addin ainfo = GetInstalledAddin (id);
-			return ainfo.Enabled;
+			if (ainfo != null)
+				return ainfo.Enabled;
+			else
+				return false;
 		}
 		
 		internal bool IsAddinEnabled (string id, bool exactVersionMatch)
@@ -301,7 +325,7 @@ namespace Mono.Addins.Database
 		
 		internal void EnableAddin (string id, bool exactVersionMatch)
 		{
-			Addin ainfo = GetInstalledAddin (id, exactVersionMatch);
+			Addin ainfo = GetInstalledAddin (id, exactVersionMatch, false);
 			if (ainfo == null)
 				// It may be an add-in root
 				return;
@@ -309,9 +333,6 @@ namespace Mono.Addins.Database
 			if (IsAddinEnabled (id))
 				return;
 			
-			Configuration.DisabledAddins.Remove (id);
-			SaveConfiguration ();
-
 			// Enable required add-ins
 			
 			foreach (Dependency dep in ainfo.AddinInfo.Dependencies) {
@@ -321,6 +342,10 @@ namespace Mono.Addins.Database
 					EnableAddin (adepid, false);
 				}
 			}
+
+			Configuration.DisabledAddins.Remove (id);
+			SaveConfiguration ();
+
 			if (AddinManager.IsInitialized && AddinManager.Registry.RegistryPath == registry.RegistryPath)
 				AddinManager.SessionService.ActivateAddin (id);
 		}
@@ -333,36 +358,45 @@ namespace Mono.Addins.Database
 
 			if (!IsAddinEnabled (id))
 				return;
-
+			
 			Configuration.DisabledAddins.Add (id);
 			SaveConfiguration ();
 			
 			// Disable all add-ins which depend on it
 			
-			string idName = Addin.GetIdName (id);
-			
-			foreach (Addin ainfo in GetInstalledAddins ()) {
-				foreach (Dependency dep in ainfo.AddinInfo.Dependencies) {
-					AddinDependency adep = dep as AddinDependency;
-					if (adep == null)
-						continue;
-					
-					string adepid = Addin.GetFullId (ainfo.AddinInfo.Namespace, adep.AddinId, null);
-					if (adepid != idName)
-						continue;
-					
-					// The add-in that has been disabled, might be a requeriment of this one, or maybe not
-					// if there is an older version available. Check it now.
-					
-					adepid = Addin.GetFullId (ainfo.AddinInfo.Namespace, adep.AddinId, adep.Version);
-					Addin adepinfo = GetInstalledAddin (adepid, false, true);
-					
-					if (adepinfo == null) {
-						DisableAddin (ainfo.Id);
-						break;
+			try {
+				string idName = Addin.GetIdName (id);
+				
+				foreach (Addin ainfo in GetInstalledAddins ()) {
+					foreach (Dependency dep in ainfo.AddinInfo.Dependencies) {
+						AddinDependency adep = dep as AddinDependency;
+						if (adep == null)
+							continue;
+						
+						string adepid = Addin.GetFullId (ainfo.AddinInfo.Namespace, adep.AddinId, null);
+						if (adepid != idName)
+							continue;
+						
+						// The add-in that has been disabled, might be a requeriment of this one, or maybe not
+						// if there is an older version available. Check it now.
+						
+						adepid = Addin.GetFullId (ainfo.AddinInfo.Namespace, adep.AddinId, adep.Version);
+						Addin adepinfo = GetInstalledAddin (adepid, false, true);
+						
+						if (adepinfo == null) {
+							DisableAddin (ainfo.Id);
+							break;
+						}
 					}
 				}
 			}
+			catch {
+				// If something goes wrong, enable the add-in again
+				Configuration.DisabledAddins.Remove (id);
+				SaveConfiguration ();
+				throw;
+			}
+
 			if (AddinManager.IsInitialized && AddinManager.Registry.RegistryPath == registry.RegistryPath)
 				AddinManager.SessionService.UnloadAddin (id);
 		}		
@@ -591,9 +625,12 @@ namespace Mono.Addins.Database
 		{
 			using (fileDatabase.LockWrite ()) {
 				try {
-					Directory.Delete (AddinCachePath, true);
-					Directory.Delete (AddinFolderCachePath, true);
-					File.Delete (HostIndexFile);
+					if (Directory.Exists (AddinCachePath))
+						Directory.Delete (AddinCachePath, true);
+					if (Directory.Exists (AddinFolderCachePath))
+						Directory.Delete (AddinFolderCachePath, true);
+					if (File.Exists (HostIndexFile))
+						File.Delete (HostIndexFile);
 				}
 				catch (Exception ex) {
 					monitor.ReportError ("The add-in registry could not be rebuilt. It may be due to lack of write permissions to the directory: " + AddinDbDir, ex);
@@ -605,7 +642,7 @@ namespace Mono.Addins.Database
 		public void Update (IProgressStatus monitor)
 		{
 			if (monitor == null)
-				monitor = new ConsoleProgressStatus (true);
+				monitor = new ConsoleProgressStatus (false);
 
 			if (RunningSetupProcess)
 				return;
@@ -633,17 +670,38 @@ namespace Mono.Addins.Database
 					}
 				}
 				
-				try {
-					if (monitor.VerboseLog)
-						monitor.Log ("Looking for addins");
-					SetupProcess.ExecuteCommand (monitor, registry.RegistryPath, AddinManager.StartupDirectory, "scan");
+				IProgressStatus scanMonitor = monitor;
+				bool retry = false;
+				do {
+					try {
+						if (monitor.VerboseLog)
+							monitor.Log ("Looking for addins");
+						SetupProcess.ExecuteCommand (scanMonitor, registry.RegistryPath, AddinManager.StartupDirectory, "scan");
+						retry = false;
+					}
+					catch (Exception ex) {
+						fatalDatabseError = true;
+						// If the process has crashed, try to do a new scan, this time using verbose log,
+						// to give the user more information about the origin of the crash.
+						if (ex is ProcessFailedException && !retry) {
+							monitor.ReportError ("Add-in scan operation failed. The Mono runtime may have encountered an error while trying to load an assembly.", null);
+							if (!monitor.VerboseLog) {
+								// Re-scan again using verbose log, to make it easy to find the origin of the error.
+								retry = true;
+								scanMonitor = new ConsoleProgressStatus (true);
+							}
+						} else
+							retry = false;
+						
+						if (!retry) {
+							monitor.ReportError ("Add-in scan operation failed", (ex is ProcessFailedException ? null : ex));
+							monitor.Cancel ();
+							return;
+						}
+					}
 				}
-				catch (Exception ex) {
-					fatalDatabseError = true;
-					monitor.ReportError ("Add-in scan operation failed", ex);
-					monitor.Cancel ();
-					return;
-				}
+				while (retry);
+			
 				ResetCachedData ();
 			}
 			
