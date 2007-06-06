@@ -2566,9 +2566,7 @@ public class MainWindow {
 			break;
 
 		case Preferences.GROUP_ADAPTOR_ORDER_ASC:
-			if (reverse_order.Active != (bool) val)
-				reverse_order.Active = (bool) val;
-			//group_selector.Adaptor.OrderAscending = (bool) val;
+			group_selector.Adaptor.OrderAscending = (bool) val;
 			break;
 
 		case Preferences.GLASS_POSITION:
