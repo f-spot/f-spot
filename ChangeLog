@@ -1,3 +1,11 @@
+2007-06-09  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/f-spot.glade:
+	* src/PreferenceDialog.cs: new option to show all images in Slideshow.
+
+	* src/Core.cs: Show all images if SCREENSAVER_TAG == 0. Fixes bgo
+	#336822.
+
 2007-06-06  Stephane Delcroix  <stephane@delcroix.org>
 	
 	* srC/MainWindow.cs: Fixes bgo #444639.

@@ -30,6 +30,8 @@ namespace FSpot {
 		[Glade.Widget] private OptionMenu tag_option;
 		[Glade.Widget] private Button set_saver_button;
 		[Glade.Widget] private FileChooserButton photosdir_chooser;
+		[Glade.Widget] private RadioButton screensaverall_radio;
+		[Glade.Widget] private RadioButton screensavertagged_radio;
 		private static PreferenceDialog prefs = null;
 		int screensaver_tag;
 		private const string SaverCommand = "f-spot-screensaver";
@@ -77,6 +79,7 @@ namespace FSpot {
 
 			tagmenu.TagSelected += HandleTagMenuSelected;
 			set_saver_button.Clicked += HandleUseFSpot;
+			screensaverall_radio.Toggled += ToggleTagRadio;
 
 			Preferences.SettingChanged += OnPreferencesChanged;
 			this.Dialog.Destroyed += HandleDestroyed;
@@ -106,6 +109,15 @@ namespace FSpot {
 		{
 			Preferences.Set (Preferences.GNOME_SCREENSAVER_MODE, SaverMode);
 			Preferences.Set (Preferences.GNOME_SCREENSAVER_THEME, new string [] { SaverCommand });
+		}
+
+		private void ToggleTagRadio (object o, System.EventArgs e)
+		{
+			tag_option.Sensitive = (screensavertagged_radio.Active);
+			if (screensaverall_radio.Active)
+				Preferences.Set (Preferences.SCREENSAVER_TAG, 0);
+			else
+				HandleTagMenuSelected (((tag_option.Menu as Menu).Active as TagMenu.TagMenuItem).Value);
 		}
 
 		void OnPreferencesChanged (object sender, GConf.NotifyEventArgs args)
@@ -140,6 +152,12 @@ namespace FSpot {
 				} catch (System.Exception e) {
 					Console.WriteLine (e);
 					screensaver_tag = 0;
+				}
+				if (screensaver_tag == 0) {
+					screensaverall_radio.Active = true;
+					tag_option.Sensitive = false;
+				} else {
+					screensavertagged_radio.Active = true;
 				}
 				break;
 			case Preferences.GNOME_SCREENSAVER_THEME:

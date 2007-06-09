@@ -154,6 +154,8 @@ namespace FSpot {
 				Photo [] photos;
 				if (tag != null)
 					photos = Database.Photos.Query (new Tag [] { tag } );
+ 				else if ((int) Preferences.Get (Preferences.SCREENSAVER_TAG) == 0)
+ 					photos = db.Photos.Query (new Tag [] {});
 				else
 					photos = new Photo [0];
 

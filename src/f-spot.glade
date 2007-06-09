@@ -13785,16 +13785,42 @@ supported image formats.&lt;/i&gt;&lt;/small&gt;</property>
 		      <property name="spacing">6</property>
 
 		      <child>
+			<widget class="GtkRadioButton" id="screensaverall_radio">
+			  <property name="visible">True</property>
+			  <property name="can_focus">True</property>
+			  <property name="label" translatable="yes">All Images</property>
+			  <property name="use_underline">True</property>
+			  <property name="relief">GTK_RELIEF_NORMAL</property>
+			  <property name="focus_on_click">True</property>
+			  <property name="active">True</property>
+			  <property name="inconsistent">False</property>
+			  <property name="draw_indicator">True</property>
+			</widget>
+			<packing>
+			  <property name="padding">0</property>
+			  <property name="expand">False</property>
+			  <property name="fill">False</property>
+			</packing>
+		      </child>
+
+		      <child>
 			<widget class="GtkHBox" id="hbox83">
 			  <property name="visible">True</property>
 			  <property name="homogeneous">False</property>
 			  <property name="spacing">12</property>
 
 			  <child>
-			    <widget class="GtkOptionMenu" id="tag_option">
+			    <widget class="GtkRadioButton" id="screensavertagged_radio">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="history">-1</property>
+			      <property name="label" translatable="yes">Images tagged with:</property>
+			      <property name="use_underline">True</property>
+			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <property name="focus_on_click">True</property>
+			      <property name="active">False</property>
+			      <property name="inconsistent">False</property>
+			      <property name="draw_indicator">True</property>
+			      <property name="group">screensaverall_radio</property>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -13804,13 +13830,10 @@ supported image formats.&lt;/i&gt;&lt;/small&gt;</property>
 			  </child>
 
 			  <child>
-			    <widget class="GtkButton" id="set_saver_button">
+			    <widget class="GtkOptionMenu" id="tag_option">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">Make F-Spot your screensaver</property>
-			      <property name="use_underline">True</property>
-			      <property name="relief">GTK_RELIEF_NORMAL</property>
-			      <property name="focus_on_click">True</property>
+			      <property name="history">-1</property>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -13827,9 +13850,25 @@ supported image formats.&lt;/i&gt;&lt;/small&gt;</property>
 		      </child>
 
 		      <child>
+			<widget class="GtkButton" id="set_saver_button">
+			  <property name="visible">True</property>
+			  <property name="can_focus">True</property>
+			  <property name="label" translatable="yes">Make F-Spot your screensaver</property>
+			  <property name="use_underline">True</property>
+			  <property name="relief">GTK_RELIEF_NORMAL</property>
+			  <property name="focus_on_click">True</property>
+			</widget>
+			<packing>
+			  <property name="padding">0</property>
+			  <property name="expand">False</property>
+			  <property name="fill">False</property>
+			</packing>
+		      </child>
+
+		      <child>
 			<widget class="GtkLabel" id="label208">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;Select the tag you like F-Spot to display images from while acting as the screensaver&lt;/i&gt;&lt;/small&gt;</property>
+			  <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;While acting as a screensaver, F-spot can display all of your images, or a small subset based on tags.&lt;/i&gt;&lt;/small&gt;</property>
 			  <property name="use_underline">False</property>
 			  <property name="use_markup">True</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -13849,10 +13888,6 @@ supported image formats.&lt;/i&gt;&lt;/small&gt;</property>
 			  <property name="expand">False</property>
 			  <property name="fill">False</property>
 			</packing>
-		      </child>
-
-		      <child>
-			<placeholder/>
 		      </child>
 
 		      <child>
