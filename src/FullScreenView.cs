@@ -264,7 +264,22 @@ namespace FSpot {
 
 		protected override bool OnKeyPressEvent (Gdk.EventKey key)
 		{
-			controls.Visibility = ControlOverlay.VisibilityType.Partial;
+			switch (key.Key) {
+				case Gdk.Key.Up:
+				case Gdk.Key.Left:
+				case Gdk.Key.KP_Up:
+				case Gdk.Key.KP_Left:
+				case Gdk.Key.Page_Up:
+				case Gdk.Key.Down:
+				case Gdk.Key.Right:
+				case Gdk.Key.KP_Down:
+				case Gdk.Key.KP_Right:
+				case Gdk.Key.Page_Down:
+					break;
+				default:
+					controls.Visibility = ControlOverlay.VisibilityType.Partial;
+					break;
+			}
 
 			if (key == null) {
 				System.Console.WriteLine ("Key == null", key);

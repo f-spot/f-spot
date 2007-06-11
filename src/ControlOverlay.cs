@@ -1,5 +1,5 @@
 /*
- * ControlBox.cs
+ * ControlOverlay.cs
  *
  * Copyright 2007 Novell Inc.
  *

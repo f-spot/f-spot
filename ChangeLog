@@ -1,3 +1,8 @@
+2007-06-11  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/FullScreenView.cs: do not shown the ControlOverlay on up/down
+	(also for KP, Page, right/left). Implements request bgo #444629.
+
 2007-06-09  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/f-spot.glade:
