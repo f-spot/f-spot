@@ -700,7 +700,7 @@ namespace FSpot {
 				popup_window.Add (popup_label);
 			}
 
-			private int handle_height = 15;
+			public int handle_height = 15;
 			private int border {
 				get {
 					return selector.box_spacing * 2;
@@ -966,7 +966,7 @@ namespace FSpot {
 		protected override void OnSizeRequested (ref Requisition requisition)
 		{
 			requisition.Width = 500;
-			requisition.Height = 70;
+			requisition.Height = (int) (LegendHeight () * 1.5 + glass.handle_height);
 			base.OnSizeRequested (ref requisition);
 		}
 
@@ -1036,7 +1036,7 @@ namespace FSpot {
 	
 			Gdk.Rectangle bar = new Rectangle (alloc.X + border, alloc.Y + border,
 							   alloc.Width - 2 *  border,
-							   alloc.Height - 2 * border - legend_height);
+							   alloc.Height - 2 * border - glass.handle_height);
 							   
 		
 			if (left.Allocation.Y != bar.Y || left.Allocation.X != bar.X) {
@@ -1054,10 +1054,10 @@ namespace FSpot {
 						    bar.Width - left.Allocation.Width - right.Allocation.Width, 
 						    bar.Height);
 			
-			legend = new Rectangle (background.X, background.Y + background.Height,
+			legend = new Rectangle (background.X, background.Y,
 						background.Width, legend_height);
 
-			action = background.Union (legend);
+			action = background.Union (glass.Bounds ());
 
 			if (event_window != null)
 				event_window.MoveResize (action.X, action.Y, action.Width, action.Height);
