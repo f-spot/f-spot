@@ -436,6 +436,8 @@ namespace FSpot {
 			}
 
 			switch (args.Event.Key) {
+			case Gdk.Key.Up:
+			case Gdk.Key.Left:
 			case Gdk.Key.Page_Up:
 			case Gdk.Key.KP_Page_Up:
 				this.Item.MovePrevious ();
@@ -448,6 +450,8 @@ namespace FSpot {
 			case Gdk.Key.KP_End:
 				this.Item.Index = this.Query.Count - 1;
 				break;
+			case Gdk.Key.Down:
+			case Gdk.Key.Right:
 			case Gdk.Key.Page_Down:
 			case Gdk.Key.KP_Page_Down:
 			case Gdk.Key.space:

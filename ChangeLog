@@ -1,5 +1,10 @@
 2007-06-11  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/PhotoImageView.cs: Since the scrolling in zoomed image does not
+	work, connect arrow keys to Prev and NextImage. Fixes bgo #404639.
+
+2007-06-11  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/MainWindow.cs:
 	* src/Widgets/TagEntry.cs: Adds a comma at the end of the entry on
 	focus in event. Fixes bgo #442039.
