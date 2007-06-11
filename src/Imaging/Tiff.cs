@@ -1,4 +1,4 @@
-#define DEBUG_LOADER
+//#define DEBUG_LOADER
 using FSpot;
 using SemWeb;
 using System;
@@ -363,7 +363,7 @@ namespace FSpot.Tiff {
 				this.Numerator = (uint) (tmp * 100000);
 				this.Denominator = 100000;
 			} else
-				throw new System.Exception ("unable to parse rational value");
+				throw new ParseException ("unable to parse rational value");
 		}
 
 		public override string ToString ()
@@ -432,7 +432,7 @@ namespace FSpot.Tiff {
 				break;
 			default:
 				enc = null;
-				throw new System.Exception (System.String.Format ("Invalid charset name: {0}", charset));
+				throw new ParseException (System.String.Format ("Invalid charset name: {0}", charset));
 			}
 
 			Charset = charset;
@@ -630,7 +630,6 @@ namespace FSpot.Tiff {
 		Normal = 0,
 		Custom = 1
 	}
-
 
 	public enum SceneType {
 		DirectlyPhotographed = 1
@@ -1195,7 +1194,7 @@ namespace FSpot.Tiff {
 
 
 			for (int pos = 0; pos < entry_length; pos += 12) {
-				DirectoryEntry entry = EntryFactory.CreateEntry (this, content, pos, this.endian);
+				DirectoryEntry entry = CreateEntry (this, content, pos, this.endian);
 				entries.Add (entry);		
 #if DEBUG_LOADER
 				System.Console.WriteLine ("Added Entry {0} {1} - {2} * {3}", entry.Id.ToString (), entry.Id.ToString ("x"), entry.Type, entry.Count);
@@ -1221,7 +1220,8 @@ namespace FSpot.Tiff {
 		protected void LoadNextDirectory (System.IO.Stream stream)
 		{
 #if DEBUG_LOADER
-			System.Console.WriteLine ("start_position = {1} next_directory_offset = {0}", next_directory_offset, orig_position);
+			System.Console.WriteLine ("start_position = {1} next_directory_offset = {0}",
+						  next_directory_offset, orig_position);
 #endif
 			next_directory = null;
 			try {
@@ -1273,6 +1273,46 @@ namespace FSpot.Tiff {
 
 			return null;
 		}
+
+		public static DirectoryEntry CreateEntry (ImageDirectory parent, byte [] input, int start, Endian header_endian)
+		{
+			TagId tagid;
+			EntryType type;
+
+			DirectoryEntry.ParseHeader (input, start, out tagid, out type, header_endian);
+			//ConstructorFunc ctor = ctors[tagid];			
+			//if (ctor == null) {
+			//	return ctor (input, header_endian);				
+			//}
+			
+			switch (tagid) {
+			case TagId.ExifIfdPointer:
+			case TagId.GPSInfoIfdPointer:
+			case TagId.InteroperabilityIfdPointer:
+			case TagId.SubIFDs:
+				return new SubdirectoryEntry (input, start, header_endian);
+				//case TagId.MakerNote:
+				//return new MakerNoteEntry (input, start, header_endian);
+				//case TagId.PimIfdPointer:
+				//return new 
+				//case TagId.MakerNote:
+				//return new MakerNoteEntry (input, start, header_endian);
+			}
+			
+			switch (type) {
+			case EntryType.Ifd:
+				//System.Console.WriteLine ("Trying to load {0} {1}", tagid, tagid.ToString ("x"));
+				return new SubdirectoryEntry (input, start, header_endian);
+			case EntryType.Byte:
+				return new ByteEntry (input, start, header_endian);
+			case EntryType.Long:
+				return new LongEntry (input, start, header_endian);
+			case EntryType.Short:
+				return new ShortEntry (input, start, header_endian);
+			}
+
+			return new DirectoryEntry (input, start, header_endian);
+		}
 		
 		public Cms.Profile GetProfile ()
 		{
@@ -1302,7 +1342,6 @@ namespace FSpot.Tiff {
 						break;
 					}
 					break;
-
 				case TagId.WhitePoint:
 					Rational [] white = e.RationalValue;
 					whitepoint.x = white [0].Value;
@@ -1390,51 +1429,6 @@ namespace FSpot.Tiff {
 		}
 	}
 	
-	public class EntryFactory {
-		//public delegate DirectoryEntry ConstructorFunc (byte [], Endian endian);
-		//public static System.Collections.Hashtable ctors = new System.Collections.Hashtable ();
-		
-		public static DirectoryEntry CreateEntry (ImageDirectory parent, byte [] input, int start, Endian header_endian)
-		{
-			TagId tagid;
-			EntryType type;
-
-			DirectoryEntry.ParseHeader (input, start, out tagid, out type, header_endian);
-			//ConstructorFunc ctor = ctors[tagid];			
-			//if (ctor == null) {
-			//	return ctor (input, header_endian);				
-			//}
-			
-			switch (tagid) {
-			case TagId.ExifIfdPointer:
-			case TagId.GPSInfoIfdPointer:
-			case TagId.InteroperabilityIfdPointer:
-			case TagId.SubIFDs:
-				return new SubdirectoryEntry (input, start, header_endian);
-				//case TagId.MakerNote:
-				//return new MakerNoteEntry (input, start, header_endian);
-				//case TagId.PimIfdPointer:
-				//return new 
-				//case TagId.MakerNote:
-				//return new MakerNoteEntry (input, start, header_endian);
-			}
-			
-			switch (type) {
-			case EntryType.Ifd:
-				//System.Console.WriteLine ("Trying to load {0} {1}", tagid, tagid.ToString ("x"));
-				return new SubdirectoryEntry (input, start, header_endian);
-			case EntryType.Byte:
-				return new ByteEntry (input, start, header_endian);
-			case EntryType.Long:
-				return new LongEntry (input, start, header_endian);
-			case EntryType.Short:
-				return new ShortEntry (input, start, header_endian);
-			}
-
-			return new DirectoryEntry (input, start, header_endian);
-		}
-	}
-	       
 	public class MakerNoteEntry : SubdirectoryEntry {
 		public MakerNoteEntry (byte [] data, int offset, Endian endian) : base (data, offset, endian)
 		{
