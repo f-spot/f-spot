@@ -490,7 +490,7 @@ namespace FSpot {
 					layout.GetPixelSize (out width, out height);
 					
 					Style.PaintLayout (Style, GdkWindow, State, true, area, this,
-						   "GroupSelector:Tick", tick.X, tick.Y + tick.Height, layout); 
+						   "GroupSelector:Tick", tick.X + 3, tick.Y + tick.Height, layout); 
 				}
 			}
 
@@ -966,7 +966,7 @@ namespace FSpot {
 		protected override void OnSizeRequested (ref Requisition requisition)
 		{
 			requisition.Width = 500;
-			requisition.Height = (int) (LegendHeight () * 1.5 + glass.handle_height);
+			requisition.Height = (int) (LegendHeight () + glass.handle_height + 3 * border);
 			base.OnSizeRequested (ref requisition);
 		}
 
