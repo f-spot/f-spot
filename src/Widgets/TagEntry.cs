@@ -91,6 +91,12 @@ namespace FSpot.Widgets {
 			ClearTagCompletions ();
 		}
 
+		private void AppendComma ()
+		{
+			if (Text.Length != 0 && !Text.Trim ().EndsWith (","))
+				AppendText (", ");	
+		}
+
 		public string [] GetTypedTagNames ()
 		{
 			string [] tagnames = Text.Split (new char [] {','});
@@ -245,6 +251,12 @@ namespace FSpot.Widgets {
 		private void HandleFocusOutEvent (object o, Gtk.FocusOutEventArgs args)
 		{
 			Update ();
+		}
+
+		protected override bool OnFocusInEvent (Gdk.EventFocus evnt)
+		{
+			AppendComma ();
+			return base.OnFocusInEvent (evnt);
 		}
 	}	
 }

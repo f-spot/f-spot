@@ -1,5 +1,11 @@
 2007-06-11  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/MainWindow.cs:
+	* src/Widgets/TagEntry.cs: Adds a comma at the end of the entry on
+	focus in event. Fixes bgo #442039.
+
+2007-06-11  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/FullScreenView.cs: do not shown the ControlOverlay on up/down
 	(also for KP, Page, right/left). Implements request bgo #444629.
 

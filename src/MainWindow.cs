@@ -2954,8 +2954,6 @@ public class MainWindow {
 
 		tagbar.Show ();
 		UpdateTagEntryFromSelection ();
-		if (tag_entry.Text.Length > 0)
-			tag_entry.Text += ", ";
 		tag_entry.GrabFocus ();
 		tag_entry.SelectRegion (-1, -1);
 	}
