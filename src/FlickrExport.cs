@@ -293,7 +293,7 @@ namespace FSpot {
 					string id = fr.Upload (photo, stack, is_public, is_family, is_friend);
 					ids.Add (id);
 
-					if (Core.Database != null)
+					if (Core.Database != null && photo is Photo)
 						Core.Database.Exports.Create ((photo as Photo).Id,
 									      (photo as Photo).DefaultVersionId,
 									      ExportStore.FlickrExportType,

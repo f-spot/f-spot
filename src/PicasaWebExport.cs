@@ -598,7 +598,7 @@ namespace FSpot {
 						approx_size = sent_bytes * items.Length / (photo_index - 1);
 
 					PicasaPicture picture = album.UploadPicture (request.Current.LocalPath, Path.ChangeExtension (item.Name, "jpg"), item.Description);
-					if (Core.Database != null)
+					if (Core.Database != null && item is Photo)
 						Core.Database.Exports.Create ((item as Photo).Id,
 									      (item as Photo).DefaultVersionId,
 									      ExportStore.PicasaExportType,
