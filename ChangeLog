@@ -1,3 +1,21 @@
+2007-06-18  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Makefile.am
+	* src/Jobs
+	* src/Jobs/JobPriority.cs
+	* src/Jobs/Scheduler.cs
+	* src/Jobs/FSpotCompat.cs
+	* src/Jobs/IntervalHeap.cs
+	* src/Jobs/IInstanceCriticalJob.cs
+	* src/Jobs/IJob.cs: Job Scheduler borrowed from Banshee
+
+	* src/Db.cs:
+	* src/Jobs/JobStatus.cs:
+	* src/JobStore.cs: abstraction layer for db and scheduler
+
+	* src/Jobs/SyncMetadataJob.cs:
+	* src/MainWindow.cs: Write metadata as asynchronous job
+
 2007-06-12  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/SmugmugExport.cs:

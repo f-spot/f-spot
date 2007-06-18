@@ -137,6 +137,15 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Imaging/X3fFile.cs		\
 	$(srcdir)/Imaging/XmpFile.cs		\
 	$(srcdir)/Imaging/Tiff.cs		\
+	$(srcdir)/JobStore.cs			\
+	$(srcdir)/Jobs/FSpotCompat.cs		\
+	$(srcdir)/Jobs/IInstanceCriticalJob.cs	\
+	$(srcdir)/Jobs/IJob.cs			\
+	$(srcdir)/Jobs/IntervalHeap.cs		\
+	$(srcdir)/Jobs/JobPriority.cs		\
+	$(srcdir)/Jobs/JobStatus.cs		\
+	$(srcdir)/Jobs/Scheduler.cs		\
+	$(srcdir)/Jobs/SyncMetadataJob.cs	\
 	$(srcdir)/LastRollDialog.cs		\
 	$(srcdir)/Loupe.cs			\
 	$(srcdir)/MainWindow.cs			\
@@ -324,3 +333,4 @@ CLEANFILES =					\
 
 DISTCLEANFILES = 				\
 	makefile
+

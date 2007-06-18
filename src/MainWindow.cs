@@ -13,6 +13,8 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mail;
 
+using Banshee.Kernel;
+
 using FSpot;
 using FSpot.Widgets;
 using LibGPhoto2;
@@ -431,6 +433,7 @@ public class MainWindow {
 		export.Activated += HandleExportActivated;
 		UpdateToolbar ();
 
+		Banshee.Kernel.Scheduler.Resume ();
 	}
 
 	private Photo CurrentPhoto {
@@ -518,13 +521,8 @@ public class MainWindow {
 #if ENABLE_BEAGLE
 			BeagleNotifier.SendUpdate (p);
 #endif
-			if (write_metadata) {
-				try {
-					p.WriteMetadataToImage ();
-				} catch (System.Exception e) {
-					Console.WriteLine ("Error syncing metadata to file{1}{0}", e, Environment.NewLine);
-				}
-			}
+			if (write_metadata)
+				FSpot.Jobs.SyncMetadataJob.Create (db.Jobs, p);
 		}
 		
 		if (args is TimeChangedEventArgs)

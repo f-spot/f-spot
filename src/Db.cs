@@ -164,6 +164,7 @@ public class Db : IDisposable {
 	PhotoStore photo_store;
  	RollStore roll_store;
 	ExportStore export_store;
+ 	JobStore job_store;
  	MetaStore meta_store;
 	bool empty;
 	string path;
@@ -176,9 +177,13 @@ public class Db : IDisposable {
 		get { return roll_store; }
 	}
 
-    public ExportStore Exports {
-        get { return export_store; }
-    }
+	public ExportStore Exports {
+		get { return export_store; }
+	}
+
+	public JobStore Jobs {
+		get { return job_store; }
+	}
 
 	public PhotoStore Photos {
 		get { return photo_store; }
@@ -243,6 +248,7 @@ public class Db : IDisposable {
 		tag_store = new TagStore (Database, new_db);
 		roll_store = new RollStore (Database, new_db);
 		export_store = new ExportStore (Database, new_db);
+		job_store = new JobStore (Database, new_db);
  		photo_store = new PhotoStore (Database, new_db, tag_store);
 		
 		Database.CommitTransaction ();
