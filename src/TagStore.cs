@@ -555,7 +555,6 @@ public class TagStore : DbStore {
 		
 		EmitChanged (tag);
 
-		Console.WriteLine("Doing write: {0}, {1}", update_xmp, Preferences.Get(Preferences.METADATA_EMBED_IN_IMAGE));
 		if (update_xmp && (bool)Preferences.Get(Preferences.METADATA_EMBED_IN_IMAGE)) {
 			Photo [] photos = Core.Database.Photos.Query (new Tag [] { tag });
 			foreach (Photo p in photos) {
