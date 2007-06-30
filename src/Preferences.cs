@@ -4,29 +4,6 @@ using Mono.Unix;
 
 namespace FSpot
 {
-	public class PreferenceSetting
-	{
-		private string key;
-
-		public string Key {
-			get { return key; }
-		}
-		
-		public object Value {
-			get {
-				return Preferences.Get (key);
-			}
-			set {
-				Preferences.Set (key, Value);
-			}
-		}
-		
-		public PreferenceSetting (string key)
-		{
-			this.key = key;
-		}
-	}
-
 	public class Preferences
 	{
 		public const string MAIN_WINDOW_MAXIMIZED = "/apps/f-spot/ui/maximized";
