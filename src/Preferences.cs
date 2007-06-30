@@ -203,7 +203,7 @@ namespace FSpot
 				return 0;
 			case PROXY_USER:
 			case PROXY_PASSWORD:
-				return String.Emtpy;
+				return String.Empty;
 			
 			default:
 				return null;
@@ -212,21 +212,28 @@ namespace FSpot
 		
 		public static object Get (string key)
 		{
-			try {
-				return Client.Get (key);
-			} catch (GConf.NoSuchKeyException) {
-				object default_val = GetDefault (key);
-
-				if (default_val != null)
-					Set (key, default_val);
-
-				return default_val;
+			object val = null;
+			if (cache.TryGetValue (key, out val)) {
+				return val;
 			}
+
+			try {
+				val = Client.Get (key);
+			} catch (GConf.NoSuchKeyException) {
+				val = GetDefault (key);
+
+				if (val != null)
+					Set (key, val);
+			}
+
+			cache.Add (key, val);
+			return val;
 		}
 
 		public static void Set (string key, object value)
 		{
 			try {
+				cache[key] = value;				
 				Client.Set (key, value);
 			} catch {
 				Console.WriteLine ("Unable to write this gconf key :"+key);
@@ -247,6 +254,10 @@ namespace FSpot
 
 		static void OnSettingChanged (object sender, GConf.NotifyEventArgs args)
 		{
+			if (cache.ContainsKey (args.Key)) {
+				cache[args.Key] = args.Value;				
+			}
+
 			if (SettingChanged != null) {
 				SettingChanged (sender, args);
 			}
