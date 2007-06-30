@@ -32,7 +32,7 @@ namespace FSpot {
 			this.query = query;
 			this.rollstore = rollstore;
 			this.parent_window = parent_window;
-			rolls = rollstore.GetRolls ((int) FSpot.Preferences.Get (FSpot.Preferences.IMPORT_GUI_ROLL_HISTORY, 10));
+			rolls = rollstore.GetRolls ((int) FSpot.Preferences.Get (FSpot.Preferences.IMPORT_GUI_ROLL_HISTORY));
 
 			PopulateCombos ();
 			

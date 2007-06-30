@@ -1,5 +1,6 @@
 using System.Net;
 using System;
+using System.Collections.Generic;
 using Mono.Unix;
 
 namespace FSpot
@@ -95,9 +96,17 @@ namespace FSpot
 
 		public const string GNOME_MAILTO_COMMAND = "/desktop/gnome/url-handlers/mailto/command";
 
+		public const string PROXY_USE_PROXY = "/system/http_proxy/use_http_proxy";
+		public const string PROXY_HOST = "/system/http_proxy/host";
+		public const string PROXY_PORT = "/system/http_proxy/port";
+		public const string PROXY_USER = "/system/http_proxy/authentication_user";
+		public const string PROXY_PASSWORD = "/system/http_proxy/authentication_password";
+		public const string PROXY_BYPASS_LIST = "/system/http_proxy/ignore_hosts";
 
-		static GConf.Client client;
-		static GConf.NotifyEventHandler changed_handler;
+
+		private static GConf.Client client;
+		private static GConf.NotifyEventHandler changed_handler;
+		private static Dictionary<string, object> cache = new Dictionary<string, object>();
 
 		private static GConf.Client Client 
 		{
@@ -110,6 +119,7 @@ namespace FSpot
 					client.AddNotify ("/apps/gnome-screensaver/themes", changed_handler);
 					client.AddNotify ("/apps/gnome-screensaver/mode", changed_handler);
 					client.AddNotify ("/desktop/gnome/url-handlers/mailto/command", changed_handler);
+					client.AddNotify ("/system/http_proxy", changed_handler);
 				}
 				return client;
 			}
@@ -162,6 +172,9 @@ namespace FSpot
 			case ZOOM:
 				return null;
 
+			case IMPORT_GUI_ROLL_HISTORY:
+				return 10;
+
 			case SCREENSAVER_TAG:
 				return 1;
 			case STORAGE_PATH:
@@ -183,23 +196,20 @@ namespace FSpot
 				return "#000000";
 			case EDIT_REDEYE_THRESHOLD:
 				return -15;
-			}
 
-			return null;
+			case PROXY_USE_PROXY:
+				return false;
+			case PROXY_PORT:
+				return 0;
+			case PROXY_USER:
+			case PROXY_PASSWORD:
+				return String.Emtpy;
+			
+			default:
+				return null;
+			}
 		}
 		
-		public static object Get (string key, object default_val)
-		{
-			try {
-				return Client.Get (key);
-			} catch (GConf.NoSuchKeyException) {
-				if (default_val != null)
-					Set (key, default_val);
-				
-				return default_val;
-			}
-		}
-
 		public static object Get (string key)
 		{
 			try {
@@ -242,32 +252,24 @@ namespace FSpot
 			}
 		}
 
-		private static string ProxyBase =     "/system/http_proxy";
-		private static string UseProxyKey =   ProxyBase + "/use_http_proxy";
-		private static string HostKey =       ProxyBase + "/host";
-		private static string PortKey =       ProxyBase + "/port";
-		private static string UserKey =       ProxyBase + "/authentication_user";
-		private static string PaswordKey =    ProxyBase + "/authentication_password";
-		private static string BypassListKey = ProxyBase + "/ignore_hosts";
-		
 		public static WebProxy GetProxy () 
 		{
 			WebProxy proxy = null;
 			
-			if ((bool) Preferences.Get (UseProxyKey, false))
+			if ((bool) Preferences.Get (PROXY_USE_PROXY))
 				return null;
 
 			try {
 				string host;
 				int    port;
 				
-				host = (string) Preferences.Get (HostKey, null);
-				port = (int) Preferences.Get (PortKey, 0);
+				host = (string) Preferences.Get (PROXY_HOST);
+				port = (int) Preferences.Get (PROXY_PORT);
 				
 				string uri = "http://" + host + ":" + port.ToString();
 				proxy = new WebProxy(uri);
 
-				string [] bypass_list = (string []) Preferences.Get (BypassListKey, null);
+				string [] bypass_list = (string []) Preferences.Get (PROXY_BYPASS_LIST);
 				if (bypass_list != null) {
 					for (int i = 0; i < bypass_list.Length; i++) {
 						bypass_list [i] = "http://" + bypass_list [i];
@@ -275,8 +277,8 @@ namespace FSpot
 					proxy.BypassList = bypass_list;
 				}
 
-				string username = (string) Preferences.Get (UserKey, String.Empty);
-				string password = (string) Preferences.Get (PaswordKey, String.Empty);
+				string username = (string) Preferences.Get (PROXY_USER);
+				string password = (string) Preferences.Get (PROXY_PASSWORD);
 
 				proxy.Credentials = new NetworkCredential (username, password);
 			} catch (Exception) {
