@@ -99,7 +99,7 @@ namespace FSpot
 		static GConf.Client client;
 		static GConf.NotifyEventHandler changed_handler;
 
-		public static GConf.Client Client 
+		private static GConf.Client Client 
 		{
 			get {
 				if (client == null) {
@@ -108,6 +108,8 @@ namespace FSpot
 					changed_handler = new GConf.NotifyEventHandler (OnSettingChanged);
 					client.AddNotify ("/apps/f-spot", changed_handler);
 					client.AddNotify ("/apps/gnome-screensaver/themes", changed_handler);
+					client.AddNotify ("/apps/gnome-screensaver/mode", changed_handler);
+					client.AddNotify ("/desktop/gnome/url-handlers/mailto/command", changed_handler);
 				}
 				return client;
 			}
