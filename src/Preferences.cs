@@ -136,7 +136,6 @@ namespace FSpot
 			}
 		}
 
-		// NOTE: Keep synced with tomboy.schemas.in
 		public static object GetDefault (string key)
 		{
 			switch (key) {
