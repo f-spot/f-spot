@@ -298,7 +298,7 @@ public class TagCommands {
 					t.Category = categories [category_option_menu.History] as Category;
 					t.Icon = icon_image.Pixbuf;
 
-					db.Tags.Commit (t);
+					db.Tags.Commit (t, orig_name != t.Name);
 					success = true;
 				} catch (Exception ex) {
 					// FIXME error dialog.

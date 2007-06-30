@@ -1,5 +1,10 @@
 2007-06-23  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/TagCommands.cs: Use the new overload when a tag has been edited.
+	Only write XMP metadata when the name has actually changed.
+
+2007-06-23  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/TagStore.cs: Add a Commit method which writes XMP tags of the
 	associated images. Fixes bgo #327107.
 
