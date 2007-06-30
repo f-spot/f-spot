@@ -18,9 +18,9 @@ namespace FSpot
 		public const string VIEWER_MAXIMIZED = "/apps/f-spot/ui/viewer_maximized";
 		public const string VIEWER_SHOW_TOOLBAR = "/apps/f-spot/ui/viewer_show_toolbar";
 		public const string VIEWER_SHOW_FILENAMES = "/apps/f-spot/ui/viewer_show_filenames";
- 		public const string VIEWER_INTERPOLATION = "/apps/f-spot/viewer/interpolation";
- 		public const string VIEWER_TRANS_COLOR = "/apps/f-spot/viewer/trans_color";
- 		public const string VIEWER_TRANSPARENCY = "/apps/f-spot/viewer/transparency";
+		public const string VIEWER_INTERPOLATION = "/apps/f-spot/viewer/interpolation";
+		public const string VIEWER_TRANS_COLOR = "/apps/f-spot/viewer/trans_color";
+		public const string VIEWER_TRANSPARENCY = "/apps/f-spot/viewer/transparency";
 		
 		public const string SHOW_TOOLBAR = "/apps/f-spot/ui/show_toolbar";
 		public const string SHOW_SIDEBAR = "/apps/f-spot/ui/show_sidebar";
@@ -47,9 +47,9 @@ namespace FSpot
 		public const string EXPORT_FLICKR_FRIENDS = "/apps/f-spot/export/flickr/friends";
 		public const string EXPORT_FLICKR_FAMILY = "/apps/f-spot/export/flickr/family";
 
-		public const string EXPORT_TOKEN_FLICKR ="/apps/f-spot/export/tokens/flickr"; 
-		public const string EXPORT_TOKEN_23HQ ="/apps/f-spot/export/tokens/23hq"; 
-		public const string EXPORT_TOKEN_ZOOOMR ="/apps/f-spot/export/tokens/zooomr"; 
+		public const string EXPORT_TOKEN_FLICKR = "/apps/f-spot/export/tokens/flickr"; 
+		public const string EXPORT_TOKEN_23HQ = "/apps/f-spot/export/tokens/23hq"; 
+		public const string EXPORT_TOKEN_ZOOOMR = "/apps/f-spot/export/tokens/zooomr"; 
 
 		public const string EXPORT_GALLERY_SCALE = "/apps/f-spot/export/gallery/scale";
 		public const string EXPORT_GALLERY_SIZE = "/apps/f-spot/export/gallery/size";
@@ -76,9 +76,9 @@ namespace FSpot
 		public const string EXPORT_FOLDER_SHARPEN = "/apps/f-spot/export/folder/sharpen";
 		public const string EXPORT_FOLDER_INCLUDE_TARBALLS = "/apps/f-spot/export/folder/include_tarballs";
 		
- 		public const string EXPORT_EMAIL_SIZE = "/apps/f-spot/export/email/size";
- 		public const string EXPORT_EMAIL_ROTATE = "/apps/f-spot/export/email/auto_rotate";
- 		public const string EXPORT_EMAIL_DELETE_TIMEOUT_SEC = "/apps/f-spot/export/email/delete_timeout_seconds";
+		public const string EXPORT_EMAIL_SIZE = "/apps/f-spot/export/email/size";
+		public const string EXPORT_EMAIL_ROTATE = "/apps/f-spot/export/email/auto_rotate";
+		public const string EXPORT_EMAIL_DELETE_TIMEOUT_SEC = "/apps/f-spot/export/email/delete_timeout_seconds";
 
 		public const string IMPORT_GUI_ROLL_HISTORY = "/apps/f-spot/import/gui_roll_history";
 
