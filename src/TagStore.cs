@@ -7,6 +7,8 @@ using System.Collections;
 using System.IO;
 using System;
 using Banshee.Database;
+using FSpot;
+using FSpot.Jobs;
 using FSpot.Query;
 
 // FIXME: This is to workaround the currently busted GTK# bindings.
@@ -535,8 +537,12 @@ public class TagStore : DbStore {
 
 	public override void Commit (DbItem item)
 	{
-		Tag tag = item as Tag;
+		Commit (item, false);	
+	}
 
+	public void Commit (DbItem item, bool update_xmp)
+	{
+		Tag tag = item as Tag;
 
 		Database.ExecuteNonQuery (new DbCommand ("UPDATE tags SET name = :name, category_id = :category_id, "
                     + "is_category = :is_category, sort_priority = :sort_priority, icon = :icon WHERE id = :id",
@@ -546,10 +552,18 @@ public class TagStore : DbStore {
 						  "sort_priority", tag.SortPriority,
 						  "icon", GetIconString (tag),
 						  "id", tag.Id));
-
 		
 		EmitChanged (tag);
+
+		Console.WriteLine("Doing write: {0}, {1}", update_xmp, Preferences.Get(Preferences.METADATA_EMBED_IN_IMAGE));
+		if (update_xmp && (bool)Preferences.Get(Preferences.METADATA_EMBED_IN_IMAGE)) {
+			Photo [] photos = Core.Database.Photos.Query (new Tag [] { tag });
+			foreach (Photo p in photos) {
+				SyncMetadataJob.Create (Core.Database.Jobs, p);
+			}
+		}
 	}
+
 
 
 #if TEST_TAG_STORE
