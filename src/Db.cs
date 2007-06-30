@@ -249,7 +249,7 @@ public class Db : IDisposable {
 		roll_store = new RollStore (Database, new_db);
 		export_store = new ExportStore (Database, new_db);
 		job_store = new JobStore (Database, new_db);
- 		photo_store = new PhotoStore (Database, new_db, tag_store);
+ 		photo_store = new PhotoStore (Database, new_db);
 		
 		Database.CommitTransaction ();
 

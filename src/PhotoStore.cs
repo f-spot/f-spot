@@ -600,9 +600,6 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 }
 
 public class PhotoStore : DbStore {
-	TagStore tag_store;
-
-
 	public int TotalPhotos {
 		get {
 			SqliteDataReader reader = Database.Query("SELECT COUNT(*) FROM photos");
@@ -677,10 +674,9 @@ public class PhotoStore : DbStore {
 
 	// Constructor
 
-	public PhotoStore (QueuedSqliteDatabase database, bool is_new, TagStore tag_store)
+	public PhotoStore (QueuedSqliteDatabase database, bool is_new)
 		: base (database, false)
 	{
-		this.tag_store = tag_store;
 		EnsureThumbnailDirectory ();
 
 		if (! is_new)
@@ -766,7 +762,7 @@ public class PhotoStore : DbStore {
 
 		while (reader.Read ()) {
 			uint tag_id = Convert.ToUInt32 (reader [0]);
-			Tag tag = tag_store.Get (tag_id) as Tag;
+			Tag tag = Core.Database.Tags.Get (tag_id) as Tag;
 			photo.AddTagUnsafely (tag);
 		}
 		reader.Close();
@@ -825,7 +821,7 @@ public class PhotoStore : DbStore {
 
 		        if (reader [1] != null) {
 				uint tag_id = Convert.ToUInt32 (reader [1]);
-				Tag tag = tag_store.Get (tag_id) as Tag;
+				Tag tag = Core.Database.Tags.Get (tag_id) as Tag;
 				photo.AddTagUnsafely (tag);
 			}
 		}
@@ -853,7 +849,7 @@ public class PhotoStore : DbStore {
 
 		        if (reader [1] != null) {
 				uint tag_id = Convert.ToUInt32 (reader [1]);
-				Tag tag = tag_store.Get (tag_id) as Tag;
+				Tag tag = Core.Database.Tags.Get (tag_id) as Tag;
 				photo.AddTagUnsafely (tag);
 			}
 			if (reader [2] != null) {
@@ -876,7 +872,7 @@ public class PhotoStore : DbStore {
 		while (reader.Read ()) {
 		        if (reader [0] != null) {
 				uint tag_id = Convert.ToUInt32 (reader [0]);
-				Tag tag = tag_store.Get (tag_id) as Tag;
+				Tag tag = Core.Database.Tags.Get (tag_id) as Tag;
 				photo.AddTagUnsafely (tag);
 			}
 			if (reader [1] != null) {
@@ -965,7 +961,7 @@ public class PhotoStore : DbStore {
 		}
 		
 		foreach (Tag tag in tags)
-			tag_store.Remove (tag);
+			Core.Database.Tags.Remove (tag);
 		
 	}
 
@@ -1247,9 +1243,9 @@ public class PhotoStore : DbStore {
 			where_statement_added = true;
 		}		
 		
-		if (hide && tag_store.Hidden != null) {
+		if (hide && Core.Database.Tags.Hidden != null) {
 			query_builder.Append (String.Format ("{0} photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {1}) ", 
-							     where_statement_added ? " AND " : " WHERE ", tag_store.Hidden.Id));
+							     where_statement_added ? " AND " : " WHERE ", Core.Database.Tags.Hidden.Id));
 			where_statement_added = true;
 		}
 		

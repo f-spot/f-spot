@@ -1,5 +1,21 @@
 2007-06-30  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/Db.cs: Don't pass the TagStore to the constructor, if needed, it can
+	be accessed through the Db.
+
+	* src/PhotoStore.cs: Access the TagStore through Core.Database. Keeping
+	references in the stores is cumbersome. There's a global lookup point,
+	let's use it. The TagStore does similar things, this commit just makes it
+	all consistent.
+	
+	Historical note: I've looked up if there was a specific reason why it was
+	written like that. It appears this code has been there since the initial
+	import, more than three and a half year ago, when there were only three
+	stores. We have five now, which would have circular references if we would
+	continue to use the old way of working.
+
+2007-06-30  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/Preferences.cs: Remove unused PreferenceSetting class, add a gconf
 	cache, move all default values to one place, make naming consistent.
 
