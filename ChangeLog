@@ -1,3 +1,10 @@
+2007-06-30  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/Preferences.cs: Remove unused PreferenceSetting class, add a gconf
+	cache, move all default values to one place, make naming consistent.
+
+	* src/LastRollDialog.cs: Remove default values.
+
 2007-06-23  Ruben Vermeersch  <ruben@savanne.be>
 
 	* src/TagCommands.cs: Use the new overload when a tag has been edited.
