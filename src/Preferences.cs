@@ -213,9 +213,8 @@ namespace FSpot
 		public static object Get (string key)
 		{
 			object val = null;
-			if (cache.TryGetValue (key, out val)) {
+			if (cache.TryGetValue (key, out val)) 
 				return val;
-			}
 
 			try {
 				val = Client.Get (key);
@@ -233,7 +232,7 @@ namespace FSpot
 		public static void Set (string key, object value)
 		{
 			try {
-				cache[key] = value;				
+				cache [key] = value;				
 				Client.Set (key, value);
 			} catch {
 				Console.WriteLine ("Unable to write this gconf key :"+key);
@@ -255,7 +254,7 @@ namespace FSpot
 		static void OnSettingChanged (object sender, GConf.NotifyEventArgs args)
 		{
 			if (cache.ContainsKey (args.Key)) {
-				cache[args.Key] = args.Value;				
+				cache [args.Key] = args.Value;				
 			}
 
 			if (SettingChanged != null) {
@@ -277,8 +276,8 @@ namespace FSpot
 				host = (string) Preferences.Get (PROXY_HOST);
 				port = (int) Preferences.Get (PROXY_PORT);
 				
-				string uri = "http://" + host + ":" + port.ToString();
-				proxy = new WebProxy(uri);
+				string uri = "http://" + host + ":" + port.ToString ();
+				proxy = new WebProxy (uri);
 
 				string [] bypass_list = (string []) Preferences.Get (PROXY_BYPASS_LIST);
 				if (bypass_list != null) {
