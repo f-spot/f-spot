@@ -564,8 +564,10 @@ public class PhotoView : EventBox {
 		tips.SetTip (display_previous_button, Catalog.GetString ("Previous photo"), String.Empty);
 		tips.SetTip (desaturate_button, Catalog.GetString ("Convert the photo to black and white"), String.Empty);
 		tips.SetTip (sepia_button, Catalog.GetString ("Convert the photo to sepia tones"), String.Empty);
+
+		Realized += delegate (object o, EventArgs e) {SetColors ();};
 	}
-	
+
 	private void SetColors ()
 	{
 		FSpot.Global.ModifyColors (tag_view);
