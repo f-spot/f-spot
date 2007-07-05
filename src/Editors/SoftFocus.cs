@@ -52,10 +52,10 @@ namespace FSpot.Editors {
 			box.PackStart (scale);
 			HBox actions = new HBox ();
 			actions.Spacing = 12;
-			Button cancel = new Button ("Cancel");
+			Button cancel = new Button (Catalog.GetString ("Cancel"));
 			cancel.Clicked += HandleCancel;
 			actions.PackStart (cancel);
-			Button apply = new Button ("Apply");
+			Button apply = new Button ( Catalog.GetString ("Apply"));
 			apply.Clicked += HandleApply;
 			actions.PackStart (apply);
 			box.PackStart (actions);
