@@ -1,8 +1,18 @@
+/*
+ * FSpot.Widgets.TagView
+ *
+ * Author(s):
+ * 	Larry Ewing <lewing@novell.com>
+ *
+ * This is free software. See COPYING for details.
+ *
+ */
+
 using System;
 using Gtk;
 using Gdk;
 
-namespace FSpot {
+namespace FSpot.Widgets {
 public class TagView : EventBox {
 	private int thumbnail_size = 20;
 	private IBrowsableItem photo;

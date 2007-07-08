@@ -190,7 +190,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/TagQueryWidget.cs		\
 	$(srcdir)/TagSelectionWidget.cs		\
 	$(srcdir)/TagStore.cs			\
-	$(srcdir)/TagView.cs			\
 	$(srcdir)/ThreadProgressDialog.cs	\
 	$(srcdir)/ThumbnailCache.cs		\
 	$(srcdir)/ThumbnailGenerator.cs		\
@@ -227,6 +226,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/ScrolledView.cs	\
 	$(srcdir)/Widgets/SoftFocus.cs		\
 	$(srcdir)/Widgets/TagEntry.cs		\
+	$(srcdir)/Widgets/TagView.cs		\
 	$(srcdir)/Widgets/Tilt.cs		\
 	$(srcdir)/Widgets/Wipe.cs		\
 	$(srcdir)/XmpTagsImporter.cs		\

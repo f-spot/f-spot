@@ -15,7 +15,7 @@ public class PhotoView : EventBox {
 	private ScrolledWindow photo_view_scrolled;
 	private EventBox background;
 
-	private TagView tag_view;
+	private Widgets.TagView tag_view;
 	
 	private Button display_next_button, display_previous_button;
 	private Label count_label;
@@ -480,7 +480,7 @@ public class PhotoView : EventBox {
 		HBox inner_hbox = new HBox (false, 2);
 		//inner_hbox.BorderWidth = 6;
 
-		tag_view = new TagView ();
+		tag_view = new Widgets.TagView ();
 		inner_hbox.PackStart (tag_view, false, true, 0);
 		SetColors ();
 
