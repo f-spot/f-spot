@@ -14,7 +14,7 @@ SUBDIRS = 		\
 	libgphoto2-sharp \
 	semweb		\
 	Tao		\
-	Mono.Addins	\
+	mono-addins	\
 	tools		\
 	po		\
 	src		\
