@@ -1,5 +1,10 @@
 2007-07-08  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/Widgets/TagView.cs: move this class in the Widgets namespace and
+	folder.
+
+2007-07-08  Stephane Delcroix  <stephane@delcroix.org>
+
 	* mono-addins/*: upgrade to Mono.Addins 0.2, renamed from Mono.Addins
 	to mono-addins to stay in sync with upstream naming tree.
 
