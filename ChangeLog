@@ -1,3 +1,14 @@
+2007-07-10  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/f-spot.glade:
+	* src/main.cs:
+	* src/MainWindows.cs: connect the M.A.Gui
+	
+	* src/f-spot.in: add M.A.Setup and M.A.Gui to MONO_PATH
+
+	* extensions/DefaultExporters/DefaultExporters.addin.xml: some new 
+	attributes...
+
 2007-07-08  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/f-spot.in: changes to load M.A. from the new location (while

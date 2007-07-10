@@ -7,6 +7,8 @@ using System.Text;
 using System.Collections;
 using Mono.Unix;
 using Mono.GetOptions;
+using Mono.Addins;
+using Mono.Addins.Setup;
 
 namespace FSpot 
 {
@@ -128,8 +130,10 @@ public class Driver {
 					       Modules.UI, args);		
 			
 			Console.WriteLine ("Initializing Mono.Addins");
-			Mono.Addins.AddinManager.Initialize (FSpot.Global.BaseDirectory);
-			Mono.Addins.AddinManager.Registry.Update (null);
+			AddinManager.Initialize (FSpot.Global.BaseDirectory);
+			AddinManager.Registry.Update (null);
+			SetupService setupService = new SetupService (AddinManager.Registry);
+			setupService.Repositories.RegisterRepository (null, "http://addins.f-spot.org", false);
 
 			bool create = true;
 			while (control == null) {

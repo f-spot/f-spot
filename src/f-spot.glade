@@ -8668,6 +8668,14 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 		      <signal name="activate" handler="HandlePreferences" last_modification_time="Wed, 30 Nov 2005 15:26:28 GMT"/>
 		    </widget>
 		  </child>
+		  <child>
+		    <widget class="GtkMenuItem" id="extensions">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">Manage _Extensions</property>
+		      <property name="use_underline">True</property>
+		      <signal name="activate" handler="HandleManageExtensions" last_modification_time="Thu, 04 May 2007 11:22:21 GMT"/>
+		    </widget>
+		  </child>
 		</widget>
 	      </child>
 	    </widget>

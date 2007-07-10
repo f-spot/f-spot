@@ -1446,6 +1446,11 @@ public class MainWindow {
 	{
 		PreferenceDialog.Show ();
 	}
+
+	public void HandleManageExtensions (object sender, EventArgs args)
+	{
+		Mono.Addins.Gui.AddinManagerWindow.Run (main_window);
+	}
 	
 	void HandleViewFullExif (object sender, EventArgs args)
 	{
