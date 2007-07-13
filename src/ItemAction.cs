@@ -17,15 +17,15 @@ using System;
 namespace FSpot {
 	public abstract class ItemAction : Action {
 		protected BrowsablePointer item;
-		static Gtk.Tooltips tips = new Gtk.Tooltips ();
 
 		public ItemAction (BrowsablePointer pointer,
 				   string name,
 				   string label,
 				   string tooltip,
-				   string stock_id) : base (name, label, tooltip, stock_id)
+				   string icon_name) : base (name, label)
 		{
-			tips.Enable ();
+			Tooltip = tooltip;
+			IconName = icon_name;
 			item = pointer;
 			item.Changed += ItemChanged;
 		}
@@ -36,38 +36,6 @@ namespace FSpot {
 			Sensitive = item.IsValid;
 		}
 
-		public Widget GetToolButton (bool label)
-		{
-			return GetButton (this, label);
-		}
-
-		public static Widget GetButton (Action action, bool label)
-		{
-			Widget w = action.CreateIcon (IconSize.Button);
-			if (label) {
-				HBox box = new HBox ();
-				box.PackStart (w, false, false, 0);
-				Label l = new Label ();
-				l.Markup = "<small>" + action.Label + "</small>";
-				box.PackStart (l);
-				w = box;
-			}
-			Button button;
-			if (action is ToggleAction) {
-				ToggleButton toggle = new ToggleButton ();
-				toggle.Active = ((ToggleAction)action).Active;
-				button = toggle;
-			} else {
-				button = new Button ();
-			}
-			button.Relief = ReliefStyle.None;
-			button.Add (w);
-			w.ShowAll ();
-
-			action.ConnectProxy (button);
-			tips.SetTip (button, action.Tooltip, String.Empty);
-			return button;
-		}
 	}
 
 	public class RotateAction : ItemAction {
@@ -285,7 +253,7 @@ namespace FSpot {
 			: base (p, "Color", 
 				Catalog.GetString ("Auto Color"),
 				Catalog.GetString ("Automatically adjust the colors"),
-				"f-spot-autocolor")
+				"autocolor")
 		{
 		}
 
@@ -301,7 +269,7 @@ namespace FSpot {
 			: base (p, "ApplyStraighten", 
 				Catalog.GetString ("Apply straightening"),
 				Catalog.GetString ("Apply straightening to image"),
-				"f-spot-sepia")
+				"align-horizon")
 		{
 			this.angle = angle;
 		}
@@ -354,7 +322,7 @@ namespace FSpot {
 				"TiltEdit", 
 				Catalog.GetString ("Straighten"),
 				Catalog.GetString ("Adjust the angle of the image to straighten the horizon"),
-				"f-spot-horizon")
+				"align-horizon")
 		{
 		}
 
@@ -370,7 +338,7 @@ namespace FSpot {
 				"SoftFocusEdit",
 				Catalog.GetString ("Soft Focus"),
 				Catalog.GetString ("Create a soft focus visual effect"),
-				"f-spot-soft-focus")
+				"filter-soft-focus")
 		{
 		}
 

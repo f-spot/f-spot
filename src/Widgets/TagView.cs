@@ -92,7 +92,7 @@ public class TagView : EventBox {
 						      RgbDither.None, tag_x, tag_y);
 			tag_x += thumbnail_size + TAG_ICON_VSPACING;
 		}
-		MainWindow.SetTip (this, String.Join (", ", names));
+		MainWindow.ToolTips.SetTip (this, String.Join (", ", names), null);
 
 		return base.OnExposeEvent (args);
 	}

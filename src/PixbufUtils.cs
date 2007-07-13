@@ -56,7 +56,18 @@ public class PixbufUtils {
 		return orientation;
 	}
 
-	public static Pixbuf ErrorPixbuf = PixbufUtils.LoadFromAssembly ("f-spot-question-mark.png");
+	static Pixbuf error_pixbuf = null;
+	public static Pixbuf ErrorPixbuf {
+		get {
+			if (error_pixbuf == null)
+				try {
+					error_pixbuf = FSpot.Global.IconTheme.LoadIcon ("f-spot-question-mark", 256, (Gtk.IconLookupFlags)0);
+				} catch {
+					error_pixbuf = FSpot.Global.IconTheme.LoadIcon ("gtk-missing-image", 256, (Gtk.IconLookupFlags)0);
+				}
+			return error_pixbuf;
+		}
+	}
 	public static Pixbuf LoadingPixbuf = PixbufUtils.LoadFromAssembly ("f-spot-loading.png");
 
 	public static int GetSize (Pixbuf pixbuf)
@@ -535,26 +546,6 @@ public class PixbufUtils {
 		
 		if (result == false)
 			throw new System.Exception ("Error Saving File");
-	}
-
-	[DllImport ("libgtk-win32-2.0-0.dll")]
-	extern static IntPtr gtk_icon_theme_get_default ();
-
-	[DllImport ("libgtk-win32-2.0-0.dll")]
-	extern static IntPtr gtk_icon_theme_load_icon (IntPtr theme, string name, int size, int flags, IntPtr error);
-	
-	public static Gdk.Pixbuf LoadThemeIcon (string name, int size)
-	{
-		try {
-			IntPtr native = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (), name, size, 0, IntPtr.Zero);
-			if (native != IntPtr.Zero) {
-				Gdk.Pixbuf ret = (Gdk.Pixbuf) GLib.Object.GetObject(native, true);
-				return ret;
-			}
-		} catch (System.Exception e) {
-			System.Console.Write (e.ToString ());
-		}
-		return null;
 	}
 
 

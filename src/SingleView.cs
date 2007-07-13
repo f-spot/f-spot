@@ -20,9 +20,6 @@ namespace FSpot {
 
 		[Glade.Widget] Gtk.MenuItem export;
 
-		[Glade.Widget] Gtk.Image near_image;
-		[Glade.Widget] Gtk.Image far_image;
-
 		[Glade.Widget] Gtk.Scale zoom_scale;
 
 		[Glade.Widget] Label status_label;
@@ -74,17 +71,28 @@ namespace FSpot {
 
 			Gtk.Toolbar toolbar = new Gtk.Toolbar ();
 			toolbar_hbox.PackStart (toolbar);
-			Widget rl_button = GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-270", new System.EventHandler (HandleRotate270Command));
-			SetTip (rl_button, Catalog.GetString ("Rotate photo left"));
-			Widget rr_button = GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-90", new System.EventHandler (HandleRotate90Command));
-			SetTip (rr_button, Catalog.GetString ("Rotate photo right"));
+		
+			ToolButton rl_button = GtkUtil.ToolButtonFromTheme ("object-rotate-left", Catalog.GetString ("Rotate Left"), true);
+			rl_button.Clicked += HandleRotate270Command;
+			rl_button.SetTooltip (toolTips, Catalog.GetString ("Rotate photo left"), null);
+			toolbar.Insert (rl_button, -1);
 
-			toolbar.AppendSpace ();
+			ToolButton rr_button = GtkUtil.ToolButtonFromTheme ("object-rotate-right", Catalog.GetString ("Rotate Right"), true);
+			rr_button.Clicked += HandleRotate270Command;
+			rr_button.SetTooltip (toolTips, Catalog.GetString ("Rotate photo right"), null);
+			toolbar.Insert (rr_button, -1);
 
-			Widget fs_button = GtkUtil.MakeToolbarButton (toolbar, "f-spot-fullscreen", new System.EventHandler (HandleViewFullscreen));
-			SetTip (fs_button, Catalog.GetString ("View photos fullscreen"));
-			Widget ss_button = GtkUtil.MakeToolbarButton (toolbar, "f-spot-slideshow", new System.EventHandler (HandleViewSlideshow));
-			SetTip (ss_button, Catalog.GetString ("View photos in a slideshow"));
+			toolbar.Insert (new SeparatorToolItem (), -1);
+
+			ToolButton fs_button = GtkUtil.ToolButtonFromTheme ("view-fullscreen", Catalog.GetString ("Fullscreen"), true);
+			fs_button.Clicked += HandleViewFullscreen;
+			fs_button.SetTooltip (toolTips, Catalog.GetString ("View photos fullscreen"), null);
+			toolbar.Insert (fs_button, -1);
+
+			ToolButton ss_button = GtkUtil.ToolButtonFromTheme ("media-playback-start", Catalog.GetString ("Slideshow"), true);
+			ss_button.Clicked += HandleViewSlideshow;
+			ss_button.SetTooltip (toolTips, Catalog.GetString ("View photos in a slideshow"), null);
+			toolbar.Insert (ss_button, -1);
 
 			collection = new UriCollection (uris);
 
@@ -123,9 +131,6 @@ namespace FSpot {
 			LoadPreference (Preferences.VIEWER_TRANS_COLOR);
 
 			ShowSidebar = collection.Count > 1;
-
-			near_image.SetFromStock ("f-spot-stock_near", Gtk.IconSize.SmallToolbar);
-			far_image.SetFromStock ("f-spot-stock_far", Gtk.IconSize.SmallToolbar);
 
 			slide_delay = new FSpot.Delay (new GLib.IdleHandler (SlideShow));
 
@@ -462,8 +467,6 @@ namespace FSpot {
 
 			sb.AppendFormat (Catalog.GetPluralString ("{0} Photo", "{0} Photos", collection.Count), collection.Count);
 			status_label.Text = sb.ToString ();
-
-
 		}
 
 		private void HandleFileClose (object sender, System.EventArgs args)
@@ -575,11 +578,6 @@ namespace FSpot {
 			get { 
 				return window;
 			}
-		}
-
-		public static void SetTip (Widget widget, string tip)
-		{
-			toolTips.SetTip (widget, tip, null);
 		}
 
 		public class PreferenceDialog : GladeDialog {

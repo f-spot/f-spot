@@ -356,53 +356,14 @@ class GtkUtil {
 		public object Sender;
 	}
 
-	public static Gtk.Widget MakeToolbarButton (Gtk.Toolbar toolbar, string stock_id, System.EventHandler e)
+	public static Gtk.ToolButton ToolButtonFromTheme (string theme_id, string label, bool important)
 	{
-		return MakeToolbarButton (toolbar, stock_id, null, e);
-	}
-	
-	public static Gtk.Widget MakeToolbarButton (Gtk.Toolbar toolbar, string stock_id, string label, System.EventHandler e)
-	{
-		Gtk.StockItem item = Gtk.StockItem.Zero;
-		if (Gtk.StockManager.Lookup (stock_id, ref item)) {
-			SignalFuncHelper helper = new SignalFuncHelper (e);
-			Gtk.Widget w =  toolbar.AppendItem (label ?? item.Label.Replace ("_", null),
-							    null, null, 
-							    new Gtk.Image (item.StockId, Gtk.IconSize.LargeToolbar), 
-							    new Gtk.SignalFunc (helper.Func));
-			helper.Sender = w;
-			return w;
-		}
-		return null;
-	}
-	
-	public static Gtk.Widget MakeToolbarToggleButton (Gtk.Toolbar toolbar, string stock_id, System.EventHandler e)
-	{
-		Gtk.StockItem item = Gtk.StockItem.Zero;
-		if (Gtk.StockManager.Lookup (stock_id, ref item)) {
-			SignalFuncHelper helper = new SignalFuncHelper (e);
-
-			// FIXME current gtk-sharp bindings don't have a null_ok flag on the 
-			// widget parameter so it is impossible to make a toggle button in toolbar.
-			Gtk.Widget w;
-			try {
-				w =  toolbar.AppendElement (Gtk.ToolbarChildType.Togglebutton, 
-							    null,
-							    item.Label.Replace ("_", null),
-							    null, null, 
-							    new Gtk.Image (item.StockId, Gtk.IconSize.LargeToolbar), 
-							    new Gtk.SignalFunc (helper.Func));
-			} catch {
-				w =  toolbar.AppendItem (item.Label.Replace ("_", null),
-							 null, null, 
-							 new Gtk.Image (item.StockId, Gtk.IconSize.LargeToolbar), 
-							 new Gtk.SignalFunc (helper.Func));
-			}
-
-			helper.Sender = w;
-			return w;
-		}
-		return null;
+		Gtk.ToolButton button = new Gtk.ToolButton (null, null);
+		button.Label = label;
+		button.IconName = theme_id;
+		button.IsImportant = important;
+		button.UseUnderline = true;
+		return button;
 	}
 }
 

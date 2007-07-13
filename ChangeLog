@@ -1,3 +1,82 @@
+2007-07-12  Stephane Delcroix  <stephane@delcroix.org>
+2007-07-12  Jakub Steiner <jimmac@ximian.com>
+
+	* src/Defines.cs.in: define APP_DATA_DIR
+	
+	* src/Global.cs: new IconTheme field.
+	
+	* src/PixbufUtils.cs: load icons from the theme instead of the
+	assembly. Remove LoadThemeIcon, now that LoadIcon is in gtk# (>2.4).
+
+	* src/ImportCommand.cs:
+	* src/main.cs: use IconTheme.LoadIcon
+
+	* src/MainWindow.cs: 
+	* src/SingleView.cs: new ToolTips field, use ToolItem's inside the
+	Toolbar (instead of Widgets). Use the media-play button for
+	slideshows.
+
+	* src/GroupSelector:
+	* src/Widgets/TagView.cs: use SetToolTip for ToolItems
+
+	* src/ItemAction.cs: Changes the main constructor to load the icon from
+	the theme, change icon names to reflect the installed icon names,
+	removes GetToolButton methods.
+
+	* src/PhotoView.cs: uses a Gtk.Toolbar (instead of a hbox) for the
+	tools bar. Use the theme icons.
+
+	* src/TagStore: Load tag icons from theme, replaced StockIconName by
+	ThemeIconName. Do not resize (SizedIcon) icon tags loaded from 
+	theme, reload with the correct size instead. Reset the cached icon 
+	while setting the ThemeIconName. Hooks the new icons and some g-i-t
+	ones.
+
+	* src/TagCommand.cs: Load the default icons from the theme the right
+	way, store the icon name in the db so it's themable. 
+	Load icons asynchronously
+
+	* src/Util.cs: removes MakeToolbar(Toggle)Button methods, replaced by
+	ToolButtonFromTheme.
+
+	* src/f-spot.glade: switch the file to glade-3, some minor changes
+	related to that switch. Hooks some new icons here and there.
+
+	* src/Makefile.am: no longer bundle icons as resources.
+
+	* icon-theme-installer: icon theme installer script from banshee
+
+	* icons/Makefile.am: use the installer script, install icons in theme
+	* icons/*: reworked/renamed icons from jimmac in multiple sizes.
+	removed stale icons.	
+	* icons/emblem-event: new emblem, based on emblem-urgent from git.
+	* icons/emblem-people: from gnom-icon-theme
+	* icons/emblem-places: add the missing sizes (from git as well)
+	* icons/emblem-readonly-*: adding emblem-readonly from
+	gnome-icon-theme trunk since it's not yet on everyone's destop.
+	* icons/view-near-16.svg
+	* icons/view-far-22.png
+	* icons/view-far-24.png
+	* icons/view-far-16.svg
+	* icons/view-near-16.png
+	* icons/view-far-16.png
+	* icons/view-near-22.svg
+	* icons/view-far-22.svg
+	* icons/view-near-22.png
+	* icons/view-near-24.png: view zoom icons
+	* icons/mode-browse-16.svg
+	* icons/mode-browse-32.svg
+	* icons/mode-browse-32.png
+	* icons/mode-browse.svg: more sizes provided by Andreas Nilsson
+	* icons/filter-soft-focus-16.png:
+	* icons/filter-soft-focus-22.png:
+	* icons/filter-soft-focus-24.png:
+	* icons/tag-new.*: add a new tag icon.
+	* icons/red-eye-remove*: add icon for removing red eye
+
+	* src/Updater.cs: update to db version 6.0, change f-spot-other.png to
+	emblem-generic
+
 2007-07-10  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/f-spot.glade:

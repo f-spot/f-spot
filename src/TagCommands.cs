@@ -1,3 +1,13 @@
+/*
+ * TagCommand.cs
+ *
+ * Author(s):
+ * 	Larry Ewing <lewing@novell.com>
+ * 	Stephane Delcroix <stephane@delcroix.org>
+ *
+ * This is free software. See COPYING for details
+ */
+
 using Gtk;
 using GtkSharp;
 using System;
@@ -296,7 +306,6 @@ public class TagCommands {
 				try {
 					t.Name = last_valid_name;
 					t.Category = categories [category_option_menu.History] as Category;
-					t.Icon = icon_image.Pixbuf;
 
 					db.Tags.Commit (t, orig_name != t.Name);
 					success = true;
@@ -322,13 +331,33 @@ public class TagCommands {
 		Gtk.Window parent_window;
 		FSpot.PhotoQuery query;
 		FSpot.PhotoImageView image_view;
-		IconView icon_view;
+		Gtk.IconView icon_view;
+		ListStore icon_store;
+		string icon_name = null;
 
 		[Glade.Widget] Gtk.Image preview_image;
 		[Glade.Widget] ScrolledWindow photo_scrolled_window;
 		[Glade.Widget] ScrolledWindow icon_scrolled_window;
 		[Glade.Widget] Label photo_label;
 		[Glade.Widget] SpinButton photo_spin_button;
+
+		private Gdk.Pixbuf PreviewPixbuf {
+			get { return preview_image.Pixbuf; }
+			set {
+				icon_name = null;
+				preview_image.Pixbuf = value;
+			}
+
+		}
+
+		private string IconName {
+			get { return icon_name; }
+			set {
+				icon_name = value;	
+				preview_image.Pixbuf = FSpot.Global.IconTheme.LoadIcon (value, 48, (IconLookupFlags) 0);
+			}
+			
+		}
 
 		public FSpot.BrowsablePointer Item {
 			get {
@@ -349,18 +378,18 @@ public class TagCommands {
 			Gdk.Pixbuf tmp = null;
 		       
 			image_view.GetSelection (out x, out y, out width, out height);
-			if (width > 0 && height > 0) 
-				icon_view.Selection.Clear ();
+//			if (width > 0 && height > 0) 
+//				icon_view.Selection.Clear ();
 				
 			if (image_view.Pixbuf != null) {
 				if (width > 0 && height > 0) {
 					tmp = new Gdk.Pixbuf (image_view.Pixbuf, x, y, width, height);
 					
-					preview_image.Pixbuf = PixbufUtils.TagIconFromPixbuf (tmp);
+					PreviewPixbuf = PixbufUtils.TagIconFromPixbuf (tmp);
 					
 					tmp.Dispose ();
 				} else {
-					preview_image.Pixbuf = PixbufUtils.TagIconFromPixbuf (image_view.Pixbuf);
+					PreviewPixbuf = PixbufUtils.TagIconFromPixbuf (image_view.Pixbuf);
 				}
 			}
 		}
@@ -374,22 +403,22 @@ public class TagCommands {
 			photo_spin_button.Value = item + 1;
 		}
 
-		public void HandleIconViewSelectionChanged (FSpot.IBrowsableCollection collection) 
+		public void HandleIconSelectionChanged (object o, EventArgs args)
 		{
-			// FIXME this handler seems to be called twice for each selection change
-			if (icon_view.Selection.Count > 0)
-			{
-				FSpot.IBrowsableItem item = icon_view.Selection [0];
-				string path = item.DefaultVersionUri.LocalPath;
-				try {
-					preview_image.Pixbuf = new Gdk.Pixbuf (path);
-					image_view.UnsetSelection ();
-				} catch {
-					// FIXME add a real exception handler here.
-					System.Console.WriteLine ("Unable To Load image");
-				}
-			}
+			TreeIter iter;
+			icon_store.GetIter (out iter, icon_view.SelectedItems [0]); 
+			IconName = (string) icon_store.GetValue (iter, 0);
 		}
+
+		public bool FillIconView ()
+		{
+			icon_store.Clear ();
+			string [] icon_list = FSpot.Global.IconTheme.ListIcons ("Emblems");
+			foreach (string item_name in icon_list)
+				icon_store.AppendValues (item_name, FSpot.Global.IconTheme.LoadIcon (item_name, 32, (IconLookupFlags) 0));
+			return false;
+		}
+
 
 		public bool Execute (Tag t)
 		{
@@ -397,7 +426,7 @@ public class TagCommands {
 
 			this.Dialog.Title = String.Format (Catalog.GetString ("Edit Icon for Tag {0}"), t.Name);
 
-			preview_image.Pixbuf = t.Icon;
+			PreviewPixbuf = t.Icon;
 
 			query = new FSpot.PhotoQuery (db.Photos);
 			
@@ -425,36 +454,32 @@ public class TagCommands {
 				photo_spin_button.Sensitive = false;
 				photo_spin_button.Value = 0.0;
 			}			
-			
-			
-			// FIXME this path choosing method is completely wrong/broken/evil it needs to be
-			// based on real data but I want to get this release out.
-			string theme_dir = System.IO.Path.Combine (FSpot.Defines.GNOME_ICON_THEME_PREFIX,
-								   "share/icons/gnome/48x48/emblems");
-			if (System.IO.Directory.Exists (theme_dir))
-				icon_view = new IconView (new FSpot.DirectoryCollection (theme_dir));
-			else if (System.IO.Directory.Exists ("/opt/gnome/share/icons/gnome/48x48/emblems"))
-				icon_view = new IconView (new FSpot.DirectoryCollection ("/opt/gnome/share/icons/gnome/48x48/emblems"));
-			else if (System.IO.Directory.Exists ("/usr/share/icons/gnome/48x48/emblems"))
-				icon_view = new IconView (new FSpot.DirectoryCollection ("/usr/share/icons/gnome/48x48/emblems"));
-			else // This will just load an empty collection if the directory doesn't exist.
-				icon_view = new IconView (new FSpot.DirectoryCollection ("/usr/local/share/icons/gnome/48x48/emblems"));
+
+			icon_store = new ListStore (typeof (string), typeof (Gdk.Pixbuf));
+
+			icon_view = new Gtk.IconView (icon_store); 
+			icon_view.PixbufColumn = 1;
+			icon_view.SelectionMode = SelectionMode.Single;
+			icon_view.SelectionChanged += HandleIconSelectionChanged;
 
 			icon_scrolled_window.Add (icon_view);
-			icon_view.ThumbnailWidth = 32;
-			icon_view.DisplayTags = false;
-			icon_view.DisplayDates = false;
-			icon_view.Selection.Changed += HandleIconViewSelectionChanged;
+
 			icon_view.Show();
 
 			image_view.Show ();
+
+			FSpot.Delay fill_delay = new FSpot.Delay (FillIconView);
+			fill_delay.Start ();
 
 			ResponseType response = (ResponseType) this.Dialog.Run ();
 			bool success = false;
 
 			if (response == ResponseType.Ok) {
 				try {
-					t.Icon = preview_image.Pixbuf;
+					if (IconName != null)
+						t.ThemeIconName = IconName;
+					else
+						t.Icon = PreviewPixbuf;
 					//db.Tags.Commit (t);
 					success = true;
 				} catch (Exception ex) {

@@ -54,14 +54,14 @@ namespace FSpot {
 				}
 			
 				if (adaptor is TimeAdaptor) {
-					MainWindow.SetTip (left, Catalog.GetString ("More dates"));
-					MainWindow.SetTip (right, Catalog.GetString ("More dates"));
+					MainWindow.ToolTips.SetTip (left, Catalog.GetString ("More dates"), null);
+					MainWindow.ToolTips.SetTip (right, Catalog.GetString ("More dates"), null);
 				} else if (adaptor is DirectoryAdaptor) {
-					MainWindow.SetTip (left, Catalog.GetString ("More directories"));
-					MainWindow.SetTip (right, Catalog.GetString ("More directories"));
+					MainWindow.ToolTips.SetTip (left, Catalog.GetString ("More directories"), null);
+					MainWindow.ToolTips.SetTip (right, Catalog.GetString ("More directories"), null);
 				} else {
-					MainWindow.SetTip (left, Catalog.GetString ("More"));
-					MainWindow.SetTip (right, Catalog.GetString ("More"));
+					MainWindow.ToolTips.SetTip (left, Catalog.GetString ("More"), null);
+					MainWindow.ToolTips.SetTip (right, Catalog.GetString ("More"), null);
 				}
 				
 				adaptor.Changed += HandleAdaptorChanged;

@@ -26,13 +26,13 @@ public class ImportCommand : FSpot.GladeDialog {
 		public BrowseSource ()
 		{
 			this.Name = Catalog.GetString ("Select Folder");
-			this.Icon = PixbufUtils.LoadThemeIcon ("stock_folder", 32);
+			this.Icon = FSpot.Global.IconTheme.LoadIcon ("stock_folder", 32, (Gtk.IconLookupFlags)0);
 		}
 
 		public BrowseSource (string name, string icon)
 		{
 			this.Name = name;
-			this.Icon = PixbufUtils.LoadThemeIcon (icon, 32);
+			this.Icon = FSpot.Global.IconTheme.LoadIcon (icon, 32, (Gtk.IconLookupFlags)0);
 		}
 	}
 
@@ -48,7 +48,7 @@ public class ImportCommand : FSpot.GladeDialog {
 
 			this.uri = uri;
 			
-			this.Icon = PixbufUtils.LoadThemeIcon ("stock_folder", 32);
+			this.Icon = FSpot.Global.IconTheme.LoadIcon ("stock_folder", 32, (Gtk.IconLookupFlags)0);
 		}
 
 		public virtual bool Contains (string path)
@@ -77,13 +77,13 @@ public class ImportCommand : FSpot.GladeDialog {
 			uri = mount_point;
 			
                         if (this.Icon == null)
-				this.Icon = PixbufUtils.LoadThemeIcon (vol.Icon, 32);
+				this.Icon = FSpot.Global.IconTheme.LoadIcon (vol.Icon, 32, (Gtk.IconLookupFlags)0);
 			
 			if (this.IsIPodPhoto)
-				this.Icon = PixbufUtils.LoadThemeIcon ("gnome-dev-ipod", 32);
+				this.Icon = FSpot.Global.IconTheme.LoadIcon ("gnome-dev-ipod", 32, (Gtk.IconLookupFlags)0);
 
 			if (this.Icon == null && this.IsCamera)
-				this.Icon = PixbufUtils.LoadThemeIcon ("gnome-dev-media-cf", 32);
+				this.Icon = FSpot.Global.IconTheme.LoadIcon ("gnome-dev-media-cf", 32, (Gtk.IconLookupFlags)0);
 
 			try {
 				if (this.Icon == null)
@@ -128,10 +128,10 @@ public class ImportCommand : FSpot.GladeDialog {
 			this.Drive = drive;
 
 			if (drive.IsMounted) {
-				this.Icon = PixbufUtils.LoadThemeIcon (drive.MountedVolume.Icon, 32);
+				this.Icon = FSpot.Global.IconTheme.LoadIcon (drive.MountedVolume.Icon, 32, (Gtk.IconLookupFlags)0);
 				//this.Sensitive = drive.MountedVolume.IsMounted;
 			} else {
-				this.Icon = PixbufUtils.LoadThemeIcon (drive.Icon, 32);
+				this.Icon = FSpot.Global.IconTheme.LoadIcon (drive.Icon, 32, (Gtk.IconLookupFlags)0);
 			}
 		}
 	}
@@ -150,9 +150,9 @@ public class ImportCommand : FSpot.GladeDialog {
 #else
 			this.Name = String.Format ("{0}", cam.CameraList.GetName (index));
 #endif
-			this.Icon = PixbufUtils.LoadThemeIcon ("gnome-dev-camera", 32);
+			this.Icon = FSpot.Global.IconTheme.LoadIcon ("gnome-dev-camera", 32, (Gtk.IconLookupFlags)0);
 			if (this.Icon == null)
-				this.Icon = PixbufUtils.LoadThemeIcon ("gnome-dev-media-cf", 32);
+				this.Icon = FSpot.Global.IconTheme.LoadIcon ("gnome-dev-media-cf", 32, (Gtk.IconLookupFlags)0);
 		}
 
 		public string Port {
@@ -682,7 +682,7 @@ public class ImportCommand : FSpot.GladeDialog {
 				Category default_category = db.Tags.GetTagByName (Catalog.GetString ("Import Tags")) as Category;
 				if (default_category == null) {
 					default_category = db.Tags.CreateCategory (null, Catalog.GetString ("Import Tags"));
-					default_category.StockIconName = "f-spot-imported-xmp-tags.png"; 
+					default_category.ThemeIconName = "f-spot-imported-xmp-tags.png"; 
 				}
 				t = db.Tags.CreateCategory (default_category, tagname) as Tag;
 				db.Tags.Commit (t);

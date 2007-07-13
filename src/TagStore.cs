@@ -84,33 +84,31 @@ public class Tag : DbItem, IComparable {
 		}
 	}
 
-	// Icon.  If stock_icon_name is not null, then we save the name of the icon instead
+	// Icon.  If theme_icon_name is not null, then we save the name of the icon instead
 	// of the actual icon data.
 
-	private string stock_icon_name;
-	public string StockIconName {
+	private string theme_icon_name;
+	public string ThemeIconName {
 		set {
-			stock_icon_name = value;
-			Icon = PixbufUtils.LoadFromAssembly (value);
+			theme_icon_name = value;
+			cached_icon_size = IconSize.Hidden;
+			try {
+				icon = FSpot.Global.IconTheme.LoadIcon (theme_icon_name, 48, (Gtk.IconLookupFlags)0);
+			} catch {
+				icon = FSpot.Global.IconTheme.LoadIcon ("gtk-missing-image", 48, (Gtk.IconLookupFlags)0);
+			}
 		}
-
-		get {
-			return stock_icon_name;
-		}
+		get { return theme_icon_name; }
 	}
 
 	private Pixbuf icon;
 	public Pixbuf Icon {
 		set {
-			// If a custom icon is set, of course it means we are not using a stock
-			// icon.
-			stock_icon_name = null;
+			theme_icon_name = null;
 			icon = value;
-			cached_icon_size = 0;
+			cached_icon_size = IconSize.Hidden;
 		}
-		get {
-			return icon;
-		}
+		get { return icon; }
 	}
 
 	public enum IconSize {
@@ -127,18 +125,28 @@ public class Tag : DbItem, IComparable {
 	}
 
 	private Pixbuf cached_icon;
-	private int cached_icon_size=0;
+	private IconSize cached_icon_size = IconSize.Hidden;
+
 	// We can use a SizedIcon everywhere we were using an Icon
 	public Pixbuf SizedIcon {
 		get {
-			//Do not resize Stock Icons or not displayed icons
-			if ((int) tag_icon_size == 0)
+			if (tag_icon_size == IconSize.Hidden) //Hidden
 				return null;
-			if ((int) tag_icon_size == cached_icon_size)
+			if (tag_icon_size == cached_icon_size)
 				return cached_icon;
-			if (Math.Max (icon.Width, icon.Height) >= (int) tag_icon_size) {
+			if (theme_icon_name != null) { //Theme icon
+				try {
+					cached_icon = FSpot.Global.IconTheme.LoadIcon (theme_icon_name, (int) tag_icon_size, (Gtk.IconLookupFlags)0);
+				} catch {
+					cached_icon = FSpot.Global.IconTheme.LoadIcon ("gtk-missing-image", (int) tag_icon_size, (Gtk.IconLookupFlags)0);
+				}
+
+				if (Math.Max (cached_icon.Width, cached_icon.Height) <= (int) tag_icon_size) 
+					return cached_icon;
+			}
+			if (Math.Max (icon.Width, icon.Height) >= (int) tag_icon_size) { //Don't upscale
 				cached_icon = icon.ScaleSimple ((int) tag_icon_size, (int) tag_icon_size, InterpType.Bilinear);
-				cached_icon_size = (int) tag_icon_size;
+				cached_icon_size = tag_icon_size;
 				return cached_icon;
 			}
 			else
@@ -287,7 +295,7 @@ public class TagStore : DbStore {
 		if (icon_string == null || icon_string == String.Empty)
 			tag.Icon = null;
 		else if (icon_string.StartsWith (STOCK_ICON_DB_PREFIX))
-			tag.StockIconName = icon_string.Substring (STOCK_ICON_DB_PREFIX.Length);
+			tag.ThemeIconName = icon_string.Substring (STOCK_ICON_DB_PREFIX.Length);
 		else
 			tag.Icon = PixbufSerializer.Deserialize (Convert.FromBase64String (icon_string));
 	}
@@ -407,12 +415,12 @@ public class TagStore : DbStore {
 	private void CreateDefaultTags ()
 	{
 		Category favorites_category = CreateCategory (RootCategory, Catalog.GetString ("Favorites"));
-		favorites_category.StockIconName = "f-spot-favorite.png";
+		favorites_category.ThemeIconName = "emblem-favorite";
 		favorites_category.SortPriority = -10;
 		Commit (favorites_category);
 
 		Tag hidden_tag = CreateTag (RootCategory, Catalog.GetString ("Hidden"));
-		hidden_tag.StockIconName = "f-spot-hidden.png";
+		hidden_tag.ThemeIconName = "emblem-readonly";
 		hidden_tag.SortPriority = -9;
 		this.hidden = hidden_tag;
 		Commit (hidden_tag);
@@ -420,17 +428,17 @@ public class TagStore : DbStore {
 		FSpot.Core.Database.Meta.Commit (FSpot.Core.Database.Meta.HiddenTagId);
 
 		Tag people_category = CreateCategory (RootCategory, Catalog.GetString ("People"));
-		people_category.StockIconName = "f-spot-people.png";
+		people_category.ThemeIconName = "emblem-people";
 		people_category.SortPriority = -8;
 		Commit (people_category);
 
 		Tag places_category = CreateCategory (RootCategory, Catalog.GetString ("Places"));
-		places_category.StockIconName = "f-spot-places.png";
+		places_category.ThemeIconName = "emblem-places";
 		places_category.SortPriority = -8;
 		Commit (places_category);
 
 		Tag events_category = CreateCategory (RootCategory, Catalog.GetString ("Events"));
-		events_category.StockIconName = "f-spot-events.png";
+		events_category.ThemeIconName = "emblem-event";
 		events_category.SortPriority = -7;
 		Commit (events_category);
 	}
@@ -526,8 +534,8 @@ public class TagStore : DbStore {
 
 	private string GetIconString (Tag tag)
 	{
-		if (tag.StockIconName != null)
-			return STOCK_ICON_DB_PREFIX + tag.StockIconName;
+		if (tag.ThemeIconName != null)
+			return STOCK_ICON_DB_PREFIX + tag.ThemeIconName;
 		if (tag.Icon == null)
 			return String.Empty;
 

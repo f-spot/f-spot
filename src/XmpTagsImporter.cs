@@ -101,7 +101,7 @@ namespace FSpot.Xmp {
 							info.TagName);
 			
 			if (info.HasIcon) {
-				tag.StockIconName = info.IconName;
+				tag.ThemeIconName = info.IconName;
 				tag_store.Commit(tag);
 			}
 			

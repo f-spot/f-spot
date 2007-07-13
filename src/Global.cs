@@ -1,3 +1,10 @@
+/*
+ * Global.cs
+ *
+ * This is free software. See COPYING for details
+ *
+ */
+
 namespace FSpot {
 	public class Global {
 		public static string HomeDirectory {
@@ -7,7 +14,6 @@ namespace FSpot {
 		}
 		
 		private static string base_dir = System.IO.Path.Combine (HomeDirectory,  System.IO.Path.Combine (".gnome2", "f-spot"));
-
 		public static string BaseDirectory {
 			get {
 				return base_dir;
@@ -18,7 +24,6 @@ namespace FSpot {
 		}
 
 		private static string photo_directory = (string) Preferences.Get(Preferences.STORAGE_PATH);
-
 		public static string PhotoDirectory {
 			get {
 				return photo_directory;
@@ -69,6 +74,17 @@ namespace FSpot {
 		public static Cms.Profile DestinationProfile {
 			set { destination_profile = value; }
 			get { return destination_profile; }
+		}
+
+		private static Gtk.IconTheme icon_theme = null;
+		public static Gtk.IconTheme IconTheme {
+			get {
+				if (icon_theme == null) {
+					icon_theme = Gtk.IconTheme.Default;
+					icon_theme.AppendSearchPath (System.IO.Path.Combine (Defines.APP_DATA_DIR, "icons"));
+				}
+				return icon_theme;
+			}
 		}
 	}
 }

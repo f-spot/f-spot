@@ -181,7 +181,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/SendEmail.cs                  \
 	$(srcdir)/SlideView.cs			\
 	$(srcdir)/SingleView.cs			\
-	$(srcdir)/StockIcons.cs			\
 	$(srcdir)/SimpleCalendar.cs		\
 	$(srcdir)/SmugMugExport.cs		\
 	$(srcdir)/TagCommands.cs		\
@@ -259,43 +258,9 @@ ASSEMBLIES = \
 
 
 RESOURCES =										\
-	-resource:$(top_srcdir)/icons/f-spot-adjust-colors.png,f-spot-adjust-colors.png	\
-	-resource:$(top_srcdir)/icons/f-spot-autocolor.png,f-spot-autocolor.png	\
-	-resource:$(top_srcdir)/icons/f-spot-browse.png,f-spot-browse.png		\
-	-resource:$(top_srcdir)/icons/f-spot-crop.png,f-spot-crop.png			\
-	-resource:$(top_srcdir)/icons/f-spot-camera.png,f-spot-camera.png		\
-	-resource:$(top_srcdir)/icons/f-spot-desaturate.png,f-spot-desaturate.png	\
-	-resource:$(top_srcdir)/icons/f-spot-edit-image.png,f-spot-edit-image.png	\
-	-resource:$(top_srcdir)/icons/f-spot-events.png,f-spot-events.png		\
-	-resource:$(top_srcdir)/icons/f-spot-favorite.png,f-spot-favorite.png 		\
-	-resource:$(top_srcdir)/icons/f-spot-hidden.png,f-spot-hidden.png 		\
-	-resource:$(top_srcdir)/icons/f-spot-horizon.png,f-spot-horizon.png 		\
-	-resource:$(top_srcdir)/icons/f-spot-imported-xmp-tags.png,f-spot-imported-xmp-tags.png	\
-	-resource:$(top_srcdir)/icons/f-spot-loading.png,f-spot-loading.png		\
-	-resource:$(top_srcdir)/icons/f-spot-new-tag.png,f-spot-new-tag.png		\
-	-resource:$(top_srcdir)/icons/f-spot-not.png,f-spot-not.png			\
-	-resource:$(top_srcdir)/icons/f-spot-other.png,f-spot-other.png			\
-	-resource:$(top_srcdir)/icons/f-spot-people.png,f-spot-people.png 		\
-	-resource:$(top_srcdir)/icons/f-spot-places.png,f-spot-places.png 		\
-	-resource:$(top_srcdir)/icons/f-spot-question-mark.png,f-spot-question-mark.png \
-	-resource:$(top_srcdir)/icons/f-spot-red-eye.png,f-spot-red-eye.png		\
-	-resource:$(top_srcdir)/icons/f-spot-rotate-90.png,f-spot-rotate-90.png		\
-	-resource:$(top_srcdir)/icons/f-spot-rotate-270.png,f-spot-rotate-270.png	\
-	-resource:$(top_srcdir)/icons/f-spot-sepia.png,f-spot-sepia.png			\
-	-resource:$(top_srcdir)/icons/f-spot-slideshow.png,f-spot-slideshow.png		\
-	-resource:$(top_srcdir)/icons/f-spot-soft-focus.png,f-spot-soft-focus.png	\
-	-resource:$(top_srcdir)/icons/f-spot-stock_near.png,f-spot-stock_near.png	\
-	-resource:$(top_srcdir)/icons/f-spot-stock_far.png,f-spot-stock_far.png		\
-	-resource:$(top_srcdir)/icons/f-spot-fullscreen.png,f-spot-fullscreen.png	\
-	-resource:$(top_srcdir)/icons/f-spot-view-restore.png,f-spot-view-restore.png	\
-	-resource:$(top_srcdir)/icons/f-spot-simple-white.css,f-spot-simple-white.css	\
+-resource:$(top_srcdir)/icons/f-spot-simple-white.css,f-spot-simple-white.css	\
 	-resource:$(top_srcdir)/icons/f-spot-simple.css,f-spot-simple.css		\
 	-resource:$(top_srcdir)/icons/f-spot.js,f-spot.js				\
-	-resource:$(top_srcdir)/icons/f-spot-logo-tango.svg,f-spot-logo-tango.svg	\
-	-resource:$(top_srcdir)/icons/f-spot-16.png,f-spot-16.png			\
-	-resource:$(top_srcdir)/icons/f-spot-22.png,f-spot-22.png			\
-	-resource:$(top_srcdir)/icons/f-spot-32.png,f-spot-32.png			\
-	-resource:$(top_srcdir)/icons/f-spot-48.png,f-spot-48.png			\
 	-resource:$(srcdir)/dces.rdf,dces.rdf						\
 	-resource:$(srcdir)/f-spot.glade,f-spot.glade					\
 	-resource:$(srcdir)/FSpot.addin.xml,FSpot.addin.xml

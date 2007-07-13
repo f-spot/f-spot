@@ -17,16 +17,15 @@ public class PhotoView : EventBox {
 
 	private Widgets.TagView tag_view;
 	
-	private Button display_next_button, display_previous_button;
+	private Gtk.ToolButton display_next_button, display_previous_button;
 	private Label count_label;
 	private Entry description_entry;
 
-	private Gtk.Button crop_button;
-	private Gtk.Button redeye_button;
-	private Gtk.Button color_button;
-	
-	Gtk.Button desaturate_button;
-	Gtk.Button sepia_button;
+	private Gtk.ToolButton crop_button;
+	private Gtk.ToolButton redeye_button;
+	private Gtk.ToolButton color_button;	
+	private Gtk.ToolButton desaturate_button;
+	private Gtk.ToolButton sepia_button;
 
 	private OptionMenu constraints_option_menu;
 	private int selection_constraint_ratio_idx;
@@ -149,11 +148,11 @@ public class PhotoView : EventBox {
 		display_next_button.Sensitive = next;
 
 		if (valid && has_selection) {
-			tips.SetTip (crop_button, Catalog.GetString ("Crop photo to selected area"), String.Empty);
-			tips.SetTip (redeye_button, Catalog.GetString ("Remove redeye from selected area"), String.Empty);
+			crop_button.SetTooltip (tips, Catalog.GetString ("Crop photo to selected area"), String.Empty);
+			redeye_button.SetTooltip (tips, Catalog.GetString ("Remove redeye from selected area"), String.Empty);
 		} else {
-			tips.SetTip (crop_button, Catalog.GetString ("Select an area to crop"), null);
-			tips.SetTip (redeye_button, Catalog.GetString ("Select an area to remove redeye"), null);
+			crop_button.SetTooltip (tips, Catalog.GetString ("Select an area to crop"), null);
+			redeye_button.SetTooltip (tips, Catalog.GetString ("Select an area to remove redeye"), null);
 		}
 		
 		crop_button.Sensitive = valid;
@@ -400,17 +399,6 @@ public class PhotoView : EventBox {
 		description_delay.Start ();
 	}
 
-	// Constructor.
-
-	private class ToolbarButton : Button {
-		public ToolbarButton ()
-			: base ()
-		{
-			CanFocus = false;
-			Relief = ReliefStyle.None;
-		}
-	}
-
 	private void HandlePhotoChanged (FSpot.PhotoImageView view)
 	{
 		if (query is PhotoQuery) {
@@ -492,78 +480,71 @@ public class PhotoView : EventBox {
 		
 		inner_vbox.PackStart (inner_hbox, false, true, 0);
 
-		Box toolbar_hbox = new HBox (false, 6);
-		vbox.PackStart (toolbar_hbox, false, true, 0);
+		Toolbar toolbar = new Toolbar ();
+		toolbar.IconSize = IconSize.SmallToolbar;
+		toolbar.ToolbarStyle = ToolbarStyle.Icons;
+		vbox.PackStart (toolbar, false, true, 0);
 
-		toolbar_hbox.PackStart (CreateConstraintsOptionMenu (), false, false, 0);
+		ToolItem constraints_menu = new ToolItem ();
+		constraints_menu.Child = CreateConstraintsOptionMenu ();
+		toolbar.Insert (constraints_menu, -1);	
+		constraints_menu.SetTooltip (tips, Catalog.GetString ("Constrain the aspect ratio of the selection"), String.Empty);
 
-		crop_button = new ToolbarButton ();
-		crop_button.Add (new Gtk.Image ("f-spot-crop", IconSize.Button));
-		toolbar_hbox.PackStart (crop_button, false, true, 0);
-	
+		crop_button = GtkUtil.ToolButtonFromTheme ("crop", Catalog.GetString ("Crop"), false);
+		toolbar.Insert (crop_button, -1);
 		crop_button.Clicked += new EventHandler (HandleCropButtonClicked);
 
-		redeye_button = new ToolbarButton ();
-		redeye_button.Add (new Gtk.Image ("f-spot-red-eye", IconSize.Button));
-		toolbar_hbox.PackStart (redeye_button, false, true, 0);
-	
+		redeye_button = GtkUtil.ToolButtonFromTheme ("red-eye-remove", Catalog.GetString ("Reduce Red-Eye"), false);
+		toolbar.Insert (redeye_button, -1);
 		redeye_button.Clicked += new EventHandler (HandleRedEyeButtonClicked);
 
-		color_button = new ToolbarButton ();
-		color_button.Add (new Gtk.Image ("f-spot-adjust-colors", IconSize.Button));
-		toolbar_hbox.PackStart (color_button, false, true, 0);
-	
+		color_button = GtkUtil.ToolButtonFromTheme ("adjust-colors", Catalog.GetString ("Adjust Colors"), false);
+		toolbar.Insert (color_button, -1);
+		color_button.SetTooltip (tips, Catalog.GetString ("Adjust the photo colors"), String.Empty);
 		color_button.Clicked += new EventHandler (HandleColorButtonClicked);
 
-		desaturate_button = new ToolbarButton ();
-		desaturate_button.Add (new Gtk.Image ("f-spot-desaturate", IconSize.Button));
-		toolbar_hbox.PackStart (desaturate_button, false, true, 0);
+		desaturate_button = GtkUtil.ToolButtonFromTheme ("color-desaturate", Catalog.GetString ("Desaturate"), false);
+		toolbar.Insert (desaturate_button, -1);
+		desaturate_button.SetTooltip (tips, Catalog.GetString ("Convert the photo to black and white"), String.Empty);
 		desaturate_button.Clicked += HandleDesaturateButtonClicked;
 
-		sepia_button = new ToolbarButton ();
-		sepia_button.Add (new Gtk.Image ("f-spot-sepia", IconSize.Button));
-		toolbar_hbox.PackStart (sepia_button, false, true, 0);
+		sepia_button = GtkUtil.ToolButtonFromTheme ("color-sepia", Catalog.GetString ("Sepia Tone"), false);
+		toolbar.Insert (sepia_button, -1);
+		sepia_button.SetTooltip (tips, Catalog.GetString ("Convert the photo to sepia tones"), String.Empty);
 		sepia_button.Clicked += HandleSepiaButtonClicked;
 
 		ItemAction straighten = new TiltEditorAction (photo_view);
-		toolbar_hbox.PackStart (straighten.GetToolButton (false), false, true, 0);
+		toolbar.Insert (straighten.CreateToolItem () as ToolItem, -1);
 		
 		ItemAction softfocus = new SoftFocusEditorAction (photo_view);
-		toolbar_hbox.PackStart (softfocus.GetToolButton (false), false, true, 0);
+		toolbar.Insert (softfocus.CreateToolItem () as ToolItem, -1);
 
 		ItemAction autocolor = new AutoColor (photo_view.Item);
-		toolbar_hbox.PackStart (autocolor.GetToolButton (false), false, true, 0);
+		toolbar.Insert (autocolor.CreateToolItem () as ToolItem, -1);
 
-		/* Spacer Label */
-		toolbar_hbox.PackStart (new Label (String.Empty), true, true, 0);
+		SeparatorToolItem white_space = new SeparatorToolItem ();
+		white_space.Draw = false;
+		white_space.Expand = true;
+		toolbar.Insert (white_space, -1);
 
+		ToolItem label_item = new ToolItem ();
 		count_label = new Label (String.Empty);
-		toolbar_hbox.PackStart (count_label, false, true, 0);
+		label_item.Child = count_label;
+		toolbar.Insert (label_item, -1);
 
-		display_previous_button = new ToolbarButton ();
-		Gtk.Image display_previous_image = new Gtk.Image (Stock.GoBack, IconSize.Button);
-		display_previous_button.Add (display_previous_image);
+		display_previous_button = new ToolButton (Stock.GoBack);
+		toolbar.Insert (display_previous_button, -1);
+		display_previous_button.SetTooltip (tips, Catalog.GetString ("Previous photo"), String.Empty);
 		display_previous_button.Clicked += new EventHandler (HandleDisplayPreviousButtonClicked);
-		toolbar_hbox.PackStart (display_previous_button, false, true, 0);
 
-		display_next_button = new ToolbarButton ();
-		Gtk.Image display_next_image = new Gtk.Image (Stock.GoForward, IconSize.Button);
-		display_next_button.Add (display_next_image);
+		display_next_button = new ToolButton (Stock.GoForward);
+		toolbar.Insert (display_next_button, -1);
+		display_next_button.SetTooltip (tips, Catalog.GetString ("Next photo"), String.Empty);
 		display_next_button.Clicked += new EventHandler (HandleDisplayNextButtonClicked);
-		toolbar_hbox.PackStart (display_next_button, false, true, 0);
-
-		tips.Enable ();
-
 
 		UpdateButtonSensitivity ();
 
 		vbox.ShowAll ();
-		tips.SetTip (color_button, Catalog.GetString ("Adjust the photo colors"), String.Empty);
-		tips.SetTip (constraints_option_menu, Catalog.GetString ("Constrain the aspect ratio of the selection"), String.Empty);
-		tips.SetTip (display_next_button, Catalog.GetString ("Next photo"), String.Empty);
-		tips.SetTip (display_previous_button, Catalog.GetString ("Previous photo"), String.Empty);
-		tips.SetTip (desaturate_button, Catalog.GetString ("Convert the photo to black and white"), String.Empty);
-		tips.SetTip (sepia_button, Catalog.GetString ("Convert the photo to sepia tones"), String.Empty);
 
 		Realized += delegate (object o, EventArgs e) {SetColors ();};
 	}

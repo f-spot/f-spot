@@ -151,13 +151,17 @@ public class Driver {
 					if (control == null && create) {
 						create = false;
 						Gnome.Vfs.Vfs.Initialize ();
-						StockIcons.Initialize ();
 						
 						Catalog.Init ("f-spot", Defines.LOCALE_DIR);
-						Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {PixbufUtils.LoadFromAssembly ("f-spot-16.png"),
-												PixbufUtils.LoadFromAssembly ("f-spot-22.png"),
-												PixbufUtils.LoadFromAssembly ("f-spot-32.png"),
-												PixbufUtils.LoadFromAssembly ("f-spot-48.png")};
+						try {
+							Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {
+								FSpot.Global.IconTheme.LoadIcon ("f-spot", 16, (Gtk.IconLookupFlags)0),
+								FSpot.Global.IconTheme.LoadIcon ("f-spot", 22, (Gtk.IconLookupFlags)0),
+								FSpot.Global.IconTheme.LoadIcon ("f-spot", 32, (Gtk.IconLookupFlags)0),
+								FSpot.Global.IconTheme.LoadIcon ("f-spot", 48, (Gtk.IconLookupFlags)0)
+							};
+						} catch {}
+
 						core = new Core (options.view);
 						core.RegisterServer ();
 						

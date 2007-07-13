@@ -113,8 +113,14 @@ namespace FSpot.Database {
 			});				
 
 
-			// Update to version 6.0
-			//AddUpdate (new Version (6,0),delegate () {
+			//Version 6.0, change tag icon f-spot-tag-other to emblem-generic
+			AddUpdate (new Version (6,0),delegate () {
+				ExecuteScalar ("UPDATE tags SET icon = \"stock_icon:emblem-generic\" " +
+						" WHERE icon LIKE \"stock_icon:f-spot-other.png\"");
+			});
+			
+			// Update to version 7.0
+			//AddUpdate (new Version (7,0),delegate () {
 			//	do update here
 			//});
 

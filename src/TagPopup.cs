@@ -31,7 +31,7 @@ public class TagPopup {
 
 		GtkUtil.MakeMenuSeparator (popup_menu);
 		
-		GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Create New Tag"), "f-spot-new-tag",
+		GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Create New Tag"), "tag-new",
 				      MainWindow.Toplevel.HandleCreateNewCategoryCommand, true);
 
         GtkUtil.MakeMenuSeparator (popup_menu);

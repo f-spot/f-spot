@@ -117,9 +117,6 @@ public class MainWindow {
 
 	[Glade.Widget] VBox info_vbox;
 
-	[Glade.Widget] Gtk.Image near_image;
-	[Glade.Widget] Gtk.Image far_image;
-
 	[Glade.Widget] Gtk.HBox tagbar;
 	[Glade.Widget] Gtk.VBox tag_entry_container;
 	TagEntry tag_entry;
@@ -130,8 +127,8 @@ public class MainWindow {
 
 	PhotoVersionMenu versions_submenu;
 
-	Gtk.ToggleButton browse_button;
-	Gtk.ToggleButton edit_button;
+	Gtk.ToggleToolButton browse_button;
+	Gtk.ToggleToolButton edit_button;
 
 	InfoBox info_box;
 	FSpot.InfoDisplay info_display;
@@ -145,8 +142,8 @@ public class MainWindow {
 	
 	FSpot.Delay slide_delay;
 
-	Widget rl_button;
-	Widget rr_button;
+	ToolButton rl_button;
+	ToolButton rr_button;
 	
 	ModeType view_mode;
 	bool write_metadata = false;
@@ -190,7 +187,14 @@ public class MainWindow {
 
 	const int PHOTO_IDX_NONE = -1;
 
-	private static Gtk.Tooltips toolTips = new Gtk.Tooltips ();
+	private static Gtk.Tooltips toolTips;
+	public static Gtk.Tooltips ToolTips {
+		get {
+			if (toolTips == null)
+				toolTips = new Gtk.Tooltips ();
+			return toolTips;
+		}
+	}
 
 	//
 	// Public Properties
@@ -241,32 +245,52 @@ public class MainWindow {
 		
 		toolbar = new Gtk.Toolbar ();
 		toolbar_vbox.PackStart (toolbar);
+
+		ToolButton import_button = GtkUtil.ToolButtonFromTheme ("gtk-add", Catalog.GetString ("Import"), false);
+		import_button.Clicked += HandleImportCommand;
+		import_button.SetTooltip (toolTips, Catalog.GetString ("Import new images"), null);
+		toolbar.Insert (import_button, -1);
 	
-		Widget import_button = GtkUtil.MakeToolbarButton (toolbar, "gtk-add", Catalog.GetString ("Import"), new System.EventHandler (HandleImportCommand));
-		SetTip (import_button, Catalog.GetString ("Import photos"));
-		toolbar.AppendSpace ();
+		toolbar.Insert (new SeparatorToolItem (), -1);
 
-		rl_button = GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-270", new System.EventHandler (HandleRotate270Command));
-		rr_button = GtkUtil.MakeToolbarButton (toolbar, "f-spot-rotate-90", new System.EventHandler (HandleRotate90Command));
-		toolbar.AppendSpace ();
+		ToolButton rl_button = GtkUtil.ToolButtonFromTheme ("object-rotate-left", Catalog.GetString ("Rotate Left"), true);
+		rl_button.Clicked += HandleRotate270Command;
+		toolbar.Insert (rl_button, -1);
+
+		ToolButton rr_button = GtkUtil.ToolButtonFromTheme ("object-rotate-right", Catalog.GetString ("Rotate Right"), true);
+		rr_button.Clicked += HandleRotate90Command;
+		toolbar.Insert (rr_button, -1);
+
+		toolbar.Insert (new SeparatorToolItem (), -1);
+
+		browse_button = new ToggleToolButton ();
+		browse_button.Label = Catalog.GetString ("Browse");
+		browse_button.IconName = "mode-browse";
+		browse_button.IsImportant = true;
+		browse_button.Toggled += HandleToggleViewBrowse;
+		browse_button.SetTooltip (toolTips, Catalog.GetString ("Browse many photos simultaneously"), null);
+		toolbar.Insert (browse_button, -1);
+
+		edit_button = new ToggleToolButton ();
+		edit_button.Label = Catalog.GetString ("Edit Image");
+		edit_button.IconName = "mode-image-edit";
+		edit_button.IsImportant = true;
+		edit_button.Toggled += HandleToggleViewPhoto;
+		edit_button.SetTooltip (toolTips, Catalog.GetString ("View and edit a photo"), null);
+		toolbar.Insert (edit_button, -1);
+
+		toolbar.Insert (new SeparatorToolItem (), -1);
+
+		ToolButton fs_button = GtkUtil.ToolButtonFromTheme ("view-fullscreen", Catalog.GetString ("Fullscreen"), true);
+		fs_button.Clicked += HandleViewFullscreen;
+		fs_button.SetTooltip (toolTips, Catalog.GetString ("View photos fullscreen"), null);
+		toolbar.Insert (fs_button, -1);
+
+		ToolButton ss_button = GtkUtil.ToolButtonFromTheme ("media-playback-start", Catalog.GetString ("Slideshow"), true);
+		ss_button.Clicked += HandleViewSlideShow;
+		ss_button.SetTooltip (toolTips, Catalog.GetString ("View photos in a slideshow"), null);
+		toolbar.Insert (ss_button, -1);
 		
-		// FIXME putting these two toggle buttons in a radio group would prevent
-		// the two toggle sounds from being emitted every time you switch modes
-		browse_button = GtkUtil.MakeToolbarToggleButton (toolbar, "f-spot-browse", 
-								 new System.EventHandler (HandleToggleViewBrowse)) as ToggleButton;
-		SetTip (browse_button, Catalog.GetString ("Browse many photos simultaneously"));
-		edit_button = GtkUtil.MakeToolbarToggleButton (toolbar, "f-spot-edit-image", 
-							       new System.EventHandler (HandleToggleViewPhoto)) as ToggleButton;
-		SetTip (edit_button, Catalog.GetString ("View and edit a photo"));
-
-		toolbar.AppendSpace ();
-
-		Widget fs_button = GtkUtil.MakeToolbarButton (toolbar, "f-spot-fullscreen", new System.EventHandler (HandleViewFullscreen));
-		SetTip (fs_button, Catalog.GetString ("View photos fullscreen"));
-		
-		Widget ss_button = GtkUtil.MakeToolbarButton (toolbar, "f-spot-slideshow", new System.EventHandler (HandleViewSlideShow));
-		SetTip (ss_button, Catalog.GetString ("View photos in a slideshow"));
-
 		tag_selection_widget = new TagSelectionWidget (db.Tags);
 		tag_selection_scrolled.Add (tag_selection_widget);
 		
@@ -353,9 +377,6 @@ public class MainWindow {
 		
 		icon_view.DragBegin += HandleIconViewDragBegin;
 		icon_view.DragDataGet += HandleIconViewDragDataGet;
-
-		near_image.SetFromStock ("f-spot-stock_near", IconSize.SmallToolbar);
-		far_image.SetFromStock ("f-spot-stock_far", IconSize.SmallToolbar);
 
 		PhotoTagMenu pmenu = new PhotoTagMenu ();
 		pmenu.TagSelected += HandleRemoveTagMenuSelected;
@@ -2814,26 +2835,26 @@ public class MainWindow {
 		if (rl_button != null) {
 			if (selection.Count == 0) {
 				rl_button.Sensitive = false;
-				SetTip (rl_button, String.Empty);
+				rl_button.SetTooltip (toolTips, Catalog.GetString (String.Empty), null);
 			} else {
 				rl_button.Sensitive = true;
 
 				string msg = Catalog.GetPluralString ("Rotate selected photo left",
 								      "Rotate selected photos left", selection.Count);
-				SetTip (rl_button, String.Format (msg, selection.Count));
+				rl_button.SetTooltip (toolTips, String.Format (msg, selection.Count), null);
 			}
 		}
 		
 		if (rr_button != null) {
 			if (selection.Count == 0) {
 				rr_button.Sensitive = false;
-				SetTip (rr_button, String.Empty);
+				rr_button.SetTooltip (toolTips, Catalog.GetString (String.Empty), null);
 			} else {
 				rr_button.Sensitive = true;
 
 				string msg = Catalog.GetPluralString ("Rotate selected photo right",
-				    "Rotate selected photos right", selection.Count);
-				SetTip (rr_button, String.Format (msg, selection.Count));
+								      "Rotate selected photos right", selection.Count);
+				rr_button.SetTooltip (toolTips, String.Format (msg, selection.Count), null);
 			}
 		}
 
@@ -3095,10 +3116,5 @@ public class MainWindow {
 		}
 		
 		args.RetVal = false;
-	}
-	
-	public static void SetTip (Widget widget, string tip)
-	{
-		toolTips.SetTip (widget, tip, null);
 	}
 }

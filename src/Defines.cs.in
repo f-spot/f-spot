@@ -15,5 +15,6 @@ namespace FSpot {
 		public static string PACKAGE = "@PACKAGE@";
 		public static string GNOME_ICON_THEME_PREFIX = "@GNOME_ICON_THEME_PREFIX@";
 		public static string PREFIX = "@prefix@";
+		public static string APP_DATA_DIR = "@prefix@/share/@PACKAGE@";
 	}			
 }
