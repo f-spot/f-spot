@@ -1,8 +1,9 @@
-AC_INIT(src/main.cs)
+AC_INIT(f-spot, 0.4.0)
+AC_CONFIG_SRCDIR(src/main.cs)
 
 AM_CONFIG_HEADER(config.h)
 
-AM_INIT_AUTOMAKE(f-spot, 0.4.0)
+AM_INIT_AUTOMAKE([tar-ustar])
 
 AM_MAINTAINER_MODE
 

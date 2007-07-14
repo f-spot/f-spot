@@ -1,5 +1,11 @@
 2007-07-14  Stephane Delcroix  <stephane@delcroix.org>
 
+	* configure.in: use new forms of AC_INIT and 
+	AM_INIT_AUTOMAKE macros, now works with long filenames. Fixes make
+	dist.
+
+2007-07-14  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/Util.cs: new GtkUtil.TryLoadIcon method
 
 	* src/TagStore.cs:
