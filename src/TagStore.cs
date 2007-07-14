@@ -92,11 +92,7 @@ public class Tag : DbItem, IComparable {
 		set {
 			theme_icon_name = value;
 			cached_icon_size = IconSize.Hidden;
-			try {
-				icon = FSpot.Global.IconTheme.LoadIcon (theme_icon_name, 48, (Gtk.IconLookupFlags)0);
-			} catch {
-				icon = FSpot.Global.IconTheme.LoadIcon ("gtk-missing-image", 48, (Gtk.IconLookupFlags)0);
-			}
+			icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, theme_icon_name, 48, (Gtk.IconLookupFlags)0);
 		}
 		get { return theme_icon_name; }
 	}
@@ -135,11 +131,7 @@ public class Tag : DbItem, IComparable {
 			if (tag_icon_size == cached_icon_size)
 				return cached_icon;
 			if (theme_icon_name != null) { //Theme icon
-				try {
-					cached_icon = FSpot.Global.IconTheme.LoadIcon (theme_icon_name, (int) tag_icon_size, (Gtk.IconLookupFlags)0);
-				} catch {
-					cached_icon = FSpot.Global.IconTheme.LoadIcon ("gtk-missing-image", (int) tag_icon_size, (Gtk.IconLookupFlags)0);
-				}
+				cached_icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, theme_icon_name, (int) tag_icon_size, (Gtk.IconLookupFlags)0);
 
 				if (Math.Max (cached_icon.Width, cached_icon.Height) <= (int) tag_icon_size) 
 					return cached_icon;

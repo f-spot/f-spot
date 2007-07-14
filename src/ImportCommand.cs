@@ -26,13 +26,13 @@ public class ImportCommand : FSpot.GladeDialog {
 		public BrowseSource ()
 		{
 			this.Name = Catalog.GetString ("Select Folder");
-			this.Icon = FSpot.Global.IconTheme.LoadIcon ("stock_folder", 32, (Gtk.IconLookupFlags)0);
+			this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "stock_folder", 32, (Gtk.IconLookupFlags)0);
 		}
 
 		public BrowseSource (string name, string icon)
 		{
 			this.Name = name;
-			this.Icon = FSpot.Global.IconTheme.LoadIcon (icon, 32, (Gtk.IconLookupFlags)0);
+			this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, icon, 32, (Gtk.IconLookupFlags)0);
 		}
 	}
 
@@ -48,7 +48,7 @@ public class ImportCommand : FSpot.GladeDialog {
 
 			this.uri = uri;
 			
-			this.Icon = FSpot.Global.IconTheme.LoadIcon ("stock_folder", 32, (Gtk.IconLookupFlags)0);
+			this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "stock_folder", 32, (Gtk.IconLookupFlags)0);
 		}
 
 		public virtual bool Contains (string path)
@@ -77,13 +77,13 @@ public class ImportCommand : FSpot.GladeDialog {
 			uri = mount_point;
 			
                         if (this.Icon == null)
-				this.Icon = FSpot.Global.IconTheme.LoadIcon (vol.Icon, 32, (Gtk.IconLookupFlags)0);
+				this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, vol.Icon, 32, (Gtk.IconLookupFlags)0);
 			
 			if (this.IsIPodPhoto)
-				this.Icon = FSpot.Global.IconTheme.LoadIcon ("gnome-dev-ipod", 32, (Gtk.IconLookupFlags)0);
+				this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "gnome-dev-ipod", 32, (Gtk.IconLookupFlags)0);
 
 			if (this.Icon == null && this.IsCamera)
-				this.Icon = FSpot.Global.IconTheme.LoadIcon ("gnome-dev-media-cf", 32, (Gtk.IconLookupFlags)0);
+				this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "gnome-dev-media-cf", 32, (Gtk.IconLookupFlags)0);
 
 			try {
 				if (this.Icon == null)
@@ -128,10 +128,10 @@ public class ImportCommand : FSpot.GladeDialog {
 			this.Drive = drive;
 
 			if (drive.IsMounted) {
-				this.Icon = FSpot.Global.IconTheme.LoadIcon (drive.MountedVolume.Icon, 32, (Gtk.IconLookupFlags)0);
+				this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, drive.MountedVolume.Icon, 32, (Gtk.IconLookupFlags)0);
 				//this.Sensitive = drive.MountedVolume.IsMounted;
 			} else {
-				this.Icon = FSpot.Global.IconTheme.LoadIcon (drive.Icon, 32, (Gtk.IconLookupFlags)0);
+				this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, drive.Icon, 32, (Gtk.IconLookupFlags)0);
 			}
 		}
 	}
@@ -150,9 +150,9 @@ public class ImportCommand : FSpot.GladeDialog {
 #else
 			this.Name = String.Format ("{0}", cam.CameraList.GetName (index));
 #endif
-			this.Icon = FSpot.Global.IconTheme.LoadIcon ("gnome-dev-camera", 32, (Gtk.IconLookupFlags)0);
+			this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "gnome-dev-camera", 32, (Gtk.IconLookupFlags)0);
 			if (this.Icon == null)
-				this.Icon = FSpot.Global.IconTheme.LoadIcon ("gnome-dev-media-cf", 32, (Gtk.IconLookupFlags)0);
+				this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "gnome-dev-media-cf", 32, (Gtk.IconLookupFlags)0);
 		}
 
 		public string Port {

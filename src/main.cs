@@ -155,10 +155,10 @@ public class Driver {
 						Catalog.Init ("f-spot", Defines.LOCALE_DIR);
 						try {
 							Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {
-								FSpot.Global.IconTheme.LoadIcon ("f-spot", 16, (Gtk.IconLookupFlags)0),
-								FSpot.Global.IconTheme.LoadIcon ("f-spot", 22, (Gtk.IconLookupFlags)0),
-								FSpot.Global.IconTheme.LoadIcon ("f-spot", 32, (Gtk.IconLookupFlags)0),
-								FSpot.Global.IconTheme.LoadIcon ("f-spot", 48, (Gtk.IconLookupFlags)0)
+								GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "f-spot", 16, (Gtk.IconLookupFlags)0),
+								GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "f-spot", 22, (Gtk.IconLookupFlags)0),
+								GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "f-spot", 32, (Gtk.IconLookupFlags)0),
+								GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "f-spot", 48, (Gtk.IconLookupFlags)0)
 							};
 						} catch {}
 

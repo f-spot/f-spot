@@ -365,6 +365,19 @@ class GtkUtil {
 		button.UseUnderline = true;
 		return button;
 	}
+
+	public static Gdk.Pixbuf TryLoadIcon (Gtk.IconTheme theme, string icon_name, int size, Gtk.IconLookupFlags flags)
+	{
+		try {
+			return theme.LoadIcon (icon_name, size, flags);
+		} catch {
+			try {
+				return theme.LoadIcon ("gtk-missing-image", size, flags);
+			} catch {
+				return null;
+			}
+		}	
+	}
 }
 
 public class SizeUtil {

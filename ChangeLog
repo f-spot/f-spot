@@ -1,3 +1,13 @@
+2007-07-14  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Util.cs: new GtkUtil.TryLoadIcon method
+
+	* src/TagStore.cs:
+	* src/PixbufUtils.cs:
+	* src/TagCommand.cs:
+	* src/ImportCommand.cs:
+	* src/main.cs: use TryLoadIcon instead of LoadIcon.
+
 2007-07-13  Stephane Delcroix  <stephane@delcroix.org>
 
 	* README:

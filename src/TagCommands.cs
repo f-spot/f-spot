@@ -354,7 +354,7 @@ public class TagCommands {
 			get { return icon_name; }
 			set {
 				icon_name = value;	
-				preview_image.Pixbuf = FSpot.Global.IconTheme.LoadIcon (value, 48, (IconLookupFlags) 0);
+				preview_image.Pixbuf = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, value, 48, (IconLookupFlags) 0);
 			}
 			
 		}
@@ -415,7 +415,7 @@ public class TagCommands {
 			icon_store.Clear ();
 			string [] icon_list = FSpot.Global.IconTheme.ListIcons ("Emblems");
 			foreach (string item_name in icon_list)
-				icon_store.AppendValues (item_name, FSpot.Global.IconTheme.LoadIcon (item_name, 32, (IconLookupFlags) 0));
+				icon_store.AppendValues (item_name, GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, item_name, 32, (IconLookupFlags) 0));
 			return false;
 		}
 
