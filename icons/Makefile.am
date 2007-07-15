@@ -2,7 +2,7 @@ theme = hicolor
 themedir = $(pkgdatadir)/icons/$(theme)
 hicolordir = $(DESTDIR)$(datadir)/icons/hicolor
 
-theme_icons = \
+theme_icons = 					\
 	actions,adjust-colors-16.png		\
 	actions,adjust-colors-22.png		\
 	actions,adjust-colors-24.png		\
@@ -32,15 +32,15 @@ theme_icons = \
 	actions,object-rotate-right-22.png	\
 	actions,object-rotate-right-24.png	\
 	actions,object-rotate-right-32.png	\
-	actions,red-eye-remove-16.png	\
-	actions,red-eye-remove-22.png	\
-	actions,red-eye-remove-24.png	\
-	actions,tag-new-16.png	\
-	actions,tag-new-22.png	\
-	actions,tag-new-24.png	\
-	actions,view-far-16.png		\
-	actions,view-far-22.png		\
-	actions,view-far-24.png		\
+	actions,red-eye-remove-16.png		\
+	actions,red-eye-remove-22.png		\
+	actions,red-eye-remove-24.png		\
+	actions,tag-new-16.png			\
+	actions,tag-new-22.png			\
+	actions,tag-new-24.png			\
+	actions,view-far-16.png			\
+	actions,view-far-22.png			\
+	actions,view-far-24.png			\
 	actions,view-fullscreen.svg		\
 	actions,view-fullscreen-16.png		\
 	actions,view-fullscreen-22.png		\
@@ -81,10 +81,10 @@ theme_icons = \
 	emblems,emblem-readonly-22.png		\
 	emblems,emblem-readonly-24.png		\
 	emblems,emblem-readonly-32.png		\
-	places,film-roll-16.png	\
-	places,film-roll-22.png	\
-	places,film-roll-24.png	\
-	status,mode-browse.svg		\
+	places,film-roll-16.png			\
+	places,film-roll-22.png			\
+	places,film-roll-24.png			\
+	status,mode-browse.svg			\
 	status,mode-browse-16.png		\
 	status,mode-browse-22.png		\
 	status,mode-browse-24.png		\
@@ -133,4 +133,8 @@ uninstall-hook:
 
 	
 MAINTAINERCLEANFILES = Makefile.in
-EXTRA_DIST = $(wildcard *.png *.svg)
+EXTRA_DIST = $(wildcard *.png *.svg)	\
+	f-spot-simple.css		\
+	f-spot-simple-white.css		\
+	f-spot.js
+
