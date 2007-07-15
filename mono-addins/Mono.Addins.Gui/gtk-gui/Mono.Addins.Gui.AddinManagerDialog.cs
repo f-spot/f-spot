@@ -55,7 +55,7 @@ namespace Mono.Addins.Gui {
             Stetic.Gui.Initialize();
             // Widget Mono.Addins.Gui.AddinManagerDialog
             this.Name = "Mono.Addins.Gui.AddinManagerDialog";
-            this.Title = Mono.Unix.Catalog.GetString("MonoDevelop Add-in Manager");
+            this.Title = Mono.Unix.Catalog.GetString("F-Spot Add-in Manager");
             this.TypeHint = ((Gdk.WindowTypeHint)(1));
             this.DefaultWidth = 700;
             this.DefaultHeight = 550;
@@ -85,7 +85,7 @@ namespace Mono.Addins.Gui {
             // Container child hbox85.Gtk.Box+BoxChild
             this.label144 = new Gtk.Label();
             this.label144.Name = "label144";
-            this.label144.LabelProp = Mono.Unix.Catalog.GetString("<big><b>MonoDevelop Add-in Manager</b></big>");
+            this.label144.LabelProp = Mono.Unix.Catalog.GetString("<big><b>F-Spot Add-in Manager</b></big>");
             this.label144.UseMarkup = true;
             this.hbox85.Add(this.label144);
             Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.hbox85[this.label144]));

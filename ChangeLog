@@ -1,5 +1,10 @@
 2007-07-15  Stephane Delcroix  <stephane@delcroix.org>
 
+	* mono-addins/Mono.Addins.Gui/*: change hardcoded MonoDevelop to
+	F-Spot in the ui (temporary workaround).
+
+2007-07-15  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/Makefile.am: re-include f-spot-not.png as resource. Fixes bgo
 	#457123.
 

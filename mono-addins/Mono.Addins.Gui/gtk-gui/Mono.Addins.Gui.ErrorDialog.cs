@@ -37,7 +37,7 @@ namespace Mono.Addins.Gui {
             Stetic.Gui.Initialize();
             // Widget Mono.Addins.Gui.ErrorDialog
             this.Name = "Mono.Addins.Gui.ErrorDialog";
-            this.Title = Mono.Unix.Catalog.GetString("MonoDevelop");
+            this.Title = Mono.Unix.Catalog.GetString("F-Spot");
             this.TypeHint = ((Gdk.WindowTypeHint)(1));
             this.BorderWidth = ((uint)(6));
             // Internal child Mono.Addins.Gui.ErrorDialog.VBox

@@ -29,7 +29,7 @@ namespace Mono.Addins.Gui {
             Stetic.Gui.Initialize();
             // Widget Mono.Addins.Gui.AddinInfoDialog
             this.Name = "Mono.Addins.Gui.AddinInfoDialog";
-            this.Title = Mono.Unix.Catalog.GetString("MonoDevelop Package");
+            this.Title = Mono.Unix.Catalog.GetString("F-Spot Package");
             this.TypeHint = ((Gdk.WindowTypeHint)(1));
             this.DefaultWidth = 550;
             this.DefaultHeight = 400;
