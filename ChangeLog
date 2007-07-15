@@ -1,5 +1,10 @@
 2007-07-15  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/Makefile.am: re-include f-spot-not.png as resource. Fixes bgo
+	#457123.
+
+2007-07-15  Stephane Delcroix  <stephane@delcroix.org>
+
 	* po/POTFILES.in:
 	* icons/Makefile.am: some changes to pass distcheck
 

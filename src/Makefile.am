@@ -261,6 +261,7 @@ RESOURCES =										\
 -resource:$(top_srcdir)/icons/f-spot-simple-white.css,f-spot-simple-white.css	\
 	-resource:$(top_srcdir)/icons/f-spot-simple.css,f-spot-simple.css		\
 	-resource:$(top_srcdir)/icons/f-spot.js,f-spot.js				\
+	-resource:$(top_srcdir)/icons/f-spot-not.png,f-spot-not.png			\
 	-resource:$(srcdir)/dces.rdf,dces.rdf						\
 	-resource:$(srcdir)/f-spot.glade,f-spot.glade					\
 	-resource:$(srcdir)/FSpot.addin.xml,FSpot.addin.xml
