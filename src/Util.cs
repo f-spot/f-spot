@@ -312,12 +312,12 @@ class GtkUtil {
 		Gtk.ImageMenuItem i = new Gtk.ImageMenuItem (label);
 		i.Activated += e;
                 i.Sensitive = enabled;
-		i.Image = new Gtk.Image (image_name, Gtk.IconSize.Menu);
+		i.Image = Gtk.Image.NewFromIconName (image_name, Gtk.IconSize.Menu);
 		
 		menu.Append (i);
 		i.Show ();
 
-        return i;
+	        return i;
 	}
 
 	public static Gtk.MenuItem MakeCheckMenuItem (Gtk.Menu menu, string label, EventHandler e, bool enabled, bool active, bool as_radio)

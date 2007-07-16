@@ -48,9 +48,9 @@ public class PhotoPopup : Gtk.Menu {
 		
 		GtkUtil.MakeMenuSeparator (popup_menu);
 
-		GtkUtil.MakeMenuItem (popup_menu, "f-spot-rotate-270",
+		GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Rotate _Left"), "object-rotate-left",
 				      delegate { MainWindow.Toplevel.HandleRotate270Command(creator, null); }, have_selection);
-		GtkUtil.MakeMenuItem (popup_menu, "f-spot-rotate-90", 
+		GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Rotate _Right"), "object-rotate-right", 
 				      delegate { MainWindow.Toplevel.HandleRotate90Command (creator, null); }, have_selection);
 
 		GtkUtil.MakeMenuSeparator (popup_menu);

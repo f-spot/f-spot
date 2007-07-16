@@ -1,5 +1,11 @@
 2007-07-16  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/Util.cs: MakeMenuItem from IconTheme instead of Stock.
+
+	* src/PhotoPopup.cs: restore the rotate menu entries.
+
+2007-07-16  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/FullScreenView.cs:
 	* src/ItemAction.cs: restore icons for fullscreen view. Fixes bgo 
 	#457181.
