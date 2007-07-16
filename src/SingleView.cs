@@ -422,8 +422,8 @@ namespace FSpot {
 			Gtk.Menu popup_menu = new Gtk.Menu ();
 			bool has_item = image_view.Item.Current != null;
 
-			GtkUtil.MakeMenuItem (popup_menu, "f-spot-rotate-270", delegate { HandleRotate270Command(window, null); }, has_item);
-			GtkUtil.MakeMenuItem (popup_menu, "f-spot-rotate-90", delegate { HandleRotate90Command (window, null); }, has_item);
+			GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Rotate _Left"), "object-rotate-left", delegate { HandleRotate270Command(window, null); }, has_item);
+			GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Rotate _Right"), "object-rotate-right", delegate { HandleRotate90Command (window, null); }, has_item);
 			GtkUtil.MakeMenuSeparator (popup_menu);
 			GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Set as Background"), HandleSetAsBackgroundCommand, has_item);
 

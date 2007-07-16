@@ -7936,7 +7936,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
                       <widget class="GtkImage" id="far_image">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="stock">gtk-missing-image</property>
+                        <property name="icon_name">view-far</property>
                       </widget>
                     </child>
                   </widget>
@@ -7968,7 +7968,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
                       <widget class="GtkImage" id="near_image">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="stock">gtk-missing-image</property>
+                        <property name="icon_name">view-near</property>
                       </widget>
                     </child>
                   </widget>
