@@ -182,7 +182,12 @@ namespace FSpot {
 
 		public void RemoveAccount (GoogleAccount account)
 		{
-			string keyring = Ring.GetDefaultKeyring();
+			string keyring;
+			try {
+				keyring = Ring.GetDefaultKeyring();
+			} catch {
+				return;
+			}
 			Hashtable request_attributes = new Hashtable();
 			request_attributes["name"] = keyring_item_name;
 			request_attributes["username"] = account.Username;
@@ -199,7 +204,12 @@ namespace FSpot {
 
 		public void WriteAccounts ()
 		{
-			string keyring = Ring.GetDefaultKeyring();
+			string keyring;
+			try {
+				keyring = Ring.GetDefaultKeyring();
+			} catch {
+				return;
+			}
 			foreach (GoogleAccount account in accounts) {
 				Hashtable update_request_attributes = new Hashtable();
 				update_request_attributes["name"] = keyring_item_name;
