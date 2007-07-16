@@ -1,3 +1,12 @@
+/*
+ * FSpot.FullScreenView
+ *
+ * Author(s):
+ * 	Larry Ewing  <lewing@novell.com>
+ *
+ * This is free software. See COPYING for details.
+ */
+
 using System;
 using Gtk;
 using Gdk;
@@ -34,20 +43,7 @@ namespace FSpot {
 							 Catalog.GetString ("Hide"), 
 							 null, 
 							 Catalog.GetString ("Hide Toolbar"), 
-							 HideToolbarAction),
-					new ActionEntry (ExitFullScreen, 
-							 "f-spot-view-restore", 
-							 Catalog.GetString ("Exit fullscreen"), 
-							 null, 
-							 null, 
-							 ExitAction),
-					new ActionEntry (SlideShow,
-							 "f-spot-slideshow",
-							 Catalog.GetString ("Slideshow"),
-							 null,
-							 Catalog.GetString ("Start slideshow"),
-							 SlideShowAction),
-						});
+							 HideToolbarAction)});
 
 				actions.Add (new ToggleActionEntry [] {
 					new ToggleActionEntry (Info,
@@ -56,9 +52,24 @@ namespace FSpot {
 							       null,
 							       Catalog.GetString ("Image Information"),
 							       InfoAction,
-							       false)
-						});
-				
+							       false)});
+
+				Action exit_full_screen = new Action (ExitFullScreen, 
+					Catalog.GetString ("Exit fullscreen"),
+					null,
+					null);
+				exit_full_screen.IconName = "view-restore";
+				exit_full_screen.Activated += ExitAction;
+				actions.Add (exit_full_screen);
+
+				Action slide_show = new Action (SlideShow,
+					Catalog.GetString ("Slideshow"),
+					Catalog.GetString ("Start slideshow"),
+					null);
+				slide_show.IconName = "media-playback-start";
+				slide_show.Activated += SlideShowAction;
+				actions.Add (slide_show);
+
 				new Fader (this, 1.0, 3);
 				notebook = new Notebook ();
 				notebook.ShowBorder = false;
@@ -74,12 +85,6 @@ namespace FSpot {
 				view.Show ();
 				view.MotionNotifyEvent += HandleViewMotion;
 				
-				Action rotate_left = new RotateLeftAction (view.Item);
-				actions.Add (rotate_left);
-				
-				Action rotate_right = new RotateRightAction (view.Item);
-				actions.Add (rotate_right);
-
 				scroll.ScrolledWindow.Add (view);
 				HBox hhbox = new HBox ();
 				hhbox.PackEnd (GetButton (HideToolbar), false, true, 0);

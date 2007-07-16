@@ -1,3 +1,9 @@
+2007-07-16  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/FullScreenView.cs:
+	* src/ItemAction.cs: restore icons for fullscreen view. Fixes bgo 
+	#457181.
+
 2007-07-15  Stephane Delcroix  <stephane@delcroix.org>
 
 	* mono-addins/Mono.Addins.Gui/*: change hardcoded MonoDevelop to

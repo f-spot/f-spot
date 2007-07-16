@@ -77,7 +77,7 @@ namespace FSpot {
 				"RotateItemLeft", 
 				Catalog.GetString ("Rotate Left"), 
 				Catalog.GetString ("Rotate picture left"),
-				"f-spot-rotate-270")
+				"object-rotate-left")
 		{
 		}
 	}
@@ -89,7 +89,7 @@ namespace FSpot {
 				"RotateItemRight", 
 				Catalog.GetString ("Rotate Right"), 
 				Catalog.GetString ("Rotate picture left"),
-				"f-spot-rotate-90")
+				"object-rotate-right")
 		{
 		}
 	}
@@ -100,7 +100,7 @@ namespace FSpot {
 				"NextPicture",
 				Catalog.GetString ("Next"),
 				Catalog.GetString ("Next picture"),
-				Stock.GoForward)
+				"gtk-go-forward-ltr")
 		{
 		}
 
@@ -122,7 +122,7 @@ namespace FSpot {
 				"PreviousPicture",
 				Catalog.GetString ("Previous"),
 				Catalog.GetString ("Previous picture"),
-				Stock.GoBack)
+				"gtk-go-back-ltr")
 		{
 		}
 
