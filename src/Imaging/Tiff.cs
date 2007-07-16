@@ -1081,7 +1081,11 @@ namespace FSpot.Tiff {
 				case TagId.ImageLength:
 				case TagId.Model:
 				case TagId.Make:
-					MetadataStore.AddLiteral (sink, "tiff:" + e.Id.ToString (), e.ValueAsString [0]);
+					try {
+						MetadataStore.AddLiteral (sink, "tiff:" + e.Id.ToString (), e.ValueAsString [0]);
+					} catch (System.Exception ex) {
+						System.Console.WriteLine (String.Format ("error parsing {0}{2}{1}", e.Id, ex, Environment.NewLine));
+					}
 					break;
 				}
 			}
