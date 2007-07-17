@@ -353,12 +353,13 @@ public class MainWindow {
 		find_bar = new FindBar (query, tag_selection_widget.Model);
 		//find_bar = new FindBar (query, db.Tags);
 		view_vbox.PackStart (find_bar, false, false, 0);
+		view_vbox.ReorderChild (find_bar, 1);
 		main_window.KeyPressEvent += HandleKeyPressEvent;
 		
 		query_widget = new FSpot.QueryWidget (query, db, tag_selection_widget);
 		query_widget.Logic.Changed += HandleQueryLogicChanged;
 		view_vbox.PackStart (query_widget, false, false, 0);
-		view_vbox.ReorderChild (query_widget, 1);
+		view_vbox.ReorderChild (query_widget, 2);
 
 		icon_view = new QueryView (query);
 		icon_view.ZoomChanged += HandleZoomChanged;
