@@ -1,3 +1,8 @@
+2007-07-17  Stephane Delcroix  <stephane@delcroix.org>
+
+	* SendEmail.cs: Escape Uris instead of UrlEncode them. Fixes bgo
+	#444256.
+
 2007-07-16  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/Imaging/Tiff.cs: Catch exceptions on empty ImageWidth Tag,
