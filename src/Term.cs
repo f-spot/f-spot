@@ -492,7 +492,6 @@ namespace FSpot.Query {
 					return widget;
 
 				container = new EventBox ();
-				((EventBox)container).VisibleWindow = false;
 				box = new HBox ();
 
 				handle_box = new LiteralBox ();
