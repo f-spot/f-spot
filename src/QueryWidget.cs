@@ -21,15 +21,14 @@ namespace FSpot {
 
 		public QueryWidget (PhotoQuery query, Db db, TagSelectionWidget selector)
 		{
+			Spacing = 6;
+            BorderWidth = 2;
+
 			tips.Enable ();
 
 			this.query = query;
 			query.Changed += HandleChanged;
 
-			Gtk.HSeparator sep = new Gtk.HSeparator ();
-			sep.Show ();
-			this.PackStart (sep, false, false, 0);
-			
 			Gtk.HBox hbox = new Gtk.HBox ();
 			hbox.Show ();
 			this.PackStart (hbox, false, false, 0);

@@ -123,7 +123,7 @@ public class MainWindow {
 
 	Gtk.Toolbar toolbar;
 
-	FindBar find_bar;
+	BlueFindBar find_bar;
 
 	PhotoVersionMenu versions_submenu;
 
@@ -350,16 +350,16 @@ public class MainWindow {
 		view_vbox.PackStart (group_selector, false, false, 0);
 		view_vbox.ReorderChild (group_selector, 0);
 
-		find_bar = new FindBar (query, tag_selection_widget.Model);
-		//find_bar = new FindBar (query, db.Tags);
+		find_bar = new BlueFindBar (new FindBar (query, tag_selection_widget.Model));
 		view_vbox.PackStart (find_bar, false, false, 0);
 		view_vbox.ReorderChild (find_bar, 1);
 		main_window.KeyPressEvent += HandleKeyPressEvent;
 		
 		query_widget = new FSpot.QueryWidget (query, db, tag_selection_widget);
 		query_widget.Logic.Changed += HandleQueryLogicChanged;
-		view_vbox.PackStart (query_widget, false, false, 0);
-		view_vbox.ReorderChild (query_widget, 2);
+        HighlightedBox query_widget_box = new HighlightedBox(query_widget);
+		view_vbox.PackStart (query_widget_box, false, false, 0);
+		view_vbox.ReorderChild (query_widget_box, 2);
 
 		icon_view = new QueryView (query);
 		icon_view.ZoomChanged += HandleZoomChanged;
@@ -3107,7 +3107,7 @@ public class MainWindow {
 					query_widget.Close ();
 				}
 				
-				find_bar.Show ();
+				find_bar.ShowAll();
 			}
 
 			// Grab the focus even if it's already shown

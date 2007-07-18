@@ -18,6 +18,44 @@ using Mono.Unix;
 using FSpot.Query;
 
 namespace FSpot.Widgets {
+	public class HighlightedBox : EventBox {
+        private bool changing_style = false;
+
+		public HighlightedBox(Widget child) : base()
+        {
+            Child = child;
+            AppPaintable = true;
+        }
+
+        protected override void OnStyleSet(Style style)
+        {
+            if (!changing_style) {
+                changing_style = true;
+                ModifyBg(StateType.Normal, Style.Background(StateType.Selected));
+                changing_style = false;
+            }
+        }
+
+        protected override bool OnExposeEvent(Gdk.EventExpose evnt)
+        {
+            GdkWindow.DrawRectangle(Style.ForegroundGC(StateType.Normal), false, 0, 0, Allocation.Width - 1, Allocation.Height - 1);
+            return base.OnExposeEvent(evnt);
+        }
+    }
+
+	public class BlueFindBar : HighlightedBox {
+        private FindBar find_bar;
+
+		public BlueFindBar(FindBar child) : base(child)
+        {
+            find_bar = child;
+        }
+
+		public Gtk.Entry Entry {
+			get { return find_bar.Entry; }
+		}
+    }
+
 	public class FindBar : HBox {
 		private Entry entry;
 		private string last_entry_text = String.Empty;
@@ -50,6 +88,7 @@ namespace FSpot.Widgets {
 			this.query = query;
 
 			Spacing = 6;
+            BorderWidth = 2;
 
 			PackStart (new Label (Catalog.GetString ("Find:")), false, false, 0);
 
