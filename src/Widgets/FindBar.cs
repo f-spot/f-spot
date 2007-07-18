@@ -43,25 +43,13 @@ namespace FSpot.Widgets {
         }
     }
 
-	public class BlueFindBar : HighlightedBox {
-        private FindBar find_bar;
-
-		public BlueFindBar(FindBar child) : base(child)
-        {
-            find_bar = child;
-        }
-
-		public Gtk.Entry Entry {
-			get { return find_bar.Entry; }
-		}
-    }
-
-	public class FindBar : HBox {
+	public class FindBar : HighlightedBox {
 		private Entry entry;
 		private string last_entry_text = String.Empty;
 		private int open_parens = 0, close_parens = 0;
 		private PhotoQuery query;
 		private Term root_term = null;
+        private HBox box;
 
 		/*
 		 * Properties
@@ -83,14 +71,16 @@ namespace FSpot.Widgets {
 		/*
 		 * Constructor
 		 */
-		public FindBar (PhotoQuery query, TreeModel model)
+		public FindBar (PhotoQuery query, TreeModel model) : base(new HBox())
 		{
 			this.query = query;
 
-			Spacing = 6;
-            BorderWidth = 2;
+            box = Child as HBox;
 
-			PackStart (new Label (Catalog.GetString ("Find:")), false, false, 0);
+			box.Spacing = 6;
+            box.BorderWidth = 2;
+
+			box.PackStart (new Label (Catalog.GetString ("Find:")), false, false, 0);
 
 			entry = new Entry ();
 			entry.Completion = new LogicEntryCompletion (entry, model);
@@ -99,13 +89,13 @@ namespace FSpot.Widgets {
 			entry.TextDeleted   += HandleEntryTextDeleted;
 			entry.KeyPressEvent += HandleEntryKeyPress;
 
-			PackStart (entry, true, true, 0);
+			box.PackStart (entry, true, true, 0);
 
 			Button clear_button = new Gtk.Button ();
 			clear_button.Add (new Gtk.Image ("gtk-close", Gtk.IconSize.Button));
 			clear_button.Clicked += HandleCloseButtonClicked;
 			clear_button.Relief = Gtk.ReliefStyle.None;
-			PackStart (clear_button, false, false, 0);
+			box.PackStart (clear_button, false, false, 0);
 		}
 
 		/*

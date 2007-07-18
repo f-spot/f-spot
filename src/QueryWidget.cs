@@ -1,10 +1,14 @@
 using FSpot.Query;
+using FSpot.Widgets;
 using Mono.Unix;
+using Gtk;
 
 namespace FSpot {
-	public class QueryWidget : Gtk.VBox {
+
+	public class QueryWidget : HighlightedBox {
 		PhotoQuery query;
 		LogicWidget logic_widget;
+        Gtk.HBox box;
 		Gtk.Label label;
 		Gtk.Label untagged;
 		Gtk.Label comma_label;
@@ -19,40 +23,37 @@ namespace FSpot {
 			}
 		}
 
-		public QueryWidget (PhotoQuery query, Db db, TagSelectionWidget selector)
+		public QueryWidget (PhotoQuery query, Db db, TagSelectionWidget selector) : base(new HBox())
 		{
-			Spacing = 6;
-            BorderWidth = 2;
+            box = Child as HBox;
+			box.Spacing = 6;
+            box.BorderWidth = 2;
 
 			tips.Enable ();
 
 			this.query = query;
 			query.Changed += HandleChanged;
 
-			Gtk.HBox hbox = new Gtk.HBox ();
-			hbox.Show ();
-			this.PackStart (hbox, false, false, 0);
-			
 			label = new Gtk.Label (Catalog.GetString ("Find: "));
 			label.Show ();
 			label.Ypad = 9;
-			hbox.PackStart (label, false, false, 0);
+			box.PackStart (label, false, false, 0);
 
 			untagged = new Gtk.Label (Catalog.GetString ("Untagged photos"));
 			untagged.Visible = false;
-			hbox.PackStart (untagged, false, false, 0);
+			box.PackStart (untagged, false, false, 0);
 
 			comma_label = new Gtk.Label (", ");
 			comma_label.Visible = false;
-			hbox.PackStart (comma_label, false, false, 0);
+			box.PackStart (comma_label, false, false, 0);
 
 			rollfilter = new Gtk.Label (Catalog.GetString ("Import roll"));	
 			rollfilter.Visible = false;
-			hbox.PackStart (rollfilter, false, false, 0);
+			box.PackStart (rollfilter, false, false, 0);
 
 			logic_widget = new LogicWidget (query, db.Tags, selector);
 			logic_widget.Show ();
-			hbox.PackStart (logic_widget, true, true, 0);
+			box.PackStart (logic_widget, true, true, 0);
 
 			warning_box = new Gtk.HBox ();
 			warning_box.PackStart (new Gtk.Label (System.String.Empty));
@@ -65,7 +66,7 @@ namespace FSpot {
 			clear_button.Add (new Gtk.Image ("gtk-close", Gtk.IconSize.Button));
 			clear_button.Clicked += HandleClearButtonClicked;
 			clear_button.Relief = Gtk.ReliefStyle.None;
-			hbox.PackEnd (clear_button, false, false, 0);
+			box.PackEnd (clear_button, false, false, 0);
 			tips.SetTip (clear_button, Catalog.GetString("Clear search"), null);
 
 			Gtk.Label warning = new Gtk.Label (Catalog.GetString ("No matching photos found"));
@@ -74,7 +75,7 @@ namespace FSpot {
 			warning_box.Spacing = 6;
 			warning_box.Visible = false;
 
-			hbox.PackEnd (warning_box, false, false, 0);
+			box.PackEnd (warning_box, false, false, 0);
 			
 			warning_box.Visible = false;
 		}

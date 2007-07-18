@@ -1,5 +1,12 @@
 2007-07-18  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/MainWindow.cs:
+	* src/QueryWidget.cs:
+	* src/Widgets/FindBar.cs: Fix small bugs I just introduced with hiding the
+	find bars properly.
+
+2007-07-18  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/Term.cs: Fix bug that prevented tags in the search bar from actually
 	be grabbed by their grab bar.
 
