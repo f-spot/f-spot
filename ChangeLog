@@ -1,3 +1,7 @@
+2007-07-19  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/Preferences.cs: Fix the locking of the cache, make it thread-safe.
+
 2007-07-19  Raivis Dejus  <orvils@gmail.com>
 
         * configure.in: Added Latvian Translation.
