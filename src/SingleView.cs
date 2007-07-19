@@ -78,7 +78,7 @@ namespace FSpot {
 			toolbar.Insert (rl_button, -1);
 
 			ToolButton rr_button = GtkUtil.ToolButtonFromTheme ("object-rotate-right", Catalog.GetString ("Rotate Right"), true);
-			rr_button.Clicked += HandleRotate270Command;
+			rr_button.Clicked += HandleRotate90Command;
 			rr_button.SetTooltip (toolTips, Catalog.GetString ("Rotate photo right"), null);
 			toolbar.Insert (rr_button, -1);
 
