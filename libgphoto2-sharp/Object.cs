@@ -20,9 +20,16 @@ namespace LibGPhoto2 {
 		
 		protected abstract void Cleanup ();
 		
+		private bool is_disposed = false;
+
 		public void Dispose () {
-			Cleanup ();
-			System.GC.SuppressFinalize (this);
+			lock (this) {
+				if (is_disposed)
+					return;
+				is_disposed = true;
+				Cleanup ();
+				System.GC.SuppressFinalize (this);
+			}
 		}
 		
 		~Object ()

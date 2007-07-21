@@ -1,3 +1,8 @@
+2007-07-21  Stephane Delcroix  <stephane@delcroix.org>
+
+	* libgphoto2-sharp/Object.cs: make the Dispose call thread-safe. Hope
+	it will fix bgo #450753 and #436821.
+
 2007-07-20  Bengt Thuree <bengt@thuree.com> 
 
 	* src/DateCommands.cs: Added predefined filter for today, yesterday, 
