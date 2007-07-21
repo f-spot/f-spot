@@ -24,7 +24,7 @@ public class DateCommands {
 		[Glade.Widget] private DateEdit end_dateedit;
 		[Glade.Widget] private ComboBox period_combobox;
 
-		static string []ranges = {
+		static string [] ranges = {
 			"today",
 			"yesterday",
 			"last7days",
@@ -83,7 +83,7 @@ public class DateCommands {
 			case "alldates":
 				return Catalog.GetString("All Images");
 			case "customizedrange":
-				return Mono.Posix.Catalog.GetString("Customized Range");
+				return Catalog.GetString("Customized Range");
 			default:
 				return rangename;
 			}	

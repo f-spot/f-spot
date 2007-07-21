@@ -1,5 +1,10 @@
 2007-07-21  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/Widgets/TagEntry.cs: adding a ctor (IntPtr). This should fix bgo
+	#436065
+
+2007-07-21  Stephane Delcroix  <stephane@delcroix.org>
+
 	* po/POTFILES.in: adding DateCommands.cs to the list
 
 2007-07-21  Stephane Delcroix  <stephane@delcroix.org>

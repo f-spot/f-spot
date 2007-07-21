@@ -28,6 +28,11 @@ namespace FSpot.Widgets {
 		{
 		}
 
+		protected TagEntry (System.IntPtr raw)
+		{
+			Raw = raw;
+		}
+
 		public TagEntry (TagStore tag_store, bool update_on_focus_out) : base ()
 		{
 			this.tag_store = tag_store;
