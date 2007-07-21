@@ -1,10 +1,16 @@
+2007-07-20  Bengt Thuree <bengt@thuree.com> 
+
+	* src/DateCommands.cs: Added predefined filter for today, yesterday, 
+	last 7 days, last 30 days etc. Stephane Delcroix enhanced it. 
+	Fixes bug #321928.
+
 2007-07-19  Ruben Vermeersch  <ruben@savanne.be>
 
 	* src/Preferences.cs: Fix the locking of the cache, make it thread-safe.
 
 2007-07-19  Raivis Dejus  <orvils@gmail.com>
 
-        * configure.in: Added Latvian Translation.
+	* configure.in: Added Latvian Translation.
 
 2007-07-19  Stephane Delcroix  <stephane@delcroix.org>
 
