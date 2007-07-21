@@ -1,5 +1,9 @@
 2007-07-21  Stephane Delcroix  <stephane@delcroix.org>
 
+	* po/POTFILES.in: adding DateCommands.cs to the list
+
+2007-07-21  Stephane Delcroix  <stephane@delcroix.org>
+
 	* libgphoto2-sharp/Object.cs: make the Dispose call thread-safe. Hope
 	it will fix bgo #450753 and #436821.
 
