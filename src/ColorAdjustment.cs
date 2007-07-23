@@ -11,10 +11,12 @@
  */
 using Cms;
 using Gdk;
+using System.Collections.Generic;
 
 namespace FSpot {
 	public abstract class ColorAdjustment {
 		protected Photo photo;
+		protected List <Cms.Profile> profiles;
 		protected Cms.Profile image_profile;
 		protected Cms.Profile destination_profile;
 		protected Cms.Profile adjustment_profile;
@@ -37,7 +39,7 @@ namespace FSpot {
 			destination_profile = profile;
 		}
 
-		protected abstract Cms.Profile GenerateProfile ();
+		protected abstract void GenerateAdjustments ();
 
 		public void Adjust ()
 		{
@@ -60,13 +62,11 @@ namespace FSpot {
 							   false, 8,
 							   image.Width, 
 							   image.Height);
-			
-			Cms.Profile adjustment_profile = GenerateProfile ();
-			Cms.Profile [] list;
-			if (adjustment_profile != null)
-				list = new Cms.Profile [] { image_profile, adjustment_profile, destination_profile };
-			else
-				list = new Cms.Profile [] { image_profile, destination_profile };
+			profiles = new List <Cms.Profile> (4);
+			profiles.Add (image_profile);
+			GenerateAdjustments ();
+			profiles.Add (destination_profile);
+			Cms.Profile [] list = profiles.ToArray ();
 			
 			if (image.HasAlpha) {
 				Pixbuf alpha = PixbufUtils.Flatten (image);
@@ -99,17 +99,27 @@ namespace FSpot {
 		{
 		}
 
-		protected override Cms.Profile GenerateProfile ()
+		protected override void GenerateAdjustments ()
 		{
-			return Cms.Profile.CreateAbstract (nsteps,
-							   1.0,
-							   32.0,
-							   0.0,
-							   0.0,
-							   -100.0,
-							   null,
-							   ColorCIExyY.D50,
-							   ColorCIExyY.WhitePointFromTemperature (9934));
+			profiles.Add (Cms.Profile.CreateAbstract (nsteps,
+								  1.0,
+								  0.0,
+								  0.0,
+								  0.0,
+								  -100.0,
+								  null,
+								  ColorCIExyY.D50,
+								  ColorCIExyY.D50));
+
+			profiles.Add (Cms.Profile.CreateAbstract (nsteps,
+								  1.0,
+								  32.0,
+								  0.0,
+								  0.0,
+								  0.0,
+								  null,
+								  ColorCIExyY.D50,
+								  ColorCIExyY.WhitePointFromTemperature (9934)));
 		}
 	}
 
@@ -118,18 +128,17 @@ namespace FSpot {
 		{
 		}
 
-		protected override Cms.Profile GenerateProfile ()
+		protected override void GenerateAdjustments ()
 		{
-			return Cms.Profile.CreateAbstract (nsteps,
-							   1.0,
-							   0.0,
-							   0.0,
-							   0.0,
-							   -100.0,
-							   null,
-							   ColorCIExyY.D50,
-							   ColorCIExyY.D50);
-	
+			profiles.Add (Cms.Profile.CreateAbstract (nsteps,
+								  1.0,
+								  0.0,
+								  0.0,
+								  0.0,
+								  -100.0,
+								  null,
+								  ColorCIExyY.D50,
+								  ColorCIExyY.D50));
 		}
 	}
 }
