@@ -1,5 +1,10 @@
 2007-07-23  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/Mainwindow.cs:
+	* src/SingleView.cs: use the new FullScreen mode for slideshow.
+
+2007-07-23  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/PhotoQuery.cs:
 	* src/GroupAdaptor.cs: Connect the group adaptor reload just before
 	the query changed event, to allow query sorting. Fixes bgo #438394.

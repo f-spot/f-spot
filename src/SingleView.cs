@@ -34,8 +34,6 @@ namespace FSpot {
 		
 		UriCollection collection;
 		
-		FSpot.Delay slide_delay;
-
 		FullScreenView fsview;
 
 		private static Gtk.Tooltips toolTips = new Gtk.Tooltips ();
@@ -131,8 +129,6 @@ namespace FSpot {
 			LoadPreference (Preferences.VIEWER_TRANS_COLOR);
 
 			ShowSidebar = collection.Count > 1;
-
-			slide_delay = new FSpot.Delay (new GLib.IdleHandler (SlideShow));
 
 			LoadPreference (Preferences.VIEWER_SHOW_FILENAMES);
 
@@ -268,8 +264,15 @@ namespace FSpot {
 
 		private void HandleViewSlideshow (object sender, System.EventArgs args)
 		{
-			this.Window.GdkWindow.Cursor = new Gdk.Cursor (Gdk.CursorType.Watch);
-			slide_delay.Start ();
+			if (fsview != null)
+				fsview.Destroy ();
+
+			fsview = new FSpot.FullScreenView (collection);
+			fsview.Destroyed += HandleFullScreenViewDestroy;
+
+			fsview.View.Item.Index = image_view.Item.Index;
+			fsview.Show ();
+			fsview.PlayPause ();
 		}
 	
 		private void HandleViewMetadata (object sender, System.EventArgs args)

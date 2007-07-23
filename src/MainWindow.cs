@@ -140,8 +140,6 @@ public class MainWindow {
 	FSpot.QueryWidget query_widget;
 	MainSelection selection;
 	
-	FSpot.Delay slide_delay;
-
 	ToolButton rl_button;
 	ToolButton rr_button;
 	
@@ -240,8 +238,6 @@ public class MainWindow {
 
 		LoadPreference (Preferences.SIDEBAR_POSITION);
 		LoadPreference (Preferences.METADATA_EMBED_IN_IMAGE);
-		
-		slide_delay = new FSpot.Delay (new GLib.IdleHandler (SlideShow));
 		
 		toolbar = new Gtk.Toolbar ();
 		toolbar_vbox.PackStart (toolbar);
@@ -2029,40 +2025,20 @@ public class MainWindow {
 
 	void HandleViewSlideShow (object sender, EventArgs args)
 	{
-		main_window.GdkWindow.Cursor = new Gdk.Cursor (Gdk.CursorType.Watch);
-		slide_delay.Start ();
-	}
-
-	private bool SlideShow ()
-	{
-		int [] ids = SelectedIds ();
-		Photo [] photos = null;
-		if (ids.Length < 2) {
-			int i = 0;
-			if (ids.Length > 0)
-				i = ids [0];
-
-			// FIXME this should be an  IBrowsableCollection.
-			photos = new Photo [query.Photos.Length];
-			Array.Copy (query.Photos, i, photos, 0, query.Photos.Length - i);
-			Array.Copy (query.Photos, 0, photos, query.Photos.Length - i, i);
-			System.Console.WriteLine (photos.Length);
+		int active = Math.Max (ActiveIndex (), 0);
+		if (fsview == null) {
+			fsview = new FSpot.FullScreenView (query);
+			fsview.Destroyed += HandleFullScreenViewDestroy;
+			fsview.View.Item.Index = active;
+			ColorDialog.SwitchViews (fsview.View);
 		} else {
-			photos = SelectedPhotos ();
+			// FIXME this needs to be another mode like PhotoView and IconView mode.
+			fsview.View.Item.Index = active;
 		}
-
-		if (photos.Length == 0) {
-			Console.WriteLine ("No photos available -- no slideshow");
-			main_window.GdkWindow.Cursor = null;
-			return false;
-		}
-
-		FSpot.FullSlide full = new FSpot.FullSlide (main_window, photos);
-		full.Play ();
-		main_window.GdkWindow.Cursor = null;
-		return false;
+		
+		fsview.Show ();
+		fsview.PlayPause ();
 	}
-
 
 	void HandleToggleViewBrowse (object sender, EventArgs args)
 	{
