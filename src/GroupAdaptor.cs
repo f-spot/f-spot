@@ -51,13 +51,13 @@ namespace FSpot {
 
 		public void Dispose ()
 		{
-			this.query.Changed -= HandleQueryChanged; 
+			this.query.PreChanged -= HandleQueryChanged; 
 		}
 
 		protected GroupAdaptor (PhotoQuery query)
 		{
 			this.query = query;
-			this.query.Changed += HandleQueryChanged;
+			this.query.PreChanged += HandleQueryChanged;
 
 			Reload (); 
 		}

@@ -32,6 +32,7 @@ namespace FSpot {
 
 		// IPhotoCollection Interface
 		public event FSpot.IBrowsableCollectionChangedHandler Changed;
+		public event FSpot.IBrowsableCollectionChangedHandler PreChanged;
 		public event FSpot.IBrowsableCollectionItemsChangedHandler ItemsChanged;
 		
 		public IBrowsableItem this [int index] {
@@ -134,6 +135,10 @@ namespace FSpot {
 				photos = store.QueryUntagged (range, roll_set);
 			else
 				photos = store.Query (terms, extra_condition, range, roll_set);
+
+			//this event will allow resorting the query content
+			if (PreChanged != null)
+				PreChanged (this);
 
 			if (Changed != null)
 				Changed (this);

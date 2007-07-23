@@ -1,3 +1,9 @@
+2007-07-23  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/PhotoQuery.cs:
+	* src/GroupAdaptor.cs: Connect the group adaptor reload just before
+	the query changed event, to allow query sorting. Fixes bgo #438394.
+
 2007-07-21  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/Widgets/TagEntry.cs: adding a ctor (IntPtr). This should fix bgo
