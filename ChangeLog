@@ -108,7 +108,6 @@
 	* src/ItemAction.cs: restore icons for fullscreen view. Fixes bgo 
 	#457181.
 
->>>>>>> .r3212
 2007-07-15  Stephane Delcroix  <stephane@delcroix.org>
 
 	* mono-addins/Mono.Addins.Gui/*: change hardcoded MonoDevelop to
@@ -124,7 +123,6 @@
 	* po/POTFILES.in:
 	* icons/Makefile.am: some changes to pass distcheck
 
->>>>>>> .r3205
 2007-07-14  Stephane Delcroix  <stephane@delcroix.org>
 
 	* configure.in: use new forms of AC_INIT and 
@@ -147,7 +145,6 @@
 	* configure.in: require gtk-sharp2 >= 2.10. Gtk.Action.IconName is
 	missing from 2.8 ...
 
->>>>>>> .r3202
 2007-07-12  Stephane Delcroix  <stephane@delcroix.org>
 2007-07-12  Jakub Steiner <jimmac@ximian.com>
 
@@ -227,7 +224,6 @@
 	* src/Updater.cs: update to db version 6.0, change f-spot-other.png to
 	emblem-generic
 
->>>>>>> .r3200
 2007-07-10  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/f-spot.glade:
@@ -258,7 +254,6 @@
 
 	* src/Editors/SoftFocus.cs: make the buttons translatable.
 
->>>>>>> .r3192
 2007-07-01  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/PhotoView.cs: fixing the theming issue with Darkilouche theme.
@@ -297,7 +292,6 @@
 	* src/TagStore.cs: Add a Commit method which writes XMP tags of the
 	associated images. Fixes bgo #327107.
 
->>>>>>> .r3174
 2007-06-19  Priit Laes  <plaes@svn.gnome.org>
 
 	* src/HigMessageDialog.cs: Show underlines in filenames properly,
