@@ -58,7 +58,9 @@ namespace FSpot {
 					Catalog.GetString ("Exit fullscreen"),
 					null,
 					null);
+#if GTK_2_10
 				exit_full_screen.IconName = "view-restore";
+#endif
 				exit_full_screen.Activated += ExitAction;
 				actions.Add (exit_full_screen);
 
@@ -66,7 +68,9 @@ namespace FSpot {
 					Catalog.GetString ("Slideshow"),
 					Catalog.GetString ("Start slideshow"),
 					null);
+#if GTK_2_10
 				slide_show.IconName = "media-playback-start";
+#endif
 				slide_show.Activated += SlideShowAction;
 				actions.Add (slide_show);
 

@@ -25,7 +25,9 @@ namespace FSpot {
 				   string icon_name) : base (name, label)
 		{
 			Tooltip = tooltip;
+#if GTK_2_10
 			IconName = icon_name;
+#endif
 			item = pointer;
 			item.Changed += ItemChanged;
 		}

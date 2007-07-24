@@ -1,3 +1,11 @@
+2007-07-24  Miguel de Icaza  <miguel@novell.com>
+
+	* configure.in (NUNIT_DEFINES): Detecth Gtk 2.10, if so define
+	GTK_2_10.   Only require 2.8
+
+	* src/FullScreenView.cs, src/ItemAction.cs: Use Gtk_2_10 define to
+	keep this building for those of us on gtk 2.8.
+
 2007-07-21  Larry Ewing  <lewing@novell.com>
 
 	* src/ColorAdjustment.cs (FSpot): do the minimum needed to make
