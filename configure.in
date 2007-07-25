@@ -29,6 +29,8 @@ fi
 
 dnl -- Initialize docs
 
+GNOME_DOC_INIT
+
 dnl -- Check for mono pc file
 
 AC_MSG_CHECKING([for mono.pc])
