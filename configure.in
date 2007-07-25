@@ -72,7 +72,7 @@ AC_SUBST(F_CFLAGS)
 AC_SUBST(F_LIBS)
 
 CSC_DEFINES=""
-if pkg-config --atleast-version=2.10; then
+if pkg-config --atleast-version=2.10 gtk-sharp-2.0; then
    CSC_DEFINES="-d:GTK_2_10"
 fi
 AC_SUBST(CSC_DEFINES)
