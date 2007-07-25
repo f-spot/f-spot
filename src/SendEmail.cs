@@ -1,17 +1,12 @@
-//
-// SendEmail.cs: Lets user resize photos prior to sending them by mail.	
-//
-// 	This function uses the following preferenses in gconf.
-//		/apps/f-spot/export/email/size
-//		/apps/f-spot/export/email/auto_rotate
-//		/apps/f-spot/export/email/delete_timeout_seconds
-//	
-// Author:
-//   Bengt Thuree (bengt@thuree.com)
-//
-// (C) 2006 Bengt Thuree
-// 
-
+/*
+ * FSpot.SendEmail
+ *
+ * Author(s)
+ * 	Bengt Thuree  <bengt@thuree.com>
+ * 	Stephane Delcroix  <stephane@delcroix.org>
+ *
+ * This is free software. See COPYING for details.
+ */
 
 using Gtk;
 using Gnome;
@@ -47,6 +42,7 @@ namespace FSpot {
 		double[] avg_scale	= new double [NoOfSizes];
 		System.Collections.ArrayList tmp_paths; // temporary resized image file name
 		string tmp_mail_dir;	// To temporary keep the resized images
+		bool force_original = false;
 
 		ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
@@ -55,19 +51,31 @@ namespace FSpot {
 		public SendEmail (IBrowsableCollection selection) : base ("mail_dialog")
 		{
 			this.selection = selection;
-			
-			// Set default values in dialog. Fetch from Preferences.
-			switch ((int) Preferences.Get (Preferences.EXPORT_EMAIL_SIZE)) {
-				case 0 :  original_size.Active = true; break;
-				case 1 :  tiny_size.Active = true; break;
-				case 2 :  small_size.Active = true; break;
-				case 3 :  medium_size.Active = true; break;
-				case 4 :  large_size.Active = true; break;
-				case 5 :  x_large_size.Active = true; break;
-				default: break;
-			}
+
+			foreach (Photo p in selection.Items)
+				if (Gnome.Vfs.MimeType.GetMimeTypeForUri (p.DefaultVersionUri.ToString ()) != "image/jpeg")
+					force_original = true;
+
+			if (force_original) {
+				original_size.Active = true;
+				tiny_size.Sensitive = false;
+				small_size.Sensitive = false;
+				medium_size.Sensitive = false;
+				large_size.Sensitive = false;
+				x_large_size.Sensitive = false;
+			} else  
+				switch ((int) Preferences.Get (Preferences.EXPORT_EMAIL_SIZE)) {
+					case 0 :  original_size.Active = true; break;
+					case 1 :  tiny_size.Active = true; break;
+					case 2 :  small_size.Active = true; break;
+					case 3 :  medium_size.Active = true; break;
+					case 4 :  large_size.Active = true; break;
+					case 5 :  x_large_size.Active = true; break;
+					default: break;
+				}
+
 			rotate_check.Active = (bool) Preferences.Get (Preferences.EXPORT_EMAIL_ROTATE);
-			rotate_check.Sensitive = original_size.Active;
+			rotate_check.Sensitive = original_size.Active && tiny_size.Sensitive;
 			
 			tray_scrolled.Add (new TrayView (selection));
 
@@ -93,7 +101,7 @@ namespace FSpot {
 
 			// Calculate approximate size shrinking, use first photo, and shrink to medium size as base.
 			Photo scalephoto = selection.Items [0] as Photo;			
-			if (scalephoto != null) {
+			if (scalephoto != null && !force_original) {
 				
 				// Get first photos file size
 				file_info = new System.IO.FileInfo (scalephoto.GetVersionPath(scalephoto.DefaultVersionId));
@@ -155,7 +163,8 @@ namespace FSpot {
 			if (x_large_size.Active) 
 				size_number = 5;
 			
-			Preferences.Set (Preferences.EXPORT_EMAIL_SIZE, size_number);			
+			if (!force_original) 
+				Preferences.Set (Preferences.EXPORT_EMAIL_SIZE, size_number);			
 			return sizes [ size_number ];		
 		}
 		

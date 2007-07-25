@@ -1,5 +1,10 @@
 2007-07-25  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/SendEmail.cs: Don't allow rotating or resizing on format we
+	can't write. Fixes bgo #440001.
+
+2007-07-25  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/MainWindow.cs: 
 	* srC/Makefile.am:
 	* icons/Makefile.am: reverting the changes I made this morning.
