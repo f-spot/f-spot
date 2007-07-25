@@ -1,5 +1,14 @@
 2007-07-25  Stephane Delcroix  <stephane@delcroix.org>
 
+	* icons/Makefile.am:
+	* icons/f-spot-128.svg: install the (renamed) f-spot logo in the
+	theme.
+
+	* src/MainWindow.cs: load the logo from theme in the About dialog.
+	Fixes bgo #460125.
+
+2007-07-25  Stephane Delcroix  <stephane@delcroix.org>
+
 	* configure.in: re-enabling GNOME_DOC_INIT.
 
 2007-07-24  Miguel de Icaza  <miguel@novell.com>

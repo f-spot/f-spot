@@ -59,6 +59,7 @@ theme_icons = 					\
 	apps,f-spot-22.png			\
 	apps,f-spot-24.png			\
 	apps,f-spot-32.png			\
+	apps,f-spot-128.svg			\
 	devices,camera-photo-16.png		\
 	devices,camera-photo-22.png		\
 	devices,camera-photo-24.png		\

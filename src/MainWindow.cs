@@ -1580,16 +1580,16 @@ public class MainWindow {
                 // * which will give them credit in the About box.
                 // * E.g. "Martin Willemoes Hansen"
                 string translators = Catalog.GetString ("translator-credits");
-                if(System.String.Compare(translators,"translator-credits") == 0) {
-                    translators = null;
+                if (System.String.Compare (translators, "translator-credits") == 0) {
+                	translators = null;
                 }
 
                 new About ("F-Spot", 
 			   FSpot.Defines.VERSION, 
 			   Catalog.GetString ("Copyright \x00a9 2003-2007 Novell Inc."),
                            null, authors, new string [0], translators, 
-			   PixbufUtils.LoadFromAssembly("f-spot-logo-tango.svg")).Show();
-	}
+			   FSpot.Global.IconTheme.LoadIcon ("f-spot", 128, (Gtk.IconLookupFlags)0)).Show();
+		}
 
 	void HandleTagSizeChange (object sender, EventArgs args)
 	{
