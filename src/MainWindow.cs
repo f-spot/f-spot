@@ -1588,7 +1588,7 @@ public class MainWindow {
 			   FSpot.Defines.VERSION, 
 			   Catalog.GetString ("Copyright \x00a9 2003-2007 Novell Inc."),
                            null, authors, new string [0], translators, 
-			   FSpot.Global.IconTheme.LoadIcon ("f-spot", 128, (Gtk.IconLookupFlags)0)).Show();
+			   PixbufUtils.LoadFromAssembly ("f-spot-logo.svg")).Show();
 		}
 
 	void HandleTagSizeChange (object sender, EventArgs args)

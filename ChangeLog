@@ -1,5 +1,13 @@
 2007-07-25  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/MainWindow.cs: 
+	* srC/Makefile.am:
+	* icons/Makefile.am: reverting the changes I made this morning.
+	According to Jimmac (and he's surely right about that), it's not good
+	to install logos in icon themes...
+
+2007-07-25  Stephane Delcroix  <stephane@delcroix.org>
+
 	* configure.in: fixing the condition testing for gtk-2.10.
 
 2007-07-25  Stephane Delcroix  <stephane@delcroix.org>
