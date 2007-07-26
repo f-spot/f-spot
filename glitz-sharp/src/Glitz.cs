@@ -108,7 +108,7 @@ namespace NDesk.Glitz
 		public Span Top, Bottom;
 	}
 
-	public
+	public unsafe
 	struct Transform
 	{
 		//TODO: should be 3x3

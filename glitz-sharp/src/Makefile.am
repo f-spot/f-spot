@@ -19,7 +19,7 @@ ASSEMBLY = $(ASSEMBLY_NAME).dll
 all: $(ASSEMBLY)
 
 $(ASSEMBLY): $(ASSEMBLY_SOURCES)
-	$(CSC_LIB) -out:$@ $(PKGS) $(REFS) $(ASSEMBLY_SOURCES)
+	$(CSC_LIB) -out:$@ -unsafe $(PKGS) $(REFS) $(ASSEMBLY_SOURCES)
 
 assemblydir = $(pkglibdir)
 assembly_DATA =	$(ASSEMBLY)
