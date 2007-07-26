@@ -72,9 +72,11 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ExportStore.cs		\
 	$(srcdir)/Extensions/ExportMenuItemNode.cs	\
 	$(srcdir)/Extensions/IExporter.cs	\
-	$(srcdir)/Extensions/ITool.cs	\
+	$(srcdir)/Extensions/ICommand.cs	\
+	$(srcdir)/Extensions/IMenuGenerator.cs	\
 	$(srcdir)/Extensions/MenuNode.cs	\
-	$(srcdir)/Extensions/ToolMenuItemNode.cs	\
+	$(srcdir)/Extensions/CommandMenuItemNode.cs	\
+	$(srcdir)/Extensions/PopupCommands.cs	\
 	$(srcdir)/Fader.cs			\
 	$(srcdir)/FlickrExport.cs		\
 	$(srcdir)/FlickrRemote.cs		\
@@ -277,7 +279,7 @@ F_SPOT_CSFILES = $(F_SPOT_CSDISTFILES)	\
 	Defines.cs			\
 	AssemblyInfo.cs
 
-f-spot.exe: $(F_SPOT_CSFILES) f-spot.glade dces.rdf
+f-spot.exe: $(F_SPOT_CSFILES) f-spot.glade dces.rdf FSpot.addin.xml
 	$(CSC) -target:winexe -out:$@ $(EXTRAFLAGS) $(F_SPOT_CSFILES) $(ASSEMBLIES) $(RESOURCES)
 
 all: f-spot.exe

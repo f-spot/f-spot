@@ -17,52 +17,51 @@ namespace FSpot.Extensions
 	[ExtensionNode ("Menu")]
 	[ExtensionNodeChild (typeof (MenuItemNode))]
 	[ExtensionNodeChild (typeof (ExportMenuItemNode))]
-	[ExtensionNodeChild (typeof (ToolMenuItemNode))]
+	[ExtensionNodeChild (typeof (CommandMenuItemNode))]
 	[ExtensionNodeChild (typeof (MenuSeparatorNode))]
 	[ExtensionNodeChild (typeof (SubmenuNode))]
+	[ExtensionNodeChild (typeof (MenuGeneratorNode))]
 	public class SubmenuNode : MenuNode
 	{
-		[NodeAttribute]
-		string _label;
+		public override Gtk.MenuItem GetMenuItem ()
+		{
+			Gtk.MenuItem item = base.GetMenuItem ();;
 
-		bool changed;
+			Gtk.Menu submenu = new Gtk.Menu ();
+
+			foreach (MenuNode node in ChildNodes)
+				submenu.Insert (node.GetMenuItem (), -1);
+
+			item.Submenu = submenu;
+			return item;
+		}
+	}
+
+	[ExtensionNode ("MenuGenerator")]
+	public class MenuGeneratorNode : MenuNode
+	{
+		[NodeAttribute ("generator_type", true)]
+		string command_type;
+
+		private IMenuGenerator menu_generator;
 
 		public override Gtk.MenuItem GetMenuItem ()
 		{
-			lock (this) {
-				if (item == null || changed) {
-					changed = false;
-					item = new Gtk.MenuItem (_label != null ? Catalog.GetString (_label) : Id);
-					Gtk.Menu submenu = new Gtk.Menu ();
-
-					foreach (MenuNode node in ChildNodes)
-						submenu.Insert (node.GetMenuItem (), -1);
-					item.Submenu = submenu;
-				}
-			}
+			Gtk.MenuItem item = base.GetMenuItem ();
+			menu_generator = (IMenuGenerator) Addin.CreateInstance (command_type); 
+			item.Submenu = menu_generator.GetMenu ();
+			item.Activated += menu_generator.OnActivated;
 			return item;
-		}
-
-		protected override void OnChildrenChanged ()
-		{
-			lock (this) {
-				changed = true;
-			}
 		}
 	}
 
 	[ExtensionNode ("MenuItem")]
 	public class MenuItemNode : MenuNode
 	{
-		[NodeAttribute]
-		string _label;
-
 		public override Gtk.MenuItem GetMenuItem ()
 		{
-			if (item == null) {
-				item = new Gtk.MenuItem (_label != null ? Catalog.GetString (_label) : Id);
-				item.Activated += OnActivated;
-			}
+			Gtk.MenuItem item = base.GetMenuItem ();
+			item.Activated += OnActivated;
 			return item;
 		}
 
@@ -77,17 +76,28 @@ namespace FSpot.Extensions
 	{
 		public override Gtk.MenuItem GetMenuItem ()
 		{
-			if (item == null)
-				item = new Gtk.SeparatorMenuItem ();
-
-			return item;
+			return new Gtk.SeparatorMenuItem ();
 		}
 	}
 
 	public abstract class MenuNode : ExtensionNode
 	{
-		protected Gtk.MenuItem item;
+		[NodeAttribute]
+		string _label;
 
-		public abstract Gtk.MenuItem GetMenuItem ();
+		[NodeAttribute]
+		string icon;
+
+		public virtual Gtk.MenuItem GetMenuItem ()
+		{
+			Gtk.MenuItem item;
+			if (icon == null)
+				item = new Gtk.MenuItem (_label != null ? Catalog.GetString (_label) : Id);
+			else {
+				item = new Gtk.ImageMenuItem (_label != null ? Catalog.GetString (_label) : Id);
+				(item as Gtk.ImageMenuItem).Image = Gtk.Image.NewFromIconName (icon, Gtk.IconSize.Menu);
+			}
+			return item;
+		}
 	}
 }

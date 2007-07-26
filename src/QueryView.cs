@@ -4,6 +4,8 @@
 // Copyright (C) 2004 Novell, Inc.
 //
 
+using FSpot;
+
 public class TrayView : IconView {
 	public TrayView (System.IntPtr raw) : base (raw) {}
 

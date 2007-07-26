@@ -1,5 +1,5 @@
 /*
- * ITool.cs
+ * FSpot.Extensions.ICommand.cs
  *
  * Author(s)
  * 	Stephane Delcroix  <stephane@delcroix.org>
@@ -8,13 +8,12 @@
  *
  */
 
-using Mono.Addins;
 using System;
 
 namespace FSpot.Extensions
 {
-	public interface ITool
+	public interface ICommand
 	{
-		void Run ();
+		void Run (object o, EventArgs e);
 	}
 }

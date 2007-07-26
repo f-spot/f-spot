@@ -1,5 +1,5 @@
 /*
- * ToolMenuItemNode.cs
+ * FSpot.Extensions.CommandMenuItemNode
  *
  * Author(s)
  * 	Stephane Delcroix  <stephane@delcroix.org>
@@ -13,16 +13,17 @@ using System;
 
 namespace FSpot.Extensions
 {
-	[ExtensionNode ("ToolMenuItem")]
-	public class ToolMenuItemNode : MenuItemNode
+	[ExtensionNode ("Command")]
+	public class CommandMenuItemNode : MenuItemNode
 	{
+
 		[NodeAttribute ("command_type", true)]
 		string command_type;
 
 		protected override void OnActivated (object o, EventArgs e)
 		{
-			ITool tool = (ITool) Addin.CreateInstance (command_type);
-			tool.Run ();
+			ICommand cmd = (ICommand) Addin.CreateInstance (command_type);
+			cmd.Run (o, e);
 		}
 	}
 }

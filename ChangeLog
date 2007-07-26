@@ -1,5 +1,30 @@
 2007-07-25  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/Extensions/MenuNode.cs:
+	* src/Extensions/IMenuGenerator.cs: new extension node (MenuGenerator) 
+	for dynamically build menus.
+
+	* src/Extensions/ICommand.cs:
+	* src/Extensions/CommandMenuItemNode: new extension node (Command) to
+	trigger generic commands.
+
+	* src/Extensions/OpenWithMenu.cs: moved to another ns, removed unused
+	methods.
+
+	* src/FSpot.addin.xml:
+	* src/Extensions/PopupCommands.cs:
+	* src/PhotoPopup.cs: creates the PhotoPopup from the addins definition
+	file. Bumped the version to 1.2.
+
+	* src/MainWindow.cs: no longer recreates the Export menu on
+	UpdateMenus.
+
+	* src/Extensions/ITool.cs:
+	* src/Extensions/ToolMenuItemNode.cs: Removed. Deprecated in favor of
+	ICommand and CommandMenuItemNode.
+
+2007-07-25  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/SendEmail.cs: Don't allow rotating or resizing on format we
 	can't write. Fixes bgo #440001.
 
