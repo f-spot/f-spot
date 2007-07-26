@@ -32,7 +32,7 @@ namespace FSpot.Filters {
 		public bool Convert (FilterRequest req)
 		{
 			string source = req.Current.LocalPath;
-			Uri dest = req.TempUri (Path.GetExtension (source));
+			Uri dest = req.TempUri (System.IO.Path.GetExtension (source));
 			
 			using (ImageFile img = ImageFile.Create (source)) {
 				using (Pixbuf pixbuf = img.Load ()) {
