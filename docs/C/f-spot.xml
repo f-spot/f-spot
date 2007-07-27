@@ -31,6 +31,10 @@
 				<firstname>Gabriel</firstname>
 				<surname>Burt</surname>
 			</author>
+			<author>
+				<firstname>Alexandre</firstname>
+				<surname>Prokoudine</surname>
+			</author>
 			<author role="maintainer">
 				<firstname>Stephane</firstname>
 				<surname>Delcroix</surname>
@@ -39,8 +43,8 @@
 		<!--<include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>-->
 		<revhistory>
 			<revision>
-				<revnumber>0.2</revnumber>
-				<date>2007-01-17</date>
+				<revnumber>0.3</revnumber>
+				<date>2007-07-26</date>
 			</revision>
 		 </revhistory>
 	</bookinfo>
@@ -60,14 +64,37 @@
 				<keycap>Shift</keycap> when dragging photos into F-Spot if you do not 
 				wish to copy them from your hard drive.
 			</para>
+			
+			<para>
+				By default, F-Spot copies your photos to the 
+				<filename class='directory'>~/Photos</filename> folder. You can change 
+				the folder F-Spot uses in <guilabel>Preferences</guilabel> dialog 
+				(<menuchoice><guimenu>Edit</guimenu><guimenuitem>Preferences</guimenuitem>
+				</menuchoice>).
+			</para>
 
 			<para>
 				If all the photos you are importing at one time are from a particular event, 
 				or have some other characteristic in common, you can create a tag for them 
-				so you can later find them with ease. To do this, follow the instructions below 
-				to <ulink url="tag">create a new tag</ulink>, then when you are importing 
+				so you can later find them with ease. To do this, follow the instructions from  
+				<xref linkend="tag"/> to create a new tag, then when you are importing 
 				them, check the button for <guilabel>Attach Tag</guilabel> and choose the 
 				tag you created. 
+			</para>
+			
+			<tip>
+				<para>
+					F-Spot uses a database stored at 
+					<filename>~/.gnome2/f-spot/photos.db</filename>. Note, to access it, use 
+					the sqlite3 command. You can also manually specify path to a database by 
+					running F-Spot with <option>-b</option> option.
+				</para>
+			</tip>
+			
+			<para>
+				After an import, F-Spot will display the pictures of the latest import 
+				roll only. Read <xref linkend="enjoying-search"/> to learn how to deal 
+				with import rolls.
 			</para>
 		</sect1>
 		
@@ -92,35 +119,6 @@
 				</para>
 			</sect2>
 
-			<sect2 id="edit-adjust-colors">
-				<title>Adjust Colors</title>
-				
-				<para>
-					To adjust the brightness, contrast, and colors of a photo, first click the 
-					<guibutton>Adjust Photos</guibutton> icon to open the adjustment dialog. 
-				</para>
-			</sect2>
-
-			<sect2 id="edit-remove-red-eye">
-				<title>Remove Red-Eye</title>
-				
-				<para>
-					To remove redeye from a photo, you need to select each individual eye. 
-					You may want to zoom in on the image to accurately select the eyes in 
-					the photo.
-				</para>
-				<para>
-					To make your selection, click one corner of the rectangle that will be your 
-					selection, and drag your mouse to the diagonal corner and release it. You 
-					can resize your selection by dragging its edges, and you can move it by 
-					clicking in the middle of it and dragging it to where you want it.
-				</para>
-				<para>
-					Once you have selected an eye, you can remove the red from it by clicking 
-					the red-eye button beneath the photo. 
-				</para>
-			</sect2>
-
 			<sect2 id="edit-crop">
 				<title>Crop</title>
 				
@@ -130,16 +128,211 @@
 					you want to keep. If you want your photo to be the exact dimensions necessary 
 					for a certain print size, you can constrain the kind of selection F-Spot will allow 
 					you to draw by choosing the appropriate size from the constraint drop down. 
-					See the <xref linkend="edit-remove-red-eye"/> above for details on making 
+					See the <xref linkend="edit-remove-red-eye"/> below for details on making 
 					a selection on your photo.
 				</para>
+				<figure>
+					<title>Crop tool</title>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="figures/f-spot-crop.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
 				<para>
 					Once you have made your crop selection, you must click the crop button beneath 
 					the image to finalize the crop. If you are working with the original photo, cropping 
 					creates a new version your photo.
 				</para>
 			</sect2>
+			
+			<sect2 id="edit-straighten">
+				<title>Straighten</title>
+				
+				<para>
+					Straighten effect is a tool to level a photo, quite helpful for landscapes 
+					taken without a tripod, when (imaginary) line of horizon is not at 0°. 
+					This tool rotates an image by a specified angle and automagically crops the 
+					resulted image, so that you always see a perfect rectangle.
+				</para>
+				<figure>
+					<title>Straighten tool</title>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="figures/f-spot-straighten.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</sect2>
 
+			<sect2 id="edit-adjust-colors">
+				<title>Adjust Colors</title>
+				
+				<para>
+					To adjust the brightness, contrast, and colors of a photo, first click 
+					the <guibutton>Adjust the photo colors</guibutton> icon to open the 
+					adjustment dialog. Change then some settings and save them with 
+					<guibutton>OK</guibutton>. 
+				</para>
+				<figure>
+					<title>Adjust Colors tool</title>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="figures/f-spot-adjust-colors.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</sect2>
+			
+			<sect2 id="edit-auto-color">
+				<title>AutoColor</title>
+				
+				<para>
+					This effect automatically adjusts color levels to make a pretty balanced 
+					picture color-wise. It serves best for pictures taken with automatical 
+					white balance, when camera didn't manage to do the job well.
+				</para>
+				<figure>
+					<title>AutoColor</title>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="figures/f-spot-autocolor.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</sect2>
+
+			<sect2 id="edit-desaturate">
+				<title>Desaturate</title>
+				
+				<para>
+					To make a colorful photo a black and white one, open a photo of choice 
+					and press <guibutton>Desaturate</guibutton> button.
+				</para>
+				<figure>
+					<title>Desaturation tool</title>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="figures/f-spot-desaturate.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</sect2>
+
+			<sect2 id="edit-sepia">
+				<title>Sepia</title>
+				
+				<para>
+					To make a colorful photo look like an old-style picture in sepia tones, 
+					open a photo of choice and press <guibutton>Sepia</guibutton> button.
+				</para>
+				<figure>
+					<title>Desaturation tool</title>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="figures/f-spot-sepia.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+			</sect2>
+
+			<sect2 id="edit-remove-red-eye">
+				<title>Remove Red-Eye</title>
+				
+				<para>
+					To remove redeye from a photo, you need to select a zone containing 
+					the eyes. You may want to zoom in on the image to accurately select 
+					the eyes in the photo. You should be able to correct both eyes on the 
+					same person in one shot, or even the eyes from multiple people at once. 
+					If this doesn't work for you, or the selected zone contains some vivid 
+					red parts (lips, ...) you'll probably have to correct one red eye at a time.
+				</para>
+				<para>
+					To make your selection, click one corner of the rectangle that will be your 
+					selection, and drag your mouse to the diagonal corner and release it. You 
+					can resize your selection by dragging its edges, and you can move it by 
+					clicking in the middle of it and dragging it to where you want it.
+				</para>
+				<para>
+					Once you have selected a zone, you can remove the red from it by 
+					clicking the red-eye button beneath the photo.
+				</para>
+				<figure>
+					<title>Red-Eye tool</title>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="figures/f-spot-red-eye.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+				<tip>
+					<para>
+						You can change the threshold for redeyes detection by changing 
+						the gconf key 
+						<filename class='directory'>/apps/f-spot/edit/redeye_threshold</filename>.
+					</para>
+				</tip>
+			</sect2>
+			
+			<sect2 id="edit-soft-focus">
+				<title>Soft Focus</title>
+				
+				<para>
+					In photography sharpening one region of a picture, while blurring 
+					all the rest, is a way to make an emphasis and grab attention. 
+					It is achieved by using a lens that allows shooting with a short 
+					distance in front of and beyond the subject that appears to be in 
+					focus. Soft focus effect is a way to emulate such a lens.
+				</para>
+				<figure>
+					<title>Soft Focus tool</title>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="figures/f-spot-soft-focus.png"/>
+						</imageobject>
+					</mediaobject>
+				</figure>
+				<para>
+					Click to choose central point of the area you want to be in focus 
+					and adjust amount of blurring, then click <guibutton>OK</guibutton>.
+				</para>
+			</sect2>
+
+			<sect2 id="edit-sharpen">
+				<title>Sharpen</title>
+				
+				<para>
+					Out-of-focus photographs and most digitized images often need a 
+					sharpness correction. The Unsharp Mask effect sharpens edges of 
+					the elements without increasing noise or blemish. To sharpen a 
+					photo choose <menuchoice><guimenu>Edit</guimenu>
+					<guimenuitem>Sharpen...</guimenuitem></menuchoice> and specify the 
+					following values:
+				</para>
+				
+				<itemizedlist>
+					<listitem>
+						<para>
+							<parameter class='option'>Amount</parameter> — strength of sharpening.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							<parameter class='option'>Radius</parameter> — how many pixels on either 
+							side of an edge will be affected by sharpening. High resolution images 
+							allow higher radius.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							<parameter class='option'>Threshold</parameter> — the minimum difference 
+							in pixel values that indicates an edge where sharpen must be applied. 
+							This helps avoiding creation of blemishes in face, sky or water surface.
+						</para>
+					</listitem>
+				</itemizedlist>
+			</sect2>
+			
 			<sect2 id="edit-describe">
 				<title>Describe</title>
 				
@@ -151,6 +344,19 @@
 					Once you have made your crop selection, you must click the crop button beneath 
 					the image to finalize the crop. If you are working with the original photo, cropping 
 					creates a new version your photo.
+				</para>
+			</sect2>
+
+			<sect2 id="edit-adjust-time">
+				<title>Adjust Time</title>
+				
+				<para>
+					In both 'browse' or 'edit' modes, you can adjust the time of one 
+					or multiple pictures (<menuchoice><guimenu>Edit</guimenu>
+					<guimenuitem>Adjust Time</guimenuitem></menuchoice>). Adjusting 
+					the time of multiple pictures at once helps you shift all an import 
+					roll if, e.g. the time on your camera is badly set or if you forgot 
+					to change it according to DST.
 				</para>
 			</sect2>
 		</sect1>
@@ -208,6 +414,22 @@
 				all the expanded tags in the list will be searched and you'll jump to any 
 				matching ones. 
 			</para>
+			
+			<para>
+				You can also change size of tag icons in the sidebar or even make tag 
+				icons invisible by selecting preferred option from <menuchoice>
+				<guimenu>View</guimenu><guimenuitem>Tag Icons</guimenuitem></menuchoice> 
+				menu.
+			</para>
+			
+			<tip>
+				<para>
+					F-Spot can write tags as metadata fields into JPEG files. Tags for 
+					various RAW files, PNG, TIFF, and others are written to F-Spot's 
+					database. You will have to re-tag these files if you re-import your 
+					collection.
+				</para>
+			</tip>
 		</sect1>
 	</chapter>
 
@@ -224,46 +446,112 @@
 		</sect1>
 		<sect1 id="enjoying-search">
 			<title>Search</title>
+			
 			<para>
-				You can start a search by double clicking or activating a tag from the tag 
-				list. Alternatively, you can show the find bar with <menuchoice>
-				<guimenu>Find</guimenu><guimenuitem>Show Find Bar</guimenuitem></menuchoice>. 
-				With the find bar shown, you can drag tags from the tag view to the find bar.
+				F-Spot uses search search filters to help you better define search criteria.
 			</para>
-			<para>
-				To find photos that are tagged with both of two tags, activate the first in 
-				the tag view or drag it onto the find bar, then drag the second tag and drop 
-				it on top of the first. You can also right click on the second tag in the tag 
-				view, or use the <guimenu>Find</guimenu> menu, and choose <guimenuitem>Find 
-				With...</guimenuitem> and select the first tag (or group of tags).
-			</para>
-			<para>
-				You can drag a tag icon around on the find bar to change from finding it and 
-				another tag to finding it or another tag.
-			</para>
-			<para>
-				You can search for photos that do not have a particular tag by double-clicking 
-				on a tag in the find bar. Alternatively, you can right-click a tag in the find 
-				bar and select <guimenuitem>Exclude</guimenuitem>.
-			</para>
-			<para>
-				To remove a tag from the search, drag it away from the find bar, or right click 
-				and select <guimenuitem>Remove</guimenuitem>.
-			</para>
-			<para>
-				By default, photos tagged <emphasis>Hidden</emphasis> will not be shown. You must 
-				explicitly include the <emphasis>Hidden</emphasis> tag in your search to show 
-				such photos.
-			</para>
-			<para>
-				There is also a type-to-find entry. Press <keycap>/</keycap> to open it. It cannot 
-				be used at the same time as the find bar. You can type queries such as "TagA and 
-				(TagB or (TagC and TagD))". At any point, if F-Spot recognizes what you've typed as 
-				a valid query, it will update your search. The <emphasis>not</emphasis> operator 
-				is not yet supported. 
-			</para>
+			
+			<sect2 id="enjoying-search-tags">
+				<title>Tags</title>
+				
+				<para>
+					You can start a search by double clicking or activating a tag from 
+					the tag list. Alternatively, you can show the find bar with <menuchoice>
+					<guimenu>Find</guimenu><guimenuitem>Show Find Bar</guimenuitem></menuchoice>. 
+					With the find bar shown, you can drag tags from the tag view to the find bar.
+				</para>
+				<para>
+					To find photos that are tagged with both of two tags, activate the first in 
+					the tag view or drag it onto the find bar, then drag the second tag and drop 
+					it on top of the first. You can also right click on the second tag in the tag 
+					view, or use the <guimenu>Find</guimenu> menu, and choose <guimenuitem>Find 
+					With...</guimenuitem> and select the first tag (or group of tags).
+				</para>
+				<para>
+					You can drag a tag icon around on the find bar to change from finding it and 
+					another tag to finding it or another tag.
+				</para>
+				<para>
+					You can search for photos that do not have a particular tag by double-clicking 
+					on a tag in the find bar. Alternatively, you can right-click a tag in the find 
+					bar and select <guimenuitem>Exclude</guimenuitem>.
+				</para>
+				<para>
+					To remove a tag from the search, drag it away from the find bar, or right click 
+					and select <guimenuitem>Remove</guimenuitem>.
+				</para>
+				<para>
+					By default, photos tagged <emphasis>Hidden</emphasis> will not be shown. You must 
+					explicitly include the <emphasis>Hidden</emphasis> tag in your search to show 
+					such photos.
+				</para>
+			</sect2>
 
+			<sect2 id="enjoying-search-import-rolls">
+				<title>Import Rolls</title>
+				<para>
+					F-Spot remembers what pictures were imported every now and then. Use 
+					<menuchoice><guimenu>Find</guimenu><guisubmenu>Import Roll</guisubmenu>
+					<guimenuitem>Last import roll</guimenuitem></menuchoice> to limit search 
+					to last importing session or use <menuchoice><guimenu>Find</guimenu>
+					<guisubmenu>Import Roll</guisubmenu><guimenuitem>Select Import Rolls...</guimenuitem>
+					</menuchoice> to make a finer selection of imported photos:
+				</para>
+				<itemizedlist>
+					<listitem>
+						<para>
+							<parameter class='option'>At</parameter> — to selection photos from a particular importing session
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							<parameter class='option'>After</parameter> — to select all photos imported begining with a particular importing sessio
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							<parameter class='option'>Between</parameter> — to select all photos imported between two particular importing sessions
+						</para>
+					</listitem>
+				</itemizedlist>
+				<para>
+					Every time you change settings of the filter, amount of selected photos 
+					will appear in the bottom part of the dialog.
+				</para>
+				<para>
+					When you apply Import Roll filter, in the Find bar you will see 
+					<guilabel>Find: Import Roll</guilabel>. Now you can add some other 
+					filter to finetune your selection.
+				</para>
+				<para>
+					If you don't need the Import Roll filter anymore, choose <menuchoice>
+					<guimenu>Find</guimenu><guisubmenu>Import Roll</guisubmenu>
+					<guimenuitem>Clear roll filter</guimenuitem></menuchoice> to remove 
+					Import Roll from search criteria. You can also click the close button 
+					(<guibutton>X</guibutton>) of the search bar to discard all the current 
+					search options.
+				</para>
+				<tip>
+					<para>
+						The number of displayed rolls in the dialog is defined by the gconf key 
+						<filename class='directory'>/apps/f-spot/import/gui_roll_history</filename>. 
+						Default value is 10.
+					</para>
+				</tip>
+			</sect2>
+			
+			<sect2 id="enjoying-search-type-to-find">
+				<title>Type-to-find</title>
+				<para>
+					There is also a type-to-find entry. Press <keycap>/</keycap> to open it. It cannot 
+					be used at the same time as the find bar. You can type queries such as "TagA and 
+					(TagB or (TagC and TagD))". At any point, if F-Spot recognizes what you've typed as 
+					a valid query, it will update your search. The <emphasis>not</emphasis> operator 
+					is not yet supported. 
+				</para>
+			</sect2>
 		</sect1>
+		
 		<sect1 id="enjoying-fullscreen-mode-and-slideshows">
 			<title>Fullscreen Mode and Slideshows</title>
 			<para>
@@ -313,6 +601,34 @@
 				<guimenu>File</guimenu><guimenuitem>Send Mail</guimenuitem>
 				</menuchoice> menu. 
 			</para>
+			<note>
+				<title>Note 1</title>
+				<para>
+					The email program used for this is defined at the GNOME level. 
+					You can change the default e-mailer for your user using the 
+					<application>Preferred Applications</application> tool in 
+					<menuchoice><guimenu>System</guimenu>
+					<guisubmenu>Preferences</guisubmenu></menuchoice>.
+				</para>
+			</note>
+			<note>
+				<title>Note 2</title>
+				<para>
+					If some of the photos you'd like to send by email are in a format 
+					that F-Spot can't write (e.g. RAW images), the size selection dialog 
+					will become insensitive and the originals will be sent.
+				</para>
+			</note>
+			<tip>
+				<para>
+					If you're sending resized pictures, F-Spot will keep the modified versions 
+					somewhere in the <filename class='directory'>/tmp</filename> directory for 
+					30 seconds. It's not an issue with evolution, which makes it's own local 
+					copy of the attachments, but could be a bit shorter if you're using Thunderbird. 
+					You can change the delay by editing the gconf key 
+					<filename class='directory'>/apps/f-spot/export/email/delete_timeout_seconds</filename>.
+				</para>
+			</tip>
 		</sect1>
 
 		<sect1 id="sharing-print">
@@ -326,7 +642,9 @@
 		<sect1 id="sharing-burn-to-cd">
 			<title>Burn to CD</title>
 			<para>
-				
+				Burn your photos to CD or DVD with the <menuchoice><guimenu>File</guimenu>
+				<guisubmenu>Export</guisubmenu><guimenuitem>Export to CD</guimenuitem>
+				</menuchoice> menu.
 			</para>
 		</sect1>
 
@@ -363,11 +681,11 @@
 		</sect1>
 
 		<sect1 id="sharing-flickr-or-php-gallery">
-			<title>Post to your Flickr or PHP Gallery</title>
+			<title>Post to your online galleries</title>
 			<para>
-				If you use Flickr, you can post your files directly from F-Spot with the 
-				<menuchoice><guimenu>File</guimenu><guimenuitem>Export</guimenuitem>
-				<guimenuitem>Export to Flickr</guimenuitem></menuchoice> menu.
+				If you use Flickr, SmugMug, 23hq or Picasa Web Album, you can post your files 
+				directly from F-Spot with the <menuchoice><guimenu>File</guimenu>
+				<guisubmenu>Export</guisubmenu></menuchoice> menu, choosing corresponding submenu item.
 			</para>
 			<para>
 				If you use the PHP software known as <ulink url="http://gallery.sourceforge.net/">
@@ -375,6 +693,190 @@
 				<menuchoice><guimenu>File</guimenu><guimenuitem>Export</guimenuitem>
 				<guimenuitem>Export to Web Gallery</guimenuitem></menuchoice> menu. 
 				You must first enable the Remote module within your Gallery installation.
+			</para>
+			<note>
+				<title>Note for Gallery 2.2 users</title>
+				<para>
+					The Remote plugin for Gallery should be 1.0.8 or newer.
+				</para>
+			</note>
+			<para>
+				<ulink url="http://pennave.sourceforge.net">PennAve</ulink> is a Python 
+				web-application that directly uses F-Spot's database to present a dynamic 
+				gallery of your photos and tags.
+			</para>
+			<para>
+				<ulink url="http://www.conduit-project.org">Conduit</ulink> is an application 
+				that can sync photos that have a particular tag with your Flickr or Picasa 
+				Web Album web storage.
+			</para>
+		</sect1>
+	</chapter>
+	
+	<chapter id="extend">
+		<title>Extend functionality</title>
+		
+		<sect1 id="extend-what-extensions-are">
+			<title>What extensions are</title>
+
+			<para>
+				F-Spot extensions are means to add new functionality to the application. 
+				F-Spot supports two types of extension: exporters (which allow exporting 
+				photos to new web services or data storages) and tools (which allow new 
+				ways of color correction, duplicate photos finders etc.). Extensions are 
+				distributed in form of extension packages.
+			</para>
+			<para>
+				In the best traditions of not reinventing the wheel extensions can use other 
+				extensions, which means that one extension cannot work, if another extension 
+				is not installed. This concept of dependance actually means that
+			</para>
+			<itemizedlist>
+				<listitem>
+					<para>
+						you cannot install an extension, if the extension it depends on, is not present in the system
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						you cannot remove an extension on which some other extension depends
+					</para>
+				</listitem>
+			</itemizedlist>
+		</sect1>
+		
+		<sect1 id="extend-managing-extensions">
+			<title>Managing extensions</title>
+			
+			<para>
+				To manage extensions choose <menuchoice><guimenu>Edit</guimenu>
+				<guimenuitem>Manage Extensions</guimenuitem></menuchoice> menu item.
+			</para>
+
+			<sect2 id="extend-managing-extensions-managing-extension-repositories">
+				<title>Managing extension repositories</title>
+
+				<para>
+					Simply put, repositories are extension storages. They can be either network 
+					or local. To add a new repository click Repositories button, choose type of 
+					the repository you are about to add and provide either URL or path. If the URL 
+					or path you specified doesn't contain a description (index) file for extensions, 
+					a warning message will pop up to tell you that.
+				</para>
+				<para>
+					To remove a repository click <guibutton>Repositories</guibutton> button again, 
+					choose the repository you are about to delete and click 
+					<guibutton>Delete</guibutton> button.
+				</para>
+			</sect2>
+			
+			<sect2 id="extend-managing-extensions-installing-and-updating-extensions">
+				<title>Installing and updating extensions</title>
+
+				<para>
+					To install an extension click <guibutton>Install extensions...</guibutton> button. 
+					In the newly presented dialog
+				</para>
+				<orderedlist>
+					<listitem>
+						<para>
+							Choose repository to install from all known repositories or just one of 
+							available repositories.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Choose, what extension packages you want to see: All, Only new, Only updates.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Click the <guibutton>Update</guibutton> button to update list of available 
+							extension packages by given criteria.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Choose extensions you want to install/update, click <guibutton>Information</guibutton> 
+							to see summary on selected package, if you want to.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Click <guibutton>Forward</guibutton> to proceed with installation.
+						</para>
+					</listitem>
+				</orderedlist>
+			</sect2>
+			
+			<sect2 id="extend-managing-extensions-enabling-and-disabling-extensions">
+				<title>Enabling and disabling extensions</title>
+
+				<para>
+					You might want to temporarily enable or disable a particular extension package, 
+					for example, if the extension is not stable enough to handle a large amount of 
+					photos or if menus get crowded with extensions.
+				</para>
+				<para>
+					In the <guilabel>Manage Extensions</guilabel> dialog select the extension 
+					package and click <guibutton>Enable</guibutton> or <guibutton>Disable</guibutton>. 
+					You will have to restart F-Spot to let changes apply.
+				</para>
+			</sect2>
+			
+			<sect2 id="extend-managing-extensions-removing-extensions">
+				<title>Removing extensions</title>
+
+				<para>
+					If you don't need an extension you can remove it from the system completely. 
+					In the <guilabel>Manage Extensions</guilabel> dialog select the extension 
+					package you want to remove and click <guibutton>Delete</guibutton>.
+				</para>
+			</sect2>
+			
+			<sect2 id="extend-managing-extensions-reading-summary-of-extensions">
+				<title>Reading summary of extensions</title>
+
+				<para>
+					Every extension package contains metadata that provides the following information about the extension:
+				</para>
+
+				<orderedlist>
+					<listitem>
+						<para>
+							Description, which usually covers puprose of the extension
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Version
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Author
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Dependencies
+						</para>
+					</listitem>
+				</orderedlist>
+				
+				<para>
+					In the <guilabel>Manage Extensions</guilabel> dialog select the extension 
+					package you want to read summary of and click <guibutton>Information</guibutton>.
+				</para>
+			</sect2>
+		</sect1>
+		
+		<sect1 id="extend-developing-extensions">
+			<title>Developing extensions</title>
+
+			<para>
+				<ulink url="http://f-spot.org/Extend_F-Spot">Extend F-Spot</ulink> document 
+				gives instructions on developing your own extensions for F-Spot.
 			</para>
 		</sect1>
 	</chapter>
@@ -500,7 +1002,8 @@
 						</row>
 						<row>
 							<entry>
-								Arrow keys (up, down, left, right) or k, j, h, l keys
+								Arrow keys (up, down, left, right) or <keycap>k</keycap>, 
+								<keycap>j</keycap>, <keycap>h</keycap>, <keycap>l</keycap> keys
 							</entry>
 							<entry>
 								Move focus
@@ -612,7 +1115,7 @@
 				</tgroup>
 			</informaltable>
 		</sect1>
-		
+
 		<sect1 id="shortcuts-edit-mode">
 			<title>Edit Mode Shortcuts</title>
 			<informaltable frame="all">
@@ -681,7 +1184,8 @@
 								<keycap>v</keycap>
 							</entry>
 							<entry>
-								Examine photo with magnifying glass (Loupe)
+								Examine photo with magnifying glass (Loupe). Doubleclick on the 
+								Loupe, or type <keycap>v</keycap> again to close it.
 							</entry>
 						</row>
 					</tbody>
