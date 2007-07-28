@@ -514,13 +514,19 @@ public class PhotoView : EventBox {
 		sepia_button.Clicked += HandleSepiaButtonClicked;
 
 		ItemAction straighten = new TiltEditorAction (photo_view);
-		toolbar.Insert (straighten.CreateToolItem () as ToolItem, -1);
+		ToolButton straighten_btn = straighten.CreateToolItem () as ToolButton;
+		straighten_btn.SetTooltip (tips, straighten.Tooltip, String.Empty);
+		toolbar.Insert (straighten_btn, -1);
 		
 		ItemAction softfocus = new SoftFocusEditorAction (photo_view);
-		toolbar.Insert (softfocus.CreateToolItem () as ToolItem, -1);
+		ToolButton softfocus_btn = softfocus.CreateToolItem () as ToolButton;
+		softfocus_btn.SetTooltip (tips, softfocus.Tooltip, String.Empty);
+		toolbar.Insert (softfocus_btn, -1);
 
 		ItemAction autocolor = new AutoColor (photo_view.Item);
-		toolbar.Insert (autocolor.CreateToolItem () as ToolItem, -1);
+		ToolButton autocolor_btn = autocolor.CreateToolItem () as ToolButton;
+		autocolor_btn.SetTooltip (tips, autocolor.Tooltip, String.Empty);
+		toolbar.Insert (autocolor_btn, -1);
 
 		SeparatorToolItem white_space = new SeparatorToolItem ();
 		white_space.Draw = false;
