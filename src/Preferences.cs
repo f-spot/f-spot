@@ -219,6 +219,7 @@ namespace FSpot
 
 				try {
 					val = Client.Get (key);
+					cache.Add (key, val);
 				} catch (GConf.NoSuchKeyException) {
 					val = GetDefault (key);
 
@@ -226,7 +227,6 @@ namespace FSpot
 						Set (key, val);
 				}
 
-				cache.Add (key, val);
 				return val;
 			}
 		}

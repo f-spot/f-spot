@@ -1,5 +1,10 @@
 2007-07-28  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/Preferences.cs: proper fix for the dup key issue. Thx goes to
+	Mike Gemunde.
+
+2007-07-28  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/PhotoView.cs: Hooking the missing tooltips. Is this a bug in
 	Action.CreateToolItem or a mis-usage... ?
 
