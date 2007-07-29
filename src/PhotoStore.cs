@@ -176,6 +176,9 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		get {
 			return directory_path;
 		}
+		set {
+			directory_path = value;
+		}
 	}
 
 	private ArrayList tags;
@@ -1016,9 +1019,11 @@ public class PhotoStore : DbStore {
 	private void Update (Photo photo) {
 		// Update photo.
 
-		Database.ExecuteNonQuery (new DbCommand ("UPDATE photos SET description = :description, " +
+		Database.ExecuteNonQuery (new DbCommand ("UPDATE photos SET description = :description, " + 
+						     "directory_path = :directory_path, " +
 						     "default_version_id = :default_version_id, time = :time WHERE id = :id ",
 						     "description", photo.Description,
+						     "directory_path", photo.DirectoryPath,
 						     "default_version_id", photo.DefaultVersionId,
 						     "time", DbUtils.UnixTimeFromDateTime (photo.Time),
 						     "id", photo.Id));
