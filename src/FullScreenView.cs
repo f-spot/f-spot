@@ -81,6 +81,7 @@ namespace FSpot {
 				notebook.Show ();
 
 				scroll = new ScrolledView ();
+				scroll.ScrolledWindow.SetPolicy (PolicyType.Never, PolicyType.Never);
 				view = new PhotoImageView (collection);
 				// FIXME this should be handled by the new style setting code
 				view.ModifyBg (Gtk.StateType.Normal, this.Style.Black);

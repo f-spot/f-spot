@@ -1,3 +1,8 @@
+2007-07-30  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/FullScreenView.cs: No longer shows the sliders while switching
+	to fullscreen. Fixes bgo #461708.
+
 2007-07-28  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/Preferences.cs: proper fix for the dup key issue. Thx goes to
