@@ -13,6 +13,10 @@ namespace FSpot
 		public const string MAIN_WINDOW_Y = "/apps/f-spot/ui/main_window_y";
 		public const string MAIN_WINDOW_WIDTH = "/apps/f-spot/ui/main_window_width";
 		public const string MAIN_WINDOW_HEIGHT = "/apps/f-spot/ui/main_window_height";
+
+ 		public const string IMPORT_WINDOW_WIDTH = "/apps/f-spot/ui/import_window_width";
+ 		public const string IMPORT_WINDOW_HEIGHT = "/apps/f-spot/ui/import_window_height";
+ 		public const string IMPORT_WINDOW_PANE_POSITION = "/apps/f-spot/ui/import_window_pane_position";
 		
 		public const string VIEWER_WIDTH = "/apps/f-spot/ui/viewer_width";
 		public const string VIEWER_HEIGHT = "/apps/f-spot/ui/viewer_height";
@@ -133,7 +137,12 @@ namespace FSpot
 			case MAIN_WINDOW_HEIGHT:
 			case MAIN_WINDOW_WIDTH:
 				return null;
-			
+				
+			case IMPORT_WINDOW_HEIGHT:
+			case IMPORT_WINDOW_WIDTH:
+			case IMPORT_WINDOW_PANE_POSITION:
+				return 0;
+					
 			case METADATA_EMBED_IN_IMAGE:
 			case MAIN_WINDOW_MAXIMIZED:
 				return false;

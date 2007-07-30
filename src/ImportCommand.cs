@@ -302,6 +302,7 @@ public class ImportCommand : FSpot.GladeDialog {
 	[Glade.Widget] Gtk.Label tag_label;
 	[Glade.Widget] Gtk.EventBox frame_eventbox;
 	[Glade.Widget] ProgressBar progress_bar;
+	[Glade.Widget] Gtk.HPaned import_hpaned;
 	
 	ArrayList tags_selected;
 
@@ -562,6 +563,12 @@ public class ImportCommand : FSpot.GladeDialog {
 		this.Dialog.WindowPosition = Gtk.WindowPosition.CenterOnParent;
 		this.Dialog.Response += HandleDialogResponse;
 
+ 		if ((int) FSpot.Preferences.Get (FSpot.Preferences.IMPORT_WINDOW_WIDTH) > 0)
+ 			this.Dialog.Resize ((int) FSpot.Preferences.Get (FSpot.Preferences.IMPORT_WINDOW_WIDTH), (int) FSpot.Preferences.Get(FSpot.Preferences.IMPORT_WINDOW_HEIGHT));
+
+ 		if ((int) FSpot.Preferences.Get (FSpot.Preferences.IMPORT_WINDOW_PANE_POSITION) > 0)
+			import_hpaned.Position = (int) FSpot.Preferences.Get (FSpot.Preferences.IMPORT_WINDOW_PANE_POSITION);
+
 	        AllowFinish = false;
 		
 		this.Dialog.DefaultResponse = ResponseType.Ok;
@@ -576,7 +583,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		collection = new FSpot.PhotoList (new Photo [0]);
 		tray = new FSpot.ScalingIconView (collection);
 		tray.Selection.Changed += HandleTraySelectionChanged;
-		icon_scrolled.SetSizeRequest (200, 200);
+		icon_scrolled.SetSizeRequest (400, 200);
 		icon_scrolled.Add (tray);
 		//icon_scrolled.Visible = false;
 		tray.DisplayTags = false;
@@ -591,7 +598,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		FSpot.Global.ModifyColors (photo_scrolled);
 		FSpot.Global.ModifyColors (photo_view);
 
-		photo_view.Pixbuf = PixbufUtils.LoadFromAssembly ("f-spot-48.png");
+		photo_view.Pixbuf = FSpot.Global.IconTheme.LoadIcon ("f-spot", 48, (Gtk.IconLookupFlags)0);
 		photo_view.Fit = true;
 			
 		tag_entry = new FSpot.Widgets.TagEntry (MainWindow.Toplevel.Database.Tags, false);
@@ -601,6 +608,7 @@ public class ImportCommand : FSpot.GladeDialog {
 		tag_entry.Show ();
 
 		this.Dialog.Show ();
+
 		//source_option_menu.Changed += HandleSourceChanged;
 		if (path != null) {
 			SetImportPath (path);
@@ -658,6 +666,13 @@ public class ImportCommand : FSpot.GladeDialog {
 					store.Commit (p);
 				}
 			}
+
+			int width, height;
+			this.Dialog.GetSize (out width, out height);
+
+			FSpot.Preferences.Set (FSpot.Preferences.IMPORT_WINDOW_WIDTH, width);
+			FSpot.Preferences.Set (FSpot.Preferences.IMPORT_WINDOW_HEIGHT, height);
+			FSpot.Preferences.Set (FSpot.Preferences.IMPORT_WINDOW_PANE_POSITION, import_hpaned.Position);
 
 			this.Dialog.Destroy ();
 			return collection.Count;
