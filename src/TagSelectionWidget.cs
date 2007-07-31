@@ -449,9 +449,15 @@ public class TagSelectionWidget : TreeView {
 			}
 		}
 
-		if (expanded_tags.Count > 0)
-			FSpot.Preferences.Set (	FSpot.Preferences.EXPANDED_TAGS,
+#if GCONF_SHARP_2_18
+		FSpot.Preferences.Set (	FSpot.Preferences.EXPANDED_TAGS, (int []) expanded_tags.ToArray (typeof (int)));
+#else
+		if (expanded_tags.Count == 0)
+			expanded_tags.Add (-1);
+
+		FSpot.Preferences.Set (	FSpot.Preferences.EXPANDED_TAGS,
 						(int []) expanded_tags.ToArray (typeof (int)));
+#endif
 	}
 
 	public void EditSelectedTagName ()

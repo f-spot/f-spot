@@ -1,4 +1,11 @@
-2007-07-30  Stephane Delcroix  <stephane@delcroix.org>
+2007-07-31  Stephane Delcroix  <stephane@delcroix.org>
+
+	* configure.in: detect (future) gconf-sharp-2.18
+	* src/TagSelectionWidget.cs: save unexpanded tag tree as well, proper
+	fix for gconf-sharp-2.18, workaround by Mike Gemuende for current
+	gconf-sharp. Fixes bgo #418583.
+
+2007-07-31  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/Imaging/Tiff.cs: avoid a nullreference exception on (some) DNG
 	import. Fixes bgo #452856.
