@@ -2191,6 +2191,9 @@ namespace FSpot.Tiff {
 			 */
 			sub = (SubdirectoryEntry) Header.Directory.Lookup (TagId.SubIFDs);	
 
+			if (e == null)
+				e = dir.Lookup (TagId.NewSubfileType);
+
 			int i = 0;
 			do {
 				uint dirtype = e.ValueAsLong [0];
