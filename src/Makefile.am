@@ -75,6 +75,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Extensions/ICommand.cs	\
 	$(srcdir)/Extensions/IMenuGenerator.cs	\
 	$(srcdir)/Extensions/MenuNode.cs	\
+	$(srcdir)/Extensions/OpenWithMenu.cs	\
 	$(srcdir)/Extensions/CommandMenuItemNode.cs	\
 	$(srcdir)/Extensions/PopupCommands.cs	\
 	$(srcdir)/Fader.cs			\
@@ -153,7 +154,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/MainWindow.cs			\
 	$(srcdir)/MetaStore.cs			\
 	$(srcdir)/MetadataStore.cs		\
-	$(srcdir)/OpenWithMenu.cs		\
 	$(srcdir)/Operation.cs			\
 	$(srcdir)/PhotoImageView.cs		\
 	$(srcdir)/PhotoLoader.cs		\
