@@ -101,6 +101,8 @@ public class Tag : DbItem, IComparable {
 	public Pixbuf Icon {
 		set {
 			theme_icon_name = null;
+			if (icon != null)
+				icon.Dispose ();
 			icon = value;
 			cached_icon_size = IconSize.Hidden;
 		}
@@ -131,12 +133,16 @@ public class Tag : DbItem, IComparable {
 			if (tag_icon_size == cached_icon_size)
 				return cached_icon;
 			if (theme_icon_name != null) { //Theme icon
+				if (cached_icon != null)
+					cached_icon.Dispose ();
 				cached_icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, theme_icon_name, (int) tag_icon_size, (Gtk.IconLookupFlags)0);
 
 				if (Math.Max (cached_icon.Width, cached_icon.Height) <= (int) tag_icon_size) 
 					return cached_icon;
 			}
 			if (Math.Max (icon.Width, icon.Height) >= (int) tag_icon_size) { //Don't upscale
+				if (cached_icon != null)
+					cached_icon.Dispose ();
 				cached_icon = icon.ScaleSimple ((int) tag_icon_size, (int) tag_icon_size, InterpType.Bilinear);
 				cached_icon_size = tag_icon_size;
 				return cached_icon;
