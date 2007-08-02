@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-29 00:37+0200\n"
-"PO-Revision-Date: 2007-07-29 00:47+0100\n"
+"POT-Creation-Date: 2007-08-02 09:40+0200\n"
+"PO-Revision-Date: 2007-08-02 09:40+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -707,6 +707,10 @@ msgstr "Felinformation"
 msgid "An unhandled exception was thrown: "
 msgstr "Ett ohanterat undantag kastades: "
 
+#: ../src/Extensions/OpenWithMenu.cs:93
+msgid "No applications available"
+msgstr "Inga applikationer tillgängliga"
+
 #: ../src/FSpot.addin.xml.h:1
 msgid "Attach Tag"
 msgstr "Fäst tagg"
@@ -938,7 +942,7 @@ msgstr "Bildspel"
 msgid "Start slideshow"
 msgstr "Starta bildspel"
 
-#: ../src/FullScreenView.cs:106
+#: ../src/FullScreenView.cs:107
 msgid "Slide transition: "
 msgstr "Bildövergång: "
 
@@ -1226,27 +1230,27 @@ msgstr "Välj mapp"
 msgid "(No Cameras Detected)"
 msgstr "(Inga kameror identifierades)"
 
-#: ../src/ImportCommand.cs:378
+#: ../src/ImportCommand.cs:379
 #, csharp-format
 msgid "Loading {0} of {1}"
 msgstr "Läser in {0} av {1}"
 
-#: ../src/ImportCommand.cs:446
+#: ../src/ImportCommand.cs:447
 msgid "Done Loading"
 msgstr "Inläsningen är färdig"
 
-#: ../src/ImportCommand.cs:636
+#: ../src/ImportCommand.cs:644
 msgid "Directory does not exist."
 msgstr "Katalogen finns inte."
 
-#: ../src/ImportCommand.cs:637
+#: ../src/ImportCommand.cs:645
 #, csharp-format
 msgid "The directory you selected \"{0}\" does not exist.  Please choose a different directory"
-msgstr "Katalogen du valde \"{0}\" finns inte. Vänligen välj en annan katalog"
+msgstr "Katalogen du valde \"{0}\" finns inte. Välj en annan katalog"
 
 #. Prepare the Last Import root tag
-#: ../src/ImportCommand.cs:682
-#: ../src/ImportCommand.cs:684
+#: ../src/ImportCommand.cs:697
+#: ../src/ImportCommand.cs:699
 #: ../src/XmpTagsImporter.cs:86
 msgid "Import Tags"
 msgstr "Importera taggar"
@@ -1596,7 +1600,7 @@ msgstr "Taggen är inte tom"
 #: ../src/MainWindow.cs:2406
 #, csharp-format
 msgid "Can not delete tags that have tags within them.  Please delete tags under \"{0}\" first"
-msgstr "Kan inte ta bort taggar som har andra taggar under sig.  Vänligen ta bort alla taggar under \"{0}\" först"
+msgstr "Kan inte ta bort taggar som har andra taggar under sig.  Ta bort alla taggar under \"{0}\" först"
 
 #: ../src/MainWindow.cs:2830
 msgid "Rotate selected photo left"
@@ -1743,18 +1747,14 @@ msgstr "Skärpa"
 msgid "Scene Type"
 msgstr "Scentyp"
 
-#: ../src/OpenWithMenu.cs:93
-msgid "No applications available"
-msgstr "Inga applikationer tillgängliga"
-
-#: ../src/PhotoStore.cs:385
+#: ../src/PhotoStore.cs:388
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "Ändrad"
 msgstr[1] "Ändrad ({0})"
 
-#: ../src/PhotoStore.cs:404
+#: ../src/PhotoStore.cs:407
 #, csharp-format
 msgid "Modified in {1}"
 msgid_plural "Modified in {1} ({0})"
@@ -1763,7 +1763,7 @@ msgstr[1] "Ändrades på {1} ({0})"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/PhotoStore.cs:589
+#: ../src/PhotoStore.cs:592
 #: ../src/f-spot.glade.h:167
 msgid "Original"
 msgstr "Original"
@@ -1881,7 +1881,7 @@ msgstr "Ingen markering tillgänglig"
 
 #: ../src/PhotoView.cs:317
 msgid "This tool requires an active selection. Please select a region of the photo and try the operation again"
-msgstr "Detta verktyg kräver en aktiv markering. Vänligen markera ett område i fotot och försök göra samma operation igen"
+msgstr "Detta verktyg kräver en aktiv markering. Markera ett område i fotot och försök göra samma operation igen"
 
 #: ../src/PhotoView.cs:475
 msgid "Comment:"
@@ -1956,7 +1956,7 @@ msgstr "Fel vid sändning till galleri: {0}"
 msgid "Available space :"
 msgstr "Tillgängligt utrymme :"
 
-#: ../src/Preferences.cs:181
+#: ../src/Preferences.cs:190
 msgid "Photos"
 msgstr "Foton"
 
@@ -2057,7 +2057,7 @@ msgstr "Ställ in som bakgrund"
 
 #: ../src/TagCommands.cs:89
 #: ../src/TagCommands.cs:217
-#: ../src/TagSelectionWidget.cs:505
+#: ../src/TagSelectionWidget.cs:511
 msgid "This name is already in use"
 msgstr "Detta namn används redan"
 
@@ -2153,7 +2153,7 @@ msgstr "Inte {0}"
 msgid "Drag tags here to search for them"
 msgstr "Dra taggar hit för att söka efter dem"
 
-#: ../src/TagSelectionWidget.cs:504
+#: ../src/TagSelectionWidget.cs:510
 msgid "Error renaming tag"
 msgstr "Fel vid namnbyte av tagg"
 
@@ -2900,7 +2900,7 @@ msgstr "Bild_storlek:"
 
 #: ../src/f-spot.glade.h:175
 msgid "Please verify that the settings for this gallery are correct."
-msgstr "Vänligen kontrollera att inställningarna för detta bildgalleri är korrekta."
+msgstr "Kontrollera att inställningarna för detta bildgalleri är korrekta."
 
 #: ../src/f-spot.glade.h:176
 msgid ""
