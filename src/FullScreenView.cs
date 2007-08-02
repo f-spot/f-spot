@@ -101,6 +101,8 @@ namespace FSpot {
 				scroll.ScrolledWindow.Add (view);
 
 				Toolbar tbar = new Toolbar ();
+				tbar.ToolbarStyle = Gtk.ToolbarStyle.BothHoriz;
+
 				tbar.ShowArrow = false;
 				tbar.BorderWidth = 15;
 
