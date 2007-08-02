@@ -1,5 +1,9 @@
 2007-08-02  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/MainWindow.cs: allow only one About dialog at a time.
+
+2007-08-02  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/XmpTagsImporter.cs: Patch from Bengt Thuree to read Description
 	from the UserComment tag. Fixes bgo #397171 and the re-import issues
 	raised lately on the mailing list.

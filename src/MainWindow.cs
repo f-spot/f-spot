@@ -1558,6 +1558,7 @@ public class MainWindow {
 //				"f-spot.xml");
 	}
 
+	private static About about = null;
 	public static void HandleAbout (object sender, EventArgs args)
 	{
 		string [] authors = new string [] {
@@ -1603,12 +1604,15 @@ public class MainWindow {
                 	translators = null;
                 }
 
-                new About ("F-Spot", 
+		if (about == null)
+			about = new About ("F-Spot", 
 			   FSpot.Defines.VERSION, 
 			   Catalog.GetString ("Copyright \x00a9 2003-2007 Novell Inc."),
                            null, authors, new string [0], translators, 
-			   PixbufUtils.LoadFromAssembly ("f-spot-logo.svg")).Show();
-		}
+			   PixbufUtils.LoadFromAssembly ("f-spot-logo.svg"));
+		about.Destroyed += delegate (object o, EventArgs e) {about = null;};
+		about.Show ();
+	}
 
 	void HandleTagSizeChange (object sender, EventArgs args)
 	{
