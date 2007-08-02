@@ -43,7 +43,6 @@ namespace FSpot {
 
 		public InfoOverlay (Widget w, BrowsablePointer item) : base (w)
 		{
-			//AutoHide = false;
 			XAlign = 0.9;
 			YAlign = 0.1;
 			box = new InfoItem (item);
@@ -52,7 +51,7 @@ namespace FSpot {
 			box.Show ();
 			Visibility = VisibilityType.Partial;
 			KeepAbove = true;
-			WindowPosition = WindowPosition.Mouse;
+			//WindowPosition = WindowPosition.Mouse;
 			AutoHide = false;
 		}
 	}

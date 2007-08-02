@@ -24,6 +24,7 @@ namespace FSpot {
 		private ControlOverlay controls;
 		//		private ImageDisplay display;
 		private TextureDisplay display;
+		private ToolButton play_pause_button;
 
 		ActionGroup actions;
 		const string ExitFullScreen = "ExitFullScreen";
@@ -33,6 +34,13 @@ namespace FSpot {
 		
 		public FullScreenView (IBrowsableCollection collection) : base ("Full Screen Mode")
 		{
+			string style = "style \"test\" {\n" +
+				"GtkToolbar::shadow_type = GTK_SHADOW_NONE\n" +
+				"}\n" +
+				"class \"GtkToolbar\" style \"test\"";
+
+			Gtk.Rc.ParseString (style);
+
 			Name = "FullscreenContainer";
 			try {
 				//scroll = new Gtk.ScrolledWindow (null, null);
@@ -91,38 +99,90 @@ namespace FSpot {
 				view.MotionNotifyEvent += HandleViewMotion;
 				
 				scroll.ScrolledWindow.Add (view);
-				HBox hhbox = new HBox ();
-				hhbox.PackEnd (GetButton (HideToolbar), false, true, 0);
-				hhbox.PackEnd (GetButton (Info), false, true, 0);
-				hhbox.PackStart (GetButton (ExitFullScreen, true), false, false, 0);
-				hhbox.PackStart (Add (new PreviousPictureAction (view.Item)), false, false, 0);
-				hhbox.PackStart (GetButton (SlideShow), false, true, 0);
-				hhbox.PackStart (Add (new NextPictureAction (view.Item)), false, false, 0);
-				//hhbox.PackStart (Add (new AutoColor (view.Item)), false, false, 0);
+
+				Toolbar tbar = new Toolbar ();
+				tbar.ShowArrow = false;
+				tbar.BorderWidth = 15;
+
+				ToolItem t_item = (actions [ExitFullScreen]).CreateToolItem () as ToolItem;
+				t_item.IsImportant = true;
+				tbar.Insert (t_item, -1);
+
+				Action action = new PreviousPictureAction (view.Item);
+				actions.Add (action);
+#if GTK_2_10
+				tbar.Insert (action.CreateToolItem () as ToolItem, -1);
+#else
+				t_item = action.CreateToolItem () as ToolItem;
+				(t_item as ToolButton).IconName = "gtk-go-back-ltr"; 
+				tbar.Insert (t_item, -1);
+#endif
+
+				play_pause_button = (actions [SlideShow]).CreateToolItem () as ToolButton;
+#if GTK_2_10
+				tbar.Insert (play_pause_button, -1);
+#else
+				play_pause_button.IconName = "media-playback-start";
+				tbar.Insert (play_pause_button, -1);
+#endif
+
+				action = new NextPictureAction (view.Item);
+				actions.Add (action);
+#if GTK_2_10
+				tbar.Insert (action.CreateToolItem () as ToolItem, -1);
+#else
+				t_item = action.CreateToolItem () as ToolItem;
+				(t_item as ToolButton).IconName = "gtk-go-forward-ltr"; 
+				tbar.Insert (t_item, -1);
+#endif
+
+				t_item = new ToolItem ();
+				t_item.Child = new Label (Catalog.GetString ("Slide transition: "));
+				tbar.Insert (t_item, -1);
 
 				display = new TextureDisplay (view.Item);
 				display.AddEvents ((int) (Gdk.EventMask.PointerMotionMask));
 				display.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
 				display.MotionNotifyEvent += HandleViewMotion;
-				Label effect = new Label (Catalog.GetString ("Slide transition: "));
-				hhbox.PackStart (effect, false, false, 5);
-				hhbox.PackStart (display.GetCombo (), false, false, 0);
 				display.Show ();
 
-				hhbox.PackStart (Add (new RotateLeftAction (view.Item)), false, false, 0);
-				hhbox.PackStart (Add (new RotateRightAction (view.Item)), false, false, 0);
-				hhbox.BorderWidth = 15;
+				t_item = new ToolItem ();
+				t_item.Child = display.GetCombo ();
+				tbar.Insert (t_item, -1);
+
+				action = new RotateLeftAction (view.Item);
+				actions.Add (action);
+#if GTK_2_10
+				tbar.Insert (action.CreateToolItem () as ToolItem, -1);
+#else
+				t_item = action.CreateToolItem () as ToolItem;
+				(t_item as ToolButton).IconName = "object-rotate-left"; 
+				tbar.Insert (t_item, -1);
+#endif
+
+				action = new RotateRightAction (view.Item);
+				actions.Add (action);
+#if GTK_2_10
+				tbar.Insert (action.CreateToolItem () as ToolItem, -1);
+#else
+				t_item = action.CreateToolItem () as ToolItem;
+				(t_item as ToolButton).IconName = "object-rotate-right"; 
+				tbar.Insert (t_item, -1);
+#endif
 
 				tag_view = new TagView ();
-				hhbox.PackStart (tag_view, false, false, 0);
+				t_item = new ToolItem ();
+				t_item.Child = tag_view;
+				tbar.Insert (t_item, -1);
 
-				//display = new ImageDisplay (view.Item);
+				tbar.Insert ((actions [Info]).CreateToolItem () as ToolItem, -1);
+
+				tbar.Insert ((actions [HideToolbar]).CreateToolItem () as ToolItem, -1);
 
 				notebook.AppendPage (scroll, null);
 				notebook.AppendPage (display, null);
 
-				hhbox.ShowAll ();
-				//scroll.ShowControls ();
+				tbar.ShowAll ();
 				
 				scroll.Show ();
 				this.Decorated = false;
@@ -133,7 +193,7 @@ namespace FSpot {
 				view.GrabFocus ();
 				
 				controls = new ControlOverlay (this);
-				controls.Add (hhbox);
+				controls.Add (tbar);
 				controls.Dismiss ();
 
 				notebook.CurrentPage = 0;
@@ -141,12 +201,6 @@ namespace FSpot {
 				System.Console.WriteLine (e);
 			}	
 
-		}
-
-		private Widget Add (Action action)
-		{
-			actions.Add (action);
-			return GetButton (action.Name);
 		}
 
 		private void HandleItemChanged (object sender, BrowsablePointerChangedArgs args)
@@ -169,40 +223,7 @@ namespace FSpot {
 			return ret;
 		}
 #endif
-		private Button GetButton (string name)
-		{
-			return GetButton (name, false);
-		}
-
-		private Button GetButton (string name, bool label)
-		{
-			Action action = actions [name];
-			Widget w = action.CreateIcon (IconSize.LargeToolbar);
-			if (label) {
-				HBox box = new HBox ();
-				box.PackStart (w, false, false, 0);
-				Label l = new Label ();
-				//l.Markup = "<small>" + action.Label + "</small>";
-				l.Text = action.Label;
-				box.PackStart (l);
-				w = box;
-			}
-			Button button;
-			if (action is ToggleAction) {
-				ToggleButton toggle = new ToggleButton ();
-				toggle.Active = ((ToggleAction)action).Active;
-				button = toggle;
-			} else {
-				button = new Button ();
-			}
-			button.Relief = ReliefStyle.None;
-			button.Add (w);
-			w.ShowAll ();
-
-			action.ConnectProxy (button);
-			return button;
-		}
-			
+		
 		private void ExitAction (object sender, System.EventArgs args)
 		{
 			this.Destroy ();
@@ -260,10 +281,13 @@ namespace FSpot {
 
 		public bool PlayPause ()
 		{
-			if (notebook.CurrentPage == 0)
+			if (notebook.CurrentPage == 0) {
 				notebook.CurrentPage = 1;
-			else
+				play_pause_button.IconName = "media-playback-pause";
+			} else {
 				notebook.CurrentPage = 0;
+				play_pause_button.IconName = "media-playback-start";
+			}
 			return true;
 		}
 

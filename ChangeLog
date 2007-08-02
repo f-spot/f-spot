@@ -1,5 +1,10 @@
 2007-08-02  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/FullScreenView.cs: replace the hbox by a proper toolbar, switch
+	the play/pause icon button according to the status.
+
+2007-08-02  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/MainWindow.cs: allow only one About dialog at a time.
 
 2007-08-02  Stephane Delcroix  <stephane@delcroix.org>
