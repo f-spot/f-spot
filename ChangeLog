@@ -1,3 +1,9 @@
+2007-08-02  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/XmpTagsImporter.cs: Patch from Bengt Thuree to read Description
+	from the UserComment tag. Fixes bgo #397171 and the re-import issues
+	raised lately on the mailing list.
+
 2007-07-31  Stephane Delcroix  <stephane@delcroix.org>
 
 	* configure.in: detect (future) gconf-sharp-2.18

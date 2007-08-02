@@ -1,12 +1,12 @@
-// XmpTagsImporter.cs: Creates tags based on embedded XMP tags in the photo/sidecar.
-//
-// Author(s):
-//   Bengt Thuree (bengt@thuree.com)
-//   Larry Ewing <lewing@novell.com>
-//
-// (C) 2006 Bengt Thuree, 
-//     2006 Novell Inc.
-// 
+/*
+ * FSpot.Xmp.XmpTagsImporter: Creates tags based on embedded XMP tags in the photo/sidecar.
+ *
+ * Author(s)
+ * 	Bengt Thuree (bengt@thuree.com)
+ * 	Larry Ewing <lewing@novell.com>
+ *
+ * This is free software. See COPYING for details.
+ */
 
 using Gtk;
 using System;
@@ -24,7 +24,7 @@ namespace FSpot.Xmp {
 		private Stack tags_created;
 
 		static private string LastImportIcon = "f-spot-imported-xmp-tags.png";
-		static private string PlacesIcon = "f-spot-places.png";
+		static private string PlacesIcon = "emblem-places";
 
 	        const string UserComment = MetadataStore.ExifNS + "UserComment";
 		const string Headline = MetadataStore.PhotoshopNS + "Headline";
@@ -109,15 +109,24 @@ namespace FSpot.Xmp {
 			return tag;
 		}
 		
-		private void AddTagToPhoto (Photo photo, Resource value, TagInfo sub_tag)
+		private static string GetTextField (Resource value)
 		{
+			string text_field = null;
 			Literal l = value as Literal;
 			if (l != null && l.Value != null && l.Value.Length > 0) {
-				string tag_name = l.Value;
+				text_field = l.Value;
 				if (Char.IsControl (l.Value [l.Value.Length - 1]))
-					tag_name = l.Value.Substring (0,l.Value.Length - 1);
-				AddTagToPhoto (photo, tag_name, sub_tag);
+					text_field = l.Value.Substring (0,l.Value.Length - 1);
 			}
+			return text_field;
+		}
+
+		private void AddTagToPhoto (Photo photo, Resource value, TagInfo sub_tag)
+		{
+			string tag_name;
+			tag_name = GetTextField (value);
+			if (tag_name != null && tag_name.Length > 0)
+				AddTagToPhoto (photo, tag_name, sub_tag);
 		}
 
 		private void AddTagToPhoto (Photo photo, string new_tag_name, TagInfo sub_tag)
@@ -139,23 +148,34 @@ namespace FSpot.Xmp {
 
 		public void ProcessStore (MetadataStore store, Photo photo)
 		{
-			Hashtable desc = new Hashtable ();
+			Hashtable descriptions = new Hashtable ();
 
 			foreach (Statement stmt in store) {
 				StatementList list = null;
 				
 				switch (stmt.Predicate.Uri) {
-				case Description:
-				case Headline:
-				case Caption:
-				case Title:
-				case UserComment:
-					list = (StatementList) desc [stmt.Predicate];
 
-					if (list == null)
-						desc [stmt.Predicate] = list = new StatementList ();
-						
-					list.Add (stmt);
+				case Caption:
+				case Headline:
+					if (!descriptions.Contains (stmt.Predicate.Uri)) {
+						string caption = (GetTextField (stmt.Object as Literal)).Trim ();
+						if ((caption != null) && (caption.Length > 0) )
+							descriptions.Add (stmt.Predicate.Uri, caption);
+					}
+					break;
+				case Title:
+				case Description:
+				case UserComment:
+					if (!(stmt.Object is Entity))
+						break;
+
+					foreach (Statement tag in store.Select (new Statement (stmt.Object as Entity, null, null))) {
+						if ( (tag.Predicate != RdfType) && (!descriptions.Contains(stmt.Predicate.Uri)) ) {
+							string title = (GetTextField(tag.Object as Literal)).Trim ();
+							if ( (title != null) && (title.Length > 0) )
+								descriptions.Add (stmt.Predicate.Uri, title);
+						}
+					}
 					break;
 
 				case State:
@@ -182,34 +202,30 @@ namespace FSpot.Xmp {
 				}
 			}
 
-#if false
-			/* 
-			 * FIXME I need to think through what bengt was doing here before I put it in 
-			 * it looks like we are doing some questionable repurposing of tags here and above
-			 */
-			
+			if (descriptions.Contains (UserComment))
+				photo.Description = descriptions [UserComment] as String;
 
-			if (xmd.GetXmpBag_0 ("UserComment") != null)
-				photo.Description = xmd.GetXmpBag_0 ("UserComment");
-			
+#if false	
+			//FIXME: looks like we are doing some questionable repurposing of tags here...
+
 			// We want to construct the following : Description = <Headline> :: <Caption>         
-			
+
 			// only check for more title/comment if you still do not have one.
 			if ((photo.Description == null) || (photo.Description.Length == 0)) {
-				if (xmd.GetXmpTag ("Headline") != null) 
-					photo.Description = xmd.GetXmpTag ("Headline");
+				if (descriptions.Contains (Headline)) 
+					photo.Description = descriptions [Headline] as String;
 				// Lets add the Caption to the existing Description (Headline).
-				if (xmd.GetXmpTag ("Caption") != null)
-					photo.Description += (( (photo.Description == null) ? "" : " :: ") + xmd.GetXmpTag ("Caption"));
+				if (descriptions.Contains (Caption))
+					photo.Description += (( (photo.Description == null) ? "" : " :: ") + descriptions [Caption] as String);
 			}	
 			
 			// only check for more title/comment if you still do not have one. 
 			if ((photo.Description == null) || (photo.Description.Length == 0)) {
-				if (xmd.GetXmpTag ("title") != null) 
-					photo.Description = xmd.GetXmpTag ("title");
+				if (descriptions.Contains (Title)) 
+					photo.Description = descriptions [Title] as String;
 				// Lets add the Description  to the existing Description (Title).
-				if (xmd.GetXmpTag ("description") != null)
-					photo.Description += (( (photo.Description == null) ? "" : " :: ") + xmd.GetXmpTag ("description"));
+				if (descriptions.Contains (Description))
+					photo.Description += (( (photo.Description == null) ? "" : " :: ") + descriptions [Description] as String);
 			}
 #endif
 		}
