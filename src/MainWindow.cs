@@ -1468,8 +1468,7 @@ public class MainWindow {
 	
 	void HandlePrintCommand (object sender, EventArgs e)
 	{
-		SilverlightSurface.Page.Create (main_window, icon_view.Selection);
-		//new FSpot.PrintDialog (SelectedPhotos ());
+		new FSpot.PrintDialog (SelectedPhotos ());
 	}
 
 	private Gtk.Dialog info_display_window;
