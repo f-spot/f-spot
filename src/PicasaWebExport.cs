@@ -215,7 +215,11 @@ namespace FSpot {
 				update_request_attributes["name"] = keyring_item_name;
 				update_request_attributes["username"] = account.Username;
 
-				Ring.CreateItem(keyring, ItemType.GenericSecret, keyring_item_name, update_request_attributes, account.Password, true);
+				try {
+					Ring.CreateItem(keyring, ItemType.GenericSecret, keyring_item_name, update_request_attributes, account.Password, true);
+				} catch {
+					continue;
+				}
 			}
 		}
 
