@@ -170,8 +170,12 @@ namespace FSpot.Xmp {
 						break;
 
 					foreach (Statement tag in store.Select (new Statement (stmt.Object as Entity, null, null))) {
-						if ( (tag.Predicate != RdfType) && (!descriptions.Contains(stmt.Predicate.Uri)) ) {
-							string title = (GetTextField(tag.Object as Literal)).Trim ();
+						if ( (tag.Predicate != RdfType) && (!descriptions.Contains (stmt.Predicate.Uri)) ) {
+							string title = null;
+							try {
+								title = (GetTextField ((Literal) tag.Object)).Trim ();
+							} catch {
+							}
 							if ( (title != null) && (title.Length > 0) )
 								descriptions.Add (stmt.Predicate.Uri, title);
 						}
