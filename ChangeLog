@@ -1,3 +1,8 @@
+2007-09-06  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/JobStore.cs: convert JobPriority to int32. Fixes bgo #462069.
+	Patch from Wolfgang Gradl.
+
 2007-08-06  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/XmpTagImporter.cs: catching a possible exception on null semweb

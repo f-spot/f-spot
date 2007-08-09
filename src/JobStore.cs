@@ -141,7 +141,7 @@ public class JobStore : DbStore {
 						"job_type", job_type.ToString (), 
 						"job_options", job_options, 
 						"run_at", DbUtils.UnixTimeFromDateTime (run_at),
-						"job_priority", job_priority));
+						"job_priority", Convert.ToInt32 (job_priority)));
 		
                 Job job = (Job) Activator.CreateInstance (job_type, (uint)id, job_options, run_at, job_priority, true);
 
