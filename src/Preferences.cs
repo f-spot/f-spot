@@ -99,6 +99,7 @@ namespace FSpot
 		public const string GNOME_SCREENSAVER_MODE = "/apps/gnome-screensaver/mode";
 
 		public const string GNOME_MAILTO_COMMAND = "/desktop/gnome/url-handlers/mailto/command";
+		public const string GNOME_MAILTO_ENABLED = "/desktop/gnome/url-handlers/mailto/enabled";
 
 		public const string PROXY_USE_PROXY = "/system/http_proxy/use_http_proxy";
 		public const string PROXY_HOST = "/system/http_proxy/host";
@@ -122,7 +123,7 @@ namespace FSpot
 					client.AddNotify ("/apps/f-spot", changed_handler);
 					client.AddNotify ("/apps/gnome-screensaver/themes", changed_handler);
 					client.AddNotify ("/apps/gnome-screensaver/mode", changed_handler);
-					client.AddNotify ("/desktop/gnome/url-handlers/mailto/command", changed_handler);
+					client.AddNotify ("/desktop/gnome/url-handlers/mailto", changed_handler);
 					client.AddNotify ("/system/http_proxy", changed_handler);
 				}
 				return client;

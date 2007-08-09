@@ -455,6 +455,8 @@ public class MainWindow {
 		LoadPreference (Preferences.SHOW_TOOLBAR);
 		LoadPreference (Preferences.SHOW_SIDEBAR);
 		LoadPreference (Preferences.SHOW_TIMELINE);
+
+		LoadPreference (Preferences.GNOME_MAILTO_ENABLED);
 		
 		Preferences.SettingChanged += OnPreferencesChanged;
 
@@ -2624,6 +2626,9 @@ public class MainWindow {
 		
 		case Preferences.METADATA_EMBED_IN_IMAGE:
 			write_metadata = (bool) val;
+			break;
+		case Preferences.GNOME_MAILTO_ENABLED:
+			send_mail.Visible = (bool) val;
 			break;
 		}
 	}

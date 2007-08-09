@@ -1,5 +1,12 @@
 2007-09-06  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/Preferences.cs:
+	* src/MainWindow.cs: honor the
+	/desktop/gnome/url-handlers/mailto/enabled key to show/hide the 'Send
+	Mail' menu item. Fixes bgo #464981.
+
+2007-09-06  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/JobStore.cs: convert JobPriority to int32. Fixes bgo #462069.
 	Patch from Wolfgang Gradl.
 
