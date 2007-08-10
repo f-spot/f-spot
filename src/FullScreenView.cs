@@ -286,9 +286,11 @@ namespace FSpot {
 			if (notebook.CurrentPage == 0) {
 				notebook.CurrentPage = 1;
 				play_pause_button.IconName = "media-playback-pause";
+				display.Start ();
 			} else {
 				notebook.CurrentPage = 0;
 				play_pause_button.IconName = "media-playback-start";
+				display.Stop ();
 			}
 			return true;
 		}

@@ -134,6 +134,16 @@ namespace FSpot {
 			return true;
 		}
 		
+		public void Start ()
+		{
+			flip.Start ();
+		}
+
+		public void Stop ()
+		{
+			flip.Stop ();	
+		}
+
 		private Texture CreateTexture ()
 		{
 			if (glx == null || GdkWindow == null)
