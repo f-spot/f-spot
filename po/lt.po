@@ -9,14 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: F-Spot HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-18 18:31+0300\n"
-"PO-Revision-Date: 2007-07-18 19:23+0300\n"
+"POT-Creation-Date: 2007-08-16 11:29+0300\n"
+"PO-Revision-Date: 2007-08-16 12:22+0300\n"
 "Last-Translator: Žygimantas Beručka <zygis@gnome.org>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
+"100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:62
 #: ../src/InfoBox.cs:74
@@ -98,6 +99,18 @@ msgstr "Pašalinti nepavyko!"
 msgid "Repository"
 msgstr "Saugykla"
 
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstaller.cs:16
+msgid "Installation cancelled"
+msgstr "Įdiegimas atšauktas"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:159
+msgid "Some of the required add-ins were not found"
+msgstr "Kai kurie reikalingi įskiepiai nerasti"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:171
+msgid "Installation failed"
+msgstr "Įdiegti nepavyko"
+
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:91
 msgid "Add-in"
 msgstr "Įskiepis"
@@ -134,7 +147,7 @@ msgstr "Įskiepio įdiegimas"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:134
 msgid "<b>Select the add-ins to install and click on Next</b>"
-msgstr "<b>Pasirinkite įdiegtinus įskiepius ir spustelėkite Kitas</b>"
+msgstr "<b>Pasirinkite įdiegtinus įskiepius ir spustelėkite Pirmyn</b>"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:148
 msgid "Install from:"
@@ -159,12 +172,12 @@ msgstr "Rodyti tik atnaujinimus"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:244
 msgid "_Unselect All"
-msgstr "_Nepasirinkti nieko"
+msgstr "_Nepasirinkti jokių"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:256
-#: ../src/f-spot.glade.h:191
+#: ../src/f-spot.glade.h:194
 msgid "Select _All"
-msgstr "Pasirinkti _viską"
+msgstr "Pasirinkti _visas"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:331
 msgid "label124"
@@ -177,6 +190,18 @@ msgstr "Bendra pažanga:"
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:370
 msgid "Downloading add-ins..."
 msgstr "Atsiunčiami įskiepiai..."
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:36
+msgid "Add-in Manager"
+msgstr "Įskiepių valdyklė"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:52
+msgid "Additional extensions are required to perform this operation."
+msgstr "Norint atlikti šią operaciją, reikia papildomų plėtinių."
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:62
+msgid "The following add-ins will be installed:"
+msgstr "Bus įdiegti šie įskiepiai:"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
 msgid "F-Spot Add-in Manager"
@@ -207,7 +232,7 @@ msgid "Disable"
 msgstr "Išjungti"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
-#: ../src/f-spot.glade.h:120
+#: ../src/f-spot.glade.h:122
 msgid "F-Spot"
 msgstr "F-Spot"
 
@@ -402,14 +427,17 @@ msgid "Save Image"
 msgstr "Išsaugoti paveikslėlį"
 
 #: ../libeog/eog-image.c:773
+#, c-format
 msgid "No image loaded."
 msgstr "Paveikslėlis neįkeltas."
 
 #: ../libeog/eog-image.c:780
+#, c-format
 msgid "Can't save non local files."
 msgstr "Negali išsaugoti nevietinių rinkmenų."
 
 #: ../libeog/eog-image.c:803
+#, c-format
 msgid "Unsupported image type for saving."
 msgstr "Nepalaikomas paveikslėlio tipas saugojimui."
 
@@ -469,7 +497,7 @@ msgstr "{0} iš {1}"
 
 #: ../src/CDExport.cs:131 ../src/FlickrExport.cs:302
 #: ../src/FolderExport.cs:228 ../src/GalleryExport.cs:728
-#: ../src/PicasaWebExport.cs:636 ../src/SmugMugExport.cs:579
+#: ../src/PicasaWebExport.cs:640 ../src/SmugMugExport.cs:579
 msgid "Done Sending Photos"
 msgstr "Fotografijos nusiųstos"
 
@@ -506,7 +534,7 @@ msgstr "Peržiūra"
 msgid "Path"
 msgstr "Kelias"
 
-#: ../src/CameraFileSelectionDialog.cs:66 ../src/f-spot.glade.h:123
+#: ../src/CameraFileSelectionDialog.cs:66 ../src/f-spot.glade.h:125
 msgid "File"
 msgstr "Rinkmena"
 
@@ -516,7 +544,7 @@ msgstr "Rodyklė"
 
 #: ../src/CameraFileSelectionDialog.cs:88
 msgid "Select Tag"
-msgstr "Pasirinkite žymę"
+msgstr "Pasirinkite žymą"
 
 #: ../src/CameraFileSelectionDialog.cs:124
 msgid "Downloading Previews"
@@ -562,7 +590,7 @@ msgid "Error saving adjusted photo"
 msgstr "Saugant pakoreguotą fotografiją įvyko klaida"
 
 #: ../src/ColorDialog.cs:212 ../src/HigMessageDialog.cs:15 ../src/Loupe.cs:58
-#: ../src/MainWindow.cs:1977 ../src/PhotoView.cs:265
+#: ../src/MainWindow.cs:1997 ../src/PhotoView.cs:265
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Gauta išimtis „{0}“. Nepavyko išsaugoti fotografijos {1}"
@@ -579,9 +607,9 @@ msgid ""
 "the tag to some photos or selecting a different tag in the\n"
 "F-Spot preference dialog."
 msgstr ""
-"Žymė „{0}“ nepritaikyta jokioms fotografijoms. Pabandykite\n"
-"pridėti žymę kai kurioms fotografijoms arba F-Spot nustatymų\n"
-"dialoge pasirinkite kitą žymę."
+"Žyma „{0}“ nepritaikyta jokioms fotografijoms. Pabandykite\n"
+"pridėti žymą kai kurioms fotografijoms arba F-Spot nustatymų\n"
+"dialoge pasirinkite kitą žymą."
 
 #: ../src/Core.cs:193
 msgid "Search returned no results"
@@ -593,10 +621,50 @@ msgid ""
 "selecting a different tag in the F-Spot preference\n"
 "dialog."
 msgstr ""
-"F-Spot ieškomos žymės nėra. Pabandykite F-Spot\n"
-"nustatymų dialoge pasirinkti kitą žymę."
+"F-Spot ieškomos žymos nėra. Pabandykite F-Spot\n"
+"nustatymų dialoge pasirinkti kitą žymą."
 
-#: ../src/Editors/SoftFocus.cs:25 ../src/ItemAction.cs:339
+#: ../src/DateCommands.cs:54
+msgid "Today"
+msgstr "Šiandien"
+
+#: ../src/DateCommands.cs:56
+msgid "Yesterday"
+msgstr "Vakar"
+
+#: ../src/DateCommands.cs:58
+msgid "Last 7 days"
+msgstr "Paskutinės 7 dienos"
+
+#: ../src/DateCommands.cs:60
+msgid "Last 30 days"
+msgstr "Paskutinės 30 dienų"
+
+#: ../src/DateCommands.cs:62
+msgid "Last 90 days"
+msgstr "Paskutinės 90 dienų"
+
+#: ../src/DateCommands.cs:64
+msgid "Last 360 days"
+msgstr "Paskutinės 360 dienų"
+
+#: ../src/DateCommands.cs:66
+msgid "Current Week (Mon-Sun)"
+msgstr "Dabartinė savaitė (Pir-Sek)"
+
+#: ../src/DateCommands.cs:68
+msgid "Previous Week (Mon-Sun)"
+msgstr "Ankstesnė savaitė (Pir-Sek)"
+
+#: ../src/DateCommands.cs:84 ../src/f-spot.glade.h:74
+msgid "All Images"
+msgstr "Visi paveikslėliai"
+
+#: ../src/DateCommands.cs:86
+msgid "Customized Range"
+msgstr "Pasirinktinis diapazonas"
+
+#: ../src/Editors/SoftFocus.cs:25 ../src/ItemAction.cs:341
 msgid "Soft Focus"
 msgstr "Nedidelis fokusavimas"
 
@@ -608,7 +676,7 @@ msgstr "Atšaukti"
 msgid "Apply"
 msgstr "Pritaikyti"
 
-#: ../src/Editors/Tilt.cs:28 ../src/ItemAction.cs:323
+#: ../src/Editors/Tilt.cs:28 ../src/ItemAction.cs:325
 msgid "Straighten"
 msgstr "Ištiesinti"
 
@@ -624,11 +692,49 @@ msgstr "Informacija apie klaidą"
 msgid "An unhandled exception was thrown: "
 msgstr "Buvo gauta neapdorota išimtis:"
 
+#: ../src/Extensions/OpenWithMenu.cs:93
+msgid "No applications available"
+msgstr "Nėra prieinamų programų"
+
 #: ../src/FSpot.addin.xml.h:1
+msgid "Attach Tag"
+msgstr "Prisegti žymą"
+
+#: ../src/FSpot.addin.xml.h:2
+msgid "Copy Photo Location"
+msgstr "Kopijuoti fotografijos vietą"
+
+#: ../src/FSpot.addin.xml.h:3
+msgid "Delete From Drive"
+msgstr "Ištrinti iš disko"
+
+#: ../src/FSpot.addin.xml.h:4
 msgid "Export to"
 msgstr "Eksportuoti į"
 
-#: ../src/FSpot.addin.xml.h:2
+#: ../src/FSpot.addin.xml.h:5
+msgid "Open With"
+msgstr "Atverti su"
+
+#: ../src/FSpot.addin.xml.h:6
+msgid "Remove From Catalog"
+msgstr "Pašalinti iš katalogo"
+
+#: ../src/FSpot.addin.xml.h:7
+msgid "Remove Tag"
+msgstr "Pašalinti žymą"
+
+#: ../src/FSpot.addin.xml.h:8 ../src/ItemAction.cs:80 ../src/MainWindow.cs:252
+#: ../src/SingleView.cs:73
+msgid "Rotate Left"
+msgstr "Pasukti kairėn"
+
+#: ../src/FSpot.addin.xml.h:9 ../src/ItemAction.cs:92 ../src/MainWindow.cs:256
+#: ../src/SingleView.cs:78
+msgid "Rotate Right"
+msgstr "Pasukti dešinėn"
+
+#: ../src/FSpot.addin.xml.h:10
 msgid "Tools"
 msgstr "Įrankiai"
 
@@ -646,9 +752,9 @@ msgstr "Klaida importuojant {0}{2}{2}{1}"
 msgid "No way to save files of type \"{0}\""
 msgstr "Negalima išsaugoti „{0}“ tipo rinkmenų"
 
-#: ../src/FlickrExport.cs:73 ../src/f-spot.glade.h:80
+#: ../src/FlickrExport.cs:73 ../src/f-spot.glade.h:81
 msgid "Authorize"
-msgstr "Autorizuoti"
+msgstr "Autorizuotis"
 
 #: ../src/FlickrExport.cs:78
 #, csharp-format
@@ -656,8 +762,8 @@ msgid ""
 "Return to this window after you have finished the authorization process on "
 "{0} and click the \"Complete Authorization\" button below"
 msgstr ""
-"Grįžkite prie šio lango, po to, kai gausite {0} prieigos teises, ir "
-"spragtelėkite žemiau esantį mygtuką „Baigti autorizaciją“"
+"Gavę {0} prieigos teises, grįžkite į šį langą ir spustelėkite žemiau esantį "
+"mygtuką „Baigti autorizaciją“"
 
 #: ../src/FlickrExport.cs:79
 msgid "Complete Authorization"
@@ -698,7 +804,7 @@ msgid "Uploading picture \"{0}\""
 msgstr "Siunčiamas paveikslėlis „{0}“"
 
 #: ../src/FlickrExport.cs:304 ../src/GalleryExport.cs:730
-#: ../src/PicasaWebExport.cs:638 ../src/SmugMugExport.cs:581
+#: ../src/PicasaWebExport.cs:642 ../src/SmugMugExport.cs:581
 msgid "Upload Complete"
 msgstr "Išsiųsta"
 
@@ -708,7 +814,7 @@ msgid "Error Uploading To {0}: {1}"
 msgstr "Siunčiant į {0} įvyko klaida: {1}"
 
 #: ../src/FlickrExport.cs:310 ../src/FolderExport.cs:202
-#: ../src/GalleryExport.cs:720 ../src/PicasaWebExport.cs:628
+#: ../src/GalleryExport.cs:720 ../src/PicasaWebExport.cs:632
 #: ../src/SmugMugExport.cs:571
 msgid "Error"
 msgstr "Klaida"
@@ -727,7 +833,7 @@ msgstr ""
 "teisę naudodami {0} žiniatinklio naršyklės sąsają."
 
 #: ../src/FlickrExport.cs:392 ../src/GalleryExport.cs:653
-#: ../src/PicasaWebExport.cs:543 ../src/SmugMugExport.cs:497
+#: ../src/PicasaWebExport.cs:547 ../src/SmugMugExport.cs:497
 msgid "Uploading Pictures"
 msgstr "Išsiunčiami paveikslėliai"
 
@@ -757,8 +863,8 @@ msgstr "Tamsu"
 msgid "Prev"
 msgstr "Ankst"
 
-#: ../src/FolderExport.cs:858 ../src/ItemAction.cs:101
-#: ../src/f-spot.glade.h:153
+#: ../src/FolderExport.cs:858 ../src/ItemAction.cs:103
+#: ../src/f-spot.glade.h:155
 msgid "Next"
 msgstr "Seknt"
 
@@ -782,36 +888,36 @@ msgstr "Puslapis:"
 msgid "Unhandled exception"
 msgstr "Neapdorota išimtinė situacija"
 
-#: ../src/FullScreenView.cs:43
+#: ../src/FullScreenView.cs:51
 msgid "Hide"
 msgstr "Paslėpti"
 
-#: ../src/FullScreenView.cs:45
+#: ../src/FullScreenView.cs:53
 msgid "Hide Toolbar"
 msgstr "Paslėpti įrankinę"
 
-#: ../src/FullScreenView.cs:51
+#: ../src/FullScreenView.cs:59
 msgid "Info"
 msgstr "Informacija"
 
-#: ../src/FullScreenView.cs:53
+#: ../src/FullScreenView.cs:61
 msgid "Image Information"
 msgstr "Paveikslėlio informacija"
 
-#: ../src/FullScreenView.cs:58
+#: ../src/FullScreenView.cs:66
 msgid "Exit fullscreen"
-msgstr "Palikti viso ekrano režimą"
+msgstr "Palikti viso ekrano veikseną"
 
-#: ../src/FullScreenView.cs:66 ../src/MainWindow.cs:289
-#: ../src/SingleView.cs:92
+#: ../src/FullScreenView.cs:76 ../src/MainWindow.cs:285
+#: ../src/SingleView.cs:90
 msgid "Slideshow"
 msgstr "Skaidrių šou"
 
-#: ../src/FullScreenView.cs:67
+#: ../src/FullScreenView.cs:77
 msgid "Start slideshow"
 msgstr "Rodyti skaidrių šou"
 
-#: ../src/FullScreenView.cs:102
+#: ../src/FullScreenView.cs:142
 msgid "Slide transition: "
 msgstr "Skaidrių perėjimas:"
 
@@ -841,22 +947,22 @@ msgstr "(Aukščiausio lygio)"
 msgid "Error uploading picture \"{0}\" to Gallery: {1}"
 msgstr "Klaida siunčiant paveikslėlį „{0}“ į galeriją: {1}"
 
-#: ../src/GalleryExport.cs:746 ../src/PicasaWebExport.cs:659
+#: ../src/GalleryExport.cs:746 ../src/PicasaWebExport.cs:663
 #: ../src/SmugMugExport.cs:602
 msgid "(No Gallery)"
 msgstr "(Nėra galerijos)"
 
-#: ../src/GalleryExport.cs:833 ../src/PicasaWebExport.cs:786
+#: ../src/GalleryExport.cs:833 ../src/PicasaWebExport.cs:790
 #: ../src/SmugMugExport.cs:700
 msgid "(Not Connected)"
 msgstr "(Neprisijungta)"
 
-#: ../src/GalleryExport.cs:834 ../src/PicasaWebExport.cs:787
+#: ../src/GalleryExport.cs:834 ../src/PicasaWebExport.cs:791
 #: ../src/SmugMugExport.cs:701
 msgid "(No Albums)"
 msgstr "(Nėra albumų)"
 
-#: ../src/GalleryExport.cs:886 ../src/PicasaWebExport.cs:831
+#: ../src/GalleryExport.cs:886 ../src/PicasaWebExport.cs:835
 #: ../src/SmugMugExport.cs:745
 msgid "No account selected"
 msgstr "Nepasirinktas abonementas"
@@ -918,13 +1024,13 @@ msgstr "Rikiuoti pagal _mėnesį"
 msgid "Arrange by _Folder"
 msgstr "Rikiuoti pagal _aplanką"
 
-#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:285
+#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:288
 msgid "_Reverse Order"
 msgstr "_Atvirkštinė tvarka"
 
 #: ../src/GroupSelector.cs:529
 msgid "_Clear Date Range"
-msgstr "_Išvalyti datos ribas"
+msgstr "_Išvalyti datos diapazoną"
 
 #: ../src/HigMessageDialog.cs:28 ../src/PhotoView.cs:264
 msgid "Error editing photo"
@@ -1090,7 +1196,7 @@ msgstr "Intelektualus objekto žanras"
 msgid "Unknown IIM DataSet"
 msgstr "Nežinomas IIM DataSet"
 
-#: ../src/ImportCommand.cs:28 ../src/SingleView.cs:326
+#: ../src/ImportCommand.cs:28 ../src/SingleView.cs:329
 msgid "Select Folder"
 msgstr "Pasirinkite aplanką"
 
@@ -1098,20 +1204,20 @@ msgstr "Pasirinkite aplanką"
 msgid "(No Cameras Detected)"
 msgstr "(Fotoaparatų neaptikta)"
 
-#: ../src/ImportCommand.cs:378
+#: ../src/ImportCommand.cs:379
 #, csharp-format
 msgid "Loading {0} of {1}"
 msgstr "Įkeliama {0} iš {1}"
 
-#: ../src/ImportCommand.cs:446
+#: ../src/ImportCommand.cs:447
 msgid "Done Loading"
 msgstr "Įkelta"
 
-#: ../src/ImportCommand.cs:636
+#: ../src/ImportCommand.cs:644
 msgid "Directory does not exist."
 msgstr "Aplankas neegzistuoja."
 
-#: ../src/ImportCommand.cs:637
+#: ../src/ImportCommand.cs:645
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
@@ -1119,10 +1225,10 @@ msgid ""
 msgstr "Jūsų pasirinktas aplankas „{0}“ neegzistuoja. Pasirinkite kitą aplanką"
 
 #. Prepare the Last Import root tag
-#: ../src/ImportCommand.cs:682 ../src/ImportCommand.cs:684
+#: ../src/ImportCommand.cs:697 ../src/ImportCommand.cs:699
 #: ../src/XmpTagsImporter.cs:86
 msgid "Import Tags"
-msgstr "Importuoti žymes"
+msgstr "Importuoti žymas"
 
 #: ../src/InfoBox.cs:72 ../src/PhotoVersionCommands.cs:56
 msgid "Name:"
@@ -1141,7 +1247,7 @@ msgid "Exposure:"
 msgstr "Ekspozicija:"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/InfoBox.cs:221 ../src/TagStore.cs:445
+#: ../src/InfoBox.cs:221 ../src/TagStore.cs:451
 msgid "(None)"
 msgstr "(Nėra)"
 
@@ -1149,14 +1255,14 @@ msgstr "(Nėra)"
 msgid "(Unknown)"
 msgstr "(Nežinoma)"
 
-#: ../src/InfoDisplay.cs:14 ../src/MainWindow.cs:1485
-#: ../src/f-spot.glade.h:151
+#: ../src/InfoDisplay.cs:14 ../src/MainWindow.cs:1501
+#: ../src/f-spot.glade.h:153
 msgid "Metadata Browser"
 msgstr "Metaduomenų naršyklė"
 
 #. Obsolete, remove after db rev4
 #: ../src/InfoDisplay.cs:135 ../src/InfoDisplay.cs:137
-#: ../src/f-spot.glade.h:126
+#: ../src/f-spot.glade.h:128
 msgid "Folder"
 msgstr "Aplankas"
 
@@ -1193,55 +1299,47 @@ msgstr "Fotografija „{0}“ neegzistuoja"
 msgid "No metadata available"
 msgstr "Meta duomenys neprieinami"
 
-#: ../src/ItemAction.cs:78 ../src/MainWindow.cs:256 ../src/SingleView.cs:75
-msgid "Rotate Left"
-msgstr "Pasukti kairėn"
-
-#: ../src/ItemAction.cs:79 ../src/ItemAction.cs:91
+#: ../src/ItemAction.cs:81 ../src/ItemAction.cs:93
 msgid "Rotate picture left"
 msgstr "Pasukti fotografiją kairėn"
 
-#: ../src/ItemAction.cs:90 ../src/MainWindow.cs:260 ../src/SingleView.cs:80
-msgid "Rotate Right"
-msgstr "Pasukti dešinėn"
-
-#: ../src/ItemAction.cs:102
+#: ../src/ItemAction.cs:104
 msgid "Next picture"
 msgstr "Kitas paveikslėlis"
 
-#: ../src/ItemAction.cs:123 ../src/f-spot.glade.h:177
+#: ../src/ItemAction.cs:125 ../src/f-spot.glade.h:180
 msgid "Previous"
 msgstr "Ankstesnis"
 
-#: ../src/ItemAction.cs:124
+#: ../src/ItemAction.cs:126
 msgid "Previous picture"
 msgstr "Ankstesnis paveikslėlis"
 
-#: ../src/ItemAction.cs:254
+#: ../src/ItemAction.cs:256
 msgid "Auto Color"
 msgstr "Automatinės spalvos"
 
-#: ../src/ItemAction.cs:255
+#: ../src/ItemAction.cs:257
 msgid "Automatically adjust the colors"
 msgstr "Automatiškai pakoreguoti spalvas"
 
-#: ../src/ItemAction.cs:270
+#: ../src/ItemAction.cs:272
 msgid "Apply straightening"
 msgstr "Pritaikyti ištiesinimą"
 
-#: ../src/ItemAction.cs:271
+#: ../src/ItemAction.cs:273
 msgid "Apply straightening to image"
 msgstr "Pritaikyti paveikslėliui ištiesinimą"
 
-#: ../src/ItemAction.cs:324
+#: ../src/ItemAction.cs:326
 msgid "Adjust the angle of the image to straighten the horizon"
 msgstr "Koreguoti paveikslėlio kampą norint ištiesinti horizontą"
 
-#: ../src/ItemAction.cs:340
+#: ../src/ItemAction.cs:342
 msgid "Create a soft focus visual effect"
 msgstr "Sukurti nedidelio fokusavimo vaizdo efektą"
 
-#: ../src/Loupe.cs:57 ../src/MainWindow.cs:1976
+#: ../src/Loupe.cs:57 ../src/MainWindow.cs:1996
 msgid "Error saving sharpened photo"
 msgstr "Bandant išsaugoti paryškintą fotografiją įvyko klaida"
 
@@ -1249,59 +1347,59 @@ msgstr "Bandant išsaugoti paryškintą fotografiją įvyko klaida"
 msgid "Sharpen"
 msgstr "Paryškinti"
 
-#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1943
+#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1963
 msgid "Amount:"
 msgstr "Kiekis:"
 
-#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1944
+#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1964
 msgid "Radius:"
 msgstr "Spindulys:"
 
-#: ../src/Loupe.cs:99 ../src/MainWindow.cs:1945
+#: ../src/Loupe.cs:99 ../src/MainWindow.cs:1965
 msgid "Threshold:"
 msgstr "Slenkstis:"
 
-#: ../src/MainWindow.cs:249 ../src/f-spot.glade.h:141
+#: ../src/MainWindow.cs:245 ../src/f-spot.glade.h:143
 msgid "Import"
 msgstr "Importuoti"
 
-#: ../src/MainWindow.cs:251
+#: ../src/MainWindow.cs:247
 msgid "Import new images"
 msgstr "Importuoti naujus paveikslėlius"
 
-#: ../src/MainWindow.cs:267 ../src/f-spot.glade.h:82
+#: ../src/MainWindow.cs:263 ../src/f-spot.glade.h:83
 msgid "Browse"
 msgstr "Naršyti"
 
-#: ../src/MainWindow.cs:271
+#: ../src/MainWindow.cs:267
 msgid "Browse many photos simultaneously"
 msgstr "Naršyti vienu metu daug fotografijų"
 
-#: ../src/MainWindow.cs:275
+#: ../src/MainWindow.cs:271
 msgid "Edit Image"
 msgstr "Redaguoti paveikslėlį"
 
-#: ../src/MainWindow.cs:279
+#: ../src/MainWindow.cs:275
 msgid "View and edit a photo"
 msgstr "Žiūrėti ir redaguoti fotografiją"
 
-#: ../src/MainWindow.cs:284 ../src/SingleView.cs:87
+#: ../src/MainWindow.cs:280 ../src/SingleView.cs:85
 msgid "Fullscreen"
 msgstr "Visame ekrane"
 
-#: ../src/MainWindow.cs:286 ../src/SingleView.cs:89
+#: ../src/MainWindow.cs:282 ../src/SingleView.cs:87
 msgid "View photos fullscreen"
 msgstr "Žiūrėti fotografijas visame ekrane"
 
-#: ../src/MainWindow.cs:291 ../src/SingleView.cs:94
+#: ../src/MainWindow.cs:287 ../src/SingleView.cs:92
 msgid "View photos in a slideshow"
 msgstr "Žiūrėti fotografijas kaip skaidres"
 
-#: ../src/MainWindow.cs:844
+#: ../src/MainWindow.cs:860
 msgid "Error loading database."
 msgstr "Įvyko klaida įkeliant duomenų bazę."
 
-#: ../src/MainWindow.cs:845
+#: ../src/MainWindow.cs:861
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
@@ -1310,11 +1408,11 @@ msgstr ""
 "F-Spot aptiko klaidą įkeliant fotografijų duomenų bazę. Sena duomenų bazė "
 "perkelta į {0} ir buvo sukurta nauja duomenų bazė."
 
-#: ../src/MainWindow.cs:1403
+#: ../src/MainWindow.cs:1419
 msgid "No cameras detected."
 msgstr "Fotoaparatų neaptikta."
 
-#: ../src/MainWindow.cs:1404
+#: ../src/MainWindow.cs:1420
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1322,11 +1420,11 @@ msgstr ""
 "F-Spot nepavyko surasti nei vieno prie šios sistemos prijungto fotoaparato. "
 "Patikrinkite ar fotoaparatas prijungtas ir įjungtas"
 
-#: ../src/MainWindow.cs:1444
+#: ../src/MainWindow.cs:1460
 msgid "Error connecting to camera"
 msgstr "Prijungiant fotoaparatą įvyko klaida"
 
-#: ../src/MainWindow.cs:1445
+#: ../src/MainWindow.cs:1461
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Prijungiant fotoaparatą gauta klaida „{0}“"
@@ -1334,42 +1432,42 @@ msgstr "Prijungiant fotoaparatą gauta klaida „{0}“"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1587
+#: ../src/MainWindow.cs:1604
 msgid "translator-credits"
 msgstr ""
 "Žygimantas Beručka <zygis@gnome.org>\n"
 "Justina Klingaitė <justina.klingaite@gmail.com>"
 
-#: ../src/MainWindow.cs:1594
+#: ../src/MainWindow.cs:1612
 msgid "Copyright © 2003-2007 Novell Inc."
 msgstr "Autorinės teisės priklauso © 2003-2007 Novell Inc."
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1856
+#: ../src/MainWindow.cs:1876
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
-msgstr[0] "Sujungti {0} pasirinktą žymę?"
-msgstr[1] "Sujungti {0} pasirinktas žymes?"
-msgstr[2] "Sujungti {0} pasirinktų žymių?"
+msgstr[0] "Sujungti {0} pasirinktą žymą?"
+msgstr[1] "Sujungti {0} pasirinktas žymas?"
+msgstr[2] "Sujungti {0} pasirinktų žymų?"
 
-#: ../src/MainWindow.cs:1883
+#: ../src/MainWindow.cs:1903
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
 msgstr ""
-"Atlikus šią operaciją bus sujungtos pasirinktos žymės ir bet kokios jose "
-"esančios žymės į vieną žymę."
+"Atlikus šią operaciją visos pasirinktos žymos ir bet kokios jose esančios "
+"žymos bus sujungtos į vieną žymą."
 
-#: ../src/MainWindow.cs:1885
+#: ../src/MainWindow.cs:1905
 msgid "_Merge Tags"
-msgstr "_Sujungti žymes"
+msgstr "_Sujungti žymas"
 
-#: ../src/MainWindow.cs:1934
+#: ../src/MainWindow.cs:1954
 msgid "Unsharp Mask"
 msgstr "Neryški kaukė"
 
-#: ../src/MainWindow.cs:2157 ../src/SingleView.cs:468
+#: ../src/MainWindow.cs:2157 ../src/SingleView.cs:471
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
@@ -1421,16 +1519,16 @@ msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
 msgstr[0] ""
-"Visos pasirinktos fotografijos versijos bus ištrintos iš Jūsų disko."
-msgstr[1] "Visų pasirinktų fotografijų versijos bus ištrintos iš Jūsų disko."
-msgstr[2] "Visų pasirinktų fotografijų versijos bus ištrintos iš Jūsų disko."
+"Iš jūsų disko bus ištrintos visos pasirinktos fotografijos versijos."
+msgstr[1] "Iš jūsų disko bus ištrintos visos pasirinktų fotografijų versijos."
+msgstr[2] "Iš jūsų disko bus ištrintos visos pasirinktų fotografijų versijos."
 
 #: ../src/MainWindow.cs:2297
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Ištrinti fotografiją"
 msgstr[1] "_Ištrinti fotografijas"
-msgstr[2] "_Ištrinti fotografijų"
+msgstr[2] "_Ištrinti fotografijas"
 
 #: ../src/MainWindow.cs:2328
 #, csharp-format
@@ -1446,8 +1544,8 @@ msgid ""
 "lost. The photos remain on your computer and can be imported into F-Spot "
 "again."
 msgstr ""
-"Jeigu pašalinsite fotografijas iš F-Spot katalogo, visa žymių informacija "
-"bus prarasta. Fotografijos liks Jūsų kompiuteryje ir jas bus galima "
+"Jeigu pašalinsite fotografijas iš F-Spot katalogo, visa žymų informacija "
+"bus prarasta. Fotografijos liks jūsų kompiuteryje ir jas bus galima "
 "importuoti į F-Spot dar kartą."
 
 #: ../src/MainWindow.cs:2334
@@ -1457,30 +1555,28 @@ msgstr "_Pašalinti iš katalogo"
 #: ../src/MainWindow.cs:2391
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
-msgstr "Ištrinti žymę „{0}“?"
+msgstr "Ištrinti žymą „{0}“?"
 
 #: ../src/MainWindow.cs:2393
 #, csharp-format
 msgid "Delete the {0} selected tags?"
-msgstr "Ištrinti {0} pasirinktas žymes?"
+msgstr "Ištrinti {0} pasirinktas žymas?"
 
 #: ../src/MainWindow.cs:2396
 msgid "If you delete a tag, all associations with photos are lost."
-msgstr ""
-"Jeigu ištrinsite žymę, visos asociacijos susijusios su fotografijomis bus "
-"prarastos."
+msgstr "Jeigu ištrinsite žymą, visi susiejimai fotografijomis bus prarasti."
 
 #: ../src/MainWindow.cs:2397
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
-msgstr[0] "_Ištrinti žymę"
-msgstr[1] "_Ištrinti žymes"
-msgstr[2] "_Ištrinti žymes"
+msgstr[0] "_Ištrinti žymą"
+msgstr[1] "_Ištrinti žymas"
+msgstr[2] "_Ištrinti žymas"
 
 #. A Category is not empty. Can not delete it.
 #: ../src/MainWindow.cs:2411
 msgid "Tag is not empty"
-msgstr "Žymė yra netuščia"
+msgstr "Žyma yra netuščia"
 
 #: ../src/MainWindow.cs:2412
 #, csharp-format
@@ -1488,47 +1584,47 @@ msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
 "\"{0}\" first"
 msgstr ""
-"Nepavyko ištrinti žymių, kuriose yra žymių. Pirma ištrinkite žymes esančias "
+"Nepavyko ištrinti žymų, kuriose yra žymų. Pirma ištrinkite žymas, esančias "
 "„{0}“"
 
-#: ../src/MainWindow.cs:2843
+#: ../src/MainWindow.cs:2839
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Pasukti pasirinktą fotografiją kairėn"
 msgstr[1] "Pasukti pasirinktas fotografijas kairėn"
 msgstr[2] "Pasukti pasirinktas fotografijas kairėn"
 
-#: ../src/MainWindow.cs:2856
+#: ../src/MainWindow.cs:2852
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Pasukti pasirinktą fotografiją dešinėn"
 msgstr[1] "Pasukti pasirinktas fotografijas dešinėn"
 msgstr[2] "Pasukti pasirinktas fotografijas dešinėn"
 
-#: ../src/MainWindow.cs:2864
+#: ../src/MainWindow.cs:2860
 #, csharp-format
 msgid "Find Selected Tag"
 msgid_plural "Find Selected Tags"
-msgstr[0] "Rasti pasirinktą žymę"
-msgstr[1] "Rasti pasirinktas žymes"
-msgstr[2] "Rasti pasirinktas žymes"
+msgstr[0] "Rasti pasirinktą žymą"
+msgstr[1] "Rasti pasirinktas žymas"
+msgstr[2] "Rasti pasirinktas žymas"
 
-#: ../src/MainWindow.cs:2868
+#: ../src/MainWindow.cs:2864
 #, csharp-format
 msgid "Find Selected Tag With"
 msgid_plural "Find Selected Tags With"
-msgstr[0] "Rasti pasirinktą žymę su"
-msgstr[1] "Rasti pasirinktas žymes su"
-msgstr[2] "Rasti pasirinktas žymes su"
+msgstr[0] "Rasti pasirinktą žymą su"
+msgstr[1] "Rasti pasirinktas žymas su"
+msgstr[2] "Rasti pasirinktas žymas su"
 
-#: ../src/MainWindow.cs:2885
+#: ../src/MainWindow.cs:2881
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Sukurti naują versiją?"
 msgstr[1] "Sukurti naujas versijas?"
 msgstr[2] "Sukurti naujas versijas?"
 
-#: ../src/MainWindow.cs:2887
+#: ../src/MainWindow.cs:2883
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1588,15 +1684,15 @@ msgstr "Ekspozicijos programa"
 
 #: ../src/MetadataStore.cs:34
 msgid "Metering Mode"
-msgstr "Matavimo režimas"
+msgstr "Matavimo veiksena"
 
 #: ../src/MetadataStore.cs:36
 msgid "Exposure Mode"
-msgstr "Ekspozicijos režimas"
+msgstr "Ekspozicijos veiksena"
 
 #: ../src/MetadataStore.cs:38
 msgid "Custom Rendered"
-msgstr "Kitaip atvaizduota"
+msgstr "Pasirinktinai atvaizduota"
 
 #: ../src/MetadataStore.cs:40
 msgid "Components Configuration"
@@ -1616,7 +1712,7 @@ msgstr "Spalvų gama"
 
 #: ../src/MetadataStore.cs:48
 msgid "White Balance"
-msgstr "Baltas balansas"
+msgstr "Baltumo balansas"
 
 #: ../src/MetadataStore.cs:50
 msgid "Focal Plane Resolution Unit"
@@ -1650,50 +1746,7 @@ msgstr "Ryškumas"
 msgid "Scene Type"
 msgstr "Kadro tipas"
 
-#: ../src/OpenWithMenu.cs:80
-msgid "No applications available"
-msgstr "Nėra prieinamų programų"
-
-#: ../src/OpenWithMenu.cs:95
-msgid "Open With"
-msgstr "Atverti su"
-
-#: ../src/PhotoPopup.cs:46
-msgid "Copy Photo Location"
-msgstr "Kopijuoti fotografijų vietą"
-
-#: ../src/PhotoPopup.cs:51 ../src/SingleView.cs:425 ../src/f-spot.glade.h:187
-msgid "Rotate _Left"
-msgstr "Pasukti _kairėn"
-
-#: ../src/PhotoPopup.cs:53 ../src/SingleView.cs:426 ../src/f-spot.glade.h:188
-msgid "Rotate _Right"
-msgstr "Pasukti _dešinėn"
-
-#: ../src/PhotoPopup.cs:62
-msgid "Remove From Catalog"
-msgstr "Pašalinti iš katalogo"
-
-#: ../src/PhotoPopup.cs:64
-msgid "Delete From Drive"
-msgstr "Ištrinti iš disko"
-
-#.
-#. FIXME TagMenu is ugly.
-#.
-#: ../src/PhotoPopup.cs:72
-msgid "Attach Tag"
-msgstr "Prisegti žymę"
-
-#.
-#. FIXME finish the IPhotoSelection stuff and move the activate handler into the class
-#. this current method is way too complicated.
-#.
-#: ../src/PhotoPopup.cs:84
-msgid "Remove Tag"
-msgstr "Pašalinti žymę"
-
-#: ../src/PhotoStore.cs:385
+#: ../src/PhotoStore.cs:388
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
@@ -1701,7 +1754,7 @@ msgstr[0] "Modifikuota ({0})"
 msgstr[1] "Modifikuota ({0})"
 msgstr[2] "Modifikuota ({0})"
 
-#: ../src/PhotoStore.cs:404
+#: ../src/PhotoStore.cs:407
 #, csharp-format
 msgid "Modified in {1}"
 msgid_plural "Modified in {1} ({0})"
@@ -1711,7 +1764,7 @@ msgstr[2] "Modifikuota {1} ({0})"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/PhotoStore.cs:589 ../src/f-spot.glade.h:164
+#: ../src/PhotoStore.cs:592 ../src/f-spot.glade.h:167
 msgid "Original"
 msgstr "Originalas"
 
@@ -1719,7 +1772,7 @@ msgstr "Originalas"
 #. items insensitve
 #: ../src/PhotoTagMenu.cs:72
 msgid "(No Tags)"
-msgstr "(Žymių nėra)"
+msgstr "(Žymų nėra)"
 
 #: ../src/PhotoVersionCommands.cs:55
 msgid "Create New Version"
@@ -1874,67 +1927,67 @@ msgstr "Sepijos tonas"
 msgid "Convert the photo to sepia tones"
 msgstr "Konvertuoti fotografiją į sepijos tonus"
 
-#: ../src/PhotoView.cs:537
+#: ../src/PhotoView.cs:543
 msgid "Previous photo"
 msgstr "Ankstesnė fotografija"
 
-#: ../src/PhotoView.cs:542
+#: ../src/PhotoView.cs:548
 msgid "Next photo"
 msgstr "Kita fotografija"
 
-#: ../src/PicasaWebExport.cs:415
+#: ../src/PicasaWebExport.cs:419
 msgid "Error while creating Album"
 msgstr "Klaida kuriant albumą"
 
-#: ../src/PicasaWebExport.cs:416
+#: ../src/PicasaWebExport.cs:420
 #, csharp-format
 msgid ""
 "The following error was encountered while attempting to create an album: {0}"
 msgstr "Bandant sukurti albumą aptikta ši klaida: {0}"
 
-#: ../src/PicasaWebExport.cs:595 ../src/SmugMugExport.cs:540
+#: ../src/PicasaWebExport.cs:599 ../src/SmugMugExport.cs:540
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "Siunčiamas paveikslėlis „{0}“ ({1} iš {2})"
 
-#: ../src/PicasaWebExport.cs:626 ../src/SmugMugExport.cs:569
+#: ../src/PicasaWebExport.cs:630 ../src/SmugMugExport.cs:569
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Siunčiant į galeriją įvyko klaida: {0}"
 
-#: ../src/PicasaWebExport.cs:710
+#: ../src/PicasaWebExport.cs:714
 msgid "Available space :"
 msgstr "Laisva vieta:"
 
-#: ../src/Preferences.cs:181
+#: ../src/Preferences.cs:191
 msgid "Photos"
 msgstr "Fotografijos"
 
-#: ../src/QueryWidget.cs:36
+#: ../src/QueryWidget.cs:37
 msgid "Find: "
 msgstr "Rasti: "
 
-#: ../src/QueryWidget.cs:41
+#: ../src/QueryWidget.cs:42
 msgid "Untagged photos"
-msgstr "Fotografijos be žymių"
+msgstr "Fotografijos be žymų"
 
-#: ../src/QueryWidget.cs:49
+#: ../src/QueryWidget.cs:50
 msgid "Import roll"
 msgstr "Importuoti juostelę"
 
-#: ../src/QueryWidget.cs:69
+#: ../src/QueryWidget.cs:70
 msgid "Clear search"
 msgstr "Išvalyti paiešką"
 
-#: ../src/QueryWidget.cs:71
+#: ../src/QueryWidget.cs:72
 msgid "No matching photos found"
 msgstr "Atitinkančių fotografijų nerasta"
 
-#: ../src/QueryWidget.cs:102
+#: ../src/QueryWidget.cs:103
 msgid "Hide Find Bar"
 msgstr "Paslėpti paieškos juostą"
 
-#: ../src/QueryWidget.cs:108
+#: ../src/QueryWidget.cs:109
 msgid "Show Find Bar"
 msgstr "Rodyti paieškos juostą"
 
@@ -1985,51 +2038,59 @@ msgstr "Bandant pasukti {1} gauta klaida „{0}“"
 msgid "Error while rotating photo."
 msgstr "Sukant paveikslėlį įvyko klaida."
 
-#: ../src/SendEmail.cs:236
+#: ../src/SendEmail.cs:245
 msgid "Preparing email"
 msgstr "Ruošiamas el. laiškas"
 
-#: ../src/SendEmail.cs:288
+#: ../src/SendEmail.cs:297
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "Eksportuojamas paveikslėlis „{0}“"
 
-#: ../src/SingleView.cs:77
+#: ../src/SingleView.cs:75
 msgid "Rotate photo left"
 msgstr "Pasukti fotografiją kairėn"
 
-#: ../src/SingleView.cs:82
+#: ../src/SingleView.cs:80
 msgid "Rotate photo right"
 msgstr "Pasukti fotografiją dešinėn"
 
-#: ../src/SingleView.cs:323
+#: ../src/SingleView.cs:326
 msgid "Open"
 msgstr "Atverti"
 
-#: ../src/SingleView.cs:428
+#: ../src/SingleView.cs:428 ../src/f-spot.glade.h:190
+msgid "Rotate _Left"
+msgstr "Pasukti _kairėn"
+
+#: ../src/SingleView.cs:429 ../src/f-spot.glade.h:191
+msgid "Rotate _Right"
+msgstr "Pasukti _dešinėn"
+
+#: ../src/SingleView.cs:431
 msgid "Set as Background"
 msgstr "Nustatyti kaip darbastalio foną"
 
 #: ../src/TagCommands.cs:89 ../src/TagCommands.cs:217
-#: ../src/TagSelectionWidget.cs:505
+#: ../src/TagSelectionWidget.cs:511
 msgid "This name is already in use"
 msgstr "Šis pavadinimas jau naudojamas"
 
 #: ../src/TagCommands.cs:136 ../src/TagMenu.cs:89 ../src/TagPopup.cs:34
 msgid "Create New Tag"
-msgstr "Sukurti naują žymę"
+msgstr "Sukurti naują žymą"
 
 #: ../src/TagCommands.cs:137
 msgid "Name of New Tag:"
-msgstr "Naujos žymės pavadinimas:"
+msgstr "Naujos žymos pavadinimas:"
 
 #: ../src/TagCommands.cs:287 ../src/TagPopup.cs:40
 msgid "Edit Tag"
-msgstr "Keisti žymę"
+msgstr "Keisti žymą"
 
 #: ../src/TagCommands.cs:288
 msgid "Tag Name:"
-msgstr "Žymės pavadinimas:"
+msgstr "Žymos pavadinimas:"
 
 #: ../src/TagCommands.cs:400
 #, csharp-format
@@ -2039,7 +2100,7 @@ msgstr "{0} fotografija iš {1}"
 #: ../src/TagCommands.cs:427
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
-msgstr "Keisti žymės {0} piktogramą"
+msgstr "Keisti žymos {0} piktogramą"
 
 #: ../src/TagPopup.cs:24
 #, csharp-format
@@ -2052,27 +2113,27 @@ msgstr[2] "Rasti"
 #: ../src/TagPopup.cs:44
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
-msgstr[0] "Ištrinti žymę"
-msgstr[1] "Ištrinti žymes"
-msgstr[2] "Ištrinti žymes"
+msgstr[0] "Ištrinti žymą"
+msgstr[1] "Ištrinti žymas"
+msgstr[2] "Ištrinti žymas"
 
 #: ../src/TagPopup.cs:50
 msgid "Attach Tag to Selection"
 msgid_plural "Attach Tags to Selection"
-msgstr[0] "_Prisegti žymę pasirinktai"
-msgstr[1] "_Prisegti žymę pasirinktoms"
-msgstr[2] "_Prisegti žymę pasirinktoms"
+msgstr[0] "_Prisegti žymą pasirinktai"
+msgstr[1] "_Prisegti žymą pasirinktoms"
+msgstr[2] "_Prisegti žymą pasirinktoms"
 
 #: ../src/TagPopup.cs:54
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
-msgstr[0] "Pašalinti žymę nuo pasirinkos"
-msgstr[1] "Pašalinti žymes nuo pasirinktų"
-msgstr[2] "Pašalinti žymes nuo pasirinktų"
+msgstr[0] "Pašalinti žymą nuo pasirinkos"
+msgstr[1] "Pašalinti žymas nuo pasirinktų"
+msgstr[2] "Pašalinti žymas nuo pasirinktų"
 
 #: ../src/TagPopup.cs:60
 msgid "Merge Tags"
-msgstr "Sujungti žymes"
+msgstr "Sujungti žymas"
 
 #: ../src/TagQueryWidget.cs:31
 msgid "Include"
@@ -2105,29 +2166,29 @@ msgstr "Ne {0}"
 
 #: ../src/TagQueryWidget.cs:278
 msgid "Drag tags here to search for them"
-msgstr "Norėdami ieškoti žymių užtempkite jas čia"
+msgstr "Norėdami ieškoti žymų, nuvilkite jas čia"
 
-#: ../src/TagSelectionWidget.cs:504
+#: ../src/TagSelectionWidget.cs:510
 msgid "Error renaming tag"
-msgstr "Pervadinant žymę įvyko klaida"
+msgstr "Pervadinant žymą įvyko klaida"
 
-#: ../src/TagStore.cs:409
+#: ../src/TagStore.cs:415
 msgid "Favorites"
 msgstr "Mėgstamos"
 
-#: ../src/TagStore.cs:414
+#: ../src/TagStore.cs:420
 msgid "Hidden"
 msgstr "Paslėptos"
 
-#: ../src/TagStore.cs:422
+#: ../src/TagStore.cs:428
 msgid "People"
 msgstr "Žmonės"
 
-#: ../src/TagStore.cs:427
+#: ../src/TagStore.cs:433
 msgid "Places"
 msgstr "Vietos"
 
-#: ../src/TagStore.cs:432
+#: ../src/TagStore.cs:438
 msgid "Events"
 msgstr "Įvykiai"
 
@@ -2144,7 +2205,7 @@ msgstr ", "
 msgid " or "
 msgstr " arba "
 
-#: ../src/Term.cs:379
+#: ../src/Term.cs:379 ../src/f-spot.glade.h:322
 msgid "or"
 msgstr "arba"
 
@@ -2158,12 +2219,12 @@ msgstr "Praleisti"
 
 #. The preceding text here is the second checkbutton in the Time dialog
 #. that says "Space all photos by []"
-#: ../src/TimeDialog.cs:125 ../src/f-spot.glade.h:318
+#: ../src/TimeDialog.cs:125 ../src/f-spot.glade.h:321
 #, csharp-format
 msgid "min. Starting at {0}"
 msgstr "min. Pradedant {0}"
 
-#: ../src/TimeDialog.cs:130 ../src/f-spot.glade.h:204
+#: ../src/TimeDialog.cs:130 ../src/f-spot.glade.h:207
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Pakelti visas fotografijas {0}"
@@ -2205,7 +2266,7 @@ msgstr ""
 msgid "Help not found"
 msgstr "Žinynas nerastas"
 
-#: ../src/Widgets/FindBar.cs:93
+#: ../src/Widgets/FindBar.cs:83
 msgid "Find:"
 msgstr "Rasti:"
 
@@ -2288,7 +2349,7 @@ msgstr "<b>Albumas</b>"
 
 #: ../src/f-spot.glade.h:17
 msgid "<b>Co_rrections</b>"
-msgstr "<b>Ko_rekcijos</b>"
+msgstr "<b>_Korekcijos</b>"
 
 #: ../src/f-spot.glade.h:18
 msgid "<b>Color Management</b>"
@@ -2324,7 +2385,7 @@ msgstr "<b>Galerija</b>"
 
 #: ../src/f-spot.glade.h:26
 msgid "<b>Histo_gram</b>"
-msgstr "<b>Histo_grama</b>"
+msgstr "<b>_Histograma</b>"
 
 #: ../src/f-spot.glade.h:27
 msgid "<b>Histogram</b>"
@@ -2332,11 +2393,11 @@ msgstr "<b>Histograma</b>"
 
 #: ../src/f-spot.glade.h:28
 msgid "<b>Image Interpolation</b>"
-msgstr "<b>Paveikslėlio interpoliacija</b>"
+msgstr "<b>Paveikslėlių interpoliacija</b>"
 
 #: ../src/f-spot.glade.h:29
 msgid "<b>Import Settings</b>"
-msgstr "<b>Importavimo nustatymai</b>"
+msgstr "<b>Importavimo parametrai</b>"
 
 #: ../src/f-spot.glade.h:30
 msgid "<b>Metadata</b>"
@@ -2379,66 +2440,70 @@ msgid "<b>Screensaver</b>"
 msgstr "<b>Ekrano užsklanda</b>"
 
 #: ../src/f-spot.glade.h:40
+msgid "<b>Select period</b>"
+msgstr "<b>Pasirinkite periodą</b>"
+
+#: ../src/f-spot.glade.h:41
 msgid "<b>Size</b>"
 msgstr "<b>Dydis</b>"
 
-#: ../src/f-spot.glade.h:41
+#: ../src/f-spot.glade.h:42
 msgid "<b>SmugMug Export</b>"
 msgstr "<b>Eksportavimas į SmugMug</b>"
 
-#: ../src/f-spot.glade.h:42
+#: ../src/f-spot.glade.h:43
 msgid "<b>Start Date</b>"
 msgstr "<b>Pradžios data</b>"
 
-#: ../src/f-spot.glade.h:43
+#: ../src/f-spot.glade.h:44
 msgid "<b>Style</b>"
 msgstr "<b>Stilius</b>"
 
-#: ../src/f-spot.glade.h:44
+#: ../src/f-spot.glade.h:45
 msgid "<b>Summary</b>"
 msgstr "<b>Santrauka</b>"
 
-#: ../src/f-spot.glade.h:45
+#: ../src/f-spot.glade.h:46
 msgid "<b>Transparent Parts</b>"
 msgstr "<b>Permatomos dalys</b>"
 
-#: ../src/f-spot.glade.h:46
+#: ../src/f-spot.glade.h:47
 msgid "<b>View all pictures imported</b>"
 msgstr "<b>Žiūrėti visus importuotus paveikslėlius</b>"
 
-#: ../src/f-spot.glade.h:47
+#: ../src/f-spot.glade.h:48
 msgid "<b>Viewing permissions</b>"
 msgstr "<b>Žiūrėjimo leidimai</b>"
 
-#: ../src/f-spot.glade.h:48
+#: ../src/f-spot.glade.h:49
 msgid "<b>_White Balance</b>"
 msgstr "<b>_Baltumo balansas</b>"
 
-#: ../src/f-spot.glade.h:49
+#: ../src/f-spot.glade.h:50
 msgid "<small> </small>"
 msgstr "<small> </small>"
 
-#: ../src/f-spot.glade.h:50
+#: ../src/f-spot.glade.h:51
 msgid "<small></small>"
 msgstr "<small></small>"
 
-#: ../src/f-spot.glade.h:51
+#: ../src/f-spot.glade.h:52
 msgid ""
 "<small><i>Choose the folder where F-Spot should store newly imported photos</"
 "i></small>"
 msgstr ""
 "<small><i>Pasirinkite aplanką, kur F-Spot turėtų saugoti naujai importuotas "
-"nuotraukas</i></small>"
+"fotografijas</i></small>"
 
-#: ../src/f-spot.glade.h:52
+#: ../src/f-spot.glade.h:53
 msgid ""
 "<small><i>Enable this option to store tags and descriptions inside \n"
 "supported image formats.</i></small>"
 msgstr ""
-"<small><i>Įjunkite šią parinktį, jei norite išsaugoti žymes ir aprašymus\n"
+"<small><i>Įjunkite šią parinktį, jei norite išsaugoti žymas ir aprašymus\n"
 "palaikomų formatų paveikslėliuose.</i></small>"
 
-#: ../src/f-spot.glade.h:54
+#: ../src/f-spot.glade.h:55
 msgid ""
 "<small><i>Enable this to allow interpolation on zoomed images. You should'nt "
 "disable this for viewing photos, but disabling the interpolation could be "
@@ -2448,15 +2513,15 @@ msgstr ""
 "To nereikėtų išjungti fotografijų peržiūrai, tačiau piktogramų kūrimui "
 "išjungti interpoliaciją gali būti naudinga.<i></small>"
 
-#: ../src/f-spot.glade.h:55
+#: ../src/f-spot.glade.h:56
 msgid ""
 "<small><i>While acting as a screensaver, F-Spot can display all of your "
 "images, or a small subset based on tags.</i></small>"
 msgstr ""
 "<small><i>Veikdama kaip ekrano užsklanda F-Spot gali rodyti visus arba dalį "
-"(pagal žymes) jūsų paveikslėlių.</i></small>"
+"(pagal žymas) jūsų paveikslėlių.</i></small>"
 
-#: ../src/f-spot.glade.h:56
+#: ../src/f-spot.glade.h:57
 msgid ""
 "<small><i>You can choose how to display transparent parts in images. This "
 "option has no effect on photos, but setting this as check pattern or custom "
@@ -2464,280 +2529,280 @@ msgid ""
 "parts.</i></small>"
 msgstr ""
 "<small><i>Galite pasirinkti kaip rodyti permatomas paveikslėlių dalis. Ši "
-"parinktis neturi jokio efekto nuotraukoms, tačiau žiūrint piktogramas ar "
+"parinktis neturi jokio efekto fotografijoms, tačiau žiūrint piktogramas ar "
 "kitus paveikslėlius su permatomis dalimis, šios parinkties nustatymas į "
 "šachmatų lentos raštą ar kitą spalvą gali būti naudingas.</i></small>"
 
-#: ../src/f-spot.glade.h:57
+#: ../src/f-spot.glade.h:58
 msgid "<small>C_ontrast:</small>"
 msgstr "<small>K_ontrastas:</small>"
 
-#: ../src/f-spot.glade.h:58
+#: ../src/f-spot.glade.h:59
 msgid "<small>Te_mp:</small>"
 msgstr "<small>Te_mperatūra:</small>"
 
-#: ../src/f-spot.glade.h:59
+#: ../src/f-spot.glade.h:60
 msgid "<small>_Brightness:</small>"
 msgstr "<small>_Ryškumas:</small>"
 
-#: ../src/f-spot.glade.h:60
+#: ../src/f-spot.glade.h:61
 msgid "<small>_Exposure:</small>"
 msgstr "<small>_Išlaikymas:</small>"
 
-#: ../src/f-spot.glade.h:61
+#: ../src/f-spot.glade.h:62
 msgid "<small>_Hue:</small>"
 msgstr "<small>_Atspalvis:</small>"
 
-#: ../src/f-spot.glade.h:62
+#: ../src/f-spot.glade.h:63
 msgid "<small>_Saturation:</small>"
 msgstr "<small>_Sodrumas:</small>"
 
-#: ../src/f-spot.glade.h:63
+#: ../src/f-spot.glade.h:64
 msgid "<small>_Tint:</small>"
 msgstr "<small>_Tonas:</small>"
 
-#: ../src/f-spot.glade.h:64
+#: ../src/f-spot.glade.h:65
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
 msgstr ""
 "<span weight='bold' size='larger'>Jungiantis prie galerijos įvyko klaida</"
 "span>\n"
 
-#: ../src/f-spot.glade.h:66
+#: ../src/f-spot.glade.h:67
 msgid ""
 "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
 msgstr ""
 "<span weight='bold' size='larger'>Jūsų Google abonementas užrakintas</span>\n"
 
-#: ../src/f-spot.glade.h:68
-msgid "Ad_just Color..."
-msgstr "Pa_koreguoti spalvą..."
-
 #: ../src/f-spot.glade.h:69
-msgid "Adjust Color"
-msgstr "Pakoreguoti spalvą"
+msgid "Ad_just Color..."
+msgstr "Pa_koreguoti spalvas..."
 
 #: ../src/f-spot.glade.h:70
+msgid "Adjust Color"
+msgstr "Pakoreguoti spalvas"
+
+#: ../src/f-spot.glade.h:71
 msgid "Adjust Time"
 msgstr "Koreguoti laiką"
 
-#: ../src/f-spot.glade.h:71
+#: ../src/f-spot.glade.h:72
 msgid "Adjust _Time..."
 msgstr "Koreguoti _laiką..."
 
-#: ../src/f-spot.glade.h:72
+#: ../src/f-spot.glade.h:73
 msgid "Adjusted date: "
 msgstr "Pakoreguota data: "
 
-#: ../src/f-spot.glade.h:73
-msgid "All Images"
-msgstr "Visi paveikslėliai"
-
-#: ../src/f-spot.glade.h:74
+#: ../src/f-spot.glade.h:75
 msgid "Arrange _by"
 msgstr "Rikiuoti _pagal"
 
-#: ../src/f-spot.glade.h:75
+#: ../src/f-spot.glade.h:76
 msgid "As _background"
 msgstr "Kaip _fonas"
 
-#: ../src/f-spot.glade.h:76
+#: ../src/f-spot.glade.h:77
 msgid "As check pattern"
 msgstr "Kaip šachmatų raštas"
 
-#: ../src/f-spot.glade.h:77
-msgid "As custom color: "
-msgstr "Kaip kita spalva: "
-
 #: ../src/f-spot.glade.h:78
-msgid "Attach Tags:"
-msgstr "Prisegti žymes:"
+msgid "As custom color: "
+msgstr "Kaip pasirinktinė spalva: "
 
 #: ../src/f-spot.glade.h:79
-msgid "Attach tag:"
-msgstr "Prisegti žymę:"
+msgid "Attach Tags:"
+msgstr "Prisegti žymas:"
 
-#: ../src/f-spot.glade.h:81
+#: ../src/f-spot.glade.h:80
+msgid "Attach tag:"
+msgstr "Prisegti žymą:"
+
+#: ../src/f-spot.glade.h:82
 msgid "Autorotate"
 msgstr "Automatinis pasukimas"
 
-#: ../src/f-spot.glade.h:83
+#: ../src/f-spot.glade.h:84
 msgid "CD"
 msgstr "CD"
 
-#: ../src/f-spot.glade.h:84
+#: ../src/f-spot.glade.h:85
 msgid "C_aption:"
 msgstr "_Antraštė:"
 
-#: ../src/f-spot.glade.h:85
+#: ../src/f-spot.glade.h:86
 msgid "C_ontrast:"
 msgstr "K_ontrastas:"
 
-#: ../src/f-spot.glade.h:86
+#: ../src/f-spot.glade.h:87
 msgid "Camera Selection"
 msgstr "Fotoaparato pasirinkimas"
 
-#: ../src/f-spot.glade.h:87
+#: ../src/f-spot.glade.h:88
+msgid "Cancel, do not change the current timeline. "
+msgstr "Atšaukti, nekeisti dabartinės laiko ribos."
+
+#: ../src/f-spot.glade.h:89
 msgid "Clea_r Date Range"
 msgstr "_Išvalyti datos diapazoną"
 
-#: ../src/f-spot.glade.h:88
+#: ../src/f-spot.glade.h:90
 msgid "Clear roll filter"
 msgstr "Išvalyti juostelių filtrą"
 
-#: ../src/f-spot.glade.h:89
+#: ../src/f-spot.glade.h:91
 msgid "Co_nfigure"
 msgstr "Ko_nfigūruoti"
 
-#: ../src/f-spot.glade.h:90
+#: ../src/f-spot.glade.h:92
 msgid "Copy Locat_ion"
 msgstr "Kopijuoti v_ietą"
 
-#: ../src/f-spot.glade.h:91
+#: ../src/f-spot.glade.h:93
 msgid "Copy files to the Photos folder"
 msgstr "Kopijuoti rinkmenas į fotografijų aplanką"
 
-#: ../src/f-spot.glade.h:92
+#: ../src/f-spot.glade.h:94
 msgid "Create CD"
 msgstr "Sukurti CD"
 
-#: ../src/f-spot.glade.h:93
+#: ../src/f-spot.glade.h:95
 msgid "Create Mail"
 msgstr "Sukurti el. laišką"
 
-#: ../src/f-spot.glade.h:94
+#: ../src/f-spot.glade.h:96
 msgid "Create New _Tag..."
-msgstr "Sukurti naują žy_mę..."
+msgstr "Sukurti naują žy_mą..."
 
-#: ../src/f-spot.glade.h:95
+#: ../src/f-spot.glade.h:97
 msgid "Create _New Version..."
 msgstr "Sukurti _naują versiją..."
 
-#: ../src/f-spot.glade.h:96
+#: ../src/f-spot.glade.h:98
 msgid "Create _gallery using \"Original\""
 msgstr "Sukurti _galeriją naudojant „Original“"
 
-#: ../src/f-spot.glade.h:97
+#: ../src/f-spot.glade.h:99
 msgid "Create a mail with the selected photos (possible resized) attached"
 msgstr ""
 "Sukurti el. laišką su prisegtomis pasirinktomis fotografijomis (galimai "
 "sumažintomis)"
 
-#: ../src/f-spot.glade.h:98
+#: ../src/f-spot.glade.h:100
 msgid "Create mail..."
 msgstr "Sukurti el. laišką..."
 
-#: ../src/f-spot.glade.h:99
+#: ../src/f-spot.glade.h:101
 msgid "Create standalone _web gallery"
-msgstr "Sukurti savarankišką w_eb galeriją"
+msgstr "Sukurti autonominę _žiniatinklio galeriją"
 
-#: ../src/f-spot.glade.h:100
+#: ../src/f-spot.glade.h:102
 msgid "Crop photo to _fit"
 msgstr "Apkirpti fotografiją, kad _tilptų"
 
-#: ../src/f-spot.glade.h:101
+#: ../src/f-spot.glade.h:103
 msgid "Current date:"
-msgstr "Esama data:"
+msgstr "Dabartinė data:"
 
-#: ../src/f-spot.glade.h:102
+#: ../src/f-spot.glade.h:104
 msgid "D_escription:"
 msgstr "Ap_rašymas:"
 
-#: ../src/f-spot.glade.h:103
+#: ../src/f-spot.glade.h:105
 msgid "Display File Names"
 msgstr "Rodyti rinkmenų pavadinimus"
 
-#: ../src/f-spot.glade.h:104
+#: ../src/f-spot.glade.h:106
 msgid "Display Side_bar"
 msgstr "Rodyti šoninį _skydelį"
 
-#: ../src/f-spot.glade.h:105
+#: ../src/f-spot.glade.h:107
 msgid "Display T_ags"
 msgstr "Rodyti ž_ymes"
 
-#: ../src/f-spot.glade.h:106
+#: ../src/f-spot.glade.h:108
 msgid "Display Too_lbar"
 msgstr "Rodyti į_rankių juostą"
 
-#: ../src/f-spot.glade.h:107
+#: ../src/f-spot.glade.h:109
 msgid "Display _Dates"
 msgstr "Rodyti _datas"
 
-#: ../src/f-spot.glade.h:108
+#: ../src/f-spot.glade.h:110
 msgid "Display _Timeline"
 msgstr "Rodyti _laiko juostą"
 
-#: ../src/f-spot.glade.h:109
+#: ../src/f-spot.glade.h:111
 msgid "Display only those photos that were imported in specified Rolls."
 msgstr ""
 "Rodyti tik tas fotografijas, kurios buvo importuotos pasirinktose juostelėse."
 
-#: ../src/f-spot.glade.h:110
+#: ../src/f-spot.glade.h:112
 msgid "Do not send a mail"
 msgstr "Nesiųsti el. laiško"
 
-#: ../src/f-spot.glade.h:111
+#: ../src/f-spot.glade.h:113
 msgid "E-_Mail:"
 msgstr "El. _laiškas:"
 
-#: ../src/f-spot.glade.h:112
+#: ../src/f-spot.glade.h:114
 msgid "E_xport titles and comments"
 msgstr "E_ksportuoti pavadinimus ir komentarus"
 
-#: ../src/f-spot.glade.h:113
+#: ../src/f-spot.glade.h:115
 msgid "Edit"
 msgstr "Keisti"
 
-#: ../src/f-spot.glade.h:114
+#: ../src/f-spot.glade.h:116
 msgid "Edit Tag Icon"
-msgstr "Keisti žymės piktogramą"
+msgstr "Keisti žymos piktogramą"
 
-#: ../src/f-spot.glade.h:115
+#: ../src/f-spot.glade.h:117
 msgid "Edit icon"
 msgstr "Keisti piktogramą"
 
-#: ../src/f-spot.glade.h:116
+#: ../src/f-spot.glade.h:118
 msgid "Estimated new size"
 msgstr "Apskaičiuotas naujas dydis"
 
-#: ../src/f-spot.glade.h:117
+#: ../src/f-spot.glade.h:119
 msgid "Export"
 msgstr "Eksportuoti"
 
-#: ../src/f-spot.glade.h:118
+#: ../src/f-spot.glade.h:120
 msgid "Export _titles and comments"
 msgstr "Eksportuoti _pavadinimus ir komentarus"
 
-#: ../src/f-spot.glade.h:119
+#: ../src/f-spot.glade.h:121
 msgid "Extra large"
 msgstr "Labai didelis"
 
-#: ../src/f-spot.glade.h:121
+#: ../src/f-spot.glade.h:123
 msgid "F-Spot View"
 msgstr "F-Spot rodinys"
 
-#: ../src/f-spot.glade.h:122
+#: ../src/f-spot.glade.h:124
 msgid ""
 "F-Spot needs your authorization in order to upload photos to your {0} "
 "account. Press the \"Authorize\" button to open a web browser and give F-"
 "Spot the authorization. "
 msgstr ""
-"Norint nusiųsti fotografijas į Jūsų {0} abonementą, reikia prieigos teisės. "
+"Norint nusiųsti fotografijas į jūsų {0} abonementą, reikia prieigos teisės. "
 "Norėdami atverti žiniatinklio naršyklę ir suteikti F-Spot prieigos teisę, "
 "paspauskite mygtuką „Autorizuotis“. "
 
-#: ../src/f-spot.glade.h:124
+#: ../src/f-spot.glade.h:126
 msgid "Filter on selected rolls"
 msgstr "Filtruoti pagal pasirinktas juosteles"
 
-#: ../src/f-spot.glade.h:125
-msgid "Fin_d"
-msgstr "Rast_i"
-
 #: ../src/f-spot.glade.h:127
+msgid "Fin_d"
+msgstr "Ra_sti"
+
+#: ../src/f-spot.glade.h:129
 msgid "Folder Export"
 msgstr "Aplanko eksportavimas"
 
-#: ../src/f-spot.glade.h:128
+#: ../src/f-spot.glade.h:130
 msgid ""
 "From Screen\n"
 "Standard RGB"
@@ -2745,7 +2810,7 @@ msgstr ""
 "Iš ekrano\n"
 "Standartinis RGB"
 
-#: ../src/f-spot.glade.h:130
+#: ../src/f-spot.glade.h:132
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
@@ -2753,19 +2818,19 @@ msgstr ""
 "Visas puslapis\n"
 "Standartas - 4x6"
 
-#: ../src/f-spot.glade.h:132
+#: ../src/f-spot.glade.h:134
 msgid "G_allery Name:"
 msgstr "G_alerijos pavadinimas:"
 
-#: ../src/f-spot.glade.h:133
+#: ../src/f-spot.glade.h:135
 msgid "G_allery:"
 msgstr "G_alerija:"
 
-#: ../src/f-spot.glade.h:134
+#: ../src/f-spot.glade.h:136
 msgid "Gallery"
 msgstr "Galerija"
 
-#: ../src/f-spot.glade.h:135
+#: ../src/f-spot.glade.h:137
 msgid ""
 "Hairline\n"
 "0.25\"\n"
@@ -2777,51 +2842,51 @@ msgstr ""
 "0.5\"\n"
 "1\"\n"
 
-#: ../src/f-spot.glade.h:140
+#: ../src/f-spot.glade.h:142
 msgid "Images tagged with:"
 msgstr "Paveikslėliai pažymėti:"
 
-#: ../src/f-spot.glade.h:142
+#: ../src/f-spot.glade.h:144
 msgid "Import Rolls"
 msgstr "Importuoti juosteles"
 
-#: ../src/f-spot.glade.h:143
+#: ../src/f-spot.glade.h:145
 msgid "Import Source:"
 msgstr "Importavimo šaltinis:"
 
-#: ../src/f-spot.glade.h:144
+#: ../src/f-spot.glade.h:146
 msgid "Include subfolders"
 msgstr "Įtraukti poaplankius"
 
-#: ../src/f-spot.glade.h:145
+#: ../src/f-spot.glade.h:147
 msgid "Interpolate image on zoom"
 msgstr "Keičiant mastelį interpoliuoti paveikslėlį"
 
-#: ../src/f-spot.glade.h:146
+#: ../src/f-spot.glade.h:148
 msgid "Large"
 msgstr "Didelis"
 
-#: ../src/f-spot.glade.h:147
+#: ../src/f-spot.glade.h:149
 msgid "Last import roll"
 msgstr "Paskutinioji importuota juostelė"
 
-#: ../src/f-spot.glade.h:148
+#: ../src/f-spot.glade.h:150
 msgid "Make F-Spot your screensaver"
 msgstr "Padaryti F-Spot ekrano užsklanda"
 
-#: ../src/f-spot.glade.h:149
+#: ../src/f-spot.glade.h:151
 msgid "Manage _Extensions"
-msgstr "Tvarkyti _plėtinius"
+msgstr "Valdyti _plėtinius"
 
-#: ../src/f-spot.glade.h:150
+#: ../src/f-spot.glade.h:152
 msgid "Medium"
 msgstr "Vidutinis"
 
-#: ../src/f-spot.glade.h:152
+#: ../src/f-spot.glade.h:154
 msgid "N_umber of Copies:"
 msgstr "K_opijų kiekis:"
 
-#: ../src/f-spot.glade.h:154
+#: ../src/f-spot.glade.h:156
 msgid ""
 "None\n"
 "Title\n"
@@ -2835,59 +2900,63 @@ msgstr ""
 "Data\n"
 "Fotografijos informacija"
 
-#: ../src/f-spot.glade.h:159
+#: ../src/f-spot.glade.h:161
 msgid "Number of photos in selected rolls :"
-msgstr "Nuotraukų pasirinktose juostelėse skaičius:"
+msgstr "Fotografijų pasirinktose juostelėse skaičius:"
 
-#: ../src/f-spot.glade.h:160
+#: ../src/f-spot.glade.h:162
 msgid "Number of pictures"
 msgstr "Paveikslėlių skaičius"
 
-#: ../src/f-spot.glade.h:161
+#: ../src/f-spot.glade.h:163
+msgid "Only photos taken within these dates will be displayed."
+msgstr "Bus rodomos tik fotografijos, padarytos šiomis dienomis."
+
+#: ../src/f-spot.glade.h:164
 msgid "Open _Folder..."
 msgstr "Atverti _aplanką..."
 
-#: ../src/f-spot.glade.h:162
+#: ../src/f-spot.glade.h:165
 msgid "Open _album in browser when done uploading"
 msgstr "Baigus siuntimą _atverti albumą naršyklėje"
 
-#: ../src/f-spot.glade.h:163
+#: ../src/f-spot.glade.h:166
 msgid "Open _destination when done exporting"
 msgstr "Baigus eksportavimą atverti _paskirties vietą"
 
-#: ../src/f-spot.glade.h:165
+#: ../src/f-spot.glade.h:168
 msgid "Original size (possible very large file size)"
 msgstr "Originalus dydis (galimai labai didelis rinkmenos dydis)"
 
-#: ../src/f-spot.glade.h:166
+#: ../src/f-spot.glade.h:169
 msgid "P_arent Tag:"
-msgstr "_Pirminė žymė:"
+msgstr "_Pirminė žyma:"
 
-#: ../src/f-spot.glade.h:167
+#: ../src/f-spot.glade.h:170
 msgid "P_hoto Source:"
 msgstr "N_uotraukos šaltinis:"
 
-#: ../src/f-spot.glade.h:168
+#: ../src/f-spot.glade.h:171
 msgid "Page 1 of 3"
 msgstr "1 puslapis iš 3"
 
-#: ../src/f-spot.glade.h:169
+#: ../src/f-spot.glade.h:172
 msgid "Pause"
 msgstr "Pauzė"
 
-#: ../src/f-spot.glade.h:170
+#: ../src/f-spot.glade.h:173
 msgid "Photo 0 of 0"
 msgstr "0 fotografija iš 0"
 
-#: ../src/f-spot.glade.h:171
+#: ../src/f-spot.glade.h:174
 msgid "Photo _Size:"
 msgstr "Fotografijos _dydis:"
 
-#: ../src/f-spot.glade.h:172
+#: ../src/f-spot.glade.h:175
 msgid "Please verify that the settings for this gallery are correct."
 msgstr "Patvirtinkite, kad šios galerijos nustatymai yra teisingi."
 
-#: ../src/f-spot.glade.h:173
+#: ../src/f-spot.glade.h:176
 msgid ""
 "Please verify that the settings for this gallery are correct.\n"
 "Enter the letters as they are shown in the image in\n"
@@ -2897,75 +2966,75 @@ msgstr ""
 "Įveskite paveikslėlyje parodytas raides į „Captcha“ laukelį.\n"
 "<i>Raidžių registras nesvarbus</i>"
 
-#: ../src/f-spot.glade.h:176
+#: ../src/f-spot.glade.h:179
 msgid "Preferences"
 msgstr "Nustatymai"
 
-#: ../src/f-spot.glade.h:178
+#: ../src/f-spot.glade.h:181
 msgid "Print"
 msgstr "Spausdinti"
 
-#: ../src/f-spot.glade.h:179
+#: ../src/f-spot.glade.h:182
 msgid "Print crop _marks"
 msgstr "Spausdinti karpy_mo ženklus"
 
-#: ../src/f-spot.glade.h:180
+#: ../src/f-spot.glade.h:183
 msgid "Private"
 msgstr "Asmeniška"
 
-#: ../src/f-spot.glade.h:181
+#: ../src/f-spot.glade.h:184
 msgid "Public"
 msgstr "Vieša"
 
-#: ../src/f-spot.glade.h:182
+#: ../src/f-spot.glade.h:185
 msgid "Public Album"
 msgstr "Viešas albumas"
 
-#: ../src/f-spot.glade.h:183
+#: ../src/f-spot.glade.h:186
 msgid "Re_fresh Thumbnail"
 msgstr "_Atnaujinti miniatiūrą"
 
-#: ../src/f-spot.glade.h:184
+#: ../src/f-spot.glade.h:187
 msgid "Rem_ove Tag"
-msgstr "Paša_linti žymę"
+msgstr "Paša_linti žymą"
 
-#: ../src/f-spot.glade.h:185
+#: ../src/f-spot.glade.h:188
 msgid "Repair"
 msgstr "Pataisyti"
 
-#: ../src/f-spot.glade.h:186
+#: ../src/f-spot.glade.h:189
 msgid "Reset"
 msgstr "Atstatyti"
 
-#: ../src/f-spot.glade.h:189
+#: ../src/f-spot.glade.h:192
 msgid "Select A Folder"
 msgstr "Pasirinkite aplanką"
 
-#: ../src/f-spot.glade.h:190
+#: ../src/f-spot.glade.h:193
 msgid "Select Photos to Copy From Camera..."
 msgstr "Pasirinkti iš fotoaparato kopijuotinas fotografijas..."
 
-#: ../src/f-spot.glade.h:192
+#: ../src/f-spot.glade.h:195
 msgid "Select _None"
-msgstr "_Nieko nepasirinkti"
+msgstr "_Nepasirinkti jokių"
 
-#: ../src/f-spot.glade.h:193
+#: ../src/f-spot.glade.h:196
 msgid "Select a Tag..."
-msgstr "Pasirinkti žymę..."
+msgstr "Pasirinkti žymą..."
 
-#: ../src/f-spot.glade.h:194
+#: ../src/f-spot.glade.h:197
 msgid "Select import rolls..."
 msgstr "Pasirinkite importuotinas juosteles..."
 
-#: ../src/f-spot.glade.h:195
+#: ../src/f-spot.glade.h:198
 msgid "Select the camera from which you want to transfer files"
 msgstr "Pasirinkite fotoaparatą, iš kurio norite perkelti rinkmenas"
 
-#: ../src/f-spot.glade.h:196
+#: ../src/f-spot.glade.h:199
 msgid "Selected Camera: "
 msgstr "Pasirinktas fotoaparatas: "
 
-#: ../src/f-spot.glade.h:197
+#: ../src/f-spot.glade.h:200
 msgid ""
 "Selection\n"
 "Gallery\n"
@@ -2975,59 +3044,59 @@ msgstr ""
 "Galerija\n"
 "Peržiūros vieta"
 
-#: ../src/f-spot.glade.h:200
+#: ../src/f-spot.glade.h:203
 msgid "Send _Mail..."
 msgstr "Siųsti _laišką..."
 
-#: ../src/f-spot.glade.h:201
-msgid "Set Date Range"
-msgstr "Nustatyti datos ribas"
-
-#: ../src/f-spot.glade.h:202
+#: ../src/f-spot.glade.h:204
 msgid "Set _Date Range..."
-msgstr "Nustatyti _datos ribas..."
+msgstr "Nustatyti _datos diapazoną..."
 
-#: ../src/f-spot.glade.h:203
+#: ../src/f-spot.glade.h:205
 msgid "Set as _Background"
 msgstr "Padaryti paveikslėlį darbastalio _fonu"
 
-#: ../src/f-spot.glade.h:205
+#: ../src/f-spot.glade.h:206
+msgid "Set date range"
+msgstr "Nustatyti datos diapazoną"
+
+#: ../src/f-spot.glade.h:208
 msgid "Show all photos."
 msgstr "Rodyti visas fotografijas."
 
-#: ../src/f-spot.glade.h:206
+#: ../src/f-spot.glade.h:209
 msgid "Show or hide the side pane"
-msgstr "Rodyti arba slėpti šoninius skydelius"
+msgstr "Rodyti arba slėpti šoninį polangį"
 
-#: ../src/f-spot.glade.h:207
+#: ../src/f-spot.glade.h:210
 msgid "Show or hide the toolbar"
 msgstr "Rodyti arba slėpti įrankinę"
 
-#: ../src/f-spot.glade.h:208
+#: ../src/f-spot.glade.h:211
 msgid "Side _pane"
-msgstr "Šoninis _skydelis"
+msgstr "Šoninis _polangis"
 
-#: ../src/f-spot.glade.h:209
+#: ../src/f-spot.glade.h:212
 msgid "Size"
 msgstr "Dydis"
 
-#: ../src/f-spot.glade.h:210
+#: ../src/f-spot.glade.h:213
 msgid "Size of the exported selection :"
 msgstr "Eksportuotų pažymėtų fotografijų dydis:"
 
-#: ../src/f-spot.glade.h:211
+#: ../src/f-spot.glade.h:214
 msgid "Small"
 msgstr "Mažas"
 
-#: ../src/f-spot.glade.h:212
+#: ../src/f-spot.glade.h:215
 msgid "So_urce Temp"
 msgstr "Šal_tinio temperatūra"
 
-#: ../src/f-spot.glade.h:213
+#: ../src/f-spot.glade.h:216
 msgid "Space all photos by"
 msgstr "Atskirti fotografijas"
 
-#: ../src/f-spot.glade.h:214
+#: ../src/f-spot.glade.h:217
 msgid ""
 "Specify if an original size picture should be rotated or not. Smaller sizes "
 "are automatically rotated."
@@ -3035,7 +3104,7 @@ msgstr ""
 "Nurodykite ar originalaus dydžio paveikslėliai turėtų būti pasukami. "
 "Mažesnių dydžių - pasukami automatiškai."
 
-#: ../src/f-spot.glade.h:215
+#: ../src/f-spot.glade.h:218
 msgid ""
 "Standard RGB\n"
 "Image Profile\n"
@@ -3043,354 +3112,354 @@ msgid ""
 msgstr ""
 "Standartinis RGB\n"
 "Paveikslėlio profilis\n"
-"Kita\n"
+"Pasirinktinė\n"
 
-#: ../src/f-spot.glade.h:219
+#: ../src/f-spot.glade.h:222
 msgid "Strip _metadata"
 msgstr "Pašalinti _metaduomenis"
 
-#: ../src/f-spot.glade.h:220
+#: ../src/f-spot.glade.h:223
 msgid "Strip image _metadata"
 msgstr "Pašalinti paveikslėlio _metaduomenis"
 
-#: ../src/f-spot.glade.h:221
+#: ../src/f-spot.glade.h:224
 msgid "Tag Icons"
-msgstr "Žymių piktogramos"
+msgstr "Žymų piktogramos"
 
-#: ../src/f-spot.glade.h:222
+#: ../src/f-spot.glade.h:225
 msgid "Tags: "
-msgstr "Žymės: "
+msgstr "Žymos: "
 
-#: ../src/f-spot.glade.h:223
+#: ../src/f-spot.glade.h:226
 msgid "Tiny"
 msgstr "Mažytis"
 
-#: ../src/f-spot.glade.h:224
+#: ../src/f-spot.glade.h:227
 msgid "Toolbar"
 msgstr "Įrankinė"
 
-#: ../src/f-spot.glade.h:225
+#: ../src/f-spot.glade.h:228
 msgid "Total original size"
 msgstr "Visas originalus dydis"
 
-#: ../src/f-spot.glade.h:226
+#: ../src/f-spot.glade.h:229
 msgid "U_RL:"
 msgstr "U_RL:"
 
-#: ../src/f-spot.glade.h:227
+#: ../src/f-spot.glade.h:230
 msgid "View"
 msgstr "Vaizduoti"
 
-#: ../src/f-spot.glade.h:228
+#: ../src/f-spot.glade.h:231
 msgid "Visible to Family"
 msgstr "Matoma šeimai"
 
-#: ../src/f-spot.glade.h:229
+#: ../src/f-spot.glade.h:232
 msgid "Visible to Friends"
 msgstr "Matoma draugams"
 
-#: ../src/f-spot.glade.h:230
+#: ../src/f-spot.glade.h:233
 msgid "Will print using: US Letter size on Generic Postscript"
 msgstr "Bus spausdinama naudojant: US Letter dydį bendriniame Postscript"
 
-#: ../src/f-spot.glade.h:231
+#: ../src/f-spot.glade.h:234
 msgid "Write _metadata to file"
 msgstr "Rašyti _metaduomenis į rinkmeną"
 
-#: ../src/f-spot.glade.h:232
+#: ../src/f-spot.glade.h:235
 msgid "Zoom _in"
 msgstr "_Pritraukti"
 
-#: ../src/f-spot.glade.h:233
+#: ../src/f-spot.glade.h:236
 msgid "Zoom _out"
 msgstr "_Atitraukti"
 
-#: ../src/f-spot.glade.h:234
+#: ../src/f-spot.glade.h:237
 msgid "Zoom in"
 msgstr "Pritraukti"
 
-#: ../src/f-spot.glade.h:235
+#: ../src/f-spot.glade.h:238
 msgid "Zoom out"
 msgstr "Atitraukti"
 
-#: ../src/f-spot.glade.h:236
+#: ../src/f-spot.glade.h:239
 msgid "_Account:"
 msgstr "_Abonementas:"
 
-#: ../src/f-spot.glade.h:237
+#: ../src/f-spot.glade.h:240
 msgid "_Album Name:"
 msgstr "_Albumo pavadinimas:"
 
-#: ../src/f-spot.glade.h:238
+#: ../src/f-spot.glade.h:241
 msgid "_Album Title:"
 msgstr "_Albumo pavadinimas:"
 
-#: ../src/f-spot.glade.h:239
+#: ../src/f-spot.glade.h:242
 msgid "_Attach Tag"
-msgstr "_Pridėti žymę"
+msgstr "_Pridėti žymą"
 
-#: ../src/f-spot.glade.h:240
+#: ../src/f-spot.glade.h:243
 msgid "_Attach Tag to Selection"
-msgstr "_Prisegti žymę pažymėtoms"
+msgstr "_Prisegti žymą pažymėtoms"
 
-#: ../src/f-spot.glade.h:241
+#: ../src/f-spot.glade.h:244
 msgid "_Border:"
 msgstr "_Rėmelis:"
 
-#: ../src/f-spot.glade.h:242
+#: ../src/f-spot.glade.h:245
 msgid "_Brightness:"
 msgstr "R_yškumas:"
 
-#: ../src/f-spot.glade.h:243
+#: ../src/f-spot.glade.h:246
 msgid "_Browse Previously Scheduled Files"
 msgstr "_Naršyti anksčiau suplanuotas rinkmenas"
 
-#: ../src/f-spot.glade.h:244
+#: ../src/f-spot.glade.h:247
 msgid "_Captcha:"
 msgstr "_Captcha:"
 
-#: ../src/f-spot.glade.h:245
+#: ../src/f-spot.glade.h:248
 msgid "_Contents"
 msgstr "_Turinys"
 
-#: ../src/f-spot.glade.h:246
+#: ../src/f-spot.glade.h:249
 msgid "_Delete From Drive"
 msgstr "_Ištrinti iš disko"
 
-#: ../src/f-spot.glade.h:247
+#: ../src/f-spot.glade.h:250
 msgid "_Delete Selected Tag"
-msgstr "_Ištrinti pažymėtą žymę"
+msgstr "_Ištrinti pažymėtą žymą"
 
-#: ../src/f-spot.glade.h:248
+#: ../src/f-spot.glade.h:251
 msgid "_Delete Version"
 msgstr "_Ištrinti versiją"
 
-#: ../src/f-spot.glade.h:249
+#: ../src/f-spot.glade.h:252
 msgid "_Description:"
 msgstr "_Aprašymas:"
 
-#: ../src/f-spot.glade.h:250
+#: ../src/f-spot.glade.h:253
 msgid "_Destination Temp"
 msgstr "_Paskirties temperatūra"
 
-#: ../src/f-spot.glade.h:251
+#: ../src/f-spot.glade.h:254
 msgid "_Display:"
 msgstr "_Rodyti:"
 
-#: ../src/f-spot.glade.h:252
+#: ../src/f-spot.glade.h:255
 msgid "_Edit"
 msgstr "_Keisti"
 
-#: ../src/f-spot.glade.h:253
+#: ../src/f-spot.glade.h:256
 msgid "_Edit Selected Tag..."
-msgstr "_Redaguoti pasirinktą žymę..."
+msgstr "_Redaguoti pasirinktą žymą..."
 
-#: ../src/f-spot.glade.h:254
+#: ../src/f-spot.glade.h:257
 msgid "_Export"
 msgstr "_Eksportuoti"
 
-#: ../src/f-spot.glade.h:255
+#: ../src/f-spot.glade.h:258
 msgid "_Export tags"
-msgstr "_Eksportuoti žymes"
+msgstr "_Eksportuoti žymas"
 
-#: ../src/f-spot.glade.h:256
+#: ../src/f-spot.glade.h:259
 msgid "_Export to Album:"
 msgstr "_Eksportuoti į albumą:"
 
-#: ../src/f-spot.glade.h:257
+#: ../src/f-spot.glade.h:260
 msgid "_File"
 msgstr "_Rinkmena"
 
-#: ../src/f-spot.glade.h:258
+#: ../src/f-spot.glade.h:261
 msgid "_Flickr"
 msgstr "_Flickr"
 
-#: ../src/f-spot.glade.h:259
+#: ../src/f-spot.glade.h:262
 msgid "_Folder"
-msgstr "_Aplankas"
+msgstr "_Aplanką"
 
-#: ../src/f-spot.glade.h:260
+#: ../src/f-spot.glade.h:263
 msgid "_Folder:"
 msgstr "_Aplankas:"
 
-#: ../src/f-spot.glade.h:261
+#: ../src/f-spot.glade.h:264
 msgid "_Fullscreen"
 msgstr "_Visame ekrane"
 
-#: ../src/f-spot.glade.h:262
+#: ../src/f-spot.glade.h:265
 msgid "_Gallery"
 msgstr "_Galerija"
 
-#: ../src/f-spot.glade.h:263
+#: ../src/f-spot.glade.h:266
 msgid "_Gallery Name:"
 msgstr "_Galerijos pavadinimas:"
 
-#: ../src/f-spot.glade.h:264
+#: ../src/f-spot.glade.h:267
 msgid "_Gallery:"
 msgstr "_Galerija:"
 
-#: ../src/f-spot.glade.h:265
+#: ../src/f-spot.glade.h:268
 msgid "_Help"
 msgstr "_Žinynas"
 
-#: ../src/f-spot.glade.h:266
+#: ../src/f-spot.glade.h:269
 msgid "_Hidden"
 msgstr "_Paslėptos"
 
-#: ../src/f-spot.glade.h:267
+#: ../src/f-spot.glade.h:270
 msgid "_Hue:"
 msgstr "_Atspalvis:"
 
-#: ../src/f-spot.glade.h:268
+#: ../src/f-spot.glade.h:271
 msgid "_Icon:"
 msgstr "_Piktograma:"
 
-#: ../src/f-spot.glade.h:269
+#: ../src/f-spot.glade.h:272
 msgid "_Import..."
 msgstr "_Importuoti..."
 
-#: ../src/f-spot.glade.h:270
-msgid "_Large"
-msgstr "_Didelis"
-
-#: ../src/f-spot.glade.h:271
-msgid "_Medium"
-msgstr "_Vidutinis"
-
-#: ../src/f-spot.glade.h:272
-msgid "_Metadata Browser"
-msgstr "_Meta duomenų naršyklė"
-
 #: ../src/f-spot.glade.h:273
-msgid "_Month"
-msgstr "_Mėnuo"
+msgid "_Large"
+msgstr "_Didelės"
 
 #: ../src/f-spot.glade.h:274
+msgid "_Medium"
+msgstr "_Vidutinės"
+
+#: ../src/f-spot.glade.h:275
+msgid "_Metadata Browser"
+msgstr "_Metaduomenų naršyklė"
+
+#: ../src/f-spot.glade.h:276
+msgid "_Month"
+msgstr "_Mėnesį"
+
+#: ../src/f-spot.glade.h:277
 msgid "_New Window"
 msgstr "_Naujas langas"
 
-#: ../src/f-spot.glade.h:275
+#: ../src/f-spot.glade.h:278
 msgid "_Open album in browser when done uploading"
-msgstr "Baigus siuntimą _atverti albumą naršyklėje"
+msgstr "Baigus siuntimą, _atverti albumą naršyklėje"
 
-#: ../src/f-spot.glade.h:276
+#: ../src/f-spot.glade.h:279
 msgid "_Open destination when done exporting"
-msgstr "Baigus eksportavimą _atverti paskirties vietą"
+msgstr "Baigus eksportavimą, _atverti paskirties vietą"
 
-#: ../src/f-spot.glade.h:277
+#: ../src/f-spot.glade.h:280
 msgid "_Output:"
 msgstr "_Išvestis:"
 
-#: ../src/f-spot.glade.h:278
+#: ../src/f-spot.glade.h:281
 msgid "_Parent Album:"
 msgstr "_Pirminis albumas:"
 
-#: ../src/f-spot.glade.h:279
+#: ../src/f-spot.glade.h:282
 msgid "_Password:"
 msgstr "_Slaptažodis:"
 
-#: ../src/f-spot.glade.h:280
+#: ../src/f-spot.glade.h:283
 msgid "_Quit"
 msgstr "Iš_eiti"
 
-#: ../src/f-spot.glade.h:281
+#: ../src/f-spot.glade.h:284
 msgid "_Remove From Catalog"
 msgstr "_Pašalinti iš katalogo"
 
-#: ../src/f-spot.glade.h:282
+#: ../src/f-spot.glade.h:285
 msgid "_Remove Tag From Selection"
-msgstr "_Pašalinti žymę iš pasirinktų elementų"
+msgstr "_Pašalinti žymą iš pasirinktų elementų"
 
-#: ../src/f-spot.glade.h:283
+#: ../src/f-spot.glade.h:286
 msgid "_Rename Version"
 msgstr "_Pervadinti versiją"
 
-#: ../src/f-spot.glade.h:284
+#: ../src/f-spot.glade.h:287
 msgid "_Resize to: "
 msgstr "_Keisti dydį į: "
 
-#: ../src/f-spot.glade.h:286
+#: ../src/f-spot.glade.h:289
 msgid "_Saturation:"
 msgstr "_Sodrumas:"
 
-#: ../src/f-spot.glade.h:287
+#: ../src/f-spot.glade.h:290
 msgid "_Save the files only"
 msgstr "Iš_saugoti tik rinkmenas"
 
-#: ../src/f-spot.glade.h:288
+#: ../src/f-spot.glade.h:291
 msgid "_Scale photos to no larger than: "
 msgstr "_Ištempti fotografijas ne daugiau kaip: "
 
-#: ../src/f-spot.glade.h:289
+#: ../src/f-spot.glade.h:292
 msgid "_Sharpen..."
 msgstr "_Paryškinti..."
 
-#: ../src/f-spot.glade.h:290
+#: ../src/f-spot.glade.h:293
 msgid "_Slideshow"
 msgstr "_Skaidrių šou"
 
-#: ../src/f-spot.glade.h:291
+#: ../src/f-spot.glade.h:294
 msgid "_Small"
-msgstr "_Mažas"
+msgstr "_Mažos"
 
-#: ../src/f-spot.glade.h:292
+#: ../src/f-spot.glade.h:295
 msgid "_Strip metadata"
 msgstr "_Pašalinti metaduomenis"
 
-#: ../src/f-spot.glade.h:293
+#: ../src/f-spot.glade.h:296
 msgid "_Tag Name:"
-msgstr "Ž_ymės pavadinimas:"
+msgstr "Ž_ymos pavadinimas:"
 
-#: ../src/f-spot.glade.h:294
+#: ../src/f-spot.glade.h:297
 msgid "_Tags"
-msgstr "Žy_mės"
+msgstr "Žy_mos"
 
-#: ../src/f-spot.glade.h:295
+#: ../src/f-spot.glade.h:298
 msgid "_Title:"
 msgstr "_Pavadinimas:"
 
-#: ../src/f-spot.glade.h:296
+#: ../src/f-spot.glade.h:299
 msgid "_Tools"
 msgstr "Įran_kiai"
 
-#: ../src/f-spot.glade.h:297
+#: ../src/f-spot.glade.h:300
 msgid "_URI:"
 msgstr "_URI:"
 
-#: ../src/f-spot.glade.h:298
+#: ../src/f-spot.glade.h:301
 msgid "_Untagged Photos"
-msgstr "_Fotografijos be žymių"
+msgstr "_Fotografijos be žymų"
 
-#: ../src/f-spot.glade.h:299
+#: ../src/f-spot.glade.h:302
 msgid "_Username:"
 msgstr "_Naudotojo vardas:"
 
-#: ../src/f-spot.glade.h:300
+#: ../src/f-spot.glade.h:303
 msgid "_Version"
 msgstr "_Versija"
 
-#: ../src/f-spot.glade.h:301
+#: ../src/f-spot.glade.h:304
 msgid "_View"
 msgstr "R_odymas"
 
-#: ../src/f-spot.glade.h:302
+#: ../src/f-spot.glade.h:305
 msgid "_View photos in browser when done uploading"
 msgstr "Pabaigus įkėlimą _rodyti fotografijas naršyklėje"
 
-#: ../src/f-spot.glade.h:303
+#: ../src/f-spot.glade.h:306
 msgid "_Virtual Filesystem"
 msgstr "_Virtuali rinkmenų sistema"
 
-#: ../src/f-spot.glade.h:304
+#: ../src/f-spot.glade.h:307
 msgid "_Write only these photos to CD"
 msgstr "Į CD į_rašyti tik šias fotografijas"
 
-#: ../src/f-spot.glade.h:305
+#: ../src/f-spot.glade.h:308
 msgid "and"
 msgstr "ir"
 
 #. at, or after a date, or between dates
-#: ../src/f-spot.glade.h:307
+#: ../src/f-spot.glade.h:310
 msgid ""
 "at\n"
 "after\n"
@@ -3400,43 +3469,43 @@ msgstr ""
 "po\n"
 "tarp"
 
-#: ../src/f-spot.glade.h:310
+#: ../src/f-spot.glade.h:313
 msgid "dialog1"
 msgstr ""
 
-#: ../src/f-spot.glade.h:311
+#: ../src/f-spot.glade.h:314
 msgid "difference:"
 msgstr "skirtumas:"
 
-#: ../src/f-spot.glade.h:312
+#: ../src/f-spot.glade.h:315
 msgid "gtk-about"
 msgstr ""
 
-#: ../src/f-spot.glade.h:313
+#: ../src/f-spot.glade.h:316
 msgid "gtk-close"
 msgstr ""
 
-#: ../src/f-spot.glade.h:314
+#: ../src/f-spot.glade.h:317
 msgid "gtk-open"
 msgstr ""
 
-#: ../src/f-spot.glade.h:315
+#: ../src/f-spot.glade.h:318
 msgid "gtk-preferences"
 msgstr ""
 
-#: ../src/f-spot.glade.h:316
+#: ../src/f-spot.glade.h:319
 msgid "gtk-print"
 msgstr ""
 
-#: ../src/f-spot.glade.h:317
+#: ../src/f-spot.glade.h:320
 msgid "img_000.jpg"
 msgstr "pav_000.jpg"
 
-#: ../src/f-spot.glade.h:319
+#: ../src/f-spot.glade.h:323
 msgid "pixels"
 msgstr "taškai"
 
-#: ../src/f-spot.glade.h:320
+#: ../src/f-spot.glade.h:324
 msgid "x"
 msgstr "x"
 
