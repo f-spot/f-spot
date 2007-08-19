@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-08 00:08+0200\n"
-"PO-Revision-Date: 2007-07-25 14:39+0100\n"
+"POT-Creation-Date: 2007-08-19 15:07+0200\n"
+"PO-Revision-Date: 2007-08-10 21:43+0100\n"
 "Last-Translator: Tomasz Dominikowski <dominikowski@gmail.com>\n"
 "Language-Team:  <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -101,16 +101,14 @@ msgid "Repository"
 msgstr "Repozytorium"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstaller.cs:16
-#, fuzzy
 msgid "Installation cancelled"
-msgstr "Instalacja nie powiodła się"
+msgstr "Instalacja została anulowana"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:159
 msgid "Some of the required add-ins were not found"
-msgstr ""
+msgstr "Niektóre z wymaganych dodatków nie zostały odnalezione"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:171
-#, fuzzy
 msgid "Installation failed"
 msgstr "Instalacja nie powiodła się"
 
@@ -195,18 +193,16 @@ msgid "Downloading add-ins..."
 msgstr "Pobieranie dodatków..."
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:36
-#, fuzzy
 msgid "Add-in Manager"
-msgstr "Menedżer dodatków F-Spot"
+msgstr "Menedżer dodatków"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:52
 msgid "Additional extensions are required to perform this operation."
-msgstr ""
+msgstr "Aby wykonać tę czynność wymagane są dodatkowe rozszerzenia."
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:62
-#, fuzzy
 msgid "The following add-ins will be installed:"
-msgstr "Następujące pakiety zostaną zainstalowane:"
+msgstr "Następujące dodatki zostaną zainstalowane:"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
 msgid "F-Spot Add-in Manager"
@@ -432,14 +428,17 @@ msgid "Save Image"
 msgstr "Zapisz obrazek"
 
 #: ../libeog/eog-image.c:773
+#, c-format
 msgid "No image loaded."
 msgstr "Nie wczytano obrazka."
 
 #: ../libeog/eog-image.c:780
+#, c-format
 msgid "Can't save non local files."
 msgstr "Nie można zapisać plików nielokalnych."
 
 #: ../libeog/eog-image.c:803
+#, c-format
 msgid "Unsupported image type for saving."
 msgstr "Nieobsługiwany rodzaj obrazu do zapisu."
 
@@ -593,7 +592,7 @@ msgid "Error saving adjusted photo"
 msgstr "Błąd przy zapisie dostosowanego zdjęcia"
 
 #: ../src/ColorDialog.cs:212 ../src/HigMessageDialog.cs:15 ../src/Loupe.cs:58
-#: ../src/MainWindow.cs:1995 ../src/PhotoView.cs:265
+#: ../src/MainWindow.cs:1997 ../src/PhotoView.cs:265
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Otrzymano wyjątek \"{0}\". Nie można zapisać zdjęcia {1}"
@@ -1264,7 +1263,7 @@ msgstr "(brak)"
 msgid "(Unknown)"
 msgstr "(nieznany)"
 
-#: ../src/InfoDisplay.cs:14 ../src/MainWindow.cs:1499
+#: ../src/InfoDisplay.cs:14 ../src/MainWindow.cs:1501
 #: ../src/f-spot.glade.h:153
 msgid "Metadata Browser"
 msgstr "Przeglądarka metadanych"
@@ -1348,7 +1347,7 @@ msgstr "Aby wyprostować horyzont, należy dopasować kąt"
 msgid "Create a soft focus visual effect"
 msgstr "Tworzy efekt miękkiego obrazu"
 
-#: ../src/Loupe.cs:57 ../src/MainWindow.cs:1994
+#: ../src/Loupe.cs:57 ../src/MainWindow.cs:1996
 msgid "Error saving sharpened photo"
 msgstr "Błąd podczas zapisu wyostrzonego zdjęcia"
 
@@ -1357,15 +1356,15 @@ msgstr "Błąd podczas zapisu wyostrzonego zdjęcia"
 msgid "Sharpen"
 msgstr "Wyostrz"
 
-#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1961
+#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1963
 msgid "Amount:"
 msgstr "Stopień:"
 
-#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1962
+#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1964
 msgid "Radius:"
 msgstr "Promień:"
 
-#: ../src/Loupe.cs:99 ../src/MainWindow.cs:1963
+#: ../src/Loupe.cs:99 ../src/MainWindow.cs:1965
 msgid "Threshold:"
 msgstr "Próg:"
 
@@ -1405,11 +1404,11 @@ msgstr "Wyświetla zdjęcia w trybie pełnoekranowym"
 msgid "View photos in a slideshow"
 msgstr "Wyświetla zdjęcia jako pokaz slajdów"
 
-#: ../src/MainWindow.cs:858
+#: ../src/MainWindow.cs:860
 msgid "Error loading database."
 msgstr "Błąd podczas ładowania bazy danych."
 
-#: ../src/MainWindow.cs:859
+#: ../src/MainWindow.cs:861
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
@@ -1418,11 +1417,11 @@ msgstr ""
 "F-Spot napotkał błąd podczas wczytywania bazy danych o zdjęciach.  Została "
 "utworzona nowa baza, a poprzednia została przeniesiuna do {0}."
 
-#: ../src/MainWindow.cs:1417
+#: ../src/MainWindow.cs:1419
 msgid "No cameras detected."
 msgstr "Nie wykryto żadnych aparatów."
 
-#: ../src/MainWindow.cs:1418
+#: ../src/MainWindow.cs:1420
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1430,11 +1429,11 @@ msgstr ""
 "F-Spot nie mógł odnaleźć żadnych podłączonych aparatów. Sprawdź ponownie, "
 "czy aparat jest podłączony i ma zasilanie"
 
-#: ../src/MainWindow.cs:1458
+#: ../src/MainWindow.cs:1460
 msgid "Error connecting to camera"
 msgstr "Błąd podczas łączenia się z aparatem"
 
-#: ../src/MainWindow.cs:1459
+#: ../src/MainWindow.cs:1461
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Podczas łączenia się z aparatem otrzymano błąd \"{0}\""
@@ -1442,7 +1441,7 @@ msgstr "Podczas łączenia się z aparatem otrzymano błąd \"{0}\""
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1602
+#: ../src/MainWindow.cs:1604
 msgid "translator-credits"
 msgstr ""
 "Zbigniew Braniecki <gandalf@aviary.pl>, 2005, 2006\n"
@@ -1452,12 +1451,12 @@ msgstr ""
 "Marek Stępień <marcoos@aviary.pl>, 2005, 2006\n"
 "Tomasz Dominikowski <dominikowski@gmail.com>, 2007"
 
-#: ../src/MainWindow.cs:1610
+#: ../src/MainWindow.cs:1612
 msgid "Copyright © 2003-2007 Novell Inc."
 msgstr "Copyright © 2003-2007 Novell, Inc."
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1874
+#: ../src/MainWindow.cs:1876
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
@@ -1465,7 +1464,7 @@ msgstr[0] "Połącz {0} zaznaczoną etykietę?"
 msgstr[1] "Połączyć {0} zaznaczone etykiety?"
 msgstr[2] "Połączyć {0} zaznaczonych etykiet?"
 
-#: ../src/MainWindow.cs:1901
+#: ../src/MainWindow.cs:1903
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -1473,15 +1472,15 @@ msgstr ""
 "Ta operacja spowoduje połączenie zaznaczonych etykiet i wszelkich podetykiet "
 "w jedną etykietę."
 
-#: ../src/MainWindow.cs:1903
+#: ../src/MainWindow.cs:1905
 msgid "_Merge Tags"
 msgstr "_Połącz etykiety"
 
-#: ../src/MainWindow.cs:1952
+#: ../src/MainWindow.cs:1954
 msgid "Unsharp Mask"
 msgstr "Maska rozmycia"
 
-#: ../src/MainWindow.cs:2155 ../src/SingleView.cs:471
+#: ../src/MainWindow.cs:2157 ../src/SingleView.cs:471
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
@@ -1489,12 +1488,12 @@ msgstr[0] "{0} zdjęcie"
 msgstr[1] "{0} zdjęcia"
 msgstr[2] "{0} zdjęć"
 
-#: ../src/MainWindow.cs:2162
+#: ../src/MainWindow.cs:2164
 #, csharp-format
 msgid " out of {0}"
 msgstr " z {0}"
 
-#: ../src/MainWindow.cs:2165
+#: ../src/MainWindow.cs:2167
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
@@ -1502,25 +1501,25 @@ msgstr[0] "({0} zaznaczone)"
 msgstr[1] "({0} zaznaczone)"
 msgstr[2] "({0} zaznaczonych)"
 
-#: ../src/MainWindow.cs:2252
+#: ../src/MainWindow.cs:2254
 msgid "_Ok"
 msgstr "_Ok"
 
-#: ../src/MainWindow.cs:2253
+#: ../src/MainWindow.cs:2255
 msgid "Error Deleting Picture"
 msgstr "Błąd podczas usuwania obrazka"
 
-#: ../src/MainWindow.cs:2258
+#: ../src/MainWindow.cs:2260
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Brak uprawnień do usunięcia pliku:{1}{0}"
 
-#: ../src/MainWindow.cs:2262
+#: ../src/MainWindow.cs:2264
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "Wystąpił błąd {0} podczas usuwania pliku:{2}{1}"
 
-#: ../src/MainWindow.cs:2288
+#: ../src/MainWindow.cs:2290
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
@@ -1528,7 +1527,7 @@ msgstr[0] "Całkowicie usunąć zaznaczone zdjęcie?"
 msgstr[1] "Całkowicie usunąć {0} zaznaczone zdjęcia?"
 msgstr[2] "Całkowicie usunąć {0} zaznaczonych zdjęć?"
 
-#: ../src/MainWindow.cs:2292
+#: ../src/MainWindow.cs:2294
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
@@ -1536,14 +1535,14 @@ msgstr[0] "Usuwa wszelkie wersje zaznaczonego zdjęcia z dysku."
 msgstr[1] "Usuwa wszelkie wersje zaznaczonych zdjęć z dysku."
 msgstr[2] "Usuwa wszelkie wersje zaznaczonych zdjęć z dysku."
 
-#: ../src/MainWindow.cs:2295
+#: ../src/MainWindow.cs:2297
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Usuń zdjęcie"
 msgstr[1] "_Usuń zdjęcia"
 msgstr[2] "_Usuń zdjęcia"
 
-#: ../src/MainWindow.cs:2326
+#: ../src/MainWindow.cs:2328
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
@@ -1551,7 +1550,7 @@ msgstr[0] "Czy usunąć zaznaczone zdjęcie z programu F-Spot?"
 msgstr[1] "Czy usunąć {0} zaznaczone zdjęcie z programu F-Spot?"
 msgstr[2] "Czy usunąć {0} zaznaczonych zdjęć z programu F-Spot?"
 
-#: ../src/MainWindow.cs:2331
+#: ../src/MainWindow.cs:2333
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1561,27 +1560,27 @@ msgstr ""
 "etykietach. Zdjęcia pozostaną na komputerze i będzie można je ponownie "
 "zaimportować do programu F-Spot."
 
-#: ../src/MainWindow.cs:2332
+#: ../src/MainWindow.cs:2334
 msgid "_Remove from Catalog"
 msgstr "Usuń z ka_talogu"
 
-#: ../src/MainWindow.cs:2389
+#: ../src/MainWindow.cs:2391
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Usunąć etykietę \"{0}\"?"
 
-#: ../src/MainWindow.cs:2391
+#: ../src/MainWindow.cs:2393
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Usunąć {0} zaznaczonych etykiet?"
 
-#: ../src/MainWindow.cs:2394
+#: ../src/MainWindow.cs:2396
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr ""
 "Jeśli etykieta zostanie usunięta, wszelkie powiązania ze zdjęciami zostaną "
 "utracone."
 
-#: ../src/MainWindow.cs:2395
+#: ../src/MainWindow.cs:2397
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Usuń etykietę"
@@ -1589,11 +1588,11 @@ msgstr[1] "_Usuń etykiety"
 msgstr[2] "_Usuń etykiety"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2409
+#: ../src/MainWindow.cs:2411
 msgid "Tag is not empty"
 msgstr "Etykieta nie jest pusta"
 
-#: ../src/MainWindow.cs:2410
+#: ../src/MainWindow.cs:2412
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1602,21 +1601,21 @@ msgstr ""
 "Nie można usunąć etykiet mających podetykiety. Należy najpierw usunąć "
 "etykiety pod \"{0}\""
 
-#: ../src/MainWindow.cs:2834
+#: ../src/MainWindow.cs:2839
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Obróć wybrane zdjęcie w lewo"
 msgstr[1] "Obróć wybrane zdjęcia w lewo"
 msgstr[2] "Obróć wybrane zdjęcia w lewo"
 
-#: ../src/MainWindow.cs:2847
+#: ../src/MainWindow.cs:2852
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Obróć wybrane zdjęcie w prawo"
 msgstr[1] "Obróć wybrane zdjęcia w prawo"
 msgstr[2] "Obróć wybrane zdjęcia w prawo"
 
-#: ../src/MainWindow.cs:2855
+#: ../src/MainWindow.cs:2860
 #, csharp-format
 msgid "Find Selected Tag"
 msgid_plural "Find Selected Tags"
@@ -1624,7 +1623,7 @@ msgstr[0] "Znajdź zaznaczoną etykietę"
 msgstr[1] "Znajdź zaznaczone etykiety"
 msgstr[2] "Znajdź zaznaczone etykiety"
 
-#: ../src/MainWindow.cs:2859
+#: ../src/MainWindow.cs:2864
 #, csharp-format
 msgid "Find Selected Tag With"
 msgid_plural "Find Selected Tags With"
@@ -1632,14 +1631,14 @@ msgstr[0] "Znajdź zaznaczoną etykietę za pomocą"
 msgstr[1] "Znajdź zaznaczone etykiety za pomocą"
 msgstr[2] "Znajdź zaznaczone etykiety za pomocą"
 
-#: ../src/MainWindow.cs:2876
+#: ../src/MainWindow.cs:2881
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Utworzyć nową wersję?"
 msgstr[1] "Utworzyć nowe wersje?"
 msgstr[2] "Utworzyć nowe wersje?"
 
-#: ../src/MainWindow.cs:2878
+#: ../src/MainWindow.cs:2883
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1975,7 +1974,7 @@ msgstr "Błąd podczas wysyłania do Gallery: {0}"
 msgid "Available space :"
 msgstr "Dostępna przestrzeń:"
 
-#: ../src/Preferences.cs:190
+#: ../src/Preferences.cs:191
 msgid "Photos"
 msgstr "Zdjęcia"
 
