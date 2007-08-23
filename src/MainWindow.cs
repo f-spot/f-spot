@@ -966,6 +966,7 @@ public class MainWindow {
 				
 				// FIXME this should really follow the AddTagsExtended path too
 				photo.AddTag (tags);
+				db.Photos.Commit (photo);
 			}
 			db.CommitTransaction ();
 			InvalidateViews ();

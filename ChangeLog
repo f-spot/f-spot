@@ -1,5 +1,11 @@
 2007-08-23  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/MainWindow.cs: Committing the changes while tagging by dropping
+	uris. Fixes the problem raised at the previous commit time.
+	* src/PhotoStore.cs: Use Caching for GetByPath ()
+
+2007-08-23  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/PhotoStore.cs: Fix a stupid bug while dropping uris onto tags.
 	This does not fix the tagging by dropping uri, but who's using that ?
 

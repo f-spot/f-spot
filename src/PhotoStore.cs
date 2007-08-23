@@ -921,9 +921,6 @@ public class PhotoStore : DbStore {
 
 	public Photo GetByPath (string path)
 	{
-		//FIXME - No cacheing here - probably not a problem since
-		//        this is only used for DND
-
 		Photo photo = null;
 
 		string directory_path = System.IO.Path.GetDirectoryName (path);
@@ -941,13 +938,17 @@ public class PhotoStore : DbStore {
 			photo.Description = reader[2].ToString ();
 			photo.RollId = Convert.ToUInt32 (reader[3]);
 			photo.DefaultVersionId = Convert.ToUInt32 (reader[4]);
-			AddToCache (photo);
 		}
-        reader.Close();
+	        reader.Close();
 
 		if (photo == null)
 			return null;
-		
+
+		if (LookupInCache (photo.Id) as Photo != null)
+			return LookupInCache (photo.Id) as Photo;
+
+		AddToCache (photo);
+	
 		GetTags (photo);
 		GetVersions (photo);
 
