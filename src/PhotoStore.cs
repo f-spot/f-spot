@@ -749,7 +749,7 @@ public class PhotoStore : DbStore {
 
 	private void GetVersions (Photo photo)
 	{
-		SqliteDataReader reader = Database.Query(new DbCommand("SELECT version_id, name FROM photo_versions WHERE photo_id = :id", photo.Id));
+		SqliteDataReader reader = Database.Query(new DbCommand("SELECT version_id, name FROM photo_versions WHERE photo_id = :id", "id", photo.Id));
 
 		while (reader.Read ()) {
 			uint version_id = Convert.ToUInt32 (reader [0]);
@@ -761,7 +761,7 @@ public class PhotoStore : DbStore {
 
 	private void GetTags (Photo photo)
 	{
-		SqliteDataReader reader = Database.Query(new DbCommand("SELECT tag_id FROM photo_tags WHERE photo_id = :id", photo.Id));
+		SqliteDataReader reader = Database.Query(new DbCommand("SELECT tag_id FROM photo_tags WHERE photo_id = :id", "id", photo.Id));
 
 		while (reader.Read ()) {
 			uint tag_id = Convert.ToUInt32 (reader [0]);

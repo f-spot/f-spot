@@ -1,5 +1,10 @@
 2007-08-23  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/PhotoStore.cs: Fix a stupid bug while dropping uris onto tags.
+	This does not fix the tagging by dropping uri, but who's using that ?
+
+2007-08-23  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/SendMail.cs: No longer compute size on paths, but on uris.
 
 2007-08-10  Stephane Delcroix  <stephane@delcroix.org>
