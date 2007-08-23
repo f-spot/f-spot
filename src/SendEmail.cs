@@ -81,19 +81,13 @@ namespace FSpot {
 
 			Dialog.Modal = false;
 
-			string path;
-			System.IO.FileInfo file_info;
-
 			// Calculate total original filesize 
 			foreach (Photo photo in selection.Items) {
-				if (photo != null) {
-					path = photo.GetVersionPath(photo.DefaultVersionId);
-					if (System.IO.File.Exists (path)) {
-						file_info = new System.IO.FileInfo (path);
-						Orig_Photo_Size += file_info.Length;
-					} // if file exists
-				} // if photo != null
-			} // foreach
+				try {
+					Orig_Photo_Size += (new Gnome.Vfs.FileInfo (photo.DefaultVersionUri.ToString ())).Size;
+				} catch {
+				}
+			}
 
 			for (int k = 0; k < avg_scale_ref.Length; k++)
 				avg_scale[k] = avg_scale_ref[k];
@@ -104,16 +98,15 @@ namespace FSpot {
 			if (scalephoto != null && !force_original) {
 				
 				// Get first photos file size
-				file_info = new System.IO.FileInfo (scalephoto.GetVersionPath(scalephoto.DefaultVersionId));
-				long orig_size = file_info.Length;
+				long orig_size = (new Gnome.Vfs.FileInfo (scalephoto.DefaultVersionUri.ToString ())).Size;
 				
-				// Get filesize of first photo after resizing it to medium size
-				path = PixbufUtils.Resize (scalephoto.GetVersionPath(scalephoto.DefaultVersionId), sizes[3], true);
-				file_info = new System.IO.FileInfo (path);
-				long new_size = file_info.Length;
-				
-				// Delete the just created temporary resized photo
-				System.IO.File.Delete (path);
+				FilterSet filters = new FilterSet ();
+				filters.Add (new ResizeFilter ((uint)(sizes [3])));
+				long new_size;
+				using (FilterRequest request = new FilterRequest (scalephoto.DefaultVersionUri)) {
+					filters.Convert (request);
+					new_size = (new Gnome.Vfs.FileInfo (request.Current.ToString ())).Size;
+				}
 				
 				if (orig_size > 0) {
 				
@@ -225,11 +218,7 @@ namespace FSpot {
 
 		private void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
-			long new_size = 0;
-//			long orig_size = 0;
-			long actual_total_size = 0;
 			int size = 0;
-			System.IO.FileInfo file_info;
 			bool UserCancelled = false;
 			bool rotate = true;
 
@@ -240,7 +229,6 @@ namespace FSpot {
 				return;
 			}
 			ProgressDialog progress_dialog = null;
-			actual_total_size = 0;
 		
 			progress_dialog = new ProgressDialog (Catalog.GetString ("Preparing email"),
 							      ProgressDialog.CancelButtonType.Stop,
@@ -299,9 +287,6 @@ namespace FSpot {
 					if (UserCancelled)
 					 	break;
 					 	
-					file_info = new System.IO.FileInfo (photo.GetVersionPath(photo.DefaultVersionId));
-//					orig_size = file_info.Length;
-
 					// Prepare a tmp_mail file name
 					FilterRequest request = new FilterRequest (photo.DefaultVersionUri);
 
@@ -312,20 +297,6 @@ namespace FSpot {
 					
 					// Mark the path for deletion
 					tmp_paths.Add (request.Current.LocalPath);
-
-					// Update the running total of the actual file sizes.
-					file_info = new System.IO.FileInfo (request.Current.LocalPath);
-					new_size = file_info.Length;
-					actual_total_size += new_size;
-
-					// Update dialog to indicate Actual size!
-					// This is currently disabled, since the dialog box is not visible at this stage.
-					// string approxresult = SizeUtil.ToHumanReadable (actual_total_size);
-					// ActualMailSize.Text = approxresult;	
-
-
-					//System.Console.WriteLine ("Orig file size {0}, New file size {1}, % {4}, Scaled to size {2}, new name {3}", 
-					//orig_size, new_size, size, tmp_path, 1 - ((orig_size-new_size)/orig_size));
 				}
 			} // foreach
 			
