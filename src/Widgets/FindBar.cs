@@ -300,7 +300,7 @@ namespace FSpot.Widgets {
 				parent = new OrTerm(parent, null);
 
 				// If the literal is the name of a tag, include it in the OR
-				AbstractLiteral term = null;
+				//AbstractLiteral term = null;
 				if (tag != null) {
 					new Literal (parent, tag, null);
 				}

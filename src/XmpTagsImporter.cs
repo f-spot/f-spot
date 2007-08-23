@@ -151,7 +151,7 @@ namespace FSpot.Xmp {
 			Hashtable descriptions = new Hashtable ();
 
 			foreach (Statement stmt in store) {
-				StatementList list = null;
+				//StatementList list = null;
 				
 				switch (stmt.Predicate.Uri) {
 

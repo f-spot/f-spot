@@ -98,16 +98,17 @@ namespace FSpot.Editors {
 					// FIXME Not this again. I need to imlplement a real version of the transfer
 					// function that shows progress in the main window and allows for all the
 					// goodies we'll need.
-					Gnome.Vfs.Result result = Gnome.Vfs.Result.Ok;
-					result = Gnome.Vfs.Xfer.XferUri (new Gnome.Vfs.Uri (UriList.PathToFileUri (tmp).ToString ()),
-									 new Gnome.Vfs.Uri (target.Uri.ToString ()),
-									 Gnome.Vfs.XferOptions.Default,
-									 Gnome.Vfs.XferErrorMode.Abort, 
-									 Gnome.Vfs.XferOverwriteMode.Replace, 
-									 delegate {
-										 System.Console.Write (".");
-										 return 1;
-									 });
+					//Gnome.Vfs.Result result = Gnome.Vfs.Result.Ok;
+					//result = Gnome.Vfs.Xfer.XferUri (new Gnome.Vfs.Uri (UriList.PathToFileUri (tmp).ToString ()),
+					Gnome.Vfs.Xfer.XferUri (new Gnome.Vfs.Uri (UriList.PathToFileUri (tmp).ToString ()),
+						new Gnome.Vfs.Uri (target.Uri.ToString ()),
+						Gnome.Vfs.XferOptions.Default,
+						Gnome.Vfs.XferErrorMode.Abort, 
+						Gnome.Vfs.XferOverwriteMode.Replace, 
+						delegate {
+							System.Console.Write (".");
+							return 1;
+						});
 
 					target.Commit ();
 				}
