@@ -105,30 +105,24 @@ install-data-local:
 	@-$(install_icon_exec) -i $(theme_icons)
 	$(mkinstalldirs) $(hicolordir)/16x16/apps
 	$(INSTALL_DATA) $(srcdir)/f-spot-16.png $(hicolordir)/16x16/apps/f-spot.png
-	$(INSTALL_DATA) $(srcdir)/f-spot-16.svg $(hicolordir)/16x16/apps/f-spot.svg
 	$(mkinstalldirs) $(hicolordir)/22x22/apps
 	$(INSTALL_DATA) $(srcdir)/f-spot-22.png $(hicolordir)/22x22/apps/f-spot.png
-	$(INSTALL_DATA) $(srcdir)/f-spot-22.svg $(hicolordir)/22x22/apps/f-spot.svg
 	$(mkinstalldirs) $(hicolordir)/24x24/apps
 	$(INSTALL_DATA) $(srcdir)/f-spot-24.png $(hicolordir)/24x24/apps/f-spot.png
 	$(mkinstalldirs) $(hicolordir)/32x32/apps
 	$(INSTALL_DATA) $(srcdir)/f-spot-32.png $(hicolordir)/32x32/apps/f-spot.png
-	$(INSTALL_DATA) $(srcdir)/f-spot-32.svg $(hicolordir)/32x32/apps/f-spot.svg
 	$(mkinstalldirs) $(hicolordir)/48x48/apps
 	$(INSTALL_DATA) $(srcdir)/f-spot-48.png $(hicolordir)/48x48/apps/f-spot.png
-	$(INSTALL_DATA) $(srcdir)/f-spot-48.svg $(hicolordir)/48x48/apps/f-spot.svg
+	$(mkinstalldirs) $(hicolordir)/scalable/apps
+	$(INSTALL_DATA) $(srcdir)/f-spot-48.svg $(hicolordir)/scalable/apps/f-spot.svg
 
 uninstall-hook: 
 	@-$(install_icon_exec) -u $(theme_icons)
 	rm -f $(hicolordir)/16x16/apps/f-spot.png
-	rm -f $(hicolordir)/16x16/apps/f-spot.svg
 	rm -f $(hicolordir)/22x22/apps/f-spot.png
-	rm -f $(hicolordir)/22x22/apps/f-spot.svg
 	rm -f $(hicolordir)/24x24/apps/f-spot.png
 	rm -f $(hicolordir)/32x32/apps/f-spot.png
-	rm -f $(hicolordir)/32x32/apps/f-spot.svg
 	rm -f $(hicolordir)/48x48/apps/f-spot.png
-	rm -f $(hicolordir)/48x48/apps/f-spot.svg
 	rm -f $(hicolordir)/scalable/apps/f-spot.svg
 
 	
