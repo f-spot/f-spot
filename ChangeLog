@@ -1,5 +1,13 @@
 2007-08-27  Stephane Delcroix  <stephane@delcroix.org>
 
+	* configure.in:
+	* Makefile.am:
+	* Makefile.include:
+	* src/f-spot.in: no longer compiles and bundles dbus-sharp if it's
+	already installed in the gac.
+
+2007-08-27  Stephane Delcroix  <stephane@delcroix.org>
+
 	* dbus-sharp: upgrade to dbus-sharp 0.5.2
 
 2007-08-27  Stephane Delcroix  <stephane@delcroix.org>

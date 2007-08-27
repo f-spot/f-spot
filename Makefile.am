@@ -1,4 +1,25 @@
 SUBDIRS = 		\
+	$(DIR_DBUS)	\
+	docs		\
+	FlickrNet	\
+	SmugMugNet	\
+	glitz-sharp	\
+	google-sharp	\
+	gnome-keyring-sharp \
+	icons		\
+	libeog		\
+	libjpegtran	\
+	libfspot	\
+	libgphoto2-sharp \
+	semweb		\
+	Tao		\
+	mono-addins	\
+	tools		\
+	po		\
+	src		\
+	extensions
+
+DIST_SUBDIRS = 		\
 	dbus-sharp	\
 	dbus-sharp-glib	\
 	docs		\

@@ -6,8 +6,6 @@
 DIR_ADDINS_ADDINS = $(top_builddir)/mono-addins/Mono.Addins
 DIR_ADDINS_GUI = $(top_builddir)/mono-addins/Mono.Addins.Gui
 DIR_ADDINS_SETUP = $(top_builddir)/mono-addins/Mono.Addins.Setup
-DIR_DBUS = $(top_builddir)/dbus-sharp
-DIR_DBUS_GLIB = $(top_builddir)/dbus-sharp-glib
 DIR_DOCS = $(top_builddir)/docs
 DIR_EXTENSIONS = $(top_builddir)/extensions
 DIR_FLICKR = $(top_builddir)/FlickrNet
@@ -29,9 +27,6 @@ DIR_TAO_GLPOSTPROCESS = $(top_builddir)/Tao/Tao.GlPostProcess
 
 ## Links
 
-LINK_DBUS = 					\
-	-r:$(DIR_DBUS)/NDesk.DBus.dll		\
-	-r:$(DIR_DBUS_GLIB)/NDesk.DBus.GLib.dll
 LINK_FLICKR = -r:$(DIR_FLICKR)/FlickrNet.dll
 LINK_KEYRING = -r:$(DIR_KEYRING)/gnome-keyring-sharp.dll
 LINK_GLITZ = -r:$(DIR_GLITZ)/NDesk.Glitz.dll 
