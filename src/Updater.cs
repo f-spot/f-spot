@@ -114,13 +114,31 @@ namespace FSpot.Database {
 
 
 			//Version 6.0, change tag icon f-spot-tag-other to emblem-generic
-			AddUpdate (new Version (6,0),delegate () {
+			AddUpdate (new Version (6,0), delegate () {
 				ExecuteScalar ("UPDATE tags SET icon = \"stock_icon:emblem-generic\" " +
 						" WHERE icon LIKE \"stock_icon:f-spot-other.png\"");
 			});
+
+			//Update to version 7.0, keep photo uri instead of path
+			AddUpdate (new Version (7,0), delegate () {
+				MoveTableToTemp ("photos");
+				ExecuteNonQuery ( 
+					"CREATE TABLE photos (\n" +
+					"	id                 INTEGER PRIMARY KEY NOT NULL,\n" +
+					"       time               INTEGER NOT NULL,\n" +
+					"       uri                STRING NOT NULL,\n" +
+					"       description        TEXT NOT NULL,\n" +
+					"       roll_id            INTEGER NOT NULL,\n" +
+					"       default_version_id INTEGER NOT NULL" +
+					")");
+				ExecuteNonQuery (
+					"INSERT INTO photos (id, time, uri, description, roll_id, default_version_id)	" +
+					"SELECT id, time, 'file://' || directory_path || '/' || name, 		" +
+					"description, roll_id, default_version_id FROM photos_temp ");
+			}, true);
 			
-			// Update to version 7.0
-			//AddUpdate (new Version (7,0),delegate () {
+			// Update to version 8.0
+			//AddUpdate (new Version (8,0),delegate () {
 			//	do update here
 			//});
 

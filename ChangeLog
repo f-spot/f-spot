@@ -1,3 +1,8 @@
+2007-08-27  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Updater.cs: Keep photo uris instead of directory/name.
+	* src/PhotoStore.cs: Adaptations to the db schema.
+
 2007-08-23  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/MainWindow.cs: Committing the changes while tagging by dropping

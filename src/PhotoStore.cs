@@ -101,12 +101,12 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 	private static int CompareCurrentDir (Photo photo1, Photo photo2)
 	{
-		return string.Compare (photo1.directory_path, photo2.directory_path);
+		return string.Compare (photo1.DirectoryPath, photo2.DirectoryPath);
 	}
 
 	private static int CompareName (Photo photo1, Photo photo2)
 	{
-		return string.Compare (photo1.name, photo2.name);
+		return string.Compare (photo1.Name, photo2.Name);
 	}
 
 	public class CompareDateName : IComparer {
@@ -157,28 +157,25 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		}
 	}
 
-	private string directory_path;
-	private string name;
+	private System.Uri uri;
+	System.Uri Uri {
+		get { return uri; }
+	}
 
+	[Obsolete ("Use Uri instead of Path")]
 	private string Path {
-		get {
-			return System.IO.Path.Combine (directory_path, name);
-		}
+		get { return uri.LocalPath; }
 	}
 
 	public string Name {
-		get {
-			return name;
-		}
+		get { return System.IO.Path.GetFileName (uri.AbsolutePath); }
 	}
 
+	//This property no longer keeps a 'directory' path, but the logical container for the image, like:
+	// file:///home/bob/Photos/2007/08/23 or
+	// http://www.google.com/logos
 	public string DirectoryPath {
-		get {
-			return directory_path;
-		}
-		set {
-			directory_path = value;
-		}
+		get { return uri.Scheme + "://" + uri.Host + System.IO.Path.GetDirectoryName (uri.AbsolutePath); }
 	}
 
 	private ArrayList tags;
@@ -203,12 +200,8 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 	private string description;
 	public string Description {
-		get {
-			return description;
-		}
-		set {
-			description = value;
-		}
+		get { return description; }
+		set { description = value; }
 	}
 
 	private uint roll_id = 0;
@@ -245,13 +238,8 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 	private uint default_version_id = OriginalVersionId;
 	public uint DefaultVersionId {
-		get {
-			return default_version_id;
-		}
-
-		set {
-			default_version_id = value;
-		}
+		get { return default_version_id; }
+		set { default_version_id = value; }
 	}
 
 	// This doesn't check if a version of that name already exists, 
@@ -266,13 +254,21 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		highest_version_id = Math.Max (version_id, highest_version_id);
 	}
 
+	[Obsolete ("Use GetUriForVersionName (string) instead")]
 	private string GetPathForVersionName (string version_name)
 	{
-		string name_without_extension = System.IO.Path.GetFileNameWithoutExtension (name);
-		string extension = System.IO.Path.GetExtension (name);
+		Console.WriteLine("XXXX"+GetUriForVersionName (version_name).LocalPath);
+		return GetUriForVersionName (version_name).LocalPath;
+	}
 
-		return System.IO.Path.Combine (directory_path,  name_without_extension 
-					       + " (" + version_name + ")" + extension);
+	[Obsolete ("FIXME: need to be smarter for non file:// uris")]
+	private System.Uri GetUriForVersionName (string version_name)
+	{
+		string name_without_extension = System.IO.Path.GetFileNameWithoutExtension (Name);
+		string extension = System.IO.Path.GetExtension (Name);
+
+		return new System.Uri (System.IO.Path.Combine (DirectoryPath,  name_without_extension 
+					       + " (" + version_name + ")" + extension));
 	}
 
 	public bool VersionNameExists (string version_name)
@@ -295,6 +291,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 			return null;
 	}
 
+	[Obsolete ("Use VersionUri (uint) instead")]
         public string GetVersionPath (uint version_id)
 	{
 		if (version_id == OriginalVersionId)
@@ -305,7 +302,10 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 	public System.Uri VersionUri (uint version_id)
 	{
-		return UriList.PathToFileUri (GetVersionPath (version_id));
+		if (version_id == OriginalVersionId)
+			return uri;
+		else
+			return GetUriForVersionName (GetVersionName (version_id));
 	}
 	
 	public System.Uri DefaultVersionUri {
@@ -577,13 +577,12 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 	}
 
 	// Constructor
-	public Photo (uint id, long unix_time, string directory_path, string name)
+	public Photo (uint id, long unix_time, System.Uri uri)
 		: base (id)
 	{
 		time = DbUtils.DateTimeFromUnixTime (unix_time);
 
-		this.directory_path = directory_path;
-		this.name = name;
+		this.uri = uri;
 
 		description = String.Empty;
 
@@ -592,11 +591,15 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		AddVersionUnsafely (OriginalVersionId, Catalog.GetString ("Original"));
 	}
 
-	public Photo (uint id, long unix_time, string path)
-		: this (id, unix_time,
+	[Obsolete ("Use Photo (uint, long, Uri) instead")]
+	public Photo (uint id, long unix_time, string directory_path, string name)
+		: this (id, unix_time, System.IO.Path.Combine (directory_path, name))
+	{
+	}
 
-			System.IO.Path.GetDirectoryName (path),
-			System.IO.Path.GetFileName (path))
+	[Obsolete ("Use Photo (uint, long, Uri) instead")]
+	public Photo (uint id, long unix_time, string path)
+		: this (id, unix_time, UriList.PathToFileUri (path))
 	{
 	}
 
@@ -686,14 +689,15 @@ public class PhotoStore : DbStore {
 			return;
 		
 		Database.ExecuteNonQuery ( 
+			//WARNING: if you change this schema, reflect your changes 
+			//to Updater.cs, at revision 7.0
 			"CREATE TABLE photos (                                     " +
 			"	id                 INTEGER PRIMARY KEY NOT NULL,   " +
-			"       time               INTEGER NOT NULL,	   	   " +
-			"       directory_path     STRING NOT NULL,		   " +
-			"       name               STRING NOT NULL,		   " +
-			"       description        TEXT NOT NULL,	           " +
-			"       roll_id            INTEGER NOT NULL,		   " +
-			"       default_version_id INTEGER NOT NULL		   " +
+			"	time               INTEGER NOT NULL,	   	   " +
+			"	uri		   STRING NOT NULL,		   " +
+			"	description        TEXT NOT NULL,	           " +
+			"	roll_id            INTEGER NOT NULL,		   " +
+			"	default_version_id INTEGER NOT NULL		   " +
 			")");
 
 
@@ -713,35 +717,44 @@ public class PhotoStore : DbStore {
 	}
 
 
+	[Obsolete ("Use Create (Uri, uint, out Pixbuf) instead")]
 	public Photo Create (string path, uint roll_id, out Pixbuf thumbnail)
 	{
 		return Create (path, path, roll_id, out thumbnail);
-
 	}
 
-	public Photo Create (string newPath, string origPath, uint roll_id, out Pixbuf thumbnail)
+	[Obsolete ("Use Create (Uri, Uri, uint, out Pixbuf) instead")]
+	public Photo Create (string new_path, string orig_path, uint roll_id, out Pixbuf thumbnail)
+	{
+		return Create (UriList.PathToFileUri (new_path), UriList.PathToFileUri (orig_path), roll_id, out thumbnail);
+	}
+
+	public Photo Create (System.Uri uri, uint roll_id, out Pixbuf thumbnail)
+	{
+		return Create (uri, uri, roll_id, out thumbnail);
+	}
+
+	public Photo Create (System.Uri new_uri, System.Uri orig_uri, uint roll_id, out Pixbuf thumbnail)
 	{
 		Photo photo;
-		using (FSpot.ImageFile img = FSpot.ImageFile.Create (origPath)) {
+		using (FSpot.ImageFile img = FSpot.ImageFile.Create (orig_uri)) {
 			long unix_time = DbUtils.UnixTimeFromDateTime (img.Date);
 			string description = img.Description != null  ? img.Description.Split ('\0') [0] : String.Empty;
 	
-	 		uint id = (uint) Database.Execute (new DbCommand ("INSERT INTO photos (time, "	+
-					"directory_path, name, description, roll_id, default_version_id) "	+
-	 				"VALUES (:time, :directory_path, :name, :description, "		+
-					":roll_id, :default_version_id)",
-	 				"time", unix_time,
-	 				"directory_path", System.IO.Path.GetDirectoryName (newPath),
-	 				"name", System.IO.Path.GetFileName (newPath),
-	 				"description", description,
-					"roll_id", roll_id,
-	 				"default_version_id", Photo.OriginalVersionId));
+	 		uint id = (uint) Database.Execute (new DbCommand (
+				"INSERT INTO photos (time, uri, description, roll_id, default_version_id) "	+
+	 			"VALUES (:time, :uri, :description, :roll_id, :default_version_id)",
+	 			"time", unix_time,
+				"uri", new_uri.ToString (),
+	 			"description", description,
+				"roll_id", roll_id,
+	 			"default_version_id", Photo.OriginalVersionId));
 	
-			photo = new Photo (id, unix_time, newPath);
+			photo = new Photo (id, unix_time, new_uri);
 			AddToCache (photo);
 			photo.Loaded = true;
 	
-			thumbnail = GenerateThumbnail (UriList.PathToFileUri (newPath), img);		
+			thumbnail = GenerateThumbnail (new_uri, img);		
 			EmitAdded (photo);
 		}
 		return photo;
@@ -894,18 +907,17 @@ public class PhotoStore : DbStore {
 		if (photo != null)
 			return photo;
 
-		SqliteDataReader reader = Database.Query(new DbCommand("SELECT time, directory_path, name, description, "
-                                                     + "roll_id, default_version_id FROM photos WHERE id = :id", "id", id));
+		SqliteDataReader reader = Database.Query(new DbCommand("SELECT time, uri, description, roll_id, default_version_id "
+			+ "FROM photos WHERE id = :id", "id", id));
 
 		if (reader.Read ()) {
 			photo = new Photo (id,
-					   Convert.ToInt64 (reader [0]),
-					   reader [1].ToString (),
-					   reader [2].ToString ());
+				Convert.ToInt64 (reader [0]),
+				new System.Uri (reader [1].ToString ()));
 
-			photo.Description = reader[3].ToString ();
-			photo.RollId = Convert.ToUInt32 (reader[4]);
-			photo.DefaultVersionId = Convert.ToUInt32 (reader[5]);
+			photo.Description = reader[2].ToString ();
+			photo.RollId = Convert.ToUInt32 (reader[3]);
+			photo.DefaultVersionId = Convert.ToUInt32 (reader[4]);
 			AddToCache (photo);
 		}
 		reader.Close();
@@ -919,21 +931,23 @@ public class PhotoStore : DbStore {
 		return photo;
 	}
 
+	[Obsolete ("Use GetByUri instead")]
 	public Photo GetByPath (string path)
+	{
+		return GetByUri (UriList.PathToFileUri (path));
+	}
+
+	public Photo GetByUri (System.Uri uri)
 	{
 		Photo photo = null;
 
-		string directory_path = System.IO.Path.GetDirectoryName (path);
-		string filename = System.IO.Path.GetFileName (path);
-
-		SqliteDataReader reader = Database.Query(new DbCommand("SELECT id, time, description, roll_id, default_version_id FROM photos "
-                + "WHERE directory_path = :directory_path AND name = :name", "directory_path", directory_path, "name", filename));
+		SqliteDataReader reader = Database.Query (new DbCommand ("SELECT id, time, description, roll_id, default_version_id FROM photos "
+                + "WHERE uri = :uri", "uri", uri.ToString ()));
 
 		if (reader.Read ()) {
 			photo = new Photo (Convert.ToUInt32 (reader [0]),
 					   Convert.ToInt64 (reader [1]),
-					   directory_path,
-					   filename);
+					   uri);
 
 			photo.Description = reader[2].ToString ();
 			photo.RollId = Convert.ToUInt32 (reader[3]);
@@ -1020,14 +1034,15 @@ public class PhotoStore : DbStore {
 	private void Update (Photo photo) {
 		// Update photo.
 
-		Database.ExecuteNonQuery (new DbCommand ("UPDATE photos SET description = :description, " + 
-						     "directory_path = :directory_path, " +
-						     "default_version_id = :default_version_id, time = :time WHERE id = :id ",
-						     "description", photo.Description,
-						     "directory_path", photo.DirectoryPath,
-						     "default_version_id", photo.DefaultVersionId,
-						     "time", DbUtils.UnixTimeFromDateTime (photo.Time),
-						     "id", photo.Id));
+		Database.ExecuteNonQuery (new DbCommand (
+			"UPDATE photos SET description = :description, " + 
+			"default_version_id = :default_version_id, " + 
+			"time = :time " + 
+			"WHERE id = :id ",
+			"description", photo.Description,
+			"default_version_id", photo.DefaultVersionId,
+			"time", DbUtils.UnixTimeFromDateTime (photo.Time),
+			"id", photo.Id));
 
 		// Update tags.
 
@@ -1124,12 +1139,11 @@ public class PhotoStore : DbStore {
 			if (photo == null) {
 				photo = new Photo (id,
 						   Convert.ToInt64 (reader [1]),
-						   reader [2].ToString (),
-						   reader [3].ToString ());
+						   new Uri (reader [2].ToString ()));
 				
-				photo.Description = reader[4].ToString ();
-				photo.RollId = Convert.ToUInt32 (reader[5]);
-				photo.DefaultVersionId = Convert.ToUInt32 (reader[6]);
+				photo.Description = reader[3].ToString ();
+				photo.RollId = Convert.ToUInt32 (reader[4]);
+				photo.DefaultVersionId = Convert.ToUInt32 (reader[5]);
 				
 				version_list.Add (photo);
 			}
@@ -1157,17 +1171,18 @@ public class PhotoStore : DbStore {
 		return id_list.ToArray (typeof (Photo)) as Photo [];
 	}
 
+	[Obsolete ("No longer make any sense with uris...")]
 	public Photo [] Query (System.IO.DirectoryInfo dir)
 	{
-		string query_string = String.Format ("SELECT photos.id,                          " +
-						     "       photos.time,                        " +
-						     "       photos.directory_path,              " +
-						     "       photos.name,                        " +
-						     "       photos.description,                 " +
-						     "       photos.roll_id,                     " +
-						     "       photos.default_version_id           " +
-						     "     FROM photos                           " +
-						     "     WHERE directory_path = \"{0}\"", dir.FullName);
+		string query_string = String.Format (
+			"SELECT photos.id, "			+
+				"photos.time, "			+
+				"photos.uri, "			+
+				"photos.description, "		+
+				"photos.roll_id, "		+
+				"photos.default_version_id "	+
+			"FROM photos " 				+
+			"WHERE uri LIKE \"file://{0}\"", dir.FullName);
 
 		return Query (query_string);
 	}
@@ -1210,8 +1225,7 @@ public class PhotoStore : DbStore {
 		//
 		// SELECT photos.id
 		//        photos.time
-		//        photos.directory_path,
-		//        photos.name,
+		//        photos.uri,
 		//        photos.description,
 		//	  photos.roll_id,
 		//        photos.default_version_id
@@ -1228,8 +1242,7 @@ public class PhotoStore : DbStore {
 		StringBuilder query_builder = new StringBuilder ();
 		query_builder.Append ("SELECT photos.id, " 			+
 					     "photos.time, "			+
-					     "photos.directory_path, " 		+
-					     "photos.name, "			+
+					     "photos.uri, "			+
 					     "photos.description, "		+
 				      	     "photos.roll_id, "   		+
 					     "photos.default_version_id "	+
@@ -1277,7 +1290,7 @@ public class PhotoStore : DbStore {
 #if TEST_PHOTO_STORE
 	static void Dump (Photo photo)
 	{
-		Console.WriteLine ("\t[{0}] {1}", photo.Id, photo.Path);
+	//	Console.WriteLine ("\t[{0}] {1}", photo.Id, photo.Path);
 		Console.WriteLine ("\t{0}", photo.Time.ToLocalTime ());
 
 		if (photo.Description != String.Empty)
