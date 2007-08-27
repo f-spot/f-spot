@@ -35,187 +35,120 @@ namespace NDesk.DBus
 			this.message = message;
 		}
 
-		public void GetValue (Type type, out object val)
+		public object ReadValue (Type type)
 		{
-			if (type == typeof (void)) {
-				val = null;
-				return;
-			}
+			if (type == typeof (void))
+				return null;
 
 			if (type.IsArray) {
-				Array valArr;
-				GetValue (type, out valArr);
-				val = valArr;
+				return ReadArray (type.GetElementType ());
 			} else if (type == typeof (ObjectPath)) {
-				ObjectPath valOP;
-				GetValue (out valOP);
-				val = valOP;
+				return ReadObjectPath ();
 			} else if (type == typeof (Signature)) {
-				Signature valSig;
-				GetValue (out valSig);
-				val = valSig;
+				return ReadSignature ();
 			} else if (type == typeof (object)) {
-				GetValue (out val);
+				return ReadVariant ();
 			} else if (type == typeof (string)) {
-				string valStr;
-				GetValue (out valStr);
-				val = valStr;
+				return ReadString ();
 			} else if (type.IsGenericType && type.GetGenericTypeDefinition () == typeof (IDictionary<,>)) {
 				Type[] genArgs = type.GetGenericArguments ();
 				//Type dictType = typeof (Dictionary<,>).MakeGenericType (genArgs);
 				//workaround for Mono bug #81035 (memory leak)
 				Type dictType = Mapper.GetGenericType (typeof (Dictionary<,>), genArgs);
-				val = Activator.CreateInstance(dictType, new object[0]);
-				System.Collections.IDictionary idict = (System.Collections.IDictionary)val;
+				System.Collections.IDictionary idict = (System.Collections.IDictionary)Activator.CreateInstance(dictType, new object[0]);
 				GetValueToDict (genArgs[0], genArgs[1], idict);
+				return idict;
 			} else if (Mapper.IsPublic (type)) {
-				GetObject (type, out val);
+				return GetObject (type);
 			} else if (!type.IsPrimitive && !type.IsEnum) {
-				GetValueStruct (type, out val);
+				return ReadStruct (type);
 			} else {
+				object val;
 				DType dtype = Signature.TypeToDType (type);
-				GetValue (dtype, out val);
-			}
+				val = ReadValue (dtype);
 
-			if (type.IsEnum)
-				val = Enum.ToObject (type, val);
+				if (type.IsEnum)
+					val = Enum.ToObject (type, val);
+
+				return val;
+			}
 		}
 
 		//helper method, should not be used generally
-		public void GetValue (DType dtype, out object val)
+		public object ReadValue (DType dtype)
 		{
 			switch (dtype)
 			{
 				case DType.Byte:
-				{
-					byte vval;
-					GetValue (out vval);
-					val = vval;
-				}
-				break;
+					return ReadByte ();
+
 				case DType.Boolean:
-				{
-					bool vval;
-					GetValue (out vval);
-					val = vval;
-				}
-				break;
+					return ReadBoolean ();
+
 				case DType.Int16:
-				{
-					short vval;
-					GetValue (out vval);
-					val = vval;
-				}
-				break;
+					return ReadInt16 ();
+
 				case DType.UInt16:
-				{
-					ushort vval;
-					GetValue (out vval);
-					val = vval;
-				}
-				break;
+					return ReadUInt16 ();
+
 				case DType.Int32:
-				{
-					int vval;
-					GetValue (out vval);
-					val = vval;
-				}
-				break;
+					return ReadInt32 ();
+
 				case DType.UInt32:
-				{
-					uint vval;
-					GetValue (out vval);
-					val = vval;
-				}
-				break;
+					return ReadUInt32 ();
+
 				case DType.Int64:
-				{
-					long vval;
-					GetValue (out vval);
-					val = vval;
-				}
-				break;
+					return ReadInt64 ();
+
 				case DType.UInt64:
-				{
-					ulong vval;
-					GetValue (out vval);
-					val = vval;
-				}
-				break;
+					return ReadUInt64 ();
+
 #if !DISABLE_SINGLE
 				case DType.Single:
-				{
-					float vval;
-					GetValue (out vval);
-					val = vval;
-				}
-				break;
+					return ReadSingle ();
 #endif
+
 				case DType.Double:
-				{
-					double vval;
-					GetValue (out vval);
-					val = vval;
-				}
-				break;
+					return ReadDouble ();
+
 				case DType.String:
-				{
-					string vval;
-					GetValue (out vval);
-					val = vval;
-				}
-				break;
+					return ReadString ();
+
 				case DType.ObjectPath:
-				{
-					ObjectPath vval;
-					GetValue (out vval);
-					val = vval;
-				}
-				break;
+					return ReadObjectPath ();
+
 				case DType.Signature:
-				{
-					Signature vval;
-					GetValue (out vval);
-					val = vval;
-				}
-				break;
+					return ReadSignature ();
+
 				case DType.Variant:
-				{
-					object vval;
-					GetValue (out vval);
-					val = vval;
-				}
-				break;
+					return ReadVariant ();
+
 				default:
-				val = null;
-				throw new Exception ("Unhandled D-Bus type: " + dtype);
+					throw new Exception ("Unhandled D-Bus type: " + dtype);
 			}
 		}
 
-		public void GetObject (Type type, out object val)
+		public object GetObject (Type type)
 		{
-			ObjectPath path;
-			GetValue (out path);
-			val = message.Connection.GetObject (type, (string)message.Header.Fields[FieldCode.Sender], path);
+			ObjectPath path = ReadObjectPath ();
+
+			return message.Connection.GetObject (type, (string)message.Header.Fields[FieldCode.Sender], path);
 		}
 
-		public void GetValue (out byte val)
+		public byte ReadByte ()
 		{
-			val = data[pos++];
+			return data[pos++];
 		}
 
-		public void GetValue (out bool val)
+		public bool ReadBoolean ()
 		{
-			uint intval;
-			GetValue (out intval);
+			uint intval = ReadUInt32 ();
 
 			switch (intval) {
 				case 0:
-					val = false;
-					break;
+					return false;
 				case 1:
-					val = true;
-					break;
+					return true;
 				default:
 					throw new Exception ("Read value " + intval + " at position " + pos + " while expecting boolean (0/1)");
 			}
@@ -236,16 +169,22 @@ namespace NDesk.DBus
 			pos += 2;
 		}
 
-		unsafe public void GetValue (out short val)
+		unsafe public short ReadInt16 ()
 		{
-			fixed (short* ret = &val)
-				MarshalUShort ((byte*)ret);
+			short val;
+
+			MarshalUShort ((byte*)&val);
+
+			return val;
 		}
 
-		unsafe public void GetValue (out ushort val)
+		unsafe public ushort ReadUInt16 ()
 		{
-			fixed (ushort* ret = &val)
-				MarshalUShort ((byte*)ret);
+			ushort val;
+
+			MarshalUShort ((byte*)&val);
+
+			return val;
 		}
 
 		unsafe protected void MarshalUInt (byte *dst)
@@ -267,16 +206,22 @@ namespace NDesk.DBus
 			pos += 4;
 		}
 
-		unsafe public void GetValue (out int val)
+		unsafe public int ReadInt32 ()
 		{
-			fixed (int* ret = &val)
-				MarshalUInt ((byte*)ret);
+			int val;
+
+			MarshalUInt ((byte*)&val);
+
+			return val;
 		}
 
-		unsafe public void GetValue (out uint val)
+		unsafe public uint ReadUInt32 ()
 		{
-			fixed (uint* ret = &val)
-				MarshalUInt ((byte*)ret);
+			uint val;
+
+			MarshalUInt ((byte*)&val);
+
+			return val;
 		}
 
 		unsafe protected void MarshalULong (byte *dst)
@@ -294,81 +239,93 @@ namespace NDesk.DBus
 			pos += 8;
 		}
 
-		unsafe public void GetValue (out long val)
+		unsafe public long ReadInt64 ()
 		{
-			fixed (long* ret = &val)
-				MarshalULong ((byte*)ret);
+			long val;
+
+			MarshalULong ((byte*)&val);
+
+			return val;
 		}
 
-		unsafe public void GetValue (out ulong val)
+		unsafe public ulong ReadUInt64 ()
 		{
-			fixed (ulong* ret = &val)
-				MarshalULong ((byte*)ret);
+			ulong val;
+
+			MarshalULong ((byte*)&val);
+
+			return val;
 		}
 
 #if !DISABLE_SINGLE
-		unsafe public void GetValue (out float val)
+		unsafe public float ReadSingle ()
 		{
-			fixed (float* ret = &val)
-				MarshalUInt ((byte*)ret);
+			float val;
+
+			MarshalUInt ((byte*)&val);
+
+			return val;
 		}
 #endif
 
-		unsafe public void GetValue (out double val)
+		unsafe public double ReadDouble ()
 		{
-			fixed (double* ret = &val)
-				MarshalULong ((byte*)ret);
+			double val;
+
+			MarshalULong ((byte*)&val);
+
+			return val;
 		}
 
-		public void GetValue (out string val)
+		public string ReadString ()
 		{
-			uint ln;
-			GetValue (out ln);
+			uint ln = ReadUInt32 ();
 
-			val = Encoding.UTF8.GetString (data, pos, (int)ln);
+			string val = Encoding.UTF8.GetString (data, pos, (int)ln);
 			pos += (int)ln;
 			ReadNull ();
+
+			return val;
 		}
 
-		public void GetValue (out ObjectPath val)
+		public ObjectPath ReadObjectPath ()
 		{
 			//exactly the same as string
-			string sval;
-			GetValue (out sval);
-			val = new ObjectPath (sval);
+			return new ObjectPath (ReadString ());
 		}
 
-		public void GetValue (out Signature val)
+		public Signature ReadSignature ()
 		{
-			byte ln;
-			GetValue (out ln);
+			byte ln = ReadByte ();
+
+			if (ln > Protocol.MaxSignatureLength)
+				throw new Exception ("Signature length " + ln + " exceeds maximum allowed " + Protocol.MaxSignatureLength + " bytes");
 
 			byte[] sigData = new byte[ln];
 			Array.Copy (data, pos, sigData, 0, (int)ln);
-			val = new Signature (sigData);
 			pos += (int)ln;
 			ReadNull ();
+
+			return new Signature (sigData);
 		}
 
-		//variant
-		public void GetValue (out object val)
+		public object ReadVariant ()
 		{
-			Signature sig;
-			GetValue (out sig);
-
-			GetValue (sig, out val);
+			return ReadVariant (ReadSignature ());
 		}
 
-		public void GetValue (Signature sig, out object val)
+		object ReadVariant (Signature sig)
 		{
-			GetValue (sig.ToType (), out val);
+			return ReadValue (sig.ToType ());
 		}
 
 		//not pretty or efficient but works
 		public void GetValueToDict (Type keyType, Type valType, System.Collections.IDictionary val)
 		{
-			uint ln;
-			GetValue (out ln);
+			uint ln = ReadUInt32 ();
+
+			if (ln > Protocol.MaxArrayLength)
+				throw new Exception ("Dict length " + ln + " exceeds maximum allowed " + Protocol.MaxArrayLength + " bytes");
 
 			//advance to the alignment of the element
 			//ReadPad (Protocol.GetAlignment (Signature.TypeToDType (type)));
@@ -381,13 +338,7 @@ namespace NDesk.DBus
 			{
 				ReadPad (8);
 
-				object keyVal;
-				GetValue (keyType, out keyVal);
-
-				object valVal;
-				GetValue (valType, out valVal);
-
-				val.Add (keyVal, valVal);
+				val.Add (ReadValue (keyType), ReadValue (valType));
 			}
 
 			if (pos != endPos)
@@ -395,20 +346,19 @@ namespace NDesk.DBus
 		}
 
 		//this could be made generic to avoid boxing
-		public void GetValue (Type type, out Array val)
+		public Array ReadArray (Type elemType)
 		{
-			Type elemType = type.GetElementType ();
+			uint ln = ReadUInt32 ();
 
-			uint ln;
-			GetValue (out ln);
+			if (ln > Protocol.MaxArrayLength)
+				throw new Exception ("Array length " + ln + " exceeds maximum allowed " + Protocol.MaxArrayLength + " bytes");
 
 			//TODO: more fast paths for primitive arrays
 			if (elemType == typeof (byte)) {
 				byte[] valb = new byte[ln];
 				Array.Copy (data, pos, valb, 0, (int)ln);
-				val = valb;
 				pos += (int)ln;
-				return;
+				return valb;
 			}
 
 			//advance to the alignment of the element
@@ -421,28 +371,22 @@ namespace NDesk.DBus
 
 			//while (stream.Position != endPos)
 			while (pos < endPos)
-			{
-				object elem;
-				//GetValue (Signature.TypeToDType (elemType), out elem);
-				GetValue (elemType, out elem);
-				vals.Add (elem);
-			}
+				vals.Add (ReadValue (elemType));
 
 			if (pos != endPos)
 				throw new Exception ("Read pos " + pos + " != ep " + endPos);
 
-			val = vals.ToArray (elemType);
-			//val = Array.CreateInstance (elemType.UnderlyingSystemType, vals.Count);
+			return vals.ToArray (elemType);
 		}
 
 		//struct
 		//probably the wrong place for this
 		//there might be more elegant solutions
-		public void GetValueStruct (Type type, out object val)
+		public object ReadStruct (Type type)
 		{
 			ReadPad (8);
 
-			val = Activator.CreateInstance (type);
+			object val = Activator.CreateInstance (type);
 
 			/*
 			if (type.IsGenericType && type.GetGenericTypeDefinition () == typeof (KeyValuePair<,>)) {
@@ -462,13 +406,10 @@ namespace NDesk.DBus
 
 			FieldInfo[] fis = type.GetFields (BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
-			foreach (System.Reflection.FieldInfo fi in fis) {
-				object elem;
-				//GetValue (Signature.TypeToDType (fi.FieldType), out elem);
-				GetValue (fi.FieldType, out elem);
-				//public virtual void SetValueDirect (TypedReference obj, object value);
-				fi.SetValue (val, elem);
-			}
+			foreach (System.Reflection.FieldInfo fi in fis)
+				fi.SetValue (val, ReadValue (fi.FieldType));
+
+			return val;
 		}
 
 		public void ReadNull ()

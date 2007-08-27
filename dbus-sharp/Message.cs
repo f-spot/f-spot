@@ -14,16 +14,12 @@ namespace NDesk.DBus
 		{
 			Header.Endianness = Connection.NativeEndianness;
 			Header.MessageType = MessageType.MethodCall;
-			//hdr->Flags = HeaderFlag.None;
 			Header.Flags = HeaderFlag.NoReplyExpected; //TODO: is this the right place to do this?
 			Header.MajorVersion = Protocol.Version;
-			Header.Length = 0;
-			//Header.Serial = conn.GenerateSerial ();
 			Header.Fields = new Dictionary<FieldCode,object> ();
 		}
 
 		public Header Header;
-		public byte[] HeaderData;
 
 		public Connection Connection;
 
@@ -61,6 +57,7 @@ namespace NDesk.DBus
 		public byte[] Body;
 
 		//TODO: make use of Locked
+		/*
 		protected bool locked = false;
 		public bool Locked
 		{
@@ -68,66 +65,26 @@ namespace NDesk.DBus
 				return locked;
 			}
 		}
+		*/
 
-		public void ParseHeader ()
+		public void SetHeaderData (byte[] data)
 		{
-			//GetValue (stream, typeof (Header), out Header);
+			EndianFlag endianness = (EndianFlag)data[0];
+			MessageReader reader = new MessageReader (endianness, data);
 
-			EndianFlag endianness = (EndianFlag)HeaderData[0];
-			MessageReader reader = new MessageReader (endianness, HeaderData);
-
-			object valT;
-			reader.GetValueStruct (typeof (Header), out valT);
-			Header = (Header)valT;
-
-			/*
-			//foreach (HeaderField field in HeaderFields)
-			foreach (KeyValuePair<FieldCode,object> field in Header.Fields)
-			{
-				//Console.WriteLine (field.Key + " = " + field.Value);
-				switch (field.Key)
-				{
-					case FieldCode.Invalid:
-						break;
-					case FieldCode.Path:
-						Path = (ObjectPath)field.Value;
-						break;
-					case FieldCode.Interface:
-						Interface = (string)field.Value;
-						break;
-					case FieldCode.Member:
-						Member = (string)field.Value;
-						break;
-					case FieldCode.ErrorName:
-						ErrorName = (string)field.Value;
-						break;
-					case FieldCode.ReplySerial:
-						ReplySerial = (uint)field.Value;
-						break;
-					case FieldCode.Destination:
-						Destination = (string)field.Value;
-						break;
-					case FieldCode.Sender:
-						Sender = (string)field.Value;
-						break;
-					case FieldCode.Signature:
-						Signature = (Signature)field.Value;
-						break;
-				}
-			}
-			*/
+			Header = (Header)reader.ReadStruct (typeof (Header));
 		}
 
-		public void WriteHeader ()
+		public byte[] GetHeaderData ()
 		{
 			if (Body != null)
 				Header.Length = (uint)Body.Length;
 
-			MessageWriter writer = new MessageWriter (Connection.NativeEndianness);
-			writer.WriteStruct (typeof (Header), Header);
-			//writer.WriteFromDict (typeof (FieldCode), typeof (object), Header.Fields);
+			MessageWriter writer = new MessageWriter (Header.Endianness);
+			writer.WriteValueType (Header, typeof (Header));
 			writer.CloseWrite ();
-			HeaderData = writer.ToArray ();
+
+			return writer.ToArray ();
 		}
 	}
 }

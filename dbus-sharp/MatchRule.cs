@@ -18,9 +18,7 @@ namespace NDesk.DBus
 		public ObjectPath Path;
 		public string Sender;
 		public string Destination;
-		//workaround for old Mono: SortedDictionary was not available so we just use Dictionary
-		//public readonly SortedDictionary<int,string> Args = new SortedDictionary<int,string> ();
-		public readonly Dictionary<int,string> Args = new Dictionary<int,string> ();
+		public readonly SortedDictionary<int,string> Args = new SortedDictionary<int,string> ();
 
 		public MatchRule ()
 		{
@@ -144,7 +142,7 @@ namespace NDesk.DBus
 				if (msg.Header.Fields.TryGetValue (FieldCode.Destination, out value))
 					if ((string)value != Destination)
 						return false;
-			
+
 			//FIXME: do args
 
 			return true;

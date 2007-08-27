@@ -13,7 +13,7 @@ namespace NDesk.DBus
 	using Authentication;
 	using Transports;
 
-	public class Connection
+	public partial class Connection
 	{
 		//TODO: reconsider this field
 		Stream ns = null;
@@ -111,33 +111,27 @@ namespace NDesk.DBus
 
 		internal Message SendWithReplyAndBlock (Message msg)
 		{
-			uint id = SendWithReply (msg);
-
-			Message retMsg;
-
-			//TODO: this isn't fully thread-safe but works much of the time
-			while (!replies.TryGetValue (id, out retMsg))
-				HandleMessage (ReadMessage ());
-
-			replies.Remove (id);
-
-			//FIXME: we should dispatch signals and calls on the main thread
-			DispatchSignals ();
-
-			return retMsg;
+			PendingCall pending = SendWithReply (msg);
+			return pending.Reply;
 		}
 
-		internal uint SendWithReply (Message msg)
+		internal PendingCall SendWithReply (Message msg)
 		{
 			msg.ReplyExpected = true;
-			return Send (msg);
+			msg.Header.Serial = GenerateSerial ();
+
+			//TODO: throttle the maximum number of concurrent PendingCalls
+			PendingCall pending = new PendingCall (this);
+			pendingCalls[msg.Header.Serial] = pending;
+
+			WriteMessage (msg);
+
+			return pending;
 		}
 
 		internal uint Send (Message msg)
 		{
 			msg.Header.Serial = GenerateSerial ();
-
-			msg.WriteHeader ();
 
 			WriteMessage (msg);
 
@@ -148,11 +142,20 @@ namespace NDesk.DBus
 			return msg.Header.Serial;
 		}
 
+		object writeLock = new object ();
 		internal void WriteMessage (Message msg)
 		{
-			ns.Write (msg.HeaderData, 0, msg.HeaderData.Length);
-			if (msg.Body != null && msg.Body.Length != 0)
-				ns.Write (msg.Body, 0, msg.Body.Length);
+			byte[] HeaderData = msg.GetHeaderData ();
+
+			long msgLength = HeaderData.Length + (msg.Body != null ? msg.Body.Length : 0);
+			if (msgLength > Protocol.MaxMessageLength)
+				throw new Exception ("Message length " + msgLength + " exceeds maximum allowed " + Protocol.MaxMessageLength + " bytes");
+
+			lock (writeLock) {
+				ns.Write (HeaderData, 0, HeaderData.Length);
+				if (msg.Body != null && msg.Body.Length != 0)
+					ns.Write (msg.Body, 0, msg.Body.Length);
+			}
 		}
 
 		Queue<Message> Inbound = new Queue<Message> ();
@@ -203,14 +206,14 @@ namespace NDesk.DBus
 
 		internal Message ReadMessage ()
 		{
-			//FIXME: fix reading algorithm to work in one step
-			//this code is a bit silly and inefficient
-			//hopefully it's at least correct and avoids polls for now
+			byte[] header;
+			byte[] body = null;
 
 			int read;
 
-			byte[] buf = new byte[16];
-			read = ns.Read (buf, 0, 16);
+			//16 bytes is the size of the fixed part of the header
+			byte[] hbuf = new byte[16];
+			read = ns.Read (hbuf, 0, 16);
 
 			if (read == 0)
 				return null;
@@ -218,23 +221,17 @@ namespace NDesk.DBus
 			if (read != 16)
 				throw new Exception ("Header read length mismatch: " + read + " of expected " + "16");
 
-			MemoryStream ms = new MemoryStream ();
-
-			ms.Write (buf, 0, 16);
-
-			EndianFlag endianness = (EndianFlag)buf[0];
-			MessageReader reader = new MessageReader (endianness, buf);
+			EndianFlag endianness = (EndianFlag)hbuf[0];
+			MessageReader reader = new MessageReader (endianness, hbuf);
 
 			//discard the endian byte as we've already read it
-			byte tmp;
-			reader.GetValue (out tmp);
+			reader.ReadByte ();
 
 			//discard message type and flags, which we don't care about here
-			reader.GetValue (out tmp);
-			reader.GetValue (out tmp);
+			reader.ReadByte ();
+			reader.ReadByte ();
 
-			byte version;
-			reader.GetValue (out version);
+			byte version = reader.ReadByte ();
 
 			if (version < Protocol.MinVersion || version > Protocol.MaxVersion)
 				throw new NotSupportedException ("Protocol version '" + version.ToString () + "' is not supported");
@@ -243,58 +240,54 @@ namespace NDesk.DBus
 				if (version != Protocol.Version)
 					Console.Error.WriteLine ("Warning: Protocol version '" + version.ToString () + "' is not explicitly supported but may be compatible");
 
-			uint bodyLength, serial, headerLength;
-			reader.GetValue (out bodyLength);
-			reader.GetValue (out serial);
-			reader.GetValue (out headerLength);
+			uint bodyLength = reader.ReadUInt32 ();
+			//discard serial
+			reader.ReadUInt32 ();
+			uint headerLength = reader.ReadUInt32 ();
 
-			//TODO: remove this limitation
+			//this check may become relevant if a future version of the protocol allows larger messages
+			/*
 			if (bodyLength > Int32.MaxValue || headerLength > Int32.MaxValue)
 				throw new NotImplementedException ("Long messages are not yet supported");
+			*/
 
 			int bodyLen = (int)bodyLength;
 			int toRead = (int)headerLength;
 
-			toRead = Protocol.Padded ((int)toRead, 8);
+			//we fixup to include the padding following the header
+			toRead = Protocol.Padded (toRead, 8);
 
-			buf = new byte[toRead];
+			long msgLength = toRead + bodyLen;
+			if (msgLength > Protocol.MaxMessageLength)
+				throw new Exception ("Message length " + msgLength + " exceeds maximum allowed " + Protocol.MaxMessageLength + " bytes");
 
-			read = ns.Read (buf, 0, toRead);
+			header = new byte[16 + toRead];
+			Array.Copy (hbuf, header, 16);
+
+			read = ns.Read (header, 16, toRead);
 
 			if (read != toRead)
-				throw new Exception ("Read length mismatch: " + read + " of expected " + toRead);
-
-			ms.Write (buf, 0, buf.Length);
-
-			Message msg = new Message ();
-			msg.Connection = this;
-			msg.HeaderData = ms.ToArray ();
+				throw new Exception ("Message header length mismatch: " + read + " of expected " + toRead);
 
 			//read the body
 			if (bodyLen != 0) {
-				//FIXME
-				//msg.Body = new byte[(int)msg.Header->Length];
-				byte[] body = new byte[bodyLen];
+				body = new byte[bodyLen];
+				read = ns.Read (body, 0, bodyLen);
 
-				//int len = ns.Read (msg.Body, 0, msg.Body.Length);
-				int len = ns.Read (body, 0, bodyLen);
-
-				//if (len != msg.Body.Length)
-				if (len != bodyLen)
-					throw new Exception ("Message body size mismatch");
-
-				//msg.Body = new MemoryStream (body);
-				msg.Body = body;
+				if (read != bodyLen)
+					throw new Exception ("Message body length mismatch: " + read + " of expected " + bodyLen);
 			}
 
-			//this needn't be done here
-			msg.ParseHeader ();
+			Message msg = new Message ();
+			msg.Connection = this;
+			msg.Body = body;
+			msg.SetHeaderData (header);
 
 			return msg;
 		}
 
 		//temporary hack
-		void DispatchSignals ()
+		internal void DispatchSignals ()
 		{
 			lock (Inbound) {
 				while (Inbound.Count != 0) {
@@ -304,9 +297,13 @@ namespace NDesk.DBus
 			}
 		}
 
+		internal Thread mainThread = Thread.CurrentThread;
+
 		//temporary hack
 		public void Iterate ()
 		{
+			mainThread = Thread.CurrentThread;
+
 			//Message msg = Inbound.Dequeue ();
 			Message msg = ReadMessage ();
 			HandleMessage (msg);
@@ -320,10 +317,22 @@ namespace NDesk.DBus
 				throw new ArgumentNullException ("msg", "Cannot handle a null message; maybe the bus was disconnected");
 
 			{
-				//TODO: don't store replies unless they are expected (right now all replies are expected as we don't support NoReplyExpected)
-				object reply_serial;
-				if (msg.Header.Fields.TryGetValue (FieldCode.ReplySerial, out reply_serial)) {
-					replies[(uint)reply_serial] = msg;
+				object field_value;
+				if (msg.Header.Fields.TryGetValue (FieldCode.ReplySerial, out field_value)) {
+					uint reply_serial = (uint)field_value;
+					PendingCall pending;
+
+					if (pendingCalls.TryGetValue (reply_serial, out pending)) {
+						if (pendingCalls.Remove (reply_serial))
+							pending.Reply = msg;
+
+						return;
+					}
+
+					//we discard reply messages with no corresponding PendingCall
+					if (Protocol.Verbose)
+						Console.Error.WriteLine ("Unexpected reply message received: MessageType='" + msg.Header.MessageType + "', ReplySerial=" + reply_serial);
+
 					return;
 				}
 			}
@@ -344,7 +353,7 @@ namespace NDesk.DBus
 					string errMsg = String.Empty;
 					if (msg.Signature.Value.StartsWith ("s")) {
 						MessageReader reader = new MessageReader (msg);
-						reader.GetValue (out errMsg);
+						errMsg = reader.ReadString ();
 					}
 					//throw new Exception ("Remote Error: Signature='" + msg.Signature.Value + "' " + error.ErrorName + ": " + errMsg);
 					//if (Protocol.Verbose)
@@ -356,7 +365,7 @@ namespace NDesk.DBus
 			}
 		}
 
-		Dictionary<uint,Message> replies = new Dictionary<uint,Message> ();
+		Dictionary<uint,PendingCall> pendingCalls = new Dictionary<uint,PendingCall> ();
 
 		//this might need reworking with MulticastDelegate
 		internal void HandleSignal (Message msg)
@@ -456,25 +465,25 @@ namespace NDesk.DBus
 
 		//FIXME: this shouldn't be part of the core API
 		//that also applies to much of the other object mapping code
-		//it should cache proxies and objects, really
 
-		//inspired by System.Activator
 		public object GetObject (Type type, string bus_name, ObjectPath path)
 		{
-			BusObject busObject = new BusObject (this, bus_name, path);
-			DProxy prox = new DProxy (busObject, type);
+			//if (type == null)
+			//	return GetObject (bus_name, path);
 
-			object obj = prox.GetTransparentProxy ();
+			//if the requested type is an interface, we can implement it efficiently
+			//otherwise we fall back to using a transparent proxy
+			if (type.IsInterface) {
+				return BusObject.GetObject (this, bus_name, path, type);
+			} else {
+				if (Protocol.Verbose)
+					Console.Error.WriteLine ("Warning: Note that MarshalByRefObject use is not recommended; for best performance, define interfaces");
 
-			return obj;
+				BusObject busObject = new BusObject (this, bus_name, path);
+				DProxy prox = new DProxy (busObject, type);
+				return prox.GetTransparentProxy ();
+			}
 		}
-
-		/*
-		public object GetObject (Type type, string bus_name, ObjectPath path)
-		{
-			return BusObject.GetObject (this, bus_name, path, type);
-		}
-		*/
 
 		public T GetObject<T> (string bus_name, ObjectPath path)
 		{

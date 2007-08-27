@@ -115,7 +115,7 @@ namespace NDesk.DBus
 			//we need to have a proper look at what's really public at some point
 			//this will do for now
 
-			if (type.IsDefined (typeof (InterfaceAttribute), true))
+			if (type.IsDefined (typeof (InterfaceAttribute), false))
 				return true;
 
 			if (type.IsSubclassOf (typeof (MarshalByRefObject)))
@@ -247,10 +247,12 @@ namespace NDesk.DBus
 
 		public static object[] GetDynamicValues (Message msg, Type[] types)
 		{
-			//TODO: this validation check should provide better information, eg. message dump or a stack trace
+			//TODO: this validation check should provide better information, eg. message dump or a stack trace, or at least the interface/member
 			if (Protocol.Verbose) {
-				if (Signature.GetSig (types) != msg.Signature)
-					Console.Error.WriteLine ("Warning: The signature of the message does not match that of the handler");
+				Signature expected = Signature.GetSig (types);
+				Signature actual = msg.Signature;
+				if (actual != expected)
+					Console.Error.WriteLine ("Warning: The signature of the message does not match that of the handler: " + "Expected '" + expected + "', got '" + actual + "'");
 			}
 
 			object[] vals = new object[types.Length];
@@ -258,11 +260,8 @@ namespace NDesk.DBus
 			if (msg.Body != null) {
 				MessageReader reader = new MessageReader (msg);
 
-				for (int i = 0 ; i != types.Length ; i++) {
-					object arg;
-					reader.GetValue (types[i], out arg);
-					vals[i] = arg;
-				}
+				for (int i = 0 ; i != types.Length ; i++)
+					vals[i] = reader.ReadValue (types[i]);
 			}
 
 			return vals;

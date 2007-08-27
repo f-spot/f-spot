@@ -18,7 +18,7 @@ namespace NDesk.DBus
 		public Connection connection;
 
 		//a default constructor is a bad idea for now as we want to make sure the header and content-type match
-		//public MessageWriter () : this (Connection.NativeEndianness)
+		public MessageWriter () : this (Connection.NativeEndianness) {}
 
 		public MessageWriter (EndianFlag endianness)
 		{
@@ -148,7 +148,7 @@ namespace NDesk.DBus
 			byte[] utf8_data = Encoding.UTF8.GetBytes (val);
 			Write ((uint)utf8_data.Length);
 			stream.Write (utf8_data, 0, utf8_data.Length);
-			stream.WriteByte (0); //NULL string terminator
+			WriteNull ();
 		}
 
 		public void Write (ObjectPath val)
@@ -159,9 +159,39 @@ namespace NDesk.DBus
 		public void Write (Signature val)
 		{
 			byte[] ascii_data = val.GetBuffer ();
+
+			if (ascii_data.Length > Protocol.MaxSignatureLength)
+				throw new Exception ("Signature length " + ascii_data.Length + " exceeds maximum allowed " + Protocol.MaxSignatureLength + " bytes");
+
 			Write ((byte)ascii_data.Length);
 			stream.Write (ascii_data, 0, ascii_data.Length);
-			stream.WriteByte (0); //NULL signature terminator
+			WriteNull ();
+		}
+
+		public void WriteComplex (object val, Type type)
+		{
+			if (type == typeof (void))
+				return;
+
+			if (type.IsArray) {
+				WriteArray (val, type.GetElementType ());
+			} else if (type.IsGenericType && (type.GetGenericTypeDefinition () == typeof (IDictionary<,>) || type.GetGenericTypeDefinition () == typeof (Dictionary<,>))) {
+				Type[] genArgs = type.GetGenericArguments ();
+				System.Collections.IDictionary idict = (System.Collections.IDictionary)val;
+				WriteFromDict (genArgs[0], genArgs[1], idict);
+			} else if (Mapper.IsPublic (type)) {
+				WriteObject (type, val);
+			} else if (!type.IsPrimitive && !type.IsEnum) {
+				WriteValueType (val, type);
+				/*
+			} else if (type.IsGenericType && type.GetGenericTypeDefinition () == typeof (Nullable<>)) {
+				//is it possible to support nullable types?
+				Type[] genArgs = type.GetGenericArguments ();
+				WriteVariant (genArgs[0], val);
+				*/
+			} else {
+				throw new Exception ("Can't write");
+			}
 		}
 
 		public void Write (Type type, object val)
@@ -170,7 +200,7 @@ namespace NDesk.DBus
 				return;
 
 			if (type.IsArray) {
-				Write (type, (Array)val);
+				WriteArray (val, type.GetElementType ());
 			} else if (type == typeof (ObjectPath)) {
 				Write ((ObjectPath)val);
 			} else if (type == typeof (Signature)) {
@@ -186,13 +216,7 @@ namespace NDesk.DBus
 			} else if (Mapper.IsPublic (type)) {
 				WriteObject (type, val);
 			} else if (!type.IsPrimitive && !type.IsEnum) {
-				WriteStruct (type, val);
-				/*
-			} else if (type.IsGenericType && type.GetGenericTypeDefinition () == typeof (Nullable<>)) {
-				//is it possible to support nullable types?
-				Type[] genArgs = type.GetGenericArguments ();
-				WriteVariant (genArgs[0], val);
-				*/
+				WriteValueType (val, type);
 			} else {
 				Write (Signature.TypeToDType (type), val);
 			}
@@ -320,19 +344,22 @@ namespace NDesk.DBus
 		}
 
 		//this requires a seekable stream for now
-		public void Write (Type type, Array val)
+		public void WriteArray (object obj, Type elemType)
 		{
-			Type elemType = type.GetElementType ();
+			Array val = (Array)obj;
 
 			//TODO: more fast paths for primitive arrays
 			if (elemType == typeof (byte)) {
+				if (val.Length > Protocol.MaxArrayLength)
+					throw new Exception ("Array length " + val.Length + " exceeds maximum allowed " + Protocol.MaxArrayLength + " bytes");
+
 				Write ((uint)val.Length);
 				stream.Write ((byte[])val, 0, val.Length);
 				return;
 			}
 
+			long origPos = stream.Position;
 			Write ((uint)0);
-			long lengthPos = stream.Position - 4;
 
 			//advance to the alignment of the element
 			WritePad (Protocol.GetAlignment (Signature.TypeToDType (elemType)));
@@ -343,17 +370,20 @@ namespace NDesk.DBus
 				Write (elemType, elem);
 
 			long endPos = stream.Position;
+			uint ln = (uint)(endPos - startPos);
+			stream.Position = origPos;
 
-			stream.Position = lengthPos;
-			Write ((uint)(endPos - startPos));
+			if (ln > Protocol.MaxArrayLength)
+				throw new Exception ("Array length " + ln + " exceeds maximum allowed " + Protocol.MaxArrayLength + " bytes");
 
+			Write (ln);
 			stream.Position = endPos;
 		}
 
 		public void WriteFromDict (Type keyType, Type valType, System.Collections.IDictionary val)
 		{
+			long origPos = stream.Position;
 			Write ((uint)0);
-			long lengthPos = stream.Position - 4;
 
 			//advance to the alignment of the element
 			//WritePad (Protocol.GetAlignment (Signature.TypeToDType (type)));
@@ -370,26 +400,28 @@ namespace NDesk.DBus
 			}
 
 			long endPos = stream.Position;
+			uint ln = (uint)(endPos - startPos);
+			stream.Position = origPos;
 
-			stream.Position = lengthPos;
-			Write ((uint)(endPos - startPos));
+			if (ln > Protocol.MaxArrayLength)
+				throw new Exception ("Dict length " + ln + " exceeds maximum allowed " + Protocol.MaxArrayLength + " bytes");
 
+			Write (ln);
 			stream.Position = endPos;
 		}
 
-		public void WriteStruct (Type type, object val)
+		public void WriteValueType (object val, Type type)
 		{
-			WritePad (8); //offset for structs, right?
+			MethodInfo mi = TypeImplementer.GetWriteMethod (type);
+			mi.Invoke (null, new object[] {this, val});
+			//mi.Invoke (this, new object[] {val});
+		}
 
-			/*
-			ConstructorInfo[] cis = type.GetConstructors ();
-			if (cis.Length != 0) {
-				System.Reflection.ParameterInfo[]  parms = ci.GetParameters ();
+		/*
+		public void WriteValueTypeOld (object val, Type type)
+		{
+			WritePad (8);
 
-				foreach (ParameterInfo parm in parms) {
-				}
-			}
-			*/
 			if (type.IsGenericType && type.GetGenericTypeDefinition () == typeof (KeyValuePair<,>)) {
 				System.Reflection.PropertyInfo key_prop = type.GetProperty ("Key");
 				Write (key_prop.PropertyType, key_prop.GetValue (val, null));
@@ -404,11 +436,15 @@ namespace NDesk.DBus
 
 			foreach (System.Reflection.FieldInfo fi in fis) {
 				object elem;
-				//public virtual object GetValueDirect (TypedReference obj);
 				elem = fi.GetValue (val);
-				//Write (Signature.TypeToDType (fi.FieldType), elem);
 				Write (fi.FieldType, elem);
 			}
+		}
+		*/
+
+		public void WriteNull ()
+		{
+			stream.WriteByte (0);
 		}
 
 		public void WritePad (int alignment)
