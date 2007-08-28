@@ -1,3 +1,8 @@
+2007-08-28  Larry Ewing  <lewing@novell.com>
+
+	* src/XmpTagsImporter.cs: be more careful when processing
+	headlines.  Fixes b.n.c 304124.
+
 2007-08-27  Stephane Delcroix  <stephane@delcroix.org>
 
 	* configure.in:

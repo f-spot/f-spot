@@ -153,13 +153,17 @@ namespace FSpot.Xmp {
 			foreach (Statement stmt in store) {
 				//StatementList list = null;
 				
+				System.Console.WriteLine ("processing {0}", stmt);
 				switch (stmt.Predicate.Uri) {
 
 				case Caption:
 				case Headline:
 					if (!descriptions.Contains (stmt.Predicate.Uri)) {
-						string caption = (GetTextField (stmt.Object as Literal)).Trim ();
-						if ((caption != null) && (caption.Length > 0) )
+						string caption = GetTextField (stmt.Object as Literal);
+						if (caption != null)
+							caption = caption.Trim ();
+
+						if ((caption != null) && (caption.Length > 0))
 							descriptions.Add (stmt.Predicate.Uri, caption);
 					}
 					break;
