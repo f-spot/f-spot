@@ -1,5 +1,6 @@
 SUBDIRS = 		\
 	$(DIR_DBUS)	\
+	$(DIR_DBUS_GLIB)\
 	docs		\
 	FlickrNet	\
 	SmugMugNet	\

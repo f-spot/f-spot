@@ -7,7 +7,7 @@ ASSEMBLY_SOURCES =			\
 	$(srcdir)/GLib.IO.cs 		\
 	$(srcdir)/GLib.cs
 
-REFS = -r:$(DIR_DBUS)/NDesk.DBus.dll
+REFS = -r:../$(DIR_DBUS)/NDesk.DBus.dll
 
 PKGS =
 
