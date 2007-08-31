@@ -1,3 +1,10 @@
+2007-08-31  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/SendEmail.cs: creates the mail command line from uris instead of
+	files to prevents newer icedove to crash. Tested with evo also. If it
+	fails with some older mailer, please report the problem. Fixes bgo
+	#471529.
+
 2007-08-30  Stephane Delcroix  <stephane@delcroix.org>
 
 	* configure.in:

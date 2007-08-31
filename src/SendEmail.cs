@@ -293,7 +293,7 @@ namespace FSpot {
 					filters.Convert (request);
 					request.Preserve(request.Current);
 
- 					mail_attach.Append(attach_arg.ToString() + request.Current.AbsolutePath);
+ 					mail_attach.Append(attach_arg.ToString() + request.Current.ToString ());
 					
 					// Mark the path for deletion
 					tmp_paths.Add (request.Current.LocalPath);
@@ -313,7 +313,7 @@ namespace FSpot {
 						System.Diagnostics.Process.Start("thunderbird", " -compose \"subject=my photos,attachment='" + mail_attach + "'\"");
 					break;
 					case "icedove %s":
-						System.Diagnostics.Process.Start("thunderbird", " -compose \"subject=my photos,attachment='" + mail_attach + "'\"");
+						System.Diagnostics.Process.Start("icedove", " -compose \"subject=my photos,attachment='" + mail_attach + "'\"");
 					break;
 					case "mozilla-thunderbird %s":
 						System.Diagnostics.Process.Start("mozilla-thunderbird", " -compose \"subject=my photos,attachment='" + mail_attach + "'\"");
