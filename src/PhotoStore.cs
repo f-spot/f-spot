@@ -1,4 +1,16 @@
+/*
+ * PhotoStore.cs
+ *
+ * Author(s):
+	Ettore Perazzoli <ettore@perazzoli.org>
+	Larry Ewing <lewing@gnome.org>
+	Stephane Delcroix <stephane@delcroix.org>
+ * 
+ * This is free software. See COPYING for details.
+ */
+
 using Gnome;
+using Gnome.Vfs;
 using Gdk;
 using Gtk;
 
@@ -6,6 +18,7 @@ using Mono.Data.SqliteClient;
 using Mono.Unix;
 
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System;
@@ -14,9 +27,12 @@ using FSpot.Query;
 
 using Banshee.Database;
 
-public class PhotoVersion : FSpot.IBrowsableItem {
+public class PhotoVersion : FSpot.IBrowsableItem
+{
 	Photo photo;
 	uint version_id;
+	System.Uri uri;
+	string name;
 	
 	public System.DateTime Time {
 		get { return photo.Time; }
@@ -26,8 +42,8 @@ public class PhotoVersion : FSpot.IBrowsableItem {
 		get { return photo.Tags; }
 	}
 
-	public Uri DefaultVersionUri {
-		get { return UriList.PathToFileUri (photo.GetVersionPath (version_id));}
+	public System.Uri DefaultVersionUri {
+		get { return uri; }
 	}
 
 	public string Description {
@@ -35,21 +51,28 @@ public class PhotoVersion : FSpot.IBrowsableItem {
 	}
 
 	public string Name {
-		get { return photo.GetVersionName (version_id); }
+		get { return name; }
+		set { name = value; }
 	}
 
 	public Photo Photo {
 		get { return photo; }
 	}
 
+	public System.Uri Uri {
+		get { return uri; }
+	}
+
 	public uint VersionId {
 		get { return version_id; }
 	}
 
-	public PhotoVersion (Photo photo, uint version_id)
+	public PhotoVersion (Photo photo, uint version_id, System.Uri uri, string name)
 	{
 		this.photo = photo;
 		this.version_id = version_id;
+		this.uri = uri;
+		this.name = name;
 	}
 }
 
@@ -109,8 +132,10 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		return string.Compare (photo1.Name, photo2.Name);
 	}
 
-	public class CompareDateName : IComparer {
-		public int Compare (object obj1, object obj2) {
+	public class CompareDateName : IComparer
+	{
+		public int Compare (object obj1, object obj2)
+		{
 			Photo p1 = (Photo)obj1;
 			Photo p2 = (Photo)obj2;
 
@@ -121,11 +146,12 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 			return result;
 		}
-
 	}
 
-	public class CompareDirectory : IComparer {
-		public int Compare (object obj1, object obj2) {
+	public class CompareDirectory : IComparer
+	{
+		public int Compare (object obj1, object obj2)
+		{
 			Photo p1 = (Photo)obj1;
 			Photo p2 = (Photo)obj2;
 
@@ -138,10 +164,12 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		}
 	}
 
-	public class RandomSort : IComparer {
+	public class RandomSort : IComparer
+	{
 		Random random = new Random ();
 		
-		public int Compare (object obj1, object obj2) {
+		public int Compare (object obj1, object obj2)
+		{
 			return random.Next (-5, 5);
 		}
 	}
@@ -149,33 +177,23 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 	// The time is always in UTC.
 	private DateTime time;
 	public DateTime Time {
-		get {
-			return time;
-		}
-		set {
-			time = value;
-		}
-	}
-
-	private System.Uri uri;
-	System.Uri Uri {
-		get { return uri; }
-	}
-
-	[Obsolete ("Use Uri instead of Path")]
-	private string Path {
-		get { return uri.LocalPath; }
+		get { return time; }
+		set { time = value; }
 	}
 
 	public string Name {
-		get { return System.IO.Path.GetFileName (uri.AbsolutePath); }
+		get { return System.IO.Path.GetFileName (VersionUri (OriginalVersionId).AbsolutePath); }
 	}
 
 	//This property no longer keeps a 'directory' path, but the logical container for the image, like:
 	// file:///home/bob/Photos/2007/08/23 or
 	// http://www.google.com/logos
+	[Obsolete ("MARKED FOR REMOVAL. no longer makes sense with versions in different Directories. Any way to get rid of this ?")]
 	public string DirectoryPath {
-		get { return uri.Scheme + "://" + uri.Host + System.IO.Path.GetDirectoryName (uri.AbsolutePath); }
+		get { 
+			System.Uri uri = VersionUri (OriginalVersionId);
+			return uri.Scheme + "://" + uri.Host + System.IO.Path.GetDirectoryName (uri.AbsolutePath);
+		}
 	}
 
 	private ArrayList tags;
@@ -183,19 +201,15 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		get {
 			if (tags == null)
 				return new Tag [0];
-			else 
-				return (Tag []) tags.ToArray (typeof (Tag));
+
+			return (Tag []) tags.ToArray (typeof (Tag));
 		}
 	}
 
 	private bool loaded = false;
 	public bool Loaded {
-		get {
-			return loaded;
-		}
-		set {
-			loaded = value;
-		}
+		get { return loaded; }
+		set { loaded = value; }
 	}
 
 	private string description;
@@ -214,18 +228,22 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 	public const int OriginalVersionId = 1;
 	private uint highest_version_id;
 
-	private Hashtable version_names;
+	private Dictionary<uint, PhotoVersion> versions;
+	private Dictionary<uint, PhotoVersion> Versions {
+		get {
+			if (versions == null)
+				versions = new Dictionary<uint, PhotoVersion> ();
+			return versions;
+		}
+	}
 
 	public uint [] VersionIds {
 		get {
-			if (version_names == null)
+			if (versions == null)
 				return new uint [0];
 
-			uint [] ids = new uint [version_names.Count];
-			uint i = 0;
-			foreach (uint id in version_names.Keys)
-				ids [i ++] = id;
-
+			uint [] ids = new uint [versions.Count];
+			versions.Keys.CopyTo (ids, 0);
 			Array.Sort (ids);
 			return ids;
 		}
@@ -233,7 +251,10 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 	public IBrowsableItem GetVersion (uint version_id)
 	{
-		return new PhotoVersion (this, version_id);
+		if (versions == null)
+			return null;
+
+		return versions [version_id];
 	}
 
 	private uint default_version_id = OriginalVersionId;
@@ -244,24 +265,14 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 	// This doesn't check if a version of that name already exists, 
 	// it's supposed to be used only within the Photo and PhotoStore classes.
-	public void AddVersionUnsafely (uint version_id, string name)
+	internal void AddVersionUnsafely (uint version_id, System.Uri uri, string name)
 	{
-		if (version_names == null)
-			version_names = new Hashtable ();
-
-		version_names [version_id] = name;
+		Versions [version_id] = new PhotoVersion (this, version_id, uri, name);
 
 		highest_version_id = Math.Max (version_id, highest_version_id);
 	}
 
-	[Obsolete ("Use GetUriForVersionName (string) instead")]
-	private string GetPathForVersionName (string version_name)
-	{
-		Console.WriteLine("XXXX"+GetUriForVersionName (version_name).LocalPath);
-		return GetUriForVersionName (version_name).LocalPath;
-	}
-
-	[Obsolete ("FIXME: need to be smarter for non file:// uris")]
+	//FIXME: store versions next to originals. will crash on ro locations.
 	private System.Uri GetUriForVersionName (string version_name)
 	{
 		string name_without_extension = System.IO.Path.GetFileNameWithoutExtension (Name);
@@ -273,109 +284,110 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 	public bool VersionNameExists (string version_name)
 	{
-		if (version_names != null) {
-			foreach (string n in version_names.Values) {
-				if (n == version_name)
-					return true;
-			}
-		}
+		foreach (PhotoVersion v in Versions.Values)
+			if (v.Name == version_name)
+				return true;
 
 		return false;
 	}
 
+	[Obsolete ("use GetVersion (uint).Name")]
 	public string GetVersionName (uint version_id)
 	{
-		if (version_names != null)
-			return version_names [version_id] as string;
-		else 
-			return null;
+		PhotoVersion v = GetVersion (version_id) as PhotoVersion;
+		if (v != null)
+			return v.Name;
+		return null;
 	}
 
 	[Obsolete ("Use VersionUri (uint) instead")]
         public string GetVersionPath (uint version_id)
 	{
-		if (version_id == OriginalVersionId)
-			return Path;
-		else
-			return GetPathForVersionName (GetVersionName (version_id));
+		return VersionUri (version_id).LocalPath;
 	}
 
 	public System.Uri VersionUri (uint version_id)
 	{
-		if (version_id == OriginalVersionId)
-			return uri;
-		else
-			return GetUriForVersionName (GetVersionName (version_id));
+		if (!Versions.ContainsKey (version_id))
+			return null;
+
+		PhotoVersion v = Versions [version_id]; 
+		if (v != null)
+			return v.Uri;
+
+		return null;
 	}
 	
 	public System.Uri DefaultVersionUri {
-		get {
-			return VersionUri (DefaultVersionId);
-		}
+		get { return VersionUri (DefaultVersionId); }
 	}
 
 	public void DeleteVersion (uint version_id)
 	{
-		DeleteVersion (version_id, false);
+		DeleteVersion (version_id, false, false);
 	}
 
 	public void DeleteVersion (uint version_id, bool remove_original)
 	{
+		DeleteVersion (version_id, remove_original, false);
+	}
+
+	public void DeleteVersion (uint version_id, bool remove_original, bool keep_file)
+	{
 		if (version_id == OriginalVersionId && !remove_original)
 			throw new Exception ("Cannot delete original version");
 
-		string path = GetVersionPath (version_id);
-		if (File.Exists (path))
-			File.Delete (path);
+		System.Uri uri =  VersionUri (version_id);
 
-		try {
-			string thumb_path = ThumbnailGenerator.ThumbnailPath (path);
-			File.Delete (thumb_path);
-		} catch (System.Exception) {
-			//ignore an error here we don't really care.
+		if (!keep_file) {
+			if ((new Gnome.Vfs.Uri (uri.ToString ())).Exists)
+				(new Gnome.Vfs.Uri (uri.ToString ())).Unlink ();	
+
+			try {
+				string thumb_path = ThumbnailGenerator.ThumbnailPath (uri);
+				System.IO.File.Delete (thumb_path);
+			} catch (System.Exception) {
+				//ignore an error here we don't really care.
+			}
+			PhotoStore.DeleteThumbnail (uri);
 		}
-
-		PhotoStore.DeleteThumbnail (path);
-
-		version_names.Remove (version_id);
+		Versions.Remove (version_id);
 
 		do {
 			version_id --;
-			if (version_names.Contains (version_id)) {
+			if (Versions.ContainsKey (version_id)) {
 				DefaultVersionId = version_id;
 				break;
 			}
 		} while (version_id > OriginalVersionId);
 	}
 
-	public uint CreateVersion (string name, uint base_version_id, bool create_file)
+	public uint CreateVersion (string name, uint base_version_id, bool create)
 	{
-		string new_path = GetPathForVersionName (name);
-		string original_path = GetVersionPath (base_version_id);
+		System.Uri new_uri = GetUriForVersionName (name);
+		System.Uri original_uri = VersionUri (base_version_id);
 
 		if (VersionNameExists (name))
 			throw new Exception ("This version name already exists");
 
-		if (File.Exists (new_path))
-			throw new Exception (String.Format ("A file named {0} already exists",
-							    System.IO.Path.GetFileName (new_path)));
+		if ((new Gnome.Vfs.Uri (new_uri.ToString ())).Exists)
+			throw new Exception (String.Format ("An object at this uri {0} already exists", new_uri.ToString ()));
 
-		if (create_file) {
-			Mono.Unix.Native.Stat stat;
-			int stat_err = Mono.Unix.Native.Syscall.stat (original_path, out stat);
-			File.Copy (original_path, new_path);
-			FSpot.ThumbnailGenerator.Create (new_path).Dispose ();
-			
-			if (stat_err == 0) 
-				try {
-					Mono.Unix.Native.Syscall.chown(new_path, Mono.Unix.Native.Syscall.getuid (), stat.st_gid);
-				} catch (Exception) {}
+		if (create) {
+			Xfer.XferUri (new Gnome.Vfs.Uri (original_uri.ToString ()), new Gnome.Vfs.Uri (new_uri.ToString ()),
+				XferOptions.Default, XferErrorMode.Abort, XferOverwriteMode.Abort, null);
+//			Mono.Unix.Native.Stat stat;
+//			int stat_err = Mono.Unix.Native.Syscall.stat (original_path, out stat);
+//			File.Copy (original_path, new_path);
+			FSpot.ThumbnailGenerator.Create (new_uri).Dispose ();
+//			
+//			if (stat_err == 0) 
+//				try {
+//					Mono.Unix.Native.Syscall.chown(new_path, Mono.Unix.Native.Syscall.getuid (), stat.st_gid);
+//				} catch (Exception) {}
 		}
-		if (version_names == null)
-			version_names = new Hashtable ();
-
 		highest_version_id ++;
-		version_names [highest_version_id] = name;
+		Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, new_uri, name);
 
 		return highest_version_id;
 	}
@@ -425,18 +437,15 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		if (VersionNameExists (new_name))
 			throw new Exception ("This name already exists");
 
-		string original_name = version_names [version_id] as string;
+		(GetVersion (version_id) as PhotoVersion).Name = new_name;
 
-		string old_path = GetPathForVersionName (original_name);
-		string new_path = GetPathForVersionName (new_name);
+		//TODO: rename file too ???
 
-		if (File.Exists (new_path))
-			throw new Exception ("File with this name already exists");
-
-		File.Move (old_path, new_path);
-		PhotoStore.MoveThumbnail (old_path, new_path);
-
-		version_names [version_id] = new_name;
+//		if (System.IO.File.Exists (new_path))
+//			throw new Exception ("File with this name already exists");
+//
+//		File.Move (old_path, new_path);
+//		PhotoStore.MoveThumbnail (old_path, new_path);
 	}
 
 
@@ -517,6 +526,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		return xmp;
 	}
 
+	//FIXME: Won't work on non-file uris
 	public void WriteMetadataToImage ()
 	{
 		string path = this.DefaultVersionUri.LocalPath;
@@ -543,6 +553,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		}
 	}
 
+	//FIXME: won't work on non file uris
 	public uint SaveVersion (Gdk.Pixbuf buffer, bool create_version)
 	{
 		uint version = DefaultVersionId;
@@ -559,7 +570,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 			try {
 				string version_path = GetVersionPath (version);
 			
-				using (Stream stream = File.OpenWrite (version_path)) {
+				using (Stream stream = System.IO.File.OpenWrite (version_path)) {
 					img.Save (buffer, stream);
 				}
 				FSpot.ThumbnailGenerator.Create (version_path).Dispose ();
@@ -582,13 +593,11 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 	{
 		time = DbUtils.DateTimeFromUnixTime (unix_time);
 
-		this.uri = uri;
-
 		description = String.Empty;
 
 		// Note that the original version is never stored in the photo_versions table in the
 		// database.
-		AddVersionUnsafely (OriginalVersionId, Catalog.GetString ("Original"));
+		AddVersionUnsafely (OriginalVersionId, uri, Catalog.GetString ("Original"));
 	}
 
 	[Obsolete ("Use Photo (uint, long, Uri) instead")]
@@ -626,22 +635,22 @@ public class PhotoStore : DbStore {
 		string large_thumbnail_file_name_template = Thumbnail.PathForUri ("file:///boo", ThumbnailSize.Large);
 		string large_thumbnail_directory_path = System.IO.Path.GetDirectoryName (large_thumbnail_file_name_template);
 
-		if (! File.Exists (large_thumbnail_directory_path))
-			Directory.CreateDirectory (large_thumbnail_directory_path);
+		if (! System.IO.File.Exists (large_thumbnail_directory_path))
+			System.IO.Directory.CreateDirectory (large_thumbnail_directory_path);
 	}
 
 	//
 	// Generates the thumbnail, returns the Pixbuf, and also stores it as a side effect
 	//
 
-	public static Pixbuf GenerateThumbnail (Uri uri)
+	public static Pixbuf GenerateThumbnail (System.Uri uri)
 	{
 		using (FSpot.ImageFile img = FSpot.ImageFile.Create (uri)) {
 			return GenerateThumbnail (uri, img);
 		}
 	}
 
-	public static Pixbuf GenerateThumbnail (Uri uri, ImageFile img)
+	public static Pixbuf GenerateThumbnail (System.Uri uri, ImageFile img)
 	{
 		Pixbuf thumbnail = null;
 
@@ -663,17 +672,22 @@ public class PhotoStore : DbStore {
 		return thumbnail;
 	}
 
-	public static void DeleteThumbnail (string path)
+//	[Obsolete ("use DeleteThumbnail (System.Uri) instead")]
+//	public static void DeleteThumbnail (string path)
+//	{
+//		DeleteThumbnail (UriList.PathToFileUri (path));
+//	}
+
+	public static void DeleteThumbnail (System.Uri uri)
 	{
-		string uri = UriList.PathToFileUri (path).ToString ();
-		path = Thumbnail.PathForUri (uri, ThumbnailSize.Large);
-		if (File.Exists (path))
-			File.Delete (path);
+		string path = Thumbnail.PathForUri (uri.ToString (), ThumbnailSize.Large);
+		if (System.IO.File.Exists (path))
+			System.IO.File.Delete (path);
 	}
 
 	public static void MoveThumbnail (string old_path, string new_path)
 	{
-		File.Move (ThumbnailGenerator.ThumbnailPath (UriList.PathToFileUri (old_path)),
+		System.IO.File.Move (ThumbnailGenerator.ThumbnailPath (UriList.PathToFileUri (old_path)),
 			   ThumbnailGenerator.ThumbnailPath(UriList.PathToFileUri (new_path)));
 	}
 
@@ -762,12 +776,13 @@ public class PhotoStore : DbStore {
 
 	private void GetVersions (Photo photo)
 	{
-		SqliteDataReader reader = Database.Query(new DbCommand("SELECT version_id, name FROM photo_versions WHERE photo_id = :id", "id", photo.Id));
+		SqliteDataReader reader = Database.Query(new DbCommand("SELECT version_id, name, uri FROM photo_versions WHERE photo_id = :id", "id", photo.Id));
 
 		while (reader.Read ()) {
 			uint version_id = Convert.ToUInt32 (reader [0]);
 			string name = reader[1].ToString ();
-			photo.AddVersionUnsafely (version_id, name);
+			System.Uri uri = new System.Uri (reader[2].ToString ());
+			photo.AddVersionUnsafely (version_id, uri, name);
 		}
 		reader.Close();
 	}
@@ -785,7 +800,7 @@ public class PhotoStore : DbStore {
 	}		
 	
 	private void GetAllVersions  () {
-		SqliteDataReader reader = Database.Query("SELECT photo_id, version_id, name FROM photo_versions");
+		SqliteDataReader reader = Database.Query("SELECT photo_id, version_id, name, uri FROM photo_versions");
 		
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader [0]);
@@ -804,8 +819,9 @@ public class PhotoStore : DbStore {
 			if (reader [1] != null) {
 				uint version_id = Convert.ToUInt32 (reader [1]);
 				string name = reader[2].ToString ();
+				System.Uri uri = new System.Uri (reader[3].ToString ());
 				
-				photo.AddVersionUnsafely (version_id, name);
+				photo.AddVersionUnsafely (version_id, uri, name);
 			}
 
 			/*
@@ -844,43 +860,9 @@ public class PhotoStore : DbStore {
 		reader.Close();
 	}
 
-	private void GetAllData () {
-		SqliteDataReader reader = Database.Query("SELECT photo_tags.photo_id, tag_id, version_id, name "
-                                               + "FROM photo_tags, photo_versions "
-                                               + "WHERE photo_tags.photo_id = photo_versions.photo_id");
-
-		while (reader.Read ()) {
-			uint id = Convert.ToUInt32 (reader [0]);
-			Photo photo = LookupInCache (id) as Photo;
-				
-			if (photo == null) {
-				//Console.WriteLine ("Photo {0} not found", id);
-				continue;
-			}
-				
-			if (photo.Loaded) {
-				//Console.WriteLine ("Photo {0} already Loaded", photo);
-				continue;
-			}
-
-		        if (reader [1] != null) {
-				uint tag_id = Convert.ToUInt32 (reader [1]);
-				Tag tag = Core.Database.Tags.Get (tag_id) as Tag;
-				photo.AddTagUnsafely (tag);
-			}
-			if (reader [2] != null) {
-				uint version_id = Convert.ToUInt32 (reader [2]);
-				string name = reader[3].ToString ();
-				
-				photo.AddVersionUnsafely (version_id, name);
-			}
-		}
-		reader.Close();
-	}
-
 	private void GetData (Photo photo)
 	{
-		SqliteDataReader reader = Database.Query(new DbCommand("SELECT tag_id, version_id, name "
+		SqliteDataReader reader = Database.Query(new DbCommand("SELECT tag_id, version_id, name, uri "
                                                              + "FROM photo_tags, photo_versions "
                                                              + "WHERE photo_tags.photo_id = photo_versions.photo_id "
                                                              + "AND photo_tags.photo_id = :id", "id", photo.Id));
@@ -894,8 +876,9 @@ public class PhotoStore : DbStore {
 			if (reader [1] != null) {
 				uint version_id = Convert.ToUInt32 (reader [1]);
 				string name = reader[2].ToString ();
+				System.Uri uri = new System.Uri (reader[3].ToString ());
 				
-				photo.AddVersionUnsafely (version_id, name);
+				photo.AddVersionUnsafely (version_id, uri, name);
 			}
 		}
 		reader.Close();
@@ -1061,12 +1044,12 @@ public class PhotoStore : DbStore {
 		foreach (uint version_id in photo.VersionIds) {
 			if (version_id == Photo.OriginalVersionId)
 				continue;
+			PhotoVersion version = photo.GetVersion (version_id) as PhotoVersion;
 
-			string version_name = photo.GetVersionName (version_id);
-
-			Database.ExecuteNonQuery(new DbCommand ("INSERT INTO photo_versions (photo_id, version_id, name) " +
-							     "       VALUES (:photo_id, :version_id, :name)",
-							     "photo_id", photo.Id, "version_id", version_id, "name", version_name));
+			Database.ExecuteNonQuery(new DbCommand ("INSERT INTO photo_versions (photo_id, version_id, name, uri) " +
+							     "       VALUES (:photo_id, :version_id, :name, :uri)",
+							     "photo_id", photo.Id, "version_id", version.VersionId,
+							     "name", version.Name, "uri", version.Uri.ToString ()));
 		}
 	}
 	
@@ -1139,7 +1122,7 @@ public class PhotoStore : DbStore {
 			if (photo == null) {
 				photo = new Photo (id,
 						   Convert.ToInt64 (reader [1]),
-						   new Uri (reader [2].ToString ()));
+						   new System.Uri (reader [2].ToString ()));
 				
 				photo.Description = reader[3].ToString ();
 				photo.RollId = Convert.ToUInt32 (reader[4]);

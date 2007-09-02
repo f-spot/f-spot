@@ -137,8 +137,43 @@ namespace FSpot.Database {
 					"description, roll_id, default_version_id FROM photos_temp ");
 			}, true);
 			
-			// Update to version 8.0
-			//AddUpdate (new Version (8,0),delegate () {
+			// Update to version 8.0, store full version uri
+			AddUpdate (new Version (8,0),delegate () {
+				MoveTableToTemp ("photo_versions");
+				ExecuteNonQuery (
+					"CREATE TABLE photo_versions (          " +
+					"       photo_id        INTEGER,        " +
+					"       version_id      INTEGER,        " +
+					"       name            STRING,         " +
+					"       uri             STRING NOT NULL " +
+					")");
+
+				SqliteDataReader reader = ExecuteReader ("SELECT photo_id, version_id, name, uri " +
+								         "FROM photo_versions_temp, photos " +
+								         "WHERE photo_id = id ");
+		
+				while (reader.Read ()) {
+					System.Uri photo_uri = new System.Uri (reader [3] as string);
+					string name_without_extension = System.IO.Path.GetFileNameWithoutExtension (photo_uri.AbsolutePath);
+					string extension = System.IO.Path.GetExtension (photo_uri.AbsolutePath);
+
+					string uri = photo_uri.Scheme + "://" + 
+						photo_uri.Host + 
+						System.IO.Path.GetDirectoryName (photo_uri.AbsolutePath) + "/" +
+						name_without_extension + " (" + (reader [2] as string) + ")" + extension;
+					string statement = String.Format ("INSERT INTO photo_versions (photo_id, version_id, name, uri) " + 
+									  "VALUES ({0}, {1}, '{2}', '{3}')",
+									  Convert.ToUInt32 (reader [0]),
+									  Convert.ToUInt32 (reader [1]),
+									  (string)(reader [2]),
+									  uri);
+					ExecuteNonQuery (statement);
+				}
+
+			}, true);
+			
+			// Update to version 9.0
+			//AddUpdate (new Version (0,0),delegate () {
 			//	do update here
 			//});
 
@@ -240,6 +275,11 @@ namespace FSpot.Database {
 		private static int ExecuteScalar (string statement)
 		{
 			return db.Database.Execute(statement);
+		}
+
+		private static SqliteDataReader ExecuteReader (string statement)
+		{
+			return db.Database.Query (statement);
 		}
 		
 		private static bool TableExists (string table)

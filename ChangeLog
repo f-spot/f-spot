@@ -1,3 +1,8 @@
+2007-09-02  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Updater.cs: Keep the full uri for versions too
+	* src/PhotoStore.cs: Adaptations to the new db schema.
+
 2007-08-31  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/SendEmail.cs: creates the mail command line from uris instead of
