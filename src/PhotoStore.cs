@@ -392,6 +392,23 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		return highest_version_id;
 	}
 
+	public uint CreateReparentedVersion (PhotoVersion version)
+	{
+		int num = 0;
+		while (true) {
+			num++;
+			string name = Mono.Posix.Catalog.GetPluralString ("Reparented", "Reparented ({0})", num);
+			name = String.Format (name, num);
+			if (VersionNameExists (name))
+				continue;
+
+			highest_version_id ++;
+			Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, version.Uri, name);
+
+			return highest_version_id;
+		}
+	}
+
 	public uint CreateDefaultModifiedVersion (uint base_version_id, bool create_file)
 	{
 		int num = 1;

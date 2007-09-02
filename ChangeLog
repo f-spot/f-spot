@@ -1,5 +1,12 @@
 2007-09-02  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/PhotoStore.cs:
+	* src/PhotoVersionCommands.cs:
+	* src/MainWindow.cs: (Disabled) code for reparenting photos by DnD.
+	compile with -d:ENABLE_REPARENTING to make it works.
+
+2007-09-02  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/Updater.cs: Keep the full uri for versions too
 	* src/PhotoStore.cs: Adaptations to the new db schema.
 

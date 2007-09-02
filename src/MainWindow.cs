@@ -169,6 +169,9 @@ public class MainWindow {
 	};
 
 	private static TargetEntry [] icon_dest_target_table = new TargetEntry [] {
+#if ENABLE_REPARENTING
+		new TargetEntry ("application/x-fspot-photos", 0, (uint) TargetType.PhotoList),
+#endif
 		new TargetEntry ("application/x-fspot-tags", 0, (uint) TargetType.TagList),
 		new TargetEntry ("text/uri-list", 0, (uint) TargetType.UriList),
 	};
@@ -1243,6 +1246,21 @@ public class MainWindow {
 			UriList list = new UriList (args.SelectionData);
 			ImportUriList (list, (args.Context.Action & Gdk.DragAction.Copy) != 0);
 			break;
+#if ENABLE_REPARENTING
+		case (uint)TargetType.PhotoList:
+			int p_item = icon_view.CellAtPosition (args.X + (int) icon_view.Hadjustment.Value, 
+							     args.Y + (int) icon_view.Vadjustment.Value);
+
+			if (p_item >= 0)
+			{
+				PhotoVersionCommands.Reparent cmd = new PhotoVersionCommands.Reparent ();
+				
+				cmd.Execute (db.Photos, SelectedPhotos(), query.Photos [p_item], GetToplevel (null));
+				UpdateQuery ();
+			}
+	
+			break;
+#endif
 		}
 
 		Gtk.Drag.Finish (args.Context, true, false, args.Time);
