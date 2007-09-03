@@ -212,10 +212,8 @@ public class PhotoVersionCommands {
 		public bool Execute (PhotoStore store, Photo [] photos, Photo new_parent, Gtk.Window parent_window)
 		{
 			foreach (Photo photo in photos) {
-				Console.WriteLine ("P0NG");
 				new_parent.AddTag (photo.Tags);
 				foreach (uint version_id in photo.VersionIds) {
-				Console.WriteLine ("P1NG");
 					try {
 						new_parent.DefaultVersionId = new_parent.CreateReparentedVersion (photo.GetVersion (version_id) as PhotoVersion);
 						store.Commit (new_parent);
@@ -226,7 +224,6 @@ public class PhotoVersionCommands {
 				uint [] version_ids = photo.VersionIds;
 				Array.Reverse (version_ids);
 				foreach (uint version_id in version_ids) {
-				Console.WriteLine ("P2NG");
 					try {
 						photo.DeleteVersion (version_id, true, true);
 					} catch (Exception e) {
@@ -234,9 +231,7 @@ public class PhotoVersionCommands {
 					}
 				}
 				store.Commit (photo);
-				Console.WriteLine ("P3NG");
 				MainWindow.Toplevel.Database.Photos.Remove (photos);
-				Console.WriteLine ("P4NG");
 			}
 			return true;
 		}
