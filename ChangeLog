@@ -1,5 +1,9 @@
 2007-09-05  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/PhotoStore.cs: Fixing table creation code for photo_versions.
+
+2007-09-05  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/PhotoStore.cs: fixing the Query (DirectoryInfo) for bug #473812.
 
 2007-09-04  Stephane Delcroix  <stephane@delcroix.org>

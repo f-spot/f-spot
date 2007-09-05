@@ -740,10 +740,13 @@ public class PhotoStore : DbStore {
 
 
 		Database.ExecuteNonQuery (
-			"CREATE TABLE photo_versions (    " +
-			"       photo_id        INTEGER,  " +
-			"       version_id      INTEGER,  " +
-			"       name            STRING    " +
+			//WARNING: if you change this schema, reflect your changes 
+			//to Updater.cs, at revision 8.0
+			"CREATE TABLE photo_versions (    	" +
+			"       photo_id        INTEGER,  	" +
+			"       version_id      INTEGER,  	" +
+			"       name            STRING,    	" +
+			"	uri		STRING NOT NULL " +
 			")");
 	}
 
