@@ -1182,7 +1182,8 @@ public class PhotoStore : DbStore {
 				"photos.roll_id, "		+
 				"photos.default_version_id "	+
 			"FROM photos " 				+
-			"WHERE uri LIKE \"file://{0}\"", dir.FullName);
+			"WHERE uri LIKE \"file://{0}%\" "	+
+			"AND uri NOT LIKE \"file://{0}/%/%\"" , dir.FullName);
 
 		return Query (query_string);
 	}

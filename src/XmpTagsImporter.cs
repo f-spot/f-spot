@@ -153,7 +153,7 @@ namespace FSpot.Xmp {
 			foreach (Statement stmt in store) {
 				//StatementList list = null;
 				
-				System.Console.WriteLine ("processing {0}", stmt);
+				//System.Console.WriteLine ("processing {0}", stmt);
 				switch (stmt.Predicate.Uri) {
 
 				case Caption:
