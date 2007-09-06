@@ -374,8 +374,13 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 			throw new Exception (String.Format ("An object at this uri {0} already exists", new_uri.ToString ()));
 
 		if (create) {
-			Xfer.XferUri (new Gnome.Vfs.Uri (original_uri.ToString ()), new Gnome.Vfs.Uri (new_uri.ToString ()),
-				XferOptions.Default, XferErrorMode.Abort, XferOverwriteMode.Abort, null);
+			Xfer.XferUri (
+				new Gnome.Vfs.Uri (original_uri.ToString ()), 
+				new Gnome.Vfs.Uri (new_uri.ToString ()),
+				XferOptions.Default, XferErrorMode.Abort, 
+				XferOverwriteMode.Abort, 
+				delegate (Gnome.Vfs.XferProgressInfo info) {return 1;});
+
 //			Mono.Unix.Native.Stat stat;
 //			int stat_err = Mono.Unix.Native.Syscall.stat (original_path, out stat);
 //			File.Copy (original_path, new_path);

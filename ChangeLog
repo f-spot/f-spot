@@ -1,5 +1,9 @@
 2007-09-06  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/PhotoStore.cs: Fixing a bug in versino creation. Fixes bgo #474137
+
+2007-09-06  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/Updater.cs: make use of DbCommand. Bug and proposed patch from
 	Xavier Bouchoux. Fixes bgo #474142.
 
