@@ -352,7 +352,7 @@ namespace FSpot {
 			{
 				lock (this) {
 					if (IsDisposed)
-						throw new System.Exception ("I'm dead");
+						return null;
 
 					if (pixbuf == null)
 						return null;

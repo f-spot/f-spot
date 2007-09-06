@@ -1,3 +1,11 @@
+2007-09-05  Gabriel Burt  <gabriel.burt@gmail.com>
+	
+	* src/PixbufCache.cs: Return null instead of throwing "I'm dead" exception
+	when asked to perform ShallowCopyPixbuf on Disposed CacheEntry.  Several
+	places get the CacheEntry from the cache then call that method without
+	putting a lock on the entry object, though they do check the result for
+	null.  Fixes BGO #391470.
+
 2007-09-05  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/PhotoStore.cs: Fixing table creation code for photo_versions.
