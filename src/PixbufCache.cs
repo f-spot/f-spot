@@ -265,36 +265,22 @@ namespace FSpot {
 			}
 
 			public bool Reload {
-				get {
-					return reload;
-				}
-				set {
-					reload = value;
-				}
+				get { return reload; }
+				set { reload = value; }
 			}
 
 			public string Path {
-				get {
-					return path;
-				}
+				get { return path; }
 			}
 
 			public int Width {
-				get {
-					return width;
-				}
-				set {
-					width = value;
-				}
+				get { return width; }
+				set { width = value; }
 			}
 
 			public int Height {
-				get {
-					return height;
-				}
-				set {
-					height = value;
-				}
+				get { return height; }
+				set { height = value; }
 			}
 
 			public object Data {
