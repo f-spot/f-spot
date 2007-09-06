@@ -43,6 +43,9 @@ namespace FSpot {
 				Gnome.Vfs.FileInfo vfs = new Gnome.Vfs.FileInfo (uri.ToString ());
 				DateTime mtime = vfs.Mtime;
 				valid  = Gnome.Thumbnail.IsValid (thumbnail, UriList.UriToStringEscaped (uri), mtime);
+			} catch (System.IO.FileNotFoundException e) {
+				// If the original file is not on disk, the thumbnail is as valid as it's going to get
+				valid = true;
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e);
 				valid = false;

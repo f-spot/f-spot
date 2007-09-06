@@ -1,5 +1,11 @@
 2007-09-05  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/ThumbnailGenerator.cs: If the original file is missing, consider any
+	existing thumbnails valid to avoid attempting to regenerate them, which
+	obviously will fail.
+
+2007-09-05  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/PixbufCache.cs: Clean up property code style.
 
 2007-09-05  Gabriel Burt  <gabriel.burt@gmail.com>
