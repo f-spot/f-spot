@@ -1,4 +1,8 @@
 2007-09-05  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* MAINTAINERS: update.
+
+2007-09-05  Gabriel Burt  <gabriel.burt@gmail.com>
 	
 	* src/PixbufCache.cs: Return null instead of throwing "I'm dead" exception
 	when asked to perform ShallowCopyPixbuf on Disposed CacheEntry.  Several
