@@ -1,3 +1,8 @@
+2007-09-06  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Updater.cs: make use of DbCommand. Bug and proposed patch from
+	Xavier Bouchoux. Fixes bgo #474142.
+
 2007-09-05  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/ThumbnailGenerator.cs: If the original file is missing, consider any

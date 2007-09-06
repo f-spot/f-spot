@@ -3,6 +3,7 @@ using Mono.Unix;
 using Gtk;
 using System;
 using System.Collections;
+using Banshee.Database;
 
 namespace FSpot.Database {
 	public static class Updater {
@@ -161,13 +162,13 @@ namespace FSpot.Database {
 						photo_uri.Host + 
 						System.IO.Path.GetDirectoryName (photo_uri.AbsolutePath) + "/" +
 						name_without_extension + " (" + (reader [2] as string) + ")" + extension;
-					string statement = String.Format ("INSERT INTO photo_versions (photo_id, version_id, name, uri) " + 
-									  "VALUES ({0}, {1}, '{2}', '{3}')",
-									  Convert.ToUInt32 (reader [0]),
-									  Convert.ToUInt32 (reader [1]),
-									  (string)(reader [2]),
-									  uri);
-					ExecuteNonQuery (statement);
+					ExecuteNonQuery (new DbCommand (
+						"INSERT INTO photo_versions (photo_id, version_id, name, uri) " +
+						"VALUES (:photo_id, :version_id, :name, :uri)",
+						"photo_id", Convert.ToUInt32 (reader [0]),
+						"version_id", Convert.ToUInt32 (reader [1]),
+						"name", (string)(reader [2]),
+						"uri", uri));
 				}
 
 			}, true);
@@ -270,6 +271,11 @@ namespace FSpot.Database {
 		private static void ExecuteNonQuery (string statement)
 		{
 			db.Database.ExecuteNonQuery(statement);
+		}
+
+		private static void ExecuteNonQuery (DbCommand command)
+		{
+			db.Database.ExecuteNonQuery(command);
 		}
 		
 		private static int ExecuteScalar (string statement)
