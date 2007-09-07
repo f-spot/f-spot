@@ -1,5 +1,10 @@
 2007-09-07  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/Imaging/IptcFile.cs: Typo in strings. Patch from Marco Colombo.
+	Fixes bgo #474536.
+
+2007-09-07  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/TagPopup.cs:
 	* src/MainWindow.cs: make SelectedIds () private, expose
 	SelectedPhotos () as public.

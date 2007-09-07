@@ -156,9 +156,9 @@ namespace FSpot.Iptc {
 			new DataSetInfo (DataSetID.EnvelopePriority, Format.Numeric, "Envelope Priority", false, false, 1, 1, 
 					 Catalog.GetString ("The envelope handling priority between 1 (most urgent) and 9 (least urgent)")),
 			new DataSetInfo (DataSetID.DateSent, Format.Date, "Date Sent", true, false, 8, 8, 
-					 Catalog.GetString ("The year month and day (CCYYMMDD) the service sent the material")),
+					 Catalog.GetString ("The year, month and day (CCYYMMDD) the service sent the material")),
 			new DataSetInfo (DataSetID.TimeSent, Format.Date, "Time Sent", false, false, 11, 11, 
-					 Catalog.GetString ("The hour minute and second the (HHMMSS+HHMM) the service sent the material")),
+					 Catalog.GetString ("The hour, minute and second (HHMMSS) the service sent the material")),
 			new DataSetInfo (DataSetID.CodedCharacterSet, Format.Time, "Coded Character Set", false, false, 0, 32, 
 					 Catalog.GetString ("The character set designation")), // FIXME
 			new DataSetInfo (DataSetID.UNO, Format.String, "Unique Name of Object", false, false, 14, 80,
