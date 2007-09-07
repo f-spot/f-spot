@@ -15,7 +15,7 @@ using Mono.Unix;
 public class TagPopup {
 	public void Activate (Gdk.EventButton eb, Tag tag, Tag [] tags)
 	{
-		int photo_count = MainWindow.Toplevel.SelectedIds ().Length;
+		int photo_count = MainWindow.Toplevel.SelectedPhotos ().Length;
 		int tags_count = tags.Length;
 
 		Gtk.Menu popup_menu = new Gtk.Menu ();

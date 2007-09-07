@@ -1,3 +1,12 @@
+2007-09-07  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/TagPopup.cs:
+	* src/MainWindow.cs: make SelectedIds () private, expose
+	SelectedPhotos () as public.
+
+	* src/FSpot.addin.xml: bump version to 0.4.0.3341 to reflect the
+	public interface changes.
+
 2007-09-06  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/PhotoStore.cs: Fixing a bug in versino creation. Fixes bgo #474137

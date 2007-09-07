@@ -589,7 +589,7 @@ public class MainWindow {
 		}
 	}
 
-	public int [] SelectedIds () {
+	private int [] SelectedIds () {
 		int [] ids = new int [0];
 
 		if (fsview != null && fsview.View.Item.IsValid)
@@ -770,7 +770,7 @@ public class MainWindow {
 		return photo_list;
 	}
 
-	private Photo [] SelectedPhotos () 
+	public Photo [] SelectedPhotos () 
 	{
 		return SelectedPhotos (SelectedIds ());
 	}
