@@ -272,6 +272,15 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		highest_version_id = Math.Max (version_id, highest_version_id);
 	}
 
+	public uint AddVersion (System.Uri uri, string name)
+	{
+		if (VersionNameExists (name))
+			throw new ApplicationException ("A version with that name already exists");
+		highest_version_id ++;
+		Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, uri, name);
+		return highest_version_id;
+	}
+
 	//FIXME: store versions next to originals. will crash on ro locations.
 	private System.Uri GetUriForVersionName (string version_name)
 	{

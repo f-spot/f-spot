@@ -1,5 +1,11 @@
 2007-09-07  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/PhotoStore.cs: new "safe" public AddVersion method.
+
+	* src/FSpot.addin.xml: bumping version to 0.4.0.3343
+
+2007-09-07  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/Imaging/IptcFile.cs: Typo in strings. Patch from Marco Colombo.
 	Fixes bgo #474536.
 
