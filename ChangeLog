@@ -1,5 +1,13 @@
 2007-09-09  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/FSpot.addin.xml:
+	* src/MainWindow.cs: exposing UpdateQuery. Bumping addin version to
+	reflect API changes.
+
+	* extensions/RawPlusJpeg/*: UpdateQuery when done.
+
+2007-09-09  Stephane Delcroix  <stephane@delcroix.org>
+
 	* extensions/RawPlusJpeg/RawPlusJpeg.cs: fixing z stupid bug for .cr2
 
 2007-09-09  Stephane Delcroix  <stephane@delcroix.org>

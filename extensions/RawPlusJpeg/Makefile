@@ -14,7 +14,7 @@ RESOURCES = \
 SOURCES = \
 	$(ADDIN).cs
 
-$(ADDIN).dll: $(SOURCES)
+$(ADDIN).dll: $(SOURCES) $(ADDIN).addin.xml
 	gmcs -target:library $(SOURCES) $(PACKAGES) $(ASSEMBLIES) $(RESOURCES)
 
 clean:

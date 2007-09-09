@@ -2675,7 +2675,7 @@ public class MainWindow {
 
 	// Queries.
 
-	void UpdateQuery ()
+	public void UpdateQuery ()
 	{
 		main_window.GdkWindow.Cursor = new Gdk.Cursor (Gdk.CursorType.Watch);
 		main_window.GdkWindow.Display.Sync ();

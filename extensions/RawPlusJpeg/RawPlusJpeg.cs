@@ -41,6 +41,8 @@ namespace RawPlusJpegExtension
 					Merge (previous, p);
 				previous = p;
 			}
+
+			MainWindow.Toplevel.UpdateQuery ();
 		}
 
 		private void Merge (Photo first, Photo second)
