@@ -56,7 +56,7 @@ namespace RawPlusJpegExtension
 			}
 			if (System.IO.Path.GetExtension (jpeg.Name).ToLower () != ".jpg" && System.IO.Path.GetExtension (jpeg.Name).ToLower () != ".jpeg") 
 				return;
-			if (System.IO.Path.GetExtension (raw.Name).ToLower () != ".nef" && System.IO.Path.GetExtension (jpeg.Name).ToLower () != ".cr2") 
+			if (System.IO.Path.GetExtension (raw.Name).ToLower () != ".nef" && System.IO.Path.GetExtension (raw.Name).ToLower () != ".cr2") 
 				return;
 			Console.WriteLine ("Merging {0} and {1}", raw.VersionUri (Photo.OriginalVersionId), jpeg.VersionUri (Photo.OriginalVersionId));
 			foreach (uint version_id in jpeg.VersionIds) {
