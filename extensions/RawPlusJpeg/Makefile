@@ -1,4 +1,6 @@
-all: RawPlusJpeg.dll
+ADDIN = RawPlusJpeg
+
+all: $(ADDIN).dll
 
 PACKAGES = \
 	-pkg:gtk-sharp-2.0	\
@@ -7,19 +9,22 @@ PACKAGES = \
 ASSEMBLIES =
 
 RESOURCES = \
-	-resource:RawPlusJpeg.addin.xml
+	-resource:$(ADDIN).addin.xml
 
 SOURCES = \
-	RawPlusJpeg.cs
+	$(ADDIN).cs
 
-install: all
-	cp *.dll ~/.gnome2/f-spot/addins/
-
-%.dll: $(SOURCES) RawPlusJpeg.addin.xml
+$(ADDIN).dll: $(SOURCES)
 	gmcs -target:library $(SOURCES) $(PACKAGES) $(ASSEMBLIES) $(RESOURCES)
 
 clean:
-	rm -f *.dll *~ *.bak
+	rm -f *.dll *~ *.bak *.mpack
+
+install:
+	cp $(ADDIN).dll ~/.gnome2/f-spot/addins/
+
+mpack: $(ADDIN).dll
+	mautil p $(ADDIN).dll
 
 PHONY:
-	install clean all
+	install clean all mpack
