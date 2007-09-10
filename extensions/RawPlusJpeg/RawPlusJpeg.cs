@@ -8,6 +8,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 
 using Gtk;
 
@@ -31,68 +32,100 @@ namespace RawPlusJpegExtension
 				"Do it now"))
 				return;
 
-			bool changed = false;
-			try {
-				Photo [] photos = Core.Database.Photos.Query ((Tag [])null, null, null, null);
-				Array.Sort (photos, new Photo.CompareDirectory ());
-				Photo previous = null;
-				foreach (Photo p in photos) {
-					if (previous != null &&
-						p != null && 
-						p.DirectoryPath == previous.DirectoryPath && 
-						System.IO.Path.GetFileNameWithoutExtension (p.Name) == System.IO.Path.GetFileNameWithoutExtension (previous.Name)) {
-							Merge (previous, p);
-							changed = true;
-						}
-					previous = p;
-				}
-			} catch (Exception ex) {
-				Console.WriteLine (ex);
+			Photo [] photos = Core.Database.Photos.Query ((Tag [])null, null, null, null);
+			Array.Sort (photos, new Photo.CompareDirectory ());
+
+			Photo raw = null;
+			Photo jpeg = null;
+
+			IList<MergeRequest> merge_requests = new List<MergeRequest> ();
+
+			for (int i = 0; i < photos.Length; i++) {
+				Photo p = photos [i];
+
+				if (!IsRaw (p.Name) && !IsJpeg (p.Name))
+					continue;
+				
+				if (IsJpeg (p.Name))
+					jpeg = p;
+				if (IsRaw (p.Name))
+					raw = p;
+
+				if (raw != null && jpeg != null && SamePlaceAndName (raw, jpeg))
+					merge_requests.Add (new MergeRequest (raw, jpeg));
 			}
 			
-			if (changed)
-				MainWindow.Toplevel.UpdateQuery ();
+			if (merge_requests.Count == 0)
+				return;
+
+			foreach (MergeRequest mr in merge_requests)
+				mr.Merge ();
+
+			MainWindow.Toplevel.UpdateQuery ();
 		}
 
-		private void Merge (Photo first, Photo second)
+		private static bool SamePlaceAndName (Photo p1, Photo p2)
+		{
+			return p1.DirectoryPath == p2.DirectoryPath && 
+				System.IO.Path.GetFileNameWithoutExtension (p1.Name) == System.IO.Path.GetFileNameWithoutExtension (p2.Name);
+		}
+
+		private static bool IsRaw (string name)
+		{
+			string [] raw_extensions = {".nef", ".crw", ".cr2"};
+			foreach (string ext in raw_extensions)
+				if (ext == System.IO.Path.GetExtension (name).ToLower ())
+					return true;
+			return false;
+		}
+
+		private static bool IsJpeg (string name)
+		{
+			string [] jpg_extensions = {".jpg", ".jpeg"};
+			foreach (string ext in jpg_extensions)
+				if (ext == System.IO.Path.GetExtension (name).ToLower ())
+					return true;
+			return false;
+		}
+
+		class MergeRequest 
 		{
 			Photo raw;
 			Photo jpeg;
-			if (System.IO.Path.GetExtension (first.Name).ToLower () == ".jpg" || System.IO.Path.GetExtension (first.Name).ToLower () == ".jpeg") {
-				jpeg = 	first;
-				raw = second;
-			} else {
-				jpeg = second;
-				raw = first;
+
+			public MergeRequest (Photo raw, Photo jpeg)
+			{
+				this.raw = raw;
+				this.jpeg = jpeg;
 			}
-			if (System.IO.Path.GetExtension (jpeg.Name).ToLower () != ".jpg" && System.IO.Path.GetExtension (jpeg.Name).ToLower () != ".jpeg") 
-				return;
-			if (System.IO.Path.GetExtension (raw.Name).ToLower () != ".nef" && System.IO.Path.GetExtension (raw.Name).ToLower () != ".cr2") 
-				return;
-			Console.WriteLine ("Merging {0} and {1}", raw.VersionUri (Photo.OriginalVersionId), jpeg.VersionUri (Photo.OriginalVersionId));
-			foreach (uint version_id in jpeg.VersionIds) {
-				string name = jpeg.GetVersion (version_id).Name;
-				try {
-					raw.DefaultVersionId = raw.CreateReparentedVersion (jpeg.GetVersion (version_id) as PhotoVersion);
-					if (version_id == Photo.OriginalVersionId)
-						raw.RenameVersion (raw.DefaultVersionId, "Jpeg");
-					else
-						raw.RenameVersion (raw.DefaultVersionId, name);
-				} catch (Exception e) {
-					Console.WriteLine (e);
+
+			public void Merge ()
+			{
+				Console.WriteLine ("Merging {0} and {1}", raw.VersionUri (Photo.OriginalVersionId), jpeg.VersionUri (Photo.OriginalVersionId));
+				foreach (uint version_id in jpeg.VersionIds) {
+					string name = jpeg.GetVersion (version_id).Name;
+					try {
+						raw.DefaultVersionId = raw.CreateReparentedVersion (jpeg.GetVersion (version_id) as PhotoVersion);
+						if (version_id == Photo.OriginalVersionId)
+							raw.RenameVersion (raw.DefaultVersionId, "Jpeg");
+						else
+							raw.RenameVersion (raw.DefaultVersionId, name);
+					} catch (Exception e) {
+						Console.WriteLine (e);
+					}
 				}
+				uint [] version_ids = jpeg.VersionIds;
+				Array.Reverse (version_ids);
+				foreach (uint version_id in version_ids) {
+					try {
+						jpeg.DeleteVersion (version_id, true, true);
+					} catch (Exception e) {
+						Console.WriteLine (e);
+					}
+				}	
+				Core.Database.Photos.Commit (raw);
+				Core.Database.Photos.Remove (jpeg);
 			}
-			uint [] version_ids = jpeg.VersionIds;
-			Array.Reverse (version_ids);
-			foreach (uint version_id in version_ids) {
-				try {
-					jpeg.DeleteVersion (version_id, true, true);
-				} catch (Exception e) {
-					Console.WriteLine (e);
-				}
-			}
-			Core.Database.Photos.Commit (raw);
-			Core.Database.Photos.Remove (jpeg);
 		}
 	}
 }
