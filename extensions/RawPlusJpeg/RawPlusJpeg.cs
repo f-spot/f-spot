@@ -35,7 +35,8 @@ namespace RawPlusJpegExtension
 			Array.Sort (photos, new Photo.CompareDirectory ());
 			Photo previous = null;
 			foreach (Photo p in photos) {
-				if (previous != null && 
+				if (previous != null &&
+					p != null && 
 					p.DirectoryPath == previous.DirectoryPath && 
 					System.IO.Path.GetFileNameWithoutExtension (p.Name) == System.IO.Path.GetFileNameWithoutExtension (previous.Name))
 					Merge (previous, p);
