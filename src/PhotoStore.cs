@@ -282,10 +282,9 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 	}
 
 	//FIXME: store versions next to originals. will crash on ro locations.
-	private System.Uri GetUriForVersionName (string version_name)
+	private System.Uri GetUriForVersionName (string version_name, string extension)
 	{
 		string name_without_extension = System.IO.Path.GetFileNameWithoutExtension (Name);
-		string extension = System.IO.Path.GetExtension (Name);
 
 		return new System.Uri (System.IO.Path.Combine (DirectoryPath,  name_without_extension 
 					       + " (" + version_name + ")" + extension));
@@ -373,7 +372,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 	public uint CreateVersion (string name, uint base_version_id, bool create)
 	{
-		System.Uri new_uri = GetUriForVersionName (name);
+		System.Uri new_uri = GetUriForVersionName (name, System.IO.Path.GetExtension (VersionUri (base_version_id).AbsolutePath));
 		System.Uri original_uri = VersionUri (base_version_id);
 
 		if (VersionNameExists (name))
