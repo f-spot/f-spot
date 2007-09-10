@@ -1,5 +1,10 @@
 2007-09-10  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/FlickrExport.cs: ensure correct upload order. Patch from Giacomo
+	Rizzo. Fixes bgo #345864.
+
+2007-09-10  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/PhotoStore.cs: Creates versions with the same extension as the
 	default version, not original.
 

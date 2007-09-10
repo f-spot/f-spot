@@ -273,9 +273,12 @@ namespace FSpot {
 			fr.Connection.OnUploadProgress += HandleFlickrProgress;
 
 			System.Collections.ArrayList ids = new System.Collections.ArrayList ();
-			for (int index = 0; index < selection.Items.Length; index++) {
+			Photo [] photos = (Photo []) selection.Items;
+			Array.Sort (photos, new Photo.CompareDateName ());
+
+			for (int index = 0; index < photos.Length; index++) {
 				try {
-				 	IBrowsableItem photo = selection.Items [index];
+				 	IBrowsableItem photo = photos [index];
 					progress_dialog.Message = System.String.Format (
                                                 Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
 
