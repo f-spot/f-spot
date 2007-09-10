@@ -1,5 +1,10 @@
 2007-09-10  Stephane Delcroix  <stephane@delcroix.org>
 
+	* RawPlusJpeg/: v0.998, embed the whole process in a try/catch, only
+	refresh the query if we really merged some images.
+
+2007-09-10  Stephane Delcroix  <stephane@delcroix.org>
+
 	* RawPlusJpeg/: bumping to 0.997 with additional(useless ?) nullity check
 
 2007-09-10  Stephane Delcroix  <stephane@delcroix.org>

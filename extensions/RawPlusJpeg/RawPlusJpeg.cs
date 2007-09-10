@@ -31,19 +31,27 @@ namespace RawPlusJpegExtension
 				"Do it now"))
 				return;
 
-			Photo [] photos = Core.Database.Photos.Query ((Tag [])null, null, null, null);
-			Array.Sort (photos, new Photo.CompareDirectory ());
-			Photo previous = null;
-			foreach (Photo p in photos) {
-				if (previous != null &&
-					p != null && 
-					p.DirectoryPath == previous.DirectoryPath && 
-					System.IO.Path.GetFileNameWithoutExtension (p.Name) == System.IO.Path.GetFileNameWithoutExtension (previous.Name))
-					Merge (previous, p);
-				previous = p;
+			bool changed = false;
+			try {
+				Photo [] photos = Core.Database.Photos.Query ((Tag [])null, null, null, null);
+				Array.Sort (photos, new Photo.CompareDirectory ());
+				Photo previous = null;
+				foreach (Photo p in photos) {
+					if (previous != null &&
+						p != null && 
+						p.DirectoryPath == previous.DirectoryPath && 
+						System.IO.Path.GetFileNameWithoutExtension (p.Name) == System.IO.Path.GetFileNameWithoutExtension (previous.Name)) {
+							Merge (previous, p);
+							changed = true;
+						}
+					previous = p;
+				}
+			} catch (Exception ex) {
+				Console.WriteLine (ex);
 			}
-
-			MainWindow.Toplevel.UpdateQuery ();
+			
+			if (changed)
+				MainWindow.Toplevel.UpdateQuery ();
 		}
 
 		private void Merge (Photo first, Photo second)
