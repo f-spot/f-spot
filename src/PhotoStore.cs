@@ -621,6 +621,9 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 	public Photo (uint id, long unix_time, System.Uri uri)
 		: base (id)
 	{
+		if (uri == null)
+			throw new System.ArgumentNullException ("uri");
+
 		time = DbUtils.DateTimeFromUnixTime (unix_time);
 
 		description = String.Empty;
