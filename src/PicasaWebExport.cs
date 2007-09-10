@@ -406,10 +406,7 @@ namespace FSpot {
 				public_album = public_check.Active;
 				
 				try {
-					if (public_album)
-						picasa.CreateAlbum (title, description, AlbumAccess.Public);
-					else	
-						picasa.CreateAlbum (title, description, AlbumAccess.Private);
+					picasa.CreateAlbum (System.Web.HttpUtility.HtmlEncode (title), description, public_album ? AlbumAccess.Public : AlbumAccess.Private);
 				} catch (System.Exception e) {
 					HigMessageDialog md =
 					new HigMessageDialog (Dialog, 

@@ -1,5 +1,10 @@
 2007-09-10  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/PicasaWebExport.cs: allow album creation with '&' in the title.
+	Fixes bgo #469180.
+
+2007-09-10  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/FlickrExport.cs: ensure correct upload order. Patch from Giacomo
 	Rizzo. Fixes bgo #345864.
 
