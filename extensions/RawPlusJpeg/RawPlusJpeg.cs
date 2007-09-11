@@ -66,7 +66,7 @@ namespace RawPlusJpegExtension
 
 		private static bool SamePlaceAndName (Photo p1, Photo p2)
 		{
-			return p1.DirectoryPath == p2.DirectoryPath && 
+			return DirectoryPath (p1) == DirectoryPath (p2) && 
 				System.IO.Path.GetFileNameWithoutExtension (p1.Name) == System.IO.Path.GetFileNameWithoutExtension (p2.Name);
 		}
 
@@ -86,6 +86,12 @@ namespace RawPlusJpegExtension
 				if (ext == System.IO.Path.GetExtension (name).ToLower ())
 					return true;
 			return false;
+		}
+
+		private static string DirectoryPath (Photo p)
+		{
+			System.Uri uri = p.VersionUri (Photo.OriginalVersionId);
+			return uri.Scheme + "://" + uri.Host + System.IO.Path.GetDirectoryName (uri.AbsolutePath);
 		}
 
 		class MergeRequest 
