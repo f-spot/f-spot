@@ -1,3 +1,12 @@
+/*
+ * CameraFile.cs
+ *
+ * Author(s):
+ *	Ewen Cheslack-Postava <echeslack@gmail.com>
+ *	Larry Ewing <lewing@novell.com>
+ *
+ * This is free software. See COPYING for details.
+ */
 using System;
 using System.Runtime.InteropServices;
 
