@@ -1,3 +1,8 @@
+2007-09-12  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/PreferenceDialog.cs: changing the screensaver command to
+	screensavers-f-spot-screensaver. Fixes bgo #473848.
+
 2007-09-10  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/PicasaWebExport.cs: allow album creation with '&' in the title.

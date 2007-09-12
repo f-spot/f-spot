@@ -34,7 +34,7 @@ namespace FSpot {
 		[Glade.Widget] private RadioButton screensavertagged_radio;
 		private static PreferenceDialog prefs = null;
 		int screensaver_tag;
-		private const string SaverCommand = "f-spot-screensaver";
+		private const string SaverCommand = "screensavers-f-spot-screensaver";
 		private const string SaverMode = "single";
 
 		public PreferenceDialog () : base ("main_preferences")
