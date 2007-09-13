@@ -1,5 +1,10 @@
 2007-09-13  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/Imaging/JpegHeader.cs: workaround for mono bug 82836. Fixes bgo
+	#432294.
+
+2007-09-13  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/FlickrExport.cs: fixing photo count on the dialog. Patch from
 	Lorenzo Milesi. Fixing bgo #476508.
 

@@ -244,7 +244,9 @@ public class JpegHeader : SemWeb.StatementSource {
 				byte [] len = FSpot.BitConverter.GetBytes (length, false);
 				stream.Write (len, 0, len.Length);
 
-				stream.Write (this.Data, 0, this.Data.Length);
+				//workaround for mono bug: http://bugzilla.ximian.com/show_bug.cgi?id=82836
+				if (this.Data.Length > 0)
+					stream.Write (this.Data, 0, this.Data.Length);
 				break;
 			}
 		}
