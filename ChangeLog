@@ -1,5 +1,10 @@
 2007-09-13  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/FlickrExport.cs: fixing photo count on the dialog. Patch from
+	Lorenzo Milesi. Fixing bgo #476508.
+
+2007-09-13  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/PicasaWebExport.cs: Force exporting in chronological order.
 	Patch from Lorenzo Milesi. Fixes bgo #365801.
 

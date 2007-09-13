@@ -313,8 +313,10 @@ namespace FSpot {
 					progress_dialog.ProgressText = Catalog.GetString ("Error");
 					System.Console.WriteLine (e);
 
-					if (progress_dialog.PerformRetrySkip ())
+					if (progress_dialog.PerformRetrySkip ()) {
 					 	index--;
+						photo_index--;
+					}
 				}
 			}
 
