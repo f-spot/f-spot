@@ -586,6 +586,8 @@ namespace FSpot {
 			if (rotate)
 				filters.Add (new OrientationFilter ());
 
+			Array.Sort (items as Photo[], new Photo.CompareDateName ());
+
 			while (photo_index < items.Length) {
 				try {
 					IBrowsableItem item = items[photo_index];

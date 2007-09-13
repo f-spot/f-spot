@@ -1,3 +1,8 @@
+2007-09-13  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/PicasaWebExport.cs: Force exporting in chronological order.
+	Patch from Lorenzo Milesi. Fixes bgo #365801.
+
 2007-09-12  Stephane Delcroix  <stephane@delcroix.org>
 
 	* libgphoto2-sharp: Adding file headers. Fixes bgo #362279.
