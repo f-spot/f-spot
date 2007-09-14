@@ -16,7 +16,7 @@ SOURCES = \
 install: all
 	cp *.dll ~/.gnome2/f-spot/addins/
 
-mpack: all
+mpack: DevelopInUFraw.dll
 	mautil p DevelopInUFRaw.dll
 
 %.dll: $(SOURCES) DevelopInUFRaw.addin.xml

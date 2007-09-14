@@ -23,8 +23,8 @@ namespace DevelopInUFRawExtension
 			
 			foreach (Photo p in MainWindow.Toplevel.SelectedPhotos ()) {
 				PhotoVersion raw = p.GetVersion (Photo.OriginalVersionId) as PhotoVersion;
-				if (System.IO.Path.GetExtension (raw.Uri.AbsolutePath).ToLower () != ".nef" && System.IO.Path.GetExtension (raw.Uri.AbsolutePath).ToLower () != ".cr2") {
-					Console.WriteLine ("The Original version of this image is not a RAW file (not .nef nor .cr2)");
+				if (!ImageFile.IsRaw (raw.Uri.AbsolutePath)) {
+					Console.WriteLine ("The Original version of this image is not a (supported) RAW file");
 					continue;
 				}
 
@@ -64,7 +64,7 @@ namespace DevelopInUFRawExtension
 		private System.Uri GetUriForVersionName (Photo p, string version_name)
 		{
 			string name_without_ext = System.IO.Path.GetFileNameWithoutExtension (p.Name);
-			return new System.Uri (System.IO.Path.Combine (p.DirectoryPath,  name_without_ext 
+			return new System.Uri (System.IO.Path.Combine (DirectoryPath (p),  name_without_ext 
 					       + " (" + version_name + ")" + ".jpg"));
 		}
 
@@ -75,6 +75,12 @@ namespace DevelopInUFRawExtension
 			escaped = escaped.Replace ("(", "\\(");
 			escaped = escaped.Replace (")", "\\)");
 			return escaped;
+		}
+		
+		private static string DirectoryPath (Photo p)
+		{
+			System.Uri uri = p.VersionUri (Photo.OriginalVersionId);
+			return uri.Scheme + "://" + uri.Host + System.IO.Path.GetDirectoryName (uri.AbsolutePath);
 		}
 	}
 }

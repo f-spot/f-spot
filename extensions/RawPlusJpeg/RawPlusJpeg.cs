@@ -28,7 +28,7 @@ namespace RawPlusJpegExtension
 				DialogFlags.DestroyWithParent,
 				MessageType.Warning,
 				"Merge Raw+Jpegs",
-				"This operation will merge Raw and Jpegs versions of the same image as one unique image. The Raw image will be the Original version, the jpeg will be named 'Jpeg' and all subsequent versions will keep their original names (if possible).\n\nNote: only enabled for .nef and .cr2 right now.",
+				"This operation will merge Raw and Jpegs versions of the same image as one unique image. The Raw image will be the Original version, the jpeg will be named 'Jpeg' and all subsequent versions will keep their original names (if possible).\n\nNote: only enabled for some formats right now.",
 				"Do it now"))
 				return;
 
@@ -43,12 +43,12 @@ namespace RawPlusJpegExtension
 			for (int i = 0; i < photos.Length; i++) {
 				Photo p = photos [i];
 
-				if (!IsRaw (p.Name) && !IsJpeg (p.Name))
+				if (!ImageFile.IsRaw (p.Name) && !ImageFile.IsJpeg (p.Name))
 					continue;
 				
-				if (IsJpeg (p.Name))
+				if (ImageFile.IsJpeg (p.Name))
 					jpeg = p;
-				if (IsRaw (p.Name))
+				if (ImageFile.IsRaw (p.Name))
 					raw = p;
 
 				if (raw != null && jpeg != null && SamePlaceAndName (raw, jpeg))
@@ -70,23 +70,6 @@ namespace RawPlusJpegExtension
 				System.IO.Path.GetFileNameWithoutExtension (p1.Name) == System.IO.Path.GetFileNameWithoutExtension (p2.Name);
 		}
 
-		private static bool IsRaw (string name)
-		{
-			string [] raw_extensions = {".nef", ".crw", ".cr2"};
-			foreach (string ext in raw_extensions)
-				if (ext == System.IO.Path.GetExtension (name).ToLower ())
-					return true;
-			return false;
-		}
-
-		private static bool IsJpeg (string name)
-		{
-			string [] jpg_extensions = {".jpg", ".jpeg"};
-			foreach (string ext in jpg_extensions)
-				if (ext == System.IO.Path.GetExtension (name).ToLower ())
-					return true;
-			return false;
-		}
 
 		private static string DirectoryPath (Photo p)
 		{

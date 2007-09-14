@@ -1,3 +1,11 @@
+2007-09-14  Stephane Delcroix  <stephane@delcroix.org>
+
+	* RawPlusJpeg/: v1.02, rely on new ImageFile IsRaw() and IsJpeg()
+	helpers.
+
+	* DevelopInUFraw/: v0.95, rely on new ImageFile IsRaw() heper, no longer use
+	Obsolete methods.
+
 2007-09-11  Stephane Delcroix  <stephane@delcroix.org>
 
 	* RawPlusJpeg/: v1.01, no longer rely on obsolete methods.
