@@ -212,5 +212,23 @@ namespace FSpot {
 		protected virtual void Close ()
 		{
 		}
+
+		public static bool IsRaw (string name)
+		{
+			string [] raw_extensions = {".nef", ".crw", ".cr2", ".arw"};
+			foreach (string ext in raw_extensions)
+				if (ext == System.IO.Path.GetExtension (name).ToLower ())
+					return true;
+			return false;
+		}
+
+		public static bool IsJpeg (string name)
+		{
+			string [] jpg_extensions = {".jpg", ".jpeg"};
+			foreach (string ext in jpg_extensions)
+				if (ext == System.IO.Path.GetExtension (name).ToLower ())
+					return true;
+			return false;
+		}
 	} 
 }

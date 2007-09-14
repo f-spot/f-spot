@@ -1,5 +1,12 @@
 2007-09-14  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/Imaging/ImageFile.cs: adding two static helpers for writing
+	extensions dealing with raw files.
+	* src/FSpot.addin.xml: bumping the version to 0.4.0.3366 to reflect
+	the api changes.
+
+2007-09-14  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/Imaging/ImageFile.cs:
 	* src/Imaging/Tiff.cs: Adding support for .ARW (Sony DSLR A100) image
 	format. Thx to Dawid Drechny for spotting the similarities with .NEF,
