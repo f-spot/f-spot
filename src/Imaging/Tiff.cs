@@ -2252,7 +2252,8 @@ namespace FSpot.Tiff {
 					break;
 
 				dir = sub.Directory [i];
-				e = dir.Lookup (TagId.NewSubfileType);
+				if (dir != null)
+					e = dir.Lookup (TagId.NewSubfileType);
 				i++;
 			} while (i < sub.Directory.Length);
 		}

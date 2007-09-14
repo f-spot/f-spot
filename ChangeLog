@@ -1,3 +1,10 @@
+2007-09-14  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Imaging/ImageFile.cs:
+	* src/Imaging/Tiff.cs: Adding support for .ARW (Sony DSLR A100) image
+	format. Thx to Dawid Drechny for spotting the similarities with .NEF,
+	proposing a patch and providing test images. Fixes bgo #476626.
+
 2007-09-13  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/Imaging/JpegHeader.cs: workaround for mono bug 82836. Fixes bgo
