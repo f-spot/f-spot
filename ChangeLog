@@ -1,5 +1,11 @@
 2007-09-14  Stephane Delcroix  <stephane@delcroix.org>
 
+	* icons/f-spot-simple.css:
+	* icons/f-spot-simple-white.css: Patch from Giacomo Rizzo. Fixes bgo
+	#443016 and updates the white style.
+	
+2007-09-14  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/Imaging/ImageFile.cs: adding two static helpers for writing
 	extensions dealing with raw files.
 	* src/FSpot.addin.xml: bumping the version to 0.4.0.3366 to reflect

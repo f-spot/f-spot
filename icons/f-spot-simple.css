@@ -117,15 +117,16 @@ div.thumbs a {
 	float: left;
 	width: 140px;
 	height: 140px;
-  border: 1px solid #727272;
+	line-height: 140px;
+	border: 1px solid #727272;
 	background-color: #282828;
 	-moz-border-radius: 5px;
 }
 
 div.thumbs img { 
   padding: 4px;
-  margin: 24px 3px;
-	border: 0px;
+  vertical-align: middle;
+  border: 0px;
 }
 
 div#gallery_description {
