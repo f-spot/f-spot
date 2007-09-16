@@ -377,6 +377,12 @@ public class MainWindow {
 		icon_view.DragBegin += HandleIconViewDragBegin;
 		icon_view.DragDataGet += HandleIconViewDragDataGet;
 
+		TagMenu tag_menu = new TagMenu (null, Database.Tags);
+		tag_menu.NewTagHandler += delegate { HandleCreateTagAndAttach (this, null); };
+		tag_menu.TagSelected += HandleAttachTagMenuSelected;
+		tag_menu.Populate();
+		attach_tag.Submenu = tag_menu;
+		
 		PhotoTagMenu pmenu = new PhotoTagMenu ();
 		pmenu.TagSelected += HandleRemoveTagMenuSelected;
 		remove_tag.Submenu = pmenu;

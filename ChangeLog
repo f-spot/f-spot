@@ -1,3 +1,9 @@
+2007-09-16  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/f-spot.glade:
+	* src/MainWindows.cs: Patch from Giacomo Rizzo to re-attach the
+	"Attach Tag" submenu. Fixes bgo #457314.
+
 2007-09-14  Stephane Delcroix  <stephane@delcroix.org>
 
 	* icons/f-spot-simple.css:
