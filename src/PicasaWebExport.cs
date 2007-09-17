@@ -563,9 +563,9 @@ namespace FSpot {
 		private void HandleUploadProgress(object o, UploadProgressEventArgs args)
 		{
 				if (approx_size == 0)
-					progress_dialog.ProgressText = System.String.Format ("{0} Sent",SizeUtil.ToHumanReadable(args.BytesSent));
+					progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} Sent"), SizeUtil.ToHumanReadable(args.BytesSent));
 				else
-					progress_dialog.ProgressText = System.String.Format ("{0} of approx. {1}", SizeUtil.ToHumanReadable(sent_bytes + args.BytesSent), SizeUtil.ToHumanReadable(approx_size));
+					progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of approx. {1}"), SizeUtil.ToHumanReadable(sent_bytes + args.BytesSent), SizeUtil.ToHumanReadable(approx_size));
 				progress_dialog.Fraction = ((photo_index - 1) / (double) items.Length) + (args.BytesSent / (args.BytesTotal * (double) items.Length));
 		}
 
