@@ -935,7 +935,7 @@ namespace FSpot.Query {
 		public override string SqlCondition ()
 		{
 			return String.Format (
-				       "id {0}IN (SELECT id FROM photos WHERE name LIKE '%{1}%' OR directory_path LIKE '%{1}%' OR description LIKE '%{1}%')",
+				       "id {0}IN (SELECT id FROM photos WHERE uri LIKE '%{1}%' OR description LIKE '%{1}%')",
 				       (IsNegated ? "NOT " : ""), EscapeQuotes(text)
 			       );
 		}
