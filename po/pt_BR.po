@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the f-spot package.
 # Raphael Higino <phhigino@gmail.com>, 2005-2006.
 # Vladimir Melo <vladimirmelo.psi@gmail.com>, 2007.
+# Og Maciel <ogmaciel@gnome.org>, 2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-03 03:25+0100\n"
-"PO-Revision-Date: 2007-09-03 16:15-0300\n"
-"Last-Translator: Vladimir Melo <vladimirmelo@foresightlinux.org>\n"
+"POT-Creation-Date: 2007-09-17 17:08+0100\n"
+"PO-Revision-Date: 2007-09-17 13:02-0500\n"
+"Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -482,7 +483,7 @@ msgstr "Transferindo figura \"{0}\" para CD"
 
 #. This indicates the current photo is photo {0} of {1} out of photos
 #: ../src/CDExport.cs:118
-#: ../src/FlickrExport.cs:285
+#: ../src/FlickrExport.cs:288
 #: ../src/FolderExport.cs:197
 #: ../src/GalleryExport.cs:704
 #: ../src/ProgressDialog.cs:82
@@ -492,10 +493,10 @@ msgid "{0} of {1}"
 msgstr "{0} de {1}"
 
 #: ../src/CDExport.cs:131
-#: ../src/FlickrExport.cs:302
+#: ../src/FlickrExport.cs:305
 #: ../src/FolderExport.cs:228
 #: ../src/GalleryExport.cs:728
-#: ../src/PicasaWebExport.cs:640
+#: ../src/PicasaWebExport.cs:639
 #: ../src/SmugMugExport.cs:579
 msgid "Done Sending Photos"
 msgstr "Envio de Fotos Terminado"
@@ -599,7 +600,7 @@ msgstr "Erro ao salvar fotos ajustadas"
 #: ../src/ColorDialog.cs:212
 #: ../src/HigMessageDialog.cs:15
 #: ../src/Loupe.cs:58
-#: ../src/MainWindow.cs:2016
+#: ../src/MainWindow.cs:2022
 #: ../src/PhotoView.cs:265
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
@@ -814,45 +815,45 @@ msgstr "Não foi possível efetuar logon"
 msgid "Waiting for response {0} of {1}"
 msgstr "Esperando por resposta {0} de {1}"
 
-#: ../src/FlickrExport.cs:280
+#: ../src/FlickrExport.cs:283
 #: ../src/FolderExport.cs:194
 #: ../src/GalleryExport.cs:700
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Enviando figura \"{0}\""
 
-#: ../src/FlickrExport.cs:304
+#: ../src/FlickrExport.cs:307
 #: ../src/GalleryExport.cs:730
-#: ../src/PicasaWebExport.cs:642
+#: ../src/PicasaWebExport.cs:641
 #: ../src/SmugMugExport.cs:581
 msgid "Upload Complete"
 msgstr "Envio Completo"
 
-#: ../src/FlickrExport.cs:307
+#: ../src/FlickrExport.cs:310
 #, csharp-format
 msgid "Error Uploading To {0}: {1}"
 msgstr "Erro ao Enviar para {0}: {1}"
 
-#: ../src/FlickrExport.cs:310
+#: ../src/FlickrExport.cs:313
 #: ../src/FolderExport.cs:202
 #: ../src/GalleryExport.cs:720
-#: ../src/PicasaWebExport.cs:632
+#: ../src/PicasaWebExport.cs:631
 #: ../src/SmugMugExport.cs:571
 msgid "Error"
 msgstr "Erro"
 
-#: ../src/FlickrExport.cs:373
+#: ../src/FlickrExport.cs:378
 msgid "Unable to log on."
 msgstr "Não foi possível efetuar logon."
 
-#: ../src/FlickrExport.cs:374
+#: ../src/FlickrExport.cs:379
 #, csharp-format
 msgid "F-Spot was unable to log on to {0}.  Make sure you have given the authentication using {0} web browser interface."
 msgstr "F-Spot não foi capaz de efetuar logon em {0}. Tenha certeza que deu autorização usando a interface do navegador da web {0}."
 
-#: ../src/FlickrExport.cs:392
+#: ../src/FlickrExport.cs:397
 #: ../src/GalleryExport.cs:653
-#: ../src/PicasaWebExport.cs:547
+#: ../src/PicasaWebExport.cs:544
 #: ../src/SmugMugExport.cs:497
 msgid "Uploading Pictures"
 msgstr "Enviando Figuras"
@@ -974,25 +975,25 @@ msgid "Error uploading picture \"{0}\" to Gallery: {1}"
 msgstr "Erro ao enviar foto \"{0}\" para Galeria: {1}"
 
 #: ../src/GalleryExport.cs:746
-#: ../src/PicasaWebExport.cs:663
+#: ../src/PicasaWebExport.cs:662
 #: ../src/SmugMugExport.cs:602
 msgid "(No Gallery)"
 msgstr "(Sem Galeria)"
 
 #: ../src/GalleryExport.cs:833
-#: ../src/PicasaWebExport.cs:790
+#: ../src/PicasaWebExport.cs:789
 #: ../src/SmugMugExport.cs:700
 msgid "(Not Connected)"
 msgstr "(Não conectado)"
 
 #: ../src/GalleryExport.cs:834
-#: ../src/PicasaWebExport.cs:791
+#: ../src/PicasaWebExport.cs:790
 #: ../src/SmugMugExport.cs:701
 msgid "(No Albums)"
 msgstr "(Sem Álbuns)"
 
 #: ../src/GalleryExport.cs:886
-#: ../src/PicasaWebExport.cs:835
+#: ../src/PicasaWebExport.cs:834
 #: ../src/SmugMugExport.cs:745
 msgid "No account selected"
 msgstr "Nenhuma conta selecionada"
@@ -1124,12 +1125,12 @@ msgid "The envelope handling priority between 1 (most urgent) and 9 (least urgen
 msgstr "A prioridade de tratamento de envelope entre 1 (mais urgente) e 9 (menos urgente)"
 
 #: ../src/Imaging/IptcFile.cs:159
-msgid "The year month and day (CCYYMMDD) the service sent the material"
-msgstr "O ano, mês e dia (AAAAMMDD) em que o serviço enviou o material"
+msgid "The year, month and day (CCYYMMDD) the service sent the material"
+msgstr "O ano, mês e dia (CCYYMMDD) em que o serviço enviou o material"
 
 #: ../src/Imaging/IptcFile.cs:161
-msgid "The hour minute and second the (HHMMSS+HHMM) the service sent the material"
-msgstr "A hora, minuto e segundo (HHMMSS+HHMM) em que o serviço enviou o material"
+msgid "The hour, minute and second (HHMMSS) the service sent the material"
+msgstr "A hora, minuto e segundo (HHMMSS) em que o serviço enviou o material"
 
 #: ../src/Imaging/IptcFile.cs:163
 msgid "The character set designation"
@@ -1283,7 +1284,7 @@ msgid "(Unknown)"
 msgstr "(Desconhecido)"
 
 #: ../src/InfoDisplay.cs:14
-#: ../src/MainWindow.cs:1520
+#: ../src/MainWindow.cs:1526
 #: ../src/f-spot.glade.h:153
 msgid "Metadata Browser"
 msgstr "Navegador de Metadados"
@@ -1371,7 +1372,7 @@ msgid "Create a soft focus visual effect"
 msgstr "Cria um efeito visual de foco suave"
 
 #: ../src/Loupe.cs:57
-#: ../src/MainWindow.cs:2015
+#: ../src/MainWindow.cs:2021
 msgid "Error saving sharpened photo"
 msgstr "Erro ao salvar foto aguçada"
 
@@ -1380,17 +1381,17 @@ msgid "Sharpen"
 msgstr "Aguçar"
 
 #: ../src/Loupe.cs:97
-#: ../src/MainWindow.cs:1982
+#: ../src/MainWindow.cs:1988
 msgid "Amount:"
 msgstr "Quantidade:"
 
 #: ../src/Loupe.cs:98
-#: ../src/MainWindow.cs:1983
+#: ../src/MainWindow.cs:1989
 msgid "Radius:"
 msgstr "Raio:"
 
 #: ../src/Loupe.cs:99
-#: ../src/MainWindow.cs:1984
+#: ../src/MainWindow.cs:1990
 msgid "Threshold:"
 msgstr "Limiar:"
 
@@ -1435,28 +1436,28 @@ msgstr "Exibe fotos em tela cheia"
 msgid "View photos in a slideshow"
 msgstr "Exibe fotos em uma apresentação de slides"
 
-#: ../src/MainWindow.cs:863
+#: ../src/MainWindow.cs:869
 msgid "Error loading database."
 msgstr "Erro ao carregar banco de dados."
 
-#: ../src/MainWindow.cs:864
+#: ../src/MainWindow.cs:870
 #, csharp-format
 msgid "F-Spot encountered an error while loading the photo database. The old database has be moved to {0} and a new database has been created."
 msgstr "F-Spot encontrou um erro ao carregar o banco de dados de foto. O banco de dados antigo foi movido para {0} e um novo banco de dados foi criado."
 
-#: ../src/MainWindow.cs:1438
+#: ../src/MainWindow.cs:1444
 msgid "No cameras detected."
 msgstr "Nenhuma câmera detectada."
 
-#: ../src/MainWindow.cs:1439
+#: ../src/MainWindow.cs:1445
 msgid "F-Spot was unable to find any cameras attached to this system.  Double check that the camera is connected and has power"
 msgstr "O F-Spot não foi capaz de localizar qualquer câmera anexada a este sistema. Confira novamente se a câmera está conectada e ligada"
 
-#: ../src/MainWindow.cs:1479
+#: ../src/MainWindow.cs:1485
 msgid "Error connecting to camera"
 msgstr "Erro ao conectar a câmera"
 
-#: ../src/MainWindow.cs:1480
+#: ../src/MainWindow.cs:1486
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Erro recebido \"{0}\" ao conectar à câmera"
@@ -1464,37 +1465,38 @@ msgstr "Erro recebido \"{0}\" ao conectar à câmera"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1623
+#: ../src/MainWindow.cs:1629
 msgid "translator-credits"
 msgstr ""
 "Raphael Higino <phhigino@gmail.com>\n"
-"Vladimir Melo <vladimirmelo.psi@gmail.com>"
+"Vladimir Melo <vladimirmelo.psi@gmail.com>\n"
+"Og Maciel <ogmaciel@gnome.org>"
 
-#: ../src/MainWindow.cs:1631
+#: ../src/MainWindow.cs:1637
 msgid "Copyright © 2003-2007 Novell Inc."
 msgstr "Todos os Direitos Reservados © 2003-2007 Novell Inc."
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1895
+#: ../src/MainWindow.cs:1901
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Mesclar a etiqueta selecionada"
 msgstr[1] "Mesclar as {0} etiquetas selecionadas?"
 
-#: ../src/MainWindow.cs:1922
+#: ../src/MainWindow.cs:1928
 msgid "This operation will merge the selected tags and any sub-tags into a single tag."
 msgstr "Esta operação mesclará as etiquetas selecionadas e quaisquer sub-etiquetas numa única etiqueta."
 
-#: ../src/MainWindow.cs:1924
+#: ../src/MainWindow.cs:1930
 msgid "_Merge Tags"
 msgstr "_Mesclar Etiquetas"
 
-#: ../src/MainWindow.cs:1973
+#: ../src/MainWindow.cs:1979
 msgid "Unsharp Mask"
 msgstr "Máscara de Nitidez"
 
-#: ../src/MainWindow.cs:2176
+#: ../src/MainWindow.cs:2182
 #: ../src/SingleView.cs:471
 #, csharp-format
 msgid "{0} Photo"
@@ -1502,133 +1504,133 @@ msgid_plural "{0} Photos"
 msgstr[0] "{0} Foto"
 msgstr[1] "{0} Fotos"
 
-#: ../src/MainWindow.cs:2183
+#: ../src/MainWindow.cs:2189
 #, csharp-format
 msgid " out of {0}"
 msgstr " de {0}"
 
-#: ../src/MainWindow.cs:2186
+#: ../src/MainWindow.cs:2192
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} selecionado)"
 msgstr[1] " ({0} selecionados)"
 
-#: ../src/MainWindow.cs:2273
+#: ../src/MainWindow.cs:2279
 msgid "_Ok"
 msgstr "_Ok"
 
-#: ../src/MainWindow.cs:2274
+#: ../src/MainWindow.cs:2280
 msgid "Error Deleting Picture"
 msgstr "Erro ao Excluir Figura"
 
-#: ../src/MainWindow.cs:2279
+#: ../src/MainWindow.cs:2285
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Não há permissão para excluir o arquivo:{1}{0}"
 
-#: ../src/MainWindow.cs:2283
+#: ../src/MainWindow.cs:2289
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "Um erro de tipo {0} ocorreu ao excluir o arquivo:{2}{1}"
 
-#: ../src/MainWindow.cs:2309
+#: ../src/MainWindow.cs:2315
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Remover a foto selecionada permanentemente?"
 msgstr[1] "Remover as {0} fotos selecionadas permanentemente?"
 
-#: ../src/MainWindow.cs:2313
+#: ../src/MainWindow.cs:2319
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Isso exclui todas as versões da foto selecionada de seu drive."
 msgstr[1] "Isso exclui todas as versões das fotos selecionadas de seu drive."
 
-#: ../src/MainWindow.cs:2316
+#: ../src/MainWindow.cs:2322
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Excluir foto"
 msgstr[1] "_Excluir fotos"
 
-#: ../src/MainWindow.cs:2347
+#: ../src/MainWindow.cs:2353
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Remover a foto selecionada do F-Spot?"
 msgstr[1] "Remover as {0} fotos selecionadas do F-Spot?"
 
-#: ../src/MainWindow.cs:2352
+#: ../src/MainWindow.cs:2358
 msgid "If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again."
 msgstr "Quando você remove fotos do catálogo do F-Spot, todas as informações de etiqueta são perdidas. As fotos continuam em seu computador e poderão ser importadas ao F-Spot novamente."
 
-#: ../src/MainWindow.cs:2353
+#: ../src/MainWindow.cs:2359
 msgid "_Remove from Catalog"
 msgstr "_Remover do Catálogo"
 
-#: ../src/MainWindow.cs:2410
+#: ../src/MainWindow.cs:2416
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Excluir etiqueta \"{0}\"?"
 
-#: ../src/MainWindow.cs:2412
+#: ../src/MainWindow.cs:2418
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Excluir as {0} etiquetas selecionadas?"
 
-#: ../src/MainWindow.cs:2415
+#: ../src/MainWindow.cs:2421
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr "Se você excluir uma etiqueta, todas as associações com fotos serão perdidas."
 
-#: ../src/MainWindow.cs:2416
+#: ../src/MainWindow.cs:2422
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Excluir etiqueta"
 msgstr[1] "_Excluir etiquetas"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2430
+#: ../src/MainWindow.cs:2436
 msgid "Tag is not empty"
 msgstr "Etiqueta não está vazia"
 
-#: ../src/MainWindow.cs:2431
+#: ../src/MainWindow.cs:2437
 #, csharp-format
 msgid "Can not delete tags that have tags within them.  Please delete tags under \"{0}\" first"
 msgstr "Não é possível excluir etiquetas que contenham outras etiquetas. Por favor, exclua as etiquetas sob \"{0}\" primeiro"
 
-#: ../src/MainWindow.cs:2858
+#: ../src/MainWindow.cs:2864
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Rotacionar foto selecionada à esquerda"
 msgstr[1] "Rotacionar fotos selecionadas à esquerda"
 
-#: ../src/MainWindow.cs:2871
+#: ../src/MainWindow.cs:2877
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Rotacionar foto selecionada à direita"
 msgstr[1] "Rotacionar fotos selecionadas à direita"
 
-#: ../src/MainWindow.cs:2879
+#: ../src/MainWindow.cs:2885
 #, csharp-format
 msgid "Find Selected Tag"
 msgid_plural "Find Selected Tags"
 msgstr[0] "Localizar Etiqueta Selecionada"
 msgstr[1] "Localizar Etiquetas Selecionadas"
 
-#: ../src/MainWindow.cs:2883
+#: ../src/MainWindow.cs:2889
 #, csharp-format
 msgid "Find Selected Tag With"
 msgid_plural "Find Selected Tags With"
 msgstr[0] "Localizar Etiqueta Selecionada com"
 msgstr[1] "Localizar Etiquetas Selecionadas com"
 
-#: ../src/MainWindow.cs:2900
+#: ../src/MainWindow.cs:2906
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Criar Nova Versão?"
 msgstr[1] "Criar Novas Versões?"
 
-#: ../src/MainWindow.cs:2902
+#: ../src/MainWindow.cs:2908
 #, csharp-format
 msgid "Before launching {1}, should F-Spot create a new version of the selected photo to preserve the original?"
 msgid_plural "Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?"
@@ -1739,21 +1741,21 @@ msgstr "Nitidez"
 msgid "Scene Type"
 msgstr "Tipo de Cena"
 
-#: ../src/PhotoStore.cs:400
+#: ../src/PhotoStore.cs:413
 #, csharp-format
 msgid "Reparented"
 msgid_plural "Reparented ({0})"
 msgstr[0] "Reimportado"
 msgstr[1] "Reimportados ({0})"
 
-#: ../src/PhotoStore.cs:417
+#: ../src/PhotoStore.cs:430
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "Modificado"
 msgstr[1] "({0}) Modificados"
 
-#: ../src/PhotoStore.cs:436
+#: ../src/PhotoStore.cs:449
 #, csharp-format
 msgid "Modified in {1}"
 msgid_plural "Modified in {1} ({0})"
@@ -1762,7 +1764,7 @@ msgstr[1] "Modificado em {1} ({0})"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/PhotoStore.cs:617
+#: ../src/PhotoStore.cs:633
 #: ../src/f-spot.glade.h:167
 msgid "Original"
 msgstr "Original"
@@ -1930,28 +1932,38 @@ msgstr "Foto anterior"
 msgid "Next photo"
 msgstr "Foto seguinte"
 
-#: ../src/PicasaWebExport.cs:419
+#: ../src/PicasaWebExport.cs:416
 msgid "Error while creating Album"
 msgstr "Erro ao criar Álbum"
 
-#: ../src/PicasaWebExport.cs:420
+#: ../src/PicasaWebExport.cs:417
 #, csharp-format
 msgid "The following error was encountered while attempting to create an album: {0}"
 msgstr "O seguinte erro foi encontrado ao tentar criar um álbum: {0}"
 
-#: ../src/PicasaWebExport.cs:599
+#: ../src/PicasaWebExport.cs:566
+#, csharp-format
+msgid "{0} Sent"
+msgstr "{0} Enviado"
+
+#: ../src/PicasaWebExport.cs:568
+#, csharp-format
+msgid "{0} of approx. {1}"
+msgstr "{0} de aprox. {1}"
+
+#: ../src/PicasaWebExport.cs:598
 #: ../src/SmugMugExport.cs:540
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "Enviando foto \"{0}\" ({1} de {2})"
 
-#: ../src/PicasaWebExport.cs:630
+#: ../src/PicasaWebExport.cs:629
 #: ../src/SmugMugExport.cs:569
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Erro ao Enviar para Galeria: {0}"
 
-#: ../src/PicasaWebExport.cs:714
+#: ../src/PicasaWebExport.cs:713
 msgid "Available space :"
 msgstr "Espaço disponível :"
 
@@ -2220,11 +2232,11 @@ msgstr "Mudar todas as fotos por {0}"
 msgid "Unable to create temporary file"
 msgstr "Não foi possível criar arquivo temporário"
 
-#: ../src/Updater.cs:212
+#: ../src/Updater.cs:213
 msgid "Updating F-Spot Database"
 msgstr "Atualizando Bando de Dados do F-Spot"
 
-#: ../src/Updater.cs:213
+#: ../src/Updater.cs:214
 msgid "Please wait while your F-Spot gallery's database is updated. This may take some time."
 msgstr "Por favor, aguarde enquanto seu banco de dados da galeria F-Spot é atualizado. Isto pode levar algum tempo."
 
