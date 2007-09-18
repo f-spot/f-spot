@@ -1,3 +1,8 @@
+2007-09-18  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/FolderExport.cs: Fix image counter. Patch from Lorenzo Milesi.
+	Fixes bgo #477871.
+
 2007-09-17  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/Term.cs: Patch from Giacomo Rizzo to fix bgo #477690.
