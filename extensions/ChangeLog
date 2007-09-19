@@ -1,3 +1,8 @@
+2007-09-19  Stephane Delcroix  <stephane@delcroix.org>
+
+	* SyncCatalog/: new extension from Miguel Aguero to re-sync metadatas
+	to file. Fixes bgo #434094.
+
 2007-09-14  Stephane Delcroix  <stephane@delcroix.org>
 
 	* RawPlusJpeg/: v1.02, rely on new ImageFile IsRaw() and IsJpeg()
