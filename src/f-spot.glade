@@ -693,16 +693,19 @@
   </widget>
   <widget class="GtkDialog" id="date_range_dialog">
     <property name="visible">True</property>
+    <property name="border_width">6</property>
     <property name="title" translatable="yes">Set date range</property>
     <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
     <property name="has_separator">False</property>
     <child internal-child="vbox">
       <widget class="GtkVBox" id="dialog-vbox7">
         <property name="visible">True</property>
-        <property name="spacing">2</property>
+        <property name="spacing">12</property>
         <child>
           <widget class="GtkHBox" id="hbox4">
             <property name="visible">True</property>
+	    <property name="border_width">12</property>
+	    <property name="spacing">6</property>
             <child>
               <widget class="GtkFrame" id="frame1">
                 <property name="visible">True</property>
@@ -718,7 +721,6 @@
                       <widget class="GtkComboBox" id="period_combobox">
                         <property name="visible">True</property>
                         <property name="items" translatable="yes"></property>
-                        <signal name="changed" handler="HandlePeriodComboboxChanged"/>
                       </widget>
                     </child>
                   </widget>
@@ -782,7 +784,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
-                <property name="position">2</property>
+                <property name="position">3</property>
               </packing>
             </child>
             <child>
@@ -817,7 +819,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
-                <property name="position">3</property>
+                <property name="position">2</property>
               </packing>
             </child>
           </widget>

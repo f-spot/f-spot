@@ -1,3 +1,9 @@
+2007-09-19  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/f-spot.glade:
+	* src/DateCommand.cs: Fixes issues in the 'Set Date Range' Dialog (bgo
+	#470482. Patch based on Lorenzo Milesi work (thx again).
+
 2007-09-18  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/FolderExport.cs: Fix image counter. Patch from Lorenzo Milesi.

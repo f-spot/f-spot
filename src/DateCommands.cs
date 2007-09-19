@@ -172,11 +172,18 @@ public class DateCommands {
 	
 		void HandleDateEditChanged (object o, EventArgs args)
 		{
+			period_combobox.Changed -= HandlePeriodComboboxChanged;
            	 	period_combobox.Active = System.Array.IndexOf (ranges, "customizedrange");
+			period_combobox.Changed += HandlePeriodComboboxChanged;
 		}
 
 		void HandlePeriodComboboxChanged (object o, EventArgs args)
 		{
+			start_dateedit.DateChanged -= HandleDateEditChanged;
+			((Gtk.Entry) start_dateedit.Children [0] as Gtk.Entry).Changed -= HandleDateEditChanged;
+			end_dateedit.DateChanged -= HandleDateEditChanged;
+			((Gtk.Entry) end_dateedit.Children [0] as Gtk.Entry).Changed -= HandleDateEditChanged;
+	
 			ComboBox combo = o as ComboBox;
 			if (o == null)
 				return;
@@ -189,6 +196,11 @@ public class DateCommands {
 				start_dateedit.Time = range.Start;
 				end_dateedit.Time = range.End;
 			}
+			
+			start_dateedit.DateChanged += HandleDateEditChanged;
+			((Gtk.Entry) start_dateedit.Children [0] as Gtk.Entry).Changed += HandleDateEditChanged;
+			end_dateedit.DateChanged += HandleDateEditChanged;
+			((Gtk.Entry) end_dateedit.Children [0] as Gtk.Entry).Changed += HandleDateEditChanged;
 		}
 
 		public Set (FSpot.PhotoQuery query, Gtk.Window parent_window)
@@ -200,7 +212,14 @@ public class DateCommands {
 		public bool Execute ()
 		{
 			this.CreateDialog ("date_range_dialog");
+
+			start_dateedit.DateChanged += HandleDateEditChanged;
+			((Gtk.Entry) start_dateedit.Children [0] as Gtk.Entry).Changed += HandleDateEditChanged;
+			end_dateedit.DateChanged += HandleDateEditChanged;
+			((Gtk.Entry) end_dateedit.Children [0] as Gtk.Entry).Changed += HandleDateEditChanged;
 			
+			period_combobox.Changed += HandlePeriodComboboxChanged;
+
 			if (query.Range != null) {
 				start_dateedit.Time = query.Range.Start;
 				end_dateedit.Time = query.Range.End;
