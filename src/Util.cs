@@ -66,8 +66,8 @@ class Timer : IDisposable {
 }
 
 public class UriList : ArrayList {
-	public UriList (Photo [] photos) {
-		foreach (Photo p in photos) {
+	public UriList (FSpot.IBrowsableItem [] photos) {
+		foreach (FSpot.IBrowsableItem p in photos) {
 			Uri uri;
 			try {
 				uri = p.DefaultVersionUri;
