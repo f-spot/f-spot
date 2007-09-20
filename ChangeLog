@@ -1,5 +1,12 @@
 2007-09-20  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/f-spot.glade:
+	* src/TagCommands.cs: textual feedback in the edit tag dialog if no
+	photo is associated with this tag. Patch from Declan McGrath. Fixes
+	bgo #477127.
+
+2007-09-20  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/f-spot.glade: HIG fix for the Rolls menu items. Patxh from
 	Michael Monreal. Fixes bgo #478447.
 

@@ -31,9 +31,9 @@ public class TagCommands {
 		[Glade.Widget] private Entry tag_name_entry;
 		[Glade.Widget] private Label prompt_label;
 		[Glade.Widget] private Label already_in_use_label;
-
-		[Glade.Widget]
-		private OptionMenu category_option_menu;
+		[Glade.Widget] private Label photo_label;
+		[Glade.Widget] private ScrolledWindow photo_scrolled_window;
+		[Glade.Widget] private OptionMenu category_option_menu;
 
 		Gtk.Widget parent_window;
 
@@ -339,6 +339,7 @@ public class TagCommands {
 		[Glade.Widget] ScrolledWindow photo_scrolled_window;
 		[Glade.Widget] ScrolledWindow icon_scrolled_window;
 		[Glade.Widget] Label photo_label;
+		[Glade.Widget] Label from_photo_label;
 		[Glade.Widget] SpinButton photo_spin_button;
 
 		private Gdk.Pixbuf PreviewPixbuf {
@@ -451,8 +452,15 @@ public class TagCommands {
 				
 				image_view.Item.Index = 0;
 			} else {
-				photo_spin_button.Sensitive = false;
-				photo_spin_button.Value = 0.0;
+				from_photo_label.Markup = String.Format (Catalog.GetString (
+					"\n<b>From Photo</b>\n" +
+					"You can use one of your own photos as an icon for this tag.\n" +
+					"However, first you must have at least one photo associated\n" +
+					"with this tag. Please tag a photo as '{0}' and return here\n" +
+					"to use it as an icon."), t.Name); 
+				photo_scrolled_window.Visible = false;
+				photo_label.Visible = false;
+				photo_spin_button.Visible = false;
 			}			
 
 			icon_store = new ListStore (typeof (string), typeof (Gdk.Pixbuf));
