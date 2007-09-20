@@ -406,6 +406,9 @@ public class TagCommands {
 
 		public void HandleIconSelectionChanged (object o, EventArgs args)
 		{
+			if (icon_view.SelectedItems.Length == 0)
+				return;
+
 			TreeIter iter;
 			icon_store.GetIter (out iter, icon_view.SelectedItems [0]); 
 			IconName = (string) icon_store.GetValue (iter, 0);

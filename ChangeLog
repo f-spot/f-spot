@@ -1,5 +1,9 @@
 2007-09-20  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/TagCommands.cs: Fixes bgo #477131 (crash on edit tag dialog).
+
+2007-09-20  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/f-spot.glade:
 	* src/TagCommands.cs: textual feedback in the edit tag dialog if no
 	photo is associated with this tag. Patch from Declan McGrath. Fixes
