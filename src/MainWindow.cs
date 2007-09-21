@@ -1473,8 +1473,8 @@ public class MainWindow {
 				cam.InitializeCamera ();
 
 				FSpot.CameraFileSelectionDialog selector = new FSpot.CameraFileSelectionDialog (cam, db);
-				selector.Run ();
-
+				if (selector.Run() > 0)
+					query.RollSet = new RollSet (db.Rolls.GetRolls (1)[0]);
 				UpdateQuery ();
 			}
 		}

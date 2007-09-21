@@ -41,17 +41,18 @@ namespace FSpot {
 			selected_tags = null;
 		}
 		
-		public void Run ()
+		public int Run ()
 		{	
+			int imported_pics = 0;
 			CreateInterface ();
 			
 			ResponseType response = (ResponseType) this.Dialog.Run ();
 			if (response == ResponseType.Ok)
 				if (SaveFiles ())
-					ImportFiles ();
+					imported_pics = ImportFiles ();
 			
 			this.Dialog.Destroy ();
-			return;
+			return imported_pics;
 		}
 		
 		private void CreateInterface ()
@@ -262,10 +263,10 @@ namespace FSpot {
 			return path;
 		}
 		
-		private void ImportFiles ()
+		private int ImportFiles ()
 		{
 			ImportCommand command = new ImportCommand (null);
-			command.ImportFromPaths (db.Photos, saved_files, selected_tags);
+			return command.ImportFromPaths (db.Photos, saved_files, selected_tags);
 		}
 		
 		public Tag[] Tags {

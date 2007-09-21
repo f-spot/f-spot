@@ -1,3 +1,9 @@
+2007-09-21  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/MainWindow.cs:
+	* src/CameraFileSelectionDialog.cs: Patch from Lorenzo Milesi to fix
+	bgo #478875.
+
 2007-09-20  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/TagCommands.cs: Fixes bgo #477131 (crash on edit tag dialog).
