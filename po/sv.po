@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-19 13:54+0200\n"
-"PO-Revision-Date: 2007-09-19 13:55+0100\n"
+"POT-Creation-Date: 2007-09-22 00:21+0200\n"
+"PO-Revision-Date: 2007-09-22 00:23+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -170,7 +170,7 @@ msgid "_Unselect All"
 msgstr "_Avmarkera allt"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:256
-#: ../src/f-spot.glade.h:194
+#: ../src/f-spot.glade.h:195
 msgid "Select _All"
 msgstr "Markera _allt"
 
@@ -533,61 +533,61 @@ msgid "Error: File Already Exists; Aborting"
 msgstr "Fel: Filen finns redan; Avbryter"
 
 #: ../src/CDExport.cs:210
-#: ../src/CameraFileSelectionDialog.cs:183
+#: ../src/CameraFileSelectionDialog.cs:184
 #: ../src/FolderExport.cs:331
 msgid "Transferring Pictures"
 msgstr "Överför bilder"
 
-#: ../src/CameraFileSelectionDialog.cs:62
+#: ../src/CameraFileSelectionDialog.cs:63
 msgid "Preview"
 msgstr "Förhandsgranska"
 
-#: ../src/CameraFileSelectionDialog.cs:64
+#: ../src/CameraFileSelectionDialog.cs:65
 msgid "Path"
 msgstr "Sökväg"
 
-#: ../src/CameraFileSelectionDialog.cs:66
+#: ../src/CameraFileSelectionDialog.cs:67
 #: ../src/f-spot.glade.h:125
 msgid "File"
 msgstr "Fil"
 
 # hoppas att detta är substantivet
-#: ../src/CameraFileSelectionDialog.cs:68
+#: ../src/CameraFileSelectionDialog.cs:69
 #: ../src/FolderExport.cs:855
 msgid "Index"
 msgstr "Index"
 
-#: ../src/CameraFileSelectionDialog.cs:88
+#: ../src/CameraFileSelectionDialog.cs:89
 msgid "Select Tag"
 msgstr "Välj tagg"
 
-#: ../src/CameraFileSelectionDialog.cs:124
+#: ../src/CameraFileSelectionDialog.cs:125
 msgid "Downloading Previews"
 msgstr "Hämtar förhandsgranskningar"
 
-#: ../src/CameraFileSelectionDialog.cs:132
+#: ../src/CameraFileSelectionDialog.cs:133
 #, csharp-format
 msgid "Downloading Preview of {0}"
 msgstr "Hämtar förhandsgranskning av {0}"
 
-#: ../src/CameraFileSelectionDialog.cs:206
+#: ../src/CameraFileSelectionDialog.cs:207
 #, csharp-format
 msgid "Copying file {0} of {1}"
 msgstr "Kopierar fil {0} av {1}"
 
-#: ../src/CameraFileSelectionDialog.cs:216
+#: ../src/CameraFileSelectionDialog.cs:217
 msgid "Error transferring file"
 msgstr "Fel vid filöverföring"
 
-#: ../src/CameraFileSelectionDialog.cs:225
+#: ../src/CameraFileSelectionDialog.cs:226
 msgid "Done Copying Files"
 msgstr "Kopieringen färdig"
 
-#: ../src/CameraFileSelectionDialog.cs:227
+#: ../src/CameraFileSelectionDialog.cs:228
 msgid "Download Complete"
 msgstr "Hämtningen färdig"
 
-#: ../src/CameraFileSelectionDialog.cs:252
+#: ../src/CameraFileSelectionDialog.cs:253
 #, csharp-format
 msgid "Transferring \"{0}\" from camera"
 msgstr "Överför \"{0}\" från kamera"
@@ -2104,15 +2104,32 @@ msgstr "Redigera tagg"
 msgid "Tag Name:"
 msgstr "Taggnamn:"
 
-#: ../src/TagCommands.cs:400
+#: ../src/TagCommands.cs:401
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Foto {0} av {1}"
 
-#: ../src/TagCommands.cs:427
+#: ../src/TagCommands.cs:431
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "Redigera ikon för taggen {0}"
+
+#: ../src/TagCommands.cs:459
+#, csharp-format
+msgid ""
+"\n"
+"<b>From Photo</b>\n"
+"You can use one of your own photos as an icon for this tag.\n"
+"However, first you must have at least one photo associated\n"
+"with this tag. Please tag a photo as '{0}' and return here\n"
+"to use it as an icon."
+msgstr ""
+"\n"
+"<b>Från foto</b>\n"
+"Du kan använda ett av dina egna foton som en ikon för\n"
+"denna tagg. Dock måste du först associera minst ett foto\n"
+"med denna tagg. Tagga ett foto som \"{0}\" och återvänd\n"
+"hit för att använda det som en ikon."
 
 #: ../src/TagPopup.cs:24
 #, csharp-format
@@ -2624,8 +2641,8 @@ msgid "Clea_r Date Range"
 msgstr "Töm datuminte_rvall"
 
 #: ../src/f-spot.glade.h:90
-msgid "Clear roll filter"
-msgstr "Töm filter för rullar"
+msgid "Clear Roll Filter"
+msgstr "Töm rullfilter"
 
 #: ../src/f-spot.glade.h:91
 msgid "Co_nfigure"
@@ -2837,7 +2854,7 @@ msgid "Large"
 msgstr "Stor"
 
 #: ../src/f-spot.glade.h:149
-msgid "Last import roll"
+msgid "Last Import Roll"
 msgstr "Senaste importerade rullen"
 
 #: ../src/f-spot.glade.h:150
@@ -2981,20 +2998,20 @@ msgid "Select A Folder"
 msgstr "Välj en mapp"
 
 #: ../src/f-spot.glade.h:193
+msgid "Select Import Rolls..."
+msgstr "Välj rullar för import..."
+
+#: ../src/f-spot.glade.h:194
 msgid "Select Photos to Copy From Camera..."
 msgstr "Välj foton att kopiera från kameran"
 
-#: ../src/f-spot.glade.h:195
+#: ../src/f-spot.glade.h:196
 msgid "Select _None"
 msgstr "A_vmarkera alla"
 
-#: ../src/f-spot.glade.h:196
+#: ../src/f-spot.glade.h:197
 msgid "Select a Tag..."
 msgstr "Markera en tagg..."
-
-#: ../src/f-spot.glade.h:197
-msgid "Select import rolls..."
-msgstr "Välj rullar för import..."
 
 #: ../src/f-spot.glade.h:198
 msgid "Select the camera from which you want to transfer files"
