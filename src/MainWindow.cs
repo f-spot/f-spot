@@ -841,14 +841,12 @@ public class MainWindow {
 	void HandleTagSelectionRowActivated (object sender, RowActivatedArgs args)
 	{
 		ShowQueryWidget ();
-		//query_widget.Require (new Tag [] {tag_selection_widget.TagByPath (args.Path)});
 		query_widget.Include (new Tag [] {tag_selection_widget.TagByPath (args.Path)});
 	}
 
 	void HandleTagSelectionButtonPressEvent (object sender, ButtonPressEventArgs args)
 	{
-		if (args.Event.Button == 3)
-		{
+		if (args.Event.Button == 3) {
 			TagPopup popup = new TagPopup ();
 			popup.Activate (args.Event, tag_selection_widget.TagAtPosition (args.Event.X, args.Event.Y),
 			tag_selection_widget.TagHighlight);
@@ -2386,10 +2384,12 @@ public class MainWindow {
  			HandleDeleteSelectedTagCommand (sender, (EventArgs) args);
 			break;
 		
-		/*case Gdk.Key.space:
+		case Gdk.Key.space:
 		case Gdk.Key.Return:
-			tag_selection_widget.ToggleSelectedTags ();
-			break;*/
+		case Gdk.Key.KP_Enter:
+            ShowQueryWidget ();
+            query_widget.Include (tag_selection_widget.TagHighlight);
+			break;
 
 		case Gdk.Key.F2:
 			tag_selection_widget.EditSelectedTagName ();
@@ -2399,8 +2399,6 @@ public class MainWindow {
 			args.RetVal = false;
 			break;
 		}
-
-		return;
 	}
 
 	public void HandleDeleteSelectedTagCommand (object sender, EventArgs args)

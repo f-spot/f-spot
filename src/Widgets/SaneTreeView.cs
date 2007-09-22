@@ -37,31 +37,44 @@ namespace FSpot.Widgets
             TreePath path;
             TreeViewColumn column;
             GetPathAtPos ((int)button.X, (int)button.Y, out path, out column);
-            row_selected_on_button_down = (path == null) ? false : Selection.PathIsSelected (path);
 
-            if (button.Button == 3 && row_selected_on_button_down) {
-                call_parent = false;
-            } else if ((button.Button == 1 || button.Button == 2) &&
-                    ((button.State & ModifierType.ControlMask) != 0 || (button.State & ModifierType.ShiftMask) == 0)) {
-                int expander_size = (int) StyleGetProperty("expander-size");
-                int horizontal_separator = (int) StyleGetProperty("horizontal-separator");
-                on_expander = (button.X <= horizontal_separator / 2 + path.Depth * expander_size);
+            if (button.Window != BinWindow)
+                return false;
 
-                if (row_selected_on_button_down) {
-                    call_parent = on_expander;
-                    ignore_button_release = call_parent;
-                } else if ((button.State & ModifierType.ControlMask) != 0) {
-                    call_parent = false;
-                    Selection.SelectPath (path);
+            if (path != null) {
+                if (button.Type == EventType.TwoButtonPress) {
+                    ActivateRow(path, Columns[0]);
+                    base.OnButtonPressEvent (button);
                 } else {
-                    ignore_button_release = on_expander;
-                }
-            }
+                    if (button.Button == 3 && Selection.PathIsSelected (path)) {
+                        call_parent = false;
+                    } else if ((button.Button == 1 || button.Button == 2) &&
+                            ((button.State & ModifierType.ControlMask) != 0 || (button.State & ModifierType.ShiftMask) == 0)) {
+                        int expander_size = (int) StyleGetProperty("expander-size");
+                        int horizontal_separator = (int) StyleGetProperty("horizontal-separator");
+                        on_expander = (button.X <= horizontal_separator / 2 + path.Depth * expander_size);
 
-            if (call_parent) {
+                        row_selected_on_button_down = Selection.PathIsSelected (path);
+                        if (row_selected_on_button_down) {
+                            call_parent = on_expander;
+                            ignore_button_release = call_parent;
+                        } else if ((button.State & ModifierType.ControlMask) != 0) {
+                            call_parent = false;
+                            Selection.SelectPath (path);
+                        } else {
+                            ignore_button_release = on_expander;
+                        }
+                    }
+
+                    if (call_parent) {
+                        base.OnButtonPressEvent (button);
+                    } else if (Selection.PathIsSelected (path)) {
+                        GrabFocus ();
+                    }
+                }
+            } else {
+                Selection.UnselectAll ();
                 base.OnButtonPressEvent (button);
-            } else if (row_selected_on_button_down) {
-                GrabFocus ();
             }
 
             return false;

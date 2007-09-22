@@ -1,5 +1,13 @@
 2007-09-22  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/MainWindow.cs:  Have enter, space, and kp_enter add the currently
+	selected tags to the query.
+
+	* src/Widgets/SaneTreeView.cs: Fix bug where doubleclick didn't activate
+	the row.  Unselect all rows if user clicks on no row.
+
+2007-09-22  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/Widgets/SaneTreeView.cs: Port on_expander code from nautilus to
 	play nicer with expanders.
 
