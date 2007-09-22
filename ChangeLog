@@ -1,5 +1,10 @@
 2007-09-22  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/MainWindow.cs: Add support for dropping tags before and after (in
+	addition to into) other tags.  Enables setting a tag as toplevel via dnd.
+
+2007-09-22  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/MainWindow.cs:  Have enter, space, and kp_enter add the currently
 	selected tags to the query.
 

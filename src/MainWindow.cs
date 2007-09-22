@@ -928,64 +928,85 @@ public class MainWindow {
 	public void HandleTagSelectionDragMotion (object o, DragMotionArgs args)
 	{
 		TreePath path;
+        TreeViewDropPosition position = TreeViewDropPosition.IntoOrAfter;
+		tag_selection_widget.GetPathAtPos (args.X, args.Y, out path);
 
-		if (!tag_selection_widget.GetPathAtPos (args.X, args.Y, out path))
-			return;
+        if (path == null)
+            return;
 
-		tag_selection_widget.SetDragDestRow (path, Gtk.TreeViewDropPosition.IntoOrAfter);
+        // Tags can be dropped before, after, or into another tag
+        if (args.Context.Targets[0].Name == "application/x-fspot-tags") {
+            Gdk.Rectangle rect = tag_selection_widget.GetCellArea(path, tag_selection_widget.Columns[0]);
+            double vpos = Math.Abs(rect.Y - args.Y) / (double)rect.Height;
+            if (vpos < 0.2) {
+                position = TreeViewDropPosition.Before;
+            } else if (vpos > 0.8) {
+                position = TreeViewDropPosition.After;
+            }
+        }
 
-		//Scroll if required
+		tag_selection_widget.SetDragDestRow (path, position);
+
+		// Scroll if within 20 pixels of the top or bottom of the tag list
 		if (args.Y < 20)
 			tag_selection_scrolled.Vadjustment.Value -= 30;
-		if (((o as Gtk.Widget).Allocation.Height - args.Y) < 20)
+        else if (((o as Gtk.Widget).Allocation.Height - args.Y) < 20)
 			tag_selection_scrolled.Vadjustment.Value += 30;
 	}
 
 	public void HandleTagSelectionDragDataReceived (object o, DragDataReceivedArgs args)
 	{
-		Tag [] tags = new Tag [1];
+        TreePath path;
+        TreeViewDropPosition position;
+        if (!tag_selection_widget.GetDestRowAtPos((int)args.X, (int)args.Y, out path, out position))
+            return;
 
-		//FIXME this is a lame api, we need to fix the drop behaviour of these things
-		tags [0] = tag_selection_widget.TagAtPosition(args.X, args.Y);
-
-		if (tags [0] == null)
+        Tag tag = path == null ? null : tag_selection_widget.TagByPath (path);
+		if (tag == null)
 			return;
 
 		switch (args.Info) {
 		case (uint)TargetType.PhotoList:
 			db.BeginTransaction ();
 			foreach (int num in SelectedIds ()) {
-				AddTagExtended (num, tags);
+				AddTagExtended (num, new Tag[] {tag});
 			}
 			db.CommitTransaction ();
-			query_widget.PhotoTagsChanged (tags);
+			query_widget.PhotoTagsChanged (new Tag[] {tag});
 			break;
 		case (uint)TargetType.UriList:
 			UriList list = new UriList (args.SelectionData);
 			
 			db.BeginTransaction ();
-			foreach (string path in list.ToLocalPaths ()) {
-				Photo photo = db.Photos.GetByPath (path);
+			foreach (string photo_path in list.ToLocalPaths ()) {
+				Photo photo = db.Photos.GetByPath (photo_path);
 				
 				// FIXME - at this point we should import the photo, and then continue
 				if (photo == null)
 					continue;
 				
 				// FIXME this should really follow the AddTagsExtended path too
-				photo.AddTag (tags);
+				photo.AddTag (new Tag[] {tag});
 				db.Photos.Commit (photo);
 			}
 			db.CommitTransaction ();
 			InvalidateViews ();
 			break;
 		case (uint)TargetType.TagList:
-			Tag parent = tags[0] as Category;
+			Category parent;
+            if (position == TreeViewDropPosition.Before || position == TreeViewDropPosition.After) {
+                parent = tag.Category;
+            } else {
+                parent = tag as Category;
+            }
+
 			if (parent == null || tag_selection_widget.TagHighlight.Length < 1) {
                 args.RetVal = false;
 				return;
             }
 
             int moved_count = 0;
+            Tag [] highlighted_tags = tag_selection_widget.TagHighlight;
 			foreach (Tag child in tag_selection_widget.TagHighlight) {
                 // FIXME with this reparenting via dnd, you cannot move a tag to root.
                 if (child != parent && child.Category != parent && !child.IsAncestorOf(parent)) {
@@ -996,6 +1017,10 @@ public class MainWindow {
                     moved_count++;
                 }
             }
+
+            // Reselect the same tags
+            tag_selection_widget.TagHighlight = highlighted_tags;
+
             args.RetVal = moved_count > 0;
 			break;
 		}
