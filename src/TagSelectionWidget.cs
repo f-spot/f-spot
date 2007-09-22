@@ -34,7 +34,7 @@ using System;
 
 using Mono.Unix;
 
-public class TagSelectionWidget : TreeView {
+public class TagSelectionWidget : FSpot.Widgets.SaneTreeView {
 	TagSelectionWidget widget;
 	private TagStore tag_store;
 
@@ -46,6 +46,11 @@ public class TagSelectionWidget : TreeView {
 	private const int NameColumn = 1;
 
 	// Selection management.
+
+	public Tag TagAtPosition (double x, double y) 
+    {
+        return TagAtPosition((int) x, (int) y);
+    }
 
 	public Tag TagAtPosition (int x, int y) 
 	{
@@ -473,16 +478,6 @@ public class TagSelectionWidget : TreeView {
 		text_render.Editable = false;
 	}
 
-	// Override the default ButtonPressEvent because it is stupid and
-	// returns true, meaning if you want to have another handler for the ButtonPress
-	// event you have to Glib.ConnectBefore.  Plus you usually want the default one to
-	// run first so it will select/unselect anything necessary before popping up a menu, say.
-	protected override bool OnButtonPressEvent (Gdk.EventButton button)
-	{
-		base.OnButtonPressEvent (button);
-		return false;
-	}
-	
 	public void HandleTagNameEdited (object sender, EditedArgs args)
 	{
 		args.RetVal = false;
@@ -537,7 +532,6 @@ public class TagSelectionWidget : TreeView {
 		: base (new TreeStore (typeof(uint), typeof(string)))
 	{
 		HeadersVisible = false;
-		Selection.Mode = SelectionMode.Multiple;
 
 		complete_column = new TreeViewColumn ();
 				

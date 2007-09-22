@@ -850,7 +850,7 @@ public class MainWindow {
 		if (args.Event.Button == 3)
 		{
 			TagPopup popup = new TagPopup ();
-			popup.Activate (args.Event, tag_selection_widget.TagAtPosition ((int)args.Event.X, (int)args.Event.Y),
+			popup.Activate (args.Event, tag_selection_widget.TagAtPosition (args.Event.X, args.Event.Y),
 			tag_selection_widget.TagHighlight);
 			args.RetVal = true;
 		}
@@ -981,28 +981,26 @@ public class MainWindow {
 			InvalidateViews ();
 			break;
 		case (uint)TargetType.TagList:
-			if (tag_selection_widget.TagHighlight.Length < 1)
+			Tag parent = tags[0] as Category;
+			if (parent == null || tag_selection_widget.TagHighlight.Length < 1) {
+                args.RetVal = false;
 				return;
+            }
 
-			Tag child = tag_selection_widget.TagHighlight [0];
-			Tag parent = tags[0];
+            int moved_count = 0;
+			foreach (Tag child in tag_selection_widget.TagHighlight) {
+                // FIXME with this reparenting via dnd, you cannot move a tag to root.
+                if (child != parent && child.Category != parent && !child.IsAncestorOf(parent)) {
+                    child.Category = parent as Category;
 
-			// FIXME with this reparenting via dnd, you cannot move a tag to root.
-			if (child != parent && !child.IsAncestorOf(parent) && child.Category != parent && parent is Category)
-			{
-				child.Category = parent as Category;
-
-				// Saving changes will automatically cause the TreeView to be updated
-				db.Tags.Commit (child);
-				
-				args.RetVal = true;
-			} else {
-				args.RetVal = false;
-			}
-
+                    // Saving changes will automatically cause the TreeView to be updated
+                    db.Tags.Commit (child);
+                    moved_count++;
+                }
+            }
+            args.RetVal = moved_count > 0;
 			break;
 		}
-
 	}
 
 #if SHOW_CALENDAR

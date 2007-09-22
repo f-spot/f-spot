@@ -1,5 +1,17 @@
 2007-09-21  Gabriel Burt  <gabriel.burt@gmail.com>
 
+	* src/MainWindow.cs: If multiple tags are received via dnd, reparent all
+	of them.
+
+	* src/TagSelectionWidget.cs: Inherit from SaneTreeView.
+
+	* src/Makefile.am:
+	* src/Widgets/SaneTreeView.cs: New TreeView subclass that helps with not
+	changing the selection when you right click (and in the future when you
+	drag).
+
+2007-09-21  Gabriel Burt  <gabriel.burt@gmail.com>
+
 	* src/f-spot.glade: Change Export menu item to Export to.  Fixes #471198.
 
 2007-09-21  Stephane Delcroix  <stephane@delcroix.org>

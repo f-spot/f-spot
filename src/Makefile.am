@@ -224,6 +224,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/PanZoom.cs		\
 	$(srcdir)/Widgets/Push.cs		\
 	$(srcdir)/Widgets/Reveal.cs		\
+	$(srcdir)/Widgets/SaneTreeView.cs	\
 	$(srcdir)/Widgets/ScrolledView.cs	\
 	$(srcdir)/Widgets/SoftFocus.cs		\
 	$(srcdir)/Widgets/TagEntry.cs		\
