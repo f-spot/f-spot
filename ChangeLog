@@ -1,3 +1,9 @@
+2007-09-22  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/Widgets/SaneTreeView.cs: Ported selection code from nautilus, you
+	can now drag or right click while having multiple rows selected and things
+	will behave correctly.
+
 2007-09-21  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/MainWindow.cs: If multiple tags are received via dnd, reparent all
