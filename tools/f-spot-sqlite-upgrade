@@ -4,6 +4,14 @@
 DB_LOCATION=~/.gnome2/f-spot/photos.db
 BACKUP_LOCATION=$DB_LOCATION.backup
 
+if ! which sqlite >& /dev/null ; then
+	echo "Could not find sqlite binary. Update aborted."
+	exit 1
+elif ! which sqlite3 >& /dev/null ; then
+	echo "Could not find sqlite3 binary. Update aborted."
+	exit 1
+fi
+
 if grep "^...This file contains an SQLite 2.1 database" $DB_LOCATION &> /dev/null; then
 	echo "Upgrading from SQLite 2.1 to SQLite3"
 	mv $DB_LOCATION $BACKUP_LOCATION

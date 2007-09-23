@@ -1,9 +1,14 @@
 2007-09-23  Stephane Delcroix  <stephane@delcroix.org>
 
+	* tools/f-spot-sqlite-upgrade: checks if the sqlite and sqlite3
+	binaries exists. Fixes bgo #467010. Thx goes to Giacomo Rizzo.
+
+2007-09-23  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/Makefile.am:
 	* src/FullScreenView.cs:
 	* src/Utils/ScreenSaver.cs: Inhibit/Unhinibit the screensaver on
-	slideshow. Fixes bgo #427478.
+	slideshow. Fixes bgo #427478. Original Patch from Giacomo Rizzo.
 
 2007-09-23  Stephane Delcroix  <stephane@delcroix.org>
 
