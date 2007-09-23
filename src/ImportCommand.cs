@@ -1,3 +1,16 @@
+/*
+ * ImportCommand.cs
+ *
+ * Author(s)
+ * 	Ettore Perazzoli
+ * 	Larry Ewing
+ * 	Miguel de Icaza
+ * 	Nat Friedman
+ * 	Gabriel Burt
+ *
+ * This is free software. See COPYING for details.
+ */
+
 using GLib;
 using Gdk;
 using Gnome;
@@ -8,8 +21,10 @@ using System.IO;
 using System;
 using Mono.Unix;
 
-public class ImportCommand : FSpot.GladeDialog {
-	internal class SourceItem : ImageMenuItem {
+public class ImportCommand : FSpot.GladeDialog
+{
+	internal class SourceItem : ImageMenuItem
+	{
 		public ImportSource Source;
 
 		public SourceItem (ImportSource source) : base (source.Name.Replace ("_", "__"))
@@ -22,7 +37,8 @@ public class ImportCommand : FSpot.GladeDialog {
 		}
 	} 
 
-	internal class BrowseSource : ImportSource {
+	internal class BrowseSource : ImportSource
+	{
 		public BrowseSource ()
 		{
 			this.Name = Catalog.GetString ("Select Folder");
@@ -36,7 +52,8 @@ public class ImportCommand : FSpot.GladeDialog {
 		}
 	}
 
-	internal class VfsSource : ImportSource {
+	internal class VfsSource : ImportSource
+	{
 		public string uri;
 
 		public VfsSource (string uri)
@@ -59,7 +76,8 @@ public class ImportCommand : FSpot.GladeDialog {
 		protected VfsSource () {}
 	}
 
-	internal class VolumeSource : VfsSource {
+	internal class VolumeSource : VfsSource
+	{
 		public Gnome.Vfs.Volume Volume;
 		public string mount_point;
 
@@ -119,7 +137,8 @@ public class ImportCommand : FSpot.GladeDialog {
 		}
 	}
 
-	internal class DriveSource : ImportSource {
+	internal class DriveSource : ImportSource
+	{
 		public Gnome.Vfs.Drive Drive;
 		
 		public DriveSource (Gnome.Vfs.Drive drive) 
@@ -136,7 +155,8 @@ public class ImportCommand : FSpot.GladeDialog {
 		}
 	}
 
-	internal class CameraSource : ImportSource {
+	internal class CameraSource : ImportSource
+	{
 		GPhotoCamera cam;
 		int CameraIndex;
 		
@@ -168,7 +188,8 @@ public class ImportCommand : FSpot.GladeDialog {
 		public string Name;
 	}
 	
-	private class SourceMenu : Gtk.Menu {
+	private class SourceMenu : Gtk.Menu
+	{
 		public int source_count;
 		ImportCommand command;
 

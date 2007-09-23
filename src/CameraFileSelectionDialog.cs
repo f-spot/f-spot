@@ -1,3 +1,13 @@
+/*
+ * FSpot.CameraFileSelectionDialog
+ *
+ * Author(s):
+ * 	Larry Ewing
+ *
+ * This is free software. See COPYING for details.
+ *
+ */
+
 using System;
 using System.IO;
 using Gdk;
@@ -270,9 +280,7 @@ namespace FSpot {
 		}
 		
 		public Tag[] Tags {
-			get {
-				return selected_tags;
-			}
+			get { return selected_tags; }
 		}
 	}
 }
