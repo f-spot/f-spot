@@ -1,5 +1,12 @@
 2007-09-23  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/Makefile.am:
+	* src/FullScreenView.cs:
+	* src/Utils/ScreenSaver.cs: Inhibit/Unhinibit the screensaver on
+	slideshow. Fixes bgo #427478.
+
+2007-09-23  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/Preferences.cs: change the default from null to false for a bool
 	value. Fixes bgo #479256.
 

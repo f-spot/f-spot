@@ -284,10 +284,12 @@ namespace FSpot {
 		public bool PlayPause ()
 		{
 			if (notebook.CurrentPage == 0) {
+				FSpot.Utils.ScreenSaver.Inhibit ("Running slideshow mode");
 				notebook.CurrentPage = 1;
 				play_pause_button.IconName = "media-playback-pause";
 				display.Start ();
 			} else {
+				FSpot.Utils.ScreenSaver.UnInhibit ();
 				notebook.CurrentPage = 0;
 				play_pause_button.IconName = "media-playback-start";
 				display.Stop ();
@@ -297,6 +299,7 @@ namespace FSpot {
 
 		public void Quit ()
 		{
+			FSpot.Utils.ScreenSaver.UnInhibit ();
 			this.Destroy ();
 		}
 

@@ -202,6 +202,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/TipWindow.cs			\
 	$(srcdir)/Unix.cs			\
 	$(srcdir)/Updater.cs			\
+	$(srcdir)/Utils/ScreenSaver.cs		\
 	$(srcdir)/Util.cs			\
 	$(srcdir)/Vector.cs			\
 	$(srcdir)/ThumbnailCommand.cs		\
