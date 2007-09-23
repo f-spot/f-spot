@@ -146,11 +146,11 @@ namespace FSpot
 					
 			case METADATA_EMBED_IN_IMAGE:
 			case MAIN_WINDOW_MAXIMIZED:
+			case GROUP_ADAPTOR_ORDER_ASC:
 				return false;
 
 			case GROUP_ADAPTOR:
 			case GLASS_POSITION:
-			case GROUP_ADAPTOR_ORDER_ASC:
 				return null;
 
 			case SHOW_TOOLBAR:
