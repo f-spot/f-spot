@@ -57,10 +57,8 @@ namespace FSpot {
 
 		public static string HelpDirectory {
 			get { 
-				return System.IO.Path.Combine(Defines.PREFIX,
-					System.IO.Path.Combine("share",
-					System.IO.Path.Combine("gnome",
-					System.IO.Path.Combine("help", "f-spot"))));
+				// path is relative
+				return "f-spot";
 			}	
 		}
 

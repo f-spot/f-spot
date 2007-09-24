@@ -1,3 +1,8 @@
+2007-09-24  Larry Ewing  <lewing@novell.com>
+
+	* src/Global.cs: simple fix to make help work on opensuse 10.3
+	(and better in general).  Fixes bnc #235647.
+
 2007-09-23  Stephane Delcroix  <stephane@delcroix.org>
 
 	* tools/f-spot-sqlite-upgrade: checks if the sqlite and sqlite3
