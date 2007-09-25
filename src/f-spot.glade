@@ -5182,7 +5182,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
                     <child>
                       <widget class="GtkImageMenuItem" id="send_mail">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">Send _Mail...</property>
+                        <property name="label" translatable="yes">Send by _Mail...</property>
                         <property name="use_underline">True</property>
                         <signal name="activate" handler="HandleSendMailCommand"/>
                         <child internal-child="image">
