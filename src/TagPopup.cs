@@ -31,13 +31,13 @@ public class TagPopup {
 
 		GtkUtil.MakeMenuSeparator (popup_menu);
 		
-		GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Create New Tag"), "tag-new",
+		GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Create New Tag..."), "tag-new",
 				      MainWindow.Toplevel.HandleCreateNewCategoryCommand, true);
 
         GtkUtil.MakeMenuSeparator (popup_menu);
 		
 		GtkUtil.MakeMenuItem (popup_menu,
-			Catalog.GetString ("Edit Tag"), "gtk-edit",
+			Catalog.GetString ("Edit Selected Tag..."), "gtk-edit",
 			delegate { MainWindow.Toplevel.HandleEditSelectedTagWithTag (tag); }, tag != null && tags_count == 1);
 
 		GtkUtil.MakeMenuItem (popup_menu,
