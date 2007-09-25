@@ -207,7 +207,7 @@ else
 	GNOME_SCREENSAVER_SAVERDIR=$gnome_screensaver_prefix/libexec/gnome-screensaver
 fi
 
-GNOME_SCREENSAVER_THEMESDIR=$gnome_screensaver_prefix/share/gnome-screensaver/themes
+GNOME_SCREENSAVER_THEMESDIR=$gnome_screensaver_prefix/share/applications/screensavers
 
 AC_SUBST(GNOME_SCREENSAVER_SAVERDIR)
 AC_SUBST(GNOME_SCREENSAVER_THEMESDIR)

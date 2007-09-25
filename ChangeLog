@@ -1,5 +1,11 @@
 2007-09-25  Stephane Delcroix  <stephane@delcroix.org>
 
+	* configure.in: fixes screensaver installation path. Hope
+	gnome-screensaver will be stable one day... Fixes bgo #480286. Thx
+	Giacomo.
+
+2007-09-25  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/f-spot.glade: One more HIG fix from Michael Monreal.
 	Fixes bgo #479745.
 
