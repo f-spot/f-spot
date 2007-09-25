@@ -488,10 +488,13 @@ public class TagCommands {
 
 			if (response == ResponseType.Ok) {
 				try {
-					if (IconName != null)
+					if (IconName != null) {
 						t.ThemeIconName = IconName;
-					else
+						t.Icon = null;
+					} else {
+						t.ThemeIconName = null;
 						t.Icon = PreviewPixbuf;
+					}
 					//db.Tags.Commit (t);
 					success = true;
 				} catch (Exception ex) {

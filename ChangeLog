@@ -1,5 +1,9 @@
 2007-09-25  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/TagCommands.cs: Fixes bgo #479489. Thx Lorenzo for the patch.
+	
+2007-09-25  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/TagCommands.cs:
 	* src/f-spot.glade: Adds a 'No Image' button on the edit tag icon
 	dialog. Fixes bgo #430249. Thx goes to Lorenzo for the patch.
