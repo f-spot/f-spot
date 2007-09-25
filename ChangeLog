@@ -1,3 +1,9 @@
+2007-09-25  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/TagCommands.cs:
+	* src/f-spot.glade: Adds a 'No Image' button on the edit tag icon
+	dialog. Fixes bgo #430249. Thx goes to Lorenzo for the patch.
+
 2007-09-24  Larry Ewing  <lewing@novell.com>
 
 	* src/Global.cs: simple fix to make help work on opensuse 10.3

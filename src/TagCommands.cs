@@ -341,6 +341,7 @@ public class TagCommands {
 		[Glade.Widget] Label photo_label;
 		[Glade.Widget] Label from_photo_label;
 		[Glade.Widget] SpinButton photo_spin_button;
+		[Glade.Widget] Button noicon_button;
 
 		private Gdk.Pixbuf PreviewPixbuf {
 			get { return preview_image.Pixbuf; }
@@ -497,6 +498,9 @@ public class TagCommands {
 					// FIXME error dialog.
 					Console.WriteLine ("error {0}", ex);
 				}
+			} else if (response == (ResponseType) (1)) {
+				t.Icon = null;
+				success = true;
 			}
 			
 			this.Dialog.Destroy ();
