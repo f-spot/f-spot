@@ -794,7 +794,8 @@ public class IconView : Gtk.Layout {
 			region.X = (int) (bounds.X + (bounds.Width - region.Width) / 2);
 			region.Y = (int) bounds.Y + ThumbnailHeight - region.Height + cell_border_width;
 			
-			if (region.Width != thumbnail.Width && region.Height != thumbnail.Height)
+			if (Math.Abs (region.Width - thumbnail.Width) > 1 
+				&& Math.Abs (region.Height - thumbnail.Height) > 1)
 				cache.Reload (entry, thumbnail_num, thumbnail.Width, thumbnail.Height);
 
 			region = Gdk.Rectangle.Inflate (region, expansion, expansion);
@@ -802,7 +803,8 @@ public class IconView : Gtk.Layout {
 			region.Width = System.Math.Max (1, region.Width);
 			region.Height = System.Math.Max (1, region.Height); 
 
-			if (region.Width != thumbnail.Width && region.Height != thumbnail.Height) {
+			if (Math.Abs (region.Width - thumbnail.Width) > 1 
+				&& Math.Abs (region.Height - thumbnail.Height) > 1) {
 				if (region.Width < thumbnail.Width && region.Height < thumbnail.Height) {
 					/*
 					temp_thumbnail = PixbufUtils.ScaleDown (thumbnail, 

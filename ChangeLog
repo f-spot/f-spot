@@ -1,3 +1,9 @@
+2007-09-26  Stephane Delcroix  <stephane@delcroix.org>
+	
+	* src/IconView.cs: fixing an infinite loop for some ratios taht
+	doesn't scale very well. Fixes bgo #479423. Patch based on the one
+	from Wade Menard.
+	
 2007-09-25  Stephane Delcroix  <stephane@delcroix.org>
 
 	* configure.in: fixes screensaver installation path. Hope
