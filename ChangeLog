@@ -1,4 +1,9 @@
 2007-09-26  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/RotateCommand.cs: Connect the Stop button on the rotate progress
+	dialog. Fixes bgo #479961.
+
+2007-09-26  Stephane Delcroix  <stephane@delcroix.org>
 	
 	* src/IconView.cs: fixing an infinite loop for some ratios taht
 	doesn't scale very well. Fixes bgo #479423. Patch based on the one

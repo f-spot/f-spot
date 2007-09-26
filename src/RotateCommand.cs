@@ -208,7 +208,8 @@ public class RotateCommand {
 
 		while (!done) {
 			if (progress_dialog != null && index != op.Index) 
-				progress_dialog.Update (String.Format (Catalog.GetString ("Rotating photo \"{0}\""), op.Items [op.Index].Name));
+				if (progress_dialog.Update (String.Format (Catalog.GetString ("Rotating photo \"{0}\""), op.Items [op.Index].Name)))
+					break;
 
 			try {
 				done = !op.Step ();
