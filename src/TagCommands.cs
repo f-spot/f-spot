@@ -490,7 +490,6 @@ public class TagCommands {
 				try {
 					if (IconName != null) {
 						t.ThemeIconName = IconName;
-						t.Icon = null;
 					} else {
 						t.ThemeIconName = null;
 						t.Icon = PreviewPixbuf;
