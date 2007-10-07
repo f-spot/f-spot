@@ -15,12 +15,8 @@ namespace FSpot {
 		
 		private static string base_dir = System.IO.Path.Combine (HomeDirectory,  System.IO.Path.Combine (".gnome2", "f-spot"));
 		public static string BaseDirectory {
-			get {
-				return base_dir;
-			}
-			set {
-				base_dir = value;
-			}
+			get { return base_dir; }
+			set { base_dir = value; }
 		}
 
 		private static string photo_directory = (string) Preferences.Get(Preferences.STORAGE_PATH);
