@@ -66,6 +66,7 @@ namespace FSpot
 		public const string EXPORT_PICASAWEB_SIZE = "/apps/f-spot/export/picasaweb/size";
 		public const string EXPORT_PICASAWEB_ROTATE = "/apps/f-spot/export/picasaweb/rotate";
 		public const string EXPORT_PICASAWEB_BROWSER = "/apps/f-spot/export/picasaweb/browser";
+		public const string EXPORT_PICASAWEB_TAG = "/apps/f-spot/export/picasaweb/tag";
 
 		public const string EXPORT_SMUGMUG_SCALE = "/apps/f-spot/export/smugmug/scale";
 		public const string EXPORT_SMUGMUG_SIZE = "/apps/f-spot/export/smugmug/size";
@@ -162,6 +163,7 @@ namespace FSpot
 			case EXPORT_PICASAWEB_SCALE:
 			case EXPORT_PICASAWEB_ROTATE:
 			case EXPORT_PICASAWEB_BROWSER:
+			case EXPORT_PICASAWEB_TAG:
 			case EXPORT_SMUGMUG_SCALE:
 			case EXPORT_SMUGMUG_ROTATE:
 			case EXPORT_SMUGMUG_BROWSER:

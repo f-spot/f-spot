@@ -466,6 +466,7 @@ namespace FSpot {
 			LoadPreference (Preferences.EXPORT_PICASAWEB_ROTATE);
 			LoadPreference (Preferences.EXPORT_PICASAWEB_BROWSER);
 //			LoadPreference (Preferences.EXPORT_PICASAWEB_META);
+			LoadPreference (Preferences.EXPORT_PICASAWEB_TAG);
 		}
 		
 		private bool scale;
@@ -473,6 +474,7 @@ namespace FSpot {
 		private bool browser;
 		private bool rotate;
 //		private bool meta;
+		private bool export_tag;
 		private bool connect = false;
 
 		private long approx_size = 0;
@@ -501,6 +503,7 @@ namespace FSpot {
 		[Glade.Widget] Gtk.CheckButton scale_check;
 		[Glade.Widget] Gtk.CheckButton rotate_check;
 //		[Glade.Widget] Gtk.CheckButton meta_check;
+		[Glade.Widget] Gtk.CheckButton tag_check;
 		
 		[Glade.Widget] Gtk.SpinButton size_spin;
 
@@ -532,6 +535,7 @@ namespace FSpot {
 			browser = browser_check.Active;
 			rotate = rotate_check.Active;
 //			meta = meta_check.Active;
+			export_tag = tag_check.Active;
 
 			if (account != null) { 
 				//System.Console.WriteLine ("history = {0}", album_optionmenu.History);
@@ -552,6 +556,7 @@ namespace FSpot {
 				Preferences.Set (Preferences.EXPORT_PICASAWEB_ROTATE, rotate);
 				Preferences.Set (Preferences.EXPORT_PICASAWEB_BROWSER, browser);
 //				Preferences.Set (Preferences.EXPORT_GALLERY_META, meta);
+				Preferences.Set (Preferences.EXPORT_PICASAWEB_TAG, export_tag);
 			}
 		}
 		
@@ -621,7 +626,7 @@ namespace FSpot {
 
 					request.Dispose ();
 					//tagging
-					if (item.Tags != null)
+					if (item.Tags != null && export_tag)
 						foreach (Tag tag in item.Tags)
 							picture.AddTag (tag.Name);
 
@@ -871,6 +876,11 @@ namespace FSpot {
 //				if (meta_check.Active != (bool) val)
 //					meta_check.Active = (bool) val;
 //				break;
+			
+			case Preferences.EXPORT_PICASAWEB_TAG:
+				if (tag_check.Active != (bool) val)
+					tag_check.Active = (bool) val;
+				break;
 			}
 		}
 	}
