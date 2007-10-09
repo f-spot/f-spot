@@ -1,5 +1,17 @@
 2007-10-09  Stephane Delcroix  <stephane@delcroix.org>
 
+	* NEWS:
+	* configure.in: bumping the version number to 0.4.1, basic release
+	notes.
+
+2007-10-09  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/f-spot.glade:
+	* src/TagCommand.cs: Patch from Declan McGrath to allow tag icon
+	selection from an external file. Fixes bgo #461447.
+
+2007-10-09  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/f-spot.glade:
 	* src/Preferences.cs:
 	* src/PicasaWebExport.cs: optionnaly disable tag export to picasa.

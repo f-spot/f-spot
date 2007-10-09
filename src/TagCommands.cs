@@ -334,13 +334,18 @@ public class TagCommands {
 		Gtk.IconView icon_view;
 		ListStore icon_store;
 		string icon_name = null;
+		Gtk.FileChooserButton external_photo_chooser;
+
 
 		[Glade.Widget] Gtk.Image preview_image;
 		[Glade.Widget] ScrolledWindow photo_scrolled_window;
 		[Glade.Widget] ScrolledWindow icon_scrolled_window;
 		[Glade.Widget] Label photo_label;
 		[Glade.Widget] Label from_photo_label;
+		[Glade.Widget] Label from_external_photo_label;
+		[Glade.Widget] private Label predefined_icon_label;
 		[Glade.Widget] SpinButton photo_spin_button;
+		[Glade.Widget] HBox external_photo_chooser_hbox;
 		[Glade.Widget] Button noicon_button;
 
 		private Gdk.Pixbuf PreviewPixbuf {
@@ -372,6 +377,20 @@ public class TagCommands {
 			int value = photo_spin_button.ValueAsInt - 1;
 			
 			image_view.Item.Index = value;
+		}
+
+		private void HandleExternalFileSelectionChanged (object sender, EventArgs args)
+		{	//Note: The filter on the FileChooserButton's dialog means that we will have a Pixbuf compatible uri here
+			CreateTagIconFromExternalPhoto ();
+		}
+
+		private void CreateTagIconFromExternalPhoto ()
+		{
+			using (FSpot.ImageFile img = FSpot.ImageFile.Create(new Uri(external_photo_chooser.Uri))) {
+				using (Gdk.Pixbuf external_image = img.Load ()) {
+					PreviewPixbuf = PixbufUtils.TagIconFromPixbuf (external_image);
+				}
+			}
 		}
 
 		private void HandleSelectionChanged ()
@@ -445,6 +464,17 @@ public class TagCommands {
 			image_view.SelectionChanged += HandleSelectionChanged;
 			image_view.PhotoChanged += HandlePhotoChanged;
 
+                        external_photo_chooser = new Gtk.FileChooserButton (Catalog.GetString ("Select Photo from file"),
+                                                                 Gtk.FileChooserAction.Open);
+
+			external_photo_chooser.Filter = new FileFilter();
+			external_photo_chooser.Filter.AddPixbufFormats();
+                        external_photo_chooser.LocalOnly = false;
+                        external_photo_chooser_hbox.PackStart (external_photo_chooser);
+
+    			Dialog.ShowAll ();
+			external_photo_chooser.SelectionChanged += HandleExternalFileSelectionChanged;
+
 			photo_scrolled_window.Add (image_view);
 
 			if (query.Photos.Length > 0) {
@@ -458,10 +488,10 @@ public class TagCommands {
 			} else {
 				from_photo_label.Markup = String.Format (Catalog.GetString (
 					"\n<b>From Photo</b>\n" +
-					"You can use one of your own photos as an icon for this tag.\n" +
-					"However, first you must have at least one photo associated\n" +
-					"with this tag. Please tag a photo as '{0}' and return here\n" +
-					"to use it as an icon."), t.Name); 
+					" You can use one of your library photos as an icon for this tag.\n" +
+					" However, first you must have at least one photo associated\n" +
+					" with this tag. Please tag a photo as '{0}' and return here\n" +
+					" to use it as an icon."), t.Name); 
 				photo_scrolled_window.Visible = false;
 				photo_label.Visible = false;
 				photo_spin_button.Visible = false;
