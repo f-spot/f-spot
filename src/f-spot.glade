@@ -1254,8 +1254,8 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
-                <property name="label">No image</property>
-                <property name="use_stock">False</property>
+                <property name="label" translatable="yes">No _image</property>
+                <property name="use_underline">True</property>
                 <property name="response_id">1</property>
               </widget>
             </child>
