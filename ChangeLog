@@ -1,3 +1,10 @@
+2007-10-14  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/ThumbnailCommand.cs: Stop using obsolete API.
+
+	* src/ThumbnailGenerator.cs: Remove unused variable warning. The exception
+	is handled so there's no need to show this warning.
+
 2007-10-14  Yannig Marchegay  <yannig@marchegay.org>
 
 	* configure.in: Added 'oc' to ALL_LINGUAS.

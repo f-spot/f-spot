@@ -27,7 +27,7 @@ public class ThumbnailCommand {
 				break;
 
 			foreach (uint version_id in p.VersionIds) {
-				Gdk.Pixbuf thumb = FSpot.ThumbnailGenerator.Create (p.GetVersionPath (version_id));
+				Gdk.Pixbuf thumb = FSpot.ThumbnailGenerator.Create (p.VersionUri (version_id));
 				if (thumb !=  null)
 					thumb.Dispose ();
 			}
