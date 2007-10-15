@@ -1,5 +1,11 @@
 2007-10-15  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/GlTransition.cs:
+	* src/TextureDisplay.cs: Fixes the scaling issue in Slideshow. Thx
+	Peter Goetz for the patch.
+
+2007-10-15  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/Preferences.cs: set autorotate to true by default on export to
 	gallery. Fixes bgo #486560.
 

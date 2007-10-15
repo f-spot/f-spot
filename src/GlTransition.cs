@@ -314,11 +314,14 @@ namespace FSpot {
 			
 			Gl.glMatrixMode (Gl.GL_TEXTURE);
 			Gl.glLoadIdentity ();
-			if (ta > va)
+			if (ta < va) {
 				Gl.glScalef (va/ta, 1, 0);
-			else 
+				Gl.glTranslatef (-(texture.Width / 2.0f - (texture.Width * ta/va) / 2.0f), 0, 0);
+			} else {
+			
 				Gl.glScalef (1, ta/va, 0);
-				
+				Gl.glTranslatef (0, -(texture.Height / 2.0f - (texture.Height * va/ta) / 2.0f), 0);
+			}
 		} 
 		
 		protected void RenderPlane (Gdk.Rectangle viewport, Texture previous)

@@ -423,6 +423,10 @@ namespace FSpot {
 			//Gl.glTexEnvi (Gl.GL_TEXTURE_ENV, Gl.GL_TEXTURE_ENV_MODE, Gl.GL_MODULATE);
 			//Gl.glTexParameteri (Gl.GL_TEXTURE_RECTANGLE_ARB, Gl.GL_TEXTURE_MIN_FILTER, Gl.GL_LINEAR);
 			//Gl.glTexParameteri (Gl.GL_TEXTURE_RECTANGLE_ARB, Gl.GL_TEXTURE_MAG_FILTER, Gl.GL_LINEAR);
+			float [] black = new float [] { 0f, 0f, 0f, 1f};			       
+			Gl.glTexParameterfv (Gl.GL_TEXTURE_RECTANGLE_ARB, Gl.GL_TEXTURE_BORDER_COLOR, black);
+			Gl.glTexParameteri (Gl.GL_TEXTURE_RECTANGLE_ARB, Gl.GL_TEXTURE_WRAP_S, Gl.GL_CLAMP_TO_BORDER_ARB);
+			Gl.glTexParameteri (Gl.GL_TEXTURE_RECTANGLE_ARB, Gl.GL_TEXTURE_WRAP_T, Gl.GL_CLAMP_TO_BORDER_ARB);
 			
 			// Viewing transformation
 			Gl.glClear (Gl.GL_COLOR_BUFFER_BIT | Gl.GL_DEPTH_BUFFER_BIT);
