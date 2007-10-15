@@ -1,3 +1,8 @@
+2007-10-15  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Preferences.cs: set autorotate to true by default on export to
+	gallery. Fixes bgo #486560.
+
 2007-10-14  Ruben Vermeersch  <ruben@savanne.be>
 
 	* src/ThumbnailCommand.cs: Stop using obsolete API.
