@@ -1,3 +1,8 @@
+2007-10-16  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Updater.cs: Patch from Lorenzo to prevent creating the _temp
+	table twice. Fixes bgo #486913.
+
 2007-10-15  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/GlTransition.cs:
