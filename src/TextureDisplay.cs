@@ -172,19 +172,11 @@ namespace FSpot {
 			if (glx == null)
 				return;
 
-			//Console.WriteLine ("Begin previous = {0} texture = {1}", 
-			//		   previous != null ? previous.Id.ToString () : "null", 
-			//		   next != null ? next.Id.ToString () : "null");
-
 			if (!item.IsValid || item.Collection.Count < 0)
 				return;
 
-			Next = null;
+			//Next = null;
 			PreloadNext ();
-
-			//Console.WriteLine ("End previous = {0} texture = {1}", 
-			//		   previous != null ? previous.Id.ToString () : "null", 
-			//		   next != null ? next.Id.ToString () : "null");
 
 			if (IsRealized)
 				Animator.Start ();
@@ -316,7 +308,7 @@ namespace FSpot {
 				return previous;
 			}
 			set {
-				if (previous != next)
+				if (previous != next && previous != null)
 					previous.Dispose ();
 
 				previous = value;
@@ -326,7 +318,8 @@ namespace FSpot {
 		Texture next;
 		public Texture Next {
 			get {
-				PreloadNext ();
+				if (next == null)
+					PreloadNext ();
 				return next;
 			}
 			set {
@@ -338,9 +331,7 @@ namespace FSpot {
 
 		private void PreloadNext ()
 		{
-			if (next == null)
-				next = CreateTexture ();
-
+			Next = CreateTexture ();
 		}
 
 		GlTransition transition;
