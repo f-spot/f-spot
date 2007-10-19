@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot doc\n"
-"POT-Creation-Date: 2007-07-28 03:27+0100\n"
-"PO-Revision-Date: 2007-08-08 12:52+0100\n"
+"POT-Creation-Date: 2007-08-08 13:36+0100\n"
+"PO-Revision-Date: 2007-10-17 16:39+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -160,16 +160,15 @@ msgstr "Du kan importera foton från din hårddisk eller din kamera. När du imp
 
 #: C/f-spot.xml:68(para)
 msgid "By default, F-Spot copies your photos to the <filename class=\"directory\">~/Photos</filename> folder. You can change the folder F-Spot uses in <guilabel>Preferences</guilabel> dialog (<menuchoice><guimenu>Edit</guimenu><guimenuitem>Preferences</guimenuitem></menuchoice>)."
-msgstr ""
+msgstr "Som standard kopierar F-Spot dina foton till mappen <filename class=\"directory\">~/Photos</filename>. Du kan ändra mappen som F-Spot använder i dialogrutan <guilabel>Inställningar</guilabel> (<menuchoice><guimenu>Redigera</guimenu><guimenuitem>Inställningar</guimenuitem></menuchoice>)."
 
 #: C/f-spot.xml:76(para)
-#, fuzzy
 msgid "If all the photos you are importing at one time are from a particular event, or have some other characteristic in common, you can create a tag for them so you can later find them with ease. To do this, follow the instructions from <xref linkend=\"tag\"/> to create a new tag, then when you are importing them, check the button for <guilabel>Attach Tag</guilabel> and choose the tag you created."
-msgstr "Om alla foton som du importerar samtidigt är från en speciell händelse, eller har några andra gemensamma egenskaper, kan du skapa ett tagg för dem så att du enkelt kan hitta dem senare. För att göra det här, följ instruktionerna nedan för <ulink url=\"tag\">skapa en ny tagg</ulink>. Sedan när du importerar dem ska du kryssa i rutan för <guilabel>Sätt tagg</guilabel> och välja taggen som du skapat."
+msgstr "Om alla foton som du importerar samtidigt är från en speciell händelse, eller har några andra gemensamma egenskaper, kan du skapa ett tagg för dem så att du enkelt kan hitta dem senare. För att göra det här, följ instruktionerna i <xref linkend=\"tag\"/> för att skapa en ny tagg. Sedan när du importerar dem ska du kryssa i rutan för <guilabel>Fäst tagg</guilabel> och välja den tagg som du skapade."
 
 #: C/f-spot.xml:86(para)
 msgid "F-Spot uses a database stored at <filename>~/.gnome2/f-spot/photos.db</filename>. Note, to access it, use the sqlite3 command. You can also manually specify path to a database by running F-Spot with <option>-b</option> option."
-msgstr ""
+msgstr "F-Spot använder en databas som lagras i <filename>~/.gnome2/f-spot/photos.db</filename>. Observera att du måste använda kommandot sqlite3 för att komma åt den. Du kan även manuellt ange en sökväg till en databas genom att köra F-Spot med flaggan <option>-b</option>."
 
 #: C/f-spot.xml:94(para)
 msgid "After an import, F-Spot will display the pictures of the latest import roll only. Read <xref linkend=\"enjoying-search\"/> to learn how to deal with import rolls."
@@ -196,14 +195,12 @@ msgid "Crop"
 msgstr "Beskär"
 
 #: C/f-spot.xml:125(para)
-#, fuzzy
 msgid "Cropping an image is a great way to improve the quality of a photograph by improving how it is framed. You crop a photo by selecting the part of the photo you want to keep. If you want your photo to be the exact dimensions necessary for a certain print size, you can constrain the kind of selection F-Spot will allow you to draw by choosing the appropriate size from the constraint drop down. See the <xref linkend=\"edit-remove-red-eye\"/> below for details on making a selection on your photo."
-msgstr "Beskära en bild är ett bra sätt att förbättra kvaliteten på ett fotografi. Du kan beskära ett foto genom att markera den del av fotot som du vill behålla. Om du vill att ditt foto ska ha de exakta dimensionerna som behövs för en specifik utskriftsstorlek kan du behålla den markering som F-Spot tillåter dig att rita ut genom att välja den lämpliga storleken från rullgardinslistan för begränsningar. Se <xref linkend=\"edit-remove-red-eye\"/> ovan för detaljer om hur man gör en markering i ditt foto."
+msgstr "Beskära en bild är ett bra sätt att förbättra kvaliteten på ett fotografi genom att skära bort oväsentliga saker. Du kan beskära ett foto genom att markera den del av fotot som du vill behålla. Om du vill att ditt foto ska ha de exakta dimensionerna som behövs för en specifik utskriftsstorlek kan du behålla den markering som F-Spot tillåter dig att rita ut genom att välja den lämpliga storleken från rullgardinslistan för begränsningar. Se <xref linkend=\"edit-remove-red-eye\"/> nedan för detaljer om hur man gör en markering i ditt foto."
 
 #: C/f-spot.xml:135(title)
-#, fuzzy
 msgid "Crop tool"
-msgstr "Beskär"
+msgstr "Beskäringsverktyg"
 
 #: C/f-spot.xml:142(para)
 #: C/f-spot.xml:343(para)
@@ -339,7 +336,7 @@ msgstr "Du kan även ange en beskrivning av bilden genom att klicka på textinma
 
 #: C/f-spot.xml:351(title)
 msgid "Adjust Time"
-msgstr ""
+msgstr "Justera tid"
 
 #: C/f-spot.xml:353(para)
 msgid "In both 'browse' or 'edit' modes, you can adjust the time of one or multiple pictures (<menuchoice><guimenu>Edit</guimenu><guimenuitem>Adjust Time</guimenuitem></menuchoice>). Adjusting the time of multiple pictures at once helps you shift all an import roll if, e.g. the time on your camera is badly set or if you forgot to change it according to DST."
@@ -443,9 +440,8 @@ msgid "By default, photos tagged <emphasis>Hidden</emphasis> will not be shown. 
 msgstr "Som standard kommer inte foton taggade som <emphasis>Dolda</emphasis> att visas. Du måste uttryckligen inkludera taggen <emphasis>Dold</emphasis> i din sökning för att visa sådan foton."
 
 #: C/f-spot.xml:491(title)
-#, fuzzy
 msgid "Import Rolls"
-msgstr "Importera foton"
+msgstr "Importera rullar"
 
 #: C/f-spot.xml:492(para)
 msgid "F-Spot remembers what pictures were imported every now and then. Use <menuchoice><guimenu>Find</guimenu><guisubmenu>Import Roll</guisubmenu><guimenuitem>Last import roll</guimenuitem></menuchoice> to limit search to last importing session or use <menuchoice><guimenu>Find</guimenu><guisubmenu>Import Roll</guisubmenu><guimenuitem>Select Import Rolls...</guimenuitem></menuchoice> to make a finer selection of imported photos:"
@@ -581,9 +577,8 @@ msgid "<guilabel>Plain Files</guilabel> exports your images as files within dire
 msgstr "<guilabel>Vanliga filer</guilabel> exporterar dina bilder som filer inne i kataloger, utan att lägga dem i ett galleri."
 
 #: C/f-spot.xml:684(title)
-#, fuzzy
 msgid "Post to your online galleries"
-msgstr "Posta till Flickr eller PHP Gallery"
+msgstr "Posta till dina gallerier på nätet"
 
 #: C/f-spot.xml:685(para)
 #, fuzzy
@@ -612,11 +607,11 @@ msgstr ""
 
 #: C/f-spot.xml:717(title)
 msgid "Extend functionality"
-msgstr ""
+msgstr "Utökad funktionalitet"
 
 #: C/f-spot.xml:720(title)
 msgid "What extensions are"
-msgstr ""
+msgstr "Vad är tillägg"
 
 #: C/f-spot.xml:722(para)
 msgid "F-Spot extensions are means to add new functionality to the application. F-Spot supports two types of extension: exporters (which allow exporting photos to new web services or data storages) and tools (which allow new ways of color correction, duplicate photos finders etc.). Extensions are distributed in form of extension packages."
@@ -636,7 +631,7 @@ msgstr ""
 
 #: C/f-spot.xml:749(title)
 msgid "Managing extensions"
-msgstr ""
+msgstr "Hantera tillägg"
 
 #: C/f-spot.xml:751(para)
 #, fuzzy
@@ -657,7 +652,7 @@ msgstr ""
 
 #: C/f-spot.xml:774(title)
 msgid "Installing and updating extensions"
-msgstr ""
+msgstr "Installera och uppdatera tillägg"
 
 #: C/f-spot.xml:776(para)
 msgid "To install an extension click <guibutton>Install extensions...</guibutton> button. In the newly presented dialog"
@@ -685,7 +680,7 @@ msgstr ""
 
 #: C/f-spot.xml:813(title)
 msgid "Enabling and disabling extensions"
-msgstr ""
+msgstr "Aktivera och inaktivera tillägg"
 
 #: C/f-spot.xml:815(para)
 msgid "You might want to temporarily enable or disable a particular extension package, for example, if the extension is not stable enough to handle a large amount of photos or if menus get crowded with extensions."
@@ -697,7 +692,7 @@ msgstr ""
 
 #: C/f-spot.xml:828(title)
 msgid "Removing extensions"
-msgstr ""
+msgstr "Ta bort tillägg"
 
 #: C/f-spot.xml:830(para)
 msgid "If you don't need an extension you can remove it from the system completely. In the <guilabel>Manage Extensions</guilabel> dialog select the extension package you want to remove and click <guibutton>Delete</guibutton>."
@@ -733,7 +728,7 @@ msgstr ""
 
 #: C/f-spot.xml:875(title)
 msgid "Developing extensions"
-msgstr ""
+msgstr "Utveckla tillägg"
 
 #: C/f-spot.xml:877(para)
 msgid "<ulink url=\"http://f-spot.org/Extend_F-Spot\">Extend F-Spot</ulink> document gives instructions on developing your own extensions for F-Spot."
