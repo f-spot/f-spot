@@ -1,3 +1,16 @@
+2007-10-20  Ruben Vermeersch  <ruben@savanne.be>
+
+	Start breaking out exporters. Each exporter should go into it's own export
+	addin.
+
+	* DefaultExporters/DefaultExporters.addin.xml: Remove reference to
+	GalleryExport.
+
+	* GalleryExport/GalleryExport.addin.xml: Added.
+	* GalleryExport/Makefile.am: Added.
+
+	* Makefile.am: Add GalleryExport subdir.
+
 2007-09-21  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* DefaultExporters/DefaultExporters.addin.xml: Remove repetitive 'Export to'

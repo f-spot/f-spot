@@ -1,5 +1,6 @@
 SUBDIRS = 			\
-	DefaultExporters
+	DefaultExporters	\
+	GalleryExport
 
 addinsdir = $(pkglibdir)
 addins_DATA = f-spot.global.addins
