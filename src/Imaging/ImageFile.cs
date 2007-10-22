@@ -215,7 +215,7 @@ namespace FSpot {
 
 		public static bool IsRaw (string name)
 		{
-			string [] raw_extensions = {".nef", ".crw", ".cr2", ".arw", ".mrw"};
+			string [] raw_extensions = {".nef", ".crw", ".cr2", ".arw", ".mrw", ".pef", ".dng"};
 			foreach (string ext in raw_extensions)
 				if (ext == System.IO.Path.GetExtension (name).ToLower ())
 					return true;
