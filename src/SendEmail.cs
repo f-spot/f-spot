@@ -307,25 +307,26 @@ namespace FSpot {
 				DeleteTempFile();
 			else {		
 				// Send the mail :)
+				string mail_subject = Catalog.GetString("my photos");
 				switch (Preferences.Get (Preferences.GNOME_MAILTO_COMMAND) as string) {
 					// openSuSE
 					case "thunderbird %s":
-						System.Diagnostics.Process.Start("thunderbird", " -compose \"subject=my photos,attachment='" + mail_attach + "'\"");
+						System.Diagnostics.Process.Start("thunderbird", " -compose \"subject=" + mail_subject + ",attachment='" + mail_attach + "'\"");
 					break;
 					case "icedove %s":
-						System.Diagnostics.Process.Start("icedove", " -compose \"subject=my photos,attachment='" + mail_attach + "'\"");
+						System.Diagnostics.Process.Start("icedove", " -compose \"subject=" + mail_subject + ",attachment='" + mail_attach + "'\"");
 					break;
 					case "mozilla-thunderbird %s":
-						System.Diagnostics.Process.Start("mozilla-thunderbird", " -compose \"subject=my photos,attachment='" + mail_attach + "'\"");
+						System.Diagnostics.Process.Start("mozilla-thunderbird", " -compose \"subject=" + mail_subject + ",attachment='" + mail_attach + "'\"");
 					break;
 					case "seamonkey -mail -compose %s":
-						System.Diagnostics.Process.Start("seamonkey", " -mail -compose \"subject=my photos,attachment='" + mail_attach + "'\"");
+						System.Diagnostics.Process.Start("seamonkey", " -mail -compose \"subject=" + mail_subject + ",attachment='" + mail_attach + "'\"");
 					break;
 					case "kmail %s":
-						System.Diagnostics.Process.Start("kmail", "  --composer --subject \"my photos\"" + mail_attach);
+						System.Diagnostics.Process.Start("kmail", "  --composer --subject \"" + mail_subject + "\"" + mail_attach);
 					break;
 					default: 
-						GnomeUtil.UrlShow (parent_window,"mailto:?subject=my%20photos" + mail_attach);
+						GnomeUtil.UrlShow (parent_window,"mailto:?subject=" + System.Web.HttpUtility.UrlEncode(mail_subject) + mail_attach);
 					break;
 				}
 				                
