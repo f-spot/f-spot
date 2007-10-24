@@ -32,7 +32,7 @@ namespace DevelopInUFRawExtension
 				System.Uri developed = GetUriForVersionName (p, name);
 				string args = String.Format("--overwrite --compression=95 --out-type=jpeg --output={0} {1}", 
 					CheapEscape (developed.LocalPath),
-					raw.Uri);
+					CheapEscape (raw.Uri.ToString()));
 				Console.WriteLine ("ufraw "+args);
 
 				System.Diagnostics.Process ufraw = System.Diagnostics.Process.Start ("ufraw", args); 
