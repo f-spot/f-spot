@@ -42,7 +42,7 @@ namespace DevelopInUFRawExtension
 					continue;
 				}
 
-				p.DefaultVersionId = p.AddVersion (developed, name);
+				p.DefaultVersionId = p.AddVersion (developed, name, true);
 				Core.Database.Photos.Commit (p);
 			}	
 		}

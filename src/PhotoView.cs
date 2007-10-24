@@ -347,7 +347,7 @@ public class PhotoView : EventBox {
 				original_pixbuf.CopyArea (x, y, width, height, edited, 0, 0);
 			}
 			
-			bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
+			bool create_version = photo.DefaultVersion.IsProtected;
 			photo.SaveVersion (edited, create_version);
 			((PhotoQuery)query).Commit (Item.Index);
 

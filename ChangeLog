@@ -1,3 +1,17 @@
+2007-10-24  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Updater.cs:
+	* src/PhotoStore.cs: Adds the concept of protected versions, in db
+	and in code.
+
+	* src/ColorDialog.cs:
+	* src/ColorAdjustment.cs:
+	* src/Loupe.cs:
+	* src/MainWindows.cs:
+	* src/PhotoView.cs: some changes due to the API changes
+
+	* src/FSpot.addins.xml: bumping addins version.
+
 2007-10-22  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/SendMail.cs: Allows translation of email title. Fixes bgo #488695.

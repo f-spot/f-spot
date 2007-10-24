@@ -179,7 +179,7 @@ namespace FSpot {
 
 			Photo photo = (Photo)view.Item.Current;
 			try {
-				bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
+				bool create_version = photo.DefaultVersion.IsProtected;
 				
 				Gdk.Pixbuf orig = view.CompletePixbuf ();
 				Gdk.Pixbuf final = new Gdk.Pixbuf (Gdk.Colorspace.Rgb,

@@ -50,7 +50,7 @@ namespace FSpot {
 									    amount_spin.Value,
 									    threshold_spin.Value);
 				
-				bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
+				bool create_version = photo.DefaultVersion.IsProtected;
 
 				photo.SaveVersion (final, create_version);
 			} catch (System.Exception e) {

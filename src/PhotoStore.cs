@@ -33,7 +33,8 @@ public class PhotoVersion : FSpot.IBrowsableItem
 	uint version_id;
 	System.Uri uri;
 	string name;
-	
+	bool is_protected;
+
 	public System.DateTime Time {
 		get { return photo.Time; }
 	}
@@ -67,12 +68,17 @@ public class PhotoVersion : FSpot.IBrowsableItem
 		get { return version_id; }
 	}
 
-	public PhotoVersion (Photo photo, uint version_id, System.Uri uri, string name)
+	public bool IsProtected {
+		get { return is_protected; }
+	}
+
+	public PhotoVersion (Photo photo, uint version_id, System.Uri uri, string name, bool is_protected)
 	{
 		this.photo = photo;
 		this.version_id = version_id;
 		this.uri = uri;
 		this.name = name;
+		this.is_protected = is_protected;
 	}
 }
 
@@ -265,19 +271,24 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 	// This doesn't check if a version of that name already exists, 
 	// it's supposed to be used only within the Photo and PhotoStore classes.
-	internal void AddVersionUnsafely (uint version_id, System.Uri uri, string name)
+	internal void AddVersionUnsafely (uint version_id, System.Uri uri, string name, bool is_protected)
 	{
-		Versions [version_id] = new PhotoVersion (this, version_id, uri, name);
+		Versions [version_id] = new PhotoVersion (this, version_id, uri, name, is_protected);
 
 		highest_version_id = Math.Max (version_id, highest_version_id);
 	}
 
 	public uint AddVersion (System.Uri uri, string name)
 	{
+		return AddVersion (uri, name, false);
+	}
+
+	public uint AddVersion (System.Uri uri, string name, bool is_protected)
+	{
 		if (VersionNameExists (name))
 			throw new ApplicationException ("A version with that name already exists");
 		highest_version_id ++;
-		Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, uri, name);
+		Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, uri, name, is_protected);
 		return highest_version_id;
 	}
 
@@ -330,6 +341,13 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		get { return VersionUri (DefaultVersionId); }
 	}
 
+	public PhotoVersion DefaultVersion {
+		get {
+			if (!Versions.ContainsKey (DefaultVersionId))
+				return null;
+			return Versions [DefaultVersionId]; 
+		}
+	}
 	public void DeleteVersion (uint version_id)
 	{
 		DeleteVersion (version_id, false, false);
@@ -370,7 +388,17 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		} while (version_id > OriginalVersionId);
 	}
 
+	public uint CreateProtectedVersion (string name, uint base_version_id, bool create)
+	{
+		return CreateVersion (name, base_version_id, create, true);
+	}
+
 	public uint CreateVersion (string name, uint base_version_id, bool create)
+	{
+		return CreateVersion (name, base_version_id, create, false);
+	}
+
+	private uint CreateVersion (string name, uint base_version_id, bool create, bool is_protected)
 	{
 		System.Uri new_uri = GetUriForVersionName (name, System.IO.Path.GetExtension (VersionUri (base_version_id).AbsolutePath));
 		System.Uri original_uri = VersionUri (base_version_id);
@@ -400,12 +428,17 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 //				} catch (Exception) {}
 		}
 		highest_version_id ++;
-		Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, new_uri, name);
+		Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, new_uri, name, is_protected);
 
 		return highest_version_id;
 	}
 
 	public uint CreateReparentedVersion (PhotoVersion version)
+	{
+		return CreateReparentedVersion (version, false);
+	}
+
+	public uint CreateReparentedVersion (PhotoVersion version, bool is_protected)
 	{
 		int num = 0;
 		while (true) {
@@ -416,7 +449,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 				continue;
 
 			highest_version_id ++;
-			Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, version.Uri, name);
+			Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, version.Uri, name, is_protected);
 
 			return highest_version_id;
 		}
@@ -630,7 +663,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 
 		// Note that the original version is never stored in the photo_versions table in the
 		// database.
-		AddVersionUnsafely (OriginalVersionId, uri, Catalog.GetString ("Original"));
+		AddVersionUnsafely (OriginalVersionId, uri, Catalog.GetString ("Original"), true);
 	}
 
 	[Obsolete ("Use Photo (uint, long, Uri) instead")]
@@ -762,7 +795,8 @@ public class PhotoStore : DbStore {
 			"       photo_id        INTEGER,  	" +
 			"       version_id      INTEGER,  	" +
 			"       name            STRING,    	" +
-			"	uri		STRING NOT NULL " +
+			"	uri		STRING NOT NULL," +
+			"	protected	BOOLEAN		" +
 			")");
 	}
 
@@ -812,13 +846,14 @@ public class PhotoStore : DbStore {
 
 	private void GetVersions (Photo photo)
 	{
-		SqliteDataReader reader = Database.Query(new DbCommand("SELECT version_id, name, uri FROM photo_versions WHERE photo_id = :id", "id", photo.Id));
+		SqliteDataReader reader = Database.Query(new DbCommand("SELECT version_id, name, uri, protected FROM photo_versions WHERE photo_id = :id", "id", photo.Id));
 
 		while (reader.Read ()) {
 			uint version_id = Convert.ToUInt32 (reader [0]);
 			string name = reader[1].ToString ();
 			System.Uri uri = new System.Uri (reader[2].ToString ());
-			photo.AddVersionUnsafely (version_id, uri, name);
+			bool is_protected = Convert.ToBoolean (reader[3]);
+			photo.AddVersionUnsafely (version_id, uri, name, is_protected);
 		}
 		reader.Close();
 	}
@@ -836,7 +871,7 @@ public class PhotoStore : DbStore {
 	}		
 	
 	private void GetAllVersions  () {
-		SqliteDataReader reader = Database.Query("SELECT photo_id, version_id, name, uri FROM photo_versions");
+		SqliteDataReader reader = Database.Query("SELECT photo_id, version_id, name, uri, protected FROM photo_versions");
 		
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader [0]);
@@ -856,8 +891,8 @@ public class PhotoStore : DbStore {
 				uint version_id = Convert.ToUInt32 (reader [1]);
 				string name = reader[2].ToString ();
 				System.Uri uri = new System.Uri (reader[3].ToString ());
-				
-				photo.AddVersionUnsafely (version_id, uri, name);
+				bool is_protected = Convert.ToBoolean (reader[4]);	
+				photo.AddVersionUnsafely (version_id, uri, name, is_protected);
 			}
 
 			/*
@@ -898,7 +933,7 @@ public class PhotoStore : DbStore {
 
 	private void GetData (Photo photo)
 	{
-		SqliteDataReader reader = Database.Query(new DbCommand("SELECT tag_id, version_id, name, uri "
+		SqliteDataReader reader = Database.Query(new DbCommand("SELECT tag_id, version_id, name, uri, protected "
                                                              + "FROM photo_tags, photo_versions "
                                                              + "WHERE photo_tags.photo_id = photo_versions.photo_id "
                                                              + "AND photo_tags.photo_id = :id", "id", photo.Id));
@@ -913,8 +948,8 @@ public class PhotoStore : DbStore {
 				uint version_id = Convert.ToUInt32 (reader [1]);
 				string name = reader[2].ToString ();
 				System.Uri uri = new System.Uri (reader[3].ToString ());
-				
-				photo.AddVersionUnsafely (version_id, uri, name);
+				bool is_protected = Convert.ToBoolean (reader[4]);	
+				photo.AddVersionUnsafely (version_id, uri, name, is_protected);
 			}
 		}
 		reader.Close();
@@ -1041,9 +1076,9 @@ public class PhotoStore : DbStore {
 		if (items.Length > 1)
 			Database.BeginTransaction ();
 
-		foreach (DbItem item in items) {
+		foreach (DbItem item in items)
 			Update ((Photo)item);
-		}
+		
 		EmitChanged (items, args);
 
 		if (items.Length > 1)
@@ -1082,10 +1117,10 @@ public class PhotoStore : DbStore {
 				continue;
 			PhotoVersion version = photo.GetVersion (version_id) as PhotoVersion;
 
-			Database.ExecuteNonQuery(new DbCommand ("INSERT INTO photo_versions (photo_id, version_id, name, uri) " +
-							     "       VALUES (:photo_id, :version_id, :name, :uri)",
+			Database.ExecuteNonQuery(new DbCommand ("INSERT INTO photo_versions (photo_id, version_id, name, uri, protected) " +
+							     "       VALUES (:photo_id, :version_id, :name, :uri, :is_protected)",
 							     "photo_id", photo.Id, "version_id", version.VersionId,
-							     "name", version.Name, "uri", version.Uri.ToString ()));
+							     "name", version.Name, "uri", version.Uri.ToString (), "is_protected", version.IsProtected));
 		}
 	}
 	

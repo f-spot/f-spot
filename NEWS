@@ -1,4 +1,4 @@
-f-spot 0.4.1 - Oct 9 2007 - Italian Job
+f-spot 0.4.1 - Oct 24 2007 - Italian Job
 ---------------------------------------
 - bundle dbus-sharp only if it's not installed
 - Keep full uris for photo and versions internally, enable r+j versioning and things.
@@ -7,9 +7,11 @@ f-spot 0.4.1 - Oct 9 2007 - Italian Job
 - Reworked TagView
 - Inhibit/Unhinibit the screensaver in slideshow.
 - 'No Image' and 'Alternate file' buttons on the edit tag dialog
+- Some additional fixes to the slideshow mode
 - Fixes some regressions of 0.4.0
-- Updated translations: ca, es, eu, fi, hu, gl, it, lt, pl, pt_BR, sv
-- Fixes bgo #462939, #463694, #463789, #462069, #464981, #463690, #471529, #473812, #391470, #474142, #474137, #474536, #345864, #469180, #473848, #362279, #365801, #476508, #432294, #476626, #443016, #457314, #477597, #477690, #477871, #470482, #478447, #477127, #477131, #478875, #471198, #479256, #427478, #467010, #430249, #479489, #479744, #479745, #480286, #479423, #479961, #483588, #484099, #477597, #471198, #434094, #461447  bnc #304124, #235647
+- Proteced version
+- Updated translations: ca, es, eu, fi, hu, gl, it, lt, oc, pl, pt_BR, sv
+- Fixes bgo #462939, #463694, #463789, #462069, #464981, #463690, #471529, #473812, #391470, #474142, #474137, #474536, #345864, #469180, #473848, #362279, #365801, #476508, #432294, #476626, #443016, #457314, #477597, #477690, #477871, #470482, #478447, #477127, #477131, #478875, #471198, #479256, #427478, #467010, #430249, #479489, #479744, #479745, #480286, #479423, #479961, #483588, #484099, #477597, #471198, #434094, #461447, #485389, #486560, #486913, #488695  bnc #304124, #235647
 
 f-spot 0.4.0 - August 2 2007 - YouNameIt
 ----------------------------------------

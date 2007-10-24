@@ -2034,7 +2034,7 @@ public class MainWindow {
 					Gdk.Pixbuf orig = FSpot.PhotoLoader.Load (query, id);
 					Gdk.Pixbuf final = PixbufUtils.UnsharpMask (orig, radius_spin.Value, amount_spin.Value, threshold_spin.Value);
 					
-					bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
+					bool create_version = photo.DefaultVersion.IsProtected;
 
 					photo.SaveVersion (final, create_version);
 					query.Commit (id);

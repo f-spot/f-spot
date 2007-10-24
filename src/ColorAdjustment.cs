@@ -43,7 +43,7 @@ namespace FSpot {
 
 		public void Adjust ()
 		{
-			bool create_version = photo.DefaultVersionId == Photo.OriginalVersionId;
+			bool create_version = photo.DefaultVersion.IsProtected;
 			using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri)) {
 				if (image == null)
 					image = img.Load ();

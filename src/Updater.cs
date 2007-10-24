@@ -174,6 +174,23 @@ namespace FSpot.Database {
 			}, true);
 			
 			// Update to version 9.0
+			AddUpdate (new Version (9,0),delegate () {
+				MoveTableToTemp ("photo_versions");
+				ExecuteNonQuery (
+					"CREATE TABLE photo_versions (          " +
+					"       photo_id        INTEGER,        " +
+					"       version_id      INTEGER,        " +
+					"       name            STRING,         " +
+					"       uri             STRING NOT NULL," +
+					"	protected	BOOLEAN		" +
+					")");
+				ExecuteNonQuery (
+					"INSERT INTO photo_versions (photo_id, version_id, name, uri, protected) " +
+					"SELECT photo_id, version_id, name, uri, 0 " +
+					"FROM photo_versions_temp");
+			});
+
+			// Update to version 10.0
 			//AddUpdate (new Version (0,0),delegate () {
 			//	do update here
 			//});
