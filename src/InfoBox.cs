@@ -42,14 +42,18 @@ public class InfoBox : VBox {
 			VersionIdChanged (this, menu.VersionId);
 	}
 
-	private Widget CreateRightAlignedLabel (string text)
+	private Label CreateRightAlignedLabel (string text)
 	{
-		Label label = new Label (text);
+		Label label = new Label ();
+		label.UseMarkup = true;
+		label.Markup = text;
 		label.Xalign = 1;
 
 		return label;
 	}
 
+	const int TABLE_XPADDING = 3;
+	const int TABLE_YPADDING = 3;
 	static private Label AttachLabel (Table table, int row_num, Widget entry)
 	{
 		Label label = new Label (String.Empty);
@@ -60,25 +64,32 @@ public class InfoBox : VBox {
 
 		table.Attach (label, 1, 2, (uint) row_num, (uint) row_num + 1,
 			      AttachOptions.Expand | AttachOptions.Fill, AttachOptions.Expand | AttachOptions.Fill,
-			      (uint) entry.Style.XThickness + 3, (uint) entry.Style.YThickness);
+			      (uint) entry.Style.XThickness + TABLE_XPADDING, (uint) entry.Style.YThickness);
 
 		return label;
 	}
 
+	private string default_exposure_string;
+	private Label exposure_name_label;
 	private void SetupWidgets ()
 	{
 		Table table = new Table (5, 2, false);
+		table.BorderWidth = 0;
 
-		table.Attach (CreateRightAlignedLabel (Catalog.GetString ("Name:")), 0, 1, 0, 1,
-			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
-		table.Attach (CreateRightAlignedLabel (Catalog.GetString ("Version:")), 0, 1, 1, 2,
-			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
-		table.Attach (CreateRightAlignedLabel (Catalog.GetString ("Date:")), 0, 1, 2, 3,
-			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
-		table.Attach (CreateRightAlignedLabel (Catalog.GetString ("Size:")), 0, 1, 3, 4,
-			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
-		table.Attach (CreateRightAlignedLabel (Catalog.GetString ("Exposure:")), 0, 1, 4, 5,
-			      AttachOptions.Fill, AttachOptions.Fill, 3, 3);
+		string name_pre = "<b>";
+		string name_post = "</b>";
+		table.Attach (CreateRightAlignedLabel (name_pre + Catalog.GetString ("name") + name_post), 0, 1, 0, 1,
+			      AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+		table.Attach (CreateRightAlignedLabel (name_pre + Catalog.GetString ("version") + name_post), 0, 1, 1, 2,
+			      AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+		table.Attach (CreateRightAlignedLabel (name_pre + Catalog.GetString ("date") + name_post + Environment.NewLine), 0, 1, 2, 3,
+			      AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+		table.Attach (CreateRightAlignedLabel (name_pre + Catalog.GetString ("size") + name_post), 0, 1, 3, 4,
+			      AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+		default_exposure_string = name_pre + Catalog.GetString ("exposure") + name_post;
+		exposure_name_label = CreateRightAlignedLabel (default_exposure_string);
+		table.Attach (exposure_name_label, 0, 1, 4, 5,
+			      AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
 
 		name_label = new Label ();
 		name_label.Ellipsize = Pango.EllipsizeMode.Middle;
@@ -94,7 +105,7 @@ public class InfoBox : VBox {
 		exposure_info_label = AttachLabel (table, 4, name_label);
 
 		version_option_menu = new OptionMenu ();
-		table.Attach (version_option_menu, 1, 2, 1, 2, AttachOptions.Fill, AttachOptions.Fill, 3, 3);
+		table.Attach (version_option_menu, 1, 2, 1, 2, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
 
 		date_label.Text = Environment.NewLine;
 		exposure_info_label.Text = Environment.NewLine;
@@ -270,14 +281,21 @@ public class InfoBox : VBox {
 
 		name_label.Sensitive = true;
 		exposure_info_label.Text = info.ExposureInfo;
+		if (exposure_info_label.Text.IndexOf (Environment.NewLine) != -1)
+			exposure_name_label.Markup = default_exposure_string + Environment.NewLine;
+		else
+			exposure_name_label.Markup = default_exposure_string;
+
 		size_label.Text = info.Dimensions;
 #if USE_EXIF_DATE
 		date_label.Text = info.Date;
 #else
+		DateTime local_time = photo.Time.ToLocalTime ();
 		date_label.Text = String.Format ("{0}{2}{1}",
-						 photo.Time.ToLocalTime ().ToShortDateString (),
-						 photo.Time.ToLocalTime ().ToShortTimeString (),
-						 Environment.NewLine);
+			local_time.ToShortDateString (),
+			local_time.ToShortTimeString (),
+			Environment.NewLine
+		);
 #endif
 		
 
@@ -318,7 +336,6 @@ public class InfoBox : VBox {
 		update_delay = new Delay (Update);
 		update_delay.Start ();
 
-		BorderWidth = 6;
+		BorderWidth = 0;
 	}
-
 }
