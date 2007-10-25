@@ -28,19 +28,17 @@ namespace FSpot.Query
 
 			if (literal.IsNegated) {
 				GtkUtil.MakeMenuItem (popup_menu,
-						      Catalog.GetString ("Include"),
-						      "gtk-cancel",
+						      String.Format (Catalog.GetString ("Include Photos With \"{0}\""), literal.Tag.Name),
 						      new EventHandler (literal.HandleToggleNegatedCommand),
 						      true);
 			} else {
 				GtkUtil.MakeMenuItem (popup_menu,
-						      Catalog.GetString ("Exclude"),
-						      "gtk-delete",
+						      String.Format (Catalog.GetString ("Exclude Photos With \"{0}\""), literal.Tag.Name),
 						      new EventHandler (literal.HandleToggleNegatedCommand),
 						      true);
 			}
 
-			GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Remove"),
+			GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Remove From Query"),
 					      "gtk-remove",
 					      new EventHandler (literal.HandleRemoveCommand),
 					      true);
