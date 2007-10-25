@@ -5537,50 +5537,72 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
                       </widget>
                     </child>
                     <child>
-                      <widget class="GtkCheckMenuItem" id="display_toolbar">
+                      <widget class="GtkMenuItem" id="beneath_photos_menu">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">Display Too_lbar</property>
+                        <property name="label" translatable="yes">Beneath _Photos</property>
                         <property name="use_underline">True</property>
-                        <property name="active">True</property>
-                        <signal name="activate" handler="HandleDisplayToolbar"/>
-                      </widget>
+                        <child>
+                          <widget class="GtkMenu" id="tag_icon_size_menu">
+			    <child>
+			      <widget class="GtkCheckMenuItem" id="display_dates_menu_item">
+				<property name="visible">True</property>
+				<property name="label" translatable="yes">_Dates</property>
+				<property name="use_underline">True</property>
+				<property name="active">True</property>
+				<signal name="activate" handler="HandleDisplayDates"/>
+			      </widget>
+			    </child>
+			    <child>
+			      <widget class="GtkCheckMenuItem" id="display_tags_menu_item">
+				<property name="visible">True</property>
+				<property name="label" translatable="yes">T_ags</property>
+				<property name="use_underline">True</property>
+				<property name="active">True</property>
+				<signal name="activate" handler="HandleDisplayTags"/>
+			      </widget>
+			    </child>
+			  </widget>
+			</child>
+		      </widget>
                     </child>
                     <child>
-                      <widget class="GtkCheckMenuItem" id="display_timeline">
+                      <widget class="GtkMenuItem" id="components_menu">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">Display _Timeline</property>
+                        <property name="label" translatable="yes">_Components</property>
                         <property name="use_underline">True</property>
-                        <property name="active">True</property>
-                        <signal name="activate" handler="HandleDisplayGroupSelector"/>
-                      </widget>
-                    </child>
-                    <child>
-                      <widget class="GtkCheckMenuItem" id="display_sidebar">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">Display Side_bar</property>
-                        <property name="use_underline">True</property>
-                        <property name="active">True</property>
-                        <signal name="activate" handler="HandleDisplayInfoSidebar"/>
-                        <accelerator key="F9" modifiers="" signal="activate"/>
-                      </widget>
-                    </child>
-                    <child>
-                      <widget class="GtkCheckMenuItem" id="display_tags_menu_item">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">Display T_ags</property>
-                        <property name="use_underline">True</property>
-                        <property name="active">True</property>
-                        <signal name="activate" handler="HandleDisplayTags"/>
-                      </widget>
-                    </child>
-                    <child>
-                      <widget class="GtkCheckMenuItem" id="display_dates_menu_item">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">Display _Dates</property>
-                        <property name="use_underline">True</property>
-                        <property name="active">True</property>
-                        <signal name="activate" handler="HandleDisplayDates"/>
-                      </widget>
+                        <child>
+                          <widget class="GtkMenu" id="tag_icon_size_menu">
+			    <child>
+			      <widget class="GtkCheckMenuItem" id="display_sidebar">
+				<property name="visible">True</property>
+				<property name="label" translatable="yes">Side_bar</property>
+				<property name="use_underline">True</property>
+				<property name="active">True</property>
+				<signal name="activate" handler="HandleDisplayInfoSidebar"/>
+				<accelerator key="F9" modifiers="" signal="activate"/>
+			      </widget>
+			    </child>
+			    <child>
+			      <widget class="GtkCheckMenuItem" id="display_timeline">
+				<property name="visible">True</property>
+				<property name="label" translatable="yes">_Timeline</property>
+				<property name="use_underline">True</property>
+				<property name="active">True</property>
+				<signal name="activate" handler="HandleDisplayGroupSelector"/>
+			      </widget>
+			    </child>
+                            <child>
+			      <widget class="GtkCheckMenuItem" id="display_toolbar">
+				<property name="visible">True</property>
+				<property name="label" translatable="yes">Too_lbar</property>
+				<property name="use_underline">True</property>
+				<property name="active">True</property>
+				<signal name="activate" handler="HandleDisplayToolbar"/>
+			      </widget>
+			    </child>
+			  </widget>
+			</child>
+		      </widget>
                     </child>
                     <child>
                       <widget class="GtkSeparatorMenuItem" id="separator17">
