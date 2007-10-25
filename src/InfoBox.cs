@@ -336,6 +336,6 @@ public class InfoBox : VBox {
 		update_delay = new Delay (Update);
 		update_delay.Start ();
 
-		BorderWidth = 0;
+		BorderWidth = 2;
 	}
 }
