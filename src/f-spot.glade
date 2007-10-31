@@ -239,7 +239,7 @@
   <widget class="GtkDialog" id="slide_show_dialog">
     <property name="visible">True</property>
     <property name="border_width">6</property>
-    <property name="title" translatable="yes">dialog1</property>
+    <property name="title">dialog1</property>
     <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
     <property name="has_separator">False</property>
     <child internal-child="vbox">
@@ -5230,7 +5230,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
                     <child>
                       <widget class="GtkImageMenuItem" id="print">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">gtk-print</property>
+                        <property name="label">gtk-print</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <signal name="activate" handler="HandlePrintCommand"/>
@@ -5464,7 +5464,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
                     <child>
                       <widget class="GtkImageMenuItem" id="preferences3">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">gtk-preferences</property>
+                        <property name="label">gtk-preferences</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <signal name="activate" handler="HandlePreferences"/>
@@ -5995,7 +5995,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
                     <child>
                       <widget class="GtkImageMenuItem" id="about1">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">gtk-about</property>
+                        <property name="label">gtk-about</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <signal name="activate" handler="HandleAbout"/>
@@ -7691,7 +7691,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
                     <child>
                       <widget class="GtkImageMenuItem" id="open1">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">gtk-open</property>
+                        <property name="label">gtk-open</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <signal name="activate" handler="HandleOpen"/>
@@ -7733,7 +7733,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
                     <child>
                       <widget class="GtkImageMenuItem" id="close">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">gtk-close</property>
+                        <property name="label">gtk-close</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <signal name="activate" handler="HandleFileClose"/>
@@ -7803,7 +7803,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
                     <child>
                       <widget class="GtkImageMenuItem" id="preferences4">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">gtk-preferences</property>
+                        <property name="label">gtk-preferences</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <signal name="activate" handler="HandlePreferences"/>
@@ -7918,7 +7918,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
                     <child>
                       <widget class="GtkImageMenuItem" id="about2">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">gtk-about</property>
+                        <property name="label">gtk-about</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <signal name="activate" handler="HandleAbout"/>
