@@ -98,10 +98,10 @@ public class ImportCommand : FSpot.GladeDialog
 				this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, vol.Icon, 32, (Gtk.IconLookupFlags)0);
 			
 			if (this.IsIPodPhoto)
-				this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "gnome-dev-ipod", 32, (Gtk.IconLookupFlags)0);
+				this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "multimedia-player", 32, (Gtk.IconLookupFlags)0);
 
 			if (this.Icon == null && this.IsCamera)
-				this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "gnome-dev-media-cf", 32, (Gtk.IconLookupFlags)0);
+				this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "media-flash", 32, (Gtk.IconLookupFlags)0);
 
 			try {
 				if (this.Icon == null)
@@ -170,9 +170,9 @@ public class ImportCommand : FSpot.GladeDialog
 #else
 			this.Name = String.Format ("{0}", cam.CameraList.GetName (index));
 #endif
-			this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "gnome-dev-camera", 32, (Gtk.IconLookupFlags)0);
+			this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "camera-photo", 32, (Gtk.IconLookupFlags)0);
 			if (this.Icon == null)
-				this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "gnome-dev-media-cf", 32, (Gtk.IconLookupFlags)0);
+				this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "media-flash", 32, (Gtk.IconLookupFlags)0);
 		}
 
 		public string Port {
