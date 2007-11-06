@@ -109,7 +109,7 @@ namespace FSpot {
 						
 						Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (request.Current.ToString ());
 						Gnome.Vfs.Uri target = dest.Clone ();
-						target = UniqueName (target, source.ExtractShortName ());
+						target = UniqueName (target, photo.Name);
 						
 						Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
 						
