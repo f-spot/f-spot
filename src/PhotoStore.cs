@@ -62,6 +62,11 @@ public class PhotoVersion : FSpot.IBrowsableItem
 
 	public System.Uri Uri {
 		get { return uri; }
+		set { 
+			if (value == null)
+				throw new System.ArgumentNullException ("uri");
+			uri = value;
+		}
 	}
 
 	public uint VersionId {
@@ -1091,11 +1096,13 @@ public class PhotoStore : DbStore {
 		Database.ExecuteNonQuery (new DbCommand (
 			"UPDATE photos SET description = :description, " + 
 			"default_version_id = :default_version_id, " + 
-			"time = :time " + 
+			"time = :time, " + 
+			"uri = :uri " +
 			"WHERE id = :id ",
 			"description", photo.Description,
 			"default_version_id", photo.DefaultVersionId,
 			"time", DbUtils.UnixTimeFromDateTime (photo.Time),
+			"uri", photo.VersionUri (Photo.OriginalVersionId).ToString (),
 			"id", photo.Id));
 
 		// Update tags.
