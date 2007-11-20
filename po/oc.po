@@ -1,21 +1,24 @@
+# translation of oc.po to Occitan
 # Occitan translation for f-spot
 # Copyright (C) 2004-2007 the GNOME Foundation
 # This file is distributed under the same licence as the f-spot package.
 #
 # Yannig MARCHEGAY (yannig@marchegay.org) - 2006-2007
 #
+# Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: f-spot\n"
+"Project-Id-Version: oc\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-10-14 03:29+0100\n"
-"PO-Revision-Date: 2007-10-14 13:38+0200\n"
-"Last-Translator: Yannig MARCHEGAY (Kokoyaya) <yannig@marchegay.org>\n"
-"Language-Team: Occitan (post 1500) <ubuntu-l10n-oci@lists.ubuntu.com>\n"
+"PO-Revision-Date: 2007-11-20 14:30+0100\n"
+"Last-Translator: Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>\n"
+"Language-Team: Occitan <ubuntu-l10n-oci@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);"
+"Plural-Forms: nplurals=2; plural=(n > 1);X-Generator: KBabel 1.11.4\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:62
 #: ../src/InfoBox.cs:74
@@ -24,7 +27,7 @@ msgstr "Version :"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:65
 msgid "Author:"
-msgstr "Autor :"
+msgstr "Ancora"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:68
 msgid "Copyright:"
@@ -104,7 +107,7 @@ msgstr ""
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:171
 msgid "Installation failed"
-msgstr ""
+msgstr "L'installacion a pas capitat"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:91
 msgid "Add-in"
@@ -172,7 +175,7 @@ msgstr ""
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:256
 #: ../src/f-spot.glade.h:197
 msgid "Select _All"
-msgstr "_Tot seleccionar"
+msgstr "Seleccionar un fichièr"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:331
 msgid "label124"
@@ -355,7 +358,7 @@ msgstr ""
 
 #: ../libeog/eog-file-selection.c:29 ../libeog/eog-file-selection.c:46
 msgid "By Extension"
-msgstr ""
+msgstr "Per extension"
 
 #: ../libeog/eog-file-selection.c:30
 msgid "BMP"
@@ -613,11 +616,11 @@ msgstr ""
 
 #: ../src/DateCommands.cs:54
 msgid "Today"
-msgstr ""
+msgstr "Uèi"
 
 #: ../src/DateCommands.cs:56
 msgid "Yesterday"
-msgstr ""
+msgstr "Ièr"
 
 #: ../src/DateCommands.cs:58
 msgid "Last 7 days"
@@ -1068,8 +1071,7 @@ msgid "A unique number"
 msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:157
-msgid ""
-"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgid "The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
 msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:159
@@ -1133,8 +1135,7 @@ msgid "Full name of the country of the focus of the content"
 msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:206
-msgid ""
-"Two or three letter ISO3166 code of the country of the focus of the content"
+msgid "Two or three letter ISO3166 code of the country of the focus of the content"
 msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:209
@@ -1160,8 +1161,7 @@ msgid "Headline of the content"
 msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:225
-msgid ""
-"Instructions from the creator to the receiver not covered by other fields"
+msgid "Instructions from the creator to the receiver not covered by other fields"
 msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:228
@@ -1361,7 +1361,7 @@ msgstr ""
 
 #: ../src/MainWindow.cs:283 ../src/SingleView.cs:85
 msgid "Fullscreen"
-msgstr ""
+msgstr "Ecran complet"
 
 #: ../src/MainWindow.cs:285 ../src/SingleView.cs:87
 msgid "View photos fullscreen"
@@ -1471,7 +1471,8 @@ msgid "Delete the selected photo permanently?"
 msgstr ""
 
 #: ../src/MainWindow.cs:2340
-msgid "This deletes all versions of the selected photo from your drive."
+msgid ""
+"This deletes all versions of the selected photo from your drive."
 "This deletes all versions of the selected photos from your drive."
 msgstr ""
 
@@ -1558,7 +1559,7 @@ msgstr ""
 
 #: ../src/MetadataStore.cs:18
 msgid "Creator"
-msgstr ""
+msgstr "Creator"
 
 #: ../src/MetadataStore.cs:19
 msgid "Title"
@@ -1566,7 +1567,7 @@ msgstr "Títol"
 
 #: ../src/MetadataStore.cs:20
 msgid "Copyright"
-msgstr ""
+msgstr "Copyright :"
 
 #: ../src/MetadataStore.cs:21
 msgid "Subject and Keywords"
@@ -1670,7 +1671,7 @@ msgstr ""
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "Modificat"
-msgstr[1] "Modificats ({0})"
+msgstr[1] "Modificat"
 
 #: ../src/PhotoStore.cs:449
 #, csharp-format
@@ -1854,8 +1855,7 @@ msgstr ""
 
 #: ../src/PicasaWebExport.cs:417
 #, csharp-format
-msgid ""
-"The following error was encountered while attempting to create an album: {0}"
+msgid "The following error was encountered while attempting to create an album: {0}"
 msgstr ""
 
 #: ../src/PicasaWebExport.cs:571
@@ -1888,7 +1888,7 @@ msgstr ""
 
 #: ../src/QueryWidget.cs:37
 msgid "Find: "
-msgstr ""
+msgstr "Recercar : "
 
 #: ../src/QueryWidget.cs:42
 msgid "Untagged photos"
@@ -2179,7 +2179,7 @@ msgstr ""
 
 #: ../src/Util.cs:461
 msgid "Help not found"
-msgstr ""
+msgstr "Ajuda pas trobada"
 
 #: ../src/Widgets/FindBar.cs:83
 msgid "Find:"
@@ -2472,8 +2472,7 @@ msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
 msgstr ""
 
 #: ../src/f-spot.glade.h:68
-msgid ""
-"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
 msgstr ""
 
 #: ../src/f-spot.glade.h:70
@@ -2502,7 +2501,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:77
 msgid "As _background"
-msgstr ""
+msgstr "Coma _fons"
 
 #: ../src/f-spot.glade.h:78
 msgid "As check pattern"
@@ -3169,7 +3168,7 @@ msgstr "_Repertòri :"
 
 #: ../src/f-spot.glade.h:268
 msgid "_Fullscreen"
-msgstr ""
+msgstr "Ecran _complet"
 
 #: ../src/f-spot.glade.h:269
 msgid "_Gallery"
@@ -3193,7 +3192,7 @@ msgstr "_Amagat"
 
 #: ../src/f-spot.glade.h:274
 msgid "_Hue:"
-msgstr ""
+msgstr "_Blau :"
 
 #: ../src/f-spot.glade.h:275
 msgid "_Icon:"
@@ -3325,7 +3324,7 @@ msgstr "_Version"
 
 #: ../src/f-spot.glade.h:308
 msgid "_View"
-msgstr "_Mostrar"
+msgstr "_Visualizacion"
 
 #: ../src/f-spot.glade.h:309
 msgid "_View photos in browser when done uploading"
@@ -3361,11 +3360,11 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:319
 msgid "gtk-about"
-msgstr ""
+msgstr "gtk-about"
 
 #: ../src/f-spot.glade.h:320
 msgid "gtk-close"
-msgstr ""
+msgstr "gtk-close"
 
 #: ../src/f-spot.glade.h:321
 msgid "gtk-open"
@@ -3373,7 +3372,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:322
 msgid "gtk-preferences"
-msgstr ""
+msgstr "gtk-preferences"
 
 #: ../src/f-spot.glade.h:323
 msgid "gtk-print"
@@ -3399,5 +3398,3 @@ msgstr ""
 msgid "F-Spot photos"
 msgstr ""
 
-#~ msgid "Calendar"
-#~ msgstr "Calendièr"

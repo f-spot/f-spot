@@ -1,29 +1,30 @@
+# translation of oc.po to Occitan
 # Occitan translation of f-spot documentation.
 # Copyright (C) 2007 Free Software Foundation, Inc.
 # This file is distributed under the same license as the f-spot package.
 #
 # Yannig MARCHEGAY (yannig@marchegay.org) - 2006-2007
 #
+# Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: f-spot doc fr\n"
+"Project-Id-Version: oc\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-10-14 12:37+0100\n"
-"PO-Revision-Date: 2007-10-14 13:37+0200\n"
-"Last-Translator: Yannig MARCHEGAY (Kokoyaya) <yannig@marchegay.org>\n"
-"Language-Team: Occitan (post 1500) <ubuntu-l10n-oci@lists.ubuntu.com>\n"
+"PO-Revision-Date: 2007-11-20 14:30+0100\n"
+"Last-Translator: Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>\n"
+"Language-Team: Occitan <ubuntu-l10n-oci@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);"
+"Plural-Forms: nplurals=2; plural=(n > 1);X-Generator: KBabel 1.11.4\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: C/f-spot.xml:138(None)
-msgid ""
-"@@image: 'figures/f-spot-crop.png'; md5=63e18c96702aea4701024837a13ae2d9"
-msgstr ""
-"@@image: 'figures/f-spot-crop.png'; md5=63e18c96702aea4701024837a13ae2d9"
+msgid "@@image: 'figures/f-spot-crop.png'; md5=63e18c96702aea4701024837a13ae2d9"
+msgstr "@@image: 'figures/f-spot-crop.png'; md5=63e18c96702aea4701024837a13ae2d9"
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
@@ -48,10 +49,8 @@ msgstr ""
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: C/f-spot.xml:199(None)
-msgid ""
-"@@image: 'figures/f-spot-autocolor.png'; md5=240c4a86c95c9507755fe790bef0e24a"
-msgstr ""
-"@@image: 'figures/f-spot-autocolor.png'; md5=240c4a86c95c9507755fe790bef0e24a"
+msgid "@@image: 'figures/f-spot-autocolor.png'; md5=240c4a86c95c9507755fe790bef0e24a"
+msgstr "@@image: 'figures/f-spot-autocolor.png'; md5=240c4a86c95c9507755fe790bef0e24a"
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
@@ -66,18 +65,14 @@ msgstr ""
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: C/f-spot.xml:233(None)
-msgid ""
-"@@image: 'figures/f-spot-sepia.png'; md5=154d6e34903664dbd776f2bef405ce91"
-msgstr ""
-"@@image: 'figures/f-spot-sepia.png'; md5=154d6e34903664dbd776f2bef405ce91"
+msgid "@@image: 'figures/f-spot-sepia.png'; md5=154d6e34903664dbd776f2bef405ce91"
+msgstr "@@image: 'figures/f-spot-sepia.png'; md5=154d6e34903664dbd776f2bef405ce91"
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: C/f-spot.xml:264(None)
-msgid ""
-"@@image: 'figures/f-spot-red-eye.png'; md5=743d0a2ccc9b2fa8fa314855c225cd31"
-msgstr ""
-"@@image: 'figures/f-spot-red-eye.png'; md5=743d0a2ccc9b2fa8fa314855c225cd31"
+msgid "@@image: 'figures/f-spot-red-eye.png'; md5=743d0a2ccc9b2fa8fa314855c225cd31"
+msgstr "@@image: 'figures/f-spot-red-eye.png'; md5=743d0a2ccc9b2fa8fa314855c225cd31"
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
@@ -102,10 +97,8 @@ msgstr ""
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
 #: C/f-spot.xml:580(None)
-msgid ""
-"@@image: 'figures/f-spot-slideshow.png'; md5=84a69bc3bb7a1b8d04c967d3a66e6f23"
-msgstr ""
-"@@image: 'figures/f-spot-slideshow.png'; md5=84a69bc3bb7a1b8d04c967d3a66e6f23"
+msgid "@@image: 'figures/f-spot-slideshow.png'; md5=84a69bc3bb7a1b8d04c967d3a66e6f23"
+msgstr "@@image: 'figures/f-spot-slideshow.png'; md5=84a69bc3bb7a1b8d04c967d3a66e6f23"
 
 #: C/f-spot.xml:5(title)
 msgid "The F-Spot Manual"
@@ -125,7 +118,7 @@ msgstr "Aaron Bockover, Gabriel Burt, Miguel de Icaza, Bengt Thuree"
 
 #: C/f-spot.xml:15(publishername)
 msgid "GNOME Documentation Project"
-msgstr ""
+msgstr "Projècte de documentacion de GNOME"
 
 #: C/f-spot.xml:19(firstname)
 msgid "Miguel"
@@ -237,7 +230,7 @@ msgstr ""
 
 #: C/f-spot.xml:102(title)
 msgid "Edit"
-msgstr ""
+msgstr "Edicion"
 
 #: C/f-spot.xml:104(para)
 msgid ""
@@ -261,7 +254,7 @@ msgstr ""
 
 #: C/f-spot.xml:123(title)
 msgid "Crop"
-msgstr ""
+msgstr "Rosegar"
 
 #: C/f-spot.xml:125(para)
 msgid ""
@@ -427,8 +420,7 @@ msgid ""
 msgstr ""
 
 #: C/f-spot.xml:315(para)
-msgid ""
-"<parameter class=\"option\">Amount</parameter> — strength of sharpening."
+msgid "<parameter class=\"option\">Amount</parameter> — strength of sharpening."
 msgstr ""
 
 #: C/f-spot.xml:320(para)
@@ -544,7 +536,7 @@ msgstr ""
 
 #: C/f-spot.xml:439(title)
 msgid "Browse"
-msgstr ""
+msgstr "Navegar"
 
 #: C/f-spot.xml:440(para)
 msgid ""
@@ -555,11 +547,10 @@ msgstr ""
 
 #: C/f-spot.xml:448(title)
 msgid "Search"
-msgstr ""
+msgstr "Recercar"
 
 #: C/f-spot.xml:450(para)
-msgid ""
-"F-Spot uses search search filters to help you better define search criteria."
+msgid "F-Spot uses search search filters to help you better define search criteria."
 msgstr ""
 
 #: C/f-spot.xml:455(title)
@@ -726,7 +717,7 @@ msgstr ""
 
 #: C/f-spot.xml:598(title)
 msgid "E-mail"
-msgstr ""
+msgstr "Corrièl"
 
 #: C/f-spot.xml:599(para)
 msgid ""
@@ -770,7 +761,7 @@ msgstr ""
 
 #: C/f-spot.xml:635(title)
 msgid "Print"
-msgstr ""
+msgstr "Estampar"
 
 #: C/f-spot.xml:636(para)
 msgid ""
@@ -945,8 +936,7 @@ msgid ""
 msgstr ""
 
 #: C/f-spot.xml:788(para)
-msgid ""
-"Choose, what extension packages you want to see: All, Only new, Only updates."
+msgid "Choose, what extension packages you want to see: All, Only new, Only updates."
 msgstr ""
 
 #: C/f-spot.xml:793(para)
@@ -1014,7 +1004,7 @@ msgstr "Version"
 
 #: C/f-spot.xml:856(para)
 msgid "Author"
-msgstr ""
+msgstr "Autor"
 
 #: C/f-spot.xml:861(para)
 msgid "Dependencies"
@@ -1039,7 +1029,7 @@ msgstr ""
 
 #: C/f-spot.xml:885(title)
 msgid "Shortcuts"
-msgstr ""
+msgstr "Acorchis"
 
 #: C/f-spot.xml:888(title)
 msgid "Global Shortcuts"
@@ -1048,7 +1038,7 @@ msgstr ""
 #: C/f-spot.xml:893(entry) C/f-spot.xml:977(entry) C/f-spot.xml:1073(entry)
 #: C/f-spot.xml:1125(entry)
 msgid "Key"
-msgstr ""
+msgstr "Clau"
 
 #: C/f-spot.xml:896(entry) C/f-spot.xml:980(entry) C/f-spot.xml:1076(entry)
 #: C/f-spot.xml:1128(entry)
@@ -1073,7 +1063,7 @@ msgstr ""
 
 #: C/f-spot.xml:920(keycap)
 msgid "t"
-msgstr ""
+msgstr "t"
 
 #: C/f-spot.xml:922(entry)
 msgid "View or edit tags for selected photos"
@@ -1096,7 +1086,7 @@ msgstr "Ctrl"
 
 #: C/f-spot.xml:936(keycap)
 msgid "I"
-msgstr ""
+msgstr "I"
 
 #: C/f-spot.xml:938(entry)
 msgid "Displays information about the photo"
@@ -1112,7 +1102,7 @@ msgstr ""
 
 #: C/f-spot.xml:952(keycap)
 msgid "Minus"
-msgstr ""
+msgstr "Mens"
 
 #: C/f-spot.xml:954(entry)
 msgid "Zoom-out"
@@ -1120,7 +1110,7 @@ msgstr ""
 
 #: C/f-spot.xml:960(keycap)
 msgid "N"
-msgstr ""
+msgstr "N"
 
 #: C/f-spot.xml:962(entry)
 msgid "Import photos"
@@ -1132,16 +1122,16 @@ msgstr ""
 
 #: C/f-spot.xml:988(keycap) C/f-spot.xml:997(keycap)
 msgid "A"
-msgstr ""
+msgstr "A"
 
 #: C/f-spot.xml:990(entry)
 msgid "Select all"
-msgstr ""
+msgstr "Tot seleccionar"
 
 #: C/f-spot.xml:996(keycap) C/f-spot.xml:1030(keycap)
 #: C/f-spot.xml:1039(keycap)
 msgid "Shift"
-msgstr ""
+msgstr "Shift"
 
 #: C/f-spot.xml:999(entry)
 msgid "Unselect all"
@@ -1149,19 +1139,19 @@ msgstr ""
 
 #: C/f-spot.xml:1005(keycap)
 msgid "k"
-msgstr ""
+msgstr "k"
 
 #: C/f-spot.xml:1006(keycap)
 msgid "j"
-msgstr ""
+msgstr "j"
 
 #: C/f-spot.xml:1006(keycap)
 msgid "h"
-msgstr ""
+msgstr "h"
 
 #: C/f-spot.xml:1006(keycap)
 msgid "l"
-msgstr ""
+msgstr "l"
 
 #: C/f-spot.xml:1004(entry)
 msgid ""
@@ -1202,14 +1192,13 @@ msgid "left arrow or right arrow"
 msgstr ""
 
 #: C/f-spot.xml:1042(entry)
-msgid ""
-"Add/Remove all photos in the row, in the direction pressed, to the selection"
+msgid "Add/Remove all photos in the row, in the direction pressed, to the selection"
 msgstr ""
 
 #: C/f-spot.xml:1048(keycap) C/f-spot.xml:1184(keycap)
 #: C/f-spot.xml:1188(keycap)
 msgid "v"
-msgstr ""
+msgstr "v"
 
 #: C/f-spot.xml:1050(entry)
 msgid "Pops up a larger preview of the picture pointed by the mouse"
@@ -1217,7 +1206,7 @@ msgstr ""
 
 #: C/f-spot.xml:1056(keycap)
 msgid "V"
-msgstr ""
+msgstr "V"
 
 #: C/f-spot.xml:1058(entry)
 msgid ""
@@ -1231,7 +1220,7 @@ msgstr ""
 
 #: C/f-spot.xml:1084(keycap)
 msgid "F2"
-msgstr ""
+msgstr "F 2"
 
 #: C/f-spot.xml:1086(entry)
 msgid "Rename selected tag"
@@ -1239,7 +1228,7 @@ msgstr ""
 
 #: C/f-spot.xml:1092(keycap)
 msgid "T"
-msgstr ""
+msgstr "T"
 
 #: C/f-spot.xml:1094(entry)
 msgid "Add tags to selected photos"
@@ -1271,7 +1260,7 @@ msgstr ""
 
 #: C/f-spot.xml:1144(keycap)
 msgid "Page Down"
-msgstr ""
+msgstr "Pagina d'aval"
 
 #: C/f-spot.xml:1143(entry)
 msgid "<placeholder-1/>, <placeholder-2/>"
@@ -1322,5 +1311,5 @@ msgstr ""
 #. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2.
 #: C/f-spot.xml:0(None)
 msgid "translator-credits"
-msgstr ""
+msgstr "Yannig Marchegay (Kokoyaya) <yannig@marchegay.org)"
 
