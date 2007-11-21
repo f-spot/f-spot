@@ -1,3 +1,9 @@
+2007-11-21  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/PhotoStore.cs: fix for bgo #488545, remaove tag association
+	on tag deletionm even for the Hidden tag. Already fixed that thing 
+	in the past though...
+
 2007-11-15  Ihar Hrachyshka <ihar.hrachyshka@gmail.com>
 
 	* configure.in: Added 'be@latin' to ALL_LINGUAS.

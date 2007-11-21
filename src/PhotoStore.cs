@@ -1030,7 +1030,7 @@ public class PhotoStore : DbStore {
 
 	public void Remove (Tag []tags)
 	{
-		Photo [] photos = Query (tags);	
+		Photo [] photos = Query (tags, String.Empty, null, null);	
 
 		foreach (Photo photo in photos) {
 			photo.RemoveCategory (tags);
