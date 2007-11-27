@@ -1,0 +1,18 @@
+<Addin 	namespace="FSpot"
+	id="FacebookExport"
+	version="0.91"
+	name="FacebookExport"
+	description="Export pictures to facebook"
+	author="George Talusan"
+	url="http://f-spot.org/Extensions"
+	category="Exporters">
+	<Dependencies>
+		<Addin id="Core" version="0.4.0.3457"/>
+	</Dependencies>
+	<Runtime>
+		<Import file="Mono.Facebook.dll" />
+	</Runtime>
+	<Extension path = "/FSpot/Menus/Exports">
+		<ExportMenuItem id="Facebook" _label = "Export to Facebook..." class = "FSpot.Exporter.Facebook.FacebookExport" />
+	</Extension>
+</Addin>
