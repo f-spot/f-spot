@@ -19,11 +19,14 @@ fi
 [ -n "$FSPOT_DEBUG" ] && FSPOT_DEBUG="--debug"
 [ -n "$FSPOT_TRACE" ] && FSPOT_TRACE="--trace=$FSPOT_TRACE"
 [ -n "$FSPOT_PROFILE" ] && FSPOT_PROFILE="--profile=$FSPOT_PROFILE"
-
+run_mdb=false
 for arg in $*; do
     case "x$arg" in
     	x--debug)
 	    FSPOT_DEBUG="$arg"
+	    ;;
+	x--mdb)
+	    run_mdb=true
 	    ;;
     	x--trace=*)
 	    FSPOT_TRACE="$arg"
@@ -48,4 +51,8 @@ if [ -n "$FSPOT_DEBUG" -o -n "$FSPOT_TRACE" -o -n "$FSPOT_PROFILE" ]; then
     echo "** Running Mono with $MONO_OPTIONS **"
 fi
 
-exec -a @PACKAGE@ mono $MONO_OPTIONS $EXE_TO_RUN "$@"
+if $run_mdb; then
+	mdb $EXE_TO_RUN -args "$@"
+else
+	exec -a @PACKAGE@ mono $MONO_OPTIONS $EXE_TO_RUN "$@"
+fi
