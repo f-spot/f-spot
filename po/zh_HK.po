@@ -1,27 +1,351 @@
 # Chinese (Hong Kong) translation for marlin.
 # Copyright (C) 2005 Free Software Foundation, Inc.
 # Stanley Wong <stanley18fan0k@yahoo.com.hk>, 2005.
-#
+# Hialan Liu <hialan.liu@gmail.com>,2007.
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: f-spot 0.0.13\n"
+"Project-Id-Version: f-spot 0.4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-07 18:56+0000\n"
-"PO-Revision-Date: 2006-09-04 00:59+0800\n"
-"Last-Translator: Stanley Wong <stanley18fan0k@yahoo.com.hk>\n"
+"POT-Creation-Date: 2007-12-01 16:02+0800\n"
+"PO-Revision-Date: 2007-12-01 16:09+0800\n"
+"Last-Translator: Hialan Liu <hialan.liu@gmail.com>\n"
 "Language-Team: Chinese (Hong Kong) <community@linuxhall.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../f-spot.desktop.in.in.h:1 ../src/f-spot.glade.h:68
-msgid "F-Spot Photo Album"
-msgstr "F-Spot 相簿"
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:62
+msgid "Version:"
+msgstr "版本："
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:65
+msgid "Author:"
+msgstr "作者："
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:68
+msgid "Copyright:"
+msgstr "版權："
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:71
+msgid "Add-in Dependencies:"
+msgstr "附加套件相根據性："
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:96
+msgid "All registered repositories"
+msgstr "所有已註冊的套件庫"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:180
+msgid "Are you sure you want to cancel the installation?"
+msgstr "你確定要取消安裝程序？"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:303
+msgid "The following packages will be uninstalled:"
+msgstr "下列套件將被解除安裝："
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:308
+msgid ""
+"There are other add-ins that depend on the previous ones which will also be "
+"uninstalled:"
+msgstr ""
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:379
+msgid ""
+"The selected add-ins can't be installed because there are dependency "
+"conflicts."
+msgstr ""
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:393
+msgid "The following packages will be installed:"
+msgstr "下列套件將被安裝："
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:397
+msgid " (in user directory)"
+msgstr ""
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:403
+msgid "The following packages need to be uninstalled:"
+msgstr "下列套件需要被解除安裝："
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:411
+msgid "The following dependencies could not be resolved:"
+msgstr ""
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:435
+msgid "The installation has been successfully completed."
+msgstr "已成功的完成安裝程序。"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:436
+msgid "The installation failed!"
+msgstr "安裝程序失敗！"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:439
+msgid "The uninstallation has been successfully completed."
+msgstr "解除安裝程序已成功完成。"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:440
+msgid "The uninstallation failed!"
+msgstr "解除安裝程序失敗！"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:599
+msgid "Repository"
+msgstr "套件庫"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstaller.cs:16
+msgid "Installation cancelled"
+msgstr "已取消安裝程序"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:159
+msgid "Some of the required add-ins were not found"
+msgstr ""
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:171
+msgid "Installation failed"
+msgstr "安裝程序失敗"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:91
+msgid "Add-in"
+msgstr "附加套件"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
+msgid "Version"
+msgstr "版本"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:168
+msgid "Other"
+msgstr "其他"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
+msgid "Name"
+msgstr "名稱"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:52
+msgid "Url"
+msgstr "Url"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:61
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:70
+#, csharp-format
+msgid "Exception occurred: {0}"
+msgstr ""
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInfoDialog.cs:32
+msgid "F-Spot Package"
+msgstr "F-Spot 套件"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:110
+msgid "Add-in Installation"
+msgstr "附加套件安裝程序"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:134
+msgid "<b>Select the add-ins to install and click on Next</b>"
+msgstr ""
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:148
+msgid "Install from:"
+msgstr "安裝來源："
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:177
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:181
+msgid "_Repositories..."
+msgstr "套件庫(_R)..."
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:217
+msgid "Show all packages"
+msgstr "顯示所有套件"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:218
+msgid "Show new versions only"
+msgstr "只顯示新版本"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:219
+msgid "Show updates only"
+msgstr "只顯示更新"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:244
+msgid "_Unselect All"
+msgstr "取消選擇全部(_U)"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:256
+#: ../src/f-spot.glade.h:192
+msgid "Select _All"
+msgstr "選擇全部(_A)"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:331
+msgid "label124"
+msgstr ""
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:342
+msgid "Overall Progress:"
+msgstr ""
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:370
+msgid "Downloading add-ins..."
+msgstr "正在下載附加套件..."
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:36
+msgid "Add-in Manager"
+msgstr "附加套件管理員"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:52
+msgid "Additional extensions are required to perform this operation."
+msgstr ""
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:62
+msgid "The following add-ins will be installed:"
+msgstr "將安裝下列附加套件："
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
+msgid "F-Spot Add-in Manager"
+msgstr "F-Spot 附加套件管理員"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:88
+msgid "<big><b>F-Spot Add-in Manager</b></big>"
+msgstr "<big><b>F-Spot 附加套件管理員</b></big>"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:108
+msgid "The following add-ins are currently installed:"
+msgstr "目前已安裝下列附加套件："
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:166
+msgid "_Install Add-ins..."
+msgstr "安裝附加套件(_I)..."
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:215
+msgid "_Uninstall..."
+msgstr "解除安裝(_U)..."
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:245
+msgid "Enable"
+msgstr "啟用"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:275
+msgid "Disable"
+msgstr "停用"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
+#: ../src/f-spot.glade.h:118
+msgid "F-Spot"
+msgstr "F-Spot"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:111
+msgid "Details"
+msgstr "細節"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ManageSitesDialog.cs:34
+msgid "Add-in Repository Management"
+msgstr "管理附加套件套件庫"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:52
+msgid "Add New Repository"
+msgstr "加入新套件庫"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:68
+msgid "Select the location of the repository you want to register:"
+msgstr "選擇你想註冊的套件庫的位置："
+
+#. Container child vbox89.Gtk.Box+BoxChild
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:75
+msgid "Register an on-line repository"
+msgstr "註冊網絡套件庫"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:104
+msgid "Url:"
+msgstr "Url："
+
+#. Container child vbox89.Gtk.Box+BoxChild
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:125
+msgid "Register a local repository"
+msgstr "註冊本地套件庫"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:153
+msgid "Path:"
+msgstr "路徑："
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:177
+msgid "Browse..."
+msgstr "瀏覽..."
+
+#: ../mono-addins/Mono.Addins/Mono.Addins.Description/AssemblyDependency.cs:79
+#, csharp-format
+msgid "(provided by {0})"
+msgstr "(由 {0} 提供)"
+
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:108
+msgid "Disabled add-ins can't be loaded."
+msgstr ""
+
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:133
+#, csharp-format
+msgid "Loading {0} add-in"
+msgstr "正在載入 {0} 附加套件"
+
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:216
+#, csharp-format
+msgid "The required addin '{0}' is disabled."
+msgstr ""
+
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:218
+#, csharp-format
+msgid "The required addin '{0}' is not installed."
+msgstr ""
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:1
+msgid "23hq..."
+msgstr "23hq..."
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:2
+msgid "CD..."
+msgstr "CD..."
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:3
+msgid "Flickr..."
+msgstr "Flickr..."
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:4
+msgid "Folder..."
+msgstr "資料夾..."
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:5
+msgid "PicasaWeb..."
+msgstr "PicasaWeb..."
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:6
+msgid "SmugMug..."
+msgstr "SmugMug..."
+
+#: ../f-spot-view.desktop.in.in.h:1
+msgid "F-Spot Photo Viewer"
+msgstr "F-Spot 相片檢視器"
+
+#: ../f-spot-view.desktop.in.in.h:2
+msgid "Photo Viewer"
+msgstr "相片檢視器"
+
+#: ../f-spot.desktop.in.in.h:1
+msgid "F-Spot Photo Manager"
+msgstr "F-Spot 相片管理員"
 
 #: ../f-spot.desktop.in.in.h:2
-msgid "Photo Album"
-msgstr "相簿"
+msgid "Organize, enjoy, and share your photos"
+msgstr ""
+
+#: ../f-spot.desktop.in.in.h:3
+msgid "Photo Manager"
+msgstr "相片管理員"
+
+#: ../google-sharp/CaptchaException.cs:58
+msgid "url"
+msgstr "url"
+
+#: ../google-sharp/CaptchaException.cs:59
+msgid "token"
+msgstr ""
+
+#: ../google-sharp/CaptchaException.cs:60
+msgid "captcha_url"
+msgstr ""
 
 #: ../libeog/eog-file-selection.c:29 ../libeog/eog-file-selection.c:46
 msgid "By Extension"
@@ -57,7 +381,7 @@ msgstr "RAS"
 
 #: ../libeog/eog-file-selection.c:37
 msgid "SVG"
-msgstr "DVG"
+msgstr "SVG"
 
 #: ../libeog/eog-file-selection.c:38
 msgid "TGA"
@@ -92,42 +416,45 @@ msgid "Save Image"
 msgstr "儲存圖像"
 
 #: ../libeog/eog-image.c:773
+#, c-format
 msgid "No image loaded."
 msgstr "沒有載入圖像。"
 
 #: ../libeog/eog-image.c:780
+#, c-format
 msgid "Can't save non local files."
 msgstr "無法儲存非本地檔案。"
 
 #: ../libeog/eog-image.c:803
+#, c-format
 msgid "Unsupported image type for saving."
 msgstr "圖像格式未支援儲存功能。"
 
-#: ../libeog/image-view.c:2110
+#: ../libeog/image-view.c:2128
 msgid "interpolation type"
 msgstr "補點類型(Interpolation)："
 
-#: ../libeog/image-view.c:2111
+#: ../libeog/image-view.c:2129
 msgid "the type of interpolation to use"
 msgstr "要使用的補點類型"
 
-#: ../libeog/image-view.c:2117 ../libeog/image-view.c:2124
+#: ../libeog/image-view.c:2135 ../libeog/image-view.c:2142
 msgid "check type"
 msgstr "檢查類型"
 
-#: ../libeog/image-view.c:2118
+#: ../libeog/image-view.c:2136
 msgid "the type of chequering to use"
 msgstr "要使用的審核類型"
 
-#: ../libeog/image-view.c:2125
+#: ../libeog/image-view.c:2143
 msgid "the size of chequers to use"
 msgstr "要使用審核者大小"
 
-#: ../libeog/image-view.c:2131
+#: ../libeog/image-view.c:2149
 msgid "dither"
 msgstr "遞色(dither)"
 
-#: ../libeog/image-view.c:2132
+#: ../libeog/image-view.c:2150
 msgid "dither type"
 msgstr "遞色類型"
 
@@ -144,223 +471,1809 @@ msgstr "未知的轉換類型 %d"
 msgid "Operation failed"
 msgstr "動作失敗"
 
-#: ../src/CameraFileSelectionDialog.cs:65
-msgid "Preview"
-msgstr "預覽"
-
-#: ../src/CameraFileSelectionDialog.cs:67
-msgid "Path"
-msgstr "路徑"
-
-#: ../src/CameraFileSelectionDialog.cs:69 ../src/f-spot.glade.h:71
-msgid "File"
-msgstr "檔案"
-
-#: ../src/CameraFileSelectionDialog.cs:71 ../src/FolderExport.cs:646
-msgid "Index"
-msgstr "索引(Index)"
-
-#: ../src/CameraFileSelectionDialog.cs:87
-msgid "Downloading Previews"
-msgstr "正在下載預覽"
-
-#: ../src/CameraFileSelectionDialog.cs:95
-#, csharp-format
-msgid "Downloading Preview of {0}"
-msgstr "正在下載 {0} 的預覽"
-
-#: ../src/CameraFileSelectionDialog.cs:147
-msgid "Unknown destination."
-msgstr "未知的目的端."
-
-#: ../src/CameraFileSelectionDialog.cs:148
-msgid ""
-"When copying files from a camera you must select a valid destination on the "
-"local filesystem"
-msgstr "從數碼相機複製檔案時你需要選擇一個有效的本地目的地。"
-
-#: ../src/CameraFileSelectionDialog.cs:166
-msgid "Unable to create directory."
-msgstr "無法建立目錄。"
-
-#: ../src/CameraFileSelectionDialog.cs:167
-#, csharp-format
-msgid ""
-"Error \"{0}\" while creating directory \"{1}\".  Check that the path and "
-"permissions are correct and try again"
-msgstr "建立目錄 \"{1}\" 時發生錯誤 \"{0}\"。請確定路徑和權限是否正確，然後再試一次。"
-
-#: ../src/CameraFileSelectionDialog.cs:188 ../src/CDExport.cs:139
-#: ../src/VfsExport.cs:196
-msgid "Transferring Pictures"
-msgstr "正在傳輸圖片"
-
-#: ../src/CameraFileSelectionDialog.cs:211
-#, csharp-format
-msgid "Copying file {0} of {1}"
-msgstr "正在複製 {1} 個中的第 {0} 個檔案"
-
-#: ../src/CameraFileSelectionDialog.cs:221
-msgid "Done Copying Files"
-msgstr "複製檔案完成"
-
-#: ../src/CameraFileSelectionDialog.cs:223
-msgid "Download Complete"
-msgstr "下載完畢"
-
-#: ../src/CameraFileSelectionDialog.cs:228
-msgid "Error transferring file"
-msgstr "傳輸檔案時發生錯誤"
-
-#: ../src/CameraFileSelectionDialog.cs:249
-#, csharp-format
-msgid "Transferring \"{0}\" from camera"
-msgstr "從數碼相機傳輸 \"{0}\""
-
-#: ../src/CameraFileSelectionDialog.cs:270
-msgid "Select Destination"
-msgstr "選擇目的地"
-
-#: ../src/CameraSelectionDialog.cs:27 ../src/StockIcons.cs:27
-msgid "Camera"
-msgstr "數碼相機"
-
-#: ../src/CameraSelectionDialog.cs:28
-msgid "Port"
-msgstr "連接埠"
-
-#: ../src/CDExport.cs:57
+#: ../src/CDExport.cs:116
 #, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "傳送圖片 \"{0}\" 到 CD"
 
-#: ../src/CDExport.cs:59 ../src/FlickrExport.cs:96 ../src/GalleryExport.cs:421
-#: ../src/ProgressDialog.cs:75 ../src/VfsExport.cs:88
+#. This indicates the current photo is photo {0} of {1} out of photos
+#: ../src/CDExport.cs:118 ../src/FlickrExport.cs:288
+#: ../src/FolderExport.cs:197 ../src/GalleryExport.cs:704
+#: ../src/ProgressDialog.cs:82 ../src/TimeDialog.cs:147
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{1} 之中的第 {0}"
 
-#: ../src/CDExport.cs:71 ../src/FlickrExport.cs:101 ../src/FolderExport.cs:167
-#: ../src/GalleryExport.cs:436 ../src/VfsExport.cs:115
+#: ../src/CDExport.cs:131 ../src/FlickrExport.cs:305
+#: ../src/FolderExport.cs:228 ../src/GalleryExport.cs:728
+#: ../src/PicasaWebExport.cs:644 ../src/SmugMugExport.cs:579
 msgid "Done Sending Photos"
 msgstr "傳送圖片完成"
 
-#: ../src/CDExport.cs:73 ../src/FolderExport.cs:169 ../src/VfsExport.cs:117
+#: ../src/CDExport.cs:133 ../src/FolderExport.cs:230
 msgid "Transfer Complete"
 msgstr "傳輸完畢"
 
-#: ../src/CDExport.cs:79 ../src/FolderExport.cs:174 ../src/VfsExport.cs:122
+#: ../src/CDExport.cs:140 ../src/FolderExport.cs:235
 msgid "Error While Transferring"
 msgstr "傳輸時發生錯誤"
 
-#: ../src/CDExport.cs:84 ../src/FolderExport.cs:182 ../src/VfsExport.cs:130
+#: ../src/CDExport.cs:147 ../src/FolderExport.cs:252
 msgid "Error Transferring"
 msgstr "傳輸發生錯誤"
 
-#: ../src/CDExport.cs:99 ../src/FolderExport.cs:201 ../src/VfsExport.cs:144
+#: ../src/CDExport.cs:168 ../src/FolderExport.cs:274
 msgid "Error: Error while transferring; Aborting"
 msgstr "錯誤：傳輸時發生錯誤；正在中止"
 
-#: ../src/CDExport.cs:102 ../src/FolderExport.cs:204 ../src/VfsExport.cs:147
+#: ../src/CDExport.cs:171 ../src/FolderExport.cs:277
 msgid "Error: File Already Exists; Aborting"
 msgstr "錯誤：檔案已存在；正在中止"
 
-#: ../src/ColorDialog.cs:145
+#: ../src/CDExport.cs:210 ../src/CameraFileSelectionDialog.cs:194
+#: ../src/FolderExport.cs:331
+msgid "Transferring Pictures"
+msgstr "正在傳輸圖片"
+
+#: ../src/CameraFileSelectionDialog.cs:73
+msgid "Preview"
+msgstr "預覽"
+
+#: ../src/CameraFileSelectionDialog.cs:75
+msgid "Path"
+msgstr "路徑"
+
+#: ../src/CameraFileSelectionDialog.cs:77 ../src/f-spot.glade.h:121
+msgid "File"
+msgstr "檔案"
+
+#: ../src/CameraFileSelectionDialog.cs:79 ../src/FolderExport.cs:855
+msgid "Index"
+msgstr "索引(Index)"
+
+#: ../src/CameraFileSelectionDialog.cs:99
+msgid "Select Tag"
+msgstr "選擇標籤"
+
+#: ../src/CameraFileSelectionDialog.cs:135
+msgid "Downloading Previews"
+msgstr "正在下載預覽"
+
+#: ../src/CameraFileSelectionDialog.cs:143
+#, csharp-format
+msgid "Downloading Preview of {0}"
+msgstr "正在下載 {0} 的預覽"
+
+#: ../src/CameraFileSelectionDialog.cs:217
+#, csharp-format
+msgid "Copying file {0} of {1}"
+msgstr "正在複製 {1} 個中的第 {0} 個檔案"
+
+#: ../src/CameraFileSelectionDialog.cs:227
+msgid "Error transferring file"
+msgstr "傳輸檔案時發生錯誤"
+
+#: ../src/CameraFileSelectionDialog.cs:236
+msgid "Done Copying Files"
+msgstr "複製檔案完成"
+
+#: ../src/CameraFileSelectionDialog.cs:238
+msgid "Download Complete"
+msgstr "下載完畢"
+
+#: ../src/CameraFileSelectionDialog.cs:263
+#, csharp-format
+msgid "Transferring \"{0}\" from camera"
+msgstr "從數碼相機傳輸 \"{0}\""
+
+#: ../src/CameraSelectionDialog.cs:28
+msgid "Camera"
+msgstr "數碼相機"
+
+#: ../src/CameraSelectionDialog.cs:29
+msgid "Port"
+msgstr "連接埠"
+
+#: ../src/ColorDialog.cs:211
 msgid "Error saving adjusted photo"
 msgstr "儲存調整過的相片時發生錯誤"
 
-#: ../src/ColorDialog.cs:146 ../src/MainWindow.cs:1286 ../src/PhotoView.cs:278
-#, csharp-format
-msgid "Received exception \"{0}\". Unable to save image {1}"
+#: ../src/ColorDialog.cs:212 ../src/HigMessageDialog.cs:15 ../src/Loupe.cs:58
+#: ../src/MainWindow.cs:2043 ../src/PhotoView.cs:265
+#, fuzzy, csharp-format
+msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "收到異常 \"{0}\"。無法儲存圖像 {1}"
 
-#: ../src/Exif.cs:226
-msgid "Image Directory"
-msgstr "圖像目錄"
+#: ../src/Core.cs:190
+#, csharp-format
+msgid "No photos matching {0} found"
+msgstr "找不到符合 {0} 的圖像"
 
-#: ../src/Exif.cs:228
-msgid "Thumbnail Directory"
-msgstr "縮圖目錄"
+#: ../src/Core.cs:191
+#, csharp-format
+msgid ""
+"The tag \"{0}\" is not applied to any photos. Try adding\n"
+"the tag to some photos or selecting a different tag in the\n"
+"F-Spot preference dialog."
+msgstr ""
 
-#: ../src/Exif.cs:230
-msgid "Exif Directory"
-msgstr "Exif 目錄"
+#: ../src/Core.cs:195
+msgid "Search returned no results"
+msgstr ""
 
-#: ../src/Exif.cs:232
-msgid "GPS Directory"
-msgstr "GPS 目錄"
+#: ../src/Core.cs:196
+msgid ""
+"The tag F-Spot is looking for does not exist. Try\n"
+"selecting a different tag in the F-Spot preference\n"
+"dialog."
+msgstr ""
 
-#: ../src/Exif.cs:234
-msgid "InterOperability Directory"
-msgstr "互通目錄"
+#: ../src/DateCommands.cs:54
+msgid "Today"
+msgstr "今天"
 
-#: ../src/Exif.cs:236
-msgid "Unknown Directory"
-msgstr "未知目錄"
+#: ../src/DateCommands.cs:56
+msgid "Yesterday"
+msgstr "昨天"
 
-#: ../src/FlickrExport.cs:49
-msgid "Enter Password"
-msgstr "輸入密碼"
+#: ../src/DateCommands.cs:58
+msgid "Last 7 days"
+msgstr "最後 7 天"
 
-#: ../src/FlickrExport.cs:58
-msgid "Enter Password for "
-msgstr "輸入密碼給"
+#: ../src/DateCommands.cs:60
+msgid "Last 30 days"
+msgstr "最後 30 天"
 
-#: ../src/FlickrExport.cs:91 ../src/GalleryExport.cs:417
+#: ../src/DateCommands.cs:62
+msgid "Last 90 days"
+msgstr "最後 90 天"
+
+#: ../src/DateCommands.cs:64
+msgid "Last 360 days"
+msgstr "最後 360 天"
+
+#: ../src/DateCommands.cs:66
+msgid "Current Week (Mon-Sun)"
+msgstr "當週 (星期一～星期日)"
+
+#: ../src/DateCommands.cs:68
+msgid "Previous Week (Mon-Sun)"
+msgstr "前一週 (星期一～星期日)"
+
+#: ../src/DateCommands.cs:84 ../src/f-spot.glade.h:75
+msgid "All Images"
+msgstr "所有圖像"
+
+#: ../src/DateCommands.cs:86
+msgid "Customized Range"
+msgstr "自選範圍"
+
+#: ../src/Editors/SoftFocus.cs:25 ../src/ItemAction.cs:341
+msgid "Soft Focus"
+msgstr ""
+
+#: ../src/Editors/SoftFocus.cs:55 ../src/PhotoVersionCommands.cs:136
+msgid "Cancel"
+msgstr "取消"
+
+#: ../src/Editors/SoftFocus.cs:58
+msgid "Apply"
+msgstr "套用"
+
+#: ../src/Editors/Tilt.cs:28 ../src/ItemAction.cs:325
+msgid "Straighten"
+msgstr ""
+
+#: ../src/ExceptionDialog.cs:24
+msgid "F-Spot Encountered a Fatal Error"
+msgstr ""
+
+#: ../src/ExceptionDialog.cs:60
+msgid "Error Details"
+msgstr "錯誤細節"
+
+#: ../src/ExceptionDialog.cs:104
+msgid "An unhandled exception was thrown: "
+msgstr ""
+
+#: ../src/Extensions/OpenWithMenu.cs:93
+#, fuzzy
+msgid "No applications available"
+msgstr "無可用的 EXIF 資訊"
+
+#: ../src/FSpot.addin.xml.h:1
+msgid "Attach Tag"
+msgstr "附加標籤"
+
+#: ../src/FSpot.addin.xml.h:2
+msgid "Copy Photo Location"
+msgstr "複製圖像位置"
+
+#: ../src/FSpot.addin.xml.h:3
+msgid "Delete From Drive"
+msgstr "從磁碟中刪除"
+
+#: ../src/FSpot.addin.xml.h:4
+msgid "Export to"
+msgstr "匯出至"
+
+#: ../src/FSpot.addin.xml.h:5
+msgid "Open With"
+msgstr "開啟以"
+
+#: ../src/FSpot.addin.xml.h:6
+msgid "Remove From Catalog"
+msgstr "從型錄中移除"
+
+#: ../src/FSpot.addin.xml.h:7
+msgid "Remove Tag"
+msgstr "移除標籤"
+
+#: ../src/FSpot.addin.xml.h:8 ../src/ItemAction.cs:80 ../src/MainWindow.cs:255
+#: ../src/SingleView.cs:73
+msgid "Rotate Left"
+msgstr "往左旋轉"
+
+#: ../src/FSpot.addin.xml.h:9 ../src/ItemAction.cs:92 ../src/MainWindow.cs:259
+#: ../src/SingleView.cs:78
+msgid "Rotate Right"
+msgstr "往右旋轉"
+
+#: ../src/FSpot.addin.xml.h:10
+msgid "Tools"
+msgstr "工具"
+
+#: ../src/FileImportBackend.cs:265
+msgid "Import error"
+msgstr "匯入錯誤"
+
+#: ../src/FileImportBackend.cs:266
+#, csharp-format
+msgid "Error importing {0}{2}{2}{1}"
+msgstr ""
+
+#: ../src/Filters/ResizeFilter.cs:70 ../src/Filters/SharpFilter.cs:52
+#, csharp-format
+msgid "No way to save files of type \"{0}\""
+msgstr ""
+
+#: ../src/FlickrExport.cs:73 ../src/f-spot.glade.h:82
+msgid "Authorize"
+msgstr ""
+
+#: ../src/FlickrExport.cs:78
+#, csharp-format
+msgid ""
+"Return to this window after you have finished the authorization process on "
+"{0} and click the \"Complete Authorization\" button below"
+msgstr ""
+
+#: ../src/FlickrExport.cs:79
+msgid "Complete Authorization"
+msgstr "完成授權"
+
+#: ../src/FlickrExport.cs:83
+#, csharp-format
+msgid "Logging into {0}"
+msgstr ""
+
+#: ../src/FlickrExport.cs:84
+msgid "Checking credentials..."
+msgstr ""
+
+#: ../src/FlickrExport.cs:90
+#, csharp-format
+msgid "Welcome {0} you are connected to {1}"
+msgstr ""
+
+#: ../src/FlickrExport.cs:93
+#, csharp-format
+msgid "Sign in as a different user"
+msgstr ""
+
+#: ../src/FlickrExport.cs:244
+msgid "Unable to log on"
+msgstr "無法登入"
+
+#: ../src/FlickrExport.cs:264
+#, csharp-format
+msgid "Waiting for response {0} of {1}"
+msgstr "正在等待回應 {1} 個中的第 {0} 個"
+
+#: ../src/FlickrExport.cs:283 ../src/FolderExport.cs:194
+#: ../src/GalleryExport.cs:700
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "正在上傳圖片 \"{0}\""
 
-#: ../src/FlickrExport.cs:103 ../src/GalleryExport.cs:438
+#: ../src/FlickrExport.cs:307 ../src/GalleryExport.cs:730
+#: ../src/PicasaWebExport.cs:646 ../src/SmugMugExport.cs:581
 msgid "Upload Complete"
 msgstr "上傳完畢"
 
-#: ../src/FlickrExport.cs:108
-msgid "Error Uploading To Flickr"
+#: ../src/FlickrExport.cs:310
+#, fuzzy, csharp-format
+msgid "Error Uploading To {0}: {1}"
 msgstr "上傳到 Flickr 時發生錯誤"
 
-#: ../src/FlickrExport.cs:138 ../src/GalleryExport.cs:387
-msgid "Uploading Pictures"
-msgstr "正在上傳圖片"
+#: ../src/FlickrExport.cs:313 ../src/FolderExport.cs:202
+#: ../src/GalleryExport.cs:720 ../src/PicasaWebExport.cs:636
+#: ../src/SmugMugExport.cs:571
+msgid "Error"
+msgstr "錯誤"
 
-#: ../src/FlickrExport.cs:148
+#: ../src/FlickrExport.cs:378
 msgid "Unable to log on."
 msgstr "無法登入。"
 
-#: ../src/FlickrExport.cs:149
+#: ../src/FlickrExport.cs:379
+#, csharp-format
 msgid ""
-"F-Spot was unable to log on to Flickr.  Make sure the settings you supplied "
-"are correct."
-msgstr "F-Spot 無法登入 Flickr。請確定你提供的設定是正確的。"
+"F-Spot was unable to log on to {0}.  Make sure you have given the "
+"authentication using {0} web browser interface."
+msgstr "F-Spot 無法登入至 {0}。請確定你已使用 {0} 的網頁瀏覽介面進行驗證。"
 
-#: ../src/FolderExport.cs:129
+#: ../src/FlickrExport.cs:397 ../src/GalleryExport.cs:653
+#: ../src/PicasaWebExport.cs:548 ../src/SmugMugExport.cs:497
+msgid "Uploading Pictures"
+msgstr "正在上傳圖片"
+
+#: ../src/FolderExport.cs:111
+msgid "Select Export Folder"
+msgstr "選擇匯出資料夾"
+
+#: ../src/FolderExport.cs:156
 msgid "Building Gallery"
 msgstr "正在建立圖庫"
 
-#: ../src/FolderExport.cs:250
-msgid "Transfering Pictures"
-msgstr "正在傳輸圖片"
+#: ../src/FolderExport.cs:200
+#, fuzzy, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
+msgstr "上傳到圖庫時發生錯誤"
 
-#: ../src/FolderExport.cs:644
+#: ../src/FolderExport.cs:709
+msgid "Light"
+msgstr "亮"
+
+#: ../src/FolderExport.cs:710
+msgid "Dark"
+msgstr "暗"
+
+#. Abbreviation of previous
+#: ../src/FolderExport.cs:853
 msgid "Prev"
 msgstr "上一步"
 
-#: ../src/FolderExport.cs:649 ../src/f-spot.glade.h:95
+#: ../src/FolderExport.cs:858 ../src/ItemAction.cs:103
+#: ../src/f-spot.glade.h:151
 msgid "Next"
 msgstr "下一步"
 
-#: ../src/FolderExport.cs:718
-msgid "Gallery generated by "
+#: ../src/FolderExport.cs:911 ../src/FolderExport.cs:1084
+msgid "Show Styles"
+msgstr ""
+
+#: ../src/FolderExport.cs:912 ../src/FolderExport.cs:1085
+msgid "Hide Styles"
+msgstr ""
+
+#: ../src/FolderExport.cs:969
+#, fuzzy
+msgid "Gallery generated by"
 msgstr "圖庫的製作者是"
 
-#: ../src/FolderExport.cs:758
+#: ../src/FolderExport.cs:1014
 msgid "Page:"
 msgstr "頁："
 
-#: ../src/FullScreenView.cs:102
+#: ../src/FormClient.cs:292
+msgid "Unhandled exception"
+msgstr ""
+
+#: ../src/FullScreenView.cs:51
+msgid "Hide"
+msgstr "隱藏"
+
+#: ../src/FullScreenView.cs:53
+msgid "Hide Toolbar"
+msgstr "隱藏工具列"
+
+#: ../src/FullScreenView.cs:59
+msgid "Info"
+msgstr "資訊"
+
+#: ../src/FullScreenView.cs:61
+msgid "Image Information"
+msgstr "圖像資訊"
+
+#: ../src/FullScreenView.cs:66
 msgid "Exit fullscreen"
 msgstr "退出全螢幕"
 
+#: ../src/FullScreenView.cs:76 ../src/MainWindow.cs:288
+#: ../src/SingleView.cs:90
+msgid "Slideshow"
+msgstr "幻燈片"
+
+#: ../src/FullScreenView.cs:77
+msgid "Start slideshow"
+msgstr "開始幻燈片"
+
+#: ../src/FullScreenView.cs:142
+#, fuzzy
+msgid "Slide transition: "
+msgstr "飽和度："
+
+#: ../src/GalleryExport.cs:376
+msgid "Invalid URL"
+msgstr "無效的 URL"
+
+#: ../src/GalleryExport.cs:377
+msgid "The gallery URL entry does not appear to be a valid URL"
+msgstr ""
+
+#: ../src/GalleryExport.cs:387 ../src/GalleryExport.cs:402
+#, fuzzy
+msgid "Error while connecting to Gallery"
+msgstr "連接數碼相機時發生錯誤"
+
+#: ../src/GalleryExport.cs:388 ../src/GalleryExport.cs:403
+#, csharp-format
+msgid "The following error was encountered while attempting to log in: {0}"
+msgstr ""
+
+#: ../src/GalleryExport.cs:481
+msgid "(TopLevel)"
+msgstr "(最頂層)"
+
+#: ../src/GalleryExport.cs:719
+#, fuzzy, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery: {1}"
+msgstr "上傳到圖庫時發生錯誤"
+
+#: ../src/GalleryExport.cs:746 ../src/PicasaWebExport.cs:667
+#: ../src/SmugMugExport.cs:602
+msgid "(No Gallery)"
+msgstr "(無圖庫)"
+
+#: ../src/GalleryExport.cs:833 ../src/PicasaWebExport.cs:794
+#: ../src/SmugMugExport.cs:700
+msgid "(Not Connected)"
+msgstr "(沒有連接)"
+
+#: ../src/GalleryExport.cs:834 ../src/PicasaWebExport.cs:795
+#: ../src/SmugMugExport.cs:701
+msgid "(No Albums)"
+msgstr "(無相簿)"
+
+#: ../src/GalleryExport.cs:886 ../src/PicasaWebExport.cs:839
+#: ../src/SmugMugExport.cs:745
+msgid "No account selected"
+msgstr ""
+
+#: ../src/GalleryRemote.cs:356
+msgid "Error reading server response"
+msgstr ""
+
+#. failed to find the response
+#: ../src/GalleryRemote.cs:368
+msgid "Server returned response without Gallery content"
+msgstr ""
+
+#: ../src/GlTransition.cs:36
+msgid "Dissolve"
+msgstr "疊化"
+
+#: ../src/GlTransition.cs:104
+msgid "Flip"
+msgstr "翻轉"
+
+#: ../src/GlTransition.cs:148
+msgid "Cover"
+msgstr "覆蓋"
+
+#: ../src/GlTransition.cs:175
+msgid "Reveal"
+msgstr "揭露"
+
+#: ../src/GlTransition.cs:202
+msgid "Wipe"
+msgstr ""
+
+#: ../src/GlTransition.cs:260
+msgid "Split"
+msgstr ""
+
+#: ../src/GlTransition.cs:350
+msgid "Push"
+msgstr "推移"
+
+#: ../src/GroupSelector.cs:57 ../src/GroupSelector.cs:58
+msgid "More dates"
+msgstr "更多日期"
+
+#: ../src/GroupSelector.cs:60 ../src/GroupSelector.cs:61
+msgid "More directories"
+msgstr "更多目錄"
+
+#: ../src/GroupSelector.cs:63 ../src/GroupSelector.cs:64
+msgid "More"
+msgstr "更多"
+
+#: ../src/GroupSelector.cs:515
+msgid "Arrange by _Month"
+msgstr "根據月份排列(_M)"
+
+#: ../src/GroupSelector.cs:518
+msgid "Arrange by _Folder"
+msgstr "根據資料夾排列(_F)"
+
+#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:292
+msgid "_Reverse Order"
+msgstr "順序反轉(_R)"
+
+#: ../src/GroupSelector.cs:529
+msgid "_Clear Date Range"
+msgstr "清除日期範圍(_C)"
+
+#: ../src/HigMessageDialog.cs:28 ../src/PhotoView.cs:264
+msgid "Error editing photo"
+msgstr "編輯相片時發生錯誤"
+
+#: ../src/Imaging/Exif.cs:228
+msgid "Image Directory"
+msgstr "圖像目錄"
+
+#: ../src/Imaging/Exif.cs:230
+msgid "Thumbnail Directory"
+msgstr "縮圖目錄"
+
+#: ../src/Imaging/Exif.cs:232
+msgid "Exif Directory"
+msgstr "Exif 目錄"
+
+#: ../src/Imaging/Exif.cs:234
+msgid "GPS Directory"
+msgstr "GPS 目錄"
+
+#: ../src/Imaging/Exif.cs:236
+msgid "InterOperability Directory"
+msgstr "互通目錄"
+
+#: ../src/Imaging/Exif.cs:238
+msgid "Unknown Directory"
+msgstr "未知目錄"
+
+#: ../src/Imaging/IptcFile.cs:145
+msgid "IPTC Information Interchange Model (IIM) Version number"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:147
+msgid "OSI Destination routing information"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:149
+msgid "IPTC file format"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:151
+msgid "Identifies the provider and product"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:153
+msgid "A unique number identifying the envelope"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:155
+msgid "A unique number"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:157
+msgid ""
+"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:159
+msgid "The year, month and day (CCYYMMDD) the service sent the material"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:161
+msgid "The hour, minute and second (HHMMSS) the service sent the material"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:163
+msgid "The character set designation"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:165
+msgid "External globally unique object identifier"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:170
+msgid "Abstract Relationship Method (ARM) identifier"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:172
+msgid "Abstract Relationship Method (ARM) version number."
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:175
+msgid "Number identifying the IIM version this application record uses"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:177
+msgid "Object type reference"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:182
+msgid "Object attribute reference"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:188 ../src/Imaging/IptcFile.cs:192
+msgid "Object name"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:190
+msgid "Status of the objectdata according to the provider"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:194
+msgid "Location within a city or area where the object originates"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:197
+msgid "Name of the city the content is focussing on"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:200
+msgid "Copyright information for"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:203
+msgid "Full name of the country of the focus of the content"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:206
+msgid ""
+"Two or three letter ISO3166 code of the country of the focus of the content"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:209
+msgid "Creator of the content"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:212
+msgid "Provider of the object"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:215
+msgid "The title of the author or creator"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:218
+msgid ""
+"The person involved in writing, editing or correcting the object data or "
+"caption/abstract"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:222
+msgid "Headline of the content"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:225
+msgid ""
+"Instructions from the creator to the receiver not covered by other fields"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:228
+msgid "Intellectual genre of the object"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:241
+#, fuzzy
+msgid "Unknown IIM DataSet"
+msgstr "未知目錄"
+
+#: ../src/ImportCommand.cs:44 ../src/SingleView.cs:329
+msgid "Select Folder"
+msgstr "選擇資料夾"
+
+#: ../src/ImportCommand.cs:256
+msgid "(No Cameras Detected)"
+msgstr "(偵測不到數碼相機)"
+
+#: ../src/ImportCommand.cs:400
+#, csharp-format
+msgid "Loading {0} of {1}"
+msgstr "正在載入 {1} 之 {0}"
+
+#: ../src/ImportCommand.cs:468
+msgid "Done Loading"
+msgstr "完成載入"
+
+#: ../src/ImportCommand.cs:665
+msgid "Directory does not exist."
+msgstr "目錄不存在。"
+
+#: ../src/ImportCommand.cs:666
+#, csharp-format
+msgid ""
+"The directory you selected \"{0}\" does not exist.  Please choose a "
+"different directory"
+msgstr "你選擇的目錄 \"{0}\" 不存在。請選擇另外的目錄"
+
+#. Prepare the Last Import root tag
+#: ../src/ImportCommand.cs:718 ../src/ImportCommand.cs:720
+#: ../src/XmpTagsImporter.cs:86
+msgid "Import Tags"
+msgstr "匯入標籤"
+
+#: ../src/InfoBox.cs:81
+msgid "name"
+msgstr "名稱"
+
+#: ../src/InfoBox.cs:83
+msgid "version"
+msgstr "版本"
+
+#: ../src/InfoBox.cs:85
+msgid "date"
+msgstr "日期"
+
+#: ../src/InfoBox.cs:87
+msgid "size"
+msgstr "大小"
+
+#: ../src/InfoBox.cs:89
+msgid "exposure"
+msgstr "曝光"
+
+#. The label for the root category is used in new and edit tag dialogs
+#: ../src/InfoBox.cs:232 ../src/TagStore.cs:451
+msgid "(None)"
+msgstr "(無)"
+
+#: ../src/InfoBox.cs:243 ../src/InfoBox.cs:252
+msgid "(Unknown)"
+msgstr "(未知)"
+
+#: ../src/InfoDisplay.cs:14 ../src/MainWindow.cs:1547
+#: ../src/f-spot.glade.h:149
+msgid "Metadata Browser"
+msgstr "Metadata 瀏覽器"
+
+#. Obsolete, remove after db rev4
+#: ../src/InfoDisplay.cs:135 ../src/InfoDisplay.cs:137
+#: ../src/f-spot.glade.h:124
+msgid "Folder"
+msgstr "資料夾"
+
+#: ../src/InfoDisplay.cs:139
+msgid "Picasaweb"
+msgstr "Picasaweb"
+
+#: ../src/InfoDisplay.cs:141
+msgid "SmugMug"
+msgstr "SmugMug"
+
+#: ../src/InfoDisplay.cs:143
+msgid "Gallery2"
+msgstr "Gallery2"
+
+#: ../src/InfoDisplay.cs:235
+msgid "Extended Metadata"
+msgstr "延伸的 Metadata"
+
+#: ../src/InfoDisplay.cs:267
+msgid "Exported Locations"
+msgstr "匯出過的位置"
+
+#: ../src/InfoDisplay.cs:290
+msgid "No active photo"
+msgstr ""
+
+#: ../src/InfoDisplay.cs:292
+#, csharp-format
+msgid "The photo \"{0}\" does not exist"
+msgstr "圖片 \"{0}\" 不存在"
+
+#: ../src/InfoDisplay.cs:298
+msgid "No metadata available"
+msgstr "無可用的 Metadata"
+
+#: ../src/ItemAction.cs:81 ../src/ItemAction.cs:93
+msgid "Rotate picture left"
+msgstr "將圖片往左選轉"
+
+#: ../src/ItemAction.cs:104
+msgid "Next picture"
+msgstr "下一張圖片"
+
+#: ../src/ItemAction.cs:125 ../src/f-spot.glade.h:177
+msgid "Previous"
+msgstr "上一次"
+
+#: ../src/ItemAction.cs:126
+msgid "Previous picture"
+msgstr "上一張圖片"
+
+#: ../src/ItemAction.cs:256
+msgid "Auto Color"
+msgstr "自動色彩"
+
+#: ../src/ItemAction.cs:257
+msgid "Automatically adjust the colors"
+msgstr "自動調整色彩"
+
+#: ../src/ItemAction.cs:272
+msgid "Apply straightening"
+msgstr ""
+
+#: ../src/ItemAction.cs:273
+msgid "Apply straightening to image"
+msgstr ""
+
+#: ../src/ItemAction.cs:326
+msgid "Adjust the angle of the image to straighten the horizon"
+msgstr ""
+
+#: ../src/ItemAction.cs:342
+msgid "Create a soft focus visual effect"
+msgstr ""
+
+#: ../src/Loupe.cs:57 ../src/MainWindow.cs:2042
+msgid "Error saving sharpened photo"
+msgstr "儲存銳化相片時發生錯誤"
+
+#: ../src/Loupe.cs:87
+msgid "Sharpen"
+msgstr "銳化"
+
+#: ../src/Loupe.cs:97 ../src/MainWindow.cs:2009
+msgid "Amount:"
+msgstr "數量："
+
+#: ../src/Loupe.cs:98 ../src/MainWindow.cs:2010
+msgid "Radius:"
+msgstr "半徑："
+
+#: ../src/Loupe.cs:99 ../src/MainWindow.cs:2011
+msgid "Threshold:"
+msgstr "門檻值："
+
+#: ../src/MainWindow.cs:248 ../src/f-spot.glade.h:139
+msgid "Import"
+msgstr "匯入"
+
+#: ../src/MainWindow.cs:250
+msgid "Import new images"
+msgstr "匯入新圖像"
+
+#: ../src/MainWindow.cs:266 ../src/f-spot.glade.h:85
+msgid "Browse"
+msgstr "瀏覽"
+
+#: ../src/MainWindow.cs:270
+msgid "Browse many photos simultaneously"
+msgstr ""
+
+#: ../src/MainWindow.cs:274
+msgid "Edit Image"
+msgstr "編輯圖像"
+
+#: ../src/MainWindow.cs:278
+msgid "View and edit a photo"
+msgstr "檢視及編輯圖片"
+
+#: ../src/MainWindow.cs:283 ../src/SingleView.cs:85
+msgid "Fullscreen"
+msgstr "全螢幕"
+
+#: ../src/MainWindow.cs:285 ../src/SingleView.cs:87
+msgid "View photos fullscreen"
+msgstr "全螢幕檢視圖片"
+
+#: ../src/MainWindow.cs:290 ../src/SingleView.cs:92
+msgid "View photos in a slideshow"
+msgstr "於幻燈片中檢視圖片"
+
+#: ../src/MainWindow.cs:867
+msgid "Error loading database."
+msgstr "載入資料庫時發生錯誤。"
+
+#: ../src/MainWindow.cs:868
+#, csharp-format
+msgid ""
+"F-Spot encountered an error while loading the photo database. The old "
+"database has be moved to {0} and a new database has been created."
+msgstr ""
+
+#: ../src/MainWindow.cs:1465
+msgid "No cameras detected."
+msgstr "偵測不到數碼相機。"
+
+#: ../src/MainWindow.cs:1466
+msgid ""
+"F-Spot was unable to find any cameras attached to this system.  Double check "
+"that the camera is connected and has power"
+msgstr "F-Spot 無法找到任何連接到系統的數碼相機。請再次確定它已連接並且電源已開啟。"
+
+#: ../src/MainWindow.cs:1506
+msgid "Error connecting to camera"
+msgstr "連接數碼相機時發生錯誤"
+
+#: ../src/MainWindow.cs:1507
+#, csharp-format
+msgid "Received error \"{0}\" while connecting to camera"
+msgstr "連接數碼相機時收到錯誤 \"{0}\""
+
+#. Translators should localize the following string
+#. * which will give them credit in the About box.
+#. * E.g. "Martin Willemoes Hansen"
+#: ../src/MainWindow.cs:1650
+msgid "translator-credits"
+msgstr ""
+"GNOME 程式中文化郵件論壇\n"
+"community@linuxhall.org\n"
+"\n"
+"Hialan Liu <hialan.liu@gmail.com>, 2007Stanley Wong <stanley18fan0k@yahoo.com.hk>, 2005"
+
+#: ../src/MainWindow.cs:1658
+msgid "Copyright © 2003-2007 Novell Inc."
+msgstr "Copyright © 2003-2007 Novell Inc."
+
+#. Translators, The singular case will never happen here.
+#: ../src/MainWindow.cs:1922
+#, csharp-format
+msgid "Merge the selected tag"
+msgid_plural "Merge the {0} selected tags?"
+msgstr[0] "合併選定的標籤?"
+msgstr[1] "合併選定的 {0} 個標籤?"
+
+#: ../src/MainWindow.cs:1949
+msgid ""
+"This operation will merge the selected tags and any sub-tags into a single "
+"tag."
+msgstr ""
+
+#: ../src/MainWindow.cs:1951
+msgid "_Merge Tags"
+msgstr "合併標籤(_M)"
+
+#: ../src/MainWindow.cs:2000
+msgid "Unsharp Mask"
+msgstr "銳化濾鏡"
+
+#: ../src/MainWindow.cs:2203 ../src/SingleView.cs:471
+#, fuzzy, csharp-format
+msgid "{0} Photo"
+msgid_plural "{0} Photos"
+msgstr[0] "{0} 張圖片"
+msgstr[1] "{0} 張圖片"
+
+#: ../src/MainWindow.cs:2210
+#, csharp-format
+msgid " out of {0}"
+msgstr "，共有 {0} 張"
+
+#: ../src/MainWindow.cs:2213
+#, fuzzy, csharp-format
+msgid " ({0} selected)"
+msgid_plural " ({0} selected)"
+msgstr[0] " (已選 {0} 張)"
+msgstr[1] " (已選 {0} 張)"
+
+#: ../src/MainWindow.cs:2300
+msgid "_Ok"
+msgstr "確定(_O)"
+
+#: ../src/MainWindow.cs:2301
+msgid "Error Deleting Picture"
+msgstr "刪除圖片時發生錯誤"
+
+#: ../src/MainWindow.cs:2306
+#, csharp-format
+msgid "No permission to delete the file:{1}{0}"
+msgstr ""
+
+#: ../src/MainWindow.cs:2310
+#, csharp-format
+msgid "An error of type {0} occurred while deleting the file:{2}{1}"
+msgstr ""
+
+#: ../src/MainWindow.cs:2336
+#, csharp-format
+msgid "Delete the selected photo permanently?"
+msgid_plural "Delete the {0} selected photos permanently?"
+msgstr[0] "要永久刪除選擇的相片嗎?"
+msgstr[1] "要永久刪除選擇的 {0} 張相片嗎?"
+
+#: ../src/MainWindow.cs:2340
+#, fuzzy
+msgid "This deletes all versions of the selected photo from your drive."
+msgid_plural ""
+"This deletes all versions of the selected photos from your drive."
+msgstr[0] "這樣會從磁碟中刪除已選相片的所有版本。這樣會從磁碟中刪除已選相片的所有版本。"
+msgstr[1] "這樣會從磁碟中刪除已選相片的所有版本。這樣會從磁碟中刪除已選相片的所有版本。"
+
+#: ../src/MainWindow.cs:2343
+msgid "_Delete photo"
+msgid_plural "_Delete photos"
+msgstr[0] "刪除相片(_D)"
+msgstr[1] "刪除相片(_D)"
+
+#: ../src/MainWindow.cs:2374
+#, csharp-format
+msgid "Remove the selected photo from F-Spot?"
+msgid_plural "Remove the {0} selected photos from F-Spot?"
+msgstr[0] "要從 F-Spot 移除已選的相片嗎?"
+msgstr[1] "要從 F-Spot 移除已選的 {0} 張相片嗎?"
+
+#: ../src/MainWindow.cs:2379
+msgid ""
+"If you remove photos from the F-Spot catalog all tag information will be "
+"lost. The photos remain on your computer and can be imported into F-Spot "
+"again."
+msgstr "如果你要從 F-Spot 型錄中移除相片，那麼所有標籤資訊都會一併消失。不過，你仍然可以再次把相片匯入至 F-Spot 中。"
+
+#: ../src/MainWindow.cs:2380
+msgid "_Remove from Catalog"
+msgstr "從型錄中移除(_R)"
+
+#: ../src/MainWindow.cs:2437
+#, csharp-format
+msgid "Delete tag \"{0}\"?"
+msgstr "刪除標籤\"{0}\"?"
+
+#: ../src/MainWindow.cs:2439
+#, csharp-format
+msgid "Delete the {0} selected tags?"
+msgstr "刪除選定的標籤 {0} ?"
+
+#: ../src/MainWindow.cs:2442
+msgid "If you delete a tag, all associations with photos are lost."
+msgstr "如果你刪除一個標籤，那麼相片的所有關聯都會消失。"
+
+#: ../src/MainWindow.cs:2443
+msgid "_Delete tag"
+msgid_plural "_Delete tags"
+msgstr[0] "刪除標籤(_D)"
+msgstr[1] "刪除標籤(_D)"
+
+#. A Category is not empty. Can not delete it.
+#: ../src/MainWindow.cs:2457
+msgid "Tag is not empty"
+msgstr "標籤不是空的"
+
+#: ../src/MainWindow.cs:2458
+#, csharp-format
+msgid ""
+"Can not delete tags that have tags within them.  Please delete tags under "
+"\"{0}\" first"
+msgstr ""
+
+#: ../src/MainWindow.cs:2885
+msgid "Rotate selected photo left"
+msgid_plural "Rotate selected photos left"
+msgstr[0] "將已選的圖片向左旋轉"
+msgstr[1] "將已選的圖片向左旋轉"
+
+#: ../src/MainWindow.cs:2898
+msgid "Rotate selected photo right"
+msgid_plural "Rotate selected photos right"
+msgstr[0] "將已選的圖片向右旋轉"
+msgstr[1] "將已選的圖片向右旋轉"
+
+#: ../src/MainWindow.cs:2906
+#, csharp-format
+msgid "Find Selected Tag"
+msgid_plural "Find Selected Tags"
+msgstr[0] "尋找選定的標籤"
+msgstr[1] "尋找選定的標籤"
+
+#: ../src/MainWindow.cs:2910
+#, csharp-format
+msgid "Find Selected Tag With"
+msgid_plural "Find Selected Tags With"
+msgstr[0] "尋找選定的標籤以"
+msgstr[1] "尋找選定的標籤以"
+
+#: ../src/MainWindow.cs:2927
+msgid "Create New Version?"
+msgid_plural "Create New Versions?"
+msgstr[0] "建立新版本？"
+msgstr[1] "建立新版本？"
+
+#: ../src/MainWindow.cs:2929
+#, csharp-format
+msgid ""
+"Before launching {1}, should F-Spot create a new version of the selected "
+"photo to preserve the original?"
+msgid_plural ""
+"Before launching {1}, should F-Spot create new versions of the selected "
+"photos to preserve the originals?"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/MetadataStore.cs:18
+msgid "Creator"
+msgstr "建立者"
+
+#: ../src/MetadataStore.cs:19
+msgid "Title"
+msgstr "標題"
+
+#: ../src/MetadataStore.cs:20
+msgid "Copyright"
+msgstr "版權"
+
+#: ../src/MetadataStore.cs:21
+msgid "Subject and Keywords"
+msgstr ""
+
+#: ../src/MetadataStore.cs:22
+msgid "Compression"
+msgstr "壓縮"
+
+#: ../src/MetadataStore.cs:24
+msgid "Planar Configuration"
+msgstr ""
+
+#: ../src/MetadataStore.cs:26
+msgid "Orientation"
+msgstr ""
+
+#: ../src/MetadataStore.cs:28
+msgid "Photometric Interpretation"
+msgstr ""
+
+#: ../src/MetadataStore.cs:30
+msgid "Resolution Unit"
+msgstr ""
+
+#: ../src/MetadataStore.cs:32
+#, fuzzy
+msgid "Exposure Program"
+msgstr "曝光率："
+
+#: ../src/MetadataStore.cs:34
+msgid "Metering Mode"
+msgstr ""
+
+#: ../src/MetadataStore.cs:36
+#, fuzzy
+msgid "Exposure Mode"
+msgstr "曝光率："
+
+#: ../src/MetadataStore.cs:38
+msgid "Custom Rendered"
+msgstr ""
+
+#: ../src/MetadataStore.cs:40
+msgid "Components Configuration"
+msgstr ""
+
+#: ../src/MetadataStore.cs:42
+msgid "Light Source"
+msgstr "光源"
+
+#: ../src/MetadataStore.cs:44
+msgid "Sensing Method"
+msgstr ""
+
+#: ../src/MetadataStore.cs:46
+msgid "Color Space"
+msgstr ""
+
+#: ../src/MetadataStore.cs:48
+msgid "White Balance"
+msgstr "白平衡"
+
+#: ../src/MetadataStore.cs:50
+msgid "Focal Plane Resolution Unit"
+msgstr ""
+
+#: ../src/MetadataStore.cs:52
+msgid "File Source Type"
+msgstr "來源檔案類型"
+
+#: ../src/MetadataStore.cs:54
+msgid "Scene Capture Type"
+msgstr ""
+
+#: ../src/MetadataStore.cs:56
+msgid "Gain Control"
+msgstr ""
+
+#: ../src/MetadataStore.cs:58
+msgid "Contrast"
+msgstr "對比度"
+
+#: ../src/MetadataStore.cs:60
+msgid "Saturation"
+msgstr "飽和度"
+
+#: ../src/MetadataStore.cs:62
+msgid "Sharpness"
+msgstr ""
+
+#: ../src/MetadataStore.cs:64
+msgid "Scene Type"
+msgstr ""
+
+#: ../src/PhotoStore.cs:451
+#, csharp-format
+msgid "Reparented"
+msgid_plural "Reparented ({0})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/PhotoStore.cs:468
+#, csharp-format
+msgid "Modified"
+msgid_plural "Modified ({0})"
+msgstr[0] "已修改"
+msgstr[1] "已修改({0}個)"
+
+#: ../src/PhotoStore.cs:487
+#, fuzzy, csharp-format
+msgid "Modified in {1}"
+msgid_plural "Modified in {1} ({0})"
+msgstr[0] "已修改"
+msgstr[1] "已修改({0}個)"
+
+#. Note that the original version is never stored in the photo_versions table in the
+#. database.
+#: ../src/PhotoStore.cs:671 ../src/f-spot.glade.h:164
+msgid "Original"
+msgstr "最初"
+
+#. Fixme this should really set parent menu
+#. items insensitve
+#: ../src/PhotoTagMenu.cs:72
+msgid "(No Tags)"
+msgstr "(無標籤)"
+
+#: ../src/PhotoVersionCommands.cs:55
+msgid "Create New Version"
+msgstr "建立新的版本"
+
+#: ../src/PhotoVersionCommands.cs:56
+msgid "Name:"
+msgstr "名稱："
+
+#: ../src/PhotoVersionCommands.cs:60
+msgid "Rename Version"
+msgstr "重新命名版本"
+
+#: ../src/PhotoVersionCommands.cs:61
+msgid "New name:"
+msgstr "新的名稱："
+
+#: ../src/PhotoVersionCommands.cs:107
+msgid "Could not create a new version"
+msgstr "無法建立新版本"
+
+#: ../src/PhotoVersionCommands.cs:108
+#, fuzzy, csharp-format
+msgid "Received exception \"{0}\". Unable to create version \"{1}\""
+msgstr "收到異常 \"{0}\"。無法儲存圖像 {1}"
+
+#: ../src/PhotoVersionCommands.cs:135
+msgid "Really Delete?"
+msgstr "真的要刪除?"
+
+#: ../src/PhotoVersionCommands.cs:137
+msgid "Delete"
+msgstr "刪除"
+
+#: ../src/PhotoVersionCommands.cs:141
+#, csharp-format
+msgid "Really delete version \"{0}\"?"
+msgstr "真的要刪除版本 \"{0}\" ?"
+
+#. FIXME show error dialog.
+#: ../src/PhotoVersionCommands.cs:151
+msgid "Could not delete a version"
+msgstr "無法刪除版本"
+
+#: ../src/PhotoVersionCommands.cs:152
+#, fuzzy, csharp-format
+msgid "Received exception \"{0}\". Unable to delete version \"{1}\""
+msgstr "收到異常 \"{0}\"。無法儲存圖像 {1}"
+
+#: ../src/PhotoVersionCommands.cs:193
+msgid "Could not rename a version"
+msgstr "無法將版本重新命名"
+
+#: ../src/PhotoVersionCommands.cs:194
+#, fuzzy, csharp-format
+msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
+msgstr "收到異常 \"{0}\"。無法儲存圖像 {1}"
+
+#: ../src/PhotoVersionMenu.cs:66
+msgid "(No Edits)"
+msgstr "(無修改)"
+
+#: ../src/PhotoView.cs:62
+msgid "No Constraint"
+msgstr "無限制"
+
+#: ../src/PhotoView.cs:63
+msgid "4 x 3 (Book)"
+msgstr "4 x 3 (書本)"
+
+#: ../src/PhotoView.cs:64
+msgid "4 x 6 (Postcard)"
+msgstr "4 x 6 (明信片)"
+
+#: ../src/PhotoView.cs:65
+msgid "5 x 7 (L, 2L)"
+msgstr "5 x 7 (L, 2L)"
+
+#: ../src/PhotoView.cs:66
+msgid "8 x 10"
+msgstr "8 x 10"
+
+#. new SelectionConstraint (Catalog.GetString ("4 x 3 Portrait (Book)"), 3.0 / 4.0),
+#. new SelectionConstraint (Catalog.GetString ("4 x 6 Portrait (Postcard)"), 4.0 / 6.0),
+#. new SelectionConstraint (Catalog.GetString ("5 x 7 Portrait (L, 2L)"), 5.0 / 7.0),
+#. new SelectionConstraint (Catalog.GetString ("8 x 10 Portrait"), 8.0 / 10.0),
+#: ../src/PhotoView.cs:71
+msgid "Square"
+msgstr "正方形"
+
+#: ../src/PhotoView.cs:151
+#, fuzzy
+msgid "Crop photo to selected area"
+msgstr "裁剪圖像到選擇區域"
+
+#: ../src/PhotoView.cs:152
+msgid "Remove redeye from selected area"
+msgstr "從選擇區域中移除紅眼"
+
+#: ../src/PhotoView.cs:154
+msgid "Select an area to crop"
+msgstr ""
+
+#: ../src/PhotoView.cs:155
+msgid "Select an area to remove redeye"
+msgstr "選擇區域以移除紅眼"
+
+#: ../src/PhotoView.cs:316
+#, fuzzy
+msgid "No selection available"
+msgstr "無可用的 EXIF 資訊"
+
+#: ../src/PhotoView.cs:317
+msgid ""
+"This tool requires an active selection. Please select a region of the photo "
+"and try the operation again"
+msgstr ""
+
+#: ../src/PhotoView.cs:475
+msgid "Comment:"
+msgstr "註解："
+
+#: ../src/PhotoView.cs:491
+msgid "Constrain the aspect ratio of the selection"
+msgstr ""
+
+#: ../src/PhotoView.cs:493
+msgid "Crop"
+msgstr "裁剪"
+
+#: ../src/PhotoView.cs:497
+msgid "Reduce Red-Eye"
+msgstr "減少紅眼"
+
+#: ../src/PhotoView.cs:501
+msgid "Adjust Colors"
+msgstr "調節色彩"
+
+#: ../src/PhotoView.cs:503
+msgid "Adjust the photo colors"
+msgstr "調整圖片色彩"
+
+#: ../src/PhotoView.cs:506
+msgid "Desaturate"
+msgstr ""
+
+#: ../src/PhotoView.cs:508
+msgid "Convert the photo to black and white"
+msgstr ""
+
+#: ../src/PhotoView.cs:511
+msgid "Sepia Tone"
+msgstr ""
+
+#: ../src/PhotoView.cs:513
+msgid "Convert the photo to sepia tones"
+msgstr ""
+
+#: ../src/PhotoView.cs:543
+msgid "Previous photo"
+msgstr "上一張圖片"
+
+#: ../src/PhotoView.cs:548
+msgid "Next photo"
+msgstr "下一張圖片"
+
+#: ../src/PicasaWebExport.cs:416
+#, fuzzy
+msgid "Error while creating Album"
+msgstr "傳輸時發生錯誤"
+
+#: ../src/PicasaWebExport.cs:417
+#, csharp-format
+msgid ""
+"The following error was encountered while attempting to create an album: {0}"
+msgstr ""
+
+#: ../src/PicasaWebExport.cs:571
+#, csharp-format
+msgid "{0} Sent"
+msgstr "已送出{0}"
+
+#: ../src/PicasaWebExport.cs:573
+#, fuzzy, csharp-format
+msgid "{0} of approx. {1}"
+msgstr "{1} 之中的第 {0}"
+
+#: ../src/PicasaWebExport.cs:603 ../src/SmugMugExport.cs:540
+#, fuzzy, csharp-format
+msgid "Uploading picture \"{0}\" ({1} of {2})"
+msgstr "正在上傳圖片 \"{0}\""
+
+#: ../src/PicasaWebExport.cs:634 ../src/SmugMugExport.cs:569
+#, fuzzy, csharp-format
+msgid "Error Uploading To Gallery: {0}"
+msgstr "上傳到圖庫時發生錯誤"
+
+#: ../src/PicasaWebExport.cs:718
+msgid "Available space :"
+msgstr "可用空間："
+
+#: ../src/Preferences.cs:194
+msgid "Photos"
+msgstr "相片"
+
+#: ../src/QueryWidget.cs:37
+msgid "Find: "
+msgstr "尋找："
+
+#: ../src/QueryWidget.cs:42
+msgid "Untagged photos"
+msgstr "未標籤的圖片"
+
+#: ../src/QueryWidget.cs:50
+#, fuzzy
+msgid "Import roll"
+msgstr "匯入"
+
+#: ../src/QueryWidget.cs:70
+msgid "Clear search"
+msgstr "清除搜尋"
+
+#: ../src/QueryWidget.cs:72
+msgid "No matching photos found"
+msgstr "找不到符合的圖像"
+
+#: ../src/QueryWidget.cs:103
+msgid "Hide Find Bar"
+msgstr "隱藏搜尋列"
+
+#: ../src/QueryWidget.cs:109
+msgid "Show Find Bar"
+msgstr "顯示搜尋列"
+
+#: ../src/RotateCommand.cs:200
+msgid "Rotating photos"
+msgstr "正在旋轉圖片"
+
+#: ../src/RotateCommand.cs:211
+#, csharp-format
+msgid "Rotating photo \"{0}\""
+msgstr "正在旋轉圖片\"{0}\""
+
+#: ../src/RotateCommand.cs:237
+#, csharp-format
+msgid "Unable to rotate photo"
+msgid_plural "Unable to rotate {0} photos"
+msgstr[0] "無法旋轉這張圖片"
+msgstr[1] "無法旋轉這 {0} 張圖片"
+
+#: ../src/RotateCommand.cs:241
+#, fuzzy, csharp-format
+msgid ""
+"The photo could not be rotated because it is on a read only file system or "
+"media such as a CDROM.  Please check the permissions and try again"
+msgid_plural ""
+"{0} photos could not be rotated because they are on a read only file system "
+"or media such as a CDROM.  Please check the permissions and try again"
+msgstr[0] "無法旋轉這張圖像，因為它位於一個唯讀的檔案系統或在 CD-ROM 上。請檢查權限，然後再試一次。無法旋轉這{0}張圖像，因為它們位於一個唯讀的檔案系統或在 CD-ROM 上。請檢查權限，然後再試一次。"
+msgstr[1] "無法旋轉這張圖像，因為它位於一個唯讀的檔案系統或在 CD-ROM 上。請檢查權限，然後再試一次。無法旋轉這{0}張圖像，因為它們位於一個唯讀的檔案系統或在 CD-ROM 上。請檢查權限，然後再試一次。"
+
+#: ../src/RotateCommand.cs:263
+#, fuzzy, csharp-format
+msgid "Received error \"{0}\" while attempting to rotate {1}"
+msgstr "連接數碼相機時收到錯誤 \"{0}\""
+
+#: ../src/RotateCommand.cs:268
+msgid "Error while rotating photo."
+msgstr "旋轉圖片時發生錯誤。"
+
+#: ../src/SendEmail.cs:233
+msgid "Preparing email"
+msgstr "正在準備電子郵件"
+
+#: ../src/SendEmail.cs:285
+#, csharp-format
+msgid "Exporting picture \"{0}\""
+msgstr "正在匯出圖片\"{0}\""
+
+#. Send the mail :)
+#: ../src/SendEmail.cs:310
+msgid "my photos"
+msgstr "我的圖片"
+
+#: ../src/SingleView.cs:75
+msgid "Rotate photo left"
+msgstr "圖片往左旋轉"
+
+#: ../src/SingleView.cs:80
+msgid "Rotate photo right"
+msgstr "圖片往右旋轉"
+
+#: ../src/SingleView.cs:326
+msgid "Open"
+msgstr "開啟"
+
+#: ../src/SingleView.cs:428 ../src/f-spot.glade.h:187
+msgid "Rotate _Left"
+msgstr "往左旋轉(_L)"
+
+#: ../src/SingleView.cs:429 ../src/f-spot.glade.h:188
+msgid "Rotate _Right"
+msgstr "往右旋轉(_R)"
+
+#: ../src/SingleView.cs:431
+msgid "Set as Background"
+msgstr "設為背景"
+
+#: ../src/TagCommands.cs:89 ../src/TagCommands.cs:217
+#: ../src/TagSelectionWidget.cs:506
+msgid "This name is already in use"
+msgstr "這個名稱已被使用"
+
+#: ../src/TagCommands.cs:136
+msgid "Create New Tag"
+msgstr "建立新的標籤"
+
+#: ../src/TagCommands.cs:137
+msgid "Name of New Tag:"
+msgstr "新標籤的名稱："
+
+#: ../src/TagCommands.cs:287
+msgid "Edit Tag"
+msgstr "編輯標籤"
+
+#: ../src/TagCommands.cs:288
+msgid "Tag Name:"
+msgstr "標籤名稱："
+
+#: ../src/TagCommands.cs:421
+#, csharp-format
+msgid "Photo {0} of {1}"
+msgstr "{1}張相片中的第{0}張"
+
+#: ../src/TagCommands.cs:451
+#, csharp-format
+msgid "Edit Icon for Tag {0}"
+msgstr "修改標籤 {0} 的圖示"
+
+#: ../src/TagCommands.cs:467
+msgid "Select Photo from file"
+msgstr "從檔案選擇圖片"
+
+#: ../src/TagCommands.cs:490
+#, csharp-format
+msgid ""
+"\n"
+"<b>From Photo</b>\n"
+" You can use one of your library photos as an icon for this tag.\n"
+" However, first you must have at least one photo associated\n"
+" with this tag. Please tag a photo as '{0}' and return here\n"
+" to use it as an icon."
+msgstr ""
+
+#: ../src/TagMenu.cs:89 ../src/TagPopup.cs:34
+msgid "Create New Tag..."
+msgstr "建立新標籤..."
+
+#: ../src/TagPopup.cs:24
+#, csharp-format
+msgid "Find"
+msgid_plural "Find"
+msgstr[0] "尋找"
+msgstr[1] "尋找"
+
+#: ../src/TagPopup.cs:40
+msgid "Edit Selected Tag..."
+msgstr "編輯選定的標籤..."
+
+#: ../src/TagPopup.cs:44
+msgid "Delete Tag"
+msgid_plural "Delete Tags"
+msgstr[0] "刪除標籤"
+msgstr[1] "刪除標籤"
+
+#: ../src/TagPopup.cs:50
+msgid "Attach Tag to Selection"
+msgid_plural "Attach Tags to Selection"
+msgstr[0] "附加標籤到選擇的項目"
+msgstr[1] "附加標籤到選擇的項目"
+
+#: ../src/TagPopup.cs:54
+msgid "Remove Tag From Selection"
+msgid_plural "Remove Tags From Selection"
+msgstr[0] "從選擇項目移除標籤"
+msgstr[1] "從選擇項目移除標籤"
+
+#: ../src/TagPopup.cs:60
+msgid "Merge Tags"
+msgstr "合併標籤"
+
+#: ../src/TagQueryWidget.cs:31
+#, csharp-format
+msgid "Include Photos Tagged \"{0}\""
+msgstr ""
+
+#: ../src/TagQueryWidget.cs:36
+#, csharp-format
+msgid "Exclude Photos Tagged \"{0}\""
+msgstr ""
+
+#: ../src/TagQueryWidget.cs:41
+msgid "Remove From Search"
+msgstr "從搜尋中移除"
+
+#: ../src/TagQueryWidget.cs:85
+#, csharp-format
+msgid "Find _With"
+msgid_plural "Find _With"
+msgstr[0] "尋找以(_W)"
+msgstr[1] "尋找以(_W)"
+
+#: ../src/TagQueryWidget.cs:111
+msgid "All"
+msgstr "全部"
+
+#: ../src/TagQueryWidget.cs:146 ../src/Term.cs:591
+#, csharp-format
+msgid "Not {0}"
+msgstr ""
+
+#: ../src/TagQueryWidget.cs:276
+msgid "Drag tags here to search for them"
+msgstr ""
+
+#: ../src/TagSelectionWidget.cs:505
+msgid "Error renaming tag"
+msgstr "重新命名標籤時發生錯誤"
+
+#: ../src/TagStore.cs:415
+msgid "Favorites"
+msgstr "最愛"
+
+#: ../src/TagStore.cs:420
+msgid "Hidden"
+msgstr "隱藏"
+
+#: ../src/TagStore.cs:428
+msgid "People"
+msgstr "人物"
+
+#: ../src/TagStore.cs:433
+msgid "Places"
+msgstr "地方"
+
+#: ../src/TagStore.cs:438
+msgid "Events"
+msgstr "事件"
+
+#: ../src/Term.cs:297
+msgid " and "
+msgstr " 及 "
+
+#. operators.Add (Catalog.GetString (" && "));
+#: ../src/Term.cs:299
+msgid ", "
+msgstr "， "
+
+#: ../src/Term.cs:355
+msgid " or "
+msgstr " 或 "
+
+#: ../src/Term.cs:379 ../src/f-spot.glade.h:321
+msgid "or"
+msgstr "或"
+
+#: ../src/ThreadProgressDialog.cs:66
+msgid "Retry"
+msgstr "重試"
+
+#: ../src/ThreadProgressDialog.cs:68
+msgid "Skip"
+msgstr "跳過"
+
+#. The preceding text here is the second checkbutton in the Time dialog
+#. that says "Space all photos by []"
+#: ../src/TimeDialog.cs:125 ../src/f-spot.glade.h:320
+#, csharp-format
+msgid "min. Starting at {0}"
+msgstr ""
+
+#: ../src/TimeDialog.cs:130 ../src/f-spot.glade.h:204
+#, csharp-format
+msgid "Shift all photos by {0}"
+msgstr ""
+
+#. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
+#: ../src/Unix.cs:25
+msgid "Unable to create temporary file"
+msgstr "無法建立暫存檔"
+
+#: ../src/Updater.cs:230
+msgid "Updating F-Spot Database"
+msgstr "正在更新 F-Spot 資料庫"
+
+#: ../src/Updater.cs:231
+msgid ""
+"Please wait while your F-Spot gallery's database is updated. This may take "
+"some time."
+msgstr ""
+
+#: ../src/Util.cs:428
+msgid "There was an error invoking the external handler"
+msgstr "發生外部錯誤"
+
+#: ../src/Util.cs:429
+#, csharp-format
+msgid "Received error:{1}\"{0}\"{1}"
+msgstr "收到錯誤：{1}\"{0}\"{1}"
+
+#: ../src/Util.cs:453
+msgid ""
+"The \"F-Spot Manual\" could not be found.  Please verify that your "
+"installation has been completed successfully."
+msgstr ""
+
+#: ../src/Util.cs:461
+msgid "Help not found"
+msgstr "找不到說明"
+
+#: ../src/Widgets/FindBar.cs:83
+msgid "Find:"
+msgstr "尋找："
+
+#: ../src/XmpTagsImporter.cs:87
+msgid "Location"
+msgstr "位置"
+
+#: ../src/XmpTagsImporter.cs:88
+msgid "Country"
+msgstr "國家"
+
+#: ../src/XmpTagsImporter.cs:89
+msgid "City"
+msgstr "城市"
+
+#: ../src/XmpTagsImporter.cs:90
+msgid "State"
+msgstr "州"
+
+#. namespace
 #: ../src/f-spot.glade.h:1
 msgid "\n"
 msgstr "\n"
@@ -370,286 +2283,496 @@ msgid " "
 msgstr " "
 
 #: ../src/f-spot.glade.h:4
-msgid "..."
-msgstr "..."
+msgid "0000:00:00 00:00:00"
+msgstr "0000:00:00 00:00:00"
 
 #: ../src/f-spot.glade.h:5
+msgid "00:00:00"
+msgstr "00:00:00"
+
+#: ../src/f-spot.glade.h:6
+msgid "1 of 1"
+msgstr "1 之中的第 1"
+
+#: ../src/f-spot.glade.h:7
+msgid "1024 px"
+msgstr "1024 px"
+
+#: ../src/f-spot.glade.h:8
+msgid "320 px"
+msgstr "320 px"
+
+#: ../src/f-spot.glade.h:9
+msgid "480 px"
+msgstr "480 px"
+
+#: ../src/f-spot.glade.h:10
+msgid "5"
+msgstr "5"
+
+#: ../src/f-spot.glade.h:11
+msgid "640 px"
+msgstr "640 px"
+
+#: ../src/f-spot.glade.h:12
+msgid "800 px"
+msgstr "800 px"
+
+#: ../src/f-spot.glade.h:13
 msgid "<b></b>"
 msgstr "<b></b>"
 
-#: ../src/f-spot.glade.h:6
+#: ../src/f-spot.glade.h:14
 msgid "<b>Account</b>"
 msgstr "<b>帳號</b>"
 
-#: ../src/f-spot.glade.h:7
+#: ../src/f-spot.glade.h:15
+msgid "<b>Action</b>"
+msgstr "<b>行為</b>"
+
+#: ../src/f-spot.glade.h:16
 msgid "<b>Album</b>"
 msgstr "<b>相簿</b>"
 
-#: ../src/f-spot.glade.h:8
+#: ../src/f-spot.glade.h:17
+#, fuzzy
+msgid "<b>Co_rrections</b>"
+msgstr "<b>相片</b>"
+
+#: ../src/f-spot.glade.h:18
+#, fuzzy
+msgid "<b>Color Management</b>"
+msgstr "<b>色溫</b>"
+
+#: ../src/f-spot.glade.h:19
 msgid "<b>Color Temperature</b>"
 msgstr "<b>色溫</b>"
 
-#: ../src/f-spot.glade.h:9
+#: ../src/f-spot.glade.h:20
 msgid "<b>Destination</b>"
 msgstr "<b>目的地</b>"
 
-#: ../src/f-spot.glade.h:10
+#: ../src/f-spot.glade.h:21
 msgid "<b>End Date</b>"
 msgstr "<b>結束日期</b>"
 
-#: ../src/f-spot.glade.h:11
+#: ../src/f-spot.glade.h:22
 msgid "<b>Export Method</b>"
 msgstr "<b>匯出方式</b>"
 
-#: ../src/f-spot.glade.h:12
+#: ../src/f-spot.glade.h:23
 msgid "<b>Exposure</b>"
 msgstr "<b>曝光率</b>"
 
-#: ../src/f-spot.glade.h:13
-msgid "<b>From Image</b>"
-msgstr "<b>從圖片</b>"
+#: ../src/f-spot.glade.h:24
+#, fuzzy
+msgid "<b>From External Photo</b>"
+msgstr "<b>相片</b>"
 
-#: ../src/f-spot.glade.h:14
+#: ../src/f-spot.glade.h:25
+#, fuzzy
+msgid "<b>From Photo</b>"
+msgstr "<b>相片</b>"
+
+#: ../src/f-spot.glade.h:26
 msgid "<b>Gallery</b>"
 msgstr "<b>圖庫</b>"
 
-#: ../src/f-spot.glade.h:15
+#: ../src/f-spot.glade.h:27
+msgid "<b>Histo_gram</b>"
+msgstr "<b>長條圖(_G)</b>"
+
+#: ../src/f-spot.glade.h:28
 msgid "<b>Histogram</b>"
 msgstr "<b>長條圖</b>"
 
-#: ../src/f-spot.glade.h:16
-msgid "<b>Items to Burn</b>"
-msgstr "<b>要燒錄的項目</b>"
+#: ../src/f-spot.glade.h:29
+#, fuzzy
+msgid "<b>Image Interpolation</b>"
+msgstr "<b>目的地</b>"
 
-#: ../src/f-spot.glade.h:17
+#: ../src/f-spot.glade.h:30
+msgid "<b>Import Settings</b>"
+msgstr "<b>匯入設定</b>"
+
+#: ../src/f-spot.glade.h:31
+msgid "<b>Metadata</b>"
+msgstr "<b>Metadata</b>"
+
+#: ../src/f-spot.glade.h:32
 msgid "<b>Photograph Layout</b>"
 msgstr "<b>相片布局</b>"
 
-#: ../src/f-spot.glade.h:18
+#: ../src/f-spot.glade.h:33
+msgid "<b>Photos to Burn</b>"
+msgstr "<b>要燒錄的圖片</b>"
+
+#: ../src/f-spot.glade.h:34
 msgid "<b>Photos</b>"
 msgstr "<b>相片</b>"
 
-#: ../src/f-spot.glade.h:19
+#: ../src/f-spot.glade.h:35
+msgid "<b>PicasaWeb Export</b>"
+msgstr "<b>PicasaWeb 匯出</b>"
+
+#: ../src/f-spot.glade.h:36
 msgid "<b>Predefined</b>"
 msgstr "<b>預先定義</b>"
 
-#: ../src/f-spot.glade.h:20
+#: ../src/f-spot.glade.h:37
 msgid "<b>Preview</b>"
 msgstr "<b>預覽</b>"
 
-#: ../src/f-spot.glade.h:21
+#: ../src/f-spot.glade.h:38
 msgid "<b>Printer Details</b>"
 msgstr "<b>打印機細節</b>"
 
-#: ../src/f-spot.glade.h:22
+#: ../src/f-spot.glade.h:39
+#, fuzzy
+msgid "<b>Reference Photo</b>"
+msgstr "<b>相片</b>"
+
+#: ../src/f-spot.glade.h:40
+msgid "<b>Screensaver</b>"
+msgstr "<b>螢幕保護程式</b>"
+
+#: ../src/f-spot.glade.h:41
+msgid "<b>Select period</b>"
+msgstr "<b>選擇期間</b>"
+
+#: ../src/f-spot.glade.h:42
+msgid "<b>Size</b>"
+msgstr "<b>大小</b>"
+
+#: ../src/f-spot.glade.h:43
+msgid "<b>SmugMug Export</b>"
+msgstr "<b>SmugMug 匯出</b>"
+
+#: ../src/f-spot.glade.h:44
 msgid "<b>Start Date</b>"
 msgstr "<b>開始日期</b>"
 
-#: ../src/f-spot.glade.h:23
+#: ../src/f-spot.glade.h:45
 msgid "<b>Style</b>"
 msgstr "<b>風格</b>"
 
-#: ../src/f-spot.glade.h:24
+#: ../src/f-spot.glade.h:46
+msgid "<b>Summary</b>"
+msgstr "<b>摘要</b>"
+
+#: ../src/f-spot.glade.h:47
+#, fuzzy
+msgid "<b>Transparent Parts</b>"
+msgstr "<b>開始日期</b>"
+
+#: ../src/f-spot.glade.h:48
+msgid "<b>View all pictures imported</b>"
+msgstr "<b>檢視匯入的所有圖片</b>"
+
+#: ../src/f-spot.glade.h:49
+msgid "<b>Viewing permissions</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:50
+msgid "<b>_White Balance</b>"
+msgstr "<b>白平衡(_W)</b>"
+
+#: ../src/f-spot.glade.h:51
 msgid "<small> </small>"
 msgstr "<small> </small>"
 
-#: ../src/f-spot.glade.h:25
+#: ../src/f-spot.glade.h:52
 msgid "<small></small>"
 msgstr "<small></small>"
 
-#: ../src/f-spot.glade.h:26
+#: ../src/f-spot.glade.h:53
+msgid ""
+"<small><i>Choose the folder where F-Spot should store newly imported photos</"
+"i></small>"
+msgstr "<small><i>選擇 F-Spot 匯入新圖片時儲存的資料夾</i></small>"
+
+#: ../src/f-spot.glade.h:54
+msgid ""
+"<small><i>Enable this option to store tags and descriptions inside \n"
+"supported image formats.</i></small>"
+msgstr "<small><i>啟用這個選項以儲存標籤及描述資訊於支援的圖像格式中。</i></small>"
+
+#: ../src/f-spot.glade.h:56
+msgid ""
+"<small><i>Enable this to allow interpolation on zoomed images. You should'nt "
+"disable this for viewing photos, but disabling the interpolation could be "
+"usefull in icon design.</i></small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:57
+msgid ""
+"<small><i>While acting as a screensaver, F-Spot can display all of your "
+"images, or a small subset based on tags.</i></small>"
+msgstr "<small><i>當作為螢幕保護程式時，F-Spot 可以顯示你所有的圖片，或是根據據標籤顯示一小部份。</i></small>"
+
+#: ../src/f-spot.glade.h:58
+msgid ""
+"<small><i>You can choose how to display transparent parts in images. This "
+"option has no effect on photos, but setting this as check pattern or custom "
+"color could be usefull when viewing icons or other artworks with transparent "
+"parts.</i></small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:59
+msgid "<small>C_ontrast:</small>"
+msgstr "<small>對比(_O)：</small>"
+
+#: ../src/f-spot.glade.h:60
+#, fuzzy
+msgid "<small>Te_mp:</small>"
+msgstr "<small></small>"
+
+#: ../src/f-spot.glade.h:61
+msgid "<small>_Brightness:</small>"
+msgstr "<small>_亮度：</small>"
+
+#: ../src/f-spot.glade.h:62
+msgid "<small>_Exposure:</small>"
+msgstr "<small>曝光(_E)：</small>"
+
+#: ../src/f-spot.glade.h:63
+msgid "<small>_Hue:</small>"
+msgstr "<small>色調(_H)：</small>"
+
+#: ../src/f-spot.glade.h:64
+#, fuzzy
+msgid "<small>_Saturation:</small>"
+msgstr "<small></small>"
+
+#: ../src/f-spot.glade.h:65
+#, fuzzy
+msgid "<small>_Tint:</small>"
+msgstr "<small></small>"
+
+#: ../src/f-spot.glade.h:66
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
 msgstr "<span weight='bold' size='larger'>連接到圖庫時發生錯誤</span>\n"
 
-#: ../src/f-spot.glade.h:28
+#: ../src/f-spot.glade.h:68
+msgid ""
+"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgstr "<span weight='bold' size='larger'>你的 Google 帳號已被鎖定</span>\n"
+
+#: ../src/f-spot.glade.h:70
 msgid "Ad_just Color..."
 msgstr "調節色彩(_J)..."
 
-#: ../src/f-spot.glade.h:29
+#: ../src/f-spot.glade.h:71
 msgid "Adjust Color"
 msgstr "調節色彩"
 
-#: ../src/f-spot.glade.h:30
-msgid "Arranged _By"
-msgstr "排列次序(_B)"
+#: ../src/f-spot.glade.h:72
+msgid "Adjust Time"
+msgstr "調整時間"
 
-#: ../src/f-spot.glade.h:31
-msgid "Attach Tag:"
+#: ../src/f-spot.glade.h:73
+msgid "Adjust _Time..."
+msgstr "調整時間(_T)..."
+
+#: ../src/f-spot.glade.h:74
+msgid "Adjusted date: "
+msgstr "調整後的日期："
+
+#: ../src/f-spot.glade.h:76
+msgid "Arrange _by"
+msgstr "排列根據(_B)"
+
+#: ../src/f-spot.glade.h:77
+#, fuzzy
+msgid "As _background"
+msgstr "設定為背景(_B)"
+
+#: ../src/f-spot.glade.h:78
+#, fuzzy
+msgid "As check pattern"
+msgstr "檢查類型"
+
+#: ../src/f-spot.glade.h:79
+#, fuzzy
+msgid "As custom color: "
+msgstr "調節色彩"
+
+#: ../src/f-spot.glade.h:80
+msgid "Attach Tags:"
 msgstr "附加標籤："
 
-#: ../src/f-spot.glade.h:32
-msgid "Border:"
-msgstr "邊框："
+#: ../src/f-spot.glade.h:81
+msgid "Attach tag:"
+msgstr "附加標籤："
 
-#: ../src/f-spot.glade.h:33
-msgid "Brightness:"
-msgstr "明暗："
+#: ../src/f-spot.glade.h:83
+msgid "Autorotate"
+msgstr "自動旋轉"
 
-#: ../src/f-spot.glade.h:34 ../src/StockIcons.cs:26
-msgid "Browse"
-msgstr "瀏覽"
+#: ../src/f-spot.glade.h:84
+msgid "Beneath _Photos"
+msgstr ""
 
-#: ../src/f-spot.glade.h:35
-msgid "Browse Previously Scheduled Files"
-msgstr "瀏覽以往排程的檔案"
-
-#: ../src/f-spot.glade.h:36
+#: ../src/f-spot.glade.h:86
 msgid "CD"
 msgstr "CD"
 
-#: ../src/f-spot.glade.h:37
+#: ../src/f-spot.glade.h:87
+msgid "C_aption:"
+msgstr "標題(_A)："
+
+#: ../src/f-spot.glade.h:88
+msgid "C_ontrast:"
+msgstr "對比(_O)："
+
+#: ../src/f-spot.glade.h:89
 msgid "Camera Selection"
 msgstr "選擇的數碼相機"
 
-#: ../src/f-spot.glade.h:38
-msgid "Caption:"
-msgstr "標題："
+#: ../src/f-spot.glade.h:90
+msgid "Cancel, do not change the current timeline. "
+msgstr ""
 
-#: ../src/f-spot.glade.h:39
-msgid "Category:"
-msgstr "分類："
+#: ../src/f-spot.glade.h:91
+msgid "Clea_r Date Range"
+msgstr "清除日期範圍(_R)"
 
-#: ../src/f-spot.glade.h:40
+#: ../src/f-spot.glade.h:92
+msgid "Clear Roll Filter"
+msgstr ""
+
+#: ../src/f-spot.glade.h:93
 msgid "Co_nfigure"
 msgstr "組態(_N)"
 
-#: ../src/f-spot.glade.h:41
-msgid "Contrast:"
-msgstr "對比度："
+#: ../src/f-spot.glade.h:94
+msgid "Copy Locat_ion"
+msgstr "複製圖像位置(_I)"
 
-#: ../src/f-spot.glade.h:42
-msgid "Copy Files To: "
-msgstr "複製檔案到："
+#: ../src/f-spot.glade.h:95
+msgid "Copy files to the Photos folder"
+msgstr ""
 
-#: ../src/f-spot.glade.h:43
+#: ../src/f-spot.glade.h:96
 msgid "Create CD"
 msgstr "建立 CD"
 
-#: ../src/f-spot.glade.h:44
-msgid "Create New _Category..."
-msgstr "建立新的分類(_C)..."
+#: ../src/f-spot.glade.h:97
+msgid "Create Mail"
+msgstr "建立郵件"
 
-#: ../src/f-spot.glade.h:45
+#: ../src/f-spot.glade.h:98
 msgid "Create New _Tag..."
 msgstr "建立新的標籤(_T)..."
 
-#: ../src/f-spot.glade.h:46
-msgid "Create _new version..."
-msgstr "建立新的版本(_N)..."
+#: ../src/f-spot.glade.h:99
+msgid "Create _New Version..."
+msgstr "建立新版本(_N)..."
 
-#: ../src/f-spot.glade.h:47
-msgid "Crop Photo to Fit"
+#: ../src/f-spot.glade.h:100
+msgid "Create _gallery using \"Original\""
+msgstr ""
+
+#: ../src/f-spot.glade.h:101
+msgid "Create a mail with the selected photos (possible resized) attached"
+msgstr ""
+
+#: ../src/f-spot.glade.h:102
+msgid "Create standalone _web gallery"
+msgstr ""
+
+#: ../src/f-spot.glade.h:103
+#, fuzzy
+msgid "Crop photo to _fit"
 msgstr "裁剪相片來迎合"
 
-#: ../src/f-spot.glade.h:48
-msgid "Description:"
-msgstr "描述："
+#: ../src/f-spot.glade.h:104
+msgid "Current date:"
+msgstr "目前日期："
 
-#: ../src/f-spot.glade.h:49
-msgid "Destination Temp"
-msgstr "目標色溫"
+#: ../src/f-spot.glade.h:105
+msgid "D_escription:"
+msgstr "描述(_D)："
 
-#: ../src/f-spot.glade.h:50
-msgid "Directory"
-msgstr "目錄"
+#: ../src/f-spot.glade.h:106
+msgid "Display File Names"
+msgstr "顯示檔案名稱"
 
-#: ../src/f-spot.glade.h:51
-msgid "Display Side_bar"
-msgstr "顯示側邊列(_B)"
+#: ../src/f-spot.glade.h:107
+msgid "Display only those photos that were imported in specified Rolls."
+msgstr ""
 
-#: ../src/f-spot.glade.h:52
-msgid "Display T_ags"
-msgstr "顯示標籤(_A)"
+#: ../src/f-spot.glade.h:108
+msgid "Do not send a mail"
+msgstr ""
 
-#: ../src/f-spot.glade.h:53
-msgid "Display _Dates"
-msgstr "顯示日期(_D)"
+#: ../src/f-spot.glade.h:109
+msgid "E-_Mail:"
+msgstr "電子郵件(_M)："
 
-#: ../src/f-spot.glade.h:54
-msgid "Display _Timeline"
-msgstr "顯示時間線(_T)"
+#: ../src/f-spot.glade.h:110
+msgid "E_xport titles and comments"
+msgstr "匯出標題和註解(_X)"
 
-#: ../src/f-spot.glade.h:55
-msgid "E-Mail:"
-msgstr "電子郵件："
+#: ../src/f-spot.glade.h:111
+msgid "Edit"
+msgstr "編輯"
 
-#: ../src/f-spot.glade.h:56
-msgid "E_xport To CD..."
-msgstr "匯出到 CD(_X)..."
-
-#: ../src/f-spot.glade.h:57
+#: ../src/f-spot.glade.h:112
 msgid "Edit Tag Icon"
 msgstr "編輯標籤圖示"
 
-#: ../src/f-spot.glade.h:58
+#: ../src/f-spot.glade.h:113
+msgid "Edit icon"
+msgstr "編輯圖示"
+
+#: ../src/f-spot.glade.h:114
+msgid "Estimated new size"
+msgstr ""
+
+#: ../src/f-spot.glade.h:115
 msgid "Export"
 msgstr "匯出"
 
-#: ../src/f-spot.glade.h:59
-msgid "Export Tags and Categories"
-msgstr "匯出標籤和分類"
-
-#: ../src/f-spot.glade.h:60
-msgid "Export tags and categories"
-msgstr "匯出標籤和分類"
-
-#: ../src/f-spot.glade.h:61
-msgid "Export titles and comments"
+#: ../src/f-spot.glade.h:116
+#, fuzzy
+msgid "Export _titles and comments"
 msgstr "匯出標題和註解"
 
-#: ../src/f-spot.glade.h:62
-msgid "Export to Album:"
-msgstr "匯出到圖庫："
-
-#: ../src/f-spot.glade.h:63
-msgid "Export to Original"
+#: ../src/f-spot.glade.h:117
+msgid "Extra large"
 msgstr ""
 
-#: ../src/f-spot.glade.h:64
-msgid "Export to _Flickr..."
-msgstr "匯出到 _Flickr..."
-
-#: ../src/f-spot.glade.h:65
-msgid "Export to _Folder..."
-msgstr "匯出到資料夾(_F)..."
-
-#: ../src/f-spot.glade.h:66
-msgid "Export to _Web Gallery..."
-msgstr "匯出到網上圖庫(_W)..."
-
-#: ../src/f-spot.glade.h:67
-msgid "F-Spot"
-msgstr "F-Spot"
-
-#: ../src/f-spot.glade.h:69
-msgid "F-Spot Photo Viewer"
-msgstr "F-Spot 相片檢視器"
-
-#: ../src/f-spot.glade.h:70
+#: ../src/f-spot.glade.h:119
 msgid "F-Spot View"
 msgstr "F-Spot 檢視"
 
-#: ../src/f-spot.glade.h:72
+#: ../src/f-spot.glade.h:120
+msgid ""
+"F-Spot needs your authorization in order to upload photos to your {0} "
+"account. Press the \"Authorize\" button to open a web browser and give F-"
+"Spot the authorization. "
+msgstr ""
+
+#: ../src/f-spot.glade.h:122
+msgid "Filter on selected rolls"
+msgstr ""
+
+#: ../src/f-spot.glade.h:123
 msgid "Fin_d"
 msgstr "尋找(_D)"
 
-#: ../src/f-spot.glade.h:73
-msgid "Find by _Tag"
-msgstr "依標籤尋找(_T)"
-
-#: ../src/f-spot.glade.h:74
-msgid "Flikr"
-msgstr "Flikr"
-
-#: ../src/f-spot.glade.h:75
+#: ../src/f-spot.glade.h:125
 msgid "Folder Export"
-msgstr "資料夾匯出"
+msgstr "匯出資料夾"
 
-#: ../src/f-spot.glade.h:76
-msgid "Folder URI:"
-msgstr "資料夾 URI："
+#: ../src/f-spot.glade.h:126
+msgid ""
+"From Screen\n"
+"Standard RGB"
+msgstr ""
 
-#: ../src/f-spot.glade.h:77
+#: ../src/f-spot.glade.h:128
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
@@ -657,23 +2780,20 @@ msgstr ""
 "全頁\n"
 "標準 - 4x6"
 
-#: ../src/f-spot.glade.h:79 ../src/StockIcons.cs:30
-msgid "Fullscreen"
-msgstr "全螢幕"
+#: ../src/f-spot.glade.h:130
+#, fuzzy
+msgid "G_allery Name:"
+msgstr "圖庫名稱："
 
-#: ../src/f-spot.glade.h:80
+#: ../src/f-spot.glade.h:131
+msgid "G_allery:"
+msgstr "G_allery:"
+
+#: ../src/f-spot.glade.h:132
 msgid "Gallery"
 msgstr "圖庫"
 
-#: ../src/f-spot.glade.h:81
-msgid "Gallery Name:"
-msgstr "圖庫名稱："
-
-#: ../src/f-spot.glade.h:82
-msgid "Gallery:"
-msgstr "圖庫："
-
-#: ../src/f-spot.glade.h:83
+#: ../src/f-spot.glade.h:133
 msgid ""
 "Hairline\n"
 "0.25\"\n"
@@ -685,35 +2805,57 @@ msgstr ""
 "0.5\"\n"
 "1\"\n"
 
-#: ../src/f-spot.glade.h:88
-msgid "Hue:"
-msgstr "色調："
+#: ../src/f-spot.glade.h:138
+msgid "Images tagged with:"
+msgstr "含有標籤的圖像："
 
-#: ../src/f-spot.glade.h:89
-msgid "Icon:"
-msgstr "圖示："
-
-#: ../src/f-spot.glade.h:90
-msgid "Import"
+#: ../src/f-spot.glade.h:140
+#, fuzzy
+msgid "Import Rolls"
 msgstr "匯入"
 
-#: ../src/f-spot.glade.h:91
+#: ../src/f-spot.glade.h:141
 msgid "Import Source:"
 msgstr "匯入來源："
 
-#: ../src/f-spot.glade.h:92
-msgid "Import files after copy."
-msgstr "複製之後匯入檔案。"
+#: ../src/f-spot.glade.h:142
+msgid "Include subfolders"
+msgstr "包括子目錄(_C)"
 
-#: ../src/f-spot.glade.h:93
-msgid "Import from C_amera..."
-msgstr "從數碼相機匯入(_C)..."
+#: ../src/f-spot.glade.h:143
+#, fuzzy
+msgid "Interpolate image on zoom"
+msgstr "補點類型(Interpolation)："
 
-#: ../src/f-spot.glade.h:94
-msgid "Include subdirectories."
-msgstr "包括子目錄。"
+#: ../src/f-spot.glade.h:144
+msgid "Large"
+msgstr "大"
 
-#: ../src/f-spot.glade.h:96
+#: ../src/f-spot.glade.h:145
+msgid "Last Import Roll"
+msgstr ""
+
+#: ../src/f-spot.glade.h:146
+msgid "Make F-Spot your screensaver"
+msgstr "使 F-Spot 做為你的螢幕保護程式"
+
+#: ../src/f-spot.glade.h:147
+msgid "Manage _Extensions"
+msgstr "管理延伸套件(_E)"
+
+#: ../src/f-spot.glade.h:148
+msgid "Medium"
+msgstr "中"
+
+#: ../src/f-spot.glade.h:150
+msgid "N_umber of Copies:"
+msgstr "副本數目(_U)："
+
+#: ../src/f-spot.glade.h:152
+msgid "No _image"
+msgstr "沒有圖像(_I)"
+
+#: ../src/f-spot.glade.h:153
 msgid ""
 "None\n"
 "Title\n"
@@ -727,115 +2869,139 @@ msgstr ""
 "日期\n"
 "相片細節"
 
-#: ../src/f-spot.glade.h:101
-msgid "Number of Copies:"
-msgstr "副本數目："
+#: ../src/f-spot.glade.h:158
+msgid "Number of photos in selected rolls :"
+msgstr ""
 
-#: ../src/f-spot.glade.h:102
-msgid "Open album in browser when done uploading"
-msgstr "完成上傳後在瀏覽器中開啟圖庫"
+#: ../src/f-spot.glade.h:159
+msgid "Number of pictures"
+msgstr "圖片數目："
 
-#: ../src/f-spot.glade.h:103
-msgid "Open destination when done exporting."
-msgstr "完成匯出後開啟目的地"
+#: ../src/f-spot.glade.h:160
+msgid "Only photos taken within these dates will be displayed."
+msgstr ""
 
-#: ../src/f-spot.glade.h:104
+#: ../src/f-spot.glade.h:161
+msgid "Open _Folder..."
+msgstr "開啟資料夾(_F)..."
+
+#: ../src/f-spot.glade.h:162
+msgid "Open _album in browser when done uploading"
+msgstr "完成上傳後在瀏覽器中開啟圖庫(_A)"
+
+#: ../src/f-spot.glade.h:163
+msgid "Open _destination when done exporting"
+msgstr "完成匯出後開啟目的地(_D)"
+
+#: ../src/f-spot.glade.h:165
+msgid "Original size (possible very large file size)"
+msgstr ""
+
+#: ../src/f-spot.glade.h:166
+msgid "P_arent Tag:"
+msgstr "父標籤(_A)："
+
+#: ../src/f-spot.glade.h:167
+msgid "P_hoto Source:"
+msgstr "相片來源(_H)："
+
+#: ../src/f-spot.glade.h:168
 msgid "Page 1 of 3"
 msgstr "3 頁中的第 1 頁"
 
-#: ../src/f-spot.glade.h:105
-msgid "Password:"
-msgstr "密碼："
-
-#: ../src/f-spot.glade.h:106
+#: ../src/f-spot.glade.h:169
 msgid "Pause"
 msgstr "暫停"
 
-#: ../src/f-spot.glade.h:107
+#: ../src/f-spot.glade.h:170
 msgid "Photo 0 of 0"
 msgstr "0 張中的第 0 張相片"
 
-#: ../src/f-spot.glade.h:108
-msgid "Photo Source:"
-msgstr "相片來源："
+#: ../src/f-spot.glade.h:171
+msgid "Photo _Size:"
+msgstr "相片大小(_S)："
 
-#: ../src/f-spot.glade.h:109
-msgid "PhotoSize:"
-msgstr "相片大小："
-
-#: ../src/f-spot.glade.h:110
-msgid "Plain Files."
-msgstr "一般檔案。"
-
-#: ../src/f-spot.glade.h:111
+#: ../src/f-spot.glade.h:172
 msgid "Please verify that the settings for this gallery are correct."
 msgstr "請確定這個圖庫的設定是正確的。"
 
-#: ../src/f-spot.glade.h:112
-msgid "Prefix: "
-msgstr "前綴："
+#: ../src/f-spot.glade.h:173
+msgid ""
+"Please verify that the settings for this gallery are correct.\n"
+"Enter the letters as they are shown in the image in\n"
+"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
+msgstr ""
 
-#: ../src/f-spot.glade.h:113
-msgid "Previous"
-msgstr "上一次"
+#: ../src/f-spot.glade.h:176
+msgid "Preferences"
+msgstr ""
 
-#: ../src/f-spot.glade.h:114
-msgid "Print Crop Marks"
-msgstr "打印裁剪標記"
+#: ../src/f-spot.glade.h:178
+msgid "Print"
+msgstr "打印"
 
-#: ../src/f-spot.glade.h:115
+#: ../src/f-spot.glade.h:179
+msgid "Print crop _marks"
+msgstr "打印裁剪標記(_M)"
+
+#: ../src/f-spot.glade.h:180
+msgid "Private"
+msgstr ""
+
+#: ../src/f-spot.glade.h:181
+msgid "Public"
+msgstr ""
+
+#: ../src/f-spot.glade.h:182
+msgid "Public Album"
+msgstr "公開相簿"
+
+#: ../src/f-spot.glade.h:183
+msgid "Re_fresh Thumbnail"
+msgstr "更新縮圖(_F)"
+
+#: ../src/f-spot.glade.h:184
 msgid "Rem_ove Tag"
 msgstr "移除標記(_O)"
 
-#: ../src/f-spot.glade.h:116
-msgid "Resize to: "
-msgstr "重新調整大小到："
+#: ../src/f-spot.glade.h:185
+msgid "Repair"
+msgstr ""
 
-#: ../src/f-spot.glade.h:117 ../src/StockIcons.cs:35
-msgid "Rotate _Left"
-msgstr "往左旋轉(_L)"
+#: ../src/f-spot.glade.h:186
+msgid "Reset"
+msgstr "重新設定"
 
-#: ../src/f-spot.glade.h:118 ../src/StockIcons.cs:36
-msgid "Rotate _Right"
-msgstr "往右旋轉(_R)"
+#: ../src/f-spot.glade.h:189
+msgid "Select A Folder"
+msgstr "選擇資料夾"
 
-#: ../src/f-spot.glade.h:119
-msgid "Saturation:"
-msgstr "飽和度："
-
-#: ../src/f-spot.glade.h:120
-msgid "Scale images to no larger than: "
-msgstr "圖像可放大的上限："
-
-#: ../src/f-spot.glade.h:121
-msgid "Select Files To Copy From Camera..."
-msgstr "選擇要從數碼相機複製的檔案..."
-
-#: ../src/f-spot.glade.h:122
-msgid "Select Tags..."
+#: ../src/f-spot.glade.h:190
+#, fuzzy
+msgid "Select Import Rolls..."
 msgstr "選擇標籤..."
 
-#: ../src/f-spot.glade.h:123
-msgid "Select _All"
-msgstr "選擇全部(_A)"
+#: ../src/f-spot.glade.h:191
+msgid "Select Photos to Copy From Camera..."
+msgstr "選擇要從數碼相機複製的檔案..."
 
-#: ../src/f-spot.glade.h:124
+#: ../src/f-spot.glade.h:193
 msgid "Select _None"
 msgstr "取消選擇(_N)"
 
-#: ../src/f-spot.glade.h:125
-msgid "Select a tag..."
-msgstr "選擇一個標籤..."
+#: ../src/f-spot.glade.h:194
+msgid "Select a Tag..."
+msgstr "選擇標籤..."
 
-#: ../src/f-spot.glade.h:126
-msgid "Select the camera you want to transfer files from."
-msgstr "請選擇你要傳輸檔案的數碼相機。"
+#: ../src/f-spot.glade.h:195
+msgid "Select the camera from which you want to transfer files"
+msgstr "請選擇你要傳輸檔案的數碼相機"
 
-#: ../src/f-spot.glade.h:127
+#: ../src/f-spot.glade.h:196
 msgid "Selected Camera: "
 msgstr "選擇的相機："
 
-#: ../src/f-spot.glade.h:128
+#: ../src/f-spot.glade.h:197
 msgid ""
 "Selection\n"
 "Gallery\n"
@@ -845,684 +3011,620 @@ msgstr ""
 "圖庫\n"
 "Viewport"
 
-#: ../src/f-spot.glade.h:131
-msgid "Send _Mail..."
-msgstr "傳送郵件(_M)..."
+#: ../src/f-spot.glade.h:200
+msgid "Send by _Mail..."
+msgstr "以郵件傳送(_M)..."
 
-#: ../src/f-spot.glade.h:132
+#: ../src/f-spot.glade.h:201
 msgid "Set _Date Range..."
 msgstr "設定日期範圍(_D)..."
 
-#: ../src/f-spot.glade.h:133
+#: ../src/f-spot.glade.h:202
 msgid "Set as _Background"
 msgstr "設定為背景(_B)"
 
-#: ../src/f-spot.glade.h:134
+#: ../src/f-spot.glade.h:203
+msgid "Set date range"
+msgstr "設定日期範圍"
+
+#: ../src/f-spot.glade.h:205
+msgid "Show all photos."
+msgstr "顯示所有圖片。"
+
+#: ../src/f-spot.glade.h:206
 msgid "Show or hide the side pane"
 msgstr "顯示或隱藏側面的長方格"
 
-#: ../src/f-spot.glade.h:135
+#: ../src/f-spot.glade.h:207
 msgid "Show or hide the toolbar"
 msgstr "顯示或隱藏工具列"
 
-#: ../src/f-spot.glade.h:136
+#: ../src/f-spot.glade.h:208
 msgid "Side _pane"
 msgstr "側面的長方格(_P)"
 
-#: ../src/f-spot.glade.h:137 ../src/StockIcons.cs:31
-msgid "Slideshow"
-msgstr "幻燈片"
+#: ../src/f-spot.glade.h:209
+msgid "Side_bar"
+msgstr "側邊列(_B)"
 
-#: ../src/f-spot.glade.h:138
-msgid "Source Temp"
+#: ../src/f-spot.glade.h:210
+msgid "Size"
+msgstr "大小"
+
+#: ../src/f-spot.glade.h:211
+msgid "Size of the exported selection :"
+msgstr ""
+
+#: ../src/f-spot.glade.h:212
+msgid "Small"
+msgstr "小"
+
+#: ../src/f-spot.glade.h:213
+#, fuzzy
+msgid "So_urce Temp"
 msgstr "來源色溫"
 
-#: ../src/f-spot.glade.h:139
-msgid "Strip Image Metadata"
-msgstr "除去圖像的中繼資料"
+#: ../src/f-spot.glade.h:214
+msgid "Space all photos by"
+msgstr ""
 
-#: ../src/f-spot.glade.h:140
-msgid "Strip metadata"
-msgstr "除去中繼資料"
+#: ../src/f-spot.glade.h:215
+msgid ""
+"Specify if an original size picture should be rotated or not. Smaller sizes "
+"are automatically rotated."
+msgstr ""
 
-#: ../src/f-spot.glade.h:141 ../src/TagCommands.cs:295
-msgid "Tag name:"
-msgstr "標籤名稱："
+#: ../src/f-spot.glade.h:216
+msgid ""
+"Standard RGB\n"
+"Image Profile\n"
+"Custom\n"
+msgstr ""
 
-#: ../src/f-spot.glade.h:142
+#: ../src/f-spot.glade.h:220
+msgid "Strip _metadata"
+msgstr "除去 Metadata(_M)"
+
+#: ../src/f-spot.glade.h:221
+msgid "Strip image _metadata"
+msgstr "除去圖像的 Metadata(_M)"
+
+#: ../src/f-spot.glade.h:222
+msgid "T_ags"
+msgstr "標籤(_A)"
+
+#: ../src/f-spot.glade.h:223
+msgid "Tag Icons"
+msgstr "標籤圖示"
+
+#: ../src/f-spot.glade.h:224
+msgid "Tags: "
+msgstr "標籤："
+
+#: ../src/f-spot.glade.h:225
+msgid "Tiny"
+msgstr ""
+
+#: ../src/f-spot.glade.h:226
+msgid "Too_lbar"
+msgstr "工具列(_L)"
+
+#: ../src/f-spot.glade.h:227
 msgid "Toolbar"
 msgstr "工具列"
 
-#: ../src/f-spot.glade.h:143
-msgid "URI:"
-msgstr "URI："
+#: ../src/f-spot.glade.h:228
+msgid "Total original size"
+msgstr ""
 
-#: ../src/f-spot.glade.h:144
-msgid "URL:"
-msgstr "URL："
+#: ../src/f-spot.glade.h:229
+msgid "U_RL:"
+msgstr "U_RL："
 
-#: ../src/f-spot.glade.h:145
-msgid "Use Original."
-msgstr "以原樣匯出。"
-
-#: ../src/f-spot.glade.h:146
-msgid "Use static HTML."
-msgstr "以 HTML 匯出。"
-
-#: ../src/f-spot.glade.h:147
-msgid "Username:"
-msgstr "用戶名稱："
-
-#: ../src/f-spot.glade.h:148
+#: ../src/f-spot.glade.h:230
 msgid "View"
 msgstr "檢視"
 
-#: ../src/f-spot.glade.h:149
-msgid "View photos in browser when done uploading"
-msgstr "完成上傳後用瀏覽器檢視相片"
+#: ../src/f-spot.glade.h:231
+msgid "Visible to Family"
+msgstr ""
 
-#: ../src/f-spot.glade.h:150
-msgid "Virtual Filesystem"
-msgstr "虛擬檔案系統"
+#: ../src/f-spot.glade.h:232
+msgid "Visible to Friends"
+msgstr ""
 
-#: ../src/f-spot.glade.h:151
-msgid "Will print Using: US Letter size on Generic Postscript"
+#: ../src/f-spot.glade.h:233
+#, fuzzy
+msgid "Will print using: US Letter size on Generic Postscript"
 msgstr "將會在通用 Postscript 使用 US 字母大小"
 
-#: ../src/f-spot.glade.h:152
-msgid "Write only these Items to CD"
-msgstr "僅把這些項目寫入到 CD 中"
+#: ../src/f-spot.glade.h:234
+msgid "Write _metadata to file"
+msgstr "將 _Metadata 寫入檔案"
 
-#: ../src/f-spot.glade.h:153
-msgid "Zoom _In"
+#: ../src/f-spot.glade.h:235
+msgid "Zoom _in"
 msgstr "放大(_I)"
 
-#: ../src/f-spot.glade.h:154
-msgid "Zoom _Out"
+#: ../src/f-spot.glade.h:236
+msgid "Zoom _out"
 msgstr "縮小(_O)"
 
-#: ../src/f-spot.glade.h:155
+#: ../src/f-spot.glade.h:237
+msgid "Zoom in"
+msgstr "放大"
+
+#: ../src/f-spot.glade.h:238
+msgid "Zoom out"
+msgstr "縮小"
+
+#: ../src/f-spot.glade.h:239
+msgid "_Account:"
+msgstr "帳號(_A)："
+
+#: ../src/f-spot.glade.h:240
+msgid "_Album Name:"
+msgstr "相簿名稱(_A)："
+
+#: ../src/f-spot.glade.h:241
+msgid "_Album Title:"
+msgstr "相簿標題(_A)："
+
+#: ../src/f-spot.glade.h:242
 msgid "_Attach Tag"
 msgstr "附加標籤(_A)"
 
-#: ../src/f-spot.glade.h:156
-msgid "_Attach Tag To Selection"
-msgstr "附上標籤到選擇項目(_A)"
+#: ../src/f-spot.glade.h:243
+msgid "_Attach Tag to Selection"
+msgstr "將選擇項目附上標籤(_A)"
 
-#: ../src/f-spot.glade.h:157
-msgid "_Clear Date Range"
-msgstr "清除日期範圍(_C)"
+#: ../src/f-spot.glade.h:244
+msgid "_Autorotate"
+msgstr "自動旋轉(_A)"
 
-#: ../src/f-spot.glade.h:158
-msgid "_Close"
-msgstr "關閉(_C)"
+#: ../src/f-spot.glade.h:245
+msgid "_Border:"
+msgstr "邊框(_B)："
 
-#: ../src/f-spot.glade.h:159
+#: ../src/f-spot.glade.h:246
+msgid "_Brightness:"
+msgstr "亮度(_B)："
+
+#: ../src/f-spot.glade.h:247
+msgid "_Browse Previously Scheduled Files"
+msgstr "瀏覽以往排程的檔案(_B)"
+
+#: ../src/f-spot.glade.h:248
+msgid "_Captcha:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:249
+msgid "_Components"
+msgstr ""
+
+#: ../src/f-spot.glade.h:250
+msgid "_Contents"
+msgstr "內容(_C)"
+
+#: ../src/f-spot.glade.h:251
+msgid "_Dates"
+msgstr "日期(_D)"
+
+#: ../src/f-spot.glade.h:252
+msgid "_Delete From Drive"
+msgstr "從磁碟機中刪除(_D)"
+
+#: ../src/f-spot.glade.h:253
 msgid "_Delete Selected Tag"
 msgstr "刪除選定的標籤(_D)"
 
-#: ../src/f-spot.glade.h:160
+#: ../src/f-spot.glade.h:254
 msgid "_Delete Version"
 msgstr "刪除版本(_D)"
 
-#: ../src/f-spot.glade.h:161
-msgid "_Delete from Drive"
-msgstr "從磁碟機刪除(_D)"
+#: ../src/f-spot.glade.h:255
+msgid "_Description:"
+msgstr "描述(_D)："
 
-#: ../src/f-spot.glade.h:162
-msgid "_Directory"
-msgstr "依目錄(_D)"
+#: ../src/f-spot.glade.h:256
+#, fuzzy
+msgid "_Destination Temp"
+msgstr "目標色溫"
 
-#: ../src/f-spot.glade.h:163
-msgid "_EXIF Data"
-msgstr "_EXIF 資料"
+#: ../src/f-spot.glade.h:257
+msgid "_Display:"
+msgstr "顯示(_D)："
 
-#: ../src/f-spot.glade.h:164
+#: ../src/f-spot.glade.h:258
+msgid "_Edit"
+msgstr "編輯(_E)"
+
+#: ../src/f-spot.glade.h:259
 msgid "_Edit Selected Tag..."
 msgstr "編輯選定的標籤(_E)..."
 
-#: ../src/f-spot.glade.h:165
+#: ../src/f-spot.glade.h:260
 msgid "_Export"
 msgstr "匯出(_E)"
 
-#: ../src/f-spot.glade.h:166
+#: ../src/f-spot.glade.h:261
+msgid "_Export tags"
+msgstr "匯出標籤(_E)"
+
+#: ../src/f-spot.glade.h:262
+msgid "_Export to"
+msgstr "匯出至(_E)"
+
+#: ../src/f-spot.glade.h:263
+msgid "_Export to Album:"
+msgstr "匯出到相簿(_E)："
+
+#: ../src/f-spot.glade.h:264
+msgid "_File"
+msgstr "檔案(_F)"
+
+#: ../src/f-spot.glade.h:265
+msgid "_Flickr"
+msgstr "_Flickr"
+
+#: ../src/f-spot.glade.h:266
+msgid "_Folder"
+msgstr "根據資料夾(_F)"
+
+#: ../src/f-spot.glade.h:267
+msgid "_Folder:"
+msgstr "資料夾(_F)："
+
+#: ../src/f-spot.glade.h:268
 msgid "_Fullscreen"
 msgstr "全螢幕(_F)"
 
-#: ../src/f-spot.glade.h:167
+#: ../src/f-spot.glade.h:269
+msgid "_Gallery"
+msgstr "_Gallery"
+
+#: ../src/f-spot.glade.h:270
+msgid "_Gallery Name:"
+msgstr "圖庫名稱(_G)："
+
+#: ../src/f-spot.glade.h:271
+msgid "_Gallery:"
+msgstr "圖庫(_G)："
+
+#: ../src/f-spot.glade.h:272
+msgid "_Help"
+msgstr "說明(_H)"
+
+#: ../src/f-spot.glade.h:273
+msgid "_Hidden"
+msgstr "隱藏(_H)"
+
+#: ../src/f-spot.glade.h:274
+msgid "_Hue:"
+msgstr "色調(_H)："
+
+#: ../src/f-spot.glade.h:275
+msgid "_Icon:"
+msgstr "圖示(_I)："
+
+#: ../src/f-spot.glade.h:276
 msgid "_Import..."
 msgstr "匯入(_I)..."
 
-#: ../src/f-spot.glade.h:168
+#: ../src/f-spot.glade.h:277
 msgid "_Large"
 msgstr "大(_L)"
 
-#: ../src/f-spot.glade.h:169
+#: ../src/f-spot.glade.h:278
 msgid "_Medium"
 msgstr "中(_M)"
 
-#: ../src/f-spot.glade.h:170
+#: ../src/f-spot.glade.h:279
+msgid "_Metadata Browser"
+msgstr "_Metadata 瀏覽器"
+
+#: ../src/f-spot.glade.h:280
 msgid "_Month"
-msgstr "依月份(_M)"
+msgstr "根據月份(_M)"
 
-#: ../src/f-spot.glade.h:171
-msgid "_Print..."
-msgstr "打印(_P)..."
+#: ../src/f-spot.glade.h:281
+msgid "_New Window"
+msgstr "新視窗(_N)"
 
-#: ../src/f-spot.glade.h:172
+#: ../src/f-spot.glade.h:282
+msgid "_Open album in browser when done uploading"
+msgstr "完成上傳後在瀏覽器中開啟圖庫(_O)"
+
+#: ../src/f-spot.glade.h:283
+msgid "_Open destination when done exporting"
+msgstr "完成匯出後開啟目的地(_O)"
+
+#: ../src/f-spot.glade.h:284
+msgid "_Output:"
+msgstr "輸出(_O)："
+
+#: ../src/f-spot.glade.h:285
+msgid "_Parent Album:"
+msgstr "父相簿(_P)："
+
+#: ../src/f-spot.glade.h:286
+msgid "_Password:"
+msgstr "密碼(_P)："
+
+#: ../src/f-spot.glade.h:287
+msgid "_Quit"
+msgstr "離開(_Q)"
+
+#: ../src/f-spot.glade.h:288
 msgid "_Remove From Catalog"
 msgstr "從型錄中移除(_R)"
 
-#: ../src/f-spot.glade.h:173
+#: ../src/f-spot.glade.h:289
 msgid "_Remove Tag From Selection"
 msgstr "從選擇項目中移附標籤(_R)"
 
-#: ../src/f-spot.glade.h:174
+#: ../src/f-spot.glade.h:290
 msgid "_Rename Version"
 msgstr "重新命名版本(_R)"
 
-#: ../src/f-spot.glade.h:175
+#: ../src/f-spot.glade.h:291
+msgid "_Resize to: "
+msgstr "重新調整大小為(_R)："
+
+#: ../src/f-spot.glade.h:293
+msgid "_Saturation:"
+msgstr "飽和度(_S)："
+
+#: ../src/f-spot.glade.h:294
+msgid "_Save the files only"
+msgstr "只儲存檔案(_S)"
+
+#: ../src/f-spot.glade.h:295
+#, fuzzy
+msgid "_Scale photos to no larger than: "
+msgstr "圖像可放大的上限："
+
+#: ../src/f-spot.glade.h:296
 msgid "_Sharpen..."
 msgstr "銳化(_S)..."
 
-#: ../src/f-spot.glade.h:176
-msgid "_Size"
-msgstr "大小(_S)"
-
-#: ../src/f-spot.glade.h:177
+#: ../src/f-spot.glade.h:297
 msgid "_Slideshow"
 msgstr "幻燈片(_8)"
 
-#: ../src/f-spot.glade.h:178
+#: ../src/f-spot.glade.h:298
 msgid "_Small"
 msgstr "小(_S)"
 
-#: ../src/f-spot.glade.h:179
+#: ../src/f-spot.glade.h:299
+msgid "_Strip metadata"
+msgstr "除去 Metadata(_S)"
+
+#: ../src/f-spot.glade.h:300
+msgid "_Tag Name:"
+msgstr "標籤名稱(_T)："
+
+#: ../src/f-spot.glade.h:301
 msgid "_Tags"
 msgstr "標籤(_T)"
 
-#: ../src/f-spot.glade.h:180
-msgid "_Update Thumbnail"
-msgstr "更新縮圖(_U)"
+#: ../src/f-spot.glade.h:302
+msgid "_Timeline"
+msgstr "時間線(_T)"
 
-#: ../src/f-spot.glade.h:181
+#: ../src/f-spot.glade.h:303
+msgid "_Title:"
+msgstr "標題(_T)："
+
+#: ../src/f-spot.glade.h:304
+msgid "_Tools"
+msgstr "工具(_T)"
+
+#: ../src/f-spot.glade.h:305
+msgid "_URI:"
+msgstr "_URI："
+
+#: ../src/f-spot.glade.h:306
+msgid "_Untagged Photos"
+msgstr "未標籤的圖片(_U)"
+
+#: ../src/f-spot.glade.h:307
+msgid "_Username:"
+msgstr "用戶名稱(_U)："
+
+#: ../src/f-spot.glade.h:308
 msgid "_Version"
 msgstr "版本(_V)"
 
-#: ../src/f-spot.glade.h:182
+#: ../src/f-spot.glade.h:309
 msgid "_View"
 msgstr "檢視(_V)"
 
-#: ../src/f-spot.glade.h:183
-msgid "dialog1"
-msgstr "dialog1"
+#: ../src/f-spot.glade.h:310
+msgid "_View photos in browser when done uploading"
+msgstr "完成上傳後用瀏覽器檢視相片(_V)"
 
-#: ../src/f-spot.glade.h:184
+#: ../src/f-spot.glade.h:311
+msgid "_Virtual Filesystem"
+msgstr "虛擬檔案系統(_V)"
+
+#: ../src/f-spot.glade.h:312
+msgid "_Write only these photos to CD"
+msgstr "僅把這些相片寫入到 CD 中(_W)"
+
+#: ../src/f-spot.glade.h:313
+msgid "and"
+msgstr "及"
+
+#. at, or after a date, or between dates
+#: ../src/f-spot.glade.h:315
+msgid ""
+"at\n"
+"after\n"
+"between"
+msgstr ""
+
+#: ../src/f-spot.glade.h:318
+msgid "difference:"
+msgstr "差異："
+
+#: ../src/f-spot.glade.h:319
+msgid "img_000.jpg"
+msgstr ""
+
+#: ../src/f-spot.glade.h:322
 msgid "pixels"
 msgstr "像素"
 
-#: ../src/f-spot.glade.h:185
+#: ../src/f-spot.glade.h:323
 msgid "x"
 msgstr "x"
 
-#: ../src/GalleryExport.cs:442
-msgid "Error Uploading To Gallery"
-msgstr "上傳到圖庫時發生錯誤"
-
-#: ../src/GalleryExport.cs:474
-msgid "(No Gallery)"
-msgstr "(無圖庫)"
-
-#: ../src/GalleryExport.cs:531
-msgid "(Not Connected)"
-msgstr "(沒有連接)"
-
-#: ../src/GalleryExport.cs:532
-msgid "(No Albums)"
-msgstr "(無相簿)"
-
-#: ../src/ImportCommand.cs:27
-msgid "Select Folder"
-msgstr "選擇資料夾"
-
-#: ../src/ImportCommand.cs:203
-msgid "(No Cameras Detected)"
-msgstr "(偵測不到數碼相機)"
-
-#. Gtk.Menu menu = new Gtk.Menu();
-#: ../src/ImportCommand.cs:583
-msgid "Select Tag"
-msgstr "選擇標籤"
-
-#: ../src/ImportCommand.cs:648
-msgid "Directory does not exist."
-msgstr "目錄不存在。"
-
-#: ../src/ImportCommand.cs:649
-#, csharp-format
-msgid ""
-"The directory you selected \"{0}\" does not exist.  Please choose a "
-"different directory"
-msgstr "你選擇的目錄 \"{0}\" 不存在。請選擇另外的目錄"
-
-#: ../src/InfoBox.cs:70 ../src/PhotoVersionCommands.cs:55
-msgid "Name:"
-msgstr "名稱："
-
-#: ../src/InfoBox.cs:72
-msgid "Version:"
-msgstr "版本："
-
-#: ../src/InfoBox.cs:74
-msgid "Date:"
-msgstr "日期："
-
-#: ../src/InfoBox.cs:76
-msgid "Size:"
-msgstr "大小："
-
-#: ../src/InfoBox.cs:78
-msgid "Exposure:"
-msgstr "曝光率："
-
-#: ../src/InfoBox.cs:156
-msgid "(None)"
-msgstr "(無)"
-
-#: ../src/InfoDisplay.cs:110
-msgid "No EXIF info available"
-msgstr "無可用的 EXIF 資訊"
-
-#: ../src/MainWindow.cs:939
-msgid "No cameras detected."
-msgstr "偵測不到數碼相機。"
-
-#: ../src/MainWindow.cs:940
-msgid ""
-"F-Spot was unable to find any cameras attached to this system.  Double check "
-"that the camera is connected and has power"
-msgstr "F-Spot 無法找到任何連接到系統的數碼相機。請再次確定它已連接並且電源已開啟。"
-
-#: ../src/MainWindow.cs:967
-msgid "Error connecting to camera"
-msgstr "連接數碼相機時發生錯誤"
-
-#: ../src/MainWindow.cs:968
-#, csharp-format
-msgid "Received error \"{0}\" while connecting to camera"
-msgstr "連接數碼相機時收到錯誤 \"{0}\""
-
-#. Translators should localize the following string
-#. * which will give them credit in the About box.
-#. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1098
-msgid "translator-credits"
-msgstr ""
-"GNOME 程式中文化郵件論壇\n"
-"community@linuxhall.org\n"
-"\n"
-"Stanley Wong <stanley18fan0k@yahoo.com.hk>, 2005"
-
-#: ../src/MainWindow.cs:1232
-msgid "Unsharp Mask"
-msgstr "銳化濾鏡"
-
-#: ../src/MainWindow.cs:1241
-msgid "Amount:"
-msgstr "數量："
-
-#: ../src/MainWindow.cs:1242
-msgid "Radius:"
-msgstr "半徑："
-
-#: ../src/MainWindow.cs:1243
-msgid "Threshold:"
-msgstr "臨界值(Threshold)："
-
-#: ../src/MainWindow.cs:1285
-msgid "Error saving sharpened photo"
-msgstr "儲存銳化相片時發生錯誤"
-
-#: ../src/MainWindow.cs:1502
-#, csharp-format
-msgid "Delete the selected photo permanently?"
-msgid_plural "Delete the {0} selected photos permanently?"
-msgstr[0] "要永久刪除選擇的相片嗎?"
-msgstr[1] "要永久刪除選擇的 {0} 張相片嗎?"
-
-#: ../src/MainWindow.cs:1506
-msgid "This deletes all versions of the selected photo from your drive."
-msgid_plural ""
-"This deletes all versions of the selected photos from your drive."
-msgstr[0] "這樣會從磁碟機中刪除這張相片的所有版本。"
-msgstr[1] "這樣會從磁碟機中刪除這些相片的所有版本。"
-
-#: ../src/MainWindow.cs:1509
-msgid "_Delete photo"
-msgid_plural "_Delete photos"
-msgstr[0] "刪除相片(_D)"
-msgstr[1] "刪除相片(_D)"
-
-#: ../src/MainWindow.cs:1527
-#, csharp-format
-msgid "Remove the selected photo from F-Spot?"
-msgid_plural "Remove the {0} selected photos from F-Spot?"
-msgstr[0] "要從 F-Spot 移除這張相片嗎?"
-msgstr[1] "要從 F-Spot 移除這 {0} 張相片嗎?"
-
-#: ../src/MainWindow.cs:1532
-msgid ""
-"If you remove photos from the F-Spot catalog all tag information will be "
-"lost. The photos remain on your computer and can be imported into F-Spot "
-"again."
-msgstr "如果你要從 F-Spot 型錄中移除相片，那麼所有標籤資訊都會一併消失。不過，你仍然可以再次把相片匯入至 F-Spot 中。"
-
-#: ../src/MainWindow.cs:1533
-msgid "_Remove from Catalog"
-msgstr "從型錄中移除(_R)"
-
-#: ../src/MainWindow.cs:1557
-#, csharp-format
-msgid "Delete the selected tag?"
-msgid_plural "Delete the {0} selected tags?"
-msgstr[0] "刪除選定的標籤?"
-msgstr[1] "刪除選定的{0}個標籤?"
-
-#: ../src/MainWindow.cs:1562
-msgid "If you delete a tag, all associations with photos are lost."
-msgstr "如果你刪除一個標籤，那麼相片的所有關聯都會消失。"
-
-#: ../src/MainWindow.cs:1563
-msgid "_Delete tag"
-msgid_plural "_Delete tags"
-msgstr[0] "刪除標籤(_D)"
-msgstr[1] "刪除標籤(_D)"
-
-#: ../src/PhotoPopup.cs:30
-msgid "Copy Image Location"
-msgstr "複製圖像位置"
-
-#: ../src/PhotoPopup.cs:42
-msgid "Remove From Catalog"
-msgstr "從型錄中移除"
-
-#: ../src/PhotoPopup.cs:44
-msgid "Delete From Drive"
-msgstr "從磁碟機中刪除"
-
-#.
-#. FIXME TagMenu is ugly.
-#.
-#: ../src/PhotoPopup.cs:52
-msgid "Attach Tag"
-msgstr "附加標籤"
-
-#.
-#. FIXME finish the IPhotoSelection stuff and move the activate handler into the class
-#. this current method is way too complicated.
-#.
-#: ../src/PhotoPopup.cs:62
-msgid "Remove Tag"
-msgstr "移除標籤"
-
-#: ../src/PhotoStore.cs:290
-#, csharp-format
-msgid "Modified"
-msgid_plural "Modified ({0})"
-msgstr[0] "已修改"
-msgstr[1] "已修改({0}個)"
-
-#. Note that the original version is never stored in the photo_versions table in the
-#. database.
-#: ../src/PhotoStore.cs:399
-msgid "Original"
-msgstr "最初"
-
-#. Fixme this should really set parent menu
-#. items insensitve
-#: ../src/PhotoTagMenu.cs:72
-msgid "(No Tags)"
-msgstr "(無標籤)"
-
-#: ../src/PhotoVersionCommands.cs:54
-msgid "Create New Version"
-msgstr "建立新的版本"
-
-#: ../src/PhotoVersionCommands.cs:59
-msgid "Rename Version"
-msgstr "重新命名版本"
-
-#: ../src/PhotoVersionCommands.cs:60
-msgid "New name:"
-msgstr "新的名稱："
-
-#: ../src/PhotoVersionCommands.cs:126
-msgid "Really Delete?"
-msgstr "真的要刪除?"
-
-#: ../src/PhotoVersionCommands.cs:132
-#, csharp-format
-msgid "Really delete version \"{0}\"?"
-msgstr "真的要刪除版本 \"{0}\" ?"
-
-#: ../src/PhotoVersionMenu.cs:84
-msgid "(No Edits)"
-msgstr "(無修改)"
-
-#: ../src/PhotoView.cs:94
-msgid "No Constraint"
-msgstr "無限制"
-
-#: ../src/PhotoView.cs:95
-msgid "4 x 3 (Book)"
-msgstr "4 x 3 (書本)"
-
-#: ../src/PhotoView.cs:96
-msgid "4 x 6 (Postcard)"
-msgstr "4 x 6 (明信片)"
-
-#: ../src/PhotoView.cs:97
-msgid "5 x 7 (L, 2L)"
-msgstr "5 x 7 (L, 2L)"
-
-#: ../src/PhotoView.cs:98
-msgid "8 x 10"
-msgstr "8 x 10"
-
-#: ../src/PhotoView.cs:99
-msgid "4 x 3 Portrait (Book)"
-msgstr "4 x 3 寫照(書本)"
-
-#: ../src/PhotoView.cs:100
-msgid "4 x 6 Portrait (Postcard)"
-msgstr "4 x 6 寫照(明信片)"
-
-#: ../src/PhotoView.cs:101
-msgid "5 x 7 Portrait (L, 2L)"
-msgstr "5 x 7 寫照(L, 2L)"
-
-#: ../src/PhotoView.cs:102
-msgid "8 x 10 Portrait"
-msgstr "8 x 10 寫照"
-
-#: ../src/PhotoView.cs:103
-msgid "Square"
-msgstr "正方形"
-
-#: ../src/PhotoView.cs:277
-msgid "Error editing photo"
-msgstr "編輯相片時發生錯誤"
-
-#: ../src/PhotoView.cs:471
-msgid "Crop image to selected area"
-msgstr "裁剪圖像到選擇區域"
-
-#: ../src/PhotoView.cs:472
-msgid "Remove redeye from selected area"
-msgstr "從選擇區域中移除紅眼"
-
-#: ../src/PhotoView.cs:473
-msgid "Adjust the image colors"
-msgstr "調整圖像色彩"
-
-#: ../src/RotateCommand.cs:56
-#, csharp-format
-msgid "Received exception \"{0}\" while rotating image {1}"
-msgstr "旋轉圖像{1}時接收到異常\"{0}\""
-
-#: ../src/RotateCommand.cs:61
-msgid "Unknown Error while Rotating Image."
-msgstr "旋轉圖像時發生未知的錯誤。"
-
-#: ../src/RotateCommand.cs:74
-msgid "Rotating pictures"
-msgstr "旋轉圖片"
-
-#: ../src/RotateCommand.cs:84
-#, csharp-format
-msgid "Rotating picture \"{0}\""
-msgstr "旋轉圖片\"{0}\""
-
-#: ../src/RotateCommand.cs:115
-#, csharp-format
-msgid "Unable to rotate image"
-msgid_plural "Unable to rotate {0} images"
-msgstr[0] "無法旋轉這張圖片"
-msgstr[1] "無法旋轉這{0}張圖片"
-
-#: ../src/RotateCommand.cs:119
-#, csharp-format
-msgid ""
-"The image could not be rotated because it is on a read only file system or "
-"media such as a CDROM.  Please check the permissions and try again"
-msgid_plural ""
-"{0} images could not be rotated because they are on a read only file system "
-"or media such as a CDROM.  Please check the permissions and try again"
-msgstr[0] "無法旋轉這張圖像，因為它位於一個唯讀的檔案系統或在 CD-ROM 上。請檢查權限，然後再試一次。"
-msgstr[1] "無法旋轉這{0}張圖像，因為它們位於一個唯讀的檔案系統或在 CD-ROM 上。請檢查權限，然後再試一次。"
-
-#: ../src/StockIcons.cs:28
-msgid "Crop"
-msgstr "裁剪"
-
-#: ../src/StockIcons.cs:29
-msgid "Edit Image"
-msgstr "編輯圖像"
-
-#: ../src/StockIcons.cs:32
-msgid "Logo"
-msgstr "圖標"
-
-#: ../src/StockIcons.cs:33
-msgid "Question"
-msgstr "問題"
-
-#: ../src/StockIcons.cs:34
-msgid "Reduce Red-Eye"
-msgstr "減少紅眼"
-
-#: ../src/StockIcons.cs:37
-msgid "Loading"
-msgstr "載入中"
-
-#: ../src/StockIcons.cs:38
-msgid "Near"
+#: ../tools/f-spot-screensaver.desktop.in.h:1
+msgid "Display a slideshow from F-Spot"
 msgstr ""
 
-#: ../src/StockIcons.cs:39
-msgid "Far"
-msgstr ""
+#: ../tools/f-spot-screensaver.desktop.in.h:2
+msgid "F-Spot photos"
+msgstr "F-Spot 圖片"
 
-#: ../src/TagCommands.cs:46
-msgid "(No categories)"
-msgstr "(沒有分類)"
+#~ msgid "Unknown destination."
+#~ msgstr "未知的目的端."
 
-#: ../src/TagCommands.cs:80 ../src/TagCommands.cs:217
-msgid "This name is already in use"
-msgstr "這個名稱已被使用"
+#~ msgid ""
+#~ "When copying files from a camera you must select a valid destination on "
+#~ "the local filesystem"
+#~ msgstr "從數位相機複製檔案時您需要選擇一個有效的本地目的地。"
 
-#: ../src/TagCommands.cs:129 ../src/TagPopup.cs:20
-msgid "Create New Tag"
-msgstr "建立新的標籤"
+#~ msgid ""
+#~ "Error \"{0}\" while creating directory \"{1}\".  Check that the path and "
+#~ "permissions are correct and try again"
+#~ msgstr ""
+#~ "建立目錄 \"{1}\" 時發生錯誤 \"{0}\"。請確定路徑和權限是否正確，然後再試一"
+#~ "次。"
 
-#: ../src/TagCommands.cs:130
-msgid "Name of new tag:"
-msgstr "新標籤的名稱："
+#~ msgid "Select Destination"
+#~ msgstr "選擇目的地"
 
-#: ../src/TagCommands.cs:133 ../src/TagPopup.cs:22
-msgid "Create New Category"
-msgstr "建立新的分類"
+#~ msgid "Enter Password"
+#~ msgstr "輸入密碼"
 
-#: ../src/TagCommands.cs:134
-msgid "Name of new category:"
-msgstr "新分類的名稱："
+#~ msgid "Enter Password for "
+#~ msgstr "輸入密碼給"
 
-#: ../src/TagCommands.cs:291
-msgid "Edit Category"
-msgstr "編輯分類"
+#~ msgid "Transfering Pictures"
+#~ msgstr "正在傳輸圖片"
 
-#: ../src/TagCommands.cs:292
-msgid "Category name:"
-msgstr "分類名稱："
+#~ msgid "<b>From Image</b>"
+#~ msgstr "<b>從圖片</b>"
 
-#: ../src/TagCommands.cs:294 ../src/TagPopup.cs:27
-msgid "Edit Tag"
-msgstr "編輯標籤"
+#~ msgid "Copy Files To: "
+#~ msgstr "複製檔案到："
 
-#: ../src/TagCommands.cs:382
-#, csharp-format
-msgid "Photo {0} of {1}"
-msgstr "{1}張相片中的第{0}張"
+#~ msgid "Create New _Category..."
+#~ msgstr "建立新的分類(_C)..."
 
-#: ../src/TagCommands.cs:409
-#, csharp-format
-msgid "Edit icon For category {0}"
-msgstr "修改分類{0}的圖示"
+#~ msgid "Directory"
+#~ msgstr "目錄"
 
-#: ../src/TagCommands.cs:411
-#, csharp-format
-msgid "Edit icon for tag {0}"
-msgstr "修改標籤{0}的圖示"
+#~ msgid "E_xport To CD..."
+#~ msgstr "匯出到 CD(_X)..."
 
-#: ../src/TagPopup.cs:30
-msgid "Delete Tag"
-msgstr "刪除標籤"
+#~ msgid "Export Tags and Categories"
+#~ msgstr "匯出標籤和分類"
 
-#: ../src/TagPopup.cs:35
-msgid "Attach Tag To Selection"
-msgstr "附加標籤到選擇項目"
+#~ msgid "Export tags and categories"
+#~ msgstr "匯出標籤和分類"
 
-#: ../src/TagPopup.cs:38
-msgid "Remove Tag From Selection"
-msgstr "從選擇項目移除標籤"
+#~ msgid "Export to _Flickr..."
+#~ msgstr "匯出到 _Flickr..."
 
-#: ../src/Util.cs:270
-msgid "There was an error invoking the external handler"
-msgstr "發生外部錯誤"
+#~ msgid "Export to _Web Gallery..."
+#~ msgstr "匯出到網上圖庫(_W)..."
 
-#: ../src/Util.cs:271
-#, csharp-format
-msgid ""
-"Received error:\n"
-"\"{0}\"\n"
-msgstr ""
-"收到錯誤：\n"
-"\"{0}\"\n"
+#~ msgid "Find by _Tag"
+#~ msgstr "依標籤尋找(_T)"
 
-#: ../src/QueryDisplay.cs:29
-msgid "Find: "
-msgstr "尋找："
+#~ msgid "Import files after copy."
+#~ msgstr "複製之後匯入檔案。"
 
-#: ../src/QueryDisplay.cs:44
-msgid "No matching images found "
-msgstr "找不到符合的圖像"
+#~ msgid "Import from C_amera..."
+#~ msgstr "從數位相機匯入(_C)..."
 
-#: ../src/VfsExport.cs:77
-#, csharp-format
-msgid "Scaling picture \"{0}\""
-msgstr "正在縮放圖片\"{0}\""
+#~ msgid "Plain Files."
+#~ msgstr "一般檔案。"
 
-#: ../src/VfsExport.cs:84
-#, csharp-format
-msgid "Transferring picture \"{0}\""
-msgstr "正在傳輸圖片\"{0}\""
+#~ msgid "Prefix: "
+#~ msgstr "前綴："
+
+#~ msgid "Use Original."
+#~ msgstr "以原樣匯出。"
+
+#~ msgid "Use static HTML."
+#~ msgstr "以 HTML 匯出。"
+
+#~ msgid "_Close"
+#~ msgstr "關閉(_C)"
+
+#~ msgid "_Delete from Drive"
+#~ msgstr "從磁碟機刪除(_D)"
+
+#~ msgid "_Directory"
+#~ msgstr "依目錄(_D)"
+
+#~ msgid "_EXIF Data"
+#~ msgstr "_EXIF 資料"
+
+#~ msgid "dialog1"
+#~ msgstr "dialog1"
+
+#~ msgid "Size:"
+#~ msgstr "大小："
+
+#~ msgid "4 x 3 Portrait (Book)"
+#~ msgstr "4 x 3 寫照(書本)"
+
+#~ msgid "4 x 6 Portrait (Postcard)"
+#~ msgstr "4 x 6 寫照(明信片)"
+
+#~ msgid "5 x 7 Portrait (L, 2L)"
+#~ msgstr "5 x 7 寫照(L, 2L)"
+
+#~ msgid "8 x 10 Portrait"
+#~ msgstr "8 x 10 寫照"
+
+#~ msgid "Received exception \"{0}\" while rotating image {1}"
+#~ msgstr "旋轉影像{1}時接收到異常\"{0}\""
+
+#~ msgid "Unknown Error while Rotating Image."
+#~ msgstr "旋轉影像時發生未知的錯誤。"
+
+#~ msgid "Logo"
+#~ msgstr "圖標"
+
+#~ msgid "Question"
+#~ msgstr "問題"
+
+#~ msgid "(No categories)"
+#~ msgstr "(沒有分類)"
+
+#~ msgid "Create New Category"
+#~ msgstr "建立新的分類"
+
+#~ msgid "Name of new category:"
+#~ msgstr "新分類的名稱："
+
+#~ msgid "Edit Category"
+#~ msgstr "編輯分類"
+
+#~ msgid "Category name:"
+#~ msgstr "分類名稱："
+
+#~ msgid "Edit icon For category {0}"
+#~ msgstr "修改分類{0}的圖示"
+
+#~ msgid "Scaling picture \"{0}\""
+#~ msgstr "正在縮放圖片\"{0}\""
+
+#~ msgid "Transferring picture \"{0}\""
+#~ msgstr "正在傳輸圖片\"{0}\""
