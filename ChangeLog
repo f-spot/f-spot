@@ -1,3 +1,13 @@
+2007-12-04  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/main.cs:
+	* src/Makefile.am: drop the dependency to Mono.GetOptions.
+
+2007-11-28  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/main.cs: get rid of the unmaintained, deprecated 
+	Mono.GetOptions.
+
 2007-11-21  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/PhotoStore.cs: fix for bgo #488545, remaove tag association

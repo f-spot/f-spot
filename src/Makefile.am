@@ -250,7 +250,6 @@ ASSEMBLIES = \
 	-r:System.Data				\
 	-r:System.Web				\
 	-r:Mono.Data.SqliteClient		\
-	-r:Mono.GetOptions			\
 	-r:Mono.Posix				\
 	-r:Mono.Security			\
 	-r:ICSharpCode.SharpZipLib		\

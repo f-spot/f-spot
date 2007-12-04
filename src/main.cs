@@ -5,105 +5,80 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Collections;
+using System.Collections.Generic;
 using Mono.Unix;
-using Mono.GetOptions;
 using Mono.Addins;
 using Mono.Addins.Setup;
 
 namespace FSpot 
 {
-	public class FSpotOptions : Options
+public class Driver {
+	static void Help ()
 	{
-		//--import, -i
-		[Option ("import from the given uri", 'i', "import")]
-		public string import;
-
-		//--view, -v
-		[Option ("view file(s) or directory(ies)", 'v', "view")]
-		public bool view;
-
-		//--basedir, -b
-		[Option ("path to the photo database folder", 'b', "basedir")]
-		public string basedir;
-
-		//--photodir, -p
-		[Option ("default import folder", 'p', "photodir")]
-		public string photodir;
-
-		//--shutdown
-		[Option ("shutdown a running f-spot instance", "shutdown")]
-		public bool shutdown;
-
-		//--slideshow
-		[Option ("display a slideshow", "slideshow")]
-		public bool slideshow;
-
-		public string [] Uris {
-			get {
-				ArrayList uris = new ArrayList ();
-				foreach (string s in RemainingArguments)
-					if (!s.StartsWith("-"))
-						uris.Add (s);
-				return (string []) uris.ToArray (typeof (string));
-			}
-		}
-
-		public FSpotOptions ()
-		{
-			base.ParsingMode = OptionsParsingMode.Both;
-		}
-
-		public bool Validate ()
-		{
-			if ( (import != null && (view || shutdown || slideshow)) || 
-			     (view && (shutdown || slideshow)) ||
-			     (shutdown && slideshow) ) {
-				Console.WriteLine ("Can't mix --import, --view, --shutdown or --slideshow");
-				return false;
-			}
-			if (view && RemainingArguments.Length == 0) {
-				Console.WriteLine ("Need to specify at least one uri for --view");
-				return false;
-			}
-
-			foreach (string s in RemainingArguments)
-				if (s.StartsWith("-") && s != "--uninstalled" && s != "--debug" && s != "--trace" && s != "--profile" && s != "--sync") {
-					Console.WriteLine ("Unknown option {0}", s);
-					return false;
-				}
-			return true;
-		}
+		Console.WriteLine ("F-Spot  {0} - (c)2003-2007, Novell Inc\n" +
+			"Personal photo management for the GNOME Desktop\n\n" +
+			"Usage: f-spot [options] \n" +
+			"Options:\n" +
+		  	"-b -basedir PARAM   path to the photo database folder\n" +
+		    	"-? -help -usage     Show this help list\n" +
+			"-i -import PARAM    import from the given uri\n" +
+			"-p -photodir PARAM  default import folder\n" +
+			"-shutdown           shutdown a running f-spot instance\n" +
+			"-slideshow          display a slideshow\n" +
+			"-V -version         Display version and licensing information\n" +
+			"-v -view            view file(s) or directory(ies)\n", FSpot.Defines.VERSION);
 	}
 
-public class Driver {
-	public static void Main (string [] args)
+	static int Main (string [] args)
 	{
 		bool empty = false;
 		Program program = null;
 		ICore control = null;
-
+		List<string> uris = new List<string> ();
 		SetProcessName (Defines.PACKAGE);
-		
-		try {
-			FSpotOptions options = new FSpotOptions ();
-			options.ProcessArgs (args);
 
-			if (!options.Validate ()) {
-				options.DoHelp ();
-				return;
-			}
+		//Options and Option parsing
+		bool shutdown = false;
+		bool view = false;
+		string import_uri = null;
 
-			if (options.basedir != null) {
-				FSpot.Global.BaseDirectory = options.basedir;
-				System.Console.WriteLine("BaseDirectory is now {0}", FSpot.Global.BaseDirectory);
-			} 
+		for (int i = 0; i < args.Length; i++) {
+			switch (args [i]) {
+			case "-h": case "-?": case "-help": case "-usage":
+				Help ();
+				return 0;
+			
+			case "-shutdown":
+				shutdown = true;
+				break;
 
-			if (options.photodir != null) {
-				FSpot.Global.PhotoDirectory = System.IO.Path.GetFullPath(options.photodir);
-				System.Console.WriteLine("PhotoDirectory is now {0}", FSpot.Global.PhotoDirectory);
-			}
+			case "-b": case "-basedir": case "--basedir":
+				if (i+1 == args.Length) {
+					Console.WriteLine ("f-spot: -basedir option takes one argument");
+					return 1;
+				}
+				FSpot.Global.BaseDirectory = args [++i];
+				System.Console.WriteLine ("BaseDirectory is now {0}", FSpot.Global.BaseDirectory);
+				break;
 
-			if (options.slideshow) {
+			case "-p": case "-photodir": case "--photodir":
+				if (i+1 == args.Length) {
+					Console.WriteLine ("f-spot: -photodir option takes one argument");
+					return 1;
+				}
+				FSpot.Global.PhotoDirectory = System.IO.Path.GetFullPath(args [++i]);
+				System.Console.WriteLine( "PhotoDirectory is now {0}", FSpot.Global.PhotoDirectory);
+				break;
+
+			case "-i": case"-import": case "--import":
+				if (i+1 == args.Length) {
+					Console.WriteLine ("f-spot: -import option takes one argument");
+					return 1;
+				}
+				import_uri = args [++i];
+				break;
+			
+			case "-slideshow":
 				Catalog.Init ("f-spot", Defines.LOCALE_DIR);
 					
 				program = new Program (Defines.PACKAGE, 
@@ -113,8 +88,27 @@ public class Driver {
 				core.ShowSlides (null);
 				program.Run ();
 				System.Console.WriteLine ("done");
-				return;
+				return 0;
+
+			case "-v": case "-view": case "--view":
+				view = true;
+				break;
+			
+			case "--debug": case "--trace": case "--profile": case "--uninstalled":
+				break;
+
+			default:
+				if (view)
+					uris.Add (args [i]);
+				else {
+					Help ();
+					return 1;
+				}
+				break;
 			}
+		}
+		
+		try {
 
 			try {
 				NDesk.DBus.BusG.Init();
@@ -142,7 +136,7 @@ public class Driver {
 					System.Console.WriteLine ("Found active FSpot server: {0}", control);
 					program = null;
 				} catch (System.Exception) { 
-					if (!options.shutdown)
+					if (!shutdown)
 						System.Console.WriteLine ("Starting new FSpot server");
 				}
 				
@@ -162,12 +156,11 @@ public class Driver {
 							};
 						} catch {}
 
-						core = new Core (options.view);
+						core = new Core (view);
 						core.RegisterServer ();
 						
-						// FIXME: Error checking is non-existant here...
 						
-						empty = options.view || Core.Database.Empty;
+						empty = view || Core.Database.Empty;
 						control = core;
 					}
 				} catch (System.Exception e) {
@@ -184,7 +177,7 @@ public class Driver {
 			
 			UriList list = new UriList ();
 
-			if (options.shutdown) {
+			if (shutdown) {
 				try {
 					control.Shutdown ();
 				} catch (System.Exception) {
@@ -193,21 +186,24 @@ public class Driver {
 				System.Environment.Exit (0);
 			}
 
-			if (options.import != null) {
-				control.Import (options.import);
+			if (import_uri != null) {
+				control.Import (import_uri);
 			}
 
-			if (options.view) {
-				foreach (string s in options.Uris)
+			if (view) {
+				foreach (string s in uris)
 					list.AddUnknown (s);
-				if (list.Count > 0)
-					control.View (list.ToString ());
+				if (list.Count == 0) {
+					Help ();
+					return 1;
+				}
+				control.View (list.ToString ());
 			}
 			
-			if (empty && options.import == null && !options.view)
+			if (empty && import_uri == null && !view)
 				control.Import (null);
 			
-			if (options.import != null || !options.view) {
+			if (import_uri != null || !view) {
 				control.Organize ();
 				Gdk.Global.NotifyStartupComplete ();
 			}			
@@ -224,6 +220,7 @@ public class Driver {
 			dlg.Destroy();
 			System.Environment.Exit(1);
 		}
+		return 0;
 	}
 
 	[DllImport("libc")]

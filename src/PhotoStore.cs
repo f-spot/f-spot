@@ -448,7 +448,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		int num = 0;
 		while (true) {
 			num++;
-			string name = Mono.Posix.Catalog.GetPluralString ("Reparented", "Reparented ({0})", num);
+			string name = Catalog.GetPluralString ("Reparented", "Reparented ({0})", num);
 			name = String.Format (name, num);
 			if (VersionNameExists (name))
 				continue;
