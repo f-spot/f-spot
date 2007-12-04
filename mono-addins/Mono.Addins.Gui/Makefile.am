@@ -39,6 +39,7 @@ RESOURCES =							\
 	-resource:$(srcdir)/icons/package-x-generic.png 	\
 	-resource:$(srcdir)/icons/package-x-generic_16.png 	\
 	-resource:$(srcdir)/icons/package-x-generic_22.png 	\
+	-resource:$(srcdir)/icons/system-software-update.png	\
 	-resource:$(srcdir)/icons/user-package.png 
 
 CSC_EXTRA_FLAGS =  -noconfig -codepage:utf8 -warn:4 -debug -d:DEBUG
