@@ -1,5 +1,12 @@
 2007-12-05  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/PhotoStore.cs: throw an exception if Gnome.Vfs.Unlink fails.
+	Patch from Lorenzo.
+
+	* src/MainWindow.cs: Adding Lorenzo as Author in the About dialog.
+
+2007-12-05  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/AssemblyInfo.cs.in: fixing the build.
 
 2007-12-04  Stephane Delcroix  <sdelcroix@novell.com>

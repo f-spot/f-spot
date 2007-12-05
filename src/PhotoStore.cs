@@ -371,8 +371,10 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		System.Uri uri =  VersionUri (version_id);
 
 		if (!keep_file) {
-			if ((new Gnome.Vfs.Uri (uri.ToString ())).Exists)
-				(new Gnome.Vfs.Uri (uri.ToString ())).Unlink ();	
+			if ((new Gnome.Vfs.Uri (uri.ToString ())).Exists) {
+				if ((new Gnome.Vfs.Uri (uri.ToString ()).Unlink()) != Result.Ok)
+					throw new System.UnauthorizedAccessException();
+			}
 
 			try {
 				string thumb_path = ThumbnailGenerator.ThumbnailPath (uri);

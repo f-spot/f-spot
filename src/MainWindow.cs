@@ -1612,11 +1612,11 @@ public class MainWindow {
 		string [] authors = new string [] {
 			"Ettore Perazzoli",
 			"Lawrence Ewing",
+			"Stephane Delcroix",
 			"Laurence Hygate",
 			"Alex Graveley",
 			"Todd Berman",
 			"Ben Monnahan",
-			"Stephane Delcroix",
 			"Vladimir Vukicevic",
 			"Aaron Bockover",
 			"Bengt Thuree",
@@ -1641,7 +1641,8 @@ public class MainWindow {
 			"Joshua Tauberer",
 			"Joerg Buesse",
 			"Jakub Steiner",
-			"Xavier Bouchoux"
+			"Xavier Bouchoux",
+			"Lorenzo Milesi"
 		};
 
                 // Translators should localize the following string
