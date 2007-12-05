@@ -142,7 +142,7 @@ namespace FSpot.Exporter.Facebook
 		{
 			Friends = friends;
 
-			Glade.XML xml = new Glade.XML (null, "facebook.glade", "facebook_tag_popup", "f-spot");
+			Glade.XML xml = new Glade.XML (null, "FacebookExport.glade", "facebook_tag_popup", "f-spot");
 			xml.Autoconnect (this);
 
 			Popup = xml.GetWidget ("facebook_tag_popup") as Gtk.Window;
@@ -295,7 +295,7 @@ namespace FSpot.Exporter.Facebook
 
 		public void CreateDialog ()
 		{
-			xml = new Glade.XML (null, "facebook.glade", dialog_name, "f-spot");
+			xml = new Glade.XML (null, "FacebookExport.glade", dialog_name, "f-spot");
 			xml.Autoconnect (this);
 		}
 
