@@ -32,6 +32,7 @@ using System.Text;
 using System.Threading;
 using System.Collections;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using Mono.Unix;
 
 using Gtk;
@@ -122,10 +123,13 @@ namespace Mono.Addins.Gui
 			else
 				reps = service.Repositories.GetAvailableAddins (rep);
 			
-			foreach (AddinRepositoryEntry arep in reps) {
-				Addin sinfo = AddinManager.Registry.GetAddin (arep.Addin.Id);
+			foreach (AddinRepositoryEntry arep in reps)
+			{
 				if (!Services.InApplicationNamespace (service, arep.Addin.Id))
 					continue;
+				
+				// Find whatever version is installed
+				Addin sinfo = AddinManager.Registry.GetAddin (Addin.GetIdName (arep.Addin.Id));
 				
 				if (sinfo == null) {
 					if (showNotInstalled)
@@ -259,7 +263,7 @@ namespace Mono.Addins.Gui
 				return;
 				
 			if (info.Url != "")
-				Gnome.Url.Show (info.Url);
+				Process.Start (info.Url);
 		}
 		
 		protected void OnShowInfo (object sender, EventArgs e)
