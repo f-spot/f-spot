@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: F-Spot 0.4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-23 21:41+0200\n"
-"PO-Revision-Date: 2007-10-23 21:43+0200\n"
+"POT-Creation-Date: 2007-12-05 21:18+0100\n"
+"PO-Revision-Date: 2007-11-21 13:34+0100\n"
 "Last-Translator: Maxxer <maxxer@yetopen.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:62
-#: ../src/InfoBox.cs:74
 msgid "Version:"
 msgstr "Versione:"
 
@@ -34,22 +33,22 @@ msgid "Add-in Dependencies:"
 msgstr "Dipendenze add-in:"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:96
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:97
 msgid "All registered repositories"
 msgstr "Tutti i repository registrati"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:180
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:184
 msgid "Are you sure you want to cancel the installation?"
 msgstr "Annullare veramente l'installazione?"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:303
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:308
 msgid "The following packages will be uninstalled:"
 msgstr "I seguenti pacchetti saranno disinstallati:"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:308
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:313
 msgid ""
 "There are other add-ins that depend on the previous ones which will also be "
 "uninstalled:"
@@ -58,7 +57,7 @@ msgstr ""
 "essere disinstallati:"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:379
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:384
 msgid ""
 "The selected add-ins can't be installed because there are dependency "
 "conflicts."
@@ -67,47 +66,47 @@ msgstr ""
 "conflitti nelle dipendenze."
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:393
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:398
 msgid "The following packages will be installed:"
 msgstr "I seguenti pacchetti saranno installati:"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:397
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:402
 msgid " (in user directory)"
 msgstr " (nella directory utente)"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:403
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:408
 msgid "The following packages need to be uninstalled:"
 msgstr "È necessario disinstallare i seguenti pacchetti:"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:411
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:416
 msgid "The following dependencies could not be resolved:"
 msgstr "Impossibile risolvere le seguenti dipendenze:"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:435
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:440
 msgid "The installation has been successfully completed."
 msgstr "L'installazione è stata completata con successo."
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:436
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:441
 msgid "The installation failed!"
 msgstr "Installazione fallita!"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:439
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:444
 msgid "The uninstallation has been successfully completed."
 msgstr "La disinstallazione è stata completata con successo."
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:440
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:445
 msgid "The uninstallation failed!"
 msgstr "La disinstallazione è fallita!"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:599
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:604
 msgid "Repository"
 msgstr "Repository"
 
@@ -158,11 +157,12 @@ msgid "Exception occurred: {0}"
 msgstr "Eccezione occorsa: {0}"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInfoDialog.cs:32
-msgid "F-Spot Package"
+#, fuzzy
+msgid "Package"
 msgstr "Pacchetto di F-Spot"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:110
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:108
 msgid "Add-in Installation"
 msgstr "Installazione add-in"
 
@@ -178,102 +178,102 @@ msgstr "Installa da:"
 
 # (NdT) da monodevelop
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:177
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:181
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:180
 msgid "_Repositories..."
 msgstr "_Repository..."
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:217
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:218
 msgid "Show all packages"
 msgstr "Mostra tutti i pacchetti"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:218
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:219
 msgid "Show new versions only"
 msgstr "Mostra solo le nuove versioni"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:219
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:220
 msgid "Show updates only"
 msgstr "Mostra solo gli aggiornamenti"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:244
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:245
 msgid "_Unselect All"
 msgstr "_Deseleziona tutto"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:256
-#: ../src/f-spot.glade.h:197
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:257
+#: ../src/f-spot.glade.h:192
 msgid "Select _All"
 msgstr "Selezion_a tutto"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:331
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:332
 msgid "label124"
 msgstr "label124"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:342
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:344
 msgid "Overall Progress:"
 msgstr "Avanzamento complessivo:"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:370
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:372
 msgid "Downloading add-ins..."
 msgstr "Scaricamento add-in..."
 
 # (NdT) da monodevelop
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:36
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
 msgid "Add-in Manager"
 msgstr "Gestore add-in"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:52
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:54
 msgid "Additional extensions are required to perform this operation."
 msgstr "Sono richieste estensioni aggiuntive per eseguire questa operazione."
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:62
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:64
 msgid "The following add-ins will be installed:"
 msgstr "I seguenti add-in saranno installati:"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
-msgid "F-Spot Add-in Manager"
-msgstr "Gestore add-in di F-Spot"
-
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:88
-msgid "<big><b>F-Spot Add-in Manager</b></big>"
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:90
+#, fuzzy
+msgid "<big><b>Add-in Manager</b></big>"
 msgstr "<big><b>Gestore add-in di F-Spot</b></big>"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:108
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:110
 msgid "The following add-ins are currently installed:"
 msgstr "I seguenti add-in sono attualmente installati:"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:166
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:165
 msgid "_Install Add-ins..."
 msgstr "_Installa add-in..."
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:215
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:210
 msgid "_Uninstall..."
 msgstr "_Disinstalla..."
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:245
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:236
 msgid "Enable"
 msgstr "Abilita"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:275
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:262
 msgid "Disable"
 msgstr "Disabilita"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
-#: ../src/f-spot.glade.h:123
-msgid "F-Spot"
-msgstr "F-Spot"
+#: ../src/FlickrExport.cs:313 ../src/FolderExport.cs:202
+#: ../src/GalleryExport.cs:720 ../src/PicasaWebExport.cs:636
+#: ../src/SmugMugExport.cs:571
+msgid "Error"
+msgstr "Errore"
 
 # (NdT) da monodevelop
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:111
@@ -291,34 +291,34 @@ msgid "Add New Repository"
 msgstr "Aggiungi nuovo repository"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:68
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:70
 msgid "Select the location of the repository you want to register:"
 msgstr "Selezionare la posizione del repository da registrare:"
 
 # (NdT) da monodevelop
 #. Container child vbox89.Gtk.Box+BoxChild
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:75
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:77
 msgid "Register an on-line repository"
 msgstr "Registra un repository on-line"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:104
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:105
 msgid "Url:"
 msgstr "Url:"
 
 # (NdT) da monodevelop
 #. Container child vbox89.Gtk.Box+BoxChild
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:125
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:126
 msgid "Register a local repository"
 msgstr "Registra un repository locale"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:153
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:154
 msgid "Path:"
 msgstr "Percorso:"
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:177
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:178
 msgid "Browse..."
 msgstr "Esplora..."
 
@@ -328,24 +328,24 @@ msgstr "Esplora..."
 msgid "(provided by {0})"
 msgstr "(fornito da {0})"
 
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:108
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:154
 msgid "Disabled add-ins can't be loaded."
 msgstr "Gli add-in disabilitati non possono essere caricati."
 
 # (NdT) da monodevelop
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:133
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:179
 #, csharp-format
 msgid "Loading {0} add-in"
 msgstr "Caricamento dell'add-in {0}"
 
 # (NdT) da monodevelop (simile)
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:216
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:265
 #, csharp-format
 msgid "The required addin '{0}' is disabled."
 msgstr "L'add-in richiesto «{0}» è disabilitato."
 
 # (NdT) da monodevelop (simile)
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:218
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:267
 #, csharp-format
 msgid "The required addin '{0}' is not installed."
 msgstr "L'add-in richiesto «{0}» non è installato."
@@ -583,7 +583,7 @@ msgstr "Anteprima"
 msgid "Path"
 msgstr "Percorso"
 
-#: ../src/CameraFileSelectionDialog.cs:77 ../src/f-spot.glade.h:126
+#: ../src/CameraFileSelectionDialog.cs:77 ../src/f-spot.glade.h:121
 msgid "File"
 msgstr "File"
 
@@ -639,7 +639,7 @@ msgid "Error saving adjusted photo"
 msgstr "Errore nel salvare la fotografia modificata"
 
 #: ../src/ColorDialog.cs:212 ../src/HigMessageDialog.cs:15 ../src/Loupe.cs:58
-#: ../src/MainWindow.cs:2043 ../src/PhotoView.cs:265
+#: ../src/MainWindow.cs:2044 ../src/PhotoView.cs:265
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Ricevuta l'eccezione «{0}». Impossibile salvare la fotografia {1}"
@@ -863,12 +863,6 @@ msgstr "Caricamento completato"
 msgid "Error Uploading To {0}: {1}"
 msgstr "Errore nel caricare su {0}: {1}"
 
-#: ../src/FlickrExport.cs:313 ../src/FolderExport.cs:202
-#: ../src/GalleryExport.cs:720 ../src/PicasaWebExport.cs:636
-#: ../src/SmugMugExport.cs:571
-msgid "Error"
-msgstr "Errore"
-
 #: ../src/FlickrExport.cs:378
 msgid "Unable to log on."
 msgstr "Impossibile collegarsi."
@@ -914,7 +908,7 @@ msgid "Prev"
 msgstr "Prec"
 
 #: ../src/FolderExport.cs:858 ../src/ItemAction.cs:103
-#: ../src/f-spot.glade.h:156
+#: ../src/f-spot.glade.h:151
 msgid "Next"
 msgstr "Succ"
 
@@ -1285,39 +1279,43 @@ msgstr ""
 msgid "Import Tags"
 msgstr "Etichette importate"
 
-#: ../src/InfoBox.cs:72 ../src/PhotoVersionCommands.cs:56
-msgid "Name:"
-msgstr "Nome:"
+#: ../src/InfoBox.cs:81
+msgid "name"
+msgstr "nome"
 
-#: ../src/InfoBox.cs:76
-msgid "Date:"
-msgstr "Data:"
+#: ../src/InfoBox.cs:83
+msgid "version"
+msgstr "versione"
 
-#: ../src/InfoBox.cs:78
-msgid "Size:"
-msgstr "Dimensione:"
+#: ../src/InfoBox.cs:85
+msgid "date"
+msgstr "data"
 
-#: ../src/InfoBox.cs:80
-msgid "Exposure:"
-msgstr "Esposizione:"
+#: ../src/InfoBox.cs:87
+msgid "size"
+msgstr "dimensione"
+
+#: ../src/InfoBox.cs:89
+msgid "exposure"
+msgstr "esposizione"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/InfoBox.cs:221 ../src/TagStore.cs:451
+#: ../src/InfoBox.cs:232 ../src/TagStore.cs:451
 msgid "(None)"
 msgstr "(Nessuno)"
 
-#: ../src/InfoBox.cs:232 ../src/InfoBox.cs:241
+#: ../src/InfoBox.cs:243 ../src/InfoBox.cs:252
 msgid "(Unknown)"
 msgstr "(Sconosciuto)"
 
 #: ../src/InfoDisplay.cs:14 ../src/MainWindow.cs:1547
-#: ../src/f-spot.glade.h:154
+#: ../src/f-spot.glade.h:149
 msgid "Metadata Browser"
 msgstr "Esplorazione metadati"
 
 #. Obsolete, remove after db rev4
 #: ../src/InfoDisplay.cs:135 ../src/InfoDisplay.cs:137
-#: ../src/f-spot.glade.h:129
+#: ../src/f-spot.glade.h:124
 msgid "Folder"
 msgstr "Cartella"
 
@@ -1362,7 +1360,7 @@ msgstr "Ruota l'immagine selezionata a sinistra"
 msgid "Next picture"
 msgstr "Immagine successiva"
 
-#: ../src/ItemAction.cs:125 ../src/f-spot.glade.h:182
+#: ../src/ItemAction.cs:125 ../src/f-spot.glade.h:177
 msgid "Previous"
 msgstr "Precedente"
 
@@ -1394,7 +1392,7 @@ msgstr "Regola l'inclinazione dell'immagine per raddrizzare l'orizzonte"
 msgid "Create a soft focus visual effect"
 msgstr "Crea un effetto di sfocatura leggera"
 
-#: ../src/Loupe.cs:57 ../src/MainWindow.cs:2042
+#: ../src/Loupe.cs:57 ../src/MainWindow.cs:2043
 msgid "Error saving sharpened photo"
 msgstr "Errore nel salvare la fotografia resa nitida"
 
@@ -1402,19 +1400,19 @@ msgstr "Errore nel salvare la fotografia resa nitida"
 msgid "Sharpen"
 msgstr "Nitidezza"
 
-#: ../src/Loupe.cs:97 ../src/MainWindow.cs:2009
+#: ../src/Loupe.cs:97 ../src/MainWindow.cs:2010
 msgid "Amount:"
 msgstr "Percentuale:"
 
-#: ../src/Loupe.cs:98 ../src/MainWindow.cs:2010
+#: ../src/Loupe.cs:98 ../src/MainWindow.cs:2011
 msgid "Radius:"
 msgstr "Raggio:"
 
-#: ../src/Loupe.cs:99 ../src/MainWindow.cs:2011
+#: ../src/Loupe.cs:99 ../src/MainWindow.cs:2012
 msgid "Threshold:"
 msgstr "Soglia:"
 
-#: ../src/MainWindow.cs:248 ../src/f-spot.glade.h:144
+#: ../src/MainWindow.cs:248 ../src/f-spot.glade.h:139
 msgid "Import"
 msgstr "Importa"
 
@@ -1422,7 +1420,7 @@ msgstr "Importa"
 msgid "Import new images"
 msgstr "Importa nuove immagini"
 
-#: ../src/MainWindow.cs:266 ../src/f-spot.glade.h:84
+#: ../src/MainWindow.cs:266 ../src/f-spot.glade.h:85
 msgid "Browse"
 msgstr "Sfoglia"
 
@@ -1488,7 +1486,7 @@ msgstr "Ricevuto l'errore «{0}» durante la connessione alla fotocamera"
 #. Translators should localize the following string
 #. * which will give them credit in the About box.
 #. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1650
+#: ../src/MainWindow.cs:1651
 msgid "translator-credits"
 msgstr ""
 "Marco Colombo <m.colombo@ed.ac.uk>\n"
@@ -1497,19 +1495,19 @@ msgstr ""
 "Maxxer <maxxer@yetopen.it>\n"
 "e il contributo di Luca Ferretti"
 
-#: ../src/MainWindow.cs:1658
+#: ../src/MainWindow.cs:1659
 msgid "Copyright © 2003-2007 Novell Inc."
 msgstr "Copyright © 2003-2007 Novell Inc."
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1922
+#: ../src/MainWindow.cs:1923
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Unire l'etichetta selezionata"
 msgstr[1] "Unire le {0} etichette selezionate?"
 
-#: ../src/MainWindow.cs:1949
+#: ../src/MainWindow.cs:1950
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -1517,60 +1515,60 @@ msgstr ""
 "L'operazione unirà le etichette selezionate e ogni sotto etichetta in una "
 "sola."
 
-#: ../src/MainWindow.cs:1951
+#: ../src/MainWindow.cs:1952
 msgid "_Merge Tags"
 msgstr "_Unisci etichette"
 
-#: ../src/MainWindow.cs:2000
+#: ../src/MainWindow.cs:2001
 msgid "Unsharp Mask"
 msgstr "Maschera di nitidezza"
 
-#: ../src/MainWindow.cs:2203 ../src/SingleView.cs:471
+#: ../src/MainWindow.cs:2204 ../src/SingleView.cs:471
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} fotografia"
 msgstr[1] "{0} fotografie"
 
-#: ../src/MainWindow.cs:2210
+#: ../src/MainWindow.cs:2211
 #, csharp-format
 msgid " out of {0}"
 msgstr " di {0}"
 
-#: ../src/MainWindow.cs:2213
+#: ../src/MainWindow.cs:2214
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} selezionata)"
 msgstr[1] " ({0} selezionate)"
 
-#: ../src/MainWindow.cs:2300
+#: ../src/MainWindow.cs:2301
 msgid "_Ok"
 msgstr "_OK"
 
-#: ../src/MainWindow.cs:2301
+#: ../src/MainWindow.cs:2302
 msgid "Error Deleting Picture"
 msgstr "Errore nell'eliminare l'immagine"
 
-#: ../src/MainWindow.cs:2306
+#: ../src/MainWindow.cs:2307
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Permessi non sufficienti per eliminare il file:{1}{0}"
 
-#: ../src/MainWindow.cs:2310
+#: ../src/MainWindow.cs:2311
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr ""
 "Si è verificato un errore del tipo {0} durante l'eliminazione del file:{2}{1}"
 
-#: ../src/MainWindow.cs:2336
+#: ../src/MainWindow.cs:2337
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Eliminare definitivamente la fotografia selezionata?"
 msgstr[1] "Eliminare definitivamente le {0} fotografie selezionate?"
 
-#: ../src/MainWindow.cs:2340
+#: ../src/MainWindow.cs:2341
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
@@ -1581,20 +1579,20 @@ msgstr[1] ""
 "In questo modo verranno eliminate dall'unità tutte le versioni delle "
 "fotografie selezionate."
 
-#: ../src/MainWindow.cs:2343
+#: ../src/MainWindow.cs:2344
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "Eli_mina fotografia"
 msgstr[1] "Eli_mina fotografie"
 
-#: ../src/MainWindow.cs:2374
+#: ../src/MainWindow.cs:2375
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Rimuovere la fotografia selezionata da F-Spot?"
 msgstr[1] "Rimuovere le {0} fotografie selezionate da F-Spot?"
 
-#: ../src/MainWindow.cs:2379
+#: ../src/MainWindow.cs:2380
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1604,38 +1602,38 @@ msgstr ""
 "sulle etichette saranno perse. Le foto rimarranno sul computer, e potranno "
 "essere importate nuovamente in F-Spot."
 
-#: ../src/MainWindow.cs:2380
+#: ../src/MainWindow.cs:2381
 msgid "_Remove from Catalog"
 msgstr "_Rimuovi dal catalogo"
 
-#: ../src/MainWindow.cs:2437
+#: ../src/MainWindow.cs:2438
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Eliminare l'etichetta «{0}»?"
 
-#: ../src/MainWindow.cs:2439
+#: ../src/MainWindow.cs:2440
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Eliminare le {0} etichette selezionate?"
 
-#: ../src/MainWindow.cs:2442
+#: ../src/MainWindow.cs:2443
 msgid "If you delete a tag, all associations with photos are lost."
 msgstr ""
 "Se un'etichetta viene eliminata, tutte le associazioni con le foto verranno "
 "perse."
 
-#: ../src/MainWindow.cs:2443
+#: ../src/MainWindow.cs:2444
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "Eli_mina etichetta"
 msgstr[1] "Eli_mina etichette"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2457
+#: ../src/MainWindow.cs:2458
 msgid "Tag is not empty"
 msgstr "Etichetta non vuota"
 
-#: ../src/MainWindow.cs:2458
+#: ../src/MainWindow.cs:2459
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1644,39 +1642,39 @@ msgstr ""
 "Impossibile eliminare etichette contenenti altre etichette. Prima eliminare "
 "le etichette all'interno di «{0}»"
 
-#: ../src/MainWindow.cs:2885
+#: ../src/MainWindow.cs:2886
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Ruota la fotografia selezionata a sinistra"
 msgstr[1] "Ruota le fotografie selezionate a sinistra"
 
-#: ../src/MainWindow.cs:2898
+#: ../src/MainWindow.cs:2899
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Ruota la fotografia selezionata a destra"
 msgstr[1] "Ruota le fotografie selezionate a destra"
 
-#: ../src/MainWindow.cs:2906
+#: ../src/MainWindow.cs:2907
 #, csharp-format
 msgid "Find Selected Tag"
 msgid_plural "Find Selected Tags"
 msgstr[0] "Trova etichetta selezionata"
 msgstr[1] "Trova etichette selezionate"
 
-#: ../src/MainWindow.cs:2910
+#: ../src/MainWindow.cs:2911
 #, csharp-format
 msgid "Find Selected Tag With"
 msgid_plural "Find Selected Tags With"
 msgstr[0] "Trova etichetta selezionata con"
 msgstr[1] "Trova etichette selezionate con"
 
-#: ../src/MainWindow.cs:2927
+#: ../src/MainWindow.cs:2928
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Creare una nuova versione?"
 msgstr[1] "Creare nuove versioni?"
 
-#: ../src/MainWindow.cs:2929
+#: ../src/MainWindow.cs:2930
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1795,21 +1793,21 @@ msgstr "Nitidezza"
 msgid "Scene Type"
 msgstr "Tipo di scena"
 
-#: ../src/PhotoStore.cs:413
+#: ../src/PhotoStore.cs:453
 #, csharp-format
 msgid "Reparented"
 msgid_plural "Reparented ({0})"
 msgstr[0] "Riassegnata"
 msgstr[1] "Riassegnate ({0})"
 
-#: ../src/PhotoStore.cs:430
+#: ../src/PhotoStore.cs:470
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "Modificata"
 msgstr[1] "Modificate ({0})"
 
-#: ../src/PhotoStore.cs:449
+#: ../src/PhotoStore.cs:489
 #, csharp-format
 msgid "Modified in {1}"
 msgid_plural "Modified in {1} ({0})"
@@ -1818,7 +1816,7 @@ msgstr[1] "Modificate in {1} ({0})"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/PhotoStore.cs:633 ../src/f-spot.glade.h:169
+#: ../src/PhotoStore.cs:673 ../src/f-spot.glade.h:164
 msgid "Original"
 msgstr "Originale"
 
@@ -1831,6 +1829,10 @@ msgstr "(Nessuna etichetta)"
 #: ../src/PhotoVersionCommands.cs:55
 msgid "Create New Version"
 msgstr "Crea nuova versione"
+
+#: ../src/PhotoVersionCommands.cs:56
+msgid "Name:"
+msgstr "Nome:"
 
 #: ../src/PhotoVersionCommands.cs:60
 msgid "Rename Version"
@@ -2128,11 +2130,11 @@ msgstr "Ruota la fotografia selezionata a destra"
 msgid "Open"
 msgstr "Apri"
 
-#: ../src/SingleView.cs:428 ../src/f-spot.glade.h:192
+#: ../src/SingleView.cs:428 ../src/f-spot.glade.h:187
 msgid "Rotate _Left"
 msgstr "Ruota a _sinistra"
 
-#: ../src/SingleView.cs:429 ../src/f-spot.glade.h:193
+#: ../src/SingleView.cs:429 ../src/f-spot.glade.h:188
 msgid "Rotate _Right"
 msgstr "Ruota a _destra"
 
@@ -2174,7 +2176,7 @@ msgstr "Modifica icona per l'etichetta {0}"
 #: ../src/TagCommands.cs:467
 #, fuzzy
 msgid "Select Photo from file"
-msgstr "Seleziona le foto da copiare dalla fotocamera..."
+msgstr "Seleziona foto da file"
 
 #: ../src/TagCommands.cs:490
 #, csharp-format
@@ -2231,34 +2233,37 @@ msgid "Merge Tags"
 msgstr "Unisci etichette"
 
 #: ../src/TagQueryWidget.cs:31
-msgid "Include"
-msgstr "Includi"
+#, fuzzy, csharp-format
+msgid "Include Photos Tagged \"{0}\""
+msgstr "Includi foto etichettate «{0}»"
 
-#: ../src/TagQueryWidget.cs:37
-msgid "Exclude"
-msgstr "Escludi"
+#: ../src/TagQueryWidget.cs:36
+#, fuzzy, csharp-format
+msgid "Exclude Photos Tagged \"{0}\""
+msgstr "Escludi foto etichettate «{0}»"
 
-#: ../src/TagQueryWidget.cs:43
-msgid "Remove"
-msgstr "Rimuovi"
+#: ../src/TagQueryWidget.cs:41
+#, fuzzy
+msgid "Remove From Search"
+msgstr "Rimuovi dalla ricerca"
 
-#: ../src/TagQueryWidget.cs:87
+#: ../src/TagQueryWidget.cs:85
 #, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
 msgstr[0] "_Trova con"
 msgstr[1] "_Trova con"
 
-#: ../src/TagQueryWidget.cs:113
+#: ../src/TagQueryWidget.cs:111
 msgid "All"
 msgstr "Tutte"
 
-#: ../src/TagQueryWidget.cs:148 ../src/Term.cs:591
+#: ../src/TagQueryWidget.cs:146 ../src/Term.cs:591
 #, csharp-format
 msgid "Not {0}"
 msgstr "Esclusa {0}"
 
-#: ../src/TagQueryWidget.cs:278
+#: ../src/TagQueryWidget.cs:276
 msgid "Drag tags here to search for them"
 msgstr "Trascinare qui le etichette da cercare"
 
@@ -2299,7 +2304,7 @@ msgstr ",  "
 msgid " or "
 msgstr " o "
 
-#: ../src/Term.cs:379 ../src/f-spot.glade.h:326
+#: ../src/Term.cs:379 ../src/f-spot.glade.h:321
 msgid "or"
 msgstr "o"
 
@@ -2313,12 +2318,12 @@ msgstr "Salta"
 
 #. The preceding text here is the second checkbutton in the Time dialog
 #. that says "Space all photos by []"
-#: ../src/TimeDialog.cs:125 ../src/f-spot.glade.h:325
+#: ../src/TimeDialog.cs:125 ../src/f-spot.glade.h:320
 #, csharp-format
 msgid "min. Starting at {0}"
 msgstr "min. Iniziando da {0}"
 
-#: ../src/TimeDialog.cs:130 ../src/f-spot.glade.h:209
+#: ../src/TimeDialog.cs:130 ../src/f-spot.glade.h:204
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Sposta tutte le foto di {0}"
@@ -2328,11 +2333,11 @@ msgstr "Sposta tutte le foto di {0}"
 msgid "Unable to create temporary file"
 msgstr "Impossibile creare il file temporaneo"
 
-#: ../src/Updater.cs:213
+#: ../src/Updater.cs:230
 msgid "Updating F-Spot Database"
 msgstr "Aggiornamento database di F-Spot"
 
-#: ../src/Updater.cs:214
+#: ../src/Updater.cs:231
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -2477,7 +2482,7 @@ msgstr "<b>Da foto esterna</b>"
 #: ../src/f-spot.glade.h:25
 #, fuzzy
 msgid "<b>From Photo</b>"
-msgstr "<b>Fotografie</b>"
+msgstr "<b>Da foto</b>"
 
 #: ../src/f-spot.glade.h:26
 msgid "<b>Gallery</b>"
@@ -2724,78 +2729,79 @@ msgstr "Attacca etichetta:"
 msgid "Autorotate"
 msgstr "Rotazione automatica"
 
-#: ../src/f-spot.glade.h:85
+#: ../src/f-spot.glade.h:84
+#, fuzzy
+msgid "Beneath _Photos"
+msgstr "Sotto le _foto"
+
+#: ../src/f-spot.glade.h:86
 msgid "CD"
 msgstr "CD"
 
-#: ../src/f-spot.glade.h:86
+#: ../src/f-spot.glade.h:87
 msgid "C_aption:"
 msgstr "Did_ascalia:"
 
-#: ../src/f-spot.glade.h:87
+#: ../src/f-spot.glade.h:88
 msgid "C_ontrast:"
 msgstr "C_ontrasto:"
 
-#: ../src/f-spot.glade.h:88
+#: ../src/f-spot.glade.h:89
 msgid "Camera Selection"
 msgstr "Selezione fotocamera"
 
-#: ../src/f-spot.glade.h:89
+#: ../src/f-spot.glade.h:90
 msgid "Cancel, do not change the current timeline. "
 msgstr "Annulla, non cambiare la linea temporale corrente. "
 
-#: ../src/f-spot.glade.h:90
+#: ../src/f-spot.glade.h:91
 msgid "Clea_r Date Range"
 msgstr "_Pulisci intervallo date"
 
-#: ../src/f-spot.glade.h:91
+#: ../src/f-spot.glade.h:92
 msgid "Clear Roll Filter"
 msgstr "Pulisci filtro rullino di importazione"
 
-#: ../src/f-spot.glade.h:92
+#: ../src/f-spot.glade.h:93
 msgid "Co_nfigure"
 msgstr "Co_nfigura"
 
-#: ../src/f-spot.glade.h:93
+#: ../src/f-spot.glade.h:94
 msgid "Copy Locat_ion"
 msgstr "Copia pos_izione"
 
-#: ../src/f-spot.glade.h:94
+#: ../src/f-spot.glade.h:95
 msgid "Copy files to the Photos folder"
 msgstr "Copia i file nella cartella delle foto"
 
-#: ../src/f-spot.glade.h:95
+#: ../src/f-spot.glade.h:96
 msgid "Create CD"
 msgstr "Crea CD"
 
-#: ../src/f-spot.glade.h:96
+#: ../src/f-spot.glade.h:97
 msgid "Create Mail"
 msgstr "Crea email"
 
-#: ../src/f-spot.glade.h:97
+#: ../src/f-spot.glade.h:98
 msgid "Create New _Tag..."
 msgstr "Crea nuova _etichetta..."
 
-#: ../src/f-spot.glade.h:98
+#: ../src/f-spot.glade.h:99
 msgid "Create _New Version..."
 msgstr "Crea _nuova versione..."
 
 # (NdT) Original è il nome di una applicazione scritta da Jakub "jimnac" Stainer
 # è possibile trovarla a: http://jimnac.musichall.cz/original.php
 # Grazie Luca! :)
-#: ../src/f-spot.glade.h:99
+#: ../src/f-spot.glade.h:100
 msgid "Create _gallery using \"Original\""
 msgstr "Crea _galleria usando «Original»"
 
-#: ../src/f-spot.glade.h:100
+#: ../src/f-spot.glade.h:101
 msgid "Create a mail with the selected photos (possible resized) attached"
 msgstr ""
 "Crea una email con le fotografie selezionate (possibilmente ridimensionate) "
 "in allegato"
-
-#: ../src/f-spot.glade.h:101
-msgid "Create mail..."
-msgstr "Crea email..."
 
 #: ../src/f-spot.glade.h:102
 msgid "Create standalone _web gallery"
@@ -2818,74 +2824,58 @@ msgid "Display File Names"
 msgstr "Visualizza nomi file"
 
 #: ../src/f-spot.glade.h:107
-msgid "Display Side_bar"
-msgstr "Visualizza riquadro _laterale"
-
-#: ../src/f-spot.glade.h:108
-msgid "Display T_ags"
-msgstr "Visualizza _etichette"
-
-#: ../src/f-spot.glade.h:109
-msgid "Display Too_lbar"
-msgstr "Visualizza barra degli _strumenti"
-
-#: ../src/f-spot.glade.h:110
-msgid "Display _Dates"
-msgstr "Visualizza _date"
-
-#: ../src/f-spot.glade.h:111
-msgid "Display _Timeline"
-msgstr "Visualizza linea _temporale"
-
-#: ../src/f-spot.glade.h:112
 msgid "Display only those photos that were imported in specified Rolls."
 msgstr "Visualizza solo le fotografie importate nei rullini specificati."
 
-#: ../src/f-spot.glade.h:113
+#: ../src/f-spot.glade.h:108
 msgid "Do not send a mail"
 msgstr "Non inviare email"
 
-#: ../src/f-spot.glade.h:114
+#: ../src/f-spot.glade.h:109
 msgid "E-_Mail:"
 msgstr "E_mail:"
 
-#: ../src/f-spot.glade.h:115
+#: ../src/f-spot.glade.h:110
 msgid "E_xport titles and comments"
 msgstr "E_sporta titoli e commenti"
 
-#: ../src/f-spot.glade.h:116
+#: ../src/f-spot.glade.h:111
 msgid "Edit"
 msgstr "Modifica"
 
-#: ../src/f-spot.glade.h:117
+#: ../src/f-spot.glade.h:112
 msgid "Edit Tag Icon"
 msgstr "Modifica icona etichetta"
 
-#: ../src/f-spot.glade.h:118
+#: ../src/f-spot.glade.h:113
 msgid "Edit icon"
 msgstr "Modifica icona"
 
-#: ../src/f-spot.glade.h:119
+#: ../src/f-spot.glade.h:114
 msgid "Estimated new size"
 msgstr "Nuova dimensione stimata"
 
-#: ../src/f-spot.glade.h:120
+#: ../src/f-spot.glade.h:115
 msgid "Export"
 msgstr "Esporta"
 
-#: ../src/f-spot.glade.h:121
+#: ../src/f-spot.glade.h:116
 msgid "Export _titles and comments"
 msgstr "Esporta _titoli e commenti"
 
-#: ../src/f-spot.glade.h:122
+#: ../src/f-spot.glade.h:117
 msgid "Extra large"
 msgstr "Molto grande"
 
-#: ../src/f-spot.glade.h:124
+#: ../src/f-spot.glade.h:118
+msgid "F-Spot"
+msgstr "F-Spot"
+
+#: ../src/f-spot.glade.h:119
 msgid "F-Spot View"
 msgstr "Visualizzatore F-Spot"
 
-#: ../src/f-spot.glade.h:125
+#: ../src/f-spot.glade.h:120
 msgid ""
 "F-Spot needs your authorization in order to upload photos to your {0} "
 "account. Press the \"Authorize\" button to open a web browser and give F-"
@@ -2895,19 +2885,19 @@ msgstr ""
 "account {0}. Fare clic su «Autorizza» per aprire il browser web ed eseguire "
 "l'autenticazione. "
 
-#: ../src/f-spot.glade.h:127
+#: ../src/f-spot.glade.h:122
 msgid "Filter on selected rolls"
 msgstr "Filtra sui rullini selezionati"
 
-#: ../src/f-spot.glade.h:128
+#: ../src/f-spot.glade.h:123
 msgid "Fin_d"
 msgstr "Tr_ova"
 
-#: ../src/f-spot.glade.h:130
+#: ../src/f-spot.glade.h:125
 msgid "Folder Export"
 msgstr "Esporta in cartella"
 
-#: ../src/f-spot.glade.h:131
+#: ../src/f-spot.glade.h:126
 msgid ""
 "From Screen\n"
 "Standard RGB"
@@ -2915,7 +2905,7 @@ msgstr ""
 "Dallo schermo\n"
 "RGB standard"
 
-#: ../src/f-spot.glade.h:133
+#: ../src/f-spot.glade.h:128
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
@@ -2923,19 +2913,19 @@ msgstr ""
 "Pagina intera\n"
 "Standard - 10×15 (4×6)"
 
-#: ../src/f-spot.glade.h:135
+#: ../src/f-spot.glade.h:130
 msgid "G_allery Name:"
 msgstr "Nome g_alleria:"
 
-#: ../src/f-spot.glade.h:136
+#: ../src/f-spot.glade.h:131
 msgid "G_allery:"
 msgstr "G_alleria:"
 
-#: ../src/f-spot.glade.h:137
+#: ../src/f-spot.glade.h:132
 msgid "Gallery"
 msgstr "Galleria"
 
-#: ../src/f-spot.glade.h:138
+#: ../src/f-spot.glade.h:133
 msgid ""
 "Hairline\n"
 "0.25\"\n"
@@ -2947,55 +2937,55 @@ msgstr ""
 "0,5\n"
 "1\"\n"
 
-#: ../src/f-spot.glade.h:143
+#: ../src/f-spot.glade.h:138
 msgid "Images tagged with:"
 msgstr "Immagini etichettate con:"
 
-#: ../src/f-spot.glade.h:145
+#: ../src/f-spot.glade.h:140
 msgid "Import Rolls"
 msgstr "Rullini di importazione"
 
-#: ../src/f-spot.glade.h:146
+#: ../src/f-spot.glade.h:141
 msgid "Import Source:"
 msgstr "Sorgente di importazione:"
 
-#: ../src/f-spot.glade.h:147
+#: ../src/f-spot.glade.h:142
 msgid "Include subfolders"
 msgstr "Includi sottocartelle"
 
-#: ../src/f-spot.glade.h:148
+#: ../src/f-spot.glade.h:143
 msgid "Interpolate image on zoom"
 msgstr "Interpolazione immagine all'ingrandimento"
 
-#: ../src/f-spot.glade.h:149
+#: ../src/f-spot.glade.h:144
 msgid "Large"
 msgstr "Grande"
 
-#: ../src/f-spot.glade.h:150
+#: ../src/f-spot.glade.h:145
 msgid "Last Import Roll"
 msgstr "Ultimo rullino di importazione"
 
-#: ../src/f-spot.glade.h:151
+#: ../src/f-spot.glade.h:146
 msgid "Make F-Spot your screensaver"
 msgstr "Usa F-Spot come salvaschermo"
 
-#: ../src/f-spot.glade.h:152
+#: ../src/f-spot.glade.h:147
 msgid "Manage _Extensions"
 msgstr "Gestisci _estensioni"
 
-#: ../src/f-spot.glade.h:153
+#: ../src/f-spot.glade.h:148
 msgid "Medium"
 msgstr "Medie"
 
-#: ../src/f-spot.glade.h:155
+#: ../src/f-spot.glade.h:150
 msgid "N_umber of Copies:"
 msgstr "N_umero di copie:"
 
-#: ../src/f-spot.glade.h:157
+#: ../src/f-spot.glade.h:152
 msgid "No _image"
 msgstr "Nessuna _immagine"
 
-#: ../src/f-spot.glade.h:158
+#: ../src/f-spot.glade.h:153
 msgid ""
 "None\n"
 "Title\n"
@@ -3009,63 +2999,63 @@ msgstr ""
 "Data\n"
 "Dettagli foto"
 
-#: ../src/f-spot.glade.h:163
+#: ../src/f-spot.glade.h:158
 msgid "Number of photos in selected rolls :"
 msgstr "Numero di foto nei rullini selezionati: "
 
-#: ../src/f-spot.glade.h:164
+#: ../src/f-spot.glade.h:159
 msgid "Number of pictures"
 msgstr "Numero di immagini"
 
-#: ../src/f-spot.glade.h:165
+#: ../src/f-spot.glade.h:160
 msgid "Only photos taken within these dates will be displayed."
 msgstr "Solo le foto scattate tra queste date saranno visualizzate."
 
-#: ../src/f-spot.glade.h:166
+#: ../src/f-spot.glade.h:161
 msgid "Open _Folder..."
 msgstr "Apri _cartella..."
 
-#: ../src/f-spot.glade.h:167
+#: ../src/f-spot.glade.h:162
 msgid "Open _album in browser when done uploading"
 msgstr "Apri l'_album nel browser a caricamento completato"
 
-#: ../src/f-spot.glade.h:168
+#: ../src/f-spot.glade.h:163
 msgid "Open _destination when done exporting"
 msgstr "Apri la cartella di _destinazione a esportazione completata"
 
-#: ../src/f-spot.glade.h:170
+#: ../src/f-spot.glade.h:165
 msgid "Original size (possible very large file size)"
 msgstr "Dimensione originale (potrebbero essere file molto grandi)"
 
-#: ../src/f-spot.glade.h:171
+#: ../src/f-spot.glade.h:166
 msgid "P_arent Tag:"
 msgstr "Etichett_a genitore:"
 
-#: ../src/f-spot.glade.h:172
+#: ../src/f-spot.glade.h:167
 msgid "P_hoto Source:"
 msgstr "S_orgente foto:"
 
-#: ../src/f-spot.glade.h:173
+#: ../src/f-spot.glade.h:168
 msgid "Page 1 of 3"
 msgstr "Pagina 1 di 3"
 
-#: ../src/f-spot.glade.h:174
+#: ../src/f-spot.glade.h:169
 msgid "Pause"
 msgstr "Pausa"
 
-#: ../src/f-spot.glade.h:175
+#: ../src/f-spot.glade.h:170
 msgid "Photo 0 of 0"
 msgstr "Foto 0 di 0"
 
-#: ../src/f-spot.glade.h:176
+#: ../src/f-spot.glade.h:171
 msgid "Photo _Size:"
 msgstr "_Dimensione foto:"
 
-#: ../src/f-spot.glade.h:177
+#: ../src/f-spot.glade.h:172
 msgid "Please verify that the settings for this gallery are correct."
 msgstr "Verificare che le impostazioni di questa galleria siano corrette."
 
-#: ../src/f-spot.glade.h:178
+#: ../src/f-spot.glade.h:173
 msgid ""
 "Please verify that the settings for this gallery are correct.\n"
 "Enter the letters as they are shown in the image in\n"
@@ -3075,75 +3065,75 @@ msgstr ""
 "Inserire le lettere come sono visualizzate nell'immagine nel campo\n"
 "«Captcha». <i>Non c'è differenza tra minuscole e maiuscole</i>"
 
-#: ../src/f-spot.glade.h:181
+#: ../src/f-spot.glade.h:176
 msgid "Preferences"
 msgstr "Preferenze"
 
-#: ../src/f-spot.glade.h:183
+#: ../src/f-spot.glade.h:178
 msgid "Print"
 msgstr "Stampa"
 
-#: ../src/f-spot.glade.h:184
+#: ../src/f-spot.glade.h:179
 msgid "Print crop _marks"
 msgstr "Stampa li_nee di ritaglio"
 
-#: ../src/f-spot.glade.h:185
+#: ../src/f-spot.glade.h:180
 msgid "Private"
 msgstr "Privato"
 
-#: ../src/f-spot.glade.h:186
+#: ../src/f-spot.glade.h:181
 msgid "Public"
 msgstr "Pubblico"
 
-#: ../src/f-spot.glade.h:187
+#: ../src/f-spot.glade.h:182
 msgid "Public Album"
 msgstr "Album pubblico"
 
-#: ../src/f-spot.glade.h:188
+#: ../src/f-spot.glade.h:183
 msgid "Re_fresh Thumbnail"
 msgstr "A_ggiorna miniatura"
 
-#: ../src/f-spot.glade.h:189
+#: ../src/f-spot.glade.h:184
 msgid "Rem_ove Tag"
 msgstr "Ri_muovi etichetta"
 
-#: ../src/f-spot.glade.h:190
+#: ../src/f-spot.glade.h:185
 msgid "Repair"
 msgstr "Ripara"
 
-#: ../src/f-spot.glade.h:191
+#: ../src/f-spot.glade.h:186
 msgid "Reset"
 msgstr "Azzera"
 
-#: ../src/f-spot.glade.h:194
+#: ../src/f-spot.glade.h:189
 msgid "Select A Folder"
 msgstr "Seleziona cartella"
 
-#: ../src/f-spot.glade.h:195
+#: ../src/f-spot.glade.h:190
 msgid "Select Import Rolls..."
 msgstr "Selezionare i rullini di importazione..."
 
-#: ../src/f-spot.glade.h:196
+#: ../src/f-spot.glade.h:191
 msgid "Select Photos to Copy From Camera..."
 msgstr "Seleziona le foto da copiare dalla fotocamera..."
 
-#: ../src/f-spot.glade.h:198
+#: ../src/f-spot.glade.h:193
 msgid "Select _None"
 msgstr "A_nnulla selezione"
 
-#: ../src/f-spot.glade.h:199
+#: ../src/f-spot.glade.h:194
 msgid "Select a Tag..."
 msgstr "Seleziona un'etichetta..."
 
-#: ../src/f-spot.glade.h:200
+#: ../src/f-spot.glade.h:195
 msgid "Select the camera from which you want to transfer files"
 msgstr "Selezionare la fotocamera da cui si desidera trasferire i file"
 
-#: ../src/f-spot.glade.h:201
+#: ../src/f-spot.glade.h:196
 msgid "Selected Camera: "
 msgstr "Fotocamera selezionata: "
 
-#: ../src/f-spot.glade.h:202
+#: ../src/f-spot.glade.h:197
 msgid ""
 "Selection\n"
 "Gallery\n"
@@ -3153,59 +3143,64 @@ msgstr ""
 "Galleria\n"
 "Vista attuale"
 
-#: ../src/f-spot.glade.h:205
+#: ../src/f-spot.glade.h:200
 msgid "Send by _Mail..."
 msgstr "Invia per _email..."
 
-#: ../src/f-spot.glade.h:206
+#: ../src/f-spot.glade.h:201
 msgid "Set _Date Range..."
 msgstr "Imposta intervallo _data..."
 
-#: ../src/f-spot.glade.h:207
+#: ../src/f-spot.glade.h:202
 msgid "Set as _Background"
 msgstr "Imposta come s_fondo"
 
-#: ../src/f-spot.glade.h:208
+#: ../src/f-spot.glade.h:203
 msgid "Set date range"
 msgstr "Imposta intervallo data"
 
-#: ../src/f-spot.glade.h:210
+#: ../src/f-spot.glade.h:205
 msgid "Show all photos."
 msgstr "Visualizza tutte le foto."
 
-#: ../src/f-spot.glade.h:211
+#: ../src/f-spot.glade.h:206
 msgid "Show or hide the side pane"
 msgstr "Mostra o nascondi il riquadro laterale"
 
-#: ../src/f-spot.glade.h:212
+#: ../src/f-spot.glade.h:207
 msgid "Show or hide the toolbar"
 msgstr "Mostra o nascondi la barra degli strumenti"
 
-#: ../src/f-spot.glade.h:213
+#: ../src/f-spot.glade.h:208
 msgid "Side _pane"
 msgstr "_Riquadro laterale"
 
-#: ../src/f-spot.glade.h:214
+#: ../src/f-spot.glade.h:209
+#, fuzzy
+msgid "Side_bar"
+msgstr "Riquadro _laterale"
+
+#: ../src/f-spot.glade.h:210
 msgid "Size"
 msgstr "Dimensione"
 
-#: ../src/f-spot.glade.h:215
+#: ../src/f-spot.glade.h:211
 msgid "Size of the exported selection :"
 msgstr "Dimensione della selezione esportata: "
 
-#: ../src/f-spot.glade.h:216
+#: ../src/f-spot.glade.h:212
 msgid "Small"
 msgstr "Piccole"
 
-#: ../src/f-spot.glade.h:217
+#: ../src/f-spot.glade.h:213
 msgid "So_urce Temp"
 msgstr "Temperat_ura sorgente"
 
-#: ../src/f-spot.glade.h:218
+#: ../src/f-spot.glade.h:214
 msgid "Space all photos by"
 msgstr "Spazia tutte le foto di"
 
-#: ../src/f-spot.glade.h:219
+#: ../src/f-spot.glade.h:215
 msgid ""
 "Specify if an original size picture should be rotated or not. Smaller sizes "
 "are automatically rotated."
@@ -3213,7 +3208,7 @@ msgstr ""
 "Specificare se un'immagine di dimensione originale deve essere rotata. Le "
 "fotografie di piccole dimensioni sono ruotate automaticamente."
 
-#: ../src/f-spot.glade.h:220
+#: ../src/f-spot.glade.h:216
 msgid ""
 "Standard RGB\n"
 "Image Profile\n"
@@ -3223,117 +3218,137 @@ msgstr ""
 "Profilo immagine\n"
 "Personalizzato\n"
 
-#: ../src/f-spot.glade.h:224
+#: ../src/f-spot.glade.h:220
 msgid "Strip _metadata"
 msgstr "Togli _metadati"
 
-#: ../src/f-spot.glade.h:225
+#: ../src/f-spot.glade.h:221
 msgid "Strip image _metadata"
 msgstr "Togli _metadati dall'immagine"
 
-#: ../src/f-spot.glade.h:226
+#: ../src/f-spot.glade.h:222
+#, fuzzy
+msgid "T_ags"
+msgstr "_Etichette"
+
+#: ../src/f-spot.glade.h:223
 msgid "Tag Icons"
 msgstr "Icone etichette"
 
-#: ../src/f-spot.glade.h:227
+#: ../src/f-spot.glade.h:224
 msgid "Tags: "
 msgstr "Etichette: "
 
-#: ../src/f-spot.glade.h:228
+#: ../src/f-spot.glade.h:225
 msgid "Tiny"
 msgstr "Minuscola"
 
-#: ../src/f-spot.glade.h:229
+#: ../src/f-spot.glade.h:226
+#, fuzzy
+msgid "Too_lbar"
+msgstr "Barra degli _strumenti"
+
+#: ../src/f-spot.glade.h:227
 msgid "Toolbar"
 msgstr "Barra degli strumenti"
 
-#: ../src/f-spot.glade.h:230
+#: ../src/f-spot.glade.h:228
 msgid "Total original size"
 msgstr "Dimensione originale"
 
-#: ../src/f-spot.glade.h:231
+#: ../src/f-spot.glade.h:229
 msgid "U_RL:"
 msgstr "U_RL:"
 
-#: ../src/f-spot.glade.h:232
+#: ../src/f-spot.glade.h:230
 msgid "View"
 msgstr "Visualizza"
 
-#: ../src/f-spot.glade.h:233
+#: ../src/f-spot.glade.h:231
 msgid "Visible to Family"
 msgstr "Visualizzabile dalla famiglia"
 
-#: ../src/f-spot.glade.h:234
+#: ../src/f-spot.glade.h:232
 msgid "Visible to Friends"
 msgstr "Visualizzabile dagli amici"
 
-#: ../src/f-spot.glade.h:235
+#: ../src/f-spot.glade.h:233
 msgid "Will print using: US Letter size on Generic Postscript"
 msgstr "Stampa utilizzando: dimensioni US Letter su Generic Postscript"
 
-#: ../src/f-spot.glade.h:236
+#: ../src/f-spot.glade.h:234
 msgid "Write _metadata to file"
 msgstr "Scrivi _metadati su file"
 
-#: ../src/f-spot.glade.h:237
+#: ../src/f-spot.glade.h:235
 msgid "Zoom _in"
 msgstr "Aum_enta ingrandimento"
 
-#: ../src/f-spot.glade.h:238
+#: ../src/f-spot.glade.h:236
 msgid "Zoom _out"
 msgstr "Rid_uci ingrandimento"
 
-#: ../src/f-spot.glade.h:239
+#: ../src/f-spot.glade.h:237
 msgid "Zoom in"
 msgstr "Aumenta l'ingrandimento"
 
-#: ../src/f-spot.glade.h:240
+#: ../src/f-spot.glade.h:238
 msgid "Zoom out"
 msgstr "Riduce l'ingrandimento"
 
-#: ../src/f-spot.glade.h:241
+#: ../src/f-spot.glade.h:239
 msgid "_Account:"
 msgstr "_Account:"
 
-#: ../src/f-spot.glade.h:242
+#: ../src/f-spot.glade.h:240
 msgid "_Album Name:"
 msgstr "Nome dell'_album:"
 
-#: ../src/f-spot.glade.h:243
+#: ../src/f-spot.glade.h:241
 msgid "_Album Title:"
 msgstr "Titolo dell'_album:"
 
-#: ../src/f-spot.glade.h:244
+#: ../src/f-spot.glade.h:242
 msgid "_Attach Tag"
 msgstr "_Attacca etichetta"
 
-#: ../src/f-spot.glade.h:245
+#: ../src/f-spot.glade.h:243
 msgid "_Attach Tag to Selection"
 msgstr "_Attacca etichetta alla selezione"
 
-#: ../src/f-spot.glade.h:246
+#: ../src/f-spot.glade.h:244
 msgid "_Autorotate"
 msgstr "Rotazione _automatica"
 
-#: ../src/f-spot.glade.h:247
+#: ../src/f-spot.glade.h:245
 msgid "_Border:"
 msgstr "_Bordo:"
 
-#: ../src/f-spot.glade.h:248
+#: ../src/f-spot.glade.h:246
 msgid "_Brightness:"
 msgstr "_Luminosità:"
 
-#: ../src/f-spot.glade.h:249
+#: ../src/f-spot.glade.h:247
 msgid "_Browse Previously Scheduled Files"
 msgstr "_Esplora file pianificati in precedenza"
 
-#: ../src/f-spot.glade.h:250
+#: ../src/f-spot.glade.h:248
 msgid "_Captcha:"
 msgstr "_Captcha:"
 
-#: ../src/f-spot.glade.h:251
+#: ../src/f-spot.glade.h:249
+#, fuzzy
+msgid "_Components"
+msgstr "_Componenti"
+
+#: ../src/f-spot.glade.h:250
 msgid "_Contents"
 msgstr "_Sommario"
+
+#: ../src/f-spot.glade.h:251
+#, fuzzy
+msgid "_Dates"
+msgstr "_Date"
 
 #: ../src/f-spot.glade.h:252
 msgid "_Delete From Drive"
@@ -3437,11 +3452,11 @@ msgstr "_Importa..."
 
 #: ../src/f-spot.glade.h:277
 msgid "_Large"
-msgstr "_Grande"
+msgstr "_Grandi"
 
 #: ../src/f-spot.glade.h:278
 msgid "_Medium"
-msgstr "_Media"
+msgstr "_Medie"
 
 #: ../src/f-spot.glade.h:279
 msgid "_Metadata Browser"
@@ -3517,7 +3532,7 @@ msgstr "_Presentazione"
 
 #: ../src/f-spot.glade.h:298
 msgid "_Small"
-msgstr "_Piccolo"
+msgstr "_Piccole"
 
 #: ../src/f-spot.glade.h:299
 msgid "_Strip metadata"
@@ -3532,51 +3547,56 @@ msgid "_Tags"
 msgstr "_Etichette"
 
 #: ../src/f-spot.glade.h:302
+#, fuzzy
+msgid "_Timeline"
+msgstr "Linea _temporale"
+
+#: ../src/f-spot.glade.h:303
 msgid "_Title:"
 msgstr "_Titolo:"
 
-#: ../src/f-spot.glade.h:303
+#: ../src/f-spot.glade.h:304
 msgid "_Tools"
 msgstr "_Strumenti"
 
-#: ../src/f-spot.glade.h:304
+#: ../src/f-spot.glade.h:305
 msgid "_URI:"
 msgstr "_URI:"
 
-#: ../src/f-spot.glade.h:305
+#: ../src/f-spot.glade.h:306
 msgid "_Untagged Photos"
 msgstr "Foto _senza etichetta"
 
-#: ../src/f-spot.glade.h:306
+#: ../src/f-spot.glade.h:307
 msgid "_Username:"
 msgstr "Nome _utente:"
 
-#: ../src/f-spot.glade.h:307
+#: ../src/f-spot.glade.h:308
 msgid "_Version"
 msgstr "_Versione"
 
-#: ../src/f-spot.glade.h:308
+#: ../src/f-spot.glade.h:309
 msgid "_View"
 msgstr "_Visualizza"
 
-#: ../src/f-spot.glade.h:309
+#: ../src/f-spot.glade.h:310
 msgid "_View photos in browser when done uploading"
 msgstr "_Visualizza le fotografie nel browser a caricamento completato"
 
-#: ../src/f-spot.glade.h:310
+#: ../src/f-spot.glade.h:311
 msgid "_Virtual Filesystem"
 msgstr "File system _virtuale"
 
-#: ../src/f-spot.glade.h:311
+#: ../src/f-spot.glade.h:312
 msgid "_Write only these photos to CD"
 msgstr "_Scrivi solo queste foto su CD"
 
-#: ../src/f-spot.glade.h:312
+#: ../src/f-spot.glade.h:313
 msgid "and"
 msgstr "e"
 
 #. at, or after a date, or between dates
-#: ../src/f-spot.glade.h:314
+#: ../src/f-spot.glade.h:315
 msgid ""
 "at\n"
 "after\n"
@@ -3586,43 +3606,19 @@ msgstr ""
 "dopo\n"
 "tra"
 
-#: ../src/f-spot.glade.h:317
-msgid "dialog1"
-msgstr "dialog1"
-
 #: ../src/f-spot.glade.h:318
 msgid "difference:"
 msgstr "differenza:"
 
 #: ../src/f-spot.glade.h:319
-msgid "gtk-about"
-msgstr "gtk-about"
-
-#: ../src/f-spot.glade.h:320
-msgid "gtk-close"
-msgstr "gtk-close"
-
-#: ../src/f-spot.glade.h:321
-msgid "gtk-open"
-msgstr "gtk-open"
-
-#: ../src/f-spot.glade.h:322
-msgid "gtk-preferences"
-msgstr "gtk-preferences"
-
-#: ../src/f-spot.glade.h:323
-msgid "gtk-print"
-msgstr "gtk-print"
-
-#: ../src/f-spot.glade.h:324
 msgid "img_000.jpg"
 msgstr "img_000.jpg"
 
-#: ../src/f-spot.glade.h:327
+#: ../src/f-spot.glade.h:322
 msgid "pixels"
 msgstr "pixel"
 
-#: ../src/f-spot.glade.h:328
+#: ../src/f-spot.glade.h:323
 msgid "x"
 msgstr "x"
 
@@ -3633,3 +3629,48 @@ msgstr "Visualizza una presentazione da F-Spot"
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr "Fotografie di F-Spot"
+
+#~ msgid "F-Spot Add-in Manager"
+#~ msgstr "Gestore add-in di F-Spot"
+
+#~ msgid "Size:"
+#~ msgstr "Dimensione:"
+
+#~ msgid "Include"
+#~ msgstr "Includi"
+
+#~ msgid "Exclude"
+#~ msgstr "Escludi"
+
+#~ msgid "Remove"
+#~ msgstr "Rimuovi"
+
+#~ msgid "Create mail..."
+#~ msgstr "Crea email..."
+
+#~ msgid "Display T_ags"
+#~ msgstr "Visualizza _etichette"
+
+#~ msgid "Display Too_lbar"
+#~ msgstr "Visualizza barra degli _strumenti"
+
+#~ msgid "Display _Dates"
+#~ msgstr "Visualizza _date"
+
+#~ msgid "dialog1"
+#~ msgstr "dialog1"
+
+#~ msgid "gtk-about"
+#~ msgstr "gtk-about"
+
+#~ msgid "gtk-close"
+#~ msgstr "gtk-close"
+
+#~ msgid "gtk-open"
+#~ msgstr "gtk-open"
+
+#~ msgid "gtk-preferences"
+#~ msgstr "gtk-preferences"
+
+#~ msgid "gtk-print"
+#~ msgstr "gtk-print"
