@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-31 08:23+0000\n"
-"PO-Revision-Date: 2007-11-01 22:16+0100\n"
+"POT-Creation-Date: 2007-12-04 21:13+0000\n"
+"PO-Revision-Date: 2007-12-06 16:03+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -45,11 +45,11 @@ msgstr "Todos los repositorios registrados"
 msgid "Are you sure you want to cancel the installation?"
 msgstr "¿Está seguro de que quiere cancelar la instalación?"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:303
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:304
 msgid "The following packages will be uninstalled:"
 msgstr "Se desinstalarán los siguientes paquetes:"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:308
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:309
 msgid ""
 "There are other add-ins that depend on the previous ones which will also be "
 "uninstalled:"
@@ -57,7 +57,7 @@ msgstr ""
 "Existen otros complementos que dependen de los anteriores que también se "
 "desinstalarán:"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:379
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:380
 msgid ""
 "The selected add-ins can't be installed because there are dependency "
 "conflicts."
@@ -65,39 +65,39 @@ msgstr ""
 "Los complementos seleccionados no se pueden instalar porque existen "
 "conflictos de dependencias."
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:393
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:394
 msgid "The following packages will be installed:"
 msgstr "Se instalarán los siguientes paquetes:"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:397
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:398
 msgid " (in user directory)"
 msgstr " (en la carpeta del usuario)"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:403
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:404
 msgid "The following packages need to be uninstalled:"
 msgstr "Se necesitan instalar los siguientes paquetes:"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:411
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:412
 msgid "The following dependencies could not be resolved:"
 msgstr "No se pudieron resolver las siguientes dependencias:"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:435
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:436
 msgid "The installation has been successfully completed."
 msgstr "La instalación se completó satisfactoriamente."
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:436
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:437
 msgid "The installation failed!"
 msgstr "Falló la instalación."
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:439
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:440
 msgid "The uninstallation has been successfully completed."
 msgstr "La desinstalación se completó satisfactoriamente."
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:440
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:441
 msgid "The uninstallation failed!"
 msgstr "Falló la desinstalación."
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:599
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:600
 msgid "Repository"
 msgstr "Repositorio"
 
@@ -140,10 +140,10 @@ msgid "Exception occurred: {0}"
 msgstr "Ocurrió una excepción: {0}"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInfoDialog.cs:32
-msgid "F-Spot Package"
-msgstr "Paquete F-Spot"
+msgid "Package"
+msgstr "Paquete"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:110
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:108
 msgid "Add-in Installation"
 msgstr "Instalación de complementos"
 
@@ -156,87 +156,86 @@ msgid "Install from:"
 msgstr "Instalar desde:"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:177
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:181
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:180
 msgid "_Repositories..."
 msgstr "_Repositorios…"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:217
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:218
 msgid "Show all packages"
 msgstr "Mostrar todos los paquetes"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:218
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:219
 msgid "Show new versions only"
 msgstr "Mostrar sólo las nuevas versiones"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:219
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:220
 msgid "Show updates only"
 msgstr "Mostrar sólo las actualizaciones"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:244
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:245
 msgid "_Unselect All"
 msgstr "_Deseleccionar todo"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:256
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:257
 #: ../src/f-spot.glade.h:192
 msgid "Select _All"
 msgstr "Seleccionar _todo"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:331
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:332
 msgid "label124"
 msgstr "etiqueta124"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:342
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:344
 msgid "Overall Progress:"
 msgstr "Progreso general:"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:370
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:372
 msgid "Downloading add-ins..."
 msgstr "Descargando complementos…"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:36
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
 msgid "Add-in Manager"
 msgstr "Gestor de complementos"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:52
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:54
 msgid "Additional extensions are required to perform this operation."
 msgstr "Se necesitan extensiones adicionales para realizar esta operación."
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:62
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:64
 msgid "The following add-ins will be installed:"
 msgstr "Se instalarán los siguientes complementos:"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
-msgid "F-Spot Add-in Manager"
-msgstr "Gestor de complementos de F-Spot"
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:90
+msgid "<big><b>Add-in Manager</b></big>"
+msgstr "<big><b>Gestor de complementos</b></big>"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:88
-msgid "<big><b>F-Spot Add-in Manager</b></big>"
-msgstr "<big><b>Gestor de complementos de F-Spot</b></big>"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:108
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:110
 msgid "The following add-ins are currently installed:"
 msgstr "Los siguientes complementos están actualmente instalados:"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:166
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:165
 msgid "_Install Add-ins..."
 msgstr "_Instalar complementos…"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:215
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:210
 msgid "_Uninstall..."
 msgstr "_Desinstalar…"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:245
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:236
 msgid "Enable"
 msgstr "Activar"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:275
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:262
 msgid "Disable"
 msgstr "Desactivar"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
-#: ../src/f-spot.glade.h:118
-msgid "F-Spot"
-msgstr "F-Spot"
+#: ../src/FlickrExport.cs:313 ../src/FolderExport.cs:202
+#: ../src/GalleryExport.cs:720 ../src/PicasaWebExport.cs:636
+#: ../src/SmugMugExport.cs:571
+msgid "Error"
+msgstr "Error"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:111
 msgid "Details"
@@ -250,29 +249,29 @@ msgstr "Gestión del complemento de repositorios"
 msgid "Add New Repository"
 msgstr "Añadir nuevo repositorio"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:68
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:70
 msgid "Select the location of the repository you want to register:"
 msgstr "Seleccionar la ubicación del repositorio que quiere registrar:"
 
 #. Container child vbox89.Gtk.Box+BoxChild
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:75
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:77
 msgid "Register an on-line repository"
 msgstr "Registrar un repositorio en línea"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:104
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:105
 msgid "Url:"
 msgstr "Url:"
 
 #. Container child vbox89.Gtk.Box+BoxChild
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:125
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:126
 msgid "Register a local repository"
 msgstr "Registrar un repositorio local"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:153
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:154
 msgid "Path:"
 msgstr "Ruta:"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:177
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:178
 msgid "Browse..."
 msgstr "Examinar…"
 
@@ -281,21 +280,21 @@ msgstr "Examinar…"
 msgid "(provided by {0})"
 msgstr "(proporcionado por {0})"
 
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:108
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:154
 msgid "Disabled add-ins can't be loaded."
 msgstr "Los complementos deshabilitados no se pueden cargar."
 
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:133
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:179
 #, csharp-format
 msgid "Loading {0} add-in"
 msgstr "Cargando el complemento {0}"
 
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:216
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:265
 #, csharp-format
 msgid "The required addin '{0}' is disabled."
 msgstr "El complemento requerido «{0}» está deshabilitado."
 
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:218
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:267
 #, csharp-format
 msgid "The required addin '{0}' is not installed."
 msgstr "El complemento requerido «{0}» no está instalado."
@@ -808,12 +807,6 @@ msgstr "Carga completada"
 #, csharp-format
 msgid "Error Uploading To {0}: {1}"
 msgstr "Error al subir {0}: {1}"
-
-#: ../src/FlickrExport.cs:313 ../src/FolderExport.cs:202
-#: ../src/GalleryExport.cs:720 ../src/PicasaWebExport.cs:636
-#: ../src/SmugMugExport.cs:571
-msgid "Error"
-msgstr "Error"
 
 #: ../src/FlickrExport.cs:378
 msgid "Unable to log on."
@@ -1724,21 +1717,21 @@ msgstr "Enfoque"
 msgid "Scene Type"
 msgstr "Tipo de escena"
 
-#: ../src/PhotoStore.cs:446
+#: ../src/PhotoStore.cs:451
 #, csharp-format
 msgid "Reparented"
 msgid_plural "Reparented ({0})"
 msgstr[0] "Reemparentada"
 msgstr[1] "Reemparentadas {0}"
 
-#: ../src/PhotoStore.cs:463
+#: ../src/PhotoStore.cs:468
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "Modificada"
 msgstr[1] "Modificada ({0})"
 
-#: ../src/PhotoStore.cs:482
+#: ../src/PhotoStore.cs:487
 #, csharp-format
 msgid "Modified in {1}"
 msgid_plural "Modified in {1} ({0})"
@@ -1747,7 +1740,7 @@ msgstr[1] "Modificada en {1} ({0})"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/PhotoStore.cs:666 ../src/f-spot.glade.h:164
+#: ../src/PhotoStore.cs:671 ../src/f-spot.glade.h:164
 msgid "Original"
 msgstr "Original"
 
@@ -2775,6 +2768,10 @@ msgstr "Exportar _títulos y comentarios"
 #: ../src/f-spot.glade.h:117
 msgid "Extra large"
 msgstr "Enorme"
+
+#: ../src/f-spot.glade.h:118
+msgid "F-Spot"
+msgstr "F-Spot"
 
 #: ../src/f-spot.glade.h:119
 msgid "F-Spot View"
