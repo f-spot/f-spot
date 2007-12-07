@@ -105,7 +105,7 @@ namespace Mono.Addins.Gui {
             Stetic.Gui.Initialize(this);
             // Widget Mono.Addins.Gui.AddinInstallDialog
             this.Name = "Mono.Addins.Gui.AddinInstallDialog";
-            this.Title = Mono.Unix.Catalog.GetString("Add-in Installation");
+            this.Title = Mono.Unix.Catalog.GetString("Extension Installation");
             this.TypeHint = ((Gdk.WindowTypeHint)(1));
             this.Modal = true;
             this.BorderWidth = ((uint)(6));
@@ -131,7 +131,7 @@ namespace Mono.Addins.Gui {
             this.label113 = new Gtk.Label();
             this.label113.Name = "label113";
             this.label113.Xalign = 0F;
-            this.label113.LabelProp = Mono.Unix.Catalog.GetString("<b>Select the add-ins to install and click on Next</b>");
+            this.label113.LabelProp = Mono.Unix.Catalog.GetString("<b>Select the extensions to install and click on Next</b>");
             this.label113.UseMarkup = true;
             this.vbox82.Add(this.label113);
             Gtk.Box.BoxChild w2 = ((Gtk.Box.BoxChild)(this.vbox82[this.label113]));
@@ -312,7 +312,7 @@ namespace Mono.Addins.Gui {
             this.labelSummary.Ypad = 6;
             this.labelSummary.Xalign = 0F;
             this.labelSummary.Yalign = 0F;
-            this.labelSummary.LabelProp = "<b>The following add-ins will be installed:</b>\n\nC# language binding\nC# language IDE extension\n\n<b>The following add-ins are required by the selected add-ins</b>\n\nNUnit add-in\nNAnt add-in\n\nasd\nasd\na\nsd\nasd\nasd\na\nsda\nsd\nas\nda\nsd\nasd\n";
+            this.labelSummary.LabelProp = "<b>The following extensions will be installed:</b>\n\nC# language binding\nC# language IDE extension\n\n<b>The following extensions are required by the selected extensions</b>\n\nNUnit extension\nNAnt extension\n\nasd\nasd\na\nsd\nasd\nasd\na\nsda\nsd\nas\nda\nsd\nasd\n";
             this.labelSummary.UseMarkup = true;
             this.labelSummary.Wrap = true;
             this.hbox82.Add(this.labelSummary);
@@ -369,7 +369,7 @@ namespace Mono.Addins.Gui {
             this.progressLabel = new Gtk.Label();
             this.progressLabel.Name = "progressLabel";
             this.progressLabel.Xalign = 0F;
-            this.progressLabel.LabelProp = Mono.Unix.Catalog.GetString("Downloading add-ins...");
+            this.progressLabel.LabelProp = Mono.Unix.Catalog.GetString("Downloading extensions...");
             this.vbox86.Add(this.progressLabel);
             Gtk.Box.BoxChild w27 = ((Gtk.Box.BoxChild)(this.vbox86[this.progressLabel]));
             w27.Position = 3;

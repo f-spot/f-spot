@@ -144,7 +144,7 @@
   <widget class="Gtk.Dialog" id="Mono.Addins.Gui.AddinManagerDialog" design-size="524 432">
     <property name="MemberName" />
     <property name="GeneratePublic">False</property>
-    <property name="Title" translatable="yes">Add-in Manager</property>
+    <property name="Title" translatable="yes">Extension Manager</property>
     <property name="TypeHint">Dialog</property>
     <property name="BorderWidth">6</property>
     <property name="DefaultWidth">700</property>
@@ -181,7 +181,7 @@
                 <child>
                   <widget class="Gtk.Label" id="label144">
                     <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">&lt;big&gt;&lt;b&gt;Add-in Manager&lt;/b&gt;&lt;/big&gt;</property>
+                    <property name="LabelProp" translatable="yes">&lt;big&gt;&lt;b&gt;Extension Manager&lt;/b&gt;&lt;/big&gt;</property>
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
@@ -207,7 +207,7 @@
                   <widget class="Gtk.Label" id="label134">
                     <property name="MemberName" />
                     <property name="Xalign">0</property>
-                    <property name="LabelProp" translatable="yes">The following add-ins are currently installed:</property>
+                    <property name="LabelProp" translatable="yes">The following extensions are currently installed:</property>
                   </widget>
                   <packing>
                     <property name="Position">0</property>
@@ -263,7 +263,7 @@
                             <property name="CanFocus">True</property>
                             <property name="Type">TextAndIcon</property>
                             <property name="Icon">stock:gtk-add Button</property>
-                            <property name="Label" translatable="yes">_Install Add-ins...</property>
+                            <property name="Label" translatable="yes">_Install extensions...</property>
                             <property name="UseUnderline">True</property>
                             <signal name="Clicked" handler="OnInstall" />
                           </widget>
@@ -422,7 +422,7 @@
   <widget class="Gtk.Dialog" id="Mono.Addins.Gui.AddinInstallDialog" design-size="698 521">
     <property name="MemberName" />
     <property name="GeneratePublic">False</property>
-    <property name="Title" translatable="yes">Add-in Installation</property>
+    <property name="Title" translatable="yes">Extension Installation</property>
     <property name="TypeHint">Dialog</property>
     <property name="Modal">True</property>
     <property name="BorderWidth">6</property>
@@ -450,7 +450,7 @@
                   <widget class="Gtk.Label" id="label113">
                     <property name="MemberName" />
                     <property name="Xalign">0</property>
-                    <property name="LabelProp" translatable="yes">&lt;b&gt;Select the add-ins to install and click on Next&lt;/b&gt;</property>
+                    <property name="LabelProp" translatable="yes">&lt;b&gt;Select the extensions to install and click on Next&lt;/b&gt;</property>
                     <property name="UseMarkup">True</property>
                   </widget>
                   <packing>
@@ -699,15 +699,15 @@ Show updates only</property>
                             <property name="Ypad">6</property>
                             <property name="Xalign">0</property>
                             <property name="Yalign">0</property>
-                            <property name="LabelProp">&lt;b&gt;The following add-ins will be installed:&lt;/b&gt;
+                            <property name="LabelProp">&lt;b&gt;The following extensions will be installed:&lt;/b&gt;
 
 C# language binding
 C# language IDE extension
 
-&lt;b&gt;The following add-ins are required by the selected add-ins&lt;/b&gt;
+&lt;b&gt;The following extensions are required by the selected extensions&lt;/b&gt;
 
-NUnit add-in
-NAnt add-in
+NUnit extension
+NAnt extension
 
 asd
 asd
@@ -798,7 +798,7 @@ asd
                   <widget class="Gtk.Label" id="progressLabel">
                     <property name="MemberName" />
                     <property name="Xalign">0</property>
-                    <property name="LabelProp" translatable="yes">Downloading add-ins...</property>
+                    <property name="LabelProp" translatable="yes">Downloading extensions...</property>
                   </widget>
                   <packing>
                     <property name="Position">3</property>
@@ -1036,7 +1036,7 @@ asd
   <widget class="Gtk.Dialog" id="Mono.Addins.Gui.ManageSitesDialog" design-size="538 357">
     <property name="MemberName" />
     <property name="GeneratePublic">False</property>
-    <property name="Title" translatable="yes">Add-in Repository Management</property>
+    <property name="Title" translatable="yes">Extension Repository Management</property>
     <property name="TypeHint">Dialog</property>
     <property name="BorderWidth">6</property>
     <property name="DefaultWidth">600</property>
@@ -1495,7 +1495,7 @@ asd
   <widget class="Gtk.Dialog" id="Mono.Addins.Gui.AddinInstallerDialog" design-size="593 433">
     <property name="MemberName" />
     <property name="GeneratePublic">False</property>
-    <property name="Title" translatable="yes">Add-in Manager</property>
+    <property name="Title" translatable="yes">Extension Manager</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="BorderWidth">6</property>
     <property name="Buttons">2</property>
@@ -1528,7 +1528,7 @@ asd
               <widget class="Gtk.Label" id="label2">
                 <property name="MemberName" />
                 <property name="Xalign">0</property>
-                <property name="LabelProp" translatable="yes">The following add-ins will be installed:</property>
+                <property name="LabelProp" translatable="yes">The following extensions will be installed:</property>
               </widget>
               <packing>
                 <property name="Position">1</property>

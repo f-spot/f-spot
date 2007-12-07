@@ -131,7 +131,7 @@ namespace Mono.Addins.Setup
 					
 					AddinRepositoryEntry[] ads = service.Repositories.GetAvailableAddin (aname, aversion);
 					if (ads.Length == 0)
-						throw new InstallException ("The addin '" + args[n] + "' is not available for install.");
+						throw new InstallException ("The extension '" + args[n] + "' is not available for install.");
 					packs.Add (AddinPackage.FromRepository (ads[ads.Length-1]));
 				}
 			}
@@ -156,7 +156,7 @@ namespace Mono.Addins.Setup
 				
 				AddinRepositoryEntry[] ads = service.Repositories.GetAvailableAddin (aname, aversion);
 				if (ads.Length == 0)
-					throw new InstallException ("The addin '" + args[n] + "' is not available for install.");
+					throw new InstallException ("The extension '" + args[n] + "' is not available for install.");
 				packs.Add (AddinPackage.FromRepository (ads[ads.Length-1]));
 			}
 			Install (packs, false);
@@ -201,13 +201,13 @@ namespace Mono.Addins.Setup
 		void Uninstall (string[] args)
 		{
 			if (args.Length < 1)
-				throw new InstallException ("The add-in id is required.");
+				throw new InstallException ("The extension id is required.");
 			
 			Addin ads = registry.GetAddin (GetFullId (args[0]));
 			if (ads == null)
-				throw new InstallException ("The add-in '" + args[0] + "' is not installed.");
+				throw new InstallException ("The extension '" + args[0] + "' is not installed.");
 			
-			Console.WriteLine ("The following add-ins will be uninstalled:");
+			Console.WriteLine ("The following extensions will be uninstalled:");
 			Console.WriteLine (" - " + ads.Description.Name);
 			foreach (Addin si in service.GetDependentAddins (args[0], true))
 				Console.WriteLine (" - " + si.Description.Name);
@@ -249,7 +249,7 @@ namespace Mono.Addins.Setup
 		{
 			IList alist = args;
 			bool showAll = alist.Contains ("-a");
-			Console.WriteLine ("Installed add-ins:");
+			Console.WriteLine ("Installed extensions:");
 			ArrayList list = new ArrayList ();
 			list.AddRange (registry.GetAddins ());
 			if (alist.Contains ("-r"))
@@ -267,7 +267,7 @@ namespace Mono.Addins.Setup
 		void ListAvailable (string[] args)
 		{
 			bool showAll = args.Length > 0 && args [0] == "-a";
-			Console.WriteLine ("Available add-ins:");
+			Console.WriteLine ("Available extensions:");
 			AddinRepositoryEntry[] addins = service.Repositories.GetAvailableAddins ();
 			foreach (PackageRepositoryEntry addin in addins) {
 				if (!showAll && IsHidden (addin.Addin))
@@ -282,7 +282,7 @@ namespace Mono.Addins.Setup
 			
 			Console.WriteLine ("Looking for updates...");
 			service.Repositories.UpdateAllRepositories (null);
-			Console.WriteLine ("Available add-in updates:");
+			Console.WriteLine ("Available extension updates:");
 			AddinRepositoryEntry[] addins = service.Repositories.GetAvailableAddins ();
 			bool found = false;
 			foreach (PackageRepositoryEntry addin in addins) {
@@ -423,7 +423,7 @@ namespace Mono.Addins.Setup
 						desc = addin.Description;
 				}
 				if (desc == null)
-					throw new InstallException (string.Format ("Add-in '{0}' not found.", a));
+					throw new InstallException (string.Format ("Extension '{0}' not found.", a));
 				if (desc != null)
 					addins.Add (desc);
 			}
@@ -447,7 +447,7 @@ namespace Mono.Addins.Setup
 			}
 			
 			if (addins.Count == 0)
-				throw new InstallException ("A file name or add-in ID is required.");
+				throw new InstallException ("A file name or extension ID is required.");
 			
 			
 			if (generateXml) {

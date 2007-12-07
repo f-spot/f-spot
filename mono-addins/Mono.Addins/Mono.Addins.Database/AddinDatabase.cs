@@ -402,7 +402,7 @@ namespace Mono.Addins.Database
 		{
 			Addin ai = GetInstalledAddin (domain, id, true);
 			if (ai == null)
-				throw new InvalidOperationException ("Add-in '" + id + "' not installed.");
+				throw new InvalidOperationException ("Extension '" + id + "' not installed.");
 
 			if (!IsAddinEnabled (domain, id))
 				return;

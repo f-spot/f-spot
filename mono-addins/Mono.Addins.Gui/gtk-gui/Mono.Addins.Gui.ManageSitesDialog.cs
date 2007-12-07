@@ -31,7 +31,7 @@ namespace Mono.Addins.Gui {
             Stetic.Gui.Initialize(this);
             // Widget Mono.Addins.Gui.ManageSitesDialog
             this.Name = "Mono.Addins.Gui.ManageSitesDialog";
-            this.Title = Mono.Unix.Catalog.GetString("Add-in Repository Management");
+            this.Title = Mono.Unix.Catalog.GetString("Extension Repository Management");
             this.TypeHint = ((Gdk.WindowTypeHint)(1));
             this.BorderWidth = ((uint)(6));
             this.DefaultWidth = 600;

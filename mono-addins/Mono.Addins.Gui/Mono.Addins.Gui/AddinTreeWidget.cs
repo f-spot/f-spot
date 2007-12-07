@@ -88,7 +88,7 @@ namespace Mono.Addins.Gui
 		protected virtual void CreateColumns ()
 		{
 			TreeViewColumn col = new TreeViewColumn ();
-			col.Title = Catalog.GetString ("Add-in");
+			col.Title = Catalog.GetString ("Extension");
 			
 			CellRendererToggle crtog = new CellRendererToggle ();
 			crtog.Activatable = true;

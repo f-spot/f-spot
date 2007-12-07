@@ -68,7 +68,7 @@ namespace Mono.Addins.Gui
 				sb.Append ("<b>").Append (Catalog.GetString ("Copyright:")).Append ("</b>\n").Append (info.Copyright).Append ("\n\n");
 			
 			if (info.Dependencies.Count > 0) {
-				sb.Append ("<b>").Append (Catalog.GetString ("Add-in Dependencies:")).Append ("</b>\n");
+				sb.Append ("<b>").Append (Catalog.GetString ("Extension Dependencies:")).Append ("</b>\n");
 				foreach (Dependency dep in info.Dependencies)
 					sb.Append (dep.Name + "\n");
 			}

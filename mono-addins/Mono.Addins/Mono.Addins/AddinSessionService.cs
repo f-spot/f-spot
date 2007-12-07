@@ -151,7 +151,7 @@ namespace Mono.Addins
 					return true;
 
 				if (!AddinManager.Registry.IsAddinEnabled (id)) {
-					string msg = GettextCatalog.GetString ("Disabled add-ins can't be loaded.");
+					string msg = GettextCatalog.GetString ("Disabled extensions can't be loaded.");
 					AddinManager.ReportError (msg, id, null, false);
 					if (throwExceptions)
 						throw new InvalidOperationException (msg);
@@ -176,7 +176,7 @@ namespace Mono.Addins
 						continue;
 
 					if (statusMonitor != null)
-						statusMonitor.SetMessage (string.Format(GettextCatalog.GetString("Loading {0} add-in"), iad.Id));
+						statusMonitor.SetMessage (string.Format(GettextCatalog.GetString("Loading {0} extension"), iad.Id));
 					
 					if (!InsertAddin (statusMonitor, iad))
 						return false;
@@ -184,9 +184,9 @@ namespace Mono.Addins
 				return true;
 			}
 			catch (Exception ex) {
-				AddinManager.ReportError ("Add-in could not be loaded: " + ex.Message, id, ex, false);
+				AddinManager.ReportError ("Extension could not be loaded: " + ex.Message, id, ex, false);
 				if (statusMonitor != null)
-					statusMonitor.ReportError ("Add-in '" + id + "' could not be loaded.", ex);
+					statusMonitor.ReportError ("Extension '" + id + "' could not be loaded.", ex);
 				if (throwExceptions)
 					throw;
 				return false;
@@ -229,9 +229,9 @@ namespace Mono.Addins
 				return true;
 			}
 			catch (Exception ex) {
-				AddinManager.ReportError ("Add-in could not be loaded", iad.Id, ex, false);
+				AddinManager.ReportError ("Extension could not be loaded", iad.Id, ex, false);
 				if (statusMonitor != null)
-					statusMonitor.ReportError ("Add-in '" + iad.Id + "' could not be loaded.", ex);
+					statusMonitor.ReportError ("Extension '" + iad.Id + "' could not be loaded.", ex);
 				return false;
 			}
 		}
@@ -262,9 +262,9 @@ namespace Mono.Addins
 				if (optional)
 					return false;
 				else if (iad != null && !iad.Enabled)
-					throw new MissingDependencyException (GettextCatalog.GetString ("The required addin '{0}' is disabled.", id));
+					throw new MissingDependencyException (GettextCatalog.GetString ("The required extension '{0}' is disabled.", id));
 				else
-					throw new MissingDependencyException (GettextCatalog.GetString ("The required addin '{0}' is not installed.", id));
+					throw new MissingDependencyException (GettextCatalog.GetString ("The required extension '{0}' is not installed.", id));
 			}
 
 			// If this addin has already been requested, bring it to the head

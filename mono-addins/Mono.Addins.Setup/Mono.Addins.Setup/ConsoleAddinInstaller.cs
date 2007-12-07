@@ -82,12 +82,12 @@ namespace Mono.Addins.Setup
 				}
 				if (idNotFound != null) {
 					if (repoUpdated)
-						throw new InstallException ("Add-in '" + idNotFound + "' not found in the registered add-in repositories");
+						throw new InstallException ("Extension '" + idNotFound + "' not found in the registered extension repositories");
 					if (prompt) {
-						Console.WriteLine ("The add-in '" + idNotFound + "' could not be found in the registered repositories.");
+						Console.WriteLine ("The extension '" + idNotFound + "' could not be found in the registered repositories.");
 						Console.WriteLine ("The repository indices may be outdated.");
 						if (!Confirm ("Do you wan't to update them now?"))
-							throw new InstallException ("Add-in '" + idNotFound + "' not found in the registered add-in repositories");
+							throw new InstallException ("Extension '" + idNotFound + "' not found in the registered extension repositories");
 					}
 					setup.Repositories.UpdateAllRepositories (new ConsoleProgressStatus (logLevel));
 					repoUpdated = true;
@@ -96,7 +96,7 @@ namespace Mono.Addins.Setup
 			while (idNotFound != null);
 			
 			if (logLevel > 0) {
-				Console.WriteLine ("The following add-ins will be installed:");
+				Console.WriteLine ("The following extensions will be installed:");
 				foreach (AddinRepositoryEntry addin in entries)
 					Console.WriteLine (" - " + addin.Addin.Name + " v" + addin.Addin.Version);
 				

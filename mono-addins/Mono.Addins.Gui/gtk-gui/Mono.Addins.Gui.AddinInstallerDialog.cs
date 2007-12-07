@@ -33,7 +33,7 @@ namespace Mono.Addins.Gui {
             Stetic.Gui.Initialize(this);
             // Widget Mono.Addins.Gui.AddinInstallerDialog
             this.Name = "Mono.Addins.Gui.AddinInstallerDialog";
-            this.Title = Mono.Unix.Catalog.GetString("Add-in Manager");
+            this.Title = Mono.Unix.Catalog.GetString("Extension Manager");
             this.WindowPosition = ((Gtk.WindowPosition)(4));
             this.BorderWidth = ((uint)(6));
             this.HasSeparator = false;
@@ -61,7 +61,7 @@ namespace Mono.Addins.Gui {
             this.label2 = new Gtk.Label();
             this.label2.Name = "label2";
             this.label2.Xalign = 0F;
-            this.label2.LabelProp = Mono.Unix.Catalog.GetString("The following add-ins will be installed:");
+            this.label2.LabelProp = Mono.Unix.Catalog.GetString("The following extensions will be installed:");
             this.vbox2.Add(this.label2);
             Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.vbox2[this.label2]));
             w3.Position = 1;

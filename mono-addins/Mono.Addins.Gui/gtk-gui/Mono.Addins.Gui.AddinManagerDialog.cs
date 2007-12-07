@@ -55,7 +55,7 @@ namespace Mono.Addins.Gui {
             Stetic.Gui.Initialize(this);
             // Widget Mono.Addins.Gui.AddinManagerDialog
             this.Name = "Mono.Addins.Gui.AddinManagerDialog";
-            this.Title = Mono.Unix.Catalog.GetString("Add-in Manager");
+            this.Title = Mono.Unix.Catalog.GetString("Extension Manager");
             this.TypeHint = ((Gdk.WindowTypeHint)(1));
             this.BorderWidth = ((uint)(6));
             this.DefaultWidth = 700;
@@ -87,7 +87,7 @@ namespace Mono.Addins.Gui {
             // Container child hbox85.Gtk.Box+BoxChild
             this.label144 = new Gtk.Label();
             this.label144.Name = "label144";
-            this.label144.LabelProp = Mono.Unix.Catalog.GetString("<big><b>Add-in Manager</b></big>");
+            this.label144.LabelProp = Mono.Unix.Catalog.GetString("<big><b>Extension Manager</b></big>");
             this.label144.UseMarkup = true;
             this.hbox85.Add(this.label144);
             Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.hbox85[this.label144]));
@@ -107,7 +107,7 @@ namespace Mono.Addins.Gui {
             this.label134 = new Gtk.Label();
             this.label134.Name = "label134";
             this.label134.Xalign = 0F;
-            this.label134.LabelProp = Mono.Unix.Catalog.GetString("The following add-ins are currently installed:");
+            this.label134.LabelProp = Mono.Unix.Catalog.GetString("The following extensions are currently installed:");
             this.hbox73.Add(this.label134);
             Gtk.Box.BoxChild w5 = ((Gtk.Box.BoxChild)(this.hbox73[this.label134]));
             w5.Position = 0;
@@ -162,7 +162,7 @@ namespace Mono.Addins.Gui {
             w10.Add(w11);
             // Container child GtkHBox.Gtk.Container+ContainerChild
             Gtk.Label w13 = new Gtk.Label();
-            w13.LabelProp = Mono.Unix.Catalog.GetString("_Install Add-ins...");
+            w13.LabelProp = Mono.Unix.Catalog.GetString("_Install Extensions...");
             w13.UseUnderline = true;
             w10.Add(w13);
             w9.Add(w10);

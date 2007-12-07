@@ -156,7 +156,7 @@ namespace Mono.Addins.Gui
 		protected virtual void OnButtonOkClicked (object sender, System.EventArgs e)
 		{
 			if (addinsNotFound) {
-				errMessage = Catalog.GetString ("Some of the required add-ins were not found");
+				errMessage = Catalog.GetString ("Some of the required extensions were not found");
 				Respond (Gtk.ResponseType.Ok);
 			}
 			else {

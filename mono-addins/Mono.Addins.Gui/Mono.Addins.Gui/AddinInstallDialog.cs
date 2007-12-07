@@ -310,7 +310,7 @@ namespace Mono.Addins.Gui
 			
 			Addin[] sinfos = service.GetDependentAddins (info.Id, true);
 			if (sinfos.Length > 0) {
-				sb.Append ("<b>").Append (Catalog.GetString ("There are other add-ins that depend on the previous ones which will also be uninstalled:")).Append ("</b>\n\n");
+				sb.Append ("<b>").Append (Catalog.GetString ("There are other extensions that depend on the previous ones which will also be uninstalled:")).Append ("</b>\n\n");
 				foreach (Addin si in sinfos)
 					sb.Append (si.Description.Name + "\n");
 			}
@@ -346,7 +346,7 @@ namespace Mono.Addins.Gui
 				sb.Append ("<b>").Append (Catalog.GetString ("Copyright:")).Append ("</b>\n").Append (info.Copyright).Append ("\n\n");
 			
 			if (info.Dependencies.Count > 0) {
-				sb.Append ("<b>").Append (Catalog.GetString ("Add-in Dependencies:")).Append ("</b>\n");
+				sb.Append ("<b>").Append (Catalog.GetString ("Extension Dependencies:")).Append ("</b>\n");
 				foreach (PackageDependency dep in info.Dependencies)
 					sb.Append (dep.Name + "\n");
 			}
@@ -381,7 +381,7 @@ namespace Mono.Addins.Gui
 			
 			StringBuilder sb = new StringBuilder ();
 			if (!res) {
-				sb.Append ("<b><span foreground=\"red\">").Append (Catalog.GetString ("The selected add-ins can't be installed because there are dependency conflicts.")).Append ("</span></b>\n");
+				sb.Append ("<b><span foreground=\"red\">").Append (Catalog.GetString ("The selected extensions can't be installed because there are dependency conflicts.")).Append ("</span></b>\n");
 				foreach (string s in m.Errors) {
 					sb.Append ("<b><span foreground=\"red\">" + s + "</span></b>\n");
 				}

@@ -106,7 +106,7 @@ namespace Mono.Addins.Setup
 			ArrayList uninstallPrepared = new ArrayList ();
 			bool rollback = false;
 			
-			monitor.BeginTask ("Installing add-ins...", 100);
+			monitor.BeginTask ("Installing extensions...", 100);
 			
 			// Prepare install
 			
@@ -255,7 +255,7 @@ namespace Mono.Addins.Setup
 			
 			Addin ia = service.Registry.GetAddin (id);
 			if (ia == null)
-				throw new InstallException ("The add-in '" + id + "' is not installed.");
+				throw new InstallException ("The extension '" + id + "' is not installed.");
 
 			toUninstall.Add (AddinPackage.FromInstalledAddin (ia));
 
@@ -263,7 +263,7 @@ namespace Mono.Addins.Setup
 			foreach (Addin dep in deps)
 				toUninstall.Add (AddinPackage.FromInstalledAddin (dep));
 			
-			monitor.BeginTask ("Uninstalling addins", toUninstall.Count*2 + uninstallPrepared.Count + 1);
+			monitor.BeginTask ("Uninstalling extensions", toUninstall.Count*2 + uninstallPrepared.Count + 1);
 			
 			// Prepare install
 			
@@ -436,14 +436,14 @@ namespace Mono.Addins.Setup
 					if (ap.Addin.Id == otherap.Addin.Id) {
 						if (ap.IsUpgradeOf (otherap)) {
 							if (requested.Contains (otherap)) {
-								monitor.ReportError ("Can't install two versions of the same add-in: '" + ap.Addin.Name + "'.", null);
+								monitor.ReportError ("Can't install two versions of the same extension: '" + ap.Addin.Name + "'.", null);
 								error = true;
 							} else {
 								packages.RemoveAt (k);
 							}
 						} else if (otherap.IsUpgradeOf (ap)) {
 							if (requested.Contains (ap)) {
-								monitor.ReportError ("Can't install two versions of the same add-in: '" + ap.Addin.Name + "'.", null);
+								monitor.ReportError ("Can't install two versions of the same extension: '" + ap.Addin.Name + "'.", null);
 								error = true;
 							} else {
 								packages.RemoveAt (n);
@@ -451,7 +451,7 @@ namespace Mono.Addins.Setup
 							}
 						} else {
 							error = true;
-							monitor.ReportError ("Can't install two versions of the same add-in: '" + ap.Addin.Name + "'.", null);
+							monitor.ReportError ("Can't install two versions of the same extension: '" + ap.Addin.Name + "'.", null);
 						}
 						break;
 					}
@@ -669,7 +669,7 @@ namespace Mono.Addins.Setup
 		
 		internal static string GetUninstallErrorNoRoot (AddinHeader ainfo)
 		{
-			return string.Format ("The add-in '{0} v{1}' can't be uninstalled with the current user permissions.", ainfo.Name, ainfo.Version);
+			return string.Format ("The extension '{0} v{1}' can't be uninstalled with the current user permissions.", ainfo.Name, ainfo.Version);
 		}
 	}
 }

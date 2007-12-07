@@ -118,7 +118,7 @@ namespace Mono.Addins.Setup
 		internal override void PrepareInstall (IProgressMonitor monitor, AddinStore service)
 		{
 			if (service.Registry.GetAddin (Mono.Addins.Addin.GetFullId (info.Namespace, info.Id, info.Version), true) != null)
-				throw new InstallException ("The addin " + info.Name + " v" + info.Version + " is already installed.");
+				throw new InstallException ("The extension " + info.Name + " v" + info.Version + " is already installed.");
 						
 			if (url != null)
 				packFile = service.DownloadFile (monitor, url);
@@ -158,7 +158,7 @@ namespace Mono.Addins.Setup
 			}
 
 			if (configFile == null)
-				throw new InstallException ("Add-in information file not found in package.");
+				throw new InstallException ("Extension information file not found in package.");
 		}
 		
 		internal override void CommitInstall (IProgressMonitor monitor, AddinStore service)
@@ -216,13 +216,13 @@ namespace Mono.Addins.Setup
 		{
 			iaddin = service.Registry.GetAddin (info.Id, true);
 			if (iaddin == null)
-				throw new InstallException (string.Format ("The add-in '{0}' is not installed.", info.Name));
+				throw new InstallException (string.Format ("The extension '{0}' is not installed.", info.Name));
 
 			AddinDescription conf = iaddin.Description;
 			string basePath = Path.GetDirectoryName (conf.AddinFile);
 			
 			if (!File.Exists (iaddin.AddinFile)) {
-				monitor.ReportWarning (string.Format ("The add-in '{0}' is scheduled for uninstalling, but the add-in file could not be found.", info.Name));
+				monitor.ReportWarning (string.Format ("The extension '{0}' is scheduled for uninstalling, but the extension file could not be found.", info.Name));
 				return;
 			}
 			
