@@ -433,24 +433,8 @@ public class MainWindow {
 		this.selection.Changed += HandleSelectionChanged;
 		this.selection.ItemsChanged += HandleSelectionItemsChanged;
 
-		try {
-			if (export.Submenu != null)
-				export.RemoveSubmenu ();
-
-			export.Submenu = (Mono.Addins.AddinManager.GetExtensionNode ("/FSpot/Menus/Exports") as FSpot.Extensions.SubmenuNode).GetMenuItem ().Submenu;
-		} catch {
-			Console.WriteLine ("There's (maybe) something wrong with some of the installed extensions. You can try removing the directory addin-db-000 from ~/.gnome2/f-spot/");
-		}
-
-		try {
-			if (tools.Submenu != null)
-				tools.RemoveSubmenu ();
-
-			tools.Submenu = (Mono.Addins.AddinManager.GetExtensionNode ("/FSpot/Menus/Tools") as FSpot.Extensions.SubmenuNode).GetMenuItem ().Submenu;
-		} catch {
-			Console.WriteLine ("There's (maybe) something wrong with some of the installed extensions. You can try removing the directory addin-db-000 from ~/.gnome2/f-spot/");
-			tools.Visible = false;
-		}
+		Mono.Addins.AddinManager.ExtensionChanged += PopulateExtendableMenus;
+		PopulateExtendableMenus (null, null);
 
 		UpdateMenus ();
 
@@ -2916,6 +2900,27 @@ public class MainWindow {
 
             //last_tags_selected_count = tags_selected;
         //}
+	}
+
+	void PopulateExtendableMenus (object o, EventArgs args)
+	{
+		try {
+			if (export.Submenu != null)
+				export.Submenu.Dispose ();
+			if (tools.Submenu != null)
+				tools.RemoveSubmenu ();
+
+			export.Submenu = (Mono.Addins.AddinManager.GetExtensionNode ("/FSpot/Menus/Exports") as FSpot.Extensions.SubmenuNode).GetSubmenu ();
+			export.Submenu.ShowAll ();
+
+			tools.Submenu = (Mono.Addins.AddinManager.GetExtensionNode ("/FSpot/Menus/Tools") as FSpot.Extensions.SubmenuNode).GetSubmenu ();
+			tools.Submenu.ShowAll ();
+
+			tools.Visible = (tools.Submenu as Menu).Children.Length > 0;
+		} catch {
+			Console.WriteLine ("There's (maybe) something wrong with some of the installed extensions. You can try removing the directory addin-db-000 from ~/.gnome2/f-spot/");
+			tools.Visible = false;
+		}
 	}
 
 	public void HandleOpenWith (object sender, Gnome.Vfs.MimeApplication mime_application)

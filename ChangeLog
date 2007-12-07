@@ -1,5 +1,12 @@
 2007-12-07  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Extensions/MenuNode.cs: new SubmenuNode.GetSubmenu: new public
+	method.
+	* src/MainWindow.cs: refresh the Export and Tools menus on new or removed
+	extensions.
+
+2007-12-07  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* mono-addins/*: replace "add-in" or "addin" by "extension" in the
 	gui. Patch from Lorenzo.
 

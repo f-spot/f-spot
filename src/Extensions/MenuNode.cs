@@ -25,15 +25,25 @@ namespace FSpot.Extensions
 	{
 		public override Gtk.MenuItem GetMenuItem ()
 		{
-			Gtk.MenuItem item = base.GetMenuItem ();;
+			Gtk.MenuItem item = base.GetMenuItem ();
 
+			Gtk.Menu submenu = GetSubmenu ();
+
+			if (item.Submenu != null)
+				item.Submenu.Dispose ();	
+			
+			item.Submenu = submenu;
+			return item;
+		}
+
+		public Gtk.Menu GetSubmenu ()
+		{
 			Gtk.Menu submenu = new Gtk.Menu ();
 
 			foreach (MenuNode node in ChildNodes)
 				submenu.Insert (node.GetMenuItem (), -1);
 
-			item.Submenu = submenu;
-			return item;
+			return submenu;				
 		}
 	}
 
