@@ -32,7 +32,6 @@ namespace FSpot {
 		[Glade.Widget] private FileChooserButton photosdir_chooser;
 		[Glade.Widget] private RadioButton screensaverall_radio;
 		[Glade.Widget] private RadioButton screensavertagged_radio;
-		[Glade.Widget] private CheckButton dbus_check;
 		private static PreferenceDialog prefs = null;
 		int screensaver_tag;
 		private const string SaverCommand = "screensavers-f-spot-screensaver";
@@ -50,7 +49,6 @@ namespace FSpot {
 				photosdir_chooser.SetCurrentFolder(Global.PhotoDirectory);
 				photosdir_chooser.Sensitive = false;
 			}
-			LoadPreference (Preferences.DBUS_READ_ONLY);
 
 			Gtk.CellRendererText name_cell = new Gtk.CellRendererText ();
 			Gtk.CellRendererText desc_cell = new Gtk.CellRendererText ();
@@ -132,14 +130,6 @@ namespace FSpot {
 			Preferences.Set (Preferences.METADATA_EMBED_IN_IMAGE, metadata_check.Active);
 		}
 
-		void DBusReadOnlyToggled (object sender, System.EventArgs args)
-		{
-			Preferences.Set (Preferences.DBUS_READ_ONLY, !dbus_check.Active); 
-
-			DBusProxyFactory.EmitRemoteDown ();
-			DBusProxyFactory.Load (MainWindow.Toplevel.Database);
-		}
-
 		void HandlePhotosdirChanged (object sender, System.EventArgs args)
 		{
 			Preferences.Set (Preferences.STORAGE_PATH, photosdir_chooser.Filename);
@@ -182,9 +172,6 @@ namespace FSpot {
 				break;
 			case Preferences.STORAGE_PATH:
 				photosdir_chooser.SetCurrentFolder ((string)val);
-				break;
-			case Preferences.DBUS_READ_ONLY:
-				dbus_check.Active = !((bool)val);
 				break;
 			}
 		}

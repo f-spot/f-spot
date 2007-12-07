@@ -779,7 +779,7 @@ public class PhotoStore : DbStore {
 			//WARNING: if you change this schema, reflect your changes 
 			//to Updater.cs, at revision 7.0
 			"CREATE TABLE photos (                                     " +
-			"	id                 INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,   " +
+			"	id                 INTEGER PRIMARY KEY NOT NULL,   " +
 			"	time               INTEGER NOT NULL,	   	   " +
 			"	uri		   STRING NOT NULL,		   " +
 			"	description        TEXT NOT NULL,	           " +
@@ -850,7 +850,6 @@ public class PhotoStore : DbStore {
 		}
 		return photo;
 	}
-
 
 	private void GetVersions (Photo photo)
 	{
@@ -1157,40 +1156,6 @@ public class PhotoStore : DbStore {
 		}
 	}
 
-	// Dbus
-	public event ItemsAddedHandler ItemsAddedOverDBus;
-	public event ItemsRemovedHandler ItemsRemovedOverDBus;
-
-	internal Photo CreateOverDBus (string new_path, string orig_path, uint roll_id, out Gdk.Pixbuf pixbuf)  {
-		Photo photo = Create (new_path, orig_path, roll_id, out pixbuf);
-		EmitAddedOverDBus (photo);
-
-		return photo;
-	}
-
-	internal void RemoveOverDBus (Photo photo) {
-	 	Remove (photo);
-		EmitRemovedOverDBus (photo);
-	}
-
-
-	protected void EmitAddedOverDBus (Photo photo) {
-	 	EmitAddedOverDBus (new Photo [] { photo });
-	}
-
-	protected void EmitAddedOverDBus (Photo [] photos) {
-	 	if (ItemsAddedOverDBus != null)
-		 	ItemsAddedOverDBus (this, new DbItemEventArgs (photos));
-	}
-
-	protected void EmitRemovedOverDBus (Photo photo) {
-		EmitRemovedOverDBus (new Photo [] { photo });
-	}
-
-	protected void EmitRemovedOverDBus (Photo [] photos) {
-		if (ItemsRemovedOverDBus != null)
-		 	ItemsRemovedOverDBus (this, new DbItemEventArgs (photos)); 
-	}
 
 	// Queries.
 

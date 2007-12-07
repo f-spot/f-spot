@@ -250,16 +250,10 @@ public class Db : IDisposable {
 		export_store = new ExportStore (Database, new_db);
 		job_store = new JobStore (Database, new_db);
  		photo_store = new PhotoStore (Database, new_db);
-
-		FSpot.DBusProxyFactory.Load (this);
 		
 		Database.CommitTransaction ();
 
 		empty = new_db;
-	}
-
-	public void EmitDown () {
-		FSpot.DBusProxyFactory.EmitRemoteDown ();
 	}
 
 	public bool Empty {
