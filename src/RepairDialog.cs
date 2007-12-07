@@ -1,6 +1,7 @@
 using Gtk;
 using System;
 using System.IO;
+using FSpot.Widgets;
 
 namespace FSpot {
 	public class RepairDialog : GladeDialog {

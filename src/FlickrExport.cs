@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading;
 using Mono.Unix;
 using FSpot.Filters;
+using FSpot.Widgets;
 
 namespace FSpot {
 	public class TwentyThreeHQExport : FlickrExport

@@ -12,6 +12,7 @@ using Gtk;
 using Gnome;
 using System;
 
+using FSpot.Widgets;
 using FSpot.Filters;
 using Mono.Unix;
 

@@ -20,6 +20,7 @@ using System.Collections;
 using System.IO;
 using System;
 using Mono.Unix;
+using FSpot.Widgets;
 
 public class ImportCommand : FSpot.GladeDialog
 {
@@ -340,7 +341,7 @@ public class ImportCommand : FSpot.GladeDialog
 	
 	FSpot.PhotoImageView photo_view;
 	ImportBackend importer;
-	IconView tray;
+	FSpot.Widgets.IconView tray;
 
 	FSpot.Delay idle_start; 
 
@@ -602,7 +603,7 @@ public class ImportCommand : FSpot.GladeDialog
 		source_option_menu.Menu = menu;
 
 		collection = new FSpot.PhotoList (new Photo [0]);
-		tray = new FSpot.ScalingIconView (collection);
+		tray = new ScalingIconView (collection);
 		tray.Selection.Changed += HandleTraySelectionChanged;
 		icon_scrolled.SetSizeRequest (400, 200);
 		icon_scrolled.Add (tray);

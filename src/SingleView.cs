@@ -27,7 +27,7 @@ namespace FSpot {
 		protected Glade.XML xml;
 		private Gtk.Window window;
 		PhotoImageView image_view;
-		IconView directory_view;
+		FSpot.Widgets.IconView directory_view;
 		private Uri uri;
 		
 		InfoDialog metadata_dialog;
@@ -97,7 +97,7 @@ namespace FSpot {
 			TargetEntry [] dest_table = {   new TargetEntry ("text/uri-list", 0, 0),
 							new TargetEntry ("text/plain", 0, 1)};
 			
-			directory_view = new IconView (collection);
+			directory_view = new FSpot.Widgets.IconView (collection);
 			directory_view.Selection.Changed += HandleSelectionChanged;
 			directory_view.DragDataReceived += HandleDragDataReceived;
 			Gtk.Drag.DestSet (directory_view, DestDefaults.All, dest_table, 
@@ -218,7 +218,7 @@ namespace FSpot {
 		{
 			
 			if (selection.Count > 0) {
-				image_view.Item.Index = ((IconView.SelectionCollection)selection).Ids[0];
+				image_view.Item.Index = ((FSpot.Widgets.IconView.SelectionCollection)selection).Ids[0];
 
 				zoom_scale.Value = image_view.NormalizedZoom;
 				if (metadata_dialog != null)

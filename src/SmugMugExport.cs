@@ -21,6 +21,8 @@ using Mono.Unix;
 using Gtk;
 
 using FSpot.Filters;
+using FSpot.Widgets;
+
 using Gnome.Keyring;
 using SmugMugNet;
 
@@ -383,7 +385,7 @@ namespace FSpot {
 		{
 			this.items = selection.Items;
 			album_button.Sensitive = false;
-			IconView view = new IconView (selection);
+			FSpot.Widgets.IconView view = new FSpot.Widgets.IconView (selection);
 			view.DisplayDates = false;
 			view.DisplayTags = false;
 

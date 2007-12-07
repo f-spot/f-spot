@@ -8,6 +8,7 @@ using System.Web;
 using Mono.Unix;
 
 using FSpot.Filters;
+using FSpot.Widgets;
 
 using GalleryRemote;
 

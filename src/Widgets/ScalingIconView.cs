@@ -1,8 +1,15 @@
-namespace FSpot {
+/*
+ * ScalingIconView.cs
+ *
+ * Author(s):
+ *	Larry Ewing  <lewing@novell.com>
+ *
+ * This is free software. See COPYING for details
+ */
+namespace FSpot.Widgets {
 	public class ScalingIconView : IconView {
 		public ScalingIconView () : base () { }
  		public ScalingIconView (IBrowsableCollection collection) : base (collection) { }
-
 		
 		protected override void UpdateLayout ()
 		{

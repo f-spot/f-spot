@@ -1,6 +1,7 @@
 using System.IO;
 using System.Runtime.InteropServices;
 using Mono.Unix;
+using FSpot.Widgets;
 
 namespace FSpot {
 	public class CDExport : GladeDialog, FSpot.Extensions.IExporter {

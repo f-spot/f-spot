@@ -29,6 +29,8 @@ using ICSharpCode.SharpZipLib.Checksums;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.GZip;
 
+using FSpot.Widgets;
+
 namespace FSpot {
 	public class FolderExport : GladeDialog, FSpot.Extensions.IExporter {
 		IBrowsableCollection selection;

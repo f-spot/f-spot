@@ -110,7 +110,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/HigMessageDialog.cs		\
 	$(srcdir)/Histogram.cs			\
 	$(srcdir)/IBrowsableItem.cs		\
-	$(srcdir)/IconView.cs			\
 	$(srcdir)/ImageView.cs			\
 	$(srcdir)/ImageTest.cs			\
 	$(srcdir)/ImportBackend.cs		\
@@ -179,7 +178,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/RotateCommand.cs		\
 	$(srcdir)/RollSet.cs			\
 	$(srcdir)/RollStore.cs			\
-	$(srcdir)/ScalingIconView.cs		\
 	$(srcdir)/SendEmail.cs                  \
 	$(srcdir)/SlideView.cs			\
 	$(srcdir)/SingleView.cs			\
@@ -206,7 +204,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Util.cs			\
 	$(srcdir)/Vector.cs			\
 	$(srcdir)/ThumbnailCommand.cs		\
-	$(srcdir)/QueryView.cs			\
 	$(srcdir)/QueryWidget.cs		\
 	$(srcdir)/ZoomUtils.cs			\
 	$(srcdir)/GPhotoCamera.cs		\
@@ -220,17 +217,21 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/GdkUtils.cs		\
 	$(srcdir)/Widgets/IEffect.cs		\
 	$(srcdir)/Widgets/ITransition.cs	\
+	$(srcdir)/Widgets/IconView.cs		\
 	$(srcdir)/Widgets/ImageDisplay.cs	\
 	$(srcdir)/Widgets/ImageInfo.cs		\
 	$(srcdir)/Widgets/PanZoom.cs		\
 	$(srcdir)/Widgets/Push.cs		\
+	$(srcdir)/Widgets/QueryView.cs		\
 	$(srcdir)/Widgets/Reveal.cs		\
 	$(srcdir)/Widgets/SaneTreeView.cs	\
+	$(srcdir)/Widgets/ScalingIconView.cs	\
 	$(srcdir)/Widgets/ScrolledView.cs	\
 	$(srcdir)/Widgets/SoftFocus.cs		\
 	$(srcdir)/Widgets/TagEntry.cs		\
 	$(srcdir)/Widgets/TagView.cs		\
 	$(srcdir)/Widgets/Tilt.cs		\
+	$(srcdir)/Widgets/TrayView.cs		\
 	$(srcdir)/Widgets/Wipe.cs		\
 	$(srcdir)/XmpTagsImporter.cs		\
 	$(srcdir)/main.cs

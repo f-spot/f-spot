@@ -1281,7 +1281,7 @@ public class MainWindow {
 	// IconView event handlers
 	// 
 
-	void HandleDoubleClicked (IconView icon_view, int clicked_item)
+	void HandleDoubleClicked (FSpot.Widgets.IconView icon_view, int clicked_item)
 	{
 		icon_view.FocusCell = clicked_item;
 		SetViewMode (ModeType.PhotoView);
@@ -1545,7 +1545,7 @@ public class MainWindow {
 	void HandleViewDirectory (object sender, EventArgs args)
 	{
 		Gtk.Window win = new Gtk.Window ("Directory View");
-		IconView view = new IconView (new FSpot.DirectoryCollection (System.IO.Directory.GetCurrentDirectory ()));
+		FSpot.Widgets.IconView view = new FSpot.Widgets.IconView (new FSpot.DirectoryCollection (System.IO.Directory.GetCurrentDirectory ()));
 		new FSpot.PreviewPopup (view);
 
 		view.DisplayTags = false;

@@ -3,6 +3,7 @@ using Gtk;
 using Gnome;
 using System.Collections;
 using Mono.Unix;
+using FSpot.Widgets;
 
 namespace FSpot {
 	public class TimeChangedEventArgs : DbItemEventArgs {
@@ -51,7 +52,7 @@ namespace FSpot {
 		
 		IBrowsableCollection collection;
 		BrowsablePointer Item;
-		IconView tray;
+		FSpot.Widgets.IconView tray;
 		PhotoImageView view;
 		Db db;
 		TimeSpan gnome_dateedit_sucks;
@@ -271,7 +272,7 @@ namespace FSpot {
 		void HandleSelectionChanged (IBrowsableCollection sender)
 		{
 			if (sender.Count > 0) {
-				view.Item.Index = ((IconView.SelectionCollection)sender).Ids[0];
+				view.Item.Index = ((FSpot.Widgets.IconView.SelectionCollection)sender).Ids[0];
 
 			}
 		}

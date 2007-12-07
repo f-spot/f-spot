@@ -1,3 +1,11 @@
+2007-12-07  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Widgets/IconView.cs:
+	* src/Widgets/ScalingIconView.cs:
+	* src/Widgets/QueryView.cs:
+	* src/Widgets/TrayView.cs: moving the classes in the 
+	FSpot.Widgets namespace.
+
 2007-12-07  Thomas Van Machelen <thomas.vanmachelen@gmail.com>
 	* revert the dbus patch, development now lives in F_SPOT_DBUS branch
 
