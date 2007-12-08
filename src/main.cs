@@ -130,6 +130,7 @@ public class Driver {
 			setupService.Repositories.RegisterRepository (null, "http://addins.f-spot.org", false);
 
 			bool create = true;
+			int retry_count = 0;
 			while (control == null) {
 				try {
 					control = Core.FindInstance ();
@@ -170,8 +171,13 @@ public class Driver {
 					if (core != null)
 						core.UnregisterServer ();
 				}
-				if (control == null)
+				if (control == null) {
 					System.Console.WriteLine ("Can't get a connection to the dbus. Trying again...");
+					if (++ retry_count > 5) {
+						System.Console.WriteLine ("Sorry, couldn't start F-Spot");
+						return 1;
+					}
+				}
 			}
 			
 			
