@@ -1,0 +1,1120 @@
+<Project name="F-Spot" fileversion="2.0" language="C#" clr-version="Net_2_0" ctype="DotNetProject">
+  <Configurations active="Debug">
+    <Configuration name="Debug" ctype="DotNetProjectConfiguration">
+      <Output directory="bin/Debug" assembly="src" />
+      <Build debugmode="True" target="Exe" />
+      <Execution runwithwarnings="True" consolepause="True" runtime="MsNet" clr-version="Net_2_0" />
+      <CodeGeneration compiler="Mcs" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
+    </Configuration>
+    <Configuration name="Release" ctype="DotNetProjectConfiguration">
+      <Output directory="bin/Release" assembly="src" />
+      <Build debugmode="False" target="Exe" />
+      <Execution runwithwarnings="True" consolepause="True" runtime="MsNet" clr-version="Net_2_0" />
+      <CodeGeneration compiler="Mcs" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
+    </Configuration>
+  </Configurations>
+  <Contents>
+    <File name="Cairo/Antialias.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Cairo.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Content.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Context.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/DirectFBSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Extend.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FillRule.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Filter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontExtents.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontFace.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontOptions.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontSlant.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontType.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontWeight.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Format.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/GlitzSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Glyph.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Gradient.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/HintMetrics.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/HintStyle.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/ImageSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/LinearGradient.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/LineCap.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/LineJoin.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Matrix.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Operator.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Pattern.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/PatternType.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/PdfSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/PSSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/RadialGradient.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Rectangle.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SolidPattern.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Status.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SubpixelOrder.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Surface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SurfacePattern.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SurfaceType.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SvgSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SvgVersion.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/TextExtents.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Win32Surface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/XcbSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/XlibSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cms/Cms.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cms/CctTable.cs" subtype="Code" buildaction="Compile" />
+    <File name="AsyncPixbufLoader.cs" subtype="Code" buildaction="Compile" />
+    <File name="BeagleNotifier.cs" subtype="Code" buildaction="Compile" />
+    <File name="BlockProcessor.cs" subtype="Code" buildaction="Compile" />
+    <File name="BitConverter.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoArray.cs" subtype="Code" buildaction="Compile" />
+    <File name="CDExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="ColorDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="ColorAdjustment.cs" subtype="Code" buildaction="Compile" />
+    <File name="CompatFileChooser.cs" subtype="Code" buildaction="Compile" />
+    <File name="ControlOverlay.cs" subtype="Code" buildaction="Compile" />
+    <File name="Core.cs" subtype="Code" buildaction="Compile" />
+    <File name="DateCommands.cs" subtype="Code" buildaction="Compile" />
+    <File name="Db.cs" subtype="Code" buildaction="Compile" />
+    <File name="Delay.cs" subtype="Code" buildaction="Compile" />
+    <File name="DependentListStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="DirectoryAdaptor.cs" subtype="Code" buildaction="Compile" />
+    <File name="DirectoryCollection.cs" subtype="Code" buildaction="Compile" />
+    <File name="Editors/Editor.cs" subtype="Code" buildaction="Compile" />
+    <File name="Editors/SoftFocus.cs" subtype="Code" buildaction="Compile" />
+    <File name="Editors/Tilt.cs" subtype="Code" buildaction="Compile" />
+    <File name="ExceptionDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="ExportStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/ExportMenuItemNode.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/IExporter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/ICommand.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/IMenuGenerator.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/MenuNode.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/OpenWithMenu.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/CommandMenuItemNode.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/PopupCommands.cs" subtype="Code" buildaction="Compile" />
+    <File name="Fader.cs" subtype="Code" buildaction="Compile" />
+    <File name="FlickrExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="FlickrRemote.cs" subtype="Code" buildaction="Compile" />
+    <File name="FileImportBackend.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/ChmodFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/ColorFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/FilterRequest.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/FilterSet.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/IFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/JpegFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/OrientationFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/ResizeFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/SharpFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/TiltFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/UniqueNameFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/WhiteListFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="FolderExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="FotkiRemote.cs" subtype="Code" buildaction="Compile" />
+    <File name="FormClient.cs" subtype="Code" buildaction="Compile" />
+    <File name="FullScreenView.cs" subtype="Code" buildaction="Compile" />
+    <File name="GalleryRemote.cs" subtype="Code" buildaction="Compile" />
+    <File name="GalleryExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="GdkGlx.cs" subtype="Code" buildaction="Compile" />
+    <File name="GlTransition.cs" subtype="Code" buildaction="Compile" />
+    <File name="GladeDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="Global.cs" subtype="Code" buildaction="Compile" />
+    <File name="GroupAdaptor.cs" subtype="Code" buildaction="Compile" />
+    <File name="GroupSelector.cs" subtype="Code" buildaction="Compile" />
+    <File name="Accelerometer.cs" subtype="Code" buildaction="Compile" />
+    <File name="HigMessageDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="Histogram.cs" subtype="Code" buildaction="Compile" />
+    <File name="IBrowsableItem.cs" subtype="Code" buildaction="Compile" />
+    <File name="IconView.cs" subtype="Code" buildaction="Compile" />
+    <File name="ImageView.cs" subtype="Code" buildaction="Compile" />
+    <File name="ImageTest.cs" subtype="Code" buildaction="Compile" />
+    <File name="ImportBackend.cs" subtype="Code" buildaction="Compile" />
+    <File name="ImportCommand.cs" subtype="Code" buildaction="Compile" />
+    <File name="InfoBox.cs" subtype="Code" buildaction="Compile" />
+    <File name="InfoDisplay.cs" subtype="Code" buildaction="Compile" />
+    <File name="InfoOverlay.cs" subtype="Code" buildaction="Compile" />
+    <File name="InternalProcess.cs" subtype="Code" buildaction="Compile" />
+    <File name="IOChannel.cs" subtype="Code" buildaction="Compile" />
+    <File name="IQueryCondition.cs" subtype="Code" buildaction="Compile" />
+    <File name="ItemAction.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/DCRawFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/Bim.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/Ciff.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/Exif.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/ImageFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/IptcFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/JpegFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/JpegHeader.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/JpegUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/MrwFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/OrderedWriter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/PngFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/PnmFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/RafFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/SvgFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/X3fFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/XmpFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/Tiff.cs" subtype="Code" buildaction="Compile" />
+    <File name="JobStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/FSpotCompat.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/IInstanceCriticalJob.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/IJob.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/IntervalHeap.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/JobPriority.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/JobStatus.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/Scheduler.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/SyncMetadataJob.cs" subtype="Code" buildaction="Compile" />
+    <File name="LastRollDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="Loupe.cs" subtype="Code" buildaction="Compile" />
+    <File name="MainWindow.cs" subtype="Code" buildaction="Compile" />
+    <File name="MetaStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="MetadataStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="Operation.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoImageView.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoLoader.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoPopup.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoQuery.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoTagMenu.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoVersionCommands.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoVersionMenu.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoView.cs" subtype="Code" buildaction="Compile" />
+    <File name="PicasaWebExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="PixbufLoader.cs" subtype="Code" buildaction="Compile" />
+    <File name="PixbufUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="PixbufCache.cs" subtype="Code" buildaction="Compile" />
+    <File name="PixelBuffer.cs" subtype="Code" buildaction="Compile" />
+    <File name="PreferenceDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="Preferences.cs" subtype="Code" buildaction="Compile" />
+    <File name="PreviewPopup.cs" subtype="Code" buildaction="Compile" />
+    <File name="PrintDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="ProgressDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="QueuedSqliteDatabase.cs" subtype="Code" buildaction="Compile" />
+    <File name="RepairDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="RotateCommand.cs" subtype="Code" buildaction="Compile" />
+    <File name="RollSet.cs" subtype="Code" buildaction="Compile" />
+    <File name="RollStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="ScalingIconView.cs" subtype="Code" buildaction="Compile" />
+    <File name="SendEmail.cs" subtype="Code" buildaction="Compile" />
+    <File name="SlideView.cs" subtype="Code" buildaction="Compile" />
+    <File name="SingleView.cs" subtype="Code" buildaction="Compile" />
+    <File name="SimpleCalendar.cs" subtype="Code" buildaction="Compile" />
+    <File name="SmugMugExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagCommands.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagMenu.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagPopup.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagQueryWidget.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagSelectionWidget.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="ThreadProgressDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="ThumbnailCache.cs" subtype="Code" buildaction="Compile" />
+    <File name="ThumbnailGenerator.cs" subtype="Code" buildaction="Compile" />
+    <File name="Texture.cs" subtype="Code" buildaction="Compile" />
+    <File name="TextureDisplay.cs" subtype="Code" buildaction="Compile" />
+    <File name="Term.cs" subtype="Code" buildaction="Compile" />
+    <File name="TimeAdaptor.cs" subtype="Code" buildaction="Compile" />
+    <File name="TimeDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="TipWindow.cs" subtype="Code" buildaction="Compile" />
+    <File name="Unix.cs" subtype="Code" buildaction="Compile" />
+    <File name="Updater.cs" subtype="Code" buildaction="Compile" />
+    <File name="Utils/ScreenSaver.cs" subtype="Code" buildaction="Compile" />
+    <File name="Util.cs" subtype="Code" buildaction="Compile" />
+    <File name="Vector.cs" subtype="Code" buildaction="Compile" />
+    <File name="ThumbnailCommand.cs" subtype="Code" buildaction="Compile" />
+    <File name="QueryView.cs" subtype="Code" buildaction="Compile" />
+    <File name="QueryWidget.cs" subtype="Code" buildaction="Compile" />
+    <File name="ZoomUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="GPhotoCamera.cs" subtype="Code" buildaction="Compile" />
+    <File name="CameraSelectionDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="CameraFileSelectionDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagSelectionDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/CairoUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/CompositeUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/Dissolve.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/FindBar.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/GdkUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/IEffect.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/ITransition.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/ImageDisplay.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/ImageInfo.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/PanZoom.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/Push.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/Reveal.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/SaneTreeView.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/ScrolledView.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/SoftFocus.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/TagEntry.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/TagView.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/Tilt.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/Wipe.cs" subtype="Code" buildaction="Compile" />
+    <File name="XmpTagsImporter.cs" subtype="Code" buildaction="Compile" />
+    <File name="main.cs" subtype="Code" buildaction="Compile" />
+    <File name="../icons/f-spot-simple-white.css" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot-simple-white.css" />
+    <File name="../icons/f-spot-simple.css" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot-simple.css" />
+    <File name="../icons/f-spot.js" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot.js" />
+    <File name="../icons/f-spot-not.png" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot-not.png" />
+    <File name="../icons/f-spot-logo.svg" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot-logo.svg" />
+    <File name="dces.rdf" subtype="Code" buildaction="EmbedAsResource" resource_id="dces.rdf" />
+    <File name="f-spot.glade" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot.glade" />
+    <File name="FSpot.addin.xml" subtype="Code" buildaction="EmbedAsResource" resource_id="FSpot.addin.xml" />
+  </Contents>
+  <References>
+    <ProjectReference type="Gac" localcopy="True" refto="gtkhtml-sharp, Version=2.16.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="glade-sharp, Version=2.10.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="gnome-vfs-sharp, Version=2.16.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="gconf-sharp, Version=2.16.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="gconf-sharp-peditors, Version=2.16.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="ICSharpCode.SharpZipLib, Version=2.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73" />
+    <ProjectReference type="Gac" localcopy="True" refto="Mono.Data.SqliteClient, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
+    <ProjectReference type="Gac" localcopy="True" refto="Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
+    <ProjectReference type="Gac" localcopy="True" refto="Mono.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
+    <ProjectReference type="Gac" localcopy="True" refto="System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <ProjectReference type="Gac" localcopy="True" refto="System.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  </References>
+  <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="True" RelativeMakefileName="Makefile.am" SyncReferences="True" IsAutotoolsProject="True" RelativeConfigureInPath="..">
+    <BuildFilesVar Sync="True" Name="F_SPOT_CSDISTFILES" />
+    <DeployFilesVar />
+    <ResourcesVar Sync="True" Name="RESOURCES" Prefix="-resource:" />
+    <OthersVar />
+    <GacRefVar Sync="True" Name="ASSEMBLIES" Prefix="-r:" />
+    <AsmRefVar Sync="True" Name="ASSEMBLIES" Prefix="-r:" />
+    <ProjectRefVar Sync="True" Name="ASSEMBLIES" Prefix="-r:" />
+  </MonoDevelop.Autotools.MakefileInfo>
+</Project>
+<Project name="F-Spot" fileversion="2.0" language="C#" clr-version="Net_2_0" ctype="DotNetProject">
+  <Configurations active="Debug">
+    <Configuration name="Debug" ctype="DotNetProjectConfiguration">
+      <Output directory="bin/Debug" assembly="src" />
+      <Build debugmode="True" target="Exe" />
+      <Execution runwithwarnings="True" consolepause="True" runtime="MsNet" clr-version="Net_2_0" />
+      <CodeGeneration compiler="Mcs" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
+    </Configuration>
+    <Configuration name="Release" ctype="DotNetProjectConfiguration">
+      <Output directory="bin/Release" assembly="src" />
+      <Build debugmode="False" target="Exe" />
+      <Execution runwithwarnings="True" consolepause="True" runtime="MsNet" clr-version="Net_2_0" />
+      <CodeGeneration compiler="Mcs" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
+    </Configuration>
+  </Configurations>
+  <Contents>
+    <File name="Cairo/Antialias.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Cairo.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Content.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Context.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/DirectFBSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Extend.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FillRule.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Filter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontExtents.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontFace.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontOptions.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontSlant.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontType.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontWeight.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Format.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/GlitzSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Glyph.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Gradient.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/HintMetrics.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/HintStyle.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/ImageSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/LinearGradient.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/LineCap.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/LineJoin.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Matrix.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Operator.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Pattern.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/PatternType.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/PdfSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/PSSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/RadialGradient.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Rectangle.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SolidPattern.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Status.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SubpixelOrder.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Surface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SurfacePattern.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SurfaceType.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SvgSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SvgVersion.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/TextExtents.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Win32Surface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/XcbSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/XlibSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cms/Cms.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cms/CctTable.cs" subtype="Code" buildaction="Compile" />
+    <File name="AsyncPixbufLoader.cs" subtype="Code" buildaction="Compile" />
+    <File name="BeagleNotifier.cs" subtype="Code" buildaction="Compile" />
+    <File name="BlockProcessor.cs" subtype="Code" buildaction="Compile" />
+    <File name="BitConverter.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoArray.cs" subtype="Code" buildaction="Compile" />
+    <File name="CDExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="ColorDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="ColorAdjustment.cs" subtype="Code" buildaction="Compile" />
+    <File name="CompatFileChooser.cs" subtype="Code" buildaction="Compile" />
+    <File name="ControlOverlay.cs" subtype="Code" buildaction="Compile" />
+    <File name="Core.cs" subtype="Code" buildaction="Compile" />
+    <File name="DateCommands.cs" subtype="Code" buildaction="Compile" />
+    <File name="Db.cs" subtype="Code" buildaction="Compile" />
+    <File name="Delay.cs" subtype="Code" buildaction="Compile" />
+    <File name="DependentListStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="DirectoryAdaptor.cs" subtype="Code" buildaction="Compile" />
+    <File name="DirectoryCollection.cs" subtype="Code" buildaction="Compile" />
+    <File name="Editors/Editor.cs" subtype="Code" buildaction="Compile" />
+    <File name="Editors/SoftFocus.cs" subtype="Code" buildaction="Compile" />
+    <File name="Editors/Tilt.cs" subtype="Code" buildaction="Compile" />
+    <File name="ExceptionDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="ExportStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/ExportMenuItemNode.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/IExporter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/ICommand.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/IMenuGenerator.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/MenuNode.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/OpenWithMenu.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/CommandMenuItemNode.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/PopupCommands.cs" subtype="Code" buildaction="Compile" />
+    <File name="Fader.cs" subtype="Code" buildaction="Compile" />
+    <File name="FlickrExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="FlickrRemote.cs" subtype="Code" buildaction="Compile" />
+    <File name="FileImportBackend.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/ChmodFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/ColorFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/FilterRequest.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/FilterSet.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/IFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/JpegFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/OrientationFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/ResizeFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/SharpFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/TiltFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/UniqueNameFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/WhiteListFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="FolderExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="FotkiRemote.cs" subtype="Code" buildaction="Compile" />
+    <File name="FormClient.cs" subtype="Code" buildaction="Compile" />
+    <File name="FullScreenView.cs" subtype="Code" buildaction="Compile" />
+    <File name="GalleryRemote.cs" subtype="Code" buildaction="Compile" />
+    <File name="GalleryExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="GdkGlx.cs" subtype="Code" buildaction="Compile" />
+    <File name="GlTransition.cs" subtype="Code" buildaction="Compile" />
+    <File name="GladeDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="Global.cs" subtype="Code" buildaction="Compile" />
+    <File name="GroupAdaptor.cs" subtype="Code" buildaction="Compile" />
+    <File name="GroupSelector.cs" subtype="Code" buildaction="Compile" />
+    <File name="Accelerometer.cs" subtype="Code" buildaction="Compile" />
+    <File name="HigMessageDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="Histogram.cs" subtype="Code" buildaction="Compile" />
+    <File name="IBrowsableItem.cs" subtype="Code" buildaction="Compile" />
+    <File name="IconView.cs" subtype="Code" buildaction="Compile" />
+    <File name="ImageView.cs" subtype="Code" buildaction="Compile" />
+    <File name="ImageTest.cs" subtype="Code" buildaction="Compile" />
+    <File name="ImportBackend.cs" subtype="Code" buildaction="Compile" />
+    <File name="ImportCommand.cs" subtype="Code" buildaction="Compile" />
+    <File name="InfoBox.cs" subtype="Code" buildaction="Compile" />
+    <File name="InfoDisplay.cs" subtype="Code" buildaction="Compile" />
+    <File name="InfoOverlay.cs" subtype="Code" buildaction="Compile" />
+    <File name="InternalProcess.cs" subtype="Code" buildaction="Compile" />
+    <File name="IOChannel.cs" subtype="Code" buildaction="Compile" />
+    <File name="IQueryCondition.cs" subtype="Code" buildaction="Compile" />
+    <File name="ItemAction.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/DCRawFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/Bim.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/Ciff.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/Exif.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/ImageFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/IptcFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/JpegFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/JpegHeader.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/JpegUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/MrwFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/OrderedWriter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/PngFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/PnmFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/RafFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/SvgFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/X3fFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/XmpFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/Tiff.cs" subtype="Code" buildaction="Compile" />
+    <File name="JobStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/FSpotCompat.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/IInstanceCriticalJob.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/IJob.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/IntervalHeap.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/JobPriority.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/JobStatus.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/Scheduler.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/SyncMetadataJob.cs" subtype="Code" buildaction="Compile" />
+    <File name="LastRollDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="Loupe.cs" subtype="Code" buildaction="Compile" />
+    <File name="MainWindow.cs" subtype="Code" buildaction="Compile" />
+    <File name="MetaStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="MetadataStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="Operation.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoImageView.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoLoader.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoPopup.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoQuery.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoTagMenu.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoVersionCommands.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoVersionMenu.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoView.cs" subtype="Code" buildaction="Compile" />
+    <File name="PicasaWebExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="PixbufLoader.cs" subtype="Code" buildaction="Compile" />
+    <File name="PixbufUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="PixbufCache.cs" subtype="Code" buildaction="Compile" />
+    <File name="PixelBuffer.cs" subtype="Code" buildaction="Compile" />
+    <File name="PreferenceDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="Preferences.cs" subtype="Code" buildaction="Compile" />
+    <File name="PreviewPopup.cs" subtype="Code" buildaction="Compile" />
+    <File name="PrintDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="ProgressDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="QueuedSqliteDatabase.cs" subtype="Code" buildaction="Compile" />
+    <File name="RepairDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="RotateCommand.cs" subtype="Code" buildaction="Compile" />
+    <File name="RollSet.cs" subtype="Code" buildaction="Compile" />
+    <File name="RollStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="ScalingIconView.cs" subtype="Code" buildaction="Compile" />
+    <File name="SendEmail.cs" subtype="Code" buildaction="Compile" />
+    <File name="SlideView.cs" subtype="Code" buildaction="Compile" />
+    <File name="SingleView.cs" subtype="Code" buildaction="Compile" />
+    <File name="SimpleCalendar.cs" subtype="Code" buildaction="Compile" />
+    <File name="SmugMugExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagCommands.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagMenu.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagPopup.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagQueryWidget.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagSelectionWidget.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="ThreadProgressDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="ThumbnailCache.cs" subtype="Code" buildaction="Compile" />
+    <File name="ThumbnailGenerator.cs" subtype="Code" buildaction="Compile" />
+    <File name="Texture.cs" subtype="Code" buildaction="Compile" />
+    <File name="TextureDisplay.cs" subtype="Code" buildaction="Compile" />
+    <File name="Term.cs" subtype="Code" buildaction="Compile" />
+    <File name="TimeAdaptor.cs" subtype="Code" buildaction="Compile" />
+    <File name="TimeDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="TipWindow.cs" subtype="Code" buildaction="Compile" />
+    <File name="Unix.cs" subtype="Code" buildaction="Compile" />
+    <File name="Updater.cs" subtype="Code" buildaction="Compile" />
+    <File name="Utils/ScreenSaver.cs" subtype="Code" buildaction="Compile" />
+    <File name="Util.cs" subtype="Code" buildaction="Compile" />
+    <File name="Vector.cs" subtype="Code" buildaction="Compile" />
+    <File name="ThumbnailCommand.cs" subtype="Code" buildaction="Compile" />
+    <File name="QueryView.cs" subtype="Code" buildaction="Compile" />
+    <File name="QueryWidget.cs" subtype="Code" buildaction="Compile" />
+    <File name="ZoomUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="GPhotoCamera.cs" subtype="Code" buildaction="Compile" />
+    <File name="CameraSelectionDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="CameraFileSelectionDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagSelectionDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/CairoUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/CompositeUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/Dissolve.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/FindBar.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/GdkUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/IEffect.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/ITransition.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/ImageDisplay.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/ImageInfo.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/PanZoom.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/Push.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/Reveal.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/SaneTreeView.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/ScrolledView.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/SoftFocus.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/TagEntry.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/TagView.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/Tilt.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/Wipe.cs" subtype="Code" buildaction="Compile" />
+    <File name="XmpTagsImporter.cs" subtype="Code" buildaction="Compile" />
+    <File name="main.cs" subtype="Code" buildaction="Compile" />
+    <File name="../icons/f-spot-simple-white.css" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot-simple-white.css" />
+    <File name="../icons/f-spot-simple.css" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot-simple.css" />
+    <File name="../icons/f-spot.js" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot.js" />
+    <File name="../icons/f-spot-not.png" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot-not.png" />
+    <File name="../icons/f-spot-logo.svg" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot-logo.svg" />
+    <File name="dces.rdf" subtype="Code" buildaction="EmbedAsResource" resource_id="dces.rdf" />
+    <File name="f-spot.glade" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot.glade" />
+    <File name="FSpot.addin.xml" subtype="Code" buildaction="EmbedAsResource" resource_id="FSpot.addin.xml" />
+  </Contents>
+  <References>
+    <ProjectReference type="Gac" localcopy="True" refto="gtkhtml-sharp, Version=2.16.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="glade-sharp, Version=2.10.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="gnome-vfs-sharp, Version=2.16.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="gconf-sharp, Version=2.16.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="gconf-sharp-peditors, Version=2.16.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="ICSharpCode.SharpZipLib, Version=2.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73" />
+    <ProjectReference type="Gac" localcopy="True" refto="Mono.Data.SqliteClient, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
+    <ProjectReference type="Gac" localcopy="True" refto="Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
+    <ProjectReference type="Gac" localcopy="True" refto="Mono.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
+    <ProjectReference type="Gac" localcopy="True" refto="System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <ProjectReference type="Gac" localcopy="True" refto="System.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  </References>
+  <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="True" RelativeMakefileName="Makefile.am" SyncReferences="True" IsAutotoolsProject="True" RelativeConfigureInPath="..">
+    <BuildFilesVar Sync="True" Name="F_SPOT_CSDISTFILES" />
+    <DeployFilesVar />
+    <ResourcesVar Sync="True" Name="RESOURCES" Prefix="-resource:" />
+    <OthersVar />
+    <GacRefVar Sync="True" Name="ASSEMBLIES" Prefix="-r:" />
+    <AsmRefVar Sync="True" Name="ASSEMBLIES" Prefix="-r:" />
+    <ProjectRefVar Sync="True" Name="ASSEMBLIES" Prefix="-r:" />
+  </MonoDevelop.Autotools.MakefileInfo>
+</Project>
+<Project name="F-Spot" fileversion="2.0" language="C#" clr-version="Net_2_0" ctype="DotNetProject">
+  <Configurations active="Debug">
+    <Configuration name="Debug" ctype="DotNetProjectConfiguration">
+      <Output directory="bin/Debug" assembly="src" />
+      <Build debugmode="True" target="Exe" />
+      <Execution runwithwarnings="True" consolepause="True" runtime="MsNet" clr-version="Net_2_0" />
+      <CodeGeneration compiler="Mcs" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
+    </Configuration>
+    <Configuration name="Release" ctype="DotNetProjectConfiguration">
+      <Output directory="bin/Release" assembly="src" />
+      <Build debugmode="False" target="Exe" />
+      <Execution runwithwarnings="True" consolepause="True" runtime="MsNet" clr-version="Net_2_0" />
+      <CodeGeneration compiler="Mcs" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
+    </Configuration>
+  </Configurations>
+  <Contents>
+    <File name="Cairo/Antialias.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Cairo.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Content.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Context.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/DirectFBSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Extend.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FillRule.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Filter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontExtents.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontFace.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontOptions.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontSlant.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontType.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontWeight.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Format.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/GlitzSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Glyph.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Gradient.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/HintMetrics.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/HintStyle.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/ImageSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/LinearGradient.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/LineCap.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/LineJoin.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Matrix.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Operator.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Pattern.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/PatternType.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/PdfSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/PSSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/RadialGradient.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Rectangle.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SolidPattern.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Status.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SubpixelOrder.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Surface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SurfacePattern.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SurfaceType.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SvgSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SvgVersion.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/TextExtents.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Win32Surface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/XcbSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/XlibSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cms/Cms.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cms/CctTable.cs" subtype="Code" buildaction="Compile" />
+    <File name="AsyncPixbufLoader.cs" subtype="Code" buildaction="Compile" />
+    <File name="BeagleNotifier.cs" subtype="Code" buildaction="Compile" />
+    <File name="BlockProcessor.cs" subtype="Code" buildaction="Compile" />
+    <File name="BitConverter.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoArray.cs" subtype="Code" buildaction="Compile" />
+    <File name="CDExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="ColorDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="ColorAdjustment.cs" subtype="Code" buildaction="Compile" />
+    <File name="CompatFileChooser.cs" subtype="Code" buildaction="Compile" />
+    <File name="ControlOverlay.cs" subtype="Code" buildaction="Compile" />
+    <File name="Core.cs" subtype="Code" buildaction="Compile" />
+    <File name="DateCommands.cs" subtype="Code" buildaction="Compile" />
+    <File name="Db.cs" subtype="Code" buildaction="Compile" />
+    <File name="Delay.cs" subtype="Code" buildaction="Compile" />
+    <File name="DependentListStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="DirectoryAdaptor.cs" subtype="Code" buildaction="Compile" />
+    <File name="DirectoryCollection.cs" subtype="Code" buildaction="Compile" />
+    <File name="Editors/Editor.cs" subtype="Code" buildaction="Compile" />
+    <File name="Editors/SoftFocus.cs" subtype="Code" buildaction="Compile" />
+    <File name="Editors/Tilt.cs" subtype="Code" buildaction="Compile" />
+    <File name="ExceptionDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="ExportStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/ExportMenuItemNode.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/IExporter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/ICommand.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/IMenuGenerator.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/MenuNode.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/OpenWithMenu.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/CommandMenuItemNode.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/PopupCommands.cs" subtype="Code" buildaction="Compile" />
+    <File name="Fader.cs" subtype="Code" buildaction="Compile" />
+    <File name="FlickrExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="FlickrRemote.cs" subtype="Code" buildaction="Compile" />
+    <File name="FileImportBackend.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/ChmodFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/ColorFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/FilterRequest.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/FilterSet.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/IFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/JpegFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/OrientationFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/ResizeFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/SharpFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/TiltFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/UniqueNameFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/WhiteListFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="FolderExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="FotkiRemote.cs" subtype="Code" buildaction="Compile" />
+    <File name="FormClient.cs" subtype="Code" buildaction="Compile" />
+    <File name="FullScreenView.cs" subtype="Code" buildaction="Compile" />
+    <File name="GalleryRemote.cs" subtype="Code" buildaction="Compile" />
+    <File name="GalleryExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="GdkGlx.cs" subtype="Code" buildaction="Compile" />
+    <File name="GlTransition.cs" subtype="Code" buildaction="Compile" />
+    <File name="GladeDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="Global.cs" subtype="Code" buildaction="Compile" />
+    <File name="GroupAdaptor.cs" subtype="Code" buildaction="Compile" />
+    <File name="GroupSelector.cs" subtype="Code" buildaction="Compile" />
+    <File name="Accelerometer.cs" subtype="Code" buildaction="Compile" />
+    <File name="HigMessageDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="Histogram.cs" subtype="Code" buildaction="Compile" />
+    <File name="IBrowsableItem.cs" subtype="Code" buildaction="Compile" />
+    <File name="IconView.cs" subtype="Code" buildaction="Compile" />
+    <File name="ImageView.cs" subtype="Code" buildaction="Compile" />
+    <File name="ImageTest.cs" subtype="Code" buildaction="Compile" />
+    <File name="ImportBackend.cs" subtype="Code" buildaction="Compile" />
+    <File name="ImportCommand.cs" subtype="Code" buildaction="Compile" />
+    <File name="InfoBox.cs" subtype="Code" buildaction="Compile" />
+    <File name="InfoDisplay.cs" subtype="Code" buildaction="Compile" />
+    <File name="InfoOverlay.cs" subtype="Code" buildaction="Compile" />
+    <File name="InternalProcess.cs" subtype="Code" buildaction="Compile" />
+    <File name="IOChannel.cs" subtype="Code" buildaction="Compile" />
+    <File name="IQueryCondition.cs" subtype="Code" buildaction="Compile" />
+    <File name="ItemAction.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/DCRawFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/Bim.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/Ciff.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/Exif.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/ImageFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/IptcFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/JpegFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/JpegHeader.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/JpegUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/MrwFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/OrderedWriter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/PngFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/PnmFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/RafFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/SvgFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/X3fFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/XmpFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/Tiff.cs" subtype="Code" buildaction="Compile" />
+    <File name="JobStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/FSpotCompat.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/IInstanceCriticalJob.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/IJob.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/IntervalHeap.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/JobPriority.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/JobStatus.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/Scheduler.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/SyncMetadataJob.cs" subtype="Code" buildaction="Compile" />
+    <File name="LastRollDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="Loupe.cs" subtype="Code" buildaction="Compile" />
+    <File name="MainWindow.cs" subtype="Code" buildaction="Compile" />
+    <File name="MetaStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="MetadataStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="Operation.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoImageView.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoLoader.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoPopup.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoQuery.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoTagMenu.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoVersionCommands.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoVersionMenu.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoView.cs" subtype="Code" buildaction="Compile" />
+    <File name="PicasaWebExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="PixbufLoader.cs" subtype="Code" buildaction="Compile" />
+    <File name="PixbufUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="PixbufCache.cs" subtype="Code" buildaction="Compile" />
+    <File name="PixelBuffer.cs" subtype="Code" buildaction="Compile" />
+    <File name="PreferenceDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="Preferences.cs" subtype="Code" buildaction="Compile" />
+    <File name="PreviewPopup.cs" subtype="Code" buildaction="Compile" />
+    <File name="PrintDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="ProgressDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="QueuedSqliteDatabase.cs" subtype="Code" buildaction="Compile" />
+    <File name="RepairDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="RotateCommand.cs" subtype="Code" buildaction="Compile" />
+    <File name="RollSet.cs" subtype="Code" buildaction="Compile" />
+    <File name="RollStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="ScalingIconView.cs" subtype="Code" buildaction="Compile" />
+    <File name="SendEmail.cs" subtype="Code" buildaction="Compile" />
+    <File name="SlideView.cs" subtype="Code" buildaction="Compile" />
+    <File name="SingleView.cs" subtype="Code" buildaction="Compile" />
+    <File name="SimpleCalendar.cs" subtype="Code" buildaction="Compile" />
+    <File name="SmugMugExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagCommands.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagMenu.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagPopup.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagQueryWidget.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagSelectionWidget.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="ThreadProgressDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="ThumbnailCache.cs" subtype="Code" buildaction="Compile" />
+    <File name="ThumbnailGenerator.cs" subtype="Code" buildaction="Compile" />
+    <File name="Texture.cs" subtype="Code" buildaction="Compile" />
+    <File name="TextureDisplay.cs" subtype="Code" buildaction="Compile" />
+    <File name="Term.cs" subtype="Code" buildaction="Compile" />
+    <File name="TimeAdaptor.cs" subtype="Code" buildaction="Compile" />
+    <File name="TimeDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="TipWindow.cs" subtype="Code" buildaction="Compile" />
+    <File name="Unix.cs" subtype="Code" buildaction="Compile" />
+    <File name="Updater.cs" subtype="Code" buildaction="Compile" />
+    <File name="Utils/ScreenSaver.cs" subtype="Code" buildaction="Compile" />
+    <File name="Util.cs" subtype="Code" buildaction="Compile" />
+    <File name="Vector.cs" subtype="Code" buildaction="Compile" />
+    <File name="ThumbnailCommand.cs" subtype="Code" buildaction="Compile" />
+    <File name="QueryView.cs" subtype="Code" buildaction="Compile" />
+    <File name="QueryWidget.cs" subtype="Code" buildaction="Compile" />
+    <File name="ZoomUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="GPhotoCamera.cs" subtype="Code" buildaction="Compile" />
+    <File name="CameraSelectionDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="CameraFileSelectionDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagSelectionDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/CairoUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/CompositeUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/Dissolve.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/FindBar.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/GdkUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/IEffect.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/ITransition.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/ImageDisplay.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/ImageInfo.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/PanZoom.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/Push.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/Reveal.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/SaneTreeView.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/ScrolledView.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/SoftFocus.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/TagEntry.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/TagView.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/Tilt.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/Wipe.cs" subtype="Code" buildaction="Compile" />
+    <File name="XmpTagsImporter.cs" subtype="Code" buildaction="Compile" />
+    <File name="main.cs" subtype="Code" buildaction="Compile" />
+    <File name="../icons/f-spot-simple-white.css" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot-simple-white.css" />
+    <File name="../icons/f-spot-simple.css" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot-simple.css" />
+    <File name="../icons/f-spot.js" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot.js" />
+    <File name="../icons/f-spot-not.png" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot-not.png" />
+    <File name="../icons/f-spot-logo.svg" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot-logo.svg" />
+    <File name="dces.rdf" subtype="Code" buildaction="EmbedAsResource" resource_id="dces.rdf" />
+    <File name="f-spot.glade" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot.glade" />
+    <File name="FSpot.addin.xml" subtype="Code" buildaction="EmbedAsResource" resource_id="FSpot.addin.xml" />
+  </Contents>
+  <References>
+    <ProjectReference type="Gac" localcopy="True" refto="gtkhtml-sharp, Version=2.16.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="glade-sharp, Version=2.10.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="gnome-vfs-sharp, Version=2.16.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="gconf-sharp, Version=2.16.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="gconf-sharp-peditors, Version=2.16.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="ICSharpCode.SharpZipLib, Version=2.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73" />
+    <ProjectReference type="Gac" localcopy="True" refto="Mono.Data.SqliteClient, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
+    <ProjectReference type="Gac" localcopy="True" refto="Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
+    <ProjectReference type="Gac" localcopy="True" refto="Mono.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
+    <ProjectReference type="Gac" localcopy="True" refto="System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <ProjectReference type="Gac" localcopy="True" refto="System.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  </References>
+  <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="True" RelativeMakefileName="Makefile.am" SyncReferences="True" IsAutotoolsProject="True" RelativeConfigureInPath="..">
+    <BuildFilesVar Sync="True" Name="F_SPOT_CSDISTFILES" />
+    <DeployFilesVar />
+    <ResourcesVar Sync="True" Name="RESOURCES" Prefix="-resource:" />
+    <OthersVar />
+    <GacRefVar Sync="True" Name="ASSEMBLIES" Prefix="-r:" />
+    <AsmRefVar Sync="True" Name="ASSEMBLIES" Prefix="-r:" />
+    <ProjectRefVar Sync="True" Name="ASSEMBLIES" Prefix="-r:" />
+  </MonoDevelop.Autotools.MakefileInfo>
+</Project>
+<Project name="F-Spot" fileversion="2.0" language="C#" clr-version="Net_2_0" ctype="DotNetProject">
+  <Configurations active="Debug">
+    <Configuration name="Debug" ctype="DotNetProjectConfiguration">
+      <Output directory="bin/Debug" assembly="src" />
+      <Build debugmode="True" target="Exe" />
+      <Execution runwithwarnings="True" consolepause="True" runtime="MsNet" clr-version="Net_2_0" />
+      <CodeGeneration compiler="Mcs" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
+    </Configuration>
+    <Configuration name="Release" ctype="DotNetProjectConfiguration">
+      <Output directory="bin/Release" assembly="src" />
+      <Build debugmode="False" target="Exe" />
+      <Execution runwithwarnings="True" consolepause="True" runtime="MsNet" clr-version="Net_2_0" />
+      <CodeGeneration compiler="Mcs" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
+    </Configuration>
+  </Configurations>
+  <Contents>
+    <File name="Cairo/Antialias.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Cairo.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Content.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Context.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/DirectFBSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Extend.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FillRule.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Filter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontExtents.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontFace.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontOptions.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontSlant.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontType.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/FontWeight.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Format.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/GlitzSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Glyph.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Gradient.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/HintMetrics.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/HintStyle.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/ImageSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/LinearGradient.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/LineCap.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/LineJoin.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Matrix.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Operator.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Pattern.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/PatternType.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/PdfSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/PSSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/RadialGradient.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Rectangle.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SolidPattern.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Status.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SubpixelOrder.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Surface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SurfacePattern.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SurfaceType.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SvgSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/SvgVersion.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/TextExtents.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/Win32Surface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/XcbSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cairo/XlibSurface.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cms/Cms.cs" subtype="Code" buildaction="Compile" />
+    <File name="Cms/CctTable.cs" subtype="Code" buildaction="Compile" />
+    <File name="AsyncPixbufLoader.cs" subtype="Code" buildaction="Compile" />
+    <File name="BeagleNotifier.cs" subtype="Code" buildaction="Compile" />
+    <File name="BlockProcessor.cs" subtype="Code" buildaction="Compile" />
+    <File name="BitConverter.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoArray.cs" subtype="Code" buildaction="Compile" />
+    <File name="CDExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="ColorDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="ColorAdjustment.cs" subtype="Code" buildaction="Compile" />
+    <File name="CompatFileChooser.cs" subtype="Code" buildaction="Compile" />
+    <File name="ControlOverlay.cs" subtype="Code" buildaction="Compile" />
+    <File name="Core.cs" subtype="Code" buildaction="Compile" />
+    <File name="DateCommands.cs" subtype="Code" buildaction="Compile" />
+    <File name="Db.cs" subtype="Code" buildaction="Compile" />
+    <File name="Delay.cs" subtype="Code" buildaction="Compile" />
+    <File name="DependentListStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="DirectoryAdaptor.cs" subtype="Code" buildaction="Compile" />
+    <File name="DirectoryCollection.cs" subtype="Code" buildaction="Compile" />
+    <File name="Editors/Editor.cs" subtype="Code" buildaction="Compile" />
+    <File name="Editors/SoftFocus.cs" subtype="Code" buildaction="Compile" />
+    <File name="Editors/Tilt.cs" subtype="Code" buildaction="Compile" />
+    <File name="ExceptionDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="ExportStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/ExportMenuItemNode.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/IExporter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/ICommand.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/IMenuGenerator.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/MenuNode.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/OpenWithMenu.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/CommandMenuItemNode.cs" subtype="Code" buildaction="Compile" />
+    <File name="Extensions/PopupCommands.cs" subtype="Code" buildaction="Compile" />
+    <File name="Fader.cs" subtype="Code" buildaction="Compile" />
+    <File name="FlickrExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="FlickrRemote.cs" subtype="Code" buildaction="Compile" />
+    <File name="FileImportBackend.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/ChmodFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/ColorFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/FilterRequest.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/FilterSet.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/IFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/JpegFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/OrientationFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/ResizeFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/SharpFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/TiltFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/UniqueNameFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Filters/WhiteListFilter.cs" subtype="Code" buildaction="Compile" />
+    <File name="FolderExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="FotkiRemote.cs" subtype="Code" buildaction="Compile" />
+    <File name="FormClient.cs" subtype="Code" buildaction="Compile" />
+    <File name="FullScreenView.cs" subtype="Code" buildaction="Compile" />
+    <File name="GalleryRemote.cs" subtype="Code" buildaction="Compile" />
+    <File name="GalleryExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="GdkGlx.cs" subtype="Code" buildaction="Compile" />
+    <File name="GlTransition.cs" subtype="Code" buildaction="Compile" />
+    <File name="GladeDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="Global.cs" subtype="Code" buildaction="Compile" />
+    <File name="GroupAdaptor.cs" subtype="Code" buildaction="Compile" />
+    <File name="GroupSelector.cs" subtype="Code" buildaction="Compile" />
+    <File name="Accelerometer.cs" subtype="Code" buildaction="Compile" />
+    <File name="HigMessageDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="Histogram.cs" subtype="Code" buildaction="Compile" />
+    <File name="IBrowsableItem.cs" subtype="Code" buildaction="Compile" />
+    <File name="IconView.cs" subtype="Code" buildaction="Compile" />
+    <File name="ImageView.cs" subtype="Code" buildaction="Compile" />
+    <File name="ImageTest.cs" subtype="Code" buildaction="Compile" />
+    <File name="ImportBackend.cs" subtype="Code" buildaction="Compile" />
+    <File name="ImportCommand.cs" subtype="Code" buildaction="Compile" />
+    <File name="InfoBox.cs" subtype="Code" buildaction="Compile" />
+    <File name="InfoDisplay.cs" subtype="Code" buildaction="Compile" />
+    <File name="InfoOverlay.cs" subtype="Code" buildaction="Compile" />
+    <File name="InternalProcess.cs" subtype="Code" buildaction="Compile" />
+    <File name="IOChannel.cs" subtype="Code" buildaction="Compile" />
+    <File name="IQueryCondition.cs" subtype="Code" buildaction="Compile" />
+    <File name="ItemAction.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/DCRawFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/Bim.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/Ciff.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/Exif.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/ImageFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/IptcFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/JpegFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/JpegHeader.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/JpegUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/MrwFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/OrderedWriter.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/PngFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/PnmFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/RafFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/SvgFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/X3fFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/XmpFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="Imaging/Tiff.cs" subtype="Code" buildaction="Compile" />
+    <File name="JobStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/FSpotCompat.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/IInstanceCriticalJob.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/IJob.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/IntervalHeap.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/JobPriority.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/JobStatus.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/Scheduler.cs" subtype="Code" buildaction="Compile" />
+    <File name="Jobs/SyncMetadataJob.cs" subtype="Code" buildaction="Compile" />
+    <File name="LastRollDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="Loupe.cs" subtype="Code" buildaction="Compile" />
+    <File name="MainWindow.cs" subtype="Code" buildaction="Compile" />
+    <File name="MetaStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="MetadataStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="Operation.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoImageView.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoLoader.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoPopup.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoQuery.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoTagMenu.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoVersionCommands.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoVersionMenu.cs" subtype="Code" buildaction="Compile" />
+    <File name="PhotoView.cs" subtype="Code" buildaction="Compile" />
+    <File name="PicasaWebExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="PixbufLoader.cs" subtype="Code" buildaction="Compile" />
+    <File name="PixbufUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="PixbufCache.cs" subtype="Code" buildaction="Compile" />
+    <File name="PixelBuffer.cs" subtype="Code" buildaction="Compile" />
+    <File name="PreferenceDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="Preferences.cs" subtype="Code" buildaction="Compile" />
+    <File name="PreviewPopup.cs" subtype="Code" buildaction="Compile" />
+    <File name="PrintDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="ProgressDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="QueuedSqliteDatabase.cs" subtype="Code" buildaction="Compile" />
+    <File name="RepairDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="RotateCommand.cs" subtype="Code" buildaction="Compile" />
+    <File name="RollSet.cs" subtype="Code" buildaction="Compile" />
+    <File name="RollStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="ScalingIconView.cs" subtype="Code" buildaction="Compile" />
+    <File name="SendEmail.cs" subtype="Code" buildaction="Compile" />
+    <File name="SlideView.cs" subtype="Code" buildaction="Compile" />
+    <File name="SingleView.cs" subtype="Code" buildaction="Compile" />
+    <File name="SimpleCalendar.cs" subtype="Code" buildaction="Compile" />
+    <File name="SmugMugExport.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagCommands.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagMenu.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagPopup.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagQueryWidget.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagSelectionWidget.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagStore.cs" subtype="Code" buildaction="Compile" />
+    <File name="ThreadProgressDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="ThumbnailCache.cs" subtype="Code" buildaction="Compile" />
+    <File name="ThumbnailGenerator.cs" subtype="Code" buildaction="Compile" />
+    <File name="Texture.cs" subtype="Code" buildaction="Compile" />
+    <File name="TextureDisplay.cs" subtype="Code" buildaction="Compile" />
+    <File name="Term.cs" subtype="Code" buildaction="Compile" />
+    <File name="TimeAdaptor.cs" subtype="Code" buildaction="Compile" />
+    <File name="TimeDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="TipWindow.cs" subtype="Code" buildaction="Compile" />
+    <File name="Unix.cs" subtype="Code" buildaction="Compile" />
+    <File name="Updater.cs" subtype="Code" buildaction="Compile" />
+    <File name="Utils/ScreenSaver.cs" subtype="Code" buildaction="Compile" />
+    <File name="Util.cs" subtype="Code" buildaction="Compile" />
+    <File name="Vector.cs" subtype="Code" buildaction="Compile" />
+    <File name="ThumbnailCommand.cs" subtype="Code" buildaction="Compile" />
+    <File name="QueryView.cs" subtype="Code" buildaction="Compile" />
+    <File name="QueryWidget.cs" subtype="Code" buildaction="Compile" />
+    <File name="ZoomUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="GPhotoCamera.cs" subtype="Code" buildaction="Compile" />
+    <File name="CameraSelectionDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="CameraFileSelectionDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="TagSelectionDialog.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/CairoUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/CompositeUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/Dissolve.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/FindBar.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/GdkUtils.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/IEffect.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/ITransition.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/ImageDisplay.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/ImageInfo.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/PanZoom.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/Push.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/Reveal.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/SaneTreeView.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/ScrolledView.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/SoftFocus.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/TagEntry.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/TagView.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/Tilt.cs" subtype="Code" buildaction="Compile" />
+    <File name="Widgets/Wipe.cs" subtype="Code" buildaction="Compile" />
+    <File name="XmpTagsImporter.cs" subtype="Code" buildaction="Compile" />
+    <File name="main.cs" subtype="Code" buildaction="Compile" />
+    <File name="../icons/f-spot-simple-white.css" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot-simple-white.css" />
+    <File name="../icons/f-spot-simple.css" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot-simple.css" />
+    <File name="../icons/f-spot.js" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot.js" />
+    <File name="../icons/f-spot-not.png" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot-not.png" />
+    <File name="../icons/f-spot-logo.svg" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot-logo.svg" />
+    <File name="dces.rdf" subtype="Code" buildaction="EmbedAsResource" resource_id="dces.rdf" />
+    <File name="f-spot.glade" subtype="Code" buildaction="EmbedAsResource" resource_id="f-spot.glade" />
+    <File name="FSpot.addin.xml" subtype="Code" buildaction="EmbedAsResource" resource_id="FSpot.addin.xml" />
+  </Contents>
+  <References>
+    <ProjectReference type="Gac" localcopy="True" refto="gtkhtml-sharp, Version=2.16.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="glade-sharp, Version=2.10.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="gnome-vfs-sharp, Version=2.16.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="gconf-sharp, Version=2.16.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="gconf-sharp-peditors, Version=2.16.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="ICSharpCode.SharpZipLib, Version=2.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73" />
+    <ProjectReference type="Gac" localcopy="True" refto="Mono.Data.SqliteClient, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
+    <ProjectReference type="Gac" localcopy="True" refto="Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
+    <ProjectReference type="Gac" localcopy="True" refto="Mono.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
+    <ProjectReference type="Gac" localcopy="True" refto="System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <ProjectReference type="Gac" localcopy="True" refto="System.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  </References>
+  <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="True" RelativeMakefileName="Makefile.am" SyncReferences="True" IsAutotoolsProject="True" RelativeConfigureInPath="..">
+    <BuildFilesVar Sync="True" Name="F_SPOT_CSDISTFILES" />
+    <DeployFilesVar />
+    <ResourcesVar Sync="True" Name="RESOURCES" Prefix="-resource:" />
+    <OthersVar />
+    <GacRefVar Sync="True" Name="ASSEMBLIES" Prefix="-r:" />
+    <AsmRefVar Sync="True" Name="ASSEMBLIES" Prefix="-r:" />
+    <ProjectRefVar Sync="True" Name="ASSEMBLIES" Prefix="-r:" />
+  </MonoDevelop.Autotools.MakefileInfo>
+</Project>

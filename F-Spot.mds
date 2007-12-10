@@ -1,0 +1,104 @@
+<Combine name="F-Spot" fileversion="2.0" outputpath="build/bin/">
+  <Configurations active="Debug">
+    <Configuration name="Debug" ctype="CombineConfiguration">
+      <CustomCommands>
+        <Command type="Custom" name="Run Autotools" command="./autogen.sh" />
+      </CustomCommands>
+      <Entry build="True" configuration="" />
+      <Entry build="True" configuration="Debug" />
+      <Entry build="True" configuration="Debug" />
+    </Configuration>
+    <Configuration name="Release" ctype="CombineConfiguration">
+      <Entry build="True" configuration="" />
+      <Entry build="True" configuration="Release" />
+      <Entry build="True" configuration="Release" />
+    </Configuration>
+  </Configurations>
+  <StartMode startupentry="F-Spot" single="True">
+    <Execute type="None" entry="Extensions" />
+    <Execute type="None" entry="F-Spot" />
+  </StartMode>
+  <MonoDevelop.ChangeLogAddIn.ChangeLogInfo policy="UpdateNearestChangeLog" />
+  <Entries>
+    <Entry filename="extensions/Extensions.mds" />
+    <Entry filename="src/F-Spot.mdp" />
+  </Entries>
+</Combine>
+<Combine name="F-Spot" fileversion="2.0" outputpath="build/bin/">
+  <Configurations active="Debug">
+    <Configuration name="Debug" ctype="CombineConfiguration">
+      <CustomCommands>
+        <Command type="Custom" name="Run Autotools" command="./autogen.sh" />
+      </CustomCommands>
+      <Entry build="True" configuration="" />
+      <Entry build="True" configuration="Debug" />
+      <Entry build="True" configuration="Debug" />
+    </Configuration>
+    <Configuration name="Release" ctype="CombineConfiguration">
+      <Entry build="True" configuration="" />
+      <Entry build="True" configuration="Release" />
+      <Entry build="True" configuration="Release" />
+    </Configuration>
+  </Configurations>
+  <StartMode startupentry="F-Spot" single="True">
+    <Execute type="None" entry="Extensions" />
+    <Execute type="None" entry="F-Spot" />
+  </StartMode>
+  <MonoDevelop.ChangeLogAddIn.ChangeLogInfo policy="UpdateNearestChangeLog" />
+  <Entries>
+    <Entry filename="extensions/Extensions.mds" />
+    <Entry filename="src/F-Spot.mdp" />
+  </Entries>
+</Combine>
+<Combine name="F-Spot" fileversion="2.0" outputpath="build/bin/">
+  <Configurations active="Debug">
+    <Configuration name="Debug" ctype="CombineConfiguration">
+      <CustomCommands>
+        <Command type="Custom" name="Run Autotools" command="./autogen.sh" />
+      </CustomCommands>
+      <Entry build="True" configuration="" />
+      <Entry build="True" configuration="Debug" />
+      <Entry build="True" configuration="Debug" />
+    </Configuration>
+    <Configuration name="Release" ctype="CombineConfiguration">
+      <Entry build="True" configuration="" />
+      <Entry build="True" configuration="Release" />
+      <Entry build="True" configuration="Release" />
+    </Configuration>
+  </Configurations>
+  <StartMode startupentry="F-Spot" single="True">
+    <Execute type="None" entry="Extensions" />
+    <Execute type="None" entry="F-Spot" />
+  </StartMode>
+  <MonoDevelop.ChangeLogAddIn.ChangeLogInfo policy="UpdateNearestChangeLog" />
+  <Entries>
+    <Entry filename="extensions/Extensions.mds" />
+    <Entry filename="src/F-Spot.mdp" />
+  </Entries>
+</Combine>
+<Combine name="F-Spot" fileversion="2.0" outputpath="build/bin/">
+  <Configurations active="Debug">
+    <Configuration name="Debug" ctype="CombineConfiguration">
+      <CustomCommands>
+        <Command type="Custom" name="Run Autotools" command="./autogen.sh" />
+      </CustomCommands>
+      <Entry build="True" configuration="" />
+      <Entry build="True" configuration="Debug" />
+      <Entry build="True" configuration="Debug" />
+    </Configuration>
+    <Configuration name="Release" ctype="CombineConfiguration">
+      <Entry build="True" configuration="" />
+      <Entry build="True" configuration="Release" />
+      <Entry build="True" configuration="Release" />
+    </Configuration>
+  </Configurations>
+  <StartMode startupentry="F-Spot" single="True">
+    <Execute type="None" entry="Extensions" />
+    <Execute type="None" entry="F-Spot" />
+  </StartMode>
+  <MonoDevelop.ChangeLogAddIn.ChangeLogInfo policy="UpdateNearestChangeLog" />
+  <Entries>
+    <Entry filename="extensions/Extensions.mds" />
+    <Entry filename="src/F-Spot.mdp" />
+  </Entries>
+</Combine>
