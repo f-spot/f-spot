@@ -11,7 +11,7 @@ namespace FSpot {
 	{
 		public override void Run (IBrowsableCollection selection)
 		{
-			Run (SupportedService.TwentyThreeHQ, selection, true);
+			Run (SupportedService.TwentyThreeHQ, selection, false);
 		}
 	}
 
@@ -115,7 +115,7 @@ namespace FSpot {
 
 		public virtual void Run (IBrowsableCollection selection)
 		{
-			Run (SupportedService.Flickr, selection, true);
+			Run (SupportedService.Flickr, selection, false);
 		}
 
 		public void Run (SupportedService service, IBrowsableCollection selection, bool display_tags)
