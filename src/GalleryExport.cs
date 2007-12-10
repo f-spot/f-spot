@@ -630,7 +630,7 @@ namespace FSpot {
 		[Glade.Widget] Gtk.Button add_button;
 		[Glade.Widget] Gtk.Button edit_button;
 		
-		[Glade.Widget] Gtk.Button ok_button;
+		[Glade.Widget] Gtk.Button export_button;
 		[Glade.Widget] Gtk.Button cancel_button;
 
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
@@ -849,7 +849,7 @@ namespace FSpot {
 				Gtk.MenuItem item = new Gtk.MenuItem (msg);
 				menu.Append (item);
 
-				ok_button.Sensitive = false;
+				export_button.Sensitive = false;
 				album_optionmenu.Sensitive = false;
 				album_button.Sensitive = false;
 
@@ -874,7 +874,7 @@ namespace FSpot {
 						item.Sensitive = false;
 				}
 
-				ok_button.Sensitive = items.Length > 0;
+				export_button.Sensitive = items.Length > 0;
 				album_optionmenu.Sensitive = true;
 				album_button.Sensitive = true;
 			}

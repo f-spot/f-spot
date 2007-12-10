@@ -2298,12 +2298,12 @@ Photo Details</property>
               </widget>
             </child>
             <child>
-              <widget class="GtkButton" id="ok_button">
+              <widget class="GtkButton" id="export_button">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
-                <property name="label">gtk-ok</property>
-                <property name="use_stock">True</property>
+                <property name="label">_Export</property>
+                <property name="use_underline">True</property>
                 <property name="response_id">-5</property>
               </widget>
               <packing>
@@ -2701,12 +2701,12 @@ Photo Details</property>
               </widget>
             </child>
             <child>
-              <widget class="GtkButton" id="ok_button">
+              <widget class="GtkButton" id="export_button">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
-                <property name="label">gtk-ok</property>
-                <property name="use_stock">True</property>
+                <property name="label">_Export</property>
+                <property name="use_underline">True</property>
                 <property name="response_id">-5</property>
               </widget>
               <packing>
@@ -4680,8 +4680,8 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
-                <property name="label">gtk-ok</property>
-                <property name="use_stock">True</property>
+                <property name="label">_Export</property>
+                <property name="use_underline">True</property>
                 <property name="response_id">-5</property>
               </widget>
               <packing>
@@ -5132,8 +5132,8 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
-                <property name="label">gtk-ok</property>
-                <property name="use_stock">True</property>
+                <property name="label">_Export</property>
+                <property name="use_underline">True</property>
                 <property name="response_id">-5</property>
               </widget>
               <packing>
@@ -6464,12 +6464,12 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
               </widget>
             </child>
             <child>
-              <widget class="GtkButton" id="okbutton6">
+              <widget class="GtkButton" id="export_button">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
-                <property name="label">gtk-ok</property>
-                <property name="use_stock">True</property>
+                <property name="label">_Export</property>
+                <property name="use_underline">True</property>
                 <property name="response_id">-5</property>
               </widget>
               <packing>
@@ -7633,12 +7633,12 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
               </widget>
             </child>
             <child>
-              <widget class="GtkButton" id="button21">
+              <widget class="GtkButton" id="export_button">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
-                <property name="label">gtk-ok</property>
-                <property name="use_stock">True</property>
+                <property name="label">_Export</property>
+                <property name="use_underline">True</property>
                 <property name="response_id">-5</property>
               </widget>
               <packing>
@@ -10884,12 +10884,12 @@ between</property>
               </widget>
             </child>
             <child>
-              <widget class="GtkButton" id="ok_button">
+              <widget class="GtkButton" id="export_button">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
-                <property name="label">gtk-ok</property>
-                <property name="use_stock">True</property>
+                <property name="label">_Export</property>
+                <property name="use_underline">True</property>
                 <property name="response_id">-5</property>
               </widget>
               <packing>
