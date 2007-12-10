@@ -2416,6 +2416,12 @@ public class MainWindow {
 		Tag [] tags = this.tag_selection_widget.TagHighlight;
 
 		System.Array.Sort (tags, new TagRemoveComparer ());
+	
+		//How many pictures are associated to these tags?
+		Db db = MainWindow.Toplevel.Database;
+		FSpot.PhotoQuery count_query = new FSpot.PhotoQuery(db.Photos);
+		count_query.Terms = FSpot.Query.OrTerm.FromTags(tags);
+		int associated_photos = count_query.Photos.Length;
 
 		string header;
 		if (tags.Length == 1)
@@ -2424,7 +2430,15 @@ public class MainWindow {
 			header = String.Format (Catalog.GetString ("Delete the {0} selected tags?"), tags.Length);
 		
 		header = String.Format (header, tags.Length);
-		string msg = Catalog.GetString("If you delete a tag, all associations with photos are lost.");
+		string msg = String.Empty;
+		if (associated_photos > 0) {
+			string photodesc = Catalog.GetPluralString ("photo", "photos", associated_photos);
+			msg = String.Format( 
+				Catalog.GetPluralString("If you delete this tag, the association with {0} {1} will be lost.",
+							"If you delete these tags, the association with {0} {1} will be lost.",
+							tags.Length),
+				associated_photos, photodesc);
+		}
 		string ok_caption = Catalog.GetPluralString ("_Delete tag", "_Delete tags", tags.Length);
 		
 		if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(main_window, 

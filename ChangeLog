@@ -1,5 +1,9 @@
 2007-12-10  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/MainWindow.cs: Patch from Lorenzo to fix bgo 350968.
+
+2007-12-10  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/GalleryExport.cs: check for invalid characters in album names. 
 	Patch from Lorenzo. Fixes bgo 408384.
 
