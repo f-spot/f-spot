@@ -27,7 +27,7 @@ public class TagCommands {
 		TagStore tag_store;
 
 
-		[Glade.Widget] private Button ok_button;
+		[Glade.Widget] private Button create_button;
 		[Glade.Widget] private Entry tag_name_entry;
 		[Glade.Widget] private Label prompt_label;
 		[Glade.Widget] private Label already_in_use_label;
@@ -82,13 +82,13 @@ public class TagCommands {
 		private void Update ()
 		{
 			if (tag_name_entry.Text == String.Empty) {
-				ok_button.Sensitive = false;
+				create_button.Sensitive = false;
 				already_in_use_label.Markup = String.Empty;
 			} else if (TagNameExistsInCategory (tag_name_entry.Text, tag_store.RootCategory)) {
-				ok_button.Sensitive = false;
+				create_button.Sensitive = false;
 				already_in_use_label.Markup = "<small>" + Catalog.GetString ("This name is already in use") + "</small>";
 			} else {
-				ok_button.Sensitive = true;
+				create_button.Sensitive = true;
 				already_in_use_label.Markup = String.Empty;
 			}
 		}
