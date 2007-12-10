@@ -535,6 +535,18 @@ namespace FSpot {
 		protected void HandleAddResponse (object sender, Gtk.ResponseArgs args)
 		{
 			if (args.ResponseId == Gtk.ResponseType.Ok) {
+				if (!System.Text.RegularExpressions.Regex.IsMatch (name, "^[A-Za-z0-9_-]+$")) {
+					HigMessageDialog md = 
+						new HigMessageDialog (Dialog, 
+								      Gtk.DialogFlags.Modal |
+								      Gtk.DialogFlags.DestroyWithParent,
+								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+								      Catalog.GetString ("Invalid Gallery name"),
+								      Catalog.GetString ("The gallery name contains invalid characters.\nOnly letters, numbers, - and _ are allowed"));
+					md.Run ();
+					md.Destroy ();
+					return;
+				}
 				gallery.NewAlbum (parent, name, title, description);
 				export.HandleAlbumAdded (title);
 			}
