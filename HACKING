@@ -43,9 +43,9 @@ HACKING file.
         a judgement call on your coding abilities, but more of a style and 
         look call.  Please follow these guidelines to ensure prettiness.
 
-        Use 8 space tabs for writing your code.
+        Use tabs for indentation, not spaces.
 
-        Since we are using 8-space tabs, you might want to consider the Linus
+        Since many are using 8-space tabs, you might want to consider the Linus
         Torvalds trick to reduce code nesting.  Many times in a loop, you will
         find yourself doing a test, and if the test is true, you will
         nest.  Many times this can be changed.  Example:
