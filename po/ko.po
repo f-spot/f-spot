@@ -1,0 +1,3471 @@
+# Korean translation of f-spot.
+# Copyright (C) 2007 THE f-spot'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the f-spot package.
+# Namhyung Kim <namhyung@gmail.com>, 2007.
+# 
+# 
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: f-spot\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-11-15 00:29+0000\n"
+"PO-Revision-Date: 2007-12-11 18:46+0900\n"
+"Last-Translator: Namhyung Kim <namhyung@gmail.com>\n"
+"Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:62
+msgid "Version:"
+msgstr "버전:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:65
+msgid "Author:"
+msgstr "만든 이:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:68
+msgid "Copyright:"
+msgstr "저작권:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:71
+msgid "Add-in Dependencies:"
+msgstr "애드인 의존성:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:96
+msgid "All registered repositories"
+msgstr "등록된 모든 저장소"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:180
+msgid "Are you sure you want to cancel the installation?"
+msgstr "정말로 설치를 취소하시겠습니까?"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:303
+msgid "The following packages will be uninstalled:"
+msgstr "다음 꾸러미들의 설치가 제거될 것입니다:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:308
+msgid ""
+"There are other add-ins that depend on the previous ones which will also be "
+"uninstalled:"
+msgstr ""
+"이전 애드인에 의존성을 가진 다른 설치된 애드인들도 함께 제거될 것입니다:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:379
+msgid ""
+"The selected add-ins can't be installed because there are dependency "
+"conflicts."
+msgstr ""
+"의존성 충돌로 인해 선택한 애드인을 설치할 수 없습니다."
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:393
+msgid "The following packages will be installed:"
+msgstr "다음 꾸러미들이 설치될 것입니다:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:397
+msgid " (in user directory)"
+msgstr "(사용자 디렉토리에)"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:403
+msgid "The following packages need to be uninstalled:"
+msgstr "다음 꾸러미들의 설치가 제거되어야 합니다:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:411
+msgid "The following dependencies could not be resolved:"
+msgstr "다음 의존성을 해결할 수 없었습니다:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:435
+msgid "The installation has been successfully completed."
+msgstr "설치가 성공적으로 완료되었습니다."
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:436
+msgid "The installation failed!"
+msgstr "설치가 실패하였습니다!"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:439
+msgid "The uninstallation has been successfully completed."
+msgstr "제거가 성공적으로 완료되었습니다."
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:440
+msgid "The uninstallation failed!"
+msgstr "제거가 실패하였습니다!"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:599
+msgid "Repository"
+msgstr "저장소"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstaller.cs:16
+msgid "Installation cancelled"
+msgstr "설치 취소됨"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:159
+msgid "Some of the required add-ins were not found"
+msgstr "필요한 몇몇 애드인을 찾을 수 없습니다"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:171
+msgid "Installation failed"
+msgstr "설치 실패"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:91
+msgid "Add-in"
+msgstr "애드인"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
+msgid "Version"
+msgstr "버전"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:168
+msgid "Other"
+msgstr "기타"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
+msgid "Name"
+msgstr "이름"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:52
+msgid "Url"
+msgstr "URL"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:61
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:70
+#, csharp-format
+msgid "Exception occurred: {0}"
+msgstr "예외 발생: {0}"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInfoDialog.cs:32
+msgid "F-Spot Package"
+msgstr "F-Spot 꾸러미"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:110
+msgid "Add-in Installation"
+msgstr "애드인 설치"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:134
+msgid "<b>Select the add-ins to install and click on Next</b>"
+msgstr "<b>설치할 애드인을 선택하고 다음을 클릭하십시오</b>"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:148
+msgid "Install from:"
+msgstr "설치 경로:"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:177
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:181
+msgid "_Repositories..."
+msgstr "저장소(_R)..."
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:217
+msgid "Show all packages"
+msgstr "모든 꾸러미 보기"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:218
+msgid "Show new versions only"
+msgstr "새 버전 만 보기"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:219
+msgid "Show updates only"
+msgstr "업데이트 만 보기"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:244
+msgid "_Unselect All"
+msgstr "모두 선택 해제(_U)"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:256
+#: ../src/f-spot.glade.h:192
+msgid "Select _All"
+msgstr "모두 선택(_A)"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:331
+msgid "label124"
+msgstr "label124"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:342
+msgid "Overall Progress:"
+msgstr "전체 진행도:"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:370
+msgid "Downloading add-ins..."
+msgstr "애드인을 다운로드하는 중..."
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:36
+msgid "Add-in Manager"
+msgstr "애드인 관리자"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:52
+msgid "Additional extensions are required to perform this operation."
+msgstr "이 작업을 수행하려면 추가적인 확장이 필요합니다."
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:62
+msgid "The following add-ins will be installed:"
+msgstr "다음 애드인이 설치될 것입니다:"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
+msgid "F-Spot Add-in Manager"
+msgstr "F-Spot 애드인 관리자"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:88
+msgid "<big><b>F-Spot Add-in Manager</b></big>"
+msgstr "<big><b>F-Spot 애드인 관리자</b></big>"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:108
+msgid "The following add-ins are currently installed:"
+msgstr "다음 애드인들이 현재 설치되어 있습니다:"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:166
+msgid "_Install Add-ins..."
+msgstr "애드인 설치(_I)..."
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:215
+msgid "_Uninstall..."
+msgstr "설치 제거(_U)..."
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:245
+msgid "Enable"
+msgstr "사용"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:275
+msgid "Disable"
+msgstr "사용 안함"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
+#: ../src/f-spot.glade.h:118
+msgid "F-Spot"
+msgstr "F-Spot"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:111
+msgid "Details"
+msgstr "상세 정보"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ManageSitesDialog.cs:34
+msgid "Add-in Repository Management"
+msgstr "애드인 저장소 관리"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:52
+msgid "Add New Repository"
+msgstr "새 저장소 더하기"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:68
+msgid "Select the location of the repository you want to register:"
+msgstr "등록하고 싶은 저장소의 위치를 선택하십시오:"
+
+#. Container child vbox89.Gtk.Box+BoxChild
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:75
+msgid "Register an on-line repository"
+msgstr "온라인 저장소 등록"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:104
+msgid "Url:"
+msgstr "URL:"
+
+#. Container child vbox89.Gtk.Box+BoxChild
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:125
+msgid "Register a local repository"
+msgstr "로컬 저장소 등록"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:153
+msgid "Path:"
+msgstr "경로:"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:177
+msgid "Browse..."
+msgstr "찾아보기..."
+
+#: ../mono-addins/Mono.Addins/Mono.Addins.Description/AssemblyDependency.cs:79
+#, csharp-format
+msgid "(provided by {0})"
+msgstr "({0} 제공)"
+
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:108
+msgid "Disabled add-ins can't be loaded."
+msgstr "사용하지 않는 애드인을 읽어들일 수 없습니다."
+
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:133
+#, csharp-format
+msgid "Loading {0} add-in"
+msgstr "{0} 애드인 읽어오는 중"
+
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:216
+#, csharp-format
+msgid "The required addin '{0}' is disabled."
+msgstr "필요한 애드인 {0}은(는) 사용하지 않도록 설정되어 있습니다."
+
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:218
+#, csharp-format
+msgid "The required addin '{0}' is not installed."
+msgstr "필요한 애드인 {0}은(는) 설치되어 있지 않습니다."
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:1
+msgid "23hq..."
+msgstr "23hq..."
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:2
+msgid "CD..."
+msgstr "CD..."
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:3
+msgid "Flickr..."
+msgstr "Flickr..."
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:4
+msgid "Folder..."
+msgstr "폴더..."
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:5
+msgid "PicasaWeb..."
+msgstr "Picasa 웹앨범..."
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:6
+msgid "SmugMug..."
+msgstr "SmugMug..."
+
+#: ../f-spot-view.desktop.in.in.h:1
+msgid "F-Spot Photo Viewer"
+msgstr "F-Spot 사진 보기"
+
+#: ../f-spot-view.desktop.in.in.h:2
+msgid "Photo Viewer"
+msgstr "사진 보기"
+
+#: ../f-spot.desktop.in.in.h:1
+msgid "F-Spot Photo Manager"
+msgstr "F-Spot 사진 관리자"
+
+#: ../f-spot.desktop.in.in.h:2
+msgid "Organize, enjoy, and share your photos"
+msgstr "여러분의 사진을 관리하고 공유하세요"
+
+#: ../f-spot.desktop.in.in.h:3
+msgid "Photo Manager"
+msgstr "사진 관리자"
+
+#: ../google-sharp/CaptchaException.cs:58
+msgid "url"
+msgstr "URL"
+
+#: ../google-sharp/CaptchaException.cs:59
+msgid "token"
+msgstr "토큰"
+
+#: ../google-sharp/CaptchaException.cs:60
+msgid "captcha_url"
+msgstr "captcha_url"
+
+#: ../libeog/eog-file-selection.c:29 ../libeog/eog-file-selection.c:46
+msgid "By Extension"
+msgstr "확장자로"
+
+#: ../libeog/eog-file-selection.c:30
+msgid "BMP"
+msgstr "BMP"
+
+#: ../libeog/eog-file-selection.c:31
+msgid "GIF"
+msgstr "GIF"
+
+#: ../libeog/eog-file-selection.c:32
+msgid "ICO"
+msgstr "ICO"
+
+#: ../libeog/eog-file-selection.c:33 ../libeog/eog-file-selection.c:48
+msgid "JPEG"
+msgstr "JPEG"
+
+#: ../libeog/eog-file-selection.c:34 ../libeog/eog-file-selection.c:51
+msgid "PNG"
+msgstr "PNG"
+
+#: ../libeog/eog-file-selection.c:35
+msgid "PNM"
+msgstr "PNM"
+
+#: ../libeog/eog-file-selection.c:36
+msgid "RAS"
+msgstr "RAS"
+
+#: ../libeog/eog-file-selection.c:37
+msgid "SVG"
+msgstr "SVG"
+
+#: ../libeog/eog-file-selection.c:38
+msgid "TGA"
+msgstr "TGA"
+
+#: ../libeog/eog-file-selection.c:39
+msgid "TIFF"
+msgstr "TIFF"
+
+#: ../libeog/eog-file-selection.c:40
+msgid "XBM"
+msgstr "XBM"
+
+#: ../libeog/eog-file-selection.c:41 ../libeog/eog-file-selection.c:54
+msgid "XPM"
+msgstr "XPM"
+
+#: ../libeog/eog-file-selection.c:207
+msgid "Unsupported file format."
+msgstr "지원되지 않는 파일 형식."
+
+#: ../libeog/eog-file-selection.c:225
+msgid "Determine File Type:"
+msgstr "파일 형식 결정:"
+
+#: ../libeog/eog-file-selection.c:268
+msgid "Load Image"
+msgstr "이미지 읽어오기"
+
+#: ../libeog/eog-file-selection.c:274
+msgid "Save Image"
+msgstr "이미지 저장하기"
+
+#: ../libeog/eog-image.c:773
+msgid "No image loaded."
+msgstr "읽어올 이미지가 없습니다."
+
+#: ../libeog/eog-image.c:780
+msgid "Can't save non local files."
+msgstr "로컬 파일이 아닌 파일을 저장할 수 없습니다."
+
+#: ../libeog/eog-image.c:803
+msgid "Unsupported image type for saving."
+msgstr "저장할 수 없는 이미지 형식입니다."
+
+#: ../libeog/image-view.c:2128
+msgid "interpolation type"
+msgstr "인터폴레이션 타입"
+
+#: ../libeog/image-view.c:2129
+msgid "the type of interpolation to use"
+msgstr "사용할 인터폴레이션 방식"
+
+#: ../libeog/image-view.c:2135 ../libeog/image-view.c:2142
+msgid "check type"
+msgstr "검사 방식"
+
+#: ../libeog/image-view.c:2136
+msgid "the type of chequering to use"
+msgstr "사용할 검사 방식"
+
+#: ../libeog/image-view.c:2143
+msgid "the size of chequers to use"
+msgstr "사용할 검사기의 크기"
+
+#: ../libeog/image-view.c:2149
+msgid "dither"
+msgstr "디더링"
+
+#: ../libeog/image-view.c:2150
+msgid "dither type"
+msgstr "디더링 방식"
+
+#: ../libfspot/f-jpeg-utils.c:445
+msgid "File not found"
+msgstr "파일을 찾을 수 없음"
+
+#: ../libfspot/f-jpeg-utils.c:468
+#, c-format
+msgid "Unknown transform type %d"
+msgstr "알 수 없는 변형 방식 %d"
+
+#: ../libfspot/f-jpeg-utils.c:476
+msgid "Operation failed"
+msgstr "작업 실패"
+
+#: ../src/CDExport.cs:116
+#, csharp-format
+msgid "Transferring picture \"{0}\" To CD"
+msgstr "\"{0}\" 사진을 CD로 보내는 중"
+
+#. This indicates the current photo is photo {0} of {1} out of photos
+#: ../src/CDExport.cs:118 ../src/FlickrExport.cs:288
+#: ../src/FolderExport.cs:197 ../src/GalleryExport.cs:704
+#: ../src/ProgressDialog.cs:82 ../src/TimeDialog.cs:147
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{1} 중 {0}"
+
+#: ../src/CDExport.cs:131 ../src/FlickrExport.cs:305
+#: ../src/FolderExport.cs:228 ../src/GalleryExport.cs:728
+#: ../src/PicasaWebExport.cs:644 ../src/SmugMugExport.cs:579
+msgid "Done Sending Photos"
+msgstr "사진 보내기 완료"
+
+#: ../src/CDExport.cs:133 ../src/FolderExport.cs:230
+msgid "Transfer Complete"
+msgstr "전송 완료"
+
+#: ../src/CDExport.cs:140 ../src/FolderExport.cs:235
+msgid "Error While Transferring"
+msgstr "전송 도중 오류"
+
+#: ../src/CDExport.cs:147 ../src/FolderExport.cs:252
+msgid "Error Transferring"
+msgstr "전송 오류"
+
+#: ../src/CDExport.cs:168 ../src/FolderExport.cs:274
+msgid "Error: Error while transferring; Aborting"
+msgstr "오류: 전송 중 오류 - 중지"
+
+#: ../src/CDExport.cs:171 ../src/FolderExport.cs:277
+msgid "Error: File Already Exists; Aborting"
+msgstr "오류: 파일이 이미 존재함 - 중지"
+
+#: ../src/CDExport.cs:210 ../src/CameraFileSelectionDialog.cs:194
+#: ../src/FolderExport.cs:331
+msgid "Transferring Pictures"
+msgstr "사진을 전송하는 중"
+
+#: ../src/CameraFileSelectionDialog.cs:73
+msgid "Preview"
+msgstr "미리보기"
+
+#: ../src/CameraFileSelectionDialog.cs:75
+msgid "Path"
+msgstr "경로"
+
+#: ../src/CameraFileSelectionDialog.cs:77 ../src/f-spot.glade.h:121
+msgid "File"
+msgstr "파일"
+
+#: ../src/CameraFileSelectionDialog.cs:79 ../src/FolderExport.cs:855
+msgid "Index"
+msgstr "인덱스"
+
+#: ../src/CameraFileSelectionDialog.cs:99
+msgid "Select Tag"
+msgstr "태그 선택"
+
+#: ../src/CameraFileSelectionDialog.cs:135
+msgid "Downloading Previews"
+msgstr "미리보기를 다운로드하는 중"
+
+#: ../src/CameraFileSelectionDialog.cs:143
+#, csharp-format
+msgid "Downloading Preview of {0}"
+msgstr "{0}의 미리보기를 다운로드하는 중"
+
+#: ../src/CameraFileSelectionDialog.cs:217
+#, csharp-format
+msgid "Copying file {0} of {1}"
+msgstr "{1} 중 {0} 파일 복사하는 중"
+
+#: ../src/CameraFileSelectionDialog.cs:227
+msgid "Error transferring file"
+msgstr "파일 전송 오류"
+
+#: ../src/CameraFileSelectionDialog.cs:236
+msgid "Done Copying Files"
+msgstr "파일 복사 완료"
+
+#: ../src/CameraFileSelectionDialog.cs:238
+msgid "Download Complete"
+msgstr "다운로드 완료"
+
+#: ../src/CameraFileSelectionDialog.cs:263
+#, csharp-format
+msgid "Transferring \"{0}\" from camera"
+msgstr "카메라에서 \"{0}\"을(를) 전송하는 중"
+
+#: ../src/CameraSelectionDialog.cs:28
+msgid "Camera"
+msgstr "카메라"
+
+#: ../src/CameraSelectionDialog.cs:29
+msgid "Port"
+msgstr "포트"
+
+#: ../src/ColorDialog.cs:211
+msgid "Error saving adjusted photo"
+msgstr "조정된 사진을 저장하는 도중 오류"
+
+#: ../src/ColorDialog.cs:212 ../src/HigMessageDialog.cs:15 ../src/Loupe.cs:58
+#: ../src/MainWindow.cs:2043 ../src/PhotoView.cs:265
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to save photo {1}"
+msgstr "\"{0}\" 예외가 발생했습니다. {1} 사진을 저장할 수 없습니다"
+
+#: ../src/Core.cs:190
+#, csharp-format
+msgid "No photos matching {0} found"
+msgstr "{0}와(과) 일치하는 사진을 찾을 수 없습니다"
+
+#: ../src/Core.cs:191
+#, csharp-format
+msgid ""
+"The tag \"{0}\" is not applied to any photos. Try adding\n"
+"the tag to some photos or selecting a different tag in the\n"
+"F-Spot preference dialog."
+msgstr ""
+"\"{0}\" 태그는 어떤 사진에도 적용되지 않았습니다.\n"
+"이 태그를 몇몇 사진에 더하거나, F-Spot 기본 설정 대화상자에서\n"
+"다른 태그를 선택해 보십시오."
+
+#: ../src/Core.cs:195
+msgid "Search returned no results"
+msgstr "찾기 결과가 없습니다"
+
+#: ../src/Core.cs:196
+msgid ""
+"The tag F-Spot is looking for does not exist. Try\n"
+"selecting a different tag in the F-Spot preference\n"
+"dialog."
+msgstr ""
+"F-Spot이 찾고 있는 태그가 존재하지 않습니다.\n"
+"F-Spot 기본 설정 대화상자에서 다른 태그를\n"
+"선택해 보십시오."
+
+#: ../src/DateCommands.cs:54
+msgid "Today"
+msgstr "오늘"
+
+#: ../src/DateCommands.cs:56
+msgid "Yesterday"
+msgstr "어제"
+
+#: ../src/DateCommands.cs:58
+msgid "Last 7 days"
+msgstr "일주일 이내"
+
+#: ../src/DateCommands.cs:60
+msgid "Last 30 days"
+msgstr "한 달 이내"
+
+#: ../src/DateCommands.cs:62
+msgid "Last 90 days"
+msgstr "3 달 이내"
+
+#: ../src/DateCommands.cs:64
+msgid "Last 360 days"
+msgstr "1 년 이내"
+
+#: ../src/DateCommands.cs:66
+msgid "Current Week (Mon-Sun)"
+msgstr "이번 주 (월-일요일)"
+
+#: ../src/DateCommands.cs:68
+msgid "Previous Week (Mon-Sun)"
+msgstr "지난 주 (월-일요일)"
+
+#: ../src/DateCommands.cs:84 ../src/f-spot.glade.h:75
+msgid "All Images"
+msgstr "모든 이미지"
+
+#: ../src/DateCommands.cs:86
+msgid "Customized Range"
+msgstr "사용자가 지정한 범위"
+
+#: ../src/Editors/SoftFocus.cs:25 ../src/ItemAction.cs:341
+msgid "Soft Focus"
+msgstr "소프트 포커스"
+
+#: ../src/Editors/SoftFocus.cs:55 ../src/PhotoVersionCommands.cs:136
+msgid "Cancel"
+msgstr "취소"
+
+#: ../src/Editors/SoftFocus.cs:58
+msgid "Apply"
+msgstr "적용"
+
+#: ../src/Editors/Tilt.cs:28 ../src/ItemAction.cs:325
+msgid "Straighten"
+msgstr "수평 조정"
+
+#: ../src/ExceptionDialog.cs:24
+msgid "F-Spot Encountered a Fatal Error"
+msgstr "F-Spot에 치명적인 오류가 발생했습니다"
+
+#: ../src/ExceptionDialog.cs:60
+msgid "Error Details"
+msgstr "오류 상세 정보"
+
+#: ../src/ExceptionDialog.cs:104
+msgid "An unhandled exception was thrown: "
+msgstr "처리할 수 없는 예외 발생: "
+
+#: ../src/Extensions/OpenWithMenu.cs:93
+msgid "No applications available"
+msgstr "이용할 수 있는 프로그램이 없음"
+
+#: ../src/FSpot.addin.xml.h:1
+msgid "Attach Tag"
+msgstr "태그 붙이기"
+
+#: ../src/FSpot.addin.xml.h:2
+msgid "Copy Photo Location"
+msgstr "사진 위치 복사"
+
+#: ../src/FSpot.addin.xml.h:3
+msgid "Delete From Drive"
+msgstr "드라이브에서 지우기"
+
+#: ../src/FSpot.addin.xml.h:4
+msgid "Export to"
+msgstr "다음으로 내보내기"
+
+#: ../src/FSpot.addin.xml.h:5
+msgid "Open With"
+msgstr "다른 프로그램으로 열기"
+
+#: ../src/FSpot.addin.xml.h:6
+msgid "Remove From Catalog"
+msgstr "카탈로그에서 지우기"
+
+#: ../src/FSpot.addin.xml.h:7
+msgid "Remove Tag"
+msgstr "태그 지우기"
+
+#: ../src/FSpot.addin.xml.h:8 ../src/ItemAction.cs:80 ../src/MainWindow.cs:255
+#: ../src/SingleView.cs:73
+msgid "Rotate Left"
+msgstr "왼쪽으로 회전"
+
+#: ../src/FSpot.addin.xml.h:9 ../src/ItemAction.cs:92 ../src/MainWindow.cs:259
+#: ../src/SingleView.cs:78
+msgid "Rotate Right"
+msgstr "오른쪽으로 회전"
+
+#: ../src/FSpot.addin.xml.h:10
+msgid "Tools"
+msgstr "도구"
+
+#: ../src/FileImportBackend.cs:265
+msgid "Import error"
+msgstr "가져오기 오류"
+
+#: ../src/FileImportBackend.cs:266
+#, csharp-format
+msgid "Error importing {0}{2}{2}{1}"
+msgstr "{0}{2}{2}{1} 가져오기 도중 오류"
+
+#: ../src/Filters/ResizeFilter.cs:70 ../src/Filters/SharpFilter.cs:52
+#, csharp-format
+msgid "No way to save files of type \"{0}\""
+msgstr "\"{0}\" 형식의 파일을 저장할 수 없습니다"
+
+#: ../src/FlickrExport.cs:73 ../src/f-spot.glade.h:82
+msgid "Authorize"
+msgstr "인증"
+
+#: ../src/FlickrExport.cs:78
+#, csharp-format
+msgid ""
+"Return to this window after you have finished the authorization process on "
+"{0} and click the \"Complete Authorization\" button below"
+msgstr ""
+"{0}의 인증 과정을 마친 후 이 창으로 돌아와서 "
+"아래의 \"인증 완료\" 단추를 누르세요"
+
+#: ../src/FlickrExport.cs:79
+msgid "Complete Authorization"
+msgstr "인증 완료"
+
+#: ../src/FlickrExport.cs:83
+#, csharp-format
+msgid "Logging into {0}"
+msgstr "{0}(으)로 로그인 하는 중"
+
+#: ../src/FlickrExport.cs:84
+msgid "Checking credentials..."
+msgstr "자격을 점검하는 중..."
+
+#: ../src/FlickrExport.cs:90
+#, csharp-format
+msgid "Welcome {0} you are connected to {1}"
+msgstr "{0}님 {1}에 연결하신 것을 환영합니다! "
+
+#: ../src/FlickrExport.cs:93
+#, csharp-format
+msgid "Sign in as a different user"
+msgstr "다른 사용자로 로그인"
+
+#: ../src/FlickrExport.cs:244
+msgid "Unable to log on"
+msgstr "로그인 할 수 없음"
+
+#: ../src/FlickrExport.cs:264
+#, csharp-format
+msgid "Waiting for response {0} of {1}"
+msgstr "{1}의 {0} 응답을 기다리는 중"
+
+#: ../src/FlickrExport.cs:283 ../src/FolderExport.cs:194
+#: ../src/GalleryExport.cs:700
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr "\"{0}\" 사진을 업로드 하는 중"
+
+#: ../src/FlickrExport.cs:307 ../src/GalleryExport.cs:730
+#: ../src/PicasaWebExport.cs:646 ../src/SmugMugExport.cs:581
+msgid "Upload Complete"
+msgstr "업로드 완료"
+
+#: ../src/FlickrExport.cs:310
+#, csharp-format
+msgid "Error Uploading To {0}: {1}"
+msgstr "{0}으로 업로드 하는 중 오류: {1}"
+
+#: ../src/FlickrExport.cs:313 ../src/FolderExport.cs:202
+#: ../src/GalleryExport.cs:720 ../src/PicasaWebExport.cs:636
+#: ../src/SmugMugExport.cs:571
+msgid "Error"
+msgstr "오류"
+
+#: ../src/FlickrExport.cs:378
+msgid "Unable to log on."
+msgstr "로그인 할 수 없음."
+
+#: ../src/FlickrExport.cs:379
+#, csharp-format
+msgid ""
+"F-Spot was unable to log on to {0}.  Make sure you have given the "
+"authentication using {0} web browser interface."
+msgstr ""
+"F-Spot에서 {0}(으)로 로그인 할 수 없습니다. {0} 웹 브라우저 인터페이스를 "
+"이용한 인증 과정이 올바른지 확인하여 주십시오."
+
+#: ../src/FlickrExport.cs:397 ../src/GalleryExport.cs:653
+#: ../src/PicasaWebExport.cs:548 ../src/SmugMugExport.cs:497
+msgid "Uploading Pictures"
+msgstr "사진을 업로드 하는 중"
+
+#: ../src/FolderExport.cs:111
+msgid "Select Export Folder"
+msgstr "내보내기 폴더 선택"
+
+#: ../src/FolderExport.cs:156
+msgid "Building Gallery"
+msgstr "갤러리를 구성하는 중"
+
+#: ../src/FolderExport.cs:200
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
+msgstr "\"{0}\" 사진을 갤러리로 업로드 하는 중 오류: {2}{1}"
+
+#: ../src/FolderExport.cs:709
+msgid "Light"
+msgstr "밝게"
+
+#: ../src/FolderExport.cs:710
+msgid "Dark"
+msgstr "어둡게"
+
+#. Abbreviation of previous
+#: ../src/FolderExport.cs:853
+msgid "Prev"
+msgstr "이전"
+
+#: ../src/FolderExport.cs:858 ../src/ItemAction.cs:103
+#: ../src/f-spot.glade.h:151
+msgid "Next"
+msgstr "다음"
+
+#: ../src/FolderExport.cs:911 ../src/FolderExport.cs:1084
+msgid "Show Styles"
+msgstr "스타일 보기"
+
+#: ../src/FolderExport.cs:912 ../src/FolderExport.cs:1085
+msgid "Hide Styles"
+msgstr "스타일 숨기기"
+
+#: ../src/FolderExport.cs:969
+msgid "Gallery generated by"
+msgstr "다음으로 만들어진 갤러리:"
+
+#: ../src/FolderExport.cs:1014
+msgid "Page:"
+msgstr "페이지:"
+
+#: ../src/FormClient.cs:292
+msgid "Unhandled exception"
+msgstr "처리되지 않은 예외"
+
+#: ../src/FullScreenView.cs:51
+msgid "Hide"
+msgstr "숨기기"
+
+#: ../src/FullScreenView.cs:53
+msgid "Hide Toolbar"
+msgstr "도구 모음 숨기기"
+
+#: ../src/FullScreenView.cs:59
+msgid "Info"
+msgstr "정보"
+
+#: ../src/FullScreenView.cs:61
+msgid "Image Information"
+msgstr "이미지 정보"
+
+#: ../src/FullScreenView.cs:66
+msgid "Exit fullscreen"
+msgstr "전체화면 끝내기"
+
+#: ../src/FullScreenView.cs:76 ../src/MainWindow.cs:288
+#: ../src/SingleView.cs:90
+msgid "Slideshow"
+msgstr "슬라이드쇼"
+
+#: ../src/FullScreenView.cs:77
+msgid "Start slideshow"
+msgstr "슬라이드쇼 시작"
+
+#: ../src/FullScreenView.cs:142
+msgid "Slide transition: "
+msgstr "슬라이드 전환: "
+
+#: ../src/GalleryExport.cs:376
+msgid "Invalid URL"
+msgstr "잘못된 URL"
+
+#: ../src/GalleryExport.cs:377
+msgid "The gallery URL entry does not appear to be a valid URL"
+msgstr "갤러리 URL 항목이 올바르지 않은 URL인 것 같습니다"
+
+#: ../src/GalleryExport.cs:387 ../src/GalleryExport.cs:402
+msgid "Error while connecting to Gallery"
+msgstr "갤러리에 연결하는 도중 오류"
+
+#: ../src/GalleryExport.cs:388 ../src/GalleryExport.cs:403
+#, csharp-format
+msgid "The following error was encountered while attempting to log in: {0}"
+msgstr "로그인을 시도하는 중 다음과 같은 오류가 발생했습니다: {0}"
+
+#: ../src/GalleryExport.cs:481
+msgid "(TopLevel)"
+msgstr "(최상위)"
+
+#: ../src/GalleryExport.cs:719
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery: {1}"
+msgstr "\"{0}\" 사진을 갤러리로 업로드 하는 중 오류: {1}"
+
+#: ../src/GalleryExport.cs:746 ../src/PicasaWebExport.cs:667
+#: ../src/SmugMugExport.cs:602
+msgid "(No Gallery)"
+msgstr "(갤러리 없음)"
+
+#: ../src/GalleryExport.cs:833 ../src/PicasaWebExport.cs:794
+#: ../src/SmugMugExport.cs:700
+msgid "(Not Connected)"
+msgstr "(연결되지 않음)"
+
+#: ../src/GalleryExport.cs:834 ../src/PicasaWebExport.cs:795
+#: ../src/SmugMugExport.cs:701
+msgid "(No Albums)"
+msgstr "(앨범 없음)"
+
+#: ../src/GalleryExport.cs:886 ../src/PicasaWebExport.cs:839
+#: ../src/SmugMugExport.cs:745
+msgid "No account selected"
+msgstr "계정이 선택되지 않음"
+
+#: ../src/GalleryRemote.cs:356
+msgid "Error reading server response"
+msgstr "서버의 응답을 읽는 중 오류"
+
+#. failed to find the response
+#: ../src/GalleryRemote.cs:368
+msgid "Server returned response without Gallery content"
+msgstr "서버에서 갤러리의 내용을 포함하지 않은 응답을 반환했습니다"
+
+#: ../src/GlTransition.cs:36
+msgid "Dissolve"
+msgstr "오버랩"
+
+#: ../src/GlTransition.cs:104
+msgid "Flip"
+msgstr "뒤집기"
+
+#: ../src/GlTransition.cs:148
+msgid "Cover"
+msgstr "덮기"
+
+#: ../src/GlTransition.cs:175
+msgid "Reveal"
+msgstr "나타나기"
+
+#: ../src/GlTransition.cs:202
+msgid "Wipe"
+msgstr "밀어내기"
+
+#: ../src/GlTransition.cs:260
+msgid "Split"
+msgstr "자르기"
+
+#: ../src/GlTransition.cs:350
+msgid "Push"
+msgstr "밀기"
+
+#: ../src/GroupSelector.cs:57 ../src/GroupSelector.cs:58
+msgid "More dates"
+msgstr "다른 날짜"
+
+#: ../src/GroupSelector.cs:60 ../src/GroupSelector.cs:61
+msgid "More directories"
+msgstr "다른 디렉토리"
+
+#: ../src/GroupSelector.cs:63 ../src/GroupSelector.cs:64
+msgid "More"
+msgstr "기타"
+
+#: ../src/GroupSelector.cs:515
+msgid "Arrange by _Month"
+msgstr "월 별로 정렬(_M)"
+
+#: ../src/GroupSelector.cs:518
+msgid "Arrange by _Folder"
+msgstr "폴더 별로 정렬(_F)"
+
+#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:292
+msgid "_Reverse Order"
+msgstr "역순으로(_R)"
+
+#: ../src/GroupSelector.cs:529
+msgid "_Clear Date Range"
+msgstr "날짜 범위 초기화(_C)"
+
+#: ../src/HigMessageDialog.cs:28 ../src/PhotoView.cs:264
+msgid "Error editing photo"
+msgstr "사진을 편집하는 중 오류"
+
+#: ../src/Imaging/Exif.cs:228
+msgid "Image Directory"
+msgstr "이미지 디렉토리"
+
+#: ../src/Imaging/Exif.cs:230
+msgid "Thumbnail Directory"
+msgstr "미리보기(Thumbnail) 디렉토리"
+
+#: ../src/Imaging/Exif.cs:232
+msgid "Exif Directory"
+msgstr "Exif 디렉토리"
+
+#: ../src/Imaging/Exif.cs:234
+msgid "GPS Directory"
+msgstr "GPS 디렉토리"
+
+#: ../src/Imaging/Exif.cs:236
+msgid "InterOperability Directory"
+msgstr "상호운용성 디렉토리"
+
+#: ../src/Imaging/Exif.cs:238
+msgid "Unknown Directory"
+msgstr "알 수 없는 디렉토리"
+
+#: ../src/Imaging/IptcFile.cs:145
+msgid "IPTC Information Interchange Model (IIM) Version number"
+msgstr "IPTC 정보 교환 모델 (IIM) 버전 번호"
+
+#: ../src/Imaging/IptcFile.cs:147
+msgid "OSI Destination routing information"
+msgstr "OSI 대상 라우팅 정보"
+
+#: ../src/Imaging/IptcFile.cs:149
+msgid "IPTC file format"
+msgstr "IPTC 파일 형식"
+
+#: ../src/Imaging/IptcFile.cs:151
+msgid "Identifies the provider and product"
+msgstr "업체와 제품을 구분합니다"
+
+#: ../src/Imaging/IptcFile.cs:153
+msgid "A unique number identifying the envelope"
+msgstr "envolope을(를) 구별하기 위한 고유 번호"
+
+#: ../src/Imaging/IptcFile.cs:155
+msgid "A unique number"
+msgstr "고유 번호"
+
+#: ../src/Imaging/IptcFile.cs:157
+msgid ""
+"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgstr ""
+"envelope 처리 우선 순위: 1 (가장 빠름)부터 9 (가장 느림)"
+
+#: ../src/Imaging/IptcFile.cs:159
+msgid "The year, month and day (CCYYMMDD) the service sent the material"
+msgstr "서비스에서 자료를 보낸 연, 월, 일 (CCYYMMDD)"
+
+#: ../src/Imaging/IptcFile.cs:161
+msgid "The hour, minute and second (HHMMSS) the service sent the material"
+msgstr "서비스에서 자료를 보낸 시, 분, 초 (HHMMSS)"
+
+#: ../src/Imaging/IptcFile.cs:163
+msgid "The character set designation"
+msgstr "문자셋 지정"
+
+#: ../src/Imaging/IptcFile.cs:165
+msgid "External globally unique object identifier"
+msgstr "외부 전역 고유 객체 구별자"
+
+#: ../src/Imaging/IptcFile.cs:170
+msgid "Abstract Relationship Method (ARM) identifier"
+msgstr "추상 연관 방식 (ARM) 구별자"
+
+#: ../src/Imaging/IptcFile.cs:172
+msgid "Abstract Relationship Method (ARM) version number."
+msgstr "추상 연관 방식 (ARM) 버전 번호."
+
+#: ../src/Imaging/IptcFile.cs:175
+msgid "Number identifying the IIM version this application record uses"
+msgstr "이 프로그램 항목에서 사용할 IIM 번호를 나타내는 숫자"
+
+#: ../src/Imaging/IptcFile.cs:177
+msgid "Object type reference"
+msgstr "대상 종류 참조"
+
+#: ../src/Imaging/IptcFile.cs:182
+msgid "Object attribute reference"
+msgstr "대상 속성 참조"
+
+#: ../src/Imaging/IptcFile.cs:188 ../src/Imaging/IptcFile.cs:192
+msgid "Object name"
+msgstr "대상 이름"
+
+#: ../src/Imaging/IptcFile.cs:190
+msgid "Status of the objectdata according to the provider"
+msgstr "제공자에 따른 대상-데이터 상태"
+
+#: ../src/Imaging/IptcFile.cs:194
+msgid "Location within a city or area where the object originates"
+msgstr "대상이 존재하는 도시 혹은 영역 내의 위치"
+
+#: ../src/Imaging/IptcFile.cs:197
+msgid "Name of the city the content is focussing on"
+msgstr "내용에서 포커스를 맞추고 있는 도시의 이름"
+
+#: ../src/Imaging/IptcFile.cs:200
+msgid "Copyright information for"
+msgstr "저작권 정보"
+
+#: ../src/Imaging/IptcFile.cs:203
+msgid "Full name of the country of the focus of the content"
+msgstr "내용에서 포커스를 맞추고 있는 국가의 (완전한) 이름"
+
+#: ../src/Imaging/IptcFile.cs:206
+msgid ""
+"Two or three letter ISO3166 code of the country of the focus of the content"
+msgstr ""
+"내용에서 포커스를 맞추고 있는 국가에 대한 2 글자 혹은 3 글자의 ISO3166 코드"
+
+#: ../src/Imaging/IptcFile.cs:209
+msgid "Creator of the content"
+msgstr "만든 사람"
+
+#: ../src/Imaging/IptcFile.cs:212
+msgid "Provider of the object"
+msgstr "대상 제공자"
+
+#: ../src/Imaging/IptcFile.cs:215
+msgid "The title of the author or creator"
+msgstr "만든 사람들"
+
+#: ../src/Imaging/IptcFile.cs:218
+msgid ""
+"The person involved in writing, editing or correcting the object data or "
+"caption/abstract"
+msgstr ""
+"대상 데이터 및 캡션, 요약문을 작성하거나, 편집하거나, 수정해 준 사람들"
+
+#: ../src/Imaging/IptcFile.cs:222
+msgid "Headline of the content"
+msgstr "내용의 머리글"
+
+#: ../src/Imaging/IptcFile.cs:225
+msgid ""
+"Instructions from the creator to the receiver not covered by other fields"
+msgstr ""
+"작성자가 제공하는 다른 항목에서 다루지 않은 수신자에 대한 지시"
+
+#: ../src/Imaging/IptcFile.cs:228
+msgid "Intellectual genre of the object"
+msgstr "대상의 지적인 장르"
+
+#: ../src/Imaging/IptcFile.cs:241
+msgid "Unknown IIM DataSet"
+msgstr "알 수 없는 IIM 데이터셋"
+
+#: ../src/ImportCommand.cs:44 ../src/SingleView.cs:329
+msgid "Select Folder"
+msgstr "폴더 선택"
+
+#: ../src/ImportCommand.cs:256
+msgid "(No Cameras Detected)"
+msgstr "(카메라를 찾을 수 없음)"
+
+#: ../src/ImportCommand.cs:400
+#, csharp-format
+msgid "Loading {0} of {1}"
+msgstr "{1} 중 {0} 읽어오는 중"
+
+#: ../src/ImportCommand.cs:468
+msgid "Done Loading"
+msgstr "읽어오기 완료"
+
+#: ../src/ImportCommand.cs:665
+msgid "Directory does not exist."
+msgstr "디렉토리가 존재하지 않음."
+
+#: ../src/ImportCommand.cs:666
+#, csharp-format
+msgid ""
+"The directory you selected \"{0}\" does not exist.  Please choose a "
+"different directory"
+msgstr ""
+"선택한 \"{0}\" 디렉토리가 존재하지 않습니다. 다른 디렉토리를 선택하여 "
+"주십시오"
+
+#. Prepare the Last Import root tag
+#: ../src/ImportCommand.cs:718 ../src/ImportCommand.cs:720
+#: ../src/XmpTagsImporter.cs:86
+msgid "Import Tags"
+msgstr "태그 가져오기"
+
+#: ../src/InfoBox.cs:81
+msgid "name"
+msgstr "이름"
+
+#: ../src/InfoBox.cs:83
+msgid "version"
+msgstr "버전"
+
+#: ../src/InfoBox.cs:85
+msgid "date"
+msgstr "날짜"
+
+#: ../src/InfoBox.cs:87
+msgid "size"
+msgstr "크기"
+
+#: ../src/InfoBox.cs:89
+msgid "exposure"
+msgstr "노출"
+
+#. The label for the root category is used in new and edit tag dialogs
+#: ../src/InfoBox.cs:232 ../src/TagStore.cs:451
+msgid "(None)"
+msgstr "(없음)"
+
+#: ../src/InfoBox.cs:243 ../src/InfoBox.cs:252
+msgid "(Unknown)"
+msgstr "(알 수 없음)"
+
+#: ../src/InfoDisplay.cs:14 ../src/MainWindow.cs:1547
+#: ../src/f-spot.glade.h:149
+msgid "Metadata Browser"
+msgstr "메타데이터 탐색기"
+
+#. Obsolete, remove after db rev4
+#: ../src/InfoDisplay.cs:135 ../src/InfoDisplay.cs:137
+#: ../src/f-spot.glade.h:124
+msgid "Folder"
+msgstr "폴더"
+
+#: ../src/InfoDisplay.cs:139
+msgid "Picasaweb"
+msgstr "Picasaweb"
+
+#: ../src/InfoDisplay.cs:141
+msgid "SmugMug"
+msgstr "SmugMug"
+
+#: ../src/InfoDisplay.cs:143
+msgid "Gallery2"
+msgstr "Gallery2"
+
+#: ../src/InfoDisplay.cs:235
+msgid "Extended Metadata"
+msgstr "확장 메타데이터"
+
+#: ../src/InfoDisplay.cs:267
+msgid "Exported Locations"
+msgstr "내보내기 위치"
+
+#: ../src/InfoDisplay.cs:290
+msgid "No active photo"
+msgstr "활성화된 사진이 없음"
+
+#: ../src/InfoDisplay.cs:292
+#, csharp-format
+msgid "The photo \"{0}\" does not exist"
+msgstr "\"{0}\" 사진이 존재하지 않습니다"
+
+#: ../src/InfoDisplay.cs:298
+msgid "No metadata available"
+msgstr "메타데이터 없음"
+
+#: ../src/ItemAction.cs:81 ../src/ItemAction.cs:93
+msgid "Rotate picture left"
+msgstr "사진을 왼쪽으로 회전"
+
+#: ../src/ItemAction.cs:104
+msgid "Next picture"
+msgstr "다음 사진"
+
+#: ../src/ItemAction.cs:125 ../src/f-spot.glade.h:177
+msgid "Previous"
+msgstr "이전"
+
+#: ../src/ItemAction.cs:126
+msgid "Previous picture"
+msgstr "이전 사진"
+
+#: ../src/ItemAction.cs:256
+msgid "Auto Color"
+msgstr "자동 색조정"
+
+#: ../src/ItemAction.cs:257
+msgid "Automatically adjust the colors"
+msgstr "자동으로 색상을 조정합니다"
+
+#: ../src/ItemAction.cs:272
+msgid "Apply straightening"
+msgstr "수평 조정"
+
+#: ../src/ItemAction.cs:273
+msgid "Apply straightening to image"
+msgstr "이미지에 수평 조정을 적용합니다"
+
+#: ../src/ItemAction.cs:326
+msgid "Adjust the angle of the image to straighten the horizon"
+msgstr "이미지의 각도를 조정하여 수평으로 맞춥니다"
+
+#: ../src/ItemAction.cs:342
+msgid "Create a soft focus visual effect"
+msgstr "소프트 포커스 시각 효과를 만듭니다"
+
+#: ../src/Loupe.cs:57 ../src/MainWindow.cs:2042
+msgid "Error saving sharpened photo"
+msgstr "선명하게 만든 사진을 저장하는 도중 오류"
+
+#: ../src/Loupe.cs:87
+msgid "Sharpen"
+msgstr "선명하게"
+
+#: ../src/Loupe.cs:97 ../src/MainWindow.cs:2009
+msgid "Amount:"
+msgstr "강도:"
+
+#: ../src/Loupe.cs:98 ../src/MainWindow.cs:2010
+msgid "Radius:"
+msgstr "반경:"
+
+#: ../src/Loupe.cs:99 ../src/MainWindow.cs:2011
+msgid "Threshold:"
+msgstr "임계치:"
+
+#: ../src/MainWindow.cs:248 ../src/f-spot.glade.h:139
+msgid "Import"
+msgstr "가져오기"
+
+#: ../src/MainWindow.cs:250
+msgid "Import new images"
+msgstr "새 이미지 가져오기"
+
+#: ../src/MainWindow.cs:266 ../src/f-spot.glade.h:85
+msgid "Browse"
+msgstr "탐색기"
+
+#: ../src/MainWindow.cs:270
+msgid "Browse many photos simultaneously"
+msgstr "여러 사진들을 동시에 찾아봅니다"
+
+#: ../src/MainWindow.cs:274
+msgid "Edit Image"
+msgstr "이미지 편집"
+
+#: ../src/MainWindow.cs:278
+msgid "View and edit a photo"
+msgstr "사진을 보고 편집합니다"
+
+#: ../src/MainWindow.cs:283 ../src/SingleView.cs:85
+msgid "Fullscreen"
+msgstr "전체 화면"
+
+#: ../src/MainWindow.cs:285 ../src/SingleView.cs:87
+msgid "View photos fullscreen"
+msgstr "사진을 전체 화면으로 봅니다"
+
+#: ../src/MainWindow.cs:290 ../src/SingleView.cs:92
+msgid "View photos in a slideshow"
+msgstr "사진을 슬라이드쇼로 봅니다"
+
+#: ../src/MainWindow.cs:867
+msgid "Error loading database."
+msgstr "데이터베이스를 읽어오는 중 오류."
+
+#: ../src/MainWindow.cs:868
+#, csharp-format
+msgid ""
+"F-Spot encountered an error while loading the photo database. The old "
+"database has be moved to {0} and a new database has been created."
+msgstr ""
+"F-Spot이 사진 데이터베이스를 읽어오는 도중 오류가 발생했습니다. "
+"예전 데이터베이스는 {0}(으)로 옮겨지고 새 데이터베이스가 만들어 졌습니다."
+
+#: ../src/MainWindow.cs:1465
+msgid "No cameras detected."
+msgstr "카메라를 찾을 수 없음."
+
+#: ../src/MainWindow.cs:1466
+msgid ""
+"F-Spot was unable to find any cameras attached to this system.  Double check "
+"that the camera is connected and has power"
+msgstr ""
+"F-Spot에서 시스템에 연결된 카메라를 찾을 수 없습니다. 카메라가 연결되어 있고 "
+"전원이 켜져 있는지 다시 한 번 확인해 주십시오"
+
+#: ../src/MainWindow.cs:1506
+msgid "Error connecting to camera"
+msgstr "카메라에 연결하는 중 오류"
+
+#: ../src/MainWindow.cs:1507
+#, csharp-format
+msgid "Received error \"{0}\" while connecting to camera"
+msgstr "카메라에 연결하는 도중 \"{0}\" 오류가 발생했습니다"
+
+#. Translators should localize the following string
+#. * which will give them credit in the About box.
+#. * E.g. "Martin Willemoes Hansen"
+#: ../src/MainWindow.cs:1650
+msgid "translator-credits"
+msgstr "Namhyung Kim <namhyung@gmail.com>, 2007."
+
+#: ../src/MainWindow.cs:1658
+msgid "Copyright © 2003-2007 Novell Inc."
+msgstr "Copyright © 2003-2007 Novell Inc."
+
+#. Translators, The singular case will never happen here.
+#: ../src/MainWindow.cs:1922
+#, csharp-format
+msgid "Merge the selected tag"
+msgstr "선택한 태그를 통합"
+
+#: ../src/MainWindow.cs:1949
+msgid ""
+"This operation will merge the selected tags and any sub-tags into a single "
+"tag."
+msgstr ""
+"이 작업은 선택한 태그들과 하위 태그들을 하나의 태그로 통합할 것입니다."
+
+#: ../src/MainWindow.cs:1951
+msgid "_Merge Tags"
+msgstr "태그 통합(_M)"
+
+#: ../src/MainWindow.cs:2000
+msgid "Unsharp Mask"
+msgstr "Unsharp 마스크"
+
+#: ../src/MainWindow.cs:2203 ../src/SingleView.cs:471
+#, csharp-format
+msgid "{0} Photo"
+msgstr "{0} 사진"
+
+#: ../src/MainWindow.cs:2210
+#, csharp-format
+msgid " out of {0}"
+msgstr " 전체: {0}"
+
+#: ../src/MainWindow.cs:2213
+#, csharp-format
+msgid " ({0} selected)"
+msgstr " ({0} 선택됨)"
+
+#: ../src/MainWindow.cs:2300
+msgid "_Ok"
+msgstr "확인(_O)"
+
+#: ../src/MainWindow.cs:2301
+msgid "Error Deleting Picture"
+msgstr "사진을 지우는 중 오류"
+
+#: ../src/MainWindow.cs:2306
+#, csharp-format
+msgid "No permission to delete the file:{1}{0}"
+msgstr "파일을 지울 권한이 없음:{1}{0}"
+
+#: ../src/MainWindow.cs:2310
+#, csharp-format
+msgid "An error of type {0} occurred while deleting the file:{2}{1}"
+msgstr "파일을 지우는 도중 {0} 오류가 발생했습니다:{2}{1}"
+
+#: ../src/MainWindow.cs:2336
+#, csharp-format
+msgid "Delete the selected photo permanently?"
+msgstr "선택한 사진들을 완전히 지우겠습니까?"
+
+#: ../src/MainWindow.cs:2340
+msgid "This deletes all versions of the selected photo from your drive."
+"This deletes all versions of the selected photos from your drive."
+msgstr "이 작업은 드라이브에서 선택한 사진의 모든 버전을 지웁니다."
+"이 작업은 드라이브에서 선택한 사진의 모든 버전을 지웁니다."
+
+#: ../src/MainWindow.cs:2343
+msgid "_Delete photo"
+msgstr "사진 지우기(_D)"
+
+#: ../src/MainWindow.cs:2374
+#, csharp-format
+msgid "Remove the selected photo from F-Spot?"
+msgstr "선택한 사진을 F-Spot에서 지우겠습니까?"
+
+#: ../src/MainWindow.cs:2379
+msgid ""
+"If you remove photos from the F-Spot catalog all tag information will be "
+"lost. The photos remain on your computer and can be imported into F-Spot "
+"again."
+msgstr ""
+"사진을 F-Spot 카탈로그에서 지우면 모든 태그 정보가 사라질 것입니다. "
+"사진은 컴퓨터에 남아 있게 되며 나중에 다시 F-Spot(으)로 가져올 수 있습니다."
+
+#: ../src/MainWindow.cs:2380
+msgid "_Remove from Catalog"
+msgstr "카탈로그에서 지우기(_R)"
+
+#: ../src/MainWindow.cs:2437
+#, csharp-format
+msgid "Delete tag \"{0}\"?"
+msgstr "\"{0}\" 태그를 지우겠습니까?"
+
+#: ../src/MainWindow.cs:2439
+#, csharp-format
+msgid "Delete the {0} selected tags?"
+msgstr "선택한 {0} 태그를 지우겠습니까?"
+
+#: ../src/MainWindow.cs:2442
+msgid "If you delete a tag, all associations with photos are lost."
+msgstr "태그를 지우면, 사진에 적용된 해당 태그 정보도 사라집니다."
+
+#: ../src/MainWindow.cs:2443
+msgid "_Delete tag"
+msgstr "태그 지우기(_D)"
+
+#. A Category is not empty. Can not delete it.
+#: ../src/MainWindow.cs:2457
+msgid "Tag is not empty"
+msgstr "태그가 존재함"
+
+#: ../src/MainWindow.cs:2458
+#, csharp-format
+msgid ""
+"Can not delete tags that have tags within them.  Please delete tags under "
+"\"{0}\" first"
+msgstr ""
+"다른 태그들을 포함하는 태그를 지울 수 없습니다. \"{0}\" 아래의 태그들을 "
+"먼저 지우십시오."
+
+#: ../src/MainWindow.cs:2885
+msgid "Rotate selected photo left"
+msgstr "선택한 사진을 왼쪽으로 회전"
+
+#: ../src/MainWindow.cs:2898
+msgid "Rotate selected photo right"
+msgstr "선택한 사진을 오른쪽으로 회전"
+
+#: ../src/MainWindow.cs:2906
+#, csharp-format
+msgid "Find Selected Tag"
+msgstr "선택한 태그 찾기"
+
+#: ../src/MainWindow.cs:2910
+#, csharp-format
+msgid "Find Selected Tag With"
+msgstr "다음으로 선택된 태그 찾기"
+
+#: ../src/MainWindow.cs:2927
+msgid "Create New Version?"
+msgstr "새 버전을 만들겠습니까?"
+
+#: ../src/MainWindow.cs:2929
+#, csharp-format
+msgid ""
+"Before launching {1}, should F-Spot create a new version of the selected "
+"photo to preserve the original?"
+"Before launching {1}, should F-Spot create new versions of the selected "
+"photos to preserve the originals?"
+msgstr "{1}을(를) 실행하기 전에, F-Spot에서 원본을 보관하기 위해 선택한 사진의 새 버전을 만들겠습니까?"
+"{1}을(를) 실행하기 전에, F-Spot에서 원본을 보관하기 위해 선택한 사진의 새 버전을 만들겠습니까?"
+
+#: ../src/MetadataStore.cs:18
+msgid "Creator"
+msgstr "만든 이"
+
+#: ../src/MetadataStore.cs:19
+msgid "Title"
+msgstr "제목"
+
+#: ../src/MetadataStore.cs:20
+msgid "Copyright"
+msgstr "저작권"
+
+#: ../src/MetadataStore.cs:21
+msgid "Subject and Keywords"
+msgstr "주제와 키워드"
+
+#: ../src/MetadataStore.cs:22
+msgid "Compression"
+msgstr "압축"
+
+#: ../src/MetadataStore.cs:24
+msgid "Planar Configuration"
+msgstr "Planar 설정"
+
+#: ../src/MetadataStore.cs:26
+msgid "Orientation"
+msgstr "방향"
+
+#: ../src/MetadataStore.cs:28
+msgid "Photometric Interpretation"
+msgstr "광도 해석"
+
+#: ../src/MetadataStore.cs:30
+msgid "Resolution Unit"
+msgstr "해상도 단위"
+
+#: ../src/MetadataStore.cs:32
+msgid "Exposure Program"
+msgstr "노출 프로그램"
+
+#: ../src/MetadataStore.cs:34
+msgid "Metering Mode"
+msgstr "미터법 모드"
+
+#: ../src/MetadataStore.cs:36
+msgid "Exposure Mode"
+msgstr "노출 모드"
+
+#: ../src/MetadataStore.cs:38
+msgid "Custom Rendered"
+msgstr ""
+
+#: ../src/MetadataStore.cs:40
+msgid "Components Configuration"
+msgstr "컴포넌트 설정"
+
+#: ../src/MetadataStore.cs:42
+msgid "Light Source"
+msgstr "광원"
+
+#: ../src/MetadataStore.cs:44
+msgid "Sensing Method"
+msgstr "센싱 방식"
+
+#: ../src/MetadataStore.cs:46
+msgid "Color Space"
+msgstr "색 공간"
+
+#: ../src/MetadataStore.cs:48
+msgid "White Balance"
+msgstr "화이트 밸런스"
+
+#: ../src/MetadataStore.cs:50
+msgid "Focal Plane Resolution Unit"
+msgstr "초점면 해상도 단위"
+
+#: ../src/MetadataStore.cs:52
+msgid "File Source Type"
+msgstr "파일 소스 타입"
+
+#: ../src/MetadataStore.cs:54
+msgid "Scene Capture Type"
+msgstr "장면 캡처 타입"
+
+#: ../src/MetadataStore.cs:56
+msgid "Gain Control"
+msgstr "게인 조정"
+
+#: ../src/MetadataStore.cs:58
+msgid "Contrast"
+msgstr "대비"
+
+#: ../src/MetadataStore.cs:60
+msgid "Saturation"
+msgstr "채도"
+
+#: ../src/MetadataStore.cs:62
+msgid "Sharpness"
+msgstr "선명도"
+
+#: ../src/MetadataStore.cs:64
+msgid "Scene Type"
+msgstr "장면 타입"
+
+#: ../src/PhotoStore.cs:451
+#, csharp-format
+msgid "Reparented"
+msgstr ""
+
+#: ../src/PhotoStore.cs:468
+#, csharp-format
+msgid "Modified"
+msgstr "수정됨"
+
+#: ../src/PhotoStore.cs:487
+#, csharp-format
+msgid "Modified in {1}"
+msgstr "{1}에 수정됨"
+
+#. Note that the original version is never stored in the photo_versions table in the
+#. database.
+#: ../src/PhotoStore.cs:671 ../src/f-spot.glade.h:164
+msgid "Original"
+msgstr "원본"
+
+#. Fixme this should really set parent menu
+#. items insensitve
+#: ../src/PhotoTagMenu.cs:72
+msgid "(No Tags)"
+msgstr "(태그 없음)"
+
+#: ../src/PhotoVersionCommands.cs:55
+msgid "Create New Version"
+msgstr "새 버전 만들기"
+
+#: ../src/PhotoVersionCommands.cs:56
+msgid "Name:"
+msgstr "이름:"
+
+#: ../src/PhotoVersionCommands.cs:60
+msgid "Rename Version"
+msgstr "버전 이름 바꾸기"
+
+#: ../src/PhotoVersionCommands.cs:61
+msgid "New name:"
+msgstr "새 이름:"
+
+#: ../src/PhotoVersionCommands.cs:107
+msgid "Could not create a new version"
+msgstr "새 버전을 만들 수 없습니다"
+
+#: ../src/PhotoVersionCommands.cs:108
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to create version \"{1}\""
+msgstr "\"{0}\" 오류가 발생했습니다. \"{1}\" 버전을 만들 수 없습니다"
+
+#: ../src/PhotoVersionCommands.cs:135
+msgid "Really Delete?"
+msgstr "정말로 지우시겠습니까?"
+
+#: ../src/PhotoVersionCommands.cs:137
+msgid "Delete"
+msgstr "지우기"
+
+#: ../src/PhotoVersionCommands.cs:141
+#, csharp-format
+msgid "Really delete version \"{0}\"?"
+msgstr "정말로 \"{0}\" 버전을 지우시겠습니까?"
+
+#. FIXME show error dialog.
+#: ../src/PhotoVersionCommands.cs:151
+msgid "Could not delete a version"
+msgstr "버전을 지울 수 없음"
+
+#: ../src/PhotoVersionCommands.cs:152
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to delete version \"{1}\""
+msgstr "\"{0}\" 오류가 발생했습니다. \"{1}\" 버전을 지울 수 없습니다"
+
+#: ../src/PhotoVersionCommands.cs:193
+msgid "Could not rename a version"
+msgstr "버전의 이름을 바꿀 수 없음"
+
+#: ../src/PhotoVersionCommands.cs:194
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
+msgstr "\"{0}\" 오류가 발생했습니다. 버전의 이름을 \"{1}\"(으)로 바꿀 수 없습니다"
+
+#: ../src/PhotoVersionMenu.cs:66
+msgid "(No Edits)"
+msgstr "(편집하지 않음)"
+
+#: ../src/PhotoView.cs:62
+msgid "No Constraint"
+msgstr "제한 없음"
+
+#: ../src/PhotoView.cs:63
+msgid "4 x 3 (Book)"
+msgstr "4 x 3 (책)"
+
+#: ../src/PhotoView.cs:64
+msgid "4 x 6 (Postcard)"
+msgstr "4 x 6 (엽서)"
+
+#: ../src/PhotoView.cs:65
+msgid "5 x 7 (L, 2L)"
+msgstr "5 x 7 (L, 2L)"
+
+#: ../src/PhotoView.cs:66
+msgid "8 x 10"
+msgstr "8 x 10"
+
+#. new SelectionConstraint (Catalog.GetString ("4 x 3 Portrait (Book)"), 3.0 / 4.0),
+#. new SelectionConstraint (Catalog.GetString ("4 x 6 Portrait (Postcard)"), 4.0 / 6.0),
+#. new SelectionConstraint (Catalog.GetString ("5 x 7 Portrait (L, 2L)"), 5.0 / 7.0),
+#. new SelectionConstraint (Catalog.GetString ("8 x 10 Portrait"), 8.0 / 10.0),
+#: ../src/PhotoView.cs:71
+msgid "Square"
+msgstr "정사각형"
+
+#: ../src/PhotoView.cs:151
+msgid "Crop photo to selected area"
+msgstr "사진의 선택한 영역을 잘라냄"
+
+#: ../src/PhotoView.cs:152
+msgid "Remove redeye from selected area"
+msgstr "선택한 영역에서 적목 현상 없애기"
+
+#: ../src/PhotoView.cs:154
+msgid "Select an area to crop"
+msgstr "잘라낼 영역 선택"
+
+#: ../src/PhotoView.cs:155
+msgid "Select an area to remove redeye"
+msgstr "적목 현상을 없앨 영역 선택"
+
+#: ../src/PhotoView.cs:316
+msgid "No selection available"
+msgstr "선택한 영역이 없음"
+
+#: ../src/PhotoView.cs:317
+msgid ""
+"This tool requires an active selection. Please select a region of the photo "
+"and try the operation again"
+msgstr ""
+"이 도구는 활성화된 선택 영역이 필요합니다. 사진의 일부를 선택한 뒤에 "
+"다시 시도해 주십시오"
+
+#: ../src/PhotoView.cs:475
+msgid "Comment:"
+msgstr "메모:"
+
+#: ../src/PhotoView.cs:491
+msgid "Constrain the aspect ratio of the selection"
+msgstr "선택한 영역의 가로세로비를 제한합니다"
+
+#: ../src/PhotoView.cs:493
+msgid "Crop"
+msgstr "잘라내기"
+
+#: ../src/PhotoView.cs:497
+msgid "Reduce Red-Eye"
+msgstr "적목 현상 없애기"
+
+#: ../src/PhotoView.cs:501
+msgid "Adjust Colors"
+msgstr "색상 조정"
+
+#: ../src/PhotoView.cs:503
+msgid "Adjust the photo colors"
+msgstr "사진의 색상을 조정합니다"
+
+#: ../src/PhotoView.cs:506
+msgid "Desaturate"
+msgstr "흑백 사진"
+
+#: ../src/PhotoView.cs:508
+msgid "Convert the photo to black and white"
+msgstr "사진을 흑백 사진으로 변환합니다"
+
+#: ../src/PhotoView.cs:511
+msgid "Sepia Tone"
+msgstr "세피아 톤"
+
+#: ../src/PhotoView.cs:513
+msgid "Convert the photo to sepia tones"
+msgstr "사진을 세피아 톤으로 변환합니다"
+
+#: ../src/PhotoView.cs:543
+msgid "Previous photo"
+msgstr "이전 사진"
+
+#: ../src/PhotoView.cs:548
+msgid "Next photo"
+msgstr "다음 사진"
+
+#: ../src/PicasaWebExport.cs:416
+msgid "Error while creating Album"
+msgstr "앨범을 만드는 중 오류"
+
+#: ../src/PicasaWebExport.cs:417
+#, csharp-format
+msgid ""
+"The following error was encountered while attempting to create an album: {0}"
+msgstr ""
+"앨범을 만드는 도중 다음과 같은 오류가 발생했습니다: {0}"
+
+#: ../src/PicasaWebExport.cs:571
+#, csharp-format
+msgid "{0} Sent"
+msgstr "{0} 보냄"
+
+#: ../src/PicasaWebExport.cs:573
+#, csharp-format
+msgid "{0} of approx. {1}"
+msgstr ""
+
+#: ../src/PicasaWebExport.cs:603 ../src/SmugMugExport.cs:540
+#, csharp-format
+msgid "Uploading picture \"{0}\" ({1} of {2})"
+msgstr "\"{0}\" 사진을 업로드 하는 중 ({1} / {2})"
+
+#: ../src/PicasaWebExport.cs:634 ../src/SmugMugExport.cs:569
+#, csharp-format
+msgid "Error Uploading To Gallery: {0}"
+msgstr "갤러리로 업로드 하는 중 오류: {0}"
+
+#: ../src/PicasaWebExport.cs:718
+msgid "Available space :"
+msgstr "남아 있는 공간 :"
+
+#: ../src/Preferences.cs:194
+msgid "Photos"
+msgstr "사진"
+
+#: ../src/QueryWidget.cs:37
+msgid "Find: "
+msgstr "찾기: "
+
+#: ../src/QueryWidget.cs:42
+msgid "Untagged photos"
+msgstr "태그가 붙지 않은 사진"
+
+#: ../src/QueryWidget.cs:50
+msgid "Import roll"
+msgstr "가져오기 롤"
+
+#: ../src/QueryWidget.cs:70
+msgid "Clear search"
+msgstr "찾아보기 없앰"
+
+#: ../src/QueryWidget.cs:72
+msgid "No matching photos found"
+msgstr "일치하는 사진을 찾을 수 없음"
+
+#: ../src/QueryWidget.cs:103
+msgid "Hide Find Bar"
+msgstr "찾아보기 줄 숨기기"
+
+#: ../src/QueryWidget.cs:109
+msgid "Show Find Bar"
+msgstr "찾아보기 줄 보기"
+
+#: ../src/RotateCommand.cs:200
+msgid "Rotating photos"
+msgstr "사진을 회전시키는 중"
+
+#: ../src/RotateCommand.cs:211
+#, csharp-format
+msgid "Rotating photo \"{0}\""
+msgstr "\"{0}\" 사진을 회전시키는 중"
+
+#: ../src/RotateCommand.cs:237
+#, csharp-format
+msgid "Unable to rotate photo"
+msgstr "사진을 회전시킬 수 없음"
+
+#: ../src/RotateCommand.cs:241
+#, csharp-format
+msgid ""
+"The photo could not be rotated because it is on a read only file system or "
+"media such as a CDROM.  Please check the permissions and try again"
+"{0} photos could not be rotated because they are on a read only file system "
+"or media such as a CDROM.  Please check the permissions and try again"
+msgstr ""
+"사진이 읽기 전용 파일 시스템이나 CD-ROM과 같은 읽기 전용 미디어에 저장되어 "
+"있어서 회전 시킬 수 없습니다. 권한을 확인하고 다시 시도해 주십시오"
+"{0} 사진이 읽기 전용 파일 시스템이나 CD-ROM과 같은 읽기 전용 미디어에 저장되어 "
+"있어서 회전 시킬 수 없습니다. 권한을 확인하고 다시 시도해 주십시오"
+
+#: ../src/RotateCommand.cs:263
+#, csharp-format
+msgid "Received error \"{0}\" while attempting to rotate {1}"
+msgstr "{1}을(를) 회전시키는 도중 \"{0}\" 오류가 발생했습니다"
+
+#: ../src/RotateCommand.cs:268
+msgid "Error while rotating photo."
+msgstr "사진을 회전하는 중 오류."
+
+#: ../src/SendEmail.cs:233
+msgid "Preparing email"
+msgstr "전자메일을 준비하는 중"
+
+#: ../src/SendEmail.cs:285
+#, csharp-format
+msgid "Exporting picture \"{0}\""
+msgstr "\"{0}\" 사진을 내보내는 중"
+
+#. Send the mail :)
+#: ../src/SendEmail.cs:310
+msgid "my photos"
+msgstr "내 사진"
+
+#: ../src/SingleView.cs:75
+msgid "Rotate photo left"
+msgstr "사진을 왼쪽으로 회전"
+
+#: ../src/SingleView.cs:80
+msgid "Rotate photo right"
+msgstr "사진을 오른쪽으로 회전"
+
+#: ../src/SingleView.cs:326
+msgid "Open"
+msgstr "열기"
+
+#: ../src/SingleView.cs:428 ../src/f-spot.glade.h:187
+msgid "Rotate _Left"
+msgstr "왼쪽으로 회전(_L)"
+
+#: ../src/SingleView.cs:429 ../src/f-spot.glade.h:188
+msgid "Rotate _Right"
+msgstr "오른쪽으로 회전(_R)"
+
+#: ../src/SingleView.cs:431
+msgid "Set as Background"
+msgstr "바탕그림으로 설정"
+
+#: ../src/TagCommands.cs:89 ../src/TagCommands.cs:217
+#: ../src/TagSelectionWidget.cs:506
+msgid "This name is already in use"
+msgstr "이 이름은 이미 사용 중입니다"
+
+#: ../src/TagCommands.cs:136
+msgid "Create New Tag"
+msgstr "새 태그 만들기"
+
+#: ../src/TagCommands.cs:137
+msgid "Name of New Tag:"
+msgstr "새 태그의 이름:"
+
+#: ../src/TagCommands.cs:287
+msgid "Edit Tag"
+msgstr "태그 편집"
+
+#: ../src/TagCommands.cs:288
+msgid "Tag Name:"
+msgstr "태그 이름:"
+
+#: ../src/TagCommands.cs:421
+#, csharp-format
+msgid "Photo {0} of {1}"
+msgstr "사진 {0} / {1}"
+
+#: ../src/TagCommands.cs:451
+#, csharp-format
+msgid "Edit Icon for Tag {0}"
+msgstr "{0} 태그의 아이콘 편집"
+
+#: ../src/TagCommands.cs:467
+msgid "Select Photo from file"
+msgstr "파일에서 사진 선택"
+
+#: ../src/TagCommands.cs:490
+#, csharp-format
+msgid ""
+"\n"
+"<b>From Photo</b>\n"
+" You can use one of your library photos as an icon for this tag.\n"
+" However, first you must have at least one photo associated\n"
+" with this tag. Please tag a photo as '{0}' and return here\n"
+" to use it as an icon."
+msgstr ""
+
+#: ../src/TagMenu.cs:89 ../src/TagPopup.cs:34
+msgid "Create New Tag..."
+msgstr "새 태그 만들기..."
+
+#: ../src/TagPopup.cs:24
+#, csharp-format
+msgid "Find"
+msgstr "찾기"
+
+#: ../src/TagPopup.cs:40
+msgid "Edit Selected Tag..."
+msgstr "선택한 태그 편집..."
+
+#: ../src/TagPopup.cs:44
+msgid "Delete Tag"
+msgstr "태그 지우기"
+
+#: ../src/TagPopup.cs:50
+msgid "Attach Tag to Selection"
+msgstr "선택한 사진에 태그 붙이기"
+
+#: ../src/TagPopup.cs:54
+msgid "Remove Tag From Selection"
+msgstr "선택한 사진에서 태그 지우기"
+
+#: ../src/TagPopup.cs:60
+msgid "Merge Tags"
+msgstr "태그 통합"
+
+#: ../src/TagQueryWidget.cs:31
+#, csharp-format
+msgid "Include Photos Tagged \"{0}\""
+msgstr "\"{0}\" 태그가 붙은 사진 포함"
+
+#: ../src/TagQueryWidget.cs:36
+#, csharp-format
+msgid "Exclude Photos Tagged \"{0}\""
+msgstr "\"{0}\" 태그가 붙은 사진 제외"
+
+#: ../src/TagQueryWidget.cs:41
+msgid "Remove From Search"
+msgstr "찾기에서 지우기"
+
+#: ../src/TagQueryWidget.cs:85
+#, csharp-format
+msgid "Find _With"
+msgstr "다음으로 찾기(_W)"
+
+#: ../src/TagQueryWidget.cs:111
+msgid "All"
+msgstr "모두"
+
+#: ../src/TagQueryWidget.cs:146 ../src/Term.cs:591
+#, csharp-format
+msgid "Not {0}"
+msgstr "{0}이(가) 아님"
+
+#: ../src/TagQueryWidget.cs:276
+msgid "Drag tags here to search for them"
+msgstr "찾아볼 태그를 여기로 끌어다 놓으세요"
+
+#: ../src/TagSelectionWidget.cs:505
+msgid "Error renaming tag"
+msgstr "태그 이름 바꾸기 오류"
+
+#: ../src/TagStore.cs:415
+msgid "Favorites"
+msgstr "좋은 사진"
+
+#: ../src/TagStore.cs:420
+msgid "Hidden"
+msgstr "숨김"
+
+#: ../src/TagStore.cs:428
+msgid "People"
+msgstr "사람"
+
+#: ../src/TagStore.cs:433
+msgid "Places"
+msgstr "장소"
+
+#: ../src/TagStore.cs:438
+msgid "Events"
+msgstr "이벤트"
+
+#: ../src/Term.cs:297
+msgid " and "
+msgstr "와(과) "
+
+#. operators.Add (Catalog.GetString (" && "));
+#: ../src/Term.cs:299
+msgid ", "
+msgstr ", "
+
+#: ../src/Term.cs:355
+msgid " or "
+msgstr " 혹은 "
+
+#: ../src/Term.cs:379 ../src/f-spot.glade.h:321
+msgid "or"
+msgstr "혹은"
+
+#: ../src/ThreadProgressDialog.cs:66
+msgid "Retry"
+msgstr "재시도"
+
+#: ../src/ThreadProgressDialog.cs:68
+msgid "Skip"
+msgstr "건너뜀"
+
+#. The preceding text here is the second checkbutton in the Time dialog
+#. that says "Space all photos by []"
+#: ../src/TimeDialog.cs:125 ../src/f-spot.glade.h:320
+#, csharp-format
+msgid "min. Starting at {0}"
+msgstr "분. {0}에 시작"
+
+#: ../src/TimeDialog.cs:130 ../src/f-spot.glade.h:204
+#, csharp-format
+msgid "Shift all photos by {0}"
+msgstr "모든 사진을 {0} 만큼 시프트"
+
+#. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
+#: ../src/Unix.cs:25
+msgid "Unable to create temporary file"
+msgstr "임시 파일을 만들 수 없음"
+
+#: ../src/Updater.cs:230
+msgid "Updating F-Spot Database"
+msgstr "F-Spot 데이터베이스 갱신하는 중"
+
+#: ../src/Updater.cs:231
+msgid ""
+"Please wait while your F-Spot gallery's database is updated. This may take "
+"some time."
+msgstr ""
+"F-Spot 갤러리 데이터베이스를 갱신하는 동안 잠시 기다려 주십시오. "
+"이 과정은 약간의 시간이 소요됩니다."
+
+#: ../src/Util.cs:428
+msgid "There was an error invoking the external handler"
+msgstr "외부 처리기를 불러오는 중 오류가 발생했습니다"
+
+#: ../src/Util.cs:429
+#, csharp-format
+msgid "Received error:{1}\"{0}\"{1}"
+msgstr "오류 발생:{1}\"{0}\"{1}"
+
+#: ../src/Util.cs:453
+msgid ""
+"The \"F-Spot Manual\" could not be found.  Please verify that your "
+"installation has been completed successfully."
+msgstr ""
+"\"F-Spot 설명서\"를 찾을 수 없습니다. 설치가 성공적으로 "
+"완료되었는지 확인해 보십시오."
+
+#: ../src/Util.cs:461
+msgid "Help not found"
+msgstr "도움말을 찾을 수 없음"
+
+#: ../src/Widgets/FindBar.cs:83
+msgid "Find:"
+msgstr "찾기:"
+
+#: ../src/XmpTagsImporter.cs:87
+msgid "Location"
+msgstr "위치"
+
+#: ../src/XmpTagsImporter.cs:88
+msgid "Country"
+msgstr "국가"
+
+#: ../src/XmpTagsImporter.cs:89
+msgid "City"
+msgstr "도시"
+
+#: ../src/XmpTagsImporter.cs:90
+msgid "State"
+msgstr "주"
+
+#. namespace
+#: ../src/f-spot.glade.h:1
+msgid "\n"
+msgstr "\n"
+
+#: ../src/f-spot.glade.h:3
+msgid " "
+msgstr " "
+
+#: ../src/f-spot.glade.h:4
+msgid "0000:00:00 00:00:00"
+msgstr "0000:00:00 00:00:00"
+
+#: ../src/f-spot.glade.h:5
+msgid "00:00:00"
+msgstr "00:00:00"
+
+#: ../src/f-spot.glade.h:6
+msgid "1 of 1"
+msgstr "1 중 1"
+
+#: ../src/f-spot.glade.h:7
+msgid "1024 px"
+msgstr "1024 px"
+
+#: ../src/f-spot.glade.h:8
+msgid "320 px"
+msgstr "320 px"
+
+#: ../src/f-spot.glade.h:9
+msgid "480 px"
+msgstr "480 px"
+
+#: ../src/f-spot.glade.h:10
+msgid "5"
+msgstr "5"
+
+#: ../src/f-spot.glade.h:11
+msgid "640 px"
+msgstr "640 px"
+
+#: ../src/f-spot.glade.h:12
+msgid "800 px"
+msgstr "800 px"
+
+#: ../src/f-spot.glade.h:13
+msgid "<b></b>"
+msgstr "<b></b>"
+
+#: ../src/f-spot.glade.h:14
+msgid "<b>Account</b>"
+msgstr "<b>계정</b>"
+
+#: ../src/f-spot.glade.h:15
+msgid "<b>Action</b>"
+msgstr "<b>동작</b>"
+
+#: ../src/f-spot.glade.h:16
+msgid "<b>Album</b>"
+msgstr "<b>앨범</b>"
+
+#: ../src/f-spot.glade.h:17
+msgid "<b>Co_rrections</b>"
+msgstr "<b>수정(_R)</b>"
+
+#: ../src/f-spot.glade.h:18
+msgid "<b>Color Management</b>"
+msgstr "<b>색 관리</b>"
+
+#: ../src/f-spot.glade.h:19
+msgid "<b>Color Temperature</b>"
+msgstr "<b>색 온도</b>"
+
+#: ../src/f-spot.glade.h:20
+msgid "<b>Destination</b>"
+msgstr "<b>대상</b>"
+
+#: ../src/f-spot.glade.h:21
+msgid "<b>End Date</b>"
+msgstr "<b>종료일</b>"
+
+#: ../src/f-spot.glade.h:22
+msgid "<b>Export Method</b>"
+msgstr "<b>내보내기 방식</b>"
+
+#: ../src/f-spot.glade.h:23
+msgid "<b>Exposure</b>"
+msgstr "<b>노출</b>"
+
+#: ../src/f-spot.glade.h:24
+msgid "<b>From External Photo</b>"
+msgstr "<b>외부 사진에서</b>"
+
+#: ../src/f-spot.glade.h:25
+msgid "<b>From Photo</b>"
+msgstr "<b>사진에서</b>"
+
+#: ../src/f-spot.glade.h:26
+msgid "<b>Gallery</b>"
+msgstr "<b>갤러리</b>"
+
+#: ../src/f-spot.glade.h:27
+msgid "<b>Histo_gram</b>"
+msgstr "<b>히스토그램(_G)</b>"
+
+#: ../src/f-spot.glade.h:28
+msgid "<b>Histogram</b>"
+msgstr "<b>히스토그램</b>"
+
+#: ../src/f-spot.glade.h:29
+msgid "<b>Image Interpolation</b>"
+msgstr "<b>이미지 보간(Interpolation)</b>"
+
+#: ../src/f-spot.glade.h:30
+msgid "<b>Import Settings</b>"
+msgstr "<b>가져오기 설정</b>"
+
+#: ../src/f-spot.glade.h:31
+msgid "<b>Metadata</b>"
+msgstr "<b>메타데이터</b>"
+
+#: ../src/f-spot.glade.h:32
+msgid "<b>Photograph Layout</b>"
+msgstr "<b>사진 레이아웃</b>"
+
+#: ../src/f-spot.glade.h:33
+msgid "<b>Photos to Burn</b>"
+msgstr "<b>구울 사진</b>"
+
+#: ../src/f-spot.glade.h:34
+msgid "<b>Photos</b>"
+msgstr "<b>사진</b>"
+
+#: ../src/f-spot.glade.h:35
+msgid "<b>PicasaWeb Export</b>"
+msgstr "<b>PicasaWeb 내보내기</b>"
+
+#: ../src/f-spot.glade.h:36
+msgid "<b>Predefined</b>"
+msgstr "<b>미리 정의된 항목</b>"
+
+#: ../src/f-spot.glade.h:37
+msgid "<b>Preview</b>"
+msgstr "<b>미리보기</b>"
+
+#: ../src/f-spot.glade.h:38
+msgid "<b>Printer Details</b>"
+msgstr "<b>프린터 정보</b>"
+
+#: ../src/f-spot.glade.h:39
+msgid "<b>Reference Photo</b>"
+msgstr "<b>참조 사진</b>"
+
+#: ../src/f-spot.glade.h:40
+msgid "<b>Screensaver</b>"
+msgstr "<b>화면 보호기</b>"
+
+#: ../src/f-spot.glade.h:41
+msgid "<b>Select period</b>"
+msgstr "<b>기간 선택</b>"
+
+#: ../src/f-spot.glade.h:42
+msgid "<b>Size</b>"
+msgstr "<b>크기</b>"
+
+#: ../src/f-spot.glade.h:43
+msgid "<b>SmugMug Export</b>"
+msgstr "<b>SmugMug 내보내기</b>"
+
+#: ../src/f-spot.glade.h:44
+msgid "<b>Start Date</b>"
+msgstr "<b>시작일</b>"
+
+#: ../src/f-spot.glade.h:45
+msgid "<b>Style</b>"
+msgstr "<b>스타일</b>"
+
+#: ../src/f-spot.glade.h:46
+msgid "<b>Summary</b>"
+msgstr "<b>요약</b>"
+
+#: ../src/f-spot.glade.h:47
+msgid "<b>Transparent Parts</b>"
+msgstr "<b>투명 부분</b>"
+
+#: ../src/f-spot.glade.h:48
+msgid "<b>View all pictures imported</b>"
+msgstr "<b>가져온 모든 사진 보기</b>"
+
+#: ../src/f-spot.glade.h:49
+msgid "<b>Viewing permissions</b>"
+msgstr "<b>보기 권한</b>"
+
+#: ../src/f-spot.glade.h:50
+msgid "<b>_White Balance</b>"
+msgstr "<b>화이트 밸런스(_W)</b>"
+
+#: ../src/f-spot.glade.h:51
+msgid "<small> </small>"
+msgstr "<small> </small>"
+
+#: ../src/f-spot.glade.h:52
+msgid "<small></small>"
+msgstr "<small></small>"
+
+#: ../src/f-spot.glade.h:53
+msgid ""
+"<small><i>Choose the folder where F-Spot should store newly imported photos</"
+"i></small>"
+msgstr ""
+"<small><i>F-Spot이(가) 새로 가져온 사진들을 저장할 폴더를 선택하세요</"
+"i></small>"
+
+#: ../src/f-spot.glade.h:54
+msgid ""
+"<small><i>Enable this option to store tags and descriptions inside \n"
+"supported image formats.</i></small>"
+msgstr ""
+"<small><i>이 옵션을 사용하면 지원하는 이미지 형식 내에 \n"
+"태그과 설명 정보를 저장합니다.</i></small>"
+
+#: ../src/f-spot.glade.h:56
+msgid ""
+"<small><i>Enable this to allow interpolation on zoomed images. You should'nt "
+"disable this for viewing photos, but disabling the interpolation could be "
+"usefull in icon design.</i></small>"
+msgstr ""
+"<small><i>이 옵션을 사용하면 확대된 이미지에 보간법을 적용합니다."
+"사진을 보는 경우에는 이 옵션을 끄면 안됩니다. 하지만 아이콘을 디자인하는 "
+"경우에는 이 옵션을 꺼두는 것이 좋습니다.</i></small>"
+
+#: ../src/f-spot.glade.h:57
+msgid ""
+"<small><i>While acting as a screensaver, F-Spot can display all of your "
+"images, or a small subset based on tags.</i></small>"
+msgstr ""
+"<small><i>화면 보호기로 동작하는 동안, F-Spot이(가) 여러분의 모든 "
+"이미지 혹은 특정 태그가 붙은 이미지를 보여줄 수 있습니다.</i></small>"
+
+#: ../src/f-spot.glade.h:58
+msgid ""
+"<small><i>You can choose how to display transparent parts in images. This "
+"option has no effect on photos, but setting this as check pattern or custom "
+"color could be usefull when viewing icons or other artworks with transparent "
+"parts.</i></small>"
+msgstr ""
+"<small><i>이미지 내의 투명한 부분을 표시하는 방식을 선택할 수 있습니다. "
+"이 옵션은 일반 사진에서는 아무 효과도 없지만, 이를 체크 패턴이나 특정 색상으로 "
+"지정해 두면 투명한 영역을 포함한아이콘이나 다른 아트워크를 볼 때 "
+"유용하게 사용할 수 있습니다.</i></small>"
+
+#: ../src/f-spot.glade.h:59
+msgid "<small>C_ontrast:</small>"
+msgstr "<small>대비(_O):</small>"
+
+#: ../src/f-spot.glade.h:60
+msgid "<small>Te_mp:</small>"
+msgstr "<small>온도(_M):</small>"
+
+#: ../src/f-spot.glade.h:61
+msgid "<small>_Brightness:</small>"
+msgstr "<small>밝기(_B):</small>"
+
+#: ../src/f-spot.glade.h:62
+msgid "<small>_Exposure:</small>"
+msgstr "<small>노출(_E):</small>"
+
+#: ../src/f-spot.glade.h:63
+msgid "<small>_Hue:</small>"
+msgstr "<small>색조(_H):</small>"
+
+#: ../src/f-spot.glade.h:64
+msgid "<small>_Saturation:</small>"
+msgstr "<small>채도(_S):</small>"
+
+#: ../src/f-spot.glade.h:65
+msgid "<small>_Tint:</small>"
+msgstr "<small>Tint(_T):</small>"
+
+#: ../src/f-spot.glade.h:66
+msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
+msgstr "<span weight='bold' size='larger'>갤러리에 연결하는 중 오류</span>\n"
+
+#: ../src/f-spot.glade.h:68
+msgid ""
+"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgstr ""
+"<span weight='bold' size='larger'>여러분의 Google 계정이 잠겨있습니다</span>\n"
+
+#: ../src/f-spot.glade.h:70
+msgid "Ad_just Color..."
+msgstr "색상 조정(_J)..."
+
+#: ../src/f-spot.glade.h:71
+msgid "Adjust Color"
+msgstr "색상 조정"
+
+#: ../src/f-spot.glade.h:72
+msgid "Adjust Time"
+msgstr "시간 조정"
+
+#: ../src/f-spot.glade.h:73
+msgid "Adjust _Time..."
+msgstr "시간 조정(_T)..."
+
+#: ../src/f-spot.glade.h:74
+msgid "Adjusted date: "
+msgstr "조정된 날짜: "
+
+#: ../src/f-spot.glade.h:76
+msgid "Arrange _by"
+msgstr "다음으로 정렬(_B)"
+
+#: ../src/f-spot.glade.h:77
+msgid "As _background"
+msgstr "배경색으로(_B)"
+
+#: ../src/f-spot.glade.h:78
+msgid "As check pattern"
+msgstr "체크 패턴으로"
+
+#: ../src/f-spot.glade.h:79
+msgid "As custom color: "
+msgstr "특정 색상으로: "
+
+#: ../src/f-spot.glade.h:80
+msgid "Attach Tags:"
+msgstr "태그 붙이기:"
+
+#: ../src/f-spot.glade.h:81
+msgid "Attach tag:"
+msgstr "태그 붙이기:"
+
+#: ../src/f-spot.glade.h:83
+msgid "Autorotate"
+msgstr "자동 회전"
+
+#: ../src/f-spot.glade.h:84
+msgid "Beneath _Photos"
+msgstr ""
+
+#: ../src/f-spot.glade.h:86
+msgid "CD"
+msgstr "CD"
+
+#: ../src/f-spot.glade.h:87
+msgid "C_aption:"
+msgstr "캡션(_A):"
+
+#: ../src/f-spot.glade.h:88
+msgid "C_ontrast:"
+msgstr "대비(_O):"
+
+#: ../src/f-spot.glade.h:89
+msgid "Camera Selection"
+msgstr "카메라 선택"
+
+#: ../src/f-spot.glade.h:90
+msgid "Cancel, do not change the current timeline. "
+msgstr "취소, 현재 타임라인을 바꾸지 않습니다. "
+
+#: ../src/f-spot.glade.h:91
+msgid "Clea_r Date Range"
+msgstr "날짜 범위 지우기(_R)"
+
+#: ../src/f-spot.glade.h:92
+msgid "Clear Roll Filter"
+msgstr "롤 필터 지우기"
+
+#: ../src/f-spot.glade.h:93
+msgid "Co_nfigure"
+msgstr "설정(_N)"
+
+#: ../src/f-spot.glade.h:94
+msgid "Copy Locat_ion"
+msgstr "위치 복사(_I)"
+
+#: ../src/f-spot.glade.h:95
+msgid "Copy files to the Photos folder"
+msgstr "파일을 Photos 폴더로 복사"
+
+#: ../src/f-spot.glade.h:96
+msgid "Create CD"
+msgstr "CD 만들기"
+
+#: ../src/f-spot.glade.h:97
+msgid "Create Mail"
+msgstr "메일 작성하기"
+
+#: ../src/f-spot.glade.h:98
+msgid "Create New _Tag..."
+msgstr "새 태그 만들기(_T)..."
+
+#: ../src/f-spot.glade.h:99
+msgid "Create _New Version..."
+msgstr "새 버전 만들기(_N)..."
+
+#: ../src/f-spot.glade.h:100
+msgid "Create _gallery using \"Original\""
+msgstr "\"원본\"을 이용하여 갤러리 만들기(_G)"
+
+#: ../src/f-spot.glade.h:101
+msgid "Create a mail with the selected photos (possible resized) attached"
+msgstr "선택한 사진들을 첨부하여 메일 작성하기 (크기가 변경될 수 있음)"
+
+#: ../src/f-spot.glade.h:102
+msgid "Create standalone _web gallery"
+msgstr "별도의 웹 갤러리 만들기(_W)"
+
+#: ../src/f-spot.glade.h:103
+msgid "Crop photo to _fit"
+msgstr "사진을 알맞게 잘라내기(_F)"
+
+#: ../src/f-spot.glade.h:104
+msgid "Current date:"
+msgstr "오늘:"
+
+#: ../src/f-spot.glade.h:105
+msgid "D_escription:"
+msgstr "설명(_E):"
+
+#: ../src/f-spot.glade.h:106
+msgid "Display File Names"
+msgstr "파일 이름 표시"
+
+#: ../src/f-spot.glade.h:107
+msgid "Display only those photos that were imported in specified Rolls."
+msgstr "지정된 롤에서 가져온 사진만을 표시."
+
+#: ../src/f-spot.glade.h:108
+msgid "Do not send a mail"
+msgstr "메일을 보내지 않음"
+
+#: ../src/f-spot.glade.h:109
+msgid "E-_Mail:"
+msgstr "전자메일(_M):"
+
+#: ../src/f-spot.glade.h:110
+msgid "E_xport titles and comments"
+msgstr "제목과 메모 내보내기(_X)"
+
+#: ../src/f-spot.glade.h:111
+msgid "Edit"
+msgstr "편집"
+
+#: ../src/f-spot.glade.h:112
+msgid "Edit Tag Icon"
+msgstr "태그 아이콘 편집"
+
+#: ../src/f-spot.glade.h:113
+msgid "Edit icon"
+msgstr "아이콘 편집"
+
+#: ../src/f-spot.glade.h:114
+msgid "Estimated new size"
+msgstr "예상 새 크기"
+
+#: ../src/f-spot.glade.h:115
+msgid "Export"
+msgstr "내보내기"
+
+#: ../src/f-spot.glade.h:116
+msgid "Export _titles and comments"
+msgstr "제목과 메모 내보내기(_T)"
+
+#: ../src/f-spot.glade.h:117
+msgid "Extra large"
+msgstr "매우 크게"
+
+#: ../src/f-spot.glade.h:119
+msgid "F-Spot View"
+msgstr "F-Spot 보기"
+
+#: ../src/f-spot.glade.h:120
+msgid ""
+"F-Spot needs your authorization in order to upload photos to your {0} "
+"account. Press the \"Authorize\" button to open a web browser and give F-"
+"Spot the authorization. "
+msgstr ""
+"F-Spot에서 여러분의 {0} 계정에 사진을 업로드 하기 위해 인증이 필요합니다. "
+"\"인증\" 단추를 눌러 웹 브라우저를 열고 인증 과정을 수행해 주십시오. "
+
+#: ../src/f-spot.glade.h:122
+msgid "Filter on selected rolls"
+msgstr "선택된 롤에 필터 적용"
+
+#: ../src/f-spot.glade.h:123
+msgid "Fin_d"
+msgstr "찾기(_D)"
+
+#: ../src/f-spot.glade.h:125
+msgid "Folder Export"
+msgstr "폴더 내보내기"
+
+#: ../src/f-spot.glade.h:126
+msgid ""
+"From Screen\n"
+"Standard RGB"
+msgstr ""
+"화면에서\n"
+"표준 RGB"
+
+#: ../src/f-spot.glade.h:128
+msgid ""
+"Full Page\n"
+"Standard - 4x6"
+msgstr ""
+"전체 페이지\n"
+"표준 - 4x6"
+
+#: ../src/f-spot.glade.h:130
+msgid "G_allery Name:"
+msgstr "갤러리 이름(_A):"
+
+#: ../src/f-spot.glade.h:131
+msgid "G_allery:"
+msgstr "갤러리(_A):"
+
+#: ../src/f-spot.glade.h:132
+msgid "Gallery"
+msgstr "갤러리"
+
+#: ../src/f-spot.glade.h:133
+msgid ""
+"Hairline\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
+msgstr ""
+"Hairline\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
+
+#: ../src/f-spot.glade.h:138
+msgid "Images tagged with:"
+msgstr "다음 태그가 붙은 이미지:"
+
+#: ../src/f-spot.glade.h:140
+msgid "Import Rolls"
+msgstr "가져오기 롤"
+
+#: ../src/f-spot.glade.h:141
+msgid "Import Source:"
+msgstr "가져오기 소스:"
+
+#: ../src/f-spot.glade.h:142
+msgid "Include subfolders"
+msgstr "하위 폴더 포함"
+
+#: ../src/f-spot.glade.h:143
+msgid "Interpolate image on zoom"
+msgstr "확대 시 이미지 보간"
+
+#: ../src/f-spot.glade.h:144
+msgid "Large"
+msgstr "크게"
+
+#: ../src/f-spot.glade.h:145
+msgid "Last Import Roll"
+msgstr "이전 가져오기 롤"
+
+#: ../src/f-spot.glade.h:146
+msgid "Make F-Spot your screensaver"
+msgstr "F-Spot을(를) 화면 보호기로 지정"
+
+#: ../src/f-spot.glade.h:147
+msgid "Manage _Extensions"
+msgstr "확장 기능 관리(_E)"
+
+#: ../src/f-spot.glade.h:148
+msgid "Medium"
+msgstr "보통"
+
+#: ../src/f-spot.glade.h:150
+msgid "N_umber of Copies:"
+msgstr "복사본의 수(_U):"
+
+#: ../src/f-spot.glade.h:152
+msgid "No _image"
+msgstr "이미지 없음(_I)"
+
+#: ../src/f-spot.glade.h:153
+msgid ""
+"None\n"
+"Title\n"
+"Filename\n"
+"Date\n"
+"Photo Details"
+msgstr ""
+"없음\n"
+"제목\n"
+"파일 이름\n"
+"날짜\n"
+"사진 정보"
+
+#: ../src/f-spot.glade.h:158
+msgid "Number of photos in selected rolls :"
+msgstr "선택된 롤 내의 사진 수 :"
+
+#: ../src/f-spot.glade.h:159
+msgid "Number of pictures"
+msgstr "사진의 수"
+
+#: ../src/f-spot.glade.h:160
+msgid "Only photos taken within these dates will be displayed."
+msgstr "이 날짜 내에 찍힌 사진만이 표시될 것입니다."
+
+#: ../src/f-spot.glade.h:161
+msgid "Open _Folder..."
+msgstr "폴더 열기(_F)..."
+
+#: ../src/f-spot.glade.h:162
+msgid "Open _album in browser when done uploading"
+msgstr "업로드가 끝나면 브라우저에서 앨범 열기(_A)"
+
+#: ../src/f-spot.glade.h:163
+msgid "Open _destination when done exporting"
+msgstr "내보내기가 끝나면 대상 폴더 열기(_D)"
+
+#: ../src/f-spot.glade.h:165
+msgid "Original size (possible very large file size)"
+msgstr "원본 크기 (아마도 매우 클 것입니다)"
+
+#: ../src/f-spot.glade.h:166
+msgid "P_arent Tag:"
+msgstr "상위 태그(_A):"
+
+#: ../src/f-spot.glade.h:167
+msgid "P_hoto Source:"
+msgstr "사진 소스(_H):"
+
+#: ../src/f-spot.glade.h:168
+msgid "Page 1 of 3"
+msgstr "3 중 1 페이지"
+
+#: ../src/f-spot.glade.h:169
+msgid "Pause"
+msgstr "일시 정지"
+
+#: ../src/f-spot.glade.h:170
+msgid "Photo 0 of 0"
+msgstr "0 중 0 사진"
+
+#: ../src/f-spot.glade.h:171
+msgid "Photo _Size:"
+msgstr "사진 크기(_S):"
+
+#: ../src/f-spot.glade.h:172
+msgid "Please verify that the settings for this gallery are correct."
+msgstr "이 갤러리에 대한 설정이 올바른지 확인하십시오."
+
+#: ../src/f-spot.glade.h:173
+msgid ""
+"Please verify that the settings for this gallery are correct.\n"
+"Enter the letters as they are shown in the image in\n"
+"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
+msgstr ""
+"이 갤러리에 대한 설정이 올바른지 확인하십시오.\n"
+"'Captcha' 부분의 이미지에 표시된 글자를 입력하세요.\n"
+"<i>대소문자는 구분하지 않습니다</i>"
+
+#: ../src/f-spot.glade.h:176
+msgid "Preferences"
+msgstr "기본 설정"
+
+#: ../src/f-spot.glade.h:178
+msgid "Print"
+msgstr "인쇄"
+
+#: ../src/f-spot.glade.h:179
+msgid "Print crop _marks"
+msgstr ""
+
+#: ../src/f-spot.glade.h:180
+msgid "Private"
+msgstr "비공개"
+
+#: ../src/f-spot.glade.h:181
+msgid "Public"
+msgstr "공개"
+
+#: ../src/f-spot.glade.h:182
+msgid "Public Album"
+msgstr "공개 앨범"
+
+#: ../src/f-spot.glade.h:183
+msgid "Re_fresh Thumbnail"
+msgstr "미리보기 새로 고침(_F)"
+
+#: ../src/f-spot.glade.h:184
+msgid "Rem_ove Tag"
+msgstr "태그 지우기(_O)"
+
+#: ../src/f-spot.glade.h:185
+msgid "Repair"
+msgstr "복구"
+
+#: ../src/f-spot.glade.h:186
+msgid "Reset"
+msgstr "초기화"
+
+#: ../src/f-spot.glade.h:189
+msgid "Select A Folder"
+msgstr "폴더 선택"
+
+#: ../src/f-spot.glade.h:190
+msgid "Select Import Rolls..."
+msgstr "가져오기 롤 선택..."
+
+#: ../src/f-spot.glade.h:191
+msgid "Select Photos to Copy From Camera..."
+msgstr "카메라에서 복사할 사진 선택..."
+
+#: ../src/f-spot.glade.h:193
+msgid "Select _None"
+msgstr "선택하지 않음(_N)"
+
+#: ../src/f-spot.glade.h:194
+msgid "Select a Tag..."
+msgstr "태그 선택..."
+
+#: ../src/f-spot.glade.h:195
+msgid "Select the camera from which you want to transfer files"
+msgstr "파일을 전송할 카메라를 선택하십시오"
+
+#: ../src/f-spot.glade.h:196
+msgid "Selected Camera: "
+msgstr "선택한 카메라: "
+
+#: ../src/f-spot.glade.h:197
+msgid ""
+"Selection\n"
+"Gallery\n"
+"Viewport"
+msgstr ""
+"선택\n"
+"갤러리\n"
+"뷰 포트"
+
+#: ../src/f-spot.glade.h:200
+msgid "Send by _Mail..."
+msgstr "메일로 보내기(_M)..."
+
+#: ../src/f-spot.glade.h:201
+msgid "Set _Date Range..."
+msgstr "날짜 범위 설정(_D)..."
+
+#: ../src/f-spot.glade.h:202
+msgid "Set as _Background"
+msgstr "바탕그림으로 설정(_B)"
+
+#: ../src/f-spot.glade.h:203
+msgid "Set date range"
+msgstr "날짜 범위 지정"
+
+#: ../src/f-spot.glade.h:205
+msgid "Show all photos."
+msgstr "모든 사진 보기."
+
+#: ../src/f-spot.glade.h:206
+msgid "Show or hide the side pane"
+msgstr "왼쪽 창을 보이거나 숨깁니다"
+
+#: ../src/f-spot.glade.h:207
+msgid "Show or hide the toolbar"
+msgstr "도구 모음을 보이거나 숨깁니다"
+
+#: ../src/f-spot.glade.h:208
+msgid "Side _pane"
+msgstr "왼쪽 창(_P)"
+
+#: ../src/f-spot.glade.h:209
+msgid "Side_bar"
+msgstr "왼쪽 창(_B)"
+
+#: ../src/f-spot.glade.h:210
+msgid "Size"
+msgstr "크기"
+
+#: ../src/f-spot.glade.h:211
+msgid "Size of the exported selection :"
+msgstr "내보내기로 선택한 크기 :"
+
+#: ../src/f-spot.glade.h:212
+msgid "Small"
+msgstr "작게"
+
+#: ../src/f-spot.glade.h:213
+msgid "So_urce Temp"
+msgstr "원본 온도(_U)"
+
+#: ../src/f-spot.glade.h:214
+msgid "Space all photos by"
+msgstr ""
+
+#: ../src/f-spot.glade.h:215
+msgid ""
+"Specify if an original size picture should be rotated or not. Smaller sizes "
+"are automatically rotated."
+msgstr ""
+"원본 크기의 사진이 회전되어야 하는지 여부를 지정합니다. 작은 크기의 "
+"사진들은 자동으로 회전됩니다."
+
+#: ../src/f-spot.glade.h:216
+msgid ""
+"Standard RGB\n"
+"Image Profile\n"
+"Custom\n"
+msgstr ""
+"표준 RGB\n"
+"이미지 프로파일\n"
+"사용자 지정\n"
+
+#: ../src/f-spot.glade.h:220
+msgid "Strip _metadata"
+msgstr "메타데이터 없앰(_M)"
+
+#: ../src/f-spot.glade.h:221
+msgid "Strip image _metadata"
+msgstr "이미지 메타데이터 삭제(_M)"
+
+#: ../src/f-spot.glade.h:222
+msgid "T_ags"
+msgstr "태그(_A)"
+
+#: ../src/f-spot.glade.h:223
+msgid "Tag Icons"
+msgstr "태그 아이콘"
+
+#: ../src/f-spot.glade.h:224
+msgid "Tags: "
+msgstr "태그: "
+
+#: ../src/f-spot.glade.h:225
+msgid "Tiny"
+msgstr "매우 작게"
+
+#: ../src/f-spot.glade.h:226
+msgid "Too_lbar"
+msgstr "도구 모음(_L)"
+
+#: ../src/f-spot.glade.h:227
+msgid "Toolbar"
+msgstr "도구 모음"
+
+#: ../src/f-spot.glade.h:228
+msgid "Total original size"
+msgstr "총 원본 크기"
+
+#: ../src/f-spot.glade.h:229
+msgid "U_RL:"
+msgstr "URL(_R):"
+
+#: ../src/f-spot.glade.h:230
+msgid "View"
+msgstr "보기"
+
+#: ../src/f-spot.glade.h:231
+msgid "Visible to Family"
+msgstr "가족들과 공유"
+
+#: ../src/f-spot.glade.h:232
+msgid "Visible to Friends"
+msgstr "친구들과 공유"
+
+#: ../src/f-spot.glade.h:233
+msgid "Will print using: US Letter size on Generic Postscript"
+msgstr "일반 엽서에 미국 편지지 크기로 인쇄할 것입니다:"
+
+#: ../src/f-spot.glade.h:234
+msgid "Write _metadata to file"
+msgstr "메타데이터를 파일로 쓰기(_M)"
+
+#: ../src/f-spot.glade.h:235
+msgid "Zoom _in"
+msgstr "확대(_I)"
+
+#: ../src/f-spot.glade.h:236
+msgid "Zoom _out"
+msgstr "축소(_O)"
+
+#: ../src/f-spot.glade.h:237
+msgid "Zoom in"
+msgstr "확대"
+
+#: ../src/f-spot.glade.h:238
+msgid "Zoom out"
+msgstr "축소"
+
+#: ../src/f-spot.glade.h:239
+msgid "_Account:"
+msgstr "계정(_A):"
+
+#: ../src/f-spot.glade.h:240
+msgid "_Album Name:"
+msgstr "앨범 이름(_A):"
+
+#: ../src/f-spot.glade.h:241
+msgid "_Album Title:"
+msgstr "앨범 제목(_A):"
+
+#: ../src/f-spot.glade.h:242
+msgid "_Attach Tag"
+msgstr "태그 붙이기(_A)"
+
+#: ../src/f-spot.glade.h:243
+msgid "_Attach Tag to Selection"
+msgstr "선택한 사진에 태그 붙이기(_A)"
+
+#: ../src/f-spot.glade.h:244
+msgid "_Autorotate"
+msgstr "자동 회전(_A)"
+
+#: ../src/f-spot.glade.h:245
+msgid "_Border:"
+msgstr "외곽선(_B):"
+
+#: ../src/f-spot.glade.h:246
+msgid "_Brightness:"
+msgstr "밝기(_B):"
+
+#: ../src/f-spot.glade.h:247
+msgid "_Browse Previously Scheduled Files"
+msgstr "이전에 스케줄된 파일 찾아보기(_B)"
+
+#: ../src/f-spot.glade.h:248
+msgid "_Captcha:"
+msgstr "Captcha(_C):"
+
+#: ../src/f-spot.glade.h:249
+msgid "_Components"
+msgstr "컴포넌트(_C)"
+
+#: ../src/f-spot.glade.h:250
+msgid "_Contents"
+msgstr "차례(_C)"
+
+#: ../src/f-spot.glade.h:251
+msgid "_Dates"
+msgstr "날짜(_D)"
+
+#: ../src/f-spot.glade.h:252
+msgid "_Delete From Drive"
+msgstr "드라이브에서 지우기(_D)"
+
+#: ../src/f-spot.glade.h:253
+msgid "_Delete Selected Tag"
+msgstr "선택한 태그 지우기(_D)"
+
+#: ../src/f-spot.glade.h:254
+msgid "_Delete Version"
+msgstr "버전 지우기(_D)"
+
+#: ../src/f-spot.glade.h:255
+msgid "_Description:"
+msgstr "설명(_D):"
+
+#: ../src/f-spot.glade.h:256
+msgid "_Destination Temp"
+msgstr "대상 온도(_D)"
+
+#: ../src/f-spot.glade.h:257
+msgid "_Display:"
+msgstr "표시(_D):"
+
+#: ../src/f-spot.glade.h:258
+msgid "_Edit"
+msgstr "편집(_E)"
+
+#: ../src/f-spot.glade.h:259
+msgid "_Edit Selected Tag..."
+msgstr "선택한 태그 편집(_E)..."
+
+#: ../src/f-spot.glade.h:260
+msgid "_Export"
+msgstr "내보내기(_E)"
+
+#: ../src/f-spot.glade.h:261
+msgid "_Export tags"
+msgstr "태그 내보내기(_E)"
+
+#: ../src/f-spot.glade.h:262
+msgid "_Export to"
+msgstr "다음으로 내보내기(_E)"
+
+#: ../src/f-spot.glade.h:263
+msgid "_Export to Album:"
+msgstr "앨범으로 내보내기(_E):"
+
+#: ../src/f-spot.glade.h:264
+msgid "_File"
+msgstr "파일(_F)"
+
+#: ../src/f-spot.glade.h:265
+msgid "_Flickr"
+msgstr "Flickr(_F)"
+
+#: ../src/f-spot.glade.h:266
+msgid "_Folder"
+msgstr "폴더(_F)"
+
+#: ../src/f-spot.glade.h:267
+msgid "_Folder:"
+msgstr "폴더(_F):"
+
+#: ../src/f-spot.glade.h:268
+msgid "_Fullscreen"
+msgstr "전체 화면(_F)"
+
+#: ../src/f-spot.glade.h:269
+msgid "_Gallery"
+msgstr "갤러리(_G)"
+
+#: ../src/f-spot.glade.h:270
+msgid "_Gallery Name:"
+msgstr "갤러리 이름(_G):"
+
+#: ../src/f-spot.glade.h:271
+msgid "_Gallery:"
+msgstr "갤러리(_G):"
+
+#: ../src/f-spot.glade.h:272
+msgid "_Help"
+msgstr "도움말(_H)"
+
+#: ../src/f-spot.glade.h:273
+msgid "_Hidden"
+msgstr "숨김(_H)"
+
+#: ../src/f-spot.glade.h:274
+msgid "_Hue:"
+msgstr "색조(_H):"
+
+#: ../src/f-spot.glade.h:275
+msgid "_Icon:"
+msgstr "아이콘(_I):"
+
+#: ../src/f-spot.glade.h:276
+msgid "_Import..."
+msgstr "가져오기(_I)..."
+
+#: ../src/f-spot.glade.h:277
+msgid "_Large"
+msgstr "크게(_L)"
+
+#: ../src/f-spot.glade.h:278
+msgid "_Medium"
+msgstr "보통(_M)"
+
+#: ../src/f-spot.glade.h:279
+msgid "_Metadata Browser"
+msgstr "메타데이터 탐색기(_M)"
+
+#: ../src/f-spot.glade.h:280
+msgid "_Month"
+msgstr "월(_M)"
+
+#: ../src/f-spot.glade.h:281
+msgid "_New Window"
+msgstr "새 창(_N)"
+
+#: ../src/f-spot.glade.h:282
+msgid "_Open album in browser when done uploading"
+msgstr "업로드가 끝나면 브라우저에서 앨범 열기(_O)"
+
+#: ../src/f-spot.glade.h:283
+msgid "_Open destination when done exporting"
+msgstr "내보내기가 끝나면 대상 폴더 열기(_O)"
+
+#: ../src/f-spot.glade.h:284
+msgid "_Output:"
+msgstr "출력(_O):"
+
+#: ../src/f-spot.glade.h:285
+msgid "_Parent Album:"
+msgstr "상위 앨범(_P):"
+
+#: ../src/f-spot.glade.h:286
+msgid "_Password:"
+msgstr "암호(_P):"
+
+#: ../src/f-spot.glade.h:287
+msgid "_Quit"
+msgstr "끝내기(_Q)"
+
+#: ../src/f-spot.glade.h:288
+msgid "_Remove From Catalog"
+msgstr "카탈로그에서 지우기(_R)"
+
+#: ../src/f-spot.glade.h:289
+msgid "_Remove Tag From Selection"
+msgstr "선택한 사진에서 태그 지우기(_R)"
+
+#: ../src/f-spot.glade.h:290
+msgid "_Rename Version"
+msgstr "버전 이름 바꾸기(_R)"
+
+#: ../src/f-spot.glade.h:291
+msgid "_Resize to: "
+msgstr "크기 조정(_R): "
+
+#: ../src/f-spot.glade.h:293
+msgid "_Saturation:"
+msgstr "채도(_S):"
+
+#: ../src/f-spot.glade.h:294
+msgid "_Save the files only"
+msgstr "파일들만 저장(_S)"
+
+#: ../src/f-spot.glade.h:295
+msgid "_Scale photos to no larger than: "
+msgstr "다음 보다 크지 않게 사진 확대(_S): "
+
+#: ../src/f-spot.glade.h:296
+msgid "_Sharpen..."
+msgstr "선명하게(_S)..."
+
+#: ../src/f-spot.glade.h:297
+msgid "_Slideshow"
+msgstr "슬라이드쇼(_S)"
+
+#: ../src/f-spot.glade.h:298
+msgid "_Small"
+msgstr "작게(_S)"
+
+#: ../src/f-spot.glade.h:299
+msgid "_Strip metadata"
+msgstr "메타데이터 제거(_S)"
+
+#: ../src/f-spot.glade.h:300
+msgid "_Tag Name:"
+msgstr "태그 이름(_T):"
+
+#: ../src/f-spot.glade.h:301
+msgid "_Tags"
+msgstr "태그(_T)"
+
+#: ../src/f-spot.glade.h:302
+msgid "_Timeline"
+msgstr "타임라인(_T)"
+
+#: ../src/f-spot.glade.h:303
+msgid "_Title:"
+msgstr "제목(_T):"
+
+#: ../src/f-spot.glade.h:304
+msgid "_Tools"
+msgstr "도구(_T)"
+
+#: ../src/f-spot.glade.h:305
+msgid "_URI:"
+msgstr "URI(_U):"
+
+#: ../src/f-spot.glade.h:306
+msgid "_Untagged Photos"
+msgstr "태그가 없는 사진(_U)"
+
+#: ../src/f-spot.glade.h:307
+msgid "_Username:"
+msgstr "사용자 이름(_U):"
+
+#: ../src/f-spot.glade.h:308
+msgid "_Version"
+msgstr "버전(_V)"
+
+#: ../src/f-spot.glade.h:309
+msgid "_View"
+msgstr "보기(_V)"
+
+#: ../src/f-spot.glade.h:310
+msgid "_View photos in browser when done uploading"
+msgstr "업로드 할 때 브라우저에서 사진 보기(_V)"
+
+#: ../src/f-spot.glade.h:311
+msgid "_Virtual Filesystem"
+msgstr "가상 파일 시스템(_V)"
+
+#: ../src/f-spot.glade.h:312
+msgid "_Write only these photos to CD"
+msgstr "이 사진들만 CD에 쓰기(_W)"
+
+#: ../src/f-spot.glade.h:313
+msgid "and"
+msgstr "그리고"
+
+#. at, or after a date, or between dates
+#: ../src/f-spot.glade.h:315
+msgid ""
+"at\n"
+"after\n"
+"between"
+msgstr ""
+"일치\n"
+"이후\n"
+"사이"
+
+#: ../src/f-spot.glade.h:318
+msgid "difference:"
+msgstr "차이:"
+
+#: ../src/f-spot.glade.h:319
+msgid "img_000.jpg"
+msgstr "img_000.jpg"
+
+#: ../src/f-spot.glade.h:322
+msgid "pixels"
+msgstr "픽셀"
+
+#: ../src/f-spot.glade.h:323
+msgid "x"
+msgstr "x"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:1
+msgid "Display a slideshow from F-Spot"
+msgstr "F-Spot에서 슬라이드쇼 보기"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:2
+msgid "F-Spot photos"
+msgstr "F-Spot 사진"
+
