@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-07 12:52+0000\n"
-"PO-Revision-Date: 2007-12-09 20:08+0100\n"
+"POT-Creation-Date: 2007-12-10 13:46+0000\n"
+"PO-Revision-Date: 2007-12-11 15:05+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -62,8 +62,8 @@ msgid ""
 "The selected extensions can't be installed because there are dependency "
 "conflicts."
 msgstr ""
-"Las extensiones seleccionadas no se pueden instalar porque existen conflictos de "
-"dependencias."
+"Las extensiones seleccionadas no se pueden instalar porque existen "
+"conflictos de dependencias."
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:398
 msgid "The following packages will be installed:"
@@ -231,9 +231,9 @@ msgid "Disable"
 msgstr "Desactivar"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
-#: ../src/FlickrExport.cs:313 ../src/FolderExport.cs:202
-#: ../src/GalleryExport.cs:720 ../src/PicasaWebExport.cs:636
-#: ../src/SmugMugExport.cs:571
+#: ../src/FlickrExport.cs:314 ../src/FolderExport.cs:204
+#: ../src/GalleryExport.cs:733 ../src/PicasaWebExport.cs:637
+#: ../src/SmugMugExport.cs:573
 msgid "Error"
 msgstr "Error"
 
@@ -476,47 +476,47 @@ msgstr "Tipo de transformación desconocida %d"
 msgid "Operation failed"
 msgstr "Falló la operación"
 
-#: ../src/CDExport.cs:116
+#: ../src/CDExport.cs:117
 #, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "Transfiriendo imagen «{0}» al CD"
 
 #. This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/CDExport.cs:118 ../src/FlickrExport.cs:288
-#: ../src/FolderExport.cs:197 ../src/GalleryExport.cs:704
-#: ../src/ProgressDialog.cs:82 ../src/TimeDialog.cs:147
+#: ../src/CDExport.cs:119 ../src/FlickrExport.cs:289
+#: ../src/FolderExport.cs:199 ../src/GalleryExport.cs:717
+#: ../src/ProgressDialog.cs:82 ../src/TimeDialog.cs:148
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} de {1}"
 
-#: ../src/CDExport.cs:131 ../src/FlickrExport.cs:305
-#: ../src/FolderExport.cs:228 ../src/GalleryExport.cs:728
-#: ../src/PicasaWebExport.cs:644 ../src/SmugMugExport.cs:579
+#: ../src/CDExport.cs:132 ../src/FlickrExport.cs:306
+#: ../src/FolderExport.cs:230 ../src/GalleryExport.cs:741
+#: ../src/PicasaWebExport.cs:645 ../src/SmugMugExport.cs:581
 msgid "Done Sending Photos"
 msgstr "Envío de fotografías terminado"
 
-#: ../src/CDExport.cs:133 ../src/FolderExport.cs:230
+#: ../src/CDExport.cs:134 ../src/FolderExport.cs:232
 msgid "Transfer Complete"
 msgstr "Transferencia completada"
 
-#: ../src/CDExport.cs:140 ../src/FolderExport.cs:235
+#: ../src/CDExport.cs:141 ../src/FolderExport.cs:237
 msgid "Error While Transferring"
 msgstr "Error al transferir"
 
-#: ../src/CDExport.cs:147 ../src/FolderExport.cs:252
+#: ../src/CDExport.cs:148 ../src/FolderExport.cs:254
 msgid "Error Transferring"
 msgstr "Error al transferir"
 
-#: ../src/CDExport.cs:168 ../src/FolderExport.cs:274
+#: ../src/CDExport.cs:169 ../src/FolderExport.cs:276
 msgid "Error: Error while transferring; Aborting"
 msgstr "Error: error al transferir; abortando"
 
-#: ../src/CDExport.cs:171 ../src/FolderExport.cs:277
+#: ../src/CDExport.cs:172 ../src/FolderExport.cs:279
 msgid "Error: File Already Exists; Aborting"
 msgstr "Error: el archivo ya existe; abortando"
 
-#: ../src/CDExport.cs:210 ../src/CameraFileSelectionDialog.cs:194
-#: ../src/FolderExport.cs:331
+#: ../src/CDExport.cs:211 ../src/CameraFileSelectionDialog.cs:194
+#: ../src/FolderExport.cs:333
 msgid "Transferring Pictures"
 msgstr "Transfiriendo las fotografías"
 
@@ -532,7 +532,7 @@ msgstr "Ruta"
 msgid "File"
 msgstr "Archivo"
 
-#: ../src/CameraFileSelectionDialog.cs:79 ../src/FolderExport.cs:855
+#: ../src/CameraFileSelectionDialog.cs:79 ../src/FolderExport.cs:857
 msgid "Index"
 msgstr "Índice"
 
@@ -747,11 +747,11 @@ msgstr "Error al importar {0}{2}{2}{1}"
 msgid "No way to save files of type \"{0}\""
 msgstr "No hay forma de guardar los archivos de tipo «{0}»"
 
-#: ../src/FlickrExport.cs:73 ../src/f-spot.glade.h:82
+#: ../src/FlickrExport.cs:74 ../src/f-spot.glade.h:82
 msgid "Authorize"
 msgstr "Autorizar"
 
-#: ../src/FlickrExport.cs:78
+#: ../src/FlickrExport.cs:79
 #, csharp-format
 msgid ""
 "Return to this window after you have finished the authorization process on "
@@ -760,59 +760,59 @@ msgstr ""
 "Vuelva a esta ventana tras haber terminado el proceso de autorización en {0} "
 "y pulse en el botón «Completar autorización» de abajo"
 
-#: ../src/FlickrExport.cs:79
+#: ../src/FlickrExport.cs:80
 msgid "Complete Authorization"
 msgstr "Completar autorización"
 
-#: ../src/FlickrExport.cs:83
+#: ../src/FlickrExport.cs:84
 #, csharp-format
 msgid "Logging into {0}"
 msgstr "Iniciando sesión en {0}"
 
-#: ../src/FlickrExport.cs:84
+#: ../src/FlickrExport.cs:85
 msgid "Checking credentials..."
 msgstr "Comprobando credenciales…"
 
-#: ../src/FlickrExport.cs:90
+#: ../src/FlickrExport.cs:91
 #, csharp-format
 msgid "Welcome {0} you are connected to {1}"
 msgstr "Bienvenido {0}. Estás conectado a {1}"
 
-#: ../src/FlickrExport.cs:93
+#: ../src/FlickrExport.cs:94
 #, csharp-format
 msgid "Sign in as a different user"
 msgstr "Iniciar sesión como un usuario distinto"
 
-#: ../src/FlickrExport.cs:244
+#: ../src/FlickrExport.cs:245
 msgid "Unable to log on"
 msgstr "No es posible iniciar la sesión"
 
-#: ../src/FlickrExport.cs:264
+#: ../src/FlickrExport.cs:265
 #, csharp-format
 msgid "Waiting for response {0} of {1}"
 msgstr "Esperando respuesta {0} de {1}"
 
-#: ../src/FlickrExport.cs:283 ../src/FolderExport.cs:194
-#: ../src/GalleryExport.cs:700
+#: ../src/FlickrExport.cs:284 ../src/FolderExport.cs:196
+#: ../src/GalleryExport.cs:713
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Subiendo imagen «{0}»"
 
-#: ../src/FlickrExport.cs:307 ../src/GalleryExport.cs:730
-#: ../src/PicasaWebExport.cs:646 ../src/SmugMugExport.cs:581
+#: ../src/FlickrExport.cs:308 ../src/GalleryExport.cs:743
+#: ../src/PicasaWebExport.cs:647 ../src/SmugMugExport.cs:583
 msgid "Upload Complete"
 msgstr "Carga completada"
 
-#: ../src/FlickrExport.cs:310
+#: ../src/FlickrExport.cs:311
 #, csharp-format
 msgid "Error Uploading To {0}: {1}"
 msgstr "Error al subir {0}: {1}"
 
-#: ../src/FlickrExport.cs:378
+#: ../src/FlickrExport.cs:379
 msgid "Unable to log on."
 msgstr "No se pudo iniciar la sesión."
 
-#: ../src/FlickrExport.cs:379
+#: ../src/FlickrExport.cs:380
 #, csharp-format
 msgid ""
 "F-Spot was unable to log on to {0}.  Make sure you have given the "
@@ -821,55 +821,55 @@ msgstr ""
 "F-Spot no pudo iniciar una sesión en {0}.  Compruebe que ha dado la "
 "autorización usando el interfaz web de {0}."
 
-#: ../src/FlickrExport.cs:397 ../src/GalleryExport.cs:653
-#: ../src/PicasaWebExport.cs:548 ../src/SmugMugExport.cs:497
+#: ../src/FlickrExport.cs:398 ../src/GalleryExport.cs:666
+#: ../src/PicasaWebExport.cs:549 ../src/SmugMugExport.cs:499
 msgid "Uploading Pictures"
 msgstr "Subiendo las fotografías"
 
-#: ../src/FolderExport.cs:111
+#: ../src/FolderExport.cs:113
 msgid "Select Export Folder"
 msgstr "Seleccionar la carpeta para exportar"
 
-#: ../src/FolderExport.cs:156
+#: ../src/FolderExport.cs:158
 msgid "Building Gallery"
 msgstr "Construyendo la galería"
 
-#: ../src/FolderExport.cs:200
+#: ../src/FolderExport.cs:202
 #, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
-msgstr "Error al subir a la imagen «{0}» a la galería: {2}{1}"
+msgstr "Error al subir a la imagen «{0}» a Gallery: {2}{1}"
 
-#: ../src/FolderExport.cs:709
+#: ../src/FolderExport.cs:711
 msgid "Light"
 msgstr "Claro"
 
-#: ../src/FolderExport.cs:710
+#: ../src/FolderExport.cs:712
 msgid "Dark"
 msgstr "Oscuro"
 
 #. Abbreviation of previous
-#: ../src/FolderExport.cs:853
+#: ../src/FolderExport.cs:855
 msgid "Prev"
 msgstr "Anterior"
 
-#: ../src/FolderExport.cs:858 ../src/ItemAction.cs:103
+#: ../src/FolderExport.cs:860 ../src/ItemAction.cs:103
 #: ../src/f-spot.glade.h:151
 msgid "Next"
 msgstr "Siguiente"
 
-#: ../src/FolderExport.cs:911 ../src/FolderExport.cs:1084
+#: ../src/FolderExport.cs:913 ../src/FolderExport.cs:1086
 msgid "Show Styles"
 msgstr "Mostrar estilo"
 
-#: ../src/FolderExport.cs:912 ../src/FolderExport.cs:1085
+#: ../src/FolderExport.cs:914 ../src/FolderExport.cs:1087
 msgid "Hide Styles"
 msgstr "Ocultar estilos"
 
-#: ../src/FolderExport.cs:969
+#: ../src/FolderExport.cs:971
 msgid "Gallery generated by"
-msgstr "Galería generada por "
+msgstr "Galería generada por"
 
-#: ../src/FolderExport.cs:1014
+#: ../src/FolderExport.cs:1016
 msgid "Page:"
 msgstr "Página:"
 
@@ -910,49 +910,61 @@ msgstr "Comenzar a mostrar las diapositivas"
 msgid "Slide transition: "
 msgstr "Transición de la diapositiva: "
 
-#: ../src/GalleryExport.cs:376
+#: ../src/GalleryExport.cs:377
 msgid "Invalid URL"
 msgstr "URL inválida"
 
-#: ../src/GalleryExport.cs:377
+#: ../src/GalleryExport.cs:378
 msgid "The gallery URL entry does not appear to be a valid URL"
 msgstr "La URL de la galería no parece ser una URL válida"
 
-#: ../src/GalleryExport.cs:387 ../src/GalleryExport.cs:402
+#: ../src/GalleryExport.cs:388 ../src/GalleryExport.cs:403
 msgid "Error while connecting to Gallery"
 msgstr "Error al conectar con Gallery"
 
-#: ../src/GalleryExport.cs:388 ../src/GalleryExport.cs:403
+#: ../src/GalleryExport.cs:389 ../src/GalleryExport.cs:404
 #, csharp-format
 msgid "The following error was encountered while attempting to log in: {0}"
 msgstr "El siguiente error se encontró mientras se intentaba acceder: {0}"
 
-#: ../src/GalleryExport.cs:481
+#: ../src/GalleryExport.cs:482
 msgid "(TopLevel)"
 msgstr "(Nivel superior)"
 
-#: ../src/GalleryExport.cs:719
+#: ../src/GalleryExport.cs:544
+msgid "Invalid Gallery name"
+msgstr "Nombre de Gallery no válido"
+
+#: ../src/GalleryExport.cs:545
+msgid ""
+"The gallery name contains invalid characters.\n"
+"Only letters, numbers, - and _ are allowed"
+msgstr ""
+"El nombre de la galería contiene caracteres no válidos.\n"
+"Sólo se permiten letras, números, _ y -"
+
+#: ../src/GalleryExport.cs:732
 #, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery: {1}"
 msgstr "Error al subir a la imagen «{0} a la galería: {1}"
 
-#: ../src/GalleryExport.cs:746 ../src/PicasaWebExport.cs:667
-#: ../src/SmugMugExport.cs:602
+#: ../src/GalleryExport.cs:759 ../src/PicasaWebExport.cs:668
+#: ../src/SmugMugExport.cs:604
 msgid "(No Gallery)"
 msgstr "(No hay galería)"
 
-#: ../src/GalleryExport.cs:833 ../src/PicasaWebExport.cs:794
-#: ../src/SmugMugExport.cs:700
+#: ../src/GalleryExport.cs:846 ../src/PicasaWebExport.cs:795
+#: ../src/SmugMugExport.cs:702
 msgid "(Not Connected)"
 msgstr "(No conectado)"
 
-#: ../src/GalleryExport.cs:834 ../src/PicasaWebExport.cs:795
-#: ../src/SmugMugExport.cs:701
+#: ../src/GalleryExport.cs:847 ../src/PicasaWebExport.cs:796
+#: ../src/SmugMugExport.cs:703
 msgid "(No Albums)"
 msgstr "(No hay álbumes)"
 
-#: ../src/GalleryExport.cs:886 ../src/PicasaWebExport.cs:839
-#: ../src/SmugMugExport.cs:745
+#: ../src/GalleryExport.cs:899 ../src/PicasaWebExport.cs:840
+#: ../src/SmugMugExport.cs:747
 msgid "No account selected"
 msgstr "No hay ninguna cuenta seleccionada"
 
@@ -1179,28 +1191,28 @@ msgstr "Género intelectual del objeto"
 msgid "Unknown IIM DataSet"
 msgstr "Conjunto de datos IIM desconocido"
 
-#: ../src/ImportCommand.cs:44 ../src/SingleView.cs:329
+#: ../src/ImportCommand.cs:45 ../src/SingleView.cs:329
 msgid "Select Folder"
 msgstr "Seleccionar la carpeta"
 
-#: ../src/ImportCommand.cs:256
+#: ../src/ImportCommand.cs:257
 msgid "(No Cameras Detected)"
 msgstr "(No se detectó ninguna cámara)"
 
-#: ../src/ImportCommand.cs:400
+#: ../src/ImportCommand.cs:401
 #, csharp-format
 msgid "Loading {0} of {1}"
 msgstr "Cargando {0} de {1}"
 
-#: ../src/ImportCommand.cs:468
+#: ../src/ImportCommand.cs:469
 msgid "Done Loading"
 msgstr "Finalizó la carga"
 
-#: ../src/ImportCommand.cs:665
+#: ../src/ImportCommand.cs:666
 msgid "Directory does not exist."
 msgstr "La carpeta no existe."
 
-#: ../src/ImportCommand.cs:666
+#: ../src/ImportCommand.cs:667
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
@@ -1210,7 +1222,7 @@ msgstr ""
 "distinta"
 
 #. Prepare the Last Import root tag
-#: ../src/ImportCommand.cs:718 ../src/ImportCommand.cs:720
+#: ../src/ImportCommand.cs:719 ../src/ImportCommand.cs:721
 #: ../src/XmpTagsImporter.cs:86
 msgid "Import Tags"
 msgstr "Importar etiquetas"
@@ -1532,32 +1544,41 @@ msgstr ""
 msgid "_Remove from Catalog"
 msgstr "_Borrar del catálogo"
 
-#: ../src/MainWindow.cs:2422
+#: ../src/MainWindow.cs:2428
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "¿Borrar etiqueta {0}?"
 
-#: ../src/MainWindow.cs:2424
+#: ../src/MainWindow.cs:2430
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "¿Borrar las {0} etiquetas seleccionadas?"
 
-#: ../src/MainWindow.cs:2427
-msgid "If you delete a tag, all associations with photos are lost."
-msgstr "Si borra una etiqueta, todas las asociaciones con las fotos se perderán."
+#: ../src/MainWindow.cs:2435
+msgid "photo"
+msgid_plural "photos"
+msgstr[0] "foto"
+msgstr[1] "fotos"
 
-#: ../src/MainWindow.cs:2428
+#: ../src/MainWindow.cs:2437
+#, csharp-format
+msgid "If you delete this tag, the association with {0} {1} will be lost."
+msgid_plural "If you delete these tags, the association with {0} {1} will be lost."
+msgstr[0] "Si borra esta etiqueta se perderá la asociación {0} {1}."
+msgstr[1] "Si borra estas etiquetas se perderá la asociación {0} {1}."
+
+#: ../src/MainWindow.cs:2442
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Borrar etiqueta"
 msgstr[1] "_Borrar etiquetas"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2442
+#: ../src/MainWindow.cs:2456
 msgid "Tag is not empty"
 msgstr "La etiqueta no está vacía"
 
-#: ../src/MainWindow.cs:2443
+#: ../src/MainWindow.cs:2457
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1566,39 +1587,39 @@ msgstr ""
 "No se pueden borrar etiquetas que tengan etiquetas dentro de ellas. Borre "
 "antes las etiquetas de «{0}»"
 
-#: ../src/MainWindow.cs:2870
+#: ../src/MainWindow.cs:2884
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Rotar la fotografía seleccionada a la izquierda"
 msgstr[1] "Rotar las fotografías seleccionadas a la izquierda"
 
-#: ../src/MainWindow.cs:2883
+#: ../src/MainWindow.cs:2897
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Rotar la fotografía seleccionada a la derecha"
 msgstr[1] "Rotar las fotografías seleccionadas a la derecha"
 
-#: ../src/MainWindow.cs:2891
+#: ../src/MainWindow.cs:2905
 #, csharp-format
 msgid "Find Selected Tag"
 msgid_plural "Find Selected Tags"
 msgstr[0] "Encontrar la etiqueta seleccionada"
 msgstr[1] "Encontrar las etiquetas seleccionadas"
 
-#: ../src/MainWindow.cs:2895
+#: ../src/MainWindow.cs:2909
 #, csharp-format
 msgid "Find Selected Tag With"
 msgid_plural "Find Selected Tags With"
 msgstr[0] "Encontrar la etiqueta seleccionada con"
 msgstr[1] "Encontrar las etiquetas seleccionadas con"
 
-#: ../src/MainWindow.cs:2933
+#: ../src/MainWindow.cs:2947
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "¿Crear una nueva versión?"
 msgstr[1] "¿Crear nuevas versiones?"
 
-#: ../src/MainWindow.cs:2935
+#: ../src/MainWindow.cs:2949
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1915,36 +1936,36 @@ msgstr "Foto anterior"
 msgid "Next photo"
 msgstr "Siguiente foto"
 
-#: ../src/PicasaWebExport.cs:416
+#: ../src/PicasaWebExport.cs:417
 msgid "Error while creating Album"
 msgstr "Error al crear el álbum"
 
-#: ../src/PicasaWebExport.cs:417
+#: ../src/PicasaWebExport.cs:418
 #, csharp-format
 msgid "The following error was encountered while attempting to create an album: {0}"
 msgstr "Se encontró el siguiente error al intentar crear un álbum: {0}"
 
-#: ../src/PicasaWebExport.cs:571
+#: ../src/PicasaWebExport.cs:572
 #, csharp-format
 msgid "{0} Sent"
 msgstr "{0} Enviadas"
 
-#: ../src/PicasaWebExport.cs:573
+#: ../src/PicasaWebExport.cs:574
 #, csharp-format
 msgid "{0} of approx. {1}"
 msgstr "{0} de aprox. {1}"
 
-#: ../src/PicasaWebExport.cs:603 ../src/SmugMugExport.cs:540
+#: ../src/PicasaWebExport.cs:604 ../src/SmugMugExport.cs:542
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "Subiendo imagen «{0}» ({1} de {2})"
 
-#: ../src/PicasaWebExport.cs:634 ../src/SmugMugExport.cs:569
+#: ../src/PicasaWebExport.cs:635 ../src/SmugMugExport.cs:571
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Error al subir a la galería: {0}"
 
-#: ../src/PicasaWebExport.cs:718
+#: ../src/PicasaWebExport.cs:719
 msgid "Available space :"
 msgstr "Espacio disponible:"
 
@@ -2020,17 +2041,17 @@ msgstr "Se recibió el error «{0}» al intentar rotar {1}"
 msgid "Error while rotating photo."
 msgstr "Error al rotar la foto."
 
-#: ../src/SendEmail.cs:233
+#: ../src/SendEmail.cs:234
 msgid "Preparing email"
 msgstr "Preparando correo"
 
-#: ../src/SendEmail.cs:285
+#: ../src/SendEmail.cs:286
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "Exportando imagen «{0}»"
 
 #. Send the mail :)
-#: ../src/SendEmail.cs:310
+#: ../src/SendEmail.cs:311
 msgid "my photos"
 msgstr "mis fotos"
 
@@ -2232,12 +2253,12 @@ msgstr "Saltar"
 
 #. The preceding text here is the second checkbutton in the Time dialog
 #. that says "Space all photos by []"
-#: ../src/TimeDialog.cs:125 ../src/f-spot.glade.h:320
+#: ../src/TimeDialog.cs:126 ../src/f-spot.glade.h:320
 #, csharp-format
 msgid "min. Starting at {0}"
 msgstr "min. Iniciando en {0}"
 
-#: ../src/TimeDialog.cs:130 ../src/f-spot.glade.h:204
+#: ../src/TimeDialog.cs:131 ../src/f-spot.glade.h:204
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Desplazar todas las fotos {0}"
