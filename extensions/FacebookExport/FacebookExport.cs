@@ -179,7 +179,7 @@ namespace FSpot.Exporter.Facebook
 		private string dialog_name = "facebook_export_dialog";
 		private Gtk.Dialog dialog;
 
-		private IconView thumbnail_iconview;
+		private FSpot.Widgets.IconView thumbnail_iconview;
 
 		FSpot.ThreadProgressDialog progress_dialog;
 
@@ -260,7 +260,7 @@ namespace FSpot.Exporter.Facebook
 			captions = new string [items.Length];
 			tags = new List<Mono.Facebook.Tag> [items.Length];
 
-			thumbnail_iconview = new IconView (selection);
+			thumbnail_iconview = new FSpot.Widgets.IconView (selection);
 			thumbnail_iconview.DisplayDates = false;
 			thumbnail_iconview.DisplayTags = false;
 			thumbnail_iconview.ButtonPressEvent += HandleThumbnailIconViewButtonPressEvent;

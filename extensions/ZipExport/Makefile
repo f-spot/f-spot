@@ -25,9 +25,9 @@ install: all
 	cp *.dll ~/.gnome2/f-spot/addins/
 
 mpack: $(ASSEMBLY)
-	mautil p $(ASSEMBLY) ZipExport.glade ZipExport.addin.xml
+	mautil p $(ASSEMBLY)
 
-$(ASSEMBLY): $(SOURCES)  
+$(ASSEMBLY): $(SOURCES) ZipExport.glade ZipExport.addin.xml 
 	gmcs -out:$@ -target:library $(SOURCES) $(PACKAGES) $(ASSEMBLIES) $(RESOURCES)
 
 clean:

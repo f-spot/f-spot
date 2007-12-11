@@ -8,6 +8,7 @@
  * Many thanks to Stephane for his help and patience. :)
  *
  * This is free software. See COPYING for details
+ * (c) YetOpen S.r.l.
  */
 
 
@@ -33,7 +34,7 @@ namespace ZipExport {
 		[Glade.Widget] Gtk.SpinButton scale_size;
 		[Glade.Widget] Gtk.Button create_button;
 
-		IBrowsableCollection photos;
+		IBrowsableItem [] photos;
 		Gtk.FileChooserButton uri_chooser;
 
 		public void Run (IBrowsableCollection p) {
@@ -48,7 +49,7 @@ namespace ZipExport {
 				md.Destroy ();
 				return;
 			}
-			photos = p;
+			photos = p.Items;
 			ShowDialog();
 		}
 
@@ -63,10 +64,12 @@ namespace ZipExport {
 			uri_chooser.LocalOnly = true;
 			uri_chooser.SetFilename(System.IO.Path.Combine (FSpot.Global.HomeDirectory, "Desktop"));
 			dirchooser_hbox.PackStart(uri_chooser, false, false, 2);
+			filename.Text = "f-spot_export.zip";
 
 			zipdiag.Response += on_dialog_response;
 			filename.Changed += on_filename_change;
 			scale_check.Toggled += on_scalecheck_change;
+			on_scalecheck_change(null, null);
 
 			zipdiag.ShowAll();
 		}
@@ -96,12 +99,11 @@ namespace ZipExport {
 
 			ProgressDialog progress_dialog = new ProgressDialog (Catalog.GetString ("Exporting files"),
 							      ProgressDialog.CancelButtonType.Stop,
-							      photos.Count, zipdiag);
+							      photos.Length, zipdiag);
 			
 			//Pack up
-			for (int i = 0; i < photos.Count; i ++) {
-				IBrowsableItem p = photos [i];
-				if (progress_dialog.Update (String.Format (Catalog.GetString ("Preparing photo \"{0}\""), p.Name))) {
+			for (int i = 0; i < photos.Length; i ++) {
+				if (progress_dialog.Update (String.Format (Catalog.GetString ("Preparing photo \"{0}\""), photos[i].Name))) {
 					progress_dialog.Destroy();
 					return;
 				}
@@ -110,18 +112,17 @@ namespace ZipExport {
 					FilterSet filters = new FilterSet ();
 					filters.Add (new JpegFilter ());
 					filters.Add (new ResizeFilter ((uint) scale_size.ValueAsInt));
-					FilterRequest freq = new FilterRequest(p.DefaultVersionUri);
+					FilterRequest freq = new FilterRequest(photos[i].DefaultVersionUri);
 					filters.Convert (freq);
 					f = freq.Current.LocalPath;
 				} else {
-					f = p.DefaultVersionUri.LocalPath;
+					f = photos[i].DefaultVersionUri.LocalPath;
 				}
-//				FileStream fs = File.OpenRead(p.DefaultVersionUri.LocalPath);
 				FileStream fs = File.OpenRead(f);
 
 				byte[] buffer = new byte[fs.Length];
 				fs.Read(buffer, 0, buffer.Length);
-				ZipEntry entry = new ZipEntry(p.Name);
+				ZipEntry entry = new ZipEntry(photos[i].Name);
 			
 				entry.DateTime = DateTime.Now;
 			
