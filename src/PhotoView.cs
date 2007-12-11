@@ -190,10 +190,7 @@ public class PhotoView : EventBox {
 			description_entry.Text = String.Empty;
 		}
 
-		if (description_entry.Text != String.Empty)
-			tips.SetTip (description_entry, description_entry.Text, description_entry.Text);
-		else
-			tips.SetTip (description_entry, null, null);
+		tips.SetTip (description_entry, description_entry.Text ?? String.Empty, description_entry.Text ?? String.Empty);
 
 		description_entry.Changed += HandleDescriptionChanged;
 	}    
