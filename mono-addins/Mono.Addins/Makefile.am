@@ -40,6 +40,7 @@ ASSEMBLY_SOURCES =								\
 	$(srcdir)/Mono.Addins.Description/ObjectDescription.cs 			\
 	$(srcdir)/Mono.Addins.Description/ObjectDescriptionCollection.cs 	\
 	$(srcdir)/Mono.Addins.Localization/IAddinLocalizer.cs			\
+	$(srcdir)/Mono.Addins.Localization/IPluralAddinLocalizer.cs		\
 	$(srcdir)/Mono.Addins.Localization/GettextDomain.cs			\
 	$(srcdir)/Mono.Addins.Localization/StringResourceLocalizer.cs		\
 	$(srcdir)/Mono.Addins.Localization/StringTableLocalizer.cs		\
