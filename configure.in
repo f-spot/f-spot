@@ -7,7 +7,7 @@ AM_INIT_AUTOMAKE([tar-ustar])
 
 AM_MAINTAINER_MODE
 
-AC_PROG_INTLTOOL([0.21])
+IT_PROG_INTLTOOL([0.35.0])
 
 AC_PROG_CC
 AC_ISC_POSIX
@@ -217,8 +217,6 @@ ICONS_DIRECTORY=${datadir}/${PACKAGE}-${VERSION}
 AC_SUBST(ICONS_DIRECTORY)
 
 dnl -- Intl
-
-ALL_LINGUAS="ar be@latin bg ca cs da de dz el en_CA en_GB es et eu fa fi fr gl hi hu it ja ko lt lv mk nb nl oc pa pl pt pt_BR ru rw sr sr@Latn sv th vi zh_CN zh_TW"
 
 GETTEXT_PACKAGE=f-spot
 AC_SUBST(GETTEXT_PACKAGE)

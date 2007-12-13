@@ -1,3 +1,9 @@
+2007-12-13  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* configure.in:
+	* po/LINGUAS: Use po/LINGUAS instead of ALL_LINGUAS in configure.in.
+	Patch contributed by Hubert Bielenia. Fixes bgo 501331.
+
 2007-12-11  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/PhotoView.cs: fix for bgo 491509.
