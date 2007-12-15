@@ -251,23 +251,12 @@ public class TagCommands {
 			Menu menu = new Menu ();
 
 			foreach (Category category in categories) {
-				StringBuilder label_builder = new StringBuilder ();
-				
 				if (t.Category == category)
 					history = i;
 				
 				i++;
 				
-				for (Category parent = category.Category; 
-				     parent != null; 
-				     parent = parent.Category)
-					label_builder.Append ("  ");
-				
-				label_builder.Append (category.Name.Replace ("_", "__"));
-				
-				// FIXME escape underscores.
-				MenuItem item = new MenuItem (label_builder.ToString ());
-				menu.Append (item);
+				menu.Append (TagMenu.TagMenuItem.IndentedItem (category));
 			}
 			
 			category_option_menu.Sensitive = true;
