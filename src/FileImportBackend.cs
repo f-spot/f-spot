@@ -264,7 +264,7 @@ public class FileImportBackend : ImportBackend {
 									     Gtk.ButtonsType.Cancel,
 									     Catalog.GetString ("Import error"),
 									     String.Format(Catalog.GetString ("Error importing {0}{2}{2}{1}"), info.OriginalPath, e.Message, Environment.NewLine ));
-			errordialog.AddButton ("Skip", Gtk.ResponseType.Reject, false);
+			errordialog.AddButton (Catalog.GetString ("Skip"), Gtk.ResponseType.Reject, false);
 			ResponseType response = (ResponseType) errordialog.Run ();
 			errordialog.Destroy ();
 			if (response == ResponseType.Cancel)
