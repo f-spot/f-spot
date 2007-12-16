@@ -1626,7 +1626,8 @@ public class MainWindow {
 			"Joerg Buesse",
 			"Jakub Steiner",
 			"Xavier Bouchoux",
-			"Lorenzo Milesi"
+			"Lorenzo Milesi",
+			"Thomas Van Machelen"
 		};
 
                 // Translators should localize the following string

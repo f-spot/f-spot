@@ -14,6 +14,8 @@ namespace FSpot {
 		void View (string list);
 
 		void Shutdown ();
+
+		string Version ();
 	}
 
 	public class Core : ICore
@@ -252,10 +254,16 @@ namespace FSpot {
 			window.Destroyed += HandleDestroyed;
 		}
 
+		public string Version () {
+			return FSpot.Defines.VERSION; 
+		}
+
 		public void HandleDestroyed (object sender, System.EventArgs args)
 		{
 			toplevels.Remove (sender);
 			if (toplevels.Count == 0) {
+				if (db != null)
+					db.EmitDown ();
 				// FIXME
 				// Should use Application.Quit(), but for that to work we need to terminate the threads
 				// first too.

@@ -1,3 +1,24 @@
+2007-12-16  Thomas Van Machelen <thomas.vanmachelen@gmail.com>
+	Re-apply DBus patch:
+	* src/Updater.cs: Make photo id autoincrement so that id is 
+	completely unique over time
+
+	* src/Makefile.am:
+	* src/DBusProxy.cs: Add dbus proxy classes that expose the stores
+		
+	* src/Db.cs: 
+	* src/Core.cs: initialise the dbus proxies at startup; and shut them
+	down when closing
+
+	* src/PhotoStore: 
+	* src/PhotoQuery.cs: Handle modifications that come from dbus 
+	calls properly
+
+	* src/f-spot.glade:
+	* src/Preferences.cs: Add preference to make manipulation from 
+	the outside an option. This is for users who don't trust anyone 
+	except F-Spot hackers.
+
 2007-12-16  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/ItemAction.cs: Fix for bgo 503740

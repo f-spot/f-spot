@@ -190,12 +190,30 @@ namespace FSpot.Database {
 					"FROM photo_versions_temp");
 			});
 
-			// Update to version 10.0
+ 			// Update to version 10.0, make id autoincrement
+ 			AddUpdate (new Version (10,0),delegate () {
+ 				MoveTableToTemp ("photos");
+ 				ExecuteNonQuery (
+ 					"CREATE TABLE photos (                                     " +
+ 					"	id                 INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+ 					"	time               INTEGER NOT NULL,	   	   " +
+ 					"	uri		   STRING NOT NULL,		   " +
+ 					"	description        TEXT NOT NULL,	           " +
+ 					"	roll_id            INTEGER NOT NULL,		   " +
+ 					"	default_version_id INTEGER NOT NULL		   " +
+ 					")");
+ 
+ 				ExecuteNonQuery (
+ 					"INSERT INTO photos (id, time, uri, description, roll_id, default_version_id) " +
+ 					"SELECT id, time, uri, description, roll_id, default_version_id  " + 
+ 					"FROM   photos_temp "
+ 				);
+ 			}, false);
+ 
+			// Update to version 11.0
 			//AddUpdate (new Version (0,0),delegate () {
 			//	do update here
 			//});
-
-			
 		}
 
 		public static void Run (Db database)
