@@ -9,12 +9,12 @@
 # Jorge González <jorgegonz@svn.gnome.org>, 2004, 2005, 2006, 2007, .
 msgid ""
 msgstr ""
-"Project-Id-Version: f-spot.HEAD.es\n"
+"Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-10 13:46+0000\n"
-"PO-Revision-Date: 2007-12-11 15:05+0100\n"
+"POT-Creation-Date: 2007-12-11 16:29+0000\n"
+"PO-Revision-Date: 2007-12-16 13:24+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
-"Language-Team: Spanish <traductores@es.gnome.org>\n"
+"Language-Team: Spanish <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -81,23 +81,31 @@ msgstr "Se necesitan instalar los siguientes paquetes:"
 msgid "The following dependencies could not be resolved:"
 msgstr "No se pudieron resolver las siguientes dependencias:"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:440
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:441
 msgid "The installation has been successfully completed."
 msgstr "La instalación se completó satisfactoriamente."
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:441
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:442
 msgid "The installation failed!"
 msgstr "Falló la instalación."
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:444
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:443
+msgid "The installation has completed with warnings."
+msgstr "La instalación se completó con avisos."
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:446
 msgid "The uninstallation has been successfully completed."
 msgstr "La desinstalación se completó satisfactoriamente."
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:445
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:447
 msgid "The uninstallation failed!"
 msgstr "Falló la desinstalación."
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:604
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:448
+msgid "The uninstallation has completed with warnings."
+msgstr "La desinstalación se completó con avisos."
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:616
 msgid "Repository"
 msgstr "Repositorio"
 
@@ -143,53 +151,53 @@ msgstr "Ocurrió una excepción: {0}"
 msgid "Package"
 msgstr "Paquete"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:108
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:110
 msgid "Extension Installation"
 msgstr "Instalación de extensiones"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:134
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:136
 msgid "<b>Select the extensions to install and click on Next</b>"
 msgstr "<b>Seleccione las extensiones para instalar y pulse Siguiente</b>"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:148
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:150
 msgid "Install from:"
 msgstr "Instalar desde:"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:177
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:179
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:180
 msgid "_Repositories..."
 msgstr "_Repositorios…"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:218
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:220
 msgid "Show all packages"
 msgstr "Mostrar todos los paquetes"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:219
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:221
 msgid "Show new versions only"
 msgstr "Mostrar sólo las nuevas versiones"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:220
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:222
 msgid "Show updates only"
 msgstr "Mostrar sólo las actualizaciones"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:245
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:247
 msgid "_Unselect All"
 msgstr "_Deseleccionar todo"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:257
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
 #: ../src/f-spot.glade.h:192
 msgid "Select _All"
 msgstr "Seleccionar _todo"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:332
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:334
 msgid "label124"
 msgstr "etiqueta124"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:344
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:346
 msgid "Overall Progress:"
 msgstr "Progreso general:"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:372
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:374
 msgid "Downloading extensions..."
 msgstr "Descargando extensiones…"
 
@@ -258,20 +266,20 @@ msgstr "Seleccionar la ubicación del repositorio que quiere registrar:"
 msgid "Register an on-line repository"
 msgstr "Registrar un repositorio en línea"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:105
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:106
 msgid "Url:"
 msgstr "Url:"
 
 #. Container child vbox89.Gtk.Box+BoxChild
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:126
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:127
 msgid "Register a local repository"
 msgstr "Registrar un repositorio local"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:154
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:155
 msgid "Path:"
 msgstr "Ruta:"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:178
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:179
 msgid "Browse..."
 msgstr "Examinar…"
 
