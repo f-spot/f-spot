@@ -155,7 +155,7 @@ namespace FSpot {
 			photo = item.Current as Photo;
 			if (photo != null) {
 				version = photo.DefaultVersionId;
-				bool create = version == Photo.OriginalVersionId;
+				bool create = photo.DefaultVersion.IsProtected;
 				
 				if (create) {
 					version = photo.CreateDefaultModifiedVersion (photo.DefaultVersionId, false);
