@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-11 03:17+0100\n"
-"PO-Revision-Date: 2007-12-11 03:21+0100\n"
+"POT-Creation-Date: 2007-12-16 15:52+0100\n"
+"PO-Revision-Date: 2007-12-16 15:52+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -69,23 +69,31 @@ msgstr "Följande paket behöver avinstalleras:"
 msgid "The following dependencies could not be resolved:"
 msgstr "Följande beroenden kunde inte lösas:"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:440
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:441
 msgid "The installation has been successfully completed."
 msgstr "Installationen lyckades."
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:441
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:442
 msgid "The installation failed!"
 msgstr "Installationen misslyckades!"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:444
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:443
+msgid "The installation has completed with warnings."
+msgstr "Installationen färdigställdes med varningar."
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:446
 msgid "The uninstallation has been successfully completed."
 msgstr "Avinstallationen lyckades."
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:445
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:447
 msgid "The uninstallation failed!"
 msgstr "Avinstallationen misslyckades!"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:604
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:448
+msgid "The uninstallation has completed with warnings."
+msgstr "Avinstallationen färdigställdes med varningar."
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:616
 msgid "Repository"
 msgstr "Förråd"
 
@@ -131,53 +139,53 @@ msgstr "Undantag inträffade: {0}"
 msgid "Package"
 msgstr "Paket"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:108
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:110
 msgid "Extension Installation"
 msgstr "Installation av tillägg"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:134
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:136
 msgid "<b>Select the extensions to install and click on Next</b>"
 msgstr "<b>Välj tilläggen att installera och klicka på Nästa</b>"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:148
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:150
 msgid "Install from:"
 msgstr "Installera från:"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:177
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:179
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:180
 msgid "_Repositories..."
 msgstr "_Förråd..."
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:218
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:220
 msgid "Show all packages"
 msgstr "Visa alla paket"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:219
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:221
 msgid "Show new versions only"
 msgstr "Visa endast nya versioner"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:220
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:222
 msgid "Show updates only"
 msgstr "Visa endast uppdateringar"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:245
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:247
 msgid "_Unselect All"
 msgstr "_Avmarkera allt"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:257
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
 #: ../src/f-spot.glade.h:192
 msgid "Select _All"
 msgstr "Markera _allt"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:332
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:334
 msgid "label124"
 msgstr "etikett124"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:344
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:346
 msgid "Overall Progress:"
 msgstr "Övergripande förlopp:"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:372
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:374
 msgid "Downloading extensions..."
 msgstr "Hämtar tillägg..."
 
@@ -248,20 +256,20 @@ msgstr "Välj platsen för förrådet som du vill registrera:"
 msgid "Register an on-line repository"
 msgstr "Registrera ett förråd på nätet"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:105
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:106
 msgid "Url:"
 msgstr "Url:"
 
 #. Container child vbox89.Gtk.Box+BoxChild
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:126
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:127
 msgid "Register a local repository"
 msgstr "Registrera ett lokalt förråd"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:154
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:155
 msgid "Path:"
 msgstr "Sökväg:"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:178
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:179
 msgid "Browse..."
 msgstr "Bläddra..."
 
@@ -600,7 +608,7 @@ msgstr "Fel vid sparande av justerat foto"
 #: ../src/HigMessageDialog.cs:15
 #: ../src/Loupe.cs:58
 #: ../src/MainWindow.cs:2028
-#: ../src/PhotoView.cs:265
+#: ../src/PhotoView.cs:262
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Mottog undantaget \"{0}\". Kunde inte spara fotot {1}"
@@ -765,6 +773,11 @@ msgstr "Importeringsfel"
 #, csharp-format
 msgid "Error importing {0}{2}{2}{1}"
 msgstr "Fel vid import av {0}{2}{2}{1}"
+
+#: ../src/FileImportBackend.cs:267
+#: ../src/ThreadProgressDialog.cs:68
+msgid "Skip"
+msgstr "Hoppa över"
 
 #: ../src/Filters/ResizeFilter.cs:70
 #: ../src/Filters/SharpFilter.cs:52
@@ -1071,7 +1084,7 @@ msgid "_Clear Date Range"
 msgstr "_Rensa datumintervall"
 
 #: ../src/HigMessageDialog.cs:28
-#: ../src/PhotoView.cs:264
+#: ../src/PhotoView.cs:261
 msgid "Error editing photo"
 msgstr "Fel vid redigering av foto"
 
@@ -1901,59 +1914,59 @@ msgstr "Välj ett område att beskära"
 msgid "Select an area to remove redeye"
 msgstr "Välj ett område att ta bort röda ögon från"
 
-#: ../src/PhotoView.cs:316
+#: ../src/PhotoView.cs:313
 msgid "No selection available"
 msgstr "Ingen markering tillgänglig"
 
-#: ../src/PhotoView.cs:317
+#: ../src/PhotoView.cs:314
 msgid "This tool requires an active selection. Please select a region of the photo and try the operation again"
 msgstr "Detta verktyg kräver en aktiv markering. Markera ett område i fotot och försök göra samma operation igen"
 
-#: ../src/PhotoView.cs:475
+#: ../src/PhotoView.cs:472
 msgid "Comment:"
 msgstr "Kommentar:"
 
-#: ../src/PhotoView.cs:491
+#: ../src/PhotoView.cs:488
 msgid "Constrain the aspect ratio of the selection"
 msgstr "Begränsa storleksförhållandet på markeringen"
 
-#: ../src/PhotoView.cs:493
+#: ../src/PhotoView.cs:490
 msgid "Crop"
 msgstr "Beskär"
 
-#: ../src/PhotoView.cs:497
+#: ../src/PhotoView.cs:494
 msgid "Reduce Red-Eye"
 msgstr "Minska röda ögon"
 
-#: ../src/PhotoView.cs:501
+#: ../src/PhotoView.cs:498
 msgid "Adjust Colors"
 msgstr "Justera färger"
 
-#: ../src/PhotoView.cs:503
+#: ../src/PhotoView.cs:500
 msgid "Adjust the photo colors"
 msgstr "Justera fotots färger"
 
-#: ../src/PhotoView.cs:506
+#: ../src/PhotoView.cs:503
 msgid "Desaturate"
 msgstr "Avfärga"
 
-#: ../src/PhotoView.cs:508
+#: ../src/PhotoView.cs:505
 msgid "Convert the photo to black and white"
 msgstr "Konvertera fotot till svart/vitt"
 
-#: ../src/PhotoView.cs:511
+#: ../src/PhotoView.cs:508
 msgid "Sepia Tone"
 msgstr "Sepiaton"
 
-#: ../src/PhotoView.cs:513
+#: ../src/PhotoView.cs:510
 msgid "Convert the photo to sepia tones"
 msgstr "Konvertera fotot till sepiatoner"
 
-#: ../src/PhotoView.cs:543
+#: ../src/PhotoView.cs:540
 msgid "Previous photo"
 msgstr "Föregående foto"
 
-#: ../src/PhotoView.cs:548
+#: ../src/PhotoView.cs:545
 msgid "Next photo"
 msgstr "Nästa foto"
 
@@ -2110,29 +2123,29 @@ msgstr "Skapa ny tagg"
 msgid "Name of New Tag:"
 msgstr "Namn på ny tagg:"
 
-#: ../src/TagCommands.cs:287
+#: ../src/TagCommands.cs:276
 msgid "Edit Tag"
 msgstr "Redigera tagg"
 
-#: ../src/TagCommands.cs:288
+#: ../src/TagCommands.cs:277
 msgid "Tag Name:"
 msgstr "Taggnamn:"
 
-#: ../src/TagCommands.cs:421
+#: ../src/TagCommands.cs:410
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Foto {0} av {1}"
 
-#: ../src/TagCommands.cs:451
+#: ../src/TagCommands.cs:440
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "Redigera ikon för taggen {0}"
 
-#: ../src/TagCommands.cs:467
+#: ../src/TagCommands.cs:456
 msgid "Select Photo from file"
 msgstr "Välj foto från fil"
 
-#: ../src/TagCommands.cs:490
+#: ../src/TagCommands.cs:479
 #, csharp-format
 msgid ""
 "\n"
@@ -2267,10 +2280,6 @@ msgstr "eller"
 #: ../src/ThreadProgressDialog.cs:66
 msgid "Retry"
 msgstr "Försök igen"
-
-#: ../src/ThreadProgressDialog.cs:68
-msgid "Skip"
-msgstr "Hoppa över"
 
 #. The preceding text here is the second checkbutton in the Time dialog
 #. that says "Space all photos by []"
