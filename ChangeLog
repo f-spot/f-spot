@@ -1,5 +1,14 @@
 2007-12-21  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* Updater.cs: use the return value of MoveTableToTemp, drop
+	some '\n'.
+
+	* src/f-spot.glade:
+	* src/DateCommands.cs: restore current date search in dialog. Patch
+	contributed by Lorenzo.
+
+2007-12-21  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/DirectoryCollection.cs:
 	* src/UriCollection.cs:
 	* src/FileBrowsableItem.cs:

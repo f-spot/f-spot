@@ -122,25 +122,25 @@ namespace FSpot.Database {
 
 			//Update to version 7.0, keep photo uri instead of path
 			AddUpdate (new Version (7,0), delegate () {
-				MoveTableToTemp ("photos");
+				string tmp_photos = MoveTableToTemp ("photos");
 				ExecuteNonQuery ( 
-					"CREATE TABLE photos (\n" +
-					"	id                 INTEGER PRIMARY KEY NOT NULL,\n" +
-					"       time               INTEGER NOT NULL,\n" +
-					"       uri                STRING NOT NULL,\n" +
-					"       description        TEXT NOT NULL,\n" +
-					"       roll_id            INTEGER NOT NULL,\n" +
+					"CREATE TABLE photos (" +
+					"	id                 INTEGER PRIMARY KEY NOT NULL," +
+					"       time               INTEGER NOT NULL," +
+					"       uri                STRING NOT NULL," +
+					"       description        TEXT NOT NULL," +
+					"       roll_id            INTEGER NOT NULL," +
 					"       default_version_id INTEGER NOT NULL" +
 					")");
-				ExecuteNonQuery (
+				ExecuteNonQuery (String.Format (
 					"INSERT INTO photos (id, time, uri, description, roll_id, default_version_id)	" +
 					"SELECT id, time, 'file://' || directory_path || '/' || name, 		" +
-					"description, roll_id, default_version_id FROM photos_temp ");
+					"description, roll_id, default_version_id FROM {0}", tmp_photos));
 			}, true);
 			
 			// Update to version 8.0, store full version uri
 			AddUpdate (new Version (8,0),delegate () {
-				MoveTableToTemp ("photo_versions");
+				string tmp_versions = MoveTableToTemp ("photo_versions");
 				ExecuteNonQuery (
 					"CREATE TABLE photo_versions (          " +
 					"       photo_id        INTEGER,        " +
@@ -149,9 +149,10 @@ namespace FSpot.Database {
 					"       uri             STRING NOT NULL " +
 					")");
 
-				SqliteDataReader reader = ExecuteReader ("SELECT photo_id, version_id, name, uri " +
-								         "FROM photo_versions_temp, photos " +
-								         "WHERE photo_id = id ");
+				SqliteDataReader reader = ExecuteReader (String.Format (
+						"SELECT photo_id, version_id, name, uri " +
+						"FROM {0}, photos " +
+						"WHERE photo_id = id ", tmp_versions));
 		
 				while (reader.Read ()) {
 					System.Uri photo_uri = new System.Uri (reader [3] as string);
@@ -175,7 +176,7 @@ namespace FSpot.Database {
 			
 			// Update to version 9.0
 			AddUpdate (new Version (9,0),delegate () {
-				MoveTableToTemp ("photo_versions");
+				string tmp_versions = MoveTableToTemp ("photo_versions");
 				ExecuteNonQuery (
 					"CREATE TABLE photo_versions (          " +
 					"       photo_id        INTEGER,        " +
@@ -184,15 +185,15 @@ namespace FSpot.Database {
 					"       uri             STRING NOT NULL," +
 					"	protected	BOOLEAN		" +
 					")");
-				ExecuteNonQuery (
+				ExecuteNonQuery (String.Format (
 					"INSERT INTO photo_versions (photo_id, version_id, name, uri, protected) " +
 					"SELECT photo_id, version_id, name, uri, 0 " +
-					"FROM photo_versions_temp");
+					"FROM {0} ", tmp_versions));
 			});
 
  			// Update to version 10.0, make id autoincrement
  			AddUpdate (new Version (10,0),delegate () {
- 				MoveTableToTemp ("photos");
+ 				string tmp_photos = MoveTableToTemp ("photos");
  				ExecuteNonQuery (
  					"CREATE TABLE photos (                                     " +
  					"	id                 INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
@@ -203,11 +204,10 @@ namespace FSpot.Database {
  					"	default_version_id INTEGER NOT NULL		   " +
  					")");
  
- 				ExecuteNonQuery (
+ 				ExecuteNonQuery (String.Format (
  					"INSERT INTO photos (id, time, uri, description, roll_id, default_version_id) " +
  					"SELECT id, time, uri, description, roll_id, default_version_id  " + 
- 					"FROM   photos_temp "
- 				);
+ 					"FROM  {0} ", tmp_photos));
  			}, false);
  
 			// Update to version 11.0

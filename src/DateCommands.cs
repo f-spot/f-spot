@@ -213,23 +213,22 @@ public class DateCommands {
 		{
 			this.CreateDialog ("date_range_dialog");
 
+			// Build the combo box with years and month names
+			foreach (string range in ranges)
+				period_combobox.AppendText (GetString(range));
+
 			start_dateedit.DateChanged += HandleDateEditChanged;
 			((Gtk.Entry) start_dateedit.Children [0] as Gtk.Entry).Changed += HandleDateEditChanged;
 			end_dateedit.DateChanged += HandleDateEditChanged;
 			((Gtk.Entry) end_dateedit.Children [0] as Gtk.Entry).Changed += HandleDateEditChanged;
 			
 			period_combobox.Changed += HandlePeriodComboboxChanged;
+           	 	period_combobox.Active = System.Array.IndexOf(ranges, "last7days"); // Default to Last 7 days
 
 			if (query.Range != null) {
 				start_dateedit.Time = query.Range.Start;
 				end_dateedit.Time = query.Range.End;
 			}
-
-			// Build the combo box with years and month names
-			foreach (string range in ranges)
-				period_combobox.AppendText (GetString(range));
-
-           	 	period_combobox.Active = System.Array.IndexOf(ranges, "last7days"); // Default to Last 7 days
 
 			Dialog.TransientFor = parent_window;
 			Dialog.DefaultResponse = ResponseType.Ok;
