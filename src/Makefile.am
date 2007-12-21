@@ -83,6 +83,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/FlickrExport.cs		\
 	$(srcdir)/FlickrRemote.cs		\
 	$(srcdir)/FileImportBackend.cs		\
+	$(srcdir)/FileBrowsableItem.cs		\
 	$(srcdir)/Filters/ChmodFilter.cs	\
 	$(srcdir)/Filters/ColorFilter.cs	\
 	$(srcdir)/Filters/FilterRequest.cs	\
@@ -201,6 +202,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/TipWindow.cs			\
 	$(srcdir)/Unix.cs			\
 	$(srcdir)/Updater.cs			\
+	$(srcdir)/UriCollection.cs		\
 	$(srcdir)/Utils/ScreenSaver.cs		\
 	$(srcdir)/Util.cs			\
 	$(srcdir)/Vector.cs			\

@@ -1,8 +1,18 @@
+2007-12-21  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/DirectoryCollection.cs:
+	* src/UriCollection.cs:
+	* src/FileBrowsableItem.cs:
+	* src/Makefile.am: split DirectoryCollection.cs,
+	one file per class.
+
 2007-12-17  Thomas Van Machelen <thomas.vanmachelen@gmail.com>:
+
 	* autogen.sh: adapt to play nicely with the newly used
 	IT_PROG_INTLTOOL macro on a completely clean checkout
 
 2007-12-16  Thomas Van Machelen <thomas.vanmachelen@gmail.com>
+	
 	Re-apply DBus patch:
 	* src/Updater.cs: Make photo id autoincrement so that id is 
 	completely unique over time
