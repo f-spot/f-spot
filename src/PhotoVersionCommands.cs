@@ -231,7 +231,7 @@ public class PhotoVersionCommands {
 					}
 				}
 				store.Commit (photo);
-				MainWindow.Toplevel.Database.Photos.Remove (photos);
+				MainWindow.Toplevel.Database.Photos.Remove (photo);
 			}
 			return true;
 		}
