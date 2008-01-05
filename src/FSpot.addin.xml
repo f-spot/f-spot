@@ -25,16 +25,16 @@
 	</Extension>
 
 	<Extension path = "/FSpot/Menus/PhotoPopup">
-		<Command id = "CopyLocation" _label = "Copy Photo Location" command_type = "FSpot.Extensions.CopyLocation" />
+		<Command id = "CopyLocation" _label = "Copy Photo Locat_ion" command_type = "FSpot.Extensions.CopyLocation" />
 		<MenuSeparator id = "Separator1" />
-		<Command id = "RLeft" _label = "Rotate Left" icon = "object-rotate-left" command_type = "FSpot.Extensions.Rotate270" />
-		<Command id = "RRight" _label = "Rotate Right" icon = "object-rotate-right" command_type = "FSpot.Extensions.Rotate90" />
+		<Command id = "RLeft" _label = "Rotate _Left" icon = "object-rotate-left" command_type = "FSpot.Extensions.Rotate270" />
+		<Command id = "RRight" _label = "Rotate _Right" icon = "object-rotate-right" command_type = "FSpot.Extensions.Rotate90" />
 		<MenuSeparator id = "Separator2" />
-		<MenuGenerator id = "OpenWith" _label = "Open With" icon = "gtk-open" generator_type = "FSpot.Extensions.OpenWith" />
-		<Command id = "Remove" _label = "Remove From Catalog" command_type = "FSpot.Extensions.Remove" />
-		<Command id = "Delete" _label = "Delete From Drive" command_type = "FSpot.Extensions.Delete" />
+		<MenuGenerator id = "OpenWith" _label = "Open _With" icon = "gtk-open" generator_type = "FSpot.Extensions.OpenWith" />
+		<Command id = "Remove" _label = "_Remove From Catalog" command_type = "FSpot.Extensions.Remove" />
+		<Command id = "Delete" _label = "_Delete From Drive" command_type = "FSpot.Extensions.Delete" />
 		<MenuSeparator id = "Separator3" />
-		<MenuGenerator id = "AttachTag" _label = "Attach Tag" icon = "gtk-add" generator_type = "FSpot.Extensions.AttachTag" />
-		<MenuGenerator id = "RemoveTag" _label = "Remove Tag" icon =  "gtk-remove" generator_type = "FSpot.Extensions.RemoveTag" />
+		<MenuGenerator id = "AttachTag" _label = "_Attach Tag" icon = "gtk-add" generator_type = "FSpot.Extensions.AttachTag" />
+		<MenuGenerator id = "RemoveTag" _label = "Rem_ove Tag" icon = "gtk-remove" generator_type = "FSpot.Extensions.RemoveTag" />
 	</Extension>	
 </Addin>
