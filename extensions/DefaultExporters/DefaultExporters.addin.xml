@@ -1,5 +1,5 @@
 <Addin namespace="FSpot"
-	version="1.1"
+	version="1.2"
 	name="Default Exporters"
 	description="This extension contains all the default exporters for f-spot. Most of them will be moved out of this extension in the future, and, at that time, this extension will be deprecated."
 	author="F-Spot team"
@@ -12,11 +12,11 @@
 	</Dependencies>
 
 	<Extension path = "/FSpot/Menus/Exports">
-		<ExportMenuItem id="Flickr" _label = "Flickr..." class = "FSpot.FlickrExport" />
-		<ExportMenuItem id="PicasaWeb" _label = "PicasaWeb..." class = "FSpot.GoogleExport" />
-		<ExportMenuItem id="SmugMug" _label = "SmugMug..." class = "FSpot.SmugMugExport" />
-		<ExportMenuItem id="23hq" _label = "23hq..." class = "FSpot.TwentyThreeHQExport" />
-		<ExportMenuItem id="Folder" _label = "Folder..." class = "FSpot.FolderExport" />
-		<ExportMenuItem id="CD" _label = "CD..." class = "FSpot.CDExport" />
+		<ExportMenuItem id="Flickr" _label = "_Flickr..." class = "FSpot.FlickrExport" />
+		<ExportMenuItem id="PicasaWeb" _label = "_PicasaWeb..." class = "FSpot.GoogleExport" />
+		<ExportMenuItem id="SmugMug" _label = "_SmugMug..." class = "FSpot.SmugMugExport" />
+		<ExportMenuItem id="23hq" _label = "_23hq..." class = "FSpot.TwentyThreeHQExport" />
+		<ExportMenuItem id="Folder" _label = "F_older..." class = "FSpot.FolderExport" />
+		<ExportMenuItem id="CD" _label = "_CD..." class = "FSpot.CDExport" />
 	</Extension>
 </Addin>
