@@ -169,13 +169,13 @@ public class FileImportBackend : ImportBackend {
 			// Split dest_dir into constituent parts so we can clean up each individual directory in
 			// event of a cancel.
 			if (created_directories != null) {
-				string [] parts = dest_dir.Split (new char [] {'/'});
+				string [] parts = dest_dir.Split (new char [] {System.IO.Path.DirectorySeparatorChar});
 				string nextPath = String.Empty;
 				for (int i = 0; i < parts.Length; i++) {
 					if (i == 0)
 						nextPath += parts [i];
 					else
-						nextPath += "/" + parts [i];
+						nextPath += System.IO.Path.DirectorySeparatorChar + parts [i];
 					if (nextPath.Length > 0) {
 						info = new System.IO.DirectoryInfo (nextPath);
 						// only add the directory path if it didn't already exist and we haven't already added it.
