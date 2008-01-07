@@ -15,7 +15,7 @@ using FSpot.Filters;
 using System;
 
 namespace FSpot {
-	public abstract class ItemAction : Action {
+	public abstract class ItemAction : Gtk.Action {
 		protected BrowsablePointer item;
 
 		public ItemAction (BrowsablePointer pointer,

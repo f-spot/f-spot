@@ -62,7 +62,7 @@ namespace FSpot {
 							       InfoAction,
 							       false)});
 
-				Action exit_full_screen = new Action (ExitFullScreen, 
+				Gtk.Action exit_full_screen = new Gtk.Action (ExitFullScreen, 
 					Catalog.GetString ("Exit fullscreen"),
 					null,
 					null);
@@ -72,7 +72,7 @@ namespace FSpot {
 				exit_full_screen.Activated += ExitAction;
 				actions.Add (exit_full_screen);
 
-				Action slide_show = new Action (SlideShow,
+				Gtk.Action slide_show = new Gtk.Action (SlideShow,
 					Catalog.GetString ("Slideshow"),
 					Catalog.GetString ("Start slideshow"),
 					null);
@@ -110,7 +110,7 @@ namespace FSpot {
 				t_item.IsImportant = true;
 				tbar.Insert (t_item, -1);
 
-				Action action = new PreviousPictureAction (view.Item);
+				Gtk.Action action = new PreviousPictureAction (view.Item);
 				actions.Add (action);
 #if GTK_2_10
 				tbar.Insert (action.CreateToolItem () as ToolItem, -1);
