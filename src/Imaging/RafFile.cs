@@ -71,17 +71,7 @@ namespace FSpot.Raf {
  
 		public override Gdk.Pixbuf Load ()
 		{
-			// FIXME this is a hack. No, really, I mean it.
-			
-			byte [] data = GetEmbeddedJpeg ();
-			if (data != null) {
-				Gdk.PixbufLoader loader = new Gdk.PixbufLoader ();
-				loader.Write (data, (ulong)data.Length);
-				Gdk.Pixbuf pixbuf = loader.Pixbuf;
-				loader.Close ();
-				return pixbuf;
-			}
-			return null;
+			return new Gdk.Pixbuf (PixbufStream ());
 		}
 
 		public override Gdk.Pixbuf Load (int width, int height)
