@@ -2638,6 +2638,7 @@ public class MainWindow {
 
 		case Preferences.GROUP_ADAPTOR_ORDER_ASC:
 			group_selector.Adaptor.OrderAscending = (bool) val;
+			reverse_order = (bool) val;
 			break;
 
 		case Preferences.GLASS_POSITION:
