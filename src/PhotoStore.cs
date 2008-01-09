@@ -413,10 +413,10 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		if (VersionNameExists (name))
 			throw new Exception ("This version name already exists");
 
-		if ((new Gnome.Vfs.Uri (new_uri.ToString ())).Exists)
-			throw new Exception (String.Format ("An object at this uri {0} already exists", new_uri.ToString ()));
-
 		if (create) {
+			if ((new Gnome.Vfs.Uri (new_uri.ToString ())).Exists)
+				throw new Exception (String.Format ("An object at this uri {0} already exists", new_uri.ToString ()));
+
 			Xfer.XferUri (
 				new Gnome.Vfs.Uri (original_uri.ToString ()), 
 				new Gnome.Vfs.Uri (new_uri.ToString ()),
