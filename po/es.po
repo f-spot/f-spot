@@ -1,3 +1,4 @@
+# translation of f-spot.HEAD.po to Español
 # Traducción de f-spot al español
 # Spanish translation for f-spot
 # Copyright (C) 2004 f-spot's COPYRIGHT HOLDER
@@ -6,15 +7,15 @@
 # Sergio Rubio <sergio.rubio@hispalinux.es>, 2004.
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2004, 2005, 2006.
 # Antonio Ognio <gnrfan@gnrfan.orf>, 2004.
-# Jorge González <jorgegonz@svn.gnome.org>, 2004, 2005, 2006, 2007, .
+# Jorge González <jorgegonz@svn.gnome.org>, 2004, 2005, 2006, 2007, 2008, .
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-16 20:48+0000\n"
-"PO-Revision-Date: 2007-12-17 23:14+0100\n"
+"POT-Creation-Date: 2008-01-05 08:14+0000\n"
+"PO-Revision-Date: 2008-01-12 21:34+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
-"Language-Team: Spanish <gnome-es-list@gnome.org>\n"
+"Language-Team: Español <<gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -308,28 +309,28 @@ msgid "The required extension '{0}' is not installed."
 msgstr "La extensión requerida «{0}» no está instalada."
 
 #: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:1
-msgid "23hq..."
-msgstr "23hq…"
+msgid "F_older..."
+msgstr "Carpe_ta…"
 
 #: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:2
-msgid "CD..."
-msgstr "CD…"
+msgid "_23hq..."
+msgstr "_23hq…"
 
 #: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:3
-msgid "Flickr..."
-msgstr "Flickr…"
+msgid "_CD..."
+msgstr "_CD…"
 
 #: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:4
-msgid "Folder..."
-msgstr "Carpeta…"
+msgid "_Flickr..."
+msgstr "_Flickr…"
 
 #: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:5
-msgid "PicasaWeb..."
-msgstr "PicasaWeb…"
+msgid "_PicasaWeb..."
+msgstr "_PicasaWeb…"
 
 #: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:6
-msgid "SmugMug..."
-msgstr "SmugMug…"
+msgid "_SmugMug..."
+msgstr "_SmugMug…"
 
 #: ../f-spot-view.desktop.in.in.h:1
 msgid "F-Spot Photo Viewer"
@@ -700,46 +701,46 @@ msgid "No applications available"
 msgstr "No hay ninguna aplicación disponible"
 
 #: ../src/FSpot.addin.xml.h:1
-msgid "Attach Tag"
-msgstr "Adjuntar etiqueta"
+msgid "Copy Photo Locat_ion"
+msgstr "Copiar la foto al l_ugar"
 
 #: ../src/FSpot.addin.xml.h:2
-msgid "Copy Photo Location"
-msgstr "Copiar la foto al lugar"
-
-#: ../src/FSpot.addin.xml.h:3
-msgid "Delete From Drive"
-msgstr "Borrar de la unidad"
-
-#: ../src/FSpot.addin.xml.h:4
 msgid "Export to"
 msgstr "Exportar a"
 
-#: ../src/FSpot.addin.xml.h:5
-msgid "Open With"
-msgstr "Abrir con"
+#: ../src/FSpot.addin.xml.h:3
+msgid "Open _With"
+msgstr "Abrir _con"
 
-#: ../src/FSpot.addin.xml.h:6
-msgid "Remove From Catalog"
-msgstr "Borrar del catálogo"
+#: ../src/FSpot.addin.xml.h:4 ../src/f-spot.glade.h:187
+msgid "Rem_ove Tag"
+msgstr "_Eliminar etiqueta"
+
+#: ../src/FSpot.addin.xml.h:5 ../src/SingleView.cs:428
+#: ../src/f-spot.glade.h:190
+msgid "Rotate _Left"
+msgstr "Rotar a la _izquierda"
+
+#: ../src/FSpot.addin.xml.h:6 ../src/SingleView.cs:429
+#: ../src/f-spot.glade.h:191
+msgid "Rotate _Right"
+msgstr "Rotar a la _derecha"
 
 #: ../src/FSpot.addin.xml.h:7
-msgid "Remove Tag"
-msgstr "Eliminar etiqueta"
-
-#: ../src/FSpot.addin.xml.h:8 ../src/ItemAction.cs:80 ../src/MainWindow.cs:255
-#: ../src/SingleView.cs:73
-msgid "Rotate Left"
-msgstr "Rotar a la izquierda"
-
-#: ../src/FSpot.addin.xml.h:9 ../src/ItemAction.cs:92 ../src/MainWindow.cs:259
-#: ../src/SingleView.cs:78
-msgid "Rotate Right"
-msgstr "Rotar a la derecha"
-
-#: ../src/FSpot.addin.xml.h:10
 msgid "Tools"
 msgstr "Herramientas"
+
+#: ../src/FSpot.addin.xml.h:8 ../src/f-spot.glade.h:245
+msgid "_Attach Tag"
+msgstr "_Adjuntar etiqueta"
+
+#: ../src/FSpot.addin.xml.h:9 ../src/f-spot.glade.h:255
+msgid "_Delete From Drive"
+msgstr "_Borrar de la unidad"
+
+#: ../src/FSpot.addin.xml.h:10 ../src/f-spot.glade.h:291
+msgid "_Remove From Catalog"
+msgstr "_Eliminar del catálogo"
 
 #: ../src/FileImportBackend.cs:265
 msgid "Import error"
@@ -1312,9 +1313,17 @@ msgstr "La fotografía «{0}» no existe"
 msgid "No metadata available"
 msgstr "No hay metadatos disponibles"
 
+#: ../src/ItemAction.cs:80 ../src/MainWindow.cs:255 ../src/SingleView.cs:73
+msgid "Rotate Left"
+msgstr "Rotar a la izquierda"
+
 #: ../src/ItemAction.cs:81 ../src/ItemAction.cs:93
 msgid "Rotate picture left"
 msgstr "Rotar la fotografía a la izquierda"
+
+#: ../src/ItemAction.cs:92 ../src/MainWindow.cs:259 ../src/SingleView.cs:78
+msgid "Rotate Right"
+msgstr "Rotar a la derecha"
 
 #: ../src/ItemAction.cs:104
 msgid "Next picture"
@@ -1447,7 +1456,7 @@ msgstr "Se recibió el error «{0}» al conectar con la cámara"
 #. * E.g. "Martin Willemoes Hansen"
 #: ../src/MainWindow.cs:1636
 msgid "translator-credits"
-msgstr "Jorge González <jorgegonz@svn.gnome.org>, 2004, 2005, 2006, 2007."
+msgstr "Jorge González <jorgegonz@svn.gnome.org>, 2004-2008."
 
 #: ../src/MainWindow.cs:1644
 msgid "Copyright © 2003-2007 Novell Inc."
@@ -2079,14 +2088,6 @@ msgstr "Rotar la fotografía a la derecha"
 msgid "Open"
 msgstr "Abrir"
 
-#: ../src/SingleView.cs:428 ../src/f-spot.glade.h:190
-msgid "Rotate _Left"
-msgstr "Rotar a la _izquierda"
-
-#: ../src/SingleView.cs:429 ../src/f-spot.glade.h:191
-msgid "Rotate _Right"
-msgstr "Rotar a la _derecha"
-
 #: ../src/SingleView.cs:431
 msgid "Set as Background"
 msgstr "Establecer como fondo"
@@ -2551,8 +2552,8 @@ msgid ""
 "<small><i>Enable this option if you want to allow other programs to import "
 "or delete photos and tags over DBus.</i></small>"
 msgstr ""
-"<small><i>Active esta opción si quiere que otros programas importen "
-"o borren fotos y etiquetas a través de D-Bus.</i></small>"
+"<small><i>Active esta opción si quiere que otros programas importen o borren "
+"fotos y etiquetas a través de D-Bus.</i></small>"
 
 #: ../src/f-spot.glade.h:56
 msgid ""
@@ -2564,13 +2565,13 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:58
 msgid ""
-"<small><i>Enable this to allow interpolation on zoomed images. You should'nt "
+"<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
 "disable this for viewing photos, but disabling the interpolation could be "
 "usefull in icon design.</i></small>"
 msgstr ""
-"<small><i>Activar esto para permitir interpolación en las imágenes "
-"ampliadas. No debería desactivar esto para ver fotos, pero desactivar la "
-"interpolación podría ser útil en el diseño de iconos.</i></small>"
+"<small><i>Activar esto para permitir interpolación en las imágenes ampliadas. No debería "
+"desactivar esto para ver fotos, pero desactivar la interpolación podría ser "
+"útil en el diseño de iconos.</i></small>"
 
 #: ../src/f-spot.glade.h:59
 msgid ""
@@ -3040,10 +3041,6 @@ msgstr "Álbum público"
 msgid "Re_fresh Thumbnail"
 msgstr "Act_ualizar miniaturas"
 
-#: ../src/f-spot.glade.h:187
-msgid "Rem_ove Tag"
-msgstr "_Eliminar etiqueta"
-
 #: ../src/f-spot.glade.h:188
 msgid "Repair"
 msgstr "Reparar"
@@ -3252,10 +3249,6 @@ msgstr "Nombre del á_lbum:"
 msgid "_Album Title:"
 msgstr "Título del á_lbum:"
 
-#: ../src/f-spot.glade.h:245
-msgid "_Attach Tag"
-msgstr "_Adjuntar etiqueta"
-
 #: ../src/f-spot.glade.h:246
 msgid "_Attach Tag to Selection"
 msgstr "_Adjuntar etiqueta a la selección"
@@ -3286,15 +3279,11 @@ msgstr "_Componentes"
 
 #: ../src/f-spot.glade.h:253
 msgid "_Contents"
-msgstr "_Contenido"
+msgstr "_Índice"
 
 #: ../src/f-spot.glade.h:254
 msgid "_Dates"
 msgstr "_Fechas"
-
-#: ../src/f-spot.glade.h:255
-msgid "_Delete From Drive"
-msgstr "_Borrar de la unidad"
 
 #: ../src/f-spot.glade.h:256
 msgid "_Delete Selected Tag"
@@ -3435,10 +3424,6 @@ msgstr "_Contraseña:"
 #: ../src/f-spot.glade.h:290
 msgid "_Quit"
 msgstr "_Salir"
-
-#: ../src/f-spot.glade.h:291
-msgid "_Remove From Catalog"
-msgstr "_Eliminar del catálogo"
 
 #: ../src/f-spot.glade.h:292
 msgid "_Remove Tag From Selection"
