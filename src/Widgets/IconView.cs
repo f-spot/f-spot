@@ -124,6 +124,21 @@ namespace FSpot.Widgets
 				}
 			}
 		}
+
+		private bool display_ratings = true;
+		public bool DisplayRatings {
+			get {
+				if (cell_width > 100)
+					return display_ratings;
+				else
+					return false;
+			}
+			
+			set {
+				display_ratings  = value;
+				QueueResize ();
+			}
+		}
 	
 		// Size of the frame around the thumbnail.
 		protected int cell_border_width = 10;
@@ -865,6 +880,16 @@ namespace FSpot.Widgets
 				thumbnail.Dispose ();
 			}
 			Gdk.Rectangle layout_bounds = Gdk.Rectangle.Zero;
+			if (DisplayRatings) {
+				FSpot.Widgets.RatingSmall rating;
+				try {
+					rating = new FSpot.Widgets.RatingSmall ((int) photo.Rating, false);
+				} catch (NotRatedException) {
+					rating = new FSpot.Widgets.RatingSmall (-1, false);
+				}
+				rating.DisplayPixbuf.RenderToDrawable (BinWindow, Style.WhiteGC,
+						0, 0, region.X, region.Y, -1, -1, RgbDither.None, 0, 0);
+			}
 			if (DisplayDates) {
 				string date;
 				if (cell_width > 200) {

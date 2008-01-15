@@ -43,6 +43,8 @@ namespace FSpot.Xmp {
 		const string People = MetadataStore.IViewNS + "People";
 		const string Subject = MetadataStore.DcNS + "subject";
 		const string RdfType = MetadataStore.RdfNS + "type";
+		const string Rating = MetadataStore.XmpNS + "Rating";
+		const string Urgency = MetadataStore.PhotoshopNS + "Urgency";
 		
 		private class TagInfo {
 			// This class contains the Root tag name, and its Icon name (if any)
@@ -149,6 +151,8 @@ namespace FSpot.Xmp {
 		public void ProcessStore (MetadataStore store, Photo photo)
 		{
 			Hashtable descriptions = new Hashtable ();
+			uint rating = System.UInt32.MaxValue; 
+			uint urgency = System.UInt32.MaxValue;
 
 			foreach (Statement stmt in store) {
 				//StatementList list = null;
@@ -186,6 +190,28 @@ namespace FSpot.Xmp {
 					}
 					break;
 
+				case Urgency: // Used if Rating was not found
+				case Rating:
+					Literal l = stmt.Object as Literal;
+					if (l != null && l.Value != null && l.Value.Length > 0) {
+						uint tmp_ui;
+						try {
+							tmp_ui = System.Convert.ToUInt32 (l.Value);
+						} catch {
+							// Set rating to 0, and continue
+							System.Console.WriteLine ("Found illegal rating >{0}< in predicate {1}. Rating cleared",
+										 l.Value, stmt.Predicate.Uri);
+							tmp_ui = 0;
+						}
+						if (tmp_ui > 5) // Max rating allowed in F-Spot
+							tmp_ui = 5;
+						if (stmt.Predicate.Uri == Rating)
+							rating = tmp_ui;
+						else
+							urgency = tmp_ui == 0 ? 0 : tmp_ui - 1; // Urgency valid values 1 - 8
+					}	 
+					break;
+
 				case State:
 				case City:
 				case Country:
@@ -212,6 +238,12 @@ namespace FSpot.Xmp {
 
 			if (descriptions.Contains (UserComment))
 				photo.Description = descriptions [UserComment] as String;
+
+			// Use the old urgency, only if rating was not available.
+			if (urgency < System.UInt32.MaxValue)
+				photo.Rating = urgency;
+			if (rating < System.UInt32.MaxValue)
+				photo.Rating = rating;
 
 #if false	
 			//FIXME: looks like we are doing some questionable repurposing of tags here...

@@ -175,6 +175,8 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PreviewPopup.cs 		\
 	$(srcdir)/PrintDialog.cs		\
 	$(srcdir)/ProgressDialog.cs		\
+	$(srcdir)/RatingFilter.cs		\
+	$(srcdir)/RatingMenu.cs			\
 	$(srcdir)/QueuedSqliteDatabase.cs	\
 	$(srcdir)/RepairDialog.cs		\
 	$(srcdir)/RotateCommand.cs		\
@@ -226,6 +228,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/PanZoom.cs		\
 	$(srcdir)/Widgets/Push.cs		\
 	$(srcdir)/Widgets/QueryView.cs		\
+	$(srcdir)/Widgets/Rating.cs		\
 	$(srcdir)/Widgets/Reveal.cs		\
 	$(srcdir)/Widgets/SaneTreeView.cs	\
 	$(srcdir)/Widgets/ScalingIconView.cs	\

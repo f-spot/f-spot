@@ -81,6 +81,10 @@ namespace FSpot {
 		string Name {
 			get; 
 		}
+
+		uint Rating {
+			get; 
+		}
 	}
 
 

@@ -104,4 +104,23 @@ namespace FSpot.Extensions
 			MainWindow.Toplevel.HandleTagMenuActivate (o, e);
 		}
 	}
+
+	public class Rate : IMenuGenerator
+	{
+		private RatingMenu rating_menu;
+
+		public Gtk.Menu GetMenu ()
+		{
+			rating_menu = new RatingMenu (null);
+			rating_menu.RatingSelected += MainWindow.Toplevel.HandleRatingMenuSelected;
+			return (Gtk.Menu) rating_menu;
+		}
+
+		public void OnActivated (object o, EventArgs e)
+		{
+			if (rating_menu != null)
+				rating_menu.Populate ();
+		}
+
+	}
 }

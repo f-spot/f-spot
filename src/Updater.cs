@@ -210,7 +210,27 @@ namespace FSpot.Database {
  					"FROM  {0} ", tmp_photos));
  			}, false);
  
-			// Update to version 11.0
+			// Update to version 11.0, rating
+			AddUpdate (new Version (11,0),delegate () {
+ 				string tmp_photos = MoveTableToTemp ("photos");
+ 				ExecuteNonQuery (
+ 					"CREATE TABLE photos (                                     " +
+ 					"	id                 INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+ 					"	time               INTEGER NOT NULL,	   	   " +
+ 					"	uri		   STRING NOT NULL,		   " +
+ 					"	description        TEXT NOT NULL,	           " +
+ 					"	roll_id            INTEGER NOT NULL,		   " +
+ 					"	default_version_id INTEGER NOT NULL,		   " +
+					"       rating             INTEGER NULL			   " +
+ 					")");
+ 
+ 				ExecuteNonQuery (String.Format (
+ 					"INSERT INTO photos (id, time, uri, description, roll_id, default_version_id, rating) " +
+ 					"SELECT id, time, uri, description, roll_id, default_version_id, null  " + 
+ 					"FROM  {0} ", tmp_photos));
+			});
+			
+			// Update to version 12.0
 			//AddUpdate (new Version (0,0),delegate () {
 			//	do update here
 			//});

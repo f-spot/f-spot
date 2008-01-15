@@ -8,7 +8,7 @@ using FSpot.Xmp;
 
 namespace FSpot {
 public class PhotoView : EventBox {
-	FSpot.Delay description_delay; 
+	FSpot.Delay commit_delay; 
 
 	private bool has_selection = false;
 	private FSpot.PhotoImageView photo_view;
@@ -20,6 +20,7 @@ public class PhotoView : EventBox {
 	private Gtk.ToolButton display_next_button, display_previous_button;
 	private Label count_label;
 	private Entry description_entry;
+	private Widgets.Rating rating;
 
 	private Gtk.ToolButton crop_button;
 	private Gtk.ToolButton redeye_button;
@@ -195,6 +196,18 @@ public class PhotoView : EventBox {
 		description_entry.Changed += HandleDescriptionChanged;
 	}    
 
+	public void UpdateRating ()
+	{
+		rating.Changed -= HandleRatingChanged;
+		if (Item.IsValid)
+			try {
+				rating.Value = (int)Item.Current.Rating;
+			} catch (FSpot.NotRatedException) {
+				rating.Value = -1;
+			}
+		rating.Changed += HandleRatingChanged;
+	}
+
 	private void Update ()
 	{
 		if (UpdateStarted != null)
@@ -203,6 +216,7 @@ public class PhotoView : EventBox {
 		UpdateButtonSensitivity ();
 		UpdateCountLabel ();
 		UpdateDescriptionEntry ();
+		UpdateRating ();
 
 		if (UpdateFinished != null)
 			UpdateFinished (this);
@@ -368,12 +382,12 @@ public class PhotoView : EventBox {
 		ColorDialog.CreateForView (photo_view);
 	}	
 
-	int description_photo;
+	int changed_photo;
 	private bool CommitPendingChanges ()
 	{
-		if (description_delay.IsPending) {
-			description_delay.Stop ();
-			((PhotoQuery)query).Commit (description_photo);
+		if (commit_delay.IsPending) {
+			commit_delay.Stop ();
+			((PhotoQuery)query).Commit (changed_photo);
 		}
 		return true;
 	}
@@ -385,16 +399,35 @@ public class PhotoView : EventBox {
 		
 		((Photo)Item.Current).Description = description_entry.Text;
 		
-		if (description_delay.IsPending)
-			if (description_photo == Item.Index)
-				description_delay.Stop ();
+		if (commit_delay.IsPending)
+			if (changed_photo == Item.Index)
+				commit_delay.Stop ();
 			else
 				CommitPendingChanges ();
 		
 		tips.SetTip (description_entry, description_entry.Text, "This is a tip");
-		description_photo = Item.Index;
-		description_delay.Start ();
+		changed_photo = Item.Index;
+		commit_delay.Start ();
 	}
+
+	private void HandleRatingChanged (object o, EventArgs e)
+	{
+		if (!Item.IsValid)
+			return;
+
+		if ((o as Widgets.Rating).Value < 0)
+			((Photo)Item.Current).RemoveRating();
+		else
+			((Photo)Item.Current).Rating = (uint)(o as Widgets.Rating).Value;
+
+		if (commit_delay.IsPending)
+			if (changed_photo == Item.Index)
+				commit_delay.Stop();
+			else
+				CommitPendingChanges ();
+		changed_photo = Item.Index;
+		commit_delay.Start ();
+ 	}
 
 	private void HandlePhotoChanged (FSpot.PhotoImageView view)
 	{
@@ -431,7 +464,7 @@ public class PhotoView : EventBox {
 	{
 		this.query = query;
 
-		description_delay = new FSpot.Delay (1000, new GLib.IdleHandler (CommitPendingChanges));
+		commit_delay = new FSpot.Delay (1000, new GLib.IdleHandler (CommitPendingChanges));
 		this.Destroyed += HandleDestroy;
 
 		Name = "ImageContainer";
@@ -474,6 +507,10 @@ public class PhotoView : EventBox {
 		description_entry = new Entry ();
 		inner_hbox.PackStart (description_entry, true, true, 0);
 		description_entry.Changed += HandleDescriptionChanged;
+
+		rating = new Widgets.Rating();
+		inner_hbox.PackStart (rating, false, false, 0);
+		rating.Changed += HandleRatingChanged;
 		
 		inner_vbox.PackStart (inner_hbox, false, true, 0);
 

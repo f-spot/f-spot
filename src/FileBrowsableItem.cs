@@ -80,6 +80,12 @@ namespace FSpot {
 			}
 		}
 
+		public uint Rating {
+			get {
+				return 0; //FIXME ndMaxxer: correct?
+			}
+		}
+
 		public void Dispose ()
 		{
 			img.Dispose ();

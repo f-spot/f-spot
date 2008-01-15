@@ -104,6 +104,7 @@ namespace FSpot {
 					DragAction.Copy | DragAction.Move); 
 			directory_view.DisplayTags = false;
 			directory_view.DisplayDates = false;
+			directory_view.DisplayRatings = false;
 			directory_scrolled.Add (directory_view);
 
 			ThumbnailGenerator.Default.OnPixbufLoaded += delegate { directory_view.QueueDraw (); };

@@ -8,10 +8,13 @@ namespace FSpot {
 	public class QueryWidget : HighlightedBox {
 		PhotoQuery query;
 		LogicWidget logic_widget;
-        Gtk.HBox box;
+	        Gtk.HBox box;
 		Gtk.Label label;
 		Gtk.Label untagged;
-		Gtk.Label comma_label;
+		Gtk.Label unrated;
+		Gtk.Label rated;
+		Gtk.Label comma1_label;
+		Gtk.Label comma2_label;
 		Gtk.Label rollfilter;
 		Gtk.HBox warning_box;
 		Gtk.Button clear_button;
@@ -25,9 +28,9 @@ namespace FSpot {
 
 		public QueryWidget (PhotoQuery query, Db db, TagSelectionWidget selector) : base(new HBox())
 		{
-            box = Child as HBox;
+			box = Child as HBox;
 			box.Spacing = 6;
-            box.BorderWidth = 2;
+			box.BorderWidth = 2;
 
 			tips.Enable ();
 
@@ -43,9 +46,21 @@ namespace FSpot {
 			untagged.Visible = false;
 			box.PackStart (untagged, false, false, 0);
 
-			comma_label = new Gtk.Label (", ");
-			comma_label.Visible = false;
-			box.PackStart (comma_label, false, false, 0);
+			comma1_label = new Gtk.Label (", ");
+			comma1_label.Visible = false;
+			box.PackStart (comma1_label, false, false, 0);
+
+			unrated = new Gtk.Label (Catalog.GetString ("Unrated photos"));
+			unrated.Visible = false;
+			box.PackStart (unrated, false, false, 0);
+
+			rated = new Gtk.Label (Catalog.GetString ("Rated photos"));
+			rated.Visible = false;
+			box.PackStart (rated, false, false, 0);
+
+			comma2_label = new Gtk.Label (", ");
+			comma2_label.Visible = false;
+			box.PackStart (comma2_label, false, false, 0);
 
 			rollfilter = new Gtk.Label (Catalog.GetString ("Import roll"));	
 			rollfilter.Visible = false;
@@ -82,7 +97,7 @@ namespace FSpot {
 		
 		public void HandleClearButtonClicked (object sender, System.EventArgs args)
 		{
-            Close ();
+			Close ();
 		}
 
 		public void Close ()
@@ -93,6 +108,8 @@ namespace FSpot {
 			if (query.Untagged)
 				return;
 
+			query.Unrated = false;
+			query.RatingRange = null;
 			logic_widget.Clear = true;
 			logic_widget.UpdateQuery ();
 		}
@@ -114,16 +131,20 @@ namespace FSpot {
 			if (query.ExtraCondition == null)
 				logic_widget.Clear = true;
 
-			if (!logic_widget.Clear || query.Untagged || (query.RollSet != null)) {
-                ShowBar ();
+			if (!logic_widget.Clear || query.Untagged || (query.RollSet != null) || query.Unrated || (query.RatingRange != null)) {
+		                ShowBar ();
 			} else {
 				HideBar ();
 			}
 
 			untagged.Visible = query.Untagged;
+			unrated.Visible = query.Unrated;
+			rated.Visible = (query.RatingRange != null) && !query.Unrated;
 			warning_box.Visible = (query.Count < 1);
-			comma_label.Visible = query.Untagged && (query.RollSet != null);
 			rollfilter.Visible = (query.RollSet != null);
+			comma1_label.Visible = (untagged.Visible && (unrated.Visible || rated.Visible));
+			comma2_label.Visible = (!untagged.Visible && (unrated.Visible || rated.Visible) && rollfilter.Visible) || 
+					       (untagged.Visible && rollfilter.Visible);
 
 		}
 

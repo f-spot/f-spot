@@ -79,6 +79,7 @@ public class MainWindow {
 	[Glade.Widget] CheckMenuItem display_timeline;
 	[Glade.Widget] CheckMenuItem display_dates_menu_item;
 	[Glade.Widget] CheckMenuItem display_tags_menu_item;
+	[Glade.Widget] CheckMenuItem display_ratings_menu_item;
 
 	[Glade.Widget] MenuItem zoom_in;
 	[Glade.Widget] MenuItem zoom_out;
@@ -98,8 +99,10 @@ public class MainWindow {
 	[Glade.Widget] MenuItem find_add_tag_with;
 	
 	[Glade.Widget] MenuItem clear_date_range;
+	[Glade.Widget] MenuItem clear_rating_filter;
 
 	[Glade.Widget] CheckMenuItem find_untagged;
+	[Glade.Widget] CheckMenuItem find_unrated;
 	
 	[Glade.Widget] MenuItem last_roll;
 	[Glade.Widget] MenuItem select_rolls;
@@ -364,6 +367,7 @@ public class MainWindow {
 		LoadPreference (Preferences.ZOOM);
 		LoadPreference (Preferences.SHOW_TAGS);
 		LoadPreference (Preferences.SHOW_DATES);
+		LoadPreference (Preferences.SHOW_RATINGS);
 		icon_view_scrolled.Add (icon_view);
 		icon_view.DoubleClicked += HandleDoubleClicked;
 		icon_view.Vadjustment.ValueChanged += HandleIconViewScroll;
@@ -855,6 +859,7 @@ public class MainWindow {
 		HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
 							    MessageType.Error, ButtonsType.Ok, 
 							    short_msg, String.Format (long_msg, backup));
+		Console.WriteLine (e);
 		md.Run ();
 		md.Destroy ();
 	}
@@ -1365,6 +1370,27 @@ public class MainWindow {
 	}	
 
 	//
+	// RatingMenu commands
+	//
+	
+	public void HandleRatingMenuSelected (int r) 
+	{
+		Photo p;
+		db.BeginTransaction ();
+		foreach (int num in SelectedIds ()) {
+			p = query.Photos [num];
+
+			if (r == -1)
+				p.RemoveRating();
+			else
+				p.Rating = (uint) r;
+			query.Commit (num);
+		}
+		db.CommitTransaction ();
+		this.photo_view.UpdateRating();
+	}
+
+	//
 	// TagMenu commands.
 	//
 
@@ -1770,6 +1796,7 @@ public class MainWindow {
 		Preferences.Set (Preferences.SHOW_TIMELINE,		group_selector.Visible);
 		Preferences.Set (Preferences.SHOW_TAGS,			icon_view.DisplayTags);
 		Preferences.Set (Preferences.SHOW_DATES,		icon_view.DisplayDates);
+		Preferences.Set (Preferences.SHOW_RATINGS,		icon_view.DisplayRatings);
 
 		Preferences.Set (Preferences.GROUP_ADAPTOR,		(group_selector.Adaptor is DirectoryAdaptor) ? 1 : 0);
 		Preferences.Set (Preferences.GROUP_ADAPTOR_ORDER_ASC,   group_selector.Adaptor.OrderAscending);
@@ -2064,6 +2091,11 @@ public class MainWindow {
 		icon_view.DisplayDates = display_dates_menu_item.Active;
 	}
 
+	void HandleDisplayRatings (object sender, EventArgs args)
+	{
+		icon_view.DisplayRatings = display_ratings_menu_item.Active;
+	}
+
 	void HandleDisplayGroupSelector (object sender, EventArgs args)
 	{
 		if (group_selector.Visible)
@@ -2172,9 +2204,11 @@ public class MainWindow {
 	{
 		if (find_untagged.Active != query.Untagged)
 			find_untagged.Active = query.Untagged;
-
+		if (find_unrated.Active != query.Unrated)
+			find_unrated.Active = query.Unrated;
 		
 		clear_date_range.Sensitive = (query.Range != null);
+		clear_rating_filter.Sensitive = (query.RatingRange != null);
 		UpdateStatusLabel ();
 	}
 
@@ -2562,6 +2596,25 @@ public class MainWindow {
 		query.RollSet = null;
 	}
 
+	void HandleSetRatingFilter (object sender, EventArgs args) {
+		query.Unrated = false;
+		find_unrated.Active = false;
+		RatingFilter.Set set_command = new RatingFilter.Set (query, main_window);
+		set_command.Execute ();
+	}
+
+	public void HandleClearRatingFilter (object sender, EventArgs args) {
+		query.RatingRange = null;
+		query.Unrated = false;
+		find_unrated.Active = false;
+	}
+
+	void HandleFindUnrated (object sender, EventArgs args) {
+		if (query.Unrated == find_unrated.Active)
+			return;
+
+		query.Unrated = !query.Unrated;
+	}	
 	
 	void HandleFindUntagged (object sender, EventArgs args) {
 		if (query.Untagged == find_untagged.Active)
@@ -2629,6 +2682,11 @@ public class MainWindow {
 			if (display_dates_menu_item.Active != (bool) val)
 				display_dates_menu_item.Active = (bool) val;
 				//display_dates_menu_item.Toggle ();
+			break;
+		
+		case Preferences.SHOW_RATINGS:
+			if (display_ratings_menu_item.Active != (bool) val)
+				display_ratings_menu_item.Active = (bool) val;
 			break;
 		
 		case Preferences.GROUP_ADAPTOR:
@@ -2857,6 +2915,8 @@ public class MainWindow {
 		sharpen.Sensitive = active_selection;
 		remove_from_catalog.Sensitive = active_selection;
 		
+		clear_rating_filter.Sensitive = (query.RatingRange != null);
+
 		last_roll.Sensitive = (db.Rolls.GetRolls (1).Length > 0);
 		select_rolls.Sensitive = (db.Rolls.GetRolls (2).Length > 1);
 		clear_roll_filter.Sensitive = (query.RollSet != null);

@@ -246,6 +246,28 @@ namespace FSpot {
 			Add (sink, FSpotXMPBase, predicate, type, values);
 		}
 
+		public void Delete (string predicate)
+		{
+			System.Collections.ArrayList to_remove = new System.Collections.ArrayList ();
+			foreach (Statement stmt in this) {
+				if (stmt.Predicate == MetadataStore.Namespaces.Resolve (predicate)) {
+					to_remove.Add (stmt);
+					break;
+				}
+			}
+
+			foreach (Statement stmt in to_remove)
+				this.Remove (stmt);
+		}
+
+		public void Update (string predicate, string value1)
+		{
+			// Delete first..
+			Delete (predicate);
+			// Add after...
+			AddLiteral (this, predicate, value1);
+		}
+
 		public void Update (string predicate, string type, string [] values)
 		{
 			Entity anon = null;
@@ -253,7 +275,8 @@ namespace FSpot {
 			System.Collections.ArrayList to_remove = new System.Collections.ArrayList ();
 			foreach (Statement stmt in this) {
 				if (stmt.Predicate == MetadataStore.Namespaces.Resolve (predicate)) {
-					anon = (Entity) stmt.Object;
+					if (type != null) // only look further if we have a type.
+						anon = (Entity) stmt.Object;
 					to_remove.Add (stmt);
 					break;
 				}

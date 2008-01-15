@@ -8,6 +8,65 @@
 
 2008-01-08  Stephane Delcroix  <sdelcroix@novell.com>
 
+	Adding ratings to f-sopt, patch build on bgo 326561 as a collaborative
+	work:
+
+	* src/PhotoStore.cs: Style change in how the WHERE clause is
+	built in Query() so that it is more readable and easily extended.
+
+	* src/SingleView.cs: Don't try to display ratings on the thumbnails.
+
+	* src/MainWindow.cs:
+	* src/f-spot.glade: Add a check in the view menu to enable/disable the
+	display of ratings
+
+	* src/IconView.cs: Display the rating on the thumbnail.
+
+	* src/PhotoView.cs: show the rating widget, add handlers, share the
+	delay loop between description and rating, ...
+
+	* src/IBrowseableItem.cs: add Rating to the interface
+
+	* src/DirectoryCollection.cs: implement a fake Rating to stick to the
+	interface
+
+	* icons/Makefile.am:
+	* icons/f-spot-rating-rated.png:
+	* icons/f-spot-rating-blank.png:
+	* icons/f-spot-rating-rated-small.png:
+	* icons/f-spot-rating-blank-small.png:
+	* icons/f-spot-rating-junk.png:
+	* icons/f-spot-rating-junk-bold.png:
+	* src/Makefile.am: new icons for the rating widget.
+
+	* src/Widgets/Rating.cs:
+	* src/Makefile.am: New Rating Widget. Original Patch from Cosme
+	Sevestre, borrowed from the Banshee code.
+
+	* src/DirectoryAdaptor.cs:
+	* src/TimeAdaptor.cs: Added extra parameter for Query (Rating) call
+
+	* src/Updater.cs: Appended one extra field to photos (rating)
+
+	* src/XmpTagsImporter.cs: Imports the XMP Rating field, and Urgency (if
+	 Rating did not exist)
+
+	* src/PhotoStore.cs: Added rating to Photo, and added code to filter on 
+	rating
+
+	* src/PhotoQuery.cs: Added RatingRange query
+
+	* src/MetadataStore.cs: Stores the Rating XMP field. Added a Delete method
+
+	* src/RatingMenu.cs:
+	* src/PhotoPopup.cs:
+	* src/MainWindow.cs: Added Setting of Rating to popup menu.
+
+	* src/RatingFilter.cs: Simple temporary gui for rating filter
+	* src/Makefile.am: Added new RatingMenu.cs and RatingFilter.cs file
+
+2008-01-08  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Imaging/RafFile.cs: fixing bgo 505965.
 
 2008-01-05  Gabriel Burt  <gabriel.burt@gmail.com>

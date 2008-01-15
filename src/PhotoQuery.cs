@@ -12,6 +12,7 @@ namespace FSpot {
 		private string extra_condition;
 		private PhotoStore.DateRange range = null;
 		private RollSet roll_set = null;
+		private PhotoStore.RatingRange ratingrange = null;
 		
 		// Constructor
 		public PhotoQuery (PhotoStore store)
@@ -22,7 +23,7 @@ namespace FSpot {
 			this.store.ItemsAddedOverDBus += delegate { RequestReload(); };
 			this.store.ItemsRemovedOverDBus += delegate { RequestReload(); };
 
-			photos = store.Query ((Tag [])null, null, range, roll_set);
+			photos = store.Query ((Tag [])null, null, range, roll_set, ratingrange);
 		}
 
 		public int Count {
@@ -134,12 +135,43 @@ namespace FSpot {
  			}
 		}
 
+		public PhotoStore.RatingRange RatingRange {
+			get {
+				return ratingrange;
+			}
+			set {
+				if (value == ratingrange)
+					return;
+
+				ratingrange = value;
+				RequestReload ();
+			}
+		}
+
+		private bool unrated = false;
+		public bool Unrated {
+			get {
+				return unrated;
+			}
+			set {
+				if (value == unrated)
+					return;
+
+				unrated = value;
+				if (unrated)
+					ratingrange = new PhotoStore.RatingRange (PhotoStore.RatingRange.RatingType.Unrated);
+				else
+					ratingrange = null;
+				RequestReload ();
+			}
+		}
+		
 		public void RequestReload ()
 		{
 			if (untagged)
-				photos = store.QueryUntagged (range, roll_set);
+				photos = store.QueryUntagged (range, roll_set, ratingrange);
 			else
-				photos = store.Query (terms, extra_condition, range, roll_set);
+				photos = store.Query (terms, extra_condition, range, roll_set, ratingrange);
 
 			//this event will allow resorting the query content
 			if (PreChanged != null)

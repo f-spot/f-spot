@@ -27,6 +27,14 @@ using FSpot.Query;
 
 using Banshee.Database;
 
+namespace FSpot{
+	public class NotRatedException : System.ApplicationException
+	{
+		public NotRatedException (string message) : base (message)
+		{}
+	}
+}
+
 public class PhotoVersion : FSpot.IBrowsableItem
 {
 	Photo photo;
@@ -75,6 +83,10 @@ public class PhotoVersion : FSpot.IBrowsableItem
 
 	public bool IsProtected {
 		get { return is_protected; }
+	}
+
+	public uint Rating {
+		get { return photo.Rating; }
 	}
 
 	public PhotoVersion (Photo photo, uint version_id, System.Uri uri, string name, bool is_protected)
@@ -233,6 +245,29 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 	public uint RollId {
 		get { return roll_id; }
 		set { roll_id = value; }
+	}
+
+	private uint rating;
+	private bool rated = false;
+	public uint Rating {
+		get {
+			if (!rated)
+				throw new NotRatedException ("This photo is not rated yet");
+			else
+				return rating;
+		}
+		set {
+			if (value >= 0 && value <= 5) {
+				rating = value;
+				rated = true;
+			} else
+				rated = false;
+		}
+	}
+
+	public void RemoveRating ()
+	{
+		rated = false;
 	}
 
 	// Version management
@@ -591,6 +626,14 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 			names [i] = tags [i].Name;
 		
 		xmp.Store.Update ("dc:subject", "rdf:Bag", names);
+		try { 
+			xmp.Store.Update ("xmp:Rating", (item as Photo).Rating.ToString());
+// FIXME - Should we also store/overwrite the Urgency field?
+//			uint urgency_value = (item as Photo).Rating + 1; // Urgency valid values 1 - 8
+//			xmp.Store.Update ("photoshop:Urgency", urgency_value.ToString());
+		} catch (NotRatedException) {
+			xmp.Store.Delete ("xmp:Rating");
+		}
 		xmp.Dump ();
 
 		return xmp;
@@ -667,6 +710,7 @@ public class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
 		time = DbUtils.DateTimeFromUnixTime (unix_time);
 
 		description = String.Empty;
+		rated = false;
 
 		// Note that the original version is never stored in the photo_versions table in the
 		// database.
@@ -784,7 +828,8 @@ public class PhotoStore : DbStore {
 			"	uri		   STRING NOT NULL,		   " +
 			"	description        TEXT NOT NULL,	           " +
 			"	roll_id            INTEGER NOT NULL,		   " +
-			"	default_version_id INTEGER NOT NULL		   " +
+			"	default_version_id INTEGER NOT NULL,		   " +
+			"	rating		   INTEGER NULL			   " +
 			")");
 
 
@@ -833,13 +878,14 @@ public class PhotoStore : DbStore {
 			string description = img.Description != null  ? img.Description.Split ('\0') [0] : String.Empty;
 	
 	 		uint id = (uint) Database.Execute (new DbCommand (
-				"INSERT INTO photos (time, uri, description, roll_id, default_version_id) "	+
-	 			"VALUES (:time, :uri, :description, :roll_id, :default_version_id)",
+				"INSERT INTO photos (time, uri, description, roll_id, default_version_id, rating) "	+
+	 			"VALUES (:time, :uri, :description, :roll_id, :default_version_id, :rating)",
 	 			"time", unix_time,
 				"uri", new_uri.ToString (),
 	 			"description", description,
 				"roll_id", roll_id,
-	 			"default_version_id", Photo.OriginalVersionId));
+	 			"default_version_id", Photo.OriginalVersionId,
+	 			"rating", null));
 	
 			photo = new Photo (id, unix_time, new_uri);
 			AddToCache (photo);
@@ -969,7 +1015,7 @@ public class PhotoStore : DbStore {
 		if (photo != null)
 			return photo;
 
-		SqliteDataReader reader = Database.Query(new DbCommand("SELECT time, uri, description, roll_id, default_version_id "
+		SqliteDataReader reader = Database.Query(new DbCommand("SELECT time, uri, description, roll_id, default_version_id, rating "
 			+ "FROM photos WHERE id = :id", "id", id));
 
 		if (reader.Read ()) {
@@ -980,6 +1026,10 @@ public class PhotoStore : DbStore {
 			photo.Description = reader[2].ToString ();
 			photo.RollId = Convert.ToUInt32 (reader[3]);
 			photo.DefaultVersionId = Convert.ToUInt32 (reader[4]);
+			if (reader [5] != null)
+				photo.Rating = Convert.ToUInt32 (reader [5]);
+			else
+				photo.RemoveRating();
 			AddToCache (photo);
 		}
 		reader.Close();
@@ -1003,7 +1053,7 @@ public class PhotoStore : DbStore {
 	{
 		Photo photo = null;
 
-		SqliteDataReader reader = Database.Query (new DbCommand ("SELECT id, time, description, roll_id, default_version_id FROM photos "
+		SqliteDataReader reader = Database.Query (new DbCommand ("SELECT id, time, description, roll_id, default_version_id, rating FROM photos "
                 + "WHERE uri = :uri", "uri", uri.ToString ()));
 
 		if (reader.Read ()) {
@@ -1014,6 +1064,10 @@ public class PhotoStore : DbStore {
 			photo.Description = reader[2].ToString ();
 			photo.RollId = Convert.ToUInt32 (reader[3]);
 			photo.DefaultVersionId = Convert.ToUInt32 (reader[4]);
+			if (reader [5] != null)
+				photo.Rating = Convert.ToUInt32 (reader [5]);
+			else
+				photo.RemoveRating();
 		}
 	        reader.Close();
 
@@ -1096,16 +1150,25 @@ public class PhotoStore : DbStore {
 	private void Update (Photo photo) {
 		// Update photo.
 
+		uint rate = 0;
+		bool rated = false;
+		try {
+			rate = photo.Rating;
+			rated = true;
+		} catch {
+		}
 		Database.ExecuteNonQuery (new DbCommand (
 			"UPDATE photos SET description = :description, " + 
 			"default_version_id = :default_version_id, " + 
 			"time = :time, " + 
-			"uri = :uri " +
+			"uri = :uri, " +
+			"rating = :rating " +
 			"WHERE id = :id ",
 			"description", photo.Description,
 			"default_version_id", photo.DefaultVersionId,
 			"time", DbUtils.UnixTimeFromDateTime (photo.Time),
 			"uri", photo.VersionUri (Photo.OriginalVersionId).ToString (),
+			"rating", (rated ? String.Format ("{0}", rate) : null),
 			"id", photo.Id));
 
 		// Update tags.
@@ -1192,6 +1255,78 @@ public class PhotoStore : DbStore {
 		 	ItemsRemovedOverDBus (this, new DbItemEventArgs (photos)); 
 	}
 
+	public class RatingRange 
+	{
+		public enum RatingType {
+			Unrated,
+			Rated
+		};
+
+		private RatingType ratetype;
+		public RatingType RateType {
+			get { 
+				return ratetype;
+			}
+			set { 
+				ratetype = value;
+			}
+		}
+
+		private uint minRating;		
+		public uint MinRating {
+			get {
+				return minRating;
+			}
+			set {
+				minRating = value;	
+			}
+		}
+
+		private uint maxRating;		
+		public uint MaxRating {
+			get {
+				return maxRating;
+			}
+			set {
+				maxRating = value;	
+			}
+		}
+
+		public RatingRange (RatingType ratetype) {
+			this.ratetype = ratetype;
+		}
+
+		public RatingRange (uint newRating)
+		{
+			this.ratetype = RatingType.Rated;
+			this.minRating = newRating;
+			this.maxRating = System.UInt32.MaxValue;
+		}
+
+		public RatingRange (uint newRating1, uint newRating2)
+		{
+			this.ratetype = RatingType.Rated;
+			this.minRating = newRating1;
+			this.maxRating = newRating2;
+		}
+
+		public string SqlClause ()
+		{
+			switch (this.ratetype) {
+			case (RatingType.Unrated) :
+				return String.Format (" photos.rating = NULL");
+				break;
+			case (RatingType.Rated) :
+				return String.Format (" photos.rating >= {0} AND photos.rating <= {1} ", minRating, maxRating);
+				break;
+			default :
+				return String.Empty;
+				break;
+			}
+		}
+
+	}
+
 	// Queries.
 
 	[Obsolete ("drop this, use IQueryCondition correctly instead")]
@@ -1202,26 +1337,29 @@ public class PhotoStore : DbStore {
 
 		return  String.Format (" {0}{1}", added_where ? " AND " : " WHERE ", roll_set.SqlClause () );
 	}
-
 	
-	
-	public Photo [] Query (Tag [] tags, DateTime start, DateTime end, Roll [] rolls)
+	public Photo [] Query (Tag [] tags, DateTime start, DateTime end, Roll [] rolls, uint minRating, uint maxRating)
 	{
-		return Query (tags, null, new DateRange (start, end), new RollSet (rolls));
+		return Query (tags, null, new DateRange (start, end), new RollSet (rolls), new RatingRange (minRating, maxRating));
+	}
+
+	public Photo [] Query (Tag [] tags, DateTime start, DateTime end, Roll [] rolls, uint minRating)
+	{
+		return Query (tags, null, new DateRange (start, end), new RollSet (rolls), new RatingRange (minRating));
 	}
 
 	public Photo [] Query (Tag [] tags, Roll [] rolls)
 	{
-		return Query (tags, null, null, rolls == null ? null : new RollSet (rolls));
+		return Query (tags, null, null, rolls == null ? null : new RollSet (rolls), null);
 	}
 
 	public Photo [] Query (Tag [] tags, DateTime start, DateTime end)
 	{
-		return Query (tags, null, new DateRange (start, end), null);
+		return Query (tags, null, new DateRange (start, end), null, null);
 	}
 	
 	public Photo [] Query (Tag [] tags) {
-		return Query (tags, null, null, null);
+		return Query (tags, null, null, null, null);
 	}
 
 	public Photo [] Query (string query)
@@ -1242,6 +1380,10 @@ public class PhotoStore : DbStore {
 				photo.Description = reader[3].ToString ();
 				photo.RollId = Convert.ToUInt32 (reader[4]);
 				photo.DefaultVersionId = Convert.ToUInt32 (reader[5]);
+				if (reader [6] != null)
+					photo.Rating = Convert.ToUInt32 (reader [6]);
+				else
+					photo.RemoveRating ();
 				
 				version_list.Add (photo);
 			}
@@ -1278,7 +1420,8 @@ public class PhotoStore : DbStore {
 				"photos.uri, "			+
 				"photos.description, "		+
 				"photos.roll_id, "		+
-				"photos.default_version_id "	+
+				"photos.default_version_id, "	+
+				"photos.rating "		+
 			"FROM photos " 				+
 			"WHERE uri LIKE \"file://{0}%\" "	+
 			"AND uri NOT LIKE \"file://{0}/%/%\"" , dir.FullName);
@@ -1287,6 +1430,11 @@ public class PhotoStore : DbStore {
 	}
 
 	public Photo [] QueryUntagged (DateRange range, RollSet importidrange)
+	{
+		return QueryUntagged (range, importidrange, null);
+	}
+
+	public Photo [] QueryUntagged (DateRange range, RollSet importidrange, RatingRange ratingrange)
 	{
 		StringBuilder query_builder = new StringBuilder ();
 
@@ -1306,6 +1454,12 @@ public class PhotoStore : DbStore {
 			added_where = true;
  		}
 
+		if (ratingrange != null) {
+			query_builder.Append (" AND");
+			query_builder.Append (ratingrange.SqlClause ());
+			added_where = true;
+ 		}
+
 		query_builder.Append("ORDER BY time");
 
 		return Query (query_builder.ToString ());
@@ -1313,10 +1467,15 @@ public class PhotoStore : DbStore {
 
 	public Photo [] Query (Tag [] tags, string extra_condition, DateRange range, RollSet importidrange)
 	{
-		return Query (OrTerm.FromTags(tags), extra_condition, range, importidrange);
+		return Query (OrTerm.FromTags(tags), extra_condition, range, importidrange, null);
 	}
 
-	public Photo [] Query (Term searchexpression, string extra_condition, DateRange range, RollSet importidrange)
+	public Photo [] Query (Tag [] tags, string extra_condition, DateRange range, RollSet importidrange, RatingRange ratingrange)
+	{
+		return Query (OrTerm.FromTags(tags), extra_condition, range, importidrange, ratingrange);
+	}
+
+	public Photo [] Query (Term searchexpression, string extra_condition, DateRange range, RollSet importidrange, RatingRange ratingrange)
 	{
 		bool hide = (extra_condition == null);
 
@@ -1328,61 +1487,60 @@ public class PhotoStore : DbStore {
 		//        photos.description,
 		//	  photos.roll_id,
 		//        photos.default_version_id
+		//        photos.rating
 		//                  FROM photos, photo_tags
-		//                  WHERE photos.id = photo_tags.photo_id
-		// 		                AND (photo_tags.tag_id = cat1tag1
-		//			            OR photo_tags.tag_id = cat1tag2 ) 
-		// 		                AND (photo_tags.tag_id = cat2tag1
-		//			            OR photo_tags.tag_id = cat2tag2 )
-		//			  	AND (photos.roll_id = roll_id1
-		//			   	    OR photos.roll_id = roll_id2 ...)
+		//		    WHERE photos.time >= time1 AND photos.time <= time2
+		//				AND photos.rating >= rat1 AND photos.rating <= rat2
+		//				AND photos.id NOT IN (select photo_id FROM photo_tags WHERE tag_id = HIDDEN)
+		//				AND photos.id IN (select photo_id FROM photo_tags where tag_id IN (tag1, tag2..)
+		//				AND extra_condition_string
 		//                  GROUP BY photos.id
 		
 		StringBuilder query_builder = new StringBuilder ();
+		ArrayList where_clauses = new ArrayList ();
 		query_builder.Append ("SELECT photos.id, " 			+
 					     "photos.time, "			+
 					     "photos.uri, "			+
 					     "photos.description, "		+
 				      	     "photos.roll_id, "   		+
-					     "photos.default_version_id "	+
+					     "photos.default_version_id, "	+
+					     "photos.rating "			+
 				      "FROM photos ");
 		
-		bool where_statement_added = false;
-
 		if (range != null) {
-			query_builder.Append (String.Format ("WHERE photos.time >= {0} AND photos.time <= {1} ",
-							     DbUtils.UnixTimeFromDateTime (range.Start), 
-							     DbUtils.UnixTimeFromDateTime (range.End)));
-			where_statement_added = true;
+			where_clauses.Add (String.Format ("photos.time >= {0} AND photos.time <= {1}",
+							  DbUtils.UnixTimeFromDateTime (range.Start), 
+							  DbUtils.UnixTimeFromDateTime (range.End)));
+
+		}
+
+		if (ratingrange != null) {
+			where_clauses.Add (ratingrange.SqlClause ());
 		}
 
 		if (importidrange != null) {
-			query_builder.Append (AddLastImportFilter (importidrange, where_statement_added));
-			where_statement_added = true;
+			where_clauses.Add (importidrange.SqlClause ());
 		}		
 		
 		if (hide && Core.Database.Tags.Hidden != null) {
-			query_builder.Append (String.Format ("{0} photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {1}) ", 
-							     where_statement_added ? " AND " : " WHERE ", Core.Database.Tags.Hidden.Id));
-			where_statement_added = true;
+			where_clauses.Add (String.Format ("photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})", 
+							  FSpot.Core.Database.Tags.Hidden.Id));
 		}
 		
 		if (searchexpression != null) {
-			query_builder.Append (String.Format ("{0} {1}", 
-							     where_statement_added ? " AND " : " WHERE ",
-							     searchexpression.SqlCondition()));
-			where_statement_added = true;
+			where_clauses.Add (searchexpression.SqlCondition ());
 		}
 
-		if (extra_condition != null && extra_condition.Length != 0) {
-			query_builder.Append (String.Format ("{0} {1} ",
-							     where_statement_added ? " AND " : " WHERE ",
-							     extra_condition));
-			where_statement_added = true;
+		if (extra_condition != null) {
+			where_clauses.Add (extra_condition);
 		}
 		
-		query_builder.Append ("ORDER BY photos.time");
-		Console.WriteLine("Query: {0}", query_builder.ToString());
+		if (where_clauses.Count > 0) {
+			query_builder.Append (" WHERE ");
+			query_builder.Append (String.Join (" AND ", ((String []) where_clauses.ToArray (typeof(String)))));
+		}
+		query_builder.Append (" ORDER BY photos.time");
+		Console.WriteLine ("Query: {0}", query_builder.ToString());
 		return Query (query_builder.ToString ());
 	}
 

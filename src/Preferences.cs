@@ -33,6 +33,7 @@ namespace FSpot
 		public const string SHOW_TAGS = "/apps/f-spot/ui/show_tags";
 		public const string SHOW_DATES = "/apps/f-spot/ui/show_dates";
 		public const string EXPANDED_TAGS = "/apps/f-spot/ui/expanded_tags";
+		public const string SHOW_RATINGS = "/apps/f-spot/ui/show_ratings";
 		public const string TAG_ICON_SIZE = "/apps/f-spot/ui/tag_icon_size";
 		
 		public const string GLASS_POSITION = "/apps/f-spot/ui/glass_position";
@@ -161,6 +162,7 @@ namespace FSpot
 			case SHOW_TIMELINE:
 			case SHOW_TAGS:
 			case SHOW_DATES:
+			case SHOW_RATINGS:
 			case VIEWER_SHOW_FILENAMES:
 			case EXPORT_GALLERY_ROTATE:
 			case EXPORT_PICASAWEB_SCALE:
