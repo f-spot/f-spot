@@ -10,7 +10,7 @@
 
 using System;
 
-namespace FSpot {
+namespace FSpot.Query {
 	public class DateRange : IQueryCondition
 	{
 		private DateTime start;		
