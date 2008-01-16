@@ -438,7 +438,7 @@ namespace FSpot.Tiff {
 			Charset = charset;
 			// for (int i = 0; i < raw_data.Length; i++)
 			//	System.Console.WriteLine ("{0} - \"{1}\"", raw_data [i].ToString ("x"), raw_data [i]);
-			Value = enc.GetString (raw_data, 8, raw_data.Length - 8);
+			Value = enc.GetString (raw_data, 8, raw_data.Length - 8).Trim('\0');
 		}
 
 		public byte [] GetBytes (bool is_little)
