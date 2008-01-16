@@ -37,23 +37,26 @@ public class Driver {
 		List<string> uris = new List<string> ();
 		SetProcessName (Defines.PACKAGE);
 
-		//Options and Option parsing
+		// Options and Option parsing
 		bool shutdown = false;
 		bool view = false;
+		bool slideshow = false;
 		string import_uri = null;
+		string view_uri = null;
 
-		for (int i = 0; i < args.Length; i++) {
+		for (int i = 0; i < args.Length && !shutdown; i++) {
 			switch (args [i]) {
-			case "-h": case "-?": case "-help": case "-usage":
+			case "-h": case "-?": case "-help": case "--help": case "-usage":
 				Help ();
 				return 0;
 			
 			case "-shutdown":
+				System.Console.WriteLine ("Shutting down existing F-Spot server...");
 				shutdown = true;
 				break;
 
 			case "-b": case "-basedir": case "--basedir":
-				if (i+1 == args.Length) {
+				if (i+1 == args.Length || args[i+1].StartsWith ("-")) {
 					Console.WriteLine ("f-spot: -basedir option takes one argument");
 					return 1;
 				}
@@ -62,15 +65,15 @@ public class Driver {
 				break;
 
 			case "-p": case "-photodir": case "--photodir":
-				if (i+1 == args.Length) {
+				if (i+1 == args.Length || args[i+1].StartsWith ("-")) {
 					Console.WriteLine ("f-spot: -photodir option takes one argument");
 					return 1;
 				}
-				FSpot.Global.PhotoDirectory = System.IO.Path.GetFullPath(args [++i]);
-				System.Console.WriteLine( "PhotoDirectory is now {0}", FSpot.Global.PhotoDirectory);
+				FSpot.Global.PhotoDirectory = System.IO.Path.GetFullPath (args [++i]);
+				System.Console.WriteLine ("PhotoDirectory is now {0}", FSpot.Global.PhotoDirectory);
 				break;
 
-			case "-i": case"-import": case "--import":
+			case "-i": case "-import": case "--import":
 				if (i+1 == args.Length) {
 					Console.WriteLine ("f-spot: -import option takes one argument");
 					return 1;
@@ -79,33 +82,51 @@ public class Driver {
 				break;
 			
 			case "-slideshow":
-				Catalog.Init ("f-spot", Defines.LOCALE_DIR);
-					
-				program = new Program (Defines.PACKAGE, 
-						       Defines.VERSION, 
-						       Modules.UI, args);
-				Core core = new Core ();
-				core.ShowSlides (null);
-				program.Run ();
-				System.Console.WriteLine ("done");
-				return 0;
+				slideshow = true;
+				break;
 
 			case "-v": case "-view": case "--view":
+				if (i+1 == args.Length || args[i+1].StartsWith ("-")) {
+					Console.WriteLine ("f-spot: -view option takes one argument");
+					return 1;
+				}
+				if (!System.IO.Directory.Exists (args[i+1]) && !System.IO.File.Exists (args[i+1])) {
+					Console.WriteLine ("f-spot: -view argument must be an existing file or directory");
+					return 1;
+				}
 				view = true;
+				uris.Add (args [++i]);
 				break;
 			
 			case "--debug": case "--trace": case "--profile": case "--uninstalled":
 				break;
 
 			default:
-				if (view)
-					uris.Add (args [i]);
-				else {
-					Help ();
-					return 1;
-				}
+				Help ();
+				return 1;
 				break;
 			}
+		}
+
+		// Validate command line options
+		if ( (import_uri != null && (view || shutdown || slideshow)) || 
+		     (view && (shutdown || slideshow)) ||
+		     (shutdown && slideshow) ) {
+			Console.WriteLine ("Can't mix -import, -view, -shutdown or -slideshow");
+			return 1;
+		}
+
+		if (slideshow == true) {
+			Catalog.Init ("f-spot", Defines.LOCALE_DIR);
+				
+			program = new Program (Defines.PACKAGE, 
+					       Defines.VERSION, 
+					       Modules.UI, args);
+			Core core = new Core ();
+			core.ShowSlides (null);
+			program.Run ();
+			System.Console.WriteLine ("done");
+			return 0;
 		}
 		
 		try {
