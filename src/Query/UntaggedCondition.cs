@@ -7,7 +7,7 @@
  * This is free software. See COPYING for details.
  */
 
-namespace FSpot
+namespace FSpot.Query
 {
 	public class UntaggedCondition : IQueryCondition
 	{

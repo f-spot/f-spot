@@ -1170,16 +1170,6 @@ public class PhotoStore : DbStore {
 
 
 	// Queries.
-
-	[Obsolete ("drop this, use IQueryCondition correctly instead")]
-	private string AddLastImportFilter (RollSet roll_set, bool added_where)
-	{
-		if (roll_set == null)
-			return null;
-
-		return  String.Format (" {0}{1}", added_where ? " AND " : " WHERE ", roll_set.SqlClause () );
-	}
-	
 	[Obsolete ("drop this, use IQueryCondition correctly instead")]
 	public Photo [] Query (Tag [] tags) {
 		return Query (tags, null, null, null, null);

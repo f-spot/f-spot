@@ -12,6 +12,7 @@
 using System;
 using Gtk;
 using Gnome;
+using FSpot.Query;
 
 namespace FSpot {
 	public class LastRolls : FSpot.GladeDialog {
@@ -52,7 +53,7 @@ namespace FSpot {
 				Roll [] selected_rolls = SelectedRolls ();
 				
 				if (selected_rolls.Length > 0 )
-					query.RollSet = new FSpot.RollSet (selected_rolls);
+					query.RollSet = new RollSet (selected_rolls);
 			}
 			Dialog.Destroy ();
 		}

@@ -16,6 +16,7 @@ using System.Web.Mail;
 using Banshee.Kernel;
 
 using FSpot;
+using FSpot.Query;
 using FSpot.Widgets;
 using LibGPhoto2;
 

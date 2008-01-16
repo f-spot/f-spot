@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using FSpot.Query;
 
 namespace FSpot {
 	public class TimeAdaptor : GroupAdaptor, FSpot.ILimitable {

@@ -10,7 +10,8 @@
 
 using System;
 
-namespace FSpot {
+namespace FSpot.Query
+{
 	public class RatingRange : IQueryCondition
 	{
 		public enum RatingType {

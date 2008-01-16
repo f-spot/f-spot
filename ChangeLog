@@ -1,5 +1,22 @@
 2008-01-16  Stephane Delcroix  <sdelcroix@novell.con>
 
+	* src/Query/LogicalTerm.cs: stub
+
+	* src/Query/RatingRange.cs:
+	* src/Query/RollSet.cs:
+	* src/Query/UntaggedCondition.cs:
+	* src/Query/DateRange.cs: moved to the FSpot.Query namespace
+
+	* src/PhotoStore.cs:
+	* src/TimeAdaptor.cs:
+	* src/RatingFilter.cs:
+	* src/LastRollDialog.cs:
+	* src/SimpleCalendar.cs:
+	* src/DateCommands.cs:
+	* src/MainWindow.cs: include the F.Q ns
+	
+2008-01-16  Stephane Delcroix  <sdelcroix@novell.con>
+
 	* src/QueryWidget.cs:
 	* src/MainWindow.cs:
 	* src/f-spot.glade: 3 patches from Lorenzo, fixing menu issues

@@ -1,3 +1,5 @@
+using FSpot.Query;
+
 namespace FSpot {
 	public class SimpleCalendar : Gtk.Calendar {
 		private PhotoQuery parent_query;

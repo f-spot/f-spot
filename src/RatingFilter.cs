@@ -11,6 +11,7 @@
 using Gtk;
 using Gnome;
 using FSpot;
+using FSpot.Query;
 
 public class RatingFilter {
 	public class Set : FSpot.GladeDialog {

@@ -14,6 +14,7 @@ using Gnome;
 using System;
 using Mono.Unix;
 using FSpot;
+using FSpot.Query;
 
 public class DateCommands {
 	public class Set : FSpot.GladeDialog {

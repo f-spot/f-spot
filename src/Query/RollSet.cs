@@ -8,7 +8,8 @@
  * This is frees software. See COPYING for details.
  */
 
-namespace FSpot {
+namespace FSpot.Query
+{
 	public class RollSet : IQueryCondition
 	{
 		private Roll [] rolls;
