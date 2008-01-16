@@ -1,5 +1,16 @@
 2008-01-16  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/main.cs: minor fixes.
+	
+	* src/PhotoVersion.cs: 
+	* src/PhotoStore.cs:
+	* src/Makefile.am: the PhotoVersion class deserve its own file too.
+
+	* src/IBrowsableItem.cs:
+	* src/TagStore.cs: moved the tests to Tests
+
+2008-01-16  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* Tests/: new folder for test suite and test images
 
 2008-01-16  Lorenzo Milesi <maxxer@yetopen.it>

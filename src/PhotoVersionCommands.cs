@@ -2,6 +2,7 @@ using Gtk;
 using Glade;
 using System;
 using Mono.Unix;
+using FSpot;
 
 public class PhotoVersionCommands {
 

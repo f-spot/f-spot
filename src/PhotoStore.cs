@@ -2,9 +2,9 @@
  * PhotoStore.cs
  *
  * Author(s):
-	Ettore Perazzoli <ettore@perazzoli.org>
-	Larry Ewing <lewing@gnome.org>
-	Stephane Delcroix <stephane@delcroix.org>
+ *	Ettore Perazzoli <ettore@perazzoli.org>
+ *	Larry Ewing <lewing@gnome.org>
+ *	Stephane Delcroix <stephane@delcroix.org>
  * 
  * This is free software. See COPYING for details.
  */
@@ -32,70 +32,6 @@ namespace FSpot{
 	{
 		public NotRatedException (string message) : base (message)
 		{}
-	}
-}
-
-public class PhotoVersion : FSpot.IBrowsableItem
-{
-	Photo photo;
-	uint version_id;
-	System.Uri uri;
-	string name;
-	bool is_protected;
-
-	public System.DateTime Time {
-		get { return photo.Time; }
-	}
-
-	public Tag [] Tags {
-		get { return photo.Tags; }
-	}
-
-	public System.Uri DefaultVersionUri {
-		get { return uri; }
-	}
-
-	public string Description {
-		get { return photo.Description; }
-	}
-
-	public string Name {
-		get { return name; }
-		set { name = value; }
-	}
-
-	public Photo Photo {
-		get { return photo; }
-	}
-
-	public System.Uri Uri {
-		get { return uri; }
-		set { 
-			if (value == null)
-				throw new System.ArgumentNullException ("uri");
-			uri = value;
-		}
-	}
-
-	public uint VersionId {
-		get { return version_id; }
-	}
-
-	public bool IsProtected {
-		get { return is_protected; }
-	}
-
-	public uint Rating {
-		get { return photo.Rating; }
-	}
-
-	public PhotoVersion (Photo photo, uint version_id, System.Uri uri, string name, bool is_protected)
-	{
-		this.photo = photo;
-		this.version_id = version_id;
-		this.uri = uri;
-		this.name = name;
-		this.is_protected = is_protected;
 	}
 }
 
@@ -1260,7 +1196,7 @@ public class PhotoStore : DbStore {
 				query_builder.Append (condition.SqlClause ());
 				where_added = true;
 			}
-		query_builder.Append("ORDER BY time");
+		query_builder.Append(" ORDER BY time ");
 		return Query (query_builder.ToString ());
 	}
 
@@ -1428,118 +1364,4 @@ public class PhotoStore : DbStore {
 		Console.WriteLine ("Query: {0}", query_builder.ToString());
 		return Query (query_builder.ToString ());
 	}
-
-#if TEST_PHOTO_STORE
-	static void Dump (Photo photo)
-	{
-	//	Console.WriteLine ("\t[{0}] {1}", photo.Id, photo.Path);
-		Console.WriteLine ("\t{0}", photo.Time.ToLocalTime ());
-
-		if (photo.Description != String.Empty)
-			Console.WriteLine ("\t{0}", photo.Description);
-		else
-			Console.WriteLine ("\t(no description)");
-
-		Console.WriteLine ("\tTags:");
-
-		if (photo.Tags.Count == 0) {
-			Console.WriteLine ("\t\t(no tags)");
-		} else {
-			foreach (Tag t in photo.Tags)
-				Console.WriteLine ("\t\t{0}", t.Name);
-		}
-
-		Console.WriteLine ("\tVersions:");
-
-		foreach (uint id in photo.VersionIds)
-			Console.WriteLine ("\t\t[{0}] {1}", id, photo.GetVersionName (id));
-	}
-
-	static void Dump (ArrayList photos)
-	{
-		foreach (Photo p in photos)
-			Dump (p);
-	}
-
-	static void DumpAll (Db db)
-	{
-		Console.WriteLine ("\n*** All pictures");
-		Dump (db.Photos.Query (null));
-	}
-
-	static void DumpForTags (Db db, ArrayList tags)
-	{
-		Console.Write ("\n*** Pictures for tags: ");
-		foreach (Tag t in tags)
-			Console.Write ("{0} ", t.Name);
-		Console.WriteLine ();
-
-		Dump (db.Photos.Query (tags));
-	}
-
-	static void Main (string [] args)
-	{
-		Program program = new Program ("PhotoStoreTest", "0.0", Modules.UI, args);
-
-		const string path = "/tmp/PhotoStoreTest.db";
-
-		try {
-			File.Delete (path);
-		} catch {}
-
-		Db db = new Db (path, true);
-
-		Tag portraits_tag = db.Tags.CreateTag (null, "Portraits");
-		Tag landscapes_tag = db.Tags.CreateTag (null, "Landscapes");
-		Tag favorites_tag = db.Tags.CreateTag (null, "Street");
-
-		uint portraits_tag_id = portraits_tag.Id;
-		uint landscapes_tag_id = landscapes_tag.Id;
-		uint favorites_tag_id = favorites_tag.Id;
-
-		Pixbuf unused_thumbnail;
-
-		Photo ny_landscape = db.Photos.Create (DateTime.Now.ToUniversalTime (), 1, "/home/ettore/Photos/ny_landscape.jpg",
-						       out unused_thumbnail);
-		ny_landscape.Description = "Pretty NY skyline";
-		ny_landscape.AddTag (landscapes_tag);
-		ny_landscape.AddTag (favorites_tag);
-		db.Photos.Commit (ny_landscape);
-
-		Photo me_in_sf = db.Photos.Create (DateTime.Now.ToUniversalTime (), 2, "/home/ettore/Photos/me_in_sf.jpg",
-						   out unused_thumbnail);
-		me_in_sf.AddTag (landscapes_tag);
-		me_in_sf.AddTag (portraits_tag);
-		me_in_sf.AddTag (favorites_tag);
-		db.Photos.Commit (me_in_sf);
-
-		me_in_sf.RemoveTag (favorites_tag);
-		me_in_sf.Description = "Myself and the SF skyline";
-		me_in_sf.CreateVersion ("cropped", Photo.OriginalVersionId);
-		me_in_sf.CreateVersion ("UM-ed", Photo.OriginalVersionId);
-		db.Photos.Commit (me_in_sf);
-
-		Photo macro_shot = db.Photos.Create (DateTime.Now.ToUniversalTime (), 2, "/home/ettore/Photos/macro_shot.jpg",
-						     out unused_thumbnail);
-		db.Dispose ();
-
-		db = new Db (path, false);
-
-		DumpAll (db);
-
-		portraits_tag = db.Tags.Get (portraits_tag_id) as Tag;
-		landscapes_tag = db.Tags.Get (landscapes_tag_id) as Tag;
-		favorites_tag = db.Tags.Get (favorites_tag_id) as Tag;
-
-		ArrayList query_tags = new ArrayList ();
-		query_tags.Add (portraits_tag);
-		query_tags.Add (landscapes_tag);
-		DumpForTags (db, query_tags);
-
-		query_tags.Clear ();
-		query_tags.Add (favorites_tag);
-		DumpForTags (db, query_tags);
-	}
-
-#endif
 }

@@ -42,7 +42,6 @@ public class Driver {
 		bool view = false;
 		bool slideshow = false;
 		string import_uri = null;
-		string view_uri = null;
 
 		for (int i = 0; i < args.Length && !shutdown; i++) {
 			switch (args [i]) {
@@ -104,7 +103,6 @@ public class Driver {
 			default:
 				Help ();
 				return 1;
-				break;
 			}
 		}
 

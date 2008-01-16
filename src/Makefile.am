@@ -163,6 +163,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PhotoQuery.cs			\
 	$(srcdir)/PhotoStore.cs			\
 	$(srcdir)/PhotoTagMenu.cs		\
+	$(srcdir)/PhotoVersion.cs		\
 	$(srcdir)/PhotoVersionCommands.cs	\
 	$(srcdir)/PhotoVersionMenu.cs		\
 	$(srcdir)/PhotoView.cs			\
