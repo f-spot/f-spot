@@ -60,7 +60,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ControlOverlay.cs		\
 	$(srcdir)/Core.cs			\
 	$(srcdir)/DateCommands.cs		\
-	$(srcdir)/DateRange.cs			\
 	$(srcdir)/Db.cs				\
 	$(srcdir)/DBusProxy.cs			\
 	$(srcdir)/Delay.cs			\
@@ -122,7 +121,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/InfoOverlay.cs		\
 	$(srcdir)/InternalProcess.cs		\
 	$(srcdir)/IOChannel.cs			\
-	$(srcdir)/IQueryCondition.cs		\
 	$(srcdir)/ItemAction.cs			\
 	$(srcdir)/Imaging/DCRawFile.cs		\
 	$(srcdir)/Imaging/Bim.cs		\
@@ -177,13 +175,17 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PreviewPopup.cs 		\
 	$(srcdir)/PrintDialog.cs		\
 	$(srcdir)/ProgressDialog.cs		\
+	$(srcdir)/Query/DateRange.cs		\
+	$(srcdir)/Query/IQueryCondition.cs	\
+	$(srcdir)/Query/LogicalTerm.cs		\
+	$(srcdir)/Query/RatingRange.cs		\
+	$(srcdir)/Query/RollSet.cs		\
+	$(srcdir)/Query/UntaggedCondition.cs	\
 	$(srcdir)/RatingFilter.cs		\
 	$(srcdir)/RatingMenu.cs			\
-	$(srcdir)/RatingRange.cs		\
 	$(srcdir)/QueuedSqliteDatabase.cs	\
 	$(srcdir)/RepairDialog.cs		\
 	$(srcdir)/RotateCommand.cs		\
-	$(srcdir)/RollSet.cs			\
 	$(srcdir)/RollStore.cs			\
 	$(srcdir)/SendEmail.cs                  \
 	$(srcdir)/SlideView.cs			\
@@ -206,7 +208,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/TimeDialog.cs			\
 	$(srcdir)/TipWindow.cs			\
 	$(srcdir)/Unix.cs			\
-	$(srcdir)/UntaggedCondition.cs		\
 	$(srcdir)/Updater.cs			\
 	$(srcdir)/UriCollection.cs		\
 	$(srcdir)/Utils/ScreenSaver.cs		\
