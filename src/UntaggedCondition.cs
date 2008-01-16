@@ -1,5 +1,5 @@
 /*
- * Untagged.cs
+ * UntaggedCondition.cs
  * 
  * Author(s)
  *	Stephane Delcroix  <stephane@delcroix.org>
@@ -9,7 +9,7 @@
 
 namespace FSpot
 {
-	public class Untagged : IQueryCondition
+	public class UntaggedCondition : IQueryCondition
 	{
 		public string SqlClause ()
 		{

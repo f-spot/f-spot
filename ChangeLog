@@ -1,5 +1,14 @@
 2008-01-16  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Makefile.am:
+	* src/UntaggedCondition.cs: renamed from Untagged.cs
+
+	* src/PhotoQuery.cs:
+	* src/PhotoStore.cs: drop QueryUntagged in favor of Query (
+	UntaggedCondition, ...)
+
+2008-01-16  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/main.cs: minor fixes.
 	
 	* src/PhotoVersion.cs: 

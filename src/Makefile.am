@@ -206,7 +206,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/TimeDialog.cs			\
 	$(srcdir)/TipWindow.cs			\
 	$(srcdir)/Unix.cs			\
-	$(srcdir)/Untagged.cs			\
+	$(srcdir)/UntaggedCondition.cs		\
 	$(srcdir)/Updater.cs			\
 	$(srcdir)/UriCollection.cs		\
 	$(srcdir)/Utils/ScreenSaver.cs		\

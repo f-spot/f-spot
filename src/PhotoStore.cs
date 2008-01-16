@@ -1200,16 +1200,6 @@ public class PhotoStore : DbStore {
 		return Query (query_builder.ToString ());
 	}
 
-	public Photo [] Query (IQueryCondition condition, params IQueryCondition [] conditions)
-	{
-		IQueryCondition [] conds = new IQueryCondition [conditions.Length + 1];
-		conds [0] = condition;
-		for (int i=0; i < conditions.Length; i++)
-			conds [i + 1] = conditions [i];
-		return Query (conds);
-	}
-
-
 	public Photo [] Query (string query)
 	{
 		SqliteDataReader reader = Database.Query(query);
@@ -1275,12 +1265,6 @@ public class PhotoStore : DbStore {
 			"AND uri NOT LIKE \"file://{0}/%/%\"" , dir.FullName);
 
 		return Query (query_string);
-	}
-
-	[Obsolete ("drop this, use IQueryCondition correctly instead")]
-	public Photo [] QueryUntagged (params IQueryCondition [] conditions)
-	{
-		return Query (new Untagged (), conditions);
 	}
 
 	[Obsolete ("drop this, use IQueryCondition correctly instead")]

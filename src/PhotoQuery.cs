@@ -162,7 +162,7 @@ namespace FSpot {
 		public void RequestReload ()
 		{
 			if (untagged)
-				photos = store.QueryUntagged (range, roll_set, ratingrange);
+				photos = store.QueryUntagged (new UntaggedCondition (), range, roll_set, ratingrange);
 			else
 				photos = store.Query (terms, extra_condition, range, roll_set, ratingrange);
 
