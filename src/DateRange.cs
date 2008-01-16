@@ -31,7 +31,7 @@ namespace FSpot {
 
 		public string SqlClause ()
 		{
-			return String.Format (" photos.time >= {0} AND photos.time <= {1}", 
+			return String.Format (" photos.time >= {0} AND photos.time <= {1} ", 
 					DbUtils.UnixTimeFromDateTime (start), 
 					DbUtils.UnixTimeFromDateTime (end));
 		}
