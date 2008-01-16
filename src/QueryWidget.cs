@@ -114,17 +114,17 @@ namespace FSpot {
 			logic_widget.UpdateQuery ();
 		}
 
-        public void ShowBar ()
-        {
-            Show ();
-            ((Gtk.Label)MainWindow.Toplevel.FindByTag.Child).Text = Catalog.GetString ("Hide Find Bar");
-        }
+		public void ShowBar ()
+		{
+			Show ();
+			((Gtk.Label)MainWindow.Toplevel.FindByTag.Child).Text = Catalog.GetString ("Hide _Find Bar");
+		}
 
-        public void HideBar ()
-        {
-            Hide ();
-            ((Gtk.Label)MainWindow.Toplevel.FindByTag.Child).Text = Catalog.GetString ("Show Find Bar");
-        }
+		public void HideBar ()
+		{
+			Hide ();
+			((Gtk.Label)MainWindow.Toplevel.FindByTag.Child).Text = Catalog.GetString ("Show _Find Bar");
+		}
 
 		public void HandleChanged (IBrowsableCollection collection) 
 		{

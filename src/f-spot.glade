@@ -5537,9 +5537,9 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
                       </widget>
                     </child>
                     <child>
-                      <widget class="GtkMenuItem" id="beneath_photos_menu">
+                      <widget class="GtkMenuItem" id="thumbnails_elements_menu">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">Beneath _Photos</property>
+                        <property name="label" translatable="yes">Thumbnail _elements</property>
                         <property name="use_underline">True</property>
                         <child>
                           <widget class="GtkMenu" id="tag_icon_size_menu">
@@ -5561,6 +5561,15 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 				<signal name="activate" handler="HandleDisplayTags"/>
 			      </widget>
 			    </child>
+			  <child>
+			    <widget class="GtkCheckMenuItem" id="display_ratings_menu_item">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">_Ratings</property>
+			      <property name="use_underline">True</property>
+			      <property name="active">True</property>
+			      <signal name="activate" handler="HandleDisplayRatings"/>
+			    </widget>
+			  </child>
 			  </widget>
 			</child>
 		      </widget>
@@ -5604,15 +5613,6 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
 			</child>
 		      </widget>
                     </child>
- 		  <child>
-		    <widget class="GtkCheckMenuItem" id="display_ratings_menu_item">
-		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Display _Ratings</property>
-		      <property name="use_underline">True</property>
-		      <property name="active">True</property>
-		      <signal name="activate" handler="HandleDisplayRatings"/>
-		    </widget>
-		  </child>
                     <child>
                       <widget class="GtkSeparatorMenuItem" id="separator17">
                         <property name="visible">True</property>
@@ -5659,7 +5659,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
                     <child>
                       <widget class="GtkMenuItem" id="tag_icon_size">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">Tag Icons</property>
+                        <property name="label" translatable="yes">_Tag Icons</property>
                         <property name="use_underline">True</property>
                         <child>
                           <widget class="GtkMenu" id="tag_icon_size_menu">
@@ -5798,69 +5798,89 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
                       </widget>
                     </child>
 
- 		  <child>
-		    <widget class="GtkMenuItem" id="set_rating_filter1">
-		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Set Rating filter...</property>
-		      <property name="use_underline">True</property>
-		      <signal name="activate" handler="HandleSetRatingFilter"/>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkMenuItem" id="clear_rating_filter">
-		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Clear Rating Filter</property>
-		      <property name="use_underline">True</property>
-		      <signal name="activate" handler="HandleClearRatingFilter"/>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkCheckMenuItem" id="find_unrated">
-		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Unrated Photos</property>
-		      <property name="use_underline">True</property>
-		      <property name="active">False</property>
-		      <signal name="activate" handler="HandleFindUnrated"/>
-		    </widget>
-		  </child>
-
-		  <child>
-		    <widget class="GtkSeparatorMenuItem" id="separator15">
-		      <property name="visible">True</property>
-		    </widget>
-		  </child>
-
 
                     <child>
-                      <widget class="GtkMenuItem" id="set_date_range1">
+                      <widget class="GtkMenuItem" id="rate_submenu">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">Set _Date Range...</property>
+                        <property name="label" translatable="yes">By _Rating</property>
                         <property name="use_underline">True</property>
-                        <signal name="activate" handler="HandleSetDateRange"/>
-                      </widget>
+                        <child>
+                          <widget class="GtkMenu" id="rate_find_menu">
+
+				  <child>
+				    <widget class="GtkMenuItem" id="set_rating_filter1">
+				      <property name="visible">True</property>
+				      <property name="label" translatable="yes">_Set Rating filter...</property>
+				      <property name="use_underline">True</property>
+				      <signal name="activate" handler="HandleSetRatingFilter"/>
+				    </widget>
+				  </child>
+
+				  <child>
+				    <widget class="GtkCheckMenuItem" id="find_unrated">
+				      <property name="visible">True</property>
+				      <property name="label" translatable="yes">_Unrated Photos</property>
+				      <property name="use_underline">True</property>
+				      <property name="active">False</property>
+				      <signal name="activate" handler="HandleFindUnrated"/>
+				    </widget>
+				  </child>
+
+				  <child>
+				    <widget class="GtkMenuItem" id="clear_rating_filter">
+				      <property name="visible">True</property>
+				      <property name="label" translatable="yes">_Clear Rating Filter</property>
+				      <property name="use_underline">True</property>
+				      <signal name="activate" handler="HandleClearRatingFilter"/>
+				    </widget>
+				  </child>
+
+			  </widget>
+			</child>
+		      </widget>
                     </child>
+
                     <child>
-                      <widget class="GtkMenuItem" id="clear_date_range">
+                      <widget class="GtkMenuItem" id="date_submenu">
                         <property name="visible">True</property>
-                        <property name="sensitive">False</property>
-                        <property name="label" translatable="yes">Clea_r Date Range</property>
+                        <property name="label" translatable="yes">By _Date</property>
                         <property name="use_underline">True</property>
-                        <signal name="activate" handler="HandleClearDateRange"/>
-                      </widget>
+                        <child>
+                          <widget class="GtkMenu" id="date_find_menu">
+
+			    <child>
+			      <widget class="GtkMenuItem" id="set_date_range1">
+				<property name="visible">True</property>
+				<property name="label" translatable="yes">_Set Date Range...</property>
+				<property name="use_underline">True</property>
+				<signal name="activate" handler="HandleSetDateRange"/>
+			      </widget>
+			    </child>
+			    <child>
+			      <widget class="GtkMenuItem" id="clear_date_range">
+				<property name="visible">True</property>
+				<property name="sensitive">False</property>
+				<property name="label" translatable="yes">_Clear Date Range</property>
+				<property name="use_underline">True</property>
+				<signal name="activate" handler="HandleClearDateRange"/>
+			      </widget>
+			    </child>
+			  </widget>
+			</child>
+		      </widget>
                     </child>
+
                     <child>
                       <widget class="GtkImageMenuItem" id="rolls_submenu">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">Import Rolls</property>
+                        <property name="label" translatable="yes">By _Import Roll</property>
                         <property name="use_underline">True</property>
                         <child>
-                          <widget class="GtkMenu" id="find_menu">
+                          <widget class="GtkMenu" id="rolls_find_menu">
                             <child>
                               <widget class="GtkMenuItem" id="last_roll">
                                 <property name="visible">True</property>
-                                <property name="label" translatable="yes">Last Import Roll</property>
+                                <property name="label" translatable="yes">_Last Import Roll</property>
                                 <property name="use_underline">True</property>
                                 <signal name="activate" handler="HandleSelectLastRoll"/>
                               </widget>
@@ -5868,7 +5888,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
                             <child>
                               <widget class="GtkMenuItem" id="select_rolls">
                                 <property name="visible">True</property>
-                                <property name="label" translatable="yes">Select Import Rolls...</property>
+                                <property name="label" translatable="yes">_Select Import Rolls...</property>
                                 <property name="use_underline">True</property>
                                 <signal name="activate" handler="HandleSelectRolls"/>
                               </widget>
@@ -5876,7 +5896,7 @@ the 'Captcha' field. &lt;i&gt;Letters are not case-sensitive&lt;/i&gt;</property
                             <child>
                               <widget class="GtkMenuItem" id="clear_roll_filter">
                                 <property name="visible">True</property>
-                                <property name="label" translatable="yes">Clear Roll Filter</property>
+                                <property name="label" translatable="yes">_Clear Roll Filter</property>
                                 <property name="use_underline">True</property>
                                 <signal name="activate" handler="HandleClearRollFilter"/>
                               </widget>
