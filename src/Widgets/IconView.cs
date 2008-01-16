@@ -889,8 +889,10 @@ namespace FSpot.Widgets
 				} catch (NotRatedException) {
 					rating = new FSpot.Widgets.RatingSmall (-1, false);
 				}
+				if (region.Intersect (area, out region)) {
 				rating.DisplayPixbuf.RenderToDrawable (BinWindow, Style.WhiteGC,
-						0, 0, region.X, region.Y, -1, -1, RgbDither.None, 0, 0);
+						0, 0, region.X, region.Y, -1, -1, RgbDither.None, region.X, region.Y);
+				}
 			}
 			if (DisplayDates) {
 				string date;
