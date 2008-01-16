@@ -1314,7 +1314,7 @@ public class PhotoStore : DbStore {
 		{
 			switch (this.ratetype) {
 			case (RatingType.Unrated) :
-				return String.Format (" photos.rating = NULL");
+				return String.Format (" photos.rating is NULL");
 				break;
 			case (RatingType.Rated) :
 				return String.Format (" photos.rating >= {0} AND photos.rating <= {1} ", minRating, maxRating);
