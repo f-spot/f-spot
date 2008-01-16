@@ -1416,7 +1416,7 @@ public class PhotoStore : DbStore {
 			where_clauses.Add (searchexpression.SqlCondition ());
 		}
 
-		if (extra_condition != null) {
+		if (extra_condition != null && extra_condition.Trim () != String.Empty) {
 			where_clauses.Add (extra_condition);
 		}
 		

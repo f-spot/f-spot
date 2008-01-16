@@ -58,7 +58,7 @@ namespace FSpot {
 		{
 			switch (this.ratetype) {
 			case (RatingType.Unrated) :
-				return String.Format (" photos.rating is NULL");
+				return String.Format (" photos.rating is NULL ");
 			case (RatingType.Rated) :
 				return String.Format (" photos.rating >= {0} AND photos.rating <= {1} ", minRating, maxRating);
 			default :
