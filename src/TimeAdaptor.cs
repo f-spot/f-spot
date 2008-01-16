@@ -65,9 +65,9 @@ namespace FSpot {
 		{
 			Console.WriteLine ("{0} {1}", start, end);
 			if (start > end)
-				query.Range = new PhotoStore.DateRange (end, start);
+				query.Range = new DateRange (end, start);
 			else 
-				query.Range = new PhotoStore.DateRange (start, end);
+				query.Range = new DateRange (start, end);
 		}
 
 		public override int Count ()

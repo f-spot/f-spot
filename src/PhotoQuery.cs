@@ -10,9 +10,9 @@ namespace FSpot {
 		private Term terms;
 		private Tag [] tags;
 		private string extra_condition;
-		private PhotoStore.DateRange range = null;
+		private DateRange range = null;
 		private RollSet roll_set = null;
-		private PhotoStore.RatingRange ratingrange = null;
+		private RatingRange ratingrange = null;
 		
 		// Constructor
 		public PhotoQuery (PhotoStore store)
@@ -91,16 +91,13 @@ namespace FSpot {
  			}
  		}
 		
-		public PhotoStore.DateRange Range {
-			get {
-				return range;
-			}
+		public DateRange Range {
+			get { return range; }
 			set {
 				if (value == range)
 					return;
 
 				range = value;
-				
 				RequestReload ();
 			}
 		}
@@ -135,10 +132,8 @@ namespace FSpot {
  			}
 		}
 
-		public PhotoStore.RatingRange RatingRange {
-			get {
-				return ratingrange;
-			}
+		public RatingRange RatingRange {
+			get { return ratingrange; }
 			set {
 				if (value == ratingrange)
 					return;
@@ -150,16 +145,14 @@ namespace FSpot {
 
 		private bool unrated = false;
 		public bool Unrated {
-			get {
-				return unrated;
-			}
+			get { return unrated; }
 			set {
 				if (value == unrated)
 					return;
 
 				unrated = value;
 				if (unrated)
-					ratingrange = new PhotoStore.RatingRange (PhotoStore.RatingRange.RatingType.Unrated);
+					ratingrange = new RatingRange (RatingRange.RatingType.Unrated);
 				else
 					ratingrange = null;
 				RequestReload ();

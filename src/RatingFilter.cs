@@ -2,12 +2,15 @@
  * Rating.cs
  *
  * Author[s]
- *    Bengt Thuree <bengt@thuree.com>
+ * 	Bengt Thuree <bengt@thuree.com>
+ *	Stephane Delcroix <stephane@delcroix.org>
  *
+ * This is free software. See COPYING for details.
  */
 
 using Gtk;
 using Gnome;
+using FSpot;
 
 public class RatingFilter {
 	public class Set : FSpot.GladeDialog {
@@ -41,7 +44,7 @@ public class RatingFilter {
 			bool success = false;
 
 			if (response == ResponseType.Ok) {
-				query.RatingRange = new PhotoStore.RatingRange ((uint) minrating.Value, (uint) maxrating.Value);
+				query.RatingRange = new RatingRange ((uint) minrating.Value, (uint) maxrating.Value);
 				success = true;
 			}
 			

@@ -1197,29 +1197,6 @@ public class PhotoStore : DbStore {
 		}
 	}
 	
-	public class DateRange 
-	{
-		private DateTime start;		
-		public DateTime Start {
-			get {
-				return start;
-			}
-		}
-
-		private DateTime end;
-		public DateTime End {
-			get {
-				return end;
-			}
-		}
-
-		public DateRange (DateTime start, DateTime end)
-		{
-			this.start = start;
-			this.end = end;
-		}
-	}
-
 	// Dbus
 	public event ItemsAddedHandler ItemsAddedOverDBus;
 	public event ItemsRemovedHandler ItemsRemovedOverDBus;
@@ -1255,77 +1232,6 @@ public class PhotoStore : DbStore {
 		 	ItemsRemovedOverDBus (this, new DbItemEventArgs (photos)); 
 	}
 
-	public class RatingRange 
-	{
-		public enum RatingType {
-			Unrated,
-			Rated
-		};
-
-		private RatingType ratetype;
-		public RatingType RateType {
-			get { 
-				return ratetype;
-			}
-			set { 
-				ratetype = value;
-			}
-		}
-
-		private uint minRating;		
-		public uint MinRating {
-			get {
-				return minRating;
-			}
-			set {
-				minRating = value;	
-			}
-		}
-
-		private uint maxRating;		
-		public uint MaxRating {
-			get {
-				return maxRating;
-			}
-			set {
-				maxRating = value;	
-			}
-		}
-
-		public RatingRange (RatingType ratetype) {
-			this.ratetype = ratetype;
-		}
-
-		public RatingRange (uint newRating)
-		{
-			this.ratetype = RatingType.Rated;
-			this.minRating = newRating;
-			this.maxRating = System.UInt32.MaxValue;
-		}
-
-		public RatingRange (uint newRating1, uint newRating2)
-		{
-			this.ratetype = RatingType.Rated;
-			this.minRating = newRating1;
-			this.maxRating = newRating2;
-		}
-
-		public string SqlClause ()
-		{
-			switch (this.ratetype) {
-			case (RatingType.Unrated) :
-				return String.Format (" photos.rating is NULL");
-				break;
-			case (RatingType.Rated) :
-				return String.Format (" photos.rating >= {0} AND photos.rating <= {1} ", minRating, maxRating);
-				break;
-			default :
-				return String.Empty;
-				break;
-			}
-		}
-
-	}
 
 	// Queries.
 
@@ -1338,29 +1244,35 @@ public class PhotoStore : DbStore {
 		return  String.Format (" {0}{1}", added_where ? " AND " : " WHERE ", roll_set.SqlClause () );
 	}
 	
-	public Photo [] Query (Tag [] tags, DateTime start, DateTime end, Roll [] rolls, uint minRating, uint maxRating)
-	{
-		return Query (tags, null, new DateRange (start, end), new RollSet (rolls), new RatingRange (minRating, maxRating));
-	}
-
-	public Photo [] Query (Tag [] tags, DateTime start, DateTime end, Roll [] rolls, uint minRating)
-	{
-		return Query (tags, null, new DateRange (start, end), new RollSet (rolls), new RatingRange (minRating));
-	}
-
-	public Photo [] Query (Tag [] tags, Roll [] rolls)
-	{
-		return Query (tags, null, null, rolls == null ? null : new RollSet (rolls), null);
-	}
-
-	public Photo [] Query (Tag [] tags, DateTime start, DateTime end)
-	{
-		return Query (tags, null, new DateRange (start, end), null, null);
-	}
-	
+	[Obsolete ("drop this, use IQueryCondition correctly instead")]
 	public Photo [] Query (Tag [] tags) {
 		return Query (tags, null, null, null, null);
 	}
+
+	public Photo [] Query (params IQueryCondition [] conditions)
+	{
+		StringBuilder query_builder = new StringBuilder ("SELECT * FROM photos ");
+		
+		bool where_added = false;
+		foreach (IQueryCondition condition in conditions)
+			if (condition != null) {
+				query_builder.Append (where_added ? " AND " : " WHERE ");
+				query_builder.Append (condition.SqlClause ());
+				where_added = true;
+			}
+		query_builder.Append("ORDER BY time");
+		return Query (query_builder.ToString ());
+	}
+
+	public Photo [] Query (IQueryCondition condition, params IQueryCondition [] conditions)
+	{
+		IQueryCondition [] conds = new IQueryCondition [conditions.Length + 1];
+		conds [0] = condition;
+		for (int i=0; i < conditions.Length; i++)
+			conds [i + 1] = conditions [i];
+		return Query (conds);
+	}
+
 
 	public Photo [] Query (string query)
 	{
@@ -1429,52 +1341,25 @@ public class PhotoStore : DbStore {
 		return Query (query_string);
 	}
 
-	public Photo [] QueryUntagged (DateRange range, RollSet importidrange)
+	[Obsolete ("drop this, use IQueryCondition correctly instead")]
+	public Photo [] QueryUntagged (params IQueryCondition [] conditions)
 	{
-		return QueryUntagged (range, importidrange, null);
+		return Query (new Untagged (), conditions);
 	}
 
-	public Photo [] QueryUntagged (DateRange range, RollSet importidrange, RatingRange ratingrange)
-	{
-		StringBuilder query_builder = new StringBuilder ();
-
-		query_builder.Append ("SELECT * FROM photos WHERE id NOT IN " +
-					"(SELECT DISTINCT photo_id FROM photo_tags) ");
-		
-		bool added_where = true;
-		if (range != null) {
-			query_builder.Append (String.Format ("AND photos.time >= {0} AND photos.time <= {1} ",
-							     DbUtils.UnixTimeFromDateTime (range.Start), 
-							     DbUtils.UnixTimeFromDateTime (range.End)));
-			added_where = true;
-		}
-
-		if (importidrange != null) {
-			query_builder.Append (AddLastImportFilter (importidrange, added_where));
-			added_where = true;
- 		}
-
-		if (ratingrange != null) {
-			query_builder.Append (" AND");
-			query_builder.Append (ratingrange.SqlClause ());
-			added_where = true;
- 		}
-
-		query_builder.Append("ORDER BY time");
-
-		return Query (query_builder.ToString ());
-	}
-
+	[Obsolete ("drop this, use IQueryCondition correctly instead")]
 	public Photo [] Query (Tag [] tags, string extra_condition, DateRange range, RollSet importidrange)
 	{
 		return Query (OrTerm.FromTags(tags), extra_condition, range, importidrange, null);
 	}
 
+	[Obsolete ("drop this, use IQueryCondition correctly instead")]
 	public Photo [] Query (Tag [] tags, string extra_condition, DateRange range, RollSet importidrange, RatingRange ratingrange)
 	{
 		return Query (OrTerm.FromTags(tags), extra_condition, range, importidrange, ratingrange);
 	}
 
+	[Obsolete ("drop this, use IQueryCondition correctly instead")]
 	public Photo [] Query (Term searchexpression, string extra_condition, DateRange range, RollSet importidrange, RatingRange ratingrange)
 	{
 		bool hide = (extra_condition == null);

@@ -1,5 +1,23 @@
 2008-01-16  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/RatingRange.cs:
+	* src/DateRange.cs:
+	* src/Untagged.cs:
+	* src/Makefile.am: make those IQueryCondition
+
+	* src/PhotoStore.cs: simplifying the query things,
+	iteration 1.
+
+	* src/DateCommands.cs:
+	* src/PhotoQuery.cs:
+	* src/PhotoStore.cs:
+	* src/RatingFilter.cs:
+	* src/RollSet.cs:
+	* sc/SimpleCalendar.cs:
+	* src/TimeAdaptor.cs: minor namespace changes.
+	
+2008-01-16  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Widgets/IconView.cs: fixing the rendering bug.
 
 2008-01-16  Stephane Delcroix  <sdelcroix@novell.com>

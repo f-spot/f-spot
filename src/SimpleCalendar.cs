@@ -50,7 +50,7 @@ namespace FSpot {
 			if (current.Month != last.Month || current.Year != last.Year) {
 				System.Console.WriteLine ("Month thinks is changed {0} {1}", last.ToString (), current.ToString ());
 				last = current;
-				query.Range =  new PhotoStore.DateRange (current, current.AddMonths (1));
+				query.Range =  new DateRange (current, current.AddMonths (1));
 			}
 			base.OnMonthChanged ();
 		}

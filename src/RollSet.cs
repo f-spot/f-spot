@@ -32,7 +32,6 @@ namespace FSpot {
 					sb.Append (", ");
 			}
 			sb.Append (") ");
-	System.Console.WriteLine (sb.ToString ());
 			return sb.ToString ();	
 		}
 	}

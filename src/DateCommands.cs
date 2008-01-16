@@ -13,6 +13,7 @@ using Gtk;
 using Gnome;
 using System;
 using Mono.Unix;
+using FSpot;
 
 public class DateCommands {
 	public class Set : FSpot.GladeDialog {
@@ -89,12 +90,12 @@ public class DateCommands {
 			}	
 		}
 
-		private PhotoStore.DateRange QueryRange (int index)
+		private DateRange QueryRange (int index)
 		{
 			return QueryRange ( ranges [index]);
 		}
 
-		private PhotoStore.DateRange QueryRange (string rangename)
+		private DateRange QueryRange (string rangename)
 		{
 			System.DateTime today = System.DateTime.Today;
 			System.DateTime startdate = today;
@@ -165,7 +166,7 @@ public class DateCommands {
 				break;
 			}	
 			if (!clear)
-				return new PhotoStore.DateRange (startdate, enddate.Add (new System.TimeSpan(23,59,59)));
+				return new DateRange (startdate, enddate.Add (new System.TimeSpan(23,59,59)));
 			else
 				return null;
 		}
@@ -191,7 +192,7 @@ public class DateCommands {
 			start_dateedit.Sensitive = (combo.Active != System.Array.IndexOf (ranges, "alldates"));
 			end_dateedit.Sensitive = (combo.Active != System.Array.IndexOf (ranges, "alldates"));
 
-			PhotoStore.DateRange range = QueryRange (period_combobox.Active);
+			DateRange range = QueryRange (period_combobox.Active);
 			if (range != null) {
 				start_dateedit.Time = range.Start;
 				end_dateedit.Time = range.End;

@@ -60,6 +60,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ControlOverlay.cs		\
 	$(srcdir)/Core.cs			\
 	$(srcdir)/DateCommands.cs		\
+	$(srcdir)/DateRange.cs			\
 	$(srcdir)/Db.cs				\
 	$(srcdir)/DBusProxy.cs			\
 	$(srcdir)/Delay.cs			\
@@ -177,6 +178,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ProgressDialog.cs		\
 	$(srcdir)/RatingFilter.cs		\
 	$(srcdir)/RatingMenu.cs			\
+	$(srcdir)/RatingRange.cs		\
 	$(srcdir)/QueuedSqliteDatabase.cs	\
 	$(srcdir)/RepairDialog.cs		\
 	$(srcdir)/RotateCommand.cs		\
@@ -203,6 +205,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/TimeDialog.cs			\
 	$(srcdir)/TipWindow.cs			\
 	$(srcdir)/Unix.cs			\
+	$(srcdir)/Untagged.cs			\
 	$(srcdir)/Updater.cs			\
 	$(srcdir)/UriCollection.cs		\
 	$(srcdir)/Utils/ScreenSaver.cs		\
