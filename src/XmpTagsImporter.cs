@@ -114,7 +114,7 @@ namespace FSpot.Xmp {
 		private static string GetTextField (Resource value)
 		{
 			string text_field = null;
-			Literal l = value as Literal;
+			SemWeb.Literal l = value as SemWeb.Literal;
 			if (l != null && l.Value != null && l.Value.Length > 0) {
 				text_field = l.Value;
 				if (Char.IsControl (l.Value [l.Value.Length - 1]))
@@ -163,7 +163,7 @@ namespace FSpot.Xmp {
 				case Caption:
 				case Headline:
 					if (!descriptions.Contains (stmt.Predicate.Uri)) {
-						string caption = GetTextField (stmt.Object as Literal);
+						string caption = GetTextField (stmt.Object as SemWeb.Literal);
 						if (caption != null)
 							caption = caption.Trim ();
 
@@ -181,7 +181,7 @@ namespace FSpot.Xmp {
 						if ( (tag.Predicate != RdfType) && (!descriptions.Contains (stmt.Predicate.Uri)) ) {
 							string title = null;
 							try {
-								title = (GetTextField ((Literal) tag.Object)).Trim ();
+								title = (GetTextField ((SemWeb.Literal) tag.Object)).Trim ();
 							} catch {
 							}
 							if ( (title != null) && (title.Length > 0) )
@@ -192,7 +192,7 @@ namespace FSpot.Xmp {
 
 				case Urgency: // Used if Rating was not found
 				case Rating:
-					Literal l = stmt.Object as Literal;
+					SemWeb.Literal l = stmt.Object as SemWeb.Literal;
 					if (l != null && l.Value != null && l.Value.Length > 0) {
 						uint tmp_ui;
 						try {
@@ -217,7 +217,7 @@ namespace FSpot.Xmp {
 				case Country:
 				case Location:
 				case Source:
-					AddTagToPhoto (photo, stmt.Object as Literal, taginfo_table [stmt.Predicate] as TagInfo);
+					AddTagToPhoto (photo, stmt.Object as SemWeb.Literal, taginfo_table [stmt.Predicate] as TagInfo);
 					break;
 					
 				case Subject:
@@ -229,7 +229,7 @@ namespace FSpot.Xmp {
 					foreach (Statement tag in store.Select (new Statement (stmt.Object as Entity, null, null))) {
 						
 						if (tag.Predicate != RdfType)
-							AddTagToPhoto (photo, tag.Object as Literal, null);
+							AddTagToPhoto (photo, tag.Object as SemWeb.Literal, null);
 
 					}
 					break;

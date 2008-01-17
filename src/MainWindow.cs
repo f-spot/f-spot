@@ -2456,7 +2456,7 @@ public class MainWindow {
 		//How many pictures are associated to these tags?
 		Db db = MainWindow.Toplevel.Database;
 		FSpot.PhotoQuery count_query = new FSpot.PhotoQuery(db.Photos);
-		count_query.Terms = FSpot.Query.OrTerm.FromTags(tags);
+		count_query.Terms = FSpot.OrTerm.FromTags(tags);
 		int associated_photos = count_query.Photos.Length;
 
 		string header;
@@ -2820,7 +2820,7 @@ public class MainWindow {
 		if (find_add_tag_with.Submenu != null)
 			find_add_tag_with.Submenu.Dispose ();
 		
-		Gtk.Menu submenu = FSpot.Query.TermMenuItem.GetSubmenu (tag_selection_widget.TagHighlight);
+		Gtk.Menu submenu = FSpot.TermMenuItem.GetSubmenu (tag_selection_widget.TagHighlight);
 		find_add_tag_with.Sensitive = (submenu != null);
 		if (submenu != null) 
 			find_add_tag_with.Submenu = submenu;	
@@ -2841,11 +2841,11 @@ public class MainWindow {
 		// account for All and separator menu items
 		item_pos -= 2;
 		
-		FSpot.Query.Term parent_term = (FSpot.Query.Term) FSpot.Query.LogicWidget.Root.SubTerms [item_pos];
+		FSpot.Term parent_term = (FSpot.Term) FSpot.LogicWidget.Root.SubTerms [item_pos];
 		
-		if (FSpot.Query.LogicWidget.Box != null) {
-			FSpot.Query.Literal after = parent_term.Last as FSpot.Query.Literal;
-			FSpot.Query.LogicWidget.Box.InsertTerm (tag_selection_widget.TagHighlight, parent_term, after);
+		if (FSpot.LogicWidget.Box != null) {
+			FSpot.Literal after = parent_term.Last as FSpot.Literal;
+			FSpot.LogicWidget.Box.InsertTerm (tag_selection_widget.TagHighlight, parent_term, after);
 		}
 	}
 	

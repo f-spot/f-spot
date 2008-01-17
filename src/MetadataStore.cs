@@ -100,13 +100,13 @@ namespace FSpot {
 			label = System.IO.Path.GetFileName (predicate);
 			value = null;
 
-			if (stmt.Object is Literal)
-			        value = ((Literal)(stmt.Object)).Value;
+			if (stmt.Object is SemWeb.Literal)
+			        value = ((SemWeb.Literal)(stmt.Object)).Value;
 
 			if (d != null) {
 				label = d.title;
 				if (d.formater != null && stmt.Object is Literal)
-					value = d.formater.GetValue (store, (Literal)stmt.Object);
+					value = d.formater.GetValue (store, (SemWeb.Literal)stmt.Object);
 
 			} else {
 				Statement sstmt = new Statement (stmt.Predicate,
@@ -114,8 +114,8 @@ namespace FSpot {
 								 null);
 				
 				foreach (Statement tstmt in MetadataStore.Descriptions.Select (sstmt))
-					if (tstmt.Object is Literal)
-						label = ((Literal)(tstmt.Object)).Value;
+					if (tstmt.Object is SemWeb.Literal)
+						label = ((SemWeb.Literal)(tstmt.Object)).Value;
 			}
 			return;
 		}
@@ -130,7 +130,7 @@ namespace FSpot {
 			this.type = type;
 		}
 
-		public virtual string GetValue (MemoryStore store, Literal obj)
+		public virtual string GetValue (MemoryStore store, SemWeb.Literal obj)
 		{
 			string result = obj.Value;
 
@@ -218,7 +218,7 @@ namespace FSpot {
 #endif
 		}
 
-		public static void AddLiteral (StatementSink sink, string predicate, string type, Literal value)
+		public static void AddLiteral (StatementSink sink, string predicate, string type, SemWeb.Literal value)
 		{
 			Entity empty = new BNode ();
 			Statement top = new Statement (FSpotXMPBase, (Entity)MetadataStore.Namespaces.Resolve (predicate), empty);
@@ -237,7 +237,7 @@ namespace FSpot {
 		{
 			Statement stmt = new Statement (FSpotXMPBase,
 							(Entity)MetadataStore.Namespaces.Resolve (predicate), 
-							new Literal (value));
+							new SemWeb.Literal (value));
 			sink.Add (stmt);
 		}
 
@@ -314,7 +314,7 @@ namespace FSpot {
 			foreach (string value in values) {
 				Statement literal = new Statement (empty,
 								   (Entity)MetadataStore.Namespaces.Resolve ("rdf:li"),
-								   new Literal (value, null, null));
+								   new SemWeb.Literal (value, null, null));
 				sink.Add (literal);
 			}
 			sink.Add (top);

@@ -182,24 +182,24 @@ public class InfoBox : VBox {
 		{
 			if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("tiff:ImageWidth")) {
 				if (width == null)
-					width = ((Literal)stmt.Object).Value;
+					width = ((SemWeb.Literal)stmt.Object).Value;
 				} else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("tiff:ImageLength")) {
 				if (height == null)
-					height = ((Literal)stmt.Object).Value;
+					height = ((SemWeb.Literal)stmt.Object).Value;
 			} else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:PixelXDimension"))
-				width = ((Literal)stmt.Object).Value;						      
+				width = ((SemWeb.Literal)stmt.Object).Value;						      
 			else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:PixelYDimension"))
-				height = ((Literal)stmt.Object).Value;
+				height = ((SemWeb.Literal)stmt.Object).Value;
 			else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:ExposureTime"))
-				exposure = ((Literal)stmt.Object).Value;
+				exposure = ((SemWeb.Literal)stmt.Object).Value;
 			else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:ApertureValue"))
-				aperture = ((Literal)stmt.Object).Value;
+				aperture = ((SemWeb.Literal)stmt.Object).Value;
 			else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:FNumber"))
-				fnumber = ((Literal)stmt.Object).Value;
+				fnumber = ((SemWeb.Literal)stmt.Object).Value;
 			else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:ISOSpeedRatings"))
 				iso_anon = stmt.Object;
 			else if (stmt.Subject == iso_anon && stmt.Predicate == MetadataStore.Namespaces.Resolve ("rdf:li"))
-				iso_speed = ((Literal)stmt.Object).Value;
+				iso_speed = ((SemWeb.Literal)stmt.Object).Value;
 			else if (add && stmt.Subject.Uri == null)
 				store.Add (stmt);
 

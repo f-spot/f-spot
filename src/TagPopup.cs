@@ -27,7 +27,7 @@ public class TagPopup {
                 true
         );
 
-        FSpot.Query.TermMenuItem.Create (tags, popup_menu);
+        FSpot.TermMenuItem.Create (tags, popup_menu);
 
 		GtkUtil.MakeMenuSeparator (popup_menu);
 		

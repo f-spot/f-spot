@@ -11,7 +11,7 @@ using Mono.Unix;
 using Gtk;
 using Gdk;
 
-namespace FSpot.Query {
+namespace FSpot {
 	public abstract class Term {
 		private ArrayList sub_terms = new ArrayList ();
 		private Term parent = null;

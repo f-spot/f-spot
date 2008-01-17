@@ -950,15 +950,15 @@ namespace FSpot.Tiff {
 					break;
 				case TagId.ImageDescription:
 					MetadataStore.AddLiteral (sink, "dc:description", "rdf:Alt", 
-								  new Literal (e.ValueAsString [0], "x-default", null));
+								  new SemWeb.Literal (e.ValueAsString [0], "x-default", null));
 					break;
 				case TagId.UserComment:
 					MetadataStore.AddLiteral (sink, "exif:UserComment", "rdf:Alt", 
-								  new Literal (e.ValueAsString [0], "x-default", null));
+								  new SemWeb.Literal (e.ValueAsString [0], "x-default", null));
 					break;
 				case TagId.Copyright:
 					MetadataStore.AddLiteral (sink, "dc:rights", "rdf:Alt", 
-								  new Literal (e.ValueAsString [0], "x-default", null));
+								  new SemWeb.Literal (e.ValueAsString [0], "x-default", null));
 					break;
 				case TagId.Artist:
 					MetadataStore.Add (sink, "dc:creator", "rdf:Seq", e.ValueAsString);
@@ -1005,11 +1005,11 @@ namespace FSpot.Tiff {
 					
 					Statement cols = new Statement (empty, 
 									(Entity) MetadataStore.Namespaces.Resolve ("exif:Columns"),
-									new Literal (pattern.Columns.ToString (), null, null));
+									new SemWeb.Literal (pattern.Columns.ToString (), null, null));
 					sink.Add (cols);
 					Statement rows = new Statement (empty, 
 									(Entity) MetadataStore.Namespaces.Resolve ("exif:Rows"),
-									new Literal (pattern.Rows.ToString (), null, null));
+									new SemWeb.Literal (pattern.Rows.ToString (), null, null));
 					sink.Add (rows);
 					string [] vals = e.ArrayToString (pattern.Values);
 					MetadataStore.Add (sink, empty, "exif:Values", "rdf:Seq", vals);

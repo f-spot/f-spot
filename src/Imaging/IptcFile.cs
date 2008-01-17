@@ -364,16 +364,16 @@ namespace FSpot.Iptc {
 			foreach (DataSet data in sets) {
 				switch (data.ID) {
 				case DataSetID.CopyrightNotice:
-					MetadataStore.AddLiteral (sink, "dc:rights", "rdf:Alt", new Literal (data.XmpObject, "x-default", null));
+					MetadataStore.AddLiteral (sink, "dc:rights", "rdf:Alt", new SemWeb.Literal (data.XmpObject, "x-default", null));
 					break;
 				case DataSetID.ByLine:
-					MetadataStore.AddLiteral (sink, "dc:creator", "rdf:Seq", new Literal (data.XmpObject, "x-default", null));
+					MetadataStore.AddLiteral (sink, "dc:creator", "rdf:Seq", new SemWeb.Literal (data.XmpObject, "x-default", null));
 					break;
 				case DataSetID.CaptionAbstract:
-					MetadataStore.AddLiteral (sink, "dc:description", "rdf:Alt", new Literal (data.XmpObject, "x-default", null));
+					MetadataStore.AddLiteral (sink, "dc:description", "rdf:Alt", new SemWeb.Literal (data.XmpObject, "x-default", null));
 					break;
 				case DataSetID.ObjectName:
-					MetadataStore.AddLiteral (sink, "dc:title", "rdf:Alt", new Literal (data.XmpObject, "x-default", null));
+					MetadataStore.AddLiteral (sink, "dc:title", "rdf:Alt", new SemWeb.Literal (data.XmpObject, "x-default", null));
 					break;
 				case DataSetID.Keywords:
 					if (keywords == null) {
@@ -387,13 +387,13 @@ namespace FSpot.Iptc {
 					}
 					sink.Add (new Statement (keywords, 
 								 MetadataStore.Namespaces.Resolve ("rdf:li"), 
-								 new Literal (data.XmpObject, "x-default", null)));
+								 new SemWeb.Literal (data.XmpObject, "x-default", null)));
 					break;
 				default:
 					if (data.XmpPredicate != null) {
 						sink.Add (new Statement (MetadataStore.FSpotXMPBase, 
 									 (Entity)data.XmpPredicate, 
-									 new Literal (data.XmpObject)));
+									 new SemWeb.Literal (data.XmpObject)));
 					}
 					break;
 				}

@@ -5,7 +5,7 @@ using Mono.Unix;
 using Gtk;
 using Gdk;
 
-namespace FSpot.Query
+namespace FSpot
 {
 	public class LiteralPopup
 	{

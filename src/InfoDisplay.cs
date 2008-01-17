@@ -321,9 +321,9 @@ namespace FSpot {
 			
 			stream.Write ("<table cellpadding=5 cellspacing=0 width=100%>");
 			foreach (Statement sub in substore) {
-				if (sub.Object is Literal) {
+				if (sub.Object is SemWeb.Literal) {
 					string title;
-					string value = ((Literal)(sub.Object)).Value;
+					string value = ((SemWeb.Literal)(sub.Object)).Value;
 					string vc = String.Empty;
 					
 					Description.GetDescription (substore, sub, out title, out value);

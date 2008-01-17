@@ -89,16 +89,16 @@ namespace FSpot.Png {
 						MetadataStore.AddLiteral (sink, "xmp:CreatorTool", text.Text);
 						break;
 					case "Title":
-						MetadataStore.AddLiteral (sink, "dc:title", "rdf:Alt", new Literal (text.Text, "x-default", null));
+						MetadataStore.AddLiteral (sink, "dc:title", "rdf:Alt", new SemWeb.Literal (text.Text, "x-default", null));
 						break;
 					case "Author":
-						MetadataStore.AddLiteral (sink, "dc:creator", "rdf:Seq", new Literal (text.Text));
+						MetadataStore.AddLiteral (sink, "dc:creator", "rdf:Seq", new SemWeb.Literal (text.Text));
 						break;
 					case "Copyright":
-						MetadataStore.AddLiteral (sink, "dc:rights", "rdf:Alt", new Literal (text.Text, "x-default", null));
+						MetadataStore.AddLiteral (sink, "dc:rights", "rdf:Alt", new SemWeb.Literal (text.Text, "x-default", null));
 						break;
 					case "Description":
-						MetadataStore.AddLiteral (sink, "dc:description", "rdf:Alt", new Literal (text.Text, "x-default", null));
+						MetadataStore.AddLiteral (sink, "dc:description", "rdf:Alt", new SemWeb.Literal (text.Text, "x-default", null));
 						break;
 					case "Creation Time":
 						try {
