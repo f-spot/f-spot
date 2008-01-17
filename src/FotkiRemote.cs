@@ -8,6 +8,7 @@ using System.Text;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Net;
+using FSpot;
 
 public class FotkiRemote {
 	// This is the up

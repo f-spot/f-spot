@@ -1,5 +1,22 @@
 2008-01-17  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Category.cs:
+	* src/Tag.cs: moved from TagStore.cs in their own files and
+	in the FSpot namespace.
+
+	* src/TagStore.cs:
+	* src/FotkiRemote.cs:
+	* src/TagCommands.cs:
+	* src/Makefile.am:
+	* src/ImportCommand.cs:
+	* src/FlickrRemote.cs:
+	* src/PhotoTagMenu.cs:
+	* src/TagSelectionWidget.cs:
+	* src/TagPopup.cs:
+	* src/TagMenu.cs: required namespace adaptations
+
+2008-01-17  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/: ns changes to allow fresh LogicalTerm implementation in 
 	Fspot.Query
 

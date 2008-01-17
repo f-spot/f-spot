@@ -15,6 +15,7 @@ using System.Text;
 using System.Collections;
 
 using Mono.Unix;
+using FSpot;
 
 public class TagCommands {
 

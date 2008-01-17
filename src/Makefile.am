@@ -53,6 +53,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/BlockProcessor.cs		\
 	$(srcdir)/BitConverter.cs		\
 	$(srcdir)/PhotoArray.cs 		\
+	$(srcdir)/Category.cs			\
 	$(srcdir)/CDExport.cs			\
 	$(srcdir)/ColorDialog.cs		\
 	$(srcdir)/ColorAdjustment.cs		\
@@ -192,6 +193,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/SingleView.cs			\
 	$(srcdir)/SimpleCalendar.cs		\
 	$(srcdir)/SmugMugExport.cs		\
+	$(srcdir)/Tag.cs			\
 	$(srcdir)/TagCommands.cs		\
 	$(srcdir)/TagMenu.cs			\
 	$(srcdir)/TagPopup.cs			\

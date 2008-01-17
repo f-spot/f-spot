@@ -28,6 +28,8 @@ using System;
 using System.Collections;
 using Gtk;
 
+using FSpot;
+
 public class PhotoTagMenu : Menu {
 	public delegate void TagSelectedHandler (Tag t);
 	public event TagSelectedHandler TagSelected;

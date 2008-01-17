@@ -33,6 +33,7 @@ using System.IO;
 using System;
 
 using Mono.Unix;
+using FSpot;
 
 public class TagSelectionWidget : FSpot.Widgets.SaneTreeView {
 	TagSelectionWidget widget;

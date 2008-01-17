@@ -11,6 +11,7 @@
 
 using System;
 using Mono.Unix;
+using FSpot;
 
 public class TagPopup {
 	public void Activate (Gdk.EventButton eb, Tag tag, Tag [] tags)

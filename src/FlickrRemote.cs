@@ -141,7 +141,7 @@ public class FlickrRemote {
 				
 				if (ExportTags && photo.Tags != null) {
 					StringBuilder taglist = new StringBuilder ();
-					Tag [] t = photo.Tags;
+					FSpot.Tag [] t = photo.Tags;
 					
 					for (int i = 0; i < t.Length; i++) {
 						if (i > 0)

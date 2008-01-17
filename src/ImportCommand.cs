@@ -21,6 +21,7 @@ using System.IO;
 using System;
 using Mono.Unix;
 using FSpot.Widgets;
+using FSpot;
 
 public class ImportCommand : FSpot.GladeDialog
 {
