@@ -213,7 +213,7 @@ namespace FSpot.Database {
 			// Update to version 11.0, rating
 			AddUpdate (new Version (11,0),delegate () {
  				string tmp_photos = MoveTableToTemp ("photos");
- 				ExecuteNonQuery (
+ 				Execute (
  					"CREATE TABLE photos (                                     " +
  					"	id                 INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
  					"	time               INTEGER NOT NULL,	   	   " +
@@ -224,13 +224,18 @@ namespace FSpot.Database {
 					"       rating             INTEGER NULL			   " +
  					")");
  
- 				ExecuteNonQuery (String.Format (
+ 				Execute (String.Format (
  					"INSERT INTO photos (id, time, uri, description, roll_id, default_version_id, rating) " +
  					"SELECT id, time, uri, description, roll_id, default_version_id, null  " + 
  					"FROM  {0} ", tmp_photos));
 			});
+
+			//Update to version 12.0, remove dead associations, bgo #507950, #488545
+			AddUpdate (new Version (12, 0), delegate () {
+				Execute ("DELETE FROM photo_tags WHERE tag_id NOT IN (SELECT id FROM tags)");
+			});
 			
-			// Update to version 12.0
+			// Update to version 13.0
 			//AddUpdate (new Version (0,0),delegate () {
 			//	do update here
 			//});
@@ -321,6 +326,16 @@ namespace FSpot.Database {
 				dialog.Bar.Pulse ();
 				dialog.ShowAll ();
 			}
+		}
+
+		private static int Execute (string statement)
+		{
+			return db.Database.Execute (statement);
+		}
+
+		private static int Execute (DbCommand command)
+		{
+			return db.Database.Execute (command);
 		}
 
 		private static void ExecuteNonQuery (string statement)
