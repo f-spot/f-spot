@@ -9,6 +9,12 @@ CMS_CSDISTFILES =				\
 	$(srcdir)/Cms/Cms.cs			\
 	$(srcdir)/Cms/CctTable.cs
 
+CORE_CSDISTFILES =				\
+	$(srcdir)/Core/Category.cs		\
+	$(srcdir)/Core/DbItem.cs		\
+	$(srcdir)/Core/Tag.cs			\
+	$(srcdir)/Core/Global.cs
+
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Cairo/Antialias.cs		\
 	$(srcdir)/Cairo/Cairo.cs		\
@@ -59,14 +65,11 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/BlockProcessor.cs		\
 	$(srcdir)/BitConverter.cs		\
 	$(srcdir)/PhotoArray.cs 		\
-	$(srcdir)/Core/Category.cs			\
 	$(srcdir)/CDExport.cs			\
 	$(srcdir)/ColorDialog.cs		\
 	$(srcdir)/ColorAdjustment.cs		\
 	$(srcdir)/CompatFileChooser.cs		\
 	$(srcdir)/ControlOverlay.cs		\
-	$(srcdir)/Core/DbItem.cs		\
-	$(srcdir)/Core/Tag.cs			\
 	$(srcdir)/Core.cs			\
 	$(srcdir)/DateCommands.cs		\
 	$(srcdir)/Db.cs				\
@@ -114,7 +117,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/GdkGlx.cs			\
 	$(srcdir)/GlTransition.cs		\
 	$(srcdir)/GladeDialog.cs		\
-	$(srcdir)/Core/Global.cs		\
 	$(srcdir)/GroupAdaptor.cs		\
 	$(srcdir)/GroupSelector.cs		\
 	$(srcdir)/Accelerometer.cs		\
@@ -264,6 +266,11 @@ CMS_ASSEMBLIES = 				\
 	$(NUNIT_PKG)				\
 	-pkg:gtk-sharp-2.0
 
+CORE_ASSEMBLIES =				\
+	-pkg:gtk-sharp-2.0			\
+	-r:Cms.dll				\
+	-r:FSpot.Utils.dll
+
 F_SPOT_ASSEMBLIES = 				\
 	$(LINK_DBUS)				\
 	$(LINK_GPHOTO2)				\
@@ -283,6 +290,7 @@ F_SPOT_ASSEMBLIES = 				\
 	-r:Mono.Security			\
 	-r:ICSharpCode.SharpZipLib		\
 	-r:FSpot.Utils.dll			\
+	-r:FSpot.Core.dll			\
 	-r:Cms.dll				\
 	$(NUNIT_PKG)				\
 	-pkg:gtkhtml-sharp-2.0			\
@@ -306,24 +314,35 @@ fspotlib_DATA = f-spot.exe.config	\
 		f-spot.exe		\
 		Cms.dll.config		\
 		Cms.dll			\
-		FSpot.Utils.dll
+		FSpot.Utils.dll		\
+		FSpot.Core.dll
 
 bin_SCRIPTS = f-spot
 
 UTILS_CSFILES = $(UTILS_CSDISTFILES)
+
 CMS_CSFILES = $(CMS_CSDISTFILES)
 
+CORE_CSFILES = $(CORE_CSDISTFILES)	\
+	Core/Defines.cs	
+
 F_SPOT_CSFILES = $(F_SPOT_CSDISTFILES)	\
-	Core/Defines.cs			\
 	AssemblyInfo.cs
 
 Cms.dll: $(CMS_CSFILES)
-	$(CSC) -target:library -out:$@ $(EXTRAFLAGS) $(CMS_CSFILES) $(CMS_ASSEMBLIES)
+	@echo -e "\n*** Compiling $@"
+	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(CMS_CSFILES) $(CMS_ASSEMBLIES)
 
 FSpot.Utils.dll: $(UTILS_CSFILES)
-	$(CSC) -target:library -out:$@ $(EXTRAFLAGS) $(UTILS_CSFILES) $(UTILS_ASSEMBLIES)
+	@echo -e "\n*** Compiling $@"
+	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(UTILS_CSFILES) $(UTILS_ASSEMBLIES)
 
-f-spot.exe: $(F_SPOT_CSFILES) f-spot.glade dces.rdf FSpot.addin.xml FSpot.Utils.dll Cms.dll
+FSpot.Core.dll: $(CORE_CSFILES) FSpot.Utils.dll Cms.dll
+	@echo -e "\n*** Compiling $@"
+	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(CORE_CSFILES) $(CORE_ASSEMBLIES)
+
+f-spot.exe: $(F_SPOT_CSFILES) f-spot.glade dces.rdf FSpot.addin.xml FSpot.Utils.dll FSpot.Core.dll Cms.dll
+	@echo -e "\n*** Compiling $@"
 	$(CSC) -target:winexe -out:$@ $(EXTRAFLAGS) $(F_SPOT_CSFILES) $(F_SPOT_ASSEMBLIES) $(RESOURCES)
 
 all: f-spot.exe
@@ -343,7 +362,13 @@ CLEANFILES =					\
 	f-spot.exe.config			\
 	f-spot.exe.mdb				\
 	f-spot.exe				\
-	f-spot
+	f-spot					\
+	Cms.dll.mdb				\
+	Cms.dll					\
+	FSpot.Utils.dll.config			\
+	FSpot.Utils.dll				\
+	FSpot.Core.dll.config			\
+	FSpot.Core.dll
 
 
 DISTCLEANFILES = 				\

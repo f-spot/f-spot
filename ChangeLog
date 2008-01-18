@@ -1,5 +1,11 @@
 2008-01-18  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Makefile.am: compiling FSpot.Core.dll separatly.
+
+	* Makefile.include: how did I miss that thing for so long ?
+
+2008-01-18  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Makefile.am: compiling Cms.dll FSpot.Utils as separate
 	assemblies.
 
