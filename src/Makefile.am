@@ -349,6 +349,8 @@ all: f-spot.exe
 
 EXTRA_DIST =					\
 	$(UTILS_CSDISTFILES)			\
+	$(CMS_CSDISTFILES)			\
+	$(CORE_CSDISTFILES)			\
 	$(F_SPOT_CSDISTFILES)			\
 	dces.rdf				\
 	f-spot.exe.config.in			\

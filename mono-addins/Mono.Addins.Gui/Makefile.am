@@ -61,6 +61,7 @@ EXTRA_DIST = 						\
 	$(srcdir)/icons/package-x-generic.png 		\
 	$(srcdir)/icons/package-x-generic_16.png 	\
 	$(srcdir)/icons/package-x-generic_22.png 	\
+	$(srcdir)/icons/system-software-update.png	\
 	$(srcdir)/icons/user-package.png 
 
 CLEANFILES =			\
