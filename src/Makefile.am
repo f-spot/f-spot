@@ -365,9 +365,9 @@ CLEANFILES =					\
 	f-spot					\
 	Cms.dll.mdb				\
 	Cms.dll					\
-	FSpot.Utils.dll.config			\
+	FSpot.Utils.dll.mdb			\
 	FSpot.Utils.dll				\
-	FSpot.Core.dll.config			\
+	FSpot.Core.dll.mdb			\
 	FSpot.Core.dll
 
 
