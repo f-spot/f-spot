@@ -43,6 +43,8 @@ public class Driver {
 		bool view = false;
 		bool slideshow = false;
 		string import_uri = null;
+		
+		FSpot.Global.PhotoDirectory = (string) Preferences.Get(Preferences.STORAGE_PATH);
 
 		for (int i = 0; i < args.Length && !shutdown; i++) {
 			switch (args [i]) {

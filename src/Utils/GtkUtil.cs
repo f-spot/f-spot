@@ -12,7 +12,7 @@ using System;
 
 namespace FSpot.Utils
 {
-	class GtkUtil {
+	public class GtkUtil {
 		public static Gtk.MenuItem MakeMenuItem (Gtk.Menu menu, string l, EventHandler e)
 		{
 			return MakeMenuItem (menu, l, e, true);
@@ -96,5 +96,22 @@ namespace FSpot.Utils
 				}
 			}	
 		}
+
+		public static void ModifyColors (Gtk.Widget widget)
+		{
+			try {
+				widget.ModifyFg (Gtk.StateType.Normal, widget.Style.TextColors [(int)Gtk.StateType.Normal]);
+				widget.ModifyFg (Gtk.StateType.Active, widget.Style.TextColors [(int)Gtk.StateType.Active]);
+				widget.ModifyFg (Gtk.StateType.Selected, widget.Style.TextColors [(int)Gtk.StateType.Selected]);
+				widget.ModifyBg (Gtk.StateType.Normal, widget.Style.BaseColors [(int)Gtk.StateType.Normal]);
+				widget.ModifyBg (Gtk.StateType.Active, widget.Style.BaseColors [(int)Gtk.StateType.Active]);
+				widget.ModifyBg (Gtk.StateType.Selected, widget.Style.BaseColors [(int)Gtk.StateType.Selected]);
+				
+			} catch {
+				widget.ModifyFg (Gtk.StateType.Normal, widget.Style.Black);
+				widget.ModifyBg (Gtk.StateType.Normal, widget.Style.Black);
+			}
+		}
+
 	}
 }	

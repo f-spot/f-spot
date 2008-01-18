@@ -619,9 +619,9 @@ public class ImportCommand : FSpot.GladeDialog
 		photo_scrolled.SetSizeRequest (200, 200);
 		photo_view.Show ();
 
-		//FSpot.Global.ModifyColors (frame_eventbox);
-		FSpot.Global.ModifyColors (photo_scrolled);
-		FSpot.Global.ModifyColors (photo_view);
+		//GtkUtil.ModifyColors (frame_eventbox);
+		GtkUtil.ModifyColors (photo_scrolled);
+		GtkUtil.ModifyColors (photo_view);
 
 		photo_view.Pixbuf = FSpot.Global.IconTheme.LoadIcon ("f-spot", 48, (Gtk.IconLookupFlags)0);
 		photo_view.Fit = true;

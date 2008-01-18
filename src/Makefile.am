@@ -1,6 +1,14 @@
 include $(top_srcdir)/Makefile.include
 EXTRAFLAGS = -unsafe -nowarn:0169 -nowarn:0612 -nowarn:0414 -d:TEST_METADATA -d:BROKEN_RSVG $(NUNIT_DEFINES) $(BEAGLE_DEFINES) $(CSC_DEFINES)
 
+UTILS_CSDISTFILES =				\
+	$(srcdir)/Utils/GtkUtil.cs		\
+	$(srcdir)/Utils/ScreenSaver.cs
+
+CMS_CSDISTFILES =				\
+	$(srcdir)/Cms/Cms.cs			\
+	$(srcdir)/Cms/CctTable.cs
+
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Cairo/Antialias.cs		\
 	$(srcdir)/Cairo/Cairo.cs		\
@@ -46,8 +54,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Cairo/Win32Surface.cs		\
 	$(srcdir)/Cairo/XcbSurface.cs		\
 	$(srcdir)/Cairo/XlibSurface.cs		\
-	$(srcdir)/Cms/Cms.cs			\
-	$(srcdir)/Cms/CctTable.cs		\
 	$(srcdir)/AsyncPixbufLoader.cs		\
 	$(srcdir)/BeagleNotifier.cs		\
 	$(srcdir)/BlockProcessor.cs		\
@@ -214,8 +220,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Unix.cs			\
 	$(srcdir)/Updater.cs			\
 	$(srcdir)/UriCollection.cs		\
-	$(srcdir)/Utils/GtkUtil.cs		\
-	$(srcdir)/Utils/ScreenSaver.cs		\
 	$(srcdir)/Util.cs			\
 	$(srcdir)/Vector.cs			\
 	$(srcdir)/ThumbnailCommand.cs		\
@@ -252,7 +256,15 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/XmpTagsImporter.cs		\
 	$(srcdir)/main.cs
 
-ASSEMBLIES = \
+UTILS_ASSEMBLIES =				\
+	-pkg:gtk-sharp-2.0			\
+	$(LINK_DBUS)
+
+CMS_ASSEMBLIES = 				\
+	$(NUNIT_PKG)				\
+	-pkg:gtk-sharp-2.0
+
+F_SPOT_ASSEMBLIES = 				\
 	$(LINK_DBUS)				\
 	$(LINK_GPHOTO2)				\
 	$(LINK_MONO_ADDINS)			\
@@ -270,6 +282,8 @@ ASSEMBLIES = \
 	-r:Mono.Posix				\
 	-r:Mono.Security			\
 	-r:ICSharpCode.SharpZipLib		\
+	-r:FSpot.Utils.dll			\
+	-r:Cms.dll				\
 	$(NUNIT_PKG)				\
 	-pkg:gtkhtml-sharp-2.0			\
 	-pkg:glade-sharp-2.0			\
@@ -289,25 +303,39 @@ RESOURCES =										\
 
 fspotlibdir = $(libdir)/f-spot
 fspotlib_DATA = f-spot.exe.config	\
-		f-spot.exe		
+		f-spot.exe		\
+		Cms.dll.config		\
+		Cms.dll			\
+		FSpot.Utils.dll
 
 bin_SCRIPTS = f-spot
+
+UTILS_CSFILES = $(UTILS_CSDISTFILES)
+CMS_CSFILES = $(CMS_CSDISTFILES)
 
 F_SPOT_CSFILES = $(F_SPOT_CSDISTFILES)	\
 	Defines.cs			\
 	AssemblyInfo.cs
 
-f-spot.exe: $(F_SPOT_CSFILES) f-spot.glade dces.rdf FSpot.addin.xml
-	$(CSC) -target:winexe -out:$@ $(EXTRAFLAGS) $(F_SPOT_CSFILES) $(ASSEMBLIES) $(RESOURCES)
+Cms.dll: $(CMS_CSFILES)
+	$(CSC) -target:library -out:$@ $(EXTRAFLAGS) $(CMS_CSFILES) $(CMS_ASSEMBLIES)
+
+FSpot.Utils.dll: $(UTILS_CSFILES)
+	$(CSC) -target:library -out:$@ $(EXTRAFLAGS) $(UTILS_CSFILES) $(UTILS_ASSEMBLIES)
+
+f-spot.exe: $(F_SPOT_CSFILES) f-spot.glade dces.rdf FSpot.addin.xml FSpot.Utils.dll Cms.dll
+	$(CSC) -target:winexe -out:$@ $(EXTRAFLAGS) $(F_SPOT_CSFILES) $(F_SPOT_ASSEMBLIES) $(RESOURCES)
 
 all: f-spot.exe
 
 EXTRA_DIST =					\
+	$(UTILS_CSDISTFILES)			\
 	$(F_SPOT_CSDISTFILES)			\
 	dces.rdf				\
 	f-spot.exe.config.in			\
 	f-spot.glade				\
 	f-spot.in				\
+	Cms.dll.config				\
 	FSpot.addin.xml
 
 

@@ -112,8 +112,8 @@ namespace FSpot {
 			ThumbnailGenerator.Default.OnPixbufLoaded += delegate { directory_view.QueueDraw (); };
 
 			image_view = new PhotoImageView (collection);
-			FSpot.Global.ModifyColors (image_view);
-			FSpot.Global.ModifyColors (image_scrolled);
+			GtkUtil.ModifyColors (image_view);
+			GtkUtil.ModifyColors (image_scrolled);
 			image_view.ZoomChanged += HandleZoomChanged;
 			image_view.Item.Changed += HandleItemChanged;
 			image_view.ButtonPressEvent += HandleImageViewButtonPressEvent;

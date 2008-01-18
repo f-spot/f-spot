@@ -1,5 +1,20 @@
 2008-01-18  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Makefile.am: compiling Cms.dll FSpot.Utils as separate
+	assemblies.
+
+	* src/Global.cs: moving some bits elsewhere, ModifyColors in GtkUtil,
+
+	* PreferenceDialog.cs:
+	* Global.cs:
+	* ImportCommand.cs:
+	* main.cs:
+	* SingleView.cs:
+	* PhotoView.cs:
+	* Utils/GtkUtil.cs: minor changes related to the previous ones.
+
+2008-01-18  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Util.cs:
 	* src/Utils/GtkUtil.cs: move GtkUtil from Util.cs. Removed unused bits.
 

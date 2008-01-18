@@ -43,7 +43,7 @@ namespace FSpot {
 			LoadPreference (Preferences.METADATA_EMBED_IN_IMAGE);
 			LoadPreference (Preferences.SCREENSAVER_TAG);
 			LoadPreference (Preferences.GNOME_SCREENSAVER_THEME);
-			if (!Global.CustomPhotoDirectory) {
+			if (Global.PhotoDirectory == (string)Preferences.Get(Preferences.STORAGE_PATH)) {
 				photosdir_chooser.CurrentFolderChanged += HandlePhotosdirChanged;
 				photosdir_chooser.SetCurrentFolder (Global.PhotoDirectory);
 			} else {

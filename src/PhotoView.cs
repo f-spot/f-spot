@@ -593,10 +593,10 @@ public class PhotoView : EventBox {
 
 	private void SetColors ()
 	{
-		FSpot.Global.ModifyColors (tag_view);
-		FSpot.Global.ModifyColors (photo_view);
-		FSpot.Global.ModifyColors (background);
-		FSpot.Global.ModifyColors (photo_view_scrolled);
+		GtkUtil.ModifyColors (tag_view);
+		GtkUtil.ModifyColors (photo_view);
+		GtkUtil.ModifyColors (background);
+		GtkUtil.ModifyColors (photo_view_scrolled);
 	}
 
 	protected override void OnStyleSet (Style previous)
