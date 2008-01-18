@@ -2964,11 +2964,11 @@ public class MainWindow {
 		}
 
 		//if (last_tags_selected_count != tags_selected) {
-		((Gtk.Label)find_add_tag.Child).Text = String.Format (
+		((Gtk.Label)find_add_tag.Child).TextWithMnemonic = String.Format (
 			Catalog.GetPluralString ("Find _Selected Tag", "Find _Selected Tags", tags_selected), tags_selected
 		);
 
-		((Gtk.Label)find_add_tag_with.Child).Text = String.Format (
+		((Gtk.Label)find_add_tag_with.Child).TextWithMnemonic = String.Format (
 			Catalog.GetPluralString ("Find Selected Tag _With", "Find Selected Tags _With", tags_selected), tags_selected
 		);
 
