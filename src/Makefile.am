@@ -59,7 +59,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/BlockProcessor.cs		\
 	$(srcdir)/BitConverter.cs		\
 	$(srcdir)/PhotoArray.cs 		\
-	$(srcdir)/Category.cs			\
+	$(srcdir)/Core/Category.cs			\
 	$(srcdir)/CDExport.cs			\
 	$(srcdir)/ColorDialog.cs		\
 	$(srcdir)/ColorAdjustment.cs		\
@@ -114,7 +114,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/GdkGlx.cs			\
 	$(srcdir)/GlTransition.cs		\
 	$(srcdir)/GladeDialog.cs		\
-	$(srcdir)/Global.cs			\
+	$(srcdir)/Core/Global.cs		\
 	$(srcdir)/GroupAdaptor.cs		\
 	$(srcdir)/GroupSelector.cs		\
 	$(srcdir)/Accelerometer.cs		\
@@ -314,7 +314,7 @@ UTILS_CSFILES = $(UTILS_CSDISTFILES)
 CMS_CSFILES = $(CMS_CSDISTFILES)
 
 F_SPOT_CSFILES = $(F_SPOT_CSDISTFILES)	\
-	Defines.cs			\
+	Core/Defines.cs			\
 	AssemblyInfo.cs
 
 Cms.dll: $(CMS_CSFILES)
