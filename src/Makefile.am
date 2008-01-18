@@ -209,6 +209,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/TimeAdaptor.cs		\
 	$(srcdir)/TimeDialog.cs			\
 	$(srcdir)/TipWindow.cs			\
+	$(srcdir)/UI.Dialog/AboutDialog.cs	\
 	$(srcdir)/Unix.cs			\
 	$(srcdir)/Updater.cs			\
 	$(srcdir)/UriCollection.cs		\

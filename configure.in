@@ -77,6 +77,9 @@ CSC_DEFINES=""
 if pkg-config --atleast-version=2.10 gtk-sharp-2.0; then
    CSC_DEFINES="-d:GTK_2_10"
 fi
+if pkg-config --atleast-version=2.11 gtk-sharp-2.0; then
+   CSC_DEFINES="-d:GTK_2_11"
+fi
 if pkg-config --atleast-version=2.18 gconf-sharp-2.0; then
   CSC_DEFINES="$CSC_DEFINES -d:GCONF_SHARP_2_18"
 fi

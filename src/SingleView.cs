@@ -298,7 +298,7 @@ namespace FSpot {
 
 		private void HandleAbout (object sender, System.EventArgs args)
 		{
-			MainWindow.HandleAbout (sender, args);
+			FSpot.UI.Dialog.AboutDialog.ShowUp ();
 		}
 
 		private void HandleNewWindow (object sender, System.EventArgs args)

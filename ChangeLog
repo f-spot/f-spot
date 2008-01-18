@@ -1,5 +1,17 @@
 2008-01-18  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/UI.Dialog: yet another new folder, yet another new ns
+
+	* src/Makefile.am:
+	* src/UI.Dialog/AboutDialog.cs:
+	* src/MainWindow.cs:
+	* src/SingleView.cs: replaced the deprecated Gnome.About by a 
+	Gtk.AboutDialog.
+
+	* configure.in: added a check for GTK2.11
+
+2008-01-18  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Query/LogicalTerm.cs: not stubbed anymore.
 
 	* src/PhotoStore.cs: ns changes.
