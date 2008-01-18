@@ -59,13 +59,14 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ColorAdjustment.cs		\
 	$(srcdir)/CompatFileChooser.cs		\
 	$(srcdir)/ControlOverlay.cs		\
+	$(srcdir)/Core/DbItem.cs		\
+	$(srcdir)/Core/Tag.cs			\
 	$(srcdir)/Core.cs			\
 	$(srcdir)/DateCommands.cs		\
 	$(srcdir)/Db.cs				\
-	$(srcdir)/DbItem.cs			\
 	$(srcdir)/DBusProxy.cs			\
 	$(srcdir)/Delay.cs			\
-	$(srcdir)/DependentListStore.cs			\
+	$(srcdir)/DependentListStore.cs		\
 	$(srcdir)/DirectoryAdaptor.cs		\
 	$(srcdir)/DirectoryCollection.cs	\
 	$(srcdir)/Editors/Editor.cs		\
@@ -194,7 +195,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/SingleView.cs			\
 	$(srcdir)/SimpleCalendar.cs		\
 	$(srcdir)/SmugMugExport.cs		\
-	$(srcdir)/Tag.cs			\
 	$(srcdir)/TagCommands.cs		\
 	$(srcdir)/TagMenu.cs			\
 	$(srcdir)/TagPopup.cs			\
