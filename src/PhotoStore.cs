@@ -1260,13 +1260,13 @@ public class PhotoStore : DbStore {
 	[Obsolete ("drop this, use IQueryCondition correctly instead")]
 	public Photo [] Query (Tag [] tags, string extra_condition, DateRange range, RollSet importidrange)
 	{
-		return Query (OrTerm.FromTags(tags), extra_condition, range, importidrange, null);
+		return Query (FSpot.OrTerm.FromTags(tags), extra_condition, range, importidrange, null);
 	}
 
 	[Obsolete ("drop this, use IQueryCondition correctly instead")]
 	public Photo [] Query (Tag [] tags, string extra_condition, DateRange range, RollSet importidrange, RatingRange ratingrange)
 	{
-		return Query (OrTerm.FromTags(tags), extra_condition, range, importidrange, ratingrange);
+		return Query (FSpot.OrTerm.FromTags(tags), extra_condition, range, importidrange, ratingrange);
 	}
 
 	[Obsolete ("drop this, use IQueryCondition correctly instead")]

@@ -5,7 +5,8 @@ TESTASSEMBLY = f-spot.tests.dll
 SOURCES = 				\
 	IBrowsableItem.cs		\
 	PhotoStore.cs			\
-	TagStore.cs
+	TagStore.cs			\
+	Query/LogicalTerm.cs		
 
 PKGS = 					\
 	-pkg:mono-nunit			\
