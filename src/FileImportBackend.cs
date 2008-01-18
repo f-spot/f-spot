@@ -5,6 +5,7 @@ using System.Collections;
 using System;
 using FSpot;
 using FSpot.Xmp;
+using FSpot.UI.Dialog;
 using System.IO;
 using Mono.Unix;
 

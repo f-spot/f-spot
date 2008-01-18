@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using Cairo;
 using Mono.Unix;
 using FSpot.Widgets;
+using FSpot.UI.Dialog;
 
 namespace FSpot {
 	public class Sharpener : Loupe {

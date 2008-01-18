@@ -1,5 +1,25 @@
 2008-01-18  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/HigMessageDialog.cs: in the FSpot.UI.Dialog ns.
+
+	* src/Editors/SoftFocus.cs:
+	* src/FileImportBackend.cs:
+	* src/FlickrExport.cs:
+	* src/ColorDialog.cs:
+	* src/RotateCommand.cs:
+	* src/PhotoVersionCommands.cs:
+	* src/PicasaWebExport.cs:
+	* src/ImportCommand.cs:
+	* src/Loupe.cs:
+	* src/ItemAction.cs:
+	* src/MainWindow.cs:
+	* src/PhotoView.cs:
+	* src/TagSelectionWidget.cs:
+	* src/PrintDialog.cs:
+	* src/GalleryExport.cs: ns changes.
+
+2008-01-18  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Makefile.am:
 	* src/Utils/GnomeUtil.cs: move it from Util.cs.
 

@@ -4,6 +4,7 @@ using Cms;
 using Mono.Unix;
 using System.Threading;
 using FSpot.Widgets;
+using FSpot.UI.Dialog;
 
 namespace FSpot {
 	public class ColorDialog : GladeDialog {

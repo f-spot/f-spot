@@ -14,6 +14,8 @@ using System;
 using Cairo;
 using Mono.Unix;
 
+using FSpot.UI.Dialog;
+
 namespace FSpot.Editors {
 	public class SoftFocus : EffectEditor {
 		Widgets.SoftFocus soft; 

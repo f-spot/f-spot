@@ -13,6 +13,7 @@ using Gtk;
 using Mono.Unix;
 using FSpot.Filters;
 using System;
+using FSpot.UI.Dialog;
 
 namespace FSpot {
 	public abstract class ItemAction : Gtk.Action {

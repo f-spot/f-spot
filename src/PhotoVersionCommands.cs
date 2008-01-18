@@ -3,6 +3,7 @@ using Glade;
 using System;
 using Mono.Unix;
 using FSpot;
+using FSpot.UI.Dialog;
 
 public class PhotoVersionCommands {
 

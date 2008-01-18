@@ -16,6 +16,7 @@ using Gdk;
 
 using FSpot;
 using FSpot.Png;
+using FSpot.UI.Dialog;
 
 using Mono.Unix;
 

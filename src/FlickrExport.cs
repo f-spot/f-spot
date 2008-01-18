@@ -3,9 +3,11 @@ using System;
 using System.IO;
 using System.Threading;
 using Mono.Unix;
+
 using FSpot.Filters;
 using FSpot.Widgets;
 using FSpot.Utils;
+using FSpot.UI.Dialog;
 
 namespace FSpot {
 	public class TwentyThreeHQExport : FlickrExport

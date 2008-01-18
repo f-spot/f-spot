@@ -7,6 +7,7 @@ using Mono.Unix;
 
 using FSpot.Xmp;
 using FSpot.Utils;
+using FSpot.UI.Dialog;
 
 namespace FSpot {
 public class PhotoView : EventBox {

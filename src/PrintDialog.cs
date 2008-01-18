@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Gtk;
+using FSpot.UI.Dialog;
 
 namespace FSpot {
 	public class PrintDialog {
