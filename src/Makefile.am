@@ -121,7 +121,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/GroupAdaptor.cs		\
 	$(srcdir)/GroupSelector.cs		\
 	$(srcdir)/Accelerometer.cs		\
-	$(srcdir)/HigMessageDialog.cs		\
 	$(srcdir)/Histogram.cs			\
 	$(srcdir)/IBrowsableItem.cs		\
 	$(srcdir)/ImageView.cs			\
@@ -220,6 +219,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/TimeDialog.cs			\
 	$(srcdir)/TipWindow.cs			\
 	$(srcdir)/UI.Dialog/AboutDialog.cs	\
+	$(srcdir)/UI.Dialog/HigMessageDialog.cs	\
 	$(srcdir)/Unix.cs			\
 	$(srcdir)/Updater.cs			\
 	$(srcdir)/UriCollection.cs		\
