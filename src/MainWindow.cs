@@ -1610,7 +1610,7 @@ public class MainWindow {
 
 	public static void HandleHelp (object sender, EventArgs args)
 	{
-		GnomeUtil.ShowHelp ("f-spot.xml", null, Toplevel.Window.Screen, null);
+		GnomeUtil.ShowHelp ("f-spot.xml", null, FSpot.Global.HelpDirectory, Toplevel.Window.Screen, null);
 	}
 
 	public static void HandleAbout (object sender, EventArgs args)

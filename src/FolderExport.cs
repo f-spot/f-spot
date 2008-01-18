@@ -30,6 +30,7 @@ using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.GZip;
 
 using FSpot.Widgets;
+using FSpot.Utils;
 
 namespace FSpot {
 	public class FolderExport : GladeDialog, FSpot.Extensions.IExporter {

@@ -1,5 +1,22 @@
 2008-01-18  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Makefile.am:
+	* src/Utils/GnomeUtil.cs: move it from Util.cs.
+
+	* src/SmugMugExport.cs:
+	* src/CDExport.cs:
+	* src/SendEmail.cs:
+	* src/FlickrExport.cs:
+	* src/InfoDisplay.cs:
+	* src/FolderExport.cs:
+	* src/PicasaWebExport.cs:
+	* src/FlickrRemote.cs:
+	* src/MainWindow.cs:
+	* src/Util.cs:
+	* src/GalleryExport.cs: required ns changes
+
+2008-01-18  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Makefile.am: compiling FSpot.Core.dll separatly.
 
 	* Makefile.include: how did I miss that thing for so long ?

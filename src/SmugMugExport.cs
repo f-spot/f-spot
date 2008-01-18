@@ -22,6 +22,7 @@ using Gtk;
 
 using FSpot.Filters;
 using FSpot.Widgets;
+using FSpot.Utils;
 
 using Gnome.Keyring;
 using SmugMugNet;

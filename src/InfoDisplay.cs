@@ -1,7 +1,7 @@
 using System;
 using SemWeb;
 using System.IO;
-
+using FSpot.Utils;
 using Mono.Unix;
 
 namespace FSpot {

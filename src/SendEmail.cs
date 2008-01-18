@@ -14,6 +14,8 @@ using System;
 
 using FSpot.Widgets;
 using FSpot.Filters;
+using FSpot.Utils;
+
 using Mono.Unix;
 
 namespace FSpot {

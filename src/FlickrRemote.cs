@@ -15,6 +15,7 @@ using System.Text;
 using System.Collections;
 using FlickrNet;
 using FSpot;
+using FSpot.Utils;
 using FSpot.Filters;
 
 public class FlickrRemote {

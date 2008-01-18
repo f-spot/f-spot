@@ -2,6 +2,7 @@ include $(top_srcdir)/Makefile.include
 EXTRAFLAGS = -unsafe -nowarn:0169 -nowarn:0612 -nowarn:0414 -d:TEST_METADATA -d:BROKEN_RSVG $(NUNIT_DEFINES) $(BEAGLE_DEFINES) $(CSC_DEFINES)
 
 UTILS_CSDISTFILES =				\
+	$(srcdir)/Utils/GnomeUtil.cs		\
 	$(srcdir)/Utils/GtkUtil.cs		\
 	$(srcdir)/Utils/ScreenSaver.cs
 
@@ -260,6 +261,8 @@ F_SPOT_CSDISTFILES =				\
 
 UTILS_ASSEMBLIES =				\
 	-pkg:gtk-sharp-2.0			\
+	-pkg:gnome-sharp-2.0			\
+	-r:Mono.Posix				\
 	$(LINK_DBUS)
 
 CMS_ASSEMBLIES = 				\
