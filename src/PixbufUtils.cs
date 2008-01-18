@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System;
 using System.IO;
 using FSpot;
+using FSpot.Utils;
 
 /**
   1        2       3      4         5            6           7          8

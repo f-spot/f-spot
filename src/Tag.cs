@@ -9,8 +9,8 @@
  */
 
 using System;
-
 using Gdk;
+using FSpot.Utils;
 
 namespace FSpot
 {

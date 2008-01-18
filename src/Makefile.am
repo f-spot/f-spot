@@ -62,6 +62,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Core.cs			\
 	$(srcdir)/DateCommands.cs		\
 	$(srcdir)/Db.cs				\
+	$(srcdir)/DbItem.cs			\
 	$(srcdir)/DBusProxy.cs			\
 	$(srcdir)/Delay.cs			\
 	$(srcdir)/DependentListStore.cs			\
@@ -213,6 +214,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Unix.cs			\
 	$(srcdir)/Updater.cs			\
 	$(srcdir)/UriCollection.cs		\
+	$(srcdir)/Utils/GtkUtil.cs		\
 	$(srcdir)/Utils/ScreenSaver.cs		\
 	$(srcdir)/Util.cs			\
 	$(srcdir)/Vector.cs			\

@@ -20,8 +20,10 @@ using System.Collections;
 using System.IO;
 using System;
 using Mono.Unix;
+
 using FSpot.Widgets;
 using FSpot;
+using FSpot.Utils;
 
 public class ImportCommand : FSpot.GladeDialog
 {

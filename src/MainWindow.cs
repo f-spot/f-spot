@@ -2,7 +2,6 @@ using Gdk;
 using Gtk;
 using GtkSharp;
 using Glade;
-using Gnome;
 using Mono.Unix;
 using System;
 using System.Text;
@@ -18,6 +17,7 @@ using Banshee.Kernel;
 using FSpot;
 using FSpot.Query;
 using FSpot.Widgets;
+using FSpot.Utils;
 using LibGPhoto2;
 
 public class MainWindow {
@@ -1611,10 +1611,6 @@ public class MainWindow {
 	public static void HandleHelp (object sender, EventArgs args)
 	{
 		GnomeUtil.ShowHelp ("f-spot.xml", null, Toplevel.Window.Screen, null);
-//		Gnome.Vfs.Url.Show("ghelp:" + 
-//				FSpot.Global.HelpDirectory +
-//				System.IO.Path.DirectorySeparatorChar +
-//				"f-spot.xml");
 	}
 
 	public static void HandleAbout (object sender, EventArgs args)

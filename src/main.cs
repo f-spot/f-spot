@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using Mono.Unix;
 using Mono.Addins;
 using Mono.Addins.Setup;
+using FSpot.Utils;
 
 namespace FSpot 
 {

@@ -5,20 +5,6 @@ using System;
 using Banshee.Database;
 
 
-// All kinds of database items subclass from this.
-public class DbItem {
-	uint id;
-	public uint Id {
-		get {
-			return id;
-		}
-	}
-
-	protected DbItem (uint id) {
-		this.id = id;
-	}
-}
-
 public class DbItemEventArgs {
 	private DbItem [] items;
 	

@@ -1,5 +1,26 @@
 2008-01-18  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Util.cs:
+	* src/Utils/GtkUtil.cs: move GtkUtil from Util.cs. Removed unused bits.
+
+	* src/Widgets/Rating.cs:
+	* src/PixbufUtils.cs:
+	* src/Db.cs:
+	* src/TagCommands.cs:
+	* src/GroupSelector.cs:
+	* src/Makefile.am:
+	* src/TagQueryWidget.cs:
+	* src/ImportCommand.cs:
+	* src/Tag.cs:
+	* src/main.cs:
+	* src/MainWindow.cs:
+	* src/SingleView.cs:
+	* src/PhotoView.cs:
+	* src/TagPopup.cs:
+	* src/TagMenu.cs: using FSpot.Utils.
+
+2008-01-18  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/UI.Dialog/AboutDialog.cs: get the (biggest) logo back,
 	order authors list (à la banshee)
 	

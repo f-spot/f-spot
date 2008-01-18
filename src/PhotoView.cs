@@ -4,7 +4,9 @@ using Gtk;
 using GtkSharp;
 using System;
 using Mono.Unix;
+
 using FSpot.Xmp;
+using FSpot.Utils;
 
 namespace FSpot {
 public class PhotoView : EventBox {

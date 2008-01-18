@@ -1,6 +1,7 @@
 using Gtk;
 using System;
 using FSpot;
+using FSpot.Utils;
 
 public class TagMenu : Menu {
 	private TagStore tag_store;

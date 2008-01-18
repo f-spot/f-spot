@@ -3,7 +3,7 @@ using Mono.Unix;
 using Gtk;
 using Gdk;
 using GLib;
-
+using FSpot.Utils;
 
 namespace FSpot {
 	public class GroupSelector : Fixed {

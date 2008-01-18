@@ -6,12 +6,13 @@
  *
  * Copyright (c) 2004 Novell, Inc.
  *
- *
+ * This is free software. See COPYING for details.
  */
 
 using System;
 using Mono.Unix;
 using FSpot;
+using FSpot.Utils;
 
 public class TagPopup {
 	public void Activate (Gdk.EventButton eb, Tag tag, Tag [] tags)

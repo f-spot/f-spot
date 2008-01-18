@@ -3,6 +3,8 @@ using Gdk;
 using System;
 using Mono.Unix;
 
+using FSpot.Utils;
+
 namespace FSpot {
 	public class SingleView {
 		[Glade.Widget] Gtk.HBox toolbar_hbox;
