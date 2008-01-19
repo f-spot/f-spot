@@ -1,6 +1,13 @@
+2008-01-19  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/makefile.am:
+	* src/UI.Dialog/HigMessageDialog.cs:
+	* src/UI.Dialog/EditExceptionDialog: moving 
+	EditExceptionDialog to its own file.
+
 2008-01-18  Stephane Delcroix  <sdelcroix@novell.com>
 
-	* src/UIHigMessageDialog.cs:file move.
+	* src/UI.Dialog/HigMessageDialog.cs:file move.
 
 2008-01-18  Stephane Delcroix  <sdelcroix@novell.com>
 
