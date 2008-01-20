@@ -50,7 +50,6 @@ src/GalleryExport.cs
 src/GalleryRemote.cs
 src/GlTransition.cs
 src/GroupSelector.cs
-src/HigMessageDialog.cs
 src/Imaging/Exif.cs
 src/Imaging/IptcFile.cs
 src/ImportCommand.cs
@@ -70,6 +69,7 @@ src/PicasaWebExport.cs
 src/Preferences.cs
 src/ProgressDialog.cs
 src/QueryWidget.cs
+src/RatingMenu.cs
 src/RotateCommand.cs
 src/SendEmail.cs
 src/SingleView.cs
@@ -84,9 +84,12 @@ src/TagStore.cs
 src/Term.cs
 src/ThreadProgressDialog.cs
 src/TimeDialog.cs
+src/UI.Dialog/AboutDialog.cs
+src/UI.Dialog/EditExceptionDialog.cs
 src/Unix.cs
 src/Updater.cs
 src/Util.cs
+src/Utils/GnomeUtil.cs
 src/Widgets/FindBar.cs
 src/XmpTagsImporter.cs
 src/f-spot.glade
