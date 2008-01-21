@@ -107,6 +107,11 @@ namespace FSpot.Widgets
 			IconUnrated.CopyArea (0, 0, IconUnrated.Width, IconUnrated.Height,
 							pbuf, (max_rating - min_rating + 2) * IconUnrated.Width, 0); 
 		}
+
+		public void SetValueFromPosition (int x)
+		{
+			Value = RatingFromPosition (x);
+		}
 		
 		private int RatingFromPosition (double x)
 		{
@@ -182,6 +187,11 @@ namespace FSpot.Widgets
 		
 		[GLib.ConnectBefore]
 		protected override bool OnScrollEvent (EventScroll args)
+		{
+			return HandleScroll (args);
+		}
+
+		public bool HandleScroll (EventScroll args)
 		{
 			if (editable) {
 				switch (args.Direction) {

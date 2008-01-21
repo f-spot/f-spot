@@ -234,6 +234,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/CameraFileSelectionDialog.cs	\
 	$(srcdir)/TagSelectionDialog.cs		\
 	$(srcdir)/Widgets/CairoUtils.cs		\
+	$(srcdir)/Widgets/ComplexMenuItem.cs	\
 	$(srcdir)/Widgets/CompositeUtils.cs	\
 	$(srcdir)/Widgets/Dissolve.cs		\
 	$(srcdir)/Widgets/FindBar.cs		\
@@ -247,6 +248,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/Push.cs		\
 	$(srcdir)/Widgets/QueryView.cs		\
 	$(srcdir)/Widgets/Rating.cs		\
+	$(srcdir)/Widgets/RatingMenuItem.cs	\
 	$(srcdir)/Widgets/Reveal.cs		\
 	$(srcdir)/Widgets/SaneTreeView.cs	\
 	$(srcdir)/Widgets/ScalingIconView.cs	\
