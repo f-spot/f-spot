@@ -149,7 +149,7 @@ public class Driver {
 			AddinManager.Initialize (FSpot.Global.BaseDirectory);
 			AddinManager.Registry.Update (null);
 			SetupService setupService = new SetupService (AddinManager.Registry);
-			setupService.Repositories.RegisterRepository (null, "http://addins.f-spot.org", false);
+			setupService.Repositories.RegisterRepository (null, "http://addins.f-spot.org/" + Defines.VERSION, false);
 
 			bool create = true;
 			int retry_count = 0;
