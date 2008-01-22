@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using Gtk;
 
 using FSpot;
+using FSpot.UI.Dialog;
 using FSpot.Extensions;
 
 namespace RawPlusJpegExtension
