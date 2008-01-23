@@ -1712,6 +1712,7 @@ namespace FSpot.Tiff {
 
 		public virtual void LoadExternal (System.IO.Stream stream)
 		{
+			raw_data = null;
 			if (data_offset != 0) {
 				stream.Seek ((long)Position, System.IO.SeekOrigin.Begin);
 				byte [] data = new byte [count * GetTypeSize ()];
