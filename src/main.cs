@@ -92,10 +92,10 @@ public class Driver {
 					Console.WriteLine ("f-spot: -view option takes one argument");
 					return 1;
 				}
-				if (!System.IO.Directory.Exists (args[i+1]) && !System.IO.File.Exists (args[i+1])) {
-					Console.WriteLine ("f-spot: -view argument must be an existing file or directory");
-					return 1;
-				}
+//				if (!System.IO.Directory.Exists (args[i+1]) && !System.IO.File.Exists (args[i+1])) {
+//					Console.WriteLine ("f-spot: -view argument must be an existing file or directory");
+//					return 1;
+//				}
 				view = true;
 				uris.Add (args [++i]);
 				break;
