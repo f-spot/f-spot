@@ -1504,6 +1504,8 @@ namespace FSpot.Tiff {
 			for (int i = 0; i <  entry_count; i++) {
 				try {
 					directory_offset = BitConverter.ToUInt32 (raw_data, i * 4, endian == Endian.Little);
+					if (directory_offset == offset_origin + 8)
+						throw new Exception ("recursive ifd");
 					Directory [i] = new ImageDirectory (stream, directory_offset, endian);
 				} catch (System.Exception e) {
 					System.Console.WriteLine ("Error loading Subdirectory {0} at {2} of {3}bytes:{4}{1}", 
@@ -1712,7 +1714,6 @@ namespace FSpot.Tiff {
 
 		public virtual void LoadExternal (System.IO.Stream stream)
 		{
-			raw_data = null;
 			if (data_offset != 0) {
 				stream.Seek ((long)Position, System.IO.SeekOrigin.Begin);
 				byte [] data = new byte [count * GetTypeSize ()];
