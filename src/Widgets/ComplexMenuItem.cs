@@ -36,6 +36,14 @@ namespace FSpot.Widgets
 	{
 		private bool is_selected = false;
 
+		public event EventHandler Changed;
+		public void OnChanged (object o, EventArgs e)
+		{
+			EventHandler handler = Changed;
+			if (handler != null)
+				handler (o, e);
+		}
+
 		public ComplexMenuItem() : base()
 		{
 		}

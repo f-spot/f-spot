@@ -21,6 +21,7 @@ namespace FSpot.Extensions
 	[ExtensionNodeChild (typeof (MenuSeparatorNode))]
 	[ExtensionNodeChild (typeof (SubmenuNode))]
 	[ExtensionNodeChild (typeof (MenuGeneratorNode))]
+	[ExtensionNodeChild (typeof (ComplexMenuItemNode))]
 	public class SubmenuNode : MenuNode
 	{
 		public override Gtk.MenuItem GetMenuItem ()

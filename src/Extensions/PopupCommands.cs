@@ -105,22 +105,11 @@ namespace FSpot.Extensions
 		}
 	}
 
-	public class Rate : IMenuGenerator
+	public class Rate : ICommand
 	{
-		private RatingMenu rating_menu;
-
-		public Gtk.Menu GetMenu ()
+		public void Run (object o, EventArgs e)
 		{
-			rating_menu = new RatingMenu (null);
-			rating_menu.RatingSelected += MainWindow.Toplevel.HandleRatingMenuSelected;
-			return (Gtk.Menu) rating_menu;
+			MainWindow.Toplevel.HandleRatingMenuSelected ((o as Widgets.Rating).Value);
 		}
-
-		public void OnActivated (object o, EventArgs e)
-		{
-			if (rating_menu != null)
-				rating_menu.Populate ();
-		}
-
 	}
 }

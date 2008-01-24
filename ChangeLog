@@ -1,5 +1,17 @@
 2008-01-24  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Widgets/ComplexMenuItem.cs:
+	* src/Widgets/RatingMenuItem.cs: 
+	* src/Extensions/ComplexMenuItemNode.cs:
+	* src/Extensions/PopupCommands.cs:
+	* src/Extensions/MenuNode.cs:
+	* src/FSpot.addin.xml:
+	* src/Makefile.am: Using the RatingMenuItem instead of RatingMenu
+
+	* src/RatingMenu.cs: dropped.
+	
+2008-01-24  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* configure.in: rmeove the check for Mono.GetOptions.dll
 
 2008-01-23  Stephane Delcroix  <sdelcroix@novell.com>

@@ -91,6 +91,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Extensions/MenuNode.cs	\
 	$(srcdir)/Extensions/OpenWithMenu.cs	\
 	$(srcdir)/Extensions/CommandMenuItemNode.cs	\
+	$(srcdir)/Extensions/ComplexMenuItemNode.cs	\
 	$(srcdir)/Extensions/PopupCommands.cs	\
 	$(srcdir)/Fader.cs			\
 	$(srcdir)/FlickrExport.cs		\
@@ -193,7 +194,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Query/RollSet.cs		\
 	$(srcdir)/Query/UntaggedCondition.cs	\
 	$(srcdir)/RatingFilter.cs		\
-	$(srcdir)/RatingMenu.cs			\
 	$(srcdir)/QueuedSqliteDatabase.cs	\
 	$(srcdir)/RepairDialog.cs		\
 	$(srcdir)/RotateCommand.cs		\

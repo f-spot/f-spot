@@ -114,6 +114,7 @@ namespace FSpot.Widgets
 		{
 			if (can_activate) {
 				Activate ();
+				OnChanged (o, args);
 			}
 		}
 
