@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.Web;
 using Mono.Unix;
+using FSpot;
 
 /* These classes are based off the documentation at 
  *
