@@ -1,3 +1,7 @@
+2008-01-24  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* configure.in: rmeove the check for Mono.GetOptions.dll
+
 2008-01-23  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Imaging/Tiff.cs: reverting 3591, trying to detect recursion.
