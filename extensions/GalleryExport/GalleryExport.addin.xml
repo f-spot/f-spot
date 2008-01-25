@@ -1,7 +1,7 @@
 <Addin namespace="FSpot"
-	version="1.0"
+	version="1.0.1"
 	name="Gallery Export"
-	description="This extension allows you to export your photos to Gallery."
+	description="This extension allows you to export your photos to PHP Gallery (http://gallery.menalto.com)."
 	author="F-Spot team"
 	url="http://f-spot.org"
 	defaultEnabled="true"
@@ -12,6 +12,6 @@
 	</Dependencies>
 
 	<Extension path = "/FSpot/Menus/Exports">
-        <ExportMenuItem id="Gallery" _label = "Web _Gallery..." class = "FSpot.GalleryExport" />
+        	<ExportMenuItem id="Gallery" _label = "Web _Gallery..." class = "G2Export.GalleryExport" />
 	</Extension>
 </Addin>

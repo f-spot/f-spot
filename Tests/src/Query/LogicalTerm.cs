@@ -24,11 +24,13 @@ namespace FSpot.Query.Tests
 			object [] tests = {
 				" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id = 1)) ", tt1,
 				" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN (2, 3))) ", new OrTerm (tt2, tt3),
-				" photos.tag_id IN (3, 4, 5) ", new OrTerm (tt3, tt4, tt5),
+				" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN (3, 4, 5))) ", new OrTerm (tt3, tt4, tt5),
 				
 			};
 	
 			for (int i=0; i < tests.Length; i+=2) {
+				//System.Console.WriteLine ((tests[i+1] as LogicalTerm).SqlClause ());
+				//System.Console.WriteLine (tests[i]);
 				Assert.AreEqual (tests[i] as string, (tests[i+1] as LogicalTerm).SqlClause ());
 			}
 		}

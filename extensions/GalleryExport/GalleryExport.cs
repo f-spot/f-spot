@@ -7,14 +7,16 @@ using System.Collections.Specialized;
 using System.Web;
 using Mono.Unix;
 
+using FSpot;
 using FSpot.Filters;
 using FSpot.Widgets;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
+using FSpot.Extensions;
 
 using GalleryRemote;
 
-namespace FSpot {
+namespace G2Export {
 	public class GalleryAccount {
 		public GalleryAccount (string name, string url, string username, string password) : this (name, url, username, password, GalleryVersion.VersionUnknown) {}
 		public GalleryAccount (string name, string url, string username, string password, GalleryVersion version)
@@ -300,17 +302,20 @@ namespace FSpot {
 		}
 	}
 	
-	public class AccountDialog : GladeDialog {
+	public class AccountDialog {
 		public AccountDialog (Gtk.Window parent) : this (parent, null, false) { 
-			Dialog.Response += HandleAddResponse;
+			add_dialog.Response += HandleAddResponse;
 			add_button.Sensitive = false;
 		}
 		
-		public AccountDialog (Gtk.Window parent, GalleryAccount account, bool show_error) :  base ("gallery_add_dialog")
+		public AccountDialog (Gtk.Window parent, GalleryAccount account, bool show_error)
 		{
-			this.Dialog.Modal = false;
-			this.Dialog.TransientFor = parent;
-			this.Dialog.DefaultResponse = Gtk.ResponseType.Ok;
+			Glade.XML xml = new Glade.XML (null, "GalleryExport.glade", "gallery_add_dialog", "f-spot");
+			xml.Autoconnect (this);
+			add_dialog = (Gtk.Dialog) xml.GetWidget ("gallery_add_dialog");
+			add_dialog.Modal = false;
+			add_dialog.TransientFor = parent;
+			add_dialog.DefaultResponse = Gtk.ResponseType.Ok;
 			
 			this.account = account;
 
@@ -322,13 +327,13 @@ namespace FSpot {
 				password_entry.Text = account.Password;
 				username_entry.Text = account.Username;
 				add_button.Label = Gtk.Stock.Ok;
-				Dialog.Response += HandleEditResponse;
+				add_dialog.Response += HandleEditResponse;
 			}
 
 			if (remove_button != null)
 				remove_button.Visible = account != null;
 
-			this.Dialog.Show ();
+			add_dialog.Show ();
 
 			gallery_entry.Changed += HandleChanged;
 			url_entry.Changed += HandleChanged;
@@ -372,7 +377,7 @@ namespace FSpot {
 				} catch (System.UriFormatException) {
 					
 					HigMessageDialog md = 
-						new HigMessageDialog (Dialog, 
+						new HigMessageDialog (add_dialog, 
 								      Gtk.DialogFlags.Modal |
 								      Gtk.DialogFlags.DestroyWithParent,
 								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
@@ -383,7 +388,7 @@ namespace FSpot {
 					return;
 				} catch (GalleryRemote.GalleryException e) {
 					HigMessageDialog md = 
-						new HigMessageDialog (Dialog, 
+						new HigMessageDialog (add_dialog, 
 								      Gtk.DialogFlags.Modal |
 								      Gtk.DialogFlags.DestroyWithParent,
 								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
@@ -398,7 +403,7 @@ namespace FSpot {
 					return;
 				} catch (System.Net.WebException we) {
 					HigMessageDialog md = 
-						new HigMessageDialog (Dialog, 
+						new HigMessageDialog (add_dialog, 
 								      Gtk.DialogFlags.Modal |
 								      Gtk.DialogFlags.DestroyWithParent,
 								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
@@ -409,7 +414,7 @@ namespace FSpot {
 					return;
 				}
 			}
-			Dialog.Destroy ();
+			add_dialog.Destroy ();
 		}
 
 		protected void HandleEditResponse (object sender, Gtk.ResponseArgs args)
@@ -424,7 +429,7 @@ namespace FSpot {
 				// NOTE we are using Reject to signal the remove action.
 				GalleryAccountManager.GetInstance ().RemoveAccount (account);
 			}
-			Dialog.Destroy ();				
+			add_dialog.Destroy ();				
 		}
 
 		private GalleryAccount account;
@@ -434,6 +439,8 @@ namespace FSpot {
 		private string username;
 
 		// widgets 
+		[Glade.Widget] Gtk.Dialog add_dialog;
+
 		[Glade.Widget] Gtk.Entry url_entry;
 		[Glade.Widget] Gtk.Entry password_entry;
 		[Glade.Widget] Gtk.Entry gallery_entry;
@@ -446,7 +453,9 @@ namespace FSpot {
 		[Glade.Widget] Gtk.HBox status_area;
 	}
 
-	public class GalleryAddAlbum : GladeDialog {
+	public class GalleryAddAlbum 
+	{
+		[Glade.Widget] Gtk.Dialog add_album_dialog;
 		[Glade.Widget] Gtk.OptionMenu album_optionmenu;
 
 		[Glade.Widget] Gtk.Entry name_entry;
@@ -463,13 +472,17 @@ namespace FSpot {
 		private string description;
 		private string title;
 
-		public GalleryAddAlbum (GalleryExport export, Gallery gallery) : base ("gallery_add_album_dialog")
+		public GalleryAddAlbum (GalleryExport export, Gallery gallery)
 		{
+			Glade.XML xml = new Glade.XML (null, "GalleryExport.glade", "gallery_add_album_dialog", "f-spot");
+			xml.Autoconnect (this);
+			add_album_dialog = (Gtk.Dialog) xml.GetWidget ("gallery_add_album_dialog");
+			add_album_dialog.Modal = true;
 			this.export = export;
 			this.gallery = gallery;	
 			PopulateAlbums ();
 			
-			Dialog.Response += HandleAddResponse;
+			add_album_dialog.Response += HandleAddResponse;
 
 			name_entry.Changed += HandleChanged;
 			description_entry.Changed += HandleChanged;
@@ -539,7 +552,7 @@ namespace FSpot {
 			if (args.ResponseId == Gtk.ResponseType.Ok) {
 				if (!System.Text.RegularExpressions.Regex.IsMatch (name, "^[A-Za-z0-9_-]+$")) {
 					HigMessageDialog md = 
-						new HigMessageDialog (Dialog, 
+						new HigMessageDialog (add_album_dialog, 
 								      Gtk.DialogFlags.Modal |
 								      Gtk.DialogFlags.DestroyWithParent,
 								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
@@ -552,31 +565,34 @@ namespace FSpot {
 				gallery.NewAlbum (parent, name, title, description);
 				export.HandleAlbumAdded (title);
 			}
-			Dialog.Destroy ();
+			add_album_dialog.Destroy ();
 		}
 	}
 
 	
-	public class GalleryExport : GladeDialog, FSpot.Extensions.IExporter {
-		public GalleryExport () : base ("gallery_export_dialog")
+	public class GalleryExport : IExporter {
+		public GalleryExport ()
 		{
 		}
 
 		public void Run (IBrowsableCollection selection)
 		{
+			Glade.XML xml = new Glade.XML (null, "GalleryExport.glade", "gallery_export_dialog", "f-spot");
+			xml.Autoconnect (this);
+			export_dialog = (Gtk.Dialog) xml.GetWidget ("gallery_export_dialog");
+
 			this.items = selection.Items;
 			album_button.Sensitive = false;
 			IconView view = new IconView (selection);
 			view.DisplayDates = false;
 			view.DisplayTags = false;
 
-			Dialog.Modal = false;
-			Dialog.TransientFor = null;
+			export_dialog.Modal = false;
+			export_dialog.TransientFor = null;
 
 			thumb_scrolledwindow.Add (view);
 			view.Show ();
-			Dialog.Show ();
-
+			export_dialog.Show ();
 
 			GalleryAccountManager manager = GalleryAccountManager.GetInstance ();
 			manager.AccountListChanged += PopulateGalleryOptionMenu;
@@ -585,18 +601,25 @@ namespace FSpot {
 			if (edit_button != null)
 				edit_button.Clicked += HandleEditGallery;
 			
-			Dialog.Response += HandleResponse;
+			export_dialog.Response += HandleResponse;
 			connect = true;
 			HandleSizeActive (null, null);
 			Connect ();
 
-			LoadPreference (Preferences.EXPORT_GALLERY_SCALE);
-			LoadPreference (Preferences.EXPORT_GALLERY_SIZE);
-			LoadPreference (Preferences.EXPORT_GALLERY_BROWSER);
-			LoadPreference (Preferences.EXPORT_GALLERY_META);
-			LoadPreference (Preferences.EXPORT_GALLERY_ROTATE);
+			LoadPreference (SCALE_KEY);
+			LoadPreference (SIZE_KEY);
+			LoadPreference (BROWSER_KEY);
+			LoadPreference (META_KEY);
+			LoadPreference (ROTATE_KEY);
 		}
 		
+		public const string EXPORT_SERVICE = "gallery/";
+		public const string SCALE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "scale";
+		public const string SIZE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "size";
+		public const string BROWSER_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "browser";
+		public const string META_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "meta";
+		public const string ROTATE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "rotate";
+
 		private bool scale;
 		private bool rotate;
 		private int size;
@@ -615,6 +638,7 @@ namespace FSpot {
 		private string xml_path;
 
 		// Widgets
+		[Glade.Widget] Gtk.Dialog export_dialog;
 		[Glade.Widget] Gtk.OptionMenu gallery_optionmenu;
 		[Glade.Widget] Gtk.OptionMenu album_optionmenu;
 		
@@ -643,7 +667,7 @@ namespace FSpot {
 		private void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
 			if (args.ResponseId != Gtk.ResponseType.Ok) {
-				Dialog.Destroy ();
+				export_dialog.Destroy ();
 				return;
 			}
 
@@ -662,7 +686,7 @@ namespace FSpot {
 				album = (Album) account.Gallery.Albums [Math.Max (0, album_optionmenu.History)]; 
 				photo_index = 0;
 				
-				Dialog.Destroy ();
+				export_dialog.Destroy ();
 
 				command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
 				command_thread.Name = Catalog.GetString ("Uploading Pictures");
@@ -671,11 +695,11 @@ namespace FSpot {
 				progress_dialog.Start ();
 
 				// Save these settings for next time
-				Preferences.Set (Preferences.EXPORT_GALLERY_SCALE, scale);
-				Preferences.Set (Preferences.EXPORT_GALLERY_SIZE, size);
-				Preferences.Set (Preferences.EXPORT_GALLERY_BROWSER, browser);
-				Preferences.Set (Preferences.EXPORT_GALLERY_META, meta);
-				Preferences.Set (Preferences.EXPORT_GALLERY_ROTATE, rotate);
+				Preferences.Set (SCALE_KEY, scale);
+				Preferences.Set (SIZE_KEY, size);
+				Preferences.Set (BROWSER_KEY, browser);
+				Preferences.Set (META_KEY, meta);
+				Preferences.Set (ROTATE_KEY, rotate);
 			}
 		}
 		
@@ -719,7 +743,7 @@ namespace FSpot {
 					progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"), photo_index, items.Length);
 					
 					
-					Filters.FilterRequest req = new Filters.FilterRequest (item.DefaultVersionUri);
+					FilterRequest req = new FilterRequest (item.DefaultVersionUri);
 
 					filters.Convert (req);
 				try {
@@ -809,7 +833,7 @@ namespace FSpot {
 				PopulateAlbumOptionMenu (account.Gallery);
 				album_button.Sensitive = false;
 				
-				new AccountDialog (this.Dialog, account, true);
+				new AccountDialog (export_dialog, account, true);
 			} 
 		}
 
@@ -887,12 +911,12 @@ namespace FSpot {
 		
 		public void HandleAddGallery (object sender, System.EventArgs args)
 		{
-			new AccountDialog (this.Dialog);
+			new AccountDialog (export_dialog);
 		}
 		
 		public void HandleEditGallery (object sender, System.EventArgs args)
 		{
-			new AccountDialog (this.Dialog, account, false);
+			new AccountDialog (export_dialog, account, false);
 		}
 
 		public void HandleAddAlbum (object sender, System.EventArgs args)
@@ -913,25 +937,25 @@ namespace FSpot {
 			//System.Console.WriteLine ("Setting {0} to {1}", key, val);
 
 			switch (key) {
-			case Preferences.EXPORT_GALLERY_SCALE:
+			case SCALE_KEY:
 				if (scale_check.Active != (bool) val)
 					scale_check.Active = (bool) val;
 				break;
 
-			case Preferences.EXPORT_GALLERY_SIZE:
+			case SIZE_KEY:
 				size_spin.Value = (double) (int) val;
 				break;
 			
-			case Preferences.EXPORT_GALLERY_BROWSER:
+			case BROWSER_KEY:
 				if (browser_check.Active != (bool) val)
 					browser_check.Active = (bool) val;
 				break;
 			
-			case Preferences.EXPORT_GALLERY_META:
+			case META_KEY:
 				if (meta_check.Active != (bool) val)
 					meta_check.Active = (bool) val;
 				break;
-			case Preferences.EXPORT_GALLERY_ROTATE:
+			case ROTATE_KEY:
 				if (rotate_check.Active != (bool) val)
 					rotate_check.Active = (bool) val;
 				break;

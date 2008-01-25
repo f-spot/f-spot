@@ -7,6 +7,9 @@ namespace FSpot
 {
 	public class Preferences
 	{
+		public const string APP_FSPOT = "/apps/f-spot/";
+		public const string APP_FSPOT_EXPORT = APP_FSPOT + "export/";
+
 		public const string MAIN_WINDOW_MAXIMIZED = "/apps/f-spot/ui/maximized";
 
 		public const string MAIN_WINDOW_X = "/apps/f-spot/ui/main_window_x";
@@ -56,12 +59,6 @@ namespace FSpot
 		public const string EXPORT_TOKEN_FLICKR = "/apps/f-spot/export/tokens/flickr"; 
 		public const string EXPORT_TOKEN_23HQ = "/apps/f-spot/export/tokens/23hq"; 
 		public const string EXPORT_TOKEN_ZOOOMR = "/apps/f-spot/export/tokens/zooomr"; 
-
-		public const string EXPORT_GALLERY_SCALE = "/apps/f-spot/export/gallery/scale";
-		public const string EXPORT_GALLERY_SIZE = "/apps/f-spot/export/gallery/size";
-		public const string EXPORT_GALLERY_BROWSER = "/apps/f-spot/export/gallery/browser";
-		public const string EXPORT_GALLERY_META = "/apps/f-spot/export/gallery/meta";
-		public const string EXPORT_GALLERY_ROTATE = "/apps/f-spot/export/gallery/rotate";
 
 		public const string EXPORT_PICASAWEB_SCALE = "/apps/f-spot/export/picasaweb/scale";
 		public const string EXPORT_PICASAWEB_SIZE = "/apps/f-spot/export/picasaweb/size";
@@ -164,7 +161,6 @@ namespace FSpot
 			case SHOW_DATES:
 			case SHOW_RATINGS:
 			case VIEWER_SHOW_FILENAMES:
-			case EXPORT_GALLERY_ROTATE:
 			case EXPORT_PICASAWEB_SCALE:
 			case EXPORT_PICASAWEB_ROTATE:
 			case EXPORT_PICASAWEB_BROWSER:

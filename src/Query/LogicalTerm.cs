@@ -44,7 +44,12 @@ namespace FSpot.Query
 
 		private static string SqlClause (string [] tagids)
 		{
-			return String.Format (" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})) ", String.Join (", ", tagids));
+			if (tagids.Length == 0)
+				return null;
+			if (tagids.Length == 1)
+				return String.Format (" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})) ", tagids[0]);
+			else
+				return String.Format (" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN ({0}))) ", String.Join (", ", tagids));
 		}
 	}
 
@@ -115,7 +120,10 @@ namespace FSpot.Query
 
 		public string SqlClause (string op, string[] items)
 		{
-			return " (" + String.Join (String.Format (" {0} ", op), items) + ") ";
+			if (items.Length == 1)
+				return items [0];
+			else
+				return " (" + String.Join (String.Format (" {0} ", op), items) + ") ";
 		}
 		
 	}
