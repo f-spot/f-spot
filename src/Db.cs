@@ -303,7 +303,7 @@ public class Db : IDisposable {
 			}
 
 		if (upgrader_path == null)
-			throw new DbException ("Unable to find the f-spot-sqlite-upgrade script on your system");
+			throw new DbException ("Failed to upgrade the f-spot sqlite2 database to sqlite3!\n" + "Unable to find the f-spot-sqlite-upgrade script on your system");
 
 		Console.WriteLine ("Running {0}...", upgrader_path);
 		ProcessStartInfo updaterInfo = new ProcessStartInfo (upgrader_path);
@@ -313,7 +313,7 @@ public class Db : IDisposable {
 		string stdError = updater.StandardError.ReadToEnd ();
 		updater.WaitForExit ();
 		if (updater.ExitCode != 0)
-			throw new DbException(stdError);
+			throw new DbException("Failed to upgrade the f-spot sqlite2 database to sqlite3!\n" + stdError);
 
 		//Re-open the db
 		database = new QueuedSqliteDatabase(path);
