@@ -3,7 +3,8 @@ using System.Collections;
 using System.IO;
 using System;
 using Banshee.Database;
-
+using System.Diagnostics;
+using FSpot;
 
 public class DbItemEventArgs {
 	private DbItem [] items;
@@ -28,6 +29,12 @@ public class DbItemEventArgs {
 public delegate void ItemsAddedHandler (object sender, DbItemEventArgs args);
 public delegate void ItemsRemovedHandler (object sender, DbItemEventArgs args);
 public delegate void ItemsChangedHandler (object sender, DbItemEventArgs args);
+
+public class DbException : ApplicationException {
+	public DbException(string msg) : base(msg)
+	{
+	}
+}
 
 public abstract class DbStore {
 	// DbItem cache.
@@ -221,7 +228,9 @@ public class Db : IDisposable {
 		if (new_db && ! create_if_missing)
 			throw new Exception (path + ": File not found");
 
-		database = new QueuedSqliteDatabase(path);	
+		database = new QueuedSqliteDatabase(path);
+		if (database.GetFileVersion(path) == 2)
+			SqliteUpgrade ();
 
 		// Load or create the meta table
  		meta_store = new MetaStore (Database, new_db);
@@ -274,6 +283,41 @@ public class Db : IDisposable {
 		Database.RollbackTransaction ();
 	}
 
+	private void SqliteUpgrade ()
+	{
+		//Close the db
+		database.Dispose();
+
+		string upgrader_path = null;
+		string [] possible_paths = {
+			Path.Combine (Defines.BINDIR, "f-spot-sqlite-upgrade"),
+			"../tools/f-spot-sqlite-upgrade",
+			"/usr/local/bin/f-spot-sqlite-upgrade",
+			"/usr/bin/f-spot-sqlite-upgrade",
+		};
+
+		foreach (string p in possible_paths)
+			if (File.Exists (p)) {
+				upgrader_path = p;
+				break;
+			}
+
+		if (upgrader_path == null)
+			throw new DbException ("Unable to find the f-spot-sqlite-upgrade script on your system");
+
+		Console.WriteLine ("Running {0}...", upgrader_path);
+		ProcessStartInfo updaterInfo = new ProcessStartInfo (upgrader_path);
+		updaterInfo.UseShellExecute = false;
+		updaterInfo.RedirectStandardError = true;
+		Process updater = Process.Start (updaterInfo);
+		string stdError = updater.StandardError.ReadToEnd ();
+		updater.WaitForExit ();
+		if (updater.ExitCode != 0)
+			throw new DbException(stdError);
+
+		//Re-open the db
+		database = new QueuedSqliteDatabase(path);
+	}
 }
 
 

@@ -266,7 +266,7 @@ namespace Banshee.Database
             connection.Close();
         }
 
-        private int GetFileVersion(string path) 
+        public int GetFileVersion(string path) 
         {
             if (!File.Exists(path)) {
                 return 3;

@@ -192,6 +192,11 @@ public class Driver {
 
 					if (core != null)
 						core.UnregisterServer ();
+
+					// if there is a problem with the DB, so is no way we can survive
+					if (e is DbException) {
+						throw;
+					}
 				}
 				if (control == null) {
 					System.Console.WriteLine ("Can't get a connection to the dbus. Trying again...");

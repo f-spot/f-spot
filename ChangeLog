@@ -1,5 +1,20 @@
 2008-01-25  Stephane Delcroix  <sdelcroix@novell.com.
 
+	slightly modified version of a patch from Mirco Bauer to silently
+	upgrade dbs form sqlite2 to sqlite3 whenever possible.
+
+	* src/QueuedSqliteDatabase.cs: expose GetFileVersion.
+
+	* src/Core/Defines.cs.in: expose BINDIR
+
+	* src/main.cs: die on DbException.
+
+	* src/Db.cs: invoke f-spot-sqlite-upgrade on demand
+
+	* tools/f-spot-sqlite-upgrade: better checks and error reporting.
+
+2008-01-25  Stephane Delcroix  <sdelcroix@novell.com.
+
 	* src/Query/LogicalTerm.cs: fixes to pass the tests
 
 2008-01-25  Lorenzo Milesi <maxxer@yetopen.it>
