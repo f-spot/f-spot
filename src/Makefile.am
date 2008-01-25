@@ -114,8 +114,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/FotkiRemote.cs		\
 	$(srcdir)/FormClient.cs			\
 	$(srcdir)/FullScreenView.cs		\
-	$(srcdir)/GalleryRemote.cs		\
-	$(srcdir)/GalleryExport.cs		\
 	$(srcdir)/GdkGlx.cs			\
 	$(srcdir)/GlTransition.cs		\
 	$(srcdir)/GladeDialog.cs		\
