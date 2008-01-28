@@ -29,7 +29,6 @@ namespace FSpot.Extensions
 
 		public override Gtk.MenuItem GetMenuItem ()
 		{
-			Console.WriteLine ("POOOOOOOOOOONG");
 			ComplexMenuItem item = System.Activator.CreateInstance (Type.GetType (widget_type)) as ComplexMenuItem;
 			cmd = (ICommand) Addin.CreateInstance (command_type);
 			
