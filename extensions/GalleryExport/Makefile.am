@@ -22,8 +22,8 @@ PKGS =					\
 	-pkg:glade-sharp-2.0
 
 RESOURCES =				\
-	-resource:$(PLUGIN_MANIFEST)	\
-	-resource:$(PLUGIN_NAME).glade
+	-resource:$(srcdir)/$(PLUGIN_MANIFEST)	\
+	-resource:$(srcdir)/$(PLUGIN_NAME).glade
 
 all: $(PLUGIN_ASSEMBLY)
 
@@ -43,7 +43,8 @@ plugin_DATA =			\
 
 EXTRA_DIST = 			\
 	$(PLUGIN_SOURCES)	\
-	$(PLUGIN_MANIFEST)
+	$(PLUGIN_MANIFEST)	\
+	$(PLUGIN_NAME).glade
 
 CLEANFILES =			\
 	$(PLUGIN_ASSEMBLY)	\
