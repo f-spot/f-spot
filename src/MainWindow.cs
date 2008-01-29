@@ -2569,7 +2569,7 @@ public class MainWindow {
 		query.Untagged = !query.Untagged;
 	}
 	
-	void OnPreferencesChanged (object sender, GConf.NotifyEventArgs args)
+	void OnPreferencesChanged (object sender, NotifyEventArgs args)
 	{
 		LoadPreference (args.Key);
 	}

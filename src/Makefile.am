@@ -1,9 +1,9 @@
 include $(top_srcdir)/Makefile.include
 EXTRAFLAGS = -unsafe -nowarn:0169 -nowarn:0612 -nowarn:0414 -d:TEST_METADATA -d:BROKEN_RSVG $(NUNIT_DEFINES) $(BEAGLE_DEFINES) $(CSC_DEFINES)
 
-UTILS_CSDISTFILES =				\
-	$(srcdir)/Utils/GnomeUtil.cs		\
-	$(srcdir)/Utils/GtkUtil.cs		\
+UTILS_CSDISTFILES =					\
+	$(srcdir)/Utils/GnomeUtil.cs			\
+	$(srcdir)/Utils/GtkUtil.cs			\
 	$(srcdir)/Utils/ScreenSaver.cs
 
 CMS_CSDISTFILES =				\
@@ -14,7 +14,8 @@ CORE_CSDISTFILES =				\
 	$(srcdir)/Core/Category.cs		\
 	$(srcdir)/Core/DbItem.cs		\
 	$(srcdir)/Core/Tag.cs			\
-	$(srcdir)/Core/Global.cs
+	$(srcdir)/Core/Global.cs		\
+	$(srcdir)/Core/IPreferenceBackend.cs
 
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Cairo/Antialias.cs		\
@@ -114,6 +115,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/FotkiRemote.cs		\
 	$(srcdir)/FormClient.cs			\
 	$(srcdir)/FullScreenView.cs		\
+	$(srcdir)/GConfPreferenceBackend.cs	\
 	$(srcdir)/GdkGlx.cs			\
 	$(srcdir)/GlTransition.cs		\
 	$(srcdir)/GladeDialog.cs		\
@@ -164,6 +166,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/MainWindow.cs			\
 	$(srcdir)/MetaStore.cs			\
 	$(srcdir)/MetadataStore.cs		\
+	$(srcdir)/NullPreferenceBackend.cs	\
 	$(srcdir)/Operation.cs			\
 	$(srcdir)/PhotoImageView.cs		\
 	$(srcdir)/PhotoLoader.cs		\

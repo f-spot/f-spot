@@ -122,7 +122,7 @@ namespace FSpot {
 				HandleTagMenuSelected (((tag_option.Menu as Menu).Active as TagMenu.TagMenuItem).Value);
 		}
 
-		void OnPreferencesChanged (object sender, GConf.NotifyEventArgs args)
+		void OnPreferencesChanged (object sender, NotifyEventArgs args)
 		{
 			LoadPreference (args.Key);
 		}

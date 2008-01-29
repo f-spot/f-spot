@@ -110,26 +110,27 @@ namespace FSpot
 		public const string PROXY_BYPASS_LIST = "/system/http_proxy/ignore_hosts";
 
 
-		private static GConf.Client client;
-		private static GConf.NotifyEventHandler changed_handler;
-		private static Dictionary<string, object> cache = new Dictionary<string, object>();
-
-		private static GConf.Client Client 
-		{
+		private static IPreferenceBackend backend;
+		private static NotifyChangedHandler changed_handler;
+		private static IPreferenceBackend Backend {
 			get {
-				if (client == null) {
-					client = new GConf.Client ();
-
-					changed_handler = new GConf.NotifyEventHandler (OnSettingChanged);
-					client.AddNotify ("/apps/f-spot", changed_handler);
-					client.AddNotify ("/apps/gnome-screensaver/themes", changed_handler);
-					client.AddNotify ("/apps/gnome-screensaver/mode", changed_handler);
-					client.AddNotify ("/desktop/gnome/url-handlers/mailto", changed_handler);
-					client.AddNotify ("/system/http_proxy", changed_handler);
+				if (backend == null) {
+#if !NULLPREFERENCEBACKEND
+					backend = new GConfPreferenceBackend ();
+#else
+					backend = new NullPreferenceBackend ();
+#endif
+					changed_handler = new NotifyChangedHandler (OnSettingChanged);
+					backend.AddNotify ("/apps/f-spot", changed_handler);
+					backend.AddNotify ("/apps/gnome-screensaver/themes", changed_handler);
+					backend.AddNotify ("/apps/gnome-screensaver/mode", changed_handler);
+					backend.AddNotify ("/desktop/gnome/url-handlers/mailto", changed_handler);
+					backend.AddNotify ("/system/http_proxy", changed_handler);
 				}
-				return client;
+				return backend;
 			}
 		}
+		private static Dictionary<string, object> cache = new Dictionary<string, object>();
 
 		public static object GetDefault (string key)
 		{
@@ -232,9 +233,9 @@ namespace FSpot
 					return val;
 
 				try {
-					val = Client.Get (key);
+					val = Backend.Get (key);
 					cache.Add (key, val);
-				} catch (GConf.NoSuchKeyException) {
+				} catch (NoSuchKeyException) {
 					val = GetDefault (key);
 
 					if (val != null)
@@ -250,7 +251,7 @@ namespace FSpot
 			lock (cache) {
 				try {
 					cache [key] = value;				
-					Client.Set (key, value);
+					Backend.Set (key, value);
 				} catch {
 					Console.WriteLine ("Unable to write this gconf key :"+key);
 				}
@@ -259,17 +260,17 @@ namespace FSpot
 
 		public static void SetAsBackground (string path)
 		{
-			Client.Set ("/desktop/gnome/background/color_shading_type", "solid");
-			Client.Set ("/desktop/gnome/background/primary_color", "#000000");
-			Client.Set ("/desktop/gnome/background/picture_options", "stretched");
-			Client.Set ("/desktop/gnome/background/picture_opacity", 100);
-			Client.Set ("/desktop/gnome/background/picture_filename", path);
-			Client.Set ("/desktop/gnome/background/draw_background", true);
+			Set ("/desktop/gnome/background/color_shading_type", "solid");
+			Set ("/desktop/gnome/background/primary_color", "#000000");
+			Set ("/desktop/gnome/background/picture_options", "stretched");
+			Set ("/desktop/gnome/background/picture_opacity", 100);
+			Set ("/desktop/gnome/background/picture_filename", path);
+			Set ("/desktop/gnome/background/draw_background", true);
 		}
 
-		public static event GConf.NotifyEventHandler SettingChanged;
+		public static event NotifyChangedHandler SettingChanged;
 
-		static void OnSettingChanged (object sender, GConf.NotifyEventArgs args)
+		static void OnSettingChanged (object sender, NotifyEventArgs args)
 		{
 			lock (cache) {
 				if (cache.ContainsKey (args.Key)) {

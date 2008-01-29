@@ -517,7 +517,7 @@ namespace FSpot {
 			file_selector.Destroy ();
 		}
 
-		void OnPreferencesChanged (object sender, GConf.NotifyEventArgs args)
+		void OnPreferencesChanged (object sender, NotifyEventArgs args)
 		{
 			LoadPreference (args.Key);
 		}
@@ -635,7 +635,7 @@ namespace FSpot {
 				prefs.Dialog.Present ();
 			}
 
-			void OnPreferencesChanged (object sender, GConf.NotifyEventArgs args)
+			void OnPreferencesChanged (object sender, NotifyEventArgs args)
 			{
 				LoadPreference (args.Key);
 			}

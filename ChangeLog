@@ -1,3 +1,20 @@
+2008-01-29  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Makefile.am:
+	* src/IPreferenceBackend.cs:
+	* src/Preferences.cs: abstract the backend operations.
+
+	* src/GConfPreferenceBackend.cs: gconf as it used to be
+
+	* src/NullPreferenceBackend.cs: a null backend, doing nothing but reverting
+	to defaults.
+
+	* src/PreferenceDialog.cs:
+	* src/SingleView.cs:
+	* src/MainWindow.cs: refer to the new handler signatures
+
+	* configure.in: --disable-gconf at configure time
+
 2008-01-25  Stephane Delcroix  <sdelcroix@novell.com.
 
 	slightly modified version of a patch from Mirco Bauer to silently
