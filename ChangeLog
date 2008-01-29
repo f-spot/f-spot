@@ -1,7 +1,7 @@
 2008-01-29  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Makefile.am:
-	* src/IPreferenceBackend.cs:
+	* src/Core/IPreferenceBackend.cs:
 	* src/Preferences.cs: abstract the backend operations.
 
 	* src/GConfPreferenceBackend.cs: gconf as it used to be
