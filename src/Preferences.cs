@@ -115,7 +115,7 @@ namespace FSpot
 		private static IPreferenceBackend Backend {
 			get {
 				if (backend == null) {
-#if !NULLPREFERENCEBACKEND
+#if !NOGCONF
 					backend = new GConfPreferenceBackend ();
 #else
 					backend = new NullPreferenceBackend ();
@@ -256,16 +256,6 @@ namespace FSpot
 					Console.WriteLine ("Unable to write this gconf key :"+key);
 				}
 			}
-		}
-
-		public static void SetAsBackground (string path)
-		{
-			Set ("/desktop/gnome/background/color_shading_type", "solid");
-			Set ("/desktop/gnome/background/primary_color", "#000000");
-			Set ("/desktop/gnome/background/picture_options", "stretched");
-			Set ("/desktop/gnome/background/picture_opacity", 100);
-			Set ("/desktop/gnome/background/picture_filename", path);
-			Set ("/desktop/gnome/background/draw_background", true);
 		}
 
 		public static event NotifyChangedHandler SettingChanged;

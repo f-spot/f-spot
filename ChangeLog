@@ -1,5 +1,18 @@
 2008-01-29  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/MainWindow.cs:
+	* src/SingleView.cs:
+	* src/Preferences.cs:
+	* src/Utils/GnomeUtil.cs: move SetBackgroundImage in GnomeUtil
+
+	* configure.in: cleaning job
+
+	* src/Makefile.am:
+	* src/GConfPreferenceBackend.cs: #if out the parts required by 
+	gconf-sharp
+
+2008-01-29  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Makefile.am:
 	* src/Core/IPreferenceBackend.cs:
 	* src/Preferences.cs: abstract the backend operations.

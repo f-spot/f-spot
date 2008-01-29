@@ -263,10 +263,15 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/XmpTagsImporter.cs		\
 	$(srcdir)/main.cs
 
+if !NOGCONF
+GCONF_PKG = -pkg:gconf-sharp-2.0
+endif
+
 UTILS_ASSEMBLIES =				\
 	-pkg:gtk-sharp-2.0			\
 	-pkg:gnome-sharp-2.0			\
 	-r:Mono.Posix				\
+	$(GCONF_PKG)				\
 	$(LINK_DBUS)
 
 CMS_ASSEMBLIES = 				\
@@ -300,14 +305,13 @@ F_SPOT_ASSEMBLIES = 				\
 	-r:FSpot.Core.dll			\
 	-r:Cms.dll				\
 	$(NUNIT_PKG)				\
+	$(GCONF_PKG)				\
 	-pkg:gtkhtml-sharp-2.0			\
 	-pkg:glade-sharp-2.0			\
-	-pkg:gnome-vfs-sharp-2.0		\
-	-pkg:gconf-sharp-2.0
-
+	-pkg:gnome-vfs-sharp-2.0
 
 RESOURCES =										\
--resource:$(top_srcdir)/icons/f-spot-simple-white.css,f-spot-simple-white.css	\
+	-resource:$(top_srcdir)/icons/f-spot-simple-white.css,f-spot-simple-white.css	\
 	-resource:$(top_srcdir)/icons/f-spot-simple.css,f-spot-simple.css		\
 	-resource:$(top_srcdir)/icons/f-spot.js,f-spot.js				\
 	-resource:$(top_srcdir)/icons/f-spot-not.png,f-spot-not.png			\

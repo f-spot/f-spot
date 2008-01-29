@@ -2507,12 +2507,14 @@ public class MainWindow {
 
 	void HandleSetAsBackgroundCommand (object sender, EventArgs args)
 	{
+#if !NOGCONF
 		Photo current = CurrentPhoto;
 
 		if (current == null)
 			return;
 
-		Preferences.SetAsBackground (current.DefaultVersionUri.LocalPath);
+		GnomeUtil.SetBackgroundImage (current.DefaultVersionUri.LocalPath);
+#endif
 	}
 
 	void HandleSetDateRange (object sender, EventArgs args) {

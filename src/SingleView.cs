@@ -242,12 +242,14 @@ namespace FSpot {
 
 		void HandleSetAsBackgroundCommand (object sender, EventArgs args)
 		{
+#if !NOGCONF
 			IBrowsableItem current = image_view.Item.Current;
 
 			if (current == null)
 				return;
 
-			Preferences.SetAsBackground (current.DefaultVersionUri.LocalPath);
+			GnomeUtil.SetBackgroundImage (current.DefaultVersionUri.LocalPath);
+#endif
 		}
 
 		private void HandleViewToolbar (object sender, System.EventArgs args)

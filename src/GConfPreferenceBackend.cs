@@ -7,6 +7,7 @@
  * This is free software. See COPYING for details.
  */
 
+#if !NOGCONF
 namespace FSpot
 {
 	public class GConfPreferenceBackend : IPreferenceBackend
@@ -44,3 +45,4 @@ namespace FSpot
 		}
 	}
 }
+#endif
