@@ -1,88 +1,15 @@
-namespace FSpot {
-	public delegate void IBrowsableCollectionChangedHandler (IBrowsableCollection collection);
-	public delegate void IBrowsableCollectionItemsChangedHandler (IBrowsableCollection collection, BrowsableArgs args);
+/*
+ * FSpot.BrowsablePointer.cs
+ * 
+ * Author(s):
+ *	Larry Ewing <lewing@novell.com>
+ *
+ * This is free software. See COPYING for details.
+ */
 
-	/*
-	public interface IBrowsableSelection : IBrowsableCollection {
-		int [] ParentPositions ();
-		public void Clear ();
-		public void SelectAll ();
-	}.
-	*/
-
-	public class BrowsableArgs : System.EventArgs {
-		int [] items;
-
-		public int [] Items {
-			get { return items; }
-		}
-
-		public BrowsableArgs (int num)
-		{
-			items = new int [] { num };
-		}
-
-		public BrowsableArgs (int [] items)
-		{
-			this.items = items;
-		}
-	}
-
-	public interface IBrowsableCollection {
-		// FIXME this should really be ToArray ()
-		IBrowsableItem [] Items {
-			get;
-		}
-		
-		int IndexOf (IBrowsableItem item);
-
-		IBrowsableItem this [int index] {
-			get;
-		}
-
-		int Count {
-			get;
-		}
-
-		bool Contains (IBrowsableItem item);
-
-		// FIXME the Changed event needs to pass along information
-		// about the items that actually changed if possible.  For things like
-		// TrayView everything has to be redrawn when a single
-		// item has been added or removed which adds too much
-		// overhead.
-		event IBrowsableCollectionChangedHandler Changed;
-		event IBrowsableCollectionItemsChangedHandler ItemsChanged;
-
-		void MarkChanged (int index);
-	}
-
-	public interface IBrowsableItem {
-		System.DateTime Time {
-			get;
-		}
-		
-		Tag [] Tags {
-			get;
-		}
-
-		System.Uri DefaultVersionUri {
-			get;
-		}
-
-		string Description {
-			get;
-		}
-
-		string Name {
-			get; 
-		}
-
-		uint Rating {
-			get; 
-		}
-	}
-
+namespace FSpot
+{
+	public delegate void ItemChangedHandler (BrowsablePointer pointer, BrowsablePointerChangedArgs old);
 
 	public class BrowsablePointerChangedArgs {
 		IBrowsableItem previous_item;
@@ -102,8 +29,6 @@ namespace FSpot {
 			previous_index = old_index;
 		}
 	}
-
-	public delegate void ItemChangedHandler (BrowsablePointer pointer, BrowsablePointerChangedArgs old);
 
 	public class BrowsablePointer {
 		IBrowsableCollection collection;
@@ -234,6 +159,5 @@ namespace FSpot {
 			else
 				SetIndex (0);
 		}
-
 	}
-}	
+}

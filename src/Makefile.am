@@ -11,10 +11,13 @@ CMS_CSDISTFILES =				\
 	$(srcdir)/Cms/CctTable.cs
 
 CORE_CSDISTFILES =				\
+	$(srcdir)/Core/BrowsablePointer.cs	\
 	$(srcdir)/Core/Category.cs		\
 	$(srcdir)/Core/DbItem.cs		\
 	$(srcdir)/Core/Tag.cs			\
 	$(srcdir)/Core/Global.cs		\
+	$(srcdir)/Core/IBrowsableItem.cs	\
+	$(srcdir)/Core/IBrowsableCollection.cs	\
 	$(srcdir)/Core/IPreferenceBackend.cs
 
 F_SPOT_CSDISTFILES =				\
@@ -123,7 +126,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/GroupSelector.cs		\
 	$(srcdir)/Accelerometer.cs		\
 	$(srcdir)/Histogram.cs			\
-	$(srcdir)/IBrowsableItem.cs		\
 	$(srcdir)/ImageView.cs			\
 	$(srcdir)/ImageTest.cs			\
 	$(srcdir)/ImportBackend.cs		\
@@ -385,5 +387,5 @@ CLEANFILES =					\
 
 
 DISTCLEANFILES = 				\
-	makefile
+	Makefile
 
