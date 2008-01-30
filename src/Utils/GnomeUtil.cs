@@ -36,7 +36,7 @@ namespace FSpot.Utils
 			Gtk.Application.Invoke (disp, null, delegate (object sender, EventArgs args) { ((GnomeUtil) disp).Show (); });
 		}
 	
-		public static void ShowHelp (string filename, string link_id, string help_directory, Gdk.Screen screen, Gtk.Window parent)
+		public static void ShowHelp (string filename, string link_id, string help_directory, Gdk.Screen screen)
 		{
 			try {
 				Gnome.Help.DisplayDesktopOnScreen (

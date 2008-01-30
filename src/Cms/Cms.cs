@@ -324,10 +324,10 @@ namespace Cms {
 			}
 		}
 		
-		internal struct GammaTableStruct {
-			public int Count;
-			public ushort StartOfData;  // ushort array Count entries long
-		}
+//		internal struct GammaTableStruct {
+//			public int Count;
+//			public ushort StartOfData;  // ushort array Count entries long
+//		}
 
 		[DllImport("liblcms-1.0.0.dll")]
 		static extern IntPtr cmsBuildGamma (int entry_count, double gamma);
@@ -377,8 +377,8 @@ namespace Cms {
 		}
 		
 
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern IntPtr cmsAllocGamma (int entry_count);
+//		[DllImport("liblcms-1.0.0.dll")]
+//		static extern IntPtr cmsAllocGamma (int entry_count);
 
 		[DllImport ("libfspot")]
 		static extern IntPtr f_cms_gamma_table_new (ushort [] values, int start, int length);
@@ -658,14 +658,14 @@ namespace Cms {
 		}
 
 
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern IntPtr cmsCreateBCHSWabstractProfile(int nLUTPoints,
-								   double Bright, 
-								   double Contrast,
-								   double Hue,
-								   double Saturation,
-								   int TempSrc, 
-								   int TempDest);
+//		[DllImport("liblcms-1.0.0.dll")]
+//		static extern IntPtr cmsCreateBCHSWabstractProfile(int nLUTPoints,
+//								   double Bright, 
+//								   double Contrast,
+//								   double Hue,
+//								   double Saturation,
+//								   int TempSrc, 
+//								   int TempDest);
 
 		[DllImport("libfspot")]
 		static extern IntPtr f_cmsCreateBCHSWabstractProfile(int nLUTPoints,

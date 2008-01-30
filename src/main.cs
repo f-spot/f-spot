@@ -16,18 +16,18 @@ namespace FSpot
 public class Driver {
 	static void Help ()
 	{
-		Console.WriteLine ("F-Spot  {0} - (c)2003-2007, Novell Inc\n" +
-			"Personal photo management for the GNOME Desktop\n\n" +
-			"Usage: f-spot [options] \n" +
-			"Options:\n" +
-		  	"-b -basedir PARAM   path to the photo database folder\n" +
-		    	"-? -help -usage     Show this help list\n" +
-			"-i -import PARAM    import from the given uri\n" +
-			"-p -photodir PARAM  default import folder\n" +
-			"-shutdown           shutdown a running f-spot instance\n" +
-			"-slideshow          display a slideshow\n" +
-			"-V -version         Display version and licensing information\n" +
-			"-v -view            view file(s) or directory(ies)\n", FSpot.Defines.VERSION);
+		Console.WriteLine ("F-Spot  {0} - (c)2003-2008, Novell Inc" + Environment.NewLine +
+			"Personal photo management for the GNOME Desktop" + Environment.NewLine + Environment.NewLine +
+			"Usage: f-spot [options] " + Environment.NewLine +
+			"Options:" + Environment.NewLine +
+		  	"-b -basedir PARAM   path to the photo database folder" + Environment.NewLine +
+		    	"-? -help -usage     Show this help list" + Environment.NewLine +
+			"-i -import PARAM    import from the given uri" + Environment.NewLine +
+			"-p -photodir PARAM  default import folder" + Environment.NewLine +
+			"-shutdown           shutdown a running f-spot instance" + Environment.NewLine +
+			"-slideshow          display a slideshow" + Environment.NewLine +
+			"-V -version         Display version and licensing information" + Environment.NewLine +
+			"-v -view            view file(s) or directory(ies)" +Environment.NewLine, FSpot.Defines.VERSION);
 	}
 
 	static int Main (string [] args)

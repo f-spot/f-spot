@@ -87,14 +87,17 @@ namespace FSpot.UI.Dialog
 			WrapLicense = true;
 		}
 
-		public static AboutDialog ShowUp ()
+		static AboutDialog ()
 		{
 			if (about == null)
 				about = new AboutDialog ();
 			about.Destroyed += delegate (object o, EventArgs e) {about = null;};
 			about.Response += delegate (object o, Gtk.ResponseArgs e) {if (about != null) about.Destroy ();};
+		}
+
+		public static void ShowUp ()
+		{
 			about.Show ();
-			return about;
 		}
 	}
 }
