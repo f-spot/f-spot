@@ -9,6 +9,7 @@
  */
 
 using System;
+using FSpot.Utils;
 
 namespace FSpot.Query {
 	public class DateRange : IQueryCondition

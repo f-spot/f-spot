@@ -2,8 +2,10 @@ include $(top_srcdir)/Makefile.include
 EXTRAFLAGS = -unsafe -nowarn:0169 -nowarn:0612 -nowarn:0414 -d:TEST_METADATA -d:BROKEN_RSVG $(NUNIT_DEFINES) $(BEAGLE_DEFINES) $(CSC_DEFINES)
 
 UTILS_CSDISTFILES =					\
+	$(srcdir)/Utils/DbUtils.cs			\
 	$(srcdir)/Utils/GnomeUtil.cs			\
 	$(srcdir)/Utils/GtkUtil.cs			\
+	$(srcdir)/Utils/UriUtils.cs			\
 	$(srcdir)/Utils/ScreenSaver.cs
 
 CMS_CSDISTFILES =				\
@@ -76,6 +78,8 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/CompatFileChooser.cs		\
 	$(srcdir)/ControlOverlay.cs		\
 	$(srcdir)/Core.cs			\
+	$(srcdir)/Core/Photo.cs			\
+	$(srcdir)/Core/PhotoVersion.cs		\
 	$(srcdir)/DateCommands.cs		\
 	$(srcdir)/Db.cs				\
 	$(srcdir)/DBusProxy.cs			\
@@ -176,7 +180,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PhotoQuery.cs			\
 	$(srcdir)/PhotoStore.cs			\
 	$(srcdir)/PhotoTagMenu.cs		\
-	$(srcdir)/PhotoVersion.cs		\
 	$(srcdir)/PhotoVersionCommands.cs	\
 	$(srcdir)/PhotoVersionMenu.cs		\
 	$(srcdir)/PhotoView.cs			\
@@ -282,7 +285,9 @@ CMS_ASSEMBLIES = 				\
 
 CORE_ASSEMBLIES =				\
 	-pkg:gtk-sharp-2.0			\
+	-pkg:gnome-vfs-sharp-2.0		\
 	-r:Cms.dll				\
+	-r:Mono.Posix				\
 	-r:FSpot.Utils.dll
 
 F_SPOT_ASSEMBLIES = 				\

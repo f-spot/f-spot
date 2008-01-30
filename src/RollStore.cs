@@ -14,7 +14,7 @@ using System.Collections;
 using System.IO;
 using System;
 using Banshee.Database;
-
+using FSpot.Utils;
 public class Roll : DbItem
 {
 	// The time is always in UTC.

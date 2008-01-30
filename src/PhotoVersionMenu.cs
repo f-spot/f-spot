@@ -1,7 +1,7 @@
 using Gtk;
 using GtkSharp;
 using System;
-
+using FSpot;
 public class PhotoVersionMenu : Menu {
 	private uint version_id;
 	public uint VersionId {

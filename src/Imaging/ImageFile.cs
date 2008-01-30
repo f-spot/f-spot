@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using FSpot.Utils;
 
 namespace FSpot {
 	public class ImageFormatException : ApplicationException {
@@ -15,7 +16,7 @@ namespace FSpot {
 
 		public ImageFile (string path) 
 		{
-			this.uri = UriList.PathToFileUri (path);
+			this.uri = UriUtils.PathToFileUri (path);
 		}
 		
 		public ImageFile (Uri uri)
@@ -152,7 +153,7 @@ namespace FSpot {
 
 		public static bool HasLoader (string path)
 		{
-			return HasLoader (UriList.PathToFileUri (path));
+			return HasLoader (UriUtils.PathToFileUri (path));
 		}
 		
 		public static bool HasLoader (Uri uri)
@@ -166,7 +167,7 @@ namespace FSpot {
 
 		public static ImageFile Create (string path)
 		{
-			return Create (UriList.PathToFileUri (path));
+			return Create (UriUtils.PathToFileUri (path));
 		}
 
 		public static ImageFile Create (Uri uri)

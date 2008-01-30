@@ -12,6 +12,8 @@
 using System;
 using System.Collections;
 
+using FSpot.Utils;
+
 namespace FSpot.Filters {
 
 	public class FilterRequest : IDisposable
@@ -28,7 +30,7 @@ namespace FSpot.Filters {
 			temp_uris = new ArrayList ();
 		}
 
-		public FilterRequest (string path) : this (UriList.PathToFileUri (path))
+		public FilterRequest (string path) : this (UriUtils.PathToFileUri (path))
 		{
 		}
 
@@ -83,7 +85,7 @@ namespace FSpot.Filters {
 			} else
 				imgtemp = System.IO.Path.GetTempFileName ();
 
-			Uri uri = UriList.PathToFileUri (imgtemp);
+			Uri uri = UriUtils.PathToFileUri (imgtemp);
 			if (!temp_uris.Contains (uri))
 				temp_uris.Add (uri);
 			return uri;

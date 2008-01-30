@@ -1,3 +1,5 @@
+using FSpot.Utils;
+
 namespace FSpot {
 	public class PhotoLoader {
 		public PhotoQuery query;
@@ -42,7 +44,7 @@ namespace FSpot {
 
 		static public Gdk.Pixbuf ValidateThumbnail (string photo_path, Gdk.Pixbuf pixbuf)
 		{			
-			System.Uri uri = UriList.PathToFileUri (photo_path);
+			System.Uri uri = UriUtils.PathToFileUri (photo_path);
 			return ValidateThumbnail (uri, pixbuf);
 		}
 		

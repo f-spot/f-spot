@@ -14,6 +14,7 @@ using System.IO;
 using System.Collections;
 using System.Xml;
 
+using FSpot.Utils;
 namespace FSpot {
 	public class FileBrowsableItem : IBrowsableItem, IDisposable
 	{
@@ -28,7 +29,7 @@ namespace FSpot {
 
 		public FileBrowsableItem (string path)
 		{
-			this.uri = UriList.PathToFileUri (path);
+			this.uri = UriUtils.PathToFileUri (path);
 		}
 
 		protected ImageFile Image {

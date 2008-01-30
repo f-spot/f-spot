@@ -15,6 +15,7 @@ using System;
 using Banshee.Database;
 using Banshee.Kernel;
 using FSpot.Jobs;
+using FSpot.Utils;
 
 public abstract class Job : DbItem, IJob
 {

@@ -43,7 +43,7 @@ namespace FSpot {
 		public SingleView () : this (FSpot.Global.HomeDirectory) {}
 
 
-		public SingleView (string path) : this (UriList.PathToFileUri (path)) 
+		public SingleView (string path) : this (UriUtils.PathToFileUri (path)) 
 		{
 		}
 

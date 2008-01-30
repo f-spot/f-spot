@@ -9,13 +9,14 @@
  */
 
 using System;
+using FSpot.Utils;
 
 namespace FSpot.Filters {
 	public class UniqueNameFilter : IFilter
 	{
 		Uri destination;
 
-		public UniqueNameFilter (string destination) : this (UriList.PathToFileUri (destination))
+		public UniqueNameFilter (string destination) : this (UriUtils.PathToFileUri (destination))
 		{}
 
 		public UniqueNameFilter (Uri destination)
@@ -39,7 +40,7 @@ namespace FSpot.Filters {
 			}
 			
 			System.IO.File.Copy (request.Current.LocalPath, dest);
-			request.Current = UriList.PathToFileUri (dest); 
+			request.Current = UriUtils.PathToFileUri (dest); 
 			return true;
 		}
 	}

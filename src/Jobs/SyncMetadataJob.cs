@@ -9,6 +9,7 @@
 
 using System;
 using Banshee.Kernel;
+using FSpot.Utils;
 
 namespace FSpot.Jobs {
 	public class SyncMetadataJob : Job
@@ -34,12 +35,64 @@ namespace FSpot.Jobs {
 			Console.WriteLine ("Syncing metadata to file...");
 			try {
 				Photo photo = FSpot.Core.Database.Photos.Get (Convert.ToUInt32 (JobOptions)) as Photo;
-				photo.WriteMetadataToImage ();
+				WriteMetadataToImage (photo);
 				return true;
 			} catch (System.Exception e) {
 				Console.WriteLine ("Error syncing metadata to file\n{0}", e);
 			}
 			return false;
+		}
+
+		//FIXME: Won't work on non-file uris
+		void WriteMetadataToImage (Photo photo)
+		{
+			string path = photo.DefaultVersionUri.LocalPath;
+	
+			using (FSpot.ImageFile img = FSpot.ImageFile.Create (photo.DefaultVersionUri)) {
+				if (img is FSpot.JpegFile) {
+					FSpot.JpegFile jimg = img as FSpot.JpegFile;
+				
+					jimg.SetDescription (photo.Description);
+					jimg.SetDateTimeOriginal (photo.Time.ToLocalTime ());
+					jimg.SetXmp (UpdateXmp (photo, jimg.Header.GetXmp ()));
+	
+					jimg.SaveMetaData (path);
+				} else if (img is FSpot.Png.PngFile) {
+					FSpot.Png.PngFile png = img as FSpot.Png.PngFile;
+				
+					if (img.Description != photo.Description)
+						png.SetDescription (photo.Description);
+				
+					png.SetXmp (UpdateXmp (photo, png.GetXmp ()));
+	
+					png.Save (path);
+				}
+			}
+		}
+		
+		private static FSpot.Xmp.XmpFile UpdateXmp (FSpot.IBrowsableItem item, FSpot.Xmp.XmpFile xmp)
+		{
+			if (xmp == null) 
+				xmp = new FSpot.Xmp.XmpFile ();
+	
+			Tag [] tags = item.Tags;
+			string [] names = new string [tags.Length];
+			
+			for (int i = 0; i < tags.Length; i++)
+				names [i] = tags [i].Name;
+			
+			xmp.Store.Update ("dc:subject", "rdf:Bag", names);
+			try { 
+				xmp.Store.Update ("xmp:Rating", (item as Photo).Rating.ToString());
+	// FIXME - Should we also store/overwrite the Urgency field?
+	//			uint urgency_value = (item as Photo).Rating + 1; // Urgency valid values 1 - 8
+	//			xmp.Store.Update ("photoshop:Urgency", urgency_value.ToString());
+			} catch (NotRatedException) {
+				xmp.Store.Delete ("xmp:Rating");
+			}
+			xmp.Dump ();
+	
+			return xmp;
 		}
 	}
 }

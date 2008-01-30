@@ -15,7 +15,7 @@ using Cairo;
 using Mono.Unix;
 
 using FSpot.UI.Dialog;
-
+using FSpot.Utils;
 namespace FSpot.Editors {
 	public class SoftFocus : EffectEditor {
 		Widgets.SoftFocus soft; 
@@ -102,7 +102,7 @@ namespace FSpot.Editors {
 					// goodies we'll need.
 					//Gnome.Vfs.Result result = Gnome.Vfs.Result.Ok;
 					//result = Gnome.Vfs.Xfer.XferUri (new Gnome.Vfs.Uri (UriList.PathToFileUri (tmp).ToString ()),
-					Gnome.Vfs.Xfer.XferUri (new Gnome.Vfs.Uri (UriList.PathToFileUri (tmp).ToString ()),
+					Gnome.Vfs.Xfer.XferUri (new Gnome.Vfs.Uri (UriUtils.PathToFileUri (tmp).ToString ()),
 						new Gnome.Vfs.Uri (target.Uri.ToString ()),
 						Gnome.Vfs.XferOptions.Default,
 						Gnome.Vfs.XferErrorMode.Abort, 

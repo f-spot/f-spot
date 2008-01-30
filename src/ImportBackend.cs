@@ -1,3 +1,4 @@
+using FSpot;
 using Gdk;
 
 public abstract class ImportBackend {

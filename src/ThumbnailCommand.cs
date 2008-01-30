@@ -1,5 +1,6 @@
 using System;
 using Gtk;
+using FSpot;
 
 public class ThumbnailCommand {
 	
