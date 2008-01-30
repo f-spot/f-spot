@@ -37,9 +37,11 @@ namespace FSpot.Query
 			set { maxRating = value; }
 		}
 
-		public RatingRange (RatingType ratetype) {
+		RatingRange (RatingType ratetype) {
 			this.ratetype = ratetype;
 		}
+
+		public static RatingRange Unrated = new RatingRange (RatingType.Unrated);
 
 		public RatingRange (uint min_rating)
 		{

@@ -1,6 +1,16 @@
-using Gnome;
+/*
+ * FSpot.PhotoQuery.cs
+ * 
+ * Author(s):
+ *	Larry Ewing  <lewing@novell.com>
+ * 	Stephane Delcroix  <stephane@delcroix.org>
+ *
+ * This is free software. See COPYING for details.
+ */
+
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using FSpot.Query;
 
 namespace FSpot {
@@ -10,9 +20,6 @@ namespace FSpot {
 		private Term terms;
 		private Tag [] tags;
 		private string extra_condition;
-		private DateRange range = null;
-		private RollSet roll_set = null;
-		private RatingRange ratingrange = null;
 		
 		// Constructor
 		public PhotoQuery (PhotoStore store)
@@ -23,13 +30,11 @@ namespace FSpot {
 			this.store.ItemsAddedOverDBus += delegate { RequestReload(); };
 			this.store.ItemsRemovedOverDBus += delegate { RequestReload(); };
 
-			photos = store.Query ((Tag [])null, null, range, roll_set, ratingrange);
+			photos = store.Query ((Tag [])null, null, Range, RollSet, RatingRange);
 		}
 
 		public int Count {
-			get {
-				return photos.Length;
-			}
+			get { return photos.Length;}
 		}
 		
 		public bool Contains (IBrowsableItem item) {
@@ -42,29 +47,57 @@ namespace FSpot {
 		public event FSpot.IBrowsableCollectionItemsChangedHandler ItemsChanged;
 		
 		public IBrowsableItem this [int index] {
-			get {
-				return photos [index];
-			}
+			get { return photos [index]; }
 		}
 
 		public Photo [] Photos {
-			get {
-				return photos;
-			}
+			get { return photos; }
 		}
 
 		public IBrowsableItem [] Items {
-			get {
-				return (IBrowsableItem [])photos;
-			}
+			get { return (IBrowsableItem [])photos; }
 		}
 		
 		public PhotoStore Store {
-			get {
-				return store;
-			}
+			get { return store; }
 		}
 		
+
+		//Query Conditions
+		private Dictionary<Type, IQueryCondition> conditions;
+		private Dictionary<Type, IQueryCondition> Conditions {
+			get {
+				if (conditions == null)
+					conditions = new Dictionary<Type, IQueryCondition> ();
+				return conditions;
+			}
+		}
+
+		internal bool SetCondition (IQueryCondition condition)
+		{
+			if (condition == null)
+				throw new ArgumentNullException ("condition");
+			if (Conditions.ContainsKey (condition.GetType ()) && Conditions [condition.GetType ()] == condition)
+				return false;
+			Conditions [condition.GetType ()] = condition;
+			return true;
+		}
+
+		internal IQueryCondition GetCondition<T> ()
+		{
+			if (Conditions.ContainsKey (typeof (T)))
+				return Conditions [typeof (T)];
+			return null;
+		}
+
+		internal bool UnSetCondition<T> ()
+		{
+			if (!Conditions.ContainsKey (typeof(T)))
+				return false;
+			Conditions.Remove (typeof(T));
+			return true;
+		}
+
 		public Term Terms {
 			get {
 				return terms;
@@ -92,79 +125,61 @@ namespace FSpot {
  		}
 		
 		public DateRange Range {
-			get { return range; }
+			get { return GetCondition<DateRange> () as DateRange; }
 			set {
-				if (value == range)
-					return;
-
-				range = value;
-				RequestReload ();
+				if (value == null && UnSetCondition<DateRange> () || value != null && SetCondition (value))
+					RequestReload ();
 			}
 		}
 		
 		private bool untagged = false;
 		public bool Untagged {
-			get {
-				return untagged;
-			}
+			get { return untagged; }
 			set {
 				if (untagged != value) {
 					untagged = value;
-
-					if (untagged) {
-						tags = null;
+					if (untagged)
 						extra_condition = null;
-					}
-					
 					RequestReload ();
 				}
 			}
 		}
 
 		public RollSet RollSet {
-			get { return roll_set; }
+			get { return GetCondition<RollSet> () as RollSet; }
 			set {
-				if (value == roll_set)
-					return;
-
-				roll_set = value;	
- 				RequestReload ();
- 			}
-		}
-
-		public RatingRange RatingRange {
-			get { return ratingrange; }
-			set {
-				if (value == ratingrange)
-					return;
-
-				ratingrange = value;
-				RequestReload ();
+				if (value == null && UnSetCondition<RollSet> () || value != null && SetCondition (value))
+					RequestReload ();
 			}
 		}
 
-		private bool unrated = false;
-		public bool Unrated {
-			get { return unrated; }
+		public RatingRange RatingRange {
+			get { return GetCondition<RatingRange> () as RatingRange; }
 			set {
-				if (value == unrated)
-					return;
+				if (value == null && UnSetCondition<RatingRange>() || value != null && SetCondition (value))
+					RequestReload ();
+			}
+		}
 
-				unrated = value;
-				if (unrated)
-					ratingrange = new RatingRange (RatingRange.RatingType.Unrated);
+		public bool Unrated {
+			get {
+				return (GetCondition<RatingRange> () != null && GetCondition<RatingRange> () == RatingRange.Unrated);
+			}
+			set {
+				if (value)
+					RatingRange = RatingRange.Unrated;
 				else
-					ratingrange = null;
-				RequestReload ();
+					if (UnSetCondition<RatingRange> ())
+						RequestReload ();
 			}
 		}
 		
 		public void RequestReload ()
 		{
 			if (untagged)
-				photos = store.Query (new UntaggedCondition (), range, roll_set, ratingrange);
+				photos = store.Query (new UntaggedCondition (), Range, RollSet, RatingRange);
 			else
-				photos = store.Query (terms, extra_condition, range, roll_set, ratingrange);
+				photos = store.Query (terms, extra_condition, Range, RollSet, RatingRange);
 
 			//this event will allow resorting the query content
 			if (PreChanged != null)

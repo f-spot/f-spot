@@ -1,3 +1,9 @@
+2008-01-30  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* Query/RatingRange.cs: Unrated as a static field.
+
+	* PhotoQuery.cs: Start abstracting the conditions.
+
 2008-01-29  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/RotateCommand.cs: Fix problems with translatability of rotation
