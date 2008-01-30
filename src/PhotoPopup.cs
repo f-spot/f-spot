@@ -20,6 +20,10 @@ namespace FSpot
 	public class PhotoPopup : Gtk.Menu
 	{
 
+		protected PhotoPopup (IntPtr handle) : base (handle)
+		{
+		}
+
 		public PhotoPopup () : base ()
 		{
 			foreach (MenuNode node in AddinManager.GetExtensionNodes ("/FSpot/Menus/PhotoPopup"))
