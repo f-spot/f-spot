@@ -28,7 +28,7 @@ public class PhotoVersionCommands {
 
 			if (photo.VersionNameExists (new_name)
 			    && ! (request_type == RequestType.Rename
-				  && new_name == photo.GetVersionName (photo.DefaultVersionId))) {
+				  && new_name == photo.GetVersion (photo.DefaultVersionId).Name)) {
 				already_in_use_label.Markup = "<small>This name is already in use</small>";
 				ok_button.Sensitive = false;
 				return;
@@ -61,7 +61,7 @@ public class PhotoVersionCommands {
 			case RequestType.Rename:
 				this.Dialog.Title = Catalog.GetString ("Rename Version");
 				prompt_label.Text = Catalog.GetString ("New name:");
-				version_name_entry.Text = photo.GetVersionName (photo.DefaultVersionId);
+				version_name_entry.Text = photo.GetVersion (photo.DefaultVersionId).Name;
 				version_name_entry.SelectRegion (0, -1);
 				break;
 			}
@@ -79,7 +79,7 @@ public class PhotoVersionCommands {
 			ResponseType response = (ResponseType) this.Dialog.Run ();
 
 			name = version_name_entry.Text;
-			if (request_type == RequestType.Rename && name == photo.GetVersionName (photo.DefaultVersionId))
+			if (request_type == RequestType.Rename && name == photo.GetVersion (photo.DefaultVersionId).Name)
 				response = ResponseType.Cancel;
 
 			this.Dialog.Destroy ();
@@ -139,7 +139,7 @@ public class PhotoVersionCommands {
 			dialog.AddButton (Catalog.GetString ("Delete"), (int) ResponseType.Ok);
 			dialog.DefaultResponse = ResponseType.Ok;
 
-			string version_name = photo.GetVersionName (photo.DefaultVersionId);
+			string version_name = photo.GetVersion (photo.DefaultVersionId).Name;
 			Label label = new Label (String.Format (Catalog.GetString ("Really delete version \"{0}\"?"), version_name));
 			label.Show ();
 			dialog.VBox.PackStart (label, false, true, 6);;

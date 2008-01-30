@@ -52,7 +52,7 @@ public class PhotoVersionMenu : Menu {
 
 		int i = 0;
 		foreach (uint id in version_ids) {
-			MenuItem menu_item = new MenuItem (photo.GetVersionName (id));
+			MenuItem menu_item = new MenuItem (photo.GetVersion (id).Name);
 			menu_item.Show ();
 			menu_item.Sensitive = true;
 			menu_item.Activated += new EventHandler (HandleMenuItemActivated);

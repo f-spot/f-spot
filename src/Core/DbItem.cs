@@ -17,5 +17,3 @@ public class DbItem {
 		this.id = id;
 	}
 }
-
-

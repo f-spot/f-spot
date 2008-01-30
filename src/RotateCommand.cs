@@ -127,7 +127,7 @@ namespace FSpot {
 			if (item is Photo) {
 				Photo p = (Photo) item;
 
-				original_path = p.GetVersionPath (p.VersionIds [version_index++]);
+				original_path = p.VersionUri (p.VersionIds [version_index++]).LocalPath;
 				done = (version_index >= p.VersionIds.Length);
 			} else {
 				original_path = item.DefaultVersionUri.LocalPath;

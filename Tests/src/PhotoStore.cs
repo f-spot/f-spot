@@ -29,7 +29,7 @@ namespace FSpot.Tests
 			db.Init (path, true);
 
 			foreach (string image in images) {
-				File.Copy ("../images/" + image, "./" + image);
+				File.Copy ("../images/" + image, "./" + image, true);
 			}
 
 		}

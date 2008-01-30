@@ -27,13 +27,10 @@ namespace FSpot
 		{}
 	}
 
-	public partial class Photo : DbItem, IComparable, FSpot.IBrowsableItem {
+	public class Photo : DbItem, IComparable, IBrowsableItem {
 		// IComparable 
 		public int CompareTo (object obj) {
 			if (this.GetType () == obj.GetType ()) {
-				// FIXME this is way under powered for a real compare in the
-				// equal case but for now it should do.
-	
 				return Compare (this, (Photo)obj);
 			} else if (obj is DateTime) {
 				return this.time.CompareTo ((DateTime)obj);
@@ -277,22 +274,7 @@ namespace FSpot
 	
 			return false;
 		}
-	
-		[Obsolete ("use GetVersion (uint).Name")]
-		public string GetVersionName (uint version_id)
-		{
-			PhotoVersion v = GetVersion (version_id) as PhotoVersion;
-			if (v != null)
-				return v.Name;
-			return null;
-		}
-	
-		[Obsolete ("Use VersionUri (uint) instead")]
-	        public string GetVersionPath (uint version_id)
-		{
-			return VersionUri (version_id).LocalPath;
-		}
-	
+
 		public System.Uri VersionUri (uint version_id)
 		{
 			if (!Versions.ContainsKey (version_id))
@@ -332,7 +314,7 @@ namespace FSpot
 					version = CreateDefaultModifiedVersion (DefaultVersionId, false);
 	
 				try {
-					string version_path = GetVersionPath (version);
+					string version_path = VersionUri (version).LocalPath;
 				
 					using (Stream stream = System.IO.File.OpenWrite (version_path)) {
 						img.Save (buffer, stream);
@@ -577,7 +559,6 @@ namespace FSpot
 		}
 	
 
-
 		// Constructor
 		public Photo (uint id, long unix_time, System.Uri uri)
 			: base (id)
@@ -594,19 +575,5 @@ namespace FSpot
 			// database.
 			AddVersionUnsafely (OriginalVersionId, uri, Catalog.GetString ("Original"), true);
 		}
-	
-		[Obsolete ("Use Photo (uint, long, Uri) instead")]
-		public Photo (uint id, long unix_time, string directory_path, string name)
-			: this (id, unix_time, System.IO.Path.Combine (directory_path, name))
-		{
-		}
-	
-		[Obsolete ("Use Photo (uint, long, Uri) instead")]
-		public Photo (uint id, long unix_time, string path)
-			: this (id, unix_time, UriUtils.PathToFileUri (path))
-		{
-		}
-	
 	}
-	
 }

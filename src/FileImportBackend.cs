@@ -82,7 +82,7 @@ public class FileImportBackend : ImportBackend {
 				if (id == Photo.OriginalVersionId)
 				        name = p.Name;
 				else 
-					name = (new System.IO.FileInfo (p.GetVersionPath (id))).Name;
+					name = (new System.IO.FileInfo (p.VersionUri (id).LocalPath)).Name;
 
 				exiting_entries [name] = p;
 			}
