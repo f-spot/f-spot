@@ -1,13 +1,6 @@
 include $(top_srcdir)/Makefile.include
 EXTRAFLAGS = -unsafe -nowarn:0169 -nowarn:0612 -nowarn:0414 -d:TEST_METADATA -d:BROKEN_RSVG $(NUNIT_DEFINES) $(BEAGLE_DEFINES) $(CSC_DEFINES)
 
-UTILS_CSDISTFILES =					\
-	$(srcdir)/Utils/DbUtils.cs			\
-	$(srcdir)/Utils/GnomeUtil.cs			\
-	$(srcdir)/Utils/GtkUtil.cs			\
-	$(srcdir)/Utils/UriUtils.cs			\
-	$(srcdir)/Utils/ScreenSaver.cs
-
 CMS_CSDISTFILES =				\
 	$(srcdir)/Cms/Cms.cs			\
 	$(srcdir)/Cms/CctTable.cs
@@ -20,7 +13,23 @@ CORE_CSDISTFILES =				\
 	$(srcdir)/Core/Global.cs		\
 	$(srcdir)/Core/IBrowsableItem.cs	\
 	$(srcdir)/Core/IBrowsableCollection.cs	\
-	$(srcdir)/Core/IPreferenceBackend.cs
+	$(srcdir)/Core/IPreferenceBackend.cs	\
+	$(srcdir)/Core/Roll.cs
+
+QUERY_CSDISTFILES =				\
+	$(srcdir)/Query/DateRange.cs		\
+	$(srcdir)/Query/IQueryCondition.cs	\
+	$(srcdir)/Query/LogicalTerm.cs		\
+	$(srcdir)/Query/RatingRange.cs		\
+	$(srcdir)/Query/RollSet.cs		\
+	$(srcdir)/Query/UntaggedCondition.cs
+
+UTILS_CSDISTFILES =				\
+	$(srcdir)/Utils/DbUtils.cs		\
+	$(srcdir)/Utils/GnomeUtil.cs		\
+	$(srcdir)/Utils/GtkUtil.cs		\
+	$(srcdir)/Utils/UriUtils.cs		\
+	$(srcdir)/Utils/ScreenSaver.cs
 
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Cairo/Antialias.cs		\
@@ -193,12 +202,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PreviewPopup.cs 		\
 	$(srcdir)/PrintDialog.cs		\
 	$(srcdir)/ProgressDialog.cs		\
-	$(srcdir)/Query/DateRange.cs		\
-	$(srcdir)/Query/IQueryCondition.cs	\
-	$(srcdir)/Query/LogicalTerm.cs		\
-	$(srcdir)/Query/RatingRange.cs		\
-	$(srcdir)/Query/RollSet.cs		\
-	$(srcdir)/Query/UntaggedCondition.cs	\
 	$(srcdir)/RatingFilter.cs		\
 	$(srcdir)/QueuedSqliteDatabase.cs	\
 	$(srcdir)/RepairDialog.cs		\
@@ -272,13 +275,6 @@ if !NOGCONF
 GCONF_PKG = -pkg:gconf-sharp-2.0
 endif
 
-UTILS_ASSEMBLIES =				\
-	-pkg:gtk-sharp-2.0			\
-	-pkg:gnome-sharp-2.0			\
-	-r:Mono.Posix				\
-	$(GCONF_PKG)				\
-	$(LINK_DBUS)
-
 CMS_ASSEMBLIES = 				\
 	$(NUNIT_PKG)				\
 	-pkg:gtk-sharp-2.0
@@ -289,6 +285,17 @@ CORE_ASSEMBLIES =				\
 	-r:Cms.dll				\
 	-r:Mono.Posix				\
 	-r:FSpot.Utils.dll
+
+QUERY_ASSEMBLIES =				\
+	-r:FSpot.Core.dll			\
+	-r:FSpot.Utils.dll
+
+UTILS_ASSEMBLIES =				\
+	-pkg:gtk-sharp-2.0			\
+	-pkg:gnome-sharp-2.0			\
+	-r:Mono.Posix				\
+	$(GCONF_PKG)				\
+	$(LINK_DBUS)
 
 F_SPOT_ASSEMBLIES = 				\
 	$(LINK_DBUS)				\
@@ -308,8 +315,9 @@ F_SPOT_ASSEMBLIES = 				\
 	-r:Mono.Posix				\
 	-r:Mono.Security			\
 	-r:ICSharpCode.SharpZipLib		\
-	-r:FSpot.Utils.dll			\
 	-r:FSpot.Core.dll			\
+	-r:FSpot.Query.dll			\
+	-r:FSpot.Utils.dll			\
 	-r:Cms.dll				\
 	$(NUNIT_PKG)				\
 	$(GCONF_PKG)				\
@@ -333,16 +341,19 @@ fspotlib_DATA = f-spot.exe.config	\
 		Cms.dll.config		\
 		Cms.dll			\
 		FSpot.Utils.dll		\
+		FSpot.Query.dll		\
 		FSpot.Core.dll
 
 bin_SCRIPTS = f-spot
-
-UTILS_CSFILES = $(UTILS_CSDISTFILES)
 
 CMS_CSFILES = $(CMS_CSDISTFILES)
 
 CORE_CSFILES = $(CORE_CSDISTFILES)	\
 	Core/Defines.cs	
+
+QUERY_CSFILES = $(QUERY_CSDISTFILES)
+
+UTILS_CSFILES = $(UTILS_CSDISTFILES)
 
 F_SPOT_CSFILES = $(F_SPOT_CSDISTFILES)	\
 	AssemblyInfo.cs
@@ -351,15 +362,19 @@ Cms.dll: $(CMS_CSFILES)
 	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(CMS_CSFILES) $(CMS_ASSEMBLIES)
 
-FSpot.Utils.dll: $(UTILS_CSFILES)
-	@echo -e "\n*** Compiling $@"
-	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(UTILS_CSFILES) $(UTILS_ASSEMBLIES)
-
 FSpot.Core.dll: $(CORE_CSFILES) FSpot.Utils.dll Cms.dll
 	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(CORE_CSFILES) $(CORE_ASSEMBLIES)
 
-f-spot.exe: $(F_SPOT_CSFILES) f-spot.glade dces.rdf FSpot.addin.xml FSpot.Utils.dll FSpot.Core.dll Cms.dll
+FSpot.Query.dll: $(QUERY_CSFILES) FSpot.Utils.dll FSpot.Core.dll
+	@echo -e "\n*** Compiling $@"
+	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(QUERY_CSFILES) $(QUERY_ASSEMBLIES)
+
+FSpot.Utils.dll: $(UTILS_CSFILES)
+	@echo -e "\n*** Compiling $@"
+	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(UTILS_CSFILES) $(UTILS_ASSEMBLIES)
+
+f-spot.exe: $(F_SPOT_CSFILES) f-spot.glade dces.rdf FSpot.addin.xml FSpot.Utils.dll FSpot.Core.dll FSpot.Query.dll Cms.dll
 	@echo -e "\n*** Compiling $@"
 	$(CSC) -target:winexe -out:$@ $(EXTRAFLAGS) $(F_SPOT_CSFILES) $(F_SPOT_ASSEMBLIES) $(RESOURCES)
 
@@ -387,6 +402,8 @@ CLEANFILES =					\
 	Cms.dll					\
 	FSpot.Utils.dll.mdb			\
 	FSpot.Utils.dll				\
+	FSpot.Query.dll				\
+	FSpot.Query.dll.mdb			\
 	FSpot.Core.dll.mdb			\
 	FSpot.Core.dll
 

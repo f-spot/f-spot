@@ -15,19 +15,7 @@ using System.IO;
 using System;
 using Banshee.Database;
 using FSpot.Utils;
-public class Roll : DbItem
-{
-	// The time is always in UTC.
-	private DateTime time;
-	public DateTime Time {
-		get { return time; }
-	}
-
-	public Roll (uint id, long unix_time) : base (id)
-	{
-		time = DbUtils.DateTimeFromUnixTime (unix_time);
-	}
-}
+using FSpot;
 
 public class RollStore : DbStore
 {
