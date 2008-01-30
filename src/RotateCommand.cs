@@ -23,13 +23,17 @@ using Mono.Unix;
 namespace FSpot {
 	public class RotateException : ApplicationException {
 		public string path;
+		public bool ReadOnly = false;
 		
 		public string Path {
 			get { return path; }
 		}
+
+		public RotateException (string msg, string path) : this (msg, path, false) {}
 		
-		public RotateException (string msg, string path) : base (msg) {
+		public RotateException (string msg, string path, bool ro) : base (msg) {
 			this.path = path;
+			this.ReadOnly = ro;
 		}
 	}
 
@@ -65,7 +69,6 @@ namespace FSpot {
 		private static void RotateOrientation (string original_path, RotateDirection direction)
 		{
 			using (FSpot.ImageFile img = FSpot.ImageFile.Create (original_path)) {
-			
 				if (img is JpegFile) {
 					FSpot.JpegFile jimg = img as FSpot.JpegFile;
 					PixbufOrientation orientation = direction == RotateDirection.Clockwise
@@ -89,8 +92,8 @@ namespace FSpot {
 							supported = true;
 					}
 
-					if (! supported) {
-						throw new RotateException ("Unable to rotate photo type", original_path);
+					if (!supported) {
+						throw new RotateException (Catalog.GetString ("Unable to rotate this type of photo"), original_path);
 					}
 
 					string backup = ImageFile.TempPath (original_path);
@@ -105,7 +108,7 @@ namespace FSpot {
 					File.Copy (backup, original_path, true);
 					File.Delete (backup);
 				} else {
-					throw new RotateException ("Unable to rotate photo type", original_path);
+					throw new RotateException (Catalog.GetString ("Unable to rotate this type of photo"), original_path);
 				}
 			}
 		}
@@ -131,8 +134,9 @@ namespace FSpot {
 				done = true;
 			}
 
-			if ((File.GetAttributes(original_path) & FileAttributes.ReadOnly) == FileAttributes.ReadOnly)
-				throw new RotateException ("Unable to rotate readonly file", original_path);
+			if ((File.GetAttributes(original_path) & FileAttributes.ReadOnly) == FileAttributes.ReadOnly) {
+				throw new RotateException (Catalog.GetString ("Unable to rotate readonly file"), original_path, true);
+			}
 
 			Rotate (original_path, direction);
 
@@ -215,10 +219,16 @@ public class RotateCommand {
 			try {
 				done = !op.Step ();
 			} catch (RotateException re) {
-				if (re.Message == "Unable to rotate photo type")
-					RunTypeError (re);
+				if (!re.ReadOnly)
+					RunGenericError (re, re.Path, re.Message);
 				else
-					readonly_count ++;
+					readonly_count++;
+			} catch (Gnome.Vfs.VfsException e) {
+				readonly_count++;
+			} catch (DirectoryNotFoundException e) {
+				RunGenericError (e, op.Items [op.Index].DefaultVersionUri.LocalPath, Catalog.GetString ("Directory not found"));
+			} catch (FileNotFoundException e) {
+				RunGenericError (e, op.Items [op.Index].DefaultVersionUri.LocalPath, Catalog.GetString ("File not found"));
 			} catch (Exception e) {
 				RunGenericError (e, op.Items [op.Index].DefaultVersionUri.LocalPath);
 			}
@@ -235,14 +245,15 @@ public class RotateCommand {
 
 	private void RunReadonlyError (int readonly_count)
 	{
-		string notice = Catalog.GetPluralString ("Unable to rotate photo",  
-								    "Unable to rotate {0} photos",  
-								    readonly_count);
-		
-		string desc = Catalog.GetPluralString ("The photo could not be rotated because it is on a read only file system or " + 
-								  "media such as a CDROM.  Please check the permissions and try again",  
-								  "{0} photos could not be rotated because they are on a read only file system " + 
-								  "or media such as a CDROM.  Please check the permissions and try again",  readonly_count);
+		string notice = Catalog.GetPluralString ("Unable to rotate photo", "Unable to rotate {0} photos", readonly_count);
+		string desc = Catalog.GetPluralString (
+			"The photo could not be rotated because it is on a read only file system or media such as a CDROM.  Please check the permissions and try again.",
+			"{0} photos could not be rotated because they are on a read only file system or media such as a CDROM.  Please check the permissions and try again.",
+			readonly_count
+		);
+
+		notice = String.Format (notice, readonly_count);
+		desc = String.Format (desc, readonly_count);
 		
 		HigMessageDialog md = new HigMessageDialog (parent_window, 
 							    DialogFlags.DestroyWithParent,
@@ -254,15 +265,17 @@ public class RotateCommand {
 		md.Destroy();
 	}
 	
-	private void RunTypeError (RotateException re)
-	{
-		RunGenericError (re, re.Path);
-	}
-
+	// FIXME shouldn't need this method, should catch all exceptions explicitly
+	// so can present translated error messages.
 	private void RunGenericError (System.Exception e, string path)
 	{
+		RunGenericError (e, path, e.Message);
+	}
+
+	private void RunGenericError (System.Exception e, string path, string msg)
+	{
 		string longmsg = String.Format (Catalog.GetString ("Received error \"{0}\" while attempting to rotate {1}"),
-						e.Message, System.IO.Path.GetFileName (path));
+						msg, System.IO.Path.GetFileName (path));
 
 		HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent,
 							    MessageType.Warning, ButtonsType.Ok,

@@ -1,3 +1,8 @@
+2008-01-29  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/RotateCommand.cs: Fix problems with translatability of rotation
+	errors.  Fixes BNC #181163.
+
 2008-01-29  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/MainWindow.cs:
