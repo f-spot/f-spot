@@ -265,7 +265,6 @@ Makefile
 dbus-sharp/Makefile
 dbus-sharp-glib/Makefile
 docs/Makefile
-FlickrNet/Makefile
 SmugMugNet/Makefile
 google-sharp/Makefile
 gnome-keyring-sharp/Makefile
@@ -295,7 +294,10 @@ Tao/Tao.GlPostProcess/Makefile
 Tao/Tao.OpenGl.ExtensionLoader/Makefile
 extensions/Makefile
 extensions/DefaultExporters/Makefile
+extensions/FlickrExport/Makefile
+extensions/FlickrExport/FlickrNet/Makefile
 extensions/GalleryExport/Makefile
+extensions/FolderExport/Makefile
 f-spot.pc
 f-spot.spec
 f-spot.desktop.in

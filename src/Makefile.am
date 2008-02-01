@@ -111,8 +111,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Extensions/ComplexMenuItemNode.cs	\
 	$(srcdir)/Extensions/PopupCommands.cs	\
 	$(srcdir)/Fader.cs			\
-	$(srcdir)/FlickrExport.cs		\
-	$(srcdir)/FlickrRemote.cs		\
 	$(srcdir)/FileImportBackend.cs		\
 	$(srcdir)/FileBrowsableItem.cs		\
 	$(srcdir)/Filters/ChmodFilter.cs	\
@@ -127,7 +125,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Filters/TiltFilter.cs		\
 	$(srcdir)/Filters/UniqueNameFilter.cs	\
 	$(srcdir)/Filters/WhiteListFilter.cs	\
-	$(srcdir)/FolderExport.cs		\
 	$(srcdir)/FotkiRemote.cs		\
 	$(srcdir)/FormClient.cs			\
 	$(srcdir)/FullScreenView.cs		\
@@ -384,6 +381,7 @@ EXTRA_DIST =					\
 	$(UTILS_CSDISTFILES)			\
 	$(CMS_CSDISTFILES)			\
 	$(CORE_CSDISTFILES)			\
+	$(QUERY_CSDISTFILES)			\
 	$(F_SPOT_CSDISTFILES)			\
 	dces.rdf				\
 	f-spot.exe.config.in			\

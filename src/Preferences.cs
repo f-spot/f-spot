@@ -46,16 +46,6 @@ namespace FSpot
 		public const string SIDEBAR_POSITION = "/apps/f-spot/ui/sidebar_size";
 		public const string ZOOM = "/apps/f-spot/ui/zoom";
 
-		public const string EXPORT_FLICKR_SCALE = "/apps/f-spot/export/flickr/scale";
-		public const string EXPORT_FLICKR_SIZE = "/apps/f-spot/export/flickr/size";
-		public const string EXPORT_FLICKR_BROWSER = "/apps/f-spot/export/flickr/browser";
-		public const string EXPORT_FLICKR_TAGS = "/apps/f-spot/export/flickr/tags";
-		public const string EXPORT_FLICKR_STRIP_META = "/apps/f-spot/export/flickr/strip_meta";
-		public const string EXPORT_FLICKR_EMAIL = "/apps/f-spot/export/flickr/email";
-		public const string EXPORT_FLICKR_PUBLIC = "/apps/f-spot/export/flickr/public";
-		public const string EXPORT_FLICKR_FRIENDS = "/apps/f-spot/export/flickr/friends";
-		public const string EXPORT_FLICKR_FAMILY = "/apps/f-spot/export/flickr/family";
-
 		public const string EXPORT_TOKEN_FLICKR = "/apps/f-spot/export/tokens/flickr"; 
 		public const string EXPORT_TOKEN_23HQ = "/apps/f-spot/export/tokens/23hq"; 
 		public const string EXPORT_TOKEN_ZOOOMR = "/apps/f-spot/export/tokens/zooomr"; 

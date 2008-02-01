@@ -1,3 +1,15 @@
+2008-01-30  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* configure.in:
+	* Makefile.include:
+	* Makefile.am:
+	* src/f-spot.glade:
+	* src/Makefile.am:
+	* src/Preferences.cs:
+	* FlickrNet/*:
+	* src/Flickr*: moving flickr export as extension.
+	* src/FolderExport*: moving folder export as extension.
+
 2008-01-30  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Photopopu.cs: fixing 510060 once again.

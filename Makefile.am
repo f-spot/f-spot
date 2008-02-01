@@ -2,7 +2,6 @@ SUBDIRS = 		\
 	$(DIR_DBUS)	\
 	$(DIR_DBUS_GLIB)\
 	docs		\
-	FlickrNet	\
 	SmugMugNet	\
 	glitz-sharp	\
 	google-sharp	\
@@ -24,7 +23,6 @@ DIST_SUBDIRS = 		\
 	dbus-sharp	\
 	dbus-sharp-glib	\
 	docs		\
-	FlickrNet	\
 	SmugMugNet	\
 	glitz-sharp	\
 	google-sharp	\

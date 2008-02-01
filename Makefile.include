@@ -8,7 +8,6 @@ DIR_ADDINS_GUI = $(top_builddir)/mono-addins/Mono.Addins.Gui
 DIR_ADDINS_SETUP = $(top_builddir)/mono-addins/Mono.Addins.Setup
 DIR_DOCS = $(top_builddir)/docs
 DIR_EXTENSIONS = $(top_builddir)/extensions
-DIR_FLICKR = $(top_builddir)/FlickrNet
 DIR_GLITZ = $(top_builddir)/glitz-sharp/src
 DIR_GOOGLE = $(top_builddir)/google-sharp
 DIR_GPHOTO2 = $(top_builddir)/libgphoto2-sharp
@@ -27,7 +26,6 @@ DIR_TAO_GLPOSTPROCESS = $(top_builddir)/Tao/Tao.GlPostProcess
 
 ## Links
 
-LINK_FLICKR = -r:$(DIR_FLICKR)/FlickrNet.dll
 LINK_KEYRING = -r:$(DIR_KEYRING)/gnome-keyring-sharp.dll
 LINK_GLITZ = -r:$(DIR_GLITZ)/NDesk.Glitz.dll 
 LINK_GOOGLE = -r:$(DIR_GOOGLE)/Mono.Google.dll
