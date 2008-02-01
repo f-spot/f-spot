@@ -46,10 +46,10 @@ namespace FSpot.Utils
 						link_id,
 						screen);
 			} catch {
-				string message = Mono.Unix.Catalog.GetString ("The \"F-Spot Manual\" could " +
+				Console.WriteLine (Mono.Unix.Catalog.GetString ("The \"F-Spot Manual\" could " +
 						"not be found.  Please verify " +
 						"that your installation has been " +
-						"completed successfully.");
+						"completed successfully."));
 			}
 		}
 
