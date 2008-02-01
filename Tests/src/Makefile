@@ -18,6 +18,7 @@ PKGS = 					\
 REFS =					\
 	-r:../../src/f-spot.exe		\
 	-r:../../src/FSpot.Core.dll	\
+	-r:../../src/FSpot.Query.dll	\
 	-r:../../src/FSpot.Utils.dll	\
 	-r:../../semweb/SemWeb.dll
 
