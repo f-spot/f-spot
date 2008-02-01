@@ -1,5 +1,5 @@
 using FSpot.Query;
-
+#if SHOW_CALENDAR
 namespace FSpot {
 	public class SimpleCalendar : Gtk.Calendar {
 		private PhotoQuery parent_query;
@@ -58,3 +58,4 @@ namespace FSpot {
 		}
 	}
 }
+#endif
