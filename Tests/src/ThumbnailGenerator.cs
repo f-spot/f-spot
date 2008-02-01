@@ -30,7 +30,6 @@ namespace FSpot.Tests
 				using (Gdk.Pixbuf tmp = test.ScaleSimple (size, size, Gdk.InterpType.Nearest)) {
 					string path = System.IO.Path.GetTempPath ();
 					path = System.IO.Path.Combine (path, name);
-					Console.WriteLine (path);
 					tmp.Save (path, Path.GetExtension (path).TrimStart (new char [] { '.' }));
 					return path;
 				}
