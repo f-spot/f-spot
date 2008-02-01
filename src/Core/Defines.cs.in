@@ -10,11 +10,11 @@
 
 namespace FSpot {
 	public struct Defines {
-		public static string LOCALE_DIR = "@prefix@/share/locale";
-		public static string VERSION = "@VERSION@";
-		public static string PACKAGE = "@PACKAGE@";
-		public static string PREFIX = "@prefix@";
-		public static string APP_DATA_DIR = "@prefix@/share/@PACKAGE@";
-		public static string BINDIR = PREFIX + "/bin";
+		public static readonly string LOCALE_DIR = "@prefix@/share/locale";
+		public static readonly string VERSION = "@VERSION@";
+		public static readonly string PACKAGE = "@PACKAGE@";
+		public static readonly string PREFIX = "@prefix@";
+		public static readonly string APP_DATA_DIR = "@prefix@/share/@PACKAGE@";
+		public static readonly string BINDIR = PREFIX + "/bin";
 	}			
 }
