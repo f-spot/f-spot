@@ -10,21 +10,21 @@
 namespace FSpot
 {
 	public delegate void IBrowsableCollectionChangedHandler (IBrowsableCollection collection);
-	public delegate void IBrowsableCollectionItemsChangedHandler (IBrowsableCollection collection, BrowsableArgs args);
+	public delegate void IBrowsableCollectionItemsChangedHandler (IBrowsableCollection collection, BrowsableEventArgs args);
 
-	public class BrowsableArgs : System.EventArgs {
+	public class BrowsableEventArgs : System.EventArgs {
 		int [] items;
 
 		public int [] Items {
 			get { return items; }
 		}
 
-		public BrowsableArgs (int num)
+		public BrowsableEventArgs (int num)
 		{
 			items = new int [] { num };
 		}
 
-		public BrowsableArgs (int [] items)
+		public BrowsableEventArgs (int [] items)
 		{
 			this.items = items;
 		}

@@ -6,6 +6,7 @@ using System.Collections;
 using System.IO;
 using System;
 using Banshee.Database;
+using FSpot;
 
 public class ExportItem : DbItem {
 

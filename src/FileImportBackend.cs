@@ -8,7 +8,6 @@ using FSpot.Xmp;
 using FSpot.UI.Dialog;
 using System.IO;
 using Mono.Unix;
-using FSpot;
 
 public class ImportException : System.Exception {
 	public ImportException (string msg) : base (msg)

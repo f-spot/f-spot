@@ -133,7 +133,7 @@ namespace FSpot
 		}
 
 		protected void HandleCollectionItemsChanged (IBrowsableCollection collection,
-							     BrowsableArgs event_args)
+							     BrowsableEventArgs event_args)
 		{
 			foreach (int item in event_args.Items)
 				if (item == Index) 

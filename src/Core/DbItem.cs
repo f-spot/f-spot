@@ -4,16 +4,19 @@
  * Author(s):
  *	Larry Ewing
  *
- * This is fre software. See COPYING for details.
+ * This is free software. See COPYING for details.
  */
 
-public class DbItem {
-	uint id;
-	public uint Id {
-		get { return id; }
-	}
-
-	protected DbItem (uint id) {
-		this.id = id;
+namespace FSpot
+{
+	public class DbItem {
+		uint id;
+		public uint Id {
+			get { return id; }
+		}
+	
+		protected DbItem (uint id) {
+			this.id = id;
+		}
 	}
 }

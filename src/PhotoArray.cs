@@ -80,10 +80,10 @@ namespace FSpot {
 		
 		public void MarkChanged (int num)
 		{
-			MarkChanged (new BrowsableArgs (num));
+			MarkChanged (new BrowsableEventArgs (num));
 		}
 
-		public void MarkChanged (BrowsableArgs args)
+		public void MarkChanged (BrowsableEventArgs args)
 		{
 			if (ItemsChanged != null)
 				ItemsChanged (this, args);
@@ -159,7 +159,7 @@ namespace FSpot {
 		public void MarkChanged (int item)
 		{
 			if (ItemsChanged != null)
-				ItemsChanged (this, new BrowsableArgs (item));
+				ItemsChanged (this, new BrowsableEventArgs (item));
 		}
 
 		public void Reload ()

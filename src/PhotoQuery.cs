@@ -202,7 +202,7 @@ namespace FSpot {
 		
 		public void MarkChanged (int index)
 		{
-			ItemsChanged (this, new BrowsableArgs (index));
+			ItemsChanged (this, new BrowsableEventArgs (index));
 		}
 	}
 }

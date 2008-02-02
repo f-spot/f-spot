@@ -2,7 +2,7 @@
 * Widgets/IconView.cs
 *
 * Author(s):
-	* 	Etore Perazzoli
+* 	Etore Perazzoli
 *	Larry Ewing <lewing@novell.com>
 *	Stephane Delcroix <stephane@delcroix.org>
 *
@@ -254,7 +254,7 @@ namespace FSpot.Widgets
 			QueueResize ();
 		}
 
-		private void HandleItemsChanged (FSpot.IBrowsableCollection sender, BrowsableArgs args)
+		private void HandleItemsChanged (FSpot.IBrowsableCollection sender, BrowsableEventArgs args)
 		{
 			foreach (int item in args.Items) {
 				UpdateThumbnail (item);
@@ -331,7 +331,7 @@ namespace FSpot.Widgets
 				parent.MarkChanged ((int) selected_cells [item]);
 			}
 
-			private void HandleParentItemsChanged (IBrowsableCollection collection, BrowsableArgs args)
+			private void HandleParentItemsChanged (IBrowsableCollection collection, BrowsableEventArgs args)
 			{
 				if (this.ItemsChanged == null)
 					return;
@@ -350,7 +350,7 @@ namespace FSpot.Widgets
 				if (local_ids.Count == 0)
 					return;
 
-				ItemsChanged (this, new BrowsableArgs ((int [])local_ids.ToArray (typeof (int))));
+				ItemsChanged (this, new BrowsableEventArgs ((int [])local_ids.ToArray (typeof (int))));
 			}
 
 			public int [] Ids {

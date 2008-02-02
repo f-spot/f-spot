@@ -693,7 +693,7 @@ public class MainWindow {
 			}
 		}
 
-		private void HandleQueryItemsChanged (IBrowsableCollection collection, BrowsableArgs args)
+		private void HandleQueryItemsChanged (IBrowsableCollection collection, BrowsableEventArgs args)
 		{
 			// FIXME for now we only listen to changes directly from the query
 			// when we are in PhotoView mode because we presume that we'll get
@@ -703,7 +703,7 @@ public class MainWindow {
 
 			foreach (int item in args.Items) {
 				if (win.photo_view.Item.Index == item ) {
-					ItemsChanged (this, new BrowsableArgs (0));
+					ItemsChanged (this, new BrowsableEventArgs (0));
 					break;
 				}
 			}
@@ -723,7 +723,7 @@ public class MainWindow {
 
 		}
 
-		private void HandleSelectionItemsChanged (IBrowsableCollection collection,  BrowsableArgs args)
+		private void HandleSelectionItemsChanged (IBrowsableCollection collection,  BrowsableEventArgs args)
 		{
 			if (win.view_mode == ModeType.IconView && ItemsChanged != null)
 				ItemsChanged (this, args);
@@ -744,7 +744,7 @@ public class MainWindow {
 		UpdateStatusLabel();	
 	}
 
-	private void HandleSelectionItemsChanged (IBrowsableCollection collection, BrowsableArgs args)
+	private void HandleSelectionItemsChanged (IBrowsableCollection collection, BrowsableEventArgs args)
 	{
 		UpdateMenus ();
 		UpdateTagEntryFromSelection ();
