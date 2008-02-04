@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-08 10:22+0200\n"
-"PO-Revision-Date: 2007-12-08 10:26+0200\n"
+"POT-Creation-Date: 2008-02-05 00:54+0200\n"
+"PO-Revision-Date: 2008-02-05 01:08+0200\n"
 "Last-Translator: Alaksandar Navicki <zolak@lacinka.org>\n"
 "Language-Team: i18n@mova.org <i18n@mova.org>\n"
 "MIME-Version: 1.0\n"
@@ -78,23 +78,31 @@ msgstr "Nastupnyja pakunki musiać być adinstalavanyja:"
 msgid "The following dependencies could not be resolved:"
 msgstr "Nastupnyja zaležnaści nie mahli być vykananyja:"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:440
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:441
 msgid "The installation has been successfully completed."
 msgstr "Instalacyja zavieršanaja paśpiachova."
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:441
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:442
 msgid "The installation failed!"
 msgstr "Instalacyja nie ŭdałasia!"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:444
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:443
+msgid "The installation has completed with warnings."
+msgstr "Instalacyja zavieršanaja ź pieraściarohami."
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:446
 msgid "The uninstallation has been successfully completed."
 msgstr "Adinstalacyja paśpiachova zakončanaja."
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:445
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:447
 msgid "The uninstallation failed!"
 msgstr "Adinstalacyja nie ŭdałasia!"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:604
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:448
+msgid "The uninstallation has completed with warnings."
+msgstr "Adinstalacyja zakončanaja ź pieraściarohami."
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:616
 msgid "Repository"
 msgstr "Schovišča"
 
@@ -140,53 +148,53 @@ msgstr "Adbyłosia vyklučeńnie: {0}"
 msgid "Package"
 msgstr "Pakunak"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:108
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:110
 msgid "Extension Installation"
 msgstr "Instalacyja pašyreńnia"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:134
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:136
 msgid "<b>Select the extensions to install and click on Next</b>"
 msgstr "<b>Paznač pašyreńni, kab zainstalavać, i naciśni Dalej</b>"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:148
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:150
 msgid "Install from:"
 msgstr "Zainstaluj z:"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:177
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:179
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:180
 msgid "_Repositories..."
 msgstr "_Schoviščy..."
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:218
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:220
 msgid "Show all packages"
 msgstr "Pakazvaj usie pakunki"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:219
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:221
 msgid "Show new versions only"
 msgstr "Pakazvaj tolki novyja versii"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:220
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:222
 msgid "Show updates only"
 msgstr "Pakazvaj tolki aktualizacyi"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:245
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:247
 msgid "_Unselect All"
 msgstr "_Zdymi zaznačeńni"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:257
-#: ../src/f-spot.glade.h:192
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
+#: ../src/f-spot.glade.h:179
 msgid "Select _All"
 msgstr "Zaznač _usio"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:332
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:334
 msgid "label124"
 msgstr "label124"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:344
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:346
 msgid "Overall Progress:"
 msgstr "Ahulny prahres:"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:372
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:374
 msgid "Downloading extensions..."
 msgstr "Zahruzka pašyreńniaŭ..."
 
@@ -228,9 +236,7 @@ msgid "Disable"
 msgstr "Vyklučy"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
-#: ../src/FlickrExport.cs:314 ../src/FolderExport.cs:204
-#: ../src/GalleryExport.cs:721 ../src/PicasaWebExport.cs:637
-#: ../src/SmugMugExport.cs:573
+#: ../src/PicasaWebExport.cs:639 ../src/SmugMugExport.cs:574
 msgid "Error"
 msgstr "Pamyłka"
 
@@ -255,20 +261,20 @@ msgstr "Abiary pałažeńnie schovišča, jakoje ty chočaš zarehistravać:"
 msgid "Register an on-line repository"
 msgstr "Zarehistruj sieciŭnaje schovišča"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:105
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:106
 msgid "Url:"
 msgstr "URL:"
 
 #. Container child vbox89.Gtk.Box+BoxChild
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:126
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:127
 msgid "Register a local repository"
 msgstr "Zarehistruj lakalnaje schovišča"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:154
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:155
 msgid "Path:"
 msgstr "Ściežka:"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:178
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:179
 msgid "Browse..."
 msgstr "Prahladaj..."
 
@@ -297,28 +303,16 @@ msgid "The required extension '{0}' is not installed."
 msgstr "Vymahanaje pašyreńnie \"{0}\" nie zainstalavanaje."
 
 #: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:1
-msgid "23hq..."
-msgstr "23hq..."
+msgid "_CD..."
+msgstr "_CD..."
 
 #: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:2
-msgid "CD..."
-msgstr "CD..."
+msgid "_PicasaWeb..."
+msgstr "_PicasaWeb..."
 
 #: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:3
-msgid "Flickr..."
-msgstr "Flickr..."
-
-#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:4
-msgid "Folder..."
-msgstr "Kataloh..."
-
-#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:5
-msgid "PicasaWeb..."
-msgstr "PicasaWeb..."
-
-#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:6
-msgid "SmugMug..."
-msgstr "SmugMug..."
+msgid "_SmugMug..."
+msgstr "_SmugMug..."
 
 #: ../f-spot-view.desktop.in.in.h:1
 msgid "F-Spot Photo Viewer"
@@ -421,17 +415,14 @@ msgid "Save Image"
 msgstr "Zapišy vyjavu"
 
 #: ../libeog/eog-image.c:773
-#, c-format
 msgid "No image loaded."
 msgstr "Vyjava nie zahružanaja."
 
 #: ../libeog/eog-image.c:780
-#, c-format
 msgid "Can't save non local files."
 msgstr "Niemahčyma zapisać addalenyja fajły."
 
 #: ../libeog/eog-image.c:803
-#, c-format
 msgid "Unsupported image type for saving."
 msgstr "Zapis vyjavaŭ hetaha typu nie padtrymvajecca."
 
@@ -463,7 +454,7 @@ msgstr "nakładaj cień"
 msgid "dither type"
 msgstr "typ cieniu"
 
-#: ../libfspot/f-jpeg-utils.c:445
+#: ../libfspot/f-jpeg-utils.c:445 ../src/RotateCommand.cs:231
 msgid "File not found"
 msgstr "Fajł nia znojdzieny"
 
@@ -476,47 +467,43 @@ msgstr "Nieviadomy typ transfarmacyi %d"
 msgid "Operation failed"
 msgstr "Aperacyja nie ŭdałasia"
 
-#: ../src/CDExport.cs:117
+#: ../src/CDExport.cs:118
 #, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "Pierasył vyjavy \"{0}\" na CD"
 
 #. This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/CDExport.cs:119 ../src/FlickrExport.cs:289
-#: ../src/FolderExport.cs:199 ../src/GalleryExport.cs:705
-#: ../src/ProgressDialog.cs:82 ../src/TimeDialog.cs:148
+#: ../src/CDExport.cs:120 ../src/ProgressDialog.cs:82 ../src/TimeDialog.cs:148
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} z {1}"
 
-#: ../src/CDExport.cs:132 ../src/FlickrExport.cs:306
-#: ../src/FolderExport.cs:230 ../src/GalleryExport.cs:729
-#: ../src/PicasaWebExport.cs:645 ../src/SmugMugExport.cs:581
+#: ../src/CDExport.cs:133 ../src/PicasaWebExport.cs:647
+#: ../src/SmugMugExport.cs:582
 msgid "Done Sending Photos"
 msgstr "Zavieršany pierasył zdymkaŭ"
 
-#: ../src/CDExport.cs:134 ../src/FolderExport.cs:232
+#: ../src/CDExport.cs:135
 msgid "Transfer Complete"
 msgstr "Pierasył zakončany"
 
-#: ../src/CDExport.cs:141 ../src/FolderExport.cs:237
+#: ../src/CDExport.cs:142
 msgid "Error While Transferring"
 msgstr "Pamyłka padčas pierasyłu"
 
-#: ../src/CDExport.cs:148 ../src/FolderExport.cs:254
+#: ../src/CDExport.cs:149
 msgid "Error Transferring"
 msgstr "Pamyłka padčas pierasyłu"
 
-#: ../src/CDExport.cs:169 ../src/FolderExport.cs:276
+#: ../src/CDExport.cs:170
 msgid "Error: Error while transferring; Aborting"
 msgstr "Pamyłka: Pamyłka padčas pierasyłu. Spyniajecca"
 
-#: ../src/CDExport.cs:172 ../src/FolderExport.cs:279
+#: ../src/CDExport.cs:173
 msgid "Error: File Already Exists; Aborting"
 msgstr "Pamyłka: Fajł užo isnuje. Spyniajecca"
 
-#: ../src/CDExport.cs:211 ../src/CameraFileSelectionDialog.cs:194
-#: ../src/FolderExport.cs:333
+#: ../src/CDExport.cs:212 ../src/CameraFileSelectionDialog.cs:194
 msgid "Transferring Pictures"
 msgstr "Pierasył vyjavaŭ"
 
@@ -529,11 +516,11 @@ msgid "Path"
 msgstr "Ściežka"
 
 # menu item for selecting a file
-#: ../src/CameraFileSelectionDialog.cs:77 ../src/f-spot.glade.h:121
+#: ../src/CameraFileSelectionDialog.cs:77 ../src/f-spot.glade.h:116
 msgid "File"
 msgstr "Fajł"
 
-#: ../src/CameraFileSelectionDialog.cs:79 ../src/FolderExport.cs:857
+#: ../src/CameraFileSelectionDialog.cs:79
 msgid "Index"
 msgstr "Indeks"
 
@@ -580,22 +567,22 @@ msgstr "Fotakamera"
 msgid "Port"
 msgstr "Port"
 
-#: ../src/ColorDialog.cs:211
+#: ../src/ColorDialog.cs:212
 msgid "Error saving adjusted photo"
 msgstr "Pamyłka pry zapisie dastasavanaha zdymku"
 
-#: ../src/ColorDialog.cs:212 ../src/HigMessageDialog.cs:15 ../src/Loupe.cs:58
-#: ../src/MainWindow.cs:2028 ../src/PhotoView.cs:265
+#: ../src/ColorDialog.cs:213 ../src/Loupe.cs:59 ../src/MainWindow.cs:2002
+#: ../src/PhotoView.cs:279 ../src/UI.Dialog/EditExceptionDialog.cs:25
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Atrymanaje vyklučeńnie \"{0}\". Niemahčyma zapisać zdymak {1}"
 
-#: ../src/Core.cs:190
+#: ../src/Core.cs:192
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Nia znojdziena zdymkaŭ, jakija pasujuć da {0}"
 
-#: ../src/Core.cs:191
+#: ../src/Core.cs:193
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -606,11 +593,11 @@ msgstr ""
 "dadać jaho da zdymkaŭ, albo abiary inšy cetlik u vaknie\n"
 "naładaŭ prahramy F-Spot."
 
-#: ../src/Core.cs:195
+#: ../src/Core.cs:197
 msgid "Search returned no results"
 msgstr "Niama vynikaŭ pošuku"
 
-#: ../src/Core.cs:196
+#: ../src/Core.cs:198
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -620,59 +607,59 @@ msgstr ""
 "abrać inšy cetlik u vaknie naładaŭ prahramy\n"
 "F-Spot."
 
-#: ../src/DateCommands.cs:54
+#: ../src/DateCommands.cs:56
 msgid "Today"
 msgstr "Siońnia"
 
-#: ../src/DateCommands.cs:56
+#: ../src/DateCommands.cs:58
 msgid "Yesterday"
 msgstr "Učora"
 
-#: ../src/DateCommands.cs:58
+#: ../src/DateCommands.cs:60
 msgid "Last 7 days"
 msgstr "Apošnija 7 dzion"
 
-#: ../src/DateCommands.cs:60
+#: ../src/DateCommands.cs:62
 msgid "Last 30 days"
 msgstr "Apošnija 30 dzion"
 
-#: ../src/DateCommands.cs:62
+#: ../src/DateCommands.cs:64
 msgid "Last 90 days"
 msgstr "Apošnija 90 dzion"
 
-#: ../src/DateCommands.cs:64
+#: ../src/DateCommands.cs:66
 msgid "Last 360 days"
 msgstr "Apošnija 360 dzion"
 
-#: ../src/DateCommands.cs:66
+#: ../src/DateCommands.cs:68
 msgid "Current Week (Mon-Sun)"
 msgstr "Hety tydzień (Pan-Nia)"
 
-#: ../src/DateCommands.cs:68
+#: ../src/DateCommands.cs:70
 msgid "Previous Week (Mon-Sun)"
 msgstr "Papiaredni tydzień (Pan-Nia)"
 
-#: ../src/DateCommands.cs:84 ../src/f-spot.glade.h:75
+#: ../src/DateCommands.cs:86 ../src/f-spot.glade.h:75
 msgid "All Images"
 msgstr "Usie vyjavy"
 
-#: ../src/DateCommands.cs:86
+#: ../src/DateCommands.cs:88
 msgid "Customized Range"
 msgstr "Ułasnaja škała"
 
-#: ../src/Editors/SoftFocus.cs:25 ../src/ItemAction.cs:341
+#: ../src/Editors/SoftFocus.cs:27 ../src/ItemAction.cs:342
 msgid "Soft Focus"
 msgstr "Miakki fokus"
 
-#: ../src/Editors/SoftFocus.cs:55 ../src/PhotoVersionCommands.cs:136
+#: ../src/Editors/SoftFocus.cs:57 ../src/PhotoVersionCommands.cs:138
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: ../src/Editors/SoftFocus.cs:58
+#: ../src/Editors/SoftFocus.cs:60
 msgid "Apply"
 msgstr "Prymiani"
 
-#: ../src/Editors/Tilt.cs:28 ../src/ItemAction.cs:325
+#: ../src/Editors/Tilt.cs:28 ../src/ItemAction.cs:326
 msgid "Straighten"
 msgstr "Vyraŭnaj"
 
@@ -693,192 +680,66 @@ msgid "No applications available"
 msgstr "Niama dastupnych aplikacyjaŭ"
 
 #: ../src/FSpot.addin.xml.h:1
-msgid "Attach Tag"
-msgstr "Dałučy cetlik"
+msgid "Copy Photo Locat_ion"
+msgstr "_Skapijuj pałažeńnie zdymku"
 
 #: ../src/FSpot.addin.xml.h:2
-msgid "Copy Photo Location"
-msgstr "Kapijuj pałažeńnie zdymku"
-
-#: ../src/FSpot.addin.xml.h:3
-msgid "Delete From Drive"
-msgstr "Vydal z pryłady"
-
-#: ../src/FSpot.addin.xml.h:4
 msgid "Export to"
 msgstr "Ekspartuj u"
 
-#: ../src/FSpot.addin.xml.h:5
-msgid "Open With"
-msgstr "Adčyni pry dapamozie"
+#: ../src/FSpot.addin.xml.h:3
+msgid "Open _With"
+msgstr "Adčyni pry _dapamozie"
 
-#: ../src/FSpot.addin.xml.h:6
-msgid "Remove From Catalog"
-msgstr "Vydal z katalohu"
+#: ../src/FSpot.addin.xml.h:4 ../src/f-spot.glade.h:172
+msgid "Rem_ove Tag"
+msgstr "Vyda_l cetlik"
+
+#: ../src/FSpot.addin.xml.h:5 ../src/SingleView.cs:433
+#: ../src/f-spot.glade.h:175
+msgid "Rotate _Left"
+msgstr "Paviarni ŭ_leva"
+
+#: ../src/FSpot.addin.xml.h:6 ../src/SingleView.cs:434
+#: ../src/f-spot.glade.h:176
+msgid "Rotate _Right"
+msgstr "Paviarni ŭp_rava"
 
 #: ../src/FSpot.addin.xml.h:7
-msgid "Remove Tag"
-msgstr "Vydal cetlik"
-
-#: ../src/FSpot.addin.xml.h:8 ../src/ItemAction.cs:80 ../src/MainWindow.cs:255
-#: ../src/SingleView.cs:73
-msgid "Rotate Left"
-msgstr "Paviarni ŭleva"
-
-#: ../src/FSpot.addin.xml.h:9 ../src/ItemAction.cs:92 ../src/MainWindow.cs:259
-#: ../src/SingleView.cs:78
-msgid "Rotate Right"
-msgstr "Paviarni ŭprava"
-
-#: ../src/FSpot.addin.xml.h:10
 msgid "Tools"
 msgstr "Pryładździe"
 
-#: ../src/FileImportBackend.cs:265
+#: ../src/FSpot.addin.xml.h:8 ../src/f-spot.glade.h:224
+msgid "_Attach Tag"
+msgstr "_Dałučy cetlik"
+
+#: ../src/FSpot.addin.xml.h:9 ../src/f-spot.glade.h:237
+msgid "_Delete From Drive"
+msgstr "Vydal z dysk_u"
+
+#: ../src/FSpot.addin.xml.h:10 ../src/f-spot.glade.h:272
+msgid "_Remove From Catalog"
+msgstr "Vydal z ka_talohu"
+
+#: ../src/FileImportBackend.cs:266
 msgid "Import error"
 msgstr "Pamyłka impartavańnia"
 
-#: ../src/FileImportBackend.cs:266
+#: ../src/FileImportBackend.cs:267
 #, csharp-format
 msgid "Error importing {0}{2}{2}{1}"
 msgstr "Pamyłka impartavańnia {0}{2}{2}{1}"
+
+#: ../src/FileImportBackend.cs:268 ../src/ThreadProgressDialog.cs:68
+msgid "Skip"
+msgstr "Prapuści"
 
 #: ../src/Filters/ResizeFilter.cs:70 ../src/Filters/SharpFilter.cs:52
 #, csharp-format
 msgid "No way to save files of type \"{0}\""
 msgstr "Niemahčyma zapisać fajły typu \"{0}\""
 
-#: ../src/FlickrExport.cs:74 ../src/f-spot.glade.h:82
-msgid "Authorize"
-msgstr "Aŭtaryzuj"
-
-#: ../src/FlickrExport.cs:79
-#, csharp-format
-msgid ""
-"Return to this window after you have finished the authorization process on "
-"{0} and click the \"Complete Authorization\" button below"
-msgstr ""
-"Viarnisia da hetaha vakna paśla zakančeńnia aŭtaryzacyi ŭ servisie {0} i  "
-"klikni knopku nižej \"Dakonč aŭtaryzacyju\""
-
-#: ../src/FlickrExport.cs:80
-msgid "Complete Authorization"
-msgstr "Dakonč aŭtaryzacyju"
-
-#: ../src/FlickrExport.cs:84
-#, csharp-format
-msgid "Logging into {0}"
-msgstr "Aŭtaryzacyja ŭ servisie {0}"
-
-#: ../src/FlickrExport.cs:85
-msgid "Checking credentials..."
-msgstr "Pravierka aŭtaryzacyi..."
-
-#: ../src/FlickrExport.cs:91
-#, csharp-format
-msgid "Welcome {0} you are connected to {1}"
-msgstr "Vitajem ciabie, {0}, ty spałučyŭsia z {1}"
-
-#: ../src/FlickrExport.cs:94
-#, csharp-format
-msgid "Sign in as a different user"
-msgstr "Uvajdzi jak inšy karystalnik"
-
-# ###############################################################################
-# Old yast2-agents.po
-#: ../src/FlickrExport.cs:245
-msgid "Unable to log on"
-msgstr "Aŭtaryzacyja nie ŭdałasia"
-
-#: ../src/FlickrExport.cs:265
-#, csharp-format
-msgid "Waiting for response {0} of {1}"
-msgstr "Čakańnie adkazu {0} z {1}"
-
-#: ../src/FlickrExport.cs:284 ../src/FolderExport.cs:196
-#: ../src/GalleryExport.cs:701
-#, csharp-format
-msgid "Uploading picture \"{0}\""
-msgstr "Vysyłka vyjavy \"{0}\""
-
-#: ../src/FlickrExport.cs:308 ../src/GalleryExport.cs:731
-#: ../src/PicasaWebExport.cs:647 ../src/SmugMugExport.cs:583
-msgid "Upload Complete"
-msgstr "Vysyłka zakončanaja"
-
-#: ../src/FlickrExport.cs:311
-#, csharp-format
-msgid "Error Uploading To {0}: {1}"
-msgstr "Pamyłka padčas vysyłki da {0}: {1}"
-
-# ###############################################################################
-# Old yast2-agents.po
-#: ../src/FlickrExport.cs:379
-msgid "Unable to log on."
-msgstr "Aŭtaryzacyja nie ŭdałasia."
-
-#: ../src/FlickrExport.cs:380
-#, csharp-format
-msgid ""
-"F-Spot was unable to log on to {0}.  Make sure you have given the "
-"authentication using {0} web browser interface."
-msgstr ""
-"F-Spot nia zmoh aŭtaryzavacca ŭ servisie {0}. Upeŭnisia, što ty "
-"aŭtaryzavaŭsia ŭ servisie {0} pry dapamozie web-hartača."
-
-#: ../src/FlickrExport.cs:398 ../src/GalleryExport.cs:654
-#: ../src/PicasaWebExport.cs:549 ../src/SmugMugExport.cs:499
-msgid "Uploading Pictures"
-msgstr "Vysyłka vyjavaŭ"
-
-#: ../src/FolderExport.cs:113
-msgid "Select Export Folder"
-msgstr "Abiary metavy kataloh"
-
-#: ../src/FolderExport.cs:158
-msgid "Building Gallery"
-msgstr "Stvareńnie halerei"
-
-#: ../src/FolderExport.cs:202
-#, csharp-format
-msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
-msgstr "Pamyłka padčas vysyłki vyjavy \"{0}\" u halereju:{2}{1}"
-
-#: ../src/FolderExport.cs:711
-msgid "Light"
-msgstr "Śvietły"
-
-#: ../src/FolderExport.cs:712
-msgid "Dark"
-msgstr "Ciomny"
-
-#. Abbreviation of previous
-#: ../src/FolderExport.cs:855
-msgid "Prev"
-msgstr "Nazad"
-
-#: ../src/FolderExport.cs:860 ../src/ItemAction.cs:103
-#: ../src/f-spot.glade.h:151
-msgid "Next"
-msgstr "Dalej"
-
-#: ../src/FolderExport.cs:913 ../src/FolderExport.cs:1086
-msgid "Show Styles"
-msgstr "Pakažy styli"
-
-#: ../src/FolderExport.cs:914 ../src/FolderExport.cs:1087
-msgid "Hide Styles"
-msgstr "Schavaj styli"
-
-#: ../src/FolderExport.cs:971
-msgid "Gallery generated by"
-msgstr "Halereja stvoranaja prahramaj"
-
-#: ../src/FolderExport.cs:1016
-msgid "Page:"
-msgstr "Staronka:"
-
-#: ../src/FormClient.cs:292
+#: ../src/FormClient.cs:293
 msgid "Unhandled exception"
 msgstr "Vyklučeńnie, jakoje nie absłuhoŭvajecca"
 
@@ -902,8 +763,8 @@ msgstr "Infarmacyja pra vyjavu"
 msgid "Exit fullscreen"
 msgstr "Vyjdzi z poŭnaekrannaha režymu"
 
-#: ../src/FullScreenView.cs:76 ../src/MainWindow.cs:288
-#: ../src/SingleView.cs:90
+#: ../src/FullScreenView.cs:76 ../src/MainWindow.cs:294
+#: ../src/SingleView.cs:92
 msgid "Slideshow"
 msgstr "Slideshow"
 
@@ -914,61 +775,6 @@ msgstr "Pačni slideshow"
 #: ../src/FullScreenView.cs:142
 msgid "Slide transition: "
 msgstr "Pierachod słajdu: "
-
-#: ../src/GalleryExport.cs:377
-msgid "Invalid URL"
-msgstr "Niapravilny URL"
-
-#: ../src/GalleryExport.cs:378
-msgid "The gallery URL entry does not appear to be a valid URL"
-msgstr "URL halerei nie vyhladaje na pravilny adras URL"
-
-#: ../src/GalleryExport.cs:388 ../src/GalleryExport.cs:403
-msgid "Error while connecting to Gallery"
-msgstr "Pamyłka padčas spałučeńnia z halerejaj"
-
-#: ../src/GalleryExport.cs:389 ../src/GalleryExport.cs:404
-#, csharp-format
-msgid "The following error was encountered while attempting to log in: {0}"
-msgstr "Padčas sproby aŭtaryzacyi zdaryłasia nastupnaja pamyłka: {0}"
-
-#: ../src/GalleryExport.cs:482
-msgid "(TopLevel)"
-msgstr "(TopLevel)"
-
-#: ../src/GalleryExport.cs:720
-#, csharp-format
-msgid "Error uploading picture \"{0}\" to Gallery: {1}"
-msgstr "Pamyłka padčas vysyłki vyjavy \"{0}\" u halereju: {1}"
-
-#: ../src/GalleryExport.cs:747 ../src/PicasaWebExport.cs:668
-#: ../src/SmugMugExport.cs:604
-msgid "(No Gallery)"
-msgstr "(Halerei niama)"
-
-#: ../src/GalleryExport.cs:834 ../src/PicasaWebExport.cs:795
-#: ../src/SmugMugExport.cs:702
-msgid "(Not Connected)"
-msgstr "(Niama spałučeńnia)"
-
-#: ../src/GalleryExport.cs:835 ../src/PicasaWebExport.cs:796
-#: ../src/SmugMugExport.cs:703
-msgid "(No Albums)"
-msgstr "(Niama albomaŭ)"
-
-#: ../src/GalleryExport.cs:887 ../src/PicasaWebExport.cs:840
-#: ../src/SmugMugExport.cs:747
-msgid "No account selected"
-msgstr "Kont nie paznačany"
-
-#: ../src/GalleryRemote.cs:356
-msgid "Error reading server response"
-msgstr "Pamyłka padčas adčytańnia adkazu servera"
-
-#. failed to find the response
-#: ../src/GalleryRemote.cs:368
-msgid "Server returned response without Gallery content"
-msgstr "Server viarnuŭ adkaz biaź źmiestu Halerei"
 
 #: ../src/GlTransition.cs:36
 msgid "Dissolve"
@@ -1018,17 +824,13 @@ msgstr "Uparadkuj pavodle _miesiаcaŭ"
 msgid "Arrange by _Folder"
 msgstr "Uparadkuj pavodle _katalohaŭ"
 
-#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:292
+#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:276
 msgid "_Reverse Order"
 msgstr "_Advarotny paradak"
 
-#: ../src/GroupSelector.cs:529
+#: ../src/GroupSelector.cs:529 ../src/f-spot.glade.h:231
 msgid "_Clear Date Range"
 msgstr "_Ačyść škału dataŭ"
-
-#: ../src/HigMessageDialog.cs:28 ../src/PhotoView.cs:264
-msgid "Error editing photo"
-msgstr "Pamyłka padčac madyfikacyi zdymku"
 
 #: ../src/Imaging/Exif.cs:228
 msgid "Image Directory"
@@ -1187,28 +989,28 @@ msgstr "Intelektualny vid abjektu"
 msgid "Unknown IIM DataSet"
 msgstr "Nieviadomy IIM DataSet"
 
-#: ../src/ImportCommand.cs:45 ../src/SingleView.cs:329
+#: ../src/ImportCommand.cs:49 ../src/SingleView.cs:334
 msgid "Select Folder"
 msgstr "Abiary kataloh"
 
-#: ../src/ImportCommand.cs:257
+#: ../src/ImportCommand.cs:261
 msgid "(No Cameras Detected)"
 msgstr "(Fotakamera nia vykrytaja)"
 
-#: ../src/ImportCommand.cs:401
+#: ../src/ImportCommand.cs:405
 #, csharp-format
 msgid "Loading {0} of {1}"
 msgstr "Zahruzka {0} z {1}"
 
-#: ../src/ImportCommand.cs:469
+#: ../src/ImportCommand.cs:473
 msgid "Done Loading"
 msgstr "Zahruzka zavieršanaja"
 
-#: ../src/ImportCommand.cs:666
+#: ../src/ImportCommand.cs:670
 msgid "Directory does not exist."
 msgstr "Kataloh nie isnuje."
 
-#: ../src/ImportCommand.cs:667
+#: ../src/ImportCommand.cs:671
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
@@ -1216,8 +1018,8 @@ msgid ""
 msgstr "Paznačany kataloh \"{0}\" nie isnuje. Treba paznačyć inšy kataloh"
 
 #. Prepare the Last Import root tag
-#: ../src/ImportCommand.cs:719 ../src/ImportCommand.cs:721
-#: ../src/XmpTagsImporter.cs:86
+#: ../src/ImportCommand.cs:723 ../src/ImportCommand.cs:725
+#: ../src/XmpTagsImporter.cs:88
 msgid "Import Tags"
 msgstr "Impartuj cetliki"
 
@@ -1242,7 +1044,7 @@ msgid "exposure"
 msgstr "ekspazycyja"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/InfoBox.cs:232 ../src/TagStore.cs:451
+#: ../src/InfoBox.cs:232 ../src/TagStore.cs:258
 msgid "(None)"
 msgstr "(Niama)"
 
@@ -1250,14 +1052,14 @@ msgstr "(Niama)"
 msgid "(Unknown)"
 msgstr "(Nieviadomy)"
 
-#: ../src/InfoDisplay.cs:14 ../src/MainWindow.cs:1531
-#: ../src/f-spot.glade.h:149
+#: ../src/InfoDisplay.cs:14 ../src/MainWindow.cs:1560
+#: ../src/f-spot.glade.h:140
 msgid "Metadata Browser"
 msgstr "Prahladalnik metaźviestak"
 
 #. Obsolete, remove after db rev4
 #: ../src/InfoDisplay.cs:135 ../src/InfoDisplay.cs:137
-#: ../src/f-spot.glade.h:124
+#: ../src/f-spot.glade.h:119
 msgid "Folder"
 msgstr "Kataloh"
 
@@ -1294,107 +1096,119 @@ msgstr "Zdymak \"{0}\" nie isnuje"
 msgid "No metadata available"
 msgstr "Niama metaźviestak"
 
-#: ../src/ItemAction.cs:81 ../src/ItemAction.cs:93
+#: ../src/ItemAction.cs:81 ../src/MainWindow.cs:261 ../src/SingleView.cs:75
+msgid "Rotate Left"
+msgstr "Paviarni ŭleva"
+
+#: ../src/ItemAction.cs:82 ../src/ItemAction.cs:94
 msgid "Rotate picture left"
 msgstr "Paviarni zdymak uleva"
 
-#: ../src/ItemAction.cs:104
+#: ../src/ItemAction.cs:93 ../src/MainWindow.cs:265 ../src/SingleView.cs:80
+msgid "Rotate Right"
+msgstr "Paviarni ŭprava"
+
+#: ../src/ItemAction.cs:104 ../src/f-spot.glade.h:142
+msgid "Next"
+msgstr "Dalej"
+
+#: ../src/ItemAction.cs:105
 msgid "Next picture"
 msgstr "Nastupny zdymak"
 
-#: ../src/ItemAction.cs:125 ../src/f-spot.glade.h:177
+#: ../src/ItemAction.cs:126 ../src/f-spot.glade.h:167
 msgid "Previous"
 msgstr "Papiaredni"
 
-#: ../src/ItemAction.cs:126
+#: ../src/ItemAction.cs:127
 msgid "Previous picture"
 msgstr "Papiaredni zdymak"
 
-#: ../src/ItemAction.cs:256
+#: ../src/ItemAction.cs:257
 msgid "Auto Color"
 msgstr "Aŭtamatyčny koler"
 
-#: ../src/ItemAction.cs:257
+#: ../src/ItemAction.cs:258
 msgid "Automatically adjust the colors"
 msgstr "Aŭtamatyčna dapasuj kolery"
 
-#: ../src/ItemAction.cs:272
+#: ../src/ItemAction.cs:273
 msgid "Apply straightening"
 msgstr "Prymiani vyraŭnoŭvańnie"
 
-#: ../src/ItemAction.cs:273
+#: ../src/ItemAction.cs:274
 msgid "Apply straightening to image"
 msgstr "Prymiani da vyjavy vyraŭnoŭvańnie"
 
-#: ../src/ItemAction.cs:326
+#: ../src/ItemAction.cs:327
 msgid "Adjust the angle of the image to straighten the horizon"
 msgstr "Kab vyraŭnać haryzont, dapasuj vuhał"
 
-#: ../src/ItemAction.cs:342
+#: ../src/ItemAction.cs:343
 msgid "Create a soft focus visual effect"
 msgstr "Stvary efekt miakkaha fokusu"
 
-#: ../src/Loupe.cs:57 ../src/MainWindow.cs:2027
+#: ../src/Loupe.cs:58 ../src/MainWindow.cs:2001
 msgid "Error saving sharpened photo"
 msgstr "Pamyłka padčas zapisu bolš rezkaha zdymku"
 
-#: ../src/Loupe.cs:87
+#: ../src/Loupe.cs:88
 msgid "Sharpen"
 msgstr "Bolšaja rezkaść"
 
-#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1994
+#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1968
 msgid "Amount:"
 msgstr "Uzrovień:"
 
-#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1995
+#: ../src/Loupe.cs:99 ../src/MainWindow.cs:1969
 msgid "Radius:"
 msgstr "Radyjus:"
 
-#: ../src/Loupe.cs:99 ../src/MainWindow.cs:1996
+#: ../src/Loupe.cs:100 ../src/MainWindow.cs:1970
 msgid "Threshold:"
 msgstr "Paroh:"
 
-#: ../src/MainWindow.cs:248 ../src/f-spot.glade.h:139
+#: ../src/MainWindow.cs:254 ../src/f-spot.glade.h:132
 msgid "Import"
 msgstr "Impartuj"
 
-#: ../src/MainWindow.cs:250
+#: ../src/MainWindow.cs:256
 msgid "Import new images"
 msgstr "Impartuj novyja vyjavy"
 
-#: ../src/MainWindow.cs:266 ../src/f-spot.glade.h:85
+#: ../src/MainWindow.cs:272 ../src/f-spot.glade.h:84
 msgid "Browse"
 msgstr "Prahladaj"
 
-#: ../src/MainWindow.cs:270
+#: ../src/MainWindow.cs:276
 msgid "Browse many photos simultaneously"
 msgstr "Prahladaj šmat zdymkaŭ adnačasova"
 
-#: ../src/MainWindow.cs:274
+#: ../src/MainWindow.cs:280
 msgid "Edit Image"
 msgstr "Madyfikuj vyjavu"
 
-#: ../src/MainWindow.cs:278
+#: ../src/MainWindow.cs:284
 msgid "View and edit a photo"
 msgstr "Prahladaj i madyfikuj zdymak"
 
-#: ../src/MainWindow.cs:283 ../src/SingleView.cs:85
+#: ../src/MainWindow.cs:289 ../src/SingleView.cs:87
 msgid "Fullscreen"
 msgstr "Poŭnaekranny režym"
 
-#: ../src/MainWindow.cs:285 ../src/SingleView.cs:87
+#: ../src/MainWindow.cs:291 ../src/SingleView.cs:89
 msgid "View photos fullscreen"
 msgstr "Prahladaj zdymki ŭ poŭnaekrannym režymie"
 
-#: ../src/MainWindow.cs:290 ../src/SingleView.cs:92
+#: ../src/MainWindow.cs:296 ../src/SingleView.cs:94
 msgid "View photos in a slideshow"
 msgstr "Prahladaj zdymki jak slideshow"
 
-#: ../src/MainWindow.cs:851
+#: ../src/MainWindow.cs:858
 msgid "Error loading database."
 msgstr "Pamyłka padčas zahruzki bazy źviestak."
 
-#: ../src/MainWindow.cs:852
+#: ../src/MainWindow.cs:859
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
@@ -1403,11 +1217,11 @@ msgstr ""
 "F-Spot sutyknuŭsia z pamyłkaj padčas zahruzki bazy źviestak ab zdymkach. "
 "Stvoranaja novaja baza, a papiaredniuju pieranieśli ŭ {0}."
 
-#: ../src/MainWindow.cs:1449
+#: ../src/MainWindow.cs:1478
 msgid "No cameras detected."
 msgstr "Nijakaj fotakamery nia znojdziena."
 
-#: ../src/MainWindow.cs:1450
+#: ../src/MainWindow.cs:1479
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1415,28 +1229,17 @@ msgstr ""
 "F-Spot nia zmoh znajści nijakaj padłučanaj fotakamery. Pravier jašče raz, ci "
 "padłučanaja fotakamera i ci padłučanaja jana da siłkavańnia"
 
-#: ../src/MainWindow.cs:1490
+#: ../src/MainWindow.cs:1519
 msgid "Error connecting to camera"
 msgstr "Pamyłka spałučeńnia z fotakameraj"
 
-#: ../src/MainWindow.cs:1491
+#: ../src/MainWindow.cs:1520
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Padčas spałučeńnia z fotakameraj atrymali pamyłku \"{0}\""
 
-#. Translators should localize the following string
-#. * which will give them credit in the About box.
-#. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1635
-msgid "translator-credits"
-msgstr "Alaksandar Navicki <zolak@lacinka.org>, 2007"
-
-#: ../src/MainWindow.cs:1643
-msgid "Copyright © 2003-2007 Novell Inc."
-msgstr "Copyright © 2003-2007 Novell, Inc."
-
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1907
+#: ../src/MainWindow.cs:1881
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
@@ -1444,7 +1247,7 @@ msgstr[0] "Spałučyć {0} paznačany cetlik?"
 msgstr[1] "Spałučyć {0} paznačanyja cetliki?"
 msgstr[2] "Spałučyć {0} paznačanych cetlikaŭ?"
 
-#: ../src/MainWindow.cs:1934
+#: ../src/MainWindow.cs:1908
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -1452,15 +1255,15 @@ msgstr ""
 "Hetaja aperacyja vykliča spałučeńnie paznačanych cetlikaŭ i ŭsich "
 "padcetlikaŭ u adzin."
 
-#: ../src/MainWindow.cs:1936
+#: ../src/MainWindow.cs:1910
 msgid "_Merge Tags"
 msgstr "_Spałučy cetliki"
 
-#: ../src/MainWindow.cs:1985
+#: ../src/MainWindow.cs:1959
 msgid "Unsharp Mask"
 msgstr "Razmyj masku"
 
-#: ../src/MainWindow.cs:2188 ../src/SingleView.cs:471
+#: ../src/MainWindow.cs:2169 ../src/SingleView.cs:476
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
@@ -1468,12 +1271,12 @@ msgstr[0] "{0} zdymak"
 msgstr[1] "{0} zdymki"
 msgstr[2] "{0} zdymkaŭ"
 
-#: ../src/MainWindow.cs:2195
+#: ../src/MainWindow.cs:2176
 #, csharp-format
 msgid " out of {0}"
 msgstr " z {0}"
 
-#: ../src/MainWindow.cs:2198
+#: ../src/MainWindow.cs:2179
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
@@ -1481,25 +1284,25 @@ msgstr[0] "({0} zaznačany)"
 msgstr[1] "({0} zaznačanyja)"
 msgstr[2] "({0} zaznačanych)"
 
-#: ../src/MainWindow.cs:2285
+#: ../src/MainWindow.cs:2266
 msgid "_Ok"
 msgstr "_Ok"
 
-#: ../src/MainWindow.cs:2286
+#: ../src/MainWindow.cs:2267
 msgid "Error Deleting Picture"
 msgstr "Pamyłka padčas vydaleńnia vyjavy"
 
-#: ../src/MainWindow.cs:2291
+#: ../src/MainWindow.cs:2272
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Niama pravoŭ, kab vydalić hety fajł:{1}{0}"
 
-#: ../src/MainWindow.cs:2295
+#: ../src/MainWindow.cs:2276
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "Adbyłasia pamyłka typu {0} padčas vydaleńnia fajłu:{2}{1}"
 
-#: ../src/MainWindow.cs:2321
+#: ../src/MainWindow.cs:2302
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
@@ -1507,7 +1310,7 @@ msgstr[0] "Całkam vydalić {0} paznačany zdymak?"
 msgstr[1] "Całkam vydalić {0} paznačanyja zdymki?"
 msgstr[2] "Całkam vydalić {0} paznačanych zdymkaŭ?"
 
-#: ../src/MainWindow.cs:2325
+#: ../src/MainWindow.cs:2306
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
@@ -1515,14 +1318,14 @@ msgstr[0] "Vydalaje ŭsie versii paznačanaha zdymku z dysku."
 msgstr[1] "Vydalaje ŭsie versii paznačanych zdymkaŭ z dysku."
 msgstr[2] "Vydalaje ŭsie versii paznačanych zdymkaŭ z dysku."
 
-#: ../src/MainWindow.cs:2328
+#: ../src/MainWindow.cs:2309
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Vydal zdymak"
 msgstr[1] "_Vydal zdymki"
 msgstr[2] "_Vydal zdymki"
 
-#: ../src/MainWindow.cs:2359
+#: ../src/MainWindow.cs:2340
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
@@ -1530,7 +1333,7 @@ msgstr[0] "Vydalić {0} paznačany zdymak z prahramy F-Spot?"
 msgstr[1] "Vydalić {0} paznačanyja zdymki z prahramy F-Spot?"
 msgstr[2] "Vydalić {0} paznačanych zdymkaŭ z prahramy F-Spot?"
 
-#: ../src/MainWindow.cs:2364
+#: ../src/MainWindow.cs:2345
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1540,26 +1343,40 @@ msgstr ""
 "infarmacyi pra ŭsie cetliki. Zdymki zastanucca ŭ kamputary, i možna budzie "
 "ich znoŭ impartavać u prahramu F-Spot."
 
-#: ../src/MainWindow.cs:2365
+#: ../src/MainWindow.cs:2346
 msgid "_Remove from Catalog"
 msgstr "_Vydal z katalohu"
 
-#: ../src/MainWindow.cs:2422
+#: ../src/MainWindow.cs:2409
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Vydalić cetlik \"{0}\"?"
 
-#: ../src/MainWindow.cs:2424
+#: ../src/MainWindow.cs:2411
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Vydalić {0} paznačanych cetlikaŭ?"
 
-#: ../src/MainWindow.cs:2427
-msgid "If you delete a tag, all associations with photos are lost."
-msgstr ""
-"Kali cetlik budzie vydaleny, usialakija poviazi sa zdymkami buduć stračanyja."
+#: ../src/MainWindow.cs:2416
+msgid "photo"
+msgid_plural "photos"
+msgstr[0] "zdymkam"
+msgstr[1] "zdymkami"
+msgstr[2] "zdymkami"
 
-#: ../src/MainWindow.cs:2428
+#: ../src/MainWindow.cs:2418
+#, csharp-format
+msgid "If you delete this tag, the association with {0} {1} will be lost."
+msgid_plural ""
+"If you delete these tags, the association with {0} {1} will be lost."
+msgstr[0] ""
+"Kali cetlik budzie vydaleny, usialakija poviazi z {0} {1} buduć stračanyja."
+msgstr[1] ""
+"Kali cetlik budzie vydaleny, usialakija poviazi z {0} {1} buduć stračanyja."
+msgstr[2] ""
+"Kali cetlik budzie vydaleny, usialakija poviazi z {0} {1} buduć stračanyja."
+
+#: ../src/MainWindow.cs:2423
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Vydal cetlik"
@@ -1567,11 +1384,11 @@ msgstr[1] "_Vydal cetliki"
 msgstr[2] "_Vydal cetlikaŭ"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2442
+#: ../src/MainWindow.cs:2437
 msgid "Tag is not empty"
 msgstr "Cetlik nie pusty"
 
-#: ../src/MainWindow.cs:2443
+#: ../src/MainWindow.cs:2438
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1580,44 +1397,44 @@ msgstr ""
 "Niemahčyma vydalić cetliki, jakija majuć padcetliki. Treba spačatku vydalić "
 "cetliki pad \"{0}\""
 
-#: ../src/MainWindow.cs:2870
+#: ../src/MainWindow.cs:2894
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Paviarni paznačany zdymak uleva"
 msgstr[1] "Paviarni paznačanyja zdymki ŭleva"
 msgstr[2] "Paviarni paznačanyja zdymki ŭleva"
 
-#: ../src/MainWindow.cs:2883
+#: ../src/MainWindow.cs:2907
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Paviarni paznačany zdymak uprava"
 msgstr[1] "Paviarni paznačanyja zdymki ŭprava"
 msgstr[2] "Paviarni paznačanyja zdymki ŭprava"
 
-#: ../src/MainWindow.cs:2891
+#: ../src/MainWindow.cs:2915
 #, csharp-format
-msgid "Find Selected Tag"
-msgid_plural "Find Selected Tags"
-msgstr[0] "Znajdzi paznačany cetlik"
-msgstr[1] "Znajdzi paznačanyja cetliki"
-msgstr[2] "Znajdzi paznačanyja cetliki"
+msgid "Find _Selected Tag"
+msgid_plural "Find _Selected Tags"
+msgstr[0] "Znajdzi _paznačany cetlik"
+msgstr[1] "Znajdzi _paznačanyja cetliki"
+msgstr[2] "Znajdzi _paznačanyja cetliki"
 
-#: ../src/MainWindow.cs:2895
+#: ../src/MainWindow.cs:2919
 #, csharp-format
-msgid "Find Selected Tag With"
-msgid_plural "Find Selected Tags With"
-msgstr[0] "Znajdzi paznačany cetlik, užyvajučy"
-msgstr[1] "Znajdzi paznačanyja cetliki, užyvajučy"
-msgstr[2] "Znajdzi paznačanyja cetliki, užyvajučy"
+msgid "Find Selected Tag _With"
+msgid_plural "Find Selected Tags _With"
+msgstr[0] "Znajdzi paznačany cetlik, _užyvajučy"
+msgstr[1] "Znajdzi paznačanyja cetliki, _užyvajučy"
+msgstr[2] "Znajdzi paznačanyja cetliki, _užyvajučy"
 
-#: ../src/MainWindow.cs:2933
+#: ../src/MainWindow.cs:2957
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Stvaryć novuju versiju?"
 msgstr[1] "Stvaryć novyja versii?"
 msgstr[2] "Stvaryć novyja versii?"
 
-#: ../src/MainWindow.cs:2935
+#: ../src/MainWindow.cs:2959
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1740,95 +1557,65 @@ msgstr "Rezkaść"
 msgid "Scene Type"
 msgstr "Typ sceny"
 
-#: ../src/PhotoStore.cs:453
-#, csharp-format
-msgid "Reparented"
-msgid_plural "Reparented ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-#: ../src/PhotoStore.cs:470
-#, csharp-format
-msgid "Modified"
-msgid_plural "Modified ({0})"
-msgstr[0] "Zmadyfikavany ({0})"
-msgstr[1] "Zmadyfikavanyja ({0})"
-msgstr[2] "Zmadyfikavanyja ({0})"
-
-#: ../src/PhotoStore.cs:489
-#, csharp-format
-msgid "Modified in {1}"
-msgid_plural "Modified in {1} ({0})"
-msgstr[0] "Zmadyfikavany ŭ {1} ({0})"
-msgstr[1] "Zmadyfikavanyja ŭ {1} ({0})"
-msgstr[2] "Zmadyfikavanyja ŭ {1} ({0})"
-
-#. Note that the original version is never stored in the photo_versions table in the
-#. database.
-#: ../src/PhotoStore.cs:673 ../src/f-spot.glade.h:164
-msgid "Original"
-msgstr "Aryhinał"
-
 #. Fixme this should really set parent menu
 #. items insensitve
-#: ../src/PhotoTagMenu.cs:72
+#: ../src/PhotoTagMenu.cs:74
 msgid "(No Tags)"
 msgstr "(Biaz cetlikaŭ)"
 
-#: ../src/PhotoVersionCommands.cs:55
+#: ../src/PhotoVersionCommands.cs:57
 msgid "Create New Version"
 msgstr "Stvary novuju versiju"
 
-#: ../src/PhotoVersionCommands.cs:56
+#: ../src/PhotoVersionCommands.cs:58
 msgid "Name:"
 msgstr "Nazva:"
 
-#: ../src/PhotoVersionCommands.cs:60
+#: ../src/PhotoVersionCommands.cs:62
 msgid "Rename Version"
 msgstr "Źmiani nazvu versii"
 
-#: ../src/PhotoVersionCommands.cs:61
+#: ../src/PhotoVersionCommands.cs:63
 msgid "New name:"
 msgstr "Novaja nazva:"
 
-#: ../src/PhotoVersionCommands.cs:107
+#: ../src/PhotoVersionCommands.cs:109
 msgid "Could not create a new version"
 msgstr "Nie ŭdałosia stvaryć novuju versiju"
 
-#: ../src/PhotoVersionCommands.cs:108
+#: ../src/PhotoVersionCommands.cs:110
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to create version \"{1}\""
 msgstr "Zdaryłasia vyklučeńnie \"{0}\". Niemahčyma stvaryć versiju \"{1}\""
 
-#: ../src/PhotoVersionCommands.cs:135
+#: ../src/PhotoVersionCommands.cs:137
 msgid "Really Delete?"
 msgstr "Sapraŭdy vydalić?"
 
-#: ../src/PhotoVersionCommands.cs:137
+#: ../src/PhotoVersionCommands.cs:139
 msgid "Delete"
 msgstr "Vydal"
 
-#: ../src/PhotoVersionCommands.cs:141
+#: ../src/PhotoVersionCommands.cs:143
 #, csharp-format
 msgid "Really delete version \"{0}\"?"
 msgstr "Sapraŭdy vydalić versiju \"{0}\"?"
 
 #. FIXME show error dialog.
-#: ../src/PhotoVersionCommands.cs:151
+#: ../src/PhotoVersionCommands.cs:153
 msgid "Could not delete a version"
 msgstr "Nie ŭdałosia vydalić versiju"
 
-#: ../src/PhotoVersionCommands.cs:152
+#: ../src/PhotoVersionCommands.cs:154
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to delete version \"{1}\""
 msgstr "Zdaryłasia vyklučeńnie \"{0}\". Niemahčyma vydalić versiju \"{1}\""
 
-#: ../src/PhotoVersionCommands.cs:193
+#: ../src/PhotoVersionCommands.cs:195
 msgid "Could not rename a version"
 msgstr "Nie ŭdałosia źmianić nazvu versii"
 
-#: ../src/PhotoVersionCommands.cs:194
+#: ../src/PhotoVersionCommands.cs:196
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
 msgstr ""
@@ -1838,23 +1625,23 @@ msgstr ""
 msgid "(No Edits)"
 msgstr "(Biez madyfikacyj)"
 
-#: ../src/PhotoView.cs:62
+#: ../src/PhotoView.cs:66
 msgid "No Constraint"
 msgstr "Advolnyja praporcyi"
 
-#: ../src/PhotoView.cs:63
+#: ../src/PhotoView.cs:67
 msgid "4 x 3 (Book)"
 msgstr "4 x 3 (kniha)"
 
-#: ../src/PhotoView.cs:64
+#: ../src/PhotoView.cs:68
 msgid "4 x 6 (Postcard)"
 msgstr "4 x 6 (paštoŭka)"
 
-#: ../src/PhotoView.cs:65
+#: ../src/PhotoView.cs:69
 msgid "5 x 7 (L, 2L)"
 msgstr "5 x 7 (L, 2L)"
 
-#: ../src/PhotoView.cs:66
+#: ../src/PhotoView.cs:70
 msgid "8 x 10"
 msgstr "8 x 10"
 
@@ -1862,31 +1649,35 @@ msgstr "8 x 10"
 #. new SelectionConstraint (Catalog.GetString ("4 x 6 Portrait (Postcard)"), 4.0 / 6.0),
 #. new SelectionConstraint (Catalog.GetString ("5 x 7 Portrait (L, 2L)"), 5.0 / 7.0),
 #. new SelectionConstraint (Catalog.GetString ("8 x 10 Portrait"), 8.0 / 10.0),
-#: ../src/PhotoView.cs:71
+#: ../src/PhotoView.cs:75
 msgid "Square"
 msgstr "Kvadrat"
 
-#: ../src/PhotoView.cs:151
+#: ../src/PhotoView.cs:155
 msgid "Crop photo to selected area"
 msgstr "Padrež zdymak da zaznačanaha abšaru"
 
-#: ../src/PhotoView.cs:152
+#: ../src/PhotoView.cs:156
 msgid "Remove redeye from selected area"
 msgstr "Papraŭ efekt čyrvonych vačej na zaznačanym abšary"
 
-#: ../src/PhotoView.cs:154
+#: ../src/PhotoView.cs:158
 msgid "Select an area to crop"
 msgstr "Zaznač abšar, kab padrezać"
 
-#: ../src/PhotoView.cs:155
+#: ../src/PhotoView.cs:159
 msgid "Select an area to remove redeye"
 msgstr "Zaznač abšar, kab papravić efekt čyrvonych vačej"
 
-#: ../src/PhotoView.cs:316
+#: ../src/PhotoView.cs:278 ../src/UI.Dialog/EditExceptionDialog.cs:38
+msgid "Error editing photo"
+msgstr "Pamyłka padčac madyfikacyi zdymku"
+
+#: ../src/PhotoView.cs:330
 msgid "No selection available"
 msgstr "Niama nijakaha zaznačeńnia"
 
-#: ../src/PhotoView.cs:317
+#: ../src/PhotoView.cs:331
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -1894,130 +1685,174 @@ msgstr ""
 "Pryłada vymahaje aktyŭnaha zaznačeńnia. Zaznač frahment zdymku i pasprabuj "
 "paŭtaryć aperacyju"
 
-#: ../src/PhotoView.cs:475
+#: ../src/PhotoView.cs:508
 msgid "Comment:"
 msgstr "Kamentar:"
 
-#: ../src/PhotoView.cs:491
+#: ../src/PhotoView.cs:528
 msgid "Constrain the aspect ratio of the selection"
 msgstr "Vymuś akreślenyja praporcyi zaznačeńnia"
 
-#: ../src/PhotoView.cs:493
+#: ../src/PhotoView.cs:530
 msgid "Crop"
 msgstr "Padrež"
 
-#: ../src/PhotoView.cs:497
+#: ../src/PhotoView.cs:534
 msgid "Reduce Red-Eye"
 msgstr "Prybiary efekt čyrvonych vačej"
 
-#: ../src/PhotoView.cs:501
+#: ../src/PhotoView.cs:538
 msgid "Adjust Colors"
 msgstr "Dastasuj kolery"
 
-#: ../src/PhotoView.cs:503
+#: ../src/PhotoView.cs:540
 msgid "Adjust the photo colors"
 msgstr "Dastasuj kolery zdymku"
 
-#: ../src/PhotoView.cs:506
+#: ../src/PhotoView.cs:543
 msgid "Desaturate"
 msgstr "Źmienš nasyčanaść"
 
-#: ../src/PhotoView.cs:508
+#: ../src/PhotoView.cs:545
 msgid "Convert the photo to black and white"
 msgstr "Kanvertuj zdymak na čorna-bieły"
 
-#: ../src/PhotoView.cs:511
+#: ../src/PhotoView.cs:548
 msgid "Sepia Tone"
 msgstr "Tanacyja sepii"
 
-#: ../src/PhotoView.cs:513
+#: ../src/PhotoView.cs:550
 msgid "Convert the photo to sepia tones"
 msgstr "Kanvertuj zdymak na tanacyju sepii"
 
-#: ../src/PhotoView.cs:543
+#: ../src/PhotoView.cs:580
 msgid "Previous photo"
 msgstr "Papiaredni zdymak"
 
-#: ../src/PhotoView.cs:548
+#: ../src/PhotoView.cs:585
 msgid "Next photo"
 msgstr "Nastupny zdymak"
 
-#: ../src/PicasaWebExport.cs:417
+#: ../src/PicasaWebExport.cs:419
 msgid "Error while creating Album"
 msgstr "Pamyłka padčas stvareńnia albomu"
 
-#: ../src/PicasaWebExport.cs:418
+#: ../src/PicasaWebExport.cs:420
 #, csharp-format
 msgid ""
 "The following error was encountered while attempting to create an album: {0}"
 msgstr "Padčas sproby stvaryć albom zdaryłasia nastupnaja pamyłka: {0}"
 
-#: ../src/PicasaWebExport.cs:572
+#: ../src/PicasaWebExport.cs:551 ../src/SmugMugExport.cs:500
+msgid "Uploading Pictures"
+msgstr "Vysyłka vyjavaŭ"
+
+#: ../src/PicasaWebExport.cs:574
 #, csharp-format
 msgid "{0} Sent"
 msgstr "{0} Dasłana"
 
-#: ../src/PicasaWebExport.cs:574
+#: ../src/PicasaWebExport.cs:576
 #, csharp-format
 msgid "{0} of approx. {1}"
 msgstr "{0} z kala {1}"
 
-#: ../src/PicasaWebExport.cs:604 ../src/SmugMugExport.cs:542
+#: ../src/PicasaWebExport.cs:606 ../src/SmugMugExport.cs:543
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "Dasyłańnie vyjavy \"{0}\" ({1} z {2})"
 
-#: ../src/PicasaWebExport.cs:635 ../src/SmugMugExport.cs:571
+#: ../src/PicasaWebExport.cs:637 ../src/SmugMugExport.cs:572
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Pamyłka padčas vysyłańnia ŭ halereju: {0}"
 
-#: ../src/PicasaWebExport.cs:719
+#: ../src/PicasaWebExport.cs:649 ../src/SmugMugExport.cs:584
+msgid "Upload Complete"
+msgstr "Vysyłka zakončanaja"
+
+#: ../src/PicasaWebExport.cs:670 ../src/SmugMugExport.cs:605
+msgid "(No Gallery)"
+msgstr "(Halerei niama)"
+
+#: ../src/PicasaWebExport.cs:721
 msgid "Available space :"
 msgstr "Dastupnaje miesca:"
 
-#: ../src/Preferences.cs:194
+#: ../src/PicasaWebExport.cs:797 ../src/SmugMugExport.cs:703
+msgid "(Not Connected)"
+msgstr "(Niama spałučeńnia)"
+
+#: ../src/PicasaWebExport.cs:798 ../src/SmugMugExport.cs:704
+msgid "(No Albums)"
+msgstr "(Niama albomaŭ)"
+
+#: ../src/PicasaWebExport.cs:842 ../src/SmugMugExport.cs:748
+msgid "No account selected"
+msgstr "Kont nie paznačany"
+
+#: ../src/Preferences.cs:186
 msgid "Photos"
 msgstr "Zdymki"
 
-#: ../src/QueryWidget.cs:37
+#: ../src/QueryWidget.cs:40
 msgid "Find: "
 msgstr "Znajdzi: "
 
-#: ../src/QueryWidget.cs:42
+#: ../src/QueryWidget.cs:45
 msgid "Untagged photos"
 msgstr "Zdymki biaz cetlikaŭ"
 
-#: ../src/QueryWidget.cs:50
+#: ../src/QueryWidget.cs:53
+msgid "Unrated photos"
+msgstr "Zdymki biaz ratingaŭ"
+
+#: ../src/QueryWidget.cs:57
+msgid "Rated photos"
+msgstr "Zdymki z ratingami"
+
+#: ../src/QueryWidget.cs:65
 msgid "Import roll"
 msgstr "Katuška impartu"
 
-#: ../src/QueryWidget.cs:70
+#: ../src/QueryWidget.cs:85
 msgid "Clear search"
 msgstr "Ačyść pošuk"
 
-#: ../src/QueryWidget.cs:72
+#: ../src/QueryWidget.cs:87
 msgid "No matching photos found"
 msgstr "Nia znojdziena zdymkaŭ, jakija b pasavali da zapytu"
 
-#: ../src/QueryWidget.cs:103
-msgid "Hide Find Bar"
-msgstr "Schavaj panel pošuku"
+#: ../src/QueryWidget.cs:120
+msgid "Hide _Find Bar"
+msgstr "Schavaj panel p_ošuku"
 
-#: ../src/QueryWidget.cs:109
-msgid "Show Find Bar"
-msgstr "Pakažy panel pošuku"
+#: ../src/QueryWidget.cs:126
+msgid "Show _Find Bar"
+msgstr "Pakažy panel p_ošuku"
 
-#: ../src/RotateCommand.cs:200
+#: ../src/RotateCommand.cs:96 ../src/RotateCommand.cs:111
+msgid "Unable to rotate this type of photo"
+msgstr "Niemahčyma paviarnuć zdymak takoha typu"
+
+#: ../src/RotateCommand.cs:138
+msgid "Unable to rotate readonly file"
+msgstr "Nie ŭdałosia paviarnuć fajł, niedastupny dziela zapisu"
+
+#: ../src/RotateCommand.cs:205
 msgid "Rotating photos"
 msgstr "Pavaročvańnie zdymkaŭ"
 
-#: ../src/RotateCommand.cs:211
+#: ../src/RotateCommand.cs:216
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "Pavaročvańnie zdymku \"{0}\""
 
-#: ../src/RotateCommand.cs:237
+#: ../src/RotateCommand.cs:229
+msgid "Directory not found"
+msgstr "Kataloh nia znojdzieny"
+
+#: ../src/RotateCommand.cs:248
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
@@ -2025,107 +1860,102 @@ msgstr[0] "Niemahčyma paviarnuć {0} zdymak"
 msgstr[1] "Niemahčyma paviarnuć {0} zdymki"
 msgstr[2] "Niemahčyma paviarnuć {0} zdymkaŭ"
 
-#: ../src/RotateCommand.cs:241
+#: ../src/RotateCommand.cs:250
 #, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
-"media such as a CDROM.  Please check the permissions and try again"
+"media such as a CDROM.  Please check the permissions and try again."
 msgid_plural ""
 "{0} photos could not be rotated because they are on a read only file system "
-"or media such as a CDROM.  Please check the permissions and try again"
+"or media such as a CDROM.  Please check the permissions and try again."
 msgstr[0] ""
-"{0} zdymak nielha było paviarnuć, bo jon znachodzicca na nośbicie tolki dla "
-"čytańnia, takim jak CD-ROM. Treba spraŭdzić dazvoły i pasprabavać znoŭ"
+"{0} zdymak nielha było paviarnuć, bo jon znachodzicca na fajłavaj systemie ci "
+"nośbicie tolki dla čytańnia, takim jak CD-ROM. Treba spraŭdzić dazvoły i "
+"pasprabavać znoŭ."
 msgstr[1] ""
-"{0} zdymki nielha było paviarnuć, bo jany znachodziacca na nośbicie tolki "
-"dla čytańnia, takim jak CD-ROM. Treba spraŭdzić dazvoły i pasprabavać znoŭ"
+"{0} zdymki nielha było paviarnuć, bo jany znachodziacca na fajłavaj systemie "
+"ci nośbicie tolki dla čytańnia, takim jak CD-ROM. Treba spraŭdzić dazvoły i "
+"pasprabavać znoŭ."
 msgstr[2] ""
-"{0} zdymkaŭ nielha było paviarnuć, bo jany znachodziacca na nośbicie tolki "
-"dla čytańnia, takim jak CD-ROM. Treba spraŭdzić dazvoły i pasprabavać znoŭ"
+"{0} zdymkaŭ nielha było paviarnuć, bo jany znachodziacca na fajłavaj systemie "
+"ci nośbicie tolki dla čytańnia, takim jak CD-ROM. Treba spraŭdzić dazvoły i "
+"pasprabavać znoŭ."
 
-#: ../src/RotateCommand.cs:263
+#: ../src/RotateCommand.cs:277
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "Atrymanaja pamyłka \"{0}\" padčas sproby pavarotu {1}"
 
-#: ../src/RotateCommand.cs:268
+#: ../src/RotateCommand.cs:282
 msgid "Error while rotating photo."
 msgstr "Pamyłka padčas pavarotu zdymku."
 
-#: ../src/SendEmail.cs:234
+#: ../src/SendEmail.cs:236
 msgid "Preparing email"
 msgstr "Padrychtoŭka lista"
 
-#: ../src/SendEmail.cs:286
+#: ../src/SendEmail.cs:288
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "Ekspartavańnie vyjavy \"{0}\""
 
 #. Send the mail :)
-#: ../src/SendEmail.cs:311
+#: ../src/SendEmail.cs:313
 msgid "my photos"
 msgstr "maje zdymki"
 
-#: ../src/SingleView.cs:75
+#: ../src/SingleView.cs:77
 msgid "Rotate photo left"
 msgstr "Paviarni zdymak uleva"
 
-#: ../src/SingleView.cs:80
+#: ../src/SingleView.cs:82
 msgid "Rotate photo right"
 msgstr "Paviarni zdymak uprava"
 
-#: ../src/SingleView.cs:326
+#: ../src/SingleView.cs:331
 msgid "Open"
 msgstr "Adčyni"
 
-#: ../src/SingleView.cs:428 ../src/f-spot.glade.h:187
-msgid "Rotate _Left"
-msgstr "Paviarni ŭ_leva"
-
-#: ../src/SingleView.cs:429 ../src/f-spot.glade.h:188
-msgid "Rotate _Right"
-msgstr "Paviarni ŭp_rava"
-
-#: ../src/SingleView.cs:431
+#: ../src/SingleView.cs:436
 msgid "Set as Background"
 msgstr "Pastaŭ jak fon stała"
 
-#: ../src/TagCommands.cs:89 ../src/TagCommands.cs:217
-#: ../src/TagSelectionWidget.cs:506
+#: ../src/TagCommands.cs:91 ../src/TagCommands.cs:219
+#: ../src/TagSelectionWidget.cs:508
 msgid "This name is already in use"
 msgstr "Hetaja nazva ŭžo zaniataja"
 
-#: ../src/TagCommands.cs:136
+#: ../src/TagCommands.cs:138
 msgid "Create New Tag"
 msgstr "Stvary novy cetlik"
 
-#: ../src/TagCommands.cs:137
+#: ../src/TagCommands.cs:139
 msgid "Name of New Tag:"
 msgstr "Nazva novaha cetlika:"
 
-#: ../src/TagCommands.cs:287
+#: ../src/TagCommands.cs:278
 msgid "Edit Tag"
 msgstr "Madyfikuj cetlik"
 
-#: ../src/TagCommands.cs:288
+#: ../src/TagCommands.cs:279
 msgid "Tag Name:"
 msgstr "Nazva cetlika:"
 
-#: ../src/TagCommands.cs:421
+#: ../src/TagCommands.cs:412
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Zdymak {0} z {1}"
 
-#: ../src/TagCommands.cs:451
+#: ../src/TagCommands.cs:442
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "Madyfikuj ikonu dla cetlika {0}"
 
-#: ../src/TagCommands.cs:467
+#: ../src/TagCommands.cs:458
 msgid "Select Photo from file"
 msgstr "Abiary zdymak z fajłu..."
 
-#: ../src/TagCommands.cs:490
+#: ../src/TagCommands.cs:481
 #, csharp-format
 msgid ""
 "\n"
@@ -2142,11 +1972,11 @@ msgstr ""
 " z hetym cetlikam. Paznač zdymak jak \"{0}\" i viarnisia siudy,\n"
 " kab vykarystać jaho ŭ jakaści ikony."
 
-#: ../src/TagMenu.cs:89 ../src/TagPopup.cs:34
+#: ../src/TagMenu.cs:91 ../src/TagPopup.cs:36
 msgid "Create New Tag..."
 msgstr "Stvary novy cetlik..."
 
-#: ../src/TagPopup.cs:24
+#: ../src/TagPopup.cs:26
 #, csharp-format
 msgid "Find"
 msgid_plural "Find"
@@ -2154,50 +1984,50 @@ msgstr[0] "Znajdzi"
 msgstr[1] "Znajdzi"
 msgstr[2] "Znajdzi"
 
-#: ../src/TagPopup.cs:40
+#: ../src/TagPopup.cs:42
 msgid "Edit Selected Tag..."
 msgstr "Madyfikuj abrany cetlik..."
 
-#: ../src/TagPopup.cs:44
+#: ../src/TagPopup.cs:46
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
 msgstr[0] "Vydal cetlik"
 msgstr[1] "Vydal cetliki"
 msgstr[2] "Vydal cetliki"
 
-#: ../src/TagPopup.cs:50
+#: ../src/TagPopup.cs:52
 msgid "Attach Tag to Selection"
 msgid_plural "Attach Tags to Selection"
 msgstr[0] "Dałučy cetlik da zaznačeńnia"
 msgstr[1] "Dałučy cetliki da zaznačeńnia"
 msgstr[2] "Dałučy cetliki da zaznačeńnia"
 
-#: ../src/TagPopup.cs:54
+#: ../src/TagPopup.cs:56
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
 msgstr[0] "Vydal cetlik z zaznačeńnia"
 msgstr[1] "Vydal cetliki z zaznačeńnia"
 msgstr[2] "Vydal cetliki z zaznačeńnia"
 
-#: ../src/TagPopup.cs:60
+#: ../src/TagPopup.cs:62
 msgid "Merge Tags"
 msgstr "Spałučy cetliki"
 
-#: ../src/TagQueryWidget.cs:31
+#: ../src/TagQueryWidget.cs:32
 #, csharp-format
 msgid "Include Photos Tagged \"{0}\""
 msgstr "Dałučy zdymki z cetlikam \"{0}\""
 
-#: ../src/TagQueryWidget.cs:36
+#: ../src/TagQueryWidget.cs:37
 #, csharp-format
 msgid "Exclude Photos Tagged \"{0}\""
 msgstr "Prapuści zdymki z cetlikam \"{0}\""
 
-#: ../src/TagQueryWidget.cs:41
+#: ../src/TagQueryWidget.cs:42
 msgid "Remove From Search"
 msgstr "Vydal z pošuku"
 
-#: ../src/TagQueryWidget.cs:85
+#: ../src/TagQueryWidget.cs:86
 #, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
@@ -2205,40 +2035,40 @@ msgstr[0] "Z_najdzi pry dapamozie"
 msgstr[1] "Z_najdzi pry dapamozie"
 msgstr[2] "Z_najdzi pry dapamozie"
 
-#: ../src/TagQueryWidget.cs:111
+#: ../src/TagQueryWidget.cs:112
 msgid "All"
 msgstr "Usio"
 
-#: ../src/TagQueryWidget.cs:146 ../src/Term.cs:591
+#: ../src/TagQueryWidget.cs:147 ../src/Term.cs:591
 #, csharp-format
 msgid "Not {0}"
 msgstr "Nie {0}"
 
-#: ../src/TagQueryWidget.cs:276
+#: ../src/TagQueryWidget.cs:277
 msgid "Drag tags here to search for them"
 msgstr "Pieraciahni cetliki siudy, kab pašukać ich"
 
-#: ../src/TagSelectionWidget.cs:505
+#: ../src/TagSelectionWidget.cs:507
 msgid "Error renaming tag"
 msgstr "Pamyłka pry źmienie nazvy cetlika"
 
-#: ../src/TagStore.cs:415
+#: ../src/TagStore.cs:222
 msgid "Favorites"
 msgstr "Ulubionyja"
 
-#: ../src/TagStore.cs:420
+#: ../src/TagStore.cs:227
 msgid "Hidden"
 msgstr "Schavanyja"
 
-#: ../src/TagStore.cs:428
+#: ../src/TagStore.cs:235
 msgid "People"
 msgstr "Ludzi"
 
-#: ../src/TagStore.cs:433
+#: ../src/TagStore.cs:240
 msgid "Places"
 msgstr "Miescy"
 
-#: ../src/TagStore.cs:438
+#: ../src/TagStore.cs:245
 msgid "Events"
 msgstr "Padziei"
 
@@ -2255,7 +2085,7 @@ msgstr ", "
 msgid " or "
 msgstr " albo "
 
-#: ../src/Term.cs:379 ../src/f-spot.glade.h:321
+#: ../src/Term.cs:379 ../src/f-spot.glade.h:307
 msgid "or"
 msgstr "albo"
 
@@ -2263,32 +2093,40 @@ msgstr "albo"
 msgid "Retry"
 msgstr "Paŭtary"
 
-#: ../src/ThreadProgressDialog.cs:68
-msgid "Skip"
-msgstr "Prapuści"
-
 #. The preceding text here is the second checkbutton in the Time dialog
 #. that says "Space all photos by []"
-#: ../src/TimeDialog.cs:126 ../src/f-spot.glade.h:320
+#: ../src/TimeDialog.cs:126 ../src/f-spot.glade.h:306
 #, csharp-format
 msgid "min. Starting at {0}"
 msgstr "minimum, pačynajučy ad {0}"
 
-#: ../src/TimeDialog.cs:131 ../src/f-spot.glade.h:204
+#: ../src/TimeDialog.cs:131 ../src/f-spot.glade.h:191
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Pierasuń usie zdymki na {0}"
+
+#: ../src/UI.Dialog/AboutDialog.cs:67
+msgid "Copyright © 2003-2008 Novell Inc."
+msgstr "Copyright © 2003-2008 Novell, Inc."
+
+#: ../src/UI.Dialog/AboutDialog.cs:81
+msgid "translator-credits"
+msgstr "Alaksandar Navicki <zolak@lacinka.org>, 2007"
+
+#: ../src/UI.Dialog/AboutDialog.cs:86
+msgid "F-Spot Website"
+msgstr "Web-staronka F-Spot"
 
 #. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
 #: ../src/Unix.cs:25
 msgid "Unable to create temporary file"
 msgstr "Nie ŭdałosia stvaryć časovy fajł"
 
-#: ../src/Updater.cs:230
+#: ../src/Updater.cs:273
 msgid "Updating F-Spot Database"
 msgstr "Aktualizacyja bazy źviestak F-Spot"
 
-#: ../src/Updater.cs:231
+#: ../src/Updater.cs:274
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -2296,16 +2134,7 @@ msgstr ""
 "Čakaj, adbyvajecca aktualizacyja bazy źviestak F-Spot. Heta moža doŭžycca "
 "niekatory čas."
 
-#: ../src/Util.cs:428
-msgid "There was an error invoking the external handler"
-msgstr "Padčas uruchamleńnia vonkavaj prahramy adbyłasia pamyłka"
-
-#: ../src/Util.cs:429
-#, csharp-format
-msgid "Received error:{1}\"{0}\"{1}"
-msgstr "Atrymanaja pamyłka:{1}\"{0}\"{1}"
-
-#: ../src/Util.cs:453
+#: ../src/Utils/GnomeUtil.cs:49
 msgid ""
 "The \"F-Spot Manual\" could not be found.  Please verify that your "
 "installation has been completed successfully."
@@ -2313,151 +2142,155 @@ msgstr ""
 "Niemahčyma znajści \"Padručnik F-Spot\". Pravier, ci prahrama była "
 "zainstalavanaja całkam."
 
-#: ../src/Util.cs:461
-msgid "Help not found"
-msgstr "Dapamoha nia znojdzienaja"
+#: ../src/Widgets/RatingMenuItem.cs:48
+msgid "Rating:"
+msgstr "Rating:"
 
 #: ../src/Widgets/FindBar.cs:83
 msgid "Find:"
 msgstr "Znajdzi:"
 
 # progress indicator label
-#: ../src/XmpTagsImporter.cs:87
+#: ../src/XmpTagsImporter.cs:89
 msgid "Location"
 msgstr "Pałažeńnie"
 
-#: ../src/XmpTagsImporter.cs:88
+#: ../src/XmpTagsImporter.cs:90
 msgid "Country"
 msgstr "Kraina"
 
-#: ../src/XmpTagsImporter.cs:89
+#: ../src/XmpTagsImporter.cs:91
 msgid "City"
 msgstr "Horad"
 
-#: ../src/XmpTagsImporter.cs:90
+#: ../src/XmpTagsImporter.cs:92
 msgid "State"
 msgstr "Rehijon"
 
 #. namespace
 #: ../src/f-spot.glade.h:1
-msgid "\n"
-msgstr "\n"
-
-#: ../src/f-spot.glade.h:3
 msgid " "
 msgstr " "
 
-#: ../src/f-spot.glade.h:4
+#: ../src/f-spot.glade.h:2
 msgid "0000:00:00 00:00:00"
 msgstr "0000:00:00 00:00:00"
 
-#: ../src/f-spot.glade.h:5
+#: ../src/f-spot.glade.h:3
 msgid "00:00:00"
 msgstr "00:00:00"
 
-#: ../src/f-spot.glade.h:6
+#: ../src/f-spot.glade.h:4
 msgid "1 of 1"
 msgstr "1 z 1"
 
-#: ../src/f-spot.glade.h:7
+#: ../src/f-spot.glade.h:5
 msgid "1024 px"
 msgstr "1024 px"
 
-#: ../src/f-spot.glade.h:8
+#: ../src/f-spot.glade.h:6
 msgid "320 px"
 msgstr "320 px"
 
-#: ../src/f-spot.glade.h:9
+#: ../src/f-spot.glade.h:7
 msgid "480 px"
 msgstr "480 px"
 
-#: ../src/f-spot.glade.h:10
+#: ../src/f-spot.glade.h:8
 msgid "5"
 msgstr "5"
 
-#: ../src/f-spot.glade.h:11
+#: ../src/f-spot.glade.h:9
 msgid "640 px"
 msgstr "640 px"
 
-#: ../src/f-spot.glade.h:12
+#: ../src/f-spot.glade.h:10
 msgid "800 px"
 msgstr "800 px"
 
-#: ../src/f-spot.glade.h:13
+#: ../src/f-spot.glade.h:11
 msgid "<b></b>"
 msgstr "<b></b>"
 
-#: ../src/f-spot.glade.h:14
+#: ../src/f-spot.glade.h:12
 msgid "<b>Account</b>"
 msgstr "<b>Kont</b>"
 
-#: ../src/f-spot.glade.h:15
+#: ../src/f-spot.glade.h:13
 msgid "<b>Action</b>"
 msgstr "<b>Dziejańnie</b>"
 
-#: ../src/f-spot.glade.h:16
+#: ../src/f-spot.glade.h:14
 msgid "<b>Album</b>"
 msgstr "<b>Albom</b>"
 
-#: ../src/f-spot.glade.h:17
+#: ../src/f-spot.glade.h:15
 msgid "<b>Co_rrections</b>"
 msgstr "<b>Pap_raŭki</b>"
 
-#: ../src/f-spot.glade.h:18
+#: ../src/f-spot.glade.h:16
 msgid "<b>Color Management</b>"
 msgstr "<b>Kiravańnie kolerami</b>"
 
-#: ../src/f-spot.glade.h:19
+#: ../src/f-spot.glade.h:17
 msgid "<b>Color Temperature</b>"
 msgstr "<b>Temperatura koleru</b>"
 
-#: ../src/f-spot.glade.h:20
+#: ../src/f-spot.glade.h:18
 msgid "<b>Destination</b>"
 msgstr "<b>Miesca pryznačeńnia</b>"
 
-#: ../src/f-spot.glade.h:21
+#: ../src/f-spot.glade.h:19
 msgid "<b>End Date</b>"
 msgstr "<b>Data zakančeńnia</b>"
 
-#: ../src/f-spot.glade.h:22
-msgid "<b>Export Method</b>"
-msgstr "<b>Metad ekspartavańnia</b>"
-
-#: ../src/f-spot.glade.h:23
+#: ../src/f-spot.glade.h:20
 msgid "<b>Exposure</b>"
 msgstr "<b>Vytrymka</b>"
 
-#: ../src/f-spot.glade.h:24
+#: ../src/f-spot.glade.h:21
 msgid "<b>From External Photo</b>"
 msgstr "<b>Z vonkavaha zdymku</b>"
 
-#: ../src/f-spot.glade.h:25
+#: ../src/f-spot.glade.h:22
 msgid "<b>From Photo</b>"
 msgstr "<b>Sa zdymku</b>"
 
-#: ../src/f-spot.glade.h:26
+#: ../src/f-spot.glade.h:23
 msgid "<b>Gallery</b>"
 msgstr "<b>Halereja</b>"
 
-#: ../src/f-spot.glade.h:27
+#: ../src/f-spot.glade.h:24
 msgid "<b>Histo_gram</b>"
 msgstr "<b>Hista_hrama</b>"
 
-#: ../src/f-spot.glade.h:28
+#: ../src/f-spot.glade.h:25
 msgid "<b>Histogram</b>"
 msgstr "<b>Histahrama</b>"
 
-#: ../src/f-spot.glade.h:29
+#: ../src/f-spot.glade.h:26
 msgid "<b>Image Interpolation</b>"
 msgstr "<b>Interpalacyja vyjavy</b>"
 
-#: ../src/f-spot.glade.h:30
+#: ../src/f-spot.glade.h:27
 msgid "<b>Import Settings</b>"
 msgstr "<b>Nałady impartavańnia</b>"
 
-#: ../src/f-spot.glade.h:31
+#: ../src/f-spot.glade.h:28
+msgid "<b>Interoperability</b>"
+msgstr "<b>Uzajemnyja dačynieńni</b>"
+
+#: ../src/f-spot.glade.h:29
+msgid "<b>Max Rating</b>"
+msgstr "<b>Maksymalny rating</b>"
+
+#: ../src/f-spot.glade.h:30
 msgid "<b>Metadata</b>"
 msgstr "<b>Metaźviestki</b>"
+
+#: ../src/f-spot.glade.h:31
+msgid "<b>Min Rating</b>"
+msgstr "<b>Minimalny rating</b>"
 
 #: ../src/f-spot.glade.h:32
 msgid "<b>Photograph Layout</b>"
@@ -2528,28 +2361,32 @@ msgid "<b>View all pictures imported</b>"
 msgstr "<b>Pakažy ŭsie zimpartavanyja zdymki</b>"
 
 #: ../src/f-spot.glade.h:49
-msgid "<b>Viewing permissions</b>"
-msgstr "<b>Dazvoły dla prahladu</b>"
-
-#: ../src/f-spot.glade.h:50
 msgid "<b>_White Balance</b>"
 msgstr "<b>_Balans bieli</b>"
 
-#: ../src/f-spot.glade.h:51
+#: ../src/f-spot.glade.h:50
 msgid "<small> </small>"
 msgstr "<small> </small>"
 
-#: ../src/f-spot.glade.h:52
+#: ../src/f-spot.glade.h:51
 msgid "<small></small>"
 msgstr "<small></small>"
 
-#: ../src/f-spot.glade.h:53
+#: ../src/f-spot.glade.h:52
 msgid ""
 "<small><i>Choose the folder where F-Spot should store newly imported photos</"
 "i></small>"
 msgstr ""
 "<small><i>Paznač kataloh, u jakim F-Spot pavinien zachoŭvać niadaŭna "
 "impartavanyja zdymki</i></small>"
+
+#: ../src/f-spot.glade.h:53
+msgid ""
+"<small><i>Enable this option if you want to allow other programs to import "
+"or delete photos and tags over DBus.</i></small>"
+msgstr ""
+"<small><i>Hetaja opcyja dazvalaje inšym prahramam impartavać ci vydalać "
+"zdymki j cetliki praz systemu DBus.</i></small>"
 
 #: ../src/f-spot.glade.h:54
 msgid ""
@@ -2561,7 +2398,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:56
 msgid ""
-"<small><i>Enable this to allow interpolation on zoomed images. You should'nt "
+"<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
 "disable this for viewing photos, but disabling the interpolation could be "
 "usefull in icon design.</i></small>"
 msgstr ""
@@ -2651,26 +2488,30 @@ msgid "Adjusted date: "
 msgstr "Data dapasavańnia: "
 
 #: ../src/f-spot.glade.h:76
+msgid "Allow other programs to manipulate F-Spot"
+msgstr "Dazvol inšym prahramam kiravać F-Spotam"
+
+#: ../src/f-spot.glade.h:77
 msgid "Arrange _by"
 msgstr "Uparadkuj _pavodle"
 
-#: ../src/f-spot.glade.h:77
+#: ../src/f-spot.glade.h:78
 msgid "As _background"
 msgstr "J_ak fon"
 
-#: ../src/f-spot.glade.h:78
+#: ../src/f-spot.glade.h:79
 msgid "As check pattern"
 msgstr "Jak šachmatnaja doška"
 
-#: ../src/f-spot.glade.h:79
+#: ../src/f-spot.glade.h:80
 msgid "As custom color: "
 msgstr "Jak ułasny koler: "
 
-#: ../src/f-spot.glade.h:80
+#: ../src/f-spot.glade.h:81
 msgid "Attach Tags:"
 msgstr "Dałučy cetliki:"
 
-#: ../src/f-spot.glade.h:81
+#: ../src/f-spot.glade.h:82
 msgid "Attach tag:"
 msgstr "Dałučy cetlik:"
 
@@ -2678,37 +2519,37 @@ msgstr "Dałučy cetlik:"
 msgid "Autorotate"
 msgstr "Aŭtamatyčna pavaročvaj"
 
-#: ../src/f-spot.glade.h:84
-msgid "Beneath _Photos"
-msgstr "Pad _zdymkami"
+#: ../src/f-spot.glade.h:85
+msgid "By _Date"
+msgstr "Pavodle _daty"
 
 #: ../src/f-spot.glade.h:86
+msgid "By _Import Roll"
+msgstr "Pavodle _katuški impartu"
+
+#: ../src/f-spot.glade.h:87
+msgid "By _Rating"
+msgstr "Pavodle _ratingu"
+
+#: ../src/f-spot.glade.h:88
 msgid "CD"
 msgstr "CD"
 
-#: ../src/f-spot.glade.h:87
+#: ../src/f-spot.glade.h:89
 msgid "C_aption:"
 msgstr "P_odpis:"
 
-#: ../src/f-spot.glade.h:88
+#: ../src/f-spot.glade.h:90
 msgid "C_ontrast:"
 msgstr "K_antrast:"
 
-#: ../src/f-spot.glade.h:89
+#: ../src/f-spot.glade.h:91
 msgid "Camera Selection"
 msgstr "Vybar kamery"
 
-#: ../src/f-spot.glade.h:90
+#: ../src/f-spot.glade.h:92
 msgid "Cancel, do not change the current timeline. "
 msgstr "Anuluj, nie źmianiaj dziejnaj škały času."
-
-#: ../src/f-spot.glade.h:91
-msgid "Clea_r Date Range"
-msgstr "Ačyść škału _dataŭ"
-
-#: ../src/f-spot.glade.h:92
-msgid "Clear Roll Filter"
-msgstr "Ačyść filter katušak"
 
 #: ../src/f-spot.glade.h:93
 msgid "Co_nfigure"
@@ -2739,109 +2580,79 @@ msgid "Create _New Version..."
 msgstr "Stvary _novuju versiju..."
 
 #: ../src/f-spot.glade.h:100
-msgid "Create _gallery using \"Original\""
-msgstr "Stvary _halereju z \"Aryhinału\""
-
-#: ../src/f-spot.glade.h:101
 msgid "Create a mail with the selected photos (possible resized) attached"
 msgstr "Stvary list z paznačananymi zdymkami (vierahodna źmienšanymi)"
 
-#: ../src/f-spot.glade.h:102
-msgid "Create standalone _web gallery"
-msgstr "Stvary niezaležnuju _web-halereju"
-
-#: ../src/f-spot.glade.h:103
+#: ../src/f-spot.glade.h:101
 msgid "Crop photo to _fit"
 msgstr "Padrež zdymak, kab _dapasavać"
 
-#: ../src/f-spot.glade.h:104
+#: ../src/f-spot.glade.h:102
 msgid "Current date:"
 msgstr "Dziejnaja data:"
 
-#: ../src/f-spot.glade.h:105
-msgid "D_escription:"
-msgstr "_Apisańnie:"
-
-#: ../src/f-spot.glade.h:106
+#: ../src/f-spot.glade.h:103
 msgid "Display File Names"
 msgstr "Pakažy nazvy fajłaŭ"
 
-#: ../src/f-spot.glade.h:107
+#: ../src/f-spot.glade.h:104
 msgid "Display only those photos that were imported in specified Rolls."
 msgstr ""
 "Pakazvaj tolki tyja zdymki, što byli impartavanyja ŭ akreślenych katuškach."
 
-#: ../src/f-spot.glade.h:108
+#: ../src/f-spot.glade.h:105
 msgid "Do not send a mail"
 msgstr "Nie vysyłaj pošty"
 
-#: ../src/f-spot.glade.h:109
+#: ../src/f-spot.glade.h:106
 msgid "E-_Mail:"
 msgstr "E_mail:"
 
-#: ../src/f-spot.glade.h:110
+#: ../src/f-spot.glade.h:107
 msgid "E_xport titles and comments"
 msgstr "E_kspartuj nazvy j kamentary"
 
-#: ../src/f-spot.glade.h:111
+#: ../src/f-spot.glade.h:108
 msgid "Edit"
 msgstr "Madyfikuj"
 
-#: ../src/f-spot.glade.h:112
+#: ../src/f-spot.glade.h:109
 msgid "Edit Tag Icon"
 msgstr "Madyfikuj ikonu cetlika"
 
-#: ../src/f-spot.glade.h:113
+#: ../src/f-spot.glade.h:110
 msgid "Edit icon"
 msgstr "Madyfikuj ikonu"
 
-#: ../src/f-spot.glade.h:114
+#: ../src/f-spot.glade.h:111
 msgid "Estimated new size"
 msgstr "Pryblizny novy pamier"
 
-#: ../src/f-spot.glade.h:115
+#: ../src/f-spot.glade.h:112
 msgid "Export"
 msgstr "Ekspartuj"
 
-#: ../src/f-spot.glade.h:116
-msgid "Export _titles and comments"
-msgstr "Ekspartuj _nazvy j kamentary"
-
-#: ../src/f-spot.glade.h:117
+#: ../src/f-spot.glade.h:113
 msgid "Extra large"
 msgstr "Vielmi vialiki"
 
-#: ../src/f-spot.glade.h:118
+#: ../src/f-spot.glade.h:114
 msgid "F-Spot"
 msgstr "F-Spot"
 
-#: ../src/f-spot.glade.h:119
+#: ../src/f-spot.glade.h:115
 msgid "F-Spot View"
 msgstr "Vyhlad F-Spot"
 
-#: ../src/f-spot.glade.h:120
-msgid ""
-"F-Spot needs your authorization in order to upload photos to your {0} "
-"account. Press the \"Authorize\" button to open a web browser and give F-"
-"Spot the authorization. "
-msgstr ""
-"F-Spot vymahaje aŭtaryzacyi, kab vysyłać zdymki na kont u servisie {0}. "
-"Naciśni knopku \"Aŭtaryzuj\", kab uruchomić web-hartač i aŭtaryzavać "
-"prahramu F-Spot."
-
-#: ../src/f-spot.glade.h:122
+#: ../src/f-spot.glade.h:117
 msgid "Filter on selected rolls"
 msgstr "Filtruj pavodle zaznačanych katušak"
 
-#: ../src/f-spot.glade.h:123
+#: ../src/f-spot.glade.h:118
 msgid "Fin_d"
 msgstr "Z_najdzi"
 
-#: ../src/f-spot.glade.h:125
-msgid "Folder Export"
-msgstr "Ekspart katalohu"
-
-#: ../src/f-spot.glade.h:126
+#: ../src/f-spot.glade.h:120
 msgid ""
 "From Screen\n"
 "Standard RGB"
@@ -2849,7 +2660,7 @@ msgstr ""
 "Z ekranu\n"
 "Standartny RGB"
 
-#: ../src/f-spot.glade.h:128
+#: ../src/f-spot.glade.h:122
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
@@ -2857,19 +2668,15 @@ msgstr ""
 "Poŭnaja staronka\n"
 "Standart – 4x6"
 
-#: ../src/f-spot.glade.h:130
-msgid "G_allery Name:"
-msgstr "N_azva halerei:"
-
-#: ../src/f-spot.glade.h:131
+#: ../src/f-spot.glade.h:124
 msgid "G_allery:"
 msgstr "H_alereja:"
 
-#: ../src/f-spot.glade.h:132
+#: ../src/f-spot.glade.h:125
 msgid "Gallery"
 msgstr "Halereja"
 
-#: ../src/f-spot.glade.h:133
+#: ../src/f-spot.glade.h:126
 msgid ""
 "Hairline\n"
 "0.25\"\n"
@@ -2881,55 +2688,47 @@ msgstr ""
 "0.5\"\n"
 "1\"\n"
 
-#: ../src/f-spot.glade.h:138
+#: ../src/f-spot.glade.h:131
 msgid "Images tagged with:"
 msgstr "Vyjavy z cetlikami:"
 
-#: ../src/f-spot.glade.h:140
-msgid "Import Rolls"
-msgstr "Katuška impartu"
-
-#: ../src/f-spot.glade.h:141
+#: ../src/f-spot.glade.h:133
 msgid "Import Source:"
 msgstr "Krynica impartu:"
 
-#: ../src/f-spot.glade.h:142
+#: ../src/f-spot.glade.h:134
 msgid "Include subfolders"
 msgstr "Dałučaj padkatalohi"
 
-#: ../src/f-spot.glade.h:143
+#: ../src/f-spot.glade.h:135
 msgid "Interpolate image on zoom"
 msgstr "Interpaluj vyjavu pry pavieličeńni"
 
-#: ../src/f-spot.glade.h:144
+#: ../src/f-spot.glade.h:136
 msgid "Large"
 msgstr "Vialiki"
 
-#: ../src/f-spot.glade.h:145
-msgid "Last Import Roll"
-msgstr "Apošniaja katuška impartu"
-
-#: ../src/f-spot.glade.h:146
+#: ../src/f-spot.glade.h:137
 msgid "Make F-Spot your screensaver"
 msgstr "Zrabi F-Spot źbierahalnikam ekranu"
 
-#: ../src/f-spot.glade.h:147
+#: ../src/f-spot.glade.h:138
 msgid "Manage _Extensions"
 msgstr "Kiru_j pašyreńniami"
 
-#: ../src/f-spot.glade.h:148
+#: ../src/f-spot.glade.h:139
 msgid "Medium"
 msgstr "Siaredni"
 
-#: ../src/f-spot.glade.h:150
+#: ../src/f-spot.glade.h:141
 msgid "N_umber of Copies:"
 msgstr "_Kolkaść kopijaŭ:"
 
-#: ../src/f-spot.glade.h:152
+#: ../src/f-spot.glade.h:143
 msgid "No _image"
 msgstr "_Biez vyjavy"
 
-#: ../src/f-spot.glade.h:153
+#: ../src/f-spot.glade.h:144
 msgid ""
 "None\n"
 "Title\n"
@@ -2943,63 +2742,63 @@ msgstr ""
 "Data\n"
 "Detali zdymku"
 
-#: ../src/f-spot.glade.h:158
+#: ../src/f-spot.glade.h:149
 msgid "Number of photos in selected rolls :"
 msgstr "Kolkaść zdymkaŭ u paznačanych katuškach:"
 
-#: ../src/f-spot.glade.h:159
+#: ../src/f-spot.glade.h:150
 msgid "Number of pictures"
 msgstr "Kolkaść vyjavaŭ"
 
-#: ../src/f-spot.glade.h:160
+#: ../src/f-spot.glade.h:151
 msgid "Only photos taken within these dates will be displayed."
 msgstr "Buduć pakazanyja tolki zdymki ŭ ramkach hetych dataŭ."
 
-#: ../src/f-spot.glade.h:161
+#: ../src/f-spot.glade.h:152
 msgid "Open _Folder..."
 msgstr "Adčyni _kataloh..."
 
-#: ../src/f-spot.glade.h:162
+#: ../src/f-spot.glade.h:153
 msgid "Open _album in browser when done uploading"
 msgstr "Adčyni _albom u web-hartačy paśla zakančeńnia pierasyłu"
 
-#: ../src/f-spot.glade.h:163
-msgid "Open _destination when done exporting"
-msgstr "A_dčyni miesca pryznačeńnia paśla zakančeńnia ekspartu"
+#: ../src/f-spot.glade.h:154
+msgid "Original"
+msgstr "Aryhinał"
 
-#: ../src/f-spot.glade.h:165
+#: ../src/f-spot.glade.h:155
 msgid "Original size (possible very large file size)"
 msgstr "Aryhinalny pamier (vierahodna vializny pamier fajłu)"
 
-#: ../src/f-spot.glade.h:166
+#: ../src/f-spot.glade.h:156
 msgid "P_arent Tag:"
 msgstr "_Hałoŭny cetlik:"
 
-#: ../src/f-spot.glade.h:167
+#: ../src/f-spot.glade.h:157
 msgid "P_hoto Source:"
 msgstr "Krynica _zdymkaŭ:"
 
-#: ../src/f-spot.glade.h:168
+#: ../src/f-spot.glade.h:158
 msgid "Page 1 of 3"
 msgstr "Staronka 1 z 3"
 
-#: ../src/f-spot.glade.h:169
+#: ../src/f-spot.glade.h:159
 msgid "Pause"
 msgstr "Paŭza"
 
-#: ../src/f-spot.glade.h:170
+#: ../src/f-spot.glade.h:160
 msgid "Photo 0 of 0"
 msgstr "Zdymak 0 z 0"
 
-#: ../src/f-spot.glade.h:171
+#: ../src/f-spot.glade.h:161
 msgid "Photo _Size:"
 msgstr "_Pamier zdymku:"
 
-#: ../src/f-spot.glade.h:172
+#: ../src/f-spot.glade.h:162
 msgid "Please verify that the settings for this gallery are correct."
 msgstr "Upeŭnisia, ci pravilnyja nałady ŭ hetaj halerei."
 
-#: ../src/f-spot.glade.h:173
+#: ../src/f-spot.glade.h:163
 msgid ""
 "Please verify that the settings for this gallery are correct.\n"
 "Enter the letters as they are shown in the image in\n"
@@ -3009,75 +2808,59 @@ msgstr ""
 "Treba ŭvieści litary z bačnaj vyjavy ŭ poli\n"
 "\"Captcha\". <i>Vieličynia litar nia maje značeńnia</i>"
 
-#: ../src/f-spot.glade.h:176
+#: ../src/f-spot.glade.h:166
 msgid "Preferences"
 msgstr "Nałady"
 
-#: ../src/f-spot.glade.h:178
+#: ../src/f-spot.glade.h:168
 msgid "Print"
 msgstr "Vydrukuj"
 
-#: ../src/f-spot.glade.h:179
+#: ../src/f-spot.glade.h:169
 msgid "Print crop _marks"
 msgstr "Vydrukuj _abrysy padrezki"
 
-#: ../src/f-spot.glade.h:180
-msgid "Private"
-msgstr "Pryvatnaje"
-
-#: ../src/f-spot.glade.h:181
-msgid "Public"
-msgstr "Publičnaje"
-
-#: ../src/f-spot.glade.h:182
+#: ../src/f-spot.glade.h:170
 msgid "Public Album"
 msgstr "Publičny albom"
 
-#: ../src/f-spot.glade.h:183
+#: ../src/f-spot.glade.h:171
 msgid "Re_fresh Thumbnail"
 msgstr "Adnavi _minijaturu"
 
-#: ../src/f-spot.glade.h:184
-msgid "Rem_ove Tag"
-msgstr "Vyda_l cetlik"
-
-#: ../src/f-spot.glade.h:185
+#: ../src/f-spot.glade.h:173
 msgid "Repair"
 msgstr "Vypraŭ"
 
-#: ../src/f-spot.glade.h:186
+#: ../src/f-spot.glade.h:174
 msgid "Reset"
 msgstr "Viarni"
 
-#: ../src/f-spot.glade.h:189
+#: ../src/f-spot.glade.h:177
 msgid "Select A Folder"
 msgstr "Abiary kataloh"
 
-#: ../src/f-spot.glade.h:190
-msgid "Select Import Rolls..."
-msgstr "Abiary katušku impartu..."
-
-#: ../src/f-spot.glade.h:191
+#: ../src/f-spot.glade.h:178
 msgid "Select Photos to Copy From Camera..."
 msgstr "Abiary zdymki, kab skapijavać z fotakamery..."
 
-#: ../src/f-spot.glade.h:193
+#: ../src/f-spot.glade.h:180
 msgid "Select _None"
 msgstr "Anuluj _zaznačeńnie"
 
-#: ../src/f-spot.glade.h:194
+#: ../src/f-spot.glade.h:181
 msgid "Select a Tag..."
 msgstr "Abiary cetlik..."
 
-#: ../src/f-spot.glade.h:195
+#: ../src/f-spot.glade.h:182
 msgid "Select the camera from which you want to transfer files"
 msgstr "Abiary fotakameru, ź jakoj majuć być pierasłanyja fajły"
 
-#: ../src/f-spot.glade.h:196
+#: ../src/f-spot.glade.h:183
 msgid "Selected Camera: "
 msgstr "Abranaja fotakamera: "
 
-#: ../src/f-spot.glade.h:197
+#: ../src/f-spot.glade.h:184
 msgid ""
 "Selection\n"
 "Gallery\n"
@@ -3087,63 +2870,63 @@ msgstr ""
 "Halereja\n"
 "Akno prahladu"
 
-#: ../src/f-spot.glade.h:200
+#: ../src/f-spot.glade.h:187
 msgid "Send by _Mail..."
 msgstr "Vyšli _poštaj..."
 
-#: ../src/f-spot.glade.h:201
-msgid "Set _Date Range..."
-msgstr "Paznač škału _dataŭ..."
+#: ../src/f-spot.glade.h:188
+msgid "Set Rating Filter"
+msgstr "Paznač filter ratingaŭ"
 
-#: ../src/f-spot.glade.h:202
+#: ../src/f-spot.glade.h:189
 msgid "Set as _Background"
 msgstr "Zrabi _fonam stała"
 
-#: ../src/f-spot.glade.h:203
+#: ../src/f-spot.glade.h:190
 msgid "Set date range"
 msgstr "Paznač škału dataŭ"
 
-#: ../src/f-spot.glade.h:205
+#: ../src/f-spot.glade.h:192
 msgid "Show all photos."
 msgstr "Pakažy ŭsie zdymki."
 
-#: ../src/f-spot.glade.h:206
+#: ../src/f-spot.glade.h:193
 msgid "Show or hide the side pane"
 msgstr "Pakažy albo schavaj bakavuju panel"
 
-#: ../src/f-spot.glade.h:207
+#: ../src/f-spot.glade.h:194
 msgid "Show or hide the toolbar"
 msgstr "Pakažy albo schavaj panel pryładździa"
 
-#: ../src/f-spot.glade.h:208
+#: ../src/f-spot.glade.h:195
 msgid "Side _pane"
 msgstr "_Bakavaja panel"
 
-#: ../src/f-spot.glade.h:209
+#: ../src/f-spot.glade.h:196
 msgid "Side_bar"
 msgstr "_Bakavaja panel"
 
-#: ../src/f-spot.glade.h:210
+#: ../src/f-spot.glade.h:197
 msgid "Size"
 msgstr "Pamier"
 
-#: ../src/f-spot.glade.h:211
+#: ../src/f-spot.glade.h:198
 msgid "Size of the exported selection :"
 msgstr "Pamier ekspartavanaha zaznačeńnia:"
 
-#: ../src/f-spot.glade.h:212
+#: ../src/f-spot.glade.h:199
 msgid "Small"
 msgstr "Mały"
 
-#: ../src/f-spot.glade.h:213
+#: ../src/f-spot.glade.h:200
 msgid "So_urce Temp"
 msgstr "Časovaja _krynica"
 
-#: ../src/f-spot.glade.h:214
+#: ../src/f-spot.glade.h:201
 msgid "Space all photos by"
 msgstr "Raskładzi ŭsie zdymki na"
 
-#: ../src/f-spot.glade.h:215
+#: ../src/f-spot.glade.h:202
 msgid ""
 "Specify if an original size picture should be rotated or not. Smaller sizes "
 "are automatically rotated."
@@ -3151,7 +2934,7 @@ msgstr ""
 "Vyznač, ci pavaročvać aryhinał vyjavy. Mienšyja pamiery aŭtamatyčna "
 "pavaročvajucca."
 
-#: ../src/f-spot.glade.h:216
+#: ../src/f-spot.glade.h:203
 msgid ""
 "Standard RGB\n"
 "Image Profile\n"
@@ -3161,380 +2944,360 @@ msgstr ""
 "Profil vyjavy\n"
 "Ułasny\n"
 
-#: ../src/f-spot.glade.h:220
-msgid "Strip _metadata"
-msgstr "Vydal _metaźviestki"
-
-#: ../src/f-spot.glade.h:221
+#: ../src/f-spot.glade.h:207
 msgid "Strip image _metadata"
 msgstr "Vydal _metaźviestki vyjavy"
 
-#: ../src/f-spot.glade.h:222
+#: ../src/f-spot.glade.h:208
 msgid "T_ags"
 msgstr "Ce_tliki"
 
-#: ../src/f-spot.glade.h:223
-msgid "Tag Icons"
-msgstr "Ikony cetlikaŭ"
-
-#: ../src/f-spot.glade.h:224
+#: ../src/f-spot.glade.h:209
 msgid "Tags: "
 msgstr "Cetliki: "
 
-#: ../src/f-spot.glade.h:225
+#: ../src/f-spot.glade.h:210
+msgid "Thumbnail _elements"
+msgstr "_Elementy minijaturaŭ"
+
+#: ../src/f-spot.glade.h:211
 msgid "Tiny"
 msgstr "Vielmi mały"
 
-#: ../src/f-spot.glade.h:226
+#: ../src/f-spot.glade.h:212
 msgid "Too_lbar"
 msgstr "_Panel pryładździa"
 
-#: ../src/f-spot.glade.h:227
+#: ../src/f-spot.glade.h:213
 msgid "Toolbar"
 msgstr "Panel pryładździa"
 
-#: ../src/f-spot.glade.h:228
+#: ../src/f-spot.glade.h:214
 msgid "Total original size"
 msgstr "Poŭny pamier aryhinału"
 
-#: ../src/f-spot.glade.h:229
-msgid "U_RL:"
-msgstr "U_RL:"
-
-#: ../src/f-spot.glade.h:230
+#: ../src/f-spot.glade.h:215
 msgid "View"
 msgstr "Vyhlad"
 
-#: ../src/f-spot.glade.h:231
-msgid "Visible to Family"
-msgstr "Bačnyja dla siamji"
-
-#: ../src/f-spot.glade.h:232
-msgid "Visible to Friends"
-msgstr "Bačnyja dla siabroŭ"
-
-#: ../src/f-spot.glade.h:233
+#: ../src/f-spot.glade.h:216
 msgid "Will print using: US Letter size on Generic Postscript"
 msgstr "Razdrukuje, ŭžyvajučy: pamier US Letter na Generic Postscript"
 
-#: ../src/f-spot.glade.h:234
+#: ../src/f-spot.glade.h:217
 msgid "Write _metadata to file"
 msgstr "Zapišy _metaźviestki ŭ fajł"
 
-#: ../src/f-spot.glade.h:235
+#: ../src/f-spot.glade.h:218
 msgid "Zoom _in"
 msgstr "Pav_ialič"
 
-#: ../src/f-spot.glade.h:236
+#: ../src/f-spot.glade.h:219
 msgid "Zoom _out"
 msgstr "Ź_mienš"
 
-#: ../src/f-spot.glade.h:237
+#: ../src/f-spot.glade.h:220
 msgid "Zoom in"
 msgstr "Pavialič"
 
-#: ../src/f-spot.glade.h:238
+#: ../src/f-spot.glade.h:221
 msgid "Zoom out"
 msgstr "Źmienš"
 
-#: ../src/f-spot.glade.h:239
+#: ../src/f-spot.glade.h:222
 msgid "_Account:"
 msgstr "_Kont:"
 
-#: ../src/f-spot.glade.h:240
-msgid "_Album Name:"
-msgstr "Nazva _albomu:"
-
-#: ../src/f-spot.glade.h:241
+#: ../src/f-spot.glade.h:223
 msgid "_Album Title:"
 msgstr "_Zahałovak albomu:"
 
-#: ../src/f-spot.glade.h:242
-msgid "_Attach Tag"
-msgstr "_Dałučy cetlik"
-
-#: ../src/f-spot.glade.h:243
+#: ../src/f-spot.glade.h:225
 msgid "_Attach Tag to Selection"
 msgstr "_Dałučy cetlik da zaznačeńnia"
 
-#: ../src/f-spot.glade.h:244
+#: ../src/f-spot.glade.h:226
 msgid "_Autorotate"
 msgstr "_Aŭtamatyčna pavaročvaj"
 
-#: ../src/f-spot.glade.h:245
+#: ../src/f-spot.glade.h:227
 msgid "_Border:"
 msgstr "_Ramka:"
 
-#: ../src/f-spot.glade.h:246
+#: ../src/f-spot.glade.h:228
 msgid "_Brightness:"
 msgstr "_Jaskravaść:"
 
-#: ../src/f-spot.glade.h:247
+#: ../src/f-spot.glade.h:229
 msgid "_Browse Previously Scheduled Files"
 msgstr "_Prahladaj raniej zaplanavanyja fajły"
 
-#: ../src/f-spot.glade.h:248
+#: ../src/f-spot.glade.h:230
 msgid "_Captcha:"
 msgstr "_Captcha:"
 
-#: ../src/f-spot.glade.h:249
+#: ../src/f-spot.glade.h:232
+msgid "_Clear Rating Filter"
+msgstr "_Ačyść filter ratingaŭ"
+
+#: ../src/f-spot.glade.h:233
+msgid "_Clear Roll Filter"
+msgstr "_Ačyść filter katuški"
+
+#: ../src/f-spot.glade.h:234
 msgid "_Components"
 msgstr "_Kampanenty"
 
-#: ../src/f-spot.glade.h:250
+#: ../src/f-spot.glade.h:235
 msgid "_Contents"
 msgstr "_Źmieściva"
 
-#: ../src/f-spot.glade.h:251
+#: ../src/f-spot.glade.h:236
 msgid "_Dates"
 msgstr "_Daty"
 
-#: ../src/f-spot.glade.h:252
-msgid "_Delete From Drive"
-msgstr "Vydal z dysk_u"
-
-#: ../src/f-spot.glade.h:253
+#: ../src/f-spot.glade.h:238
 msgid "_Delete Selected Tag"
 msgstr "_Vydal paznačany cetlik"
 
-#: ../src/f-spot.glade.h:254
+#: ../src/f-spot.glade.h:239
 msgid "_Delete Version"
 msgstr "_Vydal versiju"
 
-#: ../src/f-spot.glade.h:255
+#: ../src/f-spot.glade.h:240
 msgid "_Description:"
 msgstr "_Apisańnie:"
 
-#: ../src/f-spot.glade.h:256
+#: ../src/f-spot.glade.h:241
 msgid "_Destination Temp"
 msgstr "_Časovy kataloh pryznačeńnia"
 
-#: ../src/f-spot.glade.h:257
+#: ../src/f-spot.glade.h:242
 msgid "_Display:"
 msgstr "_Ekran:"
 
-#: ../src/f-spot.glade.h:258
+#: ../src/f-spot.glade.h:243
 msgid "_Edit"
 msgstr "_Madyfikuj"
 
-#: ../src/f-spot.glade.h:259
+#: ../src/f-spot.glade.h:244
 msgid "_Edit Selected Tag..."
 msgstr "Madyfikuj zaznačany _cetlik..."
 
-#: ../src/f-spot.glade.h:260
+#: ../src/f-spot.glade.h:245
 msgid "_Export"
 msgstr "_Ekspartuj"
 
-#: ../src/f-spot.glade.h:261
+#: ../src/f-spot.glade.h:246
 msgid "_Export tags"
 msgstr "_Ekspartuj cetliki"
 
-#: ../src/f-spot.glade.h:262
+#: ../src/f-spot.glade.h:247
 msgid "_Export to"
 msgstr "_Ekspartuj u"
 
-#: ../src/f-spot.glade.h:263
+#: ../src/f-spot.glade.h:248
 msgid "_Export to Album:"
 msgstr "_Ekspartuj u albom:"
 
-#: ../src/f-spot.glade.h:264
+#: ../src/f-spot.glade.h:249
 msgid "_File"
 msgstr "_Fajł"
 
-#: ../src/f-spot.glade.h:265
+#: ../src/f-spot.glade.h:250
 msgid "_Flickr"
 msgstr "_Flickr"
 
-#: ../src/f-spot.glade.h:266
+#: ../src/f-spot.glade.h:251
 msgid "_Folder"
 msgstr "_Kataloh"
 
-#: ../src/f-spot.glade.h:267
-msgid "_Folder:"
-msgstr "_Kataloh:"
-
-#: ../src/f-spot.glade.h:268
+#: ../src/f-spot.glade.h:252
 msgid "_Fullscreen"
 msgstr "_Poŭnaekranny režym"
 
-#: ../src/f-spot.glade.h:269
+#: ../src/f-spot.glade.h:253
 msgid "_Gallery"
 msgstr "_Halereja"
 
-#: ../src/f-spot.glade.h:270
-msgid "_Gallery Name:"
-msgstr "Nazva _halerei:"
-
-#: ../src/f-spot.glade.h:271
+#: ../src/f-spot.glade.h:254
 msgid "_Gallery:"
 msgstr "_Halereja:"
 
-#: ../src/f-spot.glade.h:272
+#: ../src/f-spot.glade.h:255
 msgid "_Help"
 msgstr "Dapamo_ha"
 
-#: ../src/f-spot.glade.h:273
+#: ../src/f-spot.glade.h:256
 msgid "_Hidden"
 msgstr "_Schavanaje"
 
-#: ../src/f-spot.glade.h:274
+#: ../src/f-spot.glade.h:257
 msgid "_Hue:"
 msgstr "_Adcieńnie:"
 
-#: ../src/f-spot.glade.h:275
+#: ../src/f-spot.glade.h:258
 msgid "_Icon:"
 msgstr "_Ikona:"
 
-#: ../src/f-spot.glade.h:276
+#: ../src/f-spot.glade.h:259
 msgid "_Import..."
 msgstr "_Impartuj..."
 
-#: ../src/f-spot.glade.h:277
+#: ../src/f-spot.glade.h:260
 msgid "_Large"
 msgstr "_Vialikija"
 
-#: ../src/f-spot.glade.h:278
+#: ../src/f-spot.glade.h:261
+msgid "_Last Import Roll"
+msgstr "_Apošniaja katuška impartu"
+
+#: ../src/f-spot.glade.h:262
 msgid "_Medium"
 msgstr "S_iarednija"
 
-#: ../src/f-spot.glade.h:279
+#: ../src/f-spot.glade.h:263
 msgid "_Metadata Browser"
 msgstr "Prahladalnik _metaźviestak"
 
-#: ../src/f-spot.glade.h:280
+#: ../src/f-spot.glade.h:264
 msgid "_Month"
 msgstr "_Miesiac"
 
-#: ../src/f-spot.glade.h:281
+#: ../src/f-spot.glade.h:265
 msgid "_New Window"
 msgstr "_Novaje vakno"
 
-#: ../src/f-spot.glade.h:282
+#: ../src/f-spot.glade.h:266
 msgid "_Open album in browser when done uploading"
 msgstr "_Adčyni albom u web-hartačy paśla zakančeńnia pierasyłu"
 
-#: ../src/f-spot.glade.h:283
+#: ../src/f-spot.glade.h:267
 msgid "_Open destination when done exporting"
 msgstr "_Adčyni miesca pryznačeńnia paśla zakančeńnia ekspartavańnia"
 
-#: ../src/f-spot.glade.h:284
+#: ../src/f-spot.glade.h:268
 msgid "_Output:"
 msgstr "_Vyjście:"
 
-#: ../src/f-spot.glade.h:285
-msgid "_Parent Album:"
-msgstr "_Baćkoŭski albom:"
-
-#: ../src/f-spot.glade.h:286
+#: ../src/f-spot.glade.h:269
 msgid "_Password:"
 msgstr "_Parol:"
 
-#: ../src/f-spot.glade.h:287
+#: ../src/f-spot.glade.h:270
 msgid "_Quit"
 msgstr "Za_konč"
 
-#: ../src/f-spot.glade.h:288
-msgid "_Remove From Catalog"
-msgstr "Vydal z ka_talohu"
+#: ../src/f-spot.glade.h:271
+msgid "_Ratings"
+msgstr "_Ratingi"
 
-#: ../src/f-spot.glade.h:289
+#: ../src/f-spot.glade.h:273
 msgid "_Remove Tag From Selection"
 msgstr "_Vydal cetlik z zaznačeńnia"
 
-#: ../src/f-spot.glade.h:290
+#: ../src/f-spot.glade.h:274
 msgid "_Rename Version"
 msgstr "Źmiani nazvu ve_rsii"
 
-#: ../src/f-spot.glade.h:291
+#: ../src/f-spot.glade.h:275
 msgid "_Resize to: "
 msgstr "Źmianni pamie_r na: "
 
-#: ../src/f-spot.glade.h:293
+#: ../src/f-spot.glade.h:277
 msgid "_Saturation:"
 msgstr "_Nasyčanaść:"
 
-#: ../src/f-spot.glade.h:294
-msgid "_Save the files only"
-msgstr "_Zapišy tolki fajły"
-
-#: ../src/f-spot.glade.h:295
+#: ../src/f-spot.glade.h:278
 msgid "_Scale photos to no larger than: "
 msgstr "_Źmianiaj pamiery, kab zdymki byli nia bolšymi za: "
 
-#: ../src/f-spot.glade.h:296
+#: ../src/f-spot.glade.h:279
+msgid "_Select Import Rolls..."
+msgstr "_Abiary katuški impartu..."
+
+#: ../src/f-spot.glade.h:280
+msgid "_Set Date Range..."
+msgstr "_Paznač škału dataŭ..."
+
+#: ../src/f-spot.glade.h:281
+msgid "_Set Rating filter..."
+msgstr "_Paznač škału ratingaŭ..."
+
+#: ../src/f-spot.glade.h:282
 msgid "_Sharpen..."
 msgstr "_Bolš rezka..."
 
-#: ../src/f-spot.glade.h:297
+#: ../src/f-spot.glade.h:283
 msgid "_Slideshow"
 msgstr "_Slideshow"
 
-#: ../src/f-spot.glade.h:298
+#: ../src/f-spot.glade.h:284
 msgid "_Small"
 msgstr "_Małyja"
 
-#: ../src/f-spot.glade.h:299
+#: ../src/f-spot.glade.h:285
 msgid "_Strip metadata"
 msgstr "_Vydal metaźviestki"
 
-#: ../src/f-spot.glade.h:300
+#: ../src/f-spot.glade.h:286
+msgid "_Tag Icons"
+msgstr "_Ikony cetlikaŭ"
+
+#: ../src/f-spot.glade.h:287
 msgid "_Tag Name:"
 msgstr "_Nazva cetlika:"
 
-#: ../src/f-spot.glade.h:301
+#: ../src/f-spot.glade.h:288
 msgid "_Tags"
 msgstr "Ce_tliki"
 
-#: ../src/f-spot.glade.h:302
+#: ../src/f-spot.glade.h:289
 msgid "_Timeline"
 msgstr "Škała _času"
 
-#: ../src/f-spot.glade.h:303
-msgid "_Title:"
-msgstr "_Zahałovak:"
-
-#: ../src/f-spot.glade.h:304
+#: ../src/f-spot.glade.h:290
 msgid "_Tools"
 msgstr "_Pryładździe"
 
-#: ../src/f-spot.glade.h:305
+#: ../src/f-spot.glade.h:291
 msgid "_URI:"
 msgstr "_URI:"
 
-#: ../src/f-spot.glade.h:306
+#: ../src/f-spot.glade.h:292
+msgid "_Unrated Photos"
+msgstr "Zdymki biaz _ratingu"
+
+#: ../src/f-spot.glade.h:293
 msgid "_Untagged Photos"
 msgstr "Zdymki biaz c_etlikaŭ"
 
-#: ../src/f-spot.glade.h:307
+#: ../src/f-spot.glade.h:294
 msgid "_Username:"
 msgstr "_Karystalnik:"
 
-#: ../src/f-spot.glade.h:308
+#: ../src/f-spot.glade.h:295
 msgid "_Version"
 msgstr "_Versija"
 
-#: ../src/f-spot.glade.h:309
+#: ../src/f-spot.glade.h:296
 msgid "_View"
 msgstr "_Vyhlad"
 
-#: ../src/f-spot.glade.h:310
-msgid "_View photos in browser when done uploading"
-msgstr "_Pakažy zdymki ŭ web-hartačy paśla zakančeńnia pierasyłu"
-
-#: ../src/f-spot.glade.h:311
+#: ../src/f-spot.glade.h:297
 msgid "_Virtual Filesystem"
 msgstr "_Virtualnaja fajłavaja systema"
 
-#: ../src/f-spot.glade.h:312
+#: ../src/f-spot.glade.h:298
 msgid "_Write only these photos to CD"
 msgstr "_Zapišy na CD tolki hetyja zdymki"
 
-#: ../src/f-spot.glade.h:313
+#: ../src/f-spot.glade.h:299
 msgid "and"
 msgstr "i"
 
 #. at, or after a date, or between dates
-#: ../src/f-spot.glade.h:315
+#: ../src/f-spot.glade.h:301
 msgid ""
 "at\n"
 "after\n"
@@ -3544,19 +3307,19 @@ msgstr ""
 "paśla\n"
 "pamiž"
 
-#: ../src/f-spot.glade.h:318
+#: ../src/f-spot.glade.h:304
 msgid "difference:"
 msgstr "roźnica:"
 
-#: ../src/f-spot.glade.h:319
+#: ../src/f-spot.glade.h:305
 msgid "img_000.jpg"
 msgstr "vyjava_000.jpg"
 
-#: ../src/f-spot.glade.h:322
+#: ../src/f-spot.glade.h:308
 msgid "pixels"
 msgstr "pikselaŭ"
 
-#: ../src/f-spot.glade.h:323
+#: ../src/f-spot.glade.h:309
 msgid "x"
 msgstr "x"
 
@@ -3567,6 +3330,237 @@ msgstr "Pakažy slideshow z F-Spot"
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr "Zdymki F-Spot"
+
+#~ msgid "23hq..."
+#~ msgstr "23hq..."
+
+#~ msgid "Flickr..."
+#~ msgstr "Flickr..."
+
+#~ msgid "Folder..."
+#~ msgstr "Kataloh..."
+
+#~ msgid "Attach Tag"
+#~ msgstr "Dałučy cetlik"
+
+#~ msgid "Delete From Drive"
+#~ msgstr "Vydal z pryłady"
+
+#~ msgid "Remove From Catalog"
+#~ msgstr "Vydal z katalohu"
+
+#~ msgid "Remove Tag"
+#~ msgstr "Vydal cetlik"
+
+#~ msgid "Authorize"
+#~ msgstr "Aŭtaryzuj"
+
+#~ msgid ""
+#~ "Return to this window after you have finished the authorization process "
+#~ "on {0} and click the \"Complete Authorization\" button below"
+#~ msgstr ""
+#~ "Viarnisia da hetaha vakna paśla zakančeńnia aŭtaryzacyi ŭ servisie {0} i  "
+#~ "klikni knopku nižej \"Dakonč aŭtaryzacyju\""
+
+#~ msgid "Complete Authorization"
+#~ msgstr "Dakonč aŭtaryzacyju"
+
+#~ msgid "Logging into {0}"
+#~ msgstr "Aŭtaryzacyja ŭ servisie {0}"
+
+#~ msgid "Checking credentials..."
+#~ msgstr "Pravierka aŭtaryzacyi..."
+
+#~ msgid "Welcome {0} you are connected to {1}"
+#~ msgstr "Vitajem ciabie, {0}, ty spałučyŭsia z {1}"
+
+#~ msgid "Sign in as a different user"
+#~ msgstr "Uvajdzi jak inšy karystalnik"
+
+# ###############################################################################
+# Old yast2-agents.po
+#~ msgid "Unable to log on"
+#~ msgstr "Aŭtaryzacyja nie ŭdałasia"
+
+#~ msgid "Waiting for response {0} of {1}"
+#~ msgstr "Čakańnie adkazu {0} z {1}"
+
+#~ msgid "Uploading picture \"{0}\""
+#~ msgstr "Vysyłka vyjavy \"{0}\""
+
+#~ msgid "Error Uploading To {0}: {1}"
+#~ msgstr "Pamyłka padčas vysyłki da {0}: {1}"
+
+# ###############################################################################
+# Old yast2-agents.po
+#~ msgid "Unable to log on."
+#~ msgstr "Aŭtaryzacyja nie ŭdałasia."
+
+#~ msgid ""
+#~ "F-Spot was unable to log on to {0}.  Make sure you have given the "
+#~ "authentication using {0} web browser interface."
+#~ msgstr ""
+#~ "F-Spot nia zmoh aŭtaryzavacca ŭ servisie {0}. Upeŭnisia, što ty "
+#~ "aŭtaryzavaŭsia ŭ servisie {0} pry dapamozie web-hartača."
+
+#~ msgid "Select Export Folder"
+#~ msgstr "Abiary metavy kataloh"
+
+#~ msgid "Building Gallery"
+#~ msgstr "Stvareńnie halerei"
+
+#~ msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
+#~ msgstr "Pamyłka padčas vysyłki vyjavy \"{0}\" u halereju:{2}{1}"
+
+#~ msgid "Light"
+#~ msgstr "Śvietły"
+
+#~ msgid "Dark"
+#~ msgstr "Ciomny"
+
+#~ msgid "Prev"
+#~ msgstr "Nazad"
+
+#~ msgid "Show Styles"
+#~ msgstr "Pakažy styli"
+
+#~ msgid "Hide Styles"
+#~ msgstr "Schavaj styli"
+
+#~ msgid "Gallery generated by"
+#~ msgstr "Halereja stvoranaja prahramaj"
+
+#~ msgid "Page:"
+#~ msgstr "Staronka:"
+
+#~ msgid "Invalid URL"
+#~ msgstr "Niapravilny URL"
+
+#~ msgid "The gallery URL entry does not appear to be a valid URL"
+#~ msgstr "URL halerei nie vyhladaje na pravilny adras URL"
+
+#~ msgid "Error while connecting to Gallery"
+#~ msgstr "Pamyłka padčas spałučeńnia z halerejaj"
+
+#~ msgid "The following error was encountered while attempting to log in: {0}"
+#~ msgstr "Padčas sproby aŭtaryzacyi zdaryłasia nastupnaja pamyłka: {0}"
+
+#~ msgid "(TopLevel)"
+#~ msgstr "(TopLevel)"
+
+#~ msgid "Error uploading picture \"{0}\" to Gallery: {1}"
+#~ msgstr "Pamyłka padčas vysyłki vyjavy \"{0}\" u halereju: {1}"
+
+#~ msgid "Error reading server response"
+#~ msgstr "Pamyłka padčas adčytańnia adkazu servera"
+
+#~ msgid "Server returned response without Gallery content"
+#~ msgstr "Server viarnuŭ adkaz biaź źmiestu Halerei"
+
+#~ msgid "Modified"
+#~ msgid_plural "Modified ({0})"
+#~ msgstr[0] "Zmadyfikavany ({0})"
+#~ msgstr[1] "Zmadyfikavanyja ({0})"
+#~ msgstr[2] "Zmadyfikavanyja ({0})"
+
+#~ msgid "Modified in {1}"
+#~ msgid_plural "Modified in {1} ({0})"
+#~ msgstr[0] "Zmadyfikavany ŭ {1} ({0})"
+#~ msgstr[1] "Zmadyfikavanyja ŭ {1} ({0})"
+#~ msgstr[2] "Zmadyfikavanyja ŭ {1} ({0})"
+
+#~ msgid "There was an error invoking the external handler"
+#~ msgstr "Padčas uruchamleńnia vonkavaj prahramy adbyłasia pamyłka"
+
+#~ msgid "Received error:{1}\"{0}\"{1}"
+#~ msgstr "Atrymanaja pamyłka:{1}\"{0}\"{1}"
+
+#~ msgid "Help not found"
+#~ msgstr "Dapamoha nia znojdzienaja"
+
+#~ msgid "\n"
+#~ msgstr "\n"
+
+#~ msgid "<b>Export Method</b>"
+#~ msgstr "<b>Metad ekspartavańnia</b>"
+
+#~ msgid "<b>Viewing permissions</b>"
+#~ msgstr "<b>Dazvoły dla prahladu</b>"
+
+#~ msgid "Beneath _Photos"
+#~ msgstr "Pad _zdymkami"
+
+#~ msgid "Clea_r Date Range"
+#~ msgstr "Ačyść škału _dataŭ"
+
+#~ msgid "Create _gallery using \"Original\""
+#~ msgstr "Stvary _halereju z \"Aryhinału\""
+
+#~ msgid "Create standalone _web gallery"
+#~ msgstr "Stvary niezaležnuju _web-halereju"
+
+#~ msgid "D_escription:"
+#~ msgstr "_Apisańnie:"
+
+#~ msgid "Export _titles and comments"
+#~ msgstr "Ekspartuj _nazvy j kamentary"
+
+#~ msgid ""
+#~ "F-Spot needs your authorization in order to upload photos to your {0} "
+#~ "account. Press the \"Authorize\" button to open a web browser and give F-"
+#~ "Spot the authorization. "
+#~ msgstr ""
+#~ "F-Spot vymahaje aŭtaryzacyi, kab vysyłać zdymki na kont u servisie {0}. "
+#~ "Naciśni knopku \"Aŭtaryzuj\", kab uruchomić web-hartač i aŭtaryzavać "
+#~ "prahramu F-Spot."
+
+#~ msgid "Folder Export"
+#~ msgstr "Ekspart katalohu"
+
+#~ msgid "G_allery Name:"
+#~ msgstr "N_azva halerei:"
+
+#~ msgid "Open _destination when done exporting"
+#~ msgstr "A_dčyni miesca pryznačeńnia paśla zakančeńnia ekspartu"
+
+#~ msgid "Private"
+#~ msgstr "Pryvatnaje"
+
+#~ msgid "Public"
+#~ msgstr "Publičnaje"
+
+#~ msgid "Strip _metadata"
+#~ msgstr "Vydal _metaźviestki"
+
+#~ msgid "U_RL:"
+#~ msgstr "U_RL:"
+
+#~ msgid "Visible to Family"
+#~ msgstr "Bačnyja dla siamji"
+
+#~ msgid "Visible to Friends"
+#~ msgstr "Bačnyja dla siabroŭ"
+
+#~ msgid "_Album Name:"
+#~ msgstr "Nazva _albomu:"
+
+#~ msgid "_Folder:"
+#~ msgstr "_Kataloh:"
+
+#~ msgid "_Gallery Name:"
+#~ msgstr "Nazva _halerei:"
+
+#~ msgid "_Parent Album:"
+#~ msgstr "_Baćkoŭski albom:"
+
+#~ msgid "_Save the files only"
+#~ msgstr "_Zapišy tolki fajły"
+
+#~ msgid "_Title:"
+#~ msgstr "_Zahałovak:"
+
+#~ msgid "_View photos in browser when done uploading"
+#~ msgstr "_Pakažy zdymki ŭ web-hartačy paśla zakančeńnia pierasyłu"
 
 #~ msgid "Add-in"
 #~ msgstr "Dadatak"
