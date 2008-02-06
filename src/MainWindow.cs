@@ -777,7 +777,7 @@ public class MainWindow {
 		return query.Photos;
 	}
 
-	public readonly PhotoQuery Query {
+	public PhotoQuery Query {
 		get { return query; }
 	}
 
