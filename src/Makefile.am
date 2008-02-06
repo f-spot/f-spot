@@ -322,15 +322,20 @@ F_SPOT_ASSEMBLIES = 				\
 	-pkg:glade-sharp-2.0			\
 	-pkg:gnome-vfs-sharp-2.0
 
-RESOURCES =										\
-	-resource:$(top_srcdir)/icons/f-spot-simple-white.css,f-spot-simple-white.css	\
-	-resource:$(top_srcdir)/icons/f-spot-simple.css,f-spot-simple.css		\
-	-resource:$(top_srcdir)/icons/f-spot.js,f-spot.js				\
-	-resource:$(top_srcdir)/icons/f-spot-not.png,f-spot-not.png			\
-	-resource:$(top_srcdir)/icons/f-spot-logo.svg,f-spot-logo.svg			\
-	-resource:$(srcdir)/dces.rdf,dces.rdf						\
-	-resource:$(srcdir)/f-spot.glade,f-spot.glade					\
-	-resource:$(srcdir)/FSpot.addin.xml,FSpot.addin.xml
+F_SPOT_DISTRESOURCES =			\
+	$(srcdir)/dces.rdf		\
+	$(srcdir)/f-spot.glade		\
+	$(srcdir)/FSpot.addin.xml
+
+F_SPOT_RESOURCES =					\
+	$(F_SPOT_DISTRESOURCES)
+	$(top_srcdir)/icons/f-spot-simple-white.css	\
+	$(top_srcdir)/icons/f-spot-simple.css		\
+	$(top_srcdir)/icons/f-spot.js			\
+	$(top_srcdir)/icons/f-spot-not.png		\
+	$(top_srcdir)/icons/f-spot-logo.svg
+
+RESOURCES = $(foreach res,$(F_SPOT_RESOURCES), $(addprefix -resource:,$(res)),$(notdir $(res)))
 
 fspotlibdir = $(libdir)/f-spot
 fspotlib_DATA = f-spot.exe.config	\
@@ -371,7 +376,7 @@ FSpot.Utils.dll: $(UTILS_CSFILES)
 	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(UTILS_CSFILES) $(UTILS_ASSEMBLIES)
 
-f-spot.exe: $(F_SPOT_CSFILES) f-spot.glade dces.rdf FSpot.addin.xml FSpot.Utils.dll FSpot.Core.dll FSpot.Query.dll Cms.dll
+f-spot.exe: $(F_SPOT_CSFILES) FSpot.Utils.dll FSpot.Core.dll FSpot.Query.dll Cms.dll $(F_SPOT_RESOURCES)
 	@echo -e "\n*** Compiling $@"
 	$(CSC) -target:winexe -out:$@ $(EXTRAFLAGS) $(F_SPOT_CSFILES) $(F_SPOT_ASSEMBLIES) $(RESOURCES)
 
@@ -383,13 +388,10 @@ EXTRA_DIST =					\
 	$(CORE_CSDISTFILES)			\
 	$(QUERY_CSDISTFILES)			\
 	$(F_SPOT_CSDISTFILES)			\
-	dces.rdf				\
+	$(F_SPOT_DISTRESOURCES)			\
 	f-spot.exe.config.in			\
-	f-spot.glade				\
 	f-spot.in				\
-	Cms.dll.config				\
-	FSpot.addin.xml
-
+	Cms.dll.config
 
 CLEANFILES =					\
 	f-spot.exe.config			\
