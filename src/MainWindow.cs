@@ -772,6 +772,15 @@ public class MainWindow {
 		return SelectedPhotos (SelectedIds ());
 	}
 
+	public Photo [] ActivePhotos () 
+	{
+		return query.Photos;
+	}
+
+	public readonly PhotoQuery Query {
+		get { return query; }
+	}
+
 	//
 	// Change Notification functions
 	//
