@@ -463,7 +463,7 @@ f_transform_jpeg  (const char      *source_path,
 		jpegtran_transform = JXFORM_FLIP_V;
 		break;
 	default:
-		g_warning (G_GNUC_FUNCTION ": unknown transform type %d", transform);
+		g_warning ("%s(): unknown transform type %d", G_STRFUNC, transform);
 		if (error_message_return != NULL)
 			*error_message_return = g_strdup_printf (_("Unknown transform type %d"), transform);
 		return FALSE;
