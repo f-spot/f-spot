@@ -26,7 +26,6 @@ DIR_TAO_GLPOSTPROCESS = $(top_builddir)/Tao/Tao.GlPostProcess
 
 LINK_KEYRING = -r:$(DIR_KEYRING)/gnome-keyring-sharp.dll
 LINK_GLITZ = -r:$(DIR_GLITZ)/NDesk.Glitz.dll 
-LINK_GOOGLE = -r:$(DIR_GOOGLE)/Mono.Google.dll
 LINK_GPHOTO2 = -r:$(DIR_GPHOTO2)/libgphoto2-sharp.dll
 LINK_MONO_ADDINS =					\
 	-r:$(DIR_ADDINS_ADDINS)/Mono.Addins.dll		\

@@ -297,7 +297,6 @@ F_SPOT_ASSEMBLIES = 				\
 	$(LINK_MONO_ADDINS)			\
 	$(LINK_FLICKR)				\
 	$(LINK_GLITZ)				\
-	$(LINK_GOOGLE)				\
 	$(LINK_KEYRING)				\
 	$(LINK_SMUGMUG)				\
 	$(LINK_TAO)				\
