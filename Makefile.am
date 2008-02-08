@@ -3,7 +3,6 @@ SUBDIRS = 		\
 	$(DIR_DBUS_GLIB)\
 	docs		\
 	glitz-sharp	\
-	google-sharp	\
 	gnome-keyring-sharp \
 	icons		\
 	libeog		\
@@ -23,7 +22,6 @@ DIST_SUBDIRS = 		\
 	dbus-sharp-glib	\
 	docs		\
 	glitz-sharp	\
-	google-sharp	\
 	gnome-keyring-sharp \
 	icons		\
 	libeog		\
