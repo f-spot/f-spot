@@ -1,19 +1,19 @@
-# translation of eu.po to Basque
+# translation of f-spot.HEAD.po to Basque
 # translation of f-spot to Basque
 # Copyright (C) 2004 Mikel Olasagasti
 # This file is distributed under the same license as the f-spot package.
 #
 #
 # Mikel Olasagasti <hey_neken@mundurat.net>, 2004.
-# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2005, 2006.
+# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2005, 2006, 2008.
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: eu\n"
+"Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-17 21:09+0200\n"
-"PO-Revision-Date: 2007-09-17 21:12+0200\n"
-"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
+"POT-Creation-Date: 2008-02-08 17:33+0100\n"
+"PO-Revision-Date: 2008-02-07 16:30+0100\n"
+"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +23,6 @@ msgstr ""
 "\n"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:62
-#: ../src/InfoBox.cs:74
 msgid "Version:"
 msgstr "Bertsioa:"
 
@@ -36,66 +35,75 @@ msgid "Copyright:"
 msgstr "Copyright-a:"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:71
-msgid "Add-in Dependencies:"
-msgstr "Gehigarriaren mendekotasunak:"
+msgid "Extension Dependencies:"
+msgstr "Hedapenen mendekotasunak:"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:96
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:97
 msgid "All registered repositories"
 msgstr "Erregistratutako biltegi guztiak"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:180
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:184
 msgid "Are you sure you want to cancel the installation?"
-msgstr "Ziur zaude instalazioa bertan behera uztea nahi duzula?"
+msgstr "Ziur zaude instalazioa bertan behera utzi nahi duzula?"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:303
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:308
 msgid "The following packages will be uninstalled:"
 msgstr "Honako paketeak desinstalatuko dira:"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:308
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:313
 msgid ""
-"There are other add-ins that depend on the previous ones which will also be "
-"uninstalled:"
-msgstr "Beste gehigarri batuzk aurrekoen mende daude (desinstalatuko direnak):"
+"There are other extensions that depend on the previous ones which will also "
+"be uninstalled:"
+msgstr "Beste hedapen batzuk aurrekoen mende daude (desinstalatuko direnak):"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:379
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:384
 msgid ""
-"The selected add-ins can't be installed because there are dependency "
+"The selected extensions can't be installed because there are dependency "
 "conflicts."
-msgstr "Hautatutako gehigarriak ezin dira instalatu mendekotasun gatazkak daudelako."
+msgstr ""
+"Hautatutako hedapenak ezin dira instalatu mendekotasun gatazkak daudelako."
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:393
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:398
 msgid "The following packages will be installed:"
 msgstr "Honako paketeak instalatuko dira:"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:397
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:402
 msgid " (in user directory)"
 msgstr " (erabiltzailearen direktorioan)"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:403
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:408
 msgid "The following packages need to be uninstalled:"
 msgstr "Honako paketeak desinstalatu egin behar dira:"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:411
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:416
 msgid "The following dependencies could not be resolved:"
 msgstr "Honako mendekotasunak ezin dira ebatzi:"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:435
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:441
 msgid "The installation has been successfully completed."
 msgstr "Instalazioa ongi burutu da."
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:436
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:442
 msgid "The installation failed!"
 msgstr "Instalazioak huts egin du!"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:439
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:443
+msgid "The installation has completed with warnings."
+msgstr "Instalazioa abisuekin burutu da."
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:446
 msgid "The uninstallation has been successfully completed."
 msgstr "Desinstalazioa ongi burutu da."
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:440
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:447
 msgid "The uninstallation failed!"
 msgstr "Desinstalazioak huts egin du!"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:599
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:448
+msgid "The uninstallation has completed with warnings."
+msgstr "Desinstalazioa abisuekin burutu da."
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:616
 msgid "Repository"
 msgstr "Biltegia"
 
@@ -104,16 +112,16 @@ msgid "Installation cancelled"
 msgstr "Instalazioa bertan behera utzi da"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:159
-msgid "Some of the required add-ins were not found"
-msgstr "Beharrezko gehigarri batzuk ez dira aurkitu"
+msgid "Some of the required extensions were not found"
+msgstr "Beharrezko hedapen batzuk ez dira aurkitu"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:171
 msgid "Installation failed"
 msgstr "Instalazioak huts egin du"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:91
-msgid "Add-in"
-msgstr "Gehigarria"
+msgid "Extension"
+msgstr "Hedapena"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
 msgid "Version"
@@ -121,7 +129,7 @@ msgstr "Bertsioa"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:168
 msgid "Other"
-msgstr "Betelakoa"
+msgstr "Bestelakoa"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
 msgid "Name"
@@ -138,139 +146,136 @@ msgid "Exception occurred: {0}"
 msgstr "Salbuespena gertatu da: {0}"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInfoDialog.cs:32
-msgid "F-Spot Package"
-msgstr "F-Spot paketea"
+msgid "Package"
+msgstr "Paketea"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:110
-msgid "Add-in Installation"
-msgstr "Gehigarrien instalazioa"
+msgid "Extension Installation"
+msgstr "Hedapenen instalazioa"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:134
-msgid "<b>Select the add-ins to install and click on Next</b>"
-msgstr "<b>Hautatu gehigarriak instalatzeko eta egin klik 'Hurrengoa' botoian</b>"
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:136
+msgid "<b>Select the extensions to install and click on Next</b>"
+msgstr ""
+"<b>Hautatu hedapenak instalatzeko eta egin klik 'Hurrengoa' botoian</b>"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:148
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:150
 msgid "Install from:"
 msgstr "Instalatu hemendik:"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:177
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:181
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:179
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:180
 msgid "_Repositories..."
 msgstr "_Biltegiak..."
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:217
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:220
 msgid "Show all packages"
 msgstr "Erakutsi pakete guztiak"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:218
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:221
 msgid "Show new versions only"
 msgstr "Erakutsi bertsio berriak soilik"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:219
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:222
 msgid "Show updates only"
 msgstr "Erakutsi eguneraketak soilik"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:244
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:247
 msgid "_Unselect All"
 msgstr "_Desautatu denak"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:256
-#: ../src/f-spot.glade.h:194
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
+#: ../src/f-spot.glade.h:165
 msgid "Select _All"
 msgstr "Hautatu _dena"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:331
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:334
 msgid "label124"
 msgstr "etiketa124"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:342
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:346
 msgid "Overall Progress:"
 msgstr "Progresio orokorra:"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:370
-msgid "Downloading add-ins..."
-msgstr "Gehigarriak deskargatzen..."
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:374
+msgid "Downloading extensions..."
+msgstr "Hedapenak deskargatzen..."
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:36
-msgid "Add-in Manager"
-msgstr "Gehigarri-kudeatzailea"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:52
-msgid "Additional extensions are required to perform this operation."
-msgstr "Luzapen gehigarriak behar dira eragiketa hau lantzeko."
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:62
-msgid "The following add-ins will be installed:"
-msgstr "Honako gehigarriak instalatuko dira:"
-
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
-msgid "F-Spot Add-in Manager"
-msgstr "F-Spot gehigarri-kudeatzailea"
+msgid "Extension Manager"
+msgstr "Hedapen-kudeatzailea"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:88
-msgid "<big><b>F-Spot Add-in Manager</b></big>"
-msgstr "<big><b>F-Spot gehigarri-kudeatzailea</b></big>"
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:54
+msgid "Additional extensions are required to perform this operation."
+msgstr "Hedapen gehigarriak behar dira eragiketa hau lantzeko."
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:108
-msgid "The following add-ins are currently installed:"
-msgstr "Honako gehigarriak unean instalatuta daude:"
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:64
+msgid "The following extensions will be installed:"
+msgstr "Honako hedapenak instalatuko dira:"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:166
-msgid "_Install Add-ins..."
-msgstr "_Instalatu gehigarriak..."
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:90
+msgid "<big><b>Extension Manager</b></big>"
+msgstr "<big><b>Hedapen-kudeatzailea</b></big>"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:215
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:110
+msgid "The following extensions are currently installed:"
+msgstr "Honako hedapenak unean instalatuta daude:"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:165
+msgid "_Install Extensions..."
+msgstr "_Instalatu hedapenak..."
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:210
 msgid "_Uninstall..."
 msgstr "_Desinstalatu..."
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:245
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:236
 msgid "Enable"
 msgstr "Gaitu"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:275
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:262
 msgid "Disable"
 msgstr "Desgaitu"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
-#: ../src/f-spot.glade.h:122
-msgid "F-Spot"
-msgstr "F-Spot"
+msgid "Error"
+msgstr "Errorea"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:111
 msgid "Details"
 msgstr "Xehetasunak"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ManageSitesDialog.cs:34
-msgid "Add-in Repository Management"
-msgstr "Gehigarrien biltegien kudeatzailea"
+msgid "Extension Repository Management"
+msgstr "Hedapenen biltegien kudeatzailea"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:52
 msgid "Add New Repository"
 msgstr "Gehitu biltegi berria"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:68
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:70
 msgid "Select the location of the repository you want to register:"
 msgstr "Hautatu biltegiaren helbidea erregistratzeko:"
 
 #. Container child vbox89.Gtk.Box+BoxChild
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:75
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:77
 msgid "Register an on-line repository"
 msgstr "Erregistratu lineako biltegia"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:104
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:106
 msgid "Url:"
 msgstr "URLa:"
 
 #. Container child vbox89.Gtk.Box+BoxChild
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:125
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:127
 msgid "Register a local repository"
 msgstr "Erregistratu biltegi lokala"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:153
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:155
 msgid "Path:"
 msgstr "Bide-izena:"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:177
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:179
 msgid "Browse..."
 msgstr "Arakatu..."
 
@@ -279,52 +284,24 @@ msgstr "Arakatu..."
 msgid "(provided by {0})"
 msgstr "({0}(e)k hornitua)"
 
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:108
-msgid "Disabled add-ins can't be loaded."
-msgstr "Desgaitutako gehigarriak ezin dira kargatu."
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:154
+msgid "Disabled extensions can't be loaded."
+msgstr "Desgaitutako hedapenak ezin dira kargatu."
 
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:133
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:179
 #, csharp-format
-msgid "Loading {0} add-in"
-msgstr "Gehigarria kargatzen: {0}"
+msgid "Loading {0} extension"
+msgstr "Hedapena kargatzen: {0}"
 
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:216
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:265
 #, csharp-format
-msgid "The required addin '{0}' is disabled."
-msgstr "Beharrezko '{0}' gehigarria desgaituta dago."
+msgid "The required extension '{0}' is disabled."
+msgstr "Beharrezko '{0}' hedapena desgaituta dago."
 
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:218
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:267
 #, csharp-format
-msgid "The required addin '{0}' is not installed."
-msgstr "Beharrezko '{0}' gehigarria ez dago instalatua."
-
-#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:1
-msgid "Export to 23hq..."
-msgstr "Esportatu '23hq'-ra..."
-
-#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:2
-msgid "Export to CD..."
-msgstr "Esportatu CDra..."
-
-#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:3
-msgid "Export to Flickr..."
-msgstr "Esportatu Flickr-era..."
-
-#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:4
-msgid "Export to Folder..."
-msgstr "Esportatu karpetara..."
-
-#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:5
-msgid "Export to PicasaWeb..."
-msgstr "Esportatu PicasaWeb-era..."
-
-#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:6
-msgid "Export to SmugMug..."
-msgstr "Esportatu SmugMug-era..."
-
-#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:7
-msgid "Export to Web Gallery..."
-msgstr "Esportatu web galeriara..."
+msgid "The required extension '{0}' is not installed."
+msgstr "Beharrezko '{0}' hedapena ez dago instalatua."
 
 #: ../f-spot-view.desktop.in.in.h:1
 msgid "F-Spot Photo Viewer"
@@ -345,18 +322,6 @@ msgstr "Antolatu, ikusi eta partekatu zure argazkiak"
 #: ../f-spot.desktop.in.in.h:3
 msgid "Photo Manager"
 msgstr "Argazki-kudeatzailea"
-
-#: ../google-sharp/CaptchaException.cs:58
-msgid "url"
-msgstr "URLa"
-
-#: ../google-sharp/CaptchaException.cs:59
-msgid "token"
-msgstr "tokena"
-
-#: ../google-sharp/CaptchaException.cs:60
-msgid "captcha_url"
-msgstr "captcha_url"
 
 #: ../libeog/eog-file-selection.c:29 ../libeog/eog-file-selection.c:46
 msgid "By Extension"
@@ -466,7 +431,7 @@ msgstr "bilbatu"
 msgid "dither type"
 msgstr "bilbe-mota"
 
-#: ../libfspot/f-jpeg-utils.c:445
+#: ../libfspot/f-jpeg-utils.c:445 ../src/RotateCommand.cs:231
 msgid "File not found"
 msgstr "Ez da fitxategia aurkitu"
 
@@ -479,97 +444,57 @@ msgstr "%d transformazio mota ezezaguna"
 msgid "Operation failed"
 msgstr "Eragiketak huts egin du"
 
-#: ../src/CDExport.cs:116
-#, csharp-format
-msgid "Transferring picture \"{0}\" To CD"
-msgstr "\"{0}\" argazkia CDra transferitzen"
-
-#. This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/CDExport.cs:118 ../src/FlickrExport.cs:288
-#: ../src/FolderExport.cs:197 ../src/GalleryExport.cs:704
-#: ../src/ProgressDialog.cs:82 ../src/TimeDialog.cs:147
-#, csharp-format
-msgid "{0} of {1}"
-msgstr "{0} / {1}"
-
-#: ../src/CDExport.cs:131 ../src/FlickrExport.cs:305
-#: ../src/FolderExport.cs:228 ../src/GalleryExport.cs:728
-#: ../src/PicasaWebExport.cs:639 ../src/SmugMugExport.cs:579
-msgid "Done Sending Photos"
-msgstr "Argazkiak bidaltzea amaitu da"
-
-#: ../src/CDExport.cs:133 ../src/FolderExport.cs:230
-msgid "Transfer Complete"
-msgstr "Transferentzia osatu da"
-
-#: ../src/CDExport.cs:140 ../src/FolderExport.cs:235
-msgid "Error While Transferring"
-msgstr "Errorea transferitzean"
-
-#: ../src/CDExport.cs:147 ../src/FolderExport.cs:252
-msgid "Error Transferring"
-msgstr "Errorea transferitzean"
-
-#: ../src/CDExport.cs:168 ../src/FolderExport.cs:274
-msgid "Error: Error while transferring; Aborting"
-msgstr "Errorea: errorea transferitzean. Bertan behera uzten"
-
-#: ../src/CDExport.cs:171 ../src/FolderExport.cs:277
-msgid "Error: File Already Exists; Aborting"
-msgstr "Errorea: fitxategia jadanik existitzen da. Bertan behera uzten"
-
-#: ../src/CDExport.cs:210 ../src/CameraFileSelectionDialog.cs:183
-#: ../src/FolderExport.cs:331
-msgid "Transferring Pictures"
-msgstr "Argazkiak transferitzen"
-
-#: ../src/CameraFileSelectionDialog.cs:62
+#: ../src/CameraFileSelectionDialog.cs:73
 msgid "Preview"
 msgstr "Aurrebista"
 
-#: ../src/CameraFileSelectionDialog.cs:64
+#: ../src/CameraFileSelectionDialog.cs:75
 msgid "Path"
 msgstr "Bide-izena"
 
-#: ../src/CameraFileSelectionDialog.cs:66 ../src/f-spot.glade.h:125
+#: ../src/CameraFileSelectionDialog.cs:77 ../src/f-spot.glade.h:108
 msgid "File"
 msgstr "Fitxategia"
 
-#: ../src/CameraFileSelectionDialog.cs:68 ../src/FolderExport.cs:855
+#: ../src/CameraFileSelectionDialog.cs:79
 msgid "Index"
 msgstr "Indizea"
 
-#: ../src/CameraFileSelectionDialog.cs:88
+#: ../src/CameraFileSelectionDialog.cs:99
 msgid "Select Tag"
 msgstr "Hautatu etiketa"
 
-#: ../src/CameraFileSelectionDialog.cs:124
+#: ../src/CameraFileSelectionDialog.cs:135
 msgid "Downloading Previews"
 msgstr "Aurrebistak deskargatzen"
 
-#: ../src/CameraFileSelectionDialog.cs:132
+#: ../src/CameraFileSelectionDialog.cs:143
 #, csharp-format
 msgid "Downloading Preview of {0}"
 msgstr "Aurrebistak deskargatzen: {0}"
 
-#: ../src/CameraFileSelectionDialog.cs:206
+#: ../src/CameraFileSelectionDialog.cs:194
+msgid "Transferring Pictures"
+msgstr "Argazkiak transferitzen"
+
+#: ../src/CameraFileSelectionDialog.cs:217
 #, csharp-format
 msgid "Copying file {0} of {1}"
 msgstr "Argazkia kopiatzen: {0} / {1}"
 
-#: ../src/CameraFileSelectionDialog.cs:216
+#: ../src/CameraFileSelectionDialog.cs:227
 msgid "Error transferring file"
 msgstr "Errorea fitxategia transferitzean"
 
-#: ../src/CameraFileSelectionDialog.cs:225
+#: ../src/CameraFileSelectionDialog.cs:236
 msgid "Done Copying Files"
 msgstr "Fitxategiak kopiatzea amaituta"
 
-#: ../src/CameraFileSelectionDialog.cs:227
+#: ../src/CameraFileSelectionDialog.cs:238
 msgid "Download Complete"
 msgstr "Deskarga osatu da"
 
-#: ../src/CameraFileSelectionDialog.cs:252
+#: ../src/CameraFileSelectionDialog.cs:263
 #, csharp-format
 msgid "Transferring \"{0}\" from camera"
 msgstr "Kameratik \"{0}\" transferitzen"
@@ -582,22 +507,22 @@ msgstr "Kamera"
 msgid "Port"
 msgstr "Ataka"
 
-#: ../src/ColorDialog.cs:211
+#: ../src/ColorDialog.cs:212
 msgid "Error saving adjusted photo"
 msgstr "Errorea doitutako argazkia gordetzean"
 
-#: ../src/ColorDialog.cs:212 ../src/HigMessageDialog.cs:15 ../src/Loupe.cs:58
-#: ../src/MainWindow.cs:2022 ../src/PhotoView.cs:265
+#: ../src/ColorDialog.cs:213 ../src/Loupe.cs:59 ../src/MainWindow.cs:2011
+#: ../src/PhotoView.cs:279 ../src/UI.Dialog/EditExceptionDialog.cs:25
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "\"{0}\" salbuespena jaso da. Ezin izan da {1} argazkia gorde"
 
-#: ../src/Core.cs:190
+#: ../src/Core.cs:192
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Ez da {0}(r)ekin bat datorren argazkirik aurkitu"
 
-#: ../src/Core.cs:191
+#: ../src/Core.cs:193
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -608,11 +533,11 @@ msgstr ""
 "argazki batzuei gehitzen edo F-Spot aplikazioaren hobespenen \n"
 "elkarrizketa-koadroan bestelako etiketa hautatzen."
 
-#: ../src/Core.cs:195
+#: ../src/Core.cs:197
 msgid "Search returned no results"
 msgstr "Bilaketak ez du emaitzik aurkitu"
 
-#: ../src/Core.cs:196
+#: ../src/Core.cs:198
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -622,59 +547,59 @@ msgstr ""
 "F-Spot aplikazioaren hobespenen elkarrizketa-koadroan \n"
 "bestelako etiketa hautatzen."
 
-#: ../src/DateCommands.cs:54
+#: ../src/DateCommands.cs:56
 msgid "Today"
 msgstr "Gaur"
 
-#: ../src/DateCommands.cs:56
+#: ../src/DateCommands.cs:58
 msgid "Yesterday"
 msgstr "Atzo"
 
-#: ../src/DateCommands.cs:58
+#: ../src/DateCommands.cs:60
 msgid "Last 7 days"
 msgstr "Azken 7 egun"
 
-#: ../src/DateCommands.cs:60
+#: ../src/DateCommands.cs:62
 msgid "Last 30 days"
 msgstr "Azken 30 egun"
 
-#: ../src/DateCommands.cs:62
+#: ../src/DateCommands.cs:64
 msgid "Last 90 days"
 msgstr "Azken 90 egun"
 
-#: ../src/DateCommands.cs:64
+#: ../src/DateCommands.cs:66
 msgid "Last 360 days"
 msgstr "Azken 360 egun"
 
-#: ../src/DateCommands.cs:66
+#: ../src/DateCommands.cs:68
 msgid "Current Week (Mon-Sun)"
 msgstr "Uneko astea (Al.-Ig.)"
 
-#: ../src/DateCommands.cs:68
+#: ../src/DateCommands.cs:70
 msgid "Previous Week (Mon-Sun)"
 msgstr "Aurreko astea (Al.-Ig.)"
 
-#: ../src/DateCommands.cs:84 ../src/f-spot.glade.h:74
+#: ../src/DateCommands.cs:86 ../src/f-spot.glade.h:68
 msgid "All Images"
 msgstr "Irudi guztiak"
 
-#: ../src/DateCommands.cs:86
+#: ../src/DateCommands.cs:88
 msgid "Customized Range"
 msgstr "Barruti pertsonalizatua"
 
-#: ../src/Editors/SoftFocus.cs:25 ../src/ItemAction.cs:341
+#: ../src/Editors/SoftFocus.cs:27 ../src/ItemAction.cs:342
 msgid "Soft Focus"
 msgstr "Laino artistikoa"
 
-#: ../src/Editors/SoftFocus.cs:55 ../src/PhotoVersionCommands.cs:136
+#: ../src/Editors/SoftFocus.cs:57 ../src/PhotoVersionCommands.cs:138
 msgid "Cancel"
 msgstr "Utzi"
 
-#: ../src/Editors/SoftFocus.cs:58
+#: ../src/Editors/SoftFocus.cs:60
 msgid "Apply"
 msgstr "Aplikatu"
 
-#: ../src/Editors/Tilt.cs:28 ../src/ItemAction.cs:325
+#: ../src/Editors/Tilt.cs:28 ../src/ItemAction.cs:326
 msgid "Straighten"
 msgstr "Zuzen jarri"
 
@@ -695,194 +620,66 @@ msgid "No applications available"
 msgstr "Ez dago aplikaziorik erabilgarri"
 
 #: ../src/FSpot.addin.xml.h:1
-msgid "Attach Tag"
-msgstr "Gehitu etiketa"
+msgid "Copy Photo Locat_ion"
+msgstr "Kopiatu argazkiaren _kokapena"
 
 #: ../src/FSpot.addin.xml.h:2
-msgid "Copy Photo Location"
-msgstr "Kopiatu argazkiaren kokapena"
-
-#: ../src/FSpot.addin.xml.h:3
-msgid "Delete From Drive"
-msgstr "Ezabatu unitatetik"
-
-#: ../src/FSpot.addin.xml.h:4
 msgid "Export to"
 msgstr "Esportatu hona"
 
-#: ../src/FSpot.addin.xml.h:5
-msgid "Open With"
-msgstr "Ireki honekin"
+#: ../src/FSpot.addin.xml.h:3
+msgid "Open _With"
+msgstr "Ireki _honekin"
 
-#: ../src/FSpot.addin.xml.h:6
-msgid "Remove From Catalog"
-msgstr "Kendu katalogotik"
+#: ../src/FSpot.addin.xml.h:4 ../src/f-spot.glade.h:158
+msgid "Rem_ove Tag"
+msgstr "Ken_du etiketa"
+
+#: ../src/FSpot.addin.xml.h:5 ../src/SingleView.cs:433
+#: ../src/f-spot.glade.h:161
+msgid "Rotate _Left"
+msgstr "Biratu e_zkerrera"
+
+#: ../src/FSpot.addin.xml.h:6 ../src/SingleView.cs:434
+#: ../src/f-spot.glade.h:162
+msgid "Rotate _Right"
+msgstr "Biratu e_skuinera"
 
 #: ../src/FSpot.addin.xml.h:7
-msgid "Remove Tag"
-msgstr "Kendu etiketa"
-
-#: ../src/FSpot.addin.xml.h:8 ../src/ItemAction.cs:80 ../src/MainWindow.cs:255
-#: ../src/SingleView.cs:73
-msgid "Rotate Left"
-msgstr "Biratu ezkerrera"
-
-#: ../src/FSpot.addin.xml.h:9 ../src/ItemAction.cs:92 ../src/MainWindow.cs:259
-#: ../src/SingleView.cs:78
-msgid "Rotate Right"
-msgstr "Biratu eskuinera"
-
-#: ../src/FSpot.addin.xml.h:10
 msgid "Tools"
 msgstr "Tresnak"
 
-#: ../src/FileImportBackend.cs:265
+#: ../src/FSpot.addin.xml.h:8 ../src/f-spot.glade.h:206
+msgid "_Attach Tag"
+msgstr "_Gehitu etiketa"
+
+#: ../src/FSpot.addin.xml.h:9 ../src/f-spot.glade.h:216
+msgid "_Delete From Drive"
+msgstr "_Ezabatu unitatetik"
+
+#: ../src/FSpot.addin.xml.h:10 ../src/f-spot.glade.h:248
+msgid "_Remove From Catalog"
+msgstr "_Kendu katalogotik"
+
+#: ../src/FileImportBackend.cs:266
 msgid "Import error"
 msgstr "Errorea inportatzean"
 
-#: ../src/FileImportBackend.cs:266
+#: ../src/FileImportBackend.cs:267
 #, csharp-format
 msgid "Error importing {0}{2}{2}{1}"
 msgstr "Errorea {0} {2} {2} {1} inportatzean"
+
+#: ../src/FileImportBackend.cs:268 ../src/ThreadProgressDialog.cs:68
+msgid "Skip"
+msgstr "Saltatu"
 
 #: ../src/Filters/ResizeFilter.cs:70 ../src/Filters/SharpFilter.cs:52
 #, csharp-format
 msgid "No way to save files of type \"{0}\""
 msgstr "Ezin da \"{0}\" motako fitxategirik gorde"
 
-#: ../src/FlickrExport.cs:73 ../src/f-spot.glade.h:81
-msgid "Authorize"
-msgstr "Baimendu"
-
-#: ../src/FlickrExport.cs:78
-#, csharp-format
-msgid ""
-"Return to this window after you have finished the authorization process on "
-"{0} and click the \"Complete Authorization\" button below"
-msgstr ""
-"Itzuli leiho honetara {0} guneko baimentze-prozesua amaitzean, eta egin klik "
-"beheko \"Osatu baimenzea\" botoian."
-
-#: ../src/FlickrExport.cs:79
-msgid "Complete Authorization"
-msgstr "Osatu baimentzea"
-
-#: ../src/FlickrExport.cs:83
-#, csharp-format
-msgid "Logging into {0}"
-msgstr "{0} gunean saioa hasten"
-
-#: ../src/FlickrExport.cs:84
-msgid "Checking credentials..."
-msgstr "Nortasun-datuak egiaztatzen..."
-
-#: ../src/FlickrExport.cs:90
-#, csharp-format
-msgid "Welcome {0} you are connected to {1}"
-msgstr "Ongi etorri {0}, {1} gunera konektatu zara"
-
-#: ../src/FlickrExport.cs:93
-#, csharp-format
-msgid "Sign in as a different user"
-msgstr "Sinatu beste erabiltzaile bat bezala"
-
-#: ../src/FlickrExport.cs:244
-msgid "Unable to log on"
-msgstr "Ezin da saioa hasi."
-
-#: ../src/FlickrExport.cs:264
-#, csharp-format
-msgid "Waiting for response {0} of {1}"
-msgstr "Erantzunaren zai: {0} / {1}"
-
-#: ../src/FlickrExport.cs:283 ../src/FolderExport.cs:194
-#: ../src/GalleryExport.cs:700
-#, csharp-format
-msgid "Uploading picture \"{0}\""
-msgstr "\"{0}\" argazkia kargatzen"
-
-#: ../src/FlickrExport.cs:307 ../src/GalleryExport.cs:730
-#: ../src/PicasaWebExport.cs:641 ../src/SmugMugExport.cs:581
-msgid "Upload Complete"
-msgstr "Kargatzea osatu da"
-
-#: ../src/FlickrExport.cs:310
-#, csharp-format
-msgid "Error Uploading To {0}: {1}"
-msgstr "Errorea {0} kargatzean: {1}"
-
-#: ../src/FlickrExport.cs:313 ../src/FolderExport.cs:202
-#: ../src/GalleryExport.cs:720 ../src/PicasaWebExport.cs:631
-#: ../src/SmugMugExport.cs:571
-msgid "Error"
-msgstr "Errorea"
-
-#: ../src/FlickrExport.cs:378
-msgid "Unable to log on."
-msgstr "Ezin da saioa hasi."
-
-#: ../src/FlickrExport.cs:379
-#, csharp-format
-msgid ""
-"F-Spot was unable to log on to {0}.  Make sure you have given the "
-"authentication using {0} web browser interface."
-msgstr ""
-"F-Spot ezin izan du {0} gunean saioa hasi. Ziurtatu autentifikazioa eman "
-"duzula web arakaitzaile batekin {0} gunearen interfazean."
-
-#: ../src/FlickrExport.cs:397 ../src/GalleryExport.cs:653
-#: ../src/PicasaWebExport.cs:544 ../src/SmugMugExport.cs:497
-msgid "Uploading Pictures"
-msgstr "Irudiak kargatzen"
-
-#: ../src/FolderExport.cs:111
-msgid "Select Export Folder"
-msgstr "Hautatu esportatzeko karpeta"
-
-#: ../src/FolderExport.cs:156
-msgid "Building Gallery"
-msgstr "Galeria eraikitzen"
-
-#: ../src/FolderExport.cs:200
-#, csharp-format
-msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
-msgstr "Errorea \"{0}\" irudia galerian kargatzean: {2}{1}"
-
-#: ../src/FolderExport.cs:709
-msgid "Light"
-msgstr "Argia"
-
-#: ../src/FolderExport.cs:710
-msgid "Dark"
-msgstr "Iluna"
-
-#. Abbreviation of previous
-#: ../src/FolderExport.cs:853
-msgid "Prev"
-msgstr "Aurrekoa"
-
-#: ../src/FolderExport.cs:858 ../src/ItemAction.cs:103
-#: ../src/f-spot.glade.h:155
-msgid "Next"
-msgstr "Hurrengoa"
-
-#: ../src/FolderExport.cs:911 ../src/FolderExport.cs:1084
-msgid "Show Styles"
-msgstr "Erakutsi estiloak"
-
-#: ../src/FolderExport.cs:912 ../src/FolderExport.cs:1085
-msgid "Hide Styles"
-msgstr "Ezkutatu estiloak"
-
-#: ../src/FolderExport.cs:969
-msgid "Gallery generated by"
-msgstr "Galeriaren sortzailea: "
-
-#: ../src/FolderExport.cs:1014
-msgid "Page:"
-msgstr "Orrialdea:"
-
-#: ../src/FormClient.cs:292
+#: ../src/FormClient.cs:293
 msgid "Unhandled exception"
 msgstr "Kudeatu gabeko salbuespena"
 
@@ -904,10 +701,10 @@ msgstr "Irudiaren informazioa"
 
 #: ../src/FullScreenView.cs:66
 msgid "Exit fullscreen"
-msgstr "Irten oantaila osotik"
+msgstr "Irten pantaila osotik"
 
-#: ../src/FullScreenView.cs:76 ../src/MainWindow.cs:288
-#: ../src/SingleView.cs:90
+#: ../src/FullScreenView.cs:76 ../src/MainWindow.cs:294
+#: ../src/SingleView.cs:92
 msgid "Slideshow"
 msgstr "Diapositiba erakusketa"
 
@@ -918,61 +715,6 @@ msgstr "Hasi diapositiba erakusketa"
 #: ../src/FullScreenView.cs:142
 msgid "Slide transition: "
 msgstr "Diapositiben transizioa: "
-
-#: ../src/GalleryExport.cs:376
-msgid "Invalid URL"
-msgstr "URL baliogabea"
-
-#: ../src/GalleryExport.cs:377
-msgid "The gallery URL entry does not appear to be a valid URL"
-msgstr "Galeriako URL sarrera ez dirudi baliozko URLa denik"
-
-#: ../src/GalleryExport.cs:387 ../src/GalleryExport.cs:402
-msgid "Error while connecting to Gallery"
-msgstr "Errorea galeriarekin konektatzean"
-
-#: ../src/GalleryExport.cs:388 ../src/GalleryExport.cs:403
-#, csharp-format
-msgid "The following error was encountered while attempting to log in: {0}"
-msgstr "Honako errorea gertatu da saioa hastean: {0}"
-
-#: ../src/GalleryExport.cs:481
-msgid "(TopLevel)"
-msgstr "(Maila gorena)"
-
-#: ../src/GalleryExport.cs:719
-#, csharp-format
-msgid "Error uploading picture \"{0}\" to Gallery: {1}"
-msgstr "Errorea \"{0}\" irudia galerian kargatzean: {1}"
-
-#: ../src/GalleryExport.cs:746 ../src/PicasaWebExport.cs:662
-#: ../src/SmugMugExport.cs:602
-msgid "(No Gallery)"
-msgstr "(Galeriarik ez)"
-
-#: ../src/GalleryExport.cs:833 ../src/PicasaWebExport.cs:789
-#: ../src/SmugMugExport.cs:700
-msgid "(Not Connected)"
-msgstr "(Konektatu gabe)"
-
-#: ../src/GalleryExport.cs:834 ../src/PicasaWebExport.cs:790
-#: ../src/SmugMugExport.cs:701
-msgid "(No Albums)"
-msgstr "(Albumik ez)"
-
-#: ../src/GalleryExport.cs:886 ../src/PicasaWebExport.cs:834
-#: ../src/SmugMugExport.cs:745
-msgid "No account selected"
-msgstr "Ez da konturik hautatu"
-
-#: ../src/GalleryRemote.cs:356
-msgid "Error reading server response"
-msgstr "Errorea zerbitzariaren erantzuna irakurtzean"
-
-#. failed to find the response
-#: ../src/GalleryRemote.cs:368
-msgid "Server returned response without Gallery content"
-msgstr "Zerbitzaria galeriako edukirik gabe erantzun du"
 
 #: ../src/GlTransition.cs:36
 msgid "Dissolve"
@@ -998,7 +740,7 @@ msgstr "Ezabatu"
 msgid "Split"
 msgstr "Zatitu"
 
-#: ../src/GlTransition.cs:347
+#: ../src/GlTransition.cs:350
 msgid "Push"
 msgstr "Bultza"
 
@@ -1022,17 +764,13 @@ msgstr "Antolatu _hilabetekiko"
 msgid "Arrange by _Folder"
 msgstr "Antolatu _karpetekiko"
 
-#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:288
+#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:252
 msgid "_Reverse Order"
 msgstr "_Alderantzizko ordena"
 
-#: ../src/GroupSelector.cs:529
+#: ../src/GroupSelector.cs:529 ../src/f-spot.glade.h:210
 msgid "_Clear Date Range"
 msgstr "_Garbitu data bitartea"
-
-#: ../src/HigMessageDialog.cs:28 ../src/PhotoView.cs:264
-msgid "Error editing photo"
-msgstr "Errorea argazkia editatzean"
 
 #: ../src/Imaging/Exif.cs:228
 msgid "Image Directory"
@@ -1083,7 +821,8 @@ msgid "A unique number"
 msgstr "Zenbaki bakarra"
 
 #: ../src/Imaging/IptcFile.cs:157
-msgid "The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgid ""
+"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
 msgstr "Gutun-azala kudeatzeko lehentasunaren barrutia: 1 (altua) - 9 (baxua)"
 
 #: ../src/Imaging/IptcFile.cs:159
@@ -1092,7 +831,7 @@ msgstr "Zerbitzuak materiala bidali zuen urtea, hilabetea eta eguna (CCUUHHEE)"
 
 #: ../src/Imaging/IptcFile.cs:161
 msgid "The hour, minute and second (HHMMSS) the service sent the material"
-msgstr "Zerbitzuak materiala bidali zuen ordua, minutua eta segundoa (OOMMSS+OOMM)"
+msgstr "Zerbitzuak materiala bidali zuen ordua, minutua eta segundoa (OOMMSS)"
 
 #: ../src/Imaging/IptcFile.cs:163
 msgid "The character set designation"
@@ -1149,7 +888,8 @@ msgid "Full name of the country of the focus of the content"
 msgstr "Herrialdearen izen osoa (argazkia atera zena)"
 
 #: ../src/Imaging/IptcFile.cs:206
-msgid "Two or three letter ISO3166 code of the country of the focus of the content"
+msgid ""
+"Two or three letter ISO3166 code of the country of the focus of the content"
 msgstr "Herrialdearen bi edo hiru hizki ISO3166 kodean"
 
 #: ../src/Imaging/IptcFile.cs:209
@@ -1168,14 +908,16 @@ msgstr "Egilearen edo sortzailearen titulua"
 msgid ""
 "The person involved in writing, editing or correcting the object data or "
 "caption/abstract"
-msgstr "Objektu-datuak edo epigrafea idatzi, editatu edota zuzendu duen pertsona"
+msgstr ""
+"Objektu-datuak edo epigrafea idatzi, editatu edota zuzendu duen pertsona"
 
 #: ../src/Imaging/IptcFile.cs:222
 msgid "Headline of the content"
 msgstr "Edukiaren goiburukoa"
 
 #: ../src/Imaging/IptcFile.cs:225
-msgid "Instructions from the creator to the receiver not covered by other fields"
+msgid ""
+"Instructions from the creator to the receiver not covered by other fields"
 msgstr "Sortzailearen oharrak beste eremuetan zehazten ez den hartzaileentzak"
 
 #: ../src/Imaging/IptcFile.cs:228
@@ -1186,73 +928,78 @@ msgstr "Objektuaren genero intelektuala"
 msgid "Unknown IIM DataSet"
 msgstr "IIM datu-multzo ezezaguna"
 
-#: ../src/ImportCommand.cs:28 ../src/SingleView.cs:329
+#: ../src/ImportCommand.cs:49 ../src/SingleView.cs:334
 msgid "Select Folder"
 msgstr "Hautatu karpeta"
 
-#: ../src/ImportCommand.cs:235
+#: ../src/ImportCommand.cs:261
 msgid "(No Cameras Detected)"
 msgstr "(Ez da kamerarik detektatu)"
 
-#: ../src/ImportCommand.cs:379
+#: ../src/ImportCommand.cs:405
 #, csharp-format
 msgid "Loading {0} of {1}"
 msgstr "Kargatzen: {0} / {1}"
 
-#: ../src/ImportCommand.cs:447
+#: ../src/ImportCommand.cs:473
 msgid "Done Loading"
 msgstr "Kargatzea burutu da"
 
-#: ../src/ImportCommand.cs:644
+#: ../src/ImportCommand.cs:670
 msgid "Directory does not exist."
 msgstr "Direktorioa ez da existitzen."
 
-#: ../src/ImportCommand.cs:645
+#: ../src/ImportCommand.cs:671
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
 "different directory"
-msgstr "Hautatutako \"{0} direktorioa ez da existitzen. Aukeratu beste direktorio bat"
+msgstr ""
+"Hautatutako \"{0} direktorioa ez da existitzen. Aukeratu beste direktorio bat"
 
 #. Prepare the Last Import root tag
-#: ../src/ImportCommand.cs:697 ../src/ImportCommand.cs:699
-#: ../src/XmpTagsImporter.cs:86
+#: ../src/ImportCommand.cs:723 ../src/ImportCommand.cs:725
+#: ../src/XmpTagsImporter.cs:88
 msgid "Import Tags"
 msgstr "Inportatu etiketak"
 
-#: ../src/InfoBox.cs:72 ../src/PhotoVersionCommands.cs:56
-msgid "Name:"
-msgstr "Izena:"
+#: ../src/InfoBox.cs:81
+msgid "name"
+msgstr "izena"
 
-#: ../src/InfoBox.cs:76
-msgid "Date:"
-msgstr "Data:"
+#: ../src/InfoBox.cs:83
+msgid "version"
+msgstr "bertsioa"
 
-#: ../src/InfoBox.cs:78
-msgid "Size:"
-msgstr "Tamaina:"
+#: ../src/InfoBox.cs:85
+msgid "date"
+msgstr "data"
 
-#: ../src/InfoBox.cs:80
-msgid "Exposure:"
-msgstr "Esposizioa:"
+#: ../src/InfoBox.cs:87
+msgid "size"
+msgstr "tamaina"
+
+#: ../src/InfoBox.cs:89
+msgid "exposure"
+msgstr "esposizioa"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/InfoBox.cs:221 ../src/TagStore.cs:451
+#: ../src/InfoBox.cs:232 ../src/TagStore.cs:258
 msgid "(None)"
 msgstr "(bat ere ez)"
 
-#: ../src/InfoBox.cs:232 ../src/InfoBox.cs:241
+#: ../src/InfoBox.cs:243 ../src/InfoBox.cs:252
 msgid "(Unknown)"
 msgstr "(Ezezaguna)"
 
-#: ../src/InfoDisplay.cs:14 ../src/MainWindow.cs:1526
-#: ../src/f-spot.glade.h:153
+#: ../src/InfoDisplay.cs:14 ../src/MainWindow.cs:1569
+#: ../src/f-spot.glade.h:132
 msgid "Metadata Browser"
 msgstr "Meta-datuen arakatzailea"
 
 #. Obsolete, remove after db rev4
 #: ../src/InfoDisplay.cs:135 ../src/InfoDisplay.cs:137
-#: ../src/f-spot.glade.h:128
+#: ../src/f-spot.glade.h:111
 msgid "Folder"
 msgstr "Karpeta"
 
@@ -1266,7 +1013,7 @@ msgstr "SmugMug"
 
 #: ../src/InfoDisplay.cs:143
 msgid "Gallery2"
-msgstr "Gallery2"
+msgstr "Galeria2"
 
 #: ../src/InfoDisplay.cs:235
 msgid "Extended Metadata"
@@ -1289,107 +1036,119 @@ msgstr "\"{0}\" argazkia ez da existitzen"
 msgid "No metadata available"
 msgstr "Ez dago metadaturik eskuragarri"
 
-#: ../src/ItemAction.cs:81 ../src/ItemAction.cs:93
+#: ../src/ItemAction.cs:81 ../src/MainWindow.cs:261 ../src/SingleView.cs:75
+msgid "Rotate Left"
+msgstr "Biratu ezkerrera"
+
+#: ../src/ItemAction.cs:82 ../src/ItemAction.cs:94
 msgid "Rotate picture left"
 msgstr "Biratu argazkia ezkerrera"
 
-#: ../src/ItemAction.cs:104
+#: ../src/ItemAction.cs:93 ../src/MainWindow.cs:265 ../src/SingleView.cs:80
+msgid "Rotate Right"
+msgstr "Biratu eskuinera"
+
+#: ../src/ItemAction.cs:104 ../src/f-spot.glade.h:134
+msgid "Next"
+msgstr "Hurrengoa"
+
+#: ../src/ItemAction.cs:105
 msgid "Next picture"
 msgstr "Hurrengo argazkia"
 
-#: ../src/ItemAction.cs:125 ../src/f-spot.glade.h:180
+#: ../src/ItemAction.cs:126 ../src/f-spot.glade.h:154
 msgid "Previous"
 msgstr "Aurrekoa"
 
-#: ../src/ItemAction.cs:126
+#: ../src/ItemAction.cs:127
 msgid "Previous picture"
 msgstr "Aurreko argazkia"
 
-#: ../src/ItemAction.cs:256
+#: ../src/ItemAction.cs:257
 msgid "Auto Color"
 msgstr "Kolore automatikoa"
 
-#: ../src/ItemAction.cs:257
+#: ../src/ItemAction.cs:258
 msgid "Automatically adjust the colors"
 msgstr "Doitu koloreak automatikoki"
 
-#: ../src/ItemAction.cs:272
+#: ../src/ItemAction.cs:273
 msgid "Apply straightening"
 msgstr "Aplikatu zuzenketa"
 
-#: ../src/ItemAction.cs:273
+#: ../src/ItemAction.cs:274
 msgid "Apply straightening to image"
 msgstr "Aplikatu zuzenketa irudiari"
 
-#: ../src/ItemAction.cs:326
+#: ../src/ItemAction.cs:327
 msgid "Adjust the angle of the image to straighten the horizon"
 msgstr "Doitu irudiaren angelua horizontalki zuzentzeko"
 
-#: ../src/ItemAction.cs:342
+#: ../src/ItemAction.cs:343
 msgid "Create a soft focus visual effect"
 msgstr "Sortu laino artistikoa efektu bisuala"
 
-#: ../src/Loupe.cs:57 ../src/MainWindow.cs:2021
+#: ../src/Loupe.cs:58 ../src/MainWindow.cs:2010
 msgid "Error saving sharpened photo"
 msgstr "Errorea zorroztutako argazkia gordetzean"
 
-#: ../src/Loupe.cs:87
+#: ../src/Loupe.cs:88
 msgid "Sharpen"
 msgstr "Enfokatzea"
 
-#: ../src/Loupe.cs:97 ../src/MainWindow.cs:1988
+#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1977
 msgid "Amount:"
 msgstr "Kopurua:"
 
-#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1989
+#: ../src/Loupe.cs:99 ../src/MainWindow.cs:1978
 msgid "Radius:"
 msgstr "Erradioa:"
 
-#: ../src/Loupe.cs:99 ../src/MainWindow.cs:1990
+#: ../src/Loupe.cs:100 ../src/MainWindow.cs:1979
 msgid "Threshold:"
 msgstr "Atalasea:"
 
-#: ../src/MainWindow.cs:248 ../src/f-spot.glade.h:143
+#: ../src/MainWindow.cs:254 ../src/f-spot.glade.h:124
 msgid "Import"
 msgstr "Inportatu"
 
-#: ../src/MainWindow.cs:250
+#: ../src/MainWindow.cs:256
 msgid "Import new images"
 msgstr "Inportatu irudi berriak"
 
-#: ../src/MainWindow.cs:266 ../src/f-spot.glade.h:83
+#: ../src/MainWindow.cs:272 ../src/f-spot.glade.h:77
 msgid "Browse"
 msgstr "Arakatu"
 
-#: ../src/MainWindow.cs:270
+#: ../src/MainWindow.cs:276
 msgid "Browse many photos simultaneously"
-msgstr "Arakatu hanibat argazki aldi berean"
+msgstr "Arakatu hainbat argazki aldi berean"
 
-#: ../src/MainWindow.cs:274
+#: ../src/MainWindow.cs:280
 msgid "Edit Image"
 msgstr "Editatu irudia"
 
-#: ../src/MainWindow.cs:278
+#: ../src/MainWindow.cs:284
 msgid "View and edit a photo"
 msgstr "Ikusi eta editatu argazkia"
 
-#: ../src/MainWindow.cs:283 ../src/SingleView.cs:85
+#: ../src/MainWindow.cs:289 ../src/SingleView.cs:87
 msgid "Fullscreen"
 msgstr "Pantaila osoa"
 
-#: ../src/MainWindow.cs:285 ../src/SingleView.cs:87
+#: ../src/MainWindow.cs:291 ../src/SingleView.cs:89
 msgid "View photos fullscreen"
 msgstr "Ikusi argazkiak pantaila osoan"
 
-#: ../src/MainWindow.cs:290 ../src/SingleView.cs:92
+#: ../src/MainWindow.cs:296 ../src/SingleView.cs:94
 msgid "View photos in a slideshow"
 msgstr "Ikus argazkiak diapositiba-aurkezpenean"
 
-#: ../src/MainWindow.cs:869
+#: ../src/MainWindow.cs:867
 msgid "Error loading database."
 msgstr "Errorea datu-basea kargatzean."
 
-#: ../src/MainWindow.cs:870
+#: ../src/MainWindow.cs:868
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
@@ -1398,11 +1157,11 @@ msgstr ""
 "F-Spot aplikazioak errorea aurkitu du argazkien datu-basea kargatzean. Datu-"
 "base zaharra {0} kokalekura aldatu da eta datu-base berria sortu da."
 
-#: ../src/MainWindow.cs:1444
+#: ../src/MainWindow.cs:1487
 msgid "No cameras detected."
 msgstr "Ez da kamerarik detektatu."
 
-#: ../src/MainWindow.cs:1445
+#: ../src/MainWindow.cs:1488
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1410,35 +1169,24 @@ msgstr ""
 "F-Spot ez da gai izan sistemara konektatutako kamera aurkitzeko. Egiaztatu "
 "kamera konektatuta eta piztuta dagoela"
 
-#: ../src/MainWindow.cs:1485
+#: ../src/MainWindow.cs:1528
 msgid "Error connecting to camera"
 msgstr "Errorea kamerarekin konektatzean"
 
-#: ../src/MainWindow.cs:1486
+#: ../src/MainWindow.cs:1529
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "\"{0}\" errorea jaso da kamerarekin konektatzean"
 
-#. Translators should localize the following string
-#. * which will give them credit in the About box.
-#. * E.g. "Martin Willemoes Hansen"
-#: ../src/MainWindow.cs:1629
-msgid "translator-credits"
-msgstr "Mikel Olasagasti <hey_neken@mundurat.net>"
-
-#: ../src/MainWindow.cs:1637
-msgid "Copyright © 2003-2007 Novell Inc."
-msgstr "Copyright-a © 2003-2007 Novell Inc."
-
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1901
+#: ../src/MainWindow.cs:1890
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Batu hautatutako etiketa"
 msgstr[1] "Batu hautatutako {0} etiketak?"
 
-#: ../src/MainWindow.cs:1928
+#: ../src/MainWindow.cs:1917
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -1446,121 +1194,131 @@ msgstr ""
 "Eragiketa honek hautatutako etiketak eta edozein azpi-etiketa batu egingo "
 "ditu etiketa bakarrean."
 
-#: ../src/MainWindow.cs:1930
+#: ../src/MainWindow.cs:1919
 msgid "_Merge Tags"
 msgstr "_Batu etiketak"
 
-#: ../src/MainWindow.cs:1979
+#: ../src/MainWindow.cs:1968
 msgid "Unsharp Mask"
 msgstr "Definizio maskara"
 
-#: ../src/MainWindow.cs:2182 ../src/SingleView.cs:471
+#: ../src/MainWindow.cs:2178 ../src/SingleView.cs:476
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "Argazki {0}"
 msgstr[1] "{0} argazki"
 
-#: ../src/MainWindow.cs:2189
+#: ../src/MainWindow.cs:2185
 #, csharp-format
 msgid " out of {0}"
 msgstr " {0}(e)tik kanpo"
 
-#: ../src/MainWindow.cs:2192
+#: ../src/MainWindow.cs:2188
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} hautatuta)"
 msgstr[1] " ({0} hautatuta)"
 
-#: ../src/MainWindow.cs:2279
+#: ../src/MainWindow.cs:2275
 msgid "_Ok"
 msgstr "_Ados"
 
-#: ../src/MainWindow.cs:2280
+#: ../src/MainWindow.cs:2276
 msgid "Error Deleting Picture"
 msgstr "Errorea argazkia ezabatzean"
 
-#: ../src/MainWindow.cs:2285
+#: ../src/MainWindow.cs:2281
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Ez dago baimenik fitxategia ezabatzeko: {1}{0}"
 
-#: ../src/MainWindow.cs:2289
+#: ../src/MainWindow.cs:2285
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "{0} motako errorea gertatu da fitxategia ezabatzean: {2}{1}"
 
-#: ../src/MainWindow.cs:2315
+#: ../src/MainWindow.cs:2311
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Ezabatu hautatutako argazkiak betirako?"
 msgstr[1] "Ezabatu hautatutako {0} argazki betirako?"
 
-#: ../src/MainWindow.cs:2319
+#: ../src/MainWindow.cs:2315
 msgid "This deletes all versions of the selected photo from your drive."
-msgid_plural "This deletes all versions of the selected photos from your drive."
+msgid_plural ""
+"This deletes all versions of the selected photos from your drive."
 msgstr[0] ""
 "Honek hautatutako argazkiaren bertsio guztiak zure euskarritik ezabatuko "
 "ditu."
 msgstr[1] ""
-"Honek hautatutako argazkiaren bertsio guztiak zure euskarritik ezabatuko "
-"ditu."
+"Honek hautatutako argazkien bertsio guztiak zure euskarritik ezabatuko ditu."
 
-#: ../src/MainWindow.cs:2322
+#: ../src/MainWindow.cs:2318
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Ezabatu argazkia"
-msgstr[1] "_Ezabatu argazkia"
+msgstr[1] "_Ezabatu argazkiak"
 
-#: ../src/MainWindow.cs:2353
+#: ../src/MainWindow.cs:2349
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Ezabatu hautatutako argazkia F-Spot-etik?"
 msgstr[1] "Ezabatu hautatutako {0} argazki F-Spot-etik?"
 
-#: ../src/MainWindow.cs:2358
+#: ../src/MainWindow.cs:2354
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
 "again."
 msgstr ""
 "Argazkiak F-Spot katalogotik ezabatzen badituzu, etiketen informazio guztia "
-"galduko da. Argazkiak ordenagailuan egonten jarraituko dute, eta F-Spot-era "
+"galduko da. Argazkiak ordenagailuan egoten jarraituko dute, eta F-Spot-era "
 "berriro inportatzeko aukera egongo da."
 
-#: ../src/MainWindow.cs:2359
+#: ../src/MainWindow.cs:2355
 msgid "_Remove from Catalog"
 msgstr "_Kendu katalogotik"
 
-#: ../src/MainWindow.cs:2416
+#: ../src/MainWindow.cs:2418
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
-msgstr "Ezabatu \"{0} etiketa?"
+msgstr "Ezabatu \"{0}\" etiketa?"
 
-#: ../src/MainWindow.cs:2418
+#: ../src/MainWindow.cs:2420
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Ezabatu hautatutako {0} etiketak?"
 
-#: ../src/MainWindow.cs:2421
-msgid "If you delete a tag, all associations with photos are lost."
-msgstr "Etiketa ezabatuz gero, dagokien argazkiak ere galduko dira."
+#: ../src/MainWindow.cs:2425
+msgid "photo"
+msgid_plural "photos"
+msgstr[0] "argazkia"
+msgstr[1] "argazkiak"
 
-#: ../src/MainWindow.cs:2422
+#: ../src/MainWindow.cs:2427
+#, csharp-format
+msgid "If you delete this tag, the association with {0} {1} will be lost."
+msgid_plural ""
+"If you delete these tags, the association with {0} {1} will be lost."
+msgstr[0] "Etiketa hau ezabatuz gero, {0} {1} esleipena ere galduko da."
+msgstr[1] "Etiketa hauek ezabatuz gero, {0} {1} esleipena ere galduko da."
+
+#: ../src/MainWindow.cs:2432
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Ezabatu etiketa"
-msgstr[1] "_Ezabatu etiketa"
+msgstr[1] "_Ezabatu etiketak"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2436
+#: ../src/MainWindow.cs:2446
 msgid "Tag is not empty"
 msgstr "Etiketa ez dago hutsik"
 
-#: ../src/MainWindow.cs:2437
+#: ../src/MainWindow.cs:2447
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1569,39 +1327,39 @@ msgstr ""
 "Ezin dira etiketak dituzten etiketak ezabatu . Aurrenik ezabatu {0} pean "
 "dauden etiketak"
 
-#: ../src/MainWindow.cs:2864
+#: ../src/MainWindow.cs:2903
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Biratu hautatutako argazkia ezkerrera"
 msgstr[1] "Biratu hautatutako argazkiak ezkerrera"
 
-#: ../src/MainWindow.cs:2877
+#: ../src/MainWindow.cs:2916
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Biratu hautatutako argazkia eskuinera"
 msgstr[1] "Biratu hautatutako argazkiak eskuinera"
 
-#: ../src/MainWindow.cs:2885
+#: ../src/MainWindow.cs:2924
 #, csharp-format
-msgid "Find Selected Tag"
-msgid_plural "Find Selected Tags"
-msgstr[0] "Bilatu hautatutako etiketa"
-msgstr[1] "Bilatu hautatutako etiketak"
+msgid "Find _Selected Tag"
+msgid_plural "Find _Selected Tags"
+msgstr[0] "Bilatu _hautatutako etiketa"
+msgstr[1] "Bilatu _hautatutako etiketak"
 
-#: ../src/MainWindow.cs:2889
+#: ../src/MainWindow.cs:2928
 #, csharp-format
-msgid "Find Selected Tag With"
-msgid_plural "Find Selected Tags With"
-msgstr[0] "Bilatu hautatutako etiketa honekin"
-msgstr[1] "Bilatu hautatutako etiketak honekin"
+msgid "Find Selected Tag _With"
+msgid_plural "Find Selected Tags _With"
+msgstr[0] "Bilatu hautatutako etiketa _honekin"
+msgstr[1] "Bilatu hautatutako etiketak _honekin"
 
-#: ../src/MainWindow.cs:2906
+#: ../src/MainWindow.cs:2966
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Sortu bertsio berria?"
 msgstr[1] "Sortu bertsio berriak?"
 
-#: ../src/MainWindow.cs:2908
+#: ../src/MainWindow.cs:2968
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1698,7 +1456,7 @@ msgstr "Fitxategi-iturburu mota"
 
 #: ../src/MetadataStore.cs:54
 msgid "Scene Capture Type"
-msgstr "Eszenaren kaptura-mota"
+msgstr "Eszenaren kaptura mota"
 
 #: ../src/MetadataStore.cs:56
 msgid "Gain Control"
@@ -1718,90 +1476,67 @@ msgstr "Zorroztasuna"
 
 #: ../src/MetadataStore.cs:64
 msgid "Scene Type"
-msgstr "Eszena-mota"
-
-#: ../src/PhotoStore.cs:413
-#, csharp-format
-msgid "Reparented"
-msgid_plural "Reparented ({0})"
-msgstr[0] "Berriro inportatuta"
-msgstr[1] "Berriro inportatuta ({0})"
-
-#: ../src/PhotoStore.cs:430
-#, csharp-format
-msgid "Modified"
-msgid_plural "Modified ({0})"
-msgstr[0] "Aldatua"
-msgstr[1] "Aldatuak ({0})"
-
-#: ../src/PhotoStore.cs:449
-#, csharp-format
-msgid "Modified in {1}"
-msgid_plural "Modified in {1} ({0})"
-msgstr[0] "{1}en aldatua"
-msgstr[1] "{1}en aldatuak ({0})"
-
-#. Note that the original version is never stored in the photo_versions table in the
-#. database.
-#: ../src/PhotoStore.cs:633 ../src/f-spot.glade.h:167
-msgid "Original"
-msgstr "Originala"
+msgstr "Eszena mota"
 
 #. Fixme this should really set parent menu
 #. items insensitve
-#: ../src/PhotoTagMenu.cs:72
+#: ../src/PhotoTagMenu.cs:74
 msgid "(No Tags)"
 msgstr "(Etiketarik ez)"
 
-#: ../src/PhotoVersionCommands.cs:55
+#: ../src/PhotoVersionCommands.cs:57
 msgid "Create New Version"
 msgstr "Sortu bertsio berria"
 
-#: ../src/PhotoVersionCommands.cs:60
+#: ../src/PhotoVersionCommands.cs:58
+msgid "Name:"
+msgstr "Izena:"
+
+#: ../src/PhotoVersionCommands.cs:62
 msgid "Rename Version"
 msgstr "Berrizendatu bertsioa"
 
-#: ../src/PhotoVersionCommands.cs:61
+#: ../src/PhotoVersionCommands.cs:63
 msgid "New name:"
 msgstr "Izen berria:"
 
-#: ../src/PhotoVersionCommands.cs:107
+#: ../src/PhotoVersionCommands.cs:109
 msgid "Could not create a new version"
-msgstr "Ezin izan da  bertsio berria sortu"
+msgstr "Ezin izan da bertsio berria sortu"
 
-#: ../src/PhotoVersionCommands.cs:108
+#: ../src/PhotoVersionCommands.cs:110
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to create version \"{1}\""
 msgstr "\"{0}\" salbuespena jaso da. Ezin izan da \"{1}\" bertsioa sortu"
 
-#: ../src/PhotoVersionCommands.cs:135
+#: ../src/PhotoVersionCommands.cs:137
 msgid "Really Delete?"
 msgstr "Ezabatzea nahi duzu?"
 
-#: ../src/PhotoVersionCommands.cs:137
+#: ../src/PhotoVersionCommands.cs:139
 msgid "Delete"
 msgstr "Ezabatu"
 
-#: ../src/PhotoVersionCommands.cs:141
+#: ../src/PhotoVersionCommands.cs:143
 #, csharp-format
 msgid "Really delete version \"{0}\"?"
 msgstr "\"{0}\" bertsioa ezabatzea nahi duzu?"
 
 #. FIXME show error dialog.
-#: ../src/PhotoVersionCommands.cs:151
+#: ../src/PhotoVersionCommands.cs:153
 msgid "Could not delete a version"
 msgstr "Ezin izan da bertsioa ezabatu"
 
-#: ../src/PhotoVersionCommands.cs:152
+#: ../src/PhotoVersionCommands.cs:154
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to delete version \"{1}\""
 msgstr "\"{0}\" salbuespena jaso da. Ezin izan da {1} bertsioa ezabatu"
 
-#: ../src/PhotoVersionCommands.cs:193
+#: ../src/PhotoVersionCommands.cs:195
 msgid "Could not rename a version"
 msgstr "Ezin izan da bertsioa izenez aldatu"
 
-#: ../src/PhotoVersionCommands.cs:194
+#: ../src/PhotoVersionCommands.cs:196
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
 msgstr "\"{0}\" salbuespena jaso da. Ezin izan da {1} bertsioa izenez aldatu"
@@ -1810,23 +1545,23 @@ msgstr "\"{0}\" salbuespena jaso da. Ezin izan da {1} bertsioa izenez aldatu"
 msgid "(No Edits)"
 msgstr "(aldaketarik gabe)"
 
-#: ../src/PhotoView.cs:62
+#: ../src/PhotoView.cs:66
 msgid "No Constraint"
-msgstr "Murrzitapenik gabe"
+msgstr "Murriztapenik gabe"
 
-#: ../src/PhotoView.cs:63
+#: ../src/PhotoView.cs:67
 msgid "4 x 3 (Book)"
 msgstr "4 x 3 (liburua)"
 
-#: ../src/PhotoView.cs:64
+#: ../src/PhotoView.cs:68
 msgid "4 x 6 (Postcard)"
 msgstr "4 x 6 (postala)"
 
-#: ../src/PhotoView.cs:65
+#: ../src/PhotoView.cs:69
 msgid "5 x 7 (L, 2L)"
 msgstr "5 x 7 (L, 2L)"
 
-#: ../src/PhotoView.cs:66
+#: ../src/PhotoView.cs:70
 msgid "8 x 10"
 msgstr "8 x 10"
 
@@ -1834,31 +1569,35 @@ msgstr "8 x 10"
 #. new SelectionConstraint (Catalog.GetString ("4 x 6 Portrait (Postcard)"), 4.0 / 6.0),
 #. new SelectionConstraint (Catalog.GetString ("5 x 7 Portrait (L, 2L)"), 5.0 / 7.0),
 #. new SelectionConstraint (Catalog.GetString ("8 x 10 Portrait"), 8.0 / 10.0),
-#: ../src/PhotoView.cs:71
+#: ../src/PhotoView.cs:75
 msgid "Square"
 msgstr "Karratua"
 
-#: ../src/PhotoView.cs:151
+#: ../src/PhotoView.cs:155
 msgid "Crop photo to selected area"
 msgstr "Moztu argazkia hautatutako areara"
 
-#: ../src/PhotoView.cs:152
+#: ../src/PhotoView.cs:156
 msgid "Remove redeye from selected area"
 msgstr "Kendu 'begi gorriak' hautatutako areatik"
 
-#: ../src/PhotoView.cs:154
+#: ../src/PhotoView.cs:158
 msgid "Select an area to crop"
 msgstr "Hautatu area mozteko"
 
-#: ../src/PhotoView.cs:155
+#: ../src/PhotoView.cs:159
 msgid "Select an area to remove redeye"
 msgstr "Hautatu area 'begi gorriak' kentzeko"
 
-#: ../src/PhotoView.cs:316
+#: ../src/PhotoView.cs:278 ../src/UI.Dialog/EditExceptionDialog.cs:38
+msgid "Error editing photo"
+msgstr "Errorea argazkia editatzean"
+
+#: ../src/PhotoView.cs:330
 msgid "No selection available"
 msgstr "Ez dago hautapenik erabilgarri"
 
-#: ../src/PhotoView.cs:317
+#: ../src/PhotoView.cs:331
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -1866,307 +1605,328 @@ msgstr ""
 "Tresna honek hautapena aktibo egotea eskatzen du. Hautatu argazkiko area bat "
 "eta saiatu eragiketarekin berriro"
 
-#: ../src/PhotoView.cs:475
+#: ../src/PhotoView.cs:508
 msgid "Comment:"
 msgstr "Iruzkina:"
 
-#: ../src/PhotoView.cs:491
+#: ../src/PhotoView.cs:528
 msgid "Constrain the aspect ratio of the selection"
 msgstr "Murriztu hautapenaren itxuraren erlazioa"
 
-#: ../src/PhotoView.cs:493
+#: ../src/PhotoView.cs:530
 msgid "Crop"
 msgstr "Moztu"
 
-#: ../src/PhotoView.cs:497
+#: ../src/PhotoView.cs:534
 msgid "Reduce Red-Eye"
 msgstr "Gutxitu 'begi gorriak'"
 
-#: ../src/PhotoView.cs:501
+#: ../src/PhotoView.cs:538
 msgid "Adjust Colors"
 msgstr "Doitu koloreak"
 
-#: ../src/PhotoView.cs:503
+#: ../src/PhotoView.cs:540
 msgid "Adjust the photo colors"
 msgstr "Doitu argazkiaren koloreak"
 
-#: ../src/PhotoView.cs:506
+#: ../src/PhotoView.cs:543
 msgid "Desaturate"
 msgstr "Desasetu"
 
-#: ../src/PhotoView.cs:508
+#: ../src/PhotoView.cs:545
 msgid "Convert the photo to black and white"
-msgstr "BIhurtu argazkia zuri-beltzera"
+msgstr "Bihurtu argazkia zuri-beltzera"
 
-#: ../src/PhotoView.cs:511
+#: ../src/PhotoView.cs:548
 msgid "Sepia Tone"
 msgstr "Sepia tonoa"
 
-#: ../src/PhotoView.cs:513
+#: ../src/PhotoView.cs:550
 msgid "Convert the photo to sepia tones"
 msgstr "Bihurtu argazkia sepia tonoetara"
 
-#: ../src/PhotoView.cs:543
+#: ../src/PhotoView.cs:580
 msgid "Previous photo"
 msgstr "Aurreko argazkia"
 
-#: ../src/PhotoView.cs:548
+#: ../src/PhotoView.cs:585
 msgid "Next photo"
 msgstr "Hurrengo argazkia"
 
-#: ../src/PicasaWebExport.cs:416
-msgid "Error while creating Album"
-msgstr "Errorea albuma sortzean"
-
-#: ../src/PicasaWebExport.cs:417
-#, csharp-format
-msgid "The following error was encountered while attempting to create an album: {0}"
-msgstr "Honako errorea gertatu da albuma sortzean: {0}"
-
-#: ../src/PicasaWebExport.cs:566
-#, csharp-format
-msgid "{0} Sent"
-msgstr "{0} bidalita"
-
-#: ../src/PicasaWebExport.cs:568
-#, csharp-format
-msgid "{0} of approx. {1}"
-msgstr "{0} / {1} gutxi gorabehera"
-
-#: ../src/PicasaWebExport.cs:598 ../src/SmugMugExport.cs:540
-#, csharp-format
-msgid "Uploading picture \"{0}\" ({1} of {2})"
-msgstr "\"{0}\" argazkia kargatzen ({1}/{2})"
-
-#: ../src/PicasaWebExport.cs:629 ../src/SmugMugExport.cs:569
-#, csharp-format
-msgid "Error Uploading To Gallery: {0}"
-msgstr "Errorea galerian kargatzean: {0}"
-
-#: ../src/PicasaWebExport.cs:713
-msgid "Available space :"
-msgstr "Leku erabilgarria: "
-
-#: ../src/Preferences.cs:191
+#: ../src/Preferences.cs:175
 msgid "Photos"
 msgstr "Argazkiak"
 
-#: ../src/QueryWidget.cs:37
+#. This indicates the current photo is photo {0} of {1} out of photos
+#: ../src/ProgressDialog.cs:82 ../src/TimeDialog.cs:148
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} / {1}"
+
+#: ../src/QueryWidget.cs:40
 msgid "Find: "
 msgstr "Bilatu: "
 
-#: ../src/QueryWidget.cs:42
+#: ../src/QueryWidget.cs:45
 msgid "Untagged photos"
 msgstr "Etiketarik gabeko argazkiak"
 
-#: ../src/QueryWidget.cs:50
+#: ../src/QueryWidget.cs:53
+msgid "Unrated photos"
+msgstr "Puntuatu gabeko argazkiak"
+
+#: ../src/QueryWidget.cs:57
+msgid "Rated photos"
+msgstr "Puntuatutako argazkiak"
+
+#: ../src/QueryWidget.cs:65
 msgid "Import roll"
 msgstr "Inportatu erroilua"
 
-#: ../src/QueryWidget.cs:70
+#: ../src/QueryWidget.cs:85
 msgid "Clear search"
 msgstr "Garbitu bilaketa"
 
-#: ../src/QueryWidget.cs:72
+#: ../src/QueryWidget.cs:87
 msgid "No matching photos found"
 msgstr "Ez da bat datorren argazkirik aurkitu"
 
-#: ../src/QueryWidget.cs:103
-msgid "Hide Find Bar"
-msgstr "Ezkutatu bilaketa-barra"
+#: ../src/QueryWidget.cs:120
+msgid "Hide _Find Bar"
+msgstr "Ezkutatu _bilaketa-barra"
 
-#: ../src/QueryWidget.cs:109
-msgid "Show Find Bar"
-msgstr "Erakutsi bilaketa-barra"
+#: ../src/QueryWidget.cs:126
+msgid "Show _Find Bar"
+msgstr "Erakutsi _bilaketa-barra"
 
-#: ../src/RotateCommand.cs:200
+#: ../src/RotateCommand.cs:96 ../src/RotateCommand.cs:111
+msgid "Unable to rotate this type of photo"
+msgstr "Ezin da argazki mota hau biratu"
+
+#: ../src/RotateCommand.cs:138
+msgid "Unable to rotate readonly file"
+msgstr "Ezin da irakurtzeko soilik den fitxategia biratu"
+
+#: ../src/RotateCommand.cs:205
 msgid "Rotating photos"
 msgstr "Argazkiak biratzen"
 
-#: ../src/RotateCommand.cs:211
+#: ../src/RotateCommand.cs:216
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "\"{0}\" argazkia biratzen"
 
-#: ../src/RotateCommand.cs:236
+#: ../src/RotateCommand.cs:229
+msgid "Directory not found"
+msgstr "Ez da direktorioa aurkitu"
+
+#: ../src/RotateCommand.cs:248
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
 msgstr[0] "Ezin izan da argazkia biratu"
 msgstr[1] "Ezin izan dira {0} argazki biratu"
 
-#: ../src/RotateCommand.cs:240
+#: ../src/RotateCommand.cs:250
 #, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
-"media such as a CDROM.  Please check the permissions and try again"
+"media such as a CDROM.  Please check the permissions and try again."
 msgid_plural ""
 "{0} photos could not be rotated because they are on a read only file system "
-"or media such as a CDROM.  Please check the permissions and try again"
+"or media such as a CDROM.  Please check the permissions and try again."
 msgstr[0] ""
-"Argazkia ezin izan da biratu 'irakurtzeko soilik' moduan dauden fitxategi "
-"sistema edo euskarrian daudelako, CDROM bat adibidez. Egiaztatu baimenak eta "
-"saiatu berriro"
+"Argazkia ezin izan da biratu 'irakurtzeko soilik' motako fitxategi-sisteman "
+"edo euskarrian (CDROM bat adibidez) dagoelako. Egiaztatu baimenak eta saiatu "
+"berriro"
 msgstr[1] ""
-"{0} argazki ezin izan da biratu 'irakurtzeko soilik' moduan dauden fitxategi "
-"sistema edo euskarrian daudelako, CDROM bat adibidez. Egiaztatu baimenak eta "
-"saiatu berriro"
+"{0} argazki ezin izan dira biratu 'irakurtzeko soilik' motako fitxategi-"
+"sisteman edo euskarrian (CDROM bat adibidez) daudelako. Egiaztatu baimenak "
+"eta saiatu berriro"
 
-#: ../src/RotateCommand.cs:262
+#: ../src/RotateCommand.cs:277
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "\"{0}\" errorea jaso da {1} biratzen saiatzean"
 
-#: ../src/RotateCommand.cs:267
+#: ../src/RotateCommand.cs:282
 msgid "Error while rotating photo."
 msgstr "Errorea argazkia biratzean."
 
-#: ../src/SendEmail.cs:233
+#: ../src/SendEmail.cs:236
 msgid "Preparing email"
 msgstr "Mezua prestatzen"
 
-#: ../src/SendEmail.cs:285
+#: ../src/SendEmail.cs:288
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "\"{0}\" argazkia esportatzen"
 
-#: ../src/SingleView.cs:75
+#. Send the mail :)
+#: ../src/SendEmail.cs:313
+msgid "my photos"
+msgstr "nire argazkiak"
+
+#: ../src/SingleView.cs:77
 msgid "Rotate photo left"
 msgstr "Biratu argazkia ezkerrera"
 
-#: ../src/SingleView.cs:80
+#: ../src/SingleView.cs:82
 msgid "Rotate photo right"
 msgstr "Biratu argazkia eskuinera"
 
-#: ../src/SingleView.cs:326
+#: ../src/SingleView.cs:331
 msgid "Open"
 msgstr "Ireki"
 
-#: ../src/SingleView.cs:428 ../src/f-spot.glade.h:190
-msgid "Rotate _Left"
-msgstr "Biratu e_zkerrera"
-
-#: ../src/SingleView.cs:429 ../src/f-spot.glade.h:191
-msgid "Rotate _Right"
-msgstr "Biratu e_skuinera"
-
-#: ../src/SingleView.cs:431
+#: ../src/SingleView.cs:436
 msgid "Set as Background"
 msgstr "Ezarri atzeko plano gisa"
 
-#: ../src/TagCommands.cs:89 ../src/TagCommands.cs:217
-#: ../src/TagSelectionWidget.cs:511
+#: ../src/TagCommands.cs:91 ../src/TagCommands.cs:219
+#: ../src/TagSelectionWidget.cs:508
 msgid "This name is already in use"
-msgstr "Izen hau jadanik beste batek darabil"
+msgstr "Izen hau lehendik ere erabilita dago"
 
-#: ../src/TagCommands.cs:136 ../src/TagMenu.cs:89 ../src/TagPopup.cs:34
+#: ../src/TagCommands.cs:138
 msgid "Create New Tag"
 msgstr "Sortu etiketa berria"
 
-#: ../src/TagCommands.cs:137
+#: ../src/TagCommands.cs:139
 msgid "Name of New Tag:"
 msgstr "Etiketa berriaren izena:"
 
-#: ../src/TagCommands.cs:287 ../src/TagPopup.cs:40
+#: ../src/TagCommands.cs:278
 msgid "Edit Tag"
 msgstr "Editatu etiketa"
 
-#: ../src/TagCommands.cs:288
+#: ../src/TagCommands.cs:279
 msgid "Tag Name:"
 msgstr "Etiketa-izena:"
 
-#: ../src/TagCommands.cs:400
+#: ../src/TagCommands.cs:412
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "{0} / {1} argazkia"
 
-#: ../src/TagCommands.cs:427
+#: ../src/TagCommands.cs:442
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "Editatu ikonoa, {0} etiketarena"
 
-#: ../src/TagPopup.cs:24
+#: ../src/TagCommands.cs:458
+msgid "Select Photo from file"
+msgstr "Hautatu argazkia fitxategitik"
+
+#: ../src/TagCommands.cs:481
+#, csharp-format
+msgid ""
+"\n"
+"<b>From Photo</b>\n"
+" You can use one of your library photos as an icon for this tag.\n"
+" However, first you must have at least one photo associated\n"
+" with this tag. Please tag a photo as '{0}' and return here\n"
+" to use it as an icon."
+msgstr ""
+"\n"
+"<b>Argazkitik</b>\n"
+" Argazki-bildumetariko bat erabil dezakezu ikono gisa etiketa honentzako.\n"
+" Hala ere, aurrenik, eta gutxienez, argazki bat esleituta eduki behar duzu\n"
+" etiketa honekin. Etiketatu argazki bat '{0}' gisa eta itzuli hona\n"
+" hori ikono gisa erabiltzeko."
+
+#: ../src/TagMenu.cs:91 ../src/TagPopup.cs:36
+msgid "Create New Tag..."
+msgstr "Sortu etiketa berria..."
+
+#: ../src/TagPopup.cs:26
 #, csharp-format
 msgid "Find"
 msgid_plural "Find"
 msgstr[0] "Bilatu"
 msgstr[1] "Bilatu"
 
-#: ../src/TagPopup.cs:44
+#: ../src/TagPopup.cs:42
+msgid "Edit Selected Tag..."
+msgstr "Editatu hautatutako etiketa..."
+
+#: ../src/TagPopup.cs:46
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
 msgstr[0] "Ezabatu etiketa"
 msgstr[1] "Ezabatu etiketak"
 
-#: ../src/TagPopup.cs:50
+#: ../src/TagPopup.cs:52
 msgid "Attach Tag to Selection"
 msgid_plural "Attach Tags to Selection"
 msgstr[0] "Erantsi etiketa hautapenari"
 msgstr[1] "Erantsi etiketak hautapenari"
 
-#: ../src/TagPopup.cs:54
+#: ../src/TagPopup.cs:56
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
-msgstr[0] "KEndu etiketa hautapenetik"
+msgstr[0] "Kendu etiketa hautapenetik"
 msgstr[1] "Kendu etiketak hautapenetik"
 
-#: ../src/TagPopup.cs:60
+#: ../src/TagPopup.cs:62
 msgid "Merge Tags"
 msgstr "Batu etiketak"
 
-#: ../src/TagQueryWidget.cs:31
-msgid "Include"
-msgstr "Sartu"
+#: ../src/TagQueryWidget.cs:32
+#, csharp-format
+msgid "Include Photos Tagged \"{0}\""
+msgstr "Txertatu \"{0}\" etiketadun argazkiak"
 
 #: ../src/TagQueryWidget.cs:37
-msgid "Exclude"
-msgstr "Kanpoan utzi"
+#, csharp-format
+msgid "Exclude Photos Tagged \"{0}\""
+msgstr "Baztertu \"{0}\" etiketadun argazkiak"
 
-#: ../src/TagQueryWidget.cs:43
-msgid "Remove"
-msgstr "Kendu"
+#: ../src/TagQueryWidget.cs:42
+msgid "Remove From Search"
+msgstr "Kendu bilaketatik"
 
-#: ../src/TagQueryWidget.cs:87
+#: ../src/TagQueryWidget.cs:86
 #, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
 msgstr[0] "Bilatu _honekin"
 msgstr[1] "Bilatu _honekin"
 
-#: ../src/TagQueryWidget.cs:113
+#: ../src/TagQueryWidget.cs:112
 msgid "All"
 msgstr "Denak"
 
-#: ../src/TagQueryWidget.cs:148 ../src/Term.cs:591
+#: ../src/TagQueryWidget.cs:147 ../src/Term.cs:591
 #, csharp-format
 msgid "Not {0}"
 msgstr "{0} ez"
 
-#: ../src/TagQueryWidget.cs:278
+#: ../src/TagQueryWidget.cs:277
 msgid "Drag tags here to search for them"
 msgstr "Arrastatu etiketak hona bilatzeko"
 
-#: ../src/TagSelectionWidget.cs:510
+#: ../src/TagSelectionWidget.cs:507
 msgid "Error renaming tag"
 msgstr "Errorea etiketaren izena aldatzean"
 
-#: ../src/TagStore.cs:415
+#: ../src/TagStore.cs:222
 msgid "Favorites"
 msgstr "Gogokoak"
 
-#: ../src/TagStore.cs:420
+#: ../src/TagStore.cs:227
 msgid "Hidden"
 msgstr "Ezkutuan"
 
-#: ../src/TagStore.cs:428
+#: ../src/TagStore.cs:235
 msgid "People"
 msgstr "Pertsonak"
 
-#: ../src/TagStore.cs:433
+#: ../src/TagStore.cs:240
 msgid "Places"
 msgstr "Lekuak"
 
-#: ../src/TagStore.cs:438
+#: ../src/TagStore.cs:245
 msgid "Events"
 msgstr "Gertaerak"
 
@@ -2183,7 +1943,7 @@ msgstr ", "
 msgid " or "
 msgstr " edo "
 
-#: ../src/Term.cs:379 ../src/f-spot.glade.h:322
+#: ../src/Term.cs:379 ../src/f-spot.glade.h:281
 msgid "or"
 msgstr "edo"
 
@@ -2191,32 +1951,42 @@ msgstr "edo"
 msgid "Retry"
 msgstr "Saiatu berriro"
 
-#: ../src/ThreadProgressDialog.cs:68
-msgid "Skip"
-msgstr "Saltatu"
-
 #. The preceding text here is the second checkbutton in the Time dialog
 #. that says "Space all photos by []"
-#: ../src/TimeDialog.cs:125 ../src/f-spot.glade.h:321
+#: ../src/TimeDialog.cs:126 ../src/f-spot.glade.h:280
 #, csharp-format
 msgid "min. Starting at {0}"
 msgstr "min. Hasiera: {0}"
 
-#: ../src/TimeDialog.cs:130 ../src/f-spot.glade.h:207
+#: ../src/TimeDialog.cs:131 ../src/f-spot.glade.h:177
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Desplazatu argazki guztiak {0}"
 
+#: ../src/UI.Dialog/AboutDialog.cs:67
+msgid "Copyright © 2003-2008 Novell Inc."
+msgstr "Copyright-a © 2003-2008 Novell Inc."
+
+#: ../src/UI.Dialog/AboutDialog.cs:81
+msgid "translator-credits"
+msgstr ""
+"Mikel Olasagasti <hey_neken@mundurat.net>\n"
+"Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>"
+
+#: ../src/UI.Dialog/AboutDialog.cs:86
+msgid "F-Spot Website"
+msgstr "'F-Spot'-en web gunea"
+
 #. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
 #: ../src/Unix.cs:25
 msgid "Unable to create temporary file"
-msgstr "Ezinezkoa da aldi baterako fitxategia sortzea."
+msgstr "Ezin da aldi baterako fitxategia sortu"
 
-#: ../src/Updater.cs:213
+#: ../src/Updater.cs:273
 msgid "Updating F-Spot Database"
 msgstr "F-Spot datu-basea eguneratzen"
 
-#: ../src/Updater.cs:214
+#: ../src/Updater.cs:274
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -2224,16 +1994,7 @@ msgstr ""
 "Itxaron F-Spot aplikazioko galeriaren datu-basea eguneratu arte. Denbora "
 "piska bat beharko du."
 
-#: ../src/Util.cs:428
-msgid "There was an error invoking the external handler"
-msgstr "Errorea gertatu da kanpoko kudeatzaileari deitzean"
-
-#: ../src/Util.cs:429
-#, csharp-format
-msgid "Received error:{1}\"{0}\"{1}"
-msgstr "Errorea jaso da:{1}\"{0}\"{1}"
-
-#: ../src/Util.cs:453
+#: ../src/Utils/GnomeUtil.cs:49
 msgid ""
 "The \"F-Spot Manual\" could not be found.  Please verify that your "
 "installation has been completed successfully."
@@ -2241,232 +2002,224 @@ msgstr ""
 "\"F-Spot eskuliburua\" ezin izan da aurkitu. Egiaztatu instalazioa ongi "
 "burutu dela."
 
-#: ../src/Util.cs:461
-msgid "Help not found"
-msgstr "Laguntza ez da aurkitu"
+#: ../src/Widgets/RatingMenuItem.cs:48
+msgid "Rating:"
+msgstr "Puntuazioa:"
 
 #: ../src/Widgets/FindBar.cs:83
 msgid "Find:"
 msgstr "Bilatu:"
 
-#: ../src/XmpTagsImporter.cs:87
+#: ../src/XmpTagsImporter.cs:89
 msgid "Location"
 msgstr "Helbidea"
 
-#: ../src/XmpTagsImporter.cs:88
+#: ../src/XmpTagsImporter.cs:90
 msgid "Country"
 msgstr "Estatua"
 
-#: ../src/XmpTagsImporter.cs:89
+#: ../src/XmpTagsImporter.cs:91
 msgid "City"
 msgstr "Herria"
 
-#: ../src/XmpTagsImporter.cs:90
+#: ../src/XmpTagsImporter.cs:92
 msgid "State"
 msgstr "Herrialdea"
 
 #. namespace
 #: ../src/f-spot.glade.h:1
-msgid "\n"
-msgstr "\n"
-
-#: ../src/f-spot.glade.h:3
 msgid " "
 msgstr " "
 
-#: ../src/f-spot.glade.h:4
+#: ../src/f-spot.glade.h:2
 msgid "0000:00:00 00:00:00"
 msgstr "0000:00:00 00:00:00"
 
-#: ../src/f-spot.glade.h:5
+#: ../src/f-spot.glade.h:3
 msgid "00:00:00"
 msgstr "00:00:00"
 
-#: ../src/f-spot.glade.h:6
+#: ../src/f-spot.glade.h:4
 msgid "1 of 1"
 msgstr "1 / 1"
 
-#: ../src/f-spot.glade.h:7
+#: ../src/f-spot.glade.h:5
 msgid "1024 px"
 msgstr "1024 px"
 
-#: ../src/f-spot.glade.h:8
+#: ../src/f-spot.glade.h:6
 msgid "320 px"
 msgstr "320 px"
 
-#: ../src/f-spot.glade.h:9
+#: ../src/f-spot.glade.h:7
 msgid "480 px"
 msgstr "480 px"
 
-#: ../src/f-spot.glade.h:10
+#: ../src/f-spot.glade.h:8
 msgid "5"
 msgstr "5"
 
-#: ../src/f-spot.glade.h:11
+#: ../src/f-spot.glade.h:9
 msgid "640 px"
 msgstr "640 px"
 
-#: ../src/f-spot.glade.h:12
+#: ../src/f-spot.glade.h:10
 msgid "800 px"
 msgstr "800 px"
 
-#: ../src/f-spot.glade.h:13
+#: ../src/f-spot.glade.h:11
 msgid "<b></b>"
 msgstr "<b></b>"
 
-#: ../src/f-spot.glade.h:14
+#: ../src/f-spot.glade.h:12
 msgid "<b>Account</b>"
 msgstr "<b>Kontua</b>"
 
-#: ../src/f-spot.glade.h:15
+#: ../src/f-spot.glade.h:13
 msgid "<b>Action</b>"
 msgstr "<b>Ekintza</b>"
 
-#: ../src/f-spot.glade.h:16
+#: ../src/f-spot.glade.h:14
 msgid "<b>Album</b>"
 msgstr "<b>Albuma</b>"
 
-#: ../src/f-spot.glade.h:17
+#: ../src/f-spot.glade.h:15
 msgid "<b>Co_rrections</b>"
 msgstr "<b>_Zuzenketak</b>"
 
-#: ../src/f-spot.glade.h:18
+#: ../src/f-spot.glade.h:16
 msgid "<b>Color Management</b>"
 msgstr "<b>Kolore-kudeaketa</b>"
 
-#: ../src/f-spot.glade.h:19
+#: ../src/f-spot.glade.h:17
 msgid "<b>Color Temperature</b>"
 msgstr "<b>Kolorearen tenperatura</b>"
 
-#: ../src/f-spot.glade.h:20
+#: ../src/f-spot.glade.h:18
 msgid "<b>Destination</b>"
 msgstr "<b>Helburua</b>"
 
-#: ../src/f-spot.glade.h:21
+#: ../src/f-spot.glade.h:19
 msgid "<b>End Date</b>"
 msgstr "<b>Amaiera-eguna</b>"
 
-#: ../src/f-spot.glade.h:22
-msgid "<b>Export Method</b>"
-msgstr "<b>Esportatze metodoa</b>"
-
-#: ../src/f-spot.glade.h:23
+#: ../src/f-spot.glade.h:20
 msgid "<b>Exposure</b>"
 msgstr "<b>Esposizioa</b>"
 
-#: ../src/f-spot.glade.h:24
+#: ../src/f-spot.glade.h:21
+msgid "<b>From External Photo</b>"
+msgstr "<b>Kanpoko argazkitik</b>"
+
+#: ../src/f-spot.glade.h:22
 msgid "<b>From Photo</b>"
 msgstr "<b>Argazkitik</b>"
 
-#: ../src/f-spot.glade.h:25
+#: ../src/f-spot.glade.h:23
 msgid "<b>Gallery</b>"
 msgstr "<b>Galeria</b>"
 
-#: ../src/f-spot.glade.h:26
+#: ../src/f-spot.glade.h:24
 msgid "<b>Histo_gram</b>"
 msgstr "<b>_Histograma</b>"
 
-#: ../src/f-spot.glade.h:27
+#: ../src/f-spot.glade.h:25
 msgid "<b>Histogram</b>"
 msgstr "<b>Histograma</b>"
 
-#: ../src/f-spot.glade.h:28
+#: ../src/f-spot.glade.h:26
 msgid "<b>Image Interpolation</b>"
 msgstr "<b>Irudiaren interpolazioa</b>"
 
-#: ../src/f-spot.glade.h:29
+#: ../src/f-spot.glade.h:27
 msgid "<b>Import Settings</b>"
 msgstr "<b>Inportatu ezarpenak</b>"
+
+#: ../src/f-spot.glade.h:28
+msgid "<b>Interoperability</b>"
+msgstr "<b>Elkarreragingarritasuna</b>"
+
+#: ../src/f-spot.glade.h:29
+msgid "<b>Max Rating</b>"
+msgstr "<b>Geh. puntuazioa</b>"
 
 #: ../src/f-spot.glade.h:30
 msgid "<b>Metadata</b>"
 msgstr "<b>Meta-datua</b>"
 
 #: ../src/f-spot.glade.h:31
-msgid "<b>Photograph Layout</b>"
-msgstr "<b>Argazki diseinua</b>"
+msgid "<b>Min Rating</b>"
+msgstr "<b>Gut. puntuazioa</b>"
 
 #: ../src/f-spot.glade.h:32
-msgid "<b>Photos to Burn</b>"
-msgstr "<b>Argazkiak grabatzeko</b>"
+msgid "<b>Photograph Layout</b>"
+msgstr "<b>Argazki diseinua</b>"
 
 #: ../src/f-spot.glade.h:33
 msgid "<b>Photos</b>"
 msgstr "<b>Argazkiak</b>"
 
 #: ../src/f-spot.glade.h:34
-msgid "<b>PicasaWeb Export</b>"
-msgstr "<b>PicasaWeb-erako esportazioa</b>"
-
-#: ../src/f-spot.glade.h:35
 msgid "<b>Predefined</b>"
 msgstr "<b>Aurredefinitua</b>"
 
-#: ../src/f-spot.glade.h:36
+#: ../src/f-spot.glade.h:35
 msgid "<b>Preview</b>"
 msgstr "<b>Aurrebista</b>"
 
-#: ../src/f-spot.glade.h:37
+#: ../src/f-spot.glade.h:36
 msgid "<b>Printer Details</b>"
 msgstr "<b>Inprimagailuaren xehetasunak</b>"
 
-#: ../src/f-spot.glade.h:38
+#: ../src/f-spot.glade.h:37
 msgid "<b>Reference Photo</b>"
 msgstr "<b>Erreferentziako argazkia</b>"
 
-#: ../src/f-spot.glade.h:39
+#: ../src/f-spot.glade.h:38
 msgid "<b>Screensaver</b>"
-msgstr "<b>Pantaila babeslea</b>"
+msgstr "<b>Pantaila-babeslea</b>"
 
-#: ../src/f-spot.glade.h:40
+#: ../src/f-spot.glade.h:39
 msgid "<b>Select period</b>"
 msgstr "<b>Hautatu aldia</b>"
 
-#: ../src/f-spot.glade.h:41
+#: ../src/f-spot.glade.h:40
 msgid "<b>Size</b>"
 msgstr "<b>Tamaina</b>"
 
-#: ../src/f-spot.glade.h:42
-msgid "<b>SmugMug Export</b>"
-msgstr "<b>SmugMug-erako esportazioa</b>"
-
-#: ../src/f-spot.glade.h:43
+#: ../src/f-spot.glade.h:41
 msgid "<b>Start Date</b>"
 msgstr "<b>Hasiera-data</b>"
 
-#: ../src/f-spot.glade.h:44
+#: ../src/f-spot.glade.h:42
 msgid "<b>Style</b>"
 msgstr "<b>Estiloa</b>"
 
-#: ../src/f-spot.glade.h:45
+#: ../src/f-spot.glade.h:43
 msgid "<b>Summary</b>"
 msgstr "<b>Laburpena</b>"
 
-#: ../src/f-spot.glade.h:46
+#: ../src/f-spot.glade.h:44
 msgid "<b>Transparent Parts</b>"
 msgstr "<b>Zati gardenak</b>"
 
-#: ../src/f-spot.glade.h:47
+#: ../src/f-spot.glade.h:45
 msgid "<b>View all pictures imported</b>"
 msgstr "<b>Ikusi inportatutako argazki guztiak</b>"
 
-#: ../src/f-spot.glade.h:48
-msgid "<b>Viewing permissions</b>"
-msgstr "<b>Bistaratzeko baimenak</b>"
-
-#: ../src/f-spot.glade.h:49
+#: ../src/f-spot.glade.h:46
 msgid "<b>_White Balance</b>"
 msgstr "<b>_Txurien balantzea</b>"
 
-#: ../src/f-spot.glade.h:50
+#: ../src/f-spot.glade.h:47
 msgid "<small> </small>"
 msgstr "<small> </small>"
 
-#: ../src/f-spot.glade.h:51
+#: ../src/f-spot.glade.h:48
 msgid "<small></small>"
 msgstr "<small></small>"
 
-#: ../src/f-spot.glade.h:52
+#: ../src/f-spot.glade.h:49
 msgid ""
 "<small><i>Choose the folder where F-Spot should store newly imported photos</"
 "i></small>"
@@ -2474,18 +2227,25 @@ msgstr ""
 "<small><i>Aukeratu karpeta F-Spot aplikazioak inportatu berri diren "
 "argazkiak gordetzeko</i></small>"
 
-#: ../src/f-spot.glade.h:53
+#: ../src/f-spot.glade.h:50
+msgid ""
+"<small><i>Enable this option if you want to allow other programs to import "
+"or delete photos and tags over DBus.</i></small>"
+msgstr ""
+"<small><i>Gaitu aukera hau beste programek DBUS bidez argazkiak inportatzea "
+"edo ezabatzea eta etiketatzea baimentzeko.</i></small>"
+
+#: ../src/f-spot.glade.h:51
 msgid ""
 "<small><i>Enable this option to store tags and descriptions inside \n"
 "supported image formats.</i></small>"
 msgstr ""
-"<small><i>Gaitu aukera hau etiketak eta azalpenak onartutako irudi-"
-"formatuen \n"
-"barruan gordetzeko.</i></small>"
+"<small><i>Gaitu aukera hau etiketak eta azalpenak onartutako\n"
+"irudi-formatuen barruan gordetzeko.</i></small>"
 
-#: ../src/f-spot.glade.h:55
+#: ../src/f-spot.glade.h:53
 msgid ""
-"<small><i>Enable this to allow interpolation on zoomed images. You should'nt "
+"<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
 "disable this for viewing photos, but disabling the interpolation could be "
 "usefull in icon design.</i></small>"
 msgstr ""
@@ -2493,16 +2253,16 @@ msgstr ""
 "zenuke hau desgaitu behar argazkiak ikusteko, hala ere interpolazioa "
 "desgaitzea ikonoak diseinatzean erabilgarria izan ohi da.</i></small>"
 
-#: ../src/f-spot.glade.h:56
+#: ../src/f-spot.glade.h:54
 msgid ""
 "<small><i>While acting as a screensaver, F-Spot can display all of your "
 "images, or a small subset based on tags.</i></small>"
 msgstr ""
-"<small><i>Pantaila-babes gisa lan egitean F-Spot aplikazioak zure irudi "
+"<small><i>Pantaila-babesle gisa lan egitean F-Spot aplikazioak zure irudi "
 "guztiak bistara ditzake, edo etiketetan oinarritutako azpimultzo txiki bat.</"
 "i></small>"
 
-#: ../src/f-spot.glade.h:57
+#: ../src/f-spot.glade.h:55
 msgid ""
 "<small><i>You can choose how to display transparent parts in images. This "
 "option has no effect on photos, but setting this as check pattern or custom "
@@ -2514,269 +2274,215 @@ msgstr ""
 "koloreak pertsonalizatu gisa ezartzea erabigarri izan daiteke zati gardenak "
 "dituzten ikonoak edo bestelako arte lanak ikustean.</i></small>"
 
-#: ../src/f-spot.glade.h:58
+#: ../src/f-spot.glade.h:56
 msgid "<small>C_ontrast:</small>"
 msgstr "<small>_Kontrastea:</small>"
 
-#: ../src/f-spot.glade.h:59
+#: ../src/f-spot.glade.h:57
 msgid "<small>Te_mp:</small>"
 msgstr "<small>Aldi _batekoa:</small>"
 
-#: ../src/f-spot.glade.h:60
+#: ../src/f-spot.glade.h:58
 msgid "<small>_Brightness:</small>"
 msgstr "<small>_Distira:</small>"
 
-#: ../src/f-spot.glade.h:61
+#: ../src/f-spot.glade.h:59
 msgid "<small>_Exposure:</small>"
 msgstr "<small>_Esposizioa:</small>"
 
-#: ../src/f-spot.glade.h:62
+#: ../src/f-spot.glade.h:60
 msgid "<small>_Hue:</small>"
 msgstr "<small>_Ñabardura:</small>"
 
-#: ../src/f-spot.glade.h:63
+#: ../src/f-spot.glade.h:61
 msgid "<small>_Saturation:</small>"
 msgstr "<small>_Saturazioa:</small>"
 
-#: ../src/f-spot.glade.h:64
+#: ../src/f-spot.glade.h:62
 msgid "<small>_Tint:</small>"
 msgstr "<small>_Tindagaia:</small>"
 
-#: ../src/f-spot.glade.h:65
-msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
-msgstr "<span weight='bold' size='larger'>Errorea galeriarekin konektatzean</span>\n"
-
-#: ../src/f-spot.glade.h:67
-msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
-msgstr "<span weight='bold' size='larger'>Zure Google kontua blokeatuta dago</span>\n"
-
-#: ../src/f-spot.glade.h:69
+#: ../src/f-spot.glade.h:63
 msgid "Ad_just Color..."
 msgstr "_Doitu kolorea..."
 
-#: ../src/f-spot.glade.h:70
+#: ../src/f-spot.glade.h:64
 msgid "Adjust Color"
 msgstr "Doitu kolorea"
 
-#: ../src/f-spot.glade.h:71
+#: ../src/f-spot.glade.h:65
 msgid "Adjust Time"
 msgstr "Doitu denbora"
 
-#: ../src/f-spot.glade.h:72
+#: ../src/f-spot.glade.h:66
 msgid "Adjust _Time..."
 msgstr "Doitu _ordua..."
 
-#: ../src/f-spot.glade.h:73
+#: ../src/f-spot.glade.h:67
 msgid "Adjusted date: "
 msgstr "Doitu data: "
 
-#: ../src/f-spot.glade.h:75
+#: ../src/f-spot.glade.h:69
+msgid "Allow other programs to manipulate F-Spot"
+msgstr "Baimendu beste programek F-Spot manipulatzea"
+
+#: ../src/f-spot.glade.h:70
 msgid "Arrange _by"
 msgstr "_Honela antolatua"
 
-#: ../src/f-spot.glade.h:76
+#: ../src/f-spot.glade.h:71
 msgid "As _background"
 msgstr "A_tzeko plano gisa"
 
-#: ../src/f-spot.glade.h:77
+#: ../src/f-spot.glade.h:72
 msgid "As check pattern"
 msgstr "Lauki-eredu gisa"
 
-#: ../src/f-spot.glade.h:78
+#: ../src/f-spot.glade.h:73
 msgid "As custom color: "
 msgstr "Kolore pertsonalizatu gisa: "
 
-#: ../src/f-spot.glade.h:79
+#: ../src/f-spot.glade.h:74
 msgid "Attach Tags:"
 msgstr "Erantsi etiketak:"
 
-#: ../src/f-spot.glade.h:80
+#: ../src/f-spot.glade.h:75
 msgid "Attach tag:"
 msgstr "Gehitu etiketa:"
 
-#: ../src/f-spot.glade.h:82
+#: ../src/f-spot.glade.h:76
 msgid "Autorotate"
 msgstr "Biratu automatikoki"
 
-#: ../src/f-spot.glade.h:84
-msgid "CD"
-msgstr "CD"
+#: ../src/f-spot.glade.h:78
+msgid "By _Date"
+msgstr "_Dataren arabera"
 
-#: ../src/f-spot.glade.h:85
+#: ../src/f-spot.glade.h:79
+msgid "By _Import Roll"
+msgstr "_Inportatutako erroiluen arabera"
+
+#: ../src/f-spot.glade.h:80
+msgid "By _Rating"
+msgstr "_Puntuazioaren arabera"
+
+#: ../src/f-spot.glade.h:81
+msgid "CD"
+msgstr "CDa"
+
+#: ../src/f-spot.glade.h:82
 msgid "C_aption:"
 msgstr "_Epigrafea:"
 
-#: ../src/f-spot.glade.h:86
+#: ../src/f-spot.glade.h:83
 msgid "C_ontrast:"
 msgstr "_Kontrastea:"
 
-#: ../src/f-spot.glade.h:87
+#: ../src/f-spot.glade.h:84
 msgid "Camera Selection"
 msgstr "Kamera hautapena"
 
-#: ../src/f-spot.glade.h:88
+#: ../src/f-spot.glade.h:85
 msgid "Cancel, do not change the current timeline. "
 msgstr "Utzi, ez aldatu uneko denbora-lerroa. "
 
-#: ../src/f-spot.glade.h:89
-msgid "Clea_r Date Range"
-msgstr "_Garbitu data-bitartea"
-
-#: ../src/f-spot.glade.h:90
-msgid "Clear roll filter"
-msgstr "Garbitu erroiluaren iragazkia"
-
-#: ../src/f-spot.glade.h:91
+#: ../src/f-spot.glade.h:86
 msgid "Co_nfigure"
 msgstr "Kon_figuratu"
 
-#: ../src/f-spot.glade.h:92
+#: ../src/f-spot.glade.h:87
 msgid "Copy Locat_ion"
 msgstr "Kopiatu _kokapena"
 
-#: ../src/f-spot.glade.h:93
+#: ../src/f-spot.glade.h:88
 msgid "Copy files to the Photos folder"
 msgstr "Kopiatu fitxategiak argazkien karpetara"
 
-#: ../src/f-spot.glade.h:94
-msgid "Create CD"
-msgstr "Sortu CDa"
-
-#: ../src/f-spot.glade.h:95
+#: ../src/f-spot.glade.h:89
 msgid "Create Mail"
 msgstr "Sortu mezua"
 
-#: ../src/f-spot.glade.h:96
+#: ../src/f-spot.glade.h:90
 msgid "Create New _Tag..."
 msgstr "Sortu _etiketa berria..."
 
-#: ../src/f-spot.glade.h:97
+#: ../src/f-spot.glade.h:91
 msgid "Create _New Version..."
 msgstr "Sortu _bertsio berria..."
 
-#: ../src/f-spot.glade.h:98
-msgid "Create _gallery using \"Original\""
-msgstr "Sortu galeria \"Jatorrizkoa\" erabiliz"
-
-#: ../src/f-spot.glade.h:99
+#: ../src/f-spot.glade.h:92
 msgid "Create a mail with the selected photos (possible resized) attached"
 msgstr "Sortu mezua hautatutako argazkiak (tamainaz alda daitezke) erantsita"
 
-#: ../src/f-spot.glade.h:100
-msgid "Create mail..."
-msgstr "Sortu mezua..."
-
-#: ../src/f-spot.glade.h:101
-msgid "Create standalone _web gallery"
-msgstr "Sortu _web galeria bereizia"
-
-#: ../src/f-spot.glade.h:102
+#: ../src/f-spot.glade.h:93
 msgid "Crop photo to _fit"
 msgstr "Moztu argazkia _doitzeko"
 
-#: ../src/f-spot.glade.h:103
+#: ../src/f-spot.glade.h:94
 msgid "Current date:"
-msgstr "Unekoa data:"
+msgstr "Uneko data:"
 
-#: ../src/f-spot.glade.h:104
-msgid "D_escription:"
-msgstr "_Azalpena:"
-
-#: ../src/f-spot.glade.h:105
+#: ../src/f-spot.glade.h:95
 msgid "Display File Names"
 msgstr "Erakutsi fitxategi-izenak"
 
-#: ../src/f-spot.glade.h:106
-msgid "Display Side_bar"
-msgstr "Erakutsi alboko _barra"
-
-#: ../src/f-spot.glade.h:107
-msgid "Display T_ags"
-msgstr "Erakutsi e_tiketak"
-
-#: ../src/f-spot.glade.h:108
-msgid "Display Too_lbar"
-msgstr "Erakutsi _tresna-barra"
-
-#: ../src/f-spot.glade.h:109
-msgid "Display _Dates"
-msgstr "Erakutsi _datak"
-
-#: ../src/f-spot.glade.h:110
-msgid "Display _Timeline"
-msgstr "Erakutsi denbora-_lerroa"
-
-#: ../src/f-spot.glade.h:111
+#: ../src/f-spot.glade.h:96
 msgid "Display only those photos that were imported in specified Rolls."
 msgstr "Erakutsi erroilu zehatz batetik inportatutako argazkiak soilik."
 
-#: ../src/f-spot.glade.h:112
+#: ../src/f-spot.glade.h:97
 msgid "Do not send a mail"
 msgstr "Ez bidali mezua"
 
-#: ../src/f-spot.glade.h:113
+#: ../src/f-spot.glade.h:98
 msgid "E-_Mail:"
 msgstr "_Helb.Elek:"
 
-#: ../src/f-spot.glade.h:114
+#: ../src/f-spot.glade.h:99
 msgid "E_xport titles and comments"
 msgstr "Esportatu tituluak eta iruzkinak"
 
-#: ../src/f-spot.glade.h:115
+#: ../src/f-spot.glade.h:100
 msgid "Edit"
 msgstr "Editatu"
 
-#: ../src/f-spot.glade.h:116
+#: ../src/f-spot.glade.h:101
 msgid "Edit Tag Icon"
 msgstr "Editatu etiketa-ikonoa"
 
-#: ../src/f-spot.glade.h:117
+#: ../src/f-spot.glade.h:102
 msgid "Edit icon"
 msgstr "Editatu ikonoa"
 
-#: ../src/f-spot.glade.h:118
+#: ../src/f-spot.glade.h:103
 msgid "Estimated new size"
 msgstr "Aurrikusitako tamaina berria"
 
-#: ../src/f-spot.glade.h:119
+#: ../src/f-spot.glade.h:104
 msgid "Export"
 msgstr "Esportatu"
 
-#: ../src/f-spot.glade.h:120
-msgid "Export _titles and comments"
-msgstr "Esportatu _tituluak eta iruzkinak"
-
-#: ../src/f-spot.glade.h:121
+#: ../src/f-spot.glade.h:105
 msgid "Extra large"
 msgstr "Oso handia"
 
-#: ../src/f-spot.glade.h:123
+#: ../src/f-spot.glade.h:106
+msgid "F-Spot"
+msgstr "F-Spot"
+
+#: ../src/f-spot.glade.h:107
 msgid "F-Spot View"
 msgstr "F-Spot ikuspegia"
 
-#: ../src/f-spot.glade.h:124
-msgid ""
-"F-Spot needs your authorization in order to upload photos to your {0} "
-"account. Press the \"Authorize\" button to open a web browser and give F-"
-"Spot the authorization. "
-msgstr ""
-"F-Spot aplikazioak zure baimena behar du argazkiak zure {0} guneko kontura "
-"igotzeko. Sakatu \"Baimendu\" botoian web arakatzailea irekitzeko eta F-Spot "
-"aplikazioari baimena emateko."
-
-#: ../src/f-spot.glade.h:126
+#: ../src/f-spot.glade.h:109
 msgid "Filter on selected rolls"
 msgstr "Iragazi hautatutako erroiluetan"
 
-#: ../src/f-spot.glade.h:127
+#: ../src/f-spot.glade.h:110
 msgid "Fin_d"
 msgstr "Bila_tu"
 
-#: ../src/f-spot.glade.h:129
-msgid "Folder Export"
-msgstr "Esportatu karpeta"
-
-#: ../src/f-spot.glade.h:130
+#: ../src/f-spot.glade.h:112
 msgid ""
 "From Screen\n"
 "Standard RGB"
@@ -2784,7 +2490,7 @@ msgstr ""
 "Pantailatik\n"
 "GBU estandarra"
 
-#: ../src/f-spot.glade.h:132
+#: ../src/f-spot.glade.h:114
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
@@ -2792,19 +2498,15 @@ msgstr ""
 "Orrialde osoa\n"
 "Estandarra - 4x6"
 
-#: ../src/f-spot.glade.h:134
-msgid "G_allery Name:"
-msgstr "_Galeri-izena:"
-
-#: ../src/f-spot.glade.h:135
+#: ../src/f-spot.glade.h:116
 msgid "G_allery:"
 msgstr "G_aleria:"
 
-#: ../src/f-spot.glade.h:136
+#: ../src/f-spot.glade.h:117
 msgid "Gallery"
 msgstr "Galeria"
 
-#: ../src/f-spot.glade.h:137
+#: ../src/f-spot.glade.h:118
 msgid ""
 "Hairline\n"
 "0.25\"\n"
@@ -2816,51 +2518,47 @@ msgstr ""
 "0.5\"\n"
 "1\"\n"
 
-#: ../src/f-spot.glade.h:142
+#: ../src/f-spot.glade.h:123
 msgid "Images tagged with:"
 msgstr "Honela etiketatutako irudiak:"
 
-#: ../src/f-spot.glade.h:144
-msgid "Import Rolls"
-msgstr "Inportatu erroiluak"
-
-#: ../src/f-spot.glade.h:145
+#: ../src/f-spot.glade.h:125
 msgid "Import Source:"
 msgstr "Inportatzeko iturburua:"
 
-#: ../src/f-spot.glade.h:146
+#: ../src/f-spot.glade.h:126
 msgid "Include subfolders"
 msgstr "Sartu azpikarpetak"
 
-#: ../src/f-spot.glade.h:147
+#: ../src/f-spot.glade.h:127
 msgid "Interpolate image on zoom"
 msgstr "Interpolatu irudia handitzean"
 
-#: ../src/f-spot.glade.h:148
+#: ../src/f-spot.glade.h:128
 msgid "Large"
 msgstr "Handia"
 
-#: ../src/f-spot.glade.h:149
-msgid "Last import roll"
-msgstr "Azken erroilu inportazioa"
-
-#: ../src/f-spot.glade.h:150
+#: ../src/f-spot.glade.h:129
 msgid "Make F-Spot your screensaver"
 msgstr "Jarri F-Spot pantaila-babesle gisa"
 
-#: ../src/f-spot.glade.h:151
+#: ../src/f-spot.glade.h:130
 msgid "Manage _Extensions"
 msgstr "Kudeatu _luzapenak"
 
-#: ../src/f-spot.glade.h:152
+#: ../src/f-spot.glade.h:131
 msgid "Medium"
 msgstr "Tartekoa"
 
-#: ../src/f-spot.glade.h:154
+#: ../src/f-spot.glade.h:133
 msgid "N_umber of Copies:"
 msgstr "Kopia-_kopurua:"
 
-#: ../src/f-spot.glade.h:156
+#: ../src/f-spot.glade.h:135
+msgid "No _image"
+msgstr "_Irudirik ez"
+
+#: ../src/f-spot.glade.h:136
 msgid ""
 "None\n"
 "Title\n"
@@ -2874,141 +2572,103 @@ msgstr ""
 "Data\n"
 "Argazkiaren xehetasunak"
 
-#: ../src/f-spot.glade.h:161
+#: ../src/f-spot.glade.h:141
 msgid "Number of photos in selected rolls :"
-msgstr "Argazki kopurua hautatutako erroiluetan:"
+msgstr "Argazkien kopurua hautatutako erroiluetan:"
 
-#: ../src/f-spot.glade.h:162
+#: ../src/f-spot.glade.h:142
 msgid "Number of pictures"
-msgstr "Argazki kopurua"
+msgstr "Argazki-kopurua"
 
-#: ../src/f-spot.glade.h:163
+#: ../src/f-spot.glade.h:143
 msgid "Only photos taken within these dates will be displayed."
 msgstr "Data hauetan kapturatutako argazkiak bistaratuko dira."
 
-#: ../src/f-spot.glade.h:164
+#: ../src/f-spot.glade.h:144
 msgid "Open _Folder..."
 msgstr "Ireki _karpeta..."
 
-#: ../src/f-spot.glade.h:165
-msgid "Open _album in browser when done uploading"
-msgstr "Ireki _albuma nabigatzailean, igo ondoren"
+#: ../src/f-spot.glade.h:145
+msgid "Original"
+msgstr "Jatorrizkoa"
 
-#: ../src/f-spot.glade.h:166
-msgid "Open _destination when done exporting"
-msgstr "Ireki _helburua nabigatzailean, esportatu ondoren."
-
-#: ../src/f-spot.glade.h:168
+#: ../src/f-spot.glade.h:146
 msgid "Original size (possible very large file size)"
 msgstr "Jatorrizko tamaina (baliteke fitxategi-tamaina oso handia izatea)"
 
-#: ../src/f-spot.glade.h:169
+#: ../src/f-spot.glade.h:147
 msgid "P_arent Tag:"
 msgstr "Etiketa _gurasoa:"
 
-#: ../src/f-spot.glade.h:170
+#: ../src/f-spot.glade.h:148
 msgid "P_hoto Source:"
 msgstr "A_rgazkiaren iturburua:"
 
-#: ../src/f-spot.glade.h:171
+#: ../src/f-spot.glade.h:149
 msgid "Page 1 of 3"
 msgstr "1 / 3 orrialdea"
 
-#: ../src/f-spot.glade.h:172
+#: ../src/f-spot.glade.h:150
 msgid "Pause"
 msgstr "Pausarazi"
 
-#: ../src/f-spot.glade.h:173
+#: ../src/f-spot.glade.h:151
 msgid "Photo 0 of 0"
 msgstr "0 / 0 argazkia"
 
-#: ../src/f-spot.glade.h:174
+#: ../src/f-spot.glade.h:152
 msgid "Photo _Size:"
 msgstr "Argazki-_tamaina:"
 
-#: ../src/f-spot.glade.h:175
-msgid "Please verify that the settings for this gallery are correct."
-msgstr "Egiaztatu galeri honetako ezarpenak egokiak direla."
-
-#: ../src/f-spot.glade.h:176
-msgid ""
-"Please verify that the settings for this gallery are correct.\n"
-"Enter the letters as they are shown in the image in\n"
-"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
-msgstr ""
-"Egiaztatu galeriaren ezarpenak zuzenak direla.\n"
-"Sartu hizkiak irudian agertzen diren bezala 'Captcah' eremuan. <i>Maiuskulak "
-"eta minuskulak ez dira bereizten</i>"
-
-#: ../src/f-spot.glade.h:179
+#: ../src/f-spot.glade.h:153
 msgid "Preferences"
 msgstr "Hobespenak"
 
-#: ../src/f-spot.glade.h:181
+#: ../src/f-spot.glade.h:155
 msgid "Print"
 msgstr "Inprimatu"
 
-#: ../src/f-spot.glade.h:182
+#: ../src/f-spot.glade.h:156
 msgid "Print crop _marks"
 msgstr "Inprimatu mozketa _markak"
 
-#: ../src/f-spot.glade.h:183
-msgid "Private"
-msgstr "Pribatua"
-
-#: ../src/f-spot.glade.h:184
-msgid "Public"
-msgstr "Publikoa"
-
-#: ../src/f-spot.glade.h:185
-msgid "Public Album"
-msgstr "Album publikoa"
-
-#: ../src/f-spot.glade.h:186
+#: ../src/f-spot.glade.h:157
 msgid "Re_fresh Thumbnail"
 msgstr "_Freskatu koadro txikiak"
 
-#: ../src/f-spot.glade.h:187
-msgid "Rem_ove Tag"
-msgstr "Ken_du etiketa"
-
-#: ../src/f-spot.glade.h:188
+#: ../src/f-spot.glade.h:159
 msgid "Repair"
 msgstr "Konpondu"
 
-#: ../src/f-spot.glade.h:189
+#: ../src/f-spot.glade.h:160
 msgid "Reset"
 msgstr "Berrezarri"
 
-#: ../src/f-spot.glade.h:192
+#: ../src/f-spot.glade.h:163
 msgid "Select A Folder"
 msgstr "Hautatu karpeta"
 
-#: ../src/f-spot.glade.h:193
+#: ../src/f-spot.glade.h:164
 msgid "Select Photos to Copy From Camera..."
 msgstr "Hautatu argazkiak kameratik kopiatzeko..."
 
-#: ../src/f-spot.glade.h:195
+#: ../src/f-spot.glade.h:166
 msgid "Select _None"
 msgstr "Hautatu _bat ere ez"
 
-#: ../src/f-spot.glade.h:196
+#: ../src/f-spot.glade.h:167
 msgid "Select a Tag..."
 msgstr "Hautatu etiketa..."
 
-#: ../src/f-spot.glade.h:197
-msgid "Select import rolls..."
-msgstr "Hautatu inportatzeko erroiluak..."
-
-#: ../src/f-spot.glade.h:198
+#: ../src/f-spot.glade.h:168
 msgid "Select the camera from which you want to transfer files"
 msgstr "Hautatu kamera, bertatik fitxategiak transferitzeko."
 
-#: ../src/f-spot.glade.h:199
+#: ../src/f-spot.glade.h:169
 msgid "Selected Camera: "
 msgstr "Hautatutako kamera: "
 
-#: ../src/f-spot.glade.h:200
+#: ../src/f-spot.glade.h:170
 msgid ""
 "Selection\n"
 "Gallery\n"
@@ -3018,59 +2678,55 @@ msgstr ""
 "Galeria\n"
 "Leihatila"
 
-#: ../src/f-spot.glade.h:203
-msgid "Send _Mail..."
-msgstr "Bidali p_osta elektronikoa..."
+#: ../src/f-spot.glade.h:173
+msgid "Send by _Mail..."
+msgstr "Bidali posta _elektronikoz..."
 
-#: ../src/f-spot.glade.h:204
-msgid "Set _Date Range..."
-msgstr "Ezarri _data bitartea..."
+#: ../src/f-spot.glade.h:174
+msgid "Set Rating Filter"
+msgstr "Ezarri puntuazio-iragazkia"
 
-#: ../src/f-spot.glade.h:205
+#: ../src/f-spot.glade.h:175
 msgid "Set as _Background"
 msgstr "Ezarri _atzeko plano gisa"
 
-#: ../src/f-spot.glade.h:206
+#: ../src/f-spot.glade.h:176
 msgid "Set date range"
 msgstr "Ezarri data barrutia"
 
-#: ../src/f-spot.glade.h:208
+#: ../src/f-spot.glade.h:178
 msgid "Show all photos."
 msgstr "Erakutsi argazki guztiak."
 
-#: ../src/f-spot.glade.h:209
+#: ../src/f-spot.glade.h:179
 msgid "Show or hide the side pane"
 msgstr "Erakutsi edo ezkutatu albo-panela"
 
-#: ../src/f-spot.glade.h:210
+#: ../src/f-spot.glade.h:180
 msgid "Show or hide the toolbar"
 msgstr "Erakutsi edo ezkutatu tresna-barra"
 
-#: ../src/f-spot.glade.h:211
+#: ../src/f-spot.glade.h:181
 msgid "Side _pane"
 msgstr "Albo-panela"
 
-#: ../src/f-spot.glade.h:212
-msgid "Size"
-msgstr "Tamaina"
+#: ../src/f-spot.glade.h:182
+msgid "Side_bar"
+msgstr "Albo-_panela"
 
-#: ../src/f-spot.glade.h:213
-msgid "Size of the exported selection :"
-msgstr "Esportatutako hautapenaren tamaina:"
-
-#: ../src/f-spot.glade.h:214
+#: ../src/f-spot.glade.h:183
 msgid "Small"
 msgstr "Txikia"
 
-#: ../src/f-spot.glade.h:215
+#: ../src/f-spot.glade.h:184
 msgid "So_urce Temp"
 msgstr "Aldi baterako _iturburua"
 
-#: ../src/f-spot.glade.h:216
+#: ../src/f-spot.glade.h:185
 msgid "Space all photos by"
 msgstr "Argazki guztien arteko tartea:"
 
-#: ../src/f-spot.glade.h:217
+#: ../src/f-spot.glade.h:186
 msgid ""
 "Specify if an original size picture should be rotated or not. Smaller sizes "
 "are automatically rotated."
@@ -3078,7 +2734,7 @@ msgstr ""
 "Zehaztu jatorrizko tamainen argazkiak biratuko diren edo ez. Tamaina "
 "txikiagoak automatikoki biratuko dira."
 
-#: ../src/f-spot.glade.h:218
+#: ../src/f-spot.glade.h:187
 msgid ""
 "Standard RGB\n"
 "Image Profile\n"
@@ -3088,352 +2744,321 @@ msgstr ""
 "Irudi-profila\n"
 "Pertsonalizatua\n"
 
-#: ../src/f-spot.glade.h:222
-msgid "Strip _metadata"
-msgstr "Kendu _metadatuak"
-
-#: ../src/f-spot.glade.h:223
+#: ../src/f-spot.glade.h:191
 msgid "Strip image _metadata"
 msgstr "Kendu irudiaren _metadatuak"
 
-#: ../src/f-spot.glade.h:224
-msgid "Tag Icons"
-msgstr "Etiketatu ikonoak"
+#: ../src/f-spot.glade.h:192
+msgid "T_ags"
+msgstr "_Etiketak"
 
-#: ../src/f-spot.glade.h:225
+#: ../src/f-spot.glade.h:193
 msgid "Tags: "
 msgstr "Etiketak: "
 
-#: ../src/f-spot.glade.h:226
+#: ../src/f-spot.glade.h:194
+msgid "Thumbnail _elements"
+msgstr "Koadro txikien _elementuak"
+
+#: ../src/f-spot.glade.h:195
 msgid "Tiny"
 msgstr "Txikitxoa"
 
-#: ../src/f-spot.glade.h:227
+#: ../src/f-spot.glade.h:196
+msgid "Too_lbar"
+msgstr "_Tresna-barra"
+
+#: ../src/f-spot.glade.h:197
 msgid "Toolbar"
 msgstr "Tresna-barra"
 
-#: ../src/f-spot.glade.h:228
+#: ../src/f-spot.glade.h:198
 msgid "Total original size"
 msgstr "Jatorrizko guztirako tamaina"
 
-#: ../src/f-spot.glade.h:229
-msgid "U_RL:"
-msgstr "_URLa:"
-
-#: ../src/f-spot.glade.h:230
+#: ../src/f-spot.glade.h:199
 msgid "View"
 msgstr "Ikusi"
 
-#: ../src/f-spot.glade.h:231
-msgid "Visible to Family"
-msgstr "Senideentzako ikusgai"
-
-#: ../src/f-spot.glade.h:232
-msgid "Visible to Friends"
-msgstr "Lagunentzako ikusgai"
-
-#: ../src/f-spot.glade.h:233
+#: ../src/f-spot.glade.h:200
 msgid "Will print using: US Letter size on Generic Postscript"
-msgstr "Honakoa erabiliz inprimatuko du: US Gutuna tamainakoa Postscript orokorrean"
+msgstr ""
+"Honakoa erabiliz inprimatuko du: US Gutuna tamainakoa Postscript orokorrean"
 
-#: ../src/f-spot.glade.h:234
+#: ../src/f-spot.glade.h:201
 msgid "Write _metadata to file"
 msgstr "Idatzi _metadatuak fitxategian"
 
-#: ../src/f-spot.glade.h:235
+#: ../src/f-spot.glade.h:202
 msgid "Zoom _in"
 msgstr "Zooma _handiagotu"
 
-#: ../src/f-spot.glade.h:236
+#: ../src/f-spot.glade.h:203
 msgid "Zoom _out"
 msgstr "Zooma _txikiagotu"
 
-#: ../src/f-spot.glade.h:237
+#: ../src/f-spot.glade.h:204
 msgid "Zoom in"
 msgstr "Zooma handiagotu"
 
-#: ../src/f-spot.glade.h:238
+#: ../src/f-spot.glade.h:205
 msgid "Zoom out"
 msgstr "Zooma txikiagotu"
 
-#: ../src/f-spot.glade.h:239
-msgid "_Account:"
-msgstr "_Kontua:"
-
-#: ../src/f-spot.glade.h:240
-msgid "_Album Name:"
-msgstr "_Albumaren izena:"
-
-#: ../src/f-spot.glade.h:241
-msgid "_Album Title:"
-msgstr "_Albumaren titulua:"
-
-#: ../src/f-spot.glade.h:242
-msgid "_Attach Tag"
-msgstr "_Gehitu etiketa"
-
-#: ../src/f-spot.glade.h:243
+#: ../src/f-spot.glade.h:207
 msgid "_Attach Tag to Selection"
 msgstr "_Erantsi etiketa hautapenari"
 
-#: ../src/f-spot.glade.h:244
+#: ../src/f-spot.glade.h:208
 msgid "_Border:"
 msgstr "_Ertza:"
 
-#: ../src/f-spot.glade.h:245
+#: ../src/f-spot.glade.h:209
 msgid "_Brightness:"
 msgstr "_Distira:"
 
-#: ../src/f-spot.glade.h:246
-msgid "_Browse Previously Scheduled Files"
-msgstr "_Arakatu aurrez programatutako fitxategiak"
+#: ../src/f-spot.glade.h:211
+msgid "_Clear Rating Filter"
+msgstr "_Garbitu puntuazio-iragazkia"
 
-#: ../src/f-spot.glade.h:247
-msgid "_Captcha:"
-msgstr "_Captcha:"
+#: ../src/f-spot.glade.h:212
+msgid "_Clear Roll Filter"
+msgstr "_Garbitu erroiluaren iragazkia"
 
-#: ../src/f-spot.glade.h:248
+#: ../src/f-spot.glade.h:213
+msgid "_Components"
+msgstr "_Osagaiak"
+
+#: ../src/f-spot.glade.h:214
 msgid "_Contents"
 msgstr "_Edukia"
 
-#: ../src/f-spot.glade.h:249
-msgid "_Delete From Drive"
-msgstr "_Ezabatu unitatetik"
+#: ../src/f-spot.glade.h:215
+msgid "_Dates"
+msgstr "_Datak"
 
-#: ../src/f-spot.glade.h:250
+#: ../src/f-spot.glade.h:217
 msgid "_Delete Selected Tag"
 msgstr "_Ezabatu hautatutako etiketa"
 
-#: ../src/f-spot.glade.h:251
+#: ../src/f-spot.glade.h:218
 msgid "_Delete Version"
 msgstr "_Ezabatu bertsioa"
 
-#: ../src/f-spot.glade.h:252
-msgid "_Description:"
-msgstr "_Azalpena:"
-
-#: ../src/f-spot.glade.h:253
+#: ../src/f-spot.glade.h:219
 msgid "_Destination Temp"
 msgstr "Aldi baterako _helburua"
 
-#: ../src/f-spot.glade.h:254
+#: ../src/f-spot.glade.h:220
 msgid "_Display:"
 msgstr "_Bistaratu:"
 
-#: ../src/f-spot.glade.h:255
+#: ../src/f-spot.glade.h:221
 msgid "_Edit"
 msgstr "_Editatu"
 
-#: ../src/f-spot.glade.h:256
+#: ../src/f-spot.glade.h:222
 msgid "_Edit Selected Tag..."
 msgstr "_Editatu hautatutako etiketa..."
 
-#: ../src/f-spot.glade.h:257
+#: ../src/f-spot.glade.h:223
 msgid "_Export"
 msgstr "_Esportatu"
 
-#: ../src/f-spot.glade.h:258
+#: ../src/f-spot.glade.h:224
 msgid "_Export tags"
 msgstr "_Esportatu etiketak"
 
-#: ../src/f-spot.glade.h:259
+#: ../src/f-spot.glade.h:225
+msgid "_Export to"
+msgstr "_Esportatu hona"
+
+#: ../src/f-spot.glade.h:226
 msgid "_Export to Album:"
 msgstr "_Esportatu albumera:"
 
-#: ../src/f-spot.glade.h:260
+#: ../src/f-spot.glade.h:227
 msgid "_File"
 msgstr "_Fitxategia"
 
-#: ../src/f-spot.glade.h:261
+#: ../src/f-spot.glade.h:228
 msgid "_Flickr"
 msgstr "_Flickr"
 
-#: ../src/f-spot.glade.h:262
+#: ../src/f-spot.glade.h:229
 msgid "_Folder"
 msgstr "_Karpeta"
 
-#: ../src/f-spot.glade.h:263
-msgid "_Folder:"
-msgstr "_Karpeta:"
-
-#: ../src/f-spot.glade.h:264
+#: ../src/f-spot.glade.h:230
 msgid "_Fullscreen"
 msgstr "_Pantaila osoa"
 
-#: ../src/f-spot.glade.h:265
+#: ../src/f-spot.glade.h:231
 msgid "_Gallery"
 msgstr "_Galeria"
 
-#: ../src/f-spot.glade.h:266
-msgid "_Gallery Name:"
-msgstr "_Galeri-izena:"
-
-#: ../src/f-spot.glade.h:267
-msgid "_Gallery:"
-msgstr "_Galeria:"
-
-#: ../src/f-spot.glade.h:268
+#: ../src/f-spot.glade.h:232
 msgid "_Help"
 msgstr "_Laguntza"
 
-#: ../src/f-spot.glade.h:269
+#: ../src/f-spot.glade.h:233
 msgid "_Hidden"
 msgstr "_Ezkutukoa"
 
-#: ../src/f-spot.glade.h:270
+#: ../src/f-spot.glade.h:234
 msgid "_Hue:"
 msgstr "_Ñabardura:"
 
-#: ../src/f-spot.glade.h:271
+#: ../src/f-spot.glade.h:235
 msgid "_Icon:"
 msgstr "_Ikonoa:"
 
-#: ../src/f-spot.glade.h:272
+#: ../src/f-spot.glade.h:236
 msgid "_Import..."
 msgstr "_Inportatu..."
 
-#: ../src/f-spot.glade.h:273
+#: ../src/f-spot.glade.h:237
 msgid "_Large"
 msgstr "_Handia"
 
-#: ../src/f-spot.glade.h:274
+#: ../src/f-spot.glade.h:238
+msgid "_Last Import Roll"
+msgstr "_Azken erroilu inportazioa"
+
+#: ../src/f-spot.glade.h:239
 msgid "_Medium"
 msgstr "_Tartekoa"
 
-#: ../src/f-spot.glade.h:275
+#: ../src/f-spot.glade.h:240
 msgid "_Metadata Browser"
 msgstr "_Meta-datuen arakatzailea"
 
-#: ../src/f-spot.glade.h:276
+#: ../src/f-spot.glade.h:241
 msgid "_Month"
 msgstr "_Hilabetea"
 
-#: ../src/f-spot.glade.h:277
+#: ../src/f-spot.glade.h:242
 msgid "_New Window"
 msgstr "_Leiho berria"
 
-#: ../src/f-spot.glade.h:278
+#: ../src/f-spot.glade.h:243
 msgid "_Open album in browser when done uploading"
-msgstr "_Ireki albuma nabigatzailean, igo ondoren"
+msgstr "_Ireki albuma arakatzailean, igo ondoren"
 
-#: ../src/f-spot.glade.h:279
+#: ../src/f-spot.glade.h:244
 msgid "_Open destination when done exporting"
 msgstr "_Ireki helburua, esportatu ondoren."
 
-#: ../src/f-spot.glade.h:280
+#: ../src/f-spot.glade.h:245
 msgid "_Output:"
 msgstr "_Irteera:"
 
-#: ../src/f-spot.glade.h:281
-msgid "_Parent Album:"
-msgstr "Album _gurasoa:"
-
-#: ../src/f-spot.glade.h:282
-msgid "_Password:"
-msgstr "_Pasahitza:"
-
-#: ../src/f-spot.glade.h:283
+#: ../src/f-spot.glade.h:246
 msgid "_Quit"
 msgstr "I_rten"
 
-#: ../src/f-spot.glade.h:284
-msgid "_Remove From Catalog"
-msgstr "_Kendu katalogotik"
+#: ../src/f-spot.glade.h:247
+msgid "_Ratings"
+msgstr "_Puntuazioak"
 
-#: ../src/f-spot.glade.h:285
+#: ../src/f-spot.glade.h:249
 msgid "_Remove Tag From Selection"
 msgstr "_Kendu etiketa hautapenetik"
 
-#: ../src/f-spot.glade.h:286
+#: ../src/f-spot.glade.h:250
 msgid "_Rename Version"
 msgstr "_Berrizendatu bertsioa"
 
-#: ../src/f-spot.glade.h:287
+#: ../src/f-spot.glade.h:251
 msgid "_Resize to: "
 msgstr "_Aldatu tamaina hona: "
 
-#: ../src/f-spot.glade.h:289
+#: ../src/f-spot.glade.h:253
 msgid "_Saturation:"
 msgstr "_Saturazioa:"
 
-#: ../src/f-spot.glade.h:290
-msgid "_Save the files only"
-msgstr "_Gorde fitxategiak soilik"
-
-#: ../src/f-spot.glade.h:291
+#: ../src/f-spot.glade.h:254
 msgid "_Scale photos to no larger than: "
 msgstr "_Eskalatu argazkiak, hau baino handiagoak ez direnak: "
 
-#: ../src/f-spot.glade.h:292
+#: ../src/f-spot.glade.h:255
+msgid "_Select Import Rolls..."
+msgstr "_Hautatu inportatzeko erroiluak..."
+
+#: ../src/f-spot.glade.h:256
+msgid "_Set Date Range..."
+msgstr "Ezarri _data bitartea..."
+
+#: ../src/f-spot.glade.h:257
+msgid "_Set Rating filter..."
+msgstr "_Ezarri puntuazio-iragazkia..."
+
+#: ../src/f-spot.glade.h:258
 msgid "_Sharpen..."
 msgstr "_Zorroztasuna..."
 
-#: ../src/f-spot.glade.h:293
+#: ../src/f-spot.glade.h:259
 msgid "_Slideshow"
-msgstr "_Diapositiba erakusketa"
+msgstr "_Diapositiba-aurkezpena"
 
-#: ../src/f-spot.glade.h:294
+#: ../src/f-spot.glade.h:260
 msgid "_Small"
 msgstr "_Txikia"
 
-#: ../src/f-spot.glade.h:295
+#: ../src/f-spot.glade.h:261
 msgid "_Strip metadata"
 msgstr "_Kendu metadatuak"
 
-#: ../src/f-spot.glade.h:296
+#: ../src/f-spot.glade.h:262
+msgid "_Tag Icons"
+msgstr "_Etiketatu ikonoak"
+
+#: ../src/f-spot.glade.h:263
 msgid "_Tag Name:"
 msgstr "_Etiketa-izena:"
 
-#: ../src/f-spot.glade.h:297
+#: ../src/f-spot.glade.h:264
 msgid "_Tags"
 msgstr "_Etiketak"
 
-#: ../src/f-spot.glade.h:298
-msgid "_Title:"
-msgstr "_Titulua:"
+#: ../src/f-spot.glade.h:265
+msgid "_Timeline"
+msgstr "_Denbora-lerroa"
 
-#: ../src/f-spot.glade.h:299
+#: ../src/f-spot.glade.h:266
 msgid "_Tools"
 msgstr "_Tresnak"
 
-#: ../src/f-spot.glade.h:300
+#: ../src/f-spot.glade.h:267
 msgid "_URI:"
 msgstr "_URIa:"
 
-#: ../src/f-spot.glade.h:301
+#: ../src/f-spot.glade.h:268
+msgid "_Unrated Photos"
+msgstr "_Puntuatu gabeko argazkiak"
+
+#: ../src/f-spot.glade.h:269
 msgid "_Untagged Photos"
 msgstr "_Etiketarik gabeko argazkiak"
 
-#: ../src/f-spot.glade.h:302
-msgid "_Username:"
-msgstr "_Erabiltzaile-izena:"
-
-#: ../src/f-spot.glade.h:303
+#: ../src/f-spot.glade.h:270
 msgid "_Version"
 msgstr "_Bertsioa"
 
-#: ../src/f-spot.glade.h:304
+#: ../src/f-spot.glade.h:271
 msgid "_View"
 msgstr "_Ikusi"
 
-#: ../src/f-spot.glade.h:305
-msgid "_View photos in browser when done uploading"
-msgstr "_Ikusi argazkiak arakatzailean, kargatu ondoren"
-
-#: ../src/f-spot.glade.h:306
+#: ../src/f-spot.glade.h:272
 msgid "_Virtual Filesystem"
 msgstr "Fitxategi-sistema _birtuala"
 
-#: ../src/f-spot.glade.h:307
-msgid "_Write only these photos to CD"
-msgstr "_Grabatu argazki hauek soilik CDan"
-
-#: ../src/f-spot.glade.h:308
+#: ../src/f-spot.glade.h:273
 msgid "and"
 msgstr "eta"
 
 #. at, or after a date, or between dates
-#: ../src/f-spot.glade.h:310
+#: ../src/f-spot.glade.h:275
 msgid ""
 "at\n"
 "after\n"
@@ -3443,43 +3068,19 @@ msgstr ""
 "ondoren\n"
 "bitartean"
 
-#: ../src/f-spot.glade.h:313
-msgid "dialog1"
-msgstr "1 elkarrizketa-koadroa"
-
-#: ../src/f-spot.glade.h:314
+#: ../src/f-spot.glade.h:278
 msgid "difference:"
 msgstr "diferentzia:"
 
-#: ../src/f-spot.glade.h:315
-msgid "gtk-about"
-msgstr "gtk-about"
-
-#: ../src/f-spot.glade.h:316
-msgid "gtk-close"
-msgstr "gtk-close"
-
-#: ../src/f-spot.glade.h:317
-msgid "gtk-open"
-msgstr "gtk-open"
-
-#: ../src/f-spot.glade.h:318
-msgid "gtk-preferences"
-msgstr "gtk-preferences"
-
-#: ../src/f-spot.glade.h:319
-msgid "gtk-print"
-msgstr "gtk-print"
-
-#: ../src/f-spot.glade.h:320
+#: ../src/f-spot.glade.h:279
 msgid "img_000.jpg"
 msgstr "arg_000.jpg"
 
-#: ../src/f-spot.glade.h:323
+#: ../src/f-spot.glade.h:282
 msgid "pixels"
 msgstr "pixel"
 
-#: ../src/f-spot.glade.h:324
+#: ../src/f-spot.glade.h:283
 msgid "x"
 msgstr "x"
 
@@ -3491,3 +3092,160 @@ msgstr "Bistaratu dispositiba-aurkezpena F-Spot aplikaziotik"
 msgid "F-Spot photos"
 msgstr "F-Spot argazkiak"
 
+#~ msgid "_CD..."
+#~ msgstr "_CDa..."
+
+#~ msgid "_PicasaWeb..."
+#~ msgstr "_PicasaWeb..."
+
+#~ msgid "_SmugMug..."
+#~ msgstr "_SmugMug..."
+
+#~ msgid "url"
+#~ msgstr "URLa"
+
+#~ msgid "token"
+#~ msgstr "tokena"
+
+#~ msgid "captcha_url"
+#~ msgstr "captcha_url"
+
+#~ msgid "Transferring picture \"{0}\" To CD"
+#~ msgstr "\"{0}\" argazkia CDra transferitzen"
+
+#~ msgid "Done Sending Photos"
+#~ msgstr "Argazkiak bidaltzea amaitu da"
+
+#~ msgid "Transfer Complete"
+#~ msgstr "Transferentzia osatu da"
+
+#~ msgid "Error While Transferring"
+#~ msgstr "Errorea transferitzean"
+
+#~ msgid "Error Transferring"
+#~ msgstr "Errorea transferitzean"
+
+#~ msgid "Error: Error while transferring; Aborting"
+#~ msgstr "Errorea: errorea transferitzean. Bertan behera uzten"
+
+#~ msgid "Error: File Already Exists; Aborting"
+#~ msgstr "Errorea: fitxategia jadanik existitzen da. Bertan behera uzten"
+
+#~ msgid "Error while creating Album"
+#~ msgstr "Errorea albuma sortzean"
+
+#~ msgid ""
+#~ "The following error was encountered while attempting to create an album: "
+#~ "{0}"
+#~ msgstr "Honako errorea gertatu da albuma sortzean: {0}"
+
+#~ msgid "Uploading Pictures"
+#~ msgstr "Irudiak kargatzen"
+
+#~ msgid "{0} Sent"
+#~ msgstr "{0} bidalita"
+
+#~ msgid "{0} of approx. {1}"
+#~ msgstr "{0} / {1} gutxi gorabehera"
+
+#~ msgid "Uploading picture \"{0}\" ({1} of {2})"
+#~ msgstr "\"{0}\" argazkia kargatzen ({1}/{2})"
+
+#~ msgid "Error Uploading To Gallery: {0}"
+#~ msgstr "Errorea galerian kargatzean: {0}"
+
+#~ msgid "Upload Complete"
+#~ msgstr "Kargatzea osatu da"
+
+#~ msgid "(No Gallery)"
+#~ msgstr "(Galeriarik ez)"
+
+#~ msgid "Available space :"
+#~ msgstr "Leku erabilgarria: "
+
+#~ msgid "(Not Connected)"
+#~ msgstr "(Konektatu gabe)"
+
+#~ msgid "(No Albums)"
+#~ msgstr "(Albumik ez)"
+
+#~ msgid "No account selected"
+#~ msgstr "Ez da konturik hautatu"
+
+#~ msgid "<b>Photos to Burn</b>"
+#~ msgstr "<b>Argazkiak grabatzeko</b>"
+
+#~ msgid "<b>PicasaWeb Export</b>"
+#~ msgstr "<b>PicasaWeb-erako esportazioa</b>"
+
+#~ msgid "<b>SmugMug Export</b>"
+#~ msgstr "<b>SmugMug-erako esportazioa</b>"
+
+#~ msgid ""
+#~ "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
+#~ msgstr ""
+#~ "<span weight='bold' size='larger'>Errorea galeriarekin konektatzean</"
+#~ "span>\n"
+
+#~ msgid ""
+#~ "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+#~ msgstr ""
+#~ "<span weight='bold' size='larger'>Zure Google kontua blokeatuta dago</"
+#~ "span>\n"
+
+#~ msgid "Create CD"
+#~ msgstr "Sortu CDa"
+
+#~ msgid "Open _album in browser when done uploading"
+#~ msgstr "Ireki _albuma arakatzailean, igo ondoren"
+
+#~ msgid "Please verify that the settings for this gallery are correct."
+#~ msgstr "Egiaztatu galeri honetako ezarpenak egokiak direla."
+
+#~ msgid ""
+#~ "Please verify that the settings for this gallery are correct.\n"
+#~ "Enter the letters as they are shown in the image in\n"
+#~ "the 'Captcha' field. <i>Letters are not case-sensitive</i>"
+#~ msgstr ""
+#~ "Egiaztatu galeriaren ezarpenak zuzenak direla.\n"
+#~ "Sartu hizkiak irudian agertzen diren bezala 'Captcah' eremuan. "
+#~ "<i>Maiuskulak eta minuskulak ez dira bereizten</i>"
+
+#~ msgid "Public Album"
+#~ msgstr "Album publikoa"
+
+#~ msgid "Size"
+#~ msgstr "Tamaina"
+
+#~ msgid "Size of the exported selection :"
+#~ msgstr "Esportatutako hautapenaren tamaina:"
+
+#~ msgid "_Account:"
+#~ msgstr "_Kontua:"
+
+#~ msgid "_Album Title:"
+#~ msgstr "_Albumaren titulua:"
+
+#~ msgid "_Autorotate"
+#~ msgstr "_Biratu automatikoki"
+
+#~ msgid "_Browse Previously Scheduled Files"
+#~ msgstr "_Arakatu aurrez programatutako fitxategiak"
+
+#~ msgid "_Captcha:"
+#~ msgstr "_Captcha:"
+
+#~ msgid "_Description:"
+#~ msgstr "_Azalpena:"
+
+#~ msgid "_Gallery:"
+#~ msgstr "_Galeria:"
+
+#~ msgid "_Password:"
+#~ msgstr "_Pasahitza:"
+
+#~ msgid "_Username:"
+#~ msgstr "_Erabiltzaile-izena:"
+
+#~ msgid "_Write only these photos to CD"
+#~ msgstr "_Grabatu argazki hauek soilik CDan"
