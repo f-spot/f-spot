@@ -16,6 +16,7 @@ using System.Collections.Specialized;
 using System.Web;
 using Mono.Unix;
 
+using FSpot;
 using FSpot.Filters;
 using FSpot.Widgets;
 using FSpot.Utils;
@@ -26,7 +27,7 @@ using Gnome.Keyring;
 using Mono.Google;
 using Mono.Google.Picasa;
 
-namespace FSpot {
+namespace FSpotGoogleExport {
 	public class GoogleAccount {
 
 		private string username;
@@ -256,17 +257,19 @@ namespace FSpot {
 		}
 	}
 	
-	public class GoogleAccountDialog : GladeDialog {
+	public class GoogleAccountDialog {
 		public GoogleAccountDialog (Gtk.Window parent) : this (parent, null, false, null) { 
 			Dialog.Response += HandleAddResponse;
 			add_button.Sensitive = false;
 		}
 		
-		public GoogleAccountDialog (Gtk.Window parent, GoogleAccount account, bool show_error, CaptchaException captcha_exception) :  base ("google_add_dialog")
+		public GoogleAccountDialog (Gtk.Window parent, GoogleAccount account, bool show_error, CaptchaException captcha_exception)
 		{
-			this.Dialog.Modal = false;
-			this.Dialog.TransientFor = parent;
-			this.Dialog.DefaultResponse = Gtk.ResponseType.Ok;
+			xml = new Glade.XML (null, "PicasaWebExport.glade", dialog_name, "f-spot");
+			xml.Autoconnect (this);
+			Dialog.Modal = false;
+			Dialog.TransientFor = parent;
+			Dialog.DefaultResponse = Gtk.ResponseType.Ok;
 			
 			this.account = account;
 
@@ -339,13 +342,25 @@ namespace FSpot {
 			Dialog.Destroy ();				
 		}
 
+		private Gtk.Dialog Dialog {
+			get {
+				if (dialog == null)
+					dialog = (Gtk.Dialog) xml.GetWidget (dialog_name);
+
+				return dialog;
+			}
+		}
+
 		private GoogleAccount account;
 		private string password;
 		private string username;
 		private string token;
 
+		private Glade.XML xml;
+		private string dialog_name = "google_add_dialog";
 
 		// widgets 
+		[Glade.Widget] Gtk.Dialog dialog;
 		[Glade.Widget] Gtk.Entry password_entry;
 		[Glade.Widget] Gtk.Entry username_entry;
 		[Glade.Widget] Gtk.Entry captcha_entry;
@@ -362,7 +377,8 @@ namespace FSpot {
 
 	}
 
-	public class GoogleAddAlbum : GladeDialog {
+	public class GoogleAddAlbum {
+		[Glade.Widget] Gtk.Dialog dialog;
 		[Glade.Widget] Gtk.OptionMenu album_optionmenu;
 
 		[Glade.Widget] Gtk.Entry title_entry;
@@ -372,14 +388,20 @@ namespace FSpot {
 		[Glade.Widget] Gtk.Button add_button;
 		[Glade.Widget] Gtk.Button cancel_button;
 
+		private Glade.XML xml;
+		private string dialog_name = "google_add_album_dialog";
+
 		private GoogleExport export;
 		private PicasaWeb picasa;
 		private string description;
 		private string title;
 		private bool public_album;
 
-		public GoogleAddAlbum (GoogleExport export, PicasaWeb picasa) : base ("google_add_album_dialog")
+		public GoogleAddAlbum (GoogleExport export, PicasaWeb picasa)
 		{
+			xml = new Glade.XML (null, "PicasaWebExport.glade", dialog_name, "f-spot");
+			xml.Autoconnect (this);
+
 			this.export = export;
 			this.picasa = picasa;	
 			
@@ -426,16 +448,28 @@ namespace FSpot {
 			}
 			Dialog.Destroy ();
 		}
+
+		private Gtk.Dialog Dialog {
+			get {
+				if (dialog == null)
+					dialog = (Gtk.Dialog) xml.GetWidget (dialog_name);
+
+				return dialog;
+			}
+		}
 	}
 
 	
-	public class GoogleExport : GladeDialog, FSpot.Extensions.IExporter{
-		public GoogleExport () : base ("google_export_dialog")
+	public class GoogleExport : FSpot.Extensions.IExporter {
+		public GoogleExport ()
 		{
 		}
 
 		public void Run (IBrowsableCollection selection)
 		{
+			xml = new Glade.XML (null, "PicasaWebExport.glade", dialog_name, "f-spot");
+			xml.Autoconnect (this);
+
 			this.items = selection.Items;
 			album_button.Sensitive = false;
 			IconView view = new IconView (selection);
@@ -464,12 +498,12 @@ namespace FSpot {
 
 			scale_check.Toggled += HandleScaleCheckToggled;
 			
-			LoadPreference (Preferences.EXPORT_PICASAWEB_SCALE);
-			LoadPreference (Preferences.EXPORT_PICASAWEB_SIZE);
-			LoadPreference (Preferences.EXPORT_PICASAWEB_ROTATE);
-			LoadPreference (Preferences.EXPORT_PICASAWEB_BROWSER);
+			LoadPreference (SCALE_KEY);
+			LoadPreference (SIZE_KEY);
+			LoadPreference (ROTATE_KEY);
+			LoadPreference (BROWSER_KEY);
 //			LoadPreference (Preferences.EXPORT_PICASAWEB_META);
-			LoadPreference (Preferences.EXPORT_PICASAWEB_TAG);
+			LoadPreference (TAG_KEY);
 		}
 		
 		private bool scale;
@@ -493,7 +527,18 @@ namespace FSpot {
 
 		private string xml_path;
 
-		// Widgets
+		private Glade.XML xml;
+		private string dialog_name = "google_export_dialog";
+
+		public const string EXPORT_SERVICE = "picasaweb/";
+		public const string SCALE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "scale";
+		public const string SIZE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "size";
+		public const string ROTATE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "rotate";
+		public const string BROWSER_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "browser";
+		public const string TAG_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "tag";
+
+		// widgets 
+		[Glade.Widget] Gtk.Dialog dialog;
 		[Glade.Widget] Gtk.OptionMenu gallery_optionmenu;
 		[Glade.Widget] Gtk.OptionMenu album_optionmenu;
 		
@@ -554,12 +599,12 @@ namespace FSpot {
 				progress_dialog.Start ();
 
 				// Save these settings for next time
-				Preferences.Set (Preferences.EXPORT_PICASAWEB_SCALE, scale);
-				Preferences.Set (Preferences.EXPORT_PICASAWEB_SIZE, size);
-				Preferences.Set (Preferences.EXPORT_PICASAWEB_ROTATE, rotate);
-				Preferences.Set (Preferences.EXPORT_PICASAWEB_BROWSER, browser);
+				Preferences.Set (SCALE_KEY, scale);
+				Preferences.Set (SIZE_KEY, size);
+				Preferences.Set (ROTATE_KEY, rotate);
+				Preferences.Set (BROWSER_KEY, browser);
 //				Preferences.Set (Preferences.EXPORT_GALLERY_META, meta);
-				Preferences.Set (Preferences.EXPORT_PICASAWEB_TAG, export_tag);
+				Preferences.Set (TAG_KEY, export_tag);
 			}
 		}
 		
@@ -854,23 +899,23 @@ namespace FSpot {
 			//System.Console.WriteLine ("Setting {0} to {1}", key, val);
 
 			switch (key) {
-			case Preferences.EXPORT_PICASAWEB_SCALE:
+			case SCALE_KEY:
 				if (scale_check.Active != (bool) val) {
 					scale_check.Active = (bool) val;
 					rotate_check.Sensitive = !(bool) val;
 				}
 				break;
 
-			case Preferences.EXPORT_PICASAWEB_SIZE:
+			case SIZE_KEY:
 				size_spin.Value = (double) (int) val;
 				break;
 			
-			case Preferences.EXPORT_PICASAWEB_BROWSER:
+			case BROWSER_KEY:
 				if (browser_check.Active != (bool) val)
 					browser_check.Active = (bool) val;
 				break;
 			
-			case Preferences.EXPORT_PICASAWEB_ROTATE:
+			case ROTATE_KEY:
 				if (rotate_check.Active != (bool) val)
 					rotate_check.Active = (bool) val;
 				break;
@@ -880,10 +925,19 @@ namespace FSpot {
 //					meta_check.Active = (bool) val;
 //				break;
 			
-			case Preferences.EXPORT_PICASAWEB_TAG:
+			case TAG_KEY:
 				if (tag_check.Active != (bool) val)
 					tag_check.Active = (bool) val;
 				break;
+			}
+		}
+
+		private Gtk.Dialog Dialog {
+			get {
+				if (dialog == null)
+					dialog = (Gtk.Dialog) xml.GetWidget (dialog_name);
+
+				return dialog;
 			}
 		}
 	}

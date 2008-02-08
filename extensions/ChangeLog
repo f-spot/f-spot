@@ -1,6 +1,12 @@
 2008-02-01  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* Makefile.am:
+	* DefaultExporters/*:
+	* PicasaWebExport/*: Moved PicasaWeb export out of the codebase.
+
+2008-02-01  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* Makefile.am:
 	* DefaultExporters/DefaultExporters.addin.xml:
 	* CDExport/*: Moved CD export out of the codebase.
 

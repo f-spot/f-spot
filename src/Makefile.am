@@ -188,7 +188,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PhotoVersionCommands.cs	\
 	$(srcdir)/PhotoVersionMenu.cs		\
 	$(srcdir)/PhotoView.cs			\
-	$(srcdir)/PicasaWebExport.cs		\
 	$(srcdir)/PixbufLoader.cs		\
 	$(srcdir)/PixbufUtils.cs		\
 	$(srcdir)/PixbufCache.cs		\

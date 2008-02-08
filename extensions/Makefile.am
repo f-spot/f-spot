@@ -3,6 +3,7 @@ SUBDIRS = 			\
 	GalleryExport		\
 	FlickrExport		\
 	FolderExport		\
+ 	PicasaWebExport		\
  	SmugMugExport		\
 	DefaultExporters	
 

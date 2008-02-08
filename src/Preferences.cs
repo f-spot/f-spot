@@ -50,12 +50,6 @@ namespace FSpot
 		public const string EXPORT_TOKEN_23HQ = "/apps/f-spot/export/tokens/23hq"; 
 		public const string EXPORT_TOKEN_ZOOOMR = "/apps/f-spot/export/tokens/zooomr"; 
 
-		public const string EXPORT_PICASAWEB_SCALE = "/apps/f-spot/export/picasaweb/scale";
-		public const string EXPORT_PICASAWEB_SIZE = "/apps/f-spot/export/picasaweb/size";
-		public const string EXPORT_PICASAWEB_ROTATE = "/apps/f-spot/export/picasaweb/rotate";
-		public const string EXPORT_PICASAWEB_BROWSER = "/apps/f-spot/export/picasaweb/browser";
-		public const string EXPORT_PICASAWEB_TAG = "/apps/f-spot/export/picasaweb/tag";
-
 		public const string EXPORT_SMUGMUG_SCALE = "/apps/f-spot/export/smugmug/scale";
 		public const string EXPORT_SMUGMUG_SIZE = "/apps/f-spot/export/smugmug/size";
 		public const string EXPORT_SMUGMUG_ROTATE = "/apps/f-spot/export/smugmug/rotate";
@@ -152,10 +146,6 @@ namespace FSpot
 			case SHOW_DATES:
 			case SHOW_RATINGS:
 			case VIEWER_SHOW_FILENAMES:
-			case EXPORT_PICASAWEB_SCALE:
-			case EXPORT_PICASAWEB_ROTATE:
-			case EXPORT_PICASAWEB_BROWSER:
-			case EXPORT_PICASAWEB_TAG:
 			case EXPORT_SMUGMUG_SCALE:
 			case EXPORT_SMUGMUG_ROTATE:
 			case EXPORT_SMUGMUG_BROWSER:
@@ -165,7 +155,6 @@ namespace FSpot
 			case DBUS_READ_ONLY:
 				return true;
 			
-			case EXPORT_PICASAWEB_SIZE:
 			case EXPORT_SMUGMUG_SIZE:
 			case EXPORT_FOLDER_SIZE:
 				return 800;

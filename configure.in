@@ -265,7 +265,6 @@ Makefile
 dbus-sharp/Makefile
 dbus-sharp-glib/Makefile
 docs/Makefile
-google-sharp/Makefile
 gnome-keyring-sharp/Makefile
 icons/Makefile
 libeog/Makefile
@@ -300,6 +299,8 @@ extensions/GalleryExport/Makefile
 extensions/FolderExport/Makefile
 extensions/SmugMugExport/SmugMugNet/Makefile
 extensions/SmugMugExport/Makefile
+extensions/PicasaWebExport/Makefile
+extensions/PicasaWebExport/google-sharp/Makefile
 f-spot.pc
 f-spot.spec
 f-spot.desktop.in
