@@ -20,6 +20,7 @@ using System.Web;
 using Mono.Unix;
 using Gtk;
 
+using FSpot;
 using FSpot.Filters;
 using FSpot.Widgets;
 using FSpot.Utils;
@@ -27,7 +28,7 @@ using FSpot.Utils;
 using Gnome.Keyring;
 using SmugMugNet;
 
-namespace FSpot {
+namespace FSpotSmugMugExport {
 	public class SmugMugAccount {
 		private string username;
 		private string password;
@@ -209,17 +210,20 @@ namespace FSpot {
 		}
 	}
 	
-	public class SmugMugAccountDialog : GladeDialog {
+	public class SmugMugAccountDialog {
 		public SmugMugAccountDialog (Gtk.Window parent) : this (parent, null) { 
 			Dialog.Response += HandleAddResponse;
 			add_button.Sensitive = false;
 		}
 		
-		public SmugMugAccountDialog (Gtk.Window parent, SmugMugAccount account) :  base ("smugmug_add_dialog")
+		public SmugMugAccountDialog (Gtk.Window parent, SmugMugAccount account)
 		{
-			this.Dialog.Modal = false;
-			this.Dialog.TransientFor = parent;
-			this.Dialog.DefaultResponse = Gtk.ResponseType.Ok;
+			xml = new Glade.XML (null, "SmugMugExport.glade", dialog_name, "f-spot");
+			xml.Autoconnect (this);
+
+			Dialog.Modal = false;
+			Dialog.TransientFor = parent;
+			Dialog.DefaultResponse = Gtk.ResponseType.Ok;
 			
 			this.account = account;
 	
@@ -274,13 +278,24 @@ namespace FSpot {
 			Dialog.Destroy ();				
 		}
 
+		private Gtk.Dialog Dialog {
+			get {
+				if (dialog == null)
+					dialog = (Gtk.Dialog) xml.GetWidget (dialog_name);
+
+				return dialog;
+			}
+		}
+
 		private SmugMugAccount account;
 		private string password;
 		private string username;
 		private string token;
-
+		private string dialog_name = "smugmug_add_dialog";
+		private Glade.XML xml;
 
 		// widgets 
+		[Glade.Widget] Gtk.Dialog dialog;
 		[Glade.Widget] Gtk.Entry password_entry;
 		[Glade.Widget] Gtk.Entry username_entry;
 
@@ -292,9 +307,10 @@ namespace FSpot {
 		[Glade.Widget] Gtk.HBox locked_area;
 	}
 
-	public class SmugMugAddAlbum : GladeDialog {
+	public class SmugMugAddAlbum {
 		//[Glade.Widget] Gtk.OptionMenu album_optionmenu;
 
+		[Glade.Widget] Gtk.Dialog dialog;
 		[Glade.Widget] Gtk.Entry title_entry;
 		[Glade.Widget] Gtk.CheckButton public_check;
 		[Glade.Widget] Gtk.ComboBox category_combo;
@@ -302,6 +318,8 @@ namespace FSpot {
 		[Glade.Widget] Gtk.Button add_button;
 		[Glade.Widget] Gtk.Button cancel_button;
 
+		private string dialog_name = "smugmug_add_album_dialog";
+		private Glade.XML xml;
 		private SmugMugExport export;
 		private SmugMugApi smugmug;
 		private string description;
@@ -309,8 +327,11 @@ namespace FSpot {
 		private bool public_album;
 		private ListStore category_store;
 
-		public SmugMugAddAlbum (SmugMugExport export, SmugMugApi smugmug) : base ("smugmug_add_album_dialog")
+		public SmugMugAddAlbum (SmugMugExport export, SmugMugApi smugmug)
 		{
+			xml = new Glade.XML (null, "SmugMugExport.glade", dialog_name, "f-spot");
+			xml.Autoconnect (this);
+
 			this.export = export;
 			this.smugmug = smugmug;
 			
@@ -375,15 +396,27 @@ namespace FSpot {
 				return (int)category_combo.Model.GetValue (current, 0);
 			}
 		}
+
+		private Gtk.Dialog Dialog {
+			get {
+				if (dialog == null)
+					dialog = (Gtk.Dialog) xml.GetWidget (dialog_name);
+
+				return dialog;
+			}
+		}
 	}
 
 	
-	public class SmugMugExport : GladeDialog, FSpot.Extensions.IExporter{
-		public SmugMugExport () : base ("smugmug_export_dialog")
+	public class SmugMugExport : FSpot.Extensions.IExporter {
+		public SmugMugExport ()
 		{
 		}
 		public void Run (IBrowsableCollection selection)
 		{
+			xml = new Glade.XML (null, "SmugMugExport.glade", dialog_name, "f-spot");
+			xml.Autoconnect (this);
+
 			this.items = selection.Items;
 			album_button.Sensitive = false;
 			FSpot.Widgets.IconView view = new FSpot.Widgets.IconView (selection);
@@ -413,10 +446,10 @@ namespace FSpot {
 
 			scale_check.Toggled += HandleScaleCheckToggled;
 			
-			LoadPreference (Preferences.EXPORT_SMUGMUG_SCALE);
-			LoadPreference (Preferences.EXPORT_SMUGMUG_SIZE);
-			LoadPreference (Preferences.EXPORT_SMUGMUG_ROTATE);
-			LoadPreference (Preferences.EXPORT_SMUGMUG_BROWSER);
+			LoadPreference (SCALE_KEY);
+			LoadPreference (SIZE_KEY);
+			LoadPreference (ROTATE_KEY);
+			LoadPreference (BROWSER_KEY);
 		}
 		
 		Gtk.ResponseHandler rh;
@@ -441,11 +474,15 @@ namespace FSpot {
 
 		private string xml_path;
 
+		private string dialog_name = "smugmug_export_dialog";
+		private Glade.XML xml;
+
 		// Dialogs
 		private SmugMugAccountDialog gallery_add;
 		private SmugMugAddAlbum album_add;
 
 		// Widgets
+		[Glade.Widget] Gtk.Dialog dialog;
 		[Glade.Widget] Gtk.OptionMenu gallery_optionmenu;
 		[Glade.Widget] Gtk.OptionMenu album_optionmenu;
 		
@@ -471,6 +508,11 @@ namespace FSpot {
 
 		System.Threading.Thread command_thread;
 		
+		public const string EXPORT_SERVICE = "smugmug/";
+		public const string SCALE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "scale";
+		public const string SIZE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "size";
+		public const string ROTATE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "rotate";
+		public const string BROWSER_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "browser";
 
 		private void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
@@ -503,10 +545,10 @@ namespace FSpot {
 				progress_dialog.Start ();
 
 				// Save these settings for next time
-				Preferences.Set (Preferences.EXPORT_SMUGMUG_SCALE, scale);
-				Preferences.Set (Preferences.EXPORT_SMUGMUG_SIZE, size);
-				Preferences.Set (Preferences.EXPORT_SMUGMUG_ROTATE, rotate);
-				Preferences.Set (Preferences.EXPORT_SMUGMUG_BROWSER, browser);
+				Preferences.Set (SCALE_KEY, scale);
+				Preferences.Set (SIZE_KEY, size);
+				Preferences.Set (ROTATE_KEY, rotate);
+				Preferences.Set (BROWSER_KEY, browser);
 			}
 		}
 		
@@ -760,23 +802,23 @@ namespace FSpot {
 			//System.Console.WriteLine ("Setting {0} to {1}", key, val);
 
 			switch (key) {
-			case Preferences.EXPORT_SMUGMUG_SCALE:
+			case SCALE_KEY:
 				if (scale_check.Active != (bool) val) {
 					scale_check.Active = (bool) val;
 					rotate_check.Sensitive = !(bool) val;
 				}
 				break;
 
-			case Preferences.EXPORT_SMUGMUG_SIZE:
+			case SIZE_KEY:
 				size_spin.Value = (double) (int) val;
 				break;
 			
-			case Preferences.EXPORT_SMUGMUG_BROWSER:
+			case BROWSER_KEY:
 				if (browser_check.Active != (bool) val)
 					browser_check.Active = (bool) val;
 				break;
 			
-			case Preferences.EXPORT_SMUGMUG_ROTATE:
+			case ROTATE_KEY:
 				if (rotate_check.Active != (bool) val)
 					rotate_check.Active = (bool) val;
 				break;
@@ -786,6 +828,15 @@ namespace FSpot {
 		protected void HandleCloseEvent (object sender, System.EventArgs args) 
 		{
 			account.SmugMug.Logout ();
+		}
+
+		private Gtk.Dialog Dialog {
+			get {
+				if (dialog == null)
+					dialog = (Gtk.Dialog) xml.GetWidget (dialog_name);
+
+				return dialog;
+			}
 		}
 	}
 }

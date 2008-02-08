@@ -265,7 +265,6 @@ Makefile
 dbus-sharp/Makefile
 dbus-sharp-glib/Makefile
 docs/Makefile
-SmugMugNet/Makefile
 google-sharp/Makefile
 gnome-keyring-sharp/Makefile
 icons/Makefile
@@ -298,6 +297,8 @@ extensions/FlickrExport/Makefile
 extensions/FlickrExport/FlickrNet/Makefile
 extensions/GalleryExport/Makefile
 extensions/FolderExport/Makefile
+extensions/SmugMugExport/SmugMugNet/Makefile
+extensions/SmugMugExport/Makefile
 f-spot.pc
 f-spot.spec
 f-spot.desktop.in

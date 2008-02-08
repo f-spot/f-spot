@@ -274,7 +274,6 @@ DIR_KEYRING = $(top_builddir)/gnome-keyring-sharp
 DIR_LIBEOG = $(top_builddir)/libeog
 DIR_LIBFSPOT = $(top_builddir)/libfspot
 DIR_SEMWEB = $(top_builddir)/semweb
-DIR_SMUGMUG = $(top_builddir)/SmugMugNet
 DIR_SRC = $(top_builddir)/src
 DIR_TAO_OPENGL = $(top_builddir)/Tao/Tao.OpenGl
 DIR_TAO_GLU = $(top_builddir)/Tao/Tao.OpenGl.Glu
@@ -290,7 +289,6 @@ LINK_MONO_ADDINS = \
 	-r:$(DIR_ADDINS_GUI)/Mono.Addins.Gui.dll
 
 LINK_SEMWEB = -r:$(DIR_SEMWEB)/SemWeb.dll
-LINK_SMUGMUG = -r:$(DIR_SMUGMUG)/SmugMugNet.dll
 LINK_TAO = \
 	-r:$(DIR_TAO_OPENGL)/Tao.OpenGl.dll				\
 	-r:$(DIR_TAO_GLU)/Tao.OpenGl.Glu.dll				\

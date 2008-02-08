@@ -2,6 +2,7 @@ SUBDIRS = 			\
 	GalleryExport		\
 	FlickrExport		\
 	FolderExport		\
+ 	SmugMugExport		\
 	DefaultExporters	
 
 addinsdir = $(pkglibdir)

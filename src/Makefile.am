@@ -208,7 +208,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/SlideView.cs			\
 	$(srcdir)/SingleView.cs			\
 	$(srcdir)/SimpleCalendar.cs		\
-	$(srcdir)/SmugMugExport.cs		\
 	$(srcdir)/TagCommands.cs		\
 	$(srcdir)/TagMenu.cs			\
 	$(srcdir)/TagPopup.cs			\

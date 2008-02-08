@@ -2,7 +2,6 @@ SUBDIRS = 		\
 	$(DIR_DBUS)	\
 	$(DIR_DBUS_GLIB)\
 	docs		\
-	SmugMugNet	\
 	glitz-sharp	\
 	google-sharp	\
 	gnome-keyring-sharp \
@@ -23,7 +22,6 @@ DIST_SUBDIRS = 		\
 	dbus-sharp	\
 	dbus-sharp-glib	\
 	docs		\
-	SmugMugNet	\
 	glitz-sharp	\
 	google-sharp	\
 	gnome-keyring-sharp \

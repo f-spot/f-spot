@@ -1,5 +1,5 @@
 <Addin namespace="FSpot"
-	version="1.3"
+	version="1.4"
 	name="Default Exporters"
 	description="This extension contains all the default exporters for f-spot. Most of them will be moved out of this extension in the future, and, at that time, this extension will be deprecated."
 	author="F-Spot team"
@@ -13,7 +13,6 @@
 
 	<Extension path = "/FSpot/Menus/Exports">
 		<ExportMenuItem id="PicasaWeb" _label = "_PicasaWeb..." class = "FSpot.GoogleExport" />
-		<ExportMenuItem id="SmugMug" _label = "_SmugMug..." class = "FSpot.SmugMugExport" />
 		<ExportMenuItem id="CD" _label = "_CD..." class = "FSpot.CDExport" />
 	</Extension>
 </Addin>
