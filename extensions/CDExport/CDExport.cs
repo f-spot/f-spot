@@ -1,13 +1,16 @@
 using System.IO;
 using System.Runtime.InteropServices;
 using Mono.Unix;
+using FSpot;
+using FSpot.Filters;
 using FSpot.Widgets;
 using FSpot.Utils;
 
-namespace FSpot {
-	public class CDExport : GladeDialog, FSpot.Extensions.IExporter {
+namespace FSpotCDExport {
+	public class CDExport : FSpot.Extensions.IExporter {
 		IBrowsableCollection selection;
 
+		[Glade.Widget] Gtk.Dialog dialog;
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
 		[Glade.Widget] Gtk.CheckButton remove_check;
 		[Glade.Widget] Gtk.CheckButton rotate_check;
@@ -22,12 +25,19 @@ namespace FSpot {
 		FSpot.ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
 
-		public CDExport () : base ("cd_export_dialog")
+		private Glade.XML xml;
+		private string dialog_name = "cd_export_dialog";
+
+		public CDExport ()
 		{
 		}
 
 		public void Run (IBrowsableCollection selection)
 		{
+
+			xml = new Glade.XML (null, "CDExport.glade", dialog_name, "f-spot");
+			xml.Autoconnect (this);
+
 			this.selection = selection;
 
 			// Calculate the total size
@@ -105,9 +115,9 @@ namespace FSpot {
 				foreach (IBrowsableItem photo in selection.Items) {
 
  				//FIXME need to implement the uniquename as a filter	
-					using (Filters.FilterRequest request = new Filters.FilterRequest (photo.DefaultVersionUri)) {
+					using (FilterRequest request = new FilterRequest (photo.DefaultVersionUri)) {
 						if (rotate)
-							new Filters.OrientationFilter ().Convert (request);
+							new OrientationFilter ().Convert (request);
 						
 						Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (request.Current.ToString ());
 						Gnome.Vfs.Uri target = dest.Clone ();
@@ -213,6 +223,15 @@ namespace FSpot {
 
 			progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Count);
 			progress_dialog.Start ();
+		}
+
+		private Gtk.Dialog Dialog {
+			get {
+				if (dialog == null)
+					dialog = (Gtk.Dialog) xml.GetWidget (dialog_name);
+
+				return dialog;
+			}
 		}
 	}
 }

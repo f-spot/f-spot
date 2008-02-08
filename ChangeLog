@@ -1,5 +1,14 @@
 2008-02-01  Lorenzo Milesi <maxxer@yetopen.it>
 
+	* configure.in:
+	* Makefile.am:
+	* po/POTFILES.*:
+	* src/f-spot.glade:
+	* src/Makefile.am:
+	* src/CDExport.cs: move CDExport out of the codebase
+
+2008-02-01  Lorenzo Milesi <maxxer@yetopen.it>
+
 	* SmugMugNet/*:
 	* src/SmugMugExport.cs: 
 	* src/f-spot.glade:

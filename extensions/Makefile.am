@@ -1,4 +1,5 @@
 SUBDIRS = 			\
+	CDExport		\
 	GalleryExport		\
 	FlickrExport		\
 	FolderExport		\

@@ -81,7 +81,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/BlockProcessor.cs		\
 	$(srcdir)/BitConverter.cs		\
 	$(srcdir)/PhotoArray.cs 		\
-	$(srcdir)/CDExport.cs			\
 	$(srcdir)/ColorDialog.cs		\
 	$(srcdir)/ColorAdjustment.cs		\
 	$(srcdir)/CompatFileChooser.cs		\
