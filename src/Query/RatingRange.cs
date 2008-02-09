@@ -14,17 +14,6 @@ namespace FSpot.Query
 {
 	public class RatingRange : IQueryCondition
 	{
-		public enum RatingType {
-			Unrated,
-			Rated
-		};
-
-		private RatingType ratetype;
-		public RatingType RateType {
-			get { return ratetype; }
-			set { ratetype = value; }
-		}
-
 		private uint minRating;		
 		public uint MinRating {
 			get { return minRating; }
@@ -37,36 +26,21 @@ namespace FSpot.Query
 			set { maxRating = value; }
 		}
 
-		RatingRange (RatingType ratetype) {
-			this.ratetype = ratetype;
-		}
-
-		public static RatingRange Unrated = new RatingRange (RatingType.Unrated);
-
 		public RatingRange (uint min_rating)
 		{
-			this.ratetype = RatingType.Rated;
 			this.minRating = min_rating;
 			this.maxRating = System.UInt32.MaxValue;
 		}
 
 		public RatingRange (uint min_rating, uint max_rating)
 		{
-			this.ratetype = RatingType.Rated;
 			this.minRating = min_rating;
 			this.maxRating = max_rating;
 		}
 
 		public string SqlClause ()
 		{
-			switch (this.ratetype) {
-			case (RatingType.Unrated) :
-				return String.Format (" photos.rating is NULL ");
-			case (RatingType.Rated) :
-				return String.Format (" photos.rating >= {0} AND photos.rating <= {1} ", minRating, maxRating);
-			default :
-				return String.Empty;
-			}
+			return String.Format (" photos.rating >= {0} AND photos.rating <= {1} ", minRating, maxRating);
 		}
 	}
 }

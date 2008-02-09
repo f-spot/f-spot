@@ -33,11 +33,8 @@ theme_icons = 					\
 	actions,object-rotate-right-24.png	\
 	actions,object-rotate-right-32.png	\
 	actions,rating-blank-16.png		\
-	actions,rating-junk-16.png		\
-	actions,rating-junk-bold-16.png		\
 	actions,rating-rated-16.png		\
 	actions,rating-rated-gray-16.png	\
-	actions,rating-unrated-16.png		\
 	actions,red-eye-remove-16.png		\
 	actions,red-eye-remove-22.png		\
 	actions,red-eye-remove-24.png		\

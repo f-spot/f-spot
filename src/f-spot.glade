@@ -3712,16 +3712,6 @@ Photo Details</property>
 				  </child>
 
 				  <child>
-				    <widget class="GtkCheckMenuItem" id="find_unrated">
-				      <property name="visible">True</property>
-				      <property name="label" translatable="yes">_Unrated Photos</property>
-				      <property name="use_underline">True</property>
-				      <property name="active">False</property>
-				      <signal name="activate" handler="HandleFindUnrated"/>
-				    </widget>
-				  </child>
-
-				  <child>
 				    <widget class="GtkMenuItem" id="clear_rating_filter">
 				      <property name="visible">True</property>
 				      <property name="label" translatable="yes">_Clear Rating Filter</property>

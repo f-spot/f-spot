@@ -105,7 +105,6 @@ public class MainWindow {
 	[Glade.Widget] MenuItem clear_rating_filter;
 
 	[Glade.Widget] CheckMenuItem find_untagged;
-	[Glade.Widget] CheckMenuItem find_unrated;
 	
 	[Glade.Widget] MenuItem last_roll;
 	[Glade.Widget] MenuItem select_rolls;
@@ -2159,8 +2158,6 @@ public class MainWindow {
 	{
 		if (find_untagged.Active != query.Untagged)
 			find_untagged.Active = query.Untagged;
-		if (find_unrated.Active != query.Unrated)
-			find_unrated.Active = query.Unrated;
 		
 		clear_date_range.Sensitive = (query.Range != null);
 		clear_rating_filter.Sensitive = (query.RatingRange != null);
@@ -2554,25 +2551,14 @@ public class MainWindow {
 	}
 
 	void HandleSetRatingFilter (object sender, EventArgs args) {
-		query.Unrated = false;
-		find_unrated.Active = false;
 		RatingFilter.Set set_command = new RatingFilter.Set (query, main_window);
 		set_command.Execute ();
 	}
 
 	public void HandleClearRatingFilter (object sender, EventArgs args) {
 		query.RatingRange = null;
-		query.Unrated = false;
-		find_unrated.Active = false;
 	}
 
-	void HandleFindUnrated (object sender, EventArgs args) {
-		if (query.Unrated == find_unrated.Active)
-			return;
-
-		query.Unrated = !query.Unrated;
-	}	
-	
 	void HandleFindUntagged (object sender, EventArgs args) {
 		if (query.Untagged == find_untagged.Active)
 			return;

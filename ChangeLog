@@ -1,3 +1,18 @@
+2008-02-09  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/f-spot.glade:
+	* src/Widgets/Rating.cs:
+	* src/QueryWidget.cs:
+	* src/Updater.cs:
+	* src/PhotoQuery.cs:
+	* src/MainWindow.cs:
+	* src/Query/RatingRange.cs: disabling the "Unrated" concept
+
+	* icons/Makefile.am:
+	* icons/rating-junk-16.png:
+	* icons/rating-unrated-16.png:
+	* icons/rating-junk-bold-16.png: removing unused icons
+
 2008-02-08  Stphane Delcroix  <sdelcroix@novell.com>
 
 	Patch from lorenzo to addin-ify picasawebexport

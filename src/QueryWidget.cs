@@ -11,7 +11,6 @@ namespace FSpot {
 	        Gtk.HBox box;
 		Gtk.Label label;
 		Gtk.Label untagged;
-		Gtk.Label unrated;
 		Gtk.Label rated;
 		Gtk.Label comma1_label;
 		Gtk.Label comma2_label;
@@ -49,10 +48,6 @@ namespace FSpot {
 			comma1_label = new Gtk.Label (", ");
 			comma1_label.Visible = false;
 			box.PackStart (comma1_label, false, false, 0);
-
-			unrated = new Gtk.Label (Catalog.GetString ("Unrated photos"));
-			unrated.Visible = false;
-			box.PackStart (unrated, false, false, 0);
 
 			rated = new Gtk.Label (Catalog.GetString ("Rated photos"));
 			rated.Visible = false;
@@ -108,7 +103,6 @@ namespace FSpot {
 			if (query.Untagged)
 				return;
 
-			query.Unrated = false;
 			query.RatingRange = null;
 			logic_widget.Clear = true;
 			logic_widget.UpdateQuery ();
@@ -131,19 +125,18 @@ namespace FSpot {
 			if (query.ExtraCondition == null)
 				logic_widget.Clear = true;
 
-			if (!logic_widget.Clear || query.Untagged || (query.RollSet != null) || query.Unrated || (query.RatingRange != null)) {
+			if (!logic_widget.Clear || query.Untagged || (query.RollSet != null) || (query.RatingRange != null)) {
 		                ShowBar ();
 			} else {
 				HideBar ();
 			}
 
 			untagged.Visible = query.Untagged;
-			unrated.Visible = query.Unrated;
-			rated.Visible = (query.RatingRange != null) && !query.Unrated;
+			rated.Visible = (query.RatingRange != null);
 			warning_box.Visible = (query.Count < 1);
 			rollfilter.Visible = (query.RollSet != null);
-			comma1_label.Visible = (untagged.Visible && (unrated.Visible || rated.Visible));
-			comma2_label.Visible = (!untagged.Visible && (unrated.Visible || rated.Visible) && rollfilter.Visible) || 
+			comma1_label.Visible = (untagged.Visible && rated.Visible);
+			comma2_label.Visible = (!untagged.Visible && rated.Visible && rollfilter.Visible) || 
 					       (untagged.Visible && rollfilter.Visible);
 
 		}

@@ -28,18 +28,22 @@ namespace FSpot.Widgets
 		bool editable;
 
 		protected static int max_rating = 5;
-		protected static int min_rating = 1;
 		static Pixbuf icon_rated;
 		static Pixbuf icon_blank;
-		static Pixbuf icon_throw;
-		static Pixbuf icon_throwed;
-		static Pixbuf icon_unrated;
 
 		public event EventHandler Changed;
 		
-		public Rating () : this (-1, true) {} //Default value is NotRated, editable
-		public Rating (bool editable) : this (-1, editable) {}
-		public Rating (int rating) : this (rating, true) {} 
+		public Rating () : this (0, true)
+		{
+		}
+
+		public Rating (bool editable) : this (0, editable)
+		{
+		}
+
+		public Rating (int rating) : this (rating, true)
+		{
+		} 
 
 		public Rating (int rating, bool editable)
 		{
@@ -54,12 +58,8 @@ namespace FSpot.Widgets
 			
 			display_pixbuf = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, Width, Height);
 			
-			// Start display transparent
 			display_pixbuf.Fill (0xffffff00);
-			
 			DrawRating (DisplayPixbuf, Value);
-			
-			// DirectionChanged
 			Add (new Gtk.Image (display_pixbuf));
 			
 			ShowAll ();
@@ -86,26 +86,15 @@ namespace FSpot.Widgets
 			// Clean pixbuf
 			pbuf.Fill (0xffffff00);
 			
-			if (val == -1 || (mouse_over && val != 0)) //NotRated or MouseOver
-				IconThrow.CopyArea (0, 0, IconRated.Width, IconRated.Height, 
-						pbuf, 0, 0);
-			if (val == 0) //Throwed
-				IconThrowed.CopyArea (0, 0, IconRated.Width, IconRated.Height, 
-						pbuf, 0, 0);
 			//Stars
 			for (int i = 0; i < MaxRating; i ++)
-				if (i <= val - MinRating)
+				if (i <= val - 1)
 					IconRated.CopyArea (0, 0, IconRated.Width, IconRated.Height, 
 							pbuf, (i + 1) * IconRated.Width, 0);
 				else {
-					if (!mouse_over && val != -1)
-						continue;
 					IconNotRated.CopyArea (0, 0, IconRated.Width, IconRated.Height, 
 							pbuf, (i + 1) * IconRated.Width, 0);
 				}
-			//Unrate button
-			IconUnrated.CopyArea (0, 0, IconUnrated.Width, IconUnrated.Height,
-							pbuf, (max_rating - min_rating + 2) * IconUnrated.Width, 0); 
 		}
 
 		public void SetValueFromPosition (int x)
@@ -118,10 +107,7 @@ namespace FSpot.Widgets
 			//System.Console.WriteLine ("Rating from position >>{0}<<", (int) (x / (double)(IconRated.Width)));
 			int pos = (int) (x / (double) IconRated.Width);
 			
-			if (pos == NumLevels - 1)
-				return -1;
-			else
-				return pos;
+			return pos;
 		}
 		
 		private void HandleMouseEnter (object sender, EventArgs args)
@@ -173,7 +159,7 @@ namespace FSpot.Widgets
 					return true;
 				}
 				
-				if (ek.KeyValue >= (48 + MinRating) &&
+				if (ek.KeyValue >= (48 + 1) &&
 				       ek.KeyValue <= (48 + MaxRating) &&
 				       ek.KeyValue <= 59) {
 					Value = (int) ek.KeyValue - 48;
@@ -260,11 +246,12 @@ namespace FSpot.Widgets
 			get { return rating; }
 			
 			set {
+				//Console.WriteLine ("Set Rating to >>{0}<<", value);
 				// Same rating
 				if (rating == value)
 					return;
 				// Remove.trash.1-5 rating
-				if (value >= -1 && value <= max_rating) {
+				if (value >= 0 && value <= max_rating) {
 					rating = value;
 					OnChanged ();
 				}
@@ -284,25 +271,10 @@ namespace FSpot.Widgets
 			get { return max_rating; }
 		}
 		
-		public int MinRating {
-			get { return min_rating; }
-		}
-		
 		public virtual int NumLevels {
-			get { return max_rating - min_rating + 3; }
+			get { return max_rating + 1; }
 		}
 		
-		public Pixbuf IconUnrated {
-			get {
-				if (icon_unrated == null)
-					icon_unrated = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "rating-unrated", 16, (Gtk.IconLookupFlags)0);
-
-				return icon_unrated;
-			}
-
-			set { icon_unrated = value; }
-		}
-
 		public virtual Pixbuf IconRated {
 			get {
 				if (icon_rated == null)
@@ -325,28 +297,6 @@ namespace FSpot.Widgets
 			set { icon_blank = value; }
 		}
 		
-		public virtual Pixbuf IconThrow {
-			get {
-				if (icon_throw == null)
-					icon_throw = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "rating-junk", 16, (Gtk.IconLookupFlags)0);
-				
-				return icon_throw;
-			}
-			
-			set { icon_throw = value; }
-		}
-		
-		public virtual Pixbuf IconThrowed {
-			get {
-				if (icon_throwed == null)
-					icon_throwed = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "rating-junk-bold", 16, (Gtk.IconLookupFlags)0);
-				
-				return icon_throwed;
-			}
-			
-			set { icon_throw = value; }
-		}
-		
 		public virtual int Width {
 			get { return IconRated.Width * NumLevels; }
 		}
@@ -361,21 +311,30 @@ namespace FSpot.Widgets
 		static Pixbuf icon_rated_small;
 		static Pixbuf icon_blank_small;
 		
-		public RatingSmall () : base (-1) {}
-		public RatingSmall (int rating) : base (rating) {}
-		public RatingSmall (bool editable) : base (editable) {}
-		public RatingSmall (int rating, bool editable) : base (rating, editable) {}
+		public RatingSmall () : base (0)
+		{
+		}
+
+		public RatingSmall (int rating) : base (rating) 
+		{
+		}
+
+		public RatingSmall (bool editable) : base (editable)
+		{
+		}
+
+		public RatingSmall (int rating, bool editable) : base (rating, editable)
+		{
+		}
 
 		public override void DrawRating (Pixbuf pbuf, int val)
 		{
 			// Clean pixbuf
 			pbuf.Fill (0xffffff00);
 			
-			if (val == -1) //NotRated
-				return;
 			//Stars
-			for (int i = 0; i < MaxRating; i ++)
-				if (i <= val - MinRating)
+			for (int i = 1; i < MaxRating; i ++)
+				if (i <= val - 1)
 					IconRated.CopyArea (0, 0, IconRated.Width, IconRated.Height, 
 							pbuf, i * IconRated.Width, 0);
 				else
@@ -402,7 +361,7 @@ namespace FSpot.Widgets
 		}
 		
 		public override int NumLevels {
-			get { return max_rating - min_rating + 1; }
+			get { return max_rating; }
 		}
 	}
 }

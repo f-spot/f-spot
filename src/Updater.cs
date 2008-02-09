@@ -236,7 +236,12 @@ namespace FSpot.Database {
 			});
 			
 			// Update to version 13.0
-			//AddUpdate (new Version (0,0),delegate () {
+			AddUpdate (new Version (13,0), delegate () {
+				Execute ("UPDATE photos SET rating = 0 WHERE rating IS NULL");
+			});
+
+			// Update to version 14.0
+			//AddUpdate (new Version (14,0),delegate () {
 			//	do update here
 			//});
 		}

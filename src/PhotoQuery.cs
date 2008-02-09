@@ -161,19 +161,6 @@ namespace FSpot {
 			}
 		}
 
-		public bool Unrated {
-			get {
-				return (GetCondition<RatingRange> () != null && GetCondition<RatingRange> () == RatingRange.Unrated);
-			}
-			set {
-				if (value)
-					RatingRange = RatingRange.Unrated;
-				else
-					if (UnSetCondition<RatingRange> ())
-						RequestReload ();
-			}
-		}
-		
 		public void RequestReload ()
 		{
 			if (untagged)
