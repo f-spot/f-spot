@@ -48,7 +48,7 @@ namespace FSpot.Widgets
 					GLib.Markup.EscapeText (Catalog.GetString ("Rating:")));
 			box.PackStart (label, false, false, 0);
 
-			entry = new Rating (0, true);
+			entry = new Rating (-1, true);
 			entry.Changed += OnEntryChanged;
 			box.PackStart (entry, false, false, 0);
 
