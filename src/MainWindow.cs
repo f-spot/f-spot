@@ -1390,11 +1390,7 @@ public class MainWindow {
 		db.BeginTransaction ();
 		foreach (int num in SelectedIds ()) {
 			p = query.Photos [num];
-
-			if (r == -1)
-				p.RemoveRating();
-			else
-				p.Rating = (uint) r;
+			p.Rating = (uint) r;
 			query.Commit (num);
 		}
 		db.CommitTransaction ();

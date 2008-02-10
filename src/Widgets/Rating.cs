@@ -333,7 +333,7 @@ namespace FSpot.Widgets
 			pbuf.Fill (0xffffff00);
 			
 			//Stars
-			for (int i = 1; i < MaxRating; i ++)
+			for (int i = 0; i < MaxRating; i ++)
 				if (i <= val - 1)
 					IconRated.CopyArea (0, 0, IconRated.Width, IconRated.Height, 
 							pbuf, i * IconRated.Width, 0);
