@@ -12,6 +12,7 @@ using Gtk;
 using Gnome;
 using FSpot;
 using FSpot.Query;
+using FSpot.Widgets;
 
 public class RatingFilter {
 	public class Set : FSpot.GladeDialog {
@@ -19,8 +20,13 @@ public class RatingFilter {
 		Gtk.Window parent_window;
 
 		[Glade.Widget] private Button ok_button;
-		[Glade.Widget] private SpinButton minrating;
-		[Glade.Widget] private SpinButton maxrating;
+		[Glade.Widget] private HBox minrating_hbox;
+		[Glade.Widget] private HBox maxrating_hbox;
+		
+		private int minrating_value = 4;
+		private int maxrating_value = 5;
+		private Rating minrating;
+		private Rating maxrating;
 
 		public Set (FSpot.PhotoQuery query, Gtk.Window parent_window)
 		{
@@ -30,12 +36,16 @@ public class RatingFilter {
 
 		public bool Execute ()
 		{
-			this.CreateDialog ("set_rating_filter");
+			this.CreateDialog ("rating_filter_dialog");
 			
 			if (query.RatingRange != null) {
-				minrating.Value = query.RatingRange.MinRating;
-				maxrating.Value = query.RatingRange.MaxRating;
+				minrating_value = (int) query.RatingRange.MinRating;
+				maxrating_value = (int) query.RatingRange.MaxRating;
 			}
+			minrating = new Rating (minrating_value);
+			maxrating = new Rating (maxrating_value);
+			minrating_hbox.PackStart (minrating, false, false, 0);
+			maxrating_hbox.PackStart (maxrating, false, false, 0);
 
 			Dialog.TransientFor = parent_window;
 			Dialog.DefaultResponse = ResponseType.Ok;
