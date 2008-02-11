@@ -25,7 +25,10 @@ PKGS =					\
 
 RESOURCES =				\
 	-resource:$(srcdir)/$(PLUGIN_MANIFEST)	\
-	-resource:$(srcdir)/$(PLUGIN_NAME).glade
+	-resource:$(srcdir)/$(PLUGIN_NAME).glade \
+	-resource:$(srcdir)/f-spot-simple-white.css	\
+	-resource:$(srcdir)/f-spot-simple.css		\
+	-resource:$(srcdir)/f-spot.js
 
 all: $(PLUGIN_ASSEMBLY)
 
