@@ -13,6 +13,7 @@
 
 
 using FSpot;
+using FSpot.UI.Dialog;
 using FSpot.Extensions;
 using FSpot.Filters;
 using System;

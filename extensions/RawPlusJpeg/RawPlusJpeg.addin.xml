@@ -1,12 +1,12 @@
 <Addin namespace="FSpot"
 	id="RawPlusJpeg"
-	version="1.05"
+	version="1.6"
 	description="Merge RAW+Jpeg as multiple versions of the same photo"
 	author="Stephane Delcroix"
 	url="http://f-spot.org/Extensions"
 	category="Tools">
 	<Dependencies>
-		<Addin id="Core" version="0.4.0.3437"/>
+		<Addin id="Core" version="0.4.2.0"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Menus/Tools">
 		<Command id = "MergeRawJpeg" _label = "Merge Raw" command_type = "RawPlusJpegExtension.RawPlusJpeg" />
