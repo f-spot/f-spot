@@ -177,7 +177,7 @@ public class PhotoStore : DbStore {
 	 			"description", description,
 				"roll_id", roll_id,
 	 			"default_version_id", Photo.OriginalVersionId,
-	 			"rating", null));
+				"rating", "0"));
 	
 			photo = new Photo (id, unix_time, new_uri);
 			AddToCache (photo);
@@ -318,10 +318,7 @@ public class PhotoStore : DbStore {
 			photo.Description = reader[2].ToString ();
 			photo.RollId = Convert.ToUInt32 (reader[3]);
 			photo.DefaultVersionId = Convert.ToUInt32 (reader[4]);
-			if (reader [5] != null)
-				photo.Rating = Convert.ToUInt32 (reader [5]);
-			else
-				photo.RemoveRating();
+			photo.Rating = Convert.ToUInt32 (reader [5]);
 			AddToCache (photo);
 		}
 		reader.Close();
@@ -356,10 +353,7 @@ public class PhotoStore : DbStore {
 			photo.Description = reader[2].ToString ();
 			photo.RollId = Convert.ToUInt32 (reader[3]);
 			photo.DefaultVersionId = Convert.ToUInt32 (reader[4]);
-			if (reader [5] != null)
-				photo.Rating = Convert.ToUInt32 (reader [5]);
-			else
-				photo.RemoveRating();
+			photo.Rating = Convert.ToUInt32 (reader [5]);
 		}
 	        reader.Close();
 
@@ -442,13 +436,6 @@ public class PhotoStore : DbStore {
 	private void Update (Photo photo) {
 		// Update photo.
 
-		uint rate = 0;
-		bool rated = false;
-		try {
-			rate = photo.Rating;
-			rated = true;
-		} catch {
-		}
 		Database.ExecuteNonQuery (new DbCommand (
 			"UPDATE photos SET description = :description, " + 
 			"default_version_id = :default_version_id, " + 
@@ -460,7 +447,7 @@ public class PhotoStore : DbStore {
 			"default_version_id", photo.DefaultVersionId,
 			"time", DbUtils.UnixTimeFromDateTime (photo.Time),
 			"uri", photo.VersionUri (Photo.OriginalVersionId).ToString (),
-			"rating", (rated ? String.Format ("{0}", rate) : null),
+			"rating", String.Format ("{0}", photo.Rating),
 			"id", photo.Id));
 
 		// Update tags.
@@ -564,10 +551,7 @@ public class PhotoStore : DbStore {
 				photo.Description = reader[3].ToString ();
 				photo.RollId = Convert.ToUInt32 (reader[4]);
 				photo.DefaultVersionId = Convert.ToUInt32 (reader[5]);
-				if (reader [6] != null)
-					photo.Rating = Convert.ToUInt32 (reader [6]);
-				else
-					photo.RemoveRating ();
+				photo.Rating = Convert.ToUInt32 (reader [6]);
 				
 				version_list.Add (photo);
 			}

@@ -21,12 +21,6 @@ using FSpot.Utils;
 
 namespace FSpot
 {
-	public class NotRatedException : System.ApplicationException
-	{
-		public NotRatedException (string message) : base (message)
-		{}
-	}
-
 	public class Photo : DbItem, IComparable, IBrowsableItem {
 		// IComparable 
 		public int CompareTo (object obj) {
@@ -173,26 +167,12 @@ namespace FSpot
 		}
 	
 		private uint rating;
-		private bool rated = false;
 		public uint Rating {
-			get {
-				if (!rated)
-					throw new NotRatedException ("This photo is not rated yet");
-				else
-					return rating;
-			}
+			get { return rating; }
 			set {
-				if (value >= 0 && value <= 5) {
+				if (value >= 0 && value <= 5)
 					rating = value;
-					rated = true;
-				} else
-					rated = false;
 			}
-		}
-	
-		public void RemoveRating ()
-		{
-			rated = false;
 		}
 	
 		// Version management
@@ -569,7 +549,7 @@ namespace FSpot
 			time = DbUtils.DateTimeFromUnixTime (unix_time);
 	
 			description = String.Empty;
-			rated = false;
+			rating = 0;
 	
 			// Note that the original version is never stored in the photo_versions table in the
 			// database.

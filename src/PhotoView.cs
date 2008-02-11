@@ -203,11 +203,7 @@ public class PhotoView : EventBox {
 	{
 		rating.Changed -= HandleRatingChanged;
 		if (Item.IsValid)
-			try {
-				rating.Value = (int)Item.Current.Rating;
-			} catch (FSpot.NotRatedException) {
-				rating.Value = -1;
-			}
+			rating.Value = (int)Item.Current.Rating;
 		rating.Changed += HandleRatingChanged;
 	}
 
@@ -418,10 +414,7 @@ public class PhotoView : EventBox {
 		if (!Item.IsValid)
 			return;
 
-		if ((o as Widgets.Rating).Value < 0)
-			((Photo)Item.Current).RemoveRating();
-		else
-			((Photo)Item.Current).Rating = (uint)(o as Widgets.Rating).Value;
+		((Photo)Item.Current).Rating = (uint)(o as Widgets.Rating).Value;
 
 		if (commit_delay.IsPending)
 			if (changed_photo == Item.Index)

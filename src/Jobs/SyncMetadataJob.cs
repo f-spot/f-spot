@@ -82,14 +82,10 @@ namespace FSpot.Jobs {
 				names [i] = tags [i].Name;
 			
 			xmp.Store.Update ("dc:subject", "rdf:Bag", names);
-			try { 
 				xmp.Store.Update ("xmp:Rating", (item as Photo).Rating.ToString());
 	// FIXME - Should we also store/overwrite the Urgency field?
 	//			uint urgency_value = (item as Photo).Rating + 1; // Urgency valid values 1 - 8
 	//			xmp.Store.Update ("photoshop:Urgency", urgency_value.ToString());
-			} catch (NotRatedException) {
-				xmp.Store.Delete ("xmp:Rating");
-			}
 			xmp.Dump ();
 	
 			return xmp;
