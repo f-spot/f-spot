@@ -314,7 +314,7 @@ F_SPOT_ASSEMBLIES = 				\
 	-r:Cms.dll				\
 	$(NUNIT_PKG)				\
 	$(GCONF_PKG)				\
-	-pkg:gtkhtml-sharp-2.0			\
+	$(GTKHTML_SHARP_PKG)			\
 	-pkg:glade-sharp-2.0			\
 	-pkg:gnome-vfs-sharp-2.0
 

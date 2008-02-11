@@ -1,3 +1,9 @@
+2008-02-11  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* configure.in:
+	* src/Makefile.am: check for gtkhtml-sharp-3.14 if gnome-sharp-2.0 is
+	newer than 2.19.90. Fix bgo#515065.
+
 2008-02-09  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/f-spot.glade:
