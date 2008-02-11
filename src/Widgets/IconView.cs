@@ -804,6 +804,7 @@ namespace FSpot.Widgets
 			if (entry != null)
 				thumbnail = entry.ShallowCopyPixbuf ();
 
+			Gdk.Rectangle draw = Gdk.Rectangle.Zero;
 			if (Gdk.Rectangle.Inflate (image_bounds, expansion + 1, expansion + 1).Intersect (area, out image_bounds) && thumbnail != null) {
 
 				PixbufUtils.Fit (thumbnail, ThumbnailWidth, ThumbnailHeight,
@@ -853,7 +854,7 @@ namespace FSpot.Widgets
 				region.Width = temp_thumbnail.Width;
 				region.Height = temp_thumbnail.Height;
 
-				Gdk.Rectangle draw = Gdk.Rectangle.Inflate (region, 1, 1);
+				draw = Gdk.Rectangle.Inflate (region, 1, 1);
 
 				if (!temp_thumbnail.HasAlpha)
 					Style.PaintShadow (Style, BinWindow, cell_state,
@@ -881,15 +882,14 @@ namespace FSpot.Widgets
 			if (thumbnail != null) {
 				thumbnail.Dispose ();
 			}
-			Gdk.Rectangle layout_bounds = Gdk.Rectangle.Zero;
-			if (DisplayRatings) {
+			if (DisplayRatings && photo.Rating > 0 && region.X == draw.X && region.X != 0) {
 				FSpot.Widgets.RatingSmall rating;
 				rating = new FSpot.Widgets.RatingSmall ((int) photo.Rating, false);
-				if (region.Intersect (area, out region))
-					rating.DisplayPixbuf.RenderToDrawable (BinWindow, Style.WhiteGC,
-						0, 0, region.X, region.Y, -1, -1, RgbDither.None, region.X, region.Y);
+				rating.DisplayPixbuf.RenderToDrawable (BinWindow, Style.WhiteGC,
+						0, 0, region.X, region.Y, -1, -1, RgbDither.None, 0, 0);
 				
 			}
+			Gdk.Rectangle layout_bounds = Gdk.Rectangle.Zero;
 			if (DisplayDates) {
 				string date;
 				if (cell_width > 200) {
