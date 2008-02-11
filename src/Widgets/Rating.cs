@@ -337,9 +337,6 @@ namespace FSpot.Widgets
 				if (i <= val - 1)
 					IconRated.CopyArea (0, 0, IconRated.Width, IconRated.Height, 
 							pbuf, i * IconRated.Width, 0);
-				else
-					IconNotRated.CopyArea (0, 0, IconRated.Width, IconRated.Height, 
-							pbuf, i * IconRated.Height, 0);
 		}
 		
 		public override Pixbuf IconRated {

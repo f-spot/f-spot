@@ -885,10 +885,10 @@ namespace FSpot.Widgets
 			if (DisplayRatings) {
 				FSpot.Widgets.RatingSmall rating;
 				rating = new FSpot.Widgets.RatingSmall ((int) photo.Rating, false);
-				if (region.Intersect (area, out region)) {
-				rating.DisplayPixbuf.RenderToDrawable (BinWindow, Style.WhiteGC,
+				if (region.Intersect (area, out region))
+					rating.DisplayPixbuf.RenderToDrawable (BinWindow, Style.WhiteGC,
 						0, 0, region.X, region.Y, -1, -1, RgbDither.None, region.X, region.Y);
-				}
+				
 			}
 			if (DisplayDates) {
 				string date;
