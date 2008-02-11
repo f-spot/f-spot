@@ -622,6 +622,14 @@ namespace FSpotGoogleExport {
 				progress_dialog.Fraction = ((photo_index - 1) / (double) items.Length) + (args.BytesSent / (args.BytesTotal * (double) items.Length));
 		}
 
+		private class DateComparer : IComparer
+		{
+			public int Compare (object left, object right)
+			{
+				return DateTime.Compare ((left as IBrowsableItem).Time, (right as IBrowsableItem).Time);
+			}
+		}
+
 		private void Upload ()
 		{
 			album.UploadProgress += HandleUploadProgress;
@@ -639,7 +647,7 @@ namespace FSpotGoogleExport {
 			if (rotate)
 				filters.Add (new OrientationFilter ());
 
-			Array.Sort (items as Photo[], new Photo.CompareDateName ());
+			Array.Sort (items, new DateComparer ());
 
 			while (photo_index < items.Length) {
 				try {

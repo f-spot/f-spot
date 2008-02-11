@@ -1,5 +1,6 @@
 using FlickrNet;
 using System;
+using System.Collections;
 using System.IO;
 using System.Threading;
 using Mono.Unix;
@@ -287,15 +288,23 @@ namespace FSpotFlickrExport {
 			}
 			progress_dialog.Fraction = (photo_index - 1.0 + (args.Bytes / (double) info.Length)) / (double) selection.Count;		      
 		}
-		
+
+		private class DateComparer : IComparer
+		{
+			public int Compare (object left, object right)
+			{
+				return DateTime.Compare ((left as IBrowsableItem).Time, (right as IBrowsableItem).Time);
+			}
+		}
+	
 		private void Upload () {
 			progress_item = new ProgressItem ();
 			progress_item.Changed += HandleProgressChanged;
 			fr.Connection.OnUploadProgress += HandleFlickrProgress;
 
 			System.Collections.ArrayList ids = new System.Collections.ArrayList ();
-			FSpot.Photo [] photos = (FSpot.Photo []) selection.Items;
-			Array.Sort (photos, new FSpot.Photo.CompareDateName ());
+			IBrowsableItem [] photos = selection.Items;
+			Array.Sort (photos, new DateComparer ());
 
 			for (int index = 0; index < photos.Length; index++) {
 				try {
