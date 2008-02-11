@@ -503,7 +503,6 @@ public class PhotoView : EventBox {
 
 		tag_view = new Widgets.TagView ();
 		inner_hbox.PackStart (tag_view, false, true, 0);
-		SetColors ();
 
 		Label comment = new Label (Catalog.GetString ("Comment:"));
 		inner_hbox.PackStart (comment, false, false, 0);
@@ -514,6 +513,8 @@ public class PhotoView : EventBox {
 		rating = new Widgets.Rating();
 		inner_hbox.PackStart (rating, false, false, 0);
 		rating.Changed += HandleRatingChanged;
+
+		SetColors ();
 		
 		inner_vbox.PackStart (inner_hbox, false, true, 0);
 
@@ -598,6 +599,7 @@ public class PhotoView : EventBox {
 		GtkUtil.ModifyColors (photo_view);
 		GtkUtil.ModifyColors (background);
 		GtkUtil.ModifyColors (photo_view_scrolled);
+		GtkUtil.ModifyColors (rating);
 	}
 
 	protected override void OnStyleSet (Style previous)

@@ -58,6 +58,13 @@ namespace FSpot.Widgets
 			ConnectChildExpose (entry);
 		}
 
+		protected override void OnRealized ()
+		{
+			entry.ModifyBg (Gtk.StateType.Prelight, entry.Style.BaseColors [(int)Gtk.StateType.Selected]);
+			base.OnRealized();
+
+		}
+
 		private int TransformX (double inx)
 		{
 			int x = (int)inx - entry.Allocation.X;
