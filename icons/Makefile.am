@@ -127,8 +127,5 @@ uninstall-hook:
 
 	
 MAINTAINERCLEANFILES = Makefile.in
-EXTRA_DIST = $(wildcard *.png *.svg)	\
-	f-spot-simple.css		\
-	f-spot-simple-white.css		\
-	f-spot.js
+EXTRA_DIST = $(wildcard *.png *.svg)
 
