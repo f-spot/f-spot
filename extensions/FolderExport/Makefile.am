@@ -46,7 +46,10 @@ plugin_DATA =			\
 EXTRA_DIST = 			\
 	$(PLUGIN_SOURCES)	\
 	$(PLUGIN_MANIFEST)	\
-	$(PLUGIN_NAME).glade
+	$(PLUGIN_NAME).glade	\
+	f-spot-simple.css	\
+	f-spot-simple-white.css	\
+	f-spot.js
 
 CLEANFILES =			\
 	$(PLUGIN_ASSEMBLY)	\
