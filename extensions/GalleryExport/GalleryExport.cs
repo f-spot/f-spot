@@ -757,6 +757,7 @@ namespace G2Export {
 				} catch (System.Exception e) {
 					progress_dialog.Message = String.Format (Catalog.GetString ("Error uploading picture \"{0}\" to Gallery: {1}"), item.Name, e.Message);
 					progress_dialog.ProgressText = Catalog.GetString ("Error");
+					Console.WriteLine (e);
 
 					if (progress_dialog.PerformRetrySkip ()) {
 						photo_index--;

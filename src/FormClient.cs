@@ -77,7 +77,9 @@ namespace FSpot {
 			// The types we check here need to match the
 			// types we allow in .Add
 	
-			if (item.Value is FileInfo) {
+			if (item.Value == null) {
+				Write (item.Name, (string)String.Empty);
+			} else if (item.Value is FileInfo) {
 				Write (item.Name, (FileInfo)item.Value);
 			} else if (item.Value is string) {
 				Write (item.Name, (string)item.Value);
@@ -90,7 +92,9 @@ namespace FSpot {
 			// The types we check here need to match the
 			// types we allow in .Add
 	
-			if (item.Value is FileInfo) {
+			if (item.Value == null) {
+				return MultipartLength (item.Name, (string)String.Empty);
+			} else if (item.Value is FileInfo) {
 				return MultipartLength (item.Name, (FileInfo)item.Value);
 			} else if (item.Value is string) {
 				return MultipartLength (item.Name, (string)item.Value);

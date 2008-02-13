@@ -1,3 +1,9 @@
+2008-02-12  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* src/FormClient.cs:
+	* extensions/GalleryExport/GalleryExport.cs: fix export in --view mode
+	(and print something useful on upload faluire).
+
 2008-02-11  Jakub Steiner <jimmac@ximian.com>
 
 	* icons/rating-rated-16.svg:
