@@ -325,6 +325,7 @@ F_SPOT_DISTRESOURCES =			\
 
 F_SPOT_RESOURCES =					\
 	$(F_SPOT_DISTRESOURCES)				\
+	$(top_srcdir)/COPYING				\
 	$(top_srcdir)/icons/f-spot-not.png		\
 	$(top_srcdir)/icons/f-spot-logo.svg
 

@@ -8,6 +8,7 @@
  */
 
 using System;
+using System.IO;
 using Mono.Unix;
 
 namespace FSpot.UI.Dialog
@@ -73,7 +74,18 @@ namespace FSpot.UI.Dialog
 				"Miguel de Icaza",
 				"Stephane Delcroix",
 			};
-			License = "GPL v2";
+			//Read license from COPYING
+			try {
+				System.Reflection.Assembly assembly = System.Reflection.Assembly.GetCallingAssembly ();
+				using (Stream s = assembly.GetManifestResourceStream ("COPYING")) {
+					StreamReader reader = new StreamReader (s);
+					License = reader.ReadToEnd ();
+					s.Close ();
+				}
+			} catch (Exception e) {
+				Console.WriteLine (e);
+				License = "GPL v2";
+			}
 			Logo = PixbufUtils.LoadFromAssembly ("f-spot-logo.svg");
 	#if !GTK_2_11
 			Name = "F-Spot";

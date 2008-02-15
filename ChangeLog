@@ -1,5 +1,11 @@
 2008-02-15  Lorenzo Milesi <maxxer@yetopen.it>
 
+	* src/Makefile.am: 
+	* src/UI.Dialog/AboutDialog.cs: use COPYING file as text for the
+	license info in the about dialog.
+
+2008-02-15  Lorenzo Milesi <maxxer@yetopen.it>
+
 	* src/Jobs/SyncMetadataJob.cs: update xmp rating only if rating > 0.
 
 2008-02-12  Lorenzo Milesi <maxxer@yetopen.it>
