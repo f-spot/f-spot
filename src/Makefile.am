@@ -385,7 +385,7 @@ EXTRA_DIST =					\
 	$(F_SPOT_DISTRESOURCES)			\
 	f-spot.exe.config.in			\
 	f-spot.in				\
-	Cms.dll.config
+	Cms.dll.config.in
 
 CLEANFILES =					\
 	f-spot.exe.config			\
@@ -399,7 +399,8 @@ CLEANFILES =					\
 	FSpot.Query.dll				\
 	FSpot.Query.dll.mdb			\
 	FSpot.Core.dll.mdb			\
-	FSpot.Core.dll
+	FSpot.Core.dll				\
+	Cms.dll.config
 
 
 DISTCLEANFILES = 				\
