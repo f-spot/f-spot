@@ -196,6 +196,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Preferences.cs 		\
 	$(srcdir)/PreviewPopup.cs 		\
 	$(srcdir)/PrintDialog.cs		\
+	$(srcdir)/PrintOperation.cs		\
 	$(srcdir)/ProgressDialog.cs		\
 	$(srcdir)/RatingFilter.cs		\
 	$(srcdir)/QueuedSqliteDatabase.cs	\
@@ -239,6 +240,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/CairoUtils.cs		\
 	$(srcdir)/Widgets/ComplexMenuItem.cs	\
 	$(srcdir)/Widgets/CompositeUtils.cs	\
+	$(srcdir)/Widgets/CustomPrintWidget.cs	\
 	$(srcdir)/Widgets/Dissolve.cs		\
 	$(srcdir)/Widgets/FindBar.cs		\
 	$(srcdir)/Widgets/GdkUtils.cs		\
@@ -288,6 +290,7 @@ UTILS_ASSEMBLIES =				\
 	-pkg:gtk-sharp-2.0			\
 	-pkg:gnome-sharp-2.0			\
 	-r:Mono.Posix				\
+	-r:MCairo=Mono.Cairo			\
 	$(GCONF_PKG)				\
 	$(LINK_DBUS)
 
@@ -307,6 +310,7 @@ F_SPOT_ASSEMBLIES = 				\
 	-r:Mono.Data.SqliteClient		\
 	-r:Mono.Posix				\
 	-r:Mono.Security			\
+	-r:MCairo=Mono.Cairo			\
 	-r:ICSharpCode.SharpZipLib		\
 	-r:FSpot.Core.dll			\
 	-r:FSpot.Query.dll			\
@@ -327,7 +331,8 @@ F_SPOT_RESOURCES =					\
 	$(F_SPOT_DISTRESOURCES)				\
 	$(top_srcdir)/COPYING				\
 	$(top_srcdir)/icons/f-spot-not.png		\
-	$(top_srcdir)/icons/f-spot-logo.svg
+	$(top_srcdir)/icons/f-spot-logo.svg		\
+	$(top_srcdir)/icons/flower.png
 
 RESOURCES = $(foreach res,$(F_SPOT_RESOURCES), $(addprefix -resource:,$(res)),$(notdir $(res)))
 

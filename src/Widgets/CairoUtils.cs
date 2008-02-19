@@ -28,6 +28,7 @@ namespace FSpot.Widgets {
 								double        pixbuf_x,
 								double        pixbuf_y);
 		
+		[Obsolete ("use Gdk.CairoHelper.SetSourcePixbuf instead")]
 		public static void SetSourcePixbuf (Context ctx, Gdk.Pixbuf pixbuf, double x, double y)
 		{
 			gdk_cairo_set_source_pixbuf (ctx.Handle, pixbuf.Handle, x, y);

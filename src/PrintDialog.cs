@@ -3,6 +3,7 @@ using System.Collections;
 using Gtk;
 using FSpot.UI.Dialog;
 
+#if !GTK_2_10
 namespace FSpot {
 	public class PrintDialog {
 		[Glade.Widget] private Gtk.Dialog print_dialog;
@@ -199,3 +200,4 @@ namespace FSpot {
 		}
 	}
 }
+#endif

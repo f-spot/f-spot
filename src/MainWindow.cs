@@ -1533,7 +1533,12 @@ public class MainWindow {
 	
 	void HandlePrintCommand (object sender, EventArgs e)
 	{
+#if !GTK_2_10
 		new FSpot.PrintDialog (SelectedPhotos ());
+#else
+		FSpot.PrintOperation print = new FSpot.PrintOperation (SelectedPhotos ());
+		print.Run (PrintOperationAction.PrintDialog, null);
+#endif
 	}
 
 	private Gtk.Dialog info_display_window;

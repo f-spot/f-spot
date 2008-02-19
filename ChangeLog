@@ -1,3 +1,20 @@
+2008-02-19  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Widgets/CairoUtils.cs:
+	* src/Loupe.cs: Obsoleting method now available in the bindings
+
+	* src/Makefile.am:
+	* src/Widgets/CustomPrintWidget.cs:
+	* src/PrintOperation.cs:
+	* src/MainWindow.cs:
+	* src/PrintDialog.cs: new Gtk2.10 print dialog and operation, #ifdef
+	old code for backward compatibility
+
+	* configure.in: require Mono.Cairo
+
+	* icons/Makefile.am:
+	* icons/flower.png: sample image for the print dialog
+
 2008-02-15  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* src/Makefile.am: 
