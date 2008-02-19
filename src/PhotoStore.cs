@@ -277,30 +277,6 @@ public class PhotoStore : DbStore {
 		reader.Close();
 	}
 
-	private void GetData (Photo photo)
-	{
-		SqliteDataReader reader = Database.Query(new DbCommand("SELECT tag_id, version_id, name, uri, protected "
-                                                             + "FROM photo_tags, photo_versions "
-                                                             + "WHERE photo_tags.photo_id = photo_versions.photo_id "
-                                                             + "AND photo_tags.photo_id = :id", "id", photo.Id));
-
-		while (reader.Read ()) {
-		        if (reader [0] != null) {
-				uint tag_id = Convert.ToUInt32 (reader [0]);
-				Tag tag = Core.Database.Tags.Get (tag_id) as Tag;
-				photo.AddTagUnsafely (tag);
-			}
-			if (reader [1] != null) {
-				uint version_id = Convert.ToUInt32 (reader [1]);
-				string name = reader[2].ToString ();
-				System.Uri uri = new System.Uri (reader[3].ToString ());
-				bool is_protected = Convert.ToBoolean (reader[4]);	
-				photo.AddVersionUnsafely (version_id, uri, name, is_protected);
-			}
-		}
-		reader.Close();
-	}
-
 	public override DbItem Get (uint id)
 	{
 		Photo photo = LookupInCache (id) as Photo;
