@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-18 06:58+0300\n"
+"POT-Creation-Date: 2008-02-19 08:45+0300\n"
 "PO-Revision-Date: 2008-02-17 20:02+0200\n"
 "Last-Translator: Timo Jyrinki <timo.jyrinki@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
@@ -235,6 +235,8 @@ msgid "Disable"
 msgstr "Poista käytöstä"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
+#: ../extensions/FlickrExport/FlickrExport.cs:343
+#: ../extensions/SmugMugExport/SmugMugExport.cs:616
 msgid "Error"
 msgstr "Virhe"
 
@@ -299,6 +301,507 @@ msgstr "Vaadittu lisäosa \"{0}\" on poistettu käytöstä."
 #, csharp-format
 msgid "The required extension '{0}' is not installed."
 msgstr "Vaadittua lisäosaa \"{0}\" ei ole asennettu."
+
+#: ../extensions/FlickrExport/FlickrExport.addin.xml.h:1
+msgid "_23hq..."
+msgstr "_23hq..."
+
+#: ../extensions/FlickrExport/FlickrExport.addin.xml.h:2
+msgid "_Flickr..."
+msgstr "_Flickr..."
+
+#: ../extensions/FlickrExport/FlickrExport.cs:92
+#: ../extensions/FlickrExport/FlickrExport.glade.h:5
+msgid "Authorize"
+msgstr "Valtuuta"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:97
+#, csharp-format
+msgid ""
+"Return to this window after you have finished the authorization process on "
+"{0} and click the \"Complete Authorization\" button below"
+msgstr ""
+"Palaa tähän ikkunaan, kun olet päättänyt valtuutusprosessin palvelussa {0} "
+"ja napsauta allaolevaa \"Viimeistele valtuutus\"-painiketta."
+
+#: ../extensions/FlickrExport/FlickrExport.cs:98
+msgid "Complete Authorization"
+msgstr "Viimeistele valtuutus"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:102
+#, csharp-format
+msgid "Logging into {0}"
+msgstr "Kirjaudutaan sivustolle {0}"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:103
+msgid "Checking credentials..."
+msgstr "Tarkistetaan käyttöoikeuksia..."
+
+#: ../extensions/FlickrExport/FlickrExport.cs:109
+#, csharp-format
+msgid "Welcome {0} you are connected to {1}"
+msgstr "Tervetuloa {0} - olet kirjautunut sivustolle {1}"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:112
+#, csharp-format
+msgid "Sign in as a different user"
+msgstr "Kirjaudu sisään toisena käyttäjänä"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:266
+msgid "Unable to log on"
+msgstr "Kirjautuminen epäonnistui"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:286
+#, csharp-format
+msgid "Waiting for response {0} of {1}"
+msgstr "Odotetaan vastausta {0}/{1}"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:313
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr "Viedään kuvaa \"{0}\""
+
+#. This indicates the current photo is photo {0} of {1} out of photos
+#: ../extensions/FlickrExport/FlickrExport.cs:318 ../src/ProgressDialog.cs:82
+#: ../src/TimeDialog.cs:148
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0}/{1}"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:335
+#: ../extensions/SmugMugExport/SmugMugExport.cs:624
+msgid "Done Sending Photos"
+msgstr "Kuvien lähetys valmistui"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:337
+#: ../extensions/SmugMugExport/SmugMugExport.cs:626
+msgid "Upload Complete"
+msgstr "Kuvien vienti valmis"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:340
+#, csharp-format
+msgid "Error Uploading To {0}: {1}"
+msgstr "Virhe vietäessä kohteeseen {0}: {1}"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:408
+msgid "Unable to log on."
+msgstr "Kirjautuminen epäonnistui."
+
+#: ../extensions/FlickrExport/FlickrExport.cs:409
+#, csharp-format
+msgid ""
+"F-Spot was unable to log on to {0}.  Make sure you have given the "
+"authentication using {0} web browser interface."
+msgstr ""
+"F-Spot ei voinut kirjautua {0}-palveluun. Tarkista, että olet valtuuttanut "
+"yhteydenoton käyttäen {0}-palvelun selainliittymää."
+
+#: ../extensions/FlickrExport/FlickrExport.cs:427
+#: ../extensions/SmugMugExport/SmugMugExport.cs:542
+msgid "Uploading Pictures"
+msgstr "Viedään kuvia"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:1 ../src/f-spot.glade.h:12
+msgid "<b>Account</b>"
+msgstr "<b>Tili</b>"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:2
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:2
+#: ../src/f-spot.glade.h:33
+msgid "<b>Photos</b>"
+msgstr "<b>Valokuvat</b>"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:3
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:4
+#: ../src/f-spot.glade.h:42
+msgid "<b>Style</b>"
+msgstr "<b>Tyyli</b>"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:4
+msgid "<b>Viewing permissions</b>"
+msgstr "<b>Kuvien katseluoikeudet</b>"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:6
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:6
+#: ../src/f-spot.glade.h:104
+msgid "Export"
+msgstr "Vie"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:7
+msgid ""
+"F-Spot needs your authorization in order to upload photos to your {0} "
+"account. Press the \"Authorize\" button to open a web browser and give F-"
+"Spot the authorization. "
+msgstr ""
+"F-Spot vaatii valtuutuksesi, jotta voit viedä kuviasi {0}-tilillesi. Avaa "
+"selain napsauttamalla \"Valtuuta\"-painiketta ja valtuuta F-Spot palvelussa."
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:8
+msgid "Private"
+msgstr "Yksityinen"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:9
+msgid "Public"
+msgstr "Julkinen"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:10
+msgid "Strip _metadata"
+msgstr "Poista _metadata"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:11
+msgid "Visible to Family"
+msgstr "Näkyvissä perheelle"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:12
+msgid "Visible to Friends"
+msgstr "Näkyvissä ystäville"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:13
+#: ../src/f-spot.glade.h:225
+msgid "_Export tags"
+msgstr "Vi_e merkinnät"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:14
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:14
+#: ../src/f-spot.glade.h:252
+msgid "_Resize to: "
+msgstr "_Muuta kokoon: "
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:15
+msgid "_View photos in browser when done uploading"
+msgstr "_Näytä valokuvat selaimessa, kun vienti on valmis"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:16
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:16
+#: ../src/f-spot.glade.h:282
+msgid "pixels"
+msgstr "pikseliä"
+
+#: ../extensions/MetaPixel/MetaPixel.addin.xml.h:1
+msgid "Create p_hotomosaic"
+msgstr ""
+
+#: ../extensions/MetaPixel/MetaPixel.cs:44
+#: ../extensions/PictureTile/PictureTile.cs:50 ../src/PhotoView.cs:326
+msgid "No selection available"
+msgstr "Valintaa ei ole saatavilla"
+
+#: ../extensions/MetaPixel/MetaPixel.cs:45
+#: ../extensions/PictureTile/PictureTile.cs:51
+msgid ""
+"This tool requires an active selection. Please select one or more pictures "
+"and try again"
+msgstr ""
+"Työkalu vaatii aktiivisen valinnan. Valitse yksi tai useampia kuvia ja yritä "
+"uudestaan"
+
+#: ../extensions/MetaPixel/MetaPixel.cs:64
+msgid "Metapixel not available"
+msgstr "Metatietoja ei ole saatavilla"
+
+#: ../extensions/MetaPixel/MetaPixel.cs:65
+msgid ""
+"The metapixel executable was not found in path. Please check that you have "
+"it installed and that you have permissions to execute it"
+msgstr ""
+
+#. There is no photo for the selected tags! :(
+#: ../extensions/MetaPixel/MetaPixel.cs:120
+msgid "No photos for the selection"
+msgstr "Ei valittavissa olevia kuvia"
+
+#: ../extensions/MetaPixel/MetaPixel.cs:121
+msgid "The tags selected provided no pictures. Please select different tags"
+msgstr "Valituilla merkinnöillä ei ole kuvia. Valitse joku muu merkintä"
+
+#: ../extensions/MetaPixel/MetaPixel.cs:128
+msgid "Creating miniatures"
+msgstr "Luodaan minikuvia"
+
+#: ../extensions/MetaPixel/MetaPixel.cs:139
+#, csharp-format
+msgid "Preparing photo \"{0}\""
+msgstr "Valmistellaan kuvaa \"{0}\""
+
+#: ../extensions/MetaPixel/MetaPixel.cs:177
+msgid "Creating photomosaics"
+msgstr ""
+
+#: ../extensions/MetaPixel/MetaPixel.cs:184
+#: ../extensions/PictureTile/PictureTile.cs:119
+#, csharp-format
+msgid "Processing \"{0}\""
+msgstr "Käsitellään \"{0}\""
+
+#: ../extensions/MetaPixel/MetaPixel.cs:229
+msgid "PhotoMosaics generated!"
+msgstr ""
+
+#: ../extensions/MetaPixel/MetaPixel.cs:247
+#, csharp-format
+msgid "PhotoMosaic"
+msgid_plural "PhotoMosaic ({0})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../extensions/MetaPixel/MetaPixel.glade.h:1
+msgid "<b>Generate miniatures from</b>"
+msgstr ""
+
+#: ../extensions/MetaPixel/MetaPixel.glade.h:2
+msgid ""
+"Generate the miniatures from a selection of tags. No tags mean ALL pictures"
+msgstr ""
+
+#: ../extensions/MetaPixel/MetaPixel.glade.h:3
+msgid "MetaPixel photomosaics"
+msgstr ""
+
+#: ../extensions/MetaPixel/MetaPixel.glade.h:4
+msgid "Miniatures _size"
+msgstr ""
+
+#: ../extensions/MetaPixel/MetaPixel.glade.h:5
+msgid "Miniatures can be generated from the current main view"
+msgstr ""
+
+#: ../extensions/MetaPixel/MetaPixel.glade.h:6
+msgid "Size of the miniatures composing the mosaic"
+msgstr ""
+
+#: ../extensions/MetaPixel/MetaPixel.glade.h:7
+#: ../extensions/PictureTile/PictureTile.glade.h:17
+msgid "_Create"
+msgstr "_Luo"
+
+#: ../extensions/MetaPixel/MetaPixel.glade.h:8
+msgid "_Current query"
+msgstr "_Tämänhetkinen kysely"
+
+#: ../extensions/MetaPixel/MetaPixel.glade.h:9 ../src/f-spot.glade.h:265
+msgid "_Tags"
+msgstr "_Luokitukset"
+
+#: ../extensions/MetaPixel/MetaPixel.glade.h:10
+#: ../extensions/PictureTile/PictureTile.glade.h:23
+msgid "gtk-cancel"
+msgstr "gtk-cancel"
+
+#: ../extensions/MetaPixel/MetaPixel.glade.h:11
+#: ../extensions/PictureTile/PictureTile.glade.h:24 ../src/f-spot.glade.h:283
+msgid "x"
+msgstr "x"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.addin.xml.h:1
+msgid "_PicasaWeb..."
+msgstr "_Picasaweb..."
+
+#: ../extensions/PicasaWebExport/google-sharp/CaptchaException.cs:58
+msgid "url"
+msgstr "url"
+
+#: ../extensions/PicasaWebExport/google-sharp/CaptchaException.cs:59
+msgid "token"
+msgstr "merkki"
+
+#: ../extensions/PicasaWebExport/google-sharp/CaptchaException.cs:60
+msgid "captcha_url"
+msgstr "captchan _url"
+
+#: ../extensions/PictureTile/PictureTile.addin.xml.h:1
+msgid "Create photo_wall"
+msgstr ""
+
+#: ../extensions/PictureTile/PictureTile.cs:70
+msgid "PictureTile not available"
+msgstr ""
+
+#: ../extensions/PictureTile/PictureTile.cs:71
+msgid ""
+"The picturetile.pl executable was not found in path. Please check that you "
+"have it installed and that you have permissions to execute it"
+msgstr ""
+
+#: ../extensions/PictureTile/PictureTile.cs:109
+msgid "Preparing selected pictures"
+msgstr "Valmistellaan valittuja kuvia"
+
+#: ../extensions/PictureTile/PictureTile.cs:198
+msgid "PhotoWall generated!"
+msgstr ""
+
+#: ../extensions/PictureTile/PictureTile.cs:199
+msgid ""
+"Your photo wall have been generated and imported in F-Spot. Select the last "
+"roll to see it"
+msgstr ""
+
+#: ../extensions/PictureTile/PictureTile.cs:202
+msgid "Error importing photowall"
+msgstr ""
+
+#: ../extensions/PictureTile/PictureTile.cs:203
+msgid ""
+"An error occoured while importing the newly generated photowall to F-Spot"
+msgstr ""
+
+#: ../extensions/PictureTile/PictureTile.glade.h:2
+#, no-c-format
+msgid "%"
+msgstr " %"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:3
+msgid "Background _color"
+msgstr "Taustan _väri"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:4
+msgid "Can be negative. It will overlap images"
+msgstr ""
+
+#: ../extensions/PictureTile/PictureTile.glade.h:5
+msgid ""
+"Check this if your images are all of the same size and you will have a more "
+"regular grid"
+msgstr ""
+
+#: ../extensions/PictureTile/PictureTile.glade.h:6
+msgid "Choose how many destination images you want to generate"
+msgstr ""
+
+#: ../extensions/PictureTile/PictureTile.glade.h:7
+msgid "Destination picture max _size"
+msgstr "Kohdekuvan _enimmäiskoko"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:8
+msgid ""
+"For more information please visit PictureTile website\n"
+"http://www.jwz.org/picturetile/"
+msgstr ""
+
+#: ../extensions/PictureTile/PictureTile.glade.h:10
+msgid "Jpeg _quality"
+msgstr "Jpeg:in _laatu"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:11
+msgid "Output type"
+msgstr "Tulostyyppi"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:12
+msgid "Outside _border"
+msgstr ""
+
+#: ../extensions/PictureTile/PictureTile.glade.h:13
+msgid "Photo wall generator"
+msgstr ""
+
+#: ../extensions/PictureTile/PictureTile.glade.h:14
+msgid "PictureTile for F-Spot"
+msgstr ""
+
+#: ../extensions/PictureTile/PictureTile.glade.h:15
+msgid "Spa_cing between images"
+msgstr "_Tila kuvien välissä"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:16
+msgid "This operation is going to TAKE VERY LONG TIME!"
+msgstr "Tämä toiminto vie HYVIN PITKÄN AJAN!"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:18
+msgid "_Jpeg"
+msgstr "_Jpeg"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:19
+msgid "_Pages"
+msgstr "_Sivut"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:20
+msgid "_Scale images"
+msgstr ""
+
+#: ../extensions/PictureTile/PictureTile.glade.h:21
+msgid "_Tiff"
+msgstr "_Tiff"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:22
+msgid "_Uniform images"
+msgstr "_Yhtenäiset kuvat"
+
+#: ../extensions/SmugMugExport/SmugMugExport.addin.xml.h:1
+msgid "_SmugMug..."
+msgstr "_SmugMug..."
+
+#: ../extensions/SmugMugExport/SmugMugExport.cs:585
+#, csharp-format
+msgid "Uploading picture \"{0}\" ({1} of {2})"
+msgstr "Viedään kuvaa \"{0}\" ({1}/{2})"
+
+#: ../extensions/SmugMugExport/SmugMugExport.cs:614
+#, csharp-format
+msgid "Error Uploading To Gallery: {0}"
+msgstr "Virhe vietäessä galleriaan: {0}"
+
+#: ../extensions/SmugMugExport/SmugMugExport.cs:647
+msgid "(No Gallery)"
+msgstr "(Ei galleriaa)"
+
+#: ../extensions/SmugMugExport/SmugMugExport.cs:745
+msgid "(Not Connected)"
+msgstr "(Ei yhteyttä)"
+
+#: ../extensions/SmugMugExport/SmugMugExport.cs:746
+msgid "(No Albums)"
+msgstr "(Ei albumeita)"
+
+#: ../extensions/SmugMugExport/SmugMugExport.cs:790
+msgid "No account selected"
+msgstr "Tiliä ei ole valittu"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:1
+#: ../src/f-spot.glade.h:14
+msgid "<b>Album</b>"
+msgstr "<b>Albumi</b>"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:3
+msgid "<b>SmugMug Export</b>"
+msgstr "<b>SmugMug-vienti</b>"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:5
+#: ../src/f-spot.glade.h:76
+msgid "Autorotate"
+msgstr "Automaattinen kääntö"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:7
+msgid "Open _album in browser when done uploading"
+msgstr "Avaa _albumi selaimessa, kun kuvien vienti on valmistunut"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:8
+msgid "Public Album"
+msgstr "Julkinen albumi"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:9
+msgid "_Account:"
+msgstr "_Tili:"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:10
+msgid "_Album Title:"
+msgstr "_Albumin nimi:"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:11
+msgid "_Description:"
+msgstr "_Kuvaus:"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:12
+#: ../src/f-spot.glade.h:227
+msgid "_Export to Album:"
+msgstr "Vi_e albumiiin:"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:13
+msgid "_Password:"
+msgstr "_Salasana:"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:15
+msgid "_Username:"
+msgstr "_Käyttäjätunnus:"
 
 #: ../f-spot-view.desktop.in.in.h:1
 msgid "F-Spot Photo Viewer"
@@ -545,6 +1048,33 @@ msgid ""
 msgstr ""
 "F-Spotin etsimää luokitusta ei ole olemassa. Yritä\n"
 "valita toinen luokitus F-Spotin asetusikkunasta."
+
+#: ../src/Core/Photo.cs:412
+#, csharp-format
+msgid "Reparented"
+msgid_plural "Reparented ({0})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/Core/Photo.cs:429
+#, csharp-format
+msgid "Modified"
+msgid_plural "Modified ({0})"
+msgstr[0] "Muokattu"
+msgstr[1] "Muokattuja ({0})"
+
+#: ../src/Core/Photo.cs:448
+#, csharp-format
+msgid "Modified in {1}"
+msgid_plural "Modified in {1} ({0})"
+msgstr[0] "Muokattu {1}"
+msgstr[1] "Muokattuja {1} ({0})"
+
+#. Note that the original version is never stored in the photo_versions table in the
+#. database.
+#: ../src/Core/Photo.cs:556 ../src/f-spot.glade.h:145
+msgid "Original"
+msgstr "Alkuperäinen"
 
 #: ../src/DateCommands.cs:56
 msgid "Today"
@@ -1594,10 +2124,6 @@ msgstr "Valitse alue, jolta punasilmäisyyttä poistetaan"
 msgid "Error editing photo"
 msgstr "Virhe muokattaessa valokuvaa"
 
-#: ../src/PhotoView.cs:326
-msgid "No selection available"
-msgstr "Valintaa ei ole saatavilla"
-
 #: ../src/PhotoView.cs:327
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
@@ -1657,12 +2183,6 @@ msgstr "Seuraava valokuva"
 #: ../src/Preferences.cs:175
 msgid "Photos"
 msgstr "Valokuvat"
-
-#. This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/ProgressDialog.cs:82 ../src/TimeDialog.cs:148
-#, csharp-format
-msgid "{0} of {1}"
-msgstr "{0}/{1}"
 
 #: ../src/QueryWidget.cs:39
 msgid "Find: "
@@ -2069,17 +2589,9 @@ msgstr "800 px"
 msgid "<b></b>"
 msgstr "<b></b>"
 
-#: ../src/f-spot.glade.h:12
-msgid "<b>Account</b>"
-msgstr "<b>Tili</b>"
-
 #: ../src/f-spot.glade.h:13
 msgid "<b>Action</b>"
 msgstr "<b>Toiminto</b>"
-
-#: ../src/f-spot.glade.h:14
-msgid "<b>Album</b>"
-msgstr "<b>Albumi</b>"
 
 #: ../src/f-spot.glade.h:15
 msgid "<b>Co_rrections</b>"
@@ -2153,10 +2665,6 @@ msgstr "<b>Huonoin arviointi</b>"
 msgid "<b>Photograph Layout</b>"
 msgstr "<b>Valokuvan asettelu</b>"
 
-#: ../src/f-spot.glade.h:33
-msgid "<b>Photos</b>"
-msgstr "<b>Valokuvat</b>"
-
 #: ../src/f-spot.glade.h:34
 msgid "<b>Predefined</b>"
 msgstr "<b>Esimääritelty</b>"
@@ -2188,10 +2696,6 @@ msgstr "<b>Koko</b>"
 #: ../src/f-spot.glade.h:41
 msgid "<b>Start Date</b>"
 msgstr "<b>Aloituspäivä</b>"
-
-#: ../src/f-spot.glade.h:42
-msgid "<b>Style</b>"
-msgstr "<b>Tyyli</b>"
 
 #: ../src/f-spot.glade.h:43
 msgid "<b>Summary</b>"
@@ -2346,10 +2850,6 @@ msgstr "Liitä luokituksia:"
 msgid "Attach tag:"
 msgstr "Liitä luokitus:"
 
-#: ../src/f-spot.glade.h:76
-msgid "Autorotate"
-msgstr "Automaattinen kääntö"
-
 #: ../src/f-spot.glade.h:78
 msgid "By _Date"
 msgstr "_päiväyksen mukaan"
@@ -2455,10 +2955,6 @@ msgstr "Muokkaa kuvaketta"
 #: ../src/f-spot.glade.h:103
 msgid "Estimated new size"
 msgstr "Arvioitu uusi koko"
-
-#: ../src/f-spot.glade.h:104
-msgid "Export"
-msgstr "Vie"
 
 #: ../src/f-spot.glade.h:105
 msgid "Extra large"
@@ -2585,10 +3081,6 @@ msgstr "Vain annettuna aikana otetut kuvat näytetään."
 #: ../src/f-spot.glade.h:144
 msgid "Open _Folder..."
 msgstr "Avaa _kansio..."
-
-#: ../src/f-spot.glade.h:145
-msgid "Original"
-msgstr "Alkuperäinen"
 
 #: ../src/f-spot.glade.h:146
 msgid "Original size (possible very large file size)"
@@ -2866,17 +3358,9 @@ msgstr "_Muokkaa valittua luokitusta..."
 msgid "_Export"
 msgstr "_Vie"
 
-#: ../src/f-spot.glade.h:225
-msgid "_Export tags"
-msgstr "Vi_e merkinnät"
-
 #: ../src/f-spot.glade.h:226
 msgid "_Export to"
 msgstr "Vi_e sijaintiin"
-
-#: ../src/f-spot.glade.h:227
-msgid "_Export to Album:"
-msgstr "Vi_e albumiiin:"
 
 #: ../src/f-spot.glade.h:228
 msgid "_File"
@@ -2970,10 +3454,6 @@ msgstr "_Poista luokitus valinnasta"
 msgid "_Rename Version"
 msgstr "Nimeä versio uudelleen"
 
-#: ../src/f-spot.glade.h:252
-msgid "_Resize to: "
-msgstr "_Muuta kokoon: "
-
 #: ../src/f-spot.glade.h:254
 msgid "_Saturation:"
 msgstr "_Värikylläisyys:"
@@ -3017,10 +3497,6 @@ msgstr "Luoki_tusten kuvakkeet"
 #: ../src/f-spot.glade.h:264
 msgid "_Tag Name:"
 msgstr "_Luokituksen nimi:"
-
-#: ../src/f-spot.glade.h:265
-msgid "_Tags"
-msgstr "_Luokitukset"
 
 #: ../src/f-spot.glade.h:266
 msgid "_Timeline"
@@ -3073,14 +3549,6 @@ msgstr "ero:"
 msgid "img_000.jpg"
 msgstr "kuva_000.jpg"
 
-#: ../src/f-spot.glade.h:282
-msgid "pixels"
-msgstr "pikseliä"
-
-#: ../src/f-spot.glade.h:283
-msgid "x"
-msgstr "x"
-
 #: ../tools/f-spot-screensaver.desktop.in.h:1
 msgid "Display a slideshow from F-Spot"
 msgstr "Näytä diaesitys F-Spotista"
@@ -3119,20 +3587,8 @@ msgstr "F-Spot-valokuvat"
 #~ msgid "Export to Web Gallery..."
 #~ msgstr "Vie WWW-galleriaan..."
 
-#~ msgid "url"
-#~ msgstr "url"
-
-#~ msgid "token"
-#~ msgstr "merkki"
-
-#~ msgid "captcha_url"
-#~ msgstr "captchan _url"
-
 #~ msgid "Transferring picture \"{0}\" To CD"
 #~ msgstr "Siirretään kuvaa \"{0}\" CD:lle"
-
-#~ msgid "Done Sending Photos"
-#~ msgstr "Kuvien lähetys valmistui"
 
 #~ msgid "Transfer Complete"
 #~ msgstr "Siirto valmistui"
@@ -3158,59 +3614,6 @@ msgstr "F-Spot-valokuvat"
 #~ msgid "Remove Tag"
 #~ msgstr "Poista luokitus"
 
-#~ msgid "Authorize"
-#~ msgstr "Valtuuta"
-
-#~ msgid ""
-#~ "Return to this window after you have finished the authorization process "
-#~ "on {0} and click the \"Complete Authorization\" button below"
-#~ msgstr ""
-#~ "Palaa tähän ikkunaan, kun olet päättänyt valtuutusprosessin palvelussa "
-#~ "{0} ja napsauta allaolevaa \"Viimeistele valtuutus\"-painiketta."
-
-#~ msgid "Complete Authorization"
-#~ msgstr "Viimeistele valtuutus"
-
-#~ msgid "Logging into {0}"
-#~ msgstr "Kirjaudutaan sivustolle {0}"
-
-#~ msgid "Checking credentials..."
-#~ msgstr "Tarkistetaan käyttöoikeuksia..."
-
-#~ msgid "Welcome {0} you are connected to {1}"
-#~ msgstr "Tervetuloa {0} - olet kirjautunut sivustolle {1}"
-
-#~ msgid "Sign in as a different user"
-#~ msgstr "Kirjaudu sisään toisena käyttäjänä"
-
-#~ msgid "Unable to log on"
-#~ msgstr "Kirjautuminen epäonnistui"
-
-#~ msgid "Waiting for response {0} of {1}"
-#~ msgstr "Odotetaan vastausta {0}/{1}"
-
-#~ msgid "Uploading picture \"{0}\""
-#~ msgstr "Viedään kuvaa \"{0}\""
-
-#~ msgid "Upload Complete"
-#~ msgstr "Kuvien vienti valmis"
-
-#~ msgid "Error Uploading To {0}: {1}"
-#~ msgstr "Virhe vietäessä kohteeseen {0}: {1}"
-
-#~ msgid "Unable to log on."
-#~ msgstr "Kirjautuminen epäonnistui."
-
-#~ msgid ""
-#~ "F-Spot was unable to log on to {0}.  Make sure you have given the "
-#~ "authentication using {0} web browser interface."
-#~ msgstr ""
-#~ "F-Spot ei voinut kirjautua {0}-palveluun. Tarkista, että olet "
-#~ "valtuuttanut yhteydenoton käyttäen {0}-palvelun selainliittymää."
-
-#~ msgid "Uploading Pictures"
-#~ msgstr "Viedään kuvia"
-
 #~ msgid "Select Export Folder"
 #~ msgstr "Valitse vientikansio"
 
@@ -3235,9 +3638,6 @@ msgstr "F-Spot-valokuvat"
 #~ msgid "Hide Styles"
 #~ msgstr "Piilota tyylit"
 
-#~ msgid "Gallery generated by"
-#~ msgstr "Gallerian luonut "
-
 #~ msgid "Page:"
 #~ msgstr "Sivu:"
 
@@ -3259,18 +3659,6 @@ msgstr "F-Spot-valokuvat"
 #~ msgid "Error uploading picture \"{0}\" to Gallery: {1}"
 #~ msgstr "Virhe vietäessä kuvaa \"{0}\" galleriaan: {1}"
 
-#~ msgid "(No Gallery)"
-#~ msgstr "(Ei galleriaa)"
-
-#~ msgid "(Not Connected)"
-#~ msgstr "(Ei yhteyttä)"
-
-#~ msgid "(No Albums)"
-#~ msgstr "(Ei albumeita)"
-
-#~ msgid "No account selected"
-#~ msgstr "Tiliä ei ole valittu"
-
 #~ msgid "Error reading server response"
 #~ msgstr "Virhe luettaessa palvelimen vastausta"
 
@@ -3280,16 +3668,6 @@ msgstr "F-Spot-valokuvat"
 #~ msgid "Size:"
 #~ msgstr "Koko:"
 
-#~ msgid "Modified"
-#~ msgid_plural "Modified ({0})"
-#~ msgstr[0] "Muokattu"
-#~ msgstr[1] "Muokattuja ({0})"
-
-#~ msgid "Modified in {1}"
-#~ msgid_plural "Modified in {1} ({0})"
-#~ msgstr[0] "Muokattu {1}"
-#~ msgstr[1] "Muokattuja {1} ({0})"
-
 #~ msgid "Error while creating Album"
 #~ msgstr "Virhe luotaessa albumia"
 
@@ -3297,12 +3675,6 @@ msgstr "F-Spot-valokuvat"
 #~ "The following error was encountered while attempting to create an album: "
 #~ "{0}"
 #~ msgstr "Seuraava virhe tapahtui yritettäessä luoda albumia: {0}"
-
-#~ msgid "Uploading picture \"{0}\" ({1} of {2})"
-#~ msgstr "Viedään kuvaa \"{0}\" ({1}/{2})"
-
-#~ msgid "Error Uploading To Gallery: {0}"
-#~ msgstr "Virhe vietäessä galleriaan: {0}"
 
 #~ msgid "Available space :"
 #~ msgstr "Vapaa tila: "
@@ -3337,12 +3709,6 @@ msgstr "F-Spot-valokuvat"
 #~ msgid "<b>PicasaWeb Export</b>"
 #~ msgstr "<b>PicasWeb-vienti</b>"
 
-#~ msgid "<b>SmugMug Export</b>"
-#~ msgstr "<b>SmugMug-vienti</b>"
-
-#~ msgid "<b>Viewing permissions</b>"
-#~ msgstr "<b>Kuvien katseluoikeudet</b>"
-
 #~ msgid ""
 #~ "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
 #~ msgstr ""
@@ -3354,9 +3720,6 @@ msgstr "F-Spot-valokuvat"
 
 #~ msgid "Clea_r Date Range"
 #~ msgstr "_Tyhjennä päivämääräväli"
-
-#~ msgid "Create CD"
-#~ msgstr "Luo CD"
 
 #~ msgid "Create _gallery using \"Original\""
 #~ msgstr "Luo _galleria käyttäen \"alkuperäistä\""
@@ -3379,23 +3742,11 @@ msgstr "F-Spot-valokuvat"
 #~ msgid "Export _titles and comments"
 #~ msgstr "Vie _otsikot ja kommentit"
 
-#~ msgid ""
-#~ "F-Spot needs your authorization in order to upload photos to your {0} "
-#~ "account. Press the \"Authorize\" button to open a web browser and give F-"
-#~ "Spot the authorization. "
-#~ msgstr ""
-#~ "F-Spot vaatii valtuutuksesi, jotta voit viedä kuviasi {0}-tilillesi. Avaa "
-#~ "selain napsauttamalla \"Valtuuta\"-painiketta ja valtuuta F-Spot "
-#~ "palvelussa."
-
 #~ msgid "Folder Export"
 #~ msgstr "Kansion vienti"
 
 #~ msgid "G_allery Name:"
 #~ msgstr "G_allerian nimi:"
-
-#~ msgid "Open _album in browser when done uploading"
-#~ msgstr "Avaa _albumi selaimessa, kun kuvien vienti on valmistunut"
 
 #~ msgid "Open _destination when done exporting"
 #~ msgstr "Avaa _kohde, kun vienti on valmis"
@@ -3412,37 +3763,10 @@ msgstr "F-Spot-valokuvat"
 #~ "Syötä \"Captcha\"-kentässä näytettävät kirjaimet\n"
 #~ "<i>Kirjainkoolla ei ole merkitystä</i>"
 
-#~ msgid "Private"
-#~ msgstr "Yksityinen"
-
-#~ msgid "Public"
-#~ msgstr "Julkinen"
-
-#~ msgid "Public Album"
-#~ msgstr "Julkinen albumi"
-
-#~ msgid "Size of the exported selection :"
-#~ msgstr "Viedyn valinnan koko: "
-
-#~ msgid "Strip _metadata"
-#~ msgstr "Poista _metadata"
-
 #~ msgid "U_RL:"
 #~ msgstr "U_RL:"
 
-#~ msgid "Visible to Family"
-#~ msgstr "Näkyvissä perheelle"
-
-#~ msgid "Visible to Friends"
-#~ msgstr "Näkyvissä ystäville"
-
-#~ msgid "_Account:"
-#~ msgstr "_Tili:"
-
 #~ msgid "_Album Name:"
-#~ msgstr "_Albumin nimi:"
-
-#~ msgid "_Album Title:"
 #~ msgstr "_Albumin nimi:"
 
 #~ msgid "_Browse Previously Scheduled Files"
@@ -3450,9 +3774,6 @@ msgstr "F-Spot-valokuvat"
 
 #~ msgid "_Captcha:"
 #~ msgstr "_Captcha:"
-
-#~ msgid "_Description:"
-#~ msgstr "_Kuvaus:"
 
 #~ msgid "_Folder:"
 #~ msgstr "_Kansio:"
@@ -3466,20 +3787,11 @@ msgstr "F-Spot-valokuvat"
 #~ msgid "_Parent Album:"
 #~ msgstr "_Ylemmän tason album:"
 
-#~ msgid "_Password:"
-#~ msgstr "_Salasana:"
-
 #~ msgid "_Save the files only"
 #~ msgstr "_Tallenna vain tiedostot"
 
 #~ msgid "_Title:"
 #~ msgstr "_Otsikko"
-
-#~ msgid "_Username:"
-#~ msgstr "_Käyttäjätunnus:"
-
-#~ msgid "_View photos in browser when done uploading"
-#~ msgstr "_Näytä valokuvat selaimessa, kun vienti on valmis"
 
 #~ msgid "_Write only these photos to CD"
 #~ msgstr "_Kirjoita vain nämä valokuvat CD:lle"
@@ -3489,9 +3801,6 @@ msgstr "F-Spot-valokuvat"
 
 #~ msgid "gtk-about"
 #~ msgstr "gtk-about"
-
-#~ msgid "gtk-close"
-#~ msgstr "gtk-close"
 
 #~ msgid "gtk-open"
 #~ msgstr "gtk-open"
