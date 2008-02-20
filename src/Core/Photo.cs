@@ -409,7 +409,7 @@ namespace FSpot
 			int num = 0;
 			while (true) {
 				num++;
-				string name = Catalog.GetPluralString ("Reparented", "Reparented ({0})", num);
+				string name = (num == 1) ? Catalog.GetString ("Reparented") : String.Format (Catalog.GetString( "Reparented ({0})"), num);
 				name = String.Format (name, num);
 				if (VersionNameExists (name))
 					continue;
@@ -445,7 +445,7 @@ namespace FSpot
 			string final_name;
 			while (true) {
 				final_name = String.Format (
-						Catalog.GetPluralString ("Modified in {1}", "Modified in {1} ({0})", num),
+						(num == 1) ? Catalog.GetString ("Modified in {1}") : Catalog.GetString ("Modified in {1} ({0})"),
 						num, name);
 	
 				if (num > 1)
