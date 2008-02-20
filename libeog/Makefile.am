@@ -21,8 +21,6 @@ libfspoteog_files =				\
         accessible-image-view-factory.c		\
         accessible-image-view.h			\
         accessible-image-view.c			\
-	eog-file-selection.h			\
-	eog-file-selection.c			\
 	eog-image.h				\
 	eog-image.c				\
 	eog-pixbuf-util.h			\
