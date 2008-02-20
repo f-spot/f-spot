@@ -133,7 +133,7 @@ namespace FSpot {
 			if (Item.IsValid) {
 				IBrowsableItem item = Item.Current;
 				
-				name_label.Text = item.Name;;
+				name_label.Text = System.Uri.UnescapeDataString(item.Name);
 				old_label.Text = item.Time.ToLocalTime ().ToString ();
 				
 				int i = collection.Count > 0 ? Item.Index + 1: 0;
