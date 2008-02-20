@@ -2,6 +2,7 @@ using Gdk;
 using Gtk;
 using Gnome;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 using FSpot;
 using FSpot.Xmp;
@@ -73,22 +74,16 @@ public class FileImportBackend : ImportBackend {
 	private void GetListing (System.IO.DirectoryInfo dirinfo, System.IO.FileInfo [] files, bool recurse)
 	{
 		System.Console.WriteLine ("Scanning {0}", dirinfo.FullName);
-		Hashtable exiting_entries = new Hashtable ();
+		List<Uri> existing_entries = new List<Uri> ();
 
 		foreach (Photo p in store.Query (dirinfo)) {
 			foreach (uint id in p.VersionIds) {
-				string name;
-				if (id == Photo.OriginalVersionId)
-				        name = p.Name;
-				else 
-					name = (new System.IO.FileInfo (p.VersionUri (id).LocalPath)).Name;
-
-				exiting_entries [name] = p;
+				existing_entries.Add (p.VersionUri (id));
 			}
 		}
-	
+
 		foreach (System.IO.FileInfo f in files) {
-			if (! exiting_entries.Contains (f.Name)) {
+			if (! existing_entries.Contains (new System.Uri (f.FullName))) {
 				AddPath (f.FullName);
 			}
 		}

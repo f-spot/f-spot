@@ -120,14 +120,7 @@ namespace FSpot {
 			if (! offset_entry.HasFocus)
 				offset_entry.Text = span.ToString ();
 
-			// The preceding text here is the second checkbutton in the Time dialog
-			// that says "Space all photos by []"
-#if false
-			starting_label.Text = String.Format (Catalog.GetString ("min. Starting at {0}"),
-							     EditTime);
-#else
 			starting_label.Text = "min.";
-#endif
 			difference_check.Label = String.Format (Catalog.GetString ("Shift all photos by {0}"),
 							      Offset);
 		}
