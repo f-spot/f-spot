@@ -197,7 +197,7 @@ public class PhotoStore : DbStore {
 		while (reader.Read ()) {
 			uint version_id = Convert.ToUInt32 (reader [0]);
 			string name = reader[1].ToString ();
-			System.Uri uri = new System.Uri (reader[2].ToString ());
+			System.Uri uri = new System.Uri (reader[2].ToString (), true);
 			bool is_protected = Convert.ToBoolean (reader[3]);
 			photo.AddVersionUnsafely (version_id, uri, name, is_protected);
 		}
@@ -236,7 +236,7 @@ public class PhotoStore : DbStore {
 			if (reader [1] != null) {
 				uint version_id = Convert.ToUInt32 (reader [1]);
 				string name = reader[2].ToString ();
-				System.Uri uri = new System.Uri (reader[3].ToString ());
+				System.Uri uri = new System.Uri (reader[3].ToString (), true);
 				bool is_protected = Convert.ToBoolean (reader[4]);	
 				photo.AddVersionUnsafely (version_id, uri, name, is_protected);
 			}
@@ -289,7 +289,7 @@ public class PhotoStore : DbStore {
 		if (reader.Read ()) {
 			photo = new Photo (id,
 				Convert.ToInt64 (reader [0]),
-				new System.Uri (reader [1].ToString ()));
+				new System.Uri (reader [1].ToString (), true));
 
 			photo.Description = reader[2].ToString ();
 			photo.RollId = Convert.ToUInt32 (reader[3]);
@@ -522,7 +522,7 @@ public class PhotoStore : DbStore {
 			if (photo == null) {
 				photo = new Photo (id,
 						   Convert.ToInt64 (reader [1]),
-						   new System.Uri (reader [2].ToString ()));
+						   new System.Uri (reader [2].ToString (), true));
 				
 				photo.Description = reader[3].ToString ();
 				photo.RollId = Convert.ToUInt32 (reader[4]);

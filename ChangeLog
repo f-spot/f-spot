@@ -1,3 +1,8 @@
+2008-02-20  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/PhotoStore.ce: don't escape uri while loading them from the db.
+	Fixes bgo #517606.
+
 2008-02-19  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Widgets/CairoUtils.cs:
