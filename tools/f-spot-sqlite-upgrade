@@ -8,10 +8,10 @@ BACKUP_LOCATION=$DB_LOCATION.backup
 DUMP_LOCATION=$DB_LOCATION.dump
 NEW_DB_LOCATION=$DB_LOCATION.new
 
-if ! which sqlite >& /dev/null ; then
+if ! which sqlite >/dev/null 2>&1 ; then
 	echo "Could not find sqlite binary. Update aborted." >&2
 	exit 1
-elif ! which sqlite3 >& /dev/null ; then
+elif ! which sqlite3 >/dev/null 2>&1 ; then
 	echo "Could not find sqlite3 binary. Update aborted." >&2
 	exit 1
 fi
@@ -26,7 +26,7 @@ rm -f $BACKUP_LOCATION
 rm -f $DUMP_LOCATION
 rm -f $NEW_DB_LOCATION
 
-if grep "^...This file contains an SQLite 2.1 database" $DB_LOCATION &> /dev/null; then
+if grep "^...This file contains an SQLite 2.1 database" $DB_LOCATION >/dev/null 2>&1; then
 	echo "Upgrading from SQLite 2.1 to SQLite3"
 	cp $DB_LOCATION $BACKUP_LOCATION
 	if sqlite $DB_LOCATION .dump > $DUMP_LOCATION &&
