@@ -151,6 +151,7 @@ namespace FSpot {
 			}
 		}
 
+		[Obsolete ("use HasLoader (System.Uri) instead")]
 		public static bool HasLoader (string path)
 		{
 			return HasLoader (UriUtils.PathToFileUri (path));
@@ -165,6 +166,7 @@ namespace FSpot {
 			return (t != null);
 		}
 
+		[Obsolete ("use Create (System.Uri) instead")]
 		public static ImageFile Create (string path)
 		{
 			return Create (UriUtils.PathToFileUri (path));

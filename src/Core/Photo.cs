@@ -243,7 +243,7 @@ namespace FSpot
 			string name_without_extension = System.IO.Path.GetFileNameWithoutExtension (Name);
 	
 			return new System.Uri (System.IO.Path.Combine (DirectoryPath,  name_without_extension 
-						       + " (" + version_name + ")" + extension));
+						       + " (" + UriUtils.EscapeString (version_name, false, true, true) + ")" + extension));
 		}
 	
 		public bool VersionNameExists (string version_name)

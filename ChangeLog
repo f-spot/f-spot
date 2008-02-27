@@ -1,3 +1,9 @@
+2008-02-27  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Core/Photo.cs: Escape the version name.
+
+	* src/Imaging/ImageFile.cs: Obsolete 2 methods.
+
 2008-02-20  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/PhotoStore.ce: don't escape uri while loading them from the db.
