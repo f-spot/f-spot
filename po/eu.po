@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-21 18:44+0100\n"
-"PO-Revision-Date: 2008-02-21 19:54+0100\n"
+"POT-Creation-Date: 2008-02-27 13:04+0100\n"
+"PO-Revision-Date: 2008-02-27 13:27+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -322,8 +322,8 @@ msgid ""
 "Return to this window after you have finished the authorization process on "
 "{0} and click the \"Complete Authorization\" button below"
 msgstr ""
-"Itzuli leiho honetara {0}(e)ko baimenaren prozesua amaitutakoan "
-"eta egin klik azpiko \"Baimen osoa\" botoian."
+"Itzuli leiho honetara {0}(e)ko baimenaren prozesua amaitutakoan eta egin "
+"klik azpiko \"Baimen osoa\" botoian."
 
 #: ../extensions/FlickrExport/FlickrExport.cs:98
 msgid "Complete Authorization"
@@ -394,8 +394,8 @@ msgid ""
 "F-Spot was unable to log on to {0}.  Make sure you have given the "
 "authentication using {0} web browser interface."
 msgstr ""
-"F-Spot aplikazioak ezin izan du {0}(e) saioa hasi. Ziurtatu "
-"autentifikazioa eman duzula {0} web arakatzailearen interfazea erabiliz."
+"F-Spot aplikazioak ezin izan du {0}(e) saioa hasi. Ziurtatu autentifikazioa "
+"eman duzula {0} web arakatzailearen interfazea erabiliz."
 
 #: ../extensions/FlickrExport/FlickrExport.cs:427
 #: ../extensions/SmugMugExport/SmugMugExport.cs:542
@@ -434,8 +434,9 @@ msgid ""
 "account. Press the \"Authorize\" button to open a web browser and give F-"
 "Spot the authorization. "
 msgstr ""
-"F-Spot aplikazioak zure baimena behar du argazkiak zure {0} kontura igotzeko. Sakatu \"Baimena eman\" botoia web arakatzailea "
-"irekitzeko eta F-Spot aplikazioari baimena emateko. "
+"F-Spot aplikazioak zure baimena behar du argazkiak zure {0} kontura "
+"igotzeko. Sakatu \"Baimena eman\" botoia web arakatzailea irekitzeko eta F-"
+"Spot aplikazioari baimena emateko. "
 
 #: ../extensions/FlickrExport/FlickrExport.glade.h:8
 msgid "Private"
@@ -493,8 +494,8 @@ msgid ""
 "This tool requires an active selection. Please select one or more pictures "
 "and try again"
 msgstr ""
-"Tresna honek hautapena aktibo egotea eskatzen du. Hautatu "
-"argazki bat edo gehiago eta saiatu berriro"
+"Tresna honek hautapena aktibo egotea eskatzen du. Hautatu argazki bat edo "
+"gehiago eta saiatu berriro"
 
 #: ../extensions/MetaPixel/MetaPixel.cs:64
 msgid "Metapixel not available"
@@ -505,8 +506,8 @@ msgid ""
 "The metapixel executable was not found in path. Please check that you have "
 "it installed and that you have permissions to execute it"
 msgstr ""
-"'metapixel' exekutagarria ez da aurkitu bide-izenean. Egiaztatu "
-"instalatuta dagoela eta exekutatzeko baimenak dituzula."
+"'metapixel' exekutagarria ez da aurkitu bide-izenean. Egiaztatu instalatuta "
+"dagoela eta exekutatzeko baimenak dituzula."
 
 #. There is no photo for the selected tags! :(
 #: ../extensions/MetaPixel/MetaPixel.cs:120
@@ -515,7 +516,9 @@ msgstr "Ez dago argazkirik hautapenean"
 
 #: ../extensions/MetaPixel/MetaPixel.cs:121
 msgid "The tags selected provided no pictures. Please select different tags"
-msgstr "Hautatutako etiketek ez dute argazkirik eskaintzen. Hautatu etiketa desberdinak"
+msgstr ""
+"Hautatutako etiketek ez dute argazkirik eskaintzen. Hautatu etiketa "
+"desberdinak"
 
 #: ../extensions/MetaPixel/MetaPixel.cs:128
 msgid "Creating miniatures"
@@ -553,7 +556,9 @@ msgstr "<b>Sortu koadro txikiak hemendik</b>"
 
 #: ../extensions/MetaPixel/MetaPixel.glade.h:2
 msgid "Generate the miniatures from a selection of tags. No tags mean ALL pictures"
-msgstr "Sortu koadro txikiak etiketen hautapenetik. Etiketarik ez egonez gero argazki GUZTIAK adierazten da"
+msgstr ""
+"Sortu koadro txikiak etiketen hautapenetik. Etiketarik ez egonez gero "
+"argazki GUZTIAK adierazten da"
 
 #: ../extensions/MetaPixel/MetaPixel.glade.h:3
 msgid "MetaPixel photomosaics"
@@ -639,8 +644,8 @@ msgid ""
 "Your photo wall have been generated and imported in F-Spot. Select the last "
 "roll to see it"
 msgstr ""
-"Argazki-horma sortu da eta F-Spot aplikazioan inportatu da. Hautatu "
-"azken erroilua ikusteko."
+"Argazki-horma sortu da eta F-Spot aplikazioan inportatu da. Hautatu azken "
+"erroilua ikusteko."
 
 #: ../extensions/PictureTile/PictureTile.cs:202
 msgid "Error importing photowall"
@@ -648,7 +653,9 @@ msgstr "Errorea argazki-horma inportatzean"
 
 #: ../extensions/PictureTile/PictureTile.cs:203
 msgid "An error occoured while importing the newly generated photowall to F-Spot"
-msgstr "Errorea gertatu da sortu berri den argazki-horma inportatzean F-Spot aplikazioan"
+msgstr ""
+"Errorea gertatu da sortu berri den argazki-horma inportatzean F-Spot "
+"aplikazioan"
 
 #: ../extensions/PictureTile/PictureTile.glade.h:2
 #, no-c-format
@@ -990,12 +997,12 @@ msgstr ""
 
 #: ../src/Core/Photo.cs:412
 msgid "Reparented"
-msgstr ""
+msgstr "Guraso berriarekin jarrita"
 
 #: ../src/Core/Photo.cs:412
 #, csharp-format
 msgid "Reparented ({0})"
-msgstr ""
+msgstr "Guraso berriarekin jarrita ({0})"
 
 #: ../src/Core/Photo.cs:429
 #, csharp-format
