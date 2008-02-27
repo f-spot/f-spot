@@ -1,5 +1,12 @@
 2008-02-27  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* configure.in: check for mono 2.0
+
+	* src/PhotoStore.cs:
+	* src/Utils/UriUtils.cs: don't escape uri for mono < 2.0.
+
+2008-02-27  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Core/Photo.cs: Escape the version name.
 
 	* src/Imaging/ImageFile.cs: Obsolete 2 methods.

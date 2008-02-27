@@ -42,51 +42,55 @@ namespace FSpot.Utils
 			}
 			builder.Append (path);
 	
+#if MONO_2_0
+			return new Uri (builder.ToString ());
+#else
 			return new Uri (builder.ToString (), true);
+#endif
 		}
 
 		static char[] CharsToQuote = { ';', '?', ':', '@', '&', '=', '$', ',', '#' };
-		// NOTE: this was copied from mono's System.Uri where it is protected.
+		// NOTE: this was copied from mono's System.Uri where it is internal.
 		public static string EscapeString (string str, bool escapeReserved, bool escapeHex, bool escapeBrackets) 
 		{
 			if (str == null)
 				return String.Empty;
 			
-			byte [] data = Encoding.UTF8.GetBytes (str);
 			StringBuilder s = new StringBuilder ();
-			int len = data.Length;	
+			int len = str.Length;	
 			for (int i = 0; i < len; i++) {
-				char c = (char) data [i];
-				// reserved    = ";" | "/" | "?" | ":" | "@" | "&" | "=" | "+" | "$" | ","
 				// mark        = "-" | "_" | "." | "!" | "~" | "*" | "'" | "(" | ")"
 				// control     = <US-ASCII coded characters 00-1F and 7F hexadecimal>
 				// space       = <US-ASCII coded character 20 hexadecimal>
 				// delims      = "<" | ">" | "#" | "%" | <">
 				// unwise      = "{" | "}" | "|" | "\" | "^" | "[" | "]" | "`"
-				
+
 				// check for escape code already placed in str, 
 				// i.e. for encoding that follows the pattern 
 				// "%hexhex" in a string, where "hex" is a digit from 0-9 
 				// or a letter from A-F (case-insensitive).
-				if('%' == c && Uri.IsHexEncoding(str,i))
-				{
+				if (Uri.IsHexEncoding (str,i)) {
 					// if ,yes , copy it as is
-					s.Append(c);
-					s.Append(str[++i]);
-					s.Append(str[++i]);
+					s.Append(str.Substring (i, 3));
+					i += 2;
 					continue;
 				}
-				
-				if ((c <= 0x20) || (c >= 0x7f) || 
-				    ("<>%\"{}|\\^`".IndexOf (c) != -1) ||
-				    (escapeHex && (c == '#')) ||
-				    (escapeBrackets && (c == '[' || c == ']')) ||
-				    (escapeReserved && (";/?:@&=+$,".IndexOf (c) != -1))) {
-					s.Append (Uri.HexEscape (c));
-					continue;
+
+				byte [] data = Encoding.UTF8.GetBytes (new char[] {str[i]});
+				int length = data.Length;
+				for (int j = 0; j < length; j++) {
+					char c = (char) data [j];
+					// reserved    = ";" | "/" | "?" | ":" | "@" | "&" | "=" | "+" | "$" | ","
+					if ((c <= 0x20) || (c >= 0x7f) || 
+					    ("<>%\"{}|\\^`".IndexOf (c) != -1) ||
+					    (escapeHex && (c == '#')) ||
+					    (escapeBrackets && (c == '[' || c == ']')) ||
+					    (escapeReserved && (";/?:@&=+$,".IndexOf (c) != -1))) {
+						s.Append (Uri.HexEscape (c));
+						continue;
+					}	
+					s.Append (c);
 				}
-				
-				s.Append (c);
 			}
 			
 			return s.ToString ();
