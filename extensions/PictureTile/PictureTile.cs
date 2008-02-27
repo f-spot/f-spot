@@ -200,7 +200,7 @@ namespace PictureTileExtension {
 					    Gtk.MessageType.Info);
 			} else {
 				InfoDialog (Catalog.GetString ("Error importing photowall"), 
-					    Catalog.GetString ("An error occoured while importing the newly generated photowall to F-Spot"),
+					    Catalog.GetString ("An error occurred while importing the newly generated photowall to F-Spot"),
 					    Gtk.MessageType.Error);
 			}
 			DeleteTmp ();
