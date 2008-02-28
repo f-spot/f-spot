@@ -23,18 +23,6 @@ namespace FSpot.Widgets {
 		}
 		
 		[DllImport("libgdk-2.0-0.dll")]
-		extern static void gdk_cairo_set_source_pixbuf (IntPtr handle,
-								IntPtr pixbuf,
-								double        pixbuf_x,
-								double        pixbuf_y);
-		
-		[Obsolete ("use Gdk.CairoHelper.SetSourcePixbuf instead")]
-		public static void SetSourcePixbuf (Context ctx, Gdk.Pixbuf pixbuf, double x, double y)
-		{
-			gdk_cairo_set_source_pixbuf (ctx.Handle, pixbuf.Handle, x, y);
-		}
-
-		[DllImport("libgdk-2.0-0.dll")]
 		extern static void gdk_cairo_set_source_pixmap (IntPtr handle,
 								IntPtr drawable,
 								double x,
@@ -63,6 +51,7 @@ namespace FSpot.Widgets {
 		[DllImport("libgdk-2.0-0.dll")]
 		static extern IntPtr gdk_cairo_create (IntPtr raw);
 		
+		[Obsolete ("use Gdk.CairoHelper.Create instead")]
 		public static Cairo.Context CreateContext (Gdk.Drawable drawable)
 		{
 			Cairo.Context ctx = new Cairo.Context (gdk_cairo_create (drawable.Handle));

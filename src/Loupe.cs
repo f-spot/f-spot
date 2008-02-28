@@ -1,7 +1,8 @@
+extern alias MCairo;
 using Gtk;
+using Gdk;
 using System;
 using System.Runtime.InteropServices;
-using Cairo;
 using Mono.Unix;
 using FSpot.Widgets;
 using FSpot.UI.Dialog;
@@ -302,14 +303,14 @@ namespace FSpot {
 							    Allocation.Width, 
 							    Allocation.Height, 1);
 			
-			Context g = CairoUtils.CreateContext (bitmap);
+			MCairo::Cairo.Context g = CairoHelper.Create (bitmap);
 			DrawShape (g, Allocation.Width, Allocation.Height);
 			((IDisposable)g).Dispose ();
 
 			if (use_shape_ext)
 				ShapeCombineMask (bitmap, 0, 0);
 			else {
-				Context rgba = CairoUtils.CreateContext (GdkWindow);
+				MCairo::Cairo.Context rgba = CairoHelper.Create (GdkWindow);
 				DrawShape (rgba, Allocation.Width, Allocation.Height);
 				((IDisposable)rgba).Dispose ();
 				try {
@@ -341,14 +342,14 @@ namespace FSpot {
 			hotspot.Y = (int) Math.Ceiling (Center.Y + y_proj);
 		}
 		
-		private void DrawShape (Cairo.Context g, int width, int height)
+		private void DrawShape (MCairo::Cairo.Context g, int width, int height)
 		{
 			int inner_x = radius + border + inner;
 			int cx = Center.X;
 			int cy = Center.Y;
 			
-			g.Operator = Operator.Source;
-			g.Source = new SolidPattern (new Cairo.Color (0,0,0,0));
+			g.Operator = MCairo::Cairo.Operator.Source;
+			g.Source = new MCairo::Cairo.SolidPattern (new MCairo::Cairo.Color (0,0,0,0));
 			g.Rectangle (0, 0, width, height);
 			g.Paint ();
 
@@ -356,15 +357,15 @@ namespace FSpot {
 			g.Translate (cx, cy);
 			g.Rotate (angle);
 			
-			g.Source = new SolidPattern (new Cairo.Color (0.2, 0.2, 0.2, .6));
-			g.Operator = Operator.Over;
+			g.Source = new MCairo::Cairo.SolidPattern (new MCairo::Cairo.Color (0.2, 0.2, 0.2, .6));
+			g.Operator = MCairo::Cairo.Operator.Over;
 			g.Rectangle (0, - (border + inner), inner_x, 2 * (border + inner));
 			g.Arc (inner_x, 0, inner + border, 0, 2 * Math.PI);
 			g.Arc (0, 0, radius + border, 0, 2 * Math.PI);
 			g.Fill ();
 
-			g.Source = new SolidPattern (new Cairo.Color (0, 0, 0, 1.0));
-			g.Operator = Operator.DestOut;
+			g.Source = new MCairo::Cairo.SolidPattern (new MCairo::Cairo.Color (0, 0, 0, 1.0));
+			g.Operator = MCairo::Cairo.Operator.DestOut;
 			g.Arc (inner_x, 0, inner, 0, 2 * Math.PI);
 #if true
 			g.Fill ();
@@ -380,28 +381,28 @@ namespace FSpot {
 			g.Fill ();
 			rg.Destroy ();
 #endif
-			g.Operator = Operator.Over;
-			g.Matrix = new Matrix ();
+			g.Operator = MCairo::Cairo.Operator.Over;
+			g.Matrix = new MCairo::Cairo.Matrix ();
 			g.Translate (cx, cy);
 			if (source != null)
-				SetSourcePixbuf (g, source, -source.Width / 2, -source.Height / 2);
+				CairoHelper.SetSourcePixbuf (g, source, -source.Width / 2, -source.Height / 2);
 
 			g.Arc (0, 0, radius, 0, 2 * Math.PI);
 			g.Fill ();
 
 			if (overlay != null) {
-				SetSourcePixbuf (g, overlay, -overlay.Width / 2, -overlay.Height / 2);
+				CairoHelper.SetSourcePixbuf (g, overlay, -overlay.Width / 2, -overlay.Height / 2);
 				g.Arc (0, 0, radius, angle, angle + Math.PI);
 				g.ClosePath ();
 				g.FillPreserve ();
-				g.Source = new SolidPattern (new Cairo.Color (1.0, 1.0, 1.0, 1.0));
+				g.Source = new MCairo::Cairo.SolidPattern (new MCairo::Cairo.Color (1.0, 1.0, 1.0, 1.0));
 				g.Stroke ();
 			}
 		}
 
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
-			Context g = CairoUtils.CreateContext (GdkWindow);
+			MCairo::Cairo.Context g = CairoHelper.Create (GdkWindow);
 			DrawShape (g, Allocation.Width, Allocation.Height);
 			//base.OnExposeEvent (args);
 			((IDisposable)g).Dispose ();
@@ -561,21 +562,9 @@ namespace FSpot {
                 [DllImport ("libcairo-2.dll")]
                 static extern void cairo_user_to_device (IntPtr cr, ref double x, ref double y);
 
-		static void UserToDevice (Context ctx, ref double x, ref double y)
+		static void UserToDevice (MCairo::Cairo.Context ctx, ref double x, ref double y)
 		{
 			cairo_user_to_device (ctx.Handle, ref x, ref y);
-		}
-
-		[DllImport("libgdk-2.0-0.dll")]
-		extern static void gdk_cairo_set_source_pixbuf (IntPtr handle,
-								IntPtr pixbuf,
-								double        pixbuf_x,
-								double        pixbuf_y);
-
-		[Obsolete ("use Gdk.CairoHelper.SetSourcePixbuf instead")]
-		static void SetSourcePixbuf (Context ctx, Gdk.Pixbuf pixbuf, double x, double y)
-		{
-			gdk_cairo_set_source_pixbuf (ctx.Handle, pixbuf.Handle, x, y);
 		}
 
 		protected override void OnSizeRequested (ref Requisition requisition) 
