@@ -17,6 +17,7 @@ namespace FSpot.Widgets {
                 [DllImport ("libcairo-2.dll")]
                 static extern void cairo_user_to_device (IntPtr cr, ref double x, ref double y);
 		
+		[Obsolete ("use Cairo.Context.UserToDevice instead")]
 		static void UserToDevice (Context ctx, ref double x, ref double y)
 		{
 			cairo_user_to_device (ctx.Handle, ref x, ref y);
@@ -28,6 +29,7 @@ namespace FSpot.Widgets {
 								double x,
 								double y);
 
+		[Obsolete ("use Gdk.CairoHelper.SetSourcePixmap instead")]
 		public static void SetSourceDrawable (Context ctx, Gdk.Drawable d, double x, double y)
 		{
 			try {
