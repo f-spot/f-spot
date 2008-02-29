@@ -1,9 +1,4 @@
 General:
-      * Switch the time sort order so that newest Items are first in the
-        display.  Always start scrolled to the most recent item.
-      * Store view settings for tags/dates/timeline.  The current order
-        and position just starts you looking out at the same old photos
-        every time.
       * The current EXIF display is too EXIF specific and extremely
         dull,  The layout needs to be redone and the the Items should be
         ordered by relative importance.  A reduced view should replace
@@ -27,9 +22,6 @@ General:
         with a running f-spot.
 
 Searching:
-      * Add a simple text based search that looks at the tags and
-        comments.  This should simply be a new query in PhotoStore once
-        there is a UI to go with it. 
       * Add a time range slider next to the text search to allow simple
         limiting of the how far back to search remove the old time based
         search.
@@ -108,14 +100,6 @@ Import:
         up.
 
 Export:
-      * The current export dialogs have placeholders for scaling and tag
-        export.  These need to be hooked up now that the exif saving
-        works.
-      * The export code should be broken down into modules and made
-        pluggable.
-      * All the export dialogs need save history about what directories
-        and accounts were used in the past and offer completion in then
-        entries.
 
 Metadata:
       * Store all the operations we apply to an image in the image
@@ -137,4 +121,3 @@ Metadata:
       * Finish the managed tiff/EXIF parser.
 
 Printing:
-      * Print 1, 2, 4 images per page.
