@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-02-29 22:27+0100\n"
-"PO-Revision-Date: 2005-05-13 01:24+0200\n"
+"PO-Revision-Date: 2008-02-29 22:38+0100\n"
 "Last-Translator: Милош Поповић <gpopac@gmail.com>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
@@ -499,12 +499,10 @@ msgstr ""
 "и поновите радњу"
 
 #: ../extensions/MetaPixel/MetaPixel.cs:64
-#, fuzzy
 msgid "Metapixel not available"
-msgstr "Нису доступни метапиксели"
+msgstr "Није доступан метапиксел"
 
 #: ../extensions/MetaPixel/MetaPixel.cs:65
-#, fuzzy
 msgid ""
 "The metapixel executable was not found in path. Please check that you have "
 "it installed and that you have permissions to execute it"
@@ -549,7 +547,7 @@ msgstr "Направљен је фото-мозаик!"
 #, csharp-format
 msgid "PhotoMosaic"
 msgid_plural "PhotoMosaic ({0})"
-msgstr[0] "Фото-мозаик"
+msgstr[0] "{0} фото-мозаик"
 msgstr[1] "{0} фото-мозаика"
 msgstr[2] "{0} фото-мозаика"
 
@@ -565,9 +563,8 @@ msgstr ""
 "минијатуре од свих слика"
 
 #: ../extensions/MetaPixel/MetaPixel.glade.h:3
-#, fuzzy
 msgid "MetaPixel photomosaics"
-msgstr "Метапиксел фото-мозаик"
+msgstr "Метапиксел фото-мозаици"
 
 #: ../extensions/MetaPixel/MetaPixel.glade.h:4
 msgid "Miniatures _size"
@@ -596,9 +593,8 @@ msgstr "_Ознаке"
 
 #: ../extensions/MetaPixel/MetaPixel.glade.h:10
 #: ../extensions/PictureTile/PictureTile.glade.h:23
-#, fuzzy
 msgid "gtk-cancel"
-msgstr "гтк-обустави"
+msgstr "gtk-cancel"
 
 #: ../extensions/MetaPixel/MetaPixel.glade.h:11
 #: ../extensions/PictureTile/PictureTile.glade.h:24 ../src/f-spot.glade.h:281
@@ -1302,7 +1298,6 @@ msgid "IPTC file format"
 msgstr "IPTC тип датотеке"
 
 #: ../src/Imaging/IptcFile.cs:151
-#, fuzzy
 msgid "Identifies the provider and product"
 msgstr "Одређује добављача и производ"
 
@@ -2233,10 +2228,7 @@ msgid ""
 msgid_plural ""
 "{0} photos could not be rotated because they are on a read only file system "
 "or media such as a CDROM.  Please check the permissions and try again."
-msgstr[0] ""
-"Не могу да ротирам слику зато што се налази на систему датотека који "
-"омогућава само читање или на медију као што је ЦД.  Проверите овлашћења и "
-"покушајте поново."
+msgstr[0] "Не могу да ротирам {0} слику зато што се налази на систему датотека који омогућава само читање или на медију као што је ЦД.  Проверите овлашћења и покушајте поново."
 msgstr[1] ""
 "Не могу да ротирам {0} слике зато што се налазе на систему датотека који "
 "омогућава само читање или на медију као што је ЦД.  Проверите овлашћења и "
