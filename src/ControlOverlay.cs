@@ -8,11 +8,11 @@
  *
  * See COPYING for license information.
  */
+extern alias MCairo;
 
 using System;
 using Gtk;
 using FSpot.Widgets;
-using Cairo;
 
 namespace FSpot {
 	public class ControlOverlay : Window {
@@ -131,16 +131,16 @@ namespace FSpot {
 			return false;
 		}
 		
-		protected virtual void ShapeSurface (Context cr, Cairo.Color color)
+		protected virtual void ShapeSurface (MCairo::Cairo.Context cr, MCairo::Cairo.Color color)
 		{
-			cr.Operator = Operator.Source;
-			Pattern p = new SolidPattern (new Cairo.Color (0, 0, 0, 0));
+			cr.Operator = MCairo::Cairo.Operator.Source;
+			MCairo::Cairo.Pattern p = new MCairo::Cairo.SolidPattern (new MCairo::Cairo.Color (0, 0, 0, 0));
 			cr.Source = p;
 			p.Destroy ();
 			cr.Paint ();
-			cr.Operator = Operator.Over;
+			cr.Operator = MCairo::Cairo.Operator.Over;
 
-			Pattern r = new SolidPattern (color);
+			MCairo::Cairo.Pattern r = new MCairo::Cairo.SolidPattern (color);
 			cr.Source = r;
 			r.Destroy ();
 			cr.MoveTo (round, 0);
@@ -175,9 +175,9 @@ namespace FSpot {
 							    Allocation.Width, 
 							    Allocation.Height, 1);
 			
-			Context cr = CairoUtils.CreateContext (bitmap);
+			MCairo::Cairo.Context cr = Gdk.CairoHelper.Create (bitmap);
 			ShapeCombineMask (bitmap, 0, 0);
-			ShapeSurface (cr, new Cairo.Color (1, 1, 1));
+			ShapeSurface (cr, new MCairo::Cairo.Color (1, 1, 1));
 			ShapeCombineMask (bitmap, 0, 0);
 			((IDisposable)cr).Dispose ();
 			bitmap.Dispose ();
@@ -187,9 +187,9 @@ namespace FSpot {
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
 			Gdk.Color c = Style.Background (State);
-			Context cr = CairoUtils.CreateContext (GdkWindow);
+			MCairo::Cairo.Context cr = Gdk.CairoHelper.Create (GdkWindow);
 
-			ShapeSurface (cr, new Cairo.Color (c.Red / (double) ushort.MaxValue,
+			ShapeSurface (cr, new MCairo::Cairo.Color (c.Red / (double) ushort.MaxValue,
 							   c.Blue / (double) ushort.MaxValue, 
 							   c.Green / (double) ushort.MaxValue,
 							   0.8));

@@ -1,5 +1,12 @@
 2008-02-29  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Widgets/CairoUtils.cs: drop obsolete and unused helpers.
+
+	* src/ControlOverlay.cs: replace obsolete calls, link against the system
+	cairo.
+
+2008-02-29  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/MailDialog.cs:
 	* src/Mail/*: removing unused files.
 

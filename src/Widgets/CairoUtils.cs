@@ -24,33 +24,6 @@ namespace FSpot.Widgets {
 		}
 		
 		[DllImport("libgdk-2.0-0.dll")]
-		extern static void gdk_cairo_set_source_pixmap (IntPtr handle,
-								IntPtr drawable,
-								double x,
-								double y);
-
-		[Obsolete ("use Gdk.CairoHelper.SetSourcePixmap instead")]
-		public static void SetSourceDrawable (Context ctx, Gdk.Drawable d, double x, double y)
-		{
-			try {
-				gdk_cairo_set_source_pixmap (ctx.Handle, d.Handle, x, y);
-			} catch (EntryPointNotFoundException) {
-				int width, height;
-				d.GetSize (out width, out height);
-				XlibSurface surface = new XlibSurface (GdkUtils.GetXDisplay (d.Display), 
-								       (IntPtr)GdkUtils.GetXid (d),
-								       GdkUtils.GetXVisual (d.Visual),
-								       width, height);
-				
-				SurfacePattern p = new SurfacePattern (surface);
-				Matrix m = new Matrix ();
-				m.Translate (-x, -y);
-				p.Matrix = m;
-				ctx.Source = p;
-			}
-		}		
-
-		[DllImport("libgdk-2.0-0.dll")]
 		static extern IntPtr gdk_cairo_create (IntPtr raw);
 		
 		[Obsolete ("use Gdk.CairoHelper.Create instead")]
