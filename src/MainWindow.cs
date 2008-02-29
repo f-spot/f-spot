@@ -1965,64 +1965,7 @@ public class MainWindow {
 
 	void HandleSharpen (object sender, EventArgs args)
 	{
-		Gtk.Dialog dialog = new Gtk.Dialog (Catalog.GetString ("Unsharp Mask"), main_window, Gtk.DialogFlags.Modal);
-
-		dialog.VBox.Spacing = 6;
-		dialog.VBox.BorderWidth = 12;
-		
-		Gtk.Table table = new Gtk.Table (3, 2, false);
-		table.ColumnSpacing = 6;
-		table.RowSpacing = 6;
-		
-		table.Attach (new Gtk.Label (Catalog.GetString ("Amount:")), 0, 1, 0, 1);
-		table.Attach (new Gtk.Label (Catalog.GetString ("Radius:")), 0, 1, 1, 2);
-		table.Attach (new Gtk.Label (Catalog.GetString ("Threshold:")), 0, 1, 2, 3);
-
-		Gtk.SpinButton amount_spin = new Gtk.SpinButton (0.5, 100.0, .01);
-		Gtk.SpinButton radius_spin = new Gtk.SpinButton (5.0, 50.0, .01);
-		Gtk.SpinButton threshold_spin = new Gtk.SpinButton (0.0, 50.0, .01);
-
-		table.Attach (amount_spin, 1, 2, 0, 1);
-		table.Attach (radius_spin, 1, 2, 1, 2);
-		table.Attach (threshold_spin, 1, 2, 2, 3);
-		
-		dialog.VBox.PackStart (table);
-
-		dialog.AddButton (Gtk.Stock.Cancel, Gtk.ResponseType.Cancel);
-		dialog.AddButton (Gtk.Stock.Ok, Gtk.ResponseType.Ok);
-
-		dialog.ShowAll ();
-
-		Gtk.ResponseType response = (Gtk.ResponseType) dialog.Run ();
-
-		if (response == Gtk.ResponseType.Ok) {
-			foreach (int id in SelectedIds ()) {
-				Photo photo = query.Photos [id];
-				try {
-					Gdk.Pixbuf orig = FSpot.PhotoLoader.Load (query, id);
-					Gdk.Pixbuf final = PixbufUtils.UnsharpMask (orig, radius_spin.Value, amount_spin.Value, threshold_spin.Value);
-					
-					bool create_version = photo.DefaultVersion.IsProtected;
-
-					photo.SaveVersion (final, create_version);
-					query.Commit (id);
-				} catch (System.Exception e) {
-					string msg = Catalog.GetString ("Error saving sharpened photo");
-					string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
-								     e.Message, photo.Name.Replace ("_", "__"));
-					
-					HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
-										    Gtk.MessageType.Error, ButtonsType.Ok, 
-										    msg,
-										    desc);
-					md.Run ();
-					md.Destroy ();
-				}
-			
-			}
-		}
-
-		dialog.Destroy ();
+		photo_view.View.ShowSharpener ();
 	}
 
 	void HandleDisplayToolbar (object sender, EventArgs args)

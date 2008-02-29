@@ -474,14 +474,6 @@ namespace FSpot {
 			case Gdk.Key.KP_Subtract:
 				ZoomOut ();
 				break;
-			case Gdk.Key.s:
-				if (sharpener == null) {
-					sharpener = new Sharpener (this);
-					sharpener.Destroyed += HandleLoupeDestroy;
-				}
-
-				sharpener.Show ();
-				break;
 			case Gdk.Key.v:
 				if (loupe == null) {
 					loupe = new Loupe (this);
@@ -505,6 +497,16 @@ namespace FSpot {
 			}
 
 			return;
+		}
+
+		public void ShowSharpener ()
+		{
+			if (sharpener == null) {
+				sharpener = new Sharpener (this);
+				sharpener.Destroyed += HandleLoupeDestroy;
+			}
+
+			sharpener.Show ();	
 		}
 		
 		[GLib.ConnectBefore]

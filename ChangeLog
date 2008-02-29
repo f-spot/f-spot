@@ -1,5 +1,15 @@
 2008-02-29  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/FullScreenView.cs: replace obsolete call.
+
+	* src/PhotoImageView.cs:
+	* src/MainWindow.cs: use the Loupe sharpener from the edit menu too. Fixes
+	bgo #326547.
+
+	* src/f-spot.glade: add the 's' shortcut to the menuitem
+
+2008-02-29  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Widgets/CairoUtils.cs: drop obsolete and unused helpers.
 
 	* src/ControlOverlay.cs: replace obsolete calls, link against the system

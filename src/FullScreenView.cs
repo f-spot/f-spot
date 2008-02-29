@@ -11,7 +11,6 @@ using System;
 using Gtk;
 using Gdk;
 using FSpot.Widgets;
-using Cairo;
 using Mono.Unix;
 
 namespace FSpot {
@@ -215,7 +214,7 @@ namespace FSpot {
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
 			bool ret = base.OnExposeEvent (args);
-			Graphics g = CairoUtils.CreateDrawable (GdkWindow);
+			Graphics g = CairoHelper.Create (GdkWindow);
 
 			g.Color = new Cairo.Color (0, 0, 0, .5);
 			g.Operator = Operator.DestOut;

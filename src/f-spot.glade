@@ -3269,6 +3269,7 @@ Photo Details</property>
                         <property name="label" translatable="yes">_Sharpen...</property>
                         <property name="use_underline">True</property>
                         <signal name="activate" handler="HandleSharpen"/>
+                        <accelerator key="s" signal="activate"/>
                       </widget>
                     </child>
                     <child>
