@@ -28,7 +28,7 @@ UTILS_CSDISTFILES =				\
 	$(srcdir)/Utils/DbUtils.cs		\
 	$(srcdir)/Utils/GnomeUtil.cs		\
 	$(srcdir)/Utils/GtkUtil.cs		\
-	$(srcdir)/Unix.cs			\
+	$(srcdir)/Utils/Unix.cs			\
 	$(srcdir)/Utils/UriUtils.cs		\
 	$(srcdir)/Utils/ScreenSaver.cs
 
