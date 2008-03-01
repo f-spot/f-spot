@@ -1277,7 +1277,7 @@ namespace FSpot.Png {
 			using (System.IO.Stream output = System.IO.File.OpenWrite (temp_path)) {
 				Save (output);
 			}
-			if (FSpot.Unix.Rename (temp_path, path) < 0) {
+			if (FSpot.Utils.Unix.Rename (temp_path, path) < 0) {
 				System.IO.File.Delete (temp_path);
 				throw new System.Exception (System.String.Format ("Unable to rename {0} to {1}", temp_path, path));
 			}

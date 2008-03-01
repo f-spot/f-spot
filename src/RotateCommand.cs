@@ -63,7 +63,7 @@ namespace FSpot {
 					     direction == RotateDirection.Clockwise ? JpegUtils.TransformType.Rotate90 
 					     : JpegUtils.TransformType.Rotate270);
 			
-			Unix.Rename (temporary_path, original_path);
+			Utils.Unix.Rename (temporary_path, original_path);
 		}
 
 		private static void RotateOrientation (string original_path, RotateDirection direction)

@@ -28,6 +28,7 @@ UTILS_CSDISTFILES =				\
 	$(srcdir)/Utils/DbUtils.cs		\
 	$(srcdir)/Utils/GnomeUtil.cs		\
 	$(srcdir)/Utils/GtkUtil.cs		\
+	$(srcdir)/Unix.cs			\
 	$(srcdir)/Utils/UriUtils.cs		\
 	$(srcdir)/Utils/ScreenSaver.cs
 
@@ -225,7 +226,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/UI.Dialog/AboutDialog.cs	\
 	$(srcdir)/UI.Dialog/EditExceptionDialog.cs	\
 	$(srcdir)/UI.Dialog/HigMessageDialog.cs	\
-	$(srcdir)/Unix.cs			\
 	$(srcdir)/Updater.cs			\
 	$(srcdir)/UriCollection.cs		\
 	$(srcdir)/Util.cs			\

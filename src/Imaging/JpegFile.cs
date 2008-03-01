@@ -148,14 +148,14 @@ namespace FSpot {
 
 			string  temp_path = path;
 			using (System.IO.FileStream stream = System.IO.File.OpenRead (path)) {
-				using (System.IO.Stream output = FSpot.Unix.MakeSafeTemp (ref temp_path)) {
+				using (System.IO.Stream output = FSpot.Utils.Unix.MakeSafeTemp (ref temp_path)) {
 					SaveMetaData (stream, output);
 				}
 			}
 
 			File.SetAttributes (temp_path, File.GetAttributes (path));
 
-			if (FSpot.Unix.Rename (temp_path, path) < 0) {
+			if (FSpot.Utils.Unix.Rename (temp_path, path) < 0) {
 				System.IO.File.Delete (temp_path);
 				throw new System.Exception (System.String.Format ("Unable to rename {0} to {1}",
 										  temp_path, path));

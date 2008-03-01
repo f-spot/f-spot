@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
 
-namespace FSpot {
-	class Unix {
+namespace FSpot.Utils {
+	public class Unix {
 
 		[DllImport ("libc")]
 		static extern int rename (string oldpath, string newpath);
