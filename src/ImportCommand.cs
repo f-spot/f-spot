@@ -26,7 +26,6 @@ using FSpot;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
 
-[Size (Preferences.IMPORT_WINDOW_WIDTH, Preferences.IMPORT_WINDOW_HEIGHT)]
 public class ImportCommand : FSpot.GladeDialog
 {
 	internal class SourceItem : ImageMenuItem
@@ -590,6 +589,9 @@ public class ImportCommand : FSpot.GladeDialog
 		this.Dialog.WindowPosition = Gtk.WindowPosition.CenterOnParent;
 		this.Dialog.Response += HandleDialogResponse;
 
+ 		if ((int) FSpot.Preferences.Get (FSpot.Preferences.IMPORT_WINDOW_WIDTH) > 0)
+ 			this.Dialog.Resize ((int) FSpot.Preferences.Get (FSpot.Preferences.IMPORT_WINDOW_WIDTH), (int) FSpot.Preferences.Get(FSpot.Preferences.IMPORT_WINDOW_HEIGHT));
+
  		if ((int) FSpot.Preferences.Get (FSpot.Preferences.IMPORT_WINDOW_PANE_POSITION) > 0)
 			import_hpaned.Position = (int) FSpot.Preferences.Get (FSpot.Preferences.IMPORT_WINDOW_PANE_POSITION);
 
@@ -691,7 +693,11 @@ public class ImportCommand : FSpot.GladeDialog
 				}
 			}
 
-			SaveSettings ();
+			int width, height;
+			this.Dialog.GetSize (out width, out height);
+
+			FSpot.Preferences.Set (FSpot.Preferences.IMPORT_WINDOW_WIDTH, width);
+			FSpot.Preferences.Set (FSpot.Preferences.IMPORT_WINDOW_HEIGHT, height);
 			FSpot.Preferences.Set (FSpot.Preferences.IMPORT_WINDOW_PANE_POSITION, import_hpaned.Position);
 
 			this.Dialog.Destroy ();
