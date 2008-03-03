@@ -2765,6 +2765,7 @@ public class MainWindow {
 			delete_version_menu_item.Sensitive = false;
 			rename_version_menu_item.Sensitive = false;
 
+			sharpen.Sensitive = false;
 		} else {
 			version_menu_item.Sensitive = true;
 			create_version_menu_item.Sensitive = true;
@@ -2780,6 +2781,8 @@ public class MainWindow {
 			versions_submenu = new PhotoVersionMenu (CurrentPhoto);
 			versions_submenu.VersionIdChanged += new PhotoVersionMenu.VersionIdChangedHandler (HandleVersionIdChanged);
 			version_menu_item.Submenu = versions_submenu;
+
+			sharpen.Sensitive = (view_mode == ModeType.IconView ? false : true);
 		}
 
 		set_as_background.Sensitive = single_active;
@@ -2799,7 +2802,6 @@ public class MainWindow {
 		select_none.Sensitive = active_selection;
 		copy_location.Sensitive = active_selection;
 		exif_data.Sensitive = active_selection;
-		sharpen.Sensitive = active_selection;
 		remove_from_catalog.Sensitive = active_selection;
 		
 		clear_rating_filter.Sensitive = (query.RatingRange != null);
