@@ -1965,6 +1965,12 @@ public class MainWindow {
 
 	void HandleSharpen (object sender, EventArgs args)
 	{
+		// Don't steal characters from any text entries
+		if (Window.Focus is Gtk.Entry && Gtk.Global.CurrentEvent is Gdk.EventKey) {
+			Window.Focus.ProcessEvent (Gtk.Global.CurrentEvent);
+			return;
+		}
+		
 		photo_view.View.ShowSharpener ();
 	}
 
