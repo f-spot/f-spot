@@ -55,6 +55,7 @@ public class PhotoVersionMenu : Menu {
 			MenuItem menu_item = new MenuItem (photo.GetVersion (id).Name);
 			menu_item.Show ();
 			menu_item.Sensitive = true;
+			((Gtk.Label)menu_item.Child).UseUnderline = false;
 			menu_item.Activated += new EventHandler (HandleMenuItemActivated);
 
 			item_infos [i ++] = new MenuItemInfo (menu_item, id);
