@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using FSpot;
+using FSpot.Utils;
 using FSpot.Xmp;
 using FSpot.UI.Dialog;
 using System.IO;
@@ -83,7 +84,7 @@ public class FileImportBackend : ImportBackend {
 		}
 
 		foreach (System.IO.FileInfo f in files) {
-			if (! existing_entries.Contains (new System.Uri (f.FullName))) {
+			if (! existing_entries.Contains (UriUtils.PathToFileUri (f.FullName))) {
 				AddPath (f.FullName);
 			}
 		}
