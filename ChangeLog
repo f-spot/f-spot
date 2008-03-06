@@ -1,3 +1,8 @@
+2008-03-06  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* src/FileImportBackend.cs: Skip hidden files when importing from
+	a directory. Fixes bgo #46131.
+
 2008-03-03  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* src/Core/Photo.cs: one more uri escape. Bgo#520084.
@@ -5,7 +10,7 @@
 2008-03-03  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* src/PhotoVersionMenu.cs: don't use underline in photo version
-	labels. Bgo#520087.
+	labels. Bgo #520087.
 
 2008-03-01  Stephane Delcroix  <sdelcroix@novell.com>
 

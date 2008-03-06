@@ -50,7 +50,7 @@ public class FileImportBackend : ImportBackend {
 		public ImportInfo (string original)
 		{
 			original_path = original;
-		        destination_path= null;
+		        destination_path = null;
 			Photo = null;
 		}
 	}
@@ -84,7 +84,7 @@ public class FileImportBackend : ImportBackend {
 		}
 
 		foreach (System.IO.FileInfo f in files) {
-			if (! existing_entries.Contains (UriUtils.PathToFileUri (f.FullName))) {
+			if (! existing_entries.Contains (UriUtils.PathToFileUri (f.FullName)) && !f.Name.StartsWith (".")) {
 				AddPath (f.FullName);
 			}
 		}
