@@ -1,3 +1,8 @@
+2008-03-06  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* libeog/image-view.c: use NEAREST interpolation for small images (<20).
+	Workaround a bug in gdk-pixbuf, Fixes bgo #406505.
+
 2008-03-06  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* src/FileImportBackend.cs: Skip hidden files when importing from

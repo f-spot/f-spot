@@ -782,7 +782,7 @@ paint_rectangle (ImageView *view, ArtIRect *rect, GdkInterpType interp_type)
 				    d.x1 - d.x0, d.y1 - d.y0,
 				    -(d.x0 - xofs), -(d.y0 - yofs),
 				    priv->zoomx, priv->zoomy,
-				    unity_zoom (priv) ? GDK_INTERP_NEAREST : interp_type,
+				    ABS (d.x1 - d.x0) < 20 || ABS (d.y1 - d.y0) < 20 || unity_zoom (priv) ? GDK_INTERP_NEAREST : interp_type,
 				    255,
 				    d.x0 - xofs, d.y0 - yofs,
 				    check_size,
