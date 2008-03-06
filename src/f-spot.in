@@ -20,6 +20,7 @@ fi
 [ -n "$FSPOT_TRACE" ] && FSPOT_TRACE="--trace=$FSPOT_TRACE"
 [ -n "$FSPOT_PROFILE" ] && FSPOT_PROFILE="--profile=$FSPOT_PROFILE"
 run_mdb=false
+run_gdb=false
 for arg in $*; do
     case "x$arg" in
     	x--debug)
@@ -27,6 +28,9 @@ for arg in $*; do
 	    ;;
 	x--mdb)
 	    run_mdb=true
+	    ;;
+	x--gdb)
+	    run_gdb=true
 	    ;;
     	x--trace=*)
 	    FSPOT_TRACE="$arg"
@@ -53,6 +57,8 @@ fi
 
 if $run_mdb; then
 	mdb $EXE_TO_RUN -args "$@"
+elif $run_gdb; then
+	gdb --eval-command=run --args mono $MONO_OPTIONS $EXE_TO_RUN "$@"
 else
 	exec -a @PACKAGE@ mono $MONO_OPTIONS $EXE_TO_RUN "$@"
 fi

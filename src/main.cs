@@ -100,7 +100,7 @@ public class Driver {
 				uris.Add (args [++i]);
 				break;
 			
-			case "--debug": case "--trace": case "--profile": case "--uninstalled":
+			case "--debug": case "--trace": case "--profile": case "--uninstalled": case "--gdb":
 				break;
 
 			default:
