@@ -1,8 +1,8 @@
 #
 # Copyright (C) 2004-2008 Jordi Mas i Hernàndez, jmas@softcatala.org
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the F-Spot package.
 # 
-# Correccions i suggeriments: Francesc Dorca, David Gil, Anna Grau, Josep Puigdemont, Gil Forcada, Sílvia Miranda
+# Correccions i suggeriments: Francesc Dorca, David Gil, Anna Grau, Josep Puigdemont, Gil Forcada, Sílvia Miranda i David Planella 
 #
 # N.T: El "Gallery" és un programari (veure http://gallery.menalto.com).
 #
@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: F-Spot\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-02-28 00:45+0100\n"
-"PO-Revision-Date: 2008-02-11 18:30+0200\n"
+"PO-Revision-Date: 2008-03-06 22:15+0100\n"
 "Last-Translator: Jordi Mas <jmas@softcatala.org>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -77,7 +77,7 @@ msgstr " (al directori de l'usuari)"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:408
 msgid "The following packages need to be uninstalled:"
-msgstr "S'han de desinsta·lar els paquets següents:"
+msgstr "S'han de desinstal·lar els paquets següents:"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:416
 msgid "The following dependencies could not be resolved:"
@@ -104,7 +104,7 @@ msgstr "La desinstal·lació s'ha completat satisfactòriament."
 #
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:447
 msgid "The uninstallation failed!"
-msgstr "L'operació ha fallat"
+msgstr "La desinstal·lació ha fallat"
 
 #
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:448
@@ -251,7 +251,7 @@ msgstr "<big><b>Gestor de complements</b></big>"
 #
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:110
 msgid "The following extensions are currently installed:"
-msgstr "Els següents complements es troben instal·lats actualment:"
+msgstr "Els complements següents estan instal·lats:"
 
 #
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:165
@@ -387,12 +387,12 @@ msgstr "S'estan comprovant les credencials..."
 #: ../extensions/FlickrExport/FlickrExport.cs:109
 #, csharp-format
 msgid "Welcome {0} you are connected to {1}"
-msgstr "Benvinguts a {0}; esteu connectats a {1}"
+msgstr "Benvingut a {0}; esteu connectat a {1}"
 
 #: ../extensions/FlickrExport/FlickrExport.cs:112
 #, csharp-format
 msgid "Sign in as a different user"
-msgstr "Entreu com un usuari diferent"
+msgstr "Entreu com a un usuari diferent"
 
 #
 #: ../extensions/FlickrExport/FlickrExport.cs:266
@@ -444,7 +444,7 @@ msgid ""
 "authentication using {0} web browser interface."
 msgstr ""
 "L'F-Spot no ha pogut iniciar la sessió al {0}. Assegureu-vos que teniu "
-"l'autenticació per a usar la interfície web del {0}."
+"l'autenticació per a utilitzar la interfície web del {0}."
 
 #: ../extensions/FlickrExport/FlickrExport.cs:427
 #: ../extensions/SmugMugExport/SmugMugExport.cs:542
@@ -531,7 +531,7 @@ msgstr "píxels"
 #
 #: ../extensions/MetaPixel/MetaPixel.addin.xml.h:1
 msgid "Create p_hotomosaic"
-msgstr "Cr_ea un mosaic de fotografies"
+msgstr "Cr_ea una fotografia mosaic"
 
 #: ../extensions/MetaPixel/MetaPixel.cs:44
 #: ../extensions/PictureTile/PictureTile.cs:50 ../src/PhotoView.cs:326
@@ -571,8 +571,8 @@ msgstr "No hi ha fotografies a la selecció"
 #: ../extensions/MetaPixel/MetaPixel.cs:121
 msgid "The tags selected provided no pictures. Please select different tags"
 msgstr ""
-"Les etiquetes seleccionades no tenen cap fotografia. Escolliu unes altres "
-"diferents"
+"Les etiquetes seleccionades no tenen cap fotografia. Escolliu-ne unes altres "
+"de diferents"
 
 #
 #: ../extensions/MetaPixel/MetaPixel.cs:128
@@ -683,7 +683,7 @@ msgstr "captcha_url"
 #
 #: ../extensions/PictureTile/PictureTile.addin.xml.h:1
 msgid "Create photo_wall"
-msgstr "C_rea un mur fotogràfic"
+msgstr "C_rea una paret de fotografies"
 
 #
 #: ../extensions/PictureTile/PictureTile.cs:70
@@ -703,33 +703,33 @@ msgstr ""
 #
 #: ../extensions/PictureTile/PictureTile.cs:109
 msgid "Preparing selected pictures"
-msgstr "S'estant preparant les fotografies seleccionades"
+msgstr "S'estan preparant les fotografies seleccionades"
 
 # La cadena acaba amb el nom de l'aplicació -> F-Spot
 #
 #: ../extensions/PictureTile/PictureTile.cs:198
 msgid "PhotoWall generated!"
-msgstr "S'ha generat el mur fotogràfic"
+msgstr "S'ha generat la paret de fotografies"
 
 #: ../extensions/PictureTile/PictureTile.cs:199
 msgid ""
 "Your photo wall have been generated and imported in F-Spot. Select the last "
 "roll to see it"
 msgstr ""
-"El mur fotogràfic ha estat generat i importat a l'F-Spot. Seleccioneu "
-"l'últim rodet per veure'l."
+"La paret de fotografies ha estat generada i importada a l'F-Spot. Seleccioneu "
+"l'últim rodet per veure-la."
 
 #
 #: ../extensions/PictureTile/PictureTile.cs:202
 msgid "Error importing photowall"
-msgstr "S'ha produït un error en importar el mur fotogràfic"
+msgstr "S'ha produït un error en importar la paret de fotografies"
 
 #
 #: ../extensions/PictureTile/PictureTile.cs:203
 msgid ""
 "An error occurred while importing the newly generated photowall to F-Spot"
 msgstr ""
-"S'ha produït un error en importar el mur fotogràfic generat nou a l'F-Spot"
+"S'ha produït un error en importar la nova paret de fotografies generada a l'F-Spot"
 
 #: ../extensions/PictureTile/PictureTile.glade.h:2
 #, no-c-format
@@ -742,24 +742,24 @@ msgstr "_Color del fons"
 
 #: ../extensions/PictureTile/PictureTile.glade.h:4
 msgid "Can be negative. It will overlap images"
-msgstr "Pot ser negatiu. Les imatges sobreposaran."
+msgstr "Pot ser negatiu. Se sobreposarà a les imatges."
 
 #: ../extensions/PictureTile/PictureTile.glade.h:5
 msgid ""
 "Check this if your images are all of the same size and you will have a more "
 "regular grid"
 msgstr ""
-"Comproveu que totes les imatges són de la mateixa mida i tindreu una graella "
+"Comproveu que totes les imatges són de la mateixa mida i així tindreu una graella "
 "més uniforme."
 
 #: ../extensions/PictureTile/PictureTile.glade.h:6
 msgid "Choose how many destination images you want to generate"
-msgstr "Trieu quantes imatges de destí voleu generar"
+msgstr "Trieu quantes imatges de destinació voleu generar"
 
 #
 #: ../extensions/PictureTile/PictureTile.glade.h:7
 msgid "Destination picture max _size"
-msgstr "Mida mà_xima de la imatge de destí"
+msgstr "Mida mà_xima de la imatge de destinació"
 
 #: ../extensions/PictureTile/PictureTile.glade.h:8
 msgid ""
@@ -771,7 +771,7 @@ msgstr ""
 
 #: ../extensions/PictureTile/PictureTile.glade.h:10
 msgid "Jpeg _quality"
-msgstr "_Qualitat Jpeg"
+msgstr "_Qualitat JPEG"
 
 #
 #: ../extensions/PictureTile/PictureTile.glade.h:11
@@ -785,7 +785,7 @@ msgstr "_Contorn exterior"
 #
 #: ../extensions/PictureTile/PictureTile.glade.h:13
 msgid "Photo wall generator"
-msgstr "Generador del mur fotogràfic"
+msgstr "Generador de parets de fotografies"
 
 #: ../extensions/PictureTile/PictureTile.glade.h:14
 msgid "PictureTile for F-Spot"
@@ -812,7 +812,7 @@ msgstr "_Pàgines"
 #
 #: ../extensions/PictureTile/PictureTile.glade.h:20
 msgid "_Scale images"
-msgstr "_Canviar d'escala les imatges"
+msgstr "_Canvi d'escala de les imatges"
 
 #: ../extensions/PictureTile/PictureTile.glade.h:21
 msgid "_Tiff"
@@ -947,7 +947,7 @@ msgstr "tipus d'interpolació"
 
 #: ../libeog/image-view.c:2129
 msgid "the type of interpolation to use"
-msgstr "el tipus d'interpolació per utilitzar"
+msgstr "el tipus d'interpolació a utilitzar"
 
 #: ../libeog/image-view.c:2135 ../libeog/image-view.c:2142
 msgid "check type"
@@ -955,11 +955,11 @@ msgstr "tipus de verificació"
 
 #: ../libeog/image-view.c:2136
 msgid "the type of chequering to use"
-msgstr "el tipus de graella per utilitzar"
+msgstr "el tipus de graella a utilitzar"
 
 #: ../libeog/image-view.c:2143
 msgid "the size of chequers to use"
-msgstr "la mida de les caselles de la graella per utilitzar"
+msgstr "la mida de les caselles de la graella a utilitzar"
 
 #: ../libeog/image-view.c:2149
 msgid "dither"
@@ -984,7 +984,7 @@ msgstr "L'operació ha fallat"
 
 #: ../src/CameraFileSelectionDialog.cs:73
 msgid "Preview"
-msgstr "Previsualitza"
+msgstr "Previsualització"
 
 #: ../src/CameraFileSelectionDialog.cs:75
 msgid "Path"
@@ -1030,7 +1030,7 @@ msgstr "S'han copiat els fitxers"
 
 #: ../src/CameraFileSelectionDialog.cs:238
 msgid "Download Complete"
-msgstr "S'ha acabat la descàrrega"
+msgstr "S'ha acabat la baixada"
 
 #: ../src/CameraFileSelectionDialog.cs:263
 #, csharp-format
@@ -1047,7 +1047,7 @@ msgstr "Port"
 
 #: ../src/ColorDialog.cs:212
 msgid "Error saving adjusted photo"
-msgstr "S'ha produït un error en desar una fotografia retocada"
+msgstr "S'ha produït un error en desar la fotografia retocada"
 
 #: ../src/ColorDialog.cs:213 ../src/Loupe.cs:59 ../src/MainWindow.cs:2011
 #: ../src/PhotoView.cs:275 ../src/UI.Dialog/EditExceptionDialog.cs:25
@@ -1067,8 +1067,8 @@ msgid ""
 "the tag to some photos or selecting a different tag in the\n"
 "F-Spot preference dialog."
 msgstr ""
-"L'etiqueta «{0}» no està aplicada a cap fotografia. Proveu d'afegir\n"
-"l'etiqueta a algunes fotografies o de seleccionar una etiqueta diferent\n"
+"L'etiqueta «{0}» no s'ha aplicat a cap fotografia. Proveu d'afegir-\n"
+"la a algunes fotografies o de seleccionar una etiqueta diferent\n"
 "en el diàleg de preferències de l'F-Spot."
 
 #: ../src/Core.cs:197
@@ -1082,8 +1082,8 @@ msgid ""
 "selecting a different tag in the F-Spot preference\n"
 "dialog."
 msgstr ""
-"L'etiqueta que F-Spot està cercant no existeix. Proveu\n"
-"de seleccionar una altra etiqueta en el diàleg preferències de l'F-Spot."
+"L'etiqueta que l'F-Spot està cercant no existeix. Proveu\n"
+"de seleccionar-ne una altra en el diàleg preferències de l'F-Spot."
 
 #
 #
@@ -1160,7 +1160,7 @@ msgstr "Totes les imatges"
 #
 #: ../src/DateCommands.cs:88
 msgid "Customized Range"
-msgstr "Rang personalitzat"
+msgstr "Interval personalitzat"
 
 #: ../src/Editors/SoftFocus.cs:27 ../src/ItemAction.cs:342
 msgid "Soft Focus"
@@ -1325,7 +1325,7 @@ msgstr "Mostra"
 
 #: ../src/GlTransition.cs:202
 msgid "Wipe"
-msgstr "Eixuga"
+msgstr "Esborra"
 
 #: ../src/GlTransition.cs:260
 msgid "Split"
@@ -1342,7 +1342,7 @@ msgstr "Més dates"
 
 #: ../src/GroupSelector.cs:60 ../src/GroupSelector.cs:61
 msgid "More directories"
-msgstr "Inclou els directoris"
+msgstr "Més directoris"
 
 #: ../src/GroupSelector.cs:63 ../src/GroupSelector.cs:64
 msgid "More"
@@ -1364,7 +1364,7 @@ msgstr "Ordre _invers"
 
 #: ../src/GroupSelector.cs:529 ../src/f-spot.glade.h:210
 msgid "_Clear Date Range"
-msgstr "_Neteja el rang de dates"
+msgstr "_Neteja l'interval de dates"
 
 #: ../src/Imaging/Exif.cs:228
 msgid "Image Directory"
@@ -1392,7 +1392,7 @@ msgstr "El directori és desconegut"
 
 #: ../src/Imaging/IptcFile.cs:145
 msgid "IPTC Information Interchange Model (IIM) Version number"
-msgstr "Versió IPTC del model d'intercanvi d'informació (MII)"
+msgstr "Versió del model d'intercanvi d'informació (MII) de l'IPTC"
 
 #: ../src/Imaging/IptcFile.cs:147
 msgid "OSI Destination routing information"
@@ -1425,12 +1425,12 @@ msgstr ""
 #: ../src/Imaging/IptcFile.cs:159
 msgid "The year, month and day (CCYYMMDD) the service sent the material"
 msgstr ""
-"L'any, el mes i el dia (CCAAMMDD) en què el servei va enviar el material"
+"L'any, el mes i el dia (CCAAMMDD) en els quals el servei va enviar el material"
 
 #: ../src/Imaging/IptcFile.cs:161
 msgid "The hour, minute and second (HHMMSS) the service sent the material"
 msgstr ""
-"L'hora, els minuts i els segons (HHMMSS) en què el servei va enviar el "
+"L'hora, els minuts i els segons (HHMMSS) en els quals el servei va enviar el "
 "material"
 
 #: ../src/Imaging/IptcFile.cs:163
@@ -1439,7 +1439,7 @@ msgstr "Designació del joc de caràcters"
 
 #: ../src/Imaging/IptcFile.cs:165
 msgid "External globally unique object identifier"
-msgstr "Identificador únic, global i extern de l'objecte"
+msgstr "Identificador global únic extern de l'objecte"
 
 #: ../src/Imaging/IptcFile.cs:170
 msgid "Abstract Relationship Method (ARM) identifier"
@@ -1471,7 +1471,7 @@ msgstr "Estat de les dades de l'objecte d'acord amb el proveïdor"
 
 #: ../src/Imaging/IptcFile.cs:194
 msgid "Location within a city or area where the object originates"
-msgstr "Ubicació dins d'una ciutat o àrea on s'origina l'objecte"
+msgstr "Ubicació dins d'una ciutat o àrea d'on prové l'objecte"
 
 #: ../src/Imaging/IptcFile.cs:197
 msgid "Name of the city the content is focussing on"
@@ -1559,7 +1559,7 @@ msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
 "different directory"
 msgstr ""
-"El directori seleccionat «{0}» no existeix. Escolliu un altre directori"
+"El directori seleccionat «{0}» no existeix. Escolliu-ne un altre"
 
 #
 #. Prepare the Last Import root tag
@@ -1785,8 +1785,8 @@ msgid ""
 "database has be moved to {0} and a new database has been created."
 msgstr ""
 "L'F-Spot ha trobat un error mentre s'estava carregant la base de dades de "
-"fotografies. La base de dades antiga s'ha mogut a {0} i s'ha creat una base "
-"de dades nova."
+"fotografies. La base de dades antiga s'ha mogut a {0} i se n'ha creat una "
+"de nova."
 
 #: ../src/MainWindow.cs:1482
 msgid "No cameras detected."
@@ -1831,6 +1831,7 @@ msgstr ""
 msgid "_Merge Tags"
 msgstr "F_usiona les etiquetes"
 
+# FIXME: «unsharp» no es refereix al verb aquí? 
 #: ../src/MainWindow.cs:1968
 msgid "Unsharp Mask"
 msgstr "Màscara no nítida"
@@ -1961,7 +1962,7 @@ msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
 "\"{0}\" first"
 msgstr ""
-"No es poden suprimir etiquetes que contenen altres etiquetes. Primer "
+"No es poden suprimir etiquetes que en contenen d'altres. Primer "
 "suprimiu les etiquetes «{0}»"
 
 #: ../src/MainWindow.cs:2890
@@ -2034,7 +2035,7 @@ msgstr "Compressió"
 
 #: ../src/MetadataStore.cs:24
 msgid "Planar Configuration"
-msgstr "Configuració plana"
+msgstr "Configuració planar"
 
 #: ../src/MetadataStore.cs:26
 msgid "Orientation"
@@ -2098,7 +2099,7 @@ msgstr "Tipus de captura d'escena"
 
 #: ../src/MetadataStore.cs:56
 msgid "Gain Control"
-msgstr "Control de guanys"
+msgstr "Control de guany"
 
 #: ../src/MetadataStore.cs:58
 msgid "Contrast"
@@ -2214,7 +2215,7 @@ msgstr "Quadrat"
 
 #: ../src/PhotoView.cs:155
 msgid "Crop photo to selected area"
-msgstr "Escapça la fotografia fins que encaixi"
+msgstr "Escapça la fotografia a l'àrea seleccionada"
 
 #: ../src/PhotoView.cs:156
 msgid "Remove redeye from selected area"
@@ -2377,11 +2378,11 @@ msgid_plural ""
 "or media such as a CDROM.  Please check the permissions and try again."
 msgstr[0] ""
 "La fotografia no s'ha pogut girar perquè és en un sistema de fitxers només "
-"de lectura o en un mitjà com ara el CD-ROM. Verifiqueu-ne els permisos i "
+"de lectura o en un suport com ara el CD-ROM. Verifiqueu-ne els permisos i "
 "torneu-ho a provar."
 msgstr[1] ""
 "Algunes fotografies {0} no s'han pogut girar perquè són en un sistema de "
-"fitxers només de lectura o en un mitjà com ara el CD-ROM. Verifiqueu-ne els "
+"fitxers només de lectura o en un suport com ara el CD-ROM. Verifiqueu-ne els "
 "permisos i torneu-ho a provar."
 
 #: ../src/RotateCommand.cs:277
@@ -2432,7 +2433,7 @@ msgstr "Estableix com a fons"
 #: ../src/TagCommands.cs:91 ../src/TagCommands.cs:219
 #: ../src/TagSelectionWidget.cs:508
 msgid "This name is already in use"
-msgstr "Aquest nom ja s'està usant"
+msgstr "Aquest nom ja s'utilitza"
 
 #: ../src/TagCommands.cs:138
 msgid "Create New Tag"
@@ -2602,7 +2603,7 @@ msgstr "Torna-ho a intentar"
 #: ../src/TimeDialog.cs:124 ../src/f-spot.glade.h:177
 #, csharp-format
 msgid "Shift all photos by {0}"
-msgstr "Desplaça totes les fotografies per {0}"
+msgstr "Desplaça totes les fotografies en {0}"
 
 #
 #
@@ -2643,7 +2644,7 @@ msgid ""
 "installation has been completed successfully."
 msgstr ""
 "No s'ha pogut trobar el «manual de l'F-Spot». Comproveu que la instal·lació "
-"ha estat realitzada correctament."
+"s'ha realitzat correctament."
 
 #
 #
@@ -2877,7 +2878,7 @@ msgid ""
 "or delete photos and tags over DBus.</i></small>"
 msgstr ""
 "<small><i>Habiliteu aquesta opció si voleu permetre que altres programes "
-"importin o suprimeixin fotografies i etiquetes a través de DBus.</i></small>"
+"importin o suprimeixin fotografies i etiquetes a través del DBus.</i></small>"
 
 #: ../src/f-spot.glade.h:51
 msgid ""
@@ -2896,7 +2897,7 @@ msgid ""
 "usefull in icon design.</i></small>"
 msgstr ""
 "<small><i>Habiliteu-ho per permetre la interpolació en imatges ampliades. No "
-"hauríeu d'inhabilitar-ho per visualitzar fotografies, en canvi pot ser útil "
+"hauríeu d'inhabilitar-ho per visualitzar fotografies; en canvi pot ser útil "
 "en dissenyar icones.</i></small>"
 
 #: ../src/f-spot.glade.h:54
@@ -2925,7 +2926,7 @@ msgstr "<small>C_ontrast:</small>"
 
 #: ../src/f-spot.glade.h:57
 msgid "<small>Te_mp:</small>"
-msgstr "<small>Te_mp:</small>"
+msgstr "<small>Te_mperatura:</small>"
 
 #: ../src/f-spot.glade.h:58
 msgid "<small>_Brightness:</small>"
@@ -3012,7 +3013,7 @@ msgstr "Per _data"
 #
 #: ../src/f-spot.glade.h:79
 msgid "By _Import Roll"
-msgstr "Per rodet importat"
+msgstr "Per rodet _importat"
 
 #: ../src/f-spot.glade.h:80
 msgid "By _Rating"
@@ -3036,7 +3037,7 @@ msgstr "Selecció de la càmera"
 
 #: ../src/f-spot.glade.h:85
 msgid "Cancel, do not change the current timeline. "
-msgstr "Cancel·la, no canvia la línia temporal actual. "
+msgstr "Cancel·la, no canviïs la línia temporal actual. "
 
 #: ../src/f-spot.glade.h:86
 msgid "Co_nfigure"
@@ -3192,7 +3193,7 @@ msgstr "Inclou els subdirectoris"
 #
 #: ../src/f-spot.glade.h:127
 msgid "Interpolate image on zoom"
-msgstr "Interpola la imatge en fer zoom"
+msgstr "Interpola la imatge en ampliar-la"
 
 #
 #: ../src/f-spot.glade.h:128
@@ -3381,7 +3382,7 @@ msgstr "Barra _lateral"
 #
 #: ../src/f-spot.glade.h:182
 msgid "Side_bar"
-msgstr "Barra lateral"
+msgstr "Bar_ra lateral"
 
 #
 #: ../src/f-spot.glade.h:183
@@ -3455,7 +3456,7 @@ msgstr "Visualitza"
 
 #: ../src/f-spot.glade.h:200
 msgid "Will print using: US Letter size on Generic Postscript"
-msgstr "S'imprimirà usant: mida US Letter en Postscript genèric"
+msgstr "S'utilitzarà per a la impressió: mida US Letter en Postscript genèric"
 
 #: ../src/f-spot.glade.h:201
 msgid "Write _metadata to file"
@@ -3679,7 +3680,7 @@ msgstr "_Seleccioneu els rodets a importar..."
 #
 #: ../src/f-spot.glade.h:257
 msgid "_Set Date Range..."
-msgstr "Establiu _un rang de dates..."
+msgstr "Establiu _un interval de dates..."
 
 #
 #: ../src/f-spot.glade.h:258
@@ -3756,7 +3757,7 @@ msgid ""
 "after\n"
 "between"
 msgstr ""
-"al\n"
+"el\n"
 "després\n"
 "entre"
 
