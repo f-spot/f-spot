@@ -173,7 +173,7 @@ public class PhotoStore : DbStore {
 				"INSERT INTO photos (time, uri, description, roll_id, default_version_id, rating) "	+
 	 			"VALUES (:time, :uri, :description, :roll_id, :default_version_id, :rating)",
 	 			"time", unix_time,
-				"uri", new_uri.ToString (),
+				"uri", new_uri.OriginalString,
 	 			"description", description,
 				"roll_id", roll_id,
 	 			"default_version_id", Photo.OriginalVersionId,
@@ -434,7 +434,7 @@ public class PhotoStore : DbStore {
 			"description", photo.Description,
 			"default_version_id", photo.DefaultVersionId,
 			"time", DbUtils.UnixTimeFromDateTime (photo.Time),
-			"uri", photo.VersionUri (Photo.OriginalVersionId).ToString (),
+			"uri", photo.VersionUri (Photo.OriginalVersionId).OriginalString,
 			"rating", String.Format ("{0}", photo.Rating),
 			"id", photo.Id));
 
