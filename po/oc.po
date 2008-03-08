@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: oc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-19 20:20+0100\n"
+"POT-Creation-Date: 2008-02-27 16:17+0100\n"
 "PO-Revision-Date: 2007-12-28 10:28+0100\n"
 "Last-Translator: Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>\n"
 "Language-Team: Occitan <ubuntu-l10n-oci@lists.ubuntu.com>\n"
@@ -302,8 +302,8 @@ msgstr ""
 msgid "_23hq..."
 msgstr ""
 
-#: ../extensions/FlickrExport/FlickrExport.addin.xml.h:2
 #
+#: ../extensions/FlickrExport/FlickrExport.addin.xml.h:2
 msgid "_Flickr..."
 msgstr "_Flickr..."
 
@@ -358,7 +358,7 @@ msgstr ""
 
 #. This indicates the current photo is photo {0} of {1} out of photos
 #: ../extensions/FlickrExport/FlickrExport.cs:318 ../src/ProgressDialog.cs:82
-#: ../src/TimeDialog.cs:148
+#: ../src/TimeDialog.cs:141
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} sus {1}"
@@ -558,9 +558,9 @@ msgstr ""
 msgid "Size of the miniatures composing the mosaic"
 msgstr ""
 
+#
 #: ../extensions/MetaPixel/MetaPixel.glade.h:7
 #: ../extensions/PictureTile/PictureTile.glade.h:17
-#
 msgid "_Create"
 msgstr "_Crear"
 
@@ -572,9 +572,9 @@ msgstr ""
 msgid "_Tags"
 msgstr ""
 
+#
 #: ../extensions/MetaPixel/MetaPixel.glade.h:10
 #: ../extensions/PictureTile/PictureTile.glade.h:23
-#
 msgid "gtk-cancel"
 msgstr "gtk-cancel"
 
@@ -633,7 +633,7 @@ msgstr ""
 
 #: ../extensions/PictureTile/PictureTile.cs:203
 msgid ""
-"An error occoured while importing the newly generated photowall to F-Spot"
+"An error occurred while importing the newly generated photowall to F-Spot"
 msgstr ""
 
 #: ../extensions/PictureTile/PictureTile.glade.h:2
@@ -701,13 +701,13 @@ msgstr ""
 msgid "_Jpeg"
 msgstr ""
 
-#: ../extensions/PictureTile/PictureTile.glade.h:19
 #
+#: ../extensions/PictureTile/PictureTile.glade.h:19
 msgid "_Pages"
 msgstr "_Paginas"
 
-#: ../extensions/PictureTile/PictureTile.glade.h:20
 #
+#: ../extensions/PictureTile/PictureTile.glade.h:20
 msgid "_Scale images"
 msgstr "Enregistrar l'imatge"
 
@@ -767,8 +767,8 @@ msgstr ""
 msgid "Open _album in browser when done uploading"
 msgstr ""
 
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:8
 #
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:8
 msgid "Public Album"
 msgstr "Album public"
 
@@ -776,8 +776,8 @@ msgstr "Album public"
 msgid "_Account:"
 msgstr "_Compte :"
 
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:10
 #
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:10
 msgid "_Album Title:"
 msgstr "_Títol de l'album :"
 
@@ -817,74 +817,6 @@ msgstr ""
 #: ../f-spot.desktop.in.in.h:3
 msgid "Photo Manager"
 msgstr ""
-
-#: ../libeog/eog-file-selection.c:29 ../libeog/eog-file-selection.c:46
-msgid "By Extension"
-msgstr "Per extension"
-
-#: ../libeog/eog-file-selection.c:30
-msgid "BMP"
-msgstr "BMP"
-
-#: ../libeog/eog-file-selection.c:31
-msgid "GIF"
-msgstr "GIF"
-
-#: ../libeog/eog-file-selection.c:32
-msgid "ICO"
-msgstr "ICO"
-
-#: ../libeog/eog-file-selection.c:33 ../libeog/eog-file-selection.c:48
-msgid "JPEG"
-msgstr "JPEG"
-
-#: ../libeog/eog-file-selection.c:34 ../libeog/eog-file-selection.c:51
-msgid "PNG"
-msgstr "PNG"
-
-#: ../libeog/eog-file-selection.c:35
-msgid "PNM"
-msgstr "PNM"
-
-#: ../libeog/eog-file-selection.c:36
-msgid "RAS"
-msgstr ""
-
-#: ../libeog/eog-file-selection.c:37
-msgid "SVG"
-msgstr ""
-
-#: ../libeog/eog-file-selection.c:38
-msgid "TGA"
-msgstr "TGA"
-
-#: ../libeog/eog-file-selection.c:39
-msgid "TIFF"
-msgstr "TIFF"
-
-#: ../libeog/eog-file-selection.c:40
-msgid "XBM"
-msgstr "XBM"
-
-#: ../libeog/eog-file-selection.c:41 ../libeog/eog-file-selection.c:54
-msgid "XPM"
-msgstr "XPM"
-
-#: ../libeog/eog-file-selection.c:207
-msgid "Unsupported file format."
-msgstr ""
-
-#: ../libeog/eog-file-selection.c:225
-msgid "Determine File Type:"
-msgstr ""
-
-#: ../libeog/eog-file-selection.c:268
-msgid "Load Image"
-msgstr "Cargar un imatge"
-
-#: ../libeog/eog-file-selection.c:274
-msgid "Save Image"
-msgstr "Enregistrar l'imatge"
 
 #: ../libeog/eog-image.c:773
 #, c-format
@@ -1040,11 +972,13 @@ msgid ""
 msgstr ""
 
 #: ../src/Core/Photo.cs:412
-#, csharp-format
 msgid "Reparented"
-msgid_plural "Reparented ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr ""
+
+#: ../src/Core/Photo.cs:412
+#, csharp-format
+msgid "Reparented ({0})"
+msgstr ""
 
 #: ../src/Core/Photo.cs:429
 #, csharp-format
@@ -1056,9 +990,12 @@ msgstr[1] "Modificats ({0})"
 #: ../src/Core/Photo.cs:448
 #, csharp-format
 msgid "Modified in {1}"
-msgid_plural "Modified in {1} ({0})"
-msgstr[0] "Modificat dins {1}"
-msgstr[1] "Modificats dins {1} ({0})"
+msgstr "Modificat dins {1}"
+
+#: ../src/Core/Photo.cs:448
+#, csharp-format
+msgid "Modified in {1} ({0})"
+msgstr "Modificat dins {1} ({0})"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
@@ -1146,8 +1083,8 @@ msgstr ""
 msgid "Export to"
 msgstr ""
 
-#: ../src/FSpot.addin.xml.h:3
 #
+#: ../src/FSpot.addin.xml.h:3
 msgid "Open _With"
 msgstr "Dobrir _amb"
 
@@ -1181,16 +1118,16 @@ msgstr ""
 msgid "_Remove From Catalog"
 msgstr ""
 
-#: ../src/FileImportBackend.cs:266
+#: ../src/FileImportBackend.cs:261
 msgid "Import error"
 msgstr ""
 
-#: ../src/FileImportBackend.cs:267
+#: ../src/FileImportBackend.cs:262
 #, csharp-format
 msgid "Error importing {0}{2}{2}{1}"
 msgstr ""
 
-#: ../src/FileImportBackend.cs:268 ../src/ThreadProgressDialog.cs:68
+#: ../src/FileImportBackend.cs:263 ../src/ThreadProgressDialog.cs:68
 msgid "Skip"
 msgstr "Sautar"
 
@@ -2198,8 +2135,8 @@ msgstr ""
 msgid "Rotating photo \"{0}\""
 msgstr ""
 
-#: ../src/RotateCommand.cs:229
 #
+#: ../src/RotateCommand.cs:229
 msgid "Directory not found"
 msgstr "Impossible de trobar lo repertòri"
 
@@ -2422,14 +2359,7 @@ msgstr "o"
 msgid "Retry"
 msgstr "Tornar ensajar"
 
-#. The preceding text here is the second checkbutton in the Time dialog
-#. that says "Space all photos by []"
-#: ../src/TimeDialog.cs:126 ../src/f-spot.glade.h:280
-#, csharp-format
-msgid "min. Starting at {0}"
-msgstr ""
-
-#: ../src/TimeDialog.cs:131 ../src/f-spot.glade.h:177
+#: ../src/TimeDialog.cs:124 ../src/f-spot.glade.h:177
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr ""
@@ -2596,8 +2526,8 @@ msgstr ""
 msgid "<b>Interoperability</b>"
 msgstr ""
 
-#: ../src/f-spot.glade.h:29
 #
+#: ../src/f-spot.glade.h:29
 msgid "<b>Max Rating</b>"
 msgstr ""
 
@@ -2605,8 +2535,8 @@ msgstr ""
 msgid "<b>Metadata</b>"
 msgstr ""
 
-#: ../src/f-spot.glade.h:31
 #
+#: ../src/f-spot.glade.h:31
 msgid "<b>Min Rating</b>"
 msgstr ""
 
@@ -2785,8 +2715,8 @@ msgstr ""
 msgid "Attach tag:"
 msgstr ""
 
-#: ../src/f-spot.glade.h:78
 #
+#: ../src/f-spot.glade.h:78
 msgid "By _Date"
 msgstr "Per _data"
 
@@ -3375,8 +3305,8 @@ msgstr "_Saturacion :"
 msgid "_Scale photos to no larger than: "
 msgstr ""
 
-#: ../src/f-spot.glade.h:256
 #
+#: ../src/f-spot.glade.h:256
 msgid "_Select Import Rolls..."
 msgstr ""
 
@@ -3404,8 +3334,8 @@ msgstr "_Pichòt"
 msgid "_Strip metadata"
 msgstr ""
 
-#: ../src/f-spot.glade.h:263
 #
+#: ../src/f-spot.glade.h:263
 msgid "_Tag Icons"
 msgstr ""
 
@@ -3461,6 +3391,10 @@ msgstr ""
 msgid "img_000.jpg"
 msgstr "img_000.jpg"
 
+#: ../src/f-spot.glade.h:280
+msgid "min. Starting at {0}"
+msgstr ""
+
 #: ../tools/f-spot-screensaver.desktop.in.h:1
 msgid "Display a slideshow from F-Spot"
 msgstr ""
@@ -3468,3 +3402,42 @@ msgstr ""
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr ""
+
+#~ msgid "By Extension"
+#~ msgstr "Per extension"
+
+#~ msgid "BMP"
+#~ msgstr "BMP"
+
+#~ msgid "GIF"
+#~ msgstr "GIF"
+
+#~ msgid "ICO"
+#~ msgstr "ICO"
+
+#~ msgid "JPEG"
+#~ msgstr "JPEG"
+
+#~ msgid "PNG"
+#~ msgstr "PNG"
+
+#~ msgid "PNM"
+#~ msgstr "PNM"
+
+#~ msgid "TGA"
+#~ msgstr "TGA"
+
+#~ msgid "TIFF"
+#~ msgstr "TIFF"
+
+#~ msgid "XBM"
+#~ msgstr "XBM"
+
+#~ msgid "XPM"
+#~ msgstr "XPM"
+
+#~ msgid "Load Image"
+#~ msgstr "Cargar un imatge"
+
+#~ msgid "Save Image"
+#~ msgstr "Enregistrar l'imatge"
