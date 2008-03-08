@@ -508,7 +508,10 @@ public class MainWindow {
 		case ModeType.IconView:
 			if (view_notebook.CurrentPage != 0)
 				view_notebook.CurrentPage = 0;
-				
+
+			display_timeline.Sensitive = true;
+			group_selector.Visible = display_timeline.Active;
+
 			ColorDialog.Close ();
 			if (photo_view.View.Loupe != null)
 				photo_view.View.Loupe.Destroy ();
@@ -518,6 +521,9 @@ public class MainWindow {
 		case ModeType.PhotoView:
 			if (view_notebook.CurrentPage != 1)
 				view_notebook.CurrentPage = 1;
+
+			display_timeline.Sensitive = false;
+			group_selector.Visible = false;
 			
 			JumpTo (icon_view.FocusCell);
 			zoom_scale.Value = photo_view.NormalizedZoom;
@@ -1748,7 +1754,7 @@ public class MainWindow {
 
 		Preferences.Set (Preferences.SHOW_TOOLBAR,		toolbar.Visible);
 		Preferences.Set (Preferences.SHOW_SIDEBAR,		info_vbox.Visible);
-		Preferences.Set (Preferences.SHOW_TIMELINE,		group_selector.Visible);
+		Preferences.Set (Preferences.SHOW_TIMELINE,		display_timeline.Active);
 		Preferences.Set (Preferences.SHOW_TAGS,			icon_view.DisplayTags);
 		Preferences.Set (Preferences.SHOW_DATES,		icon_view.DisplayDates);
 		Preferences.Set (Preferences.SHOW_RATINGS,		icon_view.DisplayRatings);
