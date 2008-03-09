@@ -36,7 +36,7 @@ $(PLUGIN_ASSEMBLY): $(PLUGIN_SOURCES) $(PLUGIN_MANIFEST)
 plugindir = $(pkglibdir)/extensions
 
 install-data-hook:
-	if [ -w $(plugindir)/GalleryExport.addin.xml ] ; then rm -f $(plugindir)/GalleryExport.addin.xml; fi
+	if [ -w $(DESTDIR)$(plugindir)/GalleryExport.addin.xml ] ; then rm -f $(DESTDIR)$(plugindir)/GalleryExport.addin.xml; fi
 
 plugin_DATA =			\
 	$(PLUGIN_ASSEMBLY)
