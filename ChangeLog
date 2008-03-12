@@ -1,6 +1,11 @@
+2008-03-12  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* Updater.cs: fixes the dp updating v8 where version names are int.
+	bgo #521656
+
 2008-03-08  Stephane Delcroix  <sdelcroix@novell.com>
 
-	* src/MainWindo.cs: Hide the timeline in ViewMode.
+	* src/MainWindow.cs: Hide the timeline in ViewMode.
 
 2008-03-06  Stephane Delcroix  <sdelcroix@novell.com>
 

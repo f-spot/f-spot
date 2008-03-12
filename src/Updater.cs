@@ -162,13 +162,14 @@ namespace FSpot.Database {
 					string uri = photo_uri.Scheme + "://" + 
 						photo_uri.Host + 
 						System.IO.Path.GetDirectoryName (photo_uri.AbsolutePath) + "/" +
-						name_without_extension + " (" + (reader [2] as string) + ")" + extension;
+						name_without_extension + " (" + (reader [2]).ToString () + ")" + extension;
+
 					ExecuteNonQuery (new DbCommand (
 						"INSERT INTO photo_versions (photo_id, version_id, name, uri) " +
 						"VALUES (:photo_id, :version_id, :name, :uri)",
 						"photo_id", Convert.ToUInt32 (reader [0]),
 						"version_id", Convert.ToUInt32 (reader [1]),
-						"name", (string)(reader [2]),
+						"name", (reader [2]).ToString (),
 						"uri", uri));
 				}
 
