@@ -1,3 +1,13 @@
+2008-03-12  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/Makefile.am:
+	* src/Widgets/Filmstrip.cs: new Filmstrip widget.
+
+	* src/PhotoImageView.cs: Adds a constructor for BrowsablePointer
+	
+	* src/PhotoView.cs: create the BrowsablePointer and gives it to
+	PhotoImageView. Displays the filmstrip.
+
 2008-03-12  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* Updater.cs: fixes the dp updating v8 where version names are int.

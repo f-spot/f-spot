@@ -242,6 +242,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/CompositeUtils.cs	\
 	$(srcdir)/Widgets/CustomPrintWidget.cs	\
 	$(srcdir)/Widgets/Dissolve.cs		\
+	$(srcdir)/Widgets/Filmstrip.cs		\
 	$(srcdir)/Widgets/FindBar.cs		\
 	$(srcdir)/Widgets/GdkUtils.cs		\
 	$(srcdir)/Widgets/IEffect.cs		\

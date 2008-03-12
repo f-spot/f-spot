@@ -20,7 +20,11 @@ namespace FSpot {
 		public GdkGlx.Context Glx;
 		private Editor editor;
 
-		public PhotoImageView (IBrowsableCollection query)
+		public PhotoImageView (IBrowsableCollection query) : this (new BrowsablePointer (query, -1))
+		{
+		}
+
+		public PhotoImageView (BrowsablePointer item)
 		{
 			loader = new FSpot.AsyncPixbufLoader ();
 			loader.AreaUpdated += HandlePixbufAreaUpdated;
@@ -36,7 +40,7 @@ namespace FSpot {
 			//this.Realized += HandleRealized;
 			this.Unrealized += HandleUnrealized;
 			this.ScrollEvent += HandleScrollEvent;
-			this.item = new BrowsablePointer (query, -1);
+			this.item = item;
 			item.Changed += PhotoItemChanged;
 			this.Destroyed += HandleDestroyed;
 			this.SetTransparentColor (this.Style.BaseColors [(int)Gtk.StateType.Normal]);

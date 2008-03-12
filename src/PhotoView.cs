@@ -6,6 +6,7 @@ using System;
 using Mono.Unix;
 
 using FSpot.Xmp;
+using FSpot.Widgets;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
 
@@ -17,6 +18,8 @@ public class PhotoView : EventBox {
 	private FSpot.PhotoImageView photo_view;
 	private ScrolledWindow photo_view_scrolled;
 	private EventBox background;
+	
+	private Filmstrip filmstrip;
 
 	private Widgets.TagView tag_view;
 	
@@ -478,7 +481,17 @@ public class PhotoView : EventBox {
 
 		frame.Add (inner_vbox);
 		
-		photo_view = new FSpot.PhotoImageView (query);
+		BrowsablePointer bp = new BrowsablePointer (query, -1);
+		photo_view = new FSpot.PhotoImageView (bp);
+
+		filmstrip = new Filmstrip (bp);
+		Gdk.Pixbuf bg = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, 1, 69);
+		bg.Fill (0x00000000);
+		filmstrip.BackgroundTile = bg;
+		filmstrip.ThumbOffset = 1;
+		filmstrip.Spacing = 4;
+		inner_vbox.PackStart (filmstrip, false, false, 0);
+
 		photo_view.PhotoChanged += HandlePhotoChanged;
 		photo_view.SelectionChanged += HandleSelectionChanged;
 
@@ -588,6 +601,7 @@ public class PhotoView : EventBox {
 
 	private void SetColors ()
 	{
+		GtkUtil.ModifyColors (filmstrip);
 		GtkUtil.ModifyColors (tag_view);
 		GtkUtil.ModifyColors (photo_view);
 		GtkUtil.ModifyColors (background);
