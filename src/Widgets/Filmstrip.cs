@@ -402,11 +402,11 @@ namespace FSpot.Widgets
 			switch (args.Direction) {
 			case ScrollDirection.Up:
 			case ScrollDirection.Right:
-				Position += 0.3f;
+				Position -= 0.5f;
 				return true;
 			case Gdk.ScrollDirection.Down:
 			case Gdk.ScrollDirection.Left:
-				Position -= 0.3f;
+				Position += 0.5f;
 				return true;
 			}
 			return false;
