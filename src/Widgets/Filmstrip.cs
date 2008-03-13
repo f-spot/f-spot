@@ -474,9 +474,18 @@ namespace FSpot.Widgets
 			Pixbuf current;
 			string thumb_path = FSpot.ThumbnailGenerator.ThumbnailPath ((selection.Collection [i]).DefaultVersionUri);
 			current = thumb_cache.GetThumbnailForPath (thumb_path);
+
 			if (current == null) {
-				current = new Pixbuf (thumb_path, -1, ThumbSize);
-				thumb_cache.AddThumbnail (thumb_path, current);
+				try {
+					current = new Pixbuf (thumb_path, -1, ThumbSize);
+					thumb_cache.AddThumbnail (thumb_path, current);
+				} catch {
+					try {
+						current = FSpot.Global.IconTheme.LoadIcon ("gtk-missing-image", ThumbSize, (Gtk.IconLookupFlags)0);
+					} catch {
+						current = null;
+					}
+				}
 			}
 
 			if (!highlighted)
