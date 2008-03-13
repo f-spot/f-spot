@@ -1,3 +1,8 @@
+2008-03-13  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* src/PhotoStore.cs: changed the query for photo remove from catalog.
+	Now uses WHERE id IN (...). Fix bgo #494351.
+
 2008-03-13  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/Widgets/Filmstrip.cs: default to an order 2 animator (constant 

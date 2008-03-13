@@ -377,22 +377,16 @@ public class PhotoStore : DbStore {
 	{
 		EmitRemoved (items);
 
-		StringBuilder query_builder = new StringBuilder ();
-		StringBuilder tv_query_builder = new StringBuilder ();
+		ArrayList query_builder = new ArrayList (items.Length);
 		for (int i = 0; i < items.Length; i++) {
-			if (i > 0) {
-				query_builder.Append (" OR ");
-				tv_query_builder.Append (" OR ");
-			}
-
-			query_builder.Append (String.Format ("id = {0}", items[i].Id));
-			tv_query_builder.Append (String.Format ("photo_id = {0}", items[i].Id));
+			query_builder.Add (String.Format ("{0}", items[i].Id));
 			RemoveFromCache (items[i]);
 		}
 
-		Database.ExecuteNonQuery (String.Format ("DELETE FROM photos WHERE {0}", query_builder.ToString ()));
-		Database.ExecuteNonQuery (String.Format ("DELETE FROM photo_tags WHERE {0}", tv_query_builder.ToString ()));
-		Database.ExecuteNonQuery (String.Format ("DELETE FROM photo_versions WHERE {0}", tv_query_builder.ToString ()));
+		String id_list = String.Join ("','", ((string []) query_builder.ToArray (typeof (string))));
+		Database.ExecuteNonQuery (String.Format ("DELETE FROM photos WHERE id IN ('{0}')", id_list));
+		Database.ExecuteNonQuery (String.Format ("DELETE FROM photo_tags WHERE photo_id IN ('{0}')", id_list));
+		Database.ExecuteNonQuery (String.Format ("DELETE FROM photo_versions WHERE photo_id IN ('{0}')", id_list));
 
 	}
 
