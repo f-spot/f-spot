@@ -32,8 +32,6 @@ namespace FSpotSmugMugExport {
 	public class SmugMugAccount {
 		private string username;
 		private string password;
-		private string token;
-		private bool connected;
 		private SmugMugApi smugmug_proxy;
 
 		public SmugMugAccount (string username, string password) 
@@ -56,7 +54,6 @@ namespace FSpotSmugMugExport {
 		private void MarkChanged()
 		{
 			smugmug_proxy = null;
-			connected = false;
 		}
 
 		public bool Connected {
@@ -290,7 +287,6 @@ namespace FSpotSmugMugExport {
 		private SmugMugAccount account;
 		private string password;
 		private string username;
-		private string token;
 		private string dialog_name = "smugmug_add_dialog";
 		private Glade.XML xml;
 
@@ -301,10 +297,6 @@ namespace FSpotSmugMugExport {
 
 		[Glade.Widget] Gtk.Button add_button;
 		[Glade.Widget] Gtk.Button remove_button;
-		[Glade.Widget] Gtk.Button cancel_button;
-
-		[Glade.Widget] Gtk.HBox status_area;
-		[Glade.Widget] Gtk.HBox locked_area;
 	}
 
 	public class SmugMugAddAlbum {
@@ -316,15 +308,12 @@ namespace FSpotSmugMugExport {
 		[Glade.Widget] Gtk.ComboBox category_combo;
 		
 		[Glade.Widget] Gtk.Button add_button;
-		[Glade.Widget] Gtk.Button cancel_button;
 
 		private string dialog_name = "smugmug_add_album_dialog";
 		private Glade.XML xml;
 		private SmugMugExport export;
 		private SmugMugApi smugmug;
-		private string description;
 		private string title;
-		private bool public_album;
 		private ListStore category_store;
 
 		public SmugMugAddAlbum (SmugMugExport export, SmugMugApi smugmug)
@@ -351,7 +340,6 @@ namespace FSpotSmugMugExport {
 		private void HandleChanged (object sender, EventArgs args)
 		{
 			title = title_entry.Text;
-			public_album = public_check.Active;
 
 			if (title == String.Empty)
 				add_button.Sensitive = false;
@@ -472,8 +460,6 @@ namespace FSpotSmugMugExport {
 		private SmugMugAccount account;
 		private Album album;
 
-		private string xml_path;
-
 		private string dialog_name = "smugmug_export_dialog";
 		private Glade.XML xml;
 
@@ -486,9 +472,6 @@ namespace FSpotSmugMugExport {
 		[Glade.Widget] Gtk.OptionMenu gallery_optionmenu;
 		[Glade.Widget] Gtk.OptionMenu album_optionmenu;
 		
-		[Glade.Widget] Gtk.Entry width_entry;
-		[Glade.Widget] Gtk.Entry height_entry;
-
 		[Glade.Widget] Gtk.Label status_label;
 
 		[Glade.Widget] Gtk.CheckButton browser_check;
@@ -498,11 +481,9 @@ namespace FSpotSmugMugExport {
 		[Glade.Widget] Gtk.SpinButton size_spin;
 
 		[Glade.Widget] Gtk.Button album_button;
-		[Glade.Widget] Gtk.Button add_button;
 		[Glade.Widget] Gtk.Button edit_button;
 		
-		[Glade.Widget] Gtk.Button ok_button;
-		[Glade.Widget] Gtk.Button cancel_button;
+		[Glade.Widget] Gtk.Button export_button;
 
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
 
@@ -690,7 +671,6 @@ namespace FSpotSmugMugExport {
 						account.Connect ();
 					
 					PopulateAlbumOptionMenu (account.SmugMug);
-					album_button.Sensitive = true;
 				}
 			} catch (System.Exception) {
 				System.Console.WriteLine ("Can not connect to SmugMug. Bad username ? password ? network connection ?");
@@ -748,12 +728,9 @@ namespace FSpotSmugMugExport {
 				Gtk.MenuItem item = new Gtk.MenuItem (msg);
 				menu.Append (item);
 
-				ok_button.Sensitive = false;
+				export_button.Sensitive = false;
 				album_optionmenu.Sensitive = false;
 				album_button.Sensitive = false;
-
-				if (disconnected) 
-					album_button.Sensitive = false;
 			} else {
 				foreach (Album album in albums) {
 					System.Text.StringBuilder label_builder = new System.Text.StringBuilder ();
@@ -765,7 +742,7 @@ namespace FSpotSmugMugExport {
 					menu.Append (item);
 				}
 
-				ok_button.Sensitive = items.Length > 0;
+				export_button.Sensitive = items.Length > 0;
 				album_optionmenu.Sensitive = true;
 				album_button.Sensitive = true;
 			}
