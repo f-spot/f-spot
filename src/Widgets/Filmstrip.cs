@@ -242,7 +242,7 @@ namespace FSpot.Widgets
 		IAnimator Animator {
 			get {
 				if (animator == null)
-					animator = new ConstantSpeedAnimator (this, OnPositionChanged);
+					animator = new AcceleratedAnimator (this, OnPositionChanged);
 				return animator;
 			}
 		}
@@ -251,6 +251,12 @@ namespace FSpot.Widgets
 				switch (value) {
 				case 0:
 					animator = new DirectAnimator (OnPositionChanged);
+					break;
+				case 1:
+					animator = new ConstantSpeedAnimator (this, OnPositionChanged);
+					break;
+				case 2:
+					animator = new AcceleratedAnimator (this, OnPositionChanged);
 					break;
 				default:
 					throw new ArgumentException ("No animator of that order defined");
@@ -549,6 +555,52 @@ namespace FSpot.Widgets
 					handler (target);
 					return false;
 				}
+				if (target > filmstrip.Position)
+					handler (filmstrip.Position + increment);
+				else
+					handler (filmstrip.Position - increment);
+
+				return true;
+			}
+		}
+
+		public class AcceleratedAnimator : IAnimator
+		{
+			PositionChangedHandler handler;
+			Filmstrip filmstrip;
+			uint interval = 10;
+			float target;
+			float speed;
+			float acc = 50f; //images/second^2
+
+			public AcceleratedAnimator (Filmstrip filmstrip, PositionChangedHandler handler)
+			{
+				this.handler = handler;
+				this.filmstrip = filmstrip;
+			}
+
+			public void MoveTo (float target)
+			{
+				this.target = target;
+				GLib.Timeout.Add (interval, new GLib.TimeoutHandler (Step)); 	
+			}
+
+			bool Step ()
+			{
+				float distance = Math.Abs (filmstrip.Position - target);
+				if ( distance < speed * speed / acc )	//SLOW DOWN!
+					speed -= acc * interval / 1000f;
+
+				else	//SPEED UP
+					speed += acc * interval / 1000f;
+
+				float increment = speed * interval / 1000f;
+
+				if (Math.Abs (distance - increment) < 0.0001) {
+					handler (target);
+					return false;
+				}
+
 				if (target > filmstrip.Position)
 					handler (filmstrip.Position + increment);
 				else
