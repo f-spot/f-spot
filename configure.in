@@ -64,7 +64,7 @@ GTK_REQUIRED=2.6
 BEAGLE_REQUIRED=0.3.0
 NDESK_DBUS_REQUIRED=0.4.2
 NDESK_DBUS_GLIB_REQUIRED=0.3.0
-MONO_CAIRO_REQUIRED=1.2.5
+MONO_CAIRO_REQUIRED=1.2.4
 dnl -- this check is 	
 LCMS_REQUIRED=1.12
 dnl -- LIBGPHOTO2_REQUIRED=2.1.4
@@ -94,7 +94,9 @@ if pkg-config --atleast-version=2.0 mono; then
    CSC_DEFINES="$CSC_DEFINES -d:MONO_2_0"
 fi
 
-
+if pkg-config --atleast-version=1.2.5 mono-cairo; then
+   CSC_DEFINES="$CSC_DEFINES -d:CAIRO_1_2_5"
+fi
 
 dnl - Choose PreferenceBackend (default to gconf)
 AC_ARG_ENABLE([gconf],[AC_HELP_STRING([--disable-gconf], [build without gconf preference backend])],,)

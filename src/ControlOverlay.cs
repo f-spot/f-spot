@@ -8,7 +8,11 @@
  *
  * See COPYING for license information.
  */
-extern alias MCairo;
+#if CAIRO_1_2_5
+	extern alias MCairo;
+#else
+	using Cairo;
+#endif		
 
 using System;
 using Gtk;
@@ -130,17 +134,29 @@ namespace FSpot {
 			Visibility = VisibilityType.None;
 			return false;
 		}
-		
+#if CAIRO_1_2_5		
 		protected virtual void ShapeSurface (MCairo::Cairo.Context cr, MCairo::Cairo.Color color)
 		{
 			cr.Operator = MCairo::Cairo.Operator.Source;
 			MCairo::Cairo.Pattern p = new MCairo::Cairo.SolidPattern (new MCairo::Cairo.Color (0, 0, 0, 0));
+#else
+		protected virtual void ShapeSurface (Context cr, Cairo.Color color)
+		{
+			cr.Operator = Operator.Source;
+			Cairo.Pattern p = new Cairo.SolidPattern (new Cairo.Color (0, 0, 0, 0));
+#endif						
 			cr.Source = p;
 			p.Destroy ();
 			cr.Paint ();
+#if CAIRO_1_2_5			
 			cr.Operator = MCairo::Cairo.Operator.Over;
 
 			MCairo::Cairo.Pattern r = new MCairo::Cairo.SolidPattern (color);
+#else
+			cr.Operator = Operator.Over;
+
+			Cairo.Pattern r = new SolidPattern (color);
+#endif						
 			cr.Source = r;
 			r.Destroy ();
 			cr.MoveTo (round, 0);
@@ -174,10 +190,17 @@ namespace FSpot {
 			Gdk.Pixmap bitmap = new Gdk.Pixmap (GdkWindow, 
 							    Allocation.Width, 
 							    Allocation.Height, 1);
-			
+
+#if CAIRO_1_2_5			
 			MCairo::Cairo.Context cr = Gdk.CairoHelper.Create (bitmap);
 			ShapeCombineMask (bitmap, 0, 0);
 			ShapeSurface (cr, new MCairo::Cairo.Color (1, 1, 1));
+#else			
+			Context cr = CairoUtils.CreateContext (bitmap);
+			ShapeCombineMask (bitmap, 0, 0);
+			ShapeSurface (cr, new Cairo.Color (1, 1, 1));
+
+#endif			
 			ShapeCombineMask (bitmap, 0, 0);
 			((IDisposable)cr).Dispose ();
 			bitmap.Dispose ();
@@ -187,12 +210,22 @@ namespace FSpot {
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
 			Gdk.Color c = Style.Background (State);
+#if CAIRO_1_2_5			
 			MCairo::Cairo.Context cr = Gdk.CairoHelper.Create (GdkWindow);
 
 			ShapeSurface (cr, new MCairo::Cairo.Color (c.Red / (double) ushort.MaxValue,
 							   c.Blue / (double) ushort.MaxValue, 
 							   c.Green / (double) ushort.MaxValue,
 							   0.8));
+#else
+			Cairo.Context cr = CairoUtils.CreateContext (GdkWindow);
+
+			ShapeSurface (cr, new Cairo.Color (c.Red / (double) ushort.MaxValue,
+							   c.Blue / (double) ushort.MaxValue, 
+							   c.Green / (double) ushort.MaxValue,
+							   0.8));
+			
+#endif						
 
 			((IDisposable)cr).Dispose ();
 			return base.OnExposeEvent (args);
