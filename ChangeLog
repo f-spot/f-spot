@@ -1,9 +1,3 @@
-2008-03-13   Thomas Van Machelen <thomas.vamachelen@gmail.com>
-
-	* extensions/SmugMugExport/SmugMugExport.cs: Rename ok_button to
-	export_button as it exists in glade file, disable the add album button
-	when not connected correctly and remove some unused fields
-
 2008-03-13  Thomas Van Machelen <thomas.vamachelen@gmail.com>
 
 	* configure.in:
