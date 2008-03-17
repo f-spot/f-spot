@@ -80,6 +80,7 @@ public class MainWindow {
 	[Glade.Widget] CheckMenuItem display_toolbar;
 	[Glade.Widget] CheckMenuItem display_sidebar;
 	[Glade.Widget] CheckMenuItem display_timeline;
+	[Glade.Widget] CheckMenuItem display_filmstrip;
 	[Glade.Widget] CheckMenuItem display_dates_menu_item;
 	[Glade.Widget] CheckMenuItem display_tags_menu_item;
 	[Glade.Widget] CheckMenuItem display_ratings_menu_item;
@@ -454,6 +455,7 @@ public class MainWindow {
 		LoadPreference (Preferences.SHOW_TOOLBAR);
 		LoadPreference (Preferences.SHOW_SIDEBAR);
 		LoadPreference (Preferences.SHOW_TIMELINE);
+		LoadPreference (Preferences.SHOW_FILMSTRIP);
 
 		LoadPreference (Preferences.GNOME_MAILTO_ENABLED);
 		
@@ -510,6 +512,7 @@ public class MainWindow {
 				view_notebook.CurrentPage = 0;
 
 			display_timeline.Sensitive = true;
+			display_filmstrip.Sensitive = false;
 			group_selector.Visible = display_timeline.Active;
 
 			ColorDialog.Close ();
@@ -523,6 +526,7 @@ public class MainWindow {
 				view_notebook.CurrentPage = 1;
 
 			display_timeline.Sensitive = false;
+			display_filmstrip.Sensitive = true;
 			group_selector.Visible = false;
 			
 			JumpTo (icon_view.FocusCell);
@@ -1755,6 +1759,7 @@ public class MainWindow {
 		Preferences.Set (Preferences.SHOW_TOOLBAR,		toolbar.Visible);
 		Preferences.Set (Preferences.SHOW_SIDEBAR,		info_vbox.Visible);
 		Preferences.Set (Preferences.SHOW_TIMELINE,		display_timeline.Active);
+		Preferences.Set (Preferences.SHOW_FILMSTRIP,		display_filmstrip.Active);
 		Preferences.Set (Preferences.SHOW_TAGS,			icon_view.DisplayTags);
 		Preferences.Set (Preferences.SHOW_DATES,		icon_view.DisplayDates);
 		Preferences.Set (Preferences.SHOW_RATINGS,		icon_view.DisplayRatings);
@@ -2012,6 +2017,11 @@ public class MainWindow {
 			group_selector.Hide ();
 		else
 			group_selector.Show ();
+	}
+
+	void HandleDisplayFilmstrip (object sender, EventArgs args)
+	{
+		photo_view.FilmStripVisibility = display_filmstrip.Active;
 	}
 
 	void HandleDisplayInfoSidebar (object sender, EventArgs args)
@@ -2570,6 +2580,11 @@ public class MainWindow {
 		case Preferences.SHOW_TIMELINE:
 			if (display_timeline.Active != (bool) val)
 				display_timeline.Active = (bool) val;
+			break;
+		
+		case Preferences.SHOW_FILMSTRIP:
+			if (display_filmstrip.Active != (bool) val)
+				display_filmstrip.Active = (bool) val;
 			break;
 		
 		case Preferences.SHOW_TAGS:

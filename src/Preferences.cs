@@ -33,6 +33,7 @@ namespace FSpot
 		public const string SHOW_TOOLBAR = "/apps/f-spot/ui/show_toolbar";
 		public const string SHOW_SIDEBAR = "/apps/f-spot/ui/show_sidebar";
 		public const string SHOW_TIMELINE = "/apps/f-spot/ui/show_timeline";
+		public const string SHOW_FILMSTRIP = "/apps/f-spot/ui/show_filmstrip";
 		public const string SHOW_TAGS = "/apps/f-spot/ui/show_tags";
 		public const string SHOW_DATES = "/apps/f-spot/ui/show_dates";
 		public const string EXPANDED_TAGS = "/apps/f-spot/ui/expanded_tags";
@@ -142,6 +143,7 @@ namespace FSpot
 			case SHOW_TOOLBAR:
 			case SHOW_SIDEBAR:
 			case SHOW_TIMELINE:
+			case SHOW_FILMSTRIP:
 			case SHOW_TAGS:
 			case SHOW_DATES:
 			case SHOW_RATINGS:

@@ -456,6 +456,11 @@ public class PhotoView : EventBox {
 		CommitPendingChanges ();
 	}
 
+	public bool FilmStripVisibility {
+		get { return filmstrip.Visible; }
+		set { filmstrip.Visible = value; }
+	}
+
 	Gtk.Tooltips tips = new Gtk.Tooltips ();
 
 	public PhotoView (IBrowsableCollection query)

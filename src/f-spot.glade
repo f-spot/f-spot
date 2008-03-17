@@ -3493,7 +3493,17 @@ Photo Details</property>
 				<property name="label" translatable="yes">_Timeline</property>
 				<property name="use_underline">True</property>
 				<property name="active">True</property>
+                        	<property name="sensitive">False</property>
 				<signal name="activate" handler="HandleDisplayGroupSelector"/>
+			      </widget>
+			    </child>
+			    <child>
+			      <widget class="GtkCheckMenuItem" id="display_filmstrip">
+				<property name="visible">True</property>
+				<property name="label" translatable="yes">_Filmstrip</property>
+				<property name="use_underline">True</property>
+				<property name="active">True</property>
+				<signal name="activate" handler="HandleDisplayFilmstrip"/>
 			      </widget>
 			    </child>
                             <child>
