@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-17 22:33+0100\n"
-"PO-Revision-Date: 2008-02-17 20:59+0100\n"
+"POT-Creation-Date: 2008-03-20 22:51+0100\n"
+"PO-Revision-Date: 2008-03-20 22:51+0100\n"
 "Last-Translator: Peter Bach <bach.peter@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -183,7 +183,7 @@ msgid "_Unselect All"
 msgstr "_Fravælg alt"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
-#: ../src/f-spot.glade.h:165
+#: ../src/f-spot.glade.h:162
 msgid "Select _All"
 msgstr "Markér _alt"
 
@@ -237,6 +237,8 @@ msgid "Disable"
 msgstr "Deaktivér"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
+#: ../extensions/FlickrExport/FlickrExport.cs:343
+#: ../extensions/SmugMugExport/SmugMugExport.cs:597
 msgid "Error"
 msgstr "Fejl"
 
@@ -302,6 +304,517 @@ msgstr "Den påkrævede udvidelse '{0}' er deaktiveret."
 msgid "The required extension '{0}' is not installed."
 msgstr "Den påkrævede udvidelse '{0}' er ikke installeret."
 
+#: ../extensions/FlickrExport/FlickrExport.addin.xml.h:1
+msgid "_23hq..."
+msgstr "_23hq..."
+
+#: ../extensions/FlickrExport/FlickrExport.addin.xml.h:2
+msgid "_Flickr..."
+msgstr "_Flickr..."
+
+#: ../extensions/FlickrExport/FlickrExport.cs:92
+#: ../extensions/FlickrExport/FlickrExport.glade.h:5
+msgid "Authorize"
+msgstr "Autorisere"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:97
+#, csharp-format
+msgid ""
+"Return to this window after you have finished the authorization process on "
+"{0} and click the \"Complete Authorization\" button below"
+msgstr ""
+"Vend tilbage til dette vindue efter at du har afsluttet "
+"autorisationsprocessen på {0} og klik \"Udfør autorisation\"-knappen "
+"nedenunder"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:98
+msgid "Complete Authorization"
+msgstr "Afslut autorisation"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:102
+#, csharp-format
+msgid "Logging into {0}"
+msgstr "Logger på {0}"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:103
+msgid "Checking credentials..."
+msgstr "Kontrollerer akkreditiver..."
+
+#: ../extensions/FlickrExport/FlickrExport.cs:109
+#, csharp-format
+msgid "Welcome {0} you are connected to {1}"
+msgstr "Velkommen {0} du er forbundet til {1}"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:112
+#, csharp-format
+msgid "Sign in as a different user"
+msgstr "Skriv dig ind som en anden bruger"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:266
+msgid "Unable to log on"
+msgstr "Kunne ikke logge på"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:286
+#, csharp-format
+msgid "Waiting for response {0} of {1}"
+msgstr "Venter på svar {0} af {1}"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:313
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr "Overfører billede \"{0}\""
+
+#. This indicates the current photo is photo {0} of {1} out of photos
+#: ../extensions/FlickrExport/FlickrExport.cs:318 ../src/ProgressDialog.cs:82
+#: ../src/TimeDialog.cs:141
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} af {1}"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:335
+#: ../extensions/SmugMugExport/SmugMugExport.cs:605
+msgid "Done Sending Photos"
+msgstr "Færdig med sending af fotos"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:337
+#: ../extensions/SmugMugExport/SmugMugExport.cs:607
+msgid "Upload Complete"
+msgstr "Overførsel fuldført"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:340
+#, csharp-format
+msgid "Error Uploading To {0}: {1}"
+msgstr "Fejl ved overførsel af {0}: {1}"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:408
+msgid "Unable to log on."
+msgstr "Kunne ikke logge på."
+
+#: ../extensions/FlickrExport/FlickrExport.cs:409
+#, csharp-format
+msgid ""
+"F-Spot was unable to log on to {0}.  Make sure you have given the "
+"authentication using {0} web browser interface."
+msgstr ""
+"F-Spot kunne ikke logge på {0}. Vær sikker på at du har adgang til at bruge "
+"{0} netlæser-grænseflade."
+
+#: ../extensions/FlickrExport/FlickrExport.cs:427
+#: ../extensions/SmugMugExport/SmugMugExport.cs:523
+msgid "Uploading Pictures"
+msgstr "Overfører billeder"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:1 ../src/f-spot.glade.h:12
+msgid "<b>Account</b>"
+msgstr "<b>Konto</b>"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:2
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:2
+#: ../src/f-spot.glade.h:33
+msgid "<b>Photos</b>"
+msgstr "<b>Fotos</b>"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:3
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:4
+#: ../src/f-spot.glade.h:42
+msgid "<b>Style</b>"
+msgstr "<b>Stil</b>"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:4
+msgid "<b>Viewing permissions</b>"
+msgstr "<b>Visningsrettigheder</b>"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:6
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:6
+#: ../src/f-spot.glade.h:103
+msgid "Export"
+msgstr "Eksportér"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:7
+msgid ""
+"F-Spot needs your authorization in order to upload photos to your {0} "
+"account. Press the \"Authorize\" button to open a web browser and give F-"
+"Spot the authorization. "
+msgstr ""
+"F-Spot mangler din autorisation for at kunne overfører fotos til din {0}-"
+"konto. Tryk \"Autorisér\"-knappen for at åbne netlæseren og give F-Spot "
+"autorisationen. "
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:8
+msgid "Private"
+msgstr "Privat"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:9
+msgid "Public"
+msgstr "Offentlig"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:10
+msgid "Strip _metadata"
+msgstr "Fjern _metadata"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:11
+msgid "Visible to Family"
+msgstr "Synlig for familie"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:12
+msgid "Visible to Friends"
+msgstr "Synlig for venner"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:13
+#: ../src/f-spot.glade.h:221
+msgid "_Export tags"
+msgstr "_Eksportér mærker"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:14
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:14
+#: ../src/f-spot.glade.h:250
+msgid "_Resize to: "
+msgstr "_Skalér til: "
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:15
+msgid "_View photos in browser when done uploading"
+msgstr "_Vis fotos i netlæser når overførslen er færdig"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:16
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:16
+#: ../src/f-spot.glade.h:281
+msgid "pixels"
+msgstr "billedpunkter"
+
+#: ../extensions/MetaPixel/MetaPixel.addin.xml.h:1
+msgid "Create p_hotomosaic"
+msgstr "Opret _fotomosaik"
+
+#: ../extensions/MetaPixel/MetaPixel.cs:44
+#: ../extensions/PictureTile/PictureTile.cs:50 ../src/PhotoView.cs:329
+msgid "No selection available"
+msgstr "Intet valgt område tilgængeligt"
+
+#: ../extensions/MetaPixel/MetaPixel.cs:45
+#: ../extensions/PictureTile/PictureTile.cs:51
+msgid ""
+"This tool requires an active selection. Please select one or more pictures "
+"and try again"
+msgstr ""
+"Dette værktøj kræver en aktiv markering. Vælg et eller flere billeder og "
+"prøv igen"
+
+#: ../extensions/MetaPixel/MetaPixel.cs:64
+msgid "Metapixel not available"
+msgstr "Metapixel ikke tilgængelig"
+
+#: ../extensions/MetaPixel/MetaPixel.cs:65
+msgid ""
+"The metapixel executable was not found in path. Please check that you have "
+"it installed and that you have permissions to execute it"
+msgstr ""
+"Programmet Metapixel blev ikke fundet i stien. Kontrollér at du har "
+"installeret det og at du har rettighed til at køre det"
+
+#. There is no photo for the selected tags! :(
+#: ../extensions/MetaPixel/MetaPixel.cs:120
+msgid "No photos for the selection"
+msgstr "Ingen fotos til markeringen"
+
+#: ../extensions/MetaPixel/MetaPixel.cs:121
+msgid "The tags selected provided no pictures. Please select different tags"
+msgstr "De valgte mærker gav ingen billeder. Vær venlig at vælge andre mærker"
+
+#: ../extensions/MetaPixel/MetaPixel.cs:128
+msgid "Creating miniatures"
+msgstr "Opretter miniaturer"
+
+#: ../extensions/MetaPixel/MetaPixel.cs:139
+#, csharp-format
+msgid "Preparing photo \"{0}\""
+msgstr "Klargører foto \"{0}\""
+
+#: ../extensions/MetaPixel/MetaPixel.cs:177
+msgid "Creating photomosaics"
+msgstr "Opretter fotomosaikker"
+
+#: ../extensions/MetaPixel/MetaPixel.cs:184
+#: ../extensions/PictureTile/PictureTile.cs:119
+#, csharp-format
+msgid "Processing \"{0}\""
+msgstr "Behandler \"{0}\""
+
+#: ../extensions/MetaPixel/MetaPixel.cs:229
+msgid "PhotoMosaics generated!"
+msgstr "PhotoMosaics genereret!"
+
+#: ../extensions/MetaPixel/MetaPixel.cs:247
+#, csharp-format
+msgid "PhotoMosaic"
+msgid_plural "PhotoMosaic ({0})"
+msgstr[0] "Fotomosaik"
+msgstr[1] "Fotomosaik ({0})"
+
+#: ../extensions/MetaPixel/MetaPixel.glade.h:1
+msgid "<b>Generate miniatures from</b>"
+msgstr "<b>Opret miniaturer fra</b>"
+
+#: ../extensions/MetaPixel/MetaPixel.glade.h:2
+msgid ""
+"Generate the miniatures from a selection of tags. No tags mean ALL pictures"
+msgstr ""
+"Opret miniaturerne fra en markering af mærker. Ingen mærker betyder ALLE "
+"billeder"
+
+#: ../extensions/MetaPixel/MetaPixel.glade.h:3
+msgid "MetaPixel photomosaics"
+msgstr "MetaPixel photomosaics"
+
+#: ../extensions/MetaPixel/MetaPixel.glade.h:4
+msgid "Miniatures _size"
+msgstr "Miniaturer _størrelse"
+
+#: ../extensions/MetaPixel/MetaPixel.glade.h:5
+msgid "Miniatures can be generated from the current main view"
+msgstr "Miniaturer kan oprettes fra den nuværende hovedoversigt"
+
+#: ../extensions/MetaPixel/MetaPixel.glade.h:6
+msgid "Size of the miniatures composing the mosaic"
+msgstr "Størrelse på miniaturerne der udgør mosaikken"
+
+#: ../extensions/MetaPixel/MetaPixel.glade.h:7
+#: ../extensions/PictureTile/PictureTile.glade.h:17
+msgid "_Create"
+msgstr "_Opret"
+
+#: ../extensions/MetaPixel/MetaPixel.glade.h:8
+msgid "_Current query"
+msgstr "_Nuværende forspørgsel"
+
+#: ../extensions/MetaPixel/MetaPixel.glade.h:9 ../src/f-spot.glade.h:263
+msgid "_Tags"
+msgstr "_Mærker"
+
+#: ../extensions/MetaPixel/MetaPixel.glade.h:10
+#: ../extensions/PictureTile/PictureTile.glade.h:23 ../src/f-spot.glade.h:282
+msgid "x"
+msgstr "x"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.addin.xml.h:1
+msgid "_PicasaWeb..."
+msgstr "_PicasaWeb..."
+
+#: ../extensions/PicasaWebExport/google-sharp/CaptchaException.cs:58
+msgid "url"
+msgstr "adresse"
+
+#: ../extensions/PicasaWebExport/google-sharp/CaptchaException.cs:59
+msgid "token"
+msgstr "tegn"
+
+#: ../extensions/PicasaWebExport/google-sharp/CaptchaException.cs:60
+msgid "captcha_url"
+msgstr "captcha_url"
+
+#: ../extensions/PictureTile/PictureTile.addin.xml.h:1
+msgid "Create photo_wall"
+msgstr "Opret foto_væg"
+
+#: ../extensions/PictureTile/PictureTile.cs:70
+msgid "PictureTile not available"
+msgstr "PictureTile ikke tilgængelige"
+
+#: ../extensions/PictureTile/PictureTile.cs:71
+msgid ""
+"The picturetile.pl executable was not found in path. Please check that you "
+"have it installed and that you have permissions to execute it"
+msgstr ""
+"Den eksekverbare picturetile.pl blev ikke fundet i stien af eksekverbare "
+"filer. Kontrollér at du har installeret den og at du har rettighed til at "
+"køre den"
+
+#: ../extensions/PictureTile/PictureTile.cs:109
+msgid "Preparing selected pictures"
+msgstr "Klargør valgte billeder"
+
+#: ../extensions/PictureTile/PictureTile.cs:198
+msgid "PhotoWall generated!"
+msgstr "Fotovæg oprettet!"
+
+#: ../extensions/PictureTile/PictureTile.cs:199
+msgid ""
+"Your photo wall have been generated and imported in F-Spot. Select the last "
+"roll to see it"
+msgstr ""
+"Din fotovæg er blevet oprettet og importeret i F-Spot. Vælg den sidste rulle "
+"for at se den"
+
+#: ../extensions/PictureTile/PictureTile.cs:202
+msgid "Error importing photowall"
+msgstr "Fejl ved importering af fotovæg"
+
+#: ../extensions/PictureTile/PictureTile.cs:203
+msgid ""
+"An error occurred while importing the newly generated photowall to F-Spot"
+msgstr "En fejl opstod ved import af den nyligt oprettede fotovæg til F-Spot"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:2
+#, no-c-format
+msgid "%"
+msgstr "%"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:3
+msgid "Background _color"
+msgstr "Baggrunds_farve"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:4
+msgid "Can be negative. It will overlap images"
+msgstr "Kan være negativ. Det vil overlappe billeder"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:5
+msgid ""
+"Check this if your images are all of the same size and you will have a more "
+"regular grid"
+msgstr ""
+"Afkryds dette hvis alle dine billeder er af samme størrelse og du vil få et "
+"mere regulært gitter"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:6
+msgid "Choose how many destination images you want to generate"
+msgstr "Vælg hvor mange destinationsbilleder du vil oprette"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:7
+msgid "Destination picture max _size"
+msgstr "Maksimal _størrelse på destinationsbillede"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:8
+msgid ""
+"For more information please visit PictureTile website\n"
+"http://www.jwz.org/picturetile/"
+msgstr ""
+"For mere information besøg PictureTile's hjemmeside\n"
+"http://www.jwz.org/picturetile/"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:10
+msgid "Jpeg _quality"
+msgstr "Jpeg-_kvalitet"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:11
+msgid "Output type"
+msgstr "Uddata type"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:12
+msgid "Outside _border"
+msgstr "_Kant udenom"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:13
+msgid "Photo wall generator"
+msgstr "Fotovæg-generering"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:14
+msgid "PictureTile for F-Spot"
+msgstr "PictureTile til F-Spot"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:15
+msgid "Spa_cing between images"
+msgstr "_Mellemrum mellem billeder"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:16
+msgid "This operation is going to TAKE VERY LONG TIME!"
+msgstr "Denne handling vil tage MEGET LANG TID!"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:18
+msgid "_Jpeg"
+msgstr "_Jpeg"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:19
+msgid "_Pages"
+msgstr "_Sider"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:20
+msgid "_Scale images"
+msgstr "_Skalér billeder"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:21
+msgid "_Tiff"
+msgstr "_Tiff"
+
+#: ../extensions/PictureTile/PictureTile.glade.h:22
+msgid "_Uniform images"
+msgstr "_Ensartet billeder"
+
+#: ../extensions/SmugMugExport/SmugMugExport.addin.xml.h:1
+msgid "_SmugMug..."
+msgstr "_SmugMug..."
+
+#: ../extensions/SmugMugExport/SmugMugExport.cs:566
+#, csharp-format
+msgid "Uploading picture \"{0}\" ({1} of {2})"
+msgstr "Overfører billede \"{0}\" ({1} af {2})"
+
+#: ../extensions/SmugMugExport/SmugMugExport.cs:595
+#, csharp-format
+msgid "Error Uploading To Gallery: {0}"
+msgstr "Fejl ved overførsel til galleri: {0}"
+
+#: ../extensions/SmugMugExport/SmugMugExport.cs:628
+msgid "(No Gallery)"
+msgstr "(Intet galleri)"
+
+#: ../extensions/SmugMugExport/SmugMugExport.cs:725
+msgid "(Not Connected)"
+msgstr "(Ikke tilsluttet)"
+
+#: ../extensions/SmugMugExport/SmugMugExport.cs:726
+msgid "(No Albums)"
+msgstr "(Ingen album)"
+
+#: ../extensions/SmugMugExport/SmugMugExport.cs:767
+msgid "No account selected"
+msgstr "Ingen konto valgt"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:1
+#: ../src/f-spot.glade.h:14
+msgid "<b>Album</b>"
+msgstr "<b>Album</b>"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:3
+msgid "<b>SmugMug Export</b>"
+msgstr "<b>SmugMug-eksport</b>"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:5
+#: ../src/f-spot.glade.h:76
+msgid "Autorotate"
+msgstr "Autorotér"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:7
+msgid "Open _album in browser when done uploading"
+msgstr "Åbn _albummet i netlæseren når overførslen er færdig"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:8
+msgid "Public Album"
+msgstr "Offentlig album"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:9
+msgid "_Account:"
+msgstr "_Konto:"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:10
+msgid "_Album Title:"
+msgstr "_Albumtitel:"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:11
+msgid "_Description:"
+msgstr "_Beskrivelse:"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:12
+#: ../src/f-spot.glade.h:223
+msgid "_Export to Album:"
+msgstr "_Eksportér til album:"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:13
+msgid "_Password:"
+msgstr "_Adgangskode:"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:15
+msgid "_Username:"
+msgstr "_Brugernavn:"
+
 #: ../f-spot-view.desktop.in.in.h:1
 msgid "F-Spot Photo Viewer"
 msgstr "F-Spot fotofremviser"
@@ -321,74 +834,6 @@ msgstr "Organisér, nyd og del dine fotos"
 #: ../f-spot.desktop.in.in.h:3
 msgid "Photo Manager"
 msgstr "Fotohåndtering"
-
-#: ../libeog/eog-file-selection.c:29 ../libeog/eog-file-selection.c:46
-msgid "By Extension"
-msgstr "Efter filtype"
-
-#: ../libeog/eog-file-selection.c:30
-msgid "BMP"
-msgstr "BMP"
-
-#: ../libeog/eog-file-selection.c:31
-msgid "GIF"
-msgstr "GIF"
-
-#: ../libeog/eog-file-selection.c:32
-msgid "ICO"
-msgstr "ICO"
-
-#: ../libeog/eog-file-selection.c:33 ../libeog/eog-file-selection.c:48
-msgid "JPEG"
-msgstr "JPEG"
-
-#: ../libeog/eog-file-selection.c:34 ../libeog/eog-file-selection.c:51
-msgid "PNG"
-msgstr "PNG"
-
-#: ../libeog/eog-file-selection.c:35
-msgid "PNM"
-msgstr "PNM"
-
-#: ../libeog/eog-file-selection.c:36
-msgid "RAS"
-msgstr "RAS"
-
-#: ../libeog/eog-file-selection.c:37
-msgid "SVG"
-msgstr "SVG"
-
-#: ../libeog/eog-file-selection.c:38
-msgid "TGA"
-msgstr "TGA"
-
-#: ../libeog/eog-file-selection.c:39
-msgid "TIFF"
-msgstr "TIFF"
-
-#: ../libeog/eog-file-selection.c:40
-msgid "XBM"
-msgstr "XBM"
-
-#: ../libeog/eog-file-selection.c:41 ../libeog/eog-file-selection.c:54
-msgid "XPM"
-msgstr "XPM"
-
-#: ../libeog/eog-file-selection.c:207
-msgid "Unsupported file format."
-msgstr "Ikke understøttet filformat."
-
-#: ../libeog/eog-file-selection.c:225
-msgid "Determine File Type:"
-msgstr "Bestem filtype:"
-
-#: ../libeog/eog-file-selection.c:268
-msgid "Load Image"
-msgstr "Indlæs billede"
-
-#: ../libeog/eog-file-selection.c:274
-msgid "Save Image"
-msgstr "Gem billede"
 
 #: ../libeog/eog-image.c:773
 #, c-format
@@ -454,7 +899,7 @@ msgstr "Forhåndsvisning"
 msgid "Path"
 msgstr "Sti"
 
-#: ../src/CameraFileSelectionDialog.cs:77 ../src/f-spot.glade.h:108
+#: ../src/CameraFileSelectionDialog.cs:77 ../src/f-spot.glade.h:107
 msgid "File"
 msgstr "Fil"
 
@@ -513,8 +958,8 @@ msgstr "Port"
 msgid "Error saving adjusted photo"
 msgstr "Fejl ved gemning af tilpasset foto"
 
-#: ../src/ColorDialog.cs:213 ../src/Loupe.cs:59 ../src/MainWindow.cs:2006
-#: ../src/PhotoView.cs:275 ../src/UI.Dialog/EditExceptionDialog.cs:25
+#: ../src/ColorDialog.cs:213 ../src/Loupe.cs:65 ../src/PhotoView.cs:278
+#: ../src/UI.Dialog/EditExceptionDialog.cs:25
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Modtog undtagelsen \"{0}\". Kunne ikke gemme foto {1}"
@@ -548,6 +993,38 @@ msgstr ""
 "Mærket F-Spot leder efter findes ikke. Prøv at\n"
 "vælge et andet mærke i F-Spot-indstillings-\n"
 "vinduet."
+
+#: ../src/Core/Photo.cs:417
+msgid "Reparented"
+msgstr "Genknyt"
+
+#: ../src/Core/Photo.cs:417
+#, csharp-format
+msgid "Reparented ({0})"
+msgstr "Genknytter ({0})"
+
+#: ../src/Core/Photo.cs:434
+#, csharp-format
+msgid "Modified"
+msgid_plural "Modified ({0})"
+msgstr[0] "Ændret"
+msgstr[1] "({0}) ændret"
+
+#: ../src/Core/Photo.cs:453
+#, csharp-format
+msgid "Modified in {1}"
+msgstr "Ændret i {1}"
+
+#: ../src/Core/Photo.cs:453
+#, csharp-format
+msgid "Modified in {1} ({0})"
+msgstr "Ændret i {1} ({0})"
+
+#. Note that the original version is never stored in the photo_versions table in the
+#. database.
+#: ../src/Core/Photo.cs:561 ../src/f-spot.glade.h:142
+msgid "Original"
+msgstr "Original"
 
 #: ../src/DateCommands.cs:56
 msgid "Today"
@@ -633,17 +1110,17 @@ msgstr "Eksportér til"
 msgid "Open _With"
 msgstr "Åbn _med"
 
-#: ../src/FSpot.addin.xml.h:4 ../src/f-spot.glade.h:158
+#: ../src/FSpot.addin.xml.h:4 ../src/f-spot.glade.h:155
 msgid "Rem_ove Tag"
 msgstr "F_jern mærke"
 
 #: ../src/FSpot.addin.xml.h:5 ../src/SingleView.cs:433
-#: ../src/f-spot.glade.h:161
+#: ../src/f-spot.glade.h:158
 msgid "Rotate _Left"
 msgstr "Rotér til _venstre"
 
 #: ../src/FSpot.addin.xml.h:6 ../src/SingleView.cs:434
-#: ../src/f-spot.glade.h:162
+#: ../src/f-spot.glade.h:159
 msgid "Rotate _Right"
 msgstr "Rotér til _højre"
 
@@ -651,28 +1128,28 @@ msgstr "Rotér til _højre"
 msgid "Tools"
 msgstr "Værktøj"
 
-#: ../src/FSpot.addin.xml.h:8 ../src/f-spot.glade.h:206
+#: ../src/FSpot.addin.xml.h:8 ../src/f-spot.glade.h:202
 msgid "_Attach Tag"
 msgstr "_Vedhæft mærke"
 
-#: ../src/FSpot.addin.xml.h:9 ../src/f-spot.glade.h:217
+#: ../src/FSpot.addin.xml.h:9 ../src/f-spot.glade.h:213
 msgid "_Delete From Drive"
 msgstr "Slet fra _disk"
 
-#: ../src/FSpot.addin.xml.h:10 ../src/f-spot.glade.h:249
+#: ../src/FSpot.addin.xml.h:10 ../src/f-spot.glade.h:247
 msgid "_Remove From Catalog"
 msgstr "_Fjern fra katalog"
 
-#: ../src/FileImportBackend.cs:266
+#: ../src/FileImportBackend.cs:262
 msgid "Import error"
 msgstr "Importeringsfejl"
 
-#: ../src/FileImportBackend.cs:267
+#: ../src/FileImportBackend.cs:263
 #, csharp-format
 msgid "Error importing {0}{2}{2}{1}"
 msgstr "Fejl ved import af {0}{2}{2}{1}"
 
-#: ../src/FileImportBackend.cs:268 ../src/ThreadProgressDialog.cs:68
+#: ../src/FileImportBackend.cs:264 ../src/ThreadProgressDialog.cs:68
 msgid "Skip"
 msgstr "Spring over"
 
@@ -685,36 +1162,36 @@ msgstr "Ingen måde at gemme filer af typen \"{0}\" på"
 msgid "Unhandled exception"
 msgstr "Uhåndterbar undtagelse"
 
-#: ../src/FullScreenView.cs:51
+#: ../src/FullScreenView.cs:50
 msgid "Hide"
 msgstr "Skjul"
 
-#: ../src/FullScreenView.cs:53
+#: ../src/FullScreenView.cs:52
 msgid "Hide Toolbar"
 msgstr "Skjul værktøjslinje"
 
-#: ../src/FullScreenView.cs:59
+#: ../src/FullScreenView.cs:58
 msgid "Info"
 msgstr "Information"
 
-#: ../src/FullScreenView.cs:61
+#: ../src/FullScreenView.cs:60
 msgid "Image Information"
 msgstr "Billedinformation"
 
-#: ../src/FullScreenView.cs:66
+#: ../src/FullScreenView.cs:65
 msgid "Exit fullscreen"
 msgstr "Forlad fuldskærm"
 
-#: ../src/FullScreenView.cs:76 ../src/MainWindow.cs:293
+#: ../src/FullScreenView.cs:75 ../src/MainWindow.cs:294
 #: ../src/SingleView.cs:92
 msgid "Slideshow"
 msgstr "Diasshow"
 
-#: ../src/FullScreenView.cs:77
+#: ../src/FullScreenView.cs:76
 msgid "Start slideshow"
 msgstr "Start diasshow"
 
-#: ../src/FullScreenView.cs:142
+#: ../src/FullScreenView.cs:141
 msgid "Slide transition: "
 msgstr "Dias-overgang: "
 
@@ -766,11 +1243,11 @@ msgstr "Arrangér efter _måned"
 msgid "Arrange by _Folder"
 msgstr "Arrangér efter _mappe"
 
-#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:253
+#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:251
 msgid "_Reverse Order"
 msgstr "_Omvendt rækkefølge"
 
-#: ../src/GroupSelector.cs:529 ../src/f-spot.glade.h:210
+#: ../src/GroupSelector.cs:529 ../src/f-spot.glade.h:206
 msgid "_Clear Date Range"
 msgstr "_Ryd datointerval"
 
@@ -997,14 +1474,13 @@ msgstr "(Ingen)"
 msgid "(Unknown)"
 msgstr "(Ukendt)"
 
-#: ../src/InfoDisplay.cs:14 ../src/MainWindow.cs:1564
-#: ../src/f-spot.glade.h:132
+#: ../src/InfoDisplay.cs:14 ../src/MainWindow.cs:1579
 msgid "Metadata Browser"
 msgstr "Metadata-fremviser"
 
 #. Obsolete, remove after db rev4
 #: ../src/InfoDisplay.cs:135 ../src/InfoDisplay.cs:137
-#: ../src/f-spot.glade.h:111
+#: ../src/f-spot.glade.h:110
 msgid "Folder"
 msgstr "Mappe"
 
@@ -1041,7 +1517,7 @@ msgstr "Fotoet \"{0}\" findes ikke"
 msgid "No metadata available"
 msgstr "Ingen metadata tilgængelig"
 
-#: ../src/ItemAction.cs:81 ../src/MainWindow.cs:260 ../src/SingleView.cs:75
+#: ../src/ItemAction.cs:81 ../src/MainWindow.cs:261 ../src/SingleView.cs:75
 msgid "Rotate Left"
 msgstr "Rotér til venstre"
 
@@ -1049,11 +1525,11 @@ msgstr "Rotér til venstre"
 msgid "Rotate picture left"
 msgstr "Rotér billede til venstre"
 
-#: ../src/ItemAction.cs:93 ../src/MainWindow.cs:264 ../src/SingleView.cs:80
+#: ../src/ItemAction.cs:93 ../src/MainWindow.cs:265 ../src/SingleView.cs:80
 msgid "Rotate Right"
 msgstr "Rotér til højre"
 
-#: ../src/ItemAction.cs:104 ../src/f-spot.glade.h:134
+#: ../src/ItemAction.cs:104 ../src/f-spot.glade.h:131
 msgid "Next"
 msgstr "Næste"
 
@@ -1061,7 +1537,7 @@ msgstr "Næste"
 msgid "Next picture"
 msgstr "Næste billede"
 
-#: ../src/ItemAction.cs:126 ../src/f-spot.glade.h:154
+#: ../src/ItemAction.cs:126 ../src/f-spot.glade.h:151
 msgid "Previous"
 msgstr "Forrige"
 
@@ -1093,67 +1569,67 @@ msgstr "Justér vinklen på billedet for at rette horisonten"
 msgid "Create a soft focus visual effect"
 msgstr "Opret en visuel blød fokus effekt"
 
-#: ../src/Loupe.cs:58 ../src/MainWindow.cs:2005
+#: ../src/Loupe.cs:64
 msgid "Error saving sharpened photo"
 msgstr "Fejl ved gemning af skærpet foto"
 
-#: ../src/Loupe.cs:88
+#: ../src/Loupe.cs:94
 msgid "Sharpen"
 msgstr "Skærp"
 
-#: ../src/Loupe.cs:98 ../src/MainWindow.cs:1972
+#: ../src/Loupe.cs:104
 msgid "Amount:"
 msgstr "Mængde:"
 
-#: ../src/Loupe.cs:99 ../src/MainWindow.cs:1973
+#: ../src/Loupe.cs:105
 msgid "Radius:"
 msgstr "Radius:"
 
-#: ../src/Loupe.cs:100 ../src/MainWindow.cs:1974
+#: ../src/Loupe.cs:106
 msgid "Threshold:"
 msgstr "Grænseværdi:"
 
-#: ../src/MainWindow.cs:253 ../src/f-spot.glade.h:124
+#: ../src/MainWindow.cs:254 ../src/f-spot.glade.h:123
 msgid "Import"
 msgstr "Importér"
 
-#: ../src/MainWindow.cs:255
+#: ../src/MainWindow.cs:256
 msgid "Import new images"
 msgstr "Importér nye billeder"
 
-#: ../src/MainWindow.cs:271 ../src/f-spot.glade.h:77
+#: ../src/MainWindow.cs:272 ../src/f-spot.glade.h:77
 msgid "Browse"
 msgstr "Gennemse"
 
-#: ../src/MainWindow.cs:275
+#: ../src/MainWindow.cs:276
 msgid "Browse many photos simultaneously"
 msgstr "Gennemse mange fotos samtidigt"
 
-#: ../src/MainWindow.cs:279
+#: ../src/MainWindow.cs:280
 msgid "Edit Image"
 msgstr "Redigér billede"
 
-#: ../src/MainWindow.cs:283
+#: ../src/MainWindow.cs:284
 msgid "View and edit a photo"
 msgstr "Vis og redigér et foto"
 
-#: ../src/MainWindow.cs:288 ../src/SingleView.cs:87
+#: ../src/MainWindow.cs:289 ../src/SingleView.cs:87
 msgid "Fullscreen"
 msgstr "Fuldskærm"
 
-#: ../src/MainWindow.cs:290 ../src/SingleView.cs:89
+#: ../src/MainWindow.cs:291 ../src/SingleView.cs:89
 msgid "View photos fullscreen"
 msgstr "Vis fotos på hele skærmen"
 
-#: ../src/MainWindow.cs:295 ../src/SingleView.cs:94
+#: ../src/MainWindow.cs:296 ../src/SingleView.cs:94
 msgid "View photos in a slideshow"
 msgstr "Vis fotos i et diasshow"
 
-#: ../src/MainWindow.cs:866
+#: ../src/MainWindow.cs:876
 msgid "Error loading database."
 msgstr "Fejl ved indlæsning af samling."
 
-#: ../src/MainWindow.cs:867
+#: ../src/MainWindow.cs:877
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
@@ -1162,11 +1638,11 @@ msgstr ""
 "F-Spot opdagede en fejl ved indlæsning af fotosamlingen. Den gamle samling "
 "er blevet flyttet til {0} og en ny samling er oprettet."
 
-#: ../src/MainWindow.cs:1482
+#: ../src/MainWindow.cs:1492
 msgid "No cameras detected."
 msgstr "Ingen kameraer fundet."
 
-#: ../src/MainWindow.cs:1483
+#: ../src/MainWindow.cs:1493
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1174,24 +1650,24 @@ msgstr ""
 "F-Spot kunne ikke finde nogle tilsluttede kameraer på dette system. "
 "Kontrollér at kameraet er tilsluttet og har strøm"
 
-#: ../src/MainWindow.cs:1523
+#: ../src/MainWindow.cs:1533
 msgid "Error connecting to camera"
 msgstr "Fejl ved forbindelsen til kamera"
 
-#: ../src/MainWindow.cs:1524
+#: ../src/MainWindow.cs:1534
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Modtog fejl \"{0} ved tilslutning til kamera"
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1885
+#: ../src/MainWindow.cs:1901
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Saml det markerede mærke"
 msgstr[1] "Saml de {0} markerede mærker?"
 
-#: ../src/MainWindow.cs:1912
+#: ../src/MainWindow.cs:1928
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -1199,79 +1675,75 @@ msgstr ""
 "Denne handling vil slå de valgte mærker og alle undermærker sammen til et "
 "enkelt mærke."
 
-#: ../src/MainWindow.cs:1914
+#: ../src/MainWindow.cs:1930
 msgid "_Merge Tags"
 msgstr "Slå _mærker sammen"
 
-#: ../src/MainWindow.cs:1963
-msgid "Unsharp Mask"
-msgstr "Uskarp maske"
-
-#: ../src/MainWindow.cs:2171 ../src/SingleView.cs:476
+#: ../src/MainWindow.cs:2141 ../src/SingleView.cs:476
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} foto"
 msgstr[1] "{0} fotos"
 
-#: ../src/MainWindow.cs:2178
+#: ../src/MainWindow.cs:2148
 #, csharp-format
 msgid " out of {0}"
 msgstr " ud af {0}"
 
-#: ../src/MainWindow.cs:2181
+#: ../src/MainWindow.cs:2151
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} valgt)"
 msgstr[1] " ({0} valgte)"
 
-#: ../src/MainWindow.cs:2268
+#: ../src/MainWindow.cs:2238
 msgid "_Ok"
 msgstr "_O.k."
 
-#: ../src/MainWindow.cs:2269
+#: ../src/MainWindow.cs:2239
 msgid "Error Deleting Picture"
 msgstr "Fejl ved sletning af billede"
 
-#: ../src/MainWindow.cs:2274
+#: ../src/MainWindow.cs:2244
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Ingen rettighed til at slette filen:{1}{0}"
 
-#: ../src/MainWindow.cs:2278
+#: ../src/MainWindow.cs:2248
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "En fejl af typen {0} opstod ved sletning af filen:{2}{1}"
 
-#: ../src/MainWindow.cs:2304
+#: ../src/MainWindow.cs:2274
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Slet det markerede foto permanent?"
 msgstr[1] "Slet de {0} markerede fotos permanent?"
 
-#: ../src/MainWindow.cs:2308
+#: ../src/MainWindow.cs:2278
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Dette sletter alle versioner af det markerede foto fra din disk."
 msgstr[1] "Dette sletter alle versioner af de markerede fotos fra din disk."
 
-#: ../src/MainWindow.cs:2311
+#: ../src/MainWindow.cs:2281
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Slet foto"
 msgstr[1] "_Slet fotos"
 
-#: ../src/MainWindow.cs:2342
+#: ../src/MainWindow.cs:2312
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Fjern det markerede foto fra F-Spot?"
 msgstr[1] "Fjern de {0} markerede fotos fra F-Spot?"
 
-#: ../src/MainWindow.cs:2347
+#: ../src/MainWindow.cs:2317
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1280,27 +1752,27 @@ msgstr ""
 "Hvis du fjerner fotos fra F-Spot-samlingen vil alle mærkeinformationerne gå "
 "tabt. Fotoerne vil blive på din maskine og kan importeres i F-Spot igen."
 
-#: ../src/MainWindow.cs:2348
+#: ../src/MainWindow.cs:2318
 msgid "_Remove from Catalog"
 msgstr "_Fjern fra samling"
 
-#: ../src/MainWindow.cs:2411
+#: ../src/MainWindow.cs:2381
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Slet mærke \"{0}\"?"
 
-#: ../src/MainWindow.cs:2413
+#: ../src/MainWindow.cs:2383
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Slet det markerede {0}-mærke?"
 
-#: ../src/MainWindow.cs:2418
+#: ../src/MainWindow.cs:2388
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "foto"
 msgstr[1] "fotos"
 
-#: ../src/MainWindow.cs:2420
+#: ../src/MainWindow.cs:2390
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural ""
@@ -1311,18 +1783,18 @@ msgstr[1] ""
 "Hvis du sletter disse mærker vil alle deres associationer med {0} {1} gå "
 "tabt."
 
-#: ../src/MainWindow.cs:2425
+#: ../src/MainWindow.cs:2395
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Slet mærke"
 msgstr[1] "_Slet mærker"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2439
+#: ../src/MainWindow.cs:2409
 msgid "Tag is not empty"
 msgstr "Mærke er ikke tom"
 
-#: ../src/MainWindow.cs:2440
+#: ../src/MainWindow.cs:2410
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1331,39 +1803,39 @@ msgstr ""
 "Kan ikke slette mærker som har mærker inden i. Vær venlig at slette mærker "
 "under \"{0}\" først"
 
-#: ../src/MainWindow.cs:2885
+#: ../src/MainWindow.cs:2862
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Rotér det valgte foto til venstre"
 msgstr[1] "Rotér de valgte fotos til venstre"
 
-#: ../src/MainWindow.cs:2898
+#: ../src/MainWindow.cs:2875
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Rotér det valgte foto til højre"
 msgstr[1] "Rotér de valgte fotos til højre"
 
-#: ../src/MainWindow.cs:2906
+#: ../src/MainWindow.cs:2883
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "Find _valgt mærke"
 msgstr[1] "Find _valgte mærker"
 
-#: ../src/MainWindow.cs:2910
+#: ../src/MainWindow.cs:2887
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "Find valgt mærke _med"
 msgstr[1] "Find valgte mærker _med"
 
-#: ../src/MainWindow.cs:2948
+#: ../src/MainWindow.cs:2925
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Opret ny version?"
 msgstr[1] "Opret nye versioner?"
 
-#: ../src/MainWindow.cs:2950
+#: ../src/MainWindow.cs:2927
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1545,27 +2017,27 @@ msgstr "Kunne ikke omdøbe en version"
 msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
 msgstr "Modtog undtagelsen \"{0}\". Kunne ikke omdøbe version til \"{1}\""
 
-#: ../src/PhotoVersionMenu.cs:66
+#: ../src/PhotoVersionMenu.cs:67
 msgid "(No Edits)"
 msgstr "(Ingen redigeringer)"
 
-#: ../src/PhotoView.cs:66
+#: ../src/PhotoView.cs:69
 msgid "No Constraint"
 msgstr "Ingen begrænsning"
 
-#: ../src/PhotoView.cs:67
+#: ../src/PhotoView.cs:70
 msgid "4 x 3 (Book)"
 msgstr "4 x 3 (Bog)"
 
-#: ../src/PhotoView.cs:68
+#: ../src/PhotoView.cs:71
 msgid "4 x 6 (Postcard)"
 msgstr "4 x 6 (Postkort)"
 
-#: ../src/PhotoView.cs:69
+#: ../src/PhotoView.cs:72
 msgid "5 x 7 (L, 2L)"
 msgstr "5 x 7 (L, 2L)"
 
-#: ../src/PhotoView.cs:70
+#: ../src/PhotoView.cs:73
 msgid "8 x 10"
 msgstr "8 x 10"
 
@@ -1573,35 +2045,31 @@ msgstr "8 x 10"
 #. new SelectionConstraint (Catalog.GetString ("4 x 6 Portrait (Postcard)"), 4.0 / 6.0),
 #. new SelectionConstraint (Catalog.GetString ("5 x 7 Portrait (L, 2L)"), 5.0 / 7.0),
 #. new SelectionConstraint (Catalog.GetString ("8 x 10 Portrait"), 8.0 / 10.0),
-#: ../src/PhotoView.cs:75
+#: ../src/PhotoView.cs:78
 msgid "Square"
 msgstr "Kvadrat"
 
-#: ../src/PhotoView.cs:155
+#: ../src/PhotoView.cs:158
 msgid "Crop photo to selected area"
 msgstr "Beskær foto til valgte område"
 
-#: ../src/PhotoView.cs:156
+#: ../src/PhotoView.cs:159
 msgid "Remove redeye from selected area"
 msgstr "Fjern røde øjne fra valgt område"
 
-#: ../src/PhotoView.cs:158
+#: ../src/PhotoView.cs:161
 msgid "Select an area to crop"
 msgstr "Vælg et område at tilskære"
 
-#: ../src/PhotoView.cs:159
+#: ../src/PhotoView.cs:162
 msgid "Select an area to remove redeye"
 msgstr "Vælg et område at fjerne røde øjne fra"
 
-#: ../src/PhotoView.cs:274 ../src/UI.Dialog/EditExceptionDialog.cs:38
+#: ../src/PhotoView.cs:277 ../src/UI.Dialog/EditExceptionDialog.cs:38
 msgid "Error editing photo"
 msgstr "Fejl ved fotoredigering"
 
-#: ../src/PhotoView.cs:326
-msgid "No selection available"
-msgstr "Intet valgt område tilgængeligt"
-
-#: ../src/PhotoView.cs:327
+#: ../src/PhotoView.cs:330
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -1609,63 +2077,57 @@ msgstr ""
 "Dette værktøj kræver et aktivt område. Vælg en region af fotoet og prøv "
 "handlingen igen"
 
-#: ../src/PhotoView.cs:500
+#: ../src/PhotoView.cs:518
 msgid "Comment:"
 msgstr "Kommentar:"
 
-#: ../src/PhotoView.cs:522
+#: ../src/PhotoView.cs:540
 msgid "Constrain the aspect ratio of the selection"
 msgstr "Indskrænk størrelsesforholdet af valgt område"
 
-#: ../src/PhotoView.cs:524
+#: ../src/PhotoView.cs:542
 msgid "Crop"
 msgstr "Beskær"
 
-#: ../src/PhotoView.cs:528
+#: ../src/PhotoView.cs:546
 msgid "Reduce Red-Eye"
 msgstr "Reducér rødøje"
 
-#: ../src/PhotoView.cs:532
+#: ../src/PhotoView.cs:550
 msgid "Adjust Colors"
 msgstr "Justér farver"
 
-#: ../src/PhotoView.cs:534
+#: ../src/PhotoView.cs:552
 msgid "Adjust the photo colors"
 msgstr "Justér fotoets farver"
 
-#: ../src/PhotoView.cs:537
+#: ../src/PhotoView.cs:555
 msgid "Desaturate"
 msgstr "Afmat"
 
-#: ../src/PhotoView.cs:539
+#: ../src/PhotoView.cs:557
 msgid "Convert the photo to black and white"
 msgstr "Konvertér fotoet til sort og hvid"
 
-#: ../src/PhotoView.cs:542
+#: ../src/PhotoView.cs:560
 msgid "Sepia Tone"
 msgstr "Sepia-farvetone"
 
-#: ../src/PhotoView.cs:544
+#: ../src/PhotoView.cs:562
 msgid "Convert the photo to sepia tones"
 msgstr "Konvertér fotoet til sepia-farvetoner"
 
-#: ../src/PhotoView.cs:574
+#: ../src/PhotoView.cs:592
 msgid "Previous photo"
 msgstr "Forrige foto"
 
-#: ../src/PhotoView.cs:579
+#: ../src/PhotoView.cs:597
 msgid "Next photo"
 msgstr "Næste foto"
 
-#: ../src/Preferences.cs:175
+#: ../src/Preferences.cs:177
 msgid "Photos"
 msgstr "Fotos"
-
-#. This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/ProgressDialog.cs:82 ../src/TimeDialog.cs:148
-#, csharp-format
-msgid "{0} of {1}"
-msgstr "{0} af {1}"
 
 #: ../src/QueryWidget.cs:39
 msgid "Find: "
@@ -1943,7 +2405,7 @@ msgstr ", "
 msgid " or "
 msgstr " eller "
 
-#: ../src/Term.cs:379 ../src/f-spot.glade.h:281
+#: ../src/Term.cs:379 ../src/f-spot.glade.h:280
 msgid "or"
 msgstr "eller"
 
@@ -1951,14 +2413,7 @@ msgstr "eller"
 msgid "Retry"
 msgstr "Prøv igen"
 
-#. The preceding text here is the second checkbutton in the Time dialog
-#. that says "Space all photos by []"
-#: ../src/TimeDialog.cs:126 ../src/f-spot.glade.h:280
-#, csharp-format
-msgid "min. Starting at {0}"
-msgstr "min. Starter ved {0}"
-
-#: ../src/TimeDialog.cs:131 ../src/f-spot.glade.h:177
+#: ../src/TimeDialog.cs:124 ../src/f-spot.glade.h:174
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Skift alle fotos med {0}"
@@ -1980,22 +2435,22 @@ msgstr ""
 msgid "F-Spot Website"
 msgstr "F-Spot hjemmeside"
 
-#. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
-#: ../src/Unix.cs:25
-msgid "Unable to create temporary file"
-msgstr "Kan ikke oprette midlertidig file"
-
-#: ../src/Updater.cs:283
+#: ../src/Updater.cs:284
 msgid "Updating F-Spot Database"
 msgstr "Opdaterer F-Spot-samling"
 
-#: ../src/Updater.cs:284
+#: ../src/Updater.cs:285
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
 msgstr ""
 "Vent venligst mens din F-Spot-gallerisamling opdateres. Dette kan tage et "
 "stykke tid."
+
+#. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
+#: ../src/Utils/Unix.cs:25
+msgid "Unable to create temporary file"
+msgstr "Kan ikke oprette midlertidig file"
 
 #: ../src/Utils/GnomeUtil.cs:49
 msgid ""
@@ -2074,17 +2529,9 @@ msgstr "800 px"
 msgid "<b></b>"
 msgstr "<b></b>"
 
-#: ../src/f-spot.glade.h:12
-msgid "<b>Account</b>"
-msgstr "<b>Konto</b>"
-
 #: ../src/f-spot.glade.h:13
 msgid "<b>Action</b>"
 msgstr "<b>Handling</b>"
-
-#: ../src/f-spot.glade.h:14
-msgid "<b>Album</b>"
-msgstr "<b>Album</b>"
 
 #: ../src/f-spot.glade.h:15
 msgid "<b>Co_rrections</b>"
@@ -2158,10 +2605,6 @@ msgstr "<b>Min vurdering</b>"
 msgid "<b>Photograph Layout</b>"
 msgstr "<b>Fotografilayout</b>"
 
-#: ../src/f-spot.glade.h:33
-msgid "<b>Photos</b>"
-msgstr "<b>Fotos</b>"
-
 #: ../src/f-spot.glade.h:34
 msgid "<b>Predefined</b>"
 msgstr "<b>Prædefineret</b>"
@@ -2193,10 +2636,6 @@ msgstr "<b>Størrelse</b>"
 #: ../src/f-spot.glade.h:41
 msgid "<b>Start Date</b>"
 msgstr "<b>Startdato</b>"
-
-#: ../src/f-spot.glade.h:42
-msgid "<b>Style</b>"
-msgstr "<b>Stil</b>"
 
 #: ../src/f-spot.glade.h:43
 msgid "<b>Summary</b>"
@@ -2252,8 +2691,8 @@ msgid ""
 "disable this for viewing photos, but disabling the interpolation could be "
 "usefull in icon design.</i></small>"
 msgstr ""
-"<small><i>Aktivér dette for at tillade interpolation på zoomeede billeder. "
-"Du bør ikke deaktivere dette for visning af fotos, men deaktivering af "
+"<small><i>Aktivér dette for at tillade interpolation på zoomede billeder. Du "
+"bør ikke deaktivere dette for visning af fotos, men deaktivering af "
 "interpolationen kan være nyttigt ved design af ikoner.</i></small>"
 
 #: ../src/f-spot.glade.h:54
@@ -2337,12 +2776,12 @@ msgid "As _background"
 msgstr "Som _baggrund"
 
 #: ../src/f-spot.glade.h:72
-msgid "As check pattern"
-msgstr "Som mønstertern"
+msgid "As _custom color: "
+msgstr "Som _brugerdefineret farve: "
 
 #: ../src/f-spot.glade.h:73
-msgid "As custom color: "
-msgstr "Som brugerdefineret farve: "
+msgid "As check _pattern"
+msgstr "Som mønster_tern"
 
 #: ../src/f-spot.glade.h:74
 msgid "Attach Tags:"
@@ -2351,10 +2790,6 @@ msgstr "Vedhæft mærker:"
 #: ../src/f-spot.glade.h:75
 msgid "Attach tag:"
 msgstr "Vedhæft mærke:"
-
-#: ../src/f-spot.glade.h:76
-msgid "Autorotate"
-msgstr "Autorotér"
 
 #: ../src/f-spot.glade.h:78
 msgid "By _Date"
@@ -2426,8 +2861,8 @@ msgid "Current date:"
 msgstr "Nuværende dato:"
 
 #: ../src/f-spot.glade.h:95
-msgid "Display File Names"
-msgstr "Vis filnavne"
+msgid "Display File _Names"
+msgstr "Vis fil_navne"
 
 #: ../src/f-spot.glade.h:96
 msgid "Display only those photos that were imported in specified Rolls."
@@ -2446,46 +2881,38 @@ msgid "E_xport titles and comments"
 msgstr "_Eksportér titler og kommentarer"
 
 #: ../src/f-spot.glade.h:100
-msgid "Edit"
-msgstr "Redigér"
-
-#: ../src/f-spot.glade.h:101
 msgid "Edit Tag Icon"
 msgstr "Redigér mærke-ikon"
 
-#: ../src/f-spot.glade.h:102
+#: ../src/f-spot.glade.h:101
 msgid "Edit icon"
 msgstr "Redigér ikon"
 
-#: ../src/f-spot.glade.h:103
+#: ../src/f-spot.glade.h:102
 msgid "Estimated new size"
 msgstr "Estimeret ny størrelse"
 
 #: ../src/f-spot.glade.h:104
-msgid "Export"
-msgstr "Eksportér"
-
-#: ../src/f-spot.glade.h:105
 msgid "Extra large"
 msgstr "Ekstra stor"
 
-#: ../src/f-spot.glade.h:106
+#: ../src/f-spot.glade.h:105
 msgid "F-Spot"
 msgstr "F-Spot"
 
-#: ../src/f-spot.glade.h:107
+#: ../src/f-spot.glade.h:106
 msgid "F-Spot View"
 msgstr "F-Spot visning"
 
-#: ../src/f-spot.glade.h:109
+#: ../src/f-spot.glade.h:108
 msgid "Filter on selected rolls"
 msgstr "Filtrér på valgte ruller"
 
-#: ../src/f-spot.glade.h:110
+#: ../src/f-spot.glade.h:109
 msgid "Fin_d"
 msgstr "Fin_d"
 
-#: ../src/f-spot.glade.h:112
+#: ../src/f-spot.glade.h:111
 msgid ""
 "From Screen\n"
 "Standard RGB"
@@ -2493,7 +2920,7 @@ msgstr ""
 "Fra skærm\n"
 "Standard RGB"
 
-#: ../src/f-spot.glade.h:114
+#: ../src/f-spot.glade.h:113
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
@@ -2501,15 +2928,15 @@ msgstr ""
 "Hele siden\n"
 "Standard - 4x6"
 
-#: ../src/f-spot.glade.h:116
+#: ../src/f-spot.glade.h:115
 msgid "G_allery:"
 msgstr "G_alleri:"
 
-#: ../src/f-spot.glade.h:117
+#: ../src/f-spot.glade.h:116
 msgid "Gallery"
 msgstr "Galleri"
 
-#: ../src/f-spot.glade.h:118
+#: ../src/f-spot.glade.h:117
 msgid ""
 "Hairline\n"
 "0.25\"\n"
@@ -2521,47 +2948,43 @@ msgstr ""
 "0,5\"\n"
 "1\"\n"
 
-#: ../src/f-spot.glade.h:123
+#: ../src/f-spot.glade.h:122
 msgid "Images tagged with:"
 msgstr "Billeder mærket med:"
 
-#: ../src/f-spot.glade.h:125
+#: ../src/f-spot.glade.h:124
 msgid "Import Source:"
 msgstr "Importkilde:"
 
-#: ../src/f-spot.glade.h:126
+#: ../src/f-spot.glade.h:125
 msgid "Include subfolders"
 msgstr "Medtag undermapper"
 
-#: ../src/f-spot.glade.h:127
-msgid "Interpolate image on zoom"
-msgstr "Interpolér billede ved zoom"
-
-#: ../src/f-spot.glade.h:128
+#: ../src/f-spot.glade.h:126
 msgid "Large"
 msgstr "Stor"
 
-#: ../src/f-spot.glade.h:129
+#: ../src/f-spot.glade.h:127
 msgid "Make F-Spot your screensaver"
 msgstr "Gør F-Spot til din pauseskærm"
 
-#: ../src/f-spot.glade.h:130
+#: ../src/f-spot.glade.h:128
 msgid "Manage _Extensions"
 msgstr "Håndtér _filtyper"
 
-#: ../src/f-spot.glade.h:131
+#: ../src/f-spot.glade.h:129
 msgid "Medium"
 msgstr "Medium"
 
-#: ../src/f-spot.glade.h:133
+#: ../src/f-spot.glade.h:130
 msgid "N_umber of Copies:"
 msgstr "Antal _kopier:"
 
-#: ../src/f-spot.glade.h:135
+#: ../src/f-spot.glade.h:132
 msgid "No _image"
 msgstr "Intet _billede"
 
-#: ../src/f-spot.glade.h:136
+#: ../src/f-spot.glade.h:133
 msgid ""
 "None\n"
 "Title\n"
@@ -2575,103 +2998,99 @@ msgstr ""
 "Dato\n"
 "Fotodetaljer"
 
-#: ../src/f-spot.glade.h:141
+#: ../src/f-spot.glade.h:138
 msgid "Number of photos in selected rolls :"
 msgstr "Antal af fotos i de valgte ruller :"
 
-#: ../src/f-spot.glade.h:142
+#: ../src/f-spot.glade.h:139
 msgid "Number of pictures"
 msgstr "Antal billeder"
 
-#: ../src/f-spot.glade.h:143
+#: ../src/f-spot.glade.h:140
 msgid "Only photos taken within these dates will be displayed."
 msgstr "Vis kun billeder der er taget indenfor disse dage."
 
-#: ../src/f-spot.glade.h:144
+#: ../src/f-spot.glade.h:141
 msgid "Open _Folder..."
 msgstr "Åbn _mappe..."
 
-#: ../src/f-spot.glade.h:145
-msgid "Original"
-msgstr "Original"
-
-#: ../src/f-spot.glade.h:146
+#: ../src/f-spot.glade.h:143
 msgid "Original size (possible very large file size)"
 msgstr "Original størrelse (muligvis meget stor filstørrelse)"
 
-#: ../src/f-spot.glade.h:147
+#: ../src/f-spot.glade.h:144
 msgid "P_arent Tag:"
 msgstr "Oph_avsmærke:"
 
-#: ../src/f-spot.glade.h:148
+#: ../src/f-spot.glade.h:145
 msgid "P_hoto Source:"
 msgstr "Fo_tokilde:"
 
-#: ../src/f-spot.glade.h:149
+#: ../src/f-spot.glade.h:146
 msgid "Page 1 of 3"
 msgstr "Side 1 af 3"
 
-#: ../src/f-spot.glade.h:150
+#: ../src/f-spot.glade.h:147
 msgid "Pause"
 msgstr "Pause"
 
-#: ../src/f-spot.glade.h:151
+#: ../src/f-spot.glade.h:148
 msgid "Photo 0 of 0"
 msgstr "Foto 0 af 0"
 
-#: ../src/f-spot.glade.h:152
+#: ../src/f-spot.glade.h:149
 msgid "Photo _Size:"
 msgstr "Foto_størrelse:"
 
-#: ../src/f-spot.glade.h:153
+#: ../src/f-spot.glade.h:150
 msgid "Preferences"
 msgstr "Indstillinger"
 
-#: ../src/f-spot.glade.h:155
+#: ../src/f-spot.glade.h:152
 msgid "Print"
 msgstr "Udskriv"
 
-#: ../src/f-spot.glade.h:156
+#: ../src/f-spot.glade.h:153
 msgid "Print crop _marks"
 msgstr "Udskriv beskærings_mærker"
 
-#: ../src/f-spot.glade.h:157
+#: ../src/f-spot.glade.h:154
 msgid "Re_fresh Thumbnail"
 msgstr "_Opdatér miniature"
 
-#: ../src/f-spot.glade.h:159
+#: ../src/f-spot.glade.h:156
 msgid "Repair"
 msgstr "Reparér"
 
-#: ../src/f-spot.glade.h:160
+#: ../src/f-spot.glade.h:157
 msgid "Reset"
 msgstr "Nulstil"
 
-#: ../src/f-spot.glade.h:163
+#: ../src/f-spot.glade.h:160
 msgid "Select A Folder"
 msgstr "Vælg en mappe"
 
-#: ../src/f-spot.glade.h:164
+#: ../src/f-spot.glade.h:161
 msgid "Select Photos to Copy From Camera..."
 msgstr "Vælg fotos der skal kopieres fra kamera..."
 
-#: ../src/f-spot.glade.h:166
+#: ../src/f-spot.glade.h:163
 msgid "Select _None"
 msgstr "Markér _intet"
 
-#: ../src/f-spot.glade.h:167
+#: ../src/f-spot.glade.h:164
 msgid "Select a Tag..."
 msgstr "Vælg et mærke..."
 
-#: ../src/f-spot.glade.h:168
+#: ../src/f-spot.glade.h:165
 msgid "Select the camera from which you want to transfer files"
 msgstr "Vælg kameraet du vil overføre filer fra"
 
-#: ../src/f-spot.glade.h:169
+#: ../src/f-spot.glade.h:166
 msgid "Selected Camera: "
 msgstr "Valgt kamera: "
 
-#: ../src/f-spot.glade.h:170
+#: ../src/f-spot.glade.h:167
 msgid ""
 "Selection\n"
 "Gallery\n"
@@ -2681,55 +3100,55 @@ msgstr ""
 "Galleri\n"
 "Visningsområde"
 
-#: ../src/f-spot.glade.h:173
+#: ../src/f-spot.glade.h:170
 msgid "Send by _Mail..."
 msgstr "Send via _post..."
 
-#: ../src/f-spot.glade.h:174
+#: ../src/f-spot.glade.h:171
 msgid "Set Rating Filter"
 msgstr "Sæt vurderingsfilter"
 
-#: ../src/f-spot.glade.h:175
+#: ../src/f-spot.glade.h:172
 msgid "Set as _Background"
 msgstr "Benyt som _baggrund"
 
-#: ../src/f-spot.glade.h:176
+#: ../src/f-spot.glade.h:173
 msgid "Set date range"
 msgstr "Sæt datointerval"
 
-#: ../src/f-spot.glade.h:178
+#: ../src/f-spot.glade.h:175
 msgid "Show all photos."
 msgstr "Vis alle fotos."
 
-#: ../src/f-spot.glade.h:179
+#: ../src/f-spot.glade.h:176
 msgid "Show or hide the side pane"
 msgstr "Vis eller skjul sidepanelet"
 
-#: ../src/f-spot.glade.h:180
+#: ../src/f-spot.glade.h:177
 msgid "Show or hide the toolbar"
 msgstr "Vis eller skjul værktøjslinjen"
 
-#: ../src/f-spot.glade.h:181
+#: ../src/f-spot.glade.h:178
 msgid "Side _pane"
 msgstr "Side_panel"
 
-#: ../src/f-spot.glade.h:182
+#: ../src/f-spot.glade.h:179
 msgid "Side_bar"
 msgstr "Side_panel"
 
-#: ../src/f-spot.glade.h:183
+#: ../src/f-spot.glade.h:180
 msgid "Small"
 msgstr "Lille"
 
-#: ../src/f-spot.glade.h:184
+#: ../src/f-spot.glade.h:181
 msgid "So_urce Temp"
 msgstr "Kil_demidl"
 
-#: ../src/f-spot.glade.h:185
+#: ../src/f-spot.glade.h:182
 msgid "Space all photos by"
 msgstr "Spred alle fotos med"
 
-#: ../src/f-spot.glade.h:186
+#: ../src/f-spot.glade.h:183
 msgid ""
 "Specify if an original size picture should be rotated or not. Smaller sizes "
 "are automatically rotated."
@@ -2737,7 +3156,7 @@ msgstr ""
 "Angiv om et original størrelse billede skal roteres eller ej. Mindre "
 "størrelser bliver automatisk roteret."
 
-#: ../src/f-spot.glade.h:187
+#: ../src/f-spot.glade.h:184
 msgid ""
 "Standard RGB\n"
 "Image Profile\n"
@@ -2747,320 +3166,312 @@ msgstr ""
 "Billede-profil\n"
 "Brugerbestemt\n"
 
-#: ../src/f-spot.glade.h:191
+#: ../src/f-spot.glade.h:188
 msgid "Strip image _metadata"
 msgstr "Fjern _billedmetadata"
 
-#: ../src/f-spot.glade.h:192
+#: ../src/f-spot.glade.h:189
 msgid "T_ags"
 msgstr "_Mærker"
 
-#: ../src/f-spot.glade.h:193
+#: ../src/f-spot.glade.h:190
 msgid "Tags: "
 msgstr "Mærker: "
 
-#: ../src/f-spot.glade.h:194
+#: ../src/f-spot.glade.h:191
 msgid "Thumbnail _elements"
 msgstr "Miniaturebillede_elementer"
 
-#: ../src/f-spot.glade.h:195
+#: ../src/f-spot.glade.h:192
 msgid "Tiny"
 msgstr "Meget lille"
 
-#: ../src/f-spot.glade.h:196
+#: ../src/f-spot.glade.h:193
 msgid "Too_lbar"
 msgstr "Værktøjs_linje"
 
-#: ../src/f-spot.glade.h:197
-msgid "Toolbar"
-msgstr "Værktøjslinje"
-
-#: ../src/f-spot.glade.h:198
+#: ../src/f-spot.glade.h:194
 msgid "Total original size"
 msgstr "Total original størrelse"
 
-#: ../src/f-spot.glade.h:199
+#: ../src/f-spot.glade.h:195
 msgid "View"
 msgstr "Vis"
 
-#: ../src/f-spot.glade.h:200
+#: ../src/f-spot.glade.h:196
 msgid "Will print using: US Letter size on Generic Postscript"
 msgstr "Udskriver med: US-Letter-størrelse på almindelig Postscript"
 
-#: ../src/f-spot.glade.h:201
+#: ../src/f-spot.glade.h:197
 msgid "Write _metadata to file"
 msgstr "Skriv _metadata til fil"
 
-#: ../src/f-spot.glade.h:202
+#: ../src/f-spot.glade.h:198
 msgid "Zoom _in"
 msgstr "Zoom _ind"
 
-#: ../src/f-spot.glade.h:203
+#: ../src/f-spot.glade.h:199
 msgid "Zoom _out"
 msgstr "Zoom _ud"
 
-#: ../src/f-spot.glade.h:204
+#: ../src/f-spot.glade.h:200
 msgid "Zoom in"
 msgstr "Zoom ind"
 
-#: ../src/f-spot.glade.h:205
+#: ../src/f-spot.glade.h:201
 msgid "Zoom out"
 msgstr "Zoom ud"
 
-#: ../src/f-spot.glade.h:207
+#: ../src/f-spot.glade.h:203
 msgid "_Attach Tag to Selection"
 msgstr "_Vedhæft mærke til markering"
 
-#: ../src/f-spot.glade.h:208
+#: ../src/f-spot.glade.h:204
 msgid "_Border:"
 msgstr "_Kant:"
 
-#: ../src/f-spot.glade.h:209
+#: ../src/f-spot.glade.h:205
 msgid "_Brightness:"
 msgstr "_Lysstyrke:"
 
-#: ../src/f-spot.glade.h:211
+#: ../src/f-spot.glade.h:207
 msgid "_Clear Rating Filter"
 msgstr "_Ryd vurderingsfilter"
 
-#: ../src/f-spot.glade.h:212
+#: ../src/f-spot.glade.h:208
 msgid "_Clear Roll Filter"
 msgstr "_Ryd rullefilter"
 
-#: ../src/f-spot.glade.h:213
+#: ../src/f-spot.glade.h:209
 msgid "_Components"
 msgstr "_Komponenter"
 
-#: ../src/f-spot.glade.h:214
+#: ../src/f-spot.glade.h:210
 msgid "_Contents"
 msgstr "_Indhold"
 
-#: ../src/f-spot.glade.h:215
+#: ../src/f-spot.glade.h:211
 msgid "_Create Mail"
 msgstr "_Opret meddelelse"
 
-#: ../src/f-spot.glade.h:216
+#: ../src/f-spot.glade.h:212
 msgid "_Dates"
 msgstr "_Datoer"
 
-#: ../src/f-spot.glade.h:218
+#: ../src/f-spot.glade.h:214
 msgid "_Delete Selected Tag"
 msgstr "_Slet markeret mærke"
 
-#: ../src/f-spot.glade.h:219
+#: ../src/f-spot.glade.h:215
 msgid "_Delete Version"
 msgstr "_Slet version"
 
-#: ../src/f-spot.glade.h:220
+#: ../src/f-spot.glade.h:216
 msgid "_Destination Temp"
 msgstr "_Målmidl"
 
-#: ../src/f-spot.glade.h:221
+#: ../src/f-spot.glade.h:217
 msgid "_Display:"
 msgstr "_Vis:"
 
-#: ../src/f-spot.glade.h:222
+#: ../src/f-spot.glade.h:218
 msgid "_Edit"
 msgstr "_Redigér"
 
-#: ../src/f-spot.glade.h:223
+#: ../src/f-spot.glade.h:219
 msgid "_Edit Selected Tag..."
 msgstr "_Redigér markeret mærke..."
 
-#: ../src/f-spot.glade.h:224
+#: ../src/f-spot.glade.h:220
 msgid "_Export"
 msgstr "_Eksportér"
 
-#: ../src/f-spot.glade.h:225
-msgid "_Export tags"
-msgstr "_Eksportér mærker"
-
-#: ../src/f-spot.glade.h:226
+#: ../src/f-spot.glade.h:222
 msgid "_Export to"
 msgstr "_Eksportér til"
 
-#: ../src/f-spot.glade.h:227
-msgid "_Export to Album:"
-msgstr "_Eksportér til album:"
-
-#: ../src/f-spot.glade.h:228
+#: ../src/f-spot.glade.h:224
 msgid "_File"
 msgstr "_Fil"
 
-#: ../src/f-spot.glade.h:229
+#: ../src/f-spot.glade.h:225
+msgid "_Filmstrip"
+msgstr "_Filmklip"
+
+#: ../src/f-spot.glade.h:226
 msgid "_Flickr"
 msgstr "_Flickr"
 
-#: ../src/f-spot.glade.h:230
+#: ../src/f-spot.glade.h:227
 msgid "_Folder"
 msgstr "_Mappe"
 
-#: ../src/f-spot.glade.h:231
+#: ../src/f-spot.glade.h:228
 msgid "_Fullscreen"
 msgstr "_Fuldskærm"
 
-#: ../src/f-spot.glade.h:232
+#: ../src/f-spot.glade.h:229
 msgid "_Gallery"
 msgstr "_Galleri"
 
-#: ../src/f-spot.glade.h:233
+#: ../src/f-spot.glade.h:230
 msgid "_Help"
 msgstr "_Hjælp"
 
-#: ../src/f-spot.glade.h:234
+#: ../src/f-spot.glade.h:231
 msgid "_Hidden"
 msgstr "_Skjult"
 
-#: ../src/f-spot.glade.h:235
+#: ../src/f-spot.glade.h:232
 msgid "_Hue:"
 msgstr "_Farvetone:"
 
-#: ../src/f-spot.glade.h:236
+#: ../src/f-spot.glade.h:233
 msgid "_Icon:"
 msgstr "_Ikon:"
 
-#: ../src/f-spot.glade.h:237
+#: ../src/f-spot.glade.h:234
 msgid "_Import..."
 msgstr "_Importér..."
 
-#: ../src/f-spot.glade.h:238
+#: ../src/f-spot.glade.h:235
+msgid "_Interpolate image on zoom"
+msgstr "_Interpolér billede ved zoom"
+
+#: ../src/f-spot.glade.h:236
 msgid "_Large"
 msgstr "_Stor"
 
-#: ../src/f-spot.glade.h:239
+#: ../src/f-spot.glade.h:237
 msgid "_Last Import Roll"
 msgstr "_Sidste importerede rulle"
 
-#: ../src/f-spot.glade.h:240
+#: ../src/f-spot.glade.h:238
 msgid "_Medium"
 msgstr "_Medium"
 
-#: ../src/f-spot.glade.h:241
+#: ../src/f-spot.glade.h:239
 msgid "_Metadata Browser"
 msgstr "_Metadata-fremviser"
 
-#: ../src/f-spot.glade.h:242
+#: ../src/f-spot.glade.h:240
 msgid "_Month"
 msgstr "_Måned"
 
-#: ../src/f-spot.glade.h:243
+#: ../src/f-spot.glade.h:241
 msgid "_New Window"
 msgstr "_Nyt vindue"
 
-#: ../src/f-spot.glade.h:244
+#: ../src/f-spot.glade.h:242
 msgid "_Open album in browser when done uploading"
 msgstr "_Åbn albummet i netlæseren når overførslen er færdig"
 
-#: ../src/f-spot.glade.h:245
+#: ../src/f-spot.glade.h:243
 msgid "_Open destination when done exporting"
 msgstr "_Åbn målet når eksporteringen er færdig"
 
-#: ../src/f-spot.glade.h:246
+#: ../src/f-spot.glade.h:244
 msgid "_Output:"
 msgstr "_Uddata:"
 
-#: ../src/f-spot.glade.h:247
+#: ../src/f-spot.glade.h:245
 msgid "_Quit"
 msgstr "_Afslut"
 
-#: ../src/f-spot.glade.h:248
+#: ../src/f-spot.glade.h:246
 msgid "_Ratings"
 msgstr "_Vurderinger"
 
-#: ../src/f-spot.glade.h:250
+#: ../src/f-spot.glade.h:248
 msgid "_Remove Tag From Selection"
 msgstr "_Fjern mærke fra markering"
 
-#: ../src/f-spot.glade.h:251
+#: ../src/f-spot.glade.h:249
 msgid "_Rename Version"
 msgstr "_Omdøb version"
 
 #: ../src/f-spot.glade.h:252
-msgid "_Resize to: "
-msgstr "_Skalér til: "
-
-#: ../src/f-spot.glade.h:254
 msgid "_Saturation:"
 msgstr "_Mætning:"
 
-#: ../src/f-spot.glade.h:255
+#: ../src/f-spot.glade.h:253
 msgid "_Scale photos to no larger than: "
 msgstr "_Skalér ikke billeder til mere end: "
 
-#: ../src/f-spot.glade.h:256
+#: ../src/f-spot.glade.h:254
 msgid "_Select Import Rolls..."
 msgstr "_Vælg importerede ruller..."
 
-#: ../src/f-spot.glade.h:257
+#: ../src/f-spot.glade.h:255
 msgid "_Set Date Range..."
 msgstr "_Sæt datointerval..."
 
-#: ../src/f-spot.glade.h:258
+#: ../src/f-spot.glade.h:256
 msgid "_Set Rating filter..."
 msgstr "_Sæt vurderingsfilter..."
 
-#: ../src/f-spot.glade.h:259
+#: ../src/f-spot.glade.h:257
 msgid "_Sharpen..."
 msgstr "_Skærp..."
 
-#: ../src/f-spot.glade.h:260
+#: ../src/f-spot.glade.h:258
 msgid "_Slideshow"
 msgstr "_Diasshow"
 
-#: ../src/f-spot.glade.h:261
+#: ../src/f-spot.glade.h:259
 msgid "_Small"
 msgstr "_Lille"
 
-#: ../src/f-spot.glade.h:262
+#: ../src/f-spot.glade.h:260
 msgid "_Strip metadata"
 msgstr "_Skræl metadata"
 
-#: ../src/f-spot.glade.h:263
+#: ../src/f-spot.glade.h:261
 msgid "_Tag Icons"
 msgstr "_Mærkeikoner"
 
-#: ../src/f-spot.glade.h:264
+#: ../src/f-spot.glade.h:262
 msgid "_Tag Name:"
 msgstr "_Mærkenavn:"
 
-#: ../src/f-spot.glade.h:265
-msgid "_Tags"
-msgstr "_Mærker"
-
-#: ../src/f-spot.glade.h:266
+#: ../src/f-spot.glade.h:264
 msgid "_Timeline"
 msgstr "_Tidslinje"
 
-#: ../src/f-spot.glade.h:267
+#: ../src/f-spot.glade.h:265
+msgid "_Toolbar"
+msgstr "_Værktøjslinje"
+
+#: ../src/f-spot.glade.h:266
 msgid "_Tools"
 msgstr "_Værktøjslinje"
 
-#: ../src/f-spot.glade.h:268
+#: ../src/f-spot.glade.h:267
 msgid "_URI:"
 msgstr "_URI:"
 
-#: ../src/f-spot.glade.h:269
+#: ../src/f-spot.glade.h:268
 msgid "_Untagged Photos"
 msgstr "_Umærkede fotos"
 
-#: ../src/f-spot.glade.h:270
+#: ../src/f-spot.glade.h:269
 msgid "_Version"
 msgstr "_Version"
 
-#: ../src/f-spot.glade.h:271
+#: ../src/f-spot.glade.h:270
 msgid "_View"
 msgstr "_Vis"
 
-#: ../src/f-spot.glade.h:272
+#: ../src/f-spot.glade.h:271
 msgid "_Virtual Filesystem"
 msgstr "_Virtuelt filsystem"
 
-#: ../src/f-spot.glade.h:273
+#: ../src/f-spot.glade.h:272
 msgid "and"
 msgstr "og"
 
 #. at, or after a date, or between dates
-#: ../src/f-spot.glade.h:275
+#: ../src/f-spot.glade.h:274
 msgid ""
 "at\n"
 "after\n"
@@ -3070,21 +3481,17 @@ msgstr ""
 "efter\n"
 "mellem"
 
-#: ../src/f-spot.glade.h:278
+#: ../src/f-spot.glade.h:277
 msgid "difference:"
 msgstr "forskel:"
 
-#: ../src/f-spot.glade.h:279
+#: ../src/f-spot.glade.h:278
 msgid "img_000.jpg"
 msgstr "img_000.jpg"
 
-#: ../src/f-spot.glade.h:282
-msgid "pixels"
-msgstr "billedpunkter"
-
-#: ../src/f-spot.glade.h:283
-msgid "x"
-msgstr "x"
+#: ../src/f-spot.glade.h:279
+msgid "min. Starting at {0}"
+msgstr "min. Starter ved {0}"
 
 #: ../tools/f-spot-screensaver.desktop.in.h:1
 msgid "Display a slideshow from F-Spot"
@@ -3094,20 +3501,65 @@ msgstr "Vis et diasshow fra F-Spot"
 msgid "F-Spot photos"
 msgstr "F-Spot fotos"
 
-#~ msgid "url"
-#~ msgstr "adresse"
+#~ msgid "gtk-cancel"
+#~ msgstr "gtk-cancel"
 
-#~ msgid "token"
-#~ msgstr "tegn"
+#~ msgid "By Extension"
+#~ msgstr "Efter filtype"
 
-#~ msgid "captcha_url"
-#~ msgstr "captcha_url"
+#~ msgid "BMP"
+#~ msgstr "BMP"
+
+#~ msgid "GIF"
+#~ msgstr "GIF"
+
+#~ msgid "ICO"
+#~ msgstr "ICO"
+
+#~ msgid "JPEG"
+#~ msgstr "JPEG"
+
+#~ msgid "PNG"
+#~ msgstr "PNG"
+
+#~ msgid "PNM"
+#~ msgstr "PNM"
+
+#~ msgid "RAS"
+#~ msgstr "RAS"
+
+#~ msgid "SVG"
+#~ msgstr "SVG"
+
+#~ msgid "TGA"
+#~ msgstr "TGA"
+
+#~ msgid "TIFF"
+#~ msgstr "TIFF"
+
+#~ msgid "XBM"
+#~ msgstr "XBM"
+
+#~ msgid "XPM"
+#~ msgstr "XPM"
+
+#~ msgid "Unsupported file format."
+#~ msgstr "Ikke understøttet filformat."
+
+#~ msgid "Determine File Type:"
+#~ msgstr "Bestem filtype:"
+
+#~ msgid "Load Image"
+#~ msgstr "Indlæs billede"
+
+#~ msgid "Unsharp Mask"
+#~ msgstr "Uskarp maske"
+
+#~ msgid "Edit"
+#~ msgstr "Redigér"
 
 #~ msgid "Transferring picture \"{0}\" To CD"
 #~ msgstr "Overfører billede \"{0}\" til cd"
-
-#~ msgid "Done Sending Photos"
-#~ msgstr "Færdig med sending af fotos"
 
 #~ msgid "Transfer Complete"
 #~ msgstr "Overførsel fuldført"
@@ -3136,57 +3588,6 @@ msgstr "F-Spot fotos"
 #~ msgid "Invalid"
 #~ msgstr "Ugyldig"
 
-#~ msgid ""
-#~ "Return to this window after you have finished the authorization process "
-#~ "on {0} and click the \"Complete Authorization\" button below"
-#~ msgstr ""
-#~ "Vend tilbage til dette vindue efter at du har afsluttet "
-#~ "autorisationsprocessen på {0} og klik \"Udfør autorisation\"-knappen "
-#~ "nedenunder."
-
-#~ msgid "Complete Authorization"
-#~ msgstr "Afslut autorisation"
-
-#~ msgid "Logging into {0}"
-#~ msgstr "Logger på {0}"
-
-#~ msgid "Checking credentials..."
-#~ msgstr "Kontrollerer akkreditiver..."
-
-#~ msgid "Welcome {0} you are connected to {1}"
-#~ msgstr "Velkommen {0} du er forbundet til {1}"
-
-#~ msgid "Sign in as a different user"
-#~ msgstr "Skriv dig ind som en anden bruger"
-
-#~ msgid "Unable to log on"
-#~ msgstr "Kunne ikke logge på"
-
-#~ msgid "Waiting for response {0} of {1}"
-#~ msgstr "Venter på svar {0} af {1}"
-
-#~ msgid "Uploading picture \"{0}\""
-#~ msgstr "Overfører billede \"{0}\""
-
-#~ msgid "Upload Complete"
-#~ msgstr "Overførsel fuldført"
-
-#~ msgid "Error Uploading To {0}: {1}"
-#~ msgstr "Fejl ved overførsel af {0}: {1}"
-
-#~ msgid "Unable to log on."
-#~ msgstr "Kunne ikke logge på."
-
-#~ msgid ""
-#~ "F-Spot was unable to log on to {0}.  Make sure you have given the "
-#~ "authentication using {0} web browser interface."
-#~ msgstr ""
-#~ "F-Spot kunne ikke logge på {0}. Vær sikker på at du har adgang til at "
-#~ "bruge {0} netlæser-grænseflade."
-
-#~ msgid "Uploading Pictures"
-#~ msgstr "Overfører billeder"
-
 #~ msgid "Building Gallery"
 #~ msgstr "Opretter galleri"
 
@@ -3208,9 +3609,6 @@ msgstr "F-Spot fotos"
 #~ msgid "Hide Styles"
 #~ msgstr "Skjul stile"
 
-#~ msgid "Gallery generated by"
-#~ msgstr "Galleri oprettet af"
-
 #~ msgid "\n"
 #~ msgstr "\n"
 
@@ -3222,12 +3620,6 @@ msgstr "F-Spot fotos"
 
 #~ msgid "<b>PicasaWeb Export</b>"
 #~ msgstr "<b>PicasaWeb-eksport</b>"
-
-#~ msgid "<b>SmugMug Export</b>"
-#~ msgstr "<b>SmugMug-eksport</b>"
-
-#~ msgid "<b>Viewing permissions</b>"
-#~ msgstr "<b>Visningsrettigheder</b>"
 
 #~ msgid ""
 #~ "<small><i>Select the tag you like F-Spot to display images from while "
@@ -3248,9 +3640,6 @@ msgstr "F-Spot fotos"
 
 #~ msgid "Clea_r Date Range"
 #~ msgstr "_Ryd datoområde"
-
-#~ msgid "Create CD"
-#~ msgstr "Opret cd"
 
 #~ msgid "Create _gallery using \"Original\""
 #~ msgstr "Opret _galleri ved brug af \"Original\""
@@ -3297,23 +3686,11 @@ msgstr "F-Spot fotos"
 #~ msgid "Export to _Web Gallery..."
 #~ msgstr "Eksportér til _webgalleri..."
 
-#~ msgid ""
-#~ "F-Spot needs your authorization in order to upload photos to your {0} "
-#~ "account. Press the \"Authorize\" button to open a web browser and give F-"
-#~ "Spot the authorization. "
-#~ msgstr ""
-#~ "F-Spot mangler din autorisation for at kunne overfører fotos til din {0}-"
-#~ "konto. Tryk \"Autorisér\"-knappen for at åbne netlæseren og give F-Spot "
-#~ "autorisationen. "
-
 #~ msgid "Folder Export"
 #~ msgstr "Mappeeksport"
 
 #~ msgid "G_allery Name:"
 #~ msgstr "G_allerinavn:"
-
-#~ msgid "Open _album in browser when done uploading"
-#~ msgstr "Åbn _albummet i netlæseren når overførslen er færdig"
 
 #~ msgid "Open _destination when done exporting"
 #~ msgstr "Åbn _målet når eksporteringen er færdig"
@@ -3331,47 +3708,17 @@ msgstr "F-Spot fotos"
 #~ "Indtast bogstaverne som de er vist i billedet i\n"
 #~ "\"Captcha\"-feltet. <i>Bogstaverne er ikke versalfølsomme</i>"
 
-#~ msgid "Private"
-#~ msgstr "Privat"
-
-#~ msgid "Public"
-#~ msgstr "Offentlig"
-
-#~ msgid "Public Album"
-#~ msgstr "Offentlig album"
-
-#~ msgid "Size of the exported selection :"
-#~ msgstr "Størrelse af det eksporterede valg :"
-
-#~ msgid "Strip _metadata"
-#~ msgstr "Fjern _metadata"
-
 #~ msgid "U_RL:"
 #~ msgstr "_Adresse:"
 
-#~ msgid "Visible to Family"
-#~ msgstr "Synlig for familie"
-
-#~ msgid "Visible to Friends"
-#~ msgstr "Synlig for venner"
-
-#~ msgid "_Account:"
-#~ msgstr "_Konto:"
-
 #~ msgid "_Album Name:"
 #~ msgstr "_Albumnavn:"
-
-#~ msgid "_Album Title:"
-#~ msgstr "_Albumtitel:"
 
 #~ msgid "_Browse Previously Scheduled Files"
 #~ msgstr "_Vis tidligere planlagte filer"
 
 #~ msgid "_Captcha:"
 #~ msgstr "_Captcha:"
-
-#~ msgid "_Description:"
-#~ msgstr "_Beskrivelse:"
 
 #~ msgid "_Folder:"
 #~ msgstr "_Mappe:"
@@ -3385,20 +3732,11 @@ msgstr "F-Spot fotos"
 #~ msgid "_Parent Album:"
 #~ msgstr "_Ophavsalbum:"
 
-#~ msgid "_Password:"
-#~ msgstr "_Adgangskode:"
-
 #~ msgid "_Save the files only"
 #~ msgstr "_Gem kun filerne"
 
 #~ msgid "_Title:"
 #~ msgstr "_Titel:"
-
-#~ msgid "_Username:"
-#~ msgstr "_Brugernavn:"
-
-#~ msgid "_View photos in browser when done uploading"
-#~ msgstr "_Vis fotos i netlæser når overførslen er færdig"
 
 #~ msgid "_Write only these photos to CD"
 #~ msgstr "_Skriv kun disse fotos til cd"
@@ -3424,18 +3762,6 @@ msgstr "F-Spot fotos"
 #~ msgid "Error uploading picture \"{0}\" to Gallery: {1}"
 #~ msgstr "Fejl ved overførsel af billede \"{0}\" til galleri: {1}"
 
-#~ msgid "(No Gallery)"
-#~ msgstr "(Intet galleri)"
-
-#~ msgid "(Not Connected)"
-#~ msgstr "(Ikke tilsluttet)"
-
-#~ msgid "(No Albums)"
-#~ msgstr "(Ingen album)"
-
-#~ msgid "No account selected"
-#~ msgstr "Ingen konto valgt"
-
 #~ msgid "Error reading server response"
 #~ msgstr "Fejl ved læsning af serversvar"
 
@@ -3453,22 +3779,6 @@ msgstr "F-Spot fotos"
 
 #~ msgid "Remove Tag"
 #~ msgstr "Fjern mærke"
-
-#~ msgid "Modified"
-#~ msgid_plural "Modified ({0})"
-#~ msgstr[0] "Ændret"
-#~ msgstr[1] "{0} ændret"
-
-#~ msgid "Modified in {1}"
-#~ msgid_plural "Modified in {1} ({0})"
-#~ msgstr[0] "Ændret i {1}"
-#~ msgstr[1] "Ændret i {1} ({0})"
-
-#~ msgid "Uploading picture \"{0}\" ({1} of {2})"
-#~ msgstr "Overfører billede \"{0}\" ({1} af {2})"
-
-#~ msgid "Error Uploading To Gallery: {0}"
-#~ msgstr "Fejl ved overførsel til galleri: {0}"
 
 #~ msgid "Available space :"
 #~ msgstr "Tilgængelige plads :"
@@ -3561,9 +3871,6 @@ msgstr "F-Spot fotos"
 
 #~ msgid "Error: File Already Exists, Aborting"
 #~ msgstr "Fejl: Filen findes allerede, afbryder"
-
-#~ msgid "Transfering Pictures"
-#~ msgstr "Overfører billeder"
 
 #~ msgid "<b>From Image</b>"
 #~ msgstr "<b>Fra billede</b>"
