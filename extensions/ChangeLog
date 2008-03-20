@@ -1,3 +1,9 @@
+2008-03-20  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* PicasaWebExport/PicasaExport.glade:
+	* PicasaWebExport/PicasaExport.cs: check if the current upload
+	selection is fits the album photo# limit. Fix bgo#516553.
+
 2008-03-19  Claude Paroz  <claude@2xlibre.net>
 
 	* MetaPixel/MetaPixel.glade:

@@ -487,6 +487,7 @@ namespace FSpotGoogleExport {
 			GoogleAccountManager manager = GoogleAccountManager.GetInstance ();
 			manager.AccountListChanged += PopulateGoogleOptionMenu;
 			PopulateGoogleOptionMenu (manager, null);
+			album_optionmenu.Changed += HandleAlbumOptionMenuChanged;
 
 			if (edit_button != null)
 				edit_button.Clicked += HandleEditGallery;
@@ -524,6 +525,7 @@ namespace FSpotGoogleExport {
 		ArrayList accounts;
 		private GoogleAccount account;
 		private PicasaAlbum album;
+		private PicasaAlbumCollection albums = null;
 
 		private string xml_path;
 
@@ -546,6 +548,7 @@ namespace FSpotGoogleExport {
 		[Glade.Widget] Gtk.Entry height_entry;
 
 		[Glade.Widget] Gtk.Label status_label;
+		[Glade.Widget] Gtk.Label album_status_label;
 
 		[Glade.Widget] Gtk.CheckButton browser_check;
 		[Glade.Widget] Gtk.CheckButton scale_check;
@@ -565,7 +568,6 @@ namespace FSpotGoogleExport {
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
 
 		System.Threading.Thread command_thread;
-		
 
 		private void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
@@ -822,7 +824,7 @@ namespace FSpotGoogleExport {
 			PopulateAlbumOptionMenu (account.Picasa);
 				
 			// make the newly created album selected
-			PicasaAlbumCollection albums = account.Picasa.GetAlbums();
+//			PicasaAlbumCollection albums = account.Picasa.GetAlbums();
 			for (int i=0; i < albums.Count; i++) {
 				if (((PicasaAlbum)albums[i]).Title == title) {
 					album_optionmenu.SetHistory((uint)i);
@@ -832,12 +834,12 @@ namespace FSpotGoogleExport {
 
 		private void PopulateAlbumOptionMenu (PicasaWeb picasa)
 		{
-			PicasaAlbumCollection albums = null;
 			if (picasa != null) {
 				try {
 					albums = picasa.GetAlbums();
 				} catch {
 					Console.WriteLine("Can't get the albums");
+					albums = null;
 					picasa = null;
 				}
 			}
@@ -864,6 +866,7 @@ namespace FSpotGoogleExport {
 					System.Text.StringBuilder label_builder = new System.Text.StringBuilder ();
 					
 					label_builder.Append (album.Title);
+					label_builder.Append (" (" + album.PicturesCount + ")");
 
 					Gtk.MenuItem item = new Gtk.MenuItem (label_builder.ToString ());
 					((Gtk.Label)item.Child).UseUnderline = false;
@@ -877,6 +880,20 @@ namespace FSpotGoogleExport {
 
 			menu.ShowAll ();
 			album_optionmenu.Menu = menu;
+		}
+		
+		public void HandleAlbumOptionMenuChanged (object sender, System.EventArgs args)
+		{
+			PicasaAlbum a = albums [album_optionmenu.History];
+			export_button.Sensitive = a.PicturesRemaining >= items.Length;
+			if (album_status_label.Visible = !export_button.Sensitive) {
+				album_status_label.Text = String.Format (Catalog.GetString ("<small>The selected album has a limit of {0} pictures,\n" +
+									   "which would be passed with the current selection of {1} images</small>"), 
+									a.PicturesCount + a.PicturesRemaining, items.Length);
+				album_status_label.UseMarkup = true;
+			} else {
+				album_status_label.Text = String.Empty;
+			}
 		}
 		
 		public void HandleAddGallery (object sender, System.EventArgs args)
