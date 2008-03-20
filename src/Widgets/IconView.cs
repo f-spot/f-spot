@@ -164,6 +164,7 @@ namespace FSpot.Widgets
 		protected int cells_per_row;
 		protected int cell_width;
 		protected int cell_height;
+		protected int displayed_rows; //for pgUp pgDn support
 
 		// The first pixel line that is currently on the screen (i.e. in the current
 		// scroll region).  Used to compute the area that went offscreen in the "changed"
@@ -654,10 +655,10 @@ namespace FSpot.Widgets
 			UpdateLayout (Allocation);
 		}
 
-		protected virtual void UpdateLayout (Gdk.Rectangle Allocation)
+		protected virtual void UpdateLayout (Gdk.Rectangle allocation)
 		{
-			int available_width = Allocation.Width - 2 * BORDER_SIZE;
-
+			int available_width = allocation.Width - 2 * BORDER_SIZE;
+			int available_height = allocation.Height - 2 * BORDER_SIZE;
 			cell_width = ThumbnailWidth + 2 * cell_border_width;
 			cell_height = ThumbnailHeight + 2 * cell_border_width;
 			cells_per_row = Math.Max ((int) (available_width / cell_width), 1);
@@ -681,6 +682,8 @@ namespace FSpot.Widgets
 				cell_height += PangoPixels (metrics.Ascent + metrics.Descent);
 			}
 
+			displayed_rows = (int)Math.Max (available_height / cell_height, 1);
+
 			int num_thumbnails;
 			if (collection != null)
 				num_thumbnails = collection.Count;
@@ -696,7 +699,7 @@ namespace FSpot.Widgets
 			Vadjustment.StepIncrement = cell_height;
 			int x = (int)(Hadjustment.Value);
 			int y = (int)(height * scroll_value);
-			SetSize (x, y, (int) Allocation.Width, (int) height);
+			SetSize (x, y, (int) allocation.Width, (int) height);
 		}
 
 		void SetSize (int x, int y, int width, int height)
@@ -1522,6 +1525,12 @@ namespace FSpot.Widgets
 			case Gdk.Key.K:
 			case Gdk.Key.k:
 				FocusCell -= cells_per_row;
+				break;
+			case Gdk.Key.Page_Up:
+				FocusCell -= cells_per_row * displayed_rows;
+				break;
+			case Gdk.Key.Page_Down:
+				FocusCell += cells_per_row * displayed_rows;
 				break;
 			case Gdk.Key.Home:
 				FocusCell = 0;
