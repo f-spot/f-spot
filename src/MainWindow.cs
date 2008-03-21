@@ -2988,7 +2988,7 @@ public class MainWindow {
 
 	public void HandlePossibleTagTyping (object sender, Gtk.KeyPressEventArgs args)
 	{
-		if (tagbar.Visible && tag_entry.HasFocus)
+		if (Selection.Count == 0 || tagbar.Visible && tag_entry.HasFocus)
 			return;
 
 #if !ALLOW_TAG_TYPING_WITHOUT_HOTKEY

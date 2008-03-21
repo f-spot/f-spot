@@ -1,5 +1,10 @@
 2008-03-21  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/MainWindow.cs: disable tag assign bar if no selection, Fixes
+	bgo #504242. Thx Maxxer.
+
+2008-03-21  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/CameraFileSelectionDialog.cs: start counting from 1 on the
 	dialog. Fixes bgo #492518. Thx Maxxer.
 
