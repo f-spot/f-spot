@@ -45,14 +45,12 @@ namespace FSpot {
 	public class RotateOperation : Operation {
 		IBrowsableItem item;
 		RotateDirection direction;
-		int version_index;
 		bool done;
 
 		public RotateOperation (IBrowsableItem item, RotateDirection direction)
 		{
 			this.item = item;
 			this.direction = direction;
-			version_index = 0;
 			done = false;
 		}
 
@@ -124,15 +122,8 @@ namespace FSpot {
 			if (done)
 				return false;
 
-			if (item is Photo) {
-				Photo p = (Photo) item;
-
-				original_path = p.VersionUri (p.VersionIds [version_index++]).LocalPath;
-				done = (version_index >= p.VersionIds.Length);
-			} else {
-				original_path = item.DefaultVersionUri.LocalPath;
-				done = true;
-			}
+ 			original_path = item.DefaultVersionUri.LocalPath;
+ 			done = true;
 
 			if ((File.GetAttributes(original_path) & FileAttributes.ReadOnly) == FileAttributes.ReadOnly) {
 				throw new RotateException (Catalog.GetString ("Unable to rotate readonly file"), original_path, true);

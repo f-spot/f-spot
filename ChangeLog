@@ -1,3 +1,8 @@
+2008-03-21  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* src/RotateCommand.cs: rotate only default version of photo. Fix
+	bgo #505125.
+
 2008-03-21  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/MainWindow.cs: disable tag assign bar if no selection, Fixes
