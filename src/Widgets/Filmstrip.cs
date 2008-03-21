@@ -405,14 +405,18 @@ namespace FSpot.Widgets
 
 		protected override bool OnScrollEvent (EventScroll args)
 		{
+			float shift = .5f;
+			if ((args.State & Gdk.ModifierType.ShiftMask) > 0)
+				shift = 5f;
+
 			switch (args.Direction) {
 			case ScrollDirection.Up:
 			case ScrollDirection.Right:
-				Position -= 0.5f;
+				Position -= shift;
 				return true;
 			case Gdk.ScrollDirection.Down:
 			case Gdk.ScrollDirection.Left:
-				Position += 0.5f;
+				Position += shift;
 				return true;
 			}
 			return false;
