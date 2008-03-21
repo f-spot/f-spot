@@ -210,16 +210,14 @@ namespace FSpot {
 			lock (camera) {
 				System.Collections.ArrayList saved = new System.Collections.ArrayList ();
 					
-				int count = 0;
 				for (int i = 0; i < index_list.Count; i++) {
 					try {
-						count++;
 						string msg = String.Format (Catalog.GetString ("Copying file {0} of {1}"),
-									    i, index_list.Count);
+									    (i + 1), index_list.Count);
 						
 						progress_dialog.ProgressText = msg;
 						saved.Add (SaveFile ((int)(index_list [i])));
-						progress_dialog.Fraction = count/(double)index_list.Count;
+						progress_dialog.Fraction = (i + 1)/(double)index_list.Count;
 					}
 					catch (System.Exception e) {
 						System.Console.WriteLine (e.ToString ());

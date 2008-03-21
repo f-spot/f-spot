@@ -1,3 +1,8 @@
+2008-03-21  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/CameraFileSelectionDialog.cs: start counting from 1 on the
+	dialog. Fixes bgo #492518. Thx Maxxer.
+
 2008-03-20  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* src/GlTransition.cs: Fix bug with slideshow mode that caused images
