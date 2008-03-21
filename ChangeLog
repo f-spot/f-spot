@@ -1,3 +1,12 @@
+2008-03-20  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/GlTransition.cs: Fix bug with slideshow mode that caused images
+	smaller than the screen size to be stretched to the size of the
+	screen.  Fixes BNC #274021.
+
+	* src/MainWindow.cs: Get rid of duplicate code in Slideshow method;
+	call the Fullscreen method, and then Play ().
+
 2008-03-20  Sebastian Dröge  <slomo@circular-chaos.org>
 
 	* configure.in: Fix typo: gnome-sharp -> gnome-sharp-2.0.

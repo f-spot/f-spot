@@ -46,7 +46,7 @@ namespace FSpot {
 					System.Console.WriteLine ("GL_ARB_multitexture not supported");
 					return;
 				}
-
+				
 				Gl.glViewport (0, 0, viewport.Width, viewport.Height);
 				Gl.glMatrixMode (Gl.GL_PROJECTION);
 				Gl.glLoadIdentity ();
@@ -131,7 +131,6 @@ namespace FSpot {
 				Gl.glPushMatrix ();
 				Gl.glTranslatef (-viewport.Width *.5f, -viewport.Height * .5f, viewport.Width *.5f);
 				RenderPlane (viewport, next);
-
 
 				Gl.glRotatef (90, 0, 1, 0);
 				Gl.glTranslatef (0, 0, viewport.Width);
@@ -309,20 +308,41 @@ namespace FSpot {
 
 		protected static void Fit (Gdk.Rectangle viewport, Texture texture)
 		{
-			float va = viewport.Width / (float) viewport.Height;
-			float ta = texture.Width / (float) texture.Height;
+			
+			float aspect_scale = (texture.Width / (float) texture.Height) / (viewport.Width / (float) viewport.Height);
+			float size_scale = Math.Max (viewport.Width / (float) texture.Width, viewport.Height / (float) texture.Height);
+			bool both_smaller = (viewport.Width / (float) texture.Width) > 1 && (viewport.Height / (float) texture.Height) > 1;
 			
 			Gl.glMatrixMode (Gl.GL_TEXTURE);
 			Gl.glLoadIdentity ();
-			if (ta < va) {
-				Gl.glScalef (va/ta, 1, 0);
-				Gl.glTranslatef (-(texture.Width / 2.0f - (texture.Width * ta/va) / 2.0f), 0, 0);
-			} else {
 			
-				Gl.glScalef (1, ta/va, 0);
-				Gl.glTranslatef (0, -(texture.Height / 2.0f - (texture.Height * va/ta) / 2.0f), 0);
+			// If the image is smaller than the viewport, center it
+			if (both_smaller) {
+				Gl.glTranslatef (-0.5f * (viewport.Width - texture.Width), -0.5f * (viewport.Height - texture.Height), 0);
 			}
-		} 
+			
+			// Adjust for aspect ratio differences
+			if (aspect_scale == 1) {
+				// ignore
+			} else if (aspect_scale < 1) {
+				size_scale *= aspect_scale;
+				Gl.glScalef (1 / aspect_scale, 1, 0);
+				if (!both_smaller) {
+					Gl.glTranslatef (-0.5f * texture.Width * (1.0f - aspect_scale), 0, 0);
+				}
+			} else {
+				size_scale /= aspect_scale;
+				Gl.glScalef (1, aspect_scale, 0);
+				if (!both_smaller) {
+					Gl.glTranslatef (0, -0.5f * texture.Height * (1.0f - 1.0f/aspect_scale), 0);
+				}
+			}
+			
+			// If the image is smaller than the viewport, ensure it's not stretched
+			if (both_smaller) {
+				Gl.glScalef (size_scale, size_scale, 0);
+			}
+		}
 		
 		protected void RenderPlane (Gdk.Rectangle viewport, Texture previous)
 		{

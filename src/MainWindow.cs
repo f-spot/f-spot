@@ -2034,18 +2034,7 @@ public class MainWindow {
 
 	void HandleViewSlideShow (object sender, EventArgs args)
 	{
-		int active = Math.Max (ActiveIndex (), 0);
-		if (fsview == null) {
-			fsview = new FSpot.FullScreenView (query);
-			fsview.Destroyed += HandleFullScreenViewDestroy;
-			fsview.View.Item.Index = active;
-			ColorDialog.SwitchViews (fsview.View);
-		} else {
-			// FIXME this needs to be another mode like PhotoView and IconView mode.
-			fsview.View.Item.Index = active;
-		}
-		
-		fsview.Show ();
+		HandleViewFullscreen (sender, args);
 		fsview.PlayPause ();
 	}
 
