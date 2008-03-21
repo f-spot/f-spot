@@ -26,6 +26,8 @@ public class FlickrRemote {
 	private Flickr            flickr;
 	
 	public bool               ExportTags;
+	public bool               ExportTagHierarchy;
+	public bool               ExportIgnoreTopLevel;
 	public FSpot.ProgressItem Progress;
 	
 	public FlickrRemote (string token, Service service)
@@ -135,7 +137,6 @@ public class FlickrRemote {
 			
 			try {            
 				string tags = null;
-				
 
 				filter.Convert (request);
 				string path = request.Current.LocalPath;
@@ -143,12 +144,30 @@ public class FlickrRemote {
 				if (ExportTags && photo.Tags != null) {
 					StringBuilder taglist = new StringBuilder ();
 					FSpot.Tag [] t = photo.Tags;
+					FSpot.Tag tag_iter = null;
 					
 					for (int i = 0; i < t.Length; i++) {
 						if (i > 0)
 							taglist.Append (",");
 						
 						taglist.Append (String.Format ("\"{0}\"", t[i].Name));
+
+						// Go through the tag parents
+						if (ExportTagHierarchy) {
+							tag_iter = t[i].Category;
+							while (tag_iter != Core.Database.Tags.RootCategory && tag_iter != null) {
+								// Skip top level tags because they have no meaning in a linear tag database
+								if (ExportIgnoreTopLevel && tag_iter.Category == Core.Database.Tags.RootCategory) {
+									break;
+								}
+								
+								// FIXME Look if the tag is already there!
+								taglist.Append (",");
+								taglist.Append (String.Format ("\"{0}\"", tag_iter.Name));
+								tag_iter = tag_iter.Category;
+							}
+						}
+
 					}
 					
 					tags = taglist.ToString ();

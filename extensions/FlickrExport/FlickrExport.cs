@@ -27,11 +27,14 @@ namespace FSpotFlickrExport {
 		[Glade.Widget] Gtk.CheckButton    scale_check;
 		[Glade.Widget] Gtk.CheckButton    meta_check;
 		[Glade.Widget] Gtk.CheckButton    tag_check;
+		[Glade.Widget] Gtk.CheckButton    hierarchy_check;
+		[Glade.Widget] Gtk.CheckButton    ignore_top_level_check;
 		[Glade.Widget] Gtk.CheckButton    open_check;
 		[Glade.Widget] Gtk.SpinButton     size_spin;
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
 		[Glade.Widget] Gtk.Button         auth_flickr;
 		[Glade.Widget] Gtk.Button         auth_done_flickr;
+		[Glade.Widget] Gtk.ProgressBar    used_bandwidth;
 		[Glade.Widget] Gtk.Button         do_export_flickr;
 		[Glade.Widget] Gtk.Label          auth_label;
 		[Glade.Widget] Gtk.RadioButton    public_radio;
@@ -53,6 +56,8 @@ namespace FSpotFlickrExport {
 		public const string PUBLIC_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "public";
 		public const string FAMILY_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "family";
 		public const string FRIENDS_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "friends";
+		public const string TAG_HIERARCHY_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "tag_hierarchy";
+		public const string IGNORE_TOP_LEVEL_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "ignore_top_level";
 
 		bool open;
 		bool scale;
@@ -90,18 +95,21 @@ namespace FSpotFlickrExport {
 					auth_flickr.Sensitive = true;
 					do_export_flickr.Sensitive = false;
 					auth_flickr.Label = Catalog.GetString ("Authorize");
+					used_bandwidth.Visible = false;
 					break;
 				case State.Connected:
 					auth_flickr.Sensitive = true;
 					do_export_flickr.Sensitive = false;
 					auth_label.Text = string.Format (Catalog.GetString ("Return to this window after you have finished the authorization process on {0} and click the \"Complete Authorization\" button below"), current_service.Name);
 					auth_flickr.Label = Catalog.GetString ("Complete Authorization");
+					used_bandwidth.Visible = false;
 					break;
 				case State.InAuth:
 					auth_flickr.Sensitive = false;
 					auth_label.Text = string.Format (Catalog.GetString ("Logging into {0}"), current_service.Name);
 					auth_flickr.Label = Catalog.GetString ("Checking credentials...");
 					do_export_flickr.Sensitive = false;
+					used_bandwidth.Visible = false;
 					break;
 				case State.Authorized:
 					do_export_flickr.Sensitive = true;
@@ -110,6 +118,11 @@ namespace FSpotFlickrExport {
 										auth.User.Username,
 										current_service.Name);
 					auth_flickr.Label = String.Format (Catalog.GetString ("Sign in as a different user"), auth.User.Username);
+					used_bandwidth.Visible = true;
+					used_bandwidth.Fraction = fr.Connection.PeopleGetUploadStatus().PercentageUsed;
+					used_bandwidth.Text = string.Format (Catalog.GetString("Used {0} of your allowed {1} monthly quota"), 
+									SizeUtil.ToHumanReadable(fr.Connection.PeopleGetUploadStatus().BandwidthUsed), 
+									SizeUtil.ToHumanReadable(fr.Connection.PeopleGetUploadStatus().BandwidthMax));
 					break;
 				}
 				state = value;
@@ -155,12 +168,17 @@ namespace FSpotFlickrExport {
 			HandleSizeActive (null, null);
 			
 			public_radio.Toggled += HandlePublicChanged;
+			tag_check.Toggled += HandleTagChanged;
+			hierarchy_check.Toggled += HandleHierarchyChanged;
+			HandleTagChanged (null, null);
+			HandleHierarchyChanged (null, null);
 
 			Dialog.ShowAll ();
 			Dialog.Response += HandleResponse;
 			auth_flickr.Clicked += HandleClicked;
 			auth_text = string.Format (auth_label.Text, current_service.Name);
 			auth_label.Text = auth_text;
+			used_bandwidth.Visible = false;
 
 			LoadPreference (SCALE_KEY);
 			LoadPreference (SIZE_KEY);
@@ -388,6 +406,16 @@ namespace FSpotFlickrExport {
 			family_check.Sensitive = sensitive;
 		}
 
+		private void HandleTagChanged (object sender, EventArgs args)
+		{
+			hierarchy_check.Sensitive = tag_check.Active;
+		}
+
+		private void HandleHierarchyChanged (object sender, EventArgs args)
+		{
+			ignore_top_level_check.Sensitive = hierarchy_check.Active;
+		}
+
 		private void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
 			if (args.ResponseId != Gtk.ResponseType.Ok) {
@@ -414,6 +442,8 @@ namespace FSpotFlickrExport {
 			}
 
 			fr.ExportTags = tag_check.Active;
+			fr.ExportTagHierarchy = hierarchy_check.Active;
+			fr.ExportIgnoreTopLevel = ignore_top_level_check.Active;
 			open = open_check.Active;
 			scale = scale_check.Active;
 			copy_metadata = !meta_check.Active;
@@ -439,6 +469,8 @@ namespace FSpotFlickrExport {
 			Preferences.Set (PUBLIC_KEY, public_radio.Active);
 			Preferences.Set (FAMILY_KEY, family_check.Active);
 			Preferences.Set (FRIENDS_KEY, friend_check.Active);
+			Preferences.Set (TAG_HIERARCHY_KEY, hierarchy_check.Active);
+			Preferences.Set (IGNORE_TOP_LEVEL_KEY, ignore_top_level_check.Active);
 			Preferences.Set (current_service.PreferencePath, fr.Token);
 		}
 
@@ -467,6 +499,14 @@ namespace FSpotFlickrExport {
 			case TAGS_KEY:
 				if (tag_check.Active != (bool) val)
 					tag_check.Active = (bool) val;
+				break;
+			case TAG_HIERARCHY_KEY:
+				if (hierarchy_check.Active != (bool) val)
+					hierarchy_check.Active = (bool) val;
+				break;
+			case IGNORE_TOP_LEVEL_KEY:
+				if (ignore_top_level_check.Active != (bool) val)
+					ignore_top_level_check.Active = (bool) val;
 				break;
 			case STRIP_META_KEY:
 				if (meta_check.Active != (bool) val)

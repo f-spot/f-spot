@@ -1,6 +1,16 @@
 2008-03-21  Stephane Delcroix  <sdelcroix@novell.com>
 
-	* FlickrExport/FlickExport.cs: fixing the ok/cancel button. bgo 
+	* FlickrExport/FlickrExport.cs:
+	* FlickrExport/FlickrExport.glade:
+	* FlickrExport/FlickrRemote.cs: option to export the tag hierarchy,
+	patch from Maxxer and Pascal de Bruijn. Thx. Fixes bgo #376282.
+	Show remaining upload quota. patch from Maxxer. Fixes bgo #356756.
+
+	* FlickrExport/FlickrExport.addin.xml: bumping addin version.
+
+2008-03-21  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* FlickrExport/FlickExport.cs: fixing the ok/cancel button. bgo
 	#468817.
 	* FlickExport/FlickrExport.addin.xml: bumping the version number.
 
