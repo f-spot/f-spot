@@ -609,7 +609,7 @@ namespace FSpot.Widgets
 
 				float increment = speed * interval / 1000f;
 
-				if (Math.Abs (distance - increment) < 0.0001) {
+				if (Math.Abs (distance - increment) < 0.01) {
 					handler (target);
 					return false;
 				}
