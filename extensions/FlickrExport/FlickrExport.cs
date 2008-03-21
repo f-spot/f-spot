@@ -332,10 +332,6 @@ namespace FSpotFlickrExport {
 									      ExportStore.FlickrExportType,
 									      auth.User.UserId + ":" + auth.User.Username + ":" + current_service.Name + ":" + id);
                                         
-					progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
-					progress_dialog.Fraction = 1.0;
-					progress_dialog.ProgressText = Catalog.GetString ("Upload Complete");
-					progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 				} catch (System.Exception e) {
 					progress_dialog.Message = String.Format (Catalog.GetString ("Error Uploading To {0}: {1}"),
 										 current_service.Name,
@@ -349,6 +345,10 @@ namespace FSpotFlickrExport {
 					}
 				}
 			}
+			progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
+			progress_dialog.Fraction = 1.0;
+			progress_dialog.ProgressText = Catalog.GetString ("Upload Complete");
+			progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 
 			if (open && ids.Count != 0) {
 				string view_url = string.Format ("http://www.{0}/tools/uploader_edit.gne?ids", current_service.Name);
