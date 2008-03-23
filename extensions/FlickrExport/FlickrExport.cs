@@ -184,6 +184,8 @@ namespace FSpotFlickrExport {
 			LoadPreference (SIZE_KEY);
 			LoadPreference (BROWSER_KEY);
 			LoadPreference (TAGS_KEY);
+			LoadPreference (TAG_HIERARCHY_KEY);
+			LoadPreference (IGNORE_TOP_LEVEL_KEY);
 			LoadPreference (STRIP_META_KEY);
 			LoadPreference (PUBLIC_KEY);
 			LoadPreference (FAMILY_KEY);
