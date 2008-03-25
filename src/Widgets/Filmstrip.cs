@@ -600,8 +600,16 @@ namespace FSpot.Widgets
 
 			bool Step ()
 			{
+				float halfway_distance = 0.5f * speed * speed / acc;
 				float distance = Math.Abs (filmstrip.Position - target);
-				if ( distance < speed * speed / acc )	//SLOW DOWN!
+
+				if (Math.Abs (speed) > 30 && distance > halfway_distance) { //HYPERSPACE JUMP
+					handler (target + (float)Math.Sign (filmstrip.Position - target) * halfway_distance);
+					speed -= acc * interval / 1000f;
+					return true;
+				}
+
+				if ( distance <= halfway_distance )	//SLOW DOWN!
 					speed -= acc * interval / 1000f;
 
 				else	//SPEED UP
