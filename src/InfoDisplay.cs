@@ -148,7 +148,11 @@ namespace FSpot {
 
 		private void Update ()
 		{
+#if GTKHTML_3_14
+			Gtk.HTMLStream stream = this.Begin (null, "text/html; charset=utf-8", Gtk.HTMLBeginFlags.KeepScroll);
+#else
 			Gtk.HTMLStream stream = this.Begin (null, "text/html; charset=utf-8", Gtk.HTMLBeginFlags.Scroll);
+#endif
 			
 			string bg = Color (this.Style.Background (Gtk.StateType.Active));
 			string fg = Color (this.Style.Foreground (Gtk.StateType.Active));

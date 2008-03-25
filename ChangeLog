@@ -1,3 +1,8 @@
+2008-03-25  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* configure.in:
+	* src/InfoDisplay.cs: allow building on gnome > 2.20. Fixes bgo #524004
+
 2008-03-21  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* src/RotateCommand.cs: rotate only default version of photo. Fix

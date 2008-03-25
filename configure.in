@@ -73,22 +73,23 @@ PKG_CHECK_MODULES(F, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGN
 AC_SUBST(F_CFLAGS)
 AC_SUBST(F_LIBS)
 
+CSC_DEFINES=""
 PKG_CHECK_MODULES(GNOME_SHARP, gnome-sharp-2.0 >= 2.8)
 if pkg-config --atleast-version=2.19.90 gnome-sharp-2.0; then
 	PKG_CHECK_MODULES(GTKHTML_SHARP, gtkhtml-sharp-3.14 >= 2.19.90)
-	GTKHTML_SHARP_PKG="-pkg:gtkhtml-sharp-3.14"
+	GTKHTML_SHARP_PKG="-pkg:gtkhtml-sharp-3.14 -pkg:gnome-sharp-2.0"
+	CSC_DEFINES="$CSC_DEFINES -d:GTKHTML_3_14"
 else
 	PKG_CHECK_MODULES(GTKHTML_SHARP, gtkhtml-sharp-2.0 >= 2.8)
 	GTKHTML_SHARP_PKG="-pkg:gtkhtml-sharp-2.0"
 fi
 AC_SUBST(GTKHTML_SHARP_PKG)
 
-CSC_DEFINES=""
 if pkg-config --atleast-version=2.10 gtk-sharp-2.0; then
-   CSC_DEFINES="-d:GTK_2_10"
+   CSC_DEFINES="$CSC_DEFINES -d:GTK_2_10"
 fi
 if pkg-config --atleast-version=2.11 gtk-sharp-2.0; then
-   CSC_DEFINES="-d:GTK_2_11"
+   CSC_DEFINES="$CSC_DEFINES -d:GTK_2_11"
 fi
 if pkg-config --atleast-version=2.0 mono; then
    CSC_DEFINES="$CSC_DEFINES -d:MONO_2_0"
