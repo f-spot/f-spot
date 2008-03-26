@@ -226,6 +226,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/UI.Dialog/AboutDialog.cs	\
 	$(srcdir)/UI.Dialog/EditExceptionDialog.cs	\
 	$(srcdir)/UI.Dialog/HigMessageDialog.cs	\
+	$(srcdir)/UI.Dialog/SelectionRatioDialog.cs	\
 	$(srcdir)/Updater.cs			\
 	$(srcdir)/UriCollection.cs		\
 	$(srcdir)/Util.cs			\

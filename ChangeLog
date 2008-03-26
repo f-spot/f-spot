@@ -1,3 +1,12 @@
+2008-03-26  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/f-spot.glade:
+	* src/Makefile.am:
+	* src/Preferences.cs:
+	* src/UI.Dialog/SelectionRatioDialog.cs:
+	* src/PhotoView.cs: new dialog for custom selection ratios. Fixes
+	bgo #329581 and #399302.
+
 2008-03-25  Roland Mas  <lolando@debian.org>
 
 	* src/Widgets/Filmstrip.cs: Added hyperspace jump to the

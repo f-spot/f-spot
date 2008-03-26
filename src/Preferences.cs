@@ -29,6 +29,7 @@ namespace FSpot
 		public const string VIEWER_INTERPOLATION = "/apps/f-spot/viewer/interpolation";
 		public const string VIEWER_TRANS_COLOR = "/apps/f-spot/viewer/trans_color";
 		public const string VIEWER_TRANSPARENCY = "/apps/f-spot/viewer/transparency";
+		public const string CUSTOM_CROP_RATIOS = "/apps/f-spot/viewer/custom_crop_ratios";
 		
 		public const string SHOW_TOOLBAR = "/apps/f-spot/ui/show_toolbar";
 		public const string SHOW_SIDEBAR = "/apps/f-spot/ui/show_sidebar";
@@ -200,7 +201,8 @@ namespace FSpot
 			case PROXY_USER:
 			case PROXY_PASSWORD:
 				return String.Empty;
-			
+			case CUSTOM_CROP_RATIOS:
+				return new string [] {};
 			default:
 				return null;
 			}
