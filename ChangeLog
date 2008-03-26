@@ -1,5 +1,10 @@
 2008-03-26  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/f-spot.glade: rename the File menu as Photo. thx Giacomo
+	for the patch, Fixes bgo #441401.
+
+2008-03-26  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/MainWindow.cs:
 	* src/SingleView.cs:
 	* src/FullScreenView.cs: Open the fullscreen on the same screen as the

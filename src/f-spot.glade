@@ -3056,7 +3056,7 @@ Photo Details</property>
             <child>
               <widget class="GtkMenuItem" id="file1">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">_File</property>
+                <property name="label" translatable="yes">_Photo</property>
                 <property name="use_underline">True</property>
                 <child>
                   <widget class="GtkMenu" id="file1_menu">
@@ -5013,7 +5013,7 @@ Photo Details</property>
             <child>
               <widget class="GtkMenuItem" id="file2">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">_File</property>
+                <property name="label" translatable="yes">_Photo</property>
                 <property name="use_underline">True</property>
                 <child>
                   <widget class="GtkMenu" id="file2_menu">
