@@ -31,8 +31,16 @@ namespace FSpot {
 		const string SlideShow = "SlideShow";
 		const string Info = "Info";
 		
-		public FullScreenView (IBrowsableCollection collection) : base ("Full Screen Mode")
+		public FullScreenView (IBrowsableCollection collection, Gtk.Window parent) : base ("Full Screen Mode")
 		{
+			//going fullscreen on the same screen the parent window
+			Gdk.Screen screen = Screen;
+			int monitor = screen.GetMonitorAtWindow (parent.GdkWindow);
+			Gdk.Rectangle bounds = screen.GetMonitorGeometry(monitor);
+			Move(bounds.X, 0);
+			SetDefaultSize(bounds.Width, bounds.Height);
+
+
 			string style = "style \"test\" {\n" +
 				"GtkToolbar::shadow_type = GTK_SHADOW_NONE\n" +
 				"}\n" +

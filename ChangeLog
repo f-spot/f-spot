@@ -1,5 +1,12 @@
 2008-03-26  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/MainWindow.cs:
+	* src/SingleView.cs:
+	* src/FullScreenView.cs: Open the fullscreen on the same screen as the
+	parent. Original patch from wrobell. Fixes bgo #310933.
+
+2008-03-26  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/f-spot.glade:
 	* src/Makefile.am:
 	* src/Preferences.cs:

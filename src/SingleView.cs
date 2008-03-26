@@ -269,14 +269,7 @@ namespace FSpot {
 
 		private void HandleViewSlideshow (object sender, System.EventArgs args)
 		{
-			if (fsview != null)
-				fsview.Destroy ();
-
-			fsview = new FSpot.FullScreenView (collection);
-			fsview.Destroyed += HandleFullScreenViewDestroy;
-
-			fsview.View.Item.Index = image_view.Item.Index;
-			fsview.Show ();
+			HandleViewFullscreen (sender, args);
 			fsview.PlayPause ();
 		}
 	
@@ -373,7 +366,7 @@ namespace FSpot {
 			if (fsview != null)
 				fsview.Destroy ();
 
-			fsview = new FSpot.FullScreenView (collection);
+			fsview = new FSpot.FullScreenView (collection, window);
 			fsview.Destroyed += HandleFullScreenViewDestroy;
 
 			fsview.View.Item.Index = image_view.Item.Index;

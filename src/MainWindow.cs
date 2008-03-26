@@ -2068,7 +2068,7 @@ public class MainWindow {
 	{
 		int active = Math.Max (ActiveIndex (), 0);
 		if (fsview == null) {
-			fsview = new FSpot.FullScreenView (query);
+			fsview = new FSpot.FullScreenView (query, main_window);
 			fsview.Destroyed += HandleFullScreenViewDestroy;
 			fsview.View.Item.Index = active;
 			ColorDialog.SwitchViews (fsview.View);
