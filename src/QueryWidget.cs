@@ -17,6 +17,7 @@ namespace FSpot {
 		Gtk.Label rollfilter;
 		Gtk.HBox warning_box;
 		Gtk.Button clear_button;
+		Gtk.Button refresh_button;
 		Gtk.Tooltips tips = new Gtk.Tooltips ();
 
 		public LogicWidget Logic {
@@ -78,6 +79,13 @@ namespace FSpot {
 			clear_button.Relief = Gtk.ReliefStyle.None;
 			box.PackEnd (clear_button, false, false, 0);
 			tips.SetTip (clear_button, Catalog.GetString("Clear search"), null);
+			
+			refresh_button = new Gtk.Button ();
+			refresh_button.Add (new Gtk.Image ("gtk-refresh", Gtk.IconSize.Button));
+			refresh_button.Clicked += HandleRefreshButtonClicked;
+			refresh_button.Relief = Gtk.ReliefStyle.None;
+			box.PackEnd (refresh_button, false, false, 0);
+			tips.SetTip (refresh_button, Catalog.GetString("Refresh search"), null);
 
 			Gtk.Label warning = new Gtk.Label (Catalog.GetString ("No matching photos found"));
 			warning_box.PackStart (warning, false, false, 0);
@@ -95,6 +103,11 @@ namespace FSpot {
 			Close ();
 		}
 
+ 		public void HandleRefreshButtonClicked (object sender, System.EventArgs args)
+ 		{
+ 			query.RequestReload ();
+ 		}
+ 
 		public void Close ()
 		{
 			query.Untagged = false;
