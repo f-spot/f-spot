@@ -215,3 +215,10 @@ include one or more methods marked with [Test] attributes.  The entire
 test class and any using statements should be surrounded by an #if
 ENABLE_NUNIT directive so that f-spot can still build on systems without
 nunit installed.
+
+
+References and standards
+------------------------
+
+* .desktop file specification: http://standards.freedesktop.org/desktop-entry-spec/latest/index.html
+* thumbnail caching: http://people.freedesktop.org/~vuntz/thumbnail-spec-cache/
