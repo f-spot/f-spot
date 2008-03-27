@@ -475,9 +475,15 @@ namespace FSpot.Widgets
 
  		protected virtual Pixbuf GetPixbuf (int i, bool highlighted)
 		{
+			string thumb_path;
 			Pixbuf current;
-			string thumb_path = FSpot.ThumbnailGenerator.ThumbnailPath ((selection.Collection [i]).DefaultVersionUri);
-			current = thumb_cache.GetThumbnailForPath (thumb_path);
+			try {
+				thumb_path = FSpot.ThumbnailGenerator.ThumbnailPath ((selection.Collection [i]).DefaultVersionUri);
+				current = thumb_cache.GetThumbnailForPath (thumb_path);
+			} catch (IndexOutOfRangeException) {
+				thumb_path = null;
+				current = null;
+			}
 
 			if (current == null) {
 				try {
