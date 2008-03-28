@@ -1,3 +1,9 @@
+2008-03-28  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* src/PhotoView.cs: Add constraint "Same as photo". Fix	bgo#399302.
+	Reordered constraint menu: no constraint first, then custom user
+	constraints and default constraints in the end.
+
 2008-03-27  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* src/QueryWidget.cs: Add "refresh query" button for "find untagged".

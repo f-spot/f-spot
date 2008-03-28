@@ -65,8 +65,12 @@ namespace FSpot {
 	
 		private List<SelectionRatioDialog.SelectionConstraint> custom_constraints;
 	
+		private const double NO_CONSTRAINT = 0.0;
+		private const double CUSTOM_CONSTRAINT = -1.0;
+		private const double SAME_AS_PHOTO = -2.0;
+
 		private static SelectionRatioDialog.SelectionConstraint [] default_constraints = {
-			new SelectionRatioDialog.SelectionConstraint (Catalog.GetString ("No Constraint"), 0.0),
+			new SelectionRatioDialog.SelectionConstraint (Catalog.GetString ("Same as photo"), SAME_AS_PHOTO),
 			new SelectionRatioDialog.SelectionConstraint (Catalog.GetString ("4 x 3 (Book)"), 4.0 / 3.0),
 			new SelectionRatioDialog.SelectionConstraint (Catalog.GetString ("4 x 6 (Postcard)"), 6.0 / 4.0),
 			new SelectionRatioDialog.SelectionConstraint (Catalog.GetString ("5 x 7 (L, 2L)"), 7.0 / 5.0),
@@ -81,7 +85,6 @@ namespace FSpot {
 		new public FSpot.BrowsablePointer Item {
 			get { return photo_view.Item; }
 		}
-	
 	
 		private IBrowsableCollection query;
 		public IBrowsableCollection Query {
@@ -183,6 +186,11 @@ namespace FSpot {
 			UpdateCountLabel ();
 			UpdateDescriptionEntry ();
 			UpdateRating ();
+			// If the selected constraint is "Same as photo" reset to "No Constraint"
+			TreeIter iter;
+			if (constraints_combo.GetActiveIter (out iter) && (double)constraints_store.GetValue(iter, 2) == SAME_AS_PHOTO) 
+				constraints_combo.Active = 0;
+			
 	
 			if (UpdateFinished != null)
 				UpdateFinished (this);
@@ -224,7 +232,6 @@ namespace FSpot {
 		{
 			View.Item.MovePrevious ();
 		}
-	
 	
 		private void HandleRedEyeButtonClicked (object sender, EventArgs args)
 		{
@@ -607,11 +614,12 @@ namespace FSpot {
 		{
 			constraints_store = new TreeStore (typeof (string), typeof (string), typeof (double));
 			constraints_combo.Model = constraints_store;
-			foreach (SelectionRatioDialog.SelectionConstraint constraint in default_constraints)
-				constraints_store.AppendValues (null, constraint.Label, constraint.XyRatio);
+			constraints_store.AppendValues (null, "No Constraint", NO_CONSTRAINT);
 			foreach (SelectionRatioDialog.SelectionConstraint constraint in custom_constraints)
 				constraints_store.AppendValues (null, constraint.Label, constraint.XyRatio);
-			constraints_store.AppendValues (Stock.Edit, Catalog.GetString ("Custom Ratios..."), -1.0);
+			foreach (SelectionRatioDialog.SelectionConstraint constraint in default_constraints)
+				constraints_store.AppendValues (null, constraint.Label, constraint.XyRatio);
+			constraints_store.AppendValues (Stock.Edit, Catalog.GetString ("Custom Ratios..."), CUSTOM_CONSTRAINT);
 			constraints_combo.Active = 0;
 		}
 
@@ -637,9 +645,12 @@ namespace FSpot {
 				double ratio = ((double)constraints_store.GetValue(iter, 2));
 				if (ratio >= 0.0)
 					photo_view.SelectionXyRatio = ratio;
-				else {
+				else if (ratio == CUSTOM_CONSTRAINT) {
 					SelectionRatioDialog dialog = new SelectionRatioDialog ();
 					dialog.Dialog.Run ();
+				} else if (ratio == SAME_AS_PHOTO) {
+					Pixbuf pb = photo_view.CompletePixbuf ();
+					photo_view.SelectionXyRatio = (double)pb.Width / (double)pb.Height;
 				}
 			}	
 		}
