@@ -187,11 +187,7 @@ namespace FSpot {
 			UpdateCountLabel ();
 			UpdateDescriptionEntry ();
 			UpdateRating ();
-			// If the selected constraint is "Same as photo" reset to "No Constraint"
-			TreeIter iter;
-			if (constraints_combo.GetActiveIter (out iter) && 
-			    (ConstraintType)constraints_store.GetValue(iter, 3) == ConstraintType.SameAsPhoto) 
-				constraints_combo.Active = 0;
+			HandleConstraintsComboChanged (null, null);
 	
 			if (UpdateFinished != null)
 				UpdateFinished (this);
@@ -655,8 +651,13 @@ namespace FSpot {
 					dialog.Dialog.Run ();
 					break;
 				case ConstraintType.SameAsPhoto:
-					Pixbuf pb = photo_view.CompletePixbuf ();
-					photo_view.SelectionXyRatio = (double)pb.Width / (double)pb.Height;
+					try {
+						Pixbuf pb = photo_view.CompletePixbuf ();
+						photo_view.SelectionXyRatio = (double)pb.Width / (double)pb.Height;
+					} catch (System.Exception ex) {
+						Console.WriteLine (ex);
+						photo_view.SelectionXyRatio = 0;
+					}
 					break;
 				default:
 					photo_view.SelectionXyRatio = 0;
