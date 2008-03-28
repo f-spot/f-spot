@@ -63,14 +63,15 @@ namespace FSpot {
 		public delegate void UpdateFinishedHandler (PhotoView view);
 		public event UpdateFinishedHandler UpdateFinished;
 	
+		public enum ConstraintType {
+			Normal,
+			AddCustom,
+			SameAsPhoto
+		}
+
 		private List<SelectionRatioDialog.SelectionConstraint> custom_constraints;
 	
-		private const double NO_CONSTRAINT = 0.0;
-		private const double CUSTOM_CONSTRAINT = -1.0;
-		private const double SAME_AS_PHOTO = -2.0;
-
 		private static SelectionRatioDialog.SelectionConstraint [] default_constraints = {
-			new SelectionRatioDialog.SelectionConstraint (Catalog.GetString ("Same as photo"), SAME_AS_PHOTO),
 			new SelectionRatioDialog.SelectionConstraint (Catalog.GetString ("4 x 3 (Book)"), 4.0 / 3.0),
 			new SelectionRatioDialog.SelectionConstraint (Catalog.GetString ("4 x 6 (Postcard)"), 6.0 / 4.0),
 			new SelectionRatioDialog.SelectionConstraint (Catalog.GetString ("5 x 7 (L, 2L)"), 7.0 / 5.0),
@@ -188,9 +189,9 @@ namespace FSpot {
 			UpdateRating ();
 			// If the selected constraint is "Same as photo" reset to "No Constraint"
 			TreeIter iter;
-			if (constraints_combo.GetActiveIter (out iter) && (double)constraints_store.GetValue(iter, 2) == SAME_AS_PHOTO) 
+			if (constraints_combo.GetActiveIter (out iter) && 
+			    (ConstraintType)constraints_store.GetValue(iter, 3) == ConstraintType.SameAsPhoto) 
 				constraints_combo.Active = 0;
-			
 	
 			if (UpdateFinished != null)
 				UpdateFinished (this);
@@ -612,14 +613,15 @@ namespace FSpot {
 
 		private void PopulateConstraints()
 		{
-			constraints_store = new TreeStore (typeof (string), typeof (string), typeof (double));
+			constraints_store = new TreeStore (typeof (string), typeof (string), typeof (double), typeof (ConstraintType));
 			constraints_combo.Model = constraints_store;
-			constraints_store.AppendValues (null, "No Constraint", NO_CONSTRAINT);
+			constraints_store.AppendValues (null, Catalog.GetString ("No Constraint"), 0.0, ConstraintType.Normal);
+			constraints_store.AppendValues (null, Catalog.GetString ("Same as photo"), 0.0, ConstraintType.SameAsPhoto);
 			foreach (SelectionRatioDialog.SelectionConstraint constraint in custom_constraints)
-				constraints_store.AppendValues (null, constraint.Label, constraint.XyRatio);
+				constraints_store.AppendValues (null, constraint.Label, constraint.XyRatio, ConstraintType.Normal);
 			foreach (SelectionRatioDialog.SelectionConstraint constraint in default_constraints)
-				constraints_store.AppendValues (null, constraint.Label, constraint.XyRatio);
-			constraints_store.AppendValues (Stock.Edit, Catalog.GetString ("Custom Ratios..."), CUSTOM_CONSTRAINT);
+				constraints_store.AppendValues (null, constraint.Label, constraint.XyRatio, ConstraintType.Normal);
+			constraints_store.AppendValues (Stock.Edit, Catalog.GetString ("Custom Ratios..."), 0.0, ConstraintType.AddCustom);
 			constraints_combo.Active = 0;
 		}
 
@@ -642,16 +644,24 @@ namespace FSpot {
 		{
 			TreeIter iter;
 			if (constraints_combo.GetActiveIter (out iter)) {
-				double ratio = ((double)constraints_store.GetValue(iter, 2));
-				if (ratio >= 0.0)
+				double ratio = ((double)constraints_store.GetValue (iter, 2));
+				ConstraintType type = ((ConstraintType)constraints_store.GetValue (iter, 3));
+				switch (type) {
+				case ConstraintType.Normal:
 					photo_view.SelectionXyRatio = ratio;
-				else if (ratio == CUSTOM_CONSTRAINT) {
+					break;
+				case ConstraintType.AddCustom:
 					SelectionRatioDialog dialog = new SelectionRatioDialog ();
 					dialog.Dialog.Run ();
-				} else if (ratio == SAME_AS_PHOTO) {
+					break;
+				case ConstraintType.SameAsPhoto:
 					Pixbuf pb = photo_view.CompletePixbuf ();
 					photo_view.SelectionXyRatio = (double)pb.Width / (double)pb.Height;
-				}
+					break;
+				default:
+					photo_view.SelectionXyRatio = 0;
+					break;
+				}	
 			}	
 		}
 
