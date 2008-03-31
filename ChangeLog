@@ -1,3 +1,8 @@
+2008-03-31  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* src/SendEmail.cs: fix for bgo 503149: crash on exception in
+	sending email.
+
 2008-03-31  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Preferences.cs:

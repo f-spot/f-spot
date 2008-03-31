@@ -290,16 +290,29 @@ namespace FSpot {
 					if (UserCancelled)
 					 	break;
 					 	
-					// Prepare a tmp_mail file name
-					FilterRequest request = new FilterRequest (photo.DefaultVersionUri);
+					try {
+						// Prepare a tmp_mail file name
+						FilterRequest request = new FilterRequest (photo.DefaultVersionUri);
 
-					filters.Convert (request);
-					request.Preserve(request.Current);
+						filters.Convert (request);
+						request.Preserve(request.Current);
 
- 					mail_attach.Append(attach_arg.ToString() + request.Current.ToString ());
-					
-					// Mark the path for deletion
-					tmp_paths.Add (request.Current.LocalPath);
+						mail_attach.Append(attach_arg.ToString() + request.Current.ToString ());
+						
+						// Mark the path for deletion
+						tmp_paths.Add (request.Current.LocalPath);
+					} catch (Exception e) {
+						Console.WriteLine("Error preparing {0}: {1}", selection[photo_index].Name, e.Message);
+						HigMessageDialog md = new HigMessageDialog (parent_window, 
+											    DialogFlags.DestroyWithParent,
+											    MessageType.Error,
+											    ButtonsType.Close,
+											    Catalog.GetString("Error processing image"), 
+											    String.Format(Catalog.GetString("An error occured while processing \"{0}\": {1}"), selection[photo_index].Name, e.Message));
+						md.Run();
+						md.Destroy();
+						UserCancelled = true;
+					}
 				}
 			} // foreach
 			
