@@ -15,6 +15,7 @@ using System;
 using FSpot.Widgets;
 using FSpot.Filters;
 using FSpot.Utils;
+using FSpot.UI.Dialog;
 
 using Mono.Unix;
 
