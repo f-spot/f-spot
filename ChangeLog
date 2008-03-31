@@ -1,3 +1,10 @@
+2008-03-31  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Preferences.cs:
+	* src/UI.Dialog/SelectionRatioDialog.cs:
+	* src/PhotoView.cs: handle edge cases and olg gconf bindings in storing
+	crop ratios to gconf. Sould fix bgo #525164.
+
 2008-03-28  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* src/PhotoView.cs: Add constraint "Same as photo". Fix	bgo#399302.

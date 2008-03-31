@@ -201,8 +201,6 @@ namespace FSpot
 			case PROXY_USER:
 			case PROXY_PASSWORD:
 				return String.Empty;
-			case CUSTOM_CROP_RATIOS:
-				return new string [] {};
 			default:
 				return null;
 			}

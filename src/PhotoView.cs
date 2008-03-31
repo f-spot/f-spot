@@ -592,15 +592,13 @@ namespace FSpot {
 		{
 			object val = Preferences.Get (key);
 	
-			if (val == null)
-				return;
-	
 			switch (key) {
 			case Preferences.CUSTOM_CROP_RATIOS:
 				custom_constraints = new List<SelectionRatioDialog.SelectionConstraint> ();
-				XmlSerializer serializer = new XmlSerializer (typeof(SelectionRatioDialog.SelectionConstraint));
-				foreach (string xml in val as string[]) {
-					custom_constraints.Add ((SelectionRatioDialog.SelectionConstraint)serializer.Deserialize (new StringReader (xml)));
+				if (val != null && val is string[]) {
+					XmlSerializer serializer = new XmlSerializer (typeof(SelectionRatioDialog.SelectionConstraint));
+					foreach (string xml in val as string[])
+						custom_constraints.Add ((SelectionRatioDialog.SelectionConstraint)serializer.Deserialize (new StringReader (xml)));
 				}
 				PopulateConstraints ();
 				break;

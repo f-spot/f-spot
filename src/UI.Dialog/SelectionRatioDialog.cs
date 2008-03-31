@@ -72,10 +72,12 @@ namespace FSpot.UI.Dialog {
 			constraints_store = new ListStore (typeof (string), typeof (double));
 			content_treeview.Model = constraints_store;
 			XmlSerializer serializer = new XmlSerializer (typeof(SelectionConstraint));
-			foreach (string xml in Preferences.Get (Preferences.CUSTOM_CROP_RATIOS) as string[]) {
-				SelectionConstraint constraint = (SelectionConstraint)serializer.Deserialize (new StringReader (xml));
-				constraints_store.AppendValues (constraint.Label, constraint.XyRatio);
-			}	
+			string [] vals = Preferences.Get (Preferences.CUSTOM_CROP_RATIOS) as string[];
+			if (vals != null) 
+				foreach (string xml in vals) {
+					SelectionConstraint constraint = (SelectionConstraint)serializer.Deserialize (new StringReader (xml));
+					constraints_store.AppendValues (constraint.Label, constraint.XyRatio);
+				}	
 		}
 
 		private void OnPreferencesChanged (object sender, NotifyEventArgs args)
@@ -86,9 +88,6 @@ namespace FSpot.UI.Dialog {
 		private void LoadPreference (String key)
 		{
 			object val = Preferences.Get (key);
-	
-			if (val == null)
-				return;
 	
 			switch (key) {
 			case Preferences.CUSTOM_CROP_RATIOS:
@@ -106,8 +105,16 @@ namespace FSpot.UI.Dialog {
 				serializer.Serialize (sw, new SelectionConstraint ((string)row[0], (double)row[1]));
 				sw.Close ();
 				prefs.Add (sw.ToString ());
-				Preferences.Set (Preferences.CUSTOM_CROP_RATIOS, prefs.ToArray());
 			}
+
+#if !GCONF_SHARP_2_18		
+			if (prefs.Count != 0)
+#endif
+				Preferences.Set (Preferences.CUSTOM_CROP_RATIOS, prefs.ToArray());
+#if !GCONF_SHARP_2_18		
+			else
+				Preferences.Set (Preferences.CUSTOM_CROP_RATIOS, -1);
+#endif
 		}
 
 		public void HandleLabelEdited (object sender, EditedArgs args)
