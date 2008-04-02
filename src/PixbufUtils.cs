@@ -350,7 +350,11 @@ public class PixbufUtils {
 	
 	public static Pixbuf TagIconFromPixbuf (Pixbuf source)
 	{
-		int size = (int) Tag.IconSize.Large;
+		return IconFromPixbuf (source, (int) Tag.IconSize.Large);
+	}
+
+	public static Pixbuf IconFromPixbuf (Pixbuf source, int size)
+	{
 		Pixbuf tmp = null;
 		Pixbuf icon = null;
 

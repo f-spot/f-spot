@@ -1,3 +1,9 @@
+2008-04-02  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* src/PixbufUtils.cs: 
+	* src/Widgets/FilmStrip.cs: optional default squared thumbs for 
+	filmstrip. Speed up scroll.
+	
 2008-03-31  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* src/SendEmail.cs: fix for bgo 503149: crash on exception in

@@ -78,6 +78,12 @@ namespace FSpot.Widgets
 			}
 		}
 
+		bool squared_thumbs = false;
+		public bool SquaredThumbs {
+			get { return squared_thumbs; }
+			set { squared_thumbs = value; }
+		}
+
 		static string [] film_100_xpm = {
 		"14 100 2 1",
 		" 	c None",
@@ -292,13 +298,16 @@ namespace FSpot.Widgets
 		FSpot.BrowsablePointer selection;
 		ThumbnailCache thumb_cache;
 
-		public Filmstrip (FSpot.BrowsablePointer selection) : base ()
+		public Filmstrip (FSpot.BrowsablePointer selection) : this (selection, true) { }
+
+		public Filmstrip (FSpot.BrowsablePointer selection, bool squared_thumbs) : base ()
 		{
 			CanFocus = true;
 			this.selection = selection;
 			this.selection.Changed += HandlePointerChanged;
 			this.selection.Collection.Changed += HandleCollectionChanged;
 			this.selection.Collection.ItemsChanged += HandleCollectionItemsChanged;
+			this.squared_thumbs = squared_thumbs;
 			thumb_cache = new ThumbnailCache (30);
 		}
 	
@@ -405,9 +414,9 @@ namespace FSpot.Widgets
 
 		protected override bool OnScrollEvent (EventScroll args)
 		{
-			float shift = .5f;
+			float shift = 1.0f;
 			if ((args.State & Gdk.ModifierType.ShiftMask) > 0)
-				shift = 5f;
+				shift = 6f;
 
 			switch (args.Direction) {
 			case ScrollDirection.Up:
@@ -487,7 +496,11 @@ namespace FSpot.Widgets
 
 			if (current == null) {
 				try {
-					current = new Pixbuf (thumb_path, -1, ThumbSize);
+					if (SquaredThumbs) {
+						current = new Pixbuf (thumb_path);
+						current = PixbufUtils.IconFromPixbuf (current, ThumbSize);
+					} else 
+						current = new Pixbuf (thumb_path, -1, ThumbSize);
 					thumb_cache.AddThumbnail (thumb_path, current);
 				} catch {
 					try {
