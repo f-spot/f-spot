@@ -188,6 +188,7 @@ namespace FSpot.Widgets
 		"..............",
 		"..............",
 		".............."};
+
 		Pixbuf background_tile;
 		public Pixbuf BackgroundTile {
 			get {
@@ -252,6 +253,7 @@ namespace FSpot.Widgets
 				return animator;
 			}
 		}
+
 		public int AnimatorOrder {
 			set {
 				switch (value) {
@@ -473,7 +475,7 @@ namespace FSpot.Widgets
 				ActiveItem = (int)start_indexes [pos];
 				return true;
 			} catch {
-				return false;
+				return true;
 			}
 		}
  
