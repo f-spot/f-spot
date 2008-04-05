@@ -200,10 +200,10 @@ public class RotateCommand {
 	        RotateMultiple op = new RotateMultiple (items, direction);
 		int readonly_count = 0;
 		bool done = false;
-		int index = -1;
+		int index = 0;
 
 		while (!done) {
-			if (progress_dialog != null && index != op.Index) 
+			if (progress_dialog != null && op.Index != -1 && index < items.Length) 
 				if (progress_dialog.Update (String.Format (Catalog.GetString ("Rotating photo \"{0}\""), op.Items [op.Index].Name)))
 					break;
 
@@ -223,6 +223,7 @@ public class RotateCommand {
 			} catch (Exception e) {
 				RunGenericError (e, op.Items [op.Index].DefaultVersionUri.LocalPath);
 			}
+			index ++;
 		}
 		
 		if (progress_dialog != null)
