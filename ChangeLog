@@ -1,3 +1,8 @@
+2008-04-07  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* tools/f-spot-screensaver: pass correct argument to f-spot.
+	* src/main.cs: allow --slideshow parameter. fix bgo#526477.
+
 2008-04-02  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* src/PixbufUtils.cs: 

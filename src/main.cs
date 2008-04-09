@@ -83,7 +83,7 @@ public class Driver {
 				import_uri = args [++i];
 				break;
 			
-			case "-slideshow":
+			case "-slideshow": case "--slideshow":
 				slideshow = true;
 				break;
 
