@@ -99,7 +99,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Editors/Editor.cs		\
 	$(srcdir)/Editors/SoftFocus.cs		\
 	$(srcdir)/Editors/Tilt.cs		\
-	$(srcdir)/ExceptionDialog.cs		\
 	$(srcdir)/ExportStore.cs		\
 	$(srcdir)/Extensions/ExportMenuItemNode.cs	\
 	$(srcdir)/Extensions/IExporter.cs	\
@@ -225,6 +224,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/TipWindow.cs			\
 	$(srcdir)/UI.Dialog/AboutDialog.cs	\
 	$(srcdir)/UI.Dialog/EditExceptionDialog.cs	\
+	$(srcdir)/UI.Dialog/ExceptionDialog.cs	\
 	$(srcdir)/UI.Dialog/HigMessageDialog.cs	\
 	$(srcdir)/UI.Dialog/SelectionRatioDialog.cs	\
 	$(srcdir)/Updater.cs			\

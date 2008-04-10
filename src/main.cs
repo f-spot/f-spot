@@ -1,6 +1,7 @@
 using Gtk;
 using Gnome;
 using System;
+using System.Reflection;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -10,14 +11,36 @@ using Mono.Unix;
 using Mono.Addins;
 using Mono.Addins.Setup;
 using FSpot.Utils;
+using FSpot.UI.Dialog;
 
 namespace FSpot 
 {
 public class Driver {
+	static void Version ()
+	{
+		Console.WriteLine (
+			"F-Spot  {0} - (c)2003-2008, Novell Inc" + Environment.NewLine +
+			"Personal photo management for the GNOME Desktop" + Environment.NewLine, 
+			FSpot.Defines.VERSION);
+	}
+
+	static void Versions ()
+	{
+	    Version ();
+            Console.WriteLine (".NET Version: " + Environment.Version.ToString());
+            Console.WriteLine (String.Format("{0}Assembly Version Information:", Environment.NewLine));
+            
+            foreach(Assembly asm in AppDomain.CurrentDomain.GetAssemblies()) {
+		    AssemblyName name = asm.GetName();
+                    Console.WriteLine ("\t" + name.Name + " (" + name.Version.ToString () + ")");
+		}	
+	}
+
 	static void Help ()
 	{
-		Console.WriteLine ("F-Spot  {0} - (c)2003-2008, Novell Inc" + Environment.NewLine +
-			"Personal photo management for the GNOME Desktop" + Environment.NewLine + Environment.NewLine +
+		Version ();
+		Console.WriteLine ();
+		Console.WriteLine (
 			"Usage: f-spot [options] " + Environment.NewLine +
 			"Options:" + Environment.NewLine +
 		  	"-b -basedir PARAM   path to the photo database folder" + Environment.NewLine +
@@ -27,7 +50,8 @@ public class Driver {
 			"-shutdown           shutdown a running f-spot instance" + Environment.NewLine +
 			"-slideshow          display a slideshow" + Environment.NewLine +
 			"-V -version         Display version and licensing information" + Environment.NewLine +
-			"-v -view            view file(s) or directory(ies)" +Environment.NewLine, FSpot.Defines.VERSION);
+			"-versions           Display version and dependencies informations" + Environment.NewLine +
+			"-v -view            view file(s) or directory(ies)");
 	}
 
 	static int Main (string [] args)
@@ -99,6 +123,14 @@ public class Driver {
 				view = true;
 				uris.Add (args [++i]);
 				break;
+
+			case "-versions": case "--versions":
+				Versions ();
+				return 0;
+			
+			case "-V": case "-version": case "--version":
+				Version ();
+				return 0;
 			
 			case "--debug": case "--trace": case "--profile": case "--uninstalled": case "--gdb":
 				break;

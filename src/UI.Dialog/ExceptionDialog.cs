@@ -7,9 +7,9 @@ using System.IO;
 using Mono.Unix;
 using Gtk;
 
-namespace FSpot
+namespace FSpot.UI.Dialog
 {
-    public class ExceptionDialog : Dialog
+    public class ExceptionDialog : Gtk.Dialog
     {
         private AccelGroup accel_group;
         private string debugInfo;

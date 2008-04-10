@@ -1,3 +1,11 @@
+2008-04-10  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/main.cs: new -versions commandline arg, implement -version
+	properly.
+	
+	* src/Makefile.am:
+	* src/UI/Dialog/ExceptionDialog.cs: moved in the UI.Dialog ns
+
 2008-04-07  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* tools/f-spot-screensaver: pass correct argument to f-spot.
