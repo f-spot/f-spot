@@ -1,3 +1,9 @@
+2008-04-06  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* GalleryExport/GalleryExport.cs: sort export by photo date. fix
+	bgo#494574.
+	* GalleryExport/GalleryExport.addins.xml: bump addin version.
+
 2008-03-23  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* FlickrExport/FlickrExport.cs: fix loading of hierarchy options from
