@@ -264,14 +264,17 @@ namespace FSpot {
 			
 			host.GdkWindow.GetOrigin (out x, out y);
 
+			int xOrigin = x;
+			int yOrigin = y;
+
 			x += (int) (host.Allocation.Width * x_align);
 			y += (int) (host.Allocation.Height * y_align);
 			
 			x -= (int) (Allocation.Width * 0.5);
 			y -= (int) (Allocation.Height * 0.5);
 
-			x = Math.Max (0, Math.Min (x, host.Allocation.Width - Allocation.Width));
-			y = Math.Max (0, Math.Min (y, host.Allocation.Height - Allocation.Height));
+			x = Math.Max (0, Math.Min (x, xOrigin + host.Allocation.Width - Allocation.Width));
+			y = Math.Max (0, Math.Min (y, yOrigin + host.Allocation.Height - Allocation.Height));
 			
 			Move (x, y);
 		}

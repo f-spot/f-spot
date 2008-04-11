@@ -1,3 +1,8 @@
+2008-04-11  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/ControlOverlay.cs: patch from Fabian Kneissl to fix the
+	toolbar positionning in fullscreen. bgo #526318.
+
 2008-04-11  Tim Retout  <tim@retout.co.uk>
 
 	* src/ImportCommand.cs (ImportFromFile): Use GtkUtil.TryLoadIcon to avoid
