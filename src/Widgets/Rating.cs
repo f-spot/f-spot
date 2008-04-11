@@ -54,6 +54,7 @@ namespace FSpot.Widgets
 			EnterNotifyEvent += HandleMouseEnter;
 			LeaveNotifyEvent += HandleMouseLeave;
 			
+			VisibleWindow = false;
 			CanFocus = true;
 			
 			display_pixbuf = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, Width, Height);

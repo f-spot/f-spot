@@ -48,14 +48,15 @@ namespace FSpot.Widgets
 					GLib.Markup.EscapeText (Catalog.GetString ("Rating:")));
 			box.PackStart (label, false, false, 0);
 
-			entry = new Rating (-1, true);
+			if(MainWindow.Toplevel.Selection.Count==1)
+				entry = new Rating ((int)MainWindow.Toplevel.Selection[0].Rating, true);
+			else
+				entry = new Rating (-1, true);
 			entry.Changed += OnEntryChanged;
 			box.PackStart (entry, false, false, 0);
 
 			box.ShowAll ();
 			Add (box);
-
-			ConnectChildExpose (entry);
 		}
 
 		protected override void OnRealized ()

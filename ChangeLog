@@ -1,5 +1,13 @@
 2008-04-11  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Widgets/ComplexMenuItem.cs:
+	* src/Widgets/Rating.cs:
+	* src/Widgets/RatingMenuItem.cs: Patch from Benjamin Berg to fix
+	the issues on the RatingMenuItem. Patch fro Miguel Aguero to 
+	display the actual rating in the menu. Fix bgo #510160.
+
+2008-04-11  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Texture.cs:
 	* libfspot/f-pixbuf-utils.c: two patches from Benjamin Berg
 	to fix endianness issues on PPC. Fixes bgo #512842 and #471497
