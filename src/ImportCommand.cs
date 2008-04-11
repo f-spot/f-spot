@@ -624,7 +624,7 @@ public class ImportCommand : FSpot.GladeDialog
 		GtkUtil.ModifyColors (photo_scrolled);
 		GtkUtil.ModifyColors (photo_view);
 
-		photo_view.Pixbuf = FSpot.Global.IconTheme.LoadIcon ("f-spot", 48, (Gtk.IconLookupFlags)0);
+		photo_view.Pixbuf = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "f-spot", 48, (Gtk.IconLookupFlags)0);
 		photo_view.Fit = true;
 			
 		tag_entry = new FSpot.Widgets.TagEntry (MainWindow.Toplevel.Database.Tags, false);

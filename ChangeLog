@@ -1,3 +1,8 @@
+2008-04-11  Tim Retout  <tim@retout.co.uk>
+
+	* src/ImportCommand.cs (ImportFromFile): Use GtkUtil.TryLoadIcon to avoid
+	throwing an exception when f-spot icon is not found. Fixes bgo #526325.
+
 2008-04-11  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Widgets/ComplexMenuItem.cs:
