@@ -327,16 +327,15 @@ f_pixbuf_from_cairo_surface (cairo_surface_t *source)
 
       while (p < end)
 	{
-#if G_BYTE_ORDER == G_LITTLE_ENDIAN
 	  tmp = p[0];
+#if G_BYTE_ORDER == G_LITTLE_ENDIAN
 	  p[0] = p[2];
 	  p[2] = tmp;
 #else	  
-	  tmp = p[0];
-	  p[0] = p[3];
-	  p[3] = p[2];
-	  p[2] = p[1];
-	  p[1] = tmp;
+	  p[0] = p[1];
+	  p[1] = p[2];
+	  p[2] = p[3];
+	  p[3] = tmp;
 #endif
 	  p += 4;
 	}

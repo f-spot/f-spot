@@ -1,3 +1,9 @@
+2008-04-11  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Texture.cs:
+	* libfspot/f-pixbuf-utils.c: two patches from Benjamin Berg
+	to fix endianness issues on PPC. Fixes bgo #512842 and #471497
+
 2008-04-10  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/main.cs: new -versions commandline arg, implement -version

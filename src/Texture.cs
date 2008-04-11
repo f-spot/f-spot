@@ -142,11 +142,11 @@ namespace FSpot {
 				Glu.gluScaleImage (Gl.GL_BGRA,
 						  width,
 						  height,
-						  Gl.GL_UNSIGNED_BYTE,
+						  Gl.GL_UNSIGNED_INT_8_8_8_8_REV,
 						  pixels,
 						  swidth,
 						  sheight,
-						  Gl.GL_UNSIGNED_BYTE,
+						  Gl.GL_UNSIGNED_INT_8_8_8_8_REV,
 						  tmp);
 				pixels = tmp;
 				width = swidth;
@@ -160,7 +160,7 @@ namespace FSpot {
 					 height,
 					 0,
 					 Gl.GL_BGRA,
-					 Gl.GL_UNSIGNED_BYTE,
+					 Gl.GL_UNSIGNED_INT_8_8_8_8_REV,
 					 pixels);
 			
 
