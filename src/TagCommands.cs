@@ -17,6 +17,7 @@ using System.Collections;
 using Mono.Unix;
 using FSpot;
 using FSpot.Utils;
+using FSpot.UI.Dialog;
 
 public class TagCommands {
 
@@ -377,10 +378,24 @@ public class TagCommands {
 
 		private void CreateTagIconFromExternalPhoto ()
 		{
-			using (FSpot.ImageFile img = FSpot.ImageFile.Create(new Uri(external_photo_chooser.Uri))) {
-				using (Gdk.Pixbuf external_image = img.Load ()) {
-					PreviewPixbuf = PixbufUtils.TagIconFromPixbuf (external_image);
+			try {
+				using (FSpot.ImageFile img = FSpot.ImageFile.Create(new Uri(external_photo_chooser.Uri))) {
+					using (Gdk.Pixbuf external_image = img.Load ()) {
+						PreviewPixbuf = PixbufUtils.TagIconFromPixbuf (external_image);
+					}
 				}
+			} catch (Exception e) {
+				string caption = Catalog.GetString ("Unable to load image");
+				string message = String.Format (Catalog.GetString ("Unable to load \"{0}\" as icon for the tag"), 
+									external_photo_chooser.Uri.ToString ());
+				HigMessageDialog md = new HigMessageDialog (this.Dialog, 
+									    DialogFlags.DestroyWithParent,
+									    MessageType.Error,
+									    ButtonsType.Close,
+									    caption, 
+									    message);
+				md.Run();
+				md.Destroy();
 			}
 		}
 

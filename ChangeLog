@@ -1,3 +1,8 @@
+2008-04-11  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* src/TagCommand.cs: prevent from crashing if load icon from external
+	file fails. Fix bgo #525513.
+
 2008-04-11  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/ControlOverlay.cs: patch from Fabian Kneissl to fix the
