@@ -1,5 +1,9 @@
 2008-04-11  Lorenzo Milesi <maxxer@yetopen.it>
 
+	* src/Imaging/XmpFile.cs: fixed xmp header. Bgo#519127.
+
+2008-04-11  Lorenzo Milesi <maxxer@yetopen.it>
+
 	* src/TagCommand.cs: prevent from crashing if load icon from external
 	file fails. Fix bgo #525513.
 

@@ -77,7 +77,7 @@ namespace FSpot.Xmp {
 				text = new XmlTextWriter (stream, System.Text.Encoding.UTF8);
  				text.Formatting = Formatting.Indented;
                         
-                                text.WriteProcessingInstruction ("xpacket", "begin=\"\ufeff\" id=\"testing\"");
+                                text.WriteProcessingInstruction ("xpacket", "begin=\"\ufeff\" id=\"W5M0MpCehiHzreSzNTczkc9d\"");
                                 text.WriteStartElement ("x:xmpmeta");
                                 text.WriteAttributeString ("xmlns", "x", null, "adobe:ns:meta/");
 
