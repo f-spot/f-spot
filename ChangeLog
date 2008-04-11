@@ -1,10 +1,5 @@
 2008-04-11  Stephane Delcroix  <sdelcroix@novell.com>
 
-	* src/Imaging/Exif.cs: foolow the encoding specified in the exif.
-	Fixes bgo #524214. Patch from Debajyoti Bera.
-
-2008-04-11  Stephane Delcroix  <sdelcroix@novell.com>
-
 	* src/ControlOverlay.cs: patch from Fabian Kneissl to fix the
 	toolbar positionning in fullscreen. bgo #526318.
 

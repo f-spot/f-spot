@@ -536,58 +536,6 @@ namespace Exif {
 				}
 			}
 		}
-
-		private static readonly byte[] USERCOMMENT_ASCII = { 0x41, 0x53, 0x43, 0x49, 0x49, 0x00, 0x00, 0x00};
-		private static readonly byte[] USERCOMMENT_JIS = { 0x4a, 0x49, 0x53, 0x00, 0x00, 0x00, 0x00, 0x00};
-		private static readonly byte[] USERCOMMENT_UNICODE = { 0x55, 0x4e, 0x49, 0x43, 0x4f, 0x44, 0x45, 0x00};
-
-		// Some Exif tags are specified in a special encoding
-		private System.Text.Encoding Encoding {
-			get {
-				unsafe {
-					if (Tag == ExifTag.ImageDescription) {
-						// ASCII encoded - use local encoding
-						return System.Text.Encoding.Default;
-
-					} else if (Tag == ExifTag.UserComment) {
-						if ((int)_handle->size < 8)
-							return System.Text.Encoding.UTF8;
-
-						byte[] data = new byte [8];
-						Marshal.Copy (_handle->data, data, 0, 8);
-
-						// ASCII encoded - use local encoding
-						if (data [0] == USERCOMMENT_ASCII [0] &&
-						    data [1] == USERCOMMENT_ASCII [1] &&
-						    data [2] == USERCOMMENT_ASCII [2] &&
-						    data [3] == USERCOMMENT_ASCII [3] &&
-						    data [4] == USERCOMMENT_ASCII [4] &&
-						    data [5] == USERCOMMENT_ASCII [5] &&
-						    data [6] == USERCOMMENT_ASCII [6] &&
-						    data [7] == USERCOMMENT_ASCII [7])
-							return System.Text.Encoding.Default;
-
-						if (data [0] == USERCOMMENT_UNICODE [0] &&
-						    data [1] == USERCOMMENT_UNICODE [1] &&
-						    data [2] == USERCOMMENT_UNICODE [2] &&
-						    data [3] == USERCOMMENT_UNICODE [3] &&
-						    data [4] == USERCOMMENT_UNICODE [4] &&
-						    data [5] == USERCOMMENT_UNICODE [5] &&
-						    data [6] == USERCOMMENT_UNICODE [6] &&
-						    data [7] == USERCOMMENT_UNICODE [7])
-							return System.Text.Encoding.UTF8;
-
-						// FIXME: Support JIS too
-
-						return System.Text.Encoding.UTF8;
-					} else {
-						// Most of the tags are ASCII encoded, so UTF8 should
-						// work fine
-						return System.Text.Encoding.UTF8;
-					}
-				}
-			}
-		}
 		
 		public void SetData (byte [] data, int size)
 		{
@@ -762,7 +710,6 @@ namespace Exif {
 					exif_entry_get_value (this.Handle, value, value.Length);
 
 					int i;
-
 					for (i = 0; i <  value.Length; i++) {
 						if (value [i] == 0) 
 							break;
@@ -771,15 +718,7 @@ namespace Exif {
 					if (len == 0)
 						return null;
 					
-					System.Text.Encoding encoding = Encoding;
-					byte[] converted = value;
-
-					if (encoding != System.Text.Encoding.UTF8) {
-						converted = System.Text.Encoding.Convert (encoding, System.Text.Encoding.UTF8, value, 0, len);
-						len = converted.Length;
-					}
-
-					return System.Text.Encoding.UTF8.GetString (converted, 0, len);
+					return System.Text.Encoding.UTF8.GetString (value, 0, len);
 				}
 			}
 		}
