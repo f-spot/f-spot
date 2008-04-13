@@ -513,7 +513,7 @@ public class MainWindow {
 
 			display_timeline.Sensitive = true;
 			display_filmstrip.Sensitive = false;
-			group_selector.Visible = display_timeline.Active;
+			group_selector.Visible = group_selector.Sensitive = display_timeline.Active;
 
 			ColorDialog.Close ();
 			if (photo_view.View.Loupe != null)
@@ -527,7 +527,7 @@ public class MainWindow {
 
 			display_timeline.Sensitive = false;
 			display_filmstrip.Sensitive = true;
-			group_selector.Visible = false;
+			group_selector.Visible = group_selector.Sensitive = false;
 			
 			JumpTo (icon_view.FocusCell);
 			zoom_scale.Value = photo_view.NormalizedZoom;
