@@ -498,6 +498,8 @@ namespace FSpot.Widgets
 
 			if (current == null) {
 				try {
+					ThumbnailGenerator.Default.Request ((selection.Collection [i]).DefaultVersionUri, 0, 256, 256);
+
 					if (SquaredThumbs) {
 						current = new Pixbuf (thumb_path);
 						current = PixbufUtils.IconFromPixbuf (current, ThumbSize);

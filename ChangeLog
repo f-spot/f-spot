@@ -1,5 +1,9 @@
 2008-04-14  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/FilmStrip.cs: Asynchronously loadin gth emissing thumbs
+
+2008-04-14  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/ImageFile.cs: adding a nullity check to avoid 
 	GdkPixbuf-CRITICAL warnings.
 
