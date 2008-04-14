@@ -81,7 +81,8 @@ public class ImageView : Layout {
 			return f_image_view_get_selection_xy_ratio (Handle);
 		}
 		set {
-			f_image_view_set_selection_xy_ratio (Handle, value);
+			if (Pixbuf != null)
+				f_image_view_set_selection_xy_ratio (Handle, value);
 		}
 	}
 

@@ -1,4 +1,5 @@
 using Gtk;
+using GLib;
 using Gnome;
 using System;
 using System.Reflection;
@@ -68,6 +69,10 @@ public class Driver {
 		bool slideshow = false;
 		string import_uri = null;
 		
+		// Debug GdkPixbuf critical warnings
+		//LogFunc logFunc = new GLib.LogFunc (GLib.Log.PrintTraceLogFunction);
+		//Log.SetLogHandler ("GdkPixbuf", GLib.LogLevelFlags.Critical, logFunc);
+
 		FSpot.Global.PhotoDirectory = (string) Preferences.Get(Preferences.STORAGE_PATH);
 
 		for (int i = 0; i < args.Length && !shutdown; i++) {

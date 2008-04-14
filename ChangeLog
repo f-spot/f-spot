@@ -1,3 +1,8 @@
+2008-04-14  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/ImageFile.cs: adding a nullity check to avoid 
+	GdkPixbuf-CRITICAL warnings.
+
 2008-04-11  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* src/Imaging/XmpFile.cs: fixed xmp header. Bgo#519127.
