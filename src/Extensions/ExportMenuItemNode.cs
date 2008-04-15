@@ -20,7 +20,7 @@ namespace FSpot.Extensions
 	{
 
 		[NodeAttribute ("class", true)]
-		string class_name;
+		protected string class_name;
 
 		public static SelectedImages SelectedImages;
 

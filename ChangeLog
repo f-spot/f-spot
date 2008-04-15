@@ -1,5 +1,13 @@
 2008-04-15  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Extensions/ExportMenuItemNode.cs:
+	* src/Extensions/ComplexMenuItemNode.cs:
+	* src/Extensions/CommandMenuItemNode.cs:
+	* src/Extensions/MenuNode.cs: mark the NodeAttributes as protected.
+	Fixes bgo #527512.
+
+2008-04-15  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* libgphoto2-sharp/CameraList.cs: Fixing two P/Invoke issues.
 	Fixes bgo #528162.
 

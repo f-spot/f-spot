@@ -52,7 +52,7 @@ namespace FSpot.Extensions
 	public class MenuGeneratorNode : MenuNode
 	{
 		[NodeAttribute ("generator_type", true)]
-		string command_type;
+		protected string command_type;
 
 		private IMenuGenerator menu_generator;
 
@@ -78,7 +78,6 @@ namespace FSpot.Extensions
 
 		protected virtual void OnActivated (object o, EventArgs e)
 		{
-			Console.WriteLine ("Item {0} activated", Id);
 		}
 	}
 
@@ -94,10 +93,10 @@ namespace FSpot.Extensions
 	public abstract class MenuNode : ExtensionNode
 	{
 		[NodeAttribute]
-		string _label;
+		protected string _label;
 
 		[NodeAttribute]
-		string icon;
+		protected string icon;
 
 		public virtual Gtk.MenuItem GetMenuItem ()
 		{

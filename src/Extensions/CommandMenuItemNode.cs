@@ -18,7 +18,7 @@ namespace FSpot.Extensions
 	{
 
 		[NodeAttribute ("command_type", true)]
-		string command_type;
+		protected string command_type;
 
 		protected override void OnActivated (object o, EventArgs e)
 		{

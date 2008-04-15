@@ -18,10 +18,10 @@ namespace FSpot.Extensions
 	public class ComplexMenuItemNode : MenuNode
 	{
 		[NodeAttribute]
-		string widget_type;
+		protected string widget_type;
 
 		[NodeAttribute]
-		string command_type;
+		protected string command_type;
 
 		public event EventHandler Changed;
 
