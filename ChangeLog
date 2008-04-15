@@ -1,5 +1,10 @@
 2008-04-15  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* libgphoto2-sharp/CameraList.cs: Fixing two P/Invoke issues.
+	Fixes bgo #528162.
+
+2008-04-15  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* Makefile.am: running update-desktop-database on make install and 
 	uninstall.
 

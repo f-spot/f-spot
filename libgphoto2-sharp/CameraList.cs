@@ -69,27 +69,27 @@ namespace LibGPhoto2
 		}
 		
 		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_list_get_name (HandleRef list, int index, out string name);
+		internal static extern ErrorCode gp_list_get_name (HandleRef list, int index, out IntPtr name);
 
 		public string GetName (int index)
 		{
-			string name;
+			IntPtr name;
 
 			Error.CheckError (gp_list_get_name(this.Handle, index, out name));
 
-			return name;
+			return Marshal.PtrToStringAnsi (name);
 		}
 		
 		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_list_get_value (HandleRef list, int index, out string value);
+		internal static extern ErrorCode gp_list_get_value (HandleRef list, int index, out IntPtr value);
 
 		public string GetValue (int index)
 		{
-			string value;
+			IntPtr value;
 
 			Error.CheckError (gp_list_get_value(this.Handle, index, out value));
 
-			return value;
+			return Marshal.PtrToStringAnsi (value);
 		}
 		
 		[DllImport ("libgphoto2.so")]
