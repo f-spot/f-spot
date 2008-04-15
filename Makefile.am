@@ -75,3 +75,16 @@ DISTCLEANFILES = \
         $(desktop_files)
 
 DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper
+
+UPDATE_DESKTOP = \
+	if [ -f $(DESTDIR)$(datadir)/applications/defaults.list ] ; then \
+		if which update-desktop-database>/dev/null 2>&1 ; then \
+			update-desktop-database; \
+		fi \
+	fi
+
+install-data-hook: 
+	$(UPDATE_DESKTOP)
+
+uninstall-hook: 
+	$(UPDATE_DESKTOP)

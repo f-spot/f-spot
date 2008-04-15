@@ -1,5 +1,10 @@
 2008-04-15  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* Makefile.am: running update-desktop-database on make install and 
+	uninstall.
+
+2008-04-15  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/FilmStrip.cs: refreshing newly loaded thumbs even if the
 	strip is not moving
 
