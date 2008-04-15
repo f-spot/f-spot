@@ -311,6 +311,7 @@ namespace FSpot.Widgets
 			this.selection.Collection.ItemsChanged += HandleCollectionItemsChanged;
 			this.squared_thumbs = squared_thumbs;
 			thumb_cache = new ThumbnailCache (30);
+			ThumbnailGenerator.Default.OnPixbufLoaded += delegate (PixbufLoader pl, string path, int order, Pixbuf p) {QueueDraw ();};
 		}
 	
 		int min_length = 400;

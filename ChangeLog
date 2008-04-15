@@ -1,6 +1,11 @@
+2008-04-15  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/FilmStrip.cs: refreshing newly loaded thumbs even if the
+	strip is not moving
+
 2008-04-14  Stephane Delcroix  <sdelcroix@novell.com>
 
-	* src/FilmStrip.cs: Asynchronously loadin gth emissing thumbs
+	* src/FilmStrip.cs: Asynchronously loading the missing thumbs
 
 2008-04-14  Stephane Delcroix  <sdelcroix@novell.com>
 
