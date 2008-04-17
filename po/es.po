@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-04 11:05+0100\n"
-"PO-Revision-Date: 2008-04-07 19:46+0200\n"
+"POT-Creation-Date: 2008-04-14 12:58+0100\n"
+"PO-Revision-Date: 2008-04-17 20:50+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -571,18 +571,6 @@ msgstr "Aplicar"
 #: ../src/Editors/Tilt.cs:28 ../src/ItemAction.cs:326
 msgid "Straighten"
 msgstr "Enderezar"
-
-#: ../src/ExceptionDialog.cs:24
-msgid "F-Spot Encountered a Fatal Error"
-msgstr "F-Spot encontró un error fatal"
-
-#: ../src/ExceptionDialog.cs:60
-msgid "Error Details"
-msgstr "Detalles del error"
-
-#: ../src/ExceptionDialog.cs:104
-msgid "An unhandled exception was thrown: "
-msgstr "Se produjo una excepción no tratada: "
 
 #: ../src/Extensions/OpenWithMenu.cs:93
 msgid "No applications available"
@@ -1684,14 +1672,14 @@ msgstr "Rotando la foto «{0}»"
 msgid "Directory not found"
 msgstr "No se encontró el directorio"
 
-#: ../src/RotateCommand.cs:239
+#: ../src/RotateCommand.cs:240
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
 msgstr[0] "No se pudo rotar la foto"
 msgstr[1] "No se pudieron rotar las {0} fotos"
 
-#: ../src/RotateCommand.cs:241
+#: ../src/RotateCommand.cs:242
 #, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
@@ -1706,12 +1694,12 @@ msgstr[1] ""
 "Las {0} fotos no se pudieron rotar porque están en un sistema de archivos de "
 "sólo lectura como un CDROM.  Compruebe los permisos y vuelva a intentarlo."
 
-#: ../src/RotateCommand.cs:268
+#: ../src/RotateCommand.cs:269
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "Se recibió el error «{0}» al intentar rotar {1}"
 
-#: ../src/RotateCommand.cs:273
+#: ../src/RotateCommand.cs:274
 msgid "Error while rotating photo."
 msgstr "Error al rotar la foto."
 
@@ -1754,42 +1742,51 @@ msgstr "Abrir"
 msgid "Set as Background"
 msgstr "Establecer como fondo"
 
-#: ../src/TagCommands.cs:91 ../src/TagCommands.cs:219
+#: ../src/TagCommands.cs:92 ../src/TagCommands.cs:220
 #: ../src/TagSelectionWidget.cs:508
 msgid "This name is already in use"
 msgstr "Este nombre ya está siendo usado"
 
-#: ../src/TagCommands.cs:138
+#: ../src/TagCommands.cs:139
 msgid "Create New Tag"
 msgstr "Crear nueva etiqueta"
 
-#: ../src/TagCommands.cs:139
+#: ../src/TagCommands.cs:140
 msgid "Name of New Tag:"
 msgstr "Nombre de la etiqueta nueva:"
 
-#: ../src/TagCommands.cs:278
+#: ../src/TagCommands.cs:279
 msgid "Edit Tag"
 msgstr "Editar etiqueta"
 
-#: ../src/TagCommands.cs:279
+#: ../src/TagCommands.cs:280
 msgid "Tag Name:"
 msgstr "Nombre de la etiqueta:"
 
-#: ../src/TagCommands.cs:412
+#: ../src/TagCommands.cs:388
+msgid "Unable to load image"
+msgstr "No se pudo cargar la imagen"
+
+#: ../src/TagCommands.cs:389
+#, csharp-format
+msgid "Unable to load \"{0}\" as icon for the tag"
+msgstr "No se pudo cargar «{0}» como icono para la etiqueta"
+
+#: ../src/TagCommands.cs:427
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Fotografía {0} de {1}"
 
-#: ../src/TagCommands.cs:442
+#: ../src/TagCommands.cs:457
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "Editar el icono para la etiqueta {0}"
 
-#: ../src/TagCommands.cs:458
+#: ../src/TagCommands.cs:473
 msgid "Select Photo from file"
 msgstr "Seleccionar foto desde archivo"
 
-#: ../src/TagCommands.cs:481
+#: ../src/TagCommands.cs:496
 #, csharp-format
 msgid ""
 "\n"
@@ -1938,6 +1935,18 @@ msgstr "Jorge González <jorgegonz@svn.gnome.org>, 2004-2008."
 #: ../src/UI.Dialog/AboutDialog.cs:98
 msgid "F-Spot Website"
 msgstr "Página web de F-Spot"
+
+#: ../src/UI.Dialog/ExceptionDialog.cs:24
+msgid "F-Spot Encountered a Fatal Error"
+msgstr "F-Spot encontró un error fatal"
+
+#: ../src/UI.Dialog/ExceptionDialog.cs:60
+msgid "Error Details"
+msgstr "Detalles del error"
+
+#: ../src/UI.Dialog/ExceptionDialog.cs:104
+msgid "An unhandled exception was thrown: "
+msgstr "Se produjo una excepción no tratada: "
 
 #: ../src/UI.Dialog/SelectionRatioDialog.cs:60
 msgid "Label"
@@ -2845,7 +2854,7 @@ msgstr "_Exportar a un álbum:"
 
 #: ../src/f-spot.glade.h:226
 msgid "_Filmstrip"
-msgstr ""
+msgstr "_Tira de imágenes"
 
 #: ../src/f-spot.glade.h:227
 msgid "_Flickr"
