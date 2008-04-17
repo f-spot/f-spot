@@ -102,7 +102,13 @@ namespace FSpot
 			get {
 				if (backend == null) {
 #if !NOGCONF
-					backend = new GConfPreferenceBackend ();
+					try {
+						backend = new GConfPreferenceBackend ();
+					} catch (Exception ex) {
+						Console.WriteLine ("Couldn't load Gconf. Check that gconf-daemon is running.{0}{1}",
+							Environment.NewLine, ex);
+						backend = new NullPreferenceBackend ();
+					}
 #else
 					backend = new NullPreferenceBackend ();
 #endif
