@@ -84,6 +84,7 @@ namespace FSpot {
 		GdkGlx.Context glx;
 		float angle = 0.0f;
 		Animator flip;
+		bool running = false;
 
 		public TextureDisplay (BrowsablePointer item)
 		{
@@ -91,8 +92,8 @@ namespace FSpot {
 			DoubleBuffered = false;
 			AppPaintable = true;
 			CanFocus = true;
-
 			item.Changed += HandleItemChanged;
+
 			flip = new Animator (6000, 6000, delegate { flip.Start (); item.MoveNext (true); }); 
 			flip.RunWhenStarted = false;
 		}
@@ -136,11 +137,13 @@ namespace FSpot {
 		
 		public void Start ()
 		{
+			running = true;
 			flip.Start ();
 		}
 
 		public void Stop ()
 		{
+			running = false;
 			flip.Stop ();	
 		}
 
@@ -178,7 +181,7 @@ namespace FSpot {
 			//Next = null;
 			PreloadNext ();
 
-			if (IsRealized)
+			if (running)
 				Animator.Start ();
 		}
 
