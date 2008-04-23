@@ -514,9 +514,9 @@ namespace FSpotFlickrExport {
 				if (meta_check.Active != (bool) val)
 					meta_check.Active = (bool) val;
 				break;
-			case Preferences.EXPORT_TOKEN_FLICKR:
-			case Preferences.EXPORT_TOKEN_23HQ:
-			case Preferences.EXPORT_TOKEN_ZOOOMR:
+			case FlickrRemote.TOKEN_FLICKR:
+			case FlickrRemote.TOKEN_23HQ:
+			case FlickrRemote.TOKEN_ZOOOMR:
 				token = (string) val;
 			        break;
 			case PUBLIC_KEY:

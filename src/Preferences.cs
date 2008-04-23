@@ -9,6 +9,7 @@ namespace FSpot
 	{
 		public const string APP_FSPOT = "/apps/f-spot/";
 		public const string APP_FSPOT_EXPORT = APP_FSPOT + "export/";
+		public const string APP_FSPOT_EXPORT_TOKENS = APP_FSPOT_EXPORT + "tokens/";
 
 		public const string MAIN_WINDOW_MAXIMIZED = "/apps/f-spot/ui/maximized";
 
@@ -48,24 +49,6 @@ namespace FSpot
 		public const string SIDEBAR_POSITION = "/apps/f-spot/ui/sidebar_size";
 		public const string ZOOM = "/apps/f-spot/ui/zoom";
 
-		public const string EXPORT_TOKEN_FLICKR = "/apps/f-spot/export/tokens/flickr"; 
-		public const string EXPORT_TOKEN_23HQ = "/apps/f-spot/export/tokens/23hq"; 
-		public const string EXPORT_TOKEN_ZOOOMR = "/apps/f-spot/export/tokens/zooomr"; 
-
-		public const string EXPORT_SMUGMUG_SCALE = "/apps/f-spot/export/smugmug/scale";
-		public const string EXPORT_SMUGMUG_SIZE = "/apps/f-spot/export/smugmug/size";
-		public const string EXPORT_SMUGMUG_ROTATE = "/apps/f-spot/export/smugmug/rotate";
-		public const string EXPORT_SMUGMUG_BROWSER = "/apps/f-spot/export/smugmug/browser";
-
-		public const string EXPORT_FOLDER_SCALE = "/apps/f-spot/export/folder/scale";
-		public const string EXPORT_FOLDER_SIZE = "/apps/f-spot/export/folder/size";
-		public const string EXPORT_FOLDER_OPEN = "/apps/f-spot/export/folder/browser";
-		public const string EXPORT_FOLDER_ROTATE = "/apps/f-spot/export/folder/rotate";
-		public const string EXPORT_FOLDER_METHOD = "/apps/f-spot/export/folder/method";
-		public const string EXPORT_FOLDER_URI = "/apps/f-spot/export/folder/uri";
-		public const string EXPORT_FOLDER_SHARPEN = "/apps/f-spot/export/folder/sharpen";
-		public const string EXPORT_FOLDER_INCLUDE_TARBALLS = "/apps/f-spot/export/folder/include_tarballs";
-		
 		public const string EXPORT_EMAIL_SIZE = "/apps/f-spot/export/email/size";
 		public const string EXPORT_EMAIL_ROTATE = "/apps/f-spot/export/email/auto_rotate";
 		public const string EXPORT_EMAIL_DELETE_TIMEOUT_SEC = "/apps/f-spot/export/email/delete_timeout_seconds";
@@ -155,19 +138,9 @@ namespace FSpot
 			case SHOW_DATES:
 			case SHOW_RATINGS:
 			case VIEWER_SHOW_FILENAMES:
-			case EXPORT_SMUGMUG_SCALE:
-			case EXPORT_SMUGMUG_ROTATE:
-			case EXPORT_SMUGMUG_BROWSER:
-			case EXPORT_FOLDER_SCALE:
-			case EXPORT_FOLDER_SHARPEN:
-			case EXPORT_FOLDER_INCLUDE_TARBALLS:
 			case DBUS_READ_ONLY:
 				return true;
 			
-			case EXPORT_SMUGMUG_SIZE:
-			case EXPORT_FOLDER_SIZE:
-				return 800;
-				
 			case TAG_ICON_SIZE:
 				return (int) Tag.IconSize.Large;
 		
@@ -185,14 +158,10 @@ namespace FSpot
 			case EXPORT_EMAIL_SIZE:
 				return 3;	// medium size 640px
 			case EXPORT_EMAIL_ROTATE:
-			case EXPORT_FOLDER_OPEN:
-			case EXPORT_FOLDER_ROTATE:
 			case VIEWER_INTERPOLATION:
 				return true;
 			case EXPORT_EMAIL_DELETE_TIMEOUT_SEC:
 				return 30;	// delete temporary email pictures after 30 seconds
-			case EXPORT_FOLDER_METHOD:
-				return "static";
 			case VIEWER_TRANSPARENCY:
 				return "NONE";
 			case VIEWER_TRANS_COLOR:

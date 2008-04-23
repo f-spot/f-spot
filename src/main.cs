@@ -186,6 +186,11 @@ public class Driver {
 			AddinManager.Initialize (FSpot.Global.BaseDirectory);
 			AddinManager.Registry.Update (null);
 			SetupService setupService = new SetupService (AddinManager.Registry);
+			foreach (AddinRepository repo in setupService.Repositories.GetRepositories ())
+				if (repo.Url.StartsWith ("http://addins.f-spot.org/") && !repo.Url.StartsWith ("http://addins.f-spot.org/" + Defines.VERSION)) {
+					Console.WriteLine ("Unregistering {0}", repo.Url);
+					setupService.Repositories.RemoveRepository (repo.Url);
+				}
 			setupService.Repositories.RegisterRepository (null, "http://addins.f-spot.org/" + Defines.VERSION, false);
 
 			bool create = true;

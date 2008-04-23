@@ -29,6 +29,10 @@ public class FlickrRemote {
 	public bool               ExportTagHierarchy;
 	public bool               ExportIgnoreTopLevel;
 	public FSpot.ProgressItem Progress;
+
+	public const string TOKEN_FLICKR = Preferences.APP_FSPOT_EXPORT_TOKENS + "flickr";
+	public const string TOKEN_23HQ = Preferences.APP_FSPOT_EXPORT_TOKENS + "23hq";
+	public const string TOKEN_ZOOOMR = Preferences.APP_FSPOT_EXPORT_TOKENS + "zooomr";
 	
 	public FlickrRemote (string token, Service service)
 	{
@@ -204,9 +208,9 @@ public class FlickrRemote {
 		public string PreferencePath;
 		
 		public static Service [] Supported = {
-			new Service (SupportedService.Flickr, "Flickr.com", "c6b39ee183385d9ce4ea188f85945016", "0a951ac44a423a04", Preferences.EXPORT_TOKEN_FLICKR),
-			new Service (SupportedService.TwentyThreeHQ, "23hq.com", "c6b39ee183385d9ce4ea188f85945016", "0a951ac44a423a04", Preferences.EXPORT_TOKEN_23HQ),
-			new Service (SupportedService.Zooomr, "Zooomr.com", "unknown", "unknown", Preferences.EXPORT_TOKEN_ZOOOMR)
+			new Service (SupportedService.Flickr, "Flickr.com", "c6b39ee183385d9ce4ea188f85945016", "0a951ac44a423a04", TOKEN_FLICKR),
+			new Service (SupportedService.TwentyThreeHQ, "23hq.com", "c6b39ee183385d9ce4ea188f85945016", "0a951ac44a423a04", TOKEN_23HQ),
+			new Service (SupportedService.Zooomr, "Zooomr.com", "unknown", "unknown", TOKEN_ZOOOMR)
 		};
 		
 		public Service (SupportedService id, string name, string api_key, string secret, string pref)

@@ -1,3 +1,11 @@
+2008-04-23  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/main.cs: unregister old repositories
+
+2008-04-23  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* src/Preferences.cs: moved out few exporters preferences left over.
+
 2008-04-16  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* src/Preferences.cs: revert to nullpreferences backend if Gconf

@@ -56,6 +56,16 @@ namespace FSpotFolderExport {
 		
 		[Glade.Widget] Gtk.HBox chooser_hbox;
 
+		public const string EXPORT_SERVICE = "folder/";
+		public const string SCALE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "scale";
+		public const string SIZE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "size";
+		public const string OPEN_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "browser";
+		public const string ROTATE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "rotate";
+		public const string METHOD_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "method";
+		public const string URI_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "uri";
+		public const string SHARPEN_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "sharpen";
+		public const string INCLUDE_TARBALLS_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "include_tarballs";
+
 		private Glade.XML xml;
 		private string dialog_name = "folder_export_dialog";
 		Gnome.Vfs.Uri dest;
@@ -124,8 +134,8 @@ namespace FSpotFolderExport {
 			
 			uri_chooser.LocalOnly = false;
 
-			if (Preferences.Get (Preferences.EXPORT_FOLDER_URI) != null && Preferences.Get (Preferences.EXPORT_FOLDER_URI) as string != String.Empty)
-				uri_chooser.SetUri (Preferences.Get (Preferences.EXPORT_FOLDER_URI) as string);
+			if (Preferences.Get (URI_KEY) != null && Preferences.Get (URI_KEY) as string != String.Empty)
+				uri_chooser.SetUri (Preferences.Get (URI_KEY) as string);
 			else
 				uri_chooser.SetFilename (uri_path);
 
@@ -136,11 +146,11 @@ namespace FSpotFolderExport {
 			//LoadHistory ();
 			Dialog.Response += HandleResponse;
 
-			LoadPreference (Preferences.EXPORT_FOLDER_SCALE);
-			LoadPreference (Preferences.EXPORT_FOLDER_SIZE);
-			LoadPreference (Preferences.EXPORT_FOLDER_OPEN);
-			LoadPreference (Preferences.EXPORT_FOLDER_ROTATE);
-			LoadPreference (Preferences.EXPORT_FOLDER_METHOD);
+			LoadPreference (SCALE_KEY);
+			LoadPreference (SIZE_KEY);
+			LoadPreference (OPEN_KEY);
+			LoadPreference (ROTATE_KEY);
+			LoadPreference (METHOD_KEY);
 		}
 
 		public void HandleSizeActive (object sender, System.EventArgs args)
@@ -219,7 +229,7 @@ namespace FSpotFolderExport {
 				}
 
 				//create the zip tarballs for original
-				if (gallery is OriginalGallery && (bool)Preferences.Get(Preferences.EXPORT_FOLDER_INCLUDE_TARBALLS))
+				if (gallery is OriginalGallery && (bool)Preferences.Get(INCLUDE_TARBALLS_KEY))
 					(gallery as OriginalGallery).CreateZip ();
 
 				// we've created the structure, now if the destination was local we are done
@@ -251,12 +261,12 @@ namespace FSpotFolderExport {
 				}
 
 				// Save these settings for next time
-				Preferences.Set (Preferences.EXPORT_FOLDER_SCALE, scale);
-				Preferences.Set (Preferences.EXPORT_FOLDER_SIZE, size);
-				Preferences.Set (Preferences.EXPORT_FOLDER_OPEN, open);
-				Preferences.Set (Preferences.EXPORT_FOLDER_ROTATE, rotate);
-				Preferences.Set (Preferences.EXPORT_FOLDER_METHOD, static_radio.Active ? "static" : original_radio.Active ? "original" : "folder" );
-				Preferences.Set (Preferences.EXPORT_FOLDER_URI, uri_chooser.Uri);
+				Preferences.Set (SCALE_KEY, scale);
+				Preferences.Set (SIZE_KEY, size);
+				Preferences.Set (OPEN_KEY, open);
+				Preferences.Set (ROTATE_KEY, rotate);
+				Preferences.Set (METHOD_KEY, static_radio.Active ? "static" : original_radio.Active ? "original" : "folder" );
+				Preferences.Set (URI_KEY, uri_chooser.Uri);
 			} catch (System.Exception e) {
 				// Console.WriteLine (e);
 				progress_dialog.Message = e.ToString ();
@@ -360,25 +370,25 @@ namespace FSpotFolderExport {
 			//System.Console.WriteLine ("Setting {0} to {1}", key, val);
 
 			switch (key) {
-			case Preferences.EXPORT_FOLDER_SCALE:
+			case SCALE_KEY:
 				if (scale_check.Active != (bool) val)
 					scale_check.Active = (bool) val;
 				break;
 
-			case Preferences.EXPORT_FOLDER_SIZE:
+			case SIZE_KEY:
 				size_spin.Value = (double) (int) val;
 				break;
 			
-			case Preferences.EXPORT_FOLDER_OPEN:
+			case OPEN_KEY:
 				if (open_check.Active != (bool) val)
 					open_check.Active = (bool) val;
 				break;
 			
-			case Preferences.EXPORT_FOLDER_ROTATE:
+			case ROTATE_KEY:
 				if (rotate_check.Active != (bool) val)
 					rotate_check.Active = (bool) val;
 				break;
-			case Preferences.EXPORT_FOLDER_METHOD:
+			case METHOD_KEY:
 				static_radio.Active = (string) val == "static";
 				original_radio.Active = (string) val == "original";
 				plain_radio.Active = (string) val == "folder";
@@ -493,7 +503,7 @@ namespace FSpotFolderExport {
 				
 						FilterSet req_set = new FilterSet ();
 						req_set.Add (new ResizeFilter ((uint)Math.Max (req.Width, req.Height)));
-						if ((bool)Preferences.Get (Preferences.EXPORT_FOLDER_SHARPEN)) {
+						if ((bool)Preferences.Get (FolderExport.SHARPEN_KEY)) {
 							if (req.Name == "lq")
 								req_set.Add (new SharpFilter (0.1, 2, 4));
 							if (req.Name == "thumbs")
