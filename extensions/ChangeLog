@@ -1,3 +1,10 @@
+2008-04-24  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* SmugMugExport/Makefile.am:
+	* PicasaWebExport/Makefile.am:
+	* FlickrExport/Makefile.am: allow parallel compilation with -j.
+	Fixes bgo #516632.
+
 2008-04-16  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* FlickrExport/FlickrExport.cs:
