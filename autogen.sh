@@ -50,7 +50,7 @@ grep "^AM_GLIB_GNU_GETTEXT" configure.in >/dev/null && {
   grep "sed.*POTFILES" $srcdir/configure.in >/dev/null || \
   (glib-gettextize --version) < /dev/null > /dev/null 2>&1 || {
     echo
-    echo "**Error**: You must have \`glib' installed to compile $PROJECT."
+    echo "**Error**: You must have \`glib-devel' (or glib2-devel) installed to compile $PROJECT."
     DIE=1
   }
 }

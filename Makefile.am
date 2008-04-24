@@ -38,7 +38,8 @@ DIST_SUBDIRS = 		\
 
 desktop_in_files=	\
 	f-spot.desktop.in	\
-	f-spot-view.desktop.in
+	f-spot-view.desktop.in	\
+	f-spot-import.desktop.in
 
 desktop_files=$(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
