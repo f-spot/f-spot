@@ -38,7 +38,6 @@ namespace FSpot {
 			int monitor = screen.GetMonitorAtWindow (parent.GdkWindow);
 			Gdk.Rectangle bounds = screen.GetMonitorGeometry(monitor);
 			Move(bounds.X, 0);
-			SetDefaultSize(bounds.Width, bounds.Height);
 
 
 			string style = "style \"test\" {\n" +
