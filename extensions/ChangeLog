@@ -1,3 +1,9 @@
+2008-04-26  Ruben Vermeersch  <ruben@savanne.be>
+
+	* FlickrExport/FlickrExport.cs: Don't show bandwidth bar to pro users.
+	Scares me to death. Upload limits haven't returned, let's not give our
+	users the impression :-).
+
 2008-04-24  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* SmugMugExport/Makefile.am:

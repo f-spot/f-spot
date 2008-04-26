@@ -118,7 +118,7 @@ namespace FSpotFlickrExport {
 										auth.User.Username,
 										current_service.Name);
 					auth_flickr.Label = String.Format (Catalog.GetString ("Sign in as a different user"), auth.User.Username);
-					used_bandwidth.Visible = true;
+					used_bandwidth.Visible = !fr.Connection.PeopleGetUploadStatus().IsPro;
 					used_bandwidth.Fraction = fr.Connection.PeopleGetUploadStatus().PercentageUsed;
 					used_bandwidth.Text = string.Format (Catalog.GetString("Used {0} of your allowed {1} monthly quota"), 
 									SizeUtil.ToHumanReadable(fr.Connection.PeopleGetUploadStatus().BandwidthUsed), 
