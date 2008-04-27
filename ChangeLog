@@ -1,3 +1,8 @@
+2008-04-27  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* src/Widgets/FilmStrip.cs: prevent filmstrip locking. ignore clicks
+	beyond filmstrip right end.
+
 2008-04-24  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* autogen.sh: Expliciting an error message

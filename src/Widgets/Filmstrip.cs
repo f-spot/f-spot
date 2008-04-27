@@ -355,6 +355,7 @@ namespace FSpot.Widgets
 
 	
 		Hashtable start_indexes;
+		int filmstrip_end_pos;
 		protected override bool OnExposeEvent (EventExpose evnt)
 		{
 			if (evnt.Window != GdkWindow)
@@ -395,6 +396,7 @@ namespace FSpot.Widgets
 				if (start_x > icon_pixbuf.Width)
 					break;
 			}
+			filmstrip_end_pos = start_x;
 
 			start_x = ref_x;
 			for (int i = (int) Math.Round (Position) - 1; i >= 0; i--) {
@@ -465,7 +467,7 @@ namespace FSpot.Widgets
 
 		protected override bool OnButtonPressEvent (EventButton evnt)
 		{
-			if(evnt.Button != 1) 
+			if(evnt.Button != 1 || evnt.X > filmstrip_end_pos) 
 				return false;
 			HasFocus = true;
 			int pos = -1;
@@ -642,7 +644,7 @@ namespace FSpot.Widgets
 
 				float increment = speed * interval / 1000f;
 
-				if (Math.Abs (distance - increment) < 0.01) {
+				if (distance == 0 || Math.Abs (distance - increment) < 0.01) {
 					handler (target);
 					return false;
 				}
