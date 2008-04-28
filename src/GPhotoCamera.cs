@@ -99,6 +99,10 @@ public class GPhotoCamera
 	{
 		if (camera_fs == null) 
 			throw new InvalidOperationException ();
+
+		//workaround for nikon dslr in ptp mode
+		if (dir == "/special/")
+			return;
 		
 		//files
 		CameraList filelist = camera_fs.ListFiles(dir, context);
