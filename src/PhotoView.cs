@@ -177,6 +177,16 @@ namespace FSpot {
 				rating.Value = (int)Item.Current.Rating;
 			rating.Changed += HandleRatingChanged;
 		}
+
+		public void UpdateSelectionCombo ()
+		{
+			//constraints_combo.Active = 0;	
+			TreeIter iter;
+			if (constraints_combo.GetActiveIter (out iter)) {
+				if (((ConstraintType)constraints_store.GetValue (iter, 3)) == ConstraintType.SameAsPhoto)
+					constraints_combo.Active = 0;
+			}
+		}
 	
 		private void Update ()
 		{
@@ -187,8 +197,8 @@ namespace FSpot {
 			UpdateCountLabel ();
 			UpdateDescriptionEntry ();
 			UpdateRating ();
-			HandleConstraintsComboChanged (null, null);
-	
+			UpdateSelectionCombo ();
+
 			if (UpdateFinished != null)
 				UpdateFinished (this);
 		}
