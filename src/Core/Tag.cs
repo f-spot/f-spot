@@ -42,14 +42,16 @@ namespace FSpot
 	
 		private int sort_priority;
 		public int SortPriority {
-			set {
-				sort_priority = value;
-			}
-			get {
-				return sort_priority;
-			}
+			set { sort_priority = value; }
+			get { return sort_priority; }
 		}
 	
+		private int popularity;
+		public int Popularity {
+			get { return popularity; }
+			set { popularity = value; }
+		}
+
 		// Icon.  If theme_icon_name is not null, then we save the name of the icon instead
 		// of the actual icon data.
 	

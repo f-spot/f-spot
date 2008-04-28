@@ -1,3 +1,9 @@
+2008-04-28  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Tag.cs: new Popularity property.
+	* src/TagStore.cs: sort tags by popularity on the TagEntry. Fixes 
+	bgo #378428.
+
 2008-04-27  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* src/Widgets/FilmStrip.cs: prevent filmstrip locking. ignore clicks
