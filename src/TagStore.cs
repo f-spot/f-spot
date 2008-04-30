@@ -3,7 +3,6 @@ using Gnome;
 using Gtk;
 using Mono.Unix;
 using Mono.Data.SqliteClient;
-using System.Collections.Generic;
 using System.Collections;
 using System.IO;
 using System;
@@ -133,7 +132,7 @@ public class TagStore : DbStore {
 
 	public Tag [] GetTagsByNameStart (string s)
 	{
-		List <Tag> l = new List<Tag> ();
+		ArrayList l = new ArrayList ();
 		foreach (Tag t in this.item_cache.Values) {
 			if (t.Name.ToLower ().StartsWith (s.ToLower ()))
 				l.Add (t);
@@ -141,10 +140,8 @@ public class TagStore : DbStore {
 
 		if (l.Count == 0)
 			return null;
-		
-		l.Sort (delegate (Tag t1, Tag t2) {return t2.Popularity.CompareTo (t1.Popularity); });
 
-		return l.ToArray ();
+		return (Tag []) (l.ToArray (typeof (Tag)));
 	}
 
 	// In this store we keep all the items (i.e. the tags) in memory at all times.  This is
@@ -156,7 +153,7 @@ public class TagStore : DbStore {
 
 		// Pass 1, get all the tags.
 
-		SqliteDataReader reader = Database.Query("SELECT id, name, is_category, sort_priority, icon, count(*) as popularity FROM tags LEFT OUTER JOIN photo_tags ON photo_tags.tag_id = tags.id group by id order by sort_priority, popularity desc");
+		SqliteDataReader reader = Database.Query("SELECT id, name, is_category, sort_priority, icon FROM tags");
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader [0]);
@@ -173,7 +170,6 @@ public class TagStore : DbStore {
 				SetIconFromString (tag, reader [4].ToString ());
 
 			tag.SortPriority = Convert.ToInt32 (reader[3]);
-			tag.Popularity = Convert.ToInt32 (reader[5]);
 			AddToCache (tag);
 		}
 

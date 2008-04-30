@@ -1,5 +1,10 @@
 2008-04-30  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Core/Tag.cs:
+	* src/TagStore.cs: reverting tag popularity :(
+
+2008-04-30  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* main.cs: don't include 4th version number while looking for an
 	addin repo.
 
