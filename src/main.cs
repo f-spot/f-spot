@@ -186,12 +186,13 @@ public class Driver {
 			AddinManager.Initialize (FSpot.Global.BaseDirectory);
 			AddinManager.Registry.Update (null);
 			SetupService setupService = new SetupService (AddinManager.Registry);
+			string maj_version = String.Join (".", Defines.VERSION.Split ('.'), 0, 3);
 			foreach (AddinRepository repo in setupService.Repositories.GetRepositories ())
-				if (repo.Url.StartsWith ("http://addins.f-spot.org/") && !repo.Url.StartsWith ("http://addins.f-spot.org/" + Defines.VERSION)) {
+				if (repo.Url.StartsWith ("http://addins.f-spot.org/") && !repo.Url.StartsWith ("http://addins.f-spot.org/" + maj_version)) {
 					Console.WriteLine ("Unregistering {0}", repo.Url);
 					setupService.Repositories.RemoveRepository (repo.Url);
 				}
-			setupService.Repositories.RegisterRepository (null, "http://addins.f-spot.org/" + Defines.VERSION, false);
+			setupService.Repositories.RegisterRepository (null, "http://addins.f-spot.org/" + maj_version, false);
 
 			bool create = true;
 			int retry_count = 0;

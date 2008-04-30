@@ -1,3 +1,8 @@
+2008-04-30  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* main.cs: don't include 4th version number while looking for an
+	addin repo.
+
 2008-04-28  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/GPhotoCamera.cs: workaround to avoid crash on /special/ folder
