@@ -346,6 +346,9 @@ namespace FSpot.Iptc {
 	public class IptcFile : SemWeb.StatementSource
 	{
 		System.Collections.ArrayList sets = new System.Collections.ArrayList ();
+		public System.Collections.ArrayList Sets {
+			get { return sets; }
+		}
 
                 // False seems a safe default
                 public bool Distinct {

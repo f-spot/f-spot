@@ -253,6 +253,7 @@ public class JpegHeader : SemWeb.StatementSource {
 	}
 
 	public static Signature JfifSignature = new Signature (JpegMarker.App0, "JFIF\0");
+	public static Signature ComSignature = new Signature (JpegMarker.Com, null);
 	public static Signature JfxxSignature = new Signature (JpegMarker.App0, "JFXX\0");
 	public static Signature XmpSignature = new Signature (JpegMarker.App1, "http://ns.adobe.com/xap/1.0/\0");
 	public static Signature ExifSignature = new Signature (JpegMarker.App1, "Exif\0\0");
@@ -326,6 +327,20 @@ public class JpegHeader : SemWeb.StatementSource {
 		}
 	}
 
+	public string GetJFIFComment ()
+	{
+		string name = ComSignature.Name;
+		Marker marker = FindMarker (ComSignature);
+
+		if (marker == null)
+			return null;
+
+		if (marker.Data != null && marker.Data.Length != 0)
+			return System.Text.Encoding.Default.GetString (marker.Data, 0, marker.Data.Length);
+
+		return null;
+	}
+
 	public XmpFile GetXmp ()
 	{
 		string name = XmpSignature.Name;
@@ -363,6 +378,37 @@ public class JpegHeader : SemWeb.StatementSource {
 				bim.Select (sink);
 			}
 		}
+	}
+
+	public FSpot.Iptc.IptcFile GetIptc ()
+	{
+		string name = PhotoshopSignature.Name;
+		JpegHeader.Marker marker = FindMarker (PhotoshopSignature);
+		if (marker != null) {
+			int len = name.Length;
+			using (System.IO.Stream bimstream = new System.IO.MemoryStream (marker.Data, len,
+											marker.Data.Length - len, false)) {
+
+				FSpot.Bim.BimFile bim;
+				try {
+					bim = new FSpot.Bim.BimFile (bimstream);
+				} catch {
+					// Bim entry with marker "PHUT" is not handled by Bim.cs
+					return null;
+				}
+
+				// FIXME: What about EntryType.XMP ?
+				FSpot.Bim.Entry iptc_entry = bim.FindEntry (FSpot.Bim.EntryType.IPTCNAA);
+				if (iptc_entry == null)
+					return null;
+
+				using (System.IO.Stream iptcstream = new System.IO.MemoryStream (iptc_entry.Data)) {
+					FSpot.Iptc.IptcFile iptc = new FSpot.Iptc.IptcFile (iptcstream);
+					return iptc;
+				}
+			}
+		}
+		return null;
 	}
 
 	public Exif.ExifData Exif {
@@ -464,7 +510,7 @@ public class JpegHeader : SemWeb.StatementSource {
 		bool at_image = false;
 
 		Marker marker = Marker.Load (stream);
-		if (marker.Type != JpegMarker.Soi)
+		if (marker == null || marker.Type != JpegMarker.Soi)
 			throw new System.Exception ("This doesn't appear to be a jpeg stream");
 		
 		this.Markers.Add (marker);
