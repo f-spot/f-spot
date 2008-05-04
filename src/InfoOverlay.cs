@@ -43,7 +43,7 @@ namespace FSpot {
 
 		public InfoOverlay (Widget w, BrowsablePointer item) : base (w)
 		{
-			XAlign = 0.9;
+			XAlign = 1.0;
 			YAlign = 0.1;
 			box = new InfoItem (item);
 			box.BorderWidth = 15;

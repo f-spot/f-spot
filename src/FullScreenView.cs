@@ -268,8 +268,11 @@ namespace FSpot {
 			int x, y;
 			Gdk.ModifierType type;
 			((Gtk.Widget)sender).GdkWindow.GetPointer (out x, out y, out type);
-			controls.Visibility = ControlOverlay.VisibilityType.Partial;
-			scroll.ShowControls ();
+
+			if (y > (Allocation.Height * 0.66)) {
+				controls.Visibility = ControlOverlay.VisibilityType.Partial;
+				scroll.ShowControls ();
+			}
 		}
 
 		public PhotoImageView View {

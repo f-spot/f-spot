@@ -30,7 +30,7 @@ namespace FSpot {
 		Delay dismiss;
 		bool auto_hide = true;
 		double x_align = 0.5;
-		double y_align = 0.8;
+		double y_align = 1.0;
 		
 		public enum VisibilityType
 		{
@@ -160,9 +160,18 @@ namespace FSpot {
 			cr.Source = r;
 			r.Destroy ();
 			cr.MoveTo (round, 0);
-			cr.Arc (Allocation.Width - round, round, round, - Math.PI * 0.5, 0);
-			cr.Arc (Allocation.Width - round, Allocation.Height - round, round, 0, Math.PI * 0.5);
-			cr.Arc (round, Allocation.Height - round, round, Math.PI * 0.5, Math.PI);
+			if (x_align == 1.0)
+				cr.LineTo (Allocation.Width, 0);
+			else
+				cr.Arc (Allocation.Width - round, round, round, - Math.PI * 0.5, 0);
+			if (x_align == 1.0 || y_align == 1.0)
+				cr.LineTo (Allocation.Width, Allocation.Height);
+			else
+				cr.Arc (Allocation.Width - round, Allocation.Height - round, round, 0, Math.PI * 0.5);
+			if (y_align == 1.0)
+				cr.LineTo (0, Allocation.Height);
+			else
+				cr.Arc (round, Allocation.Height - round, round, Math.PI * 0.5, Math.PI);
 			cr.Arc (round, round, round, Math.PI, Math.PI * 1.5);
 			cr.ClosePath ();
 			cr.Fill ();			

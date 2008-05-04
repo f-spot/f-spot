@@ -1,3 +1,15 @@
+2008-05-04  Stephane Delcroix  <sdelcroix@novell.com>
+
+	original patch from Thomas Van Machelen. Fixes bgo #400106.
+
+	* src/FullScreenView.cs: only show the control overlay when
+	your mouse is moving in its direction
+
+	* src/ControlOverlay.cs: position the widget a bit lower to make
+	it a little less intrusive. Don't draw rounded corners on the sides.
+
+	* src/InfoOverlay.cs: align the box to the right.
+
 2008-04-30  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Core/Tag.cs:
