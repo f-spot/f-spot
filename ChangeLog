@@ -1,3 +1,11 @@
+2008-05-05  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/f-spot.glade:
+	* src/PreferenceDialog.cs:
+	* src/main.cs:
+	* src/Preferences.cs: add a preference for loading a custom theme from a
+	gtkrc file. No theme list yet. Restart needed.
+
 2008-05-04  Stephane Delcroix  <sdelcroix@novell.com>
 
 	original patch from Thomas Van Machelen. Fixes bgo #400106.

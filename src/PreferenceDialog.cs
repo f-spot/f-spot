@@ -1,8 +1,18 @@
+/*
+ * FSpot.UI.Dialog.PreferenceDialog.cs
+ *
+ * Authors(s):
+ *	Larry Ewing  <lewing@novell.com>
+ *	Stephane Delcroix  <stephane@delcroix.org>
+ *
+ * This is free software. See COPYING for details.
+ */
+
 using System;
 using Gtk;
-using Cms;
 
-namespace FSpot {
+namespace FSpot.UI.Dialog {
+#if FALSE
 	public class ProfileList : TreeStore {
 		public ProfileList () : base (typeof (Profile))
 		{
@@ -22,17 +32,27 @@ namespace FSpot {
 			(renderer as Gtk.CellRendererText).Text = profile.ProductDescription;
 		}
 	}
-
+#endif
 	public class PreferenceDialog : GladeDialog {
 		[Glade.Widget] private CheckButton metadata_check;
+#if FALSE
 		[Glade.Widget] private ComboBox display_combo;
 		[Glade.Widget] private ComboBox destination_combo;
+#endif
 		[Glade.Widget] private OptionMenu tag_option;
 		[Glade.Widget] private Button set_saver_button;
 		[Glade.Widget] private FileChooserButton photosdir_chooser;
 		[Glade.Widget] private RadioButton screensaverall_radio;
 		[Glade.Widget] private RadioButton screensavertagged_radio;
 		[Glade.Widget] private CheckButton dbus_check;
+		[Glade.Widget] private RadioButton themenone_radio;
+		[Glade.Widget] private RadioButton themecustom_radio;
+		[Glade.Widget] private ComboBox themelist_combo;
+		[Glade.Widget] private Label themelist_label;
+		[Glade.Widget] private FileChooserButton theme_filechooser;
+
+
+
 		private static PreferenceDialog prefs = null;
 		int screensaver_tag;
 		private const string SaverCommand = "screensavers-f-spot-screensaver";
@@ -55,6 +75,7 @@ namespace FSpot {
 			Gtk.CellRendererText name_cell = new Gtk.CellRendererText ();
 			Gtk.CellRendererText desc_cell = new Gtk.CellRendererText ();
 			
+#if FALSE
 			display_combo.Model = new ProfileList ();
 			display_combo.PackStart (desc_cell, false);
 			display_combo.PackStart (name_cell, true);
@@ -68,7 +89,7 @@ namespace FSpot {
 			destination_combo.SetCellDataFunc (name_cell, new CellLayoutDataFunc (ProfileList.ProfileNameDataFunc));
 			destination_combo.SetCellDataFunc (desc_cell, new CellLayoutDataFunc (ProfileList.ProfileDescriptionDataFunc));
 			destination_combo.Changed += HandleDisplayChanged;
-
+#endif
 			Tag t = MainWindow.Toplevel.Database.Tags.GetTagById (screensaver_tag);
 			TagMenu tagmenu = new TagMenu (null, MainWindow.Toplevel.Database.Tags);
 	
@@ -83,10 +104,19 @@ namespace FSpot {
 			set_saver_button.Clicked += HandleUseFSpot;
 			screensaverall_radio.Toggled += ToggleTagRadio;
 
+			themenone_radio.Toggled += ToggleThemeRadio;
+			themelist_combo.Sensitive = theme_filechooser.Sensitive = themecustom_radio.Active; 
+			if (System.IO.File.Exists (Preferences.Get (Preferences.GTK_RC) as string))
+				theme_filechooser.SetFilename (Preferences.Get (Preferences.GTK_RC) as string);
+			theme_filechooser.SelectionChanged += HandleThemeFileActivated;
+			themecustom_radio.Active = (Preferences.Get (Preferences.GTK_RC) as string != String.Empty);	
+			themelist_label.Visible = themelist_combo.Visible = false;
+
 			Preferences.SettingChanged += OnPreferencesChanged;
 			this.Dialog.Destroyed += HandleDestroyed;
 		}
 
+#if FALSE
 		private void HandleDisplayChanged (object sender, System.EventArgs args)
 		{
 			TreeIter iter;
@@ -100,7 +130,7 @@ namespace FSpot {
 			if (destination_combo.GetActiveIter (out iter))
 				FSpot.Global.DestinationProfile = (Profile) destination_combo.Model.GetValue (iter, 0);
 		}
-
+#endif
 		private void HandleTagMenuSelected (Tag t)
 		{
 			screensaver_tag = (int) t.Id;
@@ -120,6 +150,22 @@ namespace FSpot {
 				Preferences.Set (Preferences.SCREENSAVER_TAG, 0);
 			else
 				HandleTagMenuSelected (((tag_option.Menu as Menu).Active as TagMenu.TagMenuItem).Value);
+		}
+
+		void ToggleThemeRadio (object o, EventArgs e)
+		{
+			themelist_combo.Sensitive = theme_filechooser.Sensitive = themecustom_radio.Active; 
+			if (themenone_radio.Active) {
+				Preferences.Set (Preferences.GTK_RC, String.Empty);
+				//Gtk.Rc.DefaultFiles = String.Empty;
+				//Gtk.Rc.ReparseAll ();
+			}
+		}
+
+		void HandleThemeFileActivated (object o, EventArgs e)
+		{
+			if (theme_filechooser.Filename != null && theme_filechooser.Filename != Preferences.Get (Preferences.GTK_RC))
+				Preferences.Set (Preferences.GTK_RC, theme_filechooser.Filename);	
 		}
 
 		void OnPreferencesChanged (object sender, NotifyEventArgs args)
@@ -185,6 +231,11 @@ namespace FSpot {
 				break;
 			case Preferences.DBUS_READ_ONLY:
 				dbus_check.Active = !((bool)val);
+				break;
+			case Preferences.GTK_RC:
+				themenone_radio.Active = (val as string == String.Empty);
+				themecustom_radio.Active = (val as string != String.Empty);
+				theme_filechooser.SetFilename (val as string);
 				break;
 			}
 		}

@@ -11,8 +11,9 @@ namespace FSpot
 		public const string APP_FSPOT_EXPORT = APP_FSPOT + "export/";
 		public const string APP_FSPOT_EXPORT_TOKENS = APP_FSPOT_EXPORT + "tokens/";
 
-		public const string MAIN_WINDOW_MAXIMIZED = "/apps/f-spot/ui/maximized";
+		public const string GTK_RC = "/apps/f-spot/ui/gtkrc";
 
+		public const string MAIN_WINDOW_MAXIMIZED = "/apps/f-spot/ui/maximized";
 		public const string MAIN_WINDOW_X = "/apps/f-spot/ui/main_window_x";
 		public const string MAIN_WINDOW_Y = "/apps/f-spot/ui/main_window_y";
 		public const string MAIN_WINDOW_WIDTH = "/apps/f-spot/ui/main_window_width";
@@ -175,6 +176,7 @@ namespace FSpot
 				return 0;
 			case PROXY_USER:
 			case PROXY_PASSWORD:
+			case GTK_RC:
 				return String.Empty;
 			default:
 				return null;
@@ -190,14 +192,11 @@ namespace FSpot
 
 				try {
 					val = Backend.Get (key);
-					cache.Add (key, val);
 				} catch (NoSuchKeyException) {
 					val = GetDefault (key);
-
-					if (val != null)
-						Set (key, val);
 				}
-
+				
+				cache.Add (key, val);
 				return val;
 			}
 		}
@@ -208,8 +207,9 @@ namespace FSpot
 				try {
 					cache [key] = value;				
 					Backend.Set (key, value);
-				} catch {
-					Console.WriteLine ("Unable to write this gconf key :"+key);
+				} catch (Exception e){
+					Console.WriteLine (e);
+					Console.WriteLine ("Unable to set this :"+key);
 				}
 			}
 		}

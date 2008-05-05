@@ -211,6 +211,9 @@ public class Driver {
 					if (control == null && create) {
 						create = false;
 						Gnome.Vfs.Vfs.Initialize ();
+
+						if (File.Exists (Preferences.Get (Preferences.GTK_RC) as string))
+							Gtk.Rc.AddDefaultFile (Preferences.Get (Preferences.GTK_RC) as string);
 						
 						Catalog.Init ("f-spot", Defines.LOCALE_DIR);
 						try {
