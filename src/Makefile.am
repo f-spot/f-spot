@@ -192,7 +192,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PixbufUtils.cs		\
 	$(srcdir)/PixbufCache.cs		\
 	$(srcdir)/PixelBuffer.cs		\
-	$(srcdir)/PreferenceDialog.cs		\
 	$(srcdir)/Preferences.cs 		\
 	$(srcdir)/PreviewPopup.cs 		\
 	$(srcdir)/PrintDialog.cs		\
@@ -226,6 +225,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/UI.Dialog/EditExceptionDialog.cs	\
 	$(srcdir)/UI.Dialog/ExceptionDialog.cs	\
 	$(srcdir)/UI.Dialog/HigMessageDialog.cs	\
+	$(srcdir)/UI.Dialog/PreferenceDialog.cs		\
 	$(srcdir)/UI.Dialog/SelectionRatioDialog.cs	\
 	$(srcdir)/Updater.cs			\
 	$(srcdir)/UriCollection.cs		\
