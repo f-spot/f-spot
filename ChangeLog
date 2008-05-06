@@ -1,5 +1,11 @@
 2008-05-06  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Widgets/InfoBox.cs: include an optional TagView
+	* src/InfoOverlay.cs: use the TagView
+	* src/FullScreenView.cs: no longer include a TagView in the main toolbar.
+
+2008-05-06  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/f-spot.glade:
 	* src/UI.Dialog/PreferenceDialog.cs: allow choosing themes from a list.
 

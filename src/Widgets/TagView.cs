@@ -41,9 +41,7 @@ public class TagView : EventBox {
 	}
 
 	public Tag [] Tags {
-		get {
-			return tags;
-		}
+		get { return tags; }
 		set {
 			this.tags = value;
 			this.QueueDraw ();

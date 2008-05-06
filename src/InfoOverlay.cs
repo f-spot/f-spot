@@ -20,6 +20,7 @@ namespace FSpot {
 			item.Changed += HandleItemChanged;
 			HandleItemChanged (item, null);
 			VersionIdChanged += HandleVersionIdChanged;
+			ShowTags = true;
 		}
 
 		private void HandleItemChanged (BrowsablePointer sender, BrowsablePointerChangedArgs args)

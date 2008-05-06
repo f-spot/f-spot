@@ -18,7 +18,6 @@ namespace FSpot {
 	public class FullScreenView : Gtk.Window {
 		private ScrolledView scroll;
 		private PhotoImageView view;
-		private TagView tag_view;
 		private Notebook notebook;
 		private ControlOverlay controls;
 		//		private ImageDisplay display;
@@ -178,11 +177,6 @@ namespace FSpot {
 				tbar.Insert (t_item, -1);
 #endif
 
-				tag_view = new TagView ();
-				t_item = new ToolItem ();
-				t_item.Child = tag_view;
-				tbar.Insert (t_item, -1);
-
 				tbar.Insert ((actions [Info]).CreateToolItem () as ToolItem, -1);
 
 				tbar.Insert ((actions [HideToolbar]).CreateToolItem () as ToolItem, -1);
@@ -213,7 +207,6 @@ namespace FSpot {
 
 		private void HandleItemChanged (object sender, BrowsablePointerChangedArgs args)
 		{
-			tag_view.Current = view.Item.Current;
 			if (scroll.ControlBox.Visible)
 				scroll.ShowControls ();
 		}

@@ -35,6 +35,18 @@ namespace FSpot.Widgets
 			}
 		}
 	
+		private bool show_tags = false;
+		public bool ShowTags {
+			get { return show_tags; }
+			set {
+				if (show_tags == value)
+					return;
+
+				show_tags = value;
+				tag_view.Visible = show_tags;
+			}
+		}
+
 		public delegate void VersionIdChangedHandler (InfoBox info_box, uint version_id);
 		public event VersionIdChangedHandler VersionIdChanged;
 	
@@ -45,7 +57,8 @@ namespace FSpot.Widgets
 		private Label size_label;
 		private Label exposure_info_label;
 		private OptionMenu version_option_menu;
-	
+		private TagView tag_view;
+
 		private void HandleVersionIdChanged (PhotoVersionMenu menu)
 		{
 			if (VersionIdChanged != null)
@@ -83,7 +96,7 @@ namespace FSpot.Widgets
 		private Label exposure_name_label;
 		private void SetupWidgets ()
 		{
-			Table table = new Table (5, 2, false);
+			Table table = new Table (6, 2, false);
 			table.BorderWidth = 0;
 	
 			string name_pre = "<b>";
@@ -120,6 +133,9 @@ namespace FSpot.Widgets
 			date_label.Text = Environment.NewLine;
 			exposure_info_label.Text = Environment.NewLine;
 	
+			tag_view = new TagView ();
+			table.Attach (tag_view, 0, 2, 5, 6, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			tag_view.Show ();
 			table.ShowAll ();
 	
 			Add (table);
@@ -327,6 +343,8 @@ namespace FSpot.Widgets
 					}
 					i++;
 				}
+				if (show_tags)
+					tag_view.Current = p;
 			} else {
 				version_option_menu.Visible = false;
 				version_option_menu.Sensitive = false;
