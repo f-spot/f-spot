@@ -9,6 +9,8 @@
  */
 
 using System;
+using System.IO;
+using System.Collections.Generic;
 using Gtk;
 
 namespace FSpot.UI.Dialog {
@@ -47,9 +49,10 @@ namespace FSpot.UI.Dialog {
 		[Glade.Widget] private CheckButton dbus_check;
 		[Glade.Widget] private RadioButton themenone_radio;
 		[Glade.Widget] private RadioButton themecustom_radio;
-		[Glade.Widget] private ComboBox themelist_combo;
 		[Glade.Widget] private Label themelist_label;
 		[Glade.Widget] private FileChooserButton theme_filechooser;
+		[Glade.Widget] private Table theme_table;
+		private ComboBox themelist_combo;
 
 
 
@@ -57,6 +60,7 @@ namespace FSpot.UI.Dialog {
 		int screensaver_tag;
 		private const string SaverCommand = "screensavers-f-spot-screensaver";
 		private const string SaverMode = "single";
+		Dictionary<string, string> theme_list;
 
 		public PreferenceDialog () : base ("main_preferences")
 		{
@@ -105,12 +109,27 @@ namespace FSpot.UI.Dialog {
 			screensaverall_radio.Toggled += ToggleTagRadio;
 
 			themenone_radio.Toggled += ToggleThemeRadio;
+			themelist_combo = ComboBox.NewText ();
+			theme_list = new Dictionary<string, string> ();
+			string gtkrc = Path.Combine ("gtk-2.0", "gtkrc");
+			string [] search = {"/usr/share/themes", Path.Combine (Global.HomeDirectory, ".themes")};
+			foreach (string path in search)
+				if (Directory.Exists (path)) 
+					foreach (string dir in Directory.GetDirectories (path))
+						if (File.Exists (Path.Combine (dir, gtkrc)))
+							theme_list.Add (Path.GetFileName (dir), Path.Combine (dir, gtkrc));
+			
+			foreach (string theme in theme_list.Keys)
+				themelist_combo.AppendText (System.IO.Path.GetFileName (theme));
+			
+			theme_table.Attach (themelist_combo, 2, 3, 0, 1);
+			themelist_combo.Changed += HandleThemeComboChanged;
+			themelist_combo.Show ();
 			themelist_combo.Sensitive = theme_filechooser.Sensitive = themecustom_radio.Active; 
 			if (System.IO.File.Exists (Preferences.Get (Preferences.GTK_RC) as string))
 				theme_filechooser.SetFilename (Preferences.Get (Preferences.GTK_RC) as string);
 			theme_filechooser.SelectionChanged += HandleThemeFileActivated;
 			themecustom_radio.Active = (Preferences.Get (Preferences.GTK_RC) as string != String.Empty);	
-			themelist_label.Visible = themelist_combo.Visible = false;
 
 			Preferences.SettingChanged += OnPreferencesChanged;
 			this.Dialog.Destroyed += HandleDestroyed;
@@ -160,6 +179,15 @@ namespace FSpot.UI.Dialog {
 				//Gtk.Rc.DefaultFiles = String.Empty;
 				//Gtk.Rc.ReparseAll ();
 			}
+		}
+
+		void HandleThemeComboChanged (object o, EventArgs e)
+		{
+			if (o == null)
+				return;
+			TreeIter iter;
+			if ((o as ComboBox).GetActiveIter (out iter))
+				Preferences.Set (Preferences.GTK_RC, theme_list [((o as ComboBox).Model.GetValue (iter, 0)) as string]);
 		}
 
 		void HandleThemeFileActivated (object o, EventArgs e)
@@ -235,7 +263,8 @@ namespace FSpot.UI.Dialog {
 			case Preferences.GTK_RC:
 				themenone_radio.Active = (val as string == String.Empty);
 				themecustom_radio.Active = (val as string != String.Empty);
-				theme_filechooser.SetFilename (val as string);
+				if (theme_filechooser.Sensitive)
+					theme_filechooser.SetFilename (val as string);
 				break;
 			}
 		}

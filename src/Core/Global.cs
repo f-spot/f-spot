@@ -8,9 +8,7 @@
 namespace FSpot {
 	public class Global {
 		public static string HomeDirectory {
-			get {
-				return System.IO.Path.Combine (System.Environment.GetEnvironmentVariable ("HOME"), System.String.Empty);	
-			}
+			get { return System.IO.Path.Combine (System.Environment.GetEnvironmentVariable ("HOME"), System.String.Empty); }
 		}
 		
 		private static string base_dir = System.IO.Path.Combine (HomeDirectory,  System.IO.Path.Combine (".gnome2", "f-spot"));
