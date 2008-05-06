@@ -139,7 +139,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ImageTest.cs			\
 	$(srcdir)/ImportBackend.cs		\
 	$(srcdir)/ImportCommand.cs		\
-	$(srcdir)/InfoBox.cs			\
 	$(srcdir)/InfoDisplay.cs		\
 	$(srcdir)/InfoOverlay.cs		\
 	$(srcdir)/InternalProcess.cs		\
@@ -251,6 +250,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/IconView.cs		\
 	$(srcdir)/Widgets/ImageDisplay.cs	\
 	$(srcdir)/Widgets/ImageInfo.cs		\
+	$(srcdir)/Widgets/InfoBox.cs		\
 	$(srcdir)/Widgets/PanZoom.cs		\
 	$(srcdir)/Widgets/Push.cs		\
 	$(srcdir)/Widgets/QueryView.cs		\
