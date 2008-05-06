@@ -8,6 +8,7 @@
  *
  */
 using Gtk;
+using FSpot.Widgets;
 
 namespace FSpot {
 	public class InfoItem : InfoBox {
