@@ -6,13 +6,43 @@ using System.Xml;
 
 using SemWeb;
 
+// Since this class relies on the XmlDocument class,
+// it must be excluded completely from the Silverlight
+// build.
+#if !SILVERLIGHT
+
 namespace SemWeb {
 	public class RdfXmlWriter : RdfWriter {
+	
+		public class Options {
+			public bool UseTypedNodes = true;
+			public bool UseRdfID = true;
+			public bool UseRdfLI = true;
+			public bool EmbedNamedNodes = true;
+			public bool UsePredicateAttributes = true;
+			public bool UseParseTypeLiteral = true;
+			
+			internal bool UseParseTypeResource = false; // this is broken because it uses Clone(), which breaks references in Hashtables
+			
+			public static Options Full = new Options();
+			public static Options XMP;
+			
+			static Options() {
+				XMP = new Options();
+				XMP.UseTypedNodes = false;
+				XMP.UseRdfID = false;
+				XMP.UseParseTypeLiteral = false;
+				XMP.UsePredicateAttributes = false;
+			}
+		}
+				
+		Options opts;
 		XmlWriter writer;
 		NamespaceManager ns = new NamespaceManager();
 		
 		XmlDocument doc;
 		bool initialized = false;
+		bool closeStream = false;
 		
 		Hashtable nodeMap = new Hashtable();
 		
@@ -21,14 +51,37 @@ namespace SemWeb {
 		Hashtable nameAlloc = new Hashtable();
 		Hashtable nodeReferences = new Hashtable();
 		ArrayList predicateNodes = new ArrayList();
+		Hashtable nodeLiCounter = new Hashtable();
 		
 		static Entity rdftype = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
+		static Entity rdfli = "http://www.w3.org/1999/02/22-rdf-syntax-ns#li";
+		static string RDFNS_ = NS.RDF + "_";
 		
-		public RdfXmlWriter(XmlDocument dest) { doc = dest; }
+		public RdfXmlWriter(XmlDocument dest) : this(dest, Options.Full) { }
 		
-		public RdfXmlWriter(string file) : this(GetWriter(file)) { }
+		public RdfXmlWriter(string file) : this (file, Options.Full) { }
 
-		public RdfXmlWriter(TextWriter writer) : this(NewWriter(writer)) { }
+		public RdfXmlWriter(TextWriter writer) : this(writer, Options.Full) { }
+		
+		public RdfXmlWriter(XmlWriter writer) : this(writer, Options.Full) { }
+		
+		public RdfXmlWriter(XmlDocument dest, Options style) {
+			if (dest == null) throw new ArgumentNullException("dest");
+			if (style == null) throw new ArgumentNullException("style");
+			doc = dest;
+			opts = style;
+		}
+		
+		public RdfXmlWriter(string file, Options style) : this(GetWriter(file), style) { closeStream = true; }
+
+		public RdfXmlWriter(TextWriter writer, Options style) : this(NewWriter(writer), style) { }
+		
+		public RdfXmlWriter(XmlWriter writer, Options style) {
+			if (writer == null) throw new ArgumentNullException("writer");
+			if (style == null) throw new ArgumentNullException("style");
+			this.writer = writer;
+			this.opts = style;
+		}
 		
 		private static XmlWriter NewWriter(TextWriter writer) {
 			XmlTextWriter ret = new XmlTextWriter(writer);
@@ -39,10 +92,6 @@ namespace SemWeb {
 			return ret;
 		}
 		
-		public RdfXmlWriter(XmlWriter writer) {
-			this.writer = writer;
-		}
-		
 		private void Start() {
 			if (initialized) return;
 			initialized = true;
@@ -50,7 +99,6 @@ namespace SemWeb {
 			if (doc == null) doc = new XmlDocument();
 			
 			doc.AppendChild(doc.CreateXmlDeclaration("1.0", null, null));
-			
 			string rdfprefix = ns.GetPrefix(NS.RDF);
 			if (rdfprefix == null) {
 				if (ns.GetNamespace("rdf") == null) {
@@ -104,16 +152,13 @@ namespace SemWeb {
 			
 			// TODO: Make sure the local name (here and anywhere in this
 			// class) is a valid XML name.
+			
 			if (Namespaces.GetPrefix(n) != null) {
 				prefix = Namespaces.GetPrefix(n);
 				return;
 			}
 			
 			prefix = uri.Substring(prev+1, last-prev-1);
-
-			if (prefix == "xmlns")
-				prefix = "";
-
 			
 			// Remove all non-xmlable (letter) characters.
 			StringBuilder newprefix = new StringBuilder();
@@ -122,8 +167,8 @@ namespace SemWeb {
 					newprefix.Append(c);
 			prefix = newprefix.ToString();
 			
-			if (prefix.Length == 0) {
-				// There were no letters in the prefix!
+			if (prefix.Length == 0 || prefix == "xmlns") {
+				// There were no letters in the prefix or the prefix was "xmlns", which isn't valid!
 				prefix = "ns";
 			}
 			
@@ -161,17 +206,34 @@ namespace SemWeb {
 				// Check if we have to add new type information to the existing node.
 				if (ret.NamespaceURI + ret.LocalName == NS.RDF + "Description") {
 					// Replace the untyped node with a typed node, copying in
-					// all of the children of the old node.
+					// all of the attributes and children of the old node.
 					string prefix, localname;
 					Normalize(type, out prefix, out localname);
 					XmlElement newnode = doc.CreateElement(prefix + ":" + localname, ns.GetNamespace(prefix));
 					
-					foreach (XmlNode childnode in ret) {
-						newnode.AppendChild(childnode.Clone());
+					ArrayList children = new ArrayList();
+					foreach (XmlNode childnode in ret)
+						children.Add(childnode);
+					foreach (XmlNode childnode in children) {
+						ret.RemoveChild(childnode);
+						newnode.AppendChild(childnode);
+					}
+						
+					foreach (XmlAttribute childattr in ret.Attributes)
+						newnode.Attributes.Append((XmlAttribute)childattr.Clone());
+						
+					ret.ParentNode.ReplaceChild(newnode, ret);
+					
+					nodeMap[entity] = newnode;
+					if (nodeReferences.ContainsKey(ret)) {
+						nodeReferences[newnode] = nodeReferences[ret];
+						nodeReferences.Remove(ret);
+					}
+					if (nodeLiCounter.ContainsKey(ret)) {
+						nodeLiCounter[newnode] = nodeLiCounter[ret];
+						nodeLiCounter.Remove(ret);
 					}
 					
-					ret.ParentNode.ReplaceChild(newnode, ret);
-					nodeMap[entity] = newnode;
 					return newnode;
 				} else {
 					// The node is already typed, so just add a type predicate.
@@ -198,6 +260,8 @@ namespace SemWeb {
 					SetAttribute(node, NS.RDF, ns.GetPrefix(NS.RDF), "about", uri);
 				else if (fragment.Length == 0)
 					SetAttribute(node, NS.RDF, ns.GetPrefix(NS.RDF), "about", "");
+				else if (!opts.UseRdfID)
+					SetAttribute(node, NS.RDF, ns.GetPrefix(NS.RDF), "about", uri);
 				else
 					SetAttribute(node, NS.RDF, ns.GetPrefix(NS.RDF), "ID", fragment.Substring(1)); // chop off hash
 			} else {
@@ -216,7 +280,19 @@ namespace SemWeb {
 		
 		private XmlElement CreatePredicate(XmlElement subject, Entity predicate) {
 			if (predicate.Uri == null)
-				throw new InvalidOperationException("Predicates cannot be blank nodes.");
+				throw new InvalidOperationException("Predicates cannot be blank nodes when serializing RDF to XML.");
+			
+			if (opts.UseRdfLI && predicate.Uri.StartsWith(RDFNS_)) {
+				try {
+					int n = int.Parse(predicate.Uri.Substring(RDFNS_.Length));
+					int expected = nodeLiCounter.ContainsKey(subject) ? (int)nodeLiCounter[subject] : 1;
+					if (n == expected) {
+						predicate = rdfli;
+						nodeLiCounter[subject] = expected+1;
+					}
+				} catch {
+				}
+			}			
 			
 			string prefix, localname;
 			Normalize(predicate.Uri, out prefix, out localname);
@@ -231,14 +307,27 @@ namespace SemWeb {
 		
 			XmlElement subjnode;
 			
-			bool hastype = statement.Predicate == rdftype && statement.Object.Uri != null;
+			bool hastype = opts.UseTypedNodes && statement.Predicate == rdftype && statement.Object.Uri != null;
 			subjnode = GetNode(statement.Subject, hastype ? statement.Object.Uri : null, null);
 			if (hastype) return;
 
 			XmlElement prednode = CreatePredicate(subjnode, statement.Predicate);
 			
 			if (!(statement.Object is Literal)) {
-				if (nodeMap.ContainsKey(statement.Object)) {
+				if (!nodeMap.ContainsKey(statement.Object) && (opts.EmbedNamedNodes || statement.Object.Uri == null)) {
+					// Embed the object node right within the predicate node
+					// if we haven't already created a node for the object
+					// and if we're allowed to do so.
+					GetNode((Entity)statement.Object, null, prednode);
+
+				} else {
+					// Otherwise, we will reference the object with a
+					// rdf:resource or rdf:nodeID attribute.
+					
+					// Create the object node at top-level if a node doesn't exist.
+					if (!nodeMap.ContainsKey(statement.Object))
+						GetNode((Entity)statement.Object, null, null);
+
 					if (statement.Object.Uri != null) {
 						string uri = statement.Object.Uri, fragment;
 						if (Relativize(statement.Object.Uri, out fragment))
@@ -257,12 +346,10 @@ namespace SemWeb {
 						nodeReferences[nodeMap[statement.Object]] = null;
 					else
 						nodeReferences[nodeMap[statement.Object]] = prednode;
-				} else {
-					GetNode((Entity)statement.Object, null, prednode);
 				}
 			} else {
 				Literal literal = (Literal)statement.Object;
-				if (literal.DataType != null && literal.DataType == "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral") {
+				if (opts.UseParseTypeLiteral && literal.DataType != null && literal.DataType == "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral") {
 					prednode.InnerXml = literal.Value;
 					SetAttribute(prednode, NS.RDF, ns.GetPrefix(NS.RDF), "parseType", "Literal");
 				} else {
@@ -290,18 +377,38 @@ namespace SemWeb {
 			}
 		}
 		
-		public override void Close() {
-			Start(); // make sure the document node was written
-
+		void MakeDocumentNice() {
 			// For any node that was referenced by exactly one predicate,
 			// move the node into that predicate, provided the subject
 			// isn't itself!
 			foreach (DictionaryEntry e in nodeReferences) {
-				if (e.Value == null) continue; // referenced by more than one predicate
 				XmlElement node = (XmlElement)e.Key;
 				XmlElement predicate = (XmlElement)e.Value;
-				if (node.ParentNode != node.OwnerDocument.DocumentElement) continue; // already referenced somewhere
-				if (predicate.ParentNode == node) continue; // can't insert node as child of itself
+				
+				// Node is already embedded somewhere.
+				if (node.ParentNode != node.OwnerDocument.DocumentElement)
+					continue;
+				
+				// Node is referenced by more than one predicate
+				if (predicate == null) continue;
+
+				// The option to do this for named nodes is turned off.
+				if (!opts.EmbedNamedNodes && node.HasAttribute("about", NS.RDF))
+					continue;
+				
+				// we can have circular references between nodes (also
+				// between a node and itself),
+				// which we can't nicely collapse this way.  Make sure
+				// that the predicate we want to insert ourselves into
+				// is not a descendant of the node we're moving!
+				XmlNode ancestry = predicate.ParentNode;
+				bool canMove = true;
+				while (ancestry != null) {
+					if (ancestry == node) { canMove = false; break; }
+					ancestry = ancestry.ParentNode;
+				}
+				if (!canMove) continue;
+
 				node.ParentNode.RemoveChild(node);
 				predicate.AppendChild(node);
 				predicate.RemoveAttribute("resource", NS.RDF); // it's on the lower node
@@ -328,15 +435,19 @@ namespace SemWeb {
 				if (obj.Attributes.Count == 1 && obj.Attributes[0].NamespaceURI+obj.Attributes[0].LocalName != NS.RDF+"about") continue;
 				
 				// See if all its predicates are literal with no attributes.
+				bool hasSimpleLits = false;
 				bool allSimpleLits = true;
 				foreach (XmlElement opred in obj.ChildNodes) {
 					if (opred.FirstChild is XmlElement)
 						allSimpleLits = false;
 					if (opred.Attributes.Count > 0)
 						allSimpleLits = false;
+					hasSimpleLits = true;
 				}
 						
-				if (allSimpleLits) {
+				if (hasSimpleLits && allSimpleLits && obj.ChildNodes.Count <= 3) {
+					if (!opts.UsePredicateAttributes) continue;
+				
 					// Condense by moving all of obj's elements to attributes of the predicate,
 					// and turning a rdf:about into a rdf:resource, and then remove obj completely.
 					if (obj.Attributes.Count == 1)
@@ -347,7 +458,18 @@ namespace SemWeb {
 					
 					if (pred.ChildNodes.Count == 0) pred.IsEmpty = true;
 
+				} else if (obj.ChildNodes.Count == 0 && obj.Attributes.Count == 1) {
+				
+					// Condense by turning a rdf:about into a rdf:resource,
+					// and then remove obj completely.
+					SetAttribute(pred, NS.RDF, ns.GetPrefix(NS.RDF), "resource", obj.Attributes[0].Value);
+					pred.RemoveChild(obj);
+					
+					if (pred.ChildNodes.Count == 0) pred.IsEmpty = true;
+					
 				} else if (obj.Attributes.Count == 0) { // no rdf:about
+					if (!opts.UseParseTypeResource) continue;
+
 					// Condense this node using parseType=Resource
 					pred.RemoveChild(obj);
 					foreach (XmlElement opred in obj.ChildNodes)
@@ -355,12 +477,21 @@ namespace SemWeb {
 					SetAttribute(pred, NS.RDF, ns.GetPrefix(NS.RDF), "parseType", "Resource");
 				}
 			}
+		}
+		
+		public override void Close() {
+			Start(); // make sure the document node was written
+			
+			MakeDocumentNice();
 
 			base.Close();
 			
 			if (writer != null) {
 				doc.WriteTo(writer);
-				//writer.Close();
+				if (closeStream)
+					writer.Close();
+				else
+					writer.Flush();
 			}
 		}
 		
@@ -375,5 +506,6 @@ namespace SemWeb {
 		}
 		
 	}
-
 }
+
+#endif

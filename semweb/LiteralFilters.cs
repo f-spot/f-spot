@@ -110,6 +110,17 @@ namespace SemWeb.Filters {
 		}
 	}
 
+	public class StringEndsWithFilter : LiteralFilter {
+		public readonly string Pattern;
+		public StringEndsWithFilter(string pattern) {
+			Pattern = pattern;
+		}
+		public override bool Filter(Literal resource, SelectableSource targetModel) {
+			string v = resource.Value;
+			return v.EndsWith(Pattern);
+		}
+	}
+
 	public class NumericCompareFilter : LiteralFilter {
 		public readonly Decimal Number;
 		public readonly CompType Type;
@@ -125,7 +136,7 @@ namespace SemWeb.Filters {
 				Decimal i = Decimal.Parse(v);
 				int c = i.CompareTo(Number);
 				return CompareFilter(c, Type);
-			} catch (Exception e) {
+			} catch (Exception) {
 				return false;
 			}
 		}
@@ -146,7 +157,7 @@ namespace SemWeb.Filters {
 				DateTime i = DateTime.Parse(v);
 				int c = i.CompareTo(Value);
 				return CompareFilter(c, Type);
-			} catch (Exception e) {
+			} catch (Exception) {
 				return false;
 			}
 		}
@@ -167,7 +178,7 @@ namespace SemWeb.Filters {
 				TimeSpan i = TimeSpan.Parse(v);
 				int c = i.CompareTo(Value);
 				return CompareFilter(c, Type);
-			} catch (Exception e) {
+			} catch (Exception) {
 				return false;
 			}
 		}

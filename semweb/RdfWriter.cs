@@ -51,5 +51,39 @@ namespace SemWeb {
 		void IDisposable.Dispose() {
 			Close();
 		}
+		
+		public static RdfWriter Create(string type, TextWriter output) {
+			switch (RdfReader.NormalizeMimeType(type)) {
+				case "xml":
+					#if !SILVERLIGHT
+						return new RdfXmlWriter(output);
+					#else
+						throw new NotSupportedException("RDF/XML output is not supported by the Silverlight build of the SemWeb library.");
+					#endif
+				case "n3":
+					return new N3Writer(output);
+				default:
+					throw new ArgumentException("Unknown parser or MIME type: " + type);
+			}
+		}
+
+		public static RdfWriter Create(string type, string file) {
+			switch (RdfReader.NormalizeMimeType(type)) {
+				case "xml":
+					#if !SILVERLIGHT
+						return new RdfXmlWriter(file);
+					#else
+						throw new NotSupportedException("RDF/XML output is not supported by the Silverlight build of the SemWeb library.");
+					#endif
+				case "n3":
+					return new N3Writer(file);
+				default:
+					throw new ArgumentException("Unknown parser or MIME type: " + type);
+			}
+		}
+	}
+	
+	public interface CanForgetBNodes {
+		void ForgetBNode(BNode bnode);
 	}
 }

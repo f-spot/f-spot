@@ -5,14 +5,23 @@ using SemWeb;
 using SemWeb.Stores;
 using SemWeb.Util;
 
+#if !DOTNET2
+using ResourceList = System.Collections.ICollection;
+using VarKnownValuesType = System.Collections.Hashtable;
+#else
+using ResourceList = System.Collections.Generic.ICollection<SemWeb.Resource>;
+using VarKnownValuesType = System.Collections.Generic.Dictionary<SemWeb.Variable,System.Collections.Generic.ICollection<SemWeb.Resource>>;
+#endif
+
 namespace SemWeb.Inference {
 
-	public class RDFS : SelectableSource, SupportsPersistableBNodes, IDisposable {
+	public class RDFS : Reasoner {
 		static readonly Entity type = NS.RDF + "type";
 		static readonly Entity subClassOf = NS.RDFS + "subClassOf";
 		static readonly Entity subPropertyOf = NS.RDFS + "subPropertyOf";
 		static readonly Entity domain = NS.RDFS + "domain";
 		static readonly Entity range = NS.RDFS + "range";
+		static readonly Entity rdfsresource = NS.RDFS + "Resource";
 	
 		// Each of these hashtables relates an entity
 		// to a ResSet of other entities, including itself.
@@ -29,61 +38,52 @@ namespace SemWeb.Inference {
 		Hashtable domainof = new Hashtable();
 		Hashtable rangeof = new Hashtable();
 		
-		SelectableSource data;
-		
 		StatementSink schemasink;
 		
-		public RDFS(SelectableSource data) {
-			this.data = data;
+		public RDFS() {
 			schemasink = new SchemaSink(this);
 		}
 		
-		public RDFS(StatementSource schema, SelectableSource data)
-		: this(data) {
+		public RDFS(StatementSource schema) : this() {
 			LoadSchema(schema);
-		}
-		
-		void IDisposable.Dispose() {
-			if (data is IDisposable)
-				((IDisposable)data).Dispose();
 		}
 		
 		public StatementSink Schema { get { return schemasink; } }
 		
-		string SupportsPersistableBNodes.GetStoreGuid() { if (data is SupportsPersistableBNodes) return ((SupportsPersistableBNodes)data).GetStoreGuid(); return null; }
-		
-		string SupportsPersistableBNodes.GetNodeId(BNode node) { if (data is SupportsPersistableBNodes) return ((SupportsPersistableBNodes)data).GetNodeId(node); return null; }
-		
-		BNode SupportsPersistableBNodes.GetNodeFromId(string persistentId) { if (data is SupportsPersistableBNodes) return ((SupportsPersistableBNodes)data).GetNodeFromId(persistentId); return null; }
-
 		class SchemaSink : StatementSink {
 			RDFS rdfs;
 			public SchemaSink(RDFS parent) { rdfs = parent; }
-			bool StatementSink.Add(Statement s) { rdfs.Add(s); return true; }
+			bool StatementSink.Add(Statement s) { rdfs.AddAxiom(s); return true; }
 		}
 		
-		void Add(Statement schemastatement) {
-			if (schemastatement.Predicate == subClassOf && schemastatement.Object is Entity)
-				AddRelation(schemastatement.Subject, (Entity)schemastatement.Object, superclasses, subclasses, true);
+		void AddAxiom(Statement schemastatement) {
+			if (schemastatement.Predicate == subClassOf && schemastatement.Object is Entity) {
+				AddRelation(schemastatement.Subject, (Entity)schemastatement.Object, superclasses, subclasses);
+				AddRelation(schemastatement.Subject, rdfsresource, superclasses, subclasses);
+				AddRelation((Entity)schemastatement.Object, rdfsresource, superclasses, subclasses);
+			}
 			if (schemastatement.Predicate == subPropertyOf && schemastatement.Object is Entity)
-				AddRelation(schemastatement.Subject, (Entity)schemastatement.Object, superprops, subprops, true);
-			if (schemastatement.Predicate == domain && schemastatement.Object is Entity)
-				AddRelation(schemastatement.Subject, (Entity)schemastatement.Object, domains, domainof, false);
-			if (schemastatement.Predicate == range && schemastatement.Object is Entity)
-				AddRelation(schemastatement.Subject, (Entity)schemastatement.Object, ranges, rangeof, false);
+				AddRelation(schemastatement.Subject, (Entity)schemastatement.Object, superprops, subprops);
+			if (schemastatement.Predicate == domain && schemastatement.Object is Entity) {
+				AddRelation(schemastatement.Subject, (Entity)schemastatement.Object, domains, domainof);
+				AddRelation((Entity)schemastatement.Object, rdfsresource, superclasses, subclasses);
+			}
+			if (schemastatement.Predicate == range && schemastatement.Object is Entity) {
+				AddRelation(schemastatement.Subject, (Entity)schemastatement.Object, ranges, rangeof);
+				AddRelation((Entity)schemastatement.Object, rdfsresource, superclasses, subclasses);
+			}
 		}
 		
-		void AddRelation(Entity a, Entity b, Hashtable supers, Hashtable subs, bool incself) {
-			AddRelation(a, b, supers, incself);
-			AddRelation(b, a, subs, incself);
+		void AddRelation(Entity a, Entity b, Hashtable supers, Hashtable subs) {
+			AddRelation(a, b, supers);
+			AddRelation(b, a, subs);
 		}
 		
-		void AddRelation(Entity a, Entity b, Hashtable h, bool incself) {
+		void AddRelation(Entity a, Entity b, Hashtable h) {
 			ResSet r = (ResSet)h[a];
 			if (r == null) {
 				r = new ResSet();
 				h[a] = r;
-				if (incself) r.Add(a);
 			}
 			r.Add(b);
 		}
@@ -100,24 +100,9 @@ namespace SemWeb.Inference {
 			}
 		}
 		
-		public bool Distinct { get { return false; } }
+		public override bool Distinct { get { return false; } }
 		
-		public void Select(StatementSink sink) { data.Select(sink); }
-		
-		public bool Contains(Statement template) {
-			return Store.DefaultContains(this, template);
-		}
-		
-		public void Select(Statement template, StatementSink sink) {
-			if (template.Predicate == null) {
-				data.Select(template, sink);
-				return;
-			}
-			
-			Select(new SelectFilter(template), sink);
-		}
-		
-		public void Select(SelectFilter filter, StatementSink sink) {
+		public override void Select(SelectFilter filter, SelectableSource data, StatementSink sink) {
 			if (filter.Predicates == null || filter.LiteralFilters != null) {
 				data.Select(filter, sink);
 				return;
@@ -137,30 +122,32 @@ namespace SemWeb.Inference {
 						// or what things have those types?
 						
 						// Expand objects by the subclass closure of the objects
-						data.Select(new SelectFilter(subjects, new Entity[] { p }, GetClosure(objects, subclasses), metas), sink);
+						data.Select(new SelectFilter(subjects, new Entity[] { p }, GetClosure(objects, subclasses, true), metas), sink);
 						
 						// Process domains and ranges.
 						ResSet dom = new ResSet(), ran = new ResSet();
 						Hashtable domPropToType = new Hashtable();
 						Hashtable ranPropToType = new Hashtable();
-						foreach (Entity e in objects) {
-							Entity[] dc = GetClosure((ResSet)domainof[e], subprops);
+						foreach (Entity e in GetClosure(objects, subclasses, true)) {
+							Entity[] dc = GetClosure((ResSet)domainof[e], subprops, true);
 							if (dc != null)
 							foreach (Entity c in dc) {
 								dom.Add(c);
-								AddRelation(c, e, domPropToType, false);
+								AddRelation(c, e, domPropToType);
 							}
 							
-							dc = GetClosure((ResSet)rangeof[e], subprops);
+							dc = GetClosure((ResSet)rangeof[e], subprops, true);
 							if (dc != null)
 							foreach (Entity c in dc) {
 								ran.Add(c);
-								AddRelation(c, e, ranPropToType, false);
+								AddRelation(c, e, ranPropToType);
 							}
 						}
 						
 						// If it's in the domain of any of these properties,
-						// we know its type.
+						// we know its type.  Only do this if subjects are given,
+						// since otherwise we have to select for all of the values
+						// of all of these properties, and that doesn't scale well.
 						if (subjects != null) {
 							if (dom.Count > 0) data.Select(new SelectFilter(subjects, dom.ToEntityArray(), null, metas), new ExpandDomRan(0, domPropToType, sink));
 							if (ran.Count > 0) data.Select(new SelectFilter(null, ran.ToEntityArray(), subjects, metas), new ExpandDomRan(1, ranPropToType, sink));
@@ -189,17 +176,17 @@ namespace SemWeb.Inference {
 					
 					if (subjects != null && objects != null) {
 						// Expand objects by the subs closure of the objects.
-						data.Select(new SelectFilter(subjects, new Entity[] { p }, GetClosure(objects, subs), metas), sink);
+						data.Select(new SelectFilter(subjects, new Entity[] { p }, GetClosure(objects, subs, true), metas), sink);
 					} else if (subjects != null) {
 						// get all of the supers of all of the subjects
 						foreach (Entity s in subjects)
-							foreach (Entity o in GetClosure(new Entity[] { s }, supers))
+							foreach (Entity o in GetClosure(s, supers, false))
 								sink.Add(new Statement(s, p, o));
 					} else if (objects != null) {
 						// get all of the subs of all of the objects
 						foreach (Resource o in objects) {
 							if (o is Literal) continue;
-							foreach (Entity s in GetClosure(new Entity[] { (Entity)o }, subs))
+							foreach (Entity s in GetClosure((Entity)o, subs, false))
 								sink.Add(new Statement(s, p, (Entity)o));
 						}
 					} else {
@@ -220,8 +207,8 @@ namespace SemWeb.Inference {
 				ResSet qprops = new ResSet();
 				Hashtable propfrom = new Hashtable();
 				foreach (Entity p in remainingPredicates) { 
-					foreach (Entity sp in GetClosure(new Entity[] { p }, subprops)) {
-						AddRelation(sp, p, propfrom, false);
+					foreach (Entity sp in GetClosure(p, subprops, true)) {
+						AddRelation(sp, p, propfrom);
 						qprops.Add(sp);
 					}
 				}
@@ -236,27 +223,33 @@ namespace SemWeb.Inference {
 			}
 		}
 		
-		static Entity[] GetClosure(ResSet starts, Hashtable table) {
+		static Entity[] GetClosure(Entity start, Hashtable table, bool includeStart) {
+			return GetClosure( new Resource[] { start } , table, includeStart);
+		}
+
+		static Entity[] GetClosure(ResSet starts, Hashtable table, bool includeStarts) {
 			if (starts == null) return null;
-			return GetClosure(starts.ToArray(), table);
+			return GetClosure(starts.ToArray(), table, includeStarts);
 		}
 		
-		static Entity[] GetClosure(Resource[] starts, Hashtable table) {
+		static Entity[] GetClosure(Resource[] starts, Hashtable table, bool includeStarts) {
 			ResSet ret = new ResSet();
 			ResSet toadd = new ResSet(starts);
+			bool firstRound = true;
 			while (toadd.Count > 0) {
 				ResSet newadd = new ResSet();
 				
 				foreach (Resource e in toadd) {
 					if (!(e is Entity)) continue;
 					if (ret.Contains(e)) continue;
-					ret.Add(e);
+					if (!(firstRound && !includeStarts)) ret.Add(e);
 					if (table.ContainsKey(e))
 						newadd.AddRange((ResSet)table[e]);
 				}
 				
 				toadd.Clear();
 				toadd.AddRange(newadd);
+				firstRound = false;
 			}
 			return ret.ToEntityArray();
 		}
@@ -266,7 +259,7 @@ namespace SemWeb.Inference {
 			StatementSink sink;
 			public Expand(Hashtable t, StatementSink s) { table = t; sink = s; }
 			public bool Add(Statement s) {
-				foreach (Entity e in RDFS.GetClosure(new Resource[] { s.Object }, table))
+				foreach (Entity e in RDFS.GetClosure(new Resource[] { s.Object }, table, true))
 					if (!sink.Add(new Statement(s.Subject, s.Predicate, e, s.Meta)))
 						return false;
 				return true;
@@ -310,7 +303,7 @@ namespace SemWeb.Inference {
 				if (domran == 1 && !(s.Object is Entity)) return true;
 				ResSet rs = (ResSet)table[s.Predicate];
 				if (rs == null) return true;
-				foreach (Entity e in RDFS.GetClosure(rs, superclasses)) {
+				foreach (Entity e in RDFS.GetClosure(rs, superclasses, true)) {
 					Statement s1 = new Statement(
 						domran == 0 ? s.Subject : (Entity)s.Object,
 						type,
@@ -360,6 +353,109 @@ namespace SemWeb.Inference {
 					return sink.Add(s);
 				}
 			}
+		}
+		
+		public override SemWeb.Query.MetaQueryResult MetaQuery(Statement[] graph, SemWeb.Query.QueryOptions options, SelectableSource data) {
+			Statement[] graph2;
+			SemWeb.Query.QueryOptions options2;
+			RewriteGraph(graph, options, out graph2, out options2, null);
+			
+			if (!(data is QueryableSource))
+				return new SimpleEntailment().MetaQuery(graph2, options2, data);
+			else
+				return ((QueryableSource)data).MetaQuery(graph2, options2);
+		}
+
+		public override void Query(Statement[] graph, SemWeb.Query.QueryOptions options, SelectableSource data, SemWeb.Query.QueryResultSink sink) {
+			Statement[] graph2;
+			SemWeb.Query.QueryOptions options2;
+			RewriteGraph(graph, options, out graph2, out options2, sink);
+			
+			// TODO: Because we add variables to the query when we replace things with closures,
+			// we should filter the query results so we don't pass back the bindings for those
+			// variables to the caller.
+		
+			if (!(data is QueryableSource))
+				new SimpleEntailment().Query(graph2, options2, data, sink);
+			else
+				((QueryableSource)data).Query(graph2, options2, sink);
+		}
+
+		void RewriteGraph(Statement[] graph, SemWeb.Query.QueryOptions options, out Statement[] graph2, out SemWeb.Query.QueryOptions options2, SemWeb.Query.QueryResultSink sink) {
+			graph2 = new Statement[graph.Length];
+			options2 = new SemWeb.Query.QueryOptions();
+			
+			options2.DistinguishedVariables = options.DistinguishedVariables;
+			options2.Limit = options.Limit;
+			options2.VariableKnownValues = (options.VariableKnownValues == null ? new VarKnownValuesType() : new VarKnownValuesType(options.VariableKnownValues));
+			options2.VariableLiteralFilters = options.VariableLiteralFilters;
+			
+			for (int i = 0; i < graph.Length; i++) {
+				graph2[i] = graph[i];
+			
+				//ResSet subj = GetQueryRes(graph[i], 0, options);
+				ResSet pred = GetQueryRes(graph[i], 1, options);
+				ResSet obj = GetQueryRes(graph[i], 2, options);
+				
+				if (pred.Count == 1 && pred.Contains(type)) {
+					// in an ?x rdf:type ___ query, replace ___ with the subclass closure of ___.
+					if (obj.Count > 0) {
+						Entity[] sc = GetClosure(obj, subclasses, true);
+						if (sc.Length != obj.Count && sink != null)
+							sink.AddComments("Expanding object of " + graph[i] + " with subclass closure to [" + ToString(sc) + "]");
+						SetQueryRes(ref graph2[i], 2, options2, sc);
+					}
+				}
+				
+				// expand properties into subproperties after the above tests,
+				// because we want to be sure the property was originally
+				// just one of the recognized properties
+
+				if (pred.Count > 0) {
+					Entity[] pc = GetClosure(pred, subprops, true);
+					SetQueryRes(ref graph2[i], 1, options2, pc);
+					if (pc.Length != pred.Count && sink != null)
+						sink.AddComments("Expanding predicate of " + graph[i] + " with subproperty closure to [" + ToString(pc) + "]");
+				}
+			}
+		}
+
+		ResSet GetQueryRes(Statement s, int i, SemWeb.Query.QueryOptions options) {
+			ResSet ret = new ResSet();
+			Resource r = s.GetComponent(i);
+			if (r == null) return ret;
+
+			if (!(r is Variable)) ret.Add(r);
+			
+			if (options.VariableKnownValues != null && r is Variable
+#if !DOTNET2
+				&& options.VariableKnownValues.Contains((Variable)r)) {
+#else
+				&& options.VariableKnownValues.ContainsKey((Variable)r)) {
+#endif
+				ret.AddRange((ResourceList)options.VariableKnownValues[(Variable)r]);
+			}
+			return ret;
+		}
+		
+		void SetQueryRes(ref Statement s, int i, SemWeb.Query.QueryOptions options, Entity[] values) {
+			// TODO: what if s had originally a variable in position i?
+			if (values.Length == 0)
+				s.SetComponent(i, null);
+			else if (values.Length == 1)
+				s.SetComponent(i, values[0]);
+			else {
+				Variable v = new Variable();
+				s.SetComponent(i, v);
+				options.VariableKnownValues[v] = values;
+			}
+		}
+		
+		string ToString(Entity[] ents) {
+			string[] names = new string[ents.Length];
+			for (int i = 0; i < ents.Length; i++)
+				names[i] = ents[i].ToString();
+			return String.Join(" , ", names);
 		}
 	}
 

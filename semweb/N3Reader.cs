@@ -11,6 +11,7 @@ namespace SemWeb {
 	public class N3Reader : RdfReader {
 		Resource PrefixResource = new Literal("@prefix");
 		Resource KeywordsResource = new Literal("@keywords");
+		Resource BaseResource = new Literal("@base");
 		
 		TextReader sourcestream;
 		NamespaceManager namespaces = new NamespaceManager();
@@ -22,8 +23,7 @@ namespace SemWeb {
 		//Entity entOWLSAMEAS = "http://www.w3.org/2002/07/owl#sameAs";
 		Entity entDAMLEQUIV = "http://www.daml.org/2000/12/daml+oil#equivalentTo";
 		Entity entLOGIMPLIES = "http://www.w3.org/2000/10/swap/log#implies";
-		
-		bool addFailuresAsWarnings = false;
+		Entity entGRAPHCONTAINS = "http://razor.occams.info/code/semweb/internaluris/graphContains";
 		
 		public N3Reader(TextReader source) {
 			this.sourcestream = source;
@@ -44,6 +44,7 @@ namespace SemWeb {
 			public Entity meta;
 			public bool UsingKeywords;
 			public Hashtable Keywords;
+			public Entity overrideMeta;
 			
 			public Location Location { get { return new Location(source.Line, source.Col); } }
 		}
@@ -64,8 +65,8 @@ namespace SemWeb {
 		private bool ReadStatement(ParseContext context) {
 			Location loc = context.Location;
 			
-			bool reverse;
-			Resource subject = ReadResource(context, out reverse);
+			bool reverse, forgetBNode;
+			Resource subject = ReadResource(context, true, out reverse, out forgetBNode);
 			if (subject == null) return false;
 			if (reverse) OnError("is...of not allowed on a subject", loc);
 			
@@ -75,7 +76,8 @@ namespace SemWeb {
 				if (qname == null || !qname.EndsWith(":")) OnError("When using @prefix, the prefix identifier must end with a colon", loc);
 				
 				loc = context.Location;
-				Resource uri = ReadResource(context, out reverse);
+				bool fb2;
+				Resource uri = ReadResource(context, false, out reverse, out fb2);
 				if (uri == null) OnError("Expecting a URI", loc);
 				if (reverse) OnError("is...of not allowed here", loc);
 				namespaces.AddNamespace(uri.Uri, qname.Substring(0, qname.Length-1));
@@ -107,15 +109,32 @@ namespace SemWeb {
 				return true;
 			}
 			
+			if ((object)subject == (object)BaseResource) {
+				loc = context.Location;
+				bool fb2;
+				Resource uri = ReadResource(context, false, out reverse, out fb2);
+				if (uri == null || uri.Uri == null) OnError("Expecting a URI", loc);
+				if (reverse) OnError("is...of not allowed here", loc);
+				BaseUri = uri.Uri;
+				
+				loc = context.Location;
+				char punc = ReadPunc(context.source);
+				if (punc != '.')
+					OnError("Expected a period but found '" + punc + "'", loc);
+				return true;
+			}
+
 			// It's possible to just assert the presence of an entity
 			// by following the entity with a period, or a } to end
 			// a reified context.
 			if (NextPunc(context.source) == '.') {
 				context.source.Read();
+				if (forgetBNode) DoForget(subject, context);
 				return true;
 			}
 			if (NextPunc(context.source) == '}') {
 				context.source.Read();
+				if (forgetBNode) DoForget(subject, context);
 				return false; // end of block
 			}
 			
@@ -125,6 +144,7 @@ namespace SemWeb {
 			if (period != '.' && period != '}')
 				OnError("Expected a period but found '" + period + "'", loc);
 			if (period == '}') return false;
+			if (forgetBNode) DoForget(subject, context);
 			return true;
 		}
 		
@@ -146,11 +166,17 @@ namespace SemWeb {
 		}
 		
 		private char ReadPredicate(Resource subject, ParseContext context) {
-			bool reverse;
+			bool reverse, forgetBNode;
 			Location loc = context.Location;
-			Resource predicate = ReadResource(context, out reverse);
+			Resource predicate = ReadResource(context, false, out reverse, out forgetBNode);
 			if (predicate == null) OnError("Expecting a predicate", loc);
 			if (predicate is Literal) OnError("Predicates cannot be literals", loc);
+			
+			if (predicate == entGRAPHCONTAINS) {
+				context.overrideMeta = subject as Entity;
+			} else {
+				context.overrideMeta = null;
+			}
 			
 			char punctuation = ',';
 			while (punctuation == ',') {
@@ -161,24 +187,30 @@ namespace SemWeb {
 			if (punctuation != '.' && punctuation != ';' && punctuation != ']' && punctuation != '}')
 				OnError("Expecting a period, semicolon, comma, close-bracket, or close-brace but found '" + punctuation + "'", loc);
 			
+			if (forgetBNode) DoForget(predicate, context);
+			
 			return punctuation;
 		}
 		
 		private void ReadObject(Resource subject, Entity predicate, ParseContext context, bool reverse) {
-			bool reverse2;
+			bool reverse2, forgetBNode;
 			Location loc = context.Location;
-			Resource value = ReadResource(context, out reverse2);
+			Resource value = ReadResource(context, false, out reverse2, out forgetBNode);
 			if (value == null) OnError("Expecting a resource or literal object", loc);
 			if (reverse2) OnError("is...of not allowed on objects", loc);
 			
 			loc = context.Location;
-			if (!reverse) {
+			if (predicate == entGRAPHCONTAINS) {
+				// don't add the statement, it was enough to associate the meta node
+			} else if (!reverse) {
 				if (subject is Literal) OnError("Subjects of statements cannot be literals", loc);			
 				Add(context.store, new Statement((Entity)subject, predicate, value, context.meta), loc);
 			} else {
 				if (value is Literal) OnError("A literal cannot be the object of a reverse-predicate statement", loc);
 				Add(context.store, new Statement((Entity)value, predicate, subject, context.meta), loc);
 			}
+
+			if (forgetBNode) DoForget(value, context);
 		}
 		
 		private void ReadWhitespace(MyReader source) {
@@ -356,7 +388,7 @@ namespace SemWeb {
 				// A variable: \?[a-zA-Z_][a-zA-Z0-9_]*
 				while (true) {
 					int c = source.Peek();
-					if (c == -1 || (!char.IsLetterOrDigit((char)c) && c != '-' && c != '_' && c != ':')) break;					
+					if (c == -1 || (!Entity.ValidateUriIsIUnreserved((char)c) && c != ':') || c == '.') break;
 					b.Append((char)source.Read());
 				}
 			
@@ -380,6 +412,11 @@ namespace SemWeb {
 			} else if (firstchar == '=') {
 				if (source.Peek() == (int)'>')
 					b.Append((char)source.Read());
+				
+				if (source.Peek() == (int)':' && source.Peek2() == (int)'>') { // SPECIAL EXTENSION "=:>"
+					b.Append((char)source.Read());
+					b.Append((char)source.Read());
+				}
 			
 			} else if (firstchar == '[') {
 				// The start of an anonymous node.
@@ -405,18 +442,18 @@ namespace SemWeb {
 			return b.ToString();
 		}
 		
-		private Resource ReadResource(ParseContext context, out bool reverse) {
+		private Resource ReadResource(ParseContext context, bool allowDirective, out bool reverse, out bool forgetBNode) {
 			Location loc = context.Location;
 			
-			Resource res = ReadResource2(context, out reverse);
+			Resource res = ReadResource2(context, allowDirective, out reverse, out forgetBNode);
 			
 			ReadWhitespace(context.source);
 			while (context.source.Peek() == '!' || context.source.Peek() == '^' || (context.source.Peek() == '.' && context.source.Peek2() != -1 && char.IsLetter((char)context.source.Peek2())) ) {
 				int pathType = context.source.Read();
 				
-				bool reverse2;
+				bool reverse2, forgetBNode2;
 				loc = context.Location;
-				Resource path = ReadResource2(context, out reverse2);
+				Resource path = ReadResource2(context, false, out reverse2, out forgetBNode2);
 				if (reverse || reverse2) OnError("is...of is not allowed in path expressions", loc);
 				if (!(path is Entity)) OnError("A path expression cannot be a literal", loc);
 				
@@ -432,7 +469,11 @@ namespace SemWeb {
 				
 				Add(context.store, s, loc);
 				
+				if (forgetBNode) DoForget(res, context);
+				if (forgetBNode2) DoForget(path, context);
+				
 				res = anon;
+				forgetBNode = true;
 
 				ReadWhitespace(context.source);
 			}
@@ -473,8 +514,9 @@ namespace SemWeb {
 			}
 		}
 			
-		private Resource ReadResource2(ParseContext context, out bool reverse) {
+		private Resource ReadResource2(ParseContext context, bool allowDirective, out bool reverse, out bool forgetBNode) {
 			reverse = false;
+			forgetBNode = false;
 			
 			Location loc = context.Location;
 			
@@ -485,15 +527,32 @@ namespace SemWeb {
 			string str = (string)tok;
 			if (str == "")
 				return null;
+				
+			// Directives
+			
+			if (str == "@prefix") {
+				if (allowDirective)
+					return PrefixResource;
+				else
+					OnError("The directive '" + str + "' is not allowed here", loc);
+			}
+
+			if (str == "@keywords") {
+				if (allowDirective)
+					return KeywordsResource;
+				else
+					OnError("The directive '" + str + "' is not allowed here", loc);
+			}
+
+			if (str == "@base") {
+				if (allowDirective)
+					return BaseResource;
+				else
+					OnError("The directive '" + str + "' is not allowed here", loc);
+			}
 			
 			// @ Keywords
 
-			if (str == "@prefix")
-				return PrefixResource;
-
-			if (str == "@keywords")
-				return KeywordsResource;
-			
 			if (context.UsingKeywords && context.Keywords.Contains(str))
 				str = "@" + str;
 			if (!context.UsingKeywords &&
@@ -513,15 +572,17 @@ namespace SemWeb {
 			if (str == "<=") {
 				reverse = true;
 				return entLOGIMPLIES;
-			}				
+			}
+			if (str == "=:>") // SPECIAL EXTENSION!
+				return entGRAPHCONTAINS;
 
 			if (str == "@has") // ignore this token
-				return ReadResource2(context, out reverse);
+				return ReadResource2(context, false, out reverse, out forgetBNode);
 			
 			if (str == "@is") {
 				// Reverse predicate
 				bool reversetemp;
-				Resource pred = ReadResource2(context, out reversetemp);
+				Resource pred = ReadResource2(context, false, out reversetemp, out forgetBNode);
 				reverse = true;
 				
 				string of = ReadToken(context.source, context) as string;
@@ -541,6 +602,9 @@ namespace SemWeb {
 			
 			if (str.StartsWith("<") && str.EndsWith(">")) {
 				string uri = GetAbsoluteUri(BaseUri, str.Substring(1, str.Length-2));
+				string urierror = Entity.ValidateUri(uri);
+				if (urierror != null)
+					OnWarning(urierror, loc);
 				return GetResource(context, uri);
 			}
 			
@@ -576,6 +640,7 @@ namespace SemWeb {
 				} else {
 					context.source.Read();
 				}
+				forgetBNode = true;
 				return ret;
 			}
 			
@@ -583,15 +648,16 @@ namespace SemWeb {
 			
 			if (str == "(") {
 				// A list
-				Entity ent = null;
+				Entity head = null, ent = null;
 				while (true) {
-					bool rev2;
-					Resource res = ReadResource(context, out rev2);
+					bool rev2, fb2;
+					Resource res = ReadResource(context, false, out rev2, out fb2);
 					if (res == null)
 						break;
 					
 					if (ent == null) {
 						ent = new BNode();
+						head = ent;
 					} else {
 						Entity sub = new BNode();
 						Add(context.store, new Statement(ent, entRDFREST, sub, context.meta), loc);
@@ -599,12 +665,14 @@ namespace SemWeb {
 					}
 					
 					Add(context.store, new Statement(ent, entRDFFIRST, res, context.meta), loc);
+					if (fb2) DoForget(res, context);
 				}
-				if (ent == null) // No list items.
-					ent = entRDFNIL; // according to Turtle spec
+				if (head == null) // No list items.
+					head = entRDFNIL; // according to Turtle spec
 				else
 					Add(context.store, new Statement(ent, entRDFREST, entRDFNIL, context.meta), loc);
-				return ent;
+				
+				return head;
 			}
 			
 			if (str == ")")
@@ -616,8 +684,12 @@ namespace SemWeb {
 				// ParseContext is a struct, so this gives us a clone.
 				ParseContext newcontext = context;
 				
-				// The formula is denoted by a blank node
-				newcontext.meta = new BNode();
+				// The formula is denoted by a blank node, unless we set
+				// the override meta flag above.
+				if (context.overrideMeta == null)
+					newcontext.meta = new BNode();
+				else
+					newcontext.meta = context.overrideMeta;
 				
 				// According to the spec, _:xxx anonymous nodes are
 				// local to the formula.  But ?$variables (which aren't
@@ -635,8 +707,18 @@ namespace SemWeb {
 			
 			// In Turtle, numbers are restricted to [0-9]+, and are datatyped xsd:integer.
 			double numval;
-			if (double.TryParse(str, System.Globalization.NumberStyles.Any, null, out numval))
-				return new Literal(numval.ToString());
+			if (double.TryParse(str, System.Globalization.NumberStyles.Any, null, out numval)) {
+				if (numval >= long.MinValue && numval <= long.MaxValue && numval == (double)(long)numval)
+					return new Literal(((long)numval).ToString(), null, NS.XMLSCHEMA + "integer");
+				else
+					return new Literal(numval.ToString(), null, NS.XMLSCHEMA + "double");
+			}
+			
+			//BOOLEAN LITERAL
+			
+			if (str == "true" || str == "false") {
+			  return new Literal(str,null,NS.XMLSCHEMA+"boolean");
+			}
 			
 			// If @keywords is used, alphanumerics that aren't keywords
 			// are local names in the default namespace.
@@ -653,27 +735,27 @@ namespace SemWeb {
 		}
 		
 		private void Add(StatementSink store, Statement statement, Location position) {
-			try {
-				store.Add(statement);
-			} catch (Exception e) {
-				if (!addFailuresAsWarnings)
-					OnError("Add failed on statement { " + statement + " }: " + e.Message, position, e);
-				else
-					OnWarning("Add failed on statement { " + statement + " }: " + e.Message, position, e);
-			}
+			store.Add(statement);
 		}
 		
 		private void OnError(string message, Location position) {
 			throw new ParserException(message + ", line " + position.Line + " col " + position.Col);
 		}
-		private void OnError(string message, Location position, Exception cause) {
+		private void OnWarning(string message, Location position) {
+			base.OnWarning(message + ", line " + position.Line + " col " + position.Col);
+		}
+		/*private void OnError(string message, Location position, Exception cause) {
 			throw new ParserException(message + ", line " + position.Line + " col " + position.Col, cause);
 		}
 		private void OnWarning(string message, Location position, Exception cause) {
 			OnWarning(message + ", line " + position.Line + " col " + position.Col);
-		}
+		}*/
 		
-	
+		void DoForget(Resource ent, ParseContext context) {
+			CanForgetBNodes x = context.store as CanForgetBNodes;
+			if (x == null) return;
+			x.ForgetBNode((BNode)ent);
+		}
 	}
 
 	internal class MyReader {
@@ -721,6 +803,7 @@ namespace SemWeb {
 			
 			return c;
 		}
+		
 	}
 
 	internal struct Location {

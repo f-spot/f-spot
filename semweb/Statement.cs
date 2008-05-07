@@ -4,7 +4,14 @@ using System.Collections;
 using SemWeb.Util;
 
 namespace SemWeb {
-	public struct Statement : IComparable {
+	public struct Statement :
+#if DOTNET2
+	IEquatable<Statement>, IComparable<Statement>
+#else
+	IComparable
+#endif
+	{
+	
 		public Entity Subject;
 		public Entity Predicate;
 		public Resource Object;
@@ -78,10 +85,17 @@ namespace SemWeb {
 				);
 		}
 
+
 		public override bool Equals(object other) {
 			return (Statement)other == this;
 		}
 		
+#if DOTNET2
+		bool IEquatable<Statement>.Equals(Statement other) {
+			return other == this;
+		}
+#endif
+
 		public override int GetHashCode() {
 			int ret = 0;
 			if (Subject != null) ret = unchecked(ret + Subject.GetHashCode());
@@ -106,8 +120,13 @@ namespace SemWeb {
 			return !(a == b);
 		}
 
-		int IComparable.CompareTo(object obj) {
-			Statement s = (Statement)obj;
+#if !DOTNET2
+		int IComparable.CompareTo(object other) {
+			return CompareTo((Statement)other);
+		}
+#endif
+
+		public int CompareTo(Statement s) {
 			int x;
 			x = cmp(Subject, s.Subject); if (x != 0) return x;
 			x = cmp(Predicate, s.Predicate); if (x != 0) return x;
@@ -130,6 +149,15 @@ namespace SemWeb {
 				case 3: return Meta;
 			}
 			throw new ArgumentException("index");
+		}
+		internal void SetComponent(int index, Resource r) {
+			switch (index) {
+				case 0: Subject = (Entity)r; break;
+				case 1: Predicate = (Entity)r; break;
+				case 2: Object = r; break;
+				case 3: Meta = (Entity)r; break;
+				default: throw new ArgumentException("index");
+			}
 		}
 	}
 	
@@ -159,6 +187,26 @@ namespace SemWeb {
 			Metas = metas;
 		}
 		
+		internal Resource[] GetComponent(int index) {
+			switch (index) {
+				case 0: return Subjects;
+				case 1: return Predicates;
+				case 2: return Objects;
+				case 3: return Metas;
+			}
+			throw new ArgumentException("index");
+		}
+		
+		internal void SetComponent(int index, Resource[] res) {
+			switch (index) {
+				case 0: Subjects = (Entity[])res; break;
+				case 1: Predicates = (Entity[])res; break;
+				case 2: Objects = res; break;
+				case 3: Metas = (Entity[])res; break;
+				default: throw new ArgumentException("index");
+			}
+		}
+
 		public override string ToString() {
 			string ret =
 				ToString(Subjects) + " " +
@@ -204,13 +252,13 @@ namespace SemWeb {
 				&& eq(a.Predicates, b.Predicates)
 				&& eq(a.Objects, b.Objects)
 				&& eq(a.Metas, b.Metas)
-				&& eq(a.LiteralFilters, b.LiteralFilters)
+				&& a.LiteralFilters == b.LiteralFilters
 				&& a.Limit == b.Limit;
 		}
 		public static bool operator !=(SelectFilter a, SelectFilter b) {
 			return !(a == b);
 		}
-		static bool eq(object[] a, object[] b) {
+		static bool eq(Resource[] a, Resource[] b) {
 			if (a == b) return true;
 			if (a == null || b == null) return false;
 			if (a.Length != b.Length) return false;

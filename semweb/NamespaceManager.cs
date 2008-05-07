@@ -7,6 +7,8 @@ namespace SemWeb {
 		public const string RDF = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 		public const string RDFS = "http://www.w3.org/2000/01/rdf-schema#";
 	
+		public const string XMLSCHEMA = "http://www.w3.org/2001/XMLSchema#";
+	
 		/*Entity entRDFTYPE = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
 		Entity entRDFFIRST = "http://www.w3.org/1999/02/22-rdf-syntax-ns#first";
 		Entity entRDFREST = "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest";
@@ -27,11 +29,16 @@ namespace SemWeb {
 			this.parent = parent;
 		}
 		
-		public void AddNamespace(string uri, string prefix) {
+		public virtual void AddNamespace(string uri, string prefix) {
 			atob[uri] = prefix;
 			btoa[prefix] = uri;
 		}
 		
+		public void AddFrom(NamespaceManager nsmgr) {
+			foreach (string uri in nsmgr.GetNamespaces())
+				AddNamespace(uri, nsmgr.GetPrefix(uri));
+		}
+
 		public virtual string GetNamespace(string prefix) {
 			string ret = (string)btoa[prefix];
 			if (ret != null) return ret;
@@ -76,7 +83,7 @@ namespace SemWeb {
 			if (Normalize(uri, out prefix, out localname)) {
 				bool ok = true;
 				if (localname.Length == 0) ok = false;
-				else if (!char.IsLetter(localname[0])) ok = false;
+				else if (!char.IsLetter(localname[0]) && localname[0] != '_') ok = false;
 				foreach (char c in localname)
 					if (!char.IsLetterOrDigit(c) && c != '-' && c != '_')
 						ok = false;

@@ -12,9 +12,22 @@ namespace SemWeb.Util {
 		public ResSet() {
 		}
 		
+		#if !DOTNET2
 		public ResSet(ICollection items) {
+		#else
+		public ResSet(System.Collections.Generic.ICollection<Resource> items) {
+		#endif
 			AddRange(items);
 		}
+
+		#if DOTNET2
+		// this is for some call in SQLStore; it seems to having a generics casting issue that I don't know if it's a mono bug or what...
+		internal ResSet(System.Collections.Generic.ICollection<Variable> items) {
+			if (items == null) return;
+			foreach (Resource r in items)
+				Add(r);
+		}
+		#endif
 
 		private ResSet(Hashtable items) {
 			this.items = items;
@@ -25,7 +38,11 @@ namespace SemWeb.Util {
 			keys = null;
 		}
 		
+		#if !DOTNET2
 		public void AddRange(ICollection items) {
+		#else
+		public void AddRange<T>(System.Collections.Generic.ICollection<T> items) where T : Resource {
+		#endif
 			if (items == null) return;
 			foreach (Resource r in items)
 				Add(r);

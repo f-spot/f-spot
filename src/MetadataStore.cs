@@ -349,13 +349,5 @@ namespace FSpot {
 				return false;
 			}
 		}			
-
-		public void DumpNode (XPathSemWebNavigator navi, int depth)
-		{
-			do { 
-				System.Console.WriteLine ("node [{0}] {1} {2}", depth, navi.Name, navi.Value);
-			} while (navi.MoveToNext ());
-		}
-	       
 	}	       
 }

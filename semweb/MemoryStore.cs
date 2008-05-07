@@ -6,7 +6,80 @@ using SemWeb.Stores;
 using SemWeb.Util;
 
 namespace SemWeb {
-	public class MemoryStore : Store, SupportsPersistableBNodes, IEnumerable {
+	public class MemoryStore : Store, 
+#if DOTNET2
+	System.Collections.Generic.IEnumerable<Statement>
+#else
+	IEnumerable
+#endif
+	{
+	
+		internal StoreImpl impl;
+
+		public MemoryStore()
+			: this(new StoreImpl()) {
+		}
+
+		public MemoryStore(StatementSource source)
+			: this() {
+			Import(source);
+		}
+		
+		public MemoryStore(Statement[] statements)
+			: this(new StoreImpl(statements)) {
+		}
+		
+		private MemoryStore(StoreImpl impl) {
+			this.impl = impl;
+			AddSource2(impl);
+		}
+		
+		public override void AddSource(SelectableSource store) {
+			throw new InvalidOperationException("AddSource is not valid on the MemoryStore.");
+		}
+		
+		public override void AddSource(SelectableSource store, string uri) {
+			throw new InvalidOperationException("AddSource is not valid on the MemoryStore.");
+		}
+
+		public Statement this[int index] {
+			get {
+				return impl[index];
+			}
+		}
+
+		public Statement[] ToArray() {
+			return impl.ToArray();
+		}
+
+		#if DOTNET2
+		System.Collections.Generic.IEnumerator<Statement> System.Collections.Generic.IEnumerable<Statement>.GetEnumerator() {
+			return ((System.Collections.Generic.IEnumerable<Statement>)impl).GetEnumerator();
+		}
+		#endif
+		IEnumerator IEnumerable.GetEnumerator() {
+			return ((IEnumerable)impl).GetEnumerator();
+		}
+
+		internal bool allowIndexing { set { impl.allowIndexing = value; } }
+		internal bool checkForDuplicates { set { impl.checkForDuplicates = value; } }
+
+
+	internal class StoreImpl : SelectableSource, StaticSource, ModifiableSource, 
+#if DOTNET2
+	System.Collections.Generic.IEnumerable<Statement>
+#else
+	IEnumerable
+#endif
+	
+	{
+		#if DOTNET2
+		private class StatementList : System.Collections.Generic.List<Statement> {
+			public StatementList() : base() { }
+			public StatementList(Statement[] statements) : base(statements) { }
+		}
+		#endif
+
 		StatementList statements;
 		
 		Hashtable statementsAboutSubject = new Hashtable();
@@ -21,27 +94,31 @@ namespace SemWeb {
 		Hashtable pbnodeToId = null;
 		Hashtable pbnodeFromId = null;
 		
-		public MemoryStore() {
+		const string rdfli = NS.RDF + "_";
+		
+		public StoreImpl() {
 			statements = new StatementList();
 		}
 		
-		public MemoryStore(StatementSource source) : this() {
+		public StoreImpl(StatementSource source) : this() {
 			Import(source);
 		}
 		
-		public MemoryStore(Statement[] statements) {
+		public StoreImpl(Statement[] statements) {
 			this.statements = new StatementList(statements);
 		}
 
 		public Statement[] ToArray() {
+#if DOTNET2
+			return statements.ToArray();
+#else
 			return (Statement[])statements.ToArray(typeof(Statement));
+#endif
 		}
 
-		public IList Statements { get { return statements.ToArray(); } }
+		public bool Distinct { get { return distinct; } }
 		
-		public override bool Distinct { get { return distinct; } }
-		
-		public override int StatementCount { get { return statements.Count; } }
+		public int StatementCount { get { return statements.Count; } }
 		
 		public Statement this[int index] {
 			get {
@@ -49,11 +126,16 @@ namespace SemWeb {
 			}
 		}
 		
+#if DOTNET2
+		System.Collections.Generic.IEnumerator<Statement> System.Collections.Generic.IEnumerable<Statement>.GetEnumerator() {
+			return statements.GetEnumerator();
+		}
+#endif
 		IEnumerator IEnumerable.GetEnumerator() {
 			return statements.GetEnumerator();
 		}
 		
-		public override void Clear() {
+		public void Clear() {
 			statements.Clear();
 			statementsAboutSubject.Clear();
 			statementsAboutObject.Clear();
@@ -69,7 +151,12 @@ namespace SemWeb {
 			return ret;
 		}
 		
-		public override void Add(Statement statement) {
+		bool StatementSink.Add(Statement statement) {
+			Add(statement);
+			return true;
+		}
+		
+		public void Add(Statement statement) {
 			if (statement.AnyNull) throw new ArgumentNullException();
 			if (checkForDuplicates && Contains(statement)) return;
 			statements.Add(statement);
@@ -80,13 +167,13 @@ namespace SemWeb {
 			if (!checkForDuplicates) distinct = false;
 		}
 		
-		public override void Import(StatementSource source) {
+		public void Import(StatementSource source) {
 			bool newDistinct = checkForDuplicates || ((StatementCount==0) && source.Distinct);
-			base.Import(source); // distinct set to false if !checkForDuplicates
+			source.Select(this);
 			distinct = newDistinct;
 		}
 		
-		public override void Remove(Statement statement) {
+		public void Remove(Statement statement) {
 			if (statement.AnyNull) {
 				for (int i = 0; i < statements.Count; i++) {
 					Statement s = (Statement)statements[i];
@@ -107,9 +194,14 @@ namespace SemWeb {
 			}
 		}
 		
-		public override Entity[] GetEntities() {
+		public void RemoveAll(Statement[] statements) {
+			foreach (Statement t in statements)
+				Remove(t);
+		}
+		
+		public Entity[] GetEntities() {
 			Hashtable h = new Hashtable();
-			foreach (Statement s in Statements) {
+			foreach (Statement s in statements) {
 				if (s.Subject != null) h[s.Subject] = h;
 				if (s.Predicate != null) h[s.Predicate] = h;
 				if (s.Object != null && s.Object is Entity) h[s.Object] = h;
@@ -118,16 +210,16 @@ namespace SemWeb {
 			return (Entity[])new ArrayList(h.Keys).ToArray(typeof(Entity));
 		}
 		
-		public override Entity[] GetPredicates() {
+		public Entity[] GetPredicates() {
 			Hashtable h = new Hashtable();
-			foreach (Statement s in Statements)
+			foreach (Statement s in statements)
 				h[s.Predicate] = h;
 			return (Entity[])new ArrayList(h.Keys).ToArray(typeof(Entity));
 		}
 
-		public override Entity[] GetMetas() {
+		public Entity[] GetMetas() {
 			Hashtable h = new Hashtable();
-			foreach (Statement s in Statements)
+			foreach (Statement s in statements)
 				h[s.Meta] = h;
 			return (Entity[])new ArrayList(h.Keys).ToArray(typeof(Entity));
 		}
@@ -137,7 +229,11 @@ namespace SemWeb {
 				list1 = list2;
 		}
 		
-		public override void Select(Statement template, StatementSink result) {
+		public void Select(StatementSink result) {
+			Select(Statement.All, result);
+		}
+		
+		public void Select(Statement template, StatementSink result) {
 			StatementList source = statements;
 			
 			// The first time select is called, turn indexing on for the store.
@@ -157,15 +253,24 @@ namespace SemWeb {
 			
 			if (source == null) return;
 			
+			bool isRdfsMemberPredicate = (template.Predicate != null && template.Predicate.Uri != null
+				&& template.Predicate.Uri == NS.RDFS + "member");
+			if (isRdfsMemberPredicate)
+				template.Predicate = null;
+			
 			for (int i = 0; i < source.Count; i++) {
 				Statement statement = source[i];
 				if (!template.Matches(statement))
 					continue;
+				
+				if (isRdfsMemberPredicate && (statement.Predicate.Uri == null || !statement.Predicate.Uri.StartsWith(rdfli)))
+					continue;
+					
 				if (!result.Add(statement)) return;
 			}
 		}
 
-		public override void Select(SelectFilter filter, StatementSink result) {
+		public void Select(SelectFilter filter, StatementSink result) {
 			ResSet
 				s = filter.Subjects == null ? null : new ResSet(filter.Subjects),
 				p = filter.Predicates == null ? null : new ResSet(filter.Predicates),
@@ -181,8 +286,22 @@ namespace SemWeb {
 				if (!result.Add(st)) return;
 			}
 		}
+		
+		public bool Contains(Resource r) {
+			foreach (Statement s in statements) {
+				if (s.Subject == r) return true;
+				if (s.Predicate == r) return true;
+				if (s.Object == r) return true;
+				if (s.Meta == r) return true;
+			}
+			return false;
+		}
+		
+		public bool Contains(Statement template) {
+			return Store.DefaultContains(this, template);
+		}
 
-		public override void Replace(Entity a, Entity b) {
+		public void Replace(Entity a, Entity b) {
 			MemoryStore removals = new MemoryStore();
 			MemoryStore additions = new MemoryStore();
 			foreach (Statement statement in statements) {
@@ -195,38 +314,34 @@ namespace SemWeb {
 			Import(additions);
 		}
 		
-		public override void Replace(Statement find, Statement replacement) {
-			if (find.AnyNull) throw new ArgumentNullException("find");
-			if (replacement.AnyNull) throw new ArgumentNullException("replacement");
-			if (find == replacement) return;
-			
-			foreach (Statement match in Select(find)) {
-				Remove(match);
-				Add(replacement);
-				break; // should match just one statement anyway
-			}
+		public void Replace(Statement find, Statement replacement) {
+			Remove(find);
+			Add(replacement);
 		}
 
-		string SupportsPersistableBNodes.GetStoreGuid() {
+		private string GetStoreGuid() {
 			if (guid == null) guid = Guid.NewGuid().ToString("N");;
 			return guid;
 		}
 		
-		string SupportsPersistableBNodes.GetNodeId(BNode node) {
+		public string GetPersistentBNodeId(BNode node) {
 			if (pbnodeToId == null) {
 				pbnodeToId = new Hashtable();
 				pbnodeFromId = new Hashtable();
 			}
 			if (pbnodeToId.ContainsKey(node)) return (string)pbnodeToId[node];
-			string id = pbnodeToId.Count.ToString();
+			string id = GetStoreGuid() + ":" + pbnodeToId.Count.ToString();
 			pbnodeToId[node] = id;
 			pbnodeFromId[id] = node;
 			return id;
 		}
 		
-		BNode SupportsPersistableBNodes.GetNodeFromId(string persistentId) {
+		public BNode GetBNodeFromPersistentId(string persistentId) {
 			if (pbnodeFromId == null) return null;
 			return (BNode)pbnodeFromId[persistentId];
 		}
 	}
+
+	}
+
 }
