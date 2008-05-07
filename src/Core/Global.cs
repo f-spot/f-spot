@@ -52,5 +52,17 @@ namespace FSpot {
 				return icon_theme;
 			}
 		}
+
+#if GTK_2_12_2
+		private static string [] default_rc_files = null;
+		public static string [] DefaultRcFiles {
+			get {
+				if (default_rc_files == null)
+					default_rc_files = Gtk.Rc.DefaultFiles;
+				return default_rc_files;
+			}
+			set { default_rc_files = value; }
+		}
+#endif
 	}
 }

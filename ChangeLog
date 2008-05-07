@@ -1,3 +1,12 @@
+2008-05-07  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* configure.in: detect gtk-sharp 2.12.2
+
+	* src/Core/Global.cs:
+	* src/main.cs:
+	* src/UI.Dialog/PreferenceDialog.cs: apply theme changes on the fly.
+	Require (unreleased, but svn works) gtk-sharp 2.12.2
+
 2008-05-06  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Widgets/InfoBox.cs: include an optional TagView

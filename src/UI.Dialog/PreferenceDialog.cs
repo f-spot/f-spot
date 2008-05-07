@@ -176,8 +176,14 @@ namespace FSpot.UI.Dialog {
 			themelist_combo.Sensitive = theme_filechooser.Sensitive = themecustom_radio.Active; 
 			if (themenone_radio.Active) {
 				Preferences.Set (Preferences.GTK_RC, String.Empty);
-				//Gtk.Rc.DefaultFiles = String.Empty;
-				//Gtk.Rc.ReparseAll ();
+#if GTK_2_12_2
+				if (!File.Exists (Path.Combine (Global.BaseDirectory, "gtkrc")))
+					(File.Create (Path.Combine (Global.BaseDirectory, "gtkrc"))).Dispose ();
+				else
+					File.SetLastWriteTime (Path.Combine (Global.BaseDirectory, "gtkrc"), DateTime.Now);
+				Gtk.Rc.DefaultFiles = Global.DefaultRcFiles;
+				Gtk.Rc.ReparseAll ();
+#endif
 			}
 		}
 
@@ -188,12 +194,35 @@ namespace FSpot.UI.Dialog {
 			TreeIter iter;
 			if ((o as ComboBox).GetActiveIter (out iter))
 				Preferences.Set (Preferences.GTK_RC, theme_list [((o as ComboBox).Model.GetValue (iter, 0)) as string]);
+#if GTK_2_12_2
+			if (!File.Exists (Path.Combine (Global.BaseDirectory, "gtkrc")))
+				(File.Create (Path.Combine (Global.BaseDirectory, "gtkrc"))).Dispose ();
+			else
+				File.SetLastWriteTime (Path.Combine (Global.BaseDirectory, "gtkrc"), DateTime.Now);
+			Gtk.Rc.DefaultFiles = Global.DefaultRcFiles;
+			Gtk.Rc.AddDefaultFile (Preferences.Get (Preferences.GTK_RC) as string);
+			foreach (string s in Rc.DefaultFiles)
+			Console.WriteLine (s);
+			Gtk.Rc.ReparseAll ();
+#endif
 		}
 
 		void HandleThemeFileActivated (object o, EventArgs e)
 		{
-			if (theme_filechooser.Filename != null && theme_filechooser.Filename != Preferences.Get (Preferences.GTK_RC))
+			if (theme_filechooser.Filename != null && theme_filechooser.Filename != Preferences.Get (Preferences.GTK_RC)) {
 				Preferences.Set (Preferences.GTK_RC, theme_filechooser.Filename);	
+#if GTK_2_12_2
+				if (!File.Exists (Path.Combine (Global.BaseDirectory, "gtkrc")))
+					(File.Create (Path.Combine (Global.BaseDirectory, "gtkrc"))).Dispose ();
+				else
+					File.SetLastWriteTime (Path.Combine (Global.BaseDirectory, "gtkrc"), DateTime.Now);
+				Gtk.Rc.DefaultFiles = Global.DefaultRcFiles;
+				Gtk.Rc.AddDefaultFile (Preferences.Get (Preferences.GTK_RC) as string);
+				foreach (string s in Rc.DefaultFiles)
+				Console.WriteLine (s);
+				Gtk.Rc.ReparseAll ();
+#endif
+			}
 		}
 
 		void OnPreferencesChanged (object sender, NotifyEventArgs args)

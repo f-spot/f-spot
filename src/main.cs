@@ -212,8 +212,15 @@ public class Driver {
 						create = false;
 						Gnome.Vfs.Vfs.Initialize ();
 
-						if (File.Exists (Preferences.Get (Preferences.GTK_RC) as string))
+						if (File.Exists (Preferences.Get (Preferences.GTK_RC) as string)) {
+#if GTK_2_12_2
+							if (!File.Exists (Path.Combine (Global.BaseDirectory, "gtkrc")))
+								(File.Create (Path.Combine (Global.BaseDirectory, "gtkrc"))).Dispose ();
+							Gtk.Rc.AddDefaultFile (Path.Combine (Global.BaseDirectory, "gtkrc"));
+							Global.DefaultRcFiles = Gtk.Rc.DefaultFiles;
+#endif
 							Gtk.Rc.AddDefaultFile (Preferences.Get (Preferences.GTK_RC) as string);
+						}
 						
 						Catalog.Init ("f-spot", Defines.LOCALE_DIR);
 						try {
