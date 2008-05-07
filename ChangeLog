@@ -1,5 +1,12 @@
 2008-05-07  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* configure.in:
+	* Makefile.include:
+	* Makefile.am:
+	* src/f-spot.in: do not bundle semweb if it's installed on the system.
+
+2008-05-07  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/MetadatStore.cs:
 	* semweb/ : updating to SemWeb 1.05
 
