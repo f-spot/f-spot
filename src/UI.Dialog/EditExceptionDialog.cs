@@ -38,6 +38,8 @@ namespace FSpot.UI.Dialog
 											    Catalog.GetString ("Error editing photo"),
 											    GenerateMessage (errors))
 		{
+			foreach (Exception e in errors)
+				Console.WriteLine (e);
 		}
 
 		public EditExceptionDialog (Gtk.Window parent, Exception e, IBrowsableItem item) : this (parent, new EditException (item, e))

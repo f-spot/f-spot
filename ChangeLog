@@ -1,5 +1,10 @@
 2008-05-07  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Imaging/ImageFile.cs: embed a localized message with the
+	NotImplementedException. Fixes bnc #256636.
+
+2008-05-07  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Editors/SoftFocus.cs:
 	* src/Editors/Tilt.cs: use Stock buttons, get translation for free. Fixes
 	bnc #256635.
