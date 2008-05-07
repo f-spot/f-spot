@@ -414,6 +414,7 @@ namespace FSpot
 			int num = 0;
 			while (true) {
 				num++;
+				// Note for translators: Reparented is a picture becoming a version of another one
 				string name = (num == 1) ? Catalog.GetString ("Reparented") : String.Format (Catalog.GetString( "Reparented ({0})"), num);
 				name = String.Format (name, num);
 				if (VersionNameExists (name))
