@@ -1,5 +1,11 @@
 2008-05-07  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Editors/SoftFocus.cs:
+	* src/Editors/Tilt.cs: use Stock buttons, get translation for free. Fixes
+	bnc #256635.
+
+2008-05-07  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* configure.in:
 	* Makefile.include:
 	* Makefile.am:
