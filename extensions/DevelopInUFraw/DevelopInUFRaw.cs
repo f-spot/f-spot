@@ -8,6 +8,7 @@
  */
 
 using System;
+using System.IO;
 
 using FSpot;
 using FSpot.Extensions;
@@ -30,16 +31,31 @@ namespace DevelopInUFRawExtension
 
 				string name = GetVersionName (p);
 				System.Uri developed = GetUriForVersionName (p, name);
-				string args = String.Format("--overwrite --compression=95 --out-type=jpeg --output={0} {1}", 
+				string idfile = "";
+
+				if (new Gnome.Vfs.Uri (Path.ChangeExtension (raw.Uri.ToString (), ".ufraw")).Exists) {
+					// We found an ID file, use that instead of the raw file
+					idfile = "--conf=" + Path.ChangeExtension (raw.Uri.LocalPath, ".ufraw");
+				}
+
+				string args = String.Format("--overwrite --create-id=also --compression=98 --out-type=jpeg {0} --output={1} {2}", 
+					idfile,
 					CheapEscape (developed.LocalPath),
-					CheapEscape (raw.Uri.ToString()));
-				Console.WriteLine ("ufraw "+args);
+					CheapEscape (raw.Uri.ToString ()));
+				Console.WriteLine ("ufraw " + args);
 
 				System.Diagnostics.Process ufraw = System.Diagnostics.Process.Start ("ufraw", args); 
 				ufraw.WaitForExit ();
 				if (!(new Gnome.Vfs.Uri (developed.ToString ())).Exists) {
 					Console.WriteLine ("UFraw didn't ended well. Check that you have UFRaw 0.13 (or CVS newer than 2007-09-06). Or did you simply clicked on Cancel ?");
 					continue;
+				}
+
+				if (new Gnome.Vfs.Uri (Path.ChangeExtension (developed.ToString (), ".ufraw")).Exists) {
+					if (new Gnome.Vfs.Uri (Path.ChangeExtension (raw.Uri.ToString (), ".ufraw")).Exists) {
+						File.Delete (Path.ChangeExtension (raw.Uri.LocalPath, ".ufraw"));
+					}
+					File.Move (Path.ChangeExtension (developed.LocalPath, ".ufraw"), Path.ChangeExtension (raw.Uri.LocalPath, ".ufraw"));
 				}
 
 				p.DefaultVersionId = p.AddVersion (developed, name, true);
