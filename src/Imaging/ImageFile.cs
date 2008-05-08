@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using FSpot.Utils;
+using Mono.Unix;
 
 namespace FSpot {
 	public class ImageFormatException : ApplicationException {
