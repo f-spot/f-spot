@@ -32,6 +32,15 @@ UTILS_CSDISTFILES =				\
 	$(srcdir)/Utils/UriUtils.cs		\
 	$(srcdir)/Utils/ScreenSaver.cs
 
+JOBSCHEDULER_CSDISTFILES =				\
+	$(srcdir)/JobScheduler/FSpotCompat.cs		\
+	$(srcdir)/JobScheduler/IInstanceCriticalJob.cs	\
+	$(srcdir)/JobScheduler/IJob.cs			\
+	$(srcdir)/JobScheduler/IntervalHeap.cs		\
+	$(srcdir)/JobScheduler/JobPriority.cs		\
+	$(srcdir)/JobScheduler/JobStatus.cs		\
+	$(srcdir)/JobScheduler/Scheduler.cs
+
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Cairo/Antialias.cs		\
 	$(srcdir)/Cairo/Cairo.cs		\
@@ -163,13 +172,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Imaging/XmpFile.cs		\
 	$(srcdir)/Imaging/Tiff.cs		\
 	$(srcdir)/JobStore.cs			\
-	$(srcdir)/JobScheduler/FSpotCompat.cs		\
-	$(srcdir)/JobScheduler/IInstanceCriticalJob.cs	\
-	$(srcdir)/JobScheduler/IJob.cs			\
-	$(srcdir)/JobScheduler/IntervalHeap.cs		\
-	$(srcdir)/JobScheduler/JobPriority.cs		\
-	$(srcdir)/JobScheduler/JobStatus.cs		\
-	$(srcdir)/JobScheduler/Scheduler.cs		\
 	$(srcdir)/Jobs/SyncMetadataJob.cs	\
 	$(srcdir)/LastRollDialog.cs		\
 	$(srcdir)/Loupe.cs			\
@@ -296,6 +298,8 @@ UTILS_ASSEMBLIES =				\
 	$(GCONF_PKG)				\
 	$(LINK_DBUS)
 
+JOBSCHEDULER_ASSEMBLIES =
+
 F_SPOT_ASSEMBLIES = 				\
 	$(LINK_DBUS)				\
 	$(LINK_GPHOTO2)				\
@@ -317,6 +321,7 @@ F_SPOT_ASSEMBLIES = 				\
 	-r:FSpot.Core.dll			\
 	-r:FSpot.Query.dll			\
 	-r:FSpot.Utils.dll			\
+	-r:FSpot.JobScheduler.dll		\
 	-r:Cms.dll				\
 	$(NUNIT_PKG)				\
 	$(GCONF_PKG)				\
@@ -358,6 +363,8 @@ QUERY_CSFILES = $(QUERY_CSDISTFILES)
 
 UTILS_CSFILES = $(UTILS_CSDISTFILES)
 
+JOBSCHEDULER_CSFILES = $(JOBSCHEDULER_CSDISTFILES)
+
 F_SPOT_CSFILES = $(F_SPOT_CSDISTFILES)	\
 	AssemblyInfo.cs
 
@@ -377,7 +384,11 @@ FSpot.Utils.dll: $(UTILS_CSFILES)
 	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(UTILS_CSFILES) $(UTILS_ASSEMBLIES)
 
-f-spot.exe: $(F_SPOT_CSFILES) FSpot.Utils.dll FSpot.Core.dll FSpot.Query.dll Cms.dll $(F_SPOT_RESOURCES)
+FSpot.JobScheduler.dll: $(JOBSCHEUDLER_CSFILES)
+	@echo -e "\n*** Compiling $@"
+	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(JOBSCHEDULER_CSFILES) $(JOBSCHEDULER_ASSEMBLIES)
+
+f-spot.exe: $(F_SPOT_CSFILES) FSpot.Utils.dll FSpot.Core.dll FSpot.Query.dll FSpot.JobScheduler.dll Cms.dll $(F_SPOT_RESOURCES)
 	@echo -e "\n*** Compiling $@"
 	$(CSC) -target:winexe -out:$@ $(EXTRAFLAGS) $(F_SPOT_CSFILES) $(F_SPOT_ASSEMBLIES) $(RESOURCES)
 
@@ -407,6 +418,8 @@ CLEANFILES =					\
 	FSpot.Query.dll.mdb			\
 	FSpot.Core.dll.mdb			\
 	FSpot.Core.dll				\
+	FSpot.JobScheduler.dll			\
+	FSpot.JobScheduler.dll.mdb		\
 	Cms.dll.config
 
 
