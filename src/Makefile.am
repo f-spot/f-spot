@@ -163,13 +163,13 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Imaging/XmpFile.cs		\
 	$(srcdir)/Imaging/Tiff.cs		\
 	$(srcdir)/JobStore.cs			\
-	$(srcdir)/Jobs/FSpotCompat.cs		\
-	$(srcdir)/Jobs/IInstanceCriticalJob.cs	\
-	$(srcdir)/Jobs/IJob.cs			\
-	$(srcdir)/Jobs/IntervalHeap.cs		\
-	$(srcdir)/Jobs/JobPriority.cs		\
-	$(srcdir)/Jobs/JobStatus.cs		\
-	$(srcdir)/Jobs/Scheduler.cs		\
+	$(srcdir)/JobScheduler/FSpotCompat.cs		\
+	$(srcdir)/JobScheduler/IInstanceCriticalJob.cs	\
+	$(srcdir)/JobScheduler/IJob.cs			\
+	$(srcdir)/JobScheduler/IntervalHeap.cs		\
+	$(srcdir)/JobScheduler/JobPriority.cs		\
+	$(srcdir)/JobScheduler/JobStatus.cs		\
+	$(srcdir)/JobScheduler/Scheduler.cs		\
 	$(srcdir)/Jobs/SyncMetadataJob.cs	\
 	$(srcdir)/LastRollDialog.cs		\
 	$(srcdir)/Loupe.cs			\
