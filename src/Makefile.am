@@ -350,7 +350,8 @@ fspotlib_DATA = f-spot.exe.config	\
 		Cms.dll			\
 		FSpot.Utils.dll		\
 		FSpot.Query.dll		\
-		FSpot.Core.dll
+		FSpot.Core.dll		\
+		FSpot.JobScheduler.dll
 
 bin_SCRIPTS = f-spot
 
