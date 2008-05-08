@@ -118,15 +118,16 @@ public class Driver {
 
 			case "-v": case "-view": case "--view":
 				if (i+1 == args.Length || args[i+1].StartsWith ("-")) {
-					Console.WriteLine ("f-spot: -view option takes one argument");
+					Console.WriteLine ("f-spot: -view option takes (at least) one argument");
 					return 1;
 				}
+				view = true;
+				while (!(i+1 == args.Length) && !args[i+1].StartsWith ("-"))
+					uris.Add (args [++i]);
 //				if (!System.IO.Directory.Exists (args[i+1]) && !System.IO.File.Exists (args[i+1])) {
 //					Console.WriteLine ("f-spot: -view argument must be an existing file or directory");
 //					return 1;
 //				}
-				view = true;
-				uris.Add (args [++i]);
 				break;
 
 			case "-versions": case "--versions":
