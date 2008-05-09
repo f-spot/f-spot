@@ -14,6 +14,7 @@ REFS =					\
 	-r:../../src/FSpot.Core.dll	\
 	-r:../../src/FSpot.Utils.dll	\
 	-r:../../semweb/SemWeb.dll	\
+	$(LINK_GIO)			\
 	-r:Mono.Posix
 
 PKGS =					\
@@ -31,7 +32,7 @@ mpack: $(PLUGIN_ASSEMBLY)
 	mautil p $(PLUGIN_ASSEMBLY)
 
 $(PLUGIN_ASSEMBLY): $(PLUGIN_SOURCES) $(PLUGIN_MANIFEST)
-	$(CSC_LIB) -out:$@ $(PLUGIN_SOURCES) $(REFS) $(PKGS) $(ASSEMBLIES) $(RESOURCES)
+	$(CSC_LIB) -out:$@ $(CSC_DEFINES) $(PLUGIN_SOURCES) $(REFS) $(PKGS) $(ASSEMBLIES) $(RESOURCES)
 
 plugindir = $(pkglibdir)/extensions
 
