@@ -100,12 +100,7 @@ namespace FSpotCDExport {
 			Gnome.Vfs.Uri target = path.Clone();
 	                Gnome.Vfs.Uri dest = target.AppendFileName(shortname);
 #endif	
-#if GIO_2_16
-			while (dest.QueryExists (null)) {
-#else
 	                while (dest.Exists) {
-#endif
-
 	                        string numbered_name = System.String.Format ("{0}-{1}{2}",
 	                                                              System.IO.Path.GetFileNameWithoutExtension (shortname),
 	                                                              i++,
@@ -121,16 +116,24 @@ namespace FSpotCDExport {
 	                return dest;
 	        }
 
+#if GIO_2_16
+		void Clean (System.Uri path)
+		{
+			GLib.File source = FileFactory.NewForUri (path);
+			foreach (GLib.FileInfo info in source.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
+				if (info.FileType == FileType.Directory)
+					Clean (new System.Uri(path, info.Name));
+				FileFactory.NewForUri (new System.Uri (path, info.Name));
+			}
+		}
+#else
 		void Clean ()
 		{
-#if GIO_2_16
-
-#else
 			Gnome.Vfs.Uri target = dest.Clone ();
 			Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
 			Gnome.Vfs.Xfer.XferDeleteList (new Gnome.Vfs.Uri [] {target}, Gnome.Vfs.XferErrorMode.Query, Gnome.Vfs.XferOptions.Recursive, cb);
-#endif			
 		}
+#endif			
 
 		public void Transfer () {
 			try {
@@ -141,7 +144,11 @@ namespace FSpotCDExport {
 #endif
 
 				if (clean)
+#if GIO_2_16
+					Clean (dest);
+#else
 					Clean ();
+#endif
 
 				foreach (IBrowsableItem photo in selection.Items) {
 
@@ -159,7 +166,6 @@ namespace FSpotCDExport {
 #if GIO_2_16
 						GLib.File target = UniqueName (dest, photo.Name);
 						FileProgressCallback cb = Progress;
-						Console.WriteLine ("source {0}, dest {1}", source, target);
 #else
 						target = UniqueName (target, photo.Name);
 						Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
