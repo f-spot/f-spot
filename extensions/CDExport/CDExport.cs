@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using Mono.Unix;
@@ -20,7 +21,7 @@ namespace FSpotCDExport {
 		[Glade.Widget] Gtk.Label size_label;
 
 #if GIO_2_16
-		GLib.File dest = FileFactory.NewForUri ("burn:///");
+		System.Uri dest = new System.Uri ("burn:///");
 #else
 		Gnome.Vfs.Uri dest = new Gnome.Vfs.Uri ("burn:///");
 #endif
@@ -86,19 +87,35 @@ namespace FSpotCDExport {
 		extern static int system (string program);
 
 //		//FIXME: rewrite this as a Filter
+#if GIO_2_16
+	        public static GLib.File UniqueName (System.Uri path, string shortname)
+#else
 	        public static Gnome.Vfs.Uri UniqueName (Gnome.Vfs.Uri path, string shortname)
+#endif
 	        {
 	                int i = 1;
+#if GIO_2_16
+			GLib.File dest = FileFactory.NewForUri (new System.Uri (path, shortname));
+#else
 			Gnome.Vfs.Uri target = path.Clone();
 	                Gnome.Vfs.Uri dest = target.AppendFileName(shortname);
-	
+#endif	
+#if GIO_2_16
+			while (dest.QueryExists (null)) {
+#else
 	                while (dest.Exists) {
+#endif
+
 	                        string numbered_name = System.String.Format ("{0}-{1}{2}",
 	                                                              System.IO.Path.GetFileNameWithoutExtension (shortname),
 	                                                              i++,
 	                                                              System.IO.Path.GetExtension (shortname));
 	
+#if GIO_2_16
+				dest = FileFactory.NewForUri (new System.Uri (path, numbered_name));
+#else
 	                	dest = target.AppendFileName(numbered_name);
+#endif
 	                }
 	
 	                return dest;
@@ -135,14 +152,14 @@ namespace FSpotCDExport {
 						
 #if GIO_2_16
 						GLib.File source = FileFactory.NewForUri (request.Current.ToString ());
-						GLib.File target = dest.Dup ();
 #else
 						Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (request.Current.ToString ());
 						Gnome.Vfs.Uri target = dest.Clone ();
 #endif
 #if GIO_2_16
-						//FIXME: fix UNIQUENAME for GIO
+						GLib.File target = UniqueName (dest, photo.Name);
 						FileProgressCallback cb = Progress;
+						Console.WriteLine ("source {0}, dest {1}", source, target);
 #else
 						target = UniqueName (target, photo.Name);
 						Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
