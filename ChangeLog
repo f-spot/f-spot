@@ -1,3 +1,9 @@
+2008-05-09  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* Makefile.am:
+	* configure.in:
+	* src/f-spot.in: build gio-sharp if needed
+
 2008-05-07  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Imaging/ImageFile.cs: embed a localized message with the

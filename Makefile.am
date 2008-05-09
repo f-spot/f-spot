@@ -2,6 +2,7 @@ SUBDIRS = 		\
 	$(DIR_DBUS)	\
 	$(DIR_DBUS_GLIB)\
 	$(DIR_SEMWEB)	\
+	$(DIR_GIO)	\
 	docs		\
 	glitz-sharp	\
 	gnome-keyring-sharp \
@@ -20,6 +21,7 @@ SUBDIRS = 		\
 DIST_SUBDIRS = 		\
 	dbus-sharp	\
 	dbus-sharp-glib	\
+	gio-sharp	\
 	docs		\
 	glitz-sharp	\
 	gnome-keyring-sharp \
@@ -86,6 +88,7 @@ UPDATE_DESKTOP = \
 
 install-data-hook: 
 	$(UPDATE_DESKTOP)
+	cp gio-sharp/gio/gio-sharp.dll gio-sharp/gio/gio-sharp.dll.config $(libdir)/f-spot/
 
 uninstall-hook: 
 	$(UPDATE_DESKTOP)

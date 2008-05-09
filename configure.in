@@ -86,6 +86,29 @@ else
 fi
 AC_SUBST(GTKHTML_SHARP_PKG)
 
+dnl -- gio-sharp: needed if gnome >= 2.22. link or bundle ?
+if pkg-config --atleast-version=2.22 libgnome-2.0; then
+	if pkg-config --atleast-version=2.16 gio-sharp-2.0; then
+		LINK_GIO="-pkg:gio-sharp-2.0"
+		DIR_GIO=""
+		PATH_GIO=""
+	else
+		LINK_GIO='-r:$(top_builddir)/gio-sharp/gio/gio-sharp.dll'
+		DIR_GIO="gio-sharp"
+		AC_CONFIG_SUBDIRS([gio-sharp])
+		PATH_GIO='../gio-sharp/gio:'
+	fi
+	CSC_DEFINES="$CSC_DEFINES -d:GIO_2_16"
+else
+	LINK_GIO=""
+	DIR_GIO=""
+	PATH_GIO=""
+fi
+
+AC_SUBST(LINK_GIO)
+AC_SUBST(DIR_GIO)
+AC_SUBST(PATH_GIO)
+
 if pkg-config --atleast-version=2.10 gtk-sharp-2.0; then
    CSC_DEFINES="$CSC_DEFINES -d:GTK_2_10"
 fi
