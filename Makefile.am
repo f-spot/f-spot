@@ -88,7 +88,9 @@ UPDATE_DESKTOP = \
 
 install-data-hook: 
 	$(UPDATE_DESKTOP)
-	cp gio-sharp/gio/gio-sharp.dll gio-sharp/gio/gio-sharp.dll.config $(libdir)/f-spot/
+	if [ -f $(top_builddir)/gio-sharp/gio/gio-sharp.dll ]; then \
+		cp $(top_builddir)/gio-sharp/gio/gio-sharp.dll $(top_builddir)/gio-sharp/gio/gio-sharp.dll.config $(libdir)/f-spot/; \
+	fi
 
 uninstall-hook: 
 	$(UPDATE_DESKTOP)
