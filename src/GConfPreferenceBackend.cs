@@ -6,17 +6,24 @@
  *
  * This is free software. See COPYING for details.
  */
-
 #if !NOGCONF
+using System.Runtime.InteropServices;
+
 namespace FSpot
 {
 	public class GConfPreferenceBackend : IPreferenceBackend
 	{
+		[DllImport("libgobject-2.0-0.dll")]
+		static extern void g_type_init ();
+
 		private static GConf.Client client;
 		private GConf.Client Client {
 			get {
-				if (client == null)
+				if (client == null) {
+					//workaround for bgo #481741, but should be fixed upstream
+					g_type_init ();
 					client = new GConf.Client ();
+				}
 				return client;	
 			}
 		}
