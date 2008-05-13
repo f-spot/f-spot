@@ -81,7 +81,7 @@ public class Driver {
 				Help ();
 				return 0;
 			
-			case "-shutdown":
+			case "-shutdown": case "--shutdown":
 				System.Console.WriteLine ("Shutting down existing F-Spot server...");
 				shutdown = true;
 				break;
