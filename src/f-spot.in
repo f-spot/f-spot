@@ -21,7 +21,7 @@ fi
 [ -n "$FSPOT_PROFILE" ] && FSPOT_PROFILE="--profile=$FSPOT_PROFILE"
 run_mdb=false
 run_gdb=false
-for arg in $*; do
+for arg in "$@"; do
     case "x$arg" in
     	x--debug)
 	    FSPOT_DEBUG="$arg"
