@@ -123,7 +123,7 @@ namespace FSpotCDExport {
 			foreach (GLib.FileInfo info in source.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
 				if (info.FileType == FileType.Directory)
 					Clean (new System.Uri(path, info.Name));
-				FileFactory.NewForUri (new System.Uri (path, info.Name));
+				FileFactory.NewForUri (new System.Uri (path, info.Name)).Delete ();
 			}
 		}
 #else
