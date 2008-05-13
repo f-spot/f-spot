@@ -13,7 +13,7 @@ REFS =					\
 	-r:../../src/f-spot.exe		\
 	-r:../../src/FSpot.Core.dll	\
 	-r:../../src/FSpot.Utils.dll	\
-	-r:../../semweb/SemWeb.dll	\
+	$(LINK_SEMWEB)			\
 	-r:google-sharp/Mono.Google.dll	\
 	$(LINK_KEYRING)			\
 	-r:System.Web			\
