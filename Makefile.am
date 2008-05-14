@@ -95,6 +95,6 @@ install-data-hook:
 
 uninstall-hook: 
 	$(UPDATE_DESKTOP)
-	if [ "$(DIR_GIO)" != "" ] ; then \
+	if [ "x$(DIR_GIO)" != "x" ] ; then \
 		rm -f $(libdir)/f-spot/gio-sharp.dll $(libdir)/f-spot/gio-sharp.dll.config; \
 	fi
