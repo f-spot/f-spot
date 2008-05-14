@@ -137,6 +137,9 @@ else
   if pkg-config --atleast-version=2.18 gconf-sharp-2.0; then
     CSC_DEFINES="$CSC_DEFINES -d:GCONF_SHARP_2_18"
   fi
+  if pkg-config --atleast-version=2.20.2 gconf-sharp-2.0; then
+    CSC_DEFINES="$CSC_DEFINES -d:GCONF_SHARP_2_20_2"
+  fi
 fi
 
 AC_SUBST(CSC_DEFINES)
