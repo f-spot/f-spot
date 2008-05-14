@@ -1,3 +1,8 @@
+2008-05-14  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/UI.Dialog/SelectionRatioDialog.cs: parse custom selection ratio
+	like "16/9" or "16:9". Fixes bgo #533057.
+
 2008-05-12  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/GConfPreferenceBackend.cs: call g_type_init as the binding

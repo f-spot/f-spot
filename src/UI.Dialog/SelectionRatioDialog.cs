@@ -137,9 +137,15 @@ namespace FSpot.UI.Dialog {
 			if (!constraints_store.GetIterFromString (out iter, args.Path))
 				return;
 
-			double ratio = Convert.ToDouble (args.NewText);
-			if (ratio < 1.0)
+			double ratio;
+			try {
+				ratio = ParseRatio (args.NewText);
+			} catch (FormatException fe) {
+				Console.WriteLine (fe);
 				return;
+			}
+			if (ratio < 1.0)
+				ratio = 1.0 / ratio;
 
 			using (GLib.Value val = new GLib.Value (ratio))
 				constraints_store.SetValue (iter, 1, val);
@@ -147,6 +153,22 @@ namespace FSpot.UI.Dialog {
 			args.RetVal = true;
 		}
 
+		private double ParseRatio (string text)
+		{
+			try {
+				return Convert.ToDouble (text);
+			} catch (FormatException) {
+				char [] separators = {'/', ':'};
+				foreach (char c in separators) {
+					if (text.IndexOf (c) != -1) {
+						double ratio = Convert.ToDouble (text.Substring (0, text.IndexOf (c)));
+						ratio /= Convert.ToDouble (text.Substring (text.IndexOf (c) + 1));
+						return ratio;
+					}
+				}
+				throw new FormatException (String.Format ("unable to parse {0}", text));
+			}
+		}
 
 		private void DeleteSelectedRows (object o, EventArgs e)
 		{
