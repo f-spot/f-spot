@@ -88,7 +88,7 @@ UPDATE_DESKTOP = \
 
 install-data-hook: 
 	$(UPDATE_DESKTOP)
-	if [ $(DIR_GIO) != "" ] ; then \
+	if [ "x$(DIR_GIO)" != "x" ] ; then \
 		$(install_sh_DATA) $(top_builddir)/gio-sharp/gio/gio-sharp.dll $(libdir)/f-spot/; \
 		$(install_sh_DATA) $(top_builddir)/gio-sharp/gio/gio-sharp.dll.config $(libdir)/f-spot/; \
 	fi
