@@ -28,57 +28,25 @@ namespace SemWeb {
 			rdfObject = "http://www.w3.org/1999/02/22-rdf-syntax-ns#object",
 			rdfStatement = "http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement";
 		
-		#if !SILVERLIGHT
 		public RdfXmlReader(XmlDocument document) {
 			xml = new XmlBaseAwareReader(new XmlNodeReader(document));
-			LoadNamespaces();
 		}
-		#endif
 		
 		public RdfXmlReader(XmlReader document) {
-			XmlValidatingReader reader = new XmlValidatingReader(document); // decodes entity definitions
+			XmlValidatingReader reader = new XmlValidatingReader(document);
 			reader.ValidationType = ValidationType.None;
 			xml = new XmlBaseAwareReader(reader);
-			LoadNamespaces();
 		}
 		
 		public RdfXmlReader(TextReader document) : this(new XmlTextReader(document)) {
 		}
 
-		public RdfXmlReader(Stream document) : this(new StreamReader(document)) {
+		public RdfXmlReader(Stream document) : this(new XmlTextReader(document)) {
 		}
 
-		public RdfXmlReader(TextReader document, string baseUri) : this(document) {
-			BaseUri = baseUri;
-		}
-
-		public RdfXmlReader(Stream document, string baseUri) : this(new StreamReader(document), baseUri) {
-		}
-
-		public RdfXmlReader(string file, string baseUri) : this(GetReader(file), baseUri) {
-		}
-
-		public RdfXmlReader(string file) : this(GetReader(file), "file:///" + file) {
+		public RdfXmlReader(string file) : this(GetReader(file)) {
 		}
 		
-		private void LoadNamespaces() {
-			// Move to the document element and load any namespace
-			// declarations on the node.
-
-			while (xml.Read()) {
-				if (xml.NodeType != XmlNodeType.Element) continue;
-
-				if (xml.MoveToFirstAttribute()) {
-					do {
-						if (xml.Prefix == "xmlns")
-							Namespaces.AddNamespace(xml.Value, xml.LocalName);
-					} while (xml.MoveToNextAttribute());
-					xml.MoveToElement();
-				}
-				break;
-			}
-		}
-
 		public override void Select(StatementSink storage) {
 			// Read past the processing instructions to
 			// the document element.  If it is rdf:RDF,
@@ -87,14 +55,8 @@ namespace SemWeb {
 			// description.
 			
 			this.storage = storage;
-
-			bool first = true; // on the first iteration don't
-											   // advance to the next node -- we already did that
-			while (first || xml.Read()) {
-				first = false;
-
-				if (xml.NodeType != XmlNodeType.Element) continue;
-				
+									
+			while (xml.Read()) {
 				if (xml.NamespaceURI == NS.RDF && xml.LocalName == "RDF" ) {
 					// If there is an xml:base here, set BaseUri so
 					// the application can recover it.  It doesn't
@@ -107,12 +69,8 @@ namespace SemWeb {
 						if (xml.NodeType == XmlNodeType.Element)
 							ParseDescription();
 					}
-					
-				} else {
-					ParseDescription();
-				
+					break;
 				}
-				break;
 			}
 
 			xml.Close();
@@ -129,14 +87,7 @@ namespace SemWeb {
 			if (xml.NamespaceURI == "" && BaseUri == null)
 				return "#" + xml.LocalName;
 
-			return CheckUri(xml.NamespaceURI + xml.LocalName);
-		}
-		
-		private string CheckUri(string uri) {
-			string error = Entity.ValidateUri(uri);
-			if (error != null)
-				OnWarning("The URI <" + uri + "> is not valid: " + error);
-			return uri;
+			return xml.NamespaceURI + xml.LocalName;
 		}
 		
 		private int isset(string attribute) {
@@ -144,7 +95,7 @@ namespace SemWeb {
 		}
 		
 		private string Unrelativize(string uri) {
-			return CheckUri(GetAbsoluteUri(xml.BaseURI != "" ? xml.BaseURI : BaseUri, uri));
+			return GetAbsoluteUri(xml.BaseURI != "" ? xml.BaseURI : BaseUri, uri);
 		}
 		
 		private Entity GetBlankNode(string nodeID) {
@@ -176,6 +127,8 @@ namespace SemWeb {
 			
 			string nodeID = xml.GetAttribute("nodeID", NS.RDF);
 			string about = xml.GetAttribute("about", NS.RDF);
+			//if (about == null)
+			//	about = xml.GetAttribute("about");
 			string ID = xml.GetAttribute("ID", NS.RDF);
 			if (isset(nodeID) + isset(about) + isset(ID) > 1)
 				OnError("An entity description cannot specify more than one of rdf:nodeID, rdf:about, and rdf:ID");
@@ -202,12 +155,11 @@ namespace SemWeb {
 			
 			// If the name of the element is not rdf:Description,
 			// then the name gives its type.
-			string curnode = CurNode();
-			if (curnode != NS.RDF + "Description") {
-				if (IsRestrictedName(curnode) || IsDeprecatedName(curnode))
+			if (CurNode() != NS.RDF + "Description") {
+				if (IsRestrictedName(CurNode()) || IsDeprecatedName(CurNode()))
 					OnError(xml.Name + " cannot be the type of a resource.");
-				if (curnode == NS.RDF + "li") OnError("rdf:li cannot be the type of a resource");
-				storage.Add(new Statement(entity, rdfType, (Entity)curnode, Meta));
+				if (CurNode() == NS.RDF + "li") OnError("rdf:li cannot be the type of a resource");
+				storage.Add(new Statement(entity, rdfType, (Entity)CurNode(), Meta));
 			}
 			
 			ParsePropertyAttributes(entity);
@@ -351,10 +303,8 @@ namespace SemWeb {
 				}
 			
 			} else if (parseType != null && parseType == "Literal") {
-				if (datatype != null)
-					OnError("The attribute rdf:datatype is not valid on a predicate whose parseType is Literal.");
-
-				datatype = "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral";
+				if (datatype == null)
+					datatype = "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral";
 				
 				if (ParsePropertyAttributes(new BNode()))
 					OnError("Property attributes are not valid when parseType is Literal");

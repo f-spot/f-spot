@@ -2,7 +2,6 @@ SUBDIRS = 		\
 	$(subdirs)	\
 	$(DIR_DBUS)	\
 	$(DIR_DBUS_GLIB)\
-	$(DIR_SEMWEB)	\
 	docs		\
 	glitz-sharp	\
 	gnome-keyring-sharp \

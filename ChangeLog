@@ -1,5 +1,9 @@
 2008-05-16  Stephane Delcroix  <stephane@delcroix.org>
 
+	reverting the semweb to the old _but working_ one we had.
+
+2008-05-16  Stephane Delcroix  <stephane@delcroix.org>
+
 	* src/TagStore.cs:
 	* src/Core/Tag.cs: re-introducing an enhanced version of
 	tag sorting by popularity on tag typing.

@@ -14,9 +14,6 @@ namespace SemWeb.Algos {
 			this.b = b;
 		}
 		public bool Distinct { get { return a.Distinct; } }
-		public bool Contains(Resource resource) {
-			return a.Contains(resource) || b.Contains(resource);
-		}
 		public bool Contains(Statement template) {
 			return Store.DefaultContains(this, template);
 		}
@@ -128,7 +125,7 @@ namespace SemWeb.Algos {
 				// against the whole store, rather than the MSG in
 				// isolation.  But that gets much too expensive.
 				MemoryStore msgremoved = new MemoryStore();
-				MakeLeanMSG(new Store(msg), msgg.GetBNodes(), msgremoved);
+				MakeLeanMSG(msg, msgg.GetBNodes(), msgremoved);
 				
 				// Whatever was removed from msg, remove it from the main graph.
 				store.RemoveAll(msgremoved.ToArray());
@@ -145,7 +142,7 @@ namespace SemWeb.Algos {
 				// The GraphMatch will treat all blank nodes in
 				// msg as variables.
 				GraphMatch match = new GraphMatch(msg);
-				QueryResultBuffer sink = new QueryResultBuffer();
+				QueryResultBufferSink sink = new QueryResultBufferSink();
 				match.Run(new SubtractionSource(store, msg), sink);
 				if (sink.Bindings.Count > 0) {
 					// This MSG can be removed.
@@ -511,7 +508,7 @@ namespace SemWeb.Algos {
 			return ret;
 		}
 		
-		public static void FindMSG(SelectableSource store, Entity node, StatementSink msg) {
+		public static void FindMSG(SelectableSource store, Entity node, Store msg) {
 			if (node.Uri != null) throw new ArgumentException("node must be anonymous");
 			
 			ResSet nodesSeen = new ResSet();
@@ -535,14 +532,14 @@ namespace SemWeb.Algos {
 		}
 		
 		private class Sink : StatementSink {
-			StatementSink msg;
+			Store msg;
 			ResSet add;
-			public Sink(StatementSink msg, ResSet add) {
+			public Sink(Store msg, ResSet add) {
 				this.msg = msg;
 				this.add = add;
 			}
 			public bool Add(Statement s) {
-				if (msg is SelectableSource && ((SelectableSource)msg).Contains(s)) return true;
+				if (msg.Contains(s)) return true;
 				msg.Add(s);
 				if (s.Subject.Uri == null) add.Add(s.Subject);
 				if (s.Predicate.Uri == null) add.Add(s.Predicate);

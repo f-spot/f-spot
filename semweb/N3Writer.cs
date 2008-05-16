@@ -6,12 +6,11 @@ using System.Text;
 using SemWeb;
 
 namespace SemWeb {
-	public class N3Writer : RdfWriter, CanForgetBNodes {
+	public class N3Writer : RdfWriter {
 		TextWriter writer;
-		NamespaceManager2 ns = new NamespaceManager2();
+		NamespaceManager ns = new NamespaceManager();
 		bool hasWritten = false;
 		bool closed = false;
-		bool closeStream = false;
 		
 		string lastSubject = null, lastPredicate = null;
 		
@@ -20,16 +19,13 @@ namespace SemWeb {
 		
 		Formats format = Formats.Turtle;
 		
-		private const string xsdInteger = NS.XMLSCHEMA + "integer";
-		private const string xsdDouble = NS.XMLSCHEMA + "double";
-		
 		public enum Formats {
 			NTriples,
 			Turtle,
 			Notation3
 		}
 		
-		public N3Writer(string file) : this(GetWriter(file)) { closeStream = true; }
+		public N3Writer(string file) : this(GetWriter(file)) { }
 
 		public N3Writer(TextWriter writer) {
 			this.writer = writer;
@@ -42,7 +38,7 @@ namespace SemWeb {
 		public override void Add(Statement statement) {
 			if (statement.AnyNull) throw new ArgumentNullException();
 			WriteStatement2(URI(statement.Subject), URI(statement.Predicate),
-				statement.Object is Literal ? Literal((Literal)statement.Object) : URI((Entity)statement.Object));
+				statement.Object is Literal ? ((Literal)statement.Object).ToString() : URI((Entity)statement.Object));
 		}
 
 		public override void Close() {
@@ -52,18 +48,9 @@ namespace SemWeb {
 				writer.WriteLine(".");
 			closed = true;
 			hasWritten = false;
-			if (closeStream)
-				writer.Close();
-			else
-				writer.Flush();
+			writer.Flush();
 		}
 
-		private string Literal(Literal literal) {
-			if (format == Formats.NTriples || literal.DataType == null) return literal.ToString();
-			if (literal.DataType == xsdInteger) return literal.ParseValue().ToString();
-			if (literal.DataType == xsdDouble && format == Formats.Notation3) return literal.ParseValue().ToString();
-			return literal.ToString();
-		}
 		
 		private string URI(Entity entity) {
 			if (entity is Variable && ((Variable)entity).LocalName != null)
@@ -95,7 +82,7 @@ namespace SemWeb {
 				if (ok)
 					return ":" + uri.Substring(len);
 			}
-			if (Format == Formats.NTriples) return "<" + Escape(uri) + ">";
+			if (Format == Formats.NTriples || ns == null) return "<" + Escape(uri) + ">";
 			
 			string ret = ns.Normalize(uri);
 			if (ret[0] != '<') return ret;
@@ -164,21 +151,14 @@ namespace SemWeb {
 			closed = false;
 			
 			// Write the prefix directives at the beginning.
-			if (ns.addedPrefixes.Count > 0 && !(Format == Formats.NTriples)) {
-				if (hasWritten) {
-					writer.Write(".\n");
-					lastSubject = null;
-					lastPredicate = null;
-					hasWritten = false; // really means whether a statement is "open", missing a period
-				}
-				foreach (string prefix in ns.addedPrefixes) {
+			if (!hasWritten && ns != null && !(Format == Formats.NTriples)) {
+				foreach (string prefix in ns.GetPrefixes()) {
 					writer.Write("@prefix ");
 					writer.Write(prefix);
 					writer.Write(": <");
 					writer.Write(ns.GetNamespace(prefix));
 					writer.Write("> .\n");
 				}
-				ns.addedPrefixes.Clear();
 			}
 
 			// Repeated subject.
@@ -207,7 +187,7 @@ namespace SemWeb {
 			
 			// Start a new statement.
 			} else {
-				if (hasWritten) // finish the last statement
+				if (hasWritten)
 					writer.Write(".\n");
 					
 				WriteThing(subj);
@@ -224,19 +204,6 @@ namespace SemWeb {
 		private void WriteThing(string text) {
 			writer.Write(text);
 			writer.Write(" ");
-		}
-	
-		private class NamespaceManager2 : NamespaceManager {
-			public ArrayList addedPrefixes = new ArrayList();
-			public override void AddNamespace(string uri, string prefix) {
-				base.AddNamespace(uri, prefix);
-				addedPrefixes.Add(prefix);
-			}
-		}
-		
-		void CanForgetBNodes.ForgetBNode(BNode bnode) {
-			anonNames.Remove(bnode);
-			anonNameMap.Remove(bnode);
 		}
 	}
 }

@@ -3,11 +3,6 @@ include $(top_srcdir)/Makefile.include
 ASSEMBLY_NAME = SemWeb
 
 ASSEMBLY_SOURCES =				\
-		$(srcdir)/SparqlClient.cs	\
-		$(srcdir)/Euler.cs		\
-		$(srcdir)/Interfaces.cs		\
-		$(srcdir)/GraphMatch.cs		\
-		$(srcdir)/SpecialRelations.cs	\
                 $(srcdir)/AssemblyInfo.cs       \
                 $(srcdir)/NamespaceManager.cs   \
                 $(srcdir)/Util.cs               \
@@ -23,11 +18,14 @@ ASSEMBLY_SOURCES =				\
                 $(srcdir)/RdfWriter.cs          \
                 $(srcdir)/RdfXmlWriter.cs       \
                 $(srcdir)/N3Writer.cs           \
+                $(srcdir)/RSquary.cs            \
                 $(srcdir)/LiteralFilters.cs     \
                 $(srcdir)/Query.cs              \
                 $(srcdir)/Inference.cs          \
                 $(srcdir)/RDFS.cs               \
-                $(srcdir)/Algos.cs 
+                $(srcdir)/Algos.cs              \
+                $(srcdir)/Remote.cs             \
+                $(srcdir)/XPathSemWebNavigator.cs             
 
 REFS =			\
 	-r:System.Data	\

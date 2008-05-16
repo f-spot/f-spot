@@ -1,49 +1,3 @@
-/**
- * SQLStore.cs: An abstract implementation of an RDF triple store
- * using an SQL-based backend.  This class is extended by the
- * MySQLStore, SQLiteStore, and PostreSQLStore classes.
- *
- * The SQLStore creates three tables to store its data.  The tables
- * are organizes follows:
- *   table                columns
- * PREFIX_entites    id (int), value (case-sensitive string)
- * PREFIX_literals   id (int), value (case-sens. string), language (short case-insens. string),
-                     datatype (case-sense. string), hash (28byte case-sense string)
- * PREFIX_statements subject (int), predicate (int), object (int), meta (int), objecttype (tiny int)
- *
- * Every resource (named node, bnode, and literal) is given a numeric ID.
- * Zero is reserved.  One is used for the bnode in the static field Statement.DefaultMeta.
- * The numbers for entities and literals are drawn from the same set of numbers,
- * so there cannot be an entity and a literal with the same ID.
- *
- * The subject, predicate, object, and meta columns in the _statements table
- * refer to the numeric IDs of resources.  objecttype is zero if the object
- * is an entity (named or blank), otherwise one if it is a literal.  Some databases
- * (i.e. MySQL) add a UNIQUE constraint over the subject, predicate, object,
- * and meta columns so that the database is guaranteed not to have duplicate
- * rows.  Not all databases will do this, though.
- *
- * All literals have a row in the _literals table.  The value, language, and
- * datatype columns have the obvious things.  Notably, the datatype column
- * is a string column, even though you might think of it as an entity that
- * should be in the entities table.  The hash column contains a SHA1 hash
- * over the three fields and is used to speed up look-ups for literals.  It
- * also is used for creating a UNIQUE index over the table.  Because literal
- * values can be arbitrarily long, creating a fixed-size hash is the only
- * way to reliably create a UNIQUE constraint over the table.  A literal
- * value is entered into this table at most once.  You can't have two rows
- * that have the exact same value, language, and datatype.
- *
- * The _entities table contains all *named* entities.  Basically it is just
- * a mapping between entity IDs in the _statements table and their URIs.
- * Importantly, bnodes are not represented in this table (it would be a
- * waste of space since they have nothing to map IDs to).  A UNIQUE constraint
- * is placed over the value column to ensure that a URI ends up in the table
- * at most once.  Because bnodes are not in this table, the only way to
- * get a list of them is to see what IDs are used in _statements that are
- * not in this table or in the _literals table.
- */
-
 using System;
 using System.Collections;
 using System.Collections.Specialized;
@@ -55,93 +9,47 @@ using System.Text;
 using SemWeb.Util;
 
 namespace SemWeb.Stores {
-	public abstract class SQLStore : QueryableSource, StaticSource, ModifiableSource, IDisposable {
-		// Table initialization, etc.
-		// --------------------------
+	// TODO: It's not safe to have two concurrent accesses to the same database
+	// because the creation of new entities will use the same IDs.
 	
-		// This is a version number representing the current 'schema' implemented
-		// by this class in case of future updates.
+	public abstract class SQLStore : Store, SupportsPersistableBNodes {
 		int dbformat = 1;
 	
-		// 'table' is the prefix of the tables used by this store, i.e.
-		// {table}_statements, {table}_literals, {table}_entities.  This is
-		// set in the constructor.
 		string table;
-		
-		// 'guid' is a GUID assigned to this store.  It is created the
-		// first time the SQL table structure is made and is saved in
-		// the info block of the literal with ID zero.
 		string guid;
 		
-		// this flag tracks the first access to the backend, when it
-		// creates tables and indexes if necessary
 		bool firstUse = true;
-
-		// Importing
-		// ------------
 		
-		// The SQL store operates in two modes, isImporting == false and
-		// isImporting == true.  The first mode is the usual mode, where
-		// calls to Add are executed immediately.  The second mode, which
-		// is activated by the Import() method, batches Add calls to make
-		// insertions faster.  While importing, no public methods should be
-		// called except by this class itself.
 		bool isImporting = false;
-		
-		// Each time we need to add a resource, we need to find it an ID.
-		// When importing, we track the next ID available in this field
-		// and increment it as necessary.  When not importing, we do a
-		// DB query to find the next available ID.
 		int cachedNextId = -1;
-		
-		// These variables hold on to the IDs of literals and entities during
-		// importing. They are periodically cleared.
 		Hashtable entityCache = new Hashtable();
 		Hashtable literalCache = new Hashtable();
 		
-		// This is a buffer of statements waiting to be processed.
-		StatementList addStatementBuffer = null;
-		
-		// These track the performance of our buffer so we can adjust its size
-		// on the fly to maximize performance.
-		int importAddBufferSize = 200, importAddBufferRotation = 0;
-		TimeSpan importAddBufferTime = TimeSpan.MinValue;
-		
-		// Other Flags
-		// -----------
-		
-		// When adding a statement that has a bnode in it (not while importing),
-		// we have to do a two-staged procedure.  This holds on to a list of
-		// GUIDs that we've temporarily assigned to bnodes that are cleared
-		// at the end of Add().
 		ArrayList anonEntityHeldIds = new ArrayList();
 		
-		// Tracks whether any statements have been removed from the store by this
-		// object.  When Close() is called, if true, the entities and literals
-		// tables are cleaned up to remove unreferenced resoures.
 		bool statementsRemoved = false;
 
-		// Debugging flags from environment variables.
 		static bool Debug = System.Environment.GetEnvironmentVariable("SEMWEB_DEBUG_SQL") != null;
-		static bool DebugLogSpeed = System.Environment.GetEnvironmentVariable("SEMWEB_DEBUG_SQL_LOG_SPEED") != null;
-		static bool NoSQLView = System.Environment.GetEnvironmentVariable("SEMWEB_SQL_NOVIEWS") != null;
-		static string InitCommands = System.Environment.GetEnvironmentVariable("SEMWEB_SQL_INIT_COMMANDS");
 		
-		// This guy is reused in various calls to avoid allocating a new one of
-		// these all the time.
 		StringBuilder cmdBuffer = new StringBuilder();
-		 
-		// The quote character that surrounds strings in SQL statements.
-		// Initialized in the constructor.
+		
+		// Buffer statements to process together.
+		StatementList addStatementBuffer = null;
+		
+		string 	INSERT_INTO_LITERALS_VALUES,
+				INSERT_INTO_STATEMENTS_VALUES,
+				INSERT_INTO_ENTITIES_VALUES;
 		char quote;
 		
-		// Ensure that calls to Select() and Query() are synchronized to make these methods thread-safe.
 		object syncroot = new object();
 		
-		// Our SHA1 object which we use to create hashes of literal values.
+		Hashtable metaEntities;
+		
 		SHA1 sha = SHA1.Create();
 		
-		// This class is placed inside entities to cache their numeric IDs.
+		int importAddBufferSize = 200, importAddBufferRotation = 0;
+		TimeSpan importAddBufferTime = TimeSpan.MinValue;
+				
 		private class ResourceKey {
 			public int ResId;
 			
@@ -151,80 +59,41 @@ namespace SemWeb.Stores {
 			public override bool Equals(object other) { return (other is ResourceKey) && ((ResourceKey)other).ResId == ResId; }
 		}
 		
-		// Some helpers.
-		
-		const string rdfs_member = NS.RDFS + "member";
-		const string rdf_li = NS.RDF + "_";
-		
 		private static readonly string[] fourcols = new string[] { "subject", "predicate", "object", "meta" };
 		private static readonly string[] predcol = new string[] { "predicate" };
 		private static readonly string[] metacol = new string[] { "meta" };
 
-		private string INSERT_INTO_LITERALS_VALUES { get { return "INSERT INTO " + table + "_literals VALUES "; } }
-		private string INSERT_INTO_ENTITIES_VALUES { get { return "INSERT INTO " + table + "_entities VALUES "; } }
-		private string INSERT_INTO_STATEMENTS_VALUES { get { return "INSERT " + (HasUniqueStatementsConstraint ? InsertIgnoreCommand : "") + " INTO " + table + "_statements VALUES "; } }
-			
-
-		// The constructor called by subclasses.
 		protected SQLStore(string table) {
 			this.table = table;
+			
+			INSERT_INTO_LITERALS_VALUES = "INSERT INTO " + table + "_literals VALUES ";
+			INSERT_INTO_ENTITIES_VALUES = "INSERT INTO " + table + "_entities VALUES ";
+			INSERT_INTO_STATEMENTS_VALUES = "INSERT " + (SupportsInsertIgnore ? "IGNORE " : "") + "INTO " + table + "_statements VALUES ";
 			
 			quote = GetQuoteChar();
 		}
 		
 		protected string TableName { get { return table; } }
 		
-		// The next few abstract and virtual methods allow implementors to control
-		// what features the SQLStore takes advantage of and controls the SQL
-		// language use.
-
-		// See the API docs for more on these.
-		protected abstract bool HasUniqueStatementsConstraint { get; } // may not return true unless INSERT (IGNORE COMMAND) is supported
-		protected abstract string InsertIgnoreCommand { get; }
+		protected abstract bool SupportsNoDuplicates { get; }
+		protected abstract bool SupportsInsertIgnore { get; }
 		protected abstract bool SupportsInsertCombined { get; }
+		protected virtual bool SupportsFastJoin { get { return true; } }
 		protected abstract bool SupportsSubquery { get; }
-		protected virtual bool SupportsLimitClause { get { return true; } }
-		protected virtual bool SupportsViews { get { return false; } }
-		protected virtual int MaximumUriLength { get { return -1; } }
 		
 		protected abstract void CreateNullTest(string column, System.Text.StringBuilder command);
-		protected abstract void CreateLikeTest(string column, string prefix, int method, System.Text.StringBuilder command);
-			// method: 0 == startswith, 1 == contains, 2 == ends with
 		
-		protected virtual bool CreateEntityPrefixTest(string column, string prefix, System.Text.StringBuilder command) {
-			command.Append('(');
-			command.Append(column);
-			command.Append(" IN (SELECT id from ");
-			command.Append(TableName);
-			command.Append("_entities WHERE ");
-			CreateLikeTest("value", prefix, 0, command);
-			command.Append("))");
-			return true;
-		}
-		
-		// If this is the first use, initialize the table and index structures.
-		// CreateTable() will create tables if they don't already exist.
-		// CreateIndexes() will only be run if this is a new database, so that
-		// the user may customize the indexes after the table is first created
-		// without SemWeb adding its own indexes the next time again.
 		private void Init() {
 			if (!firstUse) return;
 			firstUse = false;
 			
 			CreateTable();
-			if (CreateVersion()) // tests if this is a new table
-				CreateIndexes();
-
-			if (InitCommands != null)
-				RunCommand(InitCommands);
+			CreateIndexes();
+			CreateVersion();
 		}
 		
-		// Creates the info block in the literal row with ID zero.  Returns true
-		// if it created a new info block (i.e. this is a new database).
-		private bool CreateVersion() {	
+		private void CreateVersion() {	
 			string verdatastr = RunScalarString("SELECT value FROM " + table + "_literals WHERE id = 0");
-			bool isNew = (verdatastr == null);
-			
 			NameValueCollection verdata = ParseVersionInfo(verdatastr);
 			
 			if (verdatastr != null && verdata["ver"] == null)
@@ -243,9 +112,7 @@ namespace SemWeb.Stores {
 			if (verdatastr == null)
 				RunCommand("INSERT INTO " + table + "_literals (id, value) VALUES (0, " + Escape(newverdata, true) + ")");
 			else if (verdatastr != newverdata)
-				RunCommand("UPDATE " + table + "_literals SET value = " + Escape(newverdata, true) + " WHERE id = 0");
-				
-			return isNew;
+				RunCommand("UPDATE " + table + "_literals SET value = " + newverdata + " WHERE id = 0");
 		}
 		
 		NameValueCollection ParseVersionInfo(string verdata) {
@@ -265,44 +132,27 @@ namespace SemWeb.Stores {
 			return ret;
 		}
 		
-		// Now we get to the Store implementation.
+		public override bool Distinct { get { return true; } }
 		
-		// Why do we return true here?
-		public bool Distinct { get { return true; } }
-		
-		public int StatementCount {
-			get {
-				Init();
-				RunAddBuffer();
-				return RunScalarInt("select count(subject) from " + table + "_statements", 0);
-			}
-		}
+		public override int StatementCount { get { Init(); RunAddBuffer(); return RunScalarInt("select count(subject) from " + table + "_statements", 0); } }
 		
 		public string GetStoreGuid() { return guid; }
 		
-		public string GetPersistentBNodeId(BNode node) {
+		public string GetNodeId(BNode node) {
 			ResourceKey rk = (ResourceKey)GetResourceKey(node);
 			if (rk == null) return null;
-			return GetStoreGuid() + ":" + rk.ResId.ToString();
+			return rk.ResId.ToString();
 		}
 		
-		public BNode GetBNodeFromPersistentId(string persistentId) {
+		public BNode GetNodeFromId(string persistentId) {
 			try {
-				int colon = persistentId.IndexOf(':');
-				if (colon == -1) return null;
-				if (GetStoreGuid() != persistentId.Substring(0, colon)) return null;
-				int id = int.Parse(persistentId.Substring(colon+1));
+				int id = int.Parse(persistentId);
 				return (BNode)MakeEntity(id, null, null);
-			} catch (Exception) {
+			} catch (Exception e) {
 				return null;
 			}
 		}
 		
-		// Returns the next ID available for a resource.  If we're importing,
-		// use and increment the cached ID.  Otherwise, scan the tables for
-		// the highest ID in use and use that plus one.  (We have to scan all
-		// tables because bnode IDs are only in the statements table and
-		// entities and literals may be orphaned so those are only in those tables.)
 		private int NextId() {
 			if (isImporting && cachedNextId != -1)
 				return ++cachedNextId;
@@ -330,36 +180,30 @@ namespace SemWeb.Stores {
 			if (maxid >= nextid) nextid = maxid + 1;
 		}
 		
-		// Implements Store.Clear() by dropping the tables entirely.
-		public void Clear() {
+		public override void Clear() {
 			// Drop the tables, if they exist.
-			try { RunCommand("DROP TABLE " + table + "_statements;"); } catch (Exception) { }
-			try { RunCommand("DROP TABLE " + table + "_literals;"); } catch (Exception) { }
-			try { RunCommand("DROP TABLE " + table + "_entities;"); } catch (Exception) { }
+			try { RunCommand("DROP TABLE " + table + "_statements;"); } catch (Exception e) { }
+			try { RunCommand("DROP TABLE " + table + "_literals;"); } catch (Exception e) { }
+			try { RunCommand("DROP TABLE " + table + "_entities;"); } catch (Exception e) { }
 			firstUse = true;
 		
 			Init();
 			if (addStatementBuffer != null) addStatementBuffer.Clear();
 			
+			metaEntities = null;
+
 			//RunCommand("DELETE FROM " + table + "_statements;");
 			//RunCommand("DELETE FROM " + table + "_literals;");
 			//RunCommand("DELETE FROM " + table + "_entities;");
 		}
 		
-		// Computes a hash for a literal value to put in the hash column of the _literals table.
 		private string GetLiteralHash(Literal literal) {
 			byte[] data = System.Text.Encoding.Unicode.GetBytes(literal.ToString());
 			byte[] hash = sha.ComputeHash(data);
 			return Convert.ToBase64String(hash);
 		}
 		
-		// Gets the ID of a literal in the database given an actual Literal object.
-		// If create is false, return 0 if no such literal exists in the database.
-		// Otherwise, create a row for the literal if none exists putting the
-		// SQL insertion statement into the buffer argument.
-		// If we're in isImporting mode, we expect that the literal's ID has already
-		// been pre-fetched and put into literalCache (if the literal exists in the DB).
-		private int GetLiteralId(Literal literal, bool create, StringBuilder buffer, bool insertCombined, ref bool firstInsert) {
+		private int GetLiteralId(Literal literal, bool create, StringBuilder buffer, bool insertCombined) {
 			// Returns the literal ID associated with the literal.  If a literal
 			// doesn't exist and create is true, a new literal is created,
 			// otherwise 0 is returned.
@@ -369,25 +213,20 @@ namespace SemWeb.Stores {
 				if (ret != null) return (int)ret;
 			} else {
 				StringBuilder b = cmdBuffer; cmdBuffer.Length = 0;
-				b.Append("SELECT ");
-				if (!SupportsLimitClause)
-					b.Append("TOP 1 ");
-				b.Append("id FROM ");
+				b.Append("SELECT id FROM ");
 				b.Append(table);
 				b.Append("_literals WHERE hash =");
-				b.Append(quote);
+				b.Append("\"");
 				b.Append(GetLiteralHash(literal));
-				b.Append(quote);
-				if (SupportsLimitClause)
-					b.Append(" LIMIT 1");
-				b.Append(';');
+				b.Append("\"");
+				b.Append(" LIMIT 1;");
 				
 				object id = RunScalar(b.ToString());
 				if (id != null) return AsInt(id);
 			}
 				
 			if (create) {
-				int id = AddLiteral(literal, buffer, insertCombined, ref firstInsert);
+				int id = AddLiteral(literal, buffer, insertCombined);
 				if (isImporting)
 					literalCache[literal] = id;
 				return id;
@@ -396,8 +235,7 @@ namespace SemWeb.Stores {
 			return 0;
 		}
 		
-		// Creates the SQL command to add a literal to the _literals table.
-		private int AddLiteral(Literal literal, StringBuilder buffer, bool insertCombined, ref bool firstInsert) {
+		private int AddLiteral(Literal literal, StringBuilder buffer, bool insertCombined) {
 			int id = NextId();
 			
 			StringBuilder b;
@@ -410,9 +248,8 @@ namespace SemWeb.Stores {
 			if (!insertCombined) {
 				b.Append(INSERT_INTO_LITERALS_VALUES);
 			} else {
-				if (!firstInsert)
+				if (b.Length > 0)
 					b.Append(',');
-				firstInsert = false;
 			}
 			b.Append('(');
 			b.Append(id);
@@ -428,11 +265,9 @@ namespace SemWeb.Stores {
 				EscapedAppend(b, literal.DataType);
 			else
 				b.Append("NULL");
-			b.Append(',');
-			b.Append(quote);
+			b.Append(",\"");
 			b.Append(GetLiteralHash(literal));
-			b.Append(quote);
-			b.Append(')');
+			b.Append("\")");
 			if (!insertCombined)
 				b.Append(';');
 			
@@ -444,13 +279,7 @@ namespace SemWeb.Stores {
 			return id;
 		}
 
-		// Gets the ID of an entity in the database given a URI.
-		// If create is false, return 0 if no such entity exists in the database.
-		// Otherwise, create a row for the entity if none exists putting the
-		// SQL insertion statement into the entityInsertBuffer argument.
-		// If we're in isImporting mode, we expect that the entity's ID has already
-		// been pre-fetched and put into entityCache (if the entity exists in the DB).
-		private int GetEntityId(string uri, bool create, StringBuilder entityInsertBuffer, bool insertCombined, bool checkIfExists, ref bool firstInsert) {
+		private int GetEntityId(string uri, bool create, StringBuilder entityInsertBuffer, bool insertCombined, bool checkIfExists) {
 			// Returns the resource ID associated with the URI.  If a resource
 			// doesn't exist and create is true, a new resource is created,
 			// otherwise 0 is returned.
@@ -473,8 +302,8 @@ namespace SemWeb.Stores {
 			
 			// If we got here, no such resource exists and create is true.
 			
-			if (MaximumUriLength != -1 && uri.Length > MaximumUriLength)
-				throw new NotSupportedException("URI exceeds maximum length supported by data store.");
+			if (uri.Length > 255)
+				throw new NotSupportedException("URIs must be a maximum of 255 characters for this store due to indexing constraints (before MySQL 4.1.2).");
 
 			id = NextId();
 			
@@ -488,9 +317,8 @@ namespace SemWeb.Stores {
 			if (!insertCombined) {
 				b.Append(INSERT_INTO_ENTITIES_VALUES);
 			} else {
-				if (!firstInsert)
+				if (b.Length > 0)
 					b.Append(',');
-				firstInsert = false;
 			}
 			b.Append('(');
 			b.Append(id);
@@ -511,30 +339,16 @@ namespace SemWeb.Stores {
 			return id;
 		}
 		
-		// Gets the ID of an entity in the database given a URI.
-		// If create is false, return 0 if no such entity exists in the database.
-		// Otherwise, create a row for the entity if none exists.
 		private int GetResourceId(Resource resource, bool create) {
-			bool firstLiteralInsert = true, firstEntityInsert = true;
-			return GetResourceIdBuffer(resource, create, null, null, false, ref firstLiteralInsert, ref firstEntityInsert);
+			return GetResourceIdBuffer(resource, create, null, null, false);
 		}
 		
-		// Gets the ID of an entity or literal in the database given a Resource object.
-		// If create is false, return 0 if no such entity exists in the database.
-		// Otherwise, create a row for the resource if none exists putting the
-		// SQL insertion statements into the literalInsertBuffer and entityInsertBuffer arguments.
-		// If we're in isImporting mode, we expect that the resources's ID has already
-		// been pre-fetched and put into one of the cache variables (if the resource exists in the DB).
-		// If we're trying to get the ID for a bnode (i.e. we want to add it to the database),
-		//   if we're isImporting, we know the next ID we can use -- increment and return that.
-		//   otherwise we have to create a temporary row in the _entities table to hold onto
-		//   the ID just until we add the statement, at which point the row can be removed.
-		private int GetResourceIdBuffer(Resource resource, bool create, StringBuilder literalInsertBuffer, StringBuilder entityInsertBuffer, bool insertCombined, ref bool firstLiteralInsert, ref bool firstEntityInsert) {
+		private int GetResourceIdBuffer(Resource resource, bool create, StringBuilder literalInsertBuffer, StringBuilder entityInsertBuffer, bool insertCombined) {
 			if (resource == null) return 0;
 			
 			if (resource is Literal) {
 				Literal lit = (Literal)resource;
-				return GetLiteralId(lit, create, literalInsertBuffer, insertCombined, ref firstLiteralInsert);
+				return GetLiteralId(lit, create, literalInsertBuffer, insertCombined);
 			}
 			
 			if (object.ReferenceEquals(resource, Statement.DefaultMeta))
@@ -546,7 +360,7 @@ namespace SemWeb.Stores {
 			int id;
 			
 			if (resource.Uri != null) {
-				id = GetEntityId(resource.Uri, create, entityInsertBuffer, insertCombined, true, ref firstEntityInsert);
+				id = GetEntityId(resource.Uri, create, entityInsertBuffer, insertCombined, true);
 			} else {
 				// This anonymous node didn't come from the database
 				// since it didn't have a resource key.  If !create,
@@ -567,7 +381,7 @@ namespace SemWeb.Stores {
 					// removed.
 					string guid = "semweb-bnode-guid://taubz.for.net,2006/"
 						+ Guid.NewGuid().ToString("N");
-					id = GetEntityId(guid, create, entityInsertBuffer, insertCombined, false, ref firstEntityInsert);
+					id = GetEntityId(guid, create, entityInsertBuffer, insertCombined, false);
 					anonEntityHeldIds.Add(id);
 				}
 			}
@@ -577,14 +391,11 @@ namespace SemWeb.Stores {
 			return id;
 		}
 
-		// Gets the type of the Resource, 0 for entities; 1 for literals.
 		private int ObjectType(Resource r) {
 			if (r is Literal) return 1;
 			return 0;
 		}
 		
-		// Creates an entity given its ID and its URI, and put it into
-		// the cache argument if the argument is not null.
 		private Entity MakeEntity(int resourceId, string uri, Hashtable cache) {
 			if (resourceId == 0)
 				return null;
@@ -611,20 +422,36 @@ namespace SemWeb.Stores {
 			return ent;
 		}
 		
-		// Adds a statement to the store.
-		// If we're isImoprting, buffer the statement, and if the buffer is full,
-		// run the buffer.
-		// Otherwise, add it immediately.
-		bool StatementSink.Add(Statement statement) {
-			Add(statement);
-			return true;
-		}
-		public void Add(Statement statement) {
+		public override void Add(Statement statement) {
 			if (statement.AnyNull) throw new ArgumentNullException();
 			
+			metaEntities = null;
+
 			if (addStatementBuffer != null) {
 				addStatementBuffer.Add(statement);
-				RunAddBufferDynamic();
+				
+				// This complicated code here adjusts the size of the add
+				// buffer dynamically to maximize performance.
+				int thresh = importAddBufferSize;
+				if (importAddBufferRotation == 1) thresh += 100; // experiment with changing
+				if (importAddBufferRotation == 2) thresh -= 100; // the buffer size
+				
+				if (addStatementBuffer.Count >= thresh) {
+					DateTime start = DateTime.Now;
+					RunAddBuffer();
+					TimeSpan duration = DateTime.Now - start;
+					
+					// If there was an improvement in speed, per statement, on an 
+					// experimental change in buffer size, keep the change.
+					if (importAddBufferRotation != 0
+						&& duration.TotalSeconds/thresh < importAddBufferTime.TotalSeconds/importAddBufferSize
+						&& thresh >= 200 && thresh <= 4000)
+						importAddBufferSize = thresh;
+
+					importAddBufferTime = duration;
+					importAddBufferRotation++;
+					if (importAddBufferRotation == 3) importAddBufferRotation = 0;
+				}
 				return;
 			}
 			
@@ -669,33 +496,6 @@ namespace SemWeb.Stores {
 				addBuffer.Append(')');
 				RunCommand(addBuffer.ToString());
 				anonEntityHeldIds.Clear();
-			}
-		}
-		
-		private void RunAddBufferDynamic() {
-			// This complicated code here adjusts the size of the add
-			// buffer dynamically to maximize performance.
-			int thresh = importAddBufferSize;
-			if (importAddBufferRotation == 1) thresh += 100; // experiment with changing
-			if (importAddBufferRotation == 2) thresh -= 100; // the buffer size
-			
-			if (addStatementBuffer.Count >= thresh) {
-				DateTime start = DateTime.Now;
-				RunAddBuffer();
-				TimeSpan duration = DateTime.Now - start;
-				
-				if (DebugLogSpeed)
-					Console.Error.WriteLine(thresh + "\t" + thresh/duration.TotalSeconds);
-				
-				// If there was an improvement in speed, per statement, on an 
-				// experimental change in buffer size, keep the change.
-				if (importAddBufferRotation != 0
-					&& duration.TotalSeconds/thresh < importAddBufferTime.TotalSeconds/importAddBufferSize
-					&& thresh >= 200 && thresh <= 10000)
-					importAddBufferSize = thresh;
-				importAddBufferTime = duration;
-				importAddBufferRotation++;
-				if (importAddBufferRotation == 3) importAddBufferRotation = 0;
 			}
 		}
 		
@@ -764,9 +564,9 @@ namespace SemWeb.Stores {
 					
 					if (hasLiterals)
 						cmd.Append(" , ");
-					cmd.Append(quote);
+					cmd.Append('"');
 					cmd.Append(hash);
-					cmd.Append(quote);
+					cmd.Append('"');
 					hasLiterals = true;
 					litseen[hash] = lit;
 				}
@@ -784,11 +584,6 @@ namespace SemWeb.Stores {
 				
 				StringBuilder entityInsertions = new StringBuilder();
 				StringBuilder literalInsertions = new StringBuilder();
-				if (insertCombined) entityInsertions.Append(INSERT_INTO_ENTITIES_VALUES);
-				if (insertCombined) literalInsertions.Append(INSERT_INTO_LITERALS_VALUES);
-				int entityInsertionsInitialLength = entityInsertions.Length;
-				int literalInsertionsInitialLength = literalInsertions.Length;
-				bool firstLiteralInsert = true, firstEntityInsert = true; // only used if insertCombined is true
 				
 				cmd = new StringBuilder();
 				if (insertCombined)
@@ -797,11 +592,11 @@ namespace SemWeb.Stores {
 				for (int i = 0; i < statements.Count; i++) {
 					Statement statement = (Statement)statements[i];
 				
-					int subj = GetResourceIdBuffer(statement.Subject, true, literalInsertions, entityInsertions, insertCombined, ref firstLiteralInsert, ref firstEntityInsert);
-					int pred = GetResourceIdBuffer(statement.Predicate, true,  literalInsertions, entityInsertions, insertCombined, ref firstLiteralInsert, ref firstEntityInsert);
+					int subj = GetResourceIdBuffer(statement.Subject, true, literalInsertions, entityInsertions, insertCombined);
+					int pred = GetResourceIdBuffer(statement.Predicate, true,  literalInsertions, entityInsertions, insertCombined);
 					int objtype = ObjectType(statement.Object);
-					int obj = GetResourceIdBuffer(statement.Object, true, literalInsertions, entityInsertions, insertCombined, ref firstLiteralInsert, ref firstEntityInsert);
-					int meta = GetResourceIdBuffer(statement.Meta, true, literalInsertions, entityInsertions, insertCombined, ref firstLiteralInsert, ref firstEntityInsert);
+					int obj = GetResourceIdBuffer(statement.Object, true, literalInsertions, entityInsertions, insertCombined);
+					int meta = GetResourceIdBuffer(statement.Meta, true, literalInsertions, entityInsertions, insertCombined);
 					
 					if (!insertCombined)
 						cmd.Append(INSERT_INTO_STATEMENTS_VALUES);
@@ -822,21 +617,22 @@ namespace SemWeb.Stores {
 						cmd.Append("),");
 				}
 				
-				if (literalInsertions.Length > literalInsertionsInitialLength) {
-					if (insertCombined)
+				if (literalInsertions.Length > 0) {
+					if (insertCombined) {
+						literalInsertions.Insert(0, INSERT_INTO_LITERALS_VALUES);
 						literalInsertions.Append(';');
-					if (Debug) Console.Error.WriteLine(literalInsertions.ToString());
+					}
 					RunCommand(literalInsertions.ToString());
 				}
 				
-				if (entityInsertions.Length > entityInsertionsInitialLength) {
-					if (insertCombined)
+				if (entityInsertions.Length > 0) {
+					if (insertCombined) {
+						entityInsertions.Insert(0, INSERT_INTO_ENTITIES_VALUES);
 						entityInsertions.Append(';');
-					if (Debug) Console.Error.WriteLine(entityInsertions.ToString());
+					}
 					RunCommand(entityInsertions.ToString());
 				}
 				
-				if (Debug) Console.Error.WriteLine(cmd.ToString());
 				RunCommand(cmd.ToString());
 			
 			} finally {
@@ -848,7 +644,7 @@ namespace SemWeb.Stores {
 			}
 		}
 		
-		public void Remove(Statement template) {
+		public override void Remove(Statement template) {
 			Init();
 			RunAddBuffer();
 
@@ -861,23 +657,18 @@ namespace SemWeb.Stores {
 			RunCommand(cmd.ToString());
 			
 			statementsRemoved = true;
+			metaEntities = null;
 		}
 		
-		public void RemoveAll(Statement[] templates) {
-			// TODO: Optimize this.
-			foreach (Statement t in templates)
-				Remove(t);
-		}
-		
-		public Entity[] GetEntities() {
+		public override Entity[] GetEntities() {
 			return GetAllEntities(fourcols);
 		}
 			
-		public Entity[] GetPredicates() {
+		public override Entity[] GetPredicates() {
 			return GetAllEntities(predcol);
 		}
 		
-		public Entity[] GetMetas() {
+		public override Entity[] GetMetas() {
 			return GetAllEntities(metacol);
 		}
 
@@ -912,13 +703,8 @@ namespace SemWeb.Stores {
 				if (!AppendMultiRes((MultiRes)r, cmd)) return false;
 				cmd.Append(" ))");
 			} else {
-				if (r.Uri != null && r.Uri == rdfs_member) {
-					if (CreateEntityPrefixTest(col, rdf_li, cmd)) return true;
-				}
-				
 				int id = GetResourceId(r, false);
 				if (id == 0) return false;
-				if (Debug) Console.Error.WriteLine("(" + id + " " + r + ")");
 				cmd.Append('(');
 				cmd.Append(col);
 				cmd.Append('=');
@@ -997,18 +783,6 @@ namespace SemWeb.Stores {
 			builder.Append(text);
 		}
 		
-		///////////////////////////
-		// QUERYING THE DATABASE //
-		///////////////////////////
-		
-		public bool Contains(Resource resource) {
-			return GetResourceId(resource, false) != 0;
-		}
-		
-		public bool Contains(Statement template) {
-			return Store.DefaultContains(this, template);
-		}
-
 		internal struct SelectColumnFilter {
 			public bool SubjectId, PredicateId, ObjectId, MetaId;
 			public bool SubjectUri, PredicateUri, ObjectData, MetaUri;
@@ -1053,12 +827,8 @@ namespace SemWeb.Stores {
 				cmd.Append("_entities AS muri ON q.meta = muri.id");
 			}
 		}
-		
-		public void Select(StatementSink result) {
-			Select(Statement.All, result);
-		}
 
-		public void Select(SelectFilter filter, StatementSink result) {
+		public override void Select(SelectFilter filter, StatementSink result) {
 			if (result == null) throw new ArgumentNullException();
 			foreach (Entity[] s in SplitArray(filter.Subjects))
 			foreach (Entity[] p in SplitArray(filter.Predicates))
@@ -1115,111 +885,13 @@ namespace SemWeb.Stores {
 			}
 		}
 		
-		void CleanMultiRes(MultiRes res) {
-			ArrayList newitems = new ArrayList();
-			foreach (Resource r in res.items)
-				if ((object)r == (object)Statement.DefaultMeta || GetResourceKey(r) != null)
-					newitems.Add(r);
-			res.items = (Resource[])newitems.ToArray(typeof(Resource));
-		}
-		
 		void CacheMultiObjects(Hashtable entMap, Resource obj) {
 			if (!(obj is MultiRes)) return;
 			foreach (Resource r in ((MultiRes)obj).items)
 				entMap[GetResourceId(r, false)] = r;
 		}
 		
-		bool isOrContains(Resource r, string uri) {
-			if (r == null) return false;
-			if (r is MultiRes) {
-				foreach (Resource rr in ((MultiRes)r).items)
-					if (isOrContains(rr, uri))
-						return true;
-			} else {
-				if (r.Uri != null && r.Uri == uri)
-					return true;
-			}
-			return false;
-		}
-		
-		void PrefetchResourceIds(IList resources) {
-			Hashtable seen_e = new Hashtable();
-			Hashtable seen_l = new Hashtable();
-			
-			int resStart = 0;
-			while (resStart < resources.Count) {
-
-			StringBuilder cmd_e = new StringBuilder();
-			cmd_e.Append("SELECT id, value FROM ");
-			cmd_e.Append(table);
-			cmd_e.Append("_entities WHERE value IN (");
-			bool hasEnts = false;
-
-			StringBuilder cmd_l = new StringBuilder();
-			cmd_l.Append("SELECT id, hash FROM ");
-			cmd_l.Append(table);
-			cmd_l.Append("_literals WHERE hash IN (");
-			bool hasLiterals = false;
-
-			int ctr = 0;
-			while (resStart < resources.Count && ctr < 1000) {
-				Resource r = (Resource)resources[resStart++];
-				
-				if ((object)r == (object)Statement.DefaultMeta || GetResourceKey(r) != null) // no need to prefetch
-					continue;
-					
-				ctr++;
-			
-				if (r.Uri != null) {
-					if (seen_e.ContainsKey(r.Uri)) continue;
-					if (hasEnts)
-						cmd_e.Append(" , ");
-					EscapedAppend(cmd_e, r.Uri);
-					hasEnts = true;
-					seen_e[r.Uri] = r;
-				}
-
-				Literal lit = r as Literal;
-				if (lit != null) {
-					string hash = GetLiteralHash(lit);
-					if (seen_l.ContainsKey(hash)) continue;
-					
-					if (hasLiterals)
-						cmd_l.Append(" , ");
-					cmd_l.Append(quote);
-					cmd_l.Append(hash);
-					cmd_l.Append(quote);
-					hasLiterals = true;
-					seen_l[hash] = lit;
-				}
-			}
-			if (hasEnts) {
-				cmd_e.Append(");");
-				if (Debug) Console.Error.WriteLine(cmd_e.ToString());
-				using (IDataReader reader = RunReader(cmd_e.ToString())) {
-					while (reader.Read()) {
-						int id = reader.GetInt32(0);
-						string uri = AsString(reader[1]);
-						SetResourceKey((Entity)seen_e[uri], new ResourceKey(id));
-					}
-				}
-			}
-				
-			if (hasLiterals) {
-				cmd_l.Append(");");
-				using (IDataReader reader = RunReader(cmd_l.ToString())) {
-					while (reader.Read()) {
-						int id = reader.GetInt32(0);
-						string hash = AsString(reader[1]);
-						SetResourceKey((Literal)seen_l[hash], new ResourceKey(id));
-					}
-				}
-			}
-			
-			}
-		}
-		
-		public void Select(Statement template, StatementSink result) {
+		public override void Select(Statement template, StatementSink result) {
 			if (result == null) throw new ArgumentNullException();
 			Select(template.Subject, template.Predicate, template.Object, template.Meta, null, result, 0);
 		}
@@ -1244,33 +916,18 @@ namespace SemWeb.Stores {
 			columns.ObjectData = templateObject == null || (templateObject is MultiRes && ((MultiRes)templateObject).ContainsLiterals());
 			columns.MetaUri = templateMeta == null;
 			
-			if (isOrContains(templatePredicate, rdfs_member)) {
-				columns.PredicateId = true;
-				columns.PredicateUri = true;
-			}
-			
 			// Meta URIs tend to be repeated a lot, so we don't
 			// want to ever select them from the database.
 			// This preloads them, although it makes the first
 			// select quite slow.
-			/*if (templateMeta == null && SupportsSubquery) {
+			if (templateMeta == null && SupportsSubquery) {
 				LoadMetaEntities();
 				columns.MetaUri = false;
-			}*/
+			}
 			
 			// Have to select something
 			if (!columns.SubjectId && !columns.PredicateId && !columns.ObjectId && !columns.MetaId)
 				columns.SubjectId = true;
-				
-			// Pre-cache the IDs of resources in a MultiRes. TODO: Pool these into one array.
-			foreach (Resource r in new Resource[] { templateSubject, templatePredicate, templateObject, templateMeta }) {
-				MultiRes mr = r as MultiRes;
-				if (mr == null) continue;
-				PrefetchResourceIds(mr.items);
-				CleanMultiRes(mr);
-				if (mr.items.Length == 0) // no possible values
-					return;
-			}
 				
 			// SQLite has a problem with LEFT JOIN: When a condition is made on the
 			// first table in the ON clause (q.objecttype=0/1), when it fails,
@@ -1278,12 +935,7 @@ namespace SemWeb.Stores {
 			// exclude the results of the join.
 						
 			System.Text.StringBuilder cmd = new System.Text.StringBuilder("SELECT ");
-			if (!SupportsLimitClause && limit >= 1) {
-				cmd.Append("TOP ");
-				cmd.Append(limit);
-				cmd.Append(' ');
-			}
-			if (!HasUniqueStatementsConstraint)
+			if (!SupportsNoDuplicates)
 				cmd.Append("DISTINCT ");
 			SelectFilterColumns(columns, cmd);
 			cmd.Append(" FROM ");
@@ -1308,7 +960,7 @@ namespace SemWeb.Stores {
 				}
 			}
 			
-			if (SupportsLimitClause && limit >= 1) {
+			if (limit >= 1) {
 				cmd.Append(" LIMIT ");
 				cmd.Append(limit);
 			}
@@ -1351,7 +1003,7 @@ namespace SemWeb.Stores {
 					Entity subject = GetSelectedEntity(sid, suri, templateSubject, columns.SubjectId, columns.SubjectUri, entMap);
 					Entity predicate = GetSelectedEntity(pid, puri, templatePredicate, columns.PredicateId, columns.PredicateUri, entMap);
 					Resource objec = GetSelectedResource(oid, ot, ouri, lv, ll, ld, templateObject, columns.ObjectId, columns.ObjectData, entMap);
-					Entity meta = GetSelectedEntity(mid, muri, templateMeta, columns.MetaId, columns.MetaUri, templateMeta != null ? entMap : null);
+					Entity meta = GetSelectedEntity(mid, muri, templateMeta, columns.MetaId, columns.MetaUri, templateMeta != null ? entMap : metaEntities);
 
 					if (litFilters != null && !LiteralFilter.MatchesFilters(objec, litFilters, this))
 						continue;
@@ -1363,418 +1015,7 @@ namespace SemWeb.Stores {
 			
 			} // lock
 		}
-		
-		public SemWeb.Query.MetaQueryResult MetaQuery(Statement[] graph, SemWeb.Query.QueryOptions options) {
-			return new SemWeb.Inference.SimpleEntailment().MetaQuery(graph, options, this);
-		}
-		
-		public void Query(Statement[] graph, SemWeb.Query.QueryOptions options, SemWeb.Query.QueryResultSink sink) {
-			if (graph.Length == 0) throw new ArgumentException("graph array must have at least one element");
 
-			options = options.Clone(); // because we modify the knownvalues array
-			
-			// Order the variables mentioned in the graph.
-			Variable[] varOrder;
-			ResSet distinguishedVars = null;
-			bool useDistinct = false;
-			{
-				if (options.DistinguishedVariables != null)
-					distinguishedVars = new ResSet(options.DistinguishedVariables);
-				else
-					distinguishedVars = new ResSet();
-			
-				Hashtable seenvars = new Hashtable();
-				foreach (Statement filter in graph) {
-					for (int i = 0; i < 4; i++) {
-						Resource r = filter.GetComponent(i);
-						if (r == null)
-							throw new ArgumentException("The graph may not have any null components.  Use Variables instead.");
-
-						if (r is Variable) {
-							if (options.DistinguishedVariables != null) {
-								if (!distinguishedVars.Contains(r)) {
-									// If we are omitting a column from the results because it is
-									// not distinguished, and it's not a meta column, then we'll
-									// use DISTINCT.
-									if (i != 3)
-										useDistinct = true;
-										
-									// Don't put this into seenvars.
-									continue;
-								}
-							} else {
-								distinguishedVars.Add(r); // all variables are distinguished
-							}
-							
-							seenvars[r] = r;
-						}
-					}
-				}
-				
-				varOrder = new Variable[seenvars.Count];
-				int ctr = 0;
-				foreach (Variable v in seenvars.Keys)
-					varOrder[ctr++] = v;
-			}
-			
-			bool useView = useDistinct && SupportsViews && !NoSQLView;
-			
-			// Set the initial bindings to the result sink
-
-			sink.Init(varOrder);
-			
-			Hashtable varLitFilters = new Hashtable();
-			
-			// Prefetch the IDs of all resources mentioned in the graph and in variable known values.
-			// For Resources in the graph that are not in the store, the query immediately fails.
-			{
-				ArrayList graphResources = new ArrayList();
-				foreach (Statement s in graph) {
-					for (int i = 0; i < 4; i++) {
-						Resource r = s.GetComponent(i);
-						if (!(r is BNode)) // definitely exclude variables, but bnodes are useless too
-							graphResources.Add(r);
-					}
-				}
-				if (options.VariableKnownValues != null)
-					foreach (ICollection values in options.VariableKnownValues.Values)
-						graphResources.AddRange(values);
-
-				PrefetchResourceIds(graphResources);
-				
-				// Check resources in graph and fail fast if any is not in the store.
-				foreach (Statement s in graph) {
-					for (int i = 0; i < 4; i++) {
-						Resource r = s.GetComponent(i);
-						if (r is Variable) continue;
-						if ((object)r != (object)Statement.DefaultMeta && GetResourceKey(r) == null) {
-							sink.AddComments("Resource " + r + " is not contained in the data model.");
-							sink.Finished();
-							return;
-						}
-					}
-				}
-				
-				// Check variable known values and remove any values not in the store.
-				// Don't do any fail-fasting here because there might be entries in this
-				// dictionary that aren't even used in this query (yes, poor design).
-				// We check later anyway.
-				if (options.VariableKnownValues != null) {
-					#if !DOTNET2
-					foreach (Variable v in new ArrayList(options.VariableKnownValues.Keys)) {
-					#else
-					foreach (Variable v in new System.Collections.Generic.List<Variable>(options.VariableKnownValues.Keys)) {
-					#endif
-						#if !DOTNET2
-						ArrayList newvalues = new ArrayList();
-						#else
-						System.Collections.Generic.List<Resource> newvalues = new System.Collections.Generic.List<Resource>();
-						#endif
-						
-						foreach (Resource r in (ICollection)options.VariableKnownValues[v]) {
-							if ((object)r == (object)Statement.DefaultMeta || GetResourceKey(r) != null)
-								newvalues.Add(r);
-						}
-
-						options.VariableKnownValues[v] = newvalues;
-					}
-				}
-			}
-			
-			// Helpers
-			
-			string[] colnames = { "subject", "predicate", "object", "meta" };
-			
-			// Lock the store and make sure we are initialized and any pending add's have been committed. 
-					
-			lock (syncroot) {
-			
-			Init();
-			RunAddBuffer();
-			
-			// Compile the SQL statement.
-
-			Hashtable varRef_Inner = new Hashtable(); // the column name representing the variable: if we're using VIEWs, then within the VIEW (i.e. name of column in underlying table)
-			Hashtable varRef_Outer = new Hashtable(); // if we're using VIEWs, then the column name representing the variable of the VIEW itself 
-			Hashtable varRef2 = new Hashtable();
-			Hashtable varSelectedLiteral = new Hashtable();
-			
-			StringBuilder fromClause = new StringBuilder();
-			StringBuilder whereClause = new StringBuilder();
-			StringBuilder outerSelectJoins = new StringBuilder();
-			StringBuilder outerWhereClause = new StringBuilder();
-			
-			for (int f = 0; f < graph.Length; f++) {
-				// For each filter, we select FROM the statements table with an
-				// alias: q#, where # is the filter's index.
-				
-				if (f > 0) fromClause.Append(',');
-				fromClause.Append(table);
-				fromClause.Append("_statements AS g");
-				fromClause.Append(f);
-				
-				// For each component of the filter...
-				
-				for (int i = 0; i < 4; i++) {
-					string myRef = "g" + f + "." + colnames[i];
-					
-					Variable v = graph[f].GetComponent(i) as Variable;
-					if (v != null) {
-						// If the component is a variable, then if this is
-						// the first time we're seeing the variable, we don't
-						// add any restrictions to the WHERE clause, but we
-						// note the variable's "name" in the world of SQL
-						// so we can refer back to it later and we add the
-						// necessary FROM tables so we can get its URI and
-						// literal value if it is a reported variable.
-						// If this isn't the first time, then we add a WHERE restriction so
-						// that the proper columns here and in a previous
-						// filter are forced to have the same value.
-					
-						if (!varRef_Inner.ContainsKey(v)) {
-							varRef_Inner[v] = myRef;
-							varRef_Outer[v] = "v" + Array.IndexOf(varOrder, v);
-							
-							int vIndex = varRef_Inner.Count;
-							varRef2[v] = vIndex;
-							
-							#if !DOTNET2
-							bool hasLitFilter = (options.VariableLiteralFilters != null && options.VariableLiteralFilters[v] != null);
-							#else
-							bool hasLitFilter = (options.VariableLiteralFilters != null && options.VariableLiteralFilters.ContainsKey(v));
-							#endif
-							if (distinguishedVars.Contains(v) || hasLitFilter) {
-								StringBuilder joinTarget = fromClause;
-								if (useView) joinTarget = outerSelectJoins;
-								
-								string onRef = (string)(!useView ? varRef_Inner : varRef_Outer)[v];
-								
-								joinTarget.Append(" LEFT JOIN ");
-								joinTarget.Append(table);
-								joinTarget.Append("_entities AS vent");
-								joinTarget.Append(vIndex);
-								joinTarget.Append(" ON ");
-								joinTarget.Append(onRef);
-								joinTarget.Append("=");
-								joinTarget.Append("vent" + vIndex + ".id ");
-								
-								varSelectedLiteral[v] = (i == 2);
-								
-								if (i == 2) { // literals cannot be in any other column
-									joinTarget.Append(" LEFT JOIN ");
-									joinTarget.Append(table);
-									joinTarget.Append("_literals AS vlit");
-									joinTarget.Append(vIndex);
-									joinTarget.Append(" ON ");
-									joinTarget.Append(onRef);
-									joinTarget.Append("=");
-									joinTarget.Append("vlit" + vIndex + ".id ");
-								}
-							}
-							
-							if (options.VariableKnownValues != null) {
-								ICollection values = null;
-								#if DOTNET2
-								if (options.VariableKnownValues.ContainsKey(v))
-								#endif
-									values = (ICollection)options.VariableKnownValues[v];
-								if (values != null) {
-									if (values.Count == 0) {
-										sink.Finished();
-										return;
-									}
-									Resource r = ToMultiRes((Resource[])new ArrayList(values).ToArray(typeof(Resource)));
-									if (!WhereItem(myRef, r, whereClause, whereClause.Length != 0)) {
-										// We know at this point that the query cannot return any results.
-										sink.Finished();
-										return;
-									}
-								}
-							}
-							
-						} else {
-							if (whereClause.Length != 0) whereClause.Append(" AND ");
-							whereClause.Append('(');
-							whereClause.Append((string)varRef_Inner[v]);
-							whereClause.Append('=');
-							whereClause.Append(myRef);
-							whereClause.Append(')');
-						}
-					
-					} else {
-						// If this is not a variable, then it is a resource.
-					
-						if (!WhereItem(myRef, graph[f].GetComponent(i), whereClause, whereClause.Length != 0)) {
-							// We know at this point that the query cannot return any results.
-							sink.Finished();
-							return;
-						}
-
-					}
-				}
-			
-			} // graph filter 0...n
-			
-			// Add literal filters to the WHERE clause
-
-			foreach (Variable v in varOrder) {
-				// Is there a literal value filter?
-				if (options.VariableLiteralFilters == null) continue;
-				#if !DOTNET2
-				if (options.VariableLiteralFilters[v] == null) continue;
-				#else
-				if (!options.VariableLiteralFilters.ContainsKey(v)) continue;
-				#endif
-				
-				// If this variable was not used in a literal column, then
-				// we cannot filter its value. Really, it will never be a literal.
-				if (!(bool)varSelectedLiteral[v]) continue;
-
-				foreach (LiteralFilter filter in (ICollection)options.VariableLiteralFilters[v]) {
-					string s = FilterToSQL(filter, "vlit" + (int)varRef2[v] + ".value");
-					if (s == null) continue;
-
-					StringBuilder where = whereClause;
-					if (useView) where = outerWhereClause;
-					
-					if (where.Length != 0) where.Append(" AND ");
-					where.Append(s);
-				}
-			}
-
-			// Put the parts of the SQL statement together
-
-			StringBuilder cmd = new StringBuilder();
-			StringBuilder outercmd = new StringBuilder();
-			
-			string viewname = "queryview" + Math.Abs(GetHashCode());
-			if (useView) {
-				cmd.Append("DROP VIEW IF EXISTS ");
-				cmd.Append(viewname);
-				cmd.Append("; CREATE VIEW ");
-				cmd.Append(viewname);
-				cmd.Append(" AS ");
-				
-				outercmd.Append("SELECT ");
-			}
-			cmd.Append("SELECT ");
-
-			if (!SupportsLimitClause && options.Limit > 0) {
-				cmd.Append("TOP ");
-				cmd.Append(options.Limit);
-				cmd.Append(' ');
-			}
-			
-			if (useDistinct) cmd.Append("DISTINCT ");
-			
-			for (int i = 0; i < varOrder.Length; i++) {
-				if (i > 0) cmd.Append(',');
-				cmd.Append((string)varRef_Inner[varOrder[i]]);
-				
-				StringBuilder c = cmd;
-				if (useView) {
-					cmd.Append(" AS ");
-					cmd.Append((string)varRef_Outer[varOrder[i]]);
-
-					if (i > 0) outercmd.Append(',');
-					outercmd.Append((string)varRef_Outer[varOrder[i]]);
-					c = outercmd;
-				}
-				
-				c.Append(", vent" + (int)varRef2[varOrder[i]] + ".value");
-				if ((bool)varSelectedLiteral[varOrder[i]]) {
-					c.Append(", vlit" + (int)varRef2[varOrder[i]] + ".value");
-					c.Append(", vlit" + (int)varRef2[varOrder[i]] + ".language");
-					c.Append(", vlit" + (int)varRef2[varOrder[i]] + ".datatype");
-				}
-			}
-			
-			cmd.Append(" FROM ");
-			cmd.Append(fromClause.ToString());
-			
-			if (whereClause.Length > 0)
-				cmd.Append(" WHERE ");
-			cmd.Append(whereClause.ToString());
-			
-			if (SupportsLimitClause && options.Limit > 0) {
-				cmd.Append(" LIMIT ");
-				cmd.Append(options.Limit);
-			}
-			
-			cmd.Append(';');
-
-			if (useView) {
-				outercmd.Append(" FROM ");
-				outercmd.Append(viewname);
-				outercmd.Append(outerSelectJoins);
-				
-				if (outerWhereClause.Length > 0)
-					outercmd.Append(" WHERE ");
-				outercmd.Append(outerWhereClause.ToString());
-			}
-			
-			
-			if (Debug) {
-				string cmd2 = cmd.ToString();
-				//if (cmd2.Length > 80) cmd2 = cmd2.Substring(0, 80);
-				Console.Error.WriteLine(cmd2);
-				if (useView)
-					Console.Error.WriteLine(outercmd.ToString());
-			}
-			
-			// Execute the query
-			
-			Hashtable entityCache = new Hashtable();
-			
-			if (useView) {
-				RunCommand(cmd.ToString());
-				cmd = outercmd;
-			}
-			
-			try {
-			using (IDataReader reader = RunReader(cmd.ToString())) {
-				while (reader.Read()) {
-					Resource[] variableBindings = new Resource[varOrder.Length];
-				
-					int col = 0;
-					for (int i = 0; i < varOrder.Length; i++) {
-						int id = reader.GetInt32(col++);
-						string uri = AsString(reader[col++]);
-						
-						string litvalue = null, litlanguage = null, litdatatype = null;
-
-						if ((bool)varSelectedLiteral[varOrder[i]]) {
-							litvalue = AsString(reader[col++]);
-							litlanguage = AsString(reader[col++]);
-							litdatatype = AsString(reader[col++]);
-						}
-						
-						if (litvalue != null) {
-							Literal lit = new Literal(litvalue, litlanguage, litdatatype);
-							variableBindings[i] = lit;
-							
-							ArrayList litFilters = (ArrayList)varLitFilters[varOrder[i]];
-							if (litFilters != null && !LiteralFilter.MatchesFilters(lit, (LiteralFilter[])litFilters.ToArray(typeof(LiteralFilter)), this))
-								continue;
-							
-						} else {
-							variableBindings[i] = MakeEntity(id, uri, entityCache);
-						}
-					}
-					
-					if (!sink.Add(new SemWeb.Query.VariableBindings(varOrder, variableBindings))) return;
-				}
-			}
-			} finally {
-				if (useView)
-					RunCommand("DROP VIEW " + viewname);
-
-				sink.Finished();
-			}
-				
-			} // lock
-		}
-		
 		Entity GetSelectedEntity(int id, string uri, Resource given, bool idSelected, bool uriSelected, Hashtable entMap) {
 			if (!idSelected) return (Entity)given;
 			if (!uriSelected) {
@@ -1795,12 +1036,6 @@ namespace SemWeb.Stores {
 			else
 				return new Literal(lv, ll, ld);
 		}
-		
-		private string CreateLikeTest(string column, string match, int method) {
-			StringBuilder s = new StringBuilder();
-			CreateLikeTest(column, match, method, s);
-			return s.ToString();
-		}
 
 		private string FilterToSQL(LiteralFilter filter, string col) {
 			if (filter is SemWeb.Filters.StringCompareFilter) {
@@ -1809,15 +1044,11 @@ namespace SemWeb.Stores {
 			}
 			if (filter is SemWeb.Filters.StringContainsFilter) {
 				SemWeb.Filters.StringContainsFilter f = (SemWeb.Filters.StringContainsFilter)filter;
-				return CreateLikeTest(col, f.Pattern, 1); // 1=contains
+				return col + " LIKE " + quote + "%" + Escape(f.Pattern, false).Replace("%", "\\%") + "%" + quote;
 			}
 			if (filter is SemWeb.Filters.StringStartsWithFilter) {
 				SemWeb.Filters.StringStartsWithFilter f = (SemWeb.Filters.StringStartsWithFilter)filter;
-				return CreateLikeTest(col, f.Pattern, 0); // 0=starts-with
-			}
-			if (filter is SemWeb.Filters.StringEndsWithFilter) {
-				SemWeb.Filters.StringEndsWithFilter f = (SemWeb.Filters.StringEndsWithFilter)filter;
-				return CreateLikeTest(col, f.Pattern, 2); // 2==ends-with
+				return col + " LIKE " + quote + Escape(f.Pattern, false).Replace("%", "\\%") + "%" + quote;
 			}
 			if (filter is SemWeb.Filters.NumericCompareFilter) {
 				SemWeb.Filters.NumericCompareFilter f = (SemWeb.Filters.NumericCompareFilter)filter;
@@ -1838,21 +1069,34 @@ namespace SemWeb.Stores {
 			}			
 		}
 		
+		private void LoadMetaEntities() {
+			if (metaEntities != null) return;
+			metaEntities = new Hashtable();
+			// this misses meta entities that are anonymous, but that's ok
+			using (IDataReader reader = RunReader("select id, value from " + table + "_entities where id in (select distinct meta from " + table + "_statements)")) {
+				while (reader.Read()) {
+					int id = reader.GetInt32(0);
+					string uri = reader.GetString(1);
+					metaEntities[id] = MakeEntity(id, uri, null);
+				}
+			}
+		}
+		
 		private string Escape(string str, bool quotes) {
 			if (str == null) return "NULL";
 			StringBuilder b = new StringBuilder();
-			EscapedAppend(b, str, quotes, false);
+			EscapedAppend(b, str, quotes);
 			return b.ToString();
 		}
 		
 		protected void EscapedAppend(StringBuilder b, string str) {
-			EscapedAppend(b, str, true, false);
+			EscapedAppend(b, str, true);
 		}
 
 		protected virtual char GetQuoteChar() {
 			return '\"';
 		}
-		protected virtual void EscapedAppend(StringBuilder b, string str, bool quotes, bool forLike) {
+		protected virtual void EscapedAppend(StringBuilder b, string str, bool quotes) {
 			if (quotes) b.Append(quote);
 			for (int i = 0; i < str.Length; i++) {
 				char c = str[i];
@@ -1861,14 +1105,7 @@ namespace SemWeb.Stores {
 					case '\\':
 					case '\"':
 					case '*':
-					case '\'':
 						b.Append('\\');
-						b.Append(c);
-						break;
-					case '%':
-					case '_':
-						if (forLike)
-							b.Append('\\');
 						b.Append(c);
 						break;
 					default:
@@ -1887,7 +1124,7 @@ namespace SemWeb.Stores {
 			b.Replace("*", "\\*");
 		}*/
 
-		public void Import(StatementSource source) {
+		public override void Import(StatementSource source) {
 			if (source == null) throw new ArgumentNullException();
 			if (isImporting) throw new InvalidOperationException("Store is already importing.");
 			
@@ -1895,15 +1132,13 @@ namespace SemWeb.Stores {
 			RunAddBuffer();
 			
 			cachedNextId = -1;
-			NextId(); // get this before starting transaction because it relies on indexes which may be disabled
-			
 			addStatementBuffer = new StatementList();
 			
 			BeginTransaction();
 			
 			try {
 				isImporting = true;
-				source.Select(this);
+				base.Import(source);
 			} finally {
 				RunAddBuffer();
 				EndTransaction();
@@ -1916,7 +1151,7 @@ namespace SemWeb.Stores {
 			}
 		}
 
-		public void Replace(Entity a, Entity b) {
+		public override void Replace(Entity a, Entity b) {
 			Init();
 			RunAddBuffer();
 			int id = GetResourceId(b, true);
@@ -1934,9 +1169,10 @@ namespace SemWeb.Stores {
 				RunCommand(cmd.ToString());
 			}
 
+			metaEntities = null;
 		}
 		
-		public void Replace(Statement find, Statement replacement) {
+		public override void Replace(Statement find, Statement replacement) {
 			if (find.AnyNull) throw new ArgumentNullException("find");
 			if (replacement.AnyNull) throw new ArgumentNullException("replacement");
 			if (find == replacement) return;
@@ -1970,16 +1206,9 @@ namespace SemWeb.Stores {
 				return;
 			
 			RunCommand(cmd.ToString());
+			metaEntities = null;
 		}
 		
-		private object GetResourceKey(Resource resource) {
-			return resource.GetResourceKey(this);
-		}
-
-		private void SetResourceKey(Resource resource, object value) {
-			resource.SetResourceKey(this, value);
-		}
-
 		protected abstract void RunCommand(string sql);
 		protected abstract object RunScalar(string sql);
 		protected abstract IDataReader RunReader(string sql);
@@ -1990,7 +1219,7 @@ namespace SemWeb.Stores {
 			if (ret is int) return (int)ret;
 			try {
 				return int.Parse(ret.ToString());
-			} catch (FormatException) {
+			} catch (FormatException e) {
 				return def;
 			}
 		}
@@ -2003,11 +1232,7 @@ namespace SemWeb.Stores {
 			throw new FormatException("SQL store returned a literal value as " + ret);
 		}
 		
-		void IDisposable.Dispose() {
-			Close();
-		}
-		
-		public virtual void Close() {
+		public override void Close() {
 			if (statementsRemoved) {
 				RunCommand("DELETE FROM " + table + "_literals where (select count(*) from " + table + "_statements where object=id) = 0 and id > 0");
 				RunCommand("DELETE FROM " + table + "_entities where (select count(*) from " + table + "_statements where subject=id) = 0 and (select count(*) from " + table + "_statements where predicate=id) = 0 and (select count(*) from " + table + "_statements where object=id) = 0 and (select count(*) from " + table + "_statements where meta=id) = 0 ;");
@@ -2019,7 +1244,7 @@ namespace SemWeb.Stores {
 				try {
 					RunCommand(cmd);
 				} catch (Exception e) {
-					if (Debug && e.Message.IndexOf("already exists") == -1) Console.Error.WriteLine(e);
+					if (Debug) Console.Error.WriteLine(e);
 				}
 			}
 		}
@@ -2053,12 +1278,11 @@ namespace SemWeb.Stores {
 		internal static string[] GetCreateIndexCommands(string table) {
 			return new string[] {
 				"CREATE UNIQUE INDEX subject_full_index ON " + table + "_statements(subject, predicate, object, meta, objecttype);",
-				"CREATE INDEX predicate_index ON " + table + "_statements(predicate, object);",
+				"CREATE INDEX predicate_index ON " + table + "_statements(predicate);",
 				"CREATE INDEX object_index ON " + table + "_statements(object);",
 				"CREATE INDEX meta_index ON " + table + "_statements(meta);",
 			
 				"CREATE UNIQUE INDEX literal_index ON " + table + "_literals(hash);",
-				"CREATE INDEX literal_value_index ON " + table + "_literals(value(20));",
 				"CREATE UNIQUE INDEX entity_index ON " + table + "_entities(value(255));"
 				};
 		}

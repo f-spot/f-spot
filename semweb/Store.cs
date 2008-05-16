@@ -1,68 +1,73 @@
 using System;
-#if !DOTNET2
 using System.Collections;
-#else
-using System.Collections.Generic;
-#endif
 using System.Data;
 
-using SemWeb.Inference;
 using SemWeb.Util;
-
-#if !DOTNET2
-using SourceList = System.Collections.ArrayList;
-using NamedSourceMap = System.Collections.Hashtable;
-using ReasonerList = System.Collections.ArrayList;
-#else
-using SourceList = System.Collections.Generic.List<SemWeb.SelectableSource>;
-using NamedSourceMap = System.Collections.Generic.Dictionary<string, SemWeb.SelectableSource>;
-using ReasonerList = System.Collections.Generic.List<SemWeb.Inference.Reasoner>;
-#endif
 
 namespace SemWeb {
 	
-	public class Store : StatementSource, StatementSink,
-		SelectableSource, QueryableSource, StaticSource, ModifiableSource,
+	public interface StatementSource {
+		bool Distinct { get; }
+		void Select(StatementSink sink);
+	}
+	
+	public interface SelectableSource : StatementSource {
+		bool Contains(Statement template);
+		void Select(Statement template, StatementSink sink);
+		void Select(SelectFilter filter, StatementSink sink);
+	}
+
+	public interface QueryableSource : SelectableSource {
+		void Query(Statement[] graph, SemWeb.Query.QueryResultSink sink);
+		void Query(SelectFilter[] graph, SemWeb.Query.QueryResultSink sink);
+	}
+	
+	public interface StatementSink {
+		bool Add(Statement statement);
+	}
+
+	public interface ModifiableSource : StatementSink {
+		void Clear();
+		void Import(StatementSource source);
+		void Remove(Statement template);
+		void RemoveAll(Statement[] templates);
+		void Replace(Entity find, Entity replacement);
+		void Replace(Statement find, Statement replacement);
+	}
+	
+	internal class StatementCounterSink : StatementSink {
+		int counter = 0;
+		
+		public int StatementCount { get { return counter; } }
+		
+		public bool Add(Statement statement) {
+			counter++;
+			return true;
+		}
+	}
+
+	internal class StatementExistsSink : StatementSink {
+		bool exists = false;
+		
+		public bool Exists { get { return exists; } }
+		
+		public bool Add(Statement statement) {
+			exists = true;
+			return false;
+		}
+	}
+
+	public abstract class Store : StatementSource, StatementSink,
+		SelectableSource, ModifiableSource,
 		IDisposable {
 		
-		// Static helper methods for creating data sources and sinks
-		// from spec strings.
-		
-		public static Store Create(string spec) {
-			Store ret = new Store();
-			
-			bool rdfs = false, euler = false;
-			
-			if (spec.StartsWith("rdfs+")) {
-				rdfs = true;
-				spec = spec.Substring(5);
-			}
-			if (spec.StartsWith("euler+")) {
-				euler = true;
-				spec = spec.Substring(6);
-			}
-				
-			foreach (string spec2 in spec.Split('\n', '|')) {
-				StatementSource s = CreateForInput(spec2.Trim());
-				if (s is SelectableSource)
-					ret.AddSource((SelectableSource)s);
-				else
-					ret.AddSource(new MemoryStore(s));
-			}
-			
-			if (rdfs)
-				ret.AddReasoner(new RDFS(ret));
-			if (euler)
-				ret.AddReasoner(new Euler(ret)); // loads it all into memory!
-			
-			return ret;
-		}
+		Entity rdfType;
 		
 		public static StatementSource CreateForInput(string spec) {
-			if (spec.StartsWith("debug+")) {
-				StatementSource s = CreateForInput(spec.Substring(6));
+			if (spec.StartsWith("rdfs+")) {
+				StatementSource s = CreateForInput(spec.Substring(5));
 				if (!(s is SelectableSource)) s = new MemoryStore(s);
-				return new SemWeb.Stores.DebuggedSource((SelectableSource)s, System.Console.Error);
+				return new SemWeb.Inference.RDFS(s, (SelectableSource)s);
 			}
 			return (StatementSource)Create(spec, false);
 		}		
@@ -72,6 +77,21 @@ namespace SemWeb {
 		}
 		
 		private static object Create(string spec, bool output) {
+			string[] multispecs = spec.Split('\n', '|');
+			if (multispecs.Length > 1) {
+				SemWeb.Stores.MultiStore multistore = new SemWeb.Stores.MultiStore();
+				foreach (string mspec in multispecs) {
+					object mstore = Create(mspec.Trim(), output);
+					if (mstore is SelectableSource) {
+						multistore.Add((SelectableSource)mstore);
+					} else if (mstore is StatementSource) {
+						MemoryStore m = new MemoryStore((StatementSource)mstore);
+						multistore.Add(m);
+					}
+				}
+				return multistore;
+			}
+		
 			string type = spec;
 			
 			int c = spec.IndexOf(':');
@@ -90,11 +110,7 @@ namespace SemWeb {
 				case "xml":
 					if (spec == "") throw new ArgumentException("Use: xml:filename");
 					if (output) {
-						#if !SILVERLIGHT
-							return new RdfXmlWriter(spec);
-						#else
-							throw new NotSupportedException("RDF/XML output is not supported in the Silverlight build of the SemWeb library.");
-						#endif
+						return new RdfXmlWriter(spec);
 					} else {
 						return new RdfXmlReader(spec);
 					}
@@ -114,21 +130,14 @@ namespace SemWeb {
 					} else {
 						return new N3Reader(spec);
 					}
-				
-				case "null":
-					if (!output) throw new ArgumentException("The null sink does not support reading.");
-					return new StatementCounterSink();
-				
 				/*case "file":
 					if (spec == "") throw new ArgumentException("Use: format:filename");
 					if (output) throw new ArgumentException("The FileStore does not support writing.");
 					return new SemWeb.Stores.FileStore(spec);*/
-
 				case "sqlite":
 				case "mysql":
 				case "postgresql":
-				case "sqlserver":
-					if (spec == "") throw new ArgumentException("Use: sqlite|mysql|postgresql|sqlserver:table:connection-string");
+					if (spec == "") throw new ArgumentException("Use: sqlite|mysql|postgresql:table:connection-string");
 				
 					c = spec.IndexOf(':');
 					if (c == -1) throw new ArgumentException("Invalid format for SQL spec parameter (table:constring).");
@@ -143,8 +152,6 @@ namespace SemWeb {
 						classtype = "SemWeb.Stores.MySQLStore, SemWeb.MySQLStore";
 					} else if (type == "postgresql") {
 						classtype = "SemWeb.Stores.PostgreSQLStore, SemWeb.PostgreSQLStore";
-					} else if( type == "sqlserver" ) {
-						classtype = "SemWeb.Stores.SQLServerStore, SemWeb.SQLServerStore";
 					}
 					ttype = Type.GetType(classtype);
 					if (ttype == null)
@@ -164,153 +171,62 @@ namespace SemWeb {
 			}
 		}
 		
-		// START OF ACTUAL STORE IMPLEMENTATION
+		protected Store() {
+			rdfType = new Entity("http://www.w3.org/1999/02/22-rdf-syntax-ns#type");
+		}
 		
-		readonly Entity rdfType = new Entity("http://www.w3.org/1999/02/22-rdf-syntax-ns#type");
+		void IDisposable.Dispose() {
+			Close();
+		}
+		
+		public virtual void Close() {
+		}
+		
+		public abstract bool Distinct { get; }
+		
+		public abstract int StatementCount { get; }
 
-		SourceList unnamedgraphs = new SourceList(); // a list of SelectableSources that aren't associated with graph URIs
-		NamedSourceMap namedgraphs = new NamedSourceMap(); // a mapping from graph URIs to a selectable source that represents that graph
-		
-		SourceList allsources = new SourceList(); // a list of the sources in unnamed graphs and namedgraphs
-		
-		ReasonerList reasoners = new ReasonerList(); // a list of reasoning engines applied to this data model, which are run in order
-		
-		// GENERAL METHODS
-		
-		public Store() {
-		}
-		
-		public Store(StatementSource source) {
-			AddSource(new MemoryStore.StoreImpl(source));
-		}
-		
-		public Store(SelectableSource source) {
-			AddSource(source);
-		}
-		
-		#if !DOTNET2
-		public IList DataSources {
-			get {
-				return ArrayList.ReadOnly(allsources);
-			}
-		}
-		#else
-		public IList<SelectableSource> DataSources {
-			get {
-				return new List<SelectableSource>(allsources);
-			}
-		}
-		#endif
-				
-		public virtual void AddSource(SelectableSource source) {
-			if (source is MemoryStore) source = ((MemoryStore)source).impl;
-			unnamedgraphs.Add(source);
-			allsources.Add(source);
-		}
-		
-		public virtual void AddSource(SelectableSource source, string uri) {
-			if (namedgraphs.ContainsKey(uri))
-				throw new ArgumentException("URI has already been associated with a data source.");
-			if (source is MemoryStore) source = ((MemoryStore)source).impl;
-			namedgraphs[uri] = source;
-			allsources.Add(source);
-		}
-		
-		internal void AddSource2(SelectableSource store) {
-			// Used by MemoryStore only!
-			unnamedgraphs.Add(store);
-			allsources.Add(store);
-		}
-		
-		public virtual void AddReasoner(Reasoner reasoner) {
-			reasoners.Add(reasoner);
-		}
-		
-		public void Write(System.IO.TextWriter writer) {
-			using (RdfWriter w = new N3Writer(writer)) {
-				Select(w);
-			}
-		}
+		public abstract void Clear();
 
-		// INTERFACE IMPLEMENTATIONS and related methods
-		
-		// IDisposable
-		
-		public void Dispose() {
-			foreach (SelectableSource s in allsources)
-				if (s is IDisposable)
-					((IDisposable)s).Dispose();
-			foreach (Reasoner r in reasoners)
-				if (r is IDisposable)
-					((IDisposable)r).Dispose();
-		}
-		
-		// StatementSource
-		
-		public bool Distinct {
-			get {
-				if (allsources.Count > 1) return false;
-				foreach (Reasoner r in reasoners)
-					if (!r.Distinct)
-						return false;
-				if (allsources.Count == 0) return true;
-				return ((SelectableSource)allsources[0]).Distinct;
-			}
-		}
-		
-		public void Select(StatementSink result) {
-			Select(Statement.All, result);
-		}
-
-		// SelectableSource
-		
-		private SelectableSource[] GetSources(ref Entity graph) {
-			if (graph == null || namedgraphs.Count == 0)
-				#if !DOTNET2
-					return (SelectableSource[])allsources.ToArray(typeof(SelectableSource));
-				#else
-					return allsources.ToArray();
-				#endif
-			else if (graph == Statement.DefaultMeta)
-				#if !DOTNET2
-					return (SelectableSource[])unnamedgraphs.ToArray(typeof(SelectableSource));
-				#else
-					return unnamedgraphs.ToArray();
-				#endif
-			else if (graph.Uri != null && namedgraphs.ContainsKey(graph.Uri)) {
-				graph = Statement.DefaultMeta;
-				return new SelectableSource[] { (SelectableSource)namedgraphs[graph.Uri] };
-			} else
-				return null;
-		}
-
-		public bool Contains(Resource resource) {
-			foreach (SelectableSource s in allsources)
-				if (s.Contains(resource))
-					return true;
-			return false;
-			/*return (resource is Entity && Contains(new Statement((Entity)resource, null, null, null)))
-				|| (resource is Entity && Contains(new Statement(null, (Entity)resource, null, null)))
-				|| (                      Contains(new Statement(null, null, resource, null)))
-				|| (resource is Entity && Contains(new Statement(null, null, null, (Entity)resource)));*/
-		}
-		
-		public bool Contains(Statement template) {
-			// If reasoning is applied, use DefaultContains so that
-			// we use a Select call which will delegate the query
-			// to the reasoner.
-			ReasoningHelper rh = GetReasoningHelper(null);
-			if (rh != null)
-				return DefaultContains(this, template);
+		public Entity[] GetEntitiesOfType(Entity type) {
+			ArrayList entities = new ArrayList();
 			
-			SelectableSource[] sources = GetSources(ref template.Meta);
-			if (sources == null) return false;
-			foreach (SelectableSource s in sources)
-				if (s.Contains(template))
-					return true;
-			return false;
-		}
+			IEnumerable result = Select(new Statement(null, rdfType, type));
+			foreach (Statement s in result) {
+				entities.Add(s.Subject);
+			}
 			
+			return (Entity[])entities.ToArray(typeof(Entity));
+		}
+		
+		bool StatementSink.Add(Statement statement) {
+			Add(statement);
+			return true;
+		}
+		
+		public abstract void Add(Statement statement);
+		
+		public abstract void Remove(Statement statement);
+
+		public virtual void Import(StatementSource source) {
+			source.Select(this);
+		}
+		
+		public void RemoveAll(Statement[] templates) {
+			foreach (Statement t in templates)
+				Remove(t);
+		}
+		
+		public abstract Entity[] GetEntities();
+		
+		public abstract Entity[] GetPredicates();
+		
+		public abstract Entity[] GetMetas();
+		
+		public virtual bool Contains(Statement template) {
+			return DefaultContains(this, template);
+		}
+
 		public static bool DefaultContains(SelectableSource source, Statement template) {
 			StatementExistsSink sink = new StatementExistsSink();
 			SelectFilter filter = new SelectFilter(template);
@@ -319,78 +235,8 @@ namespace SemWeb {
 			return sink.Exists;
 		}
 		
-		private class ReasoningHelper {
-			public Reasoner reasoner;
-			public Store nextStore;
-		}
-		
-		private ReasoningHelper GetReasoningHelper(SelectableSource[] sources) {
-			if (reasoners.Count == 0)
-				return null;
-		
-			ReasoningHelper ret = new ReasoningHelper();
-			
-			ret.reasoner = (Reasoner)reasoners[reasoners.Count-1];
-			
-			ret.nextStore = new Store();
-			if (sources == null) {
-				ret.nextStore.unnamedgraphs = unnamedgraphs; // careful...
-				ret.nextStore.namedgraphs = namedgraphs;
-				ret.nextStore.allsources = allsources;
-			} else {
-				ret.nextStore.unnamedgraphs.AddRange(sources);
-				ret.nextStore.allsources.AddRange(sources);
-			}
-			for (int i = 0; i < reasoners.Count-1; i++)
-				ret.nextStore.reasoners.Add(reasoners[i]);
-			return ret;
-		}
-		
-		public void Select(Statement template, StatementSink result) {
-			// If reasoning is applied, delegate this call to the last reasoner
-			// and pass it a clone of this store but with itself removed.
-			ReasoningHelper rh = GetReasoningHelper(null);
-			if (rh != null) {
-				rh.reasoner.Select(template, rh.nextStore, result);
-				return;
-			}
-		
-			SelectableSource[] sources = GetSources(ref template.Meta);
-			if (sources == null) return;
-			foreach (SelectableSource s in sources)
-				s.Select(template, result);
-		}
-		
-		public void Select(SelectFilter filter, StatementSink result) {
-			Entity[] scanMetas = filter.Metas;
-			if (scanMetas == null || namedgraphs.Count == 0) scanMetas = new Entity[] { null };
-			foreach (Entity meta in scanMetas) {
-				Entity meta2 = meta;
-				SelectableSource[] sources = GetSources(ref meta2);
-				if (sources == null) continue;
-				
-				if (meta2 == null)
-					filter.Metas = null;
-				else
-					filter.Metas = new Entity[] { meta2 };
-
-				// If reasoning is applied, delegate this call to the last reasoner
-				// and pass it either:
-				// 		a clone of this store but with itself removed, if the meta we are processing now is null, or
-				//		that, but only with the sources that apply to this meta
-				ReasoningHelper rh = GetReasoningHelper(sources);
-				if (rh != null) {
-					rh.reasoner.Select(filter, rh.nextStore, result);
-					continue;
-				}
-				
-				foreach (SelectableSource s in sources)
-					s.Select(filter, result);
-			}
-		}
-		
 		public static void DefaultSelect(SelectableSource source, SelectFilter filter, StatementSink sink) {
-			// This method should really be avoided...
+			// This method should be avoided...
 			if (filter.LiteralFilters != null)
 				sink = new SemWeb.Filters.FilterSink(filter.LiteralFilters, sink, source);
 			foreach (Entity subject in filter.Subjects == null ? new Entity[] { null } : filter.Subjects)
@@ -399,6 +245,14 @@ namespace SemWeb {
 			foreach (Entity meta in filter.Metas == null ? new Entity[] { null } : filter.Metas)
 				source.Select(new Statement(subject, predicate, objct, meta), sink);
 		}		
+		
+		public void Select(StatementSink result) {
+			Select(Statement.All, result);
+		}
+		
+		public abstract void Select(Statement template, StatementSink result);
+		
+		public abstract void Select(SelectFilter filter, StatementSink result);
 		
 		public SelectResult Select(Statement template) {
 			return new SelectResult.Single(this, template);
@@ -409,458 +263,78 @@ namespace SemWeb {
 		}
 		
 		public Resource[] SelectObjects(Entity subject, Entity predicate) {
-			if (predicate.Uri != null && predicate.Uri == NS.RDFS + "member") {
-				ResourceCollector2 collector = new ResourceCollector2();
-				Select(new Statement(subject, predicate, null, null), collector);
-				return collector.GetItems();
-			} else {
-				ResSet resources = new ResSet();
-				ResourceCollector collector = new ResourceCollector();
-				collector.SPO = 2;
-				collector.Table = resources;
-				Select(new Statement(subject, predicate, null, null), collector);
-				return resources.ToArray();
-			}
+			Hashtable resources = new Hashtable();
+			ResourceCollector collector = new ResourceCollector();
+			collector.SPO = 2;
+			collector.Table = resources;
+			Select(new Statement(subject, predicate, null, null), collector);
+			return (Resource[])new ArrayList(resources.Keys).ToArray(typeof(Resource));
 		}
 		public Entity[] SelectSubjects(Entity predicate, Resource @object) {
-			ResSet resources = new ResSet();
+			Hashtable resources = new Hashtable();
 			ResourceCollector collector = new ResourceCollector();
 			collector.SPO = 0;
 			collector.Table = resources;
 			Select(new Statement(null, predicate, @object, null), collector);
-			return resources.ToEntityArray();
+			return (Entity[])new ArrayList(resources.Keys).ToArray(typeof(Entity));
 		}
 		class ResourceCollector : StatementSink {
-			public ResSet Table;
+			public Hashtable Table;
 			public int SPO;
 			public bool Add(Statement s) {
-				if (SPO == 0) Table.Add(s.Subject);
-				if (SPO == 2) Table.Add(s.Object);
+				if (SPO == 0) Table[s.Subject] = Table;
+				if (SPO == 2) Table[s.Object] = Table;
 				return true;
 			}
 		}
-		class ResourceCollector2 : StatementSink {
-			System.Collections.ArrayList items = new System.Collections.ArrayList();
-			ResSet other = new ResSet();
-			public bool Add(Statement s) {
-				if (s.Predicate.Uri == null || !s.Predicate.Uri.StartsWith(NS.RDF + "_")) {
-					other.Add(s.Object);
-				} else {
-					string num = s.Predicate.Uri.Substring(NS.RDF.Length+1);
-					try {
-						int idx = int.Parse(num);
-						items.Add(new Item(s.Object, idx));
-					} catch {
-						other.Add(s.Object);
-					}
-				}
-				return true;
-			}
-			public Resource[] GetItems() {
-				items.Sort();
-				Resource[] ret = new Resource[items.Count + other.Count];
-				int ctr = 0;
-				foreach (Item item in items)
-					ret[ctr++] = item.r;
-				foreach (Resource item in other)
-					ret[ctr++] = item;
-				return ret;
-			}
-			class Item : IComparable {
-				public Resource r;
-				int idx;
-				public Item(Resource r, int idx) { this.r = r; this.idx = idx; }
-				public int CompareTo(object other) {
-					return idx.CompareTo(((Item)other).idx);
-				}
-			}
-		}
 		
-		// QueryableSource
-		
-		public SemWeb.Query.MetaQueryResult MetaQuery(Statement[] graph, SemWeb.Query.QueryOptions options) {
-			// If reasoning is applied, delegate this call to the last reasoner
-			// and pass it a clone of this store but with itself removed.
-			ReasoningHelper rh = GetReasoningHelper(null);
-			if (rh != null)
-				return rh.reasoner.MetaQuery(graph, options, rh.nextStore);
-			
-			// Special case for one wrapped data source that supports QueryableSource:
-			if (allsources.Count == 1 && allsources[0] is QueryableSource)
-				return ((QueryableSource)allsources[0]).MetaQuery(graph, options);
-		
-			return new SemWeb.Inference.SimpleEntailment().MetaQuery(graph, options, this);
-		}
-
-		public void Query(Statement[] graph, SemWeb.Query.QueryOptions options, SemWeb.Query.QueryResultSink sink) {
-			// If reasoning is applied, delegate this call to the last reasoner
-			// and pass it a clone of this store but with itself removed.
-			ReasoningHelper rh = GetReasoningHelper(null);
-			if (rh != null) {
-				rh.reasoner.Query(graph, options, rh.nextStore, sink);
-				return;
-			}
-
-			// Special case for one wrapped data source that supports QueryableSource:
-			if (allsources.Count == 1 && allsources[0] is QueryableSource) {
-				((QueryableSource)allsources[0]).Query(graph, options, sink);
-				return;
-			}
-
-			// Chunk the query graph as best we can.
-			SemWeb.Query.GraphMatch.QueryPart[] chunks = ChunkQuery(graph, options, sink);
-			
-			// If we couldn't chunk the graph, then just use the default GraphMatch implementation.
-			if (chunks == null) {
-				new SemWeb.Inference.SimpleEntailment().Query(graph, options, this, sink);
-				return;
-			}
-			
-			SemWeb.Query.GraphMatch.RunGeneralQuery(chunks, options.VariableKnownValues, options.VariableLiteralFilters, options.DistinguishedVariables,
-				0, options.Limit, true, sink);
-		}
-		
-		private SemWeb.Query.GraphMatch.QueryPart[] ChunkQuery(Statement[] query, SemWeb.Query.QueryOptions options, SemWeb.Query.QueryResultSink sink) {
-			// MetaQuery the data sources to get their capabilities.
-			SemWeb.Query.MetaQueryResult[] mq = new SemWeb.Query.MetaQueryResult[allsources.Count];
-			for (int i = 0; i < allsources.Count; i++) {
-				if (!(allsources[i] is QueryableSource))
-					return null;
-				mq[i] = ((QueryableSource)allsources[i]).MetaQuery(query, options);
-				if (!mq[i].QuerySupported)
-					return null;
-			}
-		
-			System.Collections.ArrayList chunks = new System.Collections.ArrayList();
-			
-			int curSource = -1;
-			System.Collections.ArrayList curStatements = new System.Collections.ArrayList();
-			
-			for (int j = 0; j < query.Length; j++) {
-				if (curSource != -1) {
-					// If we have a curSource and it definitively answers this
-					// statement in the graph, include this statement in the
-					// current chunk.
-					if (mq[curSource].IsDefinitive != null && mq[curSource].IsDefinitive[j]) {
-						sink.AddComments(allsources[curSource] + " answers definitively: " + query[j]);
-						curStatements.Add(query[j]);
-						continue;
-					}
-					
-					// If we have a curSource and no other source answers this
-					// statement, also include this statement in the current chunk.
-					bool foundOther = false;
-					for (int i = 0; i < mq.Length; i++) {
-						if (i == curSource) continue;
-						if (mq[i].NoData != null && mq[i].NoData[j]) continue;
-						foundOther = true;
-						break;
-					}
-					if (!foundOther) {
-						curStatements.Add(query[j]);
-						continue;
-					}
-					
-					// Some other source could possibly answer this statement,
-					// so we complete the chunk we started.
-					SemWeb.Query.GraphMatch.QueryPart c = new SemWeb.Query.GraphMatch.QueryPart(
-						(Statement[])curStatements.ToArray(typeof(Statement)),
-						(QueryableSource)allsources[curSource]
-						);
-					chunks.Add(c);
-					
-					curSource = -1;
-					curStatements.Clear();
-				}
-			
-				// Find a definitive source for this statement
-				for (int i = 0; i < mq.Length; i++) {
-					if (mq[i].IsDefinitive != null && mq[i].IsDefinitive[j]) {
-						curSource = i;
-						curStatements.Add(query[j]);
-						sink.AddComments(allsources[i] + " answers definitively: " + query[j]);
-						break;
-					}
-				}
-				if (curSource != -1) // found a definitive source
-					continue;
-					
-				// See if only one source can answer this statement.
-				// Also build a list of sources that can answer the
-				// statement, so don't break out of this loop early.
-				System.Collections.ArrayList answerables = new System.Collections.ArrayList();
-				int findSource = -1;
-				for (int i = 0; i < mq.Length; i++) {
-					if (mq[i].NoData != null && mq[i].NoData[j]) continue;
-					answerables.Add(allsources[i]);
-					if (findSource == -1)
-						findSource = i;
-					else
-						findSource = -2; // found a second source that can answer this
-				}
-				if (findSource >= 0) {
-					curSource = findSource;
-					curStatements.Add(query[j]);
-					continue;
-				}
-				if (answerables.Count == 0) {
-					sink.AddComments("No data source could answer: " + query[j]);
-					return null;
-				}
-				
-				// More than one source can answer this, so make a one-statement chunk.
-				SemWeb.Query.GraphMatch.QueryPart cc = new SemWeb.Query.GraphMatch.QueryPart(
-					query[j],
-					(QueryableSource[])answerables.ToArray(typeof(QueryableSource))
-					);
-				chunks.Add(cc);
-			}
-
-			if (curSource != -1) {
-				SemWeb.Query.GraphMatch.QueryPart c = new SemWeb.Query.GraphMatch.QueryPart(
-					(Statement[])curStatements.ToArray(typeof(Statement)),
-					(QueryableSource)allsources[curSource]
-					);
-				chunks.Add(c);
-			}
-			
-			return (SemWeb.Query.GraphMatch.QueryPart[])chunks.ToArray(typeof(SemWeb.Query.GraphMatch.QueryPart));
-		}
-
-		public
-		#if !DOTNET2
-		ICollection
-		#else
-		ICollection<SemWeb.Query.VariableBindings>
-		#endif
-		Query(Statement[] graph) {
-			SemWeb.Query.QueryOptions options = new SemWeb.Query.QueryOptions();
-			options.Limit = 1;
-			SemWeb.Query.QueryResultBuffer sink = new SemWeb.Query.QueryResultBuffer();
-			Query(graph, options, sink);
-			return sink.Bindings;
-		}
-		
-		// StaticSource
-		
-		public int StatementCount {
-			get {
-				int ret = 0;
-				foreach (StatementSource s in allsources) {
-					if (s is StaticSource)
-						ret += ((StaticSource)s).StatementCount;
-					else
-						throw new InvalidOperationException("Not all data sources are support StatementCount.");
-				}
-				return ret;
-			}
-		}
-		
-		public Entity[] GetEntities() {
-			ResSet h = new ResSet();
-			foreach (StatementSource s in allsources) {
-				if (s is StaticSource) {
-					foreach (Resource r in ((StaticSource)s).GetEntities())
-						h.Add(r);
-				} else {
-					throw new InvalidOperationException("Not all data sources support GetEntities.");
-				}
-			}
-			return h.ToEntityArray();
-		}
-		
-		public Entity[] GetPredicates() {
-			ResSet h = new ResSet();
-			foreach (StatementSource s in allsources) {
-				if (s is StaticSource) {
-					foreach (Resource r in ((StaticSource)s).GetPredicates())
-						h.Add(r);
-				} else {
-					throw new InvalidOperationException("Not data sources support GetPredicates.");
-				}
-			}
-			return h.ToEntityArray();
-		}
-
-		public Entity[] GetMetas() {
-			ResSet h = new ResSet();
-			foreach (StatementSource s in allsources) {
-				if (s is StaticSource) {
-					foreach (Resource r in ((StaticSource)s).GetMetas())
-						h.Add(r);
-				} else {
-					throw new InvalidOperationException("Not all data sources support GetMetas.");
-				}
-			}
-			return h.ToEntityArray();
-		}
-
-		public Entity[] GetEntitiesOfType(Entity type) {
-			return SelectSubjects(rdfType, type);
-		}
-		
-		public string GetPersistentBNodeId(BNode node) {
-			foreach (SelectableSource source in allsources) {
-				if (source is StaticSource) {
-					string id = ((StaticSource)source).GetPersistentBNodeId(node);
-					if (id != null) return id;
-				}
-			}
-			return null;
-		}
-		
-		public BNode GetBNodeFromPersistentId(string persistentId) {
-			foreach (SelectableSource source in allsources) {
-				if (source is StaticSource) {
-					BNode node = ((StaticSource)source).GetBNodeFromPersistentId(persistentId);
-					if (node != null) return node;
-				}
-			}
-			return null;
-		}
-		
-		
-		// StatementSink
-
-		bool StatementSink.Add(Statement statement) {
-			Add(statement);
-			return true;
-		}
-		
-		public void Add(Statement statement) {
-			if (statement.AnyNull) throw new ArgumentNullException();
-			// We don't know where to put it unless we are wrapping just one store.
-			SelectableSource[] sources = GetSources(ref statement.Meta);
-			if (sources == null || sources.Length != 1) throw new InvalidOperationException("I don't know which data source to put the statement into.");
-			if (!(sources[0] is ModifiableSource)) throw new InvalidOperationException("The data source is not modifiable.");
-			((ModifiableSource)sources[0]).Add(statement);
-		}
-		
-		// ModifiableSource
-		
-		public void Clear() {
-			if (allsources.Count > 1) throw new InvalidOperationException("The Clear() method is not supported when multiple data sources are added to a Store.");
-			if (!(allsources[0] is ModifiableSource)) throw new InvalidOperationException("The data source is not modifiable.");
-			((ModifiableSource)allsources[0]).Clear();
-		}
-		
-		ModifiableSource[] GetModifiableSources(ref Entity graph) {
-			SelectableSource[] sources = GetSources(ref graph);
-			if (sources == null) return null;
-			
-			// check all are modifiable first
-			foreach (SelectableSource source in sources)
-				if (!(source is ModifiableSource)) throw new InvalidOperationException("Not all of the data sources are modifiable.");
-				
-			ModifiableSource[] sources2 = new ModifiableSource[sources.Length];
-			sources.CopyTo(sources2, 0);
-			return sources2;
-		}
-
-		public void Remove(Statement template) {
-			ModifiableSource[] sources = GetModifiableSources(ref template.Meta);
-			if (sources == null) return;
-			
-			foreach (ModifiableSource source in sources)
-				source.Remove(template);
-		}
-
-		public void Import(StatementSource source) {
-			// We don't know where to put the data unless we are wrapping just one store.
-			if (allsources.Count != 1) throw new InvalidOperationException("I don't know which data source to put the statements into.");
-			if (!(allsources[0] is ModifiableSource)) throw new InvalidOperationException("The data source is not modifiable.");
-			((ModifiableSource)allsources[0]).Import(source);
-		}
-		
-		public void RemoveAll(Statement[] templates) {
-			// Not tested...
-			
-			System.Collections.ArrayList metas = new System.Collections.ArrayList();
-			foreach (Statement t in templates)
-				if (!metas.Contains(t.Meta))
-					metas.Add(t.Meta);
-					
-			foreach (Entity meta in metas) {
-				Entity meta2 = meta;
-				ModifiableSource[] sources = GetModifiableSources(ref meta2);
-				if (sources == null) continue;
-				
-				StatementList templates2 = new StatementList();
-				foreach (Statement t in templates) {
-					if (t.Meta == meta) {
-						Statement t2 = t;
-						t2.Meta = meta2;
-						templates2.Add(t2);
-					}
-				}
-					
-				foreach (ModifiableSource source in sources)
-					source.RemoveAll(templates2);
-			}
-		}
-		
-		public void Replace(Entity find, Entity replacement) {
-			foreach (SelectableSource source in allsources)
-				if (!(source is ModifiableSource)) throw new InvalidOperationException("Not all of the data sources are modifiable.");
-
-			foreach (ModifiableSource source in allsources)
-				source.Replace(find, replacement);
-		}
-		
-		public void Replace(Statement find, Statement replacement) {
-			ModifiableSource[] sources = GetModifiableSources(ref find.Meta);
-			if (sources == null) return;
-				
-			foreach (ModifiableSource source in sources)
-				source.Replace(find, replacement);
-		}
-
-		public static void DefaultReplace(ModifiableSource source, Entity find, Entity replacement) {
+		public virtual void Replace(Entity find, Entity replacement) {
 			MemoryStore deletions = new MemoryStore();
 			MemoryStore additions = new MemoryStore();
 			
-			source.Select(new Statement(find, null, null, null), deletions);
-			source.Select(new Statement(null, find, null, null), deletions);
-			source.Select(new Statement(null, null, find, null), deletions);
-			source.Select(new Statement(null, null, null, find), deletions);
+			Select(new Statement(find, null, null, null), deletions);
+			Select(new Statement(null, find, null, null), deletions);
+			Select(new Statement(null, null, find, null), deletions);
+			Select(new Statement(null, null, null, find), deletions);
 			
 			foreach (Statement s in deletions) {
-				source.Remove(s);
+				Remove(s);
 				additions.Add(s.Replace(find, replacement));
 			}
 			
 			foreach (Statement s in additions) {
-				source.Add(s);
+				Add(s);
 			}
 		}
 		
-		public static void DefaultReplace(ModifiableSource source, Statement find, Statement replacement) {
-			source.Remove(find);
-			source.Add(replacement);
+		public virtual void Replace(Statement find, Statement replacement) {
+			Remove(find);
+			Add(replacement);
+		}
+				public void Write(System.IO.TextWriter writer) {
+			using (RdfWriter w = new N3Writer(writer)) {
+				Select(w);
+			}
 		}
 		
+		protected object GetResourceKey(Resource resource) {
+			return resource.GetResourceKey(this);
+		}
+
+		protected void SetResourceKey(Resource resource, object value) {
+			resource.SetResourceKey(this, value);
+		}
 		
 	}
 
-	public abstract class SelectResult : StatementSource, 
-#if DOTNET2
-	System.Collections.Generic.IEnumerable<Statement>
-#else
-	IEnumerable
-#endif
-	{
+	public abstract class SelectResult : StatementSource, IEnumerable {
 		internal Store source;
 		MemoryStore ms;
 		internal SelectResult(Store source) { this.source = source; }
 		public bool Distinct { get { return source.Distinct; } }
 		public abstract void Select(StatementSink sink);
-#if DOTNET2
-		System.Collections.Generic.IEnumerator<Statement> System.Collections.Generic.IEnumerable<Statement>.GetEnumerator() {
-			return ((System.Collections.Generic.IEnumerable<Statement>)Buffer()).GetEnumerator();
-		}
-#endif
-		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
-			return ((System.Collections.IEnumerable)Buffer()).GetEnumerator();
+		public IEnumerator GetEnumerator() {
+			return Buffer().Statements.GetEnumerator();
 		}
 		public long StatementCount { get { return Buffer().StatementCount; } }
 		public MemoryStore Load() { return Buffer(); }
@@ -895,18 +369,160 @@ namespace SemWeb {
 		}
 	}
 }
-		
 
-
-
-/////// AUXILIARY STORE WRAPPERS /////////
-	
 namespace SemWeb.Stores {
 
-	#if DOTNET2
-	using System.Collections;
-	#endif
+	public interface SupportsPersistableBNodes {
+		string GetStoreGuid();
+		string GetNodeId(BNode node);
+		BNode GetNodeFromId(string persistentId);
+	}
 
+	public class MultiStore : Store {
+		ArrayList stores = new ArrayList();
+		Hashtable namedgraphs = new Hashtable();
+		ArrayList allsources = new ArrayList();
+		
+		public MultiStore() { }
+		
+		public override bool Distinct { get { return false; } }
+		
+		public void Add(SelectableSource store) {
+			stores.Add(store);
+			allsources.Add(store);
+		}
+		
+		public void Add(string uri, SelectableSource store) {
+			namedgraphs[uri] = store;
+			allsources.Add(store);
+		}
+		
+		public void Add(RdfReader source) {
+			MemoryStore store = new MemoryStore(source);
+			Add(store);
+		}
+		
+		public void Add(string uri, RdfReader source) {
+			MemoryStore store = new MemoryStore(source);
+			Add(uri, store);
+		}
+		
+		public void Remove(SelectableSource store) {
+			stores.Remove(store);
+			allsources.Remove(store);
+		}
+		
+		public void Remove(string uri) {
+			allsources.Remove(namedgraphs[uri]);
+			namedgraphs.Remove(uri);
+		}
+		
+		public override int StatementCount {
+			get {
+				int ret = 0;
+				foreach (StatementSource s in allsources) {
+					if (s is Store)
+						ret += ((Store)s).StatementCount;
+					else
+						throw new InvalidOperationException("Not all sources are stores supporting StatementCount.");
+				}
+				return ret;
+			}
+		}
+
+		public override void Clear() {
+			throw new InvalidOperationException("Clear is not a valid operation on a MultiStore.");
+		}
+		
+		public override Entity[] GetEntities() {
+			Hashtable h = new Hashtable();
+			foreach (StatementSource s in allsources) {
+				if (s is Store) {
+					foreach (Resource r in ((Store)s).GetEntities())
+						h[r] = h;
+				} else {
+					throw new InvalidOperationException("Not all sources are stores supporting GetEntities.");
+				}
+			}
+			return (Entity[])new ArrayList(h.Keys).ToArray(typeof(Entity));
+		}
+		
+		public override Entity[] GetPredicates() {
+			Hashtable h = new Hashtable();
+			foreach (StatementSource s in allsources) {
+				if (s is Store) {
+					foreach (Resource r in ((Store)s).GetPredicates())
+						h[r] = h;
+				} else {
+					throw new InvalidOperationException("Not all sources are stores supporting GetEntities.");
+				}
+			}
+			return (Entity[])new ArrayList(h.Keys).ToArray(typeof(Entity));
+		}
+
+		public override Entity[] GetMetas() {
+			Hashtable h = new Hashtable();
+			foreach (StatementSource s in allsources) {
+				if (s is Store) {
+					foreach (Resource r in ((Store)s).GetMetas())
+						h[r] = h;
+				} else {
+					throw new InvalidOperationException("Not all sources are stores supporting GetEntities.");
+				}
+			}
+			return (Entity[])new ArrayList(h.Keys).ToArray(typeof(Entity));
+		}
+
+		public override void Add(Statement statement) { throw new InvalidOperationException("Add is not a valid operation on a MultiStore."); }
+		
+		SelectableSource[] GetSources(Entity graph) {
+			if (graph == null || namedgraphs.Count == 0)
+				return (SelectableSource[])allsources.ToArray(typeof(SelectableSource));
+			else if (graph == Statement.DefaultMeta)
+				return (SelectableSource[])stores.ToArray(typeof(SelectableSource));
+			else if (graph.Uri != null && namedgraphs.ContainsKey(graph.Uri))
+				return new SelectableSource[] { (SelectableSource)namedgraphs[graph.Uri] };
+			else
+				return null;
+		}
+		
+		public override bool Contains(Statement statement) {
+			SelectableSource[] sources = GetSources(statement.Meta);
+			if (sources == null) return false;
+			foreach (SelectableSource s in sources)
+				if (s.Contains(statement))
+					return true;
+			return false;
+		}
+			
+		public override void Remove(Statement statement) { throw new InvalidOperationException("Remove is not a valid operation on a MultiStore."); }
+		
+		public override void Select(Statement template, StatementSink result) {
+			SelectableSource[] sources = GetSources(template.Meta);
+			if (sources == null) return;
+			template.Meta = null;
+			foreach (SelectableSource s in sources)
+				s.Select(template, result);
+		}
+		
+		public override void Select(SelectFilter filter, StatementSink result) {
+			Entity[] scanMetas = filter.Metas;
+			filter.Metas = null;
+			if (scanMetas == null || namedgraphs.Count == 0) scanMetas = new Entity[] { null };
+			foreach (Entity meta in scanMetas) {
+				SelectableSource[] sources = GetSources(meta);
+				if (sources == null) continue;
+				foreach (SelectableSource s in sources)
+					s.Select(filter, result);
+			}
+		}
+
+		public override void Replace(Entity a, Entity b) { throw new InvalidOperationException("Replace is not a valid operation on a MultiStore."); }
+		
+		public override void Replace(Statement find, Statement replacement) { throw new InvalidOperationException("Replace is not a valid operation on a MultiStore."); }
+		
+	}
+	
 	public abstract class SimpleSourceWrapper : SelectableSource {
 	
 		public virtual bool Distinct { get { return true; } }
@@ -915,8 +531,6 @@ namespace SemWeb.Stores {
 			// The default implementation does not return
 			// anything for this call.
 		}
-		
-		public abstract bool Contains(Resource resource);
 
 		public virtual bool Contains(Statement template) {
 			template.Object = null; // reduce to another case (else there would be recursion)
@@ -972,7 +586,7 @@ namespace SemWeb.Stores {
 		}
 	}
 	
-	public class DebuggedSource : QueryableSource {
+	public class DebuggedSource : SelectableSource {
 		SelectableSource source;
 		System.IO.TextWriter output;
 		
@@ -985,11 +599,6 @@ namespace SemWeb.Stores {
 		
 		public void Select(StatementSink sink) {
 			Select(Statement.All, sink);
-		}
-		
-		public bool Contains(Resource resource) {
-			output.WriteLine("CONTAINS: " + resource);
-			return source.Contains(resource);
 		}
 
 		public bool Contains(Statement template) {
@@ -1006,45 +615,12 @@ namespace SemWeb.Stores {
 			output.WriteLine("SELECT: " + filter);
 			source.Select(filter, sink);
 		}
-
-		public virtual SemWeb.Query.MetaQueryResult MetaQuery(Statement[] graph, SemWeb.Query.QueryOptions options) {
-			if (source is QueryableSource)
-				return ((QueryableSource)source).MetaQuery(graph, options);
-			else
-				return new SemWeb.Query.MetaQueryResult(); // QuerySupported is by default false
-		}
-
-		public void Query(Statement[] graph, SemWeb.Query.QueryOptions options, SemWeb.Query.QueryResultSink sink) {
-			output.WriteLine("QUERY:");
-			foreach (Statement s in graph)
-				output.WriteLine("\t" + s);
-			if (options.VariableKnownValues != null) {
-				#if !DOTNET2
-				foreach (System.Collections.DictionaryEntry ent in options.VariableKnownValues)
-				#else
-				foreach (KeyValuePair<Variable,ICollection<Resource>> ent in options.VariableKnownValues)
-				#endif
-					output.WriteLine("\twhere " + ent.Key + " in " + ToString((ICollection)ent.Value));	
-			}
-			if (source is QueryableSource) 
-				((QueryableSource)source).Query(graph, options, sink);
-			else
-				throw new NotSupportedException("Underlying source " + source + " is not a QueryableSource.");
-		}
-		
-		string ToString(ICollection resources) {
-			ArrayList s = new ArrayList();
-			foreach (Resource r in resources)
-				s.Add(r.ToString());
-			return String.Join(",", (string[])s.ToArray(typeof(string)));
-		}
 	}
 	
 	public class CachedSource : SelectableSource {
 		SelectableSource source;
 
-		Hashtable containsresource = new Hashtable();
-		StatementMap containsstmtresults = new StatementMap();
+		StatementMap containsresults = new StatementMap();
 		StatementMap selectresults = new StatementMap();
 		Hashtable selfilterresults = new Hashtable();
 	
@@ -1056,22 +632,13 @@ namespace SemWeb.Stores {
 			Select(Statement.All, sink);
 		}
 
-		public bool Contains(Resource resource) {
-			if (source == null) return false;
-			if (!containsresource.ContainsKey(resource))
-				containsresource[resource] = source.Contains(resource);
-			return (bool)containsresource[resource];
-		}
-
 		public bool Contains(Statement template) {
-			if (source == null) return false;
-			if (!containsstmtresults.ContainsKey(template))
-				containsstmtresults[template] = source.Contains(template);
-			return (bool)containsstmtresults[template];
+			if (!containsresults.ContainsKey(template))
+				containsresults[template] = source.Contains(template);
+			return (bool)containsresults[template];
 		}
 		
 		public void Select(Statement template, StatementSink sink) {
-			if (source == null) return;
 			if (!selectresults.ContainsKey(template)) {
 				MemoryStore s = new MemoryStore();
 				source.Select(template, s);
@@ -1081,7 +648,6 @@ namespace SemWeb.Stores {
 		}
 	
 		public void Select(SelectFilter filter, StatementSink sink) {
-			if (source == null) return;
 			if (!selfilterresults.ContainsKey(filter)) {
 				MemoryStore s = new MemoryStore();
 				source.Select(filter, s);
@@ -1090,84 +656,5 @@ namespace SemWeb.Stores {
 			((MemoryStore)selfilterresults[filter]).Select(sink);
 		}
 
-	}
-	
-	internal class DecoupledStatementSource : StatementSource {
-		StatementSource source;
-		int minbuffersize = 2000;
-		int maxbuffersize = 10000;
-		
-		bool bufferWanted = false;
-		System.Threading.AutoResetEvent bufferMayAcquire = new System.Threading.AutoResetEvent(false);
-		System.Threading.AutoResetEvent bufferReleased = new System.Threading.AutoResetEvent(false);
-
-		System.Threading.Thread sourceThread;
-		
-		StatementList buffer = new StatementList();
-		bool sourceFinished = false;
-		
-		public DecoupledStatementSource(StatementSource source) {
-			this.source = source;
-		}
-		
-		public bool Distinct { get { return source.Distinct; } }
-
-		public void Select(StatementSink sink) {
-			bufferWanted = false;
-			
-			sourceThread = new System.Threading.Thread(Go);
-			sourceThread.Start();
-			
-			while (true) {
-				bufferWanted = true;
-				if (!sourceFinished) bufferMayAcquire.WaitOne(); // wait until we can have the buffer
-				bufferWanted = false;
-				
-				Statement[] statements = buffer.ToArray();
-				buffer.Clear();
-				
-				bufferReleased.Set(); // notify that we don't need the buffer anymore
-
-				if (sourceFinished && statements.Length == 0) break;
-				
-				foreach (Statement s in statements)
-					sink.Add(s);
-			}
-		}
-		
-		private void Go() {
-			source.Select(new MySink(this));
-			sourceFinished = true;
-			bufferMayAcquire.Set(); // for the last batch
-		}
-		
-		private void SourceAdd(Statement s) {
-			if ((bufferWanted && buffer.Count > minbuffersize) || buffer.Count >= maxbuffersize) {
-				bufferMayAcquire.Set();
-				bufferReleased.WaitOne();
-			}
-			buffer.Add(s);
-		}
-		private void SourceAdd(Statement[] s) {
-			if ((bufferWanted && buffer.Count > minbuffersize) || buffer.Count >= maxbuffersize) {
-				bufferMayAcquire.Set();
-				bufferReleased.WaitOne();
-			}
-			foreach (Statement ss in s)
-				buffer.Add(ss);
-		}
-		
-		private class MySink : StatementSink {
-			DecoupledStatementSource x;
-			public MySink(DecoupledStatementSource x) { this.x = x; }
-			public bool Add(Statement s) {
-				x.SourceAdd(s);
-				return true;
-			}
-			public bool Add(Statement[] s) {
-				x.SourceAdd(s);
-				return true;
-			}
-		}
 	}
 }
