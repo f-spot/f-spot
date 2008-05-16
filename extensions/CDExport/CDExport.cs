@@ -19,8 +19,10 @@ namespace FSpotCDExport {
 		[Glade.Widget] Gtk.CheckButton remove_check;
 		[Glade.Widget] Gtk.CheckButton rotate_check;
 		[Glade.Widget] Gtk.Label size_label;
+		[Glade.Widget] Gtk.Frame previous_frame;
 
 #if GIO_2_16
+		Gtk.Window listwindow;
 		System.Uri dest = new System.Uri ("burn:///");
 #else
 		Gnome.Vfs.Uri dest = new Gnome.Vfs.Uri ("burn:///");
@@ -73,6 +75,7 @@ namespace FSpotCDExport {
 			thumb_scrolledwindow.Add (view);
 			Dialog.ShowAll ();
 
+			previous_frame.Visible = IsEmpty (dest);
 			//LoadHistory ();
 
 			Dialog.Response += HandleResponse;
@@ -80,9 +83,37 @@ namespace FSpotCDExport {
 
 		void HandleBrowseExisting (object sender, System.EventArgs args)
 		{
+#if GIO_2_16 
+			if (listwindow == null) {
+				listwindow = new Gtk.Window ("Pending files to write");
+				listwindow.SetDefaultSize (400, 200);
+				listwindow.DeleteEvent += delegate (object o, Gtk.DeleteEventArgs e) {(o as Gtk.Window).Destroy (); listwindow = null;};
+				Gtk.TextView view = new Gtk.TextView ();
+				Gtk.TextBuffer buffer = view.Buffer;
+				Gtk.ScrolledWindow sw = new Gtk.ScrolledWindow ();
+				sw.Add (view);
+				listwindow.Add (sw);
+			} else {
+				((listwindow.Child as Gtk.ScrolledWindow).Child as Gtk.TextView).Buffer.Text = "";
+			}
+			ListAll (((listwindow.Child as Gtk.ScrolledWindow).Child as Gtk.TextView).Buffer, dest);
+			listwindow.ShowAll ();
+#else
 			GnomeUtil.UrlShow (null, dest.ToString ());
+#endif
 		}
 
+#if GIO_2_16
+		void ListAll (Gtk.TextBuffer t, System.Uri path)
+		{
+			GLib.File f = FileFactory.NewForUri (path);
+			foreach (GLib.FileInfo info in f.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
+				t.Text += new System.Uri (path, info.Name).ToString () + Environment.NewLine;
+				if (info.FileType == FileType.Directory)
+					ListAll (t, new System.Uri (path, info.Name + "/"));
+			}
+		}
+#endif
 		[DllImport ("libc")] 
 		extern static int system (string program);
 
@@ -122,7 +153,7 @@ namespace FSpotCDExport {
 			GLib.File source = FileFactory.NewForUri (path);
 			foreach (GLib.FileInfo info in source.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
 				if (info.FileType == FileType.Directory)
-					Clean (new System.Uri(path, info.Name));
+					Clean (new System.Uri(path, info.Name + "/"));
 				FileFactory.NewForUri (new System.Uri (path, info.Name)).Delete ();
 			}
 		}
@@ -134,6 +165,20 @@ namespace FSpotCDExport {
 			Gnome.Vfs.Xfer.XferDeleteList (new Gnome.Vfs.Uri [] {target}, Gnome.Vfs.XferErrorMode.Query, Gnome.Vfs.XferOptions.Recursive, cb);
 		}
 #endif			
+
+#if GIO_2_16
+		bool IsEmpty (System.Uri path)
+		{
+			foreach (GLib.FileInfo fi in FileFactory.NewForUri (path).EnumerateChildren ("*", FileQueryInfoFlags.None, null))
+				return true;
+			return false;
+		}
+#else
+		bool IsEmpty (Gnome.Vfs.Uri path)
+		{
+			return Gnome.Vfs.Directory.GetEntries (path).Length != 0;
+		}
+#endif
 
 		public void Transfer () {
 			try {
@@ -280,6 +325,10 @@ namespace FSpotCDExport {
 
 		private void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
+#if GIO_2_16
+			if (listwindow != null)
+				listwindow.Destroy ();
+#endif
 			if (args.ResponseId != Gtk.ResponseType.Ok) {
 				Dialog.Destroy ();
 				return;
