@@ -1,3 +1,9 @@
+2008-05-16  Stephane Delcroix  <stephane@delcroix.org>
+
+	* src/TagStore.cs:
+	* src/Core/Tag.cs: re-introducing an enhanced version of
+	tag sorting by popularity on tag typing.
+
 2008-05-14  Stephane Delcroix  <stephane@delcroix.org>
 
 	* src/UI.Dialog/SelectionRatioDialog.cs: parse custom selection ratio

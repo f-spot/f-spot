@@ -3,6 +3,7 @@ using Gnome;
 using Gtk;
 using Mono.Unix;
 using Mono.Data.SqliteClient;
+using System.Collections.Generic;
 using System.Collections;
 using System.IO;
 using System;
@@ -132,7 +133,7 @@ public class TagStore : DbStore {
 
 	public Tag [] GetTagsByNameStart (string s)
 	{
-		ArrayList l = new ArrayList ();
+		List <Tag> l = new List<Tag> ();
 		foreach (Tag t in this.item_cache.Values) {
 			if (t.Name.ToLower ().StartsWith (s.ToLower ()))
 				l.Add (t);
@@ -140,8 +141,10 @@ public class TagStore : DbStore {
 
 		if (l.Count == 0)
 			return null;
+		
+		l.Sort (delegate (Tag t1, Tag t2) {return t2.Popularity.CompareTo (t1.Popularity); });
 
-		return (Tag []) (l.ToArray (typeof (Tag)));
+		return l.ToArray ();
 	}
 
 	// In this store we keep all the items (i.e. the tags) in memory at all times.  This is
@@ -176,8 +179,7 @@ public class TagStore : DbStore {
 		reader.Close ();
 
 		// Pass 2, set the parents.
-
-		reader = Database.Query("SELECT id, category_id FROM tags");
+		reader = Database.Query ("SELECT id, category_id FROM tags");
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader [0]);
@@ -195,6 +197,12 @@ public class TagStore : DbStore {
 			}
 
 		}
+		reader.Close ();
+
+		//Pass 3, set popularity
+		reader = Database.Query ("SELECT tag_id, COUNT (*) as popularity FROM photo_tags GROUP BY tag_id");
+		while (reader.Read ())
+			(Get (Convert.ToUInt32 (reader [0])) as Tag).Popularity = Convert.ToInt32 (reader [1]);
 		reader.Close ();
 
 		if (FSpot.Core.Database.Meta.HiddenTagId.Value != null)
