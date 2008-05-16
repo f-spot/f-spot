@@ -1,5 +1,15 @@
 2008-05-16  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/Widgets/SoftFocus.cs:
+	* src/Cairo:
+	* src/Texture.cs:
+	* src/Makefile.am:
+	* src/MemorySurface.cs:
+	* libfspot/f-image-surface.h:
+	* libfspot/f-image-surface.c: drop our own Cairo copy
+
+2008-05-16  Stephane Delcroix  <stephane@delcroix.org>
+
 	reverting the semweb to the old _but working_ one we had.
 
 2008-05-16  Stephane Delcroix  <stephane@delcroix.org>

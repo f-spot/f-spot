@@ -18,42 +18,6 @@ using System.Runtime.InteropServices;
 using FSpot.Widgets;
 
 namespace FSpot {
-	// FIXME this class is a hack to have get_data functionality
-	// on cairo 1.0.x
-	public sealed class MemorySurface : ImageSurface {
-		[DllImport ("libfspot")]
-		static extern IntPtr f_image_surface_create (Cairo.Format format, int width, int height);
-		
-		[DllImport ("libfspot")]
-		static extern IntPtr f_image_surface_get_data (IntPtr surface);
-
-		[DllImport ("libfspot")]
-		static extern Cairo.Format f_image_surface_get_format (IntPtr surface);
-
-		public MemorySurface (Cairo.Format format, int width, int height)
-			: this (f_image_surface_create (format, width, height))
-		{
-		}
-
-		public MemorySurface (IntPtr handle) : base (handle, true)
-		{
-			if (Pixels == IntPtr.Zero)
-				throw new ApplicationException ("Missing image data");
-		}
-
-		public IntPtr Pixels {
-			get {
-				return f_image_surface_get_data (Handle);
-			}
-		}
-
-		public Cairo.Format Format {
-			get {
-				return f_image_surface_get_format (Handle);
-			}
-		}
-	}
-
 	public class TextureException : System.Exception {
 		public TextureException (string msg) : base (msg)
 		{
@@ -125,13 +89,13 @@ namespace FSpot {
 			float scale = (float)Math.Min (1.0, max_size / (double) Math.Max (width, height));
 			System.Console.WriteLine ("max texture size {0} scaling to {1}", max_size, scale);
 			
-			if (surface.Pixels == IntPtr.Zero)
+			if (surface.DataPtr == IntPtr.Zero)
 				throw new TextureException ("Surface has no data");
 
 			if (surface.Format != Format.Rgb24 && surface.Format != Format.Argb32)
 				throw new TextureException ("Unsupported format type");
 
-			IntPtr pixels = surface.Pixels;
+			IntPtr pixels = surface.DataPtr;
 			IntPtr tmp = IntPtr.Zero;
 			if (scale != 1.0) {
 				int swidth = (int)(width * scale);

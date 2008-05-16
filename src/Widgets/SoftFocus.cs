@@ -8,9 +8,15 @@
  */
 using Cairo;
 using System;
+using System.Runtime.InteropServices;
 
 namespace FSpot.Widgets {
+
 	public class SoftFocus : IEffect {
+
+		[DllImport ("cairo")]
+		internal static extern int cairo_version ();
+
 		ImageInfo info;
 		double radius;
 		double amount;
@@ -102,7 +108,7 @@ namespace FSpot.Widgets {
 			RadialGradient circle;
 
 			// FIXME ugh cairo 1.0.2 is so broken why are we still shipping it.
-			if (CairoAPI.cairo_version () > (1 * 10000 + 2 * 100 + 0)) {
+			if (cairo_version () > (1 * 10000 + 2 * 100 + 0)) {
 				circle = new RadialGradient (center.X * scale, center.Y * scale, radius * max * .7,
 							     center.X * scale, center.Y * scale, radius * max + max * .2);
 

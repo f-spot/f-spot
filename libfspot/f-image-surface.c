@@ -48,3 +48,16 @@ f_image_surface_get_format (cairo_surface_t *surface)
 {
 	return GPOINTER_TO_INT (cairo_surface_get_user_data (surface, &format_key));
 }
+
+int
+f_image_surface_get_width (cairo_surface_t *surface)
+{
+	return cairo_image_surface_get_width (surface);
+}
+
+int
+f_image_surface_get_height (cairo_surface_t *surface)
+{
+	return cairo_image_surface_get_height (surface);	
+}
+

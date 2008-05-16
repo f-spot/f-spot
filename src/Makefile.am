@@ -42,50 +42,6 @@ JOBSCHEDULER_CSDISTFILES =				\
 	$(srcdir)/JobScheduler/Scheduler.cs
 
 F_SPOT_CSDISTFILES =				\
-	$(srcdir)/Cairo/Antialias.cs		\
-	$(srcdir)/Cairo/Cairo.cs		\
-	$(srcdir)/Cairo/Content.cs		\
-	$(srcdir)/Cairo/Context.cs		\
-	$(srcdir)/Cairo/DirectFBSurface.cs	\
-	$(srcdir)/Cairo/Extend.cs		\
-	$(srcdir)/Cairo/FillRule.cs		\
-	$(srcdir)/Cairo/Filter.cs		\
-	$(srcdir)/Cairo/FontExtents.cs		\
-	$(srcdir)/Cairo/FontFace.cs		\
-	$(srcdir)/Cairo/FontOptions.cs		\
-	$(srcdir)/Cairo/FontSlant.cs		\
-	$(srcdir)/Cairo/FontType.cs		\
-	$(srcdir)/Cairo/FontWeight.cs		\
-	$(srcdir)/Cairo/Format.cs		\
-	$(srcdir)/Cairo/GlitzSurface.cs		\
-	$(srcdir)/Cairo/Glyph.cs		\
-	$(srcdir)/Cairo/Gradient.cs		\
-	$(srcdir)/Cairo/HintMetrics.cs		\
-	$(srcdir)/Cairo/HintStyle.cs		\
-	$(srcdir)/Cairo/ImageSurface.cs		\
-	$(srcdir)/Cairo/LinearGradient.cs	\
-	$(srcdir)/Cairo/LineCap.cs		\
-	$(srcdir)/Cairo/LineJoin.cs		\
-	$(srcdir)/Cairo/Matrix.cs		\
-	$(srcdir)/Cairo/Operator.cs		\
-	$(srcdir)/Cairo/Pattern.cs		\
-	$(srcdir)/Cairo/PatternType.cs		\
-	$(srcdir)/Cairo/PdfSurface.cs		\
-	$(srcdir)/Cairo/PSSurface.cs		\
-	$(srcdir)/Cairo/RadialGradient.cs	\
-	$(srcdir)/Cairo/Rectangle.cs		\
-	$(srcdir)/Cairo/SolidPattern.cs		\
-	$(srcdir)/Cairo/Status.cs		\
-	$(srcdir)/Cairo/SubpixelOrder.cs	\
-	$(srcdir)/Cairo/Surface.cs		\
-	$(srcdir)/Cairo/SurfacePattern.cs	\
-	$(srcdir)/Cairo/SurfaceType.cs		\
-	$(srcdir)/Cairo/SvgSurface.cs		\
-	$(srcdir)/Cairo/SvgVersion.cs		\
-	$(srcdir)/Cairo/TextExtents.cs		\
-	$(srcdir)/Cairo/Win32Surface.cs		\
-	$(srcdir)/Cairo/XcbSurface.cs		\
-	$(srcdir)/Cairo/XlibSurface.cs		\
 	$(srcdir)/AsyncPixbufLoader.cs		\
 	$(srcdir)/BeagleNotifier.cs		\
 	$(srcdir)/BlockProcessor.cs		\
@@ -175,6 +131,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/LastRollDialog.cs		\
 	$(srcdir)/Loupe.cs			\
 	$(srcdir)/MainWindow.cs			\
+	$(srcdir)/MemorySurface.cs		\
 	$(srcdir)/MetaStore.cs			\
 	$(srcdir)/MetadataStore.cs		\
 	$(srcdir)/NullPreferenceBackend.cs	\
@@ -317,6 +274,7 @@ F_SPOT_ASSEMBLIES = 				\
 	-r:Mono.Posix				\
 	-r:Mono.Security			\
 	-r:MCairo=Mono.Cairo			\
+	-r:Mono.Cairo				\
 	-r:ICSharpCode.SharpZipLib		\
 	-r:FSpot.Core.dll			\
 	-r:FSpot.Query.dll			\
