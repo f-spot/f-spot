@@ -4,9 +4,8 @@ using Cms;
 using Mono.Unix;
 using System.Threading;
 using FSpot.Widgets;
-using FSpot.UI.Dialog;
 
-namespace FSpot {
+namespace FSpot.UI.Dialog {
 	public class ColorDialog : GladeDialog {
 		protected static ColorDialog instance = null;
 		
