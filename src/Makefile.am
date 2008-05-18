@@ -72,6 +72,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Extensions/OpenWithMenu.cs	\
 	$(srcdir)/Extensions/CommandMenuItemNode.cs	\
 	$(srcdir)/Extensions/ComplexMenuItemNode.cs	\
+	$(srcdir)/Extensions/PhotoSelectionCondition.cs	\
 	$(srcdir)/Extensions/PopupCommands.cs	\
 	$(srcdir)/Fader.cs			\
 	$(srcdir)/FileImportBackend.cs		\

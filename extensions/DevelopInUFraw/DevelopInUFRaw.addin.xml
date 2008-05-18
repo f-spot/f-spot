@@ -1,6 +1,6 @@
 <Addin namespace="FSpot"
 	id="DevelopInUFraw"
-	version="0.4.3.1"
+	version="0.4.3.2"
 	name="DevelopInUFRaw"
 	description="Develop the image in UFRaw, saves the result as a new version\n\nNote: Require ufraw 0.13 or CVS version newer than 2007-09-06 !!!"
 	author="Stephane Delcroix"
@@ -11,6 +11,9 @@
 	</Dependencies>
 	<Extension path = "/FSpot/Menus/PhotoPopup">
 		<Command id = "DevelopInUFRaw" _label = "Develop in UFRaw" command_type = "DevelopInUFRawExtension.DevelopInUFRaw" insertbefore="OpenWith"/>
+		<Condition id="PhotoSelection" selection="multiple">
+			<Command id = "DevelopInUFRawBatch" _label = "Batch Develop" command_type = "DevelopInUFRawExtension.DevelopInUFRawBatch" insertbefore="OpenWith"/>
+		</Condition>
 	</Extension>
 </Addin>
 

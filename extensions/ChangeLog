@@ -1,3 +1,12 @@
+2008-05-18  Ruben Vermeersch  <ruben@savanne.be>
+
+	* DevelopInUFraw/DevelopInUFRaw.addin.xml: Bump version, add Batch option,
+	only show when multiple photos are selected.
+
+	* DevelopInUFraw/DevelopInUFRaw.cs: Abstract the DevelopInUFraw class, add
+	one for developing in the GUI and another one for batch develops which
+	shows a progress bar.
+
 2008-05-16  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* CDExport/*: fix the Clean, implement a quick file browser for

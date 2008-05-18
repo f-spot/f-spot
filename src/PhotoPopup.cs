@@ -26,8 +26,9 @@ namespace FSpot
 
 		public PhotoPopup () : base ()
 		{
-			foreach (MenuNode node in AddinManager.GetExtensionNodes ("/FSpot/Menus/PhotoPopup"))
+			foreach (MenuNode node in AddinManager.GetExtensionNodes ("/FSpot/Menus/PhotoPopup")) {
 				Append (node.GetMenuItem ());
+			}
 			ShowAll ();
 		}
 
@@ -38,10 +39,10 @@ namespace FSpot
 
 		public void Activate (Widget toplevel, Gdk.EventButton eb) 
 		{
-	                if (eb != null)
-        	                Popup (null, null, null, eb.Button, eb.Time);
-                	else 
-                        	Popup (null, null, null, 0, Gtk.Global.CurrentEventTime);
+			if (eb != null)
+				Popup (null, null, null, eb.Button, eb.Time);
+			else 
+				Popup (null, null, null, 0, Gtk.Global.CurrentEventTime);
 		}
 
 	}
