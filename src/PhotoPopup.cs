@@ -26,9 +26,8 @@ namespace FSpot
 
 		public PhotoPopup () : base ()
 		{
-			foreach (MenuNode node in AddinManager.GetExtensionNodes ("/FSpot/Menus/PhotoPopup")) {
+			foreach (MenuNode node in AddinManager.GetExtensionNodes ("/FSpot/Menus/PhotoPopup"))
 				Append (node.GetMenuItem ());
-			}
 			ShowAll ();
 		}
 
