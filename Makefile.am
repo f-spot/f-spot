@@ -2,6 +2,7 @@ SUBDIRS = 		\
 	$(subdirs)	\
 	$(DIR_DBUS)	\
 	$(DIR_DBUS_GLIB)\
+	semweb		\
 	docs		\
 	glitz-sharp	\
 	gnome-keyring-sharp \
@@ -19,6 +20,7 @@ SUBDIRS = 		\
 
 DIST_SUBDIRS = 		\
 	$(subdirs)	\
+	semweb		\
 	dbus-sharp	\
 	dbus-sharp-glib	\
 	docs		\
