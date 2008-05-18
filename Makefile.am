@@ -31,7 +31,6 @@ DIST_SUBDIRS = 		\
 	libjpegtran	\
 	libfspot	\
 	libgphoto2-sharp \
-	semweb		\
 	Tao		\
 	mono-addins	\
 	tools		\
